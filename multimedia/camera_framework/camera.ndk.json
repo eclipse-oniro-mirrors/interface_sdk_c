@@ -105,6 +105,10 @@
     },
     {
         "first_introduced": "11",
+        "name": "OH_CaptureSession_BeginConfig"
+    },
+    {
+        "first_introduced": "11",
         "name": "OH_CaptureSession_CommitConfig"
     },
     {
