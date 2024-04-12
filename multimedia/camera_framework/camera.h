@@ -613,6 +613,12 @@ typedef struct Camera_Device {
      * Camera connection type attribute.
      */
     Camera_Connection connectionType;
+
+    /**
+     * Camera orientation degree.
+     * Range of valid values: 0, 90, 180, 270
+     */
+    uint32_t  cameraOrientation;
 } Camera_Device;
 
 /**
