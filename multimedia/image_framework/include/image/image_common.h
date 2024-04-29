@@ -1258,6 +1258,15 @@ static const char *OHOS_IMAGE_PROPERTY_SCENE_POINTER = "HwMnoteScenePointer";
  * @since 12
  */
 static const char *OHOS_IMAGE_PROPERTY_SCENE_VERSION = "HwMnoteSceneVersion";
+
+/**
+ * @brief Gif Loop Count
+ * It is used in {@link OH_ImageSource_GetImageProperty} and {@link OH_ImageSource_ModifyImageProperty}.
+ * If infinite loop returns 0, other values represent the number of loops
+ *
+ * @since 12
+ */
+static const char *OHOS_IMAGE_PROPERTY_GIF_LOOP_COUNT = "GIFLoopCount";
 #ifdef __cplusplus
 };
 #endif
