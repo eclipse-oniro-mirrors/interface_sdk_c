@@ -158,7 +158,7 @@ typedef enum Camera_SceneMode {
      * Secure camera mode..
      * @since 12
      */
-    SECURE = 12
+    SECURE = 15
 } Camera_SceneMode;
 
 /**
