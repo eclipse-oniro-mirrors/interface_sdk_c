@@ -122,6 +122,175 @@ typedef enum ArkWeb_CustomSchemeOption {
 } ArkWeb_CustomSchemeOption;
 
 /*
+ * @brief Resource type for a request. These constants match their equivalents in
+ *        Chromium's ResourceType and should not be renumbered.
+ *
+ * @syscap SystemCapability.Web.Webview.Core
+ * @since 12
+ */
+typedef enum ArkWeb_ResourceType {
+    /*
+     * @brief Top level page.
+     *
+     * @syscap SystemCapability.Web.Webview.Core
+     * @since 12
+     */
+    MAIN_FRAME = 0,
+
+    /*
+     * @brief Frame or Iframe.
+     *
+     * @syscap SystemCapability.Web.Webview.Core
+     * @since 12
+     */
+    SUB_FRAME = 1,
+
+    /*
+     * @brief CSS stylesheet.
+     *
+     * @syscap SystemCapability.Web.Webview.Core
+     * @since 12
+     */
+    STYLE_SHEET = 2,
+
+    /*
+     * @brief External script.
+     *
+     * @syscap SystemCapability.Web.Webview.Core
+     * @since 12
+     */
+    SCRIPT = 3,
+
+    /*
+     * @brief Image (jpg/gif/png/etc).
+     *
+     * @syscap SystemCapability.Web.Webview.Core
+     * @since 12
+     */
+    IMAGE = 4,
+
+    /*
+     * @brief Font.
+     *
+     * @syscap SystemCapability.Web.Webview.Core
+     * @since 12
+     */
+    FONT_RESOURCE = 5,
+
+    /*
+     * @brief Some other subresource. This is the default type if the actual type is unknown.
+     *
+     * @syscap SystemCapability.Web.Webview.Core
+     * @since 12
+     */
+    SUB_RESOURCE = 6,
+
+    /*
+     * @brief Object (or embed) tag for a plugin, or a resource that a plugin requested.
+     *
+     * @syscap SystemCapability.Web.Webview.Core
+     * @since 12
+     */
+    OBJECT = 7,
+
+    /*
+     * @brief Media resource.
+     *
+     * @syscap SystemCapability.Web.Webview.Core
+     * @since 12
+     */
+    MEDIA = 8,
+
+    /*
+     * @brief Main resource of a dedicated worker.
+     *
+     * @syscap SystemCapability.Web.Webview.Core
+     * @since 12
+     */
+    WORKER = 9,
+
+    /*
+     * @brief Main resource of a shared worker.
+     *
+     * @syscap SystemCapability.Web.Webview.Core
+     * @since 12
+     */
+    SHARED_WORKER = 10,
+
+    /*
+     * @brief Explicitly requested prefetch.
+     *
+     * @syscap SystemCapability.Web.Webview.Core
+     * @since 12
+     */
+    PREFETCH = 11,
+
+    /*
+     * @brief Favicon.
+     *
+     * @syscap SystemCapability.Web.Webview.Core
+     * @since 12
+     */
+    FAVICON = 12,
+
+    /*
+     * @brief XMLHttpRequest.
+     *
+     * @syscap SystemCapability.Web.Webview.Core
+     * @since 12
+     */
+    XHR = 13,
+
+    /*
+     * @brief Ping request for <a ping>/sendBeacon.
+     *
+     * @syscap SystemCapability.Web.Webview.Core
+     * @since 12
+     */
+    PING = 14,
+
+    /*
+     * @brief The main resource of a service worker.
+     *
+     * @syscap SystemCapability.Web.Webview.Core
+     * @since 12
+     */
+    SERVICE_WORKER = 15,
+
+    /*
+     * @brief Report of Content Security Policy violations.
+     *
+     * @syscap SystemCapability.Web.Webview.Core
+     * @since 12
+     */
+    CSP_REPORT = 16,
+
+    /*
+     * @brief Resource that a plugin requested.
+     *
+     * @syscap SystemCapability.Web.Webview.Core
+     * @since 12
+     */
+    PLUGIN_RESOURCE = 17,
+
+    /*
+     * @brief A main-frame service worker navigation preload request.
+     *
+     * @syscap SystemCapability.Web.Webview.Core
+     * @since 12
+     */
+    NAVIGATION_PRELOAD_MAIN_FRAME = 19,
+
+    /*
+     * @brief A sub-frame service worker navigation preload request.
+     *
+     * @syscap SystemCapability.Web.Webview.Core
+     * @since 12
+     */
+    NAVIGATION_PRELOAD_SUB_FRAME = 20,
+} ArkWeb_ResourceType;
+
+/*
  * @brief  This class is used to intercept requests for a specified scheme.
  *
  * @syscap SystemCapability.Web.Webview.Core
@@ -323,6 +492,16 @@ void OH_ArkWebResourceRequest_GetHttpBodyStream(const ArkWeb_ResourceRequest* re
  * @since 12
  */
 void OH_ArkWebResourceRequest_DestroyHttpBodyStream(ArkWeb_HttpBodyStream* httpBodyStream);
+
+/*
+ * @brief Get the resource type of request.
+ * @param resourceRequest The ArkWeb_ResourceRequest.
+ * @return The resource type of request. -1 if resourceRequest is invalid.
+ *
+ * @syscap SystemCapability.Web.Webview.Core
+ * @since 12
+ */
+int32_t OH_ArkWebResourceRequest_GetResourceType(const ArkWeb_ResourceRequest* resourceRequest);
 
 /*
  * @brief Set a user data to ArkWeb_HttpBodyStream.
