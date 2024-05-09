@@ -112,6 +112,7 @@ typedef struct DrmSubsample {
 
 /**
  * @brief Creates an OH_AVCencInfo instance for setting cencinfo.
+ *
  * Free the resources of the instance by calling OH_AVCencInfo_Destory.
  * @syscap SystemCapability.Multimedia.Media.Spliter
  * @return Returns a pointer to an OH_AVCencInfo instance
@@ -122,6 +123,7 @@ OH_AVCencInfo *OH_AVCencInfo_Create();
 
 /**
  * @brief Destroy the OH_AVCencInfo instance and free the internal resources.
+ *
  * The same instance can only be destroyed once. The destroyed instance
  * should not be used before it is created again. It is recommended setting
  * the instance pointer to NULL right after the instance is destroyed successfully.
@@ -136,6 +138,7 @@ OH_AVErrCode OH_AVCencInfo_Destroy(OH_AVCencInfo *cencInfo);
 
 /**
  * @brief Method to set algo of cencinfo.
+ *
  * @syscap SystemCapability.Multimedia.Media.Spliter
  * @param cencInfo Pointer to an OH_AVCencInfo instance.
  * @param algo Cenc algo.
@@ -148,6 +151,7 @@ OH_AVErrCode OH_AVCencInfo_SetAlgorithm(OH_AVCencInfo *cencInfo, enum DrmCencAlg
 
 /**
  * @brief Method to set key id and iv of cencinfo.
+ *
  * @syscap SystemCapability.Multimedia.Media.Spliter
  * @param cencInfo Pointer to an OH_AVCencInfo instance.
  * @param keyId Key id.
@@ -164,6 +168,7 @@ OH_AVErrCode OH_AVCencInfo_SetKeyIdAndIv(OH_AVCencInfo *cencInfo, uint8_t *keyId
 
 /**
  * @brief Method to set subsample info of cencinfo.
+ *
  * @syscap SystemCapability.Multimedia.Media.Spliter
  * @param cencInfo Pointer to an OH_AVCencInfo instance.
  * @param encryptedBlockCount Number of encrypted blocks.
@@ -181,6 +186,7 @@ OH_AVErrCode OH_AVCencInfo_SetSubsampleInfo(OH_AVCencInfo *cencInfo, uint32_t en
 
 /**
  * @brief Method to set mode of cencinfo.
+ *
  * @syscap SystemCapability.Multimedia.Media.Spliter
  * @param cencInfo Pointer to an OH_AVCencInfo instance.
  * @param mode Cenc mode, indicate whether key/iv/subsample set or not.
@@ -193,6 +199,7 @@ OH_AVErrCode OH_AVCencInfo_SetMode(OH_AVCencInfo *cencInfo, enum DrmCencInfoMode
 
 /**
  * @brief Method to attach cencinfo to AVBuffer.
+ *
  * @syscap SystemCapability.Multimedia.Media.Spliter
  * @param cencInfo Pointer to an OH_AVCencInfo instance.
  * @param buffer AVBuffer to attach cencinfo.
