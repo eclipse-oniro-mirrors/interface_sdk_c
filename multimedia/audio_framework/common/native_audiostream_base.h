@@ -238,6 +238,12 @@ typedef enum {
      * @since 10
      */
     AUDIOSTREAM_USAGE_NAVIGATION = 13,
+     /**
+     * Video call usage.
+     *
+     * @since 12
+     */
+    AUDIOSTREAM_USAGE_VIDEO_COMMUNICATION = 17,
 } OH_AudioStream_Usage;
 
 /**
