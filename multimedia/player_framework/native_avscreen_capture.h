@@ -308,8 +308,9 @@ OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_ExcludeContent(struct OH_AVScreen
  * @param filter Pointer to an OH_AVScreenCapture_ContentFilter instance
  * @param Pointer to windowIDs to be added
  * @param windowCount to be added
- * @return Returns AV_SCREEN_CAPTURE_ERR_OK if the execution is successful,
- * otherwise returns a specific error code, refer to {@link OH_AVSCREEN_CAPTURE_ErrCode}
+ * @return Function result code.
+ *         {@link AV_SCREEN_CAPTURE_ERR_OK} if the execution is successful.
+ *         {@link AV_SCREEN_CAPTURE_ERR_INVALID_VAL} input filter is nullptr or input windowIDs invalid.
  * @since 12
  * @version 1.0
  */
