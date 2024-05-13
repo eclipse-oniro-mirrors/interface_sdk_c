@@ -63,6 +63,9 @@ typedef enum FileIO_FileLocation {
  * @param uriLength Input the length of the uri.
  * @param location Output the result of file location.
  * @return Return the status code of the execution.
+ *         {@link PARAMETER_ERROR} 401 - Invalid input parameter, pointer is null.
+ *         {@link E_NONET} 13900002 - No such file or directory.
+ *         {@link E_NOMEM} 13900011 - Failed to apply for memory.
  * @since 12
  */
 FileManagement_ErrCode OH_FileIO_GetFileLocation(char *uri, int uriLength,
