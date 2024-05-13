@@ -14,24 +14,28 @@
 # limitations under the License.
 
 import json
-import openpyxl as op
+import os.path
 from pathlib import Path
-from typedef.check.check import FileDocInfo, OutputTxt
+from typedef.check.check import FileDocInfo, check_command_message, CheckErrorMessage
 from coreImpl.check.check_doc import process_comment, process_file_doc_info
-from coreImpl.check.check_name import check_file_name, check_ndk_name
+from coreImpl.check.check_name import check_file_name, check_api_name
 from coreImpl.parser.parser import parser_include_ast
-from coreImpl.check.check_syntax import check_syntax
 
 
-def process_api_json(api_info, file_doc_info, api_result_info_list):
-    api_result_info_list.extend(check_ndk_name(api_info))
+def process_api_json(api_info, file_doc_info, api_result_info_list, parent_kind, command_list):
+    for command in command_list:
+        # 对非文件名校验
+        if 'NAME' in command and CheckErrorMessage.API_NAME_UNIVERSAL_14.name != command:
+            api_result_info_list.extend(check_api_name(api_info, parent_kind))
+            break
     if 'comment' in api_info.keys():
         comment = api_info['comment']
         api_result_info_list.extend(
-            process_comment(comment, file_doc_info, api_info))
+           process_comment(comment, file_doc_info, api_info))
+    kind = api_info['kind']
     child_node_list = get_api_info_child(api_info)
     for child_node in child_node_list:
-        process_api_json(child_node, file_doc_info, api_result_info_list)
+        process_api_json(child_node, file_doc_info, api_result_info_list, kind, command_list)
 
 
 def get_api_info_child(api_info):
@@ -44,20 +48,24 @@ def get_api_info_child(api_info):
     return []
 
 
-def process_file_json(file_info, api_result_info_list):
-    api_result_info_list.extend(check_file_name(file_info['name']))
+def process_file_json(file_info, api_result_info_list, command_list):
+    # 校验文件名
+    if CheckErrorMessage.API_NAME_UNIVERSAL_14.name in command_list:
+        api_result_info_list.extend(check_file_name(file_info))
     apis = file_info['children']
+    kind = file_info['kind']
     file_doc_info = FileDocInfo()
+    # 校验Doc信息
     api_result_info_list.extend(process_comment(file_info["comment"], file_doc_info, file_info))
     for api in apis:
-        process_api_json(api, file_doc_info, api_result_info_list)
+        process_api_json(api, file_doc_info, api_result_info_list, kind, command_list)
     api_result_info_list.extend(process_file_doc_info(file_doc_info, file_info))
 
 
-def process_all_json(python_obj):
+def process_all_json(python_obj, command_list):
     api_result_info_list = []
     for file_info in python_obj:
-        process_file_json(file_info, api_result_info_list)
+        process_file_json(file_info, api_result_info_list, command_list)
     return api_result_info_list
 
 
@@ -69,66 +77,38 @@ def write_in_txt(check_result, output_path):
 
 
 def result_to_json(check_result):
-    txt_resul = []
-    for result in check_result:
-        location = f'{result.location}(line:{result.location_line}, col:{result.location_column})'
-        message = 'API check error of [{}]:{}'.format(result.error_type['description'], result.error_info)
-        txt_resul.append(OutputTxt(result.error_type['id'], result.level, result.api_since,
-                                   location, result.file_name, message))
-    generate_excel(txt_resul)
-    return json.dumps(txt_resul, default=lambda obj: obj.__dict__, indent=4)
+    return json.dumps(check_result, default=lambda obj: obj.__dict__, indent=4)
 
 
-def generate_excel(result_info_list):
-    data = []
-    for diff_info in result_info_list:
-        info_data = [
-            diff_info.id,
-            diff_info.level,
-            diff_info.location,
-            diff_info.file_path,
-            diff_info.message
-        ]
-        data.append(info_data)
-    wb = op.Workbook()
-    ws = wb['Sheet']
-    ws.append(['类型', '等级', '所在文件位置', '所在文件', '信息'])
-    for i in range(len(data)):
-        d = data[i][0], data[i][1], data[i][2], data[i][3], data[i][4]
-        ws.append(d)
-    wb.save('error.xlsx')
-
-
-def curr_entry(md_files_path):
-    file_list = get_md_files(md_files_path)
+def curr_entry(files_path, command: str, output):
+    file_list = get_files(files_path)
+    if command == 'all':
+        command_list = check_command_message
+    else:
+        command_list = command.split(',')
     check_result_list = []
     if len(file_list) > 0:
-        check_result_list = get_check_result_list(file_list)
-    write_in_txt(check_result_list, r'./Error.txt')
+        check_result_list = get_check_result_list(file_list, command_list)
+    result_list = []
+    if command != 'all':
+        for result in check_result_list:
+            if result.defectType in command_list:
+                result_list.append(result)
+    else:
+        result_list = check_result_list
+    write_in_txt(result_list, output)
 
 
-def get_check_result_list(file_list):
+def get_check_result_list(file_list, command_list):
     check_result_list = []
     for file in file_list:
-        root_start = file.split('sdk_c')[0]
-        root_path = f'{root_start}sdk_c'
-        python_obj = parser_include_ast(root_path, [file])
-        check_result_list.extend(process_all_json(python_obj))
-        check_result_list.extend(check_syntax(file))
+        python_obj = parser_include_ast(os.path.dirname(file), [file])
+        check_result_list.extend(process_all_json(python_obj, command_list))
     return check_result_list
 
 
-def get_md_files(md_files_path):
-    with open(md_files_path, 'r') as file:
-        file_list = []
-        line = file.readline()
-        while line:
-            file_path = line.splitlines()[0]
-            if file_path.find("sdk_c") != -1 and get_file_type(file_path) == '.h':
-                file_list.append(line.splitlines()[0])
-            line = file.readline()
-        file.close()
-        return file_list
+def get_files(files_path: str):
+    return files_path.split(',')
 
 
 def get_file_type(file_path):

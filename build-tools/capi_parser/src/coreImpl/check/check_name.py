@@ -16,101 +16,132 @@
 import enum
 import os.path
 import re
-from typedef.check.check import ApiResultInfo, ErrorMessage, ErrorType, LogType, ErrorLevel
+from typedef.check.check import (CheckOutPut, CheckErrorMessage)
 
 
-def check_large_hump(api_info):
-    return processing_check_data('LARGE_HUMP', api_info)
+typedefs = [CheckErrorMessage.API_NAME_UNIVERSAL_05.name, CheckErrorMessage.API_NAME_UNIVERSAL_03.name,
+            CheckErrorMessage.API_NAME_UNIVERSAL_07.name]
 
 
-def check_function_name(api_info):
+def check_large_hump(api_info, kind, parent_kind):
     api_result_info_list = []
-    name = api_info['name']
-    self_developed_function_result = re.match(r'^[OH|OS]+([\_]([A-Z]+[a-z0-9]*)+)*$', name)
-    ordinary_function_result = re.match(r'^([A-Z][a-z0-9]*)*$', name)
-    if self_developed_function_result or ordinary_function_result is not None:
-        return api_result_info_list
-    else:
-        api_result_info = ApiResultInfo(ErrorType.NAMING_ERRORS.value,
-                                        ErrorMessage[api_info['kind']].value.replace('$$', name), name)
-        api_result_info.set_location_line(api_info['location']['location_line'])
-        api_result_info.set_location_column(api_info['location']['location_column'])
-        api_result_info.set_location(api_info['location']['location_path'])
-        api_result_info.set_type(LogType.LOG_API.value)
-        api_result_info.set_level(ErrorLevel.LOW.value)
-        api_result_info.set_file_name(api_info['location']['location_path'])
-        api_result_info_list.append(api_result_info)
-        return api_result_info_list
+    # 结构体
+    if kind == 'STRUCT_DECL':
+        api_result_info_list = processing_check_data('LARGE_HUMP', api_info,
+                                                     CheckErrorMessage.API_NAME_UNIVERSAL_05.name)
+    # 枚举
+    if kind == 'ENUM_DECL':
+        api_result_info_list = processing_check_data('LARGE_HUMP', api_info,
+                                                     CheckErrorMessage.API_NAME_UNIVERSAL_03.name)
+    # 联合体
+    if kind == 'UNION_DECL':
+        api_result_info_list = processing_check_data('LARGE_HUMP', api_info,
+                                                     CheckErrorMessage.API_NAME_UNIVERSAL_07.name)
+    return api_result_info_list
 
 
-def check_variable_name(api_info):
+def check_function_name(api_info, kind, parent_kind):
+    api_result_info_list = []
+    function_name = api_info['name']
+    # 自研函数
+    if is_self_developed_function(function_name):
+        self_developed_function_result = re.match(r'^[OH|OS]+([\_]([A-Z]+[a-z0-9]*)+)*$', function_name)
+        if self_developed_function_result is None:
+            chck_output = set_value_to_result(api_info, CheckErrorMessage.API_NAME_UNIVERSAL_01.name)
+            api_result_info_list.append(chck_output)
+    # 一般函数
+    if not is_self_developed_function(function_name):
+        ordinary_function_result = re.match(r'^([A-Z][a-z0-9]*)*$', function_name)
+        if ordinary_function_result is None:
+            chck_output = set_value_to_result(api_info, CheckErrorMessage.API_NAME_UNIVERSAL_10.name)
+            api_result_info_list.append(chck_output)
+    return api_result_info_list
+
+
+def set_value_to_result(api_info, command):
+    return CheckOutPut(os.path.join(api_info['gn_path'], api_info['location']['location_path']),
+                       api_info['location']['location_line'], command, CheckErrorMessage.__getitem__(command).value,
+                       api_info['node_content']['content'], api_info['location']['location_line'])
+
+
+def is_self_developed_function(function_name):
+    return function_name.startswith('OH_') or function_name.startswith('OS_') or function_name.startswith('HMS_')
+
+
+def check_variable_name(api_info, kind, parent_kind):
+    api_result_info_list = []
     is_const = api_info['is_const']
+    # 常量
     if is_const:
-        return processing_check_data('ALL_UPPERCASE_HUMP', api_info)
-    else:
-        return processing_check_data('SMALL_HUMP', api_info)
+        api_result_info_list = processing_check_data('ALL_UPPERCASE_HUMP',
+                                                     api_info, CheckErrorMessage.API_NAME_UNIVERSAL_02.name)
+    # 全局变量
+    if not is_const:
+        api_result_info_list = processing_check_data('GLOBAL_VARIABLE', api_info,
+                                                     CheckErrorMessage.API_NAME_UNIVERSAL_09.name)
+    return api_result_info_list
 
 
-def check_small_hump(api_info):
-    return processing_check_data('SMALL_HUMP', api_info)
+def check_small_hump(api_info, kind, parent_kind):
+    api_result_info_list = []
+    # 函数参数
+    if parent_kind == 'FUNCTION_DECL':
+        api_result_info_list = processing_check_data('SMALL_HUMP', api_info,
+                                                     CheckErrorMessage.API_NAME_UNIVERSAL_11.name)
+    # 结构体成员
+    if parent_kind == 'STRUCT_DECL':
+        api_result_info_list = processing_check_data('SMALL_HUMP', api_info,
+                                                     CheckErrorMessage.API_NAME_UNIVERSAL_06.name)
+    # 联合体成员
+    if parent_kind == 'UNION_DECL':
+        api_result_info_list = processing_check_data('SMALL_HUMP', api_info,
+                                                     CheckErrorMessage.API_NAME_UNIVERSAL_08.name)
+    return api_result_info_list
 
 
-def check_macro_definition(api_info):
+def check_macro_definition(api_info, kind, parent_kind):
     api_result_info_list = []
     name = api_info['name']
+    # 宏定义
+    if not api_info['is_def_func']:
+        result = re.match(CheckName['MACRO_DEFINITION'].value, name)
+        if result is None:
+            api_result_info_list.append(set_value_to_result(api_info, CheckErrorMessage.API_NAME_UNIVERSAL_12.name))
+    # 函数式宏
     if api_info['is_def_func']:
         name = api_info['def_func_name']
-    result = re.match(CheckName['ALL_UPPERCASE_HUMP'].value, name)
-    if result is None:
-        api_result_info = ApiResultInfo(ErrorType.NAMING_ERRORS.value,
-                                        ErrorMessage[api_info['kind']].value.replace('$$', name), name)
-        api_result_info.set_location_line(api_info['location']['location_line'])
-        api_result_info.set_location_column(api_info['location']['location_column'])
-        api_result_info.set_location(api_info['location']['location_path'])
-        api_result_info.set_type(LogType.LOG_API.value)
-        api_result_info.set_level(ErrorLevel.LOW.value)
-        api_result_info.set_file_name(api_info['location']['location_path'])
-        api_result_info_list.append(api_result_info)
+        result = re.match(CheckName['MACRO_DEFINITION'].value, name)
+        if result is None:
+            api_result_info_list.append(set_value_to_result(api_info, CheckErrorMessage.API_NAME_UNIVERSAL_13.name))
     return api_result_info_list
 
 
-def check_all_uppercase_hump(api_info):
-    return processing_check_data('ALL_UPPERCASE_HUMP', api_info)
+def check_all_uppercase_hump(api_info, kind, parent_kind):
+    # 枚举值
+    api_result_info_list = processing_check_data('ALL_UPPERCASE_HUMP', api_info,
+                                                 CheckErrorMessage.API_NAME_UNIVERSAL_04.name)
+    return api_result_info_list
 
 
-def check_global_variable(api_info):
-    return processing_check_data('GLOBAL_VARIABLE', api_info)
-
-
-def check_file_name(file_path):
+def check_file_name(file_info):
     api_result_info_list = []
-    file_name = os.path.basename(file_path)
+    file_name = file_info['name']
     result = re.match(CheckName['FILE_NAME'].value, file_name)
     if result is None:
-        error_info = ErrorMessage.TRANSLATION_UNIT.value.replace('$$', file_name)
-        api_result_info = ApiResultInfo(ErrorType.NAMING_ERRORS.value, error_info, '')
-        api_result_info.set_type(LogType.LOG_FILE.value)
-        api_result_info.set_file_name(file_path)
-        api_result_info.set_location(file_path)
-        api_result_info.set_level(ErrorLevel.LOW.value)
-        api_result_info_list.append(api_result_info)
+        chck_output = CheckOutPut(os.path.join(file_info['gn_path'], file_info['name']), 0,
+                                  CheckErrorMessage.API_NAME_UNIVERSAL_14.name,
+                                  CheckErrorMessage.API_NAME_UNIVERSAL_14.value, file_name, 0)
+        api_result_info_list.append(chck_output)
     return api_result_info_list
 
 
-def processing_check_data(function_type, api_info):
+def processing_check_data(function_type, api_info, command):
     api_result_info_list = []
     name = api_info['name']
     result = re.match(CheckName[function_type].value, name)
     if result is None:
-        api_result_info = ApiResultInfo(ErrorType.NAMING_ERRORS.value,
-                                        ErrorMessage[api_info['kind']].value.replace('$$', name), name)
-        api_result_info.set_location_line(api_info['location']['location_line'])
-        api_result_info.set_location_column(api_info['location']['location_column'])
-        api_result_info.set_location(api_info['location']['location_path'])
-        api_result_info.set_type(LogType.LOG_API.value)
-        api_result_info.set_level(ErrorLevel.LOW.value)
-        api_result_info.set_file_name(api_info['location']['location_path'])
-        api_result_info_list.append(api_result_info)
+        chck_output = set_value_to_result(api_info, command)
+        api_result_info_list.append(chck_output)
     return api_result_info_list
 
 
@@ -120,25 +151,35 @@ class CheckName(enum.Enum):
     ALL_UPPERCASE_HUMP = r'^[A-Z]+[0-9]*([\_][A-Z0-9]*)*$'
     GLOBAL_VARIABLE = r'^g_([a-z][A-Z0-9]*)*$'
     FILE_NAME = r'^[a-z]+[a-z0-9]+([\_][a-z0-9]+)*\.h$'
+    MACRO_DEFINITION = r'^[\_]*[A-Z]+[0-9]*([\_][A-Z0-9]*)*$'
 
 
 process_tag_function = {
+    # 函数
     'FUNCTION_DECL': check_function_name,
+    # 结构体
     'STRUCT_DECL': check_large_hump,
+    # 枚举
     'ENUM_DECL': check_large_hump,
+    # 联合体
     'UNION_DECL': check_large_hump,
+    # 变量
     'VAR_DECL': check_variable_name,
+    # 参数
     'PARM_DECL': check_small_hump,
+    # 结构体、联合体成员
     'FIELD_DECL': check_small_hump,
+    # 宏定义
     'MACRO_DEFINITION': check_macro_definition,
+    # 枚举值
     'ENUM_CONSTANT_DECL': check_all_uppercase_hump,
 }
 
 
-def check_ndk_name(api_info):
+def check_api_name(api_info, parent_kind):
     api_result_info_list = []
     kind = api_info['kind']
     if kind not in process_tag_function.keys():
         return api_result_info_list
     name_process = process_tag_function[kind]
-    return name_process(api_info)
+    return name_process(api_info, kind, parent_kind)
