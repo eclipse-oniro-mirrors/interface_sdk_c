@@ -24,7 +24,6 @@ class ToolNameType(enum.Enum):
     DIFF = 'diff'
     CHECK = 'check'
     COLLECT_H = 'collect_h'
-    COLLECT_FILE = 'collect_file'
 
 
 tool_name_type_set = [
@@ -46,16 +45,15 @@ format_set = [
 
 def run_tools(options):
     tool_name = options.tool_name
+    print(tool_name)
     if tool_name == ToolNameType["COLLECT"].value:
         parser.parser(options.parser_path)
     elif tool_name == ToolNameType["DIFF"].value:
         diff.process_dir(options.diff_path_old, options.diff_path_new)
-    elif tool_name == ToolNameType['CHECK'].value:
-        check.curr_entry(options.parser_path)
+    elif tool_name == ToolNameType["CHECK"].value:
+        check.curr_entry(options.path, options.checker, options.output)
     elif tool_name == ToolNameType['COLLECT_H'].value:
         parser.parser_direct(options.parser_path)
-    elif tool_name == ToolNameType['COLLECT_FILE'].value:
-        parser.parser_file_level(options.output_path)
     else:
         print("工具名称错误")
 
@@ -68,18 +66,39 @@ class Config(object):
         {
             "name": "--tool-name",
             "abbr": "-N",
-            "required": True,
+            "required": False,
             "choices": tool_name_type_set,
             "type": str,
-            "default": ToolNameType["COLLECT"],
-            "help": "工具名称"
+            "default": ToolNameType["CHECK"].value,
+            "help": "工具名称,命令中不写-N的话，默认为check工具"
         },
         {
             "name": "--parser-path",
             "abbr": "-P",
-            "required": True,
+            "required": False,
             "type": str,
             "help": "解析路径"
+        },
+        {
+            "name": "--codecheck--path",
+            "abbr": "--path",
+            "required": False,
+            "type": str,
+            "help": "codecheck解析文件路径"
+        },
+        {
+            "name": "--check-command",
+            "abbr": "--checker",
+            "required": False,
+            "type": str,
+            "help": "校验命令"
+        },
+        {
+            "name": "--check-output",
+            "abbr": "--output",
+            "required": False,
+            "type": str,
+            "help": "输出路径"
         },
         {
             "name": "--diff-path-old",
@@ -94,13 +113,6 @@ class Config(object):
             "required": False,
             "type": str,
             "help": "新文件路径"
-        },
-        {
-            "name": "--output-path",
-            "abbr": "-O",
-            "required": False,
-            "type": str,
-            "help": "collect_file工具输出文件路径"
         }
 
     ]
