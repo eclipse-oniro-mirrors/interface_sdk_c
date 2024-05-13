@@ -58,5 +58,9 @@
     {
         "first_introduced": "10",
         "name": "OH_AudioDecoder_IsValid"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_AudioDecoder_SetDecryptionConfig"
     }
 ]
