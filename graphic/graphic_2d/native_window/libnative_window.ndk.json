@@ -26,5 +26,13 @@
     { "name": "OH_NativeWindow_NativeWindowAttachBuffer" },
     { "name": "OH_NativeWindow_NativeWindowDetachBuffer" },
     { "name": "OH_NativeWindow_SetBufferHold" },
+    {
+        "first_introduced": "12",
+        "name": "OH_NativeWindow_WriteToParcel"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_NativeWindow_ReadFromParcel"
+    },
     { "name": "OH_NativeWindow_GetLastFlushedBufferV2" }
 ]

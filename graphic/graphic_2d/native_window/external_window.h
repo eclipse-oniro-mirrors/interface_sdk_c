@@ -39,6 +39,7 @@
 
 #include <stdint.h>
 #include "buffer_handle.h"
+#include "IPCKit/ipc_cparcel.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -658,6 +659,32 @@ int32_t OH_NativeWindow_NativeWindowSetScalingModeV2(OHNativeWindow *window, OHS
  * @version 1.0
  */
 void OH_NativeWindow_SetBufferHold(OHNativeWindow *window);
+
+/**
+ * @brief Write an OHNativeWindow to an OHIPCParcel.
+ *
+ * @syscap SystemCapability.Graphic.Graphic2D.NativeWindow
+ * @param window Indicates the pointer to an <b>OHNativeWindow</b> instance.
+ * @param parcel Indicates the pointer to an <b>OHIPCParcel</b> instance.
+ * @return 0 - Success.
+ *     40001000 - parcel is NULL or window is NULL.
+ * @since 12
+ * @version 1.0
+ */
+int32_t OH_NativeWindow_WriteToParcel(OHNativeWindow *window, OHIPCParcel *parcel);
+
+/**
+ * @brief Read an OHNativeWindow from an OHIPCParcel.
+ *
+ * @syscap SystemCapability.Graphic.Graphic2D.NativeWindow
+ * @param parcel Indicates the pointer to an <b>OHIPCParcel</b> instance.
+ * @param window Indicates the pointer to an <b>OHNativeWindow</b> instance.
+ * @return 0 - Success.
+ *     40001000 - parcel is NULL or parcel does not contain the window.
+ * @since 12
+ * @version 1.0
+ */
+int32_t OH_NativeWindow_ReadFromParcel(OHIPCParcel *parcel, OHNativeWindow **window);
 
 /**
  * @brief Get the last flushed <b>OHNativeWindowBuffer</b> from an <b>OHNativeWindow</b> instance.
