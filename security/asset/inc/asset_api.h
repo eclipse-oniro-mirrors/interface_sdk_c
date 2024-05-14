@@ -52,7 +52,23 @@ extern "C" {
  *
  * @param attributes Pointer to the attributes of the asset to add.
  * @param attributes Number of the attributes of the asset to add.
- * @return Returns <b>ASSET_SUCCESS</b> if the operation is successful; returns an error code otherwise.
+ * @return Returns <b>ASSET_SUCCESS</b> if the operation is successful;
+ *         Returns <b>ASSET_PERMISSION_DENIED</b> if the caller doesn't have the permission;
+ *         Returns <b>ASSET_INVALID_ARGUMENT</b> if mandatory parameters are left unspecified or
+ *         if incorrect parameter types, or if parameter verification failed;
+ *         Returns <b>ASSET_SERVICE_UNAVAILABLE</b> if the ASSET service is unavailable;
+ *         Returns <b>ASSET_DUPLICATED</b> if the asset already exists;
+ *         Returns <b>ASSET_STATUS_MISMATCH</b> if the screen lock status does not match;
+ *         Returns <b>ASSET_OUT_OF_MEMORY</b> if insufficient memory;
+ *         Returns <b>ASSET_DATA_CORRUPTED</b> if the asset is corrupted;
+ *         Returns <b>ASSET_DATABASE_ERROR</b> if the database operation failed;
+ *         Returns <b>ASSET_CRYPTO_ERROR</b> if the cryptography operation failed;
+ *         Returns <b>ASSET_IPC_ERROR</b> if IPC failed;
+ *         Returns <b>ASSET_BMS_ERROR</b> if calling the Bundle Manager service failed;
+ *         Returns <b>ASSET_ACCOUNT_ERROR</b> if calling the OS Account service failed;
+ *         Returns <b>ASSET_ACCESS_TOKEN_ERROR</b> if calling the Access Token service failed;
+ *         Returns <b>ASSET_FILE_OPERATION_ERROR</b> if the file operation failed;
+ *         Returns <b>ASSET_GET_SYSTEM_TIME_ERROR</b> if getting the system time failed.
  * @since 11
  */
 int32_t OH_Asset_Add(const Asset_Attr *attributes, uint32_t attrCnt);
@@ -62,7 +78,17 @@ int32_t OH_Asset_Add(const Asset_Attr *attributes, uint32_t attrCnt);
  *
  * @param query Pointer to the conditions for removing the assets.
  * @param queryCnt Number of conditions for removing the assets.
- * @return Returns <b>ASSET_SUCCESS</b> if the operation is successful; returns an error code otherwise.
+ * @return Returns <b>ASSET_SUCCESS</b> if the operation is successful;
+ *         Returns <b>ASSET_INVALID_ARGUMENT</b> if incorrect parameter types, or if parameter verification failed;
+ *         Returns <b>ASSET_SERVICE_UNAVAILABLE</b> if the ASSET service is unavailable;
+ *         Returns <b>ASSET_NOT_FOUND</b> if the asset is not found;
+ *         Returns <b>ASSET_OUT_OF_MEMORY</b> if insufficient memory;
+ *         Returns <b>ASSET_DATA_CORRUPTED</b> if the asset is corrupted;
+ *         Returns <b>ASSET_DATABASE_ERROR</b> if the database operation failed;
+ *         Returns <b>ASSET_IPC_ERROR</b> if IPC failed;
+ *         Returns <b>ASSET_BMS_ERROR</b> if calling the Bundle Manager service failed;
+ *         Returns <b>ASSET_ACCOUNT_ERROR</b> if calling the OS Account service failed;
+ *         Returns <b>ASSET_ACCESS_TOKEN_ERROR</b> if calling the Access Token service failed.
  * @since 11
  */
 int32_t OH_Asset_Remove(const Asset_Attr *query, uint32_t queryCnt);
@@ -74,7 +100,21 @@ int32_t OH_Asset_Remove(const Asset_Attr *query, uint32_t queryCnt);
  * @param queryCnt Number of conditions for updating the asset.
  * @param attributes Pointer to the attributes of the asset to update.
  * @param attributes Number of the attributes of the asset to update.
- * @return Returns <b>ASSET_SUCCESS</b> if the operation is successful; returns an error code otherwise.
+ * @return Returns <b>ASSET_SUCCESS</b> if the operation is successful;
+ *         Returns <b>ASSET_INVALID_ARGUMENT</b> if mandatory parameters are left unspecified or
+ *         if incorrect parameter types, or if parameter verification failed;
+ *         Returns <b>ASSET_SERVICE_UNAVAILABLE</b> if the ASSET service is unavailable;
+ *         Returns <b>ASSET_NOT_FOUND</b> if the asset is not found;
+ *         Returns <b>ASSET_STATUS_MISMATCH</b> if the screen lock status does not match;
+ *         Returns <b>ASSET_OUT_OF_MEMORY</b> if insufficient memory;
+ *         Returns <b>ASSET_DATA_CORRUPTED</b> if the asset is corrupted;
+ *         Returns <b>ASSET_DATABASE_ERROR</b> if the database operation failed;
+ *         Returns <b>ASSET_CRYPTO_ERROR</b> if the cryptography operation failed;
+ *         Returns <b>ASSET_IPC_ERROR</b> if IPC failed;
+ *         Returns <b>ASSET_BMS_ERROR</b> if calling the Bundle Manager service failed;
+ *         Returns <b>ASSET_ACCOUNT_ERROR</b> if calling the OS Account service failed;
+ *         Returns <b>ASSET_ACCESS_TOKEN_ERROR</b> if calling the Access Token service failed;
+ *         Returns <b>ASSET_GET_SYSTEM_TIME_ERROR</b> if getting the system time failed.
  * @since 11
  */
 int32_t OH_Asset_Update(const Asset_Attr *query, uint32_t queryCnt,
@@ -86,7 +126,21 @@ int32_t OH_Asset_Update(const Asset_Attr *query, uint32_t queryCnt,
  * @param query Pointer to the search criteria of the asset.
  * @param queryCnt Number of the search criteria.
  * @param challenge Pointer to the challenge value to be used when <b>OH_Asset_Query</b> is called.
- * @return Returns <b>ASSET_SUCCESS</b> if the operation is successful; returns an error code otherwise.
+ * @return Returns <b>ASSET_SUCCESS</b> if the operation is successful;
+ *         Returns <b>ASSET_INVALID_ARGUMENT</b> if incorrect parameter types, or if parameter verification failed;
+ *         Returns <b>ASSET_SERVICE_UNAVAILABLE</b> if the ASSET service is unavailable;
+ *         Returns <b>ASSET_NOT_FOUND</b> if the asset is not found;
+ *         Returns <b>ASSET_STATUS_MISMATCH</b> if the screen lock status does not match;
+ *         Returns <b>ASSET_OUT_OF_MEMORY</b> if insufficient memory;
+ *         Returns <b>ASSET_DATA_CORRUPTED</b> if the asset is corrupted;
+ *         Returns <b>ASSET_DATABASE_ERROR</b> if the database operation failed;
+ *         Returns <b>ASSET_CRYPTO_ERROR</b> if the cryptography operation failed;
+ *         Returns <b>ASSET_IPC_ERROR</b> if IPC failed;
+ *         Returns <b>ASSET_BMS_ERROR</b> if calling the Bundle Manager service failed;
+ *         Returns <b>ASSET_ACCOUNT_ERROR</b> if calling the OS Account service failed;
+ *         Returns <b>ASSET_ACCESS_TOKEN_ERROR</b> if calling the Access Token service failed;
+ *         Returns <b>ASSET_LIMIT_EXCEEDED</b> if the cache exceeds the limit;
+ *         Returns <b>ASSET_UNSUPPORTED</b> if the capability is not supported.
  * @since 11
  */
 int32_t OH_Asset_PreQuery(const Asset_Attr *query, uint32_t queryCnt, Asset_Blob *challenge);
@@ -97,7 +151,21 @@ int32_t OH_Asset_PreQuery(const Asset_Attr *query, uint32_t queryCnt, Asset_Blob
  * @param query Pointer to the search criteria.
  * @param queryCnt Number of the search criteria.
  * @param resultSet Pointer to the query result obtained.
- * @return Returns <b>ASSET_SUCCESS</b> if the operation is successful; returns an error code otherwise.
+ * @return Returns <b>ASSET_SUCCESS</b> if the operation is successful;
+ *         Returns <b>ASSET_INVALID_ARGUMENT</b> if incorrect parameter types, or if parameter verification failed;
+ *         Returns <b>ASSET_SERVICE_UNAVAILABLE</b> if the ASSET service is unavailable;
+ *         Returns <b>ASSET_NOT_FOUND</b> if the asset is not found;
+ *         Returns <b>ASSET_ACCESS_DENIED</b> if access to the asset is denied;
+ *         Returns <b>ASSET_STATUS_MISMATCH</b> if the screen lock status does not match;
+ *         Returns <b>ASSET_OUT_OF_MEMORY</b> if insufficient memory;
+ *         Returns <b>ASSET_DATA_CORRUPTED</b> if the asset is corrupted;
+ *         Returns <b>ASSET_DATABASE_ERROR</b> if the database operation failed;
+ *         Returns <b>ASSET_CRYPTO_ERROR</b> if the cryptography operation failed;
+ *         Returns <b>ASSET_IPC_ERROR</b> if IPC failed;
+ *         Returns <b>ASSET_BMS_ERROR</b> if calling the Bundle Manager service failed;
+ *         Returns <b>ASSET_ACCOUNT_ERROR</b> if calling the OS Account service failed;
+ *         Returns <b>ASSET_ACCESS_TOKEN_ERROR</b> if calling the Access Token service failed;
+ *         Returns <b>ASSET_UNSUPPORTED</b> if the capability is not supported.
  * @since 11
  */
 int32_t OH_Asset_Query(const Asset_Attr *query, uint32_t queryCnt, Asset_ResultSet *resultSet);
@@ -108,7 +176,15 @@ int32_t OH_Asset_Query(const Asset_Attr *query, uint32_t queryCnt, Asset_ResultS
  * @param handle Pointer to the handle of the data to process, which includes the challenge value returned by
  *     <b>OH_Asset_PreQuery</b>.
  * @param handleCnt Number of the elements in the handle attribute set.
- * @return Returns <b>ASSET_SUCCESS</b> if the operation is successful; returns an error code otherwise.
+ * @return Returns <b>ASSET_SUCCESS</b> if the operation is successful;
+ *         Returns <b>ASSET_INVALID_ARGUMENT</b> if mandatory parameters are left unspecified or
+ *         if incorrect parameter types, or if parameter verification failed;
+ *         Returns <b>ASSET_SERVICE_UNAVAILABLE</b> if the ASSET service is unavailable;
+ *         Returns <b>ASSET_OUT_OF_MEMORY</b> if insufficient memory;
+ *         Returns <b>ASSET_IPC_ERROR</b> if IPC failed;
+ *         Returns <b>ASSET_BMS_ERROR</b> if calling the Bundle Manager service failed;
+ *         Returns <b>ASSET_ACCOUNT_ERROR</b> if calling the OS Account service failed;
+ *         Returns <b>ASSET_ACCESS_TOKEN_ERROR</b> if calling the Access Token service failed.
  * @since 11
  */
 int32_t OH_Asset_PostQuery(const Asset_Attr *handle, uint32_t handleCnt);
