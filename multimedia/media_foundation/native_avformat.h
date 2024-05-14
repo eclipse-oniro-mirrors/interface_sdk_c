@@ -70,7 +70,8 @@ struct OH_AVFormat *OH_AVFormat_Create(void);
  * @param mimeType mime type
  * @param sampleRate sample rate
  * @param channelCount channel count
- * @return Returns a pointer to an OH_AVFormat instance
+ * @return Returns a pointer to an OH_AVFormat instance if the execution is successful, otherwise nullptr
+ * Possible failure causes: 1. mimeType is nullptr. 2. new format is nullptr.
  * @since 10
  * @version 1.0
  */
@@ -84,7 +85,8 @@ struct OH_AVFormat *OH_AVFormat_CreateAudioFormat(const char *mimeType,
  * @param mimeType mime type
  * @param width width
  * @param height height
- * @return Returns a pointer to an OH_AVFormat instance
+ * @return Returns a pointer to an OH_AVFormat instance if the execution is successful, otherwise nullptr
+ * Possible failure causes: 1. mimeType is nullptr. 2. new format is nullptr.
  * @since 10
  * @version 1.0
  */
@@ -108,6 +110,7 @@ void OH_AVFormat_Destroy(struct OH_AVFormat *format);
  * @param to OH_AVFormat handle pointer to receive data
  * @param from pointer to the OH_AVFormat handle of the copied data
  * @return The return value is TRUE for success, FALSE for failure
+ * Possible failure causes: 1. input format is nullptr. 2. input format's magic error.
  * @since 9
  * @version 1.0
  */
@@ -120,6 +123,7 @@ bool OH_AVFormat_Copy(struct OH_AVFormat *to, struct OH_AVFormat *from);
  * @param key key to write data
  * @param value written data
  * @return The return value is TRUE for success, FALSE for failure
+ * Possible failure causes: 1. input format is nullptr. 2. input format's magic error. 3. key is nullptr.
  * @since 9
  * @version 1.0
  */
@@ -132,6 +136,7 @@ bool OH_AVFormat_SetIntValue(struct OH_AVFormat *format, const char *key, int32_
  * @param key key to write data
  * @param value written data
  * @return The return value is TRUE for success, FALSE for failure
+ * Possible failure causes: 1. input format is nullptr. 2. input format's magic error. 3. key is nullptr.
  * @since 9
  * @version 1.0
  */
@@ -144,6 +149,7 @@ bool OH_AVFormat_SetLongValue(struct OH_AVFormat *format, const char *key, int64
  * @param key key to write data
  * @param value written data
  * @return The return value is TRUE for success, FALSE for failure
+ * Possible failure causes: 1. input format is nullptr. 2. input format's magic error. 3. key is nullptr.
  * @since 9
  * @version 1.0
  */
@@ -156,6 +162,7 @@ bool OH_AVFormat_SetFloatValue(struct OH_AVFormat *format, const char *key, floa
  * @param key key to write data
  * @param value written data
  * @return The return value is TRUE for success, FALSE for failure
+ * Possible failure causes: 1. input format is nullptr. 2. input format's magic error. 3. key is nullptr.
  * @since 9
  * @version 1.0
  */
@@ -168,6 +175,8 @@ bool OH_AVFormat_SetDoubleValue(struct OH_AVFormat *format, const char *key, dou
  * @param key key to write data
  * @param value written data
  * @return The return value is TRUE for success, FALSE for failure
+ * Possible failure causes: 1. input format is nullptr. 2. input format's magic error. 3. key is nullptr.
+ * 4. value is nullptr.
  * @since 9
  * @version 1.0
  */
@@ -181,6 +190,8 @@ bool OH_AVFormat_SetStringValue(struct OH_AVFormat *format, const char *key, con
  * @param addr written data addr
  * @param size written data length
  * @return The return value is TRUE for success, FALSE for failure
+ * Possible failure causes: 1. input format is nullptr. 2. input format's magic error. 3. key is nullptr.
+ * 4. addr is nullptr. 5. size is zero.
  * @since 9
  * @version 1.0
  */
@@ -193,6 +204,8 @@ bool OH_AVFormat_SetBuffer(struct OH_AVFormat *format, const char *key, const ui
  * @param key read key value
  * @param out read data
  * @return The return value is TRUE for success, FALSE for failure
+ * Possible failure causes: 1. input format is nullptr. 2. input format's magic error. 3. key is nullptr.
+ * 4. out is nullptr.
  * @since 9
  * @version 1.0
  */
@@ -205,6 +218,8 @@ bool OH_AVFormat_GetIntValue(struct OH_AVFormat *format, const char *key, int32_
  * @param key read key value
  * @param out read data
  * @return The return value is TRUE for success, FALSE for failure
+ * Possible failure causes: 1. input format is nullptr. 2. input format's magic error. 3. key is nullptr.
+ * 4. out is nullptr.
  * @since 9
  * @version 1.0
  */
@@ -217,6 +232,8 @@ bool OH_AVFormat_GetLongValue(struct OH_AVFormat *format, const char *key, int64
  * @param key read key value
  * @param out read data
  * @return The return value is TRUE for success, FALSE for failure
+ * Possible failure causes: 1. input format is nullptr. 2. input format's magic error. 3. key is nullptr.
+ * 4. out is nullptr.
  * @since 9
  * @version 1.0
  */
@@ -229,6 +246,8 @@ bool OH_AVFormat_GetFloatValue(struct OH_AVFormat *format, const char *key, floa
  * @param key read key value
  * @param out read data
  * @return The return value is TRUE for success, FALSE for failure
+ * Possible failure causes: 1. input format is nullptr. 2. input format's magic error. 3. key is nullptr.
+ * 4. out is nullptr.
  * @since 9
  * @version 1.0
  */
@@ -242,6 +261,8 @@ bool OH_AVFormat_GetDoubleValue(struct OH_AVFormat *format, const char *key, dou
  * @param out The read string pointer, the data life cycle pointed to is updated with GetString,
  * and Format is destroyed. If the caller needs to hold it for a long time, it must copy the memory
  * @return The return value is TRUE for success, FALSE for failure
+ * Possible failure causes: 1. input format is nullptr. 2. input format's magic error. 3. key is nullptr.
+ * 4. out is nullptr. 5. malloc out string nullptr.
  * @since 9
  * @version 1.0
  */
@@ -256,6 +277,8 @@ bool OH_AVFormat_GetStringValue(struct OH_AVFormat *format, const char *key, con
  * if the caller needs to hold it for a long time, it must copy the memory
  * @param size Length of read and write data
  * @return The return value is TRUE for success, FALSE for failure
+ * Possible failure causes: 1. input format is nullptr. 2. input format's magic error. 3. key is nullptr.
+ * 4. addr is nullptr. 5. size is nullptr.
  * @since 9
  * @version 1.0
  */
@@ -265,7 +288,8 @@ bool OH_AVFormat_GetBuffer(struct OH_AVFormat *format, const char *key, uint8_t 
  * @brief Output the information contained in OH_AVFormat as a string.
  * @syscap SystemCapability.Multimedia.Media.Core
  * @param format pointer to an OH_AVFormat instance
- * @return Returns a string consisting of key and data
+ * @return Returns a string consisting of key and data for success, nullptr for failure
+ * Possible failure causes: 1. input format is nullptr. 2. malloc dump info nullptr.
  * @since 9
  * @version 1.0
  */
