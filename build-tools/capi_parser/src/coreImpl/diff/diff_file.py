@@ -204,11 +204,15 @@ def parse_file_result(result, data_type=0):
     result_map = {}
     for root_node in result:
         if data_type != 1:
-            children_list = root_node['children']
-            for children in children_list:
-                if children["name"] == '':
-                    continue
-                result_map.setdefault(f'{children["name"]}-{children["kind"]}', children)
-            del root_node['children']
+            parse_file_result_by_child(result_map, root_node)
         result_map.setdefault(f'{root_node["name"]}-{root_node["kind"]}', root_node)
     return result_map
+
+
+def parse_file_result_by_child(result_map, root_node):
+    children_list = root_node['children']
+    for children in children_list:
+        if children["name"] == '':
+            continue
+        result_map.setdefault(f'{children["name"]}-{children["kind"]}', children)
+    del root_node['children']
