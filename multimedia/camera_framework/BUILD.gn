@@ -18,6 +18,7 @@ ohos_ndk_headers("camera_ndk_header") {
   dest_dir = "$ndk_headers_out_dir/ohcamera"
   sources = [
     "./camera.h",
+    "./camera_device.h",
     "./camera_input.h",
     "./camera_manager.h",
     "./capture_session.h",
@@ -35,6 +36,7 @@ ohos_ndk_library("libohcamera") {
   system_capability = "SystemCapability.Multimedia.Camera.Core"
   system_capability_headers = [
     "ohcamera/camera.h",
+    "ohcamera/camera_device.h",
     "ohcamera/camera_manager.h",
     "ohcamera/camera_input.h",
     "ohcamera/capture_session.h",
