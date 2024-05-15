@@ -39,12 +39,13 @@
 
 #include <stdint.h>
 #include "buffer_handle.h"
-#include "IPCKit/ipc_cparcel.h"
 
 #ifdef __cplusplus
 extern "C" {
 #endif
 typedef struct OH_NativeBuffer OH_NativeBuffer;
+
+typedef struct OHIPCParcel OHIPCParcel;
 
 /**
  * @brief native window.
