@@ -1261,7 +1261,7 @@ static const char *OHOS_IMAGE_PROPERTY_SCENE_VERSION = "HwMnoteSceneVersion";
 
 /**
  * @brief Gif Loop Count
- * It is used in {@link OH_ImageSource_GetImageProperty}
+ * It is used in {@link OH_ImageSource_GetImageProperty}.
  * If infinite loop returns 0, other values represent the number of loops
  *
  * @since 12
