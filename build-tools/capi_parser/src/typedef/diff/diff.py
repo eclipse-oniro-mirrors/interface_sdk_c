@@ -43,6 +43,8 @@ class TAGS(enum.Enum):
 
 class DiffType(enum.Enum):
     DEFAULT = ''
+    ADD_FILE = 'add file'
+    REDUCE_FILE = 'delete file'
     ADD_API = 'add api'
     REDUCE_API = 'delete api'
     ADD_DOC = 'add doc'
@@ -83,11 +85,13 @@ class DiffType(enum.Enum):
     VARIABLE_TYPE_CHANGE = 'change variable type'
     VARIABLE_VALUE_CHANGE = 'change variable value'
     VARIABLE_CHANGE_CONST = 'Change variable to constant'
+    VARIABLE_CHANGE_TO_CONSTANT = 'change variable to constant'
 
     CONSTANT_NAME_CHANGE = 'change constant name'
     CONSTANT_TYPE_CHANGE = 'change constant type'
     CONSTANT_VALUE_CHANGE = 'change constant value'
     CONST_CHANGE_VARIABLE = 'Change constant to variable'
+    CONSTANT_CHANGE_TO_VARIABLE = 'change constant to variable'
 
     TYPEDEF_NAME_TYPE_CHANGE = 'change typedef name type'
 

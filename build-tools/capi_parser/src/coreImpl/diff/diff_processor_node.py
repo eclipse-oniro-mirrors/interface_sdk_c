@@ -388,17 +388,23 @@ def process_variable_const(old, new):
     diff_var_or_con = []
     if 'is_const' in old:
         if old['is_const']:     # 处理常量
+            process_constant_to_variable(old, new, diff_var_or_con)  # 常量改变量
             process_constant_name(old, new, diff_var_or_con)  # 处理常量名
             process_constant_type(old, new, diff_var_or_con)  # 处理常量类型
             process_constant_value(old, new, diff_var_or_con)  # 处理常量值
 
         else:   # 处理变量
+            process_variable_to_constant(old, new, diff_var_or_con)  # 变量改常量
             process_variable_name(old, new, diff_var_or_con)     # 处理变量名
             process_variable_type(old, new, diff_var_or_con)     # 处理变量类型
             process_variable_value(old, new, diff_var_or_con)    # 处理变量值
 
     return diff_var_or_con
 
+def process_variable_to_constant(old, new, diff_variable_list):
+    if new['is_const']:
+        diff_info = wrap_diff_info(old, new, DiffInfo(DiffType.VARIABLE_CHANGE_TO_CONSTANT))
+        diff_variable_list.append(diff_info)
 
 def process_variable_name(old, new, diff_variable_list):
     if old['name'] != new['name']:
@@ -430,6 +436,10 @@ def process_variable_value(old, new, diff_variable_list):
                                    DiffInfo(DiffType.VARIABLE_VALUE_CHANGE))
         diff_variable_list.append(diff_info)
 
+def process_constant_to_variable(old, new, diff_constant_list):
+    if not new['is_const']:
+        diff_info = wrap_diff_info(old, new, DiffInfo(DiffType.CONSTANT_CHANGE_TO_VARIABLE))
+        diff_constant_list.append(diff_info)
 
 def process_constant_name(old, new, diff_constant_list):
     if old['name'] != new['name']:
@@ -510,15 +520,23 @@ process_data = {
 }
 
 
-def judgment_entrance(old, new):
+def judgment_entrance(old, new, data_type=0):
+    """
+    Args:
+        old: ***
+        new: ***
+        data_type(int): 数据处理类型。1-文件新增或删除；0-其他
+    """
     diff_info_list = []
     if old is None and new is None:
         return diff_info_list
     if old is None:
-        diff_info_list.append(wrap_diff_info(old, new, DiffInfo(DiffType.ADD_API)))
+        diff_type = DiffType.ADD_FILE if data_type == 1 else DiffType.ADD_API
+        diff_info_list.append(wrap_diff_info(old, new, DiffInfo(diff_type)))
         return diff_info_list
     if new is None:
-        diff_info_list.append(wrap_diff_info(old, new, DiffInfo(DiffType.REDUCE_API)))
+        diff_type = DiffType.REDUCE_FILE if data_type == 1 else DiffType.REDUCE_API
+        diff_info_list.append(wrap_diff_info(old, new, DiffInfo(diff_type)))
         return diff_info_list
     kind = new['kind']
     diff_info_list.extend(process_comment_str(old, new))

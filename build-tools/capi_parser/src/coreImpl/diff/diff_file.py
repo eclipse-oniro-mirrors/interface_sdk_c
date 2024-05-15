@@ -128,18 +128,18 @@ def add_new_file(diff_file_path):
     if os.path.isdir(diff_file_path):
         add_file(diff_file_path)
     else:
-        result_map = parse_file_result(parser_include_ast(global_new_dir, [diff_file_path], flag=1))
+        result_map = parse_file_result(parser_include_ast(global_new_dir, [diff_file_path], flag=1), 1)
         for new_info in result_map.values():
-            diff_info_list.extend(judgment_entrance(None, new_info))
+            diff_info_list.extend(judgment_entrance(None, new_info, 1))
 
 
 def del_old_file(diff_file_path):
     if os.path.isdir(diff_file_path):
         del_file(diff_file_path)
     else:
-        result_map = parse_file_result(parser_include_ast(global_old_dir, [diff_file_path], flag=0))
+        result_map = parse_file_result(parser_include_ast(global_old_dir, [diff_file_path], flag=0), 1)
         for old_info in result_map.values():
-            diff_info_list.extend(judgment_entrance(old_info, None))
+            diff_info_list.extend(judgment_entrance(old_info, None, 1))
 
 
 def get_same_file_diff(target_file, old_file_list, new_file_list, old_dir, new_dir):
@@ -176,9 +176,9 @@ def del_file(dir_path):
         if os.path.isdir(file_path):
             del_file(file_path)
         if get_file_ext(i) == '.h':
-            result_map = parse_file_result(parser_include_ast(global_old_dir, [file_path], flag=0))
+            result_map = parse_file_result(parser_include_ast(global_old_dir, [file_path], flag=0), 1)
             for old_info in result_map.values():
-                diff_info_list.extend(judgment_entrance(old_info, None))
+                diff_info_list.extend(judgment_entrance(old_info, None, 1))
 
 
 def add_file(dir_path):
@@ -190,19 +190,29 @@ def add_file(dir_path):
         if os.path.isdir(file_path):
             add_file(file_path)
         if get_file_ext(i) == '.h':
-            result_map = parse_file_result(parser_include_ast(global_new_dir, [file_path], flag=1))
+            result_map = parse_file_result(parser_include_ast(global_new_dir, [file_path], flag=1), 1)
             for new_info in result_map.values():
-                diff_info_list.extend(judgment_entrance(None, new_info))
+                diff_info_list.extend(judgment_entrance(None, new_info, 1))
 
 
-def parse_file_result(result):
+def parse_file_result(result, data_type=0):
+    """
+    Args:
+        result: ***
+        data_type(int): 数据处理类型。1-文件新增或删除；0-其他
+    """
     result_map = {}
     for root_node in result:
-        children_list = root_node['children']
-        for children in children_list:
-            if children["name"] == '':
-                continue
-            result_map.setdefault(f'{children["name"]}-{children["kind"]}', children)
-        del root_node['children']
+        if data_type != 1:
+            parse_file_result_by_child(result_map, root_node)
         result_map.setdefault(f'{root_node["name"]}-{root_node["kind"]}', root_node)
     return result_map
+
+
+def parse_file_result_by_child(result_map, root_node):
+    children_list = root_node['children']
+    for children in children_list:
+        if children["name"] == '':
+            continue
+        result_map.setdefault(f'{children["name"]}-{children["kind"]}', children)
+    del root_node['children']
