@@ -510,7 +510,7 @@ typedef struct OH_AudioRenderer_Callbacks_Struct {
             OH_AudioRenderer* renderer,
             void* userData,
             void* buffer,
-            int32_t lenth);
+            int32_t length);
 
     /**
      * This function pointer will point to the callback function that
@@ -563,7 +563,7 @@ typedef struct OH_AudioCapturer_Callbacks_Struct {
             OH_AudioCapturer* capturer,
             void* userData,
             void* buffer,
-            int32_t lenth);
+            int32_t length);
 
     /**
      * This function pointer will point to the callback function that
@@ -671,6 +671,18 @@ typedef enum {
 } OH_AudioStream_PrivacyType;
 
 /**
+ * @brief Defines enumeration of audio data callback result.
+ *
+ * @since 12
+ */
+typedef enum {
+    /** Result of audio data callabck is invalid. */
+    AUDIO_DATA_CALLBACK_RESULT_INVALID = -1,
+    /** Result of audio data callabck is valid. */
+    AUDIO_DATA_CALLBACK_RESULT_VALID = 0,
+} OH_AudioData_Callback_Result;
+
+/**
  * @brief Callback function of  write data.
  *
  * This function is similar with OH_AudioRenderer_Callbacks_Struct.OH_AudioRenderer_OnWriteData instead of the return
@@ -687,18 +699,6 @@ typedef enum {
  */
 typedef OH_AudioData_Callback_Result (*OH_AudioRenderer_OnWriteDataCallback)(OH_AudioRenderer* renderer, void* userData,
     void* audioData, int32_t audioDataSize);
-
-/**
- * @brief Defines enumeration of audio data callback result.
- *
- * @since 12
- */
-typedef enum {
-    /** Result of audio data callabck is invalid. */
-    AUDIO_DATA_CALLBACK_RESULT_INVALID = -1,
-    /** Result of audio data callabck is valid. */
-    AUDIO_DATA_CALLBACK_RESULT_VALID = 0,
-} OH_AudioData_Callback_Result;
 #ifdef __cplusplus
 }
 #endif
