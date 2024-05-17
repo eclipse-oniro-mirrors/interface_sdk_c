@@ -5093,6 +5093,24 @@ typedef enum {
      * {@link ArkUI_UIInputEvent}. \n
      */
     NODE_ON_MOUSE,
+    /**
+     * @brief Defines the attach event.
+     *
+     * This event is triggered when the component is attached. \n
+     * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
+     * {@link ArkUI_NodeComponentEvent}. \n
+     * {@link ArkUI_NodeComponentEvent} does not contain parameters.
+     */
+    NODE_EVENT_ON_ATTACH,
+    /**
+     * @brief Defines the detach event.
+     *
+     * This event is triggered when the component is detached. \n
+     * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
+     * {@link ArkUI_NodeComponentEvent}. \n
+     * {@link ArkUI_NodeComponentEvent} does not contain parameters.
+     */
+    NODE_EVENT_ON_DETACH,
 
     /**
      * @brief Triggers onDetectResultUpdate callback
