@@ -1586,19 +1586,20 @@ typedef enum {
     NODE_FOREGROUND_BLUR_STYLE,
 
     /**
-     * @brief Defines layout rect attribute, which can be set, reset, and obtained as required through APIs.
+     * @brief Defines the component size and position for layout.
+     * This attribute can be set, reset, and obtained as required through APIs.
      *
      * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: x position of the component.
-     * .value[1].i32: y position of the component.
-     * .value[2].i32: width of the component.
-     * .value[3].i32: height of the component.
+     * .value[0].i32: X coordinate of the component, in px. \n
+     * .value[1].i32: Y coordinate of the component, in px. \n
+     * .value[2].i32: width of the component, in px. \n
+     * .value[3].i32: height of the component, in px. \n
      * \n
      * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: x position of the component.
-     * .value[1].i32: y position of the component.
-     * .value[2].i32: width of the component.
-     * .value[3].i32: height of the component.
+     * .value[0].i32: X coordinate of the component, in px. \n
+     * .value[1].i32: Y coordinate of the component, in px. \n
+     * .value[2].i32: width of the component, in px. \n
+     * .value[3].i32: height of the component, in px. \n
      *
      */
     NODE_LAYOUT_RECT,
