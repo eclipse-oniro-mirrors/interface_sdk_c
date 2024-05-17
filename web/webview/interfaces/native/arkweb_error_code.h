@@ -32,28 +32,13 @@
 #define ARKWEB_ERROR_CODE_H
 
 typedef enum ArkWeb_ErrorCode {
-/*
- * @brief Unknown error.
- *
- * @syscap SystemCapability.Web.Webview.Core
- * @since 12
- */
+/** @error Unknown error. */
 ARKWEB_ERROR_UNKNOWN = 17100100,
 
-/*
- * @brief Invalid param.
- *
- * @syscap SystemCapability.Web.Webview.Core
- * @since 12
- */
+/** @error Invalid param. */
 ARKWEB_INVALID_PARAM = 17100101,
 
-/*
- * @brief Register custom schemes should be called before create any ArkWeb.
- *
- * @syscap SystemCapability.Web.Webview.Core
- * @since 12
- */
+/** @error Register custom schemes should be called before create any ArkWeb. */
 ARKWEB_SCHEME_REGISTER_FAILED = 17100102,
 } ArkWeb_ErrorCode;
 
