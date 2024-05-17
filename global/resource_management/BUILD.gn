@@ -22,8 +22,23 @@ ohos_ndk_library("librawfile_ndk") {
 ohos_ndk_headers("rawfile_header") {
   dest_dir = "$ndk_headers_out_dir/rawfile"
   sources = [
-    "./include/raw_dir.h",
-    "./include/raw_file.h",
-    "./include/raw_file_manager.h",
+    "./include/rawfile/raw_dir.h",
+    "./include/rawfile/raw_file.h",
+    "./include/rawfile/raw_file_manager.h",
+  ]
+}
+
+ohos_ndk_library("native_resmgr_ndk") {
+  ndk_description_file = "./libnative_resmgr.ndk.json"
+  min_compact_version = "1"
+  output_name = "ohresmgr"
+  output_extension = "so"
+}
+
+ohos_ndk_headers("native_resmgr_header") {
+  dest_dir = "$ndk_headers_out_dir/resourcemanager"
+  sources = [
+    "./include/resourcemanager/ohresmgr.h",
+    "./include/resourcemanager/resmgr_common.h",
   ]
 }
