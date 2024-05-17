@@ -104,7 +104,8 @@ def process_tag_param(tag_info, file_doc_info: FileDocInfo, api_info) -> list:
     param = api_info['parm'][index]
     if tag_info['name'] != param['name']:
         main_buggy_code = get_main_buggy_code(api_info)
-        api_result_info = CheckOutPut(os.path.join(api_info['gn_path'], api_info['location']['location_path']),
+        api_result_info = CheckOutPut(os.path.abspath(os.path.join(api_info['gn_path'],
+                                                                   api_info['location']['location_path'])),
                                       api_info['location']['location_line'], CheckErrorMessage.API_DOC_FUNCTION_02.name,
                                       CheckErrorMessage.__getitem__(CheckErrorMessage.API_DOC_FUNCTION_02.name).value
                                       .replace('$$', tag_info['name']).replace('&&', param['name']),
@@ -365,11 +366,12 @@ def process_file_doc_info(file_doc_info: FileDocInfo, file_info) -> list:
 
 def set_value_to_result(api_info, command):
     main_buggy_code = get_main_buggy_code(api_info)
-    return CheckOutPut(os.path.join(api_info['gn_path'], api_info['location']['location_path']),
+    return CheckOutPut(os.path.abspath(os.path.join(api_info['gn_path'], api_info['location']['location_path'])),
                        api_info['location']['location_line'], command, CheckErrorMessage.__getitem__(command).value,
                        main_buggy_code, api_info['location']['location_line'])
 
 
 def get_main_buggy_code(api_info):
-    main_buggy_code = '' if len(api_info['node_content']) == 0 else api_info['node_content']['content']
+    main_buggy_code = os.path.basename(api_info['name']) if (len(api_info['node_content'])
+                                                             == 0) else api_info['node_content']['content']
     return main_buggy_code

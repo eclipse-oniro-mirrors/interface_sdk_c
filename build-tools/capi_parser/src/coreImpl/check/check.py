@@ -80,7 +80,10 @@ def result_to_json(check_result):
     return json.dumps(check_result, default=lambda obj: obj.__dict__, indent=4)
 
 
-def curr_entry(files_path, command: str, output):
+def curr_entry(files_path, root_path, command: str, output):
+    # 如果根目录下没有 third_party 文件夹，则证明不是 sdk_c 仓库，不做检测
+    if not os.path.exists(os.path.abspath(os.path.join(root_path, 'third_party/musl'))):
+        return
     file_list = get_files(files_path)
     if command == 'all':
         command_list = check_command_message
@@ -88,7 +91,7 @@ def curr_entry(files_path, command: str, output):
         command_list = command.split(',')
     check_result_list = []
     if len(file_list) > 0:
-        check_result_list = get_check_result_list(file_list, command_list)
+        check_result_list = get_check_result_list(file_list, root_path, command_list)
     result_list = []
     if command != 'all':
         for result in check_result_list:
@@ -99,11 +102,10 @@ def curr_entry(files_path, command: str, output):
     write_in_txt(result_list, output)
 
 
-def get_check_result_list(file_list, command_list):
+def get_check_result_list(file_list, root_path, command_list):
     check_result_list = []
-    for file in file_list:
-        python_obj = parser_include_ast(os.path.dirname(file), [file])
-        check_result_list.extend(process_all_json(python_obj, command_list))
+    python_obj = parser_include_ast(root_path, file_list)
+    check_result_list.extend(process_all_json(python_obj, command_list))
     return check_result_list
 
 
