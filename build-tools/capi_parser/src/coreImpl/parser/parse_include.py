@@ -516,7 +516,6 @@ def api_entrance(share_lib, include_path, gn_path=None, link_path=None):  # 统�
         print("lib.dll: install path")
     # 创建AST索引
     index = Index.create()
-    print('=' * 50)
     # options赋值为如下，代表宏定义解析数据也要
     args = ['-I{}'.format(path) for path in link_path]
     args.append('-std=c99')
@@ -525,14 +524,10 @@ def api_entrance(share_lib, include_path, gn_path=None, link_path=None):  # 统�
     data_total = []  # 列表对象-用于统计
     for item in include_path:  # 对每个头文件做处理
         tu = index.parse(item, args=args, options=options)
-        print(tu)
-        print('=' * 50)
         ast_root_node = tu.cursor  # 获取根节点
-        print(ast_root_node)
         matches = get_start_comments(item)  # 接收文件最开始的注释
         # 前序遍历AST
         preorder_travers_ast(ast_root_node, data_total, matches, item, gn_path)  # 调用处理函数
-        print('=' * 50)
 
     return data_total
 
