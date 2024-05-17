@@ -50,7 +50,10 @@ extern "C" {
  * @since 10
  *
  * @param renderer Reference created by OH_AudioStreamBuilder_GenerateRenderer()
- * @return {@link #AUDIOSTREAM_SUCCESS} or an undesired error.
+ * @return Function result code:
+ *         {@link AUDIOSTREAM_SUCCESS} If the execution is successful.
+ *         {@link AUDIOSTREAM_ERROR_INVALID_PARAM} The param of renderer is nullptr.
+ *         {@link AUDIOSTREAM_ERROR_ILLEGAL_STATE} Execution status exception.
  */
 OH_AudioStream_Result OH_AudioRenderer_Release(OH_AudioRenderer* renderer);
 
@@ -60,7 +63,10 @@ OH_AudioStream_Result OH_AudioRenderer_Release(OH_AudioRenderer* renderer);
  * @since 10
  *
  * @param renderer reference created by OH_AudioStreamBuilder
- * @return {@link #AUDIOSTREAM_SUCCESS} or an undesired error.
+ * @return Function result code:
+ *         {@link AUDIOSTREAM_SUCCESS} If the execution is successful.
+ *         {@link AUDIOSTREAM_ERROR_INVALID_PARAM} The param of renderer is nullptr.
+ *         {@link AUDIOSTREAM_ERROR_ILLEGAL_STATE} Execution status exception.
  */
 OH_AudioStream_Result OH_AudioRenderer_Start(OH_AudioRenderer* renderer);
 
@@ -70,7 +76,10 @@ OH_AudioStream_Result OH_AudioRenderer_Start(OH_AudioRenderer* renderer);
  * @since 10
  *
  * @param renderer Reference created by OH_AudioStreamBuilder_GenerateRenderer()
- * @return {@link #AUDIOSTREAM_SUCCESS} or an undesired error.
+ * @return Function result code:
+ *         {@link AUDIOSTREAM_SUCCESS} If the execution is successful.
+ *         {@link AUDIOSTREAM_ERROR_INVALID_PARAM} The param of renderer is nullptr.
+ *         {@link AUDIOSTREAM_ERROR_ILLEGAL_STATE} Execution status exception.
  */
 OH_AudioStream_Result OH_AudioRenderer_Pause(OH_AudioRenderer* renderer);
 
@@ -80,7 +89,10 @@ OH_AudioStream_Result OH_AudioRenderer_Pause(OH_AudioRenderer* renderer);
  * @since 10
  *
  * @param renderer Reference created by OH_AudioStreamBuilder_GenerateRenderer()
- * @return {@link #AUDIOSTREAM_SUCCESS} or an undesired error.
+ * @return Function result code:
+ *         {@link AUDIOSTREAM_SUCCESS} If the execution is successful.
+ *         {@link AUDIOSTREAM_ERROR_INVALID_PARAM} The param of renderer is nullptr.
+ *         {@link AUDIOSTREAM_ERROR_ILLEGAL_STATE} Execution status exception.
  */
 OH_AudioStream_Result OH_AudioRenderer_Stop(OH_AudioRenderer* renderer);
 
@@ -90,7 +102,10 @@ OH_AudioStream_Result OH_AudioRenderer_Stop(OH_AudioRenderer* renderer);
  * @since 10
  *
  * @param renderer Reference created by OH_AudioStreamBuilder_GenerateRenderer()
- * @return {@link #AUDIOSTREAM_SUCCESS} or an undesired error.
+ * @return Function result code:
+ *         {@link AUDIOSTREAM_SUCCESS} If the execution is successful.
+ *         {@link AUDIOSTREAM_ERROR_INVALID_PARAM} The param of renderer is nullptr.
+ *         {@link AUDIOSTREAM_ERROR_ILLEGAL_STATE} Execution status exception.
  */
 OH_AudioStream_Result OH_AudioRenderer_Flush(OH_AudioRenderer* renderer);
 
@@ -103,7 +118,9 @@ OH_AudioStream_Result OH_AudioRenderer_Flush(OH_AudioRenderer* renderer);
  *
  * @param renderer Reference created by OH_AudioStreamBuilder_GenerateRenderer()
  * @param state Pointer to a variable that will be set for the state value.
- * @return {@link #AUDIOSTREAM_SUCCESS} or an undesired error.
+ * @return Function result code:
+ *         {@link AUDIOSTREAM_SUCCESS} If the execution is successful.
+ *         {@link AUDIOSTREAM_ERROR_INVALID_PARAM} The param of renderer is nullptr.
  */
 OH_AudioStream_Result OH_AudioRenderer_GetCurrentState(OH_AudioRenderer* renderer,
     OH_AudioStream_State* state);
@@ -117,7 +134,9 @@ OH_AudioStream_Result OH_AudioRenderer_GetCurrentState(OH_AudioRenderer* rendere
  *
  * @param renderer Reference created by OH_AudioStreamBuilder_GenerateRenderer()
  * @param rate The state value to be updated
- * @return {@link #AUDIOSTREAM_SUCCESS} or an undesired error.
+ * @return Function result code:
+ *         {@link AUDIOSTREAM_SUCCESS} If the execution is successful.
+ *         {@link AUDIOSTREAM_ERROR_INVALID_PARAM} The param of renderer is nullptr.
  */
 OH_AudioStream_Result OH_AudioRenderer_GetSamplingRate(OH_AudioRenderer* renderer, int32_t* rate);
 
@@ -128,7 +147,9 @@ OH_AudioStream_Result OH_AudioRenderer_GetSamplingRate(OH_AudioRenderer* rendere
  *
  * @param renderer Reference created by OH_AudioStreamBuilder_GenerateRenderer()
  * @param stramId Pointer to a variable that will be set for the stream id.
- * @return {@link #AUDIOSTREAM_SUCCESS} or an undesired error.
+ * @return Function result code:
+ *         {@link AUDIOSTREAM_SUCCESS} If the execution is successful.
+ *         {@link AUDIOSTREAM_ERROR_INVALID_PARAM} The param of renderer is nullptr.
  */
 OH_AudioStream_Result OH_AudioRenderer_GetStreamId(OH_AudioRenderer* renderer, uint32_t* streamId);
 
@@ -139,7 +160,9 @@ OH_AudioStream_Result OH_AudioRenderer_GetStreamId(OH_AudioRenderer* renderer, u
  *
  * @param renderer Reference created by OH_AudioStreamBuilder_GenerateRenderer()
  * @param channelCount Pointer to a variable that will be set for the channel count.
- * @return {@link #AUDIOSTREAM_SUCCESS} or an undesired error.
+ * @return Function result code:
+ *         {@link AUDIOSTREAM_SUCCESS} If the execution is successful.
+ *         {@link AUDIOSTREAM_ERROR_INVALID_PARAM} The param of renderer is nullptr.
  */
 OH_AudioStream_Result OH_AudioRenderer_GetChannelCount(OH_AudioRenderer* renderer, int32_t* channelCount);
 
@@ -150,7 +173,9 @@ OH_AudioStream_Result OH_AudioRenderer_GetChannelCount(OH_AudioRenderer* rendere
  *
  * @param renderer Reference created by OH_AudioStreamBuilder_GenerateRenderer()
  * @param sampleFormat Pointer to a variable that will be set for the sample format.
- * @return {@link #AUDIOSTREAM_SUCCESS} or an undesired error.
+ * @return Function result code:
+ *         {@link AUDIOSTREAM_SUCCESS} If the execution is successful.
+ *         {@link AUDIOSTREAM_ERROR_INVALID_PARAM} The param of renderer is nullptr.
  */
 OH_AudioStream_Result OH_AudioRenderer_GetSampleFormat(OH_AudioRenderer* renderer,
     OH_AudioStream_SampleFormat* sampleFormat);
@@ -162,7 +187,9 @@ OH_AudioStream_Result OH_AudioRenderer_GetSampleFormat(OH_AudioRenderer* rendere
  *
  * @param renderer Reference created by OH_AudioStreamBuilder_GenerateRenderer()
  * @param latencyMode Pointer to a variable that will be set for the latency mode.
- * @return {@link #AUDIOSTREAM_SUCCESS} or an undesired error.
+ * @return Function result code:
+ *         {@link AUDIOSTREAM_SUCCESS} If the execution is successful.
+ *         {@link AUDIOSTREAM_ERROR_INVALID_PARAM} The param of renderer is nullptr.
  */
 OH_AudioStream_Result OH_AudioRenderer_GetLatencyMode(OH_AudioRenderer* renderer,
     OH_AudioStream_LatencyMode* latencyMode);
@@ -175,7 +202,9 @@ OH_AudioStream_Result OH_AudioRenderer_GetLatencyMode(OH_AudioRenderer* renderer
  *
  * @param renderer Reference created by OH_AudioStreamBuilder_GenerateRenderer()
  * @param usage Pointer to a variable that will be set for the stream usage.
- * @return {@link #AUDIOSTREAM_SUCCESS} or an undesired error.
+ * @return Function result code:
+ *         {@link AUDIOSTREAM_SUCCESS} If the execution is successful.
+ *         {@link AUDIOSTREAM_ERROR_INVALID_PARAM} The param of renderer is nullptr.
  */
 OH_AudioStream_Result OH_AudioRenderer_GetRendererInfo(OH_AudioRenderer* renderer,
     OH_AudioStream_Usage* usage);
@@ -187,7 +216,9 @@ OH_AudioStream_Result OH_AudioRenderer_GetRendererInfo(OH_AudioRenderer* rendere
  *
  * @param renderer Reference created by OH_AudioStreamBuilder_GenerateRenderer()
  * @param encodingType Pointer to a variable that will be set for the encoding type.
- * @return {@link #AUDIOSTREAM_SUCCESS} or an undesired error.
+ * @return Function result code:
+ *         {@link AUDIOSTREAM_SUCCESS} If the execution is successful.
+ *         {@link AUDIOSTREAM_ERROR_INVALID_PARAM} The param of renderer is nullptr.
  */
 OH_AudioStream_Result OH_AudioRenderer_GetEncodingType(OH_AudioRenderer* renderer,
     OH_AudioStream_EncodingType* encodingType);
@@ -199,7 +230,9 @@ OH_AudioStream_Result OH_AudioRenderer_GetEncodingType(OH_AudioRenderer* rendere
  *
  * @param renderer Reference created by OH_AudioStreamBuilder_GenerateRenderer()
  * @param frames Pointer to a variable that will be set for the frame count number.
- * @return {@link #AUDIOSTREAM_SUCCESS} or an undesired error.
+ * @return Function result code:
+ *         {@link AUDIOSTREAM_SUCCESS} If the execution is successful.
+ *         {@link AUDIOSTREAM_ERROR_INVALID_PARAM} The param of renderer is nullptr.
  */
 OH_AudioStream_Result OH_AudioRenderer_GetFramesWritten(OH_AudioRenderer* renderer, int64_t* frames);
 
@@ -212,7 +245,12 @@ OH_AudioStream_Result OH_AudioRenderer_GetFramesWritten(OH_AudioRenderer* render
  * @param clockId {@link #CLOCK_MONOTONIC}
  * @param framePosition Pointer to a variable to receive the position
  * @param timestamp Pointer to a variable to receive the timestamp
- * @return {@link #AUDIOSTREAM_SUCCESS} or an undesired error.
+ * @return Function result code:
+ *         {@link AUDIOSTREAM_SUCCESS} If the execution is successful.
+ *         {@link AUDIOSTREAM_ERROR_INVALID_PARAM}:
+ *                                                 1.The param of renderer is nullptr;
+ *                                                 2.The param of clockId invalid.
+ *         {@link AUDIOSTREAM_ERROR_ILLEGAL_STATE} Execution status exception.
  */
 OH_AudioStream_Result OH_AudioRenderer_GetTimestamp(OH_AudioRenderer* renderer,
     clockid_t clockId, int64_t* framePosition, int64_t* timestamp);
@@ -224,61 +262,86 @@ OH_AudioStream_Result OH_AudioRenderer_GetTimestamp(OH_AudioRenderer* renderer,
  *
  * @param renderer Reference created by OH_AudioStreamBuilder_GenerateRenderer()
  * @param frameSize Pointer to a variable that will be set for the frame size.
- * @return {@link #AUDIOSTREAM_SUCCESS} or an undesired error.
+ * @return Function result code:
+ *         {@link AUDIOSTREAM_SUCCESS} If the execution is successful.
+ *         {@link AUDIOSTREAM_ERROR_INVALID_PARAM} The param of renderer is nullptr.
  */
 OH_AudioStream_Result OH_AudioRenderer_GetFrameSizeInCallback(OH_AudioRenderer* renderer, int32_t* frameSize);
 
 /*
-* Query the playback speed of the stream client
-*
-* @since 11
-*
-* @param renderer Reference created by OH_AudioStreamBuilder_GenerateRenderer()
-* @param speed Pointer to a variable to receive the playback speed.
-* @return {@link #AUDIOSTREAM_SUCCESS} or an undesired error.
-*/
+ * Query the playback speed of the stream client
+ *
+ * @since 11
+ *
+ * @param renderer Reference created by OH_AudioStreamBuilder_GenerateRenderer()
+ * @param speed Pointer to a variable to receive the playback speed.
+ * @return Function result code:
+ *         {@link AUDIOSTREAM_SUCCESS} If the execution is successful.
+ *         {@link AUDIOSTREAM_ERROR_INVALID_PARAM} The param of renderer is nullptr.
+ */
 OH_AudioStream_Result OH_AudioRenderer_GetSpeed(OH_AudioRenderer* renderer, float* speed);
 
 
 /*
-* Set the playback speed of the stream client
-*
-* @since 11
-*
-* @param renderer Reference created by OH_AudioStreamBuilder_GenerateRenderer()
-* @param speed The playback speed, form 0.25 to 4.0.
-* @return {@link #AUDIOSTREAM_SUCCESS} or an undesired error.
-*/
+ * Set the playback speed of the stream client
+ *
+ * @since 11
+ *
+ * @param renderer Reference created by OH_AudioStreamBuilder_GenerateRenderer()
+ * @param speed The playback speed, form 0.25 to 4.0.
+ * @return Function result code:
+ *         {@link AUDIOSTREAM_SUCCESS} If the execution is successful.
+ *         {@link AUDIOSTREAM_ERROR_INVALID_PARAM} The param of renderer is nullptr.
+ */
 OH_AudioStream_Result OH_AudioRenderer_SetSpeed(OH_AudioRenderer* renderer, float speed);
 
 /**
  * Set volume of current renderer.
  *
+ * @since 12
+ *
  * @param renderer Reference created by OH_AudioStreamBuilder_GenerateRenderer()
  * @param volume Volume to set which changes from 0.0 to 1.0.
- * @return {@link #AUDIOSTREAM_SUCCESS} or an undesired error.
- * @since 12
+ * @return Function result code:
+ *         {@link AUDIOSTREAM_SUCCESS} If the execution is successful.
+ *         {@link AUDIOSTREAM_ERROR_INVALID_PARAM}:
+ *                                                 1.The param of renderer is nullptr;
+ *                                                 2.The param of volume invalid.
+ *         {@link AUDIOSTREAM_ERROR_ILLEGAL_STATE} Execution status exception.
+ *         {@link AUDIOSTREAM_ERROR_SYSTEM} An system error has occurred.
  */
 OH_AudioStream_Result OH_AudioRenderer_SetVolume(OH_AudioRenderer* renderer, float volume);
 
 /**
  * Changes the volume with ramp for a duration.
  *
+ * @since 12
+ *
  * @param renderer Reference created by OH_AudioStreamBuilder_GenerateRenderer()
  * @param volume Volume to set which changes from 0.0 to 1.0.
  * @param durationMs Duration for volume ramp, in millisecond.
- * @return {@link #AUDIOSTREAM_SUCCESS} or an undesired error.
- * @since 12
+ * @return Function result code:
+ *         {@link AUDIOSTREAM_SUCCESS} If the execution is successful.
+ *         {@link AUDIOSTREAM_ERROR_INVALID_PARAM}:
+ *                                                 1.The param of renderer is nullptr;
+ *                                                 2.The param of volume invalid.
+ *         {@link AUDIOSTREAM_ERROR_ILLEGAL_STATE} Execution status exception.
+ *         {@link AUDIOSTREAM_ERROR_SYSTEM} An system error has occurred.
  */
 OH_AudioStream_Result OH_AudioRenderer_SetVolumeWithRamp(OH_AudioRenderer* renderer, float volume, int32_t durationMs);
 
 /**
  * Get Volume of current renderer.
  *
+ * @since 12
+ *
  * @param renderer Reference created by OH_AudioStreamBuilder_GenerateRenderer()
  * @param volume Pointer to a variable to receive the volume.
- * @return {@link #AUDIOSTREAM_SUCCESS} or an undesired error.
- * @since 12
+ * @return Function result code:
+ *         {@link AUDIOSTREAM_SUCCESS} If the execution is successful.
+ *         {@link AUDIOSTREAM_ERROR_INVALID_PARAM}:
+ *                                                 1.The param of renderer is nullptr;
+ *                                                 2.The param of volume is nullptr.
  */
 OH_AudioStream_Result OH_AudioRenderer_GetVolume(OH_AudioRenderer* renderer, float* volume);
 
@@ -286,12 +349,19 @@ OH_AudioStream_Result OH_AudioRenderer_GetVolume(OH_AudioRenderer* renderer, flo
  * @brief Set mark position on current renderer. Calling this function will overwrite the mark postion which has already
  * set.
  *
+ * @since 12
+ *
  * @param renderer Renderer generated by OH_AudioStreamBuilder_GenerateRenderer()
  * @param samplePos Mark position in samples.
  * @param callback Callback used when the samplePos has reached.
  * @param userData User data which is passed by user.
- * @return {@link #AUDIOSTREAM_SUCCESS} or an undesired error.
- * @since 12
+ * @return Function result code:
+ *         {@link AUDIOSTREAM_SUCCESS} If the execution is successful.
+ *         {@link AUDIOSTREAM_ERROR_INVALID_PARAM}:
+ *                                                 1.The param of renderer is nullptr;
+ *                                                 2.The param of samplePos invalid.
+ *         {@link AUDIOSTREAM_ERROR_ILLEGAL_STATE} Execution status exception.
+ *         {@link AUDIOSTREAM_ERROR_SYSTEM} An system error has occurred.
  */
 OH_AudioStream_Result OH_AudioRenderer_SetMarkPosition(OH_AudioRenderer* renderer, uint32_t samplePos,
     OH_AudioRenderer_OnMarkReachedCallback callback, void* userData);
@@ -299,19 +369,27 @@ OH_AudioStream_Result OH_AudioRenderer_SetMarkPosition(OH_AudioRenderer* rendere
 /**
  * @brief Cancel mark which has set by {@link #OH_AudioRenderer_SetMarkPosition}.
  *
- * @param renderer Renderer generated by OH_AudioStreamBuilder_GenerateRenderer()
- * @return {@link #AUDIOSTREAM_SUCCESS} or an undesired error.
  * @since 12
+ *
+ * @param renderer Renderer generated by OH_AudioStreamBuilder_GenerateRenderer()
+ * @return Function result code:
+ *         {@link AUDIOSTREAM_SUCCESS} If the execution is successful.
+ *         {@link AUDIOSTREAM_ERROR_INVALID_PARAM} The param of renderer is nullptr.
  */
 OH_AudioStream_Result OH_AudioRenderer_CancelMark(OH_AudioRenderer* renderer);
 
 /**
  * @brief Gets the underflow count on this stream.
  *
+ * @since 12
+ *
  * @param renderer Renderer generated by OH_AudioStreamBuilder_GenerateRenderer()
  * @param count Pointer to a variable to receive the underflow count number.
- * @return {@link #AUDIOSTREAM_SUCCESS} or an undesired error.
- * @since 12
+ * @return Function result code:
+ *         {@link AUDIOSTREAM_SUCCESS} If the execution is successful.
+ *         {@link AUDIOSTREAM_ERROR_INVALID_PARAM}:
+ *                                                 1.The param of renderer is nullptr;
+ *                                                 2.The param of count is nullptr.
  */
 OH_AudioStream_Result OH_AudioRenderer_GetUnderflowCount(OH_AudioRenderer* renderer, uint32_t* count);
 
@@ -322,7 +400,9 @@ OH_AudioStream_Result OH_AudioRenderer_GetUnderflowCount(OH_AudioRenderer* rende
  *
  * @param renderer Reference created by OH_AudioStreamBuilder_GenerateRenderer()
  * @param channelLayout Pointer to a variable to receive the channel layout
- * @return {@link #AUDIOSTREAM_SUCCESS} or an undesired error.
+ * @return Function result code:
+ *         {@link AUDIOSTREAM_SUCCESS} If the execution is successful.
+ *         {@link AUDIOSTREAM_ERROR_INVALID_PARAM} The param of renderer is nullptr.
  */
 OH_AudioStream_Result OH_AudioRenderer_GetChannelLayout(OH_AudioRenderer* renderer,
     OH_AudioChannelLayout* channelLayout);
@@ -334,7 +414,9 @@ OH_AudioStream_Result OH_AudioRenderer_GetChannelLayout(OH_AudioRenderer* render
  *
  * @param renderer Reference created by OH_AudioStreamBuilder_GenerateRenderer()
  * @param effectMode Pointer to a variable to receive current audio effect mode
- * @return {@link #AUDIOSTREAM_SUCCESS} or an undesired error.
+ * @return Function result code:
+ *         {@link AUDIOSTREAM_SUCCESS} If the execution is successful.
+ *         {@link AUDIOSTREAM_ERROR_INVALID_PARAM} The param of renderer is nullptr.
  */
 OH_AudioStream_Result OH_AudioRenderer_GetEffectMode(OH_AudioRenderer* renderer,
     OH_AudioStream_AudioEffectMode* effectMode);
@@ -346,7 +428,9 @@ OH_AudioStream_Result OH_AudioRenderer_GetEffectMode(OH_AudioRenderer* renderer,
  *
  * @param renderer Reference created by OH_AudioStreamBuilder_GenerateRenderer()
  * @param effectMode Audio effect mode that will be set for the stream
- * @return {@link #AUDIOSTREAM_SUCCESS} or an undesired error.
+ * @return Function result code:
+ *         {@link AUDIOSTREAM_SUCCESS} If the execution is successful.
+ *         {@link AUDIOSTREAM_ERROR_INVALID_PARAM} The param of renderer is nullptr.
  */
 OH_AudioStream_Result OH_AudioRenderer_SetEffectMode(OH_AudioRenderer* renderer,
     OH_AudioStream_AudioEffectMode effectMode);
@@ -354,10 +438,13 @@ OH_AudioStream_Result OH_AudioRenderer_SetEffectMode(OH_AudioRenderer* renderer,
 /**
  * @brief Get the privacy of this stream.
  *
+ * @since 12
+ *
  * @param renderer Renderer generated by OH_AudioStreamBuilder_GenerateRenderer()
  * @param privacy Pointer to a variable which receives the results.
- * @return {@link #AUDIOSTREAM_SUCCESS} or an undesired error.
- * @since 12
+ * @return Function result code:
+ *         {@link AUDIOSTREAM_SUCCESS} If the execution is successful.
+ *         {@link AUDIOSTREAM_ERROR_INVALID_PARAM} The param of renderer is nullptr.
  */
 OH_AudioStream_Result OH_AudioRenderer_GetRendererPrivacy(OH_AudioRenderer* renderer,
     OH_AudioStream_PrivacyType* privacy);
