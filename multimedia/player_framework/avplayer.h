@@ -43,6 +43,7 @@
 #include "native_averrors.h"
 #include "avplayer_base.h"
 #include "native_window/external_window.h"
+#include "native_audiostream_base.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -316,6 +317,24 @@ OH_AVErrCode OH_AVPlayer_SetPlaybackSpeed(OH_AVPlayer *player, AVPlaybackSpeed s
  * @version 1.0
  */
 OH_AVErrCode OH_AVPlayer_GetPlaybackSpeed(OH_AVPlayer *player, AVPlaybackSpeed *speed);
+
+/**
+ *
+ *
+ *
+ *
+ *
+ */
+OH_AVErrCode OH_AVPlayer_SetAudioRendererInfo(OH_AVPlayer *player, OH_AudioStream_Usage streamUsage);
+
+/**
+ *
+ *
+ *
+ *
+ *
+ */
+OH_AVErrCode OH_AVPlayer_SetAudioInterruptMode(OH_AVPlayer *player, OH_AudioInterrupt_Mode interruptMode);
 
 /**
  * @brief set the bit rate use for hls player
