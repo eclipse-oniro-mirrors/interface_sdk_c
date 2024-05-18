@@ -65,7 +65,7 @@ int32_t OH_Vibrator_PlayVibration(int32_t duration, Vibrator_Attribute attribute
  * @param vibrateAttribute - Vibration attribute. For details, see {@link Vibrator_Attribute}.
  * @return Returns <b>0</b> if the operation is successful; returns the following error code otherwise.
  * {@link PERMISSION_DENIED} Permission verification failed.\n
- * {@link PARAMETER_ERROR} Parameter check failed. For example, a mandatory parameter is not passed in,
+ * {@link PARAMETER_ERROR} Parameter check failed. For example, the parameter is invalid,
  * or the parameter type passed in is incorrect.\n
  * {@link UNSUPPORTED} The API is not supported on the device. The device supports the corresponding SysCap,
  * but does not support certain APIs in this SysCap.\n
