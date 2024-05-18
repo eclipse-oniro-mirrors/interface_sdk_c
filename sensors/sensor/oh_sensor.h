@@ -46,8 +46,6 @@ extern "C" {
  * For details, see {@link Sensor_Info}.
  * @param count - Pointer to the number of sensors on the device.
  * @return Returns <b>SENSOR_SUCCESS</b> if the operation is successful; returns the following error code otherwise.
- * {@link SENSOR_SUCCESS} The operation is successful.\n
- * {@link SENSOR_PERMISSION_DENIED} Permission verification failed.\n
  * {@link SENSOR_PARAMETER_ERROR} Parameter check failed. For example, a mandatory parameter is not passed in,
  * or the parameter type passed in is incorrect.\n
  * {@link SENSOR_SERVICE_EXCEPTION} The sensor service is abnormal.\n
@@ -70,7 +68,6 @@ Sensor_Result OH_Sensor_GetInfos(Sensor_Info **infos, uint32_t *count);
  * @param subscriber - Pointer to the subscriber information, which is used to specify the callback function for
  * reporting the sensor data. For details, see {@link Sensor_Subscriber}.
  * @return Returns <b>SENSOR_SUCCESS</b> if the operation is successful; returns the following error code otherwise.
- * {@link SENSOR_SUCCESS} The operation is successful.\n
  * {@link SENSOR_PERMISSION_DENIED} Permission verification failed.\n
  * {@link SENSOR_PARAMETER_ERROR} Parameter check failed. For example, a mandatory parameter is not passed in,
  * or the parameter type passed in is incorrect.\n
@@ -94,7 +91,6 @@ Sensor_Result OH_Sensor_Subscribe(const Sensor_SubscriptionId *id,
  * @param subscriber - Pointer to the subscriber information, which is used to specify the callback function for
  * reporting the sensor data. For details, see {@link Sensor_Subscriber}.
  * @return Returns <b>SENSOR_SUCCESS</b> if the operation is successful; returns the following error code otherwise.
- * {@link SENSOR_SUCCESS} The operation is successful.\n
  * {@link SENSOR_PERMISSION_DENIED} Permission verification failed.\n
  * {@link SENSOR_PARAMETER_ERROR} Parameter check failed. For example, a mandatory parameter is not passed in,
  * or the parameter type passed in is incorrect.\n
