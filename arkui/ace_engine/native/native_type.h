@@ -38,6 +38,8 @@
 
 #include <stdint.h>
 
+#include "drawable_descriptor.h"
+
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -161,6 +163,27 @@ typedef struct ArkUI_BarrierOption ArkUI_BarrierOption;
  * @since 12
 */
 typedef struct ArkUI_ListChildrenMainSize ArkUI_ListChildrenMainSize;
+
+/**
+ * @brief Defines the image frame.
+ *
+ * @since 12
+*/
+typedef struct ArkUI_ImageAnimatorFrameInfo ArkUI_ImageAnimatorFrameInfo;
+
+/**
+ * @brief Defines the accessibility state for the component.
+ *
+ * @since 12
+ */
+typedef struct ArkUI_AccessibilityState ArkUI_AccessibilityState;
+
+/**
+ * @brief Defines the accessibility value for the component.
+ *
+ * @since 12
+ */
+typedef struct ArkUI_AccessibilityValue ArkUI_AccessibilityValue;
 
 /**
  * @brief Defines the event callback type.
@@ -1844,6 +1867,60 @@ typedef enum {
 } ArkUI_ErrorCode;
 
 /**
+ * @brief Defines the playback status for the image animator.
+ *
+ * @since 12
+*/
+typedef enum {
+    /** The animation is in the initial state. */
+    ARKUI_ANIMATION_STATUS_INITIAL,
+    /** The animation is being played. */
+    ARKUI_ANIMATION_STATUS_RUNNING,
+    /** The animation is paused. */
+    ARKUI_ANIMATION_STATUS_PAUSED,
+    /** The animation is stopped. */
+    ARKUI_ANIMATION_STATUS_STOPPED,
+} ArkUI_AnimationStatus;
+
+/**
+ * @brief Defines the status before and after execution of the animation in the current playback direction.
+ *
+ * @since 12
+*/
+typedef enum {
+    /** Before execution, the animation does not apply any styles to the target component.
+     * After execution, the animation restores the target component to its default state. */
+    ARKUI_ANIMATION_FILL_MODE_NONE,
+    /** The target component retains the state set by the last keyframe encountered
+     * during execution of the animation. */
+    ARKUI_ANIMATION_FILL_MODE_FORWARDS,
+    /** The animation applies the values defined in the first relevant keyframe once it is applied to
+     * the target component, and retains the values during the period set by delay. */
+    ARKUI_ANIMATION_FILL_MODE_BACKWARDS,
+    /** The animation follows the rules for both Forwards and Backwards,
+     * extending the animation attributes in both directions. */
+    ARKUI_ANIMATION_FILL_MODE_BOTH,
+} ArkUI_AnimationFillMode;
+
+/**
+ * @brief Define accessible action types.
+ *
+ * @since 12
+ */
+typedef enum {
+    /** click action. */
+    ARKUI_ACCESSIBILITY_ACTION_CLICK = 1 << 0,
+    /** long click action. */
+    ARKUI_ACCESSIBILITY_ACTION_LONG_CLICK = 1 << 1,
+    /** cut action. */
+    ARKUI_ACCESSIBILITY_ACTION_CUT = 1 << 2,
+    /** copy action. */
+    ARKUI_ACCESSIBILITY_ACTION_COPY = 1 << 3,
+    /** paste action. */
+    ARKUI_ACCESSIBILITY_ACTION_PASTE = 1 << 4,
+} ArkUI_AccessibilityActionType;
+
+/**
 * @brief Creates a size constraint.
 *
 * @since 12
@@ -3093,6 +3170,281 @@ int32_t OH_ArkUI_ListChildrenMainSizeOption_UpdateSize(ArkUI_ListChildrenMainSiz
  * @since 12
 */
 float OH_ArkUI_ListChildrenMainSizeOption_GetMainSize(ArkUI_ListChildrenMainSize* option, int32_t index);
+
+/**
+ * @brief Create a image frame from the image path.
+ * @param src Indicates the image path.
+ * @return Returns the pointer to the image frame object.
+ * If a null pointer is returned, the object fails to be created. The possible cause is that
+ * the src parameter is abnormal, for example, the pointer is null.
+ * @since 12
+*/
+ArkUI_ImageAnimatorFrameInfo* OH_ArkUI_ImageAnimatorFrameInfo_CreateFromString(char* src);
+
+/**
+ * @brief Create a image frame from the drawable descriptor.
+ *
+ * @param drawable Indicates the pointer to the drawable descriptor.
+ * @return Returns the pointer to the image frame object.
+ * If a null pointer is returned, the object fails to be created. The possible cause is that
+ * the drawable parameter is abnormal, for example, the pointer is null.
+ * @since 12
+*/
+ArkUI_ImageAnimatorFrameInfo* OH_ArkUI_ImageAnimatorFrameInfo_CreateFromDrawableDescriptor(
+    ArkUI_DrawableDescriptor* drawable);
+
+/**
+ * @brief Destroy the pointer to the image frame.
+ *
+ * @param imageInfo Indicates the pointer to the image frame.
+ * @since 12
+*/
+void OH_ArkUI_ImageAnimatorFrameInfo_Dispose(ArkUI_ImageAnimatorFrameInfo* imageInfo);
+
+/**
+ * @brief Set the width of the image frame.
+ *
+ * @param imageInfo Indicates the pointer to the image frame.
+ * @param width Indicates the width of the image frame, and the unit is PX.
+ * @since 12
+*/
+void OH_ArkUI_ImageAnimatorFrameInfo_SetWidth(ArkUI_ImageAnimatorFrameInfo* imageInfo, int32_t width);
+
+/**
+ * @brief Get the width of the image frame.
+ *
+ * @param imageInfo Indicates the pointer to the image frame.
+ * @return Return the width of the image frame, and the unit is PX. Return 0 when the imageInfo is null.
+ * @since 12
+*/
+int32_t OH_ArkUI_ImageAnimatorFrameInfo_GetWidth(ArkUI_ImageAnimatorFrameInfo* imageInfo);
+
+/**
+ * @brief Set the height of the image frame.
+ *
+ * @param imageInfo Indicates the pointer to the image frame.
+ * @param height Indicates the height of the image frame, and the unit is PX.
+ * @since 12
+*/
+void OH_ArkUI_ImageAnimatorFrameInfo_SetHeight(ArkUI_ImageAnimatorFrameInfo* imageInfo, int32_t height);
+
+/**
+ * @brief Get the height of the image frame.
+ *
+ * @param imageInfo Indicates the pointer to the image frame.
+ * @return Return the height of the image frame, and the unit is PX. Return 0 when the imageInfo is null.
+ * @since 12
+*/
+int32_t OH_ArkUI_ImageAnimatorFrameInfo_GetHeight(ArkUI_ImageAnimatorFrameInfo* imageInfo);
+
+/**
+ * @brief Set the vertical coordinate of the image relative to the upper left corner of the widget.
+ *
+ * @param imageInfo Indicates the pointer to the image frame.
+ * @param top Indicates the vertical coordinate of the image relative to the upper left corner of the widget,
+ * and the unit is PX.
+ * @since 12
+*/
+void OH_ArkUI_ImageAnimatorFrameInfo_SetTop(ArkUI_ImageAnimatorFrameInfo* imageInfo, int32_t top);
+
+/**
+ * @brief Get the vertical coordinate of the image relative to the upper left corner of the widget.
+ *
+ * @param imageInfo Indicates the pointer to the image frame.
+ * @return Returns the vertical coordinate of the image relative to the upper left corner of the widget,
+ * and the unit is PX. Return 0 when the imageInfo is null.
+ * @since 12
+*/
+int32_t OH_ArkUI_ImageAnimatorFrameInfo_GetTop(ArkUI_ImageAnimatorFrameInfo* imageInfo);
+
+/**
+ * @brief Set the horizontal coordinate of the image relative to the upper left corner of the widget.
+ *
+ * @param imageInfo Indicates the pointer to the image frame.
+ * @param left Indicates the horizontal coordinate of the image relative to the upper left corner of the widget,
+ * and the unit is PX.
+ * @since 12
+*/
+void OH_ArkUI_ImageAnimatorFrameInfo_SetLeft(ArkUI_ImageAnimatorFrameInfo* imageInfo, int32_t left);
+
+/**
+ * @brief Get the horizontal coordinate of the image relative to the upper left corner of the widget.
+ *
+ * @param imageInfo Indicates the pointer to the image frame.
+ * @return Returns the horizontal coordinate of the image relative to the upper left corner of the widget,
+ * and the unit is PX. Return 0 when the imageInfo is null.
+ * @since 12
+*/
+int32_t OH_ArkUI_ImageAnimatorFrameInfo_GetLeft(ArkUI_ImageAnimatorFrameInfo* imageInfo);
+
+/**
+ * @brief Set the playback duration of the image frame.
+ *
+ * @param imageInfo Indicates the pointer to the image frame.
+ * @param duration Indicates the playback duration of each image frame, and the unit is milliseconds.
+ * @since 12
+*/
+void OH_ArkUI_ImageAnimatorFrameInfo_SetDuration(ArkUI_ImageAnimatorFrameInfo* imageInfo, int32_t duration);
+
+/**
+ * @brief Get the playback duration of the image frame.
+ *
+ * @param imageInfo Indicates the pointer to the image frame.
+ * @return Returns the playback duration of the image frame, and the unit is milliseconds.
+ * Return 0 when the imageInfo is null.
+ * @since 12
+*/
+int32_t OH_ArkUI_ImageAnimatorFrameInfo_GetDuration(ArkUI_ImageAnimatorFrameInfo* imageInfo);
+
+/**
+ * @brief Create accessibility state.
+ *
+ * @return Returns the pointer to the accessibility state object.
+ * If a null pointer is returned, the object fails to be created. The possible cause is that the address space is full.
+ * @since 12
+*/
+ArkUI_AccessibilityState* OH_ArkUI_AccessibilityState_Create(void);
+
+/**
+* @brief Dispose accessibility state.
+*
+* @param state accessibility state object.
+* @since 12
+*/
+void OH_ArkUI_AccessibilityState_Dispose(ArkUI_AccessibilityState* state);
+
+/**
+ * @brief Set accessibility state disabled.
+ *
+ * @param state accessibility state object.
+ * @param isDisabled accessibility state disabled， Value 1 indicates disabled and 0 indicates enbled.
+ * @since 12
+*/
+void OH_ArkUI_AccessibilityState_SetDisabled(ArkUI_AccessibilityState* state, int32_t isDisabled);
+
+/**
+ * @brief Get accessibility state disabled.
+ *
+ * @param state accessibility state object.
+ * @return accessibility state disabled， Value 1 indicates disabled and 0 indicates enbled. The default value is 0.
+ *         If the function parameter is abnormal, return the default value.
+ * @since 12
+*/
+int32_t OH_ArkUI_AccessibilityState_IsDisabled(ArkUI_AccessibilityState* state);
+
+/**
+ * @brief Set accessibility state selected.
+ *
+ * @param state accessibility state object.
+ * @param isSelected accessibility state selected， Value 1 indicates selected， and 0 indicates not selected.
+ *        The default value is 0.
+ * @since 12
+*/
+void OH_ArkUI_AccessibilityState_SetSelected(ArkUI_AccessibilityState* state, int32_t isSelected);
+
+/**
+ * @brief Get accessibility state selected.
+ *
+ * @param state accessibility state object.
+ * @return accessibility state selected， Value 1 indicates selected， and 0 indicates not selected.
+ *         The default value is 0.
+ *         If the function parameter is abnormal, return the default value.
+ * @since 12
+*/
+int32_t OH_ArkUI_AccessibilityState_IsSelected(ArkUI_AccessibilityState* state);
+
+/**
+ * @brief Create accessibility value.
+ *
+ * @return Returns the pointer to the accessibility state object.
+ * If a null pointer is returned, the object fails to be created. The possible cause is that the address space is full.
+ * @since 12
+*/
+ArkUI_AccessibilityValue* OH_ArkUI_AccessibilityValue_Create(void);
+
+/**
+* @brief Dispose accessibility value.
+*
+* @param state accessibility value object.
+* @since 12
+*/
+void OH_ArkUI_AccessibilityValue_Dispose(ArkUI_AccessibilityValue* value);
+
+/**
+ * @brief Set accessibility minimum value.
+ *
+ * @param value accessibility value object.
+ * @param min minimum value based on range components, The default value is -1。
+ * @since 12
+*/
+void OH_ArkUI_AccessibilityValue_SetMin(ArkUI_AccessibilityValue* value, int32_t min);
+
+/**
+ * @brief Get accessibility minimum value.
+ *
+ * @param value accessibility value object.
+ * @return minimum value based on range components, The default value is -1。
+ *         If the function parameter is abnormal, return -1.
+ * @since 12
+*/
+int32_t OH_ArkUI_AccessibilityValue_GetMin(ArkUI_AccessibilityValue* value);
+
+/**
+ * @brief Set accessibility minimum value.
+ *
+ * @param value accessibility value object.
+ * @param max maximum value based on range components, The default value is -1。
+ * @since 12
+*/
+void OH_ArkUI_AccessibilityValue_SetMax(ArkUI_AccessibilityValue* value, int32_t max);
+
+/**
+ * @brief Get accessibility minimum value.
+ *
+ * @param value accessibility value object.
+ * @return maximum value based on range components, The default value is -1。
+ *         If the function parameter is abnormal, return -1.
+ * @since 12
+*/
+int32_t OH_ArkUI_AccessibilityValue_GetMax(ArkUI_AccessibilityValue* value);
+
+/**
+ * @brief Set accessibility current value.
+ *
+ * @param value accessibility value object.
+ * @param current value based on range components, The default value is -1。
+ * @since 12
+*/
+void OH_ArkUI_AccessibilityValue_SetCurrent(ArkUI_AccessibilityValue* value, int32_t current);
+
+/**
+ * @brief Get accessibility current value.
+ *
+ * @param value accessibility value object.
+ * @return current value based on range components, The default value is -1。
+ *         If the function parameter is abnormal, return -1.
+ * @since 12
+*/
+int32_t OH_ArkUI_AccessibilityValue_GetCurrent(ArkUI_AccessibilityValue* value);
+
+/**
+ * @brief Set accessibility text value.
+ *
+ * @param value accessibility value object.
+ * @param text The textual description information of the component, which defaults to an empty string。
+ * @since 12
+*/
+void OH_ArkUI_AccessibilityValue_SetText(ArkUI_AccessibilityValue* value, const char* text);
+
+/**
+ * @brief Get accessibility text value。
+ *
+ * @param value accessibility value object.
+ * @return The textual description information of the component, which defaults to an empty string;
+ *         If the function parameter is abnormal, return null.
+ * @since 12
+*/
+const char* OH_ArkUI_AccessibilityValue_GetText(ArkUI_AccessibilityValue* value);
 #ifdef __cplusplus
 };
 #endif
