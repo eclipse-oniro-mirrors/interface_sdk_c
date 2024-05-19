@@ -132,6 +132,10 @@
     { "name": "OH_Drawing_ColorFilterCreateMatrix" },
     { "name": "OH_Drawing_ColorFilterCreateSrgbGammaToLinear" },
     { "name": "OH_Drawing_ColorFilterDestroy" },
+    {
+        "first_introduced": "12",
+        "name": "OH_Drawing_ErrorCodeGet"
+    },
     { "name": "OH_Drawing_FilterCreate" },
     { "name": "OH_Drawing_FilterSetColorFilter" },
     {
