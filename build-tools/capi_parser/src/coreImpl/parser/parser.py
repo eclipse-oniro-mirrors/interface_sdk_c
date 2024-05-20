@@ -141,7 +141,6 @@ def change_abs(include_files, dire_path):  # 获取.h绝对路径
         else:
             relative_path = os.path.abspath(os.path.join(dire_path, os.path.normpath(j_item)))  # ../ .解决
             abs_path.append(relative_path)
-    print("=" * 50)
     return abs_path
 
 
@@ -173,9 +172,6 @@ def create_dir(sources_dir, gn_file, function_name, link_include_file):
             new_dire = os.path.normpath(new_dire)
             if not os.path.exists(new_dire):
                 os.makedirs(new_dire)
-            else:
-                print("目录已存在")
-
             if new_dire in link_include_file:
                 pass
             else:
@@ -213,12 +209,8 @@ def main_entrance(directory_path, function_names, link_path):  # 主入口
     for item in gn_file_total:  # 处理每个gn文件
         match_files, json_files, include_files = dire_func(item, function_names)
         dire_path = os.path.dirname(item)  # 获取gn文件路径
-        print("目录路径： {}".format(dire_path))
-        print("同级json文件：\n", json_files)
-        print("头文件：\n", include_files)
         if include_files:  # 符合条件的gn文件
             abs_path = change_abs(include_files, dire_path)  # 接收.h绝对路径
-            print("头文件绝对路径:\n", abs_path)
             # 接收对比结果信息
             data_result = get_result_table(json_files, abs_path, link_path, directory_path)
             data_total.append(data_result.data)

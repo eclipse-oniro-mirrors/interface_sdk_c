@@ -22,6 +22,7 @@ import openpyxl as op
 from coreImpl.parser.parser import parser_include_ast
 from coreImpl.diff.diff_processor_node import judgment_entrance
 from typedef.diff.diff import OutputJson
+from bin.write_md import write_md_entrance
 
 global_old_dir = ''
 global_new_dir = ''
@@ -31,6 +32,7 @@ diff_info_list = []
 def start_diff_file(old_dir, new_dir):
     result_info_list = global_assignment(old_dir, new_dir)
     generate_excel(result_info_list)
+    write_md_entrance(result_info_list)
     result_json = result_to_json(result_info_list)
     write_in_txt(result_json, r'./ndk_diff.txt')
     print(result_json)
@@ -90,7 +92,7 @@ def result_to_json(result_info_list):
 
 def write_in_txt(check_result, output_path):
     modes = stat.S_IRWXO | stat.S_IRWXG | stat.S_IRWXU
-    fd = os.open(output_path, os.O_WRONLY | os.O_CREAT, mode=modes)
+    fd = os.open(output_path, os.O_WRONLY | os.O_CREAT | os.O_TRUNC, mode=modes)
     os.write(fd, check_result.encode())
     os.close(fd)
 

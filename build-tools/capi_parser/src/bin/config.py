@@ -24,6 +24,7 @@ class ToolNameType(enum.Enum):
     DIFF = 'diff'
     CHECK = 'check'
     COLLECT_H = 'collect_h'
+    COLLECT_FILE = 'collect_file'
 
 
 tool_name_type_set = [
@@ -51,9 +52,11 @@ def run_tools(options):
     elif tool_name == ToolNameType["DIFF"].value:
         diff.process_dir(options.diff_path_old, options.diff_path_new)
     elif tool_name == ToolNameType["CHECK"].value:
-        check.curr_entry(options.path, options.checker, options.output)
+        check.curr_entry(options.path, options.root_path, options.checker, options.output)
     elif tool_name == ToolNameType['COLLECT_H'].value:
         parser.parser_direct(options.parser_path)
+    elif tool_name == ToolNameType['COLLECT_FILE'].value:
+        parser.parser_file_level(options.output_path)
     else:
         print("工具名称错误")
 
@@ -80,11 +83,25 @@ class Config(object):
             "help": "解析路径"
         },
         {
+            "name": "--output-path",
+            "abbr": "-O",
+            "required": False,
+            "type": str,
+            "help": "collect_file工具输出文件路径"
+        },
+        {
             "name": "--codecheck--path",
             "abbr": "--path",
             "required": False,
             "type": str,
             "help": "codecheck解析文件路径"
+        },
+        {
+            "name": "--root-path",
+            "abbr": "--root_path",
+            "required": False,
+            "type": str,
+            "help": "根目录路径"
         },
         {
             "name": "--check-command",

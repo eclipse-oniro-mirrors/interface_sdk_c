@@ -84,13 +84,11 @@ class DiffType(enum.Enum):
     VARIABLE_NAME_CHANGE = 'change variable name'
     VARIABLE_TYPE_CHANGE = 'change variable type'
     VARIABLE_VALUE_CHANGE = 'change variable value'
-    VARIABLE_CHANGE_CONST = 'Change variable to constant'
     VARIABLE_CHANGE_TO_CONSTANT = 'change variable to constant'
 
     CONSTANT_NAME_CHANGE = 'change constant name'
     CONSTANT_TYPE_CHANGE = 'change constant type'
     CONSTANT_VALUE_CHANGE = 'change constant value'
-    CONST_CHANGE_VARIABLE = 'Change constant to variable'
     CONSTANT_CHANGE_TO_VARIABLE = 'change constant to variable'
 
     TYPEDEF_NAME_TYPE_CHANGE = 'change typedef name type'
@@ -129,6 +127,10 @@ class DiffType(enum.Enum):
     DOC_TAG_LEFT_BRACE_HAVE_TO_NA = 'delete { tag'
     DOC_TAG_RIGHT_BRACE_NA_TO_HAVE = 'add } tag'
     DOC_TAG_RIGHT_BRACE_HAVE_TO_NA = 'delete } tag'
+    DOC_TAG_ADDTOGROUP_INCREASE = 'The file has addtogroup tag, add the addtogroup tag'
+    DOC_TAG_ADDTOGROUP_DECREASE = 'The file has multiple addtogroup tags. Delete the addtogroup tag'
+    DOC_TAG_FILE_INCREASE = 'The file has file tag, add the file tag'
+    DOC_TAG_FILE_DECREASE = 'The file has multiple file tags. Delete the file tag'
 
 
 compatible_list = [
@@ -157,6 +159,10 @@ compatible_list = [
     DiffType.DOC_TAG_LEFT_BRACE_HAVE_TO_NA,
     DiffType.DOC_TAG_RIGHT_BRACE_NA_TO_HAVE,
     DiffType.DOC_TAG_RIGHT_BRACE_HAVE_TO_NA,
+    DiffType.DOC_TAG_ADDTOGROUP_DECREASE,
+    DiffType.DOC_TAG_ADDTOGROUP_INCREASE,
+    DiffType.DOC_TAG_FILE_DECREASE,
+    DiffType.DOC_TAG_FILE_INCREASE
 ]
 
 api_new_list = [DiffType.ADD_API]
@@ -198,9 +204,11 @@ api_prototype_change_list = [
     DiffType.VARIABLE_NAME_CHANGE,
     DiffType.VARIABLE_TYPE_CHANGE,
     DiffType.VARIABLE_VALUE_CHANGE,
+    DiffType.VARIABLE_CHANGE_TO_CONSTANT,
     DiffType.CONSTANT_NAME_CHANGE,
     DiffType.CONSTANT_TYPE_CHANGE,
     DiffType.CONSTANT_VALUE_CHANGE,
+    DiffType.CONSTANT_CHANGE_TO_VARIABLE,
     DiffType.TYPEDEF_NAME_TYPE_CHANGE
 ]
 
@@ -238,6 +246,10 @@ api_constraint_change_list = [
     DiffType.DOC_TAG_LEFT_BRACE_HAVE_TO_NA,
     DiffType.DOC_TAG_RIGHT_BRACE_NA_TO_HAVE,
     DiffType.DOC_TAG_RIGHT_BRACE_HAVE_TO_NA,
+    DiffType.DOC_TAG_ADDTOGROUP_DECREASE,
+    DiffType.DOC_TAG_ADDTOGROUP_INCREASE,
+    DiffType.DOC_TAG_FILE_DECREASE,
+    DiffType.DOC_TAG_FILE_INCREASE
 ]
 
 api_modification_type_dict = {

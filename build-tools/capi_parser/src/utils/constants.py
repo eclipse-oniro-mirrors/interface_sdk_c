@@ -19,7 +19,7 @@ import enum
 
 
 class StringConstant(enum.Enum):
-    LIB_CLG_PATH = r'C:\Program Files\LLVM\bin\libclang.dll'  # 共享库
+    LIB_CLG_PATH = r'./prebuilts/clang/ohos/linux-x86_64/llvm/lib/libclang.so'  # 共享库
     FUNK_NAME = "ohos_ndk_headers"
     REPLACE_WAREHOUSE = '\\interface_sdk_c\\interface_sdk_c'  # 拉到本地仓路径(去掉磁盘)
     # 拉到本地仓的三方库绝对路径
@@ -31,6 +31,8 @@ class StringConstant(enum.Enum):
     SELF_INCLUDE_NEW = r'.\sysroot\self_include_files_new'
     SYSROOT = r'.\sysroot'
     RESULT_HEAD_NAME = "result_total.xlsx"
+    PARSER_DIRECT_EXCEL_NAME = 'parser_direct_data.xlsx'
+    FILE_LEVEL_API_DATA = r'.\file_api_json.json'
 
 
 class RegularExpressions(enum.Enum):
