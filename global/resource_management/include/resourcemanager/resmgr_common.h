@@ -42,41 +42,41 @@ extern "C" {
  *
  * @since 12
  */
-enum ResourceManager_ErrorCode {
-    /** Success */
+typedef enum ResourceManager_ErrorCode {
+    /** @error Success */
     SUCCESS = 0,
-    /** Invalid input parameter */
+    /** @error Invalid input parameter */
     ERROR_CODE_INVALID_INPUT_PARAMETER = 401,
-    /** Invalid resource ID */
+    /** @error Invalid resource ID */
     ERROR_CODE_RES_ID_NOT_FOUND = 9001001,
-    /** Invalid resource name */
+    /** @error Invalid resource name */
     ERROR_CODE_RES_NOT_FOUND_BY_ID = 9001002,
-    /** No matching resource is found based on the resource ID */
+    /** @error No matching resource is found based on the resource ID */
     ERROR_CODE_RES_NAME_NOT_FOUND = 9001003,
-    /** No matching resource is found based on the resource name */
+    /** @error No matching resource is found based on the resource name */
     ERROR_CODE_RES_NOT_FOUND_BY_NAME = 9001004,
-    /** Invalid relative path */
+    /** @error Invalid relative path */
     ERROR_CODE_RES_PATH_INVALID = 9001005,
-    /** The resource is referenced cyclically */
+    /** @error The resource is referenced cyclically */
     ERROR_CODE_RES_REF_TOO_MUCH = 9001006,
-    /** Failed to format the resource obtained based on the resource ID */
+    /** @error Failed to format the resource obtained based on the resource ID */
     ERROR_CODE_RES_ID_FORMAT_ERROR = 9001007,
-    /** Failed to format the resource obtained based on the resource Name */
+    /** @error Failed to format the resource obtained based on the resource Name */
     ERROR_CODE_RES_NAME_FORMAT_ERROR = 9001008,
-    /** Failed to access the system resource */
+    /** @error Failed to access the system resource */
     ERROR_CODE_SYSTEM_RES_MANAGER_GET_FAILED = 9001009,
-    /** Invalid overlay path */
+    /** @error Invalid overlay path */
     ERROR_CODE_OVERLAY_RES_PATH_INVALID = 9001010,
-    /** Out of memory */
+    /** @error Out of memory */
     ERROR_CODE_OUT_OF_MEMORY = 9001100,
-};
+} ResourceManager_ErrorCode;
 
 /**
  * @brief Enumerates screen density types.
  *
  * @since 12
  */
-enum ScreenDensity {
+typedef enum ScreenDensity {
     /** Indicates small screen density. */
     SCREEN_SDPI = 120,
     /** Indicates medium screen density. */
@@ -89,8 +89,7 @@ enum ScreenDensity {
     SCREEN_XXLDPI = 480,
     /** Indicates extra-extra-extra-large screen density. */
     SCREEN_XXXLDPI = 640,
-};
-
+} ScreenDensity;
 #ifdef __cplusplus
 };
 #endif
