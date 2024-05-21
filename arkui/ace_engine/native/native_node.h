@@ -1618,6 +1618,43 @@ typedef enum {
     NODE_FOCUS_ON_TOUCH,
 
     /**
+     * @brief Defines the border width attribute, which can be set, reset, and obtained as required through APIs.
+     *
+     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
+     * 1: .value[0].f32: width of the four borders, in percentage. \n
+     * 2: .value[0].f32: width of the top border, in percentage. \n
+     * .value[1].f32: width of the right border, in percentage. \n
+     * .value[2].f32: width of the bottom border, in percentage. \n
+     * .value[3].f32: width of the right border, in percentage. \n
+     * \n
+     * Format of the return value {@link ArkUI_AttributeItem}:\n
+     * .value[0].f32: width of the top border, in percentage. \n
+     * .value[1].f32: width of the right border, in percentage. \n
+     * .value[2].f32: width of the bottom border, in percentage. \n
+     * .value[3].f32: width of the right border, in percentage. \n
+     *
+     */
+    NODE_BORDER_WIDTH_PERCENT = 85,
+    /**
+     * @brief Defines the border corner radius attribute, which can be set, reset, and obtained as required through APIs.
+     *
+     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
+     * 1: .value[0].f32: radius of the four corners, in percentage. \n
+     * 2: .value[0].f32: radius of the upper left corner, in percentage. \n
+     * .value[1].f32: radius of the upper right corner, in percentage. \n
+     * .value[2].f32: radius of the lower left corner, in percentage. \n
+     * .value[3].f32: radius of the lower right corner, in percentage. \n
+     * \n
+     * Format of the return value {@link ArkUI_AttributeItem}:\n
+     * .value[0].f32: radius of the upper left corner, in percentage. \n
+     * .value[1].f32: radius of the upper right corner, in percentage. \n
+     * .value[2].f32: radius of the lower left corner, in percentage. \n
+     * .value[3].f32: radius of the lower right corner, in percentage. \n
+     *
+     */
+    NODE_BORDER_RADIUS_PERCENT = 86,
+
+    /**
      * @brief Defines the text content attribute, which can be set, reset, and obtained as required through APIs.
      *
      * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
@@ -4234,6 +4271,17 @@ typedef enum {
     NODE_LIST_ALIGN_LIST_ITEM,
 
     /**
+     * @brief Set the default spindle size for the List subcomponent.
+     *
+     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
+     * .object: The parameter format is {@ ArkUI-ListChildrenMainSize} \n
+     * \n
+     * Format of the return value {@link ArkUI_AttributeItem}:\n
+     * .object: The parameter format is {@ ArkUI-ListChildrenMainSize} \n
+     */
+    NODE_LIST_CHILDREN_MAIN_SIZE = 1003007,
+
+    /**
      * @brief Defines whether to enable loop playback for the swiper.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
@@ -4555,6 +4603,17 @@ typedef enum {
     NODE_LIST_ITEM_GROUP_SET_DIVIDER,
 
     /**
+     * @brief Set the default spindle size for the ListItem Group subcomponent.
+     *
+     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
+     * .object: The parameter format is {@ ArkUI-ListChildrenMainSize} \n
+     * \n
+     * Format of the return value {@link ArkUI_AttributeItem}:\n
+     * .object: The parameter format is {@ ArkUI-ListChildrenMainSize} \n
+     */
+    NODE_LIST_ITEM_GROUP_CHILDREN_MAIN_SIZE = 1005003,
+
+    /**
      * @brief Defines the horizontal alignment mode of child components in the column.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
@@ -4660,6 +4719,18 @@ typedef enum {
      *
      */
     NODE_REFRESH_CONTENT,
+    /**
+     * @brief Set the pull-down hand coefficient.
+     * This attribute can be set, reset, and obtained as required through APIs.
+     *
+     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
+     * .value[0].f32：Pull-down hand coefficient, valid value between 0 and 1.
+     * \n
+     * Format of the return value {@link ArkUI_AttributeItem}:\n
+     * .value[0].f32：Pull-down hand coefficient, valid value between 0 and 1.
+     *
+     */
+    NODE_REFRESH_PULL_DOWN_RATIO = 1009002,
 
     /**
      * @brief Defines the main axis direction of the <b><WaterFlow></b> component layout.
@@ -6737,6 +6808,78 @@ int32_t OH_ArkUI_NodeContent_RemoveNode(ArkUI_NodeContentHandle content, ArkUI_N
  * @since 12
  */
 int32_t OH_ArkUI_NodeContent_InsertNode(ArkUI_NodeContentHandle content, ArkUI_NodeHandle node, int32_t position);
+
+/**
+ * @brief Get the size of the component layout area.
+ * The layout area size does not include graphic variation attributes such as scaling.
+ *
+ * @param node ArkUI_NodeHandle pointer.
+ * @param size The drawing area size of the component handle, in px.
+ * @return Returns 0 if success.
+ * Returns 401 if a parameter exception occurs.
+ * @since 12
+ */
+int32_t OH_ArkUI_NodeUtils_GetLayoutSize(ArkUI_NodeHandle node, ArkUI_IntSize* size);
+
+/**
+ * @brief Obtain the position of the component layout area relative to the parent component.
+ * The relative position of the layout area does not include graphic variation attributes, such as translation.
+ *
+ * @param node ArkUI_NodeHandle pointer.
+ * @param localOffset The offset value of the component handle relative to the parent component, in px.
+ * @return Returns 0 if success.
+ * Returns 401 if a parameter exception occurs.
+ * @since 12
+ */
+int32_t OH_ArkUI_NodeUtils_GetLayoutPosition(ArkUI_NodeHandle node, ArkUI_IntOffset* localOffset);
+
+/**
+ * @brief Obtain the position of the component layout area relative to the window.
+ * The relative position of the layout area does not include graphic variation attributes, such as translation.
+ *
+ * @param node ArkUI_NodeHandle pointer.
+ * @param globalOffset The offset value of the component handle relative to the window, in px.
+ * @return Returns 0 if success.
+ * Returns 401 if a parameter exception occurs.
+ * @since 12
+ */
+int32_t OH_ArkUI_NodeUtils_GetLayoutPositionInWindow(ArkUI_NodeHandle node, ArkUI_IntOffset* globalOffset);
+
+/**
+ * @brief Obtain the position of the component layout area relative to the screen.
+ * The relative position of the layout area does not include graphic variation attributes, such as translation.
+ *
+ * @param node ArkUI_NodeHandle pointer.
+ * @param screenOffset The offset value of the component handle relative to the screen, in px.
+ * @return Returns 0 if success.
+ * Returns 401 if a parameter exception occurs.
+ * @since 12
+ */
+int32_t OH_ArkUI_NodeUtils_GetLayoutPositionInScreen(ArkUI_NodeHandle node, ArkUI_IntOffset* screenOffset);
+
+/**
+ * @brief Obtain the position of the component in the window, including the properties of graphic translation changes.
+ *
+ * @param node ArkUI_NodeHandle pointer.
+ * @param translateOffset The cumulative offset value of the component handle itself,
+ * parent components, and ancestor nodes, in px.
+ * @return Returns 0 if success.
+ * Returns 401 if a parameter exception occurs.
+ * @since 12
+ */
+int32_t OH_ArkUI_NodeUtils_GetPositionWithTranslateInWindow(ArkUI_NodeHandle node, ArkUI_IntOffset* translateOffset);
+
+/**
+ * @brief Obtain the position of the component on the screen, including the attributes of graphic translation changes.
+ *
+ * @param node ArkUI_NodeHandle pointer.
+ * @param translateOffset The cumulative offset value of the component handle itself,
+ * parent components, and ancestor nodes, in px.
+ * @return Returns 0 if success.
+ * Returns 401 if a parameter exception occurs.
+ * @since 12
+ */
+int32_t OH_ArkUI_NodeUtils_GetPositionWithTranslateInScreen(ArkUI_NodeHandle node, ArkUI_IntOffset* translateOffset);
 
 #ifdef __cplusplus
 };
