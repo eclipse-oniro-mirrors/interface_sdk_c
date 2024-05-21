@@ -66,7 +66,8 @@ extern "C" {
  * After {@link OH_NNCompilation_Build} is called, the {@link OH_NNModel} instance can be released.\n
  *
  * @param model Pointer to the {@link OH_NNModel} instance.
- * @return Pointer to a {@link OH_NNCompilation} instance, or NULL if it fails to create.
+ * @return Pointer to a {@link OH_NNCompilation} instance, or NULL if it fails to create. The possible reason for
+ *         failure is that the parameters of model are invalid or there is a problem with the model format.
  * @since 9
  * @version 1.0
  */
@@ -85,7 +86,8 @@ OH_NNCompilation *OH_NNCompilation_Construct(const OH_NNModel *model);
  * You should perform the offline compilation during your development and deploy the offline model in your app package. \n
  * 
  * @param modelPath Offline model file path.
- * @return Pointer to an {@link OH_NNCompilation} instance, or NULL if it fails to create.
+ * @return Pointer to an {@link OH_NNCompilation} instance, or NULL if it fails to create. The possible reason for
+ *         failure is that the modelPath is invalid.
  * @since 11
  * @version 1.0
  */
@@ -102,7 +104,8 @@ OH_NNCompilation *OH_NNCompilation_ConstructWithOfflineModelFile(const char *mod
  *
  * @param modelBuffer Offline model file buffer.
  * @param modelSize Offfline model buffer size.
- * @return Pointer to an {@link OH_NNCompilation} instance, or NULL if it fails to create.
+ * @return Pointer to an {@link OH_NNCompilation} instance, or NULL if it fails to create. The possible reason for
+ *         failure is that the modelBuffer or modelSize is invalid.
  * @since 11
  * @version 1.0
  */
@@ -118,7 +121,8 @@ OH_NNCompilation *OH_NNCompilation_ConstructWithOfflineModelBuffer(const void *m
  * You should call {@link OH_NNCompilation_SetCache} or {@link OH_NNCompilation_ImportCacheFromBuffer} first,
  * and then call {@link OH_NNCompilation_Build} to complete the restoration.\n
  *
- * @return Pointer to an {@link OH_NNCompilation} instance, or NULL if it fails to create.
+ * @return Pointer to an {@link OH_NNCompilation} instance, or NULL if it fails to create. The possible reason for
+ *         failure is that the cache file saved before is invalid.
  * @since 11
  * @version 1.0
  */
@@ -136,9 +140,12 @@ OH_NNCompilation *OH_NNCompilation_ConstructForCache();
  * @param buffer Pointer to the given buffer.
  * @param length Buffer length.
  * @param modelSize Byte size of the model cache.
- * @return Execution result of the function. If the operation is successful, <b>OH_NN_SUCCESS</b> is returned.
- *         If the operation fails, an error code is returned. For details about the error codes,
- *         see {@link OH_NN_ReturnCode}.
+ * @return Execution result of the function.
+ *         {@link OH_NN_SUCCESS} export cache to buffer successfully.\n
+ *         {@link OH_NN_INVALID_PARAMETER} fail to export cache to buffer. The possible reason for failure
+ *         is that the <b>compilation</b>, <b>buffer</b> or <b>modelSize</b> is nullptr, or <b>length</b> is 0,
+ *         or <b>compilation</b> is invalid.\n
+ *         {@link OH_NN_UNSUPPORTED} exporting cache to buffer is unsupported.\n
  * @since 11
  * @version 1.0
  */
@@ -161,9 +168,11 @@ OH_NN_ReturnCode OH_NNCompilation_ExportCacheToBuffer(OH_NNCompilation *compilat
  * @param compilation Pointer to the {@link OH_NNCompilation} instance.
  * @param buffer Pointer to the given buffer.
  * @param modelSize Byte size of the model cache.
- * @return Execution result of the function. If the operation is successful, <b>OH_NN_SUCCESS</b> is returned.
- *         If the operation fails, an error code is returned. For details about the error codes,
- *         see {@link OH_NN_ReturnCode}.
+ * @return Execution result of the function.
+ *         {@link OH_NN_SUCCESS} import cache from buffer successfully.\n
+ *         {@link OH_NN_INVALID_PARAMETER} fail to import cache from buffer. The possible reason for failure is that
+ *         the <b>compilation</b> or <b>buffer</b> is nullptr, or <b>modelSize</b> is 0, or content of <b>buffer</b>
+ *         is invalid.\n
  * @since 11
  * @version 1.0
  */
@@ -185,8 +194,11 @@ OH_NN_ReturnCode OH_NNCompilation_ImportCacheFromBuffer(OH_NNCompilation *compil
  * @param configName Config name.
  * @param configValue A byte buffer saving the config value.
  * @param configValueSize Byte size of the config value.
- * @return Execution result of the function. If the operation is successful, <b>OH_NN_SUCCESS</b> is returned. 
- *         If the operation fails, an error code is returned. For details about the error codes, see {@link OH_NN_ReturnCode}.
+ * @return Execution result of the function.
+ *         {@link OH_NN_SUCCESS} add extension config successfully.\n
+ *         {@link OH_NN_INVALID_PARAMETER} fail to add extension config. The possible reason for failure is that the
+ *         <b>compilation</b>, <b>configName</b> or <b>configValue</b> is nullptr, or <b>configValueSize</b> is 0.\n
+ *         {@link OH_NN_FAILED} other failures, such as memory error during object creation.\n
  * @since 11
  * @version 1.0
  */
@@ -205,8 +217,10 @@ OH_NN_ReturnCode OH_NNCompilation_AddExtensionConfig(OH_NNCompilation *compilati
  * 
  * @param compilation Pointer to the {@link OH_NNCompilation} instance.
  * @param deviceID Device id. If it is 0, the first device in the current device list will be used by default.
- * @return Execution result of the function. If the operation is successful, <b>OH_NN_SUCCESS</b> is returned. 
- *         If the operation fails, an error code is returned. For details about the error codes, see {@link OH_NN_ReturnCode}.
+ * @return Execution result of the function.
+ *         {@link OH_NN_SUCCESS} set device successfully.\n
+ *         {@link OH_NN_INVALID_PARAMETER} fail to set device. The possible reason for failure
+ *         is that the <b>compilation</b> is nullptr.\n
  * @since 9
  * @version 1.0
  */
@@ -241,8 +255,10 @@ OH_NN_ReturnCode OH_NNCompilation_SetDevice(OH_NNCompilation *compilation, size_
  * @param cachePath Directory for storing model cache files. This method creates directories for different devices in the <b>cachePath</b> directory. 
  *                  You are advised to use a separate cache directory for each model.
  * @param version Cache version.
- * @return Execution result of the function. If the operation is successful, <b>OH_NN_SUCCESS</b> is returned. If the operation fails,
- *         an error code is returned. For details about the error codes, see {@link OH_NN_ReturnCode}.
+ * @return Execution result of the function.
+ *         {@link OH_NN_SUCCESS} set cache path and version successfully.\n
+ *         {@link OH_NN_INVALID_PARAMETER} fail to set cache path and version. The possible reason for failure
+ *         is that the <b>compilation</b> or <b>cachePath</b> is nullptr.\n
  * @since 9
  * @version 1.0
  */
@@ -259,8 +275,12 @@ OH_NN_ReturnCode OH_NNCompilation_SetCache(OH_NNCompilation *compilation, const 
  *
  * @param compilation Pointer to the {@link OH_NNCompilation} instance.
  * @param performanceMode Performance mode. For details about the available performance modes, see {@link OH_NN_PerformanceMode}. 
- * @return Execution result of the function. If the operation is successful, <b>OH_NN_SUCCESS</b> is returned. If the operation fails,
- *         an error code is returned. For details about the error codes, see {@link OH_NN_ReturnCode}.
+ * @return Execution result of the function.
+ *         {@link OH_NN_SUCCESS} set performance mode successfully.\n
+ *         {@link OH_NN_INVALID_PARAMETER} fail to set performance mode. The possible reason for failure
+ *         is that the <b>compilation</b> is nullptr, or <b>performanceMode</b> is invalid.\n
+ *         {@link OH_NN_FAILED} fail to query whether the backend device supports setting performance mode.\n
+ *         {@link OH_NN_OPERATION_FORBIDDEN} the backend device is not supported to set performance mode.\n
  * @since 9
  * @version 1.0
  */
@@ -278,8 +298,12 @@ OH_NN_ReturnCode OH_NNCompilation_SetPerformanceMode(OH_NNCompilation *compilati
  *
  * @param compilation Pointer to the {@link OH_NNCompilation} instance.
  * @param priority Priority. For details about the optional priorities, see {@link OH_NN_Priority}.
- * @return Execution result of the function. If the operation is successful, <b>OH_NN_SUCCESS</b> is returned. If the operation fails, 
- *         an error code is returned. For details about the error codes, see {@link OH_NN_ReturnCode}.
+ * @return Execution result of the function.
+ *         {@link OH_NN_SUCCESS} set priority successfully.\n
+ *         {@link OH_NN_INVALID_PARAMETER} fail to set priority. The possible reason for failure
+ *         is that the <b>compilation</b> is nullptr, or <b>priority</b> is invalid.\n
+ *         {@link OH_NN_FAILED} fail to query whether the backend device supports setting priority.\n
+ *         {@link OH_NN_OPERATION_FORBIDDEN} the backend device is not supported to set priority.\n
  * @since 9
  * @version 1.0
  */
@@ -298,8 +322,10 @@ OH_NN_ReturnCode OH_NNCompilation_SetPriority(OH_NNCompilation *compilation, OH_
  * @param compilation Pointer to the {@link OH_NNCompilation} instance.
  * @param enableFloat16 Indicates whether to enable float16. If this parameter is set to <b>true</b>, float16 inference is performed. 
  *                      If this parameter is set to <b>false</b>, float32 inference is performed.
- * @return Execution result of the function. If the operation is successful, <b>OH_NN_SUCCESS</b> is returned. If the operation fails, an error code is returned.
- *         For details about the error codes, see {@link OH_NN_ReturnCode}.
+ * @return Execution result of the function.
+ *         {@link OH_NN_SUCCESS} enable fp16 successfully.\n
+ *         {@link OH_NN_INVALID_PARAMETER} fail to enable fp16. The possible reason for failure
+ *         is that the <b>compilation</b> is nullptr.\n
  * @since 9
  * @version 1.0
  */
@@ -315,8 +341,12 @@ OH_NN_ReturnCode OH_NNCompilation_EnableFloat16(OH_NNCompilation *compilation, b
  * {@link OH_NNCompilation_SetPriority}, and {@link OH_NNCompilation_EnableFloat16} methods are called, {@link OH_NN_OPERATION_FORBIDDEN} is returned. \n
  *
  * @param compilation Pointer to the {@link OH_NNCompilation} instance.
- * @return Execution result of the function. If the operation is successful, <b>OH_NN_SUCCESS</b> is returned. 
- *         If the operation fails, an error code is returned. For details about the error codes, see {@link OH_NN_ReturnCode}.
+ * @return Execution result of the function.
+ *         {@link OH_NN_SUCCESS} build model successfully.\n
+ *         {@link OH_NN_INVALID_PARAMETER} fail to build model. The possible reason for failure
+ *         is that the <b>compilation</b> is nullptr, or the parameters set before is invalid.\n
+ *         {@link OH_NN_FAILED} fail to build model.\n
+ *         {@link OH_NN_OPERATION_FORBIDDEN} the backend device is not supported the model.\n
  * @since 9
  * @version 1.0
  */
@@ -354,7 +384,8 @@ void OH_NNCompilation_Destroy(OH_NNCompilation **compilation);
  * multiple {@link NN_Tensor} instances with the same {@link NN_TensorDesc} instance. And you should destroy the
  * {@link NN_TensorDesc} instance by {@link OH_NNTensorDesc_Destroy} when it is no longer used.\n
  *
- * @return Pointer to a {@link NN_TensorDesc} instance, or NULL if it fails to create.
+ * @return Pointer to a {@link NN_TensorDesc} instance, or NULL if it fails to create. The possible reason for failure
+ *         is that the memory error occurred during object creation.
  * @since 11
  * @version 1.0
  */
@@ -369,8 +400,10 @@ NN_TensorDesc *OH_NNTensorDesc_Create();
  * If <b>tensorDesc</b> or <b>*tensorDesc</b> is a null pointer, this method will return error code and does not execute the release. \n
  *
  * @param tensorDesc Double pointer to the {@link NN_TensorDesc} instance.
- * @return Execution result of the function. If the operation is successful, <b>OH_NN_SUCCESS</b> is returned.
- *         If the operation fails, an error code is returned. For details about the error codes, see {@link OH_NN_ReturnCode}.
+ * @return Execution result of the function.
+ *         {@link OH_NN_SUCCESS} destroy tensor description successfully.\n
+ *         {@link OH_NN_INVALID_PARAMETER} fail to destroy tensor description. The possible reason for failure
+ *         is that the <b>tensorDesc</b> or <b>*tensorDesc</b> is nullptr.\n
  * @since 11
  * @version 1.0
  */
@@ -386,9 +419,10 @@ OH_NN_ReturnCode OH_NNTensorDesc_Destroy(NN_TensorDesc **tensorDesc);
  *
  * @param tensorDesc Pointer to the {@link NN_TensorDesc} instance.
  * @param name The name of the tensor that needs to be set.
- * @return Execution result of the function. If the operation is successful, <b>OH_NN_SUCCESS</b> is returned.
- *         If the operation fails, an error code is returned. For details about the error codes,
- *         see {@link OH_NN_ReturnCode}.
+ * @return Execution result of the function.
+ *         {@link OH_NN_SUCCESS} set tensor name successfully.\n
+ *         {@link OH_NN_INVALID_PARAMETER} fail to set tensor name. The possible reason for failure
+ *         is that the <b>tensorDesc</b> or <b>name</b> is nullptr.\n
  * @since 11
  * @version 1.0
  */
@@ -408,9 +442,10 @@ OH_NN_ReturnCode OH_NNTensorDesc_SetName(NN_TensorDesc *tensorDesc, const char *
  *
  * @param tensorDesc Pointer to the {@link NN_TensorDesc} instance.
  * @param name The retured name of the tensor.
- * @return Execution result of the function. If the operation is successful, <b>OH_NN_SUCCESS</b> is returned.
- *         If the operation fails, an error code is returned. For details about the error codes,
- *         see {@link OH_NN_ReturnCode}.
+ * @return Execution result of the function.
+ *         {@link OH_NN_SUCCESS} get tensor name successfully.\n
+ *         {@link OH_NN_INVALID_PARAMETER} fail to get tensor name. The possible reason for failure
+ *         is that the <b>tensorDesc</b> or <b>name</b> is nullptr, or <b>*name</b> is not nullptr.\n
  * @since 11
  * @version 1.0
  */
@@ -425,8 +460,10 @@ OH_NN_ReturnCode OH_NNTensorDesc_GetName(const NN_TensorDesc *tensorDesc, const 
  *
  * @param tensorDesc Pointer to the {@link NN_TensorDesc} instance.
  * @param dataType The data type of the tensor that needs to be set.
- * @return Execution result of the function. If the operation is successful, <b>OH_NN_SUCCESS</b> is returned.
- *         If the operation fails, an error code is returned. For details about the error codes, see {@link OH_NN_ReturnCode}.
+ * @return Execution result of the function.
+ *         {@link OH_NN_SUCCESS} set tensor data type successfully.\n
+ *         {@link OH_NN_INVALID_PARAMETER} fail to set tensor data type. The possible reason for failure
+ *         is that the <b>tensorDesc</b> is nullptr, or <b>dataType</b> is invalid.\n
  * @since 11
  * @version 1.0
  */
@@ -441,8 +478,10 @@ OH_NN_ReturnCode OH_NNTensorDesc_SetDataType(NN_TensorDesc *tensorDesc, OH_NN_Da
  *
  * @param tensorDesc Pointer to the {@link NN_TensorDesc} instance.
  * @param dataType The returned data type of the tensor.
- * @return Execution result of the function. If the operation is successful, <b>OH_NN_SUCCESS</b> is returned.
- *         If the operation fails, an error code is returned. For details about the error codes, see {@link OH_NN_ReturnCode}.
+ * @return Execution result of the function.
+ *         {@link OH_NN_SUCCESS} get tensor data type successfully.\n
+ *         {@link OH_NN_INVALID_PARAMETER} fail to get tensor data type. The possible reason for failure
+ *         is that the <b>tensorDesc</b> or <b>dataType</b> is nullptr.\n
  * @since 11
  * @version 1.0
  */
@@ -458,8 +497,10 @@ OH_NN_ReturnCode OH_NNTensorDesc_GetDataType(const NN_TensorDesc *tensorDesc, OH
  * @param tensorDesc Pointer to the {@link NN_TensorDesc} instance.
  * @param shape The shape list of the tensor that needs to be set.
  * @param shapeLength The length of the shape list that needs to be set.
- * @return Execution result of the function. If the operation is successful, <b>OH_NN_SUCCESS</b> is returned.
- *         If the operation fails, an error code is returned. For details about the error codes, see {@link OH_NN_ReturnCode}.
+ * @return Execution result of the function.
+ *         {@link OH_NN_SUCCESS} set tensor shape successfully.\n
+ *         {@link OH_NN_INVALID_PARAMETER} fail to set tensor shape. The possible reason for failure
+ *         is that the <b>tensorDesc</b> or <b>shape</b> is nullptr, or <b>shapeLength</b> is 0.\n
  * @since 11
  * @version 1.0
  */
@@ -479,8 +520,10 @@ OH_NN_ReturnCode OH_NNTensorDesc_SetShape(NN_TensorDesc *tensorDesc, const int32
  * @param tensorDesc Pointer to the {@link NN_TensorDesc} instance.
  * @param shape Return the shape list of the tensor.
  * @param shapeLength The returned length of the shape list.
- * @return Execution result of the function. If the operation is successful, <b>OH_NN_SUCCESS</b> is returned.
- *         If the operation fails, an error code is returned. For details about the error codes, see {@link OH_NN_ReturnCode}.
+ * @return Execution result of the function.
+ *         {@link OH_NN_SUCCESS} get tensor shape successfully.\n
+ *         {@link OH_NN_INVALID_PARAMETER} fail to get tensor shape. The possible reason for failure is that the
+ *         <b>tensorDesc</b>, <b>shape</b> or <b>shapeLength</b> is nullptr, or <b>*shape</b> is not nullptr.\n
  * @since 11
  * @version 1.0
  */
@@ -495,8 +538,10 @@ OH_NN_ReturnCode OH_NNTensorDesc_GetShape(const NN_TensorDesc *tensorDesc, int32
  *
  * @param tensorDesc Pointer to the {@link NN_TensorDesc} instance.
  * @param format The format of the tensor that needs to be set.
- * @return Execution result of the function. If the operation is successful, <b>OH_NN_SUCCESS</b> is returned.
- *         If the operation fails, an error code is returned. For details about the error codes, see {@link OH_NN_ReturnCode}.
+ * @return Execution result of the function.
+ *         {@link OH_NN_SUCCESS} set tensor format successfully.\n
+ *         {@link OH_NN_INVALID_PARAMETER} fail to set tensor format. The possible reason for failure
+ *         is that the <b>tensorDesc</b> is nullptr, or <b>format</b> is invalid.\n
  * @since 11
  * @version 1.0
  */
@@ -511,8 +556,10 @@ OH_NN_ReturnCode OH_NNTensorDesc_SetFormat(NN_TensorDesc *tensorDesc, OH_NN_Form
  *
  * @param tensorDesc Pointer to the {@link NN_TensorDesc} instance.
  * @param format The returned format of the tensor.
- * @return Execution result of the function. If the operation is successful, <b>OH_NN_SUCCESS</b> is returned.
- *         If the operation fails, an error code is returned. For details about the error codes, see {@link OH_NN_ReturnCode}.
+ * @return Execution result of the function.
+ *         {@link OH_NN_SUCCESS} get tensor format successfully.\n
+ *         {@link OH_NN_INVALID_PARAMETER} fail to get tensor format. The possible reason for failure
+ *         is that the <b>tensorDesc</b> or <b>format</b> is nullptr.\n
  * @since 11
  * @version 1.0
  */
@@ -530,8 +577,11 @@ OH_NN_ReturnCode OH_NNTensorDesc_GetFormat(const NN_TensorDesc *tensorDesc, OH_N
  *
  * @param tensorDesc Pointer to the {@link NN_TensorDesc} instance.
  * @param elementCount The returned element count of the tensor.
- * @return Execution result of the function. If the operation is successful, <b>OH_NN_SUCCESS</b> is returned.
- *         If the operation fails, an error code is returned. For details about the error codes, see {@link OH_NN_ReturnCode}.
+ * @return Execution result of the function.
+ *         {@link OH_NN_SUCCESS} get tensor element count successfully.\n
+ *         {@link OH_NN_INVALID_PARAMETER} fail to get tensor element count. The possible reason for failure
+ *         is that the <b>tensorDesc</b> or <b>elementCount</b> is nullptr.\n
+ *         {@link OH_NN_DYNAMIC_SHAPE} dim is less than zero.\n
  * @since 11
  * @version 1.0
  */
@@ -550,8 +600,11 @@ OH_NN_ReturnCode OH_NNTensorDesc_GetElementCount(const NN_TensorDesc *tensorDesc
  *
  * @param tensorDesc Pointer to the {@link NN_TensorDesc} instance.
  * @param byteSize The returned byte size of the tensor.
- * @return Execution result of the function. If the operation is successful, <b>OH_NN_SUCCESS</b> is returned.
- *         If the operation fails, an error code is returned. For details about the error codes, see {@link OH_NN_ReturnCode}.
+ * @return Execution result of the function.
+ *         {@link OH_NN_SUCCESS} get tensor byte size successfully.\n
+ *         {@link OH_NN_INVALID_PARAMETER} fail to get tensor byte size. The possible reason for failure
+ *         is that the <b>tensorDesc</b> or <b>byteSize</b> is nullptr, or tensor data type is invalid.\n
+ *         {@link OH_NN_DYNAMIC_SHAPE} dim is less than zero.\n
  * @since 11
  * @version 1.0
  */
@@ -577,7 +630,8 @@ OH_NN_ReturnCode OH_NNTensorDesc_GetByteSize(const NN_TensorDesc *tensorDesc, si
  *
  * @param deviceID Device id. If it is 0, the first device in the current device list will be used by default.
  * @param tensorDesc Pointer to the {@link NN_TensorDesc} instance.
- * @return Pointer to a {@link NN_Tensor} instance, or NULL if it fails to create.
+ * @return Pointer to a {@link NN_Tensor} instance, or NULL if it fails to create. The possible reason for failure
+ *         is that the <b>tensorDesc</b> is nullptr, or <b>deviceID</b> is invalid, or memory error occurred.
  * @since 11
  * @version 1.0
  */
@@ -604,7 +658,8 @@ NN_Tensor *OH_NNTensor_Create(size_t deviceID, NN_TensorDesc *tensorDesc);
  * @param deviceID Device id. If it is 0, the first device in the current device list will be used by default.
  * @param tensorDesc Pointer to the {@link NN_TensorDesc} instance.
  * @param size Size of tensor data that need to be allocated.
- * @return Pointer to a {@link NN_Tensor} instance, or NULL if it fails to create.
+ * @return Pointer to a {@link NN_Tensor} instance, or NULL if it fails to create. The possible reason for failure
+ *         is that the <b>tensorDesc</b> is nullptr, or <b>deviceID</b> or size is invalid, or memory error occurred.
  * @since 11
  * @version 1.0
  */
@@ -632,7 +687,9 @@ NN_Tensor *OH_NNTensor_CreateWithSize(size_t deviceID, NN_TensorDesc *tensorDesc
  * @param fd file descriptor of the shared memory to be resued.
  * @param size Size of the shared memory to be resued.
  * @param offset Offset of the shared memory to be resued.
- * @return Pinter to a {@link NN_Tensor} instance, or NULL if it fails to create.
+ * @return Pinter to a {@link NN_Tensor} instance, or NULL if it fails to create. The possible reason for failure
+ *         is that the <b>tensorDesc</b> is nullptr, or <b>deviceID</b>, <b>fd</b>, <b>size</b> or <b>offset</b> is
+ *         invalid, or memory error occurred.
  * @since 11
  * @version 1.0
  */
@@ -652,9 +709,10 @@ NN_Tensor *OH_NNTensor_CreateWithFd(size_t deviceID,
  * release.\n
  *
  * @param tensor Double pointer to the {@link NN_Tensor} instance.
- * @return Execution result of the function. If the operation is successful, <b>OH_NN_SUCCESS</b> is returned.
- *         If the operation fails, an error code is returned. For details about the error codes,
- *         see {@link OH_NN_ReturnCode}.
+ * @return Execution result of the function.
+ *         {@link OH_NN_SUCCESS} destroy tensor successfully.\n
+ *         {@link OH_NN_INVALID_PARAMETER} fail to destroy tensor. The possible reason for failure
+ *         is that the <b>tensor</b> is nullptr, or <b>*tensor</b> is not nullptr.\n
  * @since 11
  * @version 1.0
  */
@@ -674,7 +732,8 @@ OH_NN_ReturnCode OH_NNTensor_Destroy(NN_Tensor **tensor);
  * if <b>tensor</b> is a null pointer, this method will return null pointer.\n
  *
  * @param tensor Pointer to the {@link NN_Tensor} instance.
- * @return Pointer to the {@link NN_TensorDesc} instance, or NULL if it fails to create.
+ * @return Pointer to the {@link NN_TensorDesc} instance, or NULL if it fails to create. The possible reason for
+ *         failure is that the <b>tensor</b> is nullptr, or <b>tensor</b> is invalid.
  * @since 11
  * @version 1.0
  */
@@ -692,7 +751,8 @@ NN_TensorDesc *OH_NNTensor_GetTensorDesc(const NN_Tensor *tensor);
  * if <b>tensor</b> is a null pointer, this method will return null pointer.\n
  *
  * @param tensor Pointer to the {@link NN_Tensor} instance.
- * @return Pointer to data buffer of the tensor, or NULL if it fails to create.
+ * @return Pointer to data buffer of the tensor, or NULL if it fails to create. The possible reason for failure
+ *         is that the <b>tensor</b> is nullptr, or <b>tensor</b> is invalid.
  * @since 11
  * @version 1.0
  */
@@ -708,9 +768,10 @@ void *OH_NNTensor_GetDataBuffer(const NN_Tensor *tensor);
  *
  * @param tensor Pointer to the {@link NN_Tensor} instance.
  * @param fd The returned file descriptor of the shared memory.
- * @return Execution result of the function. If the operation is successful, <b>OH_NN_SUCCESS</b> is returned.
- *         If the operation fails, an error code is returned. For details about the error codes,
- *         see {@link OH_NN_ReturnCode}.
+ * @return Execution result of the function.
+ *         {@link OH_NN_SUCCESS} get tensor fd successfully. The return value is saved in parameter fd.\n
+ *         {@link OH_NN_INVALID_PARAMETER} fail to get tensor fd. The possible reason for failure
+ *         is that the <b>tensor</b> or <b>fd</b> is nullptr.\n
  * @since 11
  * @version 1.0
  */
@@ -733,9 +794,10 @@ OH_NN_ReturnCode OH_NNTensor_GetFd(const NN_Tensor *tensor, int *fd);
  *
  * @param tensor Pointer to the {@link NN_Tensor} instance.
  * @param size The returned size of tensor data.
- * @return Execution result of the function. If the operation is successful, <b>OH_NN_SUCCESS</b> is returned.
- *         If the operation fails, an error code is returned. For details about the error codes,
- *         see {@link OH_NN_ReturnCode}.
+ * @return Execution result of the function.
+ *         {@link OH_NN_SUCCESS} get tensor size successfully. The return value is saved in <b>size</b>.\n
+ *         {@link OH_NN_INVALID_PARAMETER} fail to get tensor size. The possible reason for failure
+ *         is that the <b>tensor</b> or <b>size</b> is nullptr.\n
  * @since 11
  * @version 1.0
  */
@@ -754,9 +816,10 @@ OH_NN_ReturnCode OH_NNTensor_GetSize(const NN_Tensor *tensor, size_t *size);
  *
  * @param tensor Pointer to the {@link NN_Tensor} instance.
  * @param offset The returned offset of tensor data.
- * @return Execution result of the function. If the operation is successful, <b>OH_NN_SUCCESS</b> is returned.
- *         If the operation fails, an error code is returned. For details about the error codes,
- *         see {@link OH_NN_ReturnCode}.
+ * @return Execution result of the function.
+ *         {@link OH_NN_SUCCESS} get tensor offset successfully. The return value is saved in <b>offset</b>.\n
+ *         {@link OH_NN_INVALID_PARAMETER} fail to get tensor offset. The possible reason for failure
+ *         is that the <b>tensor</b> or <b>offset</b> is nullptr.\n
  * @since 11
  * @version 1.0
  */
@@ -771,7 +834,8 @@ OH_NN_ReturnCode OH_NNTensor_GetOffset(const NN_Tensor *tensor, size_t *offset);
  * instance if you do not need to create any other executors. \n
  *
  * @param compilation Pointer to the {@link OH_NNCompilation} instance.
- * @return Pointer to a {@link OH_NNExecutor} instance, or NULL if it fails to create.
+ * @return Pointer to a {@link OH_NNExecutor} instance, or NULL if it fails to create. The possible reason for failure
+ *         is that the <b>compilation</b> is nullptr, or memory error occurred.
  * @since 9
  * @version 1.0
  */
@@ -802,9 +866,12 @@ OH_NNExecutor *OH_NNExecutor_Construct(OH_NNCompilation *compilation);
  * @param shape Pointer to the int32_t array. The value of each element in the array is the length of the output tensor
  *              in each dimension.
  * @param shapeLength Pointer to the uint32_t type. The number of output dimensions is returned.
- * @return Execution result of the function. If the operation is successful, <b>OH_NN_SUCCESS</b> is returned.
- *         If the operation fails, an error code is returned. For details about the error codes,
- *         see {@link OH_NN_ReturnCode}.
+ * @return Execution result of the function.
+ *         {@link OH_NN_SUCCESS} get tensor output shape successfully. The return value is saved in
+ *         <b>shape</b> and <b>shapeLength</b>.\n
+ *         {@link OH_NN_INVALID_PARAMETER} fail to get tensor output shape. The possible reason for failure is that
+ *         the <b>executor</b>, <b>shape</b> or <b>shapeLength</b> is nullptr, or <b>*shape</b> is not nullptr,
+ *         or <b>outputIndex</b> is out of range.\n
  * @since 9
  * @version 1.0
  */
@@ -835,8 +902,10 @@ void OH_NNExecutor_Destroy(OH_NNExecutor **executor);
  *
  * @param executor Pointer to the {@link OH_NNExecutor} instance.
  * @param inputCount Input tensor count returned.
- * @return Execution result of the function. If the operation is successful, <b>OH_NN_SUCCESS</b> is returned. If the operation fails, 
- *         an error code is returned. For details about the error codes, see {@link OH_NN_ReturnCode}.
+ * @return Execution result of the function.
+ *         {@link OH_NN_SUCCESS} get input count successfully. The return value is saved in <b>inputCount</b>.\n
+ *         {@link OH_NN_INVALID_PARAMETER} fail to get input count. The possible reason for failure is that
+ *         the <b>executor</b> or <b>inputCount</b> is nullptr.\n
  * @since 11
  * @version 1.0
  */
@@ -850,8 +919,10 @@ OH_NN_ReturnCode OH_NNExecutor_GetInputCount(const OH_NNExecutor *executor, size
  *
  * @param executor Pointer to the {@link OH_NNExecutor} instance.
  * @param OutputCount Output tensor count returned.
- * @return Execution result of the function. If the operation is successful, <b>OH_NN_SUCCESS</b> is returned. If the operation fails, 
- *         an error code is returned. For details about the error codes, see {@link OH_NN_ReturnCode}.
+ * @return Execution result of the function.
+ *         {@link OH_NN_SUCCESS} get output count successfully. The return value is saved in <b>outputCount</b>.\n
+ *         {@link OH_NN_INVALID_PARAMETER} fail to get output count. The possible reason for failure is that
+ *         the <b>executor</b> or <b>outputCount</b> is nullptr.\n
  * @since 11
  * @version 1.0
  */
@@ -866,7 +937,8 @@ OH_NN_ReturnCode OH_NNExecutor_GetOutputCount(const OH_NNExecutor *executor, siz
  *
  * @param executor Pointer to the {@link OH_NNExecutor} instance.
  * @param index Input tensor index.
- * @return Pointer to {@link NN_TensorDesc} instance, or NULL if it fails to create.
+ * @return Pointer to {@link NN_TensorDesc} instance, or NULL if it fails to create. The possible reason for
+ *         failure is that the <b>executor</b> is nullptr, or <b>index</b> is out of range.
  * @since 11
  * @version 1.0
  */
@@ -881,7 +953,8 @@ NN_TensorDesc *OH_NNExecutor_CreateInputTensorDesc(const OH_NNExecutor *executor
  *
  * @param executor Pointer to the {@link OH_NNExecutor} instance.
  * @param index Output tensor index.
- * @return Pointer to {@link NN_TensorDesc} instance, or NULL if it fails to create.
+ * @return Pointer to {@link NN_TensorDesc} instance, or NULL if it fails to create. The possible reason for
+ *         failure is that the <b>executor</b> is nullptr, or <b>index</b> is out of range.
  * @since 11
  * @version 1.0
  */
@@ -911,9 +984,13 @@ NN_TensorDesc *OH_NNExecutor_CreateOutputTensorDesc(const OH_NNExecutor *executo
  * @param minInputDims Returned pointer to an array contains the minimum dimensions of the input tensor.
  * @param maxInputDims Returned pointer to an array contains the maximum dimensions of the input tensor.
  * @param shapeLength Returned length of the shape of input tensor.
- * @return Execution result of the function. If the operation is successful, <b>OH_NN_SUCCESS</b> is returned.
- *         If the operation fails, an error code is returned. For details about the error codes,
- *         see {@link OH_NN_ReturnCode}.
+ * @return Execution result of the function.
+ *         {@link OH_NN_SUCCESS} get input dim range successfully. The return value is saved in <b>minInputDims</b>,
+ *         <b>maxInputDims</b> and <b>shapeLength</b>.\n
+ *         {@link OH_NN_INVALID_PARAMETER} fail to get input dim range. The possible reason for failure is that
+ *         the <b>executor</b>, <b>minInputDims</b>, <b>maxInputDims</b> or <b>shapeLength</b> is nullptr, or
+ *         <b>*minInputDims</b> or <b>*maxInputDims</b> is not nullptr, or <b>index</b> is out of range.\n
+ *         {@link OH_NN_OPERATION_FORBIDDEN} the backend device is not supported to get input dim range.\n
  * @since 11
  * @version 1.0
  */
@@ -930,8 +1007,11 @@ OH_NN_ReturnCode OH_NNExecutor_GetInputDimRange(const OH_NNExecutor *executor,
  *
  * @param executor Pointer to the {@link OH_NNExecutor} instance.
  * @param onRunDone Callback function handle {@link NN_OnRunDone}.
- * @return Execution result of the function. If the operation is successful, <b>OH_NN_SUCCESS</b> is returned. If the operation fails, 
- *         an error code is returned. For details about the error codes, see {@link OH_NN_ReturnCode}.
+ * @return Execution result of the function.
+ *         {@link OH_NN_SUCCESS} set on run done successfully.\n
+ *         {@link OH_NN_INVALID_PARAMETER} fail to set on run done. The possible reason for failure is that
+ *         the <b>executor</b> or <b>onRunDone</b> is nullptr.\n
+ *         {@link OH_NN_OPERATION_FORBIDDEN} the backend device is not supported to set on run done.\n
  * @since 11
  * @version 1.0
  */
@@ -944,8 +1024,11 @@ OH_NN_ReturnCode OH_NNExecutor_SetOnRunDone(OH_NNExecutor *executor, NN_OnRunDon
  *
  * @param executor Pointer to the {@link OH_NNExecutor} instance.
  * @param onServiceDied Callback function handle {@link NN_OnServiceDied}.
- * @return Execution result of the function. If the operation is successful, <b>OH_NN_SUCCESS</b> is returned. If the operation fails, 
- *         an error code is returned. For details about the error codes, see {@link OH_NN_ReturnCode}.
+ * @return Execution result of the function.
+ *         {@link OH_NN_SUCCESS} set on service died successfully.\n
+ *         {@link OH_NN_INVALID_PARAMETER} fail to set on service died. The possible reason for failure is that
+ *         the <b>executor</b> or <b>onServiceDied</b> is nullptr.\n
+ *         {@link OH_NN_OPERATION_FORBIDDEN} the backend device is not supported to set on service died.\n
  * @since 11
  * @version 1.0
  */
@@ -967,8 +1050,12 @@ OH_NN_ReturnCode OH_NNExecutor_SetOnServiceDied(OH_NNExecutor *executor, NN_OnSe
  * @param inputCount Number of input tensors.
  * @param outputTensor An array of output tensors {@link NN_Tensor}.
  * @param outputCount Number of output tensors.
- * @return Execution result of the function. If the operation is successful, <b>OH_NN_SUCCESS</b> is returned. If the operation fails, 
- *         an error code is returned. For details about the error codes, see {@link OH_NN_ReturnCode}.
+ * @return Execution result of the function.
+ *         {@link OH_NN_SUCCESS} run successfully.\n
+ *         {@link OH_NN_INVALID_PARAMETER} fail to run. The possible reason for failure is that the <b>executor</b>,
+ *         <b>inputTensor</b> or <b>outputTensor</b> is nullptr, or <b>inputCount</b> or <b>outputCount</b> is 0.\n
+ *         {@link OH_NN_FAILED} the backend device failed to run.\n
+ *         {@link OH_NN_NULL_PTR} the parameters of input or output tensor is invalid.\n
  * @since 11
  * @version 1.0
  */
@@ -1011,9 +1098,14 @@ OH_NN_ReturnCode OH_NNExecutor_RunSync(OH_NNExecutor *executor,
  * @param outputCount Number of output tensors.
  * @param timeout Time limit (millisecond) of the asynchronous execution, e.g. 1000.
  * @param userData Asynchronous execution identifier.
- * @return Execution result of the function. If the operation is successful, <b>OH_NN_SUCCESS</b> is returned.
- *         If the operation fails, an error code is returned. For details about the error codes,
- *         see {@link OH_NN_ReturnCode}.
+ * @return Execution result of the function.
+ *         {@link OH_NN_SUCCESS} run successfully.\n
+ *         {@link OH_NN_INVALID_PARAMETER} fail to run. The possible reason for failure is that the <b>executor</b>,
+ *         <b>inputTensor</b>, <b>outputTensor</b> or <b>userData</b> is nullptr, or <b>inputCount</b> or
+ *         <b>outputCount</b> is 0.\n
+ *         {@link OH_NN_FAILED} the backend device failed to run.\n
+ *         {@link OH_NN_NULL_PTR} the parameters of input or output tensor is invalid.\n
+ *         {@link OH_NN_OPERATION_FORBIDDEN} the backend device is not supported to run async.\n
  * @since 11
  * @version 1.0
  */
@@ -1039,9 +1131,10 @@ OH_NN_ReturnCode OH_NNExecutor_RunAsync(OH_NNExecutor *executor,
  * @param allDevicesID Pointer to the size_t array. The input <b>*allDevicesID</b> must be a null pointer.
  *                     Otherwise, {@link OH_NN_INVALID_PARAMETER} is returned.
  * @param deviceCount Pointer of the uint32_t type, which is used to return the length of <b>*allDevicesID</b>.
- * @return Execution result of the function. If the operation is successful, <b>OH_NN_SUCCESS</b> is returned.
- *         If the operation fails, an error code is returned. For details about the error codes,
- *         see {@link OH_NN_ReturnCode}.
+ * @return Execution result of the function.
+ *         {@link OH_NN_SUCCESS} get all devices id successfully.\n
+ *         {@link OH_NN_INVALID_PARAMETER} fail to get all devices id. The possible reason for failure is that
+ *         the <b>allDevicesID</b> or <b>deviceCount</b> is nullptr, or <b>*allDevicesID</b> is not nullptr.\n
  * @since 9
  * @version 1.0
  */
@@ -1060,9 +1153,12 @@ OH_NN_ReturnCode OH_NNDevice_GetAllDevicesID(const size_t **allDevicesID, uint32
  *
  * @param deviceID Device ID. If it is 0, the first device in the current device list will be used by default.
  * @param name The device name returned.
- * @return Execution result of the function. If the operation is successful, <b>OH_NN_SUCCESS</b> is returned.
- *         If the operation fails, an error code is returned. For details about the error codes,
- *         see {@link OH_NN_ReturnCode}.
+ * @return Execution result of the function.
+ *         {@link OH_NN_SUCCESS} get name of specific device successfully.\n
+ *         {@link OH_NN_INVALID_PARAMETER} fail to get name of specific device. The possible reason for failure is that
+ *         the <b>name</b> is nullptr or <b>*name</b> is not nullptr.\n
+ *         {@link OH_NN_FAILED} fail to get name of specific device. The possible reason for failure is that
+ *         the <b>deviceID</b> is invalid.\n
  * @since 9
  * @version 1.0
  */
@@ -1080,8 +1176,12 @@ OH_NN_ReturnCode OH_NNDevice_GetName(size_t deviceID, const char **name);
  *
  * @param deviceID Device ID. If it is 0, the first device in the current device list will be used by default.
  * @param deviceType The device type {@link OH_NN_DeviceType} returned.
- * @return Execution result of the function. If the operation is successful, <b>OH_NN_SUCCESS</b> is returned. If the operation fails, 
- *         an error code is returned. For details about the error codes, see {@link OH_NN_ReturnCode}.
+ * @return Execution result of the function.
+ *         {@link OH_NN_SUCCESS} get type of specific device successfully.\n
+ *         {@link OH_NN_INVALID_PARAMETER} fail to get type of specific device. The possible reason for failure is that
+ *         the <b>deviceType</b> is nullptr.\n
+ *         {@link OH_NN_FAILED} fail to get type of specific device. The possible reason for failure is that
+ *         the <b>deviceID</b> is invalid.\n
  * @since 9
  * @version 1.0
  */

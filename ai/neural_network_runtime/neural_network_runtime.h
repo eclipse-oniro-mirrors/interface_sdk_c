@@ -71,9 +71,10 @@ NN_QuantParam *OH_NNQuantParam_Create();
  * @param quantParams Pointer to the {@link NN_QuantParam} instance.
  * @param scales An array of scales for all quantization parameters of the tensor.
  * @param quantCount Number of quantization parameters of the tensor.
- * @return Execution result of the function. If the operation is successful, <b>OH_NN_SUCCESS</b> is returned.
- *         If the operation fails, an error code is returned. For details about the error codes,
- *         see {@link OH_NN_ReturnCode}.
+ * @return Execution result of the function.
+ *         {@link OH_NN_SUCCESS} set scales of quant parameters successfully.\n
+ *         {@link OH_NN_INVALID_PARAMETER} fail to set scales of quant parameters. The possible reason for failure
+ *         is that the <b>quantParams</b> or <b>scales</b> is nullptr, or <b>quantCount</b> is 0.\n
  * @since 11
  * @version 1.0
  */
@@ -88,9 +89,10 @@ OH_NN_ReturnCode OH_NNQuantParam_SetScales(NN_QuantParam *quantParams, const dou
  * @param quantParams Pointer to the {@link NN_QuantParam} instance.
  * @param zeroPoints An array of zero points for all quantization parameters of the tensor.
  * @param quantCount Number of quantization parameters of the tensor.
- * @return Execution result of the function. If the operation is successful, <b>OH_NN_SUCCESS</b> is returned.
- *         If the operation fails, an error code is returned. For details about the error codes,
- *         see {@link OH_NN_ReturnCode}.
+ * @return Execution result of the function.
+ *         {@link OH_NN_SUCCESS} set zero points of quant parameters successfully.\n
+ *         {@link OH_NN_INVALID_PARAMETER} fail to set zero points of quant parameters. The possible reason for failure
+ *         is that the <b>quantParams</b> or <b>zeroPoints</b> is nullptr, or <b>quantCount</b> is 0.\n
  * @since 11
  * @version 1.0
  */
@@ -105,9 +107,10 @@ OH_NN_ReturnCode OH_NNQuantParam_SetZeroPoints(NN_QuantParam *quantParams, const
  * @param quantParams Pointer to the {@link NN_QuantParam} instance.
  * @param numBits An array of number bits for all quantization parameters of the tensor.
  * @param quantCount Number of quantization parameters of the tensor.
- * @return Execution result of the function. If the operation is successful, <b>OH_NN_SUCCESS</b> is returned.
- *         If the operation fails, an error code is returned. For details about the error codes,
- *         see {@link OH_NN_ReturnCode}.
+ * @return Execution result of the function.
+ *         {@link OH_NN_SUCCESS} set num bits of quant parameters successfully.\n
+ *         {@link OH_NN_INVALID_PARAMETER} fail to set num bits of quant parameters. The possible reason for failure
+ *         is that the <b>quantParams</b> or <b>numBits</b> is nullptr, or <b>quantCount</b> is 0.\n
  * @since 11
  * @version 1.0
  */
@@ -122,8 +125,10 @@ OH_NN_ReturnCode OH_NNQuantParam_SetNumBits(NN_QuantParam *quantParams, const ui
  * execute the release. \n
  *
  * @param quantParams Double pointer to the {@link NN_QuantParam} instance.
- * @return Execution result of the function. If the operation is successful, <b>OH_NN_SUCCESS</b> is returned. 
- *         If the operation fails, an error code is returned. For details about the error codes, see {@link OH_NN_ReturnCode}.
+ * @return Execution result of the function.
+ *         {@link OH_NN_SUCCESS} destroy quant parameters object successfully.\n
+ *         {@link OH_NN_INVALID_PARAMETER} fail to destroy quant parameters object. The possible reason for failure
+ *         is that the <b>quantParams</b> or <b>*quantParams</b> is nullptr.\n
  * @since 11
  * @version 1.0
  */
@@ -160,8 +165,12 @@ OH_NNModel *OH_NNModel_Construct(void);
  *
  * @param model Pointer to the {@link OH_NNModel} instance.
  * @param tensorDesc Pointer to the {@link NN_TensorDesc} instance. The tensor descriptor specifies the attributes of the tensor added to the model instance.
- * @return Execution result of the function. If the operation is successful, <b>OH_NN_SUCCESS</b> is returned. 
- *         If the operation fails, an error code is returned. For details about the error codes, see {@link OH_NN_ReturnCode}.
+ * @return Execution result of the function.
+ *         {@link OH_NN_SUCCESS} add tensor to model successfully.\n
+ *         {@link OH_NN_INVALID_PARAMETER} fail to add tensor to model. The possible reason for failure
+ *         is that the <b>model</b> or <b>tensorDesc</b> is nullptr.\n
+ *         {@link OH_NN_MEMORY_ERROR} fail to add tensor to model. The possible reason for failure
+ *         is that the memory error occurred such as failure to create an object.\n
  * @since 11
  * @version 1.0
  */
@@ -178,8 +187,12 @@ OH_NN_ReturnCode OH_NNModel_AddTensorToModel(OH_NNModel *model, const NN_TensorD
  * @param index Index of a tensor.
  * @param dataBuffer Pointer to real data.
  * @param length Length of the data buffer.
- * @return Execution result of the function. If the operation is successful, <b>OH_NN_SUCCESS</b> is returned. 
- *         If the operation fails, an error code is returned. For details about the error codes, see {@link OH_NN_ReturnCode}.
+ * @return Execution result of the function.
+ *         {@link OH_NN_SUCCESS} set tensor data successfully.\n
+ *         {@link OH_NN_INVALID_PARAMETER} fail to set tensor data. The possible reason for failure is that the
+ *         <b>model</b> or <b>dataBuffer</b> is nullptr, or <b>length</b> is 0, or <b>index</b> is out of range.\n
+ *         {@link OH_NN_OPERATION_FORBIDDEN} fail to set tensor data. The possible reason for failure
+ *         is that the model is invalid.\n
  * @since 9
  * @version 1.0
  */
@@ -191,8 +204,12 @@ OH_NN_ReturnCode OH_NNModel_SetTensorData(OH_NNModel *model, uint32_t index, con
  * @param model Pointer to the {@link OH_NNModel} instance.
  * @param index Index of a tensor.
  * @param quantParam Pointer to the quantization parameter instance.
- * @return Execution result of the function. If the operation is successful, <b>OH_NN_SUCCESS</b> is returned. 
- *         If the operation fails, an error code is returned. For details about the error codes, see {@link OH_NN_ReturnCode}.
+ * @return Execution result of the function.
+ *         {@link OH_NN_SUCCESS} set tensor quant parameters successfully.\n
+ *         {@link OH_NN_INVALID_PARAMETER} fail to set tensor quant parameters. The possible reason for failure
+ *         is that the <b>model</b> or <b>quantParam</b> is nullptr, or <b>index</b> is out of range.\n
+ *         {@link OH_NN_OPERATION_FORBIDDEN} fail to set tensor quant parameters. The possible reason for failure
+ *         is that the model is invalid.\n
  * @since 11
  * @version 1.0
  */
@@ -204,8 +221,12 @@ OH_NN_ReturnCode OH_NNModel_SetTensorQuantParams(OH_NNModel *model, uint32_t ind
  * @param model Pointer to the {@link OH_NNModel} instance.
  * @param index Index of a tensor.
  * @param tensorType Tensor type of {@link OH_NN_TensorType}.
- * @return Execution result of the function. If the operation is successful, <b>OH_NN_SUCCESS</b> is returned. 
- *         If the operation fails, an error code is returned. For details about the error codes, see {@link OH_NN_ReturnCode}.
+ * @return Execution result of the function.
+ *         {@link OH_NN_SUCCESS} set tensor type successfully.\n
+ *         {@link OH_NN_INVALID_PARAMETER} fail to set tensor type. The possible reason for failure
+ *         is that the <b>model</b> is nullptr, or <b>index</b> is out of range, or <b>tensorType</b> is invalid.\n
+ *         {@link OH_NN_OPERATION_FORBIDDEN} fail to set tensor type. The possible reason for failure
+ *         is that the model is invalid.\n
  * @since 11
  * @version 1.0
  */
@@ -233,8 +254,13 @@ OH_NN_ReturnCode OH_NNModel_SetTensorType(OH_NNModel *model, uint32_t index, OH_
  * @param paramIndices Pointer to the <b>OH_NN_UInt32Array</b> instance, which is used to set operator parameters.
  * @param inputIndices Pointer to the <b>OH_NN_UInt32Array</b> instance, which is used to set the operator input.
  * @param outputIndices Pointer to the <b>OH_NN_UInt32Array</b> instance, which is used to set the operator output.
- * @return Execution result of the function. If the operation is successful, <b>OH_NN_SUCCESS</b> is returned. 
- *         If the operation fails, an error code is returned. For details about the error codes, see {@link OH_NN_ReturnCode}.
+ * @return Execution result of the function.
+ *         {@link OH_NN_SUCCESS} add operation to model successfully.\n
+ *         {@link OH_NN_INVALID_PARAMETER} fail to add operation to model. The possible reason for failure is that the
+ *         <b>model</b>, <b>paramIndices</b>, <b>inputIndices</b> or <b>outputIndices</b> is nullptr, or parameters are
+ *         invalid.\n
+ *         {@link OH_NN_OPERATION_FORBIDDEN} fail to add operation to model. The possible reason for failure
+ *         is that the model is invalid.\n
  * @since 9
  * @version 1.0
  */
@@ -258,8 +284,12 @@ OH_NN_ReturnCode OH_NNModel_AddOperation(OH_NNModel *model,
  * @param model Pointer to the {@link OH_NNModel} instance.
  * @param inputIndices Pointer to the <b>OH_NN_UInt32Array</b> instance, which is used to set the operator input.
  * @param outputIndices Pointer to the <b>OH_NN_UInt32Array</b> instance, which is used to set the operator output.
- * @return Execution result of the function. If the operation is successful, <b>OH_NN_SUCCESS</b> is returned. 
- *         If the operation fails, an error code is returned. For details about the error codes, see {@link OH_NN_ReturnCode}.
+ * @return Execution result of the function.
+ *         {@link OH_NN_SUCCESS} specify inputs and outputs successfully.\n
+ *         {@link OH_NN_INVALID_PARAMETER} fail to specify inputs and outputs. The possible reason for failure is that
+ *         the <b>model</b>, <b>inputIndices</b> or <b>outputIndices</b> is nullptr, or parameters are invalid.\n
+ *         {@link OH_NN_OPERATION_FORBIDDEN} fail to specify inputs and outputs. The possible reason for failure
+ *         is that the model is invalid.\n
  * @since 9
  * @version 1.0
  */
@@ -279,8 +309,14 @@ OH_NN_ReturnCode OH_NNModel_SpecifyInputsAndOutputs(OH_NNModel *model,
  * you must call this method to complete composition. \n
  *
  * @param model Pointer to the {@link OH_NNModel} instance.
- * @return Execution result of the function. If the operation is successful, <b>OH_NN_SUCCESS</b> is returned. 
- *         If the operation fails, an error code is returned. For details about the error codes, see {@link OH_NN_ReturnCode}.
+ * @return Execution result of the function.
+ *         {@link OH_NN_SUCCESS} the composition is complete successfully.\n
+ *         {@link OH_NN_INVALID_PARAMETER} composition failed. The possible reason for failure
+ *         is that the <b>model</b> is nullptr, or parameters set before are invalid.\n
+ *         {@link OH_NN_OPERATION_FORBIDDEN} composition failed. The possible reason for failure
+ *         is that the model is invalid.\n
+ *         {@link OH_NN_MEMORY_ERROR} composition failed. The possible reason for failure
+ *         is that the memory error occurred such as failure to create an object.\n
  * @since 9
  * @version 1.0
  */
@@ -315,8 +351,15 @@ void OH_NNModel_Destroy(OH_NNModel **model);
  * @param isSupported Pointer to the bool array. When this method is called, <b>(*isSupported)</b> must be a null pointer. 
  *                    Otherwise, {@link OH_NN_INVALID_PARAMETER} is returned.
  * @param opCount Number of operators in a model instance, corresponding to the length of the <b>(*isSupported)</b> array.
- * @return Execution result of the function. If the operation is successful, <b>OH_NN_SUCCESS</b> is returned. 
- *         If the operation fails, an error code is returned. For details about the error codes, see {@link OH_NN_ReturnCode}.
+ * @return Execution result of the function.
+ *         {@link OH_NN_SUCCESS} get available operations successfully.\n
+ *         {@link OH_NN_INVALID_PARAMETER} fail to get available operations. The possible reason for failure
+ *         is that the <b>model</b>, <b>isSupported</b> or <b>opCount</b> is nullptr, or <b>*isSupported</b> is
+ *         not nullptr.\n
+ *         {@link OH_NN_OPERATION_FORBIDDEN} fail to get available operations. The possible reason for failure
+ *         is that the model is invalid.\n
+ *         {@link OH_NN_FAILED} fail to get available operations. The possible reason for failure
+ *         is that the <b>deviceID</b> is invalid.\n
  * @since 9
  * @version 1.0
  */
@@ -342,9 +385,12 @@ OH_NN_ReturnCode OH_NNModel_GetAvailableOperations(OH_NNModel *model,
  * @param model Pointer to the {@link OH_NNModel} instance.
  * @param tensor Pointer to the {@link OH_NN_Tensor} tensor. The tensor specifies the attributes of the tensor added to
  *               the model instance.
- * @return Execution result of the function. If the operation is successful, <b>OH_NN_SUCCESS</b> is returned.
- *         If the operation fails, an error code is returned. For details about the error codes,
- *         see {@link OH_NN_ReturnCode}.
+ * @return Execution result of the function.
+ *         {@link OH_NN_SUCCESS} add tensor to model successfully.\n
+ *         {@link OH_NN_INVALID_PARAMETER} fail to add tensor to model. The possible reason for failure
+ *         is that the <b>model</b> or <b>tensor</b> is nullptr.\n
+ *         {@link OH_NN_OPERATION_FORBIDDEN} fail to add tensor to model. The possible reason for failure
+ *         is that the model is invalid.\n
  * @deprecated since 11
  * @useinstead {@link OH_NNModel_AddTensorToModel}
  * @since 9
@@ -380,9 +426,13 @@ OH_NN_ReturnCode OH_NNModel_AddTensor(OH_NNModel *model, const OH_NN_Tensor *ten
  * @param tensor Sets the tensor corresponding to the input data.
  * @param dataBuffer Pointer to the input data.
  * @param length Length of the data buffer, in bytes.
- * @return Execution result of the function. If the operation is successful, <b>OH_NN_SUCCESS</b> is returned.
- *         If the operation fails, an error code is returned. For details about the error codes,
- *         see {@link OH_NN_ReturnCode}.
+ * @return Execution result of the function.
+ *         {@link OH_NN_SUCCESS} set model input successfully.\n
+ *         {@link OH_NN_INVALID_PARAMETER} fail to set model input. The possible reason for failure
+ *         is that the <b>executor</b>, <b>tensor</b> or <b>dataBuffer</b> is nullptr, or <b>inputIndex</b>
+ *         is out of range, or <b>length</b> is 0.\n
+ *         {@link OH_NN_MEMORY_ERROR} fail to set model input. The possible reason for failure
+ *         is that the memory error occurred such as failure to create an object.\n
  * @deprecated since 11
  * @useinstead {@link OH_NNExecutor_RunSync}
  * @since 9
@@ -417,9 +467,13 @@ OH_NN_ReturnCode OH_NNExecutor_SetInput(OH_NNExecutor *executor,
  *                    In output buffer settings, the index value for the three outputs is <b>{0, 1, 2}</b>.
  * @param dataBuffer Pointer to the output data.
  * @param length Length of the data buffer, in bytes.
- * @return Execution result of the function. If the operation is successful, <b>OH_NN_SUCCESS</b> is returned.
- *         If the operation fails, an error code is returned. For details about the error codes,
- *         see {@link OH_NN_ReturnCode}.
+ * @return Execution result of the function.
+ *         {@link OH_NN_SUCCESS} set model output successfully.\n
+ *         {@link OH_NN_INVALID_PARAMETER} fail to set model output. The possible reason for failure
+ *         is that the <b>executor</b>, <b>tensor</b> or <b>dataBuffer</b> is nullptr, or <b>outputIndex</b>
+ *         is out of range, or <b>length</b> is 0.\n
+ *         {@link OH_NN_MEMORY_ERROR} fail to set model output. The possible reason for failure
+ *         is that the memory error occurred such as failure to create an object.\n
  * @deprecated since 11
  * @useinstead {@link OH_NNExecutor_RunSync}
  * @since 9
@@ -436,9 +490,12 @@ OH_NN_ReturnCode OH_NNExecutor_SetOutput(OH_NNExecutor *executor,
  * Performs end-to-end inference and computing of the model on the device associated with the executor.\n
  *
  * @param executor Pointer to the {@link OH_NNExecutor} instance.
- * @return Execution result of the function. If the operation is successful, <b>OH_NN_SUCCESS</b> is returned.
- *         If the operation fails, an error code is returned. For details about the error codes,
- *         see {@link OH_NN_ReturnCode}.
+ * @return Execution result of the function.
+ *         {@link OH_NN_SUCCESS} run model successfully.\n
+ *         {@link OH_NN_INVALID_PARAMETER} fail to run model. The possible reason for failure
+ *         is that the <b>executor</b> is nullptr.\n
+ *         {@link OH_NN_FAILED} fail to set model output. The possible reason for failure
+ *         is that the backend device failed to run model.\n
  * @deprecated since 11
  * @useinstead {@link OH_NNExecutor_RunSync}
  * @since 9
@@ -560,9 +617,13 @@ void OH_NNExecutor_DestroyOutputMemory(OH_NNExecutor *executor, uint32_t outputI
  *                   <b>{0, 1, 2}</b>.
  * @param tensor Pointer to {@link OH_NN_Tensor}, used to set the tensor corresponding to a single input.
  * @param memory Pointer to {@link OH_NN_Memory}.
- * @return Execution result of the function. If the operation is successful, <b>OH_NN_SUCCESS</b> is returned.
- *         If the operation fails, an error code is returned. For details about the error codes,
- *         see {@link OH_NN_ReturnCode}.
+ * @return Execution result of the function.
+ *         {@link OH_NN_SUCCESS} set input with memory successfully.\n
+ *         {@link OH_NN_INVALID_PARAMETER} fail to set input with memory. The possible reason for failure
+ *         is that the <b>executor</b>, <b>tensor</b> or <b>memory</b> is nullptr, or <b>inputIndex</b> is out of range,
+ *         or memory length is less than tensor length.\n
+ *         {@link OH_NN_MEMORY_ERROR} fail to set input with memory. The possible reason for failure
+ *         is that the memory error occurred such as failure to create an object.\n
  * @deprecated since 11
  * @useinstead {@link OH_NNExecutor_RunSync}
  * @since 9
@@ -590,9 +651,13 @@ OH_NN_ReturnCode OH_NNExecutor_SetInputWithMemory(OH_NNExecutor *executor,
  *                    When the output shared memory is specified, the index value for the three outputs is
  *                    <b>{0, 1, 2}</b>.
  * @param memory Pointer to {@link OH_NN_Memory}.
- * @return Execution result of the function. If the operation is successful, <b>OH_NN_SUCCESS</b> is returned.
- *         If the operation fails, an error code is returned. For details about the error codes,
- *         see {@link OH_NN_ReturnCode}.
+ * @return Execution result of the function.
+ *         {@link OH_NN_SUCCESS} set output with memory successfully.\n
+ *         {@link OH_NN_INVALID_PARAMETER} fail to set output with memory. The possible reason for failure
+ *         is that the <b>executor</b>, <b>tensor</b> or <b>memory</b> is nullptr, or <b>outputIndex</b> is
+ *         out of range, or memory length is less than tensor length.\n
+ *         {@link OH_NN_MEMORY_ERROR} fail to set output with memory. The possible reason for failure
+ *         is that the memory error occurred such as failure to create an object.\n
  * @deprecated since 11
  * @useinstead {@link OH_NNExecutor_RunSync}
  * @since 9
