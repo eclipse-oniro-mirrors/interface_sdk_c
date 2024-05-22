@@ -156,6 +156,13 @@ typedef struct ArkUI_GuidelineOption ArkUI_GuidelineOption;
 typedef struct ArkUI_BarrierOption ArkUI_BarrierOption;
 
 /**
+ * @brief Define the ChildrenMainSize class information for a List.
+ *
+ * @since 12
+*/
+typedef struct ArkUI_ListChildrenMainSize ArkUI_ListChildrenMainSize;
+
+/**
  * @brief Defines the event callback type.
  *
  * @since 12
@@ -2034,6 +2041,20 @@ void OH_ArkUI_WaterFlowSectionOption_RegisterGetItemMainSizeCallbackByIndex(ArkU
     int32_t index, float(*callback)(int32_t itemIndex));
 
 /**
+* @brief The FlowItem grouping configuration information getsthe spindle size of
+* the specified Item based on flowItemIndex.
+*
+* @param option Indicates the pointer to a water flow section configuration.
+* @param index Indicates the index of the target water flow section.
+* @param userData FlowItem Custom data.
+* @param callback Gets the spindle size of the specified Item based on index.
+* @since 12
+*/
+void OH_ArkUI_WaterFlowSectionOption_RegisterGetItemMainSizeCallbackByIndexWithUserData(
+    ArkUI_WaterFlowSectionOption* option, int32_t index, void* userData,
+    float (*callback)(int32_t itemIndex, void* userData));
+
+/**
 * @brief Sets the number of columns (in a vertical layout) or rows (in a horizontal layout) of a water flow.
 *
 * @param option Indicates the pointer to a water flow section configuration.
@@ -2912,6 +2933,87 @@ int32_t OH_ArkUI_ListItemSwipeActionOption_GetEdgeEffect(ArkUI_ListItemSwipeActi
 void OH_ArkUI_ListItemSwipeActionOption_SetOnOffsetChange(ArkUI_ListItemSwipeActionOption* option,
     void (*callback)(float offset));
 
+/**
+ * @brief Create configuration items for the ListChildrenMainSize interface settings.
+ *
+ * @return ListChildrenMainSize configuration item instance.If the object returns a null pointer,
+ *         it indicates a creation failure, and the reason for the failure may be that the address space is full.
+ * @since 12
+*/
+ArkUI_ListChildrenMainSize* OH_ArkUI_ListChildrenMainSizeOption_Create();
+
+/**
+* @brief Destroy the ListChildrenMainSize instance.
+*
+* @param option The ListChildrenMainSize instance to be destroyed.
+* @since 12
+*/
+void OH_ArkUI_ListChildrenMainSizeOption_Dispose(ArkUI_ListChildrenMainSize* option);
+
+/**
+ * @brief Set the default size of ChildrenMainSizeOption for the List component.
+ *
+ * @param option ListChildrenMainSize instance.
+ * @param defaultMainSize The default size of the ListItem under the List, measured in vp.
+ * @return 0 represents success. If defaultMainSize is less than 0 or option is a null pointer, return 401.
+ * @since 12
+*/
+int32_t OH_ArkUI_ListChildrenMainSizeOption_SetDefaultMainSize(ArkUI_ListChildrenMainSize* option,
+    float defaultMainSize);
+
+/**
+ * @brief Get the default size of ChildrenMainSizeOption for the List component.
+ *
+ * @param option ListChildrenMainSize instance.
+ * @return The default size of the ListItem under the List is 0, measured in vp.
+ *         When the option is a null pointer, it returns -1.
+ * @since 12
+*/
+float OH_ArkUI_ListChildrenMainSizeOption_GetDefaultMainSize(ArkUI_ListChildrenMainSize* option);
+
+/**
+ * @brief Reset the array size of ChildrenMainSizeOption for the List component.
+ *
+ * @param option ListChildrenMainSize instance.
+ * @param totalSize Array size.
+ * @since 12
+*/
+void OH_ArkUI_ListChildrenMainSizeOption_Resize(ArkUI_ListChildrenMainSize* option, int32_t totalSize);
+
+/**
+ * @brief Resize the ChildrenMainSizeOption array operation on the List component.
+ *
+ * @param option ListChildrenMainSize instance.
+ * @param index To modify the starting position of the MainSize array.
+ * @param deleteCount The number of MainSize arrays to be deleted starting from index.
+ * @param addCount The number of MainSize arrays to be added starting from index.
+ * @return 0 represents success. If the function parameter is abnormal, return 401.
+ * @since 12
+*/
+int32_t OH_ArkUI_ListChildrenMainSizeOption_Splice(ArkUI_ListChildrenMainSize* option, int32_t index,
+    int32_t deleteCount, int32_t addCount);
+
+/**
+ * @brief Update the value of the ChildrenMainSizeOption array in the List component.
+ *
+ * @param option ListChildrenMainSize instance.
+ * @param index To modify the starting position of the MainSize array.
+ * @param mainSize The actual modified value.
+ * @return 0 represents success. If the function parameter is abnormal, return 401.
+ * @since 12
+*/
+int32_t OH_ArkUI_ListChildrenMainSizeOption_UpdateSize(ArkUI_ListChildrenMainSize* option,
+    int32_t index, float mainSize);
+
+/**
+ * @brief Get the value of the ChildrenMainSizeOption array for the List component.
+ *
+ * @param option ListChildrenMainSize instance.
+ * @param index The index position of the value to be obtained.
+ * @return The value of the specific position of the array. If the function parameter is abnormal, return -1.
+ * @since 12
+*/
+float OH_ArkUI_ListChildrenMainSizeOption_GetMainSize(ArkUI_ListChildrenMainSize* option, int32_t index);
 #ifdef __cplusplus
 };
 #endif

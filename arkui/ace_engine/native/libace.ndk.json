@@ -645,6 +645,10 @@
     },
     {
         "first_introduced": "12",
+        "name": "OH_ArkUI_WaterFlowSectionOption_RegisterGetItemMainSizeCallbackByIndexWithUserData"
+    },
+    {
+        "first_introduced": "12",
         "name": "OH_ArkUI_AnimateOption_Create"
     },
     {
@@ -1158,5 +1162,65 @@
     {
         "first_introduced": "12",
         "name": "OH_ArkUI_ListItemSwipeActionOption_SetOnOffsetChange"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_ArkUI_PointerEvent_SetStopPropagation"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_ArkUI_NodeUtils_GetLayoutSize"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_ArkUI_NodeUtils_GetLayoutPosition"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_ArkUI_NodeUtils_GetLayoutPositionInWindow"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_ArkUI_NodeUtils_GetLayoutPositionInScreen"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_ArkUI_NodeUtils_GetPositionWithTranslateInWindow"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_ArkUI_NodeUtils_GetPositionWithTranslateInScreen"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_ArkUI_ListChildrenMainSizeOption_Create"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_ArkUI_ListChildrenMainSizeOption_Dispose"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_ArkUI_ListChildrenMainSizeOption_SetDefaultMainSize"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_ArkUI_ListChildrenMainSizeOption_GetDefaultMainSize"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_ArkUI_ListChildrenMainSizeOption_Resize"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_ArkUI_ListChildrenMainSizeOption_Splice"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_ArkUI_ListChildrenMainSizeOption_UpdateSize"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_ArkUI_ListChildrenMainSizeOption_GetMainSize"
     }
 ]
