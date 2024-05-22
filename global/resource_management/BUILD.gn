@@ -30,9 +30,14 @@ ohos_ndk_headers("rawfile_header") {
 
 ohos_ndk_library("native_resmgr_ndk") {
   ndk_description_file = "./libnative_resmgr.ndk.json"
-  min_compact_version = "1"
+  min_compact_version = "12"
   output_name = "ohresmgr"
   output_extension = "so"
+  system_capability = "SystemCapability.Global.ResourceManager"
+  system_capability_headers = [
+    "resourcemanager/ohresmgr.h",
+    "resourcemanager/resmgr_common.h",
+  ]
 }
 
 ohos_ndk_headers("native_resmgr_header") {
