@@ -134,9 +134,7 @@ if (host_os == "mac") {
 action("ohos_toolchain") {
   outputs = [ "${ndk_ohos_toolchains_out_dir}" ]
   script = "toolchain.sh"
-  args =
-      [ "-i" ] + [ rebase_path(
-          "${ohos_arm64_toolchain_dir}/libcxx-ndk") ]
+  args = [ "-i" ] + [ rebase_path("${ohos_arm64_toolchain_dir}/libcxx-ndk") ]
   args += [ "-o" ] + [ rebase_path("${ndk_ohos_toolchains_out_dir}") ]
   args += [ "-l" ] + [ rebase_path("${linux_x86_64_toolchains_dir}/llvm/bin") ]
   deps = [ ":ohos_arm64" ]
