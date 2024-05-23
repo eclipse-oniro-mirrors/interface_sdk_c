@@ -136,7 +136,7 @@ action("ohos_toolchain") {
   script = "toolchain.sh"
   args =
       [ "-i" ] + [ rebase_path(
-          "${ohos_arm64_toolchain_dir}/libcxx-ndk_ohos_arm64-84c630-20240515") ]
+          "${ohos_arm64_toolchain_dir}/libcxx-ndk") ]
   args += [ "-o" ] + [ rebase_path("${ndk_ohos_toolchains_out_dir}") ]
   args += [ "-l" ] + [ rebase_path("${linux_x86_64_toolchains_dir}/llvm/bin") ]
   deps = [ ":ohos_arm64" ]
