@@ -353,6 +353,14 @@
     },
     {
         "first_introduced": "12",
+        "name": "OH_MD_KEY_VIDEO_ENCODER_QP_AVERAGE"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_MD_KEY_VIDEO_ENCODER_MSE"
+    },
+    {
+        "first_introduced": "12",
         "name": "OH_MD_KEY_DECODING_TIMESTAMP"
     },
     {

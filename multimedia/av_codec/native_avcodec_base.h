@@ -545,6 +545,24 @@ extern const char *OH_MD_KEY_VIDEO_ENCODER_QP_MAX;
  */
 extern const char *OH_MD_KEY_VIDEO_ENCODER_QP_MIN;
 /**
+ * @brief Key for describing the video frame averge quantization parameter, value type is int32_t.
+ * This is a part of a video encoder statistics export feature. This value is emitted from video encoder for a video
+ * frame.
+ *
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
+ * @since 12
+ */
+extern const char *OH_MD_KEY_VIDEO_ENCODER_QP_AVERAGE;
+/**
+ * @brief Key for describing video frame mean squared error, value type is double.
+ * This is a part of a video encoder statistics export feature. This value is emitted from video encoder for a video
+ * frame.
+ *
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
+ * @since 12
+ */
+extern const char *OH_MD_KEY_VIDEO_ENCODER_MSE;
+/**
  * @brief Key for decoding timestamp of the buffer in microseconds, value type is int64_t.
  *
  * @syscap SystemCapability.Multimedia.Media.CodecBase
