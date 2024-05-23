@@ -43,6 +43,8 @@ class TAGS(enum.Enum):
 
 class DiffType(enum.Enum):
     DEFAULT = ''
+    ADD_FILE = 'add file'
+    REDUCE_FILE = 'delete file'
     ADD_API = 'add api'
     REDUCE_API = 'delete api'
     ADD_DOC = 'add doc'
@@ -82,10 +84,12 @@ class DiffType(enum.Enum):
     VARIABLE_NAME_CHANGE = 'change variable name'
     VARIABLE_TYPE_CHANGE = 'change variable type'
     VARIABLE_VALUE_CHANGE = 'change variable value'
+    VARIABLE_CHANGE_TO_CONSTANT = 'change variable to constant'
 
     CONSTANT_NAME_CHANGE = 'change constant name'
     CONSTANT_TYPE_CHANGE = 'change constant type'
     CONSTANT_VALUE_CHANGE = 'change constant value'
+    CONSTANT_CHANGE_TO_VARIABLE = 'change constant to variable'
 
     TYPEDEF_NAME_TYPE_CHANGE = 'change typedef name type'
 
@@ -123,6 +127,10 @@ class DiffType(enum.Enum):
     DOC_TAG_LEFT_BRACE_HAVE_TO_NA = 'delete { tag'
     DOC_TAG_RIGHT_BRACE_NA_TO_HAVE = 'add } tag'
     DOC_TAG_RIGHT_BRACE_HAVE_TO_NA = 'delete } tag'
+    DOC_TAG_ADDTOGROUP_INCREASE = 'The file has addtogroup tag, add the addtogroup tag'
+    DOC_TAG_ADDTOGROUP_DECREASE = 'The file has multiple addtogroup tags. Delete the addtogroup tag'
+    DOC_TAG_FILE_INCREASE = 'The file has file tag, add the file tag'
+    DOC_TAG_FILE_DECREASE = 'The file has multiple file tags. Delete the file tag'
 
 
 compatible_list = [
@@ -151,6 +159,10 @@ compatible_list = [
     DiffType.DOC_TAG_LEFT_BRACE_HAVE_TO_NA,
     DiffType.DOC_TAG_RIGHT_BRACE_NA_TO_HAVE,
     DiffType.DOC_TAG_RIGHT_BRACE_HAVE_TO_NA,
+    DiffType.DOC_TAG_ADDTOGROUP_DECREASE,
+    DiffType.DOC_TAG_ADDTOGROUP_INCREASE,
+    DiffType.DOC_TAG_FILE_DECREASE,
+    DiffType.DOC_TAG_FILE_INCREASE
 ]
 
 api_new_list = [DiffType.ADD_API]
@@ -192,9 +204,11 @@ api_prototype_change_list = [
     DiffType.VARIABLE_NAME_CHANGE,
     DiffType.VARIABLE_TYPE_CHANGE,
     DiffType.VARIABLE_VALUE_CHANGE,
+    DiffType.VARIABLE_CHANGE_TO_CONSTANT,
     DiffType.CONSTANT_NAME_CHANGE,
     DiffType.CONSTANT_TYPE_CHANGE,
     DiffType.CONSTANT_VALUE_CHANGE,
+    DiffType.CONSTANT_CHANGE_TO_VARIABLE,
     DiffType.TYPEDEF_NAME_TYPE_CHANGE
 ]
 
@@ -232,6 +246,10 @@ api_constraint_change_list = [
     DiffType.DOC_TAG_LEFT_BRACE_HAVE_TO_NA,
     DiffType.DOC_TAG_RIGHT_BRACE_NA_TO_HAVE,
     DiffType.DOC_TAG_RIGHT_BRACE_HAVE_TO_NA,
+    DiffType.DOC_TAG_ADDTOGROUP_DECREASE,
+    DiffType.DOC_TAG_ADDTOGROUP_INCREASE,
+    DiffType.DOC_TAG_FILE_DECREASE,
+    DiffType.DOC_TAG_FILE_INCREASE
 ]
 
 api_modification_type_dict = {
@@ -266,6 +284,9 @@ class DiffInfo:
     is_compatible = False
     is_api_change = False
     api_modification_type = ''
+    kit_name = ''
+    sub_system = ''
+    class_name = ''
 
     def __init__(self, diff_type: DiffType):
         self.diff_type = diff_type
@@ -343,18 +364,36 @@ class DiffInfo:
 
     def set_api_modification_type(self, diff_type):
         if diff_type in api_new_list:
-            self.api_modification_type = api_modification_type_dict['api_new_list']
+            self.api_modification_type = api_modification_type_dict.get('api_new_list')
         elif diff_type in api_delete_list:
-            self.api_modification_type = api_modification_type_dict['api_delete_list']
+            self.api_modification_type = api_modification_type_dict.get('api_delete_list')
         elif diff_type in non_api_change_list:
-            self.api_modification_type = api_modification_type_dict['non_api_change_list']
+            self.api_modification_type = api_modification_type_dict.get('non_api_change_list')
         elif diff_type in api_prototype_change_list:
-            self.api_modification_type = api_modification_type_dict['api_prototype_change_list']
+            self.api_modification_type = api_modification_type_dict.get('api_prototype_change_list')
         elif diff_type in api_constraint_change_list:
-            self.api_modification_type = api_modification_type_dict['api_constraint_change_list']
+            self.api_modification_type = api_modification_type_dict.get('api_constraint_change_list')
 
     def get_api_modification_type(self):
         return self.api_modification_type
+
+    def set_kit_name(self, kit_name):
+        self.kit_name = kit_name
+
+    def get_kit_name(self):
+        return self.kit_name
+
+    def set_sub_system(self, sub_system):
+        self.sub_system = sub_system
+
+    def get_sub_system(self):
+        return self.sub_system
+
+    def set_class_name(self, class_name):
+        self.class_name = class_name
+
+    def get_class_name(self):
+        return self.class_name
 
 
 class OutputJson:
@@ -370,6 +409,9 @@ class OutputJson:
     is_compatible = False
     is_api_change = False
     api_modification_type = ''
+    kit_name = ''
+    sub_system = ''
+    class_name = ''
 
     def __init__(self, diff_info):
         self.api_name = diff_info.api_name
@@ -384,3 +426,6 @@ class OutputJson:
         self.is_compatible = diff_info.is_compatible
         self.is_api_change = diff_info.is_api_change
         self.api_modification_type = diff_info.api_modification_type
+        self.kit_name = diff_info.kit_name
+        self.sub_system = diff_info.sub_system
+        self.class_name = diff_info.class_name

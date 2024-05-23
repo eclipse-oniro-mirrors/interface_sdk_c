@@ -50,7 +50,10 @@ extern "C" {
  * @permission ohos.permission.MICROPHONE
  *
  * @param capturer reference created by OH_AudioStreamBuilder_GenerateCapturer()
- * @return {@link #AUDIOSTREAM_SUCCESS} or an undesired error.
+ * @return Function result code:
+ *         {@link AUDIOSTREAM_SUCCESS} If the execution is successful.
+ *         {@link AUDIOSTREAM_ERROR_INVALID_PARAM} The param of capturer is nullptr.
+ *         {@link AUDIOSTREAM_ERROR_ILLEGAL_STATE} Execution status exception.
  */
 OH_AudioStream_Result OH_AudioCapturer_Release(OH_AudioCapturer* capturer);
 
@@ -61,7 +64,10 @@ OH_AudioStream_Result OH_AudioCapturer_Release(OH_AudioCapturer* capturer);
  * @permission ohos.permission.MICROPHONE
  *
  * @param capturer reference created by OH_AudioStreamBuilder_GenerateCapturer()
- * @return {@link #AUDIOSTREAM_SUCCESS} or an undesired error.
+ * @return Function result code:
+ *         {@link AUDIOSTREAM_SUCCESS} If the execution is successful.
+ *         {@link AUDIOSTREAM_ERROR_INVALID_PARAM} The param of capturer is nullptr.
+ *         {@link AUDIOSTREAM_ERROR_ILLEGAL_STATE} Execution status exception.
  */
 OH_AudioStream_Result OH_AudioCapturer_Start(OH_AudioCapturer* capturer);
 
@@ -72,7 +78,10 @@ OH_AudioStream_Result OH_AudioCapturer_Start(OH_AudioCapturer* capturer);
  * @permission ohos.permission.MICROPHONE
  *
  * @param capturer reference created by OH_AudioStreamBuilder_GenerateCapturer()
- * @return {@link #AUDIOSTREAM_SUCCESS} or an undesired error.
+ * @return Function result code:
+ *         {@link AUDIOSTREAM_SUCCESS} If the execution is successful.
+ *         {@link AUDIOSTREAM_ERROR_INVALID_PARAM} The param of capturer is nullptr.
+ *         {@link AUDIOSTREAM_ERROR_ILLEGAL_STATE} Execution status exception.
  */
 OH_AudioStream_Result OH_AudioCapturer_Pause(OH_AudioCapturer* capturer);
 
@@ -83,7 +92,10 @@ OH_AudioStream_Result OH_AudioCapturer_Pause(OH_AudioCapturer* capturer);
  * @permission ohos.permission.MICROPHONE
  *
  * @param capturer reference created by OH_AudioStreamBuilder_GenerateCapturer()
- * @return {@link #AUDIOSTREAM_SUCCESS} or an undesired error.
+ * @return Function result code:
+ *         {@link AUDIOSTREAM_SUCCESS} If the execution is successful.
+ *         {@link AUDIOSTREAM_ERROR_INVALID_PARAM} The param of capturer is nullptr.
+ *         {@link AUDIOSTREAM_ERROR_ILLEGAL_STATE} Execution status exception.
  */
 OH_AudioStream_Result OH_AudioCapturer_Stop(OH_AudioCapturer* capturer);
 
@@ -93,7 +105,10 @@ OH_AudioStream_Result OH_AudioCapturer_Stop(OH_AudioCapturer* capturer);
  * @since 10
  *
  * @param capturer reference created by OH_AudioStreamBuilder_GenerateCapturer()
- * @return {@link #AUDIOSTREAM_SUCCESS} or an undesired error.
+ * @return Function result code:
+ *         {@link AUDIOSTREAM_SUCCESS} If the execution is successful.
+ *         {@link AUDIOSTREAM_ERROR_INVALID_PARAM} The param of capturer is nullptr.
+ *         {@link AUDIOSTREAM_ERROR_ILLEGAL_STATE} Execution status exception.
  */
 OH_AudioStream_Result OH_AudioCapturer_Flush(OH_AudioCapturer* capturer);
 
@@ -106,7 +121,9 @@ OH_AudioStream_Result OH_AudioCapturer_Flush(OH_AudioCapturer* capturer);
  *
  * @param capturer Reference created by OH_AudioStreamBuilder_GenerateCapturer()
  * @param state Pointer to a variable that will be set for the state value.
- * @return {@link #AUDIOSTREAM_SUCCESS} or an undesired error.
+ * @return Function result code:
+ *         {@link AUDIOSTREAM_SUCCESS} If the execution is successful.
+ *         {@link AUDIOSTREAM_ERROR_INVALID_PARAM} The param of capturer is nullptr.
  */
 OH_AudioStream_Result OH_AudioCapturer_GetCurrentState(OH_AudioCapturer* capturer, OH_AudioStream_State* state);
 
@@ -117,7 +134,9 @@ OH_AudioStream_Result OH_AudioCapturer_GetCurrentState(OH_AudioCapturer* capture
  *
  * @param capturer Reference created by OH_AudioStreamBuilder_GenerateCapturer()
  * @param latencyMode Pointer to a variable that will be set for the latency mode.
- * @return {@link #AUDIOSTREAM_SUCCESS} or an undesired error.
+ * @return Function result code:
+ *         {@link AUDIOSTREAM_SUCCESS} If the execution is successful.
+ *         {@link AUDIOSTREAM_ERROR_INVALID_PARAM} The param of capturer is nullptr.
  */
 OH_AudioStream_Result OH_AudioCapturer_GetLatencyMode(OH_AudioCapturer* capturer,
     OH_AudioStream_LatencyMode* latencyMode);
@@ -129,7 +148,9 @@ OH_AudioStream_Result OH_AudioCapturer_GetLatencyMode(OH_AudioCapturer* capturer
  *
  * @param capturer Reference created by OH_AudioStreamBuilder_GenerateCapturer()
  * @param stramId Pointer to a variable that will be set for the stream id.
- * @return {@link #AUDIOSTREAM_SUCCESS} or an undesired error.
+ * @return Function result code:
+ *         {@link AUDIOSTREAM_SUCCESS} If the execution is successful.
+ *         {@link AUDIOSTREAM_ERROR_INVALID_PARAM} The param of capturer is nullptr.
  */
 OH_AudioStream_Result OH_AudioCapturer_GetStreamId(OH_AudioCapturer* capturer, uint32_t* streamId);
 
@@ -142,7 +163,9 @@ OH_AudioStream_Result OH_AudioCapturer_GetStreamId(OH_AudioCapturer* capturer, u
  *
  * @param capturer Reference created by OH_AudioStreamBuilder_GenerateCapturer()
  * @param rate The state value to be updated
- * @return {@link #AUDIOSTREAM_SUCCESS} or an undesired error.
+ * @return Function result code:
+ *         {@link AUDIOSTREAM_SUCCESS} If the execution is successful.
+ *         {@link AUDIOSTREAM_ERROR_INVALID_PARAM} The param of capturer is nullptr.
  */
 OH_AudioStream_Result OH_AudioCapturer_GetSamplingRate(OH_AudioCapturer* capturer, int32_t* rate);
 
@@ -153,7 +176,9 @@ OH_AudioStream_Result OH_AudioCapturer_GetSamplingRate(OH_AudioCapturer* capture
  *
  * @param capturer Reference created by OH_AudioStreamBuilder_GenerateCapturer()
  * @param channelCount Pointer to a variable that will be set for the channel count.
- * @return {@link #AUDIOSTREAM_SUCCESS} or an undesired error.
+ * @return Function result code:
+ *         {@link AUDIOSTREAM_SUCCESS} If the execution is successful.
+ *         {@link AUDIOSTREAM_ERROR_INVALID_PARAM} The param of capturer is nullptr.
  */
 OH_AudioStream_Result OH_AudioCapturer_GetChannelCount(OH_AudioCapturer* capturer, int32_t* channelCount);
 
@@ -164,7 +189,9 @@ OH_AudioStream_Result OH_AudioCapturer_GetChannelCount(OH_AudioCapturer* capture
  *
  * @param capturer Reference created by OH_AudioStreamBuilder_GenerateCapturer()
  * @param sampleFormat Pointer to a variable that will be set for the sample format.
- * @return {@link #AUDIOSTREAM_SUCCESS} or an undesired error.
+ * @return Function result code:
+ *         {@link AUDIOSTREAM_SUCCESS} If the execution is successful.
+ *         {@link AUDIOSTREAM_ERROR_INVALID_PARAM} The param of capturer is nullptr.
  */
 OH_AudioStream_Result OH_AudioCapturer_GetSampleFormat(OH_AudioCapturer* capturer,
     OH_AudioStream_SampleFormat* sampleFormat);
@@ -176,7 +203,9 @@ OH_AudioStream_Result OH_AudioCapturer_GetSampleFormat(OH_AudioCapturer* capture
  *
  * @param capturer Reference created by OH_AudioStreamBuilder_GenerateCapturer()
  * @param encodingType Pointer to a variable that will be set for the encoding type.
- * @return {@link #AUDIOSTREAM_SUCCESS} or an undesired error.
+ * @return Function result code:
+ *         {@link AUDIOSTREAM_SUCCESS} If the execution is successful.
+ *         {@link AUDIOSTREAM_ERROR_INVALID_PARAM} The param of capturer is nullptr.
  */
 OH_AudioStream_Result OH_AudioCapturer_GetEncodingType(OH_AudioCapturer* capturer,
     OH_AudioStream_EncodingType* encodingType);
@@ -188,7 +217,9 @@ OH_AudioStream_Result OH_AudioCapturer_GetEncodingType(OH_AudioCapturer* capture
  *
  * @param capturer Reference created by OH_AudioStreamBuilder_GenerateCapturer()
  * @param sourceType Pointer to a variable that will be set for the stream sourceType.
- * @return {@link #AUDIOSTREAM_SUCCESS} or an undesired error.
+ * @return Function result code:
+ *         {@link AUDIOSTREAM_SUCCESS} If the execution is successful.
+ *         {@link AUDIOSTREAM_ERROR_INVALID_PARAM} The param of capturer is nullptr.
  */
 OH_AudioStream_Result OH_AudioCapturer_GetCapturerInfo(OH_AudioCapturer* capturer,
     OH_AudioStream_SourceType* sourceType);
@@ -200,7 +231,10 @@ OH_AudioStream_Result OH_AudioCapturer_GetCapturerInfo(OH_AudioCapturer* capture
  *
  * @param capturer Reference created by OH_AudioStreamBuilder_GenerateCapturer()
  * @param frameSize Pointer to a variable that will be set for the frame size.
- * @return {@link #AUDIOSTREAM_SUCCESS} or an undesired error.
+ * @return Function result code:
+ *         {@link AUDIOSTREAM_SUCCESS} If the execution is successful.
+ *         {@link AUDIOSTREAM_ERROR_INVALID_PARAM} The param of capturer is nullptr.
+ *         {@link AUDIOSTREAM_ERROR_ILLEGAL_STATE} Execution status exception.
  */
 OH_AudioStream_Result OH_AudioCapturer_GetFrameSizeInCallback(OH_AudioCapturer* capturer, int32_t* frameSize);
 
@@ -213,7 +247,12 @@ OH_AudioStream_Result OH_AudioCapturer_GetFrameSizeInCallback(OH_AudioCapturer* 
  * @param clockId {@link #CLOCK_MONOTONIC}
  * @param framePosition Pointer to a variable to receive the position
  * @param timestamp Pointer to a variable to receive the timestamp
- * @return {@link #AUDIOSTREAM_SUCCESS} or an undesired error.
+ * @return Function result code:
+ *         {@link AUDIOSTREAM_SUCCESS} If the execution is successful.
+ *         {@link AUDIOSTREAM_ERROR_INVALID_PARAM}:
+ *                                                 1.The param of capturer is nullptr;
+ *                                                 2.The param of clockId invalid.
+ *         {@link AUDIOSTREAM_ERROR_ILLEGAL_STATE} Execution status exception.
  */
 OH_AudioStream_Result OH_AudioCapturer_GetTimestamp(OH_AudioCapturer* capturer,
     clockid_t clockId, int64_t* framePosition, int64_t* timestamp);
@@ -225,17 +264,22 @@ OH_AudioStream_Result OH_AudioCapturer_GetTimestamp(OH_AudioCapturer* capturer,
  *
  * @param capturer Reference created by OH_AudioStreamBuilder_GenerateCapturer()
  * @param frames Pointer to a variable that will be set for the frame count number.
- * @return {@link #AUDIOSTREAM_SUCCESS} or an undesired error.
+ * @return Function result code:
+ *         {@link AUDIOSTREAM_SUCCESS} If the execution is successful.
+ *         {@link AUDIOSTREAM_ERROR_INVALID_PARAM} The param of capturer is nullptr.
  */
 OH_AudioStream_Result OH_AudioCapturer_GetFramesRead(OH_AudioCapturer* capturer, int64_t* frames);
 
 /**
  * @brief Gets the overflow count on this stream.
  *
+ * @since 12
+ *
  * @param capturer Capturer generated by OH_AudioStreamBuilder_GenerateCapturer()
  * @param count Pointer to a variable that will be set for the overflow count number.
- * @return {@link #AUDIOSTREAM_SUCCESS} or an undesired error.
- * @since 12
+ * @return Function result code:
+ *         {@link AUDIOSTREAM_SUCCESS} If the execution is successful.
+ *         {@link AUDIOSTREAM_ERROR_INVALID_PARAM} The param of capturer is nullptr.
  */
 OH_AudioStream_Result OH_AudioCapturer_GetOverflowCount(OH_AudioCapturer* capturer, uint32_t* count);
 

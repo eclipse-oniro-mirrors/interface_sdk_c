@@ -219,12 +219,36 @@ extern const char *OH_AVCODEC_MIMETYPE_AUDIO_OPUS;
 extern const char *OH_AVCODEC_MIMETYPE_AUDIO_G711MU;
 
 /**
+ * @brief Enumerates the MIME type of audio low bitrate voice codec.
+ *
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
+ * @since 12
+ */
+extern const char *OH_AVCODEC_MIMETYPE_AUDIO_LBVC;
+
+/**
  * @brief Enumerates the MIME type of audio ape codec.
  *
  * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 12
  */
 extern const char *OH_AVCODEC_MIMETYPE_AUDIO_APE;
+
+/**
+ * @brief Enumerates the MIME type of versatile video coding.
+ *
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
+ * @since 12
+ */
+extern const char *OH_AVCODEC_MIMETYPE_VIDEO_VVC;
+
+/**
+ * @brief Enumerates the MIME type of subtitle.
+ *
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
+ * @since 12
+ */
+extern const char *OH_AVCODEC_MIMETYPE_SUBTITLE_SRT;
 
 /**
  * @brief The extra data's key of surface Buffer
@@ -520,6 +544,34 @@ extern const char *OH_MD_KEY_VIDEO_ENCODER_QP_MAX;
  * @since 12
  */
 extern const char *OH_MD_KEY_VIDEO_ENCODER_QP_MIN;
+/**
+ * @brief Key for decoding timestamp of the buffer in microseconds, value type is int64_t.
+ *
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
+ * @since 12
+ */
+extern const char *OH_MD_KEY_DECODING_TIMESTAMP;
+/**
+ * @brief Key for duration of the buffer in microseconds, value type is int64_t.
+ *
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
+ * @since 12
+ */
+extern const char *OH_MD_KEY_BUFFER_DURATION;
+/**
+ * @brief Key for sample aspect ratio, value type is double.
+ *
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
+ * @since 12
+ */
+extern const char *OH_MD_KEY_VIDEO_SAR;
+/**
+ * @brief Key for start time of file, value type is int64_t.
+ *
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
+ * @since 12
+ */
+extern const char *OH_MD_KEY_START_TIME;
 
 /**
  * @brief Media type.
@@ -578,6 +630,16 @@ typedef enum OH_AVOutputFormat {
     AV_OUTPUT_FORMAT_DEFAULT = 0,
     AV_OUTPUT_FORMAT_MPEG_4 = 2,
     AV_OUTPUT_FORMAT_M4A = 6,
+    /**
+     * The muxer output amr file format.
+     * @since 12
+     */
+    AV_OUTPUT_FORMAT_AMR = 8,
+    /**
+     * The muxer output mp3 file format.
+     * @since 12
+     */
+    AV_OUTPUT_FORMAT_MP3 = 9,
 } OH_AVOutputFormat;
 
 /**
@@ -712,6 +774,10 @@ typedef enum OH_AVCLevel {
     AVC_LEVEL_42 = 13,
     AVC_LEVEL_5 = 14,
     AVC_LEVEL_51 = 15,
+    AVC_LEVEL_52 = 16,
+    AVC_LEVEL_6 = 17,
+    AVC_LEVEL_61 = 18,
+    AVC_LEVEL_62 = 19,
 } OH_AVCLevel;
 
 /**

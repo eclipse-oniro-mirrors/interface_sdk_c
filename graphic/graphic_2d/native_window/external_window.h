@@ -46,6 +46,14 @@ extern "C" {
 typedef struct OH_NativeBuffer OH_NativeBuffer;
 
 /**
+ * @brief Defines the ipc parcel.
+ *
+ * @since 12
+ * @version 1.0
+ */
+typedef struct OHIPCParcel OHIPCParcel;
+
+/**
  * @brief native window.
  * @since 8
  */
@@ -90,7 +98,7 @@ typedef struct Region {
  * @brief Indicates the operation code in the function OH_NativeWindow_NativeWindowHandleOpt.
  * @since 8
  */
-enum NativeWindowOperation {
+typedef enum NativeWindowOperation {
     /**
      * set native window buffer geometry,
      * variable parameter in function is
@@ -200,7 +208,49 @@ enum NativeWindowOperation {
      * @since 12
      */
     GET_BUFFERQUEUE_SIZE,
-};
+    /**
+     * set surface source type,
+     * variable parameter in function is
+     * [in] int32_t sourceType.
+     * @since 12
+     */
+    SET_SOURCE_TYPE,
+    /**
+     * get surface source type,
+     * variable parameter in function is
+     * [out] int32_t *sourceType.
+     * @since 12
+     */
+    GET_SOURCE_TYPE,
+    /**
+     * set app framework type,
+     * variable parameter in function is
+     * [in] char* frameworkType. maximum length is 64 bytes, otherwise the setting fails.
+     * @since 12
+     */
+    SET_APP_FRAMEWORK_TYPE,
+    /**
+     * get app framework type,
+     * variable parameter in function is
+     * [out] char** frameworkType.
+     * @since 12
+     */
+    GET_APP_FRAMEWORK_TYPE,
+    /**
+     * set hdr white point brightness,
+     * variable parameter in function is
+     * [in] float brightness. the value range is 0.0f to 1.0f.
+     * @since 12
+     */
+    SET_HDR_WHITE_POINT_BRIGHTNESS,
+    /**
+     * set sdr white point brightness,
+     * variable parameter in function is
+     * [in] float brightness. the value range is 0.0f to 1.0f.
+     * @since 12
+     */
+    SET_SDR_WHITE_POINT_BRIGHTNESS,
+} NativeWindowOperation;
 
 /**
  * @brief Indicates Scaling Mode.
@@ -305,6 +355,33 @@ typedef struct OHExtDataHandle {
     /**< the reserved data */
     int32_t reserve[0];
 } OHExtDataHandle;
+
+/**
+ * @brief Indicates the source type of surface.
+ * @since 12
+ */
+typedef enum {
+    /*
+     * the default source type of surface.
+     */
+    OH_SURFACE_SOURCE_DEFAULT = 0,
+    /*
+     * the surface is created by ui.
+     */
+    OH_SURFACE_SOURCE_UI,
+    /*
+     * the surface is created by game.
+     */
+    OH_SURFACE_SOURCE_GAME,
+    /*
+     * the surface is created by camera.
+     */
+    OH_SURFACE_SOURCE_CAMERA,
+    /*
+     * the surface is created by video.
+     */
+    OH_SURFACE_SOURCE_VIDEO,
+} OHSurfaceSource;
 
 /**
  * @brief Creates a <b>OHNativeWindow</b> instance. A new <b>OHNativeWindow</b> instance is created each time this function is called.
@@ -593,6 +670,60 @@ int32_t OH_NativeWindow_CreateNativeWindowFromSurfaceId(uint64_t surfaceId, OHNa
  * @version 1.0
  */
 int32_t OH_NativeWindow_NativeWindowSetScalingModeV2(OHNativeWindow *window, OHScalingModeV2 scalingMode);
+
+/**
+ * @brief Set native window buffer hold.
+ *
+ * @syscap SystemCapability.Graphic.Graphic2D.NativeWindow
+ * @param window Indicates the pointer to an <b>OHNativeWindow</b> instance.
+ * @since 12
+ * @version 1.0
+ */
+void OH_NativeWindow_SetBufferHold(OHNativeWindow *window);
+
+/**
+ * @brief Write an OHNativeWindow to an OHIPCParcel.
+ *
+ * @syscap SystemCapability.Graphic.Graphic2D.NativeWindow
+ * @param window Indicates the pointer to an <b>OHNativeWindow</b> instance.
+ * @param parcel Indicates the pointer to an <b>OHIPCParcel</b> instance.
+ * @return 0 - Success.
+ *     40001000 - parcel is NULL or window is NULL.
+ * @since 12
+ * @version 1.0
+ */
+int32_t OH_NativeWindow_WriteToParcel(OHNativeWindow *window, OHIPCParcel *parcel);
+
+/**
+ * @brief Read an OHNativeWindow from an OHIPCParcel.
+ *
+ * @syscap SystemCapability.Graphic.Graphic2D.NativeWindow
+ * @param parcel Indicates the pointer to an <b>OHIPCParcel</b> instance.
+ * @param window Indicates the pointer to an <b>OHNativeWindow</b> instance.
+ * @return 0 - Success.
+ *     40001000 - parcel is NULL or parcel does not contain the window.
+ * @since 12
+ * @version 1.0
+ */
+int32_t OH_NativeWindow_ReadFromParcel(OHIPCParcel *parcel, OHNativeWindow **window);
+
+/**
+ * @brief Get the last flushed <b>OHNativeWindowBuffer</b> from an <b>OHNativeWindow</b> instance.
+ *
+ * @syscap SystemCapability.Graphic.Graphic2D.NativeWindow
+ * @param window Indicates the pointer to an <b>OHNativeWindow</b> instance.
+ * @param buffer Indicates the pointer to an <b>OHNativeWindowBuffer</b> pointer.
+ * @param fenceFd Indicates the pointer to a file descriptor handle.
+ * @param matrix Indicates the retrieved 4*4 transform matrix.
+ * @return 0 - Success.
+ *     40001000 - window is NULL or buffer is NULL or fenceFd is NULL.
+ *     41207000 - buffer state is wrong.
+ * @since 12
+ * @version 1.0
+ */
+int32_t OH_NativeWindow_GetLastFlushedBufferV2(OHNativeWindow *window, OHNativeWindowBuffer **buffer,
+    int *fenceFd, float matrix[16]);
+
 #ifdef __cplusplus
 }
 #endif

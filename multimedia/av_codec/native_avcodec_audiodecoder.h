@@ -244,7 +244,6 @@ OH_AVErrCode OH_AudioDecoder_FreeOutputData(OH_AVCodec *codec, uint32_t index);
  * @since 10
  */
 OH_AVErrCode OH_AudioDecoder_IsValid(OH_AVCodec *codec, bool *isValid);
-
 #ifdef __cplusplus
 }
 #endif

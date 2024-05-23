@@ -33,7 +33,9 @@ typedef struct OH_NativeBuffer OH_NativeBuffer;
  * to by the return value * needs to be manually released by {@link OH_AVBuffer_Destroy}.
  * @syscap SystemCapability.Multimedia.Media.Core
  * @param capacity the buffer's capacity, bytes
- * @return Returns a pointer to an OH_AVBuffer instance if the execution is successful, otherwise returns nullptr
+ * @return Returns a pointer to an OH_AVBuffer instance if the execution is successful, otherwise returns nullptr.
+ * Possible failure causes: 1. capacity <= 0. 2. create allocator failed. 3. create OH_AVBuffer failed.
+ * 4. created buffer memory is nullptr. 5. created buffer memory's addr is nullptr. 6. failed to new OH_AVBuffer.
  * @since 11
  */
 OH_AVBuffer *OH_AVBuffer_Create(int32_t capacity);
@@ -42,8 +44,10 @@ OH_AVBuffer *OH_AVBuffer_Create(int32_t capacity);
  * @brief Clear the internal resources of the buffer and destroy the buffer instance.
  * @syscap SystemCapability.Multimedia.Media.Core
  * @param buffer Encapsulate OH_AVBuffer structure instance pointer
- * @return Returns AV_ERR_OK if the execution is successful, otherwise returns a specific error code, refer to
- * {@link OH_AVErrCode}
+ * @return Function result code.
+ *         {@link AV_ERR_OK} if the execution is successful.
+ *         {@link AV_ERR_INVALID_VAL} if input buffer is nullptr or buffer's magic error.
+ *         {@link AV_ERR_OPERATE_NOT_PERMIT} if input buffer is not user created.
  * @since 11
  */
 OH_AVErrCode OH_AVBuffer_Destroy(OH_AVBuffer *buffer);
@@ -54,8 +58,10 @@ OH_AVErrCode OH_AVBuffer_Destroy(OH_AVBuffer *buffer);
  * @param buffer Encapsulate OH_AVBuffer structure instance pointer
  * @param attr Encapsulate OH_AVCodecBufferAttr structure instance pointer, please refer to
  * {@link OH_AVCodecBufferAttr}
- * @return Returns AV_ERR_OK if the execution is successful, otherwise returns a specific error code, refer to
- * {@link OH_AVErrCode}
+ * @return Function result code.
+ *         {@link AV_ERR_OK} if the execution is successful.
+ *         {@link AV_ERR_INVALID_VAL} if input buffer is nullptr, buffer's magic error,
+ *         input buffer's buffer is nulllptr or attr is nullptr.
  * @since 11
  */
 OH_AVErrCode OH_AVBuffer_GetBufferAttr(OH_AVBuffer *buffer, OH_AVCodecBufferAttr *attr);
@@ -66,8 +72,10 @@ OH_AVErrCode OH_AVBuffer_GetBufferAttr(OH_AVBuffer *buffer, OH_AVCodecBufferAttr
  * @param buffer Encapsulate OH_AVBuffer structure instance pointer
  * @param attr Encapsulate OH_AVCodecBufferAttr structure instance pointer, please refer to
  * {@link OH_AVCodecBufferAttr}
- * @return Returns AV_ERR_OK if the execution is successful, otherwise returns a specific error code, refer to
- * {@link OH_AVErrCode}
+ * @return Function result code.
+ *         {@link AV_ERR_OK} if the execution is successful.
+ *         {@link AV_ERR_INVALID_VAL} if input buffer is nullptr, buffer's magic error,
+ *         input buffer's buffer is nulllptr, attr is nullptr, the size or offset of input buffer's memory is invalid.
  * @since 11
  */
 OH_AVErrCode OH_AVBuffer_SetBufferAttr(OH_AVBuffer *buffer, const OH_AVCodecBufferAttr *attr);
@@ -78,7 +86,8 @@ OH_AVErrCode OH_AVBuffer_SetBufferAttr(OH_AVBuffer *buffer, const OH_AVCodecBuff
  * @syscap SystemCapability.Multimedia.Media.Core
  * @param buffer Encapsulate OH_AVBuffer structure instance pointer
  * @return Returns Encapsulate OH_AVFormat structure instance pointer if the execution is successful,
- * otherwise returns nullptr
+ * otherwise returns nullptr. Possible failure causes: 1. input buffer is nullptr. 2. buffer's magic error.
+ * 3. input buffer's buffer is nulllptr. 4. buffer's meta is nullptr.
  * @since 11
  */
 OH_AVFormat *OH_AVBuffer_GetParameter(OH_AVBuffer *buffer);
@@ -88,8 +97,10 @@ OH_AVFormat *OH_AVBuffer_GetParameter(OH_AVBuffer *buffer);
  * @syscap SystemCapability.Multimedia.Media.Core
  * @param buffer Encapsulate OH_AVBuffer structure instance pointer
  * @param format Encapsulate OH_AVFormat structure instance pointer
- * @return Returns AV_ERR_OK if the execution is successful, otherwise returns a specific error code, refer to
- * {@link OH_AVErrCode}
+ * @return Function result code.
+ *         {@link AV_ERR_OK} if the execution is successful.
+ *         {@link AV_ERR_INVALID_VAL} if input buffer is nullptr, buffer's magic error,
+ *         input buffer's buffer is nulllptr, input format is nullptr, buffer's magic error, or input meta is nullptr.
  * @since 11
  */
 OH_AVErrCode OH_AVBuffer_SetParameter(OH_AVBuffer *buffer, const OH_AVFormat *format);
@@ -99,6 +110,8 @@ OH_AVErrCode OH_AVBuffer_SetParameter(OH_AVBuffer *buffer, const OH_AVFormat *fo
  * @syscap SystemCapability.Multimedia.Media.Core
  * @param buffer Encapsulate OH_AVBuffer structure instance pointer
  * @return the buffer's virtual address if the buffer is valid, otherwise nullptr
+ * Possible failure causes: 1. input buffer is nullptr. 2. buffer's magic error.
+ * 3. input buffer's buffer is nulllptr. 4. buffer's memory is nullptr.
  * @since 11
  */
 uint8_t *OH_AVBuffer_GetAddr(OH_AVBuffer *buffer);
@@ -108,6 +121,8 @@ uint8_t *OH_AVBuffer_GetAddr(OH_AVBuffer *buffer);
  * @syscap SystemCapability.Multimedia.Media.Core
  * @param buffer Encapsulate OH_AVBuffer structure instance pointer
  * @return the buffer's capacity if the buffer is valid, otherwise -1
+ * Possible failure causes: 1. input buffer is nullptr. 2. buffer's magic error.
+ * 3. input buffer's buffer is nulllptr. 4. buffer's memory is nullptr.
  * @since 11
  */
 int32_t OH_AVBuffer_GetCapacity(OH_AVBuffer *buffer);
@@ -117,8 +132,9 @@ int32_t OH_AVBuffer_GetCapacity(OH_AVBuffer *buffer);
  * instance pointed to by the return value * needs to be manually released by {@link OH_NativeBuffer_Unreference}.
  * @syscap SystemCapability.Multimedia.Media.Core
  * @param buffer Encapsulate OH_AVBuffer structure instance pointer
- * @return Returns Encapsulate OH_NativeBuffer structure instance pointer is successful,
- * otherwise returns nullptr
+ * @return Returns Encapsulate OH_NativeBuffer structure instance pointer is successful, otherwise returns nullptr
+ * Possible failure causes: 1. input buffer is nullptr. 2. buffer's magic error.
+ * 3. input buffer's buffer is nulllptr. 4. buffer's memory is nullptr. 5. surfaceBuffer is nullptr.
  * @since 11
  */
 OH_NativeBuffer *OH_AVBuffer_GetNativeBuffer(OH_AVBuffer *buffer);

@@ -63,6 +63,40 @@ typedef  Drm_ErrCode (*MediaKeySystem_Callback)(DRM_EventType eventType, uint8_t
     int32_t infoLen, char *extra);
 
 /**
+ * @brief Call back will be invoked when event triggers.
+ * @param mediaKeySystem MediaKeySystem instance.
+ * @param eventType Event type.
+ * @param info Event info gotten from media key system.
+ * @param infoLen Event info len.
+ * @param extra Extra info gotten from media key system.
+ * @return DRM_ERR_INVALID_VAL when the params checked failure, return DRM_ERR_OK when function called successfully.
+ * @since 12
+ * @version 1.0
+ */
+typedef Drm_ErrCode (*OH_MediaKeySystem_Callback)(MediaKeySystem *mediaKeySystem, DRM_EventType eventType,
+    uint8_t *info, int32_t infoLen, char *extra);
+
+/**
+ * @brief Set media key system event callback.
+ * @param mediaKeySystem Media key system instance.
+ * @param callback Callback to be set to the media key system.
+ * @return DRM_ERR_INVALID_VAL when the params checked failure, return DRM_ERR_OK when function called successfully.
+ * @since 12
+ * @version 1.0
+ */
+Drm_ErrCode OH_MediaKeySystem_SetCallback(MediaKeySystem *mediaKeySystem, OH_MediaKeySystem_Callback callback);
+
+/**
+ * @brief Acquire supported media key systems' name and uuid.
+ * @param descs Array used to save media key systems' name and uuid.
+ * @param count Used to indicate count of struct DRM_MediaKeySystemDescription.
+ * @return DRM_ERR_INVALID_VAL when the params checked failure, return DRM_ERR_OK when function called successfully.
+ * @since 12
+ * @version 1.0
+ */
+Drm_ErrCode  OH_MediaKeySystem_GetMediaKeySystems(DRM_MediaKeySystemDescription *descs, uint32_t *count);
+
+/**
  * @brief Query if media key system is supported.
  * @param name Used to point a Digital Right Management solution.
  * @return Supported or not in boolean.
@@ -273,15 +307,6 @@ Drm_ErrCode OH_MediaKeySystem_GetCertificateStatus(MediaKeySystem *mediaKeySyste
  */
 Drm_ErrCode OH_MediaKeySystem_Destroy(MediaKeySystem *mediaKeySystem);
 
-/**
- * @brief Acquire supported media key systems' name and uuid.
- * @param descs Array used to save media key systems' name and uuid.
- * @param count Used to indicate count of struct DRM_MediaKeySystemDescription.
- * @return DRM_ERR_INVALID_VAL when the params checked failure, return DRM_ERR_OK when function called successfully.
- * @since 12
- * @version 1.0
- */
-Drm_ErrCode  OH_MediaKeySystem_GetMediaKeySystems(DRM_MediaKeySystemDescription *descs, uint32_t *count);
 
 #ifdef __cplusplus
 }

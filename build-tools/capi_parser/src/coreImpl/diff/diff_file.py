@@ -22,6 +22,7 @@ import openpyxl as op
 from coreImpl.parser.parser import parser_include_ast
 from coreImpl.diff.diff_processor_node import judgment_entrance
 from typedef.diff.diff import OutputJson
+from bin.write_md import write_md_entrance
 
 global_old_dir = ''
 global_new_dir = ''
@@ -31,39 +32,42 @@ diff_info_list = []
 def start_diff_file(old_dir, new_dir):
     result_info_list = global_assignment(old_dir, new_dir)
     generate_excel(result_info_list)
+    write_md_entrance(result_info_list)
     result_json = result_to_json(result_info_list)
     write_in_txt(result_json, r'./ndk_diff.txt')
     print(result_json)
 
 
-def generate_excel(result_info_list):
+def disposal_result_data(result_info_list):
     data = []
     for diff_info in result_info_list:
-        info_data = []
-        info_data.append(diff_info.api_name)
-        info_data.append(diff_info.api_line)
-        info_data.append(diff_info.api_column)
-        info_data.append(diff_info.api_file_path)
-        info_data.append(diff_info.api_type)
-        info_data.append(diff_info.diff_type.name)
-        info_data.append(diff_info.diff_message)
-        info_data.append(diff_info.old_api_full_text)
-        info_data.append(diff_info.new_api_full_text)
+        info_data = [
+            diff_info.diff_type.name,
+            diff_info.old_api_full_text,
+            diff_info.new_api_full_text
+        ]
         result = '是' if diff_info.is_compatible else '否'
         info_data.append(result)
+        info_data.append(diff_info.api_file_path)
+        info_data.append(diff_info.sub_system)
+        info_data.append(diff_info.kit_name)
         api_result = '是' if diff_info.is_api_change else '否'
         info_data.append(api_result)
         info_data.append(diff_info.api_modification_type)
         data.append(info_data)
+
+    return data
+
+
+def generate_excel(result_info_list):
+    data = disposal_result_data(result_info_list)
     wb = op.Workbook()
     ws = wb['Sheet']
-    ws.append(['api名称', '所在行', '所在列', '所在文件', '节点类型',
-               '变更类型', '变更信息', '旧版节点内容', '新版节点内容',
-               '兼容', 'API变化', 'API修改类型'])
+    ws.append(['操作标记', '差异项-旧版本', '差异项-新版本', '兼容',
+               '.h文件', '归属子系统', 'kit', 'API变化', 'API修改类型'])
     for title in data:
         d = title[0], title[1], title[2], title[3], title[4],\
-            title[5], title[6], title[7], title[8], title[9],\
-            title[10], title[11]
+            title[5], title[6], title[7], title[8]
         ws.append(d)
     wb.save('diff.xlsx')
 
@@ -88,7 +92,7 @@ def result_to_json(result_info_list):
 
 def write_in_txt(check_result, output_path):
     modes = stat.S_IRWXO | stat.S_IRWXG | stat.S_IRWXU
-    fd = os.open(output_path, os.O_WRONLY | os.O_CREAT, mode=modes)
+    fd = os.open(output_path, os.O_WRONLY | os.O_CREAT | os.O_TRUNC, mode=modes)
     os.write(fd, check_result.encode())
     os.close(fd)
 
@@ -126,18 +130,18 @@ def add_new_file(diff_file_path):
     if os.path.isdir(diff_file_path):
         add_file(diff_file_path)
     else:
-        result_map = parse_file_result(parser_include_ast(global_new_dir, [diff_file_path], flag=1))
+        result_map = parse_file_result(parser_include_ast(global_new_dir, [diff_file_path], flag=1), 1)
         for new_info in result_map.values():
-            diff_info_list.extend(judgment_entrance(None, new_info))
+            diff_info_list.extend(judgment_entrance(None, new_info, 1))
 
 
 def del_old_file(diff_file_path):
     if os.path.isdir(diff_file_path):
         del_file(diff_file_path)
     else:
-        result_map = parse_file_result(parser_include_ast(global_old_dir, [diff_file_path], flag=0))
+        result_map = parse_file_result(parser_include_ast(global_old_dir, [diff_file_path], flag=0), 1)
         for old_info in result_map.values():
-            diff_info_list.extend(judgment_entrance(old_info, None))
+            diff_info_list.extend(judgment_entrance(old_info, None, 1))
 
 
 def get_same_file_diff(target_file, old_file_list, new_file_list, old_dir, new_dir):
@@ -174,9 +178,9 @@ def del_file(dir_path):
         if os.path.isdir(file_path):
             del_file(file_path)
         if get_file_ext(i) == '.h':
-            result_map = parse_file_result(parser_include_ast(global_old_dir, [file_path], flag=0))
+            result_map = parse_file_result(parser_include_ast(global_old_dir, [file_path], flag=0), 1)
             for old_info in result_map.values():
-                diff_info_list.extend(judgment_entrance(old_info, None))
+                diff_info_list.extend(judgment_entrance(old_info, None, 1))
 
 
 def add_file(dir_path):
@@ -188,19 +192,29 @@ def add_file(dir_path):
         if os.path.isdir(file_path):
             add_file(file_path)
         if get_file_ext(i) == '.h':
-            result_map = parse_file_result(parser_include_ast(global_new_dir, [file_path], flag=1))
+            result_map = parse_file_result(parser_include_ast(global_new_dir, [file_path], flag=1), 1)
             for new_info in result_map.values():
-                diff_info_list.extend(judgment_entrance(None, new_info))
+                diff_info_list.extend(judgment_entrance(None, new_info, 1))
 
 
-def parse_file_result(result):
+def parse_file_result(result, data_type=0):
+    """
+    Args:
+        result: ***
+        data_type(int): 数据处理类型。1-文件新增或删除；0-其他
+    """
     result_map = {}
     for root_node in result:
-        children_list = root_node['children']
-        for children in children_list:
-            if children["name"] == '':
-                continue
-            result_map.setdefault(f'{children["name"]}-{children["kind"]}', children)
-        del root_node['children']
+        if data_type != 1:
+            parse_file_result_by_child(result_map, root_node)
         result_map.setdefault(f'{root_node["name"]}-{root_node["kind"]}', root_node)
     return result_map
+
+
+def parse_file_result_by_child(result_map, root_node):
+    children_list = root_node['children']
+    for children in children_list:
+        if children["name"] == '':
+            continue
+        result_map.setdefault(f'{children["name"]}-{children["kind"]}', children)
+    del root_node['children']

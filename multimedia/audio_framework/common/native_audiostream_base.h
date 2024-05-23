@@ -45,34 +45,34 @@ extern "C" {
 #endif
 
 /**
- * Define the result of the function execution.
+ * @brief Define the result of the function execution.
  *
  * @since 10
  */
 typedef enum {
     /**
-     * The call was successful.
+     * @error The call was successful.
      *
      * @since 10
      */
     AUDIOSTREAM_SUCCESS = 0,
 
     /**
-     * This means that the function was executed with an invalid input parameter.
+     * @error This means that the function was executed with an invalid input parameter.
      *
      * @since 10
      */
     AUDIOSTREAM_ERROR_INVALID_PARAM = 1,
 
     /**
-     * Execution status exception.
+     * @error Execution status exception.
      *
      * @since 10
      */
     AUDIOSTREAM_ERROR_ILLEGAL_STATE = 2,
 
     /**
-     * An system error has occurred.
+     * @error An system error has occurred.
      *
      * @since 10
      */
@@ -80,7 +80,7 @@ typedef enum {
 } OH_AudioStream_Result;
 
 /**
- * Define the audio stream type.
+ * @brief Define the audio stream type.
  *
  * @since 10
  */
@@ -101,7 +101,7 @@ typedef enum {
 } OH_AudioStream_Type;
 
 /**
- * Define the audio stream sample format.
+ * @brief Define the audio stream sample format.
  *
  * @since 10
  */
@@ -133,7 +133,7 @@ typedef enum {
 } OH_AudioStream_SampleFormat;
 
 /**
- * Define the audio encoding type.
+ * @brief Define the audio encoding type.
  *
  * @since 10
  */
@@ -153,7 +153,7 @@ typedef enum {
 } OH_AudioStream_EncodingType;
 
 /**
- * Define the audio stream usage.
+ * @brief Define the audio stream usage.
  * Audio stream usage is used to describe what work scenario
  * the current stream is used for.
  *
@@ -238,10 +238,16 @@ typedef enum {
      * @since 10
      */
     AUDIOSTREAM_USAGE_NAVIGATION = 13,
+     /**
+     * Video call usage.
+     *
+     * @since 12
+     */
+    AUDIOSTREAM_USAGE_VIDEO_COMMUNICATION = 17,
 } OH_AudioStream_Usage;
 
 /**
- * Define the audio latency mode.
+ * @brief Define the audio latency mode.
  *
  * @since 10
  */
@@ -261,7 +267,7 @@ typedef enum {
 } OH_AudioStream_LatencyMode;
 
 /**
- * Define the audio event.
+ * @brief Define the audio event.
  *
  * @since 10
  */
@@ -275,7 +281,7 @@ typedef enum {
 } OH_AudioStream_Event;
 
 /**
- * The audio stream states
+ * @brief The audio stream states
  *
  * @since 10
  */
@@ -325,7 +331,7 @@ typedef enum {
 } OH_AudioStream_State;
 
 /**
- * Defines the audio interrupt type.
+ * @brief Defines the audio interrupt type.
  *
  * @since 10
  */
@@ -345,7 +351,7 @@ typedef enum {
 } OH_AudioInterrupt_ForceType;
 
 /**
- * Defines the audio interrupt hint type.
+ * @brief Defines the audio interrupt hint type.
  *
  * @since 10
  */
@@ -389,7 +395,7 @@ typedef enum {
 } OH_AudioInterrupt_Hint;
 
 /**
- * Defines the audio source type.
+ * @brief Defines the audio source type.
  *
  * @since 10
  */
@@ -415,6 +421,8 @@ typedef enum {
     /**
      * Playback capture source type.
      *
+     * @deprecated since 12
+     * @useinstead OH_AVScreenCapture in native interface.
      * @since 10
      */
     AUDIOSTREAM_SOURCE_TYPE_PLAYBACK_CAPTURE = 2,
@@ -447,7 +455,7 @@ typedef enum {
 } OH_AudioStream_AudioEffectMode;
 
 /**
- * Defines the audio interrupt mode.
+ * @brief Defines the audio interrupt mode.
  *
  * @since 12
  */
@@ -463,7 +471,7 @@ typedef enum {
 } OH_AudioInterrupt_Mode;
 
 /**
- * Declaring the audio stream builder.
+ * @brief Declaring the audio stream builder.
  * The instance of builder is used for creating audio stream.
  *
  * @since 10
@@ -471,7 +479,7 @@ typedef enum {
 typedef struct OH_AudioStreamBuilderStruct OH_AudioStreamBuilder;
 
 /**
- * Declaring the audio renderer stream.
+ * @brief Declaring the audio renderer stream.
  * The instance of renderer stream is used for playing audio data.
  *
  * @since 10
@@ -479,7 +487,7 @@ typedef struct OH_AudioStreamBuilderStruct OH_AudioStreamBuilder;
 typedef struct OH_AudioRendererStruct OH_AudioRenderer;
 
 /**
- * Declaring the audio capturer stream.
+ * @brief Declaring the audio capturer stream.
  * The instance of renderer stream is used for capturing audio data.
  *
  * @since 10
@@ -487,7 +495,7 @@ typedef struct OH_AudioRendererStruct OH_AudioRenderer;
 typedef struct OH_AudioCapturerStruct OH_AudioCapturer;
 
 /**
- * Declaring the callback struct for renderer stream.
+ * @brief Declaring the callback struct for renderer stream.
  *
  * @since 10
  */
@@ -540,7 +548,7 @@ typedef struct OH_AudioRenderer_Callbacks_Struct {
 } OH_AudioRenderer_Callbacks;
 
 /**
- * Declaring the callback struct for capturer stream.
+ * @brief Declaring the callback struct for capturer stream.
  *
  * @since 10
  */
@@ -645,6 +653,22 @@ typedef void (*OH_AudioRenderer_OnMarkReachedCallback)(OH_AudioRenderer* rendere
  */
 typedef int32_t (*OH_AudioRenderer_WriteDataWithMetadataCallback)(OH_AudioRenderer* renderer,
     void* userData, void* audioData, int32_t audioDataSize, void* metadata, int32_t metadataSize);
+
+/**
+ * @brief Defines Enumeration of audio stream privacy type for playback capture.
+ *
+ * @since 12
+ */
+typedef enum {
+    /** Privacy type that stream can be captured by third party applications.
+     * @since 12
+     */
+    AUDIO_STREAM_PRIVACY_TYPE_PUBLIC = 0,
+    /** Privacy type that stream can not be captured.
+     * @since 12
+     */
+    AUDIO_STREAM_PRIVACY_TYPE_PRIVATE = 1,
+} OH_AudioStream_PrivacyType;
 #ifdef __cplusplus
 }
 #endif

@@ -326,5 +326,9 @@
     {
         "first_introduced": "11",
         "name": "OH_VideoOutput_Release"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_CameraDevice_GetCameraOrientation"
     }
 ]
