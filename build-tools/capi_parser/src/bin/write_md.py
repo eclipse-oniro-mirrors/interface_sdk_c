@@ -18,14 +18,14 @@ import stat
 import pandas as pd
 
 
-def sort_by_kit(result_info_list: list):
+def sort_by_kit(result_info_list: list, output_path):
     """
     Description:列表按kit排序
     """
     sort_by_kit_list = []
     if 1 == len(result_info_list):
         sort_by_kit_list.extend(result_info_list)
-        write_data_in_md(result_info_list[0].kit_name, result_info_list)
+        write_data_in_md(result_info_list[0].kit_name, result_info_list, output_path)
         return sort_by_kit_list
     if result_info_list:
         kit_list = sorted(result_info_list, key=lambda obj: obj.kit_name)
@@ -36,13 +36,13 @@ def sort_by_kit(result_info_list: list):
                 same_element.append(obj_element)
             else:
                 sorted_data = sort_by_file_path(same_element)
-                write_data_in_md(first_kit_name, sorted_data)
+                write_data_in_md(first_kit_name, sorted_data, output_path)
                 sort_by_kit_list.extend(sorted_data)
                 first_kit_name = obj_element.kit_name
                 same_element = []
         if same_element:
             sorted_data = sort_by_file_path(same_element)
-            write_data_in_md(first_kit_name, sorted_data)
+            write_data_in_md(first_kit_name, sorted_data, output_path)
             sort_by_kit_list.extend(sorted_data)
 
     return sort_by_kit_list
@@ -115,7 +115,7 @@ def change_list_obj_to_dict(list_of_obj: list):
     return data_list
 
 
-def write_data_in_md(kit_name: str, write_data: list):
+def write_data_in_md(kit_name: str, write_data: list, output_path):
     """
     Description:生成.md表格
     """
@@ -125,7 +125,8 @@ def write_data_in_md(kit_name: str, write_data: list):
     list_element_dict = change_list_obj_to_dict(write_data)
     md_data = create_md_table_with_pandas(list_element_dict)
     if md_data:
-        path_str = r'diff合集'
+        diff_str = r'diff合集'
+        path_str = os.path.abspath(os.path.join(output_path, diff_str))
         if not os.path.exists(path_str):
             os.mkdir(path_str)
         md_name = os.path.abspath(os.path.join(path_str, file_name))
@@ -135,9 +136,9 @@ def write_data_in_md(kit_name: str, write_data: list):
         os.close(fd)
 
 
-def write_md_entrance(result_info_list):
+def write_md_entrance(result_info_list, output_path):
     """
     Description:将数据生成.md表格入口
     """
-    sorted_data = sort_by_kit(result_info_list)
+    sorted_data = sort_by_kit(result_info_list, output_path)
     return sorted_data

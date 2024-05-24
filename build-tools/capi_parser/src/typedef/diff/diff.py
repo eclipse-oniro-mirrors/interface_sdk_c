@@ -287,6 +287,7 @@ class DiffInfo:
     kit_name = ''
     sub_system = ''
     class_name = ''
+    api_node_name = ''
 
     def __init__(self, diff_type: DiffType):
         self.diff_type = diff_type
@@ -395,6 +396,12 @@ class DiffInfo:
     def get_class_name(self):
         return self.class_name
 
+    def set_api_node_name(self, api_node_name):
+        self.api_node_name = api_node_name
+
+    def get_api_node_name(self):
+        return self.api_node_name
+
 
 class OutputJson:
     api_name: str = ''
@@ -429,3 +436,83 @@ class OutputJson:
         self.kit_name = diff_info.kit_name
         self.sub_system = diff_info.sub_system
         self.class_name = diff_info.class_name
+
+
+class ApiChangeData:
+    api_name: str = ''
+    kit_name: str = ''
+    sub_system: str = ''
+    is_api_change = False
+    diff_type: str = ''
+    change_type: str = ''
+    compatible = {}
+    change_num = {}
+    old_all_text: str = ''
+    new_all_text: str = ''
+    compatible_total = False
+
+    def set_api_name(self, api_name):
+        self.api_name = api_name
+
+    def get_api_name(self):
+        return self.api_name
+
+    def set_kit_name(self, kit_name):
+        self.kit_name = kit_name
+
+    def get_kit_name(self):
+        return self.kit_name
+
+    def set_sub_system(self, sub_system):
+        self.sub_system = sub_system
+
+    def get_sub_system(self):
+        return self.sub_system
+
+    def set_is_api_change(self, is_api_change):
+        self.is_api_change = is_api_change
+
+    def get_is_api_change(self):
+        return self.is_api_change
+
+    def set_diff_type(self, diff_type):
+        self.diff_type = diff_type
+
+    def get_diff_type(self):
+        return self.diff_type
+
+    def set_change_type(self, change_type):
+        self.change_type = change_type
+
+    def get_change_type(self):
+        return self.change_type
+
+    def set_compatible(self, compatible):
+        self.compatible = compatible
+
+    def get_compatible(self):
+        return self.compatible
+
+    def set_change_num(self, change_num):
+        self.change_num = change_num
+
+    def get_change_num(self):
+        return self.change_num
+
+    def set_old_all_text(self, old_all_text):
+        self.old_all_text = old_all_text
+
+    def get_old_all_text(self):
+        return self.old_all_text
+
+    def set_new_all_text(self, new_all_text):
+        self.new_all_text = new_all_text
+
+    def get_new_all_text(self):
+        return self.new_all_text
+
+    def set_compatible_total(self, compatible_total):
+        self.compatible_total = compatible_total
+
+    def get_compatible_total(self):
+        return self.compatible_total
