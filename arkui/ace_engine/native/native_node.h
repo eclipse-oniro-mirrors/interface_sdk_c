@@ -6881,6 +6881,19 @@ int32_t OH_ArkUI_NodeUtils_GetPositionWithTranslateInWindow(ArkUI_NodeHandle nod
  */
 int32_t OH_ArkUI_NodeUtils_GetPositionWithTranslateInScreen(ArkUI_NodeHandle node, ArkUI_IntOffset* translateOffset);
 
+/**
+ * @brief Collapse the ListItem in its expanded state.
+ *
+ * @param node Node objects that need to be registered for events.
+ * @param userData Custom event parameters are carried back in the callback parameter when the event is triggered.
+ * @param onFinish The callback triggered after the completion of the folding animation.
+ * @return Error code.
+ *         {@link ARKUI_ERROR_CODE_NO_ERROR} Success.
+ *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} Function parameter exception.
+ *         {@link ARKUI_ERROR_CODE_ATTRIBUTE_OR_EVENT_NOT_SUPPORTED} The component does not support this event.
+ * @since 12
+ */
+int32_t OH_ArkUI_List_CloseAllSwipeActions(ArkUI_NodeHandle node, void* userData, void (*onFinish)(void* userData));
 #ifdef __cplusplus
 };
 #endif

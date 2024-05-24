@@ -2835,6 +2835,17 @@ float OH_ArkUI_ListItemSwipeActionItem_GetActionAreaDistance(ArkUI_ListItemSwipe
 void OH_ArkUI_ListItemSwipeActionItem_SetOnEnterActionArea(ArkUI_ListItemSwipeActionItem* item, void (*callback)());
 
 /**
+ * @brief Set the event triggered when a sliding entry enters the deletion area.
+ *
+ * @param option List Item SwipeActionItem instance.
+ * @param userData User defined data.
+ * @param callback Callback Events.
+ * @since 12
+ */
+void OH_ArkUI_ListItemSwipeActionItem_SetOnEnterActionAreaWithUserData(ArkUI_ListItemSwipeActionItem* item,
+    void* userData, void (*callback)(void* userData));
+
+/**
 * @brief Set the event to be called when a component enters the long-range deletion area and deletes a ListItem.
 *
 * @param option List Item SwipeActionItem instance.
@@ -2842,6 +2853,17 @@ void OH_ArkUI_ListItemSwipeActionItem_SetOnEnterActionArea(ArkUI_ListItemSwipeAc
 * @since 12
 */
 void OH_ArkUI_ListItemSwipeActionItem_SetOnAction(ArkUI_ListItemSwipeActionItem* item, void (*callback)());
+
+/**
+ * @brief Set the event triggered when a component enters the long-range deletion area and deletes a ListItem.
+ *
+ * @param option List Item SwipeActionItem instance.
+ * @param userData User defined data.
+ * @param callback Callback Events.
+ * @since 12
+ */
+void OH_ArkUI_ListItemSwipeActionItem_SetOnActionWithUserData(ArkUI_ListItemSwipeActionItem* item,
+    void* userData, void (*callback)(void* userData));
 
 /**
 * @brief Set the event to be called when a sliding entry exits the deletion area.
@@ -2853,6 +2875,17 @@ void OH_ArkUI_ListItemSwipeActionItem_SetOnAction(ArkUI_ListItemSwipeActionItem*
 void OH_ArkUI_ListItemSwipeActionItem_SetOnExitActionArea(ArkUI_ListItemSwipeActionItem* item, void (*callback)());
 
 /**
+ * @brief Set the event triggered when a sliding entry exits the deletion area.
+ *
+ * @param option List Item SwipeActionItem instance.
+ * @param userData User defined data.
+ * @param callback Callback Events.
+ * @since 12
+ */
+void OH_ArkUI_ListItemSwipeActionItem_SetOnExitActionAreaWithUserData(ArkUI_ListItemSwipeActionItem* item,
+    void* userData, void (*callback)(void* userData));
+
+/**
 * @brief Set the event triggered when the sliding state of a list item changes.
 *
 * @param option List Item SwipeActionItem instance.
@@ -2862,6 +2895,18 @@ void OH_ArkUI_ListItemSwipeActionItem_SetOnExitActionArea(ArkUI_ListItemSwipeAct
 */
 void OH_ArkUI_ListItemSwipeActionItem_SetOnStateChange(ArkUI_ListItemSwipeActionItem* item,
     void (*callback)(ArkUI_ListItemSwipeActionState swipeActionState));
+
+/**
+ * @brief Set the event triggered when the sliding state of a list item changes.
+ *
+ * @param option List Item SwipeActionItem instance.
+ * @param userData User defined data.
+ * @param callback Callback Events.
+ *        swipeActionState The changed state.
+ * @since 12
+ */
+void OH_ArkUI_ListItemSwipeActionItem_SetOnStateChangeWithUserData(ArkUI_ListItemSwipeActionItem* item,
+    void* userData, void (*callback)(ArkUI_ListItemSwipeActionState swipeActionState, void* userData));
 
 /**
  * @brief Create a configuration item for the ListitemSwipeActionOption interface settings.
@@ -2932,6 +2977,18 @@ int32_t OH_ArkUI_ListItemSwipeActionOption_GetEdgeEffect(ArkUI_ListItemSwipeActi
 */
 void OH_ArkUI_ListItemSwipeActionOption_SetOnOffsetChange(ArkUI_ListItemSwipeActionOption* option,
     void (*callback)(float offset));
+
+/**
+ * @brief Set the event triggered when the sliding operation offset changes.
+ *
+ * @param option List Item SwipeActionItem instance.
+ * @param userData User defined data.
+ * @param callback Callback Events.
+ *        offset Slide offset.
+ * @since 12
+ */
+void OH_ArkUI_ListItemSwipeActionOption_SetOnOffsetChangeWithUserData(ArkUI_ListItemSwipeActionOption* option,
+    void* userData, void (*callback)(float offset, void* userData));
 
 /**
  * @brief Create configuration items for the ListChildrenMainSize interface settings.
