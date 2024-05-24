@@ -21,8 +21,8 @@ def process_pr(pr_id):
     print("开发中...")
 
 
-def process_dir(old_dir, new_dir):
-    start_diff_file(old_dir, new_dir)
+def process_dir(old_dir, new_dir, output_path):
+    start_diff_file(old_dir, new_dir, output_path)
 
 
 def get_dir_by_pr(pr: str):

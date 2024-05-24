@@ -32,7 +32,7 @@ class StringConstant(enum.Enum):
     SYSROOT = r'.\sysroot'
     RESULT_HEAD_NAME = "result_total.xlsx"
     PARSER_DIRECT_EXCEL_NAME = 'parser_direct_data.xlsx'
-    FILE_LEVEL_API_DATA = r'.\file_api_json.json'
+    FILE_LEVEL_API_DATA = r'.\api_kit_c.json'
 
 
 class RegularExpressions(enum.Enum):

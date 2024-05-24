@@ -22,14 +22,26 @@ from coreImpl.diff.diff_processor_permission import compare_permission, RangeCha
 from typedef.diff.diff import TAGS, DiffType, DiffInfo, Scene
 
 current_file = os.path.dirname(__file__)
+change_data_total = []
+
+
+def get_not_api_kind_list():
+    not_api_kind_list = [
+        'MACRO_DEFINITION',
+        'TRANSLATION_UNIT',
+        'MACRO_INSTANTIATION',
+        'INCLUSION_DIRECTIVE'
+    ]
+    return not_api_kind_list
 
 
 def wrap_diff_info(old_info, new_info, diff_info: DiffInfo):
+    not_api_kind_list = get_not_api_kind_list()
     if old_info is not None:
         if 'temporary_name' in old_info['name']:
             old_info['name'] = ''
         if (not diff_info.is_api_change) and 'kind' in old_info \
-                and 'MACRO_DEFINITION' != old_info['kind'] and 'TRANSLATION_UNIT' != old_info['kind']:
+                and (old_info['kind'] not in not_api_kind_list):
             diff_info.set_is_api_change(True)
         diff_info.set_api_name(old_info['name'])
         diff_info.set_api_type(old_info['kind'])
@@ -51,7 +63,7 @@ def wrap_diff_info(old_info, new_info, diff_info: DiffInfo):
         if 'temporary_name' in new_info['name']:
             new_info['name'] = ''
         if (not diff_info.is_api_change) and 'kind' in new_info \
-                and 'MACRO_DEFINITION' != new_info['kind'] and 'TRANSLATION_UNIT' != new_info['kind']:
+                and (new_info['kind'] not in not_api_kind_list):
             diff_info.set_is_api_change(True)
         diff_info.set_api_name(new_info['name'])
         diff_info.set_api_type(new_info['kind'])
@@ -481,10 +493,12 @@ def process_variable_value(old, new, diff_variable_list):
                                    DiffInfo(DiffType.VARIABLE_VALUE_CHANGE))
         diff_variable_list.append(diff_info)
 
+
 def process_constant_to_variable(old, new, diff_constant_list):
     if not new['is_const']:
         diff_info = wrap_diff_info(old, new, DiffInfo(DiffType.CONSTANT_CHANGE_TO_VARIABLE))
         diff_constant_list.append(diff_info)
+
 
 def process_constant_name(old, new, diff_constant_list):
     if old['name'] != new['name']:
@@ -565,6 +579,12 @@ process_data = {
 }
 
 
+def collect_change_data_total(data: dict, diff_info_list):
+    for element in diff_info_list:
+        element.set_api_node_name(data['name'])
+    change_data_total.append(diff_info_list)
+
+
 def judgment_entrance(old, new, data_type=0):
     """
     Args:
@@ -578,15 +598,21 @@ def judgment_entrance(old, new, data_type=0):
     if old is None:
         diff_type = DiffType.ADD_FILE if data_type == 1 else DiffType.ADD_API
         diff_info_list.append(wrap_diff_info(old, new, DiffInfo(diff_type)))
+        if diff_type == DiffType.ADD_API:
+            collect_change_data_total(new, diff_info_list)
         return diff_info_list
     if new is None:
         diff_type = DiffType.REDUCE_FILE if data_type == 1 else DiffType.REDUCE_API
         diff_info_list.append(wrap_diff_info(old, new, DiffInfo(diff_type)))
+        if diff_type == DiffType.REDUCE_API:
+            collect_change_data_total(old, diff_info_list)
         return diff_info_list
     kind = new['kind']
     diff_info_list.extend(process_comment_str(old, new))
     if kind in process_data:
         diff_info_list.extend(process_data[kind](old, new))
+    if diff_info_list:
+        collect_change_data_total(new, diff_info_list)
     return diff_info_list
 
 
