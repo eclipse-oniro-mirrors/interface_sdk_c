@@ -129,15 +129,16 @@ if (host_os == "mac") {
         [ "-l" ] + [ rebase_path("${linux_x86_64_toolchains_dir}/llvm/bin") ]
     deps = [ ":windows_x86_64" ]
   }
-}
 
-action("ohos_toolchain") {
-  outputs = [ "${ndk_ohos_toolchains_out_dir}" ]
-  script = "toolchain.sh"
-  args = [ "-i" ] + [ rebase_path("${ohos_arm64_toolchain_dir}/libcxx-ndk") ]
-  args += [ "-o" ] + [ rebase_path("${ndk_ohos_toolchains_out_dir}") ]
-  args += [ "-l" ] + [ rebase_path("${linux_x86_64_toolchains_dir}/llvm/bin") ]
-  deps = [ ":ohos_arm64" ]
+  action("ohos_toolchain") {
+    outputs = [ "${ndk_ohos_toolchains_out_dir}" ]
+    script = "toolchain.sh"
+    args = [ "-i" ] + [ rebase_path("${ohos_arm64_toolchain_dir}/libcxx-ndk") ]
+    args += [ "-o" ] + [ rebase_path("${ndk_ohos_toolchains_out_dir}") ]
+    args +=
+        [ "-l" ] + [ rebase_path("${linux_x86_64_toolchains_dir}/llvm/bin") ]
+    deps = [ ":ohos_arm64" ]
+  }
 }
 
 group("ndk_toolchain") {
