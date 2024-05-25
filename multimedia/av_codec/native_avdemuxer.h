@@ -142,8 +142,9 @@ OH_AVErrCode OH_AVDemuxer_SeekToTime(OH_AVDemuxer *demuxer, int64_t millisecond,
  * @syscap SystemCapability.Multimedia.Media.Spliter
  * @param demuxer Pointer to an OH_AVDemuxer instance
  * @param callback object pointer.
- * @return Returns {@link AV_ERR_OK} if the drm info callback is set; returns an error code defined
- * in {@link native_averrors.h} otherwise.
+ * @return {@link AV_ERR_OK} 0 - Success
+ *         {@link AV_ERR_OPERATE_NOT_PERMIT} 2 - If the demuxer engine is not inited or init failed.
+ *         {@link AV_ERR_INVALID_VAL} 3 - If the demuxer instance is nullptr or invalid.
  * @since 11
  * @version 1.0
  */
@@ -155,8 +156,9 @@ OH_AVErrCode OH_AVDemuxer_SetMediaKeySystemInfoCallback(OH_AVDemuxer *demuxer,
  * @syscap SystemCapability.Multimedia.Media.Spliter
  * @param demuxer Pointer to an OH_AVDemuxer instance
  * @param callback object pointer.
- * @return Returns {@link AV_ERR_OK} if the drm info callback is set; returns an error code defined
- * in {@link native_averrors.h} otherwise.
+ * @return {@link AV_ERR_OK} 0 - Success
+ *         {@link AV_ERR_OPERATE_NOT_PERMIT} 2 - If the demuxer engine is not inited or init failed.
+ *         {@link AV_ERR_INVALID_VAL} 3 - If the demuxer instance is nullptr or invalid.
  * @since 12
  * @version 1.0
  */
@@ -169,8 +171,9 @@ OH_AVErrCode OH_AVDemuxer_SetDemuxerMediaKeySystemInfoCallback(OH_AVDemuxer *dem
  * @param demuxer Pointer to an OH_AVDemuxer instance
  * @param mediaKeySystemInfo Indicates the media key system info which ram space allocated by callee and
  released by caller.
- * @return Returns {@link AV_ERR_OK} if the current position is get; returns an error code defined
- * in {@link native_averrors.h} otherwise.
+ * @return {@link AV_ERR_OK} 0 - Success
+ *         {@link AV_ERR_INVALID_VAL} 3 - If the demuxer instance is nullptr or invalid
+ *          or the mediaKeySystemInfo is nullptr.
  * @since 11
  * @version 1.0
  */
