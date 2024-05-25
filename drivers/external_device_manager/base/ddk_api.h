@@ -31,6 +31,7 @@
  * @brief Declares the Base DDK APIs.
  *
  * @library libddk_base.z.so
+ * @kit DriverDevelopmentKit
  * @syscap SystemCapability.Driver.DDK.Extension
  * @since 12
  */
