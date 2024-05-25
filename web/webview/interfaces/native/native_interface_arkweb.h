@@ -119,7 +119,8 @@ void OH_NativeArkWeb_SetJavaScriptProxyValidCallback(const char* webTag, NativeA
  * @brief Get the valid callback.
  *
  * @param webTag The name of the web component.
- * @return return the valid callback function registered.
+ * @return Return the valid callback function registered. If the valid callback function
+ *         specified by the parameter webTag is not set, a null pointer is returned.
  *
  * @syscap SystemCapability.Web.Webview.Core
  * @since 11
@@ -141,7 +142,9 @@ void OH_NativeArkWeb_SetDestroyCallback(const char* webTag, NativeArkWeb_OnDestr
  * @brief Get the destroy callback.
  *
  * @param webTag The name of the web component.
- * @return return the destroy callback function registered.
+ * @return Return the destroy callback function registered. If the destroy callback
+ *         function specified by the parameter webTag is not set,
+ *         a null pointer is returned.
  *
  * @syscap SystemCapability.Web.Webview.Core
  * @since 11
