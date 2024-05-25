@@ -63,7 +63,8 @@ typedef enum {
 /*
  * @brief Obtains the native API set of a specified type.
  * @param type Indicates the type of the native API set provided by ArkWeb.
- * @return Returns the pointer to the native API abstract object that carries the size.
+ * @return Return the pointer to the native API abstract object that carries the size.
+ *         If the type is incorrect, a null pointer is returned.
  *
  * @syscap SystemCapability.Web.Webview.Core
  * @since 12
