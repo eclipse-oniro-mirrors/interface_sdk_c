@@ -67,7 +67,9 @@ typedef struct {
     * @note This method must be called before the <b>show</b> method.
     * @param handle Indicates the pointer to the custom dialog box controller.
     * @param content Indicates the pointer to the root node of the custom dialog box content.
-    * @return Returns <b>0</b> if the operation is successful; returns <b>401</b> if a parameter error occurs.
+    * @return Returns the error code.
+    *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+    *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
     */
     int32_t (*setContent)(ArkUI_NativeDialogHandle handle, ArkUI_NodeHandle content);
     /**
@@ -75,7 +77,9 @@ typedef struct {
     *
     * @note This method must be called before the <b>show</b> method.
     * @param handle Indicates the pointer to the custom dialog box controller.
-    * @return Returns <b>0</b> if the operation is successful; returns <b>401</b> if a parameter error occurs.
+    * @return Returns the error code.
+    *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+    *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
     */
     int32_t (*removeContent)(ArkUI_NativeDialogHandle handle);
     /**
@@ -86,7 +90,9 @@ typedef struct {
     * @param alignment Indicates the alignment mode. The parameter type is {@link ArkUI_Alignment}.
     * @param offsetX Indicates the horizontal offset of the custom dialog box. The value is a floating point number.
     * @param offsetY Indicates the vertical offset of the custom dialog box. The value is a floating point number.
-    * @return Returns <b>0</b> if the operation is successful; returns <b>401</b> if a parameter error occurs.
+    * @return Returns the error code.
+    *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+    *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
     */
     int32_t (*setContentAlignment)(ArkUI_NativeDialogHandle handle, int32_t alignment, float offsetX, float offsetY);
     /**
@@ -94,7 +100,9 @@ typedef struct {
     *
     * @note This method must be called before the <b>show</b> method.
     * @param handle Indicates the pointer to the custom dialog box controller.
-    * @return Returns <b>0</b> if the operation is successful; returns <b>401</b> if a parameter error occurs.
+    * @return Returns the error code.
+    *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+    *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
     */
     int32_t (*resetContentAlignment)(ArkUI_NativeDialogHandle handle);
     /**
@@ -104,7 +112,9 @@ typedef struct {
     * @param handle Indicates the pointer to the custom dialog box controller.
     * @param isModal Specifies whether the custom dialog box is a modal, which has a mask applied. The value
     * <b>true</b> means that the custom dialog box is a modal, and <b>false</b> means the opposite.
-    * @return Returns <b>0</b> if the operation is successful; returns <b>401</b> if a parameter error occurs.
+    * @return Returns the error code.
+    *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+    *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
     */
     int32_t (*setModalMode)(ArkUI_NativeDialogHandle handle, bool isModal);
     /**
@@ -114,7 +124,9 @@ typedef struct {
     * @param handle Indicates the pointer to the custom dialog box controller.
     * @param autoCancel Specifies whether to allow users to touch the mask to dismiss the dialog box.
     * The value <b>true</b> means to allow users to do so, and <b>false</b> means the opposite.
-    * @return Returns <b>0</b> if the operation is successful; returns <b>401</b> if a parameter error occurs.
+    * @return Returns the error code.
+    *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+    *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
     */
     int32_t (*setAutoCancel)(ArkUI_NativeDialogHandle handle, bool autoCancel);
     /**
@@ -125,7 +137,9 @@ typedef struct {
     * @param maskColor Indicates the mask color, in 0xARGB format.
     * @param maskRect Indicates the pointer to the mask area. Events outside the mask area are transparently
     * transmitted, and events within the mask area are not. The parameter type is {@link ArkUI_Rect}.
-    * @return Returns <b>0</b> if the operation is successful; returns <b>401</b> if a parameter error occurs.
+    * @return Returns the error code.
+    *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+    *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
     */
     int32_t (*setMask)(ArkUI_NativeDialogHandle handle, uint32_t maskColor, const ArkUI_Rect* maskRect);
     /**
@@ -134,7 +148,9 @@ typedef struct {
     * @note This method must be called before the <b>show</b> method.
     * @param handle Indicates the pointer to the custom dialog box controller.
     * @param backgroundColor Indicates the background color of the custom dialog box, in 0xARGB format.
-    * @return Returns <b>0</b> if the operation is successful; returns <b>401</b> if a parameter error occurs.
+    * @return Returns the error code.
+    *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+    *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
     */
     int32_t (*setBackgroundColor)(ArkUI_NativeDialogHandle handle, uint32_t backgroundColor);
     /**
@@ -146,7 +162,9 @@ typedef struct {
     * @param topRight Indicates the radius of the upper right corner of the custom dialog box background.
     * @param bottomLeft Indicates the radius of the lower left corner of the custom dialog box background.
     * @param bottomRight Indicates the radius of the lower right corner of the custom dialog box background.
-    * @return Returns <b>0</b> if the operation is successful; returns <b>401</b> if a parameter error occurs.
+    * @return Returns the error code.
+    *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+    *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
     */
     int32_t (*setCornerRadius)(ArkUI_NativeDialogHandle handle, float topLeft, float topRight,
         float bottomLeft, float bottomRight);
@@ -157,7 +175,9 @@ typedef struct {
     * @param handle Indicates the pointer to the custom dialog box controller.
     * @param gridCount Indicates the number of grid columns occupied by the dialog box. The default value is subject to
     * the window size, and the maximum value is the maximum number of columns supported by the system.
-    * @return Returns <b>0</b> if the operation is successful; returns <b>401</b> if a parameter error occurs.
+    * @return Returns the error code.
+    *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+    *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
     */
     int32_t (*setGridColumnCount)(ArkUI_NativeDialogHandle handle, int32_t gridCount);
     /**
@@ -170,7 +190,9 @@ typedef struct {
     * the background color is transparent.
     * <b>false</b>: The dialog box automatically adapts its width to the grid system and its height to the child
     * components; the rounded corner is 24 vp.
-    * @return Returns <b>0</b> if the operation is successful; returns <b>401</b> if a parameter error occurs.
+    * @return Returns the error code.
+    *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+    *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
     */
     int32_t (*enableCustomStyle)(ArkUI_NativeDialogHandle handle, bool enableCustomStyle);
     /**
@@ -180,7 +202,9 @@ typedef struct {
     * @param handle Indicates the pointer to the custom dialog box controller.
     * @param enableCustomAnimation Specifies whether to use a custom animation. The value <b>true</b> means to use a
     * custom animation, and <b>false</b> means to use the default animation.
-    * @return Returns <b>0</b> if the operation is successful; returns <b>401</b> if a parameter error occurs.
+    * @return Returns the error code.
+    *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+    *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
     */
     int32_t (*enableCustomAnimation)(ArkUI_NativeDialogHandle handle, bool enableCustomAnimation);
     /**
@@ -190,7 +214,9 @@ typedef struct {
     * @note This method must be called before the <b>show</b> method.
     * @param handle Indicates the pointer to the custom dialog box controller.
     * @param eventHandler Indicates the callback to register. The parameter type is {@link ArkUI_OnWillDismissEvent}.
-    * @return Returns <b>0</b> if the operation is successful; returns <b>401</b> if a parameter error occurs.
+    * @return Returns the error code.
+    *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+    *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
     */
     int32_t (*registerOnWillDismiss)(ArkUI_NativeDialogHandle handle, ArkUI_OnWillDismissEvent eventHandler);
     /**
@@ -198,14 +224,18 @@ typedef struct {
     *
     * @param handle Indicates the pointer to the custom dialog box controller.
     * @param showInSubWindow Specifies whether to show the dialog box in a sub-window.
-    * @return Returns <b>0</b> if the operation is successful; returns <b>401</b> if a parameter error occurs.
+    * @return Returns the error code.
+    *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+    *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
     */
     int32_t (*show)(ArkUI_NativeDialogHandle handle, bool showInSubWindow);
     /**
     * @brief Closes a custom dialog box. If the dialog box has been closed, this API does not take effect.
     *
     * @param handle Indicates the pointer to the custom dialog box controller.
-    * @return Returns <b>0</b> if the operation is successful; returns <b>401</b> if a parameter error occurs.
+    * @return Returns the error code.
+    *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+    *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
     */
     int32_t (*close)(ArkUI_NativeDialogHandle handle);
 } ArkUI_NativeDialogAPI_1;
