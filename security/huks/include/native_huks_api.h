@@ -169,7 +169,7 @@ struct OH_Huks_Result OH_Huks_IsKeyItemExist(const struct OH_Huks_Blob *keyAlias
     const struct OH_Huks_ParamSet *paramSet);
 
 /**
- * @brief Obtain the key certificate chain.
+ * @brief Obtain the key certificate chain. This API can be called only by system applications.
  *
  * @permission ohos.permission.ATTEST_KEY
  * @param keyAlias Indicates the pointer to the alias of the target key.
