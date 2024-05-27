@@ -34,5 +34,22 @@
         "first_introduced": "12",
         "name": "OH_NativeWindow_ReadFromParcel"
     },
-    { "name": "OH_NativeWindow_GetLastFlushedBufferV2" }
+    { "name": "OH_NativeWindow_GetLastFlushedBufferV2" },
+    {
+        "first_introduced": "12",
+        "name": "OH_NativeWindow_SetColorSpace"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_NativeWindow_GetColorSpace"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_NativeWindow_SetMetadataValue"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_NativeWindow_GetMetadataValue"
+    }
+
 ]
