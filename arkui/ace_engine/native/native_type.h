@@ -1822,6 +1822,28 @@ typedef enum {
 } ArkUI_ListItemSwipeEdgeEffect;
 
 /**
+ * @brief Define error code enumeration values.
+ *
+ * @since 12
+ */
+typedef enum {
+    /** @error No errors. */
+    ARKUI_ERROR_CODE_NO_ERROR = 0,
+    /** @error Parameter error. */
+    ARKUI_ERROR_CODE_PARAM_INVALID = 401,
+    /** @error The component does not support specific properties or events. */
+    ARKUI_ERROR_CODE_ATTRIBUTE_OR_EVENT_NOT_SUPPORTED = 106102,
+    /** @error The corresponding operation does not support nodes created by ArkTS. */
+    ARKUI_ERROR_CODE_ARKTS_NODE_NOT_SUPPORTED = 106103,
+    /** @error The lazy loading adapter is not bound to the component. */
+    ARKUI_ERROR_CODE_ADAPTER_NOT_BOUND = 106104,
+    /** @error The adapter already exists. */
+    ARKUI_ERROR_CODE_ADAPTER_EXIST = 106105,
+    /** @error The corresponding node already has a child node and cannot add an adapter. */
+    ARKUI_ERROR_CODE_CHILD_NODE_EXIST = 106106,
+} ArkUI_ErrorCode;
+
+/**
 * @brief Creates a size constraint.
 *
 * @since 12

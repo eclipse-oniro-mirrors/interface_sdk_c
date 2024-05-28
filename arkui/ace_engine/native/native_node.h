@@ -6049,8 +6049,9 @@ void OH_ArkUI_NodeAdapter_Dispose(ArkUI_NodeAdapterHandle handle);
 *
 * @param handle Indicates the target component adapter.
 * @param size Indicates the number of elements.
-* @return Returns 0 if success.
-* Returns 401 if a parameter exception occurs.
+* @return Returns the error code.
+*         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+*         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
 * @since 12
 */
 int32_t OH_ArkUI_NodeAdapter_SetTotalNodeCount(ArkUI_NodeAdapterHandle handle, uint32_t size);
@@ -6070,8 +6071,9 @@ uint32_t OH_ArkUI_NodeAdapter_GetTotalNodeCount(ArkUI_NodeAdapterHandle handle);
 * @param handle Indicates the target component adapter.
 * @param userData Indicates custom data.
 * @param receiver Indicates the event receiver callback.
-* @return Returns 0 if success.
-* Returns 401 if a parameter exception occurs.
+* @return Returns the error code.
+*         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+*         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
 * @since 12
 */
 int32_t OH_ArkUI_NodeAdapter_RegisterEventReceiver(
@@ -6089,8 +6091,9 @@ void OH_ArkUI_NodeAdapter_UnregisterEventReceiver(ArkUI_NodeAdapterHandle handle
 * @brief Instructs the specified adapter to reload all elements.
 *
 * @param handle Indicates the target component adapter.
-* @return Returns 0 if success.
-* Returns 401 if a parameter exception occurs.
+* @return Returns the error code.
+*         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+*         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
 * @since 12
 */
 int32_t OH_ArkUI_NodeAdapter_ReloadAllItems(ArkUI_NodeAdapterHandle handle);
@@ -6101,8 +6104,9 @@ int32_t OH_ArkUI_NodeAdapter_ReloadAllItems(ArkUI_NodeAdapterHandle handle);
 * @param handle Indicates the target component adapter.
 * @param startPosition Indicates the start position of the elements to reload.
 * @param itemCount Indicates the number of the elements to reload.
-* @return Returns 0 if success.
-* Returns 401 if a parameter exception occurs.
+*  @return Returns the error code.
+*         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+*         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
 * @since 12
 */
 int32_t OH_ArkUI_NodeAdapter_ReloadItem(
@@ -6114,8 +6118,9 @@ ArkUI_NodeAdapterHandle handle, uint32_t startPosition, uint32_t itemCount);
 * @param handle Indicates the target component adapter.
 * @param startPosition Indicates the start position of the elements to remove.
 * @param itemCount Indicates the number of the elements to remove.
-* @return Returns 0 if success.
-* Returns 401 if a parameter exception occurs.
+* @return Returns the error code.
+*         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+*         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
 * @since 12
 */
 int32_t OH_ArkUI_NodeAdapter_RemoveItem(
@@ -6127,8 +6132,9 @@ ArkUI_NodeAdapterHandle handle, uint32_t startPosition, uint32_t itemCount);
 * @param handle Indicates the target component adapter.
 * @param startPosition Indicates the start position of the elements to insert.
 * @param itemCount Indicates the number of the elements to insert.
-* @return Returns 0 if success.
-* Returns 401 if a parameter exception occurs.
+* @return Returns the error code.
+*         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+*         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
 * @since 12
 */
 int32_t OH_ArkUI_NodeAdapter_InsertItem(
@@ -6140,8 +6146,9 @@ ArkUI_NodeAdapterHandle handle, uint32_t startPosition, uint32_t itemCount);
 * @param handle Indicates the target component adapter.
 * @param from Indicates the start position of the elements to move.
 * @param to  Indicates the end position of the elements to move.
-* @return Returns 0 if success.
-* Returns 401 if a parameter exception occurs.
+* @return Returns the error code.
+*         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+*         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
 * @since 12
 */
 int32_t OH_ArkUI_NodeAdapter_MoveItem(ArkUI_NodeAdapterHandle handle, uint32_t from, uint32_t to);
@@ -6155,8 +6162,9 @@ int32_t OH_ArkUI_NodeAdapter_MoveItem(ArkUI_NodeAdapterHandle handle, uint32_t f
 * @param handle Indicates the target component adapter.
 * @param items Indicates the pointer to the array of the elements in the adapter.
 * @param size Indicates the number of elements.
-* @return Returns 0 if success.
-* Returns 401 if a parameter exception occurs.
+* @return Returns the error code.
+*         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+*         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
 * @since 12
 */
 int32_t OH_ArkUI_NodeAdapter_GetAllItems(ArkUI_NodeAdapterHandle handle, ArkUI_NodeHandle** items, uint32_t* size);
@@ -6200,8 +6208,9 @@ uint32_t OH_ArkUI_NodeAdapterEvent_GetItemIndex(ArkUI_NodeAdapterEvent* event);
 * @brief Obtains the scrollable container node that uses the specified adapter.
 *
 * @param event Indicates the target adapter event.
-* @return Returns 0 if success.
-* Returns 401 if a parameter exception occurs.
+* @return Returns the error code.
+*         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+*         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
 * @since 12
 */
 ArkUI_NodeHandle OH_ArkUI_NodeAdapterEvent_GetHostNode(ArkUI_NodeAdapterEvent* event);
@@ -6211,7 +6220,9 @@ ArkUI_NodeHandle OH_ArkUI_NodeAdapterEvent_GetHostNode(ArkUI_NodeAdapterEvent* e
 *
 * @param event Indicates the target adapter event.
 * @param node Indicates the component to be added.
-* @return Returns <b>0</b> if the operation is successful; returns <b>401</b> if a parameter error occurs.
+* @return Returns the error code.
+*         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+*         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
 * @since 12
 */
 int32_t OH_ArkUI_NodeAdapterEvent_SetItem(ArkUI_NodeAdapterEvent* event, ArkUI_NodeHandle node);
@@ -6221,7 +6232,9 @@ int32_t OH_ArkUI_NodeAdapterEvent_SetItem(ArkUI_NodeAdapterEvent* event, ArkUI_N
 *
 * @param event Indicates the target adapter event.
 * @param id Indicates the component ID to set.
-* @return Returns <b>0</b> if the operation is successful; returns <b>401</b> if a parameter error occurs.
+* @return Returns the error code.
+*         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+*         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
 * @since 12
 */
 int32_t OH_ArkUI_NodeAdapterEvent_SetNodeId(ArkUI_NodeAdapterEvent* event, int32_t id);
@@ -6258,10 +6271,12 @@ typedef struct {
      *
      * @param parent Indicates the pointer to the parent node.
      * @param child Indicates the pointer to the child node.
-     * @return Returns 0 if success.
-     * Returns 401 if a parameter exception occurs.
-     * Returns 106103 if the following operations are not allowed on BuilderNode generated nodes: setting or resetting
-     * attributes, setting events, or adding or editing subnodes.
+     * @return Returns the error code.
+     *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+     *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+     *         Returns {@link ARKUI_ERROR_CODE_NOT_SUPPROTED_FOR_ARKTS_NODE} if the following operations are not allowed
+     * on BuilderNode generated nodes:
+     *         setting or resetting attributes, setting events, or adding or editing subnodes.
      */
     int32_t (*addChild)(ArkUI_NodeHandle parent, ArkUI_NodeHandle child);
 
@@ -6270,10 +6285,12 @@ typedef struct {
      *
      * @param parent Indicates the pointer to the parent node.
      * @param child Indicates the pointer to the child node.
-     * @return Returns 0 if success.
-     * Returns 401 if a parameter exception occurs.
-     * Returns 106103 if the following operations are not allowed on BuilderNode generated nodes: setting or resetting
-     * attributes, setting events, or adding or editing subnodes.
+     * @return Returns the error code.
+     *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+     *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+     *         Returns {@link ARKUI_ERROR_CODE_NOT_SUPPROTED_FOR_ARKTS_NODE} if the following operations are not allowed
+     * on BuilderNode generated nodes:
+     *         setting or resetting attributes, setting events, or adding or editing subnodes.
      */
     int32_t (*removeChild)(ArkUI_NodeHandle parent, ArkUI_NodeHandle child);
 
@@ -6284,10 +6301,12 @@ typedef struct {
      * @param child Indicates the pointer to the child node.
      * @param sibling Indicates the pointer to the sibling node after which the target node is to be inserted.
      * If the value is null, the node is inserted at the start of the parent node.
-     * @return Returns 0 if success.
-     * Returns 401 if a parameter exception occurs.
-     * Returns 106103 if the following operations are not allowed on BuilderNode generated nodes: setting or resetting
-     * attributes, setting events, or adding or editing subnodes.
+     * @return Returns the error code.
+     *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+     *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+     *         Returns {@link ARKUI_ERROR_CODE_NOT_SUPPROTED_FOR_ARKTS_NODE} if the following operations are not allowed
+     * on BuilderNode generated nodes:
+     *         setting or resetting attributes, setting events, or adding or editing subnodes.
      */
     int32_t (*insertChildAfter)(ArkUI_NodeHandle parent, ArkUI_NodeHandle child, ArkUI_NodeHandle sibling);
 
@@ -6298,10 +6317,12 @@ typedef struct {
      * @param child Indicates the pointer to the child node.
      * @param sibling Indicates the pointer to the sibling node before which the target node is to be inserted.
      * If the value is null, the node is inserted at the end of the parent node.
-     * @return Returns 0 if success.
-     * Returns 401 if a parameter exception occurs.
-     * Returns 106103 if the following operations are not allowed on BuilderNode generated nodes: setting or resetting
-     * attributes, setting events, or adding or editing subnodes.
+     * @return Returns the error code.
+     *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+     *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+     *         Returns {@link ARKUI_ERROR_CODE_NOT_SUPPROTED_FOR_ARKTS_NODE} if the following operations are not allowed
+     * on BuilderNode generated nodes:
+     *         setting or resetting attributes, setting events, or adding or editing subnodes.
      */
     int32_t (*insertChildBefore)(ArkUI_NodeHandle parent, ArkUI_NodeHandle child, ArkUI_NodeHandle sibling);
 
@@ -6312,10 +6333,12 @@ typedef struct {
      * @param child Indicates the pointer to the child node.
      * @param position Indicates the position to which the target child node is to be inserted. If the value is a
      * negative number or invalid, the node is inserted at the end of the parent node.
-     * @return Returns 0 if success.
-     * Returns 401 if a parameter exception occurs.
-     * Returns 106103 if the following operations are not allowed on BuilderNode generated nodes: setting or resetting
-     * attributes, setting events, or adding or editing subnodes.
+     * @return Returns the error code.
+     *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+     *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+     *         Returns {@link ARKUI_ERROR_CODE_NOT_SUPPROTED_FOR_ARKTS_NODE} if the following operations are not allowed
+     * on BuilderNode generated nodes:
+     *         setting or resetting attributes, setting events, or adding or editing subnodes.
      */
     int32_t (*insertChildAt)(ArkUI_NodeHandle parent, ArkUI_NodeHandle child, int32_t position);
 
@@ -6325,11 +6348,14 @@ typedef struct {
      * @param node Indicates the node whose attribute needs to be set.
      * @param attribute Indicates the type of attribute to set.
      * @param value Indicates the attribute value.
-     * @return Returns 0 if success.
-     * Returns 401 if a parameter exception occurs.
-     * Returns 106102 if the dynamic implementation library of the native API was not found.
-     * Returns 106103 if the following operations are not allowed on BuilderNode generated nodes: setting or resetting
-     * attributes, setting events, or adding or editing subnodes.
+     * @return Returns the error code.
+     *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+     *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+     *         Returns {@link ARKUI_ERROR_CODE_ATTRIBUTE_OR_EVENT_NOT_SUPPORTED} if the dynamic implementation library
+     *         of the native API was not found.
+     *         Returns {@link ARKUI_ERROR_CODE_NOT_SUPPROTED_FOR_ARKTS_NODE} if the following operations are not allowed
+     *         on BuilderNode generated nodes:
+     *         setting or resetting attributes, setting events, or adding or editing subnodes.
      */
     int32_t (*setAttribute)(ArkUI_NodeHandle node, ArkUI_NodeAttributeType attribute, const ArkUI_AttributeItem* item);
 
@@ -6350,11 +6376,14 @@ typedef struct {
      *
      * @param node Indicates the node whose attribute needs to be reset.
      * @param attribute Indicates the type of attribute to reset.
-     * @return Returns 0 if success.
-     * Returns 401 if a parameter exception occurs.
-     * Returns 106102 if the dynamic implementation library of the native API was not found.
-     * Returns 106103 if the following operations are not allowed on BuilderNode generated nodes: setting or resetting
-     * attributes, setting events, or adding or editing subnodes.
+     * @return Returns the error code.
+     *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+     *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+     *         Returns {@link ARKUI_ERROR_CODE_ATTRIBUTE_OR_EVENT_NOT_SUPPORTED} if the dynamic implementation library
+     *         of the native API was not found.
+     *         Returns {@link ARKUI_ERROR_CODE_NOT_SUPPROTED_FOR_ARKTS_NODE} if the following operations are not allowed
+     *         on BuilderNode generated nodes:
+     *         setting or resetting attributes, setting events, or adding or editing subnodes.
      */
     int32_t (*resetAttribute)(ArkUI_NodeHandle node, ArkUI_NodeAttributeType attribute);
 
@@ -6368,11 +6397,14 @@ typedef struct {
      * @param targetId Indicates the custom event ID, which is passed in the callback of {@link ArkUI_NodeEvent}
      * when the event is triggered.
      * @param userData Indicates the custom event parameter, which is passed in the callback of {@link ArkUI_NodeEvent}
-     * @return Returns 0 if success.
-     * Returns 401 if a parameter exception occurs.
-     * Returns 106102 if the dynamic implementation library of the native API was not found.
-     * Returns 106103 if the following operations are not allowed on BuilderNode generated nodes: setting or resetting
-     * attributes, setting events, or adding or editing subnodes.
+     * @return Returns the error code.
+     *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+     *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+     *         Returns {@link ARKUI_ERROR_CODE_ATTRIBUTE_OR_EVENT_NOT_SUPPORTED} if the dynamic implementation library
+     *         of the native API was not found.
+     *         Returns {@link ARKUI_ERROR_CODE_NOT_SUPPROTED_FOR_ARKTS_NODE} if the following operations are not allowed
+     *         on BuilderNode generated nodes:
+     *         setting or resetting attributes, setting events, or adding or editing subnodes.
      */
     int32_t (*registerNodeEvent)(ArkUI_NodeHandle node, ArkUI_NodeEventType eventType,
         int32_t targetId, void* userData);
@@ -6421,8 +6453,9 @@ typedef struct {
      * @brief Obtains the number of subnodes.
      *
      * @param node Indicates the target node.
-     * @return Returns 0 if success.
-     * Returns 401 if a parameter exception occurs.
+     * @return Returns the error code.
+     *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+     *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs..
      */
     uint32_t (*getTotalChildCount)(ArkUI_NodeHandle node);
 
@@ -6477,9 +6510,11 @@ typedef struct {
      * when the event is triggered.
      * @param userData Indicates the custom event parameter, which is passed in the callback of
      * {@link ArkUI_NodeCustomEvent} when the event is triggered.
-     * @return Returns 0 if success.
-     * Returns 401 if a parameter exception occurs.
-     * Returns 106102 if the dynamic implementation library of the native API was not found.
+     * @return Returns the error code.
+     *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+     *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+     *         Returns {@link ARKUI_ERROR_CODE_ATTRIBUTE_OR_EVENT_NOT_SUPPORTED} if the dynamic implementation library
+     *         of the native API was not found.
      */
     int32_t (*registerNodeCustomEvent)(
         ArkUI_NodeHandle node, ArkUI_NodeCustomEventType eventType, int32_t targetId, void* userData);
@@ -6518,8 +6553,9 @@ typedef struct {
      * @param node Indicates the target node.
      * @param width Indicates the width.
      * @param height Indicates the height.
-     * @return Returns 0 if success.
-     * Returns 401 if a parameter exception occurs.
+     * @return Returns the error code.
+     *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+     *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs..
      */
     int32_t (*setMeasuredSize)(ArkUI_NodeHandle node, int32_t width, int32_t height);
 
@@ -6529,8 +6565,9 @@ typedef struct {
      * @param node Indicates the target node.
      * @param positionX Indicates the X coordinate.
      * @param positionY Indicates the Y coordinate.
-     * @return Returns 0 if success.
-     * Returns 401 if a parameter exception occurs.
+     * @return Returns the error code.
+     *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+     *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs..
      */
     int32_t (*setLayoutPosition)(ArkUI_NodeHandle node, int32_t positionX, int32_t positionY);
 
@@ -6555,8 +6592,9 @@ typedef struct {
      *
      * @param node Indicates the target node.
      * @param Constraint Indicates the size constraint.
-     * @return Returns 0 if success.
-     * Returns 401 if a parameter exception occurs.
+     * @return Returns the error code.
+     *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+     *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs..
      */
     int32_t (*measureNode)(ArkUI_NodeHandle node, ArkUI_LayoutConstraint* Constraint);
 
@@ -6568,8 +6606,9 @@ typedef struct {
      * @param node Indicates the target node.
      * @param positionX Indicates the X coordinate.
      * @param positionY Indicates the Y coordinate.
-     * @return Returns 0 if success.
-     * Returns 401 if a parameter exception occurs.
+     * @return Returns the error code.
+     *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+     *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs..
      */
     int32_t (*layoutNode)(ArkUI_NodeHandle node, int32_t positionX, int32_t positionY);
 
@@ -6586,8 +6625,9 @@ typedef struct {
      *
      * @param node Indicates the component for which you want to add the event callback function.
      * @param eventReceiver Indicates the component event callback function to add.
-     * @return Returns 0 if success.
-     * Returns 401 if a parameter exception occurs.
+     * @return Returns the error code.
+     *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+     *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs..
      */
     int32_t (*addNodeEventReceiver)(ArkUI_NodeHandle node, void (*eventReceiver)(ArkUI_NodeEvent* event));
 
@@ -6596,8 +6636,9 @@ typedef struct {
      *
      * @param node Indicates the component from which you want to remove the event callback function.
      * @param eventReceiver Indicates the component event callback function to remove.
-     * @return Returns 0 if success.
-     * Returns 401 if a parameter exception occurs.
+     * @return Returns the error code.
+     *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+     *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs..
      */
     int32_t (*removeNodeEventReceiver)(ArkUI_NodeHandle node, void (*eventReceiver)(ArkUI_NodeEvent* event));
 
@@ -6614,8 +6655,9 @@ typedef struct {
      *
      * @param node Indicates the component for which you want to add the custom event callback function.
      * @param eventReceiver Indicates the custom event callback function to add.
-     * @return Returns 0 if success.
-     * Returns 401 if a parameter exception occurs.     
+     * @return Returns the error code.
+     *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+     *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
      */
     int32_t (*addNodeCustomEventReceiver)(ArkUI_NodeHandle node, void (*eventReceiver)(ArkUI_NodeCustomEvent* event));
 
@@ -6624,8 +6666,9 @@ typedef struct {
      *
      * @param node Indicates the component from which you want to remove the custom event callback function.
      * @param eventReceiver Indicates the custom event callback function to remove.
-     * @return Returns 0 if success.
-     * Returns 401 if a parameter exception occurs.     
+     * @return Returns the error code.
+     *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+     *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
      */
     int32_t (*removeNodeCustomEventReceiver)(ArkUI_NodeHandle node,
         void (*eventReceiver)(ArkUI_NodeCustomEvent* event));
@@ -6635,8 +6678,9 @@ typedef struct {
      *
      * @param node Indicates the component on which the custom data will be saved.
      * @param userData Indicates the custom data to be saved.
-     * @return Returns 0 if success.
-     * Returns 401 if a parameter exception occurs.
+     * @return Returns the error code.
+     *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+     *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs..
      */
     int32_t (*setUserData)(ArkUI_NodeHandle node, void* userData);
 
@@ -6654,7 +6698,9 @@ typedef struct {
      * @param node Indicates the component for which you want to set the unit.
      * @param unit Indicates the unit, which is an enumerated value of {@link ArkUI_LengthMetricUnit}.
      * The default value is <b>ARKUI_LENGTH_METRIC_UNIT_DEFAULT</b>.
-     * @return Returns <b>0</b> if the operation is successful; returns <b>401</b> if a parameter error occurs.
+     * @return Returns the error code.
+    *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+    *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
      */
     int32_t (*setLengthMetricUnit)(ArkUI_NodeHandle node, ArkUI_LengthMetricUnit unit);
 
@@ -6760,8 +6806,9 @@ typedef void (*ArkUI_NodeContentCallback)(ArkUI_NodeContentEvent* event);
  *
  * @param content Indicates the pointer to the node content instance.
  * @param callback Indicates the callback function.
- * @return Returns 0 if success,
- *         Returns 401 if parameter exception occurs.
+ * @return Returns the error code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
  * @since 12
  */
 int32_t OH_ArkUI_NodeContent_RegisterCallback(ArkUI_NodeContentHandle content, ArkUI_NodeContentCallback callback);
@@ -6780,8 +6827,9 @@ ArkUI_NodeContentEventType OH_ArkUI_NodeContentEvent_GetEventType(ArkUI_NodeCont
  *
  * @param content Indicates the pointer to the node content instance.
  * @param node Indicates the pointer to the node
- * @return Returns 0 if success,
- *         Returns 401 if parameter exception occurs.
+ * @return Returns the error code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
  * @since 12
  */
 int32_t OH_ArkUI_NodeContent_AddNode(ArkUI_NodeContentHandle content, ArkUI_NodeHandle node);
@@ -6791,8 +6839,9 @@ int32_t OH_ArkUI_NodeContent_AddNode(ArkUI_NodeContentHandle content, ArkUI_Node
  *
  * @param content Indicates the pointer to the node content instance.
  * @param node Indicates the pointer to the node
- * @return Returns 0 if success,
- *         Returns 401 if parameter exception occurs.
+  * @return Returns the error code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
  * @since 12
  */
 int32_t OH_ArkUI_NodeContent_RemoveNode(ArkUI_NodeContentHandle content, ArkUI_NodeHandle node);
@@ -6803,8 +6852,9 @@ int32_t OH_ArkUI_NodeContent_RemoveNode(ArkUI_NodeContentHandle content, ArkUI_N
  * @param content Indicates the pointer to the node content instance.
  * @param node Indicates the pointer to the node
  * @param position Indicates the position for inserting the node
- * @return Returns 0 if success,
- *         Returns 401 if parameter exception occurs.
+ * @return Returns the error code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
  * @since 12
  */
 int32_t OH_ArkUI_NodeContent_InsertNode(ArkUI_NodeContentHandle content, ArkUI_NodeHandle node, int32_t position);
@@ -6815,8 +6865,9 @@ int32_t OH_ArkUI_NodeContent_InsertNode(ArkUI_NodeContentHandle content, ArkUI_N
  *
  * @param node ArkUI_NodeHandle pointer.
  * @param size The drawing area size of the component handle, in px.
- * @return Returns 0 if success.
- * Returns 401 if a parameter exception occurs.
+ * @return Returns the error code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
  * @since 12
  */
 int32_t OH_ArkUI_NodeUtils_GetLayoutSize(ArkUI_NodeHandle node, ArkUI_IntSize* size);
@@ -6827,8 +6878,9 @@ int32_t OH_ArkUI_NodeUtils_GetLayoutSize(ArkUI_NodeHandle node, ArkUI_IntSize* s
  *
  * @param node ArkUI_NodeHandle pointer.
  * @param localOffset The offset value of the component handle relative to the parent component, in px.
- * @return Returns 0 if success.
- * Returns 401 if a parameter exception occurs.
+ * @return Returns the error code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
  * @since 12
  */
 int32_t OH_ArkUI_NodeUtils_GetLayoutPosition(ArkUI_NodeHandle node, ArkUI_IntOffset* localOffset);
@@ -6839,8 +6891,9 @@ int32_t OH_ArkUI_NodeUtils_GetLayoutPosition(ArkUI_NodeHandle node, ArkUI_IntOff
  *
  * @param node ArkUI_NodeHandle pointer.
  * @param globalOffset The offset value of the component handle relative to the window, in px.
- * @return Returns 0 if success.
- * Returns 401 if a parameter exception occurs.
+ * @return Returns the error code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
  * @since 12
  */
 int32_t OH_ArkUI_NodeUtils_GetLayoutPositionInWindow(ArkUI_NodeHandle node, ArkUI_IntOffset* globalOffset);
@@ -6851,8 +6904,9 @@ int32_t OH_ArkUI_NodeUtils_GetLayoutPositionInWindow(ArkUI_NodeHandle node, ArkU
  *
  * @param node ArkUI_NodeHandle pointer.
  * @param screenOffset The offset value of the component handle relative to the screen, in px.
- * @return Returns 0 if success.
- * Returns 401 if a parameter exception occurs.
+ * @return Returns the error code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
  * @since 12
  */
 int32_t OH_ArkUI_NodeUtils_GetLayoutPositionInScreen(ArkUI_NodeHandle node, ArkUI_IntOffset* screenOffset);
@@ -6863,8 +6917,9 @@ int32_t OH_ArkUI_NodeUtils_GetLayoutPositionInScreen(ArkUI_NodeHandle node, ArkU
  * @param node ArkUI_NodeHandle pointer.
  * @param translateOffset The cumulative offset value of the component handle itself,
  * parent components, and ancestor nodes, in px.
- * @return Returns 0 if success.
- * Returns 401 if a parameter exception occurs.
+ * @return Returns the error code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
  * @since 12
  */
 int32_t OH_ArkUI_NodeUtils_GetPositionWithTranslateInWindow(ArkUI_NodeHandle node, ArkUI_IntOffset* translateOffset);
@@ -6875,8 +6930,9 @@ int32_t OH_ArkUI_NodeUtils_GetPositionWithTranslateInWindow(ArkUI_NodeHandle nod
  * @param node ArkUI_NodeHandle pointer.
  * @param translateOffset The cumulative offset value of the component handle itself,
  * parent components, and ancestor nodes, in px.
- * @return Returns 0 if success.
- * Returns 401 if a parameter exception occurs.
+ * @return Returns the error code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
  * @since 12
  */
 int32_t OH_ArkUI_NodeUtils_GetPositionWithTranslateInScreen(ArkUI_NodeHandle node, ArkUI_IntOffset* translateOffset);
