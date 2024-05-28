@@ -89,6 +89,8 @@ typedef enum {
     ARKUI_NODE_SLIDER = 17,
     /** Radio */
     ARKUI_NODE_RADIO = 18,
+    /** Image animator. */
+    ARKUI_NODE_IMAGE_ANIMATOR = 19,
     /** Stack container. */
     ARKUI_NODE_STACK = MAX_NODE_SCOPE_NUM,
     /** Swiper. */
@@ -1655,6 +1657,63 @@ typedef enum {
     NODE_BORDER_RADIUS_PERCENT = 86,
 
     /**
+     * @brief Accessible ID, which can be obtained as required through APIs.
+     *
+     * Format of the return value {@link ArkUI_AttributeItem}:\n
+     * .value[0].i32：Accessible ID。\n
+     *
+     */
+    NODE_ACCESSIBILITY_ID = 87,
+
+    /**
+     * @brief Define accessible actions, which can be set, reset, and obtained as required through APIs.
+     *
+     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
+     * .value[0].u32：accessible action types，and uses the {@link ArkUI_AccessibilityActionType} enumeration value.\n
+     * \n
+     * Format of the return value {@link ArkUI_AttributeItem}:\n
+     * .value[0].u32：accessible action types，and uses the {@link ArkUI_AccessibilityActionType} enumeration value.\n
+     *
+     */
+    NODE_ACCESSIBILITY_ACTIONS = 88,
+
+    /**
+     * @brief Define accessible role, which can be set, reset, and obtained as required through APIs.
+     *
+     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
+     * .value[0].u32：accessible role type，and uses the {@link ArkUI_NodeType} enumeration value.\n
+     * \n
+     * Format of the return value {@link ArkUI_AttributeItem}:\n
+     * .value[0].u32：accessible role type，and uses the {@link ArkUI_NodeType} enumeration value.\n
+     *
+     */
+    NODE_ACCESSIBILITY_ROLE = 89,
+
+    /**
+     * @brief Define accessible state, which can be set, reset, and obtained as required through APIs.
+     *
+     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
+     * .object：the parameter type is {@link ArkUI_AccessibilityState}.\n
+     * \n
+     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
+     * .object：the parameter type is {@link ArkUI_AccessibilityState}.\n
+     *
+     */
+    NODE_ACCESSIBILITY_STATE = 90,
+
+    /**
+     * @brief Define accessible value, which can be set, reset, and obtained as required through APIs.
+     *
+     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
+     * .object：the parameter type is {@link ArkUI_AccessibilityValue}.\n
+     * \n
+     * Format of the return value {@link ArkUI_AttributeItem}:\n
+     * .object：the parameter type is {@link ArkUI_AccessibilityValue}.\n
+     *
+     */
+    NODE_ACCESSIBILITY_VALUE = 91,
+
+    /**
      * @brief Defines the text content attribute, which can be set, reset, and obtained as required through APIs.
      *
      * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
@@ -2159,10 +2218,12 @@ typedef enum {
      * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
      * .value[0].f32 to .value[19].f32: filter matrix array. \n
      * .size: 5 x 4 filter array size. \n
+     * .object: the pointer to OH_Drawing_ColorFilter. Either .value or .object is set. \n
      * \n
      * Format of the return value {@link ArkUI_AttributeItem}:\n
      * .value[0].f32 to .value[19].f32: filter matrix array. \n
      * .size: 5 x 4 filter array size. \n
+     * .object: the pointer to OH_Drawing_ColorFilter. \n
      *
      */
     NODE_IMAGE_COLOR_FILTER,
@@ -3957,6 +4018,106 @@ typedef enum {
     NODE_RADIO_GROUP,
 
     /**
+     * @brief Set the image frames for the image animator. Dynamic updates is not supported.
+     * This attribute can be set, reset, and obtained as required through APIs.
+     *
+     * Attribute setting method {@Link ArkUI_AttributeItem} Parameter format:\n
+     * .size: number of the images.\n
+     * .object: array of the images, the type is {@ArkUI_ImageAnimatorFrameInfo} array.\n
+     * \n
+     * Attribute obtaining method return value {@Link ArkUI_AttributeItem} format:\n
+     * .size: number of the images.\n
+     * .object: array of the images, the type is {@ArkUI_ImageAnimatorFrameInfo} array.\n
+     *
+    */
+    NODE_IMAGE_ANIMATOR_IMAGES = ARKUI_NODE_IMAGE_ANIMATOR * MAX_NODE_SCOPE_NUM,
+    /**
+     * @brief Set the playback status of the animation for the image animator.
+     * This attribute can be set, reset, and obtained as required through APIs.
+     *
+     * Attribute setting method {@Link ArkUI_AttributeItem} Parameter format:\n
+     * .value[0].i32: the playback status of the animation, the type is {@link ArkUI_AnimationStatus},
+     * and the default value is ARKUI_ANIMATION_STATUS_INITIAL.
+     *
+     * Attribute obtaining method return value {@Link ArkUI_AttributeItem} format:\n
+     * .value[0].i32: the playback status of the animation, the type is {@link ArkUI_AnimationStatus}.\n
+     *
+    */
+    NODE_IMAGE_ANIMATOR_STATE = 19001,
+    /**
+     * @brief Set the playback duration for the image animator. When the duration is 0, no image is played.
+     * The value change takes effect only at the beginning of the next cycle.
+     * When a separate duration is set in images, the setting of this attribute is invalid.
+     * This attribute can be set, reset, and obtained as required through APIs.
+     *
+     * Attribute setting method {@Link ArkUI_AttributeItem} Parameter format:\n
+     * .value[0].i32: the playback duration, the unit is ms and the default value is 1000.\n
+     *
+     * Attribute obtaining method return value {@Link ArkUI_AttributeItem} format:\n
+     * .value[0].i32: the playback duration, the unit is ms.\n
+     *
+    */
+    NODE_IMAGE_ANIMATOR_DURATION = 19002,
+    /**
+     * @brief Set the playback direction for the image animator.
+     * This attribute can be set, reset, and obtained as required through APIs.
+     *
+     * Attribute setting method {@Link ArkUI_AttributeItem} Parameter format:\n
+     * .value[0].i32: the playback direction. 0 indicates that images are played from the first one to the last one,
+     * and 1 indicates that images are played from the last one to the first one.\n
+     *
+     * Attribute obtaining method return value {@Link ArkUI_AttributeItem} format:\n
+     * .value[0].i32: the playback direction. 0 indicates that images are played from the first one to the last one,
+     * and 1 indicates that images are played from the last one to the first one.\n
+     *
+    */
+    NODE_IMAGE_ANIMATOR_REVERSE = 19003,
+    /**
+     * @brief Set whether the image size is the same as the component size.
+     * This attribute can be set, reset, and obtained as required through APIs.
+     *
+     * Attribute setting method {@Link ArkUI_AttributeItem} Parameter format:\n
+     * .value[0].i32: whether the image size is the same as the component size.
+     * 1 indicates the image size is the same as the component size.
+     * In this case, the width, height, top, and left attributes of the image are invalid.
+     * 0 indicates the image size is customized.
+     * The width, height, top, and left attributes of each image must be set separately.
+     *
+     * Attribute obtaining method return value {@Link ArkUI_AttributeItem} format:\n
+     * .value[0].i32: whether the image size is the same as the component size.
+     * 1 indicates the image size is the same as the component size.
+     * 0 indicates the image size is customized.
+     *
+    */
+    NODE_IMAGE_ANIMATOR_FIXED_SIZE = 19004,
+    /**
+     * @brief Set the status before and after execution of the animation in the current playback direction.
+     * This attribute can be set, reset, and obtained as required through APIs.
+     *
+     * Attribute setting method {@Link ArkUI_AttributeItem} Parameter format:\n
+     * .value[0].i32: the status before and after execution of the animation in the current playback direction,
+     * the type is {ArkUI_AnimationFillMode} and the default value is ARKUI_ANIMATION_FILL_MODE_FORWARDS.\n
+     *
+     * Attribute obtaining method return value {@Link ArkUI_AttributeItem} format:\n
+     * .value[0].i32: the status before and after execution of the animation in the current playback direction,
+     * the type is {ArkUI_AnimationFillMode}.
+     *
+    */
+    NODE_IMAGE_ANIMATOR_FILL_MODE = 19005,
+    /**
+     * @brief Set the number of times that the animation is played.
+     * This attribute can be set, reset, and obtained as required through APIs.
+     *
+     * Attribute setting method {@Link ArkUI_AttributeItem} Parameter format:\n
+     * .value[0].i32: the number of times that the animation is played.\n
+     *
+     * Attribute setting method {@Link ArkUI_AttributeItem} Parameter format:\n
+     * .value[0].i32: the number of times that the animation is played.\n
+     *
+    */
+    NODE_IMAGE_ANIMATOR_ITERATION = 19006,
+
+    /**
      * @brief Defines the alignment mode of the child components in the container. This attribute can be set, reset,
      * and obtained as required through APIs.
      *
@@ -5184,6 +5345,20 @@ typedef enum {
     NODE_EVENT_ON_DETACH,
 
     /**
+     * @brief Defines the accessibility action event.
+     *
+     * This event is triggered when The accessibility operation type has been set and
+     * corresponding operations have been carried out. \n
+     * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
+     * {@link ArkUI_NodeComponentEvent}. \n
+     * {@link ArkUI_NodeComponentEvent} contains one parameters:\n
+     * <b>ArkUI_NodeComponentEvent.data[0].u32</b>: accessibility action type，the union type is
+     * {@link ArkUI_AccessibilityActionType} \n
+     *
+     */
+    NODE_ON_ACCESSIBILITY_ACTIONS = 13,
+
+    /**
      * @brief Triggers onDetectResultUpdate callback
      * when the text is set to TextDataDetectorConfig and recognized successfully.
      *
@@ -5541,6 +5716,52 @@ typedef enum {
      * ArkUI_NodeComponentEvent.data[0].i32: option button status. \n
      */
     NODE_RADIO_EVENT_ON_CHANGE = MAX_NODE_SCOPE_NUM * ARKUI_NODE_RADIO,
+
+    /**
+     * @brief Defines the event callback function triggered when the animation starts to play.
+     *
+     * When the event callback occurs, the union type in the {@Link ArkUI_NodeEvent} object is \n
+     * {@Link ArkUI_NodeComponentEvent}. \n
+     * {@Link ArkUI_NodeComponentEvent} contains no parameter:\n
+     *
+    */
+    NODE_IMAGE_ANIMATOR_EVENT_ON_START = MAX_NODE_SCOPE_NUM * ARKUI_NODE_IMAGE_ANIMATOR,
+    /**
+     * @brief Defines the event callback function triggered when the animation playback is paused.
+     *
+     * When the event callback occurs, the union type in the {@Link ArkUI_NodeEvent} object is \n
+     * {@Link ArkUI_NodeComponentEvent}. \n
+     * {@Link ArkUI_NodeComponentEvent} contains no parameter:\n
+     *
+    */
+    NODE_IMAGE_ANIMATOR_EVENT_ON_PAUSE = 19001,
+    /**
+     * @brief Defines the event callback function triggered when the animation playback is repeated.
+     *
+     * When the event callback occurs, the union type in the {@Link ArkUI_NodeEvent} object is \n
+     * {@Link ArkUI_NodeComponentEvent}. \n
+     * {@Link ArkUI_NodeComponentEvent} contains no parameter:\n
+     *
+    */
+    NODE_IMAGE_ANIMATOR_EVENT_ON_REPEAT = 19002,
+    /**
+     * @brief Defines the event callback function when the animation playback returns to the initial state.
+     *
+     * When the event callback occurs, the union type in the {@Link ArkUI_NodeEvent} object is \n
+     * {@Link ArkUI_NodeComponentEvent}. \n
+     * {@Link ArkUI_NodeComponentEvent} contains no parameter:\n
+     *
+    */
+    NODE_IMAGE_ANIMATOR_EVENT_ON_CANCEL = 19003,
+    /**
+     * @brief Defines the event callback function triggered when the animation playback is complete or stopped.
+     *
+     * When the event callback occurs, the union type in the {@Link ArkUI_NodeEvent} object is \n
+     * {@Link ArkUI_NodeComponentEvent}. \n
+     * {@Link ArkUI_NodeComponentEvent} contains no parameter:\n
+     *
+    */
+    NODE_IMAGE_ANIMATOR_EVENT_ON_FINISH = 19004,
 
     /**
      * @brief Defines the event triggered when the index of the currently displayed element of this
