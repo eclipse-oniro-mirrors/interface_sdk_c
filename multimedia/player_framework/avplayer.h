@@ -43,7 +43,7 @@
 #include "native_averrors.h"
 #include "avplayer_base.h"
 #include "native_window/external_window.h"
-#include "common/native_audiostream_base.h"
+#include "ohaudio/native_audiostream_base.h"
 
 #ifdef __cplusplus
 extern "C" {
