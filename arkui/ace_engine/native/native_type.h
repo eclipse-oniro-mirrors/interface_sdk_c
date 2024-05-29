@@ -1903,6 +1903,18 @@ typedef enum {
 } ArkUI_AnimationFillMode;
 
 /**
+ * @brief Defines the state type for the accessibility checkbox.
+ *
+ * @since 12
+ */
+typedef enum {
+    /** The Checkbox unchecked. */
+    ARKUI_ACCESSIBILITY_UNCHECKED = 0,
+    /** The Checkbox checked. */
+    ARKUI_ACCESSIBILITY_CHECKED,
+} ArkUI_AccessibilityCheckedState;
+
+/**
  * @brief Define accessible action types.
  *
  * @since 12

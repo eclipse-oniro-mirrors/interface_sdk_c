@@ -4651,10 +4651,12 @@ typedef enum {
      *
      * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
      * .value[0].f32: the front margin. The unit is vp. The default value is <b>0.0</b>\n
-     * \n
+     * .value[1]?.i32: whether to ignore blanks, the default value is 0.
+     * The value <b>1</b> means to ignore blank areas, and <b>0</b> means the opposite. \n
      * Format of the return value {@link ArkUI_AttributeItem}:\n
      * .value[0].f32: the front margin, the unit is vp. \n
-     *
+     * .value[1].i32: whether to ignore blank areas. The value <b>1</b> means to ignore blank areas, and <b>0</b> means
+     * the opposite. \n
      */
     NODE_SWIPER_PREV_MARGIN,
 
@@ -4664,9 +4666,12 @@ typedef enum {
      *
      * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
      * .value[0].f32: the back margin. The unit is vp. The default value is <b>0.0</b>\n
-     * \n
+     * .value[1]?.i32: whether to ignore blanks, the default value is 0.
+     * The value <b>1</b> means to ignore blank areas, and <b>0</b> means the opposite. \n
      * Format of the return value {@link ArkUI_AttributeItem}:\n
      * .value[0].f32: the back margin, the unit is vp. \n
+     * .value[1].i32: whether to ignore blank areas. The value <b>1</b> means to ignore blank areas, and <b>0</b> means
+     * the opposite. \n
      */
     NODE_SWIPER_NEXT_MARGIN,
 
