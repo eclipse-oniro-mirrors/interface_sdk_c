@@ -333,6 +333,14 @@
     },
     {
         "first_introduced": "12",
+        "name": "OH_MD_KEY_VIDEO_PIC_WIDTH"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_MD_KEY_VIDEO_PIC_HEIGHT"
+    },
+    {
+        "first_introduced": "12",
         "name": "OH_MD_KEY_VIDEO_ENABLE_LOW_LATENCY"
     },
     {
