@@ -51,8 +51,9 @@ extern "C" {
  * @param env Indicates the NAPI environment pointer.
  * @param frameNode Indicates the <b>FrameNode</b> object created on the ArkTS side.
  * @param handle Indicates the pointer to the <b>ArkUI_NodeHandle</b> object.
- * @return Returns 0 if success.
- * Returns 401 if a parameter exception occurs.
+ * @return Returns the error code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
  * @since 12
  */
 int32_t OH_ArkUI_GetNodeHandleFromNapiValue(napi_env env, napi_value frameNode, ArkUI_NodeHandle* handle);
@@ -64,8 +65,9 @@ int32_t OH_ArkUI_GetNodeHandleFromNapiValue(napi_env env, napi_value frameNode, 
  * @param env ndicates the NAPI environment pointer.
  * @param value Indicates the <b>UIContext</b> object created on the ArkTS side.
  * @param context Indicates the pointer to the <b>ArkUI_ContextHandle</b> object.
- * @return Returns 0 if success.
- * Returns 401 if a parameter exception occurs.
+ * @return Returns the error code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
  * @since 12
  */
 int32_t OH_ArkUI_GetContextFromNapiValue(napi_env env, napi_value value, ArkUI_ContextHandle* context);
@@ -78,8 +80,9 @@ int32_t OH_ArkUI_GetContextFromNapiValue(napi_env env, napi_value value, ArkUI_C
   * @param env ndicates the NAPI environment pointer.
   * @param value Indicates the <b>NodeContent</b> object created on the ArkTS side.
   * @param content Indicates the pointer to the <b>ArkUI_NodeContentHandle</b> object.
-  * @return Returns 0 if success.
-  * Returns 401 if a parameter exception occurs.
+  * @return Returns the error code.
+  *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+  *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
   * @since 12
   */
 int32_t OH_ArkUI_GetNodeContentFromNapiValue(napi_env env, napi_value value, ArkUI_NodeContentHandle* content);
@@ -91,8 +94,9 @@ int32_t OH_ArkUI_GetNodeContentFromNapiValue(napi_env env, napi_value value, Ark
  * @param env Indicates the NAPI environment pointer.
  * @param value Indicates the <b>DrawableDescriptor</b> object created on the ArkTS side.
  * @param drawableDescriptor Indicates the pointer to the <b>ArkUI_DrawableDescriptro</b> object.
- * @return Returns 0 if success.
- * Returns 401 if a parameter exception occurs.
+ * @return Returns the error code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
  * @since 12
 */
 int32_t OH_ArkUI_GetDrawableDescriptorFromNapiValue(
@@ -105,8 +109,9 @@ int32_t OH_ArkUI_GetDrawableDescriptorFromNapiValue(
  * @param env Indicates the NAPI environment pointer.
  * @param value Indicates the <b>Resource</b> object created on the ArkTS side.
  * @param drawableDescriptor Indicates the pointer to the <b>ArkUI_DrawableDescriptro</b> object.
- * @return Returns 0 if success.
- * Returns 401 if a parameter exception occurs.
+ * @return Returns the error code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
  * @since 12
 */
 int32_t OH_ArkUI_GetDrawableDescriptorFromResourceNapiValue(
