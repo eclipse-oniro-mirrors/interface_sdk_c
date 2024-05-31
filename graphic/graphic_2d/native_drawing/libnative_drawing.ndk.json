@@ -76,6 +76,14 @@
         "first_introduced": "12",
         "name": "OH_Drawing_CanvasDrawPoints"
     },
+    {
+        "first_introduced": "12",
+        "name": "OH_Drawing_CanvasDrawColor"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_Drawing_CanvasDrawPoint"
+    },
     { "name": "OH_Drawing_CanvasDrawRect" },
     { "name": "OH_Drawing_CanvasDrawRoundRect" },
     { "name": "OH_Drawing_CanvasDrawTextBlob" },
@@ -122,7 +130,23 @@
     { "name": "OH_Drawing_CanvasGetLocalClipBounds" },
     { "name": "OH_Drawing_CanvasGetTotalMatrix" },
     { "name": "OH_Drawing_CanvasConcatMatrix" },
+    {
+        "first_introduced": "12",
+        "name": "OH_Drawing_MatrixGetAll"
+    },
     { "name": "OH_Drawing_CanvasDrawShadow" },
+    {
+        "first_introduced": "12",
+        "name": "OH_Drawing_CanvasIsClipEmpty"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_Drawing_CanvasClipRegion"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_Drawing_CanvasGetImageInfo"
+    },
     { "name": "OH_Drawing_CreateDashPathEffect" },
     { "name": "OH_Drawing_PathEffectDestroy" },
     { "name": "OH_Drawing_ColorFilterCreateBlendMode" },
@@ -197,6 +221,10 @@
     {
         "first_introduced": "12",
         "name": "OH_Drawing_FontIsSubpixel"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_Drawing_FontMeasureText"
     },
     {
         "first_introduced": "12",
@@ -472,6 +500,18 @@
     },
     { "name": "OH_Drawing_PointCreate" },
     { "name": "OH_Drawing_PointDestroy" },
+    {
+        "first_introduced": "12",
+        "name": "OH_Drawing_PointGetX"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_Drawing_PointGetY"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_Drawing_PointSet"
+    },
     { "name": "OH_Drawing_ColorSetArgb" },
     {
         "first_introduced": "12",
@@ -558,6 +598,10 @@
         "name": "OH_Drawing_RoundRectSetCorner"
     },
     { "name": "OH_Drawing_RoundRectDestroy" },
+    {
+        "first_introduced": "12",
+        "name": "OH_Drawing_RoundRectOffset"
+    },
     { "name": "OH_Drawing_SetTextStyleColor" },
     { "name": "OH_Drawing_SetTextStyleFontSize" },
     { "name": "OH_Drawing_SetTextStyleFontWeight" },
