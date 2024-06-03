@@ -76,7 +76,9 @@ typedef struct {
     * @param update Indicates the animation closure. The system automatically inserts a transition animation
     * for the state change caused by the closure.
     * @param complete Indicates the callback to be invoked when the animation playback is complete.
-    * @return Returns <b>0</b> if the operation is successful; returns <b>401</b> if a parameter error occurs.
+    * @return Returns the error code.
+    *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+    *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
     */
     int32_t (*animateTo)(ArkUI_ContextHandle context, ArkUI_AnimateOption* option, ArkUI_ContextCallback* update,
         ArkUI_AnimateCompleteCallback* complete);

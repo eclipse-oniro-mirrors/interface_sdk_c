@@ -15,7 +15,6 @@
 
 import os
 import stat
-import pandas as pd
 
 
 def sort_by_kit(result_info_list: list, output_path):
@@ -86,14 +85,15 @@ def sort_by_type(result_info_list_file: list):
     return sorted_by_type_list
 
 
-def create_md_table_with_pandas(data):
+def change_to_md_data(data):
     """
-    Description:将列表中字典元素数据转为md支持的数据
+    Description:将列表中字典元素数据转为str的数据
     """
-    df = pd.DataFrame(data)
-    markdown_table = df.to_markdown(index=False)
-    if markdown_table:
-        markdown_table.encode(encoding='utf-8')
+    headers = list(data[0].keys())
+    markdown_table = '{}{}{}'.format("|", "|".join(headers), "|\n")
+    markdown_table += '{}{}{}'.format("|", "|".join(["---"] * len(headers)), "|\n")
+    for element in data:
+        markdown_table += '{}{}{}'.format("|", "|".join(str(element[header]) for header in headers), "|\n")
     return markdown_table
 
 
@@ -123,7 +123,7 @@ def write_data_in_md(kit_name: str, write_data: list, output_path):
         kit_name = r'nullOfKit'
     file_name = '{}{}'.format(kit_name, '.md')
     list_element_dict = change_list_obj_to_dict(write_data)
-    md_data = create_md_table_with_pandas(list_element_dict)
+    md_data = change_to_md_data(list_element_dict)
     if md_data:
         diff_str = r'diff合集'
         path_str = os.path.abspath(os.path.join(output_path, diff_str))

@@ -92,6 +92,8 @@ def get_api_change_obj(api_data):
             compatible_dict['不兼容'] = 1
         if element.api_modification_type in modification_type_dict:
             modification_type_dict[element.api_modification_type] = 1
+    if 1 == modification_type_dict.get('API修改(原型修改)') or 1 == modification_type_dict.get('API修改(约束变化)'):
+        modification_type_dict['API修改'] = 1
     compatible_str = change_to_json(compatible_dict)
     modification_type_str = change_to_json(modification_type_dict)
     change_data_obj.set_compatible(compatible_str)
