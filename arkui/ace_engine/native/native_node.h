@@ -7049,6 +7049,36 @@ int32_t OH_ArkUI_NodeContent_RegisterCallback(ArkUI_NodeContentHandle content, A
 ArkUI_NodeContentEventType OH_ArkUI_NodeContentEvent_GetEventType(ArkUI_NodeContentEvent* event);
 
 /**
+ * @brief Obtains the node content object that triggers a node content event.
+ *
+ * @param event Indicates the pointer to the node content event.
+ * @return Returns the node content object that triggers the node content event.
+ * @since 12
+ */
+ArkUI_NodeContentHandle OH_ArkUI_NodeContentEvent_GetNodeContentHandle(ArkUI_NodeContentEvent* event);
+
+/**
+ * @brief Saves custom data on the specified node content.
+ *
+ * @param content Indicates the node content on which the custom data will be saved.
+ * @param userData Indicates the custom data to be saved.
+ * @return Returns the error code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @since 12
+ */
+int32_t OH_ArkUI_NodeContent_SetUserData(ArkUI_NodeContentHandle content, void* userData);
+
+/**
+ * @brief Obtains the custom data saved on the specified node content.
+ *
+ * @param content Indicates the target node content.
+ * @return Returns the custom data.
+ * @since 12
+ */
+void* OH_ArkUI_NodeContent_GetUserData(ArkUI_NodeContentHandle content);
+
+/**
  * @brief Add a node to a node content.
  *
  * @param content Indicates the pointer to the node content instance.
