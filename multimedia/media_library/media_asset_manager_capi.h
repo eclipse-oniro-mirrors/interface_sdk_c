@@ -55,6 +55,7 @@ OH_MediaAssetManager* OH_MediaAssetManager_Create(void);
 /**
  * @brief Request image source with dest path.
  *
+ * @permission ohos.permission.READ_IMAGEVIDEO
  * @param manager Pointer to an OH_MediaAssetManager instance.
  * @param uri The uri of the requested image resource.
  * @param requestOptions Options model for requesting resource.
@@ -69,6 +70,7 @@ MediaLibrary_RequestId OH_MediaAssetManager_RequestImageForPath(OH_MediaAssetMan
 /**
  * @brief Request video source with dest path.
  *
+ * @permission ohos.permission.READ_IMAGEVIDEO
  * @param manager Pointer to an OH_MediaAssetManager instance.
  * @param uri The uri of the requested video resource.
  * @param requestOptions Options model for requesting resource.
@@ -83,6 +85,7 @@ MediaLibrary_RequestId OH_MediaAssetManager_RequestVideoForPath(OH_MediaAssetMan
 /**
  * @brief Cancel request by request id.
  *
+ * @permission ohos.permission.READ_IMAGEVIDEO
  * @param manager Pointer to an OH_MediaAssetManager instance.
  * @param requestId The request id to be canceled.
  * @return Returns true if the request is canceled successfully; returns false otherwise.
