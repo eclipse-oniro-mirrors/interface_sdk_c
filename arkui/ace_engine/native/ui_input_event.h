@@ -672,7 +672,7 @@ int32_t OH_ArkUI_PointerEvent_SetInterceptHitTestMode(const ArkUI_UIInputEvent* 
  *
  * @param event Represents a pointer to the current UI input event.
  * @return Return to the mouse button type, where <b>1</b> is the left button, <b>2</b> is the right button,
- * <b>4</b> is the middle button, <b>8</b> is the back button, and <b>16</b> is the forward button.
+ * <b>3</b> is the middle button, <b>4</b> is the back button, and <b>5</b> is the forward button.
  * @since 12
  */
 int32_t OH_ArkUI_MouseEvent_GetMouseButton(const ArkUI_UIInputEvent* event);
@@ -686,6 +686,18 @@ int32_t OH_ArkUI_MouseEvent_GetMouseButton(const ArkUI_UIInputEvent* event);
  * @since 12
  */
 int32_t OH_ArkUI_MouseEvent_GetMouseAction(const ArkUI_UIInputEvent* event);
+
+/**
+ * @brief Sets whether to prevent event bubbling.
+ *
+ * @param event Indicates the pointer to the current UI input event.
+ * @param stopPropagation Indicates whether the event is prevented from bubbling.
+ * @return Returns the status code of the execution. If 0 is returned, the setting is successful.
+ *         If 401 is returned, the execution fails.
+ *         The possible cause of the failure is that the event parameter is abnormal, such as a null pointer.
+ * @since 12
+ */
+int32_t OH_ArkUI_PointerEvent_SetStopPropagation(const ArkUI_UIInputEvent* event, bool stopPropagation);
 
 #ifdef __cplusplus
 };
