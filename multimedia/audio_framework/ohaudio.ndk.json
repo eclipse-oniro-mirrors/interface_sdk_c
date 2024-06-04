@@ -314,5 +314,13 @@
     {
         "first_introduced": "12",
         "name":"OH_AudioStreamBuilder_SetRendererWriteDataCallback"
+    },
+    {
+        "first_introduced": "12",
+	"name":"OH_AudioRenderer_SetSilentModeAndMixWithOthers"
+    },
+    {
+        "first_introduced": "12",
+        "name":"OH_AudioRenderer_GetSilentModeAndMixWithOthers"
     }
 ]
