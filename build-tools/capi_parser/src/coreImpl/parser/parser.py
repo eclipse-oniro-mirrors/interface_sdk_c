@@ -286,28 +286,21 @@ def parser(directory_path):  # 目录路径
     return data_total
 
 
-def parser_include_ast(gn_file_path, include_path, flag=-1):        # 对于单独的.h解析接口
+def parser_include_ast(dire_file_path, include_path, flag=-1):        # 对于单独的.h解析接口
     correct_include_path = []
 
     link_include_path = []
     copy_std_lib(link_include_path)
     find_include(link_include_path)
-    link_include(gn_file_path, StringConstant.FUNK_NAME.value, link_include_path)
+    link_include(dire_file_path, StringConstant.FUNK_NAME.value, link_include_path)
     if len(link_include_path) <= 1:
-        copy_self_include(link_include_path, gn_file_path, flag)
-
-    modes = stat.S_IRWXO | stat.S_IRWXG | stat.S_IRWXU
-    fd = os.open('include_file_suffix.txt', os.O_WRONLY | os.O_CREAT, mode=modes)
+        copy_self_include(link_include_path, dire_file_path, flag)
     for item in include_path:
         split_path = os.path.splitext(item)
         if split_path[1] == '.h':   # 判断.h结尾
             correct_include_path.append(item)
-        else:
-            exc = 'The file does not end with.h: {}\n'.format(item)
-            os.write(fd, exc.encode())
-    os.close(fd)
 
-    data = parse_include.get_include_file(correct_include_path, link_include_path, gn_file_path)
+    data = parse_include.get_include_file(correct_include_path, link_include_path, dire_file_path)
 
     for item in data:
         if 'children' in item:

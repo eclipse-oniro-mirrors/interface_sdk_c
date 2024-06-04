@@ -50,7 +50,7 @@ def run_tools(options):
     if tool_name == ToolNameType["COLLECT"].value:
         parser.parser(options.parser_path)
     elif tool_name == ToolNameType["DIFF"].value:
-        diff.process_dir(options.diff_path_old, options.diff_path_new)
+        diff.process_dir(options.diff_path_old, options.diff_path_new, options.output_path)
     elif tool_name == ToolNameType["CHECK"].value:
         check.curr_entry(options.path, options.root_path, options.checker, options.output)
     elif tool_name == ToolNameType['COLLECT_H'].value:
@@ -87,7 +87,7 @@ class Config(object):
             "abbr": "-O",
             "required": False,
             "type": str,
-            "help": "collect_file工具输出文件路径"
+            "help": "工具输出文件路径"
         },
         {
             "name": "--codecheck--path",

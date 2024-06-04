@@ -632,8 +632,9 @@ int32_t OH_NativeXComponent_UnregisterOnFrameCallback(OH_NativeXComponent* compo
  *
  * @param component Indicates the pointer to the <b>OH_NativeXComponent</b> instance.
  * @param root Indicates the pointer to the component instance created by the native API.
- * @return Returns 0 if success.
- *         Returns 401 if a parameter exception occurs.
+ * @return Returns the error code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
  *
  * @since 12
  */
@@ -644,8 +645,9 @@ int32_t OH_NativeXComponent_AttachNativeRootNode(OH_NativeXComponent* component,
  *
  * @param component Indicates the pointer to the <b>OH_NativeXComponent</b> instance.
  * @param root Indicates the pointer to the component instance created by the native API.
- * @return Returns 0 if success.
- *         Returns 401 if a parameter exception occurs.
+ * @return Returns the error code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
  *
  * @since 12
  */
@@ -658,8 +660,9 @@ int32_t OH_NativeXComponent_DetachNativeRootNode(OH_NativeXComponent* component,
  * @param component Indicates the pointer to the <b>OH_NativeXComponent</b> instance.
  * @param callback Indicates the pointer to the UI input event callback.
  * @param type Indicates the type of the current UI input event.
- * @return Returns 0 if success.
- * Returns 401 if a parameter exception occurs.
+ * @return Returns the error code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
  * @since 12
  */
 int32_t OH_NativeXComponent_RegisterUIInputEventCallback(
@@ -709,8 +712,9 @@ int32_t OH_NativeXComponent_RegisterSurfaceHideCallback(
  *
  * @param component Indicates the pointer to the <b>OH_NativeXComponent</b> instance.
  * @param callback Indicates the pointer to the custom event intercept callback.
- * @return Returns 0 if success.
- *         Returns 401 if a parameter exception occurs.
+ * @return Returns the error code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
  * @since 12
  */
 int32_t OH_NativeXComponent_RegisterOnTouchInterceptCallback(

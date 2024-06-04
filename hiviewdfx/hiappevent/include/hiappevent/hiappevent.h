@@ -427,10 +427,19 @@ ParamList OH_HiAppEvent_AddStringArrayParam(ParamList list, const char* name, co
  * @param type Indicates the event type, which is defined in {@link EventType}.
  * @param list Indicates a linked list of event parameters, each of which is comprised of the parameter name and
  * parameter value.
- * @return Returns {@code 0} if the event parameter verification is successful, and the event will be written to
+ * @return Returns 0 if the event parameter verification is successful, and the event will be written to
  * the event file; returns a positive integer if invalid parameters are present in the event, and
  * the event will be written to the event file after the invalid parameters are ignored; returns a
  * negative integer if the event parameter verification fails, and the event will not be written to the event file.
+ *         {@code 0} Parameters verification is successful.
+ *         {@code -1} Invalid event name.
+ *         {@code -4} Invalid event domain.
+ *         {@code -99} Function disabled.
+ *         {@code 1} Invalid event parameter name.
+ *         {@code 4} Invalid string length of the event parameter.
+ *         {@code 5} Invalid number of event parameters.
+ *         {@code 6} Invalid array length of the event parameter.
+ *         {@code 8} Duplicate parameter.
  * @since 8
  * @version 1.0
  */
@@ -444,7 +453,7 @@ int OH_HiAppEvent_Write(const char* domain, const char* name, enum EventType typ
  *
  * @param name Configuration item name.
  * @param value Configuration item value.
- * @return Configuration result.
+ * @return Returns true if configuration successful; returns false if configuration failed.
  * @since 8
  * @version 1.0
  */
@@ -481,8 +490,10 @@ void OH_HiAppEvent_DestroyWatcher(HiAppEvent_Watcher* watcher);
  * @param row The row of write events that trigger the onTrigger callback.
  * @param size The size of write events that trigger the onTrigger callback.
  * @param timeOut The interval for trigger the onTrigger callback.
- * @return Returns {@code 0} if set TriggerCondition is successful, and returns a
+ * @return Returns 0 if set TriggerCondition is successful, and returns a
  * negative integer if set fail.
+ *         {@code 0} Success.
+ *         {@code -5} The watcher is nullptr.
  * @since 12
  * @version 1.0
  */
@@ -498,8 +509,12 @@ int OH_HiAppEvent_SetTriggerCondition(HiAppEvent_Watcher* watcher, int row, int 
  * SECURITY, 0x02 means STATISTIC,0x01 means FAULT, 0xff and 0x00 means all.
  * @param names The names of the events to be monitored by the watcher.
  * @param namesLen The length of names array.
- * @return Returns {@code 0} if set AppEventFilter is successful, and returns a
+ * @return Returns 0 if set AppEventFilter is successful, and returns a
  * negative integer if set fail.
+ *         {@code 0} Success.
+ *         {@code -1} Invalid event name.
+ *         {@code -4} Invalid event domain.
+ *         {@code -5} The watcher is nullptr.
  * @since 12
  * @version 1.0
  */
@@ -514,8 +529,10 @@ int OH_HiAppEvent_SetAppEventFilter(HiAppEvent_Watcher* watcher, const char* dom
  * @SystemCapability.HiviewDFX.HiAppEvent
  * @param watcher The pointer to the HiAppEvent_Watcher instance.
  * @param onTrigger The callback of the watcher.
- * @return Returns {@code 0} if set OnTrigger is successful, and returns a
+ * @return Returns 0 if set OnTrigger is successful, and returns a
  * negative integer if set fail.
+ *         {@code 0} Success.
+ *         {@code -5} The watcher is nullptr.
  * @since 12
  * @version 1.0
  */
@@ -528,8 +545,10 @@ int OH_HiAppEvent_SetWatcherOnTrigger(HiAppEvent_Watcher* watcher, OH_HiAppEvent
  * @SystemCapability.HiviewDFX.HiAppEvent
  * @param watcher The pointer to the HiAppEvent_Watcher instance.
  * @param onReceive The callback of the watcher.
- * @return Returns {@code 0} if set OnReceive is successful, and returns a
+ * @return Returns 0 if set OnReceive is successful, and returns a
  * negative integer if set fail.
+ *         {@code 0} Success.
+ *         {@code -5} The watcher is nullptr.
  * @since 12
  * @version 1.0
  */
@@ -542,8 +561,11 @@ int OH_HiAppEvent_SetWatcherOnReceive(HiAppEvent_Watcher* watcher, OH_HiAppEvent
  * @param watcher The pointer to the HiAppEvent_Watcher instance.
  * @param eventNum The num of events to take.
  * @param onTake The callback of the watcher.
- * @return Returns {@code 0} if remove watcher is successful, and returns a
- * negative integer if remove fail.
+ * @return Returns 0 if take events is successful, and returns a
+ * negative integer if take fail.
+ *         {@code 0} Success.
+ *         {@code -5} The watcher is nullptr.
+ *         {@code -6} This interface must be called after OH_HiAppEvent_AddWatcher.
  * @since 12
  * @version 1.0
  */
@@ -554,8 +576,10 @@ int OH_HiAppEvent_TakeWatcherData(HiAppEvent_Watcher* watcher, uint32_t eventNum
  *
  * @SystemCapability.HiviewDFX.HiAppEvent
  * @param watcher The pointer to the HiAppEvent_Watcher instance which receive the event.
- * @return Returns {@code 0} if add watcher is successful, and returns a
+ * @return Returns 0 if add watcher is successful, and returns a
  * negative integer if add fail.
+ *         {@code 0} Success.
+ *         {@code -5} The watcher is nullptr.
  * @since 12
  * @version 1.0
  */
@@ -566,8 +590,11 @@ int OH_HiAppEvent_AddWatcher(HiAppEvent_Watcher* watcher);
  *
  * @SystemCapability.HiviewDFX.HiAppEvent
  * @param watcher The pointer to the HiAppEvent_Watcher instance.
- * @return Returns {@code 0} if remove watcher is successful, and returns a
+ * @return Returns 0 if remove watcher is successful, and returns a
  * negative integer if remove fail.
+ *         {@code 0} Success.
+ *         {@code -5} The watcher is nullptr.
+ *         {@code -6} This interface must be called after OH_HiAppEvent_AddWatcher.
  * @since 12
  * @version 1.0
  */
