@@ -219,6 +219,14 @@ extern const char *OH_AVCODEC_MIMETYPE_AUDIO_OPUS;
 extern const char *OH_AVCODEC_MIMETYPE_AUDIO_G711MU;
 
 /**
+ * @brief Enumerates the MIME type of audio low bitrate voice codec.
+ *
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
+ * @since 12
+ */
+extern const char *OH_AVCODEC_MIMETYPE_AUDIO_LBVC;
+
+/**
  * @brief Enumerates the MIME type of audio ape codec.
  *
  * @syscap SystemCapability.Multimedia.Media.CodecBase
@@ -604,6 +612,16 @@ typedef enum OH_AVOutputFormat {
     AV_OUTPUT_FORMAT_DEFAULT = 0,
     AV_OUTPUT_FORMAT_MPEG_4 = 2,
     AV_OUTPUT_FORMAT_M4A = 6,
+    /**
+     * The muxer output amr file format.
+     * @since 12
+     */
+    AV_OUTPUT_FORMAT_AMR = 8,
+    /**
+     * The muxer output mp3 file format.
+     * @since 12
+     */
+    AV_OUTPUT_FORMAT_MP3 = 9,
 } OH_AVOutputFormat;
 
 /**
