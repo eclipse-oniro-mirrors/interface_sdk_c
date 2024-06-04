@@ -587,6 +587,10 @@
         "first_introduced": "12",
         "name": "OH_Drawing_ShaderEffectCreateImageShader"
     },
+    {
+        "first_introduced": "12",
+        "name": "OH_Drawing_ShaderEffectCreateTwoPointConicalGradient"
+    },
     { "name": "OH_Drawing_ShaderEffectDestroy" },
     {
         "first_introduced": "12",
