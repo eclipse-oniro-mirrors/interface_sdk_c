@@ -517,6 +517,10 @@ typedef enum {
      * .value[2].f32: height of rectangle.\n
      * .value[3].f32: width of the rounded corner of the rectangle.\n
      * .value[4].f32: height of the rounded corner of the rectangle.\n
+     * .value[5]?.f32: radius of the top left corner of the rectangular shape.\n
+     * .value[6]?.f32: radius of the bottom left corner of the rectangular shape.\n
+     * .value[7]?.f32: radius of the top right corner of the rectangular shape.\n
+     * .value[8]?.f32: radius of the bottom right corner of the rectangular shape.\n
      * 2. Circle:\n
      * .value[0].i32: type of shape. The parameter type is {@link ArkUI_ClipType}.
      * The value is <b>ARKUI_CLIP_TYPE_CIRCLE</b> for the circle shape.\n
@@ -541,6 +545,10 @@ typedef enum {
      * .value[2].f32: height of rectangle.\n
      * .value[3].f32: width of the rounded corner of the rectangle.\n
      * .value[4].f32: height of the rounded corner of the rectangle.\n
+     * .value[5].f32: radius of the top left corner of the rectangular shape; \n
+     * .value[6].f32: radius of the bottom left corner of the rectangular shape; \n
+     * .value[7].f32: radius of the top right corner of the rectangular shape; \n
+     * .value[8].f32: radius of the bottom right corner of the rectangular shape; \n
      * 2. Circle:\n
      * .value[0].i32: type of shape. The parameter type is {@link ArkUI_ClipType}.
      * The value is <b>ARKUI_CLIP_TYPE_CIRCLE</b> for the circle shape.\n
@@ -821,10 +829,22 @@ typedef enum {
      * This attribute can be set, reset, and obtained as required through APIs.
      *
      * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * value[0].i32: The parameter type is {@link ArkUI_TransitionEdge}. \n
+     * .value[0].i32: The parameter type is {@link ArkUI_TransitionEdge}. \n
+     * .value[1].i32: animation duration, in milliseconds.\n
+     * .value[2].i32: animation curve type. The value is an enum of {@link ArkUI_AnimationCurve}.\n
+     * .value[3]?.i32: animation delay duration, in milliseconds.\n
+     * .value[4]?.i32: number of times that the animation is played.\n
+     * .value[5]?.i32: animation playback mode. The value is an enum of {@link ArkUI_AnimationPlayMode}.\n
+     * .value[6]?.f32: animation playback speed.\n
      * \n
      * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * value[0].i32: The parameter type is {@link ArkUI_TransitionEdge}. \n
+     * .value[0].i32: The parameter type is {@link ArkUI_TransitionEdge}. \n
+     * .value[1].i32: animation duration, in milliseconds.\n
+     * .value[2].i32: animation curve type. The value is an enum of {@link ArkUI_AnimationCurve}.\n
+     * .value[3].i32: animation delay duration, in milliseconds. \n
+     * .value[4].i32: number of times that the animation is played. \n
+     * .value[5].i32: animation playback mode. The value is an enum of {@link ArkUI_AnimationPlayMode}. \n
+     * .value[6].f32: animation playback speed. \n
      *
      */
     NODE_MOVE_TRANSITION,
@@ -974,6 +994,10 @@ typedef enum {
      * .value[5].f32: height of the rectangle.\n
      * .value[6].f32: width of the rounded corner of the rectangle.\n
      * .value[7].f32: height of the rounded corner of the rectangle.\n
+     * .value[8]?.f32: radius of the top left corner of the rectangular shape.\n
+     * .value[9]?.f32: radius of the bottom left corner of the rectangular shape.\n
+     * .value[10]?.f32: radius of the top right corner of the rectangular shape.\n
+     * .value[11]?.f32: radius of the bottom right corner of the rectangular shape.\n
      * 2. Circle:\n
      * .value[0].u32 fill color, in 0xARGB format. \n
      * .value[1].u32: stroke color, in 0xARGB format. \n
@@ -1016,6 +1040,10 @@ typedef enum {
      * .value[5].f32: height of the rectangle.\n
      * .value[6].f32: width of the rounded corner of the rectangle.\n
      * .value[7].f32: height of the rounded corner of the rectangle.\n
+     * .value[8].f32: radius of the top left corner of the rectangular shape.\n
+     * .value[9].f32: radius of the bottom left corner of the rectangular shape.\n
+     * .value[10].f32: radius of the top right corner of the rectangular shape.\n
+     * .value[11].f32: radius of the bottom right corner of the rectangular shape.\n
      * 2. Circle:\n
      * .value[0].u32 fill color, in 0xARGB format. \n
      * .value[1].u32: stroke color, in 0xARGB format. \n
@@ -4443,6 +4471,20 @@ typedef enum {
     NODE_LIST_CHILDREN_MAIN_SIZE = 1003007,
 
     /**
+     * @brief Set the index value of the item displayed at the start of the viewport
+     * when the current List is first loaded.This attribute can be set, reset, and obtained as required through APIs.
+     *
+     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
+     * .value[0].i32: index value of the item displayed at
+     * the start of the viewport when the current List is loaded for the first time. Default value: 0.\n
+     * \n
+     * Format of the return value {@link ArkUI_AttributeItem}:\n
+     * .value[0].i32: index value of the item displayed at
+     * the start of the viewport when the current List is loaded for the first time. Default value: 0.\n
+     */
+    NODE_LIST_INITIAL_INDEX = 1003008,
+
+    /**
      * @brief Defines whether to enable loop playback for the swiper.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
@@ -4897,6 +4939,32 @@ typedef enum {
      *
      */
     NODE_REFRESH_PULL_DOWN_RATIO = 1009002,
+    /**
+     * @brief Sets the pull-down offset that initiates a refresh.
+     * This attribute can be set, reset, and obtained as required through APIs.
+     *
+     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
+     * .value[0].f32: pull-down offset, in vp. The default value is <b>64vp</b>.
+     * \n
+     * Format of the return value {@link ArkUI_AttributeItem}:\n
+     * .value[0].f32: pull-down offset, in vp. The default value is <b>64vp</b>.
+     *
+     */
+    NODE_REFRESH_OFFSET = 1009003,
+    /**
+     * @brief Sets whether to initiate a refresh when the pull-down distance exceeds the value of <b>refreshOffset</b>.
+     * This attribute can be set, reset, and obtained as required through APIs.
+     *
+     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
+     * .value[0].i32: whether to initiate a refresh. The value <b>true</b> means to initiate a refresh, and
+     * <b>false</b> means the opposite.
+     * \n
+     * Format of the return value {@link ArkUI_AttributeItem}:\n
+     * .value[0].i32: whether to initiate a refresh. The value <b>1</b> means to initiate a refresh, and
+     * <b>0</b> means the opposite.
+     *
+     */
+    NODE_REFRESH_PULL_TO_REFRESH = 1009004,
 
     /**
      * @brief Defines the main axis direction of the <b><WaterFlow></b> component layout.
@@ -5890,13 +5958,16 @@ typedef enum {
      * 3. Cross boundary rebound.\n
      * When an event callback occurs, the union type in the event parameter {@ link ArkUI_NodeEvent} object is
      * {@link ArkUI_NodeComponentEvent}. \n
-     * {@link ArkUI_NodeComponentEvent} contains three parameters: \n
+     * {@link ArkUI_NodeComponentEvent} contains four parameters: \n
      * <b>ArkUI_NodeComponentEvent.data[0].f32</b>: The offset for each frame of scrolling is positive when scrolling to
      * the left and negative when scrolling to the right, measured in vp. \n
      * <b>ArkUI_NodeComponentEvent.data[1].f32</b>: The offset of each frame scrolling, with a positive offset when
      * scrolling up and a negative offset when scrolling down, measured in vp. \n
-     * <b>ArkUI_NodeComponentEvent.data[2].i32</b>: Current sliding state,\n
-     * parameter type is {@link ArkUI_ScrollState}.\n
+     * <b>ArkUI_NodeComponentEvent.data[2].i32</b>: Current sliding state, \n
+     * parameter type is {@link ArkUI_ScrollState}. \n
+     * <b>ArkUI_NodeComponentEvent.data[3].i32</b>: Current scroll source, \n
+     * parameter type is {@link ArkUI_ScrollSource}. \n
+     * @return Does not return or returns a number that sets the actual scroll distance of the scroll component.
      */
     NODE_SCROLL_EVENT_ON_WILL_SCROLL,
     /**
@@ -6003,11 +6074,15 @@ typedef enum {
      * Out-of-bounds rebound. \n
      * When the event callback occurs, the union type in the {@Link ArkUI_NodeEvent} object is \n
      * {@Link ArkUI_NodeComponentEvent}. \n
-     * {@Link ArkUI_NodeComponentEvent} contains two parameters: \n
+     * {@Link ArkUI_NodeComponentEvent} contains three parameters: \n
      * ArkUI_NodeComponentEvent.data[0].f32: offset of each frame scrolling. \n
      * The offset is positive when the list content is scrolled up and \n
      * is negative when the list content is scrolled down. \n
      * ArkUI_NodeComponentEvent.data[1].i32: Current sliding state. \n
+     * parameter type is {@link ArkUI_ScrollState}. \n
+     * <b>ArkUI_NodeComponentEvent.data[2].i32</b>: Current scroll source, \n
+     * parameter type is {@link ArkUI_ScrollSource}. \n
+     * @return Does not return or returns a number that sets the actual scroll distance of the scroll component. \n
      */
     NODE_LIST_ON_WILL_SCROLL,
     /**
@@ -6065,10 +6140,15 @@ typedef enum {
      * 3. The out-of-bounds bounce effect is supported. \n
      * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
      * {@link ArkUI_NodeComponentEvent}. \n
-     * {@link ArkUI_NodeComponentEvent} contains two parameters: \n
-     * <b>ArkUI_NodeComponentEvent.data[0].f32</b>: scroll offset of each frame. The offset is positive when the
-     * component is scrolled up and negative when the component is scrolled down. \n
-     * <b>ArkUI_NodeComponentEvent.data[1].i32</b>: current scroll state. \n
+     * {@Link ArkUI_NodeComponentEvent} contains three parameters: \n
+     * ArkUI_NodeComponentEvent.data[0].f32: offset of each frame scrolling. \n
+     * The offset is positive when the list content is scrolled up and \n
+     * is negative when the list content is scrolled down. \n
+     * ArkUI_NodeComponentEvent.data[1].i32: Current sliding state. \n
+     * parameter type is {@link ArkUI_ScrollState}. \n
+     * <b>ArkUI_NodeComponentEvent.data[2].i32</b>: Current scroll source, \n
+     * parameter type is {@link ArkUI_ScrollSource}. \n
+     * @return Does not return or returns a number that sets the actual scroll distance of the scroll component. \n
      */
     NODE_ON_WILL_SCROLL = MAX_NODE_SCOPE_NUM * ARKUI_NODE_WATER_FLOW,
     /**
@@ -6434,9 +6514,7 @@ uint32_t OH_ArkUI_NodeAdapterEvent_GetItemIndex(ArkUI_NodeAdapterEvent* event);
 * @brief Obtains the scrollable container node that uses the specified adapter.
 *
 * @param event Indicates the target adapter event.
-* @return Returns the error code.
-*         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
-*         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+* @return Returns the scrollable container node that uses the specified adapter.
 * @since 12
 */
 ArkUI_NodeHandle OH_ArkUI_NodeAdapterEvent_GetHostNode(ArkUI_NodeAdapterEvent* event);
