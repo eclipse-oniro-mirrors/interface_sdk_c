@@ -66,7 +66,7 @@ typedef struct DRM_MediaKeySystemInfo DRM_MediaKeySystemInfo;
  * @brief Call back will be invoked when updating DRM information.
  * @param player Player instance.
  * @param mediaKeySystemInfo DRM information.
- * @return DRM_ERR_INVALID_VAL when the params checked failure, return DRM_ERR_OK when function called successfully.
+ * @return void
  * @since 12
  * @version 1.0
  */
@@ -75,7 +75,8 @@ typedef void (*Player_MediaKeySystemInfoCallback)(OH_AVPlayer *player, DRM_Media
 /**
  * @brief Create a player
  * @syscap SystemCapability.Multimedia.Media.AVPlayer
- * @return Returns a pointer to an OH_AVPlayer instance
+ * @return Returns a pointer to an OH_AVPlayer instance for success, nullptr for failure
+ * Possible failure causes: 1. failed to PlayerFactory::CreatePlayer. 2. failed to new PlayerObject.
  * @since 11
  * @version 1.0
 */
@@ -86,8 +87,9 @@ OH_AVPlayer *OH_AVPlayer_Create(void);
  * @syscap SystemCapability.Multimedia.Media.AVPlayer
  * @param player Pointer to an OH_AVPlayer instance
  * @param url Indicates the playback source.
- * @return Returns {@link AV_ERR_OK} if the url is set successfully; returns an error code defined
- * in {@link native_averrors.h} otherwise.
+ * @return Function result code.
+ *         {@link AV_ERR_OK} if the execution is successful.
+ *         {@link AV_ERR_INVALID_VAL} if input player is nullptr, url is null or player setUrlSource failed.
  * @since 11
  * @version 1.0
  */
@@ -100,8 +102,9 @@ OH_AVErrCode OH_AVPlayer_SetURLSource(OH_AVPlayer *player, const char *url);
  * @param fd Indicates the file descriptor of media source.
  * @param offset Indicates the offset of media source in file descriptor.
  * @param size Indicates the size of media source.
- * @return Returns {@link AV_ERR_OK} if the fd source is set successfully; returns an error code defined
- * in {@link native_averrors.h} otherwise.
+ * @return Function result code.
+ *         {@link AV_ERR_OK} if the execution is successful.
+ *         {@link AV_ERR_INVALID_VAL} if input player is nullptr or player setFdSource failed.
  * @since 11
  * @version 1.0
  */
@@ -114,8 +117,9 @@ OH_AVErrCode OH_AVPlayer_SetFDSource(OH_AVPlayer *player, int32_t fd, int64_t of
  *
  * @syscap SystemCapability.Multimedia.Media.AVPlayer
  * @param player Pointer to an OH_AVPlayer instance
- * @return Returns {@link AV_ERR_OK} if {@link Prepare} is successfully added to the task queue;
- * returns an error code defined in {@link native_averrors.h} otherwise.
+ * @return Function result code.
+ *         {@link AV_ERR_OK} if the execution is successful.
+ *         {@link AV_ERR_INVALID_VAL} if input player is nullptr or player Prepare failed.
  * @since 11
  * @version 1.0
  */
@@ -129,8 +133,9 @@ OH_AVErrCode OH_AVPlayer_Prepare(OH_AVPlayer *player);
  *
  * @syscap SystemCapability.Multimedia.Media.AVPlayer
  * @param player Pointer to an OH_AVPlayer instance
- * @return Returns {@link AV_ERR_OK} if the playback is started; otherwise returns an error code defined
- * in {@link native_averrors.h} otherwise.
+ * @return Function result code.
+ *         {@link AV_ERR_OK} if the execution is successful.
+ *         {@link AV_ERR_INVALID_VAL} if input player is nullptr or player Play failed.
  * @since 11
  * @version 1.0
  */
@@ -140,8 +145,9 @@ OH_AVErrCode OH_AVPlayer_Play(OH_AVPlayer *player);
  * @brief Pauses playback.
  * @syscap SystemCapability.Multimedia.Media.AVPlayer
  * @param player Pointer to an OH_AVPlayer instance
- * @return Returns {@link AV_ERR_OK} if {@link Pause} is successfully added to the task queue;
- * returns an error code defined in {@link native_averrors.h} otherwise.
+ * @return Function result code.
+ *         {@link AV_ERR_OK} if the execution is successful.
+ *         {@link AV_ERR_INVALID_VAL} if input player is nullptr or player Pause failed.
  * @since 11
  * @version 1.0
  */
@@ -151,8 +157,9 @@ OH_AVErrCode OH_AVPlayer_Pause(OH_AVPlayer *player);
  * @brief Stop playback.
  * @syscap SystemCapability.Multimedia.Media.AVPlayer
  * @param player Pointer to an OH_AVPlayer instance
- * @return Returns {@link AV_ERR_OK} if {@link Stop} is successfully added to the task queue;
- * returns an error code defined in {@link native_averrors.h} otherwise.
+ * @return Function result code.
+ *         {@link AV_ERR_OK} if the execution is successful.
+ *         {@link AV_ERR_INVALID_VAL} if input player is nullptr or player Stop failed.
  * @since 11
  * @version 1.0
  */
@@ -166,8 +173,9 @@ OH_AVErrCode OH_AVPlayer_Stop(OH_AVPlayer *player);
  *
  * @syscap SystemCapability.Multimedia.Media.AVPlayer
  * @param player Pointer to an OH_AVPlayer instance
- * @return Returns {@link AV_ERR_OK} if {@link Reset} is successfully added to the task queue;
- * returns an error code defined in {@link native_averrors.h} otherwise.
+ * @return Function result code.
+ *         {@link AV_ERR_OK} if the execution is successful.
+ *         {@link AV_ERR_INVALID_VAL} if input player is nullptr or player Reset failed.
  * @since 11
  * @version 1.0
  */
@@ -182,8 +190,9 @@ OH_AVErrCode OH_AVPlayer_Reset(OH_AVPlayer *player);
  *
  * @syscap SystemCapability.Multimedia.Media.AVPlayer
  * @param player Pointer to an OH_AVPlayer instance
- * @return Returns {@link AV_ERR_OK} if {@link Release} is successfully added to the task queue;
- * returns an error code defined in {@link native_averrors.h} otherwise.
+ * @return Function result code.
+ *         {@link AV_ERR_OK} if the execution is successful.
+ *         {@link AV_ERR_INVALID_VAL} if input player is nullptr or player Release failed.
  * @since 11
  * @version 1.0
  */
@@ -198,8 +207,9 @@ OH_AVErrCode OH_AVPlayer_Release(OH_AVPlayer *player);
  *
  * @syscap SystemCapability.Multimedia.Media.AVPlayer
  * @param player Pointer to an OH_AVPlayer instance
- * @return Returns {@link AV_ERR_OK} if the playback is released; returns an error code defined
- * in {@link native_averrors.h} otherwise.
+ * @return Function result code.
+ *         {@link AV_ERR_OK} if the execution is successful.
+ *         {@link AV_ERR_INVALID_VAL} if input player is nullptr or player ReleaseSync failed.
  * @since 11
  * @version 1.0
  */
@@ -218,8 +228,9 @@ OH_AVErrCode OH_AVPlayer_ReleaseSync(OH_AVPlayer *player);
  *        ranging from 0 to 1. each step is 0.01.
  * @param rightVolume Indicates the target volume of the right audio channel to set,
  *        ranging from 0 to 1. each step is 0.01.
- * @return Returns {@link AV_ERR_OK} if the volume is set; returns an error code defined
- * in {@link native_averrors.h} otherwise.
+ * @return Function result code.
+ *         {@link AV_ERR_OK} if the execution is successful.
+ *         {@link AV_ERR_INVALID_VAL} if input player is nullptr or player SetVolume failed.
  * @since 11
  * @version 1.0
  */
@@ -234,8 +245,9 @@ OH_AVErrCode OH_AVPlayer_SetVolume(OH_AVPlayer *player, float leftVolume, float 
  * @param player Pointer to an OH_AVPlayer instance
  * @param mSeconds Indicates the target playback position, accurate to milliseconds.
  * @param mode Indicates the player seek mode. For details, see {@link AVPlayerSeekMode}.
- * @return Returns {@link AV_ERR_OK} if the seek is done; returns an error code defined
- * in {@link native_averrors.h} otherwise.
+ * @return Function result code.
+ *         {@link AV_ERR_OK} if the execution is successful.
+ *         {@link AV_ERR_INVALID_VAL} if input player is nullptr or player Seek failed.
  * @since 11
  * @version 1.0
 */
@@ -246,8 +258,9 @@ OH_AVErrCode OH_AVPlayer_Seek(OH_AVPlayer *player, int32_t mSeconds, AVPlayerSee
  * @syscap SystemCapability.Multimedia.Media.AVPlayer
  * @param player Pointer to an OH_AVPlayer instance
  * @param currentTime Indicates the playback position.
- * @return Returns {@link AV_ERR_OK} if the current position is get; returns an error code defined
- * in {@link native_averrors.h} otherwise.
+ * @return Function result code.
+ *         {@link AV_ERR_OK} if the execution is successful.
+ *         {@link AV_ERR_INVALID_VAL} if input player is nullptr or player GetCurrentTime failed.
  * @since 11
  * @version 1.0
  */
@@ -258,8 +271,9 @@ OH_AVErrCode OH_AVPlayer_GetCurrentTime(OH_AVPlayer *player, int32_t *currentTim
  * @syscap SystemCapability.Multimedia.Media.AVPlayer
  * @param player Pointer to an OH_AVPlayer instance
  * @param videoWidth The video width
- * @return Returns {@link AV_ERR_OK} if the current position is get; returns an error code defined
- * in {@link native_averrors.h} otherwise.
+ * @return Function result code.
+ *         {@link AV_ERR_OK} if the execution is successful.
+ *         {@link AV_ERR_INVALID_VAL} if input player is nullptr.
  * @since 11
  * @version 1.0
  */
@@ -270,8 +284,9 @@ OH_AVErrCode OH_AVPlayer_GetVideoWidth(OH_AVPlayer *player, int32_t *videoWidth)
  * @syscap SystemCapability.Multimedia.Media.AVPlayer
  * @param player Pointer to an OH_AVPlayer instance
  * @param videoHeight The video height
- * @return Returns {@link AV_ERR_OK} if the current position is get; returns an error code defined
- * in {@link native_averrors.h} otherwise.
+ * @return Function result code.
+ *         {@link AV_ERR_OK} if the execution is successful.
+ *         {@link AV_ERR_INVALID_VAL} if input player is nullptr.
  * @since 11
  * @version 1.0
  */
@@ -282,8 +297,9 @@ OH_AVErrCode OH_AVPlayer_GetVideoHeight(OH_AVPlayer *player, int32_t *videoHeigh
  * @syscap SystemCapability.Multimedia.Media.AVPlayer
  * @param player Pointer to an OH_AVPlayer instance
  * @param speed the rate mode {@link AVPlaybackSpeed} which can set.
- * @return Returns {@link AV_ERR_OK} if the playback rate is set successful; returns an error code defined
- * in {@link native_averrors.h} otherwise.
+ * @return Function result code.
+ *         {@link AV_ERR_OK} if the execution is successful.
+ *         {@link AV_ERR_INVALID_VAL} if input player is nullptr or player SetPlaybackSpeed failed.
  * @since 11
  * @version 1.0
  */
@@ -294,8 +310,9 @@ OH_AVErrCode OH_AVPlayer_SetPlaybackSpeed(OH_AVPlayer *player, AVPlaybackSpeed s
  * @syscap SystemCapability.Multimedia.Media.AVPlayer
  * @param player Pointer to an OH_AVPlayer instance
  * @param speed the rate mode {@link AVPlaybackSpeed} which can get.
- * @return Returns {@link AV_ERR_OK} if the current player playback rate is get; returns an error code defined
- * in {@link native_averrors.h} otherwise.
+ * @return Function result code.
+ *         {@link AV_ERR_OK} if the execution is successful.
+ *         {@link AV_ERR_INVALID_VAL} if input player is nullptr or player GetPlaybackSpeed failed.
  * @since 11
  * @version 1.0
  */
@@ -352,8 +369,9 @@ OH_AVErrCode OH_AVPlayer_SetAudioEffectMode(OH_AVPlayer *player, OH_AudioStream_
  * @syscap SystemCapability.Multimedia.Media.AVPlayer
  * @param player Pointer to an OH_AVPlayer instance
  * @param bitRate the bit rate, The unit is bps.
- * @return Returns {@link AV_ERR_OK} if the bit rate is set successfully; returns an error code defined
- * in {@link native_averrors.h} otherwise.
+ * @return Function result code.
+ *         {@link AV_ERR_OK} if the execution is successful.
+ *         {@link AV_ERR_INVALID_VAL} if input player is nullptr or player SelectBitRate failed.
  * @since 11
  * @version 1.0
  */
@@ -364,8 +382,10 @@ OH_AVErrCode OH_AVPlayer_SelectBitRate(OH_AVPlayer *player, uint32_t bitRate);
  * @syscap SystemCapability.Multimedia.Media.AVPlayer
  * @param player Pointer to an OH_AVPlayer instance
  * @param window A pointer to a OHNativeWindow instance, see {@link OHNativeWindow}
- * @return Returns {@link AV_ERR_OK} if the surface is set; returns an error code defined
- * in {@link native_averrors.h} otherwise.
+ * @return Function result code.
+ *         {@link AV_ERR_OK} if the execution is successful.
+ *         {@link AV_ERR_INVALID_VAL} if input player is nullptr, input window is nullptr,
+ *          or player SetVideoSurface failed.
  * @since 11
  * @version 1.0
  */
@@ -376,8 +396,9 @@ OH_AVErrCode  OH_AVPlayer_SetVideoSurface(OH_AVPlayer *player, OHNativeWindow *w
  * @syscap SystemCapability.Multimedia.Media.AVPlayer
  * @param player Pointer to an OH_AVPlayer instance
  * @param duration Indicates the total duration of media files.
- * @return Returns {@link AV_ERR_OK} if the current duration is get; returns an error code defined
- * in {@link native_averrors.h} otherwise.
+ * @return Function result code.
+ *         {@link AV_ERR_OK} if the execution is successful.
+ *         {@link AV_ERR_INVALID_VAL} if input player is nullptr or player GetDuration failed.
  * @since 11
  * @version 1.0
  */
@@ -388,8 +409,9 @@ OH_AVErrCode OH_AVPlayer_GetDuration(OH_AVPlayer *player, int32_t *duration);
  * @syscap SystemCapability.Multimedia.Media.AVPlayer
  * @param player Pointer to an OH_AVPlayer instance
  * @param state the current playback state
- * @return Returns {@link AV_ERR_OK} if the current duration is get; returns an error code defined
- * in {@link native_averrors.h} otherwise.
+ * @return Function result code.
+ *         {@link AV_ERR_OK} if the execution is successful.
+ *         {@link AV_ERR_INVALID_VAL} if input player is nullptr.
  * @since 11
  * @version 1.0
  */
@@ -399,7 +421,7 @@ OH_AVErrCode OH_AVPlayer_GetState(OH_AVPlayer *player, AVPlayerState *state);
  * @brief Checks whether the player is playing.
  * @syscap SystemCapability.Multimedia.Media.AVPlayer
  * @param player Pointer to an OH_AVPlayer instance
- * @return Returns true if the playback is playing; false otherwise.
+ * @return Returns true if the playback is playing; Return false if not or input player is nullptr.
  * @since 11
  * @version 1.0
  */
@@ -409,7 +431,7 @@ bool OH_AVPlayer_IsPlaying(OH_AVPlayer *player);
  * @brief Returns the value whether single looping is enabled or not .
  * @syscap SystemCapability.Multimedia.Media.AVPlayer
  * @param player Pointer to an OH_AVPlayer instance
- * @return Returns true if the playback is single looping; false otherwise.
+ * @return Returns true if the playback is single looping; Return false if not or input player is nullptr.
  * @since 11
  * @version 1.0
  */
@@ -432,8 +454,9 @@ OH_AVErrCode OH_AVPlayer_SetLooping(OH_AVPlayer *player, bool loop);
  * @syscap SystemCapability.Multimedia.Media.AVPlayer
  * @param player Pointer to an OH_AVPlayer instance
  * @param callback object pointer.
- * @return Returns {@link AV_ERR_OK} if the playercallback is set; returns an error code defined
- * in {@link native_averrors.h} otherwise.
+ * @return Function result code.
+ *         {@link AV_ERR_OK} if the execution is successful.
+ *         {@link AV_ERR_INVALID_VAL} if input player is nullptr or player SetLooping failed.
  * @since 11
  * @version 1.0
  */
@@ -449,8 +472,10 @@ OH_AVErrCode OH_AVPlayer_SetPlayerCallback(OH_AVPlayer *player, AVPlayerCallback
  * @syscap SystemCapability.Multimedia.Media.AVPlayer
  * @param player Pointer to an OH_AVPlayer instance
  * @param index Track index
- * @return Returns {@link AV_ERR_OK} if selected successfully; returns an error code defined
- * in {@link native_averrors.h} otherwise.
+ * @return Function result code.
+ *         {@link AV_ERR_OK} if the execution is successful.
+ *         {@link AV_ERR_INVALID_VAL} if input player is nullptr, callback.onInfo or callback.onError is null,
+ *         or player SetPlayerCallback failed.
  * @since 11
  * @version 1.0
 */
@@ -466,8 +491,9 @@ OH_AVErrCode OH_AVPlayer_SelectTrack(OH_AVPlayer *player, int32_t index);
  * @syscap SystemCapability.Multimedia.Media.AVPlayer
  * @param player Pointer to an OH_AVPlayer instance
  * @param index Track index
- * @return Returns {@link AV_ERR_OK} if selected successfully; returns an error code defined
- * in {@link native_averrors.h} otherwise.
+ * @return Function result code.
+ *         {@link AV_ERR_OK} if the execution is successful.
+ *         {@link AV_ERR_INVALID_VAL} if input player is nullptr or player DeselectTrack failed.
  * @since 11
  * @version 1.0
 */
@@ -482,8 +508,9 @@ OH_AVErrCode OH_AVPlayer_DeselectTrack(OH_AVPlayer *player, int32_t index);
  * @param player Pointer to an OH_AVPlayer instance
  * @param trackType Media type.
  * @param index Track index
- * @return Returns {@link AV_ERR_OK} if the track index is get; returns an error code defined
- * in {@link native_averrors.h} otherwise.
+ * @return Function result code.
+ *         {@link AV_ERR_OK} if the execution is successful.
+ *         {@link AV_ERR_INVALID_VAL} if input player is nullptr or player GetCurrentTrack failed.
  * @since 11
  * @version 1.0
  */
@@ -494,8 +521,10 @@ OH_AVErrCode OH_AVPlayer_GetCurrentTrack(OH_AVPlayer *player, int32_t trackType,
  * @syscap SystemCapability.Multimedia.Media.AVPlayer
  * @param player Pointer to an OH_AVPlayer instance
  * @param callback object pointer.
- * @return Returns {@link AV_ERR_OK} if the drm info callback is set; returns an error code defined
- * in {@link native_averrors.h} otherwise.
+ * @return Function result code.
+ *         {@link AV_ERR_OK} if the execution is successful.
+ *         {@link AV_ERR_INVALID_VAL} if input player is nullptr, MediaKeySystemInfoCallback is null
+ *         player SetDrmSystemInfoCallback failed, SetDrmSystemInfoCallback failed or SetDrmSystemInfoCallback failed.
  * @since 12
  * @version 1.0
  */
@@ -507,8 +536,9 @@ OH_AVErrCode OH_AVPlayer_SetMediaKeySystemInfoCallback(OH_AVPlayer *player,
  * @syscap SystemCapability.Multimedia.Media.AVPlayer
  * @param player Pointer to an OH_AVPlayer instance
  * @param mediaKeySystemInfo Media key system info.
- * @return Returns {@link AV_ERR_OK} if the current position is get; returns an error code defined
- * in {@link native_averrors.h} otherwise.
+ * @return Function result code.
+ *         {@link AV_ERR_OK} if the execution is successful.
+ *         {@link AV_ERR_INVALID_VAL} if input player is nullptr or no memory.
  * @since 12
  * @version 1.0
  */
@@ -521,8 +551,9 @@ OH_AVErrCode OH_AVPlayer_GetMediaKeySystemInfo(OH_AVPlayer *player, DRM_MediaKey
  * @param player Pointer to an OH_AVPlayer instance
  * @param mediaKeySession A media key session instance with decryption function.
  * @param secureVideoPath Require secure decoder or not.
- * @return Returns {@link AV_ERR_OK} if set successfully; returns an error code defined
- * in {@link native_averrors.h} otherwise.
+ * @return Function result code.
+ *         {@link AV_ERR_OK} if the execution is successful.
+ *         {@link AV_ERR_INVALID_VAL} if input player is nullptr or player SetDecryptConfig failed.
  * @since 12
  * @version 1.0
 */

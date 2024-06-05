@@ -27,47 +27,47 @@ extern "C" {
  */
 typedef enum OH_AVErrCode {
     /**
-     * the operation completed successfully.
+     * @error the operation completed successfully.
      */
     AV_ERR_OK = 0,
     /**
-     * no memory.
+     * @error no memory.
      */
     AV_ERR_NO_MEMORY = 1,
     /**
-     * opertation not be permitted.
+     * @error opertation not be permitted.
      */
     AV_ERR_OPERATE_NOT_PERMIT = 2,
     /**
-     * invalid argument.
+     * @error invalid argument.
      */
     AV_ERR_INVALID_VAL = 3,
     /**
-     * IO error.
+     * @error IO error.
      */
     AV_ERR_IO = 4,
     /**
-     * network timeout.
+     * @error network timeout.
      */
     AV_ERR_TIMEOUT = 5,
     /**
-     * unknown error.
+     * @error unknown error.
      */
     AV_ERR_UNKNOWN = 6,
     /**
-     * media service died.
+     * @error media service died.
      */
     AV_ERR_SERVICE_DIED = 7,
     /**
-     * the state is not support this operation.
+     * @error the state is not support this operation.
      */
     AV_ERR_INVALID_STATE = 8,
     /**
-     * unsupport interface.
+     * @error unsupport interface.
      */
     AV_ERR_UNSUPPORT = 9,
     /**
-     * extend err start.
+     * @error extend err start.
      */
     AV_ERR_EXTEND_START = 100,
     /** drm error base.
