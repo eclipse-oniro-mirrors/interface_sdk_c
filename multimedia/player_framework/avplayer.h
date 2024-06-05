@@ -442,8 +442,9 @@ bool OH_AVPlayer_IsLooping(OH_AVPlayer *player);
  * @syscap SystemCapability.Multimedia.Media.AVPlayer
  * @param player Pointer to an OH_AVPlayer instance
  * @param loop The switch to set loop
- * @return Returns {@link AV_ERR_OK} if the single looping is set; returns an error code defined
- * in {@link native_averrors.h} otherwise.
+ * @return Function result code.
+ *         {@link AV_ERR_OK} if the execution is successful.
+ *         {@link AV_ERR_INVALID_VAL} if input player is nullptr or player SetLooping failed.
  * @since 11
  * @version 1.0
  */
@@ -456,7 +457,8 @@ OH_AVErrCode OH_AVPlayer_SetLooping(OH_AVPlayer *player, bool loop);
  * @param callback object pointer.
  * @return Function result code.
  *         {@link AV_ERR_OK} if the execution is successful.
- *         {@link AV_ERR_INVALID_VAL} if input player is nullptr or player SetLooping failed.
+ *         {@link AV_ERR_INVALID_VAL} if input player is nullptr, callback.onInfo or callback.onError is null,
+ *         or player SetPlayerCallback failed.
  * @since 11
  * @version 1.0
  */
@@ -474,8 +476,7 @@ OH_AVErrCode OH_AVPlayer_SetPlayerCallback(OH_AVPlayer *player, AVPlayerCallback
  * @param index Track index
  * @return Function result code.
  *         {@link AV_ERR_OK} if the execution is successful.
- *         {@link AV_ERR_INVALID_VAL} if input player is nullptr, callback.onInfo or callback.onError is null,
- *         or player SetPlayerCallback failed.
+ *         {@link AV_ERR_INVALID_VAL} if input player is nullptr or player SelectTrack failed.
  * @since 11
  * @version 1.0
 */
