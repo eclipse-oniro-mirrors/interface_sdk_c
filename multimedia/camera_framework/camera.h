@@ -155,7 +155,7 @@ typedef enum Camera_Status {
  */
 typedef enum Camera_SceneMode {
     /**
-     * Secure camera mode.
+     * Secure photo mode.
      * @since 12
      */
     SECURE_PHOTO = 12
