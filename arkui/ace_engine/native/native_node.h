@@ -6757,9 +6757,7 @@ typedef struct {
      * @brief Obtains the number of subnodes.
      *
      * @param node Indicates the target node.
-     * @return Returns the error code.
-     *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
-     *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs..
+     * @return the number of subnodes. If not, returns 0.
      */
     uint32_t (*getTotalChildCount)(ArkUI_NodeHandle node);
 
