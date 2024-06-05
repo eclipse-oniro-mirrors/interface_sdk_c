@@ -1617,43 +1617,6 @@ typedef enum {
     NODE_FOCUS_ON_TOUCH,
 
     /**
-     * @brief Defines the border width attribute, which can be set, reset, and obtained as required through APIs.
-     *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * 1: .value[0].f32: width of the four borders, in percentage. \n
-     * 2: .value[0].f32: width of the top border, in percentage. \n
-     * .value[1].f32: width of the right border, in percentage. \n
-     * .value[2].f32: width of the bottom border, in percentage. \n
-     * .value[3].f32: width of the right border, in percentage. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].f32: width of the top border, in percentage. \n
-     * .value[1].f32: width of the right border, in percentage. \n
-     * .value[2].f32: width of the bottom border, in percentage. \n
-     * .value[3].f32: width of the right border, in percentage. \n
-     *
-     */
-    NODE_BORDER_WIDTH_PERCENT = 85,
-    /**
-     * @brief Defines the border corner radius attribute, which can be set, reset, and obtained as required through APIs.
-     *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * 1: .value[0].f32: radius of the four corners, in percentage. \n
-     * 2: .value[0].f32: radius of the upper left corner, in percentage. \n
-     * .value[1].f32: radius of the upper right corner, in percentage. \n
-     * .value[2].f32: radius of the lower left corner, in percentage. \n
-     * .value[3].f32: radius of the lower right corner, in percentage. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].f32: radius of the upper left corner, in percentage. \n
-     * .value[1].f32: radius of the upper right corner, in percentage. \n
-     * .value[2].f32: radius of the lower left corner, in percentage. \n
-     * .value[3].f32: radius of the lower right corner, in percentage. \n
-     *
-     */
-    NODE_BORDER_RADIUS_PERCENT = 86,
-
-    /**
      * @brief Defines the text content attribute, which can be set, reset, and obtained as required through APIs.
      *
      * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
