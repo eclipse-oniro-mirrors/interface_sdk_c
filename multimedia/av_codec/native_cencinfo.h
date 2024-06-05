@@ -34,7 +34,7 @@
  * @brief Provides a unified entry for the native module APIs.
  *
  * @library libnative_media_avcencinfo.so
- * @syscap SystemCapability.Multimedia.Drm.Core
+ * @syscap SystemCapability.Multimedia.Media.Spliter
  * @since 12
  */
 
