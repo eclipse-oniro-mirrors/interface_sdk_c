@@ -38,5 +38,17 @@
   {
     "first_introduced": "12",
     "name": "OH_AVPlayer_SetDecryptionConfig"
+  },
+  {
+    "first_introduced": "12",
+    "name": "OH_AVPlayer_SetAudioRendererInfo"
+  },
+  {
+    "first_introduced": "12",
+    "name": "OH_AVPlayer_SetAudioInterruptMode"
+  },
+  {
+    "first_introduced": "12",
+    "name": "OH_AVPlayer_SetAudioEffectMode"
   }
 ]
