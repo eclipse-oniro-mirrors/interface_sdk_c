@@ -11,6 +11,10 @@
         "first_introduced": "11",
         "name": "OH_CameraInput_Open"
     },
+        {
+        "first_introduced": "12",
+        "name": "OH_CameraInput_OpenSecureCamera"
+    },
     {
         "first_introduced": "11",
         "name": "OH_CameraInput_Close"
@@ -90,6 +94,14 @@
     {
         "first_introduced": "11",
         "name": "OH_CaptureSession_UnregisterCallback"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_CaptureSession_SetSessionMode"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_CaptureSession_AddSecureOutput"
     },
     {
         "first_introduced": "11",
