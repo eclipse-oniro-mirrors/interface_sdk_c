@@ -36,7 +36,7 @@
 #define INTERFACES_KITS_NATIVE_INCLUDE_IMAGE_H
 
 #include "image_common.h"
-#include "native_buffer.h"
+#include "native_buffer/native_buffer.h"
 
 #ifdef __cplusplus
 extern "C" {

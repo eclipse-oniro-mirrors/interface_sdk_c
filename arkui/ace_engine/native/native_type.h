@@ -1933,6 +1933,30 @@ typedef enum {
 } ArkUI_AccessibilityActionType;
 
 /**
+ * @brief Define the rolling source enumeration value.
+ *
+ * @since 12
+*/
+typedef enum {
+    /** Finger drag. */
+    ARKUI_SCROLL_SOURCE_DRAG = 0,
+    /** Inertial roll after finger drag. */
+    ARKUI_SCROLL_SOURCE_FLING,
+    /** Execute the EdgeEffect.Spring edge effect when crossing the boundary.*/
+    ARKUI_SCROLL_SOURCE_EDGE_EFFECT,
+    /** Other user input other than dragging, such as mouse wheel, keyboard events, etc.*/
+    ARKUI_SCROLL_SOURCE_OTHER_USER_INPUT,
+    /** Drag the scroll bar.*/
+    ARKUI_SCROLL_SOURCE_SCROLL_BAR,
+    /** Inertia scrolling after dragging the scroll bar.*/
+    ARKUI_SCROLL_SOURCE_SCROLL_BAR_FLING,
+    /** The scroll controller causes unanimated scrolling.*/
+    ARKUI_SCROLL_SOURCE_SCROLLER,
+    /** The scroll controller causes the scroll to drive the painting.*/
+    ARKUI_SCROLL_SOURCE_ANIMATION,
+} ArkUI_ScrollSource;
+
+/**
 * @brief Creates a size constraint.
 *
 * @since 12

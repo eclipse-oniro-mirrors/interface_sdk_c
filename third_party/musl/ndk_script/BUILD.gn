@@ -414,3 +414,10 @@ ohos_copy("musl_ndk_libs_x86_64") {
 
   outputs = [ "$ndk_os_irrelevant_out_dir/sysroot/usr/lib/x86_64-linux-ohos/{{source_file_part}}" ]
 }
+
+ohos_ndk_copy("copy_compatible_config") {
+  dest_dir = "$ndk_os_irrelevant_out_dir"
+  sources =
+      [ "//interface/sdk_c/third_party/musl/ndk_script/compatible_config.json" ]
+  args = [ "--ignore-stale" ]
+}
