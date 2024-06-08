@@ -224,6 +224,7 @@ OH_EffectFilterInfo *OH_EffectFilterInfo_Create();
  * @param name Indicates the filter name
  * @return Returns EFFECT_SUCCESS if the execution is successful, otherwise returns a specific error code, refer to
  * {@link ImageEffect_ErrorCode}
+ * {@link EFFECT_ERROR_PARAM_INVALID}, the input parameter is a null pointer.
  * @since 12
  */
 ImageEffect_ErrorCode OH_EffectFilterInfo_SetFilterName(OH_EffectFilterInfo *info, const char *name);
@@ -236,6 +237,7 @@ ImageEffect_ErrorCode OH_EffectFilterInfo_SetFilterName(OH_EffectFilterInfo *inf
  * @param name Indicates the filter name
  * @return Returns EFFECT_SUCCESS if the execution is successful, otherwise returns a specific error code, refer to
  * {@link ImageEffect_ErrorCode}
+ * {@link EFFECT_ERROR_PARAM_INVALID}, the input parameter is a null pointer.
  * @since 12
  */
 ImageEffect_ErrorCode OH_EffectFilterInfo_GetFilterName(OH_EffectFilterInfo *info, char **name);
@@ -249,6 +251,7 @@ ImageEffect_ErrorCode OH_EffectFilterInfo_GetFilterName(OH_EffectFilterInfo *inf
  * @param bufferTypeArray Array of {@link ImageEffect_BufferType} that can be supported
  * @return Returns EFFECT_SUCCESS if the execution is successful, otherwise returns a specific error code, refer to
  * {@link ImageEffect_ErrorCode}
+ * {@link EFFECT_ERROR_PARAM_INVALID}, the input parameter is a null pointer.
  * @since 12
  */
 ImageEffect_ErrorCode OH_EffectFilterInfo_SetSupportedBufferTypes(OH_EffectFilterInfo *info, uint32_t size,
@@ -263,6 +266,7 @@ ImageEffect_ErrorCode OH_EffectFilterInfo_SetSupportedBufferTypes(OH_EffectFilte
  * @param bufferTypeArray Array of {@link OH_EffectBufferInfoType} that can be supported
  * @return Returns EFFECT_SUCCESS if the execution is successful, otherwise returns a specific error code, refer to
  * {@link ImageEffect_ErrorCode}
+ * {@link EFFECT_ERROR_PARAM_INVALID}, the input parameter is a null pointer.
  * @since 12
  */
 ImageEffect_ErrorCode OH_EffectFilterInfo_GetSupportedBufferTypes(OH_EffectFilterInfo *info, uint32_t *size,
@@ -277,6 +281,7 @@ ImageEffect_ErrorCode OH_EffectFilterInfo_GetSupportedBufferTypes(OH_EffectFilte
  * @param formatArray Array of {@link ImageEffect_Format} that can be supported
  * @return Returns EFFECT_SUCCESS if the execution is successful, otherwise returns a specific error code, refer to
  * {@link ImageEffect_ErrorCode}
+ * {@link EFFECT_ERROR_PARAM_INVALID}, the input parameter is a null pointer.
  * @since 12
  */
 ImageEffect_ErrorCode OH_EffectFilterInfo_SetSupportedFormats(OH_EffectFilterInfo *info, uint32_t size,
@@ -291,6 +296,7 @@ ImageEffect_ErrorCode OH_EffectFilterInfo_SetSupportedFormats(OH_EffectFilterInf
  * @param formatArray Array of {@link ImageEffect_Format} that can be supported
  * @return Returns EFFECT_SUCCESS if the execution is successful, otherwise returns a specific error code, refer to
  * {@link ImageEffect_ErrorCode}
+ * {@link EFFECT_ERROR_PARAM_INVALID}, the input parameter is a null pointer.
  * @since 12
  */
 ImageEffect_ErrorCode OH_EffectFilterInfo_GetSupportedFormats(OH_EffectFilterInfo *info, uint32_t *size,
@@ -303,6 +309,7 @@ ImageEffect_ErrorCode OH_EffectFilterInfo_GetSupportedFormats(OH_EffectFilterInf
  * @param info Encapsulate OH_EffectFilterInfo structure instance pointer
  * @return Returns EFFECT_SUCCESS if the execution is successful, otherwise returns a specific error code, refer to
  * {@link ImageEffect_ErrorCode}
+ * {@link EFFECT_ERROR_PARAM_INVALID}, the input parameter is a null pointer.
  * @since 12
  */
 ImageEffect_ErrorCode OH_EffectFilterInfo_Release(OH_EffectFilterInfo *info);
@@ -347,6 +354,7 @@ OH_EffectBufferInfo *OH_EffectBufferInfo_Create();
  * @param addr Indicates the address of the image in memory
  * @return Returns EFFECT_SUCCESS if the execution is successful, otherwise returns a specific error code, refer to
  * {@link ImageEffect_ErrorCode}
+ * {@link EFFECT_ERROR_PARAM_INVALID}, the input parameter is a null pointer.
  * @since 12
  */
 ImageEffect_ErrorCode OH_EffectBufferInfo_SetAddr(OH_EffectBufferInfo *info, void *addr);
@@ -359,6 +367,7 @@ ImageEffect_ErrorCode OH_EffectBufferInfo_SetAddr(OH_EffectBufferInfo *info, voi
  * @param addr Indicates the address of the image in memory
  * @return Returns EFFECT_SUCCESS if the execution is successful, otherwise returns a specific error code, refer to
  * {@link ImageEffect_ErrorCode}
+ * {@link EFFECT_ERROR_PARAM_INVALID}, the input parameter is a null pointer.
  * @since 12
  */
 ImageEffect_ErrorCode OH_EffectBufferInfo_GetAddr(OH_EffectBufferInfo *info, void **addr);
@@ -371,6 +380,7 @@ ImageEffect_ErrorCode OH_EffectBufferInfo_GetAddr(OH_EffectBufferInfo *info, voi
  * @param width Indicates the width of the image
  * @return Returns EFFECT_SUCCESS if the execution is successful, otherwise returns a specific error code, refer to
  * {@link ImageEffect_ErrorCode}
+ * {@link EFFECT_ERROR_PARAM_INVALID}, the input parameter is a null pointer.
  * @since 12
  */
 ImageEffect_ErrorCode OH_EffectBufferInfo_SetWidth(OH_EffectBufferInfo *info, int32_t width);
@@ -383,6 +393,7 @@ ImageEffect_ErrorCode OH_EffectBufferInfo_SetWidth(OH_EffectBufferInfo *info, in
  * @param width Indicates the width of the image
  * @return Returns EFFECT_SUCCESS if the execution is successful, otherwise returns a specific error code, refer to
  * {@link ImageEffect_ErrorCode}
+ * {@link EFFECT_ERROR_PARAM_INVALID}, the input parameter is a null pointer.
  * @since 12
  */
 ImageEffect_ErrorCode OH_EffectBufferInfo_GetWidth(OH_EffectBufferInfo *info, int32_t *width);
@@ -395,6 +406,7 @@ ImageEffect_ErrorCode OH_EffectBufferInfo_GetWidth(OH_EffectBufferInfo *info, in
  * @param height Indicates the height of the image
  * @return Returns EFFECT_SUCCESS if the execution is successful, otherwise returns a specific error code, refer to
  * {@link ImageEffect_ErrorCode}
+ * {@link EFFECT_ERROR_PARAM_INVALID}, the input parameter is a null pointer.
  * @since 12
  */
 ImageEffect_ErrorCode OH_EffectBufferInfo_SetHeight(OH_EffectBufferInfo *info, int32_t height);
@@ -407,6 +419,7 @@ ImageEffect_ErrorCode OH_EffectBufferInfo_SetHeight(OH_EffectBufferInfo *info, i
  * @param height Indicates the height of the image
  * @return Returns EFFECT_SUCCESS if the execution is successful, otherwise returns a specific error code, refer to
  * {@link ImageEffect_ErrorCode}
+ * {@link EFFECT_ERROR_PARAM_INVALID}, the input parameter is a null pointer.
  * @since 12
  */
 ImageEffect_ErrorCode OH_EffectBufferInfo_GetHeight(OH_EffectBufferInfo *info, int32_t *height);
@@ -419,6 +432,7 @@ ImageEffect_ErrorCode OH_EffectBufferInfo_GetHeight(OH_EffectBufferInfo *info, i
  * @param rowSize Indicates number of bytes per row
  * @return Returns EFFECT_SUCCESS if the execution is successful, otherwise returns a specific error code, refer to
  * {@link ImageEffect_ErrorCode}
+ * {@link EFFECT_ERROR_PARAM_INVALID}, the input parameter is a null pointer.
  * @since 12
  */
 ImageEffect_ErrorCode OH_EffectBufferInfo_SetRowSize(OH_EffectBufferInfo *info, int32_t rowSize);
@@ -431,6 +445,7 @@ ImageEffect_ErrorCode OH_EffectBufferInfo_SetRowSize(OH_EffectBufferInfo *info, 
  * @param rowSize Indicates number of bytes per row
  * @return Returns EFFECT_SUCCESS if the execution is successful, otherwise returns a specific error code, refer to
  * {@link ImageEffect_ErrorCode}
+ * {@link EFFECT_ERROR_PARAM_INVALID}, the input parameter is a null pointer.
  * @since 12
  */
 ImageEffect_ErrorCode OH_EffectBufferInfo_GetRowSize(OH_EffectBufferInfo *info, int32_t *rowSize);
@@ -443,6 +458,7 @@ ImageEffect_ErrorCode OH_EffectBufferInfo_GetRowSize(OH_EffectBufferInfo *info, 
  * @param format Indicates {@link ImageEffect_Format} of the image
  * @return Returns EFFECT_SUCCESS if the execution is successful, otherwise returns a specific error code, refer to
  * {@link ImageEffect_ErrorCode}
+ * {@link EFFECT_ERROR_PARAM_INVALID}, the input parameter is a null pointer.
  * @since 12
  */
 ImageEffect_ErrorCode OH_EffectBufferInfo_SetEffectFormat(OH_EffectBufferInfo *info, ImageEffect_Format format);
@@ -455,6 +471,7 @@ ImageEffect_ErrorCode OH_EffectBufferInfo_SetEffectFormat(OH_EffectBufferInfo *i
  * @param format Indicates {@link ImageEffect_Format} of the image
  * @return Returns EFFECT_SUCCESS if the execution is successful, otherwise returns a specific error code, refer to
  * {@link ImageEffect_ErrorCode}
+ * {@link EFFECT_ERROR_PARAM_INVALID}, the input parameter is a null pointer.
  * @since 12
  */
 ImageEffect_ErrorCode OH_EffectBufferInfo_GetEffectFormat(OH_EffectBufferInfo *info, ImageEffect_Format *format);
@@ -466,6 +483,7 @@ ImageEffect_ErrorCode OH_EffectBufferInfo_GetEffectFormat(OH_EffectBufferInfo *i
  * @param info Encapsulate OH_EffectBufferInfo structure instance pointer
  * @return Returns EFFECT_SUCCESS if the execution is successful, otherwise returns a specific error code, refer to
  * {@link ImageEffect_ErrorCode}
+ * {@link EFFECT_ERROR_PARAM_INVALID}, the input parameter is a null pointer.
  * @since 12
  */
 ImageEffect_ErrorCode OH_EffectBufferInfo_Release(OH_EffectBufferInfo *info);
@@ -606,6 +624,9 @@ OH_EffectFilter *OH_EffectFilter_Create(const char *name);
  * @param value Indicates the value corresponding to the key of the filter
  * @return Returns EFFECT_SUCCESS if the execution is successful, otherwise returns a specific error code, refer to
  * {@link ImageEffect_ErrorCode}
+ * {@link EFFECT_ERROR_PARAM_INVALID}, the input parameter is a null pointer.
+ * {@link EFFECT_KEY_ERROR}, the key of the filter parameter is invalid.
+ * {@link EFFECT_PARAM_ERROR}, the value of the filter parameter is invalid.
  * @since 12
  */
 ImageEffect_ErrorCode OH_EffectFilter_SetValue(OH_EffectFilter *filter, const char *key, const ImageEffect_Any *value);
@@ -619,6 +640,8 @@ ImageEffect_ErrorCode OH_EffectFilter_SetValue(OH_EffectFilter *filter, const ch
  * @param value Indicates the value corresponding to the key of the filter
  * @return Returns EFFECT_SUCCESS if the execution is successful, otherwise returns a specific error code, refer to
  * {@link ImageEffect_ErrorCode}
+ * {@link EFFECT_ERROR_PARAM_INVALID}, the input parameter is a null pointer.
+ * {@link EFFECT_KEY_ERROR}, the key of the filter parameter is invalid.
  * @since 12
  */
 ImageEffect_ErrorCode OH_EffectFilter_GetValue(OH_EffectFilter *filter, const char *key, ImageEffect_Any *value);
@@ -631,6 +654,7 @@ ImageEffect_ErrorCode OH_EffectFilter_GetValue(OH_EffectFilter *filter, const ch
  * @param delegate A collection of all callback functions, see {@link ImageEffect_FilterDelegate}
  * @return Returns EFFECT_SUCCESS if the execution is successful, otherwise returns a specific error code, refer to
  * {@link ImageEffect_ErrorCode}
+ * {@link EFFECT_ERROR_PARAM_INVALID}, the input parameter is a null pointer.
  * @since 12
  */
 ImageEffect_ErrorCode OH_EffectFilter_Register(const OH_EffectFilterInfo *info,
@@ -663,6 +687,7 @@ void OH_EffectFilter_ReleaseFilterNames();
  * @param info Indicates the capabilities supported by the filter, see {@link OH_EffectFilterInfo}
  * @return Returns EFFECT_SUCCESS if the execution is successful, otherwise returns a specific error code, refer to
  * {@link ImageEffect_ErrorCode}
+ * {@link EFFECT_ERROR_PARAM_INVALID}, the input parameter is a null pointer.
  * @since 12
  */
 ImageEffect_ErrorCode OH_EffectFilter_LookupFilterInfo(const char *name, OH_EffectFilterInfo *info);
@@ -676,6 +701,7 @@ ImageEffect_ErrorCode OH_EffectFilter_LookupFilterInfo(const char *name, OH_Effe
  * @param outputPixelmap Indicates the output image
  * @return Returns EFFECT_SUCCESS if the execution is successful, otherwise returns a specific error code, refer to
  * {@link ImageEffect_ErrorCode}
+ * {@link EFFECT_ERROR_PARAM_INVALID}, the input parameter is a null pointer.
  * @since 12
  */
 ImageEffect_ErrorCode OH_EffectFilter_Render(OH_EffectFilter *filter, OH_PixelmapNative *inputPixelmap,
@@ -688,6 +714,7 @@ ImageEffect_ErrorCode OH_EffectFilter_Render(OH_EffectFilter *filter, OH_Pixelma
  * @param filter Encapsulate OH_EffectFilter structure instance pointer
  * @return Returns EFFECT_SUCCESS if the execution is successful, otherwise returns a specific error code, refer to
  * {@link ImageEffect_ErrorCode}
+ * {@link EFFECT_ERROR_PARAM_INVALID}, the input parameter is a null pointer.
  * @since 12
  */
 ImageEffect_ErrorCode OH_EffectFilter_Release(OH_EffectFilter *filter);
