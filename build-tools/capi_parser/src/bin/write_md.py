@@ -38,7 +38,7 @@ def sort_by_kit(result_info_list: list, output_path):
                 write_data_in_md(first_kit_name, sorted_data, output_path)
                 sort_by_kit_list.extend(sorted_data)
                 first_kit_name = obj_element.kit_name
-                same_element = []
+                same_element = [obj_element]
         if same_element:
             sorted_data = sort_by_file_path(same_element)
             write_data_in_md(first_kit_name, sorted_data, output_path)
@@ -66,7 +66,7 @@ def sort_by_file_path(result_info_list_kit: list):
                 sorted_data = sort_by_type(same_element)
                 sorted_by_file_list.extend(sorted_data)
                 first_file_name = obj_element.api_file_path
-                same_element = []
+                same_element = [obj_element]
         if same_element:
             sorted_data = sort_by_type(same_element)
             sorted_by_file_list.extend(sorted_data)

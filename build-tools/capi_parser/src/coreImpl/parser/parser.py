@@ -20,7 +20,6 @@ import os
 import glob
 import re
 import shutil
-import stat
 from utils.constants import StringConstant, RegularExpressions
 from typedef.parser.parser import ParserGetResultTable, OneFileApiMessage, NodeKind
 from coreImpl.parser import parse_include, generating_tables  # 引入解析文件 # 引入得到结果表格文件
@@ -128,13 +127,15 @@ def change_abs(include_files, dire_path):  # 获取.h绝对路径
         if os.path.isabs(j_item):  # 是否是绝对路径，是就拼接路径盘，不是就拼接gn目录路径
             head = os.path.splitdrive(dire_path)  # 获取windows盘路径
             include_file = os.path.normpath(j_item)
+            change_path = head[1].split('interface_sdk_c')
+            replace_path = os.path.normpath(os.path.join(change_path[0], 'interface_sdk_c'))
             if 'third_party/node/src' in j_item:
                 include_file = include_file.replace('\\\\',
-                                                    '{}{}'.format(StringConstant.REPLACE_WAREHOUSE.value, '\\'))
+                                                    '{}{}'.format(replace_path, '\\'))
             else:
                 # 去掉绝对路径的双\\,替换为interface_sdk_c
                 include_file = include_file.replace('\\\\interface\\sdk_c',
-                                                    StringConstant.REPLACE_WAREHOUSE.value)
+                                                    replace_path)
             if head:
                 include_file = os.path.join(head[0], include_file)  # 拼接盘和路径
             abs_path.append(include_file)
@@ -145,21 +146,22 @@ def change_abs(include_files, dire_path):  # 获取.h绝对路径
 
 
 def get_result_table(json_files, abs_path, link_path, gn_path):  # 进行处理，生成表格
-    result_list = []
+    compare_result_list = []
     head_name = ""
-    only_file1 = []
-    only_file2 = []
-    data = []
+    generate_data_only = []
+    original_data_only = []
+    parser_file_data = []
     if json_files:
         file_name = os.path.split(json_files[0])  # 取第一个json名，但我是用列表装的
         file_name = os.path.splitext(file_name[1])  # 取下标1对应的元素(元组)
-        data = parse_include.get_include_file(abs_path, link_path, gn_path)  # 获取解析返回的数据
-        parse_json_name = change_json_file(data, file_name[0])  # 生成json文件
+        parser_file_data = parse_include.get_include_file(abs_path, link_path, gn_path)  # 获取解析返回的数据
+        parser_json_name = change_json_file(parser_file_data, file_name[0])  # 生成json文件
         # 解析完后，传两个json文件，对比两个json文件，最后生成数据表格
-        result_list, head_name, only_file1, only_file2 = generating_tables.get_json_file(parse_json_name,
-                                                                                         json_files)
+        (compare_result_list, head_name, generate_data_only,
+         original_data_only) = generating_tables.get_json_file(parser_json_name, json_files)
 
-    obj_data = ParserGetResultTable(result_list, head_name, only_file1, only_file2, data)
+    obj_data = ParserGetResultTable(compare_result_list, head_name,
+                                    generate_data_only, original_data_only, parser_file_data)
 
     return obj_data
 
@@ -202,9 +204,9 @@ def link_include(directory_path, function_names, link_include_file):
 
 def main_entrance(directory_path, function_names, link_path):  # 主入口
     gn_file_total = find_gn_file(directory_path)  # 查找gn文件
-    result_list_total = []
-    only_file1_total = []
-    only_file2_total = []
+    compare_result_list_total = []
+    generate_data_only_total = []
+    original_data_only_total = []
     data_total = []             # 总的解析数据
     for item in gn_file_total:  # 处理每个gn文件
         match_files, json_files, include_files = dire_func(item, function_names)
@@ -213,31 +215,38 @@ def main_entrance(directory_path, function_names, link_path):  # 主入口
             abs_path = change_abs(include_files, dire_path)  # 接收.h绝对路径
             # 接收对比结果信息
             data_result = get_result_table(json_files, abs_path, link_path, directory_path)
-            data_total.append(data_result.data)
-            if len(data_result.result_list) != 0:
-                result_list_total.extend(data_result.result_list)
-                only_file1_total.extend(data_result.only_file1)
-                only_file2_total.extend(data_result.only_file2)
+            data_total.append(data_result.parser_data)
+            if len(data_result.compare_result_list) != 0:
+                compare_result_list_total.extend(data_result.compare_result_list)
+                generate_data_only_total.extend(data_result.generate_data_only)
+                original_data_only_total.extend(data_result.original_data_only)
             elif data_result.head_name == "":
                 print("gn文件下无json文件")
             else:
-                generating_tables.generate_excel(data_result.result_list, data_result.head_name,
-                                                 data_result.only_file1, data_result.only_file2)
+                generate_data_only_total.extend(data_result.generate_data_only)
+                original_data_only_total.extend(data_result.original_data_only)
                 print("没有匹配项")
         else:
             print("gn文件无header函数")
-    generating_tables.generate_excel(result_list_total, StringConstant.RESULT_HEAD_NAME.value,
-                                     only_file1_total, only_file2_total)
+    generating_tables.generate_excel(compare_result_list_total, StringConstant.RESULT_HEAD_NAME.value,
+                                     generate_data_only_total, original_data_only_total)
 
-    obj_data_total = ParserGetResultTable(result_list_total, '', only_file1_total,
-                                          only_file2_total, data_total)
+    obj_data_total = ParserGetResultTable(compare_result_list_total, '', generate_data_only_total,
+                                          original_data_only_total, data_total)
     return obj_data_total
 
 
-def copy_std_lib(link_include_file):
+def copy_std_lib(link_include_file, root_path=''):
+    if root_path:
+        include_lib = os.path.abspath(os.path.join(root_path, StringConstant.INCLUDE_LIB.value))
+    else:
+        include_lib = StringConstant.INCLUDE_LIB.value
     std_include = StringConstant.STD_INCLUDE.value
     if not os.path.exists(std_include):
-        shutil.copytree(StringConstant.INCLUDE_LIB.value, std_include)
+        try:
+            shutil.copytree(include_lib, std_include)
+        except OSError:
+            pass
     if std_include not in link_include_file:
         link_include_file.append(std_include)
 
@@ -396,6 +405,7 @@ def parser_direct(path):  # 目录路径
     copy_std_lib(link_include_path)
     dir_path = ''
     if os.path.isdir(path):
+        link_include_path.append(path)
         file_path_total, link_include_total = get_dir_file_path(path)
         file_path_list.extend(file_path_total)
         link_include_path.extend(link_include_total)
@@ -404,6 +414,7 @@ def parser_direct(path):  # 目录路径
         if path.endswith('.h'):
             file_path_list.append(path)
             dir_path = os.path.dirname(path)
+            link_include_path.append(dir_path)
     data_total = parse_include.get_include_file(file_path_list, link_include_path, dir_path)
     generating_tables.get_api_data(data_total, StringConstant.PARSER_DIRECT_EXCEL_NAME.value)
 

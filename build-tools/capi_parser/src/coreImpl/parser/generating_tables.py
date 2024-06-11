@@ -21,47 +21,47 @@ import openpyxl
 
 
 def compare_json_file(generate_json, original_json):  # 获取对比结果
-    with open(generate_json, 'r', encoding='utf-8') as js1:
-        data1 = json.load(js1)
-    with open(original_json, 'r') as js2:
-        data2 = json.load(js2)
+    with open(generate_json, 'r', encoding='utf-8') as g_js:
+        generate_data_dict = json.load(g_js)
+    with open(original_json, 'r') as o_js:
+        original_data_dict = json.load(o_js)
     compare_result = []
-    only_file1 = []  # 装file1独有的
-    result_api = filter_compare(data1)
+    generate_data_only = []  # 装解析生成的json独有的数据
+    result_api = filter_compare(generate_data_dict)
     for it in result_api:
-        name1 = it["name"]
+        result_name = it["name"]
         key = 0
-        for item in data2:
-            if item["name"] == name1:
+        for item in original_data_dict:
+            if item["name"] == result_name:
                 key = 1
                 compare_result.append(it)
                 break
         if key == 0:
-            only_file1.append(it)
-    only_file2 = get_difference_data(compare_result, data2)  # 获取file2独有的
-    js1.close()
-    js2.close()
-    return compare_result, only_file1, only_file2
+            generate_data_only.append(it)
+    original_data_only = get_difference_data(compare_result, original_data_dict)  # 获取提供的json独有的数据
+    g_js.close()
+    o_js.close()
+    return compare_result, generate_data_only, original_data_only
 
 
 def get_difference_data(compare_result, original_data):
-    only_file2 = []
+    original_data_only = []
     for item in original_data:
-        name2 = item["name"]
+        original_name = item["name"]
         key = 0
         for it in compare_result:
-            name1 = it["name"]
-            if name2 == name1:
+            compare_name = it["name"]
+            if original_name == compare_name:
                 key = 1
                 break
         if key == 0:
-            only_file2.append(item)
-    return only_file2
+            original_data_only.append(item)
+    return original_data_only
 
 
-def filter_compare(data1):  # 获取函数和变量
+def filter_compare(analytic_data):  # 获取函数和变量
     result_api = []
-    for it in data1:
+    for it in analytic_data:
         get_result_api(it, result_api)
     return result_api
 
@@ -132,7 +132,8 @@ def collated_api_data(api_data: list):
             api.get('decorator'),
             api.get('kit_name'),
             api.get('location_path'),
-            api.get('sub_system')
+            api.get('sub_system'),
+            api.get('unique_id')
         ]
         collated_data_total.append(collated_data)
     return collated_data_total
@@ -142,7 +143,7 @@ def generate_excel(array, name, generate_json_unique, original_json_unique):
     first_line_infor = ['模块名', '类名', '方法名', '函数', '类型', '起始版本',
                         '废弃版本', 'syscap', '错误码', '是否为系统API', '模型限制',
                         '权限', '是否支持跨平台', '是否支持卡片应用', '是否支持高阶API',
-                        '装饰器', 'kit', '文件路径', '子系统']
+                        '装饰器', 'kit', '文件路径', '子系统', '接口全路径']
     workbook = openpyxl.Workbook()
     work_sheet1 = workbook.active
     work_sheet1.title = '对比结果'
@@ -165,7 +166,7 @@ def write_information_to_worksheet(work_sheet, information_data):
         write_data = data[0], data[1], data[2], data[3], data[4], \
                      data[5], data[6], data[7], data[8], data[9], \
                      data[10], data[11], data[12], data[13], data[14], \
-                     data[15], data[16], data[17], data[18]
+                     data[15], data[16], data[17], data[18], data[19]
         work_sheet.append(write_data)
 
 
@@ -190,30 +191,29 @@ def write_original_infor_to_worksheet(work_sheet, original_data):
         work_sheet.append(write_data)
 
 
-def del_repetition_value(only_file_list, compare_list):
+def del_repetition_value(generate_data_only_list, compare_list):
     data = []
-    for item in only_file_list:
+    for item in generate_data_only_list:
         if item not in compare_list:
             data.append(item)
     return data
 
 
-def get_json_file(json_file_new, json_file):  # 获取生成的json文件
-    json_file1 = r'{}'.format(json_file_new)  # 获取要对比的json文件
-    json_file2 = json_file
-    head_name = os.path.splitext(json_file1)  # 去掉文件名后缀
+def get_json_file(generate_json_file, original_json_file):  # 获取生成的json文件
+    generate_json_file_path = r'{}'.format(generate_json_file)  # 获取要对比的json文件
+    head_name = os.path.splitext(generate_json_file_path)  # 去掉文件名后缀
     head_name = head_name[0] + '.xlsx'  # 加后缀
-    result_list = []
-    only_file1 = []
-    only_file2 = []
-    for item in json_file2:  # 对比每一个json(目录下的)
+    compare_result_list = []
+    generate_data_only = []
+    original_data_only = []
+    for item in original_json_file:  # 对比每一个json(目录下的)
         # 对比两个json文件
-        result_list_part, only_file1_part, only_file2_part = compare_json_file(json_file1, item)
-        result_list.extend(result_list_part)
-        only_file1.extend(only_file1_part)
-        only_file2.extend(only_file2_part)
-    only_file1_new = del_repetition_value(only_file1, result_list)
-    return result_list, head_name, only_file1_new, only_file2  # 返回对比数据，和所需表格名
+        result_list_part, generate_data, original_data = compare_json_file(generate_json_file_path, item)
+        compare_result_list.extend(result_list_part)
+        generate_data_only.extend(generate_data)
+        original_data_only.extend(original_data)
+    generate_data_only_new = del_repetition_value(generate_data_only, compare_result_list)
+    return compare_result_list, head_name, generate_data_only_new, original_data_only  # 返回对比数据，和所需表格名
 
 
 def get_api_data(parser_data, excel_file_name):

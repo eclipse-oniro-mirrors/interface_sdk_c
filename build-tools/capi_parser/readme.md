@@ -41,7 +41,7 @@ options:
 
 ## 5.统计工具使用指令
 
-注意：工作路都在interface_sdk_c下(也就是C仓下)
+注意：工作路径在interface_sdk_c下(也就是C仓下)
 1）统计工具(C仓-含gn文件)
 在工作路径下执行：py main.py路径(相对工作路径) -N collect -P 目录文件路径
 生成文件名：result_total.xlsx--扫描结果api数据
@@ -51,6 +51,14 @@ options:
 生成文件名：parser_direct_data.xlsx--扫描结果api数据
 
 3）统计工具(获取到文件级的kit、子系统和文件当前接口数)
-在工作路径下执行：py main.py路径(相对工作路径) -N collect_h -P 参数随意 -O 输出json文件路径名或者不加-O
-生成文件名(不加-O)：file_api_json.json--文件级接口数据；
+在工作路径下执行：py main.py路径(相对工作路径) -N collect_file -O 输出json文件路径名或者不加-O
+生成文件名(不加-O)：api_kit_c.json--文件级接口数据；
 生成文件名(加-O)：传入json文件路径名
+
+## 5.diff工具使用指令
+注意：工作路径在interface_sdk_c下(也就是C仓下)
+在工作路径下执行：py main.py路径(相对工作路径) -N diff -old 旧文件目录路径 -new 新文件目录路径 -O 输出文件路径
+生成文件名：在对应的输出文件路径会生成三个文件：
+1）diff.xlsx        --diff结果数据表格
+2）diff_result.txt  --diff结果数据txt文件
+3）diff合集          --目录文件，里面是按kit名生成的md表格数据(其中NA或者nullOfKit是对应没有kit的数据)

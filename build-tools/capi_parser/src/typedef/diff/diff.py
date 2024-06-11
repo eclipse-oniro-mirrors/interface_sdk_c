@@ -256,8 +256,8 @@ api_modification_type_dict = {
     'api_new_list': 'API新增',
     'api_delete_list': 'API删除',
     'non_api_change_list': '非API变更',
-    'api_prototype_change_list': 'API修改(原型修改)',
-    'api_constraint_change_list': 'API修改(约束变化)'
+    'api_prototype_change_list': 'API修改（原型修改）',
+    'api_constraint_change_list': 'API修改（约束变化）'
 }
 
 
@@ -288,6 +288,7 @@ class DiffInfo:
     sub_system = ''
     class_name = ''
     api_node_name = ''
+    unique_id = ''
 
     def __init__(self, diff_type: DiffType):
         self.diff_type = diff_type
@@ -402,6 +403,12 @@ class DiffInfo:
     def get_api_node_name(self):
         return self.api_node_name
 
+    def set_unique_id(self, unique_id):
+        self.unique_id = unique_id
+
+    def get_unique_id(self):
+        return self.unique_id
+
 
 class OutputJson:
     api_name: str = ''
@@ -419,6 +426,7 @@ class OutputJson:
     kit_name = ''
     sub_system = ''
     class_name = ''
+    unique_id = ''
 
     def __init__(self, diff_info):
         self.api_name = diff_info.api_name
@@ -436,6 +444,7 @@ class OutputJson:
         self.kit_name = diff_info.kit_name
         self.sub_system = diff_info.sub_system
         self.class_name = diff_info.class_name
+        self.unique_id = diff_info.unique_id
 
 
 class ApiChangeData:
@@ -450,6 +459,7 @@ class ApiChangeData:
     old_all_text: str = ''
     new_all_text: str = ''
     compatible_total = False
+    unique_id: str = ''
 
     def set_api_name(self, api_name):
         self.api_name = api_name
@@ -516,3 +526,9 @@ class ApiChangeData:
 
     def get_compatible_total(self):
         return self.compatible_total
+
+    def set_unique_id(self, unique_id):
+        self.unique_id = unique_id
+
+    def get_unique_id(self):
+        return self.unique_id

@@ -17,18 +17,18 @@ import enum
 
 
 class ParserGetResultTable:
-    result_list = []
+    compare_result_list = []
     head_name = ""
-    only_file1 = []
-    only_file2 = []
-    data = []
+    generate_data_only = []
+    original_data_only = []
+    parser_data = []
 
-    def __init__(self, result_list_need, head_name_need, only_file1_need, only_file2_need, data_need):
-        self.result_list = result_list_need
+    def __init__(self, compare_result_list, head_name_need, generate_data_only, original_data_only, parser_data):
+        self.compare_result_list = compare_result_list
         self.head_name = head_name_need
-        self.only_file1 = only_file1_need
-        self.only_file2 = only_file2_need
-        self.data = data_need
+        self.generate_data_only = generate_data_only
+        self.original_data_only = original_data_only
+        self.parser_data = parser_data
 
 
 class OneFileApiMessage:

@@ -35,16 +35,16 @@ def get_modification_type_dict():
         'API删除': 0,
         'API废弃': 0,
         'API修改': 0,
-        'API修改(原型修改)': 0,
-        'API修改(约束变化)': 0
+        'API修改（原型修改）': 0,
+        'API修改（约束变化）': 0
     }
     return modification_type_dict
 
 
 def get_compatible_dict():
     compatible_dict = {
-        '兼容': 0,
-        '不兼容': 0
+        '兼容性': 0,
+        '非兼容性': 0
     }
     return compatible_dict
 
@@ -59,18 +59,16 @@ def get_api_change_obj(api_data):
     compatible_dict = get_compatible_dict()
     change_data_obj = ApiChangeData()
     key = 0
+    api_unique_id = ''
     for element in api_data:
-        if element.is_api_change:
-            change_type = 'API变更'
-        else:
-            change_type = '非API变更'
+        api_unique_id = element.unique_id
         if 0 == key:
             change_data_obj.set_api_name(element.api_node_name)
             change_data_obj.set_kit_name(element.kit_name)
             change_data_obj.set_sub_system(element.sub_system)
             change_data_obj.set_is_api_change(element.is_api_change)
             change_data_obj.set_diff_type(element.diff_type.name)
-            change_data_obj.set_change_type(change_type)
+            change_data_obj.set_change_type(element.api_modification_type)
             change_data_obj.set_old_all_text(element.old_api_full_text)
             change_data_obj.set_new_all_text(element.new_api_full_text)
             change_data_obj.set_compatible_total(element.is_compatible)
@@ -79,25 +77,26 @@ def get_api_change_obj(api_data):
             old_all_text = '{}#&#{}'.format(change_data_obj.old_all_text, element.old_api_full_text)
             new_all_text = '{}#&#{}'.format(change_data_obj.new_all_text, element.new_api_full_text)
             diff_type_all = '{}#&#{}'.format(change_data_obj.get_diff_type(), element.diff_type.name)
-            change_type_all = '{}#&#{}'.format(change_data_obj.get_change_type(), change_type)
+            change_type_all = '{}#&#{}'.format(change_data_obj.get_change_type(), element.api_modification_type)
             compatible_data_all = '{}#&#{}'.format(change_data_obj.get_compatible_total(), element.is_compatible)
             change_data_obj.set_old_all_text(old_all_text)
             change_data_obj.set_new_all_text(new_all_text)
             change_data_obj.set_diff_type(diff_type_all)
             change_data_obj.set_change_type(change_type_all)
             change_data_obj.set_compatible_total(compatible_data_all)
-        if element.is_compatible and (0 == compatible_dict.get('兼容')):
-            compatible_dict['兼容'] = 1
-        elif not element.is_compatible and (0 == compatible_dict.get('不兼容')):
-            compatible_dict['不兼容'] = 1
+        if element.is_compatible and (0 == compatible_dict.get('兼容性')):
+            compatible_dict['兼容性'] = 1
+        elif not element.is_compatible and (0 == compatible_dict.get('非兼容性')):
+            compatible_dict['非兼容性'] = 1
         if element.api_modification_type in modification_type_dict:
             modification_type_dict[element.api_modification_type] = 1
-    if 1 == modification_type_dict.get('API修改(原型修改)') or 1 == modification_type_dict.get('API修改(约束变化)'):
+    if 1 == modification_type_dict.get('API修改（原型修改）') or 1 == modification_type_dict.get('API修改（约束变化）'):
         modification_type_dict['API修改'] = 1
     compatible_str = change_to_json(compatible_dict)
     modification_type_str = change_to_json(modification_type_dict)
     change_data_obj.set_compatible(compatible_str)
     change_data_obj.set_change_num(modification_type_str)
+    change_data_obj.set_unique_id(api_unique_id)
 
     return change_data_obj
 
@@ -125,7 +124,8 @@ def collect_node_api_change(api_change_info_list):
             api_change_info.change_num,
             api_change_info.old_all_text,
             api_change_info.new_all_text,
-            api_change_info.compatible_total
+            api_change_info.compatible_total,
+            api_change_info.unique_id
         ]
         change_data.append(info_data)
 
@@ -160,6 +160,7 @@ def disposal_result_data(result_info_list):
         api_result = '是' if diff_info.is_api_change else '否'
         info_data.append(api_result)
         info_data.append(diff_info.api_modification_type)
+        info_data.append(diff_info.unique_id)
         data.append(info_data)
 
     return data
@@ -171,19 +172,19 @@ def generate_excel(result_info_list, api_change_data, output_path):
     ws = wb['Sheet']
     ws.title = 'api差异'
     ws.append(['操作标记', '差异项-旧版本', '差异项-新版本', '兼容',
-               '.h文件', '归属子系统', 'kit', 'API变化', 'API修改类型'])
+               '.h文件', '归属子系统', 'kit', 'API变化', 'API修改类型', '接口全路径'])
     for title in data:
         d = title[0], title[1], title[2], title[3], title[4],\
-            title[5], title[6], title[7], title[8]
+            title[5], title[6], title[7], title[8], title[9]
         ws.append(d)
 
     change_data_list = collect_node_api_change(api_change_data)
     ws_of_change = wb.create_sheet('api变更次数统计')
     ws_of_change.append(['api名称', 'kit名称', '归属子系统', '是否是api', '操作标记', '变更类型',
-                         '兼容性', '变更次数', '差异性-旧版本', '差异性-新版本', '兼容性列表'])
+                         '兼容性', '变更次数', '差异性-旧版本', '差异性-新版本', '兼容性列表', '接口全路径'])
     for element in change_data_list:
         change_data = element[0], element[1], element[2], element[3], element[4], element[5],\
-                      element[6], element[7], element[8], element[9], element[10],
+                      element[6], element[7], element[8], element[9], element[10], element[11]
         ws_of_change.append(change_data)
     output_path_xlsx = os.path.abspath(os.path.join(output_path, 'diff.xlsx'))
     wb.save(output_path_xlsx)

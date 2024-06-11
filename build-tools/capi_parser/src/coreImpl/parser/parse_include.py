@@ -55,8 +55,6 @@ def processing_root_parent(cursor_parent):
 
 
 def processing_no_child(cursor, data, last_data):  # 处理没有子节点的节点
-    if last_data and 'module_name' in last_data:
-        data['module_name'] = last_data['module_name']
     if cursor.kind == CursorKind.INTEGER_LITERAL:  # 整型字面量类型节点，没有子节点
         tokens = cursor.get_tokens()
         for token in tokens:
@@ -195,6 +193,21 @@ special_node_process = {
 }
 
 
+def get_api_unique_id(cursor, loc):
+    parent_of_cursor = cursor.semantic_parent
+    unique_id = ''
+    if parent_of_cursor:
+        if parent_of_cursor.kind == CursorKind.TRANSLATION_UNIT:
+            parent_name_str = ''
+        else:
+            parent_name_str = parent_of_cursor.spelling
+        if not parent_name_str:
+            unique_id = '{}#{}'.format(loc["location_path"], cursor.spelling)
+        else:
+            unique_id = '{}#{}#{}'.format(loc["location_path"], parent_name_str, cursor.spelling)
+    return unique_id
+
+
 def processing_special_node(cursor, data, key, gn_path=None):  # 处理需要特殊处理的节点
     if key == 0:
         location_path = cursor.spelling
@@ -212,6 +225,7 @@ def processing_special_node(cursor, data, key, gn_path=None):  # 处理需要特
         relative_path = os.path.relpath(location_path, gn_path)  # 获取头文件相对路
         loc["location_path"] = relative_path
     data["location"] = loc
+    data["unique_id"] = get_api_unique_id(cursor, loc)
     if kind_name in special_node_process.keys():
         node_process = special_node_process[kind_name]
         node_process(cursor, data)  # 调用对应节点处理函数
@@ -266,7 +280,8 @@ def get_default_node_data(cursor, gn_path=None):
         "cross_platform": 'NA',
         "form": 'NA',
         "atomic_service": 'NA',
-        "decorator": 'NA'
+        "decorator": 'NA',
+        "unique_id": ''
     }
     return data
 
@@ -306,8 +321,10 @@ def parser_data_assignment(cursor, current_file, gn_path=None, comment=None, key
 def ast_to_dict(cursor, current_file, last_data, gn_path=None, comment=None, key=0):  # 解析数据的整理
     # 通用赋值
     data = parser_data_assignment(cursor, current_file, gn_path, comment, key)
-    if last_data and 'module_name' in last_data:
+    if last_data:
         data['module_name'] = last_data['module_name']
+        data['kit_name'] = last_data['kit_name']
+        data['syscap'] = last_data['syscap']
     children = list(cursor.get_children())  # 判断是否有子节点，有就追加children，没有根据情况来
     if len(children) > 0:
         if key != 0:
