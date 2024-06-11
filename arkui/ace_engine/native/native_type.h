@@ -3390,6 +3390,27 @@ void OH_ArkUI_AccessibilityState_SetSelected(ArkUI_AccessibilityState* state, in
 int32_t OH_ArkUI_AccessibilityState_IsSelected(ArkUI_AccessibilityState* state);
 
 /**
+ * @brief Set accessibility checked state.
+ *
+ * @param state accessibility state object.
+ * @param checkedState checked state，and uses the {@link ArkUI_AccessibilityCheckedState} enumeration value,
+ *        The default value is ARKUI_ACCESSIBILITY_UNCHECKED.
+ * @since 12
+*/
+void OH_ArkUI_AccessibilityState_SetCheckedState(ArkUI_AccessibilityState* state, int32_t checkedState);
+
+/**
+ * @brief Get accessibility checked state.
+ *
+ * @param state accessibility state object.
+ * @return checked state，and uses the {@link ArkUI_AccessibilityCheckedState} enumeration value,
+ *         The default value is ARKUI_ACCESSIBILITY_UNCHECKED.
+ *         If the function parameter is abnormal, return the default value.
+ * @since 12
+*/
+int32_t OH_ArkUI_AccessibilityState_GetCheckedState(ArkUI_AccessibilityState* state);
+
+/**
  * @brief Create accessibility value.
  *
  * @return Returns the pointer to the accessibility state object.
