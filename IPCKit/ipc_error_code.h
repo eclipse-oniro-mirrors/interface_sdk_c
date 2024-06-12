@@ -32,6 +32,7 @@
  * @brief Defines IPC error codes.
  *
  * @library libipc_capi.so
+ * @kit IPCKit
  * @syscap SystemCapability.Communication.IPC.Core
  * @since 12
  */

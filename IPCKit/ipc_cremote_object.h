@@ -34,6 +34,7 @@
  * and observing the dead status of a remote object.
  *
  * @library libipc_capi.so
+ * @kit IPCKit
  * @syscap SystemCapability.Communication.IPC.Core
  * @since 12
  */
