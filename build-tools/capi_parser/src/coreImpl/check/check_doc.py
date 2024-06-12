@@ -275,12 +275,6 @@ def process_each_comment(comment_object, file_doc_info: FileDocInfo, api_info) -
         if file_doc_info.group_brief is None:
             api_result_info = set_value_to_result(api_info, CheckErrorMessage.API_DOC_GLOBAL_02.name)
             api_result_info_list.append(api_result_info)
-        if file_doc_info.group_library is None:
-            api_result_info = set_value_to_result(api_info, CheckErrorMessage.API_DOC_GLOBAL_07.name)
-            api_result_info_list.append(api_result_info)
-        if file_doc_info.group_syscap is None:
-            api_result_info = set_value_to_result(api_info, CheckErrorMessage.API_DOC_GLOBAL_08.name)
-            api_result_info_list.append(api_result_info)
     # 处理file标签的值
     if file_doc_info.is_in_file_tag:
         if file_doc_info.file_brief is None:
