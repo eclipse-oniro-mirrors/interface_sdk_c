@@ -198,10 +198,6 @@ class CheckErrorMessage(enum.Enum):
                          'but do not has the start tag [{].')
     API_DOC_GLOBAL_06 = ('API check error of [api doc errors]:The [{] tag is not allowed to reuse '
                          'in Doc which has [addtogroup] tag.')
-    API_DOC_GLOBAL_07 = ('API check error of [api doc errors]:The file has the [addtogroup] tag, '
-                         'but do not has the [library] tag.')
-    API_DOC_GLOBAL_08 = ('API check error of [api doc errors]:The file has the [addtogroup] tag, '
-                         'but do not has the [syscap] tag.')
     API_DOC_GLOBAL_09 = 'API check error of [api doc errors]:The file missing [addtogroup] tag.'
     API_DOC_GLOBAL_10 = ('API check error of [api doc errors]:The file has the [addtogroup] tag,'
                          'but do not has the end tag [}].')
