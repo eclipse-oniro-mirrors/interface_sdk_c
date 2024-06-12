@@ -110,19 +110,19 @@
         "first_introduced": "12",
         "name": "OH_Drawing_CanvasSkew"
     },
-    { "name": "OH_Drawing_CanvasSetMatrix" },
     {
         "first_introduced": "12",
         "name": "OH_Drawing_CanvasResetMatrix"
     },
-    { "name": "OH_Drawing_CanvasReadPixels" },
-    { "name": "OH_Drawing_CanvasReadPixelsToBitmap" },
     { "name": "OH_Drawing_CanvasGetWidth" },
     { "name": "OH_Drawing_CanvasGetHeight" },
     { "name": "OH_Drawing_CanvasGetLocalClipBounds" },
     { "name": "OH_Drawing_CanvasGetTotalMatrix" },
     { "name": "OH_Drawing_CanvasConcatMatrix" },
     { "name": "OH_Drawing_CanvasDrawShadow" },
+    { "name": "OH_Drawing_CanvasSetMatrix" },
+    { "name": "OH_Drawing_CanvasReadPixels" },
+    { "name": "OH_Drawing_CanvasReadPixelsToBitmap" },
     { "name": "OH_Drawing_CreateDashPathEffect" },
     { "name": "OH_Drawing_PathEffectDestroy" },
     { "name": "OH_Drawing_ColorFilterCreateBlendMode" },
@@ -236,8 +236,8 @@
     { "name": "OH_Drawing_FontCountText" },
     { "name": "OH_Drawing_FontSetTextSkewX" },
     { "name": "OH_Drawing_FontSetTypeface" },
-    { "name": "OH_Drawing_FontGetMetrics" },
     { "name": "OH_Drawing_FontGetTypeface" },
+    { "name": "OH_Drawing_FontGetMetrics" },
     {
         "first_introduced": "12",
         "name": "OH_Drawing_GpuContextCreateFromGL"
@@ -666,6 +666,12 @@
     { "name": "OH_Drawing_ImageGetHeight" },
     {
         "first_introduced": "12",
+        "name": "OH_Drawing_ImageGetImageInfo"
+    },
+    { "name": "OH_Drawing_SamplingOptionsCreate" },
+    { "name": "OH_Drawing_SamplingOptionsDestroy" },
+    {
+        "first_introduced": "12",
         "name": "OH_Drawing_TextStyleGetShadowWithIndex"
     },
     {
@@ -700,12 +706,6 @@
         "first_introduced": "12",
         "name": "OH_Drawing_TypographySetIndents"
     },
-    {
-        "first_introduced": "12",
-        "name": "OH_Drawing_ImageGetImageInfo"
-    },
-    { "name": "OH_Drawing_SamplingOptionsCreate" },
-    { "name": "OH_Drawing_SamplingOptionsDestroy" },
     {
         "first_introduced": "11",
         "name": "OH_Drawing_TypographyHandlerAddPlaceholder"

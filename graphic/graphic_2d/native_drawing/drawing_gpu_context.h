@@ -45,7 +45,7 @@ extern "C" {
 
 /**
  * @brief Defines the options about GPU context.
- * 
+ *
  * @since 12
  * @version 1.0
  */
