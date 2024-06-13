@@ -137,7 +137,7 @@ Image_ErrorCode OH_PackingOptions_SetQuality(OH_PackingOptions *options,
  * @since 12
  */
 Image_ErrorCode OH_PackingOptions_GetNeedsPackProperties(OH_PackingOptions *options,
-                                             bool *needsPackProperties);
+    bool *needsPackProperties);
 
 /**
  * @brief Set needsPackProperties for OH_PackingOptions struct.
@@ -148,7 +148,7 @@ Image_ErrorCode OH_PackingOptions_GetNeedsPackProperties(OH_PackingOptions *opti
  * @since 12
  */
 Image_ErrorCode OH_PackingOptions_SetNeedsPackProperties(OH_PackingOptions *options,
-                                             bool needsPackProperties);
+    bool needsPackProperties);
 
 /**
  * @brief Get desiredDynamicRange for PackingOptions struct.
