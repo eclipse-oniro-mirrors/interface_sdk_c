@@ -1600,8 +1600,9 @@ typedef enum {
      * with the {@link ArkUI_ThemeColorMode} enumeration value.\n
      * .value[2]?.i32 The color extraction mode used to represent the content blur effect takes\n
      * the {@link ArkUI_AdaptiveColor} enumeration value.\n
-     * .value[3]?.i32 It is a gray-level fuzzy parameter. The value range is [0,127].\n
-     * .value[4]?.i32 It is a gray-level fuzzy parameter. The value range is [0,127].\n
+     * .value[3]?.f32: blur degree. The value range is [0.0, 1.0]. \n
+     * .value[4]?.f32 It is a gray-level fuzzy parameter. The value range is [0,127].\n
+     * .value[5]?.f32 It is a gray-level fuzzy parameter. The value range is [0,127].\n
      * \n
      * Format of the return value {@link ArkUI_AttributeItem}:\n
      * .value[0].i32 Represents the content blurring style, and uses the {@link ArkUI_BlurStyle} enumeration value.\n
@@ -1609,8 +1610,9 @@ typedef enum {
      * with the {@link ArkUI_ThemeColorMode} enumeration value.\n
      * .value[2].i32 The color extraction mode used to represent the content blur effect takes\n
      * the {@link ArkUI_AdaptiveColor} enumeration value.\n
-     * .value[3].i32 It is a gray-level fuzzy parameter. The value range is [0,127].\n
-     * .value[4].i32 It is a gray-level fuzzy parameter. The value range is [0,127].\n
+     * .value[3].f32: blur degree. The value range is [0.0, 1.0]. \n
+     * .value[4].f32 It is a gray-level fuzzy parameter. The value range is [0,127].\n
+     * .value[5].f32 It is a gray-level fuzzy parameter. The value range is [0,127].\n
      *
      */
     NODE_FOREGROUND_BLUR_STYLE,
