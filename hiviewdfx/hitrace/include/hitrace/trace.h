@@ -35,33 +35,33 @@
  * @since 10
  */
 
- /**
-  * @file trace.h
-  *
-  * @brief Defines APIs of the HiTraceMeter module for performance trace.
-  *
-  * Sample code: \n
-  * Synchronous timeslice trace event: \n
-  *     OH_HiTrace_StartTrace("hitraceTest");\n
-  *     OH_HiTrace_FinishTrace();\n
-  * Output: \n
-  *     <...>-1668    (-------) [003] ....   135.059377: tracing_mark_write: B|1668|H:hitraceTest \n
-  *     <...>-1668    (-------) [003] ....   135.059415: tracing_mark_write: E|1668| \n
-  * Asynchronous timeslice trace event:\n
-  *     OH_HiTrace_StartAsyncTrace("hitraceTest", 123); \n
-  *     OH_HiTrace_FinishAsyncTrace("hitraceTest", 123); \n
-  * Output: \n
-  *     <...>-2477    (-------) [001] ....   396.427165: tracing_mark_write: S|2477|H:hitraceTest 123 \n
-  *     <...>-2477    (-------) [001] ....   396.427196: tracing_mark_write: F|2477|H:hitraceTest 123 \n
-  * Integer value trace event:\n
-  *     OH_HiTrace_CountTrace("hitraceTest", 500); \n
-  * Output: \n
-  *     <...>-2638    (-------) [002] ....   458.904382: tracing_mark_write: C|2638|H:hitraceTest 500 \n
-  *
-  * @library libhitracechain.so
-  * @syscap SystemCapability.HiviewDFX.HiTrace
-  * @since 10
-  */
+/**
+ * @file trace.h
+ *
+ * @brief Defines APIs of the HiTraceMeter module for performance trace.
+ *
+ * Sample code: \n
+ * Synchronous timeslice trace event: \n
+ *     OH_HiTrace_StartTrace("hitraceTest");\n
+ *     OH_HiTrace_FinishTrace();\n
+ * Output: \n
+ *     <...>-1668    (-------) [003] ....   135.059377: tracing_mark_write: B|1668|H:hitraceTest \n
+ *     <...>-1668    (-------) [003] ....   135.059415: tracing_mark_write: E|1668| \n
+ * Asynchronous timeslice trace event:\n
+ *     OH_HiTrace_StartAsyncTrace("hitraceTest", 123); \n
+ *     OH_HiTrace_FinishAsyncTrace("hitraceTest", 123); \n
+ * Output: \n
+ *     <...>-2477    (-------) [001] ....   396.427165: tracing_mark_write: S|2477|H:hitraceTest 123 \n
+ *     <...>-2477    (-------) [001] ....   396.427196: tracing_mark_write: F|2477|H:hitraceTest 123 \n
+ * Integer value trace event:\n
+ *     OH_HiTrace_CountTrace("hitraceTest", 500); \n
+ * Output: \n
+ *     <...>-2638    (-------) [002] ....   458.904382: tracing_mark_write: C|2638|H:hitraceTest 500 \n
+ *
+ * @library libhitracechain.so
+ * @syscap SystemCapability.HiviewDFX.HiTrace
+ * @since 10
+ */
 #include <stdint.h>
 
 #ifdef __cplusplus
