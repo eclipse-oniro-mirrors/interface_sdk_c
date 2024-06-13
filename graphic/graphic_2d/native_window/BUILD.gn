@@ -19,6 +19,7 @@ ohos_ndk_headers("native_window_header") {
   sources = [
     "//interface/sdk_c/graphic/graphic_2d/native_window/buffer_handle.h",
     "//interface/sdk_c/graphic/graphic_2d/native_window/external_window.h",
+    "//interface/sdk_c/graphic/graphic_2d/native_window/graphic_error_code.h",
   ]
 }
 

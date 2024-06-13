@@ -120,7 +120,8 @@ typedef struct {
  * @param rawFile Indicates the pointer to {@link RawFile}.
  * @param buf Indicates the pointer to the buffer for receiving the data read.
  * @param length Indicates the number of bytes to read.
- * @return Returns the number of bytes read if any; returns <b>0</b> if the number reaches the end of file (EOF).
+ * @return Returns the number of bytes read if any;
+ *         if the number reaches the end of file (EOF) or rawFile is nullptr also returns <b>0</b>
  * @since 8
  * @version 1.0
  */
@@ -146,7 +147,7 @@ int OH_ResourceManager_SeekRawFile(const RawFile *rawFile, long offset, int when
  * @brief Obtains the raw file length represented by an long.
  *
  * @param rawFile Indicates the pointer to {@link RawFile}.
- * @return Returns the total length of the raw file.
+ * @return Returns the total length of the raw file. If rawFile is nullptr also returns 0.
  * @since 8
  * @version 1.0
  */
@@ -156,7 +157,7 @@ long OH_ResourceManager_GetRawFileSize(RawFile *rawFile);
  * @brief Obtains the remaining raw file length represented by an long.
  *
  * @param rawFile Indicates the pointer to {@link RawFile}.
- * @return Returns the remaining length of the raw file.
+ * @return Returns the remaining length of the raw file. If rawFile is nullptr also returns 0.
  * @since 11
  * @version 1.0
  */
@@ -180,7 +181,7 @@ void OH_ResourceManager_CloseRawFile(RawFile *rawFile);
  * The current offset of a raw file.
  *
  * @param rawFile Indicates the pointer to {@link RawFile}.
- * @return Returns the current offset of a raw file.
+ * @return Returns the current offset of a raw file. If rawFile is nullptr also returns 0.
  * @since 8
  * @version 1.0
  */
@@ -219,7 +220,8 @@ bool OH_ResourceManager_ReleaseRawFileDescriptor(const RawFileDescriptor &descri
  * @param rawFile Indicates the pointer to {@link RawFile64}.
  * @param buf Indicates the pointer to the buffer for receiving the data read.
  * @param length Indicates the number of bytes to read.
- * @return Returns the number of bytes read if any; returns <b>0</b> if the number reaches the end of file (EOF).
+ * @return Returns the number of bytes read if any;
+ *         returns <b>0</b> if the number reaches the end of file (EOF). or rawFile is nullptr also returns 0
  * @since 11
  * @version 1.0
  */
@@ -245,7 +247,7 @@ int OH_ResourceManager_SeekRawFile64(const RawFile64 *rawFile, int64_t offset, i
  * @brief Obtains the raw file length represented by an int64_t.
  *
  * @param rawFile Indicates the pointer to {@link RawFile64}.
- * @return Returns the total length of the raw file.
+ * @return Returns the total length of the raw file. If rawFile is nullptr also returns 0.
  * @since 11
  * @version 1.0
  */
@@ -255,7 +257,7 @@ int64_t OH_ResourceManager_GetRawFileSize64(RawFile64 *rawFile);
  * @brief Obtains the remaining raw file length represented by an int64_t.
  *
  * @param rawFile Indicates the pointer to {@link RawFile64}.
- * @return Returns the remaining length of the raw file.
+ * @return Returns the remaining length of the raw file. If rawFile is nullptr also returns 0.
  * @since 11
  * @version 1.0
  */
@@ -279,7 +281,7 @@ void OH_ResourceManager_CloseRawFile64(RawFile64 *rawFile);
  * The current offset of a raw file.
  *
  * @param rawFile Indicates the pointer to {@link RawFile64}.
- * @return Returns the current offset of a raw file.
+ * @return Returns the current offset of a raw file. If rawFile is nullptr also returns 0.
  * @since 11
  * @version 1.0
  */

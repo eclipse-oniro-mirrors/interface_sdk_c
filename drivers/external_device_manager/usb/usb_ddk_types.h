@@ -22,6 +22,7 @@
  * @brief Provides USB DDK types and declares the macros, enumerated variables, and\n
  * data structures required by the USB DDK APIs.
  *
+ * @kit DriverDevelopmentKit
  * @syscap SystemCapability.Driver.USB.Extension
  * @since 10
  * @version 1.0

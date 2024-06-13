@@ -32,6 +32,7 @@
  * @brief Defines C interfaces for IPC serialization and deserialization.
  *
  * @library libipc_capi.so
+ * @kit IPCKit
  * @syscap SystemCapability.Communication.IPC.Core
  * @since 12
  */

@@ -128,6 +128,9 @@ OH_EffectFilter *OH_ImageEffect_GetFilter(OH_ImageEffect *imageEffect, uint32_t 
  * @param value Indicates the value corresponding to the key of the configuration
  * @return Returns EFFECT_SUCCESS if the execution is successful, otherwise returns a specific error code, refer to
  * {@link ImageEffect_ErrorCode}
+ * {@link EFFECT_ERROR_PARAM_INVALID}, the input parameter is a null pointer.
+ * {@link EFFECT_KEY_ERROR}, the key of the configuration parameter is invalid.
+ * {@link EFFECT_PARAM_ERROR}, the value of the configuration parameter is invalid.
  * @since 12
  */
 ImageEffect_ErrorCode OH_ImageEffect_Configure(OH_ImageEffect *imageEffect, const char *key,
@@ -142,6 +145,7 @@ ImageEffect_ErrorCode OH_ImageEffect_Configure(OH_ImageEffect *imageEffect, cons
  * @param nativeWindow A pointer to a OHNativeWindow instance, see {@link OHNativeWindow}
  * @return Returns EFFECT_SUCCESS if the execution is successful, otherwise returns a specific error code, refer to
  * {@link ImageEffect_ErrorCode}
+ * {@link EFFECT_ERROR_PARAM_INVALID}, the input parameter is a null pointer.
  * @since 12
  */
 ImageEffect_ErrorCode OH_ImageEffect_SetOutputSurface(OH_ImageEffect *imageEffect, OHNativeWindow *nativeWindow);
@@ -155,6 +159,7 @@ ImageEffect_ErrorCode OH_ImageEffect_SetOutputSurface(OH_ImageEffect *imageEffec
  * @param nativeWindow A pointer to a OHNativeWindow instance, see {@link OHNativeWindow}
  * @return Returns EFFECT_SUCCESS if the execution is successful, otherwise returns a specific error code, refer to
  * {@link ImageEffect_ErrorCode}
+ * {@link EFFECT_ERROR_PARAM_INVALID}, the input parameter is a null pointer.
  * @since 12
  */
 ImageEffect_ErrorCode OH_ImageEffect_GetInputSurface(OH_ImageEffect *imageEffect, OHNativeWindow **nativeWindow);
@@ -168,6 +173,7 @@ ImageEffect_ErrorCode OH_ImageEffect_GetInputSurface(OH_ImageEffect *imageEffect
  * @param pixelmap Indicates the OH_PixelmapNative that contains the image information
  * @return Returns EFFECT_SUCCESS if the execution is successful, otherwise returns a specific error code, refer to
  * {@link ImageEffect_ErrorCode}
+ * {@link EFFECT_ERROR_PARAM_INVALID}, the input parameter is a null pointer.
  * @since 12
  */
 ImageEffect_ErrorCode OH_ImageEffect_SetInputPixelmap(OH_ImageEffect *imageEffect, OH_PixelmapNative *pixelmap);
@@ -180,6 +186,7 @@ ImageEffect_ErrorCode OH_ImageEffect_SetInputPixelmap(OH_ImageEffect *imageEffec
  * @param pixelmap Indicates the OH_PixelmapNative that contains the image information
  * @return Returns EFFECT_SUCCESS if the execution is successful, otherwise returns a specific error code, refer to
  * {@link ImageEffect_ErrorCode}
+ * {@link EFFECT_ERROR_PARAM_INVALID}, the input parameter is a null pointer.
  * @since 12
  */
 ImageEffect_ErrorCode OH_ImageEffect_SetOutputPixelmap(OH_ImageEffect *imageEffect, OH_PixelmapNative *pixelmap);
@@ -193,6 +200,7 @@ ImageEffect_ErrorCode OH_ImageEffect_SetOutputPixelmap(OH_ImageEffect *imageEffe
  * @param nativeBuffer Indicates the NativeBuffer that contains the image information
  * @return Returns EFFECT_SUCCESS if the execution is successful, otherwise returns a specific error code, refer to
  * {@link ImageEffect_ErrorCode}
+ * {@link EFFECT_ERROR_PARAM_INVALID}, the input parameter is a null pointer.
  * @since 12
  */
 ImageEffect_ErrorCode OH_ImageEffect_SetInputNativeBuffer(OH_ImageEffect *imageEffect, OH_NativeBuffer *nativeBuffer);
@@ -205,6 +213,7 @@ ImageEffect_ErrorCode OH_ImageEffect_SetInputNativeBuffer(OH_ImageEffect *imageE
  * @param nativeBuffer Indicates the NativeBuffer that contains the image information
  * @return Returns EFFECT_SUCCESS if the execution is successful, otherwise returns a specific error code, refer to
  * {@link ImageEffect_ErrorCode}
+ * {@link EFFECT_ERROR_PARAM_INVALID}, the input parameter is a null pointer.
  * @since 12
  */
 ImageEffect_ErrorCode OH_ImageEffect_SetOutputNativeBuffer(OH_ImageEffect *imageEffect, OH_NativeBuffer *nativeBuffer);
@@ -218,6 +227,7 @@ ImageEffect_ErrorCode OH_ImageEffect_SetOutputNativeBuffer(OH_ImageEffect *image
  * @param uri An URI for a image resource
  * @return Returns EFFECT_SUCCESS if the execution is successful, otherwise returns a specific error code, refer to
  * {@link ImageEffect_ErrorCode}
+ * {@link EFFECT_ERROR_PARAM_INVALID}, the input parameter is a null pointer.
  * @since 12
  */
 ImageEffect_ErrorCode OH_ImageEffect_SetInputUri(OH_ImageEffect *imageEffect, const char *uri);
@@ -230,6 +240,7 @@ ImageEffect_ErrorCode OH_ImageEffect_SetInputUri(OH_ImageEffect *imageEffect, co
  * @param uri An URI for a image resource
  * @return Returns EFFECT_SUCCESS if the execution is successful, otherwise returns a specific error code, refer to
  * {@link ImageEffect_ErrorCode}
+ * {@link EFFECT_ERROR_PARAM_INVALID}, the input parameter is a null pointer.
  * @since 12
  */
 ImageEffect_ErrorCode OH_ImageEffect_SetOutputUri(OH_ImageEffect *imageEffect, const char *uri);
@@ -241,6 +252,11 @@ ImageEffect_ErrorCode OH_ImageEffect_SetOutputUri(OH_ImageEffect *imageEffect, c
  * @param imageEffect Encapsulate OH_ImageEffect structure instance pointer
  * @return Returns EFFECT_SUCCESS if the execution is successful, otherwise returns a specific error code, refer to
  * {@link ImageEffect_ErrorCode}
+ * {@link EFFECT_ERROR_PARAM_INVALID}, the input parameter is a null pointer.
+ * {@link EFFECT_INPUT_OUTPUT_NOT_SUPPORTED}, the data types of the input and output images
+ * to be processed are different.
+ * {@link EFFECT_COLOR_SPACE_NOT_MATCH}, the color spaces of the input and output images are different.
+ * {@link EFFECT_ALLOCATE_MEMORY_FAILED}, the buffer fails to be allocated.
  * @since 12
  */
 ImageEffect_ErrorCode OH_ImageEffect_Start(OH_ImageEffect *imageEffect);
@@ -252,6 +268,7 @@ ImageEffect_ErrorCode OH_ImageEffect_Start(OH_ImageEffect *imageEffect);
  * @param imageEffect Encapsulate OH_ImageEffect structure instance pointer
  * @return Returns EFFECT_SUCCESS if the execution is successful, otherwise returns a specific error code, refer to
  * {@link ImageEffect_ErrorCode}
+ * {@link EFFECT_ERROR_PARAM_INVALID}, the input parameter is a null pointer.
  * @since 12
  */
 ImageEffect_ErrorCode OH_ImageEffect_Stop(OH_ImageEffect *imageEffect);
@@ -263,6 +280,7 @@ ImageEffect_ErrorCode OH_ImageEffect_Stop(OH_ImageEffect *imageEffect);
  * @param imageEffect Encapsulate OH_ImageEffect structure instance pointer
  * @return Returns EFFECT_SUCCESS if the execution is successful, otherwise returns a specific error code, refer to
  * {@link ImageEffect_ErrorCode}
+ * {@link EFFECT_ERROR_PARAM_INVALID}, the input parameter is a null pointer.
  * @since 12
  */
 ImageEffect_ErrorCode OH_ImageEffect_Release(OH_ImageEffect *imageEffect);
@@ -276,6 +294,7 @@ ImageEffect_ErrorCode OH_ImageEffect_Release(OH_ImageEffect *imageEffect);
  * OH_ImageEffect to JSON string
  * @return Returns EFFECT_SUCCESS if the execution is successful, otherwise returns a specific error code, refer to
  * {@link ImageEffect_ErrorCode}
+ * {@link EFFECT_ERROR_PARAM_INVALID}, the input parameter is a null pointer.
  * @since 12
  */
 ImageEffect_ErrorCode OH_ImageEffect_Save(OH_ImageEffect *imageEffect, char **info);

@@ -37,6 +37,7 @@
  * @version 1.0
  */
 
+#include "drawing_error_code.h"
 #include "drawing_types.h"
 
 #ifdef __cplusplus
@@ -356,6 +357,20 @@ void OH_Drawing_MatrixConcat(OH_Drawing_Matrix* total, const OH_Drawing_Matrix* 
     const OH_Drawing_Matrix* b);
 
 /**
+ * @brief Gets nine matrix values contained by matrix into array.
+ *
+ * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
+ * @param matrix Indicates the pointer to an <b>OH_Drawing_Matrix</b> object.
+ * @param value Storages for nine matrix values.
+ * @return Returns the error code.
+ *         Returns {@link OH_DRAWING_SUCCESS} if the operation is successful.
+ *         Returns {@link OH_DRAWING_ERROR_INVALID_PARAMETER} if matrix or value is nullptr.
+ * @since 12
+ * @version 1.0
+ */
+OH_Drawing_ErrorCode OH_Drawing_MatrixGetAll(OH_Drawing_Matrix* matrix, float value[9]);
+
+/**
  * @brief Get one matrix value. Index is between the range of 0-8.
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @param OH_Drawing_Matrix Indicates the pointer to an <b>OH_Drawing_Matrix</b> object.
@@ -412,7 +427,8 @@ void OH_Drawing_MatrixScale(OH_Drawing_Matrix*, float sx, float sy, float px, fl
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @param OH_Drawing_Matrix Indicates the pointer to an <b>OH_Drawing_Matrix</b> object.
  * @param inverse Indicates the pointer to an <b>OH_Drawing_Matrix</b> object.
- * @return Returns true if matrix can be inverted, or flase.
+ * @return Returns true if the matrix is not nullptr and can be inverted;
+ *         returns false if the matrix is nullptr or cannot be inverted.
  * @since 12
  * @version 1.0
  */
@@ -467,7 +483,7 @@ bool OH_Drawing_MatrixMapRect(const OH_Drawing_Matrix*, const OH_Drawing_Rect* s
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @param OH_Drawing_Matrix Indicates the pointer to an <b>OH_Drawing_Matrix</b> object.
  * @param other Indicates the pointer to an <b>OH_Drawing_Matrix</b> object.
- * @return Returns true if the two matrices are equal, or flase.
+ * @return Returns true if the two matrices are equal; returns false if not equal.
  * @since 12
  * @version 1.0
  */
@@ -481,7 +497,7 @@ bool OH_Drawing_MatrixIsEqual(OH_Drawing_Matrix*, OH_Drawing_Matrix* other);
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @param OH_Drawing_Matrix Indicates the pointer to an <b>OH_Drawing_Matrix</b> object.
- * @return Returns true if matrix is identity, or flase.
+ * @return Returns true if matrix is identity; returns false if not identity.
  * @since 12
  * @version 1.0
  */

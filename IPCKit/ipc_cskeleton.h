@@ -34,6 +34,7 @@
  * pool in the IPC framework.
  *
  * @library libipc_capi.so
+ * @kit IPCKit
  * @syscap SystemCapability.Communication.IPC.Core
  * @since 12
  */

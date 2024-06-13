@@ -19,10 +19,6 @@ import re
 from typedef.check.check import (CheckOutPut, CheckErrorMessage)
 
 
-typedefs = [CheckErrorMessage.API_NAME_UNIVERSAL_05.name, CheckErrorMessage.API_NAME_UNIVERSAL_03.name,
-            CheckErrorMessage.API_NAME_UNIVERSAL_07.name]
-
-
 def check_large_hump(api_info, kind, parent_kind):
     api_result_info_list = []
     # 结构体
@@ -59,7 +55,7 @@ def check_function_name(api_info, kind, parent_kind):
 
 
 def set_value_to_result(api_info, command):
-    return CheckOutPut(os.path.join(api_info['gn_path'], api_info['location']['location_path']),
+    return CheckOutPut(os.path.abspath(os.path.join(api_info['gn_path'], api_info['location']['location_path'])),
                        api_info['location']['location_line'], command, CheckErrorMessage.__getitem__(command).value,
                        api_info['node_content']['content'], api_info['location']['location_line'])
 
@@ -125,10 +121,10 @@ def check_all_uppercase_hump(api_info, kind, parent_kind):
 
 def check_file_name(file_info):
     api_result_info_list = []
-    file_name = file_info['name']
+    file_name = os.path.basename(file_info['name'])
     result = re.match(CheckName['FILE_NAME'].value, file_name)
     if result is None:
-        chck_output = CheckOutPut(os.path.join(file_info['gn_path'], file_info['name']), 0,
+        chck_output = CheckOutPut(os.path.abspath(os.path.join(file_info['gn_path'], file_info['name'])), 0,
                                   CheckErrorMessage.API_NAME_UNIVERSAL_14.name,
                                   CheckErrorMessage.API_NAME_UNIVERSAL_14.value, file_name, 0)
         api_result_info_list.append(chck_output)

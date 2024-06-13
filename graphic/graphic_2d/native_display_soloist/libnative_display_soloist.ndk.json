@@ -1,0 +1,22 @@
+[
+    {
+        "first_introduced": "12",
+        "name": "OH_DisplaySoloist_Create"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_DisplaySoloist_Destroy"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_DisplaySoloist_Start"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_DisplaySoloist_Stop"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_DisplaySoloist_SetExpectedFrameRateRange"
+    }
+]

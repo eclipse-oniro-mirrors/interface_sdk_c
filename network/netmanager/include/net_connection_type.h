@@ -83,6 +83,11 @@ typedef enum NetConn_NetBearerType {
     NETCONN_BEARER_WIFI = 1,
     /** Ethernet */
     NETCONN_BEARER_ETHERNET = 3,
+    /**
+     * VPN
+     * @since 12
+     */
+    NETCONN_BEARER_VPN = 4,
 } NetConn_NetBearerType;
 
 /**

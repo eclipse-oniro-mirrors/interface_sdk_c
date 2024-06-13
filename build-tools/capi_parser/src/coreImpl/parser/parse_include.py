@@ -509,9 +509,7 @@ def open_file(include_path):
 
 def api_entrance(share_lib, include_path, gn_path=None, link_path=None):  # 统计入口
     # clang.cindex需要用到libclang.dll共享库   所以配置共享库
-    if Config.loaded:
-        print("config.loaded == true")
-    else:
+    if not Config.loaded:
         Config.set_library_file(share_lib)
         print("lib.dll: install path")
     # 创建AST索引
@@ -537,7 +535,6 @@ def get_include_file(include_file_path, link_path, gn_path=None):  # 库路径�
     libclang_path = StringConstant.LIB_CLG_PATH.value
     # c头文件的路径
     file_path = include_file_path
-    print(file_path)
     # 头文件链接路径
     link_include_path = link_path  # 可以通过列表传入
     data = api_entrance(libclang_path, file_path, gn_path, link_include_path)  # 调用接口
