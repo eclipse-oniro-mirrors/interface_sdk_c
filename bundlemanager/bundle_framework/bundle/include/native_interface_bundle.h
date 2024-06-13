@@ -72,7 +72,7 @@ typedef struct OH_NativeBundle_ApplicationInfo OH_NativeBundle_ApplicationInfo;
 /**
  * @brief Obtains the application info based on the The current bundle.
  *
- * @return Returns the newly created OH_NativaBundle_ApplicationInfo object, if the returned object is NULL,
+ * @return Returns the newly created OH_NativeBundle_ApplicationInfo object, if the returned object is NULL,
  * it indicates creation failure. The possible cause of failure could be that the application address space is full,
  * leading to space allocation failure.
  * @since 9
