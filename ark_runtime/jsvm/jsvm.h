@@ -2004,7 +2004,7 @@ JSVM_EXTERN JSVM_Status OH_JSVM_NewInstance(JSVM_Env env,
  * is null-terminated.
  * @param constructor: Struct include callback function that handles constructing instances of the class.
  * When wrapping a C++ class, this method must be a static member with the JSVM_Callback.callback
- * signature. A C++ class constructor cannot be used. 
+ * signature. A C++ class constructor cannot be used.
  * Include Optional data to be passed to the constructor callback as the data
  * property of the callback info. JSVM_Callback provides more details.
  * @param propertyCount: Number of items in the properties array argument.
