@@ -110,7 +110,7 @@ void OH_AVFormat_Destroy(struct OH_AVFormat *format);
  * @param to OH_AVFormat handle pointer to receive data
  * @param from pointer to the OH_AVFormat handle of the copied data
  * @return The return value is TRUE for success, FALSE for failure
-  * Possible failure causes: 1. input format is nullptr. 2. input format's magic error.
+ * Possible failure causes: 1. input format is nullptr. 2. input format's magic error.
  * @since 9
  * @version 1.0
  */

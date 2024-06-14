@@ -33,7 +33,7 @@ typedef struct OH_NativeBuffer OH_NativeBuffer;
  * to by the return value * needs to be manually released by {@link OH_AVBuffer_Destroy}.
  * @syscap SystemCapability.Multimedia.Media.Core
  * @param capacity the buffer's capacity, bytes
- * @return Returns a pointer to an OH_AVBuffer instance if the execution is successful, otherwise returns nullptr
+ * @return Returns a pointer to an OH_AVBuffer instance if the execution is successful, otherwise returns nullptr.
  * Possible failure causes: 1. capacity <= 0. 2. create allocator failed. 3. create OH_AVBuffer failed.
  * 4. created buffer memory is nullptr. 5. created buffer memory's addr is nullptr. 6. failed to new OH_AVBuffer.
  * @since 11
