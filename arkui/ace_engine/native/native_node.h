@@ -2121,10 +2121,12 @@ typedef enum {
      * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
      * .value[0].f32 to .value[19].f32: filter matrix array. \n
      * .size: 5 x 4 filter array size. \n
+     * .object: the pointer to OH_Drawing_ColorFilter. Either .value or .object is set. \n
      * \n
      * Format of the return value {@link ArkUI_AttributeItem}:\n
      * .value[0].f32 to .value[19].f32: filter matrix array. \n
      * .size: 5 x 4 filter array size. \n
+     * .object: the pointer to OH_Drawing_ColorFilter. \n
      *
      */
     NODE_IMAGE_COLOR_FILTER,
@@ -2713,6 +2715,7 @@ typedef enum {
      *
      */
     NODE_TEXT_INPUT_NUMBER_OF_LINES,
+
     /**
      * @brief Defines the default placeholder text for the multi-line text box.
      * This attribute can be set, reset, and obtained as required through APIs.
@@ -2996,6 +2999,7 @@ typedef enum {
      *
      */
     NODE_TEXT_AREA_SHOW_KEYBOARD_ON_FOCUS,
+
     /**
      * @brief When this property is set, the height of the textArea component is calculated using this property.
      *
@@ -4681,18 +4685,6 @@ typedef enum {
      *
      */
     NODE_REFRESH_CONTENT,
-    /**
-     * @brief Set the pull-down hand coefficient.
-     * This attribute can be set, reset, and obtained as required through APIs.
-     *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].f32：Pull-down hand coefficient, valid value between 0 and 1.
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].f32：Pull-down hand coefficient, valid value between 0 and 1.
-     *
-     */
-    NODE_REFRESH_PULL_DOWN_RATIO = 1009002,
 
     /**
      * @brief Defines the main axis direction of the <b><WaterFlow></b> component layout.
@@ -4981,7 +4973,8 @@ typedef enum {
     /**
      * @brief Defines the gesture event type.
      *
-     * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is {@link ArkUI_UIInputEvent}.
+     * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
+     * {@link ArkUI_UIInputEvent}.
      */
     NODE_TOUCH_EVENT = 0,
 
@@ -6415,9 +6408,7 @@ typedef struct {
      * @brief Obtains the number of subnodes.
      *
      * @param node Indicates the target node.
-     * @return Returns the error code.
-     *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
-     *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs..
+     * @return the number of subnodes. If not, returns 0.
      */
     uint32_t (*getTotalChildCount)(ArkUI_NodeHandle node);
 
