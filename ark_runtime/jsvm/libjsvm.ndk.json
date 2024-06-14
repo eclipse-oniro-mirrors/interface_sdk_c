@@ -577,10 +577,6 @@
     },
     {
         "first_introduced": "12",
-        "name": "OH_JSVM_Equals"
-    },
-    {
-        "first_introduced": "12",
         "name": "OH_JSVM_IsLocked"
     },
     {
@@ -642,5 +638,9 @@
     {
         "first_introduced": "12",
         "name": "OH_JSVM_IsBigInt"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_JSVM_Equals"
     }
 ]
