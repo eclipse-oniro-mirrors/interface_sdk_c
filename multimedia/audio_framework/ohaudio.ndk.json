@@ -188,7 +188,7 @@
         "name": "OH_AudioCapturer_GetFramesRead"
     },
     {
-	    "first_introduced": "11",
+        "first_introduced": "11",
         "name": "OH_AudioRenderer_GetSpeed"
     },
     {
@@ -222,26 +222,6 @@
     {
         "first_introduced":"12",
         "name": "OH_AudioCapturer_GetOverflowCount"
-    },
-    {
-        "first_introduced": "12",
-        "name": "OH_AudioRenderer_GetEffectMode"
-    },
-    {
-        "first_introduced": "12",
-        "name": "OH_AudioRenderer_SetEffectMode"
-    },
-    {
-        "first_introduced": "12",
-        "name": "OH_AudioRenderer_GetChannelLayout"
-    },
-    {
-        "first_introduced": "12",
-        "name": "OH_AudioStreamBuilder_SetChannelLayout"
-    },
-    {
-        "first_introduced": "12",
-        "name": "OH_AudioStreamBuilder_SetWriteDataWithMetadataCallback"
     },
     {
         "first_introduced":"12",
@@ -302,6 +282,26 @@
     {
         "first_introduced": "12",
         "name": "OH_AudioDeviceDescriptor_GetDeviceEncodingTypes"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_AudioRenderer_GetEffectMode"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_AudioRenderer_SetEffectMode"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_AudioRenderer_GetChannelLayout"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_AudioStreamBuilder_SetChannelLayout"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_AudioStreamBuilder_SetWriteDataWithMetadataCallback"
     },
     {
         "first_introduced": "12",
