@@ -36,13 +36,9 @@ def get_not_api_kind_list():
 
 
 def wrap_diff_info(old_info, new_info, diff_info: DiffInfo):
-    not_api_kind_list = get_not_api_kind_list()
     if old_info is not None:
         if 'temporary_name' in old_info['name']:
             old_info['name'] = ''
-        if (not diff_info.is_api_change) and 'kind' in old_info \
-                and (old_info['kind'] not in not_api_kind_list):
-            diff_info.set_is_api_change(True)
         diff_info.set_api_name(old_info['name'])
         diff_info.set_api_type(old_info['kind'])
         diff_info.set_api_line(old_info['location']['location_line'])
@@ -63,9 +59,6 @@ def wrap_diff_info(old_info, new_info, diff_info: DiffInfo):
     if new_info is not None:
         if 'temporary_name' in new_info['name']:
             new_info['name'] = ''
-        if (not diff_info.is_api_change) and 'kind' in new_info \
-                and (new_info['kind'] not in not_api_kind_list):
-            diff_info.set_is_api_change(True)
         diff_info.set_api_name(new_info['name'])
         diff_info.set_api_type(new_info['kind'])
         diff_info.set_api_line(new_info['location']['location_line'])
@@ -108,8 +101,6 @@ def get_member_result_diff(old_target, new_target):
 
 def get_initial_result_obj(diff_type: DiffType, new_node, old_node=None):
     result_message_obj = DiffInfo(diff_type)
-    if 'kind' in new_node and 'MACRO_DEFINITION' != new_node['kind']:
-        result_message_obj.set_is_api_change(True)
 
     return result_message_obj
 
@@ -587,6 +578,12 @@ def collect_change_data_total(data: dict, diff_info_list):
     change_data_total.append(diff_info_list)
 
 
+def set_is_api_change_result(result_data, key_extern):
+    for element in result_data:
+        if key_extern:
+            element.set_is_api_change(True)
+
+
 def judgment_entrance(old, new, data_type=0):
     """
     Args:
@@ -595,25 +592,35 @@ def judgment_entrance(old, new, data_type=0):
         data_type(int): 数据处理类型。1-文件新增或删除；0-其他
     """
     diff_info_list = []
+    key_extern = False
     if old is None and new is None:
         return diff_info_list
     if old is None:
+        if 'is_extern' in new and new['is_extern']:
+            key_extern = True
         diff_type = DiffType.ADD_FILE if data_type == 1 else DiffType.ADD_API
         diff_info_list.append(wrap_diff_info(old, new, DiffInfo(diff_type)))
+        set_is_api_change_result(diff_info_list, key_extern)
         if diff_type == DiffType.ADD_API:
             collect_change_data_total(new, diff_info_list)
         return diff_info_list
     if new is None:
+        if 'is_extern' in old and old['is_extern']:
+            key_extern = True
         diff_type = DiffType.REDUCE_FILE if data_type == 1 else DiffType.REDUCE_API
         diff_info_list.append(wrap_diff_info(old, new, DiffInfo(diff_type)))
         if diff_type == DiffType.REDUCE_API:
+            set_is_api_change_result(diff_info_list, key_extern)
             collect_change_data_total(old, diff_info_list)
         return diff_info_list
     kind = new['kind']
+    if 'is_extern' in old and old['is_extern']:
+        key_extern = True
     diff_info_list.extend(process_comment_str(old, new))
     if kind in process_data:
         diff_info_list.extend(process_data[kind](old, new))
     if diff_info_list:
+        set_is_api_change_result(diff_info_list, key_extern)
         collect_change_data_total(new, diff_info_list)
     return diff_info_list
 
