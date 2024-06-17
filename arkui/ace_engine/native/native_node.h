@@ -900,7 +900,7 @@ typedef enum {
      * .string: mask text.\n
      * .value[0]?.i32: position of the overlay relative to the component. Optional.
      * The parameter type is {@link ArkUI_Alignment}.
-     * The default value is <b>ARKUI_ALIGNMENT_CENTER.</b> \n
+     * The default value is <b>ARKUI_ALIGNMENT_TOP_START.</b> \n
      * .value[1]?.f32: offset of the overlay relative to the upper left corner of itself on the x-axis, in vp. Optional. \n
      * .value[2]?.f32: offset of the overlay relative to the upper left corner of itself on the y-axis, in vp. Optional.
      * \n
@@ -908,7 +908,7 @@ typedef enum {
      * .string: mask text.\n
      * .value[0].i32: position of the overlay relative to the component.
      * The parameter type is {@link ArkUI_Alignment}.
-     * The default value is <b>ARKUI_ALIGNMENT_CENTER.</b> \n
+     * The default value is <b>ARKUI_ALIGNMENT_TOP_START.</b> \n
      * .value[1].f32: offset of the overlay relative to the upper left corner of itself on the x-axis, in vp. \n
      * .value[2].f32: offset of the overlay relative to the upper left corner of itself on the y-axis, in vp.
      *
