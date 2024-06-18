@@ -195,16 +195,23 @@ special_node_process = {
 
 def get_api_unique_id(cursor, loc):
     parent_of_cursor = cursor.semantic_parent
+    struct_union_enum = [NodeKind.STRUCT_DECL.value, NodeKind.UNION_DECL.value,
+                         NodeKind.ENUM_DECL.value]
     unique_id = ''
     if parent_of_cursor:
+        unique_name = cursor.spelling
         if parent_of_cursor.kind == CursorKind.TRANSLATION_UNIT:
             parent_name_str = ''
+        elif parent_of_cursor.kind.name in struct_union_enum:
+            parent_name_str = parent_of_cursor.type.spelling
         else:
             parent_name_str = parent_of_cursor.spelling
+        if cursor.kind.name in struct_union_enum:
+            unique_name = cursor.type.spelling
         if not parent_name_str:
-            unique_id = '{}#{}'.format(loc["location_path"], cursor.spelling)
+            unique_id = '{}#{}'.format(loc["location_path"], unique_name)
         else:
-            unique_id = '{}#{}#{}'.format(loc["location_path"], parent_name_str, cursor.spelling)
+            unique_id = '{}#{}#{}'.format(loc["location_path"], parent_name_str, unique_name)
     return unique_id
 
 
@@ -318,7 +325,7 @@ def parser_data_assignment(cursor, current_file, gn_path=None, comment=None, key
     return data
 
 
-def ast_to_dict(cursor, current_file, last_data, gn_path=None, comment=None, key=0):  # 解析数据的整理
+def ast_to_dict(cursor, current_file, last_data, gn_path, comment=None, key=0):  # 解析数据的整理
     # 通用赋值
     data = parser_data_assignment(cursor, current_file, gn_path, comment, key)
     if last_data:
@@ -474,7 +481,7 @@ def processing_ast_node(child, current_file, data, name, gn_path):
         data[name].append(child_data)
 
 
-def preorder_travers_ast(cursor, total, comment, current_file, gn_path=None):  # 获取属性
+def preorder_travers_ast(cursor, total, comment, current_file, gn_path):  # 获取属性
     previous_data = {}
     ast_dict = ast_to_dict(cursor, current_file, previous_data, gn_path, comment)  # 获取节点属性
     total.append(ast_dict)  # 追加到数据统计列表里面
@@ -524,7 +531,7 @@ def open_file(include_path):
         return content
 
 
-def api_entrance(share_lib, include_path, gn_path=None, link_path=None):  # 统计入口
+def api_entrance(share_lib, include_path, gn_path, link_path=None):  # 统计入口
     # clang.cindex需要用到libclang.dll共享库   所以配置共享库
     if not Config.loaded:
         Config.set_library_file(share_lib)
@@ -547,7 +554,7 @@ def api_entrance(share_lib, include_path, gn_path=None, link_path=None):  # 统�
     return data_total
 
 
-def get_include_file(include_file_path, link_path, gn_path=None):  # 库路径、.h文件路径、链接头文件路径
+def get_include_file(include_file_path, link_path, gn_path):  # 库路径、.h文件路径、链接头文件路径
     # libclang.dll库路径
     libclang_path = StringConstant.LIB_CLG_PATH.value
     # c头文件的路径
