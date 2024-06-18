@@ -13,6 +13,11 @@
  * limitations under the License.
  */
 
+/**
+ * @file
+ * @kit NetworkKit
+ */
+
 #ifndef NATIVE_NET_CONN_API_H
 #define NATIVE_NET_CONN_API_H
 
