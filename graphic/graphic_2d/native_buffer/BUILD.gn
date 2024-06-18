@@ -17,6 +17,7 @@ import("//build/ohos/ndk/ndk.gni")
 ohos_ndk_headers("native_buffer_header") {
   dest_dir = "$ndk_headers_out_dir/native_buffer"
   sources = [
+    "//interface/sdk_c/graphic/graphic_2d/native_buffer/buffer_common.h",
     "//interface/sdk_c/graphic/graphic_2d/native_buffer/native_buffer.h",
     "//interface/sdk_c/graphic/graphic_2d/native_window/graphic_error_code.h",
   ]
