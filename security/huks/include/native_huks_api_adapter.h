@@ -16,6 +16,16 @@
 #ifndef NATIVE_HUKS_API_ADAPTER_H
 #define NATIVE_HUKS_API_ADAPTER_H
 
+/**
+ * @file native_huks_api_adapter.h
+ *
+ * @brief Defines the attest adapter.
+ *
+ * @kit UniversalKeystoreKit
+ * @since 9
+ * @version 1.0
+ */
+
 #include "native_huks_type.h"
 
 #ifdef __cplusplus
