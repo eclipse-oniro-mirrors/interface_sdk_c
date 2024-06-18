@@ -33,7 +33,7 @@
  *
  * @brief Defines the structure and enumeration.
  *
- * @kit Universal Keystore Kit
+ * @kit UniversalKeystoreKit
  * @since 9
  * @version 1.0
  */
