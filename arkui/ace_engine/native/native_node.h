@@ -1742,6 +1742,22 @@ typedef enum {
      *
      */
     NODE_ACCESSIBILITY_VALUE = 91,
+    /**
+     * @brief defines control components to extend their security zones,
+     * supporting property setting, property reset, and property fetching.
+     *
+     * Attribute setting method {@link ArkUI_AttributeItem} Parameter format: \n
+     * .value[0]? .u32: Set of extended security zone enumerated values {@link ArkUI_SafeAreaType},
+     * For example, ARKUI_SAFE_AREA_TYPE_SYSTEM | ARKUI_SAFE_AREA_TYPE_CUTOUT; \n
+     * .value[1]? .u32: set of directional enum values for extended security zones {@link ArkUI_SafeAreaEdge}; \n
+     * For example: ARKUI_SAFE_AREA_EDGE_TOP | ARKUI_SAFE_AREA_EDGE_BOTTOM; \n
+     * \n
+     * Attribute fetch method return value {@link ArkUI_AttributeItem} format: \n
+     *.value[0].u32: extends the security zone. \n. \n
+     *.value[1].u32: indicates the direction to extend the security zone. \n. \n
+     *
+     */
+    NODE_EXPAND_SAFE_AREA = 92,
 
     /**
      * @brief Defines the text content attribute, which can be set, reset, and obtained as required through APIs.
@@ -4485,6 +4501,24 @@ typedef enum {
      * the start of the viewport when the current List is loaded for the first time. Default value: 0.\n
      */
     NODE_LIST_INITIAL_INDEX = 1003008,
+    /**
+     * @brief sets the ListItem splitter style. By default, there is no splitter.
+     * This attribute can be set, reset, and obtained as required through APIs.
+     *
+     * Attribute setting method parameter {@link ArkUI_AttributeItem} Format: \n
+     *.value[0].u32: divider color, type 0xargb; \n
+     *.value[1].f32: dividing line width; \n
+     *.value[2].f32: the distance between the divider and the beginning of the side of the list, unit vp; \n
+     *.value[3].f32: the distance between the divider and the end of the side of the list (unit: vp). \n
+     * \n
+     * Attribute fetch method return value {@link ArkUI_AttributeItem} format: \n
+     *.value[0].u32: divider color, type 0xargb; \n
+     *.value[1].f32: dividing line width; \n
+     *.value[2].f32: the distance between the divider and the beginning of the side of the list, unit vp; \n
+     *.value[3].f32: the distance between the divider and the end of the side of the list (unit: vp). \n
+     *
+     */
+    NODE_LIST_DIVIDER = 1003009,
 
     /**
      * @brief Defines whether to enable loop playback for the swiper.
