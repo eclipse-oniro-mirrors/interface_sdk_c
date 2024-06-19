@@ -33,7 +33,7 @@
  * @brief Defines basic data types and data structures of TEE.
  *
  * @library NA
- * @kit TEE Kit
+ * @kit TEEKit
  * @syscap SystemCapability.Tee.TeeClient
  * @since 12
  * @version 1.0
@@ -320,7 +320,7 @@ typedef struct spawn_uuid {
 } spawn_uuid_t;
 
 /**
- * @brief Enumerates the result codes used in the TEE Kit APIs.
+ * @brief Enumerates the result codes used in the TEEKit APIs.
  *
  * @since 12
  */

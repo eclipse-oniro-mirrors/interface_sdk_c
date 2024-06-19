@@ -32,7 +32,7 @@
  * @brief Provides the APIs related to RPMB service.
  *
  * @library NA
- * @kit TEE Kit
+ * @kit TEEKit
  * @syscap SystemCapability.Tee.TeeClient
  * @since 12
  * @version 1.0

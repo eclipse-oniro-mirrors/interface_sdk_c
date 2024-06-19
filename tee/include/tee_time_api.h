@@ -35,7 +35,7 @@
  * You can use these APIs to implement time-related features in a TEE.
  *
  * @library NA
- * @kit TEE Kit
+ * @kit TEEKit
  * @syscap SystemCapability.Tee.TeeClient
  * @since 12
  * @version 1.0

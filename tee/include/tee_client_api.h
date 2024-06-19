@@ -39,7 +39,7 @@
  * <p>5. Close the TEE: Call <b>TEEC_FinalizeContext</b> to close the TEE.
  *
  * @library libteec.so
- * @kit TEE Kit
+ * @kit TEEKit
  * @syscap SystemCapability.Tee.TeeClient
  * @since 12
  * @version 1.0

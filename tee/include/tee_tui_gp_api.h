@@ -33,7 +33,7 @@
  * @brief Provides APIs for operating big integers.
  *
  * @library NA
- * @kit TEE Kit
+ * @kit TEEKit
  * @syscap SystemCapability.Tee.TeeClient
  * @since 12
  * @version 1.0
