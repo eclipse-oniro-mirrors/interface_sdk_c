@@ -14,7 +14,7 @@
  */
 
 /**
- * @file
+ * @file net_connection.h
  * @kit NetworkKit
  */
 
