@@ -38,6 +38,8 @@
 /**
  * @file trace.h
  *
+ * @kit PerformanceAnalysisKit
+ *
  * @brief Defines APIs of the HiTraceMeter module for performance trace.
  *
  * Sample code: \n
