@@ -13,11 +13,6 @@
  * limitations under the License.
  */
 
-/**
- * @file net_connection_type.h
- * @kit NetworkKit
- */
-
 #ifndef NATIVE_NET_CONN_TYPE_H
 #define NATIVE_NET_CONN_TYPE_H
 
@@ -36,6 +31,7 @@
  * @brief Defines the data structures for the C APIs of the network connection module.
  *
  * @library libnet_connection.so
+ * @kit NetworkKit
  * @syscap SystemCapability.Communication.NetManager.Core
  * @since 11
  * @version 1.0
