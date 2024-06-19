@@ -26,6 +26,7 @@
  * events reported during running. Based on event information, you will be able to analyze the running status of
  * applications.
  *
+ * @kit PerformanceAnalysisKit
  * @syscap SystemCapability.HiviewDFX.HiAppEvent
  *
  * @since 8
