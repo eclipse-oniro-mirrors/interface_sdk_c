@@ -64,8 +64,6 @@ if (host_os == "mac") {
 } else {
   windows_x86_64_toolchain_dir = "${toolchains_dir}/windows-x86_64"
   ohos_arm64_toolchain_dir = "${toolchains_dir}/ohos-arm64"
-  print("wenyu:host_cpu2")
-  print(host_cpu)
   if (host_cpu == "arm64") {
     linux_aarch64_toolchains_dir = "${toolchains_dir}/linux-aarch64"
     ohos_ndk_toolchains("linux_arm64") {
