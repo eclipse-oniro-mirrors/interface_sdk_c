@@ -26,6 +26,7 @@
 
 /**
  * @file error_code.h
+ * @kit CoreFileKit
  *
  * @brief Declare the error codes of file management module.
  * @syscap SystemCapability.FileManagement.File.FileIO

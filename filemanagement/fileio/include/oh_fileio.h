@@ -24,6 +24,7 @@
 
 /**
  * @file oh_fileio.h
+ * @kit CoreFileKit
  *
  * @brief Provide fileio APIS.
  * @library libohfileio.so
