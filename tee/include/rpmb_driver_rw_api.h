@@ -33,7 +33,7 @@
  * Provides the function of reading and writing RPMB driver.
  *
  * @library NA
- * @kit TEE Kit
+ * @kit TEEKit
  * @syscap SystemCapability.Tee.TeeClient
  * @since 12
  * @version 1.0

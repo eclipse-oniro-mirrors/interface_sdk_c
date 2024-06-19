@@ -32,7 +32,7 @@
  * @brief Defines basic data types and data structures.
  *
  * @library libteec.so
- * @kit TEE Kit
+ * @kit TEEKit
  * @syscap SystemCapability.Tee.TeeClient
  * @since 12
  * @version 1.0

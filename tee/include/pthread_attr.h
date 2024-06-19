@@ -32,7 +32,7 @@
  * @brief Provides the attr about TA multi-thread.
  *
  * @library NA
- * @kit TEE Kit
+ * @kit TEEKit
  * @syscap SystemCapability.Tee.TeeClient
  * @since 12
  * @version 1.0

@@ -33,7 +33,7 @@
  * @brief Reference of TEE object api definitions.
  *
  * @library NA
- * @kit TEE Kit
+ * @kit TEEKit
  * @syscap SystemCapability.Tee.TeeClient
  * @since 12
  * @version 1.0

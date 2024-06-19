@@ -32,7 +32,7 @@
  * @brief Defines public data and constants.
  *
  * @library libteec.so
- * @kit TEE Kit
+ * @kit TEEKit
  * @syscap SystemCapability.Tee.TeeClient
  * @since 12
  * @version 1.0
