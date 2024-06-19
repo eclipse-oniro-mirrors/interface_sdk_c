@@ -13,11 +13,6 @@
  * limitations under the License.
  */
 
-/**
- * @file net_connection.h
- * @kit NetworkKit
- */
-
 #ifndef NATIVE_NET_CONN_API_H
 #define NATIVE_NET_CONN_API_H
 
@@ -36,6 +31,7 @@
  *
  * @brief Provide C interface for the data network connection module of network management.
  *
+ * @kit NetworkKit
  * @syscap SystemCapability.Communication.NetManager.Core
  * @library libnet_connection.so
  * @since 11
