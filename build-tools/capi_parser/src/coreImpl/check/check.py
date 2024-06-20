@@ -30,8 +30,7 @@ def process_api_json(api_info, file_doc_info, api_result_info_list, parent_kind,
             break
     if 'comment' in api_info.keys():
         comment = api_info['comment']
-        api_result_info_list.extend(
-           process_comment(comment, file_doc_info, api_info))
+        api_result_info_list.extend(process_comment(comment, file_doc_info, api_info))
     kind = api_info['kind']
     child_node_list = get_api_info_child(api_info)
     for child_node in child_node_list:
@@ -59,7 +58,7 @@ def process_file_json(file_info, api_result_info_list, command_list):
     api_result_info_list.extend(process_comment(file_info["comment"], file_doc_info, file_info))
     for api in apis:
         process_api_json(api, file_doc_info, api_result_info_list, kind, command_list)
-    api_result_info_list.extend(process_file_doc_info(file_doc_info, file_info))
+    api_result_info_list.extend(process_file_doc_info(file_doc_info, file_info, -1))
 
 
 def process_all_json(python_obj, command_list):
@@ -80,11 +79,23 @@ def result_to_json(check_result):
     return json.dumps(check_result, default=lambda obj: obj.__dict__, indent=4)
 
 
-def curr_entry(files_path, root_path, command: str, output):
-    # 如果根目录下没有 third_party 文件夹，则证明不是 sdk_c 仓库，不做检测
+def get_file_path(txt_file):    # 路径装在txt文件用的--获取.h文件路径
+    include_path = []
+    with open(txt_file, 'r', encoding='utf-8') as fd:
+        for line in fd:
+            include_path.append(line.replace('\n', ''))
+    return include_path
+
+
+def curr_entry(files_path, command: str, output):
+    file_list = get_files(files_path)
+    # 如果要校验的路径下没有interface_sdk_c文件夹，不做检测
+    if 'interface_sdk_c' not in file_list[0].split(os.path.sep):
+        return
+    root_path = os.path.join(file_list[0].split('interface_sdk_c')[0], 'interface_sdk_c')
+    # 如果根目录下没有 third_party/musl 文件夹，则证明不是 sdk_c 仓库，不做检测
     if not os.path.exists(os.path.abspath(os.path.join(root_path, 'third_party/musl'))):
         return
-    file_list = get_files(files_path)
     if command == 'all':
         command_list = check_command_message
     else:

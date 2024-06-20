@@ -258,15 +258,6 @@ def find_include(link_include_path):
 
 
 def copy_self_include(link_include_path, self_include_file, flag=-1):
-    if flag == 0:
-        std_include = StringConstant.SELF_INCLUDE_OLD.value
-    elif flag == 1:
-        std_include = StringConstant.SELF_INCLUDE_NEW.value
-    else:
-        std_include = StringConstant.SELF_INCLUDE.value
-
-    if not os.path.exists(std_include):
-        os.makedirs(std_include)
     for dir_path, _, file_name_list in os.walk(self_include_file):
         for file in file_name_list:
             if (file.endswith('.h') and ('sysroot' not in dir_path)
@@ -299,7 +290,10 @@ def parser_include_ast(dire_file_path, include_path, flag=-1):        # 对于�
     correct_include_path = []
 
     link_include_path = []
-    copy_std_lib(link_include_path)
+    if -1 == flag:
+        copy_std_lib(link_include_path, dire_file_path)
+    else:
+        copy_std_lib(link_include_path)
     find_include(link_include_path)
     link_include(dire_file_path, StringConstant.FUNK_NAME.value, link_include_path)
     if len(link_include_path) <= 1:

@@ -28,6 +28,10 @@ from utils.constants import RegularExpressions
 from typedef.parser.parser import NodeKind
 
 
+line_dist = {}
+calculation_times = 0
+
+
 def find_parent(cursor):  # 获取父节点
     cursor_parent = cursor.semantic_parent
     if cursor_parent is not None:
@@ -488,45 +492,48 @@ def preorder_travers_ast(cursor, total, comment, current_file, gn_path):  # 获�
 
 
 def get_start_comments(include_path):  # 获取每个头文件的最开始注释
-    file_comment = []
-    content = open_file(include_path)
-    if content:
-        pattern = RegularExpressions.START_COMMENT.value
-        matches = re.finditer(pattern, content, re.DOTALL | re.MULTILINE)
-        for mat in matches:
-            file_comment.append(mat.group())
-
+    global line_dist
+    line_dist = {}
+    global calculation_times
     with open(include_path, 'r', encoding='utf-8') as f:
+        last_line = f.readlines()[-1]
         f.seek(0)
-        content = f.read()
-        pattern_high = RegularExpressions.END_COMMENT.value
-        matches_high = re.findall(pattern_high, content, re.DOTALL | re.MULTILINE)
-        if matches_high:
-            file_comment.extend(matches_high)
-        f.close()
-    str_file_comment = '\n'.join(file_comment)
-    return str_file_comment
-
-
-def open_file(include_path):
-    with open(include_path, 'r', encoding='utf-8') as f:
         content = ''
         mark = 0
-        if 'ffrt' in include_path:
-            end_line_mark = r'#ifndef'
-        else:
-            end_line_mark = r'#endif'
-        for line in f:
+        max_line = 0
+        end_line_mark = r'#'
+        line = f.readline()
+        line_number = 1
+        line_list = []
+        while line:
             if line.startswith(end_line_mark):
                 mark = 1
+                max_line = line_number
+                line_dist[calculation_times] = line_list
+                calculation_times += 1
                 break
-            else:
-                inside_ifdef = True
-
-            if inside_ifdef:
-                content += line
-        if mark == 0:
+            if line.startswith('/**'):
+                line_list.append(line_number)
+            line_number += 1
+            content += line
+            line = f.readline()
+        if line == last_line:
+            mark = 0
+        if 0 == mark:
             content = ''
+            line_dist[calculation_times] = []
+            calculation_times += 1
+        f.seek(0)
+        content_all = f.read()
+        pattern_high = RegularExpressions.END_COMMENT.value
+        matches_high = re.finditer(pattern_high, content_all)
+        for mat in matches_high:
+            # 获取匹配项开始的行数
+            start_line = content_all.count('\n', 0, mat.start()) + 1
+            # 当前行数大于开头记录行数，则加入到结果中
+            if start_line > max_line:
+                line_list.append(start_line)
+                content += '/** @} */\n'
         f.close()
         return content
 
@@ -550,6 +557,13 @@ def api_entrance(share_lib, include_path, gn_path, link_path=None):  # 统计入
         matches = get_start_comments(item)  # 接收文件最开始的注释
         # 前序遍历AST
         preorder_travers_ast(ast_root_node, data_total, matches, item, gn_path)  # 调用处理函数
+
+        iter_line_dist = iter(line_dist)
+        first = next(iter_line_dist)
+        array_index = int(first)
+        if len(data_total) - 1 >= array_index:
+            data_dist = data_total.__getitem__(array_index)    # ==>data_total[array_index]
+            data_dist['line_list'] = line_dist[first]
 
     return data_total
 
