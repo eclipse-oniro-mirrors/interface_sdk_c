@@ -27,9 +27,9 @@
 
  /**
  * @file type_def.h
+ * @kit FunctionFlowRuntimeKit
  *
  * @brief Declares common types.
- * @kit FunctionFlowRuntimeKit
  *
  * @syscap SystemCapability.Resourceschedule.Ffrt.Core
  * @since 10
