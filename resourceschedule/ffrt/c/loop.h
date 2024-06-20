@@ -13,6 +13,18 @@
  * limitations under the License.
  */
 
+/**
+ * @addtogroup Ffrt
+ * @{
+ *
+ * @brief ffrt provides APIs.
+ *
+ *
+ * @syscap SystemCapability.Resourceschedule.Ffrt.Core
+ * @kit FunctionFlowRuntimeKit
+ * @since 12
+ */
+
 #ifndef FFRT_API_C_LOOP_H
 #define FFRT_API_C_LOOP_H
 

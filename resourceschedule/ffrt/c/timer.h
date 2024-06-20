@@ -21,7 +21,7 @@
  *
  *
  * @syscap SystemCapability.Resourceschedule.Ffrt.Core
- *
+ * @kit FunctionFlowRuntimeKit
  * @since 12
  */
 
