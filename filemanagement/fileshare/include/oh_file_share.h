@@ -29,6 +29,7 @@
 
 /**
  * @file oh_file_share.h
+ * @kit CoreFileKit
  *
  * @brief Provides URI-based file and directory authorization and persistence, permission activation, permission query,
  * and other methods.

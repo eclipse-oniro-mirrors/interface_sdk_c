@@ -18,6 +18,7 @@
 
 /**
  * @file oh_file_uri.h
+ * @kit CoreFileKit
  *
  * @brief uri verification and conversion
  * @library libohfileuri.so

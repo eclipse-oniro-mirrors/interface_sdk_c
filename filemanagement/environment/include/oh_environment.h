@@ -27,6 +27,7 @@
  * @file oh_environment.h
  *
  * @brief Provide environment APIS.
+ * @kit CoreFileKit
  * @library libohenvironment.so
  * @syscap SystemCapability.FileManagement.File.Environment.FolderObtain
  * @since 12
