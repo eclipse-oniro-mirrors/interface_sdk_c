@@ -34,6 +34,7 @@
  * @brief Declares the APIs used to create a native child process and establish an IPC channel between the parent and
  * child processes.
  *
+ * @kit AbilityKit
  * @library libchild_process.so
  * @syscap SystemCapability.Ability.AbilityRuntime.Core
  * @since 12
