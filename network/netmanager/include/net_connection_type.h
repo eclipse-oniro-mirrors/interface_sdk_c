@@ -31,6 +31,7 @@
  * @brief Defines the data structures for the C APIs of the network connection module.
  *
  * @library libnet_connection.so
+ * @kit NetworkKit
  * @syscap SystemCapability.Communication.NetManager.Core
  * @since 11
  * @version 1.0
