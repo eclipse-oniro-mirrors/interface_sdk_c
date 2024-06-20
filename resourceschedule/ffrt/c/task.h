@@ -21,12 +21,12 @@
  *
  *
  * @syscap SystemCapability.Resourceschedule.Ffrt.Core
- * @kit FunctionFlowRuntimeKit
  * @since 10
  */
 
  /**
  * @file task.h
+ * @kit FunctionFlowRuntimeKit
  *
  * @brief Declares the task interfaces in C.
  *

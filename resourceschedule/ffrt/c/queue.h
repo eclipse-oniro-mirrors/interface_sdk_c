@@ -21,12 +21,12 @@
  *
  *
  * @syscap SystemCapability.Resourceschedule.Ffrt.Core
- * @kit FunctionFlowRuntimeKit
  * @since 10
  */
 
 /**
  * @file queue.h
+ * @kit FunctionFlowRuntimeKit
  *
  * @brief Declares the queue interfaces in C.
  *

@@ -21,12 +21,12 @@
  *
  *
  * @syscap SystemCapability.Resourceschedule.Ffrt.Core
- * @kit FunctionFlowRuntimeKit
  * @since 10
  */
 
 /**
  * @file sleep.h
+ * @kit FunctionFlowRuntimeKit
  *
  * @brief Declares the sleep and yield interfaces in C.
  *

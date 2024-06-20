@@ -21,7 +21,6 @@
  *
  *
  * @syscap SystemCapability.Resourceschedule.Ffrt.Core
- * @kit FunctionFlowRuntimeKit
  * @since 12
  */
 
@@ -29,6 +28,7 @@
  * @file timer.h
  *
  * @brief Declares the timer interfaces in C.
+ * @kit FunctionFlowRuntimeKit
  *
  * @syscap SystemCapability.Resourceschedule.Ffrt.Core
  * @since 12

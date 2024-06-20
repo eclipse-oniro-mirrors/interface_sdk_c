@@ -25,6 +25,16 @@
  * @since 12
  */
 
+ /**
+ * @file loop.h
+ * @kit FunctionFlowRuntimeKit
+ *
+ * @brief Declares the condition variable interfaces in C.
+ *
+ * @syscap SystemCapability.Resourceschedule.Ffrt.Core
+ * @since 12
+ * @version 1.0
+ */
 #ifndef FFRT_API_C_LOOP_H
 #define FFRT_API_C_LOOP_H
 

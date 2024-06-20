@@ -21,12 +21,12 @@
  *
  *
  * @syscap SystemCapability.Resourceschedule.Ffrt.Core
- * @kit FunctionFlowRuntimeKit
  * @since 10
  */
 
  /**
  * @file condition_variable.h
+ * @kit FunctionFlowRuntimeKit
  *
  * @brief Declares the condition variable interfaces in C.
  *
