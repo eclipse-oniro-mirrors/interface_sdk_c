@@ -192,6 +192,14 @@
       "name": "OH_AI_TensorGetDataSize"
   },
   {
+    "first_introduced": "12",
+    "name": "OH_AI_TensorGetAllocator"
+  },
+  {
+    "first_introduced": "12",
+    "name": "OH_AI_TensorSetAllocator"
+  },
+  {
       "first_introduced": "10",
       "name": "OH_AI_GetAllNNRTDeviceDescs"
   },
