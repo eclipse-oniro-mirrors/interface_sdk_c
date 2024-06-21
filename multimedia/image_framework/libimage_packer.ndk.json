@@ -21,6 +21,14 @@
     },
     {
         "first_introduced": "12",
+        "name": "OH_PackingOptions_GetNeedsPackProperties"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_PackingOptions_SetNeedsPackProperties"
+    },
+    {
+        "first_introduced": "12",
         "name": "OH_PackingOptions_GetDesiredDynamicRange"
     },
     {
