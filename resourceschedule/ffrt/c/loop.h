@@ -22,6 +22,29 @@
 typedef void* ffrt_loop_t;
 
 /**
+ * @addtogroup Ffrt
+ * @{
+ *
+ * @brief ffrt provides APIs.
+ *
+ *
+ * @syscap SystemCapability.Resourceschedule.Ffrt.Core
+ *
+ * @since 12
+ */
+
+ /**
+ * @file loop.h
+ * @kit FunctionFlowRuntimeKit
+ *
+ * @brief Declares the ffrt interfaces in C.
+ *
+ * @syscap SystemCapability.Resourceschedule.Ffrt.Core
+ * @since 12
+ * @version 1.0
+ */
+ 
+/**
  * @brief Creates a loop.
  *
  * @param queue Indicates a queue.
