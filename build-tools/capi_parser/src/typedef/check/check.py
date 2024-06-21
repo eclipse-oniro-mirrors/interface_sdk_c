@@ -191,14 +191,16 @@ class CheckErrorMessage(enum.Enum):
                          'check the tag in file.')
     API_DOC_GLOBAL_02 = ('API check error of [api doc errors]:The file has the [addtogroup] tag, '
                          'but do not has the [brief] tag.')
-    API_DOC_GLOBAL_03 = 'API check error of [api doc errors]:The file miss [file] tag.'
+    API_DOC_GLOBAL_03 = ('API check error of [api doc errors]:The file miss [file] tag, '
+                         'or the file comment is not at the beginning of the file')
     API_DOC_GLOBAL_04 = ('API check error of [api doc errors]:The [addtogroup] tag is repeat. '
                          'Please check the tag in file.')
     API_DOC_GLOBAL_05 = ('API check error of [api doc errors]:The file has the [addtogroup] tag,'
                          'but do not has the start tag [{].')
     API_DOC_GLOBAL_06 = ('API check error of [api doc errors]:The [{] tag is not allowed to reuse '
                          'in Doc which has [addtogroup] tag.')
-    API_DOC_GLOBAL_09 = 'API check error of [api doc errors]:The file missing [addtogroup] tag.'
+    API_DOC_GLOBAL_09 = ('API check error of [api doc errors]:The file missing [addtogroup] tag, '
+                         'or the file comment is not at the beginning of the file')
     API_DOC_GLOBAL_10 = ('API check error of [api doc errors]:The file has the [addtogroup] tag,'
                          'but do not has the end tag [}].')
     API_DOC_GLOBAL_11 = ('API check error of [api doc errors]:The [addtogroup] tag value is empty,'
@@ -259,9 +261,10 @@ class CheckOutPut:
 
     def __init__(self, buggy_file_path, code_context_start_line, defect_type, description,
                  main_buggy_code, main_buggy_line):
+        self.analyzerName = 'apiengine'
         self.buggyFilePath = buggy_file_path
         self.codeContextStartLine = code_context_start_line
-        self.defectLevel = 0
+        self.defectLevel = 2
         self.defectType = defect_type
         self.description = description
         self.language = 'c'
@@ -441,6 +444,7 @@ class FileDocInfo:
     group_brief = None
     group_library = None
     group_syscap = None
+    group_comment_str = ''
     has_group_start = False
     has_group_end = False
     is_in_file_tag = False
@@ -448,4 +452,6 @@ class FileDocInfo:
     file_brief = None
     file_library = None
     file_syscap = None
+    file_since = False
+    file_comment_str = ''
     curr_doc_info = DocInfo()
