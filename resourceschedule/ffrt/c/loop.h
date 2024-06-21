@@ -13,14 +13,6 @@
  * limitations under the License.
  */
 
-#ifndef FFRT_API_C_LOOP_H
-#define FFRT_API_C_LOOP_H
-
-#include "queue.h"
-#include "type_def.h"
-
-typedef void* ffrt_loop_t;
-
 /**
  * @addtogroup Ffrt
  * @{
@@ -43,6 +35,13 @@ typedef void* ffrt_loop_t;
  * @since 12
  * @version 1.0
  */
+#ifndef FFRT_API_C_LOOP_H
+#define FFRT_API_C_LOOP_H
+
+#include "queue.h"
+#include "type_def.h"
+
+typedef void* ffrt_loop_t;
 
 /**
  * @brief Creates a loop.
