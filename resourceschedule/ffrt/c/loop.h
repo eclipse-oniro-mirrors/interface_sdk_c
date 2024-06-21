@@ -37,13 +37,13 @@ typedef void* ffrt_loop_t;
  * @file loop.h
  * @kit FunctionFlowRuntimeKit
  *
- * @brief Declares the ffrt interfaces in C.
+ * @brief Declares the loop interfaces in C.
  *
  * @syscap SystemCapability.Resourceschedule.Ffrt.Core
  * @since 12
  * @version 1.0
  */
- 
+
 /**
  * @brief Creates a loop.
  *
