@@ -27,6 +27,7 @@
 
  /**
  * @file condition_variable.h
+ * @kit FunctionFlowRuntimeKit
  *
  * @brief Declares the condition variable interfaces in C.
  *

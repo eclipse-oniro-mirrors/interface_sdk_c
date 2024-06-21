@@ -27,6 +27,7 @@
 
  /**
  * @file type_def.h
+ * @kit FunctionFlowRuntimeKit
  *
  * @brief Declares common types.
  *

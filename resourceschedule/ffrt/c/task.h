@@ -27,6 +27,7 @@
 
  /**
  * @file task.h
+ * @kit FunctionFlowRuntimeKit
  *
  * @brief Declares the task interfaces in C.
  *
