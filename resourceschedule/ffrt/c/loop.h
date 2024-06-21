@@ -17,7 +17,7 @@
  * @file loop.h
  * @kit FunctionFlowRuntimeKit
  *
- * @brief Declares the condition variable interfaces in C.
+ * @brief Declares the loop interfaces in C.
  *
  * @syscap SystemCapability.Resourceschedule.Ffrt.Core
  * @since 12
