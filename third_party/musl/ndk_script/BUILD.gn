@@ -62,23 +62,40 @@ if (host_os == "mac") {
     }
   }
 } else {
-  linux_x86_64_toolchains_dir = "${toolchains_dir}/linux-x86_64"
   windows_x86_64_toolchain_dir = "${toolchains_dir}/windows-x86_64"
   ohos_arm64_toolchain_dir = "${toolchains_dir}/ohos-arm64"
-
-  ohos_ndk_toolchains("linux_x86_64") {
-    dest_dir = "$ndk_linux_toolchains_out_dir"
-    sources = [
-      "${linux_x86_64_toolchains_dir}/llvm/NOTICE",
-      "${linux_x86_64_toolchains_dir}/llvm/bin",
-      "${linux_x86_64_toolchains_dir}/llvm/include",
-      "${linux_x86_64_toolchains_dir}/llvm/lib",
-      "${linux_x86_64_toolchains_dir}/llvm/libexec",
-      "${linux_x86_64_toolchains_dir}/llvm/python3",
-      "${linux_x86_64_toolchains_dir}/llvm/script",
-      "${linux_x86_64_toolchains_dir}/llvm/share",
-    ]
-    license_file = "${linux_x86_64_toolchains_dir}/llvm/NOTICE"
+  if (host_cpu == "arm64") {
+    linux_aarch64_toolchains_dir = "${toolchains_dir}/linux-aarch64"
+    ohos_ndk_toolchains("linux_arm64") {
+      dest_dir = "$ndk_linux_toolchains_out_dir"
+      sources = [
+        "${linux_aarch64_toolchains_dir}/llvm/NOTICE",
+        "${linux_aarch64_toolchains_dir}/llvm/bin",
+        "${linux_aarch64_toolchains_dir}/llvm/include",
+        "${linux_aarch64_toolchains_dir}/llvm/lib",
+        "${linux_aarch64_toolchains_dir}/llvm/libexec",
+        "${linux_aarch64_toolchains_dir}/llvm/python3",
+        "${linux_aarch64_toolchains_dir}/llvm/script",
+        "${linux_aarch64_toolchains_dir}/llvm/share",
+      ]
+      license_file = "${linux_aarch64_toolchains_dir}/llvm/NOTICE"
+    }
+  } else {
+    linux_x86_64_toolchains_dir = "${toolchains_dir}/linux-x86_64"
+    ohos_ndk_toolchains("linux_x86_64") {
+      dest_dir = "$ndk_linux_toolchains_out_dir"
+      sources = [
+        "${linux_x86_64_toolchains_dir}/llvm/NOTICE",
+        "${linux_x86_64_toolchains_dir}/llvm/bin",
+        "${linux_x86_64_toolchains_dir}/llvm/include",
+        "${linux_x86_64_toolchains_dir}/llvm/lib",
+        "${linux_x86_64_toolchains_dir}/llvm/libexec",
+        "${linux_x86_64_toolchains_dir}/llvm/python3",
+        "${linux_x86_64_toolchains_dir}/llvm/script",
+        "${linux_x86_64_toolchains_dir}/llvm/share",
+      ]
+      license_file = "${linux_x86_64_toolchains_dir}/llvm/NOTICE"
+    }
   }
 
   ohos_ndk_toolchains("windows_x86_64") {
@@ -111,12 +128,26 @@ if (host_os == "mac") {
   action("linux_toolchain") {
     outputs = [ "${ndk_linux_toolchains_out_dir}" ]
     script = "toolchain.sh"
-    args =
-        [ "-i" ] + [ rebase_path("${linux_x86_64_toolchains_dir}/libcxx-ndk") ]
+    if (host_cpu == "arm64") {
+      args = [ "-i" ] +
+             [ rebase_path("${linux_aarch64_toolchains_dir}/libcxx-ndk") ]
+    } else {
+      args = [ "-i" ] +
+             [ rebase_path("${linux_x86_64_toolchains_dir}/libcxx-ndk") ]
+    }
     args += [ "-o" ] + [ rebase_path("${ndk_linux_toolchains_out_dir}") ]
-    args +=
-        [ "-l" ] + [ rebase_path("${linux_x86_64_toolchains_dir}/llvm/bin") ]
-    deps = [ ":linux_x86_64" ]
+    if (host_cpu == "arm64") {
+      args +=
+          [ "-l" ] + [ rebase_path("${linux_aarch64_toolchains_dir}/llvm/bin") ]
+    } else {
+      args +=
+          [ "-l" ] + [ rebase_path("${linux_x86_64_toolchains_dir}/llvm/bin") ]
+    }
+    if (host_cpu == "arm64") {
+      deps = [ ":linux_arm64" ]
+    } else {
+      deps = [ ":linux_x86_64" ]
+    }
   }
 
   action("windows_toolchain") {
@@ -125,8 +156,14 @@ if (host_os == "mac") {
     args =
         [ "-i" ] + [ rebase_path("${windows_x86_64_toolchain_dir}/libcxx-ndk") ]
     args += [ "-o" ] + [ rebase_path("${ndk_windows_toolchains_out_dir}") ]
-    args +=
-        [ "-l" ] + [ rebase_path("${linux_x86_64_toolchains_dir}/llvm/bin") ]
+
+    if (host_cpu == "arm64") {
+      args +=
+          [ "-l" ] + [ rebase_path("${linux_aarch64_toolchains_dir}/llvm/bin") ]
+    } else {
+      args +=
+          [ "-l" ] + [ rebase_path("${linux_x86_64_toolchains_dir}/llvm/bin") ]
+    }
     deps = [ ":windows_x86_64" ]
   }
 
@@ -135,8 +172,13 @@ if (host_os == "mac") {
     script = "toolchain.sh"
     args = [ "-i" ] + [ rebase_path("${ohos_arm64_toolchain_dir}/libcxx-ndk") ]
     args += [ "-o" ] + [ rebase_path("${ndk_ohos_toolchains_out_dir}") ]
-    args +=
-        [ "-l" ] + [ rebase_path("${linux_x86_64_toolchains_dir}/llvm/bin") ]
+    if (host_cpu == "arm64") {
+      args +=
+          [ "-l" ] + [ rebase_path("${linux_aarch64_toolchains_dir}/llvm/bin") ]
+    } else {
+      args +=
+          [ "-l" ] + [ rebase_path("${linux_x86_64_toolchains_dir}/llvm/bin") ]
+    }
     deps = [ ":ohos_arm64" ]
   }
 }
