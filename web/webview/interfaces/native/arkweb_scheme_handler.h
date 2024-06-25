@@ -24,6 +24,7 @@
  * @file arkweb_scheme_handler.h
  *
  * @brief Declares the APIs to intercept the request from ArkWeb.
+ * @kit ArkWeb
  * @library libohweb.so
  * @syscap SystemCapability.Web.Webview.Core
  * @since 12

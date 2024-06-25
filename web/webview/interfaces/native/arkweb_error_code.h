@@ -24,6 +24,7 @@
  * @file arkweb_error_code.h
  *
  * @brief Declares the APIs for the ArkWeb errors.
+ * @kit ArkWeb
  * @library libohweb.so
  * @syscap SystemCapability.Web.Webview.Core
  * @since 12

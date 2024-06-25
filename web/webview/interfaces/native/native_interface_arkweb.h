@@ -24,6 +24,7 @@
  * @file native_interface_arkweb.h
  *
  * @brief Declares the APIs to use javascript proxy and run javascirpt code.
+ * @kit ArkWeb
  * @library libohweb.so
  * @syscap SystemCapability.Web.Webview.Core
  * @since 11
