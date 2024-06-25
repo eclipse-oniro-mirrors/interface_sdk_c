@@ -15,6 +15,7 @@
 
 import json
 import os.path
+import openpyxl as op
 from pathlib import Path
 from typedef.check.check import FileDocInfo, check_command_message, CheckErrorMessage
 from coreImpl.check.check_doc import process_comment, process_file_doc_info
@@ -66,6 +67,41 @@ def process_all_json(python_obj, command_list):
     for file_info in python_obj:
         process_file_json(file_info, api_result_info_list, command_list)
     return api_result_info_list
+
+
+def collect_node_api_change(check_result):
+    check_result_data = []
+    for api_check_info in check_result:
+        info_data = [
+            api_check_info.analyzerName,
+            api_check_info.buggyFilePath,
+            api_check_info.codeContextStartLine,
+            api_check_info.defectLevel,
+            api_check_info.defectType,
+            api_check_info.description,
+            api_check_info.language,
+            api_check_info.mainBuggyCode,
+            api_check_info.mainBuggyLine
+        ]
+        check_result_data.append(info_data)
+
+    return check_result_data
+
+
+def generate_excel(check_result_list, output_path):
+    data = collect_node_api_change(check_result_list)
+    wb = op.Workbook()
+    ws = wb['Sheet']
+    ws.title = 'check信息'
+    ws.append(['工具名', '文件路径', '错误注释内容开始行', '等级',
+               '错误类型', '错误信息描述', '语言', '节点内容', '错误行'])
+    for title in data:
+        d = title[0], title[1], title[2], title[3], title[4],\
+            title[5], title[6], title[7], title[8]
+        ws.append(d)
+    out_path = os.path.dirname(output_path)
+    output_path_xlsx = os.path.abspath(os.path.join(out_path, 'check_result.xlsx'))
+    wb.save(output_path_xlsx)
 
 
 def write_in_txt(check_result, output_path):

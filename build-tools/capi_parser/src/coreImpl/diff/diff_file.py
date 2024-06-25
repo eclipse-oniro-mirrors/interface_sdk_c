@@ -61,7 +61,7 @@ def get_api_change_obj(api_data):
     key = 0
     api_unique_id = ''
     for element in api_data:
-        api_unique_id = element.unique_id
+        api_unique_id = element.current_api_unique_id
         if 0 == key:
             change_data_obj.set_api_name(element.api_node_name)
             change_data_obj.set_kit_name(element.kit_name)

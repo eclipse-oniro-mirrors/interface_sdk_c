@@ -533,7 +533,7 @@ def get_start_comments(include_path):  # 获取每个头文件的最开始注释
             # 当前行数大于开头记录行数，则加入到结果中
             if start_line > max_line:
                 line_list.append(start_line)
-                content += '/** @} */\n'
+                content = "{}{}".format(content, '/** @} */\n')
         f.close()
         return content
 
@@ -561,9 +561,9 @@ def api_entrance(share_lib, include_path, gn_path, link_path=None):  # 统计入
         iter_line_dist = iter(line_dist)
         first = next(iter_line_dist)
         array_index = int(first)
-        if len(data_total) - 1 >= array_index:
+        if len(data_total) - 1 >= array_index and first in line_dist:
             data_dist = data_total.__getitem__(array_index)    # ==>data_total[array_index]
-            data_dist['line_list'] = line_dist[first]
+            data_dist['line_list'] = line_dist.get(first)
 
     return data_total
 
