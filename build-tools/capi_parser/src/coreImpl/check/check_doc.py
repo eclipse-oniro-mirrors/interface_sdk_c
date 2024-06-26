@@ -46,7 +46,8 @@ def get_tage_start_and_end(tag_info, comment_start_line, comment_str, api_info):
     value['code_context_start_line'] = comment_start_line + tag_info['source'][0]['number']
     value['main_buggy_code'] = ''
     for element in tag_info['source']:
-        value['main_buggy_code'] += (element['source'] + '\n')
+        tag_source = "{}{}".format(element['source'], '\n')
+        value['main_buggy_code'] = "{}{}".format(value['main_buggy_code'], tag_source)
     value['main_buggy_line'] = comment_start_line + tag_info['source'][len(tag_info['source'])-1]['number']
     return value
 
@@ -65,7 +66,7 @@ def process_tag_addtogroup(tag_info, file_doc_info: FileDocInfo, api_info, comme
 def process_tag_brief(tag_info, file_doc_info: FileDocInfo, api_info, comment_str, comment_start_line) -> list:
     doc_info = file_doc_info.curr_doc_info
     api_result_info_list = []
-    brief = tag_info['name'] + tag_info['description']
+    brief = "{}{}".format(tag_info['name'], tag_info['description'])
     doc_info.brief = brief
     return api_result_info_list
 
@@ -99,7 +100,7 @@ def process_tag_file(tag_info, file_doc_info: FileDocInfo, api_info, comment_str
 
 def process_tag_library(tag_info, file_doc_info: FileDocInfo, api_info, comment_str, comment_start_line) -> list:
     api_result_info_list = []
-    library: str = tag_info['name'] + tag_info['description']
+    library: str = '{}{}'.format(tag_info['name'], tag_info['description'])
     if not library.endswith(('.so', '.a')) and library != "NA":
         api_result_info = set_value_to_result(api_info, CheckErrorMessage.API_DOC_GLOBAL_13.name,
                                               get_tage_start_and_end(tag_info, comment_start_line,
@@ -151,7 +152,7 @@ def process_tag_return(tag_info, file_doc_info: FileDocInfo, api_info, comment_s
 def process_tag_since(tag_info, file_doc_info: FileDocInfo, api_info, comment_str, comment_start_line) -> list:
     doc_info = file_doc_info.curr_doc_info
     api_result_info_list = []
-    value: str = tag_info['name'] + tag_info['description']
+    value: str = '{}{}'.format(tag_info['name'], tag_info['description'])
     if value == "":
         api_result_info = set_value_to_result(api_info, CheckErrorMessage.API_DOC_UNIVERSAL_03.name,
                                               get_tage_start_and_end(tag_info, comment_start_line,
@@ -169,7 +170,7 @@ def process_tag_since(tag_info, file_doc_info: FileDocInfo, api_info, comment_st
 def process_tag_syscap(tag_info, file_doc_info: FileDocInfo, api_info, comment_str, comment_start_line) -> list:
     doc_info = file_doc_info.curr_doc_info
     api_result_info_list = []
-    syscap = tag_info['name'] + tag_info['description']
+    syscap = '{}{}'.format(tag_info['name'], tag_info['description'])
     if syscap == "":
         api_result_info = set_value_to_result(api_info, CheckErrorMessage.API_DOC_UNIVERSAL_05.name,
                                               get_tage_start_and_end(tag_info, comment_start_line,
@@ -262,11 +263,11 @@ def process_file_doc_group(file_doc_info: FileDocInfo, item, api_info, comment_s
                                                                          file_doc_info.group_comment_str, api_info))
             api_result_info_list.append(api_result_info)
     elif item['tag'] == 'brief':
-        file_doc_info.group_brief = item['name'] + item['description']
+        file_doc_info.group_brief = '{}{}'.format(item['name'], item['description'])
     elif item['tag'] == 'library':
-        file_doc_info.group_library = item['name'] + item['description']
+        file_doc_info.group_library = '{}{}'.format(item['name'], item['description'])
     elif item['tag'] == 'syscap':
-        file_doc_info.group_syscap = item['name'] + item['description']
+        file_doc_info.group_syscap = '{}{}'.format(item['name'], item['description'])
     return api_result_info_list
 
 
@@ -286,11 +287,11 @@ def process_file_doc_file(file_doc_info: FileDocInfo, item, api_info, comment_st
                                                                          file_doc_info.file_comment_str, api_info))
             api_result_info_list.append(api_result_info)
     elif item['tag'] == 'brief':
-        file_doc_info.file_brief = item['name'] + item['description']
+        file_doc_info.file_brief = '{}{}'.format(item['name'], item['description'])
     elif item['tag'] == 'library':
-        file_doc_info.file_library = item['name'] + item['description']
+        file_doc_info.file_library = '{}{}'.format(item['name'], item['description'])
     elif item['tag'] == 'syscap':
-        file_doc_info.file_syscap = item['name'] + item['description']
+        file_doc_info.file_syscap = '{}{}'.format(item['name'], item['description'])
     elif item['tag'] == 'since':
         file_doc_info.file_since = True
     return api_result_info_list
@@ -299,7 +300,8 @@ def process_file_doc_file(file_doc_info: FileDocInfo, item, api_info, comment_st
 def get_source_doc(comment_object):
     comment_str = ''
     for item in comment_object['source']:
-        comment_str += (item['source'] + '\n')
+        doc_source = '{}{}'.format(item['source'], '\n')
+        comment_str = '{}{}'.format(comment_str, doc_source)
     return comment_str
 
 

@@ -289,6 +289,7 @@ class DiffInfo:
     class_name = ''
     api_node_name = ''
     unique_id = ''
+    current_api_unique_id = ''
 
     def __init__(self, diff_type: DiffType):
         self.diff_type = diff_type
@@ -408,6 +409,12 @@ class DiffInfo:
 
     def get_unique_id(self):
         return self.unique_id
+
+    def set_current_api_unique_id(self, current_api_unique_id):
+        self.current_api_unique_id = current_api_unique_id
+
+    def get_current_api_unique_id(self):
+        return self.current_api_unique_id
 
 
 class OutputJson:

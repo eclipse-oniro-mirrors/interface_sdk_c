@@ -575,6 +575,7 @@ process_data = {
 def collect_change_data_total(data: dict, diff_info_list):
     for element in diff_info_list:
         element.set_api_node_name(data['name'])
+        element.set_current_api_unique_id(data['unique_id'])
     change_data_total.append(diff_info_list)
 
 
