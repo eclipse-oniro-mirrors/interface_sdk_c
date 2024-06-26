@@ -28,6 +28,7 @@
  *
  * @brief Declares the <b>Bundle</b>-specific function, including function for obtaining application info.
  *
+ * @kit AbilityKit
  * @library libbundle.z.so
  * @syscap SystemCapability.BundleManager.BundleFramework.Core
  * @since 9
