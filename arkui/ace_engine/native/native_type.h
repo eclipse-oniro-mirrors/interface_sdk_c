@@ -1957,6 +1957,62 @@ typedef enum {
 } ArkUI_ScrollSource;
 
 /**
+ * @brief Defines the translation options for component transition.
+ *
+ * @since 12
+ */
+typedef struct {
+    /** Translation distance along the x-axis. */
+    float x;
+    /** Translation distance along the y-axis. */
+    float y;
+    /** Translation distance along the z-axis. */
+    float z;
+} ArkUI_TranslationOptions;
+
+/**
+ * @brief Defines the scaling options for component transition.
+ *
+ * @since 12
+ */
+typedef struct {
+    /** Scale ratio along the x-axis. */
+    float x;
+    /** Scale ratio along the y-axis. */
+    float y;
+    /** Scale factor along the z-axis (not effective for the current 2D graphics). */
+    float z;
+    /** X coordinate of the center point. */
+    float centerX;
+    /** Y coordinate of the center point. */
+    float centerY;
+} ArkUI_ScaleOptions;
+
+/**
+ * @brief Defines the rotation options for component transition.
+ *
+ * @since 12
+ */
+typedef struct {
+    /** X-component of the rotation vector. */
+    float x;
+    /** Y-component of the rotation vector. */
+    float y;
+    /** Z-component of the rotation vector. */
+    float z;
+    /** Rotation angle. */
+    float angle;
+    /** X coordinate of the center point. */
+    float centerX;
+    /** Y coordinate of the center point. */
+    float centerY;
+    /** Z-axis anchor, that is, the z-component of the 3D rotation center point. */
+    float centerZ;
+    /** Distance from the user to the z=0 plane. */
+    float perspective;
+} ArkUI_RotationOptions;
+
+/**
  * @brief defines the enumerated value of the extended security zone.
  *
  * @since 12
