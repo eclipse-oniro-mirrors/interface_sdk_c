@@ -101,7 +101,7 @@ OH_Drawing_FontCollection* OH_Drawing_CreateSharedFontCollection(void);
  * @since 12
  * @version 1.0
  */
-void OH_Drawing_ClearCaches(OH_Drawing_FontCollection*);
+void OH_Drawing_ClearFontCaches(OH_Drawing_FontCollection*);
 #ifdef __cplusplus
 }
 #endif
