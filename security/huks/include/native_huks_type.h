@@ -496,6 +496,25 @@ enum OH_Huks_AuthStorageLevel {
 };
 
 /**
+ * @brief Enumerates the user authentication mode.
+ *
+ * @since 12
+ * @version 1.0
+ */
+enum OH_Huks_UserAuthMode {
+    /**
+     * Auth mode for local scenarios.
+     * @since 12
+     */
+    OH_HUKS_USER_AUTH_MODE_LOCAL = 0,
+    /**
+     * Auth mode for co-auth scenarios.
+     * @since 12
+     */
+    OH_HUKS_USER_AUTH_MODE_COAUTH = 1,
+};
+
+/**
  * @brief Enumerates the types of the challenges generated when a key is used.
  * @see OH_Huks_ChallengePosition
  *
@@ -642,6 +661,13 @@ enum OH_Huks_Tag {
      */
     OH_HUKS_TAG_AUTH_STORAGE_LEVEL = OH_HUKS_TAG_TYPE_UINT | 316,
 
+    /**
+     * Authentication mode of the user authtoken，whose optional values are from enum HuksUserAuthMode.
+     *
+     * @since 12
+     */
+    OH_HUKS_TAG_USER_AUTH_MODE = OH_HUKS_TAG_TYPE_UINT | 319,
+    
     /** Tags for key attestation. The value range is 501 to 600. */
     /** Challenge value used in the attestation. */
     OH_HUKS_TAG_ATTESTATION_CHALLENGE = OH_HUKS_TAG_TYPE_BYTES | 501,
