@@ -503,12 +503,12 @@ enum OH_Huks_AuthStorageLevel {
  */
 enum OH_Huks_UserAuthMode {
     /**
-     * Local authentication.
+     * Auth mode for local scenarios.
      * @since 12
      */
     OH_HUKS_USER_AUTH_MODE_LOCAL = 0,
     /**
-     * Remote collaborative authentication.
+     * Auth mode for co-auth scenarios.
      * @since 12
      */
     OH_HUKS_USER_AUTH_MODE_COAUTH = 1,
