@@ -1933,6 +1933,26 @@ typedef enum {
 } ArkUI_AccessibilityActionType;
 
 /**
+ * @brief Enumerates the animation playback modes.
+ *
+ * @since 12
+ */
+typedef enum {
+    /** The animation plays in forward loop mode. */
+    ARKUI_ANIMATION_DIRECTION_NORMAL = 0,
+    /** The animation plays in reverse loop mode. */
+    ARKUI_ANIMATION_DIRECTION_REVERSE,
+    /** The animation plays in alternating loop mode. When the animation is played for an odd number of times, the
+     *  playback is in forward direction. When the animation is played for an even number of times, the playback is in
+     *  reverse direction. */
+    ARKUI_ANIMATION_DIRECTION_ALTERNATE,
+    /** The animation plays in reverse alternating loop mode. When the animation is played for an odd number of times,
+     *  the playback is in reverse direction. When the animation is played for an even number of times, the playback is
+     *  in forward direction. */
+    ARKUI_ANIMATION_DIRECTION_ALTERNATE_REVERSE,
+} ArkUI_AnimationDirection;
+
+/**
  * @brief Define the rolling source enumeration value.
  *
  * @since 12

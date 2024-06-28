@@ -400,6 +400,14 @@ float OH_ArkUI_PinchGesture_GetCenterX(const ArkUI_GestureEvent* event);
 float OH_ArkUI_PinchGesture_GetCenterY(const ArkUI_GestureEvent* event);
 
 /**
+* @brief Get the ARKUI component bound to the gesture.
+*
+* @param event gesture event.
+* @return ARKUI component bound to the gesture.If Null is returned, it means event is an invalid value.
+* @since 12
+*/
+ArkUI_NodeHandle OH_ArkUI_GestureEvent_GetNode(const ArkUI_GestureEvent* event);
+/**
  * @brief Defines the gesture APIs.
  *
  * @since 12

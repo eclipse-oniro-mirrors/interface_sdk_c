@@ -7062,6 +7062,17 @@ typedef struct {
       * @return Returns the pointer of the component, if not return NULL
       */
     ArkUI_NodeHandle (*getParent)(ArkUI_NodeHandle node);
+
+    /**
+    * @brief Uninstall all child nodes from the parent component.
+    *
+    * @param parent target node object.
+    * @return Returns the error code.
+    *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+    *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+    * @since 12
+    */
+    int32_t (*removeAllChildren)(ArkUI_NodeHandle parent);
 } ArkUI_NativeNodeAPI_1;
 
 /**
