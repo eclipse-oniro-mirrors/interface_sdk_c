@@ -60,6 +60,13 @@ typedef struct {
 typedef struct ArkUI_AnimateOption ArkUI_AnimateOption;
 
 /**
+ * @brief Defines the transition effect.
+ *
+ * @since 12
+ */
+typedef struct ArkUI_TransitionEffect ArkUI_TransitionEffect;
+
+/**
  * @brief Implements the native animation APIs provided by ArkUI.
  *
  * @version 1
@@ -225,6 +232,106 @@ void OH_ArkUI_AnimateOption_SetPlayMode(ArkUI_AnimateOption* option, ArkUI_Anima
 */
 void OH_ArkUI_AnimateOption_SetExpectedFrameRateRange(ArkUI_AnimateOption* option, ArkUI_ExpectedFrameRateRange* value);
 
+/**
+ * @brief Creates an opacity object for component transition.
+ *
+ * @note If the value specified is less than 0, the value <b>0</b> is used. If the value specified is greater than 1,
+ * the value <b>1</b> is used.
+ * @param opacity Indicates the opacity. Value range: [0, 1].
+ * @return Returns the created opacity object for component transition.
+ * @since 12
+ */
+ArkUI_TransitionEffect* OH_ArkUI_CreateOpacityTransitionEffect(float opacity);
+
+/**
+ * @brief Creates a translation object for component transition.
+ *
+ * @param translate Indicates the translation settings for component transition.
+ * @return Returns the translation object created for component transition.
+ *         Returns <b>NULL</b> if a parameter error occurs.
+ * @since 12
+ */
+ArkUI_TransitionEffect* OH_ArkUI_CreateTranslationTransitionEffect(ArkUI_TranslationOptions* translate);
+
+/**
+ * @brief Creates a scaling object for component transition.
+ *
+ * @param scale Indicates the scaling settings for component transition.
+ * @return Returns the scaling object created for component transition.
+ *         Returns <b>NULL</b> if a parameter error occurs.
+ * @since 12
+ */
+ArkUI_TransitionEffect* OH_ArkUI_CreateScaleTransitionEffect(ArkUI_ScaleOptions* scale);
+
+/**
+ * @brief Creates a rotation object for component transition.
+ *
+ * @param rotate Indicates the rotation settings for component transition.
+ * @return Returns the rotation object created for component transition.
+ *         Returns <b>NULL</b> if a parameter error occurs.
+ * @since 12
+ */
+ArkUI_TransitionEffect* OH_ArkUI_CreateRotationTransitionEffect(ArkUI_RotationOptions* rotate);
+
+/**
+ * @brief Creates a movement object for component transition.
+ *
+ * @param edge Indicates the movement type.
+ * @return Returns the movement object created for component transition.
+ *         Returns <b>NULL</b> if a parameter error occurs.
+ * @since 12
+ */
+ArkUI_TransitionEffect* OH_ArkUI_CreateMovementTransitionEffect(ArkUI_TransitionEdge edge);
+
+/**
+ * @brief Creates an asymmetric transition effect.
+ *
+ * @note If the <b>asymmetric</b> function is not used for <b>TransitionEffect</b>, the transition effect takes effect
+ * for both appearance and disappearance of the component.
+ * @param appear Indicates the transition effect for appearance.
+ * @param disappear Indicates the transition effect for disappearance.
+ * @return Returns the asymmetric transition effect.
+ *         Returns <b>NULL</b> if a parameter error occurs.
+ * @since 12
+ */
+ArkUI_TransitionEffect* OH_ArkUI_CreateAsymmetricTransitionEffect(
+    ArkUI_TransitionEffect* appear, ArkUI_TransitionEffect* disappear);
+
+/**
+ * @brief Disposes of a transition effect.
+ *
+ * @param effect Indicates the transition effect to dispose of.
+ * @since 12
+ */
+void OH_ArkUI_TransitionEffect_Dispose(ArkUI_TransitionEffect* effect);
+
+/**
+ * @brief Sets a combination of transition effects.
+ *
+ * @param firstEffect Indicates the transition effect options.
+ * @param secondEffect Indicates the combination of transition effects.
+ * @return Returns the error code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @since 12
+ */
+int32_t OH_ArkUI_TransitionEffect_Combine(
+    ArkUI_TransitionEffect* firstEffect, ArkUI_TransitionEffect* secondEffect);
+
+/**
+ * @brief Sets transition effect animation settings.
+ *
+ * @note If <b>combine</b> is used for combining transition effects, the animation settings of a transition effect are
+ * applicable to the one following it.
+ * @param effect Indicates the transition effect options.
+ * @param animation Indicates the animation settings.
+ * @return Returns the error code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @since 12
+ */
+int32_t OH_ArkUI_TransitionEffect_SetAnimation(
+    ArkUI_TransitionEffect* effect, ArkUI_AnimateOption* animation);
 #ifdef __cplusplus
 };
 #endif
