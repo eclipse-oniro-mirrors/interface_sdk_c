@@ -1021,7 +1021,7 @@ ArkUI_CurveHandle OH_ArkUI_Curve_CreateCustomCurve(
  *
  * @param curve Indicates the pointer to the interpolation object of the curve.
  */
-void OH_ArkUI_Curve_disposeCurve(ArkUI_CurveHandle curveHandle);
+void OH_ArkUI_Curve_DisposeCurve(ArkUI_CurveHandle curveHandle);
 
 /**
  * @brief Creates an opacity object for component transition.
