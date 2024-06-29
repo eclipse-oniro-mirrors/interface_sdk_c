@@ -9,7 +9,7 @@
     },
     {
         "first_introduced": "12",
-        "name": "OH_AVCencInfo_SetAlgo"
+        "name": "OH_AVCencInfo_SetAlgorithm"
     },
     {
         "first_introduced": "12",
