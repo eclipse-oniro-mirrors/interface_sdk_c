@@ -133,6 +133,7 @@ HiDebug_ErrorCode OH_HiDebug_StartAppTraceCapture(HiDebug_TraceFlag flag,
  *
  * @return 0 - Success
  *         11400104 - Maybe no trace is running or some error in the system.
+ *         11400105 - Have no trace running.
  * @since 12
  */
 HiDebug_ErrorCode OH_HiDebug_StopAppTraceCapture();
