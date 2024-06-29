@@ -77,6 +77,14 @@
   },
   {
     "first_introduced": "12",
+    "name": "OH_EffectBufferInfo_SetTimestamp"
+  },
+  {
+    "first_introduced": "12",
+    "name": "OH_EffectBufferInfo_GetTimestamp"
+  },
+  {
+    "first_introduced": "12",
     "name": "OH_EffectBufferInfo_Release"
   },
   {
