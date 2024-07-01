@@ -1760,6 +1760,19 @@ typedef enum {
     NODE_EXPAND_SAFE_AREA = 92,
 
     /**
+     * @brief Defines the visible area ratio (visible area/total area of the component) threshold for invoking the
+     * visible area change event of the component.
+     *
+     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
+     * .value[...].f32: threshold array. The value range is 0 to 1.
+     * \n
+     * Format of the return value {@link ArkUI_AttributeItem}:\n
+     * .value[...].f32: threshold array. \n
+     *
+     */
+    NODE_VISIBLE_AREA_CHANGE_RATIO = 93,
+
+    /**
      * @brief Sets the transition effect when the component is inserted or deleted.
      * This attribute can be set, and obtained as required through APIs.
      *
@@ -5412,10 +5425,8 @@ typedef enum {
      * @brief Defines the visible area change event.
      *
      * This event is triggered when the ratio of the component's visible area to its total area is greater than or less
-     * than the threshold. \n
-     * The format of the input parameter {@link ArkUI_AttributeItem} is as follows:\n
-     * .value[0...].f32: threshold array. Each threshold represents a ratio of the component's visible area to the
-     * component's total area. The value range of the threshold is [0.0, 1.0]. \n
+     * than the threshold.
+     * Before registering this event, you must set <b>NODE_VISIBLE_AREA_CHANGE_RATIO</b>. \n
      * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
      * {@link ArkUI_NodeComponentEvent}. \n
      * {@link ArkUI_NodeComponentEvent} contains two parameters:\n
