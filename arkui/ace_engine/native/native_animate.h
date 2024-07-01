@@ -312,6 +312,7 @@ void OH_ArkUI_AnimateOption_SetExpectedFrameRateRange(ArkUI_AnimateOption* optio
 /**
 * @brief Sets the animation curve for the animation of an animator.
 *
+* @note This method is better than the value set by OH_ArkUI_AnimateOption_SetCurve.
 * @param option Indicates the animator parameters.
 * @param value Indicates the animation curve settings.
 * @since 12
@@ -766,7 +767,7 @@ float OH_ArkUI_AnimatorOnFrameEvent_GetValue(ArkUI_AnimatorOnFrameEvent* event);
 /**
  * @brief Sets the callback invoked when the animator receives a frame.
  *
- * @param animator Indicates an animator object.
+ * @param option Indicates an animator parameter object.
  * @param userData Indicates the custom parameter.
  * @param callback Indicates the callback to set.
  * @return Returns the error code.
@@ -774,12 +775,12 @@ float OH_ArkUI_AnimatorOnFrameEvent_GetValue(ArkUI_AnimatorOnFrameEvent* event);
  *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
  */
 int32_t OH_ArkUI_AnimatorOption_RegisterOnFrameCallback(
-    ArkUI_AnimatorHandle animatorHandle, void* userData, void (*callback)(ArkUI_AnimatorOnFrameEvent* event));
+    ArkUI_AnimatorOption* option, void* userData, void (*callback)(ArkUI_AnimatorOnFrameEvent* event));
 
 /**
  * @brief Sets the callback invoked when the animation playback is complete.
  *
- * @param animator Indicates an animator object.
+ * @param option Indicates an animator parameter object.
  * @param userData Indicates the custom parameter.
  * @param callback Indicates the callback to set.
  * @return Returns the error code.
@@ -787,12 +788,12 @@ int32_t OH_ArkUI_AnimatorOption_RegisterOnFrameCallback(
  *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
  */
 int32_t OH_ArkUI_AnimatorOption_RegisterOnFinishCallback(
-    ArkUI_AnimatorHandle animatorHandle, void* userData, void (*callback)(ArkUI_AnimatorEvent* event));
+    ArkUI_AnimatorOption* option, void* userData, void (*callback)(ArkUI_AnimatorEvent* event));
 
 /**
  * @brief Sets the callback invoked when the animation playback is canceled.
  *
- * @param animator Indicates an animator object.
+ * @param option Indicates an animator parameter object.
  * @param userData Indicates the custom parameter.
  * @param callback Indicates the callback to set.
  * @return Returns the error code.
@@ -800,12 +801,12 @@ int32_t OH_ArkUI_AnimatorOption_RegisterOnFinishCallback(
  *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
  */
 int32_t OH_ArkUI_AnimatorOption_RegisterOnCancelCallback(
-    ArkUI_AnimatorHandle animatorHandle, void* userData, void (*callback)(ArkUI_AnimatorEvent* event));
+    ArkUI_AnimatorOption* option, void* userData, void (*callback)(ArkUI_AnimatorEvent* event));
 
 /**
  * @brief Sets the callback invoked when the animation playback is repeated.
  *
- * @param animator Indicates an animator object.
+ * @param option Indicates an animator parameter object.
  * @param userData Indicates the custom parameter.
  * @param callback Indicates the callback to set.
  * @return Returns the error code.
@@ -813,12 +814,12 @@ int32_t OH_ArkUI_AnimatorOption_RegisterOnCancelCallback(
  *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
  */
 int32_t OH_ArkUI_AnimatorOption_RegisterOnRepeatCallback(
-    ArkUI_AnimatorHandle animatorHandle, void* userData, void (*callback)(ArkUI_AnimatorEvent* event));
+    ArkUI_AnimatorOption* option, void* userData, void (*callback)(ArkUI_AnimatorEvent* event));
 
 /**
  * @brief Resets the animation of an animator.
  *
- * @param animator Indicates an animator object.
+ * @param animatorHandle Indicates an animator object.
  * @param option Indicates the animator parameters.
  * @return Returns the error code.
  *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
@@ -830,7 +831,7 @@ int32_t OH_ArkUI_Animator_ResetAnimatorOption(
 /**
  * @brief Starts the animation of an animator.
  *
- * @param animator Indicates an animator object.
+ * @param animatorHandle Indicates an animator object.
  * @return Returns the error code.
  *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
  *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
@@ -840,7 +841,7 @@ int32_t OH_ArkUI_Animator_Play(ArkUI_AnimatorHandle animatorHandle);
 /**
  * @brief Ends the animation of an animator.
  *
- * @param animator Indicates an animator object.
+ * @param animatorHandle Indicates an animator object.
  * @return Returns the error code.
  *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
  *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
@@ -850,7 +851,7 @@ int32_t OH_ArkUI_Animator_Finish(ArkUI_AnimatorHandle animatorHandle);
 /**
  * @brief Pauses the animation of an animator.
  *
- * @param animator Indicates an animator object.
+ * @param animatorHandle Indicates an animator object.
  * @return Returns the error code.
  *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
  *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
@@ -860,7 +861,7 @@ int32_t OH_ArkUI_Animator_Pause(ArkUI_AnimatorHandle animatorHandle);
 /**
  * @brief Cancels the animation of an animator.
  *
- * @param animator Indicates an animator object.
+ * @param animatorHandle Indicates an animator object.
  * @return Returns the error code.
  *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
  *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
@@ -870,7 +871,7 @@ int32_t OH_ArkUI_Animator_Cancel(ArkUI_AnimatorHandle animatorHandle);
 /**
  * @brief Plays the animation of an animator in reverse order.
  *
- * @param animator Indicates an animator object.
+ * @param animatorHandle Indicates an animator object.
  * @return Returns the error code.
  *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
  *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
