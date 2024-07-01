@@ -24,6 +24,7 @@
  * @file arkweb_interface.h
  *
  * @brief Provides a unified entry for the native ArkWeb.
+ * @kit ArkWeb
  * @library libohweb.so
  * @syscap SystemCapability.Web.Webview.Core
  * @since 12
