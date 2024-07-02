@@ -1864,6 +1864,12 @@ typedef enum {
     ARKUI_ERROR_CODE_ADAPTER_EXIST = 106105,
     /** @error The corresponding node already has a child node and cannot add an adapter. */
     ARKUI_ERROR_CODE_CHILD_NODE_EXIST = 106106,
+    /** The parameter length in the parameter event exceeds the limit. */
+    ARKUI_ERROR_CODE_NODE_EVENT_PARAM_INDEX_OUT_OF_RANGE = 106107,
+    /** The data does not exist in the component event. */
+    ARKUI_ERROR_CODE_NODE_EVENT_PARAM_INVALID = 106108,
+    /** The component event does not support return values. */
+    ARKUI_ERROR_CODE_NODE_EVENT_NO_RETURN = 106109,
 } ArkUI_ErrorCode;
 
 /**
