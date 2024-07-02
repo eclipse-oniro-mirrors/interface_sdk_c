@@ -31,6 +31,7 @@
  * @brief Defines the data structure for the C APIs of the WebSocket client module.
  *
  * @library libnet_websocket.so
+ * @kit NetworkKit
  * @syscap SystemCapability.Communication.NetStack
  * @since 11
  * @version 1.0
