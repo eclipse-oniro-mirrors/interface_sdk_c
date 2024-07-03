@@ -36,6 +36,7 @@
  * @brief Defines the APIs for the websocket client module.
  *
  * @library libnet_websocket.so
+ * @kit NetworkKit
  * @syscap SystemCapability.Communication.NetStack
  * @since 11
  * @version 1.0

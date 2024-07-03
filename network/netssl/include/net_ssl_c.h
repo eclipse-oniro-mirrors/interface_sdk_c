@@ -32,6 +32,7 @@
  * @brief Defines C APIs for the SSL/TLS certificate chain verification module.
  *
  * @library libnet_ssl.so
+ * @kit NetworkKit
  * @syscap SystemCapability.Communication.NetStack
  * @since 11
  * @version 1.0
