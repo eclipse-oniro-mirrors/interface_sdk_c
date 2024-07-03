@@ -320,7 +320,7 @@ def get_dir_file_path(dir_path):
         for dir_name in dir_names:
             link_include_path.append(os.path.join(dir_path, dir_name))
         for file in filenames:
-            if 'build-tools' not in dir_path and file.endswith('.h'):
+            if 'build-tools' not in dir_path and 'sysroot' not in dir_path and file.endswith('.h'):
                 file_path_list.append(os.path.join(dir_path, file))
 
     return file_path_list, link_include_path

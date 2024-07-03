@@ -204,12 +204,15 @@ def get_api_unique_id(cursor, loc):
     unique_id = ''
     if parent_of_cursor:
         unique_name = cursor.spelling
-        if parent_of_cursor.kind == CursorKind.TRANSLATION_UNIT:
+        try:
+            if parent_of_cursor.kind == CursorKind.TRANSLATION_UNIT:
+                parent_name_str = ''
+            elif parent_of_cursor.kind.name in struct_union_enum:
+                parent_name_str = parent_of_cursor.type.spelling
+            else:
+                parent_name_str = parent_of_cursor.spelling
+        except ValueError:
             parent_name_str = ''
-        elif parent_of_cursor.kind.name in struct_union_enum:
-            parent_name_str = parent_of_cursor.type.spelling
-        else:
-            parent_name_str = parent_of_cursor.spelling
         if cursor.kind.name in struct_union_enum:
             unique_name = cursor.type.spelling
         if not parent_name_str:
