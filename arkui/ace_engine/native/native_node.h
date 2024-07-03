@@ -5652,6 +5652,60 @@ typedef enum {
     NODE_TEXT_INPUT_ON_CONTENT_SIZE_CHANGE,
 
     /**
+     * @brief Defines the event triggered when text is about to be entered.
+     *
+     * The event parameter is {@link ArkUI_NodeEvent}. \n
+     * value.f32: position of the text, with the index of <b>0</b>; obtained using
+     * <b>OH_ArkUI_NodeEvent_GetNumberValue</b>. \n
+     * buffer: string value of the text, with the index of <b>0</b>; obtained using
+     * <b>OH_ArkUI_NodeEvent_GetStringValue</b>.
+     * @return Returns <b>true</b> if the text is entered; returns <b>false</b> otherwise.
+     * You can set the return value using <b>OH_ArkUI_NodeEvent_SetReturnNumberValue</b>. \n
+     */
+    NODE_TEXT_INPUT_ON_WILL_INSERT = 7009,
+
+    /**
+     * @brief Defines the event triggered when text is entered.
+     *
+     * The event parameter is {@link ArkUI_NodeEvent}. \n
+     * value.f32: position of the text, with the index of <b>0</b>; obtained using
+     * <b>OH_ArkUI_NodeEvent_GetNumberValue</b>. \n
+     * buffer: string value of the text, with the index of <b>0</b>; obtained using
+     * <b>OH_ArkUI_NodeEvent_GetStringValue</b>.
+     */
+    NODE_TEXT_INPUT_ON_DID_INSERT = 7010,
+
+    /**
+     * @brief Defines the event triggered when text is about to be deleted.
+     *
+     * The event parameter is {@link ArkUI_NodeEvent}. \n
+     * value.f32: position of the text to delete, with the index of <b>0</b>; obtained using
+     * <b>OH_ArkUI_NodeEvent_GetNumberValue</b>. \n
+     * value.i32: direction for deleting the text, with the index of <b>1</b>; obtained using
+     * <b>OH_ArkUI_NodeEvent_GetNumberValue</b>. The value <b>0</b> indicates backward-delete, and <b>1</b> indicates
+     * forward-delete. \n
+     * buffer: string value of the text, with the index of <b>0</b>; obtained using
+     * <b>OH_ArkUI_NodeEvent_GetStringValue</b>.
+     * @return Returns <b>true</b> if the text is deleted; returns <b>false</b> otherwise. \n
+     * You can set the return value using <b>OH_ArkUI_NodeEvent_SetReturnNumberValue</b>. \n
+     */
+    NODE_TEXT_INPUT_ON_WILL_DELETE = 7011,
+
+    /**
+     * @brief Defines the event triggered when text is deleted.
+     *
+     * The event parameter is {@link ArkUI_NodeEvent}. \n
+     * value.f32: position of the text deleted, with the index of <b>0</b>; obtained using
+     * <b>OH_ArkUI_NodeEvent_GetNumberValue</b>. \n
+     * value.i32: direction for deleting the text, with the index of <b>1</b>; obtained using
+     * <b>OH_ArkUI_NodeEvent_GetNumberValue</b>. The value <b>0</b> indicates backward-delete, and <b>1</b> indicates
+     * forward-delete. \n
+     * buffer: string value of the text, with the index of <b>0</b>; obtained using
+     * <b>OH_ArkUI_NodeEvent_GetStringValue</b>.
+     */
+    NODE_TEXT_INPUT_ON_DID_DELETE = 7012,
+
+    /**
      * @brief Defines the event triggered when matching with the regular expression specified by
      * <b>NODE_TEXT_INPUT_INPUT_FILTER</b> fails.
      *
@@ -5773,6 +5827,60 @@ typedef enum {
       *
       */
     NODE_TEXT_AREA_ON_CONTENT_SIZE_CHANGE,
+
+    /**
+     * @brief Defines the event triggered when text is about to be entered.
+     *
+     * The event parameter is {@link ArkUI_NodeEvent}. \n
+     * value.f32: position of the text, with the index of <b>0</b>; obtained using
+     * <b>OH_ArkUI_NodeEvent_GetNumberValue</b>. \n
+     * buffer: string value of the text, with the index of <b>0</b>; obtained using
+     * <b>OH_ArkUI_NodeEvent_GetStringValue</b>.
+     * @return Returns <b>true</b> if the text is entered; returns <b>false</b> otherwise.
+     * You can set the return value using <b>OH_ArkUI_NodeEvent_SetReturnNumberValue</b>. \n
+     */
+    NODE_TEXT_AREA_ON_WILL_INSERT = 8008,
+
+    /**
+     * @brief Defines the event triggered when text is entered.
+     *
+     * The event parameter is {@link ArkUI_NodeEvent}. \n
+     * value.f32: position of the text, with the index of <b>0</b>; obtained using
+     * <b>OH_ArkUI_NodeEvent_GetNumberValue</b>. \n
+     * buffer: string value of the text, with the index of <b>0</b>; obtained using
+     * <b>OH_ArkUI_NodeEvent_GetStringValue</b>.
+     */
+    NODE_TEXT_AREA_ON_DID_INSERT = 8009,
+
+    /**
+     * @brief Defines the event triggered when text is about to be deleted.
+     *
+     * The event parameter is {@link ArkUI_NodeEvent}. \n
+     * value.f32: position of the text to delete, with the index of <b>0</b>; obtained using
+     * <b>OH_ArkUI_NodeEvent_GetNumberValue</b>. \n
+     * value.i32: direction for deleting the text, with the index of <b>1</b>; obtained using
+     * <b>OH_ArkUI_NodeEvent_GetNumberValue</b>. The value <b>0</b> indicates backward-delete, and <b>1</b> indicates
+     * forward-delete. \n
+     * buffer: string value of the text, with the index of <b>0</b>; obtained using
+     * <b>OH_ArkUI_NodeEvent_GetStringValue</b>.
+     * @return Returns <b>true</b> if the text is deleted; returns <b>false</b> otherwise. \n
+     * You can set the return value using <b>OH_ArkUI_NodeEvent_SetReturnNumberValue</b>. \n
+     */
+    NODE_TEXT_AREA_ON_WILL_DELETE = 8010,
+
+    /**
+     * @brief Defines the event triggered when text is deleted.
+     *
+     * The event parameter is {@link ArkUI_NodeEvent}. \n
+     * value.f32: position of the text deleted, with the index of <b>0</b>; obtained using
+     * <b>OH_ArkUI_NodeEvent_GetNumberValue</b>. \n
+     * value.i32: direction for deleting the text, with the index of <b>1</b>; obtained using
+     * <b>OH_ArkUI_NodeEvent_GetNumberValue</b>. The value <b>0</b> indicates backward-delete, and <b>1</b> indicates
+     * forward-delete. \n
+     * buffer: string value of the text, with the index of <b>0</b>; obtained using
+     * <b>OH_ArkUI_NodeEvent_GetStringValue</b>.
+     */
+    NODE_TEXT_AREA_ON_DID_DELETE = 8011,
 
     /**
      * @brief Defines the event triggered when the selected status of the <b>ARKUI_NODE_CHECKBOX</b> component changes.
@@ -6318,6 +6426,52 @@ ArkUI_StringAsyncEvent* OH_ArkUI_NodeEvent_GetStringAsyncEvent(ArkUI_NodeEvent* 
  * @since 12
  */
 void* OH_ArkUI_NodeEvent_GetUserData(ArkUI_NodeEvent* event);
+
+/**
+ * @brief Obtains the numeric-type parameter of a component event.
+ *
+ * @param event Indicates the pointer to the component event.
+ * @param index Indicates the index of the return value.
+ * @param value Indicates the return value.
+ * @return Returns the error code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_NODE_EVENT_PARAM_INDEX_OUT_OF_RANGE} if the parameter length exceeds
+ *         the limit.
+ *         Returns {@link ARKUI_ERROR_CODE_NODE_EVENT_PARAM_INVALID} if the data does not exist in the component event.
+ * @since 12
+ */
+int32_t OH_ArkUI_NodeEvent_GetNumberValue(ArkUI_NodeEvent* event, int32_t index, ArkUI_NumberValue* value);
+
+/**
+ * @brief Obtains the string-type parameter of a component event. The string data is valid only during an event
+ * callback. To use it outside an event callback, you are advised to copy the string data.
+ *
+ * @param event Indicates the pointer to the component event.
+ * @param index Indicates the index of the return value.
+ * @param string Indicates the pointer to the string array.
+ * @param stringSize Indicates the length of the string array.
+ * @return Returns the error code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_NODE_EVENT_PARAM_INDEX_OUT_OF_RANGE} if the parameter length exceeds
+ *         the limit.
+ *         Returns {@link ARKUI_ERROR_CODE_NODE_EVENT_PARAM_INVALID} if the data does not exist in the component event.
+ * @since 12
+ */
+int32_t OH_ArkUI_NodeEvent_GetStringValue(ArkUI_NodeEvent* event, int32_t index, char** string, int32_t* stringSize);
+
+/**
+ * @brief Sets the return value for a component event.
+ *
+ * @param event Indicates the pointer to the component event.
+ * @param value Indicates the numeric-type array.
+ * @param size Indicates the array length.
+ * @return Returns the error code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_NODE_EVENT_NO_RETURN} if the component event does not support return values.
+ *         Returns {@link ARKUI_ERROR_CODE_NODE_EVENT_PARAM_INVALID} if data does not exist in the component event.
+ * @since 12
+ */
+int32_t OH_ArkUI_NodeEvent_SetReturnNumberValue(ArkUI_NodeEvent* event, ArkUI_NumberValue* value, int32_t size);
 
 /**
  * @brief Defines the dirty area flag passed in the <b>::markDirty</b> API.
