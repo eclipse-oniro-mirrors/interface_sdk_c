@@ -414,6 +414,7 @@ void OH_NativeWindow_DestroyNativeWindow(OHNativeWindow* window);
  * @since 8
  * @version 1.0
  * @deprecated since 12
+ * @useinstead OH_NativeWindow_CreateNativeWindowBufferFromNativeBuffer
  */
 OHNativeWindowBuffer* OH_NativeWindow_CreateNativeWindowBufferFromSurfaceBuffer(void* pSurfaceBuffer);
 
@@ -480,6 +481,7 @@ int32_t OH_NativeWindow_NativeWindowFlushBuffer(OHNativeWindow *window, OHNative
  * @since 11
  * @version 1.0
  * @deprecated since 12
+ * @useinstead OH_NativeWindow_GetLastFlushedBufferV2
  */
 int32_t OH_NativeWindow_GetLastFlushedBuffer(OHNativeWindow *window, OHNativeWindowBuffer **buffer,
     int *fenceFd, float matrix[16]);
