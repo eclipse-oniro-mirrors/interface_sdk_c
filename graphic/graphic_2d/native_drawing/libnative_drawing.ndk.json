@@ -86,6 +86,10 @@
     },
     { "name": "OH_Drawing_CanvasDrawRect" },
     { "name": "OH_Drawing_CanvasDrawRoundRect" },
+    {
+        "first_introduced": "12",
+        "name": "OH_Drawing_CanvasDrawSingleCharacter"
+    },
     { "name": "OH_Drawing_CanvasDrawTextBlob" },
     {
         "first_introduced": "12",
@@ -221,6 +225,10 @@
     {
         "first_introduced": "12",
         "name": "OH_Drawing_FontIsSubpixel"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_Drawing_FontMeasureSingleCharacter"
     },
     {
         "first_introduced": "12",
