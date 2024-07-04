@@ -1657,13 +1657,13 @@ typedef enum {
      * 2: .value[0].f32: width of the top border, in percentage. \n
      * .value[1].f32: width of the right border, in percentage. \n
      * .value[2].f32: width of the bottom border, in percentage. \n
-     * .value[3].f32: width of the right border, in percentage. \n
+     * .value[3].f32: width of the left border, in percentage. \n
      * \n
      * Format of the return value {@link ArkUI_AttributeItem}:\n
      * .value[0].f32: width of the top border, in percentage. \n
      * .value[1].f32: width of the right border, in percentage. \n
      * .value[2].f32: width of the bottom border, in percentage. \n
-     * .value[3].f32: width of the right border, in percentage. \n
+     * .value[3].f32: width of the left border, in percentage. \n
      *
      */
     NODE_BORDER_WIDTH_PERCENT = 85,
