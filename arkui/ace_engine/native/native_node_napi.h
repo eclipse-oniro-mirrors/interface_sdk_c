@@ -279,7 +279,8 @@ ArkUI_ErrorCode OH_ArkUI_GetRouterPageIndex(ArkUI_NodeHandle node, int32_t* inde
  * @brief Obtain the name of the page where the node is located.
  *
  * @param node The node.
- * @param buffer The buffer to which page name writes to the memory, memory space needs to be allocated by the developer.
+ * @param buffer The buffer to which page name writes to the memory,
+ *               memory space needs to be allocated by the developer.
  * @param bufferSize The buffer size
  * @param writeLength Indicates the string length actually written to the buffer
  *                    when returning {@link ARKUI_ERROR_CODE_NO_ERROR}.
@@ -300,7 +301,8 @@ ArkUI_ErrorCode OH_ArkUI_GetRouterPageName(
  * @brief Obtain the path of the page where the node is located.
  *
  * @param node The node.
- * @param buffer The buffer to which page path writes to the memory, memory space needs to be allocated by the developer.
+ * @param buffer The buffer to which page path writes to the memory,
+ *               memory space needs to be allocated by the developer.
  * @param bufferSize The buffer size
  * @param writeLength Indicates the string length actually written to the buffer
  *                    when returning {@link ARKUI_ERROR_CODE_NO_ERROR}.
@@ -334,7 +336,8 @@ ArkUI_ErrorCode OH_ArkUI_GetRouterPageState(ArkUI_NodeHandle node, ArkUI_RouterP
  * @brief Obtain the ID of the page where the node is located.
  *
  * @param node The node.
- * @param buffer The buffer to which page ID writes to the memory, memory space needs to be allocated by the developer.
+ * @param buffer The buffer to which page ID writes to the memory,
+ *               memory space needs to be allocated by the developer.
  * @param bufferSize The buffer size
  * @param writeLength Indicates the string length actually written to the buffer
  *                    when returning {@link ARKUI_ERROR_CODE_NO_ERROR}.
