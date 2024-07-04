@@ -127,13 +127,13 @@ typedef enum NativeWindowOperation {
     /**
      * get native window buffer usage,
      * variable parameter in function is
-     * [out] int32_t *usage.
+     * [out] uint64_t *usage.
      */
     GET_USAGE,
     /**
      * set native window buffer usage,
      * variable parameter in function is
-     * [in] int32_t usage.
+     * [in] uint64_t usage.
      */
     SET_USAGE,
     /**
