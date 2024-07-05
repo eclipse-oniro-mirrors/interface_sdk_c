@@ -2651,6 +2651,114 @@ JSVM_EXTERN JSVM_Status OH_JSVM_IsObject(JSVM_Env env,
 JSVM_EXTERN JSVM_Status OH_JSVM_IsBigInt(JSVM_Env env,
                                          JSVM_Value value,
                                          bool* isBigInt);
+
+/**
+ * @brief This API returns a JSVM-API value corresponding to a JavaScript Map type.
+ *
+ * @param env: The environment that the API is invoked under.
+ * @param result: A JSVM_Value representing a JavaScript Map.
+ * @return Only returns JSVM function's result code.
+ *         {@link JSVM_OK } If the API succeeded.\n
+ *         {@link JSVM_INVALID_ARG } If the input parameter is invalid.\n
+ * @since 12
+ */
+JSVM_Status JSVM_CDECL OH_JSVM_CreateMap(JSVM_Env env, JSVM_Value* result);
+
+/**
+ * @brief This API checks if the value passed in is a Map.
+ *
+ * @param env: The environment that the API is invoked under.
+ * @param value: The JavaScript value to check.
+ * @param isMap: Whether the given value is Map.
+ * @return Only returns JSVM function's result code.
+ *         {@link JSVM_OK } If the API succeeded.\n
+ *         {@link JSVM_INVALID_ARG } If the input parameter is invalid.\n
+ * @since 12
+ */
+JSVM_Status JSVM_CDECL OH_JSVM_IsMap(JSVM_Env env,
+                                     JSVM_Value value,
+                                     bool* isMap);
+
+/**
+ * @brief This API returns a JSVM-API value corresponding to a JavaScript Set type.
+ *
+ * @param env: The environment that the API is invoked under.
+ * @param result: A JSVM_Value representing a JavaScript Set.
+ * @return Returns JSVM function's result code.
+ *         {@link JSVM_OK } If the API succeeded.\n
+ *         {@link JSVM_INVALID_ARG } If the input parameter is invalid.\n
+ * @since 12
+ */
+JSVM_EXTERN JSVM_Status OH_JSVM_CreateSet(JSVM_Env env,
+                                          JSVM_Value* result);
+
+/**
+ * @brief This API checks if the value passed in is a Set.
+ *
+ * @param env: The environment that the API is invoked under.
+ * @param value: The JavaScript value to check.
+ * @param isSet: Whether the given value is Set.
+ * @return Returns JSVM function's result code.
+ *         {@link JSVM_OK } If the API succeeded.\n
+ *         {@link JSVM_INVALID_ARG } If the input parameter is invalid.\n
+ * @since 12
+ */
+JSVM_EXTERN JSVM_Status OH_JSVM_IsSet(JSVM_Env env,
+                                      JSVM_Value value,
+                                      bool* isSet);
+
+/**
+ * @brief This function compiles a string of JavaScript code with the compile options
+ * and returns the compiled script.
+ *
+ * @param env: The environment that the JSVM-API call is invoked under.
+ * @param script: A JavaScript string containing the script to be compiled.
+ * @param optionCount: length of option array.
+ * @param options: Compile options to be passed.
+ * @param result: The compiled script.
+ * @return Returns JSVM functions result code
+ *         {@link JSVM_OK } if the API succeeded. \n
+ *         {@link JSVM_INVALID_ARG } If the input parameter is invalid.\n
+ * @since 12
+ */
+JSVM_EXTERN JSVM_Status OH_JSVM_CompileScriptWithOptions(JSVM_Env env,
+                                                         JSVM_Value script,
+                                                         size_t optionCount,
+                                                         JSVM_CompileOptions options[],
+                                                         JSVM_Value* result);
+
+/**
+ * @brief This API implements the abstract operation ToBigInt().
+ *
+ * @param env: The environment that the API is invoked under.
+ * @param value: The JavaScript value to coerce.
+ * @param result: JSVM_Value representing the coerced JavaScript BigInt.
+ * @return Returns JSVM function's result code.
+ *         {@link JSVM_OK } If the API succeeded.
+ *         {@link JSVM_INVALID_ARG } If the input parameter is invalid.\n
+ *         {@link JSVM_BIGINT_EXPECTED} If the JavaScript value fails to coerce.\n
+ * @since 12
+ */
+JSVM_EXTERN JSVM_Status OH_JSVM_CoerceToBigInt(JSVM_Env env,
+                                               JSVM_Value value,
+                                               JSVM_Value* result);
+
+/**
+ * @brief This API checks if the value passed in is a regExp.
+ * This equals to `value instanceof RegExp` in JS.
+ *
+ * @param env: The environment that the API is invoked under.
+ * @param value: The JavaScript value to check.
+ * @param result: Whether the given value is RegExp.
+ * @return Returns JSVM function's result code.
+ *         {@link JSVM_OK } If the API succeeded.\n
+ *         {@link JSVM_INVALID_ARG } If the input parameter is invalid.\n
+ * @since 12
+ */
+JSVM_EXTERN JSVM_Status OH_JSVM_IsRegExp(JSVM_Env env,
+                                         JSVM_Value value,
+                                         bool* result);
+
 EXTERN_C_END
 
 /** @} */
