@@ -38,6 +38,7 @@
  * including managing the engine lifecycle, compiling and running JS code, implementing JS/C++ cross language calls,
  * and taking snapshots.
  * @library libjsvm.so
+ * @kit ArkTS
  * @syscap SystemCapability.ArkCompiler.JSVM
  * @since 11
  */
