@@ -2633,6 +2633,28 @@ void OH_ArkUI_SwiperIndicator_SetSelectedColor(ArkUI_SwiperIndicator* indicator,
 uint32_t OH_ArkUI_SwiperIndicator_GetSelectedColor(ArkUI_SwiperIndicator* indicator);
 
 /**
+ * @brief Sets the number of maxDisplayCount for the dot navigation indicator.
+ *
+ * @param indicator Indicates the pointer to the indicator.
+ * @param maxDisplayCount the maxDisplayCount of the navigation dot, span is 6-9.
+ * @return {@link ARKUI_ERROR_CODE_NO_ERROR} Success.
+ *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} indicator is null or maxDisplayCount less then 6 or
+ *         maxDisplayCount more then 9
+ * @since 12
+*/
+int32_t OH_ArkUI_SwiperIndicator_SetMaxDisplayCount(ArkUI_SwiperIndicator* indicator, int32_t maxDisplayCount);
+
+/**
+ * @brief Obtains the number of maxDisplayCount for the dot navigation indicator.
+ *
+ * @param indicator Indicates the pointer to the indicator.
+ * @return Returns the number of the maxDisplayCount, span is 6-9.
+ *         0 - indicator is null
+ * @since 12
+*/
+int32_t OH_ArkUI_SwiperIndicator_GetMaxDisplayCount(ArkUI_SwiperIndicator* indicator);
+
+/**
  * @brief Create auxiliary line information in the RelativeContaine container.
  *
  * @param size The number of auxiliary lines.
