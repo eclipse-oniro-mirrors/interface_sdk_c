@@ -7518,6 +7518,17 @@ int32_t OH_ArkUI_NodeUtils_GetPositionWithTranslateInScreen(ArkUI_NodeHandle nod
  * @since 12
  */
 int32_t OH_ArkUI_List_CloseAllSwipeActions(ArkUI_NodeHandle node, void* userData, void (*onFinish)(void* userData));
+
+/**
+* @brief Obtain the UIContext pointer to the page where the node is located.
+*
+* @param node The node.
+* @return The UIContext pointer.
+*         If a null pointer is returned, it may be because the node is empty.
+* @since 12
+*/
+ArkUI_ContextHandle OH_ArkUI_GetContextByNode(ArkUI_NodeHandle node);
+
 #ifdef __cplusplus
 };
 #endif
