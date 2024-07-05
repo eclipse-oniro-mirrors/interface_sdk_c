@@ -670,5 +670,25 @@
     {
         "first_introduced": "12",
         "name": "OH_JSVM_IsRegExp"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_JSVM_CreateRegExp"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_JSVM_IsConstructor"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_JSVM_ObjectGetPrototypeOf"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_JSVM_ObjectSetPrototypeOf"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_JSVM_CreateFunctionWithScript"
     }
 ]
