@@ -16,6 +16,19 @@
 #ifndef AVCODEC_AUDIO_CHANNEL_LAYOUT_H
 #define AVCODEC_AUDIO_CHANNEL_LAYOUT_H
 #include <cstdint>
+
+/**
+ * @file avcodec_audio_channel_layout.h
+ *
+ * @brief Audio AudioChannel Layout
+ *
+ * @kit AVCodec
+ * @library libnative_media_codecbase.so
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
+ * @deprecated since 11
+ * @since 10
+ */
+
 #ifdef __cplusplus
 extern "C" {
 #endif
