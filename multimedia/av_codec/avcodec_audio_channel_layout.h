@@ -19,8 +19,12 @@
 
 /**
  * @file avcodec_audio_channel_layout.h
+ *
  * @brief Audio AudioChannel Layout
+ *
  * @kit AVCodec
+ * @library libnative_media_codecbase.so
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @deprecated since 11
  * @since 10
  */
