@@ -33,7 +33,9 @@
  *
  * @brief Declares functions related to the <b>imageFilter</b> object in the drawing module.
  *
+ * @kit ArkGraphics2D
  * @library libnative_drawing.so
+ * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @since 12
  * @version 1.0
  */

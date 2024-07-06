@@ -33,6 +33,9 @@
  *
  * @brief Declares functions related to the <b>path</b> object in the drawing module.
  *
+ * @kit ArkGraphics2D
+ * @library libnative_drawing.so
+ * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @since 8
  * @version 1.0
  */
@@ -649,13 +652,13 @@ bool OH_Drawing_PathGetPositionTangent(OH_Drawing_Path* path, bool forceClosed,
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @param path Indicates the pointer to an <b>OH_Drawing_Path</b> object.
- * @param srcPath Indicates the pointer to an <b>OH_Drawing_Path</b> object.
+ * @param other Indicates the pointer to an <b>OH_Drawing_Path</b> object.
  * @param op Indicates the operation to apply to combine.
  * @return Returns <b>true</b> if constructed path is not empty; returns <b>false</b> otherwise.
  * @since 12
  * @version 1.0
  */
-bool OH_Drawing_PathOp(OH_Drawing_Path* path, const OH_Drawing_Path* srcPath, OH_Drawing_PathOpMode op);
+bool OH_Drawing_PathOp(OH_Drawing_Path* path, const OH_Drawing_Path* other, OH_Drawing_PathOpMode op);
 
 /**
  * @brief Computes the corresponding matrix at the specified distance.

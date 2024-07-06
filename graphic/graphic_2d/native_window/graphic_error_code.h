@@ -31,8 +31,10 @@
  * @file external_window.h
  *
  * @brief Defines the error codes.
- * @syscap SystemCapability.Graphic.Graphic2D.NativeWindow
+ *
+ * @kit ArkGraphics2D
  * @library libnative_window.so
+ * @syscap SystemCapability.Graphic.Graphic2D.NativeWindow
  * @since 12
  * @version 1.0
  */

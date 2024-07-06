@@ -33,7 +33,9 @@
  *
  * @brief Declares functions related to the <b>fontmgr</b> object in the drawing module.
  *
- * @library libnative_drawing_ndk.z.so
+ * @kit ArkGraphics2D
+ * @library libnative_drawing.so
+ * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @since 12
  * @version 1.0
  */

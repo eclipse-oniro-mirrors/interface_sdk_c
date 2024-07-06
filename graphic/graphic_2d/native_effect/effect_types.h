@@ -31,6 +31,7 @@
  *
  * @brief Declares the data types for effect filter.
  *
+ * @kit ArkGraphics2D
  * @library libnative_effect.so
  * @syscap SystemCapability.Multimedia.Image.Core
  * @since 12

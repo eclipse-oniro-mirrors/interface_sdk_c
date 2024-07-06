@@ -33,6 +33,7 @@
  *
  * @brief Declares functions related to the error code in the drawing module.
  *
+ * @kit ArkGraphics2D
  * @library libnative_drawing.so
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @since 12

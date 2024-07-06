@@ -32,7 +32,9 @@
  *
  * @brief Defines the functions for obtaining and using a native buffer.
  *
+ * @kit ArkGraphics2D
  * @library libnative_buffer.so
+ * @syscap SystemCapability.Graphic.Graphic2D.NativeBuffer
  * @since 9
  * @version 1.0
  */

@@ -32,7 +32,9 @@
  *
  * @brief Defines the functions for obtaining and using a native image.
  *
+ * @kit ArkGraphics2D
  * @library libnative_image.so
+ * @syscap SystemCapability.Graphic.Graphic2D.NativeImage
  * @since 9
  * @version 1.0
  */

@@ -31,8 +31,10 @@
  * @file native_buffer.h
  *
  * @brief Defines the common types for native buffer.
- * @syscap SystemCapability.Graphic.Graphic2D.NativeBuffer
+ *
+ * @kit ArkGraphics2D
  * @library libnative_buffer.so
+ * @syscap SystemCapability.Graphic.Graphic2D.NativeBuffer
  * @since 12
  * @version 1.0
  */
