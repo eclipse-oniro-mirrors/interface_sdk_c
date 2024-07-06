@@ -2759,6 +2759,99 @@ JSVM_EXTERN JSVM_Status OH_JSVM_IsRegExp(JSVM_Env env,
                                          JSVM_Value value,
                                          bool* result);
 
+
+/**
+ * @brief This API checks if the value passed in is a constructor.
+ *
+ * @param env: The environment that the API is invoked under.
+ * @param value: The JavaScript value to check.
+ * @param isConstructor: Whether the given value is Constructor.
+ * @return Only returns JSVM function's result code.
+ *         {@link JSVM_OK } If the API succeeded.\n
+ *         {@link JSVM_INVALID_ARG } If the input parameter is invalid.\n
+ * @since 12
+ */
+JSVM_Status JSVM_CDECL OH_JSVM_IsConstructor(JSVM_Env env,
+                                             JSVM_Value value,
+                                             bool* isConstructor);
+
+/**
+ * @brief This API returns the JavaScript value of the regular expression
+ * corresponding to the input.
+ * The interface may throw an exception.
+ *
+ * @param env: The environment that the API is invoked under.
+ * @param value: The JavaScript string to convert to a regular expression.
+ * @param flags: Regular expression flag bits.
+ * @param result: A JSVM_Value representing a JavaScript RegExp.
+ * @return Only returns JSVM function's result code.
+ *         {@link JSVM_OK } If the API succeeded.\n
+ *         {@link JSVM_INVALID_ARG } If the input parameter is invalid.\n
+ *         {@link JSVM_PENDING_EXCPTION } If the API throws an exception during runtime.\n
+ * @since 12
+ */
+JSVM_Status JSVM_CDECL OH_JSVM_CreateRegExp(JSVM_Env env,
+                                            JSVM_Value value,
+                                            JSVM_RegExpFlags flags,
+                                            JSVM_Value* result);
+
+/**
+ * @brief This API returns the Object prototype.
+ *
+ * @param env: The environment that the API is invoked under.
+ * @param object: JSVM_Value representing JavaScript Object whose prototype to return. This returns
+ * the equivalent of Object.getPrototypeOf (which is not the same as the function's prototype property).
+ * @param result: JSVM_Value representing prototype of the given object.
+ * @return Returns JSVM function's result code.
+ *         {@link JSVM_OK } If the API succeeded.\n
+ *         {@link JSVM_INVALID_ARG } If the input parameter is invalid.\n
+ * @since 12
+ */
+JSVM_EXTERN JSVM_Status OH_JSVM_ObjectGetPrototypeOf(JSVM_Env env,
+                                                     JSVM_Value object,
+                                                     JSVM_Value* result);
+
+/**
+ * @brief This API set the prototype on the Object passed in.
+ *
+ * @param env: The environment that the API is invoked under.
+ * @param object: The object on which to set the prototype.
+ * @param prototype: The prototype value.
+ * @return Returns JSVM function's result code.
+ *         {@link JSVM_OK } If the API succeeded.\n
+ *         {@link JSVM_INVALID_ARG } If the input parameter is invalid.\n
+ * @since 12
+ */
+JSVM_EXTERN JSVM_Status OH_JSVM_ObjectSetPrototypeOf(JSVM_Env env,
+                                                     JSVM_Value object,
+                                                     JSVM_Value prototype);
+
+/**
+ * @brief Creates a function with a given script as its body.
+ *
+ * @param env: The environment that the API is invoked under.
+ * @param funcName: A string containing the function's name. Pass NULL to create an anonymous function.
+ * @param length: The length of the funcName in bytes, or JSVM_AUTO_LENGTH if it
+ * is null-terminated.
+ * @param argc: The count of elements in the argv array.
+ * @param argv: Array of JSVM_Values representing JavaScript strings passed in as arguments to the function.
+ * @param script: A JavaScript string containing the script to use as the function's body.
+ * @param result: JSVM_Value representing the JavaScript function object for the newly
+ * created function.
+ * @return  Returns JSVM function's result code.
+ *          {@link JSVM_OK } If the API succeeded.
+ *          {@link JSVM_INVALID_ARG } If the input parameter is invalid.\n
+ *          {@link JSVM_GENERIC_FAILURE} If the input script fails to be compiled.\n
+ * @since 12
+ */
+JSVM_EXTERN JSVM_Status OH_JSVM_CreateFunctionWithScript(JSVM_Env env,
+                                                         const char* funcName,
+                                                         size_t length,
+                                                         size_t argc,
+                                                         const JSVM_Value* argv,
+                                                         JSVM_Value script,
+                                                         JSVM_Value* result);
+
 EXTERN_C_END
 
 /** @} */
