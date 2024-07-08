@@ -13,6 +13,17 @@
  * limitations under the License.
  */
 
+/**
+ * @file native_avdemuxer.h
+ *
+ * @brief Provides audio and video demuxer capabilities.
+ *
+ * @kit AVCodec
+ * @library libnative_media_avdemuxer.so
+ * @syscap SystemCapability.Multimedia.Media.Spliter
+ * @since 10
+ */
+
 #ifndef NATIVE_AVDEMUXER_H
 #define NATIVE_AVDEMUXER_H
 

@@ -12,6 +12,18 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
+/**
+ * @file native_averrors.h
+ *
+ * @brief Provides audio and video error description.
+ *
+ * @kit AVCodec
+ * @library libnative_media_core.so
+ * @syscap SystemCapability.Multimedia.Media.Core
+ * @since 9
+ */
+
 #ifndef NATIVE_AVERRORS_H
 #define NATIVE_AVERRORS_H
 

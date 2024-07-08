@@ -13,6 +13,17 @@
  * limitations under the License.
  */
 
+/**
+ * @file native_avmuxer.h
+ *
+ * @brief Provides audio and video muxer capabilities.
+ *
+ * @kit AVCodec
+ * @library libnative_media_avmuxer.so
+ * @syscap SystemCapability.Multimedia.Media.Muxer
+ * @since 10
+ */
+
 #ifndef NATIVE_AVMUXER_H
 #define NATIVE_AVMUXER_H
 

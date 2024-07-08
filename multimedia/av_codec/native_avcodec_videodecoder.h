@@ -13,6 +13,17 @@
  * limitations under the License.
  */
 
+/**
+ * @file native_avcodec_videodecoder.h
+ *
+ * @brief Provides video decoder capabilities.
+ *
+ * @kit AVCodec
+ * @library libnative_media_vdec.so
+ * @syscap SystemCapability.Multimedia.Media.VideoDecoder
+ * @since 9
+ */
+
 #ifndef NATIVE_AVCODEC_VIDEODECODER_H
 #define NATIVE_AVCODEC_VIDEODECODER_H
 

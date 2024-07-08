@@ -13,6 +13,17 @@
  * limitations under the License.
  */
 
+/**
+ * @file native_avcodec_audioencoder.h
+ *
+ * @brief Provides audio encoder capabilities.
+ *
+ * @kit AVCodec
+ * @library libnative_media_aenc.so
+ * @syscap SystemCapability.Multimedia.Media.AudioEncoder
+ * @since 9
+ */
+
 #ifndef NATIVE_AVCODEC_AUDIOENCODER_H
 #define NATIVE_AVCODEC_AUDIOENCODER_H
 

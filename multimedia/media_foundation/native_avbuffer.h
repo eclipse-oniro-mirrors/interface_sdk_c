@@ -13,6 +13,17 @@
  * limitations under the License.
  */
 
+/**
+ * @file native_avbuffer.h
+ *
+ * @brief Provides audio and video buffer.
+ *
+ * @kit AVCodec
+ * @library libnative_media_core.so
+ * @syscap SystemCapability.Multimedia.Media.Core
+ * @since 11
+ */
+
 #ifndef NATIVE_AVBUFFER_H
 #define NATIVE_AVBUFFER_H
 

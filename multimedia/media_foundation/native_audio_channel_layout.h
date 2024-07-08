@@ -27,6 +27,7 @@
  *
  * @brief The channel layout indicates the appearance and order of the speakers for recording or playback.
  *
+ * @kit AVCodec
  * @library NA
  * @syscap SystemCapability.Multimedia.Media.Core
  * @since 11

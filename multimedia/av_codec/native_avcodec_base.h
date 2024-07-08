@@ -13,6 +13,17 @@
  * limitations under the License.
  */
 
+/**
+ * @file native_avcodec_base.h
+ *
+ * @brief Provides audio and video codec base.
+ *
+ * @kit AVCodec
+ * @library libnative_media_codecbase.so
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
+ * @since 9
+ */
+
 #ifndef NATIVE_AVCODEC_BASE_H
 #define NATIVE_AVCODEC_BASE_H
 

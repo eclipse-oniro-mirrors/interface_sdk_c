@@ -13,6 +13,17 @@
  * limitations under the License.
  */
 
+/**
+ * @file native_avmemory.h
+ *
+ * @brief Provides audio and video memory.
+ *
+ * @kit AVCodec
+ * @library libnative_media_core.so
+ * @syscap SystemCapability.Multimedia.Media.Core
+ * @since 9
+ */
+
 #ifndef NATIVE_AVMEMORY_H
 #define NATIVE_AVMEMORY_H
 

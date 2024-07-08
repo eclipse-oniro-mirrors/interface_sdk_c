@@ -13,6 +13,17 @@
  * limitations under the License.
  */
 
+/**
+ * @file native_avcapability.h
+ *
+ * @brief Provides audio and video capability queries.
+ *
+ * @kit AVCodec
+ * @library libnative_media_codecbase.so
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
+ * @since 10
+ */
+
 #ifndef NATIVE_AVCAPABILITY_H
 #define NATIVE_AVCAPABILITY_H
 
