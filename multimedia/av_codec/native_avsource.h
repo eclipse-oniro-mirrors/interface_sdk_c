@@ -13,6 +13,17 @@
  * limitations under the License.
  */
 
+/**
+ * @file native_avsource.h
+ *
+ * @brief Provides audio and video suorce capabilities.
+ *
+ * @kit AVCodec
+ * @library libnative_media_avsource.so
+ * @syscap SystemCapability.Multimedia.Media.Spliter
+ * @since 10
+ */
+
 #ifndef NATIVE_AVSOURCE_H
 #define NATIVE_AVSOURCE_H
 

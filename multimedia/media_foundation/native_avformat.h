@@ -13,6 +13,17 @@
  * limitations under the License.
  */
 
+/**
+ * @file native_avformat.h
+ *
+ * @brief Provides audio and video format.
+ *
+ * @kit AVCodec
+ * @library libnative_media_core.so
+ * @syscap SystemCapability.Multimedia.Media.Core
+ * @since 9
+ */
+
 #ifndef NATIVE_AVFORMAT_H
 #define NATIVE_AVFORMAT_H
 
