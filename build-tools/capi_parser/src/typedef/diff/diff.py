@@ -51,14 +51,14 @@ class DiffType(enum.Enum):
     REDUCE_DOC = 'delete doc'
     ADD_DOC_TAG = 'add doc tag'
     REDUCE_DOC_TAG = 'delete doc tag'
-    FUNCTION_PARAM_POS_CHANGE = 'change param site in function'    # 我觉得可以理解为函数参数类型改变
+    FUNCTION_PARAM_POS_CHANGE = 'change param site in function'
 
     DEFINE_NAME_CHANGE = 'change define name'
     DEFINE_TEXT_CHANGE = 'change define text'
 
     FUNCTION_NAME_CHANGE = 'change function name'
     FUNCTION_RETURN_CHANGE = 'change function return value'
-    FUNCTION_PARAM_NAME_CHANGE = 'change param name in function'    # 这个我觉得不考虑
+    FUNCTION_PARAM_NAME_CHANGE = 'change param name in function'
     FUNCTION_PARAM_TYPE_CHANGE = 'change param type in function'
     FUNCTION_PARAM_ADD = 'add param in function'
     FUNCTION_PARAM_REDUCE = 'delete param in function'

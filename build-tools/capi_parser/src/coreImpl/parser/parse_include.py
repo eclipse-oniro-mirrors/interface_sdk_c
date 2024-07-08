@@ -96,7 +96,7 @@ def judgment_extern(cursor, data):  # 判断是否带有extern
 
 
 def binary_operator(cursor, data):  # 二元操作符处理
-    data["name"] = "binary_ope_no_spelling"
+    data["name"] = ""
     tokens = cursor.get_tokens()
     spelling_arr = ['<<', '>>', '+', '-', '*', '/']
     for token in tokens:
@@ -117,7 +117,7 @@ def processing_parm(cursor, data):  # 函数参数节点处理
     if cursor.spelling:  # 函数参数是否带参数名
         data["name"] = cursor.spelling
     else:
-        data["name"] = "arg_no_spelling"
+        data["name"] = ""
 
     if cursor.type.get_pointee().kind == TypeKind.FUNCTIONPROTO:  # 参数为函数指针，获取对应的返回类型
         data["func_pointer_result_type"] = cursor.type.get_pointee().get_result().spelling
@@ -169,10 +169,10 @@ def processing_type(cursor, data):  # 没有类型的节点处理
 def processing_name(cursor, data):  # 没有名的节点处理
     if cursor.kind == CursorKind.PAREN_EXPR:  # 括号表达式()
         data["paren"] = "()"
-        data["name"] = "paren_expr_no_spelling"
+        data["name"] = ""
 
     elif cursor.kind == CursorKind.UNEXPOSED_EXPR:  # 未公开表达式，用于表示未明确定义的表达式
-        data["name"] = "unexposed_expr_no_spelling"
+        data["name"] = ""
 
 
 def processing_char(cursor, data):  # 字符节点处理
@@ -357,6 +357,8 @@ def ast_to_dict(cursor, current_file, last_data, gn_path, comment=None, key=0): 
         for child in children:
             # 剔除多余宏定义和跳过UNEXPOSED_ATTR节点
             if (child.location.file is not None) and (not child.kind.is_attribute()) \
+                    and child.kind.name != CursorKind.MACRO_INSTANTIATION.name \
+                    and child.kind.name != CursorKind.INCLUSION_DIRECTIVE.name \
                     and (child.location.file.name == current_file):
                 processing_ast_node(child, current_file, data, name, gn_path)
     else:
@@ -499,7 +501,11 @@ def get_start_comments(include_path):  # 获取每个头文件的最开始注释
     line_dist = {}
     global calculation_times
     with open(include_path, 'r', encoding='utf-8') as f:
-        last_line = f.readlines()[-1]
+        file_line_data = f.readlines()
+        if file_line_data:
+            last_line = file_line_data[-1]
+        else:
+            last_line = -1
         f.seek(0)
         content = ''
         mark = 0
@@ -520,7 +526,7 @@ def get_start_comments(include_path):  # 获取每个头文件的最开始注释
             line_number += 1
             content += line
             line = f.readline()
-        if line == last_line:
+        if line == last_line and last_line != -1:
             mark = 0
         if 0 == mark:
             content = ''

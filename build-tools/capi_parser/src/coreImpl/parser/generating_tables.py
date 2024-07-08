@@ -216,6 +216,16 @@ def get_json_file(generate_json_file, original_json_file):  # 获取生成的jso
     return compare_result_list, head_name, generate_data_only_new, original_data_only  # 返回对比数据，和所需表格名
 
 
+def get_parser_json_data(generate_json_file_path, parser_data):
+    generate_json_file_path = r'{}'.format(generate_json_file_path)  # 获取要对比的json文件
+    head_name = os.path.splitext(generate_json_file_path)  # 去掉文件名后缀
+    head_name = head_name[0] + '.xlsx'  # 加后缀
+    compare_result_list = []
+    generate_data_only = filter_compare(parser_data)
+    original_data_only = []
+    return compare_result_list, head_name, generate_data_only, original_data_only  # 返回对比数据，和所需表格名
+
+
 def get_api_data(parser_data, excel_file_name):
     generate_json_unique = []
     original_json_unique = []
