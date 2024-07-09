@@ -123,6 +123,10 @@ def process_func_param_location(old_param_list, new_param_list):
     result_list = []
     old_param_str_list = get_param_name_and_type(old_param_list)
     new_param_str_list = get_param_name_and_type(new_param_list)
+    old_param_str_content = ' '.join(old_param_str_list)
+    new_param_str_content = ' '.join(new_param_str_list)
+    if old_param_str_content == new_param_str_content:
+        return result_list
     old_len = len(old_param_list)
     for i, element in enumerate(old_param_str_list):
         if element not in new_param_str_list:

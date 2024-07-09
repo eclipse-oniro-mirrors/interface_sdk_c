@@ -160,6 +160,13 @@ def get_result_table(json_files, abs_path, link_path, gn_path):  # 进行处理�
         (compare_result_list, head_name, generate_data_only,
          original_data_only) = generating_tables.get_json_file(parser_json_name, json_files)
 
+    elif abs_path:
+        file_name = os.path.splitext(os.path.split(abs_path[0])[1])
+        parser_file_data = parse_include.get_include_file(abs_path, link_path, gn_path)
+        parser_json_name = change_json_file(parser_file_data, file_name[0])  # 生成json文件
+        (compare_result_list, head_name, generate_data_only,
+         original_data_only) = generating_tables.get_parser_json_data(parser_json_name, parser_file_data)
+
     obj_data = ParserGetResultTable(compare_result_list, head_name,
                                     generate_data_only, original_data_only, parser_file_data)
 
@@ -170,7 +177,7 @@ def create_dir(sources_dir, gn_file, function_name, link_include_file):
     if sources_dir:
         for item in sources_dir:
             directory = item
-            new_dire = os.path.join('sysroot', directory)
+            new_dire = os.path.join('sysroot_myself', directory)
             new_dire = os.path.normpath(new_dire)
             if not os.path.exists(new_dire):
                 os.makedirs(new_dire)
@@ -258,11 +265,11 @@ def find_include(link_include_path):
 
 
 def copy_self_include(link_include_path, self_include_file, flag=-1):
-    for dir_path, _, file_name_list in os.walk(self_include_file):
-        for file in file_name_list:
-            if (file.endswith('.h') and ('sysroot' not in dir_path)
-                    and (dir_path not in link_include_path)):
-                link_include_path.append(dir_path)
+    for dir_path, dir_name, file_name_list in os.walk(self_include_file):
+        for element in dir_name:
+            dir_path_name = os.path.abspath(os.path.join(dir_path, element))
+            if 'sysroot_myself' not in dir_path and dir_path_name not in link_include_path:
+                link_include_path.append(dir_path_name)
 
 
 def delete_typedef_child(child):
@@ -278,7 +285,7 @@ def parser(directory_path):  # 目录路径
     function_name = StringConstant.FUNK_NAME.value  # 匹配的函数名
 
     link_include_path = []  # 装链接头文件路径
-    copy_std_lib(link_include_path)  # ndk头文件移到sysroot中
+    copy_std_lib(link_include_path)  # 头文件移到sysroot_myself中
     find_include(link_include_path)
     link_include(directory_path, function_name, link_include_path)
 
@@ -288,15 +295,16 @@ def parser(directory_path):  # 目录路径
 
 def parser_include_ast(dire_file_path, include_path, flag=-1):        # 对于单独的.h解析接口
     correct_include_path = []
-
-    link_include_path = []
+    link_include_path = [dire_file_path]
+    # 针对check
     if -1 == flag:
         copy_std_lib(link_include_path, dire_file_path)
+        link_include(dire_file_path, StringConstant.FUNK_NAME.value, link_include_path)
+    # 针对diff
     else:
         copy_std_lib(link_include_path)
     find_include(link_include_path)
-    link_include(dire_file_path, StringConstant.FUNK_NAME.value, link_include_path)
-    if len(link_include_path) <= 1:
+    if len(link_include_path) <= 2:
         copy_self_include(link_include_path, dire_file_path, flag)
     for item in include_path:
         split_path = os.path.splitext(item)
@@ -318,9 +326,10 @@ def get_dir_file_path(dir_path):
     link_include_path = []  # 装链接头文件路径
     for dir_path, dir_names, filenames in os.walk(dir_path):
         for dir_name in dir_names:
-            link_include_path.append(os.path.join(dir_path, dir_name))
+            if 'build-tools' not in dir_path and 'sysroot_myself' not in dir_path:
+                link_include_path.append(os.path.join(dir_path, dir_name))
         for file in filenames:
-            if 'build-tools' not in dir_path and 'sysroot' not in dir_path and file.endswith('.h'):
+            if 'build-tools' not in dir_path and 'sysroot_myself' not in dir_path and file.endswith('.h'):
                 file_path_list.append(os.path.join(dir_path, file))
 
     return file_path_list, link_include_path
