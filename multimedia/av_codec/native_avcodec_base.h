@@ -274,7 +274,7 @@ extern const char *OH_ED_KEY_EOS;
 extern const char *OH_MD_KEY_TRACK_TYPE;
 /* Key for codec mime type, value type is string. */
 extern const char *OH_MD_KEY_CODEC_MIME;
-/* Key for duration, value type is int64_t. */
+/* Key for file duration, value type is int64_t. */
 extern const char *OH_MD_KEY_DURATION;
 /* Key for bitrate, value type is int64_t. */
 extern const char *OH_MD_KEY_BITRATE;
