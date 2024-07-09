@@ -67,16 +67,17 @@ def get_api_change_obj(api_data):
             change_data_obj.set_kit_name(element.kit_name)
             change_data_obj.set_sub_system(element.sub_system)
             change_data_obj.set_is_api_change(element.is_api_change)
-            change_data_obj.set_diff_type(element.diff_type.name)
+            change_data_obj.set_diff_type(element.operation_diff_type)
             change_data_obj.set_change_type(element.api_modification_type)
             change_data_obj.set_old_all_text(element.old_api_full_text)
             change_data_obj.set_new_all_text(element.new_api_full_text)
             change_data_obj.set_compatible_total(element.is_compatible)
+            change_data_obj.set_is_system_api(element.is_system_api)
             key = 1
         else:
             old_all_text = '{}#&#{}'.format(change_data_obj.old_all_text, element.old_api_full_text)
             new_all_text = '{}#&#{}'.format(change_data_obj.new_all_text, element.new_api_full_text)
-            diff_type_all = '{}#&#{}'.format(change_data_obj.get_diff_type(), element.diff_type.name)
+            diff_type_all = '{}#&#{}'.format(change_data_obj.get_diff_type(), element.operation_diff_type)
             change_type_all = '{}#&#{}'.format(change_data_obj.get_change_type(), element.api_modification_type)
             compatible_data_all = '{}#&#{}'.format(change_data_obj.get_compatible_total(), element.is_compatible)
             change_data_obj.set_old_all_text(old_all_text)
@@ -125,7 +126,8 @@ def collect_node_api_change(api_change_info_list):
             api_change_info.old_all_text,
             api_change_info.new_all_text,
             api_change_info.compatible_total,
-            api_change_info.unique_id
+            api_change_info.unique_id,
+            api_change_info.is_system_api
         ]
         change_data.append(info_data)
 
@@ -148,7 +150,7 @@ def disposal_result_data(result_info_list):
     data = []
     for diff_info in result_info_list:
         info_data = [
-            diff_info.diff_type.name,
+            diff_info.operation_diff_type,
             diff_info.old_api_full_text,
             diff_info.new_api_full_text
         ]
@@ -161,6 +163,7 @@ def disposal_result_data(result_info_list):
         info_data.append(api_result)
         info_data.append(diff_info.api_modification_type)
         info_data.append(diff_info.unique_id)
+        info_data.append(diff_info.is_system_api)
         data.append(info_data)
 
     return data
@@ -172,19 +175,22 @@ def generate_excel(result_info_list, api_change_data, output_path):
     ws = wb['Sheet']
     ws.title = 'api差异'
     ws.append(['操作标记', '差异项-旧版本', '差异项-新版本', '兼容',
-               '.h文件', '归属子系统', 'kit', 'API变化', 'API修改类型', '接口全路径'])
+               '.h文件', '归属子系统', 'kit', 'API变化', 'API修改类型', '接口全路径', '是否为系统API'])
     for title in data:
         d = title[0], title[1], title[2], title[3], title[4],\
-            title[5], title[6], title[7], title[8], title[9]
+            title[5], title[6], title[7], title[8], title[9],\
+            title[10]
         ws.append(d)
 
     change_data_list = collect_node_api_change(api_change_data)
     ws_of_change = wb.create_sheet('api变更次数统计')
     ws_of_change.append(['api名称', 'kit名称', '归属子系统', '是否是api', '操作标记', '变更类型',
-                         '兼容性', '变更次数', '差异性-旧版本', '差异性-新版本', '兼容性列表', '接口全路径'])
+                         '兼容性', '变更次数', '差异项-旧版本', '差异项-新版本', '兼容性列表', '接口全路径',
+                         '是否为系统API'])
     for element in change_data_list:
         change_data = element[0], element[1], element[2], element[3], element[4], element[5],\
-                      element[6], element[7], element[8], element[9], element[10], element[11]
+                      element[6], element[7], element[8], element[9], element[10], element[11],\
+                      element[12]
         ws_of_change.append(change_data)
     output_path_xlsx = os.path.abspath(os.path.join(output_path, 'diff.xlsx'))
     wb.save(output_path_xlsx)
