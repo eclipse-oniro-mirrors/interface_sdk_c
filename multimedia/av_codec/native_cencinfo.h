@@ -33,7 +33,7 @@
  *
  * @brief Provides a unified entry for the native module APIs.
  *
- * @kit AVCodec
+ * @kit AVCodecKit
  * @library libnative_media_avcencinfo.so
  * @syscap SystemCapability.Multimedia.Media.Spliter
  * @since 12

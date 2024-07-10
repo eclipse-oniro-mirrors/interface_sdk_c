@@ -18,7 +18,7 @@
  *
  * @brief Provides audio and video suorce capabilities.
  *
- * @kit AVCodec
+ * @kit AVCodecKit
  * @library libnative_media_avsource.so
  * @syscap SystemCapability.Multimedia.Media.Spliter
  * @since 10
