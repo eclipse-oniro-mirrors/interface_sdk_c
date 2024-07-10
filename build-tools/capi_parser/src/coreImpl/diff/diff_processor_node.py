@@ -48,6 +48,10 @@ def wrap_diff_info(old_info, new_info, diff_info: DiffInfo):
         diff_info.set_sub_system(old_info['sub_system'])
         diff_info.set_class_name(old_info.get('class_name'))
         diff_info.set_unique_id(old_info.get('unique_id'))
+        if 'NA' == old_info.get('is_system_api'):
+            diff_info.set_is_system_api(False)
+        else:
+            diff_info.set_is_system_api(True)
         if 'content' in old_info['node_content']:
             old_content = '类名:{};\nAPI命称:{};\n差异内容:{};\n位置:{},{}\n'.format(diff_info.class_name,
                                                                            diff_info.api_name,
@@ -68,6 +72,10 @@ def wrap_diff_info(old_info, new_info, diff_info: DiffInfo):
         diff_info.set_sub_system(new_info['sub_system'])
         diff_info.set_class_name(new_info.get('class_name'))
         diff_info.set_unique_id(new_info.get('unique_id'))
+        if 'NA' == new_info.get('is_system_api'):
+            diff_info.set_is_system_api(False)
+        else:
+            diff_info.set_is_system_api(True)
         if 'content' in new_info['node_content']:
             new_content = '类名:{};\nAPI命称:{};\n差异内容:{};\n位置:{},{}\n'.format(diff_info.class_name,
                                                                            diff_info.api_name,
