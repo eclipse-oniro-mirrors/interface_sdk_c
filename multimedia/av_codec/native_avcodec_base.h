@@ -178,7 +178,7 @@ typedef int32_t (*OH_AVDataSourceReadAt)(OH_AVBuffer *data, int32_t length, int6
  * @since 12
  */
 typedef struct OH_AVDataSource {
-    /** 
+    /**
      * Total size of the data source.
      */
     int64_t size;
