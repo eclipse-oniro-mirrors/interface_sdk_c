@@ -28,6 +28,7 @@
  * @brief Provides the implementation of the interface.
  * @syscap SystemCapability.Global.ResourceManager
  * @library libohresmgr.so
+ * @kit LocalizationKit
  * @since 12
  */
 #ifndef GLOBAL_OH_RESMGR_H
