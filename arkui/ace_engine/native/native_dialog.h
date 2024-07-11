@@ -13,6 +13,27 @@
  * limitations under the License.
  */
 
+/**
+ * @addtogroup ArkUI_NativeModule
+ * @{
+ *
+ * @brief Provides UI capabilities of ArkUI on the native side, such as UI component creation and destruction,
+ * tree node operations, attribute setting, and event listening.
+ *
+ * @since 12
+ */
+
+/**
+ * @file native_dialog.h
+ *
+ * @brief Defines a set of custom dialog box APIs of ArkUI on the native side.
+ *
+ * @library libace_ndk.z.so
+ * @syscap SystemCapability.ArkUI.ArkUI.Full
+ * @kit ArkUI
+ * @since 12
+ */
+
 #ifndef ARKUI_NATIVE_DIALOG_H
 #define ARKUI_NATIVE_DIALOG_H
 

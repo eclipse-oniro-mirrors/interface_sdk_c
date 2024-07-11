@@ -13,6 +13,26 @@
  * limitations under the License.
  */
 
+/**
+ * @addtogroup ArkUI_NativeModule
+ * @{
+ *
+ * @brief Provides animation callbacks of ArkUI on the native side.
+ *
+ * @since 12
+ */
+
+/**
+ * @file native_animate.h
+ *
+ * @brief Defines a set of animation APIs of ArkUI on the native side.
+ *
+ * @library libace_ndk.z.so
+ * @syscap SystemCapability.ArkUI.ArkUI.Full
+ * @kit ArkUI
+ * @since 12
+ */
+
 #ifndef ARKUI_NATIVE_ANIMATE_H
 #define ARKUI_NATIVE_ANIMATE_H
 
