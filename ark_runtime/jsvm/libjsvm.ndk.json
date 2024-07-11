@@ -690,5 +690,17 @@
     {
         "first_introduced": "12",
         "name": "OH_JSVM_CreateFunctionWithScript"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_JSVM_RetainScript"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_JSVM_ReleaseScript"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_JSVM_OpenInspectorWithName"
     }
 ]

@@ -2411,7 +2411,7 @@ JSVM_EXTERN JSVM_Status OH_JSVM_WaitForDebugger(JSVM_Env env,
  * is null-terminated.
  * @param constructor: Struct include callback function that handles constructing instances of the class.
  * When wrapping a C++ class, this method must be a static member with the JSVM_Callback.callback
- * signature. A C++ class constructor cannot be used. 
+ * signature. A C++ class constructor cannot be used.
  * Include Optional data to be passed to the constructor callback as the data
  * property of the callback info. JSVM_Callback provides more details.
  * @param propertyCount: Number of items in the properties array argument.
@@ -2853,7 +2853,46 @@ JSVM_EXTERN JSVM_Status OH_JSVM_CreateFunctionWithScript(JSVM_Env env,
                                                          JSVM_Value script,
                                                          JSVM_Value* result);
 
-EXTERN_C_END
+/**
+ * @brief This function keep persistently save a JSVM_Script and extend its lifecycle
+ * beyond the current scope.
+ *
+ * @param env: The environment that the API is invoked under.
+ * @param script: A JavaScript string containing the script to be retained.
+ * @return Returns JSVM functions result code
+ *         {@link JSVM_OK } if the API succeeded. \n
+ *         {@link JSVM_INVALID_ARG } if the script is empty or already retained. \n
+ * @since 12
+ */
+JSVM_EXTERN JSVM_Status OH_JSVM_RetainScript(JSVM_Env env, JSVM_Script script);
 
+/**
+ * @brief This function release the script retained by OH_JSVM_RetainScript
+ *
+ * @param env: The environment that the API is invoked under.
+ * @param script: A JavaScript string containing the script to be retained.
+ * @return Returns JSVM functions result code
+ *         {@link JSVM_OK } if the API succeeded. \n
+ *         {@link JSVM_INVALID_ARG } if the script is empty or not retained. \n
+ * @since 12
+ */
+JSVM_EXTERN JSVM_Status OH_JSVM_ReleaseScript(JSVM_Env env, JSVM_Script script);
+
+/**
+ * @brief This function activates insepctor with pid and alias it.
+ *
+ * @param env: The environment that the API is invoked under.
+ * @param pid: A process id to identify the inspector connection.
+ * @param name: An alias for the inspector that under a specific pid.
+ * default name is jsvm if a nullptr is passed in.
+ * @return Returns JSVM funtions result code.
+ *         Returns {@link JSVM_OK } if the function executed successfully.\n
+ *         Returns {@link JSVM_PENDING_EXCEPTION } if an exception occurs.\n
+ * @since 12
+ */
+JSVM_EXTERN JSVM_Status OH_JSVM_OpenInspectorWithName(JSVM_Env env,
+                                                      int pid,
+                                                      const char* name);
+EXTERN_C_END
 /** @} */
 #endif /* ARK_RUNTIME_JSVM_JSVM_H */
