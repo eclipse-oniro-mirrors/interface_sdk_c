@@ -18,7 +18,7 @@
  *
  * @brief Provides video decoder capabilities.
  *
- * @kit AVCodec
+ * @kit AVCodecKit
  * @library libnative_media_vdec.so
  * @syscap SystemCapability.Multimedia.Media.VideoDecoder
  * @since 9

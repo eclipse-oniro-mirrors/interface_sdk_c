@@ -18,7 +18,7 @@
  *
  * @brief Provides audio encoder and decoder capabilities.
  *
- * @kit AVCodec
+ * @kit AVCodecKit
  * @library libnative_media_acodec.so
  * @syscap SystemCapability.Multimedia.Media.AudioCodec
  * @since 11

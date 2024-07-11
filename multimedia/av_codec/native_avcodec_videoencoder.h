@@ -18,7 +18,7 @@
  *
  * @brief Provides video encoder capabilities.
  *
- * @kit AVCodec
+ * @kit AVCodecKit
  * @library libnative_media_venc.so
  * @syscap SystemCapability.Multimedia.Media.VideoEncoder
  * @since 9

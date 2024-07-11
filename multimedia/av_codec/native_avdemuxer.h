@@ -18,7 +18,7 @@
  *
  * @brief Provides audio and video demuxer capabilities.
  *
- * @kit AVCodec
+ * @kit AVCodecKit
  * @library libnative_media_avdemuxer.so
  * @syscap SystemCapability.Multimedia.Media.Spliter
  * @since 10

@@ -18,7 +18,7 @@
  *
  * @brief Provides audio and video buffer.
  *
- * @kit AVCodec
+ * @kit AVCodecKit
  * @library libnative_media_core.so
  * @syscap SystemCapability.Multimedia.Media.Core
  * @since 11

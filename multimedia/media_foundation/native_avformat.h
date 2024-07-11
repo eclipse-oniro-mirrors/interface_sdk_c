@@ -18,7 +18,7 @@
  *
  * @brief Provides audio and video format.
  *
- * @kit AVCodec
+ * @kit AVCodecKit
  * @library libnative_media_core.so
  * @syscap SystemCapability.Multimedia.Media.Core
  * @since 9

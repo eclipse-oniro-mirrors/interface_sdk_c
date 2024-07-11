@@ -18,7 +18,7 @@
  *
  * @brief Provides audio decoder capabilities.
  *
- * @kit AVCodec
+ * @kit AVCodecKit
  * @library libnative_media_adec.so
  * @syscap SystemCapability.Multimedia.Media.AudioDecoder
  * @since 9

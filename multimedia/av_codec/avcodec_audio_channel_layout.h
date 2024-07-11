@@ -22,7 +22,7 @@
  *
  * @brief Audio AudioChannel Layout
  *
- * @kit AVCodec
+ * @kit AVCodecKit
  * @library libnative_media_codecbase.so
  * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @deprecated since 11
