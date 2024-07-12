@@ -33,6 +33,9 @@
  *
  * @brief Declares functions related to the <b>colorFilter</b> object in the drawing module.
  *
+ * @kit ArkGraphics2D
+ * @library libnative_drawing.so
+ * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @since 11
  * @version 1.0
  */

@@ -32,7 +32,9 @@
  *
  * @brief Defines the functions for obtaining and using a native window.
  *
+ * @kit ArkGraphics2D
  * @library libnative_window.so
+ * @syscap SystemCapability.Graphic.Graphic2D.NativeWindow
  * @since 8
  * @version 1.0
  */

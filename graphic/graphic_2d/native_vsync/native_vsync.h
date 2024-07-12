@@ -32,7 +32,9 @@
  *
  * @brief Defines the functions for obtaining and using a native vsync.
  *
+ * @kit ArkGraphics2D
  * @library libnative_vsync.so
+ * @syscap SystemCapability.Graphic.Graphic2D.NativeVsync
  * @since 9
  * @version 1.0
  */

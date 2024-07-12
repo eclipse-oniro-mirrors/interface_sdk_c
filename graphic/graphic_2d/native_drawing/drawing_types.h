@@ -33,6 +33,9 @@
  *
  * @brief Declares the data types for drawing 2D graphics, including the canvas, brush, pen, bitmap, and path.
  *
+ * @kit ArkGraphics2D
+ * @library libnative_drawing.so
+ * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @since 8
  * @version 1.0
  */

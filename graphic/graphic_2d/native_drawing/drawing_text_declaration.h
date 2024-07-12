@@ -33,6 +33,9 @@
  *
  * @brief Declares the data structure related to text in 2D drawing.
  *
+ * @kit ArkGraphics2D
+ * @library libnative_drawing.so
+ * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @since 8
  * @version 1.0
  */
