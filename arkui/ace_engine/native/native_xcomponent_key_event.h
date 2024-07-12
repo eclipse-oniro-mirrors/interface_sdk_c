@@ -23,6 +23,7 @@
  *
  * @brief Declares enums for key event of Native XComponent.
  *
+ * @kit ArkUI
  * @since 10
  * @version 1.0
  */
