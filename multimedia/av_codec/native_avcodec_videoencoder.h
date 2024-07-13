@@ -57,7 +57,6 @@ typedef void (*OH_VideoEncoder_OnNeedInputParameter)(OH_AVCodec *codec, uint32_t
  * @return Returns a Pointer to an OH_AVCodec instance.
  * Return nullptr if memory ran out or the mime type is not supported.
  * @since 9
- * @version 1.0
  */
 OH_AVCodec *OH_VideoEncoder_CreateByMime(const char *mime);
 
@@ -69,7 +68,6 @@ OH_AVCodec *OH_VideoEncoder_CreateByMime(const char *mime);
  * @return Returns a Pointer to an OH_AVCodec instance.
  * Return nullptr if memory ran out or the encoder name is not supported.
  * @since 9
- * @version 1.0
  */
 OH_AVCodec *OH_VideoEncoder_CreateByName(const char *name);
 
@@ -84,7 +82,6 @@ OH_AVCodec *OH_VideoEncoder_CreateByName(const char *name);
  * {@link AV_ERR_UNKNOWN}, unknown error.
  * {@link AV_ERR_SERVICE_DIED}, avcodec service is died.
  * @since 9
- * @version 1.0
  */
 OH_AVErrCode OH_VideoEncoder_Destroy(OH_AVCodec *codec);
 
@@ -105,7 +102,6 @@ OH_AVErrCode OH_VideoEncoder_Destroy(OH_AVCodec *codec);
  * @deprecated since 11
  * @useinstead OH_VideoEncoder_RegisterCallback
  * @since 9
- * @version 1.0
  */
 OH_AVErrCode OH_VideoEncoder_SetCallback(OH_AVCodec *codec, OH_AVCodecAsyncCallback callback, void *userData);
 
@@ -163,7 +159,6 @@ OH_AVErrCode OH_VideoEncoder_RegisterParameterCallback(OH_AVCodec *codec,
  * {@link AV_ERR_SERVICE_DIED}, avcodec service is died.
  * {@link AV_ERR_INVALID_STATE}, this interface was called in invalid state, must be called before Prepare.
  * @since 9
- * @version 1.0
  */
 OH_AVErrCode OH_VideoEncoder_Configure(OH_AVCodec *codec, OH_AVFormat *format);
 
@@ -180,7 +175,6 @@ OH_AVErrCode OH_VideoEncoder_Configure(OH_AVCodec *codec, OH_AVFormat *format);
  * {@link AV_ERR_SERVICE_DIED}, avcodec service is died.
  * {@link AV_ERR_INVALID_STATE}, this interface was called in invalid state.
  * @since 9
- * @version 1.0
  */
 OH_AVErrCode OH_VideoEncoder_Prepare(OH_AVCodec *codec);
 
@@ -197,7 +191,6 @@ OH_AVErrCode OH_VideoEncoder_Prepare(OH_AVCodec *codec);
  * {@link AV_ERR_SERVICE_DIED}, avcodec service is died.
  * {@link AV_ERR_INVALID_STATE}, this interface was called in invalid state.
  * @since 9
- * @version 1.0
  */
 OH_AVErrCode OH_VideoEncoder_Start(OH_AVCodec *codec);
 
@@ -213,7 +206,6 @@ OH_AVErrCode OH_VideoEncoder_Start(OH_AVCodec *codec);
  * {@link AV_ERR_SERVICE_DIED}, avcodec service is died.
  * {@link AV_ERR_INVALID_STATE}, this interface was called in invalid state.
  * @since 9
- * @version 1.0
  */
 OH_AVErrCode OH_VideoEncoder_Stop(OH_AVCodec *codec);
 
@@ -231,7 +223,6 @@ OH_AVErrCode OH_VideoEncoder_Stop(OH_AVCodec *codec);
  * {@link AV_ERR_SERVICE_DIED}, avcodec service is died.
  * {@link AV_ERR_INVALID_STATE}, this interface was called in invalid state.
  * @since 9
- * @version 1.0
  */
 OH_AVErrCode OH_VideoEncoder_Flush(OH_AVCodec *codec);
 
@@ -248,7 +239,6 @@ OH_AVErrCode OH_VideoEncoder_Flush(OH_AVCodec *codec);
  * {@link AV_ERR_SERVICE_DIED}, avcodec service is died.
  * {@link AV_ERR_INVALID_STATE}, this interface was called in invalid state.
  * @since 9
- * @version 1.0
  */
 OH_AVErrCode OH_VideoEncoder_Reset(OH_AVCodec *codec);
 
@@ -261,7 +251,6 @@ OH_AVErrCode OH_VideoEncoder_Reset(OH_AVCodec *codec);
  * @return Returns a pointer to an OH_AVFormat instance.
  * Return nullptr if the codec is nullptr or invaild.
  * @since 9
- * @version 1.0
  */
 OH_AVFormat *OH_VideoEncoder_GetOutputDescription(OH_AVCodec *codec);
 
@@ -279,7 +268,6 @@ OH_AVFormat *OH_VideoEncoder_GetOutputDescription(OH_AVCodec *codec);
  * {@link AV_ERR_SERVICE_DIED}, avcodec service is died.
  * {@link AV_ERR_INVALID_STATE}, this interface was called in invalid state.
  * @since 9
- * @version 1.0
  */
 OH_AVErrCode OH_VideoEncoder_SetParameter(OH_AVCodec *codec, OH_AVFormat *format);
 
@@ -297,7 +285,6 @@ OH_AVErrCode OH_VideoEncoder_SetParameter(OH_AVCodec *codec, OH_AVFormat *format
  * {@link AV_ERR_SERVICE_DIED}, avcodec service is died.
  * {@link AV_ERR_INVALID_STATE}, this interface was called in invalid state.
  * @since 9
- * @version 1.0
  */
 OH_AVErrCode OH_VideoEncoder_GetSurface(OH_AVCodec *codec, OHNativeWindow **window);
 
@@ -317,7 +304,6 @@ OH_AVErrCode OH_VideoEncoder_GetSurface(OH_AVCodec *codec, OHNativeWindow **wind
  * @deprecated since 11
  * @useinstead OH_VideoEncoder_FreeOutputBuffer
  * @since 9
- * @version 1.0
  */
 OH_AVErrCode OH_VideoEncoder_FreeOutputData(OH_AVCodec *codec, uint32_t index);
 
@@ -334,7 +320,6 @@ OH_AVErrCode OH_VideoEncoder_FreeOutputData(OH_AVCodec *codec, uint32_t index);
  * {@link AV_ERR_SERVICE_DIED}, avcodec service is died.
  * {@link AV_ERR_INVALID_STATE}, this interface was called in invalid state.
  * @since 9
- * @version 1.0
  */
 OH_AVErrCode OH_VideoEncoder_NotifyEndOfStream(OH_AVCodec *codec);
 
@@ -444,7 +429,6 @@ OH_AVErrCode OH_VideoEncoder_IsValid(OH_AVCodec *codec, bool *isValid);
  * @brief The bitrate mode of video encoder.
  * @syscap SystemCapability.Multimedia.Media.VideoEncoder
  * @since 9
- * @version 1.0
  */
 typedef enum OH_VideoEncodeBitrateMode {
     /* constant bit rate mode. */
