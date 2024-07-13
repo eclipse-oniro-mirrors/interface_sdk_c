@@ -37,7 +37,7 @@ extern "C" {
 
 /**
  * @brief Forward declaration of OH_AVDemuxer.
- * 
+ *
  * @since 10
  */
 typedef struct OH_AVDemuxer OH_AVDemuxer;
