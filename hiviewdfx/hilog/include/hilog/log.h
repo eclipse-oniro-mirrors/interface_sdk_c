@@ -24,6 +24,7 @@
  * For example, you can use these functions to output logs of the specified log type, service domain, log tag,
  * and log level.
  *
+ * @kit PerformanceAnalysisKit
  * @syscap SystemCapability.HiviewDFX.HiLog
  *
  * @since 8
