@@ -43,7 +43,7 @@ extern "C" {
 typedef struct OH_AVDemuxer OH_AVDemuxer;
 /**
  * @brief Forward declaration of DRM_MediaKeySystemInfo.
- * 
+ *
  * @since 11
  */
 typedef struct DRM_MediaKeySystemInfo DRM_MediaKeySystemInfo;

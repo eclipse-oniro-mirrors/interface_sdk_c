@@ -37,7 +37,7 @@ extern "C" {
 
 /**
  * @brief Forward declaration of MediaKeySession.
- * 
+ *
  * @since 11
  */
 typedef struct MediaKeySession MediaKeySession;
