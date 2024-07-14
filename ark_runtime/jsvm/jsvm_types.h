@@ -176,7 +176,7 @@ typedef void(JSVM_CDECL* JSVM_Finalize)(JSVM_Env env,
  * And the second parameter size is the data size to output. A null data pointer indicates the end of the stream.
  * The third parameter streamData is the pointer passed in together with the callback to the API functions that
  * generate data to the output stream. The callback returns true to indicate the stream can continue to accept
- * data. Otherwise, it will abort the stream. 
+ * data. Otherwise, it will abort the stream.
  *
  * @since 12
  */
@@ -679,14 +679,24 @@ typedef struct {
  *
  * @since 12
  */
-typedef const uint8_t* JSVM_CodeCache;
+typedef struct {
+    /** cache pointer. */
+    uint8_t *cache;
+    /** length. */
+    size_t length;
+} JSVM_CodeCache;
 
 /**
  * @brief compile profile passed with JSVM_COMPILE_COMPILE_PROFILE
  *
  * @since 12
  */
-typedef const int* JSVM_CompileProfile;
+typedef const struct {
+    /** profile pointer. */
+    int *profile;
+    /** length. */
+    size_t length;
+} JSVM_CompileProfile;
 
 /**
  * @brief Regular expression flag bits. They can be or'ed to enable a set of flags.
