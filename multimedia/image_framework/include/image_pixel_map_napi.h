@@ -29,6 +29,7 @@
  *
  * @brief Declares the APIs that can lock, access, and unlock a pixel map.
  *
+ * @kit ImageKit
  * @since 8
  * @version 1.0
  */

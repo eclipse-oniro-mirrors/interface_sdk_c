@@ -28,6 +28,7 @@
  * @brief Declares functions that access the image rectangle, size, format, and component data.
  *
  * @library libohimage.so
+ * @kit ImageKit
  * @syscap SystemCapability.Multimedia.Image.Core
  * @since 12
  */
