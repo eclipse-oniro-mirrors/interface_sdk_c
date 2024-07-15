@@ -29,7 +29,7 @@
  *
  * @brief Declares the APIs for obtaining image data from the native layer.
  * Need link <b>libimagendk.z.so</b> and <b>libimage_receiverndk.z.so</b>
- * 
+ *
  * @kit ImageKit
  * @since 10
  * @version 2.0
