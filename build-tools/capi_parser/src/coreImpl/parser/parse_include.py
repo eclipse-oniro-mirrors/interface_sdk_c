@@ -198,10 +198,14 @@ special_node_process = {
 
 
 def get_api_unique_id(cursor, loc):
+    unique_id = ''
+    if cursor.kind == CursorKind.MACRO_DEFINITION:
+        unique_id = '{}#{}'.format(loc["location_path"], cursor.spelling)
+        return unique_id
+
     parent_of_cursor = cursor.semantic_parent
     struct_union_enum = [NodeKind.STRUCT_DECL.value, NodeKind.UNION_DECL.value,
                          NodeKind.ENUM_DECL.value]
-    unique_id = ''
     if parent_of_cursor:
         unique_name = cursor.spelling
         try:
@@ -222,7 +226,7 @@ def get_api_unique_id(cursor, loc):
     return unique_id
 
 
-def processing_special_node(cursor, data, key, gn_path=None):  # 处理需要特殊处理的节点
+def processing_special_node(cursor, data, key, gn_path):  # 处理需要特殊处理的节点
     if key == 0:
         location_path = cursor.spelling
         kind_name = CursorKind.TRANSLATION_UNIT.name
@@ -272,7 +276,7 @@ def define_comment(cursor, current_file, data):
             data['comment'] = matches.group()
 
 
-def get_default_node_data(cursor, gn_path=None):
+def get_default_node_data(cursor, gn_path):
     data = {
         "name": cursor.spelling,
         "kind": '',
@@ -300,7 +304,7 @@ def get_default_node_data(cursor, gn_path=None):
     return data
 
 
-def parser_data_assignment(cursor, current_file, gn_path=None, comment=None, key=0):
+def parser_data_assignment(cursor, current_file, gn_path, comment=None, key=0):
     data = get_default_node_data(cursor, gn_path)
     get_comment(cursor, data)
     if key == 0:

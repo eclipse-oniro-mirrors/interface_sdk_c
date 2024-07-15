@@ -126,18 +126,19 @@ def change_abs(include_files, dire_path):  # 获取.h绝对路径
         # 把规范路径和gn文件对应的目录路径拼接
         if os.path.isabs(j_item):  # 是否是绝对路径，是就拼接路径盘，不是就拼接gn目录路径
             head = os.path.splitdrive(dire_path)  # 获取windows盘路径
-            include_file = os.path.normpath(j_item)
+            include_file = j_item
             change_path = head[1].split('interface_sdk_c')
             replace_path = os.path.normpath(os.path.join(change_path[0], 'interface_sdk_c'))
             if 'third_party/node/src' in j_item:
-                include_file = include_file.replace('\\\\',
-                                                    '{}{}'.format(replace_path, '\\'))
+                include_file = include_file.replace('//',
+                                                    '{}{}'.format(replace_path, '/'))
             else:
                 # 去掉绝对路径的双\\,替换为interface_sdk_c
-                include_file = include_file.replace('\\\\interface\\sdk_c',
+                include_file = include_file.replace('//interface/sdk_c',
                                                     replace_path)
             if head:
                 include_file = os.path.join(head[0], include_file)  # 拼接盘和路径
+            include_file = os.path.normpath(include_file)
             abs_path.append(include_file)
         else:
             relative_path = os.path.abspath(os.path.join(dire_path, os.path.normpath(j_item)))  # ../ .解决
