@@ -37,6 +37,7 @@
  * OH_MediaLibrary_OnDataPrepared function pointer: This function is called when the requested source is prepared. \n
  * MediaLibrary_RequestOptions structure: This structure provides options for requesting media library resources. \n
  *
+ * @kit MediaLibraryKit
  * @Syscap SystemCapability.FileManagement.PhotoAccessHelper.Core
  * @library libmedia_asset_manager.so
  * @since 12
