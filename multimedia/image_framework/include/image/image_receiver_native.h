@@ -27,6 +27,7 @@
  *
  * @brief Declares the APIs for obtaining image data.
  * @library libimage_receiver.so
+ * @kit ImageKit
  * @syscap SystemCapability.Multimedia.Image.ImageReceiver
  * @since 12
  */

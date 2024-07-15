@@ -41,6 +41,7 @@
  * Finally, release the ImagePacker_Native by OH_ImagePacker_Release.
  *
  * @library libimage_packer_ndk.z.so
+ * @kit ImageKit
  * @syscap SystemCapability.Multimedia.Image
  * @since 11
  * @version 4.1

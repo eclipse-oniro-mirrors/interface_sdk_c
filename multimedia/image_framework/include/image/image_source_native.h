@@ -28,6 +28,7 @@
  * @brief Declares APIs for decoding an image source into a pixel map.
  *
  * @library libimage_source.so
+ * @kit ImageKit
  * @syscap SystemCapability.Multimedia.Image.ImageSource
  * @since 12
  */

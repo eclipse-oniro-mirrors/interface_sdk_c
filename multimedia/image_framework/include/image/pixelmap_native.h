@@ -29,6 +29,7 @@
  * @brief Declares the APIs that can access a pixel map.
  *
  * @library libpixelmap.so
+ * @kit ImageKit
  * @Syscap SystemCapability.Multimedia.Image.Core
  * @since 12
  */

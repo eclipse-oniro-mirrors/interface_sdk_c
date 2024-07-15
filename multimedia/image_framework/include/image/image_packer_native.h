@@ -28,6 +28,7 @@
  * @brief Declares APIs for encoding image into data or file.
  *
  * @library libimage_packer.so
+ * @kit ImageKit
  * @syscap SystemCapability.Multimedia.Image.ImagePacker
  * @since 12
  */

@@ -30,6 +30,7 @@
  * @brief Declares the APIs that can lock, access, and unlock a pixel map.
  * Need link <b>libpixelmapndk.z.so</b>
  *
+ * @kit ImageKit
  * @since 10
  * @version 1.0
  */
