@@ -28,6 +28,7 @@
  * @brief Provides the structure required by the interface.
  * @syscap SystemCapability.Global.ResourceManager
  * @library libohresmgr.so
+ * @kit LocalizationKit
  * @since 12
  */
 #ifndef GLOBAL_RESMGR_COMMON_H
