@@ -28,6 +28,7 @@
  * @brief Declares the functions for setting filter parameters, registering custom filter and filter lookup information.
  *
  * @library libimage_effect.so
+ * @kit ImageKit
  * @syscap SystemCapability.Multimedia.ImageEffect.Core
  * @since 12
  */
