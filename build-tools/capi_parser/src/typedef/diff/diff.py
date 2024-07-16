@@ -568,7 +568,6 @@ class ApiChangeData:
     kit_name: str = ''
     sub_system: str = ''
     is_api_change = False
-    class_name: str = ''
     diff_type: str = ''
     change_type: str = ''
     compatible = {}
@@ -602,12 +601,6 @@ class ApiChangeData:
 
     def get_is_api_change(self):
         return self.is_api_change
-
-    def set_class_name(self, class_name):
-        self.class_name = class_name
-
-    def get_class_name(self):
-        return self.class_name
 
     def set_diff_type(self, diff_type):
         self.diff_type = diff_type

@@ -67,7 +67,6 @@ def get_api_change_obj(api_data):
             change_data_obj.set_kit_name(element.kit_name)
             change_data_obj.set_sub_system(element.sub_system)
             change_data_obj.set_is_api_change(element.is_api_change)
-            change_data_obj.set_class_name(element.class_name)
             change_data_obj.set_diff_type(element.operation_diff_type)
             change_data_obj.set_change_type(element.api_modification_type)
             change_data_obj.set_old_all_text(element.old_api_full_text)
@@ -120,7 +119,6 @@ def collect_node_api_change(api_change_info_list):
             api_change_info.kit_name,
             api_change_info.sub_system,
             api_change_info.is_api_change,
-            api_change_info.class_name,
             api_change_info.diff_type,
             api_change_info.change_type,
             api_change_info.compatible,
@@ -154,12 +152,18 @@ def disposal_result_data(result_info_list):
         info_data = [
             diff_info.operation_diff_type,
             diff_info.old_api_full_text,
-            diff_info.new_api_full_text,
-            diff_info.api_file_path,
-            diff_info.sub_system,
-            diff_info.kit_name,
-            diff_info.is_system_api
+            diff_info.new_api_full_text
         ]
+        result = '是' if diff_info.is_compatible else '否'
+        info_data.append(result)
+        info_data.append(diff_info.api_file_path)
+        info_data.append(diff_info.sub_system)
+        info_data.append(diff_info.kit_name)
+        api_result = '是' if diff_info.is_api_change else '否'
+        info_data.append(api_result)
+        info_data.append(diff_info.api_modification_type)
+        info_data.append(diff_info.unique_id)
+        info_data.append(diff_info.is_system_api)
         data.append(info_data)
 
     return data
@@ -170,20 +174,23 @@ def generate_excel(result_info_list, api_change_data, output_path):
     wb = op.Workbook()
     ws = wb['Sheet']
     ws.title = 'api差异'
-    ws.append(['操作标记', '差异项-旧版本', '差异项-新版本', '.h文件', '归属子系统', 'kit', '是否为系统API'])
+    ws.append(['操作标记', '差异项-旧版本', '差异项-新版本', '兼容',
+               '.h文件', '归属子系统', 'kit', 'API变化', 'API修改类型', '接口全路径', '是否为系统API'])
     for title in data:
-        d = title[0], title[1], title[2], title[3], title[4], title[5], title[6]
+        d = title[0], title[1], title[2], title[3], title[4],\
+            title[5], title[6], title[7], title[8], title[9],\
+            title[10]
         ws.append(d)
 
     change_data_list = collect_node_api_change(api_change_data)
     ws_of_change = wb.create_sheet('api变更次数统计')
-    ws_of_change.append(['api名称', 'kit名称', '归属子系统', '是否是api', 'api类型', '操作标记', '变更类型',
+    ws_of_change.append(['api名称', 'kit名称', '归属子系统', '是否是api', '操作标记', '变更类型',
                          '兼容性', '变更次数', '差异项-旧版本', '差异项-新版本', '兼容性列表', '接口全路径',
                          '是否为系统API'])
     for element in change_data_list:
         change_data = element[0], element[1], element[2], element[3], element[4], element[5],\
                       element[6], element[7], element[8], element[9], element[10], element[11],\
-                      element[12], element[13]
+                      element[12]
         ws_of_change.append(change_data)
     output_path_xlsx = os.path.abspath(os.path.join(output_path, 'diff.xlsx'))
     wb.save(output_path_xlsx)
@@ -247,18 +254,18 @@ def add_new_file(diff_file_path):
     if os.path.isdir(diff_file_path):
         add_file(diff_file_path)
     else:
-        result_map = parse_file_result(parser_include_ast(global_new_dir, [diff_file_path], flag=1))
+        result_map = parse_file_result(parser_include_ast(global_new_dir, [diff_file_path], flag=1), 1)
         for new_info in result_map.values():
-            diff_info_list.extend(judgment_entrance(None, new_info))
+            diff_info_list.extend(judgment_entrance(None, new_info, 1))
 
 
 def del_old_file(diff_file_path):
     if os.path.isdir(diff_file_path):
         del_file(diff_file_path)
     else:
-        result_map = parse_file_result(parser_include_ast(global_old_dir, [diff_file_path], flag=0))
+        result_map = parse_file_result(parser_include_ast(global_old_dir, [diff_file_path], flag=0), 1)
         for old_info in result_map.values():
-            diff_info_list.extend(judgment_entrance(old_info, None))
+            diff_info_list.extend(judgment_entrance(old_info, None, 1))
 
 
 def get_same_file_diff(target_file, old_file_list, new_file_list, old_dir, new_dir):
@@ -295,9 +302,9 @@ def del_file(dir_path):
         if os.path.isdir(file_path):
             del_file(file_path)
         if get_file_ext(i) == '.h':
-            result_map = parse_file_result(parser_include_ast(global_old_dir, [file_path], flag=0))
+            result_map = parse_file_result(parser_include_ast(global_old_dir, [file_path], flag=0), 1)
             for old_info in result_map.values():
-                diff_info_list.extend(judgment_entrance(old_info, None))
+                diff_info_list.extend(judgment_entrance(old_info, None, 1))
 
 
 def add_file(dir_path):
@@ -309,9 +316,9 @@ def add_file(dir_path):
         if os.path.isdir(file_path):
             add_file(file_path)
         if get_file_ext(i) == '.h':
-            result_map = parse_file_result(parser_include_ast(global_new_dir, [file_path], flag=1))
+            result_map = parse_file_result(parser_include_ast(global_new_dir, [file_path], flag=1), 1)
             for new_info in result_map.values():
-                diff_info_list.extend(judgment_entrance(None, new_info))
+                diff_info_list.extend(judgment_entrance(None, new_info, 1))
 
 
 def parse_file_result(result, data_type=0):
@@ -324,6 +331,7 @@ def parse_file_result(result, data_type=0):
     for root_node in result:
         if data_type != 1:
             parse_file_result_by_child(result_map, root_node)
+        result_map.setdefault(f'{root_node["name"]}-{root_node["kind"]}', root_node)
     return result_map
 
 
