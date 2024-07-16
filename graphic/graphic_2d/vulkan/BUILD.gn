@@ -24,6 +24,19 @@ ohos_ndk_headers("vulkan_header") {
   ]
 }
 
+ohos_ndk_headers("vulkan_header_vk_video") {
+  dest_dir = "$ndk_headers_out_dir/vk_video"
+  sources = [
+    "//interface/sdk_c/third_party/vulkan-headers/vk_video/vulkan_video_codec_h264std.h",
+    "//interface/sdk_c/third_party/vulkan-headers/vk_video/vulkan_video_codec_h264std_decode.h",
+    "//interface/sdk_c/third_party/vulkan-headers/vk_video/vulkan_video_codec_h264std_encode.h",
+    "//interface/sdk_c/third_party/vulkan-headers/vk_video/vulkan_video_codec_h265std.h",
+    "//interface/sdk_c/third_party/vulkan-headers/vk_video/vulkan_video_codec_h265std_decode.h",
+    "//interface/sdk_c/third_party/vulkan-headers/vk_video/vulkan_video_codec_h265std_encode.h",
+    "//interface/sdk_c/third_party/vulkan-headers/vk_video/vulkan_video_codecs_common.h",
+  ]
+}
+
 ohos_ndk_library("libvulkan_ndk") {
   output_name = "vulkan"
   output_extension = "so"
@@ -34,5 +47,12 @@ ohos_ndk_library("libvulkan_ndk") {
     "vulkan/vulkan.h",
     "vulkan/vulkan_core.h",
     "vulkan/vulkan_ohos.h",
+    "vk_video/vulkan_video_codec_h264std.h",
+    "vk_video/vulkan_video_codec_h264std_decode.h",
+    "vk_video/vulkan_video_codec_h264std_encode.h",
+    "vk_video/vulkan_video_codec_h265std.h",
+    "vk_video/vulkan_video_codec_h265std_decode.h",
+    "vk_video/vulkan_video_codec_h265std_encode.h",
+    "vk_video/vulkan_video_codecs_common.h",
   ]
 }
