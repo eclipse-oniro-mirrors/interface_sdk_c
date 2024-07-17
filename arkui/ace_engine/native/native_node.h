@@ -5092,7 +5092,8 @@ typedef enum {
     NODE_WATER_FLOW_ROW_TEMPLATE,
 
     /**
-     * @brief Sets the gap between columns. This attribute can be set, reset, and obtained as required through APIs.
+     * @brief Sets the gap between columns.
+     * This attribute can be set, reset, and obtained as required through APIs.
      *
      * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
      * .value[0].f32: gap between columns, in vp.\n
@@ -5104,7 +5105,8 @@ typedef enum {
     NODE_WATER_FLOW_COLUMN_GAP,
 
     /**
-     * @brief Sets the gap between rows. This attribute can be set, reset, and obtained as required through APIs.
+     * @brief Sets the gap between rows.
+     * This attribute can be set, reset, and obtained as required through APIs.
      *
      * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
      * .value[0].f32: gap between lines, in vp.\n
