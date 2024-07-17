@@ -35,6 +35,11 @@
 extern "C" {
 #endif
 
+/**
+ * @brief Forward declaration of MediaKeySession.
+ *
+ * @since 11
+ */
 typedef struct MediaKeySession MediaKeySession;
 
 /**
@@ -44,7 +49,6 @@ typedef struct MediaKeySession MediaKeySession;
  * @return Returns a Pointer to an OH_AVCodec instance.
  * Return nullptr if memory ran out or the mime type is not supported.
  * @since 9
- * @version 1.0
  */
 OH_AVCodec *OH_VideoDecoder_CreateByMime(const char *mime);
 
@@ -56,7 +60,6 @@ OH_AVCodec *OH_VideoDecoder_CreateByMime(const char *mime);
  * @return Returns a Pointer to an OH_AVCodec instance.
  * Return nullptr if memory ran out or the decoder name is not supported.
  * @since 9
- * @version 1.0
  */
 OH_AVCodec *OH_VideoDecoder_CreateByName(const char *name);
 
@@ -71,7 +74,6 @@ OH_AVCodec *OH_VideoDecoder_CreateByName(const char *name);
  * {@link AV_ERR_UNKNOWN}, unknown error.
  * {@link AV_ERR_SERVICE_DIED}, avcodec service is died.
  * @since 9
- * @version 1.0
  */
 OH_AVErrCode OH_VideoDecoder_Destroy(OH_AVCodec *codec);
 
@@ -92,7 +94,6 @@ OH_AVErrCode OH_VideoDecoder_Destroy(OH_AVCodec *codec);
  * @deprecated since 11
  * @useinstead OH_VideoDecoder_RegisterCallback
  * @since 9
- * @version 1.0
  */
 OH_AVErrCode OH_VideoDecoder_SetCallback(OH_AVCodec *codec, OH_AVCodecAsyncCallback callback, void *userData);
 
@@ -129,7 +130,6 @@ OH_AVErrCode OH_VideoDecoder_RegisterCallback(OH_AVCodec *codec, OH_AVCodecCallb
  * {@link AV_ERR_SERVICE_DIED}, avcodec service is died.
  * {@link AV_ERR_INVALID_STATE}, this interface was called in invalid state.
  * @since 9
- * @version 1.0
  */
 OH_AVErrCode OH_VideoDecoder_SetSurface(OH_AVCodec *codec, OHNativeWindow *window);
 
@@ -147,7 +147,6 @@ OH_AVErrCode OH_VideoDecoder_SetSurface(OH_AVCodec *codec, OHNativeWindow *windo
  * {@link AV_ERR_SERVICE_DIED}, avcodec service is died.
  * {@link AV_ERR_INVALID_STATE}, this interface was called in invalid state, must be called before Prepare.
  * @since 9
- * @version 1.0
  */
 OH_AVErrCode OH_VideoDecoder_Configure(OH_AVCodec *codec, OH_AVFormat *format);
 
@@ -164,7 +163,6 @@ OH_AVErrCode OH_VideoDecoder_Configure(OH_AVCodec *codec, OH_AVFormat *format);
  * {@link AV_ERR_SERVICE_DIED}, avcodec service is died.
  * {@link AV_ERR_INVALID_STATE}, this interface was called in invalid state.
  * @since 9
- * @version 1.0
  */
 OH_AVErrCode OH_VideoDecoder_Prepare(OH_AVCodec *codec);
 
@@ -181,7 +179,6 @@ OH_AVErrCode OH_VideoDecoder_Prepare(OH_AVCodec *codec);
  * {@link AV_ERR_SERVICE_DIED}, avcodec service is died.
  * {@link AV_ERR_INVALID_STATE}, this interface was called in invalid state.
  * @since 9
- * @version 1.0
  */
 OH_AVErrCode OH_VideoDecoder_Start(OH_AVCodec *codec);
 
@@ -198,7 +195,6 @@ OH_AVErrCode OH_VideoDecoder_Start(OH_AVCodec *codec);
  * {@link AV_ERR_SERVICE_DIED}, avcodec service is died.
  * {@link AV_ERR_INVALID_STATE}, this interface was called in invalid state.
  * @since 9
- * @version 1.0
  */
 OH_AVErrCode OH_VideoDecoder_Stop(OH_AVCodec *codec);
 
@@ -216,7 +212,6 @@ OH_AVErrCode OH_VideoDecoder_Stop(OH_AVCodec *codec);
  * {@link AV_ERR_SERVICE_DIED}, avcodec service is died.
  * {@link AV_ERR_INVALID_STATE}, this interface was called in invalid state.
  * @since 9
- * @version 1.0
  */
 OH_AVErrCode OH_VideoDecoder_Flush(OH_AVCodec *codec);
 
@@ -233,7 +228,6 @@ OH_AVErrCode OH_VideoDecoder_Flush(OH_AVCodec *codec);
  * {@link AV_ERR_SERVICE_DIED}, avcodec service is died.
  * {@link AV_ERR_INVALID_STATE}, this interface was called in invalid state.
  * @since 9
- * @version 1.0
  */
 OH_AVErrCode OH_VideoDecoder_Reset(OH_AVCodec *codec);
 
@@ -246,7 +240,6 @@ OH_AVErrCode OH_VideoDecoder_Reset(OH_AVCodec *codec);
  * @return Returns a pointer to an OH_AVFormat instance.
  * Return nullptr if the decoder is nullptr or invaild.
  * @since 9
- * @version 1.0
  */
 OH_AVFormat *OH_VideoDecoder_GetOutputDescription(OH_AVCodec *codec);
 
@@ -264,7 +257,6 @@ OH_AVFormat *OH_VideoDecoder_GetOutputDescription(OH_AVCodec *codec);
  * {@link AV_ERR_SERVICE_DIED}, avcodec service is died.
  * {@link AV_ERR_INVALID_STATE}, this interface was called in invalid state.
  * @since 9
- * @version 1.0
  */
 OH_AVErrCode OH_VideoDecoder_SetParameter(OH_AVCodec *codec, OH_AVFormat *format);
 
@@ -290,7 +282,6 @@ OH_AVErrCode OH_VideoDecoder_SetParameter(OH_AVCodec *codec, OH_AVFormat *format
  * @deprecated since 11
  * @useinstead OH_VideoDecoder_PushInputBuffer
  * @since 9
- * @version 1.0
  */
 OH_AVErrCode OH_VideoDecoder_PushInputData(OH_AVCodec *codec, uint32_t index, OH_AVCodecBufferAttr attr);
 
@@ -312,7 +303,6 @@ OH_AVErrCode OH_VideoDecoder_PushInputData(OH_AVCodec *codec, uint32_t index, OH
  * @deprecated since 11
  * @useinstead OH_VideoDecoder_RenderOutputBuffer
  * @since 9
- * @version 1.0
  */
 OH_AVErrCode OH_VideoDecoder_RenderOutputData(OH_AVCodec *codec, uint32_t index);
 
@@ -332,7 +322,6 @@ OH_AVErrCode OH_VideoDecoder_RenderOutputData(OH_AVCodec *codec, uint32_t index)
  * @deprecated since 11
  * @useinstead OH_VideoDecoder_FreeOutputBuffer
  * @since 9
- * @version 1.0
  */
 OH_AVErrCode OH_VideoDecoder_FreeOutputData(OH_AVCodec *codec, uint32_t index);
 
@@ -424,7 +413,6 @@ OH_AVErrCode OH_VideoDecoder_IsValid(OH_AVCodec *codec, bool *isValid);
  *         {@link AV_ERR_INVALID_VAL} 3 - If the codec instance is nullptr or invalid,
  *         the mediaKeySession is nullptr or invalid.
  * @since 11
- * @version 1.0
 */
 OH_AVErrCode OH_VideoDecoder_SetDecryptionConfig(OH_AVCodec *codec, MediaKeySession *mediaKeySession,
     bool secureVideoPath);

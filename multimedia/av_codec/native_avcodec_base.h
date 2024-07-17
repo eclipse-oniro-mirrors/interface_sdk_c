@@ -36,18 +36,28 @@
 extern "C" {
 #endif
 
+/**
+ * @brief Forward declaration of OHNativeWindow.
+ *
+ * @since 9
+ */
 typedef struct NativeWindow OHNativeWindow;
+/**
+ * @brief Forward declaration of OH_AVCodec.
+ *
+ * @since 9
+ */
 typedef struct OH_AVCodec OH_AVCodec;
 
 /**
  * @brief When an error occurs in the running of the OH_AVCodec instance, the function pointer will be called
  * to report specific error information.
+ *
  * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @param codec OH_AVCodec instance
  * @param errorCode specific error code
  * @param userData User specific data
  * @since 9
- * @version 1.0
  */
 typedef void (*OH_AVCodecOnError)(OH_AVCodec *codec, int32_t errorCode, void *userData);
 
@@ -55,18 +65,19 @@ typedef void (*OH_AVCodecOnError)(OH_AVCodec *codec, int32_t errorCode, void *us
  * @brief When the output stream changes, the function pointer will be called to report the new stream description
  * information. It should be noted that the life cycle of the OH_AVFormat pointer
  * is only valid when the function pointer is called, and it is forbidden to continue to access after the call ends.
+ *
  * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @param codec OH_AVCodec instance
  * @param format New output stream description information
  * @param userData User specific data
  * @since 9
- * @version 1.0
  */
 typedef void (*OH_AVCodecOnStreamChanged)(OH_AVCodec *codec, OH_AVFormat *format, void *userData);
 
 /**
  * @brief When OH_AVCodec needs new input data during the running process,
  * the function pointer will be called and carry an available Buffer to fill in the new input data.
+ *
  * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @param codec OH_AVCodec instance
  * @param index The index corresponding to the newly available input buffer.
@@ -75,7 +86,6 @@ typedef void (*OH_AVCodecOnStreamChanged)(OH_AVCodec *codec, OH_AVFormat *format
  * @deprecated since 11
  * @useinstead OH_AVCodecOnNeedInputBuffer
  * @since 9
- * @version 1.0
  */
 typedef void (*OH_AVCodecOnNeedInputData)(OH_AVCodec *codec, uint32_t index, OH_AVMemory *data, void *userData);
 
@@ -84,6 +94,7 @@ typedef void (*OH_AVCodecOnNeedInputData)(OH_AVCodec *codec, uint32_t index, OH_
  * called and carry a Buffer containing the new output data. It should be noted that the life cycle of the
  * OH_AVCodecBufferAttr pointer is only valid when the function pointer is called. , which prohibits continued
  * access after the call ends.
+ *
  * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @param codec OH_AVCodec instance
  * @param index The index corresponding to the new output Buffer.
@@ -93,7 +104,6 @@ typedef void (*OH_AVCodecOnNeedInputData)(OH_AVCodec *codec, uint32_t index, OH_
  * @deprecated since 11
  * @useinstead OH_AVCodecOnNewOutputBuffer
  * @since 9
- * @version 1.0
  */
 typedef void (*OH_AVCodecOnNewOutputData)(OH_AVCodec *codec, uint32_t index, OH_AVMemory *data,
                                           OH_AVCodecBufferAttr *attr, void *userData);
@@ -101,6 +111,7 @@ typedef void (*OH_AVCodecOnNewOutputData)(OH_AVCodec *codec, uint32_t index, OH_
 /**
  * @brief When OH_AVCodec needs new input data during the running process,
  * the function pointer will be called and carry an available Buffer to fill in the new input data.
+ *
  * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @param codec OH_AVCodec instance
  * @param index The index corresponding to the newly available input buffer.
@@ -113,6 +124,7 @@ typedef void (*OH_AVCodecOnNeedInputBuffer)(OH_AVCodec *codec, uint32_t index, O
 /**
  * @brief When new output data is generated during the operation of OH_AVCodec, the function pointer will be
  * called and carry a Buffer containing the new output data.
+ *
  * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @param codec OH_AVCodec instance
  * @param index The index corresponding to the new output Buffer.
@@ -126,6 +138,7 @@ typedef void (*OH_AVCodecOnNewOutputBuffer)(OH_AVCodec *codec, uint32_t index, O
  * @brief A collection of all asynchronous callback function pointers in OH_AVCodec. Register an instance of this
  * structure to the OH_AVCodec instance, and process the information reported through the callback to ensure the
  * normal operation of OH_AVCodec.
+ *
  * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @param onError Monitor OH_AVCodec operation errors, refer to {@link OH_AVCodecOnError}
  * @param onStreamChanged Monitor codec stream information, refer to {@link OH_AVCodecOnStreamChanged}
@@ -134,7 +147,6 @@ typedef void (*OH_AVCodecOnNewOutputBuffer)(OH_AVCodec *codec, uint32_t index, O
  * @deprecated since 11
  * @useinstead OH_AVCodecCallback
  * @since 9
- * @version 1.0
  */
 typedef struct OH_AVCodecAsyncCallback {
     OH_AVCodecOnError onError;
@@ -147,6 +159,7 @@ typedef struct OH_AVCodecAsyncCallback {
  * @brief A collection of all asynchronous callback function pointers in OH_AVCodec. Register an instance of this
  * structure to the OH_AVCodec instance, and process the information reported through the callback to ensure the
  * normal operation of OH_AVCodec.
+ *
  * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @param onError Monitor OH_AVCodec operation errors, refer to {@link OH_AVCodecOnError}
  * @param onStreamChanged Monitor codec stream information, refer to {@link OH_AVCodecOnStreamChanged}
@@ -162,7 +175,7 @@ typedef struct OH_AVCodecCallback {
 } OH_AVCodecCallback;
 
 /**
- * @brief the function pointer will be called to get sequence media data
+ * @brief the function pointer will be called to get sequence media data.
  * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @param data    OH_AVBuffer buffer to fill
  * @param length   expected to read size;
@@ -189,26 +202,52 @@ typedef struct OH_AVDataSource {
 } OH_AVDataSource;
 
 /**
- * @brief Enumerates the MIME types of audio and video codecs
+ * @brief Enumerates the mime types of video avc codec.
+ *
  * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 9
- * @version 1.0
  */
 extern const char *OH_AVCODEC_MIMETYPE_VIDEO_AVC;
+/**
+ * @brief Enumerates the mime types of audio aac codec.
+ *
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
+ * @since 9
+ */
 extern const char *OH_AVCODEC_MIMETYPE_AUDIO_AAC;
 
 /**
- * @brief Enumerates the MIME types of audio and video codecs
+ * @brief Enumerates the mime types of audio flac codec.
+ *
  * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 10
  */
 extern const char *OH_AVCODEC_MIMETYPE_AUDIO_FLAC;
+/**
+ * @brief Enumerates the mime types of audio vorbis codec.
+ *
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
+ * @since 10
+ */
 extern const char *OH_AVCODEC_MIMETYPE_AUDIO_VORBIS;
+/**
+ * @brief Enumerates the mime types of audio mp3 codec.
+ *
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
+ * @since 10
+ */
 extern const char *OH_AVCODEC_MIMETYPE_AUDIO_MPEG;
+/**
+ * @brief Enumerates the mime types of video hevc codec.
+ *
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
+ * @since 10
+ */
 extern const char *OH_AVCODEC_MIMETYPE_VIDEO_HEVC;
 
 /**
- * @brief Enumerates the types of audio and video muxer
+ * @brief Enumerates the mime types of video mpeg4 muxer.
+ *
  * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @deprecated since 11
  * @since 10
@@ -216,27 +255,65 @@ extern const char *OH_AVCODEC_MIMETYPE_VIDEO_HEVC;
 extern const char *OH_AVCODEC_MIMETYPE_VIDEO_MPEG4;
 
 /**
- * @brief Enumerates the types of audio and video muxer
+ * @brief Enumerates the mime types of cover jpg muxer.
+ *
  * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 10
  */
 extern const char *OH_AVCODEC_MIMETYPE_IMAGE_JPG;
+/**
+ * @brief Enumerates the mime types of cover png muxer.
+ *
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
+ * @since 10
+ */
 extern const char *OH_AVCODEC_MIMETYPE_IMAGE_PNG;
+/**
+ * @brief Enumerates the mime types of cover bmp muxer.
+ *
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
+ * @since 10
+ */
 extern const char *OH_AVCODEC_MIMETYPE_IMAGE_BMP;
 
 /**
- * @brief Enumerates the MIME types of audio codecs
+ * @brief Enumerates the mime types of audio vivid codec.
+ *
  * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 11
  */
 extern const char *OH_AVCODEC_MIMETYPE_AUDIO_VIVID;
+/**
+ * @brief Enumerates the mime types of audio amrnb codec.
+ *
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
+ * @since 11
+ */
 extern const char *OH_AVCODEC_MIMETYPE_AUDIO_AMR_NB;
+/**
+ * @brief Enumerates the mime types of audio amrwb codec.
+ *
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
+ * @since 11
+ */
 extern const char *OH_AVCODEC_MIMETYPE_AUDIO_AMR_WB;
+/**
+ * @brief Enumerates the mime types of audio opus codec.
+ *
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
+ * @since 11
+ */
 extern const char *OH_AVCODEC_MIMETYPE_AUDIO_OPUS;
+/**
+ * @brief Enumerates the mime types of audio g711mu codec.
+ *
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
+ * @since 11
+ */
 extern const char *OH_AVCODEC_MIMETYPE_AUDIO_G711MU;
 
 /**
- * @brief Enumerates the MIME type of audio low bitrate voice codec.
+ * @brief Enumerates the mime type of audio low bitrate voice codec.
  *
  * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 12
@@ -244,7 +321,7 @@ extern const char *OH_AVCODEC_MIMETYPE_AUDIO_G711MU;
 extern const char *OH_AVCODEC_MIMETYPE_AUDIO_LBVC;
 
 /**
- * @brief Enumerates the MIME type of audio ape codec.
+ * @brief Enumerates the mime type of audio ape codec.
  *
  * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 12
@@ -252,7 +329,7 @@ extern const char *OH_AVCODEC_MIMETYPE_AUDIO_LBVC;
 extern const char *OH_AVCODEC_MIMETYPE_AUDIO_APE;
 
 /**
- * @brief Enumerates the MIME type of subtitle.
+ * @brief Enumerates the mime type of subtitle srt.
  *
  * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 12
@@ -260,49 +337,118 @@ extern const char *OH_AVCODEC_MIMETYPE_AUDIO_APE;
 extern const char *OH_AVCODEC_MIMETYPE_SUBTITLE_SRT;
 
 /**
- * @brief The extra data's key of surface Buffer
+ * @brief Key for timeStamp in surface's extraData, value type is int64_t.
+ *
  * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 9
- * @version 1.0
  */
-/* Key for timeStamp in surface's extraData, value type is int64 */
 extern const char *OH_ED_KEY_TIME_STAMP;
-/* Key for endOfStream in surface's extraData, value type is bool */
+/**
+ * @brief Key for endOfStream in surface's extraData, value type is bool.
+ *
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
+ * @since 9
+ */
 extern const char *OH_ED_KEY_EOS;
 
 /**
- * @brief Provides the uniform key for storing the media description.
+ * @brief Key for track type, value type is int32_t, see {@link OH_MediaType}.
+ *
  * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 9
- * @version 1.0
  */
-/* Key for track type, value type is int32_t, see @OH_MediaType. */
 extern const char *OH_MD_KEY_TRACK_TYPE;
-/* Key for codec mime type, value type is string. */
+/**
+ * @brief Key for codec mime type, value type is string.
+ *
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
+ * @since 9
+ */
 extern const char *OH_MD_KEY_CODEC_MIME;
-/* Key for file duration, value type is int64_t. */
+/**
+ * @brief Key for file duration in microseconds, value type is int64_t.
+ *
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
+ * @since 9
+ */
 extern const char *OH_MD_KEY_DURATION;
-/* Key for bitrate, value type is int64_t. */
+/**
+ * @brief Key for bitrate, value type is int64_t.
+ *
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
+ * @since 9
+ */
 extern const char *OH_MD_KEY_BITRATE;
-/* Key for max input size, value type is int32_t */
+/**
+ * @brief Key for max input size, value type is int32_t.
+ *
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
+ * @since 9
+ */
 extern const char *OH_MD_KEY_MAX_INPUT_SIZE;
-/* Key for video width, value type is int32_t */
+/**
+ * @brief Key for video width, value type is int32_t.
+ *
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
+ * @since 9
+ */
 extern const char *OH_MD_KEY_WIDTH;
-/* Key for video height, value type is int32_t */
+/**
+ * @brief Key for video height, value type is int32_t.
+ *
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
+ * @since 9
+ */
 extern const char *OH_MD_KEY_HEIGHT;
-/* Key for video pixel format, value type is int32_t, see @OH_AVPixelFormat */
+/**
+ * @brief Key for video pixel format, value type is int32_t, see {@link OH_AVPixelFormat}.
+ *
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
+ * @since 9
+ */
 extern const char *OH_MD_KEY_PIXEL_FORMAT;
-/* key for audio raw format, value type is int32_t , see @AudioSampleFormat */
+/**
+ * @brief key for audio raw format, value type is int32_t , see {@link OH_BitsPerSample}.
+ *
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
+ * @since 9
+ */
 extern const char *OH_MD_KEY_AUDIO_SAMPLE_FORMAT;
-/* Key for video frame rate, value type is double. */
+/**
+ * @brief Key for video frame rate, value type is double.
+ *
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
+ * @since 9
+ */
 extern const char *OH_MD_KEY_FRAME_RATE;
-/* video encode bitrate mode, the value type is int32_t, see @OH_VideoEncodeBitrateMode */
+/**
+ * @brief video encode bitrate mode, the value type is int32_t, see {@link OH_VideoEncodeBitrateMode}.
+ *
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
+ * @since 9
+ */
 extern const char *OH_MD_KEY_VIDEO_ENCODE_BITRATE_MODE;
-/* encode profile, the value type is int32_t. see @OH_AVCProfile, OH_HEVCProfile, OH_AACProfile. */
+/**
+ * @brief encode profile, the value type is int32_t. see {@link OH_AVCProfile}, {@link OH_HEVCProfile},
+ * {@link OH_AACProfile}.
+ *
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
+ * @since 9
+ */
 extern const char *OH_MD_KEY_PROFILE;
-/* Key for audio channel count, value type is int32_t */
+/**
+ * @brief Key for audio channel count, value type is int32_t.
+ *
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
+ * @since 9
+ */
 extern const char *OH_MD_KEY_AUD_CHANNEL_COUNT;
-/* Key for audio sample rate, value type is int32_t */
+/**
+ * @brief Key for audio sample rate, value type is int32_t.
+ *
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
+ * @since 9
+ */
 extern const char *OH_MD_KEY_AUD_SAMPLE_RATE;
 /**
  * @brief Key for the interval of key frame. value type is int32_t, the unit is milliseconds. A negative value means no
@@ -312,86 +458,247 @@ extern const char *OH_MD_KEY_AUD_SAMPLE_RATE;
  * @since 9
  */
 extern const char *OH_MD_KEY_I_FRAME_INTERVAL;
-/* Key of the surface rotation angle. value type is int32_t: should be {0, 90, 180, 270}, default is 0. */
+/**
+ * @brief Key of the surface rotation angle. value type is int32_t: should be {0, 90, 180, 270}, default is 0.
+ *
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
+ * @since 9
+ */
 extern const char *OH_MD_KEY_ROTATION;
 
 /**
- * @brief Provides the uniform key for storing the media description.
+ * @brief Key for video YUV value range flag, value type is bool, true for full range, false for limited range.
+ *
  * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 10
  */
-/* Key for video YUV value range flag, value type is bool, true for full range, false for limited range */
 extern const char *OH_MD_KEY_RANGE_FLAG;
-/* Key for video color primaries, value type is int32_t, see @OH_ColorPrimary */
+/**
+ * @brief Key for video color primaries, value type is int32_t, see {@link OH_ColorPrimary}.
+ *
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
+ * @since 10
+ */
 extern const char *OH_MD_KEY_COLOR_PRIMARIES;
-/* Key for video transfer characteristics, value type is int32_t, see @OH_TransferCharacteristic */
+/**
+ * @brief Key for video transfer characteristics, value type is int32_t, see {@link OH_TransferCharacteristic}.
+ *
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
+ * @since 10
+ */
 extern const char *OH_MD_KEY_TRANSFER_CHARACTERISTICS;
-/* Key for video matrix coefficients, value type is int32_t, see @OH_MatrixCoefficient */
+/**
+ * @brief Key for video matrix coefficients, value type is int32_t, see {@link OH_MatrixCoefficient}.
+ *
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
+ * @since 10
+ */
 extern const char *OH_MD_KEY_MATRIX_COEFFICIENTS;
-/* Key for the request an I-Frame immediately, value type is bool */
+/**
+ * @brief Key for the request an I-Frame immediately, value type is bool.
+ *
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
+ * @since 10
+ */
 extern const char *OH_MD_KEY_REQUEST_I_FRAME;
-/* Key for the desired encoding quality, value type is int32_t, this key is only
- * supported for encoders that are configured in constant quality mode */
+/**
+ * @brief Key for the desired encoding quality, value type is int32_t, this key is only.
+ * supported for encoders that are configured in constant quality mode.
+ *
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
+ * @since 10
+ */
 extern const char *OH_MD_KEY_QUALITY;
-/* Key of the codec specific data. value type is a uint8_t pointer */
+/**
+ * @brief Key of the codec specific data. value type is a uint8_t pointer.
+ *
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
+ * @since 10
+ */
 extern const char *OH_MD_KEY_CODEC_CONFIG;
-/* source format Key for title, value type is string */
+/**
+ * @brief source format Key for title, value type is string.
+ *
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
+ * @since 10
+ */
 extern const char *OH_MD_KEY_TITLE;
-/* source format Key for artist, value type is string */
+/**
+ * @brief source format Key for artist, value type is string.
+ *
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
+ * @since 10
+ */
 extern const char *OH_MD_KEY_ARTIST;
-/* source format Key for album, value type is string */
+/**
+ * @brief source format Key for album, value type is string.
+ *
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
+ * @since 10
+ */
 extern const char *OH_MD_KEY_ALBUM;
-/* source format Key for album artist, value type is string */
+/**
+ * @brief source format Key for album artist, value type is string.
+ *
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
+ * @since 10
+ */
 extern const char *OH_MD_KEY_ALBUM_ARTIST;
-/* source format Key for date, value type is string */
+/**
+ * @brief source format Key for date, value type is string.
+ *
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
+ * @since 10
+ */
 extern const char *OH_MD_KEY_DATE;
-/* source format Key for comment, value type is string */
+/**
+ * @brief source format Key for comment, value type is string.
+ *
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
+ * @since 10
+ */
 extern const char *OH_MD_KEY_COMMENT;
-/* source format Key for genre, value type is string */
+/**
+ * @brief source format Key for genre, value type is string.
+ *
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
+ * @since 10
+ */
 extern const char *OH_MD_KEY_GENRE;
-/* source format Key for copyright, value type is string */
+/**
+ * @brief source format Key for copyright, value type is string.
+ *
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
+ * @since 10
+ */
 extern const char *OH_MD_KEY_COPYRIGHT;
-/* source format Key for language, value type is string */
+/**
+ * @brief source format Key for language, value type is string.
+ *
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
+ * @since 10
+ */
 extern const char *OH_MD_KEY_LANGUAGE;
-/* source format Key for description, value type is string */
+/**
+ * @brief source format Key for description, value type is string.
+ *
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
+ * @since 10
+ */
 extern const char *OH_MD_KEY_DESCRIPTION;
-/* source format Key for lyrics, value type is string */
+/**
+ * @brief source format Key for lyrics, value type is string.
+ *
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
+ * @since 10
+ */
 extern const char *OH_MD_KEY_LYRICS;
-/* source format Key for track count, value type is int32_t */
+/**
+ * @brief source format Key for track count, value type is int32_t.
+ *
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
+ * @since 10
+ */
 extern const char *OH_MD_KEY_TRACK_COUNT;
-/* Key for the desired encoding channel layout, value type is int64_t, this key is only supported for encoders */
+/**
+ * @brief Key for the desired encoding channel layout, value type is int64_t, this key is only supported for encoders.
+ *
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
+ * @since 10
+ */
 extern const char *OH_MD_KEY_CHANNEL_LAYOUT;
-/* Key for bits per coded sample, value type is int32_t, supported for flac encoder, see @OH_BitsPerSample */
+/**
+ * @brief Key for bits per coded sample, value type is int32_t, supported for flac encoder,
+ * see {@link OH_BitsPerSample}.
+ *
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
+ * @since 10
+ */
 extern const char *OH_MD_KEY_BITS_PER_CODED_SAMPLE;
-/* Key for the aac format, value type is int32_t, supported for aac decoder */
+/**
+ * @brief Key for the aac format, value type is int32_t, supported for aac decoder.
+ *
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
+ * @since 10
+ */
 extern const char *OH_MD_KEY_AAC_IS_ADTS;
-/* Key for aac sbr mode, value type is int32_t, supported for aac encoder */
+/**
+ * @brief Key for aac sbr mode, value type is int32_t, supported for aac encoder.
+ *
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
+ * @since 10
+ */
 extern const char *OH_MD_KEY_SBR;
-/* Key for flac compliance level, value type is int32_t */
+/**
+ * @brief Key for flac compliance level, value type is int32_t.
+ *
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
+ * @since 10
+ */
 extern const char *OH_MD_KEY_COMPLIANCE_LEVEL;
-/* Key for vorbis identification header, value type is a uint8_t pointer, supported only for vorbis decoder */
+/**
+ * @brief Key for vorbis identification header, value type is a uint8_t pointer, supported only for vorbis decoder.
+ *
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
+ * @since 10
+ */
 extern const char *OH_MD_KEY_IDENTIFICATION_HEADER;
-/* Key for vorbis setup header, value type is a uint8_t pointer, supported only for vorbis decoder */
+/**
+ * @brief Key for vorbis setup header, value type is a uint8_t pointer, supported only for vorbis decoder.
+ *
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
+ * @since 10
+ */
 extern const char *OH_MD_KEY_SETUP_HEADER;
-/* Key for video scale type, value type is int32_t, see @OH_ScalingMode */
+/**
+ * @brief Key for video scale type, value type is int32_t, see {@link OH_ScalingMode}.
+ *
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
+ * @since 10
+ */
 extern const char *OH_MD_KEY_SCALING_MODE;
-/* Key for max input buffer count, value type is int32_t */
+/**
+ * @brief Key for max input buffer count, value type is int32_t.
+ *
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
+ * @since 10
+ */
 extern const char *OH_MD_MAX_INPUT_BUFFER_COUNT;
-/* Key for max output buffer count, value type is int32_t */
+/**
+ * @brief Key for max output buffer count, value type is int32_t.
+ *
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
+ * @since 10
+ */
 extern const char *OH_MD_MAX_OUTPUT_BUFFER_COUNT;
 
 /**
- * @brief Provides the uniform key for storing the media description.
+ * @brief Key for audio codec compression level, value type is int32_t.
+ *
  * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 11
  */
-/* Key for audio codec compression level, value type is int32_t */
 extern const char *OH_MD_KEY_AUDIO_COMPRESSION_LEVEL;
-/* Key of the video is hdr vivid. value type is bool */
+/**
+ * @brief Key of the video is hdr vivid. value type is bool.
+ *
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
+ * @since 11
+ */
 extern const char *OH_MD_KEY_VIDEO_IS_HDR_VIVID;
-/* Key for number of audio objects. value type is int32_t */
+/**
+ * @brief Key for number of audio objects. value type is int32_t.
+ *
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
+ * @since 11
+ */
 extern const char *OH_MD_KEY_AUDIO_OBJECT_NUMBER;
-/* Key for meta data of audio vivid. value type is a uint8_t pointer */
+/**
+ * @brief Key for meta data of audio vivid. value type is a uint8_t pointer.
+ *
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
+ * @since 11
+ */
 extern const char *OH_MD_KEY_AUDIO_VIVID_METADATA;
 
 /**
@@ -620,9 +927,9 @@ extern const char *OH_MD_KEY_START_TIME;
 
 /**
  * @brief Media type.
+ *
  * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 9
- * @version 1.0
  */
 typedef enum OH_MediaType {
     /* track is audio. */
@@ -633,9 +940,9 @@ typedef enum OH_MediaType {
 
 /**
  * @brief AAC Profile
+ *
  * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 9
- * @version 1.0
  */
 typedef enum OH_AACProfile {
     AAC_PROFILE_LC = 0,
@@ -643,9 +950,9 @@ typedef enum OH_AACProfile {
 
 /**
  * @brief AVC Profile
+ *
  * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 9
- * @version 1.0
  */
 typedef enum OH_AVCProfile {
     AVC_PROFILE_BASELINE = 0,
@@ -655,6 +962,7 @@ typedef enum OH_AVCProfile {
 
 /**
  * @brief HEVC Profile
+ *
  * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 10
  */
@@ -668,6 +976,7 @@ typedef enum OH_HEVCProfile {
 
 /**
  * @brief Enumerates the muxer output file format
+ *
  * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 10
  */
@@ -689,6 +998,7 @@ typedef enum OH_AVOutputFormat {
 
 /**
  * @brief Seek Mode
+ *
  * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 10
  */
@@ -703,6 +1013,7 @@ typedef enum OH_AVSeekMode {
 
 /**
  * @brief Scaling Mode
+ *
  * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 10
  */
@@ -713,6 +1024,7 @@ typedef enum OH_ScalingMode {
 
 /**
  * @brief enum Audio Bits Per Coded Sample
+ *
  * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 10
  */
@@ -732,6 +1044,7 @@ typedef enum OH_BitsPerSample {
 
 /**
  * @brief Color Primary
+ *
  * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 10
  */
@@ -751,6 +1064,7 @@ typedef enum OH_ColorPrimary {
 
 /**
  * @brief Transfer Characteristic
+ *
  * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 10
  */
@@ -776,6 +1090,7 @@ typedef enum OH_TransferCharacteristic {
 
 /**
  * @brief Matrix Coefficient
+ *
  * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 10
  */
