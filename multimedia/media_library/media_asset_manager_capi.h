@@ -30,6 +30,7 @@
  * Uses the Native APIs provided by Media Asset Manager
  * to reqeust media source.
  *
+ * @kit MediaLibraryKit
  * @Syscap SystemCapability.FileManagement.PhotoAccessHelper.Core
  * @library libmedia_asset_manager.so
  * @since 12
