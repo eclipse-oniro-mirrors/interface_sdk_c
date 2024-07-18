@@ -242,11 +242,11 @@ Image_ErrorCode OH_PixelmapInitializationOptions_SetSrcPixelFormat(OH_Pixelmap_I
     int32_t srcpixelFormat);
 
 /**
- * @brief Get rowStride for InitializationOptions struct.
+ * @brief Get rowStride for InitializationOtions struct.
  *
- * @param options The InitializationOptions pointer will be operated.
- * @param rowStride The rowStride of image buffer.
- * @return Returns {@link Image_ErrorCode} IMAGE_SUCCESS - if the operation is successful.
+ * @param options The InitializationOtions pointer will be operated.
+ * @param rowStride the rowStride of image buffer.
+ * @return Returns {@link Image_ErrorCode} IMAGE_SUCCESS - if the operation is sucessful.
  * returns {@link Image_ErrorCode} IMAGE_BAD_PARAMETER - if rowStride is null.
  * returns {@link Image_ErrorCode} IMAGE_UNKNOWN_ERROR - inner unknown error.
  * @since 12
@@ -255,11 +255,11 @@ Image_ErrorCode OH_PixelmapInitializationOptions_GetRowStride(OH_Pixelmap_Initia
     int32_t *rowStride);
 
 /**
- * @brief Set rowStride number for InitializationOptions struct.
+ * @brief Set rowStride number for InitializationOtions struct.
  *
- * @param options The InitializationOptions pointer will be operated.
- * @param rowStride The rowStride of image buffer.
- * @return Returns {@link Image_ErrorCode} IMAGE_SUCCESS - if the operation is successful.
+ * @param options The InitializationOtions pointer will be operated.
+ * @param rowStride the rowStride of image buffer.
+ * @return Returns {@link Image_ErrorCode} IMAGE_SUCCESS - if the operation is sucessful.
  * returns {@link Image_ErrorCode} IMAGE_BAD_PARAMETER - if rowStride does not match width.
  * returns {@link Image_ErrorCode} IMAGE_UNKNOWN_ERROR - inner unknown error.
  * @since 12
