@@ -246,7 +246,7 @@ OH_AudioCommon_Result OH_AudioRoutingManager_ReleaseDevices(
  * Do not release the audioDeviceDescriptorArray pointer separately instead of calling
  * {@link OH_AudioRoutingManager_ReleaseDevices} to release the DeviceDescriptor array when it is no use anymore.
  * @param userData User data which is passed by user.
- * @since 12
+ * @since 13
  */
 typedef void (*OH_AudioRoutingManager_OnMicrophoneBlockedCallback)(
     OH_AudioDeviceDescriptorArray *audioDeviceDescriptorArray,
@@ -264,7 +264,7 @@ typedef void (*OH_AudioRoutingManager_OnMicrophoneBlockedCallback)(
  *     {@link AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM}:
  *                                                    1.The param of audioRoutingManager is nullptr;
  *                                                    2.The param of callback is nullptr.
- * @since 12
+ * @since 13
  */
 OH_AudioCommon_Result OH_AudioRoutingManager_SetMicrophoneBlockedCallback(
     OH_AudioRoutingManager *audioRoutingManager,
