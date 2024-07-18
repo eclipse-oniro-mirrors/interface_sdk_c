@@ -41,12 +41,19 @@ extern "C" {
  * @since 10
  */
 typedef struct OH_AVDemuxer OH_AVDemuxer;
+
 /**
  * @brief Forward declaration of DRM_MediaKeySystemInfo.
  *
  * @since 11
  */
 typedef struct DRM_MediaKeySystemInfo DRM_MediaKeySystemInfo;
+
+/**
+ * @brief After this callback is set, it will be invoked when DRM information is updated.
+ * @param mediaKeySystemInfo DRM information.
+ * @since 11
+ */
 typedef void (*DRM_MediaKeySystemInfoCallback)(DRM_MediaKeySystemInfo* mediaKeySystemInfo);
 
 /**
