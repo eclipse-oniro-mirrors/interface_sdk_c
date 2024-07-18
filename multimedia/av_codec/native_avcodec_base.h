@@ -329,7 +329,7 @@ extern const char *OH_AVCODEC_MIMETYPE_AUDIO_LBVC;
 extern const char *OH_AVCODEC_MIMETYPE_AUDIO_APE;
 
 /**
- * @brief Enumerates the mime type of versatile video coding.
+ * @brief Enumerates the MIME type of versatile video coding.
  *
  * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 12
