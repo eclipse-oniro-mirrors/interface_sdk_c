@@ -248,7 +248,7 @@ Image_ErrorCode OH_PixelmapInitializationOptions_SetSrcPixelFormat(OH_Pixelmap_I
  * @param rowStride The rowStride of image buffer.
  * @return Returns {@link Image_ErrorCode} IMAGE_SUCCESS - if the operation is successful.
  * returns {@link Image_ErrorCode} IMAGE_BAD_PARAMETER - if rowStride is null.
- * returns {@link Image_ErrorCode} IMAGE_UNKNOWN_ERROR - inner unknown error, maybe options is released.
+ * returns {@link Image_ErrorCode} IMAGE_UNKNOWN_ERROR - inner unknown error.
  * @since 12
  */
 Image_ErrorCode OH_PixelmapInitializationOptions_GetRowStride(OH_Pixelmap_InitializationOptions *options,
@@ -261,7 +261,7 @@ Image_ErrorCode OH_PixelmapInitializationOptions_GetRowStride(OH_Pixelmap_Initia
  * @param rowStride The rowStride of image buffer.
  * @return Returns {@link Image_ErrorCode} IMAGE_SUCCESS - if the operation is successful.
  * returns {@link Image_ErrorCode} IMAGE_BAD_PARAMETER - if rowStride does not match width.
- * returns {@link Image_ErrorCode} IMAGE_UNKNOWN_ERROR - inner unknown error, maybe options is released.
+ * returns {@link Image_ErrorCode} IMAGE_UNKNOWN_ERROR - inner unknown error.
  * @since 12
  */
 Image_ErrorCode OH_PixelmapInitializationOptions_SetRowStride(OH_Pixelmap_InitializationOptions *options,
@@ -474,7 +474,7 @@ Image_ErrorCode OH_PixelmapNative_Scale(OH_PixelmapNative *pixelmap, float scale
  * returns {@link Image_ErrorCode} IMAGE_BAD_PARAMETER - if invalid parameter, x and y are incorrect.
  * returns {@link Image_ErrorCode} IMAGE_TOO_LARGE - if image is too large.
  * returns {@link Image_ErrorCode} IMAGE_ALLOC_FAILED - if device has no memory.
- * returns {@link Image_ErrorCode} IMAGE_UNKNOWN_ERROR - inner unknown error, maybe source pixelmap is released.
+ * returns {@link Image_ErrorCode} IMAGE_UNKNOWN_ERROR - inner unknown error.
  * @see OH_PixelmapNative
  * @since 12
  */
