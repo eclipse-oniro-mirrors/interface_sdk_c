@@ -17,7 +17,9 @@
 
 import json
 import os
+import re
 import openpyxl
+from typedef.parser.parser import DifferApiRegular, DifferApiInfor
 
 
 def compare_json_file(generate_json, original_json):  # 获取对比结果
@@ -66,10 +68,25 @@ def filter_compare(analytic_data):  # 获取函数和变量
     return result_api
 
 
+def difference_api(api_data: dict):
+    api_name = api_data['name']
+    differ_infor = DifferApiInfor.THIRD_PARTY_API.value
+    closed_pattern = DifferApiRegular.CLOSED_SOURCE_API_REGULAR.value
+    open_pattern = DifferApiRegular.OPEN_SOURCE_API_REGULAR.value
+    if re.search(closed_pattern, api_name, flags=re.IGNORECASE):
+        differ_infor = DifferApiInfor.CLOSED_SOURCE_API.value
+    elif re.search(open_pattern, api_name, flags=re.IGNORECASE):
+        differ_infor = DifferApiInfor.OPEN_SOURCE_API.value
+
+    return differ_infor
+
+
 def get_result_api(file_data, result_api):
     if 'children' in file_data:
         for item1 in file_data["children"]:  # 抛开根节点
             if (item1["kind"] == 'FUNCTION_DECL' or item1["kind"] == 'VAR_DECL') and item1["is_extern"]:
+                differ_infor = difference_api(item1)
+                item1['differ_infor'] = differ_infor
                 item = filter_func(item1)
                 result_api.append(item)
 
@@ -133,7 +150,8 @@ def collated_api_data(api_data: list):
             api.get('kit_name'),
             api.get('location_path'),
             api.get('sub_system'),
-            api.get('unique_id')
+            api.get('unique_id'),
+            api.get('differ_infor')
         ]
         collated_data_total.append(collated_data)
     return collated_data_total
@@ -143,7 +161,7 @@ def generate_excel(array, name, generate_json_unique, original_json_unique):
     first_line_infor = ['模块名', '类名', '方法名', '函数', '类型', '起始版本',
                         '废弃版本', 'syscap', '错误码', '是否为系统API', '模型限制',
                         '权限', '是否支持跨平台', '是否支持卡片应用', '是否支持高阶API',
-                        '装饰器', 'kit', '文件路径', '子系统', '接口全路径']
+                        '装饰器', 'kit', '文件路径', '子系统', '接口全路径', '开源/闭源/三方库API']
     workbook = openpyxl.Workbook()
     work_sheet1 = workbook.active
     work_sheet1.title = '对比结果'
@@ -166,7 +184,7 @@ def write_information_to_worksheet(work_sheet, information_data):
         write_data = data[0], data[1], data[2], data[3], data[4], \
                      data[5], data[6], data[7], data[8], data[9], \
                      data[10], data[11], data[12], data[13], data[14], \
-                     data[15], data[16], data[17], data[18], data[19]
+                     data[15], data[16], data[17], data[18], data[19], data[20]
         work_sheet.append(write_data)
 
 

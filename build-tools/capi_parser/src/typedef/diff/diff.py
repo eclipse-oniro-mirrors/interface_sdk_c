@@ -115,6 +115,7 @@ class Scene(enum.Enum):
     ENUM_DECL = 'ENUM_DECL'
     VAR_DECL = 'VAR_DECL'
     TYPEDEF_DECL = 'TYPEDEF_DECL'
+    TRANSLATION_UNIT = 'TRANSLATION_UNIT'
 
 
 class TAGS(enum.Enum):
@@ -383,13 +384,17 @@ class DiffInfo:
     current_api_unique_id = ''
     is_system_api = False
     operation_diff_type: str = ''
+    old_differ_content: str = ''
+    new_differ_content: str = ''
 
-    def __init__(self, diff_type: DiffType):
+    def __init__(self, diff_type: DiffType, old_differ_content, new_differ_content):
         self.diff_type = diff_type
         self.diff_message = diff_type.value
         self.set_diff_type(diff_type)
         self.set_api_modification_type(diff_type)
         self.set_operation_diff_type(diff_type)
+        self.old_differ_content = old_differ_content
+        self.new_differ_content = new_differ_content
 
     def set_api_line(self, api_line):
         self.api_line = api_line
@@ -522,6 +527,18 @@ class DiffInfo:
 
     def get_operation_diff_type(self):
         return self.operation_diff_type
+
+    def set_old_differ_content(self, old_differ_content):
+        self.old_differ_content = old_differ_content
+
+    def get_old_differ_content(self):
+        return self.old_differ_content
+
+    def set_new_differ_content(self, new_differ_content):
+        self.new_differ_content = new_differ_content
+
+    def get_new_differ_content(self):
+        return self.new_differ_content
 
 
 class OutputJson:

@@ -324,6 +324,7 @@ def parse_file_result(result, data_type=0):
     for root_node in result:
         if data_type != 1:
             parse_file_result_by_child(result_map, root_node)
+        result_map.setdefault(f'{root_node["name"]}-{root_node["kind"]}', root_node)
     return result_map
 
 
