@@ -329,6 +329,14 @@ extern const char *OH_AVCODEC_MIMETYPE_AUDIO_LBVC;
 extern const char *OH_AVCODEC_MIMETYPE_AUDIO_APE;
 
 /**
+ * @brief Enumerates the MIME type of versatile video coding.
+ *
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
+ * @since 12
+ */
+extern const char *OH_AVCODEC_MIMETYPE_VIDEO_VVC;
+
+/**
  * @brief Enumerates the mime type of subtitle srt.
  *
  * @syscap SystemCapability.Multimedia.Media.CodecBase
