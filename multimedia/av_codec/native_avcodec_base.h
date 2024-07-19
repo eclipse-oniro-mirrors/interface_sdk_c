@@ -1002,6 +1002,11 @@ typedef enum OH_AVOutputFormat {
      * @since 12
      */
     AV_OUTPUT_FORMAT_MP3 = 9,
+    /**
+     * The muxer output wav file format.
+     * @since 12
+     */
+    AV_OUTPUT_FORMAT_WAV = 10,
 } OH_AVOutputFormat;
 
 /**
