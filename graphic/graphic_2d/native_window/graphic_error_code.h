@@ -72,6 +72,10 @@ typedef enum OHNativeErrorCode {
     NATIVE_ERROR_BUFFER_QUEUE_FULL = 41209000,
     /** @error buffer is not in the cache queue */
     NATIVE_ERROR_BUFFER_NOT_IN_CACHE = 41210000,
+    /** @error the consumer is disconnected */
+    NATIVE_ERROR_CONSUMER_DISCONNECTED = 41211000,
+    /** @error the consumer not register listener */
+    NATIVE_ERROR_CONSUMER_NO_LISTENER_REGISTERED = 41212000,
     /** @error the current device or platform does not support it */
     NATIVE_ERROR_UNSUPPORTED = 50102000,
     /** @error unknown error, please check log */
