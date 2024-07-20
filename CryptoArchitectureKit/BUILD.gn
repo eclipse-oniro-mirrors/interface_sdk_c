@@ -17,6 +17,7 @@ import("//build/ohos/ndk/ndk.gni")
 ohos_ndk_headers("crypto_capi_header") {
   dest_dir = "$ndk_headers_out_dir/CryptoArchitectureKit"
   sources = [
+    "./crypto_architecture_kit.h",
     "./crypto_asym_key.h",
     "./crypto_common.h",
     "./crypto_digest.h",
@@ -32,6 +33,7 @@ ohos_ndk_library("libohcrypto") {
   ndk_description_file = "./libcrypto.ndk.json"
   system_capability = "SystemCapability.Security.CryptoFramework"
   system_capability_headers = [
+    "CryptoArchitectureKit/crypto_architecture_kit.h",
     "CryptoArchitectureKit/crypto_asym_key.h",
     "CryptoArchitectureKit/crypto_common.h",
     "CryptoArchitectureKit/crypto_digest.h",
