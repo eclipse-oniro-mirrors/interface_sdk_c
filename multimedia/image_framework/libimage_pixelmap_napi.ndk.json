@@ -13,6 +13,10 @@
     "name": "OH_PixelMap_CreatePixelMap"
   },
   {
+    "first_introduced": "12",
+    "name": "OH_PixelMap_CreatePixelMapWithStride"
+  },
+  {
     "name": "OH_PixelMap_CreateAlphaPixelMap"
   },
   {
@@ -41,6 +45,10 @@
   },
   {
     "name": "OH_PixelMap_Scale"
+  },
+  {
+    "first_introduced": "12",
+    "name": "OH_PixelMap_ScaleWithAntiAliasing"
   },
   {
     "name": "OH_PixelMap_Translate"

@@ -15,6 +15,97 @@
 
 import enum
 
+operation_mark_dict = {
+    'ADD_FILE': '新增文件',
+    'REDUCE_FILE': '删除文件',
+    'ADD_API': '新增API',
+    'REDUCE_API': '删除API',
+    'ADD_DOC': '增加doc',
+    'REDUCE_DOC': '删除doc',
+    'ADD_DOC_TAG': '增加注释标签',
+    'REDUCE_DOC_TAG': '删除注释标签',
+    'FUNCTION_PARAM_POS_CHANGE': '函数参数位置改变',
+
+    'DEFINE_NAME_CHANGE': '修改宏名',
+    'DEFINE_TEXT_CHANGE': '修改宏文本',
+
+    'FUNCTION_NAME_CHANGE': '修改函数名',
+    'FUNCTION_RETURN_CHANGE': '修改函数返回值',
+    'FUNCTION_PARAM_NAME_CHANGE': '修改函数参数名',
+    'FUNCTION_PARAM_TYPE_CHANGE': '修改函数参数类型',
+    'FUNCTION_PARAM_ADD': '增加函数参数',
+    'FUNCTION_PARAM_REDUCE': '删除函数参数',
+
+    'STRUCT_NAME_CHANGE': '修改结构体名',
+    'STRUCT_MEMBER_NAME_CHANGE': '修改结构体成员名',
+    'STRUCT_MEMBER_TYPE_CHANGE': '修改结构体成员类型',
+    'STRUCT_MEMBER_ADD': '增加结构体成员',
+    'STRUCT_MEMBER_REDUCE': '删除结构体成员',
+
+    'UNION_NAME_CHANGE': '修改联合体名',
+    'UNION_MEMBER_NAME_CHANGE': '修改联合体成员名',
+    'UNION_MEMBER_TYPE_CHANGE': '修改联合体成员类型',
+    'UNION_MEMBER_ADD': '增加联合体成员',
+    'UNION_MEMBER_REDUCE': '删除联合体成员',
+
+    'ENUM_NAME_CHANGE': '修改枚举名',
+    'ENUM_MEMBER_NAME_CHANGE': '修改枚举成员名',
+    'ENUM_MEMBER_VALUE_CHANGE': '修改枚举值',
+    'ENUM_MEMBER_ADD': '增加枚举成员',
+    'ENUM_MEMBER_REDUCE': '删除枚举成员',
+
+    'VARIABLE_NAME_CHANGE': '修改变量名',
+    'VARIABLE_TYPE_CHANGE': '修改变量类型',
+    'VARIABLE_VALUE_CHANGE': '修改变量值',
+    'VARIABLE_CHANGE_TO_CONSTANT': '修改变量为常量',
+
+    'CONSTANT_NAME_CHANGE': '修改常量名',
+    'CONSTANT_TYPE_CHANGE': '修改常量类型',
+    'CONSTANT_VALUE_CHANGE': '修改常量值',
+    'CONSTANT_CHANGE_TO_VARIABLE': '修改常量为变量',
+
+    'TYPEDEF_NAME_TYPE_CHANGE': '修改重命名的名',
+
+    'DOC_TAG_ADDTOGROUP_NA_TO_HAVE': '增加addtogroup标签',
+    'DOC_TAG_ADDTOGROUP_HAVE_TO_NA': '删除addtogroup标签',
+    'DOC_TAG_ADDTOGROUP_A_TO_B': '修改addtogroup标签',
+    'DOC_TAG_BRIEF_NA_TO_HAVE': '增加brief标签',
+    'DOC_TAG_BRIEF_HAVE_TO_NA': '删除brief标签',
+    'DOC_TAG_BRIEF_A_TO_B': '修改brief标签',
+    'DOC_TAG_DEPRECATED_NA_TO_HAVE': '增加deprecated标签',
+    'DOC_TAG_DEPRECATED_HAVE_TO_NA': '删除deprecated标签',
+    'DOC_TAG_DEPRECATED_A_TO_B': '修改deprecated标签',
+    'DOC_TAG_FILE_NA_TO_HAVE': '增加file标签',
+    'DOC_TAG_FILE_HAVE_TO_NA': '删除file标签',
+    'DOC_TAG_FILE_A_TO_B': '修改file标签',
+    'DOC_TAG_LIBRARY_NA_TO_HAVE': '增加library标签',
+    'DOC_TAG_LIBRARY_HAVE_TO_NA': '删除library标签',
+    'DOC_TAG_LIBRARY_A_TO_B': '修改library标签',
+    'DOC_TAG_PARAM_NA_TO_HAVE': '增加param标签',
+    'DOC_TAG_PARAM_HAVE_TO_NA': '删除param标签',
+    'DOC_TAG_PARAM_NAME_A_TO_B': '修改param标签',
+    'DOC_TAG_PARAM_A_TO_B': '修改param标签值',
+    'DOC_TAG_PERMISSION_NA_TO_HAVE': '增加permission标签',
+    'DOC_TAG_PERMISSION_HAVE_TO_NA': '删除permission标签',
+    'DOC_TAG_PERMISSION_RANGE_BIGGER': '权限变大',
+    'DOC_TAG_PERMISSION_RANGE_SMALLER': '权限变小',
+    'DOC_TAG_PERMISSION_RANGE_CHANGE': '修改权限',
+    'DOC_TAG_SINCE_NA_TO_HAVE': '增加since标签',
+    'DOC_TAG_SINCE_HAVE_TO_NA': '删除since标签',
+    'DOC_TAG_SINCE_A_TO_B': '修改since标签',
+    'DOC_TAG_SYSCAP_NA_TO_HAVE': '增加syscap标签',
+    'DOC_TAG_SYSCAP_HAVE_TO_NA': '删除syscap标签',
+    'DOC_TAG_SYSCAP_A_TO_B': '修改syscap标签',
+    'DOC_TAG_LEFT_BRACE_NA_TO_HAVE': '增加{标签',
+    'DOC_TAG_LEFT_BRACE_HAVE_TO_NA': '删除{标签',
+    'DOC_TAG_RIGHT_BRACE_NA_TO_HAVE': '增加}标签',
+    'DOC_TAG_RIGHT_BRACE_HAVE_TO_NA': '删除}标签',
+    'DOC_TAG_ADDTOGROUP_INCREASE': '文件有addtogroup标签, 增加addtogroup标签',
+    'DOC_TAG_ADDTOGROUP_DECREASE': '文件有多个addtogroup标签，删除addtogroup标签',
+    'DOC_TAG_FILE_INCREASE': '文件有file标签, 增加file标签',
+    'DOC_TAG_FILE_DECREASE': '文件有多个file标签，删除file标签',
+}
+
 
 class Scene(enum.Enum):
     FUNCTION_DECL = 'FUNCTION_DECL'
@@ -24,6 +115,7 @@ class Scene(enum.Enum):
     ENUM_DECL = 'ENUM_DECL'
     VAR_DECL = 'VAR_DECL'
     TYPEDEF_DECL = 'TYPEDEF_DECL'
+    TRANSLATION_UNIT = 'TRANSLATION_UNIT'
 
 
 class TAGS(enum.Enum):
@@ -51,14 +143,14 @@ class DiffType(enum.Enum):
     REDUCE_DOC = 'delete doc'
     ADD_DOC_TAG = 'add doc tag'
     REDUCE_DOC_TAG = 'delete doc tag'
-    FUNCTION_PARAM_POS_CHANGE = 'change param site in function'    # 我觉得可以理解为函数参数类型改变
+    FUNCTION_PARAM_POS_CHANGE = 'change param site in function'
 
     DEFINE_NAME_CHANGE = 'change define name'
     DEFINE_TEXT_CHANGE = 'change define text'
 
     FUNCTION_NAME_CHANGE = 'change function name'
     FUNCTION_RETURN_CHANGE = 'change function return value'
-    FUNCTION_PARAM_NAME_CHANGE = 'change param name in function'    # 这个我觉得不考虑
+    FUNCTION_PARAM_NAME_CHANGE = 'change param name in function'
     FUNCTION_PARAM_TYPE_CHANGE = 'change param type in function'
     FUNCTION_PARAM_ADD = 'add param in function'
     FUNCTION_PARAM_REDUCE = 'delete param in function'
@@ -290,12 +382,19 @@ class DiffInfo:
     api_node_name = ''
     unique_id = ''
     current_api_unique_id = ''
+    is_system_api = False
+    operation_diff_type: str = ''
+    old_differ_content: str = ''
+    new_differ_content: str = ''
 
-    def __init__(self, diff_type: DiffType):
+    def __init__(self, diff_type: DiffType, old_differ_content, new_differ_content):
         self.diff_type = diff_type
         self.diff_message = diff_type.value
         self.set_diff_type(diff_type)
         self.set_api_modification_type(diff_type)
+        self.set_operation_diff_type(diff_type)
+        self.old_differ_content = old_differ_content
+        self.new_differ_content = new_differ_content
 
     def set_api_line(self, api_line):
         self.api_line = api_line
@@ -416,6 +515,31 @@ class DiffInfo:
     def get_current_api_unique_id(self):
         return self.current_api_unique_id
 
+    def set_is_system_api(self, is_system_api):
+        self.is_system_api = is_system_api
+
+    def get_is_system_api(self):
+        return self.is_system_api
+
+    def set_operation_diff_type(self, diff_type):
+        if diff_type.name in operation_mark_dict:
+            self.operation_diff_type = operation_mark_dict.get(diff_type.name)
+
+    def get_operation_diff_type(self):
+        return self.operation_diff_type
+
+    def set_old_differ_content(self, old_differ_content):
+        self.old_differ_content = old_differ_content
+
+    def get_old_differ_content(self):
+        return self.old_differ_content
+
+    def set_new_differ_content(self, new_differ_content):
+        self.new_differ_content = new_differ_content
+
+    def get_new_differ_content(self):
+        return self.new_differ_content
+
 
 class OutputJson:
     api_name: str = ''
@@ -434,11 +558,12 @@ class OutputJson:
     sub_system = ''
     class_name = ''
     unique_id = ''
+    is_system_api = False
 
     def __init__(self, diff_info):
         self.api_name = diff_info.api_name
         self.api_type = diff_info.api_type
-        self.diff_type = diff_info.diff_type.name
+        self.diff_type = diff_info.operation_diff_type
         self.diff_message = diff_info.diff_message
         self.old_api_full_text = diff_info.old_api_full_text
         self.new_api_full_text = diff_info.new_api_full_text
@@ -452,6 +577,7 @@ class OutputJson:
         self.sub_system = diff_info.sub_system
         self.class_name = diff_info.class_name
         self.unique_id = diff_info.unique_id
+        self.is_system_api = diff_info.is_system_api
 
 
 class ApiChangeData:
@@ -459,6 +585,7 @@ class ApiChangeData:
     kit_name: str = ''
     sub_system: str = ''
     is_api_change = False
+    class_name: str = ''
     diff_type: str = ''
     change_type: str = ''
     compatible = {}
@@ -467,6 +594,7 @@ class ApiChangeData:
     new_all_text: str = ''
     compatible_total = False
     unique_id: str = ''
+    is_system_api = False
 
     def set_api_name(self, api_name):
         self.api_name = api_name
@@ -491,6 +619,12 @@ class ApiChangeData:
 
     def get_is_api_change(self):
         return self.is_api_change
+
+    def set_class_name(self, class_name):
+        self.class_name = class_name
+
+    def get_class_name(self):
+        return self.class_name
 
     def set_diff_type(self, diff_type):
         self.diff_type = diff_type
@@ -539,3 +673,9 @@ class ApiChangeData:
 
     def get_unique_id(self):
         return self.unique_id
+
+    def set_is_system_api(self, is_system_api):
+        self.is_system_api = is_system_api
+
+    def get_is_system_api(self):
+        return self.is_system_api

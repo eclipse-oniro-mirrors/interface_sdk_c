@@ -642,5 +642,65 @@
     {
         "first_introduced": "12",
         "name": "OH_JSVM_Equals"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_JSVM_CreateMap"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_JSVM_IsMap"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_JSVM_CreateSet"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_JSVM_IsSet"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_JSVM_CompileScriptWithOptions"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_JSVM_CoerceToBigInt"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_JSVM_IsRegExp"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_JSVM_CreateRegExp"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_JSVM_IsConstructor"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_JSVM_ObjectGetPrototypeOf"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_JSVM_ObjectSetPrototypeOf"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_JSVM_CreateFunctionWithScript"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_JSVM_RetainScript"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_JSVM_ReleaseScript"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_JSVM_OpenInspectorWithName"
     }
 ]

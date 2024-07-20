@@ -13,6 +13,17 @@
  * limitations under the License.
  */
 
+/**
+ * @file native_avmuxer.h
+ *
+ * @brief Provides audio and video muxer capabilities.
+ *
+ * @kit AVCodecKit
+ * @library libnative_media_avmuxer.so
+ * @syscap SystemCapability.Multimedia.Media.Muxer
+ * @since 10
+ */
+
 #ifndef NATIVE_AVMUXER_H
 #define NATIVE_AVMUXER_H
 
@@ -24,6 +35,11 @@
 extern "C" {
 #endif
 
+/**
+ * @brief Forward declaration of OH_AVMuxer.
+ *
+ * @since 10
+ */
 typedef struct OH_AVMuxer OH_AVMuxer;
 
 /**

@@ -28,6 +28,7 @@
  * @brief Defines the error code used in ImageEffect.
  *
  * @library libimage_effect.so
+ * @kit ImageKit
  * @syscap SystemCapability.Multimedia.ImageEffect.Core
  * @since 12
  */

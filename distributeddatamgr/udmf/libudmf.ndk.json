@@ -1,0 +1,338 @@
+[
+    {
+        "first_introduced": "12",
+        "name": "OH_Utd_Create"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_Utd_Destroy"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_Utd_GetTypeId"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_Utd_GetDescription"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_Utd_GetReferenceUrl"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_Utd_GetIconFile"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_Utd_GetBelongingToTypes"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_Utd_GetFilenameExtensions"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_Utd_GetMimeTypes"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_Utd_GetTypesByFilenameExtension"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_Utd_GetTypesByMimeType"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_Utd_BelongsTo"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_Utd_IsLower"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_Utd_IsHigher"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_Utd_Equals"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_Utd_DestroyStringList"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_UdsPlainText_Create"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_UdsPlainText_Destroy"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_UdsPlainText_GetType"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_UdsPlainText_GetContent"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_UdsPlainText_GetAbstract"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_UdsPlainText_SetContent"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_UdsPlainText_SetAbstract"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_UdsHyperlink_Create"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_UdsHyperlink_Destroy"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_UdsHyperlink_GetType"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_UdsHyperlink_GetUrl"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_UdsHyperlink_GetDescription"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_UdsHyperlink_SetUrl"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_UdsHyperlink_SetDescription"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_UdsHtml_Create"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_UdsHtml_Destroy"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_UdsHtml_GetType"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_UdsHtml_GetContent"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_UdsHtml_GetPlainContent"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_UdsHtml_SetContent"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_UdsHtml_SetPlainContent"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_UdsAppItem_Create"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_UdsAppItem_Destroy"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_UdsAppItem_GetType"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_UdsAppItem_GetId"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_UdsAppItem_GetName"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_UdsAppItem_GetIconId"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_UdsAppItem_GetLabelId"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_UdsAppItem_GetBundleName"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_UdsAppItem_GetAbilityName"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_UdsAppItem_SetId"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_UdsAppItem_SetName"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_UdsAppItem_SetIconId"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_UdsAppItem_SetLabelId"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_UdsAppItem_SetBundleName"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_UdsAppItem_SetAbilityName"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_UdmfData_Create"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_UdmfData_Destroy"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_UdmfData_AddRecord"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_UdmfData_HasType"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_UdmfData_GetTypes"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_UdmfData_GetRecords"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_UdmfRecord_Create"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_UdmfRecord_Destroy"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_UdmfRecord_AddGeneralEntry"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_UdmfRecord_AddPlainText"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_UdmfRecord_AddHyperlink"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_UdmfRecord_AddHtml"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_UdmfRecord_AddAppItem"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_UdmfRecord_GetTypes"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_UdmfRecord_GetGeneralEntry"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_UdmfRecord_GetPlainText"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_UdmfRecord_GetHyperlink"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_UdmfRecord_GetHtml"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_UdmfRecord_GetAppItem"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_UdmfProperty_Create"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_UdmfProperty_Destroy"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_UdmfProperty_GetTag"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_UdmfProperty_GetTimestamp"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_UdmfProperty_GetShareOption"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_UdmfProperty_GetExtrasIntParam"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_UdmfProperty_GetExtrasStringParam"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_UdmfProperty_SetTag"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_UdmfProperty_SetShareOption"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_UdmfProperty_SetExtrasIntParam"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_UdmfProperty_SetExtrasStringParam"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_Udmf_GetUnifiedData"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_Udmf_SetUnifiedData"
+    }
+]

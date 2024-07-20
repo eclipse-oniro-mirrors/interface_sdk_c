@@ -29,6 +29,7 @@
  *
  * @brief Declares APIs for decoding an image source into a pixel map.
  *
+ * @kit ImageKit
  * @Syscap SystemCapability.Multimedia.Image
  * @since 10
  * @version 4.0
@@ -64,143 +65,157 @@ typedef struct ImageSourceNative_ ImageSourceNative;
 
 /**
  * @brief Defines a pointer to bits per sample, one of the image properties.
- * It is used in {@link OH_ImageSource_GetImageProperty} and {@link OH_ImageSource_ModifyImageProperty}.
+ * It is used in {@link OH_ImageSource_GetImageProperty} and {@link OH_ImageSource_ModifyImageProperty}.\n
+ * Add static keyword since API 12, it is used to limit the scope of the constant to a single file.\n
  *
  * @Syscap SystemCapability.Multimedia.Image
  * @since 10
  * @version 4.0
  */
-const char* OHOS_IMAGE_PROPERTY_BITS_PER_SAMPLE = "BitsPerSample";
+static const char* OHOS_IMAGE_PROPERTY_BITS_PER_SAMPLE = "BitsPerSample";
 
 /**
  * @brief Defines a pointer to the orientation, one of the image properties.
- * It is used in {@link OH_ImageSource_GetImageProperty} and {@link OH_ImageSource_ModifyImageProperty}.
+ * It is used in {@link OH_ImageSource_GetImageProperty} and {@link OH_ImageSource_ModifyImageProperty}.\n
+ * Add static keyword since API 12, it is used to limit the scope of the constant to a single file.\n
  *
  * @Syscap SystemCapability.Multimedia.Image
  * @since 10
  * @version 4.0
  */
-const char* OHOS_IMAGE_PROPERTY_ORIENTATION = "Orientation";
+static const char* OHOS_IMAGE_PROPERTY_ORIENTATION = "Orientation";
 
 /**
  * @brief Defines a pointer to the image length, one of the image properties.
- * It is used in {@link OH_ImageSource_GetImageProperty} and {@link OH_ImageSource_ModifyImageProperty}.
+ * It is used in {@link OH_ImageSource_GetImageProperty} and {@link OH_ImageSource_ModifyImageProperty}.\n
+ * Add static keyword since API 12, it is used to limit the scope of the constant to a single file.\n
  *
  * @Syscap SystemCapability.Multimedia.Image
  * @since 10
  * @version 4.0
  */
-const char* OHOS_IMAGE_PROPERTY_IMAGE_LENGTH = "ImageLength";
+static const char* OHOS_IMAGE_PROPERTY_IMAGE_LENGTH = "ImageLength";
 
 /**
  * @brief Defines a pointer to the image width, one of the image properties.
- * It is used in {@link OH_ImageSource_GetImageProperty} and {@link OH_ImageSource_ModifyImageProperty}.
+ * It is used in {@link OH_ImageSource_GetImageProperty} and {@link OH_ImageSource_ModifyImageProperty}.\n
+ * Add static keyword since API 12, it is used to limit the scope of the constant to a single file.\n
  *
  * @Syscap SystemCapability.Multimedia.Image
  * @since 10
  * @version 4.0
  */
-const char* OHOS_IMAGE_PROPERTY_IMAGE_WIDTH = "ImageWidth";
+static const char* OHOS_IMAGE_PROPERTY_IMAGE_WIDTH = "ImageWidth";
 
 /**
  * @brief Defines a pointer to the GPS latitude, one of the image properties.
- * It is used in {@link OH_ImageSource_GetImageProperty} and {@link OH_ImageSource_ModifyImageProperty}.
+ * It is used in {@link OH_ImageSource_GetImageProperty} and {@link OH_ImageSource_ModifyImageProperty}.\n
+ * Add static keyword since API 12, it is used to limit the scope of the constant to a single file.\n
  *
  * @Syscap SystemCapability.Multimedia.Image
  * @since 10
  * @version 4.0
  */
-const char* OHOS_IMAGE_PROPERTY_GPS_LATITUDE = "GPSLatitude";
+static const char* OHOS_IMAGE_PROPERTY_GPS_LATITUDE = "GPSLatitude";
 
 /**
  * @brief Defines a pointer to the GPS longitude, one of the image properties.
- * It is used in {@link OH_ImageSource_GetImageProperty} and {@link OH_ImageSource_ModifyImageProperty}.
+ * It is used in {@link OH_ImageSource_GetImageProperty} and {@link OH_ImageSource_ModifyImageProperty}.\n
+ * Add static keyword since API 12, it is used to limit the scope of the constant to a single file.\n
  *
  * @Syscap SystemCapability.Multimedia.Image
  * @since 10
  * @version 4.0
  */
-const char* OHOS_IMAGE_PROPERTY_GPS_LONGITUDE = "GPSLongitude";
+static const char* OHOS_IMAGE_PROPERTY_GPS_LONGITUDE = "GPSLongitude";
 
 /**
  * @brief Defines a pointer to the GPS latitude reference information, one of the image properties.
- * It is used in {@link OH_ImageSource_GetImageProperty} and {@link OH_ImageSource_ModifyImageProperty}.
+ * It is used in {@link OH_ImageSource_GetImageProperty} and {@link OH_ImageSource_ModifyImageProperty}.\n
+ * Add static keyword since API 12, it is used to limit the scope of the constant to a single file.\n
  *
  * @Syscap SystemCapability.Multimedia.Image
  * @since 10
  * @version 4.0
  */
-const char* OHOS_IMAGE_PROPERTY_GPS_LATITUDE_REF = "GPSLatitudeRef";
+static const char* OHOS_IMAGE_PROPERTY_GPS_LATITUDE_REF = "GPSLatitudeRef";
 
 /**
  * @brief Defines a pointer to the GPS longitude reference information, one of the image properties.
- * It is used in {@link OH_ImageSource_GetImageProperty} and {@link OH_ImageSource_ModifyImageProperty}.
+ * It is used in {@link OH_ImageSource_GetImageProperty} and {@link OH_ImageSource_ModifyImageProperty}.\n
+ * Add static keyword since API 12, it is used to limit the scope of the constant to a single file.\n
  *
  * @Syscap SystemCapability.Multimedia.Image
  * @since 10
  * @version 4.0
  */
-const char* OHOS_IMAGE_PROPERTY_GPS_LONGITUDE_REF = "GPSLongitudeRef";
+static const char* OHOS_IMAGE_PROPERTY_GPS_LONGITUDE_REF = "GPSLongitudeRef";
 
 /**
  * @brief Defines a pointer to the created date and time, one of the image properties.
- * It is used in {@link OH_ImageSource_GetImageProperty} and {@link OH_ImageSource_ModifyImageProperty}.
+ * It is used in {@link OH_ImageSource_GetImageProperty} and {@link OH_ImageSource_ModifyImageProperty}.\n
+ * Add static keyword since API 12, it is used to limit the scope of the constant to a single file.\n
  *
  * @Syscap SystemCapability.Multimedia.Image
  * @since 10
  * @version 4.0
  */
-const char* OHOS_IMAGE_PROPERTY_DATE_TIME_ORIGINAL = "DateTimeOriginal";
+static const char* OHOS_IMAGE_PROPERTY_DATE_TIME_ORIGINAL = "DateTimeOriginal";
 
 /**
  * @brief Defines a pointer to the exposure time, one of the image properties.
- * It is used in {@link OH_ImageSource_GetImageProperty} and {@link OH_ImageSource_ModifyImageProperty}.
+ * It is used in {@link OH_ImageSource_GetImageProperty} and {@link OH_ImageSource_ModifyImageProperty}.\n
+ * Add static keyword since API 12, it is used to limit the scope of the constant to a single file.\n
  *
  * @Syscap SystemCapability.Multimedia.Image
  * @since 10
  * @version 4.0
  */
-const char* OHOS_IMAGE_PROPERTY_EXPOSURE_TIME = "ExposureTime";
+static const char* OHOS_IMAGE_PROPERTY_EXPOSURE_TIME = "ExposureTime";
 
 /**
  * @brief Defines a pointer to the scene type, one of the image properties.
- * It is used in {@link OH_ImageSource_GetImageProperty} and {@link OH_ImageSource_ModifyImageProperty}.
+ * It is used in {@link OH_ImageSource_GetImageProperty} and {@link OH_ImageSource_ModifyImageProperty}.\n
+ * Add static keyword since API 12, it is used to limit the scope of the constant to a single file.\n
  *
  * @Syscap SystemCapability.Multimedia.Image
  * @since 10
  * @version 4.0
  */
-const char* OHOS_IMAGE_PROPERTY_SCENE_TYPE = "SceneType";
+static const char* OHOS_IMAGE_PROPERTY_SCENE_TYPE = "SceneType";
 
 /**
  * @brief Defines a pointer to the ISO speed ratings, one of the image properties.
- * It is used in {@link OH_ImageSource_GetImageProperty} and {@link OH_ImageSource_ModifyImageProperty}.
+ * It is used in {@link OH_ImageSource_GetImageProperty} and {@link OH_ImageSource_ModifyImageProperty}.\n
+ * Add static keyword since API 12, it is used to limit the scope of the constant to a single file.\n
  *
  * @Syscap SystemCapability.Multimedia.Image
  * @since 10
  * @version 4.0
  */
-const char* OHOS_IMAGE_PROPERTY_ISO_SPEED_RATINGS = "ISOSpeedRatings";
+static const char* OHOS_IMAGE_PROPERTY_ISO_SPEED_RATINGS = "ISOSpeedRatings";
 
 /**
  * @brief Defines a pointer to the f-number of the image, one of the image properties.
- * It is used in {@link OH_ImageSource_GetImageProperty} and {@link OH_ImageSource_ModifyImageProperty}.
+ * It is used in {@link OH_ImageSource_GetImageProperty} and {@link OH_ImageSource_ModifyImageProperty}.\n
+ * Add static keyword since API 12, it is used to limit the scope of the constant to a single file.\n
  *
  * @Syscap SystemCapability.Multimedia.Image
  * @since 10
  * @version 4.0
  */
-const char* OHOS_IMAGE_PROPERTY_F_NUMBER = "FNumber";
+static const char* OHOS_IMAGE_PROPERTY_F_NUMBER = "FNumber";
 
 /**
  * @brief Defines a pointer to the compressed bits per pixel, one of the image properties.
- * It is used in {@link OH_ImageSource_GetImageProperty} and {@link OH_ImageSource_ModifyImageProperty}.
+ * It is used in {@link OH_ImageSource_GetImageProperty} and {@link OH_ImageSource_ModifyImageProperty}.\n
+ * Add static keyword since API 12, it is used to limit the scope of the constant to a single file.\n
  *
  * @Syscap SystemCapability.Multimedia.Image
  * @since 10
  * @version 4.0
  */
-const char* OHOS_IMAGE_PROPERTY_COMPRESSED_BITS_PER_PIXEL = "CompressedBitsPerPixel";
+static const char* OHOS_IMAGE_PROPERTY_COMPRESSED_BITS_PER_PIXEL = "CompressedBitsPerPixel";
 
 /**
  * @brief Defines the region of the image source to decode.

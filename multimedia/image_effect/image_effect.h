@@ -28,6 +28,7 @@
  * @brief Declares the functions for rendering image.
  *
  * @library libimage_effect.so
+ * @kit ImageKit
  * @syscap SystemCapability.Multimedia.ImageEffect.Core
  * @since 12
  */

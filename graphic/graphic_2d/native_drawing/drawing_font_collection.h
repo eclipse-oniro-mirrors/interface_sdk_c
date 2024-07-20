@@ -33,6 +33,9 @@
  *
  * @brief Declares functions related to <b>FontCollection</b> in the drawing module.
  *
+ * @kit ArkGraphics2D
+ * @library libnative_drawing.so
+ * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @since 8
  * @version 1.0
  */
@@ -93,6 +96,15 @@ void OH_Drawing_DisableFontCollectionSystemFont(OH_Drawing_FontCollection*);
  */
 OH_Drawing_FontCollection* OH_Drawing_CreateSharedFontCollection(void);
 
+/**
+ * @brief Clear font caches.
+ *
+ * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
+ * @param OH_Drawing_FontCollection Indicates the pointer to an <b>OH_Drawing_FontCollection</b> object.
+ * @since 12
+ * @version 1.0
+ */
+void OH_Drawing_ClearFontCaches(OH_Drawing_FontCollection*);
 #ifdef __cplusplus
 }
 #endif

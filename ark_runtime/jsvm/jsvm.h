@@ -38,6 +38,7 @@
  * including managing the engine lifecycle, compiling and running JS code, implementing JS/C++ cross language calls,
  * and taking snapshots.
  * @library libjsvm.so
+ * @kit ArkTS
  * @syscap SystemCapability.ArkCompiler.JSVM
  * @since 11
  */
@@ -2410,7 +2411,7 @@ JSVM_EXTERN JSVM_Status OH_JSVM_WaitForDebugger(JSVM_Env env,
  * is null-terminated.
  * @param constructor: Struct include callback function that handles constructing instances of the class.
  * When wrapping a C++ class, this method must be a static member with the JSVM_Callback.callback
- * signature. A C++ class constructor cannot be used. 
+ * signature. A C++ class constructor cannot be used.
  * Include Optional data to be passed to the constructor callback as the data
  * property of the callback info. JSVM_Callback provides more details.
  * @param propertyCount: Number of items in the properties array argument.
@@ -2651,7 +2652,247 @@ JSVM_EXTERN JSVM_Status OH_JSVM_IsObject(JSVM_Env env,
 JSVM_EXTERN JSVM_Status OH_JSVM_IsBigInt(JSVM_Env env,
                                          JSVM_Value value,
                                          bool* isBigInt);
-EXTERN_C_END
 
+/**
+ * @brief This API returns a JSVM-API value corresponding to a JavaScript Map type.
+ *
+ * @param env: The environment that the API is invoked under.
+ * @param result: A JSVM_Value representing a JavaScript Map.
+ * @return Only returns JSVM function's result code.
+ *         {@link JSVM_OK } If the API succeeded.\n
+ *         {@link JSVM_INVALID_ARG } If the input parameter is invalid.\n
+ * @since 12
+ */
+JSVM_Status JSVM_CDECL OH_JSVM_CreateMap(JSVM_Env env, JSVM_Value* result);
+
+/**
+ * @brief This API checks if the value passed in is a Map.
+ *
+ * @param env: The environment that the API is invoked under.
+ * @param value: The JavaScript value to check.
+ * @param isMap: Whether the given value is Map.
+ * @return Only returns JSVM function's result code.
+ *         {@link JSVM_OK } If the API succeeded.\n
+ *         {@link JSVM_INVALID_ARG } If the input parameter is invalid.\n
+ * @since 12
+ */
+JSVM_Status JSVM_CDECL OH_JSVM_IsMap(JSVM_Env env,
+                                     JSVM_Value value,
+                                     bool* isMap);
+
+/**
+ * @brief This API returns a JSVM-API value corresponding to a JavaScript Set type.
+ *
+ * @param env: The environment that the API is invoked under.
+ * @param result: A JSVM_Value representing a JavaScript Set.
+ * @return Returns JSVM function's result code.
+ *         {@link JSVM_OK } If the API succeeded.\n
+ *         {@link JSVM_INVALID_ARG } If the input parameter is invalid.\n
+ * @since 12
+ */
+JSVM_EXTERN JSVM_Status OH_JSVM_CreateSet(JSVM_Env env,
+                                          JSVM_Value* result);
+
+/**
+ * @brief This API checks if the value passed in is a Set.
+ *
+ * @param env: The environment that the API is invoked under.
+ * @param value: The JavaScript value to check.
+ * @param isSet: Whether the given value is Set.
+ * @return Returns JSVM function's result code.
+ *         {@link JSVM_OK } If the API succeeded.\n
+ *         {@link JSVM_INVALID_ARG } If the input parameter is invalid.\n
+ * @since 12
+ */
+JSVM_EXTERN JSVM_Status OH_JSVM_IsSet(JSVM_Env env,
+                                      JSVM_Value value,
+                                      bool* isSet);
+
+/**
+ * @brief This function compiles a string of JavaScript code with the compile options
+ * and returns the compiled script.
+ *
+ * @param env: The environment that the JSVM-API call is invoked under.
+ * @param script: A JavaScript string containing the script to be compiled.
+ * @param optionCount: length of option array.
+ * @param options: Compile options to be passed.
+ * @param result: The compiled script.
+ * @return Returns JSVM functions result code
+ *         {@link JSVM_OK } if the API succeeded. \n
+ *         {@link JSVM_INVALID_ARG } If the input parameter is invalid.\n
+ * @since 12
+ */
+JSVM_EXTERN JSVM_Status OH_JSVM_CompileScriptWithOptions(JSVM_Env env,
+                                                         JSVM_Value script,
+                                                         size_t optionCount,
+                                                         JSVM_CompileOptions options[],
+                                                         JSVM_Value* result);
+
+/**
+ * @brief This API implements the abstract operation ToBigInt().
+ *
+ * @param env: The environment that the API is invoked under.
+ * @param value: The JavaScript value to coerce.
+ * @param result: JSVM_Value representing the coerced JavaScript BigInt.
+ * @return Returns JSVM function's result code.
+ *         {@link JSVM_OK } If the API succeeded.
+ *         {@link JSVM_INVALID_ARG } If the input parameter is invalid.\n
+ *         {@link JSVM_BIGINT_EXPECTED} If the JavaScript value fails to coerce.\n
+ * @since 12
+ */
+JSVM_EXTERN JSVM_Status OH_JSVM_CoerceToBigInt(JSVM_Env env,
+                                               JSVM_Value value,
+                                               JSVM_Value* result);
+
+/**
+ * @brief This API checks if the value passed in is a regExp.
+ * This equals to `value instanceof RegExp` in JS.
+ *
+ * @param env: The environment that the API is invoked under.
+ * @param value: The JavaScript value to check.
+ * @param result: Whether the given value is RegExp.
+ * @return Returns JSVM function's result code.
+ *         {@link JSVM_OK } If the API succeeded.\n
+ *         {@link JSVM_INVALID_ARG } If the input parameter is invalid.\n
+ * @since 12
+ */
+JSVM_EXTERN JSVM_Status OH_JSVM_IsRegExp(JSVM_Env env,
+                                         JSVM_Value value,
+                                         bool* result);
+
+
+/**
+ * @brief This API checks if the value passed in is a constructor.
+ *
+ * @param env: The environment that the API is invoked under.
+ * @param value: The JavaScript value to check.
+ * @param isConstructor: Whether the given value is Constructor.
+ * @return Only returns JSVM function's result code.
+ *         {@link JSVM_OK } If the API succeeded.\n
+ *         {@link JSVM_INVALID_ARG } If the input parameter is invalid.\n
+ * @since 12
+ */
+JSVM_Status JSVM_CDECL OH_JSVM_IsConstructor(JSVM_Env env,
+                                             JSVM_Value value,
+                                             bool* isConstructor);
+
+/**
+ * @brief This API returns the JavaScript value of the regular expression
+ * corresponding to the input.
+ * The interface may throw an exception.
+ *
+ * @param env: The environment that the API is invoked under.
+ * @param value: The JavaScript string to convert to a regular expression.
+ * @param flags: Regular expression flag bits.
+ * @param result: A JSVM_Value representing a JavaScript RegExp.
+ * @return Only returns JSVM function's result code.
+ *         {@link JSVM_OK } If the API succeeded.\n
+ *         {@link JSVM_INVALID_ARG } If the input parameter is invalid.\n
+ *         {@link JSVM_PENDING_EXCPTION } If the API throws an exception during runtime.\n
+ * @since 12
+ */
+JSVM_Status JSVM_CDECL OH_JSVM_CreateRegExp(JSVM_Env env,
+                                            JSVM_Value value,
+                                            JSVM_RegExpFlags flags,
+                                            JSVM_Value* result);
+
+/**
+ * @brief This API returns the Object prototype.
+ *
+ * @param env: The environment that the API is invoked under.
+ * @param object: JSVM_Value representing JavaScript Object whose prototype to return. This returns
+ * the equivalent of Object.getPrototypeOf (which is not the same as the function's prototype property).
+ * @param result: JSVM_Value representing prototype of the given object.
+ * @return Returns JSVM function's result code.
+ *         {@link JSVM_OK } If the API succeeded.\n
+ *         {@link JSVM_INVALID_ARG } If the input parameter is invalid.\n
+ * @since 12
+ */
+JSVM_EXTERN JSVM_Status OH_JSVM_ObjectGetPrototypeOf(JSVM_Env env,
+                                                     JSVM_Value object,
+                                                     JSVM_Value* result);
+
+/**
+ * @brief This API set the prototype on the Object passed in.
+ *
+ * @param env: The environment that the API is invoked under.
+ * @param object: The object on which to set the prototype.
+ * @param prototype: The prototype value.
+ * @return Returns JSVM function's result code.
+ *         {@link JSVM_OK } If the API succeeded.\n
+ *         {@link JSVM_INVALID_ARG } If the input parameter is invalid.\n
+ * @since 12
+ */
+JSVM_EXTERN JSVM_Status OH_JSVM_ObjectSetPrototypeOf(JSVM_Env env,
+                                                     JSVM_Value object,
+                                                     JSVM_Value prototype);
+
+/**
+ * @brief Creates a function with a given script as its body.
+ *
+ * @param env: The environment that the API is invoked under.
+ * @param funcName: A string containing the function's name. Pass NULL to create an anonymous function.
+ * @param length: The length of the funcName in bytes, or JSVM_AUTO_LENGTH if it
+ * is null-terminated.
+ * @param argc: The count of elements in the argv array.
+ * @param argv: Array of JSVM_Values representing JavaScript strings passed in as arguments to the function.
+ * @param script: A JavaScript string containing the script to use as the function's body.
+ * @param result: JSVM_Value representing the JavaScript function object for the newly
+ * created function.
+ * @return  Returns JSVM function's result code.
+ *          {@link JSVM_OK } If the API succeeded.
+ *          {@link JSVM_INVALID_ARG } If the input parameter is invalid.\n
+ *          {@link JSVM_GENERIC_FAILURE} If the input script fails to be compiled.\n
+ * @since 12
+ */
+JSVM_EXTERN JSVM_Status OH_JSVM_CreateFunctionWithScript(JSVM_Env env,
+                                                         const char* funcName,
+                                                         size_t length,
+                                                         size_t argc,
+                                                         const JSVM_Value* argv,
+                                                         JSVM_Value script,
+                                                         JSVM_Value* result);
+
+/**
+ * @brief This function keep persistently save a JSVM_Script and extend its lifecycle
+ * beyond the current scope.
+ *
+ * @param env: The environment that the API is invoked under.
+ * @param script: A JavaScript string containing the script to be retained.
+ * @return Returns JSVM functions result code
+ *         {@link JSVM_OK } if the API succeeded. \n
+ *         {@link JSVM_INVALID_ARG } if the script is empty or already retained. \n
+ * @since 12
+ */
+JSVM_EXTERN JSVM_Status OH_JSVM_RetainScript(JSVM_Env env, JSVM_Script script);
+
+/**
+ * @brief This function release the script retained by OH_JSVM_RetainScript
+ *
+ * @param env: The environment that the API is invoked under.
+ * @param script: A JavaScript string containing the script to be retained.
+ * @return Returns JSVM functions result code
+ *         {@link JSVM_OK } if the API succeeded. \n
+ *         {@link JSVM_INVALID_ARG } if the script is empty or not retained. \n
+ * @since 12
+ */
+JSVM_EXTERN JSVM_Status OH_JSVM_ReleaseScript(JSVM_Env env, JSVM_Script script);
+
+/**
+ * @brief This function activates insepctor with pid and alias it.
+ *
+ * @param env: The environment that the API is invoked under.
+ * @param pid: A process id to identify the inspector connection.
+ * @param name: An alias for the inspector that under a specific pid.
+ * default name is jsvm if a nullptr is passed in.
+ * @return Returns JSVM funtions result code.
+ *         Returns {@link JSVM_OK } if the function executed successfully.\n
+ *         Returns {@link JSVM_PENDING_EXCEPTION } if an exception occurs.\n
+ * @since 12
+ */
+JSVM_EXTERN JSVM_Status OH_JSVM_OpenInspectorWithName(JSVM_Env env,
+                                                      int pid,
+                                                      const char* name);
+EXTERN_C_END
 /** @} */
 #endif /* ARK_RUNTIME_JSVM_JSVM_H */

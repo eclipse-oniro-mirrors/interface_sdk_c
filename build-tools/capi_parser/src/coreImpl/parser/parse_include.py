@@ -58,7 +58,7 @@ def processing_root_parent(cursor_parent):
     return None
 
 
-def processing_no_child(cursor, data, last_data):  # 处理没有子节点的节点
+def processing_no_child(cursor, data):  # 处理没有子节点的节点
     if cursor.kind == CursorKind.INTEGER_LITERAL:  # 整型字面量类型节点，没有子节点
         tokens = cursor.get_tokens()
         for token in tokens:
@@ -96,7 +96,7 @@ def judgment_extern(cursor, data):  # 判断是否带有extern
 
 
 def binary_operator(cursor, data):  # 二元操作符处理
-    data["name"] = "binary_ope_no_spelling"
+    data["name"] = ""
     tokens = cursor.get_tokens()
     spelling_arr = ['<<', '>>', '+', '-', '*', '/']
     for token in tokens:
@@ -117,7 +117,7 @@ def processing_parm(cursor, data):  # 函数参数节点处理
     if cursor.spelling:  # 函数参数是否带参数名
         data["name"] = cursor.spelling
     else:
-        data["name"] = "arg_no_spelling"
+        data["name"] = ""
 
     if cursor.type.get_pointee().kind == TypeKind.FUNCTIONPROTO:  # 参数为函数指针，获取对应的返回类型
         data["func_pointer_result_type"] = cursor.type.get_pointee().get_result().spelling
@@ -169,10 +169,10 @@ def processing_type(cursor, data):  # 没有类型的节点处理
 def processing_name(cursor, data):  # 没有名的节点处理
     if cursor.kind == CursorKind.PAREN_EXPR:  # 括号表达式()
         data["paren"] = "()"
-        data["name"] = "paren_expr_no_spelling"
+        data["name"] = ""
 
     elif cursor.kind == CursorKind.UNEXPOSED_EXPR:  # 未公开表达式，用于表示未明确定义的表达式
-        data["name"] = "unexposed_expr_no_spelling"
+        data["name"] = ""
 
 
 def processing_char(cursor, data):  # 字符节点处理
@@ -197,11 +197,15 @@ special_node_process = {
 }
 
 
-def get_api_unique_id(cursor, loc):
+def get_api_unique_id(cursor, loc, data):
+    unique_id = ''
+    if cursor.kind == CursorKind.MACRO_DEFINITION:
+        unique_id = '{}#{}'.format(loc["location_path"], cursor.spelling)
+        return unique_id
+
     parent_of_cursor = cursor.semantic_parent
     struct_union_enum = [NodeKind.STRUCT_DECL.value, NodeKind.UNION_DECL.value,
                          NodeKind.ENUM_DECL.value]
-    unique_id = ''
     if parent_of_cursor:
         unique_name = cursor.spelling
         try:
@@ -209,6 +213,7 @@ def get_api_unique_id(cursor, loc):
                 parent_name_str = ''
             elif parent_of_cursor.kind.name in struct_union_enum:
                 parent_name_str = parent_of_cursor.type.spelling
+                data['class_name'] = parent_of_cursor.spelling
             else:
                 parent_name_str = parent_of_cursor.spelling
         except ValueError:
@@ -222,7 +227,7 @@ def get_api_unique_id(cursor, loc):
     return unique_id
 
 
-def processing_special_node(cursor, data, key, gn_path=None):  # 处理需要特殊处理的节点
+def processing_special_node(cursor, data, key, gn_path):  # 处理需要特殊处理的节点
     if key == 0:
         location_path = cursor.spelling
         kind_name = CursorKind.TRANSLATION_UNIT.name
@@ -239,7 +244,9 @@ def processing_special_node(cursor, data, key, gn_path=None):  # 处理需要特
         relative_path = os.path.relpath(location_path, gn_path)  # 获取头文件相对路
         loc["location_path"] = relative_path
     data["location"] = loc
-    data["unique_id"] = get_api_unique_id(cursor, loc)
+    data["unique_id"] = get_api_unique_id(cursor, loc, data)
+    if key == 0:
+        data["unique_id"] = data["name"]
     if kind_name in special_node_process.keys():
         node_process = special_node_process[kind_name]
         node_process(cursor, data)  # 调用对应节点处理函数
@@ -272,7 +279,7 @@ def define_comment(cursor, current_file, data):
             data['comment'] = matches.group()
 
 
-def get_default_node_data(cursor, gn_path=None):
+def get_default_node_data(cursor, gn_path):
     data = {
         "name": cursor.spelling,
         "kind": '',
@@ -300,7 +307,7 @@ def get_default_node_data(cursor, gn_path=None):
     return data
 
 
-def parser_data_assignment(cursor, current_file, gn_path=None, comment=None, key=0):
+def parser_data_assignment(cursor, current_file, gn_path, comment=None, key=0):
     data = get_default_node_data(cursor, gn_path)
     get_comment(cursor, data)
     if key == 0:
@@ -357,12 +364,14 @@ def ast_to_dict(cursor, current_file, last_data, gn_path, comment=None, key=0): 
         for child in children:
             # 剔除多余宏定义和跳过UNEXPOSED_ATTR节点
             if (child.location.file is not None) and (not child.kind.is_attribute()) \
+                    and child.kind.name != CursorKind.MACRO_INSTANTIATION.name \
+                    and child.kind.name != CursorKind.INCLUSION_DIRECTIVE.name \
                     and (child.location.file.name == current_file):
                 processing_ast_node(child, current_file, data, name, gn_path)
     else:
         if cursor.kind == CursorKind.FUNCTION_DECL:  # 防止clang默认处理(对于头文件没有的情况)出现没有该键值对
             data["parm"] = []
-        processing_no_child(cursor, data, last_data)  # 处理没有子节点的节点
+        processing_no_child(cursor, data)  # 处理没有子节点的节点
     return data
 
 
@@ -488,10 +497,10 @@ def processing_ast_node(child, current_file, data, name, gn_path):
         data[name].append(child_data)
 
 
-def preorder_travers_ast(cursor, total, comment, current_file, gn_path):  # 获取属性
+def preorder_travers_ast(cursor, comment, current_file, gn_path):  # 获取属性
     previous_data = {}
     ast_dict = ast_to_dict(cursor, current_file, previous_data, gn_path, comment)  # 获取节点属性
-    total.append(ast_dict)  # 追加到数据统计列表里面
+    return ast_dict
 
 
 def get_start_comments(include_path):  # 获取每个头文件的最开始注释
@@ -499,7 +508,11 @@ def get_start_comments(include_path):  # 获取每个头文件的最开始注释
     line_dist = {}
     global calculation_times
     with open(include_path, 'r', encoding='utf-8') as f:
-        last_line = f.readlines()[-1]
+        file_line_data = f.readlines()
+        if file_line_data:
+            last_line = file_line_data[-1]
+        else:
+            last_line = -1
         f.seek(0)
         content = ''
         mark = 0
@@ -520,7 +533,7 @@ def get_start_comments(include_path):  # 获取每个头文件的最开始注释
             line_number += 1
             content += line
             line = f.readline()
-        if line == last_line:
+        if line == last_line and last_line != -1:
             mark = 0
         if 0 == mark:
             content = ''
@@ -541,7 +554,7 @@ def get_start_comments(include_path):  # 获取每个头文件的最开始注释
         return content
 
 
-def api_entrance(share_lib, include_path, gn_path, link_path=None):  # 统计入口
+def api_entrance(share_lib, include_path, gn_path, link_path):  # 统计入口
     # clang.cindex需要用到libclang.dll共享库   所以配置共享库
     if not Config.loaded:
         Config.set_library_file(share_lib)
@@ -559,8 +572,8 @@ def api_entrance(share_lib, include_path, gn_path, link_path=None):  # 统计入
         ast_root_node = tu.cursor  # 获取根节点
         matches = get_start_comments(item)  # 接收文件最开始的注释
         # 前序遍历AST
-        preorder_travers_ast(ast_root_node, data_total, matches, item, gn_path)  # 调用处理函数
-
+        file_result_data = preorder_travers_ast(ast_root_node, matches, item, gn_path)  # 调用处理函数
+        data_total.append(file_result_data)
         iter_line_dist = iter(line_dist)
         first = next(iter_line_dist)
         array_index = int(first)

@@ -13,6 +13,17 @@
  * limitations under the License.
  */
 
+/**
+ * @file native_avcodec_audiocodec.h
+ *
+ * @brief Provides audio encoder and decoder capabilities.
+ *
+ * @kit AVCodecKit
+ * @library libnative_media_acodec.so
+ * @syscap SystemCapability.Multimedia.Media.AudioCodec
+ * @since 11
+ */
+
 #ifndef NATIVE_AVCODEC_AUDIOCODEC_H
 #define NATIVE_AVCODEC_AUDIOCODEC_H
 
@@ -27,7 +38,6 @@ extern "C" {
 /**
  * @brief MediaKeySession field.
  * @since 12
- * @version 1.0
  */
 typedef struct MediaKeySession MediaKeySession;
 

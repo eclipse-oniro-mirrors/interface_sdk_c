@@ -247,7 +247,7 @@ NAPI_EXTERN napi_status napi_wrap_sendable_with_size(napi_env env, napi_value js
  */
 NAPI_EXTERN napi_status napi_unwrap_sendable(napi_env env, napi_value js_object, void** result);
 /**
- * @brief Retrieves a native instance that was previously wrapped in a ArkTS object.
+ * @brief Retrieves a native instance that was previously wrapped in a ArkTS object and removes the wrapping.
  *
  * @param env The environment that the API is invoked under.
  * @param js_object The object associated with the native instance.

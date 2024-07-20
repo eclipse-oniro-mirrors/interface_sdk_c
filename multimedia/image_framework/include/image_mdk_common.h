@@ -29,6 +29,7 @@
  *
  * @brief Declares the common enums and structs used by the image interface.
  *
+ * @kit ImageKit
  * @since 10
  * @version 2.0
  */

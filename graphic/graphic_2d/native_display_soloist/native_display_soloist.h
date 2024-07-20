@@ -30,8 +30,10 @@
  * @file native_display_soloist.h
  *
  * @brief Defines the functions for obtaining and using a native displaySoloist.
- * @syscap SystemCapability.Graphic.Graphic2D.HyperGraphicManager
+ *
+ * @kit ArkGraphics2D
  * @library libnative_display_soloist.so
+ * @syscap SystemCapability.Graphic.Graphic2D.HyperGraphicManager
  * @since 12
  * @version 1.0
  */

@@ -38,12 +38,14 @@
  * including managing the engine lifecycle, compiling and running JS code, implementing JS/C++ cross language calls,
  * and taking snapshots.
  * @library libjsvm.so
+ * @kit ArkTS
  * @syscap SystemCapability.ArkCompiler.JSVM
  * @since 11
  */
 
 #include <stddef.h>  // NOLINT(modernize-deprecated-headers)
 #include <stdint.h>  // NOLINT(modernize-deprecated-headers)
+#include <stdbool.h>  // NOLINT(modernize-deprecated-headers)
 
 #if !defined __cplusplus || (defined(_MSC_VER) && _MSC_VER < 1900)
 typedef uint16_t char16_t;
@@ -174,7 +176,7 @@ typedef void(JSVM_CDECL* JSVM_Finalize)(JSVM_Env env,
  * And the second parameter size is the data size to output. A null data pointer indicates the end of the stream.
  * The third parameter streamData is the pointer passed in together with the callback to the API functions that
  * generate data to the output stream. The callback returns true to indicate the stream can continue to accept
- * data. Otherwise, it will abort the stream. 
+ * data. Otherwise, it will abort the stream.
  *
  * @since 12
  */
@@ -375,6 +377,43 @@ typedef enum {
     /** critical pressure. */
     JSVM_MEMORY_PRESSURE_LEVEL_CRITICAL,
 } JSVM_MemoryPressureLevel;
+
+/**
+ *
+ * @brief Compile mode
+ *
+ * @since 12
+ */
+typedef enum {
+    /** default mode. */
+    JSVM_COMPILE_MODE_DEFAULT,
+    /** consume code cache. */
+    JSVM_COMPILE_MODE_CONSUME_CODE_CACHE,
+    /** apply eager compile. */
+    JSVM_COMPILE_MODE_EAGER_COMPILE,
+    /** preset for compile profile. */
+    JSVM_COMPILE_MODE_PRODUCE_COMPILE_PROFILE,
+    /** consume compile profile. */
+    JSVM_COMPILE_MODE_CONSUME_COMPILE_PROFILE,
+} JSVM_CompileMode;
+
+/**
+ * @brief Compile option id
+ *
+ * @since 12
+ */
+typedef enum {
+    /** compile mode. */
+    JSVM_COMPILE_MODE,
+    /** code cache content. */
+    JSVM_COMPILE_CODE_CACHE,
+    /** script origin. */
+    JSVM_COMPILE_SCRIPT_ORIGIN,
+    /** compile profile content. */
+    JSVM_COMPILE_COMPILE_PROFILE,
+    /** switch for source map support. */
+    JSVM_COMPILE_ENABLE_SOURCE_MAP,
+} JSVM_CompileOptionId;
 
 /**
  * @brief Heap statisics.
@@ -615,5 +654,76 @@ typedef struct {
     /** Resource column offset. */
     size_t resourceColumnOffset;
 } JSVM_ScriptOrigin;
+
+/**
+ * @brief Compile Options
+ *
+ * @since 12
+ */
+typedef struct {
+    /** compile option id. */
+    JSVM_CompileOptionId id;
+    /** option content. */
+    union {
+        /** ptr type. */
+        void *ptr;
+        /** int type. */
+        int num;
+        /** bool type. */
+        _Bool boolean;
+    } content;
+} JSVM_CompileOptions;
+
+/**
+ * @brief code cache passed with JSVM_COMPILE_CODE_CACHE
+ *
+ * @since 12
+ */
+typedef struct {
+    /** cache pointer. */
+    uint8_t *cache;
+    /** length. */
+    size_t length;
+} JSVM_CodeCache;
+
+/**
+ * @brief compile profile passed with JSVM_COMPILE_COMPILE_PROFILE
+ *
+ * @since 12
+ */
+typedef const struct {
+    /** profile pointer. */
+    int *profile;
+    /** length. */
+    size_t length;
+} JSVM_CompileProfile;
+
+/**
+ * @brief Regular expression flag bits. They can be or'ed to enable a set of flags.
+ *
+ * @since 12
+ */
+typedef enum {
+    /** None mode. */
+    JSVM_REGEXP_NONE = 0,
+    /** Global mode. */
+    JSVM_REGEXP_GLOBAL = 1 << 0,
+    /** Ignore Case mode. */
+    JSVM_REGEXP_IGNORE_CASE = 1 << 1,
+    /** Multiline mode. */
+    JSVM_REGEXP_MULTILINE = 1 << 2,
+    /** Sticky mode. */
+    JSVM_REGEXP_STICKY = 1 << 3,
+    /** Unicode mode. */
+    JSVM_REGEXP_UNICODE = 1 << 4,
+    /** dotAll mode. */
+    JSVM_REGEXP_DOT_ALL = 1 << 5,
+    /** Linear mode. */
+    JSVM_REGEXP_LINEAR = 1 << 6,
+    /** Has Indices mode. */
+    JSVM_REGEXP_HAS_INDICES = 1 << 7,
+    /** Unicode Sets mode. */
+    JSVM_REGEXP_UNICODE_SETS = 1 << 8,
+} JSVM_RegExpFlags;
 /** @} */
 #endif /* ARK_RUNTIME_JSVM_JSVM_TYPE_H */

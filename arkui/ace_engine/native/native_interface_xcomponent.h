@@ -29,6 +29,7 @@
  *
  * @brief Declares APIs for accessing a Native XComponent.
  *
+ * @kit ArkUI
  * @since 8
  * @version 1.0
  */

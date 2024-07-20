@@ -16,6 +16,29 @@
 #ifndef INCLUDE_BUFFER_HANDLE_H
 #define INCLUDE_BUFFER_HANDLE_H
 
+/**
+ * @addtogroup NativeWindow
+ * @{
+ *
+ * @brief Provides the BufferHandle struct for native window.
+ *
+ * @syscap SystemCapability.Graphic.Graphic2D.NativeWindow
+ * @since 8
+ * @version 1.0
+ */
+
+/**
+ * @file buffer_handle.h
+ *
+ * @brief Defines the BufferHandle struct for native window.
+ *
+ * @kit ArkGraphics2D
+ * @library libnative_window.so
+ * @syscap SystemCapability.Graphic.Graphic2D.NativeWindow
+ * @since 8
+ * @version 1.0
+ */
+
 #include <stdint.h>
 
 #ifdef __cplusplus

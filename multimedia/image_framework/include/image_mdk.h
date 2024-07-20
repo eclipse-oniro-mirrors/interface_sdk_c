@@ -30,6 +30,7 @@
  * @brief Declares functions that access the image rectangle, size, format, and component data.
  * Need link <b>libimagendk.z.so</b>
  *
+ * @kit ImageKit
  * @since 10
  * @version 2.0
  */

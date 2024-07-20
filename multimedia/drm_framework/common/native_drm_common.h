@@ -251,7 +251,7 @@ typedef struct DRM_MediaKeyRequestInfo {
      */
     int32_t initDataLen;
     /**
-     * Initial data format as PSSH after base64 encoding.
+     * PSSH info.
      */
     uint8_t initData[MAX_INIT_DATA_LEN];
     /**

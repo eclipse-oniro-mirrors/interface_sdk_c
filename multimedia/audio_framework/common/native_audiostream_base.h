@@ -30,7 +30,9 @@
  *
  * @brief Declare the underlying data structure.
  *
+ * @library libohaudio.so
  * @syscap SystemCapability.Multimedia.Audio.Core
+ * @kit AudioKit
  * @since 10
  * @version 1.0
  */

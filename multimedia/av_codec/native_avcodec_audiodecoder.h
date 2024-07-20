@@ -13,6 +13,17 @@
  * limitations under the License.
  */
 
+/**
+ * @file native_avcodec_audiodecoder.h
+ *
+ * @brief Provides audio decoder capabilities.
+ *
+ * @kit AVCodecKit
+ * @library libnative_media_adec.so
+ * @syscap SystemCapability.Multimedia.Media.AudioDecoder
+ * @since 9
+ */
+
 #ifndef NATIVE_AVCODEC_AUDIODECODER_H
 #define NATIVE_AVCODEC_AUDIODECODER_H
 
@@ -32,7 +43,6 @@ extern "C" {
  * @deprecated since 11
  * @useinstead OH_AudioCodec_CreateByMime
  * @since 9
- * @version 1.0
  */
 OH_AVCodec *OH_AudioDecoder_CreateByMime(const char *mime);
 
@@ -45,7 +55,6 @@ OH_AVCodec *OH_AudioDecoder_CreateByMime(const char *mime);
  * @deprecated since 11
  * @useinstead OH_AudioCodec_CreateByName
  * @since 9
- * @version 1.0
  */
 OH_AVCodec *OH_AudioDecoder_CreateByName(const char *name);
 
@@ -58,7 +67,6 @@ OH_AVCodec *OH_AudioDecoder_CreateByName(const char *name);
  * @deprecated since 11
  * @useinstead OH_AudioCodec_Destroy
  * @since 9
- * @version 1.0
  */
 OH_AVErrCode OH_AudioDecoder_Destroy(OH_AVCodec *codec);
 
@@ -74,7 +82,6 @@ OH_AVErrCode OH_AudioDecoder_Destroy(OH_AVCodec *codec);
  * @deprecated since 11
  * @useinstead OH_AudioCodec_RegisterCallback
  * @since 9
- * @version 1.0
  */
 OH_AVErrCode OH_AudioDecoder_SetCallback(OH_AVCodec *codec, OH_AVCodecAsyncCallback callback, void *userData);
 
@@ -89,7 +96,6 @@ OH_AVErrCode OH_AudioDecoder_SetCallback(OH_AVCodec *codec, OH_AVCodecAsyncCallb
  * @deprecated since 11
  * @useinstead OH_AudioCodec_Configure
  * @since 9
- * @version 1.0
  */
 OH_AVErrCode OH_AudioDecoder_Configure(OH_AVCodec *codec, OH_AVFormat *format);
 
@@ -103,7 +109,6 @@ OH_AVErrCode OH_AudioDecoder_Configure(OH_AVCodec *codec, OH_AVFormat *format);
  * @deprecated since 11
  * @useinstead OH_AudioCodec_Prepare
  * @since 9
- * @version 1.0
  */
 OH_AVErrCode OH_AudioDecoder_Prepare(OH_AVCodec *codec);
 
@@ -117,7 +122,6 @@ OH_AVErrCode OH_AudioDecoder_Prepare(OH_AVCodec *codec);
  * @deprecated since 11
  * @useinstead OH_AudioCodec_Start
  * @since 9
- * @version 1.0
  */
 OH_AVErrCode OH_AudioDecoder_Start(OH_AVCodec *codec);
 
@@ -132,7 +136,6 @@ OH_AVErrCode OH_AudioDecoder_Start(OH_AVCodec *codec);
  * @deprecated since 11
  * @useinstead OH_AudioCodec_Stop
  * @since 9
- * @version 1.0
  */
 OH_AVErrCode OH_AudioDecoder_Stop(OH_AVCodec *codec);
 
@@ -147,7 +150,6 @@ OH_AVErrCode OH_AudioDecoder_Stop(OH_AVCodec *codec);
  * @deprecated since 11
  * @useinstead OH_AudioCodec_Flush
  * @since 9
- * @version 1.0
  */
 OH_AVErrCode OH_AudioDecoder_Flush(OH_AVCodec *codec);
 
@@ -161,7 +163,6 @@ OH_AVErrCode OH_AudioDecoder_Flush(OH_AVCodec *codec);
  * @deprecated since 11
  * @useinstead OH_AudioCodec_Reset
  * @since 9
- * @version 1.0
  */
 
 OH_AVErrCode OH_AudioDecoder_Reset(OH_AVCodec *codec);
@@ -177,7 +178,6 @@ OH_AVErrCode OH_AudioDecoder_Reset(OH_AVCodec *codec);
  * @deprecated since 11
  * @useinstead OH_AudioCodec_GetOutputDescription
  * @since 9
- * @version 1.0
  */
 OH_AVFormat *OH_AudioDecoder_GetOutputDescription(OH_AVCodec *codec);
 
@@ -192,7 +192,6 @@ OH_AVFormat *OH_AudioDecoder_GetOutputDescription(OH_AVCodec *codec);
  * @deprecated since 11
  * @useinstead OH_AudioCodec_SetParameter
  * @since 9
- * @version 1.0
  */
 OH_AVErrCode OH_AudioDecoder_SetParameter(OH_AVCodec *codec, OH_AVFormat *format);
 
@@ -212,7 +211,6 @@ OH_AVErrCode OH_AudioDecoder_SetParameter(OH_AVCodec *codec, OH_AVFormat *format
  * @deprecated since 11
  * @useinstead OH_AudioCodec_PushInputBuffer
  * @since 9
- * @version 1.0
  */
 OH_AVErrCode OH_AudioDecoder_PushInputData(OH_AVCodec *codec, uint32_t index, OH_AVCodecBufferAttr attr);
 
@@ -226,7 +224,6 @@ OH_AVErrCode OH_AudioDecoder_PushInputData(OH_AVCodec *codec, uint32_t index, OH
  * @deprecated since 11
  * @useinstead OH_AudioCodec_FreeOutputBuffer
  * @since 9
- * @version 1.0
  */
 OH_AVErrCode OH_AudioDecoder_FreeOutputData(OH_AVCodec *codec, uint32_t index);
 
