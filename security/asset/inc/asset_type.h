@@ -114,9 +114,6 @@ typedef enum {
     ASSET_TAG_SYNC_TYPE = ASSET_TYPE_NUMBER | 0x10,
     /**
      * A Boolean value indicating whether the asset needs to be stored persistently.
-     * The ohos.permission.STORE_PERSISTENT_DATA permission is required if <b>OH_Asset_Add</b> is called with this tag.
-     *
-     * @permission ohos.permission.STORE_PERSISTENT_DATA
      */
     ASSET_TAG_IS_PERSISTENT = ASSET_TYPE_BOOL | 0x11,
     /**
