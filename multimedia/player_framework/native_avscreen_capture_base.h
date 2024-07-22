@@ -13,6 +13,18 @@
  * limitations under the License.
  */
 
+ /**
+ * @file native_avscreen_capture_base.h
+ *
+ * @brief Declare screen capture related struct.
+ *
+ * @library libnative_avscreen_capture.so
+ * @syscap SystemCapability.Multimedia.Media.AVScreenCapture
+ * @kit MediaKit
+ * @since 10
+ * @version 1.0
+ */
+ 
 #ifndef NATIVE_AVSCREEN_CAPTURE_BASE_H
 #define NATIVE_AVSCREEN_CAPTURE_BASE_H
 

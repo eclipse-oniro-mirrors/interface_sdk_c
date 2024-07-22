@@ -12,6 +12,18 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+ 
+ /**
+ * @file native_avscreen_capture.h
+ *
+ * @brief Declare screen capture related interfaces.
+ *
+ * @library libnative_avscreen_capture.so
+ * @syscap SystemCapability.Multimedia.Media.AVScreenCapture
+ * @kit MediaKit
+ * @since 10
+ * @version 1.0
+ */
 
 #ifndef NATIVE_AVSCREEN_CAPTURE_H
 #define NATIVE_AVSCREEN_CAPTURE_H
