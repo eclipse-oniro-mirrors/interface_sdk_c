@@ -37,7 +37,7 @@ extern "C" {
 
 /**
  * @brief Forward declaration of OH_AVCapability.
- * 
+ *
  * @since 10
  */
 typedef struct OH_AVCapability OH_AVCapability;

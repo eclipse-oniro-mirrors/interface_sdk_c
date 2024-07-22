@@ -626,8 +626,8 @@ typedef enum {
      * .value[0]?.f32: blur radius of the shadow, in vp.\n
      * .value[1]?.i32: whether to enable the coloring strategy. The value <b>1</b> means to enable the coloring
      * strategy, and <b>0</b> (default value) means the opposite.\n
-     * .value[2]?.f32: offset of the shadow along the x-axis, in vp.\n
-     * .value[3]?.f32: offset of the shadow along the y-axis, in vp.\n
+     * .value[2]?.f32: offset of the shadow along the x-axis, in px.\n
+     * .value[3]?.f32: offset of the shadow along the y-axis, in px.\n
      * .value[4]?.i32: shadow type {@link ArkUI_ShadowType}. The default value is <b>ARKUI_SHADOW_TYPE_COLOR</b>.\n
      * .value[5]?.u32: shadow color, in 0xARGB format. For example, 0xFFFF0000 indicates red.\n
      * .value[6]?.u32: whether to fill the shadow. The value <b>1</b> means to fill the shadow, and <b>0</b>
@@ -637,8 +637,8 @@ typedef enum {
      * Format of the return value {@link ArkUI_AttributeItem}:\n
      * .value[0].f32: blur radius of the shadow, in vp.\n
      * .value[1].i32: whether to enable the coloring strategy. \n
-     * .value[2].f32: offset of the shadow along the x-axis, in vp.\n
-     * .value[3].f32: offset of the shadow along the y-axis, in vp.\n
+     * .value[2].f32: offset of the shadow along the x-axis, in px.\n
+     * .value[3].f32: offset of the shadow along the y-axis, in px.\n
      * .value[4].i32: shadow type {@link ArkUI_ShadowType}. The default value is <b>ARKUI_SHADOW_TYPE_COLOR</b>.\n
      * .value[5].u32: shadow color, in 0xARGB format. For example, 0xFFFF0000 indicates red.\n
      * .value[6].u32: whether to fill the shadow. The value <b>1</b> means to fill the shadow, and <b>0</b>
@@ -5092,7 +5092,8 @@ typedef enum {
     NODE_WATER_FLOW_ROW_TEMPLATE,
 
     /**
-     * @brief Sets the gap between columns. This attribute can be set, reset, and obtained as required through APIs.
+     * @brief Sets the gap between columns.
+     * This attribute can be set, reset, and obtained as required through APIs.
      *
      * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
      * .value[0].f32: gap between columns, in vp.\n
@@ -5104,7 +5105,8 @@ typedef enum {
     NODE_WATER_FLOW_COLUMN_GAP,
 
     /**
-     * @brief Sets the gap between rows. This attribute can be set, reset, and obtained as required through APIs.
+     * @brief Sets the gap between rows.
+     * This attribute can be set, reset, and obtained as required through APIs.
      *
      * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
      * .value[0].f32: gap between lines, in vp.\n

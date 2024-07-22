@@ -329,12 +329,28 @@ extern const char *OH_AVCODEC_MIMETYPE_AUDIO_LBVC;
 extern const char *OH_AVCODEC_MIMETYPE_AUDIO_APE;
 
 /**
+ * @brief Enumerates the MIME type of versatile video coding.
+ *
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
+ * @since 12
+ */
+extern const char *OH_AVCODEC_MIMETYPE_VIDEO_VVC;
+
+/**
  * @brief Enumerates the mime type of subtitle srt.
  *
  * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 12
  */
 extern const char *OH_AVCODEC_MIMETYPE_SUBTITLE_SRT;
+
+/**
+ * @brief Enumerates the mime type of subtitle webvtt.
+ *
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
+ * @since 12
+ */
+extern const char *OH_AVCODEC_MIMETYPE_SUBTITLE_WEBVTT;
 
 /**
  * @brief Key for timeStamp in surface's extraData, value type is int64_t.
@@ -936,6 +952,10 @@ typedef enum OH_MediaType {
     MEDIA_TYPE_AUD = 0,
     /* track is video. */
     MEDIA_TYPE_VID = 1,
+    /** track is subtitle.
+     * @since 12
+     */
+    MEDIA_TYPE_SUBTITLE = 2,
 } OH_MediaType;
 
 /**
@@ -994,6 +1014,11 @@ typedef enum OH_AVOutputFormat {
      * @since 12
      */
     AV_OUTPUT_FORMAT_MP3 = 9,
+    /**
+     * The muxer output wav file format.
+     * @since 12
+     */
+    AV_OUTPUT_FORMAT_WAV = 10,
 } OH_AVOutputFormat;
 
 /**

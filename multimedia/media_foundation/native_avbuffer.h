@@ -36,7 +36,18 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
+
+/**
+ * @brief Forward declaration of OH_AVBuffer.
+ *
+ * @since 11
+ */
 typedef struct OH_AVBuffer OH_AVBuffer;
+/**
+ * @brief Forward declaration of OH_NativeBuffer.
+ *
+ * @since 11
+ */
 typedef struct OH_NativeBuffer OH_NativeBuffer;
 
 /**
