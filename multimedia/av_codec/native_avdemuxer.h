@@ -47,7 +47,6 @@ typedef struct OH_AVDemuxer OH_AVDemuxer;
  * @since 11
  */
 typedef struct DRM_MediaKeySystemInfo DRM_MediaKeySystemInfo;
-
 typedef void (*DRM_MediaKeySystemInfoCallback)(DRM_MediaKeySystemInfo* mediaKeySystemInfo);
 
 /**
