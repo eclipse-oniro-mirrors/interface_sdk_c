@@ -29,6 +29,7 @@
  *
  * @brief Defines the structure and enumeration for Media AVPlayer.
  *
+ * @kit MediaKit
  * @library libavplayer.so
  * @since 11
  * @version 1.0
