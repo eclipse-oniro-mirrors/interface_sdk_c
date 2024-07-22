@@ -404,8 +404,8 @@ Image_ErrorCode OH_PixelmapNative_CreatePixelmap(uint8_t *data, size_t dataLengt
  * @brief Convert a native <b>PixelMap</b> object to <b>PixelMap</b> napi object.
  *
  * @param env Indicates the NAPI environment pointer.
- * @param pixelmap Indicates the <b>PixelMap</b> pointer will be converted.
- * @param res Indicates a pointer to the <b>PixelMap</b> object created at the native layer.
+ * @param pixelmapNative Indicates the <b>PixelMap</b> pointer will be converted.
+ * @param pixelmapNapi Indicates a pointer to the <b>PixelMap</b> object created at the native layer.
  * @return Returns {@link Image_ErrorCode}
  * @since 12
  */
@@ -416,8 +416,8 @@ Image_ErrorCode OH_PixelmapNative_ConvertPixelmapNativeToNapi(napi_env env, OH_P
  * @brief Convert a <b>PixelMap</b> napi object to native <b>PixelMap</b> object.
  *
  * @param env Indicates the NAPI environment pointer.
- * @param source Indicates the options for setting the <b>PixelMap</b> object.
- * @param pixelmap Indicates <b>PixelMap</b> pointer for created.
+ * @param pixelmapNapi Indicates the options for setting the <b>PixelMap</b> object.
+ * @param pixelmapNative Indicates <b>PixelMap</b> pointer for created.
  * @return Returns {@link Image_ErrorCode}
  * @since 12
  */
