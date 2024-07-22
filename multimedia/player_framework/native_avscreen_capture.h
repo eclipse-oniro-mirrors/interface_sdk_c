@@ -14,6 +14,15 @@
  */
  
  /**
+ * @addtogroup AVScreenCapture
+ * @{
+ * 
+ * @brief Provides APIs of request capability for Screen Capture.
+ * @syscap SystemCapability.Multimedia.Media.AVScreenCapture
+ * @since 10
+ */
+
+ /**
  * @file native_avscreen_capture.h
  *
  * @brief Declare screen capture related interfaces.
