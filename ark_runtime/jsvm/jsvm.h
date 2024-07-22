@@ -2726,7 +2726,7 @@ JSVM_EXTERN JSVM_Status OH_JSVM_CompileScriptWithOptions(JSVM_Env env,
                                                          JSVM_Value script,
                                                          size_t optionCount,
                                                          JSVM_CompileOptions options[],
-                                                         JSVM_Value* result);
+                                                         JSVM_Script* result);
 
 /**
  * @brief This API implements the abstract operation ToBigInt().
