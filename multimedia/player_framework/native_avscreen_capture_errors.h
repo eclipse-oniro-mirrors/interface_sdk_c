@@ -12,16 +12,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
- 
- /**
+
+/**
  * @addtogroup AVScreenCapture
  * @{
- * 
+ *
  * @brief Provides APIs of request capability for Screen Capture.
  * @syscap SystemCapability.Multimedia.Media.AVScreenCapture
  * @since 10
+ * @version 1.0
  */
- 
+
  /**
  * @file native_avscreen_capture_errors.h
  *
@@ -33,7 +34,7 @@
  * @since 10
  * @version 1.0
  */
- 
+
 #ifndef NATIVE_AVSCREEN_CAPTURE_ERRORS_H
 #define NATIVE_AVSCREEN_CAPTURE_ERRORS_H
 
