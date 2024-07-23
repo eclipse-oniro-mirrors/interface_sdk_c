@@ -1,0 +1,58 @@
+[
+    {
+        "first_introduced": "13",
+        "name": "OH_PasteboardObserver_Create"
+    },
+    {
+        "first_introduced": "13",
+        "name": "OH_PasteboardObserver_Destroy"
+    },
+    {
+        "first_introduced": "13",
+        "name": "OH_PasteboardObserver_SetData"
+    },
+    {
+        "first_introduced": "13",
+        "name": "OH_Pasteboard_Create"
+    },
+    {
+        "first_introduced": "13",
+        "name": "OH_PasteBoard_Destroy"
+    },
+    {
+        "first_introduced": "13",
+        "name": "OH_PasteBoard_Subcribe"
+    },
+    {
+        "first_introduced": "13",
+        "name": "OH_PasteBoard_Unsubcribe"
+    },
+    {
+        "first_introduced": "13",
+        "name": "OH_PasteBoard_IsRemoteData"
+    },
+    {
+        "first_introduced": "13",
+        "name": "OH_PasteBoard_GetDataSrouce"
+    },
+    {
+        "first_introduced": "13",
+        "name": "OH_PasteBoard_HasType"
+    },
+    {
+        "first_introduced": "13",
+        "name": "OH_PasteBoard_HasData"
+    },
+    {
+        "first_introduced": "13",
+        "name": "OH_PasteBoard_GetData"
+    },
+    {
+        "first_introduced": "13",
+        "name": "OH_PasteBoard_SetData"
+    },
+    {
+        "first_introduced": "13",
+        "name": "OH_PasteBoard_ClearData"
+    }
+]
