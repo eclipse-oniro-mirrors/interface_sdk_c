@@ -12,15 +12,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+ 
 /**
  * @addtogroup AVScreenCapture
  * @{
- *
+ * 
  * @brief Provides APIs of request capability for Screen Capture.
- * @syscap SystemCapability.Multimedia.Media.AVScreenCapture
  * @since 10
- * @version 1.0
  */
 
 /**
@@ -32,7 +30,6 @@
  * @syscap SystemCapability.Multimedia.Media.AVScreenCapture
  * @kit MediaKit
  * @since 10
- * @version 1.0
  */
 
 #ifndef NATIVE_AVSCREEN_CAPTURE_H
@@ -390,3 +387,4 @@ OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_ContentFilter_AddWindowContent(
 #endif
 
 #endif // NATIVE_AVSCREEN_CAPTURE_H
+/** @} */
