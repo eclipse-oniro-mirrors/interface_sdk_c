@@ -35,6 +35,7 @@
  *
  * @brief Declaration error code information.
  *
+ * @kit ArkData
  * @since 10
  */
 

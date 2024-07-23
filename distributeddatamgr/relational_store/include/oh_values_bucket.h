@@ -34,6 +34,7 @@
  *
  * @brief Define the type of stored key value pairs.
  *
+ * @kit ArkData
  * @since 10
  */
 
