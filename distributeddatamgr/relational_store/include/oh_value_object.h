@@ -34,6 +34,7 @@
  *
  * @brief Provides numeric type conversion functions.
  *
+ * @kit ArkData
  * @since 10
  */
 

@@ -34,6 +34,7 @@
  *
  * @brief Provides database related functions and enumerations.
  *
+ * @kit ArkData
  * @since 10
  */
 
