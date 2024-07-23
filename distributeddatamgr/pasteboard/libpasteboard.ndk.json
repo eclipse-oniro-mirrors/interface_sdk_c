@@ -1,0 +1,62 @@
+[
+    {
+        "first_introduced": "12",
+        "name": "OH_PasteBoardSubcriber_Create"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_PasteBoardSubcriber_Destroy"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_PasteBoardSubcriber_SetCallback"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_PasteBoardSubcriber_GetCallback"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_PasteBoard_Create"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_PasteBoard_Destroy"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_PasteBoard_Subcribe"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_PasteBoard_Unsubcribe"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_PasteBoard_IsRemoteData"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_PasteBoard_GetDataSrouce"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_PasteBoard_HasType"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_PasteBoard_HasData"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_PasteBoard_GetData"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_PasteBoard_SetData"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_PasteBoard_ClearData"
+    }
+]
