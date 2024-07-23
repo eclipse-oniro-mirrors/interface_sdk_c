@@ -287,6 +287,7 @@ char** OH_UdmfRecord_GetTypes(OH_UdmfRecord* pThis, unsigned int* count);
  * @return Returns the status code of the execution. See {@link Udmf_ErrCode}.
  *         {@link UDMF_E_OK} success.
  *         {@link UDMF_E_INVALID_PARAM} The error code for common invalid args.
+ *         {@link UDMF_ERR} 1.Internal data error. 2.Record data count exceeds the maximum value.
  * @see OH_UdmfRecord Udmf_ErrCode.
  * @since 12
  */
@@ -301,6 +302,7 @@ int OH_UdmfRecord_GetGeneralEntry(OH_UdmfRecord* pThis, const char* typeId,
  * @return Returns the status code of the execution. See {@link Udmf_ErrCode}.
  *         {@link UDMF_E_OK} success.
  *         {@link UDMF_E_INVALID_PARAM} The error code for common invalid args.
+ *         {@link UDMF_ERR} The record type is not plain text.
  * @see OH_UdmfRecord OH_UdsPlainText Udmf_ErrCode.
  * @since 12
  */
@@ -314,6 +316,7 @@ int OH_UdmfRecord_GetPlainText(OH_UdmfRecord* pThis, OH_UdsPlainText* plainText)
  * @return Returns the status code of the execution. See {@link Udmf_ErrCode}.
  *         {@link UDMF_E_OK} success.
  *         {@link UDMF_E_INVALID_PARAM} The error code for common invalid args.
+ *         {@link UDMF_ERR} The record type is not hyperlink.
  * @see OH_UdmfRecord OH_UdsHyperlink Udmf_ErrCode.
  * @since 12
  */
@@ -327,6 +330,7 @@ int OH_UdmfRecord_GetHyperlink(OH_UdmfRecord* pThis, OH_UdsHyperlink* hyperlink)
  * @return Returns the status code of the execution. See {@link Udmf_ErrCode}.
  *         {@link UDMF_E_OK} success.
  *         {@link UDMF_E_INVALID_PARAM} The error code for common invalid args.
+ *         {@link UDMF_ERR} The record type is not HTML.
  * @see OH_UdmfRecord OH_UdsHtml Udmf_ErrCode.
  * @since 12
  */
@@ -340,6 +344,7 @@ int OH_UdmfRecord_GetHtml(OH_UdmfRecord* pThis, OH_UdsHtml* html);
  * @return Returns the status code of the execution. See {@link Udmf_ErrCode}.
  *         {@link UDMF_E_OK} success.
  *         {@link UDMF_E_INVALID_PARAM} The error code for common invalid args.
+ *         {@link UDMF_ERR} The record type is not open harmony app item.
  * @see OH_UdmfRecord OH_UdsAppItem Udmf_ErrCode.
  * @since 12
  */
@@ -484,6 +489,7 @@ int OH_UdmfProperty_SetExtrasStringParam(OH_UdmfProperty* pThis,
  * @return Returns the status code of the execution. See {@link Udmf_ErrCode}.
  *         {@link UDMF_E_OK} success.
  *         {@link UDMF_E_INVALID_PARAM} The error code for common invalid args.
+ *         {@link UDMF_ERR} The UDMF client fails to obtain data.
  * @see OH_UdmfProperty Udmf_Intention Udmf_ErrCode.
  * @since 12
  */
@@ -500,6 +506,7 @@ int OH_Udmf_GetUnifiedData(const char* key, Udmf_Intention intention, OH_UdmfDat
  * @return Returns the status code of the execution. See {@link Udmf_ErrCode}.
  *         {@link UDMF_E_OK} success.
  *         {@link UDMF_E_INVALID_PARAM} The error code for common invalid args.
+ *         {@link UDMF_ERR} The UDMF client fails to obtain data, or string copy error.
  * @see OH_UdmfProperty Udmf_Intention Udmf_ErrCode.
  * @since 12
  */
