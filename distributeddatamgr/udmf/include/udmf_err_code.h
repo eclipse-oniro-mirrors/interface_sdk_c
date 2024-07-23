@@ -57,13 +57,21 @@ typedef enum Udmf_ErrCode {
      */
     UDMF_E_OK = 0,
     /**
+     * @brief The error when the capability not supported.
+     */
+    UDMF_E_NOT_SUPPORTED = 801,
+    /**
      * @brief The error code for common exceptions.
      */
     UDMF_ERR = 20400000,
     /**
+     * @brief The error code for not support this data parse exceptions.
+     */
+    UDMF_E_NOT_PARSE_DATA = (UDMF_ERR + 1),
+    /**
      * @brief The error code for common invalid args.
      */
-    UDMF_E_INVALID_PARAM = (UDMF_ERR + 1),
+    UDMF_E_INVALID_PARAM = (UDMF_ERR + 2),
 } Udmf_ErrCode;
 
 #ifdef __cplusplus

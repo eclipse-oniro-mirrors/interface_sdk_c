@@ -40,9 +40,10 @@
 #ifndef UDS_H
 #define UDS_H
 
-#include "pixelmap_native.h"
+#include "multimedia/image_framework/image/pixelmap_native.h"
 
 #ifdef __cplusplus
+
 extern "C" {
 #endif
 
@@ -75,23 +76,16 @@ typedef struct OH_UdsHtml OH_UdsHtml;
 typedef struct OH_UdsAppItem OH_UdsAppItem;
 
 /**
- * @brief Describes the unified data struct of open harmony form.
- *
- * @since 12
- */
-typedef struct OH_UdsForm OH_UdsForm;
-
-/**
  * @brief Describes the unified data struct of file uri.
  *
- * @since 12
+ * @since 13
  */
 typedef struct OH_UdsFileUri OH_UdsFileUri;
 
 /**
  * @brief Describes the unified data struct of open harmony pixel map.
  *
- * @since 12
+ * @since 13
  */
 typedef struct OH_UdsPixelMap OH_UdsPixelMap;
 
@@ -488,64 +482,12 @@ int OH_UdsAppItem_SetBundleName(OH_UdsAppItem* pThis, const char* bundleName);
 int OH_UdsAppItem_SetAbilityName(OH_UdsAppItem* pThis, const char* abilityName);
 
 /**
- * @brief Creation a pointer to the instance of the {@link OH_UdsForm}.
- *
- * @return If the operation is successful, a pointer to the instance of the {@link OH_UdsForm}
- * structure is returned. If the operation is failed, nullptr is returned.
- * @see OH_UdsForm
- * @since 12
- */
-OH_UdsForm* OH_UdsForm_Create();
-
-/**
- * @brief Destroy a pointer that points to the {@link OH_UdsForm} instance.
- *
- * @param pThis Represents a pointer to an instance of {@link OH_UdsForm}.
- * @see OH_UdsForm
- * @since 12
- */
-void OH_UdsForm_Destroy(OH_UdsForm* pThis);
-
-/**
- * @brief Get type id from the {@link OH_UdsForm}.
- *
- * @param pThis Represents a pointer to an instance of {@link OH_UdsForm}.
- * @return Returns a pointer of the value string when input args normally, otherwise return nullptr.
- * @see OH_UdsForm
- * @since 12
- */
-const char* OH_UdsForm_GetType(OH_UdsForm* pThis);
-
-/**
- * @brief Get form content from the {@link OH_UdsForm}.
- *
- * @param pThis Represents a pointer to an instance of {@link OH_UdsForm}.
- * @return Returns a pointer of the value string when input args normally, otherwise return nullptr.
- * @see OH_UdsForm
- * @since 12
- */
-const char* OH_UdsForm_GetFormContent(OH_UdsForm* pThis);
-
-/**
- * @brief Set form content to the {@link OH_UdsForm}.
- *
- * @param pThis Represents a pointer to an instance of {@link OH_UdsForm}.
- * @param content Represents a new form content string.
- * @return Returns the status code of the execution. See {@link Udmf_ErrCode}.
- *         {@link UDMF_E_OK} success.
- *         {@link UDMF_E_INVALID_PARAM} The error code for common invalid args.
- * @see OH_UdsForm Udmf_ErrCode
- * @since 12
- */
-int OH_UdsForm_SetFormContent(OH_UdsForm* pThis, const char* formContent);
-
-/**
  * @brief Creation a pointer to the instance of the {@link OH_UdsFileUri}.
  *
  * @return If the operation is successful, a pointer to the instance of the {@link OH_UdsFileUri}
- * structure is returned. If the operation is failed, nullptr is returned.
+ * structure is returned. If the memory is not enough, nullptr is returned.
  * @see OH_UdsFileUri
- * @since 12
+ * @since 13
  */
 OH_UdsFileUri* OH_UdsFileUri_Create();
 
@@ -554,7 +496,7 @@ OH_UdsFileUri* OH_UdsFileUri_Create();
  *
  * @param pThis Represents a pointer to an instance of {@link OH_UdsFileUri}.
  * @see OH_UdsFileUri
- * @since 12
+ * @since 13
  */
 void OH_UdsFileUri_Destroy(OH_UdsFileUri* pThis);
 
@@ -564,7 +506,7 @@ void OH_UdsFileUri_Destroy(OH_UdsFileUri* pThis);
  * @param pThis Represents a pointer to an instance of {@link OH_UdsFileUri}.
  * @return Returns a pointer of the value string when input args normally, otherwise return nullptr.
  * @see OH_UdsFileUri
- * @since 12
+ * @since 13
  */
 const char* OH_UdsFileUri_GetType(OH_UdsFileUri* pThis);
 
@@ -574,7 +516,7 @@ const char* OH_UdsFileUri_GetType(OH_UdsFileUri* pThis);
  * @param pThis Represents a pointer to an instance of {@link OH_UdsFileUri}.
  * @return Returns a pointer of the value string when input args normally, otherwise return nullptr.
  * @see OH_UdsFileUri
- * @since 12
+ * @since 13
  */
 const char* OH_UdsFileUri_GetFileUri(OH_UdsFileUri* pThis);
 
@@ -584,7 +526,7 @@ const char* OH_UdsFileUri_GetFileUri(OH_UdsFileUri* pThis);
  * @param pThis Represents a pointer to an instance of {@link OH_UdsFileUri}.
  * @return Returns a pointer of the value string when input args normally, otherwise return nullptr.
  * @see OH_UdsFileUri
- * @since 12
+ * @since 13
  */
 const char* OH_UdsFileUri_GetFileType(OH_UdsFileUri* pThis);
 
@@ -592,12 +534,12 @@ const char* OH_UdsFileUri_GetFileType(OH_UdsFileUri* pThis);
  * @brief Set file uri to the {@link OH_UdsFileUri}.
  *
  * @param pThis Represents a pointer to an instance of {@link OH_UdsFileUri}.
- * @param content Represents a new content string.
+ * @param fileUri Represents a new file uri string.
  * @return Returns the status code of the execution. See {@link Udmf_ErrCode}.
  *         {@link UDMF_E_OK} success.
  *         {@link UDMF_E_INVALID_PARAM} The error code for common invalid args.
  * @see OH_UdsFileUri Udmf_ErrCode
- * @since 12
+ * @since 13
  */
 int OH_UdsFileUri_SetFileUri(OH_UdsFileUri* pThis, const char* fileUri);
 
@@ -605,12 +547,12 @@ int OH_UdsFileUri_SetFileUri(OH_UdsFileUri* pThis, const char* fileUri);
  * @brief Set file type to the {@link OH_UdsFileUri}.
  *
  * @param pThis Represents a pointer to an instance of {@link OH_UdsFileUri}.
- * @param content Represents a new content string.
+ * @param fileType Represents a new file type string.
  * @return Returns the status code of the execution. See {@link Udmf_ErrCode}.
  *         {@link UDMF_E_OK} success.
  *         {@link UDMF_E_INVALID_PARAM} The error code for common invalid args.
  * @see OH_UdsFileUri Udmf_ErrCode
- * @since 12
+ * @since 13
  */
 int OH_UdsFileUri_SetFileType(OH_UdsFileUri* pThis, const char* fileType);
 
@@ -618,9 +560,9 @@ int OH_UdsFileUri_SetFileType(OH_UdsFileUri* pThis, const char* fileType);
  * @brief Creation a pointer to the instance of the {@link OH_UdsPixelMap}.
  *
  * @return If the operation is successful, a pointer to the instance of the {@link OH_UdsPixelMap}
- * structure is returned. If the operation is failed, nullptr is returned.
+ * structure is returned. If the memory is not enough, nullptr is returned.
  * @see OH_UdsPixelMap
- * @since 12
+ * @since 13
  */
 OH_UdsPixelMap* OH_UdsPixelMap_Create();
 
@@ -629,7 +571,7 @@ OH_UdsPixelMap* OH_UdsPixelMap_Create();
  *
  * @param pThis Represents a pointer to an instance of {@link OH_UdsPixelMap}.
  * @see OH_UdsPixelMap
- * @since 12
+ * @since 13
  */
 void OH_UdsPixelMap_Destroy(OH_UdsPixelMap* pThis);
 
@@ -639,7 +581,7 @@ void OH_UdsPixelMap_Destroy(OH_UdsPixelMap* pThis);
  * @param pThis Represents a pointer to an instance of {@link OH_UdsPixelMap}.
  * @return Returns a pointer of the value string when input args normally, otherwise return nullptr.
  * @see OH_UdsPixelMap
- * @since 12
+ * @since 13
  */
 const char* OH_UdsPixelMap_GetType(OH_UdsPixelMap* pThis);
 
@@ -647,24 +589,24 @@ const char* OH_UdsPixelMap_GetType(OH_UdsPixelMap* pThis);
  * @brief Get pixel map from the {@link OH_UdsPixelMap}.
  *
  * @param pThis Represents a pointer to an instance of {@link OH_UdsPixelMap}.
- * @return Returns a pointer of the value string when input args normally, otherwise return nullptr.
+ * @param pixelmapNative Represents output params of {@link OH_PixelmapNative}.
  * @see OH_UdsPixelMap
- * @since 12
+ * @since 13
  */
-const OH_PixelmapNative* OH_UdsPixelMap_GetPixelMap(OH_UdsPixelMap* pThis);
+void OH_UdsPixelMap_GetPixelMap(OH_UdsPixelMap* pThis, OH_PixelmapNative* pixelmapNative);
 
 /**
- * @brief Set form content to the {@link OH_UdsPixelMap}.
+ * @brief Set pixel map to the {@link OH_UdsPixelMap}.
  *
  * @param pThis Represents a pointer to an instance of {@link OH_UdsPixelMap}.
- * @param pixelMap Represents a new pixel map.
+ * @param pixelmapNative Represents a new {@link OH_PixelmapNative}.
  * @return Returns the status code of the execution. See {@link Udmf_ErrCode}.
  *         {@link UDMF_E_OK} success.
  *         {@link UDMF_E_INVALID_PARAM} The error code for common invalid args.
  * @see OH_UdsPixelMap Udmf_ErrCode
- * @since 12
+ * @since 13
  */
-int OH_UdsPixelMap_SetPixelMap(OH_UdsPixelMap* pThis, const OH_PixelmapNative* pixelMap);
+int OH_UdsPixelMap_SetPixelMap(OH_UdsPixelMap* pThis, OH_PixelmapNative* pixelmapNative);
 
 #ifdef __cplusplus
 };

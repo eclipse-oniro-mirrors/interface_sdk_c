@@ -255,7 +255,7 @@ int OH_UdmfRecord_AddHtml(OH_UdmfRecord* pThis, OH_UdsHtml* html);
 /**
  * @brief Add one {OH_UdsAppItem} data to the {@link OH_UdmfRecord} record.
  *
- * @param repThisord Represents a pointer to an instance of {@link OH_UdmfRecord}.
+ * @param pThis Represents a pointer to an instance of {@link OH_UdmfRecord}.
  * @param appItem Represents a pointer to an instance of {@link OH_UdsAppItem}.
  * @return Returns the status code of the execution. See {@link Udmf_ErrCode}.
  *         {@link UDMF_E_OK} success.
@@ -264,6 +264,32 @@ int OH_UdmfRecord_AddHtml(OH_UdmfRecord* pThis, OH_UdsHtml* html);
  * @since 12
  */
 int OH_UdmfRecord_AddAppItem(OH_UdmfRecord* pThis, OH_UdsAppItem* appItem);
+
+/**
+ * @brief Add one {OH_UdsFileUri} data to the {@link OH_UdmfRecord} record.
+ *
+ * @param pThis Represents a pointer to an instance of {@link OH_UdmfRecord}.
+ * @param fileUri Represents a pointer to an instance of {@link OH_UdsFileUri}.
+ * @return Returns the status code of the execution. See {@link Udmf_ErrCode}.
+ *         {@link UDMF_E_OK} success.
+ *         {@link UDMF_E_INVALID_PARAM} The error code for common invalid args.
+ * @see OH_UdmfRecord OH_UdsFileUri Udmf_ErrCode.
+ * @since 13
+ */
+int OH_UdmfRecord_AddFileUri(OH_UdmfRecord* pThis, OH_UdsFileUri* fileUri);
+
+/**
+ * @brief Add one {OH_UdsPixelMap} data to the {@link OH_UdmfRecord} record.
+ *
+ * @param pThis Represents a pointer to an instance of {@link OH_UdmfRecord}.
+ * @param pixelMap Represents a pointer to an instance of {@link OH_UdsPixelMap}.
+ * @return Returns the status code of the execution. See {@link Udmf_ErrCode}.
+ *         {@link UDMF_E_OK} success.
+ *         {@link UDMF_E_INVALID_PARAM} The error code for common invalid args.
+ * @see OH_UdmfRecord OH_UdsPixelMap Udmf_ErrCode.
+ * @since 13
+ */
+int OH_UdmfRecord_AddPixelMap(OH_UdmfRecord* pThis, OH_UdsPixelMap* pixelMap);
 
 /**
  * @brief Get all types in the {@link OH_UdmfRecord} record.
@@ -287,7 +313,6 @@ char** OH_UdmfRecord_GetTypes(OH_UdmfRecord* pThis, unsigned int* count);
  * @return Returns the status code of the execution. See {@link Udmf_ErrCode}.
  *         {@link UDMF_E_OK} success.
  *         {@link UDMF_E_INVALID_PARAM} The error code for common invalid args.
- *         {@link UDMF_ERR} 1.Internal data error. 2.Record data count exceeds the maximum value.
  * @see OH_UdmfRecord Udmf_ErrCode.
  * @since 12
  */
@@ -302,7 +327,6 @@ int OH_UdmfRecord_GetGeneralEntry(OH_UdmfRecord* pThis, const char* typeId,
  * @return Returns the status code of the execution. See {@link Udmf_ErrCode}.
  *         {@link UDMF_E_OK} success.
  *         {@link UDMF_E_INVALID_PARAM} The error code for common invalid args.
- *         {@link UDMF_ERR} The record type is not plain text.
  * @see OH_UdmfRecord OH_UdsPlainText Udmf_ErrCode.
  * @since 12
  */
@@ -316,7 +340,6 @@ int OH_UdmfRecord_GetPlainText(OH_UdmfRecord* pThis, OH_UdsPlainText* plainText)
  * @return Returns the status code of the execution. See {@link Udmf_ErrCode}.
  *         {@link UDMF_E_OK} success.
  *         {@link UDMF_E_INVALID_PARAM} The error code for common invalid args.
- *         {@link UDMF_ERR} The record type is not hyperlink.
  * @see OH_UdmfRecord OH_UdsHyperlink Udmf_ErrCode.
  * @since 12
  */
@@ -330,7 +353,6 @@ int OH_UdmfRecord_GetHyperlink(OH_UdmfRecord* pThis, OH_UdsHyperlink* hyperlink)
  * @return Returns the status code of the execution. See {@link Udmf_ErrCode}.
  *         {@link UDMF_E_OK} success.
  *         {@link UDMF_E_INVALID_PARAM} The error code for common invalid args.
- *         {@link UDMF_ERR} The record type is not HTML.
  * @see OH_UdmfRecord OH_UdsHtml Udmf_ErrCode.
  * @since 12
  */
@@ -344,11 +366,36 @@ int OH_UdmfRecord_GetHtml(OH_UdmfRecord* pThis, OH_UdsHtml* html);
  * @return Returns the status code of the execution. See {@link Udmf_ErrCode}.
  *         {@link UDMF_E_OK} success.
  *         {@link UDMF_E_INVALID_PARAM} The error code for common invalid args.
- *         {@link UDMF_ERR} The record type is not open harmony app item.
  * @see OH_UdmfRecord OH_UdsAppItem Udmf_ErrCode.
  * @since 12
  */
 int OH_UdmfRecord_GetAppItem(OH_UdmfRecord* pThis, OH_UdsAppItem* appItem);
+
+/**
+ * @brief Get one {OH_UdsFileUri} data from the {@link OH_UdmfRecord} record.
+ *
+ * @param pThis Represents a pointer to an instance of {@link OH_UdmfRecord}.
+ * @param fileUri Represents a pointer to an instance of {@link OH_UdsFileUri}.
+ * @return Returns the status code of the execution. See {@link Udmf_ErrCode}.
+ *         {@link UDMF_E_OK} success.
+ *         {@link UDMF_E_INVALID_PARAM} The error code for common invalid args.
+ * @see OH_UdmfRecord OH_UdsFileUri Udmf_ErrCode.
+ * @since 13
+ */
+int OH_UdmfRecord_GetFileUri(OH_UdmfRecord* pThis, OH_UdsFileUri* fileUri);
+
+/**
+ * @brief Get one {OH_UdsPixelMap} data from the {@link OH_UdmfRecord} record.
+ *
+ * @param pThis Represents a pointer to an instance of {@link OH_UdmfRecord}.
+ * @param pixelMap Represents a pointer to an instance of {@link OH_UdsPixelMap}.
+ * @return Returns the status code of the execution. See {@link Udmf_ErrCode}.
+ *         {@link UDMF_E_OK} success.
+ *         {@link UDMF_E_INVALID_PARAM} The error code for common invalid args.
+ * @see OH_UdmfRecord OH_UdsPixelMap Udmf_ErrCode.
+ * @since 13
+ */
+int OH_UdmfRecord_GetPixelMap(OH_UdmfRecord* pThis, OH_UdsPixelMap* pixelMap);
 
 /**
  * @brief Creation a pointer to the instance of the {@link OH_UdmfProperty}
@@ -489,7 +536,6 @@ int OH_UdmfProperty_SetExtrasStringParam(OH_UdmfProperty* pThis,
  * @return Returns the status code of the execution. See {@link Udmf_ErrCode}.
  *         {@link UDMF_E_OK} success.
  *         {@link UDMF_E_INVALID_PARAM} The error code for common invalid args.
- *         {@link UDMF_ERR} The UDMF client fails to obtain data.
  * @see OH_UdmfProperty Udmf_Intention Udmf_ErrCode.
  * @since 12
  */
@@ -506,7 +552,6 @@ int OH_Udmf_GetUnifiedData(const char* key, Udmf_Intention intention, OH_UdmfDat
  * @return Returns the status code of the execution. See {@link Udmf_ErrCode}.
  *         {@link UDMF_E_OK} success.
  *         {@link UDMF_E_INVALID_PARAM} The error code for common invalid args.
- *         {@link UDMF_ERR} The UDMF client fails to obtain data, or string copy error.
  * @see OH_UdmfProperty Udmf_Intention Udmf_ErrCode.
  * @since 12
  */
