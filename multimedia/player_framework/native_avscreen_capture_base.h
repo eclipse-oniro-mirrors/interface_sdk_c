@@ -16,7 +16,7 @@
 /**
  * @addtogroup AVScreenCapture
  * @{
- * 
+ *
  * @brief Provides APIs of request capability for Screen Capture.
  * @since 10
  */
