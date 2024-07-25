@@ -30,6 +30,7 @@
  * @brief Defines the avplayer APIs. Uses the Native APIs provided by Media AVPlayer
  *        to play the media source.
  *
+ * @kit MediaKit
  * @library libavplayer.so
  * @since 11
  * @version 1.0
