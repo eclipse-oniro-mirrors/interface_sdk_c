@@ -75,3 +75,14 @@ class NodeKind(enum.Enum):
     ENUM_DECL = 'ENUM_DECL'
     FUNCTION_DECL = 'FUNCTION_DECL'
     VAR_DECL = 'VAR_DECL'
+
+
+class DifferApiRegular(enum.Enum):
+    OPEN_SOURCE_API_REGULAR = r'^(OH_|ffrt|tee).*'
+    CLOSED_SOURCE_API_REGULAR = r'^HMS_.*'
+
+
+class DifferApiInfor(enum.Enum):
+    OPEN_SOURCE_API = '开源API'
+    CLOSED_SOURCE_API = '闭源API'
+    THIRD_PARTY_API = '三方库API'

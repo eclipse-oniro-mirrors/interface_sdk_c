@@ -34,6 +34,7 @@
  *
  * @brief Declared predicate related functions and enumerations.
  *
+ * @kit ArkData
  * @since 10
  */
 

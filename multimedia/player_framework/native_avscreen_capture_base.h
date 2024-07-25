@@ -13,6 +13,25 @@
  * limitations under the License.
  */
 
+/**
+ * @addtogroup AVScreenCapture
+ * @{
+ *
+ * @brief Provides APIs of request capability for Screen Capture.
+ * @since 10
+ */
+ 
+/**
+ * @file native_avscreen_capture_base.h
+ *
+ * @brief Declare screen capture related struct.
+ *
+ * @library libnative_avscreen_capture.so
+ * @syscap SystemCapability.Multimedia.Media.AVScreenCapture
+ * @kit MediaKit
+ * @since 10
+ */
+ 
 #ifndef NATIVE_AVSCREEN_CAPTURE_BASE_H
 #define NATIVE_AVSCREEN_CAPTURE_BASE_H
 
@@ -504,3 +523,4 @@ typedef void (*OH_AVScreenCapture_OnBufferAvailable)(OH_AVScreenCapture *capture
 #endif
 
 #endif // NATIVE_AVSCREEN_CAPTURE_BASE_H
+/** @} */

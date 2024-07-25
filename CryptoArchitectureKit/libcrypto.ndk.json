@@ -1,0 +1,170 @@
+[
+    {
+        "first_introduced": "12",
+        "name": "OH_CryptoAsymKeyGenerator_Create"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_CryptoAsymKeyGenerator_Generate"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_CryptoAsymKeyGenerator_Convert"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_CryptoAsymKeyGenerator_GetAlgoName"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_CryptoAsymKeyGenerator_Destroy"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_CryptoKeyPair_Destroy"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_CryptoKeyPair_GetPubKey"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_CryptoPubKey_Encode"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_CryptoPubKey_GetParam"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_Crypto_FreeDataBlob"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_CryptoDigest_Create"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_CryptoDigest_Update"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_CryptoDigest_Final"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_CryptoDigest_GetLength"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_CryptoDigest_GetAlgoName"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_DigestCrypto_Destroy"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_CryptoVerify_Create"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_CryptoVerify_Init"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_CryptoVerify_Update"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_CryptoVerify_Final"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_CryptoVerify_Recover"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_CryptoVerify_GetAlgoName"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_CryptoVerify_SetParam"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_CryptoVerify_GetParam"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_CryptoVerify_Destroy"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_CryptoSymCipherParams_Create"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_CryptoSymCipherParams_SetParam"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_CryptoSymCipherParams_Destroy"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_CryptoSymCipher_Create"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_CryptoSymCipher_Init"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_CryptoSymCipher_Update"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_CryptoSymCipher_Final"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_CryptoSymCipher_GetAlgoName"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_CryptoSymCipher_Destroy"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_CryptoSymKeyGenerator_Create"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_CryptoSymKeyGenerator_Generate"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_CryptoSymKeyGenerator_Convert"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_CryptoSymKeyGenerator_GetAlgoName"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_CryptoSymKeyGenerator_Destroy"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_CryptoSymKey_GetAlgoName"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_CryptoSymKey_GetKeyData"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_CryptoSymKey_Destroy"
+    }
+]

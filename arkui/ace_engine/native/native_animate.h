@@ -288,7 +288,7 @@ void OH_ArkUI_AnimateOption_SetTempo(ArkUI_AnimateOption* option, float value);
 * @brief Sets the animation curve.
 *
 * @param option Indicates the pointer to an animation configuration.
-* @param value Indicates the animated curve.
+* @param value Indicates the animated curve. Default value：ARKUI_CURVE_LINEAR.
 * @since 12
 */
 void OH_ArkUI_AnimateOption_SetCurve(ArkUI_AnimateOption* option, ArkUI_AnimationCurve value);
@@ -424,7 +424,7 @@ int32_t OH_ArkUI_KeyframeAnimateOption_SetDuration(ArkUI_KeyframeAnimateOption* 
  * @note Because the <b>springMotion</b>, <b>responsiveSpringMotion</b>, and <b>interpolatingSpring</b> curves do not
  * have effective duration settings, they are not supported.
  * @param option Indicates the keyframe animation parameters.
- * @param value Indicates the animation curve to set.
+ * @param value Indicates the animation curve to set. Default value：EASE_IN_OUT.
  * @param index Indicates a state index.
  * @return Returns the error code.
  *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
@@ -571,7 +571,7 @@ int32_t OH_ArkUI_AnimatorOption_SetDirection(ArkUI_AnimatorOption* option, ArkUI
  * and <b>customCurve</b> curves are not supported.
  *
  * @param option Indicates an animator parameter object.
- * @param value Indicates the target interpolation curve.
+ * @param value Indicates the target interpolation curve. Default value：ARKUI_CURVE_LINEAR.
  * @return Returns the error code.
  *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
  *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.

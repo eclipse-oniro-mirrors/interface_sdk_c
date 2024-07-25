@@ -265,7 +265,7 @@ def find_include(link_include_path):
             link_include_path.append(dir_path)
 
 
-def copy_self_include(link_include_path, self_include_file, flag=-1):
+def copy_self_include(link_include_path, self_include_file):
     for dir_path, dir_name, file_name_list in os.walk(self_include_file):
         for element in dir_name:
             dir_path_name = os.path.abspath(os.path.join(dir_path, element))
@@ -294,7 +294,7 @@ def parser(directory_path):  # 目录路径
     return data_total
 
 
-def parser_include_ast(dire_file_path, include_path, flag=-1):        # 对于单独的.h解析接口
+def parser_include_ast(dire_file_path, include_path: list, flag=-1):        # 对于单独的.h解析接口
     correct_include_path = []
     link_include_path = [dire_file_path]
     # 针对check
@@ -306,7 +306,7 @@ def parser_include_ast(dire_file_path, include_path, flag=-1):        # 对于�
         copy_std_lib(link_include_path)
     find_include(link_include_path)
     if len(link_include_path) <= 2:
-        copy_self_include(link_include_path, dire_file_path, flag)
+        copy_self_include(link_include_path, dire_file_path)
     for item in include_path:
         split_path = os.path.splitext(item)
         if split_path[1] == '.h':   # 判断.h结尾

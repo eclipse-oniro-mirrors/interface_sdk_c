@@ -35,6 +35,11 @@
 extern "C" {
 #endif
 
+/**
+ * @brief Forward declaration of OH_AVFormat.
+ *
+ * @since 9
+ */
 typedef struct OH_AVFormat OH_AVFormat;
 
 /**
