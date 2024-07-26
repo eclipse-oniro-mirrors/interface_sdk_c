@@ -43,3 +43,17 @@ ohos_ndk_library("libohprint_ndk") {
   system_capability = "SystemCapability.Print.PrintFramework"
   system_capability_headers = [ "BasicServicesKit/ohprint.h" ]
 }
+
+ohos_ndk_headers("ohscan_header") {
+  dest_dir = "$ndk_headers_out_dir/BasicServicesKit/"
+  sources = [ "./ohscan.h" ]
+}
+
+ohos_ndk_library("libohscan_ndk") {
+  output_name = "ohscan"
+  output_extension = "so"
+  ndk_description_file = "./ohscan.ndk.json"
+  min_compact_version = "12"
+  system_capability = "SystemCapability.Print.PrintFramework"
+  system_capability_headers = [ "BasicServicesKit/ohscan.h" ]
+}
