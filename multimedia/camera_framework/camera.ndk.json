@@ -44,6 +44,10 @@
         "name": "OH_CameraManager_GetSupportedCameraOutputCapability"
     },
     {
+        "first_introduced": "12",
+        "name": "OH_CameraManager_GetSupportedCameraOutputCapabilityWithSceneMode"
+    },
+    {
         "first_introduced": "11",
         "name": "OH_CameraManager_DeleteSupportedCameraOutputCapability"
     },
@@ -78,6 +82,14 @@
     {
         "first_introduced": "11",
         "name": "OH_CameraManager_CreateMetadataOutput"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_CameraManager_GetSupportedSceneModes"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_CameraManager_DeleteSceneModes"
     },
     {
         "first_introduced": "11",
@@ -254,6 +266,22 @@
     {
         "first_introduced": "11",
         "name": "OH_CaptureSession_SetVideoStabilizationMode"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_CaptureSession_CanAddInput"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_CaptureSession_CanAddPreviewOutput"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_CaptureSession_CanAddPhotoOutput"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_CaptureSession_CanAddVideoOutput"
     },
     {
         "first_introduced": "11",
