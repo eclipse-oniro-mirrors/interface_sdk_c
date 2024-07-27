@@ -394,7 +394,7 @@ OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_ContentFilter_AddWindowContent(
  * @since 12
  * @version 1.0
  */
-OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_ResizeCanvasSize(struct OH_AVScreenCapture *capture,
+OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_ResizeCanvas(struct OH_AVScreenCapture *capture,
     int32_t width, int32_t height);
 #ifdef __cplusplus
 }
