@@ -34,6 +34,7 @@
  *
  * @syscap SystemCapability.Window.SessionManager
  * @library libnative_window_manager.so
+ * @kit ArkUI
  * @since 12
  */
 #include "stdint.h"
