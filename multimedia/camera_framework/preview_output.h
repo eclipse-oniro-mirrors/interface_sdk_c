@@ -167,6 +167,27 @@ Camera_ErrorCode OH_PreviewOutput_Stop(Camera_PreviewOutput* previewOutput);
  */
 Camera_ErrorCode OH_PreviewOutput_Release(Camera_PreviewOutput* previewOutput);
 
+/**
+ * @brief Get active profiles.
+ *
+ * @param previewOutput the {@link Camera_PreviewOutput} instance which used to get active profiles.
+ * @param profile the active {@link Camera_Profile} will be filled if the method call succeeds.
+ * @return {@link #CAMERA_OK} if the method call succeeds.
+ *         {@link #CAMERA_INVALID_ARGUMENT} if parameter missing or parameter type incorrect.
+ * @since 12
+ */
+Camera_ErrorCode OH_PreviewOutput_GetActiveProfile(Camera_PreviewOutput* previewOutput, Camera_Profile** profile);
+
+/**
+ * @brief Delete preview profile instance.
+ *
+ * @param profile the {@link Camera_Profile} instance to deleted.
+ * @return {@link #CAMERA_OK} if the method call succeeds.
+ *         {@link #CAMERA_INVALID_ARGUMENT} if parameter missing or parameter type incorrect.
+ * @since 12
+ */
+Camera_ErrorCode OH_PreviewOutput_DeleteProfile(Camera_Profile* profile);
+
 #ifdef __cplusplus
 }
 #endif

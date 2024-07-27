@@ -165,6 +165,27 @@ Camera_ErrorCode OH_VideoOutput_Stop(Camera_VideoOutput* videoOutput);
  */
 Camera_ErrorCode OH_VideoOutput_Release(Camera_VideoOutput* videoOutput);
 
+/**
+ * @brief Get active profiles.
+ *
+ * @param videoOutput the {@link Camera_VideoOutput} instance which used to get active profiles.
+ * @param profile the active {@link Camera_VideoProfile} will be filled if the method call succeeds.
+ * @return {@link #CAMERA_OK} if the method call succeeds.
+ *         {@link #CAMERA_INVALID_ARGUMENT} if parameter missing or parameter type incorrect.
+ * @since 12
+ */
+Camera_ErrorCode OH_VideoOutput_GetActiveProfile(Camera_VideoOutput* videoOutput, Camera_VideoProfile** profile);
+
+/**
+ * @brief Delete video profile instance.
+ *
+ * @param profile the {@link Camera_VideoProfile} instance to deleted.
+ * @return {@link #CAMERA_OK} if the method call succeeds.
+ *         {@link #CAMERA_INVALID_ARGUMENT} if parameter missing or parameter type incorrect.
+ * @since 12
+ */
+Camera_ErrorCode OH_VideoOutput_DeleteProfile(Camera_VideoProfile* profile);
+
 #ifdef __cplusplus
 }
 #endif
