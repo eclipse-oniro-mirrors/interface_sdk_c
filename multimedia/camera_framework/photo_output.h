@@ -194,6 +194,27 @@ Camera_ErrorCode OH_PhotoOutput_Release(Camera_PhotoOutput* photoOutput);
  */
 Camera_ErrorCode OH_PhotoOutput_IsMirrorSupported(Camera_PhotoOutput* photoOutput, bool* isSupported);
 
+/**
+ * @brief Get active profiles.
+ *
+ * @param photoOutput the {@link Camera_PhotoOutput} instance which used to get active profiles.
+ * @param profile the active {@link Camera_Profile} will be filled if the method call succeeds.
+ * @return {@link #CAMERA_OK} if the method call succeeds.
+ *         {@link #CAMERA_INVALID_ARGUMENT} if parameter missing or parameter type incorrect.
+ * @since 12
+ */
+Camera_ErrorCode OH_PhotoOutput_GetActiveProfile(Camera_PhotoOutput* photoOutput, Camera_Profile** profile);
+
+/**
+ * @brief Delete photo profile instance.
+ *
+ * @param profile the {@link Camera_Profile} instance to deleted.
+ * @return {@link #CAMERA_OK} if the method call succeeds.
+ *         {@link #CAMERA_INVALID_ARGUMENT} if parameter missing or parameter type incorrect.
+ * @since 12
+ */
+Camera_ErrorCode OH_PhotoOutput_DeleteProfile(Camera_Profile* profile);
+
 #ifdef __cplusplus
 }
 #endif

@@ -72,12 +72,24 @@
         "name": "OH_CameraManager_CreatePreviewOutput"
     },
     {
+        "first_introduced": "12",
+        "name": "OH_CameraManager_CreatePreviewOutputUsedInPreconfig"
+    },
+    {
         "first_introduced": "11",
         "name": "OH_CameraManager_CreatePhotoOutput"
     },
     {
+        "first_introduced": "12",
+        "name": "OH_CameraManager_CreatePhotoOutputUsedInPreconfig"
+    },
+    {
         "first_introduced": "11",
         "name": "OH_CameraManager_CreateVideoOutput"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_CameraManager_CreateVideoOutputUsedInPreconfig"
     },
     {
         "first_introduced": "11",
@@ -284,6 +296,22 @@
         "name": "OH_CaptureSession_CanAddVideoOutput"
     },
     {
+        "first_introduced": "12",
+        "name": "OH_CaptureSession_CanPreconfig"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_CaptureSession_CanPreconfigWithRatio"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_CaptureSession_Preconfig"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_CaptureSession_PreconfigWithRatio"
+    },
+    {
         "first_introduced": "11",
         "name": "OH_MetadataOutput_RegisterCallback"
     },
@@ -328,6 +356,14 @@
         "name": "OH_PhotoOutput_IsMirrorSupported"
     },
     {
+        "first_introduced": "12",
+        "name": "OH_PhotoOutput_GetActiveProfile"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_PhotoOutput_DeleteProfile"
+    },
+    {
         "first_introduced": "11",
         "name": "OH_PreviewOutput_RegisterCallback"
     },
@@ -348,6 +384,14 @@
         "name": "OH_PreviewOutput_Release"
     },
     {
+        "first_introduced": "12",
+        "name": "OH_PreviewOutput_GetActiveProfile"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_PreviewOutput_DeleteProfile"
+    },
+    {
         "first_introduced": "11",
         "name": "OH_VideoOutput_RegisterCallback"
     },
@@ -366,6 +410,14 @@
     {
         "first_introduced": "11",
         "name": "OH_VideoOutput_Release"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_VideoOutput_GetActiveProfile"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_VideoOutput_DeleteProfile"
     },
     {
         "first_introduced": "12",
