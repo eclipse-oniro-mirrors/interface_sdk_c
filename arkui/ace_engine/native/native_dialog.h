@@ -292,7 +292,7 @@ typedef struct {
  *                           <b>true</b> means to block the system behavior, and <b>false</b> means the opposite.
  * @since 12
  */
-void ArkUI_DialogDismissEvent_SetShouldBlockDismiss(ArkUI_DialogDismissEvent* event, bool shouldBlockDismiss);
+void OH_ArkUI_DialogDismissEvent_SetShouldBlockDismiss(ArkUI_DialogDismissEvent* event, bool shouldBlockDismiss);
 
 /**
  * @brief Obtains the pointer to user data in a dialog box dismiss event object.
@@ -302,7 +302,7 @@ void ArkUI_DialogDismissEvent_SetShouldBlockDismiss(ArkUI_DialogDismissEvent* ev
  * @return Returns the pointer to user data.
  * @since 12
  */
-void* ArkUI_DialogDismissEvent_GetUserData(ArkUI_DialogDismissEvent* event);
+void* OH_ArkUI_DialogDismissEvent_GetUserData(ArkUI_DialogDismissEvent* event);
 
 /**
  * @brief Obtains the c from a dialog box dismiss event object.
@@ -317,7 +317,7 @@ void* ArkUI_DialogDismissEvent_GetUserData(ArkUI_DialogDismissEvent* event);
  *         {@link DIALOG_DISMISS_SLIDE_DOWN}: sliding down.
  * @since 12
  */
-int32_t ArkUI_DialogDismissEvent_GetDismissReason(ArkUI_DialogDismissEvent* event);
+int32_t OH_ArkUI_DialogDismissEvent_GetDismissReason(ArkUI_DialogDismissEvent* event);
 
 #ifdef __cplusplus
 };
