@@ -45,6 +45,7 @@
 #include "drawing_color.h"
 #include "drawing_font.h"
 #include "drawing_text_declaration.h"
+#include "drawing_text_font_descriptor.h"
 #include "drawing_types.h"
 
 #include "stdint.h"
@@ -413,35 +414,6 @@ typedef struct OH_Drawing_FontConfigInfo {
 } OH_Drawing_FontConfigInfo;
 
 /**
- * @brief Describes the font information.
- *
- * @since 12
- * @version 1.0
- */
-typedef struct OH_Drawing_FontDescriptor {
-    /** The file path of System font */
-    char* path;
-    /** A name that uniquely identifies the font */
-    char* postScriptName;
-    /** The name of System font */
-    char* fullName;
-    /** The family of System font */
-    char* fontFamily;
-    /** The subfont family of the system font */
-    char* fontSubfamily;
-    /** The weight of System font */
-    int weight;
-    /** The width of System font */
-    int width;
-    /** Whether the system font is tilted */
-    int italic;
-    /** Whether the system font is compact */
-    bool monoSpace;
-    /** whether symbolic fonts are supported */
-    bool symbolic;
-} OH_Drawing_FontDescriptor;
-
-/**
  * @brief The metrics of line.
  *
  * @since 12
@@ -733,6 +705,29 @@ void OH_Drawing_SetTextStyleBaseLine(OH_Drawing_TextStyle*, int /* OH_Drawing_Te
  * @version 1.0
  */
 void OH_Drawing_SetTextStyleDecoration(OH_Drawing_TextStyle*, int /* OH_Drawing_TextDecoration */);
+
+/**
+ * @brief Add the text decoration.
+ *
+ * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
+ * @param OH_Drawing_TextStyle Indicates the pointer to an <b>OH_Drawing_TextStyle</b> object.
+ * @param int Indicates the text decoration to add. For details, see the enum <b>OH_Drawing_TextDecoration</b>.
+ * @since 14
+ * @version 1.0
+ */
+void OH_Drawing_AddTextStyleDecoration(OH_Drawing_TextStyle*, int /* OH_Drawing_TextDecoration */);
+
+/**
+ * @brief Remove the text decoration.
+ *
+ * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
+ * @param OH_Drawing_TextStyle Indicates the pointer to an <b>OH_Drawing_TextStyle</b> object.
+ * @param int Indicates the text decoration to remove, shoud be match existing text decorations.
+ * For details, see the enum <b>OH_Drawing_TextDecoration</b>.
+ * @since 14
+ * @version 1.0
+ */
+void OH_Drawing_RemoveTextStyleDecoration(OH_Drawing_TextStyle*, int /* OH_Drawing_TextDecoration */);
 
 /**
  * @brief Sets the color for the text decoration.
@@ -2752,6 +2747,76 @@ void OH_Drawing_TypographyDestroyTextBox(OH_Drawing_TextBox*);
  */
 void OH_Drawing_SetTextShadow(OH_Drawing_TextShadow* shadow, uint32_t color, OH_Drawing_Point* offset,
     double blurRadius);
+
+/**
+ * @brief Creates an <b>OH_Drawing_TextTab</b> object.
+ *
+ * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
+ * @param OH_Drawing_TextAlign Indicates enumerates text tab alignment modes. TAB alignment, Support left alignment
+ * right alignment center alignment, other enumeration values are left alignment effect.
+ * @param float Indicates location if text tab.
+ * @return Returns the pointer to the <b>OH_Drawing_TextTab</b> object created.
+ * @since 14
+ * @version 1.0
+ */
+OH_Drawing_TextTab* OH_Drawing_CreateTextTab(OH_Drawing_TextAlign alignment, float location);
+
+/**
+ * @brief Releases the memory occupied by an <b>OH_Drawing_TextTab</b> object.
+ *
+ * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
+ * @param OH_Drawing_TextTab Indicates the pointer to an <b>OH_Drawing_TextTab</b> object.
+ * @since 14
+ * @version 1.0
+ */
+void OH_Drawing_DestroyTextTab(OH_Drawing_TextTab*);
+
+/**
+ * @brief Get align of an <b>OH_Drawing_TextTab</b> object.
+ *
+ * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
+ * @param OH_Drawing_TextTab Indicates the pointer to an <b>OH_Drawing_TextTab</b> object.
+ * @return Returns align of an <b>OH_Drawing_TextTab</b> object.
+ * @since 14
+ * @version 1.0
+ */
+OH_Drawing_TextAlign OH_Drawing_GetTextTabAlign(OH_Drawing_TextTab*);
+
+/**
+ * @brief Get location of an <b>OH_Drawing_TextTab</b> object.
+ *
+ * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
+ * @param OH_Drawing_TextTab Indicates the pointer to an <b>OH_Drawing_TextTab</b> object.
+ * @return Returns location of an <b>OH_Drawing_TextTab</b> object.
+ * @since 14
+ * @version 1.0
+ */
+float OH_Drawing_GetTextTabLocation(OH_Drawing_TextTab*);
+
+/**
+ * @brief Sets the text tab of <b>OH_Drawing_TypographyStyle</b> object.
+ * TAB alignment does not take effect when text alignment is also set. Or when the TAB's location property
+ * is less than or equal to 0. When the TAB is not set, it is the default space effect, and all tabs in the paragraph
+ * after the setting are aligned according to this tab effect.
+ *
+ * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
+ * @param OH_Drawing_TypographyStyle Indicates the pointer to an <b>OH_Drawing_TypographyStyle</b> object.
+ * @param OH_Drawing_TextTab Indicates the pointer to an <b>OH_Drawing_TextTab</b> object.
+ * @since 14
+ * @version 1.0
+ */
+void OH_Drawing_SetTypographyTextTab(OH_Drawing_TypographyStyle*, OH_Drawing_TextTab* TextTab);
+
+/**
+ * @brief Get DrawingArray size.
+ *
+ * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
+ * @param drawingArray Indicates the pointer to the array object <b>OH_Drawing_Array</b>.
+ * @return Size of array.
+ * @since 14
+ * @version 1.0
+ */
+size_t OH_Drawing_GetDrawingArraySize(OH_Drawing_Array* drawingArray);
 
 #ifdef __cplusplus
 }
