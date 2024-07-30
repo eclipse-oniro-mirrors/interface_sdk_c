@@ -924,7 +924,7 @@ typedef struct Camera_TorchStatusInfo {
     /**
      * the current torch brightness level.
      */
-    int32_t torchLevel;
+    float torchLevel;
 } Camera_TorchStatusInfo;
 
 /**
