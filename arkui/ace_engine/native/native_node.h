@@ -5737,6 +5737,33 @@ typedef enum {
     NODE_TEXT_INPUT_ON_CONTENT_SIZE_CHANGE,
 
     /**
+     * @brief Defines the event triggered when matching with the regular expression specified by
+     * <b>NODE_TEXT_INPUT_INPUT_FILTER</b> fails.
+     *
+      \n
+     * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
+     * {@link ArkUI_StringAsyncEvent}. \n
+     * {@link ArkUI_StringAsyncEvent} contains one parameter:\n
+     * <b>ArkUI_StringAsyncEvent.pStr</b>: content that is filtered out when regular expression matching fails. \n
+     *
+     */
+    NODE_TEXT_INPUT_ON_INPUT_FILTER_ERROR,
+
+    /**
+     * @brief This callback is triggered when the text content is scrolled.
+     *
+      \n
+     * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
+     * {@link ArkUI_NodeComponentEvent}. \n
+     * {@link ArkUI_NodeComponentEvent} contains two parameters:\n
+     * <b>ArkUI_NodeComponentEvent.data[0].i32</b>: Indicates the horizontal offset of the text in the content area. \n
+     * <b>ArkUI_NodeComponentEvent.data[1].i32</b>: Indicates the vertical coordinate offset of \n
+     * the text in the content area. \n
+     *
+     */
+    NODE_TEXT_INPUT_ON_CONTENT_SCROLL,
+
+    /**
      * @brief Defines the event triggered when text is about to be entered.
      *
      * The event parameter is {@link ArkUI_NodeEvent}. \n
@@ -5790,31 +5817,6 @@ typedef enum {
      */
     NODE_TEXT_INPUT_ON_DID_DELETE = 7012,
 
-    /**
-     * @brief Defines the event triggered when matching with the regular expression specified by
-     * <b>NODE_TEXT_INPUT_INPUT_FILTER</b> fails.
-     *
-      \n
-     * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
-     * {@link ArkUI_StringAsyncEvent}. \n
-     * {@link ArkUI_StringAsyncEvent} contains one parameter:\n
-     * <b>ArkUI_StringAsyncEvent.pStr</b>: content that is filtered out when regular expression matching fails. \n
-     *
-     */
-    NODE_TEXT_INPUT_ON_INPUT_FILTER_ERROR,
-    /**
-     * @brief This callback is triggered when the text content is scrolled.
-     *
-      \n
-     * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
-     * {@link ArkUI_NodeComponentEvent}. \n
-     * {@link ArkUI_NodeComponentEvent} contains two parameters:\n
-     * <b>ArkUI_NodeComponentEvent.data[0].i32</b>: Indicates the horizontal offset of the text in the content area. \n
-     * <b>ArkUI_NodeComponentEvent.data[1].i32</b>: Indicates the vertical coordinate offset of \n
-     * the text in the content area. \n
-     *
-     */
-    NODE_TEXT_INPUT_ON_CONTENT_SCROLL,
     /**
      * @brief Defines the event triggered when the input in the text box changes.
      *
