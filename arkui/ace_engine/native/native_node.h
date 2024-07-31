@@ -7399,6 +7399,7 @@ ArkUI_NodeCustomEventType OH_ArkUI_NodeCustomEvent_GetEventType(ArkUI_NodeCustom
 * @return Returns the result code.
 *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
 *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+*         <br> Possible causes: Parameter verification failed, the parameter should not be nullptr.
 * @since 12
 */
 int32_t OH_ArkUI_NodeCustomEvent_GetCustomSpanMeasureInfo(
@@ -7412,6 +7413,7 @@ int32_t OH_ArkUI_NodeCustomEvent_GetCustomSpanMeasureInfo(
 * @return Returns the result code.
 *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
 *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+*         <br> Possible causes: Parameter verification failed, the parameter should not be nullptr.
 * @since 12
 */
 int32_t OH_ArkUI_NodeCustomEvent_SetCustomSpanMetrics(
@@ -7421,10 +7423,11 @@ int32_t OH_ArkUI_NodeCustomEvent_SetCustomSpanMetrics(
 * @brief Obtains the drawing information of a custom span through a custom component event.
 *
 * @param event Indicates the pointer to the custom component event.
-* @param event Indicates the drawing information to obtain.
+* @param info Indicates the drawing information to obtain.
 * @return Returns the result code.
 *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
 *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+*         <br> Possible causes: Parameter verification failed, the parameter should not be nullptr.
 * @since 12
 */
 int32_t OH_ArkUI_NodeCustomEvent_GetCustomSpanDrawInfo(

@@ -3435,6 +3435,7 @@ float OH_ArkUI_ListChildrenMainSizeOption_GetMainSize(ArkUI_ListChildrenMainSize
  * @brief Creates measurement information for this custom span.
  *
  * @return Returns a <b>CustomSpanMeasureInfo</b> instance.
+ * <br> If the result returns nullptr, there may be out of memory.
  * @since 12
 */
 ArkUI_CustomSpanMeasureInfo* OH_ArkUI_CustomSpanMeasureInfo_Create();
@@ -3442,6 +3443,7 @@ ArkUI_CustomSpanMeasureInfo* OH_ArkUI_CustomSpanMeasureInfo_Create();
 /**
  * @brief Disposes of measurement information of this custom span.
  *
+ * @param info The CustomSpanMeasureInfo instance to be destroyed.
  * @since 12
 */
 void OH_ArkUI_CustomSpanMeasureInfo_Dispose(ArkUI_CustomSpanMeasureInfo* info);
@@ -3451,6 +3453,7 @@ void OH_ArkUI_CustomSpanMeasureInfo_Dispose(ArkUI_CustomSpanMeasureInfo* info);
  *
  * @param info Indicates the pointer to the measurement information of a custom span.
  * @return Returns the font size. If a parameter error occurs, <b>0.0f</b> is returned.
+ * <br> Possible causes: Parameter verification failed, the parameter should not be nullptr.
  * @since 12
 */
 float OH_ArkUI_CustomSpanMeasureInfo_GetFontSize(ArkUI_CustomSpanMeasureInfo* info);
@@ -3459,6 +3462,7 @@ float OH_ArkUI_CustomSpanMeasureInfo_GetFontSize(ArkUI_CustomSpanMeasureInfo* in
  * @brief Creates measurement metrics for this custom span.
  *
  * @return Returns a <b>CustomSpanMetrics</b> instance.
+ * <br> If the result returns nullptr, there may be out of memory.
  * @since 12
 */
 ArkUI_CustomSpanMetrics* OH_ArkUI_CustomSpanMetrics_Create();
@@ -3466,6 +3470,7 @@ ArkUI_CustomSpanMetrics* OH_ArkUI_CustomSpanMetrics_Create();
 /**
  * @brief Disposes of measurement metrics of this custom span.
  *
+ * @param info The CustomSpanMetrics instance to be destroyed.
  * @since 12
 */
 void OH_ArkUI_CustomSpanMetrics_Dispose(ArkUI_CustomSpanMetrics* metrics);
@@ -3474,10 +3479,11 @@ void OH_ArkUI_CustomSpanMetrics_Dispose(ArkUI_CustomSpanMetrics* metrics);
  * @brief Sets the width for a custom span.
  *
  * @param metrics Indicates the pointer to a <b>CustomSpanMetrics</b> instance.
- * @param width Indicates the width, in px.
+ * @param width Indicates the width, in px. The width should be greater than 0.
  * @return Returns the result code.
  *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
  *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ *         <br> Possible causes: Parameter verification failed, the parameter should not be nullptr.
  * @since 12
 */
 int32_t OH_ArkUI_CustomSpanMetrics_SetWidth(ArkUI_CustomSpanMetrics* metrics, float width);
@@ -3486,10 +3492,11 @@ int32_t OH_ArkUI_CustomSpanMetrics_SetWidth(ArkUI_CustomSpanMetrics* metrics, fl
  * @brief Sets the height for a custom span.
  *
  * @param metrics Indicates the pointer to a <b>CustomSpanMetrics</b> instance.
- * @param width Indicates the height, in px.
+ * @param width Indicates the height, in px. The width should be greater than 0.
  * @return Returns the result code.
  *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
  *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ *         <br> Possible causes: Parameter verification failed, the parameter should not be nullptr.
  * @since 12
 */
 int32_t OH_ArkUI_CustomSpanMetrics_SetHeight(ArkUI_CustomSpanMetrics* metrics, float height);
@@ -3498,6 +3505,7 @@ int32_t OH_ArkUI_CustomSpanMetrics_SetHeight(ArkUI_CustomSpanMetrics* metrics, f
  * @brief Creates drawing information for this custom span.
  *
  * @return Returns a <b>CustomSpanDrawInfo</b> instance.
+ * <br> If the result returns nullptr, there may be out of memory.
  * @since 12
 */
 ArkUI_CustomSpanDrawInfo* OH_ArkUI_CustomSpanDrawInfo_Create();
@@ -3505,6 +3513,7 @@ ArkUI_CustomSpanDrawInfo* OH_ArkUI_CustomSpanDrawInfo_Create();
 /**
  * @brief Disposes of drawing information for this custom span.
  *
+ * @param info The CustomSpanDrawInfo instance to be destroyed.
  * @since 12
 */
 void OH_ArkUI_CustomSpanDrawInfo_Dispose(ArkUI_CustomSpanDrawInfo* info);
@@ -3514,6 +3523,7 @@ void OH_ArkUI_CustomSpanDrawInfo_Dispose(ArkUI_CustomSpanDrawInfo* info);
  *
  * @param info Indicates the pointer to the drawing information of a custom span.
  * @return Returns the x-axis offset. If a parameter error occurs, <b>0.0f</b> is returned.
+ * <br> Possible causes: Parameter verification failed, the parameter should not be nullptr.
  * @since 12
 */
 float OH_ArkUI_CustomSpanDrawInfo_GetXOffset(ArkUI_CustomSpanDrawInfo* info);
@@ -3523,6 +3533,7 @@ float OH_ArkUI_CustomSpanDrawInfo_GetXOffset(ArkUI_CustomSpanDrawInfo* info);
  *
  * @param info Indicates the pointer to the drawing information of a custom span.
  * @return Returns the top margin. If a parameter error occurs, <b>0.0f</b> is returned.
+ * <br> Possible causes: Parameter verification failed, the parameter should not be nullptr.
  * @since 12
 */
 float OH_ArkUI_CustomSpanDrawInfo_GetLineTop(ArkUI_CustomSpanDrawInfo* info);
@@ -3532,6 +3543,7 @@ float OH_ArkUI_CustomSpanDrawInfo_GetLineTop(ArkUI_CustomSpanDrawInfo* info);
  *
  * @param info Indicates the pointer to the drawing information of a custom span.
  * @return Returns the bottom margin. If a parameter error occurs, <b>0.0f</b> is returned.
+ * <br> Possible causes: Parameter verification failed, the parameter should not be nullptr.
  * @since 12
 */
 float OH_ArkUI_CustomSpanDrawInfo_GetLineBottom(ArkUI_CustomSpanDrawInfo* info);
@@ -3541,6 +3553,7 @@ float OH_ArkUI_CustomSpanDrawInfo_GetLineBottom(ArkUI_CustomSpanDrawInfo* info);
  *
  * @param info Indicates the pointer to the drawing information of a custom span.
  * @return Returns the baseline offset. If a parameter error occurs, <b>0.0f</b> is returned.
+ * <br> Possible causes: Parameter verification failed, the parameter should not be nullptr.
  * @since 12
 */
 float OH_ArkUI_CustomSpanDrawInfo_GetBaseline(ArkUI_CustomSpanDrawInfo* info);
