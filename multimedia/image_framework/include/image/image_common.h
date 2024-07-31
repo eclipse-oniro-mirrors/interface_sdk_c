@@ -1266,7 +1266,7 @@ static const char *OHOS_IMAGE_PROPERTY_SCENE_VERSION = "HwMnoteSceneVersion";
  *
  * @since 12
  */
-static const char *OHOS_IMAGE_PROPERTY_IS_SUPPORT_XMAGE = "HwMnoteIsXmageSupported";
+static const char *OHOS_IMAGE_PROPERTY_IS_XMAGE_SUPPORTED = "HwMnoteIsXmageSupported";
 
 /**
  * @brief Xmage Mode
@@ -1314,7 +1314,7 @@ static const char *OHOS_IMAGE_PROPERTY_XMAGE_BOTTOM = "HwMnoteXmageBottom";
  *
  * @since 12
  */
-static const char *OHOS_IMAGE_PROPERTY_CLOUD_ENHANCE_MODE = "HwMnoteCloudEnhancementMode";
+static const char *OHOS_IMAGE_PROPERTY_CLOUD_ENHANCEMENT_MODE = "HwMnoteCloudEnhancementMode";
 
 /**
  * @brief Wind Snapshot Mode
