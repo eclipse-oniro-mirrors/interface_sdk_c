@@ -299,6 +299,19 @@ int32_t OH_ArkUI_DragEvent_GetDataTypes(
 int32_t OH_ArkUI_DragEvent_GetDragResult(ArkUI_DragEvent* event, ArkUI_DragResult* result);
 
 /**
+ * @brief Obtains the drop operation from a drag event.
+ *
+ * @param event Indicates the pointer to an <b>ArkUI_DragEvent</b> object.
+ * @param operation Indicates the drop operation which the data receiver set.
+ * @return Returns the result code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ *                 Possible causes: 1. The given parameters are null or the given event is not a valid DragEvent.
+ * @since 12
+ */
+int32_t OH_ArkUI_DragEvent_GetDropOperation(ArkUI_DragEvent* event, ArkUI_DropOperation* operation);
+
+/**
  * @brief Obtains the X coordinate of the touch point for a drag preview from a drag event.
  *
  * @param event Indicates the pointer to an <b>ArkUI_DragEvent</b> object.
