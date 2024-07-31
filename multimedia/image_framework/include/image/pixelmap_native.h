@@ -408,7 +408,7 @@ Image_ErrorCode OH_PixelmapNative_CreatePixelmap(uint8_t *data, size_t dataLengt
  * @param pixelmapNapi the <b>PixelMap</b> pointer will be converted.
  * @return Image functions result code.
  *     {@link IMAGE_SUCCESS} if the execution is successful.
- *     {@link IMAGE_BAD_PARAMETER} pixelmapNapi is nullptr
+ *     {@link IMAGE_BAD_PARAMETER} pixelmapNative is nullptr
  * @since 12
  */
 Image_ErrorCode OH_PixelmapNative_ConvertPixelmapNativeToNapi(napi_env env, OH_PixelmapNative *pixelmapNative,
