@@ -980,10 +980,6 @@
     },
     {
         "first_introduced": "12",
-        "name": "OH_Drawing_TypographyGetMetrics"
-    },
-    {
-        "first_introduced": "12",
         "name": "OH_Drawing_SetTextStyleForegroundBrush"
     },
     {
@@ -1369,14 +1365,6 @@
     {
         "first_introduced": "12",
         "name": "OH_Drawing_TypographyUpdateFontSize"
-    },
-    {
-        "first_introduced": "12",
-        "name": "OH_Drawing_RegisterThemeFontBuffer"
-    },
-    {
-        "first_introduced": "12",
-        "name": "OH_Drawing_RegisterThemeFont"
     },
     {
         "first_introduced": "12",
