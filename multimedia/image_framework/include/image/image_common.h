@@ -1261,7 +1261,7 @@ static const char *OHOS_IMAGE_PROPERTY_SCENE_POINTER = "HwMnoteScenePointer";
 static const char *OHOS_IMAGE_PROPERTY_SCENE_VERSION = "HwMnoteSceneVersion";
 
 /**
- * @brief Is Support Xmage
+ * @brief Is Xmage Supported
  * It is used in {@link OH_ImageSource_GetImageProperty} and {@link OH_ImageSource_ModifyImageProperty}.
  *
  * @since 12
@@ -1309,7 +1309,7 @@ static const char *OHOS_IMAGE_PROPERTY_XMAGE_RIGHT = "HwMnoteXmageRight";
 static const char *OHOS_IMAGE_PROPERTY_XMAGE_BOTTOM = "HwMnoteXmageBottom";
 
 /**
- * @brief Cloud Enhance Mode
+ * @brief Cloud Enhancement Mode
  * It is used in {@link OH_ImageSource_GetImageProperty} and {@link OH_ImageSource_ModifyImageProperty}.
  *
  * @since 12
