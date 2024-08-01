@@ -344,9 +344,10 @@ typedef enum {
      * @brief Sets the gradient attribute, which can be set, reset, and obtained as required through APIs.
      *
      * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].f32: start angle of the linear gradient. A positive value indicates a clockwise rotation from the
-     * origin, (0, 0). The default value is <b>180</b>. \n
-     * .value[1].i32: direction of the linear gradient. It does not take effect when <b>angle</b> is set.
+     * .value[0].f32: start angle of the linear gradient. This attribute takes effect only when
+     * {@link ArkUI_LinearGradientDirection} is set to <b>ARKUI_LINEAR_GRADIENT_DIRECTION_CUSTOM</b>.
+     * A positive value indicates a clockwise rotation from the origin, (0, 0). The default value is <b>180</b>. \n
+     * .value[1].i32: direction of the linear gradient. When it is set, the <b>angle</b> attribute does not take effect.
      * The parameter type is {@link ArkUI_LinearGradientDirection}: \n
      * .value[2].i32: whether the colors are repeated. The default value is <b>false</b>. \n
      * .object: array of color stops, each of which consists of a color and its stop position.
@@ -358,7 +359,7 @@ typedef enum {
      * Format of the return value {@link ArkUI_AttributeItem}: \n
      * .value[0].f32: start angle of the linear gradient. \n
      * .value[1].i32: direction of the linear gradient. It does not take effect when <b>angle</b> is set. \n
-     * .value[0].i32: whether the colors are repeated. \n
+     * .value[2].i32: whether the colors are repeated. \n
      * .object: array of color stops, each of which consists of a color and its stop position.
      * Invalid colors are automatically skipped. \n
      * colors: colors of the color stops. \n
