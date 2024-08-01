@@ -1261,6 +1261,71 @@ static const char *OHOS_IMAGE_PROPERTY_SCENE_POINTER = "HwMnoteScenePointer";
 static const char *OHOS_IMAGE_PROPERTY_SCENE_VERSION = "HwMnoteSceneVersion";
 
 /**
+ * @brief Is Xmage Supported
+ * It is used in {@link OH_ImageSource_GetImageProperty} and {@link OH_ImageSource_ModifyImageProperty}.
+ *
+ * @since 12
+ */
+static const char *OHOS_IMAGE_PROPERTY_IS_XMAGE_SUPPORTED = "HwMnoteIsXmageSupported";
+
+/**
+ * @brief Xmage Mode
+ * It is used in {@link OH_ImageSource_GetImageProperty} and {@link OH_ImageSource_ModifyImageProperty}.
+ *
+ * @since 12
+ */
+static const char *OHOS_IMAGE_PROPERTY_XMAGE_MODE = "HwMnoteXmageMode";
+
+/**
+ * @brief Xmage X1 Coordinate
+ * It is used in {@link OH_ImageSource_GetImageProperty} and {@link OH_ImageSource_ModifyImageProperty}.
+ *
+ * @since 12
+ */
+static const char *OHOS_IMAGE_PROPERTY_XMAGE_LEFT = "HwMnoteXmageLeft";
+
+/**
+ * @brief Xmage Y1 Coordinate
+ * It is used in {@link OH_ImageSource_GetImageProperty} and {@link OH_ImageSource_ModifyImageProperty}.
+ *
+ * @since 12
+ */
+static const char *OHOS_IMAGE_PROPERTY_XMAGE_TOP = "HwMnoteXmageTop";
+
+/**
+ * @brief Xmage X2 Coordinate
+ * It is used in {@link OH_ImageSource_GetImageProperty} and {@link OH_ImageSource_ModifyImageProperty}.
+ *
+ * @since 12
+ */
+static const char *OHOS_IMAGE_PROPERTY_XMAGE_RIGHT = "HwMnoteXmageRight";
+
+/**
+ * @brief Xmage Y2 Coordinate
+ * It is used in {@link OH_ImageSource_GetImageProperty} and {@link OH_ImageSource_ModifyImageProperty}.
+ *
+ * @since 12
+ */
+static const char *OHOS_IMAGE_PROPERTY_XMAGE_BOTTOM = "HwMnoteXmageBottom";
+
+/**
+ * @brief Cloud Enhancement Mode
+ * It is used in {@link OH_ImageSource_GetImageProperty} and {@link OH_ImageSource_ModifyImageProperty}.
+ *
+ * @since 12
+ */
+static const char *OHOS_IMAGE_PROPERTY_CLOUD_ENHANCEMENT_MODE = "HwMnoteCloudEnhancementMode";
+
+/**
+ * @brief Wind Snapshot Mode
+ * It is used in {@link OH_ImageSource_GetImageProperty} and {@link OH_ImageSource_ModifyImageProperty}.
+ *
+ * @since 12
+ */
+static const char *OHOS_IMAGE_PROPERTY_WIND_SNAPSHOT_MODE = "HwMnoteWindSnapshotMode";
+
+
+/**
  * @brief Gif Loop Count
  * It is used in {@link OH_ImageSource_GetImageProperty}.
  * If infinite loop returns 0, other values represent the number of loops
