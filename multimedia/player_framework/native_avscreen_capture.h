@@ -389,8 +389,10 @@ OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_ContentFilter_AddWindowContent(
  * @param capture Pointer to an OH_AVScreenCapture instance
  * @param width Video frame width of avscreeencapture
  * @param height Video frame height of avscreeencapture
- * @return Returns AV_SCREEN_CAPTURE_ERR_OK if the execution is successful,
- * otherwise returns a specific error code, refer to {@link OH_AVSCREEN_CAPTURE_ErrCode}
+ * @return Function result code.
+ *         {@link AV_SCREEN_CAPTURE_ERR_OK} if the execution is successful.
+ *         {@link AV_SCREEN_CAPTURE_ERR_INVALID_VAL} input capture is nullptr or input filter is nullptr.
+ *         {@link AV_SCREEN_CAPTURE_ERR_OPERATE_NOT_PERMIT} opertation not be permitted.
  * @since 12
  * @version 1.0
  */
