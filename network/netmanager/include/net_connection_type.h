@@ -69,7 +69,7 @@ typedef enum NetConn_NetCap {
     NETCONN_NET_CAPABILITY_NOT_VPN = 15,
     /** Validated */
     NETCONN_NET_CAPABILITY_VALIDATED = 16,
-    /** portal */
+    /** Portal */
     NETCONN_NET_CAPABILITY_PORTAL = 17
 } NetConn_NetCap;
 
