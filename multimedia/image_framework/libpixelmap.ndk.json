@@ -146,5 +146,13 @@
     {
         "first_introduced": "12",
         "name": "OH_PixelmapNative_CreateEmptyPixelmap"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_PixelmapNative_ConvertPixelmapToNapi"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_PixelmapNative_ConvertPixelmapFromNapi"
     }
 ]
