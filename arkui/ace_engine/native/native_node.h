@@ -2175,6 +2175,18 @@ typedef enum {
     NODE_TEXT_CONTENT_WITH_STYLED_STRING,
 
     /**
+     * @brief Sets whether to center text vertically in the text component.
+     *
+     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
+     * .value[0].i32: whether to center text vertically. The default value is <b>false</b>. \n
+     * \n
+     * Format of the return value {@link ArkUI_AttributeItem}:\n
+     * .value[0].i32: whether to center text vertically. \n
+     *
+     */
+    NODE_TEXT_HALF_LEADING = 1029,
+
+    /**
      * @brief Defines the text content attribute, which can be set, reset, and obtained as required through APIs.
      *
      * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
