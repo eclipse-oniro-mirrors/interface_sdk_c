@@ -70,9 +70,9 @@ typedef enum NetConn_NetCap {
     /** Validated */
     NETCONN_NET_CAPABILITY_VALIDATED = 16,
     /**
-     * Portal
-     * @since 12
-     */
+    * Portal
+    * @since 12
+    */
     NETCONN_NET_CAPABILITY_PORTAL = 17
 } NetConn_NetCap;
 
