@@ -19,14 +19,15 @@ import os
 import stat
 from collections import OrderedDict
 import openpyxl as op
-from coreImpl.parser.parser import parser_include_ast
+from coreImpl.parser.parser import diff_parser_include_ast
 from coreImpl.diff.diff_processor_node import judgment_entrance, change_data_total
-from typedef.diff.diff import OutputJson, ApiChangeData
+from typedef.diff.diff import OutputJson, ApiChangeData, IgnoreFileDirectory
 from bin.write_md import write_md_entrance
 
 global_old_dir = ''
 global_new_dir = ''
 diff_info_list = []
+syntax_file_list = []
 
 
 def get_modification_type_dict():
@@ -67,13 +68,15 @@ def get_api_change_obj(api_data):
             change_data_obj.set_kit_name(element.kit_name)
             change_data_obj.set_sub_system(element.sub_system)
             change_data_obj.set_is_api_change(element.is_api_change)
-            change_data_obj.set_class_name(element.class_name)
+            change_data_obj.set_current_api_type(element.current_api_type)
             change_data_obj.set_diff_type(element.operation_diff_type)
             change_data_obj.set_change_type(element.api_modification_type)
             change_data_obj.set_old_all_text(element.old_api_full_text)
             change_data_obj.set_new_all_text(element.new_api_full_text)
             change_data_obj.set_compatible_total(element.is_compatible)
             change_data_obj.set_is_system_api(element.is_system_api)
+            change_data_obj.set_open_close_api(element.open_close_api)
+            change_data_obj.set_is_third_party_api(element.is_third_party_api)
             key = 1
         else:
             old_all_text = '{}#&#{}'.format(change_data_obj.old_all_text, element.old_api_full_text)
@@ -120,7 +123,7 @@ def collect_node_api_change(api_change_info_list):
             api_change_info.kit_name,
             api_change_info.sub_system,
             api_change_info.is_api_change,
-            api_change_info.class_name,
+            api_change_info.current_api_type,
             api_change_info.diff_type,
             api_change_info.change_type,
             api_change_info.compatible,
@@ -129,11 +132,34 @@ def collect_node_api_change(api_change_info_list):
             api_change_info.new_all_text,
             api_change_info.compatible_total,
             api_change_info.unique_id,
-            api_change_info.is_system_api
+            api_change_info.is_system_api,
+            api_change_info.open_close_api,
+            api_change_info.is_third_party_api
         ]
         change_data.append(info_data)
 
     return change_data
+
+
+def syntax_file_excel(output_path):
+    data = []
+    if syntax_file_list:
+        for syntax_dict in syntax_file_list:
+            info_data = [
+                syntax_dict.get('current_file'),
+                syntax_dict.get('error_message')
+            ]
+            data.append(info_data)
+
+        wb = op.Workbook()
+        ws = wb['Sheet']
+        ws.title = '语法错误文件信息'
+        ws.append(['当前文件', '错误信息'])
+        for element in data:
+            d = element[0], element[1]
+            ws.append(d)
+        output_path_xlsx = os.path.abspath(os.path.join(output_path, r'syntax_file_error.xlsx'))
+        wb.save(output_path_xlsx)
 
 
 def start_diff_file(old_dir, new_dir, output_path):
@@ -141,6 +167,7 @@ def start_diff_file(old_dir, new_dir, output_path):
     total = change_data_total
     collect_api_change_data = collect_api_change(total)
     generate_excel(result_info_list, collect_api_change_data, output_path)
+    syntax_file_excel(output_path)
     write_md_entrance(result_info_list, output_path)
     result_json = result_to_json(result_info_list)
     diff_result_path = r'./diff_result.txt'
@@ -179,11 +206,11 @@ def generate_excel(result_info_list, api_change_data, output_path):
     ws_of_change = wb.create_sheet('api变更次数统计')
     ws_of_change.append(['api名称', 'kit名称', '归属子系统', '是否是api', 'api类型', '操作标记', '变更类型',
                          '兼容性', '变更次数', '差异项-旧版本', '差异项-新版本', '兼容性列表', '接口全路径',
-                         '是否为系统API'])
+                         '是否为系统API', '开源/闭源API', '是否是三方库api'])
     for element in change_data_list:
         change_data = element[0], element[1], element[2], element[3], element[4], element[5],\
                       element[6], element[7], element[8], element[9], element[10], element[11],\
-                      element[12], element[13]
+                      element[12], element[13], element[14], element[15]
         ws_of_change.append(change_data)
     output_path_xlsx = os.path.abspath(os.path.join(output_path, 'diff.xlsx'))
     wb.save(output_path_xlsx)
@@ -224,6 +251,14 @@ def get_file_ext(file_name):
     return os.path.splitext(file_name)[1]
 
 
+def filter_ignore_file(file_path):
+    ignore_dict = IgnoreFileDirectory.ignore_file_dict
+    for key in ignore_dict.keys():
+        if key in file_path:
+            return False
+    return True
+
+
 def diff_list(old_file_list, new_file_list, old_dir, new_dir):
     all_list = set(old_file_list + new_file_list)
     if len(all_list) == 0:
@@ -246,8 +281,8 @@ def diff_list(old_file_list, new_file_list, old_dir, new_dir):
 def add_new_file(diff_file_path):
     if os.path.isdir(diff_file_path):
         add_file(diff_file_path)
-    else:
-        result_map = parse_file_result(parser_include_ast(global_new_dir, [diff_file_path], flag=1))
+    elif filter_ignore_file(diff_file_path):
+        result_map = parse_file_result(diff_parser_include_ast(global_new_dir, [diff_file_path], flag=1))
         for new_info in result_map.values():
             diff_info_list.extend(judgment_entrance(None, new_info))
 
@@ -255,8 +290,8 @@ def add_new_file(diff_file_path):
 def del_old_file(diff_file_path):
     if os.path.isdir(diff_file_path):
         del_file(diff_file_path)
-    else:
-        result_map = parse_file_result(parser_include_ast(global_old_dir, [diff_file_path], flag=0))
+    elif filter_ignore_file(diff_file_path):
+        result_map = parse_file_result(diff_parser_include_ast(global_old_dir, [diff_file_path], flag=0))
         for old_info in result_map.values():
             diff_info_list.extend(judgment_entrance(old_info, None))
 
@@ -278,12 +313,14 @@ def get_same_file_diff(target_file, old_file_list, new_file_list, old_dir, new_d
 
 
 def get_file_result_diff(old_target_file, new_target_file):
-    old_file_result_map = parse_file_result(parser_include_ast(global_old_dir, [old_target_file], flag=0))
-    new_file_result_map = parse_file_result(parser_include_ast(global_new_dir, [new_target_file], flag=1))
-    merged_dict = OrderedDict(list(old_file_result_map.items()) + list(new_file_result_map.items()))
-    all_key_list = merged_dict.keys()
-    for key in all_key_list:
-        diff_info_list.extend(judgment_entrance(old_file_result_map.get(key), new_file_result_map.get(key)))
+    if filter_ignore_file(old_target_file):
+        old_file_result_map = parse_file_result(diff_parser_include_ast(global_old_dir, [old_target_file], flag=0))
+        new_file_result_map = parse_file_result(diff_parser_include_ast(global_new_dir, [new_target_file], flag=1))
+        if old_file_result_map and new_file_result_map:
+            merged_dict = OrderedDict(list(old_file_result_map.items()) + list(new_file_result_map.items()))
+            all_key_list = merged_dict.keys()
+            for key in all_key_list:
+                diff_info_list.extend(judgment_entrance(old_file_result_map.get(key), new_file_result_map.get(key)))
 
 
 def del_file(dir_path):
@@ -294,8 +331,8 @@ def del_file(dir_path):
         file_path = os.path.join(dir_path, i)
         if os.path.isdir(file_path):
             del_file(file_path)
-        if get_file_ext(i) == '.h':
-            result_map = parse_file_result(parser_include_ast(global_old_dir, [file_path], flag=0))
+        if get_file_ext(i) == '.h' and filter_ignore_file(file_path):
+            result_map = parse_file_result(diff_parser_include_ast(global_old_dir, [file_path], flag=0))
             for old_info in result_map.values():
                 diff_info_list.extend(judgment_entrance(old_info, None))
 
@@ -308,8 +345,8 @@ def add_file(dir_path):
         file_path = os.path.join(dir_path, i)
         if os.path.isdir(file_path):
             add_file(file_path)
-        if get_file_ext(i) == '.h':
-            result_map = parse_file_result(parser_include_ast(global_new_dir, [file_path], flag=1))
+        if get_file_ext(i) == '.h' and filter_ignore_file(file_path):
+            result_map = parse_file_result(diff_parser_include_ast(global_new_dir, [file_path], flag=1))
             for new_info in result_map.values():
                 diff_info_list.extend(judgment_entrance(None, new_info))
 
@@ -322,16 +359,36 @@ def parse_file_result(result, data_type=0):
     """
     result_map = {}
     for root_node in result:
+        if root_node['syntax_error'] != 'NA':
+            error_file_path = os.path.abspath(os.path.join(root_node['gn_path'], root_node['name']))
+            error_message_dict = {
+                'current_file': error_file_path,
+                'error_message': root_node['syntax_error']
+            }
+            syntax_file_list.append(error_message_dict)
+        result_map.setdefault(f'{root_node["name"]}-{root_node["kind"]}', root_node)
         if data_type != 1:
             parse_file_result_by_child(result_map, root_node)
-        result_map.setdefault(f'{root_node["name"]}-{root_node["kind"]}', root_node)
     return result_map
+
+
+def process_empty_name(data_info: dict, result_map):
+    data_current_file = os.path.split(data_info['location']['location_path'])[1]
+    if data_info['kind'] == 'ENUM_DECL' and 'members' in data_info and data_current_file in data_info['type']:
+        for element in data_info['members']:
+            result_map.setdefault(f'{data_current_file}-{element["name"]}', element)
+    elif data_info['kind'] == 'ENUM_DECL' and 'members' in data_info and (data_current_file not in data_info['type']):
+        result_map.setdefault(f'{data_current_file}-{data_info["type"]}', data_info)
+    elif (data_info['kind'] == 'STRUCT_DECL' or data_info['kind'] == 'UNION_DECL') and \
+            (data_current_file not in data_info['type']):
+        result_map.setdefault(f'{data_current_file}-{data_info["type"]}', data_info)
 
 
 def parse_file_result_by_child(result_map, root_node):
     children_list = root_node['children']
     for children in children_list:
         if children["name"] == '':
+            process_empty_name(children, result_map)
             continue
         result_map.setdefault(f'{children["name"]}-{children["kind"]}', children)
     del root_node['children']

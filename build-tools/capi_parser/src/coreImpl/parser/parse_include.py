@@ -25,7 +25,7 @@ from clang.cindex import CursorKind
 from clang.cindex import TypeKind
 from utils.constants import StringConstant
 from utils.constants import RegularExpressions
-from typedef.parser.parser import NodeKind
+from typedef.parser.parser import NodeKind, DifferApiInfor, DifferApiRegular
 
 
 line_dist = {}
@@ -149,13 +149,26 @@ def processing_def(cursor, data):  # 处理宏定义
             print('mar_define error, its content is none')
     if text:
         text = text.strip()  # 删除两边的字符（默认是删除左右空格）
-        data['text'] = text
+    data['text'] = text
     data["type"] = "def_no_type"
+
+
+def difference_api(api_data: dict):
+    api_name = api_data['name']
+    closed_pattern = DifferApiRegular.CLOSED_SOURCE_API_REGULAR.value
+    open_pattern = DifferApiRegular.OPEN_SOURCE_API_REGULAR.value
+    if re.search(closed_pattern, api_name, flags=re.IGNORECASE):
+        api_data['open_close_api'] = DifferApiInfor.CLOSED_SOURCE_API.value
+    elif re.search(open_pattern, api_name, flags=re.IGNORECASE):
+        api_data['open_close_api'] = DifferApiInfor.OPEN_SOURCE_API.value
+    else:
+        api_data['is_third_party_api'] = True
 
 
 def processing_func(cursor, data):  # 处理函数
     data["return_type"] = cursor.result_type.spelling  # 增加返回类型键值对
     judgment_extern(cursor, data)
+    difference_api(data)
 
 
 def processing_type(cursor, data):  # 没有类型的节点处理
@@ -197,6 +210,12 @@ special_node_process = {
 }
 
 
+def process_members_class_name(data: dict, parent_cursor):
+    file_name = os.path.split(data['location']['location_path'])[1]
+    if (not data['name']) and (file_name not in parent_cursor.type.spelling):
+        data['class_name'] = '{}-{}'.format(file_name, parent_cursor.type.spelling)
+
+
 def get_api_unique_id(cursor, loc, data):
     unique_id = ''
     if cursor.kind == CursorKind.MACRO_DEFINITION:
@@ -213,7 +232,7 @@ def get_api_unique_id(cursor, loc, data):
                 parent_name_str = ''
             elif parent_of_cursor.kind.name in struct_union_enum:
                 parent_name_str = parent_of_cursor.type.spelling
-                data['class_name'] = parent_of_cursor.spelling
+                process_members_class_name(data, parent_of_cursor)
             else:
                 parent_name_str = parent_of_cursor.spelling
         except ValueError:
@@ -225,6 +244,20 @@ def get_api_unique_id(cursor, loc, data):
         else:
             unique_id = '{}#{}#{}'.format(loc["location_path"], parent_name_str, unique_name)
     return unique_id
+
+
+def get_node_class_name(data):
+    struct_union_enum = [NodeKind.STRUCT_DECL.value, NodeKind.UNION_DECL.value,
+                         NodeKind.ENUM_DECL.value]
+    current_file_name = os.path.split(data["location"]["location_path"])[1]
+    if data.get('kind') in struct_union_enum and 'class_name' in data:
+        class_name = '{}-{}'.format(current_file_name, data["name"])
+        if (not data["name"]) and (current_file_name not in data["type"]):
+            class_name = '{}-{}'.format(current_file_name, data["type"])
+    else:
+        class_name = current_file_name
+
+    return class_name
 
 
 def processing_special_node(cursor, data, key, gn_path):  # 处理需要特殊处理的节点
@@ -244,9 +277,12 @@ def processing_special_node(cursor, data, key, gn_path):  # 处理需要特殊�
         relative_path = os.path.relpath(location_path, gn_path)  # 获取头文件相对路
         loc["location_path"] = relative_path
     data["location"] = loc
+    data["class_name"] = get_node_class_name(data)
     data["unique_id"] = get_api_unique_id(cursor, loc, data)
     if key == 0:
         data["unique_id"] = data["name"]
+        syntax_error_message = diagnostic_callback(cursor.translation_unit.diagnostics, gn_path)
+        data["syntax_error"] = syntax_error_message
     if kind_name in special_node_process.keys():
         node_process = special_node_process[kind_name]
         node_process(cursor, data)  # 调用对应节点处理函数
@@ -302,9 +338,34 @@ def get_default_node_data(cursor, gn_path):
         "form": 'NA',
         "atomic_service": 'NA',
         "decorator": 'NA',
-        "unique_id": ''
+        "unique_id": '',
+        "syntax_error": 'NA',
+        "open_close_api": 'NA',
+        "is_third_party_api": False
     }
     return data
+
+
+def diagnostic_callback(diagnostic, dir_path):
+    # 获取诊断信息的详细内容
+    syntax_error_message = 'NA'
+    key = 0
+    for dig in diagnostic:
+        file_path = f"{dig.location.file}"
+        try:
+            file_path = os.path.relpath(os.path.normpath(file_path), dir_path)
+        except ValueError:
+            pass
+        line = dig.location.line
+        message = dig.spelling
+        # 输出诊断信息
+        error_message = f"{file_path}:{line}\n错误信息：{message}"
+        if 0 == key:
+            syntax_error_message = error_message
+            key = 1
+        else:
+            syntax_error_message = '{}\n{}'.format(syntax_error_message, error_message)
+    return syntax_error_message
 
 
 def parser_data_assignment(cursor, current_file, gn_path, comment=None, key=0):
@@ -323,10 +384,6 @@ def parser_data_assignment(cursor, current_file, gn_path, comment=None, key=0):
         data["kind"] = cursor.kind.name
         if cursor.kind.name == CursorKind.MACRO_DEFINITION.name:
             define_comment(cursor, current_file, data)
-    struct_union_enum = [NodeKind.STRUCT_DECL.value, NodeKind.UNION_DECL.value,
-                         NodeKind.ENUM_DECL.value]
-    if data.get('kind') in struct_union_enum and 'class_name' in data:
-        data['class_name'] = data.get('name')
     get_syscap_value(data)
     get_since_value(data)
     get_kit_value(data)
@@ -564,6 +621,7 @@ def api_entrance(share_lib, include_path, gn_path, link_path):  # 统计入口
     # options赋值为如下，代表宏定义解析数据也要
     args = ['-I{}'.format(path) for path in link_path]
     args.append('-std=c99')
+    args.append('--target=aarch64-linux-musl')
     options = clang.cindex.TranslationUnit.PARSE_DETAILED_PROCESSING_RECORD
 
     data_total = []  # 列表对象-用于统计

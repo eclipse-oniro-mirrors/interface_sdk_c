@@ -267,10 +267,8 @@ def find_include(link_include_path):
 
 def copy_self_include(link_include_path, self_include_file):
     for dir_path, dir_name, file_name_list in os.walk(self_include_file):
-        for element in dir_name:
-            dir_path_name = os.path.abspath(os.path.join(dir_path, element))
-            if 'sysroot_myself' not in dir_path and dir_path_name not in link_include_path:
-                link_include_path.append(dir_path_name)
+        if 'sysroot_myself' not in dir_path and 'build-tools' not in dir_path and dir_path not in link_include_path:
+            link_include_path.append(dir_path)
 
 
 def delete_typedef_child(child):
@@ -294,19 +292,11 @@ def parser(directory_path):  # 目录路径
     return data_total
 
 
-def parser_include_ast(dire_file_path, include_path: list, flag=-1):        # 对于单独的.h解析接口
+def parser_include_ast(dire_file_path, include_path: list):        # 对于单独的.h解析接口
     correct_include_path = []
     link_include_path = [dire_file_path]
-    # 针对check
-    if -1 == flag:
-        copy_std_lib(link_include_path, dire_file_path)
-        link_include(dire_file_path, StringConstant.FUNK_NAME.value, link_include_path)
-    # 针对diff
-    else:
-        copy_std_lib(link_include_path)
-    find_include(link_include_path)
-    if len(link_include_path) <= 2:
-        copy_self_include(link_include_path, dire_file_path)
+    copy_std_lib(link_include_path, dire_file_path)
+    copy_self_include(link_include_path, dire_file_path)
     for item in include_path:
         split_path = os.path.splitext(item)
         if split_path[1] == '.h':   # 判断.h结尾
@@ -322,13 +312,25 @@ def parser_include_ast(dire_file_path, include_path: list, flag=-1):        # �
     return data
 
 
+def diff_parser_include_ast(dire_file_path, include_path: list, flag=-1):        # 对于单独的.h解析接口
+    link_include_path = [dire_file_path]
+    copy_self_include(link_include_path, dire_file_path)
+    data = parse_include.get_include_file(include_path, link_include_path, dire_file_path)
+
+    for item in data:
+        if 'children' in item:
+            for child in item['children']:
+                delete_typedef_child(child)
+
+    return data
+
+
 def get_dir_file_path(dir_path):
     file_path_list = []
     link_include_path = []  # 装链接头文件路径
     for dir_path, dir_names, filenames in os.walk(dir_path):
-        for dir_name in dir_names:
-            if 'build-tools' not in dir_path and 'sysroot_myself' not in dir_path:
-                link_include_path.append(os.path.join(dir_path, dir_name))
+        if 'sysroot_myself' not in dir_path and 'build-tools' not in dir_path and dir_path not in link_include_path:
+            link_include_path.append(dir_path)
         for file in filenames:
             if 'build-tools' not in dir_path and 'sysroot_myself' not in dir_path and file.endswith('.h'):
                 file_path_list.append(os.path.join(dir_path, file))
