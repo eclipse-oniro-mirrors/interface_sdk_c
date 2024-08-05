@@ -2046,5 +2046,29 @@
     {
         "first_introduced": "12",
         "name": "OH_ArkUI_CustomSpanDrawInfo_GetBaseline"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_ArkUI_RegisterSystemColorModeChangeEvent"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_ArkUI_UnregisterSystemColorModeChangeEvent"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_ArkUI_RegisterSystemFontStyleChangeEvent"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_ArkUI_UnregisterSystemFontStyleChangeEvent"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_ArkUI_SystemFontStyleEvent_GetFontSize"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_ArkUI_SystemFontStyleEvent_GetFontWeight"
     }
 ]
