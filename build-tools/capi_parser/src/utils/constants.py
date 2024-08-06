@@ -24,15 +24,15 @@ class StringConstant(enum.Enum):
     REPLACE_WAREHOUSE = '\\interface_sdk_c\\interface_sdk_c'  # 拉到本地仓路径(去掉磁盘)
     # 拉到本地仓的三方库绝对路径
     INCLUDE_LIB = r'.\third_party\musl\ndk_musl_include'
-    STD_INCLUDE = r'.\sysroot_myself\std_include_files'
-    CREATE_LIB_PATH = r'.\sysroot_myself\$is_headers_out_dir'
-    SELF_INCLUDE = r'.\sysroot_myself\self_include_files'
-    SELF_INCLUDE_OLD = r'.\sysroot_myself\self_include_files_old'
-    SELF_INCLUDE_NEW = r'.\sysroot_myself\self_include_files_new'
-    SYSROOT = r'.\sysroot_myself'
+    STD_INCLUDE = r'./sysroot_myself/std_include_files'
+    CREATE_LIB_PATH = r'./sysroot_myself/$is_headers_out_dir'
+    SELF_INCLUDE = r'./sysroot_myself/self_include_files'
+    SELF_INCLUDE_OLD = r'./sysroot_myself/self_include_files_old'
+    SELF_INCLUDE_NEW = r'./sysroot_myself/self_include_files_new'
+    SYSROOT = r'./sysroot_myself'
     RESULT_HEAD_NAME = "result_total.xlsx"
     PARSER_DIRECT_EXCEL_NAME = 'parser_direct_data.xlsx'
-    FILE_LEVEL_API_DATA = r'.\api_kit_c.json'
+    FILE_LEVEL_API_DATA = r'./api_kit_c.json'
 
 
 class RegularExpressions(enum.Enum):

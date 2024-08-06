@@ -749,6 +749,27 @@ def process_typedef_child(old_child, new_child, diff_typedef_list):
             diff_typedef_list.extend(special_data)
 
 
+def process_anonymous_enum_member(old_info, new_info):
+    result_obj_list = []
+    if old_info and new_info:
+        if old_info['name'] != new_info['name']:
+            change_message_obj = DiffInfo(DiffType.ENUM_MEMBER_NAME_CHANGE, old_info['name'], new_info['name'])
+            result_obj_list.append(wrap_diff_info(old_info, new_info, change_message_obj))
+        if old_info['value'] != new_info['value']:
+            change_message_obj = DiffInfo(DiffType.ENUM_MEMBER_VALUE_CHANGE, old_info['value'], new_info['value'])
+            result_obj_list.append(wrap_diff_info(old_info, new_info, change_message_obj))
+    else:
+        if old_info:
+            change_message_obj = DiffInfo(DiffType.ENUM_MEMBER_REDUCE, old_info['node_content']['content'], 'NA')
+            result_obj_list.append(wrap_diff_info(old_info, new_info, change_message_obj))
+
+        elif new_info:
+            change_message_obj = DiffInfo(DiffType.ENUM_MEMBER_ADD, 'NA', new_info['node_content']['content'])
+            result_obj_list.append(wrap_diff_info(old_info, new_info, change_message_obj))
+
+    return result_obj_list
+
+
 process_data = {
     Scene.FUNCTION_DECL.value: process_function,
     Scene.MACRO_DEFINITION.value: process_define,
@@ -756,14 +777,38 @@ process_data = {
     Scene.UNION_DECL.value: process_union,
     Scene.ENUM_DECL.value: process_enum,
     Scene.VAR_DECL.value: process_variable_const,
-    Scene.TYPEDEF_DECL.value: process_typedef
+    Scene.TYPEDEF_DECL.value: process_typedef,
+    Scene.ENUM_CONSTANT_DECL.value: process_anonymous_enum_member,
 }
+
+
+def get_ch_api_kind(dict_key):
+    if dict_key == Scene.ENUM_CONSTANT_DECL.value:
+        key = 'ENUM_DECL'
+    else:
+        key = dict_key
+    api_kind_dict = {
+        'FUNCTION_DECL': '函数类型',
+        'MACRO_DEFINITION': '宏定义类型',
+        'STRUCT_DECL': '结构体类型',
+        'UNION_DECL': '联合体类型',
+        'ENUM_DECL': '枚举类型',
+        'VAR_DECL': '常/变量类型',
+        'TYPEDEF_DECL': '重命名类型',
+        'TRANSLATION_UNIT': 'NA'
+    }
+    return api_kind_dict.get(key)
 
 
 def collect_change_data_total(data: dict, diff_info_list):
     for element in diff_info_list:
         element.set_api_node_name(data['name'])
+        if (data['kind'] == Scene.STRUCT_DECL.value or data['kind'] == Scene.UNION_DECL.value) and (not data['name']):
+            element.set_api_node_name(data['type'])
         element.set_current_api_unique_id(data['unique_id'])
+        element.set_open_close_api(data['open_close_api'])
+        element.set_is_third_party_api(data['is_third_party_api'])
+        element.set_current_api_type(get_ch_api_kind(data['kind']))
     change_data_total.append(diff_info_list)
 
 
@@ -780,17 +825,18 @@ def process_add_node(add_infor, key_extern, struct_union_enum):
         return diff_info_list
     if 'is_extern' in add_infor and add_infor['is_extern']:
         key_extern = True
-    diff_type = DiffType.ADD_API
-    old_api_content = 'NA'
-    if add_infor['kind'] in struct_union_enum:
-        new_api_content = add_infor['type']
+    if add_infor['kind'] == Scene.ENUM_CONSTANT_DECL.value:
+        result_obj_list = process_anonymous_enum_member(old_infor, add_infor)
+        diff_info_list.extend(result_obj_list)
     else:
-        new_api_content = add_infor['node_content']['content']
-    diff_info_list.append(wrap_diff_info(old_infor, add_infor, DiffInfo(diff_type,
-                                                                        old_api_content, new_api_content)))
-    if diff_type == DiffType.ADD_API:
-        set_is_api_change_result(diff_info_list, key_extern)
-        collect_change_data_total(add_infor, diff_info_list)
+        if add_infor['kind'] in struct_union_enum:
+            new_api_content = add_infor['type']
+        else:
+            new_api_content = add_infor['node_content']['content']
+        diff_info_list.append(wrap_diff_info(old_infor, add_infor, DiffInfo(DiffType.ADD_API,
+                                                                            'NA', new_api_content)))
+    set_is_api_change_result(diff_info_list, key_extern)
+    collect_change_data_total(add_infor, diff_info_list)
 
     return diff_info_list
 
@@ -802,14 +848,16 @@ def process_reduce_node(reduce_infor, key_extern, struct_union_enum):
         return diff_info_list
     if 'is_extern' in reduce_infor and reduce_infor['is_extern']:
         key_extern = True
-    diff_type = DiffType.REDUCE_API
-    new_api_content = 'NA'
-    if reduce_infor['kind'] in struct_union_enum:
-        old_api_content = reduce_infor['type']
+    if reduce_infor['kind'] == Scene.ENUM_CONSTANT_DECL.value:
+        result_obj_list = process_anonymous_enum_member(reduce_infor, new_infor)
+        diff_info_list.extend(result_obj_list)
     else:
-        old_api_content = reduce_infor['node_content']['content']
-    diff_info_list.append(wrap_diff_info(reduce_infor, new_infor, DiffInfo(diff_type,
-                                                                           old_api_content, new_api_content)))
+        if reduce_infor['kind'] in struct_union_enum:
+            old_api_content = reduce_infor['type']
+        else:
+            old_api_content = reduce_infor['node_content']['content']
+        diff_info_list.append(wrap_diff_info(reduce_infor, new_infor, DiffInfo(DiffType.REDUCE_API,
+                                                                               old_api_content, 'NA')))
     set_is_api_change_result(diff_info_list, key_extern)
     collect_change_data_total(reduce_infor, diff_info_list)
 

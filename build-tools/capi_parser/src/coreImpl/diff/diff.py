@@ -13,7 +13,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-from coreImpl.parser.parser import parser_include_ast
+from coreImpl.parser.parser import diff_parser_include_ast
 from coreImpl.diff.diff_file import start_diff_file
 
 
@@ -42,5 +42,5 @@ def process_file_diff(old_file, new_file):
 def get_parser_data(file_path):
     root_start = file_path.split('sdk_c')[0]
     root_path = f'{root_start}sdk_c'
-    parser_data = parser_include_ast(root_path, [file_path])
+    parser_data = diff_parser_include_ast(root_path, [file_path])
     return parser_data
