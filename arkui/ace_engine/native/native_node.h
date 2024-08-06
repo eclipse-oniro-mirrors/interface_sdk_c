@@ -496,15 +496,16 @@ typedef enum {
      */
     NODE_VISIBILITY,
     /**
-     * @brief Defines the clip attribute, which can be set, reset, and obtained as required through APIs.
+     * @brief Defines the clipping and masking attribute, which can be set, reset, and obtained as required through
+     * APIs.
      *
      * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
      * .value[0].i32: whether to clip the component based on the parent container bounds.
-     * The value <b>0</b> means to clip the component, and <b>1</b> means the opposite. \n
+     * The value <b>1</b> means to clip the component, and <b>0</b> means the opposite. \n
      * \n
      * Format of the return value {@link ArkUI_AttributeItem}:\n
      * .value[0].i32: whether to clip the component based on the parent container bounds.
-     * The value <b>0</b> means to clip the component, and <b>1</b> means the opposite. \n
+     * The value <b>1</b> means to clip the component, and <b>0</b> means the opposite. \n
      *
      */
     NODE_CLIP,
