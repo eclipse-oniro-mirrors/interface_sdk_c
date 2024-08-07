@@ -403,7 +403,7 @@ OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_ResizeCanvas(struct OH_AVScreenCa
  * @brief skip some windows' privacy mode of current app during the screen recording
  * @syscap SystemCapability.Multimedia.Media.AVScreenCapture
  * @param capture Pointer to an OH_AVScreenCapture instance
- * @param Pointer to windowID list
+ * @param Pointer of windowID list
  * @param length of windowID list
  * @return Function result code.
  *         {@link AV_SCREEN_CAPTURE_ERR_OK} if the execution is successful.
