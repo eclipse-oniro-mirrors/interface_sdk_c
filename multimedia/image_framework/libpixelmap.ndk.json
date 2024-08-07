@@ -149,10 +149,10 @@
     },
     {
         "first_introduced": "12",
-        "name": "OH_PixelmapNative_ConvertPixelmapToNapi"
+        "name": "OH_PixelmapNative_ConvertPixelmapNativeToNapi"
     },
     {
         "first_introduced": "12",
-        "name": "OH_PixelmapNative_ConvertPixelmapFromNapi"
+        "name": "OH_PixelmapNative_ConvertPixelmapNativeFromNapi"
     }
 ]
