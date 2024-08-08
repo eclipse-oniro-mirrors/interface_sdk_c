@@ -1,0 +1,22 @@
+[
+    {
+        "first_introduced": "12",
+        "name": "OH_PictureMetadata_Create"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_PictureMetadata_GetProperty"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_PictureMetadata_SetProperty"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_PictureMetadata_Release"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_PictureMetadata_Clone"
+    }
+]
