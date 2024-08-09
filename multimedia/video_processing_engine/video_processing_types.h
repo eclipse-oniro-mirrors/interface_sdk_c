@@ -184,7 +184,7 @@ typedef enum VideoProcessing_ErrorCode {
     VIDEO_PROCESSING_ERROR_NO_MEMORY,
     /** @error The video processing instance is invalid. This may be caused by null instance. */
     VIDEO_PROCESSING_ERROR_INVALID_INSTANCE,
-    /** @error Input parameter is invalid. This error is returned for all of the following error conditions:
+    /** @error Input value is invalid. This error is returned for all of the following error conditions:
      *  1 - Invalid input or output video buffer - The video buffer width(height)
      *      is too large or colorspace is incorrect.
      *  2 - Invalid parameter - The parameter does not contain valid information,
