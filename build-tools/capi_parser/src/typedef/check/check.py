@@ -158,34 +158,34 @@ be reused please delete the extra tags.'
 
 
 class CheckErrorMessage(enum.Enum):
-    API_NAME_UNIVERSAL_01 = ('API check error of [naming errors]:The names of self-developed '
+    API_NAME_UNIVERSAL_01 = ('API check error of [naming errors]:The [$$] of self-developed '
                              'functions in APIs must start with OH_ or OS_ or HMS_ and comply '
                              'with the large hump case format.')
-    API_NAME_UNIVERSAL_02 = ('API check error of [naming errors]:The names of constants in '
+    API_NAME_UNIVERSAL_02 = ('API check error of [naming errors]:The [$$] of constants in '
                              'APIs must be in uppercase and separated by underscores.')
-    API_NAME_UNIVERSAL_03 = ('API check error of [naming errors]:The naming of enumeration '
+    API_NAME_UNIVERSAL_03 = ('API check error of [naming errors]:The [$$] of enumeration '
                              'types should follow the big hump rule.')
-    API_NAME_UNIVERSAL_04 = ('API check error of [naming errors]:The naming of enumeration '
+    API_NAME_UNIVERSAL_04 = ('API check error of [naming errors]:The [$$] of enumeration '
                              'values should follow the all uppercase rule and separated by underscores.')
-    API_NAME_UNIVERSAL_05 = ('API check error of [naming errors]:The naming of struct should '
+    API_NAME_UNIVERSAL_05 = ('API check error of [naming errors]:The [$$] of struct should '
                              'follow the rules of the Great Hump.')
-    API_NAME_UNIVERSAL_06 = ('API check error of [naming errors]:The naming of members in the '
+    API_NAME_UNIVERSAL_06 = ('API check error of [naming errors]:The [$$] of members in the '
                              'structure should follow the small hump format.')
-    API_NAME_UNIVERSAL_07 = ('API check error of [naming errors]:The naming of the consortium '
-                             'should follow the format of the large camel hump.')
-    API_NAME_UNIVERSAL_08 = ('API check error of [naming errors]:The naming of members in the '
+    API_NAME_UNIVERSAL_07 = ('API check error of [naming errors]:The [$$] of the consortium '
+                             'should follow the format of the Great hump.')
+    API_NAME_UNIVERSAL_08 = ('API check error of [naming errors]:The [$$] of members in the '
                              'consortium should follow the small hump format.')
-    API_NAME_UNIVERSAL_09 = ('API check error of [naming errors]:The names of a global variable '
+    API_NAME_UNIVERSAL_09 = ('API check error of [naming errors]:The [$$] of a global variable '
                              'must be prefixed with g_ in the small camel case format.')
-    API_NAME_UNIVERSAL_10 = ('API check error of [naming errors]:The naming of general functions '
+    API_NAME_UNIVERSAL_10 = ('API check error of [naming errors]:The [$$] of general functions '
                              'should follow the big hump format.')
-    API_NAME_UNIVERSAL_11 = ('API check error of [naming errors]:Function parameter names should '
+    API_NAME_UNIVERSAL_11 = ('API check error of [naming errors]:Function parameter [$$] should '
                              'follow the small hump format.')
-    API_NAME_UNIVERSAL_12 = ('API check error of [naming errors]:Macro naming should follow all '
+    API_NAME_UNIVERSAL_12 = ('API check error of [naming errors]:Macro [$$] should follow all '
                              'uppercase format and separated by underscores.')
-    API_NAME_UNIVERSAL_13 = ('API check error of [naming errors]:Functional macro naming should '
+    API_NAME_UNIVERSAL_13 = ('API check error of [naming errors]:Functional macro [$$] should '
                              'follow all uppercase format and separated by underscores.')
-    API_NAME_UNIVERSAL_14 = ('API check error of [naming errors]:The file name should be all '
+    API_NAME_UNIVERSAL_14 = ('API check error of [naming errors]:The [$$] file name should be all '
                              'lowercase and separated by underscores.')
     API_DOC_GLOBAL_01 = ('API check error of [api doc errors]:The [file] tag is repeat. Please '
                          'check the tag in file.')
@@ -263,12 +263,16 @@ class CheckOutPut:
                  main_buggy_code, main_buggy_line):
         self.analyzerName = 'apiengine'
         self.buggyFilePath = buggy_file_path
+        if code_context_start_line == -1:
+            code_context_start_line = 0
         self.codeContextStartLine = code_context_start_line
         self.defectLevel = 2
         self.defectType = defect_type
         self.description = description
-        self.language = 'c'
+        self.language = 'c++'
         self.mainBuggyCode = main_buggy_code
+        if main_buggy_line == -1:
+            main_buggy_line = 0
         self.mainBuggyLine = main_buggy_line
 
 
@@ -328,6 +332,7 @@ class OutputTxt:
 class ApiResultInfo:
     error_type: ErrorType = ErrorType.DEFAULT.value
     error_info = ''
+    error_content = ''
     level: ErrorLevel = -1
     api_name = ''
     api_since = ''
@@ -425,6 +430,12 @@ class ApiResultInfo:
     def set_location(self, location_param):
         self.location = location_param
 
+    def get_error_content(self):
+        return self.error_content
+
+    def set_error_content(self, error_content):
+        self.error_content = error_content
+
 
 class DocInfo:
     group = ''
@@ -455,3 +466,9 @@ class FileDocInfo:
     file_since = False
     file_comment_str = ''
     curr_doc_info = DocInfo()
+
+
+class CommentStartEndValue(enum.Enum):
+    DEFAULT_START = 0,
+    DEFAULT_END = 0
+

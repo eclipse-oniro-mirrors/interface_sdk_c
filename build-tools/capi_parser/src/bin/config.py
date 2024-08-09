@@ -15,7 +15,7 @@
 
 import enum
 from coreImpl.parser import parser
-from coreImpl.check import check
+from coreImpl.check import check, check_syntax
 from coreImpl.diff import diff
 
 
@@ -25,6 +25,7 @@ class ToolNameType(enum.Enum):
     CHECK = 'check'
     COLLECT_H = 'collect_h'
     COLLECT_FILE = 'collect_file'
+    CHECK_SYNTAX = 'check_syntax'
 
 
 tool_name_type_set = [
@@ -57,6 +58,8 @@ def run_tools(options):
         parser.parser_direct(options.parser_path)
     elif tool_name == ToolNameType['COLLECT_FILE'].value:
         parser.parser_file_level(options.output_path)
+    elif tool_name == ToolNameType['CHECK_SYNTAX'].value:
+        check_syntax.check_syntax_entrance(options.parser_path, options.dependent_path, options.output_path)
     else:
         print("工具名称错误")
 
@@ -88,6 +91,13 @@ class Config(object):
             "required": False,
             "type": str,
             "help": "工具输出文件路径"
+        },
+        {
+            "name": "--dependent-path",
+            "abbr": "-D",
+            "required": False,
+            "type": str,
+            "help": "依赖文件路径"
         },
         {
             "name": "--codecheck--path",
