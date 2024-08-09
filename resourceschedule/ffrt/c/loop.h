@@ -43,6 +43,7 @@
 
 /**
  * @brief Defines the ffrt loop type.
+ *
  * @since 12
  */
 typedef void* ffrt_loop_t;
