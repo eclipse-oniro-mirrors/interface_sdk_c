@@ -41,6 +41,10 @@
 #include "queue.h"
 #include "type_def.h"
 
+/**
+ * @brief Defines the ffrt loop type.
+ * @since 12
+ */
 typedef void* ffrt_loop_t;
 
 /**
