@@ -21,7 +21,7 @@ import subprocess
 
 from clang.cindex import CursorKind
 
-from typedef.check.check import DocInfo, FileDocInfo, TAGS, CheckErrorMessage, CheckOutPut
+from typedef.check.check import DocInfo, FileDocInfo, TAGS, CheckErrorMessage, CheckOutPut, CommentStartEndValue
 
 current_file = os.path.dirname(__file__)
 # permission数据来源于https://gitee.com/openharmony/utils_system_resources/raw/master/systemres/main/config.json
@@ -474,7 +474,7 @@ def process_file_doc_info(file_doc_info: FileDocInfo, file_info, comment_start_l
             api_result_info = set_value_to_result(file_info, CheckErrorMessage.API_DOC_GLOBAL_10.name,
                                                   get_tage_start_and_end(None, comment_start_line,
                                                                          file_doc_info.group_comment_str, file_info))
-            api_result_info.mainBuggyLine = -1
+            api_result_info.mainBuggyLine = CommentStartEndValue.DEFAULT_END.value
             api_result_info_list.append(api_result_info)
     # 处理file说明
     if file_doc_info.file_name is None:
@@ -502,6 +502,5 @@ def set_value_to_result(api_info, command, comment_value_info):
 
 
 def get_main_buggy_code(api_info):
-    main_buggy_code = os.path.basename(api_info['name']) if (len(api_info['node_content'])
-                                                             == 0) else api_info['node_content']['content']
+    main_buggy_code = '' if (len(api_info['node_content']) == 0) else api_info['node_content']['content']
     return main_buggy_code

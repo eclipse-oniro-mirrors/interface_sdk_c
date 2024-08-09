@@ -150,7 +150,7 @@ def processing_def(cursor, data):  # 处理宏定义
     if text:
         text = text.strip()  # 删除两边的字符（默认是删除左右空格）
     data['text'] = text
-    data["type"] = "def_no_type"
+    data["type"] = ""
 
 
 def difference_api(api_data: dict):
@@ -291,14 +291,20 @@ def processing_special_node(cursor, data, key, gn_path):  # 处理需要特殊�
 def node_extent(cursor, current_file):
     start_offset = cursor.extent.start.offset
     end_offset = cursor.extent.end.offset
+    start_line = cursor.extent.start.line
+    end_line = cursor.extent.end.line
     with open(current_file, 'r', encoding='utf=8') as f:
         f.seek(start_offset)
         content = f.read(end_offset - start_offset)
-
+        f.seek(0)
+        file_content_all = f.readlines()
+        line_content = file_content_all[start_line - 1: end_line]
+        line_content = ''.join(line_content)
     extent = {
         "start_offset": start_offset,
         "end_offset": end_offset,
-        "content": content
+        "content": content,
+        "line_content": line_content
     }
     f.close()
     return extent
