@@ -29,6 +29,7 @@
  * @brief Declares the APIs that can access a picture.
  *
  * @library libpicture.so
+ * @kit ImageKit
  * @Syscap SystemCapability.Multimedia.Image.Core
  * @since 12
  */
