@@ -765,6 +765,32 @@ Image_ErrorCode OH_PixelmapNative_ConvertAlphaFormat(OH_PixelmapNative* srcpixel
 Image_ErrorCode OH_PixelmapNative_CreateEmptyPixelmap(
     OH_Pixelmap_InitializationOptions *options, OH_PixelmapNative **pixelmap);
 
+/**
+ * @brief Set metadata.
+ * 
+ * @param pixelmap The Pixelmap pointer to be operated.
+ * @param key Type of metadata.
+ * @param value Value of metadata.
+ * @return Returns {@link Image_ErrorCode}
+ * @see OH_PixelmapNative
+ * @since 12
+ */
+Image_ErrorCode OH_PixelmapNative_SetMetadata(OH_PixelmapNative *pixelmap, OH_Pixelmap_HdrMetadataKey key,
+    OH_Pixelmap_HdrMetadataValue *value);
+
+/**
+ * @brief Get metadata.
+ * 
+ * @param pixelmap The Pixelmap pointer to be operated.
+ * @param key Type of metadata.
+ * @param value Value of metadata.
+ * @return Returns {@link Image_ErrorCode}
+ * @see OH_PixelmapNative
+ * @since 12
+ */
+Image_ErrorCode OH_PixelmapNative_GetMetadata(OH_PixelmapNative *pixelmap, OH_Pixelmap_HdrMetadataKey key,
+    OH_Pixelmap_HdrMetadataValue **value);
+
 #ifdef __cplusplus
 };
 #endif
