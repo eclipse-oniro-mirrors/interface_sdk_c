@@ -771,7 +771,11 @@ Image_ErrorCode OH_PixelmapNative_CreateEmptyPixelmap(
  * @param pixelmap The Pixelmap pointer to be operated.
  * @param key Type of metadata.
  * @param value Value of metadata.
- * @return Returns {@link Image_ErrorCode}
+ * @return Returns {@link Image_ErrorCode} IMAGE_SUCCESS - if the operation is successful.
+ * returns {@link Image_ErrorCode} IMAGE_BAD_PARAMETER - if invalid parameter, x and y are incorrect.
+ * returns {@link Image_ErrorCode} IMAGE_TOO_LARGE - if image is too large.
+ * returns {@link Image_ErrorCode} IMAGE_ALLOC_FAILED - if device has no memory.
+ * returns {@link Image_ErrorCode} IMAGE_UNKNOWN_ERROR - inner unknown error, maybe source pixelmap is released.
  * @see OH_PixelmapNative
  * @since 12
  */
@@ -784,7 +788,11 @@ Image_ErrorCode OH_PixelmapNative_GetMetadata(OH_PixelmapNative *pixelmap, OH_Pi
  * @param pixelmap The Pixelmap pointer to be operated.
  * @param key Type of metadata.
  * @param value Value of metadata.
- * @return Returns {@link Image_ErrorCode}
+ * @return Returns {@link Image_ErrorCode} IMAGE_SUCCESS - if the operation is successful.
+ * returns {@link Image_ErrorCode} IMAGE_BAD_PARAMETER - if invalid parameter, x and y are incorrect.
+ * returns {@link Image_ErrorCode} IMAGE_TOO_LARGE - if image is too large.
+ * returns {@link Image_ErrorCode} IMAGE_ALLOC_FAILED - if device has no memory.
+ * returns {@link Image_ErrorCode} IMAGE_UNKNOWN_ERROR - inner unknown error, maybe source pixelmap is released.
  * @see OH_PixelmapNative
  * @since 12
  */
