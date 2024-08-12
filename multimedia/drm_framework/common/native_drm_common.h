@@ -486,6 +486,11 @@ typedef struct DRM_MediaKeySystemInfo {
     DRM_PsshInfo psshInfo[MAX_PSSH_INFO_COUNT];
 } DRM_MediaKeySystemInfo;
 
+/**
+* @brief Callback for getting media key system information from media source.
+* @since 11
+* @version 1.0
+*/
 typedef void (*DRM_MediaKeySystemInfoCallback)(DRM_MediaKeySystemInfo *mediaKeySystemInfo);
 
 /**
