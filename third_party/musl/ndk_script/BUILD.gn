@@ -208,7 +208,7 @@ group("musl_sysroot") {
 action("copy_ndk_uapi") {
   outputs = [ "${musl_target_out_dir}/${ndk_musl_include}/linux" ]
   script = "${musl_dir}/scripts/copy_uapi.sh"
-  args = [ "-i" ] + [ rebase_path("${uapi_dir}") ]
+  args = [ "-i" ] + [ rebase_path("${musl_uapi_dir}") ]
   args +=
       [ "-o" ] + [ rebase_path("${musl_target_out_dir}/${ndk_musl_include}") ]
   args += [ "-t" ] + [ "${musl_arch}" ]

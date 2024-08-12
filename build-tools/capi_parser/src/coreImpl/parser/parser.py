@@ -408,7 +408,6 @@ def complete_kit_or_system(api_message: OneFileApiMessage, json_path):
 def parser_direct(path):  # 目录路径
     file_path_list = []
     link_include_path = []  # 装链接头文件路径
-    copy_std_lib(link_include_path)
     dir_path = ''
     if os.path.isdir(path):
         link_include_path.append(path)

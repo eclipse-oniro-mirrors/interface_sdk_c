@@ -171,19 +171,19 @@ typedef enum {
     /**
      * No metadata.
      */
-    NONE = 0,
+    HDR_METADATA_TYPE_NONE = 0,
     /**
      * Indicates that metadata will be used for the base image.
      */
-    BASE = 1,
+    HDR_METADATA_TYPE_BASE = 1,
     /**
      * Indicates that metadata will be used for the gainmap image.
      */
-    GAINMAP = 2,
+    HDR_METADATA_TYPE_GAINMAP = 2,
     /**
      * Indicates that metadata will be used for the alternate image.
      */
-    ALTERNATE = 3,
+    HDR_METADATA_TYPE_ALTERNATE = 3,
 } OH_Pixelmap_HdrMetadataType;
 
 /**
