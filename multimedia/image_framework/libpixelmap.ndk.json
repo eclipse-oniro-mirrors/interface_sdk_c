@@ -45,14 +45,6 @@
     },
     {
         "first_introduced": "12",
-        "name": "OH_PixelmapInitializationOptions_GetRowStride"
-    },
-    {
-        "first_introduced": "12",
-        "name": "OH_PixelmapInitializationOptions_SetRowStride"
-    },
-    {
-        "first_introduced": "12",
         "name": "OH_PixelmapInitializationOptions_Release"
     },
     {
@@ -114,10 +106,6 @@
     {
         "first_introduced": "12",
         "name": "OH_PixelmapNative_Scale"
-    },
-    {
-        "first_introduced": "12",
-        "name": "OH_PixelmapNative_ScaleWithAntiAliasing"
     },
     {
         "first_introduced": "12",
