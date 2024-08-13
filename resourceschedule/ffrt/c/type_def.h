@@ -183,6 +183,23 @@ typedef struct {
     long storage;
 } ffrt_mutexattr_t;
 
+/**
+ * @brief ffrt mutex type enum
+ *
+ * Describes the mutex type, ffrt_mutex_normal is normal mutex;
+ * ffrt_mutex_recursive is recursive mutex, ffrt_mutex_default is normal mutex.
+ *
+ * @since 12
+ */
+typedef enum {
+    /** ffrt normal mutex type */
+    ffrt_mutex_normal = 0,
+    /** ffrt recursive mutex type */
+    ffrt_mutex_recursive = 2,
+    /** ffrt default mutex type */
+    ffrt_mutex_default = ffrt_mutex_normal
+} ffrt_mutex_type;
+
 typedef struct {
     uint32_t storage[(ffrt_mutex_storage_size + sizeof(uint32_t) - 1) / sizeof(uint32_t)];
 } ffrt_mutex_t;
