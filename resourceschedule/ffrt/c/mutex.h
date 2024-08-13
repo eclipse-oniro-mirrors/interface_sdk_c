@@ -45,7 +45,7 @@
  * @param mutex Indicates a pointer to the mutex.
  * @param attr Indicates a pointer to the mutex attribute.
  * @return {@link ffrt_success} 0 - success
-           {@link ffrt_error_inval} 22 - if attr is null.
+ *         {@link ffrt_error_inval} 22 - if attr is null.
  * @since 12
  * @version 1.0
  */
@@ -56,8 +56,8 @@ FFRT_C_API int ffrt_mutexattr_init(ffrt_mutexattr_t* attr);
  *
  * @param attr Indicates a pointer to the mutex attribute.
  * @param type Indicates a int to the mutex type.
- * @return {@link ffrt_success} 0 - success
-           {@link ffrt_error_inval} 22 - if attr is null or type is not 0 or 2.
+ * @return {@link ffrt_success} 0 - success.
+ *         {@link ffrt_error_inval} 22 - if attr is null or type is not 0 or 2.
  * @since 12
  * @version 1.0
  */
@@ -68,8 +68,8 @@ FFRT_C_API int ffrt_mutexattr_settype(ffrt_mutexattr_t* attr, int type);
  *
  * @param attr Indicates a pointer to the mutex attribute.
  * @param type Indicates a pointer to the mutex type.
- * @return {@link ffrt_success} 0 - success
-           {@link ffrt_error_inval} 22 - if attr is null or type is null.
+ * @return {@link ffrt_success} 0 - success.
+ *         {@link ffrt_error_inval} 22 - if attr is null or type is null.
  * @since 12
  * @version 1.0
  */
@@ -79,8 +79,8 @@ FFRT_C_API int ffrt_mutexattr_gettype(ffrt_mutexattr_t* attr, int* type);
  * @brief destroy mutex attr, the user needs to invoke this interface.
  *
  * @param attr Indicates a pointer to the mutex attribute.
- * @return {@link ffrt_success} 0 - success
-           {@link ffrt_error_inval} 22 - if attr is null.
+ * @return {@link ffrt_success} 0 - success.
+ *         {@link ffrt_error_inval} 22 - if attr is null.
  * @since 12
  * @version 1.0
  */
