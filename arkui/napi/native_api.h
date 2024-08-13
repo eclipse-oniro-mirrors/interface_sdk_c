@@ -72,7 +72,19 @@ NAPI_INNER_EXTERN napi_status napi_adjust_external_memory(napi_env env,
 extern "C" {
 #endif
 
+/**
+ * @brief Native detach callback of napi_coerce_to_native_binding_object that can be used to
+ *        detach the js object and the native object.
+ *
+ * @since 11
+ */
 typedef void* (*napi_native_binding_detach_callback)(napi_env env, void* native_object, void* hint);
+/**
+ * @brief Native attach callback of napi_coerce_to_native_binding_object that can be used to
+ *        bind the js object and the native object.
+ *
+ * @since 11
+ */
 typedef napi_value (*napi_native_binding_attach_callback)(napi_env env, void* native_object, void* hint);
 
 NAPI_EXTERN napi_status napi_run_script_path(napi_env env, const char* path, napi_value* result);
@@ -130,6 +142,18 @@ NAPI_EXTERN napi_status napi_create_object_with_named_properties(napi_env env,
                                                                  size_t property_count,
                                                                  const char** keys,
                                                                  const napi_value* values);
+/**
+ * @brief This API sets native properties to a object and converts this js object to native binding object.
+ *
+ * @param[in] env Current running virtual machine context.
+ * @param[in] js_object The JavaScript value to coerce.
+ * @param[in] detach_cb Native callback that can be used to detach the js object and the native object.
+ * @param[in] attach_cb Native callback that can be used to bind the js object and the native object.
+ * @param[in] native_object User-provided native instance to pass to thr detach callback and attach callback.
+ * @param[in] hint Optional hint to pass to the detach callback and attach callback.
+ * @return Return the function execution status.
+ * @since 11
+ */
 NAPI_EXTERN napi_status napi_coerce_to_native_binding_object(napi_env env,
                                                              napi_value js_object,
                                                              napi_native_binding_detach_callback detach_cb,
