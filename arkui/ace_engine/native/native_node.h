@@ -1087,13 +1087,13 @@ typedef enum {
      * .value[0].i32: blend mode. The parameter type is {@link ArkUI_BlendMode}. The default value is
      * <b>ARKUI_BLEND_MODE_NONE</b>. \n
      * .value[1].?i32: how the specified blend mode is applied. The parameter type is {@link ArkUI_BlendApplyType}.
-     * The default value is <b>ARKUI_BLEND_APPLY_TYPE_FAST</b>. \n
+     * The default value is <b>BLEND_APPLY_TYPE_FAST</b>. \n
      * \n
      * Format of the return value {@link ArkUI_AttributeItem}:\n
      * .value[0].i32: blend mode. The parameter type is {@link ArkUI_BlendMode}. The default value is
      * <b>ARKUI_BLEND_MODE_NONE</b>. \n
      * .value[1].i32: how the specified blend mode is applied. The parameter type is {@link ArkUI_BlendApplyType}.
-     * The default value is <b>ARKUI_BLEND_APPLY_TYPE_FAST</b>. \n
+     * The default value is <b>BLEND_APPLY_TYPE_FAST</b>. \n
      *
      */
     NODE_BLEND_MODE,
