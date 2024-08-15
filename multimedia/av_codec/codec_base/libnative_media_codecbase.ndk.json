@@ -61,10 +61,6 @@
     },
     {
         "first_introduced": "12",
-        "name": "OH_AVCODEC_MIMETYPE_AUDIO_LBVC"
-    },
-    {
-        "first_introduced": "12",
         "name": "OH_AVCODEC_MIMETYPE_AUDIO_APE"
     },
     {
