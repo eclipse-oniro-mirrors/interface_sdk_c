@@ -73,7 +73,12 @@ typedef enum NetConn_NetCap {
     * Portal
     * @since 12
     */
-    NETCONN_NET_CAPABILITY_PORTAL = 17
+    NETCONN_NET_CAPABILITY_PORTAL = 17,
+    /**
+     * In checking network connectivity.
+     * @since 12
+     */
+    NETCONN_NET_CAPABILITY_CHECKING_CONNECTIVITY = 31
 } NetConn_NetCap;
 
 /**
@@ -87,6 +92,11 @@ typedef enum NetConn_NetBearerType {
     NETCONN_BEARER_CELLULAR = 0,
     /** WIFI */
     NETCONN_BEARER_WIFI = 1,
+    /**
+     * Bluetooth
+     * @since 12
+     */
+    NETCONN_BEARER_BLUETOOTH = 2,
     /** Ethernet */
     NETCONN_BEARER_ETHERNET = 3,
     /**
