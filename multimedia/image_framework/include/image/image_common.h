@@ -125,7 +125,7 @@ typedef enum {
     IMAGE_UNKNOWN_MIME_TYPE = 7600102,
     /** too large data or image */
     IMAGE_TOO_LARGE = 7600103,
-    /** DMA memory does not exist */
+    /** @error DMA memory does not exist */
     IMAGE_DMA_NOT_EXIST = 7600173,
     /** unsupported operations */
     IMAGE_UNSUPPORTED_OPERATION = 7600201,
