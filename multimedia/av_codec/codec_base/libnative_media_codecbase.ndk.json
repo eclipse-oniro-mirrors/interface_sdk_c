@@ -384,6 +384,10 @@
         "name": "OH_MD_KEY_START_TIME"
     },
     {
+        "first_introduced": "12",
+        "name": "OH_MD_KEY_TRACK_START_TIME"
+    },
+    {
         "first_introduced": "10",
         "name": "OH_AVCodec_GetCapability"
     },
