@@ -169,12 +169,13 @@ Camera_ErrorCode OH_PreviewOutput_Stop(Camera_PreviewOutput* previewOutput);
 Camera_ErrorCode OH_PreviewOutput_Release(Camera_PreviewOutput* previewOutput);
 
 /**
- * @brief Get active profiles.
+ * @brief Get active preview output profile.
  *
- * @param previewOutput the {@link Camera_PreviewOutput} instance which used to get active profiles.
- * @param profile the active {@link Camera_Profile} will be filled if the method call succeeds.
+ * @param previewOutput the {@link Camera_PreviewOutput} instance to deliver active profile.
+ * @param profile the active {@link Camera_Profile} to be filled if the method call succeeds.
  * @return {@link #CAMERA_OK} if the method call succeeds.
  *         {@link #CAMERA_INVALID_ARGUMENT} if parameter missing or parameter type incorrect.
+ *         {@link #CAMERA_SERVICE_FATAL_ERROR} if camera service fatal error.
  * @since 12
  */
 Camera_ErrorCode OH_PreviewOutput_GetActiveProfile(Camera_PreviewOutput* previewOutput, Camera_Profile** profile);
@@ -188,6 +189,58 @@ Camera_ErrorCode OH_PreviewOutput_GetActiveProfile(Camera_PreviewOutput* preview
  * @since 12
  */
 Camera_ErrorCode OH_PreviewOutput_DeleteProfile(Camera_Profile* profile);
+
+/**
+ * @brief Get supported preview output frame rate list.
+ *
+ * @param previewOutput the {@link Camera_PreviewOutput} instance to deliver supported frame rate list.
+ * @param frameRateRange the supported {@link Camera_FrameRateRange} list to be filled if the method call succeeds.
+ * @param size the size of supported {@link Camera_FrameRateRange} list will be filled.
+ * @return {@link #CAMERA_OK} if the method call succeeds.
+ *         {@link #CAMERA_INVALID_ARGUMENT} if parameter missing or parameter type incorrect.
+ *         {@link #CAMERA_SERVICE_FATAL_ERROR} if camera service fatal error.
+ * @since 12
+ */
+Camera_ErrorCode OH_PreviewOutput_GetSupportedFrameRates(Camera_PreviewOutput* previewOutput,
+    Camera_FrameRateRange** frameRateRange, uint32_t* size);
+
+/**
+ * @brief Delete frame rate list.
+ *
+ * @param previewOutput the {@link Camera_PreviewOutput} instance to deliver supported frame rate list.
+ * @param frameRateRange the {@link Camera_FrameRateRange} list to be deleted.
+ * @return {@link #CAMERA_OK} if the method call succeeds.
+ *         {@link #CAMERA_INVALID_ARGUMENT} if parameter missing or parameter type incorrect.
+ * @since 12
+ */
+Camera_ErrorCode OH_PreviewOutput_DeleteFrameRates(Camera_PreviewOutput* previewOutput,
+    Camera_FrameRateRange* frameRateRange);
+
+/**
+ * @brief Set preview output frame rate.
+ *
+ * @param previewOutput the {@link Camera_PreviewOutput} instance to be set frame rate.
+ * @param minFps the minimum to be set.
+ * @param maxFps the maximum to be set.
+ * @return {@link #CAMERA_OK} if the method call succeeds.
+ *         {@link #CAMERA_INVALID_ARGUMENT} if parameter missing or parameter type incorrect.
+ * @since 12
+ */
+Camera_ErrorCode OH_PreviewOutput_SetFrameRate(Camera_PreviewOutput* previewOutput,
+    int32_t minFps, int32_t maxFps);
+
+/**
+ * @brief Get active preview output frame rate.
+ *
+ * @param previewOutput the {@link Camera_PreviewOutput} instance to deliver the active frame rate.
+ * @param frameRateRange the active {@link Camera_FrameRateRange} to be filled if the method call succeeds.
+ * @return {@link #CAMERA_OK} if the method call succeeds.
+ *         {@link #CAMERA_INVALID_ARGUMENT} if parameter missing or parameter type incorrect.
+ *         {@link #CAMERA_SERVICE_FATAL_ERROR} if camera service fatal error.
+ * @since 12
+ */
+Camera_ErrorCode OH_PreviewOutput_GetActiveFrameRate(Camera_PreviewOutput* previewOutput,
+    Camera_FrameRateRange* frameRateRange);
 
 #ifdef __cplusplus
 }
