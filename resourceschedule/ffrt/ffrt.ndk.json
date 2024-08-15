@@ -50,11 +50,27 @@
     { "name": "ffrt_task_attr_get_qos" },
     { "name": "ffrt_task_attr_set_delay" },
     { "name": "ffrt_task_attr_get_delay" },
+    {
+        "first_introduced": "12",
+        "name": "ffrt_task_attr_set_stack_size"
+    },
+    {
+        "first_introduced": "12",
+        "name": "ffrt_task_attr_get_stack_size"
+    },
     { "name": "ffrt_this_task_update_qos" },
     { "name": "ffrt_this_task_get_id" },
     { "name": "ffrt_alloc_auto_managed_function_storage_base" },
     { "name": "ffrt_submit_base" },
     { "name": "ffrt_submit_h_base" },
+    {
+        "first_introduced": "12",
+        "name": "ffrt_task_handle_inc_ref"
+    },
+    {
+        "first_introduced": "12",
+        "name": "ffrt_task_handle_dec_ref"
+    },
     { "name": "ffrt_task_handle_destroy" },
     { "name": "ffrt_wait_deps" },
     { "name": "ffrt_wait" },
