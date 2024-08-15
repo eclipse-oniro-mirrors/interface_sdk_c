@@ -133,8 +133,6 @@ typedef enum {
     IMAGE_SUCCESS = 0,
     /** invalid parameter */
     IMAGE_BAD_PARAMETER = 401,
-    /** resource unavailable */
-    IMAGE_RESOURCE_UNAVAILABLE = 501,
     /** unsupported mime type */
     IMAGE_UNSUPPORTED_MIME_TYPE = 7600101,
     /** unknown mime type */
