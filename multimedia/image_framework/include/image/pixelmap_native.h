@@ -767,7 +767,7 @@ Image_ErrorCode OH_PixelmapNative_CreateEmptyPixelmap(
 
 /**
  * @brief Get metadata.
- * 
+ *
  * @param pixelmap The Pixelmap pointer to be operated.
  * @param key Type of metadata.
  * @param value Value of metadata.
@@ -783,7 +783,7 @@ Image_ErrorCode OH_PixelmapNative_GetMetadata(OH_PixelmapNative *pixelmap, OH_Pi
 
 /**
  * @brief Set metadata.
- * 
+ *
  * @param pixelmap The Pixelmap pointer to be operated.
  * @param key Type of metadata.
  * @param value Value of metadata.
