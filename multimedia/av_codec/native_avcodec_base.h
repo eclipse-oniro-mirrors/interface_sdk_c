@@ -932,6 +932,13 @@ extern const char *OH_MD_KEY_VIDEO_SAR;
  * @since 12
  */
 extern const char *OH_MD_KEY_START_TIME;
+/**
+ * @brief Key for start time of track, value type is int64_t.
+ *
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
+ * @since 12
+ */
+extern const char *OH_MD_KEY_TRACK_START_TIME;
 
 /**
  * @brief Media type.
