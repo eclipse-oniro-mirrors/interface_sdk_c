@@ -1186,7 +1186,7 @@ Input_Result OH_Input_RemoveInputEventInterceptor();
  * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 13
  */
-int32_t OH_Input_GetIntervalSinceLastInput(int64_t *timeInterval);
+Input_Result OH_Input_GetIntervalSinceLastInput(int64_t *timeInterval);
 #ifdef __cplusplus
 }
 #endif
