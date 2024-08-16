@@ -47,6 +47,12 @@ ARKWEB_INVALID_PARAM = 17100101,
 
 /** @error Register custom schemes should be called before create any ArkWeb. */
 ARKWEB_SCHEME_REGISTER_FAILED = 17100102,
+
+/** @error Invalid url. */
+ARKWEB_INVALID_URL = 17100103,
+
+/** @error Invalid cookie value. */
+ARKWEB_INVALID_COOKIE_VALUE = 17100104,
 } ArkWeb_ErrorCode;
 
 #endif // ARKWEB_ERROR_CODE_H
