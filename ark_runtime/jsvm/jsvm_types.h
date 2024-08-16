@@ -734,5 +734,29 @@ typedef enum {
     /** Unicode Sets mode. */
     JSVM_REGEXP_UNICODE_SETS = 1 << 8,
 } JSVM_RegExpFlags;
+
+/**
+ * @brief initialization flag
+ *
+ * @since 12
+ */
+typedef enum {
+    /** initialize with zero. */
+    JSVM_ZERO_INITIALIZED,
+    /** leave uninitialized. */
+    JSVM_UNINITIALIZED,
+} JSVM_InitializedFlag;
+
+/**
+ * @brief WebAssembly function optimization level
+ *
+ * @since 12
+ */
+typedef enum {
+    /** baseline optimization level. */
+    JSVM_WASM_OPT_BASELINE = 10,
+    /** high optimization level. */
+    JSVM_WASM_OPT_HIGH = 20,
+} JSVM_WasmOptLevel;
 /** @} */
 #endif /* ARK_RUNTIME_JSVM_JSVM_TYPE_H */
