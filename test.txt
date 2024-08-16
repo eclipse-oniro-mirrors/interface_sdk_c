@@ -1,0 +1,468 @@
+/*
+ * Copyright (c) 2024 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+ 
+/**
+ * @addtogroup OHAVSession
+ * @{
+ *
+ * @brief Provide the definition of the C interface for the native avsession.
+ *
+ * @syscap SystemCapability.Multimedia.AVSession.Core
+ *
+ * @since 12
+ * @version 1.0
+ */
+ 
+/**
+ * @file native_avsession.h
+ *
+ * @brief Declare avsession interface.
+ *
+ * @library libohavsession.so
+ * @syscap SystemCapability.Multimedia.AVSession.Core
+ * @kit AVSessionKit
+ * @since 12
+ * @version 1.0
+ */
+ 
+#ifndef NATIVE_AVSESSION_H
+#define NATIVE_AVSESSION_H
+ 
+#include "native_avsession_base.h"
+#include "native_avsession_errors.h"
+ 
+#ifdef __cplusplus
+extern "C" {
+#endif
+ 
+/**
+ * @brief Capture session object
+ *
+ * A pointer can be created using {@link OH_AVSession} method.
+ *
+ * @since 12
+ * @version 1.0
+ */
+typedef struct OH_AVSession OH_AVSession;
+ 
+/*
+ * Request to create the avsession.
+ *
+ * @since 12
+ *
+ * @param avsession reference
+ * @return Function result code
+ */
+OH_AVSession_ErrCode OH_AVSession_Create(AVSession_Type sessionType, const char* sessionTag, OH_AVSession** avsession);
+ 
+/*
+ * Request to release the avsession.
+ *
+ * @since 12
+ *
+ * @param avsession reference
+ * @return Function result code
+ */
+OH_AVSession_ErrCode OH_AVSession_Destroy(OH_AVSession* avsession);
+ 
+/*
+ * Request to set av metadata.
+ *
+ * @since 12
+ *
+ * @param avsession reference
+ * @return Function result code
+ */
+OH_AVSession_ErrCode OH_AVSession_SetAVMetadata(OH_AVSession* avsession, AVSession_AVMetadata* metadata);
+ 
+/*
+ * Request to set av playbackstate.
+ *
+ * @since 12
+ *
+ * @param avsession reference
+ * @return Function result code
+ */
+OH_AVSession_ErrCode OH_AVSession_SetAVPlaybackState(OH_AVSession* avsession, AVSession_AVPlaybackState* playbackState);
+ 
+/*
+ * Request to register callback.
+ *
+ * @since 12
+ *
+ * @param avsession reference
+ * @return Function result code
+ */
+OH_AVSession_ErrCode OH_AVSession_RegisterCallback(OH_AVSession* avsession, AVSession_Callbacks* callback);
+ 
+#ifdef __cplusplus
+}
+#endif
+#endif // NATIVE_AVSESSION_H
+
+/*
+ * Copyright (C) 2024 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+ 
+/**
+ * @addtogroup AVSession
+ * @{
+ *
+ * @brief Provides APIs of request capability for AVSession.
+ * @since 12
+ */
+ 
+/**
+ * @file native_avsession_base.h
+ *
+ * @brief Declare avsession related definations.
+ *
+ * @library libohavsession.so
+ * @syscap SystemCapability.Multimedia.AVSession.Core
+ * @kit AVSessionKit
+ * @since 12
+ */
+ 
+#ifndef NATIVE_AVSESSION_ERRORS_H
+#define NATIVE_AVSESSION_ERRORS_H
+ 
+#ifdef __cplusplus
+extern "C" {
+#endif
+ 
+/**
+ * @brief Enum for avsession type.
+ *
+ * @since 12
+ * @version 1.0
+ */
+typedef enum AVSession_Type {
+    SESSION_TYPE_INVALID = -1,
+    SESSION_TYPE_AUDIO = 0,
+    SESSION_TYPE_VIDEO = 1,
+    SESSION_TYPE_VOICE_CALL = 2,
+    SESSION_TYPE_VIDEO_CALL = 3
+} AVSession_Type;
+ 
+typedef struct AVSession_AVMetadata {
+    char* assetId;
+    char* title;
+    char* artist;
+    char* author;
+    // std::string avQueueName_ = "";
+    // std::string avQueueId_ = "";
+    // std::shared_ptr<AVSessionPixelMap> avQueueImage_ = nullptr;
+    // std::string avQueueImageUri_ = "";
+    char* album;
+    // std::string writer_ = "";
+    // std::string composer_ = "";
+    int64_t duration;
+    // std::shared_ptr<AVSessionPixelMap> mediaImage_ = nullptr;
+    char* mediaImageUri;
+    // double publishDate_ = 0;
+    // std::string subTitle_ = "";
+    // std::string description_ = "";
+    // std::string lyric_ = "";
+    // std::string previousAssetId_ = "";
+    // std::string nextAssetId_ = "";
+    // int32_t skipIntervals_ = SECONDS_15;
+    // int32_t filter_ = 2;
+    // int32_t mediaLength_ = 0;
+    // int32_t avQueueLength_ = 0;
+    // int32_t displayTags_ = 0;
+    // std::vector<std::string> drmSchemes_;
+} AVSession_AVMetadata;
+ 
+typedef enum AVSession_PlaybackState {
+    PLAYBACK_STATE_INITIAL = 0,
+    PLAYBACK_STATE_PREPARE = 1,
+    PLAYBACK_STATE_PLAY = 2,
+    PLAYBACK_STATE_PAUSE = 3,
+    PLAYBACK_STATE_FAST_FORWARD = 4,
+    PLAYBACK_STATE_REWIND = 5,
+    PLAYBACK_STATE_STOP = 6,
+    PLAYBACK_STATE_COMPLETED = 7,
+    PLAYBACK_STATE_RELEASED = 8,
+    PLAYBACK_STATE_ERROR = 9,
+    PLAYBACK_STATE_IDLE = 10,
+    PLAYBACK_STATE_BUFFERING = 11,
+    PLAYBACK_STATE_MAX = 12,
+} AVSession_PlaybackState;
+ 
+typedef struct AVSession_PlaybackPosition {
+    int64_t elapsedTime_;
+    int64_t updateTime_;
+} AVSession_PlaybackPosition;
+ 
+typedef struct AVSession_AVPlaybackState {
+    AVSession_PlaybackState state;
+    AVSession_PlaybackPosition position;
+    int64_t duration;
+} AVSession_AVPlaybackState;
+ 
+ 
+typedef enum AVSession_LoopMode {
+    LOOP_MODE_SEQUENCE = 0,
+    LOOP_MODE_SINGLE = 1,
+    LOOP_MODE_LIST = 2,
+    LOOP_MODE_SHUFFLE = 3,
+    LOOP_MODE_CUSTOM = 4,
+} AVSession_LoopMode;
+ 
+ 
+///////////////////////////////////////////////////////////////////////////////////////////
+ 
+/**
+ * @brief Enum for command state.
+ *
+ * @since 12
+ * @version 1.0
+ */
+typedef enum AVSession_ControlCommand {
+    SESSION_CMD_INVALID = -1,
+    SESSION_CMD_PLAY = 0,
+    SESSION_CMD_PAUSE = 1,
+    SESSION_CMD_STOP = 2,
+    SESSION_CMD_PLAY_NEXT = 3,
+    SESSION_CMD_PLAY_PREVIOUS = 4,
+    SESSION_CMD_FAST_FORWARD = 5,
+    SESSION_CMD_REWIND = 6,
+    SESSION_CMD_SEEK = 7,
+    SESSION_CMD_SET_SPEED = 8,
+    SESSION_CMD_SET_LOOP_MODE = 9,
+    SESSION_CMD_TOGGLE_FAVORITE = 10,
+    SESSION_CMD_PLAY_FROM_ASSETID = 11,
+    SESSION_CMD_AVCALL_ANSWER = 12,
+    SESSION_CMD_AVCALL_HANG_UP = 13,
+    SESSION_CMD_AVCALL_TOGGLE_CALL_MUTE = 14,
+    SESSION_CMD_MEDIA_KEY_SUPPORT = 15,
+    SESSION_CMD_PLAYFROM_ASSET_ID = 16,
+    SESSION_CMD_MAX
+} AVSession_ControlCommand;
+ 
+/**
+ * parameter of the command. Whether this command requires parameters, see {@link AVSessionCommand}
+ * seek command requires a number parameter
+ * setSpeed command requires a number parameter
+ * setLoopMode command requires a {@link LoopMode} parameter.
+ * toggleFavorite command requires assetId {@link AVMetadata.assetId} parameter
+ * other commands need no parameter
+ * @type { ?(LoopMode | string | number) }
+ * @syscap SystemCapability.Multimedia.AVSession.Core
+ * @atomicservice
+ * @since 12
+ */
+// parameter?: LoopMode | string | number;
+typedef union AVSession_ControlParameters {
+    int32_t elapsedTime_;
+    int64_t updateTime_;
+    // int32_t 
+    // double
+    // int64_t
+    // bool
+    // std::string
+} AVSession_ControlParameters;
+ 
+/**
+ * @brief Control callback to be called in {@link OH_AVSession_ControlCallback}.
+ *
+ * @param session the {@link OH_AVSession} which object delivers the callback.
+ * @param command the {@link AVSession_ControlCommand} which command to be received by the callback.
+ * @since 11
+ */
+typedef void (*OH_AVSession_ControlCallback)(OH_AVSession* session,
+    AVSession_ControlCommand command, AVSession_ControlParameters controlParameters);
+ 
+typedef struct AVSession_Callbacks {
+    /**
+     * Control command event callback.
+     */
+    OH_AVSession_ControlCallback onControlCallback;
+} AVSession_Callbacks;
+ 
+ 
+///////////////////////////////////////////////////////////////////////////////////////////
+ 
+typedef void (*OH_AVSession_Callback_Play)(OH_AVSession* session);
+typedef void (*OH_AVSession_Callback_Pause)(OH_AVSession* session);
+typedef void (*OH_AVSession_Callback_Stop)(OH_AVSession* session);
+typedef void (*OH_AVSession_Callback_Next)(OH_AVSession* session);
+typedef void (*OH_AVSession_Callback_Previous)(OH_AVSession* session);
+typedef void (*OH_AVSession_Callback_Forward)(OH_AVSession* session);
+typedef void (*OH_AVSession_Callback_Rewind)(OH_AVSession* session);
+typedef void (*OH_AVSession_Callback_SetSpeed)(OH_AVSession* session, int32_t speed);
+typedef void (*OH_AVSession_Callback_SetLoopMode)(OH_AVSession* session, AVSession_LoopMode curLoopMode);
+typedef void (*OH_AVSession_Callback_ToggleFavorite)(OH_AVSession* session, char* assetId);
+typedef void (*OH_AVSession_Callback_Seek)(OH_AVSession* session, int64_t seekTime);
+typedef void (*OH_AVSession_Callback_PlayFromAssetId)(OH_AVSession* session, char* assetId);
+typedef void (*OH_AVSession_Callback_Answer)(OH_AVSession* session);
+typedef void (*OH_AVSession_Callback_Hangup)(OH_AVSession* session);
+typedef void (*OH_AVSession_Callback_ToggleCallMute)(OH_AVSession* session);
+typedef void (*OH_AVSession_Callback_HandleKeyEvent)(OH_AVSession* session, Input_KeyEvent keyEvent);
+ 
+#ifdef __cplusplus
+}
+#endif
+ 
+#endif // NATIVE_AVSESSION_ERRORS_H
+/** @} */
+
+/*
+ * Copyright (C) 2024 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+ 
+/**
+ * @addtogroup AVSession
+ * @{
+ *
+ * @brief Provides APIs of request capability for AVSession.
+ * @since 12
+ */
+ 
+/**
+ * @file native_avsession_errors.h
+ *
+ * @brief Declare avsession related error.
+ *
+ * @library libohavsession.so
+ * @syscap SystemCapability.Multimedia.AVSession.Core
+ * @kit AVSessionKit
+ * @since 12
+ */
+ 
+#ifndef NATIVE_AVSESSION_ERRORS_H
+#define NATIVE_AVSESSION_ERRORS_H
+ 
+#ifdef __cplusplus
+extern "C" {
+#endif
+ 
+/**
+ * @brief AVSession error code
+ * @syscap SystemCapability.Multimedia.AVSession.Core
+ * @since 10
+ * @version 1.0
+ */
+typedef enum OH_AVSession_ErrCode {
+    /**
+     * @error the operation completed successfully.
+     */
+    AV_SESSION_ERR_SUCCESS = 0,
+    /**
+     * @error basic error mask.
+     */
+    AV_SESSION_ERR_BASE = 1000,
+    /**
+     * @error no memory.
+     */
+    AV_SESSION_ERR_NO_MEMORY = AV_SESSION_ERR_BASE + 1,
+ 
+ 
+    AV_SESSION_ERR_INVALID_PARAM = AV_SESSION_ERR_BASE + 2,
+ 
+    AV_SESSION_ERR_SERVICE_NOT_EXIST = AV_SESSION_ERR_BASE + 3,
+ 
+    AV_SESSION_ERR_SESSION_LISTENER_EXIST = AV_SESSION_ERR_BASE + 4,
+} OH_AVSession_ErrCode;
+ 
+#ifdef __cplusplus
+}
+#endif
+ 
+#endif // NATIVE_AVSESSION_ERRORS_H
+/** @} */
+
+
+[
+    {
+        "first_introduced": "12",
+        "name": "OH_AVSession_Create"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_AVSession_Destroy"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_AVSession_SetAVMetadata"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_AVSession_SetAVPlaybackState"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_AVSession_RegisterCallback"
+    }
+]
+
+# Copyright (C) 2024 Huawei Device Co., Ltd.
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+ 
+import("//build/ohos.gni")
+import("//build/ohos/ndk/ndk.gni")
+ 
+ohos_ndk_headers("avsession_header") {
+  dest_dir = "$ndk_headers_out_dir/multimedia/av_session"
+  sources = [
+    "native_avsesion.h",
+    "native_avsesion_base.h",
+    "native_avsesion_errors.h",
+  ]
+}
+ 
+ohos_ndk_library("libohavsession_ndk") {
+  output_name = "ohavsession"
+  output_extension = "so"
+  ndk_description_file = "./libavsession.ndk.json"
+  system_capability = "SystemCapability.Multimedia.AVSession.Core"
+  system_capability_headers = [
+    "multimedia/av_session/native_avsesion.h",
+    "multimedia/av_session/native_avsesion_base.h",
+    "multimedia/av_session/native_avsesion_errors.h",
+  ]
+}
