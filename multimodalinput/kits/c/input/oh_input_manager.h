@@ -1178,7 +1178,7 @@ Input_Result OH_Input_RemoveInputEventInterceptor();
 /**
  * @brief Obtains the interval since the last system input event.
  *
- * @param timeInterval Interval, in nanoseconds.
+ * @param timeInterval Interval, in microseconds.
  * @return OH_Input_GetIntervalSinceLastInput status code, specifically.
  *         {@Link INPUT_SUCCESS} if the Operation is successful.\n
  *         {@Link INPUT_SERVICE_EXCEPTION} Failed to get the interval because the service is exception.\n
