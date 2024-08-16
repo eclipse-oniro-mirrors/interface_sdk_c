@@ -1182,7 +1182,7 @@ Input_Result OH_Input_RemoveInputEventInterceptor();
  * @return OH_Input_GetIntervalSinceLastInput status code, specifically.
  *         {@Link INPUT_SUCCESS} if the Operation is successful.\n
  *         {@Link INPUT_SERVICE_EXCEPTION} Failed to get the interval because the service is exception.\n
- *         {@link INPUT_PARAMETER_ERROR} Parameter check failed.\n
+ *         {@Link INPUT_PARAMETER_ERROR} The timeInterval is NULL.\n
  * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 13
  */
