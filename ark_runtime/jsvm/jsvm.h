@@ -726,6 +726,7 @@ JSVM_EXTERN JSVM_Status OH_JSVM_CreateArraybuffer(JSVM_Env env,
  * @param data: pointer that recieve the backing store memory pointer.
  * @return Returns JSVM funtions result code.
  *         Returns {@link JSVM_OK } if allocation succeed.\n
+ *         Returns {@link JSVM_INVALID_ARG } if data is null pointer.\n
  *         Returns {@link JSVM_GENERIC_FAILURE } if allocation failed.\n
  * @since 12
  */
@@ -737,7 +738,9 @@ JSVM_Status JSVM_CDECL OH_JSVM_AllocateArrayBufferBackingStoreData(size_t byteLe
  * @brief This API release the memory of an array buffer backing store.
  *
  * @param data: pointer to the backing store memory.
- * @return Only returns JSVM_OK, because this API will not trigger any exception.
+ * @return Returns JSVM funtions result code.
+ *         Returns {@link JSVM_OK } if run succeed.\n
+ *         Returns {@link JSVM_INVALID_ARG } if data is null pointer.\n
  * @since 12
  */
 JSVM_Status JSVM_CDECL OH_JSVM_FreeArrayBufferBackingStoreData(void *data);
@@ -747,9 +750,9 @@ JSVM_Status JSVM_CDECL OH_JSVM_FreeArrayBufferBackingStoreData(void *data);
  *
  * @param env: The environment that the API is invoked under.
  * @param data: pointer to the backing store memory.
- * @param backingStoreSize: size of backing store memory in byte.
+ * @param backingStoreSize: size of backing store memory.
  * @param offset: start position of the array buffer in the backing store memory.
- * @param arrayBufferSize: size of the array buffer in byte.
+ * @param arrayBufferSize: size of the array buffer.
  * @param result: pointer that recieve the array buffer.
  * @return Returns JSVM funtions result code.
  *         Returns {@link JSVM_OK } if creation succeed.\n
@@ -3024,6 +3027,22 @@ JSVM_EXTERN JSVM_Status OH_JSVM_CreateWasmCache(JSVM_Env env,
                                                 JSVM_Value wasmModule,
                                                 const uint8_t** data,
                                                 size_t* length);
+
+/**
+ * @brief Release cache data with specified cache type.
+ *
+ * @param env: The environment that the API is invoked under.
+ * @param cacheData: The cache data to be released, double free is undefined behaviors.
+ * @param cacheType: The type of cache data.
+ * @return Returns JSVM funtions result code.
+ *         Returns {@link JSVM_OK } if the function executed successfully.\n
+ *         Returns {@link JSVM_INVALID_ARG } if any of the pointer arguments is NULL or cacheType is illegal.\n
+ *
+ * @since 12
+ */
+JSVM_EXTERN JSVM_Status OH_JSVM_ReleaseCache(JSVM_Env env,
+                                             const uint8_t* cacheData,
+                                             JSVM_CacheType cacheType);
 EXTERN_C_END
 /** @} */
 #endif /* ARK_RUNTIME_JSVM_JSVM_H */
