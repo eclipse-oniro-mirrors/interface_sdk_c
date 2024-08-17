@@ -1087,13 +1087,13 @@ typedef enum {
      * .value[0].i32: blend mode. The parameter type is {@link ArkUI_BlendMode}. The default value is
      * <b>ARKUI_BLEND_MODE_NONE</b>. \n
      * .value[1].?i32: how the specified blend mode is applied. The parameter type is {@link ArkUI_BlendApplyType}.
-     * The default value is <b>ARKUI_BLEND_APPLY_TYPE_FAST</b>. \n
+     * The default value is <b>BLEND_APPLY_TYPE_FAST</b>. \n
      * \n
      * Format of the return value {@link ArkUI_AttributeItem}:\n
      * .value[0].i32: blend mode. The parameter type is {@link ArkUI_BlendMode}. The default value is
      * <b>ARKUI_BLEND_MODE_NONE</b>. \n
      * .value[1].i32: how the specified blend mode is applied. The parameter type is {@link ArkUI_BlendApplyType}.
-     * The default value is <b>ARKUI_BLEND_APPLY_TYPE_FAST</b>. \n
+     * The default value is <b>BLEND_APPLY_TYPE_FAST</b>. \n
      *
      */
     NODE_BLEND_MODE,
@@ -1813,6 +1813,16 @@ typedef enum {
      *
      */
     NODE_UNIQUE_ID = 95,
+    
+    /**
+     * @brief Defines the moving distance limit for the component-bound tap gesture.
+     * This attribute can be set as required through APIs.
+     *
+     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
+     * .value[0].f32: allowed moving distance of a finger, in vp. \n
+     *
+     */
+    NODE_CLICK_DISTANCE = 96,
     
     /**
      * @brief Defines the text content attribute, which can be set, reset, and obtained as required through APIs.
@@ -7729,20 +7739,19 @@ void OH_ArkUI_UnregisterSystemFontStyleChangeEvent(ArkUI_NodeHandle node);
  * @brief Retrieve the font size value for system font change events.
  *
  * @param event Indicates a pointer to the current system font change event.
- * @return Updated system font size. -1 indicates a retrieval error.
+ * @return Updated system font size scaling factor. Default value: 1.0.
  * @since 12
  */
-int32_t OH_ArkUI_SystemFontStyleEvent_GetFontSize(const ArkUI_SystemFontStyleEvent* event);
+float OH_ArkUI_SystemFontStyleEvent_GetFontSizeScale(const ArkUI_SystemFontStyleEvent* event);
 
 /**
  * @brief Retrieve the font thickness values for system font change events.
  *
  * @param event Indicates a pointer to the current system font change event.
- * @return Updated system font thickness, return value type {@link ArkUI_fontWeight},
- * default value:ARKUI_FONT_WEIGHT_W100。
+ * @return The updated system font thickness scaling factor. Default value: 1.0.
  * @since 12
  */
-int32_t OH_ArkUI_SystemFontStyleEvent_GetFontWeight(const ArkUI_SystemFontStyleEvent* event);
+float OH_ArkUI_SystemFontStyleEvent_GetFontWeightScale(const ArkUI_SystemFontStyleEvent* event);
 
 #ifdef __cplusplus
 };

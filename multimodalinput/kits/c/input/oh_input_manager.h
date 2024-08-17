@@ -147,6 +147,33 @@ typedef enum Input_TouchEventAction {
 } Input_TouchEventAction;
 
 /**
+ * @brief Enumerates event source types.
+ *
+ * @since 12
+ */
+typedef enum InputEvent_SourceType {
+    /**
+     * Indicates that the input source generates events similar to mouse cursor movement,
+     * button press and release, and wheel scrolling.
+     *
+     * @since 12
+     */
+    SOURCE_TYPE_MOUSE = 1,
+    /**
+     * Indicates that the input source generates a touchscreen multi-touch event.
+     *
+     * @since 12
+     */
+    SOURCE_TYPE_TOUCHSCREEN = 2,
+    /**
+     * Indicates that the input source generates a touchpad multi-touch event.
+     *
+     * @since 12
+     */
+    SOURCE_TYPE_TOUCHPAD = 3
+} InputEvent_SourceType;
+
+/**
  * @brief Defines key information, which identifies a key pressing behavior. For example, the Ctrl key information contains the key value and key type.
  *
  * @since 12
@@ -1160,7 +1187,7 @@ Input_Result OH_Input_AddInputEventInterceptor(Input_InterceptorEventCallback *c
  * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
-Input_Result OH_Input_RemoveKeyEventInterceptor();
+Input_Result OH_Input_RemoveKeyEventInterceptor(void);
 
 /**
  * @brief Removes an interceptor for input events, including mouse, touch, and axis events.
@@ -1173,7 +1200,7 @@ Input_Result OH_Input_RemoveKeyEventInterceptor();
  * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
-Input_Result OH_Input_RemoveInputEventInterceptor();
+Input_Result OH_Input_RemoveInputEventInterceptor(void);
 
 /**
  * @brief Obtains the interval since the last system input event.
@@ -1187,6 +1214,7 @@ Input_Result OH_Input_RemoveInputEventInterceptor();
  * @since 13
  */
 Input_Result OH_Input_GetIntervalSinceLastInput(int64_t *timeInterval);
+
 #ifdef __cplusplus
 }
 #endif

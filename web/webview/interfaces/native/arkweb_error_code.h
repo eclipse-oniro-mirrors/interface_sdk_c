@@ -33,6 +33,12 @@
 #define ARKWEB_ERROR_CODE_H
 
 typedef enum ArkWeb_ErrorCode {
+/** @error Success. */
+ARKWEB_SUCCESS = 0,
+
+/** @error Init error. */
+ARKWEB_INIT_ERROR = 17100001,
+
 /** @error Unknown error. */
 ARKWEB_ERROR_UNKNOWN = 17100100,
 
