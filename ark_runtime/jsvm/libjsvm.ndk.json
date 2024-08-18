@@ -702,5 +702,33 @@
     {
         "first_introduced": "12",
         "name": "OH_JSVM_OpenInspectorWithName"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_JSVM_AllocateArrayBufferBackingStoreData"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_JSVM_FreeArrayBufferBackingStoreData"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_JSVM_CreateArrayBufferFromBackingStoreData"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_JSVM_CompileWasmModule"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_JSVM_CompileWasmFunction"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_JSVM_IsWasmModuleObject"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_JSVM_CreateWasmCache"
     }
 ]
