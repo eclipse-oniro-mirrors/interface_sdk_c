@@ -14,5 +14,65 @@
   {
     "first_introduced": "12",
     "name": "OH_MediaAssetManager_CancelRequest"
+  },
+  {
+    "first_introduced": "12",
+    "name": "OH_MediaAssetManager_RequestImage"
+  },
+  {
+    "first_introduced": "12",
+    "name": "OH_MediaAccessHelper_ApplyChanges"
+  },
+  {
+    "first_introduced": "12",
+    "name": "OH_MediaAsset_GetUri"
+  },
+  {
+    "first_introduced": "12",
+    "name": "OH_MediaAsset_GetDisplayName"
+  },
+  {
+    "first_introduced": "12",
+    "name": "OH_MediaAsset_GetSize"
+  },
+  {
+    "first_introduced": "12",
+    "name": "OH_MediaAsset_GetDateModifiedMs"
+  },
+  {
+    "first_introduced": "12",
+    "name": "OH_MediaAsset_GetWidth"
+  },
+  {
+    "first_introduced": "12",
+    "name": "OH_MediaAsset_GetHeight"
+  },
+  {
+    "first_introduced": "12",
+    "name": "OH_MediaAsset_GetOrientation"
+  },
+  {
+    "first_introduced": "12",
+    "name": "OH_MediaAsset_Release"
+  },
+  {
+    "first_introduced": "12",
+    "name": "OH_MediaAssetChangeRequest_Create"
+  },
+  {
+    "first_introduced": "12",
+    "name": "OH_MediaAssetChangeRequest_AddResourceWithBuffer"
+  },
+  {
+    "first_introduced": "12",
+    "name": "OH_MediaAssetChangeRequest_SaveCameraPhoto"
+  },
+  {
+    "first_introduced": "12",
+    "name": "OH_MediaAssetChangeRequest_DiscardCameraPhoto"
+  },
+  {
+    "first_introduced": "12",
+    "name": "OH_MediaAssetChangeRequest_Release"
   }
 ]
