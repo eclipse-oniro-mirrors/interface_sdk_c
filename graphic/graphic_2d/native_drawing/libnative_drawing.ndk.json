@@ -719,6 +719,10 @@
     { "name": "OH_Drawing_TypographyGetMaxWidth" },
     { "name": "OH_Drawing_TypographyGetHeight" },
     { "name": "OH_Drawing_TypographyGetLongestLine" },
+    {
+        "first_introduced": "13",
+        "name": "OH_Drawing_TypographyGetLongestLineWithIndent"
+    },
     { "name": "OH_Drawing_TypographyGetMinIntrinsicWidth" },
     { "name": "OH_Drawing_TypographyGetMaxIntrinsicWidth" },
     { "name": "OH_Drawing_TypographyGetAlphabeticBaseline" },
