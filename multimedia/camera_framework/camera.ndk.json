@@ -92,6 +92,10 @@
         "name": "OH_CameraManager_CreatePhotoOutputUsedInPreconfig"
     },
     {
+        "first_introduced": "12",
+        "name": "OH_CameraManager_CreatePhotoOutputWithoutSurface"
+    },
+    {
         "first_introduced": "11",
         "name": "OH_CameraManager_CreateVideoOutput"
     },
@@ -440,6 +444,22 @@
         "name": "OH_PhotoOutput_Capture"
     },
     {
+        "first_introduced": "12",
+        "name": "OH_PhotoOutput_RegisterPhotoAvailableCallback"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_PhotoOutput_UnregisterPhotoAvailableCallback"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_PhotoOutput_RegisterPhotoAssetAvailableCallback"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_PhotoOutput_UnregisterPhotoAssetAvailableCallback"
+    },
+    {
         "first_introduced": "11",
         "name": "OH_PhotoOutput_Capture_WithCaptureSetting"
     },
@@ -458,6 +478,14 @@
     {
         "first_introduced": "12",
         "name": "OH_PhotoOutput_DeleteProfile"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_PhotoOutput_IsMovingPhotoSupported"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_PhotoOutput_EnableMovingPhoto"
     },
     {
         "first_introduced": "11",
@@ -550,5 +578,13 @@
     {
         "first_introduced": "12",
         "name": "OH_CameraDevice_GetCameraOrientation"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_PhotoNative_GetMainImage"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_PhotoNative_Release"
     }
 ]
