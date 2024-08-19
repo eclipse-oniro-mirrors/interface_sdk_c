@@ -346,5 +346,25 @@
     {
         "first_introduced": "12",
         "name":"OH_AudioSessionManager_UnregisterSessionDeactivatedCallback"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_GetAudioManager"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_GetAudioScene"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_AudioRoutingManager_GetAvailableDevices"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_AudioRoutingManager_GetPreferredOutputDevice"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_AudioRoutingManager_GetPreferredInputDevice"
     }
 ]
