@@ -39,6 +39,7 @@
 #ifndef MULTIMEDIA_PLAYER_FRAMEWORK_NATIVE_AVPLAYER_H
 #define MULTIMEDIA_PLAYER_FRAMEWORK_NATIVE_AVPLAYER_H
 
+#include <stdbool.h>
 #include <stdint.h>
 #include <stdio.h>
 #include "native_averrors.h"
