@@ -1,0 +1,98 @@
+[
+    {
+        "first_introduced": "12",
+        "name":"OH_CommonEvent_CreateSubscribeInfo"
+    },
+    {
+        "first_introduced": "12",
+        "name":"OH_CommonEvent_SetPublisherPermission"
+    },
+    {
+        "first_introduced": "12",
+        "name":"OH_CommonEvent_SetPublisherBundleName"
+    },
+    {
+        "first_introduced": "12",
+        "name":"OH_CommonEvent_DestroySubscribeInfo"
+    },
+    {
+        "first_introduced": "12",
+        "name":"OH_CommonEvent_CreateSubscriber"
+    },
+    {
+        "first_introduced": "12",
+        "name":"OH_CommonEvent_DestroySubscriber"
+    },
+    {
+        "first_introduced": "12",
+        "name":"OH_CommonEvent_Subscribe"
+    },
+    {
+        "first_introduced": "12",
+        "name":"OH_CommonEvent_UnSubscribe"
+    },
+    {
+        "first_introduced": "12",
+        "name":"OH_CommonEvent_GetEventFromRcvData"
+    },
+    {
+        "first_introduced": "12",
+        "name":"OH_CommonEvent_GetCodeFromRcvData"
+    },
+    {
+        "first_introduced": "12",
+        "name":"OH_CommonEvent_GetDataStrFromRcvData"
+    },
+    {
+        "first_introduced": "12",
+        "name":"OH_CommonEvent_GetBundleNameFromRcvData"
+    },
+    {
+        "first_introduced": "12",
+        "name":"OH_CommonEvent_GetParametersFromRcvData"
+    },
+    {
+        "first_introduced": "12",
+        "name":"OH_CommonEvent_HasKeyInParameters"
+    },
+    {
+        "first_introduced": "12",
+        "name":"OH_CommonEvent_GetIntFromParameters"
+    },
+    {
+        "first_introduced": "12",
+        "name":"OH_CommonEvent_GetIntArrayFromParameters"
+    },
+    {
+        "first_introduced": "12",
+        "name":"OH_CommonEvent_GetLongFromParameters"
+    },
+    {
+        "first_introduced": "12",
+        "name":"OH_CommonEvent_GetLongArrayFromParameters"
+    },
+    {
+        "first_introduced": "12",
+        "name":"OH_CommonEvent_GetBoolFromParameters"
+    },
+    {
+        "first_introduced": "12",
+        "name":"OH_CommonEvent_GetBoolArrayFromParameters"
+    },
+    {
+        "first_introduced": "12",
+        "name":"OH_CommonEvent_GetCharFromParameters"
+    },
+    {
+        "first_introduced": "12",
+        "name":"OH_CommonEvent_GetCharArrayFromParameters"
+    },
+    {
+        "first_introduced": "12",
+        "name":"OH_CommonEvent_GetDoubleFromParameters"
+    },
+    {
+        "first_introduced": "12",
+        "name":"OH_CommonEvent_GetDoubleArrayFromParameters"
+    }
+]
