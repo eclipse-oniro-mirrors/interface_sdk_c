@@ -149,6 +149,14 @@
     },
     {
         "first_introduced": "12",
+        "name": "OH_PixelmapNative_GetMetadata"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_PixelmapNative_SetMetadata"
+    },
+    {
+        "first_introduced": "12",
         "name": "OH_PixelmapNative_ConvertPixelmapNativeToNapi"
     },
     {
