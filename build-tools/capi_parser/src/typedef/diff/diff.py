@@ -391,6 +391,9 @@ class DiffInfo:
     open_close_api: str = ''
     is_third_party_api = False
     current_api_type: str = ''
+    old_api_declara: str = ''
+    new_api_declara: str = ''
+    file_doc_line: int = 0
 
     def __init__(self, diff_type: DiffType, old_differ_content, new_differ_content):
         self.diff_type = diff_type
@@ -563,6 +566,24 @@ class DiffInfo:
     def get_current_api_type(self):
         return self.current_api_type
 
+    def set_old_api_declara(self, old_api_declara):
+        self.old_api_declara = old_api_declara
+
+    def get_old_api_declara(self):
+        return self.old_api_declara
+
+    def set_new_api_declara(self, new_api_declara):
+        self.new_api_declara = new_api_declara
+
+    def get_new_api_declara(self):
+        return self.new_api_declara
+
+    def set_file_doc_line(self, file_doc_line):
+        self.file_doc_line = file_doc_line
+
+    def get_file_doc_line(self):
+        return self.file_doc_line
+
 
 class OutputJson:
     api_name: str = ''
@@ -732,15 +753,6 @@ class ApiChangeData:
         return self.current_api_type
 
 
-class IgnoreFileDirectory:
-    ignore_file_dict = {
-        'arm-linux-ohos': '',
-        'aarch64-linux-ohos': '',
-        'x86_64-linux-ohos': '',
-        'i686-linux-ohos': '',
-        'tee': '',
-        'linux': ''
-    }
-
-    def get_ignore_file_dict(self):
-        return self.ignore_file_dict
+class IgnoreFileDirectory(enum.Enum):
+    IGNORE_FILE_DIR_lx = r'/(arm-linux-ohos|aarch64-linux-ohos|x86_64-linux-ohos|i686-linux-ohos|linux|tee|)(/|$)'
+    IGNORE_FILE_DIR_wd = r'\\(arm-linux-ohos|aarch64-linux-ohos|x86_64-linux-ohos|i686-linux-ohos|linux|tee|)(\\|$)'

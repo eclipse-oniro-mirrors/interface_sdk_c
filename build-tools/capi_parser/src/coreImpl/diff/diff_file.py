@@ -17,6 +17,7 @@ import filecmp
 import json
 import os
 import stat
+import re
 from collections import OrderedDict
 import openpyxl as op
 from coreImpl.parser.parser import diff_parser_include_ast
@@ -175,6 +176,12 @@ def start_diff_file(old_dir, new_dir, output_path):
     write_in_txt(result_json, output_path_txt)
 
 
+def check_diff_entrance(old_dir, new_dir):
+    result_info_list = global_assignment(old_dir, new_dir)
+
+    return result_info_list
+
+
 def disposal_result_data(result_info_list):
     data = []
     for diff_info in result_info_list:
@@ -252,10 +259,14 @@ def get_file_ext(file_name):
 
 
 def filter_ignore_file(file_path):
-    ignore_dict = IgnoreFileDirectory.ignore_file_dict
-    for key in ignore_dict.keys():
-        if key in file_path:
-            return False
+    norm_file_path = os.path.normpath(file_path)
+    if os.name == 'nt':  # Windows
+        pattern = re.compile(IgnoreFileDirectory.IGNORE_FILE_DIR_wd.value)
+    else:  # Linux / macOS
+        pattern = re.compile(IgnoreFileDirectory.IGNORE_FILE_DIR_lx.value)
+    # 检查匹配
+    if pattern.search(norm_file_path):
+        return False
     return True
 
 
