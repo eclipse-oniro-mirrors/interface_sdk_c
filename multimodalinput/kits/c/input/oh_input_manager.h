@@ -263,7 +263,6 @@ typedef void (*Input_AxisEventCallback)(const Input_AxisEvent* axisEvent);
 /**
  * @brief Defines the structure for the interceptor of event callbacks,
  * including mouseCallback, touchCallback, and axisCallback.
- * 
  * @since 12
  */
 typedef struct Input_InterceptorEventCallback {
