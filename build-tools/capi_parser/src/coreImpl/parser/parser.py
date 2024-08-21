@@ -295,7 +295,6 @@ def parser(directory_path):  # 目录路径
 def parser_include_ast(dire_file_path, include_path: list):        # 对于单独的.h解析接口
     correct_include_path = []
     link_include_path = [dire_file_path]
-    copy_std_lib(link_include_path, dire_file_path)
     copy_self_include(link_include_path, dire_file_path)
     for item in include_path:
         split_path = os.path.splitext(item)
@@ -333,7 +332,7 @@ def get_dir_file_path(dir_path):
             link_include_path.append(dir_path)
         for file in filenames:
             if 'build-tools' not in dir_path and 'sysroot_myself' not in dir_path and file.endswith('.h'):
-                file_path_list.append(os.path.join(dir_path, file))
+                file_path_list.append(os.path.normpath(os.path.join(dir_path, file)))
 
     return file_path_list, link_include_path
 
