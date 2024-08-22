@@ -18,5 +18,9 @@
     {
         "first_introduced": "12",
         "name": "OH_NativeImage_ReleaseNativeWindowBuffer"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_ConsumerSurface_Create"
     }
 ]
