@@ -104,7 +104,7 @@ InputMethod_ErrorCode OH_TextConfig_SetEnterKeyType(
  * Specific error codes can be referenced {@link InputMethod_ErrorCode}.
  * @since 12
  */
-InputMethod_ErrorCode OH_TextConfig_SetIsPreviewTextSupported(InputMethod_TextConfig *config, bool supported);
+InputMethod_ErrorCode OH_TextConfig_SetPreviewTextSupport(InputMethod_TextConfig *config, bool supported);
 /**
  * @brief Set selection into TextConfig.
  *

@@ -63,7 +63,7 @@ InputMethod_CursorInfo *OH_CursorInfo_Create(double left, double top, double wid
 /**
  * @brief Destroy a {@link InputMethod_CursorInfo} instance.
  *
- * @param cursorInfo Represents a pointer to an {@link InputMethod_CursorInfo} instance which will be deleted.
+ * @param cursorInfo Represents a pointer to an {@link InputMethod_CursorInfo} instance which will be destroyed.
  * @since 12
  */
 void OH_CursorInfo_Destroy(InputMethod_CursorInfo *cursorInfo);
