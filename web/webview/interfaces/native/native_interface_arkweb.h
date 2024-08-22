@@ -32,6 +32,7 @@
 #ifndef NATIVE_INTERFACE_ARKWEB_H
 #define NATIVE_INTERFACE_ARKWEB_H
 
+#include <stdbool.h>
 #include <stdint.h>
 
 #ifdef __cplusplus
