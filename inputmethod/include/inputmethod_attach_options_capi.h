@@ -51,8 +51,8 @@ typedef struct InputMethod_AttachOptions InputMethod_AttachOptions;
  * @brief Create a new {@link InputMethod_AttachOptions} instance.
  *
  * @param showKeyboard Represents whether to show the keyboard.
- * @return If the creation is successful, a pointer to the newly created {@link InputMethod_AttachOptions} instance is returned,
- * otherwise, NULL is returned.
+ * @return If the creation is successful, a pointer to the newly created {@link InputMethod_AttachOptions} instance is returned.
+ *     If the creation fails, NULL is returned, possible cause is insufficient memory.
  * @since 12
  */
 InputMethod_AttachOptions *OH_AttachOptions_Create(bool showKeyboard);
