@@ -55,8 +55,8 @@ typedef struct InputMethod_TextConfig InputMethod_TextConfig;
 /**
  * @brief Create a new {@link InputMethod_TextConfig} instance.
  *
- * @return If the creation is successful, a pointer to the newly created {@link InputMethod_TextConfig} instance is returned,
- * otherwise, NULL is returned.
+ * @return If the creation succeeds, a pointer to the newly created {@link InputMethod_TextConfig} instance is returned.
+ * If the creation fails, NULL is returned, possible cause is insufficient memory.
  * @since 12
  */
 InputMethod_TextConfig *OH_TextConfig_Create();

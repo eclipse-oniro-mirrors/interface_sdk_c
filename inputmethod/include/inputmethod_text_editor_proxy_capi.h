@@ -261,8 +261,8 @@ typedef void (*OH_TextEditorProxy_FinishTextPreviewFunc)(InputMethod_TextEditorP
 /**
  * @brief Create a new {@link InputMethod_TextEditorProxy} instance.
  *
- * @return If the creation is successful, a pointer to the newly created {@link InputMethod_TextEditorProxy} instance is returned,
- * otherwise, NULL is returned.
+ * @return If the creation succeeds, a pointer to the newly created {@link InputMethod_TextEditorProxy} instance is returned.
+ * If the creation fails, NULL is returned, possible cause is insufficient memory.
  * @since 12
  */
 InputMethod_TextEditorProxy *OH_TextEditorProxy_Create();
