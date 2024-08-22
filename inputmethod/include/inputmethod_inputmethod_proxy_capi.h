@@ -164,7 +164,8 @@ InputMethod_ErrorCode OH_InputMethodProxy_NotifyCursorUpdate(
  * Specific error codes can be referenced {@link InputMethod_ErrorCode}.
  * @since 12
  */
-InputMethod_ErrorCode OH_InputMethodProxy_SendPrivateCommand(InputMethod_PrivateCommand *privateCommand[], size_t size);
+InputMethod_ErrorCode OH_InputMethodProxy_SendPrivateCommand(
+    InputMethod_InputMethodProxy *inputMethodProxy, InputMethod_PrivateCommand *privateCommand[], size_t size);
 #ifdef __cplusplus
 }
 #endif /* __cplusplus */
