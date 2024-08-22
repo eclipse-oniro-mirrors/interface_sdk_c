@@ -58,6 +58,8 @@ typedef struct InputMethod_InputMethodProxy InputMethod_InputMethodProxy;
  *     The inputMethodProxy is obtained from {@link OH_InputMethodController_Attach}.
  * @return Returns a specific error code.
  *     {@link IME_ERR_OK} - success.
+ *     {@link IME_ERR_IMCLIENT} - input method client error.
+ *     {@link IME_ERR_IMMS} - input method manager service error.
  *     {@link IME_ERR_DETACHED} - input method client is detached.
  *     {@link IME_ERR_NULL_POINTER} - unexpected null pointer.
  * Specific error codes can be referenced {@link InputMethod_ErrorCode}.
@@ -72,6 +74,8 @@ InputMethod_ErrorCode OH_InputMethodProxy_ShowKeyboard(InputMethod_InputMethodPr
  *     The inputMethodProxy is obtained from {@link OH_InputMethodController_Attach}.
  * @return Returns a specific error code.
  *     {@link IME_ERR_OK} - success.
+ *     {@link IME_ERR_IMCLIENT} - input method client error.
+ *     {@link IME_ERR_IMMS} - input method manager service error.
  *     {@link IME_ERR_DETACHED} - input method client is detached.
  *     {@link IME_ERR_NULL_POINTER} - unexpected null pointer.
  * Specific error codes can be referenced {@link InputMethod_ErrorCode}.
@@ -92,6 +96,9 @@ InputMethod_ErrorCode OH_InputMethodProxy_HideKeyboard(InputMethod_InputMethodPr
  * @param end The end position of selected text.
  * @return Returns a specific error code.
  *     {@link IME_ERR_OK} - success.
+ *     {@link IME_ERR_PARAMCHECK} - parameter check failed.
+ *     {@link IME_ERR_IMCLIENT} - input method client error.
+ *     {@link IME_ERR_IMMS} - input method manager service error.
  *     {@link IME_ERR_DETACHED} - input method client is detached.
  *     {@link IME_ERR_NULL_POINTER} - unexpected null pointer.
  * Specific error codes can be referenced {@link InputMethod_ErrorCode}.
@@ -109,6 +116,9 @@ InputMethod_ErrorCode OH_InputMethodProxy_NotifySelectionChange(
  * @param textType The text input type.
  * @return Returns a specific error code.
  *     {@link IME_ERR_OK} - success.
+ *     {@link IME_ERR_PARAMCHECK} - parameter check failed.
+ *     {@link IME_ERR_IMCLIENT} - input method client error.
+ *     {@link IME_ERR_IMMS} - input method manager service error.
  *     {@link IME_ERR_DETACHED} - input method client is detached.
  *     {@link IME_ERR_NULL_POINTER} - unexpected null pointer.
  * Specific error codes can be referenced {@link InputMethod_ErrorCode}.
@@ -126,6 +136,9 @@ InputMethod_ErrorCode OH_InputMethodProxy_NotifyConfigurationChange(InputMethod_
  *     The cursor information.
  * @return Returns a specific error code.
  *     {@link IME_ERR_OK} - success.
+ *     {@link IME_ERR_PARAMCHECK} - parameter check failed.
+ *     {@link IME_ERR_IMCLIENT} - input method client error.
+ *     {@link IME_ERR_IMMS} - input method manager service error.
  *     {@link IME_ERR_DETACHED} - input method client is detached.
  *     {@link IME_ERR_NULL_POINTER} - unexpected null pointer.
  * Specific error codes can be referenced {@link InputMethod_ErrorCode}.
@@ -144,6 +157,8 @@ InputMethod_ErrorCode OH_InputMethodProxy_NotifyCursorUpdate(
  * @return Returns a specific error code.
  *     {@link IME_ERR_OK} - success.
  *     {@link IME_ERR_PARAMCHECK} - parameter check failed.
+ *     {@link IME_ERR_IMCLIENT} - input method client error.
+ *     {@link IME_ERR_IMMS} - input method manager service error.
  *     {@link IME_ERR_DETACHED} - input method client is detached.
  *     {@link IME_ERR_NULL_POINTER} - unexpected null pointer.
  * Specific error codes can be referenced {@link InputMethod_ErrorCode}.

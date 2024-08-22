@@ -154,6 +154,7 @@ InputMethod_ErrorCode OH_PrivateCommand_GetValueType(
  * @return Returns a specific error code.
  *     {@link IME_ERR_OK} - success.
  *     {@link IME_ERR_NULL_POINTER} - unexpected null pointer.
+ *     {@link IME_ERR_QUERY_FAILED} - query failed, no bool value in command.
  * Specific error codes can be referenced {@link InputMethod_ErrorCode}.
  * @since 12
  */
@@ -166,6 +167,7 @@ InputMethod_ErrorCode OH_PrivateCommand_GetBoolValue(InputMethod_PrivateCommand 
  * @return Returns a specific error code.
  *     {@link IME_ERR_OK} - success.
  *     {@link IME_ERR_NULL_POINTER} - unexpected null pointer.
+ *     {@link IME_ERR_QUERY_FAILED} - query failed, no integer value in command.
  * Specific error codes can be referenced {@link InputMethod_ErrorCode}.
  * @since 12
  */
@@ -179,6 +181,7 @@ InputMethod_ErrorCode OH_PrivateCommand_GetIntValue(InputMethod_PrivateCommand *
  * @return Returns a specific error code.
  *     {@link IME_ERR_OK} - success.
  *     {@link IME_ERR_NULL_POINTER} - unexpected null pointer.
+ *     {@link IME_ERR_QUERY_FAILED} - query failed, no string value in command.
  * Specific error codes can be referenced {@link InputMethod_ErrorCode}.
  * @since 12
  */
