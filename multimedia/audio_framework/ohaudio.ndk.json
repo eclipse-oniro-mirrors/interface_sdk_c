@@ -322,5 +322,29 @@
     {
         "first_introduced": "12",
         "name":"OH_AudioRenderer_GetSilentModeAndMixWithOthers"
+    },
+    {
+        "first_introduced": "12",
+        "name":"OH_AudioManager_GetAudioSessionManager"
+    },
+    {
+        "first_introduced": "12",
+        "name":"OH_AudioSessionManager_ActivateAudioSession"
+    },
+    {
+        "first_introduced": "12",
+        "name":"OH_AudioSessionManager_DeactivateAudioSession"
+    },
+    {
+        "first_introduced": "12",
+        "name":"OH_AudioSessionManager_IsAudioSessionActivated"
+    },
+    {
+        "first_introduced": "12",
+        "name":"OH_AudioSessionManager_RegisterSessionDeactivatedCallback"
+    },
+    {
+        "first_introduced": "12",
+        "name":"OH_AudioSessionManager_UnregisterSessionDeactivatedCallback"
     }
 ]
