@@ -55,17 +55,18 @@ typedef struct InputMethod_PrivateCommand InputMethod_PrivateCommand;
  *
  * @param key The key of the private command.
  * @param keyLength The length of the key.
- * @return Returns a pointer to the newly created {@link InputMethod_PrivateCommand} instance.
+ * @return If the creation is successful, a pointer to the newly created {@link InputMethod_PrivateCommand} instance is returned,
+ * otherwise, NULL is returned.
  * @since 12
  */
-InputMethod_PrivateCommand *OH_PrivateCommand_New(char key[], size_t keyLength);
+InputMethod_PrivateCommand *OH_PrivateCommand_Create(char key[], size_t keyLength);
 /**
- * @brief Delete a {@link InputMethod_PrivateCommand} instance.
+ * @brief Destroy a {@link InputMethod_PrivateCommand} instance.
  *
- * @param command Represents a pointer to an {@link InputMethod_PrivateCommand} instance which will be deleted.
+ * @param command Represents a pointer to an {@link InputMethod_PrivateCommand} instance which will be destroyed.
  * @since 12
  */
-void OH_PrivateCommand_Delete(InputMethod_PrivateCommand *command);
+void OH_PrivateCommand_Destroy(InputMethod_PrivateCommand *command);
 /**
  * @brief Set key value into {@link InputMethod_PrivateCommand}.
  *

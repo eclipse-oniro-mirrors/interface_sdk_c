@@ -261,17 +261,18 @@ typedef void (*OH_TextEditorProxy_FinishTextPreviewFunc)(InputMethod_TextEditorP
 /**
  * @brief Create a new {@link InputMethod_TextEditorProxy} instance.
  *
- * @return Returns a pointer to the newly created {@link InputMethod_TextEditorProxy} instance.
+ * @return If the creation is successful, a pointer to the newly created {@link InputMethod_TextEditorProxy} instance is returned,
+ * otherwise, NULL is returned.
  * @since 12
  */
-InputMethod_TextEditorProxy *OH_TextEditorProxy_New();
+InputMethod_TextEditorProxy *OH_TextEditorProxy_Create();
 /**
- * @brief Delete a {@link InputMethod_TextEditorProxy} instance.
+ * @brief Destroy a {@link InputMethod_TextEditorProxy} instance.
  *
- * @param proxy The {@link InputMethod_TextEditorProxy} instance to be deleted.
+ * @param proxy The {@link InputMethod_TextEditorProxy} instance to be destroyed.
  * @since 12
  */
-void OH_TextEditorProxy_Delete(InputMethod_TextEditorProxy *proxy);
+void OH_TextEditorProxy_Destroy(InputMethod_TextEditorProxy *proxy);
 /**
  * @brief Set function {@link OH_TextEditorProxy_GetTextConfigFunc} into {@link InputMethod_TextEditorProxy}.
  *

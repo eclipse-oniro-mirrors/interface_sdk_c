@@ -55,17 +55,18 @@ typedef struct InputMethod_TextConfig InputMethod_TextConfig;
 /**
  * @brief Create a new {@link InputMethod_TextConfig} instance.
  *
- * @return Returns a pointer to the newly created {@link InputMethod_TextConfig} instance.
+ * @return If the creation is successful, a pointer to the newly created {@link InputMethod_TextConfig} instance is returned,
+ * otherwise, NULL is returned.
  * @since 12
  */
-InputMethod_TextConfig *OH_TextConfig_New();
+InputMethod_TextConfig *OH_TextConfig_Create();
 /**
- * @brief Delete a {@link InputMethod_TextConfig} instance.
+ * @brief Destroy a {@link InputMethod_TextConfig} instance.
  *
- * @param config Represents a pointer to an {@link InputMethod_TextConfig} instance which will be deleted.
+ * @param config Represents a pointer to an {@link InputMethod_TextConfig} instance which will be destroyed.
  * @since 12
  */
-void OH_TextConfig_Delete(InputMethod_TextConfig *config);
+void OH_TextConfig_Destroy(InputMethod_TextConfig *config);
 
 /**
  * @brief Set input type into TextConfig.
