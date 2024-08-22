@@ -14,6 +14,26 @@
  */
 #ifndef OHOS_INPUTMETHOD_TEXT_EDITOR_PROXY_CAPI_H
 #define OHOS_INPUTMETHOD_TEXT_EDITOR_PROXY_CAPI_H
+/**
+ * @addtogroup InputMethod
+ * @{
+ *
+ * @brief InputMethod provides functions to use input methods and develop input methods.
+ *
+ * @since 12
+ */
+
+/**
+ * @file inputmethod_text_editor_proxy_capi.h
+ *
+ * @brief Provides functions for getting requests and notifications from input method.
+ *
+ * @library libohinputmethod.so
+ * @kit IMEKit
+ * @syscap SystemCapability.MiscServices.InputMethodFramework
+ * @since 12
+ * @version 1.0
+ */
 #include <stddef.h>
 
 #include "inputmethod_private_command_capi.h"

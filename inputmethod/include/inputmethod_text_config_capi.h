@@ -14,6 +14,26 @@
  */
 #ifndef OHOS_INPUTMETHOD_TEXT_CONFIG_CAPI_H
 #define OHOS_INPUTMETHOD_TEXT_CONFIG_CAPI_H
+/**
+ * @addtogroup InputMethod
+ * @{
+ *
+ * @brief InputMethod provides functions to use input methods and develop input methods.
+ *
+ * @since 12
+ */
+
+/**
+ * @file inputmethod_text_config_capi.h
+ *
+ * @brief Provides functions to manage the text configuration.
+ *
+ * @library libohinputmethod.so
+ * @kit IMEKit
+ * @syscap SystemCapability.MiscServices.InputMethodFramework
+ * @since 12
+ * @version 1.0
+ */
 #include <stdint.h>
 
 #include "inputmethod_cursor_info_capi.h"

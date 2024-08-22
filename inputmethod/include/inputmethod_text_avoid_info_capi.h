@@ -14,6 +14,26 @@
  */
 #ifndef OHOS_INPUTMETHOD_TEXT_AVOID_INFO_CAPI_H
 #define OHOS_INPUTMETHOD_TEXT_AVOID_INFO_CAPI_H
+/**
+ * @addtogroup InputMethod
+ * @{
+ *
+ * @brief InputMethod provides functions to use input methods and develop input methods.
+ *
+ * @since 12
+ */
+
+/**
+ * @file inputmethod_text_avoid_info_capi.h
+ *
+ * @brief Provides functions to manage text editor to avoid the keyboard.
+ *
+ * @library libohinputmethod.so
+ * @kit IMEKit
+ * @syscap SystemCapability.MiscServices.InputMethodFramework
+ * @since 12
+ * @version 1.0
+ */
 #include "inputmethod_types_capi.h"
 #ifdef __cplusplus
 extern "C" {

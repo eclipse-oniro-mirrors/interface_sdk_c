@@ -14,6 +14,26 @@
 */
 #ifndef OHOS_INPUTMETHOD_TYPES_CAPI_H
 #define OHOS_INPUTMETHOD_TYPES_CAPI_H
+/**
+ * @addtogroup InputMethod
+ * @{
+ *
+ * @brief InputMethod provides functions to use input methods and develop input methods.
+ *
+ * @since 12
+ */
+
+/**
+ * @file inputmethod_types_capi.h
+ *
+ * @brief Provides the input method types.
+ *
+ * @library libohinputmethod.so
+ * @kit IMEKit
+ * @syscap SystemCapability.MiscServices.InputMethodFramework
+ * @since 12
+ * @version 1.0
+ */
 #ifdef __cplusplus
 extern "C"{
 #endif /* __cplusplus */

@@ -14,6 +14,26 @@
  */
 #ifndef OHOS_INPUTMETHOD_PRIVATE_COMMAND_CAPI_H
 #define OHOS_INPUTMETHOD_PRIVATE_COMMAND_CAPI_H
+/**
+ * @addtogroup InputMethod
+ * @{
+ *
+ * @brief InputMethod provides functions to use input methods and develop input methods.
+ *
+ * @since 12
+ */
+
+/**
+ * @file inputmethod_private_command_capi.h
+ *
+ * @brief Provides functions to manage private commands.
+ *
+ * @library libohinputmethod.so
+ * @kit IMEKit
+ * @syscap SystemCapability.MiscServices.InputMethodFramework
+ * @since 12
+ * @version 1.0
+ */
 #include <stddef.h>
 #include <stdint.h>
 
