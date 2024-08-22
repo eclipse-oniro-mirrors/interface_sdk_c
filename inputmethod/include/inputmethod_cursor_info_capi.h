@@ -54,18 +54,19 @@ typedef struct InputMethod_CursorInfo InputMethod_CursorInfo;
  * @param top The top point of the cursor and must be absolute coordinate of the physical screen.
  * @param width The width of the cursor.
  * @param height The height of the cursor.
- * @return Returns a pointer to the newly created {@link InputMethod_CursorInfo} instance.
+ * @return If the creation is successful, a pointer to the newly created {@link InputMethod_CursorInfo} instance is returned,
+ * otherwise, NULL is returned.
  * @since 12
  */
-InputMethod_CursorInfo *OH_CursorInfo_New(double left, double top, double width, double height);
+InputMethod_CursorInfo *OH_CursorInfo_Create(double left, double top, double width, double height);
 
 /**
- * @brief Delete a {@link InputMethod_CursorInfo} instance.
+ * @brief Destroy a {@link InputMethod_CursorInfo} instance.
  *
  * @param cursorInfo Represents a pointer to an {@link InputMethod_CursorInfo} instance which will be deleted.
  * @since 12
  */
-void OH_CursorInfo_Delete(InputMethod_CursorInfo *cursorInfo);
+void OH_CursorInfo_Destroy(InputMethod_CursorInfo *cursorInfo);
 
 /**
  * @brief Set cursor info.

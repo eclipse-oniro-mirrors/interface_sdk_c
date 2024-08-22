@@ -51,17 +51,18 @@ typedef struct InputMethod_AttachOptions InputMethod_AttachOptions;
  * @brief Create a new {@link InputMethod_AttachOptions} instance.
  *
  * @param showKeyboard Represents whether to show the keyboard.
- * @return Returns a pointer to the newly created {@link InputMethod_AttachOptions} instance.
+ * @return If the creation is successful, a pointer to the newly created {@link InputMethod_AttachOptions} instance is returned,
+ * otherwise, NULL is returned.
  * @since 12
  */
-InputMethod_AttachOptions *OH_AttachOptions_New(bool showKeyboard);
+InputMethod_AttachOptions *OH_AttachOptions_Create(bool showKeyboard);
 /**
- * @brief Delete a {@link InputMethod_AttachOptions} instance.
+ * @brief Destroy a {@link InputMethod_AttachOptions} instance.
  *
- * @param options Represents a pointer to an {@link InputMethod_AttachOptions} instance which will be deleted.
+ * @param options Represents a pointer to an {@link InputMethod_AttachOptions} instance which will be destroyed.
  * @since 12
  */
-void OH_AttachOptions_Delete(InputMethod_AttachOptions *options);
+void OH_AttachOptions_Destroy(InputMethod_AttachOptions *options);
 /**
  * @brief Get showKeyboard value from {@link InputMethod_AttachOptions}.
  *

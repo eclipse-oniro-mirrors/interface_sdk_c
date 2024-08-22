@@ -53,17 +53,18 @@ typedef struct InputMethod_TextAvoidInfo InputMethod_TextAvoidInfo;
  *
  * @param positionY The y-coordinate of the avoid area.
  * @param height The height of the avoid area.
- * @return Returns a pointer to the newly created {@link InputMethod_TextAvoidInfo} instance.
+ * @return If the creation is successful, a pointer to the newly created {@link InputMethod_TextAvoidInfo} instance is returned,
+ * otherwise, NULL is returned.
  * @since 12
  */
-InputMethod_TextAvoidInfo *OH_TextAvoidInfo_New(double positionY, double height);
+InputMethod_TextAvoidInfo *OH_TextAvoidInfo_Create(double positionY, double height);
 /**
- * @brief Delete a {@link InputMethod_TextAvoidInfo} instance.
+ * @brief Destroy a {@link InputMethod_TextAvoidInfo} instance.
  *
- * @param options Represents a pointer to an {@link InputMethod_TextAvoidInfo} instance which will be deleted.
+ * @param options Represents a pointer to an {@link InputMethod_TextAvoidInfo} instance which will be destroyed.
  * @since 12
  */
-void OH_TextAvoidInfo_Delete(InputMethod_TextAvoidInfo *info);
+void OH_TextAvoidInfo_Destroy(InputMethod_TextAvoidInfo *info);
 /**
  * @brief Set positionY value into {@link InputMethod_TextAvoidInfo}.
  *
