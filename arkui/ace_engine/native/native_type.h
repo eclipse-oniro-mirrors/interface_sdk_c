@@ -808,7 +808,7 @@ typedef enum {
      * does not scroll when the component scrolling reaches the boundary. */
     ARKUI_SCROLL_NESTED_MODE_SELF_ONLY = 0,
     /** The component scrolls first, and when it hits the boundary, the parent component scrolls.
-     * When the parent component hits the boundary, its edge effect is displayed. If no edge
+    /** When the parent component hits the boundary, its edge effect is displayed. If no edge
      *  effect is specified for the parent component, the edge effect of the child component is displayed instead. */
     ARKUI_SCROLL_NESTED_MODE_SELF_FIRST,
     /** The parent component scrolls first, and when it hits the boundary, the component scrolls.
@@ -1523,7 +1523,7 @@ typedef enum {
     /** The content of the view is blended in sequence on the target image. */
     BLEND_APPLY_TYPE_FAST = 0,
     /** The content of the component and its child components are drawn on the offscreen canvas, and then blended with
-     *  the existing content on the canvas. */
+    /*  the existing content on the canvas. */
     BLEND_APPLY_TYPE_OFFSCREEN,
 } ArkUI_BlendApplyType;
 
