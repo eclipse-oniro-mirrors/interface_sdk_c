@@ -42,7 +42,7 @@ extern "C"{
  *
  * @since 12
  */
-typedef enum {
+typedef enum InputMethod_KeyboardStatus {
     /**
      * The keyboard status is none.
      */
@@ -62,7 +62,7 @@ typedef enum {
  *
  * @since 12
  */
-typedef enum {
+typedef enum InputMethod_EnterKeyType {
     /**
      * The enter key type is UNSPECIFIED.
      */
@@ -106,7 +106,7 @@ typedef enum {
  *
  * @since 12
  */
-typedef enum {
+typedef enum InputMethod_Direction {
     /**
      * The direction is NONE.
      */
@@ -134,7 +134,7 @@ typedef enum {
  *
  * @since 12
  */
-typedef enum {
+typedef enum InputMethod_ExtendAction {
     /**
      * Select all text.
      */
@@ -158,7 +158,7 @@ typedef enum {
  *
  * @since 12
  */
-typedef enum {
+typedef enum InputMethod_TextInputType {
     /**
      * The text input type is NONE.
      */
@@ -222,7 +222,7 @@ typedef enum {
  *
  * @since 12
  */
-typedef enum {
+typedef enum InputMethod_CommandValueType {
     /**
      * Value type is NONE.
      */
@@ -246,16 +246,16 @@ typedef enum {
  *
  * @since 12
  */
-typedef enum {
+typedef enum InputMethod_ErrorCode {
     /**
      * The error code in the correct case.
      */
     IME_ERR_OK = 0,
 
     /**
-     * The error code when query failed.
+     * The error code when error is undefined.
      */
-    IME_ERR_QUERY_FAILED = 1,
+    IME_ERR_UNDEFINED = 1,
     /**
      * The error code when parameter check failed.
      */
@@ -295,7 +295,11 @@ typedef enum {
     /**
      * The error code when unexpected null pointer.
      */
-    IME_ERR_NULL_POINTER = 12800010,
+    IME_ERR_NULL_POINTER = 12802000,
+    /**
+     * The error code when query failed.
+     */
+    IME_ERR_QUERY_FAILED = 12802001,
 } InputMethod_ErrorCode;
 #ifdef __cplusplus
 }
