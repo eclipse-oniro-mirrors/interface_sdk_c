@@ -53,8 +53,8 @@ typedef struct InputMethod_TextAvoidInfo InputMethod_TextAvoidInfo;
  *
  * @param positionY The y-coordinate of the avoid area.
  * @param height The height of the avoid area.
- * @return If the creation succeeds, a pointer to the newly created {@link InputMethod_TextAvoidInfo} instance is returned.
- * If the creation fails, NULL is returned, possible cause is insufficient memory.
+ * @return If the creation succeeds, a pointer to the newly created {@link InputMethod_TextAvoidInfo}
+ * instance is returned. If the creation fails, NULL is returned, possible cause is insufficient memory.
  * @since 12
  */
 InputMethod_TextAvoidInfo *OH_TextAvoidInfo_Create(double positionY, double height);

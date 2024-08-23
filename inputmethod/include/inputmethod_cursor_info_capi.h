@@ -54,8 +54,8 @@ typedef struct InputMethod_CursorInfo InputMethod_CursorInfo;
  * @param top The top point of the cursor and must be absolute coordinate of the physical screen.
  * @param width The width of the cursor.
  * @param height The height of the cursor.
- * @return If the creation is successful, a pointer to the newly created {@link InputMethod_CursorInfo} instance is returned.
- *     If the creation fails, NULL is returned, possible cause is insufficient memory.
+ * @return If the creation succeeds, a pointer to the newly created {@link InputMethod_CursorInfo}
+ * instance is returned. If the creation fails, NULL is returned, possible cause is insufficient memory.
  * @since 12
  */
 InputMethod_CursorInfo *OH_CursorInfo_Create(double left, double top, double width, double height);

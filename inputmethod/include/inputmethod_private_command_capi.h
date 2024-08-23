@@ -55,8 +55,8 @@ typedef struct InputMethod_PrivateCommand InputMethod_PrivateCommand;
  *
  * @param key The key of the private command.
  * @param keyLength The length of the key.
- * @return If the creation succeeds, a pointer to the newly created {@link InputMethod_PrivateCommand} instance is returned.
- * If the creation fails, NULL is returned, possible cause is insufficient memory.
+ * @return If the creation succeeds, a pointer to the newly created {@link InputMethod_PrivateCommand}
+ * instance is returned. If the creation fails, NULL is returned, possible cause is insufficient memory.
  * @since 12
  */
 InputMethod_PrivateCommand *OH_PrivateCommand_Create(char key[], size_t keyLength);
