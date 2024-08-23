@@ -91,7 +91,7 @@ InputMethod_ErrorCode OH_InputMethodProxy_HideKeyboard(InputMethod_InputMethodPr
  * @param inputMethodProxy Represents a pointer to an {@link InputMethod_InputMethodProxy} instance.
  *     The inputMethodProxy is obtained from {@link OH_InputMethodController_Attach}.
  * @param text The whole input text.
- * @param length The length of text. Max 8K bytes.
+ * @param length The length of text. Max length is 8K.
  * @param start The start position of selected text.
  * @param end The end position of selected text.
  * @return Returns a specific error code.
