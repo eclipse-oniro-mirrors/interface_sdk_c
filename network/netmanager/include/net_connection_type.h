@@ -248,6 +248,114 @@ typedef struct NetConn_NetHandleList {
  */
 typedef int (*OH_NetConn_CustomDnsResolver)(const char *host, const char *serv,
     const struct addrinfo *hint, struct addrinfo **res);
+
+/**
+ * @brief Callback for application’s http proxy information changed.
+ *
+ * @param proxy The changed proxy information, may be a null pointer.
+ *
+ * @since 12
+ * @version 1.0
+ */
+typedef void (*OH_NetConn_AppHttpProxyChange)(NetConn_HttpProxy *proxy);
+
+/**
+ * @brief Definition of network specifier.
+ *
+ * @since 12
+ * @version 1.0
+ */
+typedef struct NetConn_NetSpecifier {
+    /** Network capabilities. */
+    NetConn_NetCapabilities caps;
+    /** Network identifier */
+    char *bearerPrivateIdentifier;
+} NetConn_NetSpecifier;
+
+/**
+ * @brief Callback for network available.
+ *
+ * @param netHandle The network handle.
+ *
+ * @since 12
+ * @version 1.0
+ */
+typedef void (*OH_NetConn_NetworkAvailable)(NetConn_NetHandle *netHandle);
+
+/**
+ * @brief Callback for network capabilities changed.
+ *
+ * @param netHandle The network handle.
+ * @param netCapabilities The network capabilities.
+ *
+ * @since 12
+ * @version 1.0
+ */
+typedef void (*OH_NetConn_NetCapabilitiesChange)(NetConn_NetHandle *netHandle,
+                                                 NetConn_NetCapabilities *netCapabilities);
+
+/**
+ * @brief Callback for network connection properties changed.
+ *
+ * @param netHandle The network handle.
+ * @param connConnetionProperties The network connection properties.
+ *
+ * @since 12
+ * @version 1.0
+ */
+typedef void (*OH_NetConn_NetConnectionPropertiesChange)(NetConn_NetHandle *netHandle,
+                                                         NetConn_ConnectionProperties *connConnetionProperties);
+
+/**
+ * @brief Callback for network lost.
+ *
+ * @param netHandle The network handle.
+ *
+ * @since 12
+ * @version 1.0
+ */
+typedef void (*OH_NetConn_NetLost)(NetConn_NetHandle *netHandle);
+
+/**
+ * @brief Callback for network unavailable, this function invoked while network can not be available in given timeout.
+ *
+ * @since 12
+ * @version 1.0
+ */
+typedef void (*OH_NetConn_NetUnavailable)(void);
+
+/**
+ * @brief Callback for network blocked status changed.
+ *
+ * @param netHandle The network handle.
+ * @param blocked The flag used to indicate whether the network will be blocked.
+ *
+ * @since 12
+ * @version 1.0
+ */
+typedef void (*OH_NetConn_NetBlockStatusChange)(NetConn_NetHandle *netHandle, bool blocked);
+
+/**
+ * @brief Defines the network connection callbacks.
+ *
+ * @since 12
+ * @version 1.0
+ */
+typedef struct NetConn_NetConnCallback {
+    /** Callback for network available */
+    OH_NetConn_NetworkAvailable onNetworkAvailable;
+    /** Callback for network capabilities changed */
+    OH_NetConn_NetCapabilitiesChange onNetCapabilitiesChange;
+    /** Callback for network connection properties changed */
+    OH_NetConn_NetConnectionPropertiesChange onConnetionProperties;
+    /** Callback for network lost */
+    OH_NetConn_NetLost onNetLost;
+    /** Callback for network unavailable, this function invoked while network can not be available in given timeout */
+    OH_NetConn_NetUnavailable onNetUnavailable;
+    /** Callback for network blocked status changed */
+    OH_NetConn_NetBlockStatusChange onNetBlockStatusChange;
+} NetConn_NetConnCallback;
+
 #ifdef __cplusplus
 }
 #endif
