@@ -82,7 +82,7 @@
     { "name": "ffrt_loop_timer_start" },
     { "name": "ffrt_loop_timer_stop" },
     { "name": "ffrt_queue_attr_set_max_concurrency" },
-    { "name": "ffrt_queue_atte_get_max_concurrency" },
+    { "name": "ffrt_queue_attr_get_max_concurrency" },
     { "name": "ffrt_get_main_queue" },
     { "name": "ffrt_get_current_queue" },
     { "name": "ffrt_task_attr_set_queue_priority" },
