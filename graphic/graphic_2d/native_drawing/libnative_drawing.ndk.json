@@ -1441,5 +1441,29 @@
     {
         "first_introduced": "12",
         "name":"OH_Drawing_SetTextShadow"
+    },
+    {
+        "first_introduced": "13",
+        "name":"OH_Drawing_Drawing_CanvasDrawRecordCmd"
+    },
+    {
+        "first_introduced": "13",
+        "name":"OH_Drawing_RecordCmdUtilsCreate"
+    },
+    {
+        "first_introduced": "13",
+        "name":"OH_Drawing_RecordCmdUtilsDestroy"
+    },
+    {
+        "first_introduced": "13",
+        "name":"OH_Drawing_RecordCmdUtilsBeginRecording"
+    },
+    {
+        "first_introduced": "13",
+        "name":"OH_Drawing_RecordCmdUtilsFinishingRecording"
+    },
+    {
+        "first_introduced": "13",
+        "name":"OH_Drawing_RecordCmdDestroy"
     }
 ]
