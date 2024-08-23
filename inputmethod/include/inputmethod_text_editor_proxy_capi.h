@@ -698,4 +698,5 @@ InputMethod_ErrorCode OH_TextEditorProxy_GetFinishTextPreviewFunc(
 #ifdef __cplusplus
 }
 #endif /* __cplusplus */
+/** @} */
 #endif // OHOS_INPUTMETHOD_TEXT_EDITOR_PROXY_CAP_H

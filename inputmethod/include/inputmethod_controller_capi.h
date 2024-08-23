@@ -84,4 +84,5 @@ InputMethod_ErrorCode OH_InputMethodController_Detach(InputMethod_InputMethodPro
 #ifdef __cplusplus
 }
 #endif /* __cplusplus */
+/** @} */
 #endif // OHOS_INPUTMETHOD_CONTROLLER_CAPI_H

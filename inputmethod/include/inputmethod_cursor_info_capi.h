@@ -104,4 +104,5 @@ InputMethod_ErrorCode OH_CursorInfo_GetRect(
 #ifdef __cplusplus
 }
 #endif /* __cplusplus */
+/** @} */
 #endif // OHOS_INPUTMETHOD_CURSOR_INFO_CAPI_H

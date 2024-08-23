@@ -57,7 +57,7 @@ typedef struct InputMethod_AttachOptions InputMethod_AttachOptions;
  */
 InputMethod_AttachOptions *OH_AttachOptions_Create(bool showKeyboard);
 /**
- * @brief Destroy a {@link InputMethod_AttachOptions} instance.
+ * @brief Delete a {@link InputMethod_AttachOptions} instance.
  *
  * @param options Represents a pointer to an {@link InputMethod_AttachOptions} instance which will be destroyed.
  * @since 12
@@ -80,4 +80,5 @@ InputMethod_ErrorCode OH_AttachOptions_IsShowKeyboard(InputMethod_AttachOptions 
 #ifdef __cplusplus
 }
 #endif /* __cplusplus */
+/** @} */
 #endif // OHOS_INPUTMETHOD_ATTACH_OPTIONS_CAPI_H

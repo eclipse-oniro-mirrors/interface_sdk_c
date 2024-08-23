@@ -191,4 +191,5 @@ InputMethod_ErrorCode OH_PrivateCommand_GetStrValue(
 #ifdef __cplusplus
 }
 #endif /* __cplusplus */
+/** @} */
 #endif // OHOS_INPUTMETHOD_PRIVATE_COMMAND_CAPI_H

@@ -94,7 +94,7 @@ InputMethod_ErrorCode OH_TextConfig_SetInputType(InputMethod_TextConfig *config,
 InputMethod_ErrorCode OH_TextConfig_SetEnterKeyType(
     InputMethod_TextConfig *config, InputMethod_EnterKeyType enterKeyType);
 /**
- * @brief Set is preview text supported into TextConfig.
+ * @brief Set preview text support into TextConfig.
  *
  * @param config Represents a pointer to an {@link InputMethod_TextConfig} instance which will be set.
  * @param supported Indicates whether the preview text is supported.
@@ -225,4 +225,5 @@ InputMethod_ErrorCode OH_TextConfig_GetWindowId(InputMethod_TextConfig *config, 
 #ifdef __cplusplus
 }
 #endif /* __cplusplus */
+/** @} */
 #endif // OHOS_INPUTMETHOD_TEXT_CONFIG_CAPI_H

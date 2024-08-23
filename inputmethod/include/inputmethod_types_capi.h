@@ -304,4 +304,5 @@ typedef enum InputMethod_ErrorCode {
 #ifdef __cplusplus
 }
 #endif /* __cplusplus */
+/** @} */
 #endif // OHOS_INPUTMETHOD_TYPES_CAPI_H

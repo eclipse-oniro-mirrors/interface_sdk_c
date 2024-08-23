@@ -169,4 +169,5 @@ InputMethod_ErrorCode OH_InputMethodProxy_SendPrivateCommand(
 #ifdef __cplusplus
 }
 #endif /* __cplusplus */
+/** @} */
 #endif // INPUTMETHOD_INPUTMETHOD_PROXY_CAP_H
