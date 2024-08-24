@@ -12,8 +12,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-#ifndef OHOS_INPUTMETHOD_ATTACH_OPTIONS_CAPI_H
-#define OHOS_INPUTMETHOD_ATTACH_OPTIONS_CAPI_H
 /**
  * @addtogroup InputMethod
  * @{
@@ -34,6 +32,8 @@
  * @since 12
  * @version 1.0
  */
+#ifndef OHOS_INPUTMETHOD_ATTACH_OPTIONS_CAPI_H
+#define OHOS_INPUTMETHOD_ATTACH_OPTIONS_CAPI_H
 #include "inputmethod_types_capi.h"
 #ifdef __cplusplus
 extern "C" {
