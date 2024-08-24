@@ -207,7 +207,7 @@ Camera_ErrorCode OH_PreviewOutput_GetPreviewRotation(Camera_PreviewOutput* previ
 /**
  * @brief Sets the preview rotation angle.
  *
- * @param previewOutput the {@link Camera_PreviewOutput} instance which used to get the preview rotation angle.
+ * @param previewOutput the {@link Camera_PreviewOutput} instance which used to set the preview rotation angle.
  * @param previewRotation the {@link Camera_ImageRotation} of preview display rotation angle.
  * @param isDisplayLocked TRUE means the display is locked.
  * @return {@link #CAMERA_OK} if the method call succeeds.
