@@ -195,7 +195,7 @@ Camera_ErrorCode OH_VideoOutput_DeleteProfile(Camera_VideoProfile* profile);
  * @param deviceDegree the current device rotation degree.
  * @param imageRotation the {@link Camera_ImageRotation} result of video rotation angle.
  * @return {@link #CAMERA_OK} if the method call succeeds.
- *         {@link #CAMERA_INVALID_ARGUMENT} if parameter missing or parameter type incorrect.
+ *         {@link #INVALID_ARGUMENT} if parameter missing or parameter type incorrect.
  *         {@link #CAMERA_SERVICE_FATAL_ERROR} if camera service fatal error.
  * @since 12
  */
