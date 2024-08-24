@@ -164,6 +164,7 @@ OH_AVErrCode OH_VideoDecoder_Configure(OH_AVCodec *codec, OH_AVFormat *format);
  * {@link AV_ERR_UNKNOWN}, unknown error.
  * {@link AV_ERR_SERVICE_DIED}, avcodec service is died.
  * {@link AV_ERR_INVALID_STATE}, this interface was called in invalid state.
+ * {@link AV_ERR_OPERATE_NOT_PERMIT}, if {@link OH_MD_KEY_VIDEO_DECODER_OUTPUT_COLOR_SPACE} is correctly configured, but decoder's output surface is not set, the operation is not permitted.
  * @since 9
  */
 OH_AVErrCode OH_VideoDecoder_Prepare(OH_AVCodec *codec);
