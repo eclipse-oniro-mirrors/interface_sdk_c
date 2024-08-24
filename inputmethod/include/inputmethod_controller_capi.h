@@ -12,9 +12,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
-#ifndef OHOS_INPUTMETHOD_CONTROLLER_CAPI_H
-#define OHOS_INPUTMETHOD_CONTROLLER_CAPI_H
 /**
  * @addtogroup InputMethod
  * @{
@@ -35,7 +32,8 @@
  * @since 12
  * @version 1.0
  */
-
+#ifndef OHOS_INPUTMETHOD_CONTROLLER_CAPI_H
+#define OHOS_INPUTMETHOD_CONTROLLER_CAPI_H
 #include <stdint.h>
 #include <stdlib.h>
 

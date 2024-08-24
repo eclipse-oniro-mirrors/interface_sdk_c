@@ -12,8 +12,6 @@
 * See the License for the specific language governing permissions and
 * limitations under the License.
 */
-#ifndef OHOS_INPUTMETHOD_INPUTMETHOD_PROXY_CAPI_H
-#define OHOS_INPUTMETHOD_INPUTMETHOD_PROXY_CAPI_H
 /**
  * @addtogroup InputMethod
  * @{
@@ -34,6 +32,8 @@
  * @since 12
  * @version 1.0
  */
+#ifndef OHOS_INPUTMETHOD_INPUTMETHOD_PROXY_CAPI_H
+#define OHOS_INPUTMETHOD_INPUTMETHOD_PROXY_CAPI_H
 #include <stddef.h>
 
 #include "inputmethod_types_capi.h"
