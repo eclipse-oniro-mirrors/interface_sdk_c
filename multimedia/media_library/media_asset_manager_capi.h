@@ -31,7 +31,7 @@
  * to reqeust media source.
  *
  * @kit MediaLibraryKit
- * @Syscap SystemCapability.FileManagement.PhotoAccessHelper.Core
+ * @syscap SystemCapability.FileManagement.PhotoAccessHelper.Core
  * @library libmedia_asset_manager.so
  * @since 12
  */
@@ -94,7 +94,33 @@ MediaLibrary_RequestId OH_MediaAssetManager_RequestVideoForPath(OH_MediaAssetMan
 */
 bool OH_MediaAssetManager_CancelRequest(OH_MediaAssetManager* manager, const MediaLibrary_RequestId requestId);
 
+/**
+ * @brief Request image resources based on different strategy modes.
+ *
+ * @permission ohos.permission.READ_IMAGEVIDEO
+ * @param manager the pointer to {@link OH_MediaAssetManager} instance.
+ * @param mediaAsset the {@link OH_MediaAsset} instance of media file object to be requested.
+ * @param requestOptions the {@link MediaLibrary_RequestOptions} for image request strategy mode.
+ * @param requestId indicates the {@link MediaLibrary_RequestId} of the request, which is an output parameter.
+ * @param callback the {@link OH_MediaLibrary_OnImageDataPrepared} that will be called
+ *                 when the requested source is prepared.
+ * @return {@link #MEDIA_LIBRARY_OK} if the method call succeeds.
+ *         {@link #MEDIA_LIBRARY_PARAMETER_ERROR} Parameter error. Possible causes:
+ *                                                1. Mandatory parameters are left unspecified.
+ *                                                2. Incorrect parameter types.
+ *                                                3. Parameter verification failed.
+ *         {@link #MEDIA_LIBRARY_OPERATION_NOT_SUPPORTED} if operation is not supported.
+ *         {@link #MEDIA_LIBRARY_PERMISSION_DENIED} if permission is denied.
+ *         {@link #MEDIA_LIBRARY_INTERNAL_SYSTEM_ERROR} if internal system error.
+ * @since 12
+*/
+MediaLibrary_ErrorCode OH_MediaAssetManager_RequestImage(OH_MediaAssetManager* manager, OH_MediaAsset* mediaAsset,
+    MediaLibrary_RequestOptions requestOptions, MediaLibrary_RequestId* requestId,
+    OH_MediaLibrary_OnImageDataPrepared callback);
+
 #ifdef __cplusplus
 }
 #endif
+
 #endif // MULTIMEDIA_MEDIA_LIBRARY_NATIVE_MEDIA_ASSET_MANAGER_H
+/** @} */
