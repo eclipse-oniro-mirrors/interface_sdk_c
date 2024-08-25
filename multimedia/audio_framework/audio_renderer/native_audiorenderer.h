@@ -494,10 +494,10 @@ OH_AudioStream_Result OH_AudioRenderer_GetSilentModeAndMixWithOthers(
  *                                             DEFAULT: System default output device
  * @return result code for this function.
  *         {@link #AUDIOSTREAM_SUCCESS} succeed in setting the default output device
- *         {@link AUDIOSTREAM_ERROR_INVALID_PARAM}:
+ *         {@link #AUDIOSTREAM_ERROR_INVALID_PARAM}:
  *                                                 1.The param of renderer is nullptr;
  *                                                 2.The param of deviceType is not valid
- *         {@link AUDIOSTREAM_ERROR_ILLEGAL_STATE} This audiorenderer can not reset the output device
+ *         {@link #AUDIOSTREAM_ERROR_ILLEGAL_STATE} This audiorenderer can not reset the output device
  *         {@link #AUDIOSTREAM_ERROR_SYSTEM} system error when calling this function.
  * @since 12
  */
