@@ -171,19 +171,19 @@ typedef enum {
     /**
      * No metadata.
      */
-    NONE = 0,
+    HDR_METADATA_TYPE_NONE = 0,
     /**
      * Indicates that metadata will be used for the base image.
      */
-    BASE = 1,
+    HDR_METADATA_TYPE_BASE = 1,
     /**
      * Indicates that metadata will be used for the gainmap image.
      */
-    GAINMAP = 2,
+    HDR_METADATA_TYPE_GAINMAP = 2,
     /**
      * Indicates that metadata will be used for the alternate image.
      */
-    ALTERNATE = 3,
+    HDR_METADATA_TYPE_ALTERNATE = 3,
 } OH_Pixelmap_HdrMetadataType;
 
 /**
@@ -764,6 +764,38 @@ Image_ErrorCode OH_PixelmapNative_ConvertAlphaFormat(OH_PixelmapNative* srcpixel
  */
 Image_ErrorCode OH_PixelmapNative_CreateEmptyPixelmap(
     OH_Pixelmap_InitializationOptions *options, OH_PixelmapNative **pixelmap);
+
+/**
+ * @brief Get metadata.
+ *
+ * @param pixelmap The Pixelmap pointer to be operated.
+ * @param key Type of metadata.
+ * @param value Value of metadata.
+ * @return Returns {@link Image_ErrorCode} IMAGE_SUCCESS - if the operation is successful.
+ * returns {@link Image_ErrorCode} IMAGE_BAD_PARAMETER - if invalid parameter, key and value are incorrect.
+ * returns {@link Image_ErrorCode} IMAGE_DMA_NOT_EXIST - if DMA memory does not exist.
+ * returns {@link Image_ErrorCode} IMAGE_COPY_FAILED - if memory copy failed.
+ * @see OH_PixelmapNative
+ * @since 12
+ */
+Image_ErrorCode OH_PixelmapNative_GetMetadata(OH_PixelmapNative *pixelmap, OH_Pixelmap_HdrMetadataKey key,
+    OH_Pixelmap_HdrMetadataValue **value);
+
+/**
+ * @brief Set metadata.
+ *
+ * @param pixelmap The Pixelmap pointer to be operated.
+ * @param key Type of metadata.
+ * @param value Value of metadata.
+ * @return Returns {@link Image_ErrorCode} IMAGE_SUCCESS - if the operation is successful.
+ * returns {@link Image_ErrorCode} IMAGE_BAD_PARAMETER - if invalid parameter, key and value are incorrect.
+ * returns {@link Image_ErrorCode} IMAGE_DMA_NOT_EXIST - if DMA memory does not exist.
+ * returns {@link Image_ErrorCode} IMAGE_COPY_FAILED - if memory copy failed.
+ * @see OH_PixelmapNative
+ * @since 12
+ */
+Image_ErrorCode OH_PixelmapNative_SetMetadata(OH_PixelmapNative *pixelmap, OH_Pixelmap_HdrMetadataKey key,
+    OH_Pixelmap_HdrMetadataValue *value);
 
 #ifdef __cplusplus
 };
