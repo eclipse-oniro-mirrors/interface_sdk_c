@@ -36,6 +36,9 @@
 
 #ifndef INTERFACES_KITS_NATIVE_INCLUDE_IMAGE_PIXELMAP_NATIVE_H_
 #define INTERFACES_KITS_NATIVE_INCLUDE_IMAGE_PIXELMAP_NATIVE_H_
+
+#include <stdbool.h>
+
 #include "image_common.h"
 #include "napi/native_api.h"
 
