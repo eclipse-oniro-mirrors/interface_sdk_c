@@ -103,5 +103,5 @@ typedef void (*TransientTask_Callback)(void);
 #ifdef __cplusplus
 }
 #endif
-
+/** @} */
 #endif
