@@ -79,7 +79,7 @@ typedef enum TransientTask_ErrorCode {
 } TransientTask_ErrorCode;
 
 /**
- * @brief Define DelaySuspendInfo.
+ * @brief Define DelaySuspendInfo for TransientTask.
  *
  * @since 13
  * @version 1.0
