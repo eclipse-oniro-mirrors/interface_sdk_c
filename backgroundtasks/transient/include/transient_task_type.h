@@ -19,9 +19,8 @@
 /**
  * @addtogroup TransientTask
  * @{
- *
+
  * @brief Provide C interface for the transient task management.
- *
  * @since 13
  * @version 1.0
  */
@@ -44,7 +43,6 @@ extern "C" {
 #endif
 /**
  * @brief Enum for transient task error code.
- *
  * @since 13
  */
 typedef enum TransientTask_ErrorCode {
@@ -95,7 +93,6 @@ typedef struct TransientTask_DelaySuspendInfo {
 
 /**
  * @brief Define a callback function when delay time expired.
- *
  * @since 13
  */
 typedef void (*TransientTask_Callback)(void);
