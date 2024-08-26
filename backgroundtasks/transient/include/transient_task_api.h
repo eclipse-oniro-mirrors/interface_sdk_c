@@ -35,7 +35,7 @@
  *
  * @brief Declares the APIs for Transient task management.
  *
- * @library libtransient_task_ndk
+ * @library libtransient_task.so
  * @kit BackgroundTasksKit
  * @syscap SystemCapability.ResourceSchedule.BackgroundTaskManager.TransientTask
  * @since 13

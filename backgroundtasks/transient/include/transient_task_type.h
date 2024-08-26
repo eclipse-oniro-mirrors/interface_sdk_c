@@ -31,7 +31,7 @@
  *
  * @brief Defines the data structures for the C APIs of transient task.
  *
- * @library libtransient_task_ndk
+ * @library libtransient_task.so
  * @kit BackgroundTasksKit
  * @syscap SystemCapability.ResourceSchedule.BackgroundTaskManager.TransientTask
  * @since 11
@@ -53,7 +53,9 @@ typedef enum TransientTask_ErrorCode {
      */
     ERR_TRANSIENT_TASK_OK = 0,
     /**
-     * @error Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.
+     * @error Parameter error. Possible causes:
+     * 1. Mandatory parameters are left unspecified;
+     * 2. Incorrect parameters types.
      */
     ERR_TRANSIENT_TASK_INVALID_PARAM = 401,
     /**
