@@ -83,6 +83,7 @@ struct Image_Region {
  */
 typedef struct Image_Region Image_Region;
 
+#ifdef __cplusplus
 /**
  * @brief Defines the region of the image source to decode.
  *
@@ -94,6 +95,19 @@ struct Image_String {
     /** data lenth for string type */
     size_t size = 0;
 };
+#else
+/**
+ * @brief Defines the region of the image source to decode.
+ *
+ * @since 12
+ */
+struct Image_String {
+    /** data for string type */
+    char *data;
+    /** data lenth for string type */
+    size_t size;
+};
+#endif
 
 /**
  * @brief Define a PictureMetadata struct type, used for picture metadata.
