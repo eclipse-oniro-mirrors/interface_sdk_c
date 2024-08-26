@@ -76,6 +76,8 @@ ohos_ndk_library("libcommonevent_ndk") {
     "BasicServicesKit/commonevent/oh_commonevent.h",
     "BasicServicesKit/commonevent/oh_commonevent_support.h",
   ]
+}
+
 ohos_ndk_headers("time_service_ndk_header") {
   dest_dir = "$ndk_headers_out_dir/BasicServicesKit/"
   sources = [ "./time_service.h" ]
