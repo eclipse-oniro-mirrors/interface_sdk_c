@@ -1028,10 +1028,10 @@ typedef enum {
      * .string: command for drawing the path.\n
      * 5. Progress:\n
      * .value[0].i32: mask type. The parameter type is {@link ArkUI_MaskType}.
-     * The value is <b>ARKUI_MASK_TYPE_PROSGRESS</b> for the progress shape.\n
+     * The value is <b>ARKUI_MASK_TYPE_PROGRESS</b> for the progress shape.\n
      * .value[1].f32: current value of the progress indicator.\n
      * .value[2].f32: maximum value of the progress indicator.\n
-     * .value[3].u32: color of the progress indicator.\n
+     * .value[3].u32: color of the progress indicator, in 0xARGB format.\n
      * \n
      * Format of the return value {@link ArkUI_AttributeItem}, which supports five types of shapes:\n
      * 1. Rectangle:\n
