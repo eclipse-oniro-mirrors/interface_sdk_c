@@ -27,7 +27,7 @@
  */
 
 #include "error_code.h"
-#include "stdbool.h"
+#include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
 #ifdef __cplusplus
