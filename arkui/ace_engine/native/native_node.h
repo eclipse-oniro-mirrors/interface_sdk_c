@@ -1822,7 +1822,7 @@ typedef enum {
      * .value[0].f32: allowed moving distance of a finger, in vp. \n
      *
      */
-    NODE_CLICK_DISTANCE = 96,
+    NODE_CLICK_DISTANCE = 97,
     
     /**
      * @brief Defines the text content attribute, which can be set, reset, and obtained as required through APIs.
