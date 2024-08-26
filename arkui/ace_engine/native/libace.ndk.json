@@ -249,6 +249,70 @@
     },
     {
         "first_introduced": "12",
+        "name": "OH_ArkUI_GetResponseRecognizersFromInterruptInfo"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_ArkUI_SetGestureRecognizerEnabled"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_ArkUI_GetGestureRecognizerEnabled"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_ArkUI_GetGestureRecognizerState"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_ArkUI_GetGestureEventTargetInfo"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_ArkUI_GestureEventTargetInfo_IsScrollBegin"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_ArkUI_GestureEventTargetInfo_IsScrollEnd"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_ArkUI_GetPanGestureDirectionMask"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_ArkUI_IsBuiltInGesture"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_ArkUI_GetGestureTag"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_ArkUI_GetGestureBindNodeId"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_ArkUI_IsGestureRecognizerValid"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_ArkUI_ParallelInnerGestureEvent_GetUserData"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_ArkUI_ParallelInnerGestureEvent_GetCurrentRecognizer"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_ArkUI_ParallelInnerGestureEvent_GetConflictRecognizers"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_ArkUI_SetArkUIGestureRecognizerDisposeNotify"
+    },
+    {
+        "first_introduced": "12",
         "name": "OH_NativeXComponent_SetNeedSoftKeyboard"
     },
     {
@@ -1982,5 +2046,29 @@
     {
         "first_introduced": "12",
         "name": "OH_ArkUI_DialogDismissEvent_GetDismissReason"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_ArkUI_RegisterSystemColorModeChangeEvent"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_ArkUI_UnregisterSystemColorModeChangeEvent"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_ArkUI_RegisterSystemFontStyleChangeEvent"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_ArkUI_UnregisterSystemFontStyleChangeEvent"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_ArkUI_SystemFontStyleEvent_GetFontSizeScale"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_ArkUI_SystemFontStyleEvent_GetFontWeightScale"
     }
 ]

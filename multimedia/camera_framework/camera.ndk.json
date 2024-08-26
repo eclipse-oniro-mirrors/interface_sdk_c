@@ -32,6 +32,14 @@
         "name": "OH_CameraManager_UnregisterCallback"
     },
     {
+        "first_introduced": "12",
+        "name": "OH_CameraManager_RegisterTorchStatusCallback"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_CameraManager_UnregisterTorchStatusCallback"
+    },
+    {
         "first_introduced": "11",
         "name": "OH_CameraManager_GetSupportedCameras"
     },
@@ -84,6 +92,10 @@
         "name": "OH_CameraManager_CreatePhotoOutputUsedInPreconfig"
     },
     {
+        "first_introduced": "12",
+        "name": "OH_CameraManager_CreatePhotoOutputWithoutSurface"
+    },
+    {
         "first_introduced": "11",
         "name": "OH_CameraManager_CreateVideoOutput"
     },
@@ -104,6 +116,18 @@
         "name": "OH_CameraManager_DeleteSceneModes"
     },
     {
+        "first_introduced": "12",
+        "name": "OH_CameraManager_IsTorchSupported"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_CameraManager_IsTorchSupportedByTorchMode"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_CameraManager_SetTorchMode"
+    },
+    {
         "first_introduced": "11",
         "name": "OH_Camera_GetCameraManager"
     },
@@ -118,6 +142,14 @@
     {
         "first_introduced": "11",
         "name": "OH_CaptureSession_UnregisterCallback"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_CaptureSession_RegisterSmoothZoomInfoCallback"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_CaptureSession_UnregisterSmoothZoomInfoCallback"
     },
     {
         "first_introduced": "12",
@@ -312,6 +344,34 @@
         "name": "OH_CaptureSession_PreconfigWithRatio"
     },
     {
+        "first_introduced": "12",
+        "name": "OH_CaptureSession_GetExposureValue"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_CaptureSession_GetFocalLength"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_CaptureSession_SetSmoothZoom"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_CaptureSession_GetSupportedColorSpaces"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_CaptureSession_DeleteColorSpaces"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_CaptureSession_GetActiveColorSpace"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_CaptureSession_SetActiveColorSpace"
+    },
+    {
         "first_introduced": "11",
         "name": "OH_MetadataOutput_RegisterCallback"
     },
@@ -340,8 +400,64 @@
         "name": "OH_PhotoOutput_UnregisterCallback"
     },
     {
+        "first_introduced": "12",
+        "name": "OH_PhotoOutput_RegisterCaptureStartWithInfoCallback"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_PhotoOutput_UnregisterCaptureStartWithInfoCallback"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_PhotoOutput_RegisterCaptureEndCallback"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_PhotoOutput_UnregisterCaptureEndCallback"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_PhotoOutput_RegisterFrameShutterEndCallback"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_PhotoOutput_UnregisterFrameShutterEndCallback"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_PhotoOutput_RegisterCaptureReadyCallback"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_PhotoOutput_UnregisterCaptureReadyCallback"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_PhotoOutput_RegisterEstimatedCaptureDurationCallback"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_PhotoOutput_UnregisterEstimatedCaptureDurationCallback"
+    },
+    {
         "first_introduced": "11",
         "name": "OH_PhotoOutput_Capture"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_PhotoOutput_RegisterPhotoAvailableCallback"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_PhotoOutput_UnregisterPhotoAvailableCallback"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_PhotoOutput_RegisterPhotoAssetAvailableCallback"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_PhotoOutput_UnregisterPhotoAssetAvailableCallback"
     },
     {
         "first_introduced": "11",
@@ -362,6 +478,14 @@
     {
         "first_introduced": "12",
         "name": "OH_PhotoOutput_DeleteProfile"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_PhotoOutput_IsMovingPhotoSupported"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_PhotoOutput_EnableMovingPhoto"
     },
     {
         "first_introduced": "11",
@@ -390,6 +514,22 @@
     {
         "first_introduced": "12",
         "name": "OH_PreviewOutput_DeleteProfile"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_PreviewOutput_GetSupportedFrameRates"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_PreviewOutput_DeleteFrameRates"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_PreviewOutput_SetFrameRate"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_PreviewOutput_GetActiveFrameRate"
     },
     {
         "first_introduced": "11",
@@ -421,6 +561,30 @@
     },
     {
         "first_introduced": "12",
+        "name": "OH_VideoOutput_GetSupportedFrameRates"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_VideoOutput_DeleteFrameRates"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_VideoOutput_SetFrameRate"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_VideoOutput_GetActiveFrameRate"
+    },
+    {
+        "first_introduced": "12",
         "name": "OH_CameraDevice_GetCameraOrientation"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_PhotoNative_GetMainImage"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_PhotoNative_Release"
     }
 ]

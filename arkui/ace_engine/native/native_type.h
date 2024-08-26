@@ -808,7 +808,7 @@ typedef enum {
      * does not scroll when the component scrolling reaches the boundary. */
     ARKUI_SCROLL_NESTED_MODE_SELF_ONLY = 0,
     /** The component scrolls first, and when it hits the boundary, the parent component scrolls.
-     * When the parent component hits the boundary, its edge effect is displayed. If no edge
+    /** When the parent component hits the boundary, its edge effect is displayed. If no edge
      *  effect is specified for the parent component, the edge effect of the child component is displayed instead. */
     ARKUI_SCROLL_NESTED_MODE_SELF_FIRST,
     /** The parent component scrolls first, and when it hits the boundary, the component scrolls.
@@ -982,6 +982,18 @@ typedef enum {
     /** Dark color mode. */
     ARKUI_COLOR_MODE_DARK,
 } ArkUI_ColorMode;
+
+/**
+ * @brief Enumerates the system color modes.
+ *
+ * @since 12
+ */
+typedef enum {
+    /** Light color mode. */
+    ARKUI_SYSTEM_COLOR_MODE_LIGHT = 0,
+    /** Dark color mode. */
+    ARKUI_SYSTEM_COLOR_MODE_DARK,
+} ArkUI_SystemColorMode;
 
 /**
  * @brief Enumerates the blur styles.
@@ -1511,7 +1523,7 @@ typedef enum {
     /** The content of the view is blended in sequence on the target image. */
     BLEND_APPLY_TYPE_FAST = 0,
     /** The content of the component and its child components are drawn on the offscreen canvas, and then blended with
-     *  the existing content on the canvas. */
+    /*  the existing content on the canvas. */
     BLEND_APPLY_TYPE_OFFSCREEN,
 } ArkUI_BlendApplyType;
 
@@ -1895,6 +1907,10 @@ typedef enum {
     ARKUI_ERROR_CODE_GET_INFO_FAILED = 106201,
     /** The buffer size is not large enough. */
     ARKUI_ERROR_CODE_BUFFER_SIZE_ERROR = 106202,
+    /** The component is not a scroll container. */
+    ARKUI_ERROR_CODE_NON_SCROLLABLE_CONTAINER = 180001,
+    /** The buffer is not large enough. */
+    ARKUI_ERROR_CODE_BUFFER_SIZE_NOT_ENOUGH = 180002,
 } ArkUI_ErrorCode;
 
 /**
@@ -2136,6 +2152,13 @@ typedef enum {
     /** Tail area. */
     ARKUI_SAFE_AREA_EDGE_END = 1 << 3,
 } ArkUI_SafeAreaEdge;
+
+/**
+ * @brief Defines parameter used by the system font style callback event.
+ *
+ * @since 12
+ */
+typedef struct ArkUI_SystemFontStyleEvent ArkUI_SystemFontStyleEvent;
 
 /**
 * @brief Creates a size constraint.
