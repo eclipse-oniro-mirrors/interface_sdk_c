@@ -114,6 +114,75 @@ OH_AudioCommon_Result OH_AudioRoutingManager_GetDevices(
     OH_AudioDeviceDescriptorArray **audioDeviceDescriptorArray);
 
 /**
+ * @brief Get available devices by device usage.
+ *
+ * @param audioRoutingManager the {@link OH_AudioRoutingManager} handle returned
+ * by {@link OH_AudioManager_GetAudioRoutingManager}.
+ * @param deviceUsage the {@link OH_AudioDevice_Usage}.
+ * @param audioDeviceDescriptorArray the {@link OH_AudioDeviceDescriptorArray}
+ * pointer variable which will be set the audio device descriptors value
+ * Do not release the audioDeviceDescriptorArray pointer separately
+ * instead call {@link OH_AudioRoutingManager_ReleaseDevices} to release the DeviceDescriptor array
+ * when it is no use anymore.
+ * @return Function result code:
+ *         {@link AUDIOCOMMON_RESULT_SUCCESS} If the execution is successful.
+ *         {@link AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM}:
+ *                                                        1.The param of audioRoutingManager is nullptr;
+ *                                                        2.The param of deviceUsage is invalid;
+ *                                                        3.The param of audioDeviceDescriptorArray is nullptr.
+ *         {@link AUDIOCOMMON_RESULT_ERROR_NO_MEMORY} No memory error.
+ * @since 12
+ */
+OH_AudioCommon_Result OH_AudioRoutingManager_GetAvailableDevices(
+    OH_AudioRoutingManager *audioRoutingManager,
+    OH_AudioDevice_Usage deviceUsage, OH_AudioDeviceDescriptorArray **audioDeviceDescriptorArray);
+
+/**
+ * @brief Get preferred ouput devices by audio usage.
+ *
+ * @param audioRoutingManager the {@link OH_AudioRoutingManager} handle returned
+ * by {@link OH_AudioManager_GetAudioRoutingManager}.
+ * @param streamUsage the {@link OH_AudioStream_Usage}.
+ * @param audioDeviceDescriptorArray the {@link OH_AudioDeviceDescriptorArray}
+ * pointer variable which will be set the audio device descriptors value
+ * Do not release the audioDeviceDescriptorArray pointer separately
+ * instead call {@link OH_AudioRoutingManager_ReleaseDevices} to release the DeviceDescriptor array
+ * when it is no use anymore.
+ * @return Function result code:
+ *         {@link AUDIOCOMMON_RESULT_SUCCESS} If the execution is successful.
+ *         {@link AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM}:
+ *                                                        1.The param of audioRoutingManager is nullptr;
+ *                                                        2.The param of streamUsage is invalid;
+ *                                                        3.The param of audioDeviceDescriptorArray is nullptr.
+ *         {@link AUDIOCOMMON_RESULT_ERROR_NO_MEMORY} No memory error.
+ * @since 12
+ */
+OH_AudioCommon_Result OH_AudioRoutingManager_GetPreferredOutputDevice(
+    OH_AudioRoutingManager *audioRoutingManager,
+    OH_AudioStream_Usage streamUsage, OH_AudioDeviceDescriptorArray **audioDeviceDescriptorArray);
+
+/**
+ * @brief Get preferred input devices by audio source type.
+ * @param audioRoutingManager the {@link OH_AudioRoutingManager} handle returned
+ * by {@link OH_AudioManager_GetAudioRoutingManager}.
+ * @param sourceType the {@link OH_AudioStream_SourceType}.
+ * @param audioDeviceDescriptorArray the {@link OH_AudioDeviceDescriptorArray}
+ * pointer variable which will be set the audio device descriptors value
+ * Do not release the audioDeviceDescriptorArray pointer separately
+ * instead call {@link OH_AudioRoutingManager_ReleaseDevices} to release the DeviceDescriptor array
+ * when it is no use anymore.
+ * @return Function result code:
+ *         {@link AUDIOCOMMON_RESULT_SUCCESS} If the execution is successful.
+ *         {@link AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM}:
+ *                                                        1.The param of audioRoutingManager is nullptr;
+ *                                                        2.The param of sourceType is invalid;
+ *                                                        3.The param of audioDeviceDescriptorArray is nullptr.
+ *         {@link AUDIOCOMMON_RESULT_ERROR_NO_MEMORY} No memory error.
+ * @since 12
+ */
+OH_AudioCommon_Result OH_AudioRoutingManager_GetPreferredInputDevice(OH_AudioRoutingManager *audioRoutingManager,
+    OH_AudioStream_SourceType sourceType, OH_AudioDeviceDescriptorArray **audioDeviceDescriptorArray);
+/**
  * @brief Register the device change callback of the audio routing manager.
  *
  * @param audioRoutingManager the {@link OH_AudioRoutingManager}

@@ -443,7 +443,7 @@ typedef enum {
 } OH_AudioStream_SourceType;
 
 /**
- * Defines the audio interrupt mode.
+ * @brief Defines the audio interrupt mode.
  *
  * @since 12
  */
