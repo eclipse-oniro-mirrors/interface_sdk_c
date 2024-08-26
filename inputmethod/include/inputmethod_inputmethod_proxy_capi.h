@@ -150,7 +150,7 @@ InputMethod_ErrorCode OH_InputMethodProxy_NotifyCursorUpdate(
 /**
  * @brief Send private command.
  *
- * @param inputMethodProxy Represents a pointer to an {@link OH_InputMethod_InputMethodProxy} instance.
+ * @param inputMethodProxy Represents a pointer to an {@link InputMethod_InputMethodProxy} instance.
  *     The inputMethodProxy is obtained from {@link OH_InputMethodController_Attach}.
  * @param privateCommand The private commands, which is defined in {@link InputMethod_PrivateCommand}. Max size 32KB.
  * @param size The size of privateCommand. Max is 5.
