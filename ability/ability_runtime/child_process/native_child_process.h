@@ -48,6 +48,10 @@ extern "C" {
  * @brief Enumerates the error codes used by the native child process module.
  * @since 12
  */
+/**
+ * @brief Enumerates the error codes used by the native child process module.
+ * @since 13
+ */
 typedef enum Ability_NativeChildProcess_ErrCode {
     /**
      * @error Operation successful.
@@ -180,7 +184,7 @@ int OH_Ability_CreateNativeChildProcess(const char* libName,
 
 /**
  * @brief The info of the file descriptors passed to child process.
- * @since 12
+ * @since 13
  */
 typedef struct NativeChildProcess_Fd {
     /** the key of the file descriptor. */
@@ -195,7 +199,7 @@ typedef struct NativeChildProcess_Fd {
 
 /**
  * @brief The list of the info of the file descriptors passed to child process.
- * @since 12
+ * @since 13
  */
 typedef struct NativeChildProcess_FdList {
     /** the head of the list.
@@ -206,7 +210,7 @@ typedef struct NativeChildProcess_FdList {
 
 /**
  * @brief Enumerates the isolation modes used by the native child process module.
- * @since 12
+ * @since 13
  */
 typedef enum NativeChildProcess_IsolationMode {
     /**
@@ -222,7 +226,7 @@ typedef enum NativeChildProcess_IsolationMode {
 
 /**
  * @brief The options used by the child process.
- * @since 12
+ * @since 13
  */
 typedef struct NativeChildProcess_Options {
     /** the isolation mode used by the child process.
@@ -236,7 +240,7 @@ typedef struct NativeChildProcess_Options {
 
 /**
  * @brief The arguments passed to the child process.
- * @since 12
+ * @since 13
  */
 typedef struct NativeChildProcess_Args {
     /** the entry parameter. */
@@ -267,7 +271,7 @@ typedef struct NativeChildProcess_Args {
  * Returns {@link NCP_ERR_MAX_CHILD_PROCESSES_REACHED} if the maximum number of native child processes is reached.\n
  * For details, see {@link Ability_NativeChildProcess_ErrCode}.
  * @see OH_Ability_OnNativeChildProcessStarted
- * @since 12
+ * @since 13
  */
 Ability_NativeChildProcess_ErrCode OH_Ability_StartNativeChildProcess(
     const char* entry, NativeChildProcess_Args args,
