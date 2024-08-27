@@ -807,7 +807,8 @@ def get_ch_api_kind(dict_key):
 def collect_change_data_total(data: dict, diff_info_list):
     for element in diff_info_list:
         element.set_api_node_name(data['name'])
-        if (data['kind'] == Scene.STRUCT_DECL.value or data['kind'] == Scene.UNION_DECL.value) and (not data['name']):
+        if (data['kind'] == Scene.STRUCT_DECL.value or data['kind'] == Scene.UNION_DECL.value
+           or data['kind'] == Scene.ENUM_DECL.value) and (not data['name']):
             element.set_api_node_name(data['type'])
         element.set_current_api_unique_id(data['unique_id'])
         element.set_open_close_api(data['open_close_api'])
