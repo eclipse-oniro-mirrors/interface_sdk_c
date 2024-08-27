@@ -51,7 +51,7 @@ extern "C" {
  *     If the call succeeds, caller cannot release textEditorProxy until the next attach or detach call.
  * @param options Represents a pointer to an {@link InputMethod_AttachOptions} instance.
  *     The options when attaching input method.
- * @param inputMethodProxy Represents a pointer to an {@link OH_InputMethod_InputMethodProxy} instance.
+ * @param inputMethodProxy Represents a pointer to an {@link InputMethod_InputMethodProxy} instance.
  *     Lifecycle is mantianed until the next attach or detach call.
  * @return Returns a specific error code.
  *     {@link IME_ERR_OK} - success.
@@ -68,7 +68,7 @@ InputMethod_ErrorCode OH_InputMethodController_Attach(InputMethod_TextEditorProx
 /**
  * @brief Detach application from the input method service.
  *
- * @param inputMethodProxy Represents a pointer to an {@link OH_InputMethod_InputMethodProxy} instance.
+ * @param inputMethodProxy Represents a pointer to an {@link InputMethod_InputMethodProxy} instance.
  *     The inputMethodProxy is obtained from {@link OH_InputMethodController_Attach}.
  * @return Returns a specific error code.
  *     {@link IME_ERR_OK} - success.
