@@ -100,7 +100,7 @@
         "name": "OH_ImageSourceNative_CreatePixelmapList"
     },
     {
-        "first_introduced": "12",
+        "first_introduced": "13",
         "name": "OH_ImageSourceNative_CreatePicture"
     },
     {
@@ -128,19 +128,19 @@
         "name": "OH_ImageSourceNative_Release"
     },
     {
-        "first_introduced": "12",
+        "first_introduced": "13",
         "name": "OH_DecodingOptionsForPicture_Create"
     },
     {
-        "first_introduced": "12",
+        "first_introduced": "13",
         "name": "OH_DecodingOptionsForPicture_GetDesiredAuxiliaryPictures"
     },
     {
-        "first_introduced": "12",
+        "first_introduced": "13",
         "name": "OH_DecodingOptionsForPicture_SetDesiredAuxiliaryPictures"
     },
     {
-        "first_introduced": "12",
+        "first_introduced": "13",
         "name": "OH_DecodingOptionsForPicture_Release"
     }
 ]
