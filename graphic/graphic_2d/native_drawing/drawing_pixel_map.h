@@ -51,14 +51,14 @@ extern "C" {
  * @since 12
  * @version 1.0
  */
-typedef struct NativePixelMap_;
+typedef struct NativePixelMap_ NativePixelMap_;
 
 /**
  * @brief Introduces the native pixel map information defined by image framework.
  * @since 12
  * @version 1.0
  */
-typedef struct OH_PixelmapNative;
+typedef struct OH_PixelmapNative OH_PixelmapNative;
 
 /**
  * @brief Gets an <b>OH_Drawing_PixelMap</b> object.
