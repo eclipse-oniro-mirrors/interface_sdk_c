@@ -94,5 +94,9 @@
     {
         "first_introduced": "12",
         "name": "OH_AVScreenCapture_ResizeCanvas"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_AVScreenCapture_SkipPrivacyMode"
     }
 ]
