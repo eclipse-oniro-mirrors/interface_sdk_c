@@ -17,6 +17,11 @@
       "subSystem": "ArkUI开发框架"
     },
     {
+      "filePath": "arkui/ace_engine/native/native_interface_accessibility.h",
+      "kitName": "ArkUI",
+      "subSystem": "ArkUI开发框架"
+    },
+    {
       "filePath": "arkui/ace_engine/native/native_xcomponent_key_event.h",
       "kitName": "ArkUI",
       "subSystem": "ArkUI开发框架"

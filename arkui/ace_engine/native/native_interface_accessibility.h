@@ -318,7 +318,7 @@ typedef struct ArkUI_AccessibilityProviderCallbacks {
     /** Query the node that can be focused based on the reference node. Query the next node that can be focused based on the mode and direction. */
     int32_t (*FindNextFocusAccessibilityNode)(int64_t elementId, ArkUI_AccessibilityFocusMoveDirection direction, int32_t requestId, ArkUI_AccessibilityElementInfo* elementList);
     /** Performing the Action operation on a specified node. */
-    int32_t (*ExecuteAccessibilityAction)(int64_t elementId, ArkUI_Accessibility_ActionType action, ArkUI_AccessibilityActionArguments  actionArguments, int32_t requestId);
+    int32_t (*ExecuteAccessibilityAction)(int64_t elementId, ArkUI_Accessibility_ActionType action, ArkUI_AccessibilityActionArguments *actionArguments, int32_t requestId);
     /** Clears the focus status of the currently focused node */
     int32_t (*ClearFocusedFocusAccessibilityNode)();
     /** Queries the current cursor position of a specified node. */

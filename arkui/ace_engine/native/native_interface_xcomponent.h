@@ -43,10 +43,10 @@
 #include <vector>
 #endif
 
+#include "arkui/native_interface_accessibility.h"
 #include "arkui/native_type.h"
 #include "arkui/ui_input_event.h"
 
-#include "native_interface_accessibility.h"
 #include "native_xcomponent_key_event.h"
 
 #ifdef __cplusplus
