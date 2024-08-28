@@ -1,0 +1,314 @@
+[
+    {
+        "first_introduced": "12",
+        "name": "OH_InputMethodController_Attach"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_InputMethodController_Detach"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_InputMethodProxy_ShowKeyboard"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_InputMethodProxy_HideKeyboard"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_InputMethodProxy_NotifySelectionChange"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_InputMethodProxy_NotifyConfigurationChange"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_InputMethodProxy_NotifyCursorUpdate"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_InputMethodProxy_SendPrivateCommand"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_CursorInfo_Create"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_CursorInfo_Destroy"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_CursorInfo_SetRect"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_CursorInfo_GetRect"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_TextConfig_Create"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_TextConfig_Destroy"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_TextConfig_SetInputType"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_TextConfig_SetEnterKeyType"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_TextConfig_SetPreviewTextSupport"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_TextConfig_SetSelection"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_TextConfig_SetWindowId"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_TextConfig_GetInputType"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_TextConfig_GetEnterKeyType"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_TextConfig_IsPreviewTextSupported"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_TextConfig_GetCursorInfo"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_TextConfig_GetTextAvoidInfo"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_TextConfig_GetSelection"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_TextConfig_GetWindowId"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_TextEditorProxy_Create"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_TextEditorProxy_Destroy"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_TextEditorProxy_SetGetTextConfigFunc"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_TextEditorProxy_SetInsertTextFunc"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_TextEditorProxy_SetDeleteForwardFunc"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_TextEditorProxy_SetDeleteBackwardFunc"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_TextEditorProxy_SetSendKeyboardStatusFunc"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_TextEditorProxy_SetSendEnterKeyFunc"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_TextEditorProxy_SetMoveCursorFunc"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_TextEditorProxy_SetHandleSetSelectionFunc"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_TextEditorProxy_SetHandleExtendActionFunc"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_TextEditorProxy_SetGetLeftTextOfCursorFunc"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_TextEditorProxy_SetGetRightTextOfCursorFunc"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_TextEditorProxy_SetGetTextIndexAtCursorFunc"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_TextEditorProxy_SetReceivePrivateCommandFunc"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_TextEditorProxy_SetSetPreviewTextFunc"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_TextEditorProxy_SetFinishTextPreviewFunc"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_TextEditorProxy_GetGetTextConfigFunc"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_TextEditorProxy_GetInsertTextFunc"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_TextEditorProxy_GetDeleteForwardFunc"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_TextEditorProxy_GetDeleteBackwardFunc"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_TextEditorProxy_GetSendKeyboardStatusFunc"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_TextEditorProxy_GetSendEnterKeyFunc"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_TextEditorProxy_GetMoveCursorFunc"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_TextEditorProxy_GetHandleSetSelectionFunc"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_TextEditorProxy_GetHandleExtendActionFunc"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_TextEditorProxy_GetGetLeftTextOfCursorFunc"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_TextEditorProxy_GetGetRightTextOfCursorFunc"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_TextEditorProxy_GetGetTextIndexAtCursorFunc"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_TextEditorProxy_GetReceivePrivateCommandFunc"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_TextEditorProxy_GetSetPreviewTextFunc"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_TextEditorProxy_GetFinishTextPreviewFunc"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_AttachOptions_Create"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_AttachOptions_Destroy"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_AttachOptions_IsShowKeyboard"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_TextAvoidInfo_Create"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_TextAvoidInfo_Destroy"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_TextAvoidInfo_SetPositionY"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_TextAvoidInfo_SetHeight"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_TextAvoidInfo_GetPositionY"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_TextAvoidInfo_GetHeight"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_PrivateCommand_Create"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_PrivateCommand_Destroy"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_PrivateCommand_SetKey"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_PrivateCommand_SetBoolValue"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_PrivateCommand_SetIntValue"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_PrivateCommand_SetStrValue"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_PrivateCommand_GetKey"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_PrivateCommand_GetValueType"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_PrivateCommand_GetBoolValue"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_PrivateCommand_GetIntValue"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_PrivateCommand_GetStrValue"
+    }
+]
