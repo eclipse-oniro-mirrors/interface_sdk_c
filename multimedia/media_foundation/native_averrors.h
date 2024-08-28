@@ -87,13 +87,11 @@ typedef enum OH_AVErrCode {
      * @error extend err start.
      */
     AV_ERR_EXTEND_START = 100,
-    /**
-     * @error drm error base.
+    /** drm error base.
      * @since 12
      */
     AV_ERR_DRM_BASE = 200,
-    /**
-     * @error drm decypt failed.
+    /** drm decypt failed.
      * @since 12
      */
     AV_ERR_DRM_DECRYPT_FAILED = 201,
