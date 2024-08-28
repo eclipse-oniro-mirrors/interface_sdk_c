@@ -122,7 +122,7 @@ OH_AVFormat *OH_AVBuffer_GetParameter(OH_AVBuffer *buffer);
  * @return Function result code.
  *         {@link AV_ERR_OK} if the execution is successful.
  *         {@link AV_ERR_INVALID_VAL} if input buffer is nullptr, buffer's magic error,
- *         input buffer's buffer is nulllptr, input format is nullptr, buffer's magic error, or input meta is nullptr.
+ *         input buffer's buffer is nulllptr, input format is nullptr or input meta is nullptr.
  * @since 11
  */
 OH_AVErrCode OH_AVBuffer_SetParameter(OH_AVBuffer *buffer, const OH_AVFormat *format);
