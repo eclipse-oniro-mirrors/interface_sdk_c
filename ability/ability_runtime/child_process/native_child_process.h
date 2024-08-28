@@ -48,10 +48,6 @@ extern "C" {
  * @brief Enumerates the error codes used by the native child process module.
  * @since 12
  */
-/**
- * @brief Enumerates the error codes used by the native child process module.
- * @since 13
- */
 typedef enum Ability_NativeChildProcess_ErrCode {
     /**
      * @error Operation successful.
@@ -60,6 +56,7 @@ typedef enum Ability_NativeChildProcess_ErrCode {
 
     /**
      * @error Operation not permitted.
+     * @since 13
      */
     NCP_ERR_NO_PERMISSION = 201,
 
