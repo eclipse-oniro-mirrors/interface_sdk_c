@@ -228,6 +228,27 @@ typedef enum Input_Result {
     INPUT_REPEAT_INTERCEPTOR = 4200001
 } Input_Result;
 
+/** 设备类型未知 */
+static const char* const Input_Device_Type_UNKNOWN = "ohos.input.device.unknown";
+
+/** 设备类型键盘 */
+static const char* const Input_Device_Type_KEYBOARD = "ohos.input.device.keyboard";
+
+/** 设备类型鼠标 */
+static const char* const Input_Device_Type_MOUSE = "ohos.input.device.mouse";
+
+/** 设备类型触摸板 */
+static const char* const Input_Device_Type_TOUCHPAD = "ohos.input.device.touchpad";
+
+/** 设备类型触屏 */
+static const char* const Input_Device_Type_TOUCHSCREEN = "ohos.input.device.touchscreen";
+
+/** 设备类型遥感 */
+static const char* const Input_Device_Type_JOYSTICK = "ohos.input.device.joystick";
+
+/** 设备类型轨迹球 */
+static const char* const Input_Device_Type_TRACKBALL = "ohos.input.device.trackball";
+
 /**
  * @brief Defines a lifecycle callback for keyEvent. If the callback is triggered, keyEvent will be destroyed.
  * 
@@ -261,6 +282,18 @@ typedef void (*Input_TouchEventCallback)(const Input_TouchEvent* touchEvent);
 typedef void (*Input_AxisEventCallback)(const Input_AxisEvent* axisEvent);
 
 /**
+ * @brief 定义一个回调函数用于设备id和设备类型
+ * @since 13
+ */
+typedef void (*Input_DeviceAddedCallback)(int32_t deviceId, const char* deviceType);
+
+/**
+ * @brief 定义一个回调函数用于设备id和设备类型
+ * @since 13
+ */
+typedef void (*Input_DeviceRemovedCallback)(int32_t deviceId, const char* deviceType);
+
+/**
  * @brief Defines the structure for the interceptor of event callbacks,
  * including mouseCallback, touchCallback, and axisCallback.
  * @since 12
@@ -273,6 +306,16 @@ typedef struct Input_InterceptorEventCallback {
     /** Defines a lifecycle callback for **axisEvent**. */
     Input_AxisEventCallback axisCallback;
 } Input_InterceptorEventCallback;
+
+/**
+ * @brief 定义一个结构体用于监听设备设插拔
+ * 包含了 addedCallback, removedCallback
+ * @since 13
+ */
+typedef struct Input_DeviceListener {
+    Input_DeviceAddedCallback OnDeviceAdded;
+    Input_DeviceRemovedCallback OnDeviceRemoved;
+};
 
 /**
  * @brief Defines event interceptor options.
@@ -1200,6 +1243,45 @@ Input_Result OH_Input_RemoveKeyEventInterceptor(void);
  * @since 12
  */
 Input_Result OH_Input_RemoveInputEventInterceptor(void);
+
+/**
+ * @brief 按键键值转换成字符串
+ *
+ * @param keyCode 要转成字符串的按键键值
+
+ * @return 如果返回一个字符串则表示成功，如果返回NULL则表示失败。
+ * @syscap SystemCapability.MultimodalInput.Input.Core
+ * @since 13
+ */
+const char* KeyCodeToString(int32_t keyCode);
+
+/**
+ * @brief 注册设备热插拔的监听器
+ *
+ * @param listener 用于监听设备热插拔的监听器.
+ *
+ * @return OH_Input_RegisterDeviceListener status code, specifically,
+ *         {@link INPUT_SUCCESS} if the operation is successful;\n
+ *         {@link INPUT_PARAMETER_ERROR} listener 为NULL 或 listener 已被注册
+ *         {@link INPUT_SERVICE_EXCEPTION} 服务端连接异常
+ * @syscap SystemCapability.MultimodalInput.Input.Core
+ * @since 13
+ */
+Input_Result OH_Input_RegisterDeviceListener(Input_DeviceListener* listener);
+
+/**
+ * @brief 取消注册设备热插拔的监听器
+ *
+ * @param listener 用于监听设备热插拔的监听器.
+ *
+ * @return OH_Input_UnregisterDeviceListener status code, specifically,
+ *         {@link INPUT_SUCCESS} if the operation is successful;\n
+ *         {@link INPUT_PARAMETER_ERROR} listener 为 NULL, listener 未注册或已被取消注册
+ *         {@link INPUT_SERVICE_EXCEPTION} 服务端连接异常
+ * @syscap SystemCapability.MultimodalInput.Input.Core
+ * @since 13
+ */
+Input_Result OH_Input_UnregisterDeviceListener(Input_DeviceListener* listener);
 #ifdef __cplusplus
 }
 #endif
