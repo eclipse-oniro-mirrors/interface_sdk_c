@@ -404,20 +404,30 @@ def complete_kit_or_system(api_message: OneFileApiMessage, json_path):
             api_message.set_sub_system(sub_system_name)
 
 
-def parser_direct(path):  # 目录路径
+def get_dependent_path_all(dependent_path):
+    all_dependent_path_list = []
+    for dir_path, _, _ in os.walk(dependent_path):
+        if 'sysroot_myself' not in dir_path and 'build-tools' not in dir_path:
+            all_dependent_path_list.append(dir_path)
+
+    return all_dependent_path_list
+
+
+def parser_direct(path, dependent_path):  # 目录路径
     file_path_list = []
     link_include_path = []  # 装链接头文件路径
+    link_include_path.extend(get_dependent_path_all(dependent_path))
     dir_path = ''
     if os.path.isdir(path):
-        link_include_path.append(path)
-        file_path_total, link_include_total = get_dir_file_path(path)
+        if path not in link_include_path:
+            link_include_path.append(path)
+        file_path_total, _ = get_dir_file_path(path)
         file_path_list.extend(file_path_total)
-        link_include_path.extend(link_include_total)
         dir_path = path
-    else:
-        if path.endswith('.h'):
-            file_path_list.append(path)
-            dir_path = os.path.dirname(path)
+    elif path.endswith('.h'):
+        file_path_list.append(path)
+        dir_path = os.path.dirname(path)
+        if dir_path not in link_include_path:
             link_include_path.append(dir_path)
     data_total = parse_include.get_include_file(file_path_list, link_include_path, dir_path)
     generating_tables.get_api_data(data_total, StringConstant.PARSER_DIRECT_EXCEL_NAME.value)
