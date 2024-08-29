@@ -17,7 +17,7 @@
  * @addtogroup ArkUI_AccessibilityProvider
  * @{
  *
- * @brief 
+ * @brief
  *
  * @since 13
  * @version 1.0
@@ -26,7 +26,7 @@
 /**
  * @file native_interface_accessibility.h
  *
- * @brief 
+ * @brief
  *
  * @since 13
  * @version 1.0
@@ -361,26 +361,15 @@ void OH_ArkUI_SendAccessibilityAsyncEvent(
 ArkUI_AccessibilityElementInfo* OH_ArkUI_AddAndGetAccessibilityElementInfo(ArkUI_AccessibilityElementInfoList* list);
 
 /**
-* @brief Sets the page id of the accessibility element information.
+* @brief Sets the element id of the accessibility element information.
 *
 * @param elementInfo Indicates the pointer to the accessibility element information.
-* @param pageId Indicates the page id.
+* @param elementId Indicates the page id.
 * @return Returns {@link OH_ARKUI_ACCESSIBILITY_RESULT_SUCCESS} if success.
 *         Returns {@link OH_ARKUI_ACCESSIBILITY_RESULT_BAD_PARAMETER} if a parameter exception occurs.
 * @since 13
 */
-int32_t OH_ArkUI_SetAccessibilityElementInfoPageId(ArkUI_AccessibilityElementInfo* elementInfo, int32_t pageId);
-
-/**
-* @brief Sets the page id of the accessibility element information.
-*
-* @param elementInfo Indicates the pointer to the accessibility element information.
-* @param componentId Indicates the component id.
-* @return Returns {@link OH_ARKUI_ACCESSIBILITY_RESULT_SUCCESS} if success.
-*         Returns {@link OH_ARKUI_ACCESSIBILITY_RESULT_BAD_PARAMETER} if a parameter exception occurs.
-* @since 13
-*/
-int32_t OH_ArkUI_SetAccessibilityElementInfoComponentId(ArkUI_AccessibilityElementInfo* elementInfo, int32_t componentId);
+int32_t OH_ArkUI_SetAccessibilityElementInfoElementId(ArkUI_AccessibilityElementInfo* elementInfo, int32_t elementId);
 
 /**
 * @brief Sets the parent id of the accessibility element information.
@@ -834,6 +823,24 @@ int32_t OH_ArkUI_SetAccessibilityElementInfoBlur(ArkUI_AccessibilityElementInfo*
 int32_t OH_ArkUI_SetAccessibilityElementInfoHitTestBehavior(ArkUI_AccessibilityElementInfo* elementInfo, const char* hitTestBehavior);
 
 /**
+ * @brief Create an accessibility elementInfo.
+ *
+ * @return Returns the pointer to the accessibility elementInfo.
+ * @since 13
+ * @version 1.0
+ */
+ArkUI_AccessibilityElementInfo* OH_ArkUI_CreateAccessibilityElementInfo(void);
+
+/**
+ * @brief Destorys an accessibility elementInfo.
+ *
+ * @param elementInfo Indicates the pointer to to the accessibility elementInfo info to be destoryed.
+ * @since 13
+ * @version 1.0
+ */
+void OH_ArkUI_DestoryAccessibilityElementInfo(ArkUI_AccessibilityElementInfo* elementInfo);
+
+/**
  * @brief Create an accessibility eventInfo.
  *
  * @return Returns the pointer to the accessibility event info.
@@ -861,17 +868,6 @@ void OH_ArkUI_DestoryAccessibilityEventInfo(ArkUI_AccessibilityEventInfo* eventI
 * @since 13
 */
 int32_t OH_ArkUI_SetAccessibilityEventEventType(ArkUI_AccessibilityEventInfo* eventInfo,  ArkUI_AccessibilityEventType eventType);
-
-/**
-* @brief Sets the pageId of the accessibility event information.
-*
-* @param eventInfo Indicates the pointer to the accessibility event information.
-* @param pageId Indicates page id.
-* @return Returns {@link OH_ARKUI_ACCESSIBILITY_RESULT_SUCCESS} if success.
-*         Returns {@link OH_ARKUI_ACCESSIBILITY_RESULT_BAD_PARAMETER} if a parameter exception occurs.
-* @since 13
-*/
-int32_t OH_ArkUI_SetAccessibilityEventPageId(ArkUI_AccessibilityEventInfo* eventInfo,  int32_t pageId);
 
 /**
 * @brief Sets the textAnnouncedForAccessibility of the accessibility event information.
@@ -916,7 +912,7 @@ int32_t OH_ArkUI_SetAccessibilityEventElementInfo(ArkUI_AccessibilityEventInfo* 
 *         Returns {@link OH_ARKUI_ACCESSIBILITY_RESULT_BAD_PARAMETER} if a parameter exception occurs.
 * @since 13
 */
-int32_t OH_ArkUI_FindAccessibilityActionArgumentByKey(ArkUI_AccessibilityActionArguments* arguments, const char* key, char* value);
+int32_t OH_ArkUI_FindAccessibilityActionArgumentByKey(ArkUI_AccessibilityActionArguments* arguments, const char* key, char** value);
 #ifdef __cplusplus
 };
 #endif

@@ -2149,14 +2149,6 @@
     },
     {
         "first_introduced": "13",
-        "name": "OH_ArkUI_SetAccessibilityElementInfoPageId"
-    },
-    {
-        "first_introduced": "13",
-        "name": "OH_ArkUI_SetAccessibilityElementInfoComponentId"
-    },
-    {
-        "first_introduced": "13",
         "name": "OH_ArkUI_SetAccessibilityElementInfoParentId"
     },
     {
@@ -2333,10 +2325,6 @@
     },
     {
         "first_introduced": "13",
-        "name": "OH_ArkUI_SetAccessibilityEventPageId"
-    },
-    {
-        "first_introduced": "13",
         "name": "OH_ArkUI_SetAccessibilityEventTextAnnouncedForAccessibility"
     },
     {
@@ -2353,6 +2341,18 @@
     },
     {
         "first_introduced": "13",
+        "name": "OH_ArkUI_CreateAccessibilityElementInfo"
+    },
+    {
+        "first_introduced": "13",
+        "name": "OH_ArkUI_DestoryAccessibilityElementInfo"
+    },
+    {
+        "first_introduced": "13",
         "name": "OH_NativeXComponent_GetNativeAccessibilityProvider"
+    },
+    {
+        "first_introduced": "13",
+        "name": "OH_ArkUI_SetAccessibilityElementInfoElementId"
     }
 ]
