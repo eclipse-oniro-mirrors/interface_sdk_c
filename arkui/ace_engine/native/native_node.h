@@ -122,6 +122,8 @@ typedef enum {
     ARKUI_NODE_GRID,
     /** Grid item. */
     ARKUI_NODE_GRID_ITEM,
+    /** Custom span. */
+    ARKUI_NODE_CUSTOM_SPAN,
 } ArkUI_NodeType;
 
 /**
@@ -2182,6 +2184,18 @@ typedef enum {
      * .object indicates ArkUI_StyledString formatted string data. The parameter type is {@link ArkUI_StyledString}. \n
      */
     NODE_TEXT_CONTENT_WITH_STYLED_STRING,
+
+    /**
+     * @brief Sets whether to center text vertically in the text component.
+     *
+     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
+     * .value[0].i32: whether to center text vertically. The default value is <b>false</b>. \n
+     * \n
+     * Format of the return value {@link ArkUI_AttributeItem}:\n
+     * .value[0].i32: whether to center text vertically. \n
+     *
+     */
+    NODE_TEXT_HALF_LEADING = 1029,
 
     /**
      * @brief Defines the text content attribute, which can be set, reset, and obtained as required through APIs.
@@ -7416,6 +7430,48 @@ ArkUI_NodeHandle OH_ArkUI_NodeCustomEvent_GetNodeHandle(ArkUI_NodeCustomEvent* e
 * @since 12
 */
 ArkUI_NodeCustomEventType OH_ArkUI_NodeCustomEvent_GetEventType(ArkUI_NodeCustomEvent* event);
+
+/**
+* @brief Obtains the measurement information of a custom span through a custom component event.
+*
+* @param event Indicates the pointer to the custom component event.
+* @param info Indicates the measurement information to be obtained.
+* @return Returns the result code.
+*         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+*         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+*         <br> Possible causes: Parameter verification failed, the parameter should not be nullptr.
+* @since 12
+*/
+int32_t OH_ArkUI_NodeCustomEvent_GetCustomSpanMeasureInfo(
+    ArkUI_NodeCustomEvent* event, ArkUI_CustomSpanMeasureInfo* info);
+
+/**
+* @brief Sets the measurement metrics of a custom span through a custom component event.
+*
+* @param event Indicates the pointer to the custom component event.
+* @param metrics Indicates the measurement metrics to set.
+* @return Returns the result code.
+*         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+*         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+*         <br> Possible causes: Parameter verification failed, the parameter should not be nullptr.
+* @since 12
+*/
+int32_t OH_ArkUI_NodeCustomEvent_SetCustomSpanMetrics(
+    ArkUI_NodeCustomEvent* event, ArkUI_CustomSpanMetrics* metrics);
+
+/**
+* @brief Obtains the drawing information of a custom span through a custom component event.
+*
+* @param event Indicates the pointer to the custom component event.
+* @param info Indicates the drawing information to obtain.
+* @return Returns the result code.
+*         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+*         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+*         <br> Possible causes: Parameter verification failed, the parameter should not be nullptr.
+* @since 12
+*/
+int32_t OH_ArkUI_NodeCustomEvent_GetCustomSpanDrawInfo(
+    ArkUI_NodeCustomEvent* event, ArkUI_CustomSpanDrawInfo* info);
 
 /**
  * @brief Defines the node content event type.
