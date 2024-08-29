@@ -1200,6 +1200,20 @@ Input_Result OH_Input_RemoveKeyEventInterceptor(void);
  * @since 12
  */
 Input_Result OH_Input_RemoveInputEventInterceptor(void);
+
+/**
+ * @brief Obtains the interval since the last system input event.
+ *
+ * @param timeInterval Interval, in microseconds.
+ * @return OH_Input_GetIntervalSinceLastInput status code, specifically.
+ *         {@Link INPUT_SUCCESS} if the Operation is successful.\n
+ *         {@Link INPUT_SERVICE_EXCEPTION} Failed to get the interval because the service is exception.\n
+ *         {@Link INPUT_PARAMETER_ERROR} The timeInterval is NULL.\n
+ * @syscap SystemCapability.MultimodalInput.Input.Core
+ * @since 13
+ */
+Input_Result OH_Input_GetIntervalSinceLastInput(int64_t *timeInterval);
+
 #ifdef __cplusplus
 }
 #endif
