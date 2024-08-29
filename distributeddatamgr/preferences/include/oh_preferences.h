@@ -17,10 +17,9 @@
  * @addtogroup PREFERENCES
  * @{
  *
- * @brief The preference manages data based on relational models.
- * The Preferences module provides APIs for processing data in the form of key-value (KV) pairs, including querying,
- * modifying, and persisting KV pairs. The key is of the string type, and the value can be a number, a string,
- * a Boolean value, or an array of numbers, strings, or Boolean values.
+ * @brief Provides APIs for processing data in the form of key-value (KV) pairs.
+ * You can use the APIs provided by the Preferences module to query, modify, and persist KV pairs.
+ * The key is of the string type, and the value can be a number, a string, a boolean value.
  *
  * @since 13
  */
@@ -28,524 +27,215 @@
 /**
  * @file oh_preferences.h
  *
- * @brief Provides preferences related functions and enumerations.
+ * @brief Defines the APIS and enums of Preference.
  *
  * @kit ArkData
+ * @library libohpreferences.so
  * @syscap SystemCapability.DistributedDataManager.Preferences.Core
  *
- * @since 12
+ * @since 13
  */
 
 #ifndef OH_PREFERENCES_H
 #define OH_PREFERENCES_H
 
-#include <inttypes.h>
-#include <stdbool.h>
-#include "uds.h"
+#include <cstdint>
+
+#include "oh_preferences_value.h"
+#include "oh_preferences_option.h"
 
 #ifdef __cplusplus
 extern "C" {
 #endif
 
 /**
- * @brief Describes the unified preferences type.
+ * @brief Represents a Preferences instance.
  *
  * @since 13
  */
 typedef struct OH_Preferences OH_Preferences;
 
 /**
- * @brief The callback function of data observer event.
+ * @brief Call to return the change in KV pairs.
  *
- * @param context Represents the context of data observer.
- * @param pairs Indicates the key and value pairs that changed.
- * @param count The count of changed pair accounts.
+ * @param context Pointer to the context of data observer.
+ * @param pairs Pointer to the KV pairs to be observed.
+ * @param count Number of KV pairs to be observed.
+ * @see OH_PreferencesPair.
  * @since 13
  */
-typedef void (*PreferencesDataObserver)(void *context, const OH_PreferencesPair *pairs, uint32_t count);
+typedef void (*OH_PreferencesDataObserver)(void *context, const OH_PreferencesPair *pairs, uint32_t count);
 
 /**
- * @brief open the preferences object
+ * @brief Opens a Preferences object.
  *
- * @param option Represents a pointer to an {@link OH_PreferencesOption} instance.
- * @param errCode Represents a pointer to the status code of the execution. This parameter is the output parameter,
- * See {@link OH_Preferences_ErrCode}.
- * @return Returns preferences object pointer that in {@link OH_Preferences} when input parameters valid,
- * otherwise return nullptr.
+ * @param option Pointer to an {@Link OH_PreferencesOption} instance.
+ * @param errCode Pointer to the status code of the execution. For details, See {@link OH_Preferences_ErrCode}.
+ * @return Returns an pointer to the Preferences object in {@Link OH_Preferences} if the operation is successful,
+ * returns nullptr otherwise.
+ *         {@link PREFERENCES_OK} indicates the operation is successful.
+ *         {@link PREFERENCES_E_INVALID_PARAM} indicates invalid args are passed in.
+ *         {@link PREFERENCES_E_INNER_ERROR} indicates an inner error.
+ *         {@link PREFERENCES_NOT_SUPPORTED} indicates the capability is not supported.
+ * @see OH_Preferences OH_PreferencesOption.
  * @since 13
  */
-OH_Preferences *OH_Preferences_Open(OH_PreferencesOptions *option, int *errCode);
+OH_Preferences *OH_Preferences_Open(OH_PreferencesOption *option, int *errCode);
 
 /**
- * @brief close the preferences object
+ * @brief Closes a Preferences object.
  *
- * @param option Represents a pointer to an {@link OH_PreferencesOption} instance.
- * @return Returns the status code of the execution. See {@link OH_Preferences_ErrCode}.
+ * @param preference Pointer to the {@Link OH_Preferences} instance to close.
+ * @param option Pointer to an {@Link OH_PreferencesOption} instance.
+ * @return Returns the status code of the execution. For details, see {@Link OH_Preferences_ErrCode}.
+ *         {@link PREFERENCES_OK} indicates the operation is successful.
+ *         {@link PREFERENCES_E_INVALID_PARAM} indicates invalid args are passed in.
+ *         {@link PREFERENCES_E_INNER_ERROR} indicates an inner error.
+ * @see OH_Preferences.
  * @since 13
  */
-int OH_Preferences_Close(OH_PreferencesOptions *store);
+int OH_Preferences_Close(OH_Preferences *preference);
 
 /**
- * @brief Gets the value by the in preferences object.
+ * @brief Obtains the integer value in a Preferences object based on the given key.
  *
- * @param key Indicates the target key of the preferences.
- * @param value Indicates the value that is get .
+ * @param preference Pointer to the target {@Link OH_Preferences} instance.
+ * @param key Pointer to the key of the value to obtain.
+ * @param value Pointer to the value obtained.
  * @return Returns the status code of the execution.
- *     {@link RDB_OK} - success.
- *     {@link RDB_E_INVALID_ARGS} - The error code for common invalid args.
- * @see PreferencesStore.
+ *         {@link PREFERENCES_OK} indicates the operation is successful.
+ *         {@link PREFERENCES_E_INVALID_PARAM} indicates invalid args are passed in.
+ *         {@link PREFERENCES_E_INNER_ERROR} indicates an inner error.
+ * @see OH_Preferences.
  * @since 13
  */
-int OH_Preferences_GetInt(PreferencesStore *store, const char *key, int *value);
+int OH_Preferences_GetInt(OH_Preferences *preference, const char *key, int *value);
 
 /**
- * @brief Get the value by key from a preference.
+ * @brief Obtains the Boolean value in a Preferences object based on the given key.
  *
- * @param store Represents a pointer to an {@link PreferencesStore} instance.
- * @param key Indicates the key of the preferences.
- * @param errCode This parameter is the output parameter,
- * and the execution status of a function is written to this variable.
- * @return Returns value {@link OH_PreferencesValue} object.
- * @see PreferencesStore, OH_PreferencesValue
- * @since 13
- */
-int OH_Preferences_GetBool(PreferencesStore *store, const char *key, bool *value);
-
-/**
- * @brief Gets the version of a database.
- *
- * @param store Represents a pointer to an {@link PreferencesStore} instance.
- * @param key Indicates the key of the preferences.
+ * @param preference Pointer to the target {@Link OH_Preferences} instance.
+ * @param key Pointer to the key of the value to obtain.
+ * @param value Pointer to the Boolean value obtained.
  * @return Returns the status code of the execution.
- *     {@link RDB_OK} - success.
- *     {@link RDB_E_INVALID_ARGS} - The error code for common invalid args.
- * @see PreferencesStore.
+ *         {@link PREFERENCES_OK} indicates the operation is successful.
+ *         {@link PREFERENCES_E_INVALID_PARAM} indicates invalid args are passed in.
+ *         {@link PREFERENCES_E_INNER_ERROR} indicates an inner error.
+ * @see OH_Preferences.
  * @since 13
  */
-int OH_Preferences_GetString(PreferencesStore *store, const char *key, char **value);
+int OH_Preferences_GetBool(OH_Preferences *preference, const char *key, bool *value);
 
 /**
- * @brief Describes the unified data type.
+ * @brief Obtains the string value in a Preferences object based on the given key.
  *
- * @since 12
+ * @param preference Pointer to the target {@Link OH_Preferences} instance.
+ * @param key Pointer to the key of the value to obtain.
+ * @param value Double pointer to the value obtained in an char * array. Release the memory used
+ * when this parameter is no longer required.
+ * @param valueLen Pointer to the length of the string obtained.
+ * @return Returns the status code of the execution.
+ *         {@link PREFERENCES_OK} indicates the operation is successful.
+ *         {@link PREFERENCES_E_INVALID_PARAM} indicates invalid args are passed in.
+ *         {@link PREFERENCES_E_INNER_ERROR} indicates an inner error.
+ * @see OH_Preferences.
+ * @since 13
  */
-typedef struct OH_UdmfData OH_UdmfData;
+int OH_Preferences_GetString(OH_Preferences *preference, const char *key, char **value, uint32_t *valueLen);
 
 /**
- * @brief Describes the record type in the unified data.
+ * @brief Sets an integer in a Preferences object.
  *
- * @since 12
+ * @param preference Pointer to the target {@Link OH_Preferences} instance.
+ * @param key Pointer to the key to set.
+ * @param value Value to set.
+ * @return Returns the status code of the execution.
+ *         {@link PREFERENCES_OK} indicates the operation is successful.
+ *         {@link PREFERENCES_E_INVALID_PARAM} indicates invalid args are passed in.
+ *         {@link PREFERENCES_E_INNER_ERROR} indicates an inner error.
+ * @see OH_Preferences.
+ * @since 13
  */
-typedef struct OH_UdmfRecord OH_UdmfRecord;
+int OH_Preferences_SetInt(OH_Preferences *preference, const char *key, int value);
 
 /**
- * @brief Describes some property parameters of unified data.
+ * @brief Sets a Boolean value in a Preferences object.
  *
- * @since 12
+ * @param preference Pointer to the target {@Link OH_Preferences} instance.
+ * @param key Pointer to the key to set.
+ * @param value Boolean value to set.
+ * @return Returns the status code of the execution.
+ *         {@link PREFERENCES_OK} indicates the operation is successful.
+ *         {@link PREFERENCES_E_INVALID_PARAM} indicates invalid args are passed in.
+ *         {@link PREFERENCES_E_INNER_ERROR} indicates an inner error.
+ * @see OH_Preferences.
+ * @since 13
  */
-typedef struct OH_UdmfProperty OH_UdmfProperty;
+int OH_Preferences_SetBool(OH_Preferences *preference, const char *key, bool value);
 
 /**
- * @brief Creation a pointer to the instance of the {@link OH_UdmfData}.
+ * @brief Sets a string in a Preferences object.
  *
- * @return If the operation is successful, a pointer to the instance of the {@link OH_UdmfData}
- * structure is returned. If the operation is failed, nullptr is returned.
- * @see OH_UdmfData.
- * @since 12
+ * @param preference Pointer to the target {@Link OH_Preferences} instance.
+ * @param key Pointer to the key to set.
+ * @param value Point to string to set.
+ * @return Returns the status code of the execution.
+ *         {@link PREFERENCES_OK} indicates the operation is successful.
+ *         {@link PREFERENCES_E_INVALID_PARAM} indicates invalid args are passed in.
+ *         {@link PREFERENCES_E_INNER_ERROR} indicates an inner error.
+ * @see OH_Preferences.
+ * @since 13
  */
-OH_UdmfData* OH_UdmfData_Create();
+int OH_Preferences_SetString(OH_Preferences *preference, const char *key, const char *value);
 
 /**
- * @brief Destroy a pointer that points to the {@link OH_UdmfData} instance.
+ * @brief Deletes a KV pair from a Preferences object.
  *
- * @param pThis Represents a pointer to an instance of {@link OH_UdmfData}.
- * @see OH_UdmfData.
- * @since 12
+ * @param preference Pointer to the target {@Link OH_Preferences} instance.
+ * @param key Pointer to the key of the data to delete.
+ * @return Returns the status code of the execution.
+ *         {@link PREFERENCES_OK} indicates the operation is successful.
+ *         {@link PREFERENCES_E_INVALID_PARAM} indicates invalid args are passed in.
+ *         {@link PREFERENCES_E_INNER_ERROR} indicates an inner error.
+ * @see OH_Preferences.
+ * @since 13
  */
-void OH_UdmfData_Destroy(OH_UdmfData* pThis);
+int OH_Preferences_Delete(OH_Preferences *preference, const char *key);
 
 /**
- * @brief Add one {OH_UdmfRecord} record to the {@link OH_UdmfData} data.
+ * @brief Registers a data observer for a Preferences object.
  *
- * @param pThis Represents a pointer to an instance of {@link OH_UdmfData}.
- * @param record Represents a pointer to an instance of {@link OH_UdmfRecord}.
- * @return Returns the status code of the execution. See {@link Udmf_ErrCode}.
- *         {@link UDMF_E_OK} success.
- *         {@link UDMF_E_INVALID_PARAM} The error code for common invalid args.
- * @see OH_UdmfData Udmf_ErrCode.
- * @since 12
+ * @param preference Pointer to the target {@Link OH_Preferences} instance.
+ * @param context Pointer to the context of the data observer.
+ * @param observer Pointer to the {@Link OH_PreferencesDataObserver} to register.
+ * @param keys Pointer to the keys to observe.
+ * @param keyCount Number of keys to observe.
+ * @return Returns the status code of the execution.
+ *         {@link PREFERENCES_OK} indicates the operation is successful.
+ *         {@link PREFERENCES_E_INVALID_PARAM} indicates invalid args are passed in.
+ *         {@link PREFERENCES_E_INNER_ERROR} indicates an inner error.
+ * @see OH_Preferences OH_PreferencesDataObserver.
+ * @since 13
  */
-int OH_UdmfData_AddRecord(OH_UdmfData* pThis, OH_UdmfRecord* record);
+int OH_Preferences_RegisterDataObserver(OH_Preferences *preference, void *context,
+    const OH_PreferencesDataObserver *observer, const char *keys[], uint32_t keyCount);
 
 /**
- * @brief Check whether the type exists in the {@link OH_UdmfData} data.
+ * @brief Unregisters a data observer for a Preferences object.
  *
- * @param pThis Represents a pointer to an instance of {@link OH_UdmfData}.
- * @param type Represents a string pointer of the type.
- * @return Returns the status of finding type.
- *         {@code false} is not existed.
- *         {@code true} is existed.
- * @see OH_UdmfData.
- * @since 12
+ * @param preference Pointer to the target {@Link OH_Preferences} instance.
+ * @param observer Pointer to the {@Link OH_PreferencesDataObserver} to unregister.
+ * @param keys Pointer to the keys observed. If this parameter is null, this API unregisters the listening for all keys.
+ * @param keyCount Number of the keys.
+ * @return Returns the status code of the execution.
+ *         {@link PREFERENCES_OK} indicates the operation is successful.
+ *         {@link PREFERENCES_E_INVALID_PARAM} indicates invalid args are passed in.
+ *         {@link PREFERENCES_E_INNER_ERROR} indicates an inner error.
+ * @see OH_Preferences OH_PreferencesDataObserver.
+ * @since 13
  */
-bool OH_UdmfData_HasType(OH_UdmfData* pThis, const char* type);
-
-/**
- * @brief Get all types in the {@link OH_UdmfData} data.
- *
- * @param pThis Represents a pointer to an instance of {@link OH_UdmfData}.
- * @param count Represents the types count that is a output param.
- * @return Returns string array that in {@link OH_UdmfData} when input parameters valid,
- * otherwise return nullptr.
- * @see OH_UdmfData.
- * @since 12
- */
-char** OH_UdmfData_GetTypes(OH_UdmfData* pThis, unsigned int* count);
-
-/**
- * @brief Get all records in the {@link OH_UdmfData} data.
- *
- * @param pThis Represents a pointer to an instance of {@link OH_UdmfData}.
- * @param count Represents the records count that is a output param.
- * @return Returns {@link OH_UdmfRecord} pointer array when input parameters valid, otherwise return nullptr.
- * @see OH_UdmfData OH_UdmfRecord.
- * @since 12
- */
-OH_UdmfRecord** OH_UdmfData_GetRecords(OH_UdmfData* pThis, unsigned int* count);
-
-/**
- * @brief Creation a pointer to the instance of the {@link OH_UdmfRecord}, it's relate with UDS data.
- *
- * @return If the operation is successful, a pointer to the instance of the {@link OH_UdmfRecord}
- * structure is returned. If the operation is failed, nullptr is returned.
- * @see OH_UdmfRecord.
- * @since 12
- */
-OH_UdmfRecord* OH_UdmfRecord_Create();
-
-/**
- * @brief Destroy a pointer that points to an instance of {@link OH_UdmfRecord}.
- *
- * @param pThis Represents a pointer to an instance of {@link OH_UdmfRecord}.
- * @see OH_UdmfRecord.
- * @since 12
- */
-void OH_UdmfRecord_Destroy(OH_UdmfRecord* pThis);
-
-/**
- * @brief Add one custom data to the {@link OH_UdmfRecord} record.
- *
- * @param pThis Represents a pointer to an instance of {@link OH_UdmfRecord}.
- * @param typeId Represents record type, reference udmf_meta.h.
- * @param entry Represents custom data.
- * @param count Represents the size of data param.
- * @return Returns the status code of the execution. See {@link Udmf_ErrCode}.
- *         {@link UDMF_E_OK} success.
- *         {@link UDMF_E_INVALID_PARAM} The error code for common invalid args.
- * @see OH_UdmfRecord Udmf_ErrCode.
- * @since 12
- */
-int OH_UdmfRecord_AddGeneralEntry(OH_UdmfRecord* pThis, const char* typeId, unsigned char* entry, unsigned int count);
-
-/**
- * @brief Add one {OH_UdsPlainText} data to the {@link OH_UdmfRecord} record.
- *
- * @param pThis Represents a pointer to an instance of {@link OH_UdmfRecord}.
- * @param plainText Represents a pointer to an instance of {@link OH_UdsPlainText}.
- * @return Returns the status code of the execution. See {@link Udmf_ErrCode}.
- *         {@link UDMF_E_OK} success.
- *         {@link UDMF_E_INVALID_PARAM} The error code for common invalid args.
- * @see OH_UdmfRecord OH_UdsPlainText Udmf_ErrCode.
- * @since 12
- */
-int OH_UdmfRecord_AddPlainText(OH_UdmfRecord* pThis, OH_UdsPlainText* plainText);
-
-/**
- * @brief Add one {OH_UdsHyperlink} data to the {@link OH_UdmfRecord} record.
- *
- * @param pThis Represents a pointer to an instance of {@link OH_UdmfRecord}.
- * @param hyperlink Represents a pointer to an instance of {@link OH_UdsHyperlink}.
- * @return Returns the status code of the execution. See {@link Udmf_ErrCode}.
- *         {@link UDMF_E_OK} success.
- *         {@link UDMF_E_INVALID_PARAM} The error code for common invalid args.
- * @see OH_UdmfRecord OH_UdsHyperlink Udmf_ErrCode.
- * @since 12
- */
-int OH_UdmfRecord_AddHyperlink(OH_UdmfRecord* pThis, OH_UdsHyperlink* hyperlink);
-
-/**
- * @brief Add one {OH_UdsHtml} data to the {@link OH_UdmfRecord} record.
- *
- * @param pThis Represents a pointer to an instance of {@link OH_UdmfRecord}.
- * @param html Represents a pointer to an instance of {@link OH_UdsHtml}.
- * @return Returns the status code of the execution. See {@link Udmf_ErrCode}.
- *         {@link UDMF_E_OK} success.
- *         {@link UDMF_E_INVALID_PARAM} The error code for common invalid args.
- * @see OH_UdmfRecord OH_UdsHtml Udmf_ErrCode.
- * @since 12
- */
-int OH_UdmfRecord_AddHtml(OH_UdmfRecord* pThis, OH_UdsHtml* html);
-
-/**
- * @brief Add one {OH_UdsAppItem} data to the {@link OH_UdmfRecord} record.
- *
- * @param repThisord Represents a pointer to an instance of {@link OH_UdmfRecord}.
- * @param appItem Represents a pointer to an instance of {@link OH_UdsAppItem}.
- * @return Returns the status code of the execution. See {@link Udmf_ErrCode}.
- *         {@link UDMF_E_OK} success.
- *         {@link UDMF_E_INVALID_PARAM} The error code for common invalid args.
- * @see OH_UdmfRecord OH_UdsAppItem Udmf_ErrCode.
- * @since 12
- */
-int OH_UdmfRecord_AddAppItem(OH_UdmfRecord* pThis, OH_UdsAppItem* appItem);
-
-/**
- * @brief Get all types in the {@link OH_UdmfRecord} record.
- *
- * @param pThis Represents a pointer to an instance of {@link OH_UdmfRecord}.
- * @param count Represents the types count that is a output param.
- * @return Returns string array that in {@link OH_UdmfRecord} when input parameters valid,
- * otherwise return nullptr.
- * @see OH_UdmfRecord.
- * @since 12
- */
-char** OH_UdmfRecord_GetTypes(OH_UdmfRecord* pThis, unsigned int* count);
-
-/**
- * @brief Get one entry data from the {@link OH_UdmfRecord} record.
- *
- * @param pThis Represents a pointer to an instance of {@link OH_UdmfRecord}.
- * @param typeId Represents record type, reference udmf_meta.h.
- * @param entry Represents a pointer to entry data that is a output param.
- * @param count Represents the entry data length that is a output param.
- * @return Returns the status code of the execution. See {@link Udmf_ErrCode}.
- *         {@link UDMF_E_OK} success.
- *         {@link UDMF_E_INVALID_PARAM} The error code for common invalid args.
- *         {@link UDMF_ERR} Internal data error.
- * @see OH_UdmfRecord Udmf_ErrCode.
- * @since 12
- */
-int OH_UdmfRecord_GetGeneralEntry(OH_UdmfRecord* pThis, const char* typeId,
-    unsigned char** entry, unsigned int* count);
-
-/**
- * @brief Get one {OH_UdsPlainText} data from the {@link OH_UdmfRecord} record.
- *
- * @param pThis Represents a pointer to an instance of {@link OH_UdmfRecord}.
- * @param plainText Represents a pointer to an instance of {@link OH_UdsPlainText}.
- * @return Returns the status code of the execution. See {@link Udmf_ErrCode}.
- *         {@link UDMF_E_OK} success.
- *         {@link UDMF_E_INVALID_PARAM} The error code for common invalid args.
- *         {@link UDMF_ERR} Internal data error.
- * @see OH_UdmfRecord OH_UdsPlainText Udmf_ErrCode.
- * @since 12
- */
-int OH_UdmfRecord_GetPlainText(OH_UdmfRecord* pThis, OH_UdsPlainText* plainText);
-
-/**
- * @brief Get one {OH_UdsHyperlink} data from the {@link OH_UdmfRecord} record.
- *
- * @param pThis Represents a pointer to an instance of {@link OH_UdmfRecord}.
- * @param hyperlink Represents a pointer to an instance of {@link OH_UdsHyperlink}.
- * @return Returns the status code of the execution. See {@link Udmf_ErrCode}.
- *         {@link UDMF_E_OK} success.
- *         {@link UDMF_E_INVALID_PARAM} The error code for common invalid args.
- *         {@link UDMF_ERR} Internal data error.
- * @see OH_UdmfRecord OH_UdsHyperlink Udmf_ErrCode.
- * @since 12
- */
-int OH_UdmfRecord_GetHyperlink(OH_UdmfRecord* pThis, OH_UdsHyperlink* hyperlink);
-
-/**
- * @brief Get one {OH_UdsHtml} data from the {@link OH_UdmfRecord} record.
- *
- * @param pThis Represents a pointer to an instance of {@link OH_UdmfRecord}.
- * @param html Represents a pointer to an instance of {@link OH_UdsHtml}.
- * @return Returns the status code of the execution. See {@link Udmf_ErrCode}.
- *         {@link UDMF_E_OK} success.
- *         {@link UDMF_E_INVALID_PARAM} The error code for common invalid args.
- *         {@link UDMF_ERR} Internal data error.
- * @see OH_UdmfRecord OH_UdsHtml Udmf_ErrCode.
- * @since 12
- */
-int OH_UdmfRecord_GetHtml(OH_UdmfRecord* pThis, OH_UdsHtml* html);
-
-/**
- * @brief Get one {OH_UdsAppItem} data from the {@link OH_UdmfRecord} record.
- *
- * @param pThis Represents a pointer to an instance of {@link OH_UdmfRecord}.
- * @param appItem Represents a pointer to an instance of {@link OH_UdsAppItem}.
- * @return Returns the status code of the execution. See {@link Udmf_ErrCode}.
- *         {@link UDMF_E_OK} success.
- *         {@link UDMF_E_INVALID_PARAM} The error code for common invalid args.
- *         {@link UDMF_ERR} Internal data error.
- * @see OH_UdmfRecord OH_UdsAppItem Udmf_ErrCode.
- * @since 12
- */
-int OH_UdmfRecord_GetAppItem(OH_UdmfRecord* pThis, OH_UdsAppItem* appItem);
-
-/**
- * @brief Creation a pointer to the instance of the {@link OH_UdmfProperty}
- * from a {@link OH_UdmfData} data.
- *
- * @param unifiedData Represents a pointer to an instance of {@link OH_UdmfData}.
- * @return If the operation is successful, a pointer to the instance of the {@link OH_UdmfProperty}
- * structure is returned. If the operation is failed, nullptr is returned.
- * @see OH_UdmfData OH_UdmfProperty.
- * @since 12
- */
-OH_UdmfProperty* OH_UdmfProperty_Create(OH_UdmfData* unifiedData);
-
-/**
- * @brief Destroy a pointer that points to the {@link OH_UdmfProperty} instance.
- *
- * @param pThis Represents a pointer to an instance of {@link OH_UdmfProperty}.
- * @see OH_UdmfProperty.
- * @since 12
- */
-void OH_UdmfProperty_Destroy(OH_UdmfProperty* pThis);
-
-/**
- * @brief Get tag value from the {@link OH_UdmfProperty}.
- *
- * @param pThis Represents a pointer to an instance of {@link OH_UdmfProperty}.
- * @return Returns a pointer of the tag value string when input parameters valid, otherwise return nullptr.
- * @see OH_UdmfProperty.
- * @since 12
- */
-const char* OH_UdmfProperty_GetTag(OH_UdmfProperty* pThis);
-
-/**
- * @brief Get timestamp value from the {@link OH_UdmfProperty}.
- *
- * @param pThis Represents a pointer to an instance of {@link OH_UdmfProperty}.
- * @return Returns timestamp value.
- * @see OH_UdmfProperty
- * @since 12
- */
-int64_t OH_UdmfProperty_GetTimestamp(OH_UdmfProperty* pThis);
-
-/**
- * @brief Get share option value from the {@link OH_UdmfProperty}.
- *
- * @param pThis Represents a pointer to an instance of {@link OH_UdmfProperty}.
- * @return Returns {@link Udmf_ShareOption} value.
- * @see OH_UdmfProperty Udmf_ShareOption
- * @since 12
- */
-Udmf_ShareOption OH_UdmfProperty_GetShareOption(OH_UdmfProperty* pThis);
-
-/**
- * @brief Get integer value by key from the {@link OH_UdmfProperty}.
- *
- * @param pThis Represents a pointer to an instance of {@link OH_UdmfProperty}.
- * @param key Represents key-value pair's key
- * @param defaultValue Represents when get value failure.
- * @return Returns value associated with the key in successfully, otherwise return defaultValue.
- * @see OH_UdmfProperty.
- * @since 12
- */
-int OH_UdmfProperty_GetExtrasIntParam(OH_UdmfProperty* pThis,
-    const char* key, int defaultValue);
-
-/**
- * @brief Get tag value from the {@link OH_UdmfProperty}.
- *
- * @param pThis Represents a pointer to an instance of {@link OH_UdmfProperty}.
- * @param key Represents key-value pair's key.
- * @return Returns a pointer of the key value string when input parameters valid, otherwise return nullptr.
- * @see OH_UdmfProperty
- * @since 12
- */
-const char* OH_UdmfProperty_GetExtrasStringParam(OH_UdmfProperty* pThis, const char* key);
-
-/**
- * @brief Set tag value to {@link OH_UdmfProperty} .
- *
- * @param pThis Represents a pointer to an instance of {@link OH_UdmfProperty}.
- * @param tag Represents new tag param.
- * @return Returns the status code of the execution. See {@link Udmf_ErrCode}.
- *         {@link UDMF_E_OK} success.
- *         {@link UDMF_E_INVALID_PARAM} The error code for common invalid args.
- * @see OH_UdmfProperty Udmf_ErrCode.
- * @since 12
- */
-int OH_UdmfProperty_SetTag(OH_UdmfProperty* pThis, const char* tag);
-
-/**
- * @brief Set Udmf_ShareOption value to {@link OH_UdmfProperty}.
- *
- * @param pThis Represents a pointer to an instance of {@link OH_UdmfProperty}.
- * @param option Represents new {@link Udmf_ShareOption} param.
- * @return Returns the status code of the execution. See {@link Udmf_ErrCode}.
- *         {@link UDMF_E_OK} success.
- *         {@link UDMF_E_INVALID_PARAM} The error code for common invalid args.
- * @see OH_UdmfProperty Udmf_ShareOption Udmf_ErrCode.
- * @since 12
- */
-int OH_UdmfProperty_SetShareOption(OH_UdmfProperty* pThis, Udmf_ShareOption option);
-
-/**
- * @brief Set extras param to {@link OH_UdmfProperty}.
- *
- * @param pThis Represents a pointer to an instance of {@link OH_UdmfProperty}.
- * @param key Represents extras param's key value.
- * @param param Represents value of k-v pairs.
- * @return Returns the status code of the execution. See {@link Udmf_ErrCode}.
- *         {@link UDMF_E_OK} success.
- *         {@link UDMF_E_INVALID_PARAM} The error code for common invalid args.
- * @see OH_UdmfProperty Udmf_ErrCode.
- * @since 12
- */
-int OH_UdmfProperty_SetExtrasIntParam(OH_UdmfProperty* pThis, const char* key, int param);
-
-/**
- * @brief Set extras param to {@link OH_UdmfProperty}.
- *
- * @param pThis Represents a pointer to an instance of {@link OH_UdmfProperty}.
- * @param key Represents extras param's key value.
- * @param param Represents value of k-v pairs.
- * @return Returns the status code of the execution. See {@link Udmf_ErrCode}.
- *         {@link UDMF_E_OK} success.
- *         {@link UDMF_E_INVALID_PARAM} The error code for common invalid args.
- * @see OH_UdmfProperty Udmf_ErrCode.
- * @since 12
- */
-int OH_UdmfProperty_SetExtrasStringParam(OH_UdmfProperty* pThis,
-    const char* key, const char* param);
-
-/**
- * @brief Get {@link OH_UdmfData} data from udmf database.
- *
- * @param key Represents database store's key value.
- * @param intention Represents data type {@link Udmf_Intention}
- * @param unifiedData Represents output params of {@link OH_UdmfData};
- * @return Returns the status code of the execution. See {@link Udmf_ErrCode}.
- *         {@link UDMF_E_OK} success.
- *         {@link UDMF_E_INVALID_PARAM} The error code for common invalid args.
- *         {@link UDMF_ERR} Internal data error.
- * @see OH_UdmfProperty Udmf_Intention Udmf_ErrCode.
- * @since 12
- */
-int OH_Udmf_GetUnifiedData(const char* key, Udmf_Intention intention, OH_UdmfData* unifiedData);
-
-/**
- * @brief Set {@link OH_UdmfData} data to database.
- *
- * @param intention Represents data type {@link Udmf_Intention}.
- * @param unifiedData Represents a pointer to an instance of {@link OH_UdmfData}.
- * @param key Represents return value after set data to database successfully,
- * it's memory size not less than {@link UDMF_KEY_BUFFER_LEN}.
- * @param keyLen Represents size of key param.
- * @return Returns the status code of the execution. See {@link Udmf_ErrCode}.
- *         {@link UDMF_E_OK} success.
- *         {@link UDMF_E_INVALID_PARAM} The error code for common invalid args.
- *         {@link UDMF_ERR} Internal data error.
- * @see OH_UdmfProperty Udmf_Intention Udmf_ErrCode.
- * @since 12
- */
-int OH_Udmf_SetUnifiedData(Udmf_Intention intention, OH_UdmfData* unifiedData,
-    char* key, unsigned int keyLen);
+int OH_Preferences_UnregisterDataObserver(OH_Preferences *preference, const OH_PreferencesDataObserver *observer,
+    const char *keys[], uint32_t keyCount);
 
 #ifdef __cplusplus
 };

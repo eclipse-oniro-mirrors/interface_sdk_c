@@ -18,25 +18,23 @@ import("//foundation/distributeddatamgr/preferences/preferences.gni")
 ohos_ndk_headers("preferences_ndk_header") {
   dest_dir = "$ndk_headers_out_dir/database/preferences/"
   sources = [
-    "./include/udmf.h",
-    "./include/udmf_err_code.h",
-    "./include/udmf_meta.h",
-    "./include/uds.h",
-    "./include/utd.h",
+    "./include/oh_preferences.h",
+    "./include/oh_preferences_err_code.h",
+    "./include/oh_preferences_option.h",
+    "./include/oh_preferences_values.h",
   ]
 }
 
-ohos_ndk_library("libpreferences") {
-  output_name = "udmf"
+ohos_ndk_library("libohpreferences") {
+  output_name = "ohpreferences"
   output_extension = "so"
   system_capability = "SystemCapability.DistributedDataManager.Preferences.Core"
   ndk_description_file = "./libpreferences.ndk.json"
   min_compact_version = "13"
   system_capability_headers = [
-    "$ndk_headers_out_dir/database/preferences/udmf_err_code.h",
-    "$ndk_headers_out_dir/database/preferences/udmf_meta.h",
-    "$ndk_headers_out_dir/database/preferences/udmf.h",
-    "$ndk_headers_out_dir/database/preferences/uds.h",
-    "$ndk_headers_out_dir/database/preferences/utd.h",
+    "$ndk_headers_out_dir/database/preferences/oh_preferences.h",
+    "$ndk_headers_out_dir/database/preferences/oh_preferences_err_code.h",
+    "$ndk_headers_out_dir/database/preferences/oh_preferences_values.h",
+    "$ndk_headers_out_dir/database/preferences/oh_preferences_option.h",
   ]
 }
