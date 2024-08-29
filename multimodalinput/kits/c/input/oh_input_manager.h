@@ -229,7 +229,7 @@ typedef enum Input_Result {
 } Input_Result;
 
 /** 设备类型未知 */
-static const char* const Input_Device_Type_UNKNOWN = "ohos.input.device.unknown";
+static const char* const Input_Device_Type_KEYBOARD = "ohos.input.device.unkown";
 
 /** 设备类型键盘 */
 static const char* const Input_Device_Type_KEYBOARD = "ohos.input.device.keyboard";
@@ -283,15 +283,17 @@ typedef void (*Input_AxisEventCallback)(const Input_AxisEvent* axisEvent);
 
 /**
  * @brief 定义一个回调函数用于设备id和设备类型
+ * 如果回调被触发，**deviceTypes**将被销毁。
  * @since 13
  */
-typedef void (*Input_DeviceAddedCallback)(int32_t deviceId, const char* deviceType);
+typedef void (*Input_DeviceAddedCallback)(int32_t deviceId, const char** deviceTypes, int32_t count);
 
 /**
  * @brief 定义一个回调函数用于设备id和设备类型
+ * 如果回调被触发，**deviceTypes**将被销毁。
  * @since 13
  */
-typedef void (*Input_DeviceRemovedCallback)(int32_t deviceId, const char* deviceType);
+typedef void (*Input_DeviceRemovedCallback)(int32_t deviceId, const char** deviceTypes, int32_t count);
 
 /**
  * @brief Defines the structure for the interceptor of event callbacks,
@@ -315,7 +317,7 @@ typedef struct Input_InterceptorEventCallback {
 typedef struct Input_DeviceListener {
     Input_DeviceAddedCallback OnDeviceAdded;
     Input_DeviceRemovedCallback OnDeviceRemoved;
-};
+} Input_DeviceListener;
 
 /**
  * @brief Defines event interceptor options.
