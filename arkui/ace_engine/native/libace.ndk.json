@@ -121,55 +121,11 @@
     },
     {
         "first_introduced": "12",
-        "name": "OH_NativeXComponent_RegisterUIInputEventCallback"
-    },
-    {
-        "first_introduced": "12",
-        "name": "OH_ArkUI_UIInputEvent_GetType"
-    },
-    {
-        "first_introduced": "12",
-        "name": "OH_ArkUI_UIInputEvent_GetEventTime"
-    },
-    {
-        "first_introduced": "12",
-        "name": "OH_ArkUI_PointerEvent_GetX"
-    },
-    {
-        "first_introduced": "12",
-        "name": "OH_ArkUI_PointerEvent_GetY"
-    },
-    {
-        "first_introduced": "12",
-        "name": "OH_ArkUI_PointerEvent_GetWindowX"
-    },
-    {
-        "first_introduced": "12",
-        "name": "OH_ArkUI_PointerEvent_GetWindowY"
-    },
-    {
-        "first_introduced": "12",
-        "name": "OH_ArkUI_PointerEvent_GetDisplayX"
-    },
-    {
-        "first_introduced": "12",
-        "name": "OH_ArkUI_PointerEvent_GetDisplayY"
-    },
-    {
-        "first_introduced": "12",
-        "name": "OH_ArkUI_AxisEvent_GetVerticalAxisValue"
-    },
-    {
-        "first_introduced": "12",
-        "name": "OH_ArkUI_AxisEvent_GetHorizontalAxisValue"
-    },
-    {
-        "first_introduced": "12",
-        "name": "OH_ArkUI_AxisEvent_GetPinchAxisScaleValue"
-    },
-    {
-        "first_introduced": "12",
         "name": "OH_ArkUI_GetNodeHandleFromNapiValue"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_ArkUI_QueryModuleInterface"
     },
     {
         "first_introduced": "12",
@@ -227,6 +183,50 @@
         "first_introduced": "12",
         "name": "OH_ArkUI_PinchGesture_GetCenterY"
     },
+    {
+        "first_introduced": "12",
+        "name": "OH_NativeXComponent_RegisterSurfaceShowCallback"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_NativeXComponent_RegisterSurfaceHideCallback"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_NativeXComponent_RegisterUIInputEventCallback"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_ArkUI_UIInputEvent_GetType"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_ArkUI_UIInputEvent_GetEventTime"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_ArkUI_PointerEvent_GetX"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_ArkUI_PointerEvent_GetY"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_ArkUI_PointerEvent_GetWindowX"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_ArkUI_PointerEvent_GetWindowY"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_ArkUI_PointerEvent_GetDisplayX"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_ArkUI_PointerEvent_GetDisplayY"
+    },      
     {
         "first_introduced": "12",
         "name": "OH_ArkUI_GestureEvent_GetNode"
@@ -313,15 +313,15 @@
     },
     {
         "first_introduced": "12",
-        "name": "OH_NativeXComponent_SetNeedSoftKeyboard"
+        "name": "OH_ArkUI_AxisEvent_GetVerticalAxisValue"
     },
     {
         "first_introduced": "12",
-        "name": "OH_NativeXComponent_RegisterSurfaceShowCallback"
+        "name": "OH_ArkUI_AxisEvent_GetHorizontalAxisValue"
     },
     {
         "first_introduced": "12",
-        "name": "OH_NativeXComponent_RegisterSurfaceHideCallback"
+        "name": "OH_ArkUI_AxisEvent_GetPinchAxisScaleValue"
     },
     {
         "first_introduced": "12",
@@ -329,7 +329,7 @@
     },
     {
         "first_introduced": "12",
-        "name": "OH_ArkUI_QueryModuleInterface"
+        "name": "OH_NativeXComponent_SetNeedSoftKeyboard"
     },
     {
         "first_introduced": "12",
@@ -731,8 +731,7 @@
         "first_introduced": "12",
         "name": "OH_ArkUI_WaterFlowSectionOption_RegisterGetItemMainSizeCallbackByIndexWithUserData"
     },
-    {
-        "first_introduced": "12",
+    {   "first_introduced": "12",
         "name": "OH_ArkUI_AnimateOption_Create"
     },
     {
@@ -805,6 +804,10 @@
     },
     {
         "first_introduced": "12",
+        "name": "OH_NativeXComponent_GetNativeXComponent"
+    },
+    {
+        "first_introduced": "12",
         "name": "OH_ArkUI_NodeContent_AddNode"
     },
     {
@@ -838,10 +841,6 @@
     {
         "first_introduced": "12",
         "name": "OH_ArkUI_GetNodeContentFromNapiValue"
-    },
-    {
-        "first_introduced": "12",
-        "name": "OH_NativeXComponent_GetNativeXComponent"
     },
     {
         "first_introduced": "12",
@@ -1477,6 +1476,18 @@
     },
     {
         "first_introduced": "12",
+        "name": "OH_ArkUI_NodeEvent_GetNumberValue"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_ArkUI_NodeEvent_GetStringValue"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_ArkUI_NodeEvent_SetReturnNumberValue"
+    },
+    {
+        "first_introduced": "12",
         "name": "OH_ArkUI_AnimateOption_SetICurve"
     },
     {
@@ -1718,18 +1729,6 @@
     {
         "first_introduced": "12",
         "name": "OH_ArkUI_Curve_DisposeCurve"
-    },
-    {
-        "first_introduced": "12",
-        "name": "OH_ArkUI_NodeEvent_GetNumberValue"
-    },
-    {
-        "first_introduced": "12",
-        "name": "OH_ArkUI_NodeEvent_GetStringValue"
-    },
-    {
-        "first_introduced": "12",
-        "name": "OH_ArkUI_NodeEvent_SetReturnNumberValue"
     },
     {
         "first_introduced": "12",
