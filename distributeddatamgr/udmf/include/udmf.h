@@ -266,6 +266,20 @@ int OH_UdmfRecord_AddHtml(OH_UdmfRecord* pThis, OH_UdsHtml* html);
 int OH_UdmfRecord_AddAppItem(OH_UdmfRecord* pThis, OH_UdsAppItem* appItem);
 
 /**
+ * @brief Add one {@link OH_UdsArrayBuffer} data to the {@link OH_UdmfRecord} record.
+ *
+ * @param record Represents a pointer to an instance of {@link OH_UdmfRecord}.
+ * @param type Represents record type, reference udmf_meta.h.
+ * @param buffer Represents a pointer to an instance of {@link OH_UdsArrayBuffer}.
+ * @return Returns the status code of the execution. See {@link Udmf_ErrCode}.
+ *         {@link UDMF_E_OK} success.
+ *         {@link UDMF_E_INVALID_PARAM} The error code for common invalid args.
+ * @see OH_UdmfRecord OH_UdsArrayBuffer Udmf_ErrCode.
+ * @since 13
+ */
+int OH_UdmfRecord_AddArrayBuffer(OH_UdmfRecord* record, const char* type, OH_UdsArrayBuffer* buffer);
+
+/**
  * @brief Get all types in the {@link OH_UdmfRecord} record.
  *
  * @param pThis Represents a pointer to an instance of {@link OH_UdmfRecord}.
@@ -349,6 +363,79 @@ int OH_UdmfRecord_GetHtml(OH_UdmfRecord* pThis, OH_UdsHtml* html);
  * @since 12
  */
 int OH_UdmfRecord_GetAppItem(OH_UdmfRecord* pThis, OH_UdsAppItem* appItem);
+
+/**
+ * @brief Get one {@link OH_UdsArrayBuffer} data from the {@link OH_UdmfRecord} record.
+ *
+ * @param record Represents a pointer to an instance of {@link OH_UdmfRecord}.
+ * @param type Represents record type, reference udmf_meta.h.
+ * @param buffer Represents a pointer to an instance of {@link OH_UdsArrayBuffer}.
+ * @return Returns the status code of the execution. See {@link Udmf_ErrCode}.
+ *         {@link UDMF_E_OK} success.
+ *         {@link UDMF_E_INVALID_PARAM} The error code for common invalid args.
+ * @see OH_UdmfRecord OH_UdsArrayBuffer Udmf_ErrCode.
+ * @since 13
+ */
+int OH_UdmfRecord_GetArrayBuffer(OH_UdmfRecord* record, const char* type, OH_UdsArrayBuffer* buffer);
+
+/**
+ * @brief Get primary {@link OH_UdsPlainText} data from the {@link OH_UdmfData}.
+ *
+ * @param data Represents a pointer to an instance of {@link OH_UdmfData}.
+ * @param plainText Represents a pointer to an instance of {@link OH_UdsPlainText}.
+ * @return Returns the status code of the execution. See {@link Udmf_ErrCode}.
+ *         {@link UDMF_E_OK} success.
+ *         {@link UDMF_E_INVALID_PARAM} The error code for common invalid args.
+ * @see OH_UdmfData OH_UdsPlainText Udmf_ErrCode.
+ * @since 13
+ */
+int OH_UdmfData_GetPrimaryPlainText(OH_UdmfData* data, OH_UdsPlainText* plainText);
+
+/**
+ * @brief Get one {@link OH_UdsHtml} data from the {@link OH_UdmfData}.
+ *
+ * @param data Represents a pointer to an instance of {@link OH_UdmfData}.
+ * @param html Represents a pointer to an instance of {@link OH_UdsHtml}.
+ * @return Returns the status code of the execution. See {@link Udmf_ErrCode}.
+ *         {@link UDMF_E_OK} success.
+ *         {@link UDMF_E_INVALID_PARAM} The error code for common invalid args.
+ * @see OH_UdmfData OH_UdsHtml Udmf_ErrCode.
+ * @since 13
+ */
+int OH_UdmfData_GetPrimaryHtml(OH_UdmfData* data, OH_UdsHtml* html);
+
+/**
+ * @brief Get the count of {@link OH_UdmfRecord} in the {@link OH_UdmfData}.
+ *
+ * @param data Represents a pointer to an instance of {@link OH_UdmfData}.
+ * @return Returns the count of {@link OH_UdmfRecord}
+ * @see OH_UdmfData.
+ * @since 13
+ */
+int OH_UdmfData_GetRecordCount(OH_UdmfData* data);
+
+/**
+ * @brief Get the record of the specified index from the {@link OH_UdmfData}.
+ *
+ * @param data Represents a pointer to an instance of {@link OH_UdmfData}.
+ * @param index Represents the index of {@link OH_UdmfRecord} in the {@link OH_UdmfData}.
+ * @return Returns {@link OH_UdmfRecord} pointer when input parameters valid, otherwise return nullptr.
+ * @see OH_UdmfData.
+ * @since 13
+ */
+OH_UdmfRecord* OH_UdmfData_GetRecord(OH_UdmfData* data, unsigned int index);
+
+/**
+ * @brief Checks whether the UDMF data is from a local device.
+ *
+ * @param data Represents a pointer to an instance of {@link OH_UdmfData}.
+ * @return Returns a boolean value, which indicates whether the UDMF data is from a local device.
+ *         The value {@code true} means the data is from a local device.
+ *         The value {@code false} means the opposite.
+ * @see OH_UdmfData.
+ * @since 13
+ */
+bool OH_UdmfData_IsLocal(OH_UdmfData* data);
 
 /**
  * @brief Creation a pointer to the instance of the {@link OH_UdmfProperty}
