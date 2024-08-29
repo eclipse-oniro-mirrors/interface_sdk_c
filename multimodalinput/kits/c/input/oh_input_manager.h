@@ -1253,7 +1253,7 @@ Input_Result OH_Input_RemoveInputEventInterceptor(void);
  * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 13
  */
-const char* KeyCodeToString(int32_t keyCode);
+const char* OH_Input_KeyCodeToString(int32_t keyCode);
 
 /**
  * @brief 注册设备热插拔的监听器
