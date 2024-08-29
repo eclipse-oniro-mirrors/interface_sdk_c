@@ -1,0 +1,10 @@
+[
+    {
+        "first_introduced":"13",
+        "name": "OH_Telephony_GetNetworkState"
+    },
+    {
+        "first_introduced":"13",
+        "name": "OH_Telephony_GetNetworkStateForSlot"
+    }
+]
