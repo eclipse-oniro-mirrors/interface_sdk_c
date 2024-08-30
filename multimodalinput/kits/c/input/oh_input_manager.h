@@ -236,28 +236,6 @@ typedef enum Input_Result {
 } Input_Result;
 
 /**
- * @brief 设备类型的枚举
- *
- * @since 13
- */
-typedef enum Input_DeviceType {
-    /** 设备类型未知 */
-    INPUT_DEVICE_TYPE_UNKNOWN = 0,
-    /** 设备类型键盘 */
-    INPUT_DEVICE_TYPE_KEYBOARD,
-    /** 设备类型鼠标 */
-    INPUT_DEVICE_TYPE_MOUSE,
-    /** 设备类型触摸板 */
-    INPUT_DEVICE_TYPE_TOUCHPAD,
-    /** 设备类型触屏 */
-    INPUT_DEVICE_TYPE_TOUCHSCREEN,
-    /** 设备类型摇杆 */
-    INPUT_DEVICE_TYPE_JOYSTICK,
-    /** 设备类型轨迹球 */
-    INPUT_DEVICE_TYPE_TRACKBALL,
-} Input_DeviceType;
-
-/**
  * @brief Defines a lifecycle callback for keyEvent. If the callback is triggered, keyEvent will be destroyed.
  * 
  * @param keyEvent Key event object.
@@ -290,22 +268,20 @@ typedef void (*Input_TouchEventCallback)(const Input_TouchEvent* touchEvent);
 typedef void (*Input_AxisEventCallback)(const Input_AxisEvent* axisEvent);
 
 /**
- * @brief 回调函数，用于回调输入设备的上线事件，deviceTypes生命周期为回调函数内，出了回调函数，deviceTypes的内存将会被释放。
+ * @brief 回调函数，用于回调输入设备的上线事件。
  * @param deviceId 设备的id。
- * @param deviceTypes 设备类型的数组。
- * @param length 设备类型数组的长度。
+ * @param type 有关输入设备的能力信息，比如设备是触摸屏、触控板、键盘等;
  * @since 13
  */
-typedef void (*Input_DeviceAddedCallback)(int32_t deviceId, int32_t* deviceTypes, int32_t length);
+typedef void (*Input_DeviceAddedCallback)(int32_t deviceId, int32_t type);
 
 /**
- * @brief 回调函数，用于回调输入设备的下线事件，deviceTypes生命周期为回调函数内，出了回调函数，deviceTypes的内存将会被释放。
+ * @brief 回调函数，用于回调输入设备的下线事件。
  * @param deviceId 设备的id。
- * @param deviceTypes 设备类型的数组。
- * @param length 设备类型数组的长度。
+ * @param type 有关输入设备的能力信息，比如设备是触摸屏、触控板、键盘等;
  * @since 13
  */
-typedef void (*Input_DeviceRemovedCallback)(int32_t deviceId, int32_t* deviceTypes, int32_t length);
+typedef void (*Input_DeviceRemovedCallback)(int32_t deviceId, int32_t type);
 
 /**
  * @brief Defines the structure for the interceptor of event callbacks,
@@ -1416,7 +1392,7 @@ Input_Result OH_Input_UnregisterDeviceListener(Input_DeviceListener* listener);
  * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 13
  */
-Input_Result OH_Input_UnregisterDeviceListener();
+Input_Result OH_Input_UnregisterDeviceListeners();
 #ifdef __cplusplus
 }
 #endif
