@@ -346,10 +346,9 @@ typedef enum {
      * @brief Sets the gradient attribute, which can be set, reset, and obtained as required through APIs.
      *
      * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].f32: start angle of the linear gradient. This attribute takes effect only when
-     * {@link ArkUI_LinearGradientDirection} is set to <b>ARKUI_LINEAR_GRADIENT_DIRECTION_CUSTOM</b>.
-     * A positive value indicates a clockwise rotation from the origin, (0, 0). The default value is <b>180</b>. \n
-     * .value[1].i32: direction of the linear gradient. When it is set, the <b>angle</b> attribute does not take effect.
+     * .value[0].f32: start angle of the linear gradient. A positive value indicates a clockwise rotation from the
+     * origin, (0, 0). The default value is <b>180</b>. \n
+     * .value[1].i32: direction of the linear gradient. It does not take effect when <b>angle</b> is set.
      * The parameter type is {@link ArkUI_LinearGradientDirection}: \n
      * .value[2].i32: whether the colors are repeated. The default value is <b>false</b>. \n
      * .object: array of color stops, each of which consists of a color and its stop position.
@@ -361,7 +360,7 @@ typedef enum {
      * Format of the return value {@link ArkUI_AttributeItem}: \n
      * .value[0].f32: start angle of the linear gradient. \n
      * .value[1].i32: direction of the linear gradient. It does not take effect when <b>angle</b> is set. \n
-     * .value[2].i32: whether the colors are repeated. \n
+     * .value[0].i32: whether the colors are repeated. \n
      * .object: array of color stops, each of which consists of a color and its stop position.
      * Invalid colors are automatically skipped. \n
      * colors: colors of the color stops. \n
@@ -1605,9 +1604,8 @@ typedef enum {
      * with the {@link ArkUI_ThemeColorMode} enumeration value.\n
      * .value[2]?.i32 The color extraction mode used to represent the content blur effect takes\n
      * the {@link ArkUI_AdaptiveColor} enumeration value.\n
-     * .value[3]?.f32: blur degree. The value range is [0.0, 1.0]. \n
-     * .value[4]?.f32 It is a gray-level fuzzy parameter. The value range is [0,127].\n
-     * .value[5]?.f32 It is a gray-level fuzzy parameter. The value range is [0,127].\n
+     * .value[3]?.i32 It is a gray-level fuzzy parameter. The value range is [0,127].\n
+     * .value[4]?.i32 It is a gray-level fuzzy parameter. The value range is [0,127].\n
      * \n
      * Format of the return value {@link ArkUI_AttributeItem}:\n
      * .value[0].i32 Represents the content blurring style, and uses the {@link ArkUI_BlurStyle} enumeration value.\n
@@ -1615,28 +1613,26 @@ typedef enum {
      * with the {@link ArkUI_ThemeColorMode} enumeration value.\n
      * .value[2].i32 The color extraction mode used to represent the content blur effect takes\n
      * the {@link ArkUI_AdaptiveColor} enumeration value.\n
-     * .value[3].f32: blur degree. The value range is [0.0, 1.0]. \n
-     * .value[4].f32 It is a gray-level fuzzy parameter. The value range is [0,127].\n
-     * .value[5].f32 It is a gray-level fuzzy parameter. The value range is [0,127].\n
+     * .value[3].i32 It is a gray-level fuzzy parameter. The value range is [0,127].\n
+     * .value[4].i32 It is a gray-level fuzzy parameter. The value range is [0,127].\n
      *
      */
     NODE_FOREGROUND_BLUR_STYLE,
 
     /**
-     * @brief Defines the component size and position for layout.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief Defines layout rect attribute, which can be set, reset, and obtained as required through APIs.
      *
      * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: X coordinate of the component, in px. \n
-     * .value[1].i32: Y coordinate of the component, in px. \n
-     * .value[2].i32: width of the component, in px. \n
-     * .value[3].i32: height of the component, in px. \n
+     * .value[0].i32: x position of the component.
+     * .value[1].i32: y position of the component.
+     * .value[2].i32: width of the component.
+     * .value[3].i32: height of the component.
      * \n
      * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: X coordinate of the component, in px. \n
-     * .value[1].i32: Y coordinate of the component, in px. \n
-     * .value[2].i32: width of the component, in px. \n
-     * .value[3].i32: height of the component, in px. \n
+     * .value[0].i32: x position of the component.
+     * .value[1].i32: y position of the component.
+     * .value[2].i32: width of the component.
+     * .value[3].i32: height of the component.
      *
      */
     NODE_LAYOUT_RECT,
@@ -1776,8 +1772,8 @@ typedef enum {
      *
      */
     NODE_VISIBLE_AREA_CHANGE_RATIO = 93,
-
-    /**
+    
+     /**
      * @brief Sets the transition effect when the component is inserted or deleted.
      * This attribute can be set, and obtained as required through APIs.
      *
@@ -1789,6 +1785,16 @@ typedef enum {
      *
      */
     NODE_TRANSITION = 94,
+
+    /**
+     * @brief Defines the component ID.
+     * This attribute can be obtained through APIs.
+     *
+     * Format of the {@link ArkUI_AttributeItem} parameter for obtaining the attribute:\n
+     * .value[0].i32: component ID. \n
+     *
+     */
+    NODE_UNIQUE_ID = 95,
 
     /**
      * @brief Set the current component system focus box style.
@@ -1805,16 +1811,6 @@ typedef enum {
     NODE_FOCUS_BOX = 96,
 
     /**
-     * @brief Defines the component ID.
-     * This attribute can be obtained through APIs.
-     *
-     * Format of the {@link ArkUI_AttributeItem} parameter for obtaining the attribute:\n
-     * .value[0].i32: component ID. \n
-     *
-     */
-    NODE_UNIQUE_ID = 95,
-
-    /**
      * @brief Defines the moving distance limit for the component-bound tap gesture.
      * This attribute can be set as required through APIs.
      *
@@ -1823,7 +1819,7 @@ typedef enum {
      *
      */
     NODE_CLICK_DISTANCE = 97,
-    
+
     /**
      * @brief Defines the text content attribute, which can be set, reset, and obtained as required through APIs.
      *
@@ -2935,6 +2931,7 @@ typedef enum {
      *
      */
     NODE_TEXT_INPUT_NUMBER_OF_LINES,
+
     /**
      * @brief Defines the default placeholder text for the multi-line text box.
      * This attribute can be set, reset, and obtained as required through APIs.
@@ -3218,6 +3215,7 @@ typedef enum {
      *
      */
     NODE_TEXT_AREA_SHOW_KEYBOARD_ON_FOCUS,
+
     /**
      * @brief When this property is set, the height of the textArea component is calculated using this property.
      *
@@ -5379,7 +5377,8 @@ typedef enum {
     /**
      * @brief Defines the gesture event type.
      *
-     * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is {@link ArkUI_UIInputEvent}.
+     * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
+     * {@link ArkUI_UIInputEvent}.
      */
     NODE_TOUCH_EVENT = 0,
 
