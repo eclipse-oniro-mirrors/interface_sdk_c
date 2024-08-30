@@ -311,7 +311,6 @@ typedef struct Input_InterceptorEventCallback {
 
 /**
  * @brief 定义一个结构体用于监听设备设插拔
- * 包含了 addedCallback, removedCallback
  * @since 13
  */
 typedef struct Input_DeviceListener {
@@ -1260,12 +1259,12 @@ const char* OH_Input_KeyCodeToString(int32_t keyCode);
 /**
  * @brief 注册设备热插拔的监听器
  *
- * @param listener 用于监听设备热插拔的监听器.
+ * @param listener 指向监听设备热插拔的监听器的指针.
  *
- * @return OH_Input_RegisterDeviceListener status code, specifically,
- *         {@link INPUT_SUCCESS} if the operation is successful;\n
+ * @return OH_Input_RegisterDeviceListener 的返回值, 具体如下:
+ *         {@link INPUT_SUCCESS} 调用成功;\n
  *         {@link INPUT_PARAMETER_ERROR} listener 为NULL 或 listener 已被注册
- *         {@link INPUT_SERVICE_EXCEPTION} 服务端连接异常
+ *         {@link INPUT_SERVICE_EXCEPTION} 由于服务异常调用失败
  * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 13
  */
@@ -1274,12 +1273,12 @@ Input_Result OH_Input_RegisterDeviceListener(Input_DeviceListener* listener);
 /**
  * @brief 取消注册设备热插拔的监听器
  *
- * @param listener 用于监听设备热插拔的监听器.
+ * @param listener  指向监听设备热插拔的监听器的指针.
  *
- * @return OH_Input_UnregisterDeviceListener status code, specifically,
- *         {@link INPUT_SUCCESS} if the operation is successful;\n
+ * @return OH_Input_UnregisterDeviceListener 的返回值, 具体如下:
+ *         {@link INPUT_SUCCESS} 调用成功;\n
  *         {@link INPUT_PARAMETER_ERROR} listener 为 NULL, listener 未注册或已被取消注册
- *         {@link INPUT_SERVICE_EXCEPTION} 服务端连接异常
+ *         {@link INPUT_SERVICE_EXCEPTION} 由于服务异常调用失败
  * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 13
  */
