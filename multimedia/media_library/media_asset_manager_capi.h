@@ -39,6 +39,8 @@
 #ifndef MULTIMEDIA_MEDIA_LIBRARY_NATIVE_MEDIA_ASSET_MANAGER_H
 #define MULTIMEDIA_MEDIA_LIBRARY_NATIVE_MEDIA_ASSET_MANAGER_H
 
+#include <stdbool.h>
+
 #include "media_asset_base_capi.h"
 
 #ifdef __cplusplus
