@@ -197,7 +197,7 @@ struct OhosPixelMapCreateOps {
  * returns {@link IRNdkErrCode} IMAGE_RESULT_ENCODE_FAILED - if image add pixel map fail.
  * returns {@link IRNdkErrCode} IMAGE_RESULT_HW_DECODE_UNSUPPORT - if image hardware decode unsupported.
  * returns {@link IRNdkErrCode} IMAGE_RESULT_HW_DECODE_FAILED - if hard decode failed.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_ERR_IPC - if ipc error.
+ * returns {@link IRNdkErrCode} IMAGE_RESULT_ERR_IPC - if IPC error.
  * returns {@link IRNdkErrCode} IMAGE_RESULT_INDEX_INVALID - if invalid index.
  * returns {@link IRNdkErrCode} IMAGE_RESULT_ALPHA_TYPE_ERROR - if hard decode failed.
  * returns {@link IRNdkErrCode} IMAGE_RESULT_ALLOCATER_TYPE_ERROR - if hard decode failed.
@@ -264,7 +264,7 @@ int32_t OH_PixelMap_CreatePixelMapWithStride(napi_env env, OhosPixelMapCreateOps
  * returns {@link IRNdkErrCode} IMAGE_RESULT_ENCODE_FAILED - if image add pixel map fail.
  * returns {@link IRNdkErrCode} IMAGE_RESULT_HW_DECODE_UNSUPPORT - if image hardware decode unsupported.
  * returns {@link IRNdkErrCode} IMAGE_RESULT_HW_DECODE_FAILED - if hard decode failed.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_ERR_IPC - if ipc error.
+ * returns {@link IRNdkErrCode} IMAGE_RESULT_ERR_IPC - if IPC error.
  * returns {@link IRNdkErrCode} IMAGE_RESULT_INDEX_INVALID - if invalid index.
  * returns {@link IRNdkErrCode} IMAGE_RESULT_ALPHA_TYPE_ERROR - if hard decode failed.
  * returns {@link IRNdkErrCode} IMAGE_RESULT_ALLOCATER_TYPE_ERROR - if hard decode failed.

@@ -52,7 +52,7 @@ typedef enum {
     IMAGE_RESULT_SUCCESS = 0,                                      // Operation success
     IMAGE_RESULT_BAD_PARAMETER = -1,                               // Invalid parameter
     IMAGE_RESULT_IMAGE_RESULT_BASE = IMAGE_RESULT_BASE,            // Operation failed
-    IMAGE_RESULT_ERR_IPC = IMAGE_RESULT_BASE + 1,                  // ipc error
+    IMAGE_RESULT_ERR_IPC = IMAGE_RESULT_BASE + 1,                  // IPC error.
     IMAGE_RESULT_ERR_SHAMEM_NOT_EXIST = IMAGE_RESULT_BASE + 2,     // sharememory error
     IMAGE_RESULT_ERR_SHAMEM_DATA_ABNORMAL = IMAGE_RESULT_BASE + 3, // sharememory data abnormal
     IMAGE_RESULT_DECODE_ABNORMAL = IMAGE_RESULT_BASE + 4,          // image decode error
@@ -129,8 +129,8 @@ typedef enum {
     IMAGE_RESULT_MEDIA_DENCODE_ICC_FAILED = IMAGE_RESULT_BASE + 75,           // image dencode ICC fail
     IMAGE_RESULT_MEDIA_ENCODE_ICC_FAILED = IMAGE_RESULT_BASE + 76,            // image encode ICC fail
 
-    IMAGE_RESULT_MEDIA_READ_PIXELMAP_FAILED = IMAGE_RESULT_BASE + 150,        // read pixelmap failed
-    IMAGE_RESULT_MEDIA_WRITE_PIXELMAP_FAILED = IMAGE_RESULT_BASE + 151,       // write pixelmap failed
+    IMAGE_RESULT_MEDIA_READ_PIXELMAP_FAILED = IMAGE_RESULT_BASE + 150,        // Failed to read the pixel map.
+    IMAGE_RESULT_MEDIA_WRITE_PIXELMAP_FAILED = IMAGE_RESULT_BASE + 151,       // Failed to write the pixel map.
     IMAGE_RESULT_MEDIA_PIXELMAP_NOT_ALLOW_MODIFY = IMAGE_RESULT_BASE + 152,   // pixelmap not allow modify
     IMAGE_RESULT_MEDIA_CONFIG_FAILED = IMAGE_RESULT_BASE + 153,               // config error
     IMAGE_RESULT_JNI_ENV_ABNORMAL = IMAGE_RESULT_BASE + 154,                  // Abnormal JNI environment
