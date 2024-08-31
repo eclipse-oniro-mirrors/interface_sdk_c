@@ -1354,7 +1354,9 @@ typedef enum {
 
     /**
      * @brief Defines the focused state. This attribute can be set and obtained as required through APIs.
-     *
+     * @note Setting the parameter to <b>0</b> shifts focus from the currently focused component on the current level
+     * of the page to the root container.
+     * 
      * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
      * .value[0].i32: The parameter type is 1 or 0.
      * \n
@@ -4449,7 +4451,7 @@ typedef enum {
      * @brief Scroll to the next or previous page.
      * 
      * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32 Indicates whether to scroll to next page. Value 1 indicates scroll to next page and value 0
+     * .value[0].i32 Indicates whether to scroll to next page. Value 0 indicates scroll to next page and value 1
      * indicates scroll to previous page. \n
      * .value[1]?.i32 Indicates whether to enable animation. Value 1 indicates enable and 0 indicates disable. \n
      *
