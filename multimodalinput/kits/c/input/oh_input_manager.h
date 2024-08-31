@@ -1361,7 +1361,6 @@ Input_Result OH_Input_GetAllSystemHotkeys(Input_Hotkey **hotkey, int32_t *count)
  * @return OH_Input_RegisterDeviceListener status code, specifically,
  *         {@link INPUT_SUCCESS} if the operation is successful;\n
  *         {@link INPUT_PARAMETER_ERROR} if listener is NULL;
- *         {@link INPUT_SERVICE_EXCEPTION} if the service is abnormal.
  * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 13
  */
