@@ -318,7 +318,7 @@ int OH_UdmfRecord_AddHtml(OH_UdmfRecord* pThis, OH_UdsHtml* html);
 /**
  * @brief Add one {OH_UdsAppItem} data to the {@link OH_UdmfRecord} record.
  *
- * @param repThisord Represents a pointer to an instance of {@link OH_UdmfRecord}.
+ * @param pThis Represents a pointer to an instance of {@link OH_UdmfRecord}.
  * @param appItem Represents a pointer to an instance of {@link OH_UdsAppItem}.
  * @return Returns the status code of the execution. See {@link Udmf_ErrCode}.
  *         {@link UDMF_E_OK} success.
@@ -327,6 +327,32 @@ int OH_UdmfRecord_AddHtml(OH_UdmfRecord* pThis, OH_UdsHtml* html);
  * @since 12
  */
 int OH_UdmfRecord_AddAppItem(OH_UdmfRecord* pThis, OH_UdsAppItem* appItem);
+
+/**
+ * @brief Add one {OH_UdsFileUri} data to the {@link OH_UdmfRecord} record.
+ *
+ * @param pThis Represents a pointer to an instance of {@link OH_UdmfRecord}.
+ * @param fileUri Represents a pointer to an instance of {@link OH_UdsFileUri}.
+ * @return Returns the status code of the execution. See {@link Udmf_ErrCode}.
+ *         {@link UDMF_E_OK} success.
+ *         {@link UDMF_E_INVALID_PARAM} The error code for common invalid args.
+ * @see OH_UdmfRecord OH_UdsFileUri Udmf_ErrCode.
+ * @since 13
+ */
+int OH_UdmfRecord_AddFileUri(OH_UdmfRecord* pThis, OH_UdsFileUri* fileUri);
+
+/**
+ * @brief Add one {OH_UdsPixelMap} data to the {@link OH_UdmfRecord} record.
+ *
+ * @param pThis Represents a pointer to an instance of {@link OH_UdmfRecord}.
+ * @param pixelMap Represents a pointer to an instance of {@link OH_UdsPixelMap}.
+ * @return Returns the status code of the execution. See {@link Udmf_ErrCode}.
+ *         {@link UDMF_E_OK} success.
+ *         {@link UDMF_E_INVALID_PARAM} The error code for common invalid args.
+ * @see OH_UdmfRecord OH_UdsPixelMap Udmf_ErrCode.
+ * @since 13
+ */
+int OH_UdmfRecord_AddPixelMap(OH_UdmfRecord* pThis, OH_UdsPixelMap* pixelMap);
 
 /**
  * @brief Add one {@link OH_UdsArrayBuffer} data to the {@link OH_UdmfRecord} record.
@@ -444,6 +470,32 @@ int OH_UdmfRecord_SetProvider(OH_UdmfRecord* pThis, const char* const* types, un
     OH_UdmfRecordProvider* provider);
 
 /**  
+ * @brief Get one {OH_UdsFileUri} data from the {@link OH_UdmfRecord} record.
+ *
+ * @param pThis Represents a pointer to an instance of {@link OH_UdmfRecord}.
+ * @param fileUri Represents a pointer to an instance of {@link OH_UdsFileUri}.
+ * @return Returns the status code of the execution. See {@link Udmf_ErrCode}.
+ *         {@link UDMF_E_OK} success.
+ *         {@link UDMF_E_INVALID_PARAM} The error code for common invalid args.
+ * @see OH_UdmfRecord OH_UdsFileUri Udmf_ErrCode.
+ * @since 13
+ */
+int OH_UdmfRecord_GetFileUri(OH_UdmfRecord* pThis, OH_UdsFileUri* fileUri);
+
+/**
+ * @brief Get one {OH_UdsPixelMap} data from the {@link OH_UdmfRecord} record.
+ *
+ * @param pThis Represents a pointer to an instance of {@link OH_UdmfRecord}.
+ * @param pixelMap Represents a pointer to an instance of {@link OH_UdsPixelMap}.
+ * @return Returns the status code of the execution. See {@link Udmf_ErrCode}.
+ *         {@link UDMF_E_OK} success.
+ *         {@link UDMF_E_INVALID_PARAM} The error code for common invalid args.
+ * @see OH_UdmfRecord OH_UdsPixelMap Udmf_ErrCode.
+ * @since 13
+ */
+int OH_UdmfRecord_GetPixelMap(OH_UdmfRecord* pThis, OH_UdsPixelMap* pixelMap);
+
+/**
  * @brief Get one {@link OH_UdsArrayBuffer} data from the {@link OH_UdmfRecord} record.
  *
  * @param record Represents a pointer to an instance of {@link OH_UdmfRecord}.
