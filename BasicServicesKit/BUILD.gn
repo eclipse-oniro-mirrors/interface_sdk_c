@@ -78,6 +78,20 @@ ohos_ndk_library("libcommonevent_ndk") {
   ]
 }
 
+ohos_ndk_headers("ohbattery_info_header") {
+  dest_dir = "$ndk_headers_out_dir/BasicServicesKit/"
+  sources = [ "./ohbattery_info.h" ]
+}
+
+ohos_ndk_library("libohbattery_info_ndk") {
+  output_name = "ohbattery_info"
+  output_extension = "so"
+  ndk_description_file = "./ohbattery_info.ndk.json"
+  min_compact_version = "13"
+  system_capability = "SystemCapability.PowerManager.BatteryManager.Core"
+  system_capability_headers = [ "BasicServicesKit/ohbattery_info.h" ]
+}
+
 ohos_ndk_headers("time_service_ndk_header") {
   dest_dir = "$ndk_headers_out_dir/BasicServicesKit/"
   sources = [ "./time_service.h" ]
