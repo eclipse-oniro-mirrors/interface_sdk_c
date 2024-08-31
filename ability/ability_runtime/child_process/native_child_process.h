@@ -55,12 +55,6 @@ typedef enum Ability_NativeChildProcess_ErrCode {
     NCP_NO_ERROR = 0,
 
     /**
-     * @error Operation not permitted.
-     * @since 13
-     */
-    NCP_ERR_NO_PERMISSION = 201,
-
-    /**
      * @error Invalid parameter.
      */
     NCP_ERR_INVALID_PARAM = 401,
@@ -252,16 +246,27 @@ typedef struct NativeChildProcess_Args {
 /**
  * @brief Starts a child process, loads the specified dynamic library file.
  *
- * @permission {@code ohos.permission.START_NATIVE_CHILD_PROCESS}
- * @param entry Name of the entry of the dynamic library file loaded in the child process. The value cannot be nullptr.
+ * The dynamic library specified must implement a function with NativeChildProcess_Args as a
+ * pamameter(function name can be customized), and export the function, such as:\n
+ *   1. void Main(NativeChildProcess_Args args);
+ *
+ * The processing logic sequence is shown in the following pseudocode: \n
+ *   Main process: \n
+ *     1. OH_Ability_StartNativeChildProcess(entryPoint, args, options)\n
+ *   Child process: \n
+ *     2. dlopen(libName)\n
+ *     3. dlsym("Main")\n
+ *     4. Main(args)\n
+ *     5. The child process exits after the Main(args) function is returned \n
+ *
+ * @param entry Dynamic library and entry function loaded in child process, such as "libEntry.so:Main".
+ * The value cannot be nullptr.
  * @param args The arguments passed to the child process.
  * For details, see {@link NativeChildProcess_Args}.
  * @param options The child process options.
  * For details, see {@link NativeChildProcess_Options}.
  * @param pid The started child process id.
  * @return Returns {@link NCP_NO_ERROR} if the call is successful.\n
- * Returns {@link NCP_ERR_NO_PERMISSION} if the operation is not permitted.
- * The permission {@code ohos.permission.START_NATIVE_CHILD_PROCESS} is needed.\n
  * Returns {@link NCP_ERR_INVALID_PARAM} if the dynamic library name or callback function pointer is invalid.\n
  * Returns {@link NCP_ERR_NOT_SUPPORTED} if the device does not support the creation of native child processes.\n
  * Returns {@link NCP_ERR_ALREADY_IN_CHILD} if it is not allowed to create another child process in the child process.\n
