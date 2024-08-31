@@ -49,10 +49,11 @@
 /**
  * @brief Enumerates the task priority types.
  *
+ * @since 12
  */
 typedef enum {
     /** should be distributed at once if possible, handle time equals to send time, prior to high level */
-    ffrt_queue_priority_immediate,
+    ffrt_queue_priority_immediate = 0,
     /** high priority, sorted by handle time, prior to low level. */
     ffrt_queue_priority_high,
     /** low priority, sorted by handle time, prior to idle level. */
@@ -182,6 +183,23 @@ typedef struct {
     long storage;
 } ffrt_mutexattr_t;
 
+/**
+ * @brief ffrt mutex type enum
+ *
+ * Describes the mutex type, ffrt_mutex_normal is normal mutex;
+ * ffrt_mutex_recursive is recursive mutex, ffrt_mutex_default is normal mutex.
+ *
+ * @since 12
+ */
+typedef enum {
+    /** ffrt normal mutex type */
+    ffrt_mutex_normal = 0,
+    /** ffrt recursive mutex type */
+    ffrt_mutex_recursive = 2,
+    /** ffrt default mutex type */
+    ffrt_mutex_default = ffrt_mutex_normal
+} ffrt_mutex_type;
+
 typedef struct {
     uint32_t storage[(ffrt_mutex_storage_size + sizeof(uint32_t) - 1) / sizeof(uint32_t)];
 } ffrt_mutex_t;
@@ -190,10 +208,25 @@ typedef struct {
     uint32_t storage[(ffrt_cond_storage_size + sizeof(uint32_t) - 1) / sizeof(uint32_t)];
 } ffrt_cond_t;
 
+/**
+ * @brief poller callback.
+ *
+ * @since 12
+ */
 typedef void (*ffrt_poller_cb)(void* data, uint32_t event);
 
+/**
+ * @brief timer callback.
+ *
+ * @since 12
+ */
 typedef void (*ffrt_timer_cb)(void* data);
 
+/**
+ * @brief timer handler.
+ *
+ * @since 12
+ */
 typedef int ffrt_timer_t;
 
 

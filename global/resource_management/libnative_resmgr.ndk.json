@@ -22,5 +22,33 @@
     {
         "first_introduced": "12",
         "name": "OH_ResourceManager_GetDrawableDescriptorByName"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_ResourceManager_GetMediaBase64Data"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_ResourceManager_GetMediaBase64DataByName"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_ResourceManager_GetMediaData"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_ResourceManager_GetMediaDataByName"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_ResourceManager_GetDrawableDescriptorData"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_ResourceManager_GetDrawableDescriptorDataByName"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_ResourceManager_GetLocalesData"
     }
 ]

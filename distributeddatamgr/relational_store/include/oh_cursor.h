@@ -34,6 +34,7 @@
  *
  * @brief Provides functions and enumerations related to the resultSet.
  *
+ * @kit ArkData
  * @since 10
  */
 

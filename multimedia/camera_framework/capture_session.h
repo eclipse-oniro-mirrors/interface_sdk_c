@@ -31,6 +31,7 @@
  * @brief Declare the capture Session concepts.
  *
  * @library libohcamera.so
+ * @kit CameraKit
  * @syscap SystemCapability.Multimedia.Camera.Core
  * @since 11
  * @version 1.0
@@ -47,6 +48,7 @@
 #include "photo_output.h"
 #include "video_output.h"
 #include "metadata_output.h"
+#include "native_buffer/native_buffer.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -81,6 +83,16 @@ typedef void (*OH_CaptureSession_OnFocusStateChange)(Camera_CaptureSession* sess
  * @since 11
  */
 typedef void (*OH_CaptureSession_OnError)(Camera_CaptureSession* session, Camera_ErrorCode errorCode);
+
+/**
+ * @brief Capture session smooth zoom info callback.
+ *
+ * @param session the {@link Camera_CaptureSession} which deliver the callback.
+ * @param smoothZoomInfo the {@link Camera_SmoothZoomInfo} which delivered by the callback.
+ * @since 12
+ */
+typedef void (*OH_CaptureSession_OnSmoothZoomInfo)(Camera_CaptureSession* session,
+    Camera_SmoothZoomInfo* smoothZoomInfo);
 
 /**
  * @brief A listener for capture session.
@@ -126,26 +138,53 @@ Camera_ErrorCode OH_CaptureSession_UnregisterCallback(Camera_CaptureSession* ses
     CaptureSession_Callbacks* callback);
 
 /**
+ * @brief Register smooth zoom information event callback.
+ *
+ * @param session the {@link Camera_CaptureSession} instance.
+ * @param smoothZoomInfoCallback the {@link OH_CaptureSession_OnSmoothZoomInfo} to be registered.
+ * @return {@link #CAMERA_OK} if the method call succeeds.
+ *         {@link #CAMERA_INVALID_ARGUMENT} if parameter missing or parameter type incorrect.
+ * @since 12
+ */
+Camera_ErrorCode OH_CaptureSession_RegisterSmoothZoomInfoCallback(Camera_CaptureSession* session,
+    OH_CaptureSession_OnSmoothZoomInfo smoothZoomInfoCallback);
+
+/**
+ * @brief Unregister smooth zoom information event callback.
+ *
+ * @param session the {@link Camera_CaptureSession} instance.
+ * @param smoothZoomInfoCallback the {@link OH_CaptureSession_OnSmoothZoomInfo} to be unregistered.
+ * @return {@link #CAMERA_OK} if the method call succeeds.
+ *         {@link #CAMERA_INVALID_ARGUMENT} if parameter missing or parameter type incorrect.
+ * @since 12
+ */
+Camera_ErrorCode OH_CaptureSession_UnregisterSmoothZoomInfoCallback(Camera_CaptureSession* session,
+    OH_CaptureSession_OnSmoothZoomInfo smoothZoomInfoCallback);
+
+/**
  * @brief Specifies the specific mode.
+ *
+ * This interface cannot be used after {@link OH_CaptureSession_BeginConfig}.
+ * We recommend using this interface immediately after using {@link OH_CameraManager_CreateCaptureSession}.
  *
  * @param session the {@link Camera_CaptureSession} instance.
  * @param sceneMode the {@link CaptureSession_SceneMode} instance.
  * @return {@link #CAMERA_OK} if the method call succeeds.
- *         {@link #INVALID_ARGUMENT} if parameter missing or parameter type incorrect.
- *         {@link #OPERATION_NOT_ALLOWED} if operation not allowed.
+ *         {@link #CAMERA_INVALID_ARGUMENT} if parameter missing or parameter type incorrect.
+ *         {@link #CAMERA_OPERATION_NOT_ALLOWED} if operation not allowed.
  *         {@link #CAMERA_SESSION_CONFIG_LOCKED} if session config locked.
  * @since 12
  */
 Camera_ErrorCode OH_CaptureSession_SetSessionMode(Camera_CaptureSession* session, Camera_SceneMode sceneMode);
- 
+
 /**
- * @brief Specifies the specific mode. The default mode is the photomode.
+ * @brief Add Secure output for camera.
  *
  * @param session the {@link Camera_CaptureSession} instance.
  * @param previewOutput the target {@link Camera_PreviewOutput} to Set as a secure flow.
  * @return {@link #CAMERA_OK} if the method call succeeds.
- *         {@link #INVALID_ARGUMENT} if parameter missing or parameter type incorrect.
- *         {@link #OPERATION_NOT_ALLOWED} if operation not allowed.
+ *         {@link #CAMERA_INVALID_ARGUMENT} if parameter missing or parameter type incorrect.
+ *         {@link #CAMERA_OPERATION_NOT_ALLOWED} if operation not allowed.
  *         {@link #CAMERA_SESSION_CONFIG_LOCKED} if session config locked.
  * @since 12
  */
@@ -621,6 +660,202 @@ Camera_ErrorCode OH_CaptureSession_GetVideoStabilizationMode(Camera_CaptureSessi
  */
 Camera_ErrorCode OH_CaptureSession_SetVideoStabilizationMode(Camera_CaptureSession* session,
     Camera_VideoStabilizationMode mode);
+
+/**
+ * @brief Determines whether the camera input can be added into the session.
+ *
+ * @param session the {@link Camera_CaptureSession} instance.
+ * @param cameraInput the target {@link Camera_Input} to set.
+ * @param isSuccessful the result of whether the camera input can be added into the session.
+ * @return {@link #CAMERA_OK} if the method call succeeds.
+ *         {@link #CAMERA_INVALID_ARGUMENT} if parameter missing or parameter type incorrect.
+ * @since 12
+ */
+Camera_ErrorCode OH_CaptureSession_CanAddInput(Camera_CaptureSession* session,
+    Camera_Input* cameraInput, bool* isSuccessful);
+
+/**
+ * @brief Determines whether the camera preview output can be added into the session.
+ *
+ * @param session the {@link Camera_CaptureSession} instance.
+ * @param cameraOutput the target {@link Camera_PreviewOutput} to set.
+ * @param isSuccessful the result of whether the camera preview output can be added into the session.
+ * @return {@link #CAMERA_OK} if the method call succeeds.
+ *         {@link #CAMERA_INVALID_ARGUMENT} if parameter missing or parameter type incorrect.
+ * @since 12
+ */
+Camera_ErrorCode OH_CaptureSession_CanAddPreviewOutput(Camera_CaptureSession* session,
+    Camera_PreviewOutput* cameraOutput, bool* isSuccessful);
+
+/**
+ * @brief Determines whether the camera photo output can be added into the session.
+ *
+ * @param session the {@link Camera_CaptureSession} instance.
+ * @param cameraOutput the target {@link Camera_PhotoOutput} to set.
+ * @param isSuccessful the result of whether the camera photo output can be added into the session.
+ * @return {@link #CAMERA_OK} if the method call succeeds.
+ *         {@link #CAMERA_INVALID_ARGUMENT} if parameter missing or parameter type incorrect.
+ * @since 12
+ */
+Camera_ErrorCode OH_CaptureSession_CanAddPhotoOutput(Camera_CaptureSession* session,
+    Camera_PhotoOutput* cameraOutput, bool* isSuccessful);
+
+/**
+ * @brief Determines whether the camera video output can be added into the session.
+ *
+ * @param session the {@link Camera_CaptureSession} instance.
+ * @param cameraOutput the target {@link Camera_VideoOutput} to set.
+ * @param isSuccessful the result of whether the camera video output can be added into the session.
+ * @return {@link #CAMERA_OK} if the method call succeeds.
+ *         {@link #CAMERA_INVALID_ARGUMENT} if parameter missing or parameter type incorrect.
+ * @since 12
+ */
+Camera_ErrorCode OH_CaptureSession_CanAddVideoOutput(Camera_CaptureSession* session,
+    Camera_VideoOutput* cameraOutput, bool* isSuccessful);
+
+/**
+ * @brief Check the preconfig type is supported or not.
+ *
+ * @param session the {@link Camera_CaptureSession} instance.
+ * @param preconfigType The type {@link Camera_PreconfigType} to check support for.
+ * @param canPreconfig The result of whether preconfiguration supported.
+ * @return {@link #CAMERA_OK} if the method call succeeds.
+ *         {@link #CAMERA_INVALID_ARGUMENT} if parameter missing or parameter type incorrect.
+ * @since 12
+ */
+Camera_ErrorCode OH_CaptureSession_CanPreconfig(Camera_CaptureSession* session,
+    Camera_PreconfigType preconfigType, bool* canPreconfig);
+
+/**
+ * @brief Check the preconfig type with ratio is supported or not.
+ *
+ * @param session the {@link Camera_CaptureSession} instance.
+ * @param preconfigType The type {@link Camera_PreconfigType} to check support for.
+ * @param preconfigRatio The ratio {@link Camera_PreconfigRatio} to check support for.
+ * @param canPreconfig The result of whether preconfiguration supported.
+ * @return {@link #CAMERA_OK} if the method call succeeds.
+ *         {@link #CAMERA_INVALID_ARGUMENT} if parameter missing or parameter type incorrect.
+ * @since 12
+ */
+Camera_ErrorCode OH_CaptureSession_CanPreconfigWithRatio(Camera_CaptureSession* session,
+    Camera_PreconfigType preconfigType, Camera_PreconfigRatio preconfigRatio, bool* canPreconfig);
+
+/**
+ * @brief Set the preconfig type.
+ *
+ * @param session the {@link Camera_CaptureSession} instance.
+ * @param preconfigType The type {@link Camera_PreconfigType} to check support for.
+ * @return {@link #CAMERA_OK} if the method call succeeds.
+ *         {@link #CAMERA_SERVICE_FATAL_ERROR} if the internal preconfiguration fails.
+ *         {@link #CAMERA_INVALID_ARGUMENT} if parameter missing or parameter type incorrect.
+ * @since 12
+ */
+Camera_ErrorCode OH_CaptureSession_Preconfig(Camera_CaptureSession* session,
+    Camera_PreconfigType preconfigType);
+
+/**
+ * @brief Set the preconfig type with ratio.
+ *
+ * @param session the {@link Camera_CaptureSession} instance.
+ * @param preconfigType The type {@link Camera_PreconfigType} to check support for.
+ * @param preconfigRatio The ratio {@link Camera_PreconfigRatio} to check support for.
+ * @return {@link #CAMERA_OK} if the method call succeeds.
+ *         {@link #CAMERA_SERVICE_FATAL_ERROR} if the internal preconfiguration fails.
+ *         {@link #CAMERA_INVALID_ARGUMENT} if parameter missing or parameter type incorrect.
+ * @since 12
+ */
+Camera_ErrorCode OH_CaptureSession_PreconfigWithRatio(Camera_CaptureSession* session,
+    Camera_PreconfigType preconfigType, Camera_PreconfigRatio preconfigRatio);
+
+/**
+ * @brief Query the exposure value.
+ *
+ * @param session the {@link Camera_CaptureSession} instance.
+ * @param exposureValue the current exposure value.
+ * @return {@link #CAMERA_OK} if the method call succeeds.
+ *         {@link #CAMERA_INVALID_ARGUMENT} if parameter missing or parameter type incorrect.
+ *         {@link #CAMERA_SESSION_NOT_CONFIG} if the capture session not config.
+ * @since 12
+ */
+Camera_ErrorCode OH_CaptureSession_GetExposureValue(Camera_CaptureSession* session, float* exposureValue);
+
+/**
+ * @brief Get current focal length.
+ *
+ * @param session the {@link Camera_CaptureSession} instance.
+ * @param focalLength the current focal length.
+ * @return {@link #CAMERA_OK} if the method call succeeds.
+ *         {@link #CAMERA_INVALID_ARGUMENT} if parameter missing or parameter type incorrect.
+ *         {@link #CAMERA_SESSION_NOT_CONFIG} if the capture session not config.
+ * @since 12
+ */
+Camera_ErrorCode OH_CaptureSession_GetFocalLength(Camera_CaptureSession* session, float* focalLength);
+
+/**
+ * @brief Set target zoom ratio by smooth method.
+ *
+ * @param session the {@link Camera_CaptureSession} instance.
+ * @param targetZoom the target zoom ratio to set.
+ * @param smoothZoomMode the {@link Camera_SmoothZoomMode} instance.
+ * @return {@link #CAMERA_OK} if the method call succeeds.
+ *         {@link #CAMERA_INVALID_ARGUMENT} if parameter missing or parameter type incorrect.
+ *         {@link #CAMERA_SESSION_NOT_CONFIG} if the capture session not config.
+ * @since 12
+ */
+Camera_ErrorCode OH_CaptureSession_SetSmoothZoom(Camera_CaptureSession* session,
+    float targetZoom, Camera_SmoothZoomMode smoothZoomMode);
+
+/**
+ * @brief Get the supported color spaces.
+ *
+ * @param session the {@link Camera_CaptureSession} instance.
+ * @param colorSpace the supported {@link OH_NativeBuffer_ColorSpace} list to be filled if the method call succeeds.
+ * @param size the size of supported color Spaces queried.
+ * @return {@link #CAMERA_OK} if the method call succeeds.
+ *         {@link #CAMERA_INVALID_ARGUMENT} if parameter missing or parameter type incorrect.
+ *         {@link #CAMERA_SESSION_NOT_CONFIG} if the capture session not config.
+ * @since 12
+ */
+Camera_ErrorCode OH_CaptureSession_GetSupportedColorSpaces(Camera_CaptureSession* session,
+    OH_NativeBuffer_ColorSpace** colorSpace, uint32_t* size);
+
+/**
+ * @brief Delete the color spaces.
+ *
+ * @param session the {@link Camera_CaptureSession} instance.
+ * @param colorSpace the target {@link OH_NativeBuffer_ColorSpace} list to be deleted if the method call succeeds.
+ * @return {@link #CAMERA_OK} if the method call succeeds.
+ *         {@link #CAMERA_INVALID_ARGUMENT} if parameter missing or parameter type incorrect.
+ * @since 12
+ */
+Camera_ErrorCode OH_CaptureSession_DeleteColorSpaces(Camera_CaptureSession* session,
+    OH_NativeBuffer_ColorSpace* colorSpace);
+
+/**
+ * @brief Get current color space.
+ *
+ * @param session the {@link Camera_CaptureSession} instance.
+ * @param colorSpace the current {@link OH_NativeBuffer_ColorSpace} .
+ * @return {@link #CAMERA_OK} if the method call succeeds.
+ *         {@link #CAMERA_INVALID_ARGUMENT} if parameter missing or parameter type incorrect.
+ *         {@link #CAMERA_SESSION_NOT_CONFIG} if the capture session not config.
+ * @since 12
+ */
+Camera_ErrorCode OH_CaptureSession_GetActiveColorSpace(Camera_CaptureSession* session,
+    OH_NativeBuffer_ColorSpace* colorSpace);
+
+/**
+ * @brief Set current color space.
+ *
+ * @param session the {@link Camera_CaptureSession} instance.
+ * @param colorSpace the target {@link OH_NativeBuffer_ColorSpace} to set.
+ * @return {@link #CAMERA_OK} if the method call succeeds.
+ *         {@link #CAMERA_INVALID_ARGUMENT} if parameter missing or parameter type incorrect.
+ *         {@link #CAMERA_SESSION_NOT_CONFIG} if the capture session not config.
+ * @since 12
+ */
+Camera_ErrorCode OH_CaptureSession_SetActiveColorSpace(Camera_CaptureSession* session,
+    OH_NativeBuffer_ColorSpace colorSpace);
 
 #ifdef __cplusplus
 }

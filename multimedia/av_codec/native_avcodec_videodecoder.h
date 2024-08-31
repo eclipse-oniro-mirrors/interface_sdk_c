@@ -146,6 +146,8 @@ OH_AVErrCode OH_VideoDecoder_SetSurface(OH_AVCodec *codec, OHNativeWindow *windo
  * {@link AV_ERR_UNKNOWN}, unknown error.
  * {@link AV_ERR_SERVICE_DIED}, avcodec service is died.
  * {@link AV_ERR_INVALID_STATE}, this interface was called in invalid state, must be called before Prepare.
+ * {@link AV_ERR_UNSUPPORT}, unsupported features.
+ * {@link AV_ERR_VIDEO_UNSUPPORTED_COLOR_SPACE_CONVERSION}, video unsupported color space conversion.
  * @since 9
  */
 OH_AVErrCode OH_VideoDecoder_Configure(OH_AVCodec *codec, OH_AVFormat *format);
@@ -162,6 +164,7 @@ OH_AVErrCode OH_VideoDecoder_Configure(OH_AVCodec *codec, OH_AVFormat *format);
  * {@link AV_ERR_UNKNOWN}, unknown error.
  * {@link AV_ERR_SERVICE_DIED}, avcodec service is died.
  * {@link AV_ERR_INVALID_STATE}, this interface was called in invalid state.
+ * {@link AV_ERR_OPERATE_NOT_PERMIT}, decoder is in buffer mode and color space conversion is configured.
  * @since 9
  */
 OH_AVErrCode OH_VideoDecoder_Prepare(OH_AVCodec *codec);
@@ -178,6 +181,7 @@ OH_AVErrCode OH_VideoDecoder_Prepare(OH_AVCodec *codec);
  * {@link AV_ERR_UNKNOWN}, unknown error.
  * {@link AV_ERR_SERVICE_DIED}, avcodec service is died.
  * {@link AV_ERR_INVALID_STATE}, this interface was called in invalid state.
+ * {@link AV_ERR_OPERATE_NOT_PERMIT}, video color space conversion is configured but decoder is not prepared.
  * @since 9
  */
 OH_AVErrCode OH_VideoDecoder_Start(OH_AVCodec *codec);
@@ -343,6 +347,8 @@ OH_AVErrCode OH_VideoDecoder_FreeOutputData(OH_AVCodec *codec, uint32_t index);
  * {@link AV_ERR_UNKNOWN}, unknown error.
  * {@link AV_ERR_SERVICE_DIED}, avcodec service is died.
  * {@link AV_ERR_INVALID_STATE}, this interface was called in invalid state.
+ * {@link AV_ERR_DRM_DECRYPT_FAILED}, the drm-protected video buffer is decrypted failed,
+ * it is recommended to check the logs.
  * @since 11
  */
 OH_AVErrCode OH_VideoDecoder_PushInputBuffer(OH_AVCodec *codec, uint32_t index);
@@ -365,6 +371,38 @@ OH_AVErrCode OH_VideoDecoder_PushInputBuffer(OH_AVCodec *codec, uint32_t index);
  * @since 11
  */
 OH_AVErrCode OH_VideoDecoder_RenderOutputBuffer(OH_AVCodec *codec, uint32_t index);
+
+/**
+ * @brief Return the processed output buffer with render timestamp to the decoder, and notify the decoder to finish
+ * rendering the decoded data contained in the buffer on the output surface. If the output surface is not configured
+ * before, calling this interface only returns the output buffer corresponding to the specified index to the decoder.
+ * The timestamp may have special meaning depending on the destination surface.
+ * Invoker can use the timestamp to render the buffer at a specific time (at the VSYNC at or after the buffer
+ * timestamp). For this to work, the timestamp needs to be reasonably close to the current SystemNanoTime. A few notes:
+ * 1. The buffer will not be returned to the codec until the timestamp has passed and the buffer is no longer used by
+ *    the surface.
+ * 2. Buffers are processed sequentially, so you may block subsequent buffers to be displayed on the surface.
+ *    This is important if you want to react to user action, e.g. stop the video or seek.
+ * 3. If multiple buffers are sent to the surface to be rendered at the same VSYNC, the last one will be shown, and the
+ *    other ones will be dropped.
+ * 4. If the timestamp is not "reasonably close" to the current system time, the Surface will
+ *    ignore the timestamp, and display the buffer at the earliest feasible time. In this mode it will not drop frames.
+ * @syscap SystemCapability.Multimedia.Media.VideoDecoder
+ * @param codec Pointer to an OH_AVCodec instance
+ * @param index The index value corresponding to the output buffer, should be given by {@link
+ * OH_AVCodecOnNewOutputBuffer}
+ * @param renderTimestampNs The timestamp is associated with the output buffer when it is sent to the surface. The unit
+ * is nanosecond
+ * @return Returns AV_ERR_OK if the execution is successful,
+ * otherwise returns a specific error code, refer to {@link OH_AVErrCode}.
+ * {@link AV_ERR_NO_MEMORY}, the codec has already released.
+ * {@link AV_ERR_INVALID_VAL}, the parameter is invalid.
+ * {@link AV_ERR_UNKNOWN}, unknown error.
+ * {@link AV_ERR_SERVICE_DIED}, avcodec service is died.
+ * {@link AV_ERR_INVALID_STATE}, this interface was called in invalid state.
+ * @since 12
+ */
+OH_AVErrCode OH_VideoDecoder_RenderOutputBufferAtTime(OH_AVCodec *codec, uint32_t index, int64_t renderTimestampNs);
 
 /**
  * @brief Return the processed output Buffer to the decoder.
@@ -410,6 +448,7 @@ OH_AVErrCode OH_VideoDecoder_IsValid(OH_AVCodec *codec, bool *isValid);
  * @return {@link AV_ERR_OK} 0 - Success
  *         {@link AV_ERR_OPERATE_NOT_PERMIT} 2 - If the codec service or the media key session
  *         service is in wrong status.
+ *         {@link AV_ERR_NO_MEMORY}, instance has already released or no memory.
  *         {@link AV_ERR_INVALID_VAL} 3 - If the codec instance is nullptr or invalid,
  *         the mediaKeySession is nullptr or invalid.
  * @since 11

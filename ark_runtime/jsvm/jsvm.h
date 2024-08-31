@@ -719,6 +719,57 @@ JSVM_EXTERN JSVM_Status OH_JSVM_CreateArraybuffer(JSVM_Env env,
                                                   JSVM_Value* result);
 
 /**
+ * @brief This API allocate the memory of array buffer backing store.
+ *
+ * @param byteLength: size of backing store memory.
+ * @param initialized: initialization status of the backing store memory.
+ * @param data: pointer that recieve the backing store memory pointer.
+ * @return Returns JSVM funtions result code.
+ *         Returns {@link JSVM_OK } if allocation succeed.\n
+ *         Returns {@link JSVM_INVALID_ARG } if data is null pointer.\n
+ *         Returns {@link JSVM_GENERIC_FAILURE } if allocation failed.\n
+ * @since 12
+ */
+JSVM_Status JSVM_CDECL OH_JSVM_AllocateArrayBufferBackingStoreData(size_t byteLength,
+                                                                   JSVM_InitializedFlag initialized,
+                                                                   void **data);
+
+/**
+ * @brief This API release the memory of an array buffer backing store.
+ *
+ * @param data: pointer to the backing store memory.
+ * @return Returns JSVM funtions result code.
+ *         Returns {@link JSVM_OK } if run succeed.\n
+ *         Returns {@link JSVM_INVALID_ARG } if data is null pointer.\n
+ * @since 12
+ */
+JSVM_Status JSVM_CDECL OH_JSVM_FreeArrayBufferBackingStoreData(void *data);
+
+/**
+ * @brief This API create an array buffer using the backing store data.
+ *
+ * @param env: The environment that the API is invoked under.
+ * @param data: pointer to the backing store memory.
+ * @param backingStoreSize: size of backing store memory.
+ * @param offset: start position of the array buffer in the backing store memory.
+ * @param arrayBufferSize: size of the array buffer.
+ * @param result: pointer that recieve the array buffer.
+ * @return Returns JSVM funtions result code.
+ *         Returns {@link JSVM_OK } if creation succeed.\n
+ *         Returns {@link JSVM_INVALID_ARG } if any of the following condition reached:\n
+ *         1. offset + arrayBufferSize > backingStoreSize\n
+ *         2. backingStoreSize or arrayBufferSize equals zero
+ *         3. data or result is null pointer
+ * @since 12
+ */
+JSVM_Status JSVM_CDECL OH_JSVM_CreateArrayBufferFromBackingStoreData(JSVM_Env env,
+                                                                     void *data,
+                                                                     size_t backingStoreSize,
+                                                                     size_t offset,
+                                                                     size_t arrayBufferSize,
+                                                                     JSVM_Value *result);
+
+/**
  * @brief This API does not observe leap seconds; they are ignored, as ECMAScript aligns with POSIX time specification.
  * This API allocates a JavaScript Date object.
  *
@@ -2893,6 +2944,105 @@ JSVM_EXTERN JSVM_Status OH_JSVM_ReleaseScript(JSVM_Env env, JSVM_Script script);
 JSVM_EXTERN JSVM_Status OH_JSVM_OpenInspectorWithName(JSVM_Env env,
                                                       int pid,
                                                       const char* name);
+
+/**
+ * @brief Compile WebAssembly bytecode into a WebAssembly module.
+ * If WebAssembly cache provided, deserialization will be performed.
+ *
+ * @param env: The environment that the API is invoked under.
+ * @param wasmBytecode: WebAssembly bytecode.
+ * @param wasmBytecodeLength: WebAssembly bytecode length in byte.
+ * @param cacheData: Optional WebAssembly cache.
+ * @param cacheDataLength: Optional WebAssembly cache length in byte.
+ * @param cacheRejected: Output parameter representing whether the provided cacheData is rejected.
+ * @param  wasmModule: Output parameter representing compiled WebAssembly module.
+ * @return Returns JSVM funtions result code.
+ *         Returns {@link JSVM_OK } if the function executed successfully.\n
+ *         Returns {@link JSVM_INVALID_ARG } if any of env, wasmBytecode is NULL, or data length is invalid.\n
+ *         Returns {@link JSVM_GENERIC_FAILURE } if compile failed.\n
+ *         Returns {@link JSVM_PENDING_EXCEPTION } if an exception occurs.\n
+ *
+ * @since 12
+ */
+JSVM_EXTERN JSVM_Status OH_JSVM_CompileWasmModule(JSVM_Env env,
+                                                  const uint8_t *wasmBytecode,
+                                                  size_t wasmBytecodeLength,
+                                                  const uint8_t *cacheData,
+                                                  size_t cacheDataLength,
+                                                  bool *cacheRejected,
+                                                  JSVM_Value *wasmModule);
+
+/**
+ * @brief Compile the function with the specified index in the WebAssembly module
+ * into the specified optimization level.
+ *
+ * @param env: The environment that the API is invoked under.
+ * @param wasmModule: The WebAssembly module to which the function to compiled belongs.
+ * @param functionIndex: The index of the function to be compiled, should never be out of range.
+ * @param optLevel: Optimization level the function will be compiled with.
+ * @return Returns JSVM funtions result code.
+ *         Returns {@link JSVM_OK } if the function executed successfully.\n
+ *         Returns {@link JSVM_INVALID_ARG } if env is NULL, or wasmModule is NULL or is not a WebAssembly module.\n
+ *         Returns {@link JSVM_GENERIC_FAILURE } if functionIndex out of range or compile failed.\n
+ *         Returns {@link JSVM_PENDING_EXCEPTION } if an exception occurs.\n
+ *
+ * @since 12
+ */
+JSVM_EXTERN JSVM_Status OH_JSVM_CompileWasmFunction(JSVM_Env env,
+                                                    JSVM_Value wasmModule,
+                                                    uint32_t functionIndex,
+                                                    JSVM_WasmOptLevel optLevel);
+
+/**
+ * @brief Check whether the given JSVM_Value is a WebAssembly module.
+ *
+ * @param env: The environment that the API is invoked under.
+ * @param value: The JavaScript value to check.
+ * @param result: Whether the given value is a WebAssembly module.
+ * @return Returns JSVM funtions result code.
+ *         Returns {@link JSVM_OK } if the function executed successfully.\n
+ *         Returns {@link JSVM_INVALID_ARG } if any of the input arguments is NULL.\n
+ *
+ * @since 12
+ */
+JSVM_EXTERN JSVM_Status OH_JSVM_IsWasmModuleObject(JSVM_Env env,
+                                                   JSVM_Value value,
+                                                   bool* result);
+
+/**
+ * @brief Create cache for compiled WebAssembly module.
+ *
+ * @param env: The environment that the API is invoked under.
+ * @param wasmModule: The compiled WebAssembly module.
+ * @param data: Output parameter representing generated WebAssembly module cache.
+ * @param length: Output parameter representing byte length of generated WebAssembly module cache.
+ * @return Returns JSVM funtions result code.
+ *         Returns {@link JSVM_OK } if the function executed successfully.\n
+ *         Returns {@link JSVM_INVALID_ARG } if any of the input arguments is NULL.\n
+ *         Returns {@link JSVM_GENERIC_FAILURE } if create wasm cache failed.\n
+ *
+ * @since 12
+ */
+JSVM_EXTERN JSVM_Status OH_JSVM_CreateWasmCache(JSVM_Env env,
+                                                JSVM_Value wasmModule,
+                                                const uint8_t** data,
+                                                size_t* length);
+
+/**
+ * @brief Release cache data with specified cache type.
+ *
+ * @param env: The environment that the API is invoked under.
+ * @param cacheData: The cache data to be released, double free is undefined behaviors.
+ * @param cacheType: The type of cache data.
+ * @return Returns JSVM funtions result code.
+ *         Returns {@link JSVM_OK } if the function executed successfully.\n
+ *         Returns {@link JSVM_INVALID_ARG } if any of the pointer arguments is NULL or cacheType is illegal.\n
+ *
+ * @since 12
+ */
+JSVM_EXTERN JSVM_Status OH_JSVM_ReleaseCache(JSVM_Env env,
+                                             const uint8_t* cacheData,
+                                             JSVM_CacheType cacheType);
 EXTERN_C_END
 /** @} */
 #endif /* ARK_RUNTIME_JSVM_JSVM_H */

@@ -1,0 +1,48 @@
+# Copyright (c) 2024 Huawei Device Co., Ltd.
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+import("//build/ohos.gni")
+
+ohos_ndk_library("libohinputmethod") {
+  output_name = "ohinputmethod"
+  output_extension = "so"
+  ndk_description_file = "./libohinputmethodndk.json"
+  min_compact_version = "12"
+  system_capability = "SystemCapability.MiscServices.InputMethodFramework"
+  system_capability_headers = [
+    "./inputmethod/inputmethod_controller_capi.h",
+    "./inputmethod/inputmethod_attach_options_capi.h",
+    "./inputmethod/inputmethod_cursor_info_capi.h",
+    "./inputmethod/inputmethod_inputmethod_proxy_capi.h",
+    "./inputmethod/inputmethod_private_command_capi.h",
+    "./inputmethod/inputmethod_text_avoid_info_capi.h",
+    "./inputmethod/inputmethod_text_config_capi.h",
+    "./inputmethod/inputmethod_text_editor_proxy_capi.h",
+    "./inputmethod/inputmethod_types_capi.h",
+  ]
+}
+
+ohos_ndk_headers("libohinputmethod_header") {
+  dest_dir = "$ndk_headers_out_dir/inputmethod"
+  sources = [
+    "./include/inputmethod_attach_options_capi.h",
+    "./include/inputmethod_controller_capi.h",
+    "./include/inputmethod_cursor_info_capi.h",
+    "./include/inputmethod_inputmethod_proxy_capi.h",
+    "./include/inputmethod_private_command_capi.h",
+    "./include/inputmethod_text_avoid_info_capi.h",
+    "./include/inputmethod_text_config_capi.h",
+    "./include/inputmethod_text_editor_proxy_capi.h",
+    "./include/inputmethod_types_capi.h",
+  ]
+}

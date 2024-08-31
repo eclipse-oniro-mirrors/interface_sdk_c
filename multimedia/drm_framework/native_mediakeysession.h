@@ -38,6 +38,7 @@
 #define OHOS_DRM_NATIVE_MEDIA_KEY_SESSION_H
 
 #include <stdint.h>
+#include <stdbool.h>
 #include <stdio.h>
 #include "native_drm_err.h"
 #include "native_drm_common.h"
@@ -133,7 +134,10 @@ typedef struct OH_MediaKeySession_Callback {
  * @param mediaKeySession Media key session instance.
  * @param info Media key request info.
  * @param mediaKeyRequest Media key request.
- * @return Drm_ErrCode.
+ * @return {@link DRM_ERR_OK} 0 - Success.
+ *         {@link DRM_ERR_NO_MEMORY} 24700501 - Memory errors.
+ *         {@link DRM_ERR_INVALID_VAL} 24700503 - The parameter passed in is a null pointer or invalid.
+ *         {@link DRM_ERR_UNKNOWN} 24700506 - Internal error occurred, it is recommended to check the logs.
  * @since 11
  * @version 1.0
  */
@@ -147,7 +151,10 @@ Drm_ErrCode OH_MediaKeySession_GenerateMediaKeyRequest(MediaKeySession *mediaKey
  * @param responseLen Media Key resposne len.
  * @param offlineMediaKeyId Offline media key identifier.
  * @param offlineMediaKeyIdLen Offline media key identifier len for in buffer and out data.
- * @return DRM_ERR_INVALID_VAL when the params checked failure, return DRM_ERR_OK when function called successfully.
+ * @return {@link DRM_ERR_OK} 0 - Success.
+ *         {@link DRM_ERR_NO_MEMORY} 24700501 - Memory errors.
+ *         {@link DRM_ERR_INVALID_VAL} 24700503 - The parameter passed in is a null pointer or invalid.
+ *         {@link DRM_ERR_UNKNOWN} 24700506 - Internal error occurred, it is recommended to check the logs.
  * @since 11
  * @version 1.0
  */
@@ -158,7 +165,10 @@ Drm_ErrCode OH_MediaKeySession_ProcessMediaKeyResponse(MediaKeySession *mediaKey
  * @brief Check media key status.
  * @param mediaKeySession Media key session instance.
  * @param mediaKeyStatus Media key status.
- * @return DRM_ERR_INVALID_VAL when the params checked failure, return DRM_ERR_OK when function called successfully.
+ * @return {@link DRM_ERR_OK} 0 - Success.
+ *         {@link DRM_ERR_NO_MEMORY} 24700501 - Memory errors.
+ *         {@link DRM_ERR_INVALID_VAL} 24700503 - The parameter passed in is a null pointer or invalid.
+ *         {@link DRM_ERR_UNKNOWN} 24700506 - Internal error occurred, it is recommended to check the logs.
  * @since 11
  * @version 1.0
  */
@@ -168,7 +178,9 @@ Drm_ErrCode OH_MediaKeySession_CheckMediaKeyStatus(MediaKeySession *mediaKeySess
 /**
  * @brief Clear media keys of the current session .
  * @param mediaKeySession Media key session instance.
- * @return DRM_ERR_INVALID_VAL when the params checked failure, return DRM_ERR_OK when function called successfully.
+ * @return {@link DRM_ERR_OK} 0 - Success.
+ *         {@link DRM_ERR_INVALID_VAL} 24700503 - The parameter passed in is a null pointer or invalid.
+ *         {@link DRM_ERR_UNKNOWN} 24700506 - Internal error occurred, it is recommended to check the logs.
  * @since 11
  * @version 1.0
  */
@@ -181,7 +193,10 @@ Drm_ErrCode OH_MediaKeySession_ClearMediaKeys(MediaKeySession *mediaKeySessoin);
  * @param offlineMediaKeyIdLen Offline media key identifier len.
  * @param releaseRequest Media Key release request.
  * @param releaseRequestLen Media Key release request len for in buffer and out data.
- * @return DRM_ERR_INVALID_VAL when the params checked failure, return DRM_ERR_OK when function called successfully.
+ * @return {@link DRM_ERR_OK} 0 - Success.
+ *         {@link DRM_ERR_NO_MEMORY} 24700501 - Memory errors.
+ *         {@link DRM_ERR_INVALID_VAL} 24700503 - The parameter passed in is a null pointer or invalid.
+ *         {@link DRM_ERR_UNKNOWN} 24700506 - Internal error occurred, it is recommended to check the logs.
  * @since 11
  * @version 1.0
  */
@@ -196,7 +211,9 @@ Drm_ErrCode OH_MediaKeySession_GenerateOfflineReleaseRequest(MediaKeySession *me
  * @param offlineMediaKeyIdLen Offline media key identifier len.
  * @param releaseReponse Media Key resposne.
  * @param releaseReponseLen Media Key resposne len.
- * @return DRM_ERR_INVALID_VAL when the params checked failure, return DRM_ERR_OK when function called successfully.
+ * @return {@link DRM_ERR_OK} 0 - Success.
+ *         {@link DRM_ERR_INVALID_VAL} 24700503 - The parameter passed in is a null pointer or invalid.
+ *         {@link DRM_ERR_UNKNOWN} 24700506 - Internal error occurred, it is recommended to check the logs.
  * @since 11
  * @version 1.0
  */
@@ -209,7 +226,9 @@ Drm_ErrCode OH_MediaKeySession_ProcessOfflineReleaseResponse(MediaKeySession *me
  * @param mediaKeySession Media key session instance.
  * @param offlineMediaKeyId Offline media key identifier.
  * @param offlineMediaKeyIdLen Offline media key identifier len.
- * @return DRM_ERR_INVALID_VAL when the params checked failure, return DRM_ERR_OK when function called successfully.
+ * @return {@link DRM_ERR_OK} 0 - Success.
+ *         {@link DRM_ERR_INVALID_VAL} 24700503 - The parameter passed in is a null pointer or invalid.
+ *         {@link DRM_ERR_UNKNOWN} 24700506 - Internal error occurred, it is recommended to check the logs.
  * @since 11
  * @version 1.0
  */
@@ -220,7 +239,9 @@ Drm_ErrCode OH_MediaKeySession_RestoreOfflineMediaKeys(MediaKeySession *mediaKey
  * @brief Get content protection level of the session.
  * @param mediaKeySession Media key session instance.
  * @param contentProtectionLevel Content protection level.
- * @return DRM_ERR_INVALID_VAL when the params checked failure, return DRM_ERR_OK when function called successfully.
+ * @return {@link DRM_ERR_OK} 0 - Success.
+ *         {@link DRM_ERR_INVALID_VAL} 24700503 - The parameter passed in is a null pointer or invalid.
+ *         {@link DRM_ERR_UNKNOWN} 24700506 - Internal error occurred, it is recommended to check the logs.
  * @since 11
  * @version 1.0
  */
@@ -232,7 +253,9 @@ Drm_ErrCode OH_MediaKeySession_GetContentProtectionLevel(MediaKeySession *mediaK
  * @param mediaKeySession Media key session instance.
  * @param mimeType The media type.
  * @param status Whether secure decoder is required.
- * @return DRM_ERR_INVALID_VAL when the params checked failure, return DRM_ERR_OK when function called successfully.
+ * @return {@link DRM_ERR_OK} 0 - Success.
+ *         {@link DRM_ERR_INVALID_VAL} 24700503 - The parameter passed in is a null pointer or invalid.
+ *         {@link DRM_ERR_UNKNOWN} 24700506 - Internal error occurred, it is recommended to check the logs.
  * @since 11
  * @version 1.0
  */
@@ -243,7 +266,8 @@ Drm_ErrCode OH_MediaKeySession_RequireSecureDecoderModule(MediaKeySession *media
  * @brief Set media key session event callback.
  * @param mediaKeySession Media key session instance.
  * @param callback Callback to be set to the media key session.
- * @return DRM_ERR_INVALID_VAL when the params checked failure, return DRM_ERR_OK when function called successfully.
+ * @return {@link DRM_ERR_OK} 0 - Success.
+ *         {@link DRM_ERR_INVALID_VAL} 24700503 - The parameter passed in is a null pointer or invalid.
  * @since 11
  * @version 1.0
  */
@@ -254,7 +278,8 @@ Drm_ErrCode OH_MediaKeySession_SetMediaKeySessionCallback(MediaKeySession *media
  * @brief Set media key session event callback.
  * @param mediaKeySession Media key session instance.
  * @param callback Callback to be set to the media key session.
- * @return DRM_ERR_INVALID_VAL when the params checked failure, return DRM_ERR_OK when function called successfully.
+ * @return {@link DRM_ERR_OK} 0 - Success.
+ *         {@link DRM_ERR_INVALID_VAL} 24700503 - The parameter passed in is a null pointer or invalid.
  * @since 12
  * @version 1.0
  */
@@ -264,7 +289,9 @@ Drm_ErrCode OH_MediaKeySession_SetCallback(MediaKeySession *mediaKeySessoin,
 /**
  * @brief Release the resource before the session gonna be unused.
  * @param mediaKeySession Media key session instance.
- * @return DRM_ERR_INVALID_VAL when the params checked failure, return DRM_ERR_OK when function called successfully.
+ * @return {@link DRM_ERR_OK} 0 - Success.
+ *         {@link DRM_ERR_INVALID_VAL} 24700503 - The parameter passed in is a null pointer or invalid.
+ *         {@link DRM_ERR_UNKNOWN} 24700506 - Internal error occurred, it is recommended to check the logs.
  * @since 11
  * @version 1.0
  */

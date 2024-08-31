@@ -43,3 +43,51 @@ ohos_ndk_library("libohprint_ndk") {
   system_capability = "SystemCapability.Print.PrintFramework"
   system_capability_headers = [ "BasicServicesKit/ohprint.h" ]
 }
+
+ohos_ndk_headers("ohscan_header") {
+  dest_dir = "$ndk_headers_out_dir/BasicServicesKit/"
+  sources = [ "./ohscan.h" ]
+}
+
+ohos_ndk_library("libohscan_ndk") {
+  output_name = "ohscan"
+  output_extension = "so"
+  ndk_description_file = "./ohscan.ndk.json"
+  min_compact_version = "12"
+  system_capability = "SystemCapability.Print.PrintFramework"
+  system_capability_headers = [ "BasicServicesKit/ohscan.h" ]
+}
+
+ohos_ndk_headers("time_service_ndk_header") {
+  dest_dir = "$ndk_headers_out_dir/BasicServicesKit/"
+  sources = [ "./time_service.h" ]
+}
+
+ohos_ndk_library("libtime_service_ndk") {
+  output_name = "time_service_ndk"
+  output_extension = "so"
+  ndk_description_file = "./libtime_service.ndk.json"
+  min_compact_version = "12"
+  system_capability = "SystemCapability.MiscServices.Time"
+  system_capability_headers = [ "BasicServicesKit/time_service.h" ]
+}
+
+ohos_ndk_headers("ohcommonevent_header") {
+  dest_dir = "$ndk_headers_out_dir/BasicServicesKit/"
+  sources = [
+    "./commonevent/oh_commonevent.h",
+    "./commonevent/oh_commonevent_support.h",
+  ]
+}
+
+ohos_ndk_library("libcommonevent_ndk") {
+  output_name = "ohcommonevent"
+  output_extension = "so"
+  ndk_description_file = "./commonevent/libcommonevent.ndk.json"
+  min_compact_version = "12"
+  system_capability = "SystemCapability.Notification.CommonEvent"
+  system_capability_headers = [
+    "BasicServicesKit/commonevent/oh_commonevent.h",
+    "BasicServicesKit/commonevent/oh_commonevent_support.h",
+  ]
+}

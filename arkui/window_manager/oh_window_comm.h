@@ -32,6 +32,7 @@
  *
  * @syscap SystemCapability.Window.SessionManager
  * @library libnative_window_manager.so
+ * @kit ArkUI
  * @since 12
  */
 #ifndef OH_WINDOW_COMM_H

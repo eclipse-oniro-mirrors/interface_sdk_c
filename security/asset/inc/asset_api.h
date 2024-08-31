@@ -48,7 +48,8 @@
 extern "C" {
 #endif
 /**
- * @brief Adds an asset.
+ * @brief Adds an asset. Permission ohos.permission.STORE_PERSISTENT_DATA is required when the Asset needs to be stored
+ *     persistently by setting {@link ASSET_TAG_IS_PERSISTENT} tag.
  *
  * @param attributes Pointer to the attributes of the asset to add.
  * @param attributes Number of the attributes of the asset to add.

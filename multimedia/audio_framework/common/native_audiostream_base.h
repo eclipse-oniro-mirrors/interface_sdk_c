@@ -433,11 +433,17 @@ typedef enum {
      *
      * @since 10
      */
-    AUDIOSTREAM_SOURCE_TYPE_VOICE_COMMUNICATION = 7
+    AUDIOSTREAM_SOURCE_TYPE_VOICE_COMMUNICATION = 7,
+    /**
+     * Voice message source type.
+     *
+     * @since 12
+     */
+    AUDIOSTREAM_SOURCE_TYPE_VOICE_MESSAGE = 10
 } OH_AudioStream_SourceType;
 
 /**
- * Defines the audio interrupt mode.
+ * @brief Defines the audio interrupt mode.
  *
  * @since 12
  */

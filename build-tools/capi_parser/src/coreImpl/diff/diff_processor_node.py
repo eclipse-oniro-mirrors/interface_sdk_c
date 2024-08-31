@@ -68,6 +68,8 @@ def wrap_diff_info(old_info, new_info, diff_info: DiffInfo):
 
         else:
             api_declare = old_info['name']
+        if old_info['kind'] != 'TRANSLATION_UNIT':
+            diff_info.set_old_api_declara(api_declare)
         old_content = '类名:{};\nAPI声明:{};\n差异内容:{}\n'.format(diff_info.class_name, api_declare,
                                                             diff_info.old_differ_content)
         diff_info.set_old_api_full_text(old_content)
@@ -87,6 +89,8 @@ def wrap_diff_info(old_info, new_info, diff_info: DiffInfo):
                 api_declare = new_info['node_content']['content']
         else:
             api_declare = new_info['name']
+        if new_info['kind'] != 'TRANSLATION_UNIT':
+            diff_info.set_new_api_declara(api_declare)
         new_content = '类名:{};\nAPI声明:{};\n差异内容:{}\n'.format(diff_info.class_name, api_declare,
                                                             diff_info.new_differ_content)
 
@@ -423,7 +427,7 @@ def process_union_name(old, new, diff_union_list):
     if old['name'] != new['name']:
         old_union_name = old['name']
         new_union_name = new['name']
-        result_message_obj = get_initial_result_obj(DiffType.STRUCT_MEMBER_NAME_CHANGE,
+        result_message_obj = get_initial_result_obj(DiffType.UNION_NAME_CHANGE,
                                                     old_union_name, new_union_name)
         diff_info = wrap_diff_info(old, new, result_message_obj)
         diff_union_list.append(diff_info)
@@ -437,7 +441,7 @@ def process_union_member(old, new, diff_union_list):
             if old_member_result.get(key) is None:
                 old_member_content = 'NA'
                 new_member_content = new_member_result.get(key)['node_content']['content']
-                result_message_obj = get_initial_result_obj(DiffType.STRUCT_MEMBER_NAME_CHANGE,
+                result_message_obj = get_initial_result_obj(DiffType.UNION_MEMBER_ADD,
                                                             old_member_content, new_member_content)
 
                 diff_info = wrap_diff_info(old_member_result.get(key), new_member_result.get(key),
@@ -446,7 +450,7 @@ def process_union_member(old, new, diff_union_list):
             elif new_member_result.get(key) is None:
                 old_member_content = old_member_result.get(key)['node_content']['content']
                 new_member_content = 'NA'
-                result_message_obj = get_initial_result_obj(DiffType.STRUCT_MEMBER_NAME_CHANGE,
+                result_message_obj = get_initial_result_obj(DiffType.UNION_MEMBER_REDUCE,
                                                             old_member_content, new_member_content)
 
                 diff_info = wrap_diff_info(old_member_result.get(key), new_member_result.get(key),
@@ -749,6 +753,27 @@ def process_typedef_child(old_child, new_child, diff_typedef_list):
             diff_typedef_list.extend(special_data)
 
 
+def process_anonymous_enum_member(old_info, new_info):
+    result_obj_list = []
+    if old_info and new_info:
+        if old_info['name'] != new_info['name']:
+            change_message_obj = DiffInfo(DiffType.ENUM_MEMBER_NAME_CHANGE, old_info['name'], new_info['name'])
+            result_obj_list.append(wrap_diff_info(old_info, new_info, change_message_obj))
+        if old_info['value'] != new_info['value']:
+            change_message_obj = DiffInfo(DiffType.ENUM_MEMBER_VALUE_CHANGE, old_info['value'], new_info['value'])
+            result_obj_list.append(wrap_diff_info(old_info, new_info, change_message_obj))
+    else:
+        if old_info:
+            change_message_obj = DiffInfo(DiffType.ENUM_MEMBER_REDUCE, old_info['node_content']['content'], 'NA')
+            result_obj_list.append(wrap_diff_info(old_info, new_info, change_message_obj))
+
+        elif new_info:
+            change_message_obj = DiffInfo(DiffType.ENUM_MEMBER_ADD, 'NA', new_info['node_content']['content'])
+            result_obj_list.append(wrap_diff_info(old_info, new_info, change_message_obj))
+
+    return result_obj_list
+
+
 process_data = {
     Scene.FUNCTION_DECL.value: process_function,
     Scene.MACRO_DEFINITION.value: process_define,
@@ -756,14 +781,39 @@ process_data = {
     Scene.UNION_DECL.value: process_union,
     Scene.ENUM_DECL.value: process_enum,
     Scene.VAR_DECL.value: process_variable_const,
-    Scene.TYPEDEF_DECL.value: process_typedef
+    Scene.TYPEDEF_DECL.value: process_typedef,
+    Scene.ENUM_CONSTANT_DECL.value: process_anonymous_enum_member,
 }
+
+
+def get_ch_api_kind(dict_key):
+    if dict_key == Scene.ENUM_CONSTANT_DECL.value:
+        key = 'ENUM_DECL'
+    else:
+        key = dict_key
+    api_kind_dict = {
+        'FUNCTION_DECL': '函数类型',
+        'MACRO_DEFINITION': '宏定义类型',
+        'STRUCT_DECL': '结构体类型',
+        'UNION_DECL': '联合体类型',
+        'ENUM_DECL': '枚举类型',
+        'VAR_DECL': '常/变量类型',
+        'TYPEDEF_DECL': '重命名类型',
+        'TRANSLATION_UNIT': 'NA'
+    }
+    return api_kind_dict.get(key)
 
 
 def collect_change_data_total(data: dict, diff_info_list):
     for element in diff_info_list:
         element.set_api_node_name(data['name'])
+        if (data['kind'] == Scene.STRUCT_DECL.value or data['kind'] == Scene.UNION_DECL.value
+           or data['kind'] == Scene.ENUM_DECL.value) and (not data['name']):
+            element.set_api_node_name(data['type'])
         element.set_current_api_unique_id(data['unique_id'])
+        element.set_open_close_api(data['open_close_api'])
+        element.set_is_third_party_api(data['is_third_party_api'])
+        element.set_current_api_type(get_ch_api_kind(data['kind']))
     change_data_total.append(diff_info_list)
 
 
@@ -780,17 +830,18 @@ def process_add_node(add_infor, key_extern, struct_union_enum):
         return diff_info_list
     if 'is_extern' in add_infor and add_infor['is_extern']:
         key_extern = True
-    diff_type = DiffType.ADD_API
-    old_api_content = 'NA'
-    if add_infor['kind'] in struct_union_enum:
-        new_api_content = add_infor['type']
+    if add_infor['kind'] == Scene.ENUM_CONSTANT_DECL.value:
+        result_obj_list = process_anonymous_enum_member(old_infor, add_infor)
+        diff_info_list.extend(result_obj_list)
     else:
-        new_api_content = add_infor['node_content']['content']
-    diff_info_list.append(wrap_diff_info(old_infor, add_infor, DiffInfo(diff_type,
-                                                                        old_api_content, new_api_content)))
-    if diff_type == DiffType.ADD_API:
-        set_is_api_change_result(diff_info_list, key_extern)
-        collect_change_data_total(add_infor, diff_info_list)
+        if add_infor['kind'] in struct_union_enum:
+            new_api_content = add_infor['type']
+        else:
+            new_api_content = add_infor['node_content']['content']
+        diff_info_list.append(wrap_diff_info(old_infor, add_infor, DiffInfo(DiffType.ADD_API,
+                                                                            'NA', new_api_content)))
+    set_is_api_change_result(diff_info_list, key_extern)
+    collect_change_data_total(add_infor, diff_info_list)
 
     return diff_info_list
 
@@ -802,14 +853,16 @@ def process_reduce_node(reduce_infor, key_extern, struct_union_enum):
         return diff_info_list
     if 'is_extern' in reduce_infor and reduce_infor['is_extern']:
         key_extern = True
-    diff_type = DiffType.REDUCE_API
-    new_api_content = 'NA'
-    if reduce_infor['kind'] in struct_union_enum:
-        old_api_content = reduce_infor['type']
+    if reduce_infor['kind'] == Scene.ENUM_CONSTANT_DECL.value:
+        result_obj_list = process_anonymous_enum_member(reduce_infor, new_infor)
+        diff_info_list.extend(result_obj_list)
     else:
-        old_api_content = reduce_infor['node_content']['content']
-    diff_info_list.append(wrap_diff_info(reduce_infor, new_infor, DiffInfo(diff_type,
-                                                                           old_api_content, new_api_content)))
+        if reduce_infor['kind'] in struct_union_enum:
+            old_api_content = reduce_infor['type']
+        else:
+            old_api_content = reduce_infor['node_content']['content']
+        diff_info_list.append(wrap_diff_info(reduce_infor, new_infor, DiffInfo(DiffType.REDUCE_API,
+                                                                               old_api_content, 'NA')))
     set_is_api_change_result(diff_info_list, key_extern)
     collect_change_data_total(reduce_infor, diff_info_list)
 
@@ -930,17 +983,19 @@ def process_tag_file(old_tag, new_tag, old_info, new_info):
 def process_tag_library(old_tag, new_tag, old_info, new_info):
     diff_info_list = []
     if old_tag is None:
-        diff_info_list.append(
-            wrap_diff_info(old_info, new_info, DiffInfo(DiffType.DOC_TAG_LIBRARY_NA_TO_HAVE, 'NA', new_tag['name'])))
+        library_result_obj = DiffInfo(DiffType.DOC_TAG_LIBRARY_NA_TO_HAVE, 'NA', new_tag['name'])
+        set_file_doc_content_snippet(old_tag, new_tag, library_result_obj)
+        diff_info_list.append(wrap_diff_info(old_info, new_info, library_result_obj))
         return diff_info_list
     if new_tag is None:
-        diff_info_list.append(
-            wrap_diff_info(old_info, new_info, DiffInfo(DiffType.DOC_TAG_LIBRARY_HAVE_TO_NA, old_tag['name'], "NA")))
+        library_result_obj = DiffInfo(DiffType.DOC_TAG_LIBRARY_HAVE_TO_NA, old_tag['name'], "NA")
+        set_file_doc_content_snippet(old_tag, new_tag, library_result_obj)
+        diff_info_list.append(wrap_diff_info(old_info, new_info, library_result_obj))
         return diff_info_list
     if old_tag['name'] != new_tag['name']:
-        diff_info_list.append(wrap_diff_info(old_info, new_info,
-                                             DiffInfo(DiffType.DOC_TAG_LIBRARY_A_TO_B, old_tag['name'],
-                                                      new_tag['name'])))
+        library_result_obj = DiffInfo(DiffType.DOC_TAG_LIBRARY_A_TO_B, old_tag['name'], new_tag['name'])
+        set_file_doc_content_snippet(old_tag, new_tag, library_result_obj)
+        diff_info_list.append(wrap_diff_info(old_info, new_info, library_result_obj))
     return diff_info_list
 
 
@@ -965,35 +1020,47 @@ def process_tag_param(old_tag, new_tag, old_info, new_info):
     return diff_info_list
 
 
+def set_file_doc_content_snippet(old_tag, new_tag, diff_obj):
+    if old_tag is not None:
+        if old_tag.get('source'):
+            diff_obj.set_file_doc_line(old_tag.get('source')[0].get('number'))
+            diff_obj.set_old_api_declara(old_tag.get('source')[0].get('source'))
+    if new_tag is not None:
+        if new_tag.get('source'):
+            diff_obj.set_file_doc_line(new_tag.get('source')[0].get('number'))
+            diff_obj.set_new_api_declara(new_tag.get('source')[0].get('source'))
+
+
 def process_tag_permission(old_tag, new_tag, old_info, new_info):
     diff_info_list = []
     if old_tag is None:
-        diff_info_list.append(wrap_diff_info(old_info, new_info, DiffInfo(DiffType.DOC_TAG_PERMISSION_NA_TO_HAVE,
-                                                                          'NA',
-                                                                          f'{new_tag["name"]} '
-                                                                          f'{new_tag["description"]}')))
+        permission_result_obj = DiffInfo(DiffType.DOC_TAG_PERMISSION_NA_TO_HAVE, 'NA', f'{new_tag["name"]} '
+                                                                                       f'{new_tag["description"]}')
+        set_file_doc_content_snippet(old_tag, new_tag, permission_result_obj)
+        diff_info_list.append(wrap_diff_info(old_info, new_info, permission_result_obj))
         return diff_info_list
     if new_tag is None:
-        diff_info_list.append(wrap_diff_info(old_info, new_info, DiffInfo(DiffType.DOC_TAG_PERMISSION_HAVE_TO_NA,
-                                                                          f'{old_tag["name"]} '
-                                                                          f'{old_tag["description"]}',
-                                                                          'NA')))
+        permission_result_obj = DiffInfo(DiffType.DOC_TAG_PERMISSION_HAVE_TO_NA, f'{old_tag["name"]} '
+                                                                                 f'{old_tag["description"]}', 'NA')
+        set_file_doc_content_snippet(old_tag, new_tag, permission_result_obj)
+        diff_info_list.append(wrap_diff_info(old_info, new_info, permission_result_obj))
         return diff_info_list
     old_permission = f'{old_tag["name"]} {old_tag["description"]}'
     new_permission = f'{new_tag["name"]} {new_tag["description"]}'
     if old_permission != new_permission:
         compare_value = compare_permission(old_permission, new_permission)
         if compare_value.state_range == RangeChange.DOWN.value:
-            diff_info_list.append(wrap_diff_info(old_info, new_info,
-                                                 DiffInfo(DiffType.DOC_TAG_PERMISSION_RANGE_SMALLER, old_permission,
-                                                          new_permission)))
+            permission_result_obj = DiffInfo(DiffType.DOC_TAG_PERMISSION_RANGE_SMALLER, old_permission, new_permission)
+            set_file_doc_content_snippet(old_tag, new_tag, permission_result_obj)
+            diff_info_list.append(wrap_diff_info(old_info, new_info, permission_result_obj))
         elif compare_value.state_range == RangeChange.UP.value:
-            diff_info_list.append(wrap_diff_info(old_info, new_info, DiffInfo(
-                DiffType.DOC_TAG_PERMISSION_RANGE_BIGGER, old_permission, new_permission)))
+            permission_result_obj = DiffInfo(DiffType.DOC_TAG_PERMISSION_RANGE_BIGGER, old_permission, new_permission)
+            set_file_doc_content_snippet(old_tag, new_tag, permission_result_obj)
+            diff_info_list.append(wrap_diff_info(old_info, new_info, permission_result_obj))
         elif compare_value.state_range == RangeChange.CHANGE.value:
-            diff_info_list.append(wrap_diff_info(old_info, new_info,
-                                                 DiffInfo(DiffType.DOC_TAG_PERMISSION_RANGE_CHANGE, old_permission,
-                                                          new_permission)))
+            permission_result_obj = DiffInfo(DiffType.DOC_TAG_PERMISSION_RANGE_CHANGE, old_permission, new_permission)
+            set_file_doc_content_snippet(old_tag, new_tag, permission_result_obj)
+            diff_info_list.append(wrap_diff_info(old_info, new_info, permission_result_obj))
     return diff_info_list
 
 
@@ -1027,22 +1094,23 @@ def process_tag_since(old_tag, new_tag, old_info, new_info):
 def process_tag_syscap(old_tag, new_tag, old_info, new_info):
     diff_info_list = []
     if old_tag is None:
-        diff_info_list.append(wrap_diff_info(old_info, new_info, DiffInfo(DiffType.DOC_TAG_SYSCAP_NA_TO_HAVE,
-                                                                          'NA',
-                                                                          f'{new_tag["name"]} '
-                                                                          f'{new_tag["description"]}')))
+        syscap_result_obj = DiffInfo(DiffType.DOC_TAG_SYSCAP_NA_TO_HAVE, 'NA', f'{new_tag["name"]} '
+                                                                               f'{new_tag["description"]}')
+        set_file_doc_content_snippet(old_tag, new_tag, syscap_result_obj)
+        diff_info_list.append(wrap_diff_info(old_info, new_info, syscap_result_obj))
         return diff_info_list
     if new_tag is None:
-        diff_info_list.append(wrap_diff_info(old_info, new_info, DiffInfo(DiffType.DOC_TAG_SYSCAP_HAVE_TO_NA,
-                                                                          f'{old_tag["name"]} '
-                                                                          f'{old_tag["description"]}',
-                                                                          'NA')))
+        syscap_result_obj = DiffInfo(DiffType.DOC_TAG_SYSCAP_HAVE_TO_NA, f'{old_tag["name"]} '
+                                                                         f'{old_tag["description"]}', 'NA')
+        set_file_doc_content_snippet(old_tag, new_tag, syscap_result_obj)
+        diff_info_list.append(wrap_diff_info(old_info, new_info, syscap_result_obj))
         return diff_info_list
     old_syscap = f'{old_tag["name"]} {old_tag["description"]}'
     new_syscap = f'{new_tag["name"]} {new_tag["description"]}'
     if old_syscap != new_syscap:
-        diff_info_list.append(
-            wrap_diff_info(old_info, new_info, DiffInfo(DiffType.DOC_TAG_SYSCAP_A_TO_B, old_syscap, new_syscap)))
+        syscap_result_obj = DiffInfo(DiffType.DOC_TAG_SYSCAP_A_TO_B, old_syscap, new_syscap)
+        set_file_doc_content_snippet(old_tag, new_tag, syscap_result_obj)
+        diff_info_list.append(wrap_diff_info(old_info, new_info, syscap_result_obj))
     return diff_info_list
 
 

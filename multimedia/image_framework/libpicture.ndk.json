@@ -1,0 +1,114 @@
+[
+    {
+      "first_introduced": "13",
+      "name": "OH_PictureNative_CreatePicture"
+    },
+    {
+      "first_introduced": "13",
+      "name": "OH_PictureNative_GetMainPixelmap"
+    },
+    {
+      "first_introduced": "13",
+      "name": "OH_PictureNative_GetHdrComposedPixelmap"
+    },
+    {
+      "first_introduced": "13",
+      "name": "OH_PictureNative_GetGainmapPixelmap"
+    },
+    {
+      "first_introduced": "13",
+      "name": "OH_PictureNative_SetAuxiliaryPicture"
+    },
+    {
+      "first_introduced": "13",
+      "name": "OH_PictureNative_GetAuxiliaryPicture"
+    },
+    {
+      "first_introduced": "13",
+      "name": "OH_PictureNative_GetMetadata"
+    },
+    {
+      "first_introduced": "13",
+      "name": "OH_PictureNative_SetMetadata"
+    },
+    {
+      "first_introduced": "13",
+      "name": "OH_PictureNative_Release"
+    },
+    {
+      "first_introduced": "13",
+      "name": "OH_AuxiliaryPictureNative_Create"
+    },
+    {
+      "first_introduced": "13",
+      "name": "OH_AuxiliaryPictureNative_WritePixels"
+    },
+    {
+      "first_introduced": "13",
+      "name": "OH_AuxiliaryPictureNative_ReadPixels"
+    },
+    {
+      "first_introduced": "13",
+      "name": "OH_AuxiliaryPictureNative_GetType"
+    },
+    {
+      "first_introduced": "13",
+      "name": "OH_AuxiliaryPictureNative_GetInfo"
+    },
+    {
+      "first_introduced": "13",
+      "name": "OH_AuxiliaryPictureNative_SetInfo"
+    },
+    {
+      "first_introduced": "13",
+      "name": "OH_AuxiliaryPictureNative_GetMetadata"
+    },
+    {
+      "first_introduced": "13",
+      "name": "OH_AuxiliaryPictureNative_SetMetadata"
+    },
+    {
+      "first_introduced": "13",
+      "name": "OH_AuxiliaryPictureNative_Release"
+    },
+    {
+      "first_introduced": "13",
+      "name": "OH_AuxiliaryPictureInfo_Create"
+    },
+    {
+      "first_introduced": "13",
+      "name": "OH_AuxiliaryPictureInfo_GetType"
+    },
+    {
+      "first_introduced": "13",
+      "name": "OH_AuxiliaryPictureInfo_SetType"
+    },
+    {
+      "first_introduced": "13",
+      "name": "OH_AuxiliaryPictureInfo_GetSize"
+    },
+    {
+      "first_introduced": "13",
+      "name": "OH_AuxiliaryPictureInfo_SetSize"
+    },
+    {
+      "first_introduced": "13",
+      "name": "OH_AuxiliaryPictureInfo_GetRowStride"
+    },
+    {
+      "first_introduced": "13",
+      "name": "OH_AuxiliaryPictureInfo_SetRowStride"
+    },
+    {
+      "first_introduced": "13",
+      "name": "OH_AuxiliaryPictureInfo_GetPixelFormat"
+    },
+    {
+      "first_introduced": "13",
+      "name": "OH_AuxiliaryPictureInfo_SetPixelFormat"
+    },
+    {
+      "first_introduced": "13",
+      "name": "OH_AuxiliaryPictureInfo_Release"
+    }
+  ]

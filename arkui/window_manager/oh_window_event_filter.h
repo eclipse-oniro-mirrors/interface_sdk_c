@@ -34,8 +34,10 @@
  *
  * @syscap SystemCapability.Window.SessionManager
  * @library libnative_window_manager.so
+ * @kit ArkUI
  * @since 12
  */
+#include "stdbool.h"
 #include "stdint.h"
 #include "oh_window_comm.h"
 #include "multimodalinput/oh_input_manager.h"

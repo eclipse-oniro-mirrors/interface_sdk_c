@@ -116,6 +116,7 @@ class Scene(enum.Enum):
     VAR_DECL = 'VAR_DECL'
     TYPEDEF_DECL = 'TYPEDEF_DECL'
     TRANSLATION_UNIT = 'TRANSLATION_UNIT'
+    ENUM_CONSTANT_DECL = 'ENUM_CONSTANT_DECL'
 
 
 class TAGS(enum.Enum):
@@ -229,6 +230,7 @@ compatible_list = [
     DiffType.ADD_API,
     DiffType.ADD_DOC,
     DiffType.ADD_DOC_TAG,
+    DiffType.ENUM_MEMBER_ADD,
     DiffType.FUNCTION_PARAM_NAME_CHANGE,
     DiffType.DOC_TAG_ADDTOGROUP_NA_TO_HAVE,
     DiffType.DOC_TAG_ADDTOGROUP_HAVE_TO_NA,
@@ -386,6 +388,12 @@ class DiffInfo:
     operation_diff_type: str = ''
     old_differ_content: str = ''
     new_differ_content: str = ''
+    open_close_api: str = ''
+    is_third_party_api = False
+    current_api_type: str = ''
+    old_api_declara: str = ''
+    new_api_declara: str = ''
+    file_doc_line: int = 0
 
     def __init__(self, diff_type: DiffType, old_differ_content, new_differ_content):
         self.diff_type = diff_type
@@ -540,6 +548,42 @@ class DiffInfo:
     def get_new_differ_content(self):
         return self.new_differ_content
 
+    def set_open_close_api(self, open_close_api):
+        self.open_close_api = open_close_api
+
+    def get_open_close_api(self):
+        return self.open_close_api
+
+    def set_is_third_party_api(self, is_third_party_api):
+        self.is_third_party_api = is_third_party_api
+
+    def get_is_third_party_api(self):
+        return self.is_third_party_api
+
+    def set_current_api_type(self, current_api_type):
+        self.current_api_type = current_api_type
+
+    def get_current_api_type(self):
+        return self.current_api_type
+
+    def set_old_api_declara(self, old_api_declara):
+        self.old_api_declara = old_api_declara
+
+    def get_old_api_declara(self):
+        return self.old_api_declara
+
+    def set_new_api_declara(self, new_api_declara):
+        self.new_api_declara = new_api_declara
+
+    def get_new_api_declara(self):
+        return self.new_api_declara
+
+    def set_file_doc_line(self, file_doc_line):
+        self.file_doc_line = file_doc_line
+
+    def get_file_doc_line(self):
+        return self.file_doc_line
+
 
 class OutputJson:
     api_name: str = ''
@@ -595,6 +639,10 @@ class ApiChangeData:
     compatible_total = False
     unique_id: str = ''
     is_system_api = False
+    open_close_api: str = ''
+    is_third_party_api = False
+    api_type: str = ''
+    current_api_type: str = ''
 
     def set_api_name(self, api_name):
         self.api_name = api_name
@@ -679,3 +727,32 @@ class ApiChangeData:
 
     def get_is_system_api(self):
         return self.is_system_api
+
+    def set_open_close_api(self, open_close_api):
+        self.open_close_api = open_close_api
+
+    def get_open_close_api(self):
+        return self.open_close_api
+
+    def set_is_third_party_api(self, is_third_party_api):
+        self.is_third_party_api = is_third_party_api
+
+    def get_is_third_party_api(self):
+        return self.is_third_party_api
+
+    def set_api_type(self, api_type):
+        self.api_type = api_type
+
+    def get_api_type(self):
+        return self.api_type
+
+    def set_current_api_type(self, current_api_type):
+        self.current_api_type = current_api_type
+
+    def get_current_api_type(self):
+        return self.current_api_type
+
+
+class IgnoreFileDirectory(enum.Enum):
+    IGNORE_FILE_DIR_lx = r'/(arm-linux-ohos|aarch64-linux-ohos|x86_64-linux-ohos|i686-linux-ohos|linux|tee|)(/|$)'
+    IGNORE_FILE_DIR_wd = r'\\(arm-linux-ohos|aarch64-linux-ohos|x86_64-linux-ohos|i686-linux-ohos|linux|tee|)(\\|$)'

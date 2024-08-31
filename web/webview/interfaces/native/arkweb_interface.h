@@ -59,6 +59,12 @@ typedef enum {
     ARKWEB_NATIVE_COMPONENT,
     /** API type related to ArkWeb controller. */
     ARKWEB_NATIVE_CONTROLLER,
+    /** API type related to ArkWeb WebMessagePort. */
+    ARKWEB_NATIVE_WEB_MESSAGE_PORT,
+    /** API type related to ArkWeb WebMessage. */
+    ARKWEB_NATIVE_WEB_MESSAGE,
+    /** API type related to ArkWeb cookie manager. */
+    ARKWEB_NATIVE_COOKIE_MANAGER,
 } ArkWeb_NativeAPIVariantKind;
 
 /*

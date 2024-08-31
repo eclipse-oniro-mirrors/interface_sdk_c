@@ -1,3 +1,10 @@
 [
-  { "name": "OH_Ability_CreateNativeChildProcess" }
+  {
+      "first_introduced": "12",
+      "name": "OH_Ability_CreateNativeChildProcess"
+  },
+  {
+      "first_introduced": "13",
+      "name": "OH_Ability_StartNativeChildProcess"
+  }
 ]

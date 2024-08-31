@@ -12,7 +12,26 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+ 
+/**
+ * @addtogroup AVScreenCapture
+ * @{
+ *
+ * @brief Provides APIs of request capability for Screen Capture.
+ * @since 10
+ */
+ 
+/**
+ * @file native_avscreen_capture_errors.h
+ *
+ * @brief Declare screen capture related error.
+ *
+ * @library libnative_avscreen_capture.so
+ * @syscap SystemCapability.Multimedia.Media.AVScreenCapture
+ * @kit MediaKit
+ * @since 10
+ */
+ 
 #ifndef NATIVE_AVSCREEN_CAPTURE_ERRORS_H
 #define NATIVE_AVSCREEN_CAPTURE_ERRORS_H
 
@@ -83,3 +102,4 @@ typedef enum OH_AVSCREEN_CAPTURE_ErrCode {
 #endif
 
 #endif // NATIVE_AVSCREEN_CAPTURE_ERRORS_H
+/** @} */

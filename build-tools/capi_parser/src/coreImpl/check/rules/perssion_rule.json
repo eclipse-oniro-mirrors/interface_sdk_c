@@ -2581,6 +2581,15 @@
               "availableLevel": "system_basic",
               "provisionEnable": true,
               "distributedSceneEnable": false
+          },
+          {
+              "name": "ohos.permission.START_NATIVE_CHILD_PROCESS",
+              "grantMode": "system_grant",
+              "since": 12,
+              "deprecated": "",
+              "availableLevel": "system_basic",
+              "provisionEnable": true,
+              "distributedSceneEnable": false
           }
       ]
   }
