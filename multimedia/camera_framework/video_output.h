@@ -189,6 +189,20 @@ Camera_ErrorCode OH_VideoOutput_GetActiveProfile(Camera_VideoOutput* videoOutput
 Camera_ErrorCode OH_VideoOutput_DeleteProfile(Camera_VideoProfile* profile);
 
 /**
+ * @brief Gets the video rotation angle.
+ *
+ * @param videoOutput the {@link Camera_VideoOutput} instance which used to get the video rotation angle.
+ * @param deviceDegree the current device rotation degree.
+ * @param imageRotation the {@link Camera_ImageRotation} result of video rotation angle.
+ * @return {@link #CAMERA_OK} if the method call succeeds.
+ *         {@link #CAMERA_INVALID_ARGUMENT} if parameter missing or parameter type incorrect.
+ *         {@link #CAMERA_SERVICE_FATAL_ERROR} if camera service fatal error.
+ * @since 12
+ */
+Camera_ErrorCode  OH_VideoOutput_GetVideoRotation(Camera_VideoOutput* videoOutput, int deviceDegree,
+    Camera_ImageRotation* imageRotation);
+
+/**
  * @brief Get supported video output frame rate list.
  *
  * @param videoOutput the {@link Camera_VideoOutput} instance to deliver supported frame rate list.
