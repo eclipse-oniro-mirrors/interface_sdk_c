@@ -16,7 +16,8 @@
 import re
 import os
 import subprocess
-from typedef.check.check import ApiResultInfo, ErrorMessage, ErrorType, LogType, ErrorLevel
+import openpyxl as op
+from typedef.check.check import ApiResultInfo, ErrorType, LogType, ErrorLevel
 
 
 def check_syntax(file_path):
@@ -32,26 +33,110 @@ def check_syntax(file_path):
     return result_list
 
 
-def processing_data(run_result, result_file):
+def get_all_dependent_file_path(dependent_file_path):
+    link_path = []
+    for dir_path, _, _ in os.walk(dependent_file_path):
+        if 'build-tools' not in dir_path:
+            link_path.append(dir_path)
+
+    return link_path
+
+
+def process_result_data(result_info_list):
+    syntax_info_data = []
+    for syntax_info in result_info_list:
+        info_data = [
+            syntax_info.api_name,
+            syntax_info.file_name,
+            syntax_info.error_info,
+            syntax_info.location_line,
+            syntax_info.error_content,
+        ]
+        syntax_info_data.append(info_data)
+
+    return syntax_info_data
+
+
+def general_syntax_excel(syntax_data_list, output_path):
+    data = process_result_data(syntax_data_list)
+    wb = op.Workbook()
+    ws = wb['Sheet']
+    ws.title = '语法错误信息'
+    ws.append(['当前文件路径', '错误文件路径', '错误信息', '行号', '代码片段'])
+    for title in data:
+        d = title[0], title[1], title[2], title[3], title[4]
+        ws.append(d)
+
+    wb.save(output_path)
+
+
+def get_dir_file_path(file_path):
+    file_path_total = []
+    for dir_path, _, filenames in os.walk(file_path):
+        for file_name in filenames:
+            if 'build-tools' not in dir_path and 'sysroot_myself' not in dir_path and file_name.endswith('.h'):
+                file_path_total.append(os.path.join(dir_path, file_name))
+
+    return file_path_total
+
+
+def get_all_object_file_path(file_path):
+    file_path_total = []
+    if os.path.isdir(file_path):
+        file_path_total = get_dir_file_path(file_path)
+    else:
+        if file_path.endswith('.h'):
+            file_path_total.append(file_path)
+
+    return file_path_total
+
+
+def check_syntax_entrance(file_path, dependent_file_path, output_path):
+    cmd_list = ['clang']
+    link_path = get_all_dependent_file_path(dependent_file_path)
+    args = ['-I{}'.format(path) for path in link_path]
+    cmd_list.extend(args)
+    cmd_list.append('-std=c99')
+    cmd_list.append('--target=aarch64-linux-musl')
+    result_list = []
+    all_files_list = get_all_object_file_path(file_path)
+    for element_file in all_files_list:
+        command = cmd_list + [element_file]
+        run_result = subprocess.run(command, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        result_list.extend(processing_data(run_result, element_file))
+    general_syntax_excel(result_list, output_path)
+    return result_list
+
+
+def processing_data(run_result, current_file):
     api_result_info_list = []
     for run_result_child in run_result.stderr.decode().split('^'):
+        split_error_message = run_result_child.split('\r\n')
+        error_content = ''.join(split_error_message[-2:-3:-1])
         result_child = run_result_child.replace('~', '')
         ret = re.findall('\\d+:\\d+', result_child)
+        error_file_message = re.search(r'([^"]+):\d:\d:', result_child)
+        error_file_name = current_file
+        if error_file_message:
+            error_file_list = error_file_message.group(1).split('\r\n')
+            if len(error_file_list) >= 1:
+                error_file_name = os.path.normpath(error_file_list[len(error_file_list) - 1])
         if len(ret) != 0:
             error_message = get_specified_string(result_child)
             if len(error_message) == 1:
                 continue
             position = ret[0]
             api_result_info = ApiResultInfo(ErrorType.SYNTAX_ERRORS.value,
-                                            error_message[1], result_file)
+                                            error_message[1], current_file)
             line_column = get_line_and_column(position)
             api_result_info.set_location_line(line_column[0])
             api_result_info.set_location_column(line_column[1])
-            api_result_info.set_location(result_file)
+            api_result_info.set_location(current_file)
             api_result_info.set_type(LogType.LOG_API.value)
             api_result_info.set_level(ErrorLevel.LOW.value)
-            api_result_info.set_file_name(result_file)
+            api_result_info.set_file_name(error_file_name)
             api_result_info_list.append(api_result_info)
+            api_result_info.set_error_content(error_content)
     return api_result_info_list
 
 

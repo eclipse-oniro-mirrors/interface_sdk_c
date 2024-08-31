@@ -80,7 +80,9 @@ typedef Drm_ErrCode (*OH_MediaKeySystem_Callback)(MediaKeySystem *mediaKeySystem
  * @brief Set media key system event callback.
  * @param mediaKeySystem Media key system instance.
  * @param callback Callback to be set to the media key system.
- * @return DRM_ERR_INVALID_VAL when the params checked failure, return DRM_ERR_OK when function called successfully.
+ * @return {@link DRM_ERR_OK} 0 - Success.
+ *         {@link DRM_ERR_INVALID_VAL} 24700503 - If the mediaKeySystem instance is nullptr or invalid,
+ *         or the mediaKeySession is nullptr or invalid.
  * @since 12
  * @version 1.0
  */
@@ -90,7 +92,11 @@ Drm_ErrCode OH_MediaKeySystem_SetCallback(MediaKeySystem *mediaKeySystem, OH_Med
  * @brief Acquire supported media key systems' name and uuid.
  * @param descs Array used to save media key systems' name and uuid.
  * @param count Used to indicate count of struct DRM_MediaKeySystemDescription.
- * @return DRM_ERR_INVALID_VAL when the params checked failure, return DRM_ERR_OK when function called successfully.
+ * @return {@link DRM_ERR_OK} 0 - Success.
+ *         {@link DRM_ERR_INVALID_VAL} 24700503 - Probably caused by:
+ *         1.the description or the count is nullptr.
+ *         2. the size of the description array is smaller than the actual number obtained.
+ *         {@link DRM_ERR_UNKNOWN} 24700506 - Internal error occurred, it is recommended to check the logs.
  * @since 12
  * @version 1.0
  */
@@ -129,8 +135,13 @@ bool OH_MediaKeySystem_IsSupported3(const char *name, const char *mimeType,
  * @brief Creates a media key system instance from the name.
  * @param name Secifies which drm system will be created by name.
  * @param mediaKeySystem Media key system instance.
- * @return DRM_ERR_INVALID_VAL when the params checked failure, return DRM_ERR_OK when function called successfully,
- * return DRM_ERR_MAX_SYSTEM_NUM_REACHED when max num media key system reached.
+ * @return {@link DRM_ERR_OK} 0 - Success.
+ *         {@link DRM_ERR_INVALID_VAL} 24700503 - Probably caused by:
+ *         1. the name is nullptr or the length of name is zero.
+ *         2. the mediaKeySystem is nullptr.
+ *         {@link DRM_ERR_UNKNOWN} 24700506 - Internal error occurred, it is recommended to check the logs.
+ *         {@link DRM_ERR_SERVICE_DIED} 24700507 - Service died.
+ *         {@link DRM_ERR_MAX_SYSTEM_NUM_REACHED} 24700510 - The maximum number of media key systems is reached.
  * @since 11
  * @version 1.0
  */
@@ -140,7 +151,9 @@ Drm_ErrCode OH_MediaKeySystem_Create(const char *name, MediaKeySystem **mediaKey
  * @param mediaKeySystem Media key system instance.
  * @param configName Configuration name string.
  * @param value Configuration vaule string to be set.
- * @return DRM_ERR_INVALID_VAL when the params checked failure, return DRM_ERR_OK when function called successfully.
+ * @return {@link DRM_ERR_OK} 0 - Success.
+ *         {@link DRM_ERR_INVALID_VAL} 24700503 - The parameter passed in is a null pointer or invalid.
+ *         {@link DRM_ERR_UNKNOWN} 24700506 - Internal error occurred, it is recommended to check the logs.
  * @since 11
  * @version 1.0
  */
@@ -152,7 +165,10 @@ Drm_ErrCode OH_MediaKeySystem_SetConfigurationString(MediaKeySystem *mediaKeySys
  * @param configName Configuration name string.
  * @param value Configuration vaule string to be get.
  * @param valueLen Configuration vaule string len for in buffer.
- * @return DRM_ERR_INVALID_VAL when the params checked failure, return DRM_ERR_OK when function called successfully.
+ * @return {@link DRM_ERR_OK} 0 - Success.
+ *         {@link DRM_ERR_NO_MEMORY} 24700501 - Memory errors.
+ *         {@link DRM_ERR_INVALID_VAL} 24700503 - The parameter passed in is a null pointer or invalid.
+ *         {@link DRM_ERR_UNKNOWN} 24700506 - Internal error occurred, it is recommended to check the logs.
  * @since 11
  * @version 1.0
  */
@@ -164,7 +180,10 @@ Drm_ErrCode OH_MediaKeySystem_GetConfigurationString(MediaKeySystem *mediaKeySys
  * @param configName Configuration name string.
  * @param value Configuration vaule in byte array to be set.
  * @param valueLen Value array len.
- * @return DRM_ERR_INVALID_VAL when the params checked failure, return DRM_ERR_OK when function called successfully.
+ * @return {@link DRM_ERR_OK} 0 - Success.
+ *         {@link DRM_ERR_NO_MEMORY} 24700501 - Memory errors.
+ *         {@link DRM_ERR_INVALID_VAL} 24700503 - The parameter passed in is a null pointer or invalid.
+ *         {@link DRM_ERR_UNKNOWN} 24700506 - Internal error occurred, it is recommended to check the logs.
  * @since 11
  * @version 1.0
  */
@@ -176,7 +195,10 @@ Drm_ErrCode OH_MediaKeySystem_SetConfigurationByteArray(MediaKeySystem *mediaKey
  * @param configName Configuration name string.
  * @param value Configuration vaule in byte array to be get.
  * @param valueLen Configuration vaule len for in buffer and out data.
- * @return DRM_ERR_INVALID_VAL when the params checked failure, return DRM_ERR_OK when function called successfully.
+ * @return {@link DRM_ERR_OK} 0 - Success.
+ *         {@link DRM_ERR_NO_MEMORY} 24700501 - Memory errors.
+ *         {@link DRM_ERR_INVALID_VAL} 24700503 - The parameter passed in is a null pointer or invalid.
+ *         {@link DRM_ERR_UNKNOWN} 24700506 - Internal error occurred, it is recommended to check the logs.
  * @since 11
  * @version 1.0
  */
@@ -186,7 +208,10 @@ Drm_ErrCode OH_MediaKeySystem_GetConfigurationByteArray(MediaKeySystem *mediaKey
  * @brief Get media key system statistics info.
  * @param mediaKeySystem Media key system instance.
  * @param statistics Statistic info gotten.
- * @return DRM_ERR_INVALID_VAL when the params checked failure, return DRM_ERR_OK when function called successfully.
+ * @return {@link DRM_ERR_OK} 0 - Success.
+ *         {@link DRM_ERR_NO_MEMORY} 24700501 - Memory errors.
+ *         {@link DRM_ERR_INVALID_VAL} 24700503 - The parameter passed in is a null pointer or invalid.
+ *         {@link DRM_ERR_UNKNOWN} 24700506 - Internal error occurred, it is recommended to check the logs.
  * @since 11
  * @version 1.0
  */
@@ -195,7 +220,9 @@ Drm_ErrCode OH_MediaKeySystem_GetStatistics(MediaKeySystem *mediaKeySystem, DRM_
  * @brief Get the max content protection level media key system supported.
  * @param mediaKeySystem Media key system instance.
  * @param contentProtectionLevel Content protection level.
- * @return DRM_ERR_INVALID_VAL when the params checked failure, return DRM_ERR_OK when function called successfully.
+ * @return {@link DRM_ERR_OK} 0 - Success.
+ *         {@link DRM_ERR_INVALID_VAL} 24700503 - The parameter passed in is a null pointer or invalid.
+ *         {@link DRM_ERR_UNKNOWN} 24700506 - Internal error occurred, it is recommended to check the logs.
  * @since 11
  * @version 1.0
  */
@@ -205,7 +232,8 @@ Drm_ErrCode OH_MediaKeySystem_GetMaxContentProtectionLevel(MediaKeySystem *media
  * @brief Set media key system event callback.
  * @param mediaKeySystem Media key system instance.
  * @param callback Callback to be set to the media key system.
- * @return DRM_ERR_INVALID_VAL when the params checked failure, return DRM_ERR_OK when function called successfully.
+ * @return {@link DRM_ERR_OK} 0 - Success.
+ *         {@link DRM_ERR_INVALID_VAL} 24700503 - The parameter passed in is a null pointer or invalid.
  * @since 11
  * @version 1.0
  */
@@ -217,8 +245,14 @@ Drm_ErrCode OH_MediaKeySystem_SetMediaKeySystemCallback(MediaKeySystem *mediaKey
  * @param mediaKeySystem Media key system instance which will create the media key session.
  * @param level Specifies the content protection level.
  * @param mediaKeySession Media key session instance.
- * @return DRM_ERR_INVALID_VAL when the params checked failure, return DRM_ERR_OK when function called successfully,
- * return DRM_ERR_MAX_SESSION_NUM_REACHED when max num media key system reached.
+ * @return {@link DRM_ERR_OK} 0 - Success.
+ *         {@link DRM_ERR_NO_MEMORY} 24700501 - Memory errors.
+ *         {@link DRM_ERR_INVALID_VAL} 24700503 - Probably caused by:
+ *         1. The parameter passed in is a null pointer or invalid.
+ *         2. the level is beyond reasonable range.
+ *         {@link DRM_ERR_UNKNOWN} 24700506 - Internal error occurred, it is recommended to check the logs.
+ *         {@link DRM_ERR_SERVICE_DIED} 24700507 - Service died.
+ *         {@link DRM_ERR_MAX_SESSION_NUM_REACHED} 24700511 - The maximum number of media key sessions is reached.
  * @since 11
  * @version 1.0
  */
@@ -232,7 +266,10 @@ Drm_ErrCode OH_MediaKeySystem_CreateMediaKeySession(MediaKeySystem *mediaKeySyst
  * @param requestLen Provision request data len for in buffer and out data.
  * @param defaultUrl Provision server URL.
  * @param defaultUrlLen Provision server URL len for in buffer.
- * @return DRM_ERR_INVALID_VAL when the params checked failure, return DRM_ERR_OK when function called successfully.
+ * @return {@link DRM_ERR_OK} 0 - Success.
+ *         {@link DRM_ERR_NO_MEMORY} 24700501 - Memory errors.
+ *         {@link DRM_ERR_INVALID_VAL} 24700503 - The parameter passed in is a null pointer or invalid.
+ *         {@link DRM_ERR_UNKNOWN} 24700506 - Internal error occurred, it is recommended to check the logs.
  * @since 11
  * @version 1.0
  */
@@ -244,7 +281,9 @@ Drm_ErrCode OH_MediaKeySystem_GenerateKeySystemRequest(MediaKeySystem *mediaKeyS
  * @param mediaKeySystem Media key system instance.
  * @param response The provision reponse will be processed.
  * @param responseLen The response len.
- * @return DRM_ERR_INVALID_VAL when the params checked failure, return DRM_ERR_OK when function called successfully.
+ * @return {@link DRM_ERR_OK} 0 - Success.
+ *         {@link DRM_ERR_INVALID_VAL} 24700503 - The parameter passed in is a null pointer or invalid.
+ *         {@link DRM_ERR_UNKNOWN} 24700506 - Internal error occurred, it is recommended to check the logs.
  * @since 11
  * @version 1.0
  */
@@ -255,7 +294,10 @@ Drm_ErrCode OH_MediaKeySystem_ProcessKeySystemResponse(MediaKeySystem *mediaKeyS
  * @brief Get offline media key ids .
  * @param mediaKeySystem Media key system instance.
  * @param offlineMediaKeyIds Media key ids of all offline media keys.
- * @return DRM_ERR_INVALID_VAL when the params checked failure, return DRM_ERR_OK when function called successfully.
+ * @return {@link DRM_ERR_OK} 0 - Success.
+ *         {@link DRM_ERR_NO_MEMORY} 24700501 - Memory errors.
+ *         {@link DRM_ERR_INVALID_VAL} 24700503 - The parameter passed in is a null pointer or invalid.
+ *         {@link DRM_ERR_UNKNOWN} 24700506 - Internal error occurred, it is recommended to check the logs.
  * @since 11
  * @version 1.0
  */
@@ -268,7 +310,9 @@ Drm_ErrCode OH_MediaKeySystem_GetOfflineMediaKeyIds(MediaKeySystem *mediaKeySyst
  * @param offlineMediaKeyId Offline media key identifier.
  * @param offlineMediaKeyIdLen Offline media key identifier len.
  * @param status The media key status gotten.
- * @return DRM_ERR_INVALID_VAL when the params checked failure, return DRM_ERR_OK when function called successfully.
+ * @return {@link DRM_ERR_OK} 0 - Success.
+ *         {@link DRM_ERR_INVALID_VAL} 24700503 - The parameter passed in is a null pointer or invalid.
+ *         {@link DRM_ERR_UNKNOWN} 24700506 - Internal error occurred, it is recommended to check the logs.
  * @since 11
  * @version 1.0
  */
@@ -280,7 +324,9 @@ Drm_ErrCode OH_MediaKeySystem_GetOfflineMediaKeyStatus(MediaKeySystem *mediaKeyS
  * @param mediaKeySystem Media key system instance.
  * @param offlineMediaKeyId Offline media key identifier.
  * @param offlineMediaKeyIdLen Offline media key identifier len.
- * @return DRM_ERR_INVALID_VAL when the params checked failure, return DRM_ERR_OK when function called successfully.
+ * @return {@link DRM_ERR_OK} 0 - Success.
+ *         {@link DRM_ERR_INVALID_VAL} 24700503 - The parameter passed in is a null pointer or invalid.
+ *         {@link DRM_ERR_UNKNOWN} 24700506 - Internal error occurred, it is recommended to check the logs.
  * @since 11
  * @version 1.0
  */
@@ -291,7 +337,9 @@ Drm_ErrCode OH_MediaKeySystem_ClearOfflineMediaKeys(MediaKeySystem *mediaKeySyst
  * @brief Get certificate status of media key system.
  * @param mediaKeySystem Media key system instance.
  * @param certStatus Status will be gotten.
- * @return DRM_ERR_INVALID_VAL when the params checked failure, return DRM_ERR_OK when function called successfully.
+ * @return {@link DRM_ERR_OK} 0 - Success.
+ *         {@link DRM_ERR_INVALID_VAL} 24700503 - The parameter passed in is a null pointer or invalid.
+ *         {@link DRM_ERR_UNKNOWN} 24700506 - Internal error occurred, it is recommended to check the logs.
  * @since 11
  * @version 1.0
  */
@@ -301,12 +349,13 @@ Drm_ErrCode OH_MediaKeySystem_GetCertificateStatus(MediaKeySystem *mediaKeySyste
 /**
  * @brief Destroy a media key system instance.
  * @param mediaKeySystem Secifies which media key system instance will be destroyed.
- * @return DRM_ERR_INVALID_VAL when the params checked failure, return DRM_ERR_OK when function called successfully.
+ * @return {@link DRM_ERR_OK} 0 - Success.
+ *         {@link DRM_ERR_INVALID_VAL} 24700503 - The parameter passed in is a null pointer or invalid.
+ *         {@link DRM_ERR_UNKNOWN} 24700506 - Internal error occurred, it is recommended to check the logs.
  * @since 11
  * @version 1.0
  */
 Drm_ErrCode OH_MediaKeySystem_Destroy(MediaKeySystem *mediaKeySystem);
-
 
 #ifdef __cplusplus
 }

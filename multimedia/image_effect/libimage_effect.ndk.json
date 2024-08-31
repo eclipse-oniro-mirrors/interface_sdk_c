@@ -133,11 +133,31 @@
   },
   {
     "first_introduced": "12",
+    "name": "OH_ImageEffect_AddFilterByFilter"
+  },
+  {
+    "first_introduced": "12",
     "name": "OH_ImageEffect_InsertFilter"
   },
   {
     "first_introduced": "12",
+    "name": "OH_ImageEffect_InsertFilterByFilter"
+  },
+  {
+    "first_introduced": "12",
     "name": "OH_ImageEffect_RemoveFilter"
+  },
+  {
+    "first_introduced": "12",
+    "name": "OH_ImageEffect_RemoveFilterByIndex"
+  },
+  {
+    "first_introduced": "12",
+    "name": "OH_ImageEffect_ReplaceFilter"
+  },
+  {
+    "first_introduced": "12",
+    "name": "OH_ImageEffect_ReplaceFilterByFilter"
   },
   {
     "first_introduced": "12",
@@ -182,6 +202,14 @@
   {
     "first_introduced": "12",
     "name": "OH_ImageEffect_SetOutputUri"
+  },
+  {
+    "first_introduced": "13",
+    "name": "OH_ImageEffect_SetInputPicture"
+  },
+  {
+    "first_introduced": "13",
+    "name": "OH_ImageEffect_SetOutputPicture"
   },
   {
     "first_introduced": "12",

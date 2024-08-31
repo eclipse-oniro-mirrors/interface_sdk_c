@@ -13,9 +13,29 @@
  * limitations under the License.
  */
 
+/**
+ * @addtogroup AVScreenCapture
+ * @{
+ *
+ * @brief Provides APIs of request capability for Screen Capture.
+ * @since 10
+ */
+ 
+/**
+ * @file native_avscreen_capture_base.h
+ *
+ * @brief Declare screen capture related struct.
+ *
+ * @library libnative_avscreen_capture.so
+ * @syscap SystemCapability.Multimedia.Media.AVScreenCapture
+ * @kit MediaKit
+ * @since 10
+ */
+ 
 #ifndef NATIVE_AVSCREEN_CAPTURE_BASE_H
 #define NATIVE_AVSCREEN_CAPTURE_BASE_H
 
+#include <stdbool.h>
 #include <stdint.h>
 #include "native_avbuffer.h"
 
@@ -427,6 +447,8 @@ typedef enum OH_AVScreenCaptureStateCode {
     OH_SCREEN_CAPTURE_STATE_ENTER_PRIVATE_SCENE = 8,
     /* Private window disappeared on current captured screen*/
     OH_SCREEN_CAPTURE_STATE_EXIT_PRIVATE_SCENE = 9,
+    /* ScreenCapture stopped by user switches */
+    OH_SCREEN_CAPTURE_STATE_STOPPED_BY_USER_SWITCHES = 10,
 } OH_AVScreenCaptureStateCode;
 
 /**
@@ -504,3 +526,4 @@ typedef void (*OH_AVScreenCapture_OnBufferAvailable)(OH_AVScreenCapture *capture
 #endif
 
 #endif // NATIVE_AVSCREEN_CAPTURE_BASE_H
+/** @} */

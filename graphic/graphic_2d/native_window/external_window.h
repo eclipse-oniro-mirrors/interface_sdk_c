@@ -399,7 +399,9 @@ typedef enum {
 OHNativeWindow* OH_NativeWindow_CreateNativeWindow(void* pSurface);
 
 /**
- * @brief Decreases the reference count of a <b>OHNativeWindow</b> instance by 1, and when the reference count reaches 0, destroys the instance.
+ * @brief Decreases the reference count of a <b>OHNativeWindow</b> instance by 1,
+ * and when the reference count reaches 0, destroys the instance.\n
+ * This interface dose not support concurrency.\n
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeWindow
  * @param window Indicates the pointer to a <b>OHNativeWindow</b> instance.
@@ -422,8 +424,11 @@ void OH_NativeWindow_DestroyNativeWindow(OHNativeWindow* window);
 OHNativeWindowBuffer* OH_NativeWindow_CreateNativeWindowBufferFromSurfaceBuffer(void* pSurfaceBuffer);
 
 /**
- * @brief Creates a <b>OHNativeWindowBuffer</b> instance.
- A new <b>OHNativeWindowBuffer</b> instance is created each time this function is called.
+ * @brief Creates a <b>OHNativeWindowBuffer</b> instance.\n
+ * A new <b>OHNativeWindowBuffer</b> instance is created each time this function is called.\n
+ * This interface needs to be used in conjunction with <b>OH_NativeWindow_DestroyNativeWindowBuffer<\b>,
+ * otherwise memory leaks will occur.\n
+ * This interface dose not support concurrency.\n
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeWindow
  * @param nativeBuffer Indicates the pointer to a native buffer. The type is <b>OH_NativeBuffer*</b>.
@@ -434,7 +439,9 @@ OHNativeWindowBuffer* OH_NativeWindow_CreateNativeWindowBufferFromSurfaceBuffer(
 OHNativeWindowBuffer* OH_NativeWindow_CreateNativeWindowBufferFromNativeBuffer(OH_NativeBuffer* nativeBuffer);
 
 /**
- * @brief Decreases the reference count of a <b>OHNativeWindowBuffer</b> instance by 1 and, when the reference count reaches 0, destroys the instance.
+ * @brief Decreases the reference count of a <b>OHNativeWindowBuffer</b> instance by 1 and,
+ * when the reference count reaches 0, destroys the instance.\n
+ * This interface dose not support concurrency.\n
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeWindow
  * @param buffer Indicates the pointer to a <b>OHNativeWindowBuffer</b> instance.
@@ -444,7 +451,13 @@ OHNativeWindowBuffer* OH_NativeWindow_CreateNativeWindowBufferFromNativeBuffer(O
 void OH_NativeWindow_DestroyNativeWindowBuffer(OHNativeWindowBuffer* buffer);
 
 /**
- * @brief Requests a <b>OHNativeWindowBuffer</b> through a <b>OHNativeWindow</b> instance for content production.
+ * @brief Requests a <b>OHNativeWindowBuffer</b> through a <b>OHNativeWindow</b> instance for content production.\n
+ * Before calling this interface, you need to set the width and height of
+ * <b>OHNativeWindow</b> through <b>SET_BUFFER_GEOMETRY</b>.\n
+ * This interface needs to be used in conjunction with <b>OH_NativeWindow_NativeWindowFlushBuffer<\b>,
+ * otherwise buffer will be exhausted.\n
+ * When the fenceFd is used up, you need to close it.\n
+ * This interface dose not support concurrency.\n
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeWindow
  * @param window Indicates the pointer to a <b>OHNativeWindow</b> instance.
@@ -458,7 +471,10 @@ int32_t OH_NativeWindow_NativeWindowRequestBuffer(OHNativeWindow *window,
     OHNativeWindowBuffer **buffer, int *fenceFd);
 
 /**
- * @brief Flushes the <b>OHNativeWindowBuffer</b> filled with the content to the buffer queue through a <b>OHNativeWindow</b> instance for content consumption.
+ * @brief Flushes the <b>OHNativeWindowBuffer</b> filled with the content to the buffer queue
+ * through a <b>OHNativeWindow</b> instance for content consumption.\n
+ * The fenceFd will be close by system.\n
+ * This interface dose not support concurrency.\n
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeWindow
  * @param window Indicates the pointer to a <b>OHNativeWindow</b> instance.
@@ -490,7 +506,9 @@ int32_t OH_NativeWindow_GetLastFlushedBuffer(OHNativeWindow *window, OHNativeWin
     int *fenceFd, float matrix[16]);
 
  /**
- * @brief Returns the <b>OHNativeWindowBuffer</b> to the buffer queue through a <b>OHNativeWindow</b> instance, without filling in any content. The <b>OHNativeWindowBuffer</b> can be used for another request.
+ * @brief Returns the <b>OHNativeWindowBuffer</b> to the buffer queue through a <b>OHNativeWindow</b> instance,
+ * without filling in any content. The <b>OHNativeWindowBuffer</b> can be used for another request.\n
+ * This interface dose not support concurrency.\n
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeWindow
  * @param window Indicates the pointer to a <b>OHNativeWindow</b> instance.
@@ -502,7 +520,8 @@ int32_t OH_NativeWindow_GetLastFlushedBuffer(OHNativeWindow *window, OHNativeWin
 int32_t OH_NativeWindow_NativeWindowAbortBuffer(OHNativeWindow *window, OHNativeWindowBuffer *buffer);
 
 /**
- * @brief Sets or obtains the attributes of a native window, including the width, height, and content format.
+ * @brief Sets or obtains the attributes of a native window, including the width, height, and content format.\n
+ * This interface dose not support concurrency.\n
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeWindow
  * @param window Indicates the pointer to a <b>OHNativeWindow</b> instance.
@@ -515,7 +534,8 @@ int32_t OH_NativeWindow_NativeWindowAbortBuffer(OHNativeWindow *window, OHNative
 int32_t OH_NativeWindow_NativeWindowHandleOpt(OHNativeWindow *window, int code, ...);
 
 /**
- * @brief Obtains the pointer to a <b>BufferHandle</b> of a <b>OHNativeWindowBuffer</b> instance.
+ * @brief Obtains the pointer to a <b>BufferHandle</b> of a <b>OHNativeWindowBuffer</b> instance.\n
+ * This interface dose not support concurrency.\n
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeWindow
  * @param buffer Indicates the pointer to a <b>OHNativeWindowBuffer</b> instance.
@@ -526,7 +546,10 @@ int32_t OH_NativeWindow_NativeWindowHandleOpt(OHNativeWindow *window, int code, 
 BufferHandle *OH_NativeWindow_GetBufferHandleFromNative(OHNativeWindowBuffer *buffer);
 
 /**
- * @brief Adds the reference count of a native object.
+ * @brief Adds the reference count of a native object.\n
+ * This interface needs to be used in conjunction with <b>OH_NativeWindow_NativeObjectUnreference<\b>,
+ * otherwise memory leaks will occur.\n
+ * This interface dose not support concurrency.\n
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeWindow
  * @param obj Indicates the pointer to a <b>OHNativeWindow</b> or <b>OHNativeWindowBuffer</b> instance.
@@ -537,7 +560,9 @@ BufferHandle *OH_NativeWindow_GetBufferHandleFromNative(OHNativeWindowBuffer *bu
 int32_t OH_NativeWindow_NativeObjectReference(void *obj);
 
 /**
- * @brief Decreases the reference count of a native object and, when the reference count reaches 0, destroys this object.
+ * @brief Decreases the reference count of a native object and,
+ * when the reference count reaches 0, destroys this object.\n
+ * This interface dose not support concurrency.\n
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeWindow
  * @param obj Indicates the pointer to a <b>OHNativeWindow</b> or <b>OHNativeWindowBuffer</b> instance.
@@ -548,7 +573,8 @@ int32_t OH_NativeWindow_NativeObjectReference(void *obj);
 int32_t OH_NativeWindow_NativeObjectUnreference(void *obj);
 
 /**
- * @brief Obtains the magic ID of a native object.
+ * @brief Obtains the magic ID of a native object.\n
+ * This interface dose not support concurrency.\n
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeWindow
  * @param obj Indicates the pointer to a <b>OHNativeWindow</b> or <b>OHNativeWindowBuffer</b> instance.
@@ -620,7 +646,10 @@ int32_t OH_NativeWindow_NativeWindowSetMetaDataSet(OHNativeWindow *window, uint3
 int32_t OH_NativeWindow_NativeWindowSetTunnelHandle(OHNativeWindow *window, const OHExtDataHandle *handle);
 
 /**
- * @brief Attach a buffer to an <b>OHNativeWindow</b> instance.
+ * @brief Attach a buffer to an <b>OHNativeWindow</b> instance.\n
+ * This interface needs to be used in conjunction with <b>OH_NativeWindow_NativeWindowDetachBuffer<\b>,
+ * otherwise buffer management will be chaotic.\n
+ * This interface dose not support concurrency.\n
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeWindow
  * @param window Indicates the pointer to an <b>OHNativeWindow</b> instance.
@@ -632,7 +661,8 @@ int32_t OH_NativeWindow_NativeWindowSetTunnelHandle(OHNativeWindow *window, cons
 int32_t OH_NativeWindow_NativeWindowAttachBuffer(OHNativeWindow *window, OHNativeWindowBuffer *buffer);
 
 /**
- * @brief Detach a buffer from an <b>OHNativeWindow</b> instance.
+ * @brief Detach a buffer from an <b>OHNativeWindow</b> instance.\n
+ * This interface dose not support concurrency.\n
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeWindow
  * @param window Indicates the pointer to an <b>OHNativeWindow</b> instance.
@@ -644,7 +674,8 @@ int32_t OH_NativeWindow_NativeWindowAttachBuffer(OHNativeWindow *window, OHNativ
 int32_t OH_NativeWindow_NativeWindowDetachBuffer(OHNativeWindow *window, OHNativeWindowBuffer *buffer);
 
 /**
- * @brief Get surfaceId from native window.
+ * @brief Get surfaceId from native window.\n
+ * This interface dose not support concurrency.\n
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeWindow
  * @param window Indicates the pointer to an <b>OHNativeWindow</b> instance.
@@ -657,6 +688,14 @@ int32_t OH_NativeWindow_GetSurfaceId(OHNativeWindow *window, uint64_t *surfaceId
 
 /**
  * @brief Creates an <b>OHNativeWindow</b> instance.\n
+ * This interface needs to be used in conjunction with <b>OH_NativeWindow_DestroyNativeWindow<\b>,
+ * otherwise memory leaks will occur.\n
+ * If there is a concurrent destroy OHNativeWindow, you need to add once and decrement once to the
+ * OHNativeWindow reference count through <b>OH_NativeWindow_NativeObjectReference<\b> and
+ * <b>OH_NativeWindow_NativeObjectUnreference<\b>.\n
+ * If the surface obtained through surfaceId is created in this process, the surface cannot be obtained
+ * across processes.\n
+ * This interface dose not support concurrency.\n
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeWindow
  * @param surfaceId Indicates the surfaceId to a surface.
@@ -668,7 +707,8 @@ int32_t OH_NativeWindow_GetSurfaceId(OHNativeWindow *window, uint64_t *surfaceId
 int32_t OH_NativeWindow_CreateNativeWindowFromSurfaceId(uint64_t surfaceId, OHNativeWindow **window);
 
 /**
- * @brief Sets scalingMode of a native window.
+ * @brief Sets scalingMode of a native window.\n
+ * This interface dose not support concurrency.\n
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeWindow
  * @param window indicates the pointer to an <b>OHNativeWindow</b> instance.
@@ -680,7 +720,8 @@ int32_t OH_NativeWindow_CreateNativeWindowFromSurfaceId(uint64_t surfaceId, OHNa
 int32_t OH_NativeWindow_NativeWindowSetScalingModeV2(OHNativeWindow *window, OHScalingModeV2 scalingMode);
 
 /**
- * @brief Set native window buffer hold.
+ * @brief Set native window buffer hold.\n
+ * This interface dose not support concurrency.\n
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeWindow
  * @param window Indicates the pointer to an <b>OHNativeWindow</b> instance.
@@ -690,42 +731,48 @@ int32_t OH_NativeWindow_NativeWindowSetScalingModeV2(OHNativeWindow *window, OHS
 void OH_NativeWindow_SetBufferHold(OHNativeWindow *window);
 
 /**
- * @brief Write an OHNativeWindow to an OHIPCParcel.
+ * @brief Write an OHNativeWindow to an OHIPCParcel.\n
+ * This interface dose not support concurrency.\n
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeWindow
  * @param window Indicates the pointer to an <b>OHNativeWindow</b> instance.
  * @param parcel Indicates the pointer to an <b>OHIPCParcel</b> instance.
- * @return 0 - Success.
- *     40001000 - parcel is NULL or window is NULL.
+ * @return {@link NATIVE_ERROR_OK} 0 - Success.
+ *     {@link NATIVE_ERROR_INVALID_ARGUMENTS} 40001000 - parcel is NULL or window is NULL.
  * @since 12
  * @version 1.0
  */
 int32_t OH_NativeWindow_WriteToParcel(OHNativeWindow *window, OHIPCParcel *parcel);
 
 /**
- * @brief Read an OHNativeWindow from an OHIPCParcel.
+ * @brief Read an OHNativeWindow from an OHIPCParcel.\n
+ * This interface dose not support concurrency.\n
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeWindow
  * @param parcel Indicates the pointer to an <b>OHIPCParcel</b> instance.
  * @param window Indicates the pointer to an <b>OHNativeWindow</b> instance.
- * @return 0 - Success.
- *     40001000 - parcel is NULL or parcel does not contain the window.
+ * @return {@link NATIVE_ERROR_OK} 0 - Success.
+ *     {@link NATIVE_ERROR_INVALID_ARGUMENTS} 40001000 - parcel is NULL or parcel does not contain the window.
  * @since 12
  * @version 1.0
  */
 int32_t OH_NativeWindow_ReadFromParcel(OHIPCParcel *parcel, OHNativeWindow **window);
 
 /**
- * @brief Get the last flushed <b>OHNativeWindowBuffer</b> from an <b>OHNativeWindow</b> instance.
+ * @brief Get the last flushed <b>OHNativeWindowBuffer</b> from an <b>OHNativeWindow</b> instance.\n
+ * When the fenceFd is used up, you need to close it.\n
+ * This interface needs to be used in conjunction with <b>OH_NativeWindow_NativeObjectUnreference<\b>,
+ * otherwise memory leaks will occur.\n
+ * This interface dose not support concurrency.\n
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeWindow
  * @param window Indicates the pointer to an <b>OHNativeWindow</b> instance.
  * @param buffer Indicates the pointer to an <b>OHNativeWindowBuffer</b> pointer.
  * @param fenceFd Indicates the pointer to a file descriptor handle.
  * @param matrix Indicates the retrieved 4*4 transform matrix.
- * @return 0 - Success.
- *     40001000 - window is NULL or buffer is NULL or fenceFd is NULL.
- *     41207000 - buffer state is wrong.
+ * @return {@link NATIVE_ERROR_OK} 0 - Success.
+ *     {@link NATIVE_ERROR_INVALID_ARGUMENTS} 40001000 - window is NULL or buffer is NULL or fenceFd is NULL.
+ *     {@link NATIVE_ERROR_BUFFER_STATE_INVALID} 41207000 - buffer state is wrong.
  * @since 12
  * @version 1.0
  */
@@ -733,7 +780,8 @@ int32_t OH_NativeWindow_ReadFromParcel(OHIPCParcel *parcel, OHNativeWindow **win
 int32_t OH_NativeWindow_GetLastFlushedBufferV2(OHNativeWindow *window, OHNativeWindowBuffer **buffer,
     int *fenceFd, float matrix[16]);
 /**
- * @brief Set the color space of the native window.
+ * @brief Set the color space of the native window.\n
+ * This interface dose not support concurrency.\n
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeWindow
  * @param window Indicates the pointer to a <b>OHNativeWindow</b> instance.
@@ -747,7 +795,8 @@ int32_t OH_NativeWindow_GetLastFlushedBufferV2(OHNativeWindow *window, OHNativeW
 int32_t OH_NativeWindow_SetColorSpace(OHNativeWindow *window, OH_NativeBuffer_ColorSpace colorSpace);
 
 /**
- * @brief Get the color space of the native window.
+ * @brief Get the color space of the native window.\n
+ * This interface dose not support concurrency.\n
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeWindow
  * @param window Indicates the pointer to a <b>OHNativeWindow</b> instance.
@@ -761,7 +810,8 @@ int32_t OH_NativeWindow_SetColorSpace(OHNativeWindow *window, OH_NativeBuffer_Co
 int32_t OH_NativeWindow_GetColorSpace(OHNativeWindow *window, OH_NativeBuffer_ColorSpace *colorSpace);
 
 /**
- * @brief Set the metadata type of the native window.
+ * @brief Set the metadata type of the native window.\n
+ * This interface dose not support concurrency.\n
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeWindow
  * @param window Indicates the pointer to a <b>OHNativeWindow</b> instance.
@@ -779,7 +829,8 @@ int32_t OH_NativeWindow_SetMetadataValue(OHNativeWindow *window, OH_NativeBuffer
     int32_t size, uint8_t *metadata);
 
 /**
- * @brief Set the metadata type of the native window.
+ * @brief Set the metadata type of the native window.\n
+ * This interface dose not support concurrency.\n
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeWindow
  * @param window Indicates the pointer to a <b>OHNativeWindow</b> instance.

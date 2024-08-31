@@ -292,6 +292,20 @@ int OH_UdmfRecord_AddFileUri(OH_UdmfRecord* pThis, OH_UdsFileUri* fileUri);
 int OH_UdmfRecord_AddPixelMap(OH_UdmfRecord* pThis, OH_UdsPixelMap* pixelMap);
 
 /**
+ * @brief Add one {@link OH_UdsArrayBuffer} data to the {@link OH_UdmfRecord} record.
+ *
+ * @param record Represents a pointer to an instance of {@link OH_UdmfRecord}.
+ * @param type Represents record type, reference udmf_meta.h.
+ * @param buffer Represents a pointer to an instance of {@link OH_UdsArrayBuffer}.
+ * @return Returns the status code of the execution. See {@link Udmf_ErrCode}.
+ *         {@link UDMF_E_OK} success.
+ *         {@link UDMF_E_INVALID_PARAM} The error code for common invalid args.
+ * @see OH_UdmfRecord OH_UdsArrayBuffer Udmf_ErrCode.
+ * @since 13
+ */
+int OH_UdmfRecord_AddArrayBuffer(OH_UdmfRecord* record, const char* type, OH_UdsArrayBuffer* buffer);
+
+/**
  * @brief Get all types in the {@link OH_UdmfRecord} record.
  *
  * @param pThis Represents a pointer to an instance of {@link OH_UdmfRecord}.
@@ -313,6 +327,7 @@ char** OH_UdmfRecord_GetTypes(OH_UdmfRecord* pThis, unsigned int* count);
  * @return Returns the status code of the execution. See {@link Udmf_ErrCode}.
  *         {@link UDMF_E_OK} success.
  *         {@link UDMF_E_INVALID_PARAM} The error code for common invalid args.
+ *         {@link UDMF_ERR} Internal data error.
  * @see OH_UdmfRecord Udmf_ErrCode.
  * @since 12
  */
@@ -327,6 +342,7 @@ int OH_UdmfRecord_GetGeneralEntry(OH_UdmfRecord* pThis, const char* typeId,
  * @return Returns the status code of the execution. See {@link Udmf_ErrCode}.
  *         {@link UDMF_E_OK} success.
  *         {@link UDMF_E_INVALID_PARAM} The error code for common invalid args.
+ *         {@link UDMF_ERR} Internal data error.
  * @see OH_UdmfRecord OH_UdsPlainText Udmf_ErrCode.
  * @since 12
  */
@@ -340,6 +356,7 @@ int OH_UdmfRecord_GetPlainText(OH_UdmfRecord* pThis, OH_UdsPlainText* plainText)
  * @return Returns the status code of the execution. See {@link Udmf_ErrCode}.
  *         {@link UDMF_E_OK} success.
  *         {@link UDMF_E_INVALID_PARAM} The error code for common invalid args.
+ *         {@link UDMF_ERR} Internal data error.
  * @see OH_UdmfRecord OH_UdsHyperlink Udmf_ErrCode.
  * @since 12
  */
@@ -353,6 +370,7 @@ int OH_UdmfRecord_GetHyperlink(OH_UdmfRecord* pThis, OH_UdsHyperlink* hyperlink)
  * @return Returns the status code of the execution. See {@link Udmf_ErrCode}.
  *         {@link UDMF_E_OK} success.
  *         {@link UDMF_E_INVALID_PARAM} The error code for common invalid args.
+ *         {@link UDMF_ERR} Internal data error.
  * @see OH_UdmfRecord OH_UdsHtml Udmf_ErrCode.
  * @since 12
  */
@@ -366,6 +384,7 @@ int OH_UdmfRecord_GetHtml(OH_UdmfRecord* pThis, OH_UdsHtml* html);
  * @return Returns the status code of the execution. See {@link Udmf_ErrCode}.
  *         {@link UDMF_E_OK} success.
  *         {@link UDMF_E_INVALID_PARAM} The error code for common invalid args.
+ *         {@link UDMF_ERR} Internal data error.
  * @see OH_UdmfRecord OH_UdsAppItem Udmf_ErrCode.
  * @since 12
  */
@@ -396,6 +415,79 @@ int OH_UdmfRecord_GetFileUri(OH_UdmfRecord* pThis, OH_UdsFileUri* fileUri);
  * @since 13
  */
 int OH_UdmfRecord_GetPixelMap(OH_UdmfRecord* pThis, OH_UdsPixelMap* pixelMap);
+
+/**
+ * @brief Get one {@link OH_UdsArrayBuffer} data from the {@link OH_UdmfRecord} record.
+ *
+ * @param record Represents a pointer to an instance of {@link OH_UdmfRecord}.
+ * @param type Represents record type, reference udmf_meta.h.
+ * @param buffer Represents a pointer to an instance of {@link OH_UdsArrayBuffer}.
+ * @return Returns the status code of the execution. See {@link Udmf_ErrCode}.
+ *         {@link UDMF_E_OK} success.
+ *         {@link UDMF_E_INVALID_PARAM} The error code for common invalid args.
+ * @see OH_UdmfRecord OH_UdsArrayBuffer Udmf_ErrCode.
+ * @since 13
+ */
+int OH_UdmfRecord_GetArrayBuffer(OH_UdmfRecord* record, const char* type, OH_UdsArrayBuffer* buffer);
+
+/**
+ * @brief Get primary {@link OH_UdsPlainText} data from the {@link OH_UdmfData}.
+ *
+ * @param data Represents a pointer to an instance of {@link OH_UdmfData}.
+ * @param plainText Represents a pointer to an instance of {@link OH_UdsPlainText}.
+ * @return Returns the status code of the execution. See {@link Udmf_ErrCode}.
+ *         {@link UDMF_E_OK} success.
+ *         {@link UDMF_E_INVALID_PARAM} The error code for common invalid args.
+ * @see OH_UdmfData OH_UdsPlainText Udmf_ErrCode.
+ * @since 13
+ */
+int OH_UdmfData_GetPrimaryPlainText(OH_UdmfData* data, OH_UdsPlainText* plainText);
+
+/**
+ * @brief Get one {@link OH_UdsHtml} data from the {@link OH_UdmfData}.
+ *
+ * @param data Represents a pointer to an instance of {@link OH_UdmfData}.
+ * @param html Represents a pointer to an instance of {@link OH_UdsHtml}.
+ * @return Returns the status code of the execution. See {@link Udmf_ErrCode}.
+ *         {@link UDMF_E_OK} success.
+ *         {@link UDMF_E_INVALID_PARAM} The error code for common invalid args.
+ * @see OH_UdmfData OH_UdsHtml Udmf_ErrCode.
+ * @since 13
+ */
+int OH_UdmfData_GetPrimaryHtml(OH_UdmfData* data, OH_UdsHtml* html);
+
+/**
+ * @brief Get the count of {@link OH_UdmfRecord} in the {@link OH_UdmfData}.
+ *
+ * @param data Represents a pointer to an instance of {@link OH_UdmfData}.
+ * @return Returns the count of {@link OH_UdmfRecord}
+ * @see OH_UdmfData.
+ * @since 13
+ */
+int OH_UdmfData_GetRecordCount(OH_UdmfData* data);
+
+/**
+ * @brief Get the record of the specified index from the {@link OH_UdmfData}.
+ *
+ * @param data Represents a pointer to an instance of {@link OH_UdmfData}.
+ * @param index Represents the index of {@link OH_UdmfRecord} in the {@link OH_UdmfData}.
+ * @return Returns {@link OH_UdmfRecord} pointer when input parameters valid, otherwise return nullptr.
+ * @see OH_UdmfData.
+ * @since 13
+ */
+OH_UdmfRecord* OH_UdmfData_GetRecord(OH_UdmfData* data, unsigned int index);
+
+/**
+ * @brief Checks whether the UDMF data is from a local device.
+ *
+ * @param data Represents a pointer to an instance of {@link OH_UdmfData}.
+ * @return Returns a boolean value, which indicates whether the UDMF data is from a local device.
+ *         The value {@code true} means the data is from a local device.
+ *         The value {@code false} means the opposite.
+ * @see OH_UdmfData.
+ * @since 13
+ */
+bool OH_UdmfData_IsLocal(OH_UdmfData* data);
 
 /**
  * @brief Creation a pointer to the instance of the {@link OH_UdmfProperty}
@@ -536,13 +628,14 @@ int OH_UdmfProperty_SetExtrasStringParam(OH_UdmfProperty* pThis,
  * @return Returns the status code of the execution. See {@link Udmf_ErrCode}.
  *         {@link UDMF_E_OK} success.
  *         {@link UDMF_E_INVALID_PARAM} The error code for common invalid args.
+ *         {@link UDMF_ERR} Internal data error.
  * @see OH_UdmfProperty Udmf_Intention Udmf_ErrCode.
  * @since 12
  */
 int OH_Udmf_GetUnifiedData(const char* key, Udmf_Intention intention, OH_UdmfData* unifiedData);
 
 /**
- * @brief Get {@link OH_UdmfData} data from udmf database.
+ * @brief Set {@link OH_UdmfData} data to database.
  *
  * @param intention Represents data type {@link Udmf_Intention}.
  * @param unifiedData Represents a pointer to an instance of {@link OH_UdmfData}.
@@ -552,6 +645,7 @@ int OH_Udmf_GetUnifiedData(const char* key, Udmf_Intention intention, OH_UdmfDat
  * @return Returns the status code of the execution. See {@link Udmf_ErrCode}.
  *         {@link UDMF_E_OK} success.
  *         {@link UDMF_E_INVALID_PARAM} The error code for common invalid args.
+ *         {@link UDMF_ERR} Internal data error.
  * @see OH_UdmfProperty Udmf_Intention Udmf_ErrCode.
  * @since 12
  */

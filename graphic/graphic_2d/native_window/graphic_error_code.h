@@ -80,6 +80,10 @@ typedef enum OHNativeErrorCode {
     NATIVE_ERROR_UNSUPPORTED = 50102000,
     /** @error unknown error, please check log */
     NATIVE_ERROR_UNKNOWN = 50002000,
+    /** @error hdi interface error */
+    NATIVE_ERROR_HDI_ERROR = 50007000,
+    /** @error ipc send failed */
+    NATIVE_ERROR_BINDER_ERROR = 50401000,
     /** @error the egl environment is abnormal */
     NATIVE_ERROR_EGL_STATE_UNKNOWN = 60001000,
     /** @error egl interface invocation failed */

@@ -84,7 +84,7 @@ typedef enum QoS_Level {
  *
  * @param level Indicates the level to set. Specific level can be referenced {@link QoS_Level}.
  * @return Returns 0 if the operation is successful; returns -1 if level is out of range or
-           internal error failed.
+ *         internal error failed.
  * @see QoS_Level
  * @since 12
  */
@@ -94,7 +94,7 @@ int OH_QoS_SetThreadQoS(QoS_Level level);
  * @brief Cancel the QoS level of the current thread.
  *
  * @return Returns 0 if the operation is successful; returns -1 if not set QoS for current thread
-  *        or internal error failed.
+ *        or internal error failed.
  * @see QoS_Level
  * @since 12
  */

@@ -28,6 +28,7 @@ ohos_ndk_headers("udmf_ndk_header") {
 
 ohos_ndk_library("libudmf") {
   output_name = "udmf"
+  output_extension = "so"
   system_capability = "SystemCapability.DistributedDataManager.UDMF.Core"
   ndk_description_file = "./libudmf.ndk.json"
   min_compact_version = "12"

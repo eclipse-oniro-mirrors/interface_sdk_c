@@ -31,6 +31,7 @@
  * @brief Declare the camera input concepts.
  *
  * @library libohcamera.so
+ * @kit CameraKit
  * @syscap SystemCapability.Multimedia.Camera.Core
  * @since 11
  * @version 1.0
@@ -120,12 +121,11 @@ Camera_ErrorCode OH_CameraInput_UnregisterCallback(Camera_Input* cameraInput, Ca
  */
 Camera_ErrorCode OH_CameraInput_Open(Camera_Input* cameraInput);
 
- 
 /**
  * @brief Open camera.
  *
  * @param cameraInput the {@link Camera_Input} instance to be opened.
- * @param secureSeqId which indicates SequenceId that secure camera  is on.
+ * @param secureSeqId which indicates SequenceId that secure camera is on.
  * @return {@link #CAMERA_OK} if the method call succeeds.
  *         {@link #INVALID_ARGUMENT} if parameter missing or parameter type incorrect.
  *         {@link #CAMERA_CONFLICT_CAMERA} if can not use camera cause of conflict.

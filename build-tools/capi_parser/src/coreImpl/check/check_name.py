@@ -55,9 +55,14 @@ def check_function_name(api_info, kind, parent_kind):
 
 
 def set_value_to_result(api_info, command):
+    content = api_info['node_content']['content']
+    node_name = api_info['name']
+    if api_info['kind'] == 'MACRO_DEFINITION' and api_info.get('def_func_name'):
+        node_name = api_info.get('def_func_name')
+    descriptive_message = CheckErrorMessage.__getitem__(command).value.replace('$$', node_name)
     return CheckOutPut(os.path.abspath(os.path.join(api_info['gn_path'], api_info['location']['location_path'])),
-                       api_info['location']['location_line'], command, CheckErrorMessage.__getitem__(command).value,
-                       api_info['node_content']['content'], api_info['location']['location_line'])
+                       api_info['location']['location_line'], command, descriptive_message,
+                       content, api_info['location']['location_line'])
 
 
 def is_self_developed_function(function_name):
@@ -124,10 +129,10 @@ def check_file_name(file_info):
     file_name = os.path.basename(file_info['name'])
     result = re.match(CheckName['FILE_NAME'].value, file_name)
     if result is None:
-        chck_output = CheckOutPut(os.path.abspath(os.path.join(file_info['gn_path'], file_info['name'])), 0,
-                                  CheckErrorMessage.API_NAME_UNIVERSAL_14.name,
-                                  CheckErrorMessage.API_NAME_UNIVERSAL_14.value, file_name, 0)
-        api_result_info_list.append(chck_output)
+        check_output = CheckOutPut(os.path.abspath(os.path.join(file_info['gn_path'], file_info['name'])), 0,
+                                   CheckErrorMessage.API_NAME_UNIVERSAL_14.name,
+                                   CheckErrorMessage.API_NAME_UNIVERSAL_14.value.replace('$$', file_name), '', 0)
+        api_result_info_list.append(check_output)
     return api_result_info_list
 
 
