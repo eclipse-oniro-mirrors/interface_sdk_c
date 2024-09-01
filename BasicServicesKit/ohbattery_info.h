@@ -44,8 +44,23 @@
 extern "C" {
 #endif /* __cplusplus */
 
+/**
+ * @brief a string that identifies the commen event sent after battery capacity changes
+ * @since 12
+ * @version 1.0
+ */
 static const char* COMMON_EVENT_KEY_CAPACITY = "soc";
+/**
+ * @brief a string that identifies the commen event sent after charge state changes
+ * @since 12
+ * @version 1.0
+ */
 static const char* COMMON_EVENT_KEY_CHARGE_STATE = "chargeState";
+/**
+ * @brief a string that identifies the commen event sent after plugged type changes
+ * @since 12
+ * @version 1.0
+ */
 static const char* COMMON_EVENT_KEY_PLUGGED_TYPE = "pluggedType";
 
 /**
@@ -54,7 +69,6 @@ static const char* COMMON_EVENT_KEY_PLUGGED_TYPE = "pluggedType";
  * @since 12
  * @version 1.0
  */
-
 typedef enum {
     /**
      * Power source is unplugged.
@@ -94,7 +108,7 @@ int32_t OH_BatteryInfo_GetCapacity();
 /**
  * @brief This API returns the current plugged type.
  *
- * @Return {@link BatteryInfo_BatteryPluggedType#PLUGGED_TYPE_NONE} if the power source is unplugged.
+ * @return {@link BatteryInfo_BatteryPluggedType#PLUGGED_TYPE_NONE} if the power source is unplugged.
  *         {@link PLUGGED_TYPE_AC} if the power source is an AC charger.
  *         {@link PLUGGED_TYPE_USB} if the power source is an USB DC charger.
  *         {@link PLUGGED_TYPE_WIRELESS} if the power source is wireless charger.
@@ -103,9 +117,8 @@ int32_t OH_BatteryInfo_GetCapacity();
  * @since 12
  */
 BatteryInfo_BatteryPluggedType OH_BatteryInfo_GetPluggedType();
-
 #ifdef __cplusplus
 }
-/** @} */
 #endif /* __cplusplus */
 #endif /* OHBATTERY_INFO_HEADER */
+/** @} */
