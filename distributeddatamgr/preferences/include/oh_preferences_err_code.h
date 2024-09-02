@@ -64,6 +64,8 @@ typedef enum OH_Preferences_ErrCode {
     PREFERENCES_ERROR_STORAGE = 15500011,
     /* @error Failed to malloc memory. */
     PREFERENCES_ERROR_MALLOC = 15500012,
+    /* @error Key not found error. */
+    PREFERENCES_ERROR_KEY_NOT_FOUND = 15500013,
     /* @error Failed to get DataObsMgrClient. */
     PREFERENCES_ERROR_GET_DATAOBSMGRCLIENT = 15500019,
 } OH_Preferences_ErrCode;
