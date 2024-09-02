@@ -1,0 +1,14 @@
+[
+    {
+        "first_introduced": "13",
+        "name": "OH_AbilityRuntime_ApplicationContextGetCacheDir"
+    },
+    {
+        "first_introduced": "13",
+        "name": "OH_AbilityRuntime_ApplicationContextGetAreaMode"
+    },
+    {
+        "first_introduced": "13",
+        "name": "OH_AbilityRuntime_ApplicationContextGetBundleName"
+    }
+]
