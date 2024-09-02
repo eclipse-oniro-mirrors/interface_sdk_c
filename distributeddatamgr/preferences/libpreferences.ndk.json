@@ -21,6 +21,10 @@
     },
     {
         "first_introduced": "13",
+        "name": "OH_Preferences_FreeString"
+    },
+    {
+        "first_introduced": "13",
         "name": "OH_Preferences_SetInt"
     },
     {

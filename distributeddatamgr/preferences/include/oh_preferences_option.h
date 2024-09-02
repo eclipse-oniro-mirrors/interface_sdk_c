@@ -69,6 +69,7 @@ OH_PreferencesOption *OH_PreferencesOption_Create(void);
  * @param filePath Pointer to the file path to set.
  * @return Returns the status code of the execution.
  *         {@link PREFERENCES_OK} success.
+ *         {@link PREFERENCES_ERROR_INVALID_PARAM} indicates invalid args are passed in.
  * @see OH_PreferencesOption.
  * @since 13
  */
@@ -81,6 +82,7 @@ int OH_PreferencesOption_SetFilePath(OH_PreferencesOption *option, const char *f
  * @param bundleName Pointer to the bundle name to set.
  * @return Returns the status code of the execution.
  *         {@link PREFERENCES_OK} success.
+ *         {@link PREFERENCES_ERROR_INVALID_PARAM} indicates invalid args are passed in.
  * @see OH_PreferencesOption.
  * @since 13
  */
@@ -93,6 +95,7 @@ int OH_PreferencesOption_SetBundleName(OH_PreferencesOption *option, const char 
  * @param dataGroupId Represents preferences data group id param.
  * @return Returns the status code of the execution.
  *         {@link PREFERENCES_OK} success.
+ *         {@link PREFERENCES_ERROR_INVALID_PARAM} indicates invalid args are passed in.
  * @see OH_PreferencesOption.
  * @since 13
  */
@@ -102,10 +105,13 @@ int OH_PreferencesOption_SetDataGroupId(OH_PreferencesOption *option, const char
  * @brief Destroys an {@Link OH_PreferencesOption} instance.
  *
  * @param option Pointer to the {@Link OH_PreferencesOption} instance to destroy.
+ * @return Returns the status code of the execution.
+ *         {@link PREFERENCES_OK} indicates the operation is successful.
+ *         {@link PREFERENCES_ERROR_INVALID_PARAM} indicates invalid args are passed in.
  * @see OH_PreferencesOption.
  * @since 13
  */
-void OH_PreferencesOption_Destroy(OH_PreferencesOption *option);
+int OH_PreferencesOption_Destroy(OH_PreferencesOption *option);
 #ifdef __cplusplus
 };
 #endif

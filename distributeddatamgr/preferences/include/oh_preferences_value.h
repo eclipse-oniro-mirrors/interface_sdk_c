@@ -156,8 +156,8 @@ int OH_PreferencesValue_GetBool(const OH_PreferencesValue *object, bool *value);
  * @brief Obtains the string value of an {@Link OH_PreferencesValue} instance.
  *
  * @param object Pointer to target {@Link OH_PreferencesValue} instance.
- * @param value Pointer to the string obtained in a char * array. Release the memory used
- * if this parameter is no longer required.
+ * @param value Double pointer to the value obtained in an char * array. Release {@Link OH_Preferences_FreeString} the
+ * memory by user when this parameter is no longer required.
  * @param valueLen Pointer to the string length.
  * @return Returns the status code of the execution.
  *         {@link PREFERENCES_OK} indicates the operation is successful.

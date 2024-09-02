@@ -136,8 +136,8 @@ int OH_Preferences_GetBool(OH_Preferences *preference, const char *key, bool *va
  *
  * @param preference Pointer to the target {@Link OH_Preferences} instance.
  * @param key Pointer to the key of the value to obtain.
- * @param value Double pointer to the value obtained in an char * array. Release the memory used
- * when this parameter is no longer required.
+ * @param value Double pointer to the value obtained in an char * array. Release {@Link OH_Preferences_FreeString} the
+ * memory by user when this parameter is no longer required.
  * @param valueLen Pointer to the length of the string obtained.
  * @return Returns the status code of the execution.
  *         {@link PREFERENCES_OK} indicates the operation is successful.
@@ -148,6 +148,15 @@ int OH_Preferences_GetBool(OH_Preferences *preference, const char *key, bool *va
  * @since 13
  */
 int OH_Preferences_GetString(OH_Preferences *preference, const char *key, char **value, uint32_t *valueLen);
+
+/**
+ * @brief Free a string got by Preferences object.
+ *
+ * @param string Point to string need to free.
+ * @see OH_Preferences.
+ * @since 13
+ */
+void OH_Preferences_FreeString(char *string);
 
 /**
  * @brief Sets an integer in a Preferences object.
@@ -236,6 +245,7 @@ int OH_Preferences_RegisterDataObserver(OH_Preferences *preference, void *contex
  * @brief Unregisters a data observer for a Preferences object.
  *
  * @param preference Pointer to the target {@Link OH_Preferences} instance.
+ * @param context Pointer to the context of the data observer.
  * @param observer Pointer to the {@Link OH_PreferencesDataObserver} to unregister.
  * @param keys Pointer to the keys observed. If this parameter is null, this API unregisters the listening for all keys.
  * @param keyCount Number of the keys.
@@ -247,8 +257,8 @@ int OH_Preferences_RegisterDataObserver(OH_Preferences *preference, void *contex
  * @see OH_Preferences OH_PreferencesDataObserver.
  * @since 13
  */
-int OH_Preferences_UnregisterDataObserver(OH_Preferences *preference, const OH_PreferencesDataObserver *observer,
-    const char *keys[], uint32_t keyCount);
+int OH_Preferences_UnregisterDataObserver(OH_Preferences *preference, void *context,
+    const OH_PreferencesDataObserver *observer, const char *keys[], uint32_t keyCount);
 
 #ifdef __cplusplus
 };
