@@ -56,11 +56,11 @@ typedef struct OH_PreferencesOption OH_PreferencesOption;
  * @brief Creates an {@Link OH_PreferencesOption} instance.
  *
  * @return Returns a pointer to the {@Link OH_PreferencesOption} instance created if the operation is successful;
- * returns nullptr otherwise.
+ * returns nullptr otherwise while malloc memory failed.
  * @see OH_PreferencesOption.
  * @since 13
  */
-OH_PreferencesOption *OH_PreferencesOption_Create();
+OH_PreferencesOption *OH_PreferencesOption_Create(void);
 
 /**
  * @brief Sets the file path in an {@Link OH_PreferencesOption} instance.

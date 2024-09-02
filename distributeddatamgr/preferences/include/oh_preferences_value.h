@@ -92,8 +92,8 @@ typedef struct OH_PreferencesValue OH_PreferencesValue;
  *
  * @param pairs Pointer to the target {@Link OH_PreferencesPair} instance.
  * @param index Represents a target index of the pairs
- * @return Returns preferences pointer to the key that when input parameters valid, otherwise return nullptr.
- * otherwise return nullptr.
+ * @return Returns preferences pointer to the key that when input parameters valid,
+ * return nullptr otherwise while invalid args are passed in.
  * @see OH_PreferencesPair.
  * @since 13
  */
@@ -105,7 +105,7 @@ const char *OH_PreferencesPair_GetKey(const OH_PreferencesPair *pairs, uint32_t 
  * @param pairs Pointer to the target {@Link OH_PreferencesPair} instance.
  * @param index Index of the value to obtain.
  * @return Returns a pointer to the {@Link OH_PreferencesValue} obtained if the operation is successful,
- * returns nullptr otherwise.
+ * returns nullptr otherwise while invalid args are passed in.
  * @see OH_PreferencesValue.
  * @since 13
  */
@@ -115,7 +115,8 @@ const OH_PreferencesValue *OH_PreferencesPair_GetPreferencesValue(const OH_Prefe
  * @brief Obtains the type of a preferences value.
  *
  * @param object Pointer to the target {@Link OH_PreferencesValue} instance.
- * @return Returns the value type obtained if the operation is successful, returns TYPE_NULL otherwise.
+ * @return Returns the value type obtained.
+ *         {@link TYPE_NULL} indicates invalid args are passed in.
  * @see OH_PreferencesValue.
  * @since 13
  */
@@ -127,9 +128,10 @@ Preference_ValueType OH_PreferencesValue_GetValueType(const OH_PreferencesValue 
  * @param object Pointer to the target {@Link OH_PreferencesValue} instance.
  * @param value Pointer to the value obtained.
  * @return Returns the status code of the execution.
- *         {@link PREFERENCES_OK} success.
- *         {@link PREFERENCES_E_INVALID_PARAM} The error code for common invalid args.
- *         {@link PREFERENCES_E_INNER_ERROR} The error code for Inner error.
+ *         {@link PREFERENCES_OK} indicates the operation is successful.
+ *         {@link PREFERENCES_ERROR_INVALID_PARAM} indicates invalid args are passed in.
+ *         {@link PREFERENCES_ERROR_STORAGE} indicates an storage error.
+ *         {@link PREFERENCES_ERROR_MALLOC} indicates an malloc memory error.
  * @see OH_PreferencesValue.
  * @since 13
  */
@@ -141,9 +143,10 @@ int OH_PreferencesValue_GetInt(const OH_PreferencesValue *object, int *value);
  * @param object Pointer to the target {@Link OH_PreferencesValue} instance.
  * @param value Pointer to the Boolean value obtained.
  * @return Returns the status code of the execution.
- *         {@link PREFERENCES_OK} success.
- *         {@link PREFERENCES_E_INVALID_PARAM} The error code for common invalid args.
- *         {@link PREFERENCES_E_INNER_ERROR} The error code for Inner error.
+ *         {@link PREFERENCES_OK} indicates the operation is successful.
+ *         {@link PREFERENCES_ERROR_INVALID_PARAM} indicates invalid args are passed in.
+ *         {@link PREFERENCES_ERROR_STORAGE} indicates an storage error.
+ *         {@link PREFERENCES_ERROR_MALLOC} indicates an malloc memory error.
  * @see OH_PreferencesValue.
  * @since 13
  */
@@ -157,9 +160,10 @@ int OH_PreferencesValue_GetBool(const OH_PreferencesValue *object, bool *value);
  * if this parameter is no longer required.
  * @param valueLen Pointer to the string length.
  * @return Returns the status code of the execution.
- *         {@link PREFERENCES_OK} success.
- *         {@link PREFERENCES_E_INVALID_PARAM} The error code for common invalid args.
- *         {@link PREFERENCES_E_INNER_ERROR} The error code for Inner error.
+ *         {@link PREFERENCES_OK} indicates the operation is successful.
+ *         {@link PREFERENCES_ERROR_INVALID_PARAM} indicates invalid args are passed in.
+ *         {@link PREFERENCES_ERROR_STORAGE} indicates an storage error.
+ *         {@link PREFERENCES_ERROR_MALLOC} indicates an malloc memory error.
  * @see OH_PreferencesValue.
  * @since 13
  */

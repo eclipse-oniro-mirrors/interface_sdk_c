@@ -53,17 +53,19 @@ typedef enum OH_Preferences_ErrCode {
     /** @error Operation successful. */
     PREFERENCES_OK = 0,
     /* @error Invalid args. */
-    PREFERENCES_E_INVALID_PARAM = 401,
+    PREFERENCES_ERROR_INVALID_PARAM = 401,
     /* @error Capability not supported. */
-    PREFERENCES_NOT_SUPPORTED = 801,
+    PREFERENCES_ERROR_NOT_SUPPORTED = 801,
     /* @error Base error code. */
-    PREFERENCES_BASE = 15500000,
-    /* @error Inner error. */
-    PREFERENCES_E_INNER_ERROR = PREFERENCES_BASE,
+    PREFERENCES_ERROR_BASE = 15500000,
     /* @error Failed to delete a file. */
-    PREFERENCES_DELETE_FILE_FAIL = (PREFERENCES_BASE + 10),
+    PREFERENCES_ERROR_DELETE_FILE = (PREFERENCES_ERROR_BASE + 10),
+    /* @error Storage error. */
+    PREFERENCES_ERROR_STORAGE = (PREFERENCES_ERROR_BASE + 11),
+    /* @error Failed to malloc memory. */
+    PREFERENCES_ERROR_MALLOC = (PREFERENCES_ERROR_BASE + 12),
     /* @error Failed to get DataObsMgrClient. */
-    PREFERENCES_GET_DATAOBSMGRCLIENT_FAIL = (PREFERENCES_BASE + 19),
+    PREFERENCES_ERROR_GET_DATAOBSMGRCLIENT = (PREFERENCES_ERROR_BASE + 19),
 } OH_Preferences_ErrCode;
 
 #ifdef __cplusplus

@@ -74,9 +74,11 @@ typedef void (*OH_PreferencesDataObserver)(void *context, const OH_PreferencesPa
  * @return Returns an pointer to the Preferences object in {@Link OH_Preferences} if the operation is successful,
  * returns nullptr otherwise.
  *         {@link PREFERENCES_OK} indicates the operation is successful.
- *         {@link PREFERENCES_E_INVALID_PARAM} indicates invalid args are passed in.
- *         {@link PREFERENCES_E_INNER_ERROR} indicates an inner error.
- *         {@link PREFERENCES_NOT_SUPPORTED} indicates the capability is not supported.
+ *         {@link PREFERENCES_ERROR_INVALID_PARAM} indicates invalid args are passed in.
+ *         {@link PREFERENCES_ERROR_NOT_SUPPORTED} indicates the capability is not supported.
+ *         {@link PREFERENCES_ERROR_DELETE_FILE} indicates delete file failed.
+ *         {@link PREFERENCES_ERROR_STORAGE} indicates an storage error.
+ *         {@link PREFERENCES_ERROR_MALLOC} indicates an malloc memory error.
  * @see OH_Preferences OH_PreferencesOption.
  * @since 13
  */
@@ -89,8 +91,9 @@ OH_Preferences *OH_Preferences_Open(OH_PreferencesOption *option, int *errCode);
  * @param option Pointer to an {@Link OH_PreferencesOption} instance.
  * @return Returns the status code of the execution. For details, see {@Link OH_Preferences_ErrCode}.
  *         {@link PREFERENCES_OK} indicates the operation is successful.
- *         {@link PREFERENCES_E_INVALID_PARAM} indicates invalid args are passed in.
- *         {@link PREFERENCES_E_INNER_ERROR} indicates an inner error.
+ *         {@link PREFERENCES_ERROR_INVALID_PARAM} indicates invalid args are passed in.
+ *         {@link PREFERENCES_ERROR_STORAGE} indicates an storage error.
+ *         {@link PREFERENCES_ERROR_MALLOC} indicates an malloc memory error.
  * @see OH_Preferences.
  * @since 13
  */
@@ -104,8 +107,9 @@ int OH_Preferences_Close(OH_Preferences *preference);
  * @param value Pointer to the value obtained.
  * @return Returns the status code of the execution.
  *         {@link PREFERENCES_OK} indicates the operation is successful.
- *         {@link PREFERENCES_E_INVALID_PARAM} indicates invalid args are passed in.
- *         {@link PREFERENCES_E_INNER_ERROR} indicates an inner error.
+ *         {@link PREFERENCES_ERROR_INVALID_PARAM} indicates invalid args are passed in.
+ *         {@link PREFERENCES_ERROR_STORAGE} indicates an storage error.
+ *         {@link PREFERENCES_ERROR_MALLOC} indicates an malloc memory error.
  * @see OH_Preferences.
  * @since 13
  */
@@ -119,8 +123,9 @@ int OH_Preferences_GetInt(OH_Preferences *preference, const char *key, int *valu
  * @param value Pointer to the Boolean value obtained.
  * @return Returns the status code of the execution.
  *         {@link PREFERENCES_OK} indicates the operation is successful.
- *         {@link PREFERENCES_E_INVALID_PARAM} indicates invalid args are passed in.
- *         {@link PREFERENCES_E_INNER_ERROR} indicates an inner error.
+ *         {@link PREFERENCES_ERROR_INVALID_PARAM} indicates invalid args are passed in.
+ *         {@link PREFERENCES_ERROR_STORAGE} indicates an storage error.
+ *         {@link PREFERENCES_ERROR_MALLOC} indicates an malloc memory error.
  * @see OH_Preferences.
  * @since 13
  */
@@ -136,8 +141,9 @@ int OH_Preferences_GetBool(OH_Preferences *preference, const char *key, bool *va
  * @param valueLen Pointer to the length of the string obtained.
  * @return Returns the status code of the execution.
  *         {@link PREFERENCES_OK} indicates the operation is successful.
- *         {@link PREFERENCES_E_INVALID_PARAM} indicates invalid args are passed in.
- *         {@link PREFERENCES_E_INNER_ERROR} indicates an inner error.
+ *         {@link PREFERENCES_ERROR_INVALID_PARAM} indicates invalid args are passed in.
+ *         {@link PREFERENCES_ERROR_STORAGE} indicates an storage error.
+ *         {@link PREFERENCES_ERROR_MALLOC} indicates an malloc memory error.
  * @see OH_Preferences.
  * @since 13
  */
@@ -151,8 +157,9 @@ int OH_Preferences_GetString(OH_Preferences *preference, const char *key, char *
  * @param value Value to set.
  * @return Returns the status code of the execution.
  *         {@link PREFERENCES_OK} indicates the operation is successful.
- *         {@link PREFERENCES_E_INVALID_PARAM} indicates invalid args are passed in.
- *         {@link PREFERENCES_E_INNER_ERROR} indicates an inner error.
+ *         {@link PREFERENCES_ERROR_INVALID_PARAM} indicates invalid args are passed in.
+ *         {@link PREFERENCES_ERROR_STORAGE} indicates an storage error.
+ *         {@link PREFERENCES_ERROR_MALLOC} indicates an malloc memory error.
  * @see OH_Preferences.
  * @since 13
  */
@@ -166,8 +173,9 @@ int OH_Preferences_SetInt(OH_Preferences *preference, const char *key, int value
  * @param value Boolean value to set.
  * @return Returns the status code of the execution.
  *         {@link PREFERENCES_OK} indicates the operation is successful.
- *         {@link PREFERENCES_E_INVALID_PARAM} indicates invalid args are passed in.
- *         {@link PREFERENCES_E_INNER_ERROR} indicates an inner error.
+ *         {@link PREFERENCES_ERROR_INVALID_PARAM} indicates invalid args are passed in.
+ *         {@link PREFERENCES_ERROR_STORAGE} indicates an storage error.
+ *         {@link PREFERENCES_ERROR_MALLOC} indicates an malloc memory error.
  * @see OH_Preferences.
  * @since 13
  */
@@ -181,8 +189,9 @@ int OH_Preferences_SetBool(OH_Preferences *preference, const char *key, bool val
  * @param value Point to string to set.
  * @return Returns the status code of the execution.
  *         {@link PREFERENCES_OK} indicates the operation is successful.
- *         {@link PREFERENCES_E_INVALID_PARAM} indicates invalid args are passed in.
- *         {@link PREFERENCES_E_INNER_ERROR} indicates an inner error.
+ *         {@link PREFERENCES_ERROR_INVALID_PARAM} indicates invalid args are passed in.
+ *         {@link PREFERENCES_ERROR_STORAGE} indicates an storage error.
+ *         {@link PREFERENCES_ERROR_MALLOC} indicates an malloc memory error.
  * @see OH_Preferences.
  * @since 13
  */
@@ -195,8 +204,9 @@ int OH_Preferences_SetString(OH_Preferences *preference, const char *key, const 
  * @param key Pointer to the key of the data to delete.
  * @return Returns the status code of the execution.
  *         {@link PREFERENCES_OK} indicates the operation is successful.
- *         {@link PREFERENCES_E_INVALID_PARAM} indicates invalid args are passed in.
- *         {@link PREFERENCES_E_INNER_ERROR} indicates an inner error.
+ *         {@link PREFERENCES_ERROR_INVALID_PARAM} indicates invalid args are passed in.
+ *         {@link PREFERENCES_ERROR_STORAGE} indicates an storage error.
+ *         {@link PREFERENCES_ERROR_MALLOC} indicates an malloc memory error.
  * @see OH_Preferences.
  * @since 13
  */
@@ -212,8 +222,10 @@ int OH_Preferences_Delete(OH_Preferences *preference, const char *key);
  * @param keyCount Number of keys to observe.
  * @return Returns the status code of the execution.
  *         {@link PREFERENCES_OK} indicates the operation is successful.
- *         {@link PREFERENCES_E_INVALID_PARAM} indicates invalid args are passed in.
- *         {@link PREFERENCES_E_INNER_ERROR} indicates an inner error.
+ *         {@link PREFERENCES_ERROR_INVALID_PARAM} indicates invalid args are passed in.
+ *         {@link PREFERENCES_ERROR_STORAGE} indicates an storage error.
+ *         {@link PREFERENCES_ERROR_MALLOC} indicates an malloc memory error.
+ *         {@link PREFERENCES_ERROR_GET_DATAOBSMGRCLIENT} indicates get dataObsMgrClient error.
  * @see OH_Preferences OH_PreferencesDataObserver.
  * @since 13
  */
@@ -229,8 +241,9 @@ int OH_Preferences_RegisterDataObserver(OH_Preferences *preference, void *contex
  * @param keyCount Number of the keys.
  * @return Returns the status code of the execution.
  *         {@link PREFERENCES_OK} indicates the operation is successful.
- *         {@link PREFERENCES_E_INVALID_PARAM} indicates invalid args are passed in.
- *         {@link PREFERENCES_E_INNER_ERROR} indicates an inner error.
+ *         {@link PREFERENCES_ERROR_INVALID_PARAM} indicates invalid args are passed in.
+ *         {@link PREFERENCES_ERROR_STORAGE} indicates an storage error.
+ *         {@link PREFERENCES_ERROR_MALLOC} indicates an malloc memory error.
  * @see OH_Preferences OH_PreferencesDataObserver.
  * @since 13
  */
