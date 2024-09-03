@@ -817,13 +817,14 @@ int32_t OH_NativeXComponent_GetTouchEventSourceType(
 OH_NativeXComponent* OH_NativeXComponent_GetNativeXComponent(ArkUI_NodeHandle node);
 
 /**
- * @brief Obtains the accessibility handle by the ArkUI XComponent.
+ * @brief Obtains the pointer to the <b> ArkUI_AccessibilityProvider</b>
+ * instance of this <b>OH_NativeXComponent</b> instance.
  *
- * @param component Indicates the pointer to this <b>OH_NativeXComponent</b> instance.
- * @param provider Indicates the pointer to pointer of <b>ArkUI_AccessibilityProvider</b> instance.
- * @return Returns the status code of the execution.
+ * @param component Indicates the pointer to the <b>OH_NativeXComponent</b> instance.
+ * @param handle Indicates the pointer to the <b>ArkUI_AccessibilityProvider</b> instance.
+ * @return Returns {@link OH_NATIVEXCOMPONENT_RESULT_SUCCESS} if the operation is successful.
+ *         Returns {@link OH_NATIVEXCOMPONENT_RESULT_BAD_PARAMETER} if a parameter error occurs.
  * @since 13
- * @version 1.0
  */
 int32_t OH_NativeXComponent_GetNativeAccessibilityProvider(
     OH_NativeXComponent* component, ArkUI_AccessibilityProvider** handle);
