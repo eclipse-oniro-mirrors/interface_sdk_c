@@ -1350,7 +1350,7 @@ void OH_Input_SetRepeat(Input_Hotkey* hotkey, bool isRepeat);
  * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 13
  */
-Input_Result OH_Input_IsRepeat(const Input_Hotkey* hotkey, bool *isRepeat);
+Input_Result OH_Input_GetRepeat(const Input_Hotkey* hotkey, bool *isRepeat);
 
 /**
  * @brief Subscribes to shortcut key events.
@@ -1359,8 +1359,8 @@ Input_Result OH_Input_IsRepeat(const Input_Hotkey* hotkey, bool *isRepeat);
  * @param callback Callback used to return shortcut key events.
  * @return OH_Input_AddHotkeyMonitor status code, specifically,
  *         {@link INPUT_SUCCESS} if the operation is successful;\n
- *         {@link INPUT_PARAMETER_ERROR} if parameter verification fails;\n
- *         {@link INPUT_SERVICE_EXCEPTION} if the service is abnormal probably
+ *         {@link INPUT_PARAMETER_ERROR} if hotkey or callback is NULL;\n
+ *         {@link INPUT_HOTKEY_ALREADY_REGISTER} if the service is abnormal probably
  *         because subscription to shortcut key events has been enabled.\n
  * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 13
@@ -1374,7 +1374,7 @@ Input_Result OH_Input_AddHotkeyMonitor(const Input_Hotkey* hotkey, Input_HotkeyC
  * @param callback Callback used to return shortcut key events.
  * @return OH_Input_RemoveHotkeyMonitor status code, specifically,
  *         {@link INPUT_SUCCESS} if the operation is successful;\n
- *         {@link INPUT_PARAMETER_ERROR} if parameter verification fails;\n
+ *         {@link INPUT_PARAMETER_ERROR} if hotkey or callback is NULL;\n
  * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 13
  */
