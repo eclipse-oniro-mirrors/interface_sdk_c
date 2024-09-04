@@ -1,0 +1,190 @@
+[
+    {
+        "first_introduced": "13",
+        "name": "OH_AVSession_Create"
+    },
+    {
+        "first_introduced": "13",
+        "name": "OH_AVSession_Destroy"
+    },
+    {
+        "first_introduced": "13",
+        "name": "OH_AVSession_Activate"
+    },
+    {
+        "first_introduced": "13",
+        "name": "OH_AVSession_Deactivate"
+    },
+    {
+        "first_introduced": "13",
+        "name": "OH_AVSession_GetSessionType"
+    },
+    {
+        "first_introduced": "13",
+        "name": "OH_AVSession_GetSessionId"
+    },
+    {
+        "first_introduced": "13",
+        "name":"OH_AVSession_SetAVMetadata"
+    },
+    {
+        "first_introduced": "13",
+        "name":"OH_AVSession_SetPlaybackState"
+    },
+    {
+        "first_introduced": "13",
+        "name":"OH_AVSession_SetPlaybackPosition"
+    },
+    {
+        "first_introduced": "13",
+        "name":"OH_AVSession_SetBufferedTime"
+    },
+    {
+        "first_introduced": "13",
+        "name":"OH_AVSession_SetSpeed"
+    },
+    {
+        "first_introduced": "13",
+        "name":"OH_AVSession_SetFavorite"
+    },
+    {
+        "first_introduced": "13",
+        "name":"OH_AVSession_SetLoopMode"
+    },
+    {
+        "first_introduced": "13",
+        "name":"OH_AVSession_RegisterCommandCallback"
+    },
+    {
+        "first_introduced": "13",
+        "name":"OH_AVSession_UnRegisterCommandCallback"
+    },
+    {
+        "first_introduced": "13",
+        "name":"OH_AVSession_RegisterForwardCallback"
+    },
+    {
+        "first_introduced": "13",
+        "name":"OH_AVSession_UnRegisterForwardCallback"
+    },
+    {
+        "first_introduced": "13",
+        "name":"OH_AVSession_RegisterRewindCallback"
+    },
+    {
+        "first_introduced": "13",
+        "name":"OH_AVSession_UnRegisterRewindCallback"
+    },
+    {
+        "first_introduced": "13",
+        "name":"OH_AVSession_RegisterSeekCallback"
+    },
+    {
+        "first_introduced": "13",
+        "name":"OH_AVSession_UnRegisterSeekCallback"
+    },
+    {
+        "first_introduced": "13",
+        "name":"OH_AVSession_RegisterSpeedCallback"
+    },
+    {
+        "first_introduced": "13",
+        "name":"OH_AVSession_UnRegisterSpeedCallback"
+    },
+    {
+        "first_introduced": "13",
+        "name":"OH_AVSession_RegisterSetLoopModeCallback"
+    },
+    {
+        "first_introduced": "13",
+        "name":"OH_AVSession_UnRegisterSetLoopModeCallback"
+    },
+    {
+        "first_introduced": "13",
+        "name":"OH_AVSession_RegisterToggleFavoriteCallback"
+    },
+    {
+        "first_introduced": "13",
+        "name":"OH_AVSession_UnRegisterToggleFavoriteCallback"
+    },
+    {
+        "first_introduced": "13",
+        "name":"OH_AVSession_RegisterPlayFromAssetIdCallback"
+    },
+    {
+        "first_introduced": "13",
+        "name":"OH_AVSession_UnRegisterPlayFromAssetIdCallback"
+    },
+    {
+        "first_introduced": "13",
+        "name": "OH_AVMetadataBuilder_Create"
+    },
+    {
+        "first_introduced": "13",
+        "name": "OH_AVMetadataBuilder_Destroy"
+    },
+    {
+        "first_introduced": "13",
+        "name": "OH_AVMetadataBuilder_SetAssetId"
+    },
+    {
+        "first_introduced": "13",
+        "name": "OH_AVMetadataBuilder_SetTitle"
+    },
+    {
+        "first_introduced": "13",
+        "name": "OH_AVMetadataBuilder_SetArtist"
+    },
+    {
+        "first_introduced": "13",
+        "name": "OH_AVMetadataBuilder_SetAuthor"
+    },
+    {
+        "first_introduced": "13",
+        "name": "OH_AVMetadataBuilder_SetAlbum"
+    },
+    {
+        "first_introduced": "13",
+        "name": "OH_AVMetadataBuilder_SetWriter"
+    },
+    {
+        "first_introduced": "13",
+        "name": "OH_AVMetadataBuilder_SetComposer"
+    },
+    {
+        "first_introduced": "13",
+        "name": "OH_AVMetadataBuilder_SetDuration"
+    },
+    {
+        "first_introduced": "13",
+        "name": "OH_AVMetadataBuilder_SetMediaImageUri"
+    },
+    {
+        "first_introduced": "13",
+        "name": "OH_AVMetadataBuilder_SetSubTitle"
+    },
+    {
+        "first_introduced": "13",
+        "name": "OH_AVMetadataBuilder_SetDescription"
+    },
+    {
+        "first_introduced": "13",
+        "name": "OH_AVMetadataBuilder_SetLyric"
+    },
+    {
+        "first_introduced": "13",
+        "name": "OH_AVMetadataBuilder_SetSkipIntervals"
+    },
+    {
+        "first_introduced": "13",
+        "name": "OH_AVMetadataBuilder_SetDisplayTags"
+    },
+    {
+        "first_introduced": "13",
+        "name": "OH_AVMetadataBuilder_GenerateAVMetadata"
+    },
+    {
+        "first_introduced": "13",
+        "name": "OH_AVMetadata_Destroy"
+    }
+]
