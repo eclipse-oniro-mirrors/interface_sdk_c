@@ -214,6 +214,8 @@ typedef struct Input_AxisEvent Input_AxisEvent;
  * @since 12
  */
 typedef enum Input_Result {
+    /** Hotkey has been registered */
+    INPUT_HOTKEY_ERROR_COMBINATION_KEY = -2,
     /** @error Success return code on success*/
     INPUT_SUCCESS = 0,
     /** @error Permission verification failed */
