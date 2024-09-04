@@ -17,7 +17,7 @@ GN语法，https://zhuanlan.zhihu.com/p/136954435
 ```
 ./build.sh --product-name ohos-sdk
 ```
-更加详细的SDK编译指导，请参考[如何编译full-SDK](http://https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/faqs/full-sdk-compile-guide.md)。
+更加详细的SDK编译指导，请参考[如何编译full-SDK](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/faqs/full-sdk-compile-guide.md)。
 
 ## 编译结果
 
@@ -112,6 +112,22 @@ sources = [
 
 这个模板只针对mac/win/linux平台的几个工具链，一般开发同学使用不到。
 输入参数含义同ohos_ndk_headers。ohos_ndk_toolchains目标的默认dest_dir为$root_out_dir/sdk-native/sysroot/usr/lib
+
+## 添加到build系统
+
+上面添加的目标需要加到build的[ndk依赖目标](https://gitee.com/openharmony/build/blob/master/ohos/ndk/ndk_targets.gni)文件的_ndk_library_targets变量里面，这样在编译
+SDK的时候，才会被依赖到。
+
+新增如下
+```
+_ndk_library_targets = [
+  "//interface/sdk_c/sensors/miscdevice/vibrator:lib_vibrator_ndk",
+  "//interface/sdk_c/sensors/miscdevice/vibrator:ndk_vibrator_header",
+  ...
+  "//interface/sdk_c/sensors/sensor:libsensor_ndk",
+  "//interface/sdk_c/sensors/sensor:sensor_ndk_header",
+]
+```
 
 
 ## 文档
