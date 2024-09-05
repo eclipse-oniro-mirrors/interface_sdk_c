@@ -226,8 +226,10 @@ typedef enum Input_Result {
     INPUT_SERVICE_EXCEPTION = 3800001,
     /** @error Interceptor repeatedly created for an application */
     INPUT_REPEAT_INTERCEPTOR = 4200001,
-    /** @error Subscription has been enabled */
-    INPUT_HOTKEY_ALREADY_REGISTER = 4200002,
+    /** @error Already occupied by the system */
+    INPUT_OCCUPIED_BY_SYSTEM = 4200002,
+    /** @error Already occupied by the other */
+    INPUT_OCCUPIED_BY_OTHER = 4200003,
 } Input_Result;
 
 /**
@@ -1362,9 +1364,9 @@ Input_Result OH_Input_GetRepeat(const Input_Hotkey* hotkey, bool *isRepeat);
  * @return OH_Input_AddHotkeyMonitor status code, specifically,
  *         {@link INPUT_SUCCESS} if the operation is successful;\n
  *         {@link INPUT_PARAMETER_ERROR} if hotkey or callback is NULL;\n
- *         {@link INPUT_HOTKEY_ALREADY_REGISTER} Subscription has been enabled;\n
- *         {@link INPUT_REPEAT_INTERCEPTOR} The shortcut key has been occupied.
- *         You can use {@link getAllSystemHotkeys} to query all system shortcut keys.\n
+ *         {@Link INPUT_OCCUPIED_BY_SYSTEM} The hotkey has been used by the system. You can call the {@Link
+ *         GetAllSystemHotkeys} interface to query all system shortcut keys.\n
+ *         {@Link INPUT_OCCUPIED_BY_OTHER} The hotkey has been subscribed to by another.\n
  * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 13
  */
