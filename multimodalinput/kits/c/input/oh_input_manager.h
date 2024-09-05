@@ -214,8 +214,6 @@ typedef struct Input_AxisEvent Input_AxisEvent;
  * @since 12
  */
 typedef enum Input_Result {
-    /** Hotkey has been registered */
-    INPUT_HOTKEY_ALREADY_REGISTER = -2,
     /** @error Success return code on success*/
     INPUT_SUCCESS = 0,
     /** @error Permission verification failed */
@@ -227,7 +225,9 @@ typedef enum Input_Result {
     /** @error Service error */
     INPUT_SERVICE_EXCEPTION = 3800001,
     /** @error Interceptor repeatedly created for an application */
-    INPUT_REPEAT_INTERCEPTOR = 4200001
+    INPUT_REPEAT_INTERCEPTOR = 4200001,
+    /** @error Hotkey has been preempted subscription */
+    INPUT_HOTKEY_ALREADY_REGISTER = 4200002,
 } Input_Result;
 
 /**
@@ -1362,7 +1362,8 @@ Input_Result OH_Input_GetRepeat(const Input_Hotkey* hotkey, bool *isRepeat);
  * @return OH_Input_AddHotkeyMonitor status code, specifically,
  *         {@link INPUT_SUCCESS} if the operation is successful;\n
  *         {@link INPUT_PARAMETER_ERROR} if hotkey or callback is NULL;\n
- *         {@link INPUT_HOTKEY_ALREADY_REGISTER} if the service is abnormal probably
+ *         {@link INPUT_HOTKEY_ALREADY_REGISTER} if hotkey has been preempted subscription;\n
+ *         {@link INPUT_REPEAT_INTERCEPTOR} if the service is abnormal probably
  *         because subscription to shortcut key events has been enabled.\n
  * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 13
