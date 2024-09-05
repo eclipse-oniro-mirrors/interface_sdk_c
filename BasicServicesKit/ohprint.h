@@ -491,7 +491,7 @@ typedef struct {
 /**
  * @brief Write files result callback.
  *
- * @param joibId The print job id of one print task.
+ * @param jobId The print job id of one print task.
  * @param code The result of write files.
  * @since 13
  */
@@ -772,7 +772,7 @@ Print_ErrorCode OH_Print_UpdatePrinterProperties(const char *printerId, const Pr
 Print_ErrorCode OH_Print_RestorePrinterProperties(const char *printerId, const Print_StringList *propertyKeyList);
 
 /**
- * @brief This API restores printer properties to default settings based on the list of property keywords.
+ * @brief This API provide capacity to start print dialog.
  *
  * @permission {@code ohos.permission.PRINT}
  * @param printJobName The name of this print job.
