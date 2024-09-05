@@ -42,6 +42,7 @@
 
 #include <stdint.h>
 #include <stdio.h>
+#include <stdbool.h>
 
 #ifdef __cplusplus
 extern "C" {
@@ -925,7 +926,7 @@ typedef struct Camera_TorchStatusInfo {
     /**
      * the current torch brightness level.
      */
-    int32_t torchLevel;
+    float torchLevel;
 } Camera_TorchStatusInfo;
 
 /**

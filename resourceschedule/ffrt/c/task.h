@@ -142,6 +142,26 @@ FFRT_C_API void ffrt_task_attr_set_queue_priority(ffrt_task_attr_t* attr, ffrt_q
 FFRT_C_API ffrt_queue_priority_t ffrt_task_attr_get_queue_priority(const ffrt_task_attr_t* attr);
 
 /**
+ * @brief Sets the task stack size.
+ *
+ * @param attr Indicates a pointer to the task attribute.
+ * @param size Indicates the task stack size, unit is byte.
+ * @since 12
+ * @version 1.0
+ */
+FFRT_C_API void ffrt_task_attr_set_stack_size(ffrt_task_attr_t* attr, uint64_t size);
+
+/**
+ * @brief Obtains the task stack size.
+ *
+ * @param attr Indicates a pointer to the task attribute.
+ * @return Returns the task stack size, unit is byte.
+ * @since 12
+ * @version 1.0
+ */
+FFRT_C_API uint64_t ffrt_task_attr_get_stack_size(const ffrt_task_attr_t* attr);
+
+/**
  * @brief Updates the QoS of this task.
  *
  * @param qos Indicates the new QoS.
@@ -208,6 +228,26 @@ FFRT_C_API void ffrt_submit_base(ffrt_function_header_t* f, const ffrt_deps_t* i
  */
 FFRT_C_API ffrt_task_handle_t ffrt_submit_h_base(ffrt_function_header_t* f, const ffrt_deps_t* in_deps,
     const ffrt_deps_t* out_deps, const ffrt_task_attr_t* attr);
+
+/**
+ * @brief increase reference count of task handle.
+ *
+ * @param handle Indicates a task handle.
+ * @return return the task handle original reference count.
+ * @since 12
+ * @version 1.0
+ */
+FFRT_C_API uint32_t ffrt_task_handle_inc_ref(ffrt_task_handle_t handle);
+
+/**
+ * @brief decrease reference count of task handle.
+ *
+ * @param handle Indicates a task handle.
+ * @return return the task handle original reference count.
+ * @since 12
+ * @version 1.0
+ */
+FFRT_C_API uint32_t ffrt_task_handle_dec_ref(ffrt_task_handle_t handle);
 
 /**
  * @brief Destroys a task handle.

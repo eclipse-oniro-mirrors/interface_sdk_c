@@ -18,9 +18,11 @@ import os.path
 import openpyxl as op
 from pathlib import Path
 from typedef.check.check import FileDocInfo, check_command_message, CheckErrorMessage
+from typedef.check.check_compatibility import check_compatibility_command_message
 from coreImpl.check.check_doc import process_comment, process_file_doc_info
 from coreImpl.check.check_name import check_file_name, check_api_name
 from coreImpl.parser.parser import parser_include_ast
+from coreImpl.check.check_compatibility import check_compatibility_entrance
 
 
 def process_api_json(api_info, file_doc_info, api_result_info_list, parent_kind, command_list):
@@ -112,7 +114,7 @@ def write_in_txt(check_result, output_path):
 
 
 def result_to_json(check_result):
-    return json.dumps(check_result, default=lambda obj: obj.__dict__, indent=4)
+    return json.dumps(check_result, default=lambda obj: obj.__dict__, indent=4, ensure_ascii=False)
 
 
 def get_file_path(txt_file):    # 路径装在txt文件用的--获取.h文件路径
@@ -134,8 +136,10 @@ def curr_entry(files_path, command: str, output):
         return
     if command == 'all':
         command_list = check_command_message
+        command_of_compatibility_list = check_compatibility_command_message
     else:
         command_list = command.split(',')
+        command_of_compatibility_list = command_list
     check_result_list = []
     if len(file_list) > 0:
         check_result_list = get_check_result_list(file_list, root_path, command_list)
@@ -146,6 +150,11 @@ def curr_entry(files_path, command: str, output):
                 result_list.append(result)
     else:
         result_list = check_result_list
+    old_dir = r''
+    new_dir = r''
+    if old_dir and new_dir:
+        compatibility_data = check_compatibility_entrance(old_dir, new_dir, command_of_compatibility_list)
+        result_list.extend(compatibility_data)
     write_in_txt(result_list, output)
 
 

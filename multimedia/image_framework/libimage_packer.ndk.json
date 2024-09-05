@@ -40,43 +40,43 @@
         "name": "OH_PackingOptions_Release"
     },
     {
-        "first_introduced": "12",
+        "first_introduced": "13",
         "name": "OH_PackingOptionsForSequence_Create"
     },
     {
-        "first_introduced": "12",
+        "first_introduced": "13",
         "name": "OH_PackingOptionsForSequence_SetFrameCount"
     },
     {
-        "first_introduced": "12",
+        "first_introduced": "13",
         "name": "OH_PackingOptionsForSequence_GetFrameCount"
     },
     {
-        "first_introduced": "12",
+        "first_introduced": "13",
         "name": "OH_PackingOptionsForSequence_SetDelayTimeList"
     },
     {
-        "first_introduced": "12",
+        "first_introduced": "13",
         "name": "OH_PackingOptionsForSequence_GetDelayTimeList"
     },
     {
-        "first_introduced": "12",
+        "first_introduced": "13",
         "name": "OH_PackingOptionsForSequence_SetDisposalTypes"
     },
     {
-        "first_introduced": "12",
+        "first_introduced": "13",
         "name": "OH_PackingOptionsForSequence_GetDisposalTypes"
     },
     {
-        "first_introduced": "12",
+        "first_introduced": "13",
         "name": "OH_PackingOptionsForSequence_SetLoopCount"
     },
     {
-        "first_introduced": "12",
+        "first_introduced": "13",
         "name": "OH_PackingOptionsForSequence_GetLoopCount"
     },
     {
-        "first_introduced": "12",
+        "first_introduced": "13",
         "name": "OH_PackingOptionsForSequence_Release"
     },
     {
@@ -92,11 +92,11 @@
         "name": "OH_ImagePackerNative_PackToDataFromPixelmap"
     },
     {
-        "first_introduced": "12",
+        "first_introduced": "13",
         "name": "OH_ImagePackerNative_PackToDataFromPicture"
     },
     {
-        "first_introduced": "12",
+        "first_introduced": "13",
         "name": "OH_ImagePackerNative_PackToDataFromPixelmapSequence"
     },
     {
@@ -108,11 +108,11 @@
         "name": "OH_ImagePackerNative_PackToFileFromPixelmap"
     },
     {
-        "first_introduced": "12",
+        "first_introduced": "13",
         "name": "OH_ImagePackerNative_PackToFileFromPicture"
     },
     {
-        "first_introduced": "12",
+        "first_introduced": "13",
         "name": "OH_ImagePackerNative_PackToFileFromPixelmapSequence"
     },
     {

@@ -18,7 +18,9 @@ ohos_ndk_headers("ohaudio_header") {
   dest_dir = "$ndk_headers_out_dir/ohaudio"
   sources = [
     "audio_capturer/native_audiocapturer.h",
+    "audio_manager/native_audio_manager.h",
     "audio_manager/native_audio_routing_manager.h",
+    "audio_manager/native_audio_session_manager.h",
     "audio_renderer/native_audiorenderer.h",
     "common/native_audio_common.h",
     "common/native_audio_device_base.h",
@@ -37,8 +39,10 @@ ohos_ndk_library("libohaudio_ndk") {
     "ohaudio/native_audiostreambuilder.h",
     "ohaudio/native_audiorenderer.h",
     "ohaudio/native_audiocapturer.h",
+    "ohaudio/native_audio_manager.h",
     "ohaudio/native_audio_routing_manager.h",
     "ohaudio/native_audio_common.h",
     "ohaudio/native_audio_device_base.h",
+    "ohaudio/native_audio_session_manager.h",
   ]
 }

@@ -49,7 +49,7 @@ class DiffProcessorPermission:
     variable_list = []  # 命题集合
 
     @staticmethod
-    def get_bool_in_list(self, number_list, bin_len):
+    def get_bool_in_list(number_list, bin_len):
         state_list = [bin(i) for i in number_list]
         state_list = [x[2:] for x in state_list]
         state_list = ['0' * (bin_len - len(x)) + x for x in state_list]
@@ -57,7 +57,7 @@ class DiffProcessorPermission:
         return tuple(state_list)
 
     @staticmethod
-    def process_value(self, state_value):
+    def process_value(state_value):
         calculate = CalculateValue()
         for state in state_value:
             if state_value[state]:

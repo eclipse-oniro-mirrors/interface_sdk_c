@@ -32,6 +32,7 @@
 #ifndef ARKWEB_SCHEME_HANDLER_H
 #define ARKWEB_SCHEME_HANDLER_H
 
+#include <stdbool.h>
 #include "stdint.h"
 
 #include "arkweb_error_code.h"

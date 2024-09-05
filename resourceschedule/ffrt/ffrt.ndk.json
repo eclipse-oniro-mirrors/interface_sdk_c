@@ -5,6 +5,22 @@
     { "name": "ffrt_cond_wait" },
     { "name": "ffrt_cond_timedwait" },
     { "name": "ffrt_cond_destroy" },
+    { 
+        "first_introduced": "12",    
+        "name": "ffrt_mutexattr_init"
+    },
+    { 
+        "first_introduced": "12",
+        "name": "ffrt_mutexattr_settype"
+    },
+    { 
+        "first_introduced": "12",
+        "name": "ffrt_mutexattr_gettype"
+    },
+    { 
+        "first_introduced": "12",
+        "name": "ffrt_mutexattr_destroy"
+    },
     { "name": "ffrt_mutex_init" },
     { "name": "ffrt_mutex_lock" },
     { "name": "ffrt_mutex_unlock" },
@@ -34,11 +50,27 @@
     { "name": "ffrt_task_attr_get_qos" },
     { "name": "ffrt_task_attr_set_delay" },
     { "name": "ffrt_task_attr_get_delay" },
+    {
+        "first_introduced": "12",
+        "name": "ffrt_task_attr_set_stack_size"
+    },
+    {
+        "first_introduced": "12",
+        "name": "ffrt_task_attr_get_stack_size"
+    },
     { "name": "ffrt_this_task_update_qos" },
     { "name": "ffrt_this_task_get_id" },
     { "name": "ffrt_alloc_auto_managed_function_storage_base" },
     { "name": "ffrt_submit_base" },
     { "name": "ffrt_submit_h_base" },
+    {
+        "first_introduced": "12",
+        "name": "ffrt_task_handle_inc_ref"
+    },
+    {
+        "first_introduced": "12",
+        "name": "ffrt_task_handle_dec_ref"
+    },
     { "name": "ffrt_task_handle_destroy" },
     { "name": "ffrt_wait_deps" },
     { "name": "ffrt_wait" },
@@ -50,7 +82,7 @@
     { "name": "ffrt_loop_timer_start" },
     { "name": "ffrt_loop_timer_stop" },
     { "name": "ffrt_queue_attr_set_max_concurrency" },
-    { "name": "ffrt_queue_atte_get_max_concurrency" },
+    { "name": "ffrt_queue_attr_get_max_concurrency" },
     { "name": "ffrt_get_main_queue" },
     { "name": "ffrt_get_current_queue" },
     { "name": "ffrt_task_attr_set_queue_priority" },

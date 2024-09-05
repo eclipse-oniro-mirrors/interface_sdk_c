@@ -29,6 +29,90 @@
   { "name": "OH_AVPlayer_GetCurrentTrack" },
   {
     "first_introduced": "12",
+    "name": "OH_PLAYER_STATE"
+  },
+  {
+    "first_introduced": "12",
+    "name": "OH_PLAYER_STATE_CHANGE_REASON"
+  },
+  {
+    "first_introduced": "12",
+    "name": "OH_PLAYER_VOLUME"
+  },
+  {
+    "first_introduced": "12",
+    "name": "OH_PLAYER_BITRATE_ARRAY"
+  },
+  {
+    "first_introduced": "12",
+    "name": "OH_PLAYER_AUDIO_INTERRUPT_TYPE"
+  },
+  {
+    "first_introduced": "12",
+    "name": "OH_PLAYER_AUDIO_INTERRUPT_FORCE"
+  },
+  {
+    "first_introduced": "12",
+    "name": "OH_PLAYER_AUDIO_INTERRUPT_HINT"
+  },
+  {
+    "first_introduced": "12",
+    "name": "OH_PLAYER_AUDIO_DEVICE_CHANGE_REASON"
+  },
+  {
+    "first_introduced": "12",
+    "name": "OH_PLAYER_BUFFERING_TYPE"
+  },
+  {
+    "first_introduced": "12",
+    "name": "OH_PLAYER_BUFFERING_VALUE"
+  },
+  {
+    "first_introduced": "12",
+    "name": "OH_PLAYER_SEEK_POSITION"
+  },
+  {
+    "first_introduced": "12",
+    "name": "OH_PLAYER_PLAYBACK_SPEED"
+  },
+  {
+    "first_introduced": "12",
+    "name": "OH_PLAYER_BITRATE"
+  },
+  {
+    "first_introduced": "12",
+    "name": "OH_PLAYER_CURRENT_POSITION"
+  },
+  {
+    "first_introduced": "12",
+    "name": "OH_PLAYER_DURATION"
+  },
+  {
+    "first_introduced": "12",
+    "name": "OH_PLAYER_VIDEO_WIDTH"
+  },
+  {
+    "first_introduced": "12",
+    "name": "OH_PLAYER_VIDEO_HEIGHT"
+  },
+  {
+    "first_introduced": "12",
+    "name": "OH_PLAYER_MESSAGE_TYPE"
+  },
+  {
+    "first_introduced": "12",
+    "name": "OH_PLAYER_IS_LIVE_STREAM"
+  },
+  {
+    "first_introduced": "12",
+    "name": "OH_AVPlayer_SetOnInfoCallback"
+  },
+  {
+    "first_introduced": "12",
+    "name": "OH_AVPlayer_SetOnErrorCallback"
+  },
+  {
+    "first_introduced": "12",
     "name": "OH_AVPlayer_SetMediaKeySystemInfoCallback"
   },
   {

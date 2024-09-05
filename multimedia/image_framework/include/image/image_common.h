@@ -83,6 +83,7 @@ struct Image_Region {
  */
 typedef struct Image_Region Image_Region;
 
+#ifdef __cplusplus
 /**
  * @brief Defines the region of the image source to decode.
  *
@@ -94,6 +95,19 @@ struct Image_String {
     /** data lenth for string type */
     size_t size = 0;
 };
+#else
+/**
+ * @brief Defines the region of the image source to decode.
+ *
+ * @since 12
+ */
+struct Image_String {
+    /** data for string type */
+    char *data;
+    /** data lenth for string type */
+    size_t size;
+};
+#endif
 
 /**
  * @brief Define a PictureMetadata struct type, used for picture metadata.
@@ -139,6 +153,10 @@ typedef enum {
     IMAGE_UNKNOWN_MIME_TYPE = 7600102,
     /** too large data or image */
     IMAGE_TOO_LARGE = 7600103,
+    /** @error DMA memory does not exist */
+    IMAGE_DMA_NOT_EXIST = 7600173,
+    /** @error DMA operation failed */
+    IMAGE_DMA_OPERATION_FAILED = 7600174,
     /** unsupported operations */
     IMAGE_UNSUPPORTED_OPERATION = 7600201,
     /** unsupported metadata */

@@ -38,7 +38,7 @@
  * MediaLibrary_RequestOptions structure: This structure provides options for requesting media library resources. \n
  *
  * @kit MediaLibraryKit
- * @Syscap SystemCapability.FileManagement.PhotoAccessHelper.Core
+ * @syscap SystemCapability.FileManagement.PhotoAccessHelper.Core
  * @library libmedia_asset_manager.so
  * @since 12
  */
@@ -47,6 +47,8 @@
 #define MULTIMEDIA_MEDIA_LIBRARY_NATIVE_MEDIA_ASSET_BASE_H
 
 #include <stdint.h>
+
+#include "multimedia/image_framework/image/image_source_native.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -72,6 +74,24 @@ static const int32_t UUID_STR_MAX_LENGTH = 37;
 typedef struct OH_MediaAssetManager OH_MediaAssetManager;
 
 /**
+ * @brief Define Media Asset Change Request
+ *
+ * This structure provides the ability to handle a media asset change request.
+ *
+ * @since 12
+ */
+typedef struct OH_MediaAssetChangeRequest OH_MediaAssetChangeRequest;
+
+/**
+ * @brief Define Media Asset
+ *
+ * This structure provides the ability to encapsulate file asset attributes.
+ *
+ * @since 12
+ */
+typedef struct OH_MediaAsset OH_MediaAsset;
+
+/**
  * @brief Define MediaLibrary_RequestId
  *
  * This type is returned when requesting a media library resource.
@@ -84,6 +104,64 @@ typedef struct MediaLibrary_RequestId {
     /*request id*/
     char requestId[UUID_STR_MAX_LENGTH];
 } MediaLibrary_RequestId;
+
+/**
+ * @brief Enum for media library error code.
+ *
+ * @since 12
+ */
+typedef enum MediaLibrary_ErrorCode {
+    /**
+     * @error Media library result is ok.
+     */
+    MEDIA_LIBRARY_OK = 0,
+
+    /**
+     * @error Permission is denied.
+     */
+    MEDIA_LIBRARY_PERMISSION_DENIED = 201,
+
+    /**
+     * @error Mandatory parameters are left unspecified
+     * or incorrect parameter types or parameter verification failed.
+     */
+    MEDIA_LIBRARY_PARAMETER_ERROR = 401,
+
+    /**
+     * @error File does not exist.
+     */
+    MEDIA_LIBRARY_NO_SUCH_FILE = 23800101,
+
+    /**
+     * @error Invalid display name.
+     */
+    MEDIA_LIBRARY_INVALID_DISPLAY_NAME = 23800102,
+
+    /**
+     * @error Invalid asset uri.
+     */
+    MEDIA_LIBRARY_INVALID_ASSET_URI = 23800103,
+
+    /**
+     * @error Member is not a valid PhotoKey.
+     */
+    MEDIA_LIBRARY_INVALID_PHOTO_KEY = 23800104,
+
+    /**
+     * @error Operation is not supported.
+     */
+    MEDIA_LIBRARY_OPERATION_NOT_SUPPORTED = 23800201,
+
+    /**
+     * @error Internal system error.
+     * It is recommended to retry and check the logs.
+     * Possible causes:
+     * 1. Database corrupted.
+     * 2. The file system is abnormal.
+     * 3. The IPC request timed out.
+     */
+    MEDIA_LIBRARY_INTERNAL_SYSTEM_ERROR = 23800301,
+} MediaLibrary_ErrorCode;
 
 /**
  * @brief Delivery Mode
@@ -103,17 +181,6 @@ typedef enum MediaLibrary_DeliveryMode {
 } MediaLibrary_DeliveryMode;
 
 /**
- * @brief Called when a requested source is prepared.
- *
- * This function is called when the requested source is prepared.
- *
- * @param result Results of the processing of the requested resources.
- * @param requestId Request ID.
- * @since 12
- */
-typedef void (*OH_MediaLibrary_OnDataPrepared)(int32_t result, MediaLibrary_RequestId requestId);
-
-/**
  * @brief Request Options
  *
  * This structure provides options for requesting media library resources.
@@ -125,7 +192,108 @@ typedef struct MediaLibrary_RequestOptions {
     MediaLibrary_DeliveryMode deliveryMode;
 } MediaLibrary_RequestOptions;
 
+/**
+ * @brief Enum for media type.
+ *
+ * @since 12
+ */
+typedef enum MediaLibrary_MediaType {
+    /*image asset*/
+    MEDIA_LIBRARY_IMAGE = 1,
+    /*video asset*/
+    MEDIA_LIBRARY_VIDEO = 2
+} MediaLibrary_MediaType;
+
+/**
+ * @brief Enum for media asset subtype.
+ *
+ * @since 12
+ */
+typedef enum MediaLibrary_MediaSubType {
+    /*default Photo Type*/
+    MEDIA_LIBRARY_DEFAULT = 0,
+    /*moving Photo Type*/
+    MEDIA_LIBRARY_MOVING_PHOTO = 3,
+    /*burst Photo Type*/
+    MEDIA_LIBRARY_BURST = 4
+} MediaLibrary_MediaSubType;
+
+/**
+ * @brief Enum for resource types.
+ *
+ * @since 12
+ */
+typedef enum MediaLibrary_ResourceType {
+    /*image resource*/
+    MEDIA_LIBRARY_IMAGE_RESOURCE = 1,
+    /*video resource*/
+    MEDIA_LIBRARY_VIDEO_RESOURCE = 2
+} MediaLibrary_ResourceType;
+
+/**
+ * @brief Enum for image file Type.
+ *
+ * @since 12
+ */
+typedef enum MediaLibrary_ImageFileType {
+    /*JPEG type*/
+    MEDIA_LIBRARY_IMAGE_JPEG = 1
+} MediaLibrary_ImageFileType;
+
+/**
+ * @brief Enum for media quality.
+ *
+ * @since 12
+ */
+typedef enum MediaLibrary_MediaQuality {
+    /*fast quality*/
+    MEDIA_LIBRARY_QUALITY_FAST = 1,
+    /*full quality*/
+    MEDIA_LIBRARY_QUALITY_FULL = 2
+} MediaLibrary_MediaQuality;
+
+/**
+ * @brief Enum for media content type.
+ *
+ * @since 12
+ */
+typedef enum MediaLibrary_MediaContentType {
+    /*compressed media content type*/
+    MEDIA_LIBRARY_COMPRESSED = 1,
+    /*picture object media content type*/
+    MEDIA_LIBRARY_PICTURE_OBJECT = 2
+} MediaLibrary_MediaContentType;
+
+/**
+ * @brief Called when a requested source is prepared.
+ *
+ * This function is called when the requested source is prepared.
+ *
+ * @param result Results of the processing of the requested resources.
+ * @param requestId Request ID.
+ * @since 12
+ */
+typedef void (*OH_MediaLibrary_OnDataPrepared)(int32_t result, MediaLibrary_RequestId requestId);
+
+/**
+ * @brief Called when a requested image source is prepared.
+ *
+ * This function is called when the requested image source is prepared.
+ *
+ * @param result results {@link MediaLibrary_ErrorCode} of the processing of the requested resources.
+ * @param requestId indicates the {@link MediaLibrary_RequestId} of the request.
+ * @param mediaQuality the {@link MediaLibrary_MediaQuality} of the requested source.
+ * @param type the {@link MediaLibrary_MediaContentType} of the requested source.
+ * @param imageSourceNative it used to obtain {@link OH_ImageSourceNative} information when image source is prepared.
+ * @since 12
+ */
+typedef void (*OH_MediaLibrary_OnImageDataPrepared)(MediaLibrary_ErrorCode result,
+    MediaLibrary_RequestId requestId, MediaLibrary_MediaQuality mediaQuality, MediaLibrary_MediaContentType type,
+    OH_ImageSourceNative* imageSourceNative);
+
 #ifdef __cplusplus
 }
 #endif
+
 #endif // MULTIMEDIA_MEDIA_LIBRARY_NATIVE_MEDIA_ASSET_BASE_H
+/** @} */
