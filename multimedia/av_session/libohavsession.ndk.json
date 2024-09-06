@@ -161,7 +161,7 @@
     },
     {
         "first_introduced": "13",
-        "name": "OH_AVMetadataBuilder_SetSubTitle"
+        "name": "OH_AVMetadataBuilder_SetSubtitle"
     },
     {
         "first_introduced": "13",
