@@ -50,5 +50,93 @@
     {
         "first_introduced": "12",
         "name": "OH_ResourceManager_GetLocalesData"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_ResourceManager_GetSymbol"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_ResourceManager_GetSymbolByName"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_ResourceManager_GetLocales"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_ResourceManager_GetConfiguration"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_ResourceManager_ReleaseConfiguration"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_ResourceManager_GetString"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_ResourceManager_GetStringByName"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_ResourceManager_GetStringArray"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_ResourceManager_GetStringArrayByName"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_ResourceManager_ReleaseStringArray"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_ResourceManager_GetPluralString"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_ResourceManager_GetPluralStringByName"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_ResourceManager_GetColor"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_ResourceManager_GetColorByName"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_ResourceManager_GetInt"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_ResourceManager_GetIntByName"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_ResourceManager_GetFloat"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_ResourceManager_GetFloatByName"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_ResourceManager_GetBool"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_ResourceManager_GetBoolByName"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_ResourceManager_AddResource"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_ResourceManager_RemoveResource"
     }
 ]
