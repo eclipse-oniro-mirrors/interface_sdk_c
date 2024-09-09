@@ -17,42 +17,42 @@
     },
     {
         "first_introduced": "13",
-        "name": "OH_PasteBoard_Destroy"
+        "name": "OH_Pasteboard_Destroy"
     },
     {
         "first_introduced": "13",
-        "name": "OH_PasteBoard_Subcribe"
+        "name": "OH_Pasteboard_Subscribe"
     },
     {
         "first_introduced": "13",
-        "name": "OH_PasteBoard_Unsubcribe"
+        "name": "OH_Pasteboard_Unsubscribe"
     },
     {
         "first_introduced": "13",
-        "name": "OH_PasteBoard_IsRemoteData"
+        "name": "OH_Pasteboard_IsRemoteData"
     },
     {
         "first_introduced": "13",
-        "name": "OH_PasteBoard_GetDataSrouce"
+        "name": "OH_Pasteboard_GetDataSource"
     },
     {
         "first_introduced": "13",
-        "name": "OH_PasteBoard_HasType"
+        "name": "OH_Pasteboard_HasType"
     },
     {
         "first_introduced": "13",
-        "name": "OH_PasteBoard_HasData"
+        "name": "OH_Pasteboard_HasData"
     },
     {
         "first_introduced": "13",
-        "name": "OH_PasteBoard_GetData"
+        "name": "OH_Pasteboard_GetData"
     },
     {
         "first_introduced": "13",
-        "name": "OH_PasteBoard_SetData"
+        "name": "OH_Pasteboard_SetData"
     },
     {
         "first_introduced": "13",
-        "name": "OH_PasteBoard_ClearData"
+        "name": "OH_Pasteboard_ClearData"
     }
 ]
