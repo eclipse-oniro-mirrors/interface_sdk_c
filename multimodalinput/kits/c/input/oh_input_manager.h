@@ -253,9 +253,15 @@ typedef enum Input_Result {
     INPUT_SERVICE_EXCEPTION = 3800001,
     /** @error Interceptor repeatedly created for an application */
     INPUT_REPEAT_INTERCEPTOR = 4200001,
-    /** @error Already occupied by the system */
+    /**
+     * @error Already occupied by the system
+     * @since 13
+     */
     INPUT_OCCUPIED_BY_SYSTEM = 4200002,
-    /** @error Already occupied by the other */
+    /**
+     * @error Already occupied by the other
+     * @since 13
+     */
     INPUT_OCCUPIED_BY_OTHER = 4200003,
 } Input_Result;
 
