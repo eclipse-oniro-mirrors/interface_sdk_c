@@ -1040,7 +1040,7 @@ double OH_Drawing_TypographyGetLongestLine(OH_Drawing_Typography*);
  * @param OH_Drawing_Typography Pointer to an <b>OH_Drawing_Typography</b> object, which is obtained by
  * {@link OH_Drawing_CreateTypography}.
  * @return Returns the width of the longest line with indent.
- * @since 12
+ * @since 13
  * @version 1.1
  */
 double OH_Drawing_TypographyGetLongestLineWithIndent(OH_Drawing_Typography*);
