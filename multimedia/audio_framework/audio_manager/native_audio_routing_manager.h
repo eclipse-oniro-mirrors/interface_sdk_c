@@ -239,25 +239,29 @@ OH_AudioCommon_Result OH_AudioRoutingManager_ReleaseDevices(
     OH_AudioDeviceDescriptorArray *audioDeviceDescriptorArray);
 
 /**
- * @brief This function pointer will point to the callback function that is used to return the microphones that
- * are blocked.
+ * @brief This type defines the callback function that is used to receive the audio devices' block status.
+ *
  * @param audioDeviceDescriptorArray The {@link OH_AudioDeviceDescriptorArray}
  * pointer variable which will be set the audio device descriptors value.
  * Do not release the audioDeviceDescriptorArray pointer separately instead of calling
  * {@link OH_AudioRoutingManager_ReleaseDevices} to release the DeviceDescriptor array when it is no use anymore.
+ * @param status The {@link OH_AudioDevice_BlockStatus} is the block status.
  * @param userData User data which is passed by user.
  * @since 13
  */
-typedef void (*OH_AudioRoutingManager_OnMicrophoneBlockedCallback)(
+typedef void (*OH_AudioRoutingManager_OnDeviceBlockStatusCallback)(
     OH_AudioDeviceDescriptorArray *audioDeviceDescriptorArray,
+    OH_AudioDevice_BlockStatus status,
     void *userData);
 
 /**
- * @brief Set the micophone blocked callback.
+ * @brief Set the microphone block status callback. The caller will receive the callback only when it is recording
+ * and the used microphones' block status have changed. Currently, block detecting is only support for microphones
+ * located on the local device.
+ *
  * @param audioRoutingManager The {@link OH_AudioRoutingManager} handle returned by
  * {@link OH_AudioManager_GetAudioRoutingManager}.
- * @param callback The function pointer will point to the callback function that is used to return the microphones that
- * are blocked.
+ * @param callback The function pointer will point to the callback function that is used to receive the block status.
  * @param userData User data which is passed by user.
  * @return Function result code:
  *     {@link AUDIOCOMMON_RESULT_SUCCESS} If the execution is successful.
@@ -266,9 +270,9 @@ typedef void (*OH_AudioRoutingManager_OnMicrophoneBlockedCallback)(
  *                                                    2.The param of callback is nullptr.
  * @since 13
  */
-OH_AudioCommon_Result OH_AudioRoutingManager_SetMicrophoneBlockedCallback(
+OH_AudioCommon_Result OH_AudioRoutingManager_SetMicrophoneBlockStatusCallback(
     OH_AudioRoutingManager *audioRoutingManager,
-    OH_AudioRoutingManager_OnMicrophoneBlockedCallback callback,
+    OH_AudioRoutingManager_OnDeviceBlockStatusCallback callback,
     void *userData);
 #ifdef __cplusplus
 }
