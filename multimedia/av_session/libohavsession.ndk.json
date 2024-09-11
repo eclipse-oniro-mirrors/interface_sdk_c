@@ -37,14 +37,6 @@
     },
     {
         "first_introduced": "13",
-        "name":"OH_AVSession_SetBufferedTime"
-    },
-    {
-        "first_introduced": "13",
-        "name":"OH_AVSession_SetSpeed"
-    },
-    {
-        "first_introduced": "13",
         "name":"OH_AVSession_SetFavorite"
     },
     {
@@ -85,14 +77,6 @@
     },
     {
         "first_introduced": "13",
-        "name":"OH_AVSession_RegisterSpeedCallback"
-    },
-    {
-        "first_introduced": "13",
-        "name":"OH_AVSession_UnregisterSpeedCallback"
-    },
-    {
-        "first_introduced": "13",
         "name":"OH_AVSession_RegisterSetLoopModeCallback"
     },
     {
@@ -106,14 +90,6 @@
     {
         "first_introduced": "13",
         "name":"OH_AVSession_UnregisterToggleFavoriteCallback"
-    },
-    {
-        "first_introduced": "13",
-        "name":"OH_AVSession_RegisterPlayFromAssetIdCallback"
-    },
-    {
-        "first_introduced": "13",
-        "name":"OH_AVSession_UnregisterPlayFromAssetIdCallback"
     },
     {
         "first_introduced": "13",
