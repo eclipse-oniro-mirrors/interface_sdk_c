@@ -112,14 +112,14 @@ struct Image_String {
 /**
  * @brief Define a PictureMetadata struct type, used for picture metadata.
  *
- * @since 12
+ * @since 13
  */
 struct OH_PictureMetadata;
 
 /**
  * @brief Define a PictureMetadata struct type, used for picture metadata.
  *
- * @since 12
+ * @since 13
  */
 typedef struct OH_PictureMetadata OH_PictureMetadata;
 
@@ -182,7 +182,7 @@ typedef enum {
 /**
  * @brief Define the metadata type.
  *
- * @since 12
+ * @since 13
  */
 typedef enum {
     /*
@@ -203,7 +203,7 @@ typedef enum {
  * @return Image functions result code.
  *         {@link IMAGE_SUCCESS} if the execution is successful.
  *         {@link IMAGE_BAD_PARAMETER} metadata is nullptr.
- * @since 12
+ * @since 13
  */
 Image_ErrorCode OH_PictureMetadata_Create(Image_MetadataType metadataType, OH_PictureMetadata **metadata);
 
@@ -218,7 +218,7 @@ Image_ErrorCode OH_PictureMetadata_Create(Image_MetadataType metadataType, OH_Pi
  *         {@link IMAGE_BAD_PARAMETER} metadata is nullptr, or key is nullptr, or value is nullptr.
  *         {@link IMAGE_UNSUPPORTED_METADATA} unsupported metadata type, or the metadata type does not match the
  *         auxiliary picture type.
- * @since 12
+ * @since 13
  */
 Image_ErrorCode OH_PictureMetadata_GetProperty(OH_PictureMetadata *metadata, Image_String *key, Image_String *value);
 
@@ -233,7 +233,7 @@ Image_ErrorCode OH_PictureMetadata_GetProperty(OH_PictureMetadata *metadata, Ima
  *         {@link IMAGE_BAD_PARAMETER} metadata is nullptr, or key is nullptr, or value is nullptr.
  *         {@link IMAGE_UNSUPPORTED_METADATA} unsupported metadata type, or the metadata type does not match the
  *         auxiliary picture type.
- * @since 12
+ * @since 13
  */
 Image_ErrorCode OH_PictureMetadata_SetProperty(OH_PictureMetadata *metadata, Image_String *key, Image_String *value);
 
@@ -244,7 +244,7 @@ Image_ErrorCode OH_PictureMetadata_SetProperty(OH_PictureMetadata *metadata, Ima
  * @return Image functions result code.
  *         {@link IMAGE_SUCCESS} if the execution is successful.
  *         {@link IMAGE_BAD_PARAMETER} metadata is nullptr.
- * @since 12
+ * @since 13
  */
 Image_ErrorCode OH_PictureMetadata_Release(OH_PictureMetadata *metadata);
 
@@ -258,7 +258,7 @@ Image_ErrorCode OH_PictureMetadata_Release(OH_PictureMetadata *metadata);
  *         {@link IMAGE_BAD_PARAMETER} metadata is nullptr.
  *         {@link IMAGE_ALLOC_FAILED} memory alloc failed.
  *         {@link IMAGE_COPY_FAILED} memory copy failed.
- * @since 12
+ * @since 13
  */
 Image_ErrorCode OH_PictureMetadata_Clone(OH_PictureMetadata *oldMetadata, OH_PictureMetadata **newMetadata);
 
@@ -1454,7 +1454,7 @@ static const char *OHOS_IMAGE_PROPERTY_GIF_LOOP_COUNT = "GIFLoopCount";
  * It is used in {@link OH_ImageSource_GetImageProperty}.
  * The top left corner of the fragment image is at the X-coordinate of the original image
  *
- * @since 12
+ * @since 13
  */
 static const char *OHOS_IMAGE_PROPERTY_X_IN_ORIGINAL = "XInOriginal";
 
@@ -1463,7 +1463,7 @@ static const char *OHOS_IMAGE_PROPERTY_X_IN_ORIGINAL = "XInOriginal";
  * It is used in {@link OH_ImageSource_GetImageProperty}.
  * The top left corner of the fragment image is at the Y-coordinate of the original image
  *
- * @since 12
+ * @since 13
  */
 static const char *OHOS_IMAGE_PROPERTY_Y_IN_ORIGINAL = "YInOriginal";
 
@@ -1472,7 +1472,7 @@ static const char *OHOS_IMAGE_PROPERTY_Y_IN_ORIGINAL = "YInOriginal";
  * It is used in {@link OH_ImageSource_GetImageProperty}.
  * The width of the fragment image
  *
- * @since 12
+ * @since 13
  */
 static const char *OHOS_IMAGE_PROPERTY_FRAGMENT_WIDTH = "FragmentImageWidth";
 
@@ -1481,7 +1481,7 @@ static const char *OHOS_IMAGE_PROPERTY_FRAGMENT_WIDTH = "FragmentImageWidth";
  * It is used in {@link OH_ImageSource_GetImageProperty}.
  * The height of the fragment image
  *
- * @since 12
+ * @since 13
  */
 static const char *OHOS_IMAGE_PROPERTY_FRAGMENT_HEIGHT = "FragmentImageHeight";
 #ifdef __cplusplus
