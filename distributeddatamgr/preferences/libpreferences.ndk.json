@@ -53,7 +53,7 @@
     },
     {
         "first_introduced": "13",
-        "name": "OH_PreferencesOption_SetFilePath"
+        "name": "OH_PreferencesOption_SetFileName"
     },
     {
         "first_introduced": "13",
