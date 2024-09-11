@@ -320,7 +320,7 @@ typedef AVSessionCallback_Result (*OH_AVSessionCallback_OnToggleFavorite)(OH_AVS
 /**
  * @brief Request to create the avsession.
  *
- * @param avsession The avsession instance pointer
+ * @param sessionType The session type to set
  * @param sessionTag The session tag set by the application
  * @param bundleName The bundle name to set
  * @param abilityName The abilityName name to set
@@ -328,9 +328,11 @@ typedef AVSessionCallback_Result (*OH_AVSessionCallback_OnToggleFavorite)(OH_AVS
  * @return Function result code：
  *         {@link AV_SESSION_ERR_SUCCESS} If the execution is successful.
  *         {@link AV_SESSION_ERR_INVALID_PARAMETER}:
- *                                                 1. The param of avsession is nullptr.
- *                                                 2. The param of bundleName is nullptr.
- *                                                 3. The param of abilityName is nullptr.
+ *                                                 1. The param of sessionType is invalid.
+ *                                                 2. The param of sessionTag is nullptr.
+ *                                                 3. The param of bundleName is nullptr.
+ *                                                 4. The param of abilityName is nullptr.
+ *                                                 5. The param of avsession is nullptr.
  * @since 13
  */
 AVSession_ErrCode OH_AVSession_Create(AVSession_Type sessionType, const char* sessionTag,
@@ -353,6 +355,7 @@ AVSession_ErrCode OH_AVSession_Destroy(OH_AVSession* avsession);
  * @param avsession The avsession instance pointer
  * @return Function result code：
  *         {@link AV_SESSION_ERR_SUCCESS} If the execution is successful.
+ *         {@link AV_SESSION_ERR_SERVICE_EXCEPTION} Internal server error.
  *         {@link AV_SESSION_ERR_INVALID_PARAMETER} The param of avsession is nullptr.
  * @since 13
  */
@@ -364,6 +367,7 @@ AVSession_ErrCode OH_AVSession_Activate(OH_AVSession* avsession);
  * @param avsession The avsession instance pointer
  * @return Function result code：
  *         {@link AV_SESSION_ERR_SUCCESS} If the execution is successful.
+ *         {@link AV_SESSION_ERR_SERVICE_EXCEPTION} Internal server error.
  *         {@link AV_SESSION_ERR_INVALID_PARAMETER} The param of avsession is nullptr.
  * @since 13
  */
@@ -376,7 +380,10 @@ AVSession_ErrCode OH_AVSession_Deactivate(OH_AVSession* avsession);
  * @param sessionType The returned session type
  * @return Function result code：
  *         {@link AV_SESSION_ERR_SUCCESS} If the execution is successful.
- *         {@link AV_SESSION_ERR_INVALID_PARAMETER} The param of avsession is nullptr.
+ *         {@link AV_SESSION_ERR_SERVICE_EXCEPTION} Internal server error.
+ *         {@link AV_SESSION_ERR_INVALID_PARAMETER}
+ *                                                 1. The param of avsession is invalid.
+ *                                                 2. The param of sessionType is nullptr.
  * @since 13
  */
 AVSession_ErrCode OH_AVSession_GetSessionType(OH_AVSession* avsession, AVSession_Type* sessionType);
@@ -388,7 +395,9 @@ AVSession_ErrCode OH_AVSession_GetSessionType(OH_AVSession* avsession, AVSession
  * @param sessionId The returned session id
  * @return Function result code：
  *         {@link AV_SESSION_ERR_SUCCESS} If the execution is successful.
- *         {@link AV_SESSION_ERR_INVALID_PARAMETER} The param of avsession is nullptr.
+ *         {@link AV_SESSION_ERR_INVALID_PARAMETER}
+ *                                                 1. The param of avsession is nullptr.
+ *                                                 2. The param of sessionId is nullptr.
  * @since 13
  */
 AVSession_ErrCode OH_AVSession_GetSessionId(OH_AVSession* avsession, const char** sessionId);
@@ -400,7 +409,10 @@ AVSession_ErrCode OH_AVSession_GetSessionId(OH_AVSession* avsession, const char*
  * @param avmetadata The metadata to set
  * @return Function result code：
  *         {@link AV_SESSION_ERR_SUCCESS} If the execution is successful.
- *         {@link AV_SESSION_ERR_INVALID_PARAMETER} The param of avsession is nullptr.
+ *         {@link AV_SESSION_ERR_SERVICE_EXCEPTION} Internal server error.
+ *         {@link AV_SESSION_ERR_INVALID_PARAMETER}
+ *                                                 1. The param of avsession is nullptr.
+ *                                                 2. The param of avmetadata is nullptr.
  * @since 13
  */
 AVSession_ErrCode OH_AVSession_SetAVMetadata(OH_AVSession* avsession, OH_AVMetadata* avmetadata);
@@ -412,7 +424,10 @@ AVSession_ErrCode OH_AVSession_SetAVMetadata(OH_AVSession* avsession, OH_AVMetad
  * @param playbackState The playbackState to set
  * @return Function result code：
  *         {@link AV_SESSION_ERR_SUCCESS} If the execution is successful.
- *         {@link AV_SESSION_ERR_INVALID_PARAMETER} The param of avsession is nullptr.
+ *         {@link AV_SESSION_ERR_SERVICE_EXCEPTION} Internal server error.
+ *         {@link AV_SESSION_ERR_INVALID_PARAMETER}
+ *                                                 1. The param of avsession is nullptr.
+ *                                                 2. The param of playbackState is invalid.
  * @since 13
  */
 AVSession_ErrCode OH_AVSession_SetPlaybackState(OH_AVSession* avsession,
@@ -425,7 +440,10 @@ AVSession_ErrCode OH_AVSession_SetPlaybackState(OH_AVSession* avsession,
  * @param playbackPosition The playbackPosition to set
  * @return Function result code：
  *         {@link AV_SESSION_ERR_SUCCESS} If the execution is successful.
- *         {@link AV_SESSION_ERR_INVALID_PARAMETER} The param of avsession is nullptr.
+ *         {@link AV_SESSION_ERR_SERVICE_EXCEPTION} Internal server error.
+ *         {@link AV_SESSION_ERR_INVALID_PARAMETER}
+ *                                                 1. The param of avsession is nullptr.
+ *                                                 2. The param of playbackPosition is nullptr.
  * @since 13
  */
 AVSession_ErrCode OH_AVSession_SetPlaybackPosition(OH_AVSession* avsession,
@@ -438,6 +456,7 @@ AVSession_ErrCode OH_AVSession_SetPlaybackPosition(OH_AVSession* avsession,
  * @param favorite true means making the resource to be liked, false means dislike.
  * @return Function result code：
  *         {@link AV_SESSION_ERR_SUCCESS} If the execution is successful.
+ *         {@link AV_SESSION_ERR_SERVICE_EXCEPTION} Internal server error.
  *         {@link AV_SESSION_ERR_INVALID_PARAMETER} The param of avsession is nullptr.
  * @since 13
  */
@@ -450,7 +469,10 @@ AVSession_ErrCode OH_AVSession_SetFavorite(OH_AVSession* avsession, bool favorit
  * @param loopMode The loopmode to be set for playback.
  * @return Function result code：
  *         {@link AV_SESSION_ERR_SUCCESS} If the execution is successful.
- *         {@link AV_SESSION_ERR_INVALID_PARAMETER} The param of avsession is nullptr.
+ *         {@link AV_SESSION_ERR_SERVICE_EXCEPTION} Internal server error.
+ *         {@link AV_SESSION_ERR_INVALID_PARAMETER}
+ *                                                 1. The param of avsession is nullptr.
+ *                                                 2. The param of loopMode is invalid.
  * @since 13
  */
 AVSession_ErrCode OH_AVSession_SetLoopMode(OH_AVSession* avsession, AVSession_LoopMode loopMode);
@@ -464,8 +486,11 @@ AVSession_ErrCode OH_AVSession_SetLoopMode(OH_AVSession* avsession, AVSession_Lo
  * @param userData User data which is passed by user.
  * @return Function result code：
  *         {@link AV_SESSION_ERR_SUCCESS} If the execution is successful.
- *         {@link AV_SESSION_ERR_INVALID_PARAMETER} The param of avsession is nullptr.
- *         {@link AV_SESSION_ERR_CODE_COMMAND_INVALID} The command is not invalid.
+ *         {@link AV_SESSION_ERR_CODE_COMMAND_INVALID} The command is invalid.
+ *         {@link AV_SESSION_ERR_SERVICE_EXCEPTION} Internal server error.
+ *         {@link AV_SESSION_ERR_INVALID_PARAMETER}
+ *                                                 1. The param of avsession is nullptr.
+ *                                                 2. The param of callback is nullptr.
  * @since 13
  */
 AVSession_ErrCode OH_AVSession_RegisterCommandCallback(OH_AVSession* avsession,
@@ -479,8 +504,11 @@ AVSession_ErrCode OH_AVSession_RegisterCommandCallback(OH_AVSession* avsession,
  * @param callback the {@link OH_AVSessionCallback_OnCommand} to be unregistered.
  * @return Function result code：
  *         {@link AV_SESSION_ERR_SUCCESS} If the execution is successful.
- *         {@link AV_SESSION_ERR_INVALID_PARAMETER} The param of avsession is nullptr.
- *         {@link AV_SESSION_ERR_CODE_COMMAND_INVALID} The command is not invalid.
+ *         {@link AV_SESSION_ERR_CODE_COMMAND_INVALID} The command is invalid.
+ *         {@link AV_SESSION_ERR_SERVICE_EXCEPTION} Internal server error.
+ *         {@link AV_SESSION_ERR_INVALID_PARAMETER}
+ *                                                 1. The param of avsession is nullptr.
+ *                                                 2. The param of callback is nullptr.
  * @since 13
  */
 AVSession_ErrCode OH_AVSession_UnregisterCommandCallback(OH_AVSession* avsession,
@@ -494,7 +522,10 @@ AVSession_ErrCode OH_AVSession_UnregisterCommandCallback(OH_AVSession* avsession
  * @param userData User data which is passed by user.
  * @return Function result code：
  *         {@link AV_SESSION_ERR_SUCCESS} If the execution is successful.
- *         {@link AV_SESSION_ERR_INVALID_PARAMETER} The param of avsession is nullptr.
+ *         {@link AV_SESSION_ERR_SERVICE_EXCEPTION} Internal server error.
+ *         {@link AV_SESSION_ERR_INVALID_PARAMETER}
+ *                                                 1. The param of avsession is nullptr.
+ *                                                 2. The param of callback is nullptr.
  * @since 13
  */
 AVSession_ErrCode OH_AVSession_RegisterForwardCallback(OH_AVSession* avsession,
@@ -507,7 +538,10 @@ AVSession_ErrCode OH_AVSession_RegisterForwardCallback(OH_AVSession* avsession,
  * @param callback the {@link OH_AVSessionCallback_OnFastForward} to be unregistered.
  * @return Function result code：
  *         {@link AV_SESSION_ERR_SUCCESS} If the execution is successful.
- *         {@link AV_SESSION_ERR_INVALID_PARAMETER} The param of avsession is nullptr.
+ *         {@link AV_SESSION_ERR_SERVICE_EXCEPTION} Internal server error.
+ *         {@link AV_SESSION_ERR_INVALID_PARAMETER}
+ *                                                 1. The param of avsession is nullptr.
+ *                                                 2. The param of callback is nullptr.
  * @since 13
  */
 AVSession_ErrCode OH_AVSession_UnregisterForwardCallback(OH_AVSession* avsession,
@@ -521,7 +555,10 @@ AVSession_ErrCode OH_AVSession_UnregisterForwardCallback(OH_AVSession* avsession
  * @param userData User data which is passed by user.
  * @return Function result code：
  *         {@link AV_SESSION_ERR_SUCCESS} If the execution is successful.
- *         {@link AV_SESSION_ERR_INVALID_PARAMETER} The param of avsession is nullptr.
+ *         {@link AV_SESSION_ERR_SERVICE_EXCEPTION} Internal server error.
+ *         {@link AV_SESSION_ERR_INVALID_PARAMETER}
+ *                                                 1. The param of avsession is nullptr.
+ *                                                 2. The param of callback is nullptr.
  * @since 13
  */
 AVSession_ErrCode OH_AVSession_RegisterRewindCallback(OH_AVSession* avsession,
@@ -534,7 +571,10 @@ AVSession_ErrCode OH_AVSession_RegisterRewindCallback(OH_AVSession* avsession,
  * @param callback the {@link OH_AVSessionCallback_OnRewind} to be unregistered.
  * @return Function result code：
  *         {@link AV_SESSION_ERR_SUCCESS} If the execution is successful.
- *         {@link AV_SESSION_ERR_INVALID_PARAMETER} The param of avsession is nullptr.
+ *         {@link AV_SESSION_ERR_SERVICE_EXCEPTION} Internal server error.
+ *         {@link AV_SESSION_ERR_INVALID_PARAMETER}
+ *                                                 1. The param of avsession is nullptr.
+ *                                                 2. The param of callback is nullptr.
  * @since 13
  */
 AVSession_ErrCode OH_AVSession_UnregisterRewindCallback(OH_AVSession* avsession,
@@ -548,7 +588,10 @@ AVSession_ErrCode OH_AVSession_UnregisterRewindCallback(OH_AVSession* avsession,
  * @param userData User data which is passed by user.
  * @return Function result code：
  *         {@link AV_SESSION_ERR_SUCCESS} If the execution is successful.
- *         {@link AV_SESSION_ERR_INVALID_PARAMETER} The param of avsession is nullptr.
+ *         {@link AV_SESSION_ERR_SERVICE_EXCEPTION} Internal server error.
+ *         {@link AV_SESSION_ERR_INVALID_PARAMETER}
+ *                                                 1. The param of avsession is nullptr.
+ *                                                 2. The param of callback is nullptr.
  * @since 13
  */
 AVSession_ErrCode OH_AVSession_RegisterSeekCallback(OH_AVSession* avsession,
@@ -561,7 +604,10 @@ AVSession_ErrCode OH_AVSession_RegisterSeekCallback(OH_AVSession* avsession,
  * @param callback the {@link OH_AVSessionCallback_OnSeek} to be unregistered.
  * @return Function result code：
  *         {@link AV_SESSION_ERR_SUCCESS} If the execution is successful.
- *         {@link AV_SESSION_ERR_INVALID_PARAMETER} The param of avsession is nullptr.
+ *         {@link AV_SESSION_ERR_SERVICE_EXCEPTION} Internal server error.
+ *         {@link AV_SESSION_ERR_INVALID_PARAMETER}
+ *                                                 1. The param of avsession is nullptr.
+ *                                                 2. The param of callback is nullptr.
  * @since 13
  */
 AVSession_ErrCode OH_AVSession_UnregisterSeekCallback(OH_AVSession* avsession,
@@ -575,7 +621,10 @@ AVSession_ErrCode OH_AVSession_UnregisterSeekCallback(OH_AVSession* avsession,
  * @param userData User data which is passed by user.
  * @return Function result code：
  *         {@link AV_SESSION_ERR_SUCCESS} If the execution is successful.
- *         {@link AV_SESSION_ERR_INVALID_PARAMETER} The param of avsession is nullptr.
+ *         {@link AV_SESSION_ERR_SERVICE_EXCEPTION} Internal server error.
+ *         {@link AV_SESSION_ERR_INVALID_PARAMETER}
+ *                                                 1. The param of avsession is nullptr.
+ *                                                 2. The param of callback is nullptr.
  * @since 13
  */
 AVSession_ErrCode OH_AVSession_RegisterSetLoopModeCallback(OH_AVSession* avsession,
@@ -588,7 +637,10 @@ AVSession_ErrCode OH_AVSession_RegisterSetLoopModeCallback(OH_AVSession* avsessi
  * @param callback the {@link OH_AVSessionCallback_OnSetLoopMode} to be unregistered.
  * @return Function result code：
  *         {@link AV_SESSION_ERR_SUCCESS} If the execution is successful.
- *         {@link AV_SESSION_ERR_INVALID_PARAMETER} The param of avsession is nullptr.
+ *         {@link AV_SESSION_ERR_SERVICE_EXCEPTION} Internal server error.
+ *         {@link AV_SESSION_ERR_INVALID_PARAMETER}
+ *                                                 1. The param of avsession is nullptr.
+ *                                                 2. The param of callback is nullptr.
  * @since 13
  */
 AVSession_ErrCode OH_AVSession_UnregisterSetLoopModeCallback(OH_AVSession* avsession,
@@ -602,7 +654,10 @@ AVSession_ErrCode OH_AVSession_UnregisterSetLoopModeCallback(OH_AVSession* avses
  * @param userData User data which is passed by user.
  * @return Function result code：
  *         {@link AV_SESSION_ERR_SUCCESS} If the execution is successful.
- *         {@link AV_SESSION_ERR_INVALID_PARAMETER} The param of avsession is nullptr.
+ *         {@link AV_SESSION_ERR_SERVICE_EXCEPTION} Internal server error.
+ *         {@link AV_SESSION_ERR_INVALID_PARAMETER}
+ *                                                 1. The param of avsession is nullptr.
+ *                                                 2. The param of callback is nullptr.
  * @since 13
  */
 AVSession_ErrCode OH_AVSession_RegisterToggleFavoriteCallback(OH_AVSession* avsession,
@@ -615,7 +670,10 @@ AVSession_ErrCode OH_AVSession_RegisterToggleFavoriteCallback(OH_AVSession* avse
  * @param callback the {@link OH_AVSessionCallback_OnToggleFavorite} to be unregistered.
  * @return Function result code：
  *         {@link AV_SESSION_ERR_SUCCESS} If the execution is successful.
- *         {@link AV_SESSION_ERR_INVALID_PARAMETER} The param of avsession is nullptr.
+ *         {@link AV_SESSION_ERR_SERVICE_EXCEPTION} Internal server error.
+ *         {@link AV_SESSION_ERR_INVALID_PARAMETER}
+ *                                                 1. The param of avsession is nullptr.
+ *                                                 2. The param of callback is nullptr.
  * @since 13
  */
 AVSession_ErrCode OH_AVSession_UnregisterToggleFavoriteCallback(OH_AVSession* avsession,
