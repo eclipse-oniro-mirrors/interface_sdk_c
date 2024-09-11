@@ -117,25 +117,25 @@ typedef enum NativeWindowOperation {
     /**
      * get native window buffer format,
      * variable parameter in function is
-     * [out] int32_t *format
+     * [out] int32_t *format, the enumeration value refers to {@link OH_NativeBuffer_Format}.
      */
     GET_FORMAT,
     /**
      * set native window buffer format,
      * variable parameter in function is
-     * [in] int32_t format
+     * [in] int32_t format, the enumeration value refers to {@link OH_NativeBuffer_Format}.
      */
     SET_FORMAT,
     /**
      * get native window buffer usage,
      * variable parameter in function is
-     * [out] uint64_t *usage.
+     * [out] uint64_t *usage, the enumeration value refers to {@link OH_NativeBuffer_Usage}.
      */
     GET_USAGE,
     /**
      * set native window buffer usage,
      * variable parameter in function is
-     * [in] uint64_t usage.
+     * [in] uint64_t usage, the enumeration value refers to {@link OH_NativeBuffer_Usage}.
      */
     SET_USAGE,
     /**
@@ -177,25 +177,25 @@ typedef enum NativeWindowOperation {
     /**
      * set native window buffer colorGamut,
      * variable parameter in function is
-     * [in] int32_t colorGamut.
+     * [in] int32_t colorGamut, the enumeration value refers to {@link OH_NativeBuffer_ColorGamut}.
      */
     SET_COLOR_GAMUT,
     /**
      * get native window buffer colorGamut,
      * variable parameter in function is
-     * [out int32_t *colorGamut].
+     * [out int32_t *colorGamut], the enumeration value refers to {@link OH_NativeBuffer_ColorGamut}.
      */
     GET_COLOR_GAMUT,
     /**
      * set native window buffer transform,
      * variable parameter in function is
-     * [in] int32_t transform.
+     * [in] int32_t transform, the enumeration value refers to {@link OH_NativeBuffer_TransformType}.
      */
     SET_TRANSFORM,
     /**
      * get native window buffer transform,
      * variable parameter in function is
-     * [out] int32_t *transform.
+     * [out] int32_t *transform, the enumeration value refers to {@link OH_NativeBuffer_TransformType}.
      */
     GET_TRANSFORM,
     /**
@@ -214,14 +214,14 @@ typedef enum NativeWindowOperation {
     /**
      * set surface source type,
      * variable parameter in function is
-     * [in] int32_t sourceType.
+     * [in] int32_t sourceType, the enumeration value refers to {@link OHSurfaceSource}.
      * @since 12
      */
     SET_SOURCE_TYPE,
     /**
      * get surface source type,
      * variable parameter in function is
-     * [out] int32_t *sourceType.
+     * [out] int32_t *sourceType, the enumeration value refers to {@link OHSurfaceSource}.
      * @since 12
      */
     GET_SOURCE_TYPE,
@@ -253,6 +253,13 @@ typedef enum NativeWindowOperation {
      * @since 12
      */
     SET_SDR_WHITE_POINT_BRIGHTNESS,
+    /**
+     * set native window buffer desiredPresentTimestamp,
+     * variable parameter in function is
+     * [in] int64_t desiredPresentTimestamp.
+     * @since 13
+     */
+    SET_DESIRED_PRESENT_TIMESTAMP = 24,
 } NativeWindowOperation;
 
 /**
@@ -401,7 +408,7 @@ OHNativeWindow* OH_NativeWindow_CreateNativeWindow(void* pSurface);
 /**
  * @brief Decreases the reference count of a <b>OHNativeWindow</b> instance by 1,
  * and when the reference count reaches 0, destroys the instance.\n
- * This interface dose not support concurrency.\n
+ * This interface is a non-thread-safe type interface.\n
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeWindow
  * @param window Indicates the pointer to a <b>OHNativeWindow</b> instance.
@@ -428,7 +435,7 @@ OHNativeWindowBuffer* OH_NativeWindow_CreateNativeWindowBufferFromSurfaceBuffer(
  * A new <b>OHNativeWindowBuffer</b> instance is created each time this function is called.\n
  * This interface needs to be used in conjunction with <b>OH_NativeWindow_DestroyNativeWindowBuffer<\b>,
  * otherwise memory leaks will occur.\n
- * This interface dose not support concurrency.\n
+ * This interface is a non-thread-safe type interface.\n
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeWindow
  * @param nativeBuffer Indicates the pointer to a native buffer. The type is <b>OH_NativeBuffer*</b>.
@@ -441,7 +448,7 @@ OHNativeWindowBuffer* OH_NativeWindow_CreateNativeWindowBufferFromNativeBuffer(O
 /**
  * @brief Decreases the reference count of a <b>OHNativeWindowBuffer</b> instance by 1 and,
  * when the reference count reaches 0, destroys the instance.\n
- * This interface dose not support concurrency.\n
+ * This interface is a non-thread-safe type interface.\n
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeWindow
  * @param buffer Indicates the pointer to a <b>OHNativeWindowBuffer</b> instance.
@@ -457,7 +464,7 @@ void OH_NativeWindow_DestroyNativeWindowBuffer(OHNativeWindowBuffer* buffer);
  * This interface needs to be used in conjunction with <b>OH_NativeWindow_NativeWindowFlushBuffer<\b>,
  * otherwise buffer will be exhausted.\n
  * When the fenceFd is used up, you need to close it.\n
- * This interface dose not support concurrency.\n
+ * This interface is a non-thread-safe type interface.\n
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeWindow
  * @param window Indicates the pointer to a <b>OHNativeWindow</b> instance.
@@ -474,7 +481,7 @@ int32_t OH_NativeWindow_NativeWindowRequestBuffer(OHNativeWindow *window,
  * @brief Flushes the <b>OHNativeWindowBuffer</b> filled with the content to the buffer queue
  * through a <b>OHNativeWindow</b> instance for content consumption.\n
  * The fenceFd will be close by system.\n
- * This interface dose not support concurrency.\n
+ * This interface is a non-thread-safe type interface.\n
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeWindow
  * @param window Indicates the pointer to a <b>OHNativeWindow</b> instance.
@@ -508,7 +515,7 @@ int32_t OH_NativeWindow_GetLastFlushedBuffer(OHNativeWindow *window, OHNativeWin
  /**
  * @brief Returns the <b>OHNativeWindowBuffer</b> to the buffer queue through a <b>OHNativeWindow</b> instance,
  * without filling in any content. The <b>OHNativeWindowBuffer</b> can be used for another request.\n
- * This interface dose not support concurrency.\n
+ * This interface is a non-thread-safe type interface.\n
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeWindow
  * @param window Indicates the pointer to a <b>OHNativeWindow</b> instance.
@@ -521,7 +528,7 @@ int32_t OH_NativeWindow_NativeWindowAbortBuffer(OHNativeWindow *window, OHNative
 
 /**
  * @brief Sets or obtains the attributes of a native window, including the width, height, and content format.\n
- * This interface dose not support concurrency.\n
+ * This interface is a non-thread-safe type interface.\n
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeWindow
  * @param window Indicates the pointer to a <b>OHNativeWindow</b> instance.
@@ -535,7 +542,7 @@ int32_t OH_NativeWindow_NativeWindowHandleOpt(OHNativeWindow *window, int code, 
 
 /**
  * @brief Obtains the pointer to a <b>BufferHandle</b> of a <b>OHNativeWindowBuffer</b> instance.\n
- * This interface dose not support concurrency.\n
+ * This interface is a non-thread-safe type interface.\n
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeWindow
  * @param buffer Indicates the pointer to a <b>OHNativeWindowBuffer</b> instance.
@@ -549,7 +556,7 @@ BufferHandle *OH_NativeWindow_GetBufferHandleFromNative(OHNativeWindowBuffer *bu
  * @brief Adds the reference count of a native object.\n
  * This interface needs to be used in conjunction with <b>OH_NativeWindow_NativeObjectUnreference<\b>,
  * otherwise memory leaks will occur.\n
- * This interface dose not support concurrency.\n
+ * This interface is a non-thread-safe type interface.\n
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeWindow
  * @param obj Indicates the pointer to a <b>OHNativeWindow</b> or <b>OHNativeWindowBuffer</b> instance.
@@ -562,7 +569,7 @@ int32_t OH_NativeWindow_NativeObjectReference(void *obj);
 /**
  * @brief Decreases the reference count of a native object and,
  * when the reference count reaches 0, destroys this object.\n
- * This interface dose not support concurrency.\n
+ * This interface is a non-thread-safe type interface.\n
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeWindow
  * @param obj Indicates the pointer to a <b>OHNativeWindow</b> or <b>OHNativeWindowBuffer</b> instance.
@@ -574,7 +581,7 @@ int32_t OH_NativeWindow_NativeObjectUnreference(void *obj);
 
 /**
  * @brief Obtains the magic ID of a native object.\n
- * This interface dose not support concurrency.\n
+ * This interface is a non-thread-safe type interface.\n
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeWindow
  * @param obj Indicates the pointer to a <b>OHNativeWindow</b> or <b>OHNativeWindowBuffer</b> instance.
@@ -649,7 +656,7 @@ int32_t OH_NativeWindow_NativeWindowSetTunnelHandle(OHNativeWindow *window, cons
  * @brief Attach a buffer to an <b>OHNativeWindow</b> instance.\n
  * This interface needs to be used in conjunction with <b>OH_NativeWindow_NativeWindowDetachBuffer<\b>,
  * otherwise buffer management will be chaotic.\n
- * This interface dose not support concurrency.\n
+ * This interface is a non-thread-safe type interface.\n
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeWindow
  * @param window Indicates the pointer to an <b>OHNativeWindow</b> instance.
@@ -662,7 +669,7 @@ int32_t OH_NativeWindow_NativeWindowAttachBuffer(OHNativeWindow *window, OHNativ
 
 /**
  * @brief Detach a buffer from an <b>OHNativeWindow</b> instance.\n
- * This interface dose not support concurrency.\n
+ * This interface is a non-thread-safe type interface.\n
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeWindow
  * @param window Indicates the pointer to an <b>OHNativeWindow</b> instance.
@@ -675,7 +682,7 @@ int32_t OH_NativeWindow_NativeWindowDetachBuffer(OHNativeWindow *window, OHNativ
 
 /**
  * @brief Get surfaceId from native window.\n
- * This interface dose not support concurrency.\n
+ * This interface is a non-thread-safe type interface.\n
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeWindow
  * @param window Indicates the pointer to an <b>OHNativeWindow</b> instance.
@@ -695,7 +702,7 @@ int32_t OH_NativeWindow_GetSurfaceId(OHNativeWindow *window, uint64_t *surfaceId
  * <b>OH_NativeWindow_NativeObjectUnreference<\b>.\n
  * If the surface obtained through surfaceId is created in this process, the surface cannot be obtained
  * across processes.\n
- * This interface dose not support concurrency.\n
+ * This interface is a non-thread-safe type interface.\n
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeWindow
  * @param surfaceId Indicates the surfaceId to a surface.
@@ -708,7 +715,7 @@ int32_t OH_NativeWindow_CreateNativeWindowFromSurfaceId(uint64_t surfaceId, OHNa
 
 /**
  * @brief Sets scalingMode of a native window.\n
- * This interface dose not support concurrency.\n
+ * This interface is a non-thread-safe type interface.\n
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeWindow
  * @param window indicates the pointer to an <b>OHNativeWindow</b> instance.
@@ -721,7 +728,7 @@ int32_t OH_NativeWindow_NativeWindowSetScalingModeV2(OHNativeWindow *window, OHS
 
 /**
  * @brief Set native window buffer hold.\n
- * This interface dose not support concurrency.\n
+ * This interface is a non-thread-safe type interface.\n
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeWindow
  * @param window Indicates the pointer to an <b>OHNativeWindow</b> instance.
@@ -732,7 +739,7 @@ void OH_NativeWindow_SetBufferHold(OHNativeWindow *window);
 
 /**
  * @brief Write an OHNativeWindow to an OHIPCParcel.\n
- * This interface dose not support concurrency.\n
+ * This interface is a non-thread-safe type interface.\n
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeWindow
  * @param window Indicates the pointer to an <b>OHNativeWindow</b> instance.
@@ -746,7 +753,7 @@ int32_t OH_NativeWindow_WriteToParcel(OHNativeWindow *window, OHIPCParcel *parce
 
 /**
  * @brief Read an OHNativeWindow from an OHIPCParcel.\n
- * This interface dose not support concurrency.\n
+ * This interface is a non-thread-safe type interface.\n
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeWindow
  * @param parcel Indicates the pointer to an <b>OHIPCParcel</b> instance.
@@ -763,7 +770,7 @@ int32_t OH_NativeWindow_ReadFromParcel(OHIPCParcel *parcel, OHNativeWindow **win
  * When the fenceFd is used up, you need to close it.\n
  * This interface needs to be used in conjunction with <b>OH_NativeWindow_NativeObjectUnreference<\b>,
  * otherwise memory leaks will occur.\n
- * This interface dose not support concurrency.\n
+ * This interface is a non-thread-safe type interface.\n
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeWindow
  * @param window Indicates the pointer to an <b>OHNativeWindow</b> instance.
@@ -781,7 +788,7 @@ int32_t OH_NativeWindow_GetLastFlushedBufferV2(OHNativeWindow *window, OHNativeW
     int *fenceFd, float matrix[16]);
 /**
  * @brief Set the color space of the native window.\n
- * This interface dose not support concurrency.\n
+ * This interface is a non-thread-safe type interface.\n
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeWindow
  * @param window Indicates the pointer to a <b>OHNativeWindow</b> instance.
@@ -796,7 +803,7 @@ int32_t OH_NativeWindow_SetColorSpace(OHNativeWindow *window, OH_NativeBuffer_Co
 
 /**
  * @brief Get the color space of the native window.\n
- * This interface dose not support concurrency.\n
+ * This interface is a non-thread-safe type interface.\n
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeWindow
  * @param window Indicates the pointer to a <b>OHNativeWindow</b> instance.
@@ -811,7 +818,7 @@ int32_t OH_NativeWindow_GetColorSpace(OHNativeWindow *window, OH_NativeBuffer_Co
 
 /**
  * @brief Set the metadata type of the native window.\n
- * This interface dose not support concurrency.\n
+ * This interface is a non-thread-safe type interface.\n
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeWindow
  * @param window Indicates the pointer to a <b>OHNativeWindow</b> instance.
@@ -830,7 +837,7 @@ int32_t OH_NativeWindow_SetMetadataValue(OHNativeWindow *window, OH_NativeBuffer
 
 /**
  * @brief Set the metadata type of the native window.\n
- * This interface dose not support concurrency.\n
+ * This interface is a non-thread-safe type interface.\n
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeWindow
  * @param window Indicates the pointer to a <b>OHNativeWindow</b> instance.
