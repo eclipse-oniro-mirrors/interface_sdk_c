@@ -43,6 +43,8 @@
 #include <stdint.h>
 #include <stdio.h>
 #include "camera.h"
+#include "photo_native.h"
+#include "multimedia/media_library/media_asset_base_capi.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -140,6 +142,24 @@ typedef void (*OH_PhotoOutput_CaptureReady) (Camera_PhotoOutput* photoOutput);
 typedef void (*OH_PhotoOutput_EstimatedCaptureDuration) (Camera_PhotoOutput* photoOutput, int64_t duration);
 
 /**
+ * @brief Photo output available high-resolution images callback.
+ *
+ * @param photoOutput the {@link Camera_PhotoOutput} which deliver the callback.
+ * @param photo the {@link OH_PhotoNative} which delivered by the callback.
+ * @since 12
+ */
+typedef void (*OH_PhotoOutput_PhotoAvailable)(Camera_PhotoOutput* photoOutput, OH_PhotoNative* photo);
+
+/**
+ * @brief Photo output photo asset available callback.
+ *
+ * @param photoOutput the {@link Camera_PhotoOutput} which deliver the callback.
+ * @param photoAsset the {@link OH_MediaAsset} which delivered by the callback.
+ * @since 12
+ */
+typedef void (*OH_PhotoOutput_PhotoAssetAvailable)(Camera_PhotoOutput* photoOutput, OH_MediaAsset* photoAsset);
+
+/**
  * @brief A listener for photo output.
  *
  * @see OH_PhotoOutput_RegisterCallback
@@ -201,6 +221,20 @@ Camera_ErrorCode OH_PhotoOutput_UnregisterCallback(Camera_PhotoOutput* photoOutp
  */
 Camera_ErrorCode OH_PhotoOutput_RegisterCaptureStartWithInfoCallback(Camera_PhotoOutput* photoOutput,
     OH_PhotoOutput_CaptureStartWithInfo callback);
+
+/**
+ * @brief Gets the photo rotation angle.
+ *
+ * @param photoOutput the {@link Camera_PhotoOutput} instance which used to get the photo rotation angle.
+ * @param deviceDegree the current device rotation degree.
+ * @param imageRotation the {@link Camera_ImageRotation} result of photo rotation angle.
+ * @return {@link #CAMERA_OK} if the method call succeeds.
+ *         {@link #CAMERA_INVALID_ARGUMENT} if parameter missing or parameter type incorrect.
+ *         {@link #CAMERA_SERVICE_FATAL_ERROR} if camera service fatal error.
+ * @since 12
+ */
+Camera_ErrorCode OH_PhotoOutput_GetPhotoRotation(Camera_PhotoOutput* photoOutput, int deviceDegree,
+    Camera_ImageRotation* imageRotation);
 
 /**
  * @brief Unregister capture start event callback.
@@ -311,6 +345,54 @@ Camera_ErrorCode OH_PhotoOutput_UnregisterEstimatedCaptureDurationCallback(Camer
     OH_PhotoOutput_EstimatedCaptureDuration callback);
 
 /**
+ * @brief Register photo output photo available callback.
+ *
+ * @param photoOutput the {@link Camera_PhotoOutput} instance.
+ * @param callback the {@link OH_PhotoOutput_PhotoAvailable} to be registered.
+ * @return {@link #CAMERA_OK} if the method call succeeds.
+ *         {@link #INVALID_ARGUMENT} if parameter missing or parameter type incorrect.
+ * @since 12
+ */
+Camera_ErrorCode OH_PhotoOutput_RegisterPhotoAvailableCallback(Camera_PhotoOutput* photoOutput,
+    OH_PhotoOutput_PhotoAvailable callback);
+
+/**
+ * @brief Unregister photo output photo available callback.
+ *
+ * @param photoOutput the {@link Camera_PhotoOutput} instance.
+ * @param callback the {@link PhotoOutput_Callbacks} to be unregistered.
+ * @return {@link #CAMERA_OK} if the method call succeeds.
+ *         {@link #INVALID_ARGUMENT} if parameter missing or parameter type incorrect.
+ * @since 12
+ */
+Camera_ErrorCode OH_PhotoOutput_UnregisterPhotoAvailableCallback(Camera_PhotoOutput* photoOutput,
+    OH_PhotoOutput_PhotoAvailable callback);
+
+/**
+ * @brief Register photo output photo asset available callback.
+ *
+ * @param photoOutput the {@link Camera_PhotoOutput} instance.
+ * @param callback the {@link OH_PhotoOutput_PhotoAssetAvailable} to be registered.
+ * @return {@link #CAMERA_OK} if the method call succeeds.
+ *         {@link #INVALID_ARGUMENT} if parameter missing or parameter type incorrect.
+ * @since 12
+ */
+Camera_ErrorCode OH_PhotoOutput_RegisterPhotoAssetAvailableCallback(Camera_PhotoOutput* photoOutput,
+    OH_PhotoOutput_PhotoAssetAvailable callback);
+
+/**
+ * @brief Unregister photo output photo asset available callback.
+ *
+ * @param photoOutput the {@link Camera_PhotoOutput} instance.
+ * @param callback the {@link OH_PhotoOutput_PhotoAssetAvailable} to be unregistered.
+ * @return {@link #CAMERA_OK} if the method call succeeds.
+ *         {@link #INVALID_ARGUMENT} if parameter missing or parameter type incorrect.
+ * @since 12
+ */
+Camera_ErrorCode OH_PhotoOutput_UnregisterPhotoAssetAvailableCallback(Camera_PhotoOutput* photoOutput,
+    OH_PhotoOutput_PhotoAssetAvailable callback);
+
+/**
  * @brief Capture photo.
  *
  * @param photoOutput the {@link Camera_PhotoOutput} instance which used to capture photo.
@@ -380,6 +462,30 @@ Camera_ErrorCode OH_PhotoOutput_GetActiveProfile(Camera_PhotoOutput* photoOutput
  * @since 12
  */
 Camera_ErrorCode OH_PhotoOutput_DeleteProfile(Camera_Profile* profile);
+
+/**
+ * @brief Check whether to support moving photo.
+ *
+ * @param photoOutput the {@link Camera_PhotoOutput} instance which used to check whether moving photo supported.
+ * @param isSupported the result of whether moving photo supported.
+ * @return {@link #CAMERA_OK} if the method call succeeds.
+ *         {@link #INVALID_ARGUMENT} if parameter missing or parameter type incorrect.
+ *         {@link #CAMERA_SERVICE_FATAL_ERROR} if camera service fatal error.
+ * @since 12
+ */
+Camera_ErrorCode OH_PhotoOutput_IsMovingPhotoSupported(Camera_PhotoOutput* photoOutput, bool* isSupported);
+
+/**
+ * @brief Enable moving photo or not.
+ *
+ * @param photoOutput the {@link Camera_PhotoOutput} instance which used to enable moving photo or not.
+ * @param enabled the flag of enable moving photo or not.
+ * @return {@link #CAMERA_OK} if the method call succeeds.
+ *         {@link #INVALID_ARGUMENT} if parameter missing or parameter type incorrect.
+ *         {@link #CAMERA_SERVICE_FATAL_ERROR} if camera service fatal error.
+ * @since 12
+ */
+Camera_ErrorCode OH_PhotoOutput_EnableMovingPhoto(Camera_PhotoOutput* photoOutput, bool enabled);
 
 #ifdef __cplusplus
 }

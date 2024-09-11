@@ -73,6 +73,58 @@ struct NetStack_CertBlob {
     uint8_t *data;
 };
 
+/**
+ * @brief Defines the certificate lock type.
+ *
+ * @since 12
+ * @version 1.0
+ */
+typedef enum NetStack_CertificatePinningKind {
+    /** Public key pinning */
+    PUBLIC_KEY,
+} NetStack_CertificatePinningKind;
+
+/**
+ * @brief Defines the hash algorithm.
+ *
+ * @since 12
+ * @version 1.0
+ */
+typedef enum NetStack_HashAlgorithm {
+    /** Sha256 */
+    SHA_256,
+} NetStack_HashAlgorithm;
+
+/**
+ * @brief Defines the certificate lock information.
+ *
+ * @since 12
+ * @version 1.0
+ */
+typedef struct NetStack_CertificatePinning {
+    /** Certificate lock type */
+    NetStack_CertificatePinningKind kind;
+    /** Hash algorithm */
+    NetStack_HashAlgorithm hashAlgorithm;
+    /** Hash value */
+    union {
+        char *publicKeyHash;
+    };
+} NetStack_CertificatePinning;
+
+/**
+ * @brief Defines the certificate information.
+ *
+ * @since 12
+ * @version 1.0
+ */
+typedef struct NetStack_Certificates {
+    /** PEM content of the certificates */
+    char **content;
+    /** Number of certificates */
+    size_t length;
+} NetStack_Certificates;
+
 #ifdef __cplusplus
 }
 #endif

@@ -43,6 +43,7 @@
 #include <vector>
 #endif
 
+#include "arkui/native_interface_accessibility.h"
 #include "arkui/native_type.h"
 #include "arkui/ui_input_event.h"
 
@@ -53,6 +54,7 @@ extern "C" {
 #endif
 
 #define OH_NATIVE_XCOMPONENT_OBJ ("__NATIVE_XCOMPONENT_OBJ__")
+#define OH_NATIVE_XCOMPONENT_MAX_TOUCH_POINTS_NUMBER 10
 
 const uint32_t OH_XCOMPONENT_ID_LEN_MAX = 128;
 const uint32_t OH_MAX_TOUCH_POINTS_NUMBER = 10;
@@ -258,7 +260,7 @@ typedef struct {
     /** Timestamp of the current touch event. */
     int64_t timeStamp;
     /** Array of the current touch points. */
-    OH_NativeXComponent_TouchPoint touchPoints[OH_MAX_TOUCH_POINTS_NUMBER];
+    OH_NativeXComponent_TouchPoint touchPoints[OH_NATIVE_XCOMPONENT_MAX_TOUCH_POINTS_NUMBER];
     /** Number of current touch points. */
     uint32_t numPoints;
 } OH_NativeXComponent_TouchEvent;
@@ -814,6 +816,19 @@ int32_t OH_NativeXComponent_GetTouchEventSourceType(
  * @version 1.0
  */
 OH_NativeXComponent* OH_NativeXComponent_GetNativeXComponent(ArkUI_NodeHandle node);
+
+/**
+ * @brief Obtains the pointer to the <b> ArkUI_AccessibilityProvider</b>
+ * instance of this <b>OH_NativeXComponent</b> instance.
+ *
+ * @param component Indicates the pointer to the <b>OH_NativeXComponent</b> instance.
+ * @param handle Indicates the pointer to the <b>ArkUI_AccessibilityProvider</b> instance.
+ * @return Returns {@link OH_NATIVEXCOMPONENT_RESULT_SUCCESS} if the operation is successful.
+ *         Returns {@link OH_NATIVEXCOMPONENT_RESULT_BAD_PARAMETER} if a parameter error occurs.
+ * @since 13
+ */
+int32_t OH_NativeXComponent_GetNativeAccessibilityProvider(
+    OH_NativeXComponent* component, ArkUI_AccessibilityProvider** handle);
 
 #ifdef __cplusplus
 };

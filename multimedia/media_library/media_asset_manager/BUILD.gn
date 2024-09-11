@@ -18,8 +18,12 @@ import("//foundation/multimedia/media_library/media_library.gni")
 ohos_ndk_headers("media_asset_manager_header") {
   dest_dir = "$ndk_headers_out_dir/multimedia/media_library"
   sources = [
+    "../media_access_helper_capi.h",
     "../media_asset_base_capi.h",
+    "../media_asset_capi.h",
+    "../media_asset_change_request_capi.h",
     "../media_asset_manager_capi.h",
+    "../moving_photo_capi.h",
   ]
 }
 
@@ -31,5 +35,9 @@ ohos_ndk_library("libmedia_asset_manager") {
   system_capability_headers = [
     "multimedia/media_library/media_asset_manager_capi.h",
     "multimedia/media_library/media_asset_base_capi.h",
+    "multimedia/media_library/media_access_helper_capi.h",
+    "multimedia/media_library/media_asset_capi.h",
+    "multimedia/media_library/moving_photo_capi.h",
+    "multimedia/media_library/media_asset_change_request_capi.h",
   ]
 }

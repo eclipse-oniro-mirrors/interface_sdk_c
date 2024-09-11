@@ -219,6 +219,99 @@ int32_t OHOS_NetConn_UnregisterDnsResolver(void);
  */
 int32_t OH_NetConn_BindSocket(int32_t socketFd, NetConn_NetHandle *netHandle);
 
+/**
+ * @brief Sets http proxy information to current application.
+ *
+ * @param httpProxy Information about the proxy that needs to be set.
+ * @return 0 - Success.
+ *         401 - Parameter error.
+ * @syscap SystemCapability.Communication.NetManager.Core
+ * @since 12
+ * @version 1.0
+ */
+int32_t OH_NetConn_SetAppHttpProxy(NetConn_HttpProxy *httpProxy);
+
+/**
+ * @brief Registers callback to listen for changes to the application-level http proxy.
+ *
+ * @param appHttpProxyChange Callback that need to be registered to listen for changes to the http proxy.
+ * @param callbackId Callback id returned after registration, associated with a registered callback.
+ * @return 0 - Success.
+ *         401 - Parameter error.
+ * @syscap SystemCapability.Communication.NetManager.Core
+ * @since 12
+ * @version 1.0
+ */
+int32_t OH_NetConn_RegisterAppHttpProxyCallback(OH_NetConn_AppHttpProxyChange appHttpProxyChange, uint32_t *callbackId);
+
+/**
+ * @brief Unregisters a callback function that listens for application-level proxy changes.
+ *
+ * @param callbackId Id of the callback function that needs to be deregistered.
+ * @syscap SystemCapability.Communication.NetManager.Core
+ * @since 12
+ * @version 1.0
+ */
+void OH_NetConn_UnregisterAppHttpProxyCallback(uint32_t callbackId);
+
+/**
+ * @brief Registers callback, used to monitor specific network status.
+ *
+ * @param netSpecifier specifier information.
+ * @param callback The callback needed to be registered.
+ * @param timeout The timeout period in milliseconds.
+ * @param callbackId out param, corresponding to a registered callback.
+ * @return 0 - Success.
+ *         201 - Permission denied.
+ *         401 - Parameter error.
+ *         2100002 - Failed to connect to the service.
+ *         2100003 - System internal error.
+ *         2101008 - The callback already exists.
+ *         2101022 - The number of requests exceeded the maximum allowed.
+ * @permission ohos.permission.GET_NETWORK_INFO
+ * @syscap SystemCapability.Communication.NetManager.Core
+ * @since 12
+ * @version 1.0
+ */
+int32_t OH_NetConn_RegisterNetConnCallback(NetConn_NetSpecifier *specifier, NetConn_NetConnCallback *netConnCallback,
+                                           uint32_t timeout, uint32_t *callbackId);
+
+/**
+ * @brief Registers a callback to listen default network's status changed.
+ *
+ * @param callback The callback needed to be registered.
+ * @param callbackId out param, corresponding to a registered callback.
+ * @return 0 - Success.
+ *         201 - Permission denied.
+ *         401 - Parameter error.
+ *         2100002 - Failed to connect to the service.
+ *         2100003 - System internal error.
+ *         2101008 - The callback already exists.
+ *         2101022 - The number of requests exceeded the maximum allowed.
+ * @permission ohos.permission.GET_NETWORK_INFO
+ * @syscap SystemCapability.Communication.NetManager.Core
+ * @since 12
+ * @version 1.0
+ */
+int32_t OH_NetConn_RegisterDefaultNetConnCallback(NetConn_NetConnCallback *netConnCallback, uint32_t *callbackId);
+
+/**
+ * @brief Unregisters network status callback.
+ *
+ * @param callBackId the id corresponding to a registered callback.
+ * @return 0 - Success.
+ *         201 - Permission denied.
+ *         401 - Parameter error.
+ *         2100002 - Failed to connect to the service.
+ *         2100003 - System internal error.
+ *         2101007 - The callback does not exists.
+ * @permission ohos.permission.GET_NETWORK_INFO
+ * @syscap SystemCapability.Communication.NetManager.Core
+ * @since 12
+ * @version 1.0
+ */
+int32_t OH_NetConn_UnregisterNetConnCallback(uint32_t callBackId);
+
 #ifdef __cplusplus
 }
 #endif

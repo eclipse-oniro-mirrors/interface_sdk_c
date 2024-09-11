@@ -62,14 +62,14 @@ typedef struct OH_PackingOptions OH_PackingOptions;
 /**
  * @brief Defines the image sequence packing options.
  *
- * @since 12
+ * @since 13
  */
 struct OH_PackingOptionsForSequence;
 
 /**
  * @brief Defines the image sequence packing options.
  *
- * @since 12
+ * @since 13
  */
 typedef struct OH_PackingOptionsForSequence OH_PackingOptionsForSequence;
 
@@ -203,7 +203,7 @@ Image_ErrorCode OH_PackingOptions_Release(OH_PackingOptions *options);
  * @return Image functions result code.
  *         {@link IMAGE_SUCCESS} if the execution is successful.
  *         {@link IMAGE_BAD_PARAMETER} options is nullptr.
- * @since 12
+ * @since 13
  */
 Image_ErrorCode OH_PackingOptionsForSequence_Create(OH_PackingOptionsForSequence **options);
 
@@ -215,7 +215,7 @@ Image_ErrorCode OH_PackingOptionsForSequence_Create(OH_PackingOptionsForSequence
  * @return Image functions result code.
  *         {@link IMAGE_SUCCESS} if the execution is successful.
  *         {@link IMAGE_BAD_PARAMETER} options is nullptr.
- * @since 12
+ * @since 13
  */
 Image_ErrorCode OH_PackingOptionsForSequence_SetFrameCount(OH_PackingOptionsForSequence *options,
     uint32_t frameCount);
@@ -228,7 +228,7 @@ Image_ErrorCode OH_PackingOptionsForSequence_SetFrameCount(OH_PackingOptionsForS
  * @return Image functions result code.
  *         {@link IMAGE_SUCCESS} if the execution is successful.
  *         {@link IMAGE_BAD_PARAMETER} options or frameCount is nullptr.
- * @since 12
+ * @since 13
  */
 Image_ErrorCode OH_PackingOptionsForSequence_GetFrameCount(OH_PackingOptionsForSequence *options,
     uint32_t *frameCount);
@@ -242,7 +242,7 @@ Image_ErrorCode OH_PackingOptionsForSequence_GetFrameCount(OH_PackingOptionsForS
  * @return Image functions result code.
  *         {@link IMAGE_SUCCESS} if the execution is successful.
  *         {@link IMAGE_BAD_PARAMETER} options or delayTimeList is nullptr.
- * @since 12
+ * @since 13
  */
 Image_ErrorCode OH_PackingOptionsForSequence_SetDelayTimeList(OH_PackingOptionsForSequence *options,
     int32_t *delayTimeList, size_t delayTimeListLength);
@@ -256,7 +256,7 @@ Image_ErrorCode OH_PackingOptionsForSequence_SetDelayTimeList(OH_PackingOptionsF
  * @return Image functions result code.
  *         {@link IMAGE_SUCCESS} if the execution is successful.
  *         {@link IMAGE_BAD_PARAMETER} options or delayTimeList is nullptr.
- * @since 12
+ * @since 13
  */
 Image_ErrorCode OH_PackingOptionsForSequence_GetDelayTimeList(OH_PackingOptionsForSequence *options,
     int32_t *delayTimeList, size_t delayTimeListLength);
@@ -270,7 +270,7 @@ Image_ErrorCode OH_PackingOptionsForSequence_GetDelayTimeList(OH_PackingOptionsF
  * @return Image functions result code.
  *         {@link IMAGE_SUCCESS} if the execution is successful.
  *         {@link IMAGE_BAD_PARAMETER} options or disposalTypes is nullptr.
- * @since 12
+ * @since 13
  */
 Image_ErrorCode OH_PackingOptionsForSequence_SetDisposalTypes(OH_PackingOptionsForSequence *options,
     uint32_t *disposalTypes, size_t disposalTypesLength);
@@ -284,7 +284,7 @@ Image_ErrorCode OH_PackingOptionsForSequence_SetDisposalTypes(OH_PackingOptionsF
  * @return Image functions result code.
  *         {@link IMAGE_SUCCESS} if the execution is successful.
  *         {@link IMAGE_BAD_PARAMETER} options or disposalTypes is nullptr.
- * @since 12
+ * @since 13
  */
 Image_ErrorCode OH_PackingOptionsForSequence_GetDisposalTypes(OH_PackingOptionsForSequence *options,
     uint32_t *disposalTypes, size_t disposalTypesLength);
@@ -297,7 +297,7 @@ Image_ErrorCode OH_PackingOptionsForSequence_GetDisposalTypes(OH_PackingOptionsF
  * @return Image functions result code.
  *         {@link IMAGE_SUCCESS} if the execution is successful.
  *         {@link IMAGE_BAD_PARAMETER} options is nullptr.
- * @since 12
+ * @since 13
  */
 Image_ErrorCode OH_PackingOptionsForSequence_SetLoopCount(OH_PackingOptionsForSequence *options, uint32_t loopCount);
 
@@ -309,7 +309,7 @@ Image_ErrorCode OH_PackingOptionsForSequence_SetLoopCount(OH_PackingOptionsForSe
  * @return Image functions result code.
  *         {@link IMAGE_SUCCESS} if the execution is successful.
  *         {@link IMAGE_BAD_PARAMETER} options or loopCount is nullptr.
- * @since 12
+ * @since 13
  */
 Image_ErrorCode OH_PackingOptionsForSequence_GetLoopCount(OH_PackingOptionsForSequence *options, uint32_t *loopCount);
 
@@ -320,7 +320,7 @@ Image_ErrorCode OH_PackingOptionsForSequence_GetLoopCount(OH_PackingOptionsForSe
  * @return Image functions result code.
  *         {@link IMAGE_SUCCESS} if the execution is successful.
  *         {@link IMAGE_BAD_PARAMETER} options is nullptr.
- * @since 12
+ * @since 13
  */
 Image_ErrorCode OH_PackingOptionsForSequence_Release(OH_PackingOptionsForSequence *options);
 
@@ -374,7 +374,7 @@ Image_ErrorCode OH_ImagePackerNative_PackToDataFromPixelmap(OH_ImagePackerNative
  *         {@link IMAGE_BAD_PARAMETER} imagePacker is nullptr, or picture is nullptr, or outData is nullptr,
  *         or size is invalid.
  *         {@link IMAGE_ENCODE_FAILED} encode failed.
- * @since 12
+ * @since 13
  */
 Image_ErrorCode OH_ImagePackerNative_PackToDataFromPicture(OH_ImagePackerNative *imagePacker,
     OH_PackingOptions *options, OH_PictureNative *picture, uint8_t *outData, size_t *size);
@@ -392,7 +392,7 @@ Image_ErrorCode OH_ImagePackerNative_PackToDataFromPicture(OH_ImagePackerNative 
  *         {@link IMAGE_SUCCESS} if the execution is successful.
  *         {@link IMAGE_BAD_PARAMETER} one of the pointer type parameters is nullptr, or size/length is invalid
  *         {@link IMAGE_ENCODE_FAILED} encode failed.
- * @since 12
+ * @since 13
  */
 Image_ErrorCode OH_ImagePackerNative_PackToDataFromPixelmapSequence(OH_ImagePackerNative *imagePacker,
     OH_PackingOptionsForSequence *options, OH_PixelmapNative **pixelmapSequence,
@@ -435,7 +435,7 @@ Image_ErrorCode OH_ImagePackerNative_PackToFileFromPixelmap(OH_ImagePackerNative
  *         {@link IMAGE_SUCCESS} if the execution is successful.
  *         {@link IMAGE_BAD_PARAMETER} imagePacker is nullptr, or picture is nullptr, or fd is invalid.
  *         {@link IMAGE_ENCODE_FAILED} encode failed.
- * @since 12
+ * @since 13
  */
 Image_ErrorCode OH_ImagePackerNative_PackToFileFromPicture(OH_ImagePackerNative *imagePacker,
     OH_PackingOptions *options, OH_PictureNative *picture, int32_t fd);
@@ -452,7 +452,7 @@ Image_ErrorCode OH_ImagePackerNative_PackToFileFromPicture(OH_ImagePackerNative 
   *         {@link IMAGE_SUCCESS} if the execution is successful.
   *         {@link IMAGE_BAD_PARAMETER} one of the pointer type parameters is nullptr, or length is invalid
   *         {@link IMAGE_ENCODE_FAILED} encode failed.
-  * @since 12
+  * @since 13
  */
 Image_ErrorCode OH_ImagePackerNative_PackToFileFromPixelmapSequence(OH_ImagePackerNative *imagePacker,
     OH_PackingOptionsForSequence *options, OH_PixelmapNative **pixelmapSequence, size_t sequenceLength, int32_t fd);

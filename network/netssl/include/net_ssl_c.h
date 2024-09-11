@@ -70,6 +70,45 @@ extern "C" {
  * @version 1.0
  */
 uint32_t OH_NetStack_CertVerification(const struct NetStack_CertBlob *cert, const struct NetStack_CertBlob *caCert);
+
+/**
+ * @brief Gets pin set for hostname.
+ *
+ * @param hostname Hostname.
+ * @param pin Certificate lock information.
+ * @return 0 - Success.
+ *         401 - Parameter error.
+ *         2305999 - Out of memory.
+ * @syscap SystemCapability.Communication.NetStack
+ * @since 12
+ * @version 1.0
+ */
+int32_t OH_NetStack_GetPinSetForHostName(const char *hostname, NetStack_CertificatePinning *pin);
+
+/**
+ * @brief Gets certificates for hostname.
+ *
+ * @param hostname Hostname.
+ * @param certs Certificate Information.
+ * @return 0 - Success.
+ *         401 - Parameter error.
+ *         2305999 - Out of memory.
+ * @syscap SystemCapability.Communication.NetStack
+ * @since 12
+ * @version 1.0
+ */
+int32_t OH_NetStack_GetCertificatesForHostName(const char *hostname, NetStack_Certificates *certs);
+
+/**
+ * @brief Frees content of the certificates.
+ *
+ * @param certs Certificate.
+ * @syscap SystemCapability.Communication.NetStack
+ * @since 12
+ * @version 1.0
+ */
+void OH_Netstack_DestroyCertificatesContent(NetStack_Certificates *certs);
+
 #ifdef __cplusplus
 }
 #endif

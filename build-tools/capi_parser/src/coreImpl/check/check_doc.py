@@ -447,7 +447,7 @@ def process_comment(comment: str, file_doc_info: FileDocInfo, api_info) -> list:
         comment_start_line = api_info['location']['location_line'] - comment.count('\n') - 1
     for index, item in enumerate(result_json):
         if api_info['kind'] == CursorKind.TRANSLATION_UNIT.name and len(item['tags']) > 0 and\
-                item['tags'][0]['tag'] == '}' and index <= len(api_info['line_list']) - 1:
+                item['tags'][0]['tag'] == '}' and 'line_list' in api_info and index <= len(api_info['line_list']) - 1:
             comment_start_line = api_info['line_list'][index]
         api_result_info_list.extend(process_each_comment(item, file_doc_info, api_info, comment_start_line))
         if index == len(result_json) - 1:

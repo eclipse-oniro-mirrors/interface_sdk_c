@@ -55,7 +55,7 @@ def run_tools(options):
     elif tool_name == ToolNameType["CHECK"].value:
         check.curr_entry(options.path, options.checker, options.output)
     elif tool_name == ToolNameType['COLLECT_H'].value:
-        parser.parser_direct(options.parser_path)
+        parser.parser_direct(options.parser_path, options.dependent_path)
     elif tool_name == ToolNameType['COLLECT_FILE'].value:
         parser.parser_file_level(options.output_path)
     elif tool_name == ToolNameType['CHECK_SYNTAX'].value:

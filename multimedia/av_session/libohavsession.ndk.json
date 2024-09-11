@@ -49,7 +49,7 @@
     },
     {
         "first_introduced": "13",
-        "name":"OH_AVSession_UnRegisterCommandCallback"
+        "name":"OH_AVSession_UnregisterCommandCallback"
     },
     {
         "first_introduced": "13",
@@ -57,7 +57,7 @@
     },
     {
         "first_introduced": "13",
-        "name":"OH_AVSession_UnRegisterForwardCallback"
+        "name":"OH_AVSession_UnregisterForwardCallback"
     },
     {
         "first_introduced": "13",
@@ -65,7 +65,7 @@
     },
     {
         "first_introduced": "13",
-        "name":"OH_AVSession_UnRegisterRewindCallback"
+        "name":"OH_AVSession_UnregisterRewindCallback"
     },
     {
         "first_introduced": "13",
@@ -73,7 +73,7 @@
     },
     {
         "first_introduced": "13",
-        "name":"OH_AVSession_UnRegisterSeekCallback"
+        "name":"OH_AVSession_UnregisterSeekCallback"
     },
     {
         "first_introduced": "13",
@@ -81,7 +81,7 @@
     },
     {
         "first_introduced": "13",
-        "name":"OH_AVSession_UnRegisterSetLoopModeCallback"
+        "name":"OH_AVSession_UnregisterSetLoopModeCallback"
     },
     {
         "first_introduced": "13",
@@ -89,7 +89,7 @@
     },
     {
         "first_introduced": "13",
-        "name":"OH_AVSession_UnRegisterToggleFavoriteCallback"
+        "name":"OH_AVSession_UnregisterToggleFavoriteCallback"
     },
     {
         "first_introduced": "13",
@@ -137,7 +137,7 @@
     },
     {
         "first_introduced": "13",
-        "name": "OH_AVMetadataBuilder_SetSubTitle"
+        "name": "OH_AVMetadataBuilder_SetSubtitle"
     },
     {
         "first_introduced": "13",
