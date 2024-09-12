@@ -267,7 +267,7 @@ typedef void (*OH_AudioRoutingManager_OnDeviceBlockStatusCallback)(
  *                                                    2.The param of supported is nullptr.
  * @since 13
  */
-OH_AudioCommon_Result OH_AudioRoutingManager_IsMicrophoneBlockDetectionSupported(
+OH_AudioCommon_Result OH_AudioRoutingManager_IsMicBlockDetectionSupported(
     OH_AudioRoutingManager *audioRoutingManager,
     bool *supported);
 
@@ -288,7 +288,7 @@ OH_AudioCommon_Result OH_AudioRoutingManager_IsMicrophoneBlockDetectionSupported
  *                                                    2.The param of callback is nullptr.
  * @since 13
  */
-OH_AudioCommon_Result OH_AudioRoutingManager_SetMicrophoneBlockStatusCallback(
+OH_AudioCommon_Result OH_AudioRoutingManager_SetMicBlockStatusCallback(
     OH_AudioRoutingManager *audioRoutingManager,
     OH_AudioRoutingManager_OnDeviceBlockStatusCallback callback,
     void *userData);
