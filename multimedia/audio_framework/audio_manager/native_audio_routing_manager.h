@@ -255,7 +255,25 @@ typedef void (*OH_AudioRoutingManager_OnDeviceBlockStatusCallback)(
     void *userData);
 
 /**
- * @brief Set the microphone block status callback. The caller will receive the callback only when it is recording
+ * @brief Query whether microphone block detection is supported on current device.
+ *
+ * @param audioRoutingManager the {@link OH_AudioRoutingManager} handle returned by
+ * {@link OH_AudioManager_GetAudioRoutingManager}.
+ * @param supported query result.
+ * @return Function result code:
+ *     {@link AUDIOCOMMON_RESULT_SUCCESS} If the execution is successful.
+ *     {@link AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM}:
+ *                                                    1.The param of audioRoutingManager is nullptr;
+ *                                                    2.The param of supported is nullptr.
+ * @since 13
+ */
+OH_AudioCommon_Result OH_AudioRoutingManager_IsMicrophoneBlockDetectionSupported(
+    OH_AudioRoutingManager *audioRoutingManager,
+    bool *supported);
+
+/**
+ * @brief Set the microphone block status callback. Before using this function, users should query whether block
+ * detection is supported on current device. The caller will receive the callback only when it is recording
  * and the used microphones' block status have changed. Currently, block detecting is only support for microphones
  * located on the local device.
  *

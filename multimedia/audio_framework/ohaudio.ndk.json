@@ -373,6 +373,10 @@
     },
     {
         "first_introduced": "13",
+        "name": "OH_AudioRoutingManager_IsMicrophoneBlockDetectionSupported"
+    },
+    {
+        "first_introduced": "13",
         "name": "OH_AudioRoutingManager_SetMicrophoneBlockStatusCallback"
     }
 ]
