@@ -292,7 +292,7 @@ def diff_list(old_file_list, new_file_list, old_dir, new_dir):
 def add_new_file(diff_file_path):
     if os.path.isdir(diff_file_path):
         add_file(diff_file_path)
-    elif filter_ignore_file(diff_file_path):
+    else:
         result_map = parse_file_result(diff_parser_include_ast(global_new_dir, [diff_file_path], flag=1))
         for new_info in result_map.values():
             diff_info_list.extend(judgment_entrance(None, new_info))
@@ -301,7 +301,7 @@ def add_new_file(diff_file_path):
 def del_old_file(diff_file_path):
     if os.path.isdir(diff_file_path):
         del_file(diff_file_path)
-    elif filter_ignore_file(diff_file_path):
+    else:
         result_map = parse_file_result(diff_parser_include_ast(global_old_dir, [diff_file_path], flag=0))
         for old_info in result_map.values():
             diff_info_list.extend(judgment_entrance(old_info, None))
@@ -324,14 +324,13 @@ def get_same_file_diff(target_file, old_file_list, new_file_list, old_dir, new_d
 
 
 def get_file_result_diff(old_target_file, new_target_file):
-    if filter_ignore_file(old_target_file):
-        old_file_result_map = parse_file_result(diff_parser_include_ast(global_old_dir, [old_target_file], flag=0))
-        new_file_result_map = parse_file_result(diff_parser_include_ast(global_new_dir, [new_target_file], flag=1))
-        if old_file_result_map and new_file_result_map:
-            merged_dict = OrderedDict(list(old_file_result_map.items()) + list(new_file_result_map.items()))
-            all_key_list = merged_dict.keys()
-            for key in all_key_list:
-                diff_info_list.extend(judgment_entrance(old_file_result_map.get(key), new_file_result_map.get(key)))
+    old_file_result_map = parse_file_result(diff_parser_include_ast(global_old_dir, [old_target_file], flag=0))
+    new_file_result_map = parse_file_result(diff_parser_include_ast(global_new_dir, [new_target_file], flag=1))
+    if old_file_result_map and new_file_result_map:
+        merged_dict = OrderedDict(list(old_file_result_map.items()) + list(new_file_result_map.items()))
+        all_key_list = merged_dict.keys()
+        for key in all_key_list:
+            diff_info_list.extend(judgment_entrance(old_file_result_map.get(key), new_file_result_map.get(key)))
 
 
 def del_file(dir_path):
@@ -342,7 +341,7 @@ def del_file(dir_path):
         file_path = os.path.join(dir_path, i)
         if os.path.isdir(file_path):
             del_file(file_path)
-        if get_file_ext(i) == '.h' and filter_ignore_file(file_path):
+        if get_file_ext(i) == '.h':
             result_map = parse_file_result(diff_parser_include_ast(global_old_dir, [file_path], flag=0))
             for old_info in result_map.values():
                 diff_info_list.extend(judgment_entrance(old_info, None))
@@ -356,7 +355,7 @@ def add_file(dir_path):
         file_path = os.path.join(dir_path, i)
         if os.path.isdir(file_path):
             add_file(file_path)
-        if get_file_ext(i) == '.h' and filter_ignore_file(file_path):
+        if get_file_ext(i) == '.h':
             result_map = parse_file_result(diff_parser_include_ast(global_new_dir, [file_path], flag=1))
             for new_info in result_map.values():
                 diff_info_list.extend(judgment_entrance(None, new_info))

@@ -260,7 +260,7 @@ def get_node_class_name(data):
     return class_name
 
 
-def processing_special_node(cursor, data, key, gn_path):  # 处理需要特殊处理的节点
+def processing_special_node(cursor, data, key, directory_path):  # 处理需要特殊处理的节点
     if key == 0:
         location_path = cursor.spelling
         kind_name = CursorKind.TRANSLATION_UNIT.name
@@ -273,15 +273,15 @@ def processing_special_node(cursor, data, key, gn_path):  # 处理需要特殊�
         "location_line": cursor.location.line,
         "location_column": cursor.location.column
     }
-    if gn_path:
-        relative_path = os.path.relpath(location_path, gn_path)  # 获取头文件相对路
+    if directory_path:
+        relative_path = os.path.relpath(location_path, directory_path)  # 获取头文件相对路
         loc["location_path"] = relative_path
     data["location"] = loc
     data["class_name"] = get_node_class_name(data)
     data["unique_id"] = get_api_unique_id(cursor, loc, data)
     if key == 0:
         data["unique_id"] = data["name"]
-        syntax_error_message = diagnostic_callback(cursor.translation_unit.diagnostics, gn_path)
+        syntax_error_message = diagnostic_callback(cursor.translation_unit.diagnostics, directory_path)
         data["syntax_error"] = syntax_error_message
     if kind_name in special_node_process.keys():
         node_process = special_node_process[kind_name]
@@ -321,12 +321,12 @@ def define_comment(cursor, current_file, data):
             data['comment'] = matches.group()
 
 
-def get_default_node_data(cursor, gn_path):
+def get_default_node_data(cursor, directory_path):
     data = {
         "name": cursor.spelling,
         "kind": '',
         "type": cursor.type.spelling,
-        "gn_path": gn_path,
+        "gn_path": directory_path,
         "node_content": {},
         "comment": '',
         "syscap": '',
@@ -374,15 +374,15 @@ def diagnostic_callback(diagnostic, dir_path):
     return syntax_error_message
 
 
-def parser_data_assignment(cursor, current_file, gn_path, comment=None, key=0):
-    data = get_default_node_data(cursor, gn_path)
+def parser_data_assignment(cursor, current_file, directory_path, comment=None, key=0):
+    data = get_default_node_data(cursor, directory_path)
     get_comment(cursor, data)
     if key == 0:
         data["kind"] = CursorKind.TRANSLATION_UNIT.name
         if comment:
             data["comment"] = comment
-        if gn_path:
-            relative_path = os.path.relpath(cursor.spelling, gn_path)
+        if directory_path:
+            relative_path = os.path.relpath(cursor.spelling, directory_path)
             data["name"] = relative_path
     else:
         content = node_extent(cursor, current_file)
@@ -396,15 +396,15 @@ def parser_data_assignment(cursor, current_file, gn_path, comment=None, key=0):
     get_permission_value(data)
     get_module_name_value(data)
     get_deprecate_since_value(data)
-    processing_special_node(cursor, data, key, gn_path)  # 节点处理
+    processing_special_node(cursor, data, key, directory_path)  # 节点处理
     get_file_kit_or_system(data)
 
     return data
 
 
-def ast_to_dict(cursor, current_file, last_data, gn_path, comment=None, key=0):  # 解析数据的整理
+def ast_to_dict(cursor, current_file, last_data, directory_path, comment=None, key=0):  # 解析数据的整理
     # 通用赋值
-    data = parser_data_assignment(cursor, current_file, gn_path, comment, key)
+    data = parser_data_assignment(cursor, current_file, directory_path, comment, key)
     if last_data:
         data['module_name'] = last_data['module_name']
         data['kit_name'] = last_data['kit_name']
@@ -430,7 +430,7 @@ def ast_to_dict(cursor, current_file, last_data, gn_path, comment=None, key=0): 
                     and child.kind.name != CursorKind.MACRO_INSTANTIATION.name \
                     and child.kind.name != CursorKind.INCLUSION_DIRECTIVE.name \
                     and (child.location.file.name == current_file):
-                processing_ast_node(child, current_file, data, name, gn_path)
+                processing_ast_node(child, current_file, data, name, directory_path)
     else:
         if cursor.kind == CursorKind.FUNCTION_DECL:  # 防止clang默认处理(对于头文件没有的情况)出现没有该键值对
             data["parm"] = []
@@ -552,17 +552,17 @@ def get_comment(cursor, data: dict):
         data["comment"] = 'none_comment'
 
 
-def processing_ast_node(child, current_file, data, name, gn_path):
-    child_data = ast_to_dict(child, current_file, data, gn_path, key=1)
+def processing_ast_node(child, current_file, data, name, directory_path):
+    child_data = ast_to_dict(child, current_file, data, directory_path, key=1)
     if child.kind == CursorKind.TYPE_REF:
         data["type_ref"] = child_data
     else:
         data[name].append(child_data)
 
 
-def preorder_travers_ast(cursor, comment, current_file, gn_path):  # 获取属性
+def preorder_travers_ast(cursor, comment, current_file, directory_path):  # 获取属性
     previous_data = {}
-    ast_dict = ast_to_dict(cursor, current_file, previous_data, gn_path, comment)  # 获取节点属性
+    ast_dict = ast_to_dict(cursor, current_file, previous_data, directory_path, comment)  # 获取节点属性
     return ast_dict
 
 
@@ -617,7 +617,7 @@ def get_start_comments(include_path):  # 获取每个头文件的最开始注释
         return content
 
 
-def api_entrance(share_lib, include_path, gn_path, link_path):  # 统计入口
+def api_entrance(share_lib, include_path, directory_path, link_path):  # 统计入口
     # clang.cindex需要用到libclang.dll共享库   所以配置共享库
     if not Config.loaded:
         Config.set_library_file(share_lib)
@@ -636,7 +636,7 @@ def api_entrance(share_lib, include_path, gn_path, link_path):  # 统计入口
         ast_root_node = tu.cursor  # 获取根节点
         matches = get_start_comments(item)  # 接收文件最开始的注释
         # 前序遍历AST
-        file_result_data = preorder_travers_ast(ast_root_node, matches, item, gn_path)  # 调用处理函数
+        file_result_data = preorder_travers_ast(ast_root_node, matches, item, directory_path)  # 调用处理函数
         data_total.append(file_result_data)
         iter_line_dist = iter(line_dist)
         first = next(iter_line_dist)
@@ -648,12 +648,12 @@ def api_entrance(share_lib, include_path, gn_path, link_path):  # 统计入口
     return data_total
 
 
-def get_include_file(include_file_path, link_path, gn_path):  # 库路径、.h文件路径、链接头文件路径
+def get_include_file(include_file_path, link_path, directory_path):  # 库路径、.h文件路径、链接头文件路径
     # libclang.dll库路径
     libclang_path = StringConstant.LIB_CLG_PATH.value
     # c头文件的路径
     file_path = include_file_path
     # 头文件链接路径
     link_include_path = link_path  # 可以通过列表传入
-    data = api_entrance(libclang_path, file_path, gn_path, link_include_path)  # 调用接口
+    data = api_entrance(libclang_path, file_path, directory_path, link_include_path)  # 调用接口
     return data
