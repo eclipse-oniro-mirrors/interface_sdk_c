@@ -7500,7 +7500,7 @@ typedef struct ArkUI_NodeContentEvent ArkUI_NodeContentEvent;
 typedef void (*ArkUI_NodeContentCallback)(ArkUI_NodeContentEvent* event);
 
 /**
- * @brief register a callback functoin to a node content.
+ * @brief register a callback function to a node content.
  *
  * @param content Indicates the pointer to the node content instance.
  * @param callback Indicates the callback function.
@@ -7567,7 +7567,7 @@ int32_t OH_ArkUI_NodeContent_AddNode(ArkUI_NodeContentHandle content, ArkUI_Node
  *
  * @param content Indicates the pointer to the node content instance.
  * @param node Indicates the pointer to the node
-  * @return Returns the error code.
+ * @return Returns the error code.
  *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
  *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
  * @since 12
