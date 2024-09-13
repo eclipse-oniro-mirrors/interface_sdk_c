@@ -96,6 +96,10 @@
         "name": "OH_PixelmapNative_ReadPixels"
     },
     {
+        "first_introduced": "13",
+        "name": "OH_PixelmapNative_ReadARGBPixels"
+    },
+    {
         "first_introduced": "12",
         "name": "OH_PixelmapNative_WritePixels"
     },
