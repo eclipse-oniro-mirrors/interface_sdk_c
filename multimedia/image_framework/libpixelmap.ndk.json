@@ -100,6 +100,10 @@
         "name": "OH_PixelmapNative_WritePixels"
     },
     {
+        "first_introduced": "13",
+        "name": "OH_PixelmapNative_GetArgbPixels"
+    },
+    {
         "first_introduced": "12",
         "name": "OH_PixelmapNative_ToSdr"
     },
