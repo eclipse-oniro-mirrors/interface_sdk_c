@@ -488,6 +488,10 @@
         "name": "OH_PhotoOutput_EnableMovingPhoto"
     },
     {
+        "first_introduced": "12",
+        "name": "OH_PhotoOutput_GetPhotoRotation"
+    },
+    {
         "first_introduced": "11",
         "name": "OH_PreviewOutput_RegisterCallback"
     },
@@ -532,6 +536,14 @@
         "name": "OH_PreviewOutput_GetActiveFrameRate"
     },
     {
+        "first_introduced": "12",
+        "name": "OH_PreviewOutput_GetPreviewRotation"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_PreviewOutput_SetPreviewRotation"
+    },
+    {
         "first_introduced": "11",
         "name": "OH_VideoOutput_RegisterCallback"
     },
@@ -574,6 +586,10 @@
     {
         "first_introduced": "12",
         "name": "OH_VideoOutput_GetActiveFrameRate"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_VideoOutput_GetVideoRotation"
     },
     {
         "first_introduced": "12",
