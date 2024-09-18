@@ -13,9 +13,6 @@
  * limitations under the License.
  */
 
-#ifndef C_INCLUDE_DRAWING_TEXT_LINE_H
-#define C_INCLUDE_DRAWING_TEXT_LINE_H
-
 /**
  * @addtogroup Drawing
  * @{
@@ -37,6 +34,9 @@
  * @version 1.0
  */
 
+#ifndef C_INCLUDE_DRAWING_TEXT_LINE_H
+#define C_INCLUDE_DRAWING_TEXT_LINE_H
+
 #include "drawing_text_declaration.h"
 #include "drawing_types.h"
 
@@ -48,10 +48,9 @@ extern "C" {
  * @brief Get text line information.
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @param OH_Drawing_Typography Indicates the pointer to a typography object <b>OH_Drawing_Typography</b>.
+ * @param typography Indicates the pointer to a typography object <b>OH_Drawing_Typography</b>.
  * @return Indicates the pointer to a text line array object <b>OH_Drawing_Array</b>.
  * @since 14
- * @version 1.0
  */
 OH_Drawing_Array* OH_Drawing_TypographyGetTextLines(OH_Drawing_Typography* typography);
 
@@ -80,12 +79,11 @@ void OH_Drawing_DestroyTextLine(OH_Drawing_TextLine* line);
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @param lines Indicates the pointer to the text line array object <b>OH_Drawing_Array</b>.
- * @param index text line object index.
+ * @param index The text line object index.
  * @return Indicates the pointer to a text line object <b>OH_Drawing_TextLine</b>.
  * @since 14
- * @version 1.0
  */
-OH_Drawing_TextLine* OH_Drawing_GetTextLinesIndex(OH_Drawing_Array* lines, size_t index);
+OH_Drawing_TextLine* OH_Drawing_GetTextLineByIndex(OH_Drawing_Array* lines, size_t index);
 
 /**
  * @brief Get the count of glyphs.
@@ -136,19 +134,18 @@ void OH_Drawing_DestroyRuns(OH_Drawing_Array* runs);
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @param runs Indicates the pointer to the run array object <b>OH_Drawing_Array</b>.
- * @param index run object index.
+ * @param index The run object index.
  * @return Indicates the pointer to a run object <b>OH_Drawing_Run</b>.
  * @since 14
- * @version 1.0
  */
-OH_Drawing_Run* OH_Drawing_GetRunsIndex(OH_Drawing_Array* runs, size_t index);
+OH_Drawing_Run* OH_Drawing_GetRunByIndex(OH_Drawing_Array* runs, size_t index);
 
 /**
  * @brief Paint the range of text line.
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @param line Indicates the pointer to an <b>OH_Drawing_TextLine</b> object.
- * @param canvas Draw the text line on the canvas.
+ * @param canvas Indicates the pointer to an <b>OH_Drawing_Canvas</b> object.
  * @param x Represents the X-axis position on the canvas.
  * @param y Represents the Y-axis position on the canvas.
  * @since 14
@@ -214,10 +211,9 @@ double OH_Drawing_TextLineGetTrailingSpaceWidth(OH_Drawing_TextLine* line);
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @param line Indicates the pointer to an <b>OH_Drawing_TextLine</b> object.
- * @param point The given position.
+ * @param point Indicates the pointer to an <b>OH_Drawing_Point</b> object.
  * @return Returns the string index for a given position.
  * @since 14
- * @version 1.0
  */
 int32_t OH_Drawing_TextLineGetStringIndexForPosition(OH_Drawing_TextLine* line, OH_Drawing_Point* point);
 
@@ -227,38 +223,10 @@ int32_t OH_Drawing_TextLineGetStringIndexForPosition(OH_Drawing_TextLine* line, 
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @param line Indicates the pointer to an <b>OH_Drawing_TextLine</b> object.
  * @param index The given string index.
- * @param secondOffset Indicates the pointer to the offset of compound character, not supported.
- * @return Returns the offset info for a given string index.
+ * @return Returns the offset for a given string index.
  * @since 14
- * @version 1.0
  */
-double OH_Drawing_TextLineGetOffsetForStringIndex(OH_Drawing_TextLine* line, int32_t index, double* secondOffset);
-
-/**
- * @brief User-defined callback functions for using offsets and indexes.
- *
- * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @param offset Character offset is traversed as an argument to the callback function.
- * @param index Character index is traversed as an argument to the callback function.
- * @param leadingEdge Whether the current offset is at the character front, as an argument to the callback function.
- * @return The return value of the user-defined callback function.
- *         If false is returned, the traversal continues.
- *         If true is returned, the traversal stops.
- * @since 14
- * @version 1.0
- */
-typedef bool (*CustomCallback)(double offset, int32_t index, bool leadingEdge);
-
-/**
- * @brief Enumerate caret offset and index in text lines.
- *
- * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @param line Indicates the pointer to an <b>OH_Drawing_TextLine</b> object.
- * @param callback User-defined callback functions, see <b>CustomCallback</b>.
- * @since 14
- * @version 1.0
- */
-void OH_Drawing_TextLineEnumerateCaretOffsets(OH_Drawing_TextLine* line, CustomCallback callback);
+double OH_Drawing_TextLineGetOffsetForStringIndex(OH_Drawing_TextLine* line, int32_t index);
 
 /**
  * @brief Gets the text offset based on the given alignment factor and alignment width.

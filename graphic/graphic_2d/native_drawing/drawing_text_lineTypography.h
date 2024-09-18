@@ -13,9 +13,6 @@
  * limitations under the License.
  */
 
-#ifndef C_INCLUDE_DRAWING_TEXT_LINETYPOGRAPHY_H
-#define C_INCLUDE_DRAWING_TEXT_LINETYPOGRAPHY_H
-
 /**
  * @addtogroup Drawing
  * @{
@@ -40,7 +37,9 @@
  * @version 1.0
  */
 
-#include "cstddef"
+#ifndef DRAWING_TEXT_LINETYPOGRAPHY_H
+#define DRAWING_TEXT_LINETYPOGRAPHY_H
+
 #include "drawing_text_declaration.h"
 
 #ifdef __cplusplus
@@ -54,7 +53,6 @@ extern "C" {
  * @param OH_Drawing_TypographyCreate Indicates the pointer to an <b>OH_Drawing_TypographyCreate</b> object.
  * @return Returns the pointer to the <b>OH_Drawing_LineTypography</b> object created.
  * @since 14
- * @version 1.0
  */
 OH_Drawing_LineTypography* OH_Drawing_CreateLineTypography(OH_Drawing_TypographyCreate* handler);
 
@@ -64,7 +62,6 @@ OH_Drawing_LineTypography* OH_Drawing_CreateLineTypography(OH_Drawing_Typography
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @param OH_Drawing_LineTypography Indicates the pointer to an <b>OH_Drawing_LineTypography</b> object.
  * @since 14
- * @version 1.0
  */
 void OH_Drawing_DestroyLineTypography(OH_Drawing_LineTypography* lineTypography);
 
@@ -77,7 +74,6 @@ void OH_Drawing_DestroyLineTypography(OH_Drawing_LineTypography* lineTypography)
  * @param width Indicates the requested line-break width.
  * @return Returns the count of the characters from startIndex that would cause the line break.
  * @since 14
- * @version 1.0
  */
 size_t OH_Drawing_LineTypographyGetLineBreak(OH_Drawing_LineTypography* lineTypography,
                                              size_t startIndex, double width);
@@ -91,7 +87,6 @@ size_t OH_Drawing_LineTypographyGetLineBreak(OH_Drawing_LineTypography* lineTypo
  * @param count Indicates the characters count of the text range.
  * @return Returns the pointer to the <b>OH_Drawing_TextLine</b> object created.
  * @since 14
- * @version 1.0
  */
 OH_Drawing_TextLine* OH_Drawing_LineTypographyCreateLine(OH_Drawing_LineTypography* lineTypography,
                                                          size_t startIndex, size_t count);

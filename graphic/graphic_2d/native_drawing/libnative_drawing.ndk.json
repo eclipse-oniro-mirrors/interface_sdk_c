@@ -936,7 +936,7 @@
     },
     {
         "first_introduced": "14",
-        "name": "OH_Drawing_GetSystemFontFullNamesElement"
+        "name": "OH_Drawing_GetSystemFontFullNameByIndex"
     },
     {
         "first_introduced": "14",
@@ -1548,7 +1548,7 @@
     },
     {
         "first_introduced": "14",
-        "name":"OH_Drawing_GetTextTabAlign"
+        "name":"OH_Drawing_GetTextTabAlignment"
     },
     {
         "first_introduced": "14",
@@ -1580,7 +1580,7 @@
     },
     {
         "first_introduced": "14",
-        "name":"OH_Drawing_GetTextLinesIndex"
+        "name":"OH_Drawing_GetTextLineByIndex"
     },
     {
         "first_introduced": "14",
@@ -1600,7 +1600,7 @@
     },
     {
         "first_introduced": "14",
-        "name":"OH_Drawing_GetRunsIndex"
+        "name":"OH_Drawing_GetRunByIndex"
     },
     {
         "first_introduced": "14",
@@ -1632,10 +1632,6 @@
     },
     {
         "first_introduced": "14",
-        "name":"OH_Drawing_TextLineEnumerateCaretOffsets"
-    },
-    {
-        "first_introduced": "14",
         "name":"OH_Drawing_TextLineGetAlignmentOffset"
     },
     {
@@ -1644,7 +1640,7 @@
     },
     {
         "first_introduced": "14",
-        "name":"OH_Drawing_GetRunStringIndicesElement"
+        "name":"OH_Drawing_GetRunStringIndicesByIndex"
     },
     {
         "first_introduced": "14",
@@ -1676,7 +1672,7 @@
     },
     {
         "first_introduced": "14",
-        "name":"OH_Drawing_GetRunGlyphsElement"
+        "name":"OH_Drawing_GetRunGlyphsByIndex"
     },
     {
         "first_introduced": "14",
@@ -1688,7 +1684,7 @@
     },
     {
         "first_introduced": "14",
-        "name":"OH_Drawing_GetRunPositionsElement"
+        "name":"OH_Drawing_GetRunPositionsByIndex"
     },
     {
         "first_introduced": "14",

@@ -45,7 +45,6 @@
 #include "drawing_color.h"
 #include "drawing_font.h"
 #include "drawing_text_declaration.h"
-#include "drawing_text_font_descriptor.h"
 #include "drawing_types.h"
 
 #include "stdint.h"
@@ -412,6 +411,35 @@ typedef struct OH_Drawing_FontConfigInfo {
     /** List of fallback font sets */
     OH_Drawing_FontFallbackGroup* fallbackGroupSet;
 } OH_Drawing_FontConfigInfo;
+
+/**
+ * @brief Describes the font information.
+ *
+ * @since 12
+ * @version 1.0
+ */
+typedef struct OH_Drawing_FontDescriptor {
+    /** The file path of System font */
+    char* path;
+    /** A name that uniquely identifies the font */
+    char* postScriptName;
+    /** The name of System font */
+    char* fullName;
+    /** The family of System font */
+    char* fontFamily;
+    /** The subfont family of the system font */
+    char* fontSubfamily;
+    /** The weight of System font */
+    int weight;
+    /** The width of System font */
+    int width;
+    /** Whether the system font is tilted */
+    int italic;
+    /** Whether the system font is compact */
+    bool monoSpace;
+    /** whether symbolic fonts are supported */
+    bool symbolic;
+} OH_Drawing_FontDescriptor;
 
 /**
  * @brief The metrics of line.
@@ -2754,8 +2782,10 @@ void OH_Drawing_SetTextShadow(OH_Drawing_TextShadow* shadow, uint32_t color, OH_
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @param OH_Drawing_TextAlign Indicates enumerates text tab alignment modes. TAB alignment, Support left alignment
  * right alignment center alignment, other enumeration values are left alignment effect.
- * @param float Indicates location if text tab.
- * @return Returns the pointer to the <b>OH_Drawing_TextTab</b> object created.
+ * @param float Indicates location of text tab.
+ * @return Returns the pointer to the <b>OH_Drawing_TextTab</b> object created. If the object returns NULL,
+ * the creation failed. The possible cause of the failure is that the application address space is used up.
+ * As a result, space cannot be allocated.
  * @since 14
  * @version 1.0
  */
@@ -2772,7 +2802,7 @@ OH_Drawing_TextTab* OH_Drawing_CreateTextTab(OH_Drawing_TextAlign alignment, flo
 void OH_Drawing_DestroyTextTab(OH_Drawing_TextTab*);
 
 /**
- * @brief Get align of an <b>OH_Drawing_TextTab</b> object.
+ * @brief Get alignment of an <b>OH_Drawing_TextTab</b> object.
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @param OH_Drawing_TextTab Indicates the pointer to an <b>OH_Drawing_TextTab</b> object.
@@ -2780,7 +2810,7 @@ void OH_Drawing_DestroyTextTab(OH_Drawing_TextTab*);
  * @since 14
  * @version 1.0
  */
-OH_Drawing_TextAlign OH_Drawing_GetTextTabAlign(OH_Drawing_TextTab*);
+OH_Drawing_TextAlign OH_Drawing_GetTextTabAlignment(OH_Drawing_TextTab*);
 
 /**
  * @brief Get location of an <b>OH_Drawing_TextTab</b> object.
@@ -2795,9 +2825,9 @@ float OH_Drawing_GetTextTabLocation(OH_Drawing_TextTab*);
 
 /**
  * @brief Sets the text tab of <b>OH_Drawing_TypographyStyle</b> object.
- * TAB alignment does not take effect when text alignment is also set. Or when the TAB's location property
- * is less than or equal to 0. When the TAB is not set, it is the default space effect, and all tabs in the paragraph
- * after the setting are aligned according to this tab effect.
+ * Tab alignment does not take effect when text alignment is also set, Or when the ellipsis style is configured.
+ * When the tab is not set or the tab's location property is less than or equal to 0, it is the default space effect.
+ * And all tabs in the paragraph after the setting are aligned according to this tab effect.
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @param OH_Drawing_TypographyStyle Indicates the pointer to an <b>OH_Drawing_TypographyStyle</b> object.

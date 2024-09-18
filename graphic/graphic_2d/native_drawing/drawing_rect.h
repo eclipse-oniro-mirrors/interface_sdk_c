@@ -255,7 +255,6 @@ OH_Drawing_ErrorCode OH_Drawing_RectGetArraySize(OH_Drawing_Array* rectArray, si
  *                 or index is valid.
  * @since 14
  * @version 1.0
- * @note Return nullptr if <b>OH_Drawing_Array</b> or index invalid.
  */
 OH_Drawing_ErrorCode OH_Drawing_RectGetArrayElement(OH_Drawing_Array* rectArray, size_t index,
     OH_Drawing_Rect** rect);

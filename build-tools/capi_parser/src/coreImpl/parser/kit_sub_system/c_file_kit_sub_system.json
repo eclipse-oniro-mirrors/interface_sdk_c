@@ -270,21 +270,6 @@
       "subSystem": "图形图像"
     },
     {
-      "filePath": "graphic/graphic_2d/native_drawing/drawing_text_font_descriptor.h",
-      "kitName": "ArkGraphicsD",
-      "subSystem": "图形图像"
-    },
-    {
-      "filePath": "graphic/graphic_2d/native_drawing/drawing_text_line.h",
-      "kitName": "ArkGraphicsD",
-      "subSystem": "图形图像"
-    },
-    {
-      "filePath": "graphic/graphic_2d/native_drawing/drawing_text_run.h",
-      "kitName": "ArkGraphicsD",
-      "subSystem": "图形图像"
-    },
-    {
       "filePath": "graphic/graphic_2d/native_drawing/drawing_text_typography.h",
       "kitName": "ArkGraphicsD",
       "subSystem": "图形图像"
