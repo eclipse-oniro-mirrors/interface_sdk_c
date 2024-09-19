@@ -150,7 +150,7 @@ extern const char* IMAGE_DETAIL_ENHANCER_PARAMETER_KEY_QUALITY_LEVEL;
 typedef struct ImageProcessing_ColorSpaceInfo {
     /** define metadata type, {@link enum OH_Pixelmap_HdrMetadataKey} */
     int32_t metadataType;
-    /** define color space */
+    /** define color space, {@link enum ColorSpaceName} */
     int32_t colorSpace;
     /** define pixel format, {@link enum PIXEL_FORMAT} */
     int32_t pixelFormat;
