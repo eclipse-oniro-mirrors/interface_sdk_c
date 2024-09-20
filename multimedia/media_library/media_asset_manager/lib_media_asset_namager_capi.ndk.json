@@ -16,8 +16,16 @@
     "name": "OH_MediaAssetManager_CancelRequest"
   },
   {
+    "first_introduced": "13",
+    "name": "OH_MediaAssetManager_RequestMovingPhoto"
+  },
+  {
     "first_introduced": "12",
     "name": "OH_MediaAssetManager_RequestImage"
+  },
+  {
+    "first_introduced": "13",
+    "name": "OH_MediaAssetManager_Release"
   },
   {
     "first_introduced": "12",
@@ -28,6 +36,14 @@
     "name": "OH_MediaAsset_GetUri"
   },
   {
+    "first_introduced": "13",
+    "name": "OH_MediaAsset_GetMediaType"
+  },
+  {
+    "first_introduced": "13",
+    "name": "OH_MediaAsset_GetMediaSubType"
+  },
+  {
     "first_introduced": "12",
     "name": "OH_MediaAsset_GetDisplayName"
   },
@@ -36,8 +52,28 @@
     "name": "OH_MediaAsset_GetSize"
   },
   {
+    "first_introduced": "13",
+    "name": "OH_MediaAsset_GetDateAdded"
+  },
+  {
+    "first_introduced": "13",
+    "name": "OH_MediaAsset_GetDateModified"
+  },
+  {
+    "first_introduced": "13",
+    "name": "OH_MediaAsset_GetDateTaken"
+  },
+  {
+    "first_introduced": "13",
+    "name": "OH_MediaAsset_GetDateAddedMs"
+  },
+  {
     "first_introduced": "12",
     "name": "OH_MediaAsset_GetDateModifiedMs"
+  },
+  {
+    "first_introduced": "13",
+    "name": "OH_MediaAsset_GetDuration"
   },
   {
     "first_introduced": "12",
@@ -52,16 +88,52 @@
     "name": "OH_MediaAsset_GetOrientation"
   },
   {
+    "first_introduced": "13",
+    "name": "OH_MediaAsset_IsFavorite"
+  },
+  {
+    "first_introduced": "13",
+    "name": "OH_MediaAsset_GetTitle"
+  },
+  {
     "first_introduced": "12",
     "name": "OH_MediaAsset_Release"
+  },
+  {
+    "first_introduced": "13",
+    "name": "OH_MovingPhoto_GetUri"
+  },
+  {
+    "first_introduced": "13",
+    "name": "OH_MovingPhoto_RequestContentWithUris"
+  },
+  {
+    "first_introduced": "13",
+    "name": "OH_MovingPhoto_RequestContentWithUri"
+  },
+  {
+    "first_introduced": "13",
+    "name": "OH_MovingPhoto_RequestContentWithBuffer"
+  },
+  {
+    "first_introduced": "13",
+    "name": "OH_MovingPhoto_Release"
   },
   {
     "first_introduced": "12",
     "name": "OH_MediaAssetChangeRequest_Create"
   },
   {
+    "first_introduced": "13",
+    "name": "OH_MediaAssetChangeRequest_AddResourceWithUri"
+  },
+  {
     "first_introduced": "12",
     "name": "OH_MediaAssetChangeRequest_AddResourceWithBuffer"
+  },
+  {
+    "first_introduced": "13",
+    "name": "OH_MediaAssetChangeRequest_GetWriteCacheHandler"
   },
   {
     "first_introduced": "12",
