@@ -22,5 +22,13 @@
     {
         "first_introduced": "12",
         "name": "OH_ConsumerSurface_Create"
+    },
+    {
+        "first_introduced": "13",
+        "name": "OH_ConsumerSurface_SetDefaultUsage"
+    },
+    {
+        "first_introduced": "13",
+        "name": "OH_ConsumerSurface_SetDefaultSize"
     }
 ]
