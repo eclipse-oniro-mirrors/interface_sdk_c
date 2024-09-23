@@ -2,18 +2,86 @@
 	{"name":"OH_Rdb_CreatePredicates" },
 	{"name":"OH_Rdb_CreateValueObject" },
 	{"name":"OH_Rdb_CreateValuesBucket" },
+	{
+		"first_introduced":"13",
+		"name":"OH_Rdb_CreateConfig"
+	},
+	{
+		"first_introduced": "13",
+		"name":"OH_Rdb_SetDatabaseDir"
+	},
+	{
+		"first_introduced": "13",
+		"name":"OH_Rdb_SetStoreName"
+	},
+	{
+		"first_introduced": "13",
+		"name":"OH_Rdb_SetBundleName"
+	},
+	{
+		"first_introduced": "13",
+		"name":"OH_Rdb_SetModuleName"
+	},
+	{
+		"first_introduced": "13",
+		"name":"OH_Rdb_SetEncrypted"
+	},
+	{
+		"first_introduced": "13",
+		"name":"OH_Rdb_SetSecurityLevel"
+	},
+	{
+		"first_introduced": "13",
+		"name":"OH_Rdb_SetArea"
+	},
+	{
+		"first_introduced": "13",
+		"name":"OH_Rdb_SetDbType"
+	},
+	{
+		"first_introduced": "13",
+		"name":"OH_Rdb_GetSupportedDbType"
+	},
+	{
+		"first_introduced": "13",
+		"name":"OH_Rdb_DestroyConfig"
+	},
 	{"name":"OH_Rdb_GetOrOpen" },
+	{
+		"first_introduced": "13",
+		"name":"OH_Rdb_CreateOrOpen"
+	},
 	{"name":"OH_Rdb_CloseStore" },
 	{"name":"OH_Rdb_DeleteStore" },
+	{
+		"first_introduced": "13",
+		"name":"OH_Rdb_DeleteStoreV2"
+	},
 	{"name":"OH_Rdb_Insert" },
 	{"name":"OH_Rdb_Update" },
 	{"name":"OH_Rdb_Delete" },
 	{"name":"OH_Rdb_Query" },
 	{"name":"OH_Rdb_Execute" },
+	{
+		"first_introduced": "13",
+		"name":"OH_Rdb_ExecuteByTrxId"
+	},
 	{"name":"OH_Rdb_ExecuteQuery" },
 	{"name":"OH_Rdb_BeginTransaction" },
 	{"name":"OH_Rdb_RollBack" },
 	{"name":"OH_Rdb_Commit" },
+	{
+		"first_introduced": "13",
+		"name":"OH_Rdb_BeginTransWithTrxId"
+	},
+	{
+		"first_introduced": "13",
+		"name":"OH_Rdb_RollBackByTrxId"
+	},
+	{
+		"first_introduced": "13",
+		"name":"OH_Rdb_CommitByTrxId"
+	},
 	{"name":"OH_Rdb_Backup" },
 	{"name":"OH_Rdb_Restore"},
 	{"name":"OH_Rdb_GetVersion"},
