@@ -14,16 +14,16 @@
 import("//build/ohos.gni")
 import("//build/ohos/ndk/ndk.gni")
 
-ohos_ndk_headers("wifi_ndk_header") {
-  dest_dir = "$ndk_headers_out_dir/ConnectivityKit/wifi"
-  sources = [ "./oh_wifi.h" ]
+ohos_ndk_headers("bluetooth_ndk_header") {
+  dest_dir = "$ndk_headers_out_dir/ConnectivityKit/bluetooth"
+  sources = [ "./oh_bluetooth.h" ]
 }
 
-ohos_ndk_library("libwifi_ndk") {
-  ndk_description_file = "./libwifi.ndk.json"
-  output_name = "wifi_ndk"
+ohos_ndk_library("libbluetooth_ndk") {
+  ndk_description_file = "./libbluetooth.ndk.json"
+  output_name = "bluetooth_ndk"
   output_extension = "so"
   min_compact_version = "13"
-  system_capability = "SystemCapability.Communication.WiFi.STA"
-  system_capability_headers = [ "./oh_wifi.h" ]
+  system_capability = "SystemCapability.Communication.Bluetooth.Core"
+  system_capability_headers = [ "./oh_bluetooth.h" ]
 }
