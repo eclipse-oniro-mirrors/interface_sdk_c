@@ -7684,20 +7684,20 @@ int32_t OH_ArkUI_NodeUtils_GetPositionWithTranslateInScreen(ArkUI_NodeHandle nod
  * @brief Add the custom property of the component.
  *
  * @param node ArkUI_NodeHandle pointer.
- * @param key The key of the custom property.
- * @param key The value of the custom property.
- * @since 14
+ * @param name The name of the custom property.
+ * @param value The value of the custom property.
+ * @since 13
  */
-void OH_ArkUI_NodeUtils_AddCustomProperty(ArkUI_NodeHandle node, const char* key, const char* value);
+void OH_ArkUI_NodeUtils_AddCustomProperty(ArkUI_NodeHandle node, const char* name, const char* value);
 
 /**
  * @brief Remove the custom property of the component.
  *
  * @param node ArkUI_NodeHandle pointer.
- * @param key The key of the custom property.
- * @since 14
+ * @param name The name of the custom property.
+ * @since 13
  */
-void OH_ArkUI_NodeUtils_RemoveCustomProperty(ArkUI_NodeHandle node, const char* key);
+void OH_ArkUI_NodeUtils_RemoveCustomProperty(ArkUI_NodeHandle node, const char* name);
 
 /**
  * @brief Collapse the ListItem in its expanded state.
