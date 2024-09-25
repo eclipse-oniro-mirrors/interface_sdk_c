@@ -170,5 +170,9 @@
     {
         "first_introduced": "12",
         "name": "OH_PixelmapNative_ConvertPixelmapNativeFromNapi"
+    },
+    {
+        "first_introduced": "13",
+        "name": "OH_PixelmapNative_SetMemoryName"
     }
 ]
