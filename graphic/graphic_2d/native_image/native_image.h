@@ -287,7 +287,11 @@ int32_t OH_NativeImage_ReleaseNativeWindowBuffer(OH_NativeImage* image,
 
 /**
  * @brief Create a <b>OH_NativeImage</b> as a consumerSurface. \n
+ * This interface is only used for memory rotation on the surface consumer,
+ * the <b>OH_NativeImage</b> will not actively perform memory rendering processing.\n
  * This method can not be used at the same time with <b>OH_NativeImage_UpdateSurfaceImage</b>.\n
+ * This interface is used in conjunction with <b>OH_NativeImage_AcquireNativeWindowBuffer<\b> and
+ * <b>OH_NativeImage_ReleaseNativeWindowBuffer<\b>.\n
  * This interface needs to be used in conjunction with <b>OH_NativeImage_Destroy<\b>,
  * otherwise memory leaks will occur.\n
  * This interface is a non-thread-safe type interface.\n
