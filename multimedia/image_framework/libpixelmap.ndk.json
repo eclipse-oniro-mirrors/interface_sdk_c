@@ -164,6 +164,14 @@
         "name": "OH_PixelmapNative_GetNativeBuffer"
     },
     {
+        "first_introduced": "13",
+        "name": "OH_PixelmapNative_GetColorSpaceNative"
+    },
+    {
+        "first_introduced": "13",
+        "name": "OH_PixelmapNative_SetColorSpaceNative"
+    },
+    {
         "first_introduced": "12",
         "name": "OH_PixelmapNative_ConvertPixelmapNativeToNapi"
     },
