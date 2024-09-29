@@ -627,6 +627,14 @@
     { "name": "OH_Drawing_SetTextStyleFontWeight" },
     { "name": "OH_Drawing_SetTextStyleBaseLine" },
     { "name": "OH_Drawing_SetTextStyleDecoration" },
+    {
+        "first_introduced": "14",
+        "name": "OH_Drawing_AddTextStyleDecoration"
+    },
+    {
+        "first_introduced": "14",
+        "name": "OH_Drawing_RemoveTextStyleDecoration"
+    },
     { "name": "OH_Drawing_SetTextStyleDecorationColor" },
     { "name": "OH_Drawing_SetTextStyleFontHeight" },
     { "name": "OH_Drawing_SetTextStyleFontFamilies" },
@@ -927,12 +935,36 @@
         "name": "OH_Drawing_DestroyFontDescriptor"
     },
     {
+        "first_introduced": "14",
+        "name": "OH_Drawing_MatchFontDescriptors"
+    },
+    {
+        "first_introduced": "14",
+        "name": "OH_Drawing_DestroyFontDescriptors"
+    },
+    {
         "first_introduced": "12",
         "name": "OH_Drawing_CreateFontParser"
     },
     {
         "first_introduced": "12",
         "name": "OH_Drawing_DestroyFontParser"
+    },
+    {
+        "first_introduced": "14",
+        "name": "OH_Drawing_GetFontDescriptorByFullName"
+    },
+    {
+        "first_introduced": "14",
+        "name": "OH_Drawing_GetSystemFontFullNamesByType"
+    },
+    {
+        "first_introduced": "14",
+        "name": "OH_Drawing_GetSystemFontFullNameByIndex"
+    },
+    {
+        "first_introduced": "14",
+        "name": "OH_Drawing_DestroySystemFontFullNames"
     },
     {
         "first_introduced": "12",
@@ -1489,5 +1521,201 @@
     {
         "first_introduced": "13",
         "name":"OH_Drawing_RecordCmdDestroy"
+    },
+    {
+        "first_introduced": "14",
+        "name": "OH_Drawing_CreateLineTypography"
+    },
+    {
+        "first_introduced": "14",
+        "name": "OH_Drawing_DestroyLineTypography"
+    },
+    {
+        "first_introduced": "14",
+        "name": "OH_Drawing_LineTypographyGetLineBreak"
+    },
+    {
+        "first_introduced": "14",
+        "name": "OH_Drawing_LineTypographyCreateLine"
+    },
+    {
+        "first_introduced": "14",
+        "name":"OH_Drawing_FontGetBounds"
+    },
+    {
+        "first_introduced": "14",
+        "name":"OH_Drawing_FontGetPathForGlyph"
+    },
+    {
+        "first_introduced": "14",
+        "name":"OH_Drawing_RectCreateArray"
+    },
+    {
+        "first_introduced": "14",
+        "name":"OH_Drawing_RectGetArraySize"
+    },
+    {
+        "first_introduced": "14",
+        "name":"OH_Drawing_RectGetArrayElement"
+    },
+    {
+        "first_introduced": "14",
+        "name":"OH_Drawing_RectDestroyArray"
+    },
+    {
+        "first_introduced": "14",
+        "name":"OH_Drawing_CreateTextTab"
+    },
+    {
+        "first_introduced": "14",
+        "name":"OH_Drawing_DestroyTextTab"
+    },
+    {
+        "first_introduced": "14",
+        "name":"OH_Drawing_GetTextTabAlignment"
+    },
+    {
+        "first_introduced": "14",
+        "name":"OH_Drawing_GetTextTabLocation"
+    },
+    {
+        "first_introduced": "14",
+        "name":"OH_Drawing_SetTypographyTextTab"
+    },
+    {
+        "first_introduced": "14",
+        "name":"OH_Drawing_FontGetTextPath"
+    },
+    {
+        "first_introduced": "14",
+        "name":"OH_Drawing_GetDrawingArraySize"
+    },
+    {
+        "first_introduced": "14",
+        "name":"OH_Drawing_TypographyGetTextLines"
+    },
+    {
+        "first_introduced": "14",
+        "name":"OH_Drawing_DestroyTextLines"
+    },
+    {
+        "first_introduced": "14",
+        "name":"OH_Drawing_DestroyTextLine"
+    },
+    {
+        "first_introduced": "14",
+        "name":"OH_Drawing_GetTextLineByIndex"
+    },
+    {
+        "first_introduced": "14",
+        "name":"OH_Drawing_TextLineGetGlyphCount"
+    },
+    {
+        "first_introduced": "14",
+        "name":"OH_Drawing_TextLineGetTextRange"
+    },
+    {
+        "first_introduced": "14",
+        "name":"OH_Drawing_TextLineGetGlyphRuns"
+    },
+    {
+        "first_introduced": "14",
+        "name":"OH_Drawing_DestroyRuns"
+    },
+    {
+        "first_introduced": "14",
+        "name":"OH_Drawing_GetRunByIndex"
+    },
+    {
+        "first_introduced": "14",
+        "name":"OH_Drawing_TextLinePaint"
+    },
+    {
+        "first_introduced": "14",
+        "name":"OH_Drawing_TextLineCreateTruncatedLine"
+    },
+    {
+        "first_introduced": "14",
+        "name":"OH_Drawing_TextLineGetTypographicBounds"
+    },
+    {
+        "first_introduced": "14",
+        "name":"OH_Drawing_TextLineGetImageBounds"
+    },
+    {
+        "first_introduced": "14",
+        "name":"OH_Drawing_TextLineGetTrailingSpaceWidth"
+    },
+    {
+        "first_introduced": "14",
+        "name":"OH_Drawing_TextLineGetStringIndexForPosition"
+    },
+    {
+        "first_introduced": "14",
+        "name":"OH_Drawing_TextLineGetOffsetForStringIndex"
+    },
+    {
+        "first_introduced": "14",
+        "name":"OH_Drawing_TextLineGetAlignmentOffset"
+    },
+    {
+        "first_introduced": "14",
+        "name":"OH_Drawing_GetRunStringIndices"
+    },
+    {
+        "first_introduced": "14",
+        "name":"OH_Drawing_GetRunStringIndicesByIndex"
+    },
+    {
+        "first_introduced": "14",
+        "name":"OH_Drawing_DestroyRunStringIndices"
+    },
+    {
+        "first_introduced": "14",
+        "name":"OH_Drawing_GetRunStringRange"
+    },
+    {
+        "first_introduced": "14",
+        "name":"OH_Drawing_GetRunTypographicBounds"
+    },
+    {
+        "first_introduced": "14",
+        "name":"OH_Drawing_RunPaint"
+    },
+    {
+        "first_introduced": "14",
+        "name":"OH_Drawing_GetRunImageBounds"
+    },
+    {
+        "first_introduced": "14",
+        "name":"OH_Drawing_DestroyRunImageBounds"
+    },
+    {
+        "first_introduced": "14",
+        "name":"OH_Drawing_GetRunGlyphs"
+    },
+    {
+        "first_introduced": "14",
+        "name":"OH_Drawing_GetRunGlyphsByIndex"
+    },
+    {
+        "first_introduced": "14",
+        "name":"OH_Drawing_DestroyRunGlyphs"
+    },
+    {
+        "first_introduced": "14",
+        "name":"OH_Drawing_GetRunPositions"
+    },
+    {
+        "first_introduced": "14",
+        "name":"OH_Drawing_GetRunPositionsByIndex"
+    },
+    {
+        "first_introduced": "14",
+        "name":"OH_Drawing_DestroyRunPositions"
+    },
+    {
+        "first_introduced": "14",
+        "name":"OH_Drawing_GetRunGlyphCount"
     }
 ]

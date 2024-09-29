@@ -480,6 +480,19 @@ typedef struct {
 } OH_Drawing_RectStyle_Info;
 
 /**
+ * @brief Defines the string information struct.
+ *
+ * @since 14
+ * @version 1.0
+ */
+typedef struct {
+    /** A pointer to a byte string containing UTF-16BE(Big Endian) encoded entities */
+    uint8_t* strData;
+    /** The length of `strData` in bytes */
+    uint32_t strLen;
+} OH_Drawing_String;
+
+/**
  * @brief Enumerates text encoding types.
  * @since 12
  * @version 1.0
@@ -526,6 +539,14 @@ typedef struct OH_Drawing_RecordCmdUtils OH_Drawing_RecordCmdUtils;
  * @version 1.0
  */
 typedef struct OH_Drawing_RecordCmd OH_Drawing_RecordCmd;
+
+/**
+ * @brief Defines an array object, which is used to store multiple NDK object.
+ *
+ * @since 14
+ * @version 1.0
+ */
+typedef struct OH_Drawing_Array OH_Drawing_Array;
 #ifdef __cplusplus
 }
 #endif
