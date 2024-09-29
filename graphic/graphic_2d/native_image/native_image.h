@@ -298,7 +298,7 @@ int32_t OH_NativeImage_ReleaseNativeWindowBuffer(OH_NativeImage* image,
  * @since 12
  * @version 1.0
  */
-OH_NativeImage* OH_ConsumerSurface_Create();
+OH_NativeImage* OH_ConsumerSurface_Create(void);
 
 /**
  * @brief Set the default usage of the <b>OH_NativeImage</b>.\n
