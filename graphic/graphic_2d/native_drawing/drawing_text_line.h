@@ -229,6 +229,31 @@ int32_t OH_Drawing_TextLineGetStringIndexForPosition(OH_Drawing_TextLine* line, 
 double OH_Drawing_TextLineGetOffsetForStringIndex(OH_Drawing_TextLine* line, int32_t index);
 
 /**
+ * @brief User-defined callback functions for using offsets and indexes.
+ *
+ * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
+ * @param offset Character offset is traversed as an argument to the callback function.
+ * @param index Character index is traversed as an argument to the callback function.
+ * @param leadingEdge Whether the current offset is at the character front, as an argument to the callback function.
+ * @return The return value of the user-defined callback function.
+ *         If false is returned, the traversal continues.
+ *         If true is returned, the traversal stops.
+ * @since 14
+ * @version 1.0
+ */
+typedef bool (*Drawing_CaretOffsetsCallback)(double offset, int32_t index, bool leadingEdge);
+
+/**
+ * @brief Enumerate caret offset and index in text lines.
+ *
+ * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
+ * @param line Indicates the pointer to an <b>OH_Drawing_TextLine</b> object.
+ * @param callback User-defined callback functions, see <b>Drawing_CaretOffsetsCallback</b>.
+ * @since 14
+ */
+void OH_Drawing_TextLineEnumerateCaretOffsets(OH_Drawing_TextLine* line, Drawing_CaretOffsetsCallback callback);
+
+/**
  * @brief Gets the text offset based on the given alignment factor and alignment width.
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
