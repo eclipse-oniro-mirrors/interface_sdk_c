@@ -22,7 +22,7 @@ ohos_ndk_library("libnotification_ndk") {
   output_name = "ohnotification"
   output_extension = "so"
   ndk_description_file = "./libohnotification.ndk.json"
-  min_compact_version = "14"
+  min_compact_version = "13"
   system_capability = "SystemCapability.Notification.Notification"
   system_capability_headers = [ "NotificationKit/notification.h" ]
 }

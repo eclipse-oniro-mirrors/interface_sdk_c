@@ -19,7 +19,7 @@
  *
  * @brief Provides the definition of the C interface for the notification service.
  *
- * @since 14
+ * @since 13
  */
 /**
  * @file notification.h
@@ -29,7 +29,7 @@
  * @library libohnotification.so
  * @kit NotificationKit
  * @syscap SystemCapability.Notification.Notification
- * @since 14
+ * @since 13
  */
 
 #ifndef OH_NOTIFICATION_H
@@ -47,7 +47,7 @@ extern "C" {
  *
  * @return true  - This application is allowed to publish notifications.
  *         false - This application is not allowed to publish notifications.
- * @since 14
+ * @since 13
  */
 bool OH_Notification_IsNotificationEnabled(void);
 
