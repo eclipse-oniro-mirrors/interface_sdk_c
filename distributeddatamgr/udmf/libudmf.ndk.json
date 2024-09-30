@@ -334,5 +334,129 @@
     {
         "first_introduced": "12",
         "name": "OH_Udmf_SetUnifiedData"
+    },
+    {
+        "first_introduced": "13",
+        "name": "OH_UdmfRecordProvider_Create"
+    },
+    {
+        "first_introduced": "13",
+        "name": "OH_UdmfRecordProvider_Destroy"
+    },
+    {
+        "first_introduced": "13",
+        "name": "OH_UdmfRecordProvider_SetData"
+    },
+    {
+        "first_introduced": "13",
+        "name": "OH_UdmfRecord_AddFileUri"
+    },
+    {
+        "first_introduced": "13",
+        "name": "OH_UdmfRecord_AddPixelMap"
+    },
+    {
+        "first_introduced": "13",
+        "name": "OH_UdmfRecord_AddArrayBuffer"
+    },
+    {
+        "first_introduced": "13",
+        "name": "OH_UdmfRecord_SetProvider"
+    },
+    {
+        "first_introduced": "13",
+        "name": "OH_UdmfRecord_GetFileUri"
+    },
+    {
+        "first_introduced": "13",
+        "name": "OH_UdmfRecord_GetPixelMap"
+    },
+    {
+        "first_introduced": "13",
+        "name": "OH_UdmfRecord_GetArrayBuffer"
+    },
+    {
+        "first_introduced": "13",
+        "name": "OH_UdmfData_GetPrimaryPlainText"
+    },
+    {
+        "first_introduced": "13",
+        "name": "OH_UdmfData_GetPrimaryHtml"
+    },
+    {
+        "first_introduced": "13",
+        "name": "OH_UdmfData_GetRecordCount"
+    },
+    {
+        "first_introduced": "13",
+        "name": "OH_UdmfData_GetRecord"
+    },
+    {
+        "first_introduced": "13",
+        "name": "OH_UdmfData_IsLocal"
+    },
+    {
+        "first_introduced": "13",
+        "name": "OH_UdsFileUri_Create"
+    },
+    {
+        "first_introduced": "13",
+        "name": "OH_UdsFileUri_Destroy"
+    },
+    {
+        "first_introduced": "13",
+        "name": "OH_UdsFileUri_GetType"
+    },
+    {
+        "first_introduced": "13",
+        "name": "OH_UdsFileUri_GetFileUri"
+    },
+    {
+        "first_introduced": "13",
+        "name": "OH_UdsFileUri_GetFileType"
+    },
+    {
+        "first_introduced": "13",
+        "name": "OH_UdsFileUri_SetFileUri"
+    },
+    {
+        "first_introduced": "13",
+        "name": "OH_UdsFileUri_SetFileType"
+    },
+    {
+        "first_introduced": "13",
+        "name": "OH_UdsPixelMap_Create"
+    },
+    {
+        "first_introduced": "13",
+        "name": "OH_UdsPixelMap_Destroy"
+    },
+    {
+        "first_introduced": "13",
+        "name": "OH_UdsPixelMap_GetType"
+    },
+    {
+        "first_introduced": "13",
+        "name": "OH_UdsPixelMap_GetPixelMap"
+    },
+    {
+        "first_introduced": "13",
+        "name": "OH_UdsPixelMap_SetPixelMap"
+    },
+    {
+        "first_introduced": "13",
+        "name": "OH_UdsArrayBuffer_Create"
+    },
+    {
+        "first_introduced": "13",
+        "name": "OH_UdsArrayBuffer_Destroy"
+    },
+    {
+        "first_introduced": "13",
+        "name": "OH_UdsArrayBuffer_SetData"
+    },
+    {
+        "first_introduced": "13",
+        "name": "OH_UdsArrayBuffer_GetData"
     }
 ]
