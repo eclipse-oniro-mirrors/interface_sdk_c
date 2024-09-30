@@ -1,0 +1,94 @@
+[
+    {
+        "first_introduced": "13",
+        "name": "OH_Preferences_Open"
+    },
+    {
+        "first_introduced": "13",
+        "name": "OH_Preferences_Close"
+    },
+    {
+        "first_introduced": "13",
+        "name": "OH_Preferences_GetInt"
+    },
+    {
+        "first_introduced": "13",
+        "name": "OH_Preferences_GetBool"
+    },
+    {
+        "first_introduced": "13",
+        "name": "OH_Preferences_GetString"
+    },
+    {
+        "first_introduced": "13",
+        "name": "OH_Preferences_FreeString"
+    },
+    {
+        "first_introduced": "13",
+        "name": "OH_Preferences_SetInt"
+    },
+    {
+        "first_introduced": "13",
+        "name": "OH_Preferences_SetBool"
+    },
+    {
+        "first_introduced": "13",
+        "name": "OH_Preferences_SetString"
+    },
+    {
+        "first_introduced": "13",
+        "name": "OH_Preferences_Delete"
+    },
+    {
+        "first_introduced": "13",
+        "name": "OH_Preferences_RegisterDataObserver"
+    },
+    {
+        "first_introduced": "13",
+        "name": "OH_Preferences_UnregisterDataObserver"
+    },
+    {
+        "first_introduced": "13",
+        "name": "OH_PreferencesOption_Create"
+    },
+    {
+        "first_introduced": "13",
+        "name": "OH_PreferencesOption_SetFilePath"
+    },
+    {
+        "first_introduced": "13",
+        "name": "OH_PreferencesOption_SetBundleName"
+    },
+    {
+        "first_introduced": "13",
+        "name": "OH_PreferencesOption_SetDataGroupId"
+    },
+    {
+        "first_introduced": "13",
+        "name": "OH_PreferencesOption_Destroy"
+    },
+    {
+        "first_introduced": "13",
+        "name": "OH_PreferencesPair_GetKey"
+    },
+    {
+        "first_introduced": "13",
+        "name": "OH_PreferencesPair_GetPreferencesValue"
+    },
+    {
+        "first_introduced": "13",
+        "name": "OH_PreferencesValue_GetValueType"
+    },
+    {
+        "first_introduced": "13",
+        "name": "OH_PreferencesValue_GetInt"
+    },
+    {
+        "first_introduced": "13",
+        "name": "OH_PreferencesValue_GetBool"
+    },
+    {
+        "first_introduced": "13",
+        "name": "OH_PreferencesValue_GetString"
+    }
+]
