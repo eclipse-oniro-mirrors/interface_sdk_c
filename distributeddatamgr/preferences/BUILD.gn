@@ -21,7 +21,7 @@ ohos_ndk_headers("preferences_ndk_header") {
     "./include/oh_preferences.h",
     "./include/oh_preferences_err_code.h",
     "./include/oh_preferences_option.h",
-    "./include/oh_preferences_values.h",
+    "./include/oh_preferences_value.h",
   ]
 }
 
@@ -32,9 +32,9 @@ ohos_ndk_library("libohpreferences") {
   ndk_description_file = "./libpreferences.ndk.json"
   min_compact_version = "13"
   system_capability_headers = [
-    "$ndk_headers_out_dir/database/preferences/oh_preferences.h",
-    "$ndk_headers_out_dir/database/preferences/oh_preferences_err_code.h",
-    "$ndk_headers_out_dir/database/preferences/oh_preferences_values.h",
-    "$ndk_headers_out_dir/database/preferences/oh_preferences_option.h",
+    "database/preferences/oh_preferences.h",
+    "database/preferences/oh_preferences_err_code.h",
+    "database/preferences/oh_preferences_value.h",
+    "database/preferences/oh_preferences_option.h",
   ]
 }
