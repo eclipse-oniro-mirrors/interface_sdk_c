@@ -2503,16 +2503,6 @@ void OH_ArkUI_WaterFlowSectionOption_SetMargin(ArkUI_WaterFlowSectionOption* opt
 ArkUI_Margin OH_ArkUI_WaterFlowSectionOption_GetMargin(ArkUI_WaterFlowSectionOption* option, int32_t index);
 
 /**
-* @brief Obtains the number of items in the water flow section that matches the specified index.
-*
-* @param option Indicates the pointer to a water flow section configuration.
-* @param index Indicates the index of the target water flow section.
-* @return Returns the number of items in the water flow section.
-* @since 12
-*/
-int32_t OH_ArkUI_WaterFlowSectionOption_GetItemCount(ArkUI_WaterFlowSectionOption* option, int32_t index);
-
-/**
  * @brief Creates a navigation indicator.
  *
  * @param type Indicates the type of the indicator.
