@@ -229,13 +229,6 @@ typedef struct Input_TouchEvent Input_TouchEvent;
 typedef struct Input_AxisEvent Input_AxisEvent;
 
 /**
- * @brief Represents information about the input device.
- *
- * @since 13
- */
-typedef struct Input_DeviceInfo Input_DeviceInfo;
-
-/**
  * @brief Enumerates error codes.
  *
  * @since 12
@@ -254,6 +247,13 @@ typedef enum Input_Result {
     /** @error Interceptor repeatedly created for an application */
     INPUT_REPEAT_INTERCEPTOR = 4200001
 } Input_Result;
+
+/**
+ * @brief Represents information about the input device.
+ *
+ * @since 13
+ */
+typedef struct Input_DeviceInfo Input_DeviceInfo;
 
 /**
  * @brief Defines a lifecycle callback for keyEvent. If the callback is triggered, keyEvent will be destroyed.
@@ -304,7 +304,6 @@ typedef void (*Input_DeviceRemovedCallback)(int32_t deviceId);
 /**
  * @brief Defines the structure for the interceptor of event callbacks,
  * including mouseCallback, touchCallback, and axisCallback.
- * 
  * @since 12
  */
 typedef struct Input_InterceptorEventCallback {
@@ -1239,7 +1238,7 @@ Input_Result OH_Input_AddInputEventInterceptor(Input_InterceptorEventCallback *c
  * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
-Input_Result OH_Input_RemoveKeyEventInterceptor();
+Input_Result OH_Input_RemoveKeyEventInterceptor(void);
 
 /**
  * @brief Removes an interceptor for input events, including mouse, touch, and axis events.
@@ -1252,45 +1251,7 @@ Input_Result OH_Input_RemoveKeyEventInterceptor();
  * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
-Input_Result OH_Input_RemoveInputEventInterceptor();
-
-/**
- * @brief Registers a listener for device hot swap events.
- *
- * @param listener Pointer to an {@Link Input_DeviceListener} object.
- *
- * @return OH_Input_RegisterDeviceListener status code, specifically,
- *         {@link INPUT_SUCCESS} if the operation is successful;\n
- *         {@link INPUT_PARAMETER_ERROR} if listener is NULL;
- * @syscap SystemCapability.MultimodalInput.Input.Core
- * @since 13
- */
-Input_Result OH_Input_RegisterDeviceListener(Input_DeviceListener* listener);
-
-/**
- * @brief Unregisters the listener for device hot swap events.
- *
- * @param listener Pointer to the listener for device hot swap events. For details, see {@Link Input_DeviceListener}.
- *
- * @return OH_Input_UnregisterDeviceListener status code, specifically,
- *         {@link INPUT_SUCCESS} if the operation is successful;\n
- *         {@link INPUT_PARAMETER_ERROR} if listener is NULL or no listener is registered;
- *         {@link INPUT_SERVICE_EXCEPTION} if the service is abnormal.
- * @syscap SystemCapability.MultimodalInput.Input.Core
- * @since 13
- */
-Input_Result OH_Input_UnregisterDeviceListener(Input_DeviceListener* listener);
-
-/**
- * @brief Unregisters the listener for all device hot swap events.
- *
- * @return OH_Input_UnregisterDeviceListener status code, specifically,
- *         {@link INPUT_SUCCESS} if the operation is successful;\n
- *         {@link INPUT_SERVICE_EXCEPTION} if the service is abnormal.
- * @syscap SystemCapability.MultimodalInput.Input.Core
- * @since 13
- */
-Input_Result OH_Input_UnregisterDeviceListeners();
+Input_Result OH_Input_RemoveInputEventInterceptor(void);
 
 /**
  * @brief Obtains the IDs of all input devices.
@@ -1442,6 +1403,44 @@ Input_Result OH_Input_GetDeviceVendor(Input_DeviceInfo *deviceInfo, int32_t *ven
  * @since 13
  */
 Input_Result OH_Input_GetDeviceAddress(Input_DeviceInfo *deviceInfo, char **address);
+
+/**
+ * @brief Registers a listener for device hot swap events.
+ *
+ * @param listener Pointer to an {@Link Input_DeviceListener} object.
+ *
+ * @return OH_Input_RegisterDeviceListener status code, specifically,
+ *         {@link INPUT_SUCCESS} if the operation is successful;\n
+ *         {@link INPUT_PARAMETER_ERROR} if listener is NULL;
+ * @syscap SystemCapability.MultimodalInput.Input.Core
+ * @since 13
+ */
+Input_Result OH_Input_RegisterDeviceListener(Input_DeviceListener* listener);
+
+/**
+ * @brief Unregisters the listener for device hot swap events.
+ *
+ * @param listener Pointer to the listener for device hot swap events. For details, see {@Link Input_DeviceListener}.
+ *
+ * @return OH_Input_UnregisterDeviceListener status code, specifically,
+ *         {@link INPUT_SUCCESS} if the operation is successful;\n
+ *         {@link INPUT_PARAMETER_ERROR} if listener is NULL or no listener is registered;
+ *         {@link INPUT_SERVICE_EXCEPTION} if the service is abnormal.
+ * @syscap SystemCapability.MultimodalInput.Input.Core
+ * @since 13
+ */
+Input_Result OH_Input_UnregisterDeviceListener(Input_DeviceListener* listener);
+
+/**
+ * @brief Unregisters the listener for all device hot swap events.
+ *
+ * @return OH_Input_UnregisterDeviceListener status code, specifically,
+ *         {@link INPUT_SUCCESS} if the operation is successful;\n
+ *         {@link INPUT_SERVICE_EXCEPTION} if the service is abnormal.
+ * @syscap SystemCapability.MultimodalInput.Input.Core
+ * @since 13
+ */
+Input_Result OH_Input_UnregisterDeviceListeners();
 #ifdef __cplusplus
 }
 #endif
