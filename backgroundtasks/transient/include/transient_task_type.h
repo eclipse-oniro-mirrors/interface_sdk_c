@@ -19,9 +19,8 @@
 /**
  * @addtogroup TransientTask
  * @{
- *
+
  * @brief Provide C interface for the transient task management.
- *
  * @since 13
  * @version 1.0
  */
@@ -31,7 +30,7 @@
  *
  * @brief Defines the data structures for the C APIs of transient task.
  *
- * @library libtransient_task_ndk
+ * @library libtransient_task.so
  * @kit BackgroundTasksKit
  * @syscap SystemCapability.ResourceSchedule.BackgroundTaskManager.TransientTask
  * @since 11
@@ -44,7 +43,6 @@ extern "C" {
 #endif
 /**
  * @brief Enum for transient task error code.
- *
  * @since 13
  */
 typedef enum TransientTask_ErrorCode {
@@ -53,7 +51,9 @@ typedef enum TransientTask_ErrorCode {
      */
     ERR_TRANSIENT_TASK_OK = 0,
     /**
-     * @error Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.
+     * @error Parameter error. Possible causes:
+     * 1. Mandatory parameters are left unspecified;
+     * 2. Incorrect parameters types.
      */
     ERR_TRANSIENT_TASK_INVALID_PARAM = 401,
     /**
@@ -79,7 +79,7 @@ typedef enum TransientTask_ErrorCode {
 } TransientTask_ErrorCode;
 
 /**
- * @brief Define DelaySuspendInfo.
+ * @brief Define DelaySuspendInfo for TransientTask.
  *
  * @since 13
  * @version 1.0
@@ -93,7 +93,6 @@ typedef struct TransientTask_DelaySuspendInfo {
 
 /**
  * @brief Define a callback function when delay time expired.
- *
  * @since 13
  */
 typedef void (*TransientTask_Callback)(void);
@@ -101,5 +100,5 @@ typedef void (*TransientTask_Callback)(void);
 #ifdef __cplusplus
 }
 #endif
-
+/** @} */
 #endif

@@ -35,7 +35,7 @@
  *
  * @brief Declares the APIs for Transient task management.
  *
- * @library libtransient_task_ndk
+ * @library libtransient_task.so
  * @kit BackgroundTasksKit
  * @syscap SystemCapability.ResourceSchedule.BackgroundTaskManager.TransientTask
  * @since 13
@@ -103,4 +103,5 @@ int32_t OH_BackgroundTaskManager_CancelSuspendDelay(int32_t requestId);
 #ifdef __cplusplus
 }
 #endif
+/** @} */
 #endif
