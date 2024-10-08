@@ -1,0 +1,14 @@
+[
+    { 
+        "first_introduced": "13",
+        "name": "OH_BackgroundTaskManager_RequestSuspendDelay"
+    },
+    { 
+        "first_introduced": "13",
+        "name": "OH_BackgroundTaskManager_GetRemainingDelayTime"
+    },
+    { 
+        "first_introduced": "13",
+        "name": "OH_BackgroundTaskManager_CancelSuspendDelay"
+    }
+]
