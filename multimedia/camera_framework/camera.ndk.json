@@ -472,6 +472,10 @@
         "name": "OH_PhotoOutput_IsMirrorSupported"
     },
     {
+        "first_introduced": "13",
+        "name": "OH_PhotoOutput_EnableMirror"
+    },
+    {
         "first_introduced": "12",
         "name": "OH_PhotoOutput_GetActiveProfile"
     },
