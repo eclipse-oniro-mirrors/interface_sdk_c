@@ -52,12 +52,20 @@
         "name": "OH_ImagePackerNative_PackToDataFromPixelmap"
     },
     {
+        "first_introduced": "13",
+        "name": "OH_ImagePackerNative_PackToDataFromPicture"
+    },
+    {
         "first_introduced": "12",
         "name": "OH_ImagePackerNative_PackToFileFromImageSource"
     },
     {
         "first_introduced": "12",
         "name": "OH_ImagePackerNative_PackToFileFromPixelmap"
+    },
+    {
+        "first_introduced": "13",
+        "name": "OH_ImagePackerNative_PackToFileFromPicture"
     },
     {
         "first_introduced": "12",
