@@ -44,6 +44,38 @@ ohos_ndk_headers("libpixelmap_header") {
   sources = [ "./include/image/pixelmap_native.h" ]
 }
 
+ohos_ndk_library("libpicture") {
+  ndk_description_file = "./libpicture.ndk.json"
+  output_name = "picture"
+  output_extension = "so"
+  min_compact_version = "13"
+  system_capability = "SystemCapability.Multimedia.Image.Core"
+  system_capability_headers = [
+    "multimedia/image_framework/image/picture_native.h",
+    "multimedia/image_framework/image/image_common.h",
+  ]
+}
+
+ohos_ndk_headers("libpicture_header") {
+  dest_dir = "$ndk_headers_out_dir/multimedia/image_framework/image"
+  sources = [ "./include/image/picture_native.h" ]
+}
+
+ohos_ndk_library("libimage_common") {
+  ndk_description_file = "./libimage_common.ndk.json"
+  output_name = "image_common"
+  output_extension = "so"
+  min_compact_version = "13"
+  system_capability = "SystemCapability.Multimedia.Image.Core"
+  system_capability_headers =
+      [ "multimedia/image_framework/image/image_common.h" ]
+}
+
+ohos_ndk_headers("libimage_common_header") {
+  dest_dir = "$ndk_headers_out_dir/multimedia/image_framework/image"
+  sources = [ "./include/image/image_common.h" ]
+}
+
 ohos_ndk_library("libimage_ndk") {
   ndk_description_file = "./libimage_ndk.ndk.json"
   min_compact_version = "1"
@@ -119,10 +151,7 @@ ohos_ndk_library("libohimage") {
 
 ohos_ndk_headers("ohimage_header") {
   dest_dir = "$ndk_headers_out_dir/multimedia/image_framework/image"
-  sources = [
-    "./include/image/image_common.h",
-    "./include/image/image_native.h",
-  ]
+  sources = [ "./include/image/image_native.h" ]
 }
 
 ohos_ndk_library("libimage_receiver") {
