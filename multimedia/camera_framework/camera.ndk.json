@@ -602,5 +602,13 @@
     {
         "first_introduced": "12",
         "name": "OH_PhotoNative_Release"
+    },
+    {
+        "first_introduced": "13",
+        "name": "OH_CameraManager_RegisterFoldStatusInfoCallback"
+    },
+    {
+        "first_introduced": "13",
+        "name": "OH_CameraManager_UnregisterFoldStatusInfoCallback"
     }
 ]
