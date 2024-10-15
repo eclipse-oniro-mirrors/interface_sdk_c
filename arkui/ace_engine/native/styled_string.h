@@ -39,6 +39,7 @@
 
 #include "native_drawing/drawing_text_declaration.h"
 #include "native_drawing/drawing_text_typography.h"
+#include "native_type.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -117,6 +118,31 @@ OH_Drawing_Typography* OH_ArkUI_StyledString_CreateTypography(ArkUI_StyledString
  * @since 12
  */
 void OH_ArkUI_StyledString_AddPlaceholder(ArkUI_StyledString* handle, OH_Drawing_PlaceholderSpan* placeholder);
+
+/**
+ * @brief Create a ArkUI_StyledString_Descriptor object.
+ *
+ * @return Pointer to the ArkUI_StyledString_Descriptor object.。
+ * @since 14
+ */
+ArkUI_StyledString_Descriptor* OH_ArkUI_StyledString_Descriptor_Create();
+
+/**
+ * @brief Release the memory occupied by the ArkUI_StyledString_Descriptor object.
+ *
+ * @param str Pointer to the ArkUI_StyledString_Descriptor object.
+ * @since 14
+ */
+void OH_ArkUI_StyledString_Descriptor_Destroy(ArkUI_StyledString_Descriptor* str);
+
+/**
+ * @brief Convert the styled string into html.
+ *
+ * @param str Pointer to the ArkUI_StyledString_Descriptor object.
+ * @return The converted html.
+ * @since 14
+ */
+const char* OH_ArkUI_ConvertToHtml(ArkUI_StyledString_Descriptor* str);
 
 #ifdef __cplusplus
 };
