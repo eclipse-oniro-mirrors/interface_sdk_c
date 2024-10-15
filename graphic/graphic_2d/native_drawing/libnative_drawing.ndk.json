@@ -1656,6 +1656,10 @@
     },
     {
         "first_introduced": "14",
+        "name": "OH_Drawing_TextLineEnumerateCaretOffsets"
+    },
+    {
+        "first_introduced": "14",
         "name":"OH_Drawing_TextLineGetAlignmentOffset"
     },
     {
