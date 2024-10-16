@@ -2374,5 +2374,13 @@
     {
         "first_introduced": "14",
         "name": "OH_ArkUI_ConvertToHtml"
+    },
+    {
+        "first_introduced": "14",
+        "name": "OH_ArkUI_MarshallStyledStringDescriptor"
+    },
+    {
+        "first_introduced": "14",
+        "name": "OH_ArkUI_UnmarshallStyledStringDescriptor"
     }
 ]
