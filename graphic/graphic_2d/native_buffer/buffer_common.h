@@ -143,6 +143,7 @@ typedef enum OH_NativeBuffer_MetadataType {
      * NONE Metadata
      * @since 13
      */
+    OH_VIDEO_NONE = -1
 } OH_NativeBuffer_MetadataType;
 
 /**
