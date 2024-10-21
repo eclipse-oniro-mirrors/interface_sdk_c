@@ -458,5 +458,73 @@
     {
         "first_introduced": "13",
         "name": "OH_UdsArrayBuffer_GetData"
+    },
+    {
+        "first_introduced": "14",
+        "name": "OH_UdsContentForm_Create"
+    },
+    {
+        "first_introduced": "14",
+        "name": "OH_UdsContentForm_Destroy"
+    },
+    {
+        "first_introduced": "14",
+        "name": "OH_UdsContentForm_GetType"
+    },
+    {
+        "first_introduced": "14",
+        "name": "OH_UdsContentForm_GetThumbData"
+    },
+    {
+        "first_introduced": "14",
+        "name": "OH_UdsContentForm_GetDescription"
+    },
+    {
+        "first_introduced": "14",
+        "name": "OH_UdsContentForm_GetTitle"
+    },
+    {
+        "first_introduced": "14",
+        "name": "OH_UdsContentForm_GetAppIcon"
+    },
+    {
+        "first_introduced": "14",
+        "name": "OH_UdsContentForm_GetAppName"
+    },
+    {
+        "first_introduced": "14",
+        "name": "OH_UdsContentForm_GetLinkUri"
+    },
+    {
+        "first_introduced": "14",
+        "name": "OH_UdsContentForm_SetThumbData"
+    },
+    {
+        "first_introduced": "14",
+        "name": "OH_UdsContentForm_SetDescription"
+    },
+    {
+        "first_introduced": "14",
+        "name": "OH_UdsContentForm_SetTitle"
+    },
+    {
+        "first_introduced": "14",
+        "name": "OH_UdsContentForm_SetAppIcon"
+    },
+    {
+        "first_introduced": "14",
+        "name": "OH_UdsContentForm_SetAppName"
+    },
+    {
+        "first_introduced": "14",
+        "name": "OH_UdsContentForm_SetLinkUri"
+    },
+    {
+        "first_introduced": "14",
+        "name": "OH_UdmfRecord_AddContentForm"
+    },
+    {
+        "first_introduced": "14",
+        "name": "OH_UdmfRecord_GetContentForm"
     }
 ]
