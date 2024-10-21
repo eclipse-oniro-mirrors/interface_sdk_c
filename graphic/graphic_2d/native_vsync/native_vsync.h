@@ -116,19 +116,19 @@ int OH_NativeVSync_RequestFrameWithMultiCallback(
 int OH_NativeVSync_GetPeriod(OH_NativeVSync* nativeVsync, long long* period);
 
 /**
- * @brief Enable DVSync to improve the smoothness of self drawn animation scenes.
- * DVSync is Decoupled VSync, which is a frame timing management strategy decoupled from hardware VSync.
- * DVSync drives the early drawing of subsequent animation frames by sending VSync signals with future timestamps
- * in advance, which are then cached in the frame buffer queue; DVSync reduces the possibility of frame loss
- * in the future by caching frames, thereby improving the smoothness of animation scenes.
- * Because DVSync requires the use of idle self drawn frame buffers to cache pre drawn animation frames, users need to
- * ensure that there is at least one free frame buffer, otherwise it is not recommended to enable this feature.
+ * @brief Enable DVSync to improve the smoothness of self-drawn animation scenes.
+ * DVSync stands for Decoupled VSync, a frame timing management strategy decoupled from hardware VSync.
+ * DVSync drives the early rendering of subsequent animation frames by sending VSync signals with future timestamps
+ * in advance, which are then cached in the frame buffer queue. DVSync reduces the possibility of future frame drops
+ * by caching pre-rendered frames for display, thereby improving the smoothness of animation scenes.
+ * Because DVSync requires the use of free self-drawn frame buffers to cache pre-rendered animation frames, users need
+ * to ensure that there is at least one free frame buffer, otherwise it is not recommended to enable this feature.
  * After enabling DVSync, users need to respond correctly to the VSync signal sent in advance, and request
- * the next VSync after the animation frame corresponding to the previous VSync is completed, and the self
- * drawn frame needs to carry a timestamp consistent with VSync.
- * After the animation ends, the user needs to turn off DVSync.
+ * the next VSync after the animation frame corresponding to the previous VSync has completed, and the self-drawn
+ * frame needs to carry a timestamp consistent with its VSync event.
+ * After the animation ends, the user needs to disable DVSync.
  * On platforms that do not support DVSync or if another application has already enabled DVSync, the current
- * enable operation will not take effect and the application will still receive a normal VSync signal.
+ * enable operation will not take effect and the application will still receive normal VSync signals.
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeVsync
  * @param nativeVsync Indicates the pointer to a NativeVsync.
