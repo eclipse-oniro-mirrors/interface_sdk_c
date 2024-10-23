@@ -1002,7 +1002,6 @@ typedef enum Camera_FoldStatus {
  * @since 13
  * @version 1.0
  */
-
 typedef struct Camera_FoldStatusInfo {
     /**
      * Camera instance list.
