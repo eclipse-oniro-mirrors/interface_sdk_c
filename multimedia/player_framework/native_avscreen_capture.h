@@ -416,6 +416,21 @@ OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_ResizeCanvas(struct OH_AVScreenCa
  */
 OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_SkipPrivacyMode(struct OH_AVScreenCapture *capture,
     int32_t *windowIDs, int32_t windowCount);
+
+/**
+ * @brief set up the max number of video frame per second
+ * @syscap SystemCapability.Multimedia.Media.AVScreenCapture
+ * @param capture Pointer to an OH_AVScreenCapture instance
+ * @param max frame rate of video
+ * @return Function result code.
+ *         {@link AV_SCREEN_CAPTURE_ERR_OK} if the execution is successful.
+ *         {@link AV_SCREEN_CAPTURE_ERR_INVALID_VAL} input capture is nullptr or frameRate is not support.
+ *         {@link AV_SCREEN_CAPTURE_ERR_OPERATE_NOT_PERMIT} opertation not be permitted.
+ * @since 14
+ * @version 1.0
+ */
+OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_SetMaxVideoFrameRate(struct OH_AVScreenCapture *capture,
+    int32_t frameRate);
 #ifdef __cplusplus
 }
 #endif

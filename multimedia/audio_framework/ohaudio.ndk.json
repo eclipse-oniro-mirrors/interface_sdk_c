@@ -370,5 +370,13 @@
     {
         "first_introduced": "12",
         "name":"OH_AudioRenderer_SetDefaultOutputDevice"
+    },
+    {
+        "first_introduced": "13",
+        "name": "OH_AudioRoutingManager_IsMicBlockDetectionSupported"
+    },
+    {
+        "first_introduced": "13",
+        "name": "OH_AudioRoutingManager_SetMicBlockStatusCallback"
     }
 ]

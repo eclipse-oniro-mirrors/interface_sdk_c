@@ -39,6 +39,7 @@
 
 #include "native_drawing/drawing_text_declaration.h"
 #include "native_drawing/drawing_text_typography.h"
+#include "native_type.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -117,6 +118,61 @@ OH_Drawing_Typography* OH_ArkUI_StyledString_CreateTypography(ArkUI_StyledString
  * @since 12
  */
 void OH_ArkUI_StyledString_AddPlaceholder(ArkUI_StyledString* handle, OH_Drawing_PlaceholderSpan* placeholder);
+
+/**
+ * @brief Create a ArkUI_StyledString_Descriptor object.
+ *
+ * @return Pointer to the ArkUI_StyledString_Descriptor object.。
+ * @since 14
+ */
+ArkUI_StyledString_Descriptor* OH_ArkUI_StyledString_Descriptor_Create();
+
+/**
+ * @brief Release the memory occupied by the ArkUI_StyledString_Descriptor object.
+ *
+ * @param str Pointer to the ArkUI_StyledString_Descriptor object.
+ * @since 14
+ */
+void OH_ArkUI_StyledString_Descriptor_Destroy(ArkUI_StyledString_Descriptor* str);
+
+/**
+ * @brief Convert the styled string into html.
+ *
+ * @param str Pointer to the ArkUI_StyledString_Descriptor object.
+ * @return The converted html.
+ * @since 14
+ */
+const char* OH_ArkUI_ConvertToHtml(ArkUI_StyledString_Descriptor* str);
+
+/**
+ * @brief Deserializes a byte array containing styled string information into a styled string.
+ *
+ * @param buffer Byte array to be deserialized.
+ * @param bufferSize Length of the byte array.
+ * @param descriptor Pointer to an <b>ArkUI_StyledString_Descriptor</b> object.
+ * @return Returns the result code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @since 14
+ */
+int32_t OH_ArkUI_UnmarshallStyledStringDescriptor(
+    uint8_t* buffer, size_t bufferSize, ArkUI_StyledString_Descriptor* descriptor);
+
+/**
+ * @brief Serializes the styled string information into a byte array.
+ *
+ * @param buffer Byte array where the serialized data will be stored.
+ * @param bufferSize Length of the byte array.
+ * @param descriptor Pointer to an <b>ArkUI_StyledString_Descriptor</b> object.
+ * @param resultSize Actual length of the byte array.
+ * @return Returns the result code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ *         Returns {@link ARKUI_ERROR_CODE_INVALID_STYLED_STRING} if the styled string is invalid.
+ * @since 14
+ */
+int32_t OH_ArkUI_MarshallStyledStringDescriptor(
+    uint8_t* buffer, size_t bufferSize, ArkUI_StyledString_Descriptor* descriptor, size_t* resultSize);
 
 #ifdef __cplusplus
 };
