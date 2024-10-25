@@ -1354,7 +1354,9 @@ typedef enum {
 
     /**
      * @brief Defines the focused state. This attribute can be set and obtained as required through APIs.
-     *
+     * @note Setting the parameter to <b>0</b> shifts focus from the currently focused component on the current level
+     * of the page to the root container.
+     * 
      * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
      * .value[0].i32: The parameter type is 1 or 0.
      * \n
