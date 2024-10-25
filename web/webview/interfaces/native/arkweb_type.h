@@ -214,11 +214,11 @@ typedef struct {
      */
     ArkWeb_ErrorCode (*postWebMessage)(
         const char* webTag, const char* name, ArkWeb_WebMessagePortPtr* webMessagePorts, size_t size, const char* url);
+    
     /**
      * @brief Get the url of the last frame that calls the JavaScriptProxy.
      *        This should be call on the thread which JavaScriptProxy called.
      *
-     * @param webTag The name of the web component.
      * @return The url of the last frame that calls the JavaScriptProxy.
      * @since 14
      */
@@ -427,3 +427,4 @@ typedef struct {
 }
 #endif
 #endif // ARKWEB_TYPE_H
+
