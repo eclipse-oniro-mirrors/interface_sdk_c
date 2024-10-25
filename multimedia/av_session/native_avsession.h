@@ -327,6 +327,7 @@ typedef AVSessionCallback_Result (*OH_AVSessionCallback_OnToggleFavorite)(OH_AVS
  * @param avsession Pointer to a viriable to receive the OH_AVSession
  * @return Function result code：
  *         {@link AV_SESSION_ERR_SUCCESS} If the execution is successful.
+ *         {@link AV_SESSION_ERR_SERVICE_EXCEPTION} If session already existed or internal server error.
  *         {@link AV_SESSION_ERR_INVALID_PARAMETER}:
  *                                                 1. The param of sessionType is invalid.
  *                                                 2. The param of sessionTag is nullptr.
