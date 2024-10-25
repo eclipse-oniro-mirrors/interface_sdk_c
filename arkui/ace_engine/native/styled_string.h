@@ -120,29 +120,30 @@ OH_Drawing_Typography* OH_ArkUI_StyledString_CreateTypography(ArkUI_StyledString
 void OH_ArkUI_StyledString_AddPlaceholder(ArkUI_StyledString* handle, OH_Drawing_PlaceholderSpan* placeholder);
 
 /**
- * @brief Create a ArkUI_StyledString_Descriptor object.
+ * @brief Creates an <b>ArkUI_StyledString_Descriptor</b> object.
  *
- * @return Pointer to the ArkUI_StyledString_Descriptor object.。
+ * @return Returns the pointer to the <b>ArkUI_StyledString_Descriptor</b> object created.
  * @since 14
  */
-ArkUI_StyledString_Descriptor* OH_ArkUI_StyledString_Descriptor_Create();
+ArkUI_StyledString_Descriptor* OH_ArkUI_StyledString_Descriptor_Create(void);
 
 /**
- * @brief Release the memory occupied by the ArkUI_StyledString_Descriptor object.
+ * @brief Destroys an <b>ArkUI_StyledString_Descriptor</b> object and reclaims the memory occupied by the object.
  *
- * @param str Pointer to the ArkUI_StyledString_Descriptor object.
+ * @param descriptor Pointer to an <b>ArkUI_StyledString_Descriptor</b> object.
  * @since 14
  */
-void OH_ArkUI_StyledString_Descriptor_Destroy(ArkUI_StyledString_Descriptor* str);
+void OH_ArkUI_StyledString_Descriptor_Destroy(ArkUI_StyledString_Descriptor* descriptor);
 
 /**
- * @brief Convert the styled string into html.
+ * @brief Converts styled string information into HTML.
  *
- * @param str Pointer to the ArkUI_StyledString_Descriptor object.
- * @return The converted html.
+ * @param descriptor Pointer to an <b>ArkUI_StyledString_Descriptor</b> object.
+ * @return Returns the pointer to the resulting HTML string. This pointer is managed internally and should be destroyed
+ *         by calling <b>OH_ArkUI_StyledString_Descriptor_Destroy()</b> when no longer needed to free the memory.
  * @since 14
  */
-const char* OH_ArkUI_ConvertToHtml(ArkUI_StyledString_Descriptor* str);
+const char* OH_ArkUI_ConvertToHtml(ArkUI_StyledString_Descriptor* descriptor);
 
 /**
  * @brief Deserializes a byte array containing styled string information into a styled string.
