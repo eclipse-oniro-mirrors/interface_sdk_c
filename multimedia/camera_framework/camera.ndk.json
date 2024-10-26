@@ -489,11 +489,11 @@
     },
     {
         "first_introduced": "12",
-        "name": "OH_PhotoOutput_EnableMovingPhoto"
+        "name": "OH_PhotoOutput_GetPhotoRotation"
     },
     {
         "first_introduced": "12",
-        "name": "OH_PhotoOutput_GetPhotoRotation"
+        "name": "OH_PhotoOutput_EnableMovingPhoto"
     },
     {
         "first_introduced": "11",
