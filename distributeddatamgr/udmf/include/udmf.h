@@ -454,22 +454,6 @@ int OH_UdmfRecord_GetHtml(OH_UdmfRecord* pThis, OH_UdsHtml* html);
 int OH_UdmfRecord_GetAppItem(OH_UdmfRecord* pThis, OH_UdsAppItem* appItem);
 
 /**
- * @brief Set the data provider of the types.
- *
- * @param pThis Represents a pointer to an instance of {@link OH_UdmfRecord}.
- * @param types Represents a pointer to a group of data types;
- * @param count Represents the number of data types;
- * @param provider Represents a pointer an instance of {@link OH_UdmfRecordProvider}.
- * @return Returns the status code of the execution. See {@link Udmf_ErrCode}.
- *         {@link UDMF_E_OK} success.
- *         {@link UDMF_E_INVALID_PARAM} The error code for common invalid args.
- * @see OH_UdmfRecord OH_UdmfRecordProvider Udmf_ErrCode.
- * @since 13
- */
-int OH_UdmfRecord_SetProvider(OH_UdmfRecord* pThis, const char* const* types, unsigned int count,
-    OH_UdmfRecordProvider* provider);
-
-/**
  * @brief Get one {OH_UdsFileUri} data from the {@link OH_UdmfRecord} record.
  *
  * @param pThis Represents a pointer to an instance of {@link OH_UdmfRecord}.
@@ -494,6 +478,22 @@ int OH_UdmfRecord_GetFileUri(OH_UdmfRecord* pThis, OH_UdsFileUri* fileUri);
  * @since 13
  */
 int OH_UdmfRecord_GetPixelMap(OH_UdmfRecord* pThis, OH_UdsPixelMap* pixelMap);
+
+/**
+ * @brief Set the data provider of the types.
+ *
+ * @param pThis Represents a pointer to an instance of {@link OH_UdmfRecord}.
+ * @param types Represents a pointer to a group of data types;
+ * @param count Represents the number of data types;
+ * @param provider Represents a pointer an instance of {@link OH_UdmfRecordProvider}.
+ * @return Returns the status code of the execution. See {@link Udmf_ErrCode}.
+ *         {@link UDMF_E_OK} success.
+ *         {@link UDMF_E_INVALID_PARAM} The error code for common invalid args.
+ * @see OH_UdmfRecord OH_UdmfRecordProvider Udmf_ErrCode.
+ * @since 13
+ */
+int OH_UdmfRecord_SetProvider(OH_UdmfRecord* pThis, const char* const* types, unsigned int count,
+    OH_UdmfRecordProvider* provider);
 
 /**
  * @brief Get one {@link OH_UdsArrayBuffer} data from the {@link OH_UdmfRecord} record.
