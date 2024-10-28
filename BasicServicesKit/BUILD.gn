@@ -58,6 +58,20 @@ ohos_ndk_library("libohscan_ndk") {
   system_capability_headers = [ "BasicServicesKit/ohscan.h" ]
 }
 
+ohos_ndk_headers("time_service_ndk_header") {
+  dest_dir = "$ndk_headers_out_dir/BasicServicesKit/"
+  sources = [ "./time_service.h" ]
+}
+
+ohos_ndk_library("libtime_service_ndk") {
+  output_name = "time_service_ndk"
+  output_extension = "so"
+  ndk_description_file = "./libtime_service.ndk.json"
+  min_compact_version = "12"
+  system_capability = "SystemCapability.MiscServices.Time"
+  system_capability_headers = [ "BasicServicesKit/time_service.h" ]
+}
+
 ohos_ndk_headers("ohcommonevent_header") {
   dest_dir = "$ndk_headers_out_dir/BasicServicesKit/"
   sources = [
@@ -90,18 +104,4 @@ ohos_ndk_library("libohbattery_info_ndk") {
   min_compact_version = "13"
   system_capability = "SystemCapability.PowerManager.BatteryManager.Core"
   system_capability_headers = [ "BasicServicesKit/ohbattery_info.h" ]
-}
-
-ohos_ndk_headers("time_service_ndk_header") {
-  dest_dir = "$ndk_headers_out_dir/BasicServicesKit/"
-  sources = [ "./time_service.h" ]
-}
-
-ohos_ndk_library("libtime_service_ndk") {
-  output_name = "time_service_ndk"
-  output_extension = "so"
-  ndk_description_file = "./libtime_service.ndk.json"
-  min_compact_version = "12"
-  system_capability = "SystemCapability.MiscServices.Time"
-  system_capability_headers = [ "BasicServicesKit/time_service.h" ]
 }
