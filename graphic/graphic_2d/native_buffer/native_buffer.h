@@ -290,7 +290,7 @@ typedef struct {
  * A new <b>OH_NativeBuffer</b> instance is created each time this function is called.\n
  * This interface needs to be used in conjunction with <b>OH_NativeBuffer_Unreference<\b>,
  * otherwise memory leaks will occur.\n
- * This interface dose not support concurrency.\n
+ * This interface is a non-thread-safe type interface.\n
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeBuffer
  * @param config Indicates the pointer to a <b>BufferRequestConfig</b> instance.
@@ -305,7 +305,7 @@ OH_NativeBuffer* OH_NativeBuffer_Alloc(const OH_NativeBuffer_Config* config);
  * @brief Adds the reference count of a OH_NativeBuffer.\n
  * This interface needs to be used in conjunction with <b>OH_NativeBuffer_Unreference<\b>,
  * otherwise memory leaks will occur.\n
- * This interface dose not support concurrency.\n
+ * This interface is a non-thread-safe type interface.\n
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeBuffer
  * @param buffer Indicates the pointer to a <b>OH_NativeBuffer</b> instance.
@@ -318,7 +318,7 @@ int32_t OH_NativeBuffer_Reference(OH_NativeBuffer *buffer);
 /**
  * @brief Decreases the reference count of a OH_NativeBuffer and, when the reference count reaches 0,
  * destroys this OH_NativeBuffer.\n
- * This interface dose not support concurrency.\n
+ * This interface is a non-thread-safe type interface.\n
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeBuffer
  * @param buffer Indicates the pointer to a <b>OH_NativeBuffer</b> instance.
@@ -330,7 +330,7 @@ int32_t OH_NativeBuffer_Unreference(OH_NativeBuffer *buffer);
 
 /**
  * @brief Return a config of the OH_NativeBuffer in the passed OHNativeBufferConfig struct.\n
- * This interface dose not support concurrency.\n
+ * This interface is a non-thread-safe type interface.\n
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeBuffer
  * @param buffer Indicates the pointer to a <b>OH_NativeBuffer</b> instance.
@@ -344,7 +344,7 @@ void OH_NativeBuffer_GetConfig(OH_NativeBuffer *buffer, OH_NativeBuffer_Config* 
 /**
  * @brief Provide direct cpu access to the OH_NativeBuffer in the process's address space.\n
  * This interface needs to be used in conjunction with <b>OH_NativeBuffer_Unmap<\b>.\n
- * This interface dose not support concurrency.\n
+ * This interface is a non-thread-safe type interface.\n
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeBuffer
  * @param buffer Indicates the pointer to a <b>OH_NativeBuffer</b> instance.
@@ -358,7 +358,7 @@ int32_t OH_NativeBuffer_Map(OH_NativeBuffer *buffer, void **virAddr);
 
 /**
  * @brief Remove direct cpu access ability of the OH_NativeBuffer in the process's address space.\n
- * This interface dose not support concurrency.\n
+ * This interface is a non-thread-safe type interface.\n
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeBuffer
  * @param buffer Indicates the pointer to a <b>OH_NativeBuffer</b> instance.
@@ -370,7 +370,7 @@ int32_t OH_NativeBuffer_Unmap(OH_NativeBuffer *buffer);
 
 /**
  * @brief Get the systen wide unique sequence number of the OH_NativeBuffer.\n
- * This interface dose not support concurrency.\n
+ * This interface is a non-thread-safe type interface.\n
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeBuffer
  * @param buffer Indicates the pointer to a <b>OH_NativeBuffer</b> instance.
@@ -382,7 +382,7 @@ uint32_t OH_NativeBuffer_GetSeqNum(OH_NativeBuffer *buffer);
 
 /**
  * @brief Provide direct cpu access to the potentially multi-plannar OH_NativeBuffer in the process's address space.\n
- * This interface dose not support concurrency.\n
+ * This interface is a non-thread-safe type interface.\n
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeBuffer
  * @param buffer Indicates the pointer to a <b>OH_NativeBuffer</b> instance.
@@ -396,7 +396,7 @@ int32_t OH_NativeBuffer_MapPlanes(OH_NativeBuffer *buffer, void **virAddr, OH_Na
 
 /**
  * @brief Converts an <b>OHNativeWindowBuffer</b> instance to an <b>OH_NativeBuffer</b>.\n
- * This interface dose not support concurrency.\n
+ * This interface is a non-thread-safe type interface.\n
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeBuffer
  * @param nativeWindowBuffer Indicates the pointer to a <b>OHNativeWindowBuffer</b> instance.
@@ -409,7 +409,7 @@ int32_t OH_NativeBuffer_FromNativeWindowBuffer(OHNativeWindowBuffer *nativeWindo
 
 /**
  * @brief Set the color space of the OH_NativeBuffer.\n
- * This interface dose not support concurrency.\n
+ * This interface is a non-thread-safe type interface.\n
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeBuffer
  * @param buffer Indicates the pointer to a <b>OH_NativeBuffer</b> instance.
@@ -422,7 +422,7 @@ int32_t OH_NativeBuffer_SetColorSpace(OH_NativeBuffer *buffer, OH_NativeBuffer_C
 
 /**
  * @brief Get the color space of the OH_NativeBuffer.\n
- * This interface dose not support concurrency.\n
+ * This interface is a non-thread-safe type interface.\n
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeBuffer
  * @param buffer Indicates the pointer to a <b>OH_NativeBuffer</b> instance.
@@ -437,7 +437,7 @@ int32_t OH_NativeBuffer_GetColorSpace(OH_NativeBuffer *buffer, OH_NativeBuffer_C
 
 /**
  * @brief Set the metadata type of the OH_NativeBuffer.\n
- * This interface dose not support concurrency.\n
+ * This interface is a non-thread-safe type interface.\n
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeBuffer
  * @param buffer Indicates the pointer to a <b>OH_NativeBuffer</b> instance.
@@ -456,7 +456,7 @@ int32_t OH_NativeBuffer_SetMetadataValue(OH_NativeBuffer *buffer, OH_NativeBuffe
 
 /**
  * @brief Set the metadata type of the OH_NativeBuffer.\n
- * This interface dose not support concurrency.\n
+ * This interface is a non-thread-safe type interface.\n
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeBuffer
  * @param buffer Indicates the pointer to a <b>OH_NativeBuffer</b> instance.

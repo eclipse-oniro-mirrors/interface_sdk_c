@@ -81,7 +81,7 @@ typedef struct OH_OnFrameAvailableListener {
  * @brief Create a <b>OH_NativeImage</b> related to an Opengl ES texture and target. \n
  * This interface needs to be used in conjunction with <b>OH_NativeImage_Destroy<\b>,
  * otherwise memory leaks will occur.\n
- * This interface dose not support concurrency.\n
+ * This interface is a non-thread-safe type interface.\n
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeImage
  * @param textureId Indicates the id of the Opengl ES texture which the native image attached to.
@@ -95,7 +95,7 @@ OH_NativeImage* OH_NativeImage_Create(uint32_t textureId, uint32_t textureTarget
 
 /**
  * @brief Acquire the OHNativeWindow for the OH_NativeImage.\n
- * This interface dose not support concurrency.\n
+ * This interface is a non-thread-safe type interface.\n
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeImage
  * @param image Indicates the pointer to a <b>OH_NativeImage</b> instance.
@@ -108,7 +108,7 @@ OHNativeWindow* OH_NativeImage_AcquireNativeWindow(OH_NativeImage* image);
 /**
  * @brief Attach the OH_NativeImage to Opengl ES context, and the Opengl ES texture is bound to the \n
  * GL_TEXTURE_EXTERNAL_OES, which will update by the OH_NativeImage.\n
- * This interface dose not support concurrency.\n
+ * This interface is a non-thread-safe type interface.\n
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeImage
  * @param image Indicates the pointer to a <b>OH_NativeImage</b> instance.
@@ -121,7 +121,7 @@ int32_t OH_NativeImage_AttachContext(OH_NativeImage* image, uint32_t textureId);
 
 /**
  * @brief Detach the OH_NativeImage from the Opengl ES context.\n
- * This interface dose not support concurrency.\n
+ * This interface is a non-thread-safe type interface.\n
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeImage
  * @param image Indicates the pointer to a <b>OH_NativeImage</b> instance.
@@ -136,7 +136,7 @@ int32_t OH_NativeImage_DetachContext(OH_NativeImage* image);
  * @brief Update the related Opengl ES texture with the OH_NativeImage acquired buffer.\n
  * This interface needs to be called in the Opengl ES context thread.\n
  * This interface needs to be called after receiving the <b>OH_OnFrameAvailableListener<\b> callback.\n
- * This interface dose not support concurrency.\n
+ * This interface is a non-thread-safe type interface.\n
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeImage
  * @param image Indicates the pointer to a <b>OH_NativeImage</b> instance.
@@ -148,7 +148,7 @@ int32_t OH_NativeImage_UpdateSurfaceImage(OH_NativeImage* image);
 
 /**
  * @brief Get the timestamp of the texture image set by the most recent call to OH_NativeImage_UpdateSurfaceImage.\n
- * This interface dose not support concurrency.\n
+ * This interface is a non-thread-safe type interface.\n
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeImage
  * @param image Indicates the pointer to a <b>OH_NativeImage</b> instance.
@@ -175,7 +175,7 @@ int32_t OH_NativeImage_GetTransformMatrix(OH_NativeImage* image, float matrix[16
 
 /**
  * @brief Return the native image's surface id.\n
- * This interface dose not support concurrency.\n
+ * This interface is a non-thread-safe type interface.\n
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeImage
  * @param image Indicates the pointer to a <b>OH_NativeImage</b> instance.
@@ -189,7 +189,7 @@ int32_t OH_NativeImage_GetSurfaceId(OH_NativeImage* image, uint64_t* surfaceId);
 /**
  * @brief Set the frame available callback.\n
  * Not allow calling other interfaces in the callback function.\n
- * This interface dose not support concurrency.\n
+ * This interface is a non-thread-safe type interface.\n
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeImage
  * @param image Indicates the pointer to a <b>OH_NativeImage</b> instance.
@@ -202,7 +202,7 @@ int32_t OH_NativeImage_SetOnFrameAvailableListener(OH_NativeImage* image, OH_OnF
 
 /**
  * @brief Unset the frame available callback.\n
- * This interface dose not support concurrency.\n
+ * This interface is a non-thread-safe type interface.\n
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeImage
  * @param image Indicates the pointer to a <b>OH_NativeImage</b> instance.
@@ -215,7 +215,7 @@ int32_t OH_NativeImage_UnsetOnFrameAvailableListener(OH_NativeImage* image);
 /**
  * @brief Destroy the <b>OH_NativeImage</b> created by OH_NativeImage_Create, and the pointer to
  * <b>OH_NativeImage</b> will be null after this operation.\n
- * This interface dose not support concurrency.\n
+ * This interface is a non-thread-safe type interface.\n
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeImage
  * @param image Indicates the pointer to a <b>OH_NativeImage</b> pointer.
@@ -227,7 +227,7 @@ void OH_NativeImage_Destroy(OH_NativeImage** image);
 /**
  * @brief Obtains the transform matrix of the texture image by producer transform type.\n
  * The matrix will not be update until <b>OH_NativeImage_UpdateSurfaceImage<\b> is called.\n
- * This interface dose not support concurrency.\n
+ * This interface is a non-thread-safe type interface.\n
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeImage
  * @param image Indicates the pointer to a <b>OH_NativeImage</b> instance.
@@ -250,7 +250,7 @@ int32_t OH_NativeImage_GetTransformMatrixV2(OH_NativeImage* image, float matrix[
  * This interface needs to be used in conjunction with <b>OH_NativeImage_ReleaseNativeWindowBuffer<\b>,
  * otherwise memory leaks will occur.\n
  * When the fenceFd is used up, you need to close it.\n
- * This interface dose not support concurrency.\n
+ * This interface is a non-thread-safe type interface.\n
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeImage
  * @param image Indicates the pointer to a <b>OH_NativeImage</b> instance.
@@ -269,7 +269,7 @@ int32_t OH_NativeImage_AcquireNativeWindowBuffer(OH_NativeImage* image,
  * @brief Release the <b>OHNativeWindowBuffer</b> to the buffer queue through an
  * <b>OH_NativeImage</b> instance for reuse.\n
  * The fenceFd will be close by system.\n
- * This interface dose not support concurrency.\n
+ * This interface is a non-thread-safe type interface.\n
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeImage
  * @param image Indicates the pointer to a <b>OH_NativeImage</b> instance.
@@ -290,7 +290,7 @@ int32_t OH_NativeImage_ReleaseNativeWindowBuffer(OH_NativeImage* image,
  * This method can not be used at the same time with <b>OH_NativeImage_UpdateSurfaceImage</b>.\n
  * This interface needs to be used in conjunction with <b>OH_NativeImage_Destroy<\b>,
  * otherwise memory leaks will occur.\n
- * This interface dose not support concurrency.\n
+ * This interface is a non-thread-safe type interface.\n
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeImage
  * @return Returns the pointer to the <b>OH_NativeImage</b> instance created if the operation is successful, \n
@@ -298,11 +298,11 @@ int32_t OH_NativeImage_ReleaseNativeWindowBuffer(OH_NativeImage* image,
  * @since 12
  * @version 1.0
  */
-OH_NativeImage* OH_ConsumerSurface_Create();
+OH_NativeImage* OH_ConsumerSurface_Create(void);
 
 /**
  * @brief Set the default usage of the <b>OH_NativeImage</b>.\n
- * This interface dose not support concurrency.\n
+ * This interface is a non-thread-safe type interface.\n
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeImage
  * @param image Indicates the pointer to a <b>OH_NativeImage</b> instance.
@@ -316,7 +316,7 @@ int32_t OH_ConsumerSurface_SetDefaultUsage(OH_NativeImage* image, uint64_t usage
 
 /**
  * @brief Set the default size of the <b>OH_NativeImage</b>.\n
- * This interface dose not support concurrency.\n
+ * This interface is a non-thread-safe type interface.\n
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeImage
  * @param image Indicates the pointer to a <b>OH_NativeImage</b> instance.
