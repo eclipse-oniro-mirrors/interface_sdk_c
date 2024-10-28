@@ -35,6 +35,7 @@
  * schedule the time and running order of tasks according to the QoS set by the tasks.
  *
  * @library libqos.so
+ * @kit KernelEnhanceKit
  * @syscap SystemCapability.Resourceschedule.QoS.Core
  * @since 12
  */
