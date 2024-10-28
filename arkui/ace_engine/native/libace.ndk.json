@@ -2377,6 +2377,14 @@
     },
     {
         "first_introduced": "14",
+        "name": "OH_ArkUI_MarshallStyledStringDescriptor"
+    },
+    {
+        "first_introduced": "14",
+        "name": "OH_ArkUI_UnmarshallStyledStringDescriptor"
+    },
+    {
+        "first_introduced": "14",
         "name": "OH_NativeXComponent_RegisterKeyEventCallbackWithResult"
     }
 ]
