@@ -40,6 +40,7 @@
 #include "image_effect_filter.h"
 #include "native_buffer/native_buffer.h"
 #include "native_window/external_window.h"
+#include "multimedia/image_framework/image/picture_native.h"
 
 #ifdef __cplusplus
 extern "C" {
