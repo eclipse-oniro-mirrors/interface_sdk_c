@@ -32,6 +32,9 @@
  * provides features include create, begin read ,end read, begin write, end write, rebuild, and so on.
  * when using, it is necessary to link libpurgeable_memory_ndk.z.so
  *
+ * @library libpurgeablemem.so
+ * @syscap SystemCapability.Kernel.Memory
+ * @kit KernelEnhanceKit
  * @since 10
  * @version 1.0
  */
