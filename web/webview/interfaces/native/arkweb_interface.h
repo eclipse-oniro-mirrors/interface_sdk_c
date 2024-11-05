@@ -65,6 +65,12 @@ typedef enum {
     ARKWEB_NATIVE_WEB_MESSAGE,
     /** API type related to ArkWeb cookie manager. */
     ARKWEB_NATIVE_COOKIE_MANAGER,
+    /**
+     * @brief API type related to ArkWeb JavaScript value.
+     *
+     * @since 14
+     */
+    ARKWEB_NATIVE_JAVASCRIPT_VALUE,
 } ArkWeb_NativeAPIVariantKind;
 
 /*
