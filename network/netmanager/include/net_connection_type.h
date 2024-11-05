@@ -38,6 +38,7 @@
  *
  */
 
+#include <stdbool.h>
 #include <stdint.h>
 #include <netdb.h>
 
