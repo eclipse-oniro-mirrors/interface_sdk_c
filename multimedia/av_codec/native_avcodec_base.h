@@ -1023,35 +1023,35 @@ typedef enum OH_HEVCProfile {
  */
 typedef enum OH_VVCProfile {
     /** Main 10 profile */
-    VVC_PROFILE_MAIN_10 = 1, // 1 << 0
+    VVC_PROFILE_MAIN_10 = 1,
     /** Main 12 profile */
-    VVC_PROFILE_MAIN_12 = 2, // 1 << 1
+    VVC_PROFILE_MAIN_12 = 2,
     /** Main 12 Intra profile */
-    VVC_PROFILE_MAIN_12_INTRA = 10, // MAIN_12 | INTRA
+    VVC_PROFILE_MAIN_12_INTRA = 10,
     /** Multilayer Main 10 profile */
-    VVC_PROFILE_MULTI_MAIN_10 = 17, // MULTILAYER | MAIN_10
+    VVC_PROFILE_MULTI_MAIN_10 = 17,
     /** Main 10 4:4:4 profile */
-    VVC_PROFILE_MAIN_10_444 = 33, // YUV444 | MAIN_10
+    VVC_PROFILE_MAIN_10_444 = 33,
     /** Main 12 4:4:4 profile */
-    VVC_PROFILE_MAIN_12_444 = 34, // YUV444 | MAIN_12
+    VVC_PROFILE_MAIN_12_444 = 34,
     /** Main 16 4:4:4 profile */
-    VVC_PROFILE_MAIN_16_444 = 36, // YUV444 | MAIN_16
+    VVC_PROFILE_MAIN_16_444 = 36,
     /** Main 12 4:4:4 Intra profile */
-    VVC_PROFILE_MAIN_12_444_INTRA = 42, // MAIN_12_444 | INTRA
+    VVC_PROFILE_MAIN_12_444_INTRA = 42,
     /** Main 16 4:4:4 Intra profile */
-    VVC_PROFILE_MAIN_16_444_INTRA = 44, // MAIN_16_444 | INTRA
+    VVC_PROFILE_MAIN_16_444_INTRA = 44,
     /** Multilayer Main 10 4:4:4 profile */
-    VVC_PROFILE_MULTI_MAIN_10_444 = 49, // YUV444 | MAIN_10 | MULTILAYER
+    VVC_PROFILE_MULTI_MAIN_10_444 = 49,
     /** Main 10 Still Picture profile */
-    VVC_PROFILE_MAIN_10_STILL = 65, // MAIN_10 | STILL_PICTURE
+    VVC_PROFILE_MAIN_10_STILL = 65,
     /** Main 12 Still Picture profile */
-    VVC_PROFILE_MAIN_12_STILL = 68, // MAIN_12 | STILL_PICTURE
+    VVC_PROFILE_MAIN_12_STILL = 68,
     /** Main 10 4:4:4 Still Picture profile */
-    VVC_PROFILE_MAIN_10_444_STILL = 97, // MAIN_10_444 | STILL_PICTURE
+    VVC_PROFILE_MAIN_10_444_STILL = 97,
     /** Main 12 4:4:4 Still Picture profile */
-    VVC_PROFILE_MAIN_12_444_STILL = 98, // MAIN_12_444 | STILL_PICTURE
+    VVC_PROFILE_MAIN_12_444_STILL = 98,
     /** Main 16 4:4:4 Still Picture profile */
-    VVC_PROFILE_MAIN_16_444_STILL = 100, // MAIN_16_444 | STILL_PICTURE
+    VVC_PROFILE_MAIN_16_444_STILL = 100,
 } OH_VVCProfile;
 
 /**
