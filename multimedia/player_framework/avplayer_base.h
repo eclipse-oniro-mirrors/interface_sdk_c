@@ -418,7 +418,8 @@ typedef void (*OH_AVPlayerOnError)(OH_AVPlayer *player, int32_t errorCode, const
  *         {@link AV_ERR_IO_FILE_ACCESS_DENIED} if file is occupied by other processes and cannot be accessed.
  *         {@link AV_ERR_IO_FILE_BAD_HANDLE} if the file handle is incorrect.
  *         {@link AV_ERR_IO_FILE_NOT_FOUND} if IO file not found.
- *         {@link AV_ERR_IO_FILE_PERMISSION_DENIED} if IO file permission denied because API does not have permissions.
+ *         {@link AV_ERR_IO_FILE_PERMISSION_DENIED} if IO file permission denied because API does not
+ *           have permissions.
  *         {@link AV_ERR_IO_AUDIO_DEC_FAILED} if player fails to decode the audio data.
  *         {@link AV_ERR_IO_AUDIO_DEC_INIT_FAILED} if player fail to init the audio decoder.
  *         {@link AV_ERR_IO_AUDIO_DEC_UNAVAILABLE} if the audio decoder is unavailable for handler incurrupt,
