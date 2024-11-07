@@ -1027,7 +1027,7 @@ typedef enum OH_VVCProfile {
     /** Main 12 profile */
     VVC_PROFILE_MAIN_12 = 2, // 1 << 1
     /** Main 12 Intra profile */
-    VVC_PROFILE_MAIN_12_INTRA = 10, // MAIN12 | INTRA
+    VVC_PROFILE_MAIN_12_INTRA = 10, // MAIN_12 | INTRA
     /** Multilayer Main 10 profile */
     VVC_PROFILE_MULTI_MAIN_10 = 17, // MULTILAYER | MAIN_10
     /** Main 10 4:4:4 profile */
