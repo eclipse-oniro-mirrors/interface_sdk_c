@@ -425,9 +425,10 @@ typedef void (*OH_AVPlayerOnError)(OH_AVPlayer *player, int32_t errorCode, const
  *         {@link AV_ERR_IO_AUDIO_DEC_UNAVAILABLE} if the audio decoder is unavailable for handler incurrupt,
  *           or audio decoder subsystem abnormal.
  *         {@link AV_ERR_IO_AUDIO_DEVICE_ERROR} if audio device error.
- *         {@link AV_ERR_IO_AUDIO_DEVICE_INVALID_STATE} if audio device state does not support the current operation.
+ *         {@link AV_ERR_IO_AUDIO_DEVICE_INVALID_STATE} if audio device state does not support current operation.
  *         {@link AV_ERR_IO_AUDIO_DEVICE_TIMEOUT} if audio device timeout when calling audio render interface.
- *         {@link AV_ERR_IO_AUDIO_DEVICE_UNAVAILABLE} if audio device unavailable, unable to create an audio device.
+ *         {@link AV_ERR_IO_AUDIO_DEVICE_UNAVAILABLE} if audio device unavailable, unable to
+ *           create an audio device.
  *         {@link AV_ERR_IO_AUDIO_ENC_FAILED} if player fails to encode the audio data.
  *         {@link AV_ERR_IO_AUDIO_ENC_INIT_FAILED} if player fails to init the video decoder.
  *         {@link AV_ERR_IO_AUDIO_ENC_UNAVAILABLE} if video decoder is unavailable for handler incurrupt,
