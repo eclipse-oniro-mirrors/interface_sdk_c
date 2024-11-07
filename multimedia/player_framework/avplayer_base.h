@@ -398,6 +398,48 @@ typedef void (*OH_AVPlayerOnError)(OH_AVPlayer *player, int32_t errorCode, const
  * @syscap SystemCapability.Multimedia.Media.AVPlayer
  * @param player The pointer to an OH_AVPlayer instance.
  * @param errorCode Error code.
+ *         {@link AV_ERR_IO_CANNOT_FIND_HOST} if the address of server is incorrect, and IO can not find host.
+ *         {@link AV_ERR_IO_CONNECTION_TIMEOUT} if network connection timeout.
+ *         {@link AV_ERR_IO_NETWORK_ABNORMAL} if link failed due to abnormal network.
+ *         {@link AV_ERR_IO_NETWORK_UNAVAILABLE} if link failed due to unavailable network.
+ *         {@link AV_ERR_IO_NO_PERMISSION} if network permission dennied.
+ *         {@link AV_ERR_IO_NETWORK_ACCESS_DENIED} if the client request parameters are incorrect or exceed
+ *           the processing capacity.
+ *         {@link AV_ERR_IO_RESOURE_NOT_FOUND}  cannot find available network resources.
+ *         {@link AV_ERR_IO_SSL_CLIENT_CERT_NEEDED} if the server failS to verify the client certificate
+ *           because the certificate is not carried,
+ *           the certificate is invalid, or the certificate is expired.
+ *         {@link AV_ERR_IO_SSL_CONNECT_FAIL} if the client fails to verify the server certificate because the
+ *           certificate is not carried,
+ *           the certificate is invalid, or the certificate is expired.
+ *         {@link AV_ERR_IO_SSL_SERVER_CERT_UNTRUSTED} if IO SSL server cert untrusted.
+ *         {@link AV_ERR_IO_UNSUPPORTTED_REQUEST} if unsupported request due to network protocols.
+ *         {@link AV_ERR_IO_DATA_ABNORMAL} if file data is incorrect, and no specific data can be provided.
+ *         {@link AV_ERR_IO_FILE_ACCESS_DENIED} if file is occupied by other processes and cannot be accessed.
+ *         {@link AV_ERR_IO_FILE_BAD_HANDLE} if the file handle is incorrect.
+ *         {@link AV_ERR_IO_FILE_NOT_FOUND} if IO file not found.
+ *         {@link AV_ERR_IO_FILE_PERMISSION_DENIED} if IO file permission denied because API does not have permissions.
+ *         {@link AV_ERR_IO_AUDIO_DEC_FAILED} if player fails to decode the audio data.
+ *         {@link AV_ERR_IO_AUDIO_DEC_INIT_FAILED} if player fail to init the audio decoder.
+ *         {@link AV_ERR_IO_AUDIO_DEC_UNAVAILABLE} if the audio decoder is unavailable for handler incurrupt,
+ *           or audio decoder subsystem abnormal.
+ *         {@link AV_ERR_IO_AUDIO_DEVICE_ERROR} if audio device error.
+ *         {@link AV_ERR_IO_AUDIO_DEVICE_INVALID_STATE} if audio device state does not support the current operation.
+ *         {@link AV_ERR_IO_AUDIO_DEVICE_TIMEOUT} if audio device timeout when calling audio render interface.
+ *         {@link AV_ERR_IO_AUDIO_DEVICE_UNAVAILABLE} if audio device unavailable, unable to create an audio device.
+ *         {@link AV_ERR_IO_AUDIO_ENC_FAILED} if player fails to encode the audio data.
+ *         {@link AV_ERR_IO_AUDIO_ENC_INIT_FAILED} if player fails to init the video decoder.
+ *         {@link AV_ERR_IO_AUDIO_ENC_UNAVAILABLE} if video decoder is unavailable for handler incurrupt,
+ *           or video decoder subsystem abnormal.
+ *         {@link AV_ERR_IO_VIDEO_DEC_FAILED} if player fails to decode the video data.
+ *         {@link AV_ERR_IO_VIDEO_DEC_INIT_FAILED} if player fails to init the video decoder.
+ *         {@link AV_ERR_IO_VIDEO_DEC_UNAVAILABLE} if video decoder is unavailable for handler incurrupt,
+ *           or video decoder subsystem abnormal.
+ *         {@link AV_ERR_IO_VIDEO_DEVICE_ERROR} if video device error.
+ *         {@link AV_ERR_IO_VIDEO_ENC_FAILED} if player fails to encode the video data.
+ *         {@link AV_ERR_IO_VIDEO_ENC_INIT_FAILED} if player fails to init the video encoder.
+ *         {@link AV_ERR_IO_VIDEO_ENC_UNAVAILABLE} if video encoder is unavailable for handler incurrupt,
+ *           or video encoder subsystem abnormal.
  * @param errorMsg Error message, only valid in callback function.
  * @param userData Pointer to user specific data.
  * @since 12
