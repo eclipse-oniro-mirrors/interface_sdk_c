@@ -1045,7 +1045,7 @@ typedef enum OH_VVCProfile {
     /** Main 10 Still Picture profile */
     VVC_PROFILE_MAIN_10_STILL = 65,
     /** Main 12 Still Picture profile */
-    VVC_PROFILE_MAIN_12_STILL = 68,
+    VVC_PROFILE_MAIN_12_STILL = 66,
     /** Main 10 4:4:4 Still Picture profile */
     VVC_PROFILE_MAIN_10_444_STILL = 97,
     /** Main 12 4:4:4 Still Picture profile */
