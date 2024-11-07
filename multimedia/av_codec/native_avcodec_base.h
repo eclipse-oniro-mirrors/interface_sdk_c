@@ -1249,7 +1249,7 @@ typedef enum OH_HEVCLevel {
 
 /**
  * @brief VVC Level: A defined set of constraints on the values that may be taken by the syntax elements and variables
- * of VVC, or the value of a transform coefficient prior to scaling; code = (major_level * 16 + minor_level * 3).
+ * of VVC, or the value of a transform coefficient prior to scaling.
  *
  * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 14
