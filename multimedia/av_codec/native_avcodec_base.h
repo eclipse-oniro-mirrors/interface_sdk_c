@@ -1282,7 +1282,7 @@ typedef enum OH_VVCLevel {
     /** VVC level 6.2 */
     VVC_LEVEL_62 = 102,
     /** VVC level 6.3 */
-    VVC_LEVEL_63 = 103,
+    VVC_LEVEL_63 = 105,
     /** VVC level 15.5 */
     VVC_LEVEL_155 = 255,
 } OH_VVCLevel;
