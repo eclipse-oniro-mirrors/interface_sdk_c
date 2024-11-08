@@ -393,7 +393,7 @@
     },
     {
         "first_introduced": "14",
-        "name": "OH_MD_KEY_VIDEO_DECODER_ENABLE_VRR"
+        "name": "OH_MD_KEY_VIDEO_DECODER_OUTPUT_ENABLE_VRR"
     },
     {
         "first_introduced": "10",
