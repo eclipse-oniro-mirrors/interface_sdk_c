@@ -16,6 +16,24 @@
 #ifndef BASE_STARTUP_INITLITE_NOTIFY_H
 #define BASE_STARTUP_INITLITE_NOTIFY_H
 
+/**
+ * @addtogroup InitSync
+ * @{
+ *
+ * @brief Provides APIs for notifying the Init process of events.
+ *
+ * @since 10
+ */
+
+/**
+ * @file init_sync.h
+ * @kit BasicServicesKit
+ * @brief Declares APIs for notifying events to the Init process.
+ * @library na
+ * @syscap SystemCapability.Startup.SystemInfo
+ * @since 10
+ */
+
 #ifdef __cplusplus
 #if __cplusplus
 extern "C" {
@@ -45,5 +63,5 @@ extern int NotifyInit(unsigned long event);
 }
 #endif
 #endif
-
+/** @} */
 #endif // BASE_STARTUP_INITLITE_NOTIFY_H

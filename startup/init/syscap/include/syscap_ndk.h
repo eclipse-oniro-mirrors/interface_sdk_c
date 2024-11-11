@@ -16,6 +16,24 @@
 #ifndef SYSCAP_NDK_H
 #define SYSCAP_NDK_H
 
+/**
+ * @addtogroup SyscapNdk
+ * @{
+ *
+ * @brief Provides APIs for querying system capabilities.
+ *
+ * @since 10
+ */
+
+/**
+ * @file deviceinfo.h
+ * @kit BasicServicesKit
+ * @brief Declares APIs for acquiring the set of system capabilities .
+ * @library na
+ * @syscap SystemCapability.Startup.SystemInfo
+ * @since 10
+ */
+
 #include <stdbool.h>
 
 #ifdef __cplusplus
@@ -31,4 +49,5 @@ bool canIUse(const char *cap);
 }
 #endif
 #endif
+/** @} */
 #endif
