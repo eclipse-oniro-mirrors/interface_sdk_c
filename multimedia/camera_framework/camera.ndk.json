@@ -625,10 +625,10 @@
     },
     {
         "first_introduced": "13",
-        "name": "OH_CaptureSession_IsAutoSwitchDeviceSupported"
+        "name": "OH_CaptureSession_IsAutoDeviceSwitchSupported"
     },
     {
         "first_introduced": "13",
-        "name": "OH_CaptureSession_EnableAutoSwitchDevice"
+        "name": "OH_CaptureSession_EnableAutoDeviceSwitch"
     }
 ]
