@@ -13,9 +13,6 @@
  * limitations under the License.
  */
 
-#ifndef ASSET_TYPE_H
-#define ASSET_TYPE_H
-
 /**
  * @addtogroup AssetType
  * @{
@@ -35,6 +32,9 @@
  * @syscap SystemCapability.Security.Asset
  * @since 11
  */
+
+#ifndef ASSET_TYPE_H
+#define ASSET_TYPE_H
 
 #include <stdbool.h>
 #include <stdint.h>
