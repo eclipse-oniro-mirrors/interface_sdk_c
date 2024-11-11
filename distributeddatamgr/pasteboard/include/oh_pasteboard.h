@@ -101,8 +101,8 @@ OH_PasteboardObserver* OH_PasteboardObserver_Create();
  *
  * @param observer Pointer to the {@link OH_PasteboardObserver} instance to destroy.
  * @return Returns the status code of the execution. For details, see {@link PASTEBOARD_ErrCode}.
- *         Returns {@link ERR_OK} if the operation is successful.
- *         Returns {@link ERR_INVALID_PARAMETER} if invalid args are detected.
+ *         Returns {@link PASTEBOARD_ERR_OK} if the operation is successful.
+ *         Returns {@link PASTEBOARD_ERR_INVALID_PARAMETER} if invalid args are detected.
  * @see OH_PasteboardObserver PASTEBOARD_ErrCode.
  * @since 13
  */
@@ -117,8 +117,8 @@ int OH_PasteboardObserver_Destroy(OH_PasteboardObserver* observer);
  * @param finalize Optional callback that can free context when destroy observer.
  *         For details, see {@link Pasteboard_Finalize}.
  * @return Returns the status code of the execution. For details, see {@link PASTEBOARD_ErrCode}.
- *         Returns {@link ERR_OK} if the operation is successful.
- *         Returns {@link ERR_INVALID_PARAMETER} if invalid args are detected.
+ *         Returns {@link PASTEBOARD_ERR_OK} if the operation is successful.
+ *         Returns {@link PASTEBOARD_ERR_INVALID_PARAMETER} if invalid args are detected.
  * @see OH_PasteboardObserver Pasteboard_Notify PASTEBOARD_ErrCode.
  * @since 13
  */
@@ -159,8 +159,8 @@ void OH_Pasteboard_Destroy(OH_Pasteboard* pasteboard);
  * @param observer - Pointer to the observer information, which specifies the callback used to
  * reporting the pasteboard data change. For details, see {@link OH_PasteboardObserver}.
  * @return Returns the status code of the execution. For details, {@link PASTEBOARD_ErrCode}.
- *         Returns {@link ERR_OK} if the operation is successful.
- *         Returns {@link ERR_INVALID_PARAMETER} if invalid args are detected.
+ *         Returns {@link PASTEBOARD_ERR_OK} if the operation is successful.
+ *         Returns {@link PASTEBOARD_ERR_INVALID_PARAMETER} if invalid args are detected.
  * @see OH_Pasteboard OH_PasteboardObserver PASTEBOARD_ErrCode.
  * @since 13
  */
@@ -174,8 +174,8 @@ int OH_Pasteboard_Subscribe(OH_Pasteboard* pasteboard, int type, const OH_Pasteb
  * @param observer - Pointer to the observer information, which specifies the callback used to
  * reporting the pasteboard data change. For details, see {@link OH_PasteboardObserver}.
  * @return Returns the status code of the execution. For details, {@link PASTEBOARD_ErrCode}.
- *         Returns {@link ERR_OK} if the operation is successful.
- *         Returns {@link ERR_INVALID_PARAMETER} if invalid args are detected.
+ *         Returns {@link PASTEBOARD_ERR_OK} if the operation is successful.
+ *         Returns {@link PASTEBOARD_ERR_INVALID_PARAMETER} if invalid args are detected.
  * @see OH_Pasteboard OH_PasteboardObserver PASTEBOARD_ErrCode.
  * @since 13
  */
@@ -200,8 +200,8 @@ bool OH_Pasteboard_IsRemoteData(OH_Pasteboard* pasteboard);
  * @param source Pointer to the source data.
  * @param len Length of the source data.
  * @return Returns the status code of the execution. For details, see {@link PASTEBOARD_ErrCode}.
- *         Returns {@link ERR_OK} if the operation is successful.
- *         Returns {@link ERR_INVALID_PARAMETER} if invalid args are detected.
+ *         Returns {@link PASTEBOARD_ERR_OK} if the operation is successful.
+ *         Returns {@link PASTEBOARD_ERR_INVALID_PARAMETER} if invalid args are detected.
  * @see OH_Pasteboard PASTEBOARD_ErrCode.
  * @since 13
  */
@@ -249,8 +249,8 @@ OH_UdmfData* OH_Pasteboard_GetData(OH_Pasteboard* pasteboard, int* status);
  * @param pasteboard Pointer to the {@link OH_Pasteboard} instance.
  * @param data Pointer to the {@link OH_UdmfData} instance.
  * @return Returns the status code of the execution. For details, see {@link PASTEBOARD_ErrCode}.
- *         Returns {@link ERR_OK} if the operation is successful.
- *         Returns {@link ERR_INVALID_PARAMETER} if invalid args are detected.
+ *         Returns {@link PASTEBOARD_ERR_OK} if the operation is successful.
+ *         Returns {@link PASTEBOARD_ERR_INVALID_PARAMETER} if invalid args are detected.
  * @see OH_Pasteboard OH_UdmfData PASTEBOARD_ErrCode.
  * @since 13
  */
@@ -261,8 +261,8 @@ int OH_Pasteboard_SetData(OH_Pasteboard* pasteboard, OH_UdmfData* data);
  *
  * @param pasteboard Pointer to the {@link OH_Pasteboard} instance.
  * @return Returns the status code of the execution. For details, see {@link PASTEBOARD_ErrCode}.
- *         Returns {@link ERR_OK} if the operation is successful.
- *         Returns {@link ERR_INVALID_PARAMETER} if invalid args are detected.
+ *         Returns {@link PASTEBOARD_ERR_OK} if the operation is successful.
+ *         Returns {@link PASTEBOARD_ERR_INVALID_PARAMETER} if invalid args are detected.
  * @see OH_Pasteboard PASTEBOARD_ErrCode.
  * @since 13
  */

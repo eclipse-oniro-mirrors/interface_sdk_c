@@ -40,6 +40,8 @@
 #ifndef OH_PASTEBOARD_ERR_CODE_H
 #define OH_PASTEBOARD_ERR_CODE_H
 
+#include <filemanagement/file_uri/error_code.h>
+
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -53,27 +55,29 @@ typedef enum PASTEBOARD_ErrCode {
     /**
      * @error The operation is successful.
      */
-    ERR_OK = 0,
+    PASTEBOARD_ERR_OK = ERR_OK,
     /**
      * @error Permission verification failed.
      */
-    ERR_PERMISSION_ERROR = 201,
+    PASTEBOARD_ERR_PERMISSION_ERROR = 201,
     /**
      * @error Invalid parameter is detected.
      */
-    ERR_INVALID_PARAMETER = 401,
+    PASTEBOARD_ERR_INVALID_PARAMETER = 401,
     /**
      * @error The capability is not supported.
      */
-    ERR_DEVICE_NOT_SUPPORTED = 801,
+    PASTEBOARD_ERR_DEVICE_NOT_SUPPORTED = 801,
     /**
      * @error Inner error.
      */
-    ERR_INNER_ERROR = 12900000,
+    PASTEBOARD_ERR_INNER_ERROR = 12900000,
+    ERR_INNER_ERROR = PASTEBOARD_ERR_INNER_ERROR,
     /**
      * @error Another copy is in progress.
      */
-    ERR_BUSY = 12900003,
+    PASTEBOARD_ERR_BUSY = 12900003,
+    ERR_BUSY = PASTEBOARD_ERR_BUSY,
 } PASTEBOARD_ErrCode;
 #ifdef __cplusplus
 };
