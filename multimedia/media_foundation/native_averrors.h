@@ -141,7 +141,7 @@ typedef enum OH_AVErrCode {
      * @cannot find available network resources.
      * @since 14
      */
-    AV_ERR_IO_RESOURE_NOT_FOUND = 5411007,
+    AV_ERR_IO_RESOURCE_NOT_FOUND = 5411007,
     /**
      * @the server failS to verify the client certificate because the certificate is not carried,
      *  the certificate is invalid, or the certificate is expired.
@@ -163,7 +163,7 @@ typedef enum OH_AVErrCode {
      * @unsupported request due to network protocols.
      * @since 14
      */
-    AV_ERR_IO_UNSUPPORTTED_REQUEST = 5411011,
+    AV_ERR_IO_UNSUPPORTED_REQUEST = 5411011,
     /**
      * @file data is incorrect, and no specific data can be provided.
      * @since 14
