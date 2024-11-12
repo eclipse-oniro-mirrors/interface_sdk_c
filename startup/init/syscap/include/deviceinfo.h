@@ -16,6 +16,24 @@
 #ifndef DEVICEINFO_CSDK_H
 #define DEVICEINFO_CSDK_H
 
+/**
+ * @addtogroup DeviceInfo
+ * @{
+ *
+ * @brief Provides APIs for querying terminal device information.
+ *
+ * @since 10
+ */
+
+/**
+ * @file deviceinfo.h
+ * @kit BasicServicesKit
+ * @brief Declares APIs for querying terminal device information.
+ * @library libdeviceinfo_ndk.z.so
+ * @syscap SystemCapability.Startup.SystemInfo
+ * @since 10
+ */
+
 #ifdef __cplusplus
 #if __cplusplus
 extern "C" {
@@ -227,4 +245,5 @@ const char *OH_GetDistributionOSReleaseType(void);
 }
 #endif
 #endif
+/** @} */
 #endif
