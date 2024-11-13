@@ -30,6 +30,9 @@
  *
  * @brief Declares functions related to <b>textLine</b> in the drawing module.
  *
+ * @kit ArkGraphics2D
+ * @library libnative_drawing.so
+ * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @since 14
  * @version 1.0
  */
