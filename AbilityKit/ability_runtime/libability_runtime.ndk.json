@@ -10,5 +10,37 @@
     {
         "first_introduced": "13",
         "name": "OH_AbilityRuntime_ApplicationContextGetBundleName"
+    },
+    {
+        "first_introduced": "16",
+        "name": "OH_AbilityRuntime_ApplicationContextGetTempDir"
+    },
+    {
+        "first_introduced": "16",
+        "name": "OH_AbilityRuntime_ApplicationContextGetResourceDir"
+    },
+    {
+        "first_introduced": "16",
+        "name": "OH_AbilityRuntime_ApplicationContextGetFilesDir"
+    },
+    {
+        "first_introduced": "16",
+        "name": "OH_AbilityRuntime_ApplicationContextGetDatabaseDir"
+    },
+    {
+        "first_introduced": "16",
+        "name": "OH_AbilityRuntime_ApplicationContextGetPreferencesDir"
+    },
+    {
+        "first_introduced": "16",
+        "name": "OH_AbilityRuntime_ApplicationContextGetBundleCodeDir"
+    },
+    {
+        "first_introduced": "16",
+        "name": "OH_AbilityRuntime_ApplicationContextGetDistributedFilesDir"
+    },
+    {
+        "first_introduced": "16",
+        "name": "OH_AbilityRuntime_ApplicationContextGetCloudFileDir"
     }
 ]
