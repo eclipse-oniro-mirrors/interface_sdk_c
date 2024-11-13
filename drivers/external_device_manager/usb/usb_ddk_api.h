@@ -79,7 +79,7 @@ void OH_Usb_Release(void);
  * @since 14
  * @version 1.0
  */
-int32_t OH_Usb_ReleaseSource(void);
+int32_t OH_Usb_ReleaseResource(void);
 
 /**
  * @brief Obtains the USB device descriptor.
