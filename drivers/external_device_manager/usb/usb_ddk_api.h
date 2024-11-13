@@ -71,6 +71,17 @@ int32_t OH_Usb_Init(void);
 void OH_Usb_Release(void);
 
 /**
+ * @brief Releases the DDK.
+ *
+ * @permission ohos.permission.ACCESS_DDK_USB
+ * @return {@link USB_DDK_SUCCESS} the operation is successful.
+ *         {@link USB_DDK_NO_PERM} permission check failed.
+ * @since 14
+ * @version 1.0
+ */
+int32_t OH_Usb_ReleaseSource(void);
+
+/**
  * @brief Obtains the USB device descriptor.
  *
  * @permission ohos.permission.ACCESS_DDK_USB
