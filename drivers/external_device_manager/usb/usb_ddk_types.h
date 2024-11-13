@@ -292,7 +292,7 @@ typedef struct UsbDeviceMemMap {
 /**
  * @brief Defines error codes for USB DDK.
  *
- * @since 11
+ * @since 10
  * @version 1.0
  */
 typedef enum {
