@@ -4337,6 +4337,29 @@ typedef enum {
      * itself. Optional. The value <b>1</b> means to enable the scroll effect, and <b>0</b> means the opposite. \n
      *
      */
+    /**
+     * @brief Defines the effect used at the edges of the component when the boundary of the scrollable content is
+     * reached. This attribute can be set, reset, and obtained as required through APIs.
+     *
+     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
+     * .value[0].i32: effect used at the edges of the component when the boundary of the scrollable content is reached.
+     * The parameter type is {@link ArkUI_EdgeEffect}. The default value is <b>ARKUI_EDGE_EFFECT_NONE</b>.\n
+     * .value[1]?.i32: whether to enable the scroll effect when the component content size is smaller than the component
+     * itself. Optional. The value <b>1</b> means to enable the scroll effect, and <b>0</b> means the opposite.
+     * The default value is <b>1</b>.\n
+     * .value[2]?.i32: direction in which the effect takes effect. The parameter type is {@link ArkUI_EffectEdge}.
+     * The default value is <b>ARKUI_EFFECT_EDGE_START | ARKUI_EFFECT_EDGE_END</b>. \n
+     * \n
+     * Format of the return value {@link ArkUI_AttributeItem}:\n
+     * .value[0].i32: edge for which the effect takes effect when the boundary of the scrollable content is reached.
+     * The parameter type is {@link ArkUI_EffectEdge}. \n
+     * .value[1].i32: whether to enable the scroll effect when the component content size is smaller than the component
+     * itself. The value <b>1</b> means to enable the scroll effect, and <b>0</b> means the opposite.\n
+     * .value[2].i32: edge for which the effect takes effect when the boundary of the scrollable content is reached.
+     * The parameter type is {@link ArkUI_EffectEdge}. \n
+     *
+     * @since 17
+     */
     NODE_SCROLL_EDGE_EFFECT,
     /**
      * @brief Defines whether to support scroll gestures. When this attribute is set to <b>false</b>, scrolling by
