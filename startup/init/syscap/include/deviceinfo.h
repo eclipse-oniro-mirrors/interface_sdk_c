@@ -13,9 +13,6 @@
  * limitations under the License.
  */
 
-#ifndef DEVICEINFO_CSDK_H
-#define DEVICEINFO_CSDK_H
-
 /**
  * @addtogroup DeviceInfo
  * @{
@@ -33,6 +30,9 @@
  * @syscap SystemCapability.Startup.SystemInfo
  * @since 10
  */
+
+#ifndef DEVICEINFO_CSDK_H
+#define DEVICEINFO_CSDK_H
 
 #ifdef __cplusplus
 #if __cplusplus
@@ -245,5 +245,5 @@ const char *OH_GetDistributionOSReleaseType(void);
 }
 #endif
 #endif
-/** @} */
 #endif
+/** @} */

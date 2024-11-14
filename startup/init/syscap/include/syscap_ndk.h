@@ -13,9 +13,6 @@
  * limitations under the License.
  */
 
-#ifndef SYSCAP_NDK_H
-#define SYSCAP_NDK_H
-
 /**
  * @addtogroup SyscapNdk
  * @{
@@ -29,10 +26,13 @@
  * @file deviceinfo.h
  * @kit BasicServicesKit
  * @brief Declares APIs for acquiring the set of system capabilities .
- * @library na
+ * @library NA
  * @syscap SystemCapability.Startup.SystemInfo
  * @since 10
  */
+
+#ifndef SYSCAP_NDK_H
+#define SYSCAP_NDK_H
 
 #include <stdbool.h>
 
@@ -49,5 +49,5 @@ bool canIUse(const char *cap);
 }
 #endif
 #endif
-/** @} */
 #endif
+/** @} */

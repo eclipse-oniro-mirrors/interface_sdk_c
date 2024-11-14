@@ -13,9 +13,6 @@
  * limitations under the License.
  */
 
-#ifndef BASE_STARTUP_INITLITE_NOTIFY_H
-#define BASE_STARTUP_INITLITE_NOTIFY_H
-
 /**
  * @addtogroup InitSync
  * @{
@@ -29,10 +26,13 @@
  * @file init_sync.h
  * @kit BasicServicesKit
  * @brief Declares APIs for notifying events to the Init process.
- * @library na
+ * @library NA
  * @syscap SystemCapability.Startup.SystemInfo
  * @since 10
  */
+
+#ifndef BASE_STARTUP_INITLITE_NOTIFY_H
+#define BASE_STARTUP_INITLITE_NOTIFY_H
 
 #ifdef __cplusplus
 #if __cplusplus
@@ -63,5 +63,6 @@ extern int NotifyInit(unsigned long event);
 }
 #endif
 #endif
-/** @} */
+
 #endif // BASE_STARTUP_INITLITE_NOTIFY_H
+/** @} */
