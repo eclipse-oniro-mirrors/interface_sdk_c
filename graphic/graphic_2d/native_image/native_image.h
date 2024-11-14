@@ -240,15 +240,27 @@ void OH_NativeImage_Destroy(OH_NativeImage** image);
 int32_t OH_NativeImage_GetTransformMatrixV2(OH_NativeImage* image, float matrix[16]);
 
 /**
- * @brief Return the crop and transform matrix of the texture image set by the most recent call to \n
+ * @brief Obtains both the cropping information and transform matrix of the texture image.
+ *
+ * This API is an enhanced version of OH_NativeImage_GetTransformMatrix. In addition to the transform matrix,
+ * it also returns the cropping information of the texture image that was set in the most recent call to
  * OH_NativeImage_UpdateSurfaceImage.
  *
+ * The transform matrix is a 4x4 matrix that combines both the geometric transformation and texture 
+ * coordinates transformation. The first 12 elements represent the geometric transformation (rotation,
+ * scaling, translation), and the last 4 elements contain texture coordinate mapping information.
+ *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeImage
- * @param image Indicates the pointer to a <b>OH_NativeImage</b> instance.
- * @param matrix Indicates the retrieved 4*4 transform matrix .
- * @return Returns an error code, 0 is success, otherwise, failed.
+ * @param image Pointer to an OH_NativeImage instance.
+ * @param matrix A float array of size 16 to store the retrieved 4x4 transform matrix. The matrix includes
+ *              both geometric transformation and texture coordinates transformation.
+ * @return Returns 0 if successful, otherwise returns a negative error code:
+ *         - Returns -1 if any parameter is invalid
+ *         - Returns -2 if the image has not been updated with OH_NativeImage_UpdateSurfaceImage
  * @since 14
  * @version 1.0
+ * @see OH_NativeImage_UpdateSurfaceImage
+ * @see OH_NativeImage_GetTransformMatrix
  */
 int32_t OH_NativeImage_GetBufferMatrix(OH_NativeImage* image, float matrix[16]);
 
