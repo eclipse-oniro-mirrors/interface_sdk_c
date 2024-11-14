@@ -302,7 +302,8 @@ typedef enum {
     USB_DDK_NO_PERM = 201,
     /** @error Invalid parameter. */
     USB_DDK_INVALID_PARAMETER = 401,
-    /** @error Memory-related error, for example, insufficient memory, memory data copy failure, or memory application failure.
+    /** @error Memory-related error, for example, insufficient memory, memory data copy failure,\n
+     * or memory application failure.
      */
     USB_DDK_MEMORY_ERROR = 27400001,
     /** @error Invalid operation. */
