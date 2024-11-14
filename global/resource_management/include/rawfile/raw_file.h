@@ -31,7 +31,7 @@
  * @brief Declares native functions related to raw file.
  *
  * For example, you can use the functions to search for, read, and close raw files.
- * 
+ *
  * @syscap SystemCapability.Global.ResourceManager
  * @library librawfile.z.so
  * @kit LocalizationKit
