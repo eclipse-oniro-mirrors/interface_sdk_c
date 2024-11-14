@@ -240,6 +240,19 @@ void OH_NativeImage_Destroy(OH_NativeImage** image);
 int32_t OH_NativeImage_GetTransformMatrixV2(OH_NativeImage* image, float matrix[16]);
 
 /**
+ * @brief Return the crop and transform matrix of the texture image set by the most recent call to \n
+ * OH_NativeImage_UpdateSurfaceImage.
+ *
+ * @syscap SystemCapability.Graphic.Graphic2D.NativeImage
+ * @param image Indicates the pointer to a <b>OH_NativeImage</b> instance.
+ * @param matrix Indicates the retrieved 4*4 transform matrix .
+ * @return Returns an error code, 0 is success, otherwise, failed.
+ * @since 14
+ * @version 1.0
+ */
+int32_t OH_NativeImage_GetBufferMatrix(OH_NativeImage* image, float matrix[16]);
+
+/**
  * @brief Acquire an <b>OHNativeWindowBuffer</b> through an <b>OH_NativeImage</b> instance for content consumer.\n
  * This method can not be used at the same time with <b>OH_NativeImage_UpdateSurfaceImage</b>.\n
  * This method will create an <b>OHNativeWindowBuffer</b>.\n

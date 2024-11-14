@@ -11,6 +11,7 @@
     { "name": "OH_NativeImage_UnsetOnFrameAvailableListener" },
     { "name": "OH_NativeImage_Destroy" },
     { "name": "OH_NativeImage_GetTransformMatrixV2" },
+    { "name": "OH_NativeImage_GetBufferMatrix" },
     {
         "first_introduced": "12",
         "name": "OH_NativeImage_AcquireNativeWindowBuffer"
