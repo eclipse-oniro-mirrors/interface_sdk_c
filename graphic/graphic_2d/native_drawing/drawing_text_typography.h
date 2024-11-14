@@ -40,14 +40,19 @@
  * @version 1.0
  */
 
-#include "cstddef"
+#ifdef __cplusplus
+#include <cstdint>
+#include <cstddef>
+#else
+#include <stdint.h>
+#include <stddef.h>
+#endif
 #include "drawing_canvas.h"
 #include "drawing_color.h"
 #include "drawing_font.h"
 #include "drawing_text_declaration.h"
 #include "drawing_types.h"
 
-#include "stdint.h"
 
 #ifdef __cplusplus
 extern "C" {
