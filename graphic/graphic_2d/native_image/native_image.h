@@ -240,27 +240,20 @@ void OH_NativeImage_Destroy(OH_NativeImage** image);
 int32_t OH_NativeImage_GetTransformMatrixV2(OH_NativeImage* image, float matrix[16]);
 
 /**
- * @brief Obtains both the cropping information and transform matrix of the texture image.
+ * @brief Obtains the transform matrix that combines with crop rect.
  *
- * This API is an enhanced version of OH_NativeImage_GetTransformMatrix. In addition to the transform matrix,
- * it also returns the cropping information of the texture image that was set in the most recent call to
- * OH_NativeImage_UpdateSurfaceImage.
- *
- * The transform matrix is a 4x4 matrix that combines both the geometric transformation and texture 
- * coordinates transformation. The first 12 elements represent the geometric transformation (rotation,
- * scaling, translation), and the last 4 elements contain texture coordinate mapping information.
+ * This API returns a transform matrix that combines the crop rect.
+ * Note that the matrix will not be updated until <b>OH_NativeImage_UpdateSurfaceImage</b> is called.\n
+ * This interface is a non-thread-safe type interface.\n
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeImage
- * @param image Pointer to an OH_NativeImage instance.
- * @param matrix A float array of size 16 to store the retrieved 4x4 transform matrix. The matrix includes
- *              both geometric transformation and texture coordinates transformation.
- * @return Returns 0 if successful, otherwise returns a negative error code:
- *         - Returns -1 if any parameter is invalid
- *         - Returns -2 if the image has not been updated with OH_NativeImage_UpdateSurfaceImage
+ * @param image Indicates the pointer to a <b>OH_NativeImage</b> instance.
+ * @param matrix Indicates the retrieved 4*4 transform matrix .
+ * @return {@link NATIVE_ERROR_OK} 0 - Success.
+ *     {@link NATIVE_ERROR_INVALID_ARGUMENTS} 40001000 - image is NULL.
+ *     {@link NATIVE_ERROR_MEM_OPERATION_ERROR} 30001000 - Memory operation error, failed to get transform matrix.
  * @since 14
  * @version 1.0
- * @see OH_NativeImage_UpdateSurfaceImage
- * @see OH_NativeImage_GetTransformMatrix
  */
 int32_t OH_NativeImage_GetBufferMatrix(OH_NativeImage* image, float matrix[16]);
 
