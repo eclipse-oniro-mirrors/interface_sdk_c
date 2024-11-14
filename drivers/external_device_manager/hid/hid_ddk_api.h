@@ -83,7 +83,7 @@ int32_t OH_Hid_CreateDevice(Hid_Device *hidDevice, Hid_EventProperties *hidEvent
  *         {@link HID_DDK_INVALID_OPERATION} connect hid ddk service failed or the caller is not the creator of device.
  *         {@link HID_DDK_INVALID_PARAMETER} parameter check failed. Possible causes: 1.deviceId is less than 0;\n
  *         2.length exceeds 7; 3.items is null.
- *         {@link HID_DDK_NULL_PTR} the device does not exit.
+ *         {@link HID_DDK_NULL_PTR} the device does not exist.
  * @since 11
  * @version 1.0
  */
