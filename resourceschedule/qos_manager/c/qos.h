@@ -13,8 +13,6 @@
  * limitations under the License.
  */
 
-#ifndef QOS_H
-#define QOS_H
 /**
  * @addtogroup QoS
  * @{
@@ -39,6 +37,10 @@
  * @syscap SystemCapability.Resourceschedule.QoS.Core
  * @since 12
  */
+
+#ifndef QOS_H
+#define QOS_H
+
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -115,4 +117,5 @@ int OH_QoS_GetThreadQoS(QoS_Level *level);
 #ifdef __cplusplus
 };
 #endif
-#endif //QOS_H
+#endif // QOS_H
+/** @} */
