@@ -589,19 +589,19 @@ typedef struct Hid_EventProperties {
  * @version 1.0
  */
 typedef enum {
-    /** Operation successful */
+    /** @error Operation successful */
     HID_DDK_SUCCESS = 0,
-    /** Permission denied */
+    /** @error Permission denied */
     HID_DDK_NO_PERM = 201,
-    /** Invalid parameter */
+    /** @error Invalid parameter */
     HID_DDK_INVALID_PARAMETER = 401,
-    /** Operation failed */
+    /** @error Operation failed */
     HID_DDK_FAILURE = 27300001,
-    /** Null pointer exception */
+    /** @error Null pointer exception */
     HID_DDK_NULL_PTR = 27300002,
-    /** Invalid operation */
+    /** @error Invalid operation */
     HID_DDK_INVALID_OPERATION = 27300003,
-    /** Timeout */
+    /** @error Timeout */
     HID_DDK_TIMEOUT = 27300004,
 } Hid_DdkErrCode;
 #ifdef __cplusplus

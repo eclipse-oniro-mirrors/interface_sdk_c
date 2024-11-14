@@ -296,20 +296,20 @@ typedef struct UsbDeviceMemMap {
  * @version 1.0
  */
 typedef enum {
-    /** The operation is successful. */
+    /** @error The operation is successful. */
     USB_DDK_SUCCESS = 0,
-    /** Permission denied. */
+    /** @error Permission denied. */
     USB_DDK_NO_PERM = 201,
-    /** Invalid parameter. */
+    /** @error Invalid parameter. */
     USB_DDK_INVALID_PARAMETER = 401,
-    /** Memory-related error, for example, insufficient memory, memory data copy failure, or memory application failure.
+    /** @error Memory-related error, for example, insufficient memory, memory data copy failure, or memory application failure.
      */
     USB_DDK_MEMORY_ERROR = 27400001,
-    /** Invalid operation. */
+    /** @error Invalid operation. */
     USB_DDK_INVALID_OPERATION = 27400002,
-    /** I/O error */
+    /** @error I/O error */
     USB_DDK_IO_FAILED = 27400003,
-    /** Transmission timeout. */
+    /** @error Transmission timeout. */
     USB_DDK_TIMEOUT = 27400004,
 } UsbDdkErrCode;
 #ifdef __cplusplus
