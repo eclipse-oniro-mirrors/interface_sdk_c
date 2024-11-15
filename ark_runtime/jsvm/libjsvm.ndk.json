@@ -734,5 +734,9 @@
     {
         "first_introduced": "12",
         "name": "OH_JSVM_ReleaseCache"
+    },
+    {
+        "first_introduced": "16",
+        "name": "OH_JSVM_PromiseRegisterHandler"
     }
 ]
