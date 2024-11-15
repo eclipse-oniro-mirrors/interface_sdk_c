@@ -538,7 +538,8 @@ OH_Drawing_ErrorCode OH_Drawing_FontGetPathForGlyph(const OH_Drawing_Font* font,
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @param font Indicates the pointer to an <b>OH_Drawing_Font</b> object.
  * @param text Indicates the character storage encoded with text encoding.
- * @param byteLength Indicates the text length in bytes.
+ * @param byteLength Indicates to get the byte length of the corresponding text path. If this byte length is greater
+ * than the byte length of the text string, undefined behavior will occur.
  * @param encoding <b>OH_Drawing_TextEncoding</b> Indicates the text encoding.
  * @param x Indicates x coordinates of the text.
  * @param y Indicates y coordinates of the text.
