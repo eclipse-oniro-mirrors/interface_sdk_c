@@ -208,7 +208,7 @@ typedef enum {
     /**
      * A tag whose value is a bool indicating whether the attributes of an asset are required to be encrypted.
      *
-     * @since 13
+     * @since 14
      */
     ASSET_TAG_REQUIRE_ATTR_ENCRYPTED = ASSET_TYPE_BOOL | 0x47,
 } Asset_Tag;
