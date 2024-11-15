@@ -83,7 +83,13 @@ typedef enum OH_ColumnType {
      *
      * @since 11
      */
-    TYPE_ASSETS
+    TYPE_ASSETS,
+    /**
+     * Indicates the column type is FLOATVECTOR.
+     *
+     * @since 14
+     */
+    TYPE_FLOATVECTOR
 } OH_ColumnType;
 
 /**
@@ -286,6 +292,20 @@ typedef struct OH_Cursor {
      * @since 11
      */
     int (*getAssets)(OH_Cursor *cursor, int32_t columnIndex, Data_Asset **value, uint32_t *length);
+
+    /**
+     * @brief Function pointer. Obtains the value of the requested column as a float vector.
+     *
+     * @param cursor Represents a pointer to an {@link OH_Cursor} instance.
+     * @param columnIndex Indicates the zero-based column index.
+     * @param value This parameter is the output parameter,
+     * and the value of the requested column as a float vector is written to this variable.
+     * @param dimension Indicates the dimension of the value.
+     * @return Returns the status code of the execution.
+     * @see OH_Cursor.
+     * @since 14
+     */
+    int (*getFloatVector)(OH_Cursor *cursor, int32_t columnIndex, float **value, uint32_t *dimension);
 } OH_Cursor;
 
 #ifdef __cplusplus

@@ -528,6 +528,36 @@ int OH_Rdb_ExecuteByTrxId(OH_Rdb_Store *store, int64_t trxId, const char *sql);
 OH_Cursor *OH_Rdb_ExecuteQuery(OH_Rdb_Store *store, const char *sql);
 
 /**
+ * @brief Write operations are performed using the specified transaction represented by the transaction ID
+ *
+ * @param store Represents a pointer to an {@link OH_Rdb_Store} instance.
+ * @param trxId The transaction ID of the specified transaction, must be greater than 0
+ * @param sql Indicates the SQL statement to execute.
+ * @param valuesBucket Indicates the row of data {@link OH_VBucket} to be operated into the table.
+ * @return Returns the status code of the execution.
+ *     {@link RDB_OK} - success.
+ *     {@link RDB_E_INVALID_ARGS} - The error code for common invalid args.
+ *     {@link RDB_E_NOT_SUPPORTED} - The error code for not supprt.
+ * @see OH_Rdb_Store.
+ * @since 14
+ */
+
+int OH_Rdb_ExecuteByTrxIdV2(OH_Rdb_Store *store, int64_t trxId, const char *sql, OH_VBucket *valuesBucket);
+
+/**
+ * @brief Queries data in the database based on an SQL statement.
+ *
+ * @param store Represents a pointer to an {@link OH_Rdb_Store} instance.
+ * @param sql Indicates the SQL statement to execute.
+ * @param valuesBucket Indicates the row of data {@link OH_VBucket} to be operated into the table.
+ * @return If the query is successful, a pointer to the instance of the @link OH_Cursor} structure is returned.
+ *         If Get store failed,sql is nullptr or resultSet is nullptr, nullptr is returned.
+ * @see OH_Rdb_Store.
+ * @since 14
+ */
+OH_Cursor *OH_Rdb_ExecuteQueryV2(OH_Rdb_Store *store, const char *sql, OH_VBucket *valuesBucket);
+
+/**
  * @brief Begins a transaction in EXCLUSIVE mode.
  *
  * @param store Represents a pointer to an {@link OH_Rdb_Store} instance.

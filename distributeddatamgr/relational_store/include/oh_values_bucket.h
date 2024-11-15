@@ -110,6 +110,19 @@ typedef struct OH_VBucket {
     int (*putBlob)(OH_VBucket *bucket, const char *field, const uint8_t *value, uint32_t size);
 
     /**
+     * @brief Put the const float * value to this {@link OH_VBucket} object for the given column name.
+     *
+     * @param bucket Represents a pointer to an {@link OH_VBucket} instance.
+     * @param field Indicates the name of the column.
+     * @param value Indicates the const float * value.
+     * @param dimension Indicates the dimension of value.
+     * @return Returns the status code of the execution.
+     * @see OH_VBucket.
+     * @since 14
+     */
+    int (*putFloatVector)(OH_VBucket *bucket, const char *field, const float *value, uint32_t dimension);
+
+    /**
      * @brief Put NULL to this {@link OH_VBucket} object for the given column name.
      *
      * @param bucket Represents a pointer to an {@link OH_VBucket} instance.
