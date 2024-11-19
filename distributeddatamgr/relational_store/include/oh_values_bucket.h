@@ -52,7 +52,7 @@ extern "C" {
 /**
  * @brief Define the OH_VBucket structure type.
  *
- * @since 13
+ * @since 10
  */
 typedef struct OH_VBucket OH_VBucket;
 

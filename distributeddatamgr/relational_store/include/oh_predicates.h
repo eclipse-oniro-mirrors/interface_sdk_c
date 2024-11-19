@@ -70,7 +70,7 @@ typedef enum OH_OrderType {
 /**
  * @brief Define the OH_Predicates structure type.
  *
- * @since 13
+ * @since 10
  */
 typedef struct OH_Predicates OH_Predicates;
 

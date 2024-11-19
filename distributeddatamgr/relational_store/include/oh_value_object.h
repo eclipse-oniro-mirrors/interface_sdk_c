@@ -51,7 +51,7 @@ extern "C" {
 /**
  * @brief Define the OH_VObject structure type.
  *
- * @since 13
+ * @since 10
  */
 typedef struct OH_VObject OH_VObject;
 
