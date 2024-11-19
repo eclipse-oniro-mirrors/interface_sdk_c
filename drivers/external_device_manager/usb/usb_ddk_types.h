@@ -308,7 +308,7 @@ typedef enum {
     USB_DDK_MEMORY_ERROR = 27400001,
     /** @error Invalid operation. */
     USB_DDK_INVALID_OPERATION = 27400002,
-    /** @error I/O error. */
+    /** @error Device I/O operation failed. */
     USB_DDK_IO_FAILED = 27400003,
     /** @error Transmission timeout. */
     USB_DDK_TIMEOUT = 27400004,
