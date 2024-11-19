@@ -13,9 +13,6 @@
  * limitations under the License.
  */
 
-#ifndef HIVIEWDFX_HIAPPEVENT_EVENT_H
-#define HIVIEWDFX_HIAPPEVENT_EVENT_H
-
 /**
  * @addtogroup HiAppEvent
  * @{
@@ -51,6 +48,9 @@
  * @since 8
  * @version 1.0
  */
+
+#ifndef HIVIEWDFX_HIAPPEVENT_EVENT_H
+#define HIVIEWDFX_HIAPPEVENT_EVENT_H
 
 #ifdef __cplusplus
 extern "C" {

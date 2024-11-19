@@ -13,8 +13,6 @@
  * limitations under the License.
  */
 
-#ifndef HIVIEWDFX_HIAPPEVENT_H
-#define HIVIEWDFX_HIAPPEVENT_H
 /**
  * @addtogroup HiAppEvent
  * @{
@@ -74,6 +72,9 @@
  * @since 8
  * @version 1.0
  */
+
+#ifndef HIVIEWDFX_HIAPPEVENT_H
+#define HIVIEWDFX_HIAPPEVENT_H
 
 #include <stdbool.h>
 #include <stdint.h>
