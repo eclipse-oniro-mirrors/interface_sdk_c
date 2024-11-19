@@ -23,9 +23,6 @@
  * events reported during running. Based on event information, you will be able to analyze the running status of
  * applications.
  *
- * @kit PerformanceAnalysisKit
- * @syscap SystemCapability.HiviewDFX.HiAppEvent
- *
  * @since 8
  * @version 1.0
  */
@@ -69,6 +66,9 @@
  *     OH_HiAppEvent_DestroyParamList(list);
  * </pre>
  *
+ * @kit PerformanceAnalysisKit
+ * @library libhiappevent_ndk.z.so
+ * @syscap SystemCapability.HiviewDFX.HiAppEvent
  * @since 8
  * @version 1.0
  */
