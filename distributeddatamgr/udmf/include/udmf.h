@@ -206,7 +206,7 @@ OH_UdmfRecordProvider* OH_UdmfRecordProvider_Create();
 /**
  * @brief Destroy an {@link OH_UdmfRecordProvider} instance.
  *
- * @param subscriber Pointer to the {@link OH_UdmfRecordProvider} instance to destroy.
+ * @param provider Pointer to the {@link OH_UdmfRecordProvider} instance to destroy.
  * @return Returns the status code of the execution. For details, see {@link Udmf_ErrCode}.
  *         Returns {@link UDMF_E_OK} if the operation is successful.
  *         Returns {@link UDMF_E_INVALID_PARAM} if invalid args are detected.
