@@ -687,4 +687,6 @@ void OH_HiTrace_CountTrace(const char *name, int64_t count);
 #ifdef __cplusplus
 }
 #endif
+/** @} */
+
 #endif // HIVIEWDFX_HITRACE_H
