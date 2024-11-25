@@ -39,7 +39,12 @@
 #ifndef OH_VALUES_BUCKET_H
 #define OH_VALUES_BUCKET_H
 
+#ifdef __cplusplus
 #include <cstdint>
+#else
+#include <stdint.h>
+#endif
+
 #include "database/data/data_asset.h"
 #ifdef __cplusplus
 extern "C" {
@@ -50,7 +55,15 @@ extern "C" {
  *
  * @since 10
  */
-typedef struct OH_VBucket {
+typedef struct OH_VBucket OH_VBucket;
+
+
+/**
+ * @brief Define the OH_VBucket structure type.
+ *
+ * @since 10
+ */
+struct OH_VBucket {
     /**
      * The id used to uniquely identify the OH_VBucket struct.
      */
@@ -140,7 +153,7 @@ typedef struct OH_VBucket {
      * @since 10
      */
     int (*destroy)(OH_VBucket *bucket);
-} OH_VBucket;
+};
 
 /**
  * @brief Put the {@link Data_Asset} * value to this {@link OH_VBucket} object for the given column name.
