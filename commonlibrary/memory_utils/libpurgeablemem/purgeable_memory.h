@@ -15,6 +15,7 @@
 
 /**
  * @addtogroup memory
+ * @{
  *
  * @brief provides memory management capabilities
  *
@@ -32,7 +33,7 @@
  * provides features include create, begin read ,end read, begin write, end write, rebuild, and so on.
  * when using, it is necessary to link libpurgeable_memory_ndk.z.so
  *
- * @library libpurgeablemem.so
+ * @library libpurgeablemem.z.so
  * @syscap SystemCapability.Kernel.Memory
  * @kit KernelEnhanceKit
  * @since 10
@@ -207,3 +208,4 @@ bool OH_PurgeableMemory_AppendModify(OH_PurgeableMemory *purgObj,
 }
 #endif /* End of #ifdef __cplusplus */
 #endif /* OHOS_UTILS_MEMORY_LIBPURGEABLEMEM_C_INCLUDE_PURGEABLE_MEMORY_H */
+/** @} */

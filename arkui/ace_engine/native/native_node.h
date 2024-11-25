@@ -1793,6 +1793,16 @@ typedef enum {
     NODE_TRANSITION = 94,
 
     /**
+     * @brief Defines the component ID.
+     * This attribute can be obtained through APIs.
+     *
+     * Format of the {@link ArkUI_AttributeItem} parameter for obtaining the attribute:\n
+     * .value[0].i32: component ID. \n
+     *
+     */
+    NODE_UNIQUE_ID = 95,
+
+    /**
      * @brief Set the current component system focus box style.
      *
      * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute: \n
@@ -1806,16 +1816,6 @@ typedef enum {
      */
     NODE_FOCUS_BOX = 96,
 
-    /**
-     * @brief Defines the component ID.
-     * This attribute can be obtained through APIs.
-     *
-     * Format of the {@link ArkUI_AttributeItem} parameter for obtaining the attribute:\n
-     * .value[0].i32: component ID. \n
-     *
-     */
-    NODE_UNIQUE_ID = 95,
-    
     /**
      * @brief Defines the moving distance limit for the component-bound tap gesture.
      * This attribute can be set as required through APIs.

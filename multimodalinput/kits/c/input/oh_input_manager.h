@@ -231,7 +231,7 @@ typedef struct Input_AxisEvent Input_AxisEvent;
 /**
  * @brief Defines the hot key structure.
  *
- * @since 13
+ * @since 14
  */
 typedef struct Input_Hotkey Input_Hotkey;
 
@@ -255,19 +255,19 @@ typedef enum Input_Result {
     INPUT_REPEAT_INTERCEPTOR = 4200001,
     /**
      * @error Already occupied by the system
-     * @since 13
+     * @since 14
      */
     INPUT_OCCUPIED_BY_SYSTEM = 4200002,
     /**
      * @error Already occupied by the other
-     * @since 13
+     * @since 14
      */
     INPUT_OCCUPIED_BY_OTHER = 4200003,
 } Input_Result;
 
 /**
  * @brief Callback used to return shortcut key events.
- * @since 13
+ * @since 14
  */
 typedef void (*Input_HotkeyCallback)(Input_Hotkey* hotkey);
 
@@ -1285,7 +1285,7 @@ Input_Result OH_Input_RemoveInputEventInterceptor(void);
  *         {@Link INPUT_SERVICE_EXCEPTION} Failed to get the interval because the service is exception.\n
  *         {@Link INPUT_PARAMETER_ERROR} The timeInterval is NULL.\n
  * @syscap SystemCapability.MultimodalInput.Input.Core
- * @since 13
+ * @since 14
  */
 Input_Result OH_Input_GetIntervalSinceLastInput(int64_t *timeInterval);
 
@@ -1295,7 +1295,7 @@ Input_Result OH_Input_GetIntervalSinceLastInput(int64_t *timeInterval);
  * @return Returns an {@Link Input_Hotkey} pointer object if the operation is successful. Otherwise, a null pointer is
  * returned. The possible cause is memory allocation failure.
  * @syscap SystemCapability.MultimodalInput.Input.Core
- * @since 13
+ * @since 14
  */
 Input_Hotkey *OH_Input_CreateHotkey(void);
 
@@ -1304,7 +1304,7 @@ Input_Hotkey *OH_Input_CreateHotkey(void);
  *
  * @param hotkey Hot key object.
  * @syscap SystemCapability.MultimodalInput.Input.Core
- * @since 13
+ * @since 14
  */
 void OH_Input_DestroyHotkey(Input_Hotkey **hotkey);
 
@@ -1315,7 +1315,7 @@ void OH_Input_DestroyHotkey(Input_Hotkey **hotkey);
  * @param preKeys List of modifier keys.
  * @param size Number of modifier keys. One or two modifier keys are supported.
  * @syscap SystemCapability.MultimodalInput.Input.Core
- * @since 13
+ * @since 14
  */
 void OH_Input_SetPreKeys(Input_Hotkey *hotkey, int32_t *preKeys, int32_t size);
 
@@ -1330,7 +1330,7 @@ void OH_Input_SetPreKeys(Input_Hotkey *hotkey, int32_t *preKeys, int32_t size);
  *         {@link INPUT_PARAMETER_ERROR} The hotkey is NULL or the pressedKeys is NULL or the pressedKeyCount
  *         is NULL.\n
  * @syscap SystemCapability.MultimodalInput.Input.Core
- * @since 13
+ * @since 14
  */
 Input_Result OH_Input_GetPreKeys(const Input_Hotkey *hotkey, int32_t **preKeys, int32_t *preKeyCount);
 
@@ -1340,7 +1340,7 @@ Input_Result OH_Input_GetPreKeys(const Input_Hotkey *hotkey, int32_t **preKeys, 
  * @param hotkey Hotkey key object.
  * @param finalKey Modified key. Only one modified key is supported.
  * @syscap SystemCapability.MultimodalInput.Input.Core
- * @since 13
+ * @since 14
  */
 void OH_Input_SetFinalKey(Input_Hotkey *hotkey, int32_t finalKey);
 
@@ -1353,7 +1353,7 @@ void OH_Input_SetFinalKey(Input_Hotkey *hotkey, int32_t finalKey);
  *         {@link INPUT_SUCCESS} if the operation is successful;\n
  *         {@link INPUT_PARAMETER_ERROR} The hotkey is NULL or the finalKeyCode is NULL.\n
  * @syscap SystemCapability.MultimodalInput.Input.Core
- * @since 13
+ * @since 14
  */
 Input_Result OH_Input_GetFinalKey(const Input_Hotkey *hotkey, int32_t *finalKeyCode);
 
@@ -1366,7 +1366,7 @@ Input_Result OH_Input_GetFinalKey(const Input_Hotkey *hotkey, int32_t *finalKeyC
  * operation fails, a null pointer is returned. The possible cause is memory allocation failure or count is not equal
  * to the number of system hotkeys.
  * @syscap SystemCapability.MultimodalInput.Input.Core
- * @since 13
+ * @since 14
  */
 Input_Hotkey **OH_Input_CreateAllSystemHotkeys(int32_t count);
 
@@ -1377,7 +1377,7 @@ Input_Hotkey **OH_Input_CreateAllSystemHotkeys(int32_t count);
  * {@Link OH_Input_CreateAllSystemHotkeys} method.
  * @param count Count of the array to be destroyed, which must be the same as the number of system shortcut keys.
  * @syscap SystemCapability.MultimodalInput.Input.Core
- * @since 13
+ * @since 14
  */
 void OH_Input_DestroyAllSystemHotkeys(Input_Hotkey **hotkeys, int32_t count);
 
@@ -1392,7 +1392,7 @@ void OH_Input_DestroyAllSystemHotkeys(Input_Hotkey **hotkeys, int32_t count);
  *         {@link INPUT_PARAMETER_ERROR} The hotkey or count is NULL, or the value of count does not match the number
  *         of system shortcut keys supported by the system.
  * @syscap SystemCapability.MultimodalInput.Input.Core
- * @since 13
+ * @since 14
  */
 Input_Result OH_Input_GetAllSystemHotkeys(Input_Hotkey **hotkey, int32_t *count);
 
@@ -1403,7 +1403,7 @@ Input_Result OH_Input_GetAllSystemHotkeys(Input_Hotkey **hotkey, int32_t *count)
  * @param isRepeat Whether to report repeated key events.
  * The value <b>true</b> means to report repeated key events, and the value <b>false</b> means the opposite.
  * @syscap SystemCapability.MultimodalInput.Input.Core
- * @since 13
+ * @since 14
  */
 void OH_Input_SetRepeat(Input_Hotkey* hotkey, bool isRepeat);
 
@@ -1416,7 +1416,7 @@ void OH_Input_SetRepeat(Input_Hotkey* hotkey, bool isRepeat);
  *         {@link INPUT_SUCCESS} if the operation is successful;\n
  *         {@link INPUT_PARAMETER_ERROR} otherwise.\n
  * @syscap SystemCapability.MultimodalInput.Input.Core
- * @since 13
+ * @since 14
  */
 Input_Result OH_Input_GetRepeat(const Input_Hotkey* hotkey, bool *isRepeat);
 
@@ -1432,7 +1432,7 @@ Input_Result OH_Input_GetRepeat(const Input_Hotkey* hotkey, bool *isRepeat);
  *         GetAllSystemHotkeys} interface to query all system shortcut keys.\n
  *         {@Link INPUT_OCCUPIED_BY_OTHER} The hotkey has been subscribed to by another.\n
  * @syscap SystemCapability.MultimodalInput.Input.Core
- * @since 13
+ * @since 14
  */
 Input_Result OH_Input_AddHotkeyMonitor(const Input_Hotkey* hotkey, Input_HotkeyCallback callback);
 
@@ -1445,7 +1445,7 @@ Input_Result OH_Input_AddHotkeyMonitor(const Input_Hotkey* hotkey, Input_HotkeyC
  *         {@link INPUT_SUCCESS} if the operation is successful;\n
  *         {@link INPUT_PARAMETER_ERROR} if hotkey or callback is NULL;\n
  * @syscap SystemCapability.MultimodalInput.Input.Core
- * @since 13
+ * @since 14
  */
 Input_Result OH_Input_RemoveHotkeyMonitor(const Input_Hotkey* hotkey, Input_HotkeyCallback callback);
 
