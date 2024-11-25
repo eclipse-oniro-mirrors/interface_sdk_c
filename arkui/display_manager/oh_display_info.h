@@ -13,9 +13,6 @@
  * limitations under the License.
  */
 
-#ifndef OH_NATIVE_DISPLAY_INFO_H
-#define OH_NATIVE_DISPLAY_INFO_H
-
 /**
  * @addtogroup OH_DisplayInfo
  * @{
@@ -38,6 +35,11 @@
  * @since 12
  * @version 1.0
  */
+
+
+#ifndef OH_NATIVE_DISPLAY_INFO_H
+#define OH_NATIVE_DISPLAY_INFO_H
+
 
 #include "stdint.h"
 
