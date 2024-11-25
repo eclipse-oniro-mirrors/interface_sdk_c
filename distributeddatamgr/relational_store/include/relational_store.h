@@ -13,9 +13,6 @@
  * limitations under the License.
  */
 
-#ifndef RELATIONAL_STORE_H
-#define RELATIONAL_STORE_H
-
 /**
  * @addtogroup RDB
  * @{
@@ -25,7 +22,6 @@
  * To satisfy different needs in complicated scenarios, the RDB store offers a series of APIs for performing operations
  * such as adding, deleting, modifying, and querying data, and supports direct execution of SQL statements.
  *
- * @syscap SystemCapability.DistributedDataManager.RelationalStore.Core
  * @since 10
  */
 
@@ -35,8 +31,13 @@
  * @brief Provides database related functions and enumerations.
  *
  * @kit ArkData
+ * @library libnative_rdb_ndk.so
+ * @syscap SystemCapability.DistributedDataManager.RelationalStore.Core
  * @since 10
  */
+
+#ifndef RELATIONAL_STORE_H
+#define RELATIONAL_STORE_H
 
 #include "database/rdb/oh_cursor.h"
 #include "database/rdb/oh_predicates.h"
@@ -1249,5 +1250,7 @@ OH_Cursor *OH_Rdb_QueryLockedRow(
 #ifdef __cplusplus
 };
 #endif
+
+/** @} */
 
 #endif // RELATIONAL_STORE_H

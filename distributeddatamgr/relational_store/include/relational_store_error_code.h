@@ -13,9 +13,6 @@
  * limitations under the License.
  */
 
-#ifndef RELATIONAL_STORE_ERRNO_CODE_H
-#define RELATIONAL_STORE_ERRNO_CODE_H
-
 /**
  * @addtogroup RDB
  * @{
@@ -25,10 +22,8 @@
  * To satisfy different needs in complicated scenarios, the RDB store offers a series of APIs for performing operations
  * such as adding, deleting, modifying, and querying data, and supports direct execution of SQL statements.
  *
- * @syscap SystemCapability.DistributedDataManager.RelationalStore.Core
  * @since 10
  */
-
 
 /**
  * @file relational_store_error_code.h
@@ -36,8 +31,13 @@
  * @brief Declaration error code information.
  *
  * @kit ArkData
+ * @library libnative_rdb_ndk.so
+ * @syscap SystemCapability.DistributedDataManager.RelationalStore.Core
  * @since 10
  */
+
+#ifndef RELATIONAL_STORE_ERRNO_CODE_H
+#define RELATIONAL_STORE_ERRNO_CODE_H
 
 #ifdef __cplusplus
 extern "C" {
@@ -313,5 +313,7 @@ typedef enum OH_Rdb_ErrCode {
 #ifdef __cplusplus
 };
 #endif
+
+/** @} */
 
 #endif // RELATIONAL_STORE_ERRNO_CODE_H
