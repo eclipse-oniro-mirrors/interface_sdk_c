@@ -539,3 +539,4 @@ typedef struct {
 }
 #endif
 #endif // ARKWEB_TYPE_H
+/** @} */
