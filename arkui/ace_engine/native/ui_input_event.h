@@ -731,14 +731,17 @@ int32_t OH_ArkUI_UIInputEvent_GetDeviceId(const ArkUI_UIInputEvent* event);
  * is not supported.
  *
  * @param event Pointer to an <b>ArkUI_UIInputEvent</b> object.
- * @param pressedKeyCodes Indicates the list of the Modifier keys.You need to create a int array first.
- * @param length Indicates the total length of the list array.
+ * @param pressedKeyCodes Array of all keys that are pressed. You need to allocate the memory space.
+ * @param length Length of the passed pressedKeyCodes array (when used as an input parameter);
+ *               number of the keys pressed (when used as an output parameter).
  * @return Returns the result code.
  *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
  *         Returns {@link ARKUI_ERROR_CODE_BUFFER_SIZE_ERROR} if the giving buffer is not enough.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
  * @since 14
  */
-int32_t OH_ArkUI_UIInputEvent_GetPressedKeys(const ArkUI_UIInputEvent* event, int32_t* pressedKeyCodes, int32_t length);
+int32_t OH_ArkUI_UIInputEvent_GetPressedKeys(
+    const ArkUI_UIInputEvent* event, int32_t* pressedKeyCodes, int32_t* length);
 
 #ifdef __cplusplus
 };
