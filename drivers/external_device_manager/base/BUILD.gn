@@ -14,7 +14,7 @@
 import("//build/ohos.gni")
 
 ohos_ndk_headers("ddk_header") {
-  dest_dir = "$ndk_headers_out_dir/base/"
+  dest_dir = "$ndk_headers_out_dir/ddk/"
   sources = [
     "ddk_api.h",
     "ddk_types.h",
