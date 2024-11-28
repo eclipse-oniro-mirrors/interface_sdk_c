@@ -4534,6 +4534,9 @@ typedef enum {
      *                The default unit is vp. \n
      * .value[1].f32: total height of all child components when fully expanded in the scrollable component.
      *                The default unit is vp. \n
+     * When <b>NODE_PADDING</b>, <b>NODE_MARGIN</b>, or <b>NODE_BORDER_WIDTH</b> is set, the values are rounded to the
+     * nearest pixel when being converted from vp to px.
+     * The returned values are calculated based on these rounded pixel values. \n
      *
      * @since 14
      */
