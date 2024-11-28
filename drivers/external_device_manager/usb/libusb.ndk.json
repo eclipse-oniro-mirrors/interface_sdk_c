@@ -6,6 +6,9 @@
         "name": "OH_Usb_Release"
     },
     {
+        "name": "OH_Usb_ReleaseResource"
+    },
+    {
         "name": "OH_Usb_GetDeviceDescriptor"
     },
     {
