@@ -50,6 +50,8 @@ typedef struct DRM_MediaKeySystemInfo DRM_MediaKeySystemInfo;
 
 /**
 * @brief Callback for getting media key system information from media source.
+* @deprecated since 14
+* @useinstead Demuxer_MediaKeySystemInfoCallback
 * @since 11
 * @version 1.0
 */
@@ -219,6 +221,8 @@ OH_AVErrCode OH_AVDemuxer_SetDemuxerMediaKeySystemInfoCallback(OH_AVDemuxer *dem
  *         {@link AV_ERR_OPERATE_NOT_PERMIT} 2 - If the demuxer engine is not inited or init failed.
  *         {@link AV_ERR_INVALID_VAL} 3 - If the demuxer instance is nullptr or invalid
  *          or the mediaKeySystemInfo is nullptr.
+ * @deprecated since 14
+ * @useinstead OH_AVDemuxer_SetDemuxerMediaKeySystemInfoCallback
  * @since 11
  */
 OH_AVErrCode OH_AVDemuxer_GetMediaKeySystemInfo(OH_AVDemuxer *demuxer, DRM_MediaKeySystemInfo *mediaKeySystemInfo);
