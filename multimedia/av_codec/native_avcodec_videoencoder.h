@@ -433,17 +433,17 @@ OH_AVErrCode OH_VideoEncoder_IsValid(OH_AVCodec *codec, bool *isValid);
  * @since 9
  */
 typedef enum OH_VideoEncodeBitrateMode {
-    /* constant bit rate mode.
+    /** constant bit rate mode.
      * @deprecated since 14
      * @useinstead BITRATE_MODE_CBR
      */
     CBR = 0,
-    /* variable bit rate mode.
+    /** variable bit rate mode.
      * @deprecated since 14
      * @useinstead BITRATE_MODE_VBR
      */
     VBR = 1,
-    /* constant quality mode.
+    /** constant quality mode.
      * @deprecated since 14
      * @useinstead BITRATE_MODE_CQ
      */
