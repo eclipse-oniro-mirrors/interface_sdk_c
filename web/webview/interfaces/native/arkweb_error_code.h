@@ -56,3 +56,4 @@ ARKWEB_INVALID_COOKIE_VALUE = 17100104,
 } ArkWeb_ErrorCode;
 
 #endif // ARKWEB_ERROR_CODE_H
+/** @} */
