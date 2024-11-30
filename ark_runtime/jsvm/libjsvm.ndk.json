@@ -802,5 +802,13 @@
     {
         "first_introduced": "16",
         "name": "OH_JSVM_SetMicrotaskPolicy"
+    },
+    {
+        "first_introduced": "16",
+        "name": "OH_JSVM_TraceStart"
+    },
+    {
+        "first_introduced": "16",
+        "name": "OH_JSVM_TraceStop"
     }
 ]
