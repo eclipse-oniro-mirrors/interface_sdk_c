@@ -13,8 +13,6 @@
  * limitations under the License.
  */
 
-#ifndef FOUNDATION_ACE_NAPI_INTERFACES_KITS_NAPI_NATIVE_API_H
-#define FOUNDATION_ACE_NAPI_INTERFACES_KITS_NAPI_NATIVE_API_H
 /**
  * @addtogroup ArkTS_Napi_NativeModule
  * @{
@@ -36,6 +34,9 @@
  * @since 10
  * @version 1.0
  */
+
+#ifndef FOUNDATION_ACE_NAPI_INTERFACES_KITS_NAPI_NATIVE_API_H
+#define FOUNDATION_ACE_NAPI_INTERFACES_KITS_NAPI_NATIVE_API_H
 
 #ifndef NAPI_VERSION
 #define NAPI_VERSION 8
@@ -715,3 +716,4 @@ NAPI_EXTERN napi_status napi_create_buffer(napi_env env,
 #endif
 
 #endif /* FOUNDATION_ACE_NAPI_INTERFACES_KITS_NAPI_NATIVE_API_H */
+/** @} */
