@@ -734,5 +734,69 @@
     {
         "first_introduced": "12",
         "name": "OH_JSVM_ReleaseCache"
+    },
+    {
+        "first_introduced": "16",
+        "name": "OH_JSVM_IsBigIntObject"
+    },
+    {
+        "first_introduced": "16",
+        "name": "OH_JSVM_IsBooleanObject"
+    },
+    {
+        "first_introduced": "16",
+        "name": "OH_JSVM_IsStringObject"
+    },
+    {
+        "first_introduced": "16",
+        "name": "OH_JSVM_IsNumberObject"
+    },
+    {
+        "first_introduced": "16",
+        "name": "OH_JSVM_IsSymbolObject"
+    },
+    {
+        "first_introduced": "16",
+        "name": "OH_JSVM_GetSymbolAsyncIterator"
+    },
+    {
+        "first_introduced": "16",
+        "name": "OH_JSVM_GetSymbolHasInstance"
+    },
+    {
+        "first_introduced": "16",
+        "name": "OH_JSVM_GetSymbolIsConcatSpreadable"
+    },
+    {
+        "first_introduced": "16",
+        "name": "OH_JSVM_GetSymbolMatch"
+    },
+    {
+        "first_introduced": "16",
+        "name": "OH_JSVM_GetSymbolReplace"
+    },
+    {
+        "first_introduced": "16",
+        "name": "OH_JSVM_GetSymbolSearch"
+    },
+    {
+        "first_introduced": "16",
+        "name": "OH_JSVM_GetSymbolSplit"
+    },
+    {
+        "first_introduced": "16",
+        "name": "OH_JSVM_GetSymbolToPrimitive"
+    },
+    {
+        "first_introduced": "16",
+        "name": "OH_JSVM_GetSymbolUnscopables"
+    },
+    {
+        "first_introduced": "16",
+        "name": "OH_JSVM_GetSymbolToStringTag"
+    },
+    {
+        "first_introduced": "16",
+        "name": "OH_JSVM_GetSymbolIterator"
     }
 ]
