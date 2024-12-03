@@ -13,9 +13,6 @@
  * limitations under the License.
  */
 
-#ifndef C_INCLUDE_DRAWING_PIXEL_MAP_H
-#define C_INCLUDE_DRAWING_PIXEL_MAP_H
-
 /**
  * @addtogroup Drawing
  * @{
@@ -39,6 +36,9 @@
  * @since 12
  * @version 1.0
  */
+
+#ifndef C_INCLUDE_DRAWING_PIXEL_MAP_H
+#define C_INCLUDE_DRAWING_PIXEL_MAP_H
 
 #include "drawing_types.h"
 
@@ -64,36 +64,36 @@ typedef struct OH_PixelmapNative OH_PixelmapNative;
  * @brief Gets an <b>OH_Drawing_PixelMap</b> object.
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @param NativePixelMap_ Indicates a pointer to an native pixelmap supported by image framework.
+ * @param nativePixelMap Indicates a pointer to an native pixelmap supported by image framework.
  * @return Returns the pointer to the <b>OH_Drawing_PixelMap</b> object.
  * @since 12
  * @version 1.0
  */
-OH_Drawing_PixelMap* OH_Drawing_PixelMapGetFromNativePixelMap(NativePixelMap_*);
+OH_Drawing_PixelMap* OH_Drawing_PixelMapGetFromNativePixelMap(NativePixelMap_* nativePixelMap);
 
 /**
  * @brief Gets an <b>OH_Drawing_PixelMap</b> object.
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @param OH_PixelmapNative Indicates a pointer to the <b>OH_PixelmapNative</b> object supported by image framework.
+ * @param pixelmapNative Indicates a pointer to the <b>OH_PixelmapNative</b> object supported by image framework.
  * @return Returns the pointer to the <b>OH_Drawing_PixelMap</b> object.
  *         If nullptr is returned, the get operation fails.
  *         The possible cause of the failure is that a nullptr is passed.
  * @since 12
  * @version 1.0
  */
-OH_Drawing_PixelMap* OH_Drawing_PixelMapGetFromOhPixelMapNative(OH_PixelmapNative*);
+OH_Drawing_PixelMap* OH_Drawing_PixelMapGetFromOhPixelMapNative(OH_PixelmapNative* pixelmapNative);
 
 /**
  * @brief Dissolves the relationship between <b>OH_Drawing_PixelMap</b> object and <b>NativePixelMap_</b> or
           <b>OH_PixelmapNative</b> which is build by 'GetFrom' function.
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @param OH_Drawing_PixelMap Indicates a pointer to the <b>OH_Drawing_PixelMap</b>.
+ * @param pixelMap Indicates a pointer to the <b>OH_Drawing_PixelMap</b>.
  * @since 12
  * @version 1.0
  */
-void OH_Drawing_PixelMapDissolve(OH_Drawing_PixelMap*);
+void OH_Drawing_PixelMapDissolve(OH_Drawing_PixelMap* pixelMap);
 
 #ifdef __cplusplus
 }
