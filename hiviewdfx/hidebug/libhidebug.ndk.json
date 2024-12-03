@@ -36,7 +36,7 @@
         "name": "OH_HiDebug_StopAppTraceCapture"
     },
     {
-      "first_introduced": "13",
+      "first_introduced": "14",
       "name": "OH_HiDebug_GetGraphicsMemory"
     }
 ]
