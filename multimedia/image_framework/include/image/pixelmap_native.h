@@ -739,6 +739,42 @@ Image_ErrorCode OH_PixelmapNative_ScaleWithAntiAliasing(OH_PixelmapNative *pixel
     OH_PixelmapNative_AntiAliasingLevel level);
 
 /**
+ * @brief Create a scaled pixelmap based on the source pixelmap and the input width and height.
+ *
+ * @param srcpixelmap The source native pixelmap.
+ * @param dstpixelmap The destination native pixelmap for create.
+ * @param scaleX Scaling ratio of the width.
+ * @param scaleY Scaling ratio of the height.
+ * @return Function result code:
+ *         {@link IMAGE_SUCCESS} If the execution is successful.
+ *         {@link IMAGE_BAD_PARAMETER} If the param is nullptr or invalid.
+ * @see OH_PixelmapNative
+ * @since 16
+ */
+Image_ErrorCode OH_PixelmapNative_CreateScaledPixelmap(OH_PixelmapNative *srcpixelmap, OH_PixelmapNative **dstpixelmap,
+    float scaleX, float scaleY);
+
+/**
+ * @brief Create a scaled pixelmap based on the source pixelmap and the input width and height with anti-aliasing.
+ *
+ * @param srcpixelmap The source native pixelmap.
+ * @param dstpixelmap The destination native pixelmap for create.
+ * @param scaleX Scaling ratio of the width.
+ * @param scaleY Scaling ratio of the height.
+ * @param level The anti-aliasing algorithm to be used.
+ * @return Function result code:
+ *         {@link IMAGE_SUCCESS} If the execution is successful.
+ *         {@link IMAGE_BAD_PARAMETER} If the param is nullptr or invalid.
+ *         {@link IMAGE_TOO_LARGE} If image is too large.
+ *         {@link IMAGE_ALLOC_FAILED} If device has no memory.
+ *         {@link IMAGE_UNKNOWN_ERROR} Inner unknown error, maybe source pixelmap is released.
+ * @see OH_PixelmapNative
+ * @since 16
+ */
+Image_ErrorCode OH_PixelmapNative_CreateScaledPixelmapWithAntiAliasing(OH_PixelmapNative *srcpixelmap,
+    OH_PixelmapNative **dstpixelmap, float scaleX, float scaleY, OH_PixelmapNative_AntiAliasingLevel level);
+
+/**
  * @brief Translates this image based on the input coordinates.
  *
  * @param pixelmap The Pixelmap pointer will be operated.

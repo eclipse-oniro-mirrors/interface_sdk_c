@@ -124,6 +124,14 @@
         "name": "OH_PixelmapNative_ScaleWithAntiAliasing"
     },
     {
+        "first_introduced": "16",
+        "name": "OH_PixelmapNative_CreateScaledPixelmap"
+    },
+    {
+        "first_introduced": "16",
+        "name": "OH_PixelmapNative_CreateScaledPixelmapWithAntiAliasing"
+    },
+    {
         "first_introduced": "12",
         "name": "OH_PixelmapNative_Translate"
     },
