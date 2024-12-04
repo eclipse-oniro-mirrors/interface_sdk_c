@@ -129,7 +129,8 @@ NAPI_EXTERN napi_status napi_load_module(napi_env env,
  *
  * @param env Current running virtual machine context.
  * @param data Data item to bind with the 'env'.
- * @param finalize_cb Optional native callback that will be triggered when 'env' is destroyed or this interface repeatedly calls.
+ * @param finalize_cb Optional native callback that will be triggered when 'env' is destroyed or this interface
+ *                    repeatedly calls.
  * @param finalize_hint Optional contextual hint that is passed to the finalize callback.
  *
  * @return Returns the function execution status.
@@ -224,7 +225,8 @@ NAPI_EXTERN napi_status napi_async_init(napi_env env,
                                         napi_async_context* result);
 
 /**
- * @brief Destroys the previously created asynchronous context. The capabilities related to 'async_hook' are not supported currently.
+ * @brief Destroys the previously created asynchronous context. The capabilities related to 'async_hook' are not
+ *        supported currently.
  *
  * @param env Current running virtual machine context.
  * @param async_context The async context to be destroyed.
@@ -390,16 +392,16 @@ NAPI_EXTERN napi_status napi_destroy_ark_runtime(napi_env* env);
 /**
  * @brief Defines a sendable class.
  *
- * @param env: The environment that the API is invoked under.
- * @param utf8name: Name of the ArkTS constructor function.
- * @param length: The length of the utf8name in bytes, or NAPI_AUTO_LENGTH if it is null-terminated.
- * @param constructor: Callback function that handles constructing instances of the class.
- * @param data: Optional data to be passed to the constructor callback as the data property of the callback info.
- * @param property_count: Number of items in the properties array argument.
- * @param properties: Array of property descriptors describing static and instance data properties, accessors, and
+ * @param env The environment that the API is invoked under.
+ * @param utf8name Name of the ArkTS constructor function.
+ * @param length The length of the utf8name in bytes, or NAPI_AUTO_LENGTH if it is null-terminated.
+ * @param constructor Callback function that handles constructing instances of the class.
+ * @param data Optional data to be passed to the constructor callback as the data property of the callback info.
+ * @param property_count Number of items in the properties array argument.
+ * @param properties Array of property descriptors describing static and instance data properties, accessors, and
  *                    methods on the class. See napi_property_descriptor.
- * @param parent: A napi_value representing the Superclass.
- * @param result: A napi_value representing the constructor function for the class.
+ * @param parent A napi_value representing the Superclass.
+ * @param result A napi_value representing the constructor function for the class.
  *
  * @return Return the function execution status.
  * @since 12
@@ -439,7 +441,7 @@ NAPI_EXTERN napi_status napi_is_sendable(napi_env env,
  * @return Return the function execution status.
  * @since 12
  */
-NAPI_EXTERN napi_status napi_create_sendable_object_with_properties(napi_env env, 
+NAPI_EXTERN napi_status napi_create_sendable_object_with_properties(napi_env env,
                                                                     size_t property_count,
                                                                     const napi_property_descriptor* properties,
                                                                     napi_value* result);
@@ -515,8 +517,8 @@ NAPI_EXTERN napi_status napi_remove_wrap_sendable(napi_env env,
 /**
  * @brief Create a sendable array.
  *
- * @param env: The environment that the API is invoked under.
- * @param result: A napi_value representing a sendable array.
+ * @param env The environment that the API is invoked under.
+ * @param result A napi_value representing a sendable array.
  *
  * @return Return the function execution status.
  * @since 12
@@ -527,9 +529,9 @@ NAPI_EXTERN napi_status napi_create_sendable_array(napi_env env,
 /**
  * @brief Create a sendable array with length.
  *
- * @param env: The environment that the API is invoked under.
- * @param length: The initial length of the sendable array.
- * @param result: A napi_value representing a sendable array.
+ * @param env The environment that the API is invoked under.
+ * @param length The initial length of the sendable array.
+ * @param result A napi_value representing a sendable array.
  *
  * @return Return the function execution status.
  * @since 12
@@ -541,10 +543,10 @@ NAPI_EXTERN napi_status napi_create_sendable_array_with_length(napi_env env,
 /**
  * @brief Create a sendable arraybuffer.
  *
- * @param env: The environment that the API is invoked under.
- * @param byte_length: The length in bytes of the sendable arraybuffer to create.
- * @param data: Pointer to the underlying byte buffer of the sendable arraybuffer.
- * @param result: A napi_value representing a sendable arraybuffer.
+ * @param env The environment that the API is invoked under.
+ * @param byte_length The length in bytes of the sendable arraybuffer to create.
+ * @param data Pointer to the underlying byte buffer of the sendable arraybuffer.
+ * @param result A napi_value representing a sendable arraybuffer.
  *
  * @return Return the function execution status.
  * @since 12
@@ -557,13 +559,13 @@ NAPI_EXTERN napi_status napi_create_sendable_arraybuffer(napi_env env,
 /**
  * @brief Create a sendable typedarray.
  *
- * @param env: The environment that the API is invoked under.
- * @param type: Scalar datatype of the elements within the sendable typedarray.
- * @param length: Number of elements in the typedarray.
- * @param arraybuffer: Sendable arraybuffer underlying the sendable typedarray.
- * @param byte_offset: The byte offset within the sendable arraybuffer from which to start projecting the
+ * @param env The environment that the API is invoked under.
+ * @param type Scalar datatype of the elements within the sendable typedarray.
+ * @param length Number of elements in the typedarray.
+ * @param arraybuffer Sendable arraybuffer underlying the sendable typedarray.
+ * @param byte_offset The byte offset within the sendable arraybuffer from which to start projecting the
  *                     sendable typedarray.
- * @param result: A napi_value representing a sendable typedarray.
+ * @param result A napi_value representing a sendable typedarray.
  *
  * @return Return the function execution status.
  * @since 12
@@ -676,7 +678,8 @@ NAPI_EXTERN napi_status napi_fatal_exception(napi_env env,
                                              napi_value err);
 
 /**
- * @brief Allows a JS function to be called in the asynchronous context. The capabilities related to **async_hook** are not supported currently.
+ * @brief Allows a JS function to be called in the asynchronous context. The capabilities related to 'async_hook' are
+ *        not supported currently.
  * @param env Current running virtual machine context.
  * @param async_context The context environment for the async operation.
  * @param recv The 'this' pointer of the function.
