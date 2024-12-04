@@ -13,13 +13,6 @@
  * limitations under the License.
  */
 
-#ifndef NET_WEBSOCKET_H
-#define NET_WEBSOCKET_H
-
-#include <signal.h>
-#include <stdint.h>
-#include <string.h>
-
 /**
  * @addtogroup netstack
  * @{
@@ -42,6 +35,13 @@
  * @version 1.0
  */
 
+#ifndef NET_WEBSOCKET_H
+#define NET_WEBSOCKET_H
+
+#include <signal.h>
+#include <stdint.h>
+#include <string.h>
+
 #include "net_websocket_type.h"
 
 #ifdef __cplusplus
@@ -54,7 +54,7 @@ extern "C" {
  * @param onOpen Callback function invoked when a connection setup message is received.
  * @param onMessage Callback function invoked when a message is received.
  * @param onError Callback function invoked when a connection error message is received.
- * @param onClose Callback function invoked when a connection closing message is closed.
+ * @param onclose Callback function invoked when a connection closing message is closed.
  *
  * @return Pointer to the websocket client if success; NULL otherwise.
  * @syscap SystemCapability.Communication.NetStack
@@ -133,4 +133,5 @@ int OH_WebSocketClient_Destroy(struct WebSocket *client);
 }
 #endif
 
+/** @} */
 #endif // NET_WEBSOCKET_H
