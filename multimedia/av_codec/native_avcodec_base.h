@@ -348,6 +348,7 @@ extern const char *OH_AVCODEC_MIMETYPE_SUBTITLE_WEBVTT;
  * @brief Key for timeStamp in surface's extraData, value type is int64_t.
  *
  * @syscap SystemCapability.Multimedia.Media.CodecBase
+ * @deprecated since 14
  * @since 9
  */
 extern const char *OH_ED_KEY_TIME_STAMP;
@@ -355,6 +356,7 @@ extern const char *OH_ED_KEY_TIME_STAMP;
  * @brief Key for endOfStream in surface's extraData, value type is bool.
  *
  * @syscap SystemCapability.Multimedia.Media.CodecBase
+ * @deprecated since 14
  * @since 9
  */
 extern const char *OH_ED_KEY_EOS;
@@ -662,6 +664,8 @@ extern const char *OH_MD_KEY_SETUP_HEADER;
  * @brief Key for video scale type, value type is int32_t, see {@link OH_ScalingMode}.
  *
  * @syscap SystemCapability.Multimedia.Media.CodecBase
+ * @deprecated since 14
+ * @useinstead OH_NativeWindow_NativeWindowSetScalingModeV2
  * @since 10
  */
 extern const char *OH_MD_KEY_SCALING_MODE;
@@ -1021,7 +1025,13 @@ typedef enum OH_HEVCProfile {
     HEVC_PROFILE_MAIN = 0,
     HEVC_PROFILE_MAIN_10 = 1,
     HEVC_PROFILE_MAIN_STILL = 2,
+    /**
+     * @deprecated since 14
+     */
     HEVC_PROFILE_MAIN_10_HDR10 = 3,
+    /**
+     * @deprecated since 14
+     */
     HEVC_PROFILE_MAIN_10_HDR10_PLUS = 4,
 } OH_HEVCProfile;
 
@@ -1110,10 +1120,20 @@ typedef enum OH_AVSeekMode {
  * @brief Scaling Mode
  *
  * @syscap SystemCapability.Multimedia.Media.CodecBase
+ * @deprecated since 14
+ * @useinstead OHScalingModeV2
  * @since 10
  */
 typedef enum OH_ScalingMode {
+    /**
+     * @deprecated since 14
+     * @useinstead OH_SCALING_MODE_SCALE_TO_WINDOW_V2
+     */
     SCALING_MODE_SCALE_TO_WINDOW = 1,
+    /**
+     * @deprecated since 14
+     * @useinstead OH_SCALING_MODE_SCALE_CROP_V2
+     */
     SCALING_MODE_SCALE_CROP = 2,
 } OH_ScalingMode;
 
@@ -1312,6 +1332,23 @@ typedef enum OH_TemporalGopReferenceMode {
      *  enhance layer. The temporal group of pictures must be power of 2. */
     UNIFORMLY_SCALED_REFERENCE = 2,
 } OH_TemporalGopReferenceMode;
+
+/**
+ * @brief The bitrate mode of encoder.
+ *
+ * Change the location of the header file, since 14.
+ *
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
+ * @since 10
+ */
+typedef enum OH_BitrateMode {
+    /** Constant Bit rate mode. */
+    BITRATE_MODE_CBR = 0,
+    /** Variable Bit rate mode. */
+    BITRATE_MODE_VBR = 1,
+    /** Constant Quality mode. */
+    BITRATE_MODE_CQ = 2
+} OH_BitrateMode;
 
 #ifdef __cplusplus
 }
