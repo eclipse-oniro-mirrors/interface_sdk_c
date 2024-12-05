@@ -820,6 +820,20 @@ typedef enum {
 } ArkUI_PageFlipMode;
 
 /**
+ * @brief Enumerates the animation modes for {@link NODE_SWIPER_INDEX}.
+ *
+ * @since 16
+ */
+typedef enum {
+    /** Jump to target index without animation. */
+    ARKUI_SWIPER_NO_ANIMATION = 0,
+    /** Scroll to target index with animation. */
+    ARKUI_SWIPER_DEFAULT_ANIMATION = 1,
+    /** Jump to some index near the target index without animation, then scroll to target index with animation. */
+    ARKUI_SWIPER_FAST_ANIMATION = 2,
+} ArkUI_SwiperAnimationMode;
+
+/**
  * @brief Enumerates the accessibility modes.
  *
  * @since 12
