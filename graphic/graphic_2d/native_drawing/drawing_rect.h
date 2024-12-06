@@ -40,6 +40,7 @@
 #ifndef C_INCLUDE_DRAWING_RECT_H
 #define C_INCLUDE_DRAWING_RECT_H
 
+#include "drawing_error_code.h"
 #include "drawing_types.h"
 
 #ifdef __cplusplus
