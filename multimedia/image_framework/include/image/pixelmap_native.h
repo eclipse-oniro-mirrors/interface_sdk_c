@@ -751,7 +751,7 @@ Image_ErrorCode OH_PixelmapNative_ScaleWithAntiAliasing(OH_PixelmapNative *pixel
  * @see OH_PixelmapNative
  * @since 16
  */
-Image_ErrorCode OH_PixelmapNative_CreateScaledPixelmap(OH_PixelmapNative *srcpixelmap, OH_PixelmapNative **dstpixelmap,
+Image_ErrorCode OH_PixelmapNative_CreateScaledPixelMap(OH_PixelmapNative *srcpixelmap, OH_PixelmapNative **dstpixelmap,
     float scaleX, float scaleY);
 
 /**
@@ -771,7 +771,7 @@ Image_ErrorCode OH_PixelmapNative_CreateScaledPixelmap(OH_PixelmapNative *srcpix
  * @see OH_PixelmapNative
  * @since 16
  */
-Image_ErrorCode OH_PixelmapNative_CreateScaledPixelmapWithAntiAliasing(OH_PixelmapNative *srcpixelmap,
+Image_ErrorCode OH_PixelmapNative_CreateScaledPixelMapWithAntiAliasing(OH_PixelmapNative *srcpixelmap,
     OH_PixelmapNative **dstpixelmap, float scaleX, float scaleY, OH_PixelmapNative_AntiAliasingLevel level);
 
 /**

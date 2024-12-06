@@ -125,11 +125,11 @@
     },
     {
         "first_introduced": "16",
-        "name": "OH_PixelmapNative_CreateScaledPixelmap"
+        "name": "OH_PixelmapNative_CreateScaledPixelMap"
     },
     {
         "first_introduced": "16",
-        "name": "OH_PixelmapNative_CreateScaledPixelmapWithAntiAliasing"
+        "name": "OH_PixelmapNative_CreateScaledPixelMapWithAntiAliasing"
     },
     {
         "first_introduced": "12",
