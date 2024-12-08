@@ -951,17 +951,17 @@ Image_ErrorCode OH_PixelmapNative_SetMemoryName(OH_PixelmapNative *pixelmap, cha
 Image_ErrorCode OH_PixelmapNative_GetByteCount(OH_PixelmapNative *pixelmap, uint32_t *byteCount);
 
 /**
- * @brief Get the capacity of the Pixelmap, which is the number of bytes allocated by the Pixelmap.
+ * @brief Get the size of the allocated memory used to store this pixelmap's pixels.
  *
  * @param pixelmap The Pixelmap pointer to be operated.
- * @param capacity The capacity to be retrieved.
+ * @param allocationByteCount The size of the allocated memory.
  * @return Function result code:
  *         {@link IMAGE_SUCCESS} If the operation is successful.
- *         {@link IMAGE_BAD_PARAMETER} If invalid parameter, pixelmap or byteCount are invalid.
+ *         {@link IMAGE_BAD_PARAMETER} If invalid parameter, pixelmap or allocationByteCount are invalid.
  * @see OH_PixelmapNative
  * @since 16
  */
-Image_ErrorCode OH_PixelmapNative_GetCapacity(OH_PixelmapNative *pixelmap, uint32_t *capacity);
+Image_ErrorCode OH_PixelmapNative_GetAllocationByteCount(OH_PixelmapNative *pixelmap, uint32_t *allocationByteCount);
 
 #ifdef __cplusplus
 };
