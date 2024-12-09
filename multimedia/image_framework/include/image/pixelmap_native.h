@@ -741,8 +741,8 @@ Image_ErrorCode OH_PixelmapNative_ScaleWithAntiAliasing(OH_PixelmapNative *pixel
 /**
  * @brief Create a scaled pixelmap based on the source pixelmap and the input width and height.
  *
- * @param srcpixelmap The source native pixelmap.
- * @param dstpixelmap The destination native pixelmap for create.
+ * @param srcPixelmap The source native pixelmap.
+ * @param dstPixelmap The destination native pixelmap for create.
  * @param scaleX Scaling ratio of the width.
  * @param scaleY Scaling ratio of the height.
  * @return Function result code:
@@ -751,14 +751,14 @@ Image_ErrorCode OH_PixelmapNative_ScaleWithAntiAliasing(OH_PixelmapNative *pixel
  * @see OH_PixelmapNative
  * @since 16
  */
-Image_ErrorCode OH_PixelmapNative_CreateScaledPixelMap(OH_PixelmapNative *srcpixelmap, OH_PixelmapNative **dstpixelmap,
+Image_ErrorCode OH_PixelmapNative_CreateScaledPixelMap(OH_PixelmapNative *srcPixelmap, OH_PixelmapNative **dstPixelmap,
     float scaleX, float scaleY);
 
 /**
  * @brief Create a scaled pixelmap based on the source pixelmap and the input width and height with anti-aliasing.
  *
- * @param srcpixelmap The source native pixelmap.
- * @param dstpixelmap The destination native pixelmap for create.
+ * @param srcPixelmap The source native pixelmap.
+ * @param dstPixelmap The destination native pixelmap for create.
  * @param scaleX Scaling ratio of the width.
  * @param scaleY Scaling ratio of the height.
  * @param level The anti-aliasing algorithm to be used.
@@ -771,8 +771,8 @@ Image_ErrorCode OH_PixelmapNative_CreateScaledPixelMap(OH_PixelmapNative *srcpix
  * @see OH_PixelmapNative
  * @since 16
  */
-Image_ErrorCode OH_PixelmapNative_CreateScaledPixelMapWithAntiAliasing(OH_PixelmapNative *srcpixelmap,
-    OH_PixelmapNative **dstpixelmap, float scaleX, float scaleY, OH_PixelmapNative_AntiAliasingLevel level);
+Image_ErrorCode OH_PixelmapNative_CreateScaledPixelMapWithAntiAliasing(OH_PixelmapNative *srcPixelmap,
+    OH_PixelmapNative **dstPixelmap, float scaleX, float scaleY, OH_PixelmapNative_AntiAliasingLevel level);
 
 /**
  * @brief Translates this image based on the input coordinates.
