@@ -2470,5 +2470,17 @@
     {
         "first_introduced": "14",
         "name": "OH_ArkUI_KeyEvent_SetConsumed"
+    },
+    {
+        "first_introduced": "16",
+        "name": "OH_ArkUI_DragEvent_StartDataLoading"
+    },
+    {
+        "first_introduced": "16",
+        "name": "OH_ArkUI_CancelDataLoading"
+    },
+    {
+        "first_introduced": "16",
+        "name": "OH_ArkUI_DisableDropDataPrefetchOnNode"
     }
 ]
