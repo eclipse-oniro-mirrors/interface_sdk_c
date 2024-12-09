@@ -767,7 +767,6 @@ Image_ErrorCode OH_PixelmapNative_CreateScaledPixelMap(OH_PixelmapNative *srcPix
  *         {@link IMAGE_BAD_PARAMETER} If the param is nullptr or invalid.
  *         {@link IMAGE_TOO_LARGE} If image is too large.
  *         {@link IMAGE_ALLOC_FAILED} If device has no memory.
- *         {@link IMAGE_UNKNOWN_ERROR} Inner unknown error, maybe source pixelmap is released.
  * @see OH_PixelmapNative
  * @since 16
  */
