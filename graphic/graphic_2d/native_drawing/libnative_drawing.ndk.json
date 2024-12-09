@@ -1725,5 +1725,25 @@
     {
         "first_introduced": "14",
         "name":"OH_Drawing_GetFontCollectionGlobalInstance"
+    },
+    {
+        "first_introduced": "16",
+        "name":"OH_Drawing_CanvasQuickRejectPath"
+    },
+    {
+        "first_introduced": "16",
+        "name":"OH_Drawing_CanvasQuickRejectRect"
+    },
+    {
+        "first_introduced": "16",
+        "name": "OH_Drawing_CanvasDrawNestedRoundRect"
+    },
+    {
+        "first_introduced": "16",
+        "name": "OH_Drawing_CanvasDrawArcWithCenter"
+    },
+    {
+        "first_introduced": "16",
+        "name": "OH_Drawing_CanvasDrawPixelMapNine"
     }
 ]
