@@ -14,6 +14,17 @@
  */
 
 /**
+ * @addtogroup VideoDecoder
+ * @{
+ * 
+ * @brief The VideoDecoder module provide interfaces for video decoding
+ * 
+ * @syscap SystemCapability.Multimedia.Media.VideoDecoder
+ * @since 9
+ * @version 1.0
+ */
+
+/**
  * @file native_avcodec_videodecoder.h
  *
  * @brief Provides video decoder capabilities.
@@ -461,3 +472,4 @@ OH_AVErrCode OH_VideoDecoder_SetDecryptionConfig(OH_AVCodec *codec, MediaKeySess
 #endif
 
 #endif // NATIVE_AVCODEC_VIDEODECODER_H
+/** @} */

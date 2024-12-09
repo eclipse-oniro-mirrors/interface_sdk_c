@@ -14,6 +14,17 @@
  */
 
 /**
+ * @addtogroup Core
+ * @{
+ *
+ * @brief The Core module provides basic backbone capabilities for media frameworks,
+ * including functions such as memory, error codes, and media data structures.
+ * 
+ * @syscap SystemCapability.Multimedia.Media.Core
+ * @since 9
+ */
+
+/**
  * @file native_avbuffer.h
  *
  * @brief Provides audio and video buffer.
@@ -166,3 +177,4 @@ OH_NativeBuffer *OH_AVBuffer_GetNativeBuffer(OH_AVBuffer *buffer);
 #endif
 
 #endif // NATIVE_AVBUFFER_H
+/** @} */

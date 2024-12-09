@@ -14,6 +14,16 @@
  */
 
 /**
+ * @addtogroup AVDemuxer
+ * @{
+ *
+ * @brief The AVDemuxer module provide an interface for extracting samples from media file streams.
+ * 
+ * @syscap SystemCapability.Multimedia.Media.Spliter
+ * @since 10
+ */
+
+/**
  * @file native_avdemuxer.h
  *
  * @brief Provides audio and video demuxer capabilities.
@@ -228,3 +238,4 @@ OH_AVErrCode OH_AVDemuxer_GetMediaKeySystemInfo(OH_AVDemuxer *demuxer, DRM_Media
 #endif
 
 #endif // NATIVE_AVDEMUXER_H
+/** @} */

@@ -14,6 +14,17 @@
  */
 
 /**
+ * @addtogroup Core
+ * @{
+ *
+ * @brief The Core module provides basic backbone capabilities for media frameworks,
+ * including functions such as memory, error codes, and media data structures.
+ * 
+ * @syscap SystemCapability.Multimedia.Media.Core
+ * @since 9
+ */
+
+/**
  * @file native_avformat.h
  *
  * @brief Provides audio and video format.
@@ -316,3 +327,4 @@ const char *OH_AVFormat_DumpInfo(struct OH_AVFormat *format);
 #endif
 
 #endif // NATIVE_AVFORMAT_H
+/** @} */

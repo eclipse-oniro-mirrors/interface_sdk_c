@@ -14,6 +14,16 @@
  */
 
 /**
+ * @addtogroup AVCapability
+ * @{
+ *
+ * @brief The AVCapability module provide functions for querying encoding and decoding capabilities.
+ * 
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
+ * @since 10
+ */
+
+/**
  * @file native_avcapability.h
  *
  * @brief Provides audio and video capability queries.
@@ -438,3 +448,4 @@ OH_AVFormat *OH_AVCapability_GetFeatureProperties(OH_AVCapability *capability, O
 }
 #endif
 #endif // NATIVE_AVCAPABILITY_H
+/** @} */
