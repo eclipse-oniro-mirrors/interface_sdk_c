@@ -27,7 +27,7 @@
 /**
  * @file native_avbuffer_info.h
  *
- * @brief Provides audio and video buffer info.
+ * @brief Declared the definition of the AVBuffer property for media data structures.
  *
  * @kit AVCodecKit
  * @library libnative_media_core.so

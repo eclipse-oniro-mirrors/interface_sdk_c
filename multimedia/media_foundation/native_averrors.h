@@ -27,7 +27,7 @@
 /**
  * @file native_averrors.h
  *
- * @brief Provides audio and video error description.
+ * @brief Media framework error code.
  *
  * @kit AVCodecKit
  * @library libnative_media_core.so

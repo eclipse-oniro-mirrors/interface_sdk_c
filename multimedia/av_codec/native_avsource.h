@@ -26,7 +26,7 @@
 /**
  * @file native_avsource.h
  *
- * @brief Provides audio and video suorce capabilities.
+ * @brief Declare the interface for parsing audio and video media data.
  *
  * @kit AVCodecKit
  * @library libnative_media_avsource.so

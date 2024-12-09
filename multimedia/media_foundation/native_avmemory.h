@@ -27,7 +27,7 @@
 /**
  * @file native_avmemory.h
  *
- * @brief Provides audio and video memory.
+ * @brief Declared the definition of media data structure AVMemory.
  *
  * @kit AVCodecKit
  * @library libnative_media_core.so

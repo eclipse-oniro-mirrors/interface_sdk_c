@@ -27,7 +27,7 @@
 /**
  * @file native_avbuffer.h
  *
- * @brief Provides audio and video buffer.
+ * @brief Declared the function interface of media data structure AVBuffer.
  *
  * @kit AVCodecKit
  * @library libnative_media_core.so

@@ -27,7 +27,7 @@
 /**
  * @file native_avcodec_videodecoder.h
  *
- * @brief Provides video decoder capabilities.
+ * @brief Declare the Native API used for video decoding.
  *
  * @kit AVCodecKit
  * @library libnative_media_vdec.so

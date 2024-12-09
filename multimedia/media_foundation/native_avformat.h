@@ -27,7 +27,7 @@
 /**
  * @file native_avformat.h
  *
- * @brief Provides audio and video format.
+ * @brief Declared functions and enumerations related to OH_AVFormat.
  *
  * @kit AVCodecKit
  * @library libnative_media_core.so

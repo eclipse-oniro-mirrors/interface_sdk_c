@@ -26,7 +26,7 @@
 /**
  * @file native_avcodec_videoencoder.h
  *
- * @brief Provides video encoder capabilities.
+ * @brief Declare the interface used for video encoding.
  *
  * @kit AVCodecKit
  * @library libnative_media_venc.so

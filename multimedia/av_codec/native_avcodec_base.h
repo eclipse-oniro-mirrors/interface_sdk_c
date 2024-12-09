@@ -27,8 +27,8 @@
 /**
  * @file native_avcodec_base.h
  *
- * @brief Provides audio and video codec base.
- *
+ * @brief Declare the Native API used for audio and video muxer,
+ * demuxer and basic encoding and decoding functions.
  * @kit AVCodecKit
  * @library libnative_media_codecbase.so
  * @syscap SystemCapability.Multimedia.Media.CodecBase

@@ -26,7 +26,7 @@
 /**
  * @file native_avcapability.h
  *
- * @brief Provides audio and video capability queries.
+ * @brief Declare the Native API used for querying encoding and decoding capabilities.
  *
  * @kit AVCodecKit
  * @library libnative_media_codecbase.so

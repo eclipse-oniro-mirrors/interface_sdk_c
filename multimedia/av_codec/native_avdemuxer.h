@@ -26,7 +26,7 @@
 /**
  * @file native_avdemuxer.h
  *
- * @brief Provides audio and video demuxer capabilities.
+ * @brief Declare the interface for parsing audio and video media data.
  *
  * @kit AVCodecKit
  * @library libnative_media_avdemuxer.so
