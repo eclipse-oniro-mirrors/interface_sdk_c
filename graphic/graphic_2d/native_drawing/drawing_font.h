@@ -560,7 +560,7 @@ OH_Drawing_ErrorCode OH_Drawing_FontGetTextPath(const OH_Drawing_Font* font, con
  * @param followed Indicates whether to follow the theme font.
  * @return Returns the error code.
  *         Returns {@link OH_DRAWING_SUCCESS} if the operation is successful.
- *         Returns {@link OH_DRAWING_ERROR_INVALID_PARAMETER} if Font is nullptr.
+ *         Returns {@link OH_DRAWING_ERROR_INVALID_PARAMETER} if font is nullptr.
  * @since 16
  * @version 1.0
  */
@@ -574,7 +574,7 @@ OH_Drawing_ErrorCode OH_Drawing_FontSetThemeFontFollowed(OH_Drawing_Font* font, 
  * @param followed Indicates whether to follow the theme font.
  * @return Returns the error code.
  *         Returns {@link OH_DRAWING_SUCCESS} if the operation is successful.
- *         Returns {@link OH_DRAWING_ERROR_INVALID_PARAMETER} if Font or followed is nullptr.
+ *         Returns {@link OH_DRAWING_ERROR_INVALID_PARAMETER} if font or followed is nullptr.
  * @since 16
  * @version 1.0
  */
