@@ -14,9 +14,19 @@
  */
 
 /**
+ * @addtogroup VideoEncoder
+ * @{
+ *
+ * @brief The VideoEncoder module provides interfaces for video encoding.
+ *
+ * @syscap SystemCapability.Multimedia.VideoEncoder
+ * @since 9
+ */
+
+/**
  * @file native_avcodec_videoencoder.h
  *
- * @brief Provides video encoder capabilities.
+ * @brief Declare the interface used for video encoding.
  *
  * @kit AVCodecKit
  * @library libnative_media_venc.so
@@ -455,3 +465,4 @@ typedef enum OH_VideoEncodeBitrateMode {
 #endif
 
 #endif // NATIVE_AVCODEC_VIDEOENCODER_H
+/** @} */
