@@ -979,6 +979,16 @@ typedef enum OH_MediaType {
  */
 typedef enum OH_AACProfile {
     AAC_PROFILE_LC = 0,
+    /**
+     * High-Efficiency AAC profile, contain the audio object types: AAC LC, SBR
+     * @since 14
+     */
+    AAC_PROFILE_HE = 3,
+    /**
+     * High-Efficiency AAC v2 profile, contain the audio object types: AAC LC, SBR, PS
+     * @since 14
+     */
+    AAC_PROFILE_HE_V2 = 4,
 } OH_AACProfile;
 
 /**
