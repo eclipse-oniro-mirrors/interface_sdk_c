@@ -61,7 +61,7 @@ typedef enum {
     /** Installed font types */
     INSTALLED = 1 << 3,
     /** Customized font types */
-    CUSTOMIZED = 1 << 4;
+    CUSTOMIZED = 1 << 4,
 } OH_Drawing_SystemFontType;
 
 /**
