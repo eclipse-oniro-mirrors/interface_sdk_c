@@ -1489,5 +1489,9 @@
     {
         "first_introduced": "13",
         "name":"OH_Drawing_RecordCmdDestroy"
+    },
+    {
+        "first_introduced": "14",
+        "name":"OH_Drawing_GetFontCollectionGlobalInstance"
     }
 ]
