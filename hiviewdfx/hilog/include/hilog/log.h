@@ -63,8 +63,10 @@
 #ifndef HIVIEWDFX_HILOG_H
 #define HIVIEWDFX_HILOG_H
 
+#include <cstddef>
 #include <stdarg.h>
 #include <stdbool.h>
+
 
 #ifdef __cplusplus
 extern "C" {
