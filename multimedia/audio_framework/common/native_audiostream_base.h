@@ -278,12 +278,16 @@ typedef enum {
 /**
  * @brief Define the audio event.
  *
+ * @deprecated since 16
+ * @useinstead OH_AudioRenderer_OutputDeviceChangeCallback.
  * @since 10
  */
 typedef enum {
     /**
      * The routing of the audio has changed.
      *
+     * @deprecated since 16
+     * @useinstead OH_AudioRenderer_OutputDeviceChangeCallback.
      * @since 10
      */
     AUDIOSTREAM_EVENT_ROUTING_CHANGED = 0
@@ -524,6 +528,9 @@ typedef struct OH_AudioCapturerStruct OH_AudioCapturer;
 /**
  * @brief Declaring the callback struct for renderer stream.
  *
+ * @deprecated since 16
+ * @useinstead Use the callback type: OH_AudioRenderer_OnWriteDataCallback, OH_AudioRenderer_OutputDeviceChangeCallback,
+ * OH_AudioRenderer_OnInterruptEvent, OH_AudioRenderer_OnErrorCallback separately.
  * @since 10
  */
 typedef struct OH_AudioRenderer_Callbacks_Struct {
@@ -531,6 +538,8 @@ typedef struct OH_AudioRenderer_Callbacks_Struct {
      * This function pointer will point to the callback function that
      * is used to write audio data
      *
+     * @deprecated since 16
+     * @useinstead OH_AudioRenderer_OnWriteDataCallback.
      * @since 10
      */
     int32_t (*OH_AudioRenderer_OnWriteData)(
@@ -543,6 +552,8 @@ typedef struct OH_AudioRenderer_Callbacks_Struct {
      * This function pointer will point to the callback function that
      * is used to handle audio renderer stream events.
      *
+     * @deprecated since 16
+     * @useinstead OH_AudioRenderer_OutputDeviceChangeCallback.
      * @since 10
      */
     int32_t (*OH_AudioRenderer_OnStreamEvent)(
@@ -554,6 +565,8 @@ typedef struct OH_AudioRenderer_Callbacks_Struct {
      * This function pointer will point to the callback function that
      * is used to handle audio interrupt events.
      *
+     * @deprecated since 16
+     * @useinstead OH_AudioRenderer_OnInterruptCallback.
      * @since 10
      */
     int32_t (*OH_AudioRenderer_OnInterruptEvent)(
@@ -566,6 +579,8 @@ typedef struct OH_AudioRenderer_Callbacks_Struct {
      * This function pointer will point to the callback function that
      * is used to handle audio error result.
      *
+     * @deprecated since 16
+     * @useinstead OH_AudioRenderer_OnErrorCallback.
      * @since 10
      */
     int32_t (*OH_AudioRenderer_OnError)(
@@ -577,6 +592,9 @@ typedef struct OH_AudioRenderer_Callbacks_Struct {
 /**
  * @brief Declaring the callback struct for capturer stream.
  *
+ * @deprecated since 16
+ * @useinstead Use the callback type: OH_AudioCapturer_OnReadDataCallback, OH_AudioCapturer_OnDeviceChangeCallback,
+ * OH_AudioCapturer_OnInterruptCallback and OH_AudioCapturer_OnErrorCallback separately.
  * @since 10
  */
 typedef struct OH_AudioCapturer_Callbacks_Struct {
@@ -584,6 +602,8 @@ typedef struct OH_AudioCapturer_Callbacks_Struct {
      * This function pointer will point to the callback function that
      * is used to read audio data.
      *
+     * @deprecated since 16
+     * @useinstead OH_AudioCapturer_OnReadDataCallback
      * @since 10
      */
     int32_t (*OH_AudioCapturer_OnReadData)(
@@ -596,6 +616,8 @@ typedef struct OH_AudioCapturer_Callbacks_Struct {
      * This function pointer will point to the callback function that
      * is used to handle audio capturer stream events.
      *
+     * @deprecated since 16
+     * @useinstead OH_AudioRenderer_OutputDeviceChangeCallback
      * @since 10
      */
     int32_t (*OH_AudioCapturer_OnStreamEvent)(
@@ -607,6 +629,8 @@ typedef struct OH_AudioCapturer_Callbacks_Struct {
      * This function pointer will point to the callback function that
      * is used to handle audio interrupt events.
      *
+     * @deprecated since 16
+     * @useinstead OH_AudioCapturer_OnInterruptCallback
      * @since 10
      */
     int32_t (*OH_AudioCapturer_OnInterruptEvent)(
@@ -619,6 +643,8 @@ typedef struct OH_AudioCapturer_Callbacks_Struct {
      * This function pointer will point to the callback function that
      * is used to handle audio error result.
      *
+     * @deprecated since 16
+     * @useinstead OH_AudioCapturer_OnErrorCallback
      * @since 10
      */
     int32_t (*OH_AudioCapturer_OnError)(
@@ -749,6 +775,91 @@ typedef enum {
     AUDIOSTREAM_VOLUMEMODE_APP_INDIVIDUAL = 1
 } OH_AudioStream_VolumeMode;
 
+ * @brief Callback function of interrupt event on AudioRenderer.
+ *
+ * This function is similar with OH_AudioRenderer_Callbacks_Struct.OH_AudioRenderer_OnInterruptEvent.
+ *
+ * @param renderer AudioRenderer where this callback occurs.
+ * @param userData User data which is passed by user.
+ * @param type Force type of this interrupt event.
+ * @param hint Hint of this interrupt event.
+ * @see OH_AudioRenderer_Callbacks_Struct.OH_AudioRenderer_OnInterruptEvent.
+ * @since 16
+ */
+typedef void (*OH_AudioRenderer_OnInterruptCallback)(OH_AudioRenderer* renderer, void* userData,
+    OH_AudioInterrupt_ForceType type, OH_AudioInterrupt_Hint hint);
+
+/**
+ * @brief Callback function of error on AudioRenderer.
+ *
+ * This function is similar with OH_AudioRenderer_Callbacks_Struct.OH_AudioRenderer_OnError.
+ *
+ * @param renderer AudioRenderer where this callback occurs.
+ * @param userData User data which is passed by user.
+ * @param error Error while using AudioRenderer.
+ * @see OH_AudioRenderer_Callbacks_Struct.OH_AudioRenderer_OnError
+ * @since 16
+ */
+typedef void (*OH_AudioRenderer_OnErrorCallback)(OH_AudioRenderer* renderer, void* userData,
+    OH_AudioStream_Result error);
+
+/**
+ * @brief Callback function of read data.
+ *
+ * This function is similar with OH_AudioCapturer_Callbacks_Struct.OH_AudioCapturer_OnReadData
+ *
+ * @param capturer AudioCapturer where this callback occurs.
+ * @param userData User data which is passed by user.
+ * @param audioData Audio data pointer, where user should read.
+ * @param audioDataSize Size of audio data that user should read.
+ * @see OH_AudioCapturer_Callbacks_Struct.OH_AudioCapturer_OnReadData
+ * @since 16
+ */
+typedef void (*OH_AudioCapturer_OnReadDataCallback)(OH_AudioCapturer* capturer, void* userData, void* audioData,
+    int32_t audioDataSize);
+
+/**
+ * @brief Callback when input device of an AudioCapturer changes.
+ *
+ * This function is similar with OH_AudioCapturer_Callbacks_Struct.OH_AudioCapturer_OnStreamEvent
+ *
+ * @param capturer AudioCapturer where this callback occurs.
+ * @param userData User data which is passed by user.
+ * @param deviceArray Array of AudioDeviceDescriptor where the capturing data from.
+ * @see OH_AudioCapturer_Callbacks_Struct.OH_AudioCapturer_OnStreamEvent
+ * @since 16
+ */
+typedef void (*OH_AudioCapturer_OnDeviceChangeCallback)(OH_AudioCapturer* capturer, void* userData,
+    OH_AudioDeviceDescriptorArray* deviceArray);
+
+/**
+ * @brief Callback function of interrupt event on AudioCapturer.
+ *
+ * This function is similar with OH_AudioCapturer_Callbacks_Struct.OH_AudioCapturer_OnInterruptEvent.
+ *
+ * @param capturer AudioCapturer where this callback occurs.
+ * @param userData User data which is passed by user.
+ * @param type Force type of this interrupt event.
+ * @param hint Hint of this interrupt event.
+ * @see OH_AudioCapturer_Callbacks_Struct.OH_AudioCapturer_OnInterruptEvent.
+ * @since 16
+ */
+typedef void (*OH_AudioCapturer_OnInterruptCallback)(OH_AudioCapturer* capturer, void* userData,
+    OH_AudioInterrupt_ForceType type, OH_AudioInterrupt_Hint hint);
+
+/**
+ * @brief Callback function of error on AudioCapturer.
+ *
+ * This function is similar with OH_AudioCapturer_Callbacks_Struct.OH_AudioCapturer_OnError.
+ *
+ * @param renderer AudioCapturer where this callback occurs.
+ * @param userData User data which is passed by user.
+ * @param error Error while using AudioCapturer.
+ * @see OH_AudioCapturer_Callbacks_Struct.OH_AudioCapturer_OnError
+ * @since 16
+ */
+typedef void (*OH_AudioCapturer_OnErrorCallback)(OH_AudioCapturer* renderer, void* userData,
+    OH_AudioStream_Result error);
 #ifdef __cplusplus
 }
 #endif
