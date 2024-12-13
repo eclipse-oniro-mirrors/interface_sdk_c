@@ -133,7 +133,7 @@ ArkUI_StyledString_Descriptor* OH_ArkUI_StyledString_Descriptor_Create(void);
  * @param descriptor Pointer to an <b>ArkUI_StyledString_Descriptor</b> object.
  * @since 14
  */
-void OH_ArkUI_StyledString_Descriptor_Destroy(ArkUI_StyledString_Descriptor* str);
+void OH_ArkUI_StyledString_Descriptor_Destroy(ArkUI_StyledString_Descriptor* descriptor);
 
 /**
  * @brief Converts styled string information into HTML.
