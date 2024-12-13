@@ -901,6 +901,32 @@ Image_ErrorCode OH_PixelmapNative_SetColorSpaceNative(OH_PixelmapNative *pixelma
  */
 Image_ErrorCode OH_PixelmapNative_SetMemoryName(OH_PixelmapNative *pixelmap, char *name, size_t *size);
 
+/**
+ * @brief Obtains the memory address of a PixelMap and locks the memory.
+ *
+ * @param pixelmap The PixelMap pointer to be operated.
+ * @param addr The double pointer to the memory address of the PixelMap.
+ * @return Function result code:
+ *         {@link IMAGE_SUCCESS} If the operation is successful.
+ *         {@link IMAGE_BAD_PARAMETER} If invalid parameter, pixelmap or addr are invalid.
+ * @see OH_PixelmapNative
+ * @since 16
+ */
+Image_ErrorCode OH_PixelmapNative_AccessPixels(OH_PixelmapNative *pixelmap, void **addr);
+
+/**
+ * @brief Unlocks the memory of the PixelMap data.
+ *        This function is used with {@link OH_PixelmapNative_AccessPixels} in pairs.
+ *
+ * @param pixelmap The PixelMap pointer to be operated.
+ * @return Function result code:
+ *         {@link IMAGE_SUCCESS} If the operation is successful.
+ *         {@link IMAGE_BAD_PARAMETER} If invalid parameter, pixelmap is invalid.
+ * @see OH_PixelmapNative
+ * @since 16
+ */
+Image_ErrorCode OH_PixelmapNative_UnaccessPixels(OH_PixelmapNative *pixelmap);
+
 #ifdef __cplusplus
 };
 #endif
