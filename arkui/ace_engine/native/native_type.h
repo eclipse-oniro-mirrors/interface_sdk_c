@@ -3522,7 +3522,7 @@ ArkUI_CustomSpanMetrics* OH_ArkUI_CustomSpanMetrics_Create();
 /**
  * @brief Disposes of measurement metrics of this custom span.
  *
- * @param info The CustomSpanMetrics instance to be destroyed.
+ * @param metrics The CustomSpanMetrics instance to be destroyed.
  * @since 12
 */
 void OH_ArkUI_CustomSpanMetrics_Dispose(ArkUI_CustomSpanMetrics* metrics);
