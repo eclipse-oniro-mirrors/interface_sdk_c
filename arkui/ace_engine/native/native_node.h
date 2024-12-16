@@ -3014,6 +3014,19 @@ typedef enum {
     NODE_TEXT_INPUT_ENABLE_PREVIEW_TEXT = 7033,
 
     /**
+     * @brief Sets whether to center text vertically in the textInput component.
+     *
+     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
+     * .value[0].i32: whether to center text vertically. The default value is <b>false</b>. \n
+     * \n
+     * Format of the return value {@link ArkUI_AttributeItem}:\n
+     * .value[0].i32: whether to center text vertically. \n
+     *
+     * @since 16
+     */
+    NODE_TEXT_INPUT_HALF_LEADING = 7034,
+
+    /**
      * @brief Defines the default placeholder text for the multi-line text box.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
@@ -3334,6 +3347,19 @@ typedef enum {
      * @since 16
      */
     NODE_TEXT_AREA_ENABLE_PREVIEW_TEXT = 8024,
+
+    /**
+     * @brief Sets whether to center text vertically in the textArea component.
+     *
+     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
+     * .value[0].i32: whether to center text vertically. The default value is <b>false</b>. \n
+     * \n
+     * Format of the return value {@link ArkUI_AttributeItem}:\n
+     * .value[0].i32: whether to center text vertically. \n
+     *
+     * @since 16
+     */
+    NODE_TEXT_AREA_HALF_LEADING = 8025,
 
     /**
      * @brief Defines the button text content. This attribute can be set, reset, and obtained as required through APIs.
