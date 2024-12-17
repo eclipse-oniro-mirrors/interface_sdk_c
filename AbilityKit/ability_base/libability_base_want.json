@@ -1,0 +1,34 @@
+[
+    {
+        "first_introduced": "15",
+        "name": "OH_AbilityBase_CreateWant"
+    },
+    {
+        "first_introduced": "15",
+        "name": "OH_AbilityBase_DestroyWant"
+    },
+    {
+        "first_introduced": "15",
+        "name": "OH_AbilityBase_SetWantElement"
+    },
+    {
+        "first_introduced": "15",
+        "name": "OH_AbilityBase_GetWantElement"
+    },
+    {
+        "first_introduced": "15",
+        "name": "OH_AbilityBase_SetWantCharParam"
+    },
+    {
+        "first_introduced": "15",
+        "name": "OH_AbilityBase_GetWantCharParam"
+    },
+    {
+        "first_introduced": "15",
+        "name": "OH_AbilityBase_AddWantFd"
+    },
+    {
+        "first_introduced": "15",
+        "name": "OH_AbilityBase_GetWantFd"
+    }
+]
