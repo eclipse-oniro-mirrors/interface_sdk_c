@@ -1189,4 +1189,4 @@ int32_t OH_ArkUI_TransitionEffect_SetAnimation(
 #endif
 
 #endif // ARKUI_NATIVE_ANIMATE_H
-/** @}*/
+/** @} */
