@@ -600,6 +600,14 @@
         "name": "OH_CameraDevice_GetCameraOrientation"
     },
     {
+        "first_introduced": "15",
+        "name": "OH_CameraDevice_GetHostDeviceName"
+    },
+    {
+        "first_introduced": "15",
+        "name": "OH_CameraDevice_GetHostDeviceType"
+    },
+    {
         "first_introduced": "12",
         "name": "OH_PhotoNative_GetMainImage"
     },
