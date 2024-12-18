@@ -92,6 +92,10 @@ typedef enum {
     ARKUI_NODE_RADIO = 18,
     /** Image animator. */
     ARKUI_NODE_IMAGE_ANIMATOR = 19,
+    /** XComponent of type TEXTURE.
+     *  @since 16
+     */
+    ARKUI_NODE_XCOMPONENT_TEXTURE,
     /** Stack container. */
     ARKUI_NODE_STACK = MAX_NODE_SCOPE_NUM,
     /** Swiper. */
