@@ -903,12 +903,15 @@ Image_ErrorCode OH_PixelmapNative_SetMemoryName(OH_PixelmapNative *pixelmap, cha
 
 /**
  * @brief Obtains the memory address of a PixelMap and locks the memory.
+ *        When the memory is locked, any operation that modifies or releases the PixelMap will fail and return
+ *        {@link IMAGE_BAD_PARAMETER}.
  *
  * @param pixelmap The PixelMap pointer to be operated.
  * @param addr The double pointer to the memory address of the PixelMap.
  * @return Function result code:
  *         {@link IMAGE_SUCCESS} If the operation is successful.
  *         {@link IMAGE_BAD_PARAMETER} If invalid parameter, pixelmap or addr are invalid.
+ *         {@link IMAGE_LOCK_UNLOCK_FAILED} If memory failed to be locked.
  * @see OH_PixelmapNative
  * @since 16
  */
@@ -922,6 +925,7 @@ Image_ErrorCode OH_PixelmapNative_AccessPixels(OH_PixelmapNative *pixelmap, void
  * @return Function result code:
  *         {@link IMAGE_SUCCESS} If the operation is successful.
  *         {@link IMAGE_BAD_PARAMETER} If invalid parameter, pixelmap is invalid.
+ *         {@link IMAGE_LOCK_UNLOCK_FAILED} If memory failed to be unlocked.
  * @see OH_PixelmapNative
  * @since 16
  */
