@@ -158,6 +158,10 @@ enum {
     UI_MOUSE_EVENT_ACTION_RELEASE = 2,
     /** Move. */
     UI_MOUSE_EVENT_ACTION_MOVE = 3,
+    /** Cancel.
+     * @since 16
+    */
+    UI_MOUSE_EVENT_ACTION_CANCEL = 13,
 };
 
 /**

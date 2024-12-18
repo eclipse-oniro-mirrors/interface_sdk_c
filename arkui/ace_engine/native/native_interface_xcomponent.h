@@ -151,6 +151,10 @@ typedef enum {
     OH_NATIVEXCOMPONENT_MOUSE_PRESS,
     OH_NATIVEXCOMPONENT_MOUSE_RELEASE,
     OH_NATIVEXCOMPONENT_MOUSE_MOVE,
+    /** Triggered when the mouse event is canceled.
+     * @since 16
+    */
+    OH_NATIVEXCOMPONENT_MOUSE_CANCEL,
 } OH_NativeXComponent_MouseEventAction;
 
 /**
