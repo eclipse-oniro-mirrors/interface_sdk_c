@@ -1826,6 +1826,20 @@ typedef enum {
     NODE_CLICK_DISTANCE = 97,
 
     /**
+     * @brief Sets whether the focus can be placed on this component.
+     * This attribute can be set, reset, and obtained as required through APIs.
+     *
+     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
+     * .value[0].i32: whether the focus can be placed on the current component. The parameter type is 1 or 0.
+     * \n
+     * Format of the return value {@link ArkUI_AttributeItem}:\n
+     * .value[0].i32: whether the focus can be placed on the current component. The parameter type is 1 or 0.
+     *
+     * @since 14
+     */
+    NODE_TAB_STOP = 98,
+
+    /**
      * @brief Defines the text content attribute, which can be set, reset, and obtained as required through APIs.
      *
      * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
