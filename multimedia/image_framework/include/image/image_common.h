@@ -174,6 +174,8 @@ typedef enum {
     IMAGE_ALLOC_FAILED = 7600301,
     /** memory copy failed */
     IMAGE_COPY_FAILED = 7600302,
+    /** @error memory lock or unlock failed */
+    IMAGE_LOCK_UNLOCK_FAILED = 7600303,
     /** unknown error */
     IMAGE_UNKNOWN_ERROR = 7600901,
     /** decode data source exception */
