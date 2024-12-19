@@ -2742,7 +2742,7 @@ uint32_t OH_ArkUI_SwiperIndicator_GetColor(ArkUI_SwiperIndicator* indicator);
  * @brief Sets the color of the selected dot for the navigation indicator.
  *
  * @param indicator Indicates the pointer to the indicator.
- * @param color the color of the selected dot, in 0xARGB format.
+ * @param selectedColor the color of the selected dot, in 0xARGB format.
  * @since 12
 */
 void OH_ArkUI_SwiperIndicator_SetSelectedColor(ArkUI_SwiperIndicator* indicator, uint32_t selectedColor);
@@ -3203,7 +3203,7 @@ ArkUI_ListItemSwipeActionItem* OH_ArkUI_ListItemSwipeActionItem_Create();
 /**
 * @brief Destroy the ListitemSwipeActionItem instance.
 *
-* @param option List Item SwipeActionItem instance to be destroyed.
+* @param item List Item SwipeActionItem instance to be destroyed.
 * @since 12
 */
 void OH_ArkUI_ListItemSwipeActionItem_Dispose(ArkUI_ListItemSwipeActionItem* item);
@@ -3211,8 +3211,8 @@ void OH_ArkUI_ListItemSwipeActionItem_Dispose(ArkUI_ListItemSwipeActionItem* ite
 /**
 * @brief Set the layout content of ListItem SwipeActionItem.
 *
-* @param option List Item SwipeActionItem instance.
-* @param builder Layout information.
+* @param item List Item SwipeActionItem instance.
+* @param node Layout information.
 * @since 12
 */
 void OH_ArkUI_ListItemSwipeActionItem_SetContent(ArkUI_ListItemSwipeActionItem* item, ArkUI_NodeHandle node);
@@ -3220,7 +3220,7 @@ void OH_ArkUI_ListItemSwipeActionItem_SetContent(ArkUI_ListItemSwipeActionItem* 
 /**
 * @brief Set the threshold for long-distance sliding deletion distance of components.
 *
-* @param option List Item SwipeActionItem instance.
+* @param item List Item SwipeActionItem instance.
 * @param distance Component long-distance sliding deletion distance threshold.
 * @since 12
 */
@@ -3229,7 +3229,7 @@ void OH_ArkUI_ListItemSwipeActionItem_SetActionAreaDistance(ArkUI_ListItemSwipeA
 /**
 * @brief Obtain the threshold for long-distance sliding deletion distance of components.
 *
-* @param option List Item SwipeActionItem instance.
+* @param item List Item SwipeActionItem instance.
 * @return Component long-distance sliding deletion distance threshold. If -1.0f is returned, the return fails.
 *         The possible cause of the failure is that the item parameter is abnormal, such as a null pointer.
 * @since 12
@@ -3239,7 +3239,7 @@ float OH_ArkUI_ListItemSwipeActionItem_GetActionAreaDistance(ArkUI_ListItemSwipe
 /**
 * @brief Set the event to be called when a sliding entry enters the deletion area.
 *
-* @param option List Item SwipeActionItem instance.
+* @param item List Item SwipeActionItem instance.
 * @param callback Callback Events.
 * @since 12
 */
@@ -3248,7 +3248,7 @@ void OH_ArkUI_ListItemSwipeActionItem_SetOnEnterActionArea(ArkUI_ListItemSwipeAc
 /**
  * @brief Set the event triggered when a sliding entry enters the deletion area.
  *
- * @param option List Item SwipeActionItem instance.
+ * @param item List Item SwipeActionItem instance.
  * @param userData User defined data.
  * @param callback Callback Events.
  * @since 12
@@ -3259,7 +3259,7 @@ void OH_ArkUI_ListItemSwipeActionItem_SetOnEnterActionAreaWithUserData(ArkUI_Lis
 /**
 * @brief Set the event to be called when a component enters the long-range deletion area and deletes a ListItem.
 *
-* @param option List Item SwipeActionItem instance.
+* @param item List Item SwipeActionItem instance.
 * @param callback Callback Events.
 * @since 12
 */
@@ -3268,7 +3268,7 @@ void OH_ArkUI_ListItemSwipeActionItem_SetOnAction(ArkUI_ListItemSwipeActionItem*
 /**
  * @brief Set the event triggered when a component enters the long-range deletion area and deletes a ListItem.
  *
- * @param option List Item SwipeActionItem instance.
+ * @param item List Item SwipeActionItem instance.
  * @param userData User defined data.
  * @param callback Callback Events.
  * @since 12
@@ -3279,7 +3279,7 @@ void OH_ArkUI_ListItemSwipeActionItem_SetOnActionWithUserData(ArkUI_ListItemSwip
 /**
 * @brief Set the event to be called when a sliding entry exits the deletion area.
 *
-* @param option List Item SwipeActionItem instance.
+* @param item List Item SwipeActionItem instance.
 * @param callback Callback Events.
 * @since 12
 */
@@ -3288,7 +3288,7 @@ void OH_ArkUI_ListItemSwipeActionItem_SetOnExitActionArea(ArkUI_ListItemSwipeAct
 /**
  * @brief Set the event triggered when a sliding entry exits the deletion area.
  *
- * @param option List Item SwipeActionItem instance.
+ * @param item List Item SwipeActionItem instance.
  * @param userData User defined data.
  * @param callback Callback Events.
  * @since 12
@@ -3299,7 +3299,7 @@ void OH_ArkUI_ListItemSwipeActionItem_SetOnExitActionAreaWithUserData(ArkUI_List
 /**
 * @brief Set the event triggered when the sliding state of a list item changes.
 *
-* @param option List Item SwipeActionItem instance.
+* @param item List Item SwipeActionItem instance.
 * @param callback Callback Events.
 *        swipeActionState The changed state.
 * @since 12
@@ -3310,7 +3310,7 @@ void OH_ArkUI_ListItemSwipeActionItem_SetOnStateChange(ArkUI_ListItemSwipeAction
 /**
  * @brief Set the event triggered when the sliding state of a list item changes.
  *
- * @param option List Item SwipeActionItem instance.
+ * @param item List Item SwipeActionItem instance.
  * @param userData User defined data.
  * @param callback Callback Events.
  *        swipeActionState The changed state.
@@ -3341,7 +3341,7 @@ void OH_ArkUI_ListItemSwipeActionOption_Dispose(ArkUI_ListItemSwipeActionOption*
 * of the ListItem SwipeActionItem.
 *
 * @param option List Item SwipeActionItem instance.
-* @param builder Layout information.
+* @param item Layout information.
 * @since 12
 */
 void OH_ArkUI_ListItemSwipeActionOption_SetStart(ArkUI_ListItemSwipeActionOption* option,
@@ -3352,7 +3352,7 @@ void OH_ArkUI_ListItemSwipeActionOption_SetStart(ArkUI_ListItemSwipeActionOption
 * of the ListItem SwipeActionItem.
 *
 * @param option List Item SwipeActionItem instance.
-* @param builder Layout information.
+* @param item Layout information.
 * @since 12
 */
 void OH_ArkUI_ListItemSwipeActionOption_SetEnd(ArkUI_ListItemSwipeActionOption* option,
@@ -3886,6 +3886,63 @@ void OH_ArkUI_AccessibilityValue_SetCurrent(ArkUI_AccessibilityValue* value, int
  * @since 12
 */
 int32_t OH_ArkUI_AccessibilityValue_GetCurrent(ArkUI_AccessibilityValue* value);
+
+/**
+ * @brief Set accessibility minimum value.
+ *
+ * @param value accessibility value object.
+ * @param rangeMin minimum value based on range components, The default value is -1.
+ * @since 16
+*/
+void OH_ArkUI_AccessibilityValue_SetRangeMin(ArkUI_AccessibilityValue* value, int32_t rangeMin);
+
+/**
+ * @brief Get accessibility minimum value.
+ *
+ * @param value accessibility value object.
+ * @return minimum value based on range components, The default value is -1.
+ *         If the function parameter is abnormal, return -1.
+ * @since 16
+*/
+int32_t OH_ArkUI_AccessibilityValue_GetRangeMin(ArkUI_AccessibilityValue* value);
+
+/**
+ * @brief Set accessibility maximum value.
+ *
+ * @param value accessibility value object.
+ * @param rangeMax maximum value based on range components, The default value is -1.
+ * @since 16
+*/
+void OH_ArkUI_AccessibilityValue_SetRangeMax(ArkUI_AccessibilityValue* value, int32_t rangeMax);
+
+/**
+ * @brief Get accessibility maximum value.
+ *
+ * @param value accessibility value object.
+ * @return maximum value based on range components, The default value is -1.
+ *         If the function parameter is abnormal, return -1.
+ * @since 16
+*/
+int32_t OH_ArkUI_AccessibilityValue_GetRangeMax(ArkUI_AccessibilityValue* value);
+
+/**
+ * @brief Set accessibility current value.
+ *
+ * @param value accessibility value object.
+ * @param rangeCurrent value based on range components, The default value is -1.
+ * @since 16
+*/
+void OH_ArkUI_AccessibilityValue_SetRangeCurrent(ArkUI_AccessibilityValue* value, int32_t rangeCurrent);
+
+/**
+ * @brief Get accessibility current value.
+ *
+ * @param value accessibility value object.
+ * @return current value based on range components, The default value is -1.
+ *         If the function parameter is abnormal, return -1.
+ * @since 16
+*/
+int32_t OH_ArkUI_AccessibilityValue_GetRangeCurrent(ArkUI_AccessibilityValue* value);
 
 /**
  * @brief Set accessibility text value.

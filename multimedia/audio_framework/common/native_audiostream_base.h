@@ -445,7 +445,13 @@ typedef enum {
      *
      * @since 13
      */
-    AUDIOSTREAM_SOURCE_TYPE_CAMCORDER = 13
+    AUDIOSTREAM_SOURCE_TYPE_CAMCORDER = 13,
+    /**
+     * Unprocessed source type.
+     *
+     * @since 14
+     */
+    AUDIOSTREAM_SOURCE_TYPE_UNPROCESSED = 14
 } OH_AudioStream_SourceType;
 
 /**
