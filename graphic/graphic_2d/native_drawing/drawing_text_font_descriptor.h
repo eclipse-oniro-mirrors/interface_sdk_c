@@ -67,43 +67,44 @@ typedef enum {
  * fonts, stylish fonts, and installed fonts.
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @param OH_Drawing_String Indicates the full name object <b>OH_Drawing_String</b>.
- * @param OH_Drawing_SystemFontType Indicates enumerates of system font type object <b>OH_Drawing_SystemFontType</b>.
+ * @param fullName Indicates the full name object <b>OH_Drawing_String</b>.
+ * @param fontType Indicates enumerates of system font type object <b>OH_Drawing_SystemFontType</b>.
  * @return Returns the pointer to a font descriptor object <b>OH_Drawing_FontDescriptor</b>.
  * @since 14
  */
-OH_Drawing_FontDescriptor* OH_Drawing_GetFontDescriptorByFullName(const OH_Drawing_String*, OH_Drawing_SystemFontType);
+OH_Drawing_FontDescriptor* OH_Drawing_GetFontDescriptorByFullName(const OH_Drawing_String* fullName,
+                                                                  OH_Drawing_SystemFontType fontType);
 
 /**
  * @brief Obtain the corresponding font full name array by the font type.
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @param OH_Drawing_SystemFontType Indicates enumerates of system font type object <b>OH_Drawing_SystemFontType</b>.
+ * @param fontType Indicates enumerates of system font type object <b>OH_Drawing_SystemFontType</b>.
  * @return Returns the pointer to full name array object <b>OH_Drawing_Array</b>.
  * @since 14
  */
-OH_Drawing_Array* OH_Drawing_GetSystemFontFullNamesByType(OH_Drawing_SystemFontType);
+OH_Drawing_Array* OH_Drawing_GetSystemFontFullNamesByType(OH_Drawing_SystemFontType fontType);
 
 /**
  * @brief Get the specified full name object <b>OH_Drawing_String</b> by index from the
  * <b>OH_Drawing_Array</b> object.
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @param OH_Drawing_Array Indicates an array of full name object <b>OH_Drawing_Array</b>.
- * @param size_t The index of full name.
+ * @param fullNameArray Indicates an array of full name object <b>OH_Drawing_Array</b>.
+ * @param index The index of full name.
  * @return Returns a full name object <b>OH_Drawing_String</b>.
  * @since 14
  */
-const OH_Drawing_String* OH_Drawing_GetSystemFontFullNameByIndex(OH_Drawing_Array*, size_t);
+const OH_Drawing_String* OH_Drawing_GetSystemFontFullNameByIndex(OH_Drawing_Array* fullNameArray, size_t index);
 
 /**
  * @brief Releases the memory occupied by an array of font full names.
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @param OH_Drawing_Array Indicates an array of full name object <b>OH_Drawing_Array</b>.
+ * @param fullNameArray Indicates an array of full name object <b>OH_Drawing_Array</b>.
  * @since 14
  */
-void OH_Drawing_DestroySystemFontFullNames(OH_Drawing_Array*);
+void OH_Drawing_DestroySystemFontFullNames(OH_Drawing_Array* fullNameArray);
 
 #ifdef __cplusplus
 }
