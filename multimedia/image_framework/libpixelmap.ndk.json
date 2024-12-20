@@ -198,5 +198,13 @@
     {
         "first_introduced": "16",
         "name": "OH_PixelmapNative_GetAllocationByteCount"
+    },
+    {
+        "first_introduced": "16",
+        "name": "OH_PixelmapNative_AccessPixels"
+    },
+    {
+        "first_introduced": "16",
+        "name": "OH_PixelmapNative_UnaccessPixels"
     }
 ]
