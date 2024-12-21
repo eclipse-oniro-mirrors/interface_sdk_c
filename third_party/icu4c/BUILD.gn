@@ -45,6 +45,8 @@ ohos_ndk_library("libicu_ndk") {
     "unicode/unumberformatter.h",
     "unicode/uscript.h",
     "unicode/uset.h",
+    "unicode/ustring.h",
+    "unicode/utext.h",
     "unicode/utrans.h",
     "unicode/utypes.h",
   ]
@@ -79,6 +81,8 @@ ohos_ndk_headers("icu_unicode_header") {
     "ndk_headers/unicode/unumberformatter.h",
     "ndk_headers/unicode/uscript.h",
     "ndk_headers/unicode/uset.h",
+    "ndk_headers/unicode/ustring.h",
+    "ndk_headers/unicode/utext.h",
     "ndk_headers/unicode/utrans.h",
     "ndk_headers/unicode/utypes.h",
   ]
