@@ -71,6 +71,19 @@ OH_NativeVSync* OH_NativeVSync_Create(const char* name, unsigned int length);
 void OH_NativeVSync_Destroy(OH_NativeVSync* nativeVsync);
 
 /**
+ * @brief Creates a <b>NativeVsync</b> instance.\n
+ * A new <b>NativeVsync</b> instance is created each time this function is called.
+ *
+ * @syscap SystemCapability.Graphic.Graphic2D.NativeVsync
+ * @param windowID Indicates the id of the associated window.
+ * @param name Indicates the vsync connection name.
+ * @param length Indicates the name's length.
+ * @return Returns the pointer to the <b>NativeVsync</b> instance created.
+ * @since 14
+ * @version 1.0
+ */
+OH_NativeVSync* OH_NativeVSync_Create_ForAssociatedWindow(uint64_t windowID, const char* name, unsigned int length);
+/**
  * @brief Request next vsync with callback.
  * If you call this interface multiple times in one frame, it will only call the last callback.
  *
