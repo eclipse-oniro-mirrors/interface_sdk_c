@@ -77,6 +77,18 @@ OH_AVMuxer *OH_AVMuxer_Create(int32_t fd, OH_AVOutputFormat format);
 OH_AVErrCode OH_AVMuxer_SetRotation(OH_AVMuxer *muxer, int32_t rotation);
 
 /**
+ * @brief Set format to the muxer.
+ * @syscap SystemCapability.Multimedia.Media.Muxer
+ * @param muxer Pointer to an OH_AVMuxer instance
+ * @param format OH_AVFormat handle pointer contain format
+ * @return Returns AV_ERR_OK if the execution is successful,
+ * otherwise returns a specific error code, refer to {@link OH_AVErrCode}
+ * {@link AV_ERR_INVALID_VAL}, the muxer or format invalid.
+ * @since 14
+ */
+OH_AVErrCode OH_AVMuxer_SetFormat(OH_AVMuxer *muxer, OH_AVFormat *format);
+
+/**
  * @brief Add track format to the muxer.
  * Note: This interface can only be called before OH_AVMuxer_Start.
  * @syscap SystemCapability.Multimedia.Media.Muxer
