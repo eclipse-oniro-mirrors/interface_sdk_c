@@ -2993,7 +2993,7 @@ void OH_ArkUI_AlignmentRuleOption_Dispose(ArkUI_AlignmentRuleOption* option);
  *
  * @param option Alignment rule information of subcomponents in the relative container.
  * @param id The id value of the anchor component.
- * @param value Alignment relative to the anchor component.
+ * @param alignment Alignment relative to the anchor component.
  * @since 12
  */
 void OH_ArkUI_AlignmentRuleOption_SetStart(
@@ -3004,7 +3004,7 @@ void OH_ArkUI_AlignmentRuleOption_SetStart(
  *
  * @param option Alignment rule information of subcomponents in the relative container.
  * @param id The id value of the anchor component.
- * @param value Alignment relative to the anchor component.
+ * @param alignment Alignment relative to the anchor component.
  * @since 12
  */
 void OH_ArkUI_AlignmentRuleOption_SetEnd(
@@ -3015,7 +3015,7 @@ void OH_ArkUI_AlignmentRuleOption_SetEnd(
 *
 * @param option Alignment rule information of subcomponents in the relative container.
 * @param id The id value of the anchor component.
-* @param value Alignment relative to anchor component
+* @param alignment Alignment relative to anchor component
 * @since 12
 */
 void OH_ArkUI_AlignmentRuleOption_SetCenterHorizontal(
@@ -3026,7 +3026,7 @@ void OH_ArkUI_AlignmentRuleOption_SetCenterHorizontal(
  *
  * @param option Alignment rule information of subcomponents in the relative container.
  * @param id The id value of the anchor component.
- * @param value Alignment relative to anchor component
+ * @param alignment Alignment relative to anchor component
  * @since 12
  */
 void OH_ArkUI_AlignmentRuleOption_SetTop(ArkUI_AlignmentRuleOption* option, const char* id,
@@ -3037,7 +3037,7 @@ void OH_ArkUI_AlignmentRuleOption_SetTop(ArkUI_AlignmentRuleOption* option, cons
  *
  * @param option Alignment rule information of subcomponents in the relative container.
  * @param id The id value of the anchor component.
- * @param value Alignment relative to anchor component
+ * @param alignment Alignment relative to anchor component
  * @since 12
  */
 void OH_ArkUI_AlignmentRuleOption_SetBottom(
@@ -3048,7 +3048,7 @@ void OH_ArkUI_AlignmentRuleOption_SetBottom(
 *
 * @param option Alignment rule information of subcomponents in the relative container.
 * @param id The id value of the anchor component.
-* @param value Alignment relative to the anchor component.
+* @param alignment Alignment relative to the anchor component.
 * @since 12
 */
 void OH_ArkUI_AlignmentRuleOption_SetCenterVertical(
@@ -3067,7 +3067,7 @@ void OH_ArkUI_AlignmentRuleOption_SetBiasHorizontal(ArkUI_AlignmentRuleOption* o
  * @brief Set the vertical offset parameter of the component under the anchor point constraint.
  *
  * @param option Alignment rule information of subcomponents in the relative container.
- * @param horizontal bias value in the vertical direction.
+ * @param vertical bias value in the vertical direction.
  * @since 12
  */
 void OH_ArkUI_AlignmentRuleOption_SetBiasVertical(ArkUI_AlignmentRuleOption* option, float vertical);

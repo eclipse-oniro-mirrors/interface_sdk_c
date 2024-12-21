@@ -28,7 +28,8 @@
  * @file native_interface_xcomponent.h
  *
  * @brief Declares APIs for accessing a Native XComponent.
- *
+ * @library libace_ndk.z.so
+ * @syscap SystemCapability.ArkUI.ArkUI.Full
  * @kit ArkUI
  * @since 8
  * @version 1.0
@@ -848,3 +849,4 @@ int32_t OH_NativeXComponent_RegisterKeyEventCallbackWithResult(
 };
 #endif
 #endif // _NATIVE_INTERFACE_XCOMPONENT_H_
+/** @} */
