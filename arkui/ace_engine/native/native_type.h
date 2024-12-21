@@ -4001,6 +4001,7 @@ ArkUI_NodeHandle OH_ArkUI_ActiveChildrenInfo_GetNodeByIndex(ArkUI_ActiveChildren
  * @brief Retrieve the number of nodes within the structure of ActiveChildenInfo.
  *
  * @param handle The ActiveChildenInfo instance for obtaining information.
+ * @param index The index of child nodes
  * @return Number of child nodes. Default value: 0.
  * @since 14
  */
