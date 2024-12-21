@@ -2542,5 +2542,9 @@
     {
         "first_introduced": "16",
         "name": "OH_ArkUI_ProgressLinearStyleOption_GetStrokeRadius"
+    },
+    {
+        "first_introduced": "16",
+        "name": "OH_ArkUI_NodeEvent_GetTextChangeEvent"
     }
 ]
