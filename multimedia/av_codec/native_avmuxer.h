@@ -83,7 +83,7 @@ OH_AVErrCode OH_AVMuxer_SetRotation(OH_AVMuxer *muxer, int32_t rotation);
  * @param format OH_AVFormat handle pointer contain format
  * @return Returns AV_ERR_OK if the execution is successful,
  * otherwise returns a specific error code, refer to {@link OH_AVErrCode}
- * {@link AV_ERR_INVALID_VAL}, the muxer or format invalid.
+ * {@link AV_ERR_INVALID_VAL}, the muxer or format is invalid.
  * @since 14
  */
 OH_AVErrCode OH_AVMuxer_SetFormat(OH_AVMuxer *muxer, OH_AVFormat *format);
