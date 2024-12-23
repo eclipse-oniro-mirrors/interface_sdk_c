@@ -208,6 +208,13 @@ typedef struct ArkUI_CustomProperty ArkUI_CustomProperty;
 typedef struct ArkUI_ActiveChildrenInfo ArkUI_ActiveChildrenInfo;
 
 /**
+ * @brief Set the linear progress indicator style.
+ *
+ * @since 16
+ */
+typedef struct ArkUI_ProgressLinearStyleOption ArkUI_ProgressLinearStyleOption;
+
+/**
  * @brief Defines the event callback type.
  *
  * @since 12
@@ -2986,7 +2993,7 @@ void OH_ArkUI_AlignmentRuleOption_Dispose(ArkUI_AlignmentRuleOption* option);
  *
  * @param option Alignment rule information of subcomponents in the relative container.
  * @param id The id value of the anchor component.
- * @param value Alignment relative to the anchor component.
+ * @param alignment Alignment relative to the anchor component.
  * @since 12
  */
 void OH_ArkUI_AlignmentRuleOption_SetStart(
@@ -2997,7 +3004,7 @@ void OH_ArkUI_AlignmentRuleOption_SetStart(
  *
  * @param option Alignment rule information of subcomponents in the relative container.
  * @param id The id value of the anchor component.
- * @param value Alignment relative to the anchor component.
+ * @param alignment Alignment relative to the anchor component.
  * @since 12
  */
 void OH_ArkUI_AlignmentRuleOption_SetEnd(
@@ -3008,7 +3015,7 @@ void OH_ArkUI_AlignmentRuleOption_SetEnd(
 *
 * @param option Alignment rule information of subcomponents in the relative container.
 * @param id The id value of the anchor component.
-* @param value Alignment relative to anchor component
+* @param alignment Alignment relative to anchor component
 * @since 12
 */
 void OH_ArkUI_AlignmentRuleOption_SetCenterHorizontal(
@@ -3019,7 +3026,7 @@ void OH_ArkUI_AlignmentRuleOption_SetCenterHorizontal(
  *
  * @param option Alignment rule information of subcomponents in the relative container.
  * @param id The id value of the anchor component.
- * @param value Alignment relative to anchor component
+ * @param alignment Alignment relative to anchor component
  * @since 12
  */
 void OH_ArkUI_AlignmentRuleOption_SetTop(ArkUI_AlignmentRuleOption* option, const char* id,
@@ -3030,7 +3037,7 @@ void OH_ArkUI_AlignmentRuleOption_SetTop(ArkUI_AlignmentRuleOption* option, cons
  *
  * @param option Alignment rule information of subcomponents in the relative container.
  * @param id The id value of the anchor component.
- * @param value Alignment relative to anchor component
+ * @param alignment Alignment relative to anchor component
  * @since 12
  */
 void OH_ArkUI_AlignmentRuleOption_SetBottom(
@@ -3041,7 +3048,7 @@ void OH_ArkUI_AlignmentRuleOption_SetBottom(
 *
 * @param option Alignment rule information of subcomponents in the relative container.
 * @param id The id value of the anchor component.
-* @param value Alignment relative to the anchor component.
+* @param alignment Alignment relative to the anchor component.
 * @since 12
 */
 void OH_ArkUI_AlignmentRuleOption_SetCenterVertical(
@@ -3060,7 +3067,7 @@ void OH_ArkUI_AlignmentRuleOption_SetBiasHorizontal(ArkUI_AlignmentRuleOption* o
  * @brief Set the vertical offset parameter of the component under the anchor point constraint.
  *
  * @param option Alignment rule information of subcomponents in the relative container.
- * @param horizontal bias value in the vertical direction.
+ * @param vertical bias value in the vertical direction.
  * @since 12
  */
 void OH_ArkUI_AlignmentRuleOption_SetBiasVertical(ArkUI_AlignmentRuleOption* option, float vertical);
@@ -3522,7 +3529,7 @@ ArkUI_CustomSpanMetrics* OH_ArkUI_CustomSpanMetrics_Create();
 /**
  * @brief Disposes of measurement metrics of this custom span.
  *
- * @param info The CustomSpanMetrics instance to be destroyed.
+ * @param metrics The CustomSpanMetrics instance to be destroyed.
  * @since 12
 */
 void OH_ArkUI_CustomSpanMetrics_Dispose(ArkUI_CustomSpanMetrics* metrics);
@@ -4005,6 +4012,98 @@ ArkUI_NodeHandle OH_ArkUI_ActiveChildrenInfo_GetNodeByIndex(ArkUI_ActiveChildren
  * @since 14
  */
 int32_t OH_ArkUI_ActiveChildrenInfo_GetCount(ArkUI_ActiveChildrenInfo* handle);
+
+/**
+ * @brief Create linear progress indicator style information.
+ *
+ * @return Returns a <b>ProgressLinearStyleOption</b> instance.
+ * <br> If the result returns nullptr, there may be out of memory.
+ * @since 16
+ */
+ArkUI_ProgressLinearStyleOption* OH_ArkUI_ProgressLinearStyleOption_Create();
+
+/**
+ * @brief Destroy linear progress indicator style information.
+ *
+ * @param option Linear progress indicator style information.
+ * @since 16
+ */
+void OH_ArkUI_ProgressLinearStyleOption_Destroy(ArkUI_ProgressLinearStyleOption* option);
+
+/**
+ * @brief Set whether the scan effect is enabled.
+ *
+ * @param option Linear progress indicator style information.
+ * @param enabled Whether to enable the scan effect. Default value: false.
+ * @since 16
+ */
+void OH_ArkUI_ProgressLinearStyleOption_SetScanEffectEnabled(ArkUI_ProgressLinearStyleOption* option, bool enabled);
+
+/**
+ * @brief Set whether smoothing effect is enabled.
+ *
+ * @param option Linear progress indicator style information.
+ * @param enabled Whether to enable the smooth effect. When this effect is enabled, the progress change to
+ * the set value takes place gradually. Otherwise, it takes place immediately. Default value: true.
+ * @since 16
+ */
+void OH_ArkUI_ProgressLinearStyleOption_SetSmoothEffectEnabled(ArkUI_ProgressLinearStyleOption* option, bool enabled);
+
+/**
+ * @brief Set linear progress indicator stroke width.
+ *
+ * @param option Linear progress indicator style information.
+ * @param strokeWidth Stroke width of the progress indicator. It cannot be set in percentage.
+ * Default value: 4.0vp.
+ * @since 16
+ */
+void OH_ArkUI_ProgressLinearStyleOption_SetStrokeWidth(ArkUI_ProgressLinearStyleOption* option, float strokeWidth);
+
+/**
+ * @brief Set linear progress indicator stroke radius.
+ *
+ * @param option Linear progress indicator style information.
+ * @param strokeRadius Rounded corner radius of the progress indicator. Value range: [0, strokeWidth/2].
+ * Default value: strokeWidth/2.
+ * @since 16
+ */
+void OH_ArkUI_ProgressLinearStyleOption_SetStrokeRadius(ArkUI_ProgressLinearStyleOption* option, float strokeRadius);
+
+/**
+ * @brief Get whether scan effect is enable.
+ *
+ * @param option Linear progress indicator style information.
+ * @return Whether to enable the scan effect.
+ * @since 16
+ */
+bool OH_ArkUI_ProgressLinearStyleOption_GetScanEffectEnabled(ArkUI_ProgressLinearStyleOption* option);
+
+/**
+ * @brief Get whether smoothing effect is enabled.
+ *
+ * @param option Linear progress indicator style information.
+ * @return Whether to enable the smooth effect.
+ * @since 16
+ */
+bool OH_ArkUI_ProgressLinearStyleOption_GetSmoothEffectEnabled(ArkUI_ProgressLinearStyleOption* option);
+
+/**
+ * @brief Get linear progress indicator stroke width.
+ *
+ * @param option Linear progress indicator style information.
+ * @return Stroke width of the progress indicator.
+ * @since 16
+ */
+float OH_ArkUI_ProgressLinearStyleOption_GetStrokeWidth(ArkUI_ProgressLinearStyleOption* option);
+
+/**
+ * @brief Get linear progress indicator stroke radius.
+ *
+ * @param option Linear progress indicator style information.
+ * @return Rounded corner radius of the progress indicator.
+ * @since 16
+ */
+float OH_ArkUI_ProgressLinearStyleOption_GetStrokeRadius(ArkUI_ProgressLinearStyleOption* option);
 #ifdef __cplusplus
 };
 #endif

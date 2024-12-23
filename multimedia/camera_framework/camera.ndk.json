@@ -630,5 +630,9 @@
     {
         "first_introduced": "13",
         "name": "OH_CaptureSession_EnableAutoDeviceSwitch"
+    },
+    {
+        "first_introduced": "14",
+        "name": "OH_CaptureSession_SetQualityPrioritization"
     }
 ]
