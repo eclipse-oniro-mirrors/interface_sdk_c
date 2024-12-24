@@ -78,7 +78,7 @@ OH_AVErrCode OH_AVMuxer_SetRotation(OH_AVMuxer *muxer, int32_t rotation);
 
 /**
  * @brief Set format to the muxer.
- *
+ * 
  * @syscap SystemCapability.Multimedia.Media.Muxer
  * @param muxer Pointer to an OH_AVMuxer instance
  * @param format OH_AVFormat handle pointer contain format
