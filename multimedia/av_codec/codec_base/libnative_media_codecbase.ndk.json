@@ -60,10 +60,6 @@
         "name": "OH_AVCODEC_MIMETYPE_AUDIO_G711MU"
     },
     {
-        "first_introduced": "14",
-        "name": "OH_AVCODEC_MIMETYPE_AUDIO_PCM"
-    },
-    {
         "first_introduced": "12",
         "name": "OH_AVCODEC_MIMETYPE_AUDIO_APE"
     },
@@ -78,6 +74,10 @@
     {
         "first_introduced": "12",
         "name": "OH_AVCODEC_MIMETYPE_SUBTITLE_WEBVTT"
+    },
+    {
+        "first_introduced": "14",
+        "name": "OH_AVCODEC_MIMETYPE_AUDIO_PCM"
     },
     {
         "first_introduced": "9",
