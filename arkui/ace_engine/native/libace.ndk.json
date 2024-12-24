@@ -1355,6 +1355,10 @@
         "name": "OH_ArkUI_NodeUtils_GetCrossLanguageOption"
     },
     {
+        "first_introduced": "16",
+        "name": "OH_ArkUI_NodeUtils_GetAttachedNodeHandleById"
+    },
+    {
         "first_introduced": "15",
         "name": "OH_ArkUI_CrossLanguageOption_Create"
     },
