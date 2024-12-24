@@ -978,7 +978,7 @@ extern const char *OH_MD_KEY_VIDEO_DECODER_OUTPUT_COLOR_SPACE;
 extern const char *OH_MD_KEY_VIDEO_DECODER_OUTPUT_ENABLE_VRR;
 
 /**
- * @brief Key for creation timestamp of a media file, value type is int64_t.
+ * @brief Key for creation timestamp of a media file, value type is string.
  *
  * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 14
