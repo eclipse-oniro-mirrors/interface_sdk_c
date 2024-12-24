@@ -3398,6 +3398,7 @@ typedef enum {
     /**
      * @brief Sets the style of the linear progress indicator.
      * This attribute can be set, reset, and obtained as required through APIs.
+     * If the progress indicator type is not linear, it will not take effect.
      *
      * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
      * .object: Use the {@link ArkUI_ProgressLinearStyleOption} object to set the style. \n
