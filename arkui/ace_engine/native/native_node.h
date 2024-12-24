@@ -5509,6 +5509,28 @@ typedef enum {
     * .value[0].i32: number of cached items in the grid adapter. \n
     */
     NODE_GRID_CACHED_COUNT,
+
+    /**
+    * @brief Defines the column width of the text picker.
+    * This attribute can be set, reset, and obtained as required through APIs.
+    *
+    * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
+    * .value[0].f32: percentage of total width. The default value is that all colulmns are equal width.\n
+    * .value[1]?.f32: percentage of total width. The default value is that all colulmns are equal width.\n
+    * .value[2]?.f32: percentage of total width. The default value is that all colulmns are equal width.\n
+    * ...\n
+    * .value[n]?.f32: percentage of total width. The default value is that all colulmns are equal width.\n
+    * \n
+    * Format of the return value {@link ArkUI_AttributeItem}:\n
+    * value[0].f32: percentage of total width.\n
+    * value[1].f32: percentage of total width.\n
+    * value[2].f32: percentage of total width.\n
+    * ...\n
+    * value[n].f32: percentage of total width.\n
+    *
+    * @since 16
+    */
+    NODE_TEXT_PICKER_COLUMN_WIDTHS = 15009,
 } ArkUI_NodeAttributeType;
 
 #define MAX_COMPONENT_EVENT_ARG_NUM 12
