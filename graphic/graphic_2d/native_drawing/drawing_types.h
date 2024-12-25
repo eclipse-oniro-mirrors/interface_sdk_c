@@ -543,7 +543,7 @@ typedef struct OH_Drawing_RecordCmd OH_Drawing_RecordCmd;
 /**
  * @brief Defines an array object, which is used to store multiple NDK object.
  *
- * @since 14
+ * @since 16
  * @version 1.0
  */
 typedef struct OH_Drawing_Array OH_Drawing_Array;

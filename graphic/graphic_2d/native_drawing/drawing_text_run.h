@@ -54,7 +54,7 @@ extern "C" {
  * @param start The run of start index.
  * @param length The run of length, if start and length are set to 0, then get all of the current run.
  * @return Run of glyph indices array object <b>OH_Drawing_Array</b>.
- * @since 14
+ * @since 16
  */
 OH_Drawing_Array* OH_Drawing_GetRunStringIndices(OH_Drawing_Run* run, int64_t start, int64_t length);
 
@@ -65,7 +65,7 @@ OH_Drawing_Array* OH_Drawing_GetRunStringIndices(OH_Drawing_Run* run, int64_t st
  * @param stringIndices the run glyph indices array object <b>OH_Drawing_Array</b>.
  * @param index The run of glyph index.
  * @return Run of glyph indices element.
- * @since 14
+ * @since 16
  */
 uint64_t OH_Drawing_GetRunStringIndicesByIndex(OH_Drawing_Array* stringIndices, size_t index);
 
@@ -74,7 +74,7 @@ uint64_t OH_Drawing_GetRunStringIndicesByIndex(OH_Drawing_Array* stringIndices, 
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @param stringIndices glyph indices array object <b>OH_Drawing_Array</b>.
- * @since 14
+ * @since 16
  */
 void OH_Drawing_DestroyRunStringIndices(OH_Drawing_Array* stringIndices);
 
@@ -85,7 +85,7 @@ void OH_Drawing_DestroyRunStringIndices(OH_Drawing_Array* stringIndices);
  * @param run Indicates the pointer to an <b>OH_Drawing_Run</b> object.
  * @param location The run of glyph location.
  * @param length The run of glyph length.
- * @since 14
+ * @since 16
  */
 void OH_Drawing_GetRunStringRange(OH_Drawing_Run* run, uint64_t* location, uint64_t* length);
 
@@ -98,7 +98,7 @@ void OH_Drawing_GetRunStringRange(OH_Drawing_Run* run, uint64_t* location, uint6
  * @param descent The run of descent.
  * @param leading The run of leading.
  * @return run typographic width.
- * @since 14
+ * @since 16
  */
 float OH_Drawing_GetRunTypographicBounds(OH_Drawing_Run* run, float* ascent, float* descent, float* leading);
 
@@ -110,7 +110,7 @@ float OH_Drawing_GetRunTypographicBounds(OH_Drawing_Run* run, float* ascent, flo
  * @param run Indicates the pointer to an <b>OH_Drawing_Run</b> object.
  * @param x Indicates the x coordinate.
  * @param y Indicates the y coordinate.
- * @since 14
+ * @since 16
  */
 void OH_Drawing_RunPaint(OH_Drawing_Canvas* canvas, OH_Drawing_Run* run, double x, double y);
 
@@ -120,7 +120,7 @@ void OH_Drawing_RunPaint(OH_Drawing_Canvas* canvas, OH_Drawing_Run* run, double 
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @param run Indicates the pointer to an <b>OH_Drawing_Run</b> object.
  * @return The run image bounds to an <b>OH_Drawing_Rect</b> object.
- * @since 14
+ * @since 16
  */
 OH_Drawing_Rect* OH_Drawing_GetRunImageBounds(OH_Drawing_Run* run);
 
@@ -129,7 +129,7 @@ OH_Drawing_Rect* OH_Drawing_GetRunImageBounds(OH_Drawing_Run* run);
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @param rect Run image bounds to an <b>OH_Drawing_Rect</b> object.
- * @since 14
+ * @since 16
  */
 void OH_Drawing_DestroyRunImageBounds(OH_Drawing_Rect* rect);
 
@@ -141,7 +141,7 @@ void OH_Drawing_DestroyRunImageBounds(OH_Drawing_Rect* rect);
  * @param start The run of start index.
  * @param length The run of length, if start and length are set to 0, then get all of the current run.
  * @return Run of glyph array object <b>OH_Drawing_Array</b.
- * @since 14
+ * @since 16
  */
 OH_Drawing_Array* OH_Drawing_GetRunGlyphs(OH_Drawing_Run* run, int64_t start, int64_t length);
 
@@ -152,7 +152,7 @@ OH_Drawing_Array* OH_Drawing_GetRunGlyphs(OH_Drawing_Run* run, int64_t start, in
  * @param glyphs The run of glyph array object <b>OH_Drawing_Array</b>.
  * @param index The run of glyph index.
  * @return Run of glyph element.
- * @since 14
+ * @since 16
  * @version 1.0
  */
 uint16_t OH_Drawing_GetRunGlyphsByIndex(OH_Drawing_Array* glyphs, size_t index);
@@ -162,7 +162,7 @@ uint16_t OH_Drawing_GetRunGlyphsByIndex(OH_Drawing_Array* glyphs, size_t index);
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @param glyphs The run of glyph array object <b>OH_Drawing_Array</b>.
- * @since 14
+ * @since 16
  */
 void OH_Drawing_DestroyRunGlyphs(OH_Drawing_Array* glyphs);
 
@@ -174,7 +174,7 @@ void OH_Drawing_DestroyRunGlyphs(OH_Drawing_Array* glyphs);
  * @param start The run of start index.
  * @param length The run of length, if start and length are set to 0, then get all of the current run.
  * @return Run of position array object <b>OH_Drawing_Array</b>.
- * @since 14
+ * @since 16
  */
 OH_Drawing_Array* OH_Drawing_GetRunPositions(OH_Drawing_Run* run, int64_t start, int64_t length);
 
@@ -185,7 +185,7 @@ OH_Drawing_Array* OH_Drawing_GetRunPositions(OH_Drawing_Run* run, int64_t start,
  * @param positions The run of position array object <b>OH_Drawing_Array</b>.
  * @param index The run of glyph index.
  * @return Run of glyph position pointer to an <b>OH_Drawing_Point</b> object.
- * @since 14
+ * @since 16
  * @version 1.0
  */
 OH_Drawing_Point* OH_Drawing_GetRunPositionsByIndex(OH_Drawing_Array* positions, size_t index);
@@ -195,7 +195,7 @@ OH_Drawing_Point* OH_Drawing_GetRunPositionsByIndex(OH_Drawing_Array* positions,
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @param positions The run of position array object <b>OH_Drawing_Array</b>.
- * @since 14
+ * @since 16
  */
 void OH_Drawing_DestroyRunPositions(OH_Drawing_Array* positions);
 
@@ -205,7 +205,7 @@ void OH_Drawing_DestroyRunPositions(OH_Drawing_Array* positions);
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @param run Indicates the pointer to an <b>OH_Drawing_Run</b> object.
  * @return The number of glyph.
- * @since 14
+ * @since 16
  */
 uint32_t OH_Drawing_GetRunGlyphCount(OH_Drawing_Run* run);
 #ifdef __cplusplus
