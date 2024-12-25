@@ -21,7 +21,7 @@
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  *
- * @since 14
+ * @since 16
  * @version 1.0
  */
 
@@ -33,7 +33,7 @@
  * @kit ArkGraphics2D
  * @library libnative_drawing.so
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @since 14
+ * @since 16
  * @version 1.0
  */
 

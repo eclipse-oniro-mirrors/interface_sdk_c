@@ -2889,7 +2889,7 @@ void OH_Drawing_SetTypographyTextTab(OH_Drawing_TypographyStyle* style, OH_Drawi
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @param drawingArray Indicates the pointer to the array object <b>OH_Drawing_Array</b>.
  * @return Size of array.
- * @since 16
+ * @since 14
  * @version 1.0
  */
 size_t OH_Drawing_GetDrawingArraySize(OH_Drawing_Array* drawingArray);
