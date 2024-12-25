@@ -166,7 +166,7 @@ typedef enum {
     IMAGE_UNSUPPORTED_CONVERSION = 7600203,
     /** invalid region */
     IMAGE_INVALID_REGION = 7600204,
-    /** 
+    /**
      *  @error unsupported memory format
      *  @since 13
      */
