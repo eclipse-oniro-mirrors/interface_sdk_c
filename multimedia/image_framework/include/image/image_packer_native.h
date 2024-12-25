@@ -327,7 +327,7 @@ Image_ErrorCode OH_PackingOptionsForSequence_Release(OH_PackingOptionsForSequenc
 /**
  * @brief Create a pointer for OH_ImagePackerNative struct.
  *
- * @param options The OH_ImagePackerNative pointer will be operated.
+ * @param imagePacker The imagePacker to be created.
  * @return Returns {@link Image_ErrorCode}
  * @since 12
  */
@@ -469,5 +469,5 @@ Image_ErrorCode OH_ImagePackerNative_Release(OH_ImagePackerNative *imagePacker);
 #ifdef __cplusplus
 };
 #endif
-/* *@} */
+/** @} */
 #endif // INTERFACES_KITS_NATIVE_INCLUDE_IMAGE_IMAGE_PACKER_NATIVE_H_

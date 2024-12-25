@@ -353,7 +353,7 @@ Image_ErrorCode OH_ImageSourceNative_CreateFromRawFile(RawFileDescriptor *rawFil
  * @param source Indicates a void pointer(from ImageSource pointer convert).
  * @param  options Indicates a pointer to the options for decoding the image source.
  * For details, see {@link OH_DecodingOptions}.
- * @param resPixMap Indicates a void pointer to the <b>Pixelmap</b> object obtained at the C++ native layer.
+ * @param pixelmap Indicates a void pointer to the <b>Pixelmap</b> object obtained at the C++ native layer.
  * @return Returns {@link Image_ErrorCode}
  * @since 12
  */
@@ -448,7 +448,7 @@ Image_ErrorCode OH_ImageSourceNative_ModifyImageProperty(OH_ImageSourceNative *s
  * @brief Obtains the number of frames from an <b>ImageSource</b> object.
  *
  * @param source Indicates a pointer to the {@link OH_ImageSource} object at the C++ native layer.
- * @param res Indicates a pointer to the number of frames obtained.
+ * @param frameCount The number of image frameCount.
  * @return Returns {@link Image_ErrorCode}
  * @since 12
  */
