@@ -19,7 +19,7 @@
  *
  * @brief Provides APIs for obtaining pixel map data and information.
  *
- * @Syscap SystemCapability.Multimedia.Image.Core
+ * @syscap SystemCapability.Multimedia.Image.Core
  * @since 12
  */
 
@@ -30,7 +30,7 @@
  *
  * @library libpixelmap.so
  * @kit ImageKit
- * @Syscap SystemCapability.Multimedia.Image.Core
+ * @syscap SystemCapability.Multimedia.Image.Core
  * @since 12
  */
 
@@ -568,10 +568,10 @@ Image_ErrorCode OH_PixelmapImageInfo_GetRowStride(OH_Pixelmap_ImageInfo *info, u
 Image_ErrorCode OH_PixelmapImageInfo_GetPixelFormat(OH_Pixelmap_ImageInfo *info, int32_t *pixelFormat);
 
 /**
- * @brief Get density number for imageinfo struct.
+ * @brief Get alphatype number for imageinfo struct.
  *
  * @param info The imageinfo pointer will be operated.
- * @param density The number of imageinfo density.
+ * @param alphatype The number of imageinfo alphatype.
  * @return Returns {@link Image_ErrorCode}
  * @since 12
  */
