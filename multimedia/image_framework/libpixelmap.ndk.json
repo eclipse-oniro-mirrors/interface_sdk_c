@@ -124,6 +124,14 @@
         "name": "OH_PixelmapNative_ScaleWithAntiAliasing"
     },
     {
+        "first_introduced": "16",
+        "name": "OH_PixelmapNative_CreateScaledPixelMap"
+    },
+    {
+        "first_introduced": "16",
+        "name": "OH_PixelmapNative_CreateScaledPixelMapWithAntiAliasing"
+    },
+    {
         "first_introduced": "12",
         "name": "OH_PixelmapNative_Translate"
     },
@@ -182,5 +190,21 @@
     {
         "first_introduced": "13",
         "name": "OH_PixelmapNative_SetMemoryName"
+    },
+    {
+        "first_introduced": "16",
+        "name": "OH_PixelmapNative_GetByteCount"
+    },
+    {
+        "first_introduced": "16",
+        "name": "OH_PixelmapNative_GetAllocationByteCount"
+    },
+    {
+        "first_introduced": "16",
+        "name": "OH_PixelmapNative_AccessPixels"
+    },
+    {
+        "first_introduced": "16",
+        "name": "OH_PixelmapNative_UnaccessPixels"
     }
 ]

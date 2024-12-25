@@ -14,9 +14,20 @@
  */
 
 /**
+ * @addtogroup Core
+ * @{
+ *
+ * @brief The Core module provides basic backbone capabilities for media frameworks,
+ * including functions such as memory, error codes, and media data structures.
+ *
+ * @syscap SystemCapability.Multimedia.Media.Core
+ * @since 9
+ */
+
+/**
  * @file native_averrors.h
  *
- * @brief Provides audio and video error description.
+ * @brief Media framework error code.
  *
  * @kit AVCodecKit
  * @library libnative_media_core.so
@@ -171,3 +182,4 @@ typedef enum OH_AVErrCode {
 #endif
 
 #endif // NATIVE_AVERRORS_H
+/** @} */

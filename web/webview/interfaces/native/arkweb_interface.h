@@ -88,3 +88,4 @@ ArkWeb_AnyNativeAPI* OH_ArkWeb_GetNativeAPI(ArkWeb_NativeAPIVariantKind type);
 };
 #endif
 #endif // ARKWEB_INTERFACE_H
+/** @} */

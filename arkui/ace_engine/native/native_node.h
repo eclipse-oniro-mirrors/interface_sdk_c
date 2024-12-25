@@ -92,6 +92,10 @@ typedef enum {
     ARKUI_NODE_RADIO = 18,
     /** Image animator. */
     ARKUI_NODE_IMAGE_ANIMATOR = 19,
+    /** XComponent of type TEXTURE.
+     *  @since 16
+     */
+    ARKUI_NODE_XCOMPONENT_TEXTURE,
     /** Stack container. */
     ARKUI_NODE_STACK = MAX_NODE_SCOPE_NUM,
     /** Swiper. */
@@ -475,10 +479,10 @@ typedef enum {
      * This attribute can be set, reset, and obtained as required through APIs.
      *
      * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].f32: z-index value. \n
+     * .value[0].i32: z-index value. \n
      * \n
      * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].f32: z-index value. \n
+     * .value[0].i32: z-index value. \n
      *
      */
     NODE_Z_INDEX,
@@ -2214,6 +2218,21 @@ typedef enum {
     NODE_TEXT_HALF_LEADING = 1029,
 
     /**
+     * @brief Defines the font weight attribute, which can be set, reset, and obtained as required through APIs.
+     * The font weight set through this interface does not support adaptive adjustment.
+     *
+     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
+     * .value[0].i32: font weight {@link ArkUI_FontWeight}. The default value is <b>ARKUI_FONT_WEIGHT_NORMAL</b>.\n
+     * \n
+     * Format of the return value {@link ArkUI_AttributeItem}:\n
+     * .value[0].i32: font weight {@link ArkUI_FontWeight}.\n
+     
+     * @since 16
+     *
+     */
+    NODE_IMMUTABLE_FONT_WEIGHT = 1030,
+
+    /**
      * @brief Defines the text content attribute, which can be set, reset, and obtained as required through APIs.
      *
      * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
@@ -2966,6 +2985,34 @@ typedef enum {
      *
      */
     NODE_TEXT_INPUT_NUMBER_OF_LINES,
+
+    /**
+     * @brief Sets the letter spacing of the <b>TextInput</b> component.
+     * This attribute can be set, reset, and obtained as required through APIs.
+     *
+     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
+     * .value[0].f32: letter spacing. The default unit is fp. \n
+     * \n
+     * Format of the return value {@link ArkUI_AttributeItem}:\n
+     * .value[0].f32: letter spacing. The default unit is fp. \n
+     *
+     * @since 16
+     */
+    NODE_TEXT_INPUT_LETTER_SPACING = 7032,
+    /**
+     * @brief Sets whether to enable preview text for the <b>TextInput</b> component.
+     * This attribute can be set, reset, and obtained as required through APIs.
+     *
+     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
+     * .value[0].i32: whether to enable preview tex. \n
+     * \n
+     * Format of the return value {@link ArkUI_AttributeItem}:\n
+     * .value[0].i32: whether to enable preview tex. \n
+     *
+     * @since 16
+     */
+    NODE_TEXT_INPUT_ENABLE_PREVIEW_TEXT = 7033,
+
     /**
      * @brief Defines the default placeholder text for the multi-line text box.
      * This attribute can be set, reset, and obtained as required through APIs.
@@ -3260,6 +3307,34 @@ typedef enum {
      *
      */
     NODE_TEXT_AREA_NUMBER_OF_LINES,
+
+    /**
+     * @brief Sets the letter spacing of the <b>TextArea</b> component.
+     * This attribute can be set, reset, and obtained as required through APIs.
+     *
+     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
+     * .value[0].f32: letter spacing. The default unit is fp. \n
+     * \n
+     * Format of the return value {@link ArkUI_AttributeItem}:\n
+     * .value[0].f32: letter spacing. The default unit is fp. \n
+     *
+     * @since 16
+     */
+    NODE_TEXT_AREA_LETTER_SPACING = 8023,
+    /**
+     * @brief Sets whether to enable preview text for the <b>TextArea</b> component.
+     * This attribute can be set, reset, and obtained as required through APIs.
+     *
+     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
+     * .value[0].i32: whether to enable preview tex. \n
+     * \n
+     * Format of the return value {@link ArkUI_AttributeItem}:\n
+     * .value[0].i32: whether to enable preview tex. \n
+     *
+     * @since 16
+     */
+    NODE_TEXT_AREA_ENABLE_PREVIEW_TEXT = 8024,
+
     /**
      * @brief Defines the button text content. This attribute can be set, reset, and obtained as required through APIs.
      *
@@ -3335,6 +3410,20 @@ typedef enum {
      *
      */
     NODE_PROGRESS_TYPE,
+    /**
+     * @brief Sets the style of the linear progress indicator.
+     * This attribute can be set, reset, and obtained as required through APIs.
+     * If the progress indicator type is not linear, it will not take effect.
+     *
+     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
+     * .object: Use the {@link ArkUI_ProgressLinearStyleOption} object to set the style. \n
+     * \n
+     * Format of the return value {@link ArkUI_AttributeItem}:\n
+     * .object: Use the {@link ArkUI_ProgressLinearStyleOption} object to get the style. \n
+     *
+     * @since 16
+     */
+    NODE_PROGRESS_LINEAR_STYLE,
 
     /**
      * @brief Defines whether the check box is selected.
@@ -4534,6 +4623,9 @@ typedef enum {
      *                The default unit is vp. \n
      * .value[1].f32: total height of all child components when fully expanded in the scrollable component.
      *                The default unit is vp. \n
+     * When <b>NODE_PADDING</b>, <b>NODE_MARGIN</b>, or <b>NODE_BORDER_WIDTH</b> is set, the values are rounded to the
+     * nearest pixel when being converted from vp to px.
+     * The returned values are calculated based on these rounded pixel values. \n
      *
      * @since 14
      */
@@ -4950,6 +5042,19 @@ typedef enum {
     * .value[0].i32：Set to disable component navigation point interaction. \n
     */
     NODE_SWIPER_INDICATOR_INTERACTIVE,
+
+    /**
+     * @brief Sets the page flipping mode using the mouse wheel.
+     *
+     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
+     * .value[0].i32: page flipping mode using the mouse wheel. The parameter type is {@link ArkUI_PageFlipMode}. \n
+     * \n
+     * Format of the return value {@link ArkUI_PageFlipMode}:\n
+     * .value[0].i32: page flipping mode using the mouse wheel. \n
+     *
+     * @since 15
+     */
+    NODE_SWIPER_PAGE_FLIP_MODE,
 
     /**
      * @brief: Set the delineation component of the ListItem, supporting property settings, property resets, and
@@ -5420,6 +5525,28 @@ typedef enum {
     * .value[0].i32: number of cached items in the grid adapter. \n
     */
     NODE_GRID_CACHED_COUNT,
+
+    /**
+    * @brief Defines the column width of the text picker.
+    * This attribute can be set, reset, and obtained as required through APIs.
+    *
+    * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
+    * .value[0].f32: percentage of total width. The default value is that all colulmns are equal width.\n
+    * .value[1]?.f32: percentage of total width. The default value is that all colulmns are equal width.\n
+    * .value[2]?.f32: percentage of total width. The default value is that all colulmns are equal width.\n
+    * ...\n
+    * .value[n]?.f32: percentage of total width. The default value is that all colulmns are equal width.\n
+    * \n
+    * Format of the return value {@link ArkUI_AttributeItem}:\n
+    * value[0].f32: percentage of total width.\n
+    * value[1].f32: percentage of total width.\n
+    * value[2].f32: percentage of total width.\n
+    * ...\n
+    * value[n].f32: percentage of total width.\n
+    *
+    * @since 16
+    */
+    NODE_TEXT_PICKER_COLUMN_WIDTHS = 15009,
 } ArkUI_NodeAttributeType;
 
 #define MAX_COMPONENT_EVENT_ARG_NUM 12
@@ -5442,6 +5569,20 @@ typedef struct {
     /** String. */
     const char* pStr;
 } ArkUI_StringAsyncEvent;
+
+/**
+ * @brief Defines a hybrid data structure for component events.
+ *
+ * @since 16
+ */
+typedef struct {
+    /** String data */
+    const char* pStr;
+    /** Extended string data */
+    const char* pExtendStr;
+    /** Numeric data */
+    int32_t number;
+} ArkUI_TextChangeEvent;
 
 /**
  * @brief Enumerates the event types supported by the NativeNode component.
@@ -5713,6 +5854,16 @@ typedef enum {
      * @since 14
      */
     NODE_ON_KEY_PRE_IME = 22,
+    /**
+     * @brief Defines the event triggered when the bound component receives a focus axis event after gaining focus.
+     *
+     * The event callback is triggered by interactions with a joystick and a focused component. \n
+     * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
+     * {@link ArkUI_UIInputEvent}. \n
+     * 
+     * @since 15
+     */
+    NODE_ON_FOCUS_AXIS = 23,
 
     /**
      * @brief Triggers onDetectResultUpdate callback
@@ -5956,6 +6107,20 @@ typedef enum {
     NODE_TEXT_INPUT_ON_DID_DELETE = 7012,
 
     /**
+     * @brief Defines the event triggered when content (including preview text) changes in the <b>TextInput</b>
+     * component.
+     *
+     * When the event callback occurs, the union type {@link ArkUI_NodeEvent} is {@link ArkUI_TextChangeEvent}. \n
+     * {@link ArkUI_TextChangeEvent} contains the following parameters: \n
+     * <b>ArkUI_TextChangeEvent.pStr</b>: content in the <b>TextInput</b> component.
+     * <b>ArkUI_TextChangeEvent.pExtendStr</b>: content of the preview text in the <b>TextInput</b> component.
+     * <b>ArkUI_TextChangeEvent.number</b>: start position of the preview text in the <b>TextInput</b> component.
+     *
+     * @since 16
+     */
+    NODE_TEXT_INPUT_ON_CHANGE_WITH_PREVIEW_TEXT = 7013,
+
+    /**
      * @brief Defines the event triggered when the input in the text box changes.
      *
       \n
@@ -6106,6 +6271,20 @@ typedef enum {
      * <b>OH_ArkUI_NodeEvent_GetStringValue</b>.
      */
     NODE_TEXT_AREA_ON_DID_DELETE = 8011,
+
+    /**
+     * @brief Defines the event triggered when content (including preview text) changes in the <b>TextArea</b>
+     * component.
+     *
+     * When the event callback occurs, the union type {@link ArkUI_NodeEvent} is {@link ArkUI_TextChangeEvent}. \n
+     * {@link ArkUI_TextChangeEvent} contains the following parameters: \n
+     * <b>ArkUI_TextChangeEvent.pStr</b>: content in the <b>TextArea</b> component.
+     * <b>ArkUI_TextChangeEvent.pExtendStr</b>: content of the preview text in the <b>TextArea</b> component.
+     * <b>ArkUI_TextChangeEvent.number</b>: start position of the preview text in the <b>TextArea</b> component.
+     *
+     * @since 16
+     */
+    NODE_TEXT_AREA_ON_CHANGE_WITH_PREVIEW_TEXT = 8012,
 
     /**
      * @brief Defines the event triggered when the selected status of the <b>ARKUI_NODE_CHECKBOX</b> component changes.
@@ -6652,6 +6831,15 @@ ArkUI_NodeComponentEvent* OH_ArkUI_NodeEvent_GetNodeComponentEvent(ArkUI_NodeEve
  * @since 12
  */
 ArkUI_StringAsyncEvent* OH_ArkUI_NodeEvent_GetStringAsyncEvent(ArkUI_NodeEvent* event);
+
+/**
+ * @brief Obtains the ArkUI_TextChangeEvent data from a component event.
+ *
+ * @param event Pointer to a component event. It cannot be null.
+ * @return Returns the pointer to the <b>ArkUI_TextChangeEvent</b> object.
+ * @since 16
+ */
+ArkUI_TextChangeEvent* OH_ArkUI_NodeEvent_GetTextChangeEvent(ArkUI_NodeEvent* event);
 
 /**
  * @brief Obtains the custom data in a component event.
@@ -7816,7 +8004,7 @@ int32_t OH_ArkUI_NodeUtils_GetCustomProperty(ArkUI_NodeHandle node, const char* 
 ArkUI_NodeHandle OH_ArkUI_NodeUtils_GetParentInPageTree(ArkUI_NodeHandle node);
 
 /**
- * @brief Retrieve all active child nodes of a node.
+ * @brief Retrieve all active child nodes of a node. Span will not be counted in the children.
  *
  * @param head Pass in the node that needs to be obtained.
  * @param handle The structure corresponding to the sub node information of the head node.
@@ -7951,4 +8139,4 @@ float OH_ArkUI_SystemFontStyleEvent_GetFontWeightScale(const ArkUI_SystemFontSty
 #endif
 
 #endif // ARKUI_NATIVE_NODE_H
-/** @}*/
+/** @} */
