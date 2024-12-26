@@ -3824,7 +3824,7 @@ ArkUI_AccessibilityValue* OH_ArkUI_AccessibilityValue_Create(void);
 /**
 * @brief Dispose accessibility value.
 *
-* @param state accessibility value object.
+* @param value accessibility value object.
 * @since 12
 */
 void OH_ArkUI_AccessibilityValue_Dispose(ArkUI_AccessibilityValue* value);
