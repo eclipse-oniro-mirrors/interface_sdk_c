@@ -568,10 +568,10 @@ Image_ErrorCode OH_PixelmapImageInfo_GetRowStride(OH_Pixelmap_ImageInfo *info, u
 Image_ErrorCode OH_PixelmapImageInfo_GetPixelFormat(OH_Pixelmap_ImageInfo *info, int32_t *pixelFormat);
 
 /**
- * @brief Get alphatype number for imageinfo struct.
+ * @brief Get alphaType number for imageinfo struct.
  *
  * @param info The imageinfo pointer will be operated.
- * @param alphatype The number of imageinfo alphatype.
+ * @param alphaType The number of imageinfo alphaType.
  * @return Returns {@link Image_ErrorCode}
  * @since 12
  */
