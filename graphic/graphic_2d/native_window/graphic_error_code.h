@@ -54,7 +54,7 @@ typedef enum OHNativeErrorCode {
     NATIVE_ERROR_OK = 0,
     /**
      * @error memory operation error
-     * @since 14
+     * @since 15
      */
     NATIVE_ERROR_MEM_OPERATION_ERROR = 30001000,
     /** @error input invalid parameter */
