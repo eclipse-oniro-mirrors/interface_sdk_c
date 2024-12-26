@@ -14,10 +14,21 @@
  */
 
 /**
+ * @addtogroup CodecBase
+ * @{
+ *
+ * @brief The CodecBase module provides variables, properties, and functions
+ * for audio and video muxer, demuxer, and basic encoding and decoding functions.
+ *
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
+ * @since 9
+ */
+
+/**
  * @file native_avcodec_base.h
  *
- * @brief Provides audio and video codec base.
- *
+ * @brief Declare the Native API used for audio and video muxer,
+ * demuxer and basic encoding and decoding functions.
  * @kit AVCodecKit
  * @library libnative_media_codecbase.so
  * @syscap SystemCapability.Multimedia.Media.CodecBase
@@ -1363,3 +1374,4 @@ typedef enum OH_BitrateMode {
 #endif
 
 #endif // NATIVE_AVCODEC_BASE_H
+/** @} */
