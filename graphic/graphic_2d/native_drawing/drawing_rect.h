@@ -216,6 +216,7 @@ void OH_Drawing_RectCopy(OH_Drawing_Rect* src, OH_Drawing_Rect* dst);
  */
 void OH_Drawing_RectDestroy(OH_Drawing_Rect* rect);
 
+
 #ifdef __cplusplus
 }
 #endif
