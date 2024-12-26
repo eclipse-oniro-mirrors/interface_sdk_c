@@ -14,9 +14,19 @@
  */
 
 /**
+ * @addtogroup AVMuxer
+ * @{
+ *
+ * @brief The AVMuxer module provides functions for audio and video muxer.
+ *
+ * @syscap SystemCapability.Multimedia.Media.Muxer
+ * @since 10
+ */
+
+/**
  * @file native_avmuxer.h
  *
- * @brief Provides audio and video muxer capabilities.
+ * @brief Declare the Native API used for audio and video muxer.
  *
  * @kit AVCodecKit
  * @library libnative_media_avmuxer.so
@@ -185,3 +195,4 @@ OH_AVErrCode OH_AVMuxer_Destroy(OH_AVMuxer *muxer);
 #endif
 
 #endif // NATIVE_AVMUXER_H
+/** @} */
