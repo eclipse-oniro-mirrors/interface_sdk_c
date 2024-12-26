@@ -211,7 +211,7 @@ typedef struct {
  * @since 14
  * @version 1.0
  */
-typedef enum{
+typedef enum {
     /** display state unknown */
     DISPLAY_MANAGER_DISPLAY_STATE_UNKNOWN = 0,
 
@@ -228,10 +228,10 @@ typedef enum{
     DISPLAY_MANAGER_DISPLAY_STATE_DOZE_SUSPEND = 4,
 
     /** display state vr */
-    DISPLAY_MANAGER_DISPLAY_STATE_DOZE_SUSPEND = 5,
+    DISPLAY_MANAGER_DISPLAY_STATE_VR = 5,
 
     /** display state on suspend */
-    DISPLAY_MANAGER_DISPLAY_STATE_DOZE_SUSPEND = 6,
+    DISPLAY_MANAGER_DISPLAY_STATE_ON_SUSPEND = 6,
 } NativeDisplayManager_DisplayState;
 
 /**
