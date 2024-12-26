@@ -15,11 +15,15 @@
 
 /**
  * @addtogroup memory
+ * @{
  *
  * @brief provides memory management capabilities
  *
  * provides features include operations such as memory alloction, memory free, and so on
  *
+ * @library libpurgeablemem.z.so
+ * @syscap SystemCapability.Kernel.Memory
+ * @kit KernelEnhanceKit
  * @since 10
  * @version 1.0
  */
@@ -204,3 +208,4 @@ bool OH_PurgeableMemory_AppendModify(OH_PurgeableMemory *purgObj,
 }
 #endif /* End of #ifdef __cplusplus */
 #endif /* OHOS_UTILS_MEMORY_LIBPURGEABLEMEM_C_INCLUDE_PURGEABLE_MEMORY_H */
+/** @} */
