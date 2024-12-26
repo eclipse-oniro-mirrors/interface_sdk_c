@@ -724,3 +724,4 @@ typedef OH_AudioData_Callback_Result (*OH_AudioRenderer_OnWriteDataCallback)(OH_
 #endif
 
 #endif // NATIVE_AUDIOSTREAM_BASE_H
+/** @} */
