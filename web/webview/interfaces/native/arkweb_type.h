@@ -353,7 +353,7 @@ typedef struct {
 typedef struct {
     /** The ArkWeb_CookieManagerAPI struct size. */
     size_t size;
- 
+
     /**
      * @brief Obtains the cookie value corresponding to a specified URL.
      *
@@ -427,3 +427,4 @@ typedef struct {
 }
 #endif
 #endif // ARKWEB_TYPE_H
+/** @} */
