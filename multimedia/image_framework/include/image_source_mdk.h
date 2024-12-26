@@ -310,7 +310,7 @@ struct OhosImageSourceInfo {
  * @brief Defines the input resource of the image source. It is obtained by calling {@link OH_ImageSource_Create}.
  * Only one type of resource is accepted at a time.
  *
- * @Syscap SystemCapability.Multimedia.Image
+ * @syscap SystemCapability.Multimedia.Image
  * @since 10
  * @version 4.0
  * @deprecated since 11
@@ -437,7 +437,7 @@ struct OhosImageSourceUpdateData {
  * returns {@link IRNdkErrCode} IMAGE_RESULT_FREAD_FAILED - if read file failed.
  * @see {@link OhosImageSource}, {@link OhosImageSourceOps}
  *
- * @Syscap SystemCapability.Multimedia.Image
+ * @syscap SystemCapability.Multimedia.Image
  * @since 10
  * @version 4.0
  * @deprecated since 11
@@ -569,7 +569,7 @@ int32_t OH_ImageSource_CreateFromRawFile(napi_env env, RawFileDescriptor rawFile
  * returns {@link IRNdkErrCode} IMAGE_RESULT_FREAD_FAILED - if read file failed.
  * @see {@link OhosImageSource}, {@link OhosImageSourceOps}, {@link OH_ImageSource_UpdateData}
  *
- * @Syscap SystemCapability.Multimedia.Image
+ * @syscap SystemCapability.Multimedia.Image
  * @since 10
  * @version 4.0
  * @deprecated since 11
