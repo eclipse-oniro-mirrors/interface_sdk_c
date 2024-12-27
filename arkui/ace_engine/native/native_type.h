@@ -3992,6 +3992,7 @@ void OH_ArkUI_ActiveChildrenInfo_Destroy(ArkUI_ActiveChildrenInfo* handle);
  * @brief Retrieve the child nodes of ActiveChildenInfo with the structure index.
  *
  * @param handle The ActiveChildenInfo instance for obtaining information.
+ * @param index The index of child nodes.
  * @return The child node pointer corresponding to the index. Return nullptr in case of exception.
  * @since 14
  */
@@ -4001,7 +4002,6 @@ ArkUI_NodeHandle OH_ArkUI_ActiveChildrenInfo_GetNodeByIndex(ArkUI_ActiveChildren
  * @brief Retrieve the number of nodes within the structure of ActiveChildenInfo.
  *
  * @param handle The ActiveChildenInfo instance for obtaining information.
- * @param index The index of child nodes
  * @return Number of child nodes. Default value: 0.
  * @since 14
  */
