@@ -1328,6 +1328,10 @@
         "name": "OH_ArkUI_NodeUtils_GetNodeType"
     },
     {
+        "first_introduced": "16",
+        "name": "OH_ArkUI_NodeUtils_GetWindowInfo"
+    },
+    {
         "first_introduced": "14",
         "name": "OH_ArkUI_CustomProperty_Destroy"
     },
@@ -2550,5 +2554,13 @@
     {
         "first_introduced": "16",
         "name": "OH_ArkUI_PostFrameCallback"
+    },
+    {
+        "first_introduced": "16",
+        "name": "OH_ArkUI_HostWindowInfo_GetName"
+    },
+    {
+        "first_introduced": "16",
+        "name": "OH_ArkUI_HostWindowInfo_Destroy"
     }
 ]
