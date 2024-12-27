@@ -7917,6 +7917,19 @@ bool OH_ArkUI_NodeUtils_IsCreatedByNDK(ArkUI_NodeHandle node);
 int32_t OH_ArkUI_NodeUtils_GetNodeType(ArkUI_NodeHandle node);
 
 /**
+ * @brief Get info of the window to which the node belongs.
+ *
+ * @param node Target node object.
+ * @param info Window info. Use {@link OH_ArkUI_HostWindowInfo_Destroy} to release memory.
+ * @return Error code.
+ *         {@link ARKUI_ERROR_CODE_NO_ERROR} success.
+ *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} Function parameter exception.
+ *         {@link ARKUI_ERROR_CODE_NODE_NOT_ON_MAIN_TREE} The node is not mounted.
+ * @since 15
+ */
+int32_t OH_ArkUI_NodeUtils_GetWindowInfo(ArkUI_NodeHandle node, ArkUI_HostWindowInfo** info);
+
+/**
  * @brief Collapse the ListItem in its expanded state.
  *
  * @param node Node objects that need to be registered for events.
@@ -8065,8 +8078,7 @@ int32_t OH_ArkUI_UnregisterDrawCallbackOnNodeHandle(ArkUI_NodeHandle node);
  * @return Error code.
  *         {@link ARKUI_ERROR_CODE_NO_ERROR} success.
  *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} Function parameter exception.
- *         {@link ARKUI_ERROR_CODE_CAPI_INIT_ERROR} if the CAPI init error.
- * @since 16
+ * @since 15
  */
 int32_t OH_ArkUI_NodeUtils_GetAttachedNodeHandleById(const char* id, ArkUI_NodeHandle* node);
 
