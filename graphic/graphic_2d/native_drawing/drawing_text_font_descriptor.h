@@ -60,10 +60,7 @@ typedef enum {
     STYLISH = 1 << 2,
     /** Installed font types */
     INSTALLED = 1 << 3,
-    /** 
-     * Customized font types
-     * @since 16
-    */
+   /** Customized font types */
     CUSTOMIZED = 1 << 4,
 } OH_Drawing_SystemFontType;
 
