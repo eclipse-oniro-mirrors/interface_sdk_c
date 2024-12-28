@@ -5051,6 +5051,34 @@ typedef enum {
     NODE_SCROLL_BACK_TO_TOP = 1002021,
     
     /**
+     * @brief Defines the maximum starting fling speed of the scrollable when the fling animation starts.
+     * This attribute can be set, reset, and obtained as required through APIs.
+     *
+     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute: \n
+     * .value[0].f32: maximum starting fling speed, Unit: vp/s \n
+     * \n
+     * Format of the return value {@link ArkUI_AttributeItem}: \n
+     * .value[0].f32: maximum starting fling speed, Unit: vp/s \n
+     *
+     * @since 16
+     */
+    NODE_SCROLL_FLING_SPEED_LIMIT,
+
+    /**
+     * @brief Defines the clip mode of the scrollable.
+     * This attribute can be set, reset, and obtained as required through APIs.
+     *
+     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute: \n
+     * .value[0].i32: clip content mode, The parameter type is {@link ArkUI_ContentClipMode}. \n
+     * \n
+     * Format of the return value {@link ArkUI_AttributeItem}: \n
+     * .value[0].i32: clip content mode, The parameter type is {@link ArkUI_ContentClipMode}. \n
+     *
+     * @since 16
+     */
+    NODE_SCROLL_CLIP_CONTENT,
+
+    /**
      * @brief Defines the direction in which the list items are arranged. This attribute can be set, reset, and
      * obtained as required through APIs.
      *
@@ -5944,6 +5972,19 @@ typedef enum {
      *
      */
     NODE_WATER_FLOW_ITEM_CONSTRAINT_SIZE,
+
+    /**
+     * @brief Defines the layout mode of the <b><WaterFlow></b> component.
+     * This attribute can be set, reset, and obtained as required through APIs.
+     *
+     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
+     * .value[0].i32: waterflow layout mode. The parameter type is {@Link ArkUI_WaterFlowLayoutMode}.
+     * \n
+     * Format of the return value {@link ArkUI_AttributeItem}:\n
+     * .value[0].i32: waterflow layout mode. The parameter type is {@Link ArkUI_WaterFlowLayoutMode}.
+     * @since 16
+     */
+    NODE_WATER_FLOW_LAYOUT_MODE,
 
     /**
      * @brief Set the auxiliary line in the RelativeContaine container, supporting property setting,
