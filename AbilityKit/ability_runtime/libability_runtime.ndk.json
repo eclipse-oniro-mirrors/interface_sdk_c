@@ -12,6 +12,10 @@
         "name": "OH_AbilityRuntime_ApplicationContextGetBundleName"
     },
     {
+        "first_introduced": "15",
+        "name": "OH_AbilityRuntime_StartSelfUIAbility"
+    },
+    {
         "first_introduced": "16",
         "name": "OH_AbilityRuntime_ApplicationContextGetTempDir"
     },
