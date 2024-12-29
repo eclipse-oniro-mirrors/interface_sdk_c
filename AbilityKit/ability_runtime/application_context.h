@@ -217,7 +217,7 @@ AbilityRuntime_ErrorCode OH_AbilityRuntime_ApplicationContextGetCloudFileDir(
  *
  * @permission {@code ohos.permission.NDK_START_SELF_UI_ABILITY}
  * @param want The arguments passed to start self UIAbility.
- * For details, see {@link AbilityRuntime_Want}.
+ * For details, see {@link AbilityBase_Want}.
  * @return Returns {@link ABILITY_RUNTIME_ERROR_CODE_NO_ERROR} if the call is successful.\n
  * Returns {@link ABILITY_RUNTIME_ERROR_CODE_PERMISSION_DENIED} if the caller has no correct permission.\n
  * Returns {@link ABILITY_RUNTIME_ERROR_CODE_INVALID_PARAM} if the arguments provided is invalid.\n
@@ -236,7 +236,7 @@ AbilityRuntime_ErrorCode OH_AbilityRuntime_ApplicationContextGetCloudFileDir(
  * For details, see {@link AbilityRuntime_ErrorCode}.
  * @since 15
  */
-AbilityRuntime_ErrorCode OH_AbilityRuntime_StartSelfUIAbility(AbilityRuntime_Want *want);
+AbilityRuntime_ErrorCode OH_AbilityRuntime_StartSelfUIAbility(AbilityBase_Want *want);
 
 #ifdef __cplusplus
 } // extern "C"
