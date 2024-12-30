@@ -249,6 +249,8 @@ typedef enum Input_Result {
     INPUT_NOT_SYSTEM_APPLICATION = 202,
     /** @error Parameter check failed */
     INPUT_PARAMETER_ERROR = 401,
+    /** @error Device not support */
+    INPUT_DEVICE_NOT_SUPPORTED = 801,
     /** @error Service error */
     INPUT_SERVICE_EXCEPTION = 3800001,
     /** @error Interceptor repeatedly created for an application */
@@ -1328,7 +1330,8 @@ void OH_Input_SetPreKeys(Input_Hotkey *hotkey, int32_t *preKeys, int32_t size);
  * @return OH_Input_GetPreKeys status code, specifically,
  *         {@link INPUT_SUCCESS} if the operation is successful;\n
  *         {@link INPUT_PARAMETER_ERROR} The hotkey is NULL or the pressedKeys is NULL or the pressedKeyCount
- *         is NULL.\n
+ *         is NULL;\n
+ *         {@Link INPUT_DEVICE_NOT_SUPPORTED} Capability not supported.\n
  * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 14
  */
@@ -1351,7 +1354,8 @@ void OH_Input_SetFinalKey(Input_Hotkey *hotkey, int32_t finalKey);
  * @param finalKeyCode Returns the key value of the decorated key.
  * @return OH_Input_GetfinalKey status code, specifically,
  *         {@link INPUT_SUCCESS} if the operation is successful;\n
- *         {@link INPUT_PARAMETER_ERROR} The hotkey is NULL or the finalKeyCode is NULL.\n
+ *         {@link INPUT_PARAMETER_ERROR} The hotkey is NULL or the finalKeyCode is NULL;\n
+ *         {@Link INPUT_DEVICE_NOT_SUPPORTED} Capability not supported.\n
  * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 14
  */
@@ -1390,7 +1394,8 @@ void OH_Input_DestroyAllSystemHotkeys(Input_Hotkey **hotkeys, int32_t count);
  * @return OH_Input_GetAllSystemHotkeys status code, specifically,
  *         {@link INPUT_SUCCESS} if the operation is successful;\n
  *         {@link INPUT_PARAMETER_ERROR} The hotkey or count is NULL, or the value of count does not match the number
- *         of system shortcut keys supported by the system.
+ *         of system shortcut keys supported by the system;
+ *         {@Link INPUT_DEVICE_NOT_SUPPORTED} Capability not supported.\n
  * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 14
  */
@@ -1414,7 +1419,8 @@ void OH_Input_SetRepeat(Input_Hotkey* hotkey, bool isRepeat);
  * @param isRepeat Whether a key event is repeated.
  * @return OH_Input_GetIsRepeat status code, specifically,
  *         {@link INPUT_SUCCESS} if the operation is successful;\n
- *         {@link INPUT_PARAMETER_ERROR} otherwise.\n
+ *         {@link INPUT_PARAMETER_ERROR} otherwise;\n
+ *         {@Link INPUT_DEVICE_NOT_SUPPORTED} Capability not supported.\n
  * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 14
  */
@@ -1428,6 +1434,7 @@ Input_Result OH_Input_GetRepeat(const Input_Hotkey* hotkey, bool *isRepeat);
  * @return OH_Input_AddHotkeyMonitor status code, specifically,
  *         {@link INPUT_SUCCESS} if the operation is successful;\n
  *         {@link INPUT_PARAMETER_ERROR} if hotkey or callback is NULL;\n
+ *         {@Link INPUT_DEVICE_NOT_SUPPORTED} Capability not supported;\n
  *         {@Link INPUT_OCCUPIED_BY_SYSTEM} The hotkey has been used by the system. You can call the {@Link
  *         GetAllSystemHotkeys} interface to query all system shortcut keys.\n
  *         {@Link INPUT_OCCUPIED_BY_OTHER} The hotkey has been subscribed to by another.\n
@@ -1444,6 +1451,7 @@ Input_Result OH_Input_AddHotkeyMonitor(const Input_Hotkey* hotkey, Input_HotkeyC
  * @return OH_Input_RemoveHotkeyMonitor status code, specifically,
  *         {@link INPUT_SUCCESS} if the operation is successful;\n
  *         {@link INPUT_PARAMETER_ERROR} if hotkey or callback is NULL;\n
+ *         {@Link INPUT_DEVICE_NOT_SUPPORTED} Capability not supported.\n
  * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 14
  */
