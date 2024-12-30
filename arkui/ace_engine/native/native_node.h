@@ -8058,7 +8058,7 @@ int32_t OH_ArkUI_UnregisterLayoutCallbackOnNodeHandle(ArkUI_NodeHandle node);
 int32_t OH_ArkUI_UnregisterDrawCallbackOnNodeHandle(ArkUI_NodeHandle node);
 
 /**
- * @brief Get the node handle by id. This interface only works on the main thread.
+ * @brief Get the node handle by id.
  *
  * @param id The id of the target node handle.
  * @param node The handle of target node handle.
