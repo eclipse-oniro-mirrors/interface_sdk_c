@@ -279,6 +279,16 @@ int OH_Pasteboard_ClearData(OH_Pasteboard* pasteboard);
  * @since 14
  */
 char **OH_Pasteboard_GetMimeTypes(OH_Pasteboard *pasteboard, unsigned int *count);
+
+/**
+ * @brief Gets the number of Pasteboard data changes.
+ *
+ * @param pasteboard Pointer to the {@link OH_Pasteboard} instance.
+ * @return the number of Pasteboard data changes.
+ * Returns 0 means initial value or invalid value.In this case, no action is required.
+ * @since 16
+ */
+uint32_t OH_Pasteboard_GetChangeCount(OH_Pasteboard *pasteboard);
 #ifdef __cplusplus
 };
 #endif
