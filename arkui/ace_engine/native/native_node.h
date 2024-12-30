@@ -8134,7 +8134,7 @@ float OH_ArkUI_SystemFontStyleEvent_GetFontSizeScale(const ArkUI_SystemFontStyle
 float OH_ArkUI_SystemFontStyleEvent_GetFontWeightScale(const ArkUI_SystemFontStyleEvent* event);
 
 /**
- * @brief Get the node handle by id. This interface only works on the main thread.
+ * @brief Get the node handle by id.
  *
  * @param id The id of the target node handle.
  * @param node The handle of target node handle.
