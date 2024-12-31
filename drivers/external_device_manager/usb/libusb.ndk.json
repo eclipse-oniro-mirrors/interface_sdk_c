@@ -46,5 +46,8 @@
     },
     {
         "name": "OH_Usb_DestroyDeviceMemMap"
+    },
+    {
+        "name": "OH_Usb_GetDevices"
     }
 ]
