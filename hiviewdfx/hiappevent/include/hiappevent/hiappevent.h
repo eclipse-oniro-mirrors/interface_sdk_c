@@ -732,7 +732,7 @@ int OH_HiAppEvent_SetCustomConfig(HiAppEvent_Processor* processor, const char* k
  * @param configId The configId of processor.
  * @return set result.
  *         {@link HIAPPEVENT_SUCCESS} The operation is successful.
- *         {@link HIAPPEVENT_INVALID_PROCESSOR} The processor is nullptr.
+ *         {@link HIAPPEVENT_PROCESSOR_IS_NULL} The processor is nullptr.
  *         {@link HIAPPEVENT_INVALID_PARAM_VALUE} Invalid Param value.
  *         {@link HIAPPEVENT_INVALID_UID} Invalid uid.
  * @since 16
@@ -747,7 +747,7 @@ int OH_HiAppEvent_SetConfigId(HiAppEvent_Processor* processor, int configId);
  * @param size The size of userIdNames array.
  * @return set result.
  *         {@link HIAPPEVENT_SUCCESS} The operation is successful.
- *         {@link HIAPPEVENT_INVALID_PROCESSOR} The processor is nullptr.
+ *         {@link HIAPPEVENT_PROCESSOR_IS_NULL} The processor is nullptr.
  *         {@link HIAPPEVENT_INVALID_PARAM_VALUE} Invalid Param value.
  *         {@link HIAPPEVENT_INVALID_UID} Invalid uid.
  *         {@link HIAPPEVENT_INVALID_PARAM_VALUE_LENGTH} Invalid param value length.
@@ -763,7 +763,7 @@ int OH_HiAppEvent_SetReportUserId(HiAppEvent_Processor* processor, const char* c
  * @param size The size of userPropertyNames array.
  * @return set result.
  *         {@link HIAPPEVENT_SUCCESS} The operation is successful.
- *         {@link HIAPPEVENT_INVALID_PROCESSOR} The processor is nullptr.
+ *         {@link HIAPPEVENT_PROCESSOR_IS_NULL} The processor is nullptr.
  *         {@link HIAPPEVENT_INVALID_PARAM_VALUE} Invalid Param value.
  *         {@link HIAPPEVENT_INVALID_UID} Invalid uid.
  *         {@link HIAPPEVENT_INVALID_PARAM_VALUE_LENGTH} Invalid param value length.
@@ -777,7 +777,7 @@ int OH_HiAppEvent_SetReportUserProperty(HiAppEvent_Processor* processor, const c
  *
  * @param processor The pointer to the HiAppEvent_Processor instance.
  * @return process id if set is successful.
- *         {@link HIAPPEVENT_INVALID_PROCESSOR} The processor is nullptr.
+ *         {@link HIAPPEVENT_PROCESSOR_IS_NULL} The processor is nullptr.
  *         {@link HIAPPEVENT_INVALID_PARAM_VALUE} Invalid Param value.
  *         {@link HIAPPEVENT_OPERATE_FAILED} Name not found or register processor error.
  *         {@link HIAPPEVENT_INVALID_UID} Invalid uid.
@@ -791,7 +791,7 @@ int64_t OH_HiAppEvent_AddProcessor(HiAppEvent_Processor* processor);
  * @param processor The pointer to the HiAppEvent_Processor instance.
  * @since 16
  */
-void OH_HiAppEvent_DestoryProcessor(HiAppEvent_Processor* processor);
+void OH_HiAppEvent_DestroyProcessor(HiAppEvent_Processor* processor);
 
 /**
  * @brief The interface to remove processor.
