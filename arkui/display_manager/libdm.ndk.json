@@ -89,7 +89,7 @@
     },    
     {
         "first_instroduced":"14",
-        "name":"OH_NativeDisplayManager_CreateDisplay"
+        "name":"OH_NativeDisplayManager_DestroyDisplay"
     },    
     {
         "first_instroduced":"14",
