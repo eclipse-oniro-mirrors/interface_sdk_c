@@ -3712,6 +3712,19 @@ typedef enum {
      */
     NODE_DATE_PICKER_SELECTED_TEXT_STYLE,
     /**
+     * @brief Defines the mode of the date picker.
+     * This attribute can be set, reset, and obtained as required through APIs.
+     *
+     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
+     * value[0].i32: the mode. The value is and enum of {@link ArkUI_DatePickerMode}.\n.
+     * \n
+     * Format of the return value {@link ArkUI_AttributeItem}:\n
+     * value[0].i32: the mode. The value is and enum of {@link ArkUI_DatePickerMode}.\n.
+     *
+     * @since 16
+     */
+    NODE_DATE_PICKER_MODE = 13007,
+    /**
      * @brief Defines the time of the selected item. in the timer picker.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
@@ -3808,6 +3821,32 @@ typedef enum {
      *
      */
     NODE_TIME_PICKER_SELECTED_TEXT_STYLE,
+     /**
+     * @brief Defines the start time of the time picker.
+     * This attribute can be set, reset, and obtained as required through APIs.
+     *
+     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
+     * .string: time. The default value is <b>"00:00:00"</b>.\n
+     * \n
+     * Format of the return value {@link ArkUI_AttributeItem}:\n
+     * .string: time. The default value is <b>"00:00:00"</b>.\n
+     *
+     * @since 16
+     */
+    NODE_TIME_PICKER_START = 14005,
+    /**
+     * @brief Defines the end time of the time picker.
+     * This attribute can be set, reset, and obtained as required through APIs.
+     *
+     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
+     * .string: time. The default value is <b>"23:59:59"</b>.\n
+     * \n
+     * Format of the return value {@link ArkUI_AttributeItem}:\n
+     * .string: time. The default value is <b>"23:59:59"</b>.\n
+     *
+     * @since 16
+     */
+    NODE_TIME_PICKER_END = 14006,
     /**
      * @brief Defines whether the AM/PM option is cascaded with the time in 12-hour mode.
      * This attribute can be set, reset, and obtained as required through APIs.
@@ -4064,6 +4103,32 @@ typedef enum {
      *
      */
     NODE_CALENDAR_PICKER_TEXT_STYLE,
+    /**
+     * @brief Defines the start date of the calendar picker.
+     * This attribute can be set, reset, and obtained as required through APIs.
+     *
+     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
+     * .string: date. The value like <b>"1970-1-1"</b>. \n
+     * \n
+     * Format of the return value {@link ArkUI_AttributeItem}:\n
+     * .string: date. \n
+     *
+     * @since 16
+     */
+    NODE_CALENDAR_PICKER_START = 16004,
+    /**
+     * @brief Defines the end date of the calendar picker.
+     * This attribute can be set, reset, and obtained as required through APIs.
+     *
+     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
+     * .string: date. The value like <b>"2100-12-31"</b>. \n
+     * \n
+     * Format of the return value {@link ArkUI_AttributeItem}:\n
+     * .string: date. \n
+     *
+     * @since 16
+     */
+    NODE_CALENDAR_PICKER_END = 16005,
     /**
      * @brief Defines the color of the slider. This attribute can be set, reset, and obtained as required through APIs.
      *
@@ -4962,9 +5027,15 @@ typedef enum {
      * .value[0].i32: whether to enable automatic playback for child component switching. The value <b>1</b>
      * means to enable automatic playback, and <b>0</b> means the opposite. The default value is <b>0</b>. \n
      * \n
+     * .value[1]?.i32: whether to stop automatic playback when the user touches the screen. The value <b>1</b> means
+     * to stop automatic playback, and <b>0</b> means the opposite. The default value is <b>1</b>. This parameter is
+     * supported since API version 16. \n
+     * \n
      * Format of the return value {@link ArkUI_AttributeItem}:\n
      * .value[0].i32: whether to enable automatic playback for child component switching. The value <b>1</b> means
      * to enable automatic playback, and <b>0</b> means the opposite. The default value is <b>0</b>. \n
+     * .value[1].i32: whether to stop automatic playback when the user touches the screen. The value <b>1</b> means to
+     * stop automatic playback, and <b>0</b> means the opposite. This parameter is supported since API version 16. \n
      *
      */
     NODE_SWIPER_AUTO_PLAY,
@@ -6042,6 +6113,18 @@ typedef enum {
      * @since 15
      */
     NODE_ON_FOCUS_AXIS = 23,
+
+    /**
+     * @brief Dispatch key event on the component node.
+     *
+     * When the component node receives a key event, this callback will be triggered instead of dispatching event to its
+     * children. \n
+     * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
+     * {@link ArkUI_NodeComponentEvent}. \n
+     * 
+     * @since 16
+     */
+    NODE_DISPATCH_KEY_EVENT = 24,
 
     /**
      * @brief Triggers onDetectResultUpdate callback

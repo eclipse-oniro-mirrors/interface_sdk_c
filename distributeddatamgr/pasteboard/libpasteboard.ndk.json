@@ -60,7 +60,12 @@
         "name": "OH_Pasteboard_GetMimeTypes"
     },
     {
+        "first_introduced": "15",
+        "name": "OH_Pasteboard_GetDataWithProgress"
+    },
+    {
         "first_introduced": "16",
         "name": "OH_Pasteboard_GetChangeCount"
+        
     }
 ]

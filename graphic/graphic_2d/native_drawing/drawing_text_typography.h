@@ -279,6 +279,11 @@ typedef enum {
     WORD_BREAK_TYPE_BREAK_ALL = 1,
     /** Break Word type */
     WORD_BREAK_TYPE_BREAK_WORD = 2,
+    /**
+     * Break word with hyphens
+     * @since 16
+     */
+    WORD_BREAK_TYPE_BREAK_HYPHEN = 3,
 } OH_Drawing_WordBreakType;
 
 /**

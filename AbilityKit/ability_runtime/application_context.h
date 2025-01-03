@@ -39,7 +39,7 @@
 
 #include <stdint.h>
 #include <stddef.h>
-#include <AbilityKit/want.h>
+#include <AbilityKit/ability_base/want.h>
 #include "ability_runtime_common.h"
 #include "context_constant.h"
 
