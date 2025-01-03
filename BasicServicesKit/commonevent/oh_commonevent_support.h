@@ -115,14 +115,14 @@ static const char* const COMMON_EVENT_EXIT_FORCE_SLEEP = "usual.event.EXIT_FORCE
 /**
  * @brief This commonEvent means when the device is is about to enter the hibernate mode.
  *
- * @since 16
+ * @since 14
  */
 static const char* const COMMON_EVENT_ENTER_HIBERNATE = "usual.event.ENTER_HIBERNATE";
 
 /**
  * @brief This commonEvent means when the device is exits the hibernate mode.
  *
- * @since 16
+ * @since 14
  */
 static const char* const COMMON_EVENT_EXIT_HIBERNATE = "usual.event.EXIT_HIBERNATE";
 
