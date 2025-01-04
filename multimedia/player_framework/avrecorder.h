@@ -62,7 +62,7 @@ OH_AVRecorder *OH_AVRecorder_Create(void);
  * @brief Prepare for recording with some parameters.
  * @syscap SystemCapability.Multimedia.Media.AVRecorder
  * @param recorder Pointer to an OH_AVRecorder instance
- * @param config Pointer to an OH_AVRecorderConfig instance, see {@link OH_AVRecorderConfig}
+ * @param config Pointer to an OH_AVRecorder_Config instance, see {@link OH_AVRecorder_Config}
  * @return Function result code.
  *         {@link AV_ERR_OK} if the execution is successful.
  *         {@link AV_ERR_INVALID_VAL} if input recorder is nullptr or recorder Prepare failed.
@@ -74,7 +74,7 @@ OH_AVErrCode OH_AVRecorder_Prepare(OH_AVRecorder *recorder, OH_AVRecorder_Config
  * @brief Get current recording parameters, it must be called after prepare.
  * @syscap SystemCapability.Multimedia.Media.AVRecorder
  * @param recorder Pointer to an OH_AVRecorder instance
- * @param config Pointer to an OH_AVRecorderConfig instance, see {@link OH_AVRecorderConfig}
+ * @param config Pointer to an OH_AVRecorder_Config instance, see {@link OH_AVRecorder_Config}
  * @return Function result code.
  *         {@link AV_ERR_OK} if the execution is successful.
  *         {@link AV_ERR_INVALID_VAL} if input recorder is nullptr or config is null.
@@ -176,11 +176,11 @@ OH_AVErrCode OH_AVRecorder_Release(OH_AVRecorder *recorder);
  * @brief Get available encoder and encoder info for AVRecorder.
  * @syscap SystemCapability.Multimedia.Media.AVRecorder
  * @param recorder Pointer to an OH_AVRecorder instance
- * @param info Pointer to an OH_EncoderInfo instance, see {@link OH_AVRecorder_EncoderInfo}
+ * @param info Pointer to an OH_AVRecorder_EncoderInfo instance, see {@link OH_AVRecorder_EncoderInfo}
  * @param length Length of available encoders
  * @return Function result code.
  *         {@link AV_ERR_OK} if the execution is successful.
- *         {@link AV_ERR_INVALID_VAL} if input recorder is nullptr or recorder release failed.
+ *         {@link AV_ERR_INVALID_VAL} if input recorder is nullptr.
  * @since 16
  */
 OH_AVErrCode OH_AVRecorder_GetAvailableEncoder(OH_AVRecorder *recorder, OH_AVRecorder_EncoderInfo **info,
