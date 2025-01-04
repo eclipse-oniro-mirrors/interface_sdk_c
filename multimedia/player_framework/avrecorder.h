@@ -176,7 +176,7 @@ OH_AVErrCode OH_AVRecorder_Release(OH_AVRecorder *recorder);
  * @brief Get available encoder and encoder info for AVRecorder.
  * @syscap SystemCapability.Multimedia.Media.AVRecorder
  * @param recorder Pointer to an OH_AVRecorder instance
- * @param info Double Pointer to an OH_EncoderInfo instance, see {@link OH_AVRecorder_EncoderInfo}
+ * @param info Pointer to an OH_EncoderInfo instance, see {@link OH_AVRecorder_EncoderInfo}
  * @param length Length of available encoders
  * @return Function result code.
  *         {@link AV_ERR_OK} if the execution is successful.
