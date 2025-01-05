@@ -19,7 +19,7 @@
  *
  * @brief Provides APIs of request capability for Recorder.
  *
- * @Syscap systemcapability.multimedia.media.avrecorder
+ * @syscap SystemCapability.Multimedia.Media.AVRecorder
  * @since 16
  * @}
  */
@@ -32,7 +32,7 @@
  *
  * @kit MediaKit
  * @library libavrecorder.so
- * @Syscap SystemCapability.Multimedia.Media.AVRecorder
+ * @syscap SystemCapability.Multimedia.Media.AVRecorder
  * @since 16
  */
 
