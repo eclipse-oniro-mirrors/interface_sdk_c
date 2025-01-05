@@ -32,6 +32,7 @@
  *
  * @kit MediaKit
  * @library libavrecorder.so
+ * @syscap SystemCapability.Multimedia.Media.AVRecorder
  * @since 16
  * @version 1.0
  */
