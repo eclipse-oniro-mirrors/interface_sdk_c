@@ -19,9 +19,10 @@
  *
  * @brief Provides APIs of request capability for Recorder.
  *
- * @Syscap SystemCapability.Multimedia.Media.AVRecorder
+ * @syscap SystemCapability.Multimedia.Media.AVRecorder
  * @since 16
  * @version 1.0
+ * @}
  */
  
 /**
