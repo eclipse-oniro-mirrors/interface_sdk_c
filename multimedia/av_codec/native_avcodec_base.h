@@ -356,12 +356,12 @@ extern const char *OH_AVCODEC_MIMETYPE_SUBTITLE_SRT;
 extern const char *OH_AVCODEC_MIMETYPE_SUBTITLE_WEBVTT;
 
 /**
- * @brief Enumerates the mime types of audio pcm codec.
+ * @brief Enumerates the mime types of audio raw codec.
  *
  * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 14
  */
-extern const char *OH_AVCODEC_MIMETYPE_AUDIO_PCM;
+extern const char *OH_AVCODEC_MIMETYPE_AUDIO_RAW;
 
 /**
  * @brief Key for timeStamp in surface's extraData, value type is int64_t.
