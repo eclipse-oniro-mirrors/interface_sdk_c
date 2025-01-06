@@ -76,7 +76,7 @@
         "name": "OH_AVCODEC_MIMETYPE_SUBTITLE_WEBVTT"
     },
     {
-        "first_introduced": "14",
+        "first_introduced": "16",
         "name": "OH_AVCODEC_MIMETYPE_AUDIO_RAW"
     },
     {
