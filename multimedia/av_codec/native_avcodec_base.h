@@ -356,7 +356,7 @@ extern const char *OH_AVCODEC_MIMETYPE_SUBTITLE_SRT;
 extern const char *OH_AVCODEC_MIMETYPE_SUBTITLE_WEBVTT;
 
 /**
- * @brief Enumerates the mime types of audio raw stream.
+ * @brief Enumerates the mime type of audio raw stream.
  *
  * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 16
