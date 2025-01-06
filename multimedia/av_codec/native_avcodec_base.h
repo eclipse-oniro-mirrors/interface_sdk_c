@@ -941,7 +941,7 @@ extern const char *OH_MD_KEY_BUFFER_DURATION;
  */
 extern const char *OH_MD_KEY_VIDEO_SAR;
 /**
- * @brief Key for start time of file in microseconds, value type is int64_t.
+ * @brief Key for start time of the first frame in the media file in microseconds, value type is int64_t.
  *
  * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 12
