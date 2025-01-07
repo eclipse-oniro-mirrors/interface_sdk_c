@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Huawei Device Co., Ltd.
+ * Copyright (c) 2023-2024 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -12,9 +12,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
-#ifndef C_INCLUDE_DRAWING_PATH_EFFECT_H
-#define C_INCLUDE_DRAWING_PATH_EFFECT_H
 
 /**
  * @addtogroup Drawing
@@ -40,6 +37,9 @@
  * @version 1.0
  */
 
+#ifndef C_INCLUDE_DRAWING_PATH_EFFECT_H
+#define C_INCLUDE_DRAWING_PATH_EFFECT_H
+
 #include "drawing_types.h"
 
 #ifdef __cplusplus
@@ -63,11 +63,11 @@ OH_Drawing_PathEffect* OH_Drawing_CreateDashPathEffect(float* intervals, int cou
  * @brief Destroys an <b>OH_Drawing_PathEffect</b> object and reclaims the memory occupied by the object.
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @param OH_Drawing_PathEffect Indicates the pointer to an <b>OH_Drawing_PathEffect</b> object.
+ * @param pathEffect Indicates the pointer to an <b>OH_Drawing_PathEffect</b> object.
  * @since 12
  * @version 1.0
  */
-void OH_Drawing_PathEffectDestroy(OH_Drawing_PathEffect*);
+void OH_Drawing_PathEffectDestroy(OH_Drawing_PathEffect* pathEffect);
 
 #ifdef __cplusplus
 }

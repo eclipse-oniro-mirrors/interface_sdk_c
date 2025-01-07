@@ -13,9 +13,6 @@
  * limitations under the License.
  */
 
-#ifndef OH_PREDICATES_H
-#define OH_PREDICATES_H
-
 /**
  * @addtogroup RDB
  * @{
@@ -25,7 +22,6 @@
  * To satisfy different needs in complicated scenarios, the RDB store offers a series of APIs for performing operations
  * such as adding, deleting, modifying, and querying data, and supports direct execution of SQL statements.
  *
- * @syscap SystemCapability.DistributedDataManager.RelationalStore.Core
  * @since 10
  */
 
@@ -35,10 +31,20 @@
  * @brief Declared predicate related functions and enumerations.
  *
  * @kit ArkData
+ * @library libnative_rdb_ndk.so
+ * @syscap SystemCapability.DistributedDataManager.RelationalStore.Core
  * @since 10
  */
 
+#ifndef OH_PREDICATES_H
+#define OH_PREDICATES_H
+
+#ifdef __cplusplus
 #include <cstdint>
+#else
+#include <stdint.h>
+#endif
+
 #include <stddef.h>
 #include "database/rdb/oh_value_object.h"
 
@@ -67,7 +73,14 @@ typedef enum OH_OrderType {
  *
  * @since 10
  */
-typedef struct OH_Predicates {
+typedef struct OH_Predicates OH_Predicates;
+
+/**
+ * @brief Define the OH_Predicates structure type.
+ *
+ * @since 10
+ */
+struct OH_Predicates {
     /**
      * The id used to uniquely identify the OH_Predicates struct.
      */
@@ -395,10 +408,12 @@ typedef struct OH_Predicates {
      * @since 10
      */
     int (*destroy)(OH_Predicates *predicates);
-} OH_Predicates;
+};
 
 #ifdef __cplusplus
 };
 #endif
+
+/** @} */
 
 #endif // OH_PREDICATES_H

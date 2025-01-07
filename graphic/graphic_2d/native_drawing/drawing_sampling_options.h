@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2021-2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2023-2024 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -12,9 +12,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
-#ifndef C_INCLUDE_DRAWING_SAMPLING_OPTIONS_H
-#define C_INCLUDE_DRAWING_SAMPLING_OPTIONS_H
 
 /**
  * @addtogroup Drawing
@@ -39,6 +36,9 @@
  * @since 12
  * @version 1.0
  */
+
+#ifndef C_INCLUDE_DRAWING_SAMPLING_OPTIONS_H
+#define C_INCLUDE_DRAWING_SAMPLING_OPTIONS_H
 
 #include "drawing_types.h"
 
@@ -78,23 +78,24 @@ typedef enum {
  * @brief Creates an <b>OH_Drawing_SamplingOptions</b> object.
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @param OH_Drawing_FilterMode sampling filter mode.
- * @param OH_Drawing_MipmapMode sampling mipmap mode..
+ * @param filterMode sampling filter mode.
+ * @param mipmapMode sampling mipmap mode..
  * @return Returns the pointer to the <b>OH_Drawing_SamplingOptions</b> object created.
  * @since 12
  * @version 1.0
  */
-OH_Drawing_SamplingOptions* OH_Drawing_SamplingOptionsCreate(OH_Drawing_FilterMode, OH_Drawing_MipmapMode);
+OH_Drawing_SamplingOptions* OH_Drawing_SamplingOptionsCreate(OH_Drawing_FilterMode filterMode,
+    OH_Drawing_MipmapMode mipmapMode);
 
 /**
  * @brief Destroys an <b>OH_Drawing_SamplingOptions</b> object and reclaims the memory occupied by the object.
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @param OH_Drawing_SamplingOptions Indicates the pointer to an <b>OH_Drawing_SamplingOptions</b> object.
+ * @param samplingOptions Indicates the pointer to an <b>OH_Drawing_SamplingOptions</b> object.
  * @since 12
  * @version 1.0
  */
-void OH_Drawing_SamplingOptionsDestroy(OH_Drawing_SamplingOptions*);
+void OH_Drawing_SamplingOptionsDestroy(OH_Drawing_SamplingOptions* samplingOptions);
 
 #ifdef __cplusplus
 }

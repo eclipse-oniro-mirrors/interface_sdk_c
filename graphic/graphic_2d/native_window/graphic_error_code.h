@@ -13,9 +13,6 @@
  * limitations under the License.
  */
 
-#ifndef INCLUDE_GRAPHIC_ERROR_CODE_H
-#define INCLUDE_GRAPHIC_ERROR_CODE_H
-
 /**
  * @addtogroup NativeWindow
  * @{
@@ -39,6 +36,9 @@
  * @version 1.0
  */
 
+#ifndef INCLUDE_GRAPHIC_ERROR_CODE_H
+#define INCLUDE_GRAPHIC_ERROR_CODE_H
+
 #include <stdint.h>
 
 #ifdef __cplusplus
@@ -52,6 +52,11 @@ extern "C" {
 typedef enum OHNativeErrorCode {
     /** @error succeed */
     NATIVE_ERROR_OK = 0,
+    /**
+     * @error memory operation error
+     * @since 14
+     */
+    NATIVE_ERROR_MEM_OPERATION_ERROR = 30001000,
     /** @error input invalid parameter */
     NATIVE_ERROR_INVALID_ARGUMENTS = 40001000,
     /** @error unauthorized operation */

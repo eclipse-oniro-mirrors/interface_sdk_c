@@ -208,6 +208,13 @@ typedef struct ArkUI_CustomProperty ArkUI_CustomProperty;
 typedef struct ArkUI_ActiveChildrenInfo ArkUI_ActiveChildrenInfo;
 
 /**
+ * @brief Set the linear progress indicator style.
+ *
+ * @since 16
+ */
+typedef struct ArkUI_ProgressLinearStyleOption ArkUI_ProgressLinearStyleOption;
+
+/**
  * @brief Defines the event callback type.
  *
  * @since 12
@@ -529,6 +536,20 @@ typedef enum {
 } ArkUI_ShadowType;
 
 /**
+ * @brief Enumerates the modes of the date picker.
+ *
+ * @since 16
+ */
+typedef enum {
+    /** A mode that displays the date in months, days of month, and years. */
+    ARKUI_DATEPICKER_MODE_DATE = 0,
+    /** A mode that displays the date in months and years. */
+    ARKUI_DATEPICKER_YEAR_AND_MONTH = 1,
+    /** A mode that displays the date in months and days of the month. */
+    ARKUI_DATEPICKER_MONTH_AND_DAY = 2,
+} ArkUI_DatePickerMode;
+
+/**
  * @brief Enumerates the types of the text picker.
  *
  * @since 12
@@ -585,6 +606,18 @@ typedef enum {
     /** No effect after the scrollbar is moved to the edge. */
     ARKUI_EDGE_EFFECT_NONE,
 } ArkUI_EdgeEffect;
+
+/**
+ * @brief Enumerates the edges for which the effect takes effect when the boundary of the scrollable content is reached.
+ *
+ * @since 16
+ */
+typedef enum {
+    /** Start edge. */
+    ARKUI_EFFECT_EDGE_START = 1,
+    /** End edge. */
+    ARKUI_EFFECT_EDGE_END = 2,
+} ArkUI_EffectEdge;
 
 /**
  * @brief Enumerates the scroll directions for the <b><Scroll></b> component.
@@ -772,6 +805,19 @@ typedef enum {
      * effect; otherwise, the Swiper triggers the edge effect. */
     ARKUI_SWIPER_NESTED_SRCOLL_SELF_FIRST,
 } ArkUI_SwiperNestedScrollMode;
+
+/**
+ * @brief Enumerates the page flipping modes using the mouse wheel for the <b>Swiper</b> component.
+ *
+ * @since 15
+ */
+typedef enum {
+    /** When the mouse wheel is scrolled continuously, multiple pages are flipped, which is determined by the number of
+     *  times that mouse events are reported. */
+    ARKUI_PAGE_FLIP_MODE_CONTINUOUS = 0,
+    /** The system does not respond to other mouse wheel events until the page flipping animation ends. */
+    ARKUI_PAGE_FLIP_MODE_SINGLE,
+} ArkUI_PageFlipMode;
 
 /**
  * @brief Enumerates the accessibility modes.
@@ -1906,6 +1952,11 @@ typedef enum {
     ARKUI_ERROR_CODE_NO_ERROR = 0,
     /** @error Parameter error. */
     ARKUI_ERROR_CODE_PARAM_INVALID = 401,
+    /**
+     * @error CAPI init error.
+     * @since 16
+     */
+    ARKUI_ERROR_CODE_CAPI_INIT_ERROR = 500,
     /** @error The component does not support specific properties or events. */
     ARKUI_ERROR_CODE_ATTRIBUTE_OR_EVENT_NOT_SUPPORTED = 106102,
     /** @error The corresponding operation does not support nodes created by ArkTS. */
@@ -1937,6 +1988,16 @@ typedef enum {
      * @since 14
      */
     ARKUI_ERROR_CODE_INVALID_STYLED_STRING = 180101,
+    /**
+     * @error The uiContext is invalid.
+     * @since 16
+     */
+    ARKUI_ERROR_CODE_UI_CONTEXT_INVALID = 190001,
+    /**
+     * @error The callback function is invalid.
+     * @since 16
+     */
+    ARKUI_ERROR_CODE_CALLBACK_INVALID = 190002,
 } ArkUI_ErrorCode;
 
 /**
@@ -2729,7 +2790,7 @@ uint32_t OH_ArkUI_SwiperIndicator_GetColor(ArkUI_SwiperIndicator* indicator);
  * @brief Sets the color of the selected dot for the navigation indicator.
  *
  * @param indicator Indicates the pointer to the indicator.
- * @param color the color of the selected dot, in 0xARGB format.
+ * @param selectedColor the color of the selected dot, in 0xARGB format.
  * @since 12
 */
 void OH_ArkUI_SwiperIndicator_SetSelectedColor(ArkUI_SwiperIndicator* indicator, uint32_t selectedColor);
@@ -2973,7 +3034,7 @@ void OH_ArkUI_AlignmentRuleOption_Dispose(ArkUI_AlignmentRuleOption* option);
  *
  * @param option Alignment rule information of subcomponents in the relative container.
  * @param id The id value of the anchor component.
- * @param value Alignment relative to the anchor component.
+ * @param alignment Alignment relative to the anchor component.
  * @since 12
  */
 void OH_ArkUI_AlignmentRuleOption_SetStart(
@@ -2984,7 +3045,7 @@ void OH_ArkUI_AlignmentRuleOption_SetStart(
  *
  * @param option Alignment rule information of subcomponents in the relative container.
  * @param id The id value of the anchor component.
- * @param value Alignment relative to the anchor component.
+ * @param alignment Alignment relative to the anchor component.
  * @since 12
  */
 void OH_ArkUI_AlignmentRuleOption_SetEnd(
@@ -2995,7 +3056,7 @@ void OH_ArkUI_AlignmentRuleOption_SetEnd(
 *
 * @param option Alignment rule information of subcomponents in the relative container.
 * @param id The id value of the anchor component.
-* @param value Alignment relative to anchor component
+* @param alignment Alignment relative to anchor component
 * @since 12
 */
 void OH_ArkUI_AlignmentRuleOption_SetCenterHorizontal(
@@ -3006,7 +3067,7 @@ void OH_ArkUI_AlignmentRuleOption_SetCenterHorizontal(
  *
  * @param option Alignment rule information of subcomponents in the relative container.
  * @param id The id value of the anchor component.
- * @param value Alignment relative to anchor component
+ * @param alignment Alignment relative to anchor component
  * @since 12
  */
 void OH_ArkUI_AlignmentRuleOption_SetTop(ArkUI_AlignmentRuleOption* option, const char* id,
@@ -3017,7 +3078,7 @@ void OH_ArkUI_AlignmentRuleOption_SetTop(ArkUI_AlignmentRuleOption* option, cons
  *
  * @param option Alignment rule information of subcomponents in the relative container.
  * @param id The id value of the anchor component.
- * @param value Alignment relative to anchor component
+ * @param alignment Alignment relative to anchor component
  * @since 12
  */
 void OH_ArkUI_AlignmentRuleOption_SetBottom(
@@ -3028,7 +3089,7 @@ void OH_ArkUI_AlignmentRuleOption_SetBottom(
 *
 * @param option Alignment rule information of subcomponents in the relative container.
 * @param id The id value of the anchor component.
-* @param value Alignment relative to the anchor component.
+* @param alignment Alignment relative to the anchor component.
 * @since 12
 */
 void OH_ArkUI_AlignmentRuleOption_SetCenterVertical(
@@ -3047,7 +3108,7 @@ void OH_ArkUI_AlignmentRuleOption_SetBiasHorizontal(ArkUI_AlignmentRuleOption* o
  * @brief Set the vertical offset parameter of the component under the anchor point constraint.
  *
  * @param option Alignment rule information of subcomponents in the relative container.
- * @param horizontal bias value in the vertical direction.
+ * @param vertical bias value in the vertical direction.
  * @since 12
  */
 void OH_ArkUI_AlignmentRuleOption_SetBiasVertical(ArkUI_AlignmentRuleOption* option, float vertical);
@@ -3190,7 +3251,7 @@ ArkUI_ListItemSwipeActionItem* OH_ArkUI_ListItemSwipeActionItem_Create();
 /**
 * @brief Destroy the ListitemSwipeActionItem instance.
 *
-* @param option List Item SwipeActionItem instance to be destroyed.
+* @param item List Item SwipeActionItem instance to be destroyed.
 * @since 12
 */
 void OH_ArkUI_ListItemSwipeActionItem_Dispose(ArkUI_ListItemSwipeActionItem* item);
@@ -3198,8 +3259,8 @@ void OH_ArkUI_ListItemSwipeActionItem_Dispose(ArkUI_ListItemSwipeActionItem* ite
 /**
 * @brief Set the layout content of ListItem SwipeActionItem.
 *
-* @param option List Item SwipeActionItem instance.
-* @param builder Layout information.
+* @param item List Item SwipeActionItem instance.
+* @param node Layout information.
 * @since 12
 */
 void OH_ArkUI_ListItemSwipeActionItem_SetContent(ArkUI_ListItemSwipeActionItem* item, ArkUI_NodeHandle node);
@@ -3207,7 +3268,7 @@ void OH_ArkUI_ListItemSwipeActionItem_SetContent(ArkUI_ListItemSwipeActionItem* 
 /**
 * @brief Set the threshold for long-distance sliding deletion distance of components.
 *
-* @param option List Item SwipeActionItem instance.
+* @param item List Item SwipeActionItem instance.
 * @param distance Component long-distance sliding deletion distance threshold.
 * @since 12
 */
@@ -3216,7 +3277,7 @@ void OH_ArkUI_ListItemSwipeActionItem_SetActionAreaDistance(ArkUI_ListItemSwipeA
 /**
 * @brief Obtain the threshold for long-distance sliding deletion distance of components.
 *
-* @param option List Item SwipeActionItem instance.
+* @param item List Item SwipeActionItem instance.
 * @return Component long-distance sliding deletion distance threshold. If -1.0f is returned, the return fails.
 *         The possible cause of the failure is that the item parameter is abnormal, such as a null pointer.
 * @since 12
@@ -3226,7 +3287,7 @@ float OH_ArkUI_ListItemSwipeActionItem_GetActionAreaDistance(ArkUI_ListItemSwipe
 /**
 * @brief Set the event to be called when a sliding entry enters the deletion area.
 *
-* @param option List Item SwipeActionItem instance.
+* @param item List Item SwipeActionItem instance.
 * @param callback Callback Events.
 * @since 12
 */
@@ -3235,7 +3296,7 @@ void OH_ArkUI_ListItemSwipeActionItem_SetOnEnterActionArea(ArkUI_ListItemSwipeAc
 /**
  * @brief Set the event triggered when a sliding entry enters the deletion area.
  *
- * @param option List Item SwipeActionItem instance.
+ * @param item List Item SwipeActionItem instance.
  * @param userData User defined data.
  * @param callback Callback Events.
  * @since 12
@@ -3246,7 +3307,7 @@ void OH_ArkUI_ListItemSwipeActionItem_SetOnEnterActionAreaWithUserData(ArkUI_Lis
 /**
 * @brief Set the event to be called when a component enters the long-range deletion area and deletes a ListItem.
 *
-* @param option List Item SwipeActionItem instance.
+* @param item List Item SwipeActionItem instance.
 * @param callback Callback Events.
 * @since 12
 */
@@ -3255,7 +3316,7 @@ void OH_ArkUI_ListItemSwipeActionItem_SetOnAction(ArkUI_ListItemSwipeActionItem*
 /**
  * @brief Set the event triggered when a component enters the long-range deletion area and deletes a ListItem.
  *
- * @param option List Item SwipeActionItem instance.
+ * @param item List Item SwipeActionItem instance.
  * @param userData User defined data.
  * @param callback Callback Events.
  * @since 12
@@ -3266,7 +3327,7 @@ void OH_ArkUI_ListItemSwipeActionItem_SetOnActionWithUserData(ArkUI_ListItemSwip
 /**
 * @brief Set the event to be called when a sliding entry exits the deletion area.
 *
-* @param option List Item SwipeActionItem instance.
+* @param item List Item SwipeActionItem instance.
 * @param callback Callback Events.
 * @since 12
 */
@@ -3275,7 +3336,7 @@ void OH_ArkUI_ListItemSwipeActionItem_SetOnExitActionArea(ArkUI_ListItemSwipeAct
 /**
  * @brief Set the event triggered when a sliding entry exits the deletion area.
  *
- * @param option List Item SwipeActionItem instance.
+ * @param item List Item SwipeActionItem instance.
  * @param userData User defined data.
  * @param callback Callback Events.
  * @since 12
@@ -3286,7 +3347,7 @@ void OH_ArkUI_ListItemSwipeActionItem_SetOnExitActionAreaWithUserData(ArkUI_List
 /**
 * @brief Set the event triggered when the sliding state of a list item changes.
 *
-* @param option List Item SwipeActionItem instance.
+* @param item List Item SwipeActionItem instance.
 * @param callback Callback Events.
 *        swipeActionState The changed state.
 * @since 12
@@ -3297,7 +3358,7 @@ void OH_ArkUI_ListItemSwipeActionItem_SetOnStateChange(ArkUI_ListItemSwipeAction
 /**
  * @brief Set the event triggered when the sliding state of a list item changes.
  *
- * @param option List Item SwipeActionItem instance.
+ * @param item List Item SwipeActionItem instance.
  * @param userData User defined data.
  * @param callback Callback Events.
  *        swipeActionState The changed state.
@@ -3328,7 +3389,7 @@ void OH_ArkUI_ListItemSwipeActionOption_Dispose(ArkUI_ListItemSwipeActionOption*
 * of the ListItem SwipeActionItem.
 *
 * @param option List Item SwipeActionItem instance.
-* @param builder Layout information.
+* @param item Layout information.
 * @since 12
 */
 void OH_ArkUI_ListItemSwipeActionOption_SetStart(ArkUI_ListItemSwipeActionOption* option,
@@ -3339,7 +3400,7 @@ void OH_ArkUI_ListItemSwipeActionOption_SetStart(ArkUI_ListItemSwipeActionOption
 * of the ListItem SwipeActionItem.
 *
 * @param option List Item SwipeActionItem instance.
-* @param builder Layout information.
+* @param item Layout information.
 * @since 12
 */
 void OH_ArkUI_ListItemSwipeActionOption_SetEnd(ArkUI_ListItemSwipeActionOption* option,
@@ -3509,7 +3570,7 @@ ArkUI_CustomSpanMetrics* OH_ArkUI_CustomSpanMetrics_Create();
 /**
  * @brief Disposes of measurement metrics of this custom span.
  *
- * @param info The CustomSpanMetrics instance to be destroyed.
+ * @param metrics The CustomSpanMetrics instance to be destroyed.
  * @since 12
 */
 void OH_ArkUI_CustomSpanMetrics_Dispose(ArkUI_CustomSpanMetrics* metrics);
@@ -3812,7 +3873,7 @@ ArkUI_AccessibilityValue* OH_ArkUI_AccessibilityValue_Create(void);
 /**
 * @brief Dispose accessibility value.
 *
-* @param state accessibility value object.
+* @param value accessibility value object.
 * @since 12
 */
 void OH_ArkUI_AccessibilityValue_Dispose(ArkUI_AccessibilityValue* value);
@@ -3875,6 +3936,63 @@ void OH_ArkUI_AccessibilityValue_SetCurrent(ArkUI_AccessibilityValue* value, int
 int32_t OH_ArkUI_AccessibilityValue_GetCurrent(ArkUI_AccessibilityValue* value);
 
 /**
+ * @brief Set accessibility minimum value.
+ *
+ * @param value accessibility value object.
+ * @param rangeMin minimum value based on range components, The default value is -1.
+ * @since 16
+*/
+void OH_ArkUI_AccessibilityValue_SetRangeMin(ArkUI_AccessibilityValue* value, int32_t rangeMin);
+
+/**
+ * @brief Get accessibility minimum value.
+ *
+ * @param value accessibility value object.
+ * @return minimum value based on range components, The default value is -1.
+ *         If the function parameter is abnormal, return -1.
+ * @since 16
+*/
+int32_t OH_ArkUI_AccessibilityValue_GetRangeMin(ArkUI_AccessibilityValue* value);
+
+/**
+ * @brief Set accessibility maximum value.
+ *
+ * @param value accessibility value object.
+ * @param rangeMax maximum value based on range components, The default value is -1.
+ * @since 16
+*/
+void OH_ArkUI_AccessibilityValue_SetRangeMax(ArkUI_AccessibilityValue* value, int32_t rangeMax);
+
+/**
+ * @brief Get accessibility maximum value.
+ *
+ * @param value accessibility value object.
+ * @return maximum value based on range components, The default value is -1.
+ *         If the function parameter is abnormal, return -1.
+ * @since 16
+*/
+int32_t OH_ArkUI_AccessibilityValue_GetRangeMax(ArkUI_AccessibilityValue* value);
+
+/**
+ * @brief Set accessibility current value.
+ *
+ * @param value accessibility value object.
+ * @param rangeCurrent value based on range components, The default value is -1.
+ * @since 16
+*/
+void OH_ArkUI_AccessibilityValue_SetRangeCurrent(ArkUI_AccessibilityValue* value, int32_t rangeCurrent);
+
+/**
+ * @brief Get accessibility current value.
+ *
+ * @param value accessibility value object.
+ * @return current value based on range components, The default value is -1.
+ *         If the function parameter is abnormal, return -1.
+ * @since 16
+*/
+int32_t OH_ArkUI_AccessibilityValue_GetRangeCurrent(ArkUI_AccessibilityValue* value);
+
+/**
  * @brief Set accessibility text value.
  *
  * @param value accessibility value object.
@@ -3935,6 +4053,98 @@ ArkUI_NodeHandle OH_ArkUI_ActiveChildrenInfo_GetNodeByIndex(ArkUI_ActiveChildren
  * @since 14
  */
 int32_t OH_ArkUI_ActiveChildrenInfo_GetCount(ArkUI_ActiveChildrenInfo* handle);
+
+/**
+ * @brief Create linear progress indicator style information.
+ *
+ * @return Returns a <b>ProgressLinearStyleOption</b> instance.
+ * <br> If the result returns nullptr, there may be out of memory.
+ * @since 16
+ */
+ArkUI_ProgressLinearStyleOption* OH_ArkUI_ProgressLinearStyleOption_Create(void);
+
+/**
+ * @brief Destroy linear progress indicator style information.
+ *
+ * @param option Linear progress indicator style information.
+ * @since 16
+ */
+void OH_ArkUI_ProgressLinearStyleOption_Destroy(ArkUI_ProgressLinearStyleOption* option);
+
+/**
+ * @brief Set whether the scan effect is enabled.
+ *
+ * @param option Linear progress indicator style information.
+ * @param enabled Whether to enable the scan effect. Default value: false.
+ * @since 16
+ */
+void OH_ArkUI_ProgressLinearStyleOption_SetScanEffectEnabled(ArkUI_ProgressLinearStyleOption* option, bool enabled);
+
+/**
+ * @brief Set whether smoothing effect is enabled.
+ *
+ * @param option Linear progress indicator style information.
+ * @param enabled Whether to enable the smooth effect. When this effect is enabled, the progress change to
+ * the set value takes place gradually. Otherwise, it takes place immediately. Default value: true.
+ * @since 16
+ */
+void OH_ArkUI_ProgressLinearStyleOption_SetSmoothEffectEnabled(ArkUI_ProgressLinearStyleOption* option, bool enabled);
+
+/**
+ * @brief Set linear progress indicator stroke width.
+ *
+ * @param option Linear progress indicator style information.
+ * @param strokeWidth Stroke width of the progress indicator. It cannot be set in percentage.
+ * Default value: 4.0vp.
+ * @since 16
+ */
+void OH_ArkUI_ProgressLinearStyleOption_SetStrokeWidth(ArkUI_ProgressLinearStyleOption* option, float strokeWidth);
+
+/**
+ * @brief Set linear progress indicator stroke radius.
+ *
+ * @param option Linear progress indicator style information.
+ * @param strokeRadius Rounded corner radius of the progress indicator. Value range: [0, strokeWidth/2].
+ * Default value: strokeWidth/2.
+ * @since 16
+ */
+void OH_ArkUI_ProgressLinearStyleOption_SetStrokeRadius(ArkUI_ProgressLinearStyleOption* option, float strokeRadius);
+
+/**
+ * @brief Get whether scan effect is enable.
+ *
+ * @param option Linear progress indicator style information.
+ * @return Whether to enable the scan effect.
+ * @since 16
+ */
+bool OH_ArkUI_ProgressLinearStyleOption_GetScanEffectEnabled(ArkUI_ProgressLinearStyleOption* option);
+
+/**
+ * @brief Get whether smoothing effect is enabled.
+ *
+ * @param option Linear progress indicator style information.
+ * @return Whether to enable the smooth effect.
+ * @since 16
+ */
+bool OH_ArkUI_ProgressLinearStyleOption_GetSmoothEffectEnabled(ArkUI_ProgressLinearStyleOption* option);
+
+/**
+ * @brief Get linear progress indicator stroke width.
+ *
+ * @param option Linear progress indicator style information.
+ * @return Stroke width of the progress indicator.
+ * @since 16
+ */
+float OH_ArkUI_ProgressLinearStyleOption_GetStrokeWidth(ArkUI_ProgressLinearStyleOption* option);
+
+/**
+ * @brief Get linear progress indicator stroke radius.
+ *
+ * @param option Linear progress indicator style information.
+ * @return Rounded corner radius of the progress indicator.
+ * @since 16
+ */
+float OH_ArkUI_ProgressLinearStyleOption_GetStrokeRadius(ArkUI_ProgressLinearStyleOption* option);
 #ifdef __cplusplus
 };
 #endif

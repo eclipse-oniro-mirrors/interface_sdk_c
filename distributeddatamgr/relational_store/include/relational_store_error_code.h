@@ -13,9 +13,6 @@
  * limitations under the License.
  */
 
-#ifndef RELATIONAL_STORE_ERRNO_CODE_H
-#define RELATIONAL_STORE_ERRNO_CODE_H
-
 /**
  * @addtogroup RDB
  * @{
@@ -25,10 +22,8 @@
  * To satisfy different needs in complicated scenarios, the RDB store offers a series of APIs for performing operations
  * such as adding, deleting, modifying, and querying data, and supports direct execution of SQL statements.
  *
- * @syscap SystemCapability.DistributedDataManager.RelationalStore.Core
  * @since 10
  */
-
 
 /**
  * @file relational_store_error_code.h
@@ -36,8 +31,13 @@
  * @brief Declaration error code information.
  *
  * @kit ArkData
+ * @library libnative_rdb_ndk.so
+ * @syscap SystemCapability.DistributedDataManager.RelationalStore.Core
  * @since 10
  */
+
+#ifndef RELATIONAL_STORE_ERRNO_CODE_H
+#define RELATIONAL_STORE_ERRNO_CODE_H
 
 #ifdef __cplusplus
 extern "C" {
@@ -307,11 +307,118 @@ typedef enum OH_Rdb_ErrCode {
     /**
      * @brief The error when the connection count is used up.
      */
-    RDB_E_CON_OVER_LIMIT = (E_BASE + 48)
+    RDB_E_CON_OVER_LIMIT = (E_BASE + 48),
+
+    /**
+     * @brief Database already closed.
+     *
+     * @since 16
+     */
+    RDB_E_ALREADY_CLOSED = (E_BASE + 50),
+
+    /**
+     * @brief The database does not respond.
+     *
+     * @since 16
+     */
+    RDB_E_DATABASE_BUSY = (E_BASE + 51),
+
+    /**
+     * @brief Database corrupted.
+     *
+     * @since 16
+     */
+    RDB_E_SQLITE_CORRUPT = (E_BASE + 52),
+
+    /**
+     * @brief SQLite: Access permission denied.
+     *
+     * @since 16
+     */
+    RDB_E_SQLITE_PERM = (E_BASE + 53),
+
+    /**
+     * @brief SQLite: The database file is locked.
+     *
+     * @since 16
+     */
+    RDB_E_SQLITE_BUSY = (E_BASE + 54),
+
+    /**
+     * @brief SQLite: A table in the database is locked.
+     *
+     * @since 16
+     */
+    RDB_E_SQLITE_LOCKED = (E_BASE + 55),
+
+    /**
+     * @brief SQLite: The database is out of memory.
+     *
+     * @since 16
+     */
+    RDB_E_SQLITE_NOMEM = (E_BASE + 56),
+
+    /**
+     * @brief SQLite: Attempt to write a readonly database.
+     *
+     * @since 16
+     */
+    RDB_E_SQLITE_READONLY = (E_BASE + 57),
+
+    /**
+     * @brief SQLite: Some kind of disk I/O error occurred.
+     *
+     * @since 16
+     */
+    RDB_E_SQLITE_IOERR = (E_BASE + 58),
+
+    /**
+     * @brief SQLite: The database is full.
+     *
+     * @since 16
+     */
+    RDB_E_SQLITE_FULL = (E_BASE + 59),
+
+    /**
+     * @brief SQLite: Unable to open the database file.
+     *
+     * @since 16
+     */
+    RDB_E_SQLITE_CANT_OPEN = (E_BASE + 60),
+
+    /**
+     * @brief SQLite: TEXT or BLOB exceeds size limit.
+     *
+     * @since 16
+     */
+    RDB_E_SQLITE_TOO_BIG = (E_BASE + 61),
+
+    /**
+     * @brief SQLite: Data type mismatch.
+     *
+     * @since 16
+     */
+    RDB_E_SQLITE_MISMATCH = (E_BASE + 62),
+
+    /**
+     * @brief Data value type is null.
+     *
+     * @since 16
+     */
+    RDB_E_DATA_TYPE_NULL = (E_BASE + 63),
+
+    /**
+     * @brief Data value type mismatch.
+     *
+     * @since 16
+     */
+    RDB_E_TYPE_MISMATCH = (E_BASE + 64),
 } OH_Rdb_ErrCode;
 
 #ifdef __cplusplus
 };
 #endif
+
+/** @} */
 
 #endif // RELATIONAL_STORE_ERRNO_CODE_H

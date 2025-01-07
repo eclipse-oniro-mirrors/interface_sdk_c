@@ -12,11 +12,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-#ifndef FILE_MANAGEMENT_FILEIO_OH_FILEIO_H
-#define FILE_MANAGEMENT_FILEIO_OH_FILEIO_H
 
 /**
  * @addtogroup FileIO
+ * @{
  *
  * @brief This module provides the basic file operations.
  * @since 12
@@ -31,6 +30,9 @@
  * @syscap SystemCapability.FileManagement.File.FileIO
  * @since 12
  */
+
+#ifndef FILE_MANAGEMENT_FILEIO_OH_FILEIO_H
+#define FILE_MANAGEMENT_FILEIO_OH_FILEIO_H
 
 #include "error_code.h"
 
@@ -77,3 +79,4 @@ FileManagement_ErrCode OH_FileIO_GetFileLocation(char *uri, int uriLength,
 #endif
 
 #endif //FILE_MANAGEMENT_FILEIO_OH_FILEIO_H
+/** @} */

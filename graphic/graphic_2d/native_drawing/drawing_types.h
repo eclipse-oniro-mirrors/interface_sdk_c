@@ -13,9 +13,6 @@
  * limitations under the License.
  */
 
-#ifndef C_INCLUDE_DRAWING_TYPES_H
-#define C_INCLUDE_DRAWING_TYPES_H
-
 /**
  * @addtogroup Drawing
  * @{
@@ -39,6 +36,9 @@
  * @since 8
  * @version 1.0
  */
+
+#ifndef C_INCLUDE_DRAWING_TYPES_H
+#define C_INCLUDE_DRAWING_TYPES_H
 
 #include <stdbool.h>
 #include <stddef.h>
@@ -106,20 +106,20 @@ typedef struct OH_Drawing_Bitmap OH_Drawing_Bitmap;
 typedef struct OH_Drawing_Point OH_Drawing_Point;
 
 /**
- * @brief Define color space to determine color information.
- *
- * @since 12
- * @version 1.0
- */
-typedef struct OH_Drawing_ColorSpace OH_Drawing_ColorSpace;
-
-/**
  * @brief Defines a pixelmap, which is used to wrap real pixelmap supported by image framework.
  *
  * @since 12
  * @version 1.0
  */
 typedef struct OH_Drawing_PixelMap OH_Drawing_PixelMap;
+
+/**
+ * @brief Define color space to determine color information.
+ *
+ * @since 12
+ * @version 1.0
+ */
+typedef struct OH_Drawing_ColorSpace OH_Drawing_ColorSpace;
 
 /**
  * @brief Defines a point of 2d.
@@ -486,7 +486,7 @@ typedef struct {
  * @version 1.0
  */
 typedef struct {
-    /** A pointer to a byte string containing UTF-16BE(Big Endian) encoded entities */
+    /** A pointer to a byte string containing UTF-16 encoded entities */
     uint8_t* strData;
     /** The length of `strData` in bytes */
     uint32_t strLen;

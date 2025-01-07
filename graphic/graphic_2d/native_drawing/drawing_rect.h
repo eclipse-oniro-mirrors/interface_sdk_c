@@ -13,9 +13,6 @@
  * limitations under the License.
  */
 
-#ifndef C_INCLUDE_DRAWING_RECT_H
-#define C_INCLUDE_DRAWING_RECT_H
-
 /**
  * @addtogroup Drawing
  * @{
@@ -40,6 +37,10 @@
  * @version 1.0
  */
 
+#ifndef C_INCLUDE_DRAWING_RECT_H
+#define C_INCLUDE_DRAWING_RECT_H
+
+#include "drawing_error_code.h"
 #include "drawing_types.h"
 
 #ifdef __cplusplus
@@ -133,65 +134,66 @@ void OH_Drawing_RectSetBottom(OH_Drawing_Rect* rect, float bottom);
  * @brief Get the left position of the rect.
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @param OH_Drawing_Rect Indicates the pointer to an <b>OH_Drawing_Rect</b> object.
+ * @param rect Indicates the pointer to an <b>OH_Drawing_Rect</b> object.
  * @return Return the left position of the rect.
  * @since 12
  * @version 1.0
  */
-float OH_Drawing_RectGetLeft(OH_Drawing_Rect*);
+float OH_Drawing_RectGetLeft(OH_Drawing_Rect* rect);
 
 /**
  * @brief Get the top position of the rect.
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @param OH_Drawing_Rect Indicates the pointer to an <b>OH_Drawing_Rect</b> object.
+ * @param rect Indicates the pointer to an <b>OH_Drawing_Rect</b> object.
  * @return Return the top position of the rect.
  * @since 12
  * @version 1.0
  */
-float OH_Drawing_RectGetTop(OH_Drawing_Rect*);
+float OH_Drawing_RectGetTop(OH_Drawing_Rect* rect);
 
 /**
  * @brief Get the right position of the rect.
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @param OH_Drawing_Rect Indicates the pointer to an <b>OH_Drawing_Rect</b> object.
+ * @param rect Indicates the pointer to an <b>OH_Drawing_Rect</b> object.
  * @return Return the right position of the rect.
  * @since 12
  * @version 1.0
  */
-float OH_Drawing_RectGetRight(OH_Drawing_Rect*);
+float OH_Drawing_RectGetRight(OH_Drawing_Rect* rect);
 
 /**
  * @brief Get the bottom position of the rect.
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @param OH_Drawing_Rect Indicates the pointer to an <b>OH_Drawing_Rect</b> object.
+ * @param rect Indicates the pointer to an <b>OH_Drawing_Rect</b> object.
  * @return Return the bottom position of the rect.
  * @since 12
  * @version 1.0
  */
-float OH_Drawing_RectGetBottom(OH_Drawing_Rect*);
+float OH_Drawing_RectGetBottom(OH_Drawing_Rect* rect);
 
 /**
  * @brief Get the height position of the rect.
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @param OH_Drawing_Rect Indicates the pointer to an <b>OH_Drawing_Rect</b> object.
+ * @param rect Indicates the pointer to an <b>OH_Drawing_Rect</b> object.
  * @since 12
  * @version 1.0
  */
-float OH_Drawing_RectGetHeight(OH_Drawing_Rect*);
+float OH_Drawing_RectGetHeight(OH_Drawing_Rect* rect);
 
-/* @brief Get the width position of the rect.
+/**
+ * @brief Get the width position of the rect.
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @param OH_Drawing_Rect Indicates the pointer to an <b>OH_Drawing_Rect</b> object.
+ * @param rect Indicates the pointer to an <b>OH_Drawing_Rect</b> object.
  * @return Returns the width.
  * @since 12
  * @version 1.0
  */
-float OH_Drawing_RectGetWidth(OH_Drawing_Rect*);
+float OH_Drawing_RectGetWidth(OH_Drawing_Rect* rect);
 
 /**
  * @brief Copy the original rectangular object to the destination rectangular object.
@@ -208,11 +210,11 @@ void OH_Drawing_RectCopy(OH_Drawing_Rect* src, OH_Drawing_Rect* dst);
  * @brief Destroys an <b>OH_Drawing_Rect</b> object and reclaims the memory occupied by the object.
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @param OH_Drawing_Rect Indicates the pointer to an <b>OH_Drawing_Rect</b> object.
+ * @param rect Indicates the pointer to an <b>OH_Drawing_Rect</b> object.
  * @since 11
  * @version 1.0
  */
-void OH_Drawing_RectDestroy(OH_Drawing_Rect*);
+void OH_Drawing_RectDestroy(OH_Drawing_Rect* rect);
 
 /**
  * @brief Creates an <b>OH_Drawing_Array</b> object, which is used to store multiple <b>OH_Drawing_Rect</b> object.
@@ -223,7 +225,7 @@ void OH_Drawing_RectDestroy(OH_Drawing_Rect*);
  *         If nullptr is returned, the creation fails.
  *         The possible cause of the failure is that the available memory is empty,
  *         or size is invalid.
- * @since 14
+ * @since 16
  * @version 1.0
  */
 OH_Drawing_Array* OH_Drawing_RectCreateArray(size_t size);
@@ -237,7 +239,7 @@ OH_Drawing_Array* OH_Drawing_RectCreateArray(size_t size);
  * @return Returns the error code.
  *         Returns {@link OH_DRAWING_SUCCESS} if the operation is successful.
  *         Returns {@link OH_DRAWING_ERROR_INVALID_PARAMETER} if rectArray or pSize is nullptr.
- * @since 14
+ * @since 16
  * @version 1.0
  */
 OH_Drawing_ErrorCode OH_Drawing_RectGetArraySize(OH_Drawing_Array* rectArray, size_t* pSize);
@@ -253,7 +255,7 @@ OH_Drawing_ErrorCode OH_Drawing_RectGetArraySize(OH_Drawing_Array* rectArray, si
  *         Returns {@link OH_DRAWING_SUCCESS} if the operation is successful.
  *         Returns {@link OH_DRAWING_ERROR_INVALID_PARAMETER} if rectArray or rect is nullptr,
  *                 or index is valid.
- * @since 14
+ * @since 16
  * @version 1.0
  */
 OH_Drawing_ErrorCode OH_Drawing_RectGetArrayElement(OH_Drawing_Array* rectArray, size_t index,
@@ -267,7 +269,7 @@ OH_Drawing_ErrorCode OH_Drawing_RectGetArrayElement(OH_Drawing_Array* rectArray,
  * @return Returns the error code.
  *         Returns {@link OH_DRAWING_SUCCESS} if the operation is successful.
  *         Returns {@link OH_DRAWING_ERROR_INVALID_PARAMETER} if rectArray is nullptr.
- * @since 14
+ * @since 16
  * @version 1.0
  */
 OH_Drawing_ErrorCode OH_Drawing_RectDestroyArray(OH_Drawing_Array* rectArray);

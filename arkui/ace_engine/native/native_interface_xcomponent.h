@@ -28,7 +28,8 @@
  * @file native_interface_xcomponent.h
  *
  * @brief Declares APIs for accessing a Native XComponent.
- *
+ * @library libace_ndk.z.so
+ * @syscap SystemCapability.ArkUI.ArkUI.Full
  * @kit ArkUI
  * @since 8
  * @version 1.0
@@ -151,6 +152,10 @@ typedef enum {
     OH_NATIVEXCOMPONENT_MOUSE_PRESS,
     OH_NATIVEXCOMPONENT_MOUSE_RELEASE,
     OH_NATIVEXCOMPONENT_MOUSE_MOVE,
+    /** Triggered when the mouse event is canceled.
+     * @since 16
+    */
+    OH_NATIVEXCOMPONENT_MOUSE_CANCEL,
 } OH_NativeXComponent_MouseEventAction;
 
 /**
@@ -725,6 +730,30 @@ int32_t OH_NativeXComponent_AttachNativeRootNode(OH_NativeXComponent* component,
 int32_t OH_NativeXComponent_DetachNativeRootNode(OH_NativeXComponent* component, ArkUI_NodeHandle root);
 
 /**
+ * @brief Registers a callback for this <b>OH_NativeXComponent</b> instance.
+ *
+ * @param component Indicates the pointer to this <b>OH_NativeXComponent</b> instance.
+ * @param callback Indicates the pointer to a surface show event callback.
+ * @return Returns the status code of the execution.
+ * @since 12
+ * @version 1.0
+ */
+int32_t OH_NativeXComponent_RegisterSurfaceShowCallback(
+    OH_NativeXComponent* component, void (*callback)(OH_NativeXComponent* component, void* window));
+
+/**
+ * @brief Registers a callback for this <b>OH_NativeXComponent</b> instance.
+ *
+ * @param component Indicates the pointer to this <b>OH_NativeXComponent</b> instance.
+ * @param callback Indicates the pointer to a surface hide event callback.
+ * @return Returns the status code of the execution.
+ * @since 12
+ * @version 1.0
+ */
+int32_t OH_NativeXComponent_RegisterSurfaceHideCallback(
+    OH_NativeXComponent* component, void (*callback)(OH_NativeXComponent* component, void* window));
+
+/**
  * @brief Registers a UI input event callback for this <b>OH_NativeXComponent</b> instance and enables the callback to
  * be invoked when a UI input event is received.
  *
@@ -752,30 +781,6 @@ int32_t OH_NativeXComponent_RegisterUIInputEventCallback(
  * @version 1.0
  */
 int32_t OH_NativeXComponent_SetNeedSoftKeyboard(OH_NativeXComponent* component, bool needSoftKeyboard);
-
-/**
- * @brief Registers a callback for this <b>OH_NativeXComponent</b> instance.
- *
- * @param component Indicates the pointer to this <b>OH_NativeXComponent</b> instance.
- * @param callback Indicates the pointer to a surface show event callback.
- * @return Returns the status code of the execution.
- * @since 12
- * @version 1.0
- */
-int32_t OH_NativeXComponent_RegisterSurfaceShowCallback(
-    OH_NativeXComponent* component, void (*callback)(OH_NativeXComponent* component, void* window));
-
-/**
- * @brief Registers a callback for this <b>OH_NativeXComponent</b> instance.
- *
- * @param component Indicates the pointer to this <b>OH_NativeXComponent</b> instance.
- * @param callback Indicates the pointer to a surface hide event callback.
- * @return Returns the status code of the execution.
- * @since 12
- * @version 1.0
- */
-int32_t OH_NativeXComponent_RegisterSurfaceHideCallback(
-    OH_NativeXComponent* component, void (*callback)(OH_NativeXComponent* component, void* window));
 
 /**
  * @brief Registers a custom event intercept callback for this <b>OH_NativeXComponent</b> and enables the callback
@@ -848,3 +853,4 @@ int32_t OH_NativeXComponent_RegisterKeyEventCallbackWithResult(
 };
 #endif
 #endif // _NATIVE_INTERFACE_XCOMPONENT_H_
+/** @} */

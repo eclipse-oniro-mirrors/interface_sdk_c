@@ -13,9 +13,6 @@
  * limitations under the License.
  */
 
-#ifndef NDK_INCLUDE_NATIVE_BUFFER_H_
-#define NDK_INCLUDE_NATIVE_BUFFER_H_
-
 /**
  * @addtogroup OH_NativeBuffer
  * @{
@@ -38,6 +35,9 @@
  * @since 9
  * @version 1.0
  */
+
+#ifndef NDK_INCLUDE_NATIVE_BUFFER_H_
+#define NDK_INCLUDE_NATIVE_BUFFER_H_
 
 #include <stdint.h>
 #include <native_window/external_window.h>
@@ -193,6 +193,16 @@ typedef enum OH_NativeBuffer_Format {
      * @since 12
      */
     NATIVEBUFFER_PIXEL_FMT_RAW10,
+    /**
+     * BLOB format
+     * @since 16
+     */
+    NATIVEBUFFER_PIXEL_FMT_BLOB,
+    /**
+     * RGBA16 float format
+     * @since 16
+     */
+    NATIVEBUFFER_PIXEL_FMT_RGBA16_FLOAT,
     /**
      * vender mask format
      * @since 12

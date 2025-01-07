@@ -21,7 +21,7 @@
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  *
- * @since 14
+ * @since 16
  * @version 1.0
  */
 
@@ -33,7 +33,7 @@
  * @kit ArkGraphics2D
  * @library libnative_drawing.so
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @since 14
+ * @since 16
  * @version 1.0
  */
 
@@ -50,9 +50,9 @@ extern "C" {
  * @brief Creates an <b>OH_Drawing_LineTypography</b> object.
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @param OH_Drawing_TypographyCreate Indicates the pointer to an <b>OH_Drawing_TypographyCreate</b> object.
+ * @param handler Indicates the pointer to an <b>OH_Drawing_TypographyCreate</b> object.
  * @return Returns the pointer to the <b>OH_Drawing_LineTypography</b> object created.
- * @since 14
+ * @since 16
  */
 OH_Drawing_LineTypography* OH_Drawing_CreateLineTypography(OH_Drawing_TypographyCreate* handler);
 
@@ -60,8 +60,8 @@ OH_Drawing_LineTypography* OH_Drawing_CreateLineTypography(OH_Drawing_Typography
  * @brief Releases the memory occupied by an <b>OH_Drawing_LineTypography</b> object.
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @param OH_Drawing_LineTypography Indicates the pointer to an <b>OH_Drawing_LineTypography</b> object.
- * @since 14
+ * @param lineTypography Indicates the pointer to an <b>OH_Drawing_LineTypography</b> object.
+ * @since 16
  */
 void OH_Drawing_DestroyLineTypography(OH_Drawing_LineTypography* lineTypography);
 
@@ -69,11 +69,11 @@ void OH_Drawing_DestroyLineTypography(OH_Drawing_LineTypography* lineTypography)
  * @brief Calculate the line breakpoint based on the width provided.
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @param OH_Drawing_TypographyCreate Indicates the pointer to an <b>OH_Drawing_TypographyCreate</b> object.
+ * @param lineTypography Indicates the pointer to an <b>OH_Drawing_TypographyCreate</b> object.
  * @param startIndex Indicates the starting point for the line-break calculations.
  * @param width Indicates the requested line-break width.
  * @return Returns the count of the characters from startIndex that would cause the line break.
- * @since 14
+ * @since 16
  */
 size_t OH_Drawing_LineTypographyGetLineBreak(OH_Drawing_LineTypography* lineTypography,
                                              size_t startIndex, double width);
@@ -82,11 +82,11 @@ size_t OH_Drawing_LineTypographyGetLineBreak(OH_Drawing_LineTypography* lineTypo
  * @brief Creates a text line object based on the text range provided.
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @param OH_Drawing_LineTypography Indicates the pointer to an <b>OH_Drawing_TypographyCreate</b> object.
+ * @param lineTypography Indicates the pointer to an <b>OH_Drawing_TypographyCreate</b> object.
  * @param startIndex Indicates the starting index of the text range.
  * @param count Indicates the characters count of the text range.
  * @return Returns the pointer to the <b>OH_Drawing_TextLine</b> object created.
- * @since 14
+ * @since 16
  */
 OH_Drawing_TextLine* OH_Drawing_LineTypographyCreateLine(OH_Drawing_LineTypography* lineTypography,
                                                          size_t startIndex, size_t count);

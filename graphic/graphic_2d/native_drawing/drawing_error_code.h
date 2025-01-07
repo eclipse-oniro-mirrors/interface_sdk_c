@@ -13,9 +13,6 @@
  * limitations under the License.
  */
 
-#ifndef C_INCLUDE_DRAWING_ERROR_CODE_H
-#define C_INCLUDE_DRAWING_ERROR_CODE_H
-
 /**
  * @addtogroup Drawing
  * @{
@@ -39,6 +36,9 @@
  * @since 12
  * @version 1.0
  */
+
+#ifndef C_INCLUDE_DRAWING_ERROR_CODE_H
+#define C_INCLUDE_DRAWING_ERROR_CODE_H
 
 #ifdef __cplusplus
 extern "C" {
@@ -82,6 +82,14 @@ typedef enum {
  */
 OH_Drawing_ErrorCode OH_Drawing_ErrorCodeGet();
 
+/**
+ * @brief Resets the error code of the drawing module to OH_DRAWING_SUCCESS.
+ *
+ * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
+ * @since 16
+ * @version 1.0
+ */
+void OH_Drawing_ErrorCodeReset();
 #ifdef __cplusplus
 }
 #endif

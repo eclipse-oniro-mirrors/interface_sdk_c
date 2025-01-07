@@ -12,11 +12,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-#ifndef FILE_MANAGEMENT_ENVIRONMENT_OH_ENVIRONMENT_H
-#define FILE_MANAGEMENT_ENVIRONMENT_OH_ENVIRONMENT_H
 
 /**
  * @addtogroup Environment
+ * @{
  *
  * @brief This module provides the ability to access the environment directory and obtain the native interface
    for public root directory.
@@ -32,6 +31,9 @@
  * @syscap SystemCapability.FileManagement.File.Environment.FolderObtain
  * @since 12
  */
+
+#ifndef FILE_MANAGEMENT_ENVIRONMENT_OH_ENVIRONMENT_H
+#define FILE_MANAGEMENT_ENVIRONMENT_OH_ENVIRONMENT_H
 
 #include "error_code.h"
 
@@ -79,3 +81,4 @@ FileManagement_ErrCode OH_Environment_GetUserDocumentDir(char **result);
 #endif
 
 #endif //FILE_MANAGEMENT_ENVIRONMENT_OH_ENVIRONMENT_H
+/** @} */

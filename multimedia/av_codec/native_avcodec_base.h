@@ -14,10 +14,21 @@
  */
 
 /**
+ * @addtogroup CodecBase
+ * @{
+ *
+ * @brief The CodecBase module provides variables, properties, and functions
+ * for audio and video muxer, demuxer, and basic encoding and decoding functions.
+ *
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
+ * @since 9
+ */
+
+/**
  * @file native_avcodec_base.h
  *
- * @brief Provides audio and video codec base.
- *
+ * @brief Declare the Native API used for audio and video muxer,
+ * demuxer and basic encoding and decoding functions.
  * @kit AVCodecKit
  * @library libnative_media_codecbase.so
  * @syscap SystemCapability.Multimedia.Media.CodecBase
@@ -348,6 +359,7 @@ extern const char *OH_AVCODEC_MIMETYPE_SUBTITLE_WEBVTT;
  * @brief Key for timeStamp in surface's extraData, value type is int64_t.
  *
  * @syscap SystemCapability.Multimedia.Media.CodecBase
+ * @deprecated since 14
  * @since 9
  */
 extern const char *OH_ED_KEY_TIME_STAMP;
@@ -355,6 +367,7 @@ extern const char *OH_ED_KEY_TIME_STAMP;
  * @brief Key for endOfStream in surface's extraData, value type is bool.
  *
  * @syscap SystemCapability.Multimedia.Media.CodecBase
+ * @deprecated since 14
  * @since 9
  */
 extern const char *OH_ED_KEY_EOS;
@@ -662,6 +675,8 @@ extern const char *OH_MD_KEY_SETUP_HEADER;
  * @brief Key for video scale type, value type is int32_t, see {@link OH_ScalingMode}.
  *
  * @syscap SystemCapability.Multimedia.Media.CodecBase
+ * @deprecated since 14
+ * @useinstead OH_NativeWindow_NativeWindowSetScalingModeV2
  * @since 10
  */
 extern const char *OH_MD_KEY_SCALING_MODE;
@@ -926,14 +941,14 @@ extern const char *OH_MD_KEY_BUFFER_DURATION;
  */
 extern const char *OH_MD_KEY_VIDEO_SAR;
 /**
- * @brief Key for start time of file, value type is int64_t.
+ * @brief Key for start time of the first frame in the media file in microseconds, value type is int64_t.
  *
  * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 12
  */
 extern const char *OH_MD_KEY_START_TIME;
 /**
- * @brief Key for start time of track, value type is int64_t.
+ * @brief Key for start time of track in microseconds, value type is int64_t.
  *
  * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 12
@@ -963,6 +978,14 @@ extern const char *OH_MD_KEY_VIDEO_DECODER_OUTPUT_COLOR_SPACE;
 extern const char *OH_MD_KEY_VIDEO_DECODER_OUTPUT_ENABLE_VRR;
 
 /**
+ * @brief Key for creation timestamp of a media file, value type is string.
+ *
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
+ * @since 14
+ */
+extern const char *OH_MD_KEY_CREATION_TIME;
+
+/**
  * @brief Media type.
  *
  * @syscap SystemCapability.Multimedia.Media.CodecBase
@@ -987,6 +1010,16 @@ typedef enum OH_MediaType {
  */
 typedef enum OH_AACProfile {
     AAC_PROFILE_LC = 0,
+    /**
+     * High-Efficiency AAC profile, contain the audio object types: AAC LC, SBR
+     * @since 14
+     */
+    AAC_PROFILE_HE = 3,
+    /**
+     * High-Efficiency AAC v2 profile, contain the audio object types: AAC LC, SBR, PS
+     * @since 14
+     */
+    AAC_PROFILE_HE_V2 = 4,
 } OH_AACProfile;
 
 /**
@@ -1011,9 +1044,54 @@ typedef enum OH_HEVCProfile {
     HEVC_PROFILE_MAIN = 0,
     HEVC_PROFILE_MAIN_10 = 1,
     HEVC_PROFILE_MAIN_STILL = 2,
+    /**
+     * @deprecated since 14
+     */
     HEVC_PROFILE_MAIN_10_HDR10 = 3,
+    /**
+     * @deprecated since 14
+     */
     HEVC_PROFILE_MAIN_10_HDR10_PLUS = 4,
 } OH_HEVCProfile;
+
+/**
+ * @brief Profile: A specified subset of the syntax of VVC.
+ *
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
+ * @since 14
+ */
+typedef enum OH_VVCProfile {
+    /** Main 10 profile */
+    VVC_PROFILE_MAIN_10 = 1,
+    /** Main 12 profile */
+    VVC_PROFILE_MAIN_12 = 2,
+    /** Main 12 Intra profile */
+    VVC_PROFILE_MAIN_12_INTRA = 10,
+    /** Multilayer Main 10 profile */
+    VVC_PROFILE_MULTI_MAIN_10 = 17,
+    /** Main 10 4:4:4 profile */
+    VVC_PROFILE_MAIN_10_444 = 33,
+    /** Main 12 4:4:4 profile */
+    VVC_PROFILE_MAIN_12_444 = 34,
+    /** Main 16 4:4:4 profile */
+    VVC_PROFILE_MAIN_16_444 = 36,
+    /** Main 12 4:4:4 Intra profile */
+    VVC_PROFILE_MAIN_12_444_INTRA = 42,
+    /** Main 16 4:4:4 Intra profile */
+    VVC_PROFILE_MAIN_16_444_INTRA = 44,
+    /** Multilayer Main 10 4:4:4 profile */
+    VVC_PROFILE_MULTI_MAIN_10_444 = 49,
+    /** Main 10 Still Picture profile */
+    VVC_PROFILE_MAIN_10_STILL = 65,
+    /** Main 12 Still Picture profile */
+    VVC_PROFILE_MAIN_12_STILL = 66,
+    /** Main 10 4:4:4 Still Picture profile */
+    VVC_PROFILE_MAIN_10_444_STILL = 97,
+    /** Main 12 4:4:4 Still Picture profile */
+    VVC_PROFILE_MAIN_12_444_STILL = 98,
+    /** Main 16 4:4:4 Still Picture profile */
+    VVC_PROFILE_MAIN_16_444_STILL = 100,
+} OH_VVCProfile;
 
 /**
  * @brief Enumerates the muxer output file format
@@ -1061,10 +1139,20 @@ typedef enum OH_AVSeekMode {
  * @brief Scaling Mode
  *
  * @syscap SystemCapability.Multimedia.Media.CodecBase
+ * @deprecated since 14
+ * @useinstead OHScalingModeV2
  * @since 10
  */
 typedef enum OH_ScalingMode {
+    /**
+     * @deprecated since 14
+     * @useinstead OH_SCALING_MODE_SCALE_TO_WINDOW_V2
+     */
     SCALING_MODE_SCALE_TO_WINDOW = 1,
+    /**
+     * @deprecated since 14
+     * @useinstead OH_SCALING_MODE_SCALE_CROP_V2
+     */
     SCALING_MODE_SCALE_CROP = 2,
 } OH_ScalingMode;
 
@@ -1209,6 +1297,46 @@ typedef enum OH_HEVCLevel {
 } OH_HEVCLevel;
 
 /**
+ * @brief VVC Level: A defined set of constraints on the values that may be taken by the syntax elements and variables
+ * of VVC, or the value of a transform coefficient prior to scaling.
+ *
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
+ * @since 14
+ */
+typedef enum OH_VVCLevel {
+    /** VVC level 1.0 */
+    VVC_LEVEL_1 = 16,
+    /** VVC level 2.0 */
+    VVC_LEVEL_2 = 32,
+    /** VVC level 2.1 */
+    VVC_LEVEL_21 = 35,
+    /** VVC level 3.0 */
+    VVC_LEVEL_3 = 48,
+    /** VVC level 3.1 */
+    VVC_LEVEL_31 = 51,
+    /** VVC level 4.0 */
+    VVC_LEVEL_4 = 64,
+    /** VVC level 4.1 */
+    VVC_LEVEL_41 = 67,
+    /** VVC level 5.0 */
+    VVC_LEVEL_5 = 80,
+    /** VVC level 5.1 */
+    VVC_LEVEL_51 = 83,
+    /** VVC level 5.2 */
+    VVC_LEVEL_52 = 86,
+    /** VVC level 6.0 */
+    VVC_LEVEL_6 = 96,
+    /** VVC level 6.1 */
+    VVC_LEVEL_61 = 99,
+    /** VVC level 6.2 */
+    VVC_LEVEL_62 = 102,
+    /** VVC level 6.3 */
+    VVC_LEVEL_63 = 105,
+    /** VVC level 15.5 */
+    VVC_LEVEL_155 = 255,
+} OH_VVCLevel;
+
+/**
  * @brief The reference mode in temporal group of picture.
  *
  * @syscap SystemCapability.Multimedia.Media.CodecBase
@@ -1224,8 +1352,26 @@ typedef enum OH_TemporalGopReferenceMode {
     UNIFORMLY_SCALED_REFERENCE = 2,
 } OH_TemporalGopReferenceMode;
 
+/**
+ * @brief The bitrate mode of encoder.
+ *
+ * Change the location of the header file, since 14.
+ *
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
+ * @since 10
+ */
+typedef enum OH_BitrateMode {
+    /** Constant Bit rate mode. */
+    BITRATE_MODE_CBR = 0,
+    /** Variable Bit rate mode. */
+    BITRATE_MODE_VBR = 1,
+    /** Constant Quality mode. */
+    BITRATE_MODE_CQ = 2
+} OH_BitrateMode;
+
 #ifdef __cplusplus
 }
 #endif
 
 #endif // NATIVE_AVCODEC_BASE_H
+/** @} */

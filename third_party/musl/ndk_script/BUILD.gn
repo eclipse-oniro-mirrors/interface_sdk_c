@@ -14,6 +14,7 @@
 
 import("//build/config/clang/clang.gni")
 import("//build/ohos/ndk/ndk.gni")
+import("//build/version.gni")
 import("//third_party/musl/musl_config.gni")
 import("//third_party/musl/musl_src.gni")
 import("//third_party/musl/musl_template.gni")
@@ -21,6 +22,8 @@ import("//third_party/musl/musl_template.gni")
 musl_target_out_dir = "${root_out_dir}/obj/third_party/musl"
 ndk_musl_include = "ndk_musl_include"
 interface_musl_dir = "//interface/sdk_c/third_party/musl"
+target_version_dir = "ndk_musl_include/info"
+target_version_file = "application_target_sdk_version.h"
 
 if (host_os == "mac") {
   if (host_cpu == "arm64") {
@@ -106,6 +109,7 @@ if (host_os == "mac") {
       "${windows_x86_64_toolchain_dir}/llvm/include",
       "${windows_x86_64_toolchain_dir}/llvm/lib",
       "${windows_x86_64_toolchain_dir}/llvm/libexec",
+      "${windows_x86_64_toolchain_dir}/llvm/python3",
       "${windows_x86_64_toolchain_dir}/llvm/script",
       "${windows_x86_64_toolchain_dir}/llvm/share",
     ]
@@ -223,6 +227,15 @@ action("copy_ndk_musl_headers") {
   deps = [ ":copy_ndk_uapi" ]
 }
 
+action("updated_version") {
+  outputs = [ "${musl_target_out_dir}/${target_version_dir}" ]
+  script = "updated_version.py"
+  args = [ "-p" ] + [ rebase_path(
+             "${musl_target_out_dir}/${target_version_dir}/${target_version_file}") ]
+  args += [ "-v" ] + [ api_version ]
+  deps = [ ":copy_ndk_musl_headers" ]
+}
+
 action("copy_musl_sysroot") {
   outputs = [ "${ndk_headers_out_dir}" ]
   script = "copy_musl_sysroot.sh"
@@ -230,7 +243,7 @@ action("copy_musl_sysroot") {
       [ "-i" ] + [ rebase_path("${musl_target_out_dir}/${ndk_musl_include}") ]
   args += [ "-o" ] + [ rebase_path("${ndk_headers_out_dir}") ]
   args += [ "-t" ] + [ "${musl_arch}" ]
-  deps = [ ":copy_ndk_musl_headers" ]
+  deps = [ ":updated_version" ]
 }
 
 musl_libs_arm32 = [

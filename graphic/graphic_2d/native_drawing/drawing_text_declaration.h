@@ -13,9 +13,6 @@
  * limitations under the License.
  */
 
-#ifndef C_INCLUDE_DRAWING_TEXT_DECLARATION_H
-#define C_INCLUDE_DRAWING_TEXT_DECLARATION_H
-
 /**
  * @addtogroup Drawing
  * @{
@@ -40,6 +37,9 @@
  * @version 1.0
  */
 
+#ifndef C_INCLUDE_DRAWING_TEXT_DECLARATION_H
+#define C_INCLUDE_DRAWING_TEXT_DECLARATION_H
+
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -63,7 +63,7 @@ typedef struct OH_Drawing_Typography OH_Drawing_Typography;
 /**
  * @brief Defines an <b>OH_Drawing_LineTypography</b>, which is used to perform line layout.
  *
- * @since 14
+ * @since 16
  * @version 1.0
  */
 typedef struct OH_Drawing_LineTypography OH_Drawing_LineTypography;
@@ -136,7 +136,7 @@ typedef struct OH_Drawing_TextShadow OH_Drawing_TextShadow;
 /**
  * @brief Defines an <b>OH_Drawing_TextTab</b>, which is used to to store the tab alignment type and position.
  *
- * @since 14
+ * @since 16
  * @version 1.0
  */
 typedef struct OH_Drawing_TextTab OH_Drawing_TextTab;
@@ -144,7 +144,7 @@ typedef struct OH_Drawing_TextTab OH_Drawing_TextTab;
 /**
  * @brief Defines an <b>OH_Drawing_TextLine</b>, which is used to manage text line.
  *
- * @since 14
+ * @since 16
  * @version 1.0
  */
 typedef struct OH_Drawing_TextLine OH_Drawing_TextLine;
@@ -152,7 +152,7 @@ typedef struct OH_Drawing_TextLine OH_Drawing_TextLine;
 /**
  * @brief Defines an <b>OH_Drawing_Run</b>, which is used to manage run.
  *
- * @since 14
+ * @since 16
  * @version 1.0
  */
 typedef struct OH_Drawing_Run OH_Drawing_Run;
