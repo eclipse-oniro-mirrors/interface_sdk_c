@@ -2529,6 +2529,10 @@
     },
     {
         "first_introduced": "16",
+        "name": "OH_ArkUI_PointerEvent_GetChangedPointerId"
+    },
+    {
+        "first_introduced": "16",
         "name": "OH_ArkUI_ProgressLinearStyleOption_GetScanEffectEnabled"
     },
     {
