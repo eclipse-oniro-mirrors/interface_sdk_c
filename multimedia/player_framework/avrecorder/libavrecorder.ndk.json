@@ -1,0 +1,62 @@
+[
+  {
+    "first_introduced": "16",
+    "name": "OH_AVRecorder_Create"
+  },
+  {
+    "first_introduced": "16",
+    "name": "OH_AVRecorder_Prepare"
+  },
+  {
+    "first_introduced": "16",
+    "name": "OH_AVRecorder_GetAVRecorderConfig"
+  },
+  {
+    "first_introduced": "16",
+    "name": "OH_AVRecorder_GetInputSurface"
+  },
+  {
+    "first_introduced": "16",
+    "name": "OH_AVRecorder_UpdateRotation"
+  },
+  {
+    "first_introduced": "16",
+    "name": "OH_AVRecorder_Start"
+  },
+  {
+    "first_introduced": "16",
+    "name": "OH_AVRecorder_Pause"
+  },
+  {
+    "first_introduced": "16",
+    "name": "OH_AVRecorder_Resume"
+  },
+  {
+    "first_introduced": "16",
+    "name": "OH_AVRecorder_Stop"
+  },
+  {
+    "first_introduced": "16",
+    "name": "OH_AVRecorder_Reset"
+  },
+  {
+    "first_introduced": "16",
+    "name": "OH_AVRecorder_Release"
+  },
+  {
+    "first_introduced": "16",
+    "name": "OH_AVRecorder_GetAvailableEncoder"
+  },
+  {
+    "first_introduced": "16",
+    "name": "OH_AVRecorder_SetStateCallback"
+  },
+  {
+    "first_introduced": "16",
+    "name": "OH_AVRecorder_SetErrorCallback"
+  },
+  {
+    "first_introduced": "16",
+    "name": "OH_AVRecorder_SetUriCallback"
+  }
+]
