@@ -13,9 +13,6 @@
  * limitations under the License.
  */
 
-#ifndef C_INCLUDE_DRAWING_TYPES_H
-#define C_INCLUDE_DRAWING_TYPES_H
-
 /**
  * @addtogroup Drawing
  * @{
@@ -40,8 +37,12 @@
  * @version 1.0
  */
 
-#include <stdint.h>
+#ifndef C_INCLUDE_DRAWING_TYPES_H
+#define C_INCLUDE_DRAWING_TYPES_H
+
+#include <stdbool.h>
 #include <stddef.h>
+#include <stdint.h>
 
 #ifdef __cplusplus
 extern "C" {
