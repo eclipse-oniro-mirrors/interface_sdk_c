@@ -279,6 +279,11 @@ typedef enum {
     WORD_BREAK_TYPE_BREAK_ALL = 1,
     /** Break Word type */
     WORD_BREAK_TYPE_BREAK_WORD = 2,
+    /**
+     * Break word with hyphens
+     * @since 16
+     */
+    WORD_BREAK_TYPE_BREAK_HYPHEN = 3,
 } OH_Drawing_WordBreakType;
 
 /**
@@ -763,7 +768,7 @@ void OH_Drawing_SetTextStyleDecoration(OH_Drawing_TextStyle* style, int decorati
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @param style Indicates the pointer to an <b>OH_Drawing_TextStyle</b> object.
  * @param decoration Indicates the text decoration to add. For details, see the enum <b>OH_Drawing_TextDecoration</b>.
- * @since 14
+ * @since 16
  * @version 1.0
  */
 void OH_Drawing_AddTextStyleDecoration(OH_Drawing_TextStyle* style, int decoration);
@@ -775,7 +780,7 @@ void OH_Drawing_AddTextStyleDecoration(OH_Drawing_TextStyle* style, int decorati
  * @param style Indicates the pointer to an <b>OH_Drawing_TextStyle</b> object.
  * @param decoration Indicates the text decoration to remove, shoud be match existing text decorations.
  * For details, see the enum <b>OH_Drawing_TextDecoration</b>.
- * @since 14
+ * @since 16
  * @version 1.0
  */
 void OH_Drawing_RemoveTextStyleDecoration(OH_Drawing_TextStyle* style, int decoration);
@@ -2832,7 +2837,7 @@ void OH_Drawing_SetTextShadow(OH_Drawing_TextShadow* shadow, uint32_t color, OH_
  * @return Returns the pointer to the <b>OH_Drawing_TextTab</b> object created. If the object returns NULL,
  * the creation failed. The possible cause of the failure is that the application address space is used up.
  * As a result, space cannot be allocated.
- * @since 14
+ * @since 16
  * @version 1.0
  */
 OH_Drawing_TextTab* OH_Drawing_CreateTextTab(OH_Drawing_TextAlign alignment, float location);
@@ -2842,7 +2847,7 @@ OH_Drawing_TextTab* OH_Drawing_CreateTextTab(OH_Drawing_TextAlign alignment, flo
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @param tab Indicates the pointer to an <b>OH_Drawing_TextTab</b> object.
- * @since 14
+ * @since 16
  * @version 1.0
  */
 void OH_Drawing_DestroyTextTab(OH_Drawing_TextTab* tab);
@@ -2853,7 +2858,7 @@ void OH_Drawing_DestroyTextTab(OH_Drawing_TextTab* tab);
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @param tab Indicates the pointer to an <b>OH_Drawing_TextTab</b> object.
  * @return Returns align of an <b>OH_Drawing_TextTab</b> object.
- * @since 14
+ * @since 16
  * @version 1.0
  */
 OH_Drawing_TextAlign OH_Drawing_GetTextTabAlignment(OH_Drawing_TextTab* tab);
@@ -2864,7 +2869,7 @@ OH_Drawing_TextAlign OH_Drawing_GetTextTabAlignment(OH_Drawing_TextTab* tab);
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @param tab Indicates the pointer to an <b>OH_Drawing_TextTab</b> object.
  * @return Returns location of an <b>OH_Drawing_TextTab</b> object.
- * @since 14
+ * @since 16
  * @version 1.0
  */
 float OH_Drawing_GetTextTabLocation(OH_Drawing_TextTab* tab);
@@ -2878,7 +2883,7 @@ float OH_Drawing_GetTextTabLocation(OH_Drawing_TextTab* tab);
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @param style Indicates the pointer to an <b>OH_Drawing_TypographyStyle</b> object.
  * @param tab Indicates the pointer to an <b>OH_Drawing_TextTab</b> object.
- * @since 14
+ * @since 16
  * @version 1.0
  */
 void OH_Drawing_SetTypographyTextTab(OH_Drawing_TypographyStyle* style, OH_Drawing_TextTab* tab);

@@ -197,7 +197,7 @@ Camera_ErrorCode OH_CameraManager_DeleteSupportedCameras(Camera_Manager* cameraM
  * @brief Gets the supported output capability for the specific camera and specific mode.
  *
  * @param cameraManager the {@link Camera_Manager} instance.
- * @param cameras the {@link Camera_Device} to be queryed.
+ * @param camera the {@link Camera_Device} to be queryed.
  * @param cameraOutputCapability the supported {@link Camera_OutputCapability} will be filled
  *        if the method call succeeds.
  * @return {@link #CAMERA_OK} if the method call succeeds.

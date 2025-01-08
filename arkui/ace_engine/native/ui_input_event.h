@@ -158,6 +158,10 @@ enum {
     UI_MOUSE_EVENT_ACTION_RELEASE = 2,
     /** Move. */
     UI_MOUSE_EVENT_ACTION_MOVE = 3,
+    /** Cancel.
+     * @since 16
+    */
+    UI_MOUSE_EVENT_ACTION_CANCEL = 13,
 };
 
 /**
@@ -750,7 +754,7 @@ int32_t OH_ArkUI_PointerEvent_SetStopPropagation(const ArkUI_UIInputEvent* event
 int32_t OH_ArkUI_UIInputEvent_GetDeviceId(const ArkUI_UIInputEvent* event);
 
 /**
- * @brief Obtains all keys that are pressed from UI input event.
+ * @brief Obtains all keys that are pressed from UI input event. Only supports key events currently.
  *
  * @param event Pointer to an <b>ArkUI_UIInputEvent</b> object.
  * @param pressedKeyCodes Array of all keys that are pressed. You need to allocate the memory space.

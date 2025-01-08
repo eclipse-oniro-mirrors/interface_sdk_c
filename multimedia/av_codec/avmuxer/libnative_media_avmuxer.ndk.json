@@ -8,6 +8,10 @@
         "name": "OH_AVMuxer_SetRotation"
     },
     {
+        "first_introduced": "14",
+        "name": "OH_AVMuxer_SetFormat"
+    },
+    {
         "first_introduced": "10",
         "name": "OH_AVMuxer_AddTrack"
     },
