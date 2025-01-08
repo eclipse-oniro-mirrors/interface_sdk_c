@@ -2262,6 +2262,30 @@ typedef enum {
 } ArkUI_SafeAreaEdge;
 
 /**
+ * @brief defines the enumerated value of the customDialog's keyboard avoid mode.
+ *
+ * @since 16
+ */
+typedef enum {
+    /** Defines avoid keyboard when keyboard shows. */
+    ARKUI_KEYBOARD_AVOID_MODE_DEFAULT = 0,
+    /** Defines not avoid keyboard when keyboard shows. */
+    ARKUI_KEYBOARD_AVOID_MODE_NONE,
+} ArkUI_KeyboardAvoidMode;
+
+/**
+ * @brief defines the enumerated value of area in hover mode.
+ *
+ * @since 16
+ */
+typedef enum {
+    /** Layout top half screen when the phone in hover mode. */
+    ARKUI_HOVER_MODE_AREA_TYPE_TOP = 0,
+    /** Layout bottom half screen when the phone in hover mode. */
+    ARKUI_HOVER_MODE_AREA_TYPE_BOTTOM,
+} ArkUI_HoverModeAreaType;
+
+/**
  * @brief Defines parameter used by the system font style callback event.
  *
  * @since 12
