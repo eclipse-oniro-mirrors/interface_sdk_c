@@ -252,7 +252,7 @@ int32_t OH_NativeImage_GetTransformMatrixV2(OH_NativeImage* image, float matrix[
  * @return {@link NATIVE_ERROR_OK} 0 - Success.
  *     {@link NATIVE_ERROR_INVALID_ARGUMENTS} 40001000 - image is NULL.
  *     {@link NATIVE_ERROR_MEM_OPERATION_ERROR} 30001000 - Memory operation error, failed to get transform matrix.
- * @since 14
+ * @since 15
  * @version 1.0
  */
 int32_t OH_NativeImage_GetBufferMatrix(OH_NativeImage* image, float matrix[16]);
