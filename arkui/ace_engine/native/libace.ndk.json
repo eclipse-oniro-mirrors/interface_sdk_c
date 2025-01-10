@@ -2574,5 +2574,21 @@
     {
         "first_introduced": "16",
         "name": "OH_ArkUI_UnregisterDrawCallbackOnNodeHandle"
+    },
+    {
+        "first_introduced": "16",
+        "name": "OH_ArkUI_FocusRequest"
+    },
+    {
+        "first_introduced": "16",
+        "name": "OH_ArkUI_FocusClear"
+    },
+    {
+        "first_introduced": "16",
+        "name": "OH_ArkUI_FocusActivate"
+    },
+    {
+        "first_introduced": "16",
+        "name": "OH_ArkUI_FocusSetAutoTransfer"
     }
 ]
