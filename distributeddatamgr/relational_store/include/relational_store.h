@@ -345,6 +345,18 @@ int OH_Rdb_SetDbType(OH_Rdb_ConfigV2 *config, int dbType);
 int OH_Rdb_SetTokenizer(OH_Rdb_ConfigV2 *config, Rdb_Tokenizer tokenizer);
 
 /**
+ * @brief Check if a tokenizer is supported or not.
+ *
+ * @param tokenizer the tokenizer type of {@Link Rdb_Tokenizer}.
+ * @param isSupported Pointer to the Boolean value obtained.
+ * @return Returns the status code of the execution.
+ *         {@link RDB_OK} indicates the operation is successful.
+ *         {@link RDB_E_INVALID_ARGS} indicates invalid args are passed in.
+ * @since 16
+ */
+int OH_Rdb_IsTokenizerSupported(Rdb_Tokenizer tokenizer, bool *isSupported);
+
+/**
  * @brief Get support db type list
  * @param typeCount The output parameter, which is used to recieve the length of the support db type array.
  * @return Return Rdb_DBType array contains supported db type, array length is number of support type
