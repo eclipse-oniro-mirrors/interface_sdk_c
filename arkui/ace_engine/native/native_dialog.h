@@ -73,6 +73,20 @@ typedef enum {
 } ArkUI_LevelMode;
 
 /**
+* @brief Enumerates the immersive mode.
+*
+* @since 16
+*/
+typedef enum {
+    /** Mask covering the parent node. */
+    ARKUI_IMMERSIVE_MODE_DEFAULT = 0,
+    /** Mask covering the page node. */
+    ARKUI_IMMERSIVE_MODE_PAGE,
+    /** Mask covering the root node. */
+    ARKUI_IMMERSIVE_MODE_FULL,
+} ArkUI_ImmersiveMode;
+
+/**
 * @brief Invoked when the dialog box is closed.
 *
 * @since 12
@@ -543,6 +557,32 @@ typedef struct {
     * @since 16
     */
     int32_t (*setLevelMode)(ArkUI_NativeDialogHandle handle, ArkUI_LevelMode levelMode);
+
+    /**
+    * @brief Sets the level uniqueId for a custom dialog box.
+    *
+    * @note This method must be called before the <b>setLevelMode</b> method.
+    * @param handle Indicates the pointer to the custom dialog box controller.
+    * @param uniqueId Indicates the uniquedId of any nodes in router or navigation pages.
+    * @return Returns the error code.
+    *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+    *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+    * @since 16
+    */
+    int32_t (*setLevelUniqueId)(ArkUI_NativeDialogHandle handle, int32_t uniqueId);
+
+    /**
+    * @brief Sets the immersive mode for a custom dialog box.
+    *
+    * @note This method must be called before the <b>show</b> method.
+    * @param handle Indicates the pointer to the custom dialog box controller.
+    * @param immersiveMode Indicates the immersive mode. The parameter type is {@link ArkUI_ImmersiveMode}.
+    * @return Returns the error code.
+    *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+    *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+    * @since 16
+    */
+    int32_t (*setImmersiveMode)(ArkUI_NativeDialogHandle handle, ArkUI_ImmersiveMode immersiveMode);
 } ArkUI_NativeDialogAPI_2;
 
 /**
