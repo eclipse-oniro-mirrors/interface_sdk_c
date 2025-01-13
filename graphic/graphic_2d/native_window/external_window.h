@@ -442,7 +442,7 @@ OHNativeWindowBuffer* OH_NativeWindow_CreateNativeWindowBufferFromSurfaceBuffer(
 /**
  * @brief Creates a <b>OHNativeWindowBuffer</b> instance.\n
  * A new <b>OHNativeWindowBuffer</b> instance is created each time this function is called.\n
- * This interface needs to be used in conjunction with <b>OH_NativeWindow_DestroyNativeWindowBuffer<\b>,
+ * This interface needs to be used in conjunction with <b>OH_NativeWindow_DestroyNativeWindowBuffer</b>,
  * otherwise memory leaks will occur.\n
  * This interface is a non-thread-safe type interface.\n
  *
@@ -470,7 +470,7 @@ void OH_NativeWindow_DestroyNativeWindowBuffer(OHNativeWindowBuffer* buffer);
  * @brief Requests a <b>OHNativeWindowBuffer</b> through a <b>OHNativeWindow</b> instance for content production.\n
  * Before calling this interface, you need to set the width and height of
  * <b>OHNativeWindow</b> through <b>SET_BUFFER_GEOMETRY</b>.\n
- * This interface needs to be used in conjunction with <b>OH_NativeWindow_NativeWindowFlushBuffer<\b>,
+ * This interface needs to be used in conjunction with <b>OH_NativeWindow_NativeWindowFlushBuffer</b>,
  * otherwise buffer will be exhausted.\n
  * When the fenceFd is used up, you need to close it.\n
  * This interface is a non-thread-safe type interface.\n
@@ -563,7 +563,7 @@ BufferHandle *OH_NativeWindow_GetBufferHandleFromNative(OHNativeWindowBuffer *bu
 
 /**
  * @brief Adds the reference count of a native object.\n
- * This interface needs to be used in conjunction with <b>OH_NativeWindow_NativeObjectUnreference<\b>,
+ * This interface needs to be used in conjunction with <b>OH_NativeWindow_NativeObjectUnreference</b>,
  * otherwise memory leaks will occur.\n
  * This interface is a non-thread-safe type interface.\n
  *
@@ -663,7 +663,7 @@ int32_t OH_NativeWindow_NativeWindowSetTunnelHandle(OHNativeWindow *window, cons
 
 /**
  * @brief Attach a buffer to an <b>OHNativeWindow</b> instance.\n
- * This interface needs to be used in conjunction with <b>OH_NativeWindow_NativeWindowDetachBuffer<\b>,
+ * This interface needs to be used in conjunction with <b>OH_NativeWindow_NativeWindowDetachBuffer</b>,
  * otherwise buffer management will be chaotic.\n
  * This interface is a non-thread-safe type interface.\n
  *
@@ -704,11 +704,11 @@ int32_t OH_NativeWindow_GetSurfaceId(OHNativeWindow *window, uint64_t *surfaceId
 
 /**
  * @brief Creates an <b>OHNativeWindow</b> instance.\n
- * This interface needs to be used in conjunction with <b>OH_NativeWindow_DestroyNativeWindow<\b>,
+ * This interface needs to be used in conjunction with <b>OH_NativeWindow_DestroyNativeWindow</b>,
  * otherwise memory leaks will occur.\n
  * If there is a concurrent destroy OHNativeWindow, you need to add once and decrement once to the
- * OHNativeWindow reference count through <b>OH_NativeWindow_NativeObjectReference<\b> and
- * <b>OH_NativeWindow_NativeObjectUnreference<\b>.\n
+ * OHNativeWindow reference count through <b>OH_NativeWindow_NativeObjectReference</b> and
+ * <b>OH_NativeWindow_NativeObjectUnreference</b>.\n
  * If the surface obtained through surfaceId is created in this process, the surface cannot be obtained
  * across processes.\n
  * This interface is a non-thread-safe type interface.\n
@@ -777,7 +777,7 @@ int32_t OH_NativeWindow_ReadFromParcel(OHIPCParcel *parcel, OHNativeWindow **win
 /**
  * @brief Get the last flushed <b>OHNativeWindowBuffer</b> from an <b>OHNativeWindow</b> instance.\n
  * When the fenceFd is used up, you need to close it.\n
- * This interface needs to be used in conjunction with <b>OH_NativeWindow_NativeObjectUnreference<\b>,
+ * This interface needs to be used in conjunction with <b>OH_NativeWindow_NativeObjectUnreference</b>,
  * otherwise memory leaks will occur.\n
  * This interface is a non-thread-safe type interface.\n
  *
