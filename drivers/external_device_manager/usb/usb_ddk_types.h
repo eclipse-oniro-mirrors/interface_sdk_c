@@ -299,7 +299,7 @@ typedef enum {
     /** @error The operation is successful. */
     USB_DDK_SUCCESS = 0,
     /** @error The operation failed.
-     *  @deprecate since 14
+     *  @deprecate since 15
      */
     USB_DDK_FAILED = -1,
     /** @error Permission denied. */

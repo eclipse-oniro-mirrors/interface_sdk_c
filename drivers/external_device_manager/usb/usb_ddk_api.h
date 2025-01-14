@@ -76,7 +76,7 @@ void OH_Usb_Release(void);
  * @permission ohos.permission.ACCESS_DDK_USB
  * @return {@link USB_DDK_SUCCESS} the operation is successful.
  *         {@link USB_DDK_NO_PERM} permission check failed.
- * @since 14
+ * @since 15
  * @version 1.0
  */
 int32_t OH_Usb_ReleaseResource(void);
