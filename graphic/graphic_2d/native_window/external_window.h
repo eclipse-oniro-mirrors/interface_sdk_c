@@ -185,7 +185,7 @@ typedef enum NativeWindowOperation {
     /**
      * get native window buffer colorGamut,
      * variable parameter in function is
-     * [out int32_t *colorGamut], the enumeration value refers to {@link OH_NativeBuffer_ColorGamut}.
+     * [out] int32_t *colorGamut, the enumeration value refers to {@link OH_NativeBuffer_ColorGamut}.
      */
     GET_COLOR_GAMUT,
     /**

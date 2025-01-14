@@ -286,7 +286,7 @@ int32_t OH_NativeImage_AcquireNativeWindowBuffer(OH_NativeImage* image,
 /**
  * @brief Release the <b>OHNativeWindowBuffer</b> to the buffer queue through an
  * <b>OH_NativeImage</b> instance for reuse.\n
- * The fenceFd will be close by system.\n
+ * The fenceFd will be closed by system.\n
  * This interface is a non-thread-safe type interface.\n
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeImage
