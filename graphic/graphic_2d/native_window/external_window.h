@@ -275,6 +275,7 @@ typedef enum NativeWindowOperation {
  * @brief Indicates Scaling Mode.
  * @since 9
  * @deprecated(since = "10")
+ * @useinstead OHScalingModeV2
  */
 typedef enum {
     /**
@@ -611,6 +612,7 @@ int32_t OH_NativeWindow_GetNativeObjectMagic(void *obj);
  * @since 9
  * @version 1.0
  * @deprecated(since = "10")
+ * @useinstead OH_NativeWindow_NativeWindowSetScalingModeV2
  */
 int32_t OH_NativeWindow_NativeWindowSetScalingMode(OHNativeWindow *window, uint32_t sequence,
                                                    OHScalingMode scalingMode);
