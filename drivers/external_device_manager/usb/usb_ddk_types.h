@@ -311,11 +311,11 @@ typedef enum {
      */
     USB_DDK_MEMORY_ERROR = 27400001,
     /** @error Null pointer exception
-     *  @deprecate since 14
+     *  @deprecate since 15
      */
     USB_DDK_NULL_PTR = -5,
     /** @error Device busy.
-     *  @deprecate since 14
+     *  @deprecate since 15
      */
     USB_DDK_DEVICE_BUSY = -6,
     /** @error Invalid operation. */
