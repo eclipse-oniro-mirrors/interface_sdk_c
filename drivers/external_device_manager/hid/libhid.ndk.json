@@ -7,5 +7,50 @@
     },
     {
         "name": "OH_Hid_DestroyDevice"
+    },
+    {
+        "name": "OH_Hid_Init"
+    },
+    {
+        "name": "OH_Hid_Release"
+    },
+    {
+        "name": "OH_Hid_Open"
+    },
+    {
+        "name": "OH_Hid_Close"
+    },
+    {
+        "name": "OH_Hid_Write"
+    },
+    {
+        "name": "OH_Hid_ReadTimeout"
+    },
+    {
+        "name": "OH_Hid_Read"
+    },
+    {
+        "name": "OH_Hid_SetNonBlocking"
+    },
+    {
+        "name": "OH_Hid_GetRawInfo"
+    },
+    {
+        "name": "OH_Hid_GetRawName"
+    },
+    {
+        "name": "OH_Hid_GetPhysicalAddress"
+    },
+    {
+        "name": "OH_Hid_GetRawUniqueId"
+    },
+    {
+        "name": "OH_Hid_SendReport"
+    },
+    {
+        "name": "OH_Hid_GetReport"
+    },
+    {
+        "name": "OH_Hid_GetReportDescriptor"
     }
 ]
