@@ -2610,5 +2610,21 @@
     {
         "first_introduced": "16",
         "name": "OH_ArkUI_FocusSetAutoTransfer"
+    },
+    {
+        "first_introduced": "16",
+        "name": "OH_ArkUI_CreateSnapshotOptions"
+    },
+    {
+        "first_introduced": "16",
+        "name": "OH_ArkUI_DestroySnapshotOptions"
+    },
+    {
+        "first_introduced": "16",
+        "name": "OH_ArkUI_SnapshotOptions_SetScale"
+    },
+    {
+        "first_introduced": "16",
+        "name": "OH_ArkUI_GetNodeSnapshot"
     }
 ]
