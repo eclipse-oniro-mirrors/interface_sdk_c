@@ -50,7 +50,7 @@ extern "C" {
  *         {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
  *         {@link ARKUI_ERROR_CODE_FOCUS_NON_FOCUSABLE} if the node is not focusable.
  *         {@link ARKUI_ERROR_CODE_FOCUS_NON_FOCUSABLE_ANCESTOR} if the node has unfocusable ancestor.
- *         {@link ARKUI_ERROR_CODE_FOCUS_NON_EXIST} if the node is not exists.
+ *         {@link ARKUI_ERROR_CODE_FOCUS_NON_EXISTENT} if the node is not exists.
  * @since 16
  */
 ArkUI_ErrorCode OH_ArkUI_FocusRequest(ArkUI_NodeHandle node);
