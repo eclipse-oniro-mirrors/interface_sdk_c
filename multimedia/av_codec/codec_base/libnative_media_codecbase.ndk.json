@@ -400,6 +400,14 @@
         "name": "OH_MD_KEY_CREATION_TIME"
     },
     {
+        "first_introduced": "16",
+        "name": "OH_MD_KEY_VIDEO_ENCODER_REPEAT_PREVIOUS_FRAME_AFTER"
+    },
+    {
+        "first_introduced": "16",
+        "name": "OH_MD_KEY_VIDEO_ENCODER_REPEAT_PREVIOUS_MAX_COUNT"
+    },
+    {
         "first_introduced": "10",
         "name": "OH_AVCodec_GetCapability"
     },
