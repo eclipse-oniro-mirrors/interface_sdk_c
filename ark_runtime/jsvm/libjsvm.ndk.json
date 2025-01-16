@@ -734,5 +734,153 @@
     {
         "first_introduced": "12",
         "name": "OH_JSVM_ReleaseCache"
+    },
+    {
+        "first_introduced": "16",
+        "name": "OH_JSVM_PromiseRegisterHandler"
+    },
+    {
+        "first_introduced": "16",
+        "name": "OH_JSVM_CreateProxy"
+    },
+    {
+        "first_introduced": "16",
+        "name": "OH_JSVM_IsProxy"
+    },
+    {
+        "first_introduced": "16",
+        "name": "OH_JSVM_ProxyGetTarget"
+    },
+    {
+        "first_introduced": "16",
+        "name": "OH_JSVM_IsBigIntObject"
+    },
+    {
+        "first_introduced": "16",
+        "name": "OH_JSVM_IsBooleanObject"
+    },
+    {
+        "first_introduced": "16",
+        "name": "OH_JSVM_IsStringObject"
+    },
+    {
+        "first_introduced": "16",
+        "name": "OH_JSVM_IsNumberObject"
+    },
+    {
+        "first_introduced": "16",
+        "name": "OH_JSVM_IsSymbolObject"
+    },
+    {
+        "first_introduced": "16",
+        "name": "OH_JSVM_GetSymbolAsyncIterator"
+    },
+    {
+        "first_introduced": "16",
+        "name": "OH_JSVM_GetSymbolHasInstance"
+    },
+    {
+        "first_introduced": "16",
+        "name": "OH_JSVM_GetSymbolIsConcatSpreadable"
+    },
+    {
+        "first_introduced": "16",
+        "name": "OH_JSVM_GetSymbolMatch"
+    },
+    {
+        "first_introduced": "16",
+        "name": "OH_JSVM_GetSymbolReplace"
+    },
+    {
+        "first_introduced": "16",
+        "name": "OH_JSVM_GetSymbolSearch"
+    },
+    {
+        "first_introduced": "16",
+        "name": "OH_JSVM_GetSymbolSplit"
+    },
+    {
+        "first_introduced": "16",
+        "name": "OH_JSVM_GetSymbolToPrimitive"
+    },
+    {
+        "first_introduced": "16",
+        "name": "OH_JSVM_GetSymbolUnscopables"
+    },
+    {
+        "first_introduced": "16",
+        "name": "OH_JSVM_GetSymbolToStringTag"
+    },
+    {
+        "first_introduced": "16",
+        "name": "OH_JSVM_GetSymbolIterator"
+    },
+    {
+        "first_introduced": "16",
+        "name": "OH_JSVM_SetMicrotaskPolicy"
+    },
+    {
+        "first_introduced": "16",
+        "name": "OH_JSVM_TraceStart"
+    },
+    {
+        "first_introduced": "16",
+        "name": "OH_JSVM_TraceStop"
+    },
+    {   
+        "first_introduced": "16",
+        "name": "OH_JSVM_SetHandlerForOOMError"
+    },
+    {
+        "first_introduced": "16",
+        "name": "OH_JSVM_SetHandlerForFatalError"
+    },
+    {
+        "first_introduced": "16",
+        "name": "OH_JSVM_SetHandlerForPromiseReject"
+    },
+    {
+        "first_introduced": "16",
+        "name": "OH_JSVM_DefineClassWithOptions"
+    },
+    {
+        "first_introduced": "16",
+        "name": "OH_JSVM_AddHandlerForGC"
+    },
+    {
+        "first_introduced": "16",
+        "name": "OH_JSVM_RemoveHandlerForGC"
+    },
+    {
+        "first_introduced": "16",
+        "name": "OH_JSVM_CreateExternalStringLatin1"
+    },
+    {
+        "first_introduced": "16",
+        "name": "OH_JSVM_CreateExternalStringUtf16"
+    },
+    {
+        "first_introduced": "16",
+        "name": "OH_JSVM_CreatePrivate"
+    },
+    {
+        "first_introduced": "16",
+        "name": "OH_JSVM_SetPrivate"
+    },
+    {
+        "first_introduced": "16",
+        "name": "OH_JSVM_GetPrivate"
+    },
+    {
+        "first_introduced": "16",
+        "name": "OH_JSVM_DeletePrivate"
+    },
+    {
+        "first_introduced": "16",
+        "name": "OH_JSVM_CreateDataReference"
+    },
+    {
+        "first_introduced": "16",
+        "name": "OH_JSVM_GetReferenceData"
     }
 ]

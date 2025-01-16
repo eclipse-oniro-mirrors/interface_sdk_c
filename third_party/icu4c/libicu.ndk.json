@@ -1814,5 +1814,277 @@
     {
         "first_introduced": "12",
         "name":"uidna_nameToUnicodeUTF8"
+    },
+    {
+        "first_introduced": "15",
+        "name":"utext_close"
+    },
+    {
+        "first_introduced": "15",
+        "name":"utext_openUTF8"
+    },
+    {
+        "first_introduced": "15",
+        "name":"utext_openUChars"
+    },
+    {
+        "first_introduced": "15",
+        "name":"utext_clone"
+    },
+    {
+        "first_introduced": "15",
+        "name":"utext_equals"
+    },
+    {
+        "first_introduced": "15",
+        "name":"utext_nativeLength"
+    },
+    {
+        "first_introduced": "15",
+        "name":"utext_char32At"
+    },
+    {
+        "first_introduced": "15",
+        "name":"utext_current32"
+    },
+    {
+        "first_introduced": "15",
+        "name":"utext_next32"
+    },
+    {
+        "first_introduced": "15",
+        "name":"utext_previous32"
+    },
+    {
+        "first_introduced": "15",
+        "name":"utext_next32From"
+    },
+    {
+        "first_introduced": "15",
+        "name":"utext_previous32From"
+    },
+    {
+        "first_introduced": "15",
+        "name":"utext_getNativeIndex"
+    },
+    {
+        "first_introduced": "15",
+        "name":"utext_setNativeIndex"
+    },
+    {
+        "first_introduced": "15",
+        "name":"utext_moveIndex32"
+    },
+    {
+        "first_introduced": "15",
+        "name":"utext_getPreviousNativeIndex"
+    },
+    {
+        "first_introduced": "15",
+        "name":"utext_extract"
+    },
+    {
+        "first_introduced": "15",
+        "name":"u_strlen"
+    },
+    {
+        "first_introduced": "15",
+        "name":"u_countChar32"
+    },
+    {
+        "first_introduced": "15",
+        "name":"u_strHasMoreChar32Than"
+    },
+    {
+        "first_introduced": "15",
+        "name":"u_strcat"
+    },
+    {
+        "first_introduced": "15",
+        "name":"u_strncat"
+    },
+    {
+        "first_introduced": "15",
+        "name":"u_strstr"
+    },
+    {
+        "first_introduced": "15",
+        "name":"u_strFindFirst"
+    },
+    {
+        "first_introduced": "15",
+        "name":"u_strchr"
+    },
+    {
+        "first_introduced": "15",
+        "name":"u_strchr32"
+    },
+    {
+        "first_introduced": "15",
+        "name":"u_strrstr"
+    },
+    {
+        "first_introduced": "15",
+        "name":"u_strFindLast"
+    },
+    {
+        "first_introduced": "15",
+        "name":"u_strrchr"
+    },
+    {
+        "first_introduced": "15",
+        "name":"u_strrchr32"
+    },
+    {
+        "first_introduced": "15",
+        "name":"u_strpbrk"
+    },
+    {
+        "first_introduced": "15",
+        "name":"u_strcspn"
+    },
+    {
+        "first_introduced": "15",
+        "name":"u_strspn"
+    },
+    {
+        "first_introduced": "15",
+        "name":"u_strtok_r"
+    },
+    {
+        "first_introduced": "15",
+        "name":"u_strcmp"
+    },
+    {
+        "first_introduced": "15",
+        "name":"u_strcmpCodePointOrder"
+    },
+    {
+        "first_introduced": "15",
+        "name":"u_strCompare"
+    },
+    {
+        "first_introduced": "15",
+        "name":"u_strCaseCompare"
+    },
+    {
+        "first_introduced": "15",
+        "name":"u_strncmp"
+    },
+    {
+        "first_introduced": "15",
+        "name":"u_strncmpCodePointOrder"
+    },
+    {
+        "first_introduced": "15",
+        "name":"u_strcasecmp"
+    },
+    {
+        "first_introduced": "15",
+        "name":"u_strncasecmp"
+    },
+    {
+        "first_introduced": "15",
+        "name":"u_memcasecmp"
+    },
+    {
+        "first_introduced": "15",
+        "name":"u_strcpy"
+    },
+    {
+        "first_introduced": "15",
+        "name":"u_strncpy"
+    },
+    {
+        "first_introduced": "15",
+        "name":"u_memcpy"
+    },
+    {
+        "first_introduced": "15",
+        "name":"u_memmove"
+    },
+    {
+        "first_introduced": "15",
+        "name":"u_memset"
+    },
+    {
+        "first_introduced": "15",
+        "name":"u_memcmp"
+    },
+    {
+        "first_introduced": "15",
+        "name":"u_memcmpCodePointOrder"
+    },
+    {
+        "first_introduced": "15",
+        "name":"u_memchr"
+    },
+    {
+        "first_introduced": "15",
+        "name":"u_memchr32"
+    },
+    {
+        "first_introduced": "15",
+        "name":"u_memrchr"
+    },
+    {
+        "first_introduced": "15",
+        "name":"u_memrchr32"
+    },
+    {
+        "first_introduced": "15",
+        "name":"u_strToUpper"
+    },
+    {
+        "first_introduced": "15",
+        "name":"u_strToLower"
+    },
+    {
+        "first_introduced": "15",
+        "name":"u_strToTitle"
+    },
+    {
+        "first_introduced": "15",
+        "name":"u_strFoldCase"
+    },
+    {
+        "first_introduced": "15",
+        "name":"u_strToUTF8"
+    },
+    {
+        "first_introduced": "15",
+        "name":"u_strFromUTF8"
+    },
+    {
+        "first_introduced": "15",
+        "name":"u_strToUTF8WithSub"
+    },
+    {
+        "first_introduced": "15",
+        "name":"u_strFromUTF8WithSub"
+    },
+    {
+        "first_introduced": "15",
+        "name":"u_strFromUTF8Lenient"
+    },
+    {
+        "first_introduced": "15",
+        "name":"u_strToUTF32"
+    },
+    {
+        "first_introduced": "15",
+        "name":"u_strFromUTF32"
+    },
+    {
+        "first_introduced": "15",
+        "name":"u_strToUTF32WithSub"
+    },
+    {
+        "first_introduced": "15",
+        "name":"u_strFromUTF32WithSub"
+    },
+    {
+        "first_introduced": "15",
+        "name":"u_errorName"
     }
 ]

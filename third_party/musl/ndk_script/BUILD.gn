@@ -109,6 +109,7 @@ if (host_os == "mac") {
       "${windows_x86_64_toolchain_dir}/llvm/include",
       "${windows_x86_64_toolchain_dir}/llvm/lib",
       "${windows_x86_64_toolchain_dir}/llvm/libexec",
+      "${windows_x86_64_toolchain_dir}/llvm/python3",
       "${windows_x86_64_toolchain_dir}/llvm/script",
       "${windows_x86_64_toolchain_dir}/llvm/share",
     ]

@@ -12,7 +12,7 @@
     { "name": "OH_NativeImage_Destroy" },
     { "name": "OH_NativeImage_GetTransformMatrixV2" },
     {
-        "first_introduced": "14",
+        "first_introduced": "15",
         "name": "OH_NativeImage_GetBufferMatrix"
     },
     {

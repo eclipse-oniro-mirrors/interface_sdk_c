@@ -509,7 +509,7 @@ float OH_Drawing_FontGetMetrics(OH_Drawing_Font* font, OH_Drawing_Font_Metrics* 
  *         Returns {@link OH_DRAWING_SUCCESS} if the operation is successful.
  *         Returns {@link OH_DRAWING_ERROR_INVALID_PARAMETER} if any of font, glyphs
  *                 and bounds is nullptr or count is 0.
- * @since 14
+ * @since 16
  * @version 1.0
  */
 OH_Drawing_ErrorCode OH_Drawing_FontGetBounds(const OH_Drawing_Font* font, const uint16_t* glyphs, uint32_t count,
@@ -526,7 +526,7 @@ OH_Drawing_ErrorCode OH_Drawing_FontGetBounds(const OH_Drawing_Font* font, const
  *         Returns {@link OH_DRAWING_SUCCESS} if the operation is successful.
  *         Returns {@link OH_DRAWING_ERROR_INVALID_PARAMETER} if any of font, path
  *                 is nullptr or glyph not exist.
- * @since 14
+ * @since 16
  * @version 1.0
  */
 OH_Drawing_ErrorCode OH_Drawing_FontGetPathForGlyph(const OH_Drawing_Font* font, uint16_t glyph,
@@ -547,10 +547,36 @@ OH_Drawing_ErrorCode OH_Drawing_FontGetPathForGlyph(const OH_Drawing_Font* font,
  * @return Returns the error code.
  *         Returns {@link OH_DRAWING_SUCCESS} if the operation is successful.
  *         Returns {@link OH_DRAWING_ERROR_INVALID_PARAMETER} if any of font, text or path is nullptr.
- * @since 14
+ * @since 16
  */
 OH_Drawing_ErrorCode OH_Drawing_FontGetTextPath(const OH_Drawing_Font* font, const void* text, size_t byteLength,
     OH_Drawing_TextEncoding encoding, float x, float y, OH_Drawing_Path* path);
+
+/**
+ * @brief Sets whether to follow the theme font. If the value is true, the theme font is used when typeface is not set.
+ *
+ * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
+ * @param font Indicates the pointer to an <b>OH_Drawing_Font</b> object.
+ * @param followed Indicates whether to follow the theme font.
+ * @return Returns the error code.
+ *         Returns {@link OH_DRAWING_SUCCESS} if the operation is successful.
+ *         Returns {@link OH_DRAWING_ERROR_INVALID_PARAMETER} if font is nullptr.
+ * @since 16
+ */
+OH_Drawing_ErrorCode OH_Drawing_FontSetThemeFontFollowed(OH_Drawing_Font* font, bool followed);
+
+/**
+ * @brief Gets whether to follow the theme font.
+ *
+ * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
+ * @param font Indicates the pointer to an <b>OH_Drawing_Font</b> object.
+ * @param followed Indicates whether to follow the theme font.
+ * @return Returns the error code.
+ *         Returns {@link OH_DRAWING_SUCCESS} if the operation is successful.
+ *         Returns {@link OH_DRAWING_ERROR_INVALID_PARAMETER} if font or followed is nullptr.
+ * @since 16
+ */
+OH_Drawing_ErrorCode OH_Drawing_FontIsThemeFontFollowed(const OH_Drawing_Font* font, bool* followed);
 
 #ifdef __cplusplus
 }

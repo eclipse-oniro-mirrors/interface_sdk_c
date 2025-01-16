@@ -19,7 +19,7 @@
  *
  * @brief Provides APIs of Playback capability for Media Source.
  *
- * @Syscap SystemCapability.Multimedia.Media.AVPlayer
+ * @syscap SystemCapability.Multimedia.Media.AVPlayer
  * @since 11
  * @version 1.0
  */
@@ -32,6 +32,7 @@
  *
  * @kit MediaKit
  * @library libavplayer.so
+ * @syscap SystemCapability.Multimedia.Media.AVPlayer
  * @since 11
  * @version 1.0
  */
@@ -596,3 +597,4 @@ OH_AVErrCode OH_AVPlayer_SetOnErrorCallback(OH_AVPlayer *player, OH_AVPlayerOnEr
 #endif
 
 #endif // MULTIMEDIA_PLAYER_FRAMEWORK_NATIVE_AVPLAYER_H
+/** @} */

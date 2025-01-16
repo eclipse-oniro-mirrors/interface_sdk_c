@@ -158,6 +158,10 @@ enum {
     UI_MOUSE_EVENT_ACTION_RELEASE = 2,
     /** Move. */
     UI_MOUSE_EVENT_ACTION_MOVE = 3,
+    /** Cancel.
+     * @since 16
+    */
+    UI_MOUSE_EVENT_ACTION_CANCEL = 13,
 };
 
 /**
@@ -195,6 +199,48 @@ typedef enum {
     /** Fn. */
     ARKUI_MODIFIER_KEY_FN = 1 << 3,
 } ArkUI_ModifierKeyName;
+
+/**
+ * @brief Defines an enum for the axis types for focus axis events.
+ *
+ * @since 15
+ */
+enum {
+    /** ABS_X. */
+    UI_FOCUS_AXIS_EVENT_ABS_X = 0,
+    /** ABS_Y. */
+    UI_FOCUS_AXIS_EVENT_ABS_Y = 1,
+    /** ABS_Z. */
+    UI_FOCUS_AXIS_EVENT_ABS_Z = 2,
+    /** ABS_RZ. */
+    UI_FOCUS_AXIS_EVENT_ABS_RZ = 3,
+    /** ABS_GAS. */
+    UI_FOCUS_AXIS_EVENT_ABS_GAS = 4,
+    /** ABS_BRAKE. */
+    UI_FOCUS_AXIS_EVENT_ABS_BRAKE = 5,
+    /** ABS_HAT0X. */
+    UI_FOCUS_AXIS_EVENT_ABS_HAT0X = 6,
+    /** ABS_HAT0Y. */
+    UI_FOCUS_AXIS_EVENT_ABS_HAT0Y = 7,
+};
+
+/**
+ * @brief Enumerates the action types for axis events.
+ *
+ * @since 16
+ */
+enum {
+    /** The axis event is abnormal. */
+    UI_AXIS_EVENT_ACTION_NONE = 0,
+    /** The axis event begins. */
+    UI_AXIS_EVENT_ACTION_BEGIN = 1,
+    /** The axis event is updated. */
+    UI_AXIS_EVENT_ACTION_UPDATE = 2,
+    /** The axis event ends. */
+    UI_AXIS_EVENT_ACTION_END = 3,
+    /** The axis event is canceled. */
+    UI_AXIS_EVENT_ACTION_CANCEL = 4,
+};
 
 /**
  * @brief Obtains the type of this UI input event.
@@ -261,6 +307,18 @@ uint32_t OH_ArkUI_PointerEvent_GetPointerCount(const ArkUI_UIInputEvent* event);
  * @since 12
  */
 int32_t OH_ArkUI_PointerEvent_GetPointerId(const ArkUI_UIInputEvent* event, uint32_t pointerIndex);
+
+/**
+ * @brief Obtains the ID of the touch pointer that triggers the current touch event.
+ *
+ * @param event Indicates the pointer to the current UI input event.
+ * @param pointerIndex Indicates the index of the target touch point in the multi-touch data list.
+ * @return Returns the result code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @since 16
+ */
+int32_t OH_ArkUI_PointerEvent_GetChangedPointerId(const ArkUI_UIInputEvent* event, uint32_t* pointerIndex);
 
 /**
  * @brief Obtains the X coordinate relative to the upper left corner of the current component from a directional
@@ -675,6 +733,15 @@ double OH_ArkUI_AxisEvent_GetHorizontalAxisValue(const ArkUI_UIInputEvent* event
 double OH_ArkUI_AxisEvent_GetPinchAxisScaleValue(const ArkUI_UIInputEvent* event);
 
 /**
+ * @brief Obtains the action type of the current axis event.
+ *
+ * @param event Indicates the pointer to the current UI input event.
+ * @return Returns the action type of the current axis event.
+ * @since 16
+ */
+int32_t OH_ArkUI_AxisEvent_GetAxisAction(const ArkUI_UIInputEvent* event);
+
+/**
  * @brief Sets how the component behaves during hit testing.
  *
  * @param event Indicates the pointer to the current UI input event.
@@ -726,9 +793,7 @@ int32_t OH_ArkUI_PointerEvent_SetStopPropagation(const ArkUI_UIInputEvent* event
 int32_t OH_ArkUI_UIInputEvent_GetDeviceId(const ArkUI_UIInputEvent* event);
 
 /**
- * @brief Obtains the pressed status of modifier keys from UI input event.
- * The following modifier keys are supported: Ctrl, Alt, Shift, Fn. However, the <b>Fn</b> key on external keyboards
- * is not supported.
+ * @brief Obtains all keys that are pressed from UI input event. Only supports key events currently.
  *
  * @param event Pointer to an <b>ArkUI_UIInputEvent</b> object.
  * @param pressedKeyCodes Array of all keys that are pressed. You need to allocate the memory space.
@@ -736,12 +801,91 @@ int32_t OH_ArkUI_UIInputEvent_GetDeviceId(const ArkUI_UIInputEvent* event);
  *               number of the keys pressed (when used as an output parameter).
  * @return Returns the result code.
  *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_BUFFER_SIZE_ERROR} if the giving buffer is not enough.
+ *         Returns {@link ARKUI_ERROR_CODE_BUFFER_SIZE_NOT_ENOUGH} if the giving buffer is not enough.
  *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
  * @since 14
  */
 int32_t OH_ArkUI_UIInputEvent_GetPressedKeys(
     const ArkUI_UIInputEvent* event, int32_t* pressedKeyCodes, int32_t* length);
+
+/**
+ * @brief Obtains the axis value of a focus axis event.
+ *
+ * @param event Pointer to an <b>ArkUI_UIInputEvent</b> object.
+ * @param axis Axis type of the focus axis event.
+ * @return Returns the axis value of the focus axis event; returns <b>0.0</b> if any parameter error occurs.
+ * @since 15
+ */
+double OH_ArkUI_FocusAxisEvent_GetAxisValue(const ArkUI_UIInputEvent* event, int32_t axis);
+
+/**
+ * @brief Sets whether to prevent a focus axis event from bubbling up.
+ *
+ * @param event Indicates the pointer to the current UI input event.
+ * @param stopPropagation Indicates whether to stop event propagation.
+ * @return Returns the result code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @since 15
+ */
+int32_t OH_ArkUI_FocusAxisEvent_SetStopPropagation(const ArkUI_UIInputEvent* event, bool stopPropagation);
+
+/**
+ * @brief Obtains the press time of a specific touch point.
+ *
+ * @param event Pointer to an <b>ArkUI_UIInputEvent</b> object.
+ * @param pointerIndex Index of the target touch point in the multi-touch data list.
+ * @return Returns the press time of the specific touch point; returns <b>0</b> if any parameter error occurs.
+ * @since 16
+ */
+int64_t OH_ArkUI_PointerEvent_GetPressedTimeByIndex(const ArkUI_UIInputEvent* event, uint32_t pointerIndex);
+
+/**
+ * @brief Obtains the x-axis offset of the mouse pointer position relative to the position in the previously reported
+ * mouse event. This value may be less than the difference between the two reported X coordinates when the mouse pointer
+ * is near the screen edge.
+ * @param event Pointer to an <b>ArkUI_UIInputEvent</b> object.
+ * @return Returns the x-axis offset of the mouse pointer position relative to the position in the previously reported
+ * mouse event; returns <b>0.0f</b> if any parameter error occurs.
+ * @since 16
+ */
+float OH_ArkUI_MouseEvent_GetRawDeltaX(const ArkUI_UIInputEvent* event);
+
+/**
+ * @brief Obtains the y-axis offset of the mouse pointer position relative to the position in the previously reported
+ * mouse event. This value may be less than the difference between the two reported Y coordinates when the mouse pointer
+ * is near the screen edge.
+ * @param event Pointer to an <b>ArkUI_UIInputEvent</b> object.
+ * @return Returns the y-axis offset of the mouse pointer position relative to the position in the previously reported
+ * mouse event; returns <b>0.0f</b> if any parameter error occurs.
+ * @since 16
+ */
+float OH_ArkUI_MouseEvent_GetRawDeltaY(const ArkUI_UIInputEvent* event);
+
+/**
+ * @brief Obtains the pressed buttons from a mouse event.
+ *
+ * @param event Pointer to an <b>ArkUI_UIInputEvent</b> object.
+ * @param pressedButtons Array of the pressed buttons. An int array must be created beforehand to store the pressed
+ *                       buttons.
+ * @param length Length of the passed pressedButtons array (when used as an input parameter);
+ *               number of the buttons pressed (when used as an output parameter).
+ * @return Returns the result code.
+ *          Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *          Returns {@link ARKUI_ERROR_CODE_BUFFER_SIZE_ERROR} if the given buffer size is insufficient.
+ * @since 16
+ */
+int32_t OH_ArkUI_MouseEvent_GetPressedButtons(
+    const ArkUI_UIInputEvent* event, int32_t* pressedButtons, int32_t* length);
+
+/**
+ * @brief Obtains the ID of the screen where the UI input event occurs.
+ *
+ * @param event Pointer to an <b>ArkUI_UIInputEvent</b> object.
+ * @return Returns the screen ID; returns <b>0</b> if any parameter error occurs.
+ * @since 16
+ */
+int32_t OH_ArkUI_UIInputEvent_GetTargetDisplayId(const ArkUI_UIInputEvent* event);
 
 #ifdef __cplusplus
 };

@@ -28,7 +28,8 @@
  * @file native_interface_xcomponent.h
  *
  * @brief Declares APIs for accessing a Native XComponent.
- *
+ * @library libace_ndk.z.so
+ * @syscap SystemCapability.ArkUI.ArkUI.Full
  * @kit ArkUI
  * @since 8
  * @version 1.0
@@ -151,6 +152,10 @@ typedef enum {
     OH_NATIVEXCOMPONENT_MOUSE_PRESS,
     OH_NATIVEXCOMPONENT_MOUSE_RELEASE,
     OH_NATIVEXCOMPONENT_MOUSE_MOVE,
+    /** Triggered when the mouse event is canceled.
+     * @since 16
+    */
+    OH_NATIVEXCOMPONENT_MOUSE_CANCEL,
 } OH_NativeXComponent_MouseEventAction;
 
 /**
@@ -848,3 +853,4 @@ int32_t OH_NativeXComponent_RegisterKeyEventCallbackWithResult(
 };
 #endif
 #endif // _NATIVE_INTERFACE_XCOMPONENT_H_
+/** @} */
