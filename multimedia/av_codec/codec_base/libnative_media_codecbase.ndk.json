@@ -392,7 +392,7 @@
         "name": "OH_MD_KEY_VIDEO_DECODER_OUTPUT_COLOR_SPACE"
     },
     {
-        "first_introduced": "14",
+        "first_introduced": "15",
         "name": "OH_MD_KEY_VIDEO_DECODER_OUTPUT_ENABLE_VRR"
     },
     {
