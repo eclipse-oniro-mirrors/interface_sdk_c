@@ -4377,11 +4377,11 @@ void OH_ArkUI_CrossLanguageOption_Destroy(ArkUI_CrossLanguageOption* option);
  * @brief Enable the attribute setting in the cross-language option.
  *
  * @param option The cross-language option.
- * @param enable The attribute setting in the cross-language option.
+ * @param enabled The attribute setting in the cross-language option.
  * Default value: false.
  * @since 16
  */
-void OH_ArkUI_CrossLanguageOption_SetAttributeSettingStatus(ArkUI_CrossLanguageOption* option, bool enable);
+void OH_ArkUI_CrossLanguageOption_SetAttributeSettingStatus(ArkUI_CrossLanguageOption* option, bool enabled);
 
 /**
  * @brief Get the attribute setting enable of the cross-language option.
