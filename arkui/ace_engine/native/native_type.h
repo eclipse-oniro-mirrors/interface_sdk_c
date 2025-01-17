@@ -4377,7 +4377,7 @@ float OH_ArkUI_ProgressLinearStyleOption_GetStrokeRadius(ArkUI_ProgressLinearSty
 
 /**
  * @brief Creates an option for taking snapshot, the returned value must be released through
- *        {@link OH_ArkUI_SnapshotOptions_Dispose} when it's not used anymore.
+ *        {@link OH_ArkUI_DestroySnapshotOptions} when it's not used anymore.
  *
  * @return Returns the pointer to the created snapshot options object.If the object returns a null pointer,
  *         it indicates a creation failure, and the reason for the failure may be that the address space is full.
