@@ -40,7 +40,7 @@
 
 #include <string>
 #include <stdint.h>
-#include "media_asset_base_capi.h"
+#include "multimedia/media_library/media_asset_base_capi.h"
 
 #ifdef __cplusplus
 extern "C" {
