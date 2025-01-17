@@ -323,6 +323,10 @@
         "name": "OH_Drawing_GpuContextCreateFromGL"
     },
     {
+        "first_introduced": "16",
+        "name": "OH_Drawing_GpuContextCreate"
+    },
+    {
         "first_introduced": "12",
         "name": "OH_Drawing_GpuContextDestroy"
     },
@@ -709,8 +713,16 @@
         "name": "OH_Drawing_SurfaceCreateFromGpuContext"
     },
     {
+        "first_introduced": "16",
+        "name": "OH_Drawing_SurfaceCreateOnScreen"
+    },
+    {
         "first_introduced": "12",
         "name": "OH_Drawing_SurfaceGetCanvas"
+    },
+    {
+        "first_introduced": "16",
+        "name": "OH_Drawing_SurfaceFlush"
     },
     {
         "first_introduced": "12",

@@ -502,5 +502,21 @@
     {
         "first_introduced": "16",
         "name":"OH_VBucket_PutUnlimitedInt"
+    },
+    {
+        "first_introduced": "16",
+        "name":"OH_Rdb_ExecuteV2"
+    },
+    {
+        "first_introduced": "16",
+        "name":"OH_Rdb_ExecuteQueryV2"
+    },
+    {
+        "first_introduced": "16",
+        "name":"OH_Cursor_GetFloatVectorCount"
+    },
+    {
+        "first_introduced": "16",
+        "name":"OH_Cursor_GetFloatVector"
     }
 ]

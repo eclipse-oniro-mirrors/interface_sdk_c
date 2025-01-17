@@ -222,6 +222,13 @@ typedef struct ArkUI_ActiveChildrenInfo ArkUI_ActiveChildrenInfo;
 typedef struct ArkUI_ProgressLinearStyleOption ArkUI_ProgressLinearStyleOption;
 
 /**
+ * @brief The cross-language option.
+ *
+ * @since 16
+ */
+typedef struct ArkUI_CrossLanguageOption ArkUI_CrossLanguageOption;
+
+/**
  * @brief Defines the event callback type.
  *
  * @since 12
@@ -825,6 +832,20 @@ typedef enum {
     /** The system does not respond to other mouse wheel events until the page flipping animation ends. */
     ARKUI_PAGE_FLIP_MODE_SINGLE,
 } ArkUI_PageFlipMode;
+
+/**
+ * @brief Enumerates the animation modes for {@link NODE_SWIPER_INDEX}.
+ *
+ * @since 16
+ */
+typedef enum {
+    /** Jump to target index without animation. */
+    ARKUI_SWIPER_NO_ANIMATION = 0,
+    /** Scroll to target index with animation. */
+    ARKUI_SWIPER_DEFAULT_ANIMATION = 1,
+    /** Jump to some index near the target index without animation, then scroll to target index with animation. */
+    ARKUI_SWIPER_FAST_ANIMATION = 2,
+} ArkUI_SwiperAnimationMode;
 
 /**
  * @brief Enumerates the accessibility modes.
@@ -1816,6 +1837,11 @@ typedef enum {
     ARKUI_BUTTON_TYPE_CAPSULE,
     /** Circle button. */
     ARKUI_BUTTON_TYPE_CIRCLE,
+    /**
+     * Rounded rectangle button.
+     * @since 16
+     */
+    ARKUI_BUTTON_ROUNDED_RECTANGLE = 8
 } ArkUI_ButtonType;
 
 /**
@@ -1963,6 +1989,34 @@ typedef enum {
     /** Inline input style. The background height of the selected text is the same as the height of the text box. */
     ARKUI_TEXTINPUT_STYLE_INLINE
 } ArkUI_TextInputStyle;
+
+/**
+ * @brief Defines the keyboard style of input box
+ *
+ * @since 16
+ */
+typedef enum {
+    /**
+     * Default appearance mode, won't adopt immersive styles.
+     * @since 16
+     */
+    ARKUI_KEYBOARD_APPEARANCE_NONE_IMMERSIVE = 0,
+    /**
+     * Immersive mode.
+     * @since 16
+     */
+    ARKUI_KEYBOARD_APPEARANCE_IMMERSIVE = 1,
+    /**
+     * Light immersive style.
+     * @since 16
+     */
+    ARKUI_KEYBOARD_APPEARANCE_LIGHT_IMMERSIVE = 2,
+    /**
+     * Dark immersive style.
+     * @since 16
+     */
+    ARKUI_KEYBOARD_APPEARANCE_DARK_IMMERSIVE = 3,
+} ArkUI_KeyboardAppearance;
 
 /**
  * @brief Defines the entity type for text recognition.
@@ -4323,7 +4377,7 @@ float OH_ArkUI_ProgressLinearStyleOption_GetStrokeRadius(ArkUI_ProgressLinearSty
 
 /**
  * @brief Creates an option for taking snapshot, the returned value must be released through
- *        {@link OH_ArkUI_SnapshotOptions_Dispose} when it's not used anymore.
+ *        {@link OH_ArkUI_DestroySnapshotOptions} when it's not used anymore.
  *
  * @return Returns the pointer to the created snapshot options object.If the object returns a null pointer,
  *         it indicates a creation failure, and the reason for the failure may be that the address space is full.
@@ -4349,6 +4403,41 @@ void OH_ArkUI_DestroySnapshotOptions(ArkUI_SnapshotOptions* snapshotOptions);
  * @since 16
  */
 int32_t OH_ArkUI_SnapshotOptions_SetScale(ArkUI_SnapshotOptions* snapshotOptions, float scale);
+
+/**
+ * @brief Create a cross-language option instance.
+ *
+ * @return Returns a cross-language option instance. If the result is a null pointer, it may be out of memory.
+ * @since 16
+ */
+ArkUI_CrossLanguageOption* OH_ArkUI_CrossLanguageOption_Create(void);
+
+/**
+ * @brief Destroy the cross-language option instance.
+ *
+ * @param option The cross-language option instance.
+ * @since 16
+ */
+void OH_ArkUI_CrossLanguageOption_Destroy(ArkUI_CrossLanguageOption* option);
+
+/**
+ * @brief Enable the attribute setting in the cross-language option.
+ *
+ * @param option The cross-language option.
+ * @param enabled The attribute setting in the cross-language option.
+ * Default value: false.
+ * @since 16
+ */
+void OH_ArkUI_CrossLanguageOption_SetAttributeSettingStatus(ArkUI_CrossLanguageOption* option, bool enabled);
+
+/**
+ * @brief Get the attribute setting enable of the cross-language option.
+ *
+ * @param option The cross-language option.
+ * @return The attribute setting enable of the cross-language option.
+ * @since 16
+ */
+bool OH_ArkUI_CrossLanguageOption_GetAttributeSettingStatus(ArkUI_CrossLanguageOption* option);
 #ifdef __cplusplus
 };
 #endif
