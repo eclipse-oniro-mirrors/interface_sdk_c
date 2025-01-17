@@ -5062,7 +5062,7 @@ typedef enum {
      *
      * @since 16
      */
-    NODE_SCROLL_FLING_SPEED_LIMIT,
+    NODE_SCROLL_FLING_SPEED_LIMIT = 1002019,
 
     /**
      * @brief Defines the clip mode of the scrollable.
@@ -5076,7 +5076,7 @@ typedef enum {
      *
      * @since 16
      */
-    NODE_SCROLL_CLIP_CONTENT,
+    NODE_SCROLL_CLIP_CONTENT = 1002020,
 
     /**
      * @brief Defines the direction in which the list items are arranged. This attribute can be set, reset, and
