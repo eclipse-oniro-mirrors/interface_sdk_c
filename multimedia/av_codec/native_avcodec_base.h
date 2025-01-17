@@ -356,6 +356,14 @@ extern const char *OH_AVCODEC_MIMETYPE_SUBTITLE_SRT;
 extern const char *OH_AVCODEC_MIMETYPE_SUBTITLE_WEBVTT;
 
 /**
+ * @brief Enumerates the mime type of audio raw stream.
+ *
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
+ * @since 16
+ */
+extern const char *OH_AVCODEC_MIMETYPE_AUDIO_RAW;
+
+/**
  * @brief Key for timeStamp in surface's extraData, value type is int64_t.
  *
  * @syscap SystemCapability.Multimedia.Media.CodecBase
