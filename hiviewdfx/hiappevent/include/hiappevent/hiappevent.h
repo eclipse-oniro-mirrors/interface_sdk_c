@@ -196,6 +196,13 @@ typedef struct HiAppEvent_Watcher HiAppEvent_Watcher;
 typedef struct HiAppEvent_Processor HiAppEvent_Processor;
 
 /**
+ * @brief The HiAppEvent_Config structure is designed for configuration.
+ *
+ * @since 16
+ */
+typedef struct HiAppEvent_Config HiAppEvent_Config;
+
+/**
  * @brief The OH_HiAppEvent_OnReceive function acts as the callback function for the HiAppEvent_Watcher. It is called
  * when an event occurs.
  *
@@ -725,7 +732,7 @@ int OH_HiAppEvent_SetCustomConfig(HiAppEvent_Processor* processor, const char* k
  * @param configId The configId of processor.
  * @return set result.
  *         {@link HIAPPEVENT_SUCCESS} The operation is successful.
- *         {@link HIAPPEVENT_INVALID_PROCESSOR} The processor is nullptr.
+ *         {@link HIAPPEVENT_PROCESSOR_IS_NULL} The processor is nullptr.
  *         {@link HIAPPEVENT_INVALID_PARAM_VALUE} Invalid Param value.
  *         {@link HIAPPEVENT_INVALID_UID} Invalid uid.
  * @since 16
@@ -740,7 +747,7 @@ int OH_HiAppEvent_SetConfigId(HiAppEvent_Processor* processor, int configId);
  * @param size The size of userIdNames array.
  * @return set result.
  *         {@link HIAPPEVENT_SUCCESS} The operation is successful.
- *         {@link HIAPPEVENT_INVALID_PROCESSOR} The processor is nullptr.
+ *         {@link HIAPPEVENT_PROCESSOR_IS_NULL} The processor is nullptr.
  *         {@link HIAPPEVENT_INVALID_PARAM_VALUE} Invalid Param value.
  *         {@link HIAPPEVENT_INVALID_UID} Invalid uid.
  *         {@link HIAPPEVENT_INVALID_PARAM_VALUE_LENGTH} Invalid param value length.
@@ -756,7 +763,7 @@ int OH_HiAppEvent_SetReportUserId(HiAppEvent_Processor* processor, const char* c
  * @param size The size of userPropertyNames array.
  * @return set result.
  *         {@link HIAPPEVENT_SUCCESS} The operation is successful.
- *         {@link HIAPPEVENT_INVALID_PROCESSOR} The processor is nullptr.
+ *         {@link HIAPPEVENT_PROCESSOR_IS_NULL} The processor is nullptr.
  *         {@link HIAPPEVENT_INVALID_PARAM_VALUE} Invalid Param value.
  *         {@link HIAPPEVENT_INVALID_UID} Invalid uid.
  *         {@link HIAPPEVENT_INVALID_PARAM_VALUE_LENGTH} Invalid param value length.
@@ -770,7 +777,7 @@ int OH_HiAppEvent_SetReportUserProperty(HiAppEvent_Processor* processor, const c
  *
  * @param processor The pointer to the HiAppEvent_Processor instance.
  * @return process id if set is successful.
- *         {@link HIAPPEVENT_INVALID_PROCESSOR} The processor is nullptr.
+ *         {@link HIAPPEVENT_PROCESSOR_IS_NULL} The processor is nullptr.
  *         {@link HIAPPEVENT_INVALID_PARAM_VALUE} Invalid Param value.
  *         {@link HIAPPEVENT_OPERATE_FAILED} Name not found or register processor error.
  *         {@link HIAPPEVENT_INVALID_UID} Invalid uid.
@@ -784,7 +791,7 @@ int64_t OH_HiAppEvent_AddProcessor(HiAppEvent_Processor* processor);
  * @param processor The pointer to the HiAppEvent_Processor instance.
  * @since 16
  */
-void OH_HiAppEvent_DestoryProcessor(HiAppEvent_Processor* processor);
+void OH_HiAppEvent_DestroyProcessor(HiAppEvent_Processor* processor);
 
 /**
  * @brief The interface to remove processor.
@@ -798,6 +805,48 @@ void OH_HiAppEvent_DestoryProcessor(HiAppEvent_Processor* processor);
  * @since 16
  */
 int OH_HiAppEvent_RemoveProcessor(int64_t processorId);
+
+/**
+ * @brief Create a HiAppEvent_Config handler pointer to set the config.
+ *
+ * @return Returns a pointer to the HiAppEvent_Config instance.
+ * @since 16
+ */
+HiAppEvent_Config* OH_HiAppEvent_CreateConfig(void);
+
+/**
+ * @brief Destroy the specified HiAppEvent_Config handle resource.
+ *
+ * @param config The pointer to the HiAppEvent_Config instance.
+ * @since 16
+ */
+void OH_HiAppEvent_DestroyConfig(HiAppEvent_Config* config);
+
+/**
+ * @brief The interface to set item to the config.
+ *
+ * @param config The pointer to the HiAppEvent_Config instance.
+ * @param itemName The name of config item.
+ * @param itemValue The value of config item.
+ * @return set result.
+ *         {@link HIAPPEVENT_SUCCESS} The operation is successful.
+ *         {@link HIAPPEVENT_EVENT_CONFIG_IS_NULL} The event config is null.
+ *         {@link HIAPPEVENT_INVALID_PARAM_VALUE} The item is invalid.
+ * @since 16
+ */
+int OH_HiAppEvent_SetConfigItem(HiAppEvent_Config* config, const char* itemName, const char* itemValue);
+
+/**
+ * @brief The interface to set the config.
+ *
+ * @param name The name of the os event.
+ * @param config The pointer to the HiAppEvent_Config instance.
+ * @return set result.
+ *         {@link HIAPPEVENT_SUCCESS} The operation is successful.
+ *         {@link HIAPPEVENT_INVALID_PARAM_VALUE} The config is invalid.
+ * @since 16
+ */
+int OH_HiAppEvent_SetEventConfig(const char* name, HiAppEvent_Config* config);
 #ifdef __cplusplus
 }
 #endif

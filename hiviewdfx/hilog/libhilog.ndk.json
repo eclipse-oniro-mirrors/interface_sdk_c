@@ -7,5 +7,17 @@
     },
     {
         "name": "OH_LOG_SetCallback"
+    },
+    {
+        "name": "OH_LOG_PrintMsg"
+    },
+    {
+        "name": "OH_LOG_PrintMsgByLen"
+    },
+    {
+        "name": "OH_LOG_VPrint"
+    },
+    {
+        "name": "OH_LOG_SetMinLogLevel"
     }
 ]

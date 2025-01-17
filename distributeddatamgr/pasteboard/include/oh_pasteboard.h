@@ -64,6 +64,120 @@ typedef enum Pasteboard_NotifyType {
 } Pasteboard_NotifyType;
 
 /**
+ * @brief Enumerates the types of file confilct options when getting data from the Pastedboard.
+ *
+ * @since 15
+ */
+typedef enum Pasteboard_FileConflictOption {
+    /**
+     * @brief Overwrite when destUir has file with same name.
+     */
+    OH_PASTEBOARD_OVERWRITE = 0,
+    /**
+     * @brief Skip when destUir has file with same name.
+     */
+    OH_PASTEBOARD_SKIP = 1
+} Pasteboard_FileConflictOption;
+
+/**
+ * @brief Enumerates the types of progress indicator when getting data from the Pastedboard.
+ *
+ * @since 15
+ */
+typedef enum Pasteboard_ProgressIndicator {
+    /**
+     * @brief Getting data without system default progress indicator.
+     */
+    OH_PASTEBOARD_NONE = 0,
+    /**
+     * @brief Getting data with system default progress indicator.
+     */
+    OH_PASTEBOARD_DEFAULT = 1
+} Pasteboard_ProgressIndicator;
+
+/**
+ * @brief Represents the Pasteboard progress information.
+ *
+ * @since 15
+ */
+typedef struct Pasteboard_ProgressInfo {
+    /** Percentage of progress when getting PasteData without using default system progress.
+     */
+    int progress;
+} Pasteboard_ProgressInfo;
+
+/**
+ * @brief Defines the callback function used to return the progress information when getting OH_UdmfData.
+ *
+ * @param progressInfo The progress information notified to Application.
+ * @since 15
+ */
+typedef void (*Pasteboard_ProgressNotify)(Pasteboard_ProgressInfo progressInfo);
+
+/**
+ * @brief Represents the Pasteboard progress listener when getting OH_UdmfData.
+ *
+ * @since 15
+ */
+typedef struct Pasteboard_ProgressListener {
+    /**
+     * Indicates the callback function used to return the progress information.
+     */
+    Pasteboard_ProgressNotify callback;
+} Pasteboard_ProgressListener;
+
+/**
+ * @brief Defines the cancel function used to cancel the progress when getting OH_PasteData.
+ *
+ * @since 15
+ */
+typedef void (*Pasteboard_ProgressCancel)(void);
+
+/**
+ * brief Represents the Pasteboard progress signal when getting data.
+ *
+ * @since 15
+ */
+typedef struct Pasteboard_ProgressSignal {
+    /**
+     * Indicates the signal function used to cancel the progress process.
+     */
+    Pasteboard_ProgressCancel cancel;
+} Pasteboard_ProgressSignal;
+
+/**
+ * @brief Represents the pasteboard get data parameters when getting data from Pasteboard.
+ *
+ * @param destUri Indicates the uri of dest path where copy file will be copied to in sandbox of Application.
+ * @param destUriLen Indicates the length of destUir.
+ * @param fileConflictOption Indicates fileConflictOption when dest path has file with same name.
+ * @param progressIndicator Indicates whether to use default system progress indacator.
+ * @param progressListener Indicates the progress listener when getting PasteData without using default system progress.
+ * @param progressSignal Indicates progress signal when getting PasteData with system progress indacator.
+ * @since 15
+ */
+typedef struct OH_Pasteboard_GetDataParams {
+    /** Indicates the uri of dest path where copy files will be copied to sandbox of Application.
+     */
+    char *destUri;
+    /** Indicates the length of destUir.
+     */
+    unsigned int destUriLen;
+    /** Indicates fileConflictOptions when dest path has file with same name.
+     */
+    Pasteboard_FileConflictOption fileConflictOption;
+    /** Indicates whether to use default system progress indicator.
+     */
+    Pasteboard_ProgressIndicator progressIndicator;
+    /** Indicates the progress listener when getting PasteData without using default system progress.
+     */
+    Pasteboard_ProgressListener progressListener;
+    /** Indicates progress signal when getting PasteData with system progress indacator.
+     */
+    Pasteboard_ProgressSignal progressSignal;
+} OH_Pasteboard_GetDataParams;
+
+/**
  * @brief Defines the callback function used to return the Pasteboard data changed.
  *
  * @param context The context set by {@link OH_PasteboardObserver_SetData} function.
@@ -279,6 +393,30 @@ int OH_Pasteboard_ClearData(OH_Pasteboard* pasteboard);
  * @since 14
  */
 char **OH_Pasteboard_GetMimeTypes(OH_Pasteboard *pasteboard, unsigned int *count);
+
+/**
+ * @brief Gets the number of Pasteboard data changes.
+ *
+ * @param pasteboard Pointer to the {@link OH_Pasteboard} instance.
+ * @return the number of Pasteboard data changes.
+ * Returns 0 means initial value or invalid value.In this case, no action is required.
+ * @since 16
+ */
+uint32_t OH_Pasteboard_GetChangeCount(OH_Pasteboard *pasteboard);
+
+/**
+ * @brief Obtains data from the Pasteboard with system progress indicator.
+ *
+ * @permission ohos.permission.READ_PASTEBOARD
+ * @param pasteboard Pointer to the {@link OH_Pasteboard} instance.
+ * @param params Pointer to indicates the  {@link OH_Pasteboard_GetDataParams}.
+ * @param status The status code of the execution. For details, see {@link PASTEBOARD_Errcode}.
+ * @return Returns the pointer to the {@link OH_PasteData} instance.
+ * @see OH_Pasteboard OH_PasteData PASTEBOARD_ErrCode.
+ * @since 15
+ */
+OH_UdmfData *OH_Pasteboard_GetDataWithProgress(OH_Pasteboard *pasteboard, OH_Pasteboard_GetDataParams *params,
+    int *status);
 #ifdef __cplusplus
 };
 #endif

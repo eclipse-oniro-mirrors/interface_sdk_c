@@ -168,6 +168,10 @@
         "name": "OH_ArkUI_AxisEvent_GetPinchAxisScaleValue"
     },
     {
+        "first_introduced": "16",
+        "name": "OH_ArkUI_AxisEvent_GetAxisAction"
+    },
+    {
         "first_introduced": "12",
         "name": "OH_ArkUI_GetNodeHandleFromNapiValue"
     },
@@ -254,6 +258,10 @@
     {
         "first_introduced": "12",
         "name": "OH_ArkUI_SetGestureRecognizerEnabled"
+    },
+    {
+        "first_introduced": "16",
+        "name": "OH_ArkUI_SetGestureRecognizerLimitFingerCount"
     },
     {
         "first_introduced": "12",
@@ -1328,6 +1336,10 @@
         "name": "OH_ArkUI_NodeUtils_GetNodeType"
     },
     {
+        "first_introduced": "16",
+        "name": "OH_ArkUI_NodeUtils_GetWindowInfo"
+    },
+    {
         "first_introduced": "14",
         "name": "OH_ArkUI_CustomProperty_Destroy"
     },
@@ -1346,6 +1358,10 @@
     {
         "first_introduced": "14",
         "name": "OH_ArkUI_ActiveChildrenInfo_GetCount"
+    },
+    {
+        "first_introduced": "16",
+        "name": "OH_ArkUI_NodeUtils_GetAttachedNodeHandleById"
     },
     {
         "first_introduced": "12",
@@ -2505,6 +2521,10 @@
     },
     {
         "first_introduced": "16",
+        "name": "OH_ArkUI_KeyEvent_Dispatch"
+    },
+    {
+        "first_introduced": "16",
         "name": "OH_ArkUI_ProgressLinearStyleOption_Create"
     },
     {
@@ -2529,6 +2549,10 @@
     },
     {
         "first_introduced": "16",
+        "name": "OH_ArkUI_PointerEvent_GetChangedPointerId"
+    },
+    {
+        "first_introduced": "16",
         "name": "OH_ArkUI_ProgressLinearStyleOption_GetScanEffectEnabled"
     },
     {
@@ -2550,6 +2574,82 @@
     {
         "first_introduced": "16",
         "name": "OH_ArkUI_PostFrameCallback"
+    },
+    {
+        "first_introduced": "16",
+        "name": "OH_ArkUI_HostWindowInfo_GetName"
+    },
+    {
+        "first_introduced": "16",
+        "name": "OH_ArkUI_HostWindowInfo_Destroy"
+    },
+    {
+        "first_introduced": "16",
+        "name": "OH_ArkUI_RegisterLayoutCallbackOnNodeHandle"
+    },
+    {
+        "first_introduced": "16",
+        "name": "OH_ArkUI_RegisterDrawCallbackOnNodeHandle"
+    },
+    {
+        "first_introduced": "16",
+        "name": "OH_ArkUI_UnregisterLayoutCallbackOnNodeHandle"
+    },
+    {
+        "first_introduced": "16",
+        "name": "OH_ArkUI_UnregisterDrawCallbackOnNodeHandle"
+    },
+    {
+        "first_introduced": "16",
+        "name": "OH_ArkUI_FocusRequest"
+    },
+    {
+        "first_introduced": "16",
+        "name": "OH_ArkUI_FocusClear"
+    },
+    {
+        "first_introduced": "16",
+        "name": "OH_ArkUI_FocusActivate"
+    },
+    {
+        "first_introduced": "16",
+        "name": "OH_ArkUI_FocusSetAutoTransfer"
+    },
+    {
+        "first_introduced": "16",
+        "name": "OH_ArkUI_CreateSnapshotOptions"
+    },
+    {
+        "first_introduced": "16",
+        "name": "OH_ArkUI_DestroySnapshotOptions"
+    },
+    {
+        "first_introduced": "16",
+        "name": "OH_ArkUI_SnapshotOptions_SetScale"
+    },
+    {
+        "first_introduced": "16",
+        "name": "OH_ArkUI_GetNodeSnapshot"
+    },
+    {
+        "first_introduced": "16",
+        "name": "OH_ArkUI_PointerEvent_GetPressedTimeByIndex"
+    },
+    {
+        "first_introduced": "16",
+        "name": "OH_ArkUI_MouseEvent_GetRawDeltaX"
+    },
+    {
+        "first_introduced": "16",
+        "name": "OH_ArkUI_MouseEvent_GetRawDeltaY"
+    },
+    {
+        "first_introduced": "16",
+        "name": "OH_ArkUI_MouseEvent_GetPressedButtons"
+    },
+    {
+        "first_introduced": "16",
+        "name": "OH_ArkUI_UIInputEvent_GetTargetDisplayId"
     },
     {
         "first_introduced": "16",

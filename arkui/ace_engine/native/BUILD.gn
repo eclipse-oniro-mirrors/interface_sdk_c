@@ -33,6 +33,7 @@ if (!is_arkui_x) {
       "native_gesture.h",
       "native_interface.h",
       "native_interface_accessibility.h",
+      "native_interface_focus.h",
       "native_key_event.h",
       "native_node.h",
       "native_node_napi.h",

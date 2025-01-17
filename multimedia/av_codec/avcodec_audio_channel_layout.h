@@ -32,7 +32,8 @@
  * @kit AVCodecKit
  * @library libnative_media_codecbase.so
  * @syscap SystemCapability.Multimedia.Media.CodecBase
- * @since 9
+ * @deprecated since 11
+ * @since 10
  */
 
 #ifndef AVCODEC_AUDIO_CHANNEL_LAYOUT_H

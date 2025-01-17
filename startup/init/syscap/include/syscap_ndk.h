@@ -23,7 +23,7 @@
  */
 
 /**
- * @file deviceinfo.h
+ * @file syscap_ndk.h
  * @kit BasicServicesKit
  * @brief Declares APIs for acquiring the set of system capabilities .
  * @library NA

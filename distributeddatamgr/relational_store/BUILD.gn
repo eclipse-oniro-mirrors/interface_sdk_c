@@ -20,6 +20,7 @@ ohos_ndk_headers("native_rdb_ndk_header") {
   sources = [
     "./include/oh_cursor.h",
     "./include/oh_predicates.h",
+    "./include/oh_rdb_transaction.h",
     "./include/oh_value_object.h",
     "./include/oh_values_bucket.h",
     "./include/relational_store.h",
@@ -29,7 +30,12 @@ ohos_ndk_headers("native_rdb_ndk_header") {
 
 ohos_ndk_headers("data_ndk_header") {
   dest_dir = "$ndk_headers_out_dir/database/data/"
-  sources = [ "./include/data_asset.h" ]
+  sources = [
+    "./include/data_asset.h",
+    "./include/oh_data_value.h",
+    "./include/oh_data_values.h",
+    "./include/oh_data_values_buckets.h",
+  ]
 }
 
 ohos_ndk_library("libnative_rdb_ndk") {
@@ -40,8 +46,12 @@ ohos_ndk_library("libnative_rdb_ndk") {
   min_compact_version = "11"
   system_capability_headers = [
     "$ndk_headers_out_dir/database/data/data_asset.h",
+    "$ndk_headers_out_dir/database/data/oh_data_value.h",
+    "$ndk_headers_out_dir/database/data/oh_data_values.h",
+    "$ndk_headers_out_dir/database/data/oh_data_values_buckets.h",
     "$ndk_headers_out_dir/database/rdb/oh_cursor.h",
     "$ndk_headers_out_dir/database/rdb/oh_predicates.h",
+    "$ndk_headers_out_dir/database/rdb/oh_rdb_transaction.h",
     "$ndk_headers_out_dir/database/rdb/oh_value_object.h",
     "$ndk_headers_out_dir/database/rdb/oh_values_bucket.h",
     "$ndk_headers_out_dir/database/rdb/relational_store.h",

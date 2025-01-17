@@ -356,6 +356,14 @@ extern const char *OH_AVCODEC_MIMETYPE_SUBTITLE_SRT;
 extern const char *OH_AVCODEC_MIMETYPE_SUBTITLE_WEBVTT;
 
 /**
+ * @brief Enumerates the mime type of audio raw stream.
+ *
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
+ * @since 16
+ */
+extern const char *OH_AVCODEC_MIMETYPE_AUDIO_RAW;
+
+/**
  * @brief Key for timeStamp in surface's extraData, value type is int64_t.
  *
  * @syscap SystemCapability.Multimedia.Media.CodecBase
@@ -941,14 +949,14 @@ extern const char *OH_MD_KEY_BUFFER_DURATION;
  */
 extern const char *OH_MD_KEY_VIDEO_SAR;
 /**
- * @brief Key for start time of file, value type is int64_t.
+ * @brief Key for start time of the first frame in the media file in microseconds, value type is int64_t.
  *
  * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 12
  */
 extern const char *OH_MD_KEY_START_TIME;
 /**
- * @brief Key for start time of track, value type is int64_t.
+ * @brief Key for start time of track in microseconds, value type is int64_t.
  *
  * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 12
@@ -973,9 +981,34 @@ extern const char *OH_MD_KEY_VIDEO_DECODER_OUTPUT_COLOR_SPACE;
  * This is an optional key that applies only to video decoder. It is used in configure.
  *
  * @syscap SystemCapability.Multimedia.Media.CodecBase
- * @since 14
+ * @since 15
  */
 extern const char *OH_MD_KEY_VIDEO_DECODER_OUTPUT_ENABLE_VRR;
+/**
+ * @brief Key for creation timestamp of a media file, value type is string.
+ *
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
+ * @since 14
+ */
+extern const char *OH_MD_KEY_CREATION_TIME;
+/**
+ * @brief Key applies only when configuring a video encoder in surface mode, value type is int32_t.
+ * If no new frame became available since the last frame submitted to the encoder,
+ * it will sumbit the previous frame repeatly in milliseconds. It is used in configure.
+ *
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
+ * @since 16
+ */
+extern const char *OH_MD_KEY_VIDEO_ENCODER_REPEAT_PREVIOUS_FRAME_AFTER;
+/**
+ * @brief Key for describing the maximum count that the frame previously submitted to the encoder will be
+ * repeated, in case no new frame has been available since, value type is int32_t. This key takes effect only when
+ * {@link VIDEO_ENCODER_REPEAT_PREVIOUS_FRAME_AFTER} is vaild. It is used in configure.
+ *
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
+ * @since 16
+ */
+extern const char *OH_MD_KEY_VIDEO_ENCODER_REPEAT_PREVIOUS_MAX_COUNT;
 
 /**
  * @brief Media type.

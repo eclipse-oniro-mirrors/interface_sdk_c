@@ -201,6 +201,13 @@ typedef struct ArkUI_AccessibilityValue ArkUI_AccessibilityValue;
 typedef struct ArkUI_CustomProperty ArkUI_CustomProperty;
 
 /**
+ * @brief Define the information of the HostWindowInfo class for window properties.
+ *
+ * @since 16
+ */
+typedef struct ArkUI_HostWindowInfo ArkUI_HostWindowInfo;
+
+/**
  * @brief Define ActiveChildenInfo class information.
  *
  * @since 14
@@ -536,6 +543,20 @@ typedef enum {
 } ArkUI_ShadowType;
 
 /**
+ * @brief Enumerates the modes of the date picker.
+ *
+ * @since 16
+ */
+typedef enum {
+    /** A mode that displays the date in months, days of month, and years. */
+    ARKUI_DATEPICKER_MODE_DATE = 0,
+    /** A mode that displays the date in months and years. */
+    ARKUI_DATEPICKER_YEAR_AND_MONTH = 1,
+    /** A mode that displays the date in months and days of the month. */
+    ARKUI_DATEPICKER_MONTH_AND_DAY = 2,
+} ArkUI_DatePickerMode;
+
+/**
  * @brief Enumerates the types of the text picker.
  *
  * @since 12
@@ -592,6 +613,18 @@ typedef enum {
     /** No effect after the scrollbar is moved to the edge. */
     ARKUI_EDGE_EFFECT_NONE,
 } ArkUI_EdgeEffect;
+
+/**
+ * @brief Enumerates the edges for which the effect takes effect when the boundary of the scrollable content is reached.
+ *
+ * @since 16
+ */
+typedef enum {
+    /** Start edge. */
+    ARKUI_EFFECT_EDGE_START = 1,
+    /** End edge. */
+    ARKUI_EFFECT_EDGE_END = 2,
+} ArkUI_EffectEdge;
 
 /**
  * @brief Enumerates the scroll directions for the <b><Scroll></b> component.
@@ -783,7 +816,7 @@ typedef enum {
 /**
  * @brief Enumerates the page flipping modes using the mouse wheel for the <b>Swiper</b> component.
  *
- * @since 14
+ * @since 15
  */
 typedef enum {
     /** When the mouse wheel is scrolled continuously, multiple pages are flipped, which is determined by the number of
@@ -792,6 +825,20 @@ typedef enum {
     /** The system does not respond to other mouse wheel events until the page flipping animation ends. */
     ARKUI_PAGE_FLIP_MODE_SINGLE,
 } ArkUI_PageFlipMode;
+
+/**
+ * @brief Enumerates the animation modes for {@link NODE_SWIPER_INDEX}.
+ *
+ * @since 16
+ */
+typedef enum {
+    /** Jump to target index without animation. */
+    ARKUI_SWIPER_NO_ANIMATION = 0,
+    /** Scroll to target index with animation. */
+    ARKUI_SWIPER_DEFAULT_ANIMATION = 1,
+    /** Jump to some index near the target index without animation, then scroll to target index with animation. */
+    ARKUI_SWIPER_FAST_ANIMATION = 2,
+} ArkUI_SwiperAnimationMode;
 
 /**
  * @brief Enumerates the accessibility modes.
@@ -1783,6 +1830,11 @@ typedef enum {
     ARKUI_BUTTON_TYPE_CAPSULE,
     /** Circle button. */
     ARKUI_BUTTON_TYPE_CIRCLE,
+    /**
+     * Rounded rectangle button.
+     * @since 16
+     */
+    ARKUI_BUTTON_ROUNDED_RECTANGLE = 8
 } ArkUI_ButtonType;
 
 /**
@@ -1845,6 +1897,77 @@ typedef enum {
     /** Standard address. The scenario-based autofill feature, when enabled, can automatically save and fill in standard
      *  addresses. */
     ARKUI_TEXTINPUT_CONTENT_TYPE_FORMAT_ADDRESS,
+    /**
+     * Passport number. The scenario-based autofill feature, when enabled, can automatically save and fill in passport
+     * numbers.
+     * @since 16
+     */
+    ARKUI_TEXTINPUT_CONTENT_TYPE_PASSPORT_NUMBER,
+    /**
+     *  Passport validity. The scenario-based autofill feature, when enabled, can automatically save and fill in
+     *  passport validities.
+     *  @since 16
+     */
+    ARKUI_TEXTINPUT_CONTENT_TYPE_VALIDITY,
+    /**
+     *  Place of issue. The scenario-based autofill feature, when enabled, can automatically save and fill in
+     *  place of issues.
+     *  @since 16
+     */
+    ARKUI_TEXTINPUT_CONTENT_TYPE_ISSUE_AT,
+    /**
+     *  Tax organization. The scenario-based autofill feature, when enabled, can automatically save and fill in tax
+     *  organizations.
+     *  @since 16
+     */
+    ARKUI_TEXTINPUT_CONTENT_TYPE_ORGANIZATION,
+    /**
+     *  Tax id. The scenario-based autofill feature, when enabled, can automatically save and fill in standard Tax ids.
+     *  @since 16
+     */
+    ARKUI_TEXTINPUT_CONTENT_TYPE_TAX_ID,
+    /**
+     *  City name and state name or state code. The scenario-based autofill feature, when enabled, can automatically
+     *  save and fill in city names and state names or state codes.
+     *  @since 16
+     */
+    ARKUI_TEXTINPUT_CONTENT_TYPE_ADDRESS_CITY_AND_STATE,
+    /**
+     *  Flight number. The scenario-based autofill feature, when enabled, can automatically save and fill in flight
+     *  numbers.
+     *  @since 16
+     */
+    ARKUI_TEXTINPUT_CONTENT_TYPE_FLIGHT_NUMBER,
+    /**
+     *  License number. The scenario-based autofill feature, when enabled, can automatically save and fill in license
+     *  numbers.
+     *  @since 16
+     */
+    ARKUI_TEXTINPUT_CONTENT_TYPE_LICENSE_NUMBER,
+    /**
+     *  License file number. The scenario-based autofill feature, when enabled, can automatically save and fill in
+     *  license file numbers.
+     *  @since 16
+     */
+    ARKUI_TEXTINPUT_CONTENT_TYPE_LICENSE_FILE_NUMBER,
+    /**
+     *  License plate number. The scenario-based autofill feature, when enabled, can automatically save and fill in
+     *  license plate numbers.
+     *  @since 16
+     */
+    ARKUI_TEXTINPUT_CONTENT_TYPE_LICENSE_PLATE,
+    /**
+     *  Engine number. The scenario-based autofill feature, when enabled, can automatically save and fill in engine
+     *  numbers.
+     *  @since 16
+     */
+    ARKUI_TEXTINPUT_CONTENT_TYPE_ENGINE_NUMBER,
+    /**
+     *  License chassis number. The scenario-based autofill feature, when enabled, can automatically save and fill in
+     *  license chassis numbers.
+     *  @since 16
+     */
+    ARKUI_TEXTINPUT_CONTENT_TYPE_LICENSE_CHASSIS_NUMBER,
 } ArkUI_TextInputContentType;
 
 /**
@@ -1859,6 +1982,34 @@ typedef enum {
     /** Inline input style. The background height of the selected text is the same as the height of the text box. */
     ARKUI_TEXTINPUT_STYLE_INLINE
 } ArkUI_TextInputStyle;
+
+/**
+ * @brief Defines the keyboard style of input box
+ *
+ * @since 16
+ */
+typedef enum {
+    /**
+     * Default appearance mode, won't adopt immersive styles.
+     * @since 16
+     */
+    ARKUI_KEYBOARD_APPEARANCE_NONE_IMMERSIVE = 0,
+    /**
+     * Immersive mode.
+     * @since 16
+     */
+    ARKUI_KEYBOARD_APPEARANCE_IMMERSIVE = 1,
+    /**
+     * Light immersive style.
+     * @since 16
+     */
+    ARKUI_KEYBOARD_APPEARANCE_LIGHT_IMMERSIVE = 2,
+    /**
+     * Dark immersive style.
+     * @since 16
+     */
+    ARKUI_KEYBOARD_APPEARANCE_DARK_IMMERSIVE = 3,
+} ArkUI_KeyboardAppearance;
 
 /**
  * @brief Defines the entity type for text recognition.
@@ -1926,6 +2077,17 @@ typedef enum {
     ARKUI_ERROR_CODE_NO_ERROR = 0,
     /** @error Parameter error. */
     ARKUI_ERROR_CODE_PARAM_INVALID = 401,
+    /**
+     * @error CAPI init error.
+     * @since 16
+     */
+    ARKUI_ERROR_CODE_CAPI_INIT_ERROR = 500,
+    /**
+     * @error Internal error occurs, such as failure occurs because of the internal environment error,
+     * or operation failed because of the internal execution failed.
+     * @since 16
+     */
+    ARKUI_ERROR_CODE_INTERNAL_ERROR = 100001,
     /** @error The component does not support specific properties or events. */
     ARKUI_ERROR_CODE_ATTRIBUTE_OR_EVENT_NOT_SUPPORTED = 106102,
     /** @error The corresponding operation does not support nodes created by ArkTS. */
@@ -1948,6 +2110,31 @@ typedef enum {
     ARKUI_ERROR_CODE_GET_INFO_FAILED = 106201,
     /** The buffer size is not large enough. */
     ARKUI_ERROR_CODE_BUFFER_SIZE_ERROR = 106202,
+    /**
+     * @error The node is not on main tree.
+     * @since 16
+     */
+    ARKUI_ERROR_CODE_NODE_NOT_ON_MAIN_TREE = 106203,
+    /**
+     * @error The node requesting focus is not focusable.
+     * @since 16
+     */
+    ARKUI_ERROR_CODE_FOCUS_NON_FOCUSABLE = 150001,
+    /**
+     * @error The node requesting focus has unfocusable ancestor.
+     * @since 16
+     */
+    ARKUI_ERROR_CODE_FOCUS_NON_FOCUSABLE_ANCESTOR = 150002,
+    /**
+     * @error The node requesting focus does not exists.
+     * @since 16
+     */
+    ARKUI_ERROR_CODE_FOCUS_NON_EXISTENT = 150003,
+    /**
+     * @error The snapshot taking is timeout.
+     * @since 16
+     */
+    ARKUI_ERROR_CODE_COMPONENT_SNAPSHOT_TIMEOUT = 160002,
     /** The component is not a scroll container. */
     ARKUI_ERROR_CODE_NON_SCROLLABLE_CONTAINER = 180001,
     /** The buffer is not large enough. */
@@ -1957,6 +2144,16 @@ typedef enum {
      * @since 14
      */
     ARKUI_ERROR_CODE_INVALID_STYLED_STRING = 180101,
+    /**
+     * @error The uiContext is invalid.
+     * @since 16
+     */
+    ARKUI_ERROR_CODE_UI_CONTEXT_INVALID = 190001,
+    /**
+     * @error The callback function is invalid.
+     * @since 16
+     */
+    ARKUI_ERROR_CODE_CALLBACK_INVALID = 190002,
 } ArkUI_ErrorCode;
 
 /**
@@ -2205,6 +2402,24 @@ typedef enum {
 } ArkUI_SafeAreaType;
 
 /**
+ * @brief Define an enum for the areas of the <b>ListItemGroup</b> component.
+ *
+ * @since 16
+ */
+typedef enum {
+    /** Outside the area of the <b>ListItemGroup</b> component. */
+    ARKUI_LIST_ITEM_GROUP_AREA_OUTSIDE = 0,
+    /** Area when the <b>ListItemGroup</b> component does not have the header, footer, or list item. */
+    ARKUI_LIST_ITEM_SWIPE_AREA_NONE,
+    /** List item area of the <b>ListItemGroup</b> component. */
+    ARKUI_LIST_ITEM_SWIPE_AREA_ITEM,
+    /** Header area of the <b>ListItemGroup</b> component. */
+    ARKUI_LIST_ITEM_SWIPE_AREA_HEADER,
+    /** Footer area of the <b>ListItemGroup</b> component. */
+    ARKUI_LIST_ITEM_SWIPE_AREA_FOOTER,
+} ArkUI_ListItemGroupArea;
+
+/**
  * @brief defines the enumerated value of the direction of the extended security zone.
  *
  * @since 12
@@ -2221,11 +2436,42 @@ typedef enum {
 } ArkUI_SafeAreaEdge;
 
 /**
+ * @brief defines the enumerated value of the customDialog's keyboard avoid mode.
+ *
+ * @since 16
+ */
+typedef enum {
+    /** Defines avoid keyboard when keyboard shows. */
+    ARKUI_KEYBOARD_AVOID_MODE_DEFAULT = 0,
+    /** Defines not avoid keyboard when keyboard shows. */
+    ARKUI_KEYBOARD_AVOID_MODE_NONE,
+} ArkUI_KeyboardAvoidMode;
+
+/**
+ * @brief defines the enumerated value of area in hover mode.
+ *
+ * @since 16
+ */
+typedef enum {
+    /** Layout top half screen when the phone in hover mode. */
+    ARKUI_HOVER_MODE_AREA_TYPE_TOP = 0,
+    /** Layout bottom half screen when the phone in hover mode. */
+    ARKUI_HOVER_MODE_AREA_TYPE_BOTTOM,
+} ArkUI_HoverModeAreaType;
+
+/**
  * @brief Defines parameter used by the system font style callback event.
  *
  * @since 12
  */
 typedef struct ArkUI_SystemFontStyleEvent ArkUI_SystemFontStyleEvent;
+
+/**
+ * @brief Defines the options for taking snapshot.
+ *
+ * @since 16
+ */
+typedef struct ArkUI_SnapshotOptions ArkUI_SnapshotOptions;
 
 /**
 * @brief Creates a size constraint.
@@ -3988,6 +4234,23 @@ void OH_ArkUI_CustomProperty_Destroy(ArkUI_CustomProperty* handle);
 const char* OH_ArkUI_CustomProperty_GetStringValue(ArkUI_CustomProperty* handle);
 
 /**
+ * @brief Get window name from HostWindowInfo.
+ *
+ * @param info HostWindowInfo object pointer.
+ * @return Window name in HostWindowInfo.
+ * @since 16
+ */
+const char* OH_ArkUI_HostWindowInfo_GetName(ArkUI_HostWindowInfo* info);
+
+/**
+ * @brief Destroy the instance of HostWindowInfo.
+ *
+ * @param info Instance of HostWindowInfo to be destroyed.
+ * @since 16
+ */
+void OH_ArkUI_HostWindowInfo_Destroy(ArkUI_HostWindowInfo* info);
+
+/**
  * @brief Destroy ActiveChildenInfo instance.
  *
  * @param handle ActiveChild instance to be destroyed.
@@ -4020,7 +4283,7 @@ int32_t OH_ArkUI_ActiveChildrenInfo_GetCount(ArkUI_ActiveChildrenInfo* handle);
  * <br> If the result returns nullptr, there may be out of memory.
  * @since 16
  */
-ArkUI_ProgressLinearStyleOption* OH_ArkUI_ProgressLinearStyleOption_Create();
+ArkUI_ProgressLinearStyleOption* OH_ArkUI_ProgressLinearStyleOption_Create(void);
 
 /**
  * @brief Destroy linear progress indicator style information.
@@ -4104,6 +4367,35 @@ float OH_ArkUI_ProgressLinearStyleOption_GetStrokeWidth(ArkUI_ProgressLinearStyl
  * @since 16
  */
 float OH_ArkUI_ProgressLinearStyleOption_GetStrokeRadius(ArkUI_ProgressLinearStyleOption* option);
+
+/**
+ * @brief Creates an option for taking snapshot, the returned value must be released through
+ *        {@link OH_ArkUI_SnapshotOptions_Dispose} when it's not used anymore.
+ *
+ * @return Returns the pointer to the created snapshot options object.If the object returns a null pointer,
+ *         it indicates a creation failure, and the reason for the failure may be that the address space is full.
+ * @since 16
+ */
+ArkUI_SnapshotOptions* OH_ArkUI_CreateSnapshotOptions();
+
+/**
+ * @brief Dispose a snapshot option object.
+ *
+ * @param snapshotOptions Indicates the pointer to the snapshot option.
+ * @since 16
+ */
+void OH_ArkUI_DestroySnapshotOptions(ArkUI_SnapshotOptions* snapshotOptions);
+
+/**
+ * @brief Config the snapshot option with scale.
+ *
+ * @param snapshotOptions Indicates the pointer to the snapshot option.
+ * @param scale Indicates the scale property to take the snapshot.
+ * @return Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @since 16
+ */
+int32_t OH_ArkUI_SnapshotOptions_SetScale(ArkUI_SnapshotOptions* snapshotOptions, float scale);
 #ifdef __cplusplus
 };
 #endif

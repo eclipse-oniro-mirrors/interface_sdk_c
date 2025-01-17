@@ -68,7 +68,7 @@ typedef enum {
     /**
      * @brief API type related to ArkWeb JavaScript value.
      *
-     * @since 14
+     * @since 16
      */
     ARKWEB_NATIVE_JAVASCRIPT_VALUE,
 } ArkWeb_NativeAPIVariantKind;
@@ -83,6 +83,20 @@ typedef enum {
  * @since 12
  */
 ArkWeb_AnyNativeAPI* OH_ArkWeb_GetNativeAPI(ArkWeb_NativeAPIVariantKind type);
+
+
+/*
+ * @brief Register a scrolling event callback.
+ * @param webTag The name of the web component.
+ * @param callback The ArkWeb scrolling callback.
+ * @param userData The data set by user.
+ * @return Returns whether the registration was successful, false indicates failure.
+ *
+ * @syscap SystemCapability.Web.Webview.Core
+ * @since 16
+ */
+bool OH_ArkWeb_RegisterScrollCallback(
+    const char* webTag, ArkWeb_OnScrollCallback callback, void* userData);
 
 #ifdef __cplusplus
 };
