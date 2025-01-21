@@ -7123,6 +7123,23 @@ typedef enum {
     NODE_SWIPER_EVENT_ON_CONTENT_DID_SCROLL,
 
     /**
+     * @brief Defines the event triggered when the selected index of the <b>ARKUI_NODE_SWIPER</b> changed.
+     * 
+     * This event is triggered under the following scenarios: \n
+     * 1. When the page switching animation starts after the user lifts their finger after swiping and the swipe meets
+     * the threshold for page turning. \n
+     * 2. When the page is changed programmatically using either <b>NODE_SWIPER_INDEX</b> or
+     * <b>NODE_SWIPER_SWIPE_TO_INDEX</b>. \n
+     * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
+     * {@link ArkUI_NodeComponentEvent}. \n
+     * {@link ArkUI_NodeComponentEvent} contains one parameter:\n
+     * <b>ArkUI_NodeComponentEvent.data[0].i32</b>: index of the currently selected element. \n
+     * 
+     * @since 16
+     */
+    NODE_SWIPER_EVENT_ON_SELECTED = 1001005,
+
+    /**
      * @brief Defines the event triggered when the <b>ARKUI_NODE_SCROLL</b> component scrolls.
      *
      * Notes for triggering the event:\n
