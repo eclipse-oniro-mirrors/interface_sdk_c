@@ -5036,21 +5036,6 @@ typedef enum {
     NODE_SCROLL_CONTENT_END_OFFSET,
 
     /**
-     * @brief Defines whether the scrollable scrolls back to top when status bar is clicked.
-     * This attribute can be set, reset, and obtained as required through APIs.
-     *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute: \n
-     * .value[0].i32: whether the scrollable scrolls back to top when status bar is clicked.
-     * The value <b>1</b> means to scroll back to top, and <b>0</b> means the opposite. The default value is <b>0/b>. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}: \n
-     * .value[0].i32: whether the scrollable scrolls back to top when status bar is clicked. \n
-     *
-     * @since 16
-     */
-    NODE_SCROLL_BACK_TO_TOP = 1002021,
-    
-    /**
      * @brief Defines the maximum starting fling speed of the scrollable when the fling animation starts.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
@@ -5077,6 +5062,21 @@ typedef enum {
      * @since 16
      */
     NODE_SCROLL_CLIP_CONTENT = 1002020,
+
+    /**
+     * @brief Defines whether the scrollable scrolls back to top when status bar is clicked.
+     * This attribute can be set, reset, and obtained as required through APIs.
+     *
+     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute: \n
+     * .value[0].i32: whether the scrollable scrolls back to top when status bar is clicked.
+     * The value <b>1</b> means to scroll back to top, and <b>0</b> means the opposite. The default value is <b>0/b>. \n
+     * \n
+     * Format of the return value {@link ArkUI_AttributeItem}: \n
+     * .value[0].i32: whether the scrollable scrolls back to top when status bar is clicked. \n
+     *
+     * @since 16
+     */
+    NODE_SCROLL_BACK_TO_TOP = 1002021,
 
     /**
      * @brief Defines the direction in which the list items are arranged. This attribute can be set, reset, and
