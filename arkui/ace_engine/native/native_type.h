@@ -706,6 +706,32 @@ typedef enum {
 } ArkUI_StickyStyle;
 
 /**
+ * @brief Enumerates the content clipping modes of scrollable components.
+ *
+ * @since 16
+ */
+typedef enum {
+    /** clip by content */
+    ARKUI_CONTENT_CLIP_MODE_CONTENT_ONLY = 0,
+    /** clip by boundary */
+    ARKUI_CONTENT_CLIP_MODE_BOUNDARY,
+    /** clip by safe area padding */
+    ARKUI_CONTENT_CLIP_MODE_SAFE_AREA,
+} ArkUI_ContentClipMode;
+
+/**
+ * @brief Enumerates the layout modes of the WaterFlow component.
+ *
+ * @since 16
+ */
+typedef enum {
+    /** Layout items from top to viewport. */
+    ARKUI_WATER_FLOW_LAYOUT_MODE_ALWAYS_TOP_DOWN = 0,
+    /** Layout items in viewport. */
+    ARKUI_WATER_FLOW_LAYOUT_MODE_SLIDING_WINDOW,
+} ArkUI_WaterFlowLayoutMode;
+
+/**
  * @brief Enumerates the border styles.
  *
  * @since 12
