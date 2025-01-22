@@ -152,7 +152,27 @@
         "name": "OH_Drawing_CanvasGetImageInfo"
     },
     { "name": "OH_Drawing_CreateDashPathEffect" },
+    {
+        "first_introduced": "16",
+        "name": "OH_Drawing_CreatePathDashEffect"
+    },
+    {
+        "first_introduced": "16",
+        "name": "OH_Drawing_CreateSumPathEffect"
+    },
     { "name": "OH_Drawing_PathEffectDestroy" },
+    {
+        "first_introduced": "16",
+        "name":"OH_Drawing_CreateDiscretePathEffect"
+    },
+    {
+        "first_introduced": "16",
+        "name":"OH_Drawing_CreateCornerPathEffect"
+    },
+    {
+        "first_introduced": "16",
+        "name":"OH_Drawing_CreateComposePathEffect"
+    },
     { "name": "OH_Drawing_ColorFilterCreateBlendMode" },
     { "name": "OH_Drawing_ColorFilterCreateCompose" },
     { "name": "OH_Drawing_ColorFilterCreateLinearToSrgbGamma" },
@@ -301,6 +321,10 @@
     {
         "first_introduced": "12",
         "name": "OH_Drawing_GpuContextCreateFromGL"
+    },
+    {
+        "first_introduced": "16",
+        "name": "OH_Drawing_GpuContextCreate"
     },
     {
         "first_introduced": "12",
@@ -689,8 +713,16 @@
         "name": "OH_Drawing_SurfaceCreateFromGpuContext"
     },
     {
+        "first_introduced": "16",
+        "name": "OH_Drawing_SurfaceCreateOnScreen"
+    },
+    {
         "first_introduced": "12",
         "name": "OH_Drawing_SurfaceGetCanvas"
+    },
+    {
+        "first_introduced": "16",
+        "name": "OH_Drawing_SurfaceFlush"
     },
     {
         "first_introduced": "12",
@@ -1737,5 +1769,25 @@
     {
         "first_introduced": "14",
         "name":"OH_Drawing_GetFontCollectionGlobalInstance"
+    },
+    {
+        "first_introduced": "16",
+        "name":"OH_Drawing_CanvasQuickRejectPath"
+    },
+    {
+        "first_introduced": "16",
+        "name":"OH_Drawing_CanvasQuickRejectRect"
+    },
+    {
+        "first_introduced": "16",
+        "name": "OH_Drawing_CanvasDrawNestedRoundRect"
+    },
+    {
+        "first_introduced": "16",
+        "name": "OH_Drawing_CanvasDrawArcWithCenter"
+    },
+    {
+        "first_introduced": "16",
+        "name": "OH_Drawing_CanvasDrawPixelMapNine"
     }
 ]

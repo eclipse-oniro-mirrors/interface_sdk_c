@@ -76,6 +76,10 @@
         "name": "OH_AVCODEC_MIMETYPE_SUBTITLE_WEBVTT"
     },
     {
+        "first_introduced": "16",
+        "name": "OH_AVCODEC_MIMETYPE_AUDIO_RAW"
+    },
+    {
         "first_introduced": "9",
         "name": "OH_ED_KEY_TIME_STAMP"
     },
@@ -392,12 +396,20 @@
         "name": "OH_MD_KEY_VIDEO_DECODER_OUTPUT_COLOR_SPACE"
     },
     {
-        "first_introduced": "14",
+        "first_introduced": "15",
         "name": "OH_MD_KEY_VIDEO_DECODER_OUTPUT_ENABLE_VRR"
     },
     {
         "first_introduced": "14",
         "name": "OH_MD_KEY_CREATION_TIME"
+    },
+    {
+        "first_introduced": "16",
+        "name": "OH_MD_KEY_VIDEO_ENCODER_REPEAT_PREVIOUS_FRAME_AFTER"
+    },
+    {
+        "first_introduced": "16",
+        "name": "OH_MD_KEY_VIDEO_ENCODER_REPEAT_PREVIOUS_MAX_COUNT"
     },
     {
         "first_introduced": "10",

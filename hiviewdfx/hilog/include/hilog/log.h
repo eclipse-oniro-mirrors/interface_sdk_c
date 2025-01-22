@@ -63,7 +63,7 @@
 #ifndef HIVIEWDFX_HILOG_H
 #define HIVIEWDFX_HILOG_H
 
-#include <cstddef>
+#include <stddef.h>
 #include <stdarg.h>
 #include <stdbool.h>
 
