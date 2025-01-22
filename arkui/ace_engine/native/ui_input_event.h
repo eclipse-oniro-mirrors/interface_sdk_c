@@ -791,6 +791,73 @@ double OH_ArkUI_FocusAxisEvent_GetAxisValue(const ArkUI_UIInputEvent* event, int
  */
 int32_t OH_ArkUI_FocusAxisEvent_SetStopPropagation(const ArkUI_UIInputEvent* event, bool stopPropagation);
 
+/**
+* @brief Obtains the width of the component hit by an event.
+*
+* @param event Pointer to an <b>ArkUI_UIInputEvent</b> object.
+* @return Returns the width of the component hit by the event; returns <b>0.0f</b> if any parameter error occurs.
+* @since 16
+*/
+float OH_ArkUI_UIInputEvent_GetEventTargetWidth(const ArkUI_UIInputEvent* event);
+
+/**
+* @brief Obtains the height of the component hit by an event.
+*
+* @param event Pointer to an <b>ArkUI_UIInputEvent</b> object.
+* @return Returns the height of the component hit by the event; returns <b>0.0f</b> if any parameter error occurs.
+* @since 16
+*/
+float OH_ArkUI_UIInputEvent_GetEventTargetHeight(const ArkUI_UIInputEvent* event);
+
+/**
+* @brief Obtains the X coordinate of the component hit by an event.
+*
+* @param event Pointer to an <b>ArkUI_UIInputEvent</b> object.
+* @return Returns the X coordinate of the component hit by the event; returns <b>0.0f</b> if any parameter error occurs.
+* @since 16
+*/
+float OH_ArkUI_UIInputEvent_GetEventTargetPositionX(const ArkUI_UIInputEvent* event);
+
+/**
+* @brief Obtains the Y coordinate of the component hit by an event.
+*
+* @param event Pointer to an <b>ArkUI_UIInputEvent</b> object.
+* @return Returns the Y coordinate of the component hit by the event;
+*         returns <b>0.0f</b> if any parameter error occurs.
+* @since 16
+*/
+float OH_ArkUI_UIInputEvent_GetEventTargetPositionY(const ArkUI_UIInputEvent* event);
+
+/**
+* @brief Obtains the global X coordinate of the component hit by an event.
+*
+* @param event Pointer to an <b>ArkUI_UIInputEvent</b> object.
+* @return Returns the global X coordinate of the component hit by the event;
+*         returns <b>0.0f</b> if any parameter error occurs.
+* @since 16
+*/
+float OH_ArkUI_UIInputEvent_GetEventTargetGlobalPositionX(const ArkUI_UIInputEvent* event);
+
+/**
+* @brief Obtains the global Y coordinate of the component hit by an event.
+*
+* @param event Pointer to an <b>ArkUI_UIInputEvent</b> object.
+* @return Returns the global Y coordinate of the component hit by the event;
+*         returns <b>0.0f</b> if any parameter error occurs.
+* @since 16
+*/
+float OH_ArkUI_UIInputEvent_GetEventTargetGlobalPositionY(const ArkUI_UIInputEvent* event);
+
+/**
+* @brief Checks whether the cursor is hovering over this component.
+*
+* @param event Pointer to an <b>ArkUI_UIInputEvent</b> object.
+* @return Returns <b>true</b> if the cursor is hovering over the current component.
+*         Returns <b>false</b> if the cursor is not hovering over the current component.
+* @since 16
+*/
+bool OH_ArkUI_HoverEvent_IsHovered(const ArkUI_UIInputEvent* event);
+
 #ifdef __cplusplus
 };
 #endif
