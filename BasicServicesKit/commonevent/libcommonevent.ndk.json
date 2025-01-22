@@ -94,5 +94,125 @@
     {
         "first_introduced": "12",
         "name":"OH_CommonEvent_GetDoubleArrayFromParameters"
+    },
+    {
+        "first_introduced": "16",
+        "name":"OH_CommonEvent_CreatePublishInfo"
+    },
+    {
+        "first_introduced": "16",
+        "name":"OH_CommonEvent_DestroyPublishInfo"
+    },
+    {
+        "first_introduced": "16",
+        "name":"OH_CommonEvent_SetPublishInfoBundleName"
+    },
+    {
+        "first_introduced": "16",
+        "name":"OH_CommonEvent_SetPublishInfoPermissions"
+    },
+    {
+        "first_introduced": "16",
+        "name":"OH_CommonEvent_SetPublishInfoCode"
+    },
+    {
+        "first_introduced": "16",
+        "name":"OH_CommonEvent_SetPublishInfoData"
+    },
+    {
+        "first_introduced": "16",
+        "name":"OH_CommonEvent_SetPublishInfoParameters"
+    },
+    {
+        "first_introduced": "16",
+        "name":"OH_CommonEvent_CreateParameters"
+    },
+    {
+        "first_introduced": "16",
+        "name":"OH_CommonEvent_DestroyParameters"
+    },
+    {
+        "first_introduced": "16",
+        "name":"OH_CommonEvent_SetIntToParameters"
+    },
+    {
+        "first_introduced": "16",
+        "name":"OH_CommonEvent_SetIntArrayToParameters"
+    },
+    {
+        "first_introduced": "16",
+        "name":"OH_CommonEvent_SetLongToParameters"
+    },
+    {
+        "first_introduced": "16",
+        "name":"OH_CommonEvent_SetLongArrayToParameters"
+    },
+    {
+        "first_introduced": "16",
+        "name":"OH_CommonEvent_SetBoolToParameters"
+    },
+    {
+        "first_introduced": "16",
+        "name":"OH_CommonEvent_SetBoolArrayToParameters"
+    },
+    {
+        "first_introduced": "16",
+        "name":"OH_CommonEvent_SetCharToParameters"
+    },
+    {
+        "first_introduced": "16",
+        "name":"OH_CommonEvent_SetCharArrayToParameters"
+    },
+    {
+        "first_introduced": "16",
+        "name":"OH_CommonEvent_SetDoubleToParameters"
+    },
+    {
+        "first_introduced": "16",
+        "name":"OH_CommonEvent_SetDoubleArrayToParameters"
+    },
+    {
+        "first_introduced": "16",
+        "name":"OH_CommonEvent_Publish"
+    },
+    {
+        "first_introduced": "16",
+        "name":"OH_CommonEvent_PublishWithInfo"
+    },
+    {
+        "first_introduced": "16",
+        "name":"OH_CommonEvent_IsOrderedCommonEvent"
+    },
+    {
+        "first_introduced": "16",
+        "name":"OH_CommonEvent_FinishCommonEvent"
+    },
+    {
+        "first_introduced": "16",
+        "name":"OH_CommonEvent_GetAbortCommonEvent"
+    },
+    {
+        "first_introduced": "16",
+        "name":"OH_CommonEvent_AbortCommonEvent"
+    },
+    {
+        "first_introduced": "16",
+        "name":"OH_CommonEvent_ClearAbortCommonEvent"
+    },
+    {
+        "first_introduced": "16",
+        "name":"OH_CommonEvent_GetCodeFromSubscriber"
+    },
+    {
+        "first_introduced": "16",
+        "name":"OH_CommonEvent_SetCodeToSubscriber"
+    },
+    {
+        "first_introduced": "16",
+        "name":"OH_CommonEvent_GetDataFromSubscriber"
+    },
+    {
+        "first_introduced": "16",
+        "name":"OH_CommonEvent_SetDataToSubscriber"
     }
 ]
