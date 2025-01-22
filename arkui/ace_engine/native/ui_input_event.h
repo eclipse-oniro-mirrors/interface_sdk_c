@@ -895,9 +895,9 @@ float OH_ArkUI_UIInputEvent_GetEventTargetGlobalPositionY(const ArkUI_UIInputEve
 *         Returns <b>false</b> if the cursor is not hovering over the current component.
 * @since 16
 */
+bool OH_ArkUI_HoverEvent_IsHovered(const ArkUI_UIInputEvent* event);
 
 /**
-bool OH_ArkUI_HoverEvent_IsHovered(const ArkUI_UIInputEvent* event);
  * @brief Obtains the press time of a specific touch point.
  *
  * @param event Pointer to an <b>ArkUI_UIInputEvent</b> object.
