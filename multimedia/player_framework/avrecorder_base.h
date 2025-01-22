@@ -257,7 +257,6 @@ typedef struct OH_AVRecorder_Metadata {
  * @brief Provides the media recorder configuration definitions
  * @syscap SystemCapability.Multimedia.Media.AVRecorder
  * @since 16
- * @version 1.0
  */
 typedef struct OH_AVRecorder_Config {
     /* Indicates the recording audio source type */
@@ -272,6 +271,8 @@ typedef struct OH_AVRecorder_Config {
     OH_AVRecorder_FileGenerationMode fileGenerationMode;
     /* Contains additional metadata for the recorded media */
     OH_AVRecorder_Metadata metadata;
+    /* Set the longest duration allowed for current recording */
+    int32_t maxDuration;
 } OH_AVRecorder_Config;
 
 /**
