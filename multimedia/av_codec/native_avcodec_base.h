@@ -356,6 +356,28 @@ extern const char *OH_AVCODEC_MIMETYPE_SUBTITLE_SRT;
 extern const char *OH_AVCODEC_MIMETYPE_SUBTITLE_WEBVTT;
 
 /**
+ * @brief Enumerates the mime type of audio raw stream.
+ *
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
+ * @since 16
+ */
+extern const char *OH_AVCODEC_MIMETYPE_AUDIO_RAW;
+/**
+ * @brief Enumerates the MIME type of video mpeg2 codec.
+ *
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
+ * @since 16
+ */
+extern const char *OH_AVCODEC_MIMETYPE_VIDEO_MPEG2;
+/**
+ * @brief Enumerates the MIME type of video mpeg4 part2 codec.
+ *
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
+ * @since 16
+ */
+extern const char *OH_AVCODEC_MIMETYPE_VIDEO_MPEG4_PART2;
+
+/**
  * @brief Key for timeStamp in surface's extraData, value type is int64_t.
  *
  * @syscap SystemCapability.Multimedia.Media.CodecBase
@@ -973,10 +995,9 @@ extern const char *OH_MD_KEY_VIDEO_DECODER_OUTPUT_COLOR_SPACE;
  * This is an optional key that applies only to video decoder. It is used in configure.
  *
  * @syscap SystemCapability.Multimedia.Media.CodecBase
- * @since 14
+ * @since 15
  */
 extern const char *OH_MD_KEY_VIDEO_DECODER_OUTPUT_ENABLE_VRR;
-
 /**
  * @brief Key for creation timestamp of a media file, value type is string.
  *
@@ -984,6 +1005,24 @@ extern const char *OH_MD_KEY_VIDEO_DECODER_OUTPUT_ENABLE_VRR;
  * @since 14
  */
 extern const char *OH_MD_KEY_CREATION_TIME;
+/**
+ * @brief Key applies only when configuring a video encoder in surface mode, value type is int32_t.
+ * If no new frame became available since the last frame submitted to the encoder,
+ * it will sumbit the previous frame repeatly in milliseconds. It is used in configure.
+ *
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
+ * @since 16
+ */
+extern const char *OH_MD_KEY_VIDEO_ENCODER_REPEAT_PREVIOUS_FRAME_AFTER;
+/**
+ * @brief Key for describing the maximum count that the frame previously submitted to the encoder will be
+ * repeated, in case no new frame has been available since, value type is int32_t. This key takes effect only when
+ * {@link VIDEO_ENCODER_REPEAT_PREVIOUS_FRAME_AFTER} is vaild. It is used in configure.
+ *
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
+ * @since 16
+ */
+extern const char *OH_MD_KEY_VIDEO_ENCODER_REPEAT_PREVIOUS_MAX_COUNT;
 
 /**
  * @brief Media type.
@@ -1092,6 +1131,66 @@ typedef enum OH_VVCProfile {
     /** Main 16 4:4:4 Still Picture profile */
     VVC_PROFILE_MAIN_16_444_STILL = 100,
 } OH_VVCProfile;
+
+/**
+ * @brief MPEG2 Profile
+ *
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
+ * @since 16
+ */
+typedef enum OH_MPEG2Profile {
+    /** Simple profile */
+    MPEG2_PROFILE_SIMPLE = 0,
+    /** Main profile */
+    MPEG2_PROFILE_MAIN = 1,
+    /** SNR scalable profile */
+    MPEG2_PROFILE_SNR_SCALABLE = 2,
+    /** Spatially scalable profile */
+    MPEG2_PROFILE_SPATIALLY_SCALABLE = 3,
+    /** High profile */
+    MPEG2_PROFILE_HIGH = 4,
+    /** 4:2:2 profile */
+    MPEG2_PROFILE_422 = 5,
+} OH_MPEG2Profile;
+
+/**
+ * @brief MPEG4 Profile
+ *
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
+ * @since 16
+ */
+typedef enum OH_MPEG4Profile {
+    /** Simple profile */
+    MPEG4_PROFILE_SIMPLE = 0,
+    /** Simple scalable profile */
+    MPEG4_PROFILE_SIMPLE_SCALABLE = 1,
+    /** Core profile */
+    MPEG4_PROFILE_CORE = 2,
+    /** Main profile */
+    MPEG4_PROFILE_MAIN = 3,
+    /** N-Bit profile */
+    MPEG4_PROFILE_N_BIT = 4,
+    /** Hybrid profile */
+    MPEG4_PROFILE_HYBRID = 5,
+    /** Basic animated texture profile */
+    MPEG4_PROFILE_BASIC_ANIMATED_TEXTURE = 6,
+    /** Scalable texture profile */
+    MPEG4_PROFILE_SCALABLE_TEXTURE = 7,
+    /** Simple FA profile */
+    MPEG4_PROFILE_SIMPLE_FA = 8,
+    /** Advanced real time simple profile */
+    MPEG4_PROFILE_ADVANCED_REAL_TIME_SIMPLE = 9,
+    /** Core scalable profile */
+    MPEG4_PROFILE_CORE_SCALABLE = 10,
+    /** Advanced coding efficiency profile */
+    MPEG4_PROFILE_ADVANCED_CODING_EFFICIENCY = 11,
+    /** Advanced core profile */
+    MPEG4_PROFILE_ADVANCED_CORE = 12,
+    /** Advanced scalable texture profile */
+    MPEG4_PROFILE_ADVANCED_SCALABLE_TEXTURE = 13,
+    /** Advanced simple profile */
+    MPEG4_PROFILE_ADVANCED_SIMPLE = 17,
+} OH_MPEG4Profile;
 
 /**
  * @brief Enumerates the muxer output file format
@@ -1335,6 +1434,52 @@ typedef enum OH_VVCLevel {
     /** VVC level 15.5 */
     VVC_LEVEL_155 = 255,
 } OH_VVCLevel;
+
+/**
+ * @brief MPEG2 Level.
+ *
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
+ * @since 16
+ */
+typedef enum OH_MPEG2Level {
+    /** Low level */
+    MPEG2_LEVEL_LOW = 0,
+    /** Main level */
+    MPEG2_LEVEL_MAIN = 1,
+    /** High 1440 level */
+    MPEG2_LEVEL_HIGH_1440 = 2,
+    /** High level */
+    MPEG2_LEVEL_HIGH = 3,
+} OH_MPEG2Level;
+
+/**
+ * @brief MPEG4 Level.
+ *
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
+ * @since 16
+ */
+typedef enum OH_MPEG4Level {
+    /** 0 level */
+    MPEG4_LEVEL_0 = 0,
+    /** 0B level */
+    MPEG4_LEVEL_0B = 1,
+    /** 1 level */
+    MPEG4_LEVEL_1 = 2,
+    /** 2 level */
+    MPEG4_LEVEL_2 = 3,
+    /** 3 level */
+    MPEG4_LEVEL_3 = 4,
+    /** 3B level */
+    MPEG4_LEVEL_3B = 5,
+    /** 4 level */
+    MPEG4_LEVEL_4 = 6,
+    /** 4A level */
+    MPEG4_LEVEL_4A = 7,
+    /** 5 level */
+    MPEG4_LEVEL_5 = 8,
+    /** 6 level */
+    MPEG4_LEVEL_6 = 9,
+} OH_MPEG4Level;
 
 /**
  * @brief The reference mode in temporal group of picture.
