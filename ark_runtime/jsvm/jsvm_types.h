@@ -331,6 +331,10 @@ typedef enum {
      * @since 16
      */
     JSVM_INVALID_TYPE,
+    /** jit mode expected status.
+     * @since 15
+     */
+    JSVM_JIT_MODE_EXPECTED,
 } JSVM_Status;
 
 /**
