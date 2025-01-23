@@ -2367,6 +2367,20 @@ typedef enum {
 } ArkUI_HoverModeAreaType;
 
 /**
+ * @brief Enumerates the expand modes.
+ *
+ * @since 15
+ */
+ typedef enum {
+    /** Not expand. */
+    ARKUI_NOT_EXPAND = 0,
+    /** Expand. */
+    ARKUI_EXPAND = 1,
+    /** Lazy expand. Expand the children of node if needed. */
+    ARKUI_LAZY_EXPAND = 2,
+} ArkUI_ExpandMode;
+
+/**
  * @brief Defines parameter used by the system font style callback event.
  *
  * @since 12
