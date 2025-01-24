@@ -59,13 +59,19 @@ struct OH_PixelmapNative;
 typedef enum {
     /** succ. */
     OK = 0,
-    /** window id is invaild. */
+    /**
+     * Permission is invaild.
+     *
+     * @since 16
+     */
+    WINDOW_MANAGER_ERRORCODE_INVALID_PERMISSION = 201,
     /**
      * Param is invaild.
      *
      * @since 16
      */
     WINDOW_MANAGER_ERRORCODE_INVALID_PARAM = 401,
+    /** window id is invaild. */
     INVAILD_WINDOW_ID = 1000,
     /** failed. */
     SERVICE_ERROR = 2000,
