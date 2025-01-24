@@ -188,6 +188,8 @@ _ndk_library_targets = [
   "//interface/sdk_c/distributeddatamgr/preferences:libohpreferences",
   "//interface/sdk_c/drivers/external_device_manager/usb:libusb_ndk",
   "//interface/sdk_c/drivers/external_device_manager/usb:usb_header",
+  "//interface/sdk_c/drivers/external_device_manager/usb_serial:libusb_serial",
+  "//interface/sdk_c/drivers/external_device_manager/usb_serial:usb_serial_header",
   "//interface/sdk_c/drivers/external_device_manager/hid:libhid",
   "//interface/sdk_c/drivers/external_device_manager/hid:hid_header",
   "//interface/sdk_c/drivers/external_device_manager/base:libddk_base",

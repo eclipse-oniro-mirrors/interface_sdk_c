@@ -1,0 +1,54 @@
+[
+    {
+        "first_introduced": "16",
+        "name": "OH_UsbSerial_Init"
+    },
+    {
+        "first_introduced": "16",
+        "name": "OH_UsbSerial_Release"
+    },
+    {
+        "first_introduced": "16",
+        "name": "OH_UsbSerial_Open"
+    },
+    {
+        "first_introduced": "16",
+        "name": "OH_UsbSerial_Close"
+    },
+    {
+        "first_introduced": "16",
+        "name": "OH_UsbSerial_Read"
+    },
+    {
+        "first_introduced": "16",
+        "name": "OH_UsbSerial_Write"
+    },
+    {
+        "first_introduced": "16",
+        "name": "OH_UsbSerial_SetBaudRate"
+    },
+    {
+        "first_introduced": "16",
+        "name": "OH_UsbSerial_SetParams"
+    },
+    {
+        "first_introduced": "16",
+        "name": "OH_UsbSerial_SetTimeout"
+    },
+    {
+        "first_introduced": "16",
+        "name": "OH_UsbSerial_SetFlowControl"
+    },
+    {
+        "first_introduced": "16",
+        "name": "OH_UsbSerial_Flush"
+    },
+    {
+        "first_introduced": "16",
+        "name": "OH_UsbSerial_FlushInput"
+    },
+    {
+        "first_introduced": "16",
+        "name": "OH_UsbSerial_FlushOutput"
+    }
+]
