@@ -14,11 +14,11 @@
  */
 
 /**
- * @addtogroup WindowManager_NativeModule
+ * @addtogroup WindowManager
  * @{
  *
  *
- * @brief Provides  abilities of windowManager on the native side, such as key event
+ * @brief Provides abilities of windowManager on the native side, such as key event
  * filtration.
  *
  * @since 12
@@ -48,7 +48,7 @@ extern "C" {
  *
  * @since 16
  */
-struct OH_PixelmapNative;
+typedef struct OH_PixelmapNative;
 
 /**
  * @brief Enumerates the result types of the wm interface
@@ -59,7 +59,7 @@ typedef enum {
     /** succ. */
     OK = 0,
     /**
-     * Param is invaild.
+     * Param is invalid.
      *
      * @since 16
      */
@@ -69,7 +69,7 @@ typedef enum {
      *
      * @since 16
      */
-    WINDOW_MANAGER_ERRORCODE_DEVICE_NOT_SUPPORTED = 401,    
+    WINDOW_MANAGER_ERRORCODE_DEVICE_NOT_SUPPORTED = 801,    
     /** window id is invaild. */
     INVAILD_WINDOW_ID = 1000,
     /** failed. */
@@ -114,7 +114,7 @@ typedef enum {
 typedef enum {
     /** Sub window. */
     WINDOW_MANAGER_WINDOW_TYPE_APP = 0,
-    /** Main Window. */
+    /** Main window. */
     WINDOW_MANAGER_WINDOW_TYPE_MAIN = 1,
     /** Float. */
     WINDOW_MANAGER_WINDOW_TYPE_FLOAT = 8,
@@ -144,31 +144,31 @@ typedef struct {
  * @since 16
 */
 typedef struct {
-    /** The position and size of the window */
+    /** The position and size of the window. */
     WindowManager_Rect windowRect;
-    /** The position relative to the window and size of drawable area */
+    /** The position relative to the window and size of drawable area. */
     WindowManager_Rect drawableRect;
-    /** Window type */
+    /** Window type. */
     WindowManager_WindowType type;
-    /** Whether the window is displayed in full screen mode. The default value is false */
+    /** Whether the window is displayed in full screen mode. The default value is false. */
     bool isFullScreen;
-    /** Whether the window layout is in full screen mode. The default value is false */
+    /** Whether the window layout is in full screen mode. The default value is false. */
     bool isLayoutFullScreen;
-    /** Whether the window can gain focus. The default value is true */
+    /** Whether the window can gain focus. The default value is true. */
     bool focusable;
-    /** Whether the window is touchable. The default value is false */
+    /** Whether the window is touchable. The default value is false. */
     bool touchable;
-    /** Brightness value of window */
+    /** Brightness value of window. */
     float brightness;
-    /** Whether keep screen on */
+    /** Whether keep screen on. */
     bool isKeepScreenOn;
-    /** Whether make window in privacy mode or not */
+    /** Whether make window in privacy mode or not. */
     bool isPrivacyMode;
-    /** Whether is transparent or not */
+    /** Whether is transparent or not. */
     bool isTransparent;
-    /** Window id */
+    /** Window id. */
     uint32_t id;
-    /** Display id */
+    /** Display id. */
     uint32_t displayId;
 } WindowManager_WindowProperties;
 
