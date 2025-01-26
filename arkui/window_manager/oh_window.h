@@ -17,7 +17,7 @@
  * @addtogroup WindowManager
  * @{
  *
- * @brief Provides abilities of window on the native side
+ * @brief Provides abilities of window on the native side.
  * @since 16
  */
 
@@ -25,9 +25,10 @@
  * @file oh_window.h
  *
  * @brief Declares APIs for window
+ *
  * @library libnative_window_manager.so
  * @kit ArkUI
- * @syscap SystemCapability.Window.SessionManager.Core
+ * @syscap SystemCapability.Window.SessionManager
  * @since 16
  */
 #ifndef OH_WINDOW_H
