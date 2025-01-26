@@ -38,7 +38,8 @@
 #ifndef OH_WINDOW_H
 #define OH_WINDOW_H
 
-#include <stdint.h>
+#include "stdbool.h"
+#include "stdint.h"
 #include "oh_window_comm.h"
 
 #ifdef __cplusplus
@@ -52,12 +53,12 @@ extern "C" {
  * @param enabled If true, the status bar is displayed. If false, the status bar is hidden.
  * @param enableAnimation If true, the status bar is displayed and hidden with animation.
  *                        If false, the status bar is displayed and hidden with no animation.
- * @return Return the result code.
+ * @return Returns the result code.
  *         {@link OK} the function call is successful.
  *         {@link WINDOW_MANAGER_ERRORCODE_INVALID_PARAM} parameter error.
  *         {@link WINDOW_MANAGER_ERRORCODE_DEVICE_NOT_SUPPORT} capability not supported.
- *         {@link WINDOW_MANAGER_ERRORCODE_STATE_ABNORMALLY} this window state is abnormal.
- *         {@link WINDOW_MANAGER_ERRORCODE_SYSTEM_ABNORMALLY} the window manager service works abnormal.
+ *         {@link WINDOW_MANAGER_ERRORCODE_STATE_ABNORMAL} this window state is abnormal.
+ *         {@link WINDOW_MANAGER_ERRORCODE_SYSTEM_ABNORMAL} the window manager service works abnormal.
  * @since 16
  */
 int32_t OH_WindowManager_SetWindowStatusBarEnabled(int32_t windowId, bool enabled, bool enableAnimation);
@@ -67,12 +68,12 @@ int32_t OH_WindowManager_SetWindowStatusBarEnabled(int32_t windowId, bool enable
  *
  * @param windowId WindowId when window is created.
  * @param color The color value to set, the format is ARGB.
- * @return Return the result code.
+ * @return Returns the result code.
  *         {@link OK} the function call is successful.
  *         {@link WINDOW_MANAGER_ERRORCODE_INVALID_PARAM} parameter error.
  *         {@link WINDOW_MANAGER_ERRORCODE_DEVICE_NOT_SUPPORT} capability not supported.
- *         {@link WINDOW_MANAGER_ERRORCODE_STATE_ABNORMALLY} this window state is abnormal.
- *         {@link WINDOW_MANAGER_ERRORCODE_SYSTEM_ABNORMALLY} the window manager service works abnormal.
+ *         {@link WINDOW_MANAGER_ERRORCODE_STATE_ABNORMAL} this window state is abnormal.
+ *         {@link WINDOW_MANAGER_ERRORCODE_SYSTEM_ABNORMAL} the window manager service works abnormal.
  * @since 16
  */
 int32_t OH_WindowManager_SetWindowStatusBarColor(int32_t windowId, int32_t color);
@@ -84,12 +85,12 @@ int32_t OH_WindowManager_SetWindowStatusBarColor(int32_t windowId, int32_t color
  * @param enabled If true, the navigation bar is displayed. If false, the navigation bar is hidden.
  * @param enableAnimation If true, the navigation bar is displayed and hidden with animation.
  *                        If false, the navigation bar is displayed and hidden with no animation.
- * @return Return the result code.
+ * @return Returns the result code.
  *         {@link OK} the function call is successful.
  *         {@link WINDOW_MANAGER_ERRORCODE_INVALID_PARAM} parameter error.
  *         {@link WINDOW_MANAGER_ERRORCODE_DEVICE_NOT_SUPPORT} capability not supported.
- *         {@link WINDOW_MANAGER_ERRORCODE_STATE_ABNORMALLY} this window state is abnormal.
- *         {@link WINDOW_MANAGER_ERRORCODE_SYSTEM_ABNORMALLY} the window manager service works abnormal.
+ *         {@link WINDOW_MANAGER_ERRORCODE_STATE_ABNORMAL} this window state is abnormal.
+ *         {@link WINDOW_MANAGER_ERRORCODE_SYSTEM_ABNORMAL} the window manager service works abnormal.
  * @since 16
  */
 int32_t OH_WindowManager_SetWindowNavigationBarEnabled(int32_t windowId, bool enabled, bool enableAnimation);
@@ -100,12 +101,11 @@ int32_t OH_WindowManager_SetWindowNavigationBarEnabled(int32_t windowId, bool en
  * @param windowId WindowId when window is created.
  * @param type Type of the avoid area.
  * @param avoidArea Indicates the pointer to a WindowManager_AvoidArea object.
- * @return Returns the status code of the execution.
- * @return Return the result code.
+ * @return Returns the result code.
  *         {@link OK} the function call is successful, return avoid area ptr in avoidArea.
  *         {@link WINDOW_MANAGER_ERRORCODE_INVALID_PARAM} parameter error.
- *         {@link WINDOW_MANAGER_ERRORCODE_STATE_ABNORMALLY} this window state is abnormal.
- *         {@link WINDOW_MANAGER_ERRORCODE_SYSTEM_ABNORMALLY} the window manager service works abnormal.
+ *         {@link WINDOW_MANAGER_ERRORCODE_STATE_ABNORMAL} this window state is abnormal.
+ *         {@link WINDOW_MANAGER_ERRORCODE_SYSTEM_ABNORMAL} the window manager service works abnormal.
  * @since 16
  */
 int32_t OH_WindowManager_GetWindowAvoidArea(
@@ -117,51 +117,51 @@ int32_t OH_WindowManager_GetWindowAvoidArea(
  * @param windowId windowId when window is created.
  * @param isShow Whether the window is displayed.
  *         The value true means that the window is displayed, and false means the opposite.
- * @return Return the result code.
+ * @return Returns the result code.
  *         {@link OK} the function call is successful.
  *         {@link WINDOW_MANAGER_ERRORCODE_INVALID_PARAM} parameter error.
- *         {@link WINDOW_MANAGER_ERRORCODE_STATE_ABNORMALLY} this window state is abnormal.
+ *         {@link WINDOW_MANAGER_ERRORCODE_STATE_ABNORMAL} this window state is abnormal.
  * @since 16
  */
-WindowManager_ErrorCode OH_WindowManager_IsWindowShown(int32_t windowId, bool* isShow);
+int32_t OH_WindowManager_IsWindowShown(int32_t windowId, bool* isShow);
 
 /**
  * @brief Show window.
  *
  * @param windowId windowId when window is created.
- * @return Return the result code.
+ * @return Returns the result code.
  *         {@link OK} the function call is successful.
  *         {@link WINDOW_MANAGER_ERRORCODE_INVALID_PARAM} parameter error.
- *         {@link WINDOW_MANAGER_ERRORCODE_STATE_ABNORMALLY} this window state is abnormal.
- *         {@link WINDOW_MANAGER_ERRORCODE_SYSTEM_ABNORMALLY} the window manager service works abnormal.
+ *         {@link WINDOW_MANAGER_ERRORCODE_STATE_ABNORMAL} this window state is abnormal.
+ *         {@link WINDOW_MANAGER_ERRORCODE_SYSTEM_ABNORMAL} the window manager service works abnormal.
  * @since 16
  */
-WindowManager_ErrorCode OH_WindowManager_ShowWindow(int32_t windowId);
+int32_t OH_WindowManager_ShowWindow(int32_t windowId);
 
 /**
  * @brief set window touchable status.
  *
  * @param windowId windowId when window is created.
  * @param touchable window touchable status.
- * @return Return the result code.
+ * @return Returns the result code.
  *         {@link OK} the function call is successful.
  *         {@link WINDOW_MANAGER_ERRORCODE_INVALID_PARAM} parameter error.
- *         {@link WINDOW_MANAGER_ERRORCODE_STATE_ABNORMALLY} this window state is abnormal.
- *         {@link WINDOW_MANAGER_ERRORCODE_SYSTEM_ABNORMALLY} the window manager service works abnormal.
+ *         {@link WINDOW_MANAGER_ERRORCODE_STATE_ABNORMAL} this window state is abnormal.
+ *         {@link WINDOW_MANAGER_ERRORCODE_SYSTEM_ABNORMAL} the window manager service works abnormal.
  * @since 16
  */
-int32_t OH_WindowManager_SetWindowTouchable(int32_t windowId, bool touchable);
+int32_t OH_WindowManager_SetWindowTouchable(int32_t windowId, bool isTouchable);
 
 /**
  * @brief Set focusable property of window.
  *
  * @param windowId WindowId when window is created.
  * @param isFocusable Window can be focused or not.
- * @return Returns the result code.
+ * @return Returnss the result code.
  *         {@link OK} the function call is successful.
  *         {@link WINDOW_MANAGER_ERRORCODE_INVALID_PARAM} parameter error.
- *         {@link WINDOW_MANAGER_ERRORCODE_STATE_ABNORMALLY} this window state is abnormal.
- *         {@link WINDOW_MANAGER_ERRORCODE_SYSTEM_ABNORMALLY} the window manager service works abnormally.
+ *         {@link WINDOW_MANAGER_ERRORCODE_STATE_ABNORMAL} this window state is abnormal.
+ *         {@link WINDOW_MANAGER_ERRORCODE_SYSTEM_ABNORMAL} the window manager service works abnormally.
  * @since 16
  */
 int32_t OH_WindowManager_SetWindowFocusable(int32_t windowId, bool isFocusable);
@@ -171,10 +171,10 @@ int32_t OH_WindowManager_SetWindowFocusable(int32_t windowId, bool isFocusable);
  *
  * @param windowId WindowId when window is created.
  * @param color the specified color.
- * @return Return the result code.
+ * @return Returns the result code.
  *         {@link OK} the function call is successful.
  *         {@link WINDOW_MANAGER_ERRORCODE_INVALID_PARAM} parameter error.
- *         {@link WINDOW_MANAGER_ERRORCODE_STATE_ABNORMALLY} this window state is abnormal.
+ *         {@link WINDOW_MANAGER_ERRORCODE_STATE_ABNORMAL} this window state is abnormal.
  * @since 16
  */
 int32_t OH_WindowManager_SetWindowBackgroundColor(int32_t windowId, const char* color);
@@ -184,11 +184,11 @@ int32_t OH_WindowManager_SetWindowBackgroundColor(int32_t windowId, const char* 
  *
  * @param windowId WindowId when window is created.
  * @param brightness the specified brightness value.
- * @return Return the result code.
+ * @return Returns the result code.
  *         {@link OK} the function call is successful.
  *         {@link WINDOW_MANAGER_ERRORCODE_INVALID_PARAM} parameter error.
- *         {@link WINDOW_MANAGER_ERRORCODE_STATE_ABNORMALLY} this window state is abnormal.
- *         {@link WINDOW_MANAGER_ERRORCODE_SYSTEM_ABNORMALLY} the window manager service works abnormal.
+ *         {@link WINDOW_MANAGER_ERRORCODE_STATE_ABNORMAL} this window state is abnormal.
+ *         {@link WINDOW_MANAGER_ERRORCODE_SYSTEM_ABNORMAL} the window manager service works abnormal.
  * @since 16
  */
 int32_t OH_WindowManager_SetWindowBrightness(int32_t windowId, float brightness);
@@ -198,11 +198,11 @@ int32_t OH_WindowManager_SetWindowBrightness(int32_t windowId, float brightness)
  *
  * @param windowId WindowId when window is created.
  * @param isKeepScreenOn keep screen on if true, or not if false.
- * @return Return the result code.
+ * @return Returns the result code.
  *         {@link OK} the function call is successful.
  *         {@link WINDOW_MANAGER_ERRORCODE_INVALID_PARAM} parameter error.
- *         {@link WINDOW_MANAGER_ERRORCODE_STATE_ABNORMALLY} this window state is abnormal.
- *         {@link WINDOW_MANAGER_ERRORCODE_SYSTEM_ABNORMALLY} the window manager service works abnormal.
+ *         {@link WINDOW_MANAGER_ERRORCODE_STATE_ABNORMAL} this window state is abnormal.
+ *         {@link WINDOW_MANAGER_ERRORCODE_SYSTEM_ABNORMAL} the window manager service works abnormal.
  * @since 16
  */
 int32_t OH_WindowManager_SetWindowKeepScreenOn(int32_t windowId, bool isKeepScreenOn);
@@ -212,12 +212,12 @@ int32_t OH_WindowManager_SetWindowKeepScreenOn(int32_t windowId, bool isKeepScre
  *
  * @param windowId WindowId when window is created.
  * @param isPrivacy In private mode if true, or not if false.
- * @return Return the result code.
+ * @return Returns the result code.
  *         {@link OK} the function call is successful.
  *         {@link WINDOW_MANAGER_ERRORCODE_INVALID_PARAM} parameter error.
  *         {@link WINDOW_MANAGER_ERRORCODE_INVALID_PERMISSION} permission error.
- *         {@link WINDOW_MANAGER_ERRORCODE_STATE_ABNORMALLY} this window state is abnormal.
- *         {@link WINDOW_MANAGER_ERRORCODE_SYSTEM_ABNORMALLY} the window manager service works abnormal.
+ *         {@link WINDOW_MANAGER_ERRORCODE_STATE_ABNORMAL} this window state is abnormal.
+ *         {@link WINDOW_MANAGER_ERRORCODE_SYSTEM_ABNORMAL} the window manager service works abnormal.
  * @since 16
  */
 int32_t OH_WindowManager_SetWindowPrivacyMode(int32_t windowId, bool isPrivacy);
@@ -227,11 +227,11 @@ int32_t OH_WindowManager_SetWindowPrivacyMode(int32_t windowId, bool isPrivacy);
  *
  * @param windowId WindowId when window is created.
  * @param windowProperties Properties of current window.
- * @return Return the result code.
+ * @return Returns the result code.
  *         {@link OK} the function call is successful, return window properties ptr in windowProperties.
  *         {@link WINDOW_MANAGER_ERRORCODE_INVALID_PARAM} parameter error.
- *         {@link WINDOW_MANAGER_ERRORCODE_STATE_ABNORMALLY} this window state is abnormal.
- *         {@link WINDOW_MANAGER_ERRORCODE_SYSTEM_ABNORMALLY} the window manager service works abnormal.
+ *         {@link WINDOW_MANAGER_ERRORCODE_STATE_ABNORMAL} this window state is abnormal.
+ *         {@link WINDOW_MANAGER_ERRORCODE_SYSTEM_ABNORMAL} the window manager service works abnormal.
  * @since 16
  */
 int32_t OH_WindowManager_GetWindowProperties(
@@ -242,11 +242,11 @@ int32_t OH_WindowManager_GetWindowProperties(
  *
  * @param windowId windowId when window is created.
  * @param pixelMap snapshot of window.
- * @return Return the result code.
+ * @return Returns the result code.
  *         {@link OK} the function call is successful, return pixel map ptr in pixelMap.
  *         {@link WINDOW_MANAGER_ERRORCODE_INVALID_PARAM} parameter error.
- *         {@link WINDOW_MANAGER_ERRORCODE_STATE_ABNORMALLY} this window state is abnormal.
- *         {@link WINDOW_MANAGER_ERRORCODE_SYSTEM_ABNORMALLY} the window manager service works abnormal.
+ *         {@link WINDOW_MANAGER_ERRORCODE_STATE_ABNORMAL} this window state is abnormal.
+ *         {@link WINDOW_MANAGER_ERRORCODE_SYSTEM_ABNORMAL} the window manager service works abnormal.
  * @since 16
  */
 int32_t OH_WindowManager_Snapshot(int32_t windowId, OH_PixelmapNative* pixelMap);
@@ -254,5 +254,6 @@ int32_t OH_WindowManager_Snapshot(int32_t windowId, OH_PixelmapNative* pixelMap)
 #ifdef __cplusplus
 }
 #endif
-/** @} */
+
 #endif  // OH_WINDOW_H
+/** @} */

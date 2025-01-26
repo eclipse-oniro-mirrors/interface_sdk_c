@@ -13,7 +13,6 @@
  * limitations under the License.
  */
 
-
 /**
  * @addtogroup WindowManager_NativeModule
  * @{
@@ -60,17 +59,17 @@ typedef enum {
     /** succ. */
     OK = 0,
     /**
-     * Permission is invaild.
-     *
-     * @since 16
-     */
-    WINDOW_MANAGER_ERRORCODE_INVALID_PERMISSION = 201,
-    /**
      * Param is invaild.
      *
      * @since 16
      */
     WINDOW_MANAGER_ERRORCODE_INVALID_PARAM = 401,
+    /**
+     * Device not support.
+     *
+     * @since 16
+     */
+    WINDOW_MANAGER_ERRORCODE_DEVICE_NOT_SUPPORTED = 401,    
     /** window id is invaild. */
     INVAILD_WINDOW_ID = 1000,
     /** failed. */
@@ -80,13 +79,13 @@ typedef enum {
      *
      * @since 16
      */
-    WINDOW_MANAGER_ERRORCODE_STATE_ABNORMALLY = 1300002,
+    WINDOW_MANAGER_ERRORCODE_STATE_ABNORMAL = 1300002,
     /**
-     * Window state is abnormal.
+     * Window manager service works abnormally.
      *
      * @since 16
      */
-    WINDOW_MANAGER_ERRORCODE_SYSTEM_ABNORMALLY = 1300003,
+    WINDOW_MANAGER_ERRORCODE_SYSTEM_ABNORMAL = 1300003,
 } WindowManager_ErrorCode;
 
 /**
@@ -153,7 +152,7 @@ typedef struct {
     WindowManager_WindowType type;
     /** Whether the window is displayed in full screen mode. The default value is false */
     bool isFullScreen;
-    /** Whether the window layout is in full screen mode(whether the window is immersive). The default value is false */
+    /** Whether the window layout is in full screen mode. The default value is false */
     bool isLayoutFullScreen;
     /** Whether the window can gain focus. The default value is true */
     bool focusable;
