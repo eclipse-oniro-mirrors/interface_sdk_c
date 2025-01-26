@@ -115,7 +115,8 @@ int32_t OH_WindowManager_GetWindowAvoidArea(
  * @brief Checks whether the window is displayed.
  *
  * @param windowId windowId when window is created.
- * @param isShow Whether the window is displayed. The value true means that the window is displayed, and false means the opposite.
+ * @param isShow Whether the window is displayed.
+ *         The value true means that the window is displayed, and false means the opposite.
  * @return Return the result code.
  *         {@link OK} the function call is successful.
  *         {@link WINDOW_MANAGER_ERRORCODE_INVALID_PARAM} parameter error.
@@ -214,7 +215,7 @@ int32_t OH_WindowManager_SetWindowKeepScreenOn(int32_t windowId, bool isKeepScre
  * @return Return the result code.
  *         {@link OK} the function call is successful.
  *         {@link WINDOW_MANAGER_ERRORCODE_INVALID_PARAM} parameter error.
- *         {@link WINDOW_MANAGER_ERRORCODE_INVALID_PERMISSION} permission error. 
+ *         {@link WINDOW_MANAGER_ERRORCODE_INVALID_PERMISSION} permission error.
  *         {@link WINDOW_MANAGER_ERRORCODE_STATE_ABNORMALLY} this window state is abnormal.
  *         {@link WINDOW_MANAGER_ERRORCODE_SYSTEM_ABNORMALLY} the window manager service works abnormal.
  * @since 16
