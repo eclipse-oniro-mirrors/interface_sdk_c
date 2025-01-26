@@ -18,7 +18,6 @@
  * @{
  *
  * @brief Provides abilities of window on the native side
- *
  * @since 16
  */
 
@@ -28,7 +27,7 @@
  * @brief Declares APIs for window
  * @library libnative_window_manager.so
  * @kit ArkUI
- * @syscap SystemCapability.WindowManager.WindowManager.Core
+ * @syscap SystemCapability.Window.SessionManager.Core
  * @since 16
  */
 #ifndef OH_WINDOW_H
@@ -36,6 +35,7 @@
 
 #include "stdbool.h"
 #include "stdint.h"
+
 #include "oh_window_comm.h"
 
 #ifdef __cplusplus
@@ -52,7 +52,7 @@ extern "C" {
  * @return Returns the result code.
  *         {@link OK} the function call is successful.
  *         {@link WINDOW_MANAGER_ERRORCODE_INVALID_PARAM} parameter error.
- *         {@link WINDOW_MANAGER_ERRORCODE_DEVICE_NOT_SUPPORTEDED} capability not supported.
+ *         {@link WINDOW_MANAGER_ERRORCODE_DEVICE_NOT_SUPPORTED} capability not supported.
  *         {@link WINDOW_MANAGER_ERRORCODE_STATE_ABNORMAL} this window state is abnormal.
  *         {@link WINDOW_MANAGER_ERRORCODE_SYSTEM_ABNORMAL} the window manager service works abnormally.
  * @since 16
@@ -110,7 +110,7 @@ int32_t OH_WindowManager_GetWindowAvoidArea(
 /**
  * @brief Checks whether the window is displayed.
  *
- * @param windowId windowId when window is created.
+ * @param windowId WindowId when window is created.
  * @param isShow Whether the window is displayed. The value true means that the window is displayed, and false means the opposite.
  * @return Returns the result code.
  *         {@link OK} the function call is successful.
@@ -134,7 +134,7 @@ int32_t OH_WindowManager_IsWindowShown(int32_t windowId, bool* isShow);
 int32_t OH_WindowManager_ShowWindow(int32_t windowId);
 
 /**
- * @brief Set window touchable status.
+ * @brief Set window touchable
  *
  * @param windowId WindowId when window is created.
  * @param isTouchable Indicates whether the specified window can be touched.
@@ -210,7 +210,6 @@ int32_t OH_WindowManager_SetWindowKeepScreenOn(int32_t windowId, bool isKeepScre
  * @return Returns the result code.
  *         {@link OK} the function call is successful.
  *         {@link WINDOW_MANAGER_ERRORCODE_INVALID_PARAM} parameter error.
- *         {@link WINDOW_MANAGER_ERRORCODE_INVALID_PERMISSION} permission error.
  *         {@link WINDOW_MANAGER_ERRORCODE_STATE_ABNORMAL} this window state is abnormal.
  *         {@link WINDOW_MANAGER_ERRORCODE_SYSTEM_ABNORMAL} the window manager service works abnormally.
  * @since 16
@@ -249,5 +248,5 @@ int32_t OH_WindowManager_Snapshot(int32_t windowId, OH_PixelmapNative* pixelMap)
 }
 #endif
 
-#endif  // OH_WINDOW_H
+#endif // OH_WINDOW_H
 /** @} */

@@ -69,7 +69,7 @@ typedef enum {
      *
      * @since 16
      */
-    WINDOW_MANAGER_ERRORCODE_DEVICE_NOT_SUPPORTED = 801,    
+    WINDOW_MANAGER_ERRORCODE_DEVICE_NOT_SUPPORTED = 801,
     /** window id is invaild. */
     INVAILD_WINDOW_ID = 1000,
     /** failed. */
@@ -152,7 +152,7 @@ typedef struct {
     WindowManager_WindowType type;
     /** Whether the window is displayed in full screen mode. The default value is false. */
     bool isFullScreen;
-    /** Whether the window layout is in full screen mode. The default value is false. */
+    /** Whether the window layout is full screen mode. The default value is false. */
     bool isLayoutFullScreen;
     /** Whether the window can gain focus. The default value is true. */
     bool focusable;
