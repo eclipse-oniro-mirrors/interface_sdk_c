@@ -527,7 +527,7 @@ typedef void (*OH_AVScreenCapture_OnBufferAvailable)(OH_AVScreenCapture *capture
  * @param capture Pointer to an OH_AVScreenCapture instance
  * @param displayId Id of the display device that being captured
  * @param userData Pointer to user specific data
- * 
+ *
  * @since 15
  */
 typedef void (*OH_AVScreenCapture_OnDisplaySelected)(OH_AVScreenCapture *capture, uint64_t displayId, void *userData);
