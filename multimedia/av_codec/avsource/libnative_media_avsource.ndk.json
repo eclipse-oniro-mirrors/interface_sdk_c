@@ -23,4 +23,8 @@
         "first_introduced": "10",
         "name": "OH_AVSource_GetTrackFormat"
     }
+    {
+        "first_introduced": "16",
+        "name": "OH_AVSource_GetCustomMetaDataFormat"
+    }
 ]
