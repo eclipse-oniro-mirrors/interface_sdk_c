@@ -63,7 +63,7 @@ typedef enum {
      *
      * @since 16
      */
-    WINDOW_MANAGER_ERRORCODE_NO_PERMISSION = 401,
+    WINDOW_MANAGER_ERRORCODE_NO_PERMISSION = 201,
     /**
      * @error Param is invalid.
      *
