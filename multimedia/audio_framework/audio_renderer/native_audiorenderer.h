@@ -282,7 +282,7 @@ OH_AudioStream_Result OH_AudioRenderer_GetTimestamp(OH_AudioRenderer* renderer,
  *                                         1.The param of renderer is nullptr;
  *                                         2.The param of framePosition or timestamp is nullptr;
  *         {@link AUDIOSTREAM_ERROR_ILLEGAL_STATE}:
- *                                         1.Stopped state is illegal for getting audio timestamp.
+ *                                         1.Only running state is legal for getting audio timestamp.
  *         {@link AUDIOSTREAM_ERROR_SYSTEM}:
  *                                         1.Crash or blocking occurs in system process.
  *                                         2.Other unexpected error from internal system.
