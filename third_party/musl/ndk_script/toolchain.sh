@@ -50,10 +50,10 @@ function strip_dir() {
     done
 }
 function remove_unnecessary_file {
-    file_list=("lib/clang/current" "lib/arm-liteos-ohos" "lib/loongarch64-linux-ohos" "lib/mipsel-linux-ohos" "lib/riscv64-linux-ohos" "lib/clang/15.0.4/bin/loongarch64-linux-ohos" "lib/clang/15.0.4/lib/arm-liteos-ohos" "lib/clang/15.0.4/lib/i386-unknown-linux-gnu" "lib/clang/15.0.4/lib/loongarch64-linux-ohos" "lib/clang/15.0.4/lib/mipsel-linux-ohos" "lib/clang/15.0.4/lib/riscv64-linux-ohos" "lib/clang/15.0.4/lib/windows")
+    file_list=("bin/llvm-ifs" "bin/llvm-ifs.exe" "lib/clang/current" "lib/arm-liteos-ohos" "lib/loongarch64-linux-ohos" "lib/mipsel-linux-ohos" "lib/riscv64-linux-ohos" "lib/clang/15.0.4/bin/loongarch64-linux-ohos" "lib/clang/15.0.4/lib/arm-liteos-ohos" "lib/clang/15.0.4/lib/i386-unknown-linux-gnu" "lib/clang/15.0.4/lib/loongarch64-linux-ohos" "lib/clang/15.0.4/lib/mipsel-linux-ohos" "lib/clang/15.0.4/lib/riscv64-linux-ohos" "lib/clang/15.0.4/lib/windows")
 
     for i in "${file_list[@]}"; do
-        if [ -d "${OUT_DIR}/${i}" ]; then
+        if [ -e "${OUT_DIR}/${i}" ]; then
             rm -rf "${OUT_DIR}/${i}"
         fi
     done
