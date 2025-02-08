@@ -7232,7 +7232,7 @@ typedef enum {
      * Positive numbers indicating slide backward(e.g. from index=1 to index=0), negative numbers indicating
      * slide forward(e.g. from index=0 to index=1). \n
      *
-     * @since 16
+     * @since 15
      */
     NODE_SWIPER_EVENT_ON_CONTENT_WILL_SCROLL = 1001007,
 
