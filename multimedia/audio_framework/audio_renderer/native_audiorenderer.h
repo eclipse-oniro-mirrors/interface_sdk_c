@@ -532,7 +532,7 @@ OH_AudioStream_Result OH_AudioRenderer_SetDefaultOutputDevice(
  *                                         2.Other unexpected error from internal system.
  * @since 15
  */
- OH_AudioStream_Result OH_AudioRenderer_GetAudioTimestampInfo(OH_AudioRenderer* renderer,
+OH_AudioStream_Result OH_AudioRenderer_GetAudioTimestampInfo(OH_AudioRenderer* renderer,
     int64_t* framePosition, int64_t* timestamp);
 
 #ifdef __cplusplus
