@@ -956,7 +956,7 @@ int32_t OH_ArkUI_UIInputEvent_GetModifierKeyStates(const ArkUI_UIInputEvent* eve
  * @param event Pointer to an <b>ArkUI_UIInputEvent</b> object.
  * @param pointerIndex Index of the target touch point in the multi-touch data list.
  * @return Returns the press time of the specific touch point; returns <b>0</b> if any parameter error occurs.
- * @since 16
+ * @since 15
  */
 int64_t OH_ArkUI_PointerEvent_GetPressedTimeByIndex(const ArkUI_UIInputEvent* event, uint32_t pointerIndex);
 
@@ -967,7 +967,7 @@ int64_t OH_ArkUI_PointerEvent_GetPressedTimeByIndex(const ArkUI_UIInputEvent* ev
  * @param event Pointer to an <b>ArkUI_UIInputEvent</b> object.
  * @return Returns the x-axis offset of the mouse pointer position relative to the position in the previously reported
  * mouse event; returns <b>0.0f</b> if any parameter error occurs.
- * @since 16
+ * @since 15
  */
 float OH_ArkUI_MouseEvent_GetRawDeltaX(const ArkUI_UIInputEvent* event);
 
@@ -978,7 +978,7 @@ float OH_ArkUI_MouseEvent_GetRawDeltaX(const ArkUI_UIInputEvent* event);
  * @param event Pointer to an <b>ArkUI_UIInputEvent</b> object.
  * @return Returns the y-axis offset of the mouse pointer position relative to the position in the previously reported
  * mouse event; returns <b>0.0f</b> if any parameter error occurs.
- * @since 16
+ * @since 15
  */
 float OH_ArkUI_MouseEvent_GetRawDeltaY(const ArkUI_UIInputEvent* event);
 
@@ -993,7 +993,7 @@ float OH_ArkUI_MouseEvent_GetRawDeltaY(const ArkUI_UIInputEvent* event);
  * @return Returns the result code.
  *          Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
  *          Returns {@link ARKUI_ERROR_CODE_BUFFER_SIZE_ERROR} if the given buffer size is insufficient.
- * @since 16
+ * @since 15
  */
 int32_t OH_ArkUI_MouseEvent_GetPressedButtons(
     const ArkUI_UIInputEvent* event, int32_t* pressedButtons, int32_t* length);
@@ -1003,7 +1003,7 @@ int32_t OH_ArkUI_MouseEvent_GetPressedButtons(
  *
  * @param event Pointer to an <b>ArkUI_UIInputEvent</b> object.
  * @return Returns the screen ID; returns <b>0</b> if any parameter error occurs.
- * @since 16
+ * @since 15
  */
 int32_t OH_ArkUI_UIInputEvent_GetTargetDisplayId(const ArkUI_UIInputEvent* event);
 
