@@ -846,6 +846,63 @@ int32_t OH_ArkUI_UIInputEvent_GetPressedKeys(
     const ArkUI_UIInputEvent* event, int32_t* pressedKeyCodes, int32_t* length);
 
 /**
+ * @brief Obtains the press time of a specific touch point.
+ *
+ * @param event Pointer to an <b>ArkUI_UIInputEvent</b> object.
+ * @param pointerIndex Index of the target touch point in the multi-touch data list.
+ * @return Returns the press time of the specific touch point; returns <b>0</b> if any parameter error occurs.
+ * @since 15
+ */
+int64_t OH_ArkUI_PointerEvent_GetPressedTimeByIndex(const ArkUI_UIInputEvent* event, uint32_t pointerIndex);
+
+/**
+ * @brief Obtains the x-axis offset of the mouse pointer position relative to the position in the previously reported
+ * mouse event. This value may be less than the difference between the two reported X coordinates when the mouse pointer
+ * is near the screen edge.
+ * @param event Pointer to an <b>ArkUI_UIInputEvent</b> object.
+ * @return Returns the x-axis offset of the mouse pointer position relative to the position in the previously reported
+ * mouse event; returns <b>0.0f</b> if any parameter error occurs.
+ * @since 15
+ */
+float OH_ArkUI_MouseEvent_GetRawDeltaX(const ArkUI_UIInputEvent* event);
+
+/**
+ * @brief Obtains the y-axis offset of the mouse pointer position relative to the position in the previously reported
+ * mouse event. This value may be less than the difference between the two reported Y coordinates when the mouse pointer
+ * is near the screen edge.
+ * @param event Pointer to an <b>ArkUI_UIInputEvent</b> object.
+ * @return Returns the y-axis offset of the mouse pointer position relative to the position in the previously reported
+ * mouse event; returns <b>0.0f</b> if any parameter error occurs.
+ * @since 15
+ */
+float OH_ArkUI_MouseEvent_GetRawDeltaY(const ArkUI_UIInputEvent* event);
+
+/**
+ * @brief Obtains the pressed buttons from a mouse event.
+ *
+ * @param event Pointer to an <b>ArkUI_UIInputEvent</b> object.
+ * @param pressedButtons Array of the pressed buttons. An int array must be created beforehand to store the pressed
+ *                       buttons.
+ * @param length Length of the passed pressedButtons array (when used as an input parameter);
+ *               number of the buttons pressed (when used as an output parameter).
+ * @return Returns the result code.
+ *          Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *          Returns {@link ARKUI_ERROR_CODE_BUFFER_SIZE_ERROR} if the given buffer size is insufficient.
+ * @since 15
+ */
+int32_t OH_ArkUI_MouseEvent_GetPressedButtons(
+    const ArkUI_UIInputEvent* event, int32_t* pressedButtons, int32_t* length);
+
+/**
+ * @brief Obtains the ID of the screen where the UI input event occurs.
+ *
+ * @param event Pointer to an <b>ArkUI_UIInputEvent</b> object.
+ * @return Returns the screen ID; returns <b>0</b> if any parameter error occurs.
+ * @since 15
+ */
+int32_t OH_ArkUI_UIInputEvent_GetTargetDisplayId(const ArkUI_UIInputEvent* event);
+
+/**
  * @brief Obtains the axis value of a focus axis event.
  *
  * @param event Pointer to an <b>ArkUI_UIInputEvent</b> object.
