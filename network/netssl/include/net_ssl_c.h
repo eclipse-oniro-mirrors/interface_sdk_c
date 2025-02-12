@@ -115,4 +115,3 @@ void OH_Netstack_DestroyCertificatesContent(NetStack_Certificates *certs);
 
 /** @} */
 #endif // NET_SSL_C_H
-

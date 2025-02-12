@@ -137,4 +137,3 @@ typedef struct NetStack_Certificates {
 /** @} */
 #endif // NET_SSL_C_TYPE_H
 
-
