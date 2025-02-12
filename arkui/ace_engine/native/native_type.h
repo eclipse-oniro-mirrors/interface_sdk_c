@@ -862,7 +862,7 @@ typedef enum {
 /**
  * @brief Enumerates the animation modes for {@link NODE_SWIPER_INDEX}.
  *
- * @since 16
+ * @since 15
  */
 typedef enum {
     /** Jump to target index without animation. */
