@@ -2187,6 +2187,16 @@ typedef enum {
      * @since 16
      */
     ARKUI_ERROR_CODE_CALLBACK_INVALID = 190002,
+    /**
+     * @error The gesture recognizer type is not supported.
+     * @since 16
+     */
+    ARKUI_ERROR_CODE_RECOGNIZER_TYPE_NOT_SUPPORTED = 180102,
+    /**
+     * @error operation is not allowed for current drag drop pharse.
+     * @since 16
+     */
+    ARKUI_ERROR_CODE_DRAG_DROP_OPERATION_NOT_ALLOWED = 190004,
 } ArkUI_ErrorCode;
 
 /**
@@ -2469,6 +2479,26 @@ typedef enum {
 } ArkUI_SafeAreaEdge;
 
 /**
+ * @brief Define an enum for the focus movement directions.
+ *
+ * @since 16
+*/
+typedef enum {
+    /** Move focus forward. */
+    ARKUI_FOCUS_MOVE_FORWARD = 0,
+    /** Move focus backward. */
+    ARKUI_FOCUS_MOVE_BACKWARD,
+    /** Move focus up. */
+    ARKUI_FOCUS_MOVE_UP,
+    /** Move focus down. */
+    ARKUI_FOCUS_MOVE_DOWN,
+    /** Move focus left. */
+    ARKUI_FOCUS_MOVE_LEFT,
+    /** Move focus right. */
+    ARKUI_FOCUS_MOVE_RIGHT,
+} ArkUI_FocusMove;
+
+/**
  * @brief defines the enumerated value of the customDialog's keyboard avoid mode.
  *
  * @since 16
@@ -2491,6 +2521,20 @@ typedef enum {
     /** Layout bottom half screen when the phone in hover mode. */
     ARKUI_HOVER_MODE_AREA_TYPE_BOTTOM,
 } ArkUI_HoverModeAreaType;
+
+/**
+ * @brief Enumerates the expand modes.
+ *
+ * @since 16
+ */
+typedef enum {
+    /** Expand. */
+    ARKUI_EXPAND = 0,
+    /** Not expand. */
+    ARKUI_NOT_EXPAND = 1,
+    /** Lazy expand. Expand the children of node if needed. */
+    ARKUI_LAZY_EXPAND = 2,
+} ArkUI_ExpandMode;
 
 /**
  * @brief Defines parameter used by the system font style callback event.

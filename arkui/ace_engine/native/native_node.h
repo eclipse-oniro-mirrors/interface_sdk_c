@@ -39,6 +39,7 @@
 
 #include "native_type.h"
 #include "ui_input_event.h"
+#include <cstdint>
 
 #ifdef __cplusplus
 extern "C" {
@@ -1868,7 +1869,39 @@ typedef enum {
      * @since 16
      */
     NODE_BACKDROP_BLUR = 99,
-    
+
+    /**
+     * @brief Defines the background image resizable attribute, which can be set, reset,
+     * and obtained as required through APIs.
+     *
+     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
+     * .value[0].f32: width of the left edge. The unit is vp. \n
+     * .value[1].f32: width of the top edge. The unit is vp. \n
+     * .value[2].f32: width of the right edge. The unit is vp. \n
+     * .value[3].f32: width of the bottom edge. The unit is vp. \n
+     * \n
+     * Format of the return value {@link ArkUI_AttributeItem}:\n
+     * .value[0].f32: width of the left edge. The unit is vp. \n
+     * .value[1].f32: width of the top edge. The unit is vp. \n
+     * .value[2].f32: width of the right edge. The unit is vp. \n
+     * .value[3].f32: width of the bottom edge. The unit is vp. \n
+     *
+     * @since 16
+     */
+    NODE_BACKGROUND_IMAGE_RESIZABLE_WITH_SLICE = 100,
+
+    /**
+     * @brief Sets the next focus node.
+     *
+     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute: \n
+     * .value[0].i32: focus movement direction, as defined in {@link ArkUI_FocusMove}.
+     * .object: next focus node. The parameter type is {@link ArkUI_NodeHandle}.\n
+     * \n
+     *
+     * @since 16
+     */
+    NODE_NEXT_FOCUS = 101,
+
     /**
      * @brief Defines the text content attribute, which can be set, reset, and obtained as required through APIs.
      *
@@ -6472,6 +6505,48 @@ typedef enum {
     NODE_DISPATCH_KEY_EVENT = 24,
 
     /**
+     * @brief Defines the event triggered when the bound component receives an axis event.
+     *
+     * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
+     * {@link ArkUI_UIInputEvent}. \n
+     * 
+     * @since 16
+     */
+    NODE_ON_AXIS = 25,
+
+    /**
+     * @brief Defines the event triggered when the bound component is clicked.
+     *
+     * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
+     * {@link ArkUI_UIInputEvent}.  \n
+     *
+     * @since 16
+     */
+    NODE_ON_CLICK_EVENT = 26,
+
+    /**
+     * @brief Defines the event triggered when the mouse pointer hovers over or moves away from a component.
+     *
+     * This event is triggered when the mouse pointer enters or leaves the component's bounding box. \n
+     * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
+     * {@link ArkUI_UIInputEvent}. \n
+     *
+     *@since 16
+     */
+    NODE_ON_HOVER_EVENT = 27,
+
+    /**
+     * @brief Defines the hover event.
+     * 
+     * The event is triggered when the pointer is hovered by a pen device.
+     * within the component. \n
+     * When the event callback occurs, the {@link ArkUI_NodeEvent} object can be obtained from the
+     * {@link ArkUI_UIInputEvent} object. \n
+     * @since 16
+    */
+    NODE_ON_HOVER_MOVE = 29,
+
+    /**
      * @brief Triggers onDetectResultUpdate callback
      * when the text is set to TextDataDetectorConfig and recognized successfully.
      *
@@ -7138,6 +7213,39 @@ typedef enum {
      * @since 16
      */
     NODE_SWIPER_EVENT_ON_SELECTED = 1001005,
+
+    /**
+     * @brief Defines the event triggered when the selected index of the <b>ARKUI_NODE_SWIPER</b> changed.
+     * 
+     * This event is triggered under the following scenarios: \n
+     * 1. When the page switching animation starts after the user lifts their finger after swiping and the swipe meets
+     * the threshold for page turning. \n
+     * 2. When the page is changed programmatically using either <b>NODE_SWIPER_INDEX</b> or
+     * <b>NODE_SWIPER_SWIPE_TO_INDEX</b>. \n
+     * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
+     * {@link ArkUI_NodeComponentEvent}. \n
+     * {@link ArkUI_NodeComponentEvent} contains one parameter:\n
+     * <b>ArkUI_NodeComponentEvent.data[0].i32</b>: the index of the element becomes unselected. \n
+     * 
+     * @since 16
+     */
+    NODE_SWIPER_EVENT_ON_UNSELECTED = 1001006,
+
+    /**
+     * @brief Defines the event triggered when content in the swiper component will scroll.
+     * Instructions: Before page scrolling, the </b>ContentWillScrollCallback</b> callback is invoked. \n \n
+     * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
+     * {@link ArkUI_NodeComponentEvent}. \n
+     * {@link ArkUI_NodeComponentEvent} contains three parameters:\n
+     * <b>ArkUI_NodeComponentEvent.data[0].i32</b>: the index value of the current child page. \n
+     * <b>ArkUI_NodeComponentEvent.data[1].i32</b>: the index value of the child page that will display. \n
+     * <b>ArkUI_NodeComponentEvent.data[2].f32</b>: the sliding offset of each frame.
+     * Positive numbers indicating slide backward(e.g. from index=1 to index=0), negative numbers indicating
+     * slide forward(e.g. from index=0 to index=1). \n
+     *
+     * @since 16
+     */
+    NODE_SWIPER_EVENT_ON_CONTENT_WILL_SCROLL = 1001007,
 
     /**
      * @brief Defines the event triggered when the <b>ARKUI_NODE_SCROLL</b> component scrolls.
@@ -8454,7 +8562,7 @@ typedef enum {
 
 /**
  * @brief Enumerates the inspector error codes.
- * @since 16
+ * @since 15
  */
 typedef enum {
     /**
@@ -8740,6 +8848,48 @@ int32_t OH_ArkUI_NodeUtils_GetNodeType(ArkUI_NodeHandle node);
  * @since 16
  */
 int32_t OH_ArkUI_NodeUtils_GetWindowInfo(ArkUI_NodeHandle node, ArkUI_HostWindowInfo** info);
+ 
+/**
+ * @brief Obtains the index of the current FrameNode's first child node which is on the tree.
+ *
+ * @param node Indicates the target node.
+ * @param index The index of the subnode.
+ * @return Error code.
+ *         {@link ARKUI_ERROR_CODE_NO_ERROR} success.
+ *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} Function parameter exception.
+ *         {@link ARKUI_ERROR_CODE_CAPI_INIT_ERROR} if the CAPI init error.
+ * @since 16
+ */
+int32_t OH_ArkUI_NodeUtils_GetFirstChildIndexWithoutExpand(ArkUI_NodeHandle node, uint32_t* index);
+
+/**
+ * @brief Obtains the index of the current FrameNode's last child node which is on the tree.
+ *
+ * @param node Indicates the target node.
+ * @param index the index of the subnode.
+ * @return Error code.
+ *         {@link ARKUI_ERROR_CODE_NO_ERROR} success.
+ *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} Function parameter exception.
+ *         {@link ARKUI_ERROR_CODE_CAPI_INIT_ERROR} if the CAPI init error.
+ * @since 16
+ */
+int32_t OH_ArkUI_NodeUtils_GetLastChildIndexWithoutExpand(ArkUI_NodeHandle node, uint32_t* index);
+
+/**
+ * @brief Obtains a subnode by position with the expand mode.
+ *
+ * @param node Indicates the target node.
+ * @param position Indicates the position of the subnode.
+ * @param subnode The pointer to the subnode.
+ * @param expandMode Indicates the expand mode. {@link ArkUI_ExpandMode}.
+ * @return Error code.
+ *         {@link ARKUI_ERROR_CODE_NO_ERROR} success.
+ *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} Function parameter exception.
+ *         {@link ARKUI_ERROR_CODE_CAPI_INIT_ERROR} if the CAPI init error.
+ * @since 16
+ */
+int32_t OH_ArkUI_NodeUtils_GetChildWithExpandMode(ArkUI_NodeHandle node, int32_t position,
+    ArkUI_NodeHandle* subnode, uint32_t expandMode);
 
 /**
  * @brief Collapse the ListItem in its expanded state.
@@ -8893,7 +9043,7 @@ int32_t OH_ArkUI_NodeUtils_GetCrossLanguageOption(ArkUI_NodeHandle node, ArkUI_C
  * @return error code
            {@link ARKUI_INSPECTOR_NATIVE_RESULT_SUCCESSFUL} if the operation is successful.
  *         {@link ARKUI_INSPECTOR_NATIVE_RESULT_BAD_PARAMETER} if a parameter is incorrect.
- * @since 16
+ * @since 15
  */
 int32_t OH_ArkUI_RegisterLayoutCallbackOnNodeHandle(ArkUI_NodeHandle node,
     void* userData, void (*onLayoutCompleted)(void* userData));
@@ -8908,7 +9058,7 @@ int32_t OH_ArkUI_RegisterLayoutCallbackOnNodeHandle(ArkUI_NodeHandle node,
  * @return error code
            {@link ARKUI_INSPECTOR_NATIVE_RESULT_SUCCESSFUL} if the operation is successful.
  *         {@link ARKUI_INSPECTOR_NATIVE_RESULT_BAD_PARAMETER} if a parameter is incorrect.
- * @since 16
+ * @since 15
  */
 int32_t OH_ArkUI_RegisterDrawCallbackOnNodeHandle(ArkUI_NodeHandle node,
     void* userData, void (*onDrawCompleted)(void* userData));
@@ -8920,7 +9070,7 @@ int32_t OH_ArkUI_RegisterDrawCallbackOnNodeHandle(ArkUI_NodeHandle node,
  * @return error code
            {@link ARKUI_INSPECTOR_NATIVE_RESULT_SUCCESSFUL} if the operation is successful.
  *         {@link ARKUI_INSPECTOR_NATIVE_RESULT_BAD_PARAMETER} if a parameter is incorrect.
- * @since 16
+ * @since 15
  */
 int32_t OH_ArkUI_UnregisterLayoutCallbackOnNodeHandle(ArkUI_NodeHandle node);
 
@@ -8931,7 +9081,7 @@ int32_t OH_ArkUI_UnregisterLayoutCallbackOnNodeHandle(ArkUI_NodeHandle node);
  * @return error code
            {@link ARKUI_INSPECTOR_NATIVE_RESULT_SUCCESSFUL} if the operation is successful.
  *         {@link ARKUI_INSPECTOR_NATIVE_RESULT_BAD_PARAMETER} if a parameter is incorrect.
- * @since 16
+ * @since 15
  */
 int32_t OH_ArkUI_UnregisterDrawCallbackOnNodeHandle(ArkUI_NodeHandle node);
 

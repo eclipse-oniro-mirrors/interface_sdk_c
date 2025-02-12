@@ -1,4 +1,4 @@
-# Copyright (c) 2024 Huawei Device Co., Ltd.
+# Copyright (c) 2025 Huawei Device Co., Ltd.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at
@@ -14,24 +14,16 @@
 import("//build/ohos.gni")
 import("//build/ohos/ndk/ndk.gni")
 
-ohos_ndk_library("native_window_manager") {
-  ndk_description_file = "./libwm.ndk.json"
-  min_compact_version = "12"
-  output_name = "native_window_manager"
-  output_extension = "so"
-  system_capability = "SystemCapability.Window.SessionManager"
-  system_capability_headers = [
-    "oh_window.h",
-    "oh_window_comm.h",
-    "oh_window_event_filter.h",
-  ]
+ohos_ndk_headers("background_process_manager_header") {
+  dest_dir = "$ndk_headers_out_dir/background_process_manager"
+  sources = [ "include/background_process_manager.h" ]
 }
 
-ohos_ndk_headers("window_manager_header") {
-  dest_dir = "$ndk_headers_out_dir/window_manager"
-  sources = [
-    "oh_window.h",
-    "oh_window_comm.h",
-    "oh_window_event_filter.h",
-  ]
+ohos_ndk_library("libbackground_process_manager_ndk") {
+  output_name = "background_process_manager"
+  ndk_description_file = "./background_process_manager.ndk.json"
+  system_capability =
+      "SystemCapability.Resourceschedule.BackgroundProcessManager"
+  system_capability_headers =
+      [ "background_process_manager/background_process_manager.h" ]
 }

@@ -252,6 +252,18 @@
         "name": "OH_ArkUI_GestureInterruptInfo_GetSystemRecognizerType"
     },
     {
+        "first_introduced": "16",
+        "name": "OH_ArkUI_GestureInterruptInfo_GetTouchRecognizers"
+    },
+    {
+        "first_introduced": "16",
+        "name": "OH_ArkUI_TouchRecognizer_GetNodeHandle"
+    },
+    {
+        "first_introduced": "16",
+        "name": "OH_ArkUI_TouchRecognizer_CancelTouch"
+    },
+    {
         "first_introduced": "12",
         "name": "OH_ArkUI_GetResponseRecognizersFromInterruptInfo"
     },
@@ -1390,6 +1402,18 @@
     {
         "first_introduced": "16",
         "name": "OH_ArkUI_CrossLanguageOption_GetAttributeSettingStatus"
+    },
+    {
+        "first_introduced": "16",
+        "name": "OH_ArkUI_NodeUtils_GetFirstChildIndexWithoutExpand"
+    },
+    {
+        "first_introduced": "16",
+        "name": "OH_ArkUI_NodeUtils_GetLastChildIndexWithoutExpand"
+    },
+    {
+        "first_introduced": "16",
+        "name": "OH_ArkUI_NodeUtils_GetChildWithExpandMode"
     },
     {
         "first_introduced": "12",
@@ -2553,6 +2577,42 @@
     },
     {
         "first_introduced": "16",
+        "name": "OH_ArkUI_GetGestureParam_FingerCount"
+    },
+    {
+        "first_introduced": "16",
+        "name": "OH_ArkUI_GetGestureParam_limitFingerCount"
+    },
+    {
+        "first_introduced": "16",
+        "name": "OH_ArkUI_GetGestureParam_repeat"
+    },
+    {
+        "first_introduced": "16",
+        "name": "OH_ArkUI_GetGestureParam_distance"
+    },
+    {
+        "first_introduced": "16",
+        "name": "OH_ArkUI_GetGestureParam_speed"
+    },
+    {
+        "first_introduced": "16",
+        "name": "OH_ArkUI_GetGestureParam_duration"
+    },
+    {
+        "first_introduced": "16",
+        "name": "OH_ArkUI_GetGestureParam_angle"
+    },
+    {
+        "first_introduced": "16",
+        "name": "OH_ArkUI_GetGestureParam_distanceThreshold"
+    },
+    {
+        "first_introduced": "16",
+        "name": "OH_ArkUI_GetGestureParam_DirectMask"
+    },
+    {
+        "first_introduced": "16",
         "name": "OH_ArkUI_KeyEvent_Dispatch"
     },
     {
@@ -2616,19 +2676,19 @@
         "name": "OH_ArkUI_HostWindowInfo_Destroy"
     },
     {
-        "first_introduced": "16",
+        "first_introduced": "15",
         "name": "OH_ArkUI_RegisterLayoutCallbackOnNodeHandle"
     },
     {
-        "first_introduced": "16",
+        "first_introduced": "15",
         "name": "OH_ArkUI_RegisterDrawCallbackOnNodeHandle"
     },
     {
-        "first_introduced": "16",
+        "first_introduced": "15",
         "name": "OH_ArkUI_UnregisterLayoutCallbackOnNodeHandle"
     },
     {
-        "first_introduced": "16",
+        "first_introduced": "15",
         "name": "OH_ArkUI_UnregisterDrawCallbackOnNodeHandle"
     },
     {
@@ -2710,5 +2770,65 @@
     {
         "first_introduced": "16",
         "name": "OH_ArkUI_KeyframeAnimateOption_GetExpectedFrameRate"
+    },
+    {
+        "first_introduced": "16",
+        "name": "OH_ArkUI_UIInputEvent_GetEventTargetWidth"
+    },
+    {
+        "first_introduced": "16",
+        "name": "OH_ArkUI_UIInputEvent_GetEventTargetHeight"
+    },
+    {
+        "first_introduced": "16",
+        "name": "OH_ArkUI_UIInputEvent_GetEventTargetPositionX"
+    },
+    {
+        "first_introduced": "16",
+        "name": "OH_ArkUI_UIInputEvent_GetEventTargetPositionY"
+    },
+    {
+        "first_introduced": "16",
+        "name": "OH_ArkUI_UIInputEvent_GetEventTargetGlobalPositionX"
+    },
+    {
+        "first_introduced": "16",
+        "name": "OH_ArkUI_UIInputEvent_GetEventTargetGlobalPositionY"
+    },
+    {
+        "first_introduced": "16",
+        "name": "OH_ArkUI_HoverEvent_IsHovered"
+    },
+    {
+        "first_introduced": "16",
+        "name": "OH_ArkUI_UIInputEvent_GetModifierKeyStates"
+    },
+    {
+        "first_introduced": "16",
+        "name": "OH_ArkUI_AxisEvent_SetPropagation"
+    },
+    {
+        "first_introduced": "16",
+        "name": "OH_ArkUI_AxisEvent_GetScrollStep"
+    },
+    {
+        "first_introduced": "16",
+        "name": "OH_ArkUI_DragEvent_RequestDragEndPending"
+    },
+    {
+        "first_introduced": "16",
+        "name": "OH_ArkUI_NotifyDragResult"
+    },
+    {
+        "first_introduced": "16",
+        "name": "OH_ArkUI_NotifyDragEndPendingDone"
+    },
+    {
+        "first_introduced": "16",
+        "name": "OH_ArkUI_GestureInterrupter_GetUserData"
+    },
+    {
+        "first_introduced": "15",
+        "name": "OH_ArkUI_FocusSetKeyProcessingMode"
     }
 ]
