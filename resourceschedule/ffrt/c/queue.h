@@ -230,6 +230,7 @@ FFRT_C_API ffrt_queue_t ffrt_get_main_queue();
  * @return Returns application worker(ArkTs) thread queue.
  * @since 12
  * @version 1.0
+ * @deprecated since 15
  */
 FFRT_C_API ffrt_queue_t ffrt_get_current_queue();
 
