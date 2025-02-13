@@ -115,6 +115,7 @@ void OH_Netstack_DestroyCertificatesContent(NetStack_Certificates *certs);
  * @permission ohos.permission.INTERNET
  * @return 0 - Success.
  *         201 - Permission denied.
+ *         401 - Parameter error.
  * @param isCleartextPermitted Indicates output parameter,
  *        {@code true} if the Cleartext traffic is permitted, {@code false} otherwise.
  * @since 16
@@ -128,6 +129,7 @@ int32_t OH_Netstack_IsCleartextPermitted(bool *isCleartextPermitted);
  * @permission ohos.permission.INTERNET
  * @return 0 - Success.
  *         201 - Permission denied.
+ *         401 - Parameter error.
  * @param hostname Indicates the host name.
  * @param isCleartextPermitted Indicates output parameter,
  *        {@code true} if the Cleartext traffic for a specified hostname is permitted, {@code false} otherwise.
