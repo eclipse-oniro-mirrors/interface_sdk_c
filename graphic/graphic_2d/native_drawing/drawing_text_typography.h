@@ -1222,15 +1222,15 @@ float OH_Drawing_GetBottomFromTextBox(OH_Drawing_TextBox* textbox, int index);
 int OH_Drawing_GetTextDirectionFromTextBox(OH_Drawing_TextBox* textbox, int index);
 
 /**
- * @brief Gets size of textbox.
+ * @brief Gets size of textBox.
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @param OH_Drawing_TextBox Indicates the pointer to an <b>OH_Drawing_TextBox</b> object.
- * @return Returns size of textbox.
+ * @param textBox Indicates the pointer to an <b>OH_Drawing_TextBox</b> object.
+ * @return Returns size of textBox.
  * @since 11
  * @version 1.0
  */
-size_t OH_Drawing_GetSizeOfTextBox(OH_Drawing_TextBox*);
+size_t OH_Drawing_GetSizeOfTextBox(OH_Drawing_TextBox* textBox);
 
 /**
  * @brief Gets the glyphposition at coordinate.
@@ -1264,12 +1264,12 @@ OH_Drawing_PositionAndAffinity* OH_Drawing_TypographyGetGlyphPositionAtCoordinat
  * @brief Gets position from position and affinity.
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @param OH_Drawing_PositionAndAffinity Indicates the pointer to an <b>OH_Drawing_PositionAndAffinity</b> object.
+ * @param positionAndAffinity Indicates the pointer to an <b>OH_Drawing_PositionAndAffinity</b> object.
  * @return Returns position from position and affinity.
  * @since 11
  * @version 1.0
  */
-size_t OH_Drawing_GetPositionFromPositionAndAffinity(OH_Drawing_PositionAndAffinity*);
+size_t OH_Drawing_GetPositionFromPositionAndAffinity(OH_Drawing_PositionAndAffinity* positionAndAffinity);
 
 /**
  * @brief Gets affinity from position and affinity.
@@ -1298,34 +1298,34 @@ OH_Drawing_Range* OH_Drawing_TypographyGetWordBoundary(OH_Drawing_Typography* ty
  * @brief Gets start from range.
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @param OH_Drawing_Range Indicates the pointer to an <b>OH_Drawing_Range</b> object.
+ * @param range Indicates the pointer to an <b>OH_Drawing_Range</b> object.
  * @return Returns start from range.
  * @since 11
  * @version 1.0
  */
-size_t OH_Drawing_GetStartFromRange(OH_Drawing_Range*);
+size_t OH_Drawing_GetStartFromRange(OH_Drawing_Range* range);
 
 /**
  * @brief Gets end from range.
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @param OH_Drawing_Range Indicates the pointer to an <b>OH_Drawing_Range</b> object.
+ * @param range Indicates the pointer to an <b>OH_Drawing_Range</b> object.
  * @return Returns end from range.
  * @since 11
  * @version 1.0
  */
-size_t OH_Drawing_GetEndFromRange(OH_Drawing_Range*);
+size_t OH_Drawing_GetEndFromRange(OH_Drawing_Range* range);
 
 /**
  * @brief Gets the line count.
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @param OH_Drawing_Typography Indicates the pointer to an <b>OH_Drawing_Typography</b> object.
+ * @param typography Indicates the pointer to an <b>OH_Drawing_Typography</b> object.
  * @return Returns the line count.
  * @since 11
  * @version 1.0
  */
-size_t OH_Drawing_TypographyGetLineCount(OH_Drawing_Typography*);
+size_t OH_Drawing_TypographyGetLineCount(OH_Drawing_Typography* typography);
 
 /**
  * @brief Sets the decoration style.
@@ -1566,12 +1566,12 @@ OH_Drawing_LineMetrics* OH_Drawing_TypographyGetLineMetrics(OH_Drawing_Typograph
  * @brief Get the number of lines.
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @param OH_Drawing_LineMetrics Indicates the pointer to a line metrics object <b>OH_Drawing_LineMetrics</b>.
+ * @param lineMetrics Indicates the pointer to a line metrics object <b>OH_Drawing_LineMetrics</b>.
  * @return Returns the number of lines.
  * @since 12
  * @version 1.0
  */
-size_t OH_Drawing_LineMetricsGetSize(OH_Drawing_LineMetrics*);
+size_t OH_Drawing_LineMetricsGetSize(OH_Drawing_LineMetrics* lineMetrics);
 
 /**
  * @brief Releases the memory occupied by line metrics.
@@ -2120,12 +2120,12 @@ void OH_Drawing_TextStyleDestroyFontFeatures(OH_Drawing_FontFeature* fontFeature
  * @brief Get size of font features.
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @param OH_Drawing_TextStyle Indicates the pointer to an <b>OH_Drawing_TextStyle</b> object.
+ * @param style Indicates the pointer to an <b>OH_Drawing_TextStyle</b> object.
  * @return Returns the size of fontfeatures map.
  * @since 12
  * @version 1.0
  */
-size_t OH_Drawing_TextStyleGetFontFeatureSize(OH_Drawing_TextStyle*);
+size_t OH_Drawing_TextStyleGetFontFeatureSize(OH_Drawing_TextStyle* style);
 
 /**
  * @brief Clear font features.
@@ -2163,12 +2163,12 @@ double OH_Drawing_TextStyleGetBaselineShift(OH_Drawing_TextStyle* style);
  * @brief Gets the text color.
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @param OH_Drawing_TextStyle Indicates the pointer to an <b>OH_Drawing_TextStyle</b> object.
+ * @param style Indicates the pointer to an <b>OH_Drawing_TextStyle</b> object.
  * @return Returns the text color.
  * @since 12
  * @version 1.0
  */
-uint32_t OH_Drawing_TextStyleGetColor(OH_Drawing_TextStyle*);
+uint32_t OH_Drawing_TextStyleGetColor(OH_Drawing_TextStyle* style);
 
 /**
  * @brief Gets text decoration style.
@@ -2510,17 +2510,18 @@ bool OH_Drawing_TypographyStyleStrutStyleEquals(OH_Drawing_StrutStyle* from, OH_
  */
 void OH_Drawing_TypographyStyleSetHintsEnabled(OH_Drawing_TypographyStyle* style, bool hintsEnabled);
 
-/* @brief Getting all font metrics from target row.
+/**
+ * @brief Getting all font metrics from target row.
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @param OH_Drawing_Typography Indicates a pointer to a typesetting object.
+ * @param typography Indicates a pointer to a typesetting object.
  * @param lineNumber Indicates specifies the number of rows.
  * @param fontMetricsSize Indicates the return size of font metrics struct from current line.
  * @return Returns all character measures for the current row.
  * @since 12
  * @version 1.0
  */
-OH_Drawing_Font_Metrics* OH_Drawing_TypographyGetLineFontMetrics(OH_Drawing_Typography*,
+OH_Drawing_Font_Metrics* OH_Drawing_TypographyGetLineFontMetrics(OH_Drawing_Typography* typography,
     size_t lineNumber, size_t* fontMetricsSize);
 
 /**
@@ -2547,12 +2548,12 @@ void OH_Drawing_TypographyMarkDirty(OH_Drawing_Typography* typography);
  * @brief Get the unresolved Glyphs count of lines in a text.
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @param OH_Drawing_Typography Indicates the pointer to the text <b>OH_Drawing_Typography</b> object.
+ * @param typography Indicates the pointer to the text <b>OH_Drawing_Typography</b> object.
  * @return Returns unresolved Glyphs count.
  * @since 12
  * @version 1.0
  */
-int32_t OH_Drawing_TypographyGetUnresolvedGlyphsCount(OH_Drawing_Typography*);
+int32_t OH_Drawing_TypographyGetUnresolvedGlyphsCount(OH_Drawing_Typography* typography);
 
 /**
  * @brief Update the font size of lines in a text.
@@ -2730,13 +2731,13 @@ OH_Drawing_TextDirection OH_Drawing_TypographyGetTextDirection(OH_Drawing_Typogr
  * @brief Sets the maximum number of lines in a text.
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @param OH_Drawing_TypographyStyle Indicates the pointer to a typography style object
+ * @param style Indicates the pointer to a typography style object
  * <b>OH_Drawing_TypographyStyle</b>.
  * @return Return the maximum number of lines in a text.
  * @since 12
  * @version 1.0
  */
-size_t OH_Drawing_TypographyGetTextMaxLines(OH_Drawing_TypographyStyle*);
+size_t OH_Drawing_TypographyGetTextMaxLines(OH_Drawing_TypographyStyle* style);
 
 /**
  * @brief Get the ellipsis of lines in a text.
