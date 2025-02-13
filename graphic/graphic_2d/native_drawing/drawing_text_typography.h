@@ -1042,7 +1042,9 @@ double OH_Drawing_TypographyGetMaxWidth(OH_Drawing_Typography* typography);
 double OH_Drawing_TypographyGetHeight(OH_Drawing_Typography* typography);
 
 /**
- * @brief Gets the longest line.
+ * @brief Obtains the width of the longest line. You are advised to round up the return value in actual use.
+ * When the text content is empty, the minimum float value,
+ * that is, -340282346638528859811704183484516925440.000000, is returned.
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @param typography Pointer to an <b>OH_Drawing_Typography</b> object, which is obtained by
@@ -2797,6 +2799,17 @@ void OH_Drawing_TypographyDestroyTextBox(OH_Drawing_TextBox* textBox);
  */
 void OH_Drawing_SetTextShadow(OH_Drawing_TextShadow* shadow, uint32_t color, OH_Drawing_Point* offset,
     double blurRadius);
+
+/**
+ * @brief Get DrawingArray size.
+ *
+ * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
+ * @param drawingArray Indicates the pointer to the array object <b>OH_Drawing_Array</b>.
+ * @return Size of array.
+ * @since 14
+ * @version 1.0
+ */
+size_t OH_Drawing_GetDrawingArraySize(OH_Drawing_Array* drawingArray);
 
 #ifdef __cplusplus
 }
