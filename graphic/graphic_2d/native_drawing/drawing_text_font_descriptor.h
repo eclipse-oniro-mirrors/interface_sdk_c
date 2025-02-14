@@ -60,7 +60,7 @@ typedef enum {
     STYLISH = 1 << 2,
     /** Installed font types */
     INSTALLED = 1 << 3,
-   /** 
+   /**
     * Customized font types
     * @since 16
     */
