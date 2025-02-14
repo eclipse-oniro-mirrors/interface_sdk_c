@@ -2612,7 +2612,7 @@
         "name": "OH_ArkUI_GetGestureParam_DirectMask"
     },
     {
-        "first_introduced": "16",
+        "first_introduced": "15",
         "name": "OH_ArkUI_KeyEvent_Dispatch"
     },
     {
