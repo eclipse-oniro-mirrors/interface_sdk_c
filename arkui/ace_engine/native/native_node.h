@@ -98,7 +98,7 @@ typedef enum {
      */
     ARKUI_NODE_XCOMPONENT_TEXTURE,
     /** Check box group.
-     *  @since 16
+     *  @since 15
      */
     ARKUI_NODE_CHECKBOX_GROUP = 21,
     /** Stack container. */
@@ -3664,7 +3664,7 @@ typedef enum {
      * Format of the return value {@link ArkUI_AttributeItem}:\n
      * .string: component name. \n
      *
-     * @since 16
+     * @since 15
      */
     NODE_CHECKBOX_NAME,
 
@@ -3678,7 +3678,7 @@ typedef enum {
      * Format of the return value {@link ArkUI_AttributeItem}:\n
      * .string: component name. \n
      *
-     * @since 16
+     * @since 15
      */
     NODE_CHECKBOX_GROUP,
 
@@ -4709,7 +4709,7 @@ typedef enum {
      * Format of the return value {@link ArkUI_AttributeItem}:\n
      * .string: component name. \n
      * 
-     * @since 16
+     * @since 15
      */
     NODE_CHECKBOX_GROUP_NAME  = MAX_NODE_SCOPE_NUM * ARKUI_NODE_CHECKBOX_GROUP,
 
@@ -4724,7 +4724,7 @@ typedef enum {
      * Format of the return value {@link ArkUI_AttributeItem}:\n
      * .value[0].i32: The value <b>1</b> means that the checkboxgroup is selected, and <b>0</b> means the opposite. \n
      * 
-     * @since 16
+     * @since 15
      */
     NODE_CHECKBOX_GROUP_SELECT_ALL,
 
@@ -4739,7 +4739,7 @@ typedef enum {
      * Format of the return value {@link ArkUI_AttributeItem}:\n
      * .value[0].u32: color of the checkboxgroup when it is selected, in 0xARGB format, for example, <b>0xFF1122FF</b>.
      *
-     * @since 16
+     * @since 15
      */
     NODE_CHECKBOX_GROUP_SELECTED_COLOR,
     /**
@@ -4752,7 +4752,7 @@ typedef enum {
      * Format of the return value {@link ArkUI_AttributeItem}:\n
      * .value[0].u32: border color, in 0xARGB format, for example, <b>0xFF1122FF</b>.
      * 
-     * @since 16
+     * @since 15
      */
     NODE_CHECKBOX_GROUP_UNSELECTED_COLOR,
 
@@ -4770,7 +4770,7 @@ typedef enum {
      * .value[1].f32: size of the internal mark, in vp. \n
      * .value[2].f32: stroke width of the internal mark, in vp. The default value is <b>2</b>. \n
      *
-     * @since 16
+     * @since 15
      */
     NODE_CHECKBOX_GROUP_MARK,
 
@@ -4784,7 +4784,7 @@ typedef enum {
      * Format of the return value {@link ArkUI_AttributeItem}:\n
      * .value[0].i32: component shape. The parameter type is {@link ArkUI_CheckboxShape}.
      *
-     * @since 16
+     * @since 15
      */
     NODE_CHECKBOX_GROUP_SHAPE,
 
@@ -7156,7 +7156,7 @@ typedef enum {
      * 1: Some checkboxes are selected.
      * 2: No checkboxes are selected. \n
      *
-     * @since 16
+     * @since 15
      */
     NODE_CHECKBOX_GROUP_EVENT_ON_CHANGE = MAX_NODE_SCOPE_NUM * ARKUI_NODE_CHECKBOX_GROUP,
     
