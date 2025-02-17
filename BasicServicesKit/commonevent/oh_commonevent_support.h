@@ -99,6 +99,20 @@ static const char* const COMMON_EVENT_SCREEN_OFF = "usual.event.SCREEN_OFF";
 static const char* const COMMON_EVENT_SCREEN_ON = "usual.event.SCREEN_ON";
 
 /**
+ * @brief This commonEvent means when the device is is about to enter the hibernate mode.
+ *
+ * @since 15
+ */
+static const char* const COMMON_EVENT_ENTER_HIBERNATE = "usual.event.ENTER_HIBERNATE";
+
+/**
+ * @brief This commonEvent means when the device is exits the hibernate mode.
+ *
+ * @since 15
+ */
+static const char* const COMMON_EVENT_EXIT_HIBERNATE = "usual.event.EXIT_HIBERNATE";
+
+/**
  * @brief This commonEvent means when the thermal state level change
  *
  * @since 12
