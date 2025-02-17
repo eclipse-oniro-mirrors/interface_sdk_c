@@ -5472,7 +5472,7 @@ typedef enum {
      * .value[0].i32: index value of the child component. \n
      * .value[1]?.i32: animation mode, the parameter type is {@link ArkUI_SwiperAnimationMode}. \n
      * The default value is ARKUI_SWIPER_NO_ANIMATION. This parameter is valid only for the current call. \n
-     * This parameter is supported since API version 16. \n
+     * This parameter is supported since API version 15. \n
      * \n
      * Format of the return value {@link ArkUI_AttributeItem}:\n
      * .value[0].i32: index value of the child component. \n
