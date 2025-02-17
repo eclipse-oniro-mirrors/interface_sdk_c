@@ -131,7 +131,7 @@ void OH_NativeArkWeb_SetJavaScriptProxyValidCallback(const char* webTag, NativeA
  */
 NativeArkWeb_OnValidCallback OH_NativeArkWeb_GetJavaScriptProxyValidCallback(const char* webTag);
 
-/*
+/**
  * @brief Registers the destroy callback.
  *
  * @param webTag The name of the web component.
@@ -142,7 +142,7 @@ NativeArkWeb_OnValidCallback OH_NativeArkWeb_GetJavaScriptProxyValidCallback(con
  */
 void OH_NativeArkWeb_SetDestroyCallback(const char* webTag, NativeArkWeb_OnDestroyCallback callback);
 
-/*
+/**
  * @brief Get the destroy callback.
  *
  * @param webTag The name of the web component.
@@ -176,7 +176,7 @@ NativeArkWeb_OnDestroyCallback OH_NativeArkWeb_GetDestroyCallback(const char* we
  *         {@link ARKWEB_LIBRARY_SYMBOL_NOT_FOUND} The required symbol was not found in the library.
  *
  * @syscap SystemCapability.Web.Webview.Core
- * @since 16
+ * @since 15
  */
 ArkWeb_ErrorCode OH_NativeArkWeb_LoadData(const char* webTag,
                                           const char* data,
