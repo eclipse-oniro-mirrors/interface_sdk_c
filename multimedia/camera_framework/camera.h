@@ -582,7 +582,7 @@ typedef enum Camera_PreconfigRatio {
 /**
  * @brief Enum for remote camera device type.
  *
- * @since 16
+ * @since 15
  * @version 1.0
  */
 typedef enum Camera_HostDeviceType {

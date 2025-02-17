@@ -1903,6 +1903,28 @@ typedef enum {
     NODE_NEXT_FOCUS = 101,
 
     /**
+     * @brief Sets the parameters for visible area change events.
+     *
+     * @note The visible area change callback is not a real-time callback. The actual callback interval may differ from
+     * the expected interval due to system load and other factors.
+     * The interval between two visible area change callbacks will not be less than the expected update interval. If the
+     * provided expected interval is too short, the actual callback interval will be determined by the system load.
+     * By default, the interval threshold of the visible area change callback includes 0. This means that,
+     * if the provided threshold is [0.5], the effective threshold will be [0.0, 0.5].
+     *
+     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
+     * .object: parameters for visible area change events.
+     * The parameter type is {@link ArkUI_VisibleAreaEventOptions}. \n
+     * \n
+     * Format of the return value {@link ArkUI_AttributeItem}:\n
+     * .object: parameters for visible area change events.
+     * The parameter type is {@link ArkUI_VisibleAreaEventOptions}. \n
+     *
+     * @since 16
+     */
+    NODE_VISIBLE_AREA_APPROXIMATE_CHANGE_RATIO = 102,
+
+    /**
      * @brief Defines the text content attribute, which can be set, reset, and obtained as required through APIs.
      *
      * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
@@ -2285,7 +2307,7 @@ typedef enum {
      * Format of the return value {@link ArkUI_AttributeItem}:\n
      * .value[0].i32: font weight {@link ArkUI_FontWeight}.\n
      *
-     * @since 16
+     * @since 15
      */
     NODE_IMMUTABLE_FONT_WEIGHT = 1030,
 
@@ -3558,7 +3580,7 @@ typedef enum {
      * Format of the return value {@link ArkUI_AttributeItem}:\n
      * .object: Use the {@link ArkUI_ProgressLinearStyleOption} object to get the style. \n
      *
-     * @since 16
+     * @since 15
      */
     NODE_PROGRESS_LINEAR_STYLE,
 
@@ -6536,6 +6558,25 @@ typedef enum {
     NODE_ON_HOVER_EVENT = 27,
 
     /**
+     * @brief Sets the callback for the NODE_EVENT_ON_VISIBLE_AREA_CHANGE event, which limits the callback interval.
+     *
+     * The callback is triggered when the ratio of the component's visible area to its total area is greater than or
+     * less than the threshold. Before registering the callback, you must configure the threshold and update interval
+     * using <b>NODE_VISIBLE_AREA_APPROXIMATE_CHANGE_RATIO</b>. \n
+     * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
+     * {@link ArkUI_NodeComponentEvent}. \n
+     * {@link ArkUI_NodeComponentEvent} contains two parameters:\n
+     * <b>ArkUI_NodeComponentEvent.data[0].i32</b>: how the ratio of the component's visible area to its total area
+     * changes compared to the previous one. The value <b>1</b> indicates an increase, and <b>0</b> indicates
+     * a decrease. \n
+     * <b>ArkUI_NodeComponentEvent.data[1].f32</b>: ratio of the component's visible area to its total area
+     * when this callback is invoked. \n
+     *
+     * @since 16
+     */
+    NODE_VISIBLE_AREA_APPROXIMATE_CHANGE_EVENT = 28,
+
+    /**
      * @brief Defines the hover event.
      * 
      * The event is triggered when the pointer is hovered by a pen device.
@@ -7243,7 +7284,7 @@ typedef enum {
      * Positive numbers indicating slide backward(e.g. from index=1 to index=0), negative numbers indicating
      * slide forward(e.g. from index=0 to index=1). \n
      *
-     * @since 16
+     * @since 15
      */
     NODE_SWIPER_EVENT_ON_CONTENT_WILL_SCROLL = 1001007,
 
@@ -8858,7 +8899,7 @@ int32_t OH_ArkUI_NodeUtils_GetWindowInfo(ArkUI_NodeHandle node, ArkUI_HostWindow
  *         {@link ARKUI_ERROR_CODE_NO_ERROR} success.
  *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} Function parameter exception.
  *         {@link ARKUI_ERROR_CODE_CAPI_INIT_ERROR} if the CAPI init error.
- * @since 16
+ * @since 15
  */
 int32_t OH_ArkUI_NodeUtils_GetFirstChildIndexWithoutExpand(ArkUI_NodeHandle node, uint32_t* index);
 
@@ -8871,7 +8912,7 @@ int32_t OH_ArkUI_NodeUtils_GetFirstChildIndexWithoutExpand(ArkUI_NodeHandle node
  *         {@link ARKUI_ERROR_CODE_NO_ERROR} success.
  *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} Function parameter exception.
  *         {@link ARKUI_ERROR_CODE_CAPI_INIT_ERROR} if the CAPI init error.
- * @since 16
+ * @since 15
  */
 int32_t OH_ArkUI_NodeUtils_GetLastChildIndexWithoutExpand(ArkUI_NodeHandle node, uint32_t* index);
 
@@ -8886,7 +8927,7 @@ int32_t OH_ArkUI_NodeUtils_GetLastChildIndexWithoutExpand(ArkUI_NodeHandle node,
  *         {@link ARKUI_ERROR_CODE_NO_ERROR} success.
  *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} Function parameter exception.
  *         {@link ARKUI_ERROR_CODE_CAPI_INIT_ERROR} if the CAPI init error.
- * @since 16
+ * @since 15
  */
 int32_t OH_ArkUI_NodeUtils_GetChildWithExpandMode(ArkUI_NodeHandle node, int32_t position,
     ArkUI_NodeHandle* subnode, uint32_t expandMode);
@@ -9017,7 +9058,7 @@ int32_t OH_ArkUI_NodeUtils_MoveTo(ArkUI_NodeHandle node, ArkUI_NodeHandle target
  *         {@link ARKUI_ERROR_CODE_NO_ERROR} success.
  *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} Function parameter exception.
  *         {@link ARKUI_ERROR_CODE_CAPI_INIT_ERROR} if the CAPI init error.
- * @since 16
+ * @since 15
  */
 int32_t OH_ArkUI_NodeUtils_SetCrossLanguageOption(ArkUI_NodeHandle node, ArkUI_CrossLanguageOption* option);
 
@@ -9030,7 +9071,7 @@ int32_t OH_ArkUI_NodeUtils_SetCrossLanguageOption(ArkUI_NodeHandle node, ArkUI_C
  *         {@link ARKUI_ERROR_CODE_NO_ERROR} success.
  *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} Function parameter exception.
  *         {@link ARKUI_ERROR_CODE_CAPI_INIT_ERROR} if the CAPI init error.
- * @since 16
+ * @since 15
  */
 int32_t OH_ArkUI_NodeUtils_GetCrossLanguageOption(ArkUI_NodeHandle node, ArkUI_CrossLanguageOption* option);
 
@@ -9102,6 +9143,18 @@ int32_t OH_ArkUI_UnregisterDrawCallbackOnNodeHandle(ArkUI_NodeHandle node);
  */
 int32_t OH_ArkUI_GetNodeSnapshot(ArkUI_NodeHandle node, ArkUI_SnapshotOptions* snapshotOptions,
     OH_PixelmapNative** pixelmap);
+
+/**
+ * @brief Obtains the offset of a specific node relative to its parent node.
+ *
+ * @param node Target node.
+ * @param globalOffset Offset of the target node relative to its parent node, in px.
+ * @return Returns the result code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @since 16
+ */
+int32_t OH_ArkUI_NodeUtils_GetPositionToParent(ArkUI_NodeHandle node, ArkUI_IntOffset* globalOffset);
 
 #ifdef __cplusplus
 };

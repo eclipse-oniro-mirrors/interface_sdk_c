@@ -1388,39 +1388,39 @@
         "name": "OH_ArkUI_NodeUtils_MoveTo"
     },
     {
-        "first_introduced": "16",
+        "first_introduced": "15",
         "name": "OH_ArkUI_NodeUtils_SetCrossLanguageOption"
     },
     {
-        "first_introduced": "16",
+        "first_introduced": "15",
         "name": "OH_ArkUI_NodeUtils_GetCrossLanguageOption"
     },
     {
-        "first_introduced": "16",
+        "first_introduced": "15",
         "name": "OH_ArkUI_CrossLanguageOption_Create"
     },
     {
-        "first_introduced": "16",
+        "first_introduced": "15",
         "name": "OH_ArkUI_CrossLanguageOption_Destroy"
     },
     {
-        "first_introduced": "16",
+        "first_introduced": "15",
         "name": "OH_ArkUI_CrossLanguageOption_SetAttributeSettingStatus"
     },
     {
-        "first_introduced": "16",
+        "first_introduced": "15",
         "name": "OH_ArkUI_CrossLanguageOption_GetAttributeSettingStatus"
     },
     {
-        "first_introduced": "16",
+        "first_introduced": "15",
         "name": "OH_ArkUI_NodeUtils_GetFirstChildIndexWithoutExpand"
     },
     {
-        "first_introduced": "16",
+        "first_introduced": "15",
         "name": "OH_ArkUI_NodeUtils_GetLastChildIndexWithoutExpand"
     },
     {
-        "first_introduced": "16",
+        "first_introduced": "15",
         "name": "OH_ArkUI_NodeUtils_GetChildWithExpandMode"
     },
     {
@@ -2620,31 +2620,31 @@
         "name": "OH_ArkUI_GetGestureParam_DirectMask"
     },
     {
-        "first_introduced": "16",
+        "first_introduced": "15",
         "name": "OH_ArkUI_KeyEvent_Dispatch"
     },
     {
-        "first_introduced": "16",
+        "first_introduced": "15",
         "name": "OH_ArkUI_ProgressLinearStyleOption_Create"
     },
     {
-        "first_introduced": "16",
+        "first_introduced": "15",
         "name": "OH_ArkUI_ProgressLinearStyleOption_Destroy"
     },
     {
-        "first_introduced": "16",
+        "first_introduced": "15",
         "name": "OH_ArkUI_ProgressLinearStyleOption_SetScanEffectEnabled"
     },
     {
-        "first_introduced": "16",
+        "first_introduced": "15",
         "name": "OH_ArkUI_ProgressLinearStyleOption_SetSmoothEffectEnabled"
     },
     {
-        "first_introduced": "16",
+        "first_introduced": "15",
         "name": "OH_ArkUI_ProgressLinearStyleOption_SetStrokeWidth"
     },
     {
-        "first_introduced": "16",
+        "first_introduced": "15",
         "name": "OH_ArkUI_ProgressLinearStyleOption_SetStrokeRadius"
     },
     {
@@ -2652,19 +2652,19 @@
         "name": "OH_ArkUI_PointerEvent_GetChangedPointerId"
     },
     {
-        "first_introduced": "16",
+        "first_introduced": "15",
         "name": "OH_ArkUI_ProgressLinearStyleOption_GetScanEffectEnabled"
     },
     {
-        "first_introduced": "16",
+        "first_introduced": "15",
         "name": "OH_ArkUI_ProgressLinearStyleOption_GetSmoothEffectEnabled"
     },
     {
-        "first_introduced": "16",
+        "first_introduced": "15",
         "name": "OH_ArkUI_ProgressLinearStyleOption_GetStrokeWidth"
     },
     {
-        "first_introduced": "16",
+        "first_introduced": "15",
         "name": "OH_ArkUI_ProgressLinearStyleOption_GetStrokeRadius"
     },
     {
@@ -2773,6 +2773,38 @@
     },
     {
         "first_introduced": "16",
+        "name": "OH_ArkUI_KeyframeAnimateOption_SetExpectedFrameRate"
+    },
+    {
+        "first_introduced": "16",
+        "name": "OH_ArkUI_KeyframeAnimateOption_GetExpectedFrameRate"
+    },
+    {
+        "first_introduced": "16",
+        "name": "OH_ArkUI_VisibleAreaEventOptions_Create"
+    },
+    {
+        "first_introduced": "16",
+        "name": "OH_ArkUI_VisibleAreaEventOptions_Dispose"
+    },
+    {
+        "first_introduced": "16",
+        "name": "OH_ArkUI_VisibleAreaEventOptions_SetRatios"
+    },
+    {
+        "first_introduced": "16",
+        "name": "OH_ArkUI_VisibleAreaEventOptions_SetExpectedUpdateInterval"
+    },
+    {
+        "first_introduced": "16",
+        "name": "OH_ArkUI_VisibleAreaEventOptions_GetRatios"
+    },
+    {
+        "first_introduced": "16",
+        "name": "OH_ArkUI_VisibleAreaEventOptions_GetExpectedUpdateInterval"
+    },
+    {
+        "first_introduced": "16",
         "name": "OH_ArkUI_UIInputEvent_GetEventTargetWidth"
     },
     {
@@ -2830,5 +2862,41 @@
     {
         "first_introduced": "15",
         "name": "OH_ArkUI_FocusSetKeyProcessingMode"
+    },
+    {
+        "first_introduced": "16",
+        "name": "OH_ArkUI_PointerEvent_CreateClonedEvent"
+    },
+    {
+        "first_introduced": "16",
+        "name": "OH_ArkUI_PointerEvent_DestroyClonedEvent"
+    },
+    {
+        "first_introduced": "16",
+        "name": "OH_ArkUI_PointerEvent_SetClonedEventLocalPosition"
+    },
+    {
+        "first_introduced": "16",
+        "name": "OH_ArkUI_PointerEvent_SetClonedEventLocalPositionByIndex"
+    },
+    {
+        "first_introduced": "16",
+        "name": "OH_ArkUI_PointerEvent_SetClonedEventActionType"
+    },
+    {
+        "first_introduced": "16",
+        "name": "OH_ArkUI_PointerEvent_SetClonedEventChangedFingerId"
+    },
+    {
+        "first_introduced": "16",
+        "name": "OH_ArkUI_PointerEvent_SetClonedEventFingerIdByIndex"
+    },
+    {
+        "first_introduced": "16",
+        "name": "OH_ArkUI_PointerEvent_PostClonedEvent"
+    },
+    {
+        "first_introduced": "16",
+        "name": "OH_ArkUI_NodeUtils_GetPositionToParent"
     }
 ]

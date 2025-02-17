@@ -217,14 +217,14 @@ typedef struct ArkUI_ActiveChildrenInfo ArkUI_ActiveChildrenInfo;
 /**
  * @brief Set the linear progress indicator style.
  *
- * @since 16
+ * @since 15
  */
 typedef struct ArkUI_ProgressLinearStyleOption ArkUI_ProgressLinearStyleOption;
 
 /**
  * @brief The cross-language option.
  *
- * @since 16
+ * @since 15
  */
 typedef struct ArkUI_CrossLanguageOption ArkUI_CrossLanguageOption;
 
@@ -2173,6 +2173,21 @@ typedef enum {
     /** The buffer is not large enough. */
     ARKUI_ERROR_CODE_BUFFER_SIZE_NOT_ENOUGH = 180002,
     /**
+     * @error The event is not a clone event.
+     * @since 16
+     */
+    ARKUI_ERROR_CODE_NOT_CLONED_POINTER_EVENT = 180003,
+    /**
+     * @error The component status is abnormal.
+     * @since 16
+     */
+    ARKUI_ERROR_CODE_POST_CLONED_COMPONENT_STATUS_ABNORMAL = 180004,
+    /**
+     * @error No component hit to respond to the event.
+     * @since 16
+     */
+    ARKUI_ERROR_CODE_POST_CLONED_NO_COMPONENT_HIT_TO_RESPOND_TO_THE_EVENT = 180005,
+    /**
      * @error invalid styled string.
      * @since 14
      */
@@ -2525,13 +2540,13 @@ typedef enum {
 /**
  * @brief Enumerates the expand modes.
  *
- * @since 16
+ * @since 15
  */
 typedef enum {
-    /** Expand. */
-    ARKUI_EXPAND = 0,
     /** Not expand. */
-    ARKUI_NOT_EXPAND = 1,
+    ARKUI_NOT_EXPAND = 0,
+    /** Expand. */
+    ARKUI_EXPAND = 1,
     /** Lazy expand. Expand the children of node if needed. */
     ARKUI_LAZY_EXPAND = 2,
 } ArkUI_ExpandMode;
@@ -4359,7 +4374,7 @@ int32_t OH_ArkUI_ActiveChildrenInfo_GetCount(ArkUI_ActiveChildrenInfo* handle);
  *
  * @return Returns a <b>ProgressLinearStyleOption</b> instance.
  * <br> If the result returns nullptr, there may be out of memory.
- * @since 16
+ * @since 15
  */
 ArkUI_ProgressLinearStyleOption* OH_ArkUI_ProgressLinearStyleOption_Create(void);
 
@@ -4367,7 +4382,7 @@ ArkUI_ProgressLinearStyleOption* OH_ArkUI_ProgressLinearStyleOption_Create(void)
  * @brief Destroy linear progress indicator style information.
  *
  * @param option Linear progress indicator style information.
- * @since 16
+ * @since 15
  */
 void OH_ArkUI_ProgressLinearStyleOption_Destroy(ArkUI_ProgressLinearStyleOption* option);
 
@@ -4376,7 +4391,7 @@ void OH_ArkUI_ProgressLinearStyleOption_Destroy(ArkUI_ProgressLinearStyleOption*
  *
  * @param option Linear progress indicator style information.
  * @param enabled Whether to enable the scan effect. Default value: false.
- * @since 16
+ * @since 15
  */
 void OH_ArkUI_ProgressLinearStyleOption_SetScanEffectEnabled(ArkUI_ProgressLinearStyleOption* option, bool enabled);
 
@@ -4386,7 +4401,7 @@ void OH_ArkUI_ProgressLinearStyleOption_SetScanEffectEnabled(ArkUI_ProgressLinea
  * @param option Linear progress indicator style information.
  * @param enabled Whether to enable the smooth effect. When this effect is enabled, the progress change to
  * the set value takes place gradually. Otherwise, it takes place immediately. Default value: true.
- * @since 16
+ * @since 15
  */
 void OH_ArkUI_ProgressLinearStyleOption_SetSmoothEffectEnabled(ArkUI_ProgressLinearStyleOption* option, bool enabled);
 
@@ -4396,7 +4411,7 @@ void OH_ArkUI_ProgressLinearStyleOption_SetSmoothEffectEnabled(ArkUI_ProgressLin
  * @param option Linear progress indicator style information.
  * @param strokeWidth Stroke width of the progress indicator. It cannot be set in percentage.
  * Default value: 4.0vp.
- * @since 16
+ * @since 15
  */
 void OH_ArkUI_ProgressLinearStyleOption_SetStrokeWidth(ArkUI_ProgressLinearStyleOption* option, float strokeWidth);
 
@@ -4406,7 +4421,7 @@ void OH_ArkUI_ProgressLinearStyleOption_SetStrokeWidth(ArkUI_ProgressLinearStyle
  * @param option Linear progress indicator style information.
  * @param strokeRadius Rounded corner radius of the progress indicator. Value range: [0, strokeWidth/2].
  * Default value: strokeWidth/2.
- * @since 16
+ * @since 15
  */
 void OH_ArkUI_ProgressLinearStyleOption_SetStrokeRadius(ArkUI_ProgressLinearStyleOption* option, float strokeRadius);
 
@@ -4415,7 +4430,7 @@ void OH_ArkUI_ProgressLinearStyleOption_SetStrokeRadius(ArkUI_ProgressLinearStyl
  *
  * @param option Linear progress indicator style information.
  * @return Whether to enable the scan effect.
- * @since 16
+ * @since 15
  */
 bool OH_ArkUI_ProgressLinearStyleOption_GetScanEffectEnabled(ArkUI_ProgressLinearStyleOption* option);
 
@@ -4424,7 +4439,7 @@ bool OH_ArkUI_ProgressLinearStyleOption_GetScanEffectEnabled(ArkUI_ProgressLinea
  *
  * @param option Linear progress indicator style information.
  * @return Whether to enable the smooth effect.
- * @since 16
+ * @since 15
  */
 bool OH_ArkUI_ProgressLinearStyleOption_GetSmoothEffectEnabled(ArkUI_ProgressLinearStyleOption* option);
 
@@ -4433,7 +4448,7 @@ bool OH_ArkUI_ProgressLinearStyleOption_GetSmoothEffectEnabled(ArkUI_ProgressLin
  *
  * @param option Linear progress indicator style information.
  * @return Stroke width of the progress indicator.
- * @since 16
+ * @since 15
  */
 float OH_ArkUI_ProgressLinearStyleOption_GetStrokeWidth(ArkUI_ProgressLinearStyleOption* option);
 
@@ -4442,7 +4457,7 @@ float OH_ArkUI_ProgressLinearStyleOption_GetStrokeWidth(ArkUI_ProgressLinearStyl
  *
  * @param option Linear progress indicator style information.
  * @return Rounded corner radius of the progress indicator.
- * @since 16
+ * @since 15
  */
 float OH_ArkUI_ProgressLinearStyleOption_GetStrokeRadius(ArkUI_ProgressLinearStyleOption* option);
 
@@ -4479,7 +4494,7 @@ int32_t OH_ArkUI_SnapshotOptions_SetScale(ArkUI_SnapshotOptions* snapshotOptions
  * @brief Create a cross-language option instance.
  *
  * @return Returns a cross-language option instance. If the result is a null pointer, it may be out of memory.
- * @since 16
+ * @since 15
  */
 ArkUI_CrossLanguageOption* OH_ArkUI_CrossLanguageOption_Create(void);
 
@@ -4487,7 +4502,7 @@ ArkUI_CrossLanguageOption* OH_ArkUI_CrossLanguageOption_Create(void);
  * @brief Destroy the cross-language option instance.
  *
  * @param option The cross-language option instance.
- * @since 16
+ * @since 15
  */
 void OH_ArkUI_CrossLanguageOption_Destroy(ArkUI_CrossLanguageOption* option);
 
@@ -4497,7 +4512,7 @@ void OH_ArkUI_CrossLanguageOption_Destroy(ArkUI_CrossLanguageOption* option);
  * @param option The cross-language option.
  * @param enabled The attribute setting in the cross-language option.
  * Default value: false.
- * @since 16
+ * @since 15
  */
 void OH_ArkUI_CrossLanguageOption_SetAttributeSettingStatus(ArkUI_CrossLanguageOption* option, bool enabled);
 
@@ -4506,9 +4521,90 @@ void OH_ArkUI_CrossLanguageOption_SetAttributeSettingStatus(ArkUI_CrossLanguageO
  *
  * @param option The cross-language option.
  * @return The attribute setting enable of the cross-language option.
- * @since 16
+ * @since 15
  */
 bool OH_ArkUI_CrossLanguageOption_GetAttributeSettingStatus(ArkUI_CrossLanguageOption* option);
+
+/**
+ * @brief Defines the parameters for visible area change events.
+ *
+ * @since 16
+ */
+typedef struct ArkUI_VisibleAreaEventOptions ArkUI_VisibleAreaEventOptions;
+
+/**
+* @brief Creates an instance of visible area change event parameters
+*
+* @return Returns the created instance of visible area change event parameters.
+* @since 16
+*/
+ArkUI_VisibleAreaEventOptions* OH_ArkUI_VisibleAreaEventOptions_Create();
+
+/**
+* @brief Disposes of an instance of visible area change event parameters.
+*
+* @param option Instance to be destroyed.
+* @since 16
+*/
+void OH_ArkUI_VisibleAreaEventOptions_Dispose(ArkUI_VisibleAreaEventOptions* option);
+
+/**
+* @brief Sets the threshold ratios for visible area changes.
+*
+* @param option Instance of visible area change event parameters.
+* @param value Array of threshold ratios. Each element represents the ratio of the visible area of a component to
+* its total area. The visible area is calculated within the parent component's bounds; any area outside the parent
+* component is not considered. Each value must be within the [0.0, 1.0] range.
+* Values outside this range will be handled as 0.0 or 1.0.
+* @param size Size of the threshold array.
+* @return Returns the result code.
+*         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+*         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+*         If an error code is returned, it may be due to a failure in parameter validation;
+*         the parameter must not be null.
+* @since 16
+*/
+int32_t OH_ArkUI_VisibleAreaEventOptions_SetRatios(ArkUI_VisibleAreaEventOptions* option, float* value, int32_t size);
+
+/**
+* @brief Sets the expected update interval for visible area changes.
+*
+* @param option Instance of visible area change event parameters.
+* @param value Expected update interval, in ms.  Default value: <b>1000</b>.
+* @return Returns the result code.
+*         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+*         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+*         If an error code is returned, it may be due to a failure in parameter validation;
+*         the parameter must not be null.
+* @since 16
+*/
+int32_t OH_ArkUI_VisibleAreaEventOptions_SetExpectedUpdateInterval(
+    ArkUI_VisibleAreaEventOptions *option, int32_t value);
+
+/**
+ * @brief Obtains the threshold ratios for visible area changes.
+ *
+ * @param option Instance of visible area change event parameters.
+ * @param value Array of threshold ratios.
+ * @param size Size of the threshold array.
+ * @return Returns the result code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ *         Returns {@link ARKUI_ERROR_CODE_BUFFER_SIZE_ERROR} if the provided buffer size is insufficient.
+ *         If an error code is returned, it may be due to a failure in parameter validation;
+ *         the parameter must not be null.
+ * @since 16
+ */
+int32_t OH_ArkUI_VisibleAreaEventOptions_GetRatios(ArkUI_VisibleAreaEventOptions* option, float* value, int32_t* size);
+
+/**
+ * @brief Obtains the expected update interval for visible area changes.
+ *
+ * @param option Instance of visible area change event parameters.
+ * @return Returns the expected update interval, in ms.  Default value: <b>1000</b>.
+ * @since 16
+ */
+int32_t OH_ArkUI_VisibleAreaEventOptions_GetExpectedUpdateInterval(ArkUI_VisibleAreaEventOptions* option);
 #ifdef __cplusplus
 };
 #endif
