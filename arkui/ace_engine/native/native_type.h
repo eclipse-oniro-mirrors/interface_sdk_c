@@ -2135,6 +2135,11 @@ typedef enum {
      * @since 15
      */
     ARKUI_ERROR_CODE_INTERNAL_ERROR = 100001,
+    /**
+     * @error The XComponent is in invalid state.
+     * @since 16
+     */
+    ARKUI_ERROR_CODE_XCOMPONENT_STATE_INVALID = 103501,
     /** @error The component does not support specific properties or events. */
     ARKUI_ERROR_CODE_ATTRIBUTE_OR_EVENT_NOT_SUPPORTED = 106102,
     /** @error The corresponding operation does not support nodes created by ArkTS. */
