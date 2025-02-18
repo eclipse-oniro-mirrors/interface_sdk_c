@@ -195,6 +195,19 @@ typedef enum {
     /** Fn. */
     ARKUI_MODIFIER_KEY_FN = 1 << 3,
 } ArkUI_ModifierKeyName;
+/**
+ * @brief Defines whether the touch event is from the left or right hand.
+ *
+ * @since 15
+ */
+typedef enum {
+    /** Unknown. */
+    ARKUI_EVENT_HAND_NONE = 0,
+    /** Left hand. */
+    ARKUI_EVENT_HAND_LEFT = 1,
+    /** Right hand. */
+    ARKUI_EVENT_HAND_RIGHT = 2,
+} ArkUI_InteractionHand;
 
 /**
  * @brief Obtains the type of this UI input event.
@@ -451,6 +464,32 @@ float OH_ArkUI_PointerEvent_GetTouchAreaWidth(const ArkUI_UIInputEvent* event, u
  * @since 12
  */
 float OH_ArkUI_PointerEvent_GetTouchAreaHeight(const ArkUI_UIInputEvent* event, uint32_t pointerIndex);
+
+/**
+ * @brief Obtains whether the current touch event is from the left or right hand.
+ *
+ * @param event Pointer to the current UI input event.
+ * @param hand Whether the touch point is from the left or right hand.
+ * @return Returns the result code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @since 15
+ */
+int32_t OH_ArkUI_PointerEvent_GetInteractionHand(const ArkUI_UIInputEvent *event, ArkUI_InteractionHand *hand);
+
+/**
+ * @brief Obtains whether the current touch event is from the left or right hand.
+ *
+ * @param event Pointer to the current UI input event.
+ * @param pointerIndex Index of the target touch point in the multi-touch data list.
+ * @param hand Whether the touch point is from the left or right hand.
+ * @return Returns the result code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @since 15
+ */
+int32_t OH_ArkUI_PointerEvent_GetInteractionHandByIndex(
+    const ArkUI_UIInputEvent *event, int32_t pointerIndex, ArkUI_InteractionHand *hand);
 
 /**
  * @brief Obtains the number of historical events from a directional input event (such as a touch event, mouse event,
