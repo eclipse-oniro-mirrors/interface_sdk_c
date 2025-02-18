@@ -490,7 +490,7 @@ int OH_Rdb_Insert(OH_Rdb_Store *store, const char *table, OH_VBucket *valuesBuck
 /**
  * @brief Inserts a batch of data into the target table.
  *
- * @param trans Represents a pointer to an instance of OH_Rdb_Transaction.
+ * @param store Represents a pointer to an {@link OH_Rdb_Store} instance.
  * @param table Represents the target table.
  * @param rows Represents the rows data to be inserted into the table.
  * @param resolution Represents the resolution when conflict occurs.
@@ -514,7 +514,7 @@ int OH_Rdb_Insert(OH_Rdb_Store *store, const char *table, OH_VBucket *valuesBuck
  *         Returns {@link RDB_E_SQLITE_CONSTRAINT} SQLite: Abort due to constraint violation.
  * @since 16
  */
-int OH_Rdb_BatchInsert(OH_Rdb_Transaction *trans, const char *table,
+int OH_Rdb_BatchInsert(OH_Rdb_Store *store, const char *table,
     const OH_Data_VBuckets *rows, Rdb_Conflict_Resolution resolution, int64_t *changes);
 
 /**
