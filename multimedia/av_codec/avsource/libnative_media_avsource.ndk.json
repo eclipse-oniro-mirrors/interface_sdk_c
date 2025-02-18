@@ -25,6 +25,6 @@
     },
     {
         "first_introduced": "16",
-        "name": "OH_AVSource_GetCustomMetaDataFormat"
+        "name": "OH_AVSource_GetCustomMetadataFormat"
     }
 ]
