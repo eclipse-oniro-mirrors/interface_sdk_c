@@ -2516,7 +2516,7 @@ typedef enum {
 /**
  * @brief defines the enumerated value of the customDialog's keyboard avoid mode.
  *
- * @since 16
+ * @since 15
  */
 typedef enum {
     /** Defines avoid keyboard when keyboard shows. */
@@ -2528,7 +2528,7 @@ typedef enum {
 /**
  * @brief defines the enumerated value of area in hover mode.
  *
- * @since 16
+ * @since 15
  */
 typedef enum {
     /** Layout top half screen when the phone in hover mode. */
