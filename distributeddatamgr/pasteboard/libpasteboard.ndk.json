@@ -58,5 +58,41 @@
     {
         "first_introduced": "14",
         "name": "OH_Pasteboard_GetMimeTypes"
+    },
+    {
+        "first_introduced": "15",
+        "name": "OH_Pasteboard_GetDataParams_Create"
+    },
+    {
+        "first_introduced": "15",
+        "name": "OH_Pasteboard_GetDataParams_Destroy"
+    },
+    {
+        "first_introduced": "15",
+        "name": "OH_Pasteboard_GetDataParams_SetProgressIndicator"
+    },
+    {
+        "first_introduced": "15",
+        "name": "OH_Pasteboard_GetDataParams_SetDestUri"
+    },
+    {
+        "first_introduced": "15",
+        "name": "OH_Pasteboard_GetDataParams_SetFileConflictOptions"
+    },
+    {
+        "first_introduced": "15",
+        "name": "OH_Pasteboard_GetDataParams_SetProgressListener"
+    },
+    {
+        "first_introduced": "15",
+        "name": "OH_Pasteboard_ProgressInfo_GetProgress"
+    },
+    {
+        "first_introduced": "15",
+        "name": "OH_Pasteboard_ProgressCancel"
+    },
+    {
+        "first_introduced": "15",
+        "name": "OH_Pasteboard_GetDataWithProgress"
     }
 ]
