@@ -2371,7 +2371,7 @@ typedef enum {
  *
  * @since 15
  */
- typedef enum {
+typedef enum {
     /** Not expand. */
     ARKUI_NOT_EXPAND = 0,
     /** Expand. */
