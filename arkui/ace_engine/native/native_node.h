@@ -6000,6 +6000,18 @@ typedef enum {
     NODE_ON_KEY_PRE_IME = 22,
 
     /**
+     * @brief Dispatch key event on the component node.
+     *
+     * When the component node receives a key event, this callback will be triggered instead of dispatching event to its
+     * children. \n
+     * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
+     * {@link ArkUI_NodeComponentEvent}. \n
+     * 
+     * @since 15
+     */
+    NODE_DISPATCH_KEY_EVENT = 24,
+
+    /**
      * @brief Triggers onDetectResultUpdate callback
      * when the text is set to TextDataDetectorConfig and recognized successfully.
      *
