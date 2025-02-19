@@ -96,7 +96,7 @@ typedef bool (*OH_NativeWindowManager_MouseEventFilter)(Input_MouseEvent* mouseE
  * @since 15
  */
 WindowManager_ErrorCode OH_NativeWindowManager_RegisterMouseEventFilter(int32_t windowId,
-                                                                        OH_NativeWindowManager_MouseEventFilter mouseEventFilter);
+    OH_NativeWindowManager_MouseEventFilter mouseEventFilter);
 
 /**
  * @brief clear callback for the window
@@ -131,7 +131,7 @@ typedef bool (*OH_NativeWindowManager_TouchEventFilter)(Input_TouchEvent* touchE
  * @since 15
  */
 WindowManager_ErrorCode OH_NativeWindowManager_RegisterTouchEventFilter(int32_t windowId,
-                                                                        OH_NativeWindowManager_TouchEventFilter touchEventFilter);
+    OH_NativeWindowManager_TouchEventFilter touchEventFilter);
 
 /**
  * @brief clear callback for the window
