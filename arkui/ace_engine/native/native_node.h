@@ -3114,7 +3114,7 @@ typedef enum {
     * Format of the return value {@link ArkUI_AttributeItem}：\n
     * .value[0].i32：keyboard style，the parameter type is {@link ArkUI_KeyboardAppearanceType}。\n
     *
-    * @since 16
+    * @since 15
     */
     NODE_TEXT_INPUT_KEYBOARD_APPEARANCE = 7035,
 
@@ -3462,7 +3462,7 @@ typedef enum {
     * Format of the return value {@link ArkUI_AttributeItem}：\n
     * .value[0].i32：keyboard style，the parameter type is {@link ArkUI_KeyboardAppearanceType}。\n
     *
-    * @since 16
+    * @since 15
     */
     NODE_TEXT_AREA_KEYBOARD_APPEARANCE = 8026,
 
