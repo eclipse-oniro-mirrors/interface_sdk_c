@@ -101,7 +101,7 @@ typedef enum {
 /**
  * @brief Type of allocator used to allocate memory of a PixelMap..
  *
- * @since 16
+ * @since 15
  */
 typedef enum {
     /*
@@ -403,7 +403,7 @@ Image_ErrorCode OH_ImageSourceNative_CreatePixelmap(OH_ImageSourceNative *source
  *         e.g, cannot convert image into desired pixel format.
  *         {@link IMAGE_DECODE_FAILED} decode failed.
  *         {@link IMAGE_SOURCE_ALLOC_FAILED} memory allocation failed.
- * @since 16
+ * @since 15
  */
 Image_ErrorCode OH_ImageSourceNative_CreatePixelmapUsingAllocator(OH_ImageSourceNative *source,
     OH_DecodingOptions *options, IMAGE_ALLOCATOR_TYPE allocator, OH_PixelmapNative **pixelmap);

@@ -185,29 +185,29 @@ typedef enum {
     IMAGE_BAD_SOURCE = 7700101,
     /**
      * @error unsupported mime type
-     * @since 16
+     * @since 15
      */
     IMAGE_SOURCE_UNSUPPORTED_MIME_TYPE = 7700102,
     /**
      * @error image to large
-     * @since 16
+     * @since 15
      */
     IMAGE_SOURCE_TOO_LARGE = 7700103,
     /**
      * @error unsupported allocator type, e.g., use share memory to decode a HDR image as only
      * DMA supported hdr metadata.
-     * @since 16
+     * @since 15
      */
     IMAGE_SOURCE_UNSUPPORTED_ALLOCATOR_TYPE = 7700201,
     /* @error unsupported options, e.g, cannot convert image into desired pixel format.
-     * @since 16
+     * @since 15
      */
     IMAGE_SOURCE_UNSUPPORTED_OPTIONS = 7700203,
     /** decode failed */
     IMAGE_DECODE_FAILED = 7700301,
     /**
      * @error memory allocation failed
-     * @since 16
+     * @since 15
      */
     IMAGE_SOURCE_ALLOC_FAILED = 7700302,
     /** encode failed */
