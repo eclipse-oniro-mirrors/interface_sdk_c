@@ -895,15 +895,6 @@ int32_t OH_ArkUI_MouseEvent_GetPressedButtons(
     const ArkUI_UIInputEvent* event, int32_t* pressedButtons, int32_t* length);
 
 /**
- * @brief Obtains the ID of the screen where the UI input event occurs.
- *
- * @param event Pointer to an <b>ArkUI_UIInputEvent</b> object.
- * @return Returns the screen ID; returns <b>0</b> if any parameter error occurs.
- * @since 15
- */
-int32_t OH_ArkUI_UIInputEvent_GetTargetDisplayId(const ArkUI_UIInputEvent* event);
-
-/**
  * @brief Obtains the axis value of a focus axis event.
  *
  * @param event Pointer to an <b>ArkUI_UIInputEvent</b> object.
@@ -924,6 +915,15 @@ double OH_ArkUI_FocusAxisEvent_GetAxisValue(const ArkUI_UIInputEvent* event, int
  * @since 15
  */
 int32_t OH_ArkUI_FocusAxisEvent_SetStopPropagation(const ArkUI_UIInputEvent* event, bool stopPropagation);
+
+/**
+ * @brief Obtains the ID of the screen where the UI input event occurs.
+ *
+ * @param event Pointer to an <b>ArkUI_UIInputEvent</b> object.
+ * @return Returns the screen ID; returns <b>0</b> if any parameter error occurs.
+ * @since 15
+ */
+int32_t OH_ArkUI_UIInputEvent_GetTargetDisplayId(const ArkUI_UIInputEvent* event);
 
 /**
  * @brief Creates a cloned event pointer based on an event pointer.
