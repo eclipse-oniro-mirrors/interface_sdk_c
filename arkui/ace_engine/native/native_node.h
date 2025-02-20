@@ -8472,6 +8472,18 @@ int32_t OH_ArkUI_NodeUtils_GetCrossLanguageOption(ArkUI_NodeHandle node, ArkUI_C
 int32_t OH_ArkUI_GetNodeSnapshot(ArkUI_NodeHandle node, ArkUI_SnapshotOptions* snapshotOptions,
     OH_PixelmapNative** pixelmap);
 
+/**
+ * @brief Obtains the offset of a specific node relative to its parent node.
+ *
+ * @param node Target node.
+ * @param globalOffset Offset of the target node relative to its parent node, in px.
+ * @return Returns the result code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @since 15
+ */
+int32_t OH_ArkUI_NodeUtils_GetPositionToParent(ArkUI_NodeHandle node, ArkUI_IntOffset* globalOffset);
+
 #ifdef __cplusplus
 };
 #endif
