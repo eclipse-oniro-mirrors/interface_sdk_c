@@ -44,6 +44,7 @@
 #include "database/rdb/oh_value_object.h"
 #include "database/rdb/oh_values_bucket.h"
 #include "database/rdb/oh_rdb_transaction.h"
+#include "database/rdb/oh_rdb_types.h"
 
 #ifdef __cplusplus
 extern "C" {

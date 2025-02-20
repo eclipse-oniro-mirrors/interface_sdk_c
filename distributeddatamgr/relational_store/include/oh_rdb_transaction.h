@@ -43,6 +43,7 @@
 #include "database/rdb/oh_cursor.h"
 #include "database/rdb/oh_predicates.h"
 #include "database/rdb/oh_values_bucket.h"
+#include "database/rdb/oh_rdb_types.h"
 #include "database/data/oh_data_values.h"
 #include "database/data/oh_data_values_buckets.h"
 
