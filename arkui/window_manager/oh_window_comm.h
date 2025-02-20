@@ -46,7 +46,7 @@ extern "C" {
 /**
  * @brief The native pixel map information defined by Image Kit.
  *
- * @since 16
+ * @since 15
  */
 typedef struct OH_PixelmapNative;
 
@@ -61,7 +61,7 @@ typedef enum {
     /**
      * @error No permission.
      *
-     * @since 16
+     * @since 15
      */
     WINDOW_MANAGER_ERRORCODE_NO_PERMISSION = 201,
     /**
@@ -115,7 +115,7 @@ typedef enum {
 /**
  * @brief The type of a window
  *
- * @since 16
+ * @since 15
  */
 typedef enum {
     /** Sub window. */
@@ -147,7 +147,7 @@ typedef struct {
 /**
  * @brief Properties of window
  *
- * @since 16
+ * @since 15
 */
 typedef struct {
     /** The position and size of the window. */

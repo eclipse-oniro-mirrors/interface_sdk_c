@@ -1,0 +1,22 @@
+[
+    {
+      "first_introduced": "16",
+      "name": "OH_AVMetadataExtractor_Create"
+    },
+    {
+      "first_introduced": "16",
+      "name": "OH_AVMetadataExtractor_SetFDSource"
+    },
+    {
+      "first_introduced": "16",
+      "name": "OH_AVMetadataExtractor_FetchMetadata"
+    },
+    {
+      "first_introduced": "16",
+      "name": "OH_AVMetadataExtractor_FetchAlbumCover"
+    },
+    {
+      "first_introduced": "16",
+      "name": "OH_AVMetadataExtractor_Release"
+    }
+]
