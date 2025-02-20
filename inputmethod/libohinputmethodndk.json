@@ -310,5 +310,17 @@
     {
         "first_introduced": "12",
         "name": "OH_PrivateCommand_GetStrValue"
+    },
+    {
+        "first_introduced": "15",
+        "name": "OH_InputMethodProxy_ShowTextInput"
+    },
+    {
+        "first_introduced": "15",
+        "name": "OH_AttachOptions_CreateWithRequestKeyboardReason"
+    },
+    {
+        "first_introduced": "15",
+        "name": "OH_AttachOptions_GetRequestKeyboardReason"
     }
 ]
