@@ -13,25 +13,22 @@
 
 import("//build/ohos.gni")
 import("//build/ohos/ndk/ndk.gni")
-
-ohos_ndk_library("native_window_manager") {
-  ndk_description_file = "./libwm.ndk.json"
-  min_compact_version = "12"
-  output_name = "native_window_manager"
-  output_extension = "so"
-  system_capability = "SystemCapability.Window.SessionManager"
-  system_capability_headers = [
-    "oh_window.h",
-    "oh_window_comm.h",
-    "oh_window_event_filter.h",
+ohos_ndk_headers("ability_base_want_ndk_header") {
+  dest_dir = "$ndk_headers_out_dir/AbilityKit/ability_base"
+  sources = [
+    "./ability_base_common.h",
+    "./want.h",
   ]
 }
 
-ohos_ndk_headers("window_manager_header") {
-  dest_dir = "$ndk_headers_out_dir/window_manager"
-  sources = [
-    "oh_window.h",
-    "oh_window_comm.h",
-    "oh_window_event_filter.h",
+ohos_ndk_library("libability_base_want") {
+  output_name = "ability_base_want"
+  output_extension = "so"
+  system_capability = "SystemCapability.Ability.AbilityBase"
+  ndk_description_file = "./libability_base_want.json"
+  min_compact_version = "15"
+  system_capability_headers = [
+    "AbilityKit/ability_base/ability_base_common.h",
+    "AbilityKit/ability_base/want.h",
   ]
 }
