@@ -5347,6 +5347,21 @@ typedef enum {
     NODE_LIST_MAINTAIN_VISIBLE_CONTENT_POSITION = 1003013,
 
     /**
+     * @brief Sets whether the <b>List</b> component starts layout from the end.
+     *
+     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
+     * .value[0].i32: whether the <b>List</b> component starts layout from the end. The value <b>0</b> means layout
+     * starts from the top, and <b>1</b> means layout starts from the end. The default value is <b>0</b>. \n
+     * \n
+     * Format of the return value {@link ArkUI_AttributeItem}:\n
+     * .value[0].i32: whether the <b>List</b> component starts layout from the end. The value <b>0</b> means layout
+     * starts from the top, and <b>1</b> means layout starts from the end. The default value is <b>0</b>. \n
+     *
+     * @since 16
+     */
+    NODE_LIST_STACK_FROM_END = 1003014,
+
+    /**
      * @brief Defines whether to enable loop playback for the swiper.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
