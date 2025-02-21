@@ -2544,38 +2544,6 @@
     },
     {
         "first_introduced": "15",
-        "name": "OH_ArkUI_DragEvent_StartDataLoading"
-    },
-    {
-        "first_introduced": "15",
-        "name": "OH_ArkUI_CancelDataLoading"
-    },
-    {
-        "first_introduced": "15",
-        "name": "OH_ArkUI_DisableDropDataPrefetchOnNode"
-    },
-    {
-        "first_introduced": "15",
-        "name": "OH_ArkUI_PointerEvent_GetPressedTimeByIndex"
-    },
-    {
-        "first_introduced": "15",
-        "name": "OH_ArkUI_MouseEvent_GetRawDeltaX"
-    },
-    {
-        "first_introduced": "15",
-        "name": "OH_ArkUI_MouseEvent_GetRawDeltaY"
-    },
-    {
-        "first_introduced": "15",
-        "name": "OH_ArkUI_MouseEvent_GetPressedButtons"
-    },
-    {
-        "first_introduced": "15",
-        "name": "OH_ArkUI_UIInputEvent_GetTargetDisplayId"
-    },
-    {
-        "first_introduced": "15",
         "name": "OH_ArkUI_FocusAxisEvent_GetAxisValue"
     },
     {
@@ -2660,6 +2628,42 @@
     },
     {
         "first_introduced": "15",
+        "name": "OH_ArkUI_CreateSnapshotOptions"
+    },
+    {
+        "first_introduced": "15",
+        "name": "OH_ArkUI_DestroySnapshotOptions"
+    },
+    {
+        "first_introduced": "15",
+        "name": "OH_ArkUI_SnapshotOptions_SetScale"
+    },
+    {
+        "first_introduced": "15",
+        "name": "OH_ArkUI_GetNodeSnapshot"
+    },
+    {
+        "first_introduced": "15",
+        "name": "OH_ArkUI_PointerEvent_GetPressedTimeByIndex"
+    },
+    {
+        "first_introduced": "15",
+        "name": "OH_ArkUI_MouseEvent_GetRawDeltaX"
+    },
+    {
+        "first_introduced": "15",
+        "name": "OH_ArkUI_MouseEvent_GetRawDeltaY"
+    },
+    {
+        "first_introduced": "15",
+        "name": "OH_ArkUI_MouseEvent_GetPressedButtons"
+    },
+    {
+        "first_introduced": "15",
+        "name": "OH_ArkUI_UIInputEvent_GetTargetDisplayId"
+    },
+    {
+        "first_introduced": "15",
         "name": "OH_ArkUI_HostWindowInfo_GetName"
     },
     {
@@ -2684,19 +2688,15 @@
     },
     {
         "first_introduced": "15",
-        "name": "OH_ArkUI_CreateSnapshotOptions"
+        "name": "OH_ArkUI_DragEvent_StartDataLoading"
     },
     {
         "first_introduced": "15",
-        "name": "OH_ArkUI_DestroySnapshotOptions"
+        "name": "OH_ArkUI_CancelDataLoading"
     },
     {
         "first_introduced": "15",
-        "name": "OH_ArkUI_SnapshotOptions_SetScale"
-    },
-    {
-        "first_introduced": "15",
-        "name": "OH_ArkUI_GetNodeSnapshot"
+        "name": "OH_ArkUI_DisableDropDataPrefetchOnNode"
     },
     {
         "first_introduced": "15",
