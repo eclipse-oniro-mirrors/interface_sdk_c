@@ -2728,6 +2728,10 @@
         "name": "OH_ArkUI_AccessibilityProviderRegisterCallbackWithInstance"
     },
     {
+        "first_introduced": "15",
+        "name": "OH_ArkUI_PointerEvent_GetChangedPointerId"
+    },
+    {
         "first_introduced": "16",
         "name": "OH_ArkUI_GetGestureParam_FingerCount"
     },
@@ -2790,10 +2794,6 @@
     {
         "first_introduced": "15",
         "name": "OH_ArkUI_ProgressLinearStyleOption_SetStrokeRadius"
-    },
-    {
-        "first_introduced": "16",
-        "name": "OH_ArkUI_PointerEvent_GetChangedPointerId"
     },
     {
         "first_introduced": "15",
