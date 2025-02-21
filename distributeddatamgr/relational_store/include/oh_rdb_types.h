@@ -49,7 +49,7 @@ extern "C" {
  *
  * @since 16
  */
-typedef enum Rdb_Conflict_Resolution {
+typedef enum Rdb_ConflictResolution {
     /**
      * @brief Implements no operation when conflict occurs.
      */
@@ -74,7 +74,7 @@ typedef enum Rdb_Conflict_Resolution {
      * @brief Implements replace operation when conflict occurs.
      */
     RDB_CONFLICT_REPLACE,
-} Rdb_Conflict_Resolution;
+} Rdb_ConflictResolution;
 
 #ifdef __cplusplus
 };

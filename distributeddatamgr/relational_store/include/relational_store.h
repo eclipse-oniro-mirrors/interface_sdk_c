@@ -516,7 +516,7 @@ int OH_Rdb_Insert(OH_Rdb_Store *store, const char *table, OH_VBucket *valuesBuck
  * @since 16
  */
 int OH_Rdb_BatchInsert(OH_Rdb_Store *store, const char *table,
-    const OH_Data_VBuckets *rows, Rdb_Conflict_Resolution resolution, int64_t *changes);
+    const OH_Data_VBuckets *rows, Rdb_ConflictResolution resolution, int64_t *changes);
 
 /**
  * @brief Updates data in the database based on specified conditions.

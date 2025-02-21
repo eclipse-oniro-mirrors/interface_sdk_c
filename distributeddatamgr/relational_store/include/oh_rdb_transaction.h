@@ -221,7 +221,7 @@ int OH_RdbTrans_Insert(OH_Rdb_Transaction *trans, const char *table, const OH_VB
  * @since 16
  */
 int OH_RdbTrans_BatchInsert(OH_Rdb_Transaction *trans, const char *table, const OH_Data_VBuckets *rows,
-    Rdb_Conflict_Resolution resolution, int64_t *changes);
+    Rdb_ConflictResolution resolution, int64_t *changes);
 
 /**
  * @brief Updates data in the database based on specified conditions.
