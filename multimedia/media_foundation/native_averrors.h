@@ -98,7 +98,7 @@ typedef enum OH_AVErrCode {
      * @error unsupported format.
      * @since 16
      */
-    AV_ERR_UNSUPPORT_FORMAT = 11,
+    AV_ERR_UNSUPPORTED_FORMAT = 11,
     /**
      * @error extend err start.
      */
