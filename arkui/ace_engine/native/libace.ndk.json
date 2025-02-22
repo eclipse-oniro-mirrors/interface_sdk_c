@@ -1157,6 +1157,22 @@
     },
     {
         "first_introduced": "16",
+        "name": "OH_ArkUI_SwiperIndicator_SetIgnoreSizeOfBottom"
+    },
+    {
+        "first_introduced": "16",
+        "name": "OH_ArkUI_SwiperIndicator_GetIgnoreSizeOfBottom"
+    },
+    {
+        "first_introduced": "16",
+        "name": "OH_ArkUI_SwiperIndicator_SetSpace"
+    },
+    {
+        "first_introduced": "16",
+        "name": "OH_ArkUI_SwiperIndicator_GetSpace"
+    },
+    {
+        "first_introduced": "16",
         "name": "OH_ArkUI_SwiperDigitIndicator_Create"
     },
     {
@@ -1242,6 +1258,14 @@
     {
         "first_introduced": "16",
         "name": "OH_ArkUI_SwiperDigitIndicator_Destroy"
+    },
+    {
+        "first_introduced": "16",
+        "name": "OH_ArkUI_SwiperDigitIndicator_SetIgnoreSizeOfBottom"
+    },
+    {
+        "first_introduced": "16",
+        "name": "OH_ArkUI_SwiperDigitIndicator_GetIgnoreSizeOfBottom"
     },
     {
         "first_introduced": "16",
