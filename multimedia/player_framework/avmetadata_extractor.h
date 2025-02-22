@@ -81,7 +81,7 @@ OH_AVMetadataExtractor* OH_AVMetadataExtractor_Create(void);
  *         {@link AV_ERR_OK} if the execution is successful.
  *         {@link AV_ERR_INPUT_DATA_ERROR} if input extractor is nullptr or input param is invalid.
  *         {@link AV_ERR_OPERATE_NOT_PERMIT} if operation not allowed.
- *	       {@link AV_ERR_NO_MEMORY} if internal memory allocation failed.
+ *         {@link AV_ERR_NO_MEMORY} if internal memory allocation failed.
  * @since 16
  */
 OH_AVErrCode OH_AVMetadataExtractor_SetFDSource(OH_AVMetadataExtractor* extractor,
@@ -99,7 +99,7 @@ OH_AVErrCode OH_AVMetadataExtractor_SetFDSource(OH_AVMetadataExtractor* extracto
  *         {@link AV_ERR_INPUT_DATA_ERROR} if input extractor is nullptr or input param is invalid.
  *         {@link AV_ERR_OPERATE_NOT_PERMIT} if operation not allowed.
  *         {@link AV_ERR_UNSUPPORT_FORMAT} if format is unsupported.
- *	       {@link AV_ERR_NO_MEMORY} if internal memory allocation failed.
+ *         {@link AV_ERR_NO_MEMORY} if internal memory allocation failed.
  * @since 16
  */
 OH_AVErrCode OH_AVMetadataExtractor_FetchMetadata(OH_AVMetadataExtractor* extractor, OH_AVFormat* avMetadata);
@@ -116,7 +116,7 @@ OH_AVErrCode OH_AVMetadataExtractor_FetchMetadata(OH_AVMetadataExtractor* extrac
  *         {@link AV_ERR_INPUT_DATA_ERROR} if input extractor is nullptr or input param is invalid.
  *         {@link AV_ERR_OPERATE_NOT_PERMIT} if operation not allowed.
  *         {@link AV_ERR_UNSUPPORT_FORMAT} if format is unsupported.
- *	       {@link AV_ERR_NO_MEMORY} if internal memory allocation failed.
+ *         {@link AV_ERR_NO_MEMORY} if internal memory allocation failed.
  * @since 16
  */
 OH_AVErrCode OH_AVMetadataExtractor_FetchAlbumCover(OH_AVMetadataExtractor* extractor, OH_PixelmapNative** pixelMap);
