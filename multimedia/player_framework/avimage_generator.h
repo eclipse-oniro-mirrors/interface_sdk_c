@@ -78,6 +78,8 @@ OH_AVImageGenerator* OH_AVImageGenerator_Create(void);
  * @return Function result code.
  *         {@link AV_ERR_OK} if the execution is successful.
  *         {@link AV_ERR_INPUT_DATA_ERROR} if input generator is nullptr or input param is invalid.
+ *         {@link AV_ERR_OPERATE_NOT_PERMIT} if operation not allowed.
+ *		   {@link AV_ERR_NO_MEMORY}, denotes a failure in internal memory allocation.
  * @since 16
  */
 OH_AVErrCode OH_AVImageGenerator_SetFDSource(OH_AVImageGenerator* generator,
@@ -98,6 +100,8 @@ OH_AVErrCode OH_AVImageGenerator_SetFDSource(OH_AVImageGenerator* generator,
  *         {@link AV_ERR_OK} if the execution is successful.
  *         {@link AV_ERR_INPUT_DATA_ERROR} if input generator is nullptr or input param is invalid.
  *         {@link AV_ERR_OPERATE_NOT_PERMIT} if operation not allowed.
+ *         {@link AV_ERR_UNSUPPORT_FORMAT} if format is unsupported.
+ *		   {@link AV_ERR_NO_MEMORY}, denotes a failure in internal memory allocation.
  * @since 16
  */
 OH_AVErrCode OH_AVImageGenerator_FetchFrameByTime(OH_AVImageGenerator* generator,
@@ -111,7 +115,6 @@ OH_AVErrCode OH_AVImageGenerator_FetchFrameByTime(OH_AVImageGenerator* generator
  * @return Function result code.
  *         {@link AV_ERR_OK} if the execution is successful.
  *         {@link AV_ERR_INPUT_DATA_ERROR} if input generator is nullptr or input param is invalid.
- *         {@link AV_ERR_OPERATE_NOT_PERMIT} if operation not allowed.
  * @since 16
  */
 OH_AVErrCode OH_AVImageGenerator_Release(OH_AVImageGenerator* generator);
