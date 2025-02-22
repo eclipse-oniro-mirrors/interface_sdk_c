@@ -71,6 +71,10 @@
         "name":"OH_Rdb_Insert"
     },
     {
+        "first_introduced": "16",
+        "name":"OH_Rdb_BatchInsert"
+    },
+    {
         "name":"OH_Rdb_Update"
     },
     {
