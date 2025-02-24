@@ -1843,7 +1843,7 @@ typedef enum {
      * @since 14
      */
     NODE_TAB_STOP = 98,
-
+    
     /**
      * @brief Defines the backdrop blur attribute, which can be set, reset, and obtained as required through APIs.
      *
@@ -1864,7 +1864,7 @@ typedef enum {
      * @since 15
      */
     NODE_BACKDROP_BLUR = 99,
-
+    
     /**
      * @brief Defines the text content attribute, which can be set, reset, and obtained as required through APIs.
      *
@@ -3356,7 +3356,6 @@ typedef enum {
      * @since 15
      */
     NODE_TEXT_AREA_LETTER_SPACING = 8023,
-
     /**
      * @brief Sets whether to enable preview text for the <b>TextArea</b> component.
      * This attribute can be set, reset, and obtained as required through APIs.
@@ -4480,7 +4479,6 @@ typedef enum {
      * @since 15
      */
     NODE_CHECKBOX_GROUP_SELECTED_COLOR,
-
     /**
      * @brief Defines the border color of the checkboxgroup when it is not selected.
      * This attribute can be set, reset, and obtained as required through APIs.
@@ -4823,6 +4821,7 @@ typedef enum {
      * @since 15
      */
     NODE_SCROLL_CONTENT_END_OFFSET,
+
     /**
      * @brief Defines the direction in which the list items are arranged. This attribute can be set, reset, and
      * obtained as required through APIs.
@@ -6702,7 +6701,7 @@ typedef enum {
      *
     */
     NODE_IMAGE_ANIMATOR_EVENT_ON_FINISH = 19004,
-
+    
     /**
      * @brief Defines the callback triggered when the selected status of the <b>ARKUI_NODE_CHECKBOX_GROOUP</b>
      * or checkbox changes.
@@ -6719,7 +6718,7 @@ typedef enum {
      * @since 15
      */
     NODE_CHECKBOX_GROUP_EVENT_ON_CHANGE = MAX_NODE_SCOPE_NUM * ARKUI_NODE_CHECKBOX_GROUP,
-
+    
     /**
      * @brief Defines the event triggered when the index of the currently displayed element of this
      * <b>ARKUI_NODE_SWIPER</b> instance changes.
@@ -8558,7 +8557,6 @@ float OH_ArkUI_SystemFontStyleEvent_GetFontWeightScale(const ArkUI_SystemFontSty
 int32_t OH_ArkUI_RegisterLayoutCallbackOnNodeHandle(ArkUI_NodeHandle node,
     void* userData, void (*onLayoutCompleted)(void* userData));
 
-
 /**
  * @brief Registers a callback for node when draw is completed.
  *
@@ -8620,18 +8618,6 @@ int32_t OH_ArkUI_NodeUtils_GetAttachedNodeHandleById(const char* id, ArkUI_NodeH
 int32_t OH_ArkUI_NodeUtils_SetCrossLanguageOption(ArkUI_NodeHandle node, ArkUI_CrossLanguageOption* option);
 
 /**
- * @brief Get the cross-language option of the target node handle.
- *
- * @param node The target node handle.
- * @param option The cross-language option {@link ArkUI_CrossLanguageOption}.
- * @return Error code.
- *         {@link ARKUI_ERROR_CODE_NO_ERROR} success.
- *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} Function parameter exception.
- * @since 15
- */
-int32_t OH_ArkUI_NodeUtils_GetCrossLanguageOption(ArkUI_NodeHandle node, ArkUI_CrossLanguageOption* option);
-
-/**
  * @brief Get the snapshot pixelmap for the given node synchronously, will get error if the node is not on the
  * tree or is not rendered yet.
  * Note: the pixelmap should be released through OH_PixelmapNative_Release when it's not used any more.
@@ -8650,6 +8636,18 @@ int32_t OH_ArkUI_GetNodeSnapshot(ArkUI_NodeHandle node, ArkUI_SnapshotOptions* s
     OH_PixelmapNative** pixelmap);
 
 /**
+ * @brief Get the cross-language option of the target node handle.
+ *
+ * @param node The target node handle.
+ * @param option The cross-language option {@link ArkUI_CrossLanguageOption}.
+ * @return Error code.
+ *         {@link ARKUI_ERROR_CODE_NO_ERROR} success.
+ *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} Function parameter exception.
+ * @since 15
+ */
+int32_t OH_ArkUI_NodeUtils_GetCrossLanguageOption(ArkUI_NodeHandle node, ArkUI_CrossLanguageOption* option);
+
+/**
  * @brief Obtains the offset of a specific node relative to its parent node.
  *
  * @param node Target node.
@@ -8666,4 +8664,4 @@ int32_t OH_ArkUI_NodeUtils_GetPositionToParent(ArkUI_NodeHandle node, ArkUI_IntO
 #endif
 
 #endif // ARKUI_NATIVE_NODE_H
-/** @}*/
+/** @} */

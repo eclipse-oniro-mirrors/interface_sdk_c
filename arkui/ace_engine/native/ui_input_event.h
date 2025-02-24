@@ -196,6 +196,7 @@ typedef enum {
     /** Fn. */
     ARKUI_MODIFIER_KEY_FN = 1 << 3,
 } ArkUI_ModifierKeyName;
+
 /**
  * @brief Defines whether the touch event is from the left or right hand.
  *
@@ -209,25 +210,7 @@ typedef enum {
     /** Right hand. */
     ARKUI_EVENT_HAND_RIGHT = 2,
 } ArkUI_InteractionHand;
-
-/**
- * @brief Enumerates the action types for axis events.
- *
- * @since 15
- */
-enum {
-    /** The axis event is abnormal. */
-    UI_AXIS_EVENT_ACTION_NONE = 0,
-    /** The axis event begins. */
-    UI_AXIS_EVENT_ACTION_BEGIN = 1,
-    /** The axis event is updated. */
-    UI_AXIS_EVENT_ACTION_UPDATE = 2,
-    /** The axis event ends. */
-    UI_AXIS_EVENT_ACTION_END = 3,
-    /** The axis event is canceled. */
-    UI_AXIS_EVENT_ACTION_CANCEL = 4,
-};
-
+ 
 /**
  * @brief Defines an enum for the axis types for focus axis events.
  *
@@ -250,6 +233,24 @@ enum {
     UI_FOCUS_AXIS_EVENT_ABS_HAT0X = 6,
     /** ABS_HAT0Y. */
     UI_FOCUS_AXIS_EVENT_ABS_HAT0Y = 7,
+};
+
+/**
+ * @brief Enumerates the action types for axis events.
+ *
+ * @since 15
+ */
+enum {
+    /** The axis event is abnormal. */
+    UI_AXIS_EVENT_ACTION_NONE = 0,
+    /** The axis event begins. */
+    UI_AXIS_EVENT_ACTION_BEGIN = 1,
+    /** The axis event is updated. */
+    UI_AXIS_EVENT_ACTION_UPDATE = 2,
+    /** The axis event ends. */
+    UI_AXIS_EVENT_ACTION_END = 3,
+    /** The axis event is canceled. */
+    UI_AXIS_EVENT_ACTION_CANCEL = 4,
 };
 
 /**
@@ -531,7 +532,7 @@ float OH_ArkUI_PointerEvent_GetTouchAreaHeight(const ArkUI_UIInputEvent* event, 
  * @since 15
  */
 int32_t OH_ArkUI_PointerEvent_GetInteractionHand(const ArkUI_UIInputEvent *event, ArkUI_InteractionHand *hand);
-
+ 
 /**
  * @brief Obtains whether the current touch event is from the left or right hand.
  *
@@ -545,7 +546,7 @@ int32_t OH_ArkUI_PointerEvent_GetInteractionHand(const ArkUI_UIInputEvent *event
  */
 int32_t OH_ArkUI_PointerEvent_GetInteractionHandByIndex(
     const ArkUI_UIInputEvent *event, int32_t pointerIndex, ArkUI_InteractionHand *hand);
-
+ 
 /**
  * @brief Obtains the number of historical events from a directional input event (such as a touch event, mouse event,
  * or axis event).
@@ -847,6 +848,28 @@ int32_t OH_ArkUI_UIInputEvent_GetPressedKeys(
     const ArkUI_UIInputEvent* event, int32_t* pressedKeyCodes, int32_t* length);
 
 /**
+ * @brief Obtains the axis value of a focus axis event.
+ *
+ * @param event Pointer to an <b>ArkUI_UIInputEvent</b> object.
+ * @param axis Axis type of the focus axis event.
+ * @return Returns the axis value of the focus axis event; returns <b>0.0</b> if any parameter error occurs.
+ * @since 15
+ */
+double OH_ArkUI_FocusAxisEvent_GetAxisValue(const ArkUI_UIInputEvent* event, int32_t axis);
+
+/**
+ * @brief Sets whether to prevent a focus axis event from bubbling up.
+ *
+ * @param event Indicates the pointer to the current UI input event.
+ * @param stopPropagation Indicates whether to stop event propagation.
+ * @return Returns the result code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @since 15
+ */
+int32_t OH_ArkUI_FocusAxisEvent_SetStopPropagation(const ArkUI_UIInputEvent* event, bool stopPropagation);
+
+/**
  * @brief Obtains the press time of a specific touch point.
  *
  * @param event Pointer to an <b>ArkUI_UIInputEvent</b> object.
@@ -895,28 +918,6 @@ int32_t OH_ArkUI_MouseEvent_GetPressedButtons(
     const ArkUI_UIInputEvent* event, int32_t* pressedButtons, int32_t* length);
 
 /**
- * @brief Obtains the axis value of a focus axis event.
- *
- * @param event Pointer to an <b>ArkUI_UIInputEvent</b> object.
- * @param axis Axis type of the focus axis event.
- * @return Returns the axis value of the focus axis event; returns <b>0.0</b> if any parameter error occurs.
- * @since 15
- */
-double OH_ArkUI_FocusAxisEvent_GetAxisValue(const ArkUI_UIInputEvent* event, int32_t axis);
-
-/**
- * @brief Sets whether to prevent a focus axis event from bubbling up.
- *
- * @param event Indicates the pointer to the current UI input event.
- * @param stopPropagation Indicates whether to stop event propagation.
- * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
- * @since 15
- */
-int32_t OH_ArkUI_FocusAxisEvent_SetStopPropagation(const ArkUI_UIInputEvent* event, bool stopPropagation);
-
-/**
  * @brief Obtains the ID of the screen where the UI input event occurs.
  *
  * @param event Pointer to an <b>ArkUI_UIInputEvent</b> object.
@@ -936,7 +937,7 @@ int32_t OH_ArkUI_UIInputEvent_GetTargetDisplayId(const ArkUI_UIInputEvent* event
  * @since 15
  */
 int32_t OH_ArkUI_PointerEvent_CreateClonedEvent(const ArkUI_UIInputEvent* event, ArkUI_UIInputEvent** clonedEvent);
-
+ 
 /**
  * @brief Destroys a cloned event pointer.
  *
@@ -949,7 +950,7 @@ int32_t OH_ArkUI_PointerEvent_CreateClonedEvent(const ArkUI_UIInputEvent* event,
  * @since 15
  */
 int32_t OH_ArkUI_PointerEvent_DestroyClonedEvent(const ArkUI_UIInputEvent* event);
-
+ 
 /**
  * @brief Sets the X and Y coordinates of a cloned event relative to the upper left corner of the current component.
  *
@@ -964,7 +965,7 @@ int32_t OH_ArkUI_PointerEvent_DestroyClonedEvent(const ArkUI_UIInputEvent* event
  * @since 15
  */
 int32_t OH_ArkUI_PointerEvent_SetClonedEventLocalPosition(const ArkUI_UIInputEvent* event, float x, float y);
-
+ 
 /**
  * @brief Sets the X and Y coordinates of a specific contact point of a cloned event relative to the upper left corner
  * of the current component.
@@ -982,7 +983,7 @@ int32_t OH_ArkUI_PointerEvent_SetClonedEventLocalPosition(const ArkUI_UIInputEve
  */
 int32_t OH_ArkUI_PointerEvent_SetClonedEventLocalPositionByIndex(
     const ArkUI_UIInputEvent* event, float x, float y, int32_t pointerIndex);
-
+ 
 /**
  * @brief Sets the action type of a cloned event.
  *
@@ -996,7 +997,7 @@ int32_t OH_ArkUI_PointerEvent_SetClonedEventLocalPositionByIndex(
  * @since 15
  */
 int32_t OH_ArkUI_PointerEvent_SetClonedEventActionType(const ArkUI_UIInputEvent* event, int32_t actionType);
-
+ 
 /**
  * @brief Sets the touch point ID of a cloned pointer event.
  *
@@ -1010,7 +1011,7 @@ int32_t OH_ArkUI_PointerEvent_SetClonedEventActionType(const ArkUI_UIInputEvent*
  * @since 15
  */
 int32_t OH_ArkUI_PointerEvent_SetClonedEventChangedFingerId(const ArkUI_UIInputEvent* event, int32_t fingerId);
-
+ 
 /**
  * @brief Sets the touch point ID of a specific contact point of a cloned event.
  *
@@ -1026,7 +1027,7 @@ int32_t OH_ArkUI_PointerEvent_SetClonedEventChangedFingerId(const ArkUI_UIInputE
  */
 int32_t OH_ArkUI_PointerEvent_SetClonedEventFingerIdByIndex(
     const ArkUI_UIInputEvent* event, int32_t fingerId, int32_t pointerIndex);
-
+ 
 /**
  * @brief Posts a cloned event to a specific node.
  *
