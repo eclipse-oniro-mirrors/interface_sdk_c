@@ -5212,7 +5212,6 @@ typedef enum {
      * .value[2]?.i32：Specify the alignment of the sliding element with the current container,The parameter type is
      * {@link ArkUI_ScrollAlignment}, default value is ARKUI_SCROLL_ALIGNMENT_START. \n
      * .value[3]?.f32: extra offset, in vp. The default value is <b>0</b>.
-     * This parameter is supported since API version 15. \n
      *
      */
     NODE_LIST_SCROLL_TO_INDEX,
@@ -6038,7 +6037,14 @@ typedef enum {
     * This attribute can be set, reset, and obtained as required through APIs.
     *
     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-    * .value[0].i32: number of cached items in the water flowadapter. \n
+    * value[0].i32：number of cached items in the water flow adapter. \n
+    * .value[1]?.i32：whether to the cached items will be displayed, 0: not displayed, 1: displayed, default value: 0.
+    * This parameter is supported since API version 16. \n
+    * \n
+    * Format of the return value {@link ArkUI_AttributeItem}:\n
+    * .value[0].i32: number of cached items in the water flow adapter. \n
+    * .value[1].i32: whether to the cached items will be displayed, 0: not displayed, 1: displayed, default value: 0.
+    * This parameter is supported since API version 16. \n
     */
     NODE_WATER_FLOW_CACHED_COUNT,
 
