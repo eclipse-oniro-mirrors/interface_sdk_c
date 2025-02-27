@@ -347,7 +347,7 @@ void OH_LOG_SetCallback(LogCallback callback);
  * @brief Sets the lowest log level of the current application process.
  *
  * @param level log level
- * @since 16
+ * @since 15
  */
 void OH_LOG_SetMinLogLevel(LogLevel level);
 
