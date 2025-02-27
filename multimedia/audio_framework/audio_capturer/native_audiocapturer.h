@@ -149,7 +149,7 @@ OH_AudioStream_Result OH_AudioCapturer_GetLatencyMode(OH_AudioCapturer* capturer
  * @since 10
  *
  * @param capturer Reference created by OH_AudioStreamBuilder_GenerateCapturer()
- * @param stramId Pointer to a variable that will be set for the stream id.
+ * @param streamId Pointer to a variable that will be set for the stream id.
  * @return Function result code:
  *         {@link AUDIOSTREAM_SUCCESS} If the execution is successful.
  *         {@link AUDIOSTREAM_ERROR_INVALID_PARAM} The param of capturer is nullptr.
