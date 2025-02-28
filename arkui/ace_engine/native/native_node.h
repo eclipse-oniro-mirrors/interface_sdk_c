@@ -6647,7 +6647,7 @@ typedef enum {
      * within the component. \n
      * When the event callback occurs, the {@link ArkUI_NodeEvent} object can be obtained from the
      * {@link ArkUI_UIInputEvent} object. \n
-     * @since 16
+     * @since 15
     */
     NODE_ON_HOVER_MOVE = 29,
 
