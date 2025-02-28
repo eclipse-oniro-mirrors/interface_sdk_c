@@ -1605,6 +1605,12 @@ typedef enum {
      *  lines at appropriate characters (for example, spaces) whenever possible.
         CJK text behavior is the same as for <b>NORMAL</b>. */
     ARKUI_WORD_BREAK_BREAK_WORD,
+    /**
+     * @brief Line breaks can occur between any two syllabic units for non-CJK text.
+     * CJK text behavior is the same as for <b>NORMAL</b>.
+     * @since 16
+     */
+    ARKUI_WORD_BREAK_HYPHENATION,
 } ArkUI_WordBreak;
 
 /**
