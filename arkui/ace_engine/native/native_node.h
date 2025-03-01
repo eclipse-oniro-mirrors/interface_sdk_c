@@ -5129,7 +5129,7 @@ typedef enum {
      * Format of the return value {@link ArkUI_AttributeItem}: \n
      * .value[0].i32: whether the scrollable scrolls back to top when status bar is clicked. \n
      *
-     * @since 16
+     * @since 15
      */
     NODE_SCROLL_BACK_TO_TOP = 1002021,
 
