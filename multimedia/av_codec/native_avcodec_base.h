@@ -359,21 +359,21 @@ extern const char *OH_AVCODEC_MIMETYPE_SUBTITLE_WEBVTT;
  * @brief Enumerates the mime type of audio raw stream.
  *
  * @syscap SystemCapability.Multimedia.Media.CodecBase
- * @since 16
+ * @since 18
  */
 extern const char *OH_AVCODEC_MIMETYPE_AUDIO_RAW;
 /**
  * @brief Enumerates the MIME type of video mpeg2 codec.
  *
  * @syscap SystemCapability.Multimedia.Media.CodecBase
- * @since 16
+ * @since 18
  */
 extern const char *OH_AVCODEC_MIMETYPE_VIDEO_MPEG2;
 /**
  * @brief Enumerates the MIME type of video mpeg4 part2 codec.
  *
  * @syscap SystemCapability.Multimedia.Media.CodecBase
- * @since 16
+ * @since 18
  */
 extern const char *OH_AVCODEC_MIMETYPE_VIDEO_MPEG4_PART2;
 
@@ -1011,7 +1011,7 @@ extern const char *OH_MD_KEY_CREATION_TIME;
  * it will sumbit the previous frame repeatly in milliseconds. It is used in configure.
  *
  * @syscap SystemCapability.Multimedia.Media.CodecBase
- * @since 16
+ * @since 18
  */
 extern const char *OH_MD_KEY_VIDEO_ENCODER_REPEAT_PREVIOUS_FRAME_AFTER;
 /**
@@ -1020,7 +1020,7 @@ extern const char *OH_MD_KEY_VIDEO_ENCODER_REPEAT_PREVIOUS_FRAME_AFTER;
  * {@link VIDEO_ENCODER_REPEAT_PREVIOUS_FRAME_AFTER} is vaild. It is used in configure.
  *
  * @syscap SystemCapability.Multimedia.Media.CodecBase
- * @since 16
+ * @since 18
  */
 extern const char *OH_MD_KEY_VIDEO_ENCODER_REPEAT_PREVIOUS_MAX_COUNT;
 
@@ -1136,7 +1136,7 @@ typedef enum OH_VVCProfile {
  * @brief MPEG2 Profile
  *
  * @syscap SystemCapability.Multimedia.Media.CodecBase
- * @since 16
+ * @since 18
  */
 typedef enum OH_MPEG2Profile {
     /** Simple profile */
@@ -1157,7 +1157,7 @@ typedef enum OH_MPEG2Profile {
  * @brief MPEG4 Profile
  *
  * @syscap SystemCapability.Multimedia.Media.CodecBase
- * @since 16
+ * @since 18
  */
 typedef enum OH_MPEG4Profile {
     /** Simple profile */
@@ -1219,7 +1219,7 @@ typedef enum OH_AVOutputFormat {
     AV_OUTPUT_FORMAT_WAV = 10,
     /**
      * The muxer output aac file format.
-     * @since 16
+     * @since 18
      */
     AV_OUTPUT_FORMAT_AAC = 11,
 } OH_AVOutputFormat;
@@ -1444,7 +1444,7 @@ typedef enum OH_VVCLevel {
  * @brief MPEG2 Level.
  *
  * @syscap SystemCapability.Multimedia.Media.CodecBase
- * @since 16
+ * @since 18
  */
 typedef enum OH_MPEG2Level {
     /** Low level */
@@ -1461,7 +1461,7 @@ typedef enum OH_MPEG2Level {
  * @brief MPEG4 Level.
  *
  * @syscap SystemCapability.Multimedia.Media.CodecBase
- * @since 16
+ * @since 18
  */
 typedef enum OH_MPEG4Level {
     /** 0 level */

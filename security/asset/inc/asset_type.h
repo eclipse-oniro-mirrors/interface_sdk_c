@@ -214,13 +214,13 @@ typedef enum {
     /**
      * A tag whose value is a byte array indicating the group id an asset belongs to.
      *
-     * @since 16
+     * @since 18
      */
     ASSET_TAG_GROUP_ID = ASSET_TYPE_BYTES | 0x48,
     /**
      * A tag whose value is a 32-bit unsigned integer indicating the type of Asset encapsulation.
      *
-     * @since 16
+     * @since 18
      */
     ASSET_TAG_WRAP_TYPE = ASSET_TYPE_BYTES | 0x49,
 } Asset_Tag;
@@ -339,7 +339,7 @@ typedef enum {
 /**
  * @brief An enum type indicates the type of Asset encapsulation.
  *
- * @since 16
+ * @since 18
  */
 typedef enum {
     /**

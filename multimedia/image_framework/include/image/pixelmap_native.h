@@ -100,7 +100,7 @@ typedef enum {
     PIXEL_FORMAT_UNKNOWN = 0,
     /*
     * ARGB_8888 format
-    * @since 16
+    * @since 18
     */
     PIXEL_FORMAT_ARGB_8888 = 1,
     /*
@@ -754,7 +754,7 @@ Image_ErrorCode OH_PixelmapNative_ScaleWithAntiAliasing(OH_PixelmapNative *pixel
  *         {@link IMAGE_SUCCESS} If the execution is successful.
  *         {@link IMAGE_BAD_PARAMETER} If the param is nullptr or invalid.
  * @see OH_PixelmapNative
- * @since 16
+ * @since 18
  */
 Image_ErrorCode OH_PixelmapNative_CreateScaledPixelMap(OH_PixelmapNative *srcPixelmap, OH_PixelmapNative **dstPixelmap,
     float scaleX, float scaleY);
@@ -773,7 +773,7 @@ Image_ErrorCode OH_PixelmapNative_CreateScaledPixelMap(OH_PixelmapNative *srcPix
  *         {@link IMAGE_TOO_LARGE} If image is too large.
  *         {@link IMAGE_ALLOC_FAILED} If device has no memory.
  * @see OH_PixelmapNative
- * @since 16
+ * @since 18
  */
 Image_ErrorCode OH_PixelmapNative_CreateScaledPixelMapWithAntiAliasing(OH_PixelmapNative *srcPixelmap,
     OH_PixelmapNative **dstPixelmap, float scaleX, float scaleY, OH_PixelmapNative_AntiAliasingLevel level);
@@ -950,7 +950,7 @@ Image_ErrorCode OH_PixelmapNative_SetMemoryName(OH_PixelmapNative *pixelmap, cha
  *         {@link IMAGE_SUCCESS} If the operation is successful.
  *         {@link IMAGE_BAD_PARAMETER} If invalid parameter, pixelmap or byteCount are invalid.
  * @see OH_PixelmapNative
- * @since 16
+ * @since 18
  */
 Image_ErrorCode OH_PixelmapNative_GetByteCount(OH_PixelmapNative *pixelmap, uint32_t *byteCount);
 
@@ -963,7 +963,7 @@ Image_ErrorCode OH_PixelmapNative_GetByteCount(OH_PixelmapNative *pixelmap, uint
  *         {@link IMAGE_SUCCESS} If the operation is successful.
  *         {@link IMAGE_BAD_PARAMETER} If invalid parameter, pixelmap or allocationByteCount are invalid.
  * @see OH_PixelmapNative
- * @since 16
+ * @since 18
  */
 Image_ErrorCode OH_PixelmapNative_GetAllocationByteCount(OH_PixelmapNative *pixelmap, uint32_t *allocationByteCount);
 

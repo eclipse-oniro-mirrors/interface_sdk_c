@@ -34,7 +34,7 @@
  * @library libnative_rdb_ndk.z.so
  * @syscap SystemCapability.DistributedDataManager.RelationalStore.Core
  *
- * @since 16
+ * @since 18
  */
 
 #ifndef OH_RDB_TRANSACTION_H
@@ -54,7 +54,7 @@ extern "C" {
 /**
  * @brief Indicates relation database transaction type.
  *
- * @since 16
+ * @since 18
  */
 typedef enum OH_RDB_TransType {
     /**
@@ -80,14 +80,14 @@ typedef enum OH_RDB_TransType {
 /**
  * @brief Define the OH_RDB_TransOptions structure type.
  *
- * @since 16
+ * @since 18
  */
 typedef struct OH_RDB_TransOptions OH_RDB_TransOptions;
 
 /**
  * @brief Define the OH_Rdb_Transaction structure type.
  *
- * @since 16
+ * @since 18
  */
 typedef struct OH_Rdb_Transaction OH_Rdb_Transaction;
 
@@ -98,7 +98,7 @@ typedef struct OH_Rdb_Transaction OH_Rdb_Transaction;
  * Otherwise, nullptr is returned. The memory must be released through the OH_RdbTrans_DestroyOptions
  * interface after the use is complete.
  * @see OH_RdbTrans_DestroyOptions.
- * @since 16
+ * @since 18
  */
 OH_RDB_TransOptions *OH_RdbTrans_CreateOptions();
 
@@ -109,7 +109,7 @@ OH_RDB_TransOptions *OH_RdbTrans_CreateOptions();
  * @return Returns the error code.
  *         Returns {@link RDB_OK} if the execution is successful.
  *         Returns {@link RDB_E_INVALID_ARGS} if invalid input parameter.
- * @since 16
+ * @since 18
  */
 int OH_RdbTrans_DestroyOptions(OH_RDB_TransOptions *opitons);
 
@@ -121,7 +121,7 @@ int OH_RdbTrans_DestroyOptions(OH_RDB_TransOptions *opitons);
  * @return Returns the error code.
  *         Returns {@link RDB_OK} if the execution is successful.
  *         Returns {@link RDB_E_INVALID_ARGS} if invalid input parameter.
- * @since 16
+ * @since 18
  */
 int OH_RdbTransOption_SetType(OH_RDB_TransOptions *opitons, OH_RDB_TransType type);
 
@@ -141,7 +141,7 @@ int OH_RdbTransOption_SetType(OH_RDB_TransOptions *opitons, OH_RDB_TransType typ
  *         Returns {@link RDB_E_SQLITE_NOMEM} SQLite: The database is out of memory.
  *         Returns {@link RDB_E_SQLITE_READONLY} SQLite: SQLite: Attempt to write a readonly database.
  *         Returns {@link RDB_E_SQLITE_IOERR} SQLite: Some kind of disk I/O error occurred.
- * @since 16
+ * @since 18
  */
 int OH_RdbTrans_Commit(OH_Rdb_Transaction *trans);
 
@@ -161,7 +161,7 @@ int OH_RdbTrans_Commit(OH_Rdb_Transaction *trans);
  *         Returns {@link RDB_E_SQLITE_NOMEM} SQLite: The database is out of memory.
  *         Returns {@link RDB_E_SQLITE_READONLY} SQLite: Attempt to write a readonly database.
  *         Returns {@link RDB_E_SQLITE_IOERR} SQLite: Some kind of disk I/O error occurred.
- * @since 16
+ * @since 18
  */
 int OH_RdbTrans_Rollback(OH_Rdb_Transaction *trans);
 
@@ -189,7 +189,7 @@ int OH_RdbTrans_Rollback(OH_Rdb_Transaction *trans);
  *         Returns {@link RDB_E_SQLITE_TOO_BIG} SQLite: TEXT or BLOB exceeds size limit.
  *         Returns {@link RDB_E_SQLITE_MISMATCH} SQLite: Data type mismatch.
 
- * @since 16
+ * @since 18
  */
 int OH_RdbTrans_Insert(OH_Rdb_Transaction *trans, const char *table, const OH_VBucket *row, int64_t *rowId);
 
@@ -218,7 +218,7 @@ int OH_RdbTrans_Insert(OH_Rdb_Transaction *trans, const char *table, const OH_VB
  *         Returns {@link RDB_E_SQLITE_TOO_BIG} SQLite: TEXT or BLOB exceeds size limit.
  *         Returns {@link RDB_E_SQLITE_MISMATCH} SQLite: Data type mismatch.
  *         Returns {@link RDB_E_SQLITE_CONSTRAINT} SQLite: Abort due to constraint violation.
- * @since 16
+ * @since 18
  */
 int OH_RdbTrans_BatchInsert(OH_Rdb_Transaction *trans, const char *table, const OH_Data_VBuckets *rows,
     Rdb_ConflictResolution resolution, int64_t *changes);
@@ -246,7 +246,7 @@ int OH_RdbTrans_BatchInsert(OH_Rdb_Transaction *trans, const char *table, const 
  *         Returns {@link RDB_E_SQLITE_IOERR} SQLite: Some kind of disk I/O error occurred.
  *         Returns {@link RDB_E_SQLITE_TOO_BIG} SQLite: TEXT or BLOB exceeds size limit.
  *         Returns {@link RDB_E_SQLITE_MISMATCH} SQLite: Data type mismatch.
- * @since 16
+ * @since 18
  */
 int OH_RdbTrans_Update(OH_Rdb_Transaction *trans, const OH_VBucket *row, const OH_Predicates *predicates,
     int64_t *changes);
@@ -273,7 +273,7 @@ int OH_RdbTrans_Update(OH_Rdb_Transaction *trans, const OH_VBucket *row, const O
  *         Returns {@link RDB_E_SQLITE_IOERR} SQLite: Some kind of disk I/O error occurred.
  *         Returns {@link RDB_E_SQLITE_TOO_BIG} SQLite: TEXT or BLOB exceeds size limit.
  *         Returns {@link RDB_E_SQLITE_MISMATCH} SQLite: Data type mismatch.
- * @since 16
+ * @since 18
  */
 int OH_RdbTrans_Delete(OH_Rdb_Transaction *trans, const OH_Predicates *predicates, int64_t *changes);
 
@@ -286,7 +286,7 @@ int OH_RdbTrans_Delete(OH_Rdb_Transaction *trans, const OH_Predicates *predicate
  * @param len Represents the number of columns elements.
  * @return If the operation is successful, a pointer to the instance of the OH_Cursor structure is returned.
  * If database has closed or the database does not respond, nullptr is returned.
- * @since 16
+ * @since 18
  */
 OH_Cursor *OH_RdbTrans_Query(OH_Rdb_Transaction *trans, const OH_Predicates *predicates, const char *columns[],
     int len);
@@ -299,7 +299,7 @@ OH_Cursor *OH_RdbTrans_Query(OH_Rdb_Transaction *trans, const OH_Predicates *pre
  * @param args Represents a pointer to an instance of OH_Data_Values and  it is the selection arguments.
  * @return If the operation is successful, a pointer to the instance of the OH_Cursor structure is returned.
  * If database has closed or the database does not respond, nullptr is returned.
- * @since 16
+ * @since 18
  */
 OH_Cursor *OH_RdbTrans_QuerySql(OH_Rdb_Transaction *trans, const char *sql, const OH_Data_Values *args);
 
@@ -328,7 +328,7 @@ OH_Cursor *OH_RdbTrans_QuerySql(OH_Rdb_Transaction *trans, const char *sql, cons
  *         Returns {@link RDB_E_SQLITE_TOO_BIG} SQLite: TEXT or BLOB exceeds size limit.
  *         Returns {@link RDB_E_SQLITE_MISMATCH} SQLite: Data type mismatch.
  * @see OH_Value_Destroy.
- * @since 16
+ * @since 18
  */
 int OH_RdbTrans_Execute(OH_Rdb_Transaction *trans, const char *sql, const OH_Data_Values *args, OH_Data_Value **result);
 
@@ -339,7 +339,7 @@ int OH_RdbTrans_Execute(OH_Rdb_Transaction *trans, const char *sql, const OH_Dat
  * @return Returns the error code.
  *         Returns {@link RDB_OK} if the execution is successful.
  *         Returns {@link RDB_E_INVALID_ARGS} if invalid input parameter.
- * @since 16
+ * @since 18
  */
 int OH_RdbTrans_Destroy(OH_Rdb_Transaction *trans);
 

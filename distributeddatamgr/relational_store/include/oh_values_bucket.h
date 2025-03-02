@@ -195,7 +195,7 @@ int OH_VBucket_PutAssets(OH_VBucket *bucket, const char *field, Data_Asset **val
  *     {@link RDB_OK} - success.
  *     {@link RDB_E_INVALID_ARGS} - The error code for common invalid args.
  * @see OH_VBucket.
- * @since 16
+ * @since 18
  */
 int OH_VBucket_PutFloatVector(OH_VBucket *bucket, const char *field, const float *vec, size_t len);
 
@@ -211,7 +211,7 @@ int OH_VBucket_PutFloatVector(OH_VBucket *bucket, const char *field, const float
  *     {@link RDB_OK} - success.
  *     {@link RDB_E_INVALID_ARGS} - The error code for common invalid args.
  * @see OH_VBucket.
- * @since 16
+ * @since 18
  */
 int OH_VBucket_PutUnlimitedInt(OH_VBucket *bucket, const char *field, int sign, const uint64_t *trueForm, size_t len);
 #ifdef __cplusplus

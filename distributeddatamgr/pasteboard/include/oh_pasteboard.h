@@ -340,7 +340,7 @@ char **OH_Pasteboard_GetMimeTypes(OH_Pasteboard *pasteboard, unsigned int *count
  * @param pasteboard Pointer to the {@link OH_Pasteboard} instance.
  * @return the number of Pasteboard data changes.
  * Returns 0 means initial value or invalid value.In this case, no action is required.
- * @since 16
+ * @since 18
  */
 uint32_t OH_Pasteboard_GetChangeCount(OH_Pasteboard *pasteboard);
 

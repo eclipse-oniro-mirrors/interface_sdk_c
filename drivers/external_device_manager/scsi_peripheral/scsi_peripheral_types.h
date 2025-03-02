@@ -18,7 +18,7 @@
  * @{
  *
  * @brief Provides ScsiPeripheral DDK types and declares macros, enumerations, and data structures used by the ScsiPeripheral DDK.
- * @since 16
+ * @since 18
  */
 
 /**
@@ -29,7 +29,7 @@
  * @kit DriverDevelopmentKit
  * @library libscsi.z.so
  * @syscap SystemCapability.Driver.SCSI.Extension
- * @since 16
+ * @since 18
  */
 
 #ifndef SCSI_PERIPHERAL_TYPES_H
@@ -45,21 +45,21 @@ extern "C" {
 /**
  * @brief The min length of descriptor format sense data: 8.
  *
- * @since 16
+ * @since 18
  */
 #define SCSIPERIPHERAL_MIN_DESCRIPTOR_FORMAT_SENSE 8
 
 /**
  * @brief The min length of fixed format sense data: 18.
  *
- * @since 16
+ * @since 18
  */
 #define SCSIPERIPHERAL_MIN_FIXED_FORMAT_SENSE 18
 
 /**
  * @brief Defines error codes for SCSI DDK.
  *
- * @since 16
+ * @since 18
  */
 typedef enum {
     /** @error Permission denied. */
@@ -89,7 +89,7 @@ typedef enum {
 /**
  * @brief Defines SCSI status for response.
  *
- * @since 16
+ * @since 18
  */
 typedef enum {
     /** Good condition */
@@ -113,7 +113,7 @@ typedef enum {
 /**
  * @brief Opaque SCSI device structure.
  *
- * @since 16
+ * @since 18
  */
 typedef struct ScsiPeripheral_Device ScsiPeripheral_Device;
 
@@ -121,7 +121,7 @@ typedef struct ScsiPeripheral_Device ScsiPeripheral_Device;
  * @brief Device memory map created by calling <b>OH_ScsiPeripheral_CreateDeviceMemMap</b>.\n
  * A buffer using the device memory map can provide better performance.
  *
- * @since 16
+ * @since 18
  */
 typedef struct ScsiPeripheral_DeviceMemMap {
     /** Buffer address. */
@@ -143,7 +143,7 @@ typedef struct ScsiPeripheral_DeviceMemMap {
 /**
  * @brief Request parameters for read/write.
  *
- * @since 16
+ * @since 18
  */
 typedef struct ScsiPeripheral_IORequest {
     /** Starting with the logical block. */
@@ -165,14 +165,14 @@ typedef struct ScsiPeripheral_IORequest {
 /**
  * @brief The max length of command descriptor block: 16.
  *
- * @since 16
+ * @since 18
  */
 #define SCSIPERIPHERAL_MAX_CMD_DESC_BLOCK_LEN 16
 
 /**
  * @brief Request parameters.
  *
- * @since 16
+ * @since 18
  */
 typedef struct ScsiPeripheral_Request {
     /** Command descriptor block. */
@@ -190,14 +190,14 @@ typedef struct ScsiPeripheral_Request {
 /**
  * @brief The max length of sense data: 252.
  *
- * @since 16
+ * @since 18
  */
 #define SCSIPERIPHERAL_MAX_SENSE_DATA_LEN 252
 
 /**
  * @brief Response parameters.
  *
- * @since 16
+ * @since 18
  */
 typedef struct ScsiPeripheral_Response {
     /** Sense data. */
@@ -223,7 +223,7 @@ typedef struct ScsiPeripheral_Response {
 /**
  * @brief SCSI test unit ready request.
  *
- * @since 16
+ * @since 18
  */
 typedef struct ScsiPeripheral_TestUnitReadyRequest {
     /** Control byte. */
@@ -235,7 +235,7 @@ typedef struct ScsiPeripheral_TestUnitReadyRequest {
 /**
  * @brief SCSI inquiry request.
  *
- * @since 16
+ * @since 18
  */
 typedef struct ScsiPeripheral_InquiryRequest {
     /** Page code. */
@@ -253,28 +253,28 @@ typedef struct ScsiPeripheral_InquiryRequest {
 /**
  * @brief The length of vendor identification: 8.
  *
- * @since 16
+ * @since 18
  */
 #define SCSIPERIPHERAL_VENDOR_ID_LEN 8
 
 /**
  * @brief The length of product identification: 16.
  *
- * @since 16
+ * @since 18
  */
 #define SCSIPERIPHERAL_PRODUCT_ID_LEN 16
 
 /**
  * @brief The length of product revision: 4.
  *
- * @since 16
+ * @since 18
  */
 #define SCSIPERIPHERAL_PRODUCT_REV_LEN 4
 
 /**
  * @brief SCSI inquiry data.
  *
- * @since 16
+ * @since 18
  */
 typedef struct ScsiPeripheral_InquiryInfo {
     /** Peripheral device type. */
@@ -292,7 +292,7 @@ typedef struct ScsiPeripheral_InquiryInfo {
 /**
  * @brief SCSI read capacity request.
  *
- * @since 16
+ * @since 18
  */
 typedef struct ScsiPeripheral_ReadCapacityRequest {
     /** Logical block address. */
@@ -308,7 +308,7 @@ typedef struct ScsiPeripheral_ReadCapacityRequest {
 /**
  * @brief SCSI read capacity data.
  *
- * @since 16
+ * @since 18
  */
 typedef struct ScsiPeripheral_CapacityInfo {
     /** Returned logical block address. */
@@ -320,7 +320,7 @@ typedef struct ScsiPeripheral_CapacityInfo {
 /**
  * @brief SCSI request sense request.
  *
- * @since 16
+ * @since 18
  */
 typedef struct ScsiPeripheral_RequestSenseRequest {
     /** Allocation length. */
@@ -336,7 +336,7 @@ typedef struct ScsiPeripheral_RequestSenseRequest {
 /**
  * @brief Basic sense data of Information、Command-specific information、Sense key specific.
  *
- * @since 16
+ * @since 18
  */
 typedef struct ScsiPeripheral_BasicSenseInfo {
     /** Response code. */
@@ -356,7 +356,7 @@ typedef struct ScsiPeripheral_BasicSenseInfo {
 /**
  * @brief SCSI verify request.
  *
- * @since 16
+ * @since 18
  */
 typedef struct ScsiPeripheral_VerifyRequest {
     /** Starting with the logical block. */

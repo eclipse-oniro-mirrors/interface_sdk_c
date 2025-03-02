@@ -225,7 +225,7 @@ void OH_Drawing_RectDestroy(OH_Drawing_Rect* rect);
  *         If nullptr is returned, the creation fails.
  *         The possible cause of the failure is that the available memory is empty,
  *         or size is invalid.
- * @since 16
+ * @since 18
  * @version 1.0
  */
 OH_Drawing_Array* OH_Drawing_RectCreateArray(size_t size);
@@ -239,7 +239,7 @@ OH_Drawing_Array* OH_Drawing_RectCreateArray(size_t size);
  * @return Returns the error code.
  *         Returns {@link OH_DRAWING_SUCCESS} if the operation is successful.
  *         Returns {@link OH_DRAWING_ERROR_INVALID_PARAMETER} if rectArray or pSize is nullptr.
- * @since 16
+ * @since 18
  * @version 1.0
  */
 OH_Drawing_ErrorCode OH_Drawing_RectGetArraySize(OH_Drawing_Array* rectArray, size_t* pSize);
@@ -255,7 +255,7 @@ OH_Drawing_ErrorCode OH_Drawing_RectGetArraySize(OH_Drawing_Array* rectArray, si
  *         Returns {@link OH_DRAWING_SUCCESS} if the operation is successful.
  *         Returns {@link OH_DRAWING_ERROR_INVALID_PARAMETER} if rectArray or rect is nullptr,
  *                 or index is valid.
- * @since 16
+ * @since 18
  * @version 1.0
  */
 OH_Drawing_ErrorCode OH_Drawing_RectGetArrayElement(OH_Drawing_Array* rectArray, size_t index,
@@ -269,7 +269,7 @@ OH_Drawing_ErrorCode OH_Drawing_RectGetArrayElement(OH_Drawing_Array* rectArray,
  * @return Returns the error code.
  *         Returns {@link OH_DRAWING_SUCCESS} if the operation is successful.
  *         Returns {@link OH_DRAWING_ERROR_INVALID_PARAMETER} if rectArray is nullptr.
- * @since 16
+ * @since 18
  * @version 1.0
  */
 OH_Drawing_ErrorCode OH_Drawing_RectDestroyArray(OH_Drawing_Array* rectArray);

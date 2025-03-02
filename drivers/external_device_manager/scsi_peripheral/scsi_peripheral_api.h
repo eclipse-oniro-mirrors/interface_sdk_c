@@ -18,7 +18,7 @@
  * @{
  *
  * @brief Provide ScsiPeripheral DDK interface, including initializing DDK, releasing DDK, opening devices, reading and writing devices, etc.
- * @since 16
+ * @since 18
  */
 
 /**
@@ -29,7 +29,7 @@
  * @kit DriverDevelopmentKit
  * @library libscsi.z.so
  * @syscap SystemCapability.Driver.SCSI.Extension
- * @since 16
+ * @since 18
  */
 
 #ifndef SCSI_PERIPHERAL_API_H
@@ -50,7 +50,7 @@ extern "C" {
  *         {@link SCSIPERIPHERAL_DDK_NO_PERM} permission check failed.
  *         {@link SCSIPERIPHERAL_DDK_INIT_ERROR} the ddk init error.
  *         {@link SCSIPERIPHERAL_DDK_SERVICE_ERROR} communication with ddk service failed.
- * @since 16
+ * @since 18
  */
 int32_t OH_ScsiPeripheral_Init(void);
 
@@ -62,7 +62,7 @@ int32_t OH_ScsiPeripheral_Init(void);
  *         {@link SCSIPERIPHERAL_DDK_NO_PERM} permission check failed.
  *         {@link SCSIPERIPHERAL_DDK_INIT_ERROR} the ddk not init.
  *         {@link SCSIPERIPHERAL_DDK_SERVICE_ERROR} communication with ddk service failed.
- * @since 16
+ * @since 18
  */
 int32_t OH_ScsiPeripheral_Release(void);
 
@@ -82,7 +82,7 @@ int32_t OH_ScsiPeripheral_Release(void);
  *         {@link SCSIPERIPHERAL_DDK_IO_ERROR} i/o operation error.
  *         {@link SCSIPERIPHERAL_DDK_DEVICE_NOT_FOUND} device not found by deviceId.
  *         {@link SCSIPERIPHERAL_DDK_INVALID_OPERATION} this operation is not supported.
- * @since 16
+ * @since 18
  */
 int32_t OH_ScsiPeripheral_Open(uint64_t deviceId, uint8_t interfaceIndex, ScsiPeripheral_Device **dev);
 
@@ -97,7 +97,7 @@ int32_t OH_ScsiPeripheral_Open(uint64_t deviceId, uint8_t interfaceIndex, ScsiPe
  *         {@link SCSIPERIPHERAL_DDK_INVALID_PARAMETER} dev is null.
  *         {@link SCSIPERIPHERAL_DDK_SERVICE_ERROR} communication with ddk service failed.
  *         {@link SCSIPERIPHERAL_DDK_IO_ERROR} i/o operation error.
- * @since 16
+ * @since 18
  */
 int32_t OH_ScsiPeripheral_Close(ScsiPeripheral_Device **dev);
 
@@ -117,7 +117,7 @@ int32_t OH_ScsiPeripheral_Close(ScsiPeripheral_Device **dev);
  *         {@link SCSIPERIPHERAL_DDK_IO_ERROR} i/o operation error.
  *         {@link SCSIPERIPHERAL_DDK_TIMEOUT} transmission timeout.
  *         {@link SCSIPERIPHERAL_DDK_INVALID_OPERATION} this operation is not supported.
- * @since 16
+ * @since 18
  */
 int32_t OH_ScsiPeripheral_TestUnitReady(ScsiPeripheral_Device *dev, ScsiPeripheral_TestUnitReadyRequest *request,
     ScsiPeripheral_Response *response);
@@ -140,7 +140,7 @@ int32_t OH_ScsiPeripheral_TestUnitReady(ScsiPeripheral_Device *dev, ScsiPeripher
  *         {@link SCSIPERIPHERAL_DDK_IO_ERROR} i/o operation error.
  *         {@link SCSIPERIPHERAL_DDK_TIMEOUT} transmission timeout.
  *         {@link SCSIPERIPHERAL_DDK_INVALID_OPERATION} this operation is not supported.
- * @since 16
+ * @since 18
  */
 int32_t OH_ScsiPeripheral_Inquiry(ScsiPeripheral_Device *dev, ScsiPeripheral_InquiryRequest *request,
     ScsiPeripheral_InquiryInfo *inquiryInfo, ScsiPeripheral_Response *response);
@@ -163,7 +163,7 @@ int32_t OH_ScsiPeripheral_Inquiry(ScsiPeripheral_Device *dev, ScsiPeripheral_Inq
  *         {@link SCSIPERIPHERAL_DDK_IO_ERROR} i/o operation error.
  *         {@link SCSIPERIPHERAL_DDK_TIMEOUT} transmission timeout.
  *         {@link SCSIPERIPHERAL_DDK_INVALID_OPERATION} this operation is not supported.
- * @since 16
+ * @since 18
  */
 int32_t OH_ScsiPeripheral_ReadCapacity10(ScsiPeripheral_Device *dev, ScsiPeripheral_ReadCapacityRequest *request,
     ScsiPeripheral_CapacityInfo *capacityInfo, ScsiPeripheral_Response *response);
@@ -184,7 +184,7 @@ int32_t OH_ScsiPeripheral_ReadCapacity10(ScsiPeripheral_Device *dev, ScsiPeriphe
  *         {@link SCSIPERIPHERAL_DDK_IO_ERROR} i/o operation error.
  *         {@link SCSIPERIPHERAL_DDK_TIMEOUT} transmission timeout.
  *         {@link SCSIPERIPHERAL_DDK_INVALID_OPERATION} this operation is not supported.
- * @since 16
+ * @since 18
  */
 int32_t OH_ScsiPeripheral_RequestSense(ScsiPeripheral_Device *dev, ScsiPeripheral_RequestSenseRequest *request,
     ScsiPeripheral_Response *response);
@@ -206,7 +206,7 @@ int32_t OH_ScsiPeripheral_RequestSense(ScsiPeripheral_Device *dev, ScsiPeriphera
  *         {@link SCSIPERIPHERAL_DDK_IO_ERROR} i/o operation error.
  *         {@link SCSIPERIPHERAL_DDK_TIMEOUT} transmission timeout.
  *         {@link SCSIPERIPHERAL_DDK_INVALID_OPERATION} this operation is not supported.
- * @since 16
+ * @since 18
  */
 int32_t OH_ScsiPeripheral_Read10(ScsiPeripheral_Device *dev, ScsiPeripheral_IORequest *request,
     ScsiPeripheral_Response *response);
@@ -228,7 +228,7 @@ int32_t OH_ScsiPeripheral_Read10(ScsiPeripheral_Device *dev, ScsiPeripheral_IORe
  *         {@link SCSIPERIPHERAL_DDK_IO_ERROR} i/o operation error.
  *         {@link SCSIPERIPHERAL_DDK_TIMEOUT} transmission timeout.
  *         {@link SCSIPERIPHERAL_DDK_INVALID_OPERATION} this operation is not supported.
- * @since 16
+ * @since 18
  */
 int32_t OH_ScsiPeripheral_Write10(ScsiPeripheral_Device *dev, ScsiPeripheral_IORequest *request,
     ScsiPeripheral_Response *response);
@@ -249,7 +249,7 @@ int32_t OH_ScsiPeripheral_Write10(ScsiPeripheral_Device *dev, ScsiPeripheral_IOR
  *         {@link SCSIPERIPHERAL_DDK_IO_ERROR} i/o operation error.
  *         {@link SCSIPERIPHERAL_DDK_TIMEOUT} transmission timeout.
  *         {@link SCSIPERIPHERAL_DDK_INVALID_OPERATION} this operation is not supported.
- * @since 16
+ * @since 18
  */
 int32_t OH_ScsiPeripheral_Verify10(ScsiPeripheral_Device *dev, ScsiPeripheral_VerifyRequest *request,
     ScsiPeripheral_Response *response);
@@ -271,7 +271,7 @@ int32_t OH_ScsiPeripheral_Verify10(ScsiPeripheral_Device *dev, ScsiPeripheral_Ve
  *         {@link SCSIPERIPHERAL_DDK_IO_ERROR} i/o operation error.
  *         {@link SCSIPERIPHERAL_DDK_TIMEOUT} transmission timeout.
  *         {@link SCSIPERIPHERAL_DDK_INVALID_OPERATION} this operation is not supported.
- * @since 16
+ * @since 18
  */
 int32_t OH_ScsiPeripheral_SendRequestByCdb(ScsiPeripheral_Device *dev, ScsiPeripheral_Request *request,
     ScsiPeripheral_Response *response);
@@ -286,7 +286,7 @@ int32_t OH_ScsiPeripheral_SendRequestByCdb(ScsiPeripheral_Device *dev, ScsiPerip
  * @return {@link SCSIPERIPHERAL_DDK_SUCCESS} the operation is successful.
  *         {@link SCSIPERIPHERAL_DDK_INVALID_PARAMETER} dev is null or devMmap is null.
  *         {@link SCSIPERIPHERAL_DDK_MEMORY_ERROR} memory data operation failed.
- * @since 16
+ * @since 18
  */
 int32_t OH_ScsiPeripheral_CreateDeviceMemMap(ScsiPeripheral_Device *dev, size_t size,
     ScsiPeripheral_DeviceMemMap **devMmap);
@@ -298,7 +298,7 @@ int32_t OH_ScsiPeripheral_CreateDeviceMemMap(ScsiPeripheral_Device *dev, size_t 
  * @return {@link SCSIPERIPHERAL_DDK_SUCCESS} the operation is successful.
  *         {@link SCSIPERIPHERAL_DDK_INVALID_PARAMETER} devMmap is null.
  *         {@link SCSIPERIPHERAL_DDK_MEMORY_ERROR} memory data operation failed.
- * @since 16
+ * @since 18
  */
 int32_t OH_ScsiPeripheral_DestroyDeviceMemMap(ScsiPeripheral_DeviceMemMap *devMmap);
 
@@ -313,7 +313,7 @@ int32_t OH_ScsiPeripheral_DestroyDeviceMemMap(ScsiPeripheral_DeviceMemMap *devMm
  *             senseData format is not Descriptor/Fixed format or\n
  *             senseDataLen is smaller than SCSIPERIPHERAL_MIN_DESCRIPTOR_FORMAT_SENSE or\n
  *             senseDataLen is smaller than SCSIPERIPHERAL_MIN_FIXED_FORMAT_SENSE.
- * @since 16
+ * @since 18
  */
 int32_t OH_ScsiPeripheral_ParseBasicSenseInfo(uint8_t *senseData, uint8_t senseDataLen,
     ScsiPeripheral_BasicSenseInfo *senseInfo);

@@ -34,7 +34,7 @@
  * @library libnative_rdb_ndk.z.so
  * @syscap SystemCapability.DistributedDataManager.RelationalStore.Core
  *
- * @since 16
+ * @since 18
  */
 
 #ifndef OH_RDB_TYPES_H
@@ -47,7 +47,7 @@ extern "C" {
 /**
  * @brief Describe the security area of the database.
  *
- * @since 16
+ * @since 18
  */
 typedef enum Rdb_ConflictResolution {
     /**

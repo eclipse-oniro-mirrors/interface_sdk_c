@@ -86,7 +86,7 @@ OH_Drawing_ErrorCode OH_Drawing_ErrorCodeGet();
  * @brief Resets the error code of the drawing module to OH_DRAWING_SUCCESS.
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @since 16
+ * @since 18
  * @version 1.0
  */
 void OH_Drawing_ErrorCodeReset();

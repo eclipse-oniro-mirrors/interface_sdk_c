@@ -271,7 +271,7 @@ int OH_Preferences_UnregisterDataObserver(OH_Preferences *preference, void *cont
  * @return Returns the status code of the execution.
  *         {@link PREFERENCES_OK} indicates the operation is successful.
  *         {@link PREFERENCES_ERROR_INVALID_PARAM} indicates invalid args are passed in.
- * @since 16
+ * @since 18
  */
 int OH_Preferences_IsStorageTypeSupported(Preferences_StorageType type, bool *isSupported);
 

@@ -21,7 +21,7 @@
  *        including functions such as memory, error codes, and media data structures.
  *
  * @syscap SystemCapability.Multimedia.Media.Core
- * @since 16
+ * @since 18
  */
 
 /**
@@ -32,7 +32,7 @@
  * @kit AVCodecKit
  * @library libnative_media_core.so
  * @syscap SystemCapability.Multimedia.Media.Core
- * @since 16
+ * @since 18
  */
 
 #ifndef MEDIA_TYPES_H
@@ -49,7 +49,7 @@ extern "C" {
  * @brief Enumerates HDR types.
  *
  * @syscap SystemCapability.Multimedia.Media.Core
- * @since 16
+ * @since 18
  */
 typedef enum OH_Core_HdrType {
     /**

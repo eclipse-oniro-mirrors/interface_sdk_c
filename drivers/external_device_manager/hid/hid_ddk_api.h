@@ -110,7 +110,7 @@ int32_t OH_Hid_DestroyDevice(int32_t deviceId);
  *         {@link HID_DDK_NO_PERM} permission check failed.
  *         {@link HID_DDK_INIT_ERROR} create DDK instance failed.
  *         {@link HID_DDK_SERVICE_ERROR} communication with the ddk service failed.
- * @since 16
+ * @since 18
  */
 int32_t OH_Hid_Init(void);
 
@@ -122,7 +122,7 @@ int32_t OH_Hid_Init(void);
  *         {@link HID_DDK_NO_PERM} permission check failed.
  *         {@link HID_DDK_INIT_ERROR} the DDK not init.
  *         {@link HID_DDK_SERVICE_ERROR} communication with the ddk service failed.
- * @since 16
+ * @since 18
  */
 int32_t OH_Hid_Release(void);
 
@@ -141,7 +141,7 @@ int32_t OH_Hid_Release(void);
  *         {@link HID_DDK_IO_ERROR} open device failed.
  *         {@link HID_DDK_INVALID_PARAMETER} dev is null.
  *         {@link HID_DDK_DEVICE_NOT_FOUND} device not found by deviceId.
- * @since 16
+ * @since 18
  */
 int32_t OH_Hid_Open(uint64_t deviceId, uint8_t interfaceIndex, Hid_DeviceHandle **dev);
 
@@ -156,7 +156,7 @@ int32_t OH_Hid_Open(uint64_t deviceId, uint8_t interfaceIndex, Hid_DeviceHandle 
  *         {@link HID_DDK_SERVICE_ERROR} communication with the ddk service failed.
  *         {@link HID_DDK_IO_ERROR} close device failed.
  *         {@link HID_DDK_INVALID_PARAMETER} dev is null.
- * @since 16
+ * @since 18
  */
 int32_t OH_Hid_Close(Hid_DeviceHandle **dev);
 
@@ -176,7 +176,7 @@ int32_t OH_Hid_Close(Hid_DeviceHandle **dev);
  *         {@link HID_DDK_INIT_ERROR} the DDK not init.
  *         {@link HID_DDK_SERVICE_ERROR} communication with the ddk service failed.
  *         {@link HID_DDK_IO_ERROR } send data failed.
- * @since 16
+ * @since 18
 */
 int32_t OH_Hid_Write(Hid_DeviceHandle *dev, uint8_t *data, uint32_t length, uint32_t *bytesWritten);
 
@@ -199,7 +199,7 @@ int32_t OH_Hid_Write(Hid_DeviceHandle *dev, uint8_t *data, uint32_t length, uint
  *         {@link HID_DDK_MEMORY_ERROR } the memory of data copies failed.
  *         {@link HID_DDK_IO_ERROR } read data failed.
  *         {@link HID_DDK_TIMEOUT } read timeout.
- * @since 16
+ * @since 18
 */
 int32_t OH_Hid_ReadTimeout(Hid_DeviceHandle *dev, uint8_t *data, uint32_t bufSize, int timeout, uint32_t *bytesRead);
 
@@ -221,7 +221,7 @@ int32_t OH_Hid_ReadTimeout(Hid_DeviceHandle *dev, uint8_t *data, uint32_t bufSiz
  *         {@link HID_DDK_MEMORY_ERROR } the memory of data copies failed.
  *         {@link HID_DDK_IO_ERROR } read data failed.
  *         {@link HID_DDK_TIMEOUT } read timeout.
- * @since 16
+ * @since 18
 */
 int32_t OH_Hid_Read(Hid_DeviceHandle *dev, uint8_t *data, uint32_t bufSize, uint32_t *bytesRead);
 
@@ -239,7 +239,7 @@ int32_t OH_Hid_Read(Hid_DeviceHandle *dev, uint8_t *data, uint32_t bufSize, uint
  *         {@link HID_DDK_INVALID_PARAMETER} parameter check failed. Possible causes:1.dev is null;\n
  *             2.nonBlock is not 1 or 0.
  *         {@link HID_DDK_SERVICE_ERROR} communication with the ddk service failed.
- * @since 16
+ * @since 18
 */
 int32_t OH_Hid_SetNonBlocking(Hid_DeviceHandle *dev, int nonBlock);
 
@@ -257,7 +257,7 @@ int32_t OH_Hid_SetNonBlocking(Hid_DeviceHandle *dev, int nonBlock);
  *         {@link HID_DDK_SERVICE_ERROR} communication with the ddk service failed.
  *         {@link HID_DDK_IO_ERROR } read data failed.
  *         {@link HID_DDK_INVALID_OPERATION } the operation is not supported.
- * @since 16
+ * @since 18
 */
 int32_t OH_Hid_GetRawInfo(Hid_DeviceHandle *dev, Hid_RawDevInfo *rawDevInfo);
 
@@ -277,7 +277,7 @@ int32_t OH_Hid_GetRawInfo(Hid_DeviceHandle *dev, Hid_RawDevInfo *rawDevInfo);
  *         {@link HID_DDK_MEMORY_ERROR } the memory of data copies failed.
  *         {@link HID_DDK_IO_ERROR } read data failed.
  *         {@link HID_DDK_INVALID_OPERATION } the operation is not supported.
- * @since 16
+ * @since 18
 */
 int32_t OH_Hid_GetRawName(Hid_DeviceHandle *dev, char *data, uint32_t bufSize);
 
@@ -297,7 +297,7 @@ int32_t OH_Hid_GetRawName(Hid_DeviceHandle *dev, char *data, uint32_t bufSize);
  *         {@link HID_DDK_MEMORY_ERROR } the memory of data copies failed.
  *         {@link HID_DDK_IO_ERROR } read data failed.
  *         {@link HID_DDK_INVALID_OPERATION } the operation is not supported.
- * @since 16
+ * @since 18
 */
 int32_t OH_Hid_GetPhysicalAddress(Hid_DeviceHandle *dev, char *data, uint32_t bufSize);
 
@@ -317,7 +317,7 @@ int32_t OH_Hid_GetPhysicalAddress(Hid_DeviceHandle *dev, char *data, uint32_t bu
  *         {@link HID_DDK_MEMORY_ERROR } the memory of data copies failed.
  *         {@link HID_DDK_IO_ERROR } read data failed.
  *         {@link HID_DDK_INVALID_OPERATION } the operation is not supported.
- * @since 16
+ * @since 18
 */
 int32_t OH_Hid_GetRawUniqueId(Hid_DeviceHandle *dev, uint8_t *data, uint32_t bufSize);
 
@@ -337,7 +337,7 @@ int32_t OH_Hid_GetRawUniqueId(Hid_DeviceHandle *dev, uint8_t *data, uint32_t buf
  *         {@link HID_DDK_SERVICE_ERROR} communication with the ddk service failed.
  *         {@link HID_DDK_IO_ERROR } send data failed.
  *         {@link HID_DDK_INVALID_OPERATION } the operation is not supported.
- * @since 16
+ * @since 18
 */
 int32_t OH_Hid_SendReport(Hid_DeviceHandle *dev, Hid_ReportType reportType, const uint8_t *data, uint32_t length);
 
@@ -358,7 +358,7 @@ int32_t OH_Hid_SendReport(Hid_DeviceHandle *dev, Hid_ReportType reportType, cons
  *         {@link HID_DDK_MEMORY_ERROR } the memory of data copies failed.
  *         {@link HID_DDK_IO_ERROR } read data failed.
  *         {@link HID_DDK_INVALID_OPERATION } the operation is not supported.
- * @since 16
+ * @since 18
 */
 int32_t OH_Hid_GetReport(Hid_DeviceHandle *dev, Hid_ReportType reportType, uint8_t *data, uint32_t bufSize);
 
@@ -380,7 +380,7 @@ int32_t OH_Hid_GetReport(Hid_DeviceHandle *dev, Hid_ReportType reportType, uint8
  *         {@link HID_DDK_MEMORY_ERROR } the memory of data copies failed.
  *         {@link HID_DDK_IO_ERROR } read data failed.
  *         {@link HID_DDK_INVALID_OPERATION } the operation is not supported.
- * @since 16
+ * @since 18
 */
 int32_t OH_Hid_GetReportDescriptor(Hid_DeviceHandle *dev, uint8_t *buf, uint32_t bufSize, uint32_t *bytesRead);
 /** @} */

@@ -462,7 +462,7 @@ NAPI_EXTERN napi_status napi_create_sendable_object_with_properties(napi_env env
  *         {@link napi_invalid_arg } If the param env, js_object or native_object is nullptr.\n
  *         {@link napi_object_expected } If the param js_object is not an ArkTS Object or Function.\n
  *         {@link napi_pending_exception } If have uncaught exception, or exception occured in execution.\n
- * @since 16
+ * @since 18
  */
 NAPI_EXTERN napi_status napi_wrap_enhance(napi_env env,
                                           napi_value js_object,
