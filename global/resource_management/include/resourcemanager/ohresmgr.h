@@ -552,7 +552,7 @@ ResourceManager_ErrorCode OH_ResourceManager_ReleaseStringArray(char ***resValue
            {@link ERROR_CODE_RES_REF_TOO_MUCH} 9001006 - The resource is referenced cyclically.
            {@link ERROR_CODE_OUT_OF_MEMORY} 9001100 - Out of memory.
  * @since 12
- * @deprecated since 16
+ * @deprecated since 18
  * @useinstead OH_ResourceManager_GetIntPluralString
  */
 ResourceManager_ErrorCode OH_ResourceManager_GetPluralString(const NativeResourceManager *mgr, uint32_t resId,
@@ -577,7 +577,7 @@ ResourceManager_ErrorCode OH_ResourceManager_GetPluralString(const NativeResourc
            {@link ERROR_CODE_RES_REF_TOO_MUCH} 9001006 - The resource is referenced cyclically.
            {@link ERROR_CODE_OUT_OF_MEMORY} 9001100 - Out of memory.
  * @since 12
- * @deprecated since 16
+ * @deprecated since 18
  * @useinstead OH_ResourceManager_GetIntPluralStringByName
  */
 ResourceManager_ErrorCode OH_ResourceManager_GetPluralStringByName(const NativeResourceManager *mgr,
