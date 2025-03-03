@@ -140,19 +140,19 @@
         "name": "OH_ResourceManager_RemoveResource"
     },
     {
-        "first_introduced": "16",
+        "first_introduced": "18",
         "name": "OH_ResourceManager_GetIntPluralString"
     },
     {
-        "first_introduced": "16",
+        "first_introduced": "18",
         "name": "OH_ResourceManager_GetDoublePluralString"
     },
     {
-        "first_introduced": "16",
+        "first_introduced": "18",
         "name": "OH_ResourceManager_GetIntPluralStringByName"
     },
     {
-        "first_introduced": "16",
+        "first_introduced": "18",
         "name": "OH_ResourceManager_GetDoublePluralStringByName"
     }
 ]
