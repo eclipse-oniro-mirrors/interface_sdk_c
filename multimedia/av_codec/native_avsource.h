@@ -148,7 +148,7 @@ OH_AVFormat *OH_AVSource_GetTrackFormat(OH_AVSource *source, uint32_t trackIndex
  * @return Returns the metadata's format info if the execution is successful, otherwise returns nullptr.
  * Possible failure causes:
  * 1. source is invalid.
- * @since 16
+ * @since 18
  */
 OH_AVFormat *OH_AVSource_GetCustomMetadataFormat(OH_AVSource *source);
 
