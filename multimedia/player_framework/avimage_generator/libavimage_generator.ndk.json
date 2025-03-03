@@ -1,18 +1,18 @@
 [
     {
-      "first_introduced": "16",
+      "first_introduced": "18",
       "name": "OH_AVImageGenerator_Create"
     },
     {
-      "first_introduced": "16",
+      "first_introduced": "18",
       "name": "OH_AVImageGenerator_SetFDSource"
     },
     {
-      "first_introduced": "16",
+      "first_introduced": "18",
       "name": "OH_AVImageGenerator_FetchFrameByTime"
     },
     {
-      "first_introduced": "16",
+      "first_introduced": "18",
       "name": "OH_AVImageGenerator_Release"
     }
 ]

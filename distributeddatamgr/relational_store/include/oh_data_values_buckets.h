@@ -34,7 +34,7 @@
  * @library libnative_rdb_ndk.z.so
  * @syscap SystemCapability.DistributedDataManager.RelationalStore.Core
  *
- * @since 16
+ * @since 18
  */
 
 
@@ -48,7 +48,7 @@ extern "C" {
 /**
  * @brief Define the OH_Data_VBuckets structure type.
  *
- * @since 16
+ * @since 18
  */
 typedef struct OH_Data_VBuckets OH_Data_VBuckets;
 
@@ -59,7 +59,7 @@ typedef struct OH_Data_VBuckets OH_Data_VBuckets;
  * Otherwise, nullptr is returned. The memory must be released through the OH_VBuckets_Destroy
  * interface after the use is complete.
  * @see OH_VBuckets_Destroy.
- * @since 16
+ * @since 18
  */
 OH_Data_VBuckets *OH_VBuckets_Create();
 
@@ -70,7 +70,7 @@ OH_Data_VBuckets *OH_VBuckets_Create();
  * @return Returns the error code.
  *         Returns {@link RDB_OK} if the execution is successful.
  *         Returns {@link RDB_E_INVALID_ARGS} if invalid input parameter.
- * @since 16
+ * @since 18
  */
 int OH_VBuckets_Destroy(OH_Data_VBuckets *buckets);
 
@@ -82,7 +82,7 @@ int OH_VBuckets_Destroy(OH_Data_VBuckets *buckets);
  * @return Returns the error code.
  *         Returns {@link RDB_OK} if the execution is successful.
  *         Returns {@link RDB_E_INVALID_ARGS} if invalid input parameter.
- * @since 16
+ * @since 18
  */
 int OH_VBuckets_PutRow(OH_Data_VBuckets *buckets, const OH_VBucket *row);
 
@@ -94,7 +94,7 @@ int OH_VBuckets_PutRow(OH_Data_VBuckets *buckets, const OH_VBucket *row);
  * @return Returns the error code.
  *         Returns {@link RDB_OK} if the execution is successful.
  *         Returns {@link RDB_E_INVALID_ARGS} if invalid input parameter.
- * @since 16
+ * @since 18
  */
 int OH_VBuckets_PutRows(OH_Data_VBuckets *buckets, const OH_Data_VBuckets *rows);
 
@@ -106,7 +106,7 @@ int OH_VBuckets_PutRows(OH_Data_VBuckets *buckets, const OH_Data_VBuckets *rows)
  * @return Returns the error code.
  *         Returns {@link RDB_OK} if the execution is successful.
  *         Returns {@link RDB_E_INVALID_ARGS} if invalid input parameter.
- * @since 16
+ * @since 18
  */
 int OH_VBuckets_RowCount(OH_Data_VBuckets *buckets, size_t *count);
 

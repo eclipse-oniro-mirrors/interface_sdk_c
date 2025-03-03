@@ -94,7 +94,7 @@ typedef enum {
     /** Image animator. */
     ARKUI_NODE_IMAGE_ANIMATOR = 19,
     /** XComponent of type TEXTURE.
-     *  @since 16
+     *  @since 18
      */
     ARKUI_NODE_XCOMPONENT_TEXTURE,
     /** Check box group.
@@ -1886,7 +1886,7 @@ typedef enum {
      * .value[2].f32: width of the right edge. The unit is vp. \n
      * .value[3].f32: width of the bottom edge. The unit is vp. \n
      *
-     * @since 16
+     * @since 18
      */
     NODE_BACKGROUND_IMAGE_RESIZABLE_WITH_SLICE = 100,
 
@@ -1898,7 +1898,7 @@ typedef enum {
      * .object: next focus node. The parameter type is {@link ArkUI_NodeHandle}.\n
      * \n
      *
-     * @since 16
+     * @since 18
      */
     NODE_NEXT_FOCUS = 101,
 
@@ -1920,7 +1920,7 @@ typedef enum {
      * .object: parameters for visible area change events.
      * The parameter type is {@link ArkUI_VisibleAreaEventOptions}. \n
      *
-     * @since 16
+     * @since 18
      */
     NODE_VISIBLE_AREA_APPROXIMATE_CHANGE_RATIO = 102,
 
@@ -3101,7 +3101,7 @@ typedef enum {
      * Format of the return value {@link ArkUI_AttributeItem}:\n
      * .value[0].i32: whether to center text vertically. \n
      *
-     * @since 16
+     * @since 18
      */
     NODE_TEXT_INPUT_HALF_LEADING = 7034,
 
@@ -3449,7 +3449,7 @@ typedef enum {
      * Format of the return value {@link ArkUI_AttributeItem}:\n
      * .value[0].i32: whether to center text vertically. \n
      *
-     * @since 16
+     * @since 18
      */
     NODE_TEXT_AREA_HALF_LEADING = 8025,
 
@@ -3503,7 +3503,7 @@ typedef enum {
     * Format of the return value {@link ArkUI_AttributeItem}:\n
     * .value[0].f32: minimum font scale, in fp.
     *
-    * @since 16
+    * @since 18
     */
     NODE_BUTTON_MIN_FONT_SCALE,
 
@@ -3516,7 +3516,7 @@ typedef enum {
     * Format of the return value {@link ArkUI_AttributeItem}:\n
     * .value[0].f32: maximum font scale, in fp.
     *
-    * @since 16
+    * @since 18
     */
     NODE_BUTTON_MAX_FONT_SCALE,
 
@@ -3736,7 +3736,7 @@ typedef enum {
      * .value[1].i32: The vertical offset of the surface relative to XComponent, in pixels. \n
      * .value[2].i32: The width of the surface created by XComponent, in pixels. \n
      * .value[3].i32: The height of the surface created by XComponent, in pixels. \n
-     * @since 16
+     * @since 18
      */
     NODE_XCOMPONENT_SURFACE_RECT,
     /**
@@ -3748,7 +3748,7 @@ typedef enum {
      * \n
      * Format of the return value {@link ArkUI_AttributeItem}:\n
      * value[0].i32: The parameter type is 1 or 0.
-     * @since 16
+     * @since 18
      */
     NODE_XCOMPONENT_ENABLE_ANALYZER,
 
@@ -3882,7 +3882,7 @@ typedef enum {
      * Format of the return value {@link ArkUI_AttributeItem}:\n
      * value[0].i32: the mode. The value is and enum of {@link ArkUI_DatePickerMode}.\n.
      *
-     * @since 16
+     * @since 18
      */
     NODE_DATE_PICKER_MODE = 13007,
     /**
@@ -3896,7 +3896,7 @@ typedef enum {
      * Format of the return value {@link ArkUI_AttributeItem}:\n
      * value[0].i32: whether to feedback.\n
      *
-     * @since 16
+     * @since 18
      */
     NODE_DATE_PICKER_ENABLE_HAPTIC_FEEDBACK = 13008,
     /**
@@ -4006,7 +4006,7 @@ typedef enum {
      * Format of the return value {@link ArkUI_AttributeItem}:\n
      * .string: time. The default value is <b>"00:00:00"</b>.\n
      *
-     * @since 16
+     * @since 18
      */
     NODE_TIME_PICKER_START = 14005,
     /**
@@ -4019,7 +4019,7 @@ typedef enum {
      * Format of the return value {@link ArkUI_AttributeItem}:\n
      * .string: time. The default value is <b>"23:59:59"</b>.\n
      *
-     * @since 16
+     * @since 18
      */
     NODE_TIME_PICKER_END = 14006,
     /**
@@ -4032,7 +4032,7 @@ typedef enum {
      * Format of the return value {@link ArkUI_AttributeItem}:\n
      * .value[0].i32: whether to enable cascade.\n
      *
-     * @since 16
+     * @since 18
      */
     NODE_TIME_PICKER_ENABLE_CASCADE = 14007,
 
@@ -4206,7 +4206,7 @@ typedef enum {
      * Format of the return value {@link ArkUI_AttributeItem}:\n
      * value[0].i32: whether to feedback.\n
      *
-     * @since 16
+     * @since 18
      */
     NODE_TEXT_PICKER_ENABLE_HAPTIC_FEEDBACK = 15010,
     /**
@@ -4288,7 +4288,7 @@ typedef enum {
      * Format of the return value {@link ArkUI_AttributeItem}:\n
      * .string: date. \n
      *
-     * @since 16
+     * @since 18
      */
     NODE_CALENDAR_PICKER_START = 16004,
     /**
@@ -4301,7 +4301,7 @@ typedef enum {
      * Format of the return value {@link ArkUI_AttributeItem}:\n
      * .string: date. \n
      *
-     * @since 16
+     * @since 18
      */
     NODE_CALENDAR_PICKER_END = 16005,
     /**
@@ -4542,7 +4542,7 @@ typedef enum {
      * Format of the return value {@link ArkUI_AttributeItem}:\n
      * value[0].i32: whether to feedback.\n
      *
-     * @since 16
+     * @since 18
      */
     NODE_SLIDER_ENABLE_HAPTIC_FEEDBACK = 17013,
 
@@ -5100,7 +5100,7 @@ typedef enum {
      * Format of the return value {@link ArkUI_AttributeItem}: \n
      * .value[0].f32: maximum starting fling speed, Unit: vp/s \n
      *
-     * @since 16
+     * @since 18
      */
     NODE_SCROLL_FLING_SPEED_LIMIT = 1002019,
 
@@ -5114,7 +5114,7 @@ typedef enum {
      * Format of the return value {@link ArkUI_AttributeItem}: \n
      * .value[0].i32: clip content mode, The parameter type is {@link ArkUI_ContentClipMode}. \n
      *
-     * @since 16
+     * @since 18
      */
     NODE_SCROLL_CLIP_CONTENT = 1002020,
 
@@ -5356,7 +5356,7 @@ typedef enum {
      * .value[0].i32: whether the <b>List</b> component starts layout from the end. The value <b>0</b> means layout
      * starts from the top, and <b>1</b> means layout starts from the end. The default value is <b>0</b>. \n
      *
-     * @since 16
+     * @since 18
      */
     NODE_LIST_STACK_FROM_END = 1003014,
 
@@ -5702,7 +5702,7 @@ typedef enum {
      * .value[0].f32: minimum main axis size of the child element, Unit: vp. \n
      * .value[1].i32: whether to turn pages by group. \n
      *
-     * @since 16
+     * @since 18
      */
     NODE_SWIPER_AUTO_FILL,
 
@@ -6101,7 +6101,7 @@ typedef enum {
      * \n
      * Format of the return value {@link ArkUI_AttributeItem}:\n
      * .value[0].i32: waterflow layout mode. The parameter type is {@Link ArkUI_WaterFlowLayoutMode}.
-     * @since 16
+     * @since 18
      */
     NODE_WATER_FLOW_LAYOUT_MODE,
 
@@ -6228,7 +6228,7 @@ typedef enum {
     * ...\n
     * value[n].f32: percentage of total width.\n
     *
-    * @since 16
+    * @since 18
     */
     NODE_TEXT_PICKER_COLUMN_WIDTHS = 15009,
     /**
@@ -6243,7 +6243,7 @@ typedef enum {
      * Format of the return value {@link ArkUI_AttributeItem}:\n
      * .string: A string of dates.\n
      *
-     * @since 16
+     * @since 18
      */
     NODE_CALENDAR_PICKER_DISABLED_DATE_RANGE = 16006,
 
@@ -6257,7 +6257,7 @@ typedef enum {
      * Format of the return value {@link ArkUI_AttributeItem}:\n
      * value[0].i32: whether the calendar picker marks today.\n
      *
-     * @since 16
+     * @since 18
      */
     NODE_CALENDAR_PICKER_MARK_TODAY = 16007,
 } ArkUI_NodeAttributeType;
@@ -6596,7 +6596,7 @@ typedef enum {
      * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
      * {@link ArkUI_UIInputEvent}. \n
      * 
-     * @since 16
+     * @since 18
      */
     NODE_ON_AXIS = 25,
 
@@ -6606,7 +6606,7 @@ typedef enum {
      * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
      * {@link ArkUI_UIInputEvent}.  \n
      *
-     * @since 16
+     * @since 18
      */
     NODE_ON_CLICK_EVENT = 26,
 
@@ -6617,7 +6617,7 @@ typedef enum {
      * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
      * {@link ArkUI_UIInputEvent}. \n
      *
-     *@since 16
+     *@since 18
      */
     NODE_ON_HOVER_EVENT = 27,
 
@@ -6636,7 +6636,7 @@ typedef enum {
      * <b>ArkUI_NodeComponentEvent.data[1].f32</b>: ratio of the component's visible area to its total area
      * when this callback is invoked. \n
      *
-     * @since 16
+     * @since 18
      */
     NODE_VISIBLE_AREA_APPROXIMATE_CHANGE_EVENT = 28,
 
@@ -7315,7 +7315,7 @@ typedef enum {
      * {@link ArkUI_NodeComponentEvent} contains one parameter:\n
      * <b>ArkUI_NodeComponentEvent.data[0].i32</b>: index of the currently selected element. \n
      * 
-     * @since 16
+     * @since 18
      */
     NODE_SWIPER_EVENT_ON_SELECTED = 1001005,
 
@@ -7332,7 +7332,7 @@ typedef enum {
      * {@link ArkUI_NodeComponentEvent} contains one parameter:\n
      * <b>ArkUI_NodeComponentEvent.data[0].i32</b>: the index of the element becomes unselected. \n
      * 
-     * @since 16
+     * @since 18
      */
     NODE_SWIPER_EVENT_ON_UNSELECTED = 1001006,
 
@@ -9105,7 +9105,7 @@ int32_t OH_ArkUI_NodeUtils_GetAttachedNodeHandleById(const char* id, ArkUI_NodeH
  *         {@link ARKUI_ERROR_CODE_NO_ERROR} success.
  *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} Function parameter exception.
  *         {@link ARKUI_ERROR_CODE_CAPI_INIT_ERROR} if the CAPI init error.
- * @since 16
+ * @since 18
  */
 int32_t OH_ArkUI_NodeUtils_MoveTo(ArkUI_NodeHandle node, ArkUI_NodeHandle target_parent, int32_t index);
 

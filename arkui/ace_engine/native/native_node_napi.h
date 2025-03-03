@@ -369,7 +369,7 @@ ArkUI_ErrorCode OH_ArkUI_GetRouterPageId(
  *         Returns {@link ARKUI_ERROR_CODE_CAPI_INIT_ERROR} if the CAPI init error.
  *         Returns {@link ARKUI_ERROR_CODE_UI_CONTEXT_INVALID} if the uiContext is invalid.
  *         Returns {@link ARKUI_ERROR_CODE_CALLBACK_INVALID} if the callback function is invalid.
- * @since 16
+ * @since 18
  */
 int32_t OH_ArkUI_PostFrameCallback(ArkUI_ContextHandle uiContext, void* userData,
     void (*callback)(uint64_t nanoTimestamp, uint32_t frameCount, void* userData));

@@ -73,7 +73,7 @@ OH_Drawing_GpuContext* OH_Drawing_GpuContextCreateFromGL(OH_Drawing_GpuContextOp
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @return Returns the pointer to the <b>OH_Drawing_GpuContext</b> object created.
- * @since 16
+ * @since 18
  * @version 1.0
  */
 OH_Drawing_GpuContext* OH_Drawing_GpuContextCreate(void);

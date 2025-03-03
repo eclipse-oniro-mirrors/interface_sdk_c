@@ -328,7 +328,7 @@ typedef enum {
     /** cannot run +js status. */
     JSVM_CANNOT_RUN_JS,
     /** invalid input type status.
-     * @since 16
+     * @since 18
      */
     JSVM_INVALID_TYPE,
     /** jit mode expected status.
@@ -782,7 +782,7 @@ typedef enum {
 /**
  * @brief Microtask policies of JSVM.
  *
- * @since 16
+ * @since 18
  */
 typedef enum {
     /** Microtasks are invoked with the OH_JSVM_PerformMicrotaskCheckpoint() method. */
@@ -796,7 +796,7 @@ typedef enum {
 /**
  * @brief Trace category for jsvm internal trace events.
  *
- * @since 16
+ * @since 18
  */
 typedef enum {
     /** Tracing main interface invoking of JSVM, such as run scripts. */
@@ -818,7 +818,7 @@ typedef enum {
 /**
  * @brief The promise-reject event.
  *
- * @since 16
+ * @since 18
  */
 typedef enum {
     /** Promise is rejected for other reasons. */
@@ -836,7 +836,7 @@ typedef enum {
 /**
  * @brief The level of message error.
  *
- * @since 16
+ * @since 18
  */
 typedef enum {
     /** Log level message. */
@@ -861,7 +861,7 @@ typedef enum {
  * @param detail The detail of the OOM error.
  * @param isHeapOOM Determine whether the OOM type is Heap OOM.
  *
- * @since 16
+ * @since 18
  */
 typedef void(JSVM_CDECL* JSVM_HandlerForOOMError)(const char* location,
                                                   const char* detail,
@@ -873,7 +873,7 @@ typedef void(JSVM_CDECL* JSVM_HandlerForOOMError)(const char* location,
  * @param location The location information of the Fatal error.
  * @param message The message of the Fatal error.
  *
- * @since 16
+ * @since 18
  */
 typedef void(JSVM_CDECL* JSVM_HandlerForFatalError)(const char* location,
                                                     const char* message);
@@ -887,7 +887,7 @@ typedef void(JSVM_CDECL* JSVM_HandlerForFatalError)(const char* location,
  * The 'promise' represents a reference to the Promise object that was rejected.
  * The 'value' represents the rejection reason associated with that promise.
  *
- * @since 16
+ * @since 18
  */
 typedef void(JSVM_CDECL* JSVM_HandlerForPromiseReject)(JSVM_Env env,
                                                        JSVM_PromiseRejectEvent rejectEvent,
@@ -896,7 +896,7 @@ typedef void(JSVM_CDECL* JSVM_HandlerForPromiseReject)(JSVM_Env env,
 /**
  * @brief DefineClass options id.
  *
- * @since 16
+ * @since 18
  */
 typedef enum {
     /** Defining a class in normal mode. */
@@ -910,7 +910,7 @@ typedef enum {
 /**
  * @brief DefineClass options.
  *
- * @since 16
+ * @since 18
  */
 typedef struct {
     /** DefineClass option id. */
@@ -929,7 +929,7 @@ typedef struct {
 /**
  * @brief The property-handler used to define class.
  *
- * @since 16
+ * @since 18
  */
 typedef struct {
     /** The instance object triggers the corresponding callback function. */
@@ -941,7 +941,7 @@ typedef struct {
 /**
  * @brief The timing of GC callback trigger.
  *
- * @since 16
+ * @since 18
  */
 typedef enum {
     /** Trigger GC callback before GC. */
@@ -953,7 +953,7 @@ typedef enum {
 /**
  * @brief The GC type.
  *
- * @since 16
+ * @since 18
  */
 typedef enum {
     /** The GC algorithm is Scavenge. */
@@ -975,7 +975,7 @@ typedef enum {
 /**
  * @brief The GC callback flags.
  *
- * @since 16
+ * @since 18
  */
 typedef enum {
     /** No GC callback falgs. */
@@ -1002,7 +1002,7 @@ typedef enum {
  * @param flags The GC callback flags.
  * @param data The native pointer data.
  *
- * @since 16
+ * @since 18
  */
 typedef void(JSVM_CDECL* JSVM_HandlerForGC)(JSVM_VM vm,
                                             JSVM_GCType gcType,
@@ -1012,7 +1012,7 @@ typedef void(JSVM_CDECL* JSVM_HandlerForGC)(JSVM_VM vm,
 /**
  * @brief To represent a JavaScript Data type.
  *
- * @since 16
+ * @since 18
  */
 typedef struct JSVM_Data__* JSVM_Data;
 /** @} */

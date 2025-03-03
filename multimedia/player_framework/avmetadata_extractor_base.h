@@ -20,7 +20,7 @@
  * @brief Provides APIs of metadata capability for Media Source.
  *
  * @syscap SystemCapability.Multimedia.Media.AVMetadataExtractor
- * @since 16
+ * @since 18
  */
 
 /**
@@ -31,7 +31,7 @@
  * @syscap SystemCapability.Multimedia.Media.AVMetadataExtractor
  * @kit MediaKit
  * @library libavmetadata_extractor.so
- * @since 16
+ * @since 18
  */
 
 #ifndef MULTIMEDIA_PLAYER_FRAMEWORK_NATIVE_AVMETADATA_EXTRACTOR_BASE_H
@@ -50,7 +50,7 @@ extern "C" {
  * @brief Key to get the album title of the media source, value type is const char*.
  *
  * @syscap SystemCapability.Multimedia.Media.AVMetadataExtractor
- * @since 16
+ * @since 18
  */
 static const char* OH_AVMETADATA_EXTRACTOR_ALBUM = "album";
 
@@ -58,7 +58,7 @@ static const char* OH_AVMETADATA_EXTRACTOR_ALBUM = "album";
  * @brief Key to get the album performer or artist associated, value type is const char*.
  *
  * @syscap SystemCapability.Multimedia.Media.AVMetadataExtractor
- * @since 16
+ * @since 18
  */
 static const char* OH_AVMETADATA_EXTRACTOR_ALBUM_ARTIST = "albumArtist";
 
@@ -66,7 +66,7 @@ static const char* OH_AVMETADATA_EXTRACTOR_ALBUM_ARTIST = "albumArtist";
  * @brief Key to get the artist name, value type is const char*.
  *
  * @syscap SystemCapability.Multimedia.Media.AVMetadataExtractor
- * @since 16
+ * @since 18
  */
 static const char* OH_AVMETADATA_EXTRACTOR_ARTIST = "artist";
 
@@ -74,7 +74,7 @@ static const char* OH_AVMETADATA_EXTRACTOR_ARTIST = "artist";
  * @brief Key to get the author name, value type is const char*.
  *
  * @syscap SystemCapability.Multimedia.Media.AVMetadataExtractor
- * @since 16
+ * @since 18
  */
 static const char* OH_AVMETADATA_EXTRACTOR_AUTHOR = "author";
 
@@ -82,7 +82,7 @@ static const char* OH_AVMETADATA_EXTRACTOR_AUTHOR = "author";
  * @brief Key to get the created time of the media source, value type is const char*.
  *
  * @syscap SystemCapability.Multimedia.Media.AVMetadataExtractor
- * @since 16
+ * @since 18
  */
 static const char* OH_AVMETADATA_EXTRACTOR_DATE_TIME = "dateTime";
 
@@ -90,7 +90,7 @@ static const char* OH_AVMETADATA_EXTRACTOR_DATE_TIME = "dateTime";
  * @brief Key to get the created or modified time with the specific date format, value type is const char*.
  *
  * @syscap SystemCapability.Multimedia.Media.AVMetadataExtractor
- * @since 16
+ * @since 18
  */
 static const char* OH_AVMETADATA_EXTRACTOR_DATE_TIME_FORMAT = "dateTimeFormat";
 
@@ -98,7 +98,7 @@ static const char* OH_AVMETADATA_EXTRACTOR_DATE_TIME_FORMAT = "dateTimeFormat";
  * @brief Key to get the composer of the media source, value type is const char*.
  *
  * @syscap SystemCapability.Multimedia.Media.AVMetadataExtractor
- * @since 16
+ * @since 18
  */
 static const char* OH_AVMETADATA_EXTRACTOR_COMPOSER = "composer";
 
@@ -106,7 +106,7 @@ static const char* OH_AVMETADATA_EXTRACTOR_COMPOSER = "composer";
  * @brief Key to get the playback duration of the media source, value type is int64_t, value unit is millisecond (ms).
  *
  * @syscap SystemCapability.Multimedia.Media.AVMetadataExtractor
- * @since 16
+ * @since 18
  */
 static const char* OH_AVMETADATA_EXTRACTOR_DURATION = "duration";
 
@@ -114,7 +114,7 @@ static const char* OH_AVMETADATA_EXTRACTOR_DURATION = "duration";
  * @brief Key to get the content type or genre, value type is const char*.
  *
  * @syscap SystemCapability.Multimedia.Media.AVMetadataExtractor
- * @since 16
+ * @since 18
  */
 static const char* OH_AVMETADATA_EXTRACTOR_GENRE = "genre";
 
@@ -123,7 +123,7 @@ static const char* OH_AVMETADATA_EXTRACTOR_GENRE = "genre";
  *        value type is int32_t. 1 means true and 0 means false.
  *
  * @syscap SystemCapability.Multimedia.Media.AVMetadataExtractor
- * @since 16
+ * @since 18
  */
 static const char* OH_AVMETADATA_EXTRACTOR_HAS_AUDIO = "hasAudio";
 
@@ -132,7 +132,7 @@ static const char* OH_AVMETADATA_EXTRACTOR_HAS_AUDIO = "hasAudio";
  *        value type is int32_t. 1 means true and 0 means false.
  *
  * @syscap SystemCapability.Multimedia.Media.AVMetadataExtractor
- * @since 16
+ * @since 18
  */
 static const char* OH_AVMETADATA_EXTRACTOR_HAS_VIDEO = "hasVideo";
 
@@ -141,7 +141,7 @@ static const char* OH_AVMETADATA_EXTRACTOR_HAS_VIDEO = "hasVideo";
  *        Some example mime types include: "video/mp4", "audio/mp4", "audio/amr-wb".
  *
  * @syscap SystemCapability.Multimedia.Media.AVMetadataExtractor
- * @since 16
+ * @since 18
  */
 static const char* OH_AVMETADATA_EXTRACTOR_MIME_TYPE = "mimeType";
 
@@ -149,7 +149,7 @@ static const char* OH_AVMETADATA_EXTRACTOR_MIME_TYPE = "mimeType";
  * @brief Key to get the number of tracks, value type is int32_t.
  *
  * @syscap SystemCapability.Multimedia.Media.AVMetadataExtractor
- * @since 16
+ * @since 18
  */
 static const char* OH_AVMETADATA_EXTRACTOR_TRACK_COUNT = "trackCount";
 
@@ -157,7 +157,7 @@ static const char* OH_AVMETADATA_EXTRACTOR_TRACK_COUNT = "trackCount";
  * @brief Key to get the audio sample rate, value type is int32_t.
  *
  * @syscap SystemCapability.Multimedia.Media.AVMetadataExtractor
- * @since 16
+ * @since 18
  */
 static const char* OH_AVMETADATA_EXTRACTOR_SAMPLE_RATE = "sampleRate";
 
@@ -165,7 +165,7 @@ static const char* OH_AVMETADATA_EXTRACTOR_SAMPLE_RATE = "sampleRate";
  * @brief Key to get the media source title, value type is const char*.
  *
  * @syscap SystemCapability.Multimedia.Media.AVMetadataExtractor
- * @since 16
+ * @since 18
  */
 static const char* OH_AVMETADATA_EXTRACTOR_TITLE = "title";
 
@@ -173,7 +173,7 @@ static const char* OH_AVMETADATA_EXTRACTOR_TITLE = "title";
  * @brief Key to get the video height if the media contains video, value type is int32_t.
  *
  * @syscap SystemCapability.Multimedia.Media.AVMetadataExtractor
- * @since 16
+ * @since 18
  */
 static const char* OH_AVMETADATA_EXTRACTOR_VIDEO_HEIGHT = "videoHeight";
 
@@ -181,7 +181,7 @@ static const char* OH_AVMETADATA_EXTRACTOR_VIDEO_HEIGHT = "videoHeight";
  * @brief Key to get the video width if the media contains video, value type is int32_t.
  *
  * @syscap SystemCapability.Multimedia.Media.AVMetadataExtractor
- * @since 16
+ * @since 18
  */
 static const char* OH_AVMETADATA_EXTRACTOR_VIDEO_WIDTH = "videoWidth";
 
@@ -189,7 +189,7 @@ static const char* OH_AVMETADATA_EXTRACTOR_VIDEO_WIDTH = "videoWidth";
  * @brief Key to get the video rotation angle, value type is int32_t.
  *
  * @syscap SystemCapability.Multimedia.Media.AVMetadataExtractor
- * @since 16
+ * @since 18
  */
 static const char* OH_AVMETADATA_EXTRACTOR_VIDEO_ORIENTATION = "videoOrientation";
 
@@ -198,7 +198,7 @@ static const char* OH_AVMETADATA_EXTRACTOR_VIDEO_ORIENTATION = "videoOrientation
  *        For details of the value, see {@link OH_Core_HdrType} defined in {@link media_types.h}.
  *
  * @syscap SystemCapability.Multimedia.Media.AVMetadataExtractor
- * @since 16
+ * @since 18
  */
 static const char* OH_AVMETADATA_EXTRACTOR_VIDEO_IS_HDR_VIVID = "hdrType";
 
@@ -206,7 +206,7 @@ static const char* OH_AVMETADATA_EXTRACTOR_VIDEO_IS_HDR_VIVID = "hdrType";
  * @brief Key to get the latitude value in the geographical location, value type is float.
  *
  * @syscap SystemCapability.Multimedia.Media.AVMetadataExtractor
- * @since 16
+ * @since 18
  */
 static const char* OH_AVMETADATA_EXTRACTOR_LOCATION_LATITUDE = "latitude";
 
@@ -214,7 +214,7 @@ static const char* OH_AVMETADATA_EXTRACTOR_LOCATION_LATITUDE = "latitude";
  * @brief Key to get the longitude value in the geographical location, value type is float.
  *
  * @syscap SystemCapability.Multimedia.Media.AVMetadataExtractor
- * @since 16
+ * @since 18
  */
 static const char* OH_AVMETADATA_EXTRACTOR_LOCATION_LONGITUDE = "longitude";
 

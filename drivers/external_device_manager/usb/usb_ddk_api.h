@@ -76,7 +76,7 @@ void OH_Usb_Release(void);
  * @permission ohos.permission.ACCESS_DDK_USB
  * @return {@link USB_DDK_SUCCESS} the operation is successful.
  *         {@link USB_DDK_NO_PERM} permission check failed.
- * @since 16
+ * @since 18
  * @version 1.0
  */
 int32_t OH_Usb_ReleaseResource(void);
@@ -294,7 +294,7 @@ void OH_Usb_DestroyDeviceMemMap(UsbDeviceMemMap *devMmap);
  *         {@link USB_DDK_NO_PERM} permission check failed.
  *         {@link USB_DDK_INVALID_OPERATION} connect usb ddk service failed.
  *         {@link USB_DDK_INVALID_PARAMETER} devices is null.
- * @since 16
+ * @since 18
  */
 int32_t OH_Usb_GetDevices(struct Usb_DeviceArray *devices);
 /** @} */

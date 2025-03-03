@@ -34,7 +34,7 @@
  * @library libnative_rdb_ndk.z.so
  * @syscap SystemCapability.DistributedDataManager.RelationalStore.Core
  *
- * @since 16
+ * @since 18
  */
 
 #ifndef OH_DATA_VALUE_H
@@ -98,13 +98,13 @@ typedef enum OH_ColumnType {
     /**
      * @brief Indicates the column type is FLOAT VECTOR.
      *
-     * @since 16
+     * @since 18
      */
     TYPE_FLOAT_VECTOR,
     /**
      * @brief Indicates that the column type is a number whose length is greater than 64 bits.
      *
-     * @since 16
+     * @since 18
      */
     TYPE_UNLIMITED_INT,
 } OH_ColumnType;
@@ -112,7 +112,7 @@ typedef enum OH_ColumnType {
 /**
  * @brief Define the OH_Data_Value structure type.
  *
- * @since 16
+ * @since 18
  */
 typedef struct OH_Data_Value OH_Data_Value;
 
@@ -123,7 +123,7 @@ typedef struct OH_Data_Value OH_Data_Value;
  * Otherwise, nullptr is returned. The memory must be released through the OH_Value_Destroy
  * interface after the use is complete.
  * @see OH_Value_Destroy.
- * @since 16
+ * @since 18
  */
 OH_Data_Value *OH_Value_Create();
 
@@ -134,7 +134,7 @@ OH_Data_Value *OH_Value_Create();
  * @return Returns the error code.
  *         Returns {@link RDB_OK} if the execution is successful.
  *         Returns {@link RDB_E_INVALID_ARGS} if invalid input parameter.
- * @since 16
+ * @since 18
  */
 int OH_Value_Destroy(OH_Data_Value *value);
 
@@ -145,7 +145,7 @@ int OH_Value_Destroy(OH_Data_Value *value);
  * @return Returns the error code.
  *         Returns {@link RDB_OK} if the execution is successful.
  *         Returns {@link RDB_E_INVALID_ARGS} if invalid input parameter.
- * @since 16
+ * @since 18
  */
 int OH_Value_PutNull(OH_Data_Value *value);
 
@@ -157,7 +157,7 @@ int OH_Value_PutNull(OH_Data_Value *value);
  * @return Returns the error code.
  *         Returns {@link RDB_OK} if the execution is successful.
  *         Returns {@link RDB_E_INVALID_ARGS} if invalid input parameter.
- * @since 16
+ * @since 18
  */
 int OH_Value_PutInt(OH_Data_Value *value, int64_t val);
 
@@ -169,7 +169,7 @@ int OH_Value_PutInt(OH_Data_Value *value, int64_t val);
  * @return Returns the error code.
  *         Returns {@link RDB_OK} if the execution is successful.
  *         Returns {@link RDB_E_INVALID_ARGS} if invalid input parameter.
- * @since 16
+ * @since 18
  */
 int OH_Value_PutReal(OH_Data_Value *value, double val);
 
@@ -181,7 +181,7 @@ int OH_Value_PutReal(OH_Data_Value *value, double val);
  * @return Returns the error code.
  *         Returns {@link RDB_OK} if the execution is successful.
  *         Returns {@link RDB_E_INVALID_ARGS} if invalid input parameter.
- * @since 16
+ * @since 18
  */
 int OH_Value_PutText(OH_Data_Value *value, const char *val);
 
@@ -194,7 +194,7 @@ int OH_Value_PutText(OH_Data_Value *value, const char *val);
  * @return Returns the error code.
  *         Returns {@link RDB_OK} if the execution is successful.
  *         Returns {@link RDB_E_INVALID_ARGS} if invalid input parameter.
- * @since 16
+ * @since 18
  */
 int OH_Value_PutBlob(OH_Data_Value *value, const unsigned char *val, size_t length);
 
@@ -206,7 +206,7 @@ int OH_Value_PutBlob(OH_Data_Value *value, const unsigned char *val, size_t leng
  * @return Returns the error code.
  *         Returns {@link RDB_OK} if the execution is successful.
  *         Returns {@link RDB_E_INVALID_ARGS} if invalid input parameter.
- * @since 16
+ * @since 18
  */
 int OH_Value_PutAsset(OH_Data_Value *value, const Data_Asset *val);
 
@@ -219,7 +219,7 @@ int OH_Value_PutAsset(OH_Data_Value *value, const Data_Asset *val);
  * @return Returns the error code.
  *         Returns {@link RDB_OK} if the execution is successful.
  *         Returns {@link RDB_E_INVALID_ARGS} if invalid input parameter.
- * @since 16
+ * @since 18
  */
 int OH_Value_PutAssets(OH_Data_Value *value, const Data_Asset * const * val, size_t length);
 
@@ -232,7 +232,7 @@ int OH_Value_PutAssets(OH_Data_Value *value, const Data_Asset * const * val, siz
  * @return Returns the error code.
  *         Returns {@link RDB_OK} if the execution is successful.
  *         Returns {@link RDB_E_INVALID_ARGS} if invalid input parameter.
- * @since 16
+ * @since 18
  */
 int OH_Value_PutFloatVector(OH_Data_Value *value, const float *val, size_t length);
 
@@ -246,7 +246,7 @@ int OH_Value_PutFloatVector(OH_Data_Value *value, const float *val, size_t lengt
  * @return Returns the error code.
  *         Returns {@link RDB_OK} if the execution is successful.
  *         Returns {@link RDB_E_INVALID_ARGS} if invalid input parameter.
- * @since 16
+ * @since 18
  */
 int OH_Value_PutUnlimitedInt(OH_Data_Value *value, int sign, const uint64_t *trueForm, size_t length);
 
@@ -258,7 +258,7 @@ int OH_Value_PutUnlimitedInt(OH_Data_Value *value, int sign, const uint64_t *tru
  * @return Returns the error code.
  *         Returns {@link RDB_OK} if the execution is successful.
  *         Returns {@link RDB_E_INVALID_ARGS} if invalid input parameter.
- * @since 16
+ * @since 18
  */
 int OH_Value_GetType(OH_Data_Value *value, OH_ColumnType *type);
 
@@ -270,7 +270,7 @@ int OH_Value_GetType(OH_Data_Value *value, OH_ColumnType *type);
  * @return Returns the error code.
  *         Returns {@link RDB_OK} if the execution is successful.
  *         Returns {@link RDB_E_INVALID_ARGS} if invalid input parameter.
- * @since 16
+ * @since 18
  */
 int OH_Value_IsNull(OH_Data_Value *value, bool *val);
 
@@ -284,7 +284,7 @@ int OH_Value_IsNull(OH_Data_Value *value, bool *val);
  *         Returns {@link RDB_E_INVALID_ARGS} if invalid input parameter.
  *         Returns {@link RDB_E_DATA_TYPE_NULL} the content stored in parameter value is null.
  *         Returns {@link RDB_E_TYPE_MISMATCH} storage data type mismatch.
- * @since 16
+ * @since 18
  */
 int OH_Value_GetInt(OH_Data_Value *value, int64_t *val);
 
@@ -298,7 +298,7 @@ int OH_Value_GetInt(OH_Data_Value *value, int64_t *val);
  *         Returns {@link RDB_E_INVALID_ARGS} if invalid input parameter.
  *         Returns {@link RDB_E_DATA_TYPE_NULL} the content stored in parameter value is null.
  *         Returns {@link RDB_E_TYPE_MISMATCH} storage data type mismatch.
- * @since 16
+ * @since 18
  */
 int OH_Value_GetReal(OH_Data_Value *value, double *val);
 
@@ -313,7 +313,7 @@ int OH_Value_GetReal(OH_Data_Value *value, double *val);
  *         Returns {@link RDB_E_INVALID_ARGS} if invalid input parameter.
  *         Returns {@link RDB_E_DATA_TYPE_NULL} the content stored in parameter value is null.
  *         Returns {@link RDB_E_TYPE_MISMATCH} storage data type mismatch.
- * @since 16
+ * @since 18
  */
 int OH_Value_GetText(OH_Data_Value *value, const char **val);
 
@@ -329,7 +329,7 @@ int OH_Value_GetText(OH_Data_Value *value, const char **val);
  *         Returns {@link RDB_E_INVALID_ARGS} if invalid input parameter.
  *         Returns {@link RDB_E_DATA_TYPE_NULL} the content stored in parameter value is null.
  *         Returns {@link RDB_E_TYPE_MISMATCH} storage data type mismatch.
- * @since 16
+ * @since 18
  */
 int OH_Value_GetBlob(OH_Data_Value *value, const uint8_t **val, size_t *length);
 
@@ -344,7 +344,7 @@ int OH_Value_GetBlob(OH_Data_Value *value, const uint8_t **val, size_t *length);
  *         Returns {@link RDB_E_INVALID_ARGS} if invalid input parameter.
  *         Returns {@link RDB_E_DATA_TYPE_NULL} the content stored in parameter value is null.
  *         Returns {@link RDB_E_TYPE_MISMATCH} storage data type mismatch.
- * @since 16
+ * @since 18
  */
 int OH_Value_GetAsset(OH_Data_Value *value, Data_Asset *val);
 
@@ -358,7 +358,7 @@ int OH_Value_GetAsset(OH_Data_Value *value, Data_Asset *val);
  *         Returns {@link RDB_E_INVALID_ARGS} if invalid input parameter.
  *         Returns {@link RDB_E_DATA_TYPE_NULL} the content stored in parameter value is null.
  *         Returns {@link RDB_E_TYPE_MISMATCH} storage data type mismatch.
- * @since 16
+ * @since 18
  */
 int OH_Value_GetAssetsCount(OH_Data_Value *value, size_t *length);
 
@@ -376,7 +376,7 @@ int OH_Value_GetAssetsCount(OH_Data_Value *value, size_t *length);
  *         Returns {@link RDB_E_DATA_TYPE_NULL} the content stored in parameter value is null.
  *         Returns {@link RDB_E_TYPE_MISMATCH} storage data type mismatch.
  * @see OH_Value_GetAssetsCount.
- * @since 16
+ * @since 18
  */
 int OH_Value_GetAssets(OH_Data_Value *value, Data_Asset **val, size_t inLen, size_t *outLen);
 
@@ -390,7 +390,7 @@ int OH_Value_GetAssets(OH_Data_Value *value, Data_Asset **val, size_t inLen, siz
  *         Returns {@link RDB_E_INVALID_ARGS} if invalid input parameter.
  *         Returns {@link RDB_E_DATA_TYPE_NULL} the content stored in parameter value is null.
  *         Returns {@link RDB_E_TYPE_MISMATCH} storage data type mismatch.
- * @since 16
+ * @since 18
  */
 int OH_Value_GetFloatVectorCount(OH_Data_Value *value, size_t *length);
 
@@ -408,7 +408,7 @@ int OH_Value_GetFloatVectorCount(OH_Data_Value *value, size_t *length);
  *         Returns {@link RDB_E_DATA_TYPE_NULL} the content stored in parameter value is null.
  *         Returns {@link RDB_E_TYPE_MISMATCH} storage data type mismatch.
  * @see OH_Value_GetFloatVectorCount.
- * @since 16
+ * @since 18
  */
 int OH_Value_GetFloatVector(OH_Data_Value *value, float *val, size_t inLen, size_t *outLen);
 
@@ -422,7 +422,7 @@ int OH_Value_GetFloatVector(OH_Data_Value *value, float *val, size_t inLen, size
  *         Returns {@link RDB_E_INVALID_ARGS} if invalid input parameter.
  *         Returns {@link RDB_E_DATA_TYPE_NULL} the content stored in parameter value is null.
  *         Returns {@link RDB_E_TYPE_MISMATCH} storage data type mismatch.
- * @since 16
+ * @since 18
  */
 int OH_Value_GetUnlimitedIntBand(OH_Data_Value *value, size_t *length);
 
@@ -441,7 +441,7 @@ int OH_Value_GetUnlimitedIntBand(OH_Data_Value *value, size_t *length);
  *         Returns {@link RDB_E_DATA_TYPE_NULL} the content stored in parameter value is null.
  *         Returns {@link RDB_E_TYPE_MISMATCH} storage data type mismatch.
  * @see OH_Value_GetUnlimitedIntBand.
- * @since 16
+ * @since 18
  */
 int OH_Value_GetUnlimitedInt(OH_Data_Value *value, int *sign, uint64_t *trueForm, size_t inLen, size_t *outLen);
 

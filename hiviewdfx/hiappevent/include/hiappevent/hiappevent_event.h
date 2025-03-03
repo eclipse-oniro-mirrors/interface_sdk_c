@@ -155,7 +155,7 @@ extern "C" {
 /**
  * @brief app hicollie event.
  *
- * @since 16
+ * @since 18
  * @version 1.0
  */
 #define EVENT_APP_HICOLLIE "APP_HICOLLIE"

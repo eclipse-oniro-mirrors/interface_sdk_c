@@ -146,7 +146,7 @@ typedef enum {
     /**
      * @brief Usb audio device.
      *
-     * @since 16
+     * @since 18
      */
     AUDIO_DEVICE_TYPE_USB_DEVICE = 25,
 

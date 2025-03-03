@@ -20,7 +20,7 @@
  * @brief Provides USB SERIAL DDK types and declares the macros, enumerated variables, and\n
  * data structures required by the USB SERIAL DDK APIs.
  *
- * @since 16
+ * @since 18
  */
 
 /**
@@ -31,7 +31,7 @@
  * @kit DriverDevelopmentKit
  * @library libusb_serial.z.so
  * @syscap SystemCapability.Driver.UsbSerial.Extension
- * @since 16
+ * @since 18
  */
 
 #ifndef DDK_USB_SERIAL_API_H
@@ -51,7 +51,7 @@ extern "C" {
  * @return {@link USB_SERIAL_DDK_SUCCESS} the operation is successful.
  *         {@link USB_SERIAL_DDK_NO_PERM} permission check failed.
  *         {@link USB_SERIAL_DDK_INIT_ERROR} the ddk init error.
- * @since 16
+ * @since 18
  */
 int32_t OH_UsbSerial_Init(void);
 
@@ -63,7 +63,7 @@ int32_t OH_UsbSerial_Init(void);
  *         {@link USB_SERIAL_DDK_NO_PERM} permission check failed.
  *         {@link USB_SERIAL_DDK_INIT_ERROR} the ddk not init.
  *         {@link USB_SERIAL_DDK_SERVICE_ERROR} communication with the ddk service failed.
- * @since 16
+ * @since 18
  */
 int32_t OH_UsbSerial_Release(void);
 
@@ -82,7 +82,7 @@ int32_t OH_UsbSerial_Release(void);
  *         {@link USB_SERIAL_DDK_MEMORY_ERROR} insufficient memory.
  *         {@link USB_SERIAL_DDK_IO_ERROR} the ddk I/O error.
  *         {@link USB_SERIAL_DDK_DEVICE_NOT_FOUND} device or interface not found.
- * @since 16
+ * @since 18
  */
 int32_t OH_UsbSerial_Open(uint64_t deviceId, uint8_t interfaceIndex, UsbSerial_Device **dev);
 
@@ -99,7 +99,7 @@ int32_t OH_UsbSerial_Open(uint64_t deviceId, uint8_t interfaceIndex, UsbSerial_D
  *         {@link USB_SERIAL_DDK_SERVICE_ERROR} communication with the ddk service failed.
  *         {@link USB_SERIAL_DDK_IO_ERROR} the ddk I/O error.
  *         {@link USB_SERIAL_DDK_INVALID_OPERATION} invalid operation.
- * @since 16
+ * @since 18
  */
 int32_t OH_UsbSerial_Close(UsbSerial_Device **dev);
 
@@ -120,7 +120,7 @@ int32_t OH_UsbSerial_Close(UsbSerial_Device **dev);
  *         {@link USB_SERIAL_DDK_MEMORY_ERROR} the buff is outside accessible address space error.
  *         {@link USB_SERIAL_DDK_IO_ERROR} the ddk I/O error.
  *         {@link USB_SERIAL_DDK_INVALID_OPERATION} invalid operation.
- * @since 16
+ * @since 18
  */
 int32_t OH_UsbSerial_Read(UsbSerial_Device *dev, uint8_t *buff, uint32_t bufferSize, uint32_t *bytesRead);
 
@@ -141,7 +141,7 @@ int32_t OH_UsbSerial_Read(UsbSerial_Device *dev, uint8_t *buff, uint32_t bufferS
  *         {@link USB_SERIAL_DDK_MEMORY_ERROR} the buff is outside accessible address space error.
  *         {@link USB_SERIAL_DDK_IO_ERROR} the ddk I/O error.
  *         {@link USB_SERIAL_DDK_INVALID_OPERATION} invalid operation.
- * @since 16
+ * @since 18
  */
 int32_t OH_UsbSerial_Write(UsbSerial_Device *dev, uint8_t *buff, uint32_t bufferSize, uint32_t *bytesWritten);
 
@@ -158,7 +158,7 @@ int32_t OH_UsbSerial_Write(UsbSerial_Device *dev, uint8_t *buff, uint32_t buffer
  *         {@link USB_SERIAL_DDK_SERVICE_ERROR} communication with the ddk service failed.
  *         {@link USB_SERIAL_DDK_IO_ERROR} the ddk I/O error.
  *         {@link USB_SERIAL_DDK_INVALID_OPERATION} invalid operation.
- * @since 16
+ * @since 18
  */
 int32_t OH_UsbSerial_SetBaudRate(UsbSerial_Device *dev, uint32_t baudRate);
 
@@ -176,7 +176,7 @@ int32_t OH_UsbSerial_SetBaudRate(UsbSerial_Device *dev, uint32_t baudRate);
  *         {@link USB_SERIAL_DDK_SERVICE_ERROR} communication with the ddk service failed.
  *         {@link USB_SERIAL_DDK_IO_ERROR} the ddk I/O error.
  *         {@link USB_SERIAL_DDK_INVALID_OPERATION} invalid operation.
- * @since 16
+ * @since 18
  */
 int32_t OH_UsbSerial_SetParams(UsbSerial_Device *dev, UsbSerial_Params *params);
 
@@ -197,7 +197,7 @@ int32_t OH_UsbSerial_SetParams(UsbSerial_Device *dev, UsbSerial_Params *params);
  *         {@link USB_SERIAL_DDK_SERVICE_ERROR} communication with the ddk service failed.
  *         {@link USB_SERIAL_DDK_IO_ERROR} the ddk I/O error.
  *         {@link USB_SERIAL_DDK_INVALID_OPERATION} invalid operation.
- * @since 16
+ * @since 18
  */
 int32_t OH_UsbSerial_SetTimeout(UsbSerial_Device *dev, int timeout);
 
@@ -215,7 +215,7 @@ int32_t OH_UsbSerial_SetTimeout(UsbSerial_Device *dev, int timeout);
  *         {@link USB_SERIAL_DDK_SERVICE_ERROR} communication with the ddk service failed.
  *         {@link USB_SERIAL_DDK_IO_ERROR} the ddk I/O error.
  *         {@link USB_SERIAL_DDK_INVALID_OPERATION} invalid operation.
- * @since 16
+ * @since 18
  */
 int32_t OH_UsbSerial_SetFlowControl(UsbSerial_Device *dev, UsbSerial_FlowControl flowControl);
 
@@ -231,7 +231,7 @@ int32_t OH_UsbSerial_SetFlowControl(UsbSerial_Device *dev, UsbSerial_FlowControl
  *         {@link USB_SERIAL_DDK_SERVICE_ERROR} communication with the ddk service failed.
  *         {@link USB_SERIAL_DDK_IO_ERROR} the ddk I/O error.
  *         {@link USB_SERIAL_DDK_INVALID_OPERATION} invalid operation.
- * @since 16
+ * @since 18
  */
 int32_t OH_UsbSerial_Flush(UsbSerial_Device *dev);
 
@@ -247,7 +247,7 @@ int32_t OH_UsbSerial_Flush(UsbSerial_Device *dev);
  *         {@link USB_SERIAL_DDK_SERVICE_ERROR} communication with the ddk service failed.
  *         {@link USB_SERIAL_DDK_IO_ERROR} the ddk I/O error.
  *         {@link USB_SERIAL_DDK_INVALID_OPERATION} invalid operation.
- * @since 16
+ * @since 18
  */
 int32_t OH_UsbSerial_FlushInput(UsbSerial_Device *dev);
 
@@ -263,7 +263,7 @@ int32_t OH_UsbSerial_FlushInput(UsbSerial_Device *dev);
  *         {@link USB_SERIAL_DDK_SERVICE_ERROR} communication with the ddk service failed.
  *         {@link USB_SERIAL_DDK_IO_ERROR} the ddk I/O error.
  *         {@link USB_SERIAL_DDK_INVALID_OPERATION} invalid operation.
- * @since 16
+ * @since 18
  */
 int32_t OH_UsbSerial_FlushOutput(UsbSerial_Device *dev);
 #ifdef __cplusplus

@@ -1,62 +1,62 @@
 [
     {
-        "first_introduced": "16",
+        "first_introduced": "18",
         "name": "OH_ScsiPeripheral_Init"
     },
     {
-        "first_introduced": "16",
+        "first_introduced": "18",
         "name": "OH_ScsiPeripheral_Release"
     },
     {
-        "first_introduced": "16",
+        "first_introduced": "18",
         "name": "OH_ScsiPeripheral_Open"
     },
     {
-        "first_introduced": "16",
+        "first_introduced": "18",
         "name": "OH_ScsiPeripheral_Close"
     },
     {
-        "first_introduced": "16",
+        "first_introduced": "18",
         "name": "OH_ScsiPeripheral_ReadCapacity10"
     },
     {
-        "first_introduced": "16",
+        "first_introduced": "18",
         "name": "OH_ScsiPeripheral_TestUnitReady"
     },
     {
-        "first_introduced": "16",
+        "first_introduced": "18",
         "name": "OH_ScsiPeripheral_Inquiry"
     },
     {
-        "first_introduced": "16",
+        "first_introduced": "18",
         "name": "OH_ScsiPeripheral_RequestSense"
     },
     {
-        "first_introduced": "16",
+        "first_introduced": "18",
         "name": "OH_ScsiPeripheral_Read10"
     },
     {
-        "first_introduced": "16",
+        "first_introduced": "18",
         "name": "OH_ScsiPeripheral_Write10"
     },
     {
-        "first_introduced": "16",
+        "first_introduced": "18",
         "name": "OH_ScsiPeripheral_Verify10"
     },
     {
-        "first_introduced": "16",
+        "first_introduced": "18",
         "name": "OH_ScsiPeripheral_SendRequestByCdb"
     },
     {
-        "first_introduced": "16",
+        "first_introduced": "18",
         "name": "OH_ScsiPeripheral_CreateDeviceMemMap"
     },
     {
-        "first_introduced": "16",
+        "first_introduced": "18",
         "name": "OH_ScsiPeripheral_DestroyDeviceMemMap"
     },
     {
-        "first_introduced": "16",
+        "first_introduced": "18",
         "name": "OH_ScsiPeripheral_ParseBasicSenseInfo"
     }
 ]
