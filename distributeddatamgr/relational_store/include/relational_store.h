@@ -190,7 +190,7 @@ typedef enum Rdb_DBType {
 /**
  * @brief Define Rdb_Tokenizer type.
  *
- * @since 16
+ * @since 18
  */
 typedef enum Rdb_Tokenizer {
     /**
@@ -341,7 +341,7 @@ int OH_Rdb_SetDbType(OH_Rdb_ConfigV2 *config, int dbType);
  *     {@link RDB_OK} - success.
  *     {@link RDB_E_INVALID_ARGS} - The error code for common invalid args.
  *     {@link RDB_E_NOT_SUPPORTED} - The error code for not support tokenizer.
- * @since 16
+ * @since 18
  */
 int OH_Rdb_SetTokenizer(OH_Rdb_ConfigV2 *config, Rdb_Tokenizer tokenizer);
 
@@ -353,7 +353,7 @@ int OH_Rdb_SetTokenizer(OH_Rdb_ConfigV2 *config, Rdb_Tokenizer tokenizer);
  * @return Returns the status code of the execution.
  *         {@link RDB_OK} indicates the operation is successful.
  *         {@link RDB_E_INVALID_ARGS} indicates invalid args are passed in.
- * @since 16
+ * @since 18
  */
 int OH_Rdb_IsTokenizerSupported(Rdb_Tokenizer tokenizer, bool *isSupported);
 
@@ -513,7 +513,7 @@ int OH_Rdb_Insert(OH_Rdb_Store *store, const char *table, OH_VBucket *valuesBuck
  *         Returns {@link RDB_E_SQLITE_TOO_BIG} SQLite: TEXT or BLOB exceeds size limit.
  *         Returns {@link RDB_E_SQLITE_MISMATCH} SQLite: Data type mismatch.
  *         Returns {@link RDB_E_SQLITE_CONSTRAINT} SQLite: Abort due to constraint violation.
- * @since 16
+ * @since 18
  */
 int OH_Rdb_BatchInsert(OH_Rdb_Store *store, const char *table,
     const OH_Data_VBuckets *rows, Rdb_ConflictResolution resolution, int64_t *changes);
@@ -602,7 +602,7 @@ int OH_Rdb_Execute(OH_Rdb_Store *store, const char *sql);
  *         Returns {@link RDB_E_SQLITE_TOO_BIG} SQLite: TEXT or BLOB exceeds size limit.
  *         Returns {@link RDB_E_SQLITE_MISMATCH} SQLite: Data type mismatch.
  * @see OH_Value_Destroy.
- * @since 16
+ * @since 18
  */
 int OH_Rdb_ExecuteV2(OH_Rdb_Store *store, const char *sql, const OH_Data_Values *args, OH_Data_Value **result);
 
@@ -642,7 +642,7 @@ OH_Cursor *OH_Rdb_ExecuteQuery(OH_Rdb_Store *store, const char *sql);
  * @return If the query is successful, a pointer to the instance of the @link OH_Cursor} structure is returned.
  *         If sql statement is invalid or the memory allocate failed, nullptr is returned.
  * @see OH_Rdb_Store.
- * @since 16
+ * @since 18
  */
 OH_Cursor *OH_Rdb_ExecuteQueryV2(OH_Rdb_Store *store, const char *sql, const OH_Data_Values *args);
 
@@ -1388,7 +1388,7 @@ OH_Cursor *OH_Rdb_QueryLockedRow(
  *         Returns {@link RDB_E_SQLITE_IOERR} SQLite: Some kind of disk I/O error occurred.
  *         Returns {@link RDB_E_SQLITE_CANT_OPEN} SQLite: Unable to open the database file.
  * @see OH_RdbTrans_Destroy.
- * @since 16
+ * @since 18
  */
 int OH_Rdb_CreateTransaction(OH_Rdb_Store *store, const OH_RDB_TransOptions *options, OH_Rdb_Transaction **trans);
 

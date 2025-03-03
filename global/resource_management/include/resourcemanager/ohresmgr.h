@@ -602,7 +602,7 @@ ResourceManager_ErrorCode OH_ResourceManager_GetPluralStringByName(const NativeR
            {@link ERROR_CODE_RES_NOT_FOUND_BY_ID} 9001002 - No matching resource is found based on the resource ID.
            {@link ERROR_CODE_RES_REF_TOO_MUCH} 9001006 - The resource is referenced cyclically.
            {@link ERROR_CODE_OUT_OF_MEMORY} 9001100 - Out of memory.
- * @since 16
+ * @since 18
  */
 ResourceManager_ErrorCode OH_ResourceManager_GetIntPluralString(const NativeResourceManager *mgr, uint32_t resId,
     uint32_t num, char **resultValue, ...);
@@ -626,7 +626,7 @@ ResourceManager_ErrorCode OH_ResourceManager_GetIntPluralString(const NativeReso
            {@link ERROR_CODE_RES_NOT_FOUND_BY_ID} 9001002 - No matching resource is found based on the resource ID.
            {@link ERROR_CODE_RES_REF_TOO_MUCH} 9001006 - The resource is referenced cyclically.
            {@link ERROR_CODE_OUT_OF_MEMORY} 9001100 - Out of memory.
- * @since 16
+ * @since 18
  */
 ResourceManager_ErrorCode OH_ResourceManager_GetDoublePluralString(const NativeResourceManager *mgr, uint32_t resId,
     double num, char **resultValue, ...);
@@ -650,7 +650,7 @@ ResourceManager_ErrorCode OH_ResourceManager_GetDoublePluralString(const NativeR
            {@link ERROR_CODE_RES_NOT_FOUND_BY_NAME} 9001004 - No matching resource is found based on the resource name.
            {@link ERROR_CODE_RES_REF_TOO_MUCH} 9001006 - The resource is referenced cyclically.
            {@link ERROR_CODE_OUT_OF_MEMORY} 9001100 - Out of memory.
- * @since 16
+ * @since 18
  */
 ResourceManager_ErrorCode OH_ResourceManager_GetIntPluralStringByName(const NativeResourceManager *mgr,
     const char *resName, uint32_t num, char **resultValue, ...);
@@ -674,7 +674,7 @@ ResourceManager_ErrorCode OH_ResourceManager_GetIntPluralStringByName(const Nati
            {@link ERROR_CODE_RES_NOT_FOUND_BY_NAME} 9001004 - No matching resource is found based on the resource name.
            {@link ERROR_CODE_RES_REF_TOO_MUCH} 9001006 - The resource is referenced cyclically.
            {@link ERROR_CODE_OUT_OF_MEMORY} 9001100 - Out of memory.
- * @since 16
+ * @since 18
  */
 ResourceManager_ErrorCode OH_ResourceManager_GetDoublePluralStringByName(const NativeResourceManager *mgr,
     const char *resName, double num, char **resultValue, ...);
