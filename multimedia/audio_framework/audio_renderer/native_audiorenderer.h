@@ -150,7 +150,7 @@ OH_AudioStream_Result OH_AudioRenderer_GetSamplingRate(OH_AudioRenderer* rendere
  * @since 10
  *
  * @param renderer Reference created by OH_AudioStreamBuilder_GenerateRenderer()
- * @param stramId Pointer to a variable that will be set for the stream id.
+ * @param streamId Pointer to a variable that will be set for the stream id.
  * @return Function result code:
  *         {@link AUDIOSTREAM_SUCCESS} If the execution is successful.
  *         {@link AUDIOSTREAM_ERROR_INVALID_PARAM} The param of renderer is nullptr.

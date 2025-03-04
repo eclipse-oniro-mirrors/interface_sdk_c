@@ -80,8 +80,8 @@ OH_AudioStream_Result OH_AudioStreamBuilder_Destroy(OH_AudioStreamBuilder* build
  *
  * @since 10
  *
- * @param capturer Reference created by OH_AudioStreamBuilder
- * @param channelCount Pointer to a variable that will be set for the channel count.
+ * @param builder Reference created by OH_AudioStreamBuilder
+ * @param rate Pointer to a variable that will be set for the channel count.
  * @return Function result code:
  *         {@link AUDIOSTREAM_SUCCESS} If the execution is successful.
  *         {@link AUDIOSTREAM_ERROR_INVALID_PARAM}:
