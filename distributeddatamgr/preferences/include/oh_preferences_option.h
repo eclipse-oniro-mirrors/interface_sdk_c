@@ -60,8 +60,8 @@ typedef struct OH_PreferencesOption OH_PreferencesOption;
 typedef enum Preferences_StorageType {
     /** XML storage*/
     PREFERENCES_STORAGE_XML = 0,
-    /** CLKV storage */
-    PREFERENCES_STORAGE_CLKV
+    /** GSKV storage */
+    PREFERENCES_STORAGE_GSKV
 } Preferences_StorageType;
 
 /**
