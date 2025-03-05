@@ -504,6 +504,10 @@
         "name": "OH_Drawing_PathGetPositionTangent"
     },
     {
+        "first_introduced": "18",
+        "name": "OH_Drawing_PathGetSegment"
+    },
+    {
         "first_introduced": "12",
         "name": "OH_Drawing_PathOp"
     },
