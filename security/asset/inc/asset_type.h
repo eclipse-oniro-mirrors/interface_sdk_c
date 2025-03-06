@@ -222,7 +222,7 @@ typedef enum {
      *
      * @since 18
      */
-    ASSET_TAG_WRAP_TYPE = ASSET_TYPE_BYTES | 0x49,
+    ASSET_TAG_WRAP_TYPE = ASSET_TYPE_NUMBER | 0x49,
 } Asset_Tag;
 
 /**
