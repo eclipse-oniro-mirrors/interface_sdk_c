@@ -69,7 +69,7 @@ OH_Drawing_Surface* OH_Drawing_SurfaceCreateFromGpuContext(
  * @param imageInfo Indicates the image info.
  * @param window Indicates the pointer of the screen window.
  * @return Returns the pointer to the <b>OH_Drawing_Surface</b> object created.
- * @since 18
+ * @since 16
  * @version 1.0
  */
 OH_Drawing_Surface* OH_Drawing_SurfaceCreateOnScreen(
@@ -95,7 +95,7 @@ OH_Drawing_Canvas* OH_Drawing_SurfaceGetCanvas(OH_Drawing_Surface* surface);
  * @return Returns the error code.
  *         Returns {@link OH_DRAWING_SUCCESS} if the operation is successful.
  *         Returns {@link OH_DRAWING_ERROR_INVALID_PARAMETER} if surface is nullptr.
- * @since 18
+ * @since 16
  * @version 1.0
  */
 OH_Drawing_ErrorCode OH_Drawing_SurfaceFlush(OH_Drawing_Surface* surface);
