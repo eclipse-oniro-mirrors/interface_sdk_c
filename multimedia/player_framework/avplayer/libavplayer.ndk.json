@@ -134,5 +134,9 @@
   {
     "first_introduced": "12",
     "name": "OH_AVPlayer_SetAudioEffectMode"
+  },
+  {
+    "first_introduced": "12",
+    "name": "OH_AudioStreamBuilder_SetVolumeMode"
   }
 ]
