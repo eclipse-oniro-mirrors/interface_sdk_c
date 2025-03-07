@@ -45,6 +45,10 @@
         "name":"OH_Rdb_SetDbType"
     },
     {
+        "first_introduced": "18",
+        "name":"OH_Rdb_SetPersistent"
+    },
+    {
         "first_introduced": "14",
         "name":"OH_Rdb_GetSupportedDbType"
     },

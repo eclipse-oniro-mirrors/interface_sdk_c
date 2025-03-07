@@ -346,6 +346,19 @@ int OH_Rdb_SetDbType(OH_Rdb_ConfigV2 *config, int dbType);
 int OH_Rdb_SetTokenizer(OH_Rdb_ConfigV2 *config, Rdb_Tokenizer tokenizer);
 
 /**
+ * @brief Set property persist into config
+ *
+ * @param config Represents a pointer to {@link OH_Rdb_ConfigV2} instance.
+ * Indicates the configuration of the database related to this RDB store.
+ * @param isPersistent Indicates whether the database need persistence.
+ * @return Returns the status code of the execution. Successful execution returns RDB_OK,
+ *     {@link RDB_OK} - success.
+ *     {@link RDB_E_INVALID_ARGS} - The error code for common invalid args.
+ * @since 18
+ */
+int OH_Rdb_SetPersistent(OH_Rdb_ConfigV2 *config, bool isPersistent);
+
+/**
  * @brief Check if a tokenizer is supported or not.
  *
  * @param tokenizer the tokenizer type of {@Link Rdb_Tokenizer}.
