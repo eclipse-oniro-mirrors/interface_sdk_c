@@ -137,6 +137,6 @@
   },
   {
     "first_introduced": "18",
-    "name": "OH_AudioStreamBuilder_SetVolumeMode"
+    "name": "OH_AVPlayer_SetVolumeMode"
   }
 ]
