@@ -151,6 +151,12 @@ typedef enum {
     AUDIO_DEVICE_TYPE_USB_DEVICE = 25,
 
     /**
+     * @brief HDMI device, such as a device connected through an HDMI, ARC, or eARC interface.
+     * @since 18
+     */
+    AUDIO_DEVICE_TYPE_HDMI = 27,
+
+    /**
      * @brief Default device type.
      */
     AUDIO_DEVICE_TYPE_DEFAULT = 1000,
