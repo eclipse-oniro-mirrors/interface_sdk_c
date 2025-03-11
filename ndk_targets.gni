@@ -267,20 +267,12 @@ _ndk_sysroot_uapi =
     [ "//interface/sdk_c/third_party/musl/ndk_script:musl_sysroot" ]
 
 _ndk_cmake = [ "//build/ohos/ndk:ndk_cmake_files" ]
-_ndk_ninja = []
 
 if (host_os == "mac") {
   _ndk_cmake += [
     "//prebuilts/cmake/darwin-universal:darwin_cmake_copy",
     "//build/ohos/ndk:copy_darwin_ohos_cmake",
   ]
-  _ndk_ninja += [ "//prebuilts/build-tools/darwin-x86/bin:darwin_ninja_copy" ]
-} else if (host_os == "linux" && host_cpu == "arm64") {
-  _ndk_cmake += [
-    "//prebuilts/cmake/linux-aarch64:linux_cmake_copy",
-    "//build/ohos/ndk:copy_linux_ohos_cmake",
-  ]
-  _ndk_ninja += [ "//prebuilts/build-tools/linux-aarch64/bin:linux_ninja_copy" ]
 } else {
   _ndk_cmake += [
     "//prebuilts/cmake/linux-x86:linux_cmake_copy",
@@ -290,6 +282,12 @@ if (host_os == "mac") {
     "//build/ohos/ndk:copy_windows_ohos_cmake",
     "//build/ohos/ndk:copy_ohos_ohos_cmake",
   ]
+}
+
+_ndk_ninja = []
+if (host_os == "mac") {
+  _ndk_ninja += [ "//prebuilts/build-tools/darwin-x86/bin:darwin_ninja_copy" ]
+} else {
   _ndk_ninja += [
     "//prebuilts/build-tools/linux-x86/bin:linux_ninja_copy",
     "//prebuilts/build-tools/windows-x86/bin:windows_ninja_copy",
@@ -314,13 +312,8 @@ if (build_mac_ndk_target) {
   }
 }
 if (build_linux_ndk_target) {
-  if (host_cpu == "arm64") {
-    all_ndk_targets_list +=
-        [ "//interface/sdk_c/third_party/musl/ndk_script:linux_arm64" ]
-  } else {
-    all_ndk_targets_list +=
-        [ "//interface/sdk_c/third_party/musl/ndk_script:linux_x86_64" ]
-  }
+  all_ndk_targets_list +=
+      [ "//interface/sdk_c/third_party/musl/ndk_script:linux_x86_64" ]
 }
 if (build_ohos_ndk_target) {
   all_ndk_targets_list +=
@@ -334,9 +327,6 @@ if (build_ohos_ndk_target) {
       all_ndk_targets_list +=
           [ "//interface/sdk_c/third_party/musl/ndk_script:darwin_x86_64" ]
     }
-  } else if (host_os == "linux" && host_cpu == "arm64") {
-    all_ndk_targets_list +=
-        [ "//interface/sdk_c/third_party/musl/ndk_script:linux_arm64" ]
   } else {
     all_ndk_targets_list += [
       "//interface/sdk_c/third_party/musl/ndk_script:windows_x86_64",
