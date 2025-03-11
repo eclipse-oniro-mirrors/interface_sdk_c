@@ -106,7 +106,7 @@ AbilityRuntime_ErrorCode OH_AbilityRuntime_ApplicationContextGetBundleName(
  *         {@link ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID} if the buffer or writeLength is null,
  *         or the buffer size is less than the minimum buffer size.
  *         {@link ABILITY_RUNTIME_ERROR_CODE_CONTEXT_NOT_EXIST} if the application context does not exist.
- * @since 18
+ * @since 16
  */
 AbilityRuntime_ErrorCode OH_AbilityRuntime_ApplicationContextGetTempDir(
     char* buffer, const int32_t bufferSize, int32_t* writeLength);
@@ -123,7 +123,7 @@ AbilityRuntime_ErrorCode OH_AbilityRuntime_ApplicationContextGetTempDir(
  *         {@link ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID} if the buffer or writeLength is null,
  *         or the buffer size is less than the minimum buffer size.
  *         {@link ABILITY_RUNTIME_ERROR_CODE_CONTEXT_NOT_EXIST} if the application context does not exist.
- * @since 18
+ * @since 16
  */
 AbilityRuntime_ErrorCode OH_AbilityRuntime_ApplicationContextGetFilesDir(
     char* buffer, const int32_t bufferSize, int32_t* writeLength);
@@ -140,7 +140,7 @@ AbilityRuntime_ErrorCode OH_AbilityRuntime_ApplicationContextGetFilesDir(
  *         {@link ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID} if the buffer or writeLength is null,
  *         or the buffer size is less than the minimum buffer size.
  *         {@link ABILITY_RUNTIME_ERROR_CODE_CONTEXT_NOT_EXIST} if the application context does not exist.
- * @since 18
+ * @since 16
  */
 AbilityRuntime_ErrorCode OH_AbilityRuntime_ApplicationContextGetDatabaseDir(
     char* buffer, const int32_t bufferSize, int32_t* writeLength);
@@ -157,7 +157,7 @@ AbilityRuntime_ErrorCode OH_AbilityRuntime_ApplicationContextGetDatabaseDir(
  *         {@link ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID} if the buffer or writeLength is null,
  *         or the buffer size is less than the minimum buffer size.
  *         {@link ABILITY_RUNTIME_ERROR_CODE_CONTEXT_NOT_EXIST} if the application context does not exist.
- * @since 18
+ * @since 16
  */
 AbilityRuntime_ErrorCode OH_AbilityRuntime_ApplicationContextGetPreferencesDir(
     char* buffer, const int32_t bufferSize, int32_t* writeLength);
@@ -174,7 +174,7 @@ AbilityRuntime_ErrorCode OH_AbilityRuntime_ApplicationContextGetPreferencesDir(
  *         {@link ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID} if the buffer or writeLength is null,
  *         or the buffer size is less than the minimum buffer size.
  *         {@link ABILITY_RUNTIME_ERROR_CODE_CONTEXT_NOT_EXIST} if the application context does not exist.
- * @since 18
+ * @since 16
  */
 AbilityRuntime_ErrorCode OH_AbilityRuntime_ApplicationContextGetBundleCodeDir(
     char* buffer, const int32_t bufferSize, int32_t* writeLength);
@@ -191,7 +191,7 @@ AbilityRuntime_ErrorCode OH_AbilityRuntime_ApplicationContextGetBundleCodeDir(
  *         {@link ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID} if the buffer or writeLength is null,
  *         or the buffer size is less than the minimum buffer size.
  *         {@link ABILITY_RUNTIME_ERROR_CODE_CONTEXT_NOT_EXIST} if the application context does not exist.
- * @since 18
+ * @since 16
  */
 AbilityRuntime_ErrorCode OH_AbilityRuntime_ApplicationContextGetDistributedFilesDir(
     char* buffer, const int32_t bufferSize, int32_t* writeLength);
@@ -208,7 +208,7 @@ AbilityRuntime_ErrorCode OH_AbilityRuntime_ApplicationContextGetDistributedFiles
  *         {@link ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID} if the buffer or writeLength is null,
  *         or the buffer size is less than the minimum buffer size.
  *         {@link ABILITY_RUNTIME_ERROR_CODE_CONTEXT_NOT_EXIST} if the application context does not exist.
- * @since 18
+ * @since 16
  */
 AbilityRuntime_ErrorCode OH_AbilityRuntime_ApplicationContextGetCloudFileDir(
     char* buffer, const int32_t bufferSize, int32_t* writeLength);
