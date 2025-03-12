@@ -44,6 +44,14 @@
         "name": "OH_PixelmapInitializationOptions_SetAlphaType"
     },
     {
+        "first_introduced": "18",
+        "name": "OH_PixelmapInitializationOptions_GetEditable"
+    },
+    {
+        "first_introduced": "18",
+        "name": "OH_PixelmapInitializationOptions_SetEditable"
+    },
+    {
         "first_introduced": "12",
         "name": "OH_PixelmapInitializationOptions_GetRowStride"
     },
@@ -150,6 +158,10 @@
     {
         "first_introduced": "12",
         "name": "OH_PixelmapNative_Release"
+    },
+    {
+        "first_introduced": "18",
+        "name": "OH_PixelmapNative_Destroy"
     },
     {
         "first_introduced": "12",
