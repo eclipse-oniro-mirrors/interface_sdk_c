@@ -17,7 +17,8 @@
  * @addtogroup ScsiPeripheralDDK
  * @{
  *
- * @brief Provides ScsiPeripheral DDK types and declares macros, enumerations, and data structures used by the ScsiPeripheral DDK.
+ * @brief Provides ScsiPeripheral DDK types and declares macros, enumerations, and data structures used by the\n
+ * ScsiPeripheral DDK.
  * @since 18
  */
 

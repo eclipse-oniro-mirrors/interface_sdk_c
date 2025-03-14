@@ -17,7 +17,8 @@
  * @addtogroup ScsiPeripheralDDK
  * @{
  *
- * @brief Provide ScsiPeripheral DDK interface, including initializing DDK, releasing DDK, opening devices, reading and writing devices, etc.
+ * @brief Provide ScsiPeripheral DDK interface, including initializing DDK, releasing DDK, opening devices, reading\n
+ * and writing devices, etc.
  * @since 18
  */
 
