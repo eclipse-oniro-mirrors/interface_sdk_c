@@ -44,127 +44,135 @@
         "name": "OH_AbilityRuntime_ApplicationContextGetCloudFileDir"
     },
     {
-        "first_introduced": "16",
+        "first_introduced": "17",
         "name": "OH_AbilityRuntime_StartSelfUIAbilityWithStartOptions"
     },
     {
-        "first_introduced": "16",
+        "first_introduced": "17",
         "name": "OH_AbilityRuntime_CreateStartOptions"
     },
     {
-        "first_introduced": "16",
+        "first_introduced": "17",
         "name": "OH_AbilityRuntime_DestroyStartOptions"
     },
     {
-        "first_introduced": "16",
+        "first_introduced": "17",
         "name": "OH_AbilityRuntime_SetStartOptionsWindowMode"
     },
     {
-        "first_introduced": "16",
+        "first_introduced": "17",
         "name": "OH_AbilityRuntime_GetStartOptionsWindowMode"
     },
     {
-        "first_introduced": "16",
+        "first_introduced": "17",
         "name": "OH_AbilityRuntime_SetStartOptionsDisplayId"
     },
     {
-        "first_introduced": "16",
+        "first_introduced": "17",
         "name": "OH_AbilityRuntime_GetStartOptionsDisplayId"
     },
     {
-        "first_introduced": "16",
+        "first_introduced": "17",
         "name": "OH_AbilityRuntime_SetStartOptionsWithAnimation"
     },
     {
-        "first_introduced": "16",
+        "first_introduced": "17",
         "name": "OH_AbilityRuntime_GetStartOptionsWithAnimation"
     },
     {
-        "first_introduced": "16",
+        "first_introduced": "17",
         "name": "OH_AbilityRuntime_SetStartOptionsWindowLeft"
     },
     {
-        "first_introduced": "16",
+        "first_introduced": "17",
         "name": "OH_AbilityRuntime_GetStartOptionsWindowLeft"
     },
     {
-        "first_introduced": "16",
+        "first_introduced": "17",
         "name": "OH_AbilityRuntime_SetStartOptionsWindowTop"
     },
     {
-        "first_introduced": "16",
+        "first_introduced": "17",
         "name": "OH_AbilityRuntime_GetStartOptionsWindowTop"
     },
     {
-        "first_introduced": "16",
+        "first_introduced": "17",
         "name": "OH_AbilityRuntime_SetStartOptionsWindowHeight"
     },
     {
-        "first_introduced": "16",
+        "first_introduced": "17",
         "name": "OH_AbilityRuntime_GetStartOptionsWindowHeight"
     },
     {
-        "first_introduced": "16",
+        "first_introduced": "17",
         "name": "OH_AbilityRuntime_SetStartOptionsWindowWidth"
     },
     {
-        "first_introduced": "16",
+        "first_introduced": "17",
         "name": "OH_AbilityRuntime_GetStartOptionsWindowWidth"
     },
     {
-        "first_introduced": "16",
+        "first_introduced": "17",
+        "name": "OH_AbilityRuntime_SetStartOptionsStartVisibility"
+    },
+    {
+        "first_introduced": "17",
+        "name": "OH_AbilityRuntime_GetStartOptionsStartVisibility"
+    },
+    {
+        "first_introduced": "17",
         "name": "OH_AbilityRuntime_SetStartOptionsStartWindowIcon"
     },
     {
-        "first_introduced": "16",
+        "first_introduced": "17",
         "name": "OH_AbilityRuntime_GetStartOptionsStartWindowIcon"
     },
     {
-        "first_introduced": "16",
+        "first_introduced": "17",
         "name": "OH_AbilityRuntime_SetStartOptionsStartWindowBackgroundColor"
     },
     {
-        "first_introduced": "16",
+        "first_introduced": "17",
         "name": "OH_AbilityRuntime_GetStartOptionsStartWindowBackgroundColor"
     },
     {
-        "first_introduced": "16",
+        "first_introduced": "17",
         "name": "OH_AbilityRuntime_SetStartOptionsSupportedWindowModes"
     },
     {
-        "first_introduced": "16",
+        "first_introduced": "17",
         "name": "OH_AbilityRuntime_GetStartOptionsSupportedWindowModes"
     },
     {
-        "first_introduced": "16",
+        "first_introduced": "17",
         "name": "OH_AbilityRuntime_SetStartOptionsMinWindowWidth"
     },
     {
-        "first_introduced": "16",
+        "first_introduced": "17",
         "name": "OH_AbilityRuntime_GetStartOptionsMinWindowWidth"
     },
     {
-        "first_introduced": "16",
+        "first_introduced": "17",
         "name": "OH_AbilityRuntime_SetStartOptionsMaxWindowWidth"
     },
     {
-        "first_introduced": "16",
+        "first_introduced": "17",
         "name": "OH_AbilityRuntime_GetStartOptionsMaxWindowWidth"
     },
     {
-        "first_introduced": "16",
+        "first_introduced": "17",
         "name": "OH_AbilityRuntime_SetStartOptionsMinWindowHeight"
     },
     {
-        "first_introduced": "16",
+        "first_introduced": "17",
         "name": "OH_AbilityRuntime_GetStartOptionsMinWindowHeight"
     },
     {
-        "first_introduced": "16",
+        "first_introduced": "17",
         "name": "OH_AbilityRuntime_SetStartOptionsMaxWindowHeight"
     },
     {
-        "first_introduced": "16",
+        "first_introduced": "17",
         "name": "OH_AbilityRuntime_GetStartOptionsMaxWindowHeight"
     }
 ]
