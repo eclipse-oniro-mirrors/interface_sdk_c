@@ -196,7 +196,7 @@ OH_AudioStream_Result OH_AudioStreamBuilder_SetCapturerInfo(OH_AudioStreamBuilde
 /*
  * Set the callbacks for the renderer client
  *
- * @deprecated since 16
+ * @deprecated since 18
  * @useinstead Set the callback functions separately using OH_AudioStreamBuilder_SetRendererWriteDataCallback,
  * OH_AudioStreamBuilder_SetRendererInterruptCallback, OH_AudioStreamBuilder_SetRendererOutputDeviceChangeCallback
  * and OH_AudioStreamBuilder_SetRendererErrorCallback.
@@ -250,7 +250,7 @@ OH_AudioStream_Result OH_AudioStreamBuilder_SetRendererPrivacy(OH_AudioStreamBui
 /*
  * Set the callbacks for the capturer client
  *
- * @deprecated since 16
+ * @deprecated since 18
  * @useinstead Set the callback functions separately using OH_AudioStreamBuilder_SetCapturerReadDataCallback,
  * OH_AudioStreamBuilder_SetCapturerDeviceChangeCallback, OH_AudioStreamBuilder_SetCapturerInterruptCallback
  * and OH_AudioStreamBuilder_SetCapturerErrorCallback.
@@ -398,7 +398,7 @@ OH_AudioStream_Result OH_AudioStreamBuilder_SetVolumeMode(OH_AudioStreamBuilder*
  * @return Result code.
  *     {@link AUDIOSTREAM_SUCCESS} Success.
  *     {@link AUDIOSTREAM_ERROR_INVALID_PARAM} Parameter is invalid, e.g. builder is nullptr, e.t.c.
- * @since 16
+ * @since 18
  */
 OH_AudioStream_Result OH_AudioStreamBuilder_SetRendererInterruptCallback(OH_AudioStreamBuilder* builder,
     OH_AudioRenderer_OnInterruptCallback callback, void* userData);
@@ -415,7 +415,7 @@ OH_AudioStream_Result OH_AudioStreamBuilder_SetRendererInterruptCallback(OH_Audi
  * @return Result code.
  *     {@link AUDIOSTREAM_SUCCESS} Success.
  *     {@link AUDIOSTREAM_ERROR_INVALID_PARAM} Parameter is invalid, e.g. builder is nullptr, e.t.c.
- * @since 16
+ * @since 18
  */
 OH_AudioStream_Result OH_AudioStreamBuilder_SetRendererErrorCallback(OH_AudioStreamBuilder* builder,
     OH_AudioRenderer_OnErrorCallback callback, void* userData);
@@ -432,7 +432,7 @@ OH_AudioStream_Result OH_AudioStreamBuilder_SetRendererErrorCallback(OH_AudioStr
  * @return Result code.
  *     {@link AUDIOSTREAM_SUCCESS} Success.
  *     {@link AUDIOSTREAM_ERROR_INVALID_PARAM} Parameter is invalid, e.g. builder is nullptr, e.t.c.
- * @since 16
+ * @since 18
  */
 OH_AudioStream_Result OH_AudioStreamBuilder_SetCapturerReadDataCallback(OH_AudioStreamBuilder* builder,
     OH_AudioCapturer_OnReadDataCallback callback, void* userData);
@@ -449,7 +449,7 @@ OH_AudioStream_Result OH_AudioStreamBuilder_SetCapturerReadDataCallback(OH_Audio
  * @return Result code.
  *     {@link AUDIOSTREAM_SUCCESS} Success.
  *     {@link AUDIOSTREAM_ERROR_INVALID_PARAM} Parameter is invalid, e.g. builder is nullptr, e.t.c.
- * @since 16
+ * @since 18
  */
 OH_AudioStream_Result OH_AudioStreamBuilder_SetCapturerDeviceChangeCallback(OH_AudioStreamBuilder* builder,
     OH_AudioCapturer_OnDeviceChangeCallback callback, void* userData);
@@ -466,7 +466,7 @@ OH_AudioStream_Result OH_AudioStreamBuilder_SetCapturerDeviceChangeCallback(OH_A
  * @return Result code.
  *     {@link AUDIOSTREAM_SUCCESS} Success.
  *     {@link AUDIOSTREAM_ERROR_INVALID_PARAM} Parameter is invalid, e.g. builder is nullptr, e.t.c.
- * @since 16
+ * @since 18
  */
 OH_AudioStream_Result OH_AudioStreamBuilder_SetCapturerInterruptCallback(OH_AudioStreamBuilder* builder,
     OH_AudioCapturer_OnInterruptCallback callback, void* userData);
@@ -483,7 +483,7 @@ OH_AudioStream_Result OH_AudioStreamBuilder_SetCapturerInterruptCallback(OH_Audi
  * @return Result code.
  *     {@link AUDIOSTREAM_SUCCESS} Success.
  *     {@link AUDIOSTREAM_ERROR_INVALID_PARAM} Parameter is invalid, e.g. builder is nullptr, e.t.c.
- * @since 16
+ * @since 18
  */
 OH_AudioStream_Result OH_AudioStreamBuilder_SetCapturerErrorCallback(OH_AudioStreamBuilder* builder,
     OH_AudioCapturer_OnErrorCallback callback, void* userData);
