@@ -41,6 +41,7 @@
 #define NATIVE_AUDIOSTREAM_BASE_H
 
 #include <stdint.h>
+#include "native_audio_device_base.h"
 
 #ifdef __cplusplus
 extern "C" {
