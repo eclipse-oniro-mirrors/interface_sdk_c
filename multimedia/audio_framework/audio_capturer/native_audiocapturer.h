@@ -45,7 +45,7 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-/*
+/**
  * Request to release the capturer stream.
  *
  * @since 10
@@ -59,7 +59,7 @@ extern "C" {
  */
 OH_AudioStream_Result OH_AudioCapturer_Release(OH_AudioCapturer* capturer);
 
-/*
+/**
  * Request to start the capturer stream.
  *
  * @since 10
@@ -73,7 +73,7 @@ OH_AudioStream_Result OH_AudioCapturer_Release(OH_AudioCapturer* capturer);
  */
 OH_AudioStream_Result OH_AudioCapturer_Start(OH_AudioCapturer* capturer);
 
-/*
+/**
  * Request to pause the capturer stream.
  *
  * @since 10
@@ -87,7 +87,7 @@ OH_AudioStream_Result OH_AudioCapturer_Start(OH_AudioCapturer* capturer);
  */
 OH_AudioStream_Result OH_AudioCapturer_Pause(OH_AudioCapturer* capturer);
 
-/*
+/**
  * Request to stop the capturer stream.
  *
  * @since 10
@@ -101,7 +101,7 @@ OH_AudioStream_Result OH_AudioCapturer_Pause(OH_AudioCapturer* capturer);
  */
 OH_AudioStream_Result OH_AudioCapturer_Stop(OH_AudioCapturer* capturer);
 
-/*
+/**
  * Request to flush the capturer stream.
  *
  * @since 10
@@ -114,7 +114,7 @@ OH_AudioStream_Result OH_AudioCapturer_Stop(OH_AudioCapturer* capturer);
  */
 OH_AudioStream_Result OH_AudioCapturer_Flush(OH_AudioCapturer* capturer);
 
-/*
+/**
  * Query the current state of the capturer client.
  *
  * This function will return the capturer state without updating the state.
@@ -129,7 +129,7 @@ OH_AudioStream_Result OH_AudioCapturer_Flush(OH_AudioCapturer* capturer);
  */
 OH_AudioStream_Result OH_AudioCapturer_GetCurrentState(OH_AudioCapturer* capturer, OH_AudioStream_State* state);
 
-/*
+/**
  * Query the latency mode of the capturer client.
  *
  * @since 10
@@ -143,7 +143,7 @@ OH_AudioStream_Result OH_AudioCapturer_GetCurrentState(OH_AudioCapturer* capture
 OH_AudioStream_Result OH_AudioCapturer_GetLatencyMode(OH_AudioCapturer* capturer,
     OH_AudioStream_LatencyMode* latencyMode);
 
-/*
+/**
  * Query the stream id of the capturer client.
  *
  * @since 10
@@ -156,7 +156,7 @@ OH_AudioStream_Result OH_AudioCapturer_GetLatencyMode(OH_AudioCapturer* capturer
  */
 OH_AudioStream_Result OH_AudioCapturer_GetStreamId(OH_AudioCapturer* capturer, uint32_t* streamId);
 
-/*
+/**
  * Query the sample rate value of the capturer client.
  *
  * This function will return the capturer sample rate value without updating the state.
@@ -171,7 +171,7 @@ OH_AudioStream_Result OH_AudioCapturer_GetStreamId(OH_AudioCapturer* capturer, u
  */
 OH_AudioStream_Result OH_AudioCapturer_GetSamplingRate(OH_AudioCapturer* capturer, int32_t* rate);
 
-/*
+/**
  * Query the channel count of the capturer client.
  *
  * @since 10
@@ -184,7 +184,7 @@ OH_AudioStream_Result OH_AudioCapturer_GetSamplingRate(OH_AudioCapturer* capture
  */
 OH_AudioStream_Result OH_AudioCapturer_GetChannelCount(OH_AudioCapturer* capturer, int32_t* channelCount);
 
-/*
+/**
  * Query the sample format of the capturer client.
  *
  * @since 10
@@ -198,7 +198,7 @@ OH_AudioStream_Result OH_AudioCapturer_GetChannelCount(OH_AudioCapturer* capture
 OH_AudioStream_Result OH_AudioCapturer_GetSampleFormat(OH_AudioCapturer* capturer,
     OH_AudioStream_SampleFormat* sampleFormat);
 
-/*
+/**
  * Query the encoding type of the capturer client.
  *
  * @since 10
@@ -212,7 +212,7 @@ OH_AudioStream_Result OH_AudioCapturer_GetSampleFormat(OH_AudioCapturer* capture
 OH_AudioStream_Result OH_AudioCapturer_GetEncodingType(OH_AudioCapturer* capturer,
     OH_AudioStream_EncodingType* encodingType);
 
-/*
+/**
  * Query the capturer info of the capturer client.
  *
  * @since 10
@@ -226,7 +226,7 @@ OH_AudioStream_Result OH_AudioCapturer_GetEncodingType(OH_AudioCapturer* capture
 OH_AudioStream_Result OH_AudioCapturer_GetCapturerInfo(OH_AudioCapturer* capturer,
     OH_AudioStream_SourceType* sourceType);
 
-/*
+/**
  * Query the frame size in callback, it is a fixed length of the buffer returned by each callback.
  *
  * @since 10
@@ -240,7 +240,7 @@ OH_AudioStream_Result OH_AudioCapturer_GetCapturerInfo(OH_AudioCapturer* capture
  */
 OH_AudioStream_Result OH_AudioCapturer_GetFrameSizeInCallback(OH_AudioCapturer* capturer, int32_t* frameSize);
 
-/*
+/**
  * Query the the time at which a particular frame was presented
  *
  * @since 10
@@ -259,7 +259,7 @@ OH_AudioStream_Result OH_AudioCapturer_GetFrameSizeInCallback(OH_AudioCapturer* 
 OH_AudioStream_Result OH_AudioCapturer_GetTimestamp(OH_AudioCapturer* capturer,
     clockid_t clockId, int64_t* framePosition, int64_t* timestamp);
 
-/*
+/**
  * Query the the number of frames that have been read since the stream was created.
  *
  * @since 10
