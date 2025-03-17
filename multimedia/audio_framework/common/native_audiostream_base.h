@@ -41,7 +41,6 @@
 #define NATIVE_AUDIOSTREAM_BASE_H
 
 #include <stdint.h>
-#include "native_audio_device_base.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -819,6 +818,8 @@ typedef void (*OH_AudioRenderer_OnErrorCallback)(OH_AudioRenderer* renderer, voi
  */
 typedef void (*OH_AudioCapturer_OnReadDataCallback)(OH_AudioCapturer* capturer, void* userData, void* audioData,
     int32_t audioDataSize);
+
+struct OH_AudioDeviceDescriptorArray;
 
 /**
  * @brief Callback when input device of an AudioCapturer changes.
