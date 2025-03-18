@@ -95,19 +95,34 @@ extern "C" {
 typedef enum {
     /** @error The operation is successful. */
     HIAPPEVENT_SUCCESS = 0,
-    /** @error Invalid param value length */
+    /**
+     * @error Invalid param value length
+     * @since 18
+     */
     HIAPPEVENT_INVALID_PARAM_VALUE_LENGTH = 4,
-    /** @error Processor is null */
+    /**
+     * @error Processor is null
+     * @since 18
+     */
     HIAPPEVENT_PROCESSOR_IS_NULL = -7,
-    /** @error Processor not found */
+    /**
+     * @error Processor not found
+     * @since 18
+     */
     HIAPPEVENT_PROCESSOR_NOT_FOUND = -8,
     /** @error Invalid param value */
     HIAPPEVENT_INVALID_PARAM_VALUE = -9,
     /** @error event config is null */
     HIAPPEVENT_EVENT_CONFIG_IS_NULL = -10,
-    /** @error Operate failed */
+    /**
+     * @error Operate failed
+     * @since 18
+     */
     HIAPPEVENT_OPERATE_FAILED = -100,
-    /** @error Invalid uid */
+    /**
+     * @error Invalid uid
+     * @since 18
+     */
     HIAPPEVENT_INVALID_UID = -200
 } HiAppEvent_ErrorCode;
 
