@@ -566,6 +566,17 @@ void OH_Drawing_CanvasScale(OH_Drawing_Canvas*, float sx, float sy);
 void OH_Drawing_CanvasSkew(OH_Drawing_Canvas*, float sx, float sy);
 
 /**
+ * @brief Clears a canvas by using a specified color.
+ *
+ * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
+ * @param OH_Drawing_Canvas Indicates the pointer to an <b>OH_Drawing_Canvas</b> object.
+ * @param color Indicates the color, which is a 32-bit (ARGB) variable.
+ * @since 8
+ * @version 1.0
+ */
+void OH_Drawing_CanvasClear(OH_Drawing_Canvas*, uint32_t color);
+
+/**
  * @brief Get the width of a canvas.
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
@@ -663,17 +674,6 @@ typedef enum {
 void OH_Drawing_CanvasDrawShadow(OH_Drawing_Canvas*, OH_Drawing_Path*, OH_Drawing_Point3D planeParams,
     OH_Drawing_Point3D devLightPos, float lightRadius, uint32_t ambientColor, uint32_t spotColor,
     OH_Drawing_CanvasShadowFlags flag);
-
-/**
- * @brief Clears a canvas by using a specified color.
- *
- * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @param OH_Drawing_Canvas Indicates the pointer to an <b>OH_Drawing_Canvas</b> object.
- * @param color Indicates the color, which is a 32-bit (ARGB) variable.
- * @since 8
- * @version 1.0
- */
-void OH_Drawing_CanvasClear(OH_Drawing_Canvas*, uint32_t color);
 
 /**
  * @brief Sets matrix of canvas.
