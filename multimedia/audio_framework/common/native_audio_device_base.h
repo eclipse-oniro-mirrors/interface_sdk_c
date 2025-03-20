@@ -158,7 +158,7 @@ typedef enum {
     AUDIO_DEVICE_TYPE_HDMI = 27,
 
     /**
-     * @brief line connected, digital audio output device, such as an S/PDIF device.
+     * @brief line-connected, digital audio output device, such as an S/PDIF device.
      * @since 18
      */
     AUDIO_DEVICE_TYPE_LINE_DIGITAL = 28,
