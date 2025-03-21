@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2021 Huawei Device Co., Ltd.
+ * Copyright (c) 2021-2025 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -90,7 +90,7 @@ extern "C" {
 /**
  * @brief Defines error code
  *
- * @since 16
+ * @since 15
  */
 typedef enum {
     /** @error The operation is successful. */
@@ -191,14 +191,14 @@ typedef struct HiAppEvent_Watcher HiAppEvent_Watcher;
 /**
  * @brief The HiAppEvent_Processor structure is designed for event report.
  *
- * @since 16
+ * @since 18
  */
 typedef struct HiAppEvent_Processor HiAppEvent_Processor;
 
 /**
  * @brief The HiAppEvent_Config structure is designed for configuration.
  *
- * @since 16
+ * @since 15
  */
 typedef struct HiAppEvent_Config HiAppEvent_Config;
 
@@ -654,7 +654,7 @@ void OH_HiAppEvent_ClearData();
  *
  * @param name The name of the processor.
  * @return Returns a pointer to the HiAppEvent_Processor instance.
- * @since 16
+ * @since 18
  */
 HiAppEvent_Processor* OH_HiAppEvent_CreateProcessor(const char* name);
 
@@ -670,7 +670,7 @@ HiAppEvent_Processor* OH_HiAppEvent_CreateProcessor(const char* name);
  *         {@link HIAPPEVENT_INVALID_PARAM_VALUE} Invalid Param value.
  *         {@link HIAPPEVENT_INVALID_UID} Invalid uid.
  *         {@link HIAPPEVENT_INVALID_PARAM_VALUE_LENGTH} Invalid param value length.
- * @since 16
+ * @since 18
  */
 int OH_HiAppEvent_SetReportRoute(HiAppEvent_Processor* processor, const char* appId, const char* routeInfo);
 
@@ -687,7 +687,7 @@ int OH_HiAppEvent_SetReportRoute(HiAppEvent_Processor* processor, const char* ap
  *         {@link HIAPPEVENT_PROCESSOR_IS_NULL} The processor is nullptr.
  *         {@link HIAPPEVENT_INVALID_PARAM_VALUE} Invalid Param value.
  *         {@link HIAPPEVENT_INVALID_UID} Invalid uid.
- * @since 16
+ * @since 18
  */
 int OH_HiAppEvent_SetReportPolicy(HiAppEvent_Processor* processor, int periodReport, int batchReport,
     bool onStartReport, bool onBackgroundReport);
@@ -704,7 +704,7 @@ int OH_HiAppEvent_SetReportPolicy(HiAppEvent_Processor* processor, int periodRep
  *         {@link HIAPPEVENT_PROCESSOR_IS_NULL} The processor is nullptr.
  *         {@link HIAPPEVENT_INVALID_PARAM_VALUE} Invalid Param value.
  *         {@link HIAPPEVENT_INVALID_UID} Invalid uid.
- * @since 16
+ * @since 18
  */
 int OH_HiAppEvent_SetReportEvent(HiAppEvent_Processor* processor, const char* domain, const char* name,
     bool isRealTime);
@@ -721,7 +721,7 @@ int OH_HiAppEvent_SetReportEvent(HiAppEvent_Processor* processor, const char* do
  *         {@link HIAPPEVENT_INVALID_PARAM_VALUE} Invalid Param value.
  *         {@link HIAPPEVENT_INVALID_UID} Invalid uid.
  *         {@link HIAPPEVENT_INVALID_PARAM_VALUE_LENGTH} Invalid param value length.
- * @since 16
+ * @since 18
  */
 int OH_HiAppEvent_SetCustomConfig(HiAppEvent_Processor* processor, const char* key, const char* value);
 
@@ -735,7 +735,7 @@ int OH_HiAppEvent_SetCustomConfig(HiAppEvent_Processor* processor, const char* k
  *         {@link HIAPPEVENT_PROCESSOR_IS_NULL} The processor is nullptr.
  *         {@link HIAPPEVENT_INVALID_PARAM_VALUE} Invalid Param value.
  *         {@link HIAPPEVENT_INVALID_UID} Invalid uid.
- * @since 16
+ * @since 18
  */
 int OH_HiAppEvent_SetConfigId(HiAppEvent_Processor* processor, int configId);
 
@@ -751,7 +751,7 @@ int OH_HiAppEvent_SetConfigId(HiAppEvent_Processor* processor, int configId);
  *         {@link HIAPPEVENT_INVALID_PARAM_VALUE} Invalid Param value.
  *         {@link HIAPPEVENT_INVALID_UID} Invalid uid.
  *         {@link HIAPPEVENT_INVALID_PARAM_VALUE_LENGTH} Invalid param value length.
- * @since 16
+ * @since 18
  */
 int OH_HiAppEvent_SetReportUserId(HiAppEvent_Processor* processor, const char* const * userIdNames, int size);
 
@@ -767,7 +767,7 @@ int OH_HiAppEvent_SetReportUserId(HiAppEvent_Processor* processor, const char* c
  *         {@link HIAPPEVENT_INVALID_PARAM_VALUE} Invalid Param value.
  *         {@link HIAPPEVENT_INVALID_UID} Invalid uid.
  *         {@link HIAPPEVENT_INVALID_PARAM_VALUE_LENGTH} Invalid param value length.
- * @since 16
+ * @since 18
  */
 int OH_HiAppEvent_SetReportUserProperty(HiAppEvent_Processor* processor, const char* const * userPropertyNames,
     int size);
@@ -781,7 +781,7 @@ int OH_HiAppEvent_SetReportUserProperty(HiAppEvent_Processor* processor, const c
  *         {@link HIAPPEVENT_INVALID_PARAM_VALUE} Invalid Param value.
  *         {@link HIAPPEVENT_OPERATE_FAILED} Name not found or register processor error.
  *         {@link HIAPPEVENT_INVALID_UID} Invalid uid.
- * @since 16
+ * @since 18
  */
 int64_t OH_HiAppEvent_AddProcessor(HiAppEvent_Processor* processor);
 
@@ -789,7 +789,7 @@ int64_t OH_HiAppEvent_AddProcessor(HiAppEvent_Processor* processor);
  * @brief The interface to destroy processor.
  *
  * @param processor The pointer to the HiAppEvent_Processor instance.
- * @since 16
+ * @since 18
  */
 void OH_HiAppEvent_DestroyProcessor(HiAppEvent_Processor* processor);
 
@@ -802,7 +802,7 @@ void OH_HiAppEvent_DestroyProcessor(HiAppEvent_Processor* processor);
  *         {@link HIAPPEVENT_PROCESSOR_NOT_FOUND} Processor not add.
  *         {@link HIAPPEVENT_OPERATE_FAILED} The operation is failed.
  *         {@link HIAPPEVENT_INVALID_UID} Invalid uid.
- * @since 16
+ * @since 18
  */
 int OH_HiAppEvent_RemoveProcessor(int64_t processorId);
 
@@ -810,7 +810,7 @@ int OH_HiAppEvent_RemoveProcessor(int64_t processorId);
  * @brief Create a HiAppEvent_Config handler pointer to set the config.
  *
  * @return Returns a pointer to the HiAppEvent_Config instance.
- * @since 16
+ * @since 15
  */
 HiAppEvent_Config* OH_HiAppEvent_CreateConfig(void);
 
@@ -818,7 +818,7 @@ HiAppEvent_Config* OH_HiAppEvent_CreateConfig(void);
  * @brief Destroy the specified HiAppEvent_Config handle resource.
  *
  * @param config The pointer to the HiAppEvent_Config instance.
- * @since 16
+ * @since 15
  */
 void OH_HiAppEvent_DestroyConfig(HiAppEvent_Config* config);
 
@@ -832,7 +832,7 @@ void OH_HiAppEvent_DestroyConfig(HiAppEvent_Config* config);
  *         {@link HIAPPEVENT_SUCCESS} The operation is successful.
  *         {@link HIAPPEVENT_EVENT_CONFIG_IS_NULL} The event config is null.
  *         {@link HIAPPEVENT_INVALID_PARAM_VALUE} The item is invalid.
- * @since 16
+ * @since 15
  */
 int OH_HiAppEvent_SetConfigItem(HiAppEvent_Config* config, const char* itemName, const char* itemValue);
 
@@ -844,7 +844,7 @@ int OH_HiAppEvent_SetConfigItem(HiAppEvent_Config* config, const char* itemName,
  * @return set result.
  *         {@link HIAPPEVENT_SUCCESS} The operation is successful.
  *         {@link HIAPPEVENT_INVALID_PARAM_VALUE} The config is invalid.
- * @since 16
+ * @since 15
  */
 int OH_HiAppEvent_SetEventConfig(const char* name, HiAppEvent_Config* config);
 #ifdef __cplusplus

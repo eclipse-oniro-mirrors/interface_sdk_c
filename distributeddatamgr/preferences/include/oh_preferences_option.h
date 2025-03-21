@@ -55,13 +55,13 @@ typedef struct OH_PreferencesOption OH_PreferencesOption;
 /**
  * @brief Enumerates the preferences storage types.
  *
- * @since 16
+ * @since 18
  */
 typedef enum Preferences_StorageType {
     /** XML storage*/
     PREFERENCES_STORAGE_XML = 0,
-    /** CLKV storage */
-    PREFERENCES_STORAGE_CLKV
+    /** GSKV storage */
+    PREFERENCES_STORAGE_GSKV
 } Preferences_StorageType;
 
 /**
@@ -122,7 +122,7 @@ int OH_PreferencesOption_SetDataGroupId(OH_PreferencesOption *option, const char
  *         {@link PREFERENCES_OK} success.
  *         {@link PREFERENCES_ERROR_INVALID_PARAM} indicates invalid args are passed in.
  * @see OH_PreferencesOption.
- * @since 16
+ * @since 18
  */
 int OH_PreferencesOption_SetStorageType(OH_PreferencesOption *option, Preferences_StorageType type);
 

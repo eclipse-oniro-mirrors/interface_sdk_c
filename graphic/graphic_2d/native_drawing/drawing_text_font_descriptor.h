@@ -60,7 +60,10 @@ typedef enum {
     STYLISH = 1 << 2,
     /** Installed font types */
     INSTALLED = 1 << 3,
-   /** Customized font types */
+   /**
+    * Customized font types
+    * @since 18
+    */
     CUSTOMIZED = 1 << 4,
 } OH_Drawing_SystemFontType;
 
@@ -78,7 +81,7 @@ typedef enum {
  * @param num Indicates the count of obtained <b>OH_Drawing_FontDescriptor</b>.
  * @return Returns an array of <b>OH_Drawing_FontDescriptor</b>. Released through the
  * <b>OH_Drawing_DestroyFontDescriptors</b> interface after use.
- * @since 16
+ * @since 18
  */
 OH_Drawing_FontDescriptor* OH_Drawing_MatchFontDescriptors(OH_Drawing_FontDescriptor* desc, size_t* num);
 
@@ -88,7 +91,7 @@ OH_Drawing_FontDescriptor* OH_Drawing_MatchFontDescriptors(OH_Drawing_FontDescri
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @param descriptors <b>OH_Drawing_FontDescriptor</b> object array.
  * @param num Represents the number of members of the <b>OH_Drawing_FontDescriptor</b> array.
- * @since 16
+ * @since 18
  */
 void OH_Drawing_DestroyFontDescriptors(OH_Drawing_FontDescriptor* descriptors, size_t num);
 

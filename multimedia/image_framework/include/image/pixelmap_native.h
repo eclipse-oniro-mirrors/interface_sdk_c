@@ -99,6 +99,11 @@ typedef enum {
     */
     PIXEL_FORMAT_UNKNOWN = 0,
     /*
+    * ARGB_8888 format
+    * @since 18
+    */
+    PIXEL_FORMAT_ARGB_8888 = 1,
+    /*
     * RGB_565 format
     */
     PIXEL_FORMAT_RGB_565 = 2,
@@ -502,6 +507,30 @@ Image_ErrorCode OH_PixelmapInitializationOptions_SetAlphaType(OH_Pixelmap_Initia
     int32_t alphaType);
 
 /**
+ * @brief Get editable for InitializationOptions struct.
+ *
+ * @param options The InitializationOptions pointer will be operated.
+ * @param editable The boolean value representing the editable status.
+ * @return Returns {@link Image_ErrorCode} IMAGE_SUCCESS - if the operation is successful.
+ * returns {@link Image_ErrorCode} IMAGE_BAD_PARAMETER - if options or editable is invalid.
+ * @since 18
+ */
+Image_ErrorCode OH_PixelmapInitializationOptions_GetEditable(OH_Pixelmap_InitializationOptions *options,
+    bool *editable);
+
+/**
+ * @brief Set editable for InitializationOptions struct.
+ *
+ * @param options The InitializationOptions pointer will be operated.
+ * @param editable The boolean value representing the editable status.
+ * @return Returns {@link Image_ErrorCode} IMAGE_SUCCESS - if the operation is successful.
+ * returns {@link Image_ErrorCode} IMAGE_BAD_PARAMETER - if options is invalid.
+ * @since 18
+ */
+Image_ErrorCode OH_PixelmapInitializationOptions_SetEditable(OH_Pixelmap_InitializationOptions *options,
+    bool editable);
+
+/**
  * @brief delete InitializationOtions pointer.
  *
  * @param options The InitializationOtions pointer will be operated.
@@ -749,7 +778,7 @@ Image_ErrorCode OH_PixelmapNative_ScaleWithAntiAliasing(OH_PixelmapNative *pixel
  *         {@link IMAGE_SUCCESS} If the execution is successful.
  *         {@link IMAGE_BAD_PARAMETER} If the param is nullptr or invalid.
  * @see OH_PixelmapNative
- * @since 16
+ * @since 18
  */
 Image_ErrorCode OH_PixelmapNative_CreateScaledPixelMap(OH_PixelmapNative *srcPixelmap, OH_PixelmapNative **dstPixelmap,
     float scaleX, float scaleY);
@@ -768,7 +797,7 @@ Image_ErrorCode OH_PixelmapNative_CreateScaledPixelMap(OH_PixelmapNative *srcPix
  *         {@link IMAGE_TOO_LARGE} If image is too large.
  *         {@link IMAGE_ALLOC_FAILED} If device has no memory.
  * @see OH_PixelmapNative
- * @since 16
+ * @since 18
  */
 Image_ErrorCode OH_PixelmapNative_CreateScaledPixelMapWithAntiAliasing(OH_PixelmapNative *srcPixelmap,
     OH_PixelmapNative **dstPixelmap, float scaleX, float scaleY, OH_PixelmapNative_AntiAliasingLevel level);
@@ -823,6 +852,16 @@ Image_ErrorCode OH_PixelmapNative_Crop(OH_PixelmapNative *pixelmap, Image_Region
  * @since 12
  */
 Image_ErrorCode OH_PixelmapNative_Release(OH_PixelmapNative *pixelmap);
+
+/**
+ * @brief Destroys an <b>OH_PixelmapNative</b> object and deallocates its resources.
+ *
+ * @param pixelmap A pointer to the OH_PixelmapNative pointer to destroy.
+ * @return Returns {@link Image_ErrorCode} IMAGE_SUCCESS - if the operation is successful.
+ * returns {@link Image_ErrorCode} IMAGE_BAD_PARAMETER - if pixelmap is null or *pixelmap is null.
+ * @since 18
+ */
+Image_ErrorCode OH_PixelmapNative_Destroy(OH_PixelmapNative **pixelmap);
 
 /**
  * @brief Converting images to alpha format
@@ -945,7 +984,7 @@ Image_ErrorCode OH_PixelmapNative_SetMemoryName(OH_PixelmapNative *pixelmap, cha
  *         {@link IMAGE_SUCCESS} If the operation is successful.
  *         {@link IMAGE_BAD_PARAMETER} If invalid parameter, pixelmap or byteCount are invalid.
  * @see OH_PixelmapNative
- * @since 16
+ * @since 18
  */
 Image_ErrorCode OH_PixelmapNative_GetByteCount(OH_PixelmapNative *pixelmap, uint32_t *byteCount);
 
@@ -958,7 +997,7 @@ Image_ErrorCode OH_PixelmapNative_GetByteCount(OH_PixelmapNative *pixelmap, uint
  *         {@link IMAGE_SUCCESS} If the operation is successful.
  *         {@link IMAGE_BAD_PARAMETER} If invalid parameter, pixelmap or allocationByteCount are invalid.
  * @see OH_PixelmapNative
- * @since 16
+ * @since 18
  */
 Image_ErrorCode OH_PixelmapNative_GetAllocationByteCount(OH_PixelmapNative *pixelmap, uint32_t *allocationByteCount);
 
@@ -974,7 +1013,7 @@ Image_ErrorCode OH_PixelmapNative_GetAllocationByteCount(OH_PixelmapNative *pixe
  *         {@link IMAGE_BAD_PARAMETER} If invalid parameter, pixelmap or addr are invalid.
  *         {@link IMAGE_LOCK_UNLOCK_FAILED} If memory failed to be locked.
  * @see OH_PixelmapNative
- * @since 16
+ * @since 15
  */
 Image_ErrorCode OH_PixelmapNative_AccessPixels(OH_PixelmapNative *pixelmap, void **addr);
 
@@ -988,7 +1027,7 @@ Image_ErrorCode OH_PixelmapNative_AccessPixels(OH_PixelmapNative *pixelmap, void
  *         {@link IMAGE_BAD_PARAMETER} If invalid parameter, pixelmap is invalid.
  *         {@link IMAGE_LOCK_UNLOCK_FAILED} If memory failed to be unlocked.
  * @see OH_PixelmapNative
- * @since 16
+ * @since 15
  */
 Image_ErrorCode OH_PixelmapNative_UnaccessPixels(OH_PixelmapNative *pixelmap);
 

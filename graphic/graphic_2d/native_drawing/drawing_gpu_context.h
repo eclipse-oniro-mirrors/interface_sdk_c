@@ -76,7 +76,7 @@ OH_Drawing_GpuContext* OH_Drawing_GpuContextCreateFromGL(OH_Drawing_GpuContextOp
  * @since 16
  * @version 1.0
  */
-OH_Drawing_GpuContext* OH_Drawing_GpuContextCreate();
+OH_Drawing_GpuContext* OH_Drawing_GpuContextCreate(void);
 
 /**
  * @brief Destroys an <b>OH_Drawing_GpuContext</b> object and reclaims the memory occupied by the object.

@@ -77,7 +77,7 @@
     },
     {
         "first_introduced": "15",
-        "name": "OH_Pasteboard_GetDataParams_SetFileConflictOption"
+        "name": "OH_Pasteboard_GetDataParams_SetFileConflictOptions"
     },
     {
         "first_introduced": "15",
@@ -96,7 +96,7 @@
         "name": "OH_Pasteboard_GetDataWithProgress"
     },
     {
-        "first_introduced": "16",
+        "first_introduced": "18",
         "name": "OH_Pasteboard_GetChangeCount"
         
     }

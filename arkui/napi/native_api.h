@@ -445,6 +445,33 @@ NAPI_EXTERN napi_status napi_create_sendable_object_with_properties(napi_env env
                                                                     size_t property_count,
                                                                     const napi_property_descriptor* properties,
                                                                     napi_value* result);
+/**
+ * @brief Wraps a native instance in a ArkTS object.
+ * @param env The environment that the API is invoked under.
+ * @param js_object The ArkTS object that will be the wrapper for the native object.
+ * @param native_object The native instance that will be wrapped in the ArkTS object.
+ * @param finalize_cb Optional native callback that can be used to free the native instance when the ArkTS object
+ * has been garbage-collected.
+ * @param async_finalizer A bool value to determine that finalize_cb execute async or not.
+ * @param finalize_hint Optional contextual hint that is passed to the finalize callback.
+ * @param native_binding_size The size of native binding.
+ * @param result Optional reference to the wrapped object.
+ *
+ * @return Returns the function execution status.
+ *         {@link napi_ok } If the function executedd successfully.\n
+ *         {@link napi_invalid_arg } If the param env, js_object or native_object is nullptr.\n
+ *         {@link napi_object_expected } If the param js_object is not an ArkTS Object or Function.\n
+ *         {@link napi_pending_exception } If have uncaught exception, or exception occured in execution.\n
+ * @since 18
+ */
+NAPI_EXTERN napi_status napi_wrap_enhance(napi_env env,
+                                          napi_value js_object,
+                                          void* native_object,
+                                          napi_finalize finalize_cb,
+                                          bool async_finalizer,
+                                          void* finalize_hint,
+                                          size_t native_binding_size,
+                                          napi_ref* result);
 
 /**
  * @brief Wraps a native instance in a ArkTS object.

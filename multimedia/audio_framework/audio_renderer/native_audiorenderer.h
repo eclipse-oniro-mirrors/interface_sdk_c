@@ -150,7 +150,7 @@ OH_AudioStream_Result OH_AudioRenderer_GetSamplingRate(OH_AudioRenderer* rendere
  * @since 10
  *
  * @param renderer Reference created by OH_AudioStreamBuilder_GenerateRenderer()
- * @param stramId Pointer to a variable that will be set for the stream id.
+ * @param streamId Pointer to a variable that will be set for the stream id.
  * @return Function result code:
  *         {@link AUDIOSTREAM_SUCCESS} If the execution is successful.
  *         {@link AUDIOSTREAM_ERROR_INVALID_PARAM} The param of renderer is nullptr.
@@ -503,6 +503,66 @@ OH_AudioStream_Result OH_AudioRenderer_GetSilentModeAndMixWithOthers(
  */
 OH_AudioStream_Result OH_AudioRenderer_SetDefaultOutputDevice(
     OH_AudioRenderer* renderer, OH_AudioDevice_Type deviceType);
+
+/**
+ * @brief Query the timestamp at which a particular frame was presented in clock monotonic timebase,
+ *        the frame at the returned position was just committed to hardware. This is often used in
+ *        video synchronization and recording stream alignment.
+ *
+ *        Position is 0 and timestamp is fixed until stream really runs and frame is committed. Position
+ *        will also be reset while flush function is called. When a audio route change happens, like in
+ *        device or output type change situations, the position may also be reset but timestamp remains
+ *        monotonically increasing.
+ *        So it is better to use the values until they becomes regularly after the change.
+ *        This interface also adapts to playback speed change. For example, the increseing speed for
+ *        position will be double for 2x speed playback.
+ *
+ * @param renderer Reference created by OH_AudioStreamBuilder_GenerateRenderer()
+ * @param framePosition Pointer to a variable to receive the position
+ * @param timestamp Pointer to a variable to receive the timestamp
+ * @return Function result code:
+ *         {@link AUDIOSTREAM_SUCCESS} If the execution is successful.
+ *         {@link AUDIOSTREAM_ERROR_INVALID_PARAM}:
+ *                                         1.The param of renderer is nullptr;
+ *                                         2.The param of framePosition or timestamp is nullptr;
+ *         {@link AUDIOSTREAM_ERROR_ILLEGAL_STATE}:
+ *                                         1.Only running state is legal for getting audio timestamp.
+ *         {@link AUDIOSTREAM_ERROR_SYSTEM}:
+ *                                         1.Crash or blocking occurs in system process.
+ *                                         2.Other unexpected error from internal system.
+ * @since 15
+ */
+OH_AudioStream_Result OH_AudioRenderer_GetAudioTimestampInfo(OH_AudioRenderer* renderer,
+    int64_t* framePosition, int64_t* timestamp);
+
+/**
+ * @brief Callback function of interrupt event on AudioRenderer.
+ *
+ * This function is similar with OH_AudioRenderer_Callbacks_Struct.OH_AudioRenderer_OnInterruptEvent.
+ *
+ * @param renderer AudioRenderer where this callback occurs.
+ * @param userData User data which is passed by user.
+ * @param type Force type of this interrupt event.
+ * @param hint Hint of this interrupt event.
+ * @see OH_AudioRenderer_Callbacks_Struct.OH_AudioRenderer_OnInterruptEvent.
+ * @since 18
+ */
+typedef void (*OH_AudioRenderer_OnInterruptCallback)(OH_AudioRenderer* renderer, void* userData,
+    OH_AudioInterrupt_ForceType type, OH_AudioInterrupt_Hint hint);
+
+/**
+ * @brief Callback function of error on AudioRenderer.
+ *
+ * This function is similar with OH_AudioRenderer_Callbacks_Struct.OH_AudioRenderer_OnError.
+ *
+ * @param renderer AudioRenderer where this callback occurs.
+ * @param userData User data which is passed by user.
+ * @param error Error while using AudioRenderer.
+ * @see OH_AudioRenderer_Callbacks_Struct.OH_AudioRenderer_OnError
+ * @since 18
+ */
+typedef void (*OH_AudioRenderer_OnErrorCallback)(OH_AudioRenderer* renderer, void* userData,
+    OH_AudioStream_Result error);
 
 #ifdef __cplusplus
 }

@@ -1,4 +1,4 @@
-# Copyright (c) 2021 Huawei Device Co., Ltd.
+# Copyright (c) 2021-2025 Huawei Device Co., Ltd.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at
@@ -138,6 +138,10 @@ _ndk_library_targets = [
   "//interface/sdk_c/multimedia/player_framework/avplayer:avplayer_header",
   "//interface/sdk_c/multimedia/player_framework/avrecorder:libavrecorder",
   "//interface/sdk_c/multimedia/player_framework/avrecorder:avrecorder_header",
+  "//interface/sdk_c/multimedia/player_framework/avmetadata_extractor:libavmetadata_extractor",
+  "//interface/sdk_c/multimedia/player_framework/avmetadata_extractor:avmetadata_extractor_header",
+  "//interface/sdk_c/multimedia/player_framework/avimage_generator:libavimage_generator",
+  "//interface/sdk_c/multimedia/player_framework/avimage_generator:avimage_generator_header",
   "//interface/sdk_c/multimedia/audio_framework:libohaudio_ndk",
   "//interface/sdk_c/multimedia/audio_framework:ohaudio_header",
   "//interface/sdk_c/multimedia/av_session:libohavsession_ndk",
@@ -190,6 +194,8 @@ _ndk_library_targets = [
   "//interface/sdk_c/drivers/external_device_manager/usb:usb_header",
   "//interface/sdk_c/drivers/external_device_manager/usb_serial:libusb_serial",
   "//interface/sdk_c/drivers/external_device_manager/usb_serial:usb_serial_header",
+  "//interface/sdk_c/drivers/external_device_manager/scsi_peripheral:libscsi",
+  "//interface/sdk_c/drivers/external_device_manager/scsi_peripheral:scsi_header",
   "//interface/sdk_c/drivers/external_device_manager/hid:libhid",
   "//interface/sdk_c/drivers/external_device_manager/hid:hid_header",
   "//interface/sdk_c/drivers/external_device_manager/base:libddk_base",
@@ -261,12 +267,20 @@ _ndk_sysroot_uapi =
     [ "//interface/sdk_c/third_party/musl/ndk_script:musl_sysroot" ]
 
 _ndk_cmake = [ "//build/ohos/ndk:ndk_cmake_files" ]
+_ndk_ninja = []
 
 if (host_os == "mac") {
   _ndk_cmake += [
     "//prebuilts/cmake/darwin-universal:darwin_cmake_copy",
     "//build/ohos/ndk:copy_darwin_ohos_cmake",
   ]
+  _ndk_ninja += [ "//prebuilts/build-tools/darwin-x86/bin:darwin_ninja_copy" ]
+} else if (host_os == "linux" && host_cpu == "arm64") {
+  _ndk_cmake += [
+    "//prebuilts/cmake/linux-aarch64:linux_cmake_copy",
+    "//build/ohos/ndk:copy_linux_ohos_cmake",
+  ]
+  _ndk_ninja += [ "//prebuilts/build-tools/linux-aarch64/bin:linux_ninja_copy" ]
 } else {
   _ndk_cmake += [
     "//prebuilts/cmake/linux-x86:linux_cmake_copy",
@@ -276,12 +290,6 @@ if (host_os == "mac") {
     "//build/ohos/ndk:copy_windows_ohos_cmake",
     "//build/ohos/ndk:copy_ohos_ohos_cmake",
   ]
-}
-
-_ndk_ninja = []
-if (host_os == "mac") {
-  _ndk_ninja += [ "//prebuilts/build-tools/darwin-x86/bin:darwin_ninja_copy" ]
-} else {
   _ndk_ninja += [
     "//prebuilts/build-tools/linux-x86/bin:linux_ninja_copy",
     "//prebuilts/build-tools/windows-x86/bin:windows_ninja_copy",
@@ -306,8 +314,13 @@ if (build_mac_ndk_target) {
   }
 }
 if (build_linux_ndk_target) {
-  all_ndk_targets_list +=
-      [ "//interface/sdk_c/third_party/musl/ndk_script:linux_x86_64" ]
+  if (host_cpu == "arm64") {
+    all_ndk_targets_list +=
+        [ "//interface/sdk_c/third_party/musl/ndk_script:linux_arm64" ]
+  } else {
+    all_ndk_targets_list +=
+        [ "//interface/sdk_c/third_party/musl/ndk_script:linux_x86_64" ]
+  }
 }
 if (build_ohos_ndk_target) {
   all_ndk_targets_list +=
@@ -321,6 +334,9 @@ if (build_ohos_ndk_target) {
       all_ndk_targets_list +=
           [ "//interface/sdk_c/third_party/musl/ndk_script:darwin_x86_64" ]
     }
+  } else if (host_os == "linux" && host_cpu == "arm64") {
+    all_ndk_targets_list +=
+        [ "//interface/sdk_c/third_party/musl/ndk_script:linux_arm64" ]
   } else {
     all_ndk_targets_list += [
       "//interface/sdk_c/third_party/musl/ndk_script:windows_x86_64",

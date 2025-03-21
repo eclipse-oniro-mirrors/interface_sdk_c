@@ -36,6 +36,7 @@
 #ifndef OH_COMMONEVENT_H
 #define OH_COMMONEVENT_H
 
+#include <stddef.h>
 #include <stdint.h>
 
 #ifdef __cplusplus
@@ -94,7 +95,7 @@ typedef void CommonEvent_Subscriber;
 /**
  * @brief the common event publish information containing content and attributes of the common event
  *
- * @since 16
+ * @since 18
  */
 typedef struct CommonEvent_PublishInfo CommonEvent_PublishInfo;
 
@@ -259,7 +260,7 @@ const CommonEvent_Parameters* OH_CommonEvent_GetParametersFromRcvData(const Comm
  *
  * @param ordered Indicates whether the common event is ordered.
  * @return Returns the CommonEvent_PublishInfo, if create failed, returns null.
- * @since 16
+ * @since 18
  */
 CommonEvent_PublishInfo* OH_CommonEvent_CreatePublishInfo(bool ordered);
 
@@ -267,7 +268,7 @@ CommonEvent_PublishInfo* OH_CommonEvent_CreatePublishInfo(bool ordered);
  * @brief Destroy the common event publish information.
  *
  * @param info Indicates the publish information.
- * @since 16
+ * @since 18
  */
 void OH_CommonEvent_DestroyPublishInfo(CommonEvent_PublishInfo* info);
 
@@ -279,7 +280,7 @@ void OH_CommonEvent_DestroyPublishInfo(CommonEvent_PublishInfo* info);
  * @return Returns the error code.
  *         Returns {@link COMMONEVENT_ERR_OK} if the operation is successful.
  *         Returns {@link COMMONEVENT_ERR_INVALID_PARAMETER} if a parameter error occurs.
- * @since 16
+ * @since 18
  */
 CommonEvent_ErrCode OH_CommonEvent_SetPublishInfoBundleName(CommonEvent_PublishInfo* info, const char* bundleName);
 
@@ -292,7 +293,7 @@ CommonEvent_ErrCode OH_CommonEvent_SetPublishInfoBundleName(CommonEvent_PublishI
  * @return Returns the error code.
  *         Returns {@link COMMONEVENT_ERR_OK} if the operation is successful.
  *         Returns {@link COMMONEVENT_ERR_INVALID_PARAMETER} if a parameter error occurs.
- * @since 16
+ * @since 18
  */
 CommonEvent_ErrCode OH_CommonEvent_SetPublishInfoPermissions(CommonEvent_PublishInfo* info,
     const char* permissions[], int32_t num);
@@ -305,7 +306,7 @@ CommonEvent_ErrCode OH_CommonEvent_SetPublishInfoPermissions(CommonEvent_Publish
  * @return Returns the error code.
  *         Returns {@link COMMONEVENT_ERR_OK} if the operation is successful.
  *         Returns {@link COMMONEVENT_ERR_INVALID_PARAMETER} if a parameter error occurs.
- * @since 16
+ * @since 18
  */
 CommonEvent_ErrCode OH_CommonEvent_SetPublishInfoCode(CommonEvent_PublishInfo* info, int32_t code);
 
@@ -318,7 +319,7 @@ CommonEvent_ErrCode OH_CommonEvent_SetPublishInfoCode(CommonEvent_PublishInfo* i
  * @return Returns the error code.
  *         Returns {@link COMMONEVENT_ERR_OK} if the operation is successful.
  *         Returns {@link COMMONEVENT_ERR_INVALID_PARAMETER} if a parameter error occurs.
- * @since 16
+ * @since 18
  */
 CommonEvent_ErrCode OH_CommonEvent_SetPublishInfoData(CommonEvent_PublishInfo* info,
     const char* data, size_t length);
@@ -331,7 +332,7 @@ CommonEvent_ErrCode OH_CommonEvent_SetPublishInfoData(CommonEvent_PublishInfo* i
  * @return Returns the error code.
  *         Returns {@link COMMONEVENT_ERR_OK} if the operation is successful.
  *         Returns {@link COMMONEVENT_ERR_INVALID_PARAMETER} if a parameter error occurs.
- * @since 16
+ * @since 18
  */
 CommonEvent_ErrCode OH_CommonEvent_SetPublishInfoParameters(CommonEvent_PublishInfo* info,
     CommonEvent_Parameters* param);
@@ -340,7 +341,7 @@ CommonEvent_ErrCode OH_CommonEvent_SetPublishInfoParameters(CommonEvent_PublishI
  * @brief Create a common event publish information.
  *
  * @return Returns the CommonEvent_PublishInfo, if create failed, returns null.
- * @since 16
+ * @since 18
  */
 CommonEvent_Parameters* OH_CommonEvent_CreateParameters();
 
@@ -348,7 +349,7 @@ CommonEvent_Parameters* OH_CommonEvent_CreateParameters();
  * @brief Destroy the common event publish information.
  *
  * @param param Indicates the publish information.
- * @since 16
+ * @since 18
  */
 void OH_CommonEvent_DestroyParameters(CommonEvent_Parameters* param);
 
@@ -382,7 +383,7 @@ int OH_CommonEvent_GetIntFromParameters(const CommonEvent_Parameters* para, cons
  * @return Returns the error code.
  *         Returns {@link COMMONEVENT_ERR_OK} if the operation is successful.
  *         Returns {@link COMMONEVENT_ERR_INVALID_PARAMETER} if a parameter error occurs.
- * @since 16
+ * @since 18
  */
 CommonEvent_ErrCode OH_CommonEvent_SetIntToParameters(CommonEvent_Parameters* param, const char* key, int value);
 
@@ -408,7 +409,7 @@ int32_t OH_CommonEvent_GetIntArrayFromParameters(const CommonEvent_Parameters* p
  *         Returns {@link COMMONEVENT_ERR_OK} if the operation is successful.
  *         Returns {@link COMMONEVENT_ERR_INVALID_PARAMETER} if a parameter error occurs.
  *         Returns {@link COMMONEVENT_ERR_ALLOC_MEMORY_FAILED} if a memory allocation error occurs.
- * @since 16
+ * @since 18
  */
 CommonEvent_ErrCode OH_CommonEvent_SetIntArrayToParameters(CommonEvent_Parameters* param, const char* key,
     const int* value, size_t num);
@@ -433,7 +434,7 @@ long OH_CommonEvent_GetLongFromParameters(const CommonEvent_Parameters* para, co
  * @return Returns the error code.
  *         Returns {@link COMMONEVENT_ERR_OK} if the operation is successful.
  *         Returns {@link COMMONEVENT_ERR_INVALID_PARAMETER} if a parameter error occurs.
- * @since 16
+ * @since 18
  */
 CommonEvent_ErrCode OH_CommonEvent_SetLongToParameters(CommonEvent_Parameters* param, const char* key, long value);
 
@@ -459,7 +460,7 @@ int32_t OH_CommonEvent_GetLongArrayFromParameters(const CommonEvent_Parameters* 
  *         Returns {@link COMMONEVENT_ERR_OK} if the operation is successful.
  *         Returns {@link COMMONEVENT_ERR_INVALID_PARAMETER} if a parameter error occurs.
  *         Returns {@link COMMONEVENT_ERR_ALLOC_MEMORY_FAILED} if a memory allocation error occurs.
- * @since 16
+ * @since 18
  */
 CommonEvent_ErrCode OH_CommonEvent_SetLongArrayToParameters(CommonEvent_Parameters* param, const char* key,
     const long* value, size_t num);
@@ -484,7 +485,7 @@ bool OH_CommonEvent_GetBoolFromParameters(const CommonEvent_Parameters* para, co
  * @return Returns the error code.
  *         Returns {@link COMMONEVENT_ERR_OK} if the operation is successful.
  *         Returns {@link COMMONEVENT_ERR_INVALID_PARAMETER} if a parameter error occurs.
- * @since 16
+ * @since 18
  */
 CommonEvent_ErrCode OH_CommonEvent_SetBoolToParameters(CommonEvent_Parameters* param, const char* key, bool value);
 
@@ -510,7 +511,7 @@ int32_t OH_CommonEvent_GetBoolArrayFromParameters(const CommonEvent_Parameters* 
  *         Returns {@link COMMONEVENT_ERR_OK} if the operation is successful.
  *         Returns {@link COMMONEVENT_ERR_INVALID_PARAMETER} if a parameter error occurs.
  *         Returns {@link COMMONEVENT_ERR_ALLOC_MEMORY_FAILED} if a memory allocation error occurs.
- * @since 16
+ * @since 18
  */
 CommonEvent_ErrCode OH_CommonEvent_SetBoolArrayToParameters(CommonEvent_Parameters* param, const char* key,
     const bool* value, size_t num);
@@ -535,7 +536,7 @@ char OH_CommonEvent_GetCharFromParameters(const CommonEvent_Parameters* para, co
  * @return Returns the error code.
  *         Returns {@link COMMONEVENT_ERR_OK} if the operation is successful.
  *         Returns {@link COMMONEVENT_ERR_INVALID_PARAMETER} if a parameter error occurs.
- * @since 16
+ * @since 18
  */
 CommonEvent_ErrCode OH_CommonEvent_SetCharToParameters(CommonEvent_Parameters* param, const char* key, char value);
 
@@ -560,7 +561,7 @@ int32_t OH_CommonEvent_GetCharArrayFromParameters(const CommonEvent_Parameters* 
  * @return Returns the error code.
  *         Returns {@link COMMONEVENT_ERR_OK} if the operation is successful.
  *         Returns {@link COMMONEVENT_ERR_INVALID_PARAMETER} if a parameter error occurs.
- * @since 16
+ * @since 18
  */
 CommonEvent_ErrCode OH_CommonEvent_SetCharArrayToParameters(CommonEvent_Parameters* param, const char* key,
     const char* value, size_t num);
@@ -586,7 +587,7 @@ double OH_CommonEvent_GetDoubleFromParameters(const CommonEvent_Parameters* para
  * @return Returns the error code.
  *         Returns {@link COMMONEVENT_ERR_OK} if the operation is successful.
  *         Returns {@link COMMONEVENT_ERR_INVALID_PARAMETER} if a parameter error occurs.
- * @since 16
+ * @since 18
  */
 CommonEvent_ErrCode OH_CommonEvent_SetDoubleToParameters(CommonEvent_Parameters* param, const char* key,
     double value);
@@ -614,7 +615,7 @@ int32_t OH_CommonEvent_GetDoubleArrayFromParameters(const CommonEvent_Parameters
  *         Returns {@link COMMONEVENT_ERR_OK} if the operation is successful.
  *         Returns {@link COMMONEVENT_ERR_INVALID_PARAMETER} if a parameter error occurs.
  *         Returns {@link COMMONEVENT_ERR_ALLOC_MEMORY_FAILED} if a memory allocation error occurs.
- * @since 16
+ * @since 18
  */
 CommonEvent_ErrCode OH_CommonEvent_SetDoubleArrayToParameters(CommonEvent_Parameters* param, const char* key,
     const double* value, size_t num);
@@ -628,7 +629,7 @@ CommonEvent_ErrCode OH_CommonEvent_SetDoubleArrayToParameters(CommonEvent_Parame
  *         Returns {@link COMMONEVENT_ERR_INVALID_PARAMETER} if a parameter error occurs.
  *         Returns {@link COMMONEVENT_ERR_FAIL_SEND_REQUEST } if IPC request failed to send.
  *         Returns {@link COMMONEVENT_ERR_INIT_UNDONE } if ces not init done.
- * @since 16
+ * @since 18
  */
 CommonEvent_ErrCode OH_CommonEvent_Publish(const char* event);
 
@@ -642,7 +643,7 @@ CommonEvent_ErrCode OH_CommonEvent_Publish(const char* event);
  *         Returns {@link COMMONEVENT_ERR_INVALID_PARAMETER} if a parameter error occurs.
  *         Returns {@link COMMONEVENT_ERR_FAIL_SEND_REQUEST } if IPC request failed to send.
  *         Returns {@link COMMONEVENT_ERR_INIT_UNDONE } if ces not init done.
- * @since 16
+ * @since 18
  */
 CommonEvent_ErrCode OH_CommonEvent_PublishWithInfo(const char* event, const CommonEvent_PublishInfo* info);
 
@@ -651,7 +652,7 @@ CommonEvent_ErrCode OH_CommonEvent_PublishWithInfo(const char* event, const Comm
  *
  * @param subscriber Indicates the subscriber.
  * @return Returns the result of check, true means ordered.
- * @since 16
+ * @since 18
  */
 bool OH_CommonEvent_IsOrderedCommonEvent(const CommonEvent_Subscriber* subscriber);
 
@@ -660,7 +661,7 @@ bool OH_CommonEvent_IsOrderedCommonEvent(const CommonEvent_Subscriber* subscribe
  *
  * @param subscriber Indicates the subscriber.
  * @return Returns the result of operation, true means succeeded.
- * @since 16
+ * @since 18
  */
 bool OH_CommonEvent_FinishCommonEvent(CommonEvent_Subscriber* subscriber);
 
@@ -669,7 +670,7 @@ bool OH_CommonEvent_FinishCommonEvent(CommonEvent_Subscriber* subscriber);
  *
  * @param subscriber Indicates the subscriber.
  * @return Returns the result of check, true means aborted.
- * @since 16
+ * @since 18
  */
 bool OH_CommonEvent_GetAbortCommonEvent(const CommonEvent_Subscriber* subscriber);
 
@@ -678,7 +679,7 @@ bool OH_CommonEvent_GetAbortCommonEvent(const CommonEvent_Subscriber* subscriber
  *
  * @param subscriber Indicates the subscriber.
  * @return Returns the result of operation, true means succeeded.
- * @since 16
+ * @since 18
  */
 bool OH_CommonEvent_AbortCommonEvent(CommonEvent_Subscriber* subscriber);
 
@@ -687,7 +688,7 @@ bool OH_CommonEvent_AbortCommonEvent(CommonEvent_Subscriber* subscriber);
  *
  * @param subscriber Indicates the subscriber.
  * @return Returns the result of operation, true means succeeded.
- * @since 16
+ * @since 18
  */
 bool OH_CommonEvent_ClearAbortCommonEvent(CommonEvent_Subscriber* subscriber);
 
@@ -696,7 +697,7 @@ bool OH_CommonEvent_ClearAbortCommonEvent(CommonEvent_Subscriber* subscriber);
  *
  * @param subscriber Indicates the subscriber.
  * @return Returns the result code, default is 0.
- * @since 16
+ * @since 18
  */
 int32_t OH_CommonEvent_GetCodeFromSubscriber(const CommonEvent_Subscriber* subscriber);
 
@@ -706,7 +707,7 @@ int32_t OH_CommonEvent_GetCodeFromSubscriber(const CommonEvent_Subscriber* subsc
  * @param subscriber Indicates the subscriber.
  * @param code Indicates the result code.
  * @return Returns the result of operation, true means succeeded.
- * @since 16
+ * @since 18
  */
 bool OH_CommonEvent_SetCodeToSubscriber(CommonEvent_Subscriber* subscriber, int32_t code);
 
@@ -715,7 +716,7 @@ bool OH_CommonEvent_SetCodeToSubscriber(CommonEvent_Subscriber* subscriber, int3
  *
  * @param subscriber Indicates the subscriber.
  * @return Returns the result data, default is null.
- * @since 16
+ * @since 18
  */
 const char* OH_CommonEvent_GetDataFromSubscriber(const CommonEvent_Subscriber* subscriber);
 
@@ -726,7 +727,7 @@ const char* OH_CommonEvent_GetDataFromSubscriber(const CommonEvent_Subscriber* s
  * @param data Indicates the result data.
  * @param length Indicates the length of result data.
  * @return Returns the result of operation, true means succeeded.
- * @since 16
+ * @since 18
  */
 bool OH_CommonEvent_SetDataToSubscriber(CommonEvent_Subscriber* subscriber, const char* data, size_t length);
 

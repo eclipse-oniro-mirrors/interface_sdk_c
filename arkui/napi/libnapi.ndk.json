@@ -238,5 +238,9 @@
     {
         "first_introduced": "12",
         "name": "napi_fatal_exception"
+    },
+    {
+        "first_introduced": "18",
+        "name": "napi_wrap_enhance"
     }
 ]

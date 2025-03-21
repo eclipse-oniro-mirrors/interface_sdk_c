@@ -44,6 +44,14 @@
         "name": "OH_PixelmapInitializationOptions_SetAlphaType"
     },
     {
+        "first_introduced": "18",
+        "name": "OH_PixelmapInitializationOptions_GetEditable"
+    },
+    {
+        "first_introduced": "18",
+        "name": "OH_PixelmapInitializationOptions_SetEditable"
+    },
+    {
         "first_introduced": "12",
         "name": "OH_PixelmapInitializationOptions_GetRowStride"
     },
@@ -124,11 +132,11 @@
         "name": "OH_PixelmapNative_ScaleWithAntiAliasing"
     },
     {
-        "first_introduced": "16",
+        "first_introduced": "18",
         "name": "OH_PixelmapNative_CreateScaledPixelMap"
     },
     {
-        "first_introduced": "16",
+        "first_introduced": "18",
         "name": "OH_PixelmapNative_CreateScaledPixelMapWithAntiAliasing"
     },
     {
@@ -150,6 +158,10 @@
     {
         "first_introduced": "12",
         "name": "OH_PixelmapNative_Release"
+    },
+    {
+        "first_introduced": "18",
+        "name": "OH_PixelmapNative_Destroy"
     },
     {
         "first_introduced": "12",
@@ -192,19 +204,19 @@
         "name": "OH_PixelmapNative_SetMemoryName"
     },
     {
-        "first_introduced": "16",
+        "first_introduced": "18",
         "name": "OH_PixelmapNative_GetByteCount"
     },
     {
-        "first_introduced": "16",
+        "first_introduced": "18",
         "name": "OH_PixelmapNative_GetAllocationByteCount"
     },
     {
-        "first_introduced": "16",
+        "first_introduced": "15",
         "name": "OH_PixelmapNative_AccessPixels"
     },
     {
-        "first_introduced": "16",
+        "first_introduced": "15",
         "name": "OH_PixelmapNative_UnaccessPixels"
     }
 ]

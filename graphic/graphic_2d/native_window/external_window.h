@@ -868,6 +868,21 @@ int32_t OH_NativeWindow_SetMetadataValue(OHNativeWindow *window, OH_NativeBuffer
  */
 int32_t OH_NativeWindow_GetMetadataValue(OHNativeWindow *window, OH_NativeBuffer_MetadataKey metadataKey,
     int32_t *size, uint8_t **metadata);
+
+/**
+ * @brief Clean all <b>OHNativeWindowBuffer</b> caches of this <b>OHNativeWindow</b>
+ * This interface is a non-thread-safe type interface.\n
+ *
+ * @syscap SystemCapability.Graphic.Graphic2D.NativeWindow
+ * @param window Indicates the pointer to a <b>OHNativeWindow</b> instance.
+ * @return {@link NATIVE_ERROR_OK} 0 - Success.
+ *     {@link NATIVE_ERROR_INVALID_ARGUMENTS} 40001000 - window is NULL.
+ *     {@link NATIVE_ERROR_CONSUMER_DISCONNECTED} 41211000 - the consumer is disconnected.
+ *     {@link NATIVE_ERROR_BINDER_ERROR} 50401000 - ipc send failed.
+ * @since 18
+ * @version 1.0
+ */
+int32_t OH_NativeWindow_CleanCache(OHNativeWindow *window);
 #ifdef __cplusplus
 }
 #endif

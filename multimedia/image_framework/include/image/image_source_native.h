@@ -101,7 +101,7 @@ typedef enum {
 /**
  * @brief Type of allocator used to allocate memory of a PixelMap..
  *
- * @since 16
+ * @since 15
  */
 typedef enum {
     /*
@@ -117,6 +117,24 @@ typedef enum {
     */
     IMAGE_ALLOCATOR_TYPE_SHARE_MEMORY = 2,
 } IMAGE_ALLOCATOR_TYPE;
+
+/**
+ * @brief The strategy for executing the two operations when both desiredSize and desiredRegion
+ * are specified.
+ *
+ * @since 18
+ */
+typedef enum {
+    /**
+     * Scale first, then crop.
+     */
+    IMAGE_CROP_AND_SCALE_STRATEGY_SCALE_FIRST = 1,
+
+    /**
+     * Crop first, then scale.
+     */
+    IMAGE_CROP_AND_SCALE_STRATEGY_CROP_FIRST = 2,
+} Image_CropAndScaleStrategy;
 
 /**
  * @brief Create a pointer for OH_ImageSource_Info struct.
@@ -304,6 +322,35 @@ Image_ErrorCode OH_DecodingOptions_GetDesiredDynamicRange(OH_DecodingOptions *op
     int32_t *desiredDynamicRange);
 
 /**
+ * @brief Sets a cropping and scaling strategy for decoding options.
+ *
+ * @param options Pointer to the decoding options.
+ * @param cropAndScaleStrategy Strategy for executing the cropping and scaling operations when both desiredSize and
+ * desiredRegion are specified.
+ * @return Returns one of the following result codes:
+ * {@link IMAGE_SUCCESS}: The execution is successful.
+ * {@link IMAGE_BAD_PARAMETER}: options is a null pointer or cropAndScaleStrategy is not in the range of
+ * Image_CropAndScaleStrategy.
+ * @since 18
+ */
+Image_ErrorCode OH_DecodingOptions_SetCropAndScaleStrategy(OH_DecodingOptions *options,
+    int32_t cropAndScaleStrategy);
+
+/**
+ * @brief Obtains the cropping and scaling strategy of decoding options.
+ *
+ * @param options Pointer to the decoding options.
+ * @param cropAndScaleStrategy Pointer to the strategy for executing the cropping and scaling operations when both
+ * desiredSize and desiredRegion are specified.
+ * @return Returns one of the following result codes:
+ * {@link IMAGE_SUCCESS}: The execution is successful.
+ * {@link IMAGE_BAD_PARAMETER}: options or cropAndScaleStrategy is a null pointer.
+ * @since 18
+ */
+Image_ErrorCode OH_DecodingOptions_GetCropAndScaleStrategy(OH_DecodingOptions *options,
+    int32_t *cropAndScaleStrategy);
+
+/**
  * @brief Set desiredDynamicRange number for OH_DecodingOptions struct.
  *
  * @param options The OH_DecodingOptions pointer will be operated. Pointer connot be null.
@@ -403,7 +450,7 @@ Image_ErrorCode OH_ImageSourceNative_CreatePixelmap(OH_ImageSourceNative *source
  *         e.g, cannot convert image into desired pixel format.
  *         {@link IMAGE_DECODE_FAILED} decode failed.
  *         {@link IMAGE_SOURCE_ALLOC_FAILED} memory allocation failed.
- * @since 16
+ * @since 15
  */
 Image_ErrorCode OH_ImageSourceNative_CreatePixelmapUsingAllocator(OH_ImageSourceNative *source,
     OH_DecodingOptions *options, IMAGE_ALLOCATOR_TYPE allocator, OH_PixelmapNative **pixelmap);

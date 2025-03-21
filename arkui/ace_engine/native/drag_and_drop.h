@@ -446,7 +446,7 @@ int32_t OH_ArkUI_DragEvent_GetModifierKeyStates(ArkUI_DragEvent* event, uint64_t
  *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
  *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
  *         Returns {@link ARKUI_ERROR_CODE_DRAG_DATA_SYNC_FAILED} if the data sync is not allowed or failed.
- * @since 16
+ * @since 15
  */
 int32_t OH_ArkUI_DragEvent_StartDataLoading(
     ArkUI_DragEvent* event, OH_UdmfGetDataParams* options, char* key, unsigned int keyLen);
@@ -460,7 +460,7 @@ int32_t OH_ArkUI_DragEvent_StartDataLoading(
  *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
  *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
  *         Returns {@link ARKUI_ERROR_CODE_OPERATION_FAILED} if no any data sync is in progress.
- * @since 16
+ * @since 15
  */
 int32_t OH_ArkUI_CancelDataLoading(ArkUI_ContextHandle uiContext, const char* key);
 
@@ -478,7 +478,7 @@ int32_t OH_ArkUI_CancelDataLoading(ArkUI_ContextHandle uiContext, const char* ke
  * @return Returns the result code.
  *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
  *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
- * @since 16
+ * @since 15
  */
 int32_t OH_ArkUI_DisableDropDataPrefetchOnNode(ArkUI_NodeHandle node, bool disabled);
 

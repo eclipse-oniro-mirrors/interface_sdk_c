@@ -329,7 +329,7 @@ typedef enum {
 /**
  * @brief all usb devices.
  *
- * @since 16
+ * @since 18
  */
 typedef struct Usb_DeviceArray {
     /** device id array */

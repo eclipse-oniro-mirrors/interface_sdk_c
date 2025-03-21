@@ -68,7 +68,7 @@ typedef enum Pasteboard_NotifyType {
  *
  * @since 15
  */
-typedef enum Pasteboard_FileConflictOption {
+typedef enum Pasteboard_FileConflictOptions {
     /**
      * @brief Overwrite when destUir has file with same name.
      */
@@ -77,7 +77,7 @@ typedef enum Pasteboard_FileConflictOption {
      * @brief Skip when destUir has file with same name.
      */
     PASTEBOARD_SKIP = 1
-} Pasteboard_FileConflictOption;
+} Pasteboard_FileConflictOptions;
 
 /**
  * @brief Enumerates the types of progress indicator when getting data from the Pastedboard.
@@ -340,7 +340,7 @@ char **OH_Pasteboard_GetMimeTypes(OH_Pasteboard *pasteboard, unsigned int *count
  * @param pasteboard Pointer to the {@link OH_Pasteboard} instance.
  * @return the number of Pasteboard data changes.
  * Returns 0 means initial value or invalid value.In this case, no action is required.
- * @since 16
+ * @since 18
  */
 uint32_t OH_Pasteboard_GetChangeCount(OH_Pasteboard *pasteboard);
 
@@ -390,11 +390,11 @@ void OH_Pasteboard_GetDataParams_SetDestUri(Pasteboard_GetDataParams* params, co
  *
  * @param params Represents a pointer to an instance of {@link Pasteboard_GetDataParams}.
  * @param option Represents to the file conflict options.
- * @see Pasteboard_GetDataParams Pasteboard_FileConflictOption
+ * @see Pasteboard_GetDataParams Pasteboard_FileConflictOptions
  * @since 15
  */
-void OH_Pasteboard_GetDataParams_SetFileConflictOption(Pasteboard_GetDataParams* params,
-    Pasteboard_FileConflictOption option);
+void OH_Pasteboard_GetDataParams_SetFileConflictOptions(Pasteboard_GetDataParams* params,
+    Pasteboard_FileConflictOptions option);
 
 /**
  * @brief Set the progress indicator to the {@link Pasteboard_GetDataParams}.

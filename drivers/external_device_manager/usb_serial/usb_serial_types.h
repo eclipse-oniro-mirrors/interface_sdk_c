@@ -20,7 +20,7 @@
  * @brief Provides USB SERIAL DDK types and declares the macros, enumerated variables, and\n
  * data structures required by the USB SERIAL DDK APIs.
  *
- * @since 16
+ * @since 18
  */
 
 /**
@@ -31,7 +31,7 @@
  * @kit DriverDevelopmentKit
  * @library libusb_serial.z.so
  * @syscap SystemCapability.Driver.UsbSerial.Extension
- * @since 16
+ * @since 18
  */
 
 #ifndef DDK_USB_SERIAL_TYPES_H
@@ -47,14 +47,14 @@ extern "C" {
 /**
  * @brief Opaque usb serial device structure.
  *
- * @since 16
+ * @since 18
  */
 typedef struct UsbSerial_Device UsbSerial_Device;
 
 /**
  * @brief Defines Return codes for USB SERIAL DDK.
  *
- * @since 16
+ * @since 18
  */
 typedef enum {
     /** @error Permission denied */
@@ -82,7 +82,7 @@ typedef enum {
 /**
  * @brief Defines USB Serial Port Params for USB SERIAL DDK.
  *
- * @since 16
+ * @since 18
  */
 typedef struct UsbSerial_Params {
     /** The baud rate requested by the system */
@@ -98,7 +98,7 @@ typedef struct UsbSerial_Params {
 /**
  * @brief Defines flow control for USB SERIAL DDK.
  *
- * @since 16
+ * @since 18
  */
 typedef enum {
     /** No flow control */
@@ -112,7 +112,7 @@ typedef enum {
 /**
  * @brief Defines parity for USB SERIAL DDK.
  *
- * @since 16
+ * @since 18
  */
 typedef enum {
     /** No parity */

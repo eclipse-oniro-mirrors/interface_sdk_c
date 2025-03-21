@@ -47,19 +47,19 @@ extern "C" {
 #endif
 
 /**
- * @brief Enumerate path effect types.
+ * @brief Enumerate path dash style.
  *
- * @since 16
+ * @since 18
  * @version 1.0
  */
 typedef enum {
-    /** Indicates that the path effect is a translation effect. */
-    PATH_EFFECT_TRANSLATE,
-    /** Indicates that the path effect is a rotation effect. */
-    PATH_EFFECT_ROTATE,
-    /** Indicates that the path effect is a morph effect. */
-    PATH_EFFECT_MORPH,
-} OH_Drawing_PathEffectType;
+    /** Indicates translation effect. */
+    DRAWING_PATH_DASH_STYLE_TRANSLATE,
+    /** Indicates rotation effect. */
+    DRAWING_PATH_DASH_STYLE_ROTATE,
+    /** Indicates morph effect. */
+    DRAWING_PATH_DASH_STYLE_MORPH,
+} OH_Drawing_PathDashStyle;
 
 /**
  * @brief Creates an <b>OH_Drawing_PathEffect</b> object that is a combination of paths,
@@ -69,7 +69,7 @@ typedef enum {
  * @param outer Indicates an <b>OH_Drawing_PathEffect</b> object
  * @param inner Indicates an <b>OH_Drawing_PathEffect</b> object
  * @return Returns the pointer to the <b>OH_Drawing_PathEffect</b> object created.
- * @since 16
+ * @since 18
  * @version 1.0
  */
 OH_Drawing_PathEffect* OH_Drawing_CreateComposePathEffect(OH_Drawing_PathEffect* outer, OH_Drawing_PathEffect* inner);
@@ -83,7 +83,7 @@ OH_Drawing_PathEffect* OH_Drawing_CreateComposePathEffect(OH_Drawing_PathEffect*
  * @return Returns the pointer to the <b>OH_Drawing_PathEffect</b> object created.
  *         If nullptr is returned, the creation fails.
  *         The possible cause of the failure is radius is zero or less.
- * @since 16
+ * @since 18
  * @version 1.0
  */
 OH_Drawing_PathEffect* OH_Drawing_CreateCornerPathEffect(float radius);
@@ -109,7 +109,7 @@ OH_Drawing_PathEffect* OH_Drawing_CreateDashPathEffect(float* intervals, int cou
  * @param segLength Indicates the maximum segment length of the path.
  * @param deviation Indicates the deviation during drawing.
  * @return Returns the pointer to the <b>OH_Drawing_PathEffect</b> object created.
- * @since 16
+ * @since 18
  * @version 1.0
  */
 OH_Drawing_PathEffect* OH_Drawing_CreateDiscretePathEffect(float segLength, float deviation);
@@ -121,15 +121,15 @@ OH_Drawing_PathEffect* OH_Drawing_CreateDiscretePathEffect(float segLength, floa
  * @param path Indicates the pointer to an <b>OH_Drawing_Path</b> object.
  * @param advance Indicates the distance between the dashed segments.
  * @param phase Indicates the offset into intervals array.
- * @param type Indicates the type of the path effect.
+ * @param type Indicates the type of the path dash effect.
  * @return Returns the pointer to the <b>OH_Drawing_PathEffect</b> object created.
  *         If nullptr is returned, the creation fails.
  *         The possible cause of the failure is advance and phase are zero or less.
- * @since 16
+ * @since 18
  * @version 1.0
  */
 OH_Drawing_PathEffect* OH_Drawing_CreatePathDashEffect(const OH_Drawing_Path* path, float advance, float phase,
-    OH_Drawing_PathEffectType type);
+    OH_Drawing_PathDashStyle type);
 
 /**
  * @brief Creates an <b>OH_Drawing_PathEffect</b> object by overlaying two path effects.
@@ -138,7 +138,7 @@ OH_Drawing_PathEffect* OH_Drawing_CreatePathDashEffect(const OH_Drawing_Path* pa
  * @param firstPathEffect Indicates the pointer to an <b>OH_Drawing_PathEffect</b> object.
  * @param secondPathEffect Indicates the pointer to an <b>OH_Drawing_PathEffect</b> object.
  * @return Returns the pointer to the <b>OH_Drawing_PathEffect</b> object created.
- * @since 16
+ * @since 18
  * @version 1.0
  */
 OH_Drawing_PathEffect* OH_Drawing_CreateSumPathEffect(OH_Drawing_PathEffect* firstPathEffect,

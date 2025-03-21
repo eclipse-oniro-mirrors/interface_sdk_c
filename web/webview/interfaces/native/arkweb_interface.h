@@ -68,12 +68,12 @@ typedef enum {
     /**
      * @brief API type related to ArkWeb JavaScript value.
      *
-     * @since 16
+     * @since 18
      */
     ARKWEB_NATIVE_JAVASCRIPT_VALUE,
 } ArkWeb_NativeAPIVariantKind;
 
-/*
+/**
  * @brief Obtains the native API set of a specified type.
  * @param type Indicates the type of the native API set provided by ArkWeb.
  * @return Return the pointer to the native API abstract object that carries the size.
@@ -93,7 +93,7 @@ ArkWeb_AnyNativeAPI* OH_ArkWeb_GetNativeAPI(ArkWeb_NativeAPIVariantKind type);
  * @return Returns whether the registration was successful, false indicates failure.
  *
  * @syscap SystemCapability.Web.Webview.Core
- * @since 16
+ * @since 18
  */
 bool OH_ArkWeb_RegisterScrollCallback(
     const char* webTag, ArkWeb_OnScrollCallback callback, void* userData);

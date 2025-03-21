@@ -138,11 +138,11 @@ enum OH_Huks_KeyPadding {
     /** PKCS #7. */
     OH_HUKS_PADDING_PKCS7 = 5,
     /** ISO IEC 9796-2
-     * @since 16
+     * @since 18
      */
     OH_HUKS_PADDING_ISO_IEC_9796_2 = 6,
     /** ISO IEC 9797-1
-     * @since 16
+     * @since 18
      */
     OH_HUKS_PADDING_ISO_IEC_9797_1 = 7,
 };
@@ -227,15 +227,15 @@ enum OH_Huks_KeySize {
     OH_HUKS_SM4_KEY_SIZE_128 = 128,
 
     /** DES key of 64 bits.
-     * @since 16
+     * @since 18
      */
     OH_HUKS_DES_KEY_SIZE_64 = 64,
     /** 3DES key of 128 bits.
-     * @since 16
+     * @since 18
      */
     OH_HUKS_3DES_KEY_SIZE_128 = 128,
     /** 3DES key of 192 bits.
-     * @since 16
+     * @since 18
      */
     OH_HUKS_3DES_KEY_SIZE_192 = 192,
 };
@@ -280,15 +280,15 @@ enum OH_Huks_KeyAlg {
     OH_HUKS_ALG_SM4 = 152,
 
     /** DES.
-     * @since 16
+     * @since 18
      */
     OH_HUKS_ALG_DES = 160,
     /** 3DES.
-     * @since 16
+     * @since 18
      */
     OH_HUKS_ALG_3DES = 161,
     /** CMAC.
-     * @since 16
+     * @since 18
      */
     OH_HUKS_ALG_CMAC = 162,
 };

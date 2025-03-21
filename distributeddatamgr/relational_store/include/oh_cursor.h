@@ -284,7 +284,7 @@ struct OH_Cursor {
  *         Returns {@link RDB_E_SQLITE_IOERR} SQLite: Some kind of disk I/O error occurred.
  *         Returns {@link RDB_E_SQLITE_TOO_BIG} SQLite: TEXT or BLOB exceeds size limit.
  *         Returns {@link RDB_E_SQLITE_MISMATCH} SQLite: Data type mismatch.
- * @since 16
+ * @since 18
  */
 int OH_Cursor_GetFloatVectorCount(OH_Cursor *cursor, int32_t columnIndex, size_t *length);
 
@@ -312,7 +312,7 @@ int OH_Cursor_GetFloatVectorCount(OH_Cursor *cursor, int32_t columnIndex, size_t
  *         Returns {@link RDB_E_SQLITE_TOO_BIG} SQLite: TEXT or BLOB exceeds size limit.
  *         Returns {@link RDB_E_SQLITE_MISMATCH} SQLite: Data type mismatch.
  * @see OH_Cursor_GetFloatVectorCount.
- * @since 16
+ * @since 18
  */
 int OH_Cursor_GetFloatVector(OH_Cursor *cursor, int32_t columnIndex, float *val, size_t inLen, size_t *outLen);
 

@@ -45,6 +45,10 @@
         "name":"OH_Rdb_SetDbType"
     },
     {
+        "first_introduced": "18",
+        "name":"OH_Rdb_SetPersistent"
+    },
+    {
         "first_introduced": "14",
         "name":"OH_Rdb_GetSupportedDbType"
     },
@@ -69,6 +73,10 @@
     },
     {
         "name":"OH_Rdb_Insert"
+    },
+    {
+        "first_introduced": "18",
+        "name":"OH_Rdb_BatchInsert"
     },
     {
         "name":"OH_Rdb_Update"
@@ -216,307 +224,307 @@
         "name":"OH_Rdb_QueryLockedRow"
     },
     {
-        "first_introduced": "16",
+        "first_introduced": "18",
         "name":"OH_Value_Create"
     },
     {
-        "first_introduced": "16",
+        "first_introduced": "18",
         "name":"OH_Value_Destroy"
     },
     {
-        "first_introduced": "16",
+        "first_introduced": "18",
         "name":"OH_Value_PutNull"
     },
     {
-        "first_introduced": "16",
+        "first_introduced": "18",
         "name":"OH_Value_PutInt"
     },
     {
-        "first_introduced": "16",
+        "first_introduced": "18",
         "name":"OH_Value_PutReal"
     },
     {
-        "first_introduced": "16",
+        "first_introduced": "18",
         "name":"OH_Value_PutText"
     },
     {
-        "first_introduced": "16",
+        "first_introduced": "18",
         "name":"OH_Value_PutBlob"
     },
     {
-        "first_introduced": "16",
+        "first_introduced": "18",
         "name":"OH_Value_PutAsset"
     },
     {
-        "first_introduced": "16",
+        "first_introduced": "18",
         "name":"OH_Value_PutAssets"
     },
     {
-        "first_introduced": "16",
+        "first_introduced": "18",
         "name":"OH_Value_PutFloatVector"
     },
     {
-        "first_introduced": "16",
+        "first_introduced": "18",
         "name":"OH_Value_PutUnlimitedInt"
     },
     {
-        "first_introduced": "16",
+        "first_introduced": "18",
         "name":"OH_Value_GetType"
     },
     {
-        "first_introduced": "16",
+        "first_introduced": "18",
         "name":"OH_Value_IsNull"
     },
     {
-        "first_introduced": "16",
+        "first_introduced": "18",
         "name":"OH_Value_GetInt"
     },
     {
-        "first_introduced": "16",
+        "first_introduced": "18",
         "name":"OH_Value_GetReal"
     },
     {
-        "first_introduced": "16",
+        "first_introduced": "18",
         "name":"OH_Value_GetText"
     },
     {
-        "first_introduced": "16",
+        "first_introduced": "18",
         "name":"OH_Value_GetBlob"
     },
     {
-        "first_introduced": "16",
+        "first_introduced": "18",
         "name":"OH_Value_GetAsset"
     },
     {
-        "first_introduced": "16",
+        "first_introduced": "18",
         "name":"OH_Value_GetAssetsCount"
     },
     {
-        "first_introduced": "16",
+        "first_introduced": "18",
         "name":"OH_Value_GetAssets"
     },
     {
-        "first_introduced": "16",
+        "first_introduced": "18",
         "name":"OH_Value_GetFloatVectorCount"
     },
     {
-        "first_introduced": "16",
+        "first_introduced": "18",
         "name":"OH_Value_GetFloatVector"
     },
     {
-        "first_introduced": "16",
+        "first_introduced": "18",
         "name":"OH_Value_GetUnlimitedIntBand"
     },
     {
-        "first_introduced": "16",
+        "first_introduced": "18",
         "name":"OH_Value_GetUnlimitedInt"
     },
     {
-        "first_introduced": "16",
+        "first_introduced": "18",
         "name":"OH_VBuckets_Create"
     },
     {
-        "first_introduced": "16",
+        "first_introduced": "18",
         "name":"OH_VBuckets_Destroy"
     },
     {
-        "first_introduced": "16",
+        "first_introduced": "18",
         "name":"OH_VBuckets_PutRow"
     },
     {
-        "first_introduced": "16",
+        "first_introduced": "18",
         "name":"OH_VBuckets_PutRows"
     },
     {
-        "first_introduced": "16",
+        "first_introduced": "18",
         "name":"OH_VBuckets_RowCount"
     },
     {
-        "first_introduced": "16",
+        "first_introduced": "18",
         "name":"OH_Values_Create"
     },
     {
-        "first_introduced": "16",
+        "first_introduced": "18",
         "name":"OH_Values_Destroy"
     },
     {
-        "first_introduced": "16",
+        "first_introduced": "18",
         "name":"OH_Values_Put"
     },
     {
-        "first_introduced": "16",
+        "first_introduced": "18",
         "name":"OH_Values_PutNull"
     },
     {
-        "first_introduced": "16",
+        "first_introduced": "18",
         "name":"OH_Values_PutInt"
     },
     {
-        "first_introduced": "16",
+        "first_introduced": "18",
         "name":"OH_Values_PutReal"
     },
     {
-        "first_introduced": "16",
+        "first_introduced": "18",
         "name":"OH_Values_PutText"
     },
     {
-        "first_introduced": "16",
+        "first_introduced": "18",
         "name":"OH_Values_PutBlob"
     },
     {
-        "first_introduced": "16",
+        "first_introduced": "18",
         "name":"OH_Values_PutAsset"
     },
     {
-        "first_introduced": "16",
+        "first_introduced": "18",
         "name":"OH_Values_PutAssets"
     },
     {
-        "first_introduced": "16",
+        "first_introduced": "18",
         "name":"OH_Values_PutFloatVector"
     },
     {
-        "first_introduced": "16",
+        "first_introduced": "18",
         "name":"OH_Values_PutUnlimitedInt"
     },
     {
-        "first_introduced": "16",
+        "first_introduced": "18",
         "name":"OH_Values_Count"
     },
     {
-        "first_introduced": "16",
+        "first_introduced": "18",
         "name":"OH_Values_GetType"
     },
     {
-        "first_introduced": "16",
+        "first_introduced": "18",
         "name":"OH_Values_Get"
     },
     {
-        "first_introduced": "16",
+        "first_introduced": "18",
         "name":"OH_Values_IsNull"
     },
     {
-        "first_introduced": "16",
+        "first_introduced": "18",
         "name":"OH_Values_GetInt"
     },
     {
-        "first_introduced": "16",
+        "first_introduced": "18",
         "name":"OH_Values_GetReal"
     },
     {
-        "first_introduced": "16",
+        "first_introduced": "18",
         "name":"OH_Values_GetText"
     },
     {
-        "first_introduced": "16",
+        "first_introduced": "18",
         "name":"OH_Values_GetBlob"
     },
     {
-        "first_introduced": "16",
+        "first_introduced": "18",
         "name":"OH_Values_GetAsset"
     },
     {
-        "first_introduced": "16",
+        "first_introduced": "18",
         "name":"OH_Values_GetAssetsCount"
     },
     {
-        "first_introduced": "16",
+        "first_introduced": "18",
         "name":"OH_Values_GetAssets"
     },
     {
-        "first_introduced": "16",
+        "first_introduced": "18",
         "name":"OH_Values_GetFloatVectorCount"
     },
     {
-        "first_introduced": "16",
+        "first_introduced": "18",
         "name":"OH_Values_GetFloatVector"
     },
     {
-        "first_introduced": "16",
+        "first_introduced": "18",
         "name":"OH_Values_GetUnlimitedIntBand"
     },
     {
-        "first_introduced": "16",
+        "first_introduced": "18",
         "name":"OH_Values_GetUnlimitedInt"
     },
     {
-        "first_introduced": "16",
+        "first_introduced": "18",
         "name":"OH_RdbTrans_CreateOptions"
     },
     {
-        "first_introduced": "16",
+        "first_introduced": "18",
         "name":"OH_RdbTrans_DestroyOptions"
     },
     {
-        "first_introduced": "16",
+        "first_introduced": "18",
         "name":"OH_RdbTransOption_SetType"
     },
     {
-        "first_introduced": "16",
+        "first_introduced": "18",
         "name":"OH_RdbTrans_Commit"
     },
     {
-        "first_introduced": "16",
+        "first_introduced": "18",
         "name":"OH_RdbTrans_Rollback"
     },
     {
-        "first_introduced": "16",
+        "first_introduced": "18",
         "name":"OH_RdbTrans_Insert"
     },
     {
-        "first_introduced": "16",
+        "first_introduced": "18",
         "name":"OH_RdbTrans_BatchInsert"
     },
     {
-        "first_introduced": "16",
+        "first_introduced": "18",
         "name":"OH_RdbTrans_Update"
     },
     {
-        "first_introduced": "16",
+        "first_introduced": "18",
         "name":"OH_RdbTrans_Delete"
     },
     {
-        "first_introduced": "16",
+        "first_introduced": "18",
         "name":"OH_RdbTrans_Query"
     },
     {
-        "first_introduced": "16",
+        "first_introduced": "18",
         "name":"OH_RdbTrans_QuerySql"
     },
     {
-        "first_introduced": "16",
+        "first_introduced": "18",
         "name":"OH_RdbTrans_Execute"
     },
     {
-        "first_introduced": "16",
+        "first_introduced": "18",
         "name":"OH_RdbTrans_Destroy"
     },
     {
-        "first_introduced": "16",
+        "first_introduced": "18",
         "name":"OH_Rdb_CreateTransaction"
     },
     {
-        "first_introduced": "16",
+        "first_introduced": "18",
         "name":"OH_VBucket_PutFloatVector"
     },
     {
-        "first_introduced": "16",
+        "first_introduced": "18",
         "name":"OH_VBucket_PutUnlimitedInt"
     },
     {
-        "first_introduced": "16",
+        "first_introduced": "18",
         "name":"OH_Rdb_ExecuteV2"
     },
     {
-        "first_introduced": "16",
+        "first_introduced": "18",
         "name":"OH_Rdb_ExecuteQueryV2"
     },
     {
-        "first_introduced": "16",
+        "first_introduced": "18",
         "name":"OH_Cursor_GetFloatVectorCount"
     },
     {
-        "first_introduced": "16",
+        "first_introduced": "18",
         "name":"OH_Cursor_GetFloatVector"
     }
 ]
