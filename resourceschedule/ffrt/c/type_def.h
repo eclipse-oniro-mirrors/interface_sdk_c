@@ -31,7 +31,6 @@
  * @kit FunctionFlowRuntimeKit
  * @syscap SystemCapability.Resourceschedule.Ffrt.Core
  * @since 10
- * @version 1.0
  */
 
 #ifndef FFRT_API_C_TYPE_DEF_H
