@@ -124,9 +124,9 @@ typedef enum {
     /** Queue storage size. */
     ffrt_queue_attr_storage_size = 128,
     /** Rwlock storage size.
-	 *
-	 * @since 18
-	 */
+     *
+     * @since 18
+     */
     ffrt_rwlock_storage_size = 64,
 } ffrt_storage_size_t;
 
