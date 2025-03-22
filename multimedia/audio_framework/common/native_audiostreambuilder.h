@@ -76,7 +76,7 @@ OH_AudioStream_Result OH_AudioStreamBuilder_Create(OH_AudioStreamBuilder** build
  */
 OH_AudioStream_Result OH_AudioStreamBuilder_Destroy(OH_AudioStreamBuilder* builder);
 
-/*
+/**
  * Set the channel count of the capturer client
  *
  * @since 10
@@ -91,7 +91,7 @@ OH_AudioStream_Result OH_AudioStreamBuilder_Destroy(OH_AudioStreamBuilder* build
  */
 OH_AudioStream_Result OH_AudioStreamBuilder_SetSamplingRate(OH_AudioStreamBuilder* builder, int32_t rate);
 
-/*
+/**
  * Set the channel count of the stream client
  *
  * @since 10
@@ -106,7 +106,7 @@ OH_AudioStream_Result OH_AudioStreamBuilder_SetSamplingRate(OH_AudioStreamBuilde
  */
 OH_AudioStream_Result OH_AudioStreamBuilder_SetChannelCount(OH_AudioStreamBuilder* builder, int32_t channelCount);
 
-/*
+/**
  * Set the sample format of the stream client
  *
  * @since 10
@@ -120,7 +120,7 @@ OH_AudioStream_Result OH_AudioStreamBuilder_SetChannelCount(OH_AudioStreamBuilde
 OH_AudioStream_Result OH_AudioStreamBuilder_SetSampleFormat(OH_AudioStreamBuilder* builder,
     OH_AudioStream_SampleFormat format);
 
-/*
+/**
  * Set the encoding type of the stream client
  *
  * @since 10
@@ -134,7 +134,7 @@ OH_AudioStream_Result OH_AudioStreamBuilder_SetSampleFormat(OH_AudioStreamBuilde
 OH_AudioStream_Result OH_AudioStreamBuilder_SetEncodingType(OH_AudioStreamBuilder* builder,
     OH_AudioStream_EncodingType encodingType);
 
-/*
+/**
  * Set the latency mode of the stream client
  *
  * @since 10
@@ -162,7 +162,7 @@ OH_AudioStream_Result OH_AudioStreamBuilder_SetLatencyMode(OH_AudioStreamBuilder
 OH_AudioStream_Result OH_AudioStreamBuilder_SetChannelLayout(OH_AudioStreamBuilder* builder,
     OH_AudioChannelLayout channelLayout);
 
-/*
+/**
  * Set the renderer information of the stream client
  *
  * @since 10
@@ -178,7 +178,7 @@ OH_AudioStream_Result OH_AudioStreamBuilder_SetChannelLayout(OH_AudioStreamBuild
 OH_AudioStream_Result OH_AudioStreamBuilder_SetRendererInfo(OH_AudioStreamBuilder* builder,
     OH_AudioStream_Usage usage);
 
-/*
+/**
  * Set the capturer information of the stream client
  *
  * @since 10
@@ -194,7 +194,7 @@ OH_AudioStream_Result OH_AudioStreamBuilder_SetRendererInfo(OH_AudioStreamBuilde
 OH_AudioStream_Result OH_AudioStreamBuilder_SetCapturerInfo(OH_AudioStreamBuilder* builder,
     OH_AudioStream_SourceType sourceType);
 
-/*
+/**
  * Set the callbacks for the renderer client
  *
  * @deprecated since 18
@@ -248,7 +248,7 @@ OH_AudioStream_Result OH_AudioStreamBuilder_SetRendererOutputDeviceChangeCallbac
 OH_AudioStream_Result OH_AudioStreamBuilder_SetRendererPrivacy(OH_AudioStreamBuilder* builder,
     OH_AudioStream_PrivacyType privacy);
 
-/*
+/**
  * Set the callbacks for the capturer client
  *
  * @deprecated since 18
@@ -269,7 +269,7 @@ OH_AudioStream_Result OH_AudioStreamBuilder_SetRendererPrivacy(OH_AudioStreamBui
 OH_AudioStream_Result OH_AudioStreamBuilder_SetCapturerCallback(OH_AudioStreamBuilder* builder,
     OH_AudioCapturer_Callbacks callbacks, void* userData);
 
-/*
+/**
  * Create the audio renderer client.
  *
  * @since 10
@@ -286,7 +286,7 @@ OH_AudioStream_Result OH_AudioStreamBuilder_SetCapturerCallback(OH_AudioStreamBu
 OH_AudioStream_Result OH_AudioStreamBuilder_GenerateRenderer(OH_AudioStreamBuilder* builder,
     OH_AudioRenderer** audioRenderer);
 
-/*
+/**
  * Create the audio capturer client.
  *
  * @since 10
@@ -303,7 +303,7 @@ OH_AudioStream_Result OH_AudioStreamBuilder_GenerateRenderer(OH_AudioStreamBuild
 OH_AudioStream_Result OH_AudioStreamBuilder_GenerateCapturer(OH_AudioStreamBuilder* builder,
     OH_AudioCapturer** audioCapturer);
 
-/*
+/**
  * Set the data frame size for each callback, use this function if the application requires a specific number
  * of frames for processing.
  * The frame size should be at least the size device process at one time, and less than half the internal
@@ -371,7 +371,7 @@ OH_AudioStream_Result OH_AudioStreamBuilder_SetRendererInterruptMode(OH_AudioStr
 OH_AudioStream_Result OH_AudioStreamBuilder_SetRendererWriteDataCallback(OH_AudioStreamBuilder* builder,
     OH_AudioRenderer_OnWriteDataCallback callback, void* userData);
 
-/*
+/**
  * Set the renderer volume mode of the stream client
  *
  * @since 18
