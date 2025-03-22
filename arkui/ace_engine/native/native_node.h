@@ -42,9 +42,12 @@
 
 #ifdef __cplusplus
 #include <cstdint>
-extern "C" {
 #else
 #include <stdint.h>
+#endif
+
+#ifdef __cplusplus
+extern "C" {
 #endif
 
 #define MAX_NODE_SCOPE_NUM 1000
