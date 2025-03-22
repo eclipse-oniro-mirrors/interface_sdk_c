@@ -45,6 +45,7 @@
 extern "C" {
 #else
 #include <stdint.h>
+#endif
 
 #define MAX_NODE_SCOPE_NUM 1000
 
