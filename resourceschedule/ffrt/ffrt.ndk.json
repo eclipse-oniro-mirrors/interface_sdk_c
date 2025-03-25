@@ -47,7 +47,7 @@
         "name": "ffrt_rwlock_tryrdlock"
     },
     { 
-        "first_introduced": "12",    
+        "first_introduced": "18",    
         "name": "ffrt_rwlock_unlock"
     },
     { 
