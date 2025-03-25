@@ -26,13 +26,38 @@
     { "name": "ffrt_mutex_unlock" },
     { "name": "ffrt_mutex_trylock" },
     { "name": "ffrt_mutex_destroy" },
-    { "name": "ffrt_rwlock_init" },
-    { "name": "ffrt_rwlock_wrlock" },
-    { "name": "ffrt_rwlock_trywrlock" },
-    { "name": "ffrt_rwlock_rdlock" },
-    { "name": "ffrt_rwlock_tryrdlock" },
-    { "name": "ffrt_rwlock_unlock" },
-    { "name": "ffrt_rwlock_destroy" },
+    { 
+        "first_introduced": "12",    
+        "name": "ffrt_rwlock_init"
+    },
+    { 
+        "first_introduced": "12",    
+        "name": "ffrt_rwlock_wrlock"
+    },
+    { 
+        "first_introduced": "12",    
+        "name": "ffrt_rwlock_trywrlock"
+    },
+    { 
+        "first_introduced": "12",    
+        "name": "ffrt_rwlock_rdlock"
+    },
+    { 
+        "first_introduced": "12",    
+        "name": "ffrt_rwlock_tryrdlock"
+    },
+    { 
+        "first_introduced": "12",    
+        "name": "ffrt_rwlock_unlock"
+    },
+    { 
+        "first_introduced": "12",    
+        "name": "ffrt_mutexattr_init"
+    },
+    { 
+        "first_introduced": "12",    
+        "name": "ffrt_rwlock_destroy"
+    },
     { "name": "ffrt_queue_attr_init" },
     { "name": "ffrt_queue_attr_destroy" },
     { "name": "ffrt_queue_attr_set_qos" },
