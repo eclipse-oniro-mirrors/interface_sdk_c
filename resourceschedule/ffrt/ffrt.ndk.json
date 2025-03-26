@@ -26,6 +26,34 @@
     { "name": "ffrt_mutex_unlock" },
     { "name": "ffrt_mutex_trylock" },
     { "name": "ffrt_mutex_destroy" },
+    { 
+        "first_introduced": "18",
+        "name": "ffrt_rwlock_init"
+    },
+    { 
+        "first_introduced": "18",
+        "name": "ffrt_rwlock_wrlock"
+    },
+    { 
+        "first_introduced": "18",
+        "name": "ffrt_rwlock_trywrlock"
+    },
+    { 
+        "first_introduced": "18",    
+        "name": "ffrt_rwlock_rdlock"
+    },
+    { 
+        "first_introduced": "18",
+        "name": "ffrt_rwlock_tryrdlock"
+    },
+    { 
+        "first_introduced": "18",
+        "name": "ffrt_rwlock_unlock"
+    },
+    { 
+        "first_introduced": "18",
+        "name": "ffrt_rwlock_destroy"
+    },
     { "name": "ffrt_queue_attr_init" },
     { "name": "ffrt_queue_attr_destroy" },
     { "name": "ffrt_queue_attr_set_qos" },
