@@ -55,44 +55,44 @@ extern "C" {
 typedef enum OH_ColumnType {
     /**
      * @brief Indicates the column type is NULL.
-     *
-     * @since 10 Moved from oh_cursor.h file.
+     * Moved from oh_cursor.h file.
+     * @since 10
      */
     TYPE_NULL = 0,
     /**
      * @brief Indicates the column type is INT64.
-     *
-     * @since 10 Moved from oh_cursor.h file.
+     * Moved from oh_cursor.h file.
+     * @since 10
      */
     TYPE_INT64,
     /**
      * @brief Indicates the column type is REAL.
-     *
-     * @since 10 Moved from oh_cursor.h file.
+     * Moved from oh_cursor.h file.
+     * @since 10
      */
     TYPE_REAL,
     /**
      * @brief Indicates the column type is TEXT.
-     *
-     * @since 10 Moved from oh_cursor.h file.
+     * Moved from oh_cursor.h file.
+     * @since 10
      */
     TYPE_TEXT,
     /**
      * @brief Indicates the column type is BLOB.
-     *
-     * @since 10 Moved from oh_cursor.h file.
+     * Moved from oh_cursor.h file.
+     * @since 10
      */
     TYPE_BLOB,
     /**
      * @brief Indicates the column type is {@link Data_Asset}.
-     *
-     * @since 11 Moved from oh_cursor.h file.
+     * Moved from oh_cursor.h file.
+     * @since 11
      */
     TYPE_ASSET,
     /**
      * @brief Indicates the column type is array of {@link Data_Asset}.
-     *
-     * @since 11 Moved from oh_cursor.h file.
+     * Moved from oh_cursor.h file.
+     * @since 11
      */
     TYPE_ASSETS,
     /**
@@ -125,7 +125,7 @@ typedef struct OH_Data_Value OH_Data_Value;
  * @see OH_Value_Destroy.
  * @since 18
  */
-OH_Data_Value *OH_Value_Create();
+OH_Data_Value *OH_Value_Create(void);
 
 /**
  * @brief Destroys an OH_Data_Value instance object.
