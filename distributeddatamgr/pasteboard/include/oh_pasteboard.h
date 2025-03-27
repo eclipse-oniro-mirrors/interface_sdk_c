@@ -209,7 +209,8 @@ void OH_Pasteboard_Destroy(OH_Pasteboard* pasteboard);
  * @brief Subscribes to the Pasteboard data change.
  *
  * @param pasteboard Pointer to the {@link OH_Pasteboard} instance.
- * @param type Event type to subscribe to report the pasteboard data change. For details, see {@link Pasteboard_NotifyType}.
+ * @param type Event type to subscribe to report the pasteboard data change. 
+ *         For details, see {@link Pasteboard_NotifyType}.
  * @param observer - Pointer to the observer information, which specifies the callback used to
  * reporting the pasteboard data change. For details, see {@link OH_PasteboardObserver}.
  * @return Returns the status code of the execution. For details, {@link PASTEBOARD_ErrCode}.
@@ -224,7 +225,8 @@ int OH_Pasteboard_Subscribe(OH_Pasteboard* pasteboard, int type, const OH_Pasteb
  * @brief Unsubscribes from the Pasteboard data change.
  *
  * @param pasteboard Pointer to the {@link OH_Pasteboard} instance.
- * @param type Event type to subscribe to report the pasteboard data change. For details, see {@link Pasteboard_NotifyType}.
+ * @param type Event type to subscribe to report the pasteboard data change. 
+ *         For details, see {@link Pasteboard_NotifyType}.
  * @param observer - Pointer to the observer information, which specifies the callback used to
  * reporting the pasteboard data change. For details, see {@link OH_PasteboardObserver}.
  * @return Returns the status code of the execution. For details, {@link PASTEBOARD_ErrCode}.
