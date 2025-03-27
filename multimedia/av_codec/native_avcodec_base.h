@@ -383,7 +383,7 @@ extern const char *OH_AVCODEC_MIMETYPE_VIDEO_MPEG4_PART2;
  * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 18
  */
- extern const char *OH_AVCODEC_MIMETYPE_VIDEO_H263;
+extern const char *OH_AVCODEC_MIMETYPE_VIDEO_H263;
 
 /**
  * @brief Key for timeStamp in surface's extraData, value type is int64_t.
@@ -1206,7 +1206,7 @@ typedef enum OH_MPEG4Profile {
  * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 18
  */
- typedef enum OH_H263Profile {
+typedef enum OH_H263Profile {
     /** Baseline profile */
     H263_PROFILE_BASELINE = 0,
     /** Version 1 backward compatibility profile */
@@ -1513,7 +1513,7 @@ typedef enum OH_MPEG4Level {
  * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 18
  */
- typedef enum OH_H263Level {
+typedef enum OH_H263Level {
     /** 10 level */
     H263_LEVEL_10 = 0,
     /** 20 level */
