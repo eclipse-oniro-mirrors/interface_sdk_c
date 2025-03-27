@@ -20,7 +20,7 @@
  * @brief Provides the native fence capability
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeFence
- * @since 8
+ * @since 20
  * @version 1.0
  */
 
@@ -32,7 +32,7 @@
  * @kit ArkGraphics2D
  * @library libnative_fence.so
  * @syscap SystemCapability.Graphic.Graphic2D.NativeFence
- * @since 8
+ * @since 20
  * @version 1.0
  */
 
