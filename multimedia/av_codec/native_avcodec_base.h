@@ -378,6 +378,14 @@ extern const char *OH_AVCODEC_MIMETYPE_VIDEO_MPEG2;
 extern const char *OH_AVCODEC_MIMETYPE_VIDEO_MPEG4_PART2;
 
 /**
+ * @brief Enumerates the MIME type of video h263 codec.
+ *
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
+ * @since 18
+ */
+ extern const char *OH_AVCODEC_MIMETYPE_VIDEO_H263;
+
+/**
  * @brief Key for timeStamp in surface's extraData, value type is int64_t.
  *
  * @syscap SystemCapability.Multimedia.Media.CodecBase
@@ -1193,6 +1201,19 @@ typedef enum OH_MPEG4Profile {
 } OH_MPEG4Profile;
 
 /**
+ * @brief H263 Profile
+ *
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
+ * @since 18
+ */
+ typedef enum OH_H263Profile {
+    /** Baseline profile */
+    H263_PROFILE_BASELINE = 0,
+    /** Version 1 backward compatibility profile */
+    H263_PROFILE_VERSION_1_BACKWARD_COMPATIBILITY = 2,
+} OH_H263Profile;
+
+/**
  * @brief Enumerates the muxer output file format
  *
  * @syscap SystemCapability.Multimedia.Media.CodecBase
@@ -1485,6 +1506,31 @@ typedef enum OH_MPEG4Level {
     /** 6 level */
     MPEG4_LEVEL_6 = 9,
 } OH_MPEG4Level;
+
+/**
+ * @brief H263 Level.
+ *
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
+ * @since 18
+ */
+ typedef enum OH_H263Level {
+    /** 10 level */
+    H263_LEVEL_10 = 0,
+    /** 20 level */
+    H263_LEVEL_20 = 1,
+    /** 30 level */
+    H263_LEVEL_30 = 2,
+    /** 40 level */
+    H263_LEVEL_40 = 3,
+    /** 45 level */
+    H263_LEVEL_45 = 4,
+    /** 50 level */
+    H263_LEVEL_50 = 5,
+    /** 60 level */
+    H263_LEVEL_60 = 6,
+    /** 70 level */
+    H263_LEVEL_70 = 7,
+} OH_H263Level;
 
 /**
  * @brief The reference mode in temporal group of picture.
