@@ -397,18 +397,6 @@ typedef struct {
      */
     ArkUI_NativeDialogAPI_2 nativeDialogAPI2;
     /**
-     * @brief Sets the display order for a custom dialog box.
-     *
-     * @note This method must be called before the <b>show</b> method.
-     * @param handle Indicates the pointer to the custom dialog box controller.
-     * @param levelOrder Indicates the display order. The valid range is [-100000.0, 100000.0].
-     * @return Returns the error code.
-     *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
-     *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
-     * @since 18
-     */
-    int32_t (*setLevelOrder)(ArkUI_NativeDialogHandle handle, double levelOrder);
-    /**
      * @brief Registers a listener callback before the dialog openAnimation starts.
      *
      * @param handle Indicates the pointer to the custom dialog box controller.
@@ -464,18 +452,6 @@ typedef struct {
      */
     int32_t (*registerOnDidDisappear)(
         ArkUI_NativeDialogHandle handle, void* userData, void (*callback)(void* userData));
-
-    /**
-     * @brief Sets whether to get focus when the custom dialog is displayed.
-     *
-     * @param handle Indicates the pointer to the custom dialog box controller.
-     * @param focusable Specifies whether to get focus when the custom dialog is displayed. The default value is true.
-     * @return Returns the error code.
-     *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
-     *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
-     * @since 18
-     */
-    int32_t (*setFocusable)(ArkUI_NativeDialogHandle handle, bool focusable);
 } ArkUI_NativeDialogAPI_3;
 
 /**
