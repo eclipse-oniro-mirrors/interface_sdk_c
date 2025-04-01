@@ -1111,12 +1111,12 @@ typedef enum Camera_ConcurrentType {
     /**
      * Cameras concurrency with limited capability.
      */
-    CONCURRENT_TYPE_LIMITED_CAPABILITY  = 0,
+    CAMERA_CONCURRENT_TYPE_LIMITED_CAPABILITY  = 0,
 
     /**
      * Cameras concurrenct with full capability.
      */
-    CONCURRENT_TYPE_FULL_CAPABILITY = 1
+    CAMERA_CONCURRENT_TYPE_FULL_CAPABILITY = 1
 } Camera_ConcurrentType;
 
 /**
