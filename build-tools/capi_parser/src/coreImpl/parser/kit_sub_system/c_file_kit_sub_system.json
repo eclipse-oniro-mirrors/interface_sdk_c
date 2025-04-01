@@ -297,7 +297,6 @@
       "kitName": "ArkGraphicsD",
       "subSystem": "图形图像"
     },
-    { "filePath": "graphic/graphic_2d/native_fence/native_fence.h", "kitName": "NA", "subSystem": "图形图像" },
     { "filePath": "third_party/vulkan-headers/vulkan/vk_platform.h", "kitName": "NA", "subSystem": "图形图像" },
     { "filePath": "third_party/vulkan-headers/vulkan/vulkan.h", "kitName": "NA", "subSystem": "图形图像" },
     { "filePath": "third_party/vulkan-headers/vulkan/vulkan_core.h", "kitName": "NA", "subSystem": "图形图像" },

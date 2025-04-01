@@ -209,12 +209,12 @@ typedef enum OH_NativeBuffer_Format {
      */
     NATIVEBUFFER_PIXEL_FMT_RGBA16_FLOAT,
     /**
-     * RGBA16 Y8 format
+     * Y8 format
      * @since 20
      */
     NATIVEBUFFER_PIXEL_FMT_Y8 = 40,
     /**
-     * RGBA16 Y16 format
+     * Y16 format
      * @since 20
      */
     NATIVEBUFFER_PIXEL_FMT_Y16 = 41,
