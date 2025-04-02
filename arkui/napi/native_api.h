@@ -1639,6 +1639,13 @@ NAPI_EXTERN napi_status napi_define_class(napi_env env,
                                           size_t property_count,
                                           const napi_property_descriptor* properties,
                                           napi_value* result);
+
+/**
+ * @brief To load native libraries and this interface is defined in native libraries.
+ *
+ * @since 17
+ */
+NAPI_EXTERN void napi_onLoad();
 #ifdef __cplusplus
 }
 #endif
