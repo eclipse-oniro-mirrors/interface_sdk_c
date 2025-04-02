@@ -501,7 +501,7 @@ Camera_ErrorCode OH_CameraManager_GetCameraDevice(Camera_Manager* cameraManager,
 Camera_ErrorCode OH_CameraManager_GetCameraConcurrentInfos(Camera_Manager* cameraManager, const Camera_Device* camera,
     uint32_t deviceSize,
     Camera_ConcurrentInfo** cameraConcurrentInfo,
-    uint32_t* infoSize)
+    uint32_t* infoSize);
 
 #ifdef __cplusplus
 }
