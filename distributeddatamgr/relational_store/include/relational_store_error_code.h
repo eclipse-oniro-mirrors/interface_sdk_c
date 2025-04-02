@@ -415,7 +415,7 @@ typedef enum OH_Rdb_ErrCode {
     RDB_E_TYPE_MISMATCH = (E_BASE + 64),
 
     /**
-     * @brief Data value type is null.
+     * @brief SQLite: Abort due to constraint violation.
      *
      * @since 18
      */
