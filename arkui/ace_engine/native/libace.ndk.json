@@ -2976,43 +2976,43 @@
         "name": "OH_ArkUI_VisibleAreaEventOptions_GetExpectedUpdateInterval"
     },
     {
-        "first_introduced": "18",
+        "first_introduced": "17",
         "name": "OH_ArkUI_UIInputEvent_GetEventTargetWidth"
     },
     {
-        "first_introduced": "18",
+        "first_introduced": "17",
         "name": "OH_ArkUI_UIInputEvent_GetEventTargetHeight"
     },
     {
-        "first_introduced": "18",
+        "first_introduced": "17",
         "name": "OH_ArkUI_UIInputEvent_GetEventTargetPositionX"
     },
     {
-        "first_introduced": "18",
+        "first_introduced": "17",
         "name": "OH_ArkUI_UIInputEvent_GetEventTargetPositionY"
     },
     {
-        "first_introduced": "18",
+        "first_introduced": "17",
         "name": "OH_ArkUI_UIInputEvent_GetEventTargetGlobalPositionX"
     },
     {
-        "first_introduced": "18",
+        "first_introduced": "17",
         "name": "OH_ArkUI_UIInputEvent_GetEventTargetGlobalPositionY"
     },
     {
-        "first_introduced": "18",
+        "first_introduced": "17",
         "name": "OH_ArkUI_HoverEvent_IsHovered"
     },
     {
-        "first_introduced": "18",
+        "first_introduced": "17",
         "name": "OH_ArkUI_UIInputEvent_GetModifierKeyStates"
     },
     {
-        "first_introduced": "18",
+        "first_introduced": "17",
         "name": "OH_ArkUI_AxisEvent_SetPropagation"
     },
     {
-        "first_introduced": "18",
+        "first_introduced": "17",
         "name": "OH_ArkUI_AxisEvent_GetScrollStep"
     },
     {
@@ -3177,6 +3177,14 @@
     },
     {
         "first_introduced": "18",
+        "name": "OH_ArkUI_CustomDialog_SetBackgroundBlurStyleOptions"
+    },
+    {
+        "first_introduced": "18",
+        "name": "OH_ArkUI_CustomDialog_SetBackgroundEffect"
+    },
+    {
+        "first_introduced": "18",
         "name": "OH_ArkUI_CustomDialog_RegisterOnWillDismissCallback"
     },
     {
@@ -3290,5 +3298,17 @@
     {
         "first_introduced": "18",
         "name": "OH_ArkUI_XComponent_IsInitialized"
+    },
+    {
+        "first_introduced": "18",
+        "name": "OH_ArkUI_KeyEvent_IsNumLockOn"
+    },
+    {
+        "first_introduced": "18",
+        "name": "OH_ArkUI_KeyEvent_IsCapsLockOn"
+    },
+    {
+        "first_introduced": "18",
+        "name": "OH_ArkUI_KeyEvent_IsScrollLockOn"
     }
 ]
