@@ -423,6 +423,8 @@ typedef enum {
     ARKUI_TEXTINPUT_TYPE_NEW_PASSWORD = 11,
     /** Number input mode with a decimal point. */
     ARKUI_TEXTINPUT_TYPE_NUMBER_DECIMAL = 12,
+    /** OneTimeCode input mode. */
+    ARKUI_TEXTINPUT_TYPE_ONE_TIME_CODE = 13,
 } ArkUI_TextInputType;
 
 /**
