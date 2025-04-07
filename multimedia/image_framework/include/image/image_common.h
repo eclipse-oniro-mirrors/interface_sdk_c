@@ -27,7 +27,7 @@
  *
  * @brief Declares the common enums and structs used by the image interface.
  *
- * @library libpixelmap.so
+ * @library libimage_common.so
  * @kit ImageKit
  * @syscap SystemCapability.Multimedia.Image.Core
  * @since 12
