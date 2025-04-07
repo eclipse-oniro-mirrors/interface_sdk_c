@@ -508,10 +508,6 @@
         "name": "OH_ArkUI_PointerEvent_GetTiltY"
     },
     {
-        "first_introduced": "18",
-        "name": "OH_ArkUI_PointerEvent_GetRollAngle"
-    },
-    {
         "first_introduced": "15",
         "name": "OH_ArkUI_PointerEvent_GetInteractionHand"
     },
@@ -3006,18 +3002,6 @@
     {
         "first_introduced": "17",
         "name": "OH_ArkUI_AxisEvent_GetScrollStep"
-    },
-    {
-        "first_introduced": "18",
-        "name": "OH_ArkUI_DragEvent_RequestDragEndPending"
-    },
-    {
-        "first_introduced": "18",
-        "name": "OH_ArkUI_NotifyDragResult"
-    },
-    {
-        "first_introduced": "18",
-        "name": "OH_ArkUI_NotifyDragEndPendingDone"
     },
     {
         "first_introduced": "18",
