@@ -662,5 +662,13 @@
     {
         "first_introduced": "18",
         "name": "OH_CameraInput_OpenConcurrentCameras"
+    },
+    {
+        "first_introduced": "19",
+        "name": "OH_CaptureSession_IsMacroSupported"
+    },
+    {
+        "first_introduced": "19",
+        "name": "OH_CaptureSession_EnableMacro"
     }
 ]

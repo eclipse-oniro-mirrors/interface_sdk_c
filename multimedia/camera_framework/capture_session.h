@@ -937,7 +937,7 @@ Camera_ErrorCode OH_CaptureSession_SetQualityPrioritization(
  * @return {@link #CAMERA_OK} if the method call succeeds.
  *         {@link #CAMERA_INVALID_ARGUMENT} if parameter missing or parameter type incorrect.
  *         {@link #CAMERA_SESSION_NOT_CONFIG} if the capture session not config.
- * @since 17
+ * @since 19
  */
 Camera_ErrorCode OH_CaptureSession_IsMacroSupported(Camera_CaptureSession* session, bool* isSupported);
 
@@ -950,7 +950,7 @@ Camera_ErrorCode OH_CaptureSession_IsMacroSupported(Camera_CaptureSession* sessi
  *         {@link #CAMERA_INVALID_ARGUMENT} if parameter missing or parameter type incorrect.
  *         {@link #CAMERA_SESSION_NOT_CONFIG} if the capture session not config.
  *         {@link #CAMERA_OPERATION_NOT_ALLOWED} if operation not allowed.
- * @since 17
+ * @since 19
  */
 Camera_ErrorCode OH_CaptureSession_EnableMacro(Camera_CaptureSession* session, bool enabled);
 
