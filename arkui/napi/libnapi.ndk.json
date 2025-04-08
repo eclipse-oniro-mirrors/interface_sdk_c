@@ -242,5 +242,9 @@
     {
         "first_introduced": "18",
         "name": "napi_wrap_enhance"
+    },
+    {
+        "first_introduced": "17",
+        "name": "napi_onLoad"
     }
 ]
