@@ -121,58 +121,6 @@
     },
     {
         "first_introduced": "12",
-        "name": "OH_NativeXComponent_RegisterUIInputEventCallback"
-    },
-    {
-        "first_introduced": "12",
-        "name": "OH_ArkUI_UIInputEvent_GetType"
-    },
-    {
-        "first_introduced": "12",
-        "name": "OH_ArkUI_UIInputEvent_GetEventTime"
-    },
-    {
-        "first_introduced": "12",
-        "name": "OH_ArkUI_PointerEvent_GetX"
-    },
-    {
-        "first_introduced": "12",
-        "name": "OH_ArkUI_PointerEvent_GetY"
-    },
-    {
-        "first_introduced": "12",
-        "name": "OH_ArkUI_PointerEvent_GetWindowX"
-    },
-    {
-        "first_introduced": "12",
-        "name": "OH_ArkUI_PointerEvent_GetWindowY"
-    },
-    {
-        "first_introduced": "12",
-        "name": "OH_ArkUI_PointerEvent_GetDisplayX"
-    },
-    {
-        "first_introduced": "12",
-        "name": "OH_ArkUI_PointerEvent_GetDisplayY"
-    },
-    {
-        "first_introduced": "12",
-        "name": "OH_ArkUI_AxisEvent_GetVerticalAxisValue"
-    },
-    {
-        "first_introduced": "12",
-        "name": "OH_ArkUI_AxisEvent_GetHorizontalAxisValue"
-    },
-    {
-        "first_introduced": "12",
-        "name": "OH_ArkUI_AxisEvent_GetPinchAxisScaleValue"
-    },
-    {
-        "first_introduced": "15",
-        "name": "OH_ArkUI_AxisEvent_GetAxisAction"
-    },
-    {
-        "first_introduced": "12",
         "name": "OH_ArkUI_GetNodeHandleFromNapiValue"
     },
     {
@@ -333,6 +281,22 @@
     },
     {
         "first_introduced": "12",
+        "name": "OH_ArkUI_AxisEvent_GetVerticalAxisValue"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_ArkUI_AxisEvent_GetHorizontalAxisValue"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_ArkUI_AxisEvent_GetPinchAxisScaleValue"
+    },
+    {
+        "first_introduced": "15",
+        "name": "OH_ArkUI_AxisEvent_GetAxisAction"
+    },
+    {
+        "first_introduced": "12",
         "name": "OH_NativeXComponent_SetNeedSoftKeyboard"
     },
     {
@@ -342,6 +306,42 @@
     {
         "first_introduced": "12",
         "name": "OH_NativeXComponent_RegisterSurfaceHideCallback"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_NativeXComponent_RegisterUIInputEventCallback"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_ArkUI_UIInputEvent_GetType"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_ArkUI_UIInputEvent_GetEventTime"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_ArkUI_PointerEvent_GetX"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_ArkUI_PointerEvent_GetY"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_ArkUI_PointerEvent_GetWindowX"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_ArkUI_PointerEvent_GetWindowY"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_ArkUI_PointerEvent_GetDisplayX"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_ArkUI_PointerEvent_GetDisplayY"
     },
     {
         "first_introduced": "12",
@@ -506,6 +506,10 @@
     {
         "first_introduced": "12",
         "name": "OH_ArkUI_PointerEvent_GetTiltY"
+    },
+    {
+        "first_introduced": "18",
+        "name": "OH_ArkUI_PointerEvent_GetRollAngle"
     },
     {
         "first_introduced": "15",
@@ -2753,6 +2757,10 @@
     },
     {
         "first_introduced": "15",
+        "name": "OH_ArkUI_KeyEvent_Dispatch"
+    },
+    {
+        "first_introduced": "15",
         "name": "OH_ArkUI_PointerEvent_GetChangedPointerId"
     },
     {
@@ -2793,7 +2801,19 @@
     },
     {
         "first_introduced": "15",
-        "name": "OH_ArkUI_KeyEvent_Dispatch"
+        "name": "OH_ArkUI_FocusRequest"
+    },
+    {
+        "first_introduced": "15",
+        "name": "OH_ArkUI_FocusClear"
+    },
+    {
+        "first_introduced": "15",
+        "name": "OH_ArkUI_FocusActivate"
+    },
+    {
+        "first_introduced": "15",
+        "name": "OH_ArkUI_FocusSetAutoTransfer"
     },
     {
         "first_introduced": "15",
@@ -2869,34 +2889,6 @@
     },
     {
         "first_introduced": "15",
-        "name": "OH_ArkUI_DragEvent_StartDataLoading"
-    },
-    {
-        "first_introduced": "15",
-        "name": "OH_ArkUI_CancelDataLoading"
-    },
-    {
-        "first_introduced": "15",
-        "name": "OH_ArkUI_DisableDropDataPrefetchOnNode"
-    },
-    {
-        "first_introduced": "15",
-        "name": "OH_ArkUI_FocusRequest"
-    },
-    {
-        "first_introduced": "15",
-        "name": "OH_ArkUI_FocusClear"
-    },
-    {
-        "first_introduced": "15",
-        "name": "OH_ArkUI_FocusActivate"
-    },
-    {
-        "first_introduced": "15",
-        "name": "OH_ArkUI_FocusSetAutoTransfer"
-    },
-    {
-        "first_introduced": "15",
         "name": "OH_ArkUI_CreateSnapshotOptions"
     },
     {
@@ -2933,11 +2925,35 @@
     },
     {
         "first_introduced": "18",
+        "name": "OH_ArkUI_GestureInterrupter_GetUserData"
+    },
+    {
+        "first_introduced": "15",
+        "name": "OH_ArkUI_FocusSetKeyProcessingMode"
+    },
+    {
+        "first_introduced": "18",
         "name": "OH_ArkUI_XComponent_StartImageAnalyzer"
     },
     {
         "first_introduced": "18",
         "name": "OH_ArkUI_XComponent_StopImageAnalyzer"
+    },
+    {
+        "first_introduced": "15",
+        "name": "OH_ArkUI_DragEvent_StartDataLoading"
+    },
+    {
+        "first_introduced": "15",
+        "name": "OH_ArkUI_CancelDataLoading"
+    },
+    {
+        "first_introduced": "18",
+        "name": "OH_ArkUI_KeyframeAnimateOption_SetExpectedFrameRate"
+    },
+    {
+        "first_introduced": "18",
+        "name": "OH_ArkUI_KeyframeAnimateOption_GetExpectedFrameRate"
     },
     {
         "first_introduced": "17",
@@ -2962,6 +2978,10 @@
     {
         "first_introduced": "17",
         "name": "OH_ArkUI_VisibleAreaEventOptions_GetExpectedUpdateInterval"
+    },
+    {
+        "first_introduced": "15",
+        "name": "OH_ArkUI_DisableDropDataPrefetchOnNode"
     },
     {
         "first_introduced": "17",
@@ -3005,11 +3025,15 @@
     },
     {
         "first_introduced": "18",
-        "name": "OH_ArkUI_GestureInterrupter_GetUserData"
+        "name": "OH_ArkUI_DragEvent_RequestDragEndPending"
     },
     {
-        "first_introduced": "15",
-        "name": "OH_ArkUI_FocusSetKeyProcessingMode"
+        "first_introduced": "18",
+        "name": "OH_ArkUI_NotifyDragResult"
+    },
+    {
+        "first_introduced": "18",
+        "name": "OH_ArkUI_NotifyDragEndPendingDone"
     },
     {
         "first_introduced": "15",

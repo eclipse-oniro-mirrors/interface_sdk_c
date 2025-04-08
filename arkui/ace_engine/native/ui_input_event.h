@@ -36,9 +36,9 @@
 #ifndef _ARKUI_UI_INPUT_EVENT_H_
 #define _ARKUI_UI_INPUT_EVENT_H_
 
-#include "native_type.h"
 #include <stdint.h>
 
+#include "native_type.h"
 #ifdef __cplusplus
 extern "C" {
 #endif
