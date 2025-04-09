@@ -362,22 +362,6 @@ OH_AudioStream_Result OH_AudioStreamBuilder_SetRendererInterruptMode(OH_AudioStr
 OH_AudioStream_Result OH_AudioStreamBuilder_SetRendererWriteDataCallback(OH_AudioStreamBuilder* builder,
     OH_AudioRenderer_OnWriteDataCallback callback, void* userData);
 
-/*
- * Set the renderer volume mode of the stream client
- *
- * @since 18
- *
- * @param builder Reference provided by OH_AudioStreamBuilder_Create()
- * @param volumeMode Set the volume mode for the renderer client.
- * @return Function result code:
- *         {@link AUDIOSTREAM_SUCCESS} If the execution is successful.
- *         {@link AUDIOSTREAM_ERROR_INVALID_PARAM}:
- *                                                 1.The param of builder is nullptr;
- *                                                 2.The param of volumeMode invalid.
- */
-OH_AudioStream_Result OH_AudioStreamBuilder_SetVolumeMode(OH_AudioStreamBuilder* builder,
-    OH_AudioStream_VolumeMode volumeMode);
-
 #ifdef __cplusplus
 }
 #endif
