@@ -190,7 +190,7 @@ typedef enum Rdb_DBType {
 /**
  * @brief Define Rdb_Tokenizer type.
  *
- * @since 18
+ * @since 17
  */
 typedef enum Rdb_Tokenizer {
     /**
@@ -341,7 +341,7 @@ int OH_Rdb_SetDbType(OH_Rdb_ConfigV2 *config, int dbType);
  *     {@link RDB_OK} - success.
  *     {@link RDB_E_INVALID_ARGS} - The error code for common invalid args.
  *     {@link RDB_E_NOT_SUPPORTED} - The error code for not support tokenizer.
- * @since 18
+ * @since 17
  */
 int OH_Rdb_SetTokenizer(OH_Rdb_ConfigV2 *config, Rdb_Tokenizer tokenizer);
 
