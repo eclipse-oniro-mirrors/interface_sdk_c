@@ -506,6 +506,18 @@ float OH_ArkUI_PointerEvent_GetTiltX(const ArkUI_UIInputEvent* event, uint32_t p
 float OH_ArkUI_PointerEvent_GetTiltY(const ArkUI_UIInputEvent* event, uint32_t pointerIndex);
 
 /**
+ * @brief Obtains the rotation angle of the stylus around the z-axis from a UI input event.
+ *
+ * @param event Pointer to the UI input event.
+ * @param rollAngle Rotation angle of the stylus around the z-axis.
+ * @return Returns the result code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @since 17
+ */
+int32_t OH_ArkUI_PointerEvent_GetRollAngle(const ArkUI_UIInputEvent* event, double* rollAngle);
+
+/**
  * @brief Obtains the width of the touch area from a directional input event (for example, a touch event).
  *
  * @param event Indicates the pointer to the current UI input event.
