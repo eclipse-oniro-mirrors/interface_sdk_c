@@ -195,14 +195,17 @@ typedef enum Rdb_DBType {
 typedef enum Rdb_Tokenizer {
     /**
      * @brief Means not using tokenizer.
+	 * @since 17
      */
     RDB_NONE_TOKENIZER = 1,
     /**
      * @brief Means using native icu tokenizer.
+	 * @since 17
      */
     RDB_ICU_TOKENIZER = 2,
     /**
      * @brief Means using self-developed enhance tokenizer.
+	 * @since 18
      */
     RDB_CUSTOM_TOKENIZER = 3,
 } Rdb_Tokenizer;
