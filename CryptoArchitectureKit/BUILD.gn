@@ -18,9 +18,14 @@ ohos_ndk_headers("crypto_capi_header") {
   dest_dir = "$ndk_headers_out_dir/CryptoArchitectureKit"
   sources = [
     "./crypto_architecture_kit.h",
+    "./crypto_asym_cipher.h",
     "./crypto_asym_key.h",
     "./crypto_common.h",
     "./crypto_digest.h",
+    "./crypto_kdf.h",
+    "./crypto_key_agreement.h",
+    "./crypto_mac.h",
+    "./crypto_rand.h",
     "./crypto_signature.h",
     "./crypto_sym_cipher.h",
     "./crypto_sym_key.h",
@@ -34,9 +39,14 @@ ohos_ndk_library("libohcrypto") {
   system_capability = "SystemCapability.Security.CryptoFramework"
   system_capability_headers = [
     "CryptoArchitectureKit/crypto_architecture_kit.h",
+    "CryptoArchitectureKit/crypto_asym_cipher.h",
     "CryptoArchitectureKit/crypto_asym_key.h",
     "CryptoArchitectureKit/crypto_common.h",
     "CryptoArchitectureKit/crypto_digest.h",
+    "CryptoArchitectureKit/crypto_kdf.h",
+    "CryptoArchitectureKit/crypto_key_agreement.h",
+    "CryptoArchitectureKit/crypto_mac.h",
+    "CryptoArchitectureKit/crypto_rand.h",
     "CryptoArchitectureKit/crypto_signature.h",
     "CryptoArchitectureKit/crypto_sym_cipher.h",
     "CryptoArchitectureKit/crypto_sym_key.h",
