@@ -1801,6 +1801,18 @@
     },
     {
         "first_introduced": "12",
+        "name": "OH_ArkUI_NodeEvent_GetNumberValue"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_ArkUI_NodeEvent_GetStringValue"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_ArkUI_NodeEvent_SetReturnNumberValue"
+    },
+    {
+        "first_introduced": "12",
         "name": "OH_ArkUI_AnimateOption_SetICurve"
     },
     {
@@ -2042,18 +2054,6 @@
     {
         "first_introduced": "12",
         "name": "OH_ArkUI_Curve_DisposeCurve"
-    },
-    {
-        "first_introduced": "12",
-        "name": "OH_ArkUI_NodeEvent_GetNumberValue"
-    },
-    {
-        "first_introduced": "12",
-        "name": "OH_ArkUI_NodeEvent_GetStringValue"
-    },
-    {
-        "first_introduced": "12",
-        "name": "OH_ArkUI_NodeEvent_SetReturnNumberValue"
     },
     {
         "first_introduced": "12",
@@ -2361,6 +2361,30 @@
     },
     {
         "first_introduced": "12",
+        "name": "OH_ArkUI_RegisterSystemColorModeChangeEvent"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_ArkUI_UnregisterSystemColorModeChangeEvent"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_ArkUI_RegisterSystemFontStyleChangeEvent"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_ArkUI_UnregisterSystemFontStyleChangeEvent"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_ArkUI_SystemFontStyleEvent_GetFontSizeScale"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_ArkUI_SystemFontStyleEvent_GetFontWeightScale"
+    },
+    {
+        "first_introduced": "12",
         "name": "OH_ArkUI_NodeCustomEvent_GetCustomSpanMeasureInfo"
     },
     {
@@ -2434,30 +2458,6 @@
     {
         "first_introduced": "12",
         "name": "OH_ArkUI_DialogDismissEvent_GetDismissReason"
-    },
-    {
-        "first_introduced": "12",
-        "name": "OH_ArkUI_RegisterSystemColorModeChangeEvent"
-    },
-    {
-        "first_introduced": "12",
-        "name": "OH_ArkUI_UnregisterSystemColorModeChangeEvent"
-    },
-    {
-        "first_introduced": "12",
-        "name": "OH_ArkUI_RegisterSystemFontStyleChangeEvent"
-    },
-    {
-        "first_introduced": "12",
-        "name": "OH_ArkUI_UnregisterSystemFontStyleChangeEvent"
-    },
-    {
-        "first_introduced": "12",
-        "name": "OH_ArkUI_SystemFontStyleEvent_GetFontSizeScale"
-    },
-    {
-        "first_introduced": "12",
-        "name": "OH_ArkUI_SystemFontStyleEvent_GetFontWeightScale"
     },
     {
         "first_introduced": "13",
@@ -2761,6 +2761,10 @@
     },
     {
         "first_introduced": "15",
+        "name": "OH_ArkUI_NodeEvent_GetTextChangeEvent"
+    },
+    {
+        "first_introduced": "15",
         "name": "OH_ArkUI_PointerEvent_GetChangedPointerId"
     },
     {
@@ -2854,10 +2858,6 @@
     {
         "first_introduced": "15",
         "name": "OH_ArkUI_ProgressLinearStyleOption_GetStrokeRadius"
-    },
-    {
-        "first_introduced": "15",
-        "name": "OH_ArkUI_NodeEvent_GetTextChangeEvent"
     },
     {
         "first_introduced": "18",
