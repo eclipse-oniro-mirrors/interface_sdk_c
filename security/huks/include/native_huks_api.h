@@ -437,6 +437,22 @@ struct OH_Huks_Result OH_Huks_FinishSession(const struct OH_Huks_Blob *handle,
 struct OH_Huks_Result OH_Huks_AbortSession(const struct OH_Huks_Blob *handle,
     const struct OH_Huks_ParamSet *paramSet);
 
+/**
+ * @brief Get key alias list.
+ *
+ * @param paramSet Indicates the pointer to the parameters required for getting key alias list.
+ *     By default, this parameter is a null pointer.
+ * @param outData Indicates the pointer to the output data.
+ * @return {@link OH_Huks_ErrCode#OH_HUKS_SUCCESS} 0 - If the operation is successful.
+ *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_ILLEGAL_ARGUMENT} 401 - If paramSet or outData is invalid.
+ *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_INTERNAL_ERROR} 12000012 - If system error ocurred.
+ *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_COMMUNICATION_FAIL} 12000005 - If Ipc commuication failed.
+ *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_INSUFFICIENT_MEMORY} 12000014 - If the memory is insufficient.
+ * @since 20
+ */
+struct OH_Huks_Result OH_Huks_ListAliases(const struct OH_Huks_ParamSet *paramSet,
+    struct OH_Huks_KeyAliasSet **outData);
+
 #ifdef __cplusplus
 }
 #endif
