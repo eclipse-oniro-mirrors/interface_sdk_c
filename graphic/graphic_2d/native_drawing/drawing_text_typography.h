@@ -64,7 +64,7 @@ extern "C" {
  * @since 8
  * @version 1.0
  */
-typedef enum {
+typedef enum OH_Drawing_TextDirection {
     /** Right to left (RTL) */
     TEXT_DIRECTION_RTL,
     /** Left to right (LTR) */
@@ -77,7 +77,7 @@ typedef enum {
  * @since 8
  * @version 1.0
  */
-typedef enum {
+typedef enum OH_Drawing_TextAlign {
     /** Left-aligned */
     TEXT_ALIGN_LEFT,
     /** Right-aligned */
@@ -111,7 +111,7 @@ typedef enum {
  * @since 8
  * @version 1.0
  */
-typedef enum {
+typedef enum OH_Drawing_FontWeight {
     /** Thin */
     FONT_WEIGHT_100,
     /** Extra-light */
@@ -138,7 +138,7 @@ typedef enum {
  * @since 8
  * @version 1.0
  */
-typedef enum {
+typedef enum OH_Drawing_TextBaseline {
     /** Alphabetic, where the letters in alphabets like English sit on. */
     TEXT_BASELINE_ALPHABETIC,
     /** Ideographic. The baseline is at the bottom of the text area. */
@@ -151,7 +151,7 @@ typedef enum {
  * @since 8
  * @version 1.0
  */
-typedef enum {
+typedef enum OH_Drawing_TextDecoration {
     /** No decoration. */
     TEXT_DECORATION_NONE = 0x0,
     /** A underline is used for decoration. */
@@ -168,7 +168,7 @@ typedef enum {
  * @since 8
  * @version 1.0
  */
-typedef enum {
+typedef enum OH_Drawing_FontStyle {
     /** Normal style */
     FONT_STYLE_NORMAL,
     /** Italic style */
@@ -326,7 +326,7 @@ typedef enum {
  * @since 12
  * @version 1.0
  */
-typedef enum {
+typedef enum OH_Drawing_FontConfigInfoErrorCode {
     /** The list of system font configuration information was successfully obtained */
     SUCCESS_FONT_CONFIG_INFO = 0,
     /** Unknown error */
@@ -512,7 +512,7 @@ typedef struct OH_Drawing_LineMetrics {
  * @since 12
  * @version 1.0
  */
-typedef enum {
+typedef enum OH_Drawing_TextHeightBehavior {
     /** both ascend of first row and last row style */
     TEXT_HEIGHT_ALL = 0x0,
     /** forbidding ascend of first row style*/
@@ -529,7 +529,7 @@ typedef enum {
  * @since 12
  * @version 1.0
  */
-typedef enum {
+typedef enum OH_Drawing_TextStyleType {
     /** None style */
     TEXT_STYLE_NONE,
     /** All attributes style */
@@ -556,7 +556,7 @@ typedef enum {
  * @since 12
  * @version 1.0
  */
-typedef enum {
+typedef enum OH_Drawing_FontWidth {
     /* Ultra condensed font width */
     FONT_WIDTH_ULTRA_CONDENSED = 1,
     /* Extra condensed font width */
