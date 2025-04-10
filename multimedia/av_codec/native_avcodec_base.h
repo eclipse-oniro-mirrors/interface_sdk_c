@@ -366,14 +366,14 @@ extern const char *OH_AVCODEC_MIMETYPE_AUDIO_RAW;
  * @brief Enumerates the MIME type of video mpeg2 codec.
  *
  * @syscap SystemCapability.Multimedia.Media.CodecBase
- * @since 18
+ * @since 17
  */
 extern const char *OH_AVCODEC_MIMETYPE_VIDEO_MPEG2;
 /**
  * @brief Enumerates the MIME type of video mpeg4 part2 codec.
  *
  * @syscap SystemCapability.Multimedia.Media.CodecBase
- * @since 18
+ * @since 17
  */
 extern const char *OH_AVCODEC_MIMETYPE_VIDEO_MPEG4_PART2;
 
@@ -381,7 +381,7 @@ extern const char *OH_AVCODEC_MIMETYPE_VIDEO_MPEG4_PART2;
  * @brief Enumerates the MIME type of video h263 codec.
  *
  * @syscap SystemCapability.Multimedia.Media.CodecBase
- * @since 18
+ * @since 17
  */
 extern const char *OH_AVCODEC_MIMETYPE_VIDEO_H263;
 
@@ -1144,7 +1144,7 @@ typedef enum OH_VVCProfile {
  * @brief MPEG2 Profile
  *
  * @syscap SystemCapability.Multimedia.Media.CodecBase
- * @since 18
+ * @since 17
  */
 typedef enum OH_MPEG2Profile {
     /** Simple profile */
@@ -1165,7 +1165,7 @@ typedef enum OH_MPEG2Profile {
  * @brief MPEG4 Profile
  *
  * @syscap SystemCapability.Multimedia.Media.CodecBase
- * @since 18
+ * @since 17
  */
 typedef enum OH_MPEG4Profile {
     /** Simple profile */
@@ -1204,7 +1204,7 @@ typedef enum OH_MPEG4Profile {
  * @brief H263 Profile
  *
  * @syscap SystemCapability.Multimedia.Media.CodecBase
- * @since 18
+ * @since 17
  */
 typedef enum OH_H263Profile {
     /** Baseline profile */
@@ -1465,7 +1465,7 @@ typedef enum OH_VVCLevel {
  * @brief MPEG2 Level.
  *
  * @syscap SystemCapability.Multimedia.Media.CodecBase
- * @since 18
+ * @since 17
  */
 typedef enum OH_MPEG2Level {
     /** Low level */
@@ -1482,7 +1482,7 @@ typedef enum OH_MPEG2Level {
  * @brief MPEG4 Level.
  *
  * @syscap SystemCapability.Multimedia.Media.CodecBase
- * @since 18
+ * @since 17
  */
 typedef enum OH_MPEG4Level {
     /** 0 level */
@@ -1511,7 +1511,7 @@ typedef enum OH_MPEG4Level {
  * @brief H263 Level.
  *
  * @syscap SystemCapability.Multimedia.Media.CodecBase
- * @since 18
+ * @since 17
  */
 typedef enum OH_H263Level {
     /** 10 level */

@@ -80,15 +80,15 @@
         "name": "OH_AVCODEC_MIMETYPE_AUDIO_RAW"
     },
     {
-        "first_introduced": "18",
+        "first_introduced": "17",
         "name": "OH_AVCODEC_MIMETYPE_VIDEO_MPEG2"
     },
     {
-        "first_introduced": "18",
+        "first_introduced": "17",
         "name": "OH_AVCODEC_MIMETYPE_VIDEO_MPEG4_PART2"
     },
     {
-        "first_introduced": "18",
+        "first_introduced": "17",
         "name": "OH_AVCODEC_MIMETYPE_VIDEO_H263"
     },
     {
