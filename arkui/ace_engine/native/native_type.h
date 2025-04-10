@@ -1882,12 +1882,7 @@ typedef enum {
     /** Capsule-type button (the round corner is half of the height by default). */
     ARKUI_BUTTON_TYPE_CAPSULE,
     /** Circle button. */
-    ARKUI_BUTTON_TYPE_CIRCLE,
-    /**
-     * Rounded rectangle button.
-     * @since 18
-     */
-    ARKUI_BUTTON_ROUNDED_RECTANGLE = 8
+    ARKUI_BUTTON_TYPE_CIRCLE
 } ArkUI_ButtonType;
 
 /**
