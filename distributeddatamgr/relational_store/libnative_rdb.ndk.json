@@ -49,7 +49,7 @@
         "name":"OH_Rdb_IsTokenizerSupported"
     },
     {
-        "first_introduced": "16",
+        "first_introduced": "17",
         "name":"OH_Rdb_SetTokenizer"
     },
     {
