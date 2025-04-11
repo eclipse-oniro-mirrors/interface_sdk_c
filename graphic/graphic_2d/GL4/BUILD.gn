@@ -17,9 +17,9 @@ import("//build/ohos/ndk/ndk.gni")
 ohos_ndk_headers("GL4_header") {
   dest_dir = "$ndk_headers_out_dir/GL"
   sources = [
-    "//interface/sdk_c/third_party/GL/gl.h",
-    "//interface/sdk_c/third_party/GL/glcorearb.h",
-    "//interface/sdk_c/third_party/GL/glext.h",
+    "//interface/sdk_c/graphic/graphic_2d/GL4/GL/gl.h",
+    "//interface/sdk_c/graphic/graphic_2d/GL4/GL/glcorearb.h",
+    "//interface/sdk_c/graphic/graphic_2d/GL4/GL/glext.h",
   ]
 }
 
