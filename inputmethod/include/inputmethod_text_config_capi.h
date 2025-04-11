@@ -265,7 +265,7 @@ InputMethod_ErrorCode OH_TextConfig_GetWindowId(InputMethod_TextConfig *config, 
  * @param config Represents a pointer to an {@link InputMethod_TextConfig} instance which will be set.
  * @param placeholder Returns the placeholder. which is defined in {@link InputMethod_TextConfig}.
  *     The user needs to allocate memory.
- * @param length Input and output parameters. The input is the size requested by the user (unit: char16_t), 
+ * @param length Input and output parameters. The input is the size requested by the user (unit: char16_t),
  *     returns the size of the placeholder.
  *     The length, which is defined in {@link InputMethod_TextConfig}.
  * @return Returns a specific error code.
@@ -284,7 +284,7 @@ InputMethod_ErrorCode OH_TextConfig_GetPlaceholder(InputMethod_TextConfig *confi
  * @param config Represents a pointer to an {@link InputMethod_TextConfig} instance which will be set.
  * @param abilityName The abilityName, which is defined in {@link InputMethod_TextConfig}.
  *     The free function needs to be called externally to release the internal requested memory.
- * @param length Input and output parameters. The input is the size requested by the user (unit: char16_t), 
+ * @param length Input and output parameters. The input is the size requested by the user (unit: char16_t),
  *     returns the size of the ability name.
  *     The length, which is defined in {@link InputMethod_TextConfig}.
  * @return Returns a specific error code.
