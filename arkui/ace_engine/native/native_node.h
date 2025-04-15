@@ -5468,10 +5468,10 @@ typedef enum {
      * This attribute can be set, reset, and obtained as required through APIs.
      *
      * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: number of elements to display per page. \n
+     * .value[0].i32: index value of the child component. \n
      * \n
      * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: number of elements to display per page. \n
+     * .value[0].i32: index value of the child component. \n
      *
      */
     NODE_SWIPER_DISPLAY_COUNT,
