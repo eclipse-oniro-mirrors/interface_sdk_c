@@ -1272,6 +1272,8 @@ size_t OH_Drawing_GetSizeOfTextBox(OH_Drawing_TextBox* textBox);
  * @return Returns the glyphposition at coordinate.
  * @since 11
  * @version 1.0
+ * @deprecated since 18
+ * @useinstead OH_Drawing_TypographyGetGlyphPositionAtCoordinateWithCluster
  */
 OH_Drawing_PositionAndAffinity* OH_Drawing_TypographyGetGlyphPositionAtCoordinate(OH_Drawing_Typography* typography,
     double dx, double dy);
@@ -1421,6 +1423,8 @@ void OH_Drawing_SetTextStyleHalfLeading(OH_Drawing_TextStyle* style, bool halfLe
  * @param ellipsis Indicates the pointer to ellipsis style.
  * @since 11
  * @version 1.0
+ * @deprecated since 18
+ * @useinstead OH_Drawing_SetTypographyTextEllipsis
  */
 void OH_Drawing_SetTextStyleEllipsis(OH_Drawing_TextStyle* style, const char* ellipsis);
 
@@ -1432,6 +1436,8 @@ void OH_Drawing_SetTextStyleEllipsis(OH_Drawing_TextStyle* style, const char* el
  * @param ellipsisModal Indicates the ellipsis model to set. For details, see the enum <b>OH_Drawing_EllipsisModal</b>.
  * @since 11
  * @version 1.0
+ * @deprecated since 18
+ * @useinstead OH_Drawing_SetTypographyTextEllipsisModal
  */
 void OH_Drawing_SetTextStyleEllipsisModal(OH_Drawing_TextStyle* style, int ellipsisModal);
 
@@ -1683,6 +1689,8 @@ OH_Drawing_TextStyle* OH_Drawing_TypographyGetTextStyle(OH_Drawing_TypographySty
  * @return Returns line text align.
  * @since 12
  * @version 1.0
+ * @deprecated since 18
+ * @useinstead OH_Drawing_TypographyStyleGetEffectiveAlignment
  */
 int OH_Drawing_TypographyGetEffectiveAlignment(OH_Drawing_TypographyStyle* style);
 
