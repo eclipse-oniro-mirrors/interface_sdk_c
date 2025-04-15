@@ -3831,7 +3831,7 @@ float OH_ArkUI_ListChildrenMainSizeOption_GetMainSize(ArkUI_ListChildrenMainSize
  * <br> If the result returns nullptr, there may be out of memory.
  * @since 12
 */
-ArkUI_CustomSpanMeasureInfo* OH_ArkUI_CustomSpanMeasureInfo_Create();
+ArkUI_CustomSpanMeasureInfo* OH_ArkUI_CustomSpanMeasureInfo_Create(void);
 
 /**
  * @brief Disposes of measurement information of this custom span.
@@ -3858,7 +3858,7 @@ float OH_ArkUI_CustomSpanMeasureInfo_GetFontSize(ArkUI_CustomSpanMeasureInfo* in
  * <br> If the result returns nullptr, there may be out of memory.
  * @since 12
 */
-ArkUI_CustomSpanMetrics* OH_ArkUI_CustomSpanMetrics_Create();
+ArkUI_CustomSpanMetrics* OH_ArkUI_CustomSpanMetrics_Create(void);
 
 /**
  * @brief Disposes of measurement metrics of this custom span.
@@ -3901,7 +3901,7 @@ int32_t OH_ArkUI_CustomSpanMetrics_SetHeight(ArkUI_CustomSpanMetrics* metrics, f
  * <br> If the result returns nullptr, there may be out of memory.
  * @since 12
 */
-ArkUI_CustomSpanDrawInfo* OH_ArkUI_CustomSpanDrawInfo_Create();
+ArkUI_CustomSpanDrawInfo* OH_ArkUI_CustomSpanDrawInfo_Create(void);
 
 /**
  * @brief Disposes of drawing information for this custom span.
