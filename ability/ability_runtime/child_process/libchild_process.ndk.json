@@ -8,7 +8,7 @@
       "name": "OH_Ability_StartNativeChildProcess"
   },
   {
-      "first_introduced": "16",
+      "first_introduced": "17",
       "name": "OH_Ability_GetCurrentChildProcessArgs"
   }
 ]
