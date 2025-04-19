@@ -272,6 +272,22 @@ OH_AudioStream_Result OH_AudioStreamBuilder_SetCapturerCallback(OH_AudioStreamBu
 /**
  * Create the audio renderer client.
  *
+ * The AudioRenderer instance is used to play streaming audio data.
+ * When using AudioRenderer apis, there are many instructions for application
+ * to achieve better performance and lower power consumption:
+ * In music or audiobook background playback situation, you can have low power
+ * consumption by following this best practices document [Low-Power Rules in Music Playback Scenarios]{@link
+ * https://developer.huawei.com/consumer/en/doc/best-practices/bpta-music-playback-scenarios}.
+ * And for navigation situation, you can follow [Low-Power Rules in Navigation and Positioning Scenarios]{@link
+ * https://developer.huawei.com/consumer/en/doc/best-practices/bpta-navigation-scenarios}.
+ *
+ * Application developer should also be careful when app goes to background, please check if your audio playback
+ * is still needed, see [Audio Resources]{@link
+ * https://developer.huawei.com/consumer/en/doc/best-practices/bpta-reasonable-audio-use}.
+ * And avoiding to send silence audio data continuously to waste system resources, otherwise system will take
+ * control measures when this behavior is detected, see [Audio Playback]{@link
+ * https://developer.huawei.com/consumer/en/doc/best-practices/bpta-reasonable-audio-playback-use}.
+ *
  * @since 10
  *
  * @param builder Reference provided by OH_AudioStreamBuilder_Create()
