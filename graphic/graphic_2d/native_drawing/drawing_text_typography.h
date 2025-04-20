@@ -2923,6 +2923,18 @@ void OH_Drawing_SetTypographyTextTab(OH_Drawing_TypographyStyle* style, OH_Drawi
 size_t OH_Drawing_GetDrawingArraySize(OH_Drawing_Array* drawingArray);
 
 /**
+* @brief Sets whether to optimize whitespace at the end of each line for text typography.
+*
+* @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
+* @param style Indicates the pointer to an <b>OH_Drawing_TypographyStyle</b> object.
+* @param trailingSpaceOptimized Boolean value indicating whether to optimize whitespace at the end of each line
+* for text typography to set.
+* @since 20
+* @version 1.0
+*/
+void OH_Drawing_SetTypographyTextTrailingSpaceOptimized(OH_Drawing_TypographyStyle* style, bool trailingSpaceOptimized);
+
+/**
  * @brief Set text badge type.
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
