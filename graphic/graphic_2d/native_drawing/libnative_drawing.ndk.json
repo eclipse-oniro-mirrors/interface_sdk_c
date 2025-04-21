@@ -1825,5 +1825,9 @@
     {
         "first_introduced": "20",
         "name": "OH_Drawing_SetTextHighContrast"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_Drawing_TypographyHandlerAddEncodedText"
     }
 ]
