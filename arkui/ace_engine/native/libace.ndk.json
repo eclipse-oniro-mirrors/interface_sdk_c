@@ -2780,14 +2780,6 @@
         "name": "OH_ArkUI_CancelDataLoading"
     },
     {
-        "first_introduced": "18",
-        "name": "OH_ArkUI_KeyframeAnimateOption_SetExpectedFrameRate"
-    },
-    {
-        "first_introduced": "18",
-        "name": "OH_ArkUI_KeyframeAnimateOption_GetExpectedFrameRate"
-    },
-    {
         "first_introduced": "17",
         "name": "OH_ArkUI_VisibleAreaEventOptions_Create"
     },
