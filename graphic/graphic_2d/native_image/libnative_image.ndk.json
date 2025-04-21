@@ -37,6 +37,6 @@
     },
     {
         "first_introduced": "17",
-        "name": "OH_NativeImage_SetRealTimePriorityMode"
+        "name": "OH_NativeImage_SetDropBufferMode"
     }
 ]
