@@ -101,7 +101,7 @@ int32_t OH_BackgroundTaskManager_GetRemainingDelayTime(int32_t requestId, int32_
 int32_t OH_BackgroundTaskManager_CancelSuspendDelay(int32_t requestId);
 
 /**
- * @brief Obtains all the transient task before an application enters the suspended state.
+ * @brief Obtains all the transient task.
  *
  * @param transientTaskInfo Indicates the transient task info of an application.
  * @return {@link ERR_TRANSIENT_TASK_OK} 0 - Success.
