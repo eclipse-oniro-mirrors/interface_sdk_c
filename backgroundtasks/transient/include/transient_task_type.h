@@ -58,6 +58,10 @@ typedef enum TransientTask_ErrorCode {
      */
     ERR_TRANSIENT_TASK_INVALID_PARAM = 401,
     /**
+     * @error Memory operation failed..
+     */
+    ERR_TRANSIENT_TASK_MEMORY_FAILED = 9800001,
+    /**
      * @error Parcel operation failed.
      */
     ERR_TRANSIENT_TASK_PARCEL_FAILED = 9800002,
