@@ -93,7 +93,7 @@ typedef struct TransientTask_DelaySuspendInfo {
 } TransientTask_DelaySuspendInfo;
 
 /**
- * @brief Define CallBack Info for an application.
+ * @brief Define TransientTaskInfo for an application.
  *
  * @since 20
  * @version 1.0
