@@ -502,13 +502,13 @@ typedef struct {
      */
     int32_t resultCode;
     /**
-     * The total number of synchronization.
+     * The total count of synchronization.
      */
-    uint32_t totalNum;
+    uint32_t totalCount;
     /**
-     * The number of Assets that fail to synchronize.
+     * The count of Assets that fail to synchronize.
      */
-    uint32_t failedNum;
+    uint32_t failedCount;
 } Asset_SyncResult;
 
 #ifdef __cplusplus
