@@ -1084,7 +1084,7 @@ typedef enum {
 typedef enum {
     /** The original image aspect ratio is retained. */
     ARKUI_IMAGE_SIZE_AUTO = 0,
-    /** Default value. The image is scaled with its aspect ratio retained for both sides to be greater than or equal
+    /** The image is scaled with its aspect ratio retained for both sides to be greater than or equal
      *  to the display boundaries. */
     ARKUI_IMAGE_SIZE_COVER,
     /** The image is scaled with its aspect ratio retained for the content to be completely displayed within the display
