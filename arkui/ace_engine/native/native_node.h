@@ -4524,6 +4524,8 @@ typedef enum {
      * \n
      * Format of the return value {@link ArkUI_AttributeItem}:\n
      * value[0].i32: whether to feedback.\n
+     * When enabling haptic feedback, you need to add "ohos.permission.VIBRATE" in the
+     * requestPermissions field of the module.json5 file to enable vibration permission.\n
      *
      * @since 18
      */
