@@ -975,6 +975,19 @@ struct OH_Huks_KeyMaterial25519 {
     uint32_t reserved;
 };
 
+/**
+ * @brief Defines the structure of the alias set.
+ *
+ * @since 20
+ * @version 1.0
+ */
+struct OH_Huks_KeyAliasSet {
+    /** Number of aliases. */
+    uint32_t aliasesCnt;
+    /** Aliases array. */
+    struct OH_Huks_Blob *aliases;
+};
+
 #ifdef __cplusplus
 }
 #endif
