@@ -220,7 +220,7 @@ int32_t OH_Asset_PostQuery(const Asset_Attr *handle, uint32_t handleCnt);
  *     {@link ASSET_PARAM_VERIFICATION_FAILED} 24000018 - Parameter verification failed.
  * @since 20
  */
-int32_t OH_Asset_QuerySyncResult(const Asset_Attr *query, uint32_t queryCnt, SyncResult *syncResult);
+int32_t OH_Asset_QuerySyncResult(const Asset_Attr *query, uint32_t queryCnt, Asset_SyncResult *syncResult);
 
 /**
  * @brief Parses the query result to obtain the specified attribute value.

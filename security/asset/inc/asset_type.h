@@ -496,7 +496,7 @@ typedef struct {
  *
  * @since 20
  */
- typedef struct {
+typedef struct {
     /**
      * The result code of synchronization.
      */
