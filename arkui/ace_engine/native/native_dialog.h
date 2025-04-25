@@ -62,6 +62,52 @@ typedef enum {
 } ArkUI_DismissReason;
 
 /**
+* @brief Enumerates the state of dialog.
+*
+* @syscap SystemCapability.ArkUI.ArkUI.Full
+*
+* @since 20
+*/
+typedef enum {
+    /**
+     * @brief Uninitialized.
+     * @syscap SystemCapability.ArkUI.ArkUI.Full
+     * @since 20
+     */
+    DIALOG_UNINITIALIZED = 0,
+    /**
+     * @brief Initialized.
+     * @syscap SystemCapability.ArkUI.ArkUI.Full
+     * @since 20
+     */
+    DIALOG_INITIALIZED,
+    /**
+     * @brief Appearing.
+     * @syscap SystemCapability.ArkUI.ArkUI.Full
+     * @since 20
+     */
+    DIALOG_APPEARING,
+    /**
+     * @brief Appeared.
+     * @syscap SystemCapability.ArkUI.ArkUI.Full
+     * @since 20
+     */
+    DIALOG_APPEARED,
+    /**
+     * @brief Disappearing.
+     * @syscap SystemCapability.ArkUI.ArkUI.Full
+     * @since 20
+     */
+    DIALOG_DISAPPEARING,
+    /**
+     * @brief Disappeared.
+     * @syscap SystemCapability.ArkUI.ArkUI.Full
+     * @since 20
+     */
+    DIALOG_DISAPPEARED,
+} ArkUI_DialogState;
+
+/**
 * @brief Enumerates the level mode.
 *
 * @since 15
@@ -303,6 +349,7 @@ typedef struct {
     *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
     */
     int32_t (*close)(ArkUI_NativeDialogHandle handle);
+    
     /**
     * @brief Registers a listener for the dismiss event of the custom dialog box.
     *
@@ -315,6 +362,18 @@ typedef struct {
     */
     int32_t (*registerOnWillDismissWithUserData)(
         ArkUI_NativeDialogHandle handle, void* userData, void (*callback)(ArkUI_DialogDismissEvent* event));
+    
+    /**
+    * @brief Get state of dialog.
+    *
+    * @param handle Indicates the pointer to the custom dialog box controller.
+    * @param state Dialog state object.
+    * @return Returns the error code.
+    *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+    *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+    * @since 20
+    */
+    int32_t (*getState)(ArkUI_NativeDialogHandle handle, ArkUI_DialogState* state);
 } ArkUI_NativeDialogAPI_1;
 
 /**
