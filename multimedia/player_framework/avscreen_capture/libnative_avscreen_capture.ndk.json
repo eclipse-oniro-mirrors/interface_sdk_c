@@ -110,5 +110,21 @@
     {
         "first_introduced": "18",
         "name": "OH_AVScreenCapture_SetDisplayCallback"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_AVScreenCapture_CreateCaptureStrategy"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_AVScreenCapture_ReleaseCaptureStrategy"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_AVScreenCapture_SetCaptureStrategy"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_AVScreenCapture_StrategyForKeepCaptureDuringCall"
     }
 ]
