@@ -502,7 +502,7 @@ typedef struct {
      */
     int32_t resultCode;
     /**
-     * The total count of synchronization.
+     * The total count of synchronized Assets.
      */
     uint32_t totalCount;
     /**
