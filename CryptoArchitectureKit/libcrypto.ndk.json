@@ -166,5 +166,61 @@
     {
         "first_introduced": "12",
         "name": "OH_CryptoSymKey_Destroy"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_CryptoKeyPair_GetPriKey"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_CryptoSign_Create"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_CryptoSign_Init"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_CryptoSign_Update"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_CryptoSign_Final"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_CryptoSign_GetAlgoName"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_CryptoSign_SetParam"
+    },
+    {
+        "first_introduced":"20",
+        "name": "OH_CryptoSign_GetParam"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_CryptoSign_Destroy"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_CryptoEccSignatureSpec_Create"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_CryptoEccSignatureSpec_GetRAndS"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_CryptoEccSignatureSpec_SetRAndS"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_CryptoEccSignatureSpec_Encode"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_CryptoEccSignatureSpec_Destroy"
     }
 ]
