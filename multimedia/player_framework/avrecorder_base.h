@@ -126,10 +126,10 @@ typedef enum OH_AVRecorder_ContainerFormatType {
     /* An audio container format type wav. */
     AVRECORDER_CFT_WAV = 10,
     /**
-     * @brief A audio container format type aac with ADTS.
+     * @brief A audio container format type aac with ADTS. 
      * @since 20
      */
-    AVRECORDER_CFT_AAC = 11,
+    AVRECORDER_CFT_AAC = 11
 } OH_AVRecorder_ContainerFormatType;
 
 /**
