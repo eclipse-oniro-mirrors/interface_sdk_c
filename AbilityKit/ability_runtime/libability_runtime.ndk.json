@@ -174,5 +174,9 @@
     {
         "first_introduced": "17",
         "name": "OH_AbilityRuntime_GetStartOptionsMaxWindowHeight"
+    },
+	{
+        "first_introduced": "20",
+        "name": "OH_AbilityRuntime_ApplicationContextGetResourceDir"
     }
 ]
