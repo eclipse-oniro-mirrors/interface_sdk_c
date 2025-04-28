@@ -242,6 +242,10 @@ OH_AudioStream_Result OH_AudioRenderer_GetFramesWritten(OH_AudioRenderer* render
 
 /**
  * Query the the time at which a particular frame was presented.
+ * 
+ * It is recommended to use new api {@link OH_AudioRenderer_GetAudioTimestampInfo}
+ * because it adapts to playback speed change, but current api does not. The
+ * increasing speed for position will not change when speed become fast.
  *
  * @since 10
  *
@@ -516,6 +520,10 @@ OH_AudioStream_Result OH_AudioRenderer_SetDefaultOutputDevice(
  *        So it is better to use the values until they becomes regularly after the change.
  *        This interface also adapts to playback speed change. For example, the increseing speed for
  *        position will be double for 2x speed playback.
+ *
+ *        For video synchronization usage, there is a best practice document for developer to refer
+ *        [AV Synchronization]{@link
+ *        https://}.
  *
  * @param renderer Reference created by OH_AudioStreamBuilder_GenerateRenderer()
  * @param framePosition Pointer to a variable to receive the position

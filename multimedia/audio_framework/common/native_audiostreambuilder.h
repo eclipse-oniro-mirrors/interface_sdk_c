@@ -287,6 +287,10 @@ OH_AudioStream_Result OH_AudioStreamBuilder_SetCapturerCallback(OH_AudioStreamBu
  * And avoiding to send silence audio data continuously to waste system resources, otherwise system will take
  * control measures when this behavior is detected, see [Audio Playback]{@link
  * https://developer.huawei.com/consumer/en/doc/best-practices/bpta-reasonable-audio-playback-use}.
+ * 
+ * If you want to use AudioRenderer api to implement a music playback application, there are also many interactive
+ * scenes to consider, see [Developing an Audio Application]{@link
+ * https://}.
  *
  * @since 10
  *
