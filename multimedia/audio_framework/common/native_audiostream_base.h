@@ -828,13 +828,13 @@ typedef OH_AudioData_Callback_Result (*OH_AudioRenderer_OnWriteDataCallback)(OH_
 /**
  * @brief Define the audio stream volume mode.
  *
- * @since 18
+ * @since 19
  */
 typedef enum {
     /**
      * Indicates this audio stream volume will be affected by system volume, also the default behavior.
      *
-     * @since 18
+     * @since 19
      */
     AUDIOSTREAM_VOLUMEMODE_SYSTEM_GLOBAL = 0,
 
@@ -842,7 +842,7 @@ typedef enum {
      * Indicates this audio stream volume will be affected by app's individual volume percentage which set by yourself
      * using the app volume api.
      *
-     * @since 18
+     * @since 19
      */
     AUDIOSTREAM_VOLUMEMODE_APP_INDIVIDUAL = 1
 } OH_AudioStream_VolumeMode;
