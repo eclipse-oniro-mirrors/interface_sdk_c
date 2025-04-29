@@ -19,6 +19,11 @@ ohos_ndk_library("libnapi_ndk") {
   ndk_description_file = "./libnapi.ndk.json"
   min_compact_version = "1"
   output_name = "ace_napi"
+  system_capability = "SystemCapability.ArkUI.ArkUI.Napi"
+  system_capability_headers = [
+    "napi/common.h",
+    "napi/native_api.h",
+  ]
 }
 
 ohos_ndk_headers("napi_header") {
