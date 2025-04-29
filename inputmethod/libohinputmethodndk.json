@@ -322,5 +322,21 @@
     {
         "first_introduced": "15",
         "name": "OH_AttachOptions_GetRequestKeyboardReason"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_TextConfig_SetPlaceholder"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_TextConfig_SetAbilityName"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_TextConfig_GetPlaceholder"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_TextConfig_GetAbilityName"
     }
 ]
