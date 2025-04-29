@@ -523,7 +523,7 @@ OH_AudioStream_Result OH_AudioRenderer_SetDefaultOutputDevice(
  *
  *        For video synchronization usage, there is a best practice document for developer to refer
  *        [AV Synchronization]{@link
- *        https://}.
+ *        https://developer.huawei.com/consumer/en/doc/best-practices/bpta-audio-video-synchronization}.
  *
  * @param renderer Reference created by OH_AudioStreamBuilder_GenerateRenderer()
  * @param framePosition Pointer to a variable to receive the position

@@ -290,7 +290,7 @@ OH_AudioStream_Result OH_AudioStreamBuilder_SetCapturerCallback(OH_AudioStreamBu
  * 
  * If you want to use AudioRenderer api to implement a music playback application, there are also many interactive
  * scenes to consider, see [Developing an Audio Application]{@link
- * https://}.
+ * https://developer.huawei.com/consumer/en/doc/best-practices/bpta-audio-interaction-practice}.
  *
  * @since 10
  *
