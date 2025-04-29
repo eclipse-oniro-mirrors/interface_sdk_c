@@ -930,26 +930,28 @@ Camera_ErrorCode OH_CaptureSession_SetQualityPrioritization(
     Camera_CaptureSession* session, Camera_QualityPrioritization qualityPrioritization);
 
 /**
- * @brief Check whether macro ability is supported.
+ * @brief Checks whether the macro capability is supported.
  *
- * @param session the {@link Camera_CaptureSession} instance.
- * @param isSupported the result of whether macro ability supported.
- * @return {@link #CAMERA_OK} if the method call succeeds.
- *         {@link #CAMERA_INVALID_ARGUMENT} if parameter missing or parameter type incorrect.
- *         {@link #CAMERA_SESSION_NOT_CONFIG} if the capture session not config.
+ * @param session Pointer to an {@link Camera_CaptureSession} instance.
+ * @param isSupported Pointer to the check result. The value true means that the macro capability is supported, and false means the opposite.
+ * @return {@link Camera_ErrorCode}:
+ *         CAMERA_OK = 0: The function call is successful.\n
+ *         CAMERA_INVALID_ARGUMENT = 7400101: A parameter is missing or the parameter type is incorrect.\n
+ *         CAMERA_SESSION_NOT_CONFIG = 7400103: The capture session is not configured.
  * @since 19
  */
 Camera_ErrorCode OH_CaptureSession_IsMacroSupported(Camera_CaptureSession* session, bool* isSupported);
 
 /**
- * @brief Enable macro ability or not for the camera device.
+ * @brief Enables or disables the macro capability of the camera device.
  *
- * @param session the {@link Camera_CaptureSession} instance.
- * @param enabled the flag of enable macro ability or not.
- * @return {@link #CAMERA_OK} if the method call succeeds.
- *         {@link #CAMERA_INVALID_ARGUMENT} if parameter missing or parameter type incorrect.
- *         {@link #CAMERA_SESSION_NOT_CONFIG} if the capture session not config.
- *         {@link #CAMERA_OPERATION_NOT_ALLOWED} if operation not allowed.
+ * @param session Pointer to an {@link Camera_CaptureSession} instance.
+ * @param enabled Whether to enable the macro capability. The value true means to enable the macro capability, and false means to disable it.
+ * @return {@link Camera_ErrorCode}:
+ *         CAMERA_OK = 0: The function call is successful.\n
+ *         CAMERA_INVALID_ARGUMENT = 7400101: A parameter is missing or the parameter type is incorrect.\n
+ *         CAMERA_SESSION_NOT_CONFIG = 7400103: The capture session is not configured.\n
+ *         CAMERA_OPERATION_NOT_ALLOWED = 7400102: The operation is not allowed.
  * @since 19
  */
 Camera_ErrorCode OH_CaptureSession_EnableMacro(Camera_CaptureSession* session, bool enabled);
