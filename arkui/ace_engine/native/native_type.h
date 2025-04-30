@@ -2158,7 +2158,7 @@ typedef enum {
     ARKUI_ERROR_CODE_INTERNAL_ERROR = 100001,
     /**
      * @error The XComponent is in invalid state.
-     * @since 18
+     * @since 19
      */
     ARKUI_ERROR_CODE_XCOMPONENT_STATE_INVALID = 103501,
     /** @error The component does not support specific properties or events. */
