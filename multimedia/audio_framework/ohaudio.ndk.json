@@ -384,7 +384,7 @@
         "name": "OH_AudioRenderer_GetAudioTimestampInfo"
     },
     {
-        "first_introduced": "18",
+        "first_introduced": "19",
         "name": "OH_AudioStreamBuilder_SetVolumeMode"
     },
     {

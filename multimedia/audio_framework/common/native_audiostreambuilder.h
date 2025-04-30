@@ -390,8 +390,6 @@ OH_AudioStream_Result OH_AudioStreamBuilder_SetRendererWriteDataCallback(OH_Audi
 /**
  * Set the renderer volume mode of the stream client
  *
- * @since 18
- *
  * @param builder Reference provided by OH_AudioStreamBuilder_Create()
  * @param volumeMode Set the volume mode for the renderer client.
  * @return Function result code:
@@ -399,6 +397,7 @@ OH_AudioStream_Result OH_AudioStreamBuilder_SetRendererWriteDataCallback(OH_Audi
  *         {@link AUDIOSTREAM_ERROR_INVALID_PARAM}:
  *                                                 1.The param of builder is nullptr;
  *                                                 2.The param of volumeMode invalid.
+ * @since 19
  */
 OH_AudioStream_Result OH_AudioStreamBuilder_SetVolumeMode(OH_AudioStreamBuilder* builder,
     OH_AudioStream_VolumeMode volumeMode);
