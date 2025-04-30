@@ -470,11 +470,12 @@ struct OH_Huks_Result OH_Huks_ListAliases(const struct OH_Huks_ParamSet *paramSe
  *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_CRYPTO_FAIL} 12000006 - If crypto engine failed.
  *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_INTERNAL_ERROR} 12000012 - If system error ocurred.
  *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_INSUFFICIENT_MEMORY} 12000014 - If the memory is insufficient.
- *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_ILLEGAL_ARGUMENT} 12000018 - If keyAlias or paramSet or wrappedKey is invalid.
+ *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_ILLEGAL_ARGUMENT} 12000018 - If keyAlias or paramSet or wrappedKey is
+ *         invalid.
  * @since 20
  * @version 1.0
  */
- struct OH_Huks_Result OH_Huks_WrapKey(const struct OH_Huks_Blob *keyAlias, const struct OH_Huks_ParamSet *paramSet,
+struct OH_Huks_Result OH_Huks_WrapKey(const struct OH_Huks_Blob *keyAlias, const struct OH_Huks_ParamSet *paramSet,
     struct OH_Huks_Blob *wrappedKey);
 
 /**
@@ -500,7 +501,8 @@ struct OH_Huks_Result OH_Huks_ListAliases(const struct OH_Huks_ParamSet *paramSe
  *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_INTERNAL_ERROR} 12000012 - If system error ocurred.
  *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_INSUFFICIENT_MEMORY} 12000014 - If the memory is insufficient.
  *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_CALL_SERVICE_FAILED} 12000015 - If connect userIam failed.
- *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_ILLEGAL_ARGUMENT} 12000018 - If keyAlias or paramSet or wrappedKey is invalid.
+ *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_ILLEGAL_ARGUMENT} 12000018 - If keyAlias or paramSet or wrappedKey is
+ *         invalid.
  * @since 20
  * @version 1.0
  */

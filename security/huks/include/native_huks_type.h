@@ -456,7 +456,7 @@ enum  OH_Huks_ErrCode {
      *
      * @since 20
      */
-     OH_HUKS_ERR_CODE_INVALID_ARGUMENT = 12000018
+    OH_HUKS_ERR_CODE_INVALID_ARGUMENT = 12000018
 };
 
 /**
@@ -615,7 +615,7 @@ enum OH_Huks_SecureSignType {
  * @since 20
  * @version 1.0
  */
- enum OH_Huks_KeyWrapType {
+enum OH_Huks_KeyWrapType {
     /**
      * The hardware unique key wrap type.
      *
