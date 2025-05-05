@@ -1471,6 +1471,22 @@
         "name": "OH_Drawing_TypographyUpdateFontSize"
     },
     {
+        "first_introduced": "20",
+        "name": "OH_Drawing_TypographyUpdateFontColor"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_Drawing_TypographyUpdateDecoration"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_Drawing_TypographyUpdateDecorationThicknessScale"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_Drawing_TypographyUpdateDecorationStyle"
+    },
+    {
         "first_introduced": "12",
         "name": "OH_Drawing_TypographyTextGetLineStyle"
     },
