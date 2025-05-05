@@ -203,6 +203,11 @@ typedef enum {
      * @since 15
      */
     IMAGE_SOURCE_UNSUPPORTED_OPTIONS = 7700203,
+    /**
+     * @error Invalid parameter.
+     * @since 19
+     */
+    IMAGE_SOURCE_INVALID_PARAMETER = 7700204,
     /** decode failed */
     IMAGE_DECODE_FAILED = 7700301,
     /**

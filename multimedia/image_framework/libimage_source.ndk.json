@@ -80,6 +80,14 @@
         "name": "OH_DecodingOptions_GetCropAndScaleStrategy"
     },
     {
+        "first_introduced": "19",
+        "name": "OH_DecodingOptions_SetCropRegion"
+    },
+    {
+        "first_introduced": "19",
+        "name": "OH_DecodingOptions_GetCropRegion"
+    },
+    {
         "first_introduced": "12",
         "name": "OH_DecodingOptions_Release"
     },
