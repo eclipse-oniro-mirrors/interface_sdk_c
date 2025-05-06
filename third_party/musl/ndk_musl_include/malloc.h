@@ -1,6 +1,6 @@
 /*
  * Copyright (c) 2025 Huawei Device Co., Ltd.
- * Licensed under the Apache License, Version 2.0 (the "License");
+ * Licensed under the Apache License, Version 2.0 (the "License"),
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
@@ -74,7 +74,7 @@ int mallopt(int param, int value);
  * @param {void *} ptr A pointer to the memory block to be checked.
  * @return  1 - The memory block was allocated using Standard C library Memory Allocator.
  *          0 - The memory block was not allocated using Standard C library Memory Allocator.
- *          -1 - The function is not implemented or other error:
+ *          -1 - The function is not implemented or other error.
  */
 int malloc_check_from_ptr(void *ptr);
 
