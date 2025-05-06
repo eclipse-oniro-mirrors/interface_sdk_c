@@ -3312,11 +3312,11 @@
         "name": "OH_ArkUI_KeyEvent_IsScrollLockOn"
     },
     {
-        "first_introduced": "18",
+        "first_introduced": "19",
         "name": "OH_ArkUI_PanGesture_SetDistanceMap"
     },
     {
-        "first_introduced": "18",
+        "first_introduced": "19",
         "name": "OH_ArkUI_PanGesture_GetDistanceByToolType"
     }
 ]
