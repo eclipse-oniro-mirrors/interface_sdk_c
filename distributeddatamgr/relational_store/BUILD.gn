@@ -46,17 +46,17 @@ ohos_ndk_library("libnative_rdb_ndk") {
   ndk_description_file = "./libnative_rdb.ndk.json"
   min_compact_version = "11"
   system_capability_headers = [
-    "$ndk_headers_out_dir/database/data/data_asset.h",
-    "$ndk_headers_out_dir/database/data/oh_data_value.h",
-    "$ndk_headers_out_dir/database/data/oh_data_values.h",
-    "$ndk_headers_out_dir/database/data/oh_data_values_buckets.h",
-    "$ndk_headers_out_dir/database/rdb/oh_cursor.h",
-    "$ndk_headers_out_dir/database/rdb/oh_predicates.h",
-    "$ndk_headers_out_dir/database/rdb/oh_rdb_transaction.h",
-    "$ndk_headers_out_dir/database/rdb/oh_rdb_types.h",
-    "$ndk_headers_out_dir/database/rdb/oh_value_object.h",
-    "$ndk_headers_out_dir/database/rdb/oh_values_bucket.h",
-    "$ndk_headers_out_dir/database/rdb/relational_store.h",
-    "$ndk_headers_out_dir/database/rdb/relational_store_error_code.h",
+    "database/data/data_asset.h",
+    "database/data/oh_data_value.h",
+    "database/data/oh_data_values.h",
+    "database/data/oh_data_values_buckets.h",
+    "database/rdb/oh_cursor.h",
+    "database/rdb/oh_predicates.h",
+    "database/rdb/oh_rdb_transaction.h",
+    "database/rdb/oh_rdb_types.h",
+    "database/rdb/oh_value_object.h",
+    "database/rdb/oh_values_bucket.h",
+    "database/rdb/relational_store.h",
+    "database/rdb/relational_store_error_code.h",
   ]
 }
