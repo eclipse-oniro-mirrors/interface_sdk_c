@@ -1588,5 +1588,6 @@
     { "name": "__recv_chk"},
     { "name": "__recvfrom_chk"},
     { "name": "__open_chk"},
-    { "name": "__strlcat_chk"}
+    { "name": "__strlcat_chk"},
+    { "name": "malloc_check_from_ptr"}
 ]
