@@ -102,7 +102,7 @@ typedef struct TransientTask_TransientTaskInfo {
     /** The remaining quota of the delay request */
     int32_t remainingQuota;
     /** The info of delay suspend */
-    std::vector<TransientTask_DelaySuspendInfo> transientTasks;
+    TransientTask_DelaySuspendInfo transientTasks[3];
 } TransientTask_TransientTaskInfo;
 
 /**
