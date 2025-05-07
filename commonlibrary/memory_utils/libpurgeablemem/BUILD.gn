@@ -21,7 +21,7 @@ ohos_ndk_headers("purgeable_memory_header") {
 ohos_ndk_library("libpurgeable_memory_ndk") {
   output_name = "purgeable_memory_ndk"
   output_extension = "z.so"
+  system_capability = "SystemCapability.Kernel.Memory"
+  system_capability_headers = [ "purgeable_memory/purgeable_memory.h" ]
   ndk_description_file = "./libpurgeable_memory.ndk.json"
-  system_capability = "SystemCapability.CommonLibrary.Memory.PurgeableMemory"
-  system_capability = "purgeable_memory/purgeable_memory.h"
 }
