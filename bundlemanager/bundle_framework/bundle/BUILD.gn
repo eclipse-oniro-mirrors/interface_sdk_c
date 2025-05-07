@@ -25,4 +25,6 @@ ohos_ndk_library("libbundle_ndk") {
   ndk_description_file = "./libbundle.ndk.json"
   min_compact_version = "9"
   output_name = "bundle_ndk"
+  system_capability = "SystemCapability.BundleManager.BundleFramework.Core"
+  system_capability_headers = [ "bundle/native_interface_bundle.h" ]
 }
