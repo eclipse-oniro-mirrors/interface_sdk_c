@@ -3183,7 +3183,7 @@ int32_t OH_ArkUI_SwiperIndicator_GetMaxDisplayCount(ArkUI_SwiperIndicator* indic
  * @param indicator Indicates the pointer to the indicator.
  * @param ignoreSize Whether to ignore the size of the indicator. The value 1 means to ignore, and 0 means the opposite.
  * The default value is 0.
- * @since 18
+ * @since 19
 */
 void OH_ArkUI_SwiperIndicator_SetIgnoreSizeOfBottom(ArkUI_SwiperIndicator* indicator, int32_t ignoreSize);
 
@@ -3192,7 +3192,7 @@ void OH_ArkUI_SwiperIndicator_SetIgnoreSizeOfBottom(ArkUI_SwiperIndicator* indic
  *
  * @param indicator Indicates the pointer to the indicator.
  * @return Returns whether to ignore the size of the indicator.
- * @since 18
+ * @since 19
 */
 int32_t OH_ArkUI_SwiperIndicator_GetIgnoreSizeOfBottom(ArkUI_SwiperIndicator* indicator);
 
@@ -3201,7 +3201,7 @@ int32_t OH_ArkUI_SwiperIndicator_GetIgnoreSizeOfBottom(ArkUI_SwiperIndicator* in
  *
  * @param indicator Indicates the pointer to the indicator.
  * @param space the space between the dots of the navigation indicator, the default value is 8vp.
- * @since 18
+ * @since 19
 */
 void OH_ArkUI_SwiperIndicator_SetSpace(ArkUI_SwiperIndicator* indicator, float space);
 
@@ -3210,7 +3210,7 @@ void OH_ArkUI_SwiperIndicator_SetSpace(ArkUI_SwiperIndicator* indicator, float s
  *
  * @param indicator Indicates the pointer to the indicator.
  * @return the space between the dots of the navigation indicator
- * @since 18
+ * @since 19
 */
 float OH_ArkUI_SwiperIndicator_GetSpace(ArkUI_SwiperIndicator* indicator);
 
@@ -3218,7 +3218,7 @@ float OH_ArkUI_SwiperIndicator_GetSpace(ArkUI_SwiperIndicator* indicator);
  * @brief Creates a digital indicator.
  *
  * @return Returns the pointer to the new indicator.
- * @since 18
+ * @since 19
  */
 ArkUI_SwiperDigitIndicator *OH_ArkUI_SwiperDigitIndicator_Create();
 
@@ -3227,7 +3227,7 @@ ArkUI_SwiperDigitIndicator *OH_ArkUI_SwiperDigitIndicator_Create();
  *
  * @param indicator The pointer to the digital indicator.
  * @param value Indicates the distance between the digital indicator and the start of the swiper.
- * @since 18
+ * @since 19
  */
 void OH_ArkUI_SwiperDigitIndicator_SetStartPosition(ArkUI_SwiperDigitIndicator* indicator, float value);
 
@@ -3236,7 +3236,7 @@ void OH_ArkUI_SwiperDigitIndicator_SetStartPosition(ArkUI_SwiperDigitIndicator* 
  *
  * @param indicator The pointer to the digital indicator.
  * @return Returns the distance between the digital indicator and the start of the swiper.
- * @since 18
+ * @since 19
  */
 float OH_ArkUI_SwiperDigitIndicator_GetStartPosition(ArkUI_SwiperDigitIndicator* indicator);
 
@@ -3245,7 +3245,7 @@ float OH_ArkUI_SwiperDigitIndicator_GetStartPosition(ArkUI_SwiperDigitIndicator*
  *
  * @param indicator The pointer to the digital indicator.
  * @param value Indicates the distance between the digital indicator and the top of the swiper.
- * @since 18
+ * @since 19
  */
 void OH_ArkUI_SwiperDigitIndicator_SetTopPosition(ArkUI_SwiperDigitIndicator* indicator, float value);
 
@@ -3254,7 +3254,7 @@ void OH_ArkUI_SwiperDigitIndicator_SetTopPosition(ArkUI_SwiperDigitIndicator* in
  *
  * @param indicator The pointer to the digital indicator.
  * @return Returns the distance between the digital indicator and the top of the swiper.
- * @since 18
+ * @since 19
  */
 float OH_ArkUI_SwiperDigitIndicator_GetTopPosition(ArkUI_SwiperDigitIndicator* indicator);
 
@@ -3263,7 +3263,7 @@ float OH_ArkUI_SwiperDigitIndicator_GetTopPosition(ArkUI_SwiperDigitIndicator* i
  *
  * @param indicator The pointer to the digital indicator.
  * @param value Indicates the distance between the digital indicator and the end of the swiper.
- * @since 18
+ * @since 19
  */
 void OH_ArkUI_SwiperDigitIndicator_SetEndPosition(ArkUI_SwiperDigitIndicator* indicator, float value);
 
@@ -3272,7 +3272,7 @@ void OH_ArkUI_SwiperDigitIndicator_SetEndPosition(ArkUI_SwiperDigitIndicator* in
  *
  * @param indicator The pointer to the digital indicator.
  * @return Returns the distance between the digital indicator and the end of the swiper.
- * @since 18
+ * @since 19
  */
 float OH_ArkUI_SwiperDigitIndicator_GetEndPosition(ArkUI_SwiperDigitIndicator* indicator);
 
@@ -3281,7 +3281,7 @@ float OH_ArkUI_SwiperDigitIndicator_GetEndPosition(ArkUI_SwiperDigitIndicator* i
  *
  * @param indicator The pointer to the digital indicator.
  * @param value Returns the distance between the digital indicator and the bottom of the swiper.
- * @since 18
+ * @since 19
  */
 void OH_ArkUI_SwiperDigitIndicator_SetBottomPosition(ArkUI_SwiperDigitIndicator* indicator, float value);
 
@@ -3290,7 +3290,7 @@ void OH_ArkUI_SwiperDigitIndicator_SetBottomPosition(ArkUI_SwiperDigitIndicator*
  *
  * @param indicator The pointer to the digital indicator.
  * @return Returns the distance between the digital indicator and the bottom of the swiper.
- * @since 18
+ * @since 19
  */
 float OH_ArkUI_SwiperDigitIndicator_GetBottomPosition(ArkUI_SwiperDigitIndicator* indicator);
 
@@ -3299,7 +3299,7 @@ float OH_ArkUI_SwiperDigitIndicator_GetBottomPosition(ArkUI_SwiperDigitIndicator
  *
  * @param indicator The pointer to the digital indicator.
  * @param color font color, in 0xARGB format. Default value: 0xFF182431.
- * @since 18
+ * @since 19
  */
 void OH_ArkUI_SwiperDigitIndicator_SetFontColor(ArkUI_SwiperDigitIndicator* indicator, uint32_t color);
 
@@ -3308,7 +3308,7 @@ void OH_ArkUI_SwiperDigitIndicator_SetFontColor(ArkUI_SwiperDigitIndicator* indi
  *
  * @param indicator The pointer to the digital indicator.
  * @return font color, in 0xARGB format.
- * @since 18
+ * @since 19
  */
 uint32_t OH_ArkUI_SwiperDigitIndicator_GetFontColor(ArkUI_SwiperDigitIndicator* indicator);
 
@@ -3317,7 +3317,7 @@ uint32_t OH_ArkUI_SwiperDigitIndicator_GetFontColor(ArkUI_SwiperDigitIndicator* 
  *
  * @param indicator The pointer to the digital indicator.
  * @param selectedColor font color, in 0xARGB format. Default value: 0xFF182431.
- * @since 18
+ * @since 19
  */
 void OH_ArkUI_SwiperDigitIndicator_SetSelectedFontColor(ArkUI_SwiperDigitIndicator* indicator, uint32_t selectedColor);
 
@@ -3326,7 +3326,7 @@ void OH_ArkUI_SwiperDigitIndicator_SetSelectedFontColor(ArkUI_SwiperDigitIndicat
  *
  * @param indicator The pointer to the digital indicator.
  * @return font color, in 0xARGB format.
- * @since 18
+ * @since 19
  */
 uint32_t OH_ArkUI_SwiperDigitIndicator_GetSelectedFontColor(ArkUI_SwiperDigitIndicator* indicator);
 
@@ -3335,7 +3335,7 @@ uint32_t OH_ArkUI_SwiperDigitIndicator_GetSelectedFontColor(ArkUI_SwiperDigitInd
  *
  * @param indicator The pointer to the digital indicator.
  * @param size font size, in fp.
- * @since 18
+ * @since 19
  */
 void OH_ArkUI_SwiperDigitIndicator_SetFontSize(ArkUI_SwiperDigitIndicator* indicator, float size);
 
@@ -3344,7 +3344,7 @@ void OH_ArkUI_SwiperDigitIndicator_SetFontSize(ArkUI_SwiperDigitIndicator* indic
  *
  * @param indicator The pointer to the digital indicator.
  * @return font size, in fp.
- * @since 18
+ * @since 19
  */
 float OH_ArkUI_SwiperDigitIndicator_GetFontSize(ArkUI_SwiperDigitIndicator* indicator);
 
@@ -3353,7 +3353,7 @@ float OH_ArkUI_SwiperDigitIndicator_GetFontSize(ArkUI_SwiperDigitIndicator* indi
  *
  * @param indicator The pointer to the digital indicator.
  * @param size font size, in fp.
- * @since 18
+ * @since 19
  */
 void OH_ArkUI_SwiperDigitIndicator_SetSelectedFontSize(ArkUI_SwiperDigitIndicator* indicator, float size);
 
@@ -3362,7 +3362,7 @@ void OH_ArkUI_SwiperDigitIndicator_SetSelectedFontSize(ArkUI_SwiperDigitIndicato
  *
  * @param indicator The pointer to the digital indicator.
  * @return font size, in fp.
- * @since 18
+ * @since 19
  */
 float OH_ArkUI_SwiperDigitIndicator_GetSelectedFontSize(ArkUI_SwiperDigitIndicator* indicator);
 
@@ -3371,7 +3371,7 @@ float OH_ArkUI_SwiperDigitIndicator_GetSelectedFontSize(ArkUI_SwiperDigitIndicat
  *
  * @param indicator The pointer to the digital indicator.
  * @param fontWeight font weight {@link ArkUI_FontWeight}. The default value is <b>ARKUI_FONT_WEIGHT_NORMAL</b>.
- * @since 18
+ * @since 19
  */
 void OH_ArkUI_SwiperDigitIndicator_SetFontWeight(ArkUI_SwiperDigitIndicator *indicator, ArkUI_FontWeight fontWeight);
 
@@ -3380,7 +3380,7 @@ void OH_ArkUI_SwiperDigitIndicator_SetFontWeight(ArkUI_SwiperDigitIndicator *ind
  *
  * @param indicator The pointer to the digital indicator.
  * @return font weight {@link ArkUI_FontWeight}.
- * @since 18
+ * @since 19
  */
 ArkUI_FontWeight OH_ArkUI_SwiperDigitIndicator_GetFontWeight(ArkUI_SwiperDigitIndicator* indicator);
 
@@ -3389,7 +3389,7 @@ ArkUI_FontWeight OH_ArkUI_SwiperDigitIndicator_GetFontWeight(ArkUI_SwiperDigitIn
  *
  * @param indicator The pointer to the digital indicator.
  * @param selectedFontWeight font weight {@link ArkUI_FontWeight}. The default value is <b>ARKUI_FONT_WEIGHT_NORMAL</b>.
- * @since 18
+ * @since 19
  */
 void OH_ArkUI_SwiperDigitIndicator_SetSelectedFontWeight(
     ArkUI_SwiperDigitIndicator *indicator, ArkUI_FontWeight selectedFontWeight);
@@ -3399,7 +3399,7 @@ void OH_ArkUI_SwiperDigitIndicator_SetSelectedFontWeight(
  *
  * @param indicator The pointer to the digital indicator.
  * @return font weight {@link ArkUI_FontWeight}.
- * @since 18
+ * @since 19
  */
 ArkUI_FontWeight OH_ArkUI_SwiperDigitIndicator_GetSelectedFontWeight(ArkUI_SwiperDigitIndicator* indicator);
 
@@ -3407,7 +3407,7 @@ ArkUI_FontWeight OH_ArkUI_SwiperDigitIndicator_GetSelectedFontWeight(ArkUI_Swipe
  * @brief Destroys the digital indicator.
  *
  * @param indicator The pointer to the digital indicator.
- * @since 18
+ * @since 19
  */
 void OH_ArkUI_SwiperDigitIndicator_Destroy(ArkUI_SwiperDigitIndicator *indicator);
 
@@ -3417,7 +3417,7 @@ void OH_ArkUI_SwiperDigitIndicator_Destroy(ArkUI_SwiperDigitIndicator *indicator
  * @param indicator The pointer to the digital indicator.
  * @param ignoreSize Whether to ignore the size of the indicator. The value 1 means to ignore, and 0 means the opposite.
  * The default value is 0.
- * @since 18
+ * @since 19
 */
 void OH_ArkUI_SwiperDigitIndicator_SetIgnoreSizeOfBottom(ArkUI_SwiperDigitIndicator* indicator, int32_t ignoreSize);
 
@@ -3426,7 +3426,7 @@ void OH_ArkUI_SwiperDigitIndicator_SetIgnoreSizeOfBottom(ArkUI_SwiperDigitIndica
  *
  * @param indicator The pointer to the digital indicator.
  * @return Returns whether to ignore the size of the indicator.
- * @since 18
+ * @since 19
 */
 int32_t OH_ArkUI_SwiperDigitIndicator_GetIgnoreSizeOfBottom(ArkUI_SwiperDigitIndicator* indicator);
 
@@ -3434,7 +3434,7 @@ int32_t OH_ArkUI_SwiperDigitIndicator_GetIgnoreSizeOfBottom(ArkUI_SwiperDigitInd
  * @brief Creates a arrow style for swiper.
  *
  * @return Returns the pointer to the new arrow style.
- * @since 18
+ * @since 19
  */
 ArkUI_SwiperArrowStyle *OH_ArkUI_SwiperArrowStyle_Create();
 
@@ -3445,7 +3445,7 @@ ArkUI_SwiperArrowStyle *OH_ArkUI_SwiperArrowStyle_Create();
  * @param showBackground whether to show the background for the arrow.
  *        The value <b>1</b> means to show the background, and <b>0</b> means the opposite.
  *        The default value is <b>0</b>.
- * @since 18
+ * @since 19
  */
 void OH_ArkUI_SwiperArrowStyle_SetShowBackground(ArkUI_SwiperArrowStyle *arrowStyle, int32_t showBackground);
 
@@ -3455,7 +3455,7 @@ void OH_ArkUI_SwiperArrowStyle_SetShowBackground(ArkUI_SwiperArrowStyle *arrowSt
  * @param arrowStyle The pointer to the arrow style.
  * @return whether to show the background for the arrow.
  *         The value <b>1</b> means to show the background, and <b>0</b> means the opposite.
- * @since 18
+ * @since 19
  */
 int32_t OH_ArkUI_SwiperArrowStyle_GetShowBackground(ArkUI_SwiperArrowStyle* arrowStyle);
 
@@ -3467,7 +3467,7 @@ int32_t OH_ArkUI_SwiperArrowStyle_GetShowBackground(ArkUI_SwiperArrowStyle* arro
  *        The value <b>1</b> means to display on boths sides of the swiper,
  *        and <b>0</b> means display on boths sides of the swiper indicator.
  *        The default value is <b>0</b>.
- * @since 18
+ * @since 19
  */
 void OH_ArkUI_SwiperArrowStyle_SetShowSidebarMiddle(ArkUI_SwiperArrowStyle* arrowStyle, int32_t showSidebarMiddle);
 
@@ -3477,7 +3477,7 @@ void OH_ArkUI_SwiperArrowStyle_SetShowSidebarMiddle(ArkUI_SwiperArrowStyle* arro
  * @param arrowStyle The pointer to the arrow style.
  * @return the display position of the arrow. The value <b>1</b> means to display on boths sides of the swiper,
  *         and <b>0</b> means display on boths sides of the swiper indicator.
- * @since 18
+ * @since 19
  */
 int32_t OH_ArkUI_SwiperArrowStyle_GetShowSidebarMiddle(ArkUI_SwiperArrowStyle* arrowStyle);
 
@@ -3488,7 +3488,7 @@ int32_t OH_ArkUI_SwiperArrowStyle_GetShowSidebarMiddle(ArkUI_SwiperArrowStyle* a
  * @param backgroundSize the background size of the arrow. The unit is vp.
  *        The default value is <b>24</b> when the arrow displays on both sides of the swiper indicator.
  *        The default value is <b>32</b> when the arrow displays on both sides of the swiper.
- * @since 18
+ * @since 19
  */
 void OH_ArkUI_SwiperArrowStyle_SetBackgroundSize(ArkUI_SwiperArrowStyle* arrowStyle, float backgroundSize);
 
@@ -3497,7 +3497,7 @@ void OH_ArkUI_SwiperArrowStyle_SetBackgroundSize(ArkUI_SwiperArrowStyle* arrowSt
  *
  * @param arrowStyle The pointer to the arrow style.
  * @return Returns the background size of the arrow. The unit is vp.
- * @since 18
+ * @since 19
  */
 float OH_ArkUI_SwiperArrowStyle_GetBackgroundSize(ArkUI_SwiperArrowStyle *arrowStyle);
 
@@ -3505,7 +3505,7 @@ float OH_ArkUI_SwiperArrowStyle_GetBackgroundSize(ArkUI_SwiperArrowStyle *arrowS
  * @brief Destroys the arrow style.
  *
  * @param arrowStyle The pointer to the arrow style.
- * @since 18
+ * @since 19
  */
 void OH_ArkUI_SwiperArrowStyle_Destroy(ArkUI_SwiperArrowStyle *arrowStyle);
 
@@ -3516,7 +3516,7 @@ void OH_ArkUI_SwiperArrowStyle_Destroy(ArkUI_SwiperArrowStyle *arrowStyle);
  * @param backgroundColor the background color of the arrow, in 0xARGB format.
  *        The default value is <b>0x00000000</b> when the arrow displays on both sides of the swiper indicator.
  *        The default value is <b>0x19182431</b> when the arrow displays on both sides of the swiper.
- * @since 18
+ * @since 19
  */
 void OH_ArkUI_SwiperArrowStyle_SetBackgroundColor(ArkUI_SwiperArrowStyle *arrowStyle, uint32_t backgroundColor);
 
@@ -3525,7 +3525,7 @@ void OH_ArkUI_SwiperArrowStyle_SetBackgroundColor(ArkUI_SwiperArrowStyle *arrowS
  *
  * @param arrowStyle The pointer to the arrow style.
  * @return Returns the background color of the arrow, in 0xARGB format.
- * @since 18
+ * @since 19
  */
 uint32_t OH_ArkUI_SwiperArrowStyle_GetBackgroundColor(ArkUI_SwiperArrowStyle* arrowStyle);
 
@@ -3537,7 +3537,7 @@ uint32_t OH_ArkUI_SwiperArrowStyle_GetBackgroundColor(ArkUI_SwiperArrowStyle* ar
  *        The default value is <b>18</b> when the arrow displays on both sides of the swiper indicator.
  *        The default value is <b>24</b> when the arrow displays on both sides of the swiper.
  *        The arrow size is fixed to 3/4 of the background size when the background is shown.
- * @since 18
+ * @since 19
  */
 void OH_ArkUI_SwiperArrowStyle_SetArrowSize(ArkUI_SwiperArrowStyle* arrowStyle, float arrowSize);
 
@@ -3546,7 +3546,7 @@ void OH_ArkUI_SwiperArrowStyle_SetArrowSize(ArkUI_SwiperArrowStyle* arrowStyle, 
  *
  * @param arrowStyle The pointer to the arrow style.
  * @return the size of the arrow. The unit is vp.
- * @since 18
+ * @since 19
  */
 float OH_ArkUI_SwiperArrowStyle_GetArrowSize(ArkUI_SwiperArrowStyle* arrowStyle);
 
@@ -3555,7 +3555,7 @@ float OH_ArkUI_SwiperArrowStyle_GetArrowSize(ArkUI_SwiperArrowStyle* arrowStyle)
  *
  * @param arrowStyle The pointer to the arrow style.
  * @param arrowColor the color of the arrow, in 0xARGB format. The default value is <b>0x00182431</b>.
- * @since 18
+ * @since 19
  */
 void OH_ArkUI_SwiperArrowStyle_SetArrowColor(ArkUI_SwiperArrowStyle* arrowStyle, uint32_t arrowColor);
 
@@ -3564,7 +3564,7 @@ void OH_ArkUI_SwiperArrowStyle_SetArrowColor(ArkUI_SwiperArrowStyle* arrowStyle,
  *
  * @param arrowStyle The pointer to the arrow style.
  * @return Returns the color of the arrow, in 0xARGB format.
- * @since 18
+ * @since 19
  */
 uint32_t OH_ArkUI_SwiperArrowStyle_GetArrowColor(ArkUI_SwiperArrowStyle* arrowStyle);
 
