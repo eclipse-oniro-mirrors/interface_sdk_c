@@ -276,21 +276,16 @@ OH_AudioStream_Result OH_AudioStreamBuilder_SetCapturerCallback(OH_AudioStreamBu
  * When using AudioRenderer apis, there are many instructions for application
  * to achieve better performance and lower power consumption:
  * In music or audiobook background playback situation, you can have low power
- * consumption by following this best practices document [Low-Power Rules in Music Playback Scenarios]{@link
- * https://developer.huawei.com/consumer/en/doc/best-practices/bpta-music-playback-scenarios}.
- * And for navigation situation, you can follow [Low-Power Rules in Navigation and Positioning Scenarios]{@link
- * https://developer.huawei.com/consumer/en/doc/best-practices/bpta-navigation-scenarios}.
+ * consumption by following this best practices document **Low-Power Rules in Music Playback Scenarios**.
+ * And for navigation situation, you can follow **Low-Power Rules in Navigation and Positioning Scenarios**.
  *
  * Application developer should also be careful when app goes to background, please check if your audio playback
- * is still needed, see [Audio Resources]{@link
- * https://developer.huawei.com/consumer/en/doc/best-practices/bpta-reasonable-audio-use}.
+ * is still needed, see **Audio Resources** in best practices document.
  * And avoiding to send silence audio data continuously to waste system resources, otherwise system will take
- * control measures when this behavior is detected, see [Audio Playback]{@link
- * https://developer.huawei.com/consumer/en/doc/best-practices/bpta-reasonable-audio-playback-use}.
- * 
+ * control measures when this behavior is detected, see **Audio Playback** in best practices document.
+ *
  * If you want to use AudioRenderer api to implement a music playback application, there are also many interactive
- * scenes to consider, see [Developing an Audio Application]{@link
- * https://developer.huawei.com/consumer/en/doc/best-practices/bpta-audio-interaction-practice}.
+ * scenes to consider, see **Developing an Audio Application** in best practices document.
  *
  * @since 10
  *

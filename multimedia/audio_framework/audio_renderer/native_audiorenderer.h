@@ -242,7 +242,7 @@ OH_AudioStream_Result OH_AudioRenderer_GetFramesWritten(OH_AudioRenderer* render
 
 /**
  * Query the the time at which a particular frame was presented.
- * 
+ *
  * It is recommended to use new api {@link OH_AudioRenderer_GetAudioTimestampInfo}
  * because it adapts to playback speed change, but current api does not. The
  * increasing speed for position will not change when speed become fast.
@@ -522,8 +522,7 @@ OH_AudioStream_Result OH_AudioRenderer_SetDefaultOutputDevice(
  *        position will be double for 2x speed playback.
  *
  *        For video synchronization usage, there is a best practice document for developer to refer
- *        [AV Synchronization]{@link
- *        https://developer.huawei.com/consumer/en/doc/best-practices/bpta-audio-video-synchronization}.
+ *        **AV Synchronization**.
  *
  * @param renderer Reference created by OH_AudioStreamBuilder_GenerateRenderer()
  * @param framePosition Pointer to a variable to receive the position
