@@ -18,6 +18,7 @@ ohos_ndk_library("libhitrace_ndk") {
   ndk_description_file = "./libhitrace.ndk.json"
   min_compact_version = "1"
   system_capability = "SystemCapability.HiviewDFX.HiTrace"
+  system_capability_headers = [ "hitrace/trace.h" ]
 }
 
 ohos_ndk_headers("hitrace_header") {
