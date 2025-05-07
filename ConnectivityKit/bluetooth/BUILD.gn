@@ -25,5 +25,5 @@ ohos_ndk_library("libbluetooth_ndk") {
   output_extension = "so"
   min_compact_version = "13"
   system_capability = "SystemCapability.Communication.Bluetooth.Core"
-  system_capability_headers = [ "./oh_bluetooth.h" ]
+  system_capability_headers = [ "ConnectivityKit/bluetooth/oh_bluetooth.h" ]
 }
