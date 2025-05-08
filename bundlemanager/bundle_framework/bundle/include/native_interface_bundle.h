@@ -37,6 +37,9 @@
 #ifndef FOUNDATION_APPEXECFWK_STANDARD_KITS_APPKIT_NATIVE_BUNDLE_INCLUDE_NATIVE_INTERFACE_BUNDLE_H
 #define FOUNDATION_APPEXECFWK_STANDARD_KITS_APPKIT_NATIVE_BUNDLE_INCLUDE_NATIVE_INTERFACE_BUNDLE_H
 
+#include <stdbool.h>
+#include <stddef.h>
+
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -77,6 +80,74 @@ struct OH_NativeBundle_ElementName {
 };
 
 /**
+ * @brief Indicates information of metadata
+ *
+ * @atomicservice
+ * @since 20
+ */
+struct OH_NativeBundle_Metadata {
+    /**
+     * @brief Indicates the metadata name
+     *
+     * @atomicservice
+     * @since 20
+     */
+    char* name;
+    /**
+     * @brief Indicates the metadata value
+     *
+     * @atomicservice
+     * @since 20
+     */
+    char* value;
+    /**
+     * @brief Indicates the metadata resource
+     *
+     * @atomicservice
+     * @since 20
+     */
+    char* resource;
+};
+
+/**
+ * @brief Indicates information of metadata
+ *
+ * @atomicservice
+ * @since 20
+ */
+typedef struct OH_NativeBundle_Metadata OH_NativeBundle_Metadata;
+
+/**
+ * @brief Indicates information of module metadata
+ *
+ * @atomicservice
+ * @since 20
+ */
+struct OH_NativeBundle_ModuleMetadata {
+    /**
+     * @brief Indicates the moduleName of module
+     *
+     * @atomicservice
+     * @since 20
+     */
+    char* moduleName;
+    /**
+     * @brief Indicates the metadata array of module
+     *
+     * @atomicservice
+     * @since 20
+     */
+    OH_NativeBundle_Metadata* metadataArray;
+    /**
+     * @brief Indicates the metadata array size of module
+     *
+     * @atomicservice
+     * @since 20
+     */
+    size_t metadataArraySize;
+};
+
+/**
  * @brief Indicates information of application
  *
  * @since 11
@@ -91,6 +162,14 @@ typedef struct OH_NativeBundle_ApplicationInfo OH_NativeBundle_ApplicationInfo;
  * @version 1.0
  */
 typedef struct OH_NativeBundle_ElementName OH_NativeBundle_ElementName;
+
+/**
+ * @brief Indicates information of module metadata
+ *
+ * @atomicservice
+ * @since 20
+ */
+typedef struct OH_NativeBundle_ModuleMetadata OH_NativeBundle_ModuleMetadata;
 
 /**
  * @brief Obtains the application info based on the The current bundle.
@@ -159,6 +238,30 @@ OH_NativeBundle_ElementName OH_NativeBundle_GetMainElementName();
  * @version 1.0
  */
 char* OH_NativeBundle_GetCompatibleDeviceType();
+
+/**
+ * @brief Obtains the application debug mode.
+ *
+ * @param isDebugMode Indicates whether the application is in debug mode.
+ * @return Returns true if call successful, false otherwise.
+ * @atomicservice
+ * @since 20
+ */
+bool OH_NativeBundle_IsDebugMode(bool* isDebugMode);
+
+/**
+ * @brief Obtains the module metadata array of the current application.
+ * After utilizing this interface, to prevent memory leaks,
+ * it is necessary to manually release the pointer returned by the interface.
+ *
+ * @param size Indicates the module metadata array size.
+ * @return Returns the newly created module metadata array, if the returned object is NULL,
+ * it indicates creation failure. The possible cause of failure could be that the application address space is full,
+ * leading to space allocation failure.
+ * @atomicservice
+ * @since 20
+ */
+OH_NativeBundle_ModuleMetadata* OH_NativeBundle_GetModuleMetadata(size_t* size);
 #ifdef __cplusplus
 };
 #endif
