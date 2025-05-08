@@ -21,9 +21,9 @@ ohos_ndk_library("libhuks_ndk") {
 
   system_capability = "SystemCapability.Security.Huks"
   system_capability_headers = [
-    "./include/native_huks_api.h",
-    "./include/native_huks_param.h",
-    "./include/native_huks_type.h",
+    "huks/native_huks_api.h",
+    "huks/native_huks_param.h",
+    "huks/native_huks_type.h",
   ]
 }
 
