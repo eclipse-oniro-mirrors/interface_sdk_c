@@ -41,6 +41,9 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
+
+#define TRANSIENT_TASK_MAX_NUM 3
+
 /**
  * @brief Enum for transient task error code.
  * @since 13
@@ -90,6 +93,19 @@ typedef struct TransientTask_DelaySuspendInfo {
     /** The actual delay duration (ms) */
     int32_t actualDelayTime;
 } TransientTask_DelaySuspendInfo;
+
+/**
+ * @brief Define TransientTaskInfo for an application.
+ *
+ * @since 20
+ * @version 1.0
+ */
+typedef struct TransientTask_TransientTaskInfo {
+    /** The remaining quota of the delay request */
+    int32_t remainingQuota;
+    /** The info of delay suspend */
+    TransientTask_DelaySuspendInfo transientTasks[TRANSIENT_TASK_MAX_NUM];
+} TransientTask_TransientTaskInfo;
 
 /**
  * @brief Define a callback function when delay time expired.

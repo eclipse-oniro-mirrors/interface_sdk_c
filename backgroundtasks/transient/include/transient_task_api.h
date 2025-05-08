@@ -100,6 +100,21 @@ int32_t OH_BackgroundTaskManager_GetRemainingDelayTime(int32_t requestId, int32_
  */
 int32_t OH_BackgroundTaskManager_CancelSuspendDelay(int32_t requestId);
 
+/**
+ * @brief Obtains all the transient task.
+ *
+ * @param transientTaskInfo Indicates the transient task info of an application.
+ * @return {@link ERR_TRANSIENT_TASK_OK} 0 - Success.
+ *         {@link ERR_TRANSIENT_TASK_INVALID_PARAM} 401 - Invalid parameter.
+ *         {@link ERR_TRANSIENT_TASK_PARCEL_FAILED} 9800001 - Memory operation failed.
+ *         {@link ERR_TRANSIENT_TASK_PARCEL_FAILED} 9800002 - Parcelable failed.
+ *         {@link ERR_TRANSIENT_TASK_SYS_NOT_READY} 9800004 - System service not ready.
+ * @syscap SystemCapability.ResourceSchedule.BackgroundTaskManager.TransientTask
+ * @since 20
+ * @version 1.0
+ */
+int32_t OH_BackgroundTaskManager_GetAllTransientTasks(TransientTask_TransientTaskInfo  *transientTaskInfo);
+
 #ifdef __cplusplus
 }
 #endif
