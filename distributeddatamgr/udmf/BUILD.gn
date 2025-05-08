@@ -33,10 +33,10 @@ ohos_ndk_library("libudmf") {
   ndk_description_file = "./libudmf.ndk.json"
   min_compact_version = "12"
   system_capability_headers = [
-    "$ndk_headers_out_dir/database/udmf/udmf_err_code.h",
-    "$ndk_headers_out_dir/database/udmf/udmf_meta.h",
-    "$ndk_headers_out_dir/database/udmf/udmf.h",
-    "$ndk_headers_out_dir/database/udmf/uds.h",
-    "$ndk_headers_out_dir/database/udmf/utd.h",
+    "database/udmf/udmf_err_code.h",
+    "database/udmf/udmf_meta.h",
+    "database/udmf/udmf.h",
+    "database/udmf/uds.h",
+    "database/udmf/utd.h",
   ]
 }
