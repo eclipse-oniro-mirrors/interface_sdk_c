@@ -19,7 +19,7 @@
  *
  * @brief Provides APIs for access to the image interface.
  *
- * @syscap SystemCapability.Multimedia.Image
+ * @syscap SystemCapability.Multimedia.Image.Core
  * @since 10
  * @version 2.0
  */
@@ -31,7 +31,7 @@
  *
  * @kit ImageKit
  * @library libimage_ndk.z.so
- * @syscap SystemCapability.Multimedia.Image
+ * @syscap SystemCapability.Multimedia.Image.Core
  * @since 10
  * @version 2.0
  */
