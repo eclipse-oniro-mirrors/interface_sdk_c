@@ -82,70 +82,42 @@ struct OH_NativeBundle_ElementName {
 /**
  * @brief Indicates information of metadata
  *
- * @atomicservice
  * @since 20
  */
-struct OH_NativeBundle_Metadata {
+typedef struct OH_NativeBundle_Metadata {
     /**
      * @brief Indicates the metadata name
-     *
-     * @atomicservice
-     * @since 20
      */
     char* name;
     /**
      * @brief Indicates the metadata value
-     *
-     * @atomicservice
-     * @since 20
      */
     char* value;
     /**
      * @brief Indicates the metadata resource
-     *
-     * @atomicservice
-     * @since 20
      */
     char* resource;
-};
-
-/**
- * @brief Indicates information of metadata
- *
- * @atomicservice
- * @since 20
- */
-typedef struct OH_NativeBundle_Metadata OH_NativeBundle_Metadata;
+} OH_NativeBundle_Metadata;
 
 /**
  * @brief Indicates information of module metadata
  *
- * @atomicservice
  * @since 20
  */
-struct OH_NativeBundle_ModuleMetadata {
+typedef struct OH_NativeBundle_ModuleMetadata {
     /**
      * @brief Indicates the moduleName of module
-     *
-     * @atomicservice
-     * @since 20
      */
     char* moduleName;
     /**
      * @brief Indicates the metadata array of module
-     *
-     * @atomicservice
-     * @since 20
      */
     OH_NativeBundle_Metadata* metadataArray;
     /**
      * @brief Indicates the metadata array size of module
-     *
-     * @atomicservice
-     * @since 20
      */
     size_t metadataArraySize;
-};
+} OH_NativeBundle_ModuleMetadata;
 
 /**
  * @brief Indicates information of application
@@ -162,14 +134,6 @@ typedef struct OH_NativeBundle_ApplicationInfo OH_NativeBundle_ApplicationInfo;
  * @version 1.0
  */
 typedef struct OH_NativeBundle_ElementName OH_NativeBundle_ElementName;
-
-/**
- * @brief Indicates information of module metadata
- *
- * @atomicservice
- * @since 20
- */
-typedef struct OH_NativeBundle_ModuleMetadata OH_NativeBundle_ModuleMetadata;
 
 /**
  * @brief Obtains the application info based on the The current bundle.
@@ -244,7 +208,6 @@ char* OH_NativeBundle_GetCompatibleDeviceType();
  *
  * @param isDebugMode Indicates whether the application is in debug mode.
  * @return Returns true if call successful, false otherwise.
- * @atomicservice
  * @since 20
  */
 bool OH_NativeBundle_IsDebugMode(bool* isDebugMode);
@@ -258,7 +221,6 @@ bool OH_NativeBundle_IsDebugMode(bool* isDebugMode);
  * @return Returns the newly created module metadata array, if the returned object is NULL,
  * it indicates creation failure. The possible cause of failure could be that the application address space is full,
  * leading to space allocation failure.
- * @atomicservice
  * @since 20
  */
 OH_NativeBundle_ModuleMetadata* OH_NativeBundle_GetModuleMetadata(size_t* size);
