@@ -3176,11 +3176,11 @@
         "name": "OH_ArkUI_CustomDialog_SetHoverModeArea"
     },
     {
-        "first_introduced": "18",
+        "first_introduced": "19",
         "name": "OH_ArkUI_CustomDialog_SetBackgroundBlurStyleOptions"
     },
     {
-        "first_introduced": "18",
+        "first_introduced": "19",
         "name": "OH_ArkUI_CustomDialog_SetBackgroundEffect"
     },
     {
