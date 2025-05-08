@@ -29,7 +29,7 @@ ohos_ndk_library("liblocation_ndk") {
   min_compact_version = "13"
   system_capability = "SystemCapability.Location.Location.Core"
   system_capability_headers = [
-    "./oh_location.h",
-    "./oh_location_type.h",
+    "LocationKit/oh_location.h",
+    "LocationKit/oh_location_type.h",
   ]
 }
