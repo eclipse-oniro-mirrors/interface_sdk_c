@@ -559,7 +559,7 @@ int32_t OH_ArkUI_AllowNodeAllDropDataTypes(ArkUI_NodeHandle node);
  * @brief Sets whether the specified component is draggable.
  *
  * @param node Indicates the pointer to a component node.
- * @param bool Indicates whether the component is draggable.
+ * @param enabled Indicates whether the component is draggable.
  * @return Returns the result code.
  *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
  *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
