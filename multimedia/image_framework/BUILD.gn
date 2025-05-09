@@ -17,6 +17,9 @@ ohos_ndk_library("libpixelmap_ndk") {
   ndk_description_file = "./libimage_pixelmap_napi.ndk.json"
   min_compact_version = "1"
   output_name = "pixelmap_ndk"
+  system_capability = "SystemCapability.Multimedia.Image.Core"
+  system_capability_headers =
+      [ "multimedia/image_framework/image_pixel_map_mdk.h" ]
 }
 
 ohos_ndk_headers("image_header") {
