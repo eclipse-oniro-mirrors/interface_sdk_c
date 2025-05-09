@@ -12,6 +12,10 @@
         "name": "OH_PictureMetadata_SetProperty"
     },
     {
+        "first_introduced": "19",
+        "name": "OH_PictureMetadata_GetPropertyWithNull"
+    },
+    {
         "first_introduced": "13",
         "name": "OH_PictureMetadata_Release"
     },
