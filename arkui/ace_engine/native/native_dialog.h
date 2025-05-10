@@ -662,7 +662,7 @@ typedef struct {
      * @return Returns the result code.
      *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
      *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
-     * @since 18
+     * @since 19
      */
     int32_t (*setBackgroundBlurStyleOptions)(
         ArkUI_NativeDialogHandle handle, const ArkUI_AttributeItem* backgroundBlurStyleOptions);
@@ -688,7 +688,7 @@ typedef struct {
      * @return Returns the result code.
      *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
      *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
-     * @since 18
+     * @since 19
      */
     int32_t (*setBackgroundEffect)(ArkUI_NativeDialogHandle handle, const ArkUI_AttributeItem* backgroundEffect);
 } ArkUI_NativeDialogAPI_3;
@@ -1153,7 +1153,7 @@ int32_t OH_ArkUI_CustomDialog_RegisterOnDidDisappearCallback(
  * @return Returns the result code.
  *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
  *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
- * @since 18
+ * @since 19
  */
 int32_t OH_ArkUI_CustomDialog_SetBackgroundBlurStyleOptions(
     ArkUI_CustomDialogOptions* options, const ArkUI_AttributeItem* backgroundBlurStyleOptions);
@@ -1177,7 +1177,7 @@ int32_t OH_ArkUI_CustomDialog_SetBackgroundBlurStyleOptions(
  * @return Returns the result code.
  *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
  *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
- * @since 18
+ * @since 19
  */
 int32_t OH_ArkUI_CustomDialog_SetBackgroundEffect(
     ArkUI_CustomDialogOptions* options, const ArkUI_AttributeItem* backgroundEffect);
