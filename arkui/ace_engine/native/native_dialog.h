@@ -425,7 +425,7 @@ typedef struct {
      * @return Returns the result code.
      *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
      *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
-     * @since 18
+     * @since 19
      */
 
     int32_t (*registerOnWillAppear)(
@@ -440,7 +440,7 @@ typedef struct {
      * @return Returns the result code.
      *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
      *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
-     * @since 18
+     * @since 19
      */
     int32_t (*registerOnDidAppear)(
         ArkUI_NativeDialogHandle handle, void* userData, void (*callback)(void* userData));
@@ -454,7 +454,7 @@ typedef struct {
      * @return Returns the result code.
      *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
      *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
-     * @since 18
+     * @since 19
      */
     int32_t (*registerOnWillDisappear)(
         ArkUI_NativeDialogHandle handle, void* userData, void (*callback)(void* userData));
@@ -468,7 +468,7 @@ typedef struct {
      * @return Returns the result code.
      *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
      *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
-     * @since 18
+     * @since 19
      */
     int32_t (*registerOnDidDisappear)(
         ArkUI_NativeDialogHandle handle, void* userData, void (*callback)(void* userData));
