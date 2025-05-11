@@ -1,5 +1,6 @@
 [
     {"name": "canIUse"},
+    {"name": "isApiVersionGreaterOrEqual"},
     {"name": "OH_GetDeviceType"},
     {"name": "OH_GetManufacture"},
     {"name": "OH_GetBrand"},
@@ -16,6 +17,8 @@
     {"name": "OH_GetOsReleaseType"},
     {"name": "OH_GetOSFullName"},
     {"name": "OH_GetSdkApiVersion"},
+    {"name": "OH_GetSdkMinorApiVersion"},
+    {"name": "OH_GetSdkPatchApiVersion"},
     {"name": "OH_GetFirstApiVersion"},
     {"name": "OH_GetVersionId"},
     {"name": "OH_GetBuildType"},
