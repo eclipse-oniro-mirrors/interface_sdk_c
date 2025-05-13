@@ -5,9 +5,12 @@
     { "name": "OH_NativeVSync_RequestFrameWithMultiCallback" },
     { "name": "OH_NativeVSync_GetPeriod" },
     { "name": "OH_NativeVSync_Create_ForAssociatedWindow" },
-    { "name": "OH_NativeVSync_SetExpectedFrameRateRange" },
     {
         "first_introduced": "14",
         "name": "OH_NativeVSync_DVSyncSwitch"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_NativeVSync_SetExpectedFrameRateRange"
     }
 ]
