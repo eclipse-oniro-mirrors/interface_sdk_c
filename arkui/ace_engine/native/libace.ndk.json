@@ -2848,6 +2848,10 @@
         "name": "OH_ArkUI_PostFrameCallback"
     },
     {
+        "first_introduced": "20",
+        "name": "OH_ArkUI_PostIdleCallback"
+    },
+    {
         "first_introduced": "15",
         "name": "OH_ArkUI_HostWindowInfo_GetName"
     },
