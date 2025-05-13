@@ -136,6 +136,10 @@
         "name": "OH_ImageSourceNative_GetImageProperty"
     },
     {
+        "first_introduced": "19",
+        "name": "OH_ImageSourceNative_GetImagePropertyWithNull"
+    },
+    {
         "first_introduced": "12",
         "name": "OH_ImageSourceNative_ModifyImageProperty"
     },
