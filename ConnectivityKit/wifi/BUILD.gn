@@ -25,5 +25,5 @@ ohos_ndk_library("libwifi_ndk") {
   output_extension = "so"
   min_compact_version = "13"
   system_capability = "SystemCapability.Communication.WiFi.STA"
-  system_capability_headers = [ "wifi/oh_wifi.h" ]
+  system_capability_headers = [ "ConnectivityKit/wifi/oh_wifi.h" ]
 }
