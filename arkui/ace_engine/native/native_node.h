@@ -5743,7 +5743,7 @@ typedef enum {
      * .value[0].f32: minimum main axis size of the child element, Unit: vp. \n
      * .value[1].i32: whether to turn pages by group. \n
      *
-     * @since 18
+     * @since 19
      */
     NODE_SWIPER_AUTO_FILL,
 
