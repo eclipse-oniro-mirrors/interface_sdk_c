@@ -534,7 +534,13 @@ typedef enum {
      *
      * @since 14
      */
-    AUDIOSTREAM_SOURCE_TYPE_UNPROCESSED = 14
+    AUDIOSTREAM_SOURCE_TYPE_UNPROCESSED = 14,
+    /**
+     * Live Broadcast source type.
+     *
+     * @since 20
+     */
+    AUDIOSTREAM_SOURCE_TYPE_LIVE = 17
 } OH_AudioStream_SourceType;
 
 /**
