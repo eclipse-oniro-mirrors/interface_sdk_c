@@ -105,14 +105,15 @@ struct mallinfo2 {
 };
 
 /**
- * @brief The function return a copy of a structure containing information about memory allocations performed by malloc(3) and related functions.
- * @return struct mallinfo,a copy of a structure containing information about memory allocations.
+ * @brief Obtains the memory information allocated by malloc-related operations.
+ * @return A mallinfo struct containing details about memory allocation.
  */
 struct mallinfo mallinfo(void);
 
 /**
- * @brief The function return a copy of a structure containing information about memory allocations performed by malloc(3) and related functions.
- * @return struct mallinfo2,a copy of a structure containing information about memory allocations,which solves some of the arguments against including mallinfo by expanding the width of the returned counters from int to size_t.
+ * @brief Obtains the memory information allocated by malloc-related operations.
+ * @return A mallinfo2 struct containing details about memory allocation. Unlike mallinfo, this struct uses
+ * size_t for its counters, providing a larger range.
  */
 struct mallinfo2 mallinfo2(void);
 
