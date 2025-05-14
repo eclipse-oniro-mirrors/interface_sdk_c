@@ -180,18 +180,15 @@ int OH_NativeVSync_GetPeriod(OH_NativeVSync* nativeVsync, long long* period);
 int OH_NativeVSync_DVSyncSwitch(OH_NativeVSync* nativeVsync, bool enable);
 
 /**
- * @brief Set Vsync expected frame rate range.
+ * @brief Sets the desired VSync frame rate and the range of the desired frame rate.
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeVsync
- * @param nativeVsync Indicates the pointer to a NativeVsync
- * @param range Indicates the pointer to an expected rate range.
- *              Valid range is 0 <= min <= expected <= max <= 144.
- *              expected == 0 indicates cancle vote.
- *              This pointer needs to be released by developer.
- * @return {@link NATIVE_ERROR_OK}0 - Success.
- *      {@link NATIVE_ERROR_INVALID_ARGUMENTS} 40001000 - the parameter is NULL or range is invalid.
- *      {@link NATIVE_ERROR_NOT_SUPPORT} 50102000 - the object nativeVsync does not support this interface
- *                                                  Consider using other methods to create nativeVsync instead.
+ * @param nativeVsync Pointer to an instance of {@link OH_NativeVSync}.
+ * @param range Pointer to an instance of {@link OH_NativeVSync_ExpectedRateRange}.\n
+ * The valid range for the desired frame rate is: 0 <= minimum <= desired frame rate <= maximum <= 144.\n
+ * A desired frame rate of 0 indicates that the desired frame rate is canceled.\n
+ * The developer is responsible for managing the lifecycle of this pointer.
+ * @return Returns 0 on success, other return values can be referenced from {@link OHNativeErrorCode}.
  * @since 20
  * @version 1.0
  */
