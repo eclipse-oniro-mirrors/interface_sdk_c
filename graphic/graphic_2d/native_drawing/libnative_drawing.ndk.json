@@ -548,6 +548,18 @@
         "name": "OH_Drawing_PathSetPath"
     },
     {
+        "first_introduced": "20",
+        "name": "OH_Drawing_PathApproximate"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_Drawing_PathInterpolate"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_Drawing_PathIsInterpolate"
+    },
+    {
         "first_introduced": "12",
         "name": "OH_Drawing_PenCopy"
     },
