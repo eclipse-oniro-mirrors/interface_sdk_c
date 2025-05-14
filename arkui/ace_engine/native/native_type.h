@@ -1900,7 +1900,7 @@ typedef enum {
     ARKUI_BUTTON_TYPE_CIRCLE,
     /**
      * Rounded rectangle button.
-     * @since 18
+     * @since 19
      */
     ARKUI_BUTTON_ROUNDED_RECTANGLE = 8
 } ArkUI_ButtonType;
