@@ -50,6 +50,21 @@ typedef struct OH_NativeVSync OH_NativeVSync;
 typedef void (*OH_NativeVSync_FrameCallback)(long long timestamp, void *data);
 
 /**
+ * @brief Defines the expected frame rate range struct.
+ *
+ * @since 20
+ * @version 1.0
+ */
+typedef struct {
+    /**The minimum frame rate of dynamical callback rate range */
+    int32_t min;
+    /**The maximum frame rate of dynamical callback rate range */
+    int32_t max;
+    /**The expected frame rate of dynamical callback rate range */
+    int32_t expected;
+} OH_NativeVSync_ExpectedRateRange;
+
+/**
  * @brief Creates a <b>NativeVsync</b> instance.\n
  * A new <b>NativeVsync</b> instance is created each time this function is called.
  *
@@ -163,6 +178,22 @@ int OH_NativeVSync_GetPeriod(OH_NativeVSync* nativeVsync, long long* period);
  * @version 1.0
  */
 int OH_NativeVSync_DVSyncSwitch(OH_NativeVSync* nativeVsync, bool enable);
+
+/**
+ * @brief Sets the desired VSync frame rate and the range of the desired frame rate.
+ *
+ * @syscap SystemCapability.Graphic.Graphic2D.NativeVsync
+ * @param nativeVsync Pointer to an instance of {@link OH_NativeVSync}.
+ * @param range Pointer to an instance of {@link OH_NativeVSync_ExpectedRateRange}.\n
+ * The valid range for the desired frame rate is: 0 <= minimum <= desired frame rate <= maximum <= 144.\n
+ * A desired frame rate of 0 indicates that the desired frame rate is canceled.\n
+ * The developer is responsible for managing the lifecycle of this pointer.
+ * @return Returns 0 on success, other return values can be referenced from {@link OHNativeErrorCode}.
+ * @since 20
+ * @version 1.0
+ */
+
+int OH_NativeVSync_SetExpectedFrameRateRange(OH_NativeVSync* nativeVsync, OH_NativeVSync_ExpectedRateRange* range);
 #ifdef __cplusplus
 }
 #endif
