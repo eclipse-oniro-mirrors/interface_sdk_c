@@ -757,6 +757,8 @@
     { "name": "madvise" },
     { "name": "malloc" },
     { "name": "mallopt" },
+    { "name": "mallinfo" },
+    { "name": "mallinfo2" },
     { "name": "malloc_usable_size" },
     { "name": "mblen" },
     { "name": "mbrlen" },
