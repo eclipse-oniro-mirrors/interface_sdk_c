@@ -1,0 +1,898 @@
+[
+    {
+        "first_introduced": "20",
+        "name": "glActiveTexture"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glActiveTextureARB"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glAttachShader"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glBindAttribLocation"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glBindBuffer"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glBindBufferARB"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glBindBufferBase"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glBindBufferRange"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glBindFramebuffer"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glBindImageTexture"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glBindRenderbuffer"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glBindTexture"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glBindVertexArray"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glBindVertexBuffer"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glBlendColor"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glBlendEquation"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glBlendEquationSeparate"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glBlendFunc"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glBlendFunci"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glBlendFuncSeparate"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glBlitFramebuffer"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glBufferData"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glBufferDataARB"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glBufferStorage"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glBufferSubData"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glBufferSubDataARB"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glCheckFramebufferStatus"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glClampColor"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glClear"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glClearBufferfv"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glClearBufferData"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glClearBufferSubData"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glClearColor"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glClearDepth"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glClearDepthf"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glClearStencil"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glClientWaitSync"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glColor4f"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glColorMask"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glCompileShader"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glCompressedTexImage2D"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glCompressedTexSubImage2D"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glCopyBufferSubData"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glCopyTexSubImage2D"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glCreateProgram"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glCreateShader"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glCullFace"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glDebugMessageCallback"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glDeleteBuffers"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glDeleteBuffersARB"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glDeleteFramebuffers"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glDeleteProgram"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glDeleteRenderbuffers"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glDeleteShader"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glDeleteSync"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glDeleteTextures"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glDeleteVertexArrays"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glDepthFunc"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glDepthMask"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glDepthRange"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glDepthRangef"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glDetachShader"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glDisable"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glDisableVertexAttribArray"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glDispatchCompute"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glDrawArrays"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glDrawArraysInstanced"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glDrawBuffer"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glDrawBuffers"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glDrawBuffersARB"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glDrawElements"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glDrawElementsBaseVertex"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glDrawElementsInstanced"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glDrawElementsInstancedBaseVertex"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glEnable"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glEnableVertexAttribArray"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glFenceSync"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glFinish"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glFlush"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glFlushMappedBufferRange"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glFramebufferRenderbuffer"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glFramebufferTexture"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glFramebufferTexture2D"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glFrontFace"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glGenBuffers"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glGenBuffersARB"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glGenerateMipmap"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glGenFramebuffers"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glGenRenderbuffers"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glGenTextures"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glGenVertexArrays"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glGetActiveAttrib"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glGetActiveUniform"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glGetAttachedShaders"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glGetAttribLocation"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glGetBooleanv"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glGetBufferParameteriv"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glGetBufferSubData"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glGetBufferSubDataARB"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glGetError"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glGetFramebufferAttachmentParameteriv"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glGetIntegeri_v"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glGetIntegerv"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glGetProgramBinary"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glGetProgramInfoLog"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glGetProgramiv"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glGetProgramResourceIndex"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glGetRenderbufferParameteriv"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glGetShaderInfoLog"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glGetShaderiv"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glGetShaderPrecisionFormat"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glGetShaderSource"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glGetString"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glGetTexImage"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glGetUniformfv"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glGetUniformiv"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glGetUniformLocation"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glGetVertexAttribfv"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glGetVertexAttribiv"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glGetVertexAttribPointerv"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glInvalidateBufferSubData"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glIsBuffer"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glIsFramebuffer"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glIsProgram"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glIsRenderbuffer"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glIsShader"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glLineWidth"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glLinkProgram"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glMapBuffer"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glMapBufferRange"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glMemoryBarrier"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glMultiDrawArrays"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glMultiDrawElements"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glMultiDrawElementsIndirect"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glPatchParameteri"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glPixelStorei"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glPointSize"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glPolygonMode"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glPolygonOffset"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glPopDebugGroup"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glPrimitiveRestartIndex"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glProgramBinary"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glProgramParameteri"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glPushDebugGroup"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glReadBuffer"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glReadPixels"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glReleaseShaderCompiler"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glRenderbufferStorage"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glRenderbufferStorageMultisample"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glSampleCoverage"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glScissor"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glShadeModel"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glShaderBinary"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glShaderSource"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glShaderStorageBlockBinding"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glStencilFunc"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glStencilFuncSeparate"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glStencilMask"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glStencilMaskSeparate"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glStencilOp"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glStencilOpSeparate"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glTexBuffer"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glTexImage1D"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glTexImage2D"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glTexImage2DMultisample"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glTexParameterfv"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glTexParameteri"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glTexSubImage2D"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glUniform1dv"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glUniform1f"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glUniform1fv"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glUniform1fvARB"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glUniform1i"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glUniform1iARB"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glUniform1iv"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glUniform1ivARB"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glUniform1ui"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glUniform2dv"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glUniform2f"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glUniform2fv"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glUniform2fvARB"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glUniform2i"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glUniform2iv"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glUniform2ivARB"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glUniform3dv"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glUniform3f"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glUniform3fv"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glUniform3fvARB"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glUniform3i"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glUniform3iv"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glUniform3ivARB"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glUniform4dv"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glUniform4f"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glUniform4fv"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glUniform4fvARB"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glUniform4i"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glUniform4iv"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glUniform4ivARB"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glUniformMatrix2fv"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glUniformMatrix2fvARB"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glUniformMatrix3dv"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glUniformMatrix3fv"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glUniformMatrix3fvARB"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glUniformMatrix4dv"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glUniformMatrix4fv"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glUniformMatrix4fvARB"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glUnmapBuffer"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glUseProgram"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glValidateProgram"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glVertexAttribBinding"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glVertexAttrib1f"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glVertexAttrib1fv"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glVertexAttrib2f"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glVertexAttrib2fv"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glVertexAttrib3f"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glVertexAttrib3fv"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glVertexAttrib4f"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glVertexAttrib4fv"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glVertexAttribDivisor"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glVertexAttribIFormat"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glVertexAttribIPointer"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glVertexAttribLPointer"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glVertexAttribPointer"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glViewport"
+    }
+]
