@@ -93,7 +93,7 @@ typedef enum TransientTask_ErrorCode {
     /**
      * @error System service operation failed.
      */
-    ERR_TRANSIENT_TASK_SYS_NOT_READY = 9900004,
+    ERR_TRANSIENT_TASK_SERVICE_NOT_READY = 9900004,
 } TransientTask_ErrorCode;
 
 /**
