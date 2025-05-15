@@ -452,7 +452,7 @@ enum  OH_Huks_ErrCode {
      */
     OH_HUKS_ERR_CODE_DEVICE_PASSWORD_UNSET = 12000016,
     /**
-     * The input parameter is invalid.
+     * The input parameter is invalid..
      *
      * @since 20
      */
@@ -494,7 +494,11 @@ enum OH_Huks_UserAuthType {
     OH_HUKS_USER_AUTH_TYPE_FACE = 1 << 1,
     /** PIN authentication. */
     OH_HUKS_USER_AUTH_TYPE_PIN = 1 << 2,
-    /** TUI PIN authentication. */
+    /**
+     * Enum for tui pin auth type.
+     * 
+     * @since 20
+     */
     OH_HUKS_USER_AUTH_TYPE_TUI_PIN = 1 << 5,
 };
 
@@ -610,10 +614,9 @@ enum OH_Huks_SecureSignType {
 };
 
 /**
- * @brief Enumerates for key wrap type.
+ * Enum for key wrap type
  *
  * @since 20
- * @version 1.0
  */
 enum OH_Huks_KeyWrapType {
     /**
