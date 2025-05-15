@@ -1,77 +1,106 @@
 [
     {
+        "first_introduced": "9",
         "name": "OH_Huks_GetSdkVersion"
     },
     {
+        "first_introduced": "9",
         "name": "OH_Huks_GenerateKeyItem"
     },
     {
+        "first_introduced": "9",
         "name": "OH_Huks_ImportKeyItem"
     },
     {
+        "first_introduced": "9",
         "name": "OH_Huks_ImportWrappedKeyItem"
     },
     {
+        "first_introduced": "9",
         "name": "OH_Huks_ExportPublicKeyItem"
     },
     {
+        "first_introduced": "9",
         "name": "OH_Huks_DeleteKeyItem"
     },
     {
+        "first_introduced": "9",
         "name": "OH_Huks_GetKeyItemParamSet"
     },
     {
+        "first_introduced": "9",
         "name": "OH_Huks_IsKeyItemExist"
     },
     {
+        "first_introduced": "9",
         "name": "OH_Huks_AttestKeyItem"
     },
     {
+        "first_introduced": "11",
         "name": "OH_Huks_AnonAttestKeyItem"
     },
     {
+        "first_introduced": "9",
         "name": "OH_Huks_InitSession"
     },
     {
+        "first_introduced": "9",
         "name": "OH_Huks_UpdateSession"
     },
     {
+        "first_introduced": "9",
         "name": "OH_Huks_FinishSession"
     },
     {
+        "first_introduced": "9",
         "name": "OH_Huks_AbortSession"
     },
     {
+        "first_introduced": "9",
         "name": "OH_Huks_InitParamSet"
     },
     {
+        "first_introduced": "9",
         "name": "OH_Huks_AddParams"
     },
     {
+        "first_introduced": "9",
         "name": "OH_Huks_BuildParamSet"
     },
     {
+        "first_introduced": "9",
         "name": "OH_Huks_FreeParamSet"
     },
     {
+        "first_introduced": "9",
         "name": "OH_Huks_CopyParamSet"
     },
     {
+        "first_introduced": "9",
         "name": "OH_Huks_GetParam"
     },
     {
+        "first_introduced": "9",
         "name": "OH_Huks_FreshParamSet"
     },
     {
+        "first_introduced": "9",
         "name": "OH_Huks_IsParamSetTagValid"
     },
     {
+        "first_introduced": "9",
         "name": "OH_Huks_IsParamSetValid"
     },
     {
+        "first_introduced": "9",
         "name": "OH_Huks_CheckParamMatch"
     },
     {
-        "name":"OH_Huks_ListAliases"
+        "first_introduced": "20",
+        "name": "OH_Huks_ListAliases"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_Huks_FreeKeyAliasSet"
     }
 ]
