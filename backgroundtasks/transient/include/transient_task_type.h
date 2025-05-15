@@ -42,6 +42,11 @@
 extern "C" {
 #endif
 
+/**
+ * @brief max number for transient task.
+ *
+ * @since 20
+ */
 #define TRANSIENT_TASK_MAX_NUM 3
 
 /**
@@ -79,6 +84,16 @@ typedef enum TransientTask_ErrorCode {
      * Transient task verification failed.
      */
     ERR_TRANSIENT_TASK_SERVICE_VERIFICATION_FAILED = 9900002,
+    /**
+     * @error Failed to write data into parcel. Possible reasons:
+     * 1. Invalid parameters;
+     * 2. Failed to apply for memory.
+     */
+    ERR_TRANSIENT_TASK_PARCELABLE_FAILED = 9900003,
+    /**
+     * @error System service operation failed.
+     */
+    ERR_TRANSIENT_TASK_SYS_NOT_READY = 9900004,
 } TransientTask_ErrorCode;
 
 /**
