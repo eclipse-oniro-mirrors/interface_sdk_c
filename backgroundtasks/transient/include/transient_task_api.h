@@ -105,10 +105,9 @@ int32_t OH_BackgroundTaskManager_CancelSuspendDelay(int32_t requestId);
  *
  * @param transientTaskInfo Indicates the transient task info of an application.
  * @return {@link ERR_TRANSIENT_TASK_OK} 0 - Success.
- *         {@link ERR_TRANSIENT_TASK_INVALID_PARAM} 401 - Invalid parameter.
- *         {@link ERR_TRANSIENT_TASK_PARCEL_FAILED} 9800001 - Memory operation failed.
- *         {@link ERR_TRANSIENT_TASK_PARCEL_FAILED} 9800002 - Parcelable failed.
- *         {@link ERR_TRANSIENT_TASK_SYS_NOT_READY} 9800004 - System service not ready.
+ *         {@link ERR_TRANSIENT_TASK_CLIENT_INFO_VERIFICATION_FAILED} 9900001 - uid or pid info verify failed.
+ *         {@link ERR_TRANSIENT_TASK_PARCELABLE_FAILED} 9900003 - Failed to write data into parcel.
+ *         {@link ERR_TRANSIENT_TASK_SYS_NOT_READY} 9900004 - System service operation failed.
  * @syscap SystemCapability.ResourceSchedule.BackgroundTaskManager.TransientTask
  * @since 20
  * @version 1.0
