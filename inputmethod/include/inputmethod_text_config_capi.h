@@ -132,16 +132,18 @@ InputMethod_ErrorCode OH_TextConfig_SetSelection(InputMethod_TextConfig *config,
 InputMethod_ErrorCode OH_TextConfig_SetWindowId(InputMethod_TextConfig *config, int32_t windowId);
 
 /**
- * @brief Set placeholder into TextConfig.
+ * @brief Sets the placeholder text of an InputMethod_TextConfig instance.
  *
- * @param config Represents a pointer to an {@link InputMethod_TextConfig} instance which will be set.
- * @param placeholder The placeholder, which is defined in {@link InputMethod_TextConfig}.
- *     Cannot exceed 256 UTF-16 encoded characters.
- * @param length The size of placeholder. Counting unit char16_t.
- *     The length, which is defined in {@link InputMethod_TextConfig}.
+ * @param config Pointer to the InputMethod_TextConfig instance.
+ * @param placeholder Pointer to a UTF-16 encoded double-byte string. If a null pointer is passed, the placeholder text
+ *     is an empty string.
+ * @param length Number of elements in the memory to which <b>placeholder</b> points, including the null character of
+ *     the double-byte string.
+ *      1) If <b>length</b> is <b>0</b>, the placeholder text is an empty string.
+ *      2) The maximum number of UTF-16 encoded characters is 256, and the last element must be a null character.
+ *      3) If the <b>length</b> exceeds 256, the placeholder text will be truncated.
  * @return Returns a specific error code.
  *     {@link IME_ERR_OK} - success.
- *     {@link IME_ERR_PARAMCHECK} - parameter check failed.
  *     {@link IME_ERR_NULL_POINTER} - unexpected null pointer.
  * Specific error codes can be referenced {@link InputMethod_ErrorCode}.
  * @since 20
@@ -150,16 +152,18 @@ InputMethod_ErrorCode OH_TextConfig_SetPlaceholder(InputMethod_TextConfig *confi
     size_t length);
 
 /**
- * @brief Set placeholder into TextConfig.
+ * @brief Sets the ability name of an InputMethod_TextConfig instance.
  *
- * @param config Represents a pointer to an {@link InputMethod_TextConfig} instance which will be set.
- * @param abilityName The abilityName, which is defined in {@link InputMethod_TextConfig}.
- *     Cannot exceed 256 UTF-16 encoded characters.
- * @param length The size of abilityName. Counting unit char16_t.
- *     The length, which is defined in {@link InputMethod_TextConfig}.
+ * @param config Pointer to the InputMethod_TextConfig instance.
+ * @param abilityName Pointer to a UTF-16 encoded double-byte string. If a null pointer is passed, the ability name is
+ *     an empty string.
+ * @param length Number of elements in the memory to which <b>abilityName</b> points, including the null character of
+*      the double-byte string.
+ *     1) If <b>length</b> is <b>0</b>, the ability name is an empty string.
+ *     2) The maximum number of UTF-16 encoded characters is 128, and the last element must be a null character.
+ *     3) If the <b>length</b> exceeds 128, the placeholder text will be truncated.
  * @return Returns a specific error code.
  *     {@link IME_ERR_OK} - success.
- *     {@link IME_ERR_PARAMCHECK} - parameter check failed.
  *     {@link IME_ERR_NULL_POINTER} - unexpected null pointer.
  * Specific error codes can be referenced {@link InputMethod_ErrorCode}.
  * @since 20
@@ -260,14 +264,19 @@ InputMethod_ErrorCode OH_TextConfig_GetSelection(InputMethod_TextConfig *config,
 InputMethod_ErrorCode OH_TextConfig_GetWindowId(InputMethod_TextConfig *config, int32_t *windowId);
 
 /**
- * @brief Get placeholder into TextConfig.
+ * @brief Obtains the placeholder text of an InputMethod_TextConfig instance.
  *
- * @param config Represents a pointer to an {@link InputMethod_TextConfig} instance which will be set.
- * @param placeholder Returns the placeholder. which is defined in {@link InputMethod_TextConfig}.
- *     The user needs to allocate memory.
- * @param length Input and output parameters. The input is the size requested by the user (unit: char16_t),
- *     returns the size of the placeholder.
- *     The length, which is defined in {@link InputMethod_TextConfig}.
+ * @param config Pointer to the InputMethod_TextConfig instance.
+ * @param placeholder Pointer to the placeholder text. The memory of this pointer is maintained by the caller.
+ * @param length Pointer to the length of the placeholder text, in double bytes. The length includes the null character
+ *     of the string.
+ *     1) As an input parameter, <b>length</b> indicates the available length of the memory to which <b>placeholder</b>
+ *        points. As an output parameter, it indicates the actual length of the placeholder text.
+ *     2) If <b>placeholder</b> is a null pointer and <b>length</b> points to valid memory, <b>length</b> will be set to
+ *        the actual length of the placeholder text, and an error will be return.
+ *     3) If both <b>placeholder</b> and <b>length</b> point to valid memory, but the value of <b>length</b> is less
+ *        than the actual length of the placeholder text, <b>length</b> will be set to the actual length of the
+ *        placeholder text, and an error will be return.
  * @return Returns a specific error code.
  *     {@link IME_ERR_OK} - success.
  *     {@link IME_ERR_PARAMCHECK} - parameter check failed.
@@ -279,14 +288,19 @@ InputMethod_ErrorCode OH_TextConfig_GetPlaceholder(InputMethod_TextConfig *confi
     size_t *length);
 
 /**
- * @brief Get abilityName into TextConfig.
+ * @brief Obtains the ability name of an InputMethod_TextConfig instance.
  *
- * @param config Represents a pointer to an {@link InputMethod_TextConfig} instance which will be set.
- * @param abilityName The abilityName, which is defined in {@link InputMethod_TextConfig}.
- *     The free function needs to be called externally to release the internal requested memory.
- * @param length Input and output parameters. The input is the size requested by the user (unit: char16_t),
- *     returns the size of the ability name.
- *     The length, which is defined in {@link InputMethod_TextConfig}.
+ * @param config Pointer to the InputMethod_TextConfig instance.
+ * @param abilityName Pointer to the ability name. The memory of this pointer is maintained by the caller.
+ * @param length Pointer to the length of the ability name, in double bytes. The length includes the null character of
+ *     the string.
+ *     1) As an input parameter, <b>length</b> indicates the available length of the memory to which <b>abilityName</b>
+ *        points. As an output parameter, it indicates the actual length of the ability name.
+ *     2) If <b>abilityName</b> is a null pointer and <b>length</b> points to valid memory, <b>length</b> will be set to
+ *        the actual length of the ability name, and an error will be return.
+ *     3) If both <b>abilityName</b> and <b>length</b> point to valid memory, but the value of <b>length</b> is less
+ *        than the actual length of the ability name, <b>length</b> will be set to the actual length of the ability
+ *        name, and an error will be return.
  * @return Returns a specific error code.
  *     {@link IME_ERR_OK} - success.
  *     {@link IME_ERR_PARAMCHECK} - parameter check failed.
