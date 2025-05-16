@@ -149,15 +149,15 @@
     },
     {
         "first_instroduced":"20",
-        "name":"OH_PictureInPicture_RegisterLifecycleListener"
+        "name":"OH_PictureInPicture_RegisterLifeCycleListener"
     },
     {
         "first_instroduced":"20",
-        "name":"OH_PictureInPicture_UnregisterLifecycleListener"
+        "name":"OH_PictureInPicture_UnregisterLifeCycleListener"
     },
     {
         "first_instroduced":"20",
-        "name":"OH_PictureInPicture_UnregisterAllLifecycleListeners"
+        "name":"OH_PictureInPicture_UnregisterAllLifeCycleListeners"
     },
     {
         "first_instroduced":"20",

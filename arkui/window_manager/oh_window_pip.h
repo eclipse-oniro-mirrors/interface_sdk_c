@@ -157,7 +157,7 @@ typedef void (*WebPipStartPipCallback)(uint32_t controllerId, uint8_t requestId,
  * @param errcode The picture-in-picture error code
  * @since 20
  */
-typedef void (*WebPipLifecycleCallback)(uint32_t controllerId, PictureInPicture_PipState state, int32_t errcode);
+typedef void (*WebPipLifeCycleCallback)(uint32_t controllerId, PictureInPicture_PipState state, int32_t errcode);
 
 /**
  * @brief The picture-in-picture control event callback
@@ -382,7 +382,7 @@ int32_t OH_PictureInPicture_UnregisterAllStartPipCallbacks(uint32_t controllerId
  *         {@link WINDOW_MANAGER_ERRORCODE_PIP_INTERNAL_ERROR} pip internal error.
  * @since 20
  */
-int32_t OH_PictureInPicture_RegisterLifecycleListener(uint32_t controllerId, WebPipLifecycleCallback callback);
+int32_t OH_PictureInPicture_RegisterLifeCycleListener(uint32_t controllerId, WebPipLifeCycleCallback callback);
 
 /**
  * @brief Unregister picture-in-picture life cycle listener callback.
@@ -396,7 +396,7 @@ int32_t OH_PictureInPicture_RegisterLifecycleListener(uint32_t controllerId, Web
  *         {@link WINDOW_MANAGER_ERRORCODE_PIP_INTERNAL_ERROR} pip internal error.
  * @since 20
  */
-int32_t OH_PictureInPicture_UnregisterLifecycleListener(uint32_t controllerId, WebPipLifecycleCallback callback);
+int32_t OH_PictureInPicture_UnregisterLifeCycleListener(uint32_t controllerId, WebPipLifeCycleCallback callback);
 
 /**
  * @brief Unregister all picture-in-picture life cycle listener callbacks.
@@ -409,7 +409,7 @@ int32_t OH_PictureInPicture_UnregisterLifecycleListener(uint32_t controllerId, W
  *         {@link WINDOW_MANAGER_ERRORCODE_PIP_INTERNAL_ERROR} pip internal error.
  * @since 20
  */
-int32_t OH_PictureInPicture_UnregisterAllLifecycleListeners(uint32_t controllerId);
+int32_t OH_PictureInPicture_UnregisterAllLifeCycleListeners(uint32_t controllerId);
 
 /**
  * @brief Register picture-in-picture control event listener callback.
