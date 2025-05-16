@@ -44,6 +44,18 @@ extern "C" {
 
 bool canIUse(const char *cap);
 
+/**
+ * @brief api version is greater or same than the given version.
+ *
+ * @param majorVersion The major version number
+ * @param minorVersion The minor version number
+ * @param patchVersion The patch version number
+ * @return true if api version is greater or same than the given version;
+ *         otherwise false.
+ * @since 19
+ */
+bool OH_IsApiVersionGreaterOrEqual(int majorVersion, int minorVersion, int patchVersion);
+
 #ifdef __cplusplus
 #if __cplusplus
 }
