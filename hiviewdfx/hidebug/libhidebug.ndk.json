@@ -40,15 +40,15 @@
       "name": "OH_HiDebug_GetGraphicsMemory"
     },
     {
-      "first_introduced": "14",
+      "first_introduced": "20",
       "name": "OH_HiDebug_SetMallocDispatchTable"
     },
     {
-      "first_introduced": "14",
+      "first_introduced": "20",
       "name": "OH_HiDebug_GetDefaultMallocDispatchTable"
     },
     {
-      "first_introduced": "14",
+      "first_introduced": "20",
       "name": "OH_HiDebug_RestoreMallocDispatchTable"
     }
 
