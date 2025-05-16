@@ -91,64 +91,59 @@ typedef enum {
     VIDEO_PREVIOUS = 1,
     /** Video next. */
     VIDEO_NEXT = 2,
-
+    /** Video fast forward. */
     FAST_FORWARD = 3,
+    /** Video back forward. */
     FAST_BACKWARD = 4,
+    /** Hang up. */
     HANG_UP_BUTTON = 5,
+    /** Microphone switch. */
     MICROPHONE_SWITCH = 6,
+    /** camera switch. */
     CAMERA_SWITCH = 7,
+    /** mute switch. */
     MUTE_SWITCH = 8,
+    /** end. */
     END,
-} PictureInPicture_PiPControlType;
+} PictureInPicture_PipControlType;
 
 /**
  * @brief Enumerates picture in picture control status.
  * @since 20
  */
 typedef enum {
+    /** Play. */
     PLAY = 1,
+    /** Pause. */
     PAUSE = 0,
+    /** Open. */
     OPEN = 1,
+    /** Close. */
     CLOSE = 0,
-} PictureInPicture_PiPControlStatus;
+} PictureInPicture_PipControlStatus;
 
 /**
  * @brief Enumerates picture in picture state.
  * @since 20
  */
 typedef enum {
+    /** About to start. */
     ABOUT_TO_START = 1,
+    /** started. */
     STARTED = 2,
+    /** About to stop. */
     ABOUT_TO_STOP = 3,
+    /** stopped. */
     STOPPED = 4,
+    /** About to restore. */
     ABOUT_TO_RESTORE = 5,
+    /** Error. */
     ERROR = 6,
 } PictureInPicture_PipState;
 
 /**
- * @brief Defines the PiP config structure.
- *
- * @since 20
- */
-typedef struct {
-    /** WindowId of Corresponding mainWindow. */
-    uint32_t mainWindowId;
-    /** The picture-in-picture template type */
-    PictureInPicture_PipTemplateType pipTemplateType;
-    /** The picture-in-picture content width */
-    uint32_t width;
-    /** The picture-in-picture content height */
-    uint32_t height;
-    /** The picture-in-picture control group */
-    PictureInPicture_PipControlGroup* controlGroup;
-    /** The length of picture-in-picture control group */
-    uint8_t controlGroupLength;
-    /** The application environment */
-    napi_env env;
-} PictureInPicture_PipConfig;
-
-/**
  * @brief Start the picture-in-picture callback
+ * @param controllerId The picture-in-picture controller ID
  * @param requestId The picture-in-picture requestId
  * @param surfaceId The picture-in-picture surfaceId
  * @since 20
@@ -157,22 +152,26 @@ typedef void (*WebPipStartPipCallback)(uint32_t controllerId, uint8_t requestId,
 
 /**
  * @brief The picture-in-picture lifecycle callback
+ * @param controllerId The picture-in-picture controller ID
  * @param state The picture-in-picture state
+ * @param errcode The picture-in-picture error code
  * @since 20
  */
 typedef void (*WebPipLifecycleCallback)(uint32_t controllerId, PictureInPicture_PipState state, int32_t errcode);
 
 /**
  * @brief The picture-in-picture control event callback
+ * @param controllerId The picture-in-picture controller ID
  * @param controlType The picture-in-picture control type
  * @param status The picture-in-picture control status
  * @since 20
  */
-typedef void (*WebPipControlEventCallback)(uint32_t controllerId, PictureInPicture_PiPControlType controlType,
-    PictureInPicture_PiPControlStatus status);
+typedef void (*WebPipControlEventCallback)(uint32_t controllerId, PictureInPicture_PipControlType controlType,
+    PictureInPicture_PipControlStatus status);
 
 /**
  * @brief The picture-in-picture size change callback
+ * @param controllerId The picture-in-picture controller ID
  * @param width The picture-in-picture window width
  * @param height The picture-in-picture window height
  * @param scale The picture-in-picture window scale
@@ -182,8 +181,6 @@ typedef void (*WebPipResizeCallback)(uint32_t controllerId, uint32_t width, uint
 
 /**
  * @brief Create picture-in-picture controller.
- *
- * @param pipConfig The picture-in-picture configuration
  * @param controllerId The picture-in-picture controller ID
  * @return Return the result code.
  *         {@link OK} the function call is successful.
@@ -192,7 +189,74 @@ typedef void (*WebPipResizeCallback)(uint32_t controllerId, uint32_t width, uint
  *         {@link WINDOW_MANAGER_ERRORCODE_PIP_INTERNAL_ERROR} pip internal error.
  * @since 20
  */
-int32_t OH_PictureInPicture_CreatePip(PictureInPicture_PipConfig* pipConfig, uint32_t* controllerId);
+int32_t OH_PictureInPicture_CreatePip(uint32_t* controllerId);
+
+/**
+ * @brief Set picture-in-picture mainWindowId.
+ *
+ * @param controllerId The picture-in-picture controller ID
+ * @param mainWindowId WindowId of corresponding mainWindow
+ * @return Return the result code.
+ *         {@link OK} the function call is successful.
+ *         {@link WINDOW_MANAGER_ERRORCODE_INCORRECT_PARAM} parameter error.
+ *         {@link WINDOW_MANAGER_ERRORCODE_DEVICE_NOT_SUPPORTED} capability not supported.
+ * @since 20
+ */
+int32_t OH_PictureInPicture_SetPipMainWindowId(uint32_t controllerId, uint32_t mainWindowId);
+
+/**
+ * @brief Set picture-in-picture templateType.
+ *
+ * @param controllerId The picture-in-picture controller ID
+ * @param pipTemplateType The picture-in-picture template type
+ * @return Return the result code.
+ *         {@link OK} the function call is successful.
+ *         {@link WINDOW_MANAGER_ERRORCODE_INCORRECT_PARAM} parameter error.
+ *         {@link WINDOW_MANAGER_ERRORCODE_DEVICE_NOT_SUPPORTED} capability not supported.
+ * @since 20
+ */
+int32_t OH_PictureInPicture_SetPipTemplateType(uint32_t controllerId, PictureInPicture_PipTemplateType pipTemplateType);
+
+/**
+ * @brief Set picture-in-picture rect.
+ *
+ * @param controllerId The picture-in-picture controller ID
+ * @param width The picture-in-picture window width
+ * @param height The picture-in-picture window height
+ * @return Return the result code.
+ *         {@link OK} the function call is successful.
+ *         {@link WINDOW_MANAGER_ERRORCODE_INCORRECT_PARAM} parameter error.
+ *         {@link WINDOW_MANAGER_ERRORCODE_DEVICE_NOT_SUPPORTED} capability not supported.
+ * @since 20
+ */
+int32_t OH_PictureInPicture_SetPipRect(uint32_t controllerId, uint32_t width, uint32_t height);
+
+/**
+ * @brief Set picture-in-picture control group.
+ *
+ * @param controllerId The picture-in-picture controller ID
+ * @param controlGroup The picture-in-picture control group
+ * @param controlGroupLength The length of picture-in-picture control group
+ * @return Return the result code.
+ *         {@link OK} the function call is successful.
+ *         {@link WINDOW_MANAGER_ERRORCODE_INCORRECT_PARAM} parameter error.
+ *         {@link WINDOW_MANAGER_ERRORCODE_DEVICE_NOT_SUPPORTED} capability not supported.
+ * @since 20
+ */
+int32_t OH_PictureInPicture_SetPipControlGroup(uint32_t controllerId, PictureInPicture_PipControlGroup* controlGroup, uint8_t controlGroupLength);
+
+/**
+ * @brief Set picture-in-picture napi env.
+ *
+ * @param controllerId The picture-in-picture controller ID
+ * @param env The picture-in-picture napi env
+ * @return Return the result code.
+ *         {@link OK} the function call is successful.
+ *         {@link WINDOW_MANAGER_ERRORCODE_INCORRECT_PARAM} parameter error.
+ *         {@link WINDOW_MANAGER_ERRORCODE_DEVICE_NOT_SUPPORTED} capability not supported.
+ * @since 20
+ */
+int32_t OH_PictureInPicture_SetPipNapiEnv(uint32_t controllerId, void* env);
 
 /**
  * @brief Delete picture-in-picture controller.
@@ -249,10 +313,10 @@ void OH_PictureInPicture_UpdatePipContentSize(uint32_t controllerId, uint32_t wi
  * @param controllerId The picture-in-picture controller ID
  * @param controlType The picture-in-picture control type.
  * @param status The picture-in-picture control status.
- * @since 20
+  * @since 20
  */
-void OH_PictureInPicture_UpdatePipControlStatus(uint32_t controllerId, PictureInPicture_PiPControlType controlType,
-    PictureInPicture_PiPControlStatus status);
+void OH_PictureInPicture_UpdatePipControlStatus(uint32_t controllerId, PictureInPicture_PipControlType controlType,
+    PictureInPicture_PipControlStatus status);
 
 /**
  * @brief Set picture-in-picture controll enable status.
@@ -262,7 +326,7 @@ void OH_PictureInPicture_UpdatePipControlStatus(uint32_t controllerId, PictureIn
  * @param enabled Indicate the picture-in-picture control is enabled.
  * @since 20
  */
-void OH_PictureInPicture_SetPiPControlEnabled(uint32_t controllerId, PictureInPicture_PiPControlType controlType,
+void OH_PictureInPicture_SetPipControlEnabled(uint32_t controllerId, PictureInPicture_PipControlType controlType,
     bool enabled);
 
 /**
