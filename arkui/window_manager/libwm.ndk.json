@@ -125,10 +125,6 @@
     },
     {
         "first_instroduced":"20",
-        "name":"OH_PictureInPicture_StopPip"
-    },
-    {
-        "first_instroduced":"20",
         "name":"OH_PictureInPicture_UpdatePipControlStatus"
     },
     {
