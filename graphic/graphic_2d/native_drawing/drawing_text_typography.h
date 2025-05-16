@@ -2957,7 +2957,7 @@ OH_Drawing_TypographyStyle* OH_Drawing_CopyTypographyStyle(OH_Drawing_Typography
 OH_Drawing_TextStyle* OH_Drawing_CopyTextStyle(OH_Drawing_TextStyle* style);
 
 /**
- * @brief Copy a shadow object.
+ * @brief Copy a text shadow object.
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @param shadow Indicates the pointer to an <b>OH_Drawing_TextShadow</b> object.
