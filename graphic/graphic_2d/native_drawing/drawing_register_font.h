@@ -75,6 +75,42 @@ uint32_t OH_Drawing_RegisterFont(OH_Drawing_FontCollection*, const char* fontFam
 uint32_t OH_Drawing_RegisterFontBuffer(OH_Drawing_FontCollection*, const char* fontFamily, uint8_t* fontBuffer,
     size_t length);
 
+/**
+ * @brief Unregister a customized font by the fontFamily.
+ * Unregistering a font that is currently in use by UI components may lead to text rendering anomalies,
+ * including garbled characters or missing glyphs.
+ *
+ * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
+ * @param fontCollection Indicates the pointer to an <b>OH_Drawing_FontCollection</b> object.
+ * @param fontFamily Indicates the family-name of the font which need to be unregistered.
+ * @return error code.
+ * @since 20
+ * @version 1.0
+ */
+uint32_t OH_Drawing_UnRegisterFont(OH_Drawing_FontCollection* fontCollection, const char* fontFamily);
+
+/**
+ * @brief Visual representations for undefined (.notdef) glyphs
+ * 
+ * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
+ * @since 20
+ */
+typedef enum {
+    /** Uses the glyph defined in the font file, which could be an empty box, blank space, or custom symbol.. */
+    OH_DRAWING_NO_GLYPH_USE_DEFAULT = 0,
+    /** Always render tofu blocks for missing glyphs. */
+    OH_DRAWING_NO_GLYPH_USE_TOFU
+} OH_Drawing_NoGlyphShow;
+
+/**
+ * @brief Controls how undefined glyphs are visually presented
+ * 
+ * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
+ * @param noGlyphShow Indicates a <b>OH_Drawing_NoGlyphShow</b> to be set.
+ * @since 20
+ * @version 1.0
+ */
+void OH_Drawing_SetNoGlyphShow(OH_Drawing_NoGlyphShow noGlyphShow);
 #ifdef __cplusplus
 }
 #endif
