@@ -28,7 +28,7 @@
 #ifndef OH_WINDOW_PIP_H
 #define OH_WINDOW_PIP_H
 
-#include "napi/native_api.h"
+#include "stdint.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -39,9 +39,13 @@ extern "C" {
  * @since 20
  */
 typedef enum {
+    /** Video play. */
     VIDEO_PLAY = 0,
+    /** Video call. */
     VIDEO_CALL = 1,
+    /** Video meeting. */
     VIDEO_MEETING = 2,
+    /** Video live. */
     VIDEO_LIVE = 3,
 } PictureInPicture_PipTemplateType;
 
@@ -50,17 +54,29 @@ typedef enum {
  * @since 20
  */
 typedef enum {
+    /** Previous/next control group for video play. */
     VIDEO_PLAY_VIDEO_PREVIOUS_NEXT = 101,
+    /** Fast forward/backward control group for video play. */
     VIDEO_PLAY_FAST_FORWARD_BACKWARD = 102,
+    /** Switch on/off the microphone control group for video call. */
     VIDEO_CALL_MICROPHONE_SWITCH = 201,
+    /** Hang up control group for video call. */
     VIDEO_CALL_HANG_UP_BUTTON = 202,
+    /** Switch on/off the camera control group for video call. */
     VIDEO_CALL_CAMERA_SWITCH = 203,
+    /** Mute control group for video call. */
     VIDEO_CALL_MUTE_SWITCH = 204,
+    /** Hang up control group for video meeting. */
     VIDEO_MEETING_HANG_UP_BUTTON = 301,
+    /** Switch on/off the camera control group for video meeting. */
     VIDEO_MEETING_CAMERA_SWITCH = 302,
+    /** Mute control group for video meeting. */
     VIDEO_MEETING_MUTE_SWITCH = 303,
+    /** Switch on/off the microphone control group for video meeting. */
     VIDEO_MEETING_MICROPHONE_SWITCH = 304,
+    /** Video play/pause control group for video live. */
     VIDEO_LIVE_VIDEO_PLAY_PAUSE = 401,
+    /** Mute control group for video live. */
     VIDEO_LIVE_MUTE_SWITCH = 402,
 } PictureInPicture_PipControlGroup;
 
@@ -69,9 +85,13 @@ typedef enum {
  * @since 20
  */
 typedef enum {
+    /** Video play/pause. */
     VIDEO_PLAY_PAUSE = 0,
+    /** Video previous. */
     VIDEO_PREVIOUS = 1,
+    /** Video next. */
     VIDEO_NEXT = 2,
+
     FAST_FORWARD = 3,
     FAST_BACKWARD = 4,
     HANG_UP_BUTTON = 5,

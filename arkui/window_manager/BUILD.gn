@@ -24,7 +24,7 @@ ohos_ndk_library("native_window_manager") {
     "window_manager/oh_window.h",
     "window_manager/oh_window_comm.h",
     "window_manager/oh_window_event_filter.h",
-    "oh_window_pip.h",
+    "window_manager/oh_window_pip.h",
   ]
 }
 
