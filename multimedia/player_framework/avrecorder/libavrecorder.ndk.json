@@ -58,5 +58,9 @@
   {
     "first_introduced": "18",
     "name": "OH_AVRecorder_SetUriCallback"
+  },
+  {
+    "first_introduced": "20",
+    "name": "OH_AVRecorder_SetWillMuteWhenInterrupted"
   }
 ]
