@@ -43,7 +43,7 @@ typedef enum {
     VIDEO_CALL = 1,
     VIDEO_MEETING = 2,
     VIDEO_LIVE = 3,
-} PictureInPicture_PiPTemplateType;
+} PictureInPicture_PipTemplateType;
 
 /**
  * @brief Enumerates picture in picture control group.
@@ -62,7 +62,7 @@ typedef enum {
     VIDEO_MEETING_MICROPHONE_SWITCH = 304,
     VIDEO_LIVE_VIDEO_PLAY_PAUSE = 401,
     VIDEO_LIVE_MUTE_SWITCH = 402,
-} PictureInPicture_PiPControlGroup;
+} PictureInPicture_PipControlGroup;
 
 /**
  * @brief Enumerates picture in picture control type.
@@ -103,7 +103,7 @@ typedef enum {
     STOPPED = 4,
     ABOUT_TO_RESTORE = 5,
     ERROR = 6,
-} PictureInPicture_PiPState;
+} PictureInPicture_PipState;
 
 /**
  * @brief Defines the PiP config structure.
@@ -114,18 +114,18 @@ typedef struct {
     /** WindowId of Corresponding mainWindow. */
     uint32_t mainWindowId;
     /** The picture-in-picture template type */
-    PictureInPicture_PiPTemplateType pipTemplateType;
+    PictureInPicture_PipTemplateType pipTemplateType;
     /** The picture-in-picture content width */
     uint32_t width;
     /** The picture-in-picture content height */
     uint32_t height;
     /** The picture-in-picture control group */
-    PictureInPicture_PiPControlGroup* controlGroup;
+    PictureInPicture_PipControlGroup* controlGroup;
     /** The length of picture-in-picture control group */
     uint8_t controlGroupLength;
     /** The application environment */
     napi_env env;
-} PictureInPicture_PiPConfig;
+} PictureInPicture_PipConfig;
 
 /**
  * @brief Start the picture-in-picture callback
@@ -140,7 +140,7 @@ typedef void (*WebPipStartPipCallback)(uint32_t controllerId, uint8_t requestId,
  * @param state The picture-in-picture state
  * @since 20
  */
-typedef void (*WebPipLifecycleCallback)(uint32_t controllerId, PictureInPicture_PiPState state, int32_t errcode);
+typedef void (*WebPipLifecycleCallback)(uint32_t controllerId, PictureInPicture_PipState state, int32_t errcode);
 
 /**
  * @brief The picture-in-picture control event callback
@@ -172,7 +172,7 @@ typedef void (*WebPipResizeCallback)(uint32_t controllerId, uint32_t width, uint
  *         {@link WINDOW_MANAGER_ERRORCODE_PIP_INTERNAL_ERROR} pip internal error.
  * @since 20
  */
-int32_t OH_PictureInPicture_CreatePip(PictureInPicture_PiPConfig* pipConfig, uint32_t* controllerId);
+int32_t OH_PictureInPicture_CreatePip(PictureInPicture_PipConfig* pipConfig, uint32_t* controllerId);
 
 /**
  * @brief Delete picture-in-picture controller.
@@ -194,7 +194,7 @@ int32_t OH_PictureInPicture_DeletePip(uint32_t controllerId);
  *         {@link WINDOW_MANAGER_ERRORCODE_PIP_STATE_ABNORMAL} the PiP window state is abnormal.
  *         {@link WINDOW_MANAGER_ERRORCODE_PIP_CREATE_FAILED} failed to create the PiP window.
  *         {@link WINDOW_MANAGER_ERRORCODE_ERRORCODE_PIP_INTERNAL_ERROR} pip internal error.
- *         {@link WINDOW_MANAGER_ERRORCODE_PIP_REPEAT_OPERATION} repeated PiP operation.
+ *         {@link WINDOW_MANAGER_ERRORCODE_PIP_REPEATED_OPERATION} repeated PiP operation.
  * @since 20
  */
 int32_t OH_PictureInPicture_StartPip(uint32_t controllerId);
@@ -208,7 +208,7 @@ int32_t OH_PictureInPicture_StartPip(uint32_t controllerId);
  *         {@link WINDOW_MANAGER_ERRORCODE_PIP_DESTROY_FAILED} failed to destroy the PiP window.
  *         {@link WINDOW_MANAGER_ERRORCODE_PIP_STATE_ABNORMAL} the PiP window state is abnormal.
  *         {@link WINDOW_MANAGER_ERRORCODE_ERRORCODE_PIP_INTERNAL_ERROR} pip internal error.
- *         {@link WINDOW_MANAGER_ERRORCODE_PIP_REPEAT_OPERATION} repeated PiP operation.
+ *         {@link WINDOW_MANAGER_ERRORCODE_PIP_REPEATED_OPERATION} repeated PiP operation.
  * @since 20
  */
 int32_t OH_PictureInPicture_StopPip(uint32_t controllerId);
@@ -229,7 +229,7 @@ void OH_PictureInPicture_UpdatePipContentSize(uint32_t controllerId, uint32_t wi
  * @param controllerId The picture-in-picture controller ID
  * @param controlType The picture-in-picture control type.
  * @param status The picture-in-picture control status.
-  * @since 20
+ * @since 20
  */
 void OH_PictureInPicture_UpdatePipControlStatus(uint32_t controllerId, PictureInPicture_PiPControlType controlType,
     PictureInPicture_PiPControlStatus status);
