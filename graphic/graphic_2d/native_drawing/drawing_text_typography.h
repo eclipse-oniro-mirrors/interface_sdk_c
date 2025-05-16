@@ -2944,7 +2944,6 @@ void OH_Drawing_SetTextStyleBadgeType(OH_Drawing_TextStyle* style, OH_Drawing_Te
  */
 OH_Drawing_TypographyStyle* OH_Drawing_CopyTypographyStyle(OH_Drawing_TypographyStyle* style);
 
-
 /**
  * @brief Copy a text style object.
  *
