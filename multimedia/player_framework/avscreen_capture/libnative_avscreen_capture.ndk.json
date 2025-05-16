@@ -126,5 +126,9 @@
     {
         "first_introduced": "20",
         "name": "OH_AVScreenCapture_StrategyForKeepCaptureDuringCall"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_AVScreenCapture_SetCaptureContentChangedCallback"
     }
 ]
