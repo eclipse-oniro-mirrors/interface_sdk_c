@@ -93,6 +93,26 @@
     },
     {
         "first_instroduced":"20",
+        "name":"OH_PictureInPicture_SetPipMainWindowId"
+    },
+    {
+        "first_instroduced":"20",
+        "name":"OH_PictureInPicture_SetPipTemplateType"
+    },
+    {
+        "first_instroduced":"20",
+        "name":"OH_PictureInPicture_SetPipRect"
+    },
+    {
+        "first_instroduced":"20",
+        "name":"OH_PictureInPicture_SetPipControlGroup"
+    },
+    {
+        "first_instroduced":"20",
+        "name":"OH_PictureInPicture_SetPipNapiEnv"
+    },
+    {
+        "first_instroduced":"20",
         "name":"OH_PictureInPicture_DeletePip"
     },
     {
