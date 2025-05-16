@@ -8,5 +8,9 @@
     {
         "first_introduced": "14",
         "name": "OH_NativeVSync_DVSyncSwitch"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_NativeVSync_SetExpectedFrameRateRange"
     }
 ]
