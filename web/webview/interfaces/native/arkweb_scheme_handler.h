@@ -628,8 +628,8 @@ bool OH_ArkWebServiceWorker_SetSchemeHandler(const char* scheme, ArkWeb_SchemeHa
  *
  * <p><strong>API Note</strong>
  *
- * <p>For more details about how to use Arkweb scheme handler interface,
- * see [DocsSample_Arkweb]{@link https://gitee.com/harmonyos_samples/DocsSample_Arkweb}.</p>
+ * <p>For more details about how to use ArkWeb scheme handler interface,
+ * see [DocsSample_ArkWeb]{@link https://gitee.com/harmonyos_samples/DocsSample_Arkweb}.</p>
  * </p>
  *
  * SchemeHandler should be set after the BrowserContext created.\n
