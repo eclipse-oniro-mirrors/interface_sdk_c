@@ -886,6 +886,35 @@ int32_t OH_ArkUI_NotifyDragResult(int32_t requestIdentify, ArkUI_DragResult resu
  */
 int32_t OH_ArkUI_NotifyDragEndPendingDone(int32_t requestIdentify);
 
+/**
+ * @brief Use this method to obtain the application bundle name of the drag-and-drop initiator, you need
+ *  to pass a character array for receiving the string and explicitly specify the array length. It is
+ *  recommended that the array length be no less than 128 characters. If the length cannot accommodate
+ *  the actual bundle name length, the ERROR result will be returned.
+ * 
+ * @param event Indicates the pointer to an <b>ArkUI_DragEvent</b> object.
+ * @param bundleName A string array used to receive the source application's bundle name.
+ * @param length Use this to explicitly specify the length of the incoming string array.
+ *  It is recommended to be bigger than 128.
+ * @return Returns the result code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @since 20
+ */
+ArkUI_ErrorCode OH_ArkUI_DragEvent_GetDragSource(ArkUI_DragEvent* event, char *bundleName, int32_t length);
+
+/**
+ * @brief Call this method to determine whether the current drag and drop operation is cross-device.
+ *
+ * @param event Indicates the pointer to an <b>ArkUI_DragEvent</b> object.
+ * @param isRemote Boolean pointer to receive the result.
+ * @return Returns the result code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @since 20
+ */
+ArkUI_ErrorCode OH_ArkUI_DragEvent_IsRemote(ArkUI_DragEvent* event, bool* isRemote);
+
 #ifdef __cplusplus
 };
 #endif
