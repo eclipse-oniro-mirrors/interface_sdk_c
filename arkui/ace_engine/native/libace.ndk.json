@@ -3505,6 +3505,18 @@
     },
     {
         "first_introduced": "20",
+        "name": "OH_ArkUI_PostAsyncUITask"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_ArkUI_PostUITask"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_ArkUI_PostUITaskAndWait"
+    },
+    {
+        "first_introduced": "20",
         "name": "OH_ArkUI_NativeModule_GetNodeHandleFromAniValue"
     },
     {
