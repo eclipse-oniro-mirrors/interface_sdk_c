@@ -125,6 +125,10 @@
     },
     {
         "first_instroduced":"20",
+        "name":"OH_PictureInPicture_UpdatePipContentSize"
+    },
+    {
+        "first_instroduced":"20",
         "name":"OH_PictureInPicture_UpdatePipControlStatus"
     },
     {
