@@ -243,7 +243,8 @@ int32_t OH_PictureInPicture_SetPipRect(uint32_t controllerId, uint32_t width, ui
  *         {@link WINDOW_MANAGER_ERRORCODE_DEVICE_NOT_SUPPORTED} capability not supported.
  * @since 20
  */
-int32_t OH_PictureInPicture_SetPipControlGroup(uint32_t controllerId, PictureInPicture_PipControlGroup* controlGroup, uint8_t controlGroupLength);
+int32_t OH_PictureInPicture_SetPipControlGroup(uint32_t controllerId, PictureInPicture_PipControlGroup* controlGroup,
+    uint8_t controlGroupLength);
 
 /**
  * @brief Set picture-in-picture napi env.
