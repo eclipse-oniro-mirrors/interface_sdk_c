@@ -24,6 +24,7 @@
  * @file arkweb_scheme_handler.h
  *
  * @brief Declares the APIs to intercept the request from ArkWeb.
+ * <!--RP1-->**Related Sample:** [DocsSample_ArkWeb](https://gitee.com/harmonyos_samples/DocsSample_Arkweb/tree/master/ArkwebSchemeHandler)<!--RP1End-->
  * @kit ArkWeb
  * @library libohweb.so
  * @syscap SystemCapability.Web.Webview.Core
@@ -625,12 +626,6 @@ bool OH_ArkWebServiceWorker_SetSchemeHandler(const char* scheme, ArkWeb_SchemeHa
 
 /**
  * @brief Set a ArkWeb_SchemeHandler for a specific scheme to intercept requests of that scheme type.
- *
- * <p><strong>API Note</strong>
- *
- * <p>For more details about how to use ArkWeb scheme handler interface,
- * see [DocsSample_ArkWeb]{@link https://gitee.com/harmonyos_samples/DocsSample_Arkweb}.</p>
- * </p>
  *
  * SchemeHandler should be set after the BrowserContext created.\n
  * Use WebviewController.initializeWebEngine to initialize the BrowserContext without create a ArkWeb.\n
