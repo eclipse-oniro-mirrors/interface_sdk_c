@@ -6309,6 +6309,22 @@ typedef enum {
     NODE_GRID_CACHED_COUNT,
 
     /**
+    * @brief Defines the focus wrap mode for the <b>Grid</b> component.
+    * This attribute can be set, reset, and obtained as required through APIs.
+    *
+    * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
+    * .value[0].i32: focus wrap mode of the <b>Grid</b> component.
+    *                The parameter type is {@link ArkUI_FocusWrapMode}. \n
+    * \n
+    * Format of the return value {@link ArkUI_AttributeItem}:\n
+    * .value[0].i32: focus wrap mode of the <b>Grid</b> component.
+    *                The parameter type is {@link ArkUI_FocusWrapMode}. \n
+    *
+    * @since 20
+    */
+    NODE_GRID_FOCUS_WRAP_MODE,
+
+    /**
     * @brief Defines the column width of the text picker.
     * This attribute can be set, reset, and obtained as required through APIs.
     *
