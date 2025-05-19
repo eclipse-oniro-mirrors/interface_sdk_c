@@ -24,7 +24,7 @@
  * @file arkweb_scheme_handler.h
  *
  * @brief Declares the APIs to intercept the request from ArkWeb.
- * <!--RP1-->**Related Sample:** [DocsSample_ArkWeb](https://gitee.com/harmonyos_samples/DocsSample_Arkweb/tree/master/ArkwebSchemeHandler)<!--RP1End-->
+ * <!--RP1-->**Related Sample:** [ArkwebSchemeHandler](https://gitee.com/harmonyos_samples/DocsSample_Arkweb/tree/master/ArkwebSchemeHandler)<!--RP1End-->
  * @kit ArkWeb
  * @library libohweb.so
  * @syscap SystemCapability.Web.Webview.Core
