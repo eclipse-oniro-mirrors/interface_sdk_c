@@ -275,6 +275,7 @@ int32_t OH_PictureInPicture_SetPipNapiEnv(PictureInPicture_PipConfig pipConfig, 
 
 /**
  * @brief Create picture-in-picture controller.
+ * @param pipConfig The picture-in-picture config
  * @param controllerId The picture-in-picture controller ID
  * @return Return the result code.
  *         {@link OK} the function call is successful.
@@ -283,7 +284,7 @@ int32_t OH_PictureInPicture_SetPipNapiEnv(PictureInPicture_PipConfig pipConfig, 
  *         {@link WINDOW_MANAGER_ERRORCODE_PIP_INTERNAL_ERROR} pip internal error.
  * @since 20
  */
-int32_t OH_PictureInPicture_CreatePip(uint32_t* controllerId);
+int32_t OH_PictureInPicture_CreatePip(PictureInPicture_PipConfig pipConfig, uint32_t* controllerId);
 
 /**
  * @brief Delete picture-in-picture controller.
