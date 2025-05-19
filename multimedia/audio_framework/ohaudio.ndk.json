@@ -384,31 +384,43 @@
         "name": "OH_AudioRenderer_GetAudioTimestampInfo"
     },
     {
-        "first_introduced": "18",
+        "first_introduced": "19",
         "name": "OH_AudioStreamBuilder_SetVolumeMode"
     },
     {
-        "first_introduced": "18",
+        "first_introduced": "19",
         "name": "OH_AudioStreamBuilder_SetRendererInterruptCallback"
     },
     {
-        "first_introduced": "18",
+        "first_introduced": "19",
         "name": "OH_AudioStreamBuilder_SetRendererErrorCallback"
     },
     {
-        "first_introduced": "18",
+        "first_introduced": "19",
         "name": "OH_AudioStreamBuilder_SetCapturerReadDataCallback"
     },
     {
-        "first_introduced": "18",
+        "first_introduced": "19",
         "name": "OH_AudioStreamBuilder_SetCapturerDeviceChangeCallback"
     },
     {
-        "first_introduced": "18",
+        "first_introduced": "19",
         "name": "OH_AudioStreamBuilder_SetCapturerInterruptCallback"
     },
     {
-        "first_introduced": "18",
+        "first_introduced": "19",
         "name": "OH_AudioStreamBuilder_SetCapturerErrorCallback"
+    },
+    {
+        "first_introduced": "19",
+        "name": "OH_AudioManager_GetAudioStreamManager"
+    },
+    {
+        "first_introduced": "19",
+        "name": "OH_AudioStreamManager_GetDirectPlaybackSupport"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_AudioStreamManager_IsAcousticEchoCancelerSupported"
     }
 ]

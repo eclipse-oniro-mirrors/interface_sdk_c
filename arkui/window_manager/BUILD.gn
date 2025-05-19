@@ -21,9 +21,10 @@ ohos_ndk_library("native_window_manager") {
   output_extension = "so"
   system_capability = "SystemCapability.Window.SessionManager"
   system_capability_headers = [
-    "oh_window.h",
-    "oh_window_comm.h",
-    "oh_window_event_filter.h",
+    "window_manager/oh_window.h",
+    "window_manager/oh_window_comm.h",
+    "window_manager/oh_window_event_filter.h",
+    "window_manager/oh_window_pip.h",
   ]
 }
 
@@ -33,5 +34,6 @@ ohos_ndk_headers("window_manager_header") {
     "oh_window.h",
     "oh_window_comm.h",
     "oh_window_event_filter.h",
+    "oh_window_pip.h",
   ]
 }

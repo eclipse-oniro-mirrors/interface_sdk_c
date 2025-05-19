@@ -650,5 +650,25 @@
     {
         "first_introduced": "14",
         "name": "OH_CaptureSession_SetQualityPrioritization"
+    },
+    {
+        "first_introduced": "18",
+        "name": "OH_CameraManager_GetCameraDevice"
+    },
+    {
+        "first_introduced": "18",
+        "name": "OH_CameraManager_GetCameraConcurrentInfos"
+    },
+    {
+        "first_introduced": "18",
+        "name": "OH_CameraInput_OpenConcurrentCameras"
+    },
+    {
+        "first_introduced": "19",
+        "name": "OH_CaptureSession_IsMacroSupported"
+    },
+    {
+        "first_introduced": "19",
+        "name": "OH_CaptureSession_EnableMacro"
     }
 ]

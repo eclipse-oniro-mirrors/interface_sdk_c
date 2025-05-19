@@ -177,6 +177,18 @@ Image_ErrorCode OH_ImageSourceInfo_GetHeight(OH_ImageSource_Info *info, uint32_t
 Image_ErrorCode OH_ImageSourceInfo_GetDynamicRange(OH_ImageSource_Info *info, bool *isHdr);
 
 /**
+ * @brief Obtains the MIME type of an image source.
+ *
+ * @param info Pointer to the OH_ImageSource_Info struct.
+ * @param mimeType Pointer to the MIME type of the image source.
+ * @return Returns one of the following result codes:
+ * {@link IMAGE_SUCCESS}: The execution is successful.
+ * {@link IMAGE_SOURCE_INVALID_PARAMETER}: info or mimeType is a null pointer.
+ * @since 20
+ */
+Image_ErrorCode OH_ImageSourceInfo_GetMimeType(OH_ImageSource_Info *info, Image_MimeType *mimeType);
+
+/**
  * @brief delete OH_ImageSource_Info pointer.
  *
  * @param info The OH_ImageSource_Info pointer will be operated.
@@ -363,6 +375,54 @@ Image_ErrorCode OH_DecodingOptions_SetDesiredDynamicRange(OH_DecodingOptions *op
     int32_t desiredDynamicRange);
 
 /**
+ * @brief Sets the crop region for the decoding options.
+ *
+ * @param options Pointer to the decoding options.
+ * @param cropRegion The target region will be cropped from the image.
+ * @return Returns one of the following result codes:
+ * {@link IMAGE_SUCCESS} if the execution is successful.
+ * {@link IMAGE_SOURCE_INVALID_PARAMETER} if options or cropRegion is null pointer.
+ * @since 19
+ */
+Image_ErrorCode OH_DecodingOptions_SetCropRegion(OH_DecodingOptions *options, Image_Region *cropRegion);
+
+/**
+ * @brief Gets the crop region for the decoding options.
+ *
+ * @param options Pointer to the decoding options.
+ * @param cropRegion The target region will be cropped from the image.
+ * @return Returns one of the following result codes:
+ * {@link IMAGE_SUCCESS} if the execution is successful.
+ * {@link IMAGE_SOURCE_INVALID_PARAMETER} if options or cropRegion is null pointer.
+ * @since 19
+ */
+Image_ErrorCode OH_DecodingOptions_GetCropRegion(OH_DecodingOptions *options, Image_Region *cropRegion);
+
+/**
+ * @brief Obtains the color space set in the decoding options.
+ *
+ * @param options Pointer to the decoding options.
+ * @param colorSpace Pointer to the color space, {@link ColorSpaceName}.
+ * @return Returns one of the following result codes:
+ * {@link IMAGE_SUCCESS}: if the execution is successful.
+ * {@link IMAGE_SOURCE_INVALID_PARAMETER}: if options or colorSpace is null pointer.
+ * @since 20
+ */
+Image_ErrorCode OH_DecodingOptions_GetDesiredColorSpace(OH_DecodingOptions *options, int32_t *colorSpace);
+
+/**
+ * @brief Sets desired color space for decoding options.
+ *
+ * @param options Pointer to the decoding options.
+ * @param colorSpace Desired color space, {@link ColorSpaceName}.
+ * @return Returns one of the following result codes:
+ * {@link IMAGE_SUCCESS}: if the execution is successful.
+ * {@link IMAGE_SOURCE_INVALID_PARAMETER}: if options is a null pointer or colorSpace is not supported.
+ * @since 20
+ */
+Image_ErrorCode OH_DecodingOptions_SetDesiredColorSpace(OH_DecodingOptions *options, int32_t colorSpace);
+
+/**
  * @brief delete OH_DecodingOptions pointer.
  *
  * @param  options The OH_DecodingOptions pointer will be operated.
@@ -529,6 +589,20 @@ Image_ErrorCode OH_ImageSourceNative_GetImageProperty(OH_ImageSourceNative *sour
     Image_String *value);
 
 /**
+ * @brief Obtains the value of an image property from an <b>ImageSource</b> object. The output value.data is null-terminated.
+ *
+ * @param source Pointer to ImageSource.
+ * @param key Pointer to the property key.
+ * @param value Pointer to the property value. Output Parameter.
+ * @return Returns One of the following result codes:
+ *         {@link IMAGE_SUCCESS} if the execution is successful.
+ *         {@link IMAGE_SOURCE_INVALID_PARAMETER} if source, key or value is nullptr.
+ * @since 19
+ */
+Image_ErrorCode OH_ImageSourceNative_GetImagePropertyWithNull(OH_ImageSourceNative *source, Image_String *key,
+    Image_String *value);
+
+/**
  * @brief Modifies the value of an image property of an <b>ImageSource</b> object.
  * @param source Indicates a void pointer(from ImageSource pointer convert).
  * @param key Indicates a pointer to the property. For details, see {@link Image_String}., key is an exif constant.
@@ -610,6 +684,18 @@ Image_ErrorCode OH_DecodingOptionsForPicture_SetDesiredAuxiliaryPictures(OH_Deco
  * @since 13
  */
 Image_ErrorCode OH_DecodingOptionsForPicture_Release(OH_DecodingOptionsForPicture *options);
+
+/**
+  * @brief Obtains the supported image formats that can be decoded.
+  *
+  * @param supportedFormats Double pointer to an array of the supported image formats.
+  * @param length Pointer to the length of the array.
+  * @return One of the following result codes:
+  *         {@link IMAGE_SUCCESS} if the execution is successful.
+  *         {@link IMAGE_SOURCE_INVALID_PARAMETER} if <b>supportedFormats</b> or <b>length</b> is empty.
+  * @since 20
+ */
+Image_ErrorCode OH_ImageSourceNative_GetSupportedFormats(Image_MimeType **supportedFormats, size_t *length);
 #ifdef __cplusplus
 };
 #endif

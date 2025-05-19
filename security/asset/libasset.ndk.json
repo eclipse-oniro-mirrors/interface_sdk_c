@@ -18,6 +18,9 @@
         "name": "OH_Asset_PostQuery"
     },
     {
+        "name": "OH_Asset_QuerySyncResult"
+    },
+    {
         "name": "OH_Asset_ParseAttr"
     },
     {

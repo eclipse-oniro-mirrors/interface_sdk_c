@@ -32,35 +32,35 @@
         "name": "OH_AbilityBase_GetWantFd"
     },
     {
-        "first_introduced": "18",
+        "first_introduced": "17",
         "name": "OH_AbilityBase_SetWantUri"
     },
     {
-        "first_introduced": "18",
+        "first_introduced": "17",
         "name": "OH_AbilityBase_GetWantUri"
     },
     {
-        "first_introduced": "18",
+        "first_introduced": "17",
         "name": "OH_AbilityBase_SetWantInt32Param"
     },
     {
-        "first_introduced": "18",
+        "first_introduced": "17",
         "name": "OH_AbilityBase_GetWantInt32Param"
     },
     {
-        "first_introduced": "18",
+        "first_introduced": "17",
         "name": "OH_AbilityBase_SetWantBoolParam"
     },
     {
-        "first_introduced": "18",
+        "first_introduced": "17",
         "name": "OH_AbilityBase_GetWantBoolParam"
     },
     {
-        "first_introduced": "18",
+        "first_introduced": "17",
         "name": "OH_AbilityBase_SetWantDoubleParam"
     },
     {
-        "first_introduced": "18",
+        "first_introduced": "17",
         "name": "OH_AbilityBase_GetWantDoubleParam"
     }
 ]

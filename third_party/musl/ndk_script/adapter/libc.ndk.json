@@ -757,6 +757,14 @@
     { "name": "madvise" },
     { "name": "malloc" },
     { "name": "mallopt" },
+    { 
+        "first_introduced":"19",
+        "name": "mallinfo" 
+    },
+    { 
+        "first_introduced":"19",
+        "name": "mallinfo2" 
+    },
     { "name": "malloc_usable_size" },
     { "name": "mblen" },
     { "name": "mbrlen" },
@@ -1588,5 +1596,6 @@
     { "name": "__recv_chk"},
     { "name": "__recvfrom_chk"},
     { "name": "__open_chk"},
-    { "name": "__strlcat_chk"}
+    { "name": "__strlcat_chk"},
+    { "name": "malloc_check_from_ptr"}
 ]

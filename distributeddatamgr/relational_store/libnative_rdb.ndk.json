@@ -45,8 +45,16 @@
         "name":"OH_Rdb_SetDbType"
     },
     {
+        "first_introduced": "17",
+        "name":"OH_Rdb_SetTokenizer"
+    },
+    {
         "first_introduced": "18",
         "name":"OH_Rdb_SetPersistent"
+    },
+    {
+        "first_introduced": "18",
+        "name":"OH_Rdb_IsTokenizerSupported"
     },
     {
         "first_introduced": "14",

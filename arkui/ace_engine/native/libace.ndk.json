@@ -252,15 +252,15 @@
         "name": "OH_ArkUI_GestureInterruptInfo_GetSystemRecognizerType"
     },
     {
-        "first_introduced": "18",
+        "first_introduced": "15",
         "name": "OH_ArkUI_GestureInterruptInfo_GetTouchRecognizers"
     },
     {
-        "first_introduced": "18",
+        "first_introduced": "15",
         "name": "OH_ArkUI_TouchRecognizer_GetNodeHandle"
     },
     {
-        "first_introduced": "18",
+        "first_introduced": "15",
         "name": "OH_ArkUI_TouchRecognizer_CancelTouch"
     },
     {
@@ -508,7 +508,7 @@
         "name": "OH_ArkUI_PointerEvent_GetTiltY"
     },
     {
-        "first_introduced": "18",
+        "first_introduced": "17",
         "name": "OH_ArkUI_PointerEvent_GetRollAngle"
     },
     {
@@ -2240,6 +2240,10 @@
         "name": "OH_ArkUI_DragEvent_GetModifierKeyStates"
     },
     {
+        "first_introduced": "20",
+        "name": "OH_ArkUI_DragEvent_GetDisplayId"
+    },
+    {
         "first_introduced": "12",
         "name": "OH_ArkUI_SetDragEventStrictReportWithNode"
     },
@@ -2361,6 +2365,30 @@
     },
     {
         "first_introduced": "12",
+        "name": "OH_ArkUI_RegisterSystemColorModeChangeEvent"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_ArkUI_UnregisterSystemColorModeChangeEvent"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_ArkUI_RegisterSystemFontStyleChangeEvent"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_ArkUI_UnregisterSystemFontStyleChangeEvent"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_ArkUI_SystemFontStyleEvent_GetFontSizeScale"
+    },
+    {
+        "first_introduced": "12",
+        "name": "OH_ArkUI_SystemFontStyleEvent_GetFontWeightScale"
+    },
+    {
+        "first_introduced": "12",
         "name": "OH_ArkUI_DialogDismissEvent_SetShouldBlockDismiss"
     },
     {
@@ -2434,30 +2462,6 @@
     {
         "first_introduced": "12",
         "name": "OH_ArkUI_CustomSpanDrawInfo_GetBaseline"
-    },
-    {
-        "first_introduced": "12",
-        "name": "OH_ArkUI_RegisterSystemColorModeChangeEvent"
-    },
-    {
-        "first_introduced": "12",
-        "name": "OH_ArkUI_UnregisterSystemColorModeChangeEvent"
-    },
-    {
-        "first_introduced": "12",
-        "name": "OH_ArkUI_RegisterSystemFontStyleChangeEvent"
-    },
-    {
-        "first_introduced": "12",
-        "name": "OH_ArkUI_UnregisterSystemFontStyleChangeEvent"
-    },
-    {
-        "first_introduced": "12",
-        "name": "OH_ArkUI_SystemFontStyleEvent_GetFontSizeScale"
-    },
-    {
-        "first_introduced": "12",
-        "name": "OH_ArkUI_SystemFontStyleEvent_GetFontWeightScale"
     },
     {
         "first_introduced": "13",
@@ -2944,11 +2948,11 @@
         "name": "OH_ArkUI_XComponent_StopImageAnalyzer"
     },
     {
-        "first_introduced": "18",
+        "first_introduced": "19",
         "name": "OH_ArkUI_KeyframeAnimateOption_SetExpectedFrameRate"
     },
     {
-        "first_introduced": "18",
+        "first_introduced": "19",
         "name": "OH_ArkUI_KeyframeAnimateOption_GetExpectedFrameRate"
     },
     {
@@ -3016,15 +3020,15 @@
         "name": "OH_ArkUI_AxisEvent_GetScrollStep"
     },
     {
-        "first_introduced": "18",
+        "first_introduced": "19",
         "name": "OH_ArkUI_DragEvent_RequestDragEndPending"
     },
     {
-        "first_introduced": "18",
+        "first_introduced": "19",
         "name": "OH_ArkUI_NotifyDragResult"
     },
     {
-        "first_introduced": "18",
+        "first_introduced": "19",
         "name": "OH_ArkUI_NotifyDragEndPendingDone"
     },
     {
@@ -3072,231 +3076,283 @@
         "name": "OH_ArkUI_NodeUtils_GetPositionToParent"
     },
     {
-        "first_introduced": "18",
+        "first_introduced": "19",
         "name": "OH_ArkUI_CustomDialog_CreateOptions"
     },
     {
-        "first_introduced": "18",
+        "first_introduced": "19",
         "name": "OH_ArkUI_CustomDialog_DisposeOptions"
     },
     {
-        "first_introduced": "18",
+        "first_introduced": "19",
         "name": "OH_ArkUI_CustomDialog_SetLevelMode"
     },
     {
-        "first_introduced": "18",
+        "first_introduced": "19",
         "name": "OH_ArkUI_CustomDialog_SetLevelUniqueId"
     },
     {
-        "first_introduced": "18",
+        "first_introduced": "19",
         "name": "OH_ArkUI_CustomDialog_SetImmersiveMode"
     },
     {
-        "first_introduced": "18",
+        "first_introduced": "19",
         "name": "OH_ArkUI_CustomDialog_OpenDialog"
     },
     {
-        "first_introduced": "18",
+        "first_introduced": "19",
         "name": "OH_ArkUI_CustomDialog_UpdateDialog"
     },
     {
-        "first_introduced": "18",
+        "first_introduced": "19",
         "name": "OH_ArkUI_CustomDialog_CloseDialog"
     },
     {
-        "first_introduced": "18",
+        "first_introduced": "19",
         "name": "OH_ArkUI_CustomDialog_SetBackgroundColor"
     },
     {
-        "first_introduced": "18",
+        "first_introduced": "19",
         "name": "OH_ArkUI_CustomDialog_SetCornerRadius"
     },
     {
-        "first_introduced": "18",
+        "first_introduced": "19",
         "name": "OH_ArkUI_CustomDialog_SetBorderWidth"
     },
     {
-        "first_introduced": "18",
+        "first_introduced": "19",
         "name": "OH_ArkUI_CustomDialog_SetBorderColor"
     },
     {
-        "first_introduced": "18",
+        "first_introduced": "19",
         "name": "OH_ArkUI_CustomDialog_SetBorderStyle"
     },
     {
-        "first_introduced": "18",
+        "first_introduced": "19",
         "name": "OH_ArkUI_CustomDialog_SetWidth"
     },
     {
-        "first_introduced": "18",
+        "first_introduced": "19",
         "name": "OH_ArkUI_CustomDialog_SetHeight"
     },
     {
-        "first_introduced": "18",
+        "first_introduced": "19",
         "name": "OH_ArkUI_CustomDialog_SetShadow"
     },
     {
-        "first_introduced": "18",
+        "first_introduced": "19",
         "name": "OH_ArkUI_CustomDialog_SetCustomShadow"
     },
     {
-        "first_introduced": "18",
+        "first_introduced": "19",
         "name": "OH_ArkUI_CustomDialog_SetBackgroundBlurStyle"
     },
     {
-        "first_introduced": "18",
+        "first_introduced": "19",
         "name": "OH_ArkUI_CustomDialog_SetAlignment"
     },
     {
-        "first_introduced": "18",
+        "first_introduced": "19",
         "name": "OH_ArkUI_CustomDialog_SetModalMode"
     },
     {
-        "first_introduced": "18",
+        "first_introduced": "19",
         "name": "OH_ArkUI_CustomDialog_SetAutoCancel"
     },
     {
-        "first_introduced": "18",
+        "first_introduced": "19",
         "name": "OH_ArkUI_CustomDialog_SetSubwindowMode"
     },
     {
-        "first_introduced": "18",
+        "first_introduced": "19",
         "name": "OH_ArkUI_CustomDialog_SetMask"
     },
     {
-        "first_introduced": "18",
+        "first_introduced": "19",
         "name": "OH_ArkUI_CustomDialog_SetKeyboardAvoidMode"
     },
     {
-        "first_introduced": "18",
+        "first_introduced": "19",
         "name": "OH_ArkUI_CustomDialog_SetHoverModeEnabled"
     },
     {
-        "first_introduced": "18",
+        "first_introduced": "19",
         "name": "OH_ArkUI_CustomDialog_SetHoverModeArea"
     },
     {
-        "first_introduced": "18",
+        "first_introduced": "19",
         "name": "OH_ArkUI_CustomDialog_SetBackgroundBlurStyleOptions"
     },
     {
-        "first_introduced": "18",
+        "first_introduced": "19",
         "name": "OH_ArkUI_CustomDialog_SetBackgroundEffect"
     },
     {
-        "first_introduced": "18",
+        "first_introduced": "19",
         "name": "OH_ArkUI_CustomDialog_RegisterOnWillDismissCallback"
     },
     {
-        "first_introduced": "18",
+        "first_introduced": "19",
         "name": "OH_ArkUI_CustomDialog_RegisterOnWillAppearCallback"
     },
     {
-        "first_introduced": "18",
+        "first_introduced": "19",
         "name": "OH_ArkUI_CustomDialog_RegisterOnDidAppearCallback"
     },
     {
-        "first_introduced": "18",
+        "first_introduced": "19",
         "name": "OH_ArkUI_CustomDialog_RegisterOnWillDisappearCallback"
     },
     {
-        "first_introduced": "18",
+        "first_introduced": "19",
         "name": "OH_ArkUI_CustomDialog_RegisterOnDidDisappearCallback"
     },
     {
-        "first_introduced": "18",
+        "first_introduced": "19",
         "name": "OH_ArkUI_TextPickerRangeContentArray_Create"
     },
     {
-        "first_introduced": "18",
+        "first_introduced": "19",
         "name": "OH_ArkUI_TextPickerRangeContentArray_SetIconAtIndex"
     },
     {
-        "first_introduced": "18",
+        "first_introduced": "19",
         "name": "OH_ArkUI_TextPickerRangeContentArray_SetTextAtIndex"
     },
     {
-        "first_introduced": "18",
+        "first_introduced": "19",
         "name": "OH_ArkUI_TextPickerRangeContentArray_Destroy"
     },
     {
-        "first_introduced": "18",
+        "first_introduced": "19",
         "name": "OH_ArkUI_TextCascadePickerRangeContentArray_Create"
     },
     {
-        "first_introduced": "18",
+        "first_introduced": "19",
         "name": "OH_ArkUI_TextCascadePickerRangeContentArray_SetTextAtIndex"
     },
     {
-        "first_introduced": "18",
+        "first_introduced": "19",
         "name": "OH_ArkUI_TextCascadePickerRangeContentArray_SetChildAtIndex"
     },
     {
-        "first_introduced": "18",
+        "first_introduced": "19",
         "name": "OH_ArkUI_TextCascadePickerRangeContentArray_Destroy"
     },
     {
-        "first_introduced": "18",
+        "first_introduced": "19",
         "name": "OH_ArkUI_SurfaceHolder_Create"
     },
     {
-        "first_introduced": "18",
+        "first_introduced": "19",
         "name": "OH_ArkUI_SurfaceHolder_Dispose"
     },
     {
-        "first_introduced": "18",
+        "first_introduced": "19",
         "name": "OH_ArkUI_SurfaceHolder_SetUserData"
     },
     {
-        "first_introduced": "18",
+        "first_introduced": "19",
         "name": "OH_ArkUI_SurfaceHolder_GetUserData"
     },
     {
-        "first_introduced": "18",
+        "first_introduced": "19",
         "name": "OH_ArkUI_SurfaceCallback_Create"
     },
     {
-        "first_introduced": "18",
+        "first_introduced": "19",
         "name": "OH_ArkUI_SurfaceCallback_Dispose"
     },
     {
-        "first_introduced": "18",
+        "first_introduced": "19",
         "name": "OH_ArkUI_SurfaceCallback_SetSurfaceCreatedEvent"
     },
     {
-        "first_introduced": "18",
+        "first_introduced": "19",
         "name": "OH_ArkUI_SurfaceCallback_SetSurfaceChangedEvent"
     },
     {
-        "first_introduced": "18",
+        "first_introduced": "19",
         "name": "OH_ArkUI_SurfaceCallback_SetSurfaceDestroyedEvent"
     },
     {
-        "first_introduced": "18",
+        "first_introduced": "19",
         "name": "OH_ArkUI_SurfaceHolder_AddSurfaceCallback"
     },
     {
-        "first_introduced": "18",
+        "first_introduced": "19",
         "name": "OH_ArkUI_SurfaceHolder_RemoveSurfaceCallback"
     },
     {
-        "first_introduced": "18",
+        "first_introduced": "19",
         "name": "OH_ArkUI_XComponent_GetNativeWindow"
     },
     {
-        "first_introduced": "18",
+        "first_introduced": "19",
         "name": "OH_ArkUI_XComponent_SetAutoInitialize"
     },
     {
-        "first_introduced": "18",
+        "first_introduced": "19",
         "name": "OH_ArkUI_XComponent_Initialize"
     },
     {
-        "first_introduced": "18",
+        "first_introduced": "19",
         "name": "OH_ArkUI_XComponent_Finalize"
     },
     {
-        "first_introduced": "18",
+        "first_introduced": "19",
         "name": "OH_ArkUI_XComponent_IsInitialized"
+    },
+    {
+        "first_introduced": "19",
+        "name": "OH_ArkUI_KeyEvent_IsNumLockOn"
+    },
+    {
+        "first_introduced": "19",
+        "name": "OH_ArkUI_KeyEvent_IsCapsLockOn"
+    },
+    {
+        "first_introduced": "19",
+        "name": "OH_ArkUI_KeyEvent_IsScrollLockOn"
+    },
+    {
+        "first_introduced": "19",
+        "name": "OH_ArkUI_PanGesture_SetDistanceMap"
+    },
+    {
+        "first_introduced": "19",
+        "name": "OH_ArkUI_PanGesture_GetDistanceByToolType"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_ArkUI_EmbeddedComponentOption_Create"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_ArkUI_EmbeddedComponentOption_Dispose"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_ArkUI_EmbeddedComponentOption_SetOnError"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_ArkUI_EmbeddedComponentOption_SetOnTerminated"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_ArkUI_AddSupportedUIStates"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_ArkUI_RemoveSupportedUIStates"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_ArkUI_DragEvent_GetDragSource"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_ArkUI_DragEvent_IsRemote"
     }
 ]

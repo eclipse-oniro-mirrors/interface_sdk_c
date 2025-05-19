@@ -243,6 +243,20 @@ typedef struct ArkUI_ProgressLinearStyleOption ArkUI_ProgressLinearStyleOption;
 typedef struct ArkUI_CrossLanguageOption ArkUI_CrossLanguageOption;
 
 /**
+ * @brief Declares the Ability base want.
+ *
+ * @since 20
+ */
+typedef struct AbilityBase_Want AbilityBase_Want;
+
+/**
+ * @brief Define the EmbeddedComponentOption for the EmbeddedComponent.
+ *
+ * @since 20
+ */
+typedef struct ArkUI_EmbeddedComponentOption ArkUI_EmbeddedComponentOption;
+
+/**
  * @brief Defines the event callback type.
  *
  * @since 12
@@ -423,6 +437,11 @@ typedef enum {
     ARKUI_TEXTINPUT_TYPE_NEW_PASSWORD = 11,
     /** Number input mode with a decimal point. */
     ARKUI_TEXTINPUT_TYPE_NUMBER_DECIMAL = 12,
+    /**
+     * One time code input mode.
+     * @since 20
+     */
+    ARKUI_TEXTINPUT_TYPE_ONE_TIME_CODE = 14,
 } ArkUI_TextInputType;
 
 /**
@@ -439,6 +458,11 @@ typedef enum {
     ARKUI_TEXTAREA_TYPE_PHONE_NUMBER = 3,
     /** Email address input mode. */
     ARKUI_TEXTAREA_TYPE_EMAIL = 5,
+    /**
+     * One time code input mode.
+     * @since 20
+     */
+    ARKUI_TEXTAREA_TYPE_ONE_TIME_CODE = 14,
 } ArkUI_TextAreaType;
 
 /**
@@ -1084,7 +1108,7 @@ typedef enum {
 typedef enum {
     /** The original image aspect ratio is retained. */
     ARKUI_IMAGE_SIZE_AUTO = 0,
-    /** Default value. The image is scaled with its aspect ratio retained for both sides to be greater than or equal
+    /** The image is scaled with its aspect ratio retained for both sides to be greater than or equal
      *  to the display boundaries. */
     ARKUI_IMAGE_SIZE_COVER,
     /** The image is scaled with its aspect ratio retained for the content to be completely displayed within the display
@@ -1167,7 +1191,7 @@ typedef enum {
 /**
  * @brief Enumerates the activation policies for the background blur effect.
  *
- * @since 18
+ * @since 19
  */
 typedef enum {
     /** The blur effect changes according to the window's focus state;
@@ -1900,7 +1924,7 @@ typedef enum {
     ARKUI_BUTTON_TYPE_CIRCLE,
     /**
      * Rounded rectangle button.
-     * @since 18
+     * @since 19
      */
     ARKUI_BUTTON_ROUNDED_RECTANGLE = 8
 } ArkUI_ButtonType;
@@ -2158,7 +2182,7 @@ typedef enum {
     ARKUI_ERROR_CODE_INTERNAL_ERROR = 100001,
     /**
      * @error The XComponent is in invalid state.
-     * @since 18
+     * @since 19
      */
     ARKUI_ERROR_CODE_XCOMPONENT_STATE_INVALID = 103501,
     /** @error The component does not support specific properties or events. */
@@ -2249,7 +2273,7 @@ typedef enum {
     ARKUI_ERROR_CODE_RECOGNIZER_TYPE_NOT_SUPPORTED = 180102,
     /**
      * @error operation is not allowed for current drag drop pharse.
-     * @since 18
+     * @since 19
      */
     ARKUI_ERROR_CODE_DRAG_DROP_OPERATION_NOT_ALLOWED = 190004,
 } ArkUI_ErrorCode;
@@ -2592,6 +2616,28 @@ typedef enum {
 } ArkUI_ExpandMode;
 
 /**
+ * @brief Defines the navigation point indicator style of the <b><Swiper></b> component.
+ * @brief Enumerates the UI states of a component, used for handling state-specific styles.
+ *
+ * @since 20
+ */
+typedef enum {
+    /** Normal state. */
+    UI_STATE_NORMAL = 0,
+    /** Pressed state. */
+    UI_STATE_PRESSED = 1 << 0,
+    /** Focused state. */
+    UI_STATE_FOCUSED = 1 << 1,
+    /** Disabled state. */
+    UI_STATE_DISABLED = 1 << 2,
+    /**
+     * Selected state. This state is supported only by specific component types:
+     * <b>Checkbox</b>, <b>Radio</b>, <b>Toggle</b>, <b>List</b>, <b>Grid</b>, and <b>MenuItem</b>.
+     */
+    UI_STATE_SELECTED = 1 << 3,
+} ArkUI_UIState;
+
+/**
  * @brief Defines parameter used by the system font style callback event.
  *
  * @since 12
@@ -2608,14 +2654,14 @@ typedef struct ArkUI_SnapshotOptions ArkUI_SnapshotOptions;
 /**
   * @brief TextPicker single column selector, supports mixing text and images.
   *
-  * @since 18
+  * @since 19
   */
 typedef struct ArkUI_TextPickerRangeContentArray ArkUI_TextPickerRangeContentArray;
 
  /**
    * @brief TextPicker multi column selector, supports mixing text and images.
    *
-   * @since 18
+   * @since 19
    */
 typedef struct ArkUI_TextCascadePickerRangeContentArray ArkUI_TextCascadePickerRangeContentArray;
 
@@ -3183,7 +3229,7 @@ int32_t OH_ArkUI_SwiperIndicator_GetMaxDisplayCount(ArkUI_SwiperIndicator* indic
  * @param indicator Indicates the pointer to the indicator.
  * @param ignoreSize Whether to ignore the size of the indicator. The value 1 means to ignore, and 0 means the opposite.
  * The default value is 0.
- * @since 18
+ * @since 19
 */
 void OH_ArkUI_SwiperIndicator_SetIgnoreSizeOfBottom(ArkUI_SwiperIndicator* indicator, int32_t ignoreSize);
 
@@ -3192,7 +3238,7 @@ void OH_ArkUI_SwiperIndicator_SetIgnoreSizeOfBottom(ArkUI_SwiperIndicator* indic
  *
  * @param indicator Indicates the pointer to the indicator.
  * @return Returns whether to ignore the size of the indicator.
- * @since 18
+ * @since 19
 */
 int32_t OH_ArkUI_SwiperIndicator_GetIgnoreSizeOfBottom(ArkUI_SwiperIndicator* indicator);
 
@@ -3201,7 +3247,7 @@ int32_t OH_ArkUI_SwiperIndicator_GetIgnoreSizeOfBottom(ArkUI_SwiperIndicator* in
  *
  * @param indicator Indicates the pointer to the indicator.
  * @param space the space between the dots of the navigation indicator, the default value is 8vp.
- * @since 18
+ * @since 19
 */
 void OH_ArkUI_SwiperIndicator_SetSpace(ArkUI_SwiperIndicator* indicator, float space);
 
@@ -3210,7 +3256,7 @@ void OH_ArkUI_SwiperIndicator_SetSpace(ArkUI_SwiperIndicator* indicator, float s
  *
  * @param indicator Indicates the pointer to the indicator.
  * @return the space between the dots of the navigation indicator
- * @since 18
+ * @since 19
 */
 float OH_ArkUI_SwiperIndicator_GetSpace(ArkUI_SwiperIndicator* indicator);
 
@@ -3218,7 +3264,7 @@ float OH_ArkUI_SwiperIndicator_GetSpace(ArkUI_SwiperIndicator* indicator);
  * @brief Creates a digital indicator.
  *
  * @return Returns the pointer to the new indicator.
- * @since 18
+ * @since 19
  */
 ArkUI_SwiperDigitIndicator *OH_ArkUI_SwiperDigitIndicator_Create();
 
@@ -3227,7 +3273,7 @@ ArkUI_SwiperDigitIndicator *OH_ArkUI_SwiperDigitIndicator_Create();
  *
  * @param indicator The pointer to the digital indicator.
  * @param value Indicates the distance between the digital indicator and the start of the swiper.
- * @since 18
+ * @since 19
  */
 void OH_ArkUI_SwiperDigitIndicator_SetStartPosition(ArkUI_SwiperDigitIndicator* indicator, float value);
 
@@ -3236,7 +3282,7 @@ void OH_ArkUI_SwiperDigitIndicator_SetStartPosition(ArkUI_SwiperDigitIndicator* 
  *
  * @param indicator The pointer to the digital indicator.
  * @return Returns the distance between the digital indicator and the start of the swiper.
- * @since 18
+ * @since 19
  */
 float OH_ArkUI_SwiperDigitIndicator_GetStartPosition(ArkUI_SwiperDigitIndicator* indicator);
 
@@ -3245,7 +3291,7 @@ float OH_ArkUI_SwiperDigitIndicator_GetStartPosition(ArkUI_SwiperDigitIndicator*
  *
  * @param indicator The pointer to the digital indicator.
  * @param value Indicates the distance between the digital indicator and the top of the swiper.
- * @since 18
+ * @since 19
  */
 void OH_ArkUI_SwiperDigitIndicator_SetTopPosition(ArkUI_SwiperDigitIndicator* indicator, float value);
 
@@ -3254,7 +3300,7 @@ void OH_ArkUI_SwiperDigitIndicator_SetTopPosition(ArkUI_SwiperDigitIndicator* in
  *
  * @param indicator The pointer to the digital indicator.
  * @return Returns the distance between the digital indicator and the top of the swiper.
- * @since 18
+ * @since 19
  */
 float OH_ArkUI_SwiperDigitIndicator_GetTopPosition(ArkUI_SwiperDigitIndicator* indicator);
 
@@ -3263,7 +3309,7 @@ float OH_ArkUI_SwiperDigitIndicator_GetTopPosition(ArkUI_SwiperDigitIndicator* i
  *
  * @param indicator The pointer to the digital indicator.
  * @param value Indicates the distance between the digital indicator and the end of the swiper.
- * @since 18
+ * @since 19
  */
 void OH_ArkUI_SwiperDigitIndicator_SetEndPosition(ArkUI_SwiperDigitIndicator* indicator, float value);
 
@@ -3272,7 +3318,7 @@ void OH_ArkUI_SwiperDigitIndicator_SetEndPosition(ArkUI_SwiperDigitIndicator* in
  *
  * @param indicator The pointer to the digital indicator.
  * @return Returns the distance between the digital indicator and the end of the swiper.
- * @since 18
+ * @since 19
  */
 float OH_ArkUI_SwiperDigitIndicator_GetEndPosition(ArkUI_SwiperDigitIndicator* indicator);
 
@@ -3281,7 +3327,7 @@ float OH_ArkUI_SwiperDigitIndicator_GetEndPosition(ArkUI_SwiperDigitIndicator* i
  *
  * @param indicator The pointer to the digital indicator.
  * @param value Returns the distance between the digital indicator and the bottom of the swiper.
- * @since 18
+ * @since 19
  */
 void OH_ArkUI_SwiperDigitIndicator_SetBottomPosition(ArkUI_SwiperDigitIndicator* indicator, float value);
 
@@ -3290,7 +3336,7 @@ void OH_ArkUI_SwiperDigitIndicator_SetBottomPosition(ArkUI_SwiperDigitIndicator*
  *
  * @param indicator The pointer to the digital indicator.
  * @return Returns the distance between the digital indicator and the bottom of the swiper.
- * @since 18
+ * @since 19
  */
 float OH_ArkUI_SwiperDigitIndicator_GetBottomPosition(ArkUI_SwiperDigitIndicator* indicator);
 
@@ -3299,7 +3345,7 @@ float OH_ArkUI_SwiperDigitIndicator_GetBottomPosition(ArkUI_SwiperDigitIndicator
  *
  * @param indicator The pointer to the digital indicator.
  * @param color font color, in 0xARGB format. Default value: 0xFF182431.
- * @since 18
+ * @since 19
  */
 void OH_ArkUI_SwiperDigitIndicator_SetFontColor(ArkUI_SwiperDigitIndicator* indicator, uint32_t color);
 
@@ -3308,7 +3354,7 @@ void OH_ArkUI_SwiperDigitIndicator_SetFontColor(ArkUI_SwiperDigitIndicator* indi
  *
  * @param indicator The pointer to the digital indicator.
  * @return font color, in 0xARGB format.
- * @since 18
+ * @since 19
  */
 uint32_t OH_ArkUI_SwiperDigitIndicator_GetFontColor(ArkUI_SwiperDigitIndicator* indicator);
 
@@ -3317,7 +3363,7 @@ uint32_t OH_ArkUI_SwiperDigitIndicator_GetFontColor(ArkUI_SwiperDigitIndicator* 
  *
  * @param indicator The pointer to the digital indicator.
  * @param selectedColor font color, in 0xARGB format. Default value: 0xFF182431.
- * @since 18
+ * @since 19
  */
 void OH_ArkUI_SwiperDigitIndicator_SetSelectedFontColor(ArkUI_SwiperDigitIndicator* indicator, uint32_t selectedColor);
 
@@ -3326,7 +3372,7 @@ void OH_ArkUI_SwiperDigitIndicator_SetSelectedFontColor(ArkUI_SwiperDigitIndicat
  *
  * @param indicator The pointer to the digital indicator.
  * @return font color, in 0xARGB format.
- * @since 18
+ * @since 19
  */
 uint32_t OH_ArkUI_SwiperDigitIndicator_GetSelectedFontColor(ArkUI_SwiperDigitIndicator* indicator);
 
@@ -3335,7 +3381,7 @@ uint32_t OH_ArkUI_SwiperDigitIndicator_GetSelectedFontColor(ArkUI_SwiperDigitInd
  *
  * @param indicator The pointer to the digital indicator.
  * @param size font size, in fp.
- * @since 18
+ * @since 19
  */
 void OH_ArkUI_SwiperDigitIndicator_SetFontSize(ArkUI_SwiperDigitIndicator* indicator, float size);
 
@@ -3344,7 +3390,7 @@ void OH_ArkUI_SwiperDigitIndicator_SetFontSize(ArkUI_SwiperDigitIndicator* indic
  *
  * @param indicator The pointer to the digital indicator.
  * @return font size, in fp.
- * @since 18
+ * @since 19
  */
 float OH_ArkUI_SwiperDigitIndicator_GetFontSize(ArkUI_SwiperDigitIndicator* indicator);
 
@@ -3353,7 +3399,7 @@ float OH_ArkUI_SwiperDigitIndicator_GetFontSize(ArkUI_SwiperDigitIndicator* indi
  *
  * @param indicator The pointer to the digital indicator.
  * @param size font size, in fp.
- * @since 18
+ * @since 19
  */
 void OH_ArkUI_SwiperDigitIndicator_SetSelectedFontSize(ArkUI_SwiperDigitIndicator* indicator, float size);
 
@@ -3362,7 +3408,7 @@ void OH_ArkUI_SwiperDigitIndicator_SetSelectedFontSize(ArkUI_SwiperDigitIndicato
  *
  * @param indicator The pointer to the digital indicator.
  * @return font size, in fp.
- * @since 18
+ * @since 19
  */
 float OH_ArkUI_SwiperDigitIndicator_GetSelectedFontSize(ArkUI_SwiperDigitIndicator* indicator);
 
@@ -3371,7 +3417,7 @@ float OH_ArkUI_SwiperDigitIndicator_GetSelectedFontSize(ArkUI_SwiperDigitIndicat
  *
  * @param indicator The pointer to the digital indicator.
  * @param fontWeight font weight {@link ArkUI_FontWeight}. The default value is <b>ARKUI_FONT_WEIGHT_NORMAL</b>.
- * @since 18
+ * @since 19
  */
 void OH_ArkUI_SwiperDigitIndicator_SetFontWeight(ArkUI_SwiperDigitIndicator *indicator, ArkUI_FontWeight fontWeight);
 
@@ -3380,7 +3426,7 @@ void OH_ArkUI_SwiperDigitIndicator_SetFontWeight(ArkUI_SwiperDigitIndicator *ind
  *
  * @param indicator The pointer to the digital indicator.
  * @return font weight {@link ArkUI_FontWeight}.
- * @since 18
+ * @since 19
  */
 ArkUI_FontWeight OH_ArkUI_SwiperDigitIndicator_GetFontWeight(ArkUI_SwiperDigitIndicator* indicator);
 
@@ -3389,7 +3435,7 @@ ArkUI_FontWeight OH_ArkUI_SwiperDigitIndicator_GetFontWeight(ArkUI_SwiperDigitIn
  *
  * @param indicator The pointer to the digital indicator.
  * @param selectedFontWeight font weight {@link ArkUI_FontWeight}. The default value is <b>ARKUI_FONT_WEIGHT_NORMAL</b>.
- * @since 18
+ * @since 19
  */
 void OH_ArkUI_SwiperDigitIndicator_SetSelectedFontWeight(
     ArkUI_SwiperDigitIndicator *indicator, ArkUI_FontWeight selectedFontWeight);
@@ -3399,7 +3445,7 @@ void OH_ArkUI_SwiperDigitIndicator_SetSelectedFontWeight(
  *
  * @param indicator The pointer to the digital indicator.
  * @return font weight {@link ArkUI_FontWeight}.
- * @since 18
+ * @since 19
  */
 ArkUI_FontWeight OH_ArkUI_SwiperDigitIndicator_GetSelectedFontWeight(ArkUI_SwiperDigitIndicator* indicator);
 
@@ -3407,7 +3453,7 @@ ArkUI_FontWeight OH_ArkUI_SwiperDigitIndicator_GetSelectedFontWeight(ArkUI_Swipe
  * @brief Destroys the digital indicator.
  *
  * @param indicator The pointer to the digital indicator.
- * @since 18
+ * @since 19
  */
 void OH_ArkUI_SwiperDigitIndicator_Destroy(ArkUI_SwiperDigitIndicator *indicator);
 
@@ -3417,7 +3463,7 @@ void OH_ArkUI_SwiperDigitIndicator_Destroy(ArkUI_SwiperDigitIndicator *indicator
  * @param indicator The pointer to the digital indicator.
  * @param ignoreSize Whether to ignore the size of the indicator. The value 1 means to ignore, and 0 means the opposite.
  * The default value is 0.
- * @since 18
+ * @since 19
 */
 void OH_ArkUI_SwiperDigitIndicator_SetIgnoreSizeOfBottom(ArkUI_SwiperDigitIndicator* indicator, int32_t ignoreSize);
 
@@ -3426,7 +3472,7 @@ void OH_ArkUI_SwiperDigitIndicator_SetIgnoreSizeOfBottom(ArkUI_SwiperDigitIndica
  *
  * @param indicator The pointer to the digital indicator.
  * @return Returns whether to ignore the size of the indicator.
- * @since 18
+ * @since 19
 */
 int32_t OH_ArkUI_SwiperDigitIndicator_GetIgnoreSizeOfBottom(ArkUI_SwiperDigitIndicator* indicator);
 
@@ -3434,7 +3480,7 @@ int32_t OH_ArkUI_SwiperDigitIndicator_GetIgnoreSizeOfBottom(ArkUI_SwiperDigitInd
  * @brief Creates a arrow style for swiper.
  *
  * @return Returns the pointer to the new arrow style.
- * @since 18
+ * @since 19
  */
 ArkUI_SwiperArrowStyle *OH_ArkUI_SwiperArrowStyle_Create();
 
@@ -3445,7 +3491,7 @@ ArkUI_SwiperArrowStyle *OH_ArkUI_SwiperArrowStyle_Create();
  * @param showBackground whether to show the background for the arrow.
  *        The value <b>1</b> means to show the background, and <b>0</b> means the opposite.
  *        The default value is <b>0</b>.
- * @since 18
+ * @since 19
  */
 void OH_ArkUI_SwiperArrowStyle_SetShowBackground(ArkUI_SwiperArrowStyle *arrowStyle, int32_t showBackground);
 
@@ -3455,7 +3501,7 @@ void OH_ArkUI_SwiperArrowStyle_SetShowBackground(ArkUI_SwiperArrowStyle *arrowSt
  * @param arrowStyle The pointer to the arrow style.
  * @return whether to show the background for the arrow.
  *         The value <b>1</b> means to show the background, and <b>0</b> means the opposite.
- * @since 18
+ * @since 19
  */
 int32_t OH_ArkUI_SwiperArrowStyle_GetShowBackground(ArkUI_SwiperArrowStyle* arrowStyle);
 
@@ -3467,7 +3513,7 @@ int32_t OH_ArkUI_SwiperArrowStyle_GetShowBackground(ArkUI_SwiperArrowStyle* arro
  *        The value <b>1</b> means to display on boths sides of the swiper,
  *        and <b>0</b> means display on boths sides of the swiper indicator.
  *        The default value is <b>0</b>.
- * @since 18
+ * @since 19
  */
 void OH_ArkUI_SwiperArrowStyle_SetShowSidebarMiddle(ArkUI_SwiperArrowStyle* arrowStyle, int32_t showSidebarMiddle);
 
@@ -3477,7 +3523,7 @@ void OH_ArkUI_SwiperArrowStyle_SetShowSidebarMiddle(ArkUI_SwiperArrowStyle* arro
  * @param arrowStyle The pointer to the arrow style.
  * @return the display position of the arrow. The value <b>1</b> means to display on boths sides of the swiper,
  *         and <b>0</b> means display on boths sides of the swiper indicator.
- * @since 18
+ * @since 19
  */
 int32_t OH_ArkUI_SwiperArrowStyle_GetShowSidebarMiddle(ArkUI_SwiperArrowStyle* arrowStyle);
 
@@ -3488,7 +3534,7 @@ int32_t OH_ArkUI_SwiperArrowStyle_GetShowSidebarMiddle(ArkUI_SwiperArrowStyle* a
  * @param backgroundSize the background size of the arrow. The unit is vp.
  *        The default value is <b>24</b> when the arrow displays on both sides of the swiper indicator.
  *        The default value is <b>32</b> when the arrow displays on both sides of the swiper.
- * @since 18
+ * @since 19
  */
 void OH_ArkUI_SwiperArrowStyle_SetBackgroundSize(ArkUI_SwiperArrowStyle* arrowStyle, float backgroundSize);
 
@@ -3497,7 +3543,7 @@ void OH_ArkUI_SwiperArrowStyle_SetBackgroundSize(ArkUI_SwiperArrowStyle* arrowSt
  *
  * @param arrowStyle The pointer to the arrow style.
  * @return Returns the background size of the arrow. The unit is vp.
- * @since 18
+ * @since 19
  */
 float OH_ArkUI_SwiperArrowStyle_GetBackgroundSize(ArkUI_SwiperArrowStyle *arrowStyle);
 
@@ -3505,7 +3551,7 @@ float OH_ArkUI_SwiperArrowStyle_GetBackgroundSize(ArkUI_SwiperArrowStyle *arrowS
  * @brief Destroys the arrow style.
  *
  * @param arrowStyle The pointer to the arrow style.
- * @since 18
+ * @since 19
  */
 void OH_ArkUI_SwiperArrowStyle_Destroy(ArkUI_SwiperArrowStyle *arrowStyle);
 
@@ -3516,7 +3562,7 @@ void OH_ArkUI_SwiperArrowStyle_Destroy(ArkUI_SwiperArrowStyle *arrowStyle);
  * @param backgroundColor the background color of the arrow, in 0xARGB format.
  *        The default value is <b>0x00000000</b> when the arrow displays on both sides of the swiper indicator.
  *        The default value is <b>0x19182431</b> when the arrow displays on both sides of the swiper.
- * @since 18
+ * @since 19
  */
 void OH_ArkUI_SwiperArrowStyle_SetBackgroundColor(ArkUI_SwiperArrowStyle *arrowStyle, uint32_t backgroundColor);
 
@@ -3525,7 +3571,7 @@ void OH_ArkUI_SwiperArrowStyle_SetBackgroundColor(ArkUI_SwiperArrowStyle *arrowS
  *
  * @param arrowStyle The pointer to the arrow style.
  * @return Returns the background color of the arrow, in 0xARGB format.
- * @since 18
+ * @since 19
  */
 uint32_t OH_ArkUI_SwiperArrowStyle_GetBackgroundColor(ArkUI_SwiperArrowStyle* arrowStyle);
 
@@ -3537,7 +3583,7 @@ uint32_t OH_ArkUI_SwiperArrowStyle_GetBackgroundColor(ArkUI_SwiperArrowStyle* ar
  *        The default value is <b>18</b> when the arrow displays on both sides of the swiper indicator.
  *        The default value is <b>24</b> when the arrow displays on both sides of the swiper.
  *        The arrow size is fixed to 3/4 of the background size when the background is shown.
- * @since 18
+ * @since 19
  */
 void OH_ArkUI_SwiperArrowStyle_SetArrowSize(ArkUI_SwiperArrowStyle* arrowStyle, float arrowSize);
 
@@ -3546,7 +3592,7 @@ void OH_ArkUI_SwiperArrowStyle_SetArrowSize(ArkUI_SwiperArrowStyle* arrowStyle, 
  *
  * @param arrowStyle The pointer to the arrow style.
  * @return the size of the arrow. The unit is vp.
- * @since 18
+ * @since 19
  */
 float OH_ArkUI_SwiperArrowStyle_GetArrowSize(ArkUI_SwiperArrowStyle* arrowStyle);
 
@@ -3555,7 +3601,7 @@ float OH_ArkUI_SwiperArrowStyle_GetArrowSize(ArkUI_SwiperArrowStyle* arrowStyle)
  *
  * @param arrowStyle The pointer to the arrow style.
  * @param arrowColor the color of the arrow, in 0xARGB format. The default value is <b>0x00182431</b>.
- * @since 18
+ * @since 19
  */
 void OH_ArkUI_SwiperArrowStyle_SetArrowColor(ArkUI_SwiperArrowStyle* arrowStyle, uint32_t arrowColor);
 
@@ -3564,7 +3610,7 @@ void OH_ArkUI_SwiperArrowStyle_SetArrowColor(ArkUI_SwiperArrowStyle* arrowStyle,
  *
  * @param arrowStyle The pointer to the arrow style.
  * @return Returns the color of the arrow, in 0xARGB format.
- * @since 18
+ * @since 19
  */
 uint32_t OH_ArkUI_SwiperArrowStyle_GetArrowColor(ArkUI_SwiperArrowStyle* arrowStyle);
 
@@ -4280,7 +4326,7 @@ float OH_ArkUI_ListChildrenMainSizeOption_GetMainSize(ArkUI_ListChildrenMainSize
  * <br> If the result returns nullptr, there may be out of memory.
  * @since 12
 */
-ArkUI_CustomSpanMeasureInfo* OH_ArkUI_CustomSpanMeasureInfo_Create();
+ArkUI_CustomSpanMeasureInfo* OH_ArkUI_CustomSpanMeasureInfo_Create(void);
 
 /**
  * @brief Disposes of measurement information of this custom span.
@@ -4307,7 +4353,7 @@ float OH_ArkUI_CustomSpanMeasureInfo_GetFontSize(ArkUI_CustomSpanMeasureInfo* in
  * <br> If the result returns nullptr, there may be out of memory.
  * @since 12
 */
-ArkUI_CustomSpanMetrics* OH_ArkUI_CustomSpanMetrics_Create();
+ArkUI_CustomSpanMetrics* OH_ArkUI_CustomSpanMetrics_Create(void);
 
 /**
  * @brief Disposes of measurement metrics of this custom span.
@@ -4350,7 +4396,7 @@ int32_t OH_ArkUI_CustomSpanMetrics_SetHeight(ArkUI_CustomSpanMetrics* metrics, f
  * <br> If the result returns nullptr, there may be out of memory.
  * @since 12
 */
-ArkUI_CustomSpanDrawInfo* OH_ArkUI_CustomSpanDrawInfo_Create();
+ArkUI_CustomSpanDrawInfo* OH_ArkUI_CustomSpanDrawInfo_Create(void);
 
 /**
  * @brief Disposes of drawing information for this custom span.
@@ -5056,7 +5102,7 @@ int32_t OH_ArkUI_VisibleAreaEventOptions_GetExpectedUpdateInterval(ArkUI_Visible
  *
  *@param length The length of the picker array.
  *@return Returns a <b>TextPickerRangeContent</b> instance.
- *@since 18
+ *@since 19
  */
 ArkUI_TextPickerRangeContentArray* OH_ArkUI_TextPickerRangeContentArray_Create(int32_t length);
 
@@ -5066,7 +5112,7 @@ ArkUI_TextPickerRangeContentArray* OH_ArkUI_TextPickerRangeContentArray_Create(i
  *@param handle The TextPickerRangeContent instance for obtaining information.
  *@param icon Icon addreass.
  *@param index The index position of the value to be obtained.
- *@since 18
+ *@since 19
  */
 void OH_ArkUI_TextPickerRangeContentArray_SetIconAtIndex(
     ArkUI_TextPickerRangeContentArray* handle, char* icon, int32_t index);
@@ -5077,7 +5123,7 @@ void OH_ArkUI_TextPickerRangeContentArray_SetIconAtIndex(
  *@param handle The TextPickerRangeContent instance for obtaining information.
  *@param text Text content
  *@param index The index position of the value to be obtained.
- *@since 18
+ *@since 19
  */
 void OH_ArkUI_TextPickerRangeContentArray_SetTextAtIndex(
     ArkUI_TextPickerRangeContentArray* handle, char* text, int32_t index);
@@ -5086,7 +5132,7 @@ void OH_ArkUI_TextPickerRangeContentArray_SetTextAtIndex(
  *@brief Destroy the TextPickerRangeContent instance.
  *
  *@param handle The TextPickerRangeContent instance for obtaining information.
- *@since 18
+ *@since 19
  */
 void OH_ArkUI_TextPickerRangeContentArray_Destroy(ArkUI_TextPickerRangeContentArray* handle);
 
@@ -5095,7 +5141,7 @@ void OH_ArkUI_TextPickerRangeContentArray_Destroy(ArkUI_TextPickerRangeContentAr
  *
  *@param length The length of the picker array.
  *@return Returns a <b>TextCascadePickerRangeContent</b> instance.
- *@since 18
+ *@since 19
  */
 ArkUI_TextCascadePickerRangeContentArray* OH_ArkUI_TextCascadePickerRangeContentArray_Create(int32_t length);
 
@@ -5105,7 +5151,7 @@ ArkUI_TextCascadePickerRangeContentArray* OH_ArkUI_TextCascadePickerRangeContent
  *@param handle The TextCascadePickerRangeContent instance for obtaining information.
  *@param text text content
  *@param index The index position of the value to be obtained.
- *@since 18
+ *@since 19
  */
 void OH_ArkUI_TextCascadePickerRangeContentArray_SetTextAtIndex(
     ArkUI_TextCascadePickerRangeContentArray* handle, char* text, int32_t index);
@@ -5116,7 +5162,7 @@ void OH_ArkUI_TextCascadePickerRangeContentArray_SetTextAtIndex(
  *@param handle The TextCascadePickerRangeContent instance for obtaining information.
  *@param child The child instance.
  *@param index The index position of the value to be obtained.
- *@since 18
+ *@since 19
  */
 void OH_ArkUI_TextCascadePickerRangeContentArray_SetChildAtIndex(
     ArkUI_TextCascadePickerRangeContentArray* handle, ArkUI_TextCascadePickerRangeContentArray* child, int32_t index);
@@ -5125,9 +5171,48 @@ void OH_ArkUI_TextCascadePickerRangeContentArray_SetChildAtIndex(
  *@brief Destroy the TextCascadePickerRangeContent instance.
  *
  *@param handle The TextCascadePickerRangeContent instance for obtaining information.
- *@since 18
+ *@since 19
  */
 void OH_ArkUI_TextCascadePickerRangeContentArray_Destroy(ArkUI_TextCascadePickerRangeContentArray* handle);
+
+/**
+ * @brief Create an object for the EmbeddedComponent option.
+ *
+ * @return A pointer to the object of the EmbeddedComponent option.
+ * @since 20
+ */
+ArkUI_EmbeddedComponentOption* OH_ArkUI_EmbeddedComponentOption_Create();
+
+/**
+ * @brief Destroy the object by EmbeddedComponent option.
+ *
+ * @param option Pointer to the object by the EmbeddeComponent to be destroyed.
+ * @since 20
+ */
+void OH_ArkUI_EmbeddedComponentOption_Dispose(ArkUI_EmbeddedComponentOption* option);
+
+/**
+ * @brief Set the onError of EmbeddedComponent.
+ *
+ * @param option Pointer to the object option by the EmbeddedComponent.
+ * @param code Common error information about the API invoking failure.
+ * @param name Common error name information about the API invoking failure.
+ * @param message Common error message information about the API invoking failure.
+ * @since 20
+ */
+void OH_ArkUI_EmbeddedComponentOption_SetOnError(
+    ArkUI_EmbeddedComponentOption* option, void (*callback)(int32_t code, const char* name, const char* message));
+
+/**
+ * @brief Set the onTerminated of EmbeddedComponent.
+ *
+ * @param option Pointer to the object option by the EmbeddedComponent.
+ * @param code Result code returned when the EmbeddedUIExtensionAbility exits.
+ * @param want Data returned when the EmbeddedUIExtensionAbility exits.
+ * @since 20
+ */
+void OH_ArkUI_EmbeddedComponentOption_SetOnTerminated(
+    ArkUI_EmbeddedComponentOption* option, void (*callback)(int32_t code, AbilityBase_Want* want));
 #ifdef __cplusplus
 };
 #endif

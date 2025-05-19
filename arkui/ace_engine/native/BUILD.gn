@@ -47,5 +47,24 @@ if (!is_arkui_x) {
     ndk_description_file = "./libace.ndk.json"
     min_compact_version = "7"
     output_name = "ace_ndk"
+    system_capability = "SystemCapability.ArkUI.ArkUI.Full"
+    system_capability_headers = [
+      "arkui/drag_and_drop.h",
+      "arkui/drawable_descriptor.h",
+      "arkui/native_animate.h",
+      "arkui/native_dialog.h",
+      "arkui/native_gesture.h",
+      "arkui/native_interface.h",
+      "arkui/native_interface_accessibility.h",
+      "arkui/native_interface_focus.h",
+      "arkui/native_key_event.h",
+      "arkui/native_node.h",
+      "arkui/native_node_napi.h",
+      "arkui/native_type.h",
+      "arkui/styled_string.h",
+      "arkui/ui_input_event.h",
+      "ace/xcomponent/native_interface_xcomponent.h",
+      "ace/xcomponent/native_xcomponent_key_event.h",
+    ]
   }
 }

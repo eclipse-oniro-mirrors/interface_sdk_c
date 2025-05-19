@@ -48,6 +48,10 @@
         "name": "OH_Preferences_UnregisterDataObserver"
     },
     {
+        "first_introduced": "18",
+        "name": "OH_Preferences_IsStorageTypeSupported"
+    },
+    {
         "first_introduced": "13",
         "name": "OH_PreferencesOption_Create"
     },
@@ -62,6 +66,10 @@
     {
         "first_introduced": "13",
         "name": "OH_PreferencesOption_SetDataGroupId"
+    },
+    {
+        "first_introduced": "18",
+        "name": "OH_PreferencesOption_SetStorageType"
     },
     {
         "first_introduced": "13",

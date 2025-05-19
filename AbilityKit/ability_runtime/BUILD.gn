@@ -33,5 +33,6 @@ ohos_ndk_library("libability_runtime") {
     "AbilityKit/ability_runtime/ability_runtime_common.h",
     "AbilityKit/ability_runtime/application_context.h",
     "AbilityKit/ability_runtime/context_constant.h",
+    "AbilityKit/ability_runtime/start_options.h",
   ]
 }

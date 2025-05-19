@@ -20,8 +20,8 @@ ohos_ndk_library("libasset_ndk") {
   min_compact_version = "11"
   system_capability = "SystemCapability.Security.Asset"
   system_capability_headers = [
-    "inc/asset_api.h",
-    "inc/asset_type.h",
+    "asset/asset_api.h",
+    "asset/asset_type.h",
   ]
 }
 

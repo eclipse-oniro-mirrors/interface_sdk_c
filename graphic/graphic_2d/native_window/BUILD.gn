@@ -31,5 +31,6 @@ ohos_ndk_library("libnative_window_ndk") {
   system_capability_headers = [
     "native_window/buffer_handle.h",
     "native_window/external_window.h",
+    "native_window/graphic_error_code.h",
   ]
 }

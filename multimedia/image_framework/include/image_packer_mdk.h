@@ -42,7 +42,7 @@
  *
  * @library libimage_packer_ndk.z.so
  * @kit ImageKit
- * @syscap SystemCapability.Multimedia.Image
+ * @syscap SystemCapability.Multimedia.Image.Core
  * @since 11
  * @version 4.1
  */

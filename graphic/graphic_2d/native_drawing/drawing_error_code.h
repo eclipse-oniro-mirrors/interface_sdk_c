@@ -89,7 +89,7 @@ OH_Drawing_ErrorCode OH_Drawing_ErrorCodeGet();
  * @since 18
  * @version 1.0
  */
-void OH_Drawing_ErrorCodeReset();
+void OH_Drawing_ErrorCodeReset(void);
 #ifdef __cplusplus
 }
 #endif

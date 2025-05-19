@@ -18,6 +18,11 @@ ohos_ndk_library("libdeviceinfo_ndk") {
   output_name = "deviceinfo_ndk"
   ndk_description_file = "./libdeviceinfo.ndk.json"
   min_compact_version = "1"
+  system_capability = "SystemCapability.Startup.SystemInfo"
+  system_capability_headers = [
+    "deviceinfo.h",
+    "syscap_ndk.h",
+  ]
 }
 
 ohos_ndk_headers("deviceinfo_header") {

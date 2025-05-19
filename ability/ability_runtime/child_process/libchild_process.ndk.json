@@ -8,7 +8,15 @@
       "name": "OH_Ability_StartNativeChildProcess"
   },
   {
-      "first_introduced": "16",
+      "first_introduced": "17",
       "name": "OH_Ability_GetCurrentChildProcessArgs"
+  },
+  {
+      "first_introduced": "20",
+      "name": "OH_Ability_RegisterNativeChildProcessExitCallback"
+  },
+  {
+      "first_introduced": "20",
+      "name": "OH_Ability_UnregisterNativeChildProcessExitCallback"
   }
 ]

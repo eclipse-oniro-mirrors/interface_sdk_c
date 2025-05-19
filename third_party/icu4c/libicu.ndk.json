@@ -188,6 +188,10 @@
         "name":"ubrk_setText"
     },
     {
+        "first_introduced": "20",
+        "name":"ubrk_setUText"
+    },
+    {
         "first_introduced": "12",
         "name":"ubrk_current"
     },

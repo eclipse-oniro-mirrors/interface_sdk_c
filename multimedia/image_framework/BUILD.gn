@@ -17,6 +17,11 @@ ohos_ndk_library("libpixelmap_ndk") {
   ndk_description_file = "./libimage_pixelmap_napi.ndk.json"
   min_compact_version = "1"
   output_name = "pixelmap_ndk"
+  system_capability = "SystemCapability.Multimedia.Image.Core"
+  system_capability_headers = [
+    "multimedia/image_framework/image_pixel_map_mdk.h",
+    "multimedia/image_framework/image_pixel_map_napi.h",
+  ]
 }
 
 ohos_ndk_headers("image_header") {
@@ -80,6 +85,11 @@ ohos_ndk_library("libimage_ndk") {
   ndk_description_file = "./libimage_ndk.ndk.json"
   min_compact_version = "1"
   output_name = "image_ndk"
+  system_capability = "SystemCapability.Multimedia.Image.Core"
+  system_capability_headers = [
+    "multimedia/image_framework/image_mdk.h",
+    "multimedia/image_framework/image_mdk_common.h",
+  ]
 }
 
 ohos_ndk_headers("image_ndk_header") {
@@ -94,6 +104,9 @@ ohos_ndk_library("libimage_receiver_ndk") {
   ndk_description_file = "./libimage_receiver_ndk.ndk.json"
   min_compact_version = "1"
   output_name = "image_receiver_ndk"
+  system_capability = "SystemCapability.Multimedia.Image.Core"
+  system_capability_headers =
+      [ "multimedia/image_framework/image_receiver_mdk.h" ]
 }
 
 ohos_ndk_headers("image_receiver_ndk_header") {
@@ -105,6 +118,9 @@ ohos_ndk_library("libimage_source_ndk") {
   ndk_description_file = "./libimage_source_ndk.ndk.json"
   min_compact_version = "1"
   output_name = "image_source_ndk"
+  system_capability = "SystemCapability.Multimedia.Image.Core"
+  system_capability_headers =
+      [ "multimedia/image_framework/image_source_mdk.h" ]
 }
 
 ohos_ndk_headers("image_source_ndk_header") {
@@ -132,6 +148,9 @@ ohos_ndk_headers("libimage_source_header") {
 ohos_ndk_library("libimage_packer_ndk") {
   ndk_description_file = "./libimage_packer_ndk.ndk.json"
   output_name = "image_packer_ndk"
+  system_capability = "SystemCapability.Multimedia.Image.Core"
+  system_capability_headers =
+      [ "multimedia/image_framework/image_packer_mdk.h" ]
 }
 
 ohos_ndk_headers("image_packer_ndk_header") {

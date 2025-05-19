@@ -18,6 +18,12 @@ ohos_ndk_library("libhiappevent_ndk") {
   ndk_description_file = "./libhiappevent.ndk.json"
   min_compact_version = "1"
   system_capability = "SystemCapability.HiviewDFX.HiAppEvent"
+  system_capability_headers = [
+    "hiappevent/hiappevent.h",
+    "hiappevent/hiappevent_cfg.h",
+    "hiappevent/hiappevent_event.h",
+    "hiappevent/hiappevent_param.h",
+  ]
 }
 
 ohos_ndk_headers("libhiappevent_header") {

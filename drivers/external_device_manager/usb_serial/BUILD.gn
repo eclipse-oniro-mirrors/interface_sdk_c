@@ -23,7 +23,7 @@ ohos_ndk_headers("usb_serial_header") {
 
 ohos_ndk_library("libusb_serial") {
   ndk_description_file = "./libusb_serial.ndk.json"
-  min_compact_version = "16"
+  min_compact_version = "18"
   output_name = "usb_serial_ndk"
   system_capability = "SystemCapability.Driver.UsbSerial.Extension"
   system_capability_headers = [

@@ -30,7 +30,7 @@ ohos_ndk_library("libpasteboard") {
   ndk_description_file = "./libpasteboard.ndk.json"
   min_compact_version = "13"
   system_capability_headers = [
-    "$ndk_headers_out_dir/database/pasteboard/oh_pasteboard.h",
-    "$ndk_headers_out_dir/database/pasteboard/oh_pasteboard_err_code.h",
+    "database/pasteboard/oh_pasteboard.h",
+    "database/pasteboard/oh_pasteboard_err_code.h",
   ]
 }

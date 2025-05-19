@@ -34,5 +34,9 @@
     {
         "first_introduced": "13",
         "name": "OH_ConsumerSurface_SetDefaultSize"
+    },
+    {
+        "first_introduced": "17",
+        "name": "OH_NativeImage_SetDropBufferMode"
     }
 ]

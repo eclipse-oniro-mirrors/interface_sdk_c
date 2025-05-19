@@ -78,6 +78,7 @@ OH_AVErrCode OH_AVRecorder_Prepare(OH_AVRecorder *recorder, OH_AVRecorder_Config
  * @return Function result code.
  *         {@link AV_ERR_OK} if the execution is successful.
  *         {@link AV_ERR_INVALID_VAL} if input recorder is nullptr or config is null.
+ *         {@link AV_ERR_NO_MEMORY} failed to malloc memory.
  * @since 18
  */
 OH_AVErrCode OH_AVRecorder_GetAVRecorderConfig(OH_AVRecorder *recorder, OH_AVRecorder_Config **config);
@@ -181,6 +182,7 @@ OH_AVErrCode OH_AVRecorder_Release(OH_AVRecorder *recorder);
  * @return Function result code.
  *         {@link AV_ERR_OK} if the execution is successful.
  *         {@link AV_ERR_INVALID_VAL} if input recorder is nullptr.
+ *         {@link AV_ERR_NO_MEMORY} failed to malloc memory.
  * @since 18
  */
 OH_AVErrCode OH_AVRecorder_GetAvailableEncoder(OH_AVRecorder *recorder, OH_AVRecorder_EncoderInfo **info,

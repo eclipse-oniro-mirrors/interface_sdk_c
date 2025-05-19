@@ -20,7 +20,10 @@ ohos_ndk_library("libohfileio") {
   output_name = "ohfileio"
   output_extension = "so"
   system_capability = "SystemCapability.FileManagement.File.FileIO"
-  system_capability_headers = [ "filemanagement/fileio/oh_fileio.h" ]
+  system_capability_headers = [
+    "filemanagement/fileio/oh_fileio.h",
+    "filemanagement/fileio/error_code.h",
+  ]
 }
 
 ohos_ndk_headers("oh_fileio_header") {

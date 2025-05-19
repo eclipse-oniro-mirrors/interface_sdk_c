@@ -41,6 +41,7 @@
 #define NATIVE_AUDIOSTREAM_BASE_H
 
 #include <stdint.h>
+#include "multimedia/native_audio_channel_layout.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -78,7 +79,14 @@ typedef enum {
      *
      * @since 10
      */
-    AUDIOSTREAM_ERROR_SYSTEM = 3
+    AUDIOSTREAM_ERROR_SYSTEM = 3,
+
+    /**
+     * @error Unsupported audio format, such as unsupported encoding type, sample format etc.
+     *
+     * @since 19
+     */
+    AUDIOSTREAM_ERROR_UNSUPPORTED_FORMAT = 4
 } OH_AudioStream_Result;
 
 /**
@@ -136,7 +144,7 @@ typedef enum {
     /**
      * Float 32, little endian.
      *
-     * @since 18
+     * @since 17
      */
     AUDIOSTREAM_SAMPLE_F32LE = 4,
 } OH_AudioStream_SampleFormat;
@@ -159,7 +167,45 @@ typedef enum {
      * @since 12
      */
     AUDIOSTREAM_ENCODING_TYPE_AUDIOVIVID = 1,
+    /**
+     * E_AC3 encoding type.
+     *
+     * @since 19
+     */
+    AUDIOSTREAM_ENCODING_TYPE_E_AC3 = 2,
 } OH_AudioStream_EncodingType;
+
+/**
+ * @brief Define the audio stream info structure, used to describe basic audio format.
+ *
+ * @since 19
+ */
+typedef struct OH_AudioStreamInfo {
+    /**
+     * @brief Audio sampling rate.
+     *
+     * @since 19
+     */
+    int32_t samplingRate;
+    /**
+     * @brief Audio channel layout.
+     *
+     * @since 19
+     */
+    OH_AudioChannelLayout channelLayout;
+    /**
+     * @brief Audio encoding format type.
+     *
+     * @since 19
+     */
+    OH_AudioStream_EncodingType encodingType;
+    /**
+     * @brief Audio sample format.
+     *
+     * @since 19
+     */
+    OH_AudioStream_SampleFormat sampleFormat;
+} OH_AudioStreamInfo;
 
 /**
  * @brief Define the audio stream usage.
@@ -276,9 +322,35 @@ typedef enum {
 } OH_AudioStream_LatencyMode;
 
 /**
+ * @brief Enumerates audio direct playback modes.
+ *
+ * @since 19
+ */
+typedef enum {
+    /**
+     * Direct playback is not supported.
+     *
+     * @since 19
+     */
+    AUDIOSTREAM_DIRECT_PLAYBACK_NOT_SUPPORTED = 0,
+    /**
+     * Direct playback mode which is bitstream pass-through such as compressed pass-through.
+     *
+     * @since 19
+     */
+    AUDIOSTREAM_DIRECT_PLAYBACK_BITSTREAM_SUPPORTED = 1,
+    /**
+     * Direct playback mode of pcm.
+     *
+     * @since 19
+     */
+    AUDIOSTREAM_DIRECT_PLAYBACK_PCM_SUPPORTED = 2
+} OH_AudioStream_DirectPlaybackMode;
+
+/**
  * @brief Define the audio event.
  *
- * @deprecated since 18
+ * @deprecated since 19
  * @useinstead OH_AudioRenderer_OutputDeviceChangeCallback.
  * @since 10
  */
@@ -286,7 +358,7 @@ typedef enum {
     /**
      * The routing of the audio has changed.
      *
-     * @deprecated since 18
+     * @deprecated since 19
      * @useinstead OH_AudioRenderer_OutputDeviceChangeCallback.
      * @since 10
      */
@@ -462,7 +534,13 @@ typedef enum {
      *
      * @since 14
      */
-    AUDIOSTREAM_SOURCE_TYPE_UNPROCESSED = 14
+    AUDIOSTREAM_SOURCE_TYPE_UNPROCESSED = 14,
+    /**
+     * Live Broadcast source type.
+     *
+     * @since 20
+     */
+    AUDIOSTREAM_SOURCE_TYPE_LIVE = 17
 } OH_AudioStream_SourceType;
 
 /**
@@ -528,7 +606,7 @@ typedef struct OH_AudioCapturerStruct OH_AudioCapturer;
 /**
  * @brief Declaring the callback struct for renderer stream.
  *
- * @deprecated since 18
+ * @deprecated since 19
  * @useinstead Use the callback type: OH_AudioRenderer_OnWriteDataCallback, OH_AudioRenderer_OutputDeviceChangeCallback,
  * OH_AudioRenderer_OnInterruptEvent, OH_AudioRenderer_OnErrorCallback separately.
  * @since 10
@@ -538,7 +616,7 @@ typedef struct OH_AudioRenderer_Callbacks_Struct {
      * This function pointer will point to the callback function that
      * is used to write audio data
      *
-     * @deprecated since 18
+     * @deprecated since 19
      * @useinstead OH_AudioRenderer_OnWriteDataCallback.
      * @since 10
      */
@@ -552,7 +630,7 @@ typedef struct OH_AudioRenderer_Callbacks_Struct {
      * This function pointer will point to the callback function that
      * is used to handle audio renderer stream events.
      *
-     * @deprecated since 18
+     * @deprecated since 19
      * @useinstead OH_AudioRenderer_OutputDeviceChangeCallback.
      * @since 10
      */
@@ -565,7 +643,7 @@ typedef struct OH_AudioRenderer_Callbacks_Struct {
      * This function pointer will point to the callback function that
      * is used to handle audio interrupt events.
      *
-     * @deprecated since 18
+     * @deprecated since 19
      * @useinstead OH_AudioRenderer_OnInterruptCallback.
      * @since 10
      */
@@ -579,7 +657,7 @@ typedef struct OH_AudioRenderer_Callbacks_Struct {
      * This function pointer will point to the callback function that
      * is used to handle audio error result.
      *
-     * @deprecated since 18
+     * @deprecated since 19
      * @useinstead OH_AudioRenderer_OnErrorCallback.
      * @since 10
      */
@@ -592,7 +670,7 @@ typedef struct OH_AudioRenderer_Callbacks_Struct {
 /**
  * @brief Declaring the callback struct for capturer stream.
  *
- * @deprecated since 18
+ * @deprecated since 19
  * @useinstead Use the callback type: OH_AudioCapturer_OnReadDataCallback, OH_AudioCapturer_OnDeviceChangeCallback,
  * OH_AudioCapturer_OnInterruptCallback and OH_AudioCapturer_OnErrorCallback separately.
  * @since 10
@@ -602,7 +680,7 @@ typedef struct OH_AudioCapturer_Callbacks_Struct {
      * This function pointer will point to the callback function that
      * is used to read audio data.
      *
-     * @deprecated since 18
+     * @deprecated since 19
      * @useinstead OH_AudioCapturer_OnReadDataCallback
      * @since 10
      */
@@ -616,7 +694,7 @@ typedef struct OH_AudioCapturer_Callbacks_Struct {
      * This function pointer will point to the callback function that
      * is used to handle audio capturer stream events.
      *
-     * @deprecated since 18
+     * @deprecated since 19
      * @useinstead OH_AudioRenderer_OutputDeviceChangeCallback
      * @since 10
      */
@@ -629,7 +707,7 @@ typedef struct OH_AudioCapturer_Callbacks_Struct {
      * This function pointer will point to the callback function that
      * is used to handle audio interrupt events.
      *
-     * @deprecated since 18
+     * @deprecated since 19
      * @useinstead OH_AudioCapturer_OnInterruptCallback
      * @since 10
      */
@@ -643,7 +721,7 @@ typedef struct OH_AudioCapturer_Callbacks_Struct {
      * This function pointer will point to the callback function that
      * is used to handle audio error result.
      *
-     * @deprecated since 18
+     * @deprecated since 19
      * @useinstead OH_AudioCapturer_OnErrorCallback
      * @since 10
      */
@@ -756,13 +834,13 @@ typedef OH_AudioData_Callback_Result (*OH_AudioRenderer_OnWriteDataCallback)(OH_
 /**
  * @brief Define the audio stream volume mode.
  *
- * @since 18
+ * @since 19
  */
 typedef enum {
     /**
      * Indicates this audio stream volume will be affected by system volume, also the default behavior.
      *
-     * @since 18
+     * @since 19
      */
     AUDIOSTREAM_VOLUMEMODE_SYSTEM_GLOBAL = 0,
 
@@ -770,7 +848,7 @@ typedef enum {
      * Indicates this audio stream volume will be affected by app's individual volume percentage which set by yourself
      * using the app volume api.
      *
-     * @since 18
+     * @since 19
      */
     AUDIOSTREAM_VOLUMEMODE_APP_INDIVIDUAL = 1
 } OH_AudioStream_VolumeMode;

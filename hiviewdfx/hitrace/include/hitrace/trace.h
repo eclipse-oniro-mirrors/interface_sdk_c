@@ -40,24 +40,6 @@
  *
  * @brief Defines APIs of the HiTraceMeter module for performance trace.
  *
- * Sample code: \n
- * Synchronous timeslice trace event: \n
- *     OH_HiTrace_StartTrace("hitraceTest");\n
- *     OH_HiTrace_FinishTrace();\n
- * Output: \n
- *     <...>-1668    (-------) [003] ....   135.059377: tracing_mark_write: B|1668|H:hitraceTest \n
- *     <...>-1668    (-------) [003] ....   135.059415: tracing_mark_write: E|1668| \n
- * Asynchronous timeslice trace event:\n
- *     OH_HiTrace_StartAsyncTrace("hitraceTest", 123); \n
- *     OH_HiTrace_FinishAsyncTrace("hitraceTest", 123); \n
- * Output: \n
- *     <...>-2477    (-------) [001] ....   396.427165: tracing_mark_write: S|2477|H:hitraceTest 123 \n
- *     <...>-2477    (-------) [001] ....   396.427196: tracing_mark_write: F|2477|H:hitraceTest 123 \n
- * Integer value trace event:\n
- *     OH_HiTrace_CountTrace("hitraceTest", 500); \n
- * Output: \n
- *     <...>-2638    (-------) [002] ....   458.904382: tracing_mark_write: C|2638|H:hitraceTest 500 \n
- *
  * @library libhitracechain.so
  * @syscap SystemCapability.HiviewDFX.HiTrace
  * @since 10
@@ -297,37 +279,49 @@ typedef enum HiTrace_Communication_Mode {
  * @brief Enumerates the HiTrace output levels. The output level threshold system parameter determines
  * the minimum output trace.
  *
- * @since 18
+ * @atomicservice
+ *
+ * @since 19
  */
 typedef enum HiTrace_Output_Level {
     /**
-     * @brief Ouput level only for debug usage.
+     * @brief Output level only for debug usage.
      *
-     * @since 18
+     * @atomicservice
+     *
+     * @since 19
      */
     HITRACE_LEVEL_DEBUG = 0,
     /**
-     * @brief Output level for beta version usage.
+     * @brief Output level for log version usage.
      *
-     * @since 18
+     * @atomicservice
+     *
+     * @since 19
      */
     HITRACE_LEVEL_INFO = 1,
     /**
-     * @brief Output level for beta version usage, with higher priority than HITRACE_LEVEL_INFO.
+     * @brief Output level for log version usage, with higher priority than HITRACE_LEVEL_INFO.
      *
-     * @since 18
+     * @atomicservice
+     *
+     * @since 19
      */
     HITRACE_LEVEL_CRITICAL = 2,
     /**
-     * @brief Output level for commercial version usage.
+     * @brief Output level for nolog version usage.
      *
-     * @since 18
+     * @atomicservice
+     *
+     * @since 19
      */
     HITRACE_LEVEL_COMMERCIAL = 3,
     /**
      * @brief Output level for range limit.
      *
-     * @since 18
+     * @atomicservice
+     *
+     * @since 19
      */
     HITRACE_LEVEL_MAX = HITRACE_LEVEL_COMMERCIAL,
 } HiTrace_Output_Level;
@@ -729,23 +723,25 @@ void OH_HiTrace_CountTrace(const char *name, int64_t count);
  * The <b>OH_HiTrace_StartTraceEx</b> and <b>OH_HiTrace_FinishTraceEx</b> APIs must be used in pairs.
  * The two APIs can be used in nested mode. The stack data structure is used for matching during trace data parsing.
  *
- * @param level Level of output priority.
- * @param name Name of a trace task.
- * @param customArgs key=value pair, multiple pairs use comma as seperator.
+ * @param level Trace output priority level.
+ * @param name Name of the synchronous trace task.
+ * @param customArgs key=value pair, multiple pairs use comma as separator.
  * @atomicservice
- * @since 18
+ * @since 19
  */
 void OH_HiTrace_StartTraceEx(HiTrace_Output_Level level, const char* name, const char* customArgs);
 
 /**
  * @brief Marks the end of a synchronous trace task with output level control.
  *
- * This API must be used with <b>OH_HiTrace_StartTraceEx</b> in pairs. During trace data parsing, the system matches
- * it with the most recent <b>OH_HiTrace_StartTraceEx</b> API invocation in the service process.
+ * This API must be used with <b>OH_HiTrace_StartTraceEx</b> in pairs. The two APIs, which have the same level,
+ * form an synchronous timeslice trace task.
+ * During trace data parsing, the system matches it with the most recent <b>OH_HiTrace_StartTraceEx</b> API
+ * invocation in the service process.
  *
- * @param level Level of output priority.
+ * @param level Trace output priority level.
  * @atomicservice
- * @since 18
+ * @since 19
  */
 void OH_HiTrace_FinishTraceEx(HiTrace_Output_Level level);
 
@@ -764,13 +760,13 @@ void OH_HiTrace_FinishTraceEx(HiTrace_Output_Level level);
  * If the trace tasks with the same name are not performed at the same time, the same taskId can be used.
  * Different processes's taskId do not interfere.
  *
- * @param level Level of output priority.
+ * @param level Trace output priority level.
  * @param name Name of the asynchronous trace task.
  * @param taskId ID of the asynchronous trace task.
  * @param customCategory Label used to aggregate the asynchronous trace.
- * @param customArgs key=value pair, multiple pairs use comma as seperator.
+ * @param customArgs key=value pair, multiple pairs use comma as separator.
  * @atomicservice
- * @since 18
+ * @since 19
  */
 void OH_HiTrace_StartAsyncTraceEx(HiTrace_Output_Level level, const char* name, int32_t taskId,
     const char* customCategory, const char* customArgs);
@@ -782,11 +778,11 @@ void OH_HiTrace_StartAsyncTraceEx(HiTrace_Output_Level level, const char* name, 
  * It is used with <b>OH_HiTrace_StartAsyncTraceEx</b> in pairs. Its level, name, and task ID must be
  * the same as those of <b>OH_HiTrace_StartAsyncTraceEx</b>.
  *
- * @param level Level of output priority.
+ * @param level Trace output priority level.
  * @param name Name of the asynchronous trace task.
  * @param taskId ID of the asynchronous trace task.
  * @atomicservice
- * @since 18
+ * @since 19
  */
 void OH_HiTrace_FinishAsyncTraceEx(HiTrace_Output_Level level, const char* name, int32_t taskId);
 
@@ -796,11 +792,11 @@ void OH_HiTrace_FinishAsyncTraceEx(HiTrace_Output_Level level, const char* name,
  * This API can be executed for multiple times to trace the value change of a given integer variable at different
  * time points.
  *
- * @param level Level of output priority.
+ * @param level Trace output priority level.
  * @param name Name of the integer variable. It does not need to be the same as the real variable name.
  * @param count Integer value. Generally, an integer variable can be passed.
  * @atomicservice
- * @since 18
+ * @since 19
  */
 void OH_HiTrace_CountTraceEx(HiTrace_Output_Level level, const char* name, int64_t count);
 
@@ -809,9 +805,9 @@ void OH_HiTrace_CountTraceEx(HiTrace_Output_Level level, const char* name, int64
  *
  * @return Returns whether the calling process is allowed to output trace.
  * @atomicservice
- * @since 18
+ * @since 19
  */
-bool OH_HiTrace_IsTraceEnabled();
+bool OH_HiTrace_IsTraceEnabled(void);
 
 #ifdef __cplusplus
 }

@@ -25,4 +25,9 @@ ohos_ndk_library("lib_vibrator_ndk") {
   output_name = "ohvibrator"
   ndk_description_file = "./lib_vibrator.ndk.json"
   min_compact_version = "11"
+  system_capability = "SystemCapability.Sensors.MiscDevice"
+  system_capability_headers = [
+    "sensors/vibrator_type.h",
+    "sensors/vibrator.h",
+  ]
 }

@@ -19,7 +19,7 @@
  *
  * @brief Provides native APIs for image sources.
  *
- * @syscap SystemCapability.Multimedia.Image
+ * @syscap SystemCapability.Multimedia.Image.Core
  * @since 10
  * @version 4.0
  */
@@ -31,7 +31,7 @@
  *
  * @library libimage_source_ndk.z.so
  * @kit ImageKit
- * @syscap SystemCapability.Multimedia.Image
+ * @syscap SystemCapability.Multimedia.Image.Core
  * @since 10
  * @version 4.0
  */

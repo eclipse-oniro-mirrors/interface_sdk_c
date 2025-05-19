@@ -86,6 +86,18 @@ typedef enum {
  *
  * @param dlpFileAccess - Indicates the access permission for the DLP file.
  * @param flags - Indicates the actions allowed for the DLP file.
+ *              0x00000000 - No file permissions.
+ *              0x00000001 - File view permission.
+ *              0x00000002 - File save permission.
+ *              0x00000004 - File save-as permission.
+ *              0x00000008 - File edit permission.
+ *              0x00000010 - File screenshot permission.
+ *              0x00000020 - File screen-sharing permission.
+ *              0x00000040 - File screen-recording permission.
+ *              0x00000080 - File copy permission.
+ *              0x00000100 - File print permission.
+ *              0x00000200 - File export permission.
+ *              0x00000400 - File permission modification permission.
  * @return {@link DLP_ErrCode#ERR_OH_SUCCESS} 0 - If the operation is successful.
  *         {@link DLP_ErrCode#ERR_OH_INVALID_PARAMETER} 19100001 - If the parameter value is invalid.
  *         {@link DLP_ErrCode#ERR_OH_API_ONLY_FOR_SANDBOX} 19100006 - If no permission to
@@ -133,7 +145,7 @@ DLP_ErrCode OH_DLP_IsInSandbox(bool *isInSandbox);
  *             call this API, which is available only for non-DLP sandbox applications.
  *         {@link DLP_ErrCode#ERR_OH_SYSTEM_SERVICE_EXCEPTION} 19100011 - If the system ability
  *             works abnormally.
- *         {@link DLP_ErrCode#ERR_OH_APPLICATION_NOT_AUTHORIZED} 19100018 - If not authorized application.
+ *         {@link DLP_ErrCode#ERR_OH_APPLICATION_NOT_AUTHORIZED} 19100018 - If the application is not authorized.
  * @since 14
  */
 DLP_ErrCode OH_DLP_SetSandboxAppConfig(const char *configInfo);
@@ -146,7 +158,7 @@ DLP_ErrCode OH_DLP_SetSandboxAppConfig(const char *configInfo);
  *         {@link DLP_ErrCode#ERR_OH_SYSTEM_SERVICE_EXCEPTION} 19100011 - If the system ability
  *             works abnormally.
  *         {@link DLP_ErrCode#ERR_OH_OUT_OF_MEMORY} 19100012 - If the memory error.
- *         {@link DLP_ErrCode#ERR_OH_APPLICATION_NOT_AUTHORIZED} 19100018 - If not authorized application.
+ *         {@link DLP_ErrCode#ERR_OH_APPLICATION_NOT_AUTHORIZED} 19100018 - If the application is not authorized.
  * @since 14
  */
 DLP_ErrCode OH_DLP_GetSandboxAppConfig(char **configInfo);
@@ -159,7 +171,7 @@ DLP_ErrCode OH_DLP_GetSandboxAppConfig(char **configInfo);
  *             call this API, which is available only for non-DLP sandbox applications.
  *         {@link DLP_ErrCode#ERR_OH_SYSTEM_SERVICE_EXCEPTION} 19100011 - If the system ability
  *             works abnormally.
- *         {@link DLP_ErrCode#ERR_OH_APPLICATION_NOT_AUTHORIZED} 19100018 - If not authorized application.
+ *         {@link DLP_ErrCode#ERR_OH_APPLICATION_NOT_AUTHORIZED} 19100018 - If the application is not authorized.
  * @since 14
  */
 DLP_ErrCode OH_DLP_CleanSandboxAppConfig();

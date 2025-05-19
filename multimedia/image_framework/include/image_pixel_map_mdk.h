@@ -19,7 +19,7 @@
  *
  * @brief Provides APIs for obtaining pixel map data and information.
  *
- * @syscap SystemCapability.Multimedia.Image
+ * @syscap SystemCapability.Multimedia.Image.Core
  * @since 10
  * @version 1.0
  */
@@ -31,7 +31,7 @@
  * Need link <b>libpixelmapndk.z.so</b>
  *
  * @library libpixelmap_ndk.so
- * @syscap SystemCapability.Multimedia.Image
+ * @syscap SystemCapability.Multimedia.Image.Core
  * @kit ImageKit
  * @since 10
  * @version 1.0

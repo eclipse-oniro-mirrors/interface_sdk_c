@@ -152,19 +152,19 @@ typedef enum {
 
     /**
      * @brief Accessory device, such as the microphone on a remote control.
-     * @since 18
+     * @since 19
      */
     AUDIO_DEVICE_TYPE_ACCESSORY = 26,
 
     /**
      * @brief HDMI device, such as a device connected through an HDMI, ARC, or eARC interface.
-     * @since 18
+     * @since 19
      */
     AUDIO_DEVICE_TYPE_HDMI = 27,
 
     /**
-     * @brief line-connected, digital audio output device, such as an S/PDIF device.
-     * @since 18
+     * @brief Line-connected, digital audio output device, such as an S/PDIF device.
+     * @since 19
      */
     AUDIO_DEVICE_TYPE_LINE_DIGITAL = 28,
 
