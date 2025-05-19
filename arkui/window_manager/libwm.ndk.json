@@ -89,7 +89,11 @@
     },
     {
         "first_instroduced":"20",
-        "name":"OH_PictureInPicture_CreatePip"
+        "name":"OH_PictureInPicture_CreatePipConfig"
+    },
+    {
+        "first_instroduced":"20",
+        "name":"OH_PictureInPicture_DestroyPipConfig"
     },
     {
         "first_instroduced":"20",
@@ -110,6 +114,10 @@
     {
         "first_instroduced":"20",
         "name":"OH_PictureInPicture_SetPipNapiEnv"
+    },
+    {
+        "first_instroduced":"20",
+        "name":"OH_PictureInPicture_CreatePip"
     },
     {
         "first_instroduced":"20",
