@@ -786,8 +786,8 @@ int32_t OH_NativeXComponent_RegisterSurfaceHideCallback(
     OH_NativeXComponent* component, void (*callback)(OH_NativeXComponent* component, void* window));
 
 /**
- * @brief Registers a UI input event callback for this <b>OH_NativeXComponent</b> instance and enables the callback to
- * be invoked when a UI input event is received.
+ * @brief Registers a UI input event callback for an <b>OH_NativeXComponent</b> instance and enables the callback to be
+ * invoked when a UI input event is received. Currently, only axis events are supported.
  *
  * @param component Indicates the pointer to the <b>OH_NativeXComponent</b> instance.
  * @param callback Indicates the pointer to the UI input event callback.
@@ -815,8 +815,10 @@ int32_t OH_NativeXComponent_RegisterUIInputEventCallback(
 int32_t OH_NativeXComponent_SetNeedSoftKeyboard(OH_NativeXComponent* component, bool needSoftKeyboard);
 
 /**
- * @brief Registers a custom event intercept callback for this <b>OH_NativeXComponent</b> and enables the callback
- * during the hit test.
+ * @brief Registers a custom event intercept callback for an <b>OH_NativeXComponent</b> instance.
+ * This enables the specified during hit testing.
+ * UI input-related operations are not supported on event objects received through this callback.
+ * For full functionality, use the <b>NODE_ON_TOUCH_INTERCEPT</b> event on native nodes instead.
  *
  * @param component Indicates the pointer to the <b>OH_NativeXComponent</b> instance.
  * @param callback Indicates the pointer to the custom event intercept callback.

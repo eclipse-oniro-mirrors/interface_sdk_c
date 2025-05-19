@@ -425,7 +425,7 @@ float OH_ArkUI_DragEvent_GetVelocity(ArkUI_DragEvent* event);
  * @brief Obtains the pressed status of modifier keys from a drag event.
  *
  * @param event Indicates the pointer to an <b>ArkUI_DragEvent</b> object.
- * @param keys Indicates the returned combination of modifier keys that are currently pressed.
+ * @param keys {@link ArkUI_ModifierKeyName} Indicates the returned combination of modifier keys that are currently pressed.
  *             The application can determine the pressed modifier keys through bitwise operations.
  * @return Returns the result code.
  *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
