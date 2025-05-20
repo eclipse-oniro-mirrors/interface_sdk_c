@@ -177,6 +177,10 @@
     { "name": "OH_Drawing_ColorFilterCreateCompose" },
     { "name": "OH_Drawing_ColorFilterCreateLinearToSrgbGamma" },
     { "name": "OH_Drawing_ColorFilterCreateLuma" },
+    {
+        "first_introduced": "20",
+        "name": "OH_Drawing_ColorFilterCreateLighting"
+    },
     { "name": "OH_Drawing_ColorFilterCreateMatrix" },
     { "name": "OH_Drawing_ColorFilterCreateSrgbGammaToLinear" },
     { "name": "OH_Drawing_ColorFilterDestroy" },
@@ -337,6 +341,14 @@
     {
         "first_introduced": "12",
         "name": "OH_Drawing_ImageFilterCreateFromColorFilter"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_Drawing_ImageFilterCreateOffset"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_Drawing_ImageFilterCreateFromShaderEffect"
     },
     {
         "first_introduced": "12",
@@ -718,6 +730,10 @@
         "first_introduced": "12",
         "name": "OH_Drawing_ShaderEffectCreateRadialGradientWithLocalMatrix"
     },
+    {
+        "first_introduced": "20",
+        "name": "OH_Drawing_ShaderEffectCreateSweepGradientWithLocalMatrix"
+    },
     { "name": "OH_Drawing_ShaderEffectCreateSweepGradient" },
     {
         "first_introduced": "12",
@@ -726,6 +742,10 @@
     {
         "first_introduced": "12",
         "name": "OH_Drawing_ShaderEffectCreateTwoPointConicalGradient"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_Drawing_ShaderEffectCreateCompose"
     },
     { "name": "OH_Drawing_ShaderEffectDestroy" },
     {
