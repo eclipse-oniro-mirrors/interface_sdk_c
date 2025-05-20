@@ -28,10 +28,6 @@
   { "name": "OH_AVPlayer_DeselectTrack" },
   { "name": "OH_AVPlayer_GetCurrentTrack" },
   {
-    "first_introduced": "20",
-    "name": "OH_AVPlayer_SetPlaybackRate"
-  },
-  {
     "first_introduced": "12",
     "name": "OH_PLAYER_STATE"
   },
@@ -79,6 +75,10 @@
     "first_introduced": "12",
     "name": "OH_PLAYER_PLAYBACK_SPEED"
   },
+  {
+    "first_introduced": "20",
+    "name": "OH_PLAYER_PLAYBACK_RATE"
+  },  
   {
     "first_introduced": "12",
     "name": "OH_PLAYER_BITRATE"
@@ -145,6 +145,6 @@
   },
   {
     "first_introduced": "20",
-    "name": "OH_PLAYER_PLAYBACK_RATE"
+    "name": "OH_AVPlayer_SetPlaybackRate"
   }
 ]
