@@ -54,7 +54,7 @@ bool canIUse(const char *cap);
  *         otherwise false.
  * @since 19
  */
-bool isApiVersionGreaterOrEqual(int majorVersion, int minorVersion, int patchVersion);
+bool OH_IsApiVersionGreaterOrEqual(int majorVersion, int minorVersion, int patchVersion);
 
 #ifdef __cplusplus
 #if __cplusplus

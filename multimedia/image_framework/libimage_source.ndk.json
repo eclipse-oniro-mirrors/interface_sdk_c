@@ -16,6 +16,10 @@
         "name": "OH_ImageSourceInfo_GetDynamicRange"
     },
     {
+        "first_introduced": "20",
+        "name": "OH_ImageSourceInfo_GetMimeType"
+    },
+    {
         "first_introduced": "12",
         "name": "OH_ImageSourceInfo_Release"
     },
@@ -88,6 +92,14 @@
         "name": "OH_DecodingOptions_GetCropRegion"
     },
     {
+        "first_introduced": "20",
+        "name": "OH_DecodingOptions_GetDesiredColorSpace"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_DecodingOptions_SetDesiredColorSpace"
+    },
+    {
         "first_introduced": "12",
         "name": "OH_DecodingOptions_Release"
     },
@@ -136,6 +148,10 @@
         "name": "OH_ImageSourceNative_GetImageProperty"
     },
     {
+        "first_introduced": "19",
+        "name": "OH_ImageSourceNative_GetImagePropertyWithNull"
+    },
+    {
         "first_introduced": "12",
         "name": "OH_ImageSourceNative_ModifyImageProperty"
     },
@@ -162,5 +178,9 @@
     {
         "first_introduced": "13",
         "name": "OH_DecodingOptionsForPicture_Release"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_ImageSourceNative_GetSupportedFormats"
     }
 ]

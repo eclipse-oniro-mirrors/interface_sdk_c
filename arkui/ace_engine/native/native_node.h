@@ -138,6 +138,11 @@ typedef enum {
     ARKUI_NODE_GRID_ITEM,
     /** Custom span. */
     ARKUI_NODE_CUSTOM_SPAN,
+    /**
+     * EmbeddedComponent.
+     * @since 20
+     */
+    ARKUI_NODE_EMBEDDED_COMPONENT,
 } ArkUI_NodeType;
 
 /**
@@ -2351,6 +2356,16 @@ typedef enum {
     NODE_IMMUTABLE_FONT_WEIGHT = 1030,
 
     /**
+     * @brief Defines the text line count attribute, which can only be obtained as required through APIs.
+     *
+     * Format of the return value {@link ArkUI_AttributeItem}:\n
+     * .value[0].i32: line count of the node.
+     *
+     * @since 20
+     */
+    NODE_TEXT_LINE_COUNT = 1031,
+
+    /**
      * @brief Defines the text content attribute, which can be set, reset, and obtained as required through APIs.
      *
      * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
@@ -3158,6 +3173,33 @@ typedef enum {
     NODE_TEXT_INPUT_KEYBOARD_APPEARANCE = 7035,
 
     /**
+     * @brief Set whether to enable the auto fill animation or not.
+     *
+     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
+     * .value[0].i32: Whether to enable the auto fill animation.\n
+     * \n
+     * Format of the return value {@link ArkUI_AttributeItem}: \n
+     * .value[0].i32: Get the flag of whether the auto fill animation is enabled.\n
+     *
+     * @since 20
+     */
+     NODE_TEXT_INPUT_ENABLE_FILL_ANIMATION = 7036,
+     
+    /**
+     * @brief Set the line height of the input node.
+     * This attribute can be set, reset, and obtained as required through APIs.
+     *
+     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
+     * .value[0].i32: line height value. \n
+     * \n
+     * Format of the return value {@link ArkUI_AttributeItem}: \n
+     * .value[0].i32: line height value. \n
+     *
+     * @since 20
+     */
+    NODE_TEXT_INPUT_LINE_HEIGHT = 7037,
+
+    /**
      * @brief Defines the default placeholder text for the multi-line text box.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
@@ -3506,6 +3548,45 @@ typedef enum {
     NODE_TEXT_AREA_KEYBOARD_APPEARANCE = 8026,
 
     /**
+     * @brief Set the max lines of the node. This attrilbute can be set, reset, and obtained as required through APIs.
+     *
+     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
+     * .value[0].i32: max lines count. \n
+     * \n
+     * Format of the return value {@link ArkUI_AttributeItem}:\n
+     * .value[0].i32: max lines count. \n
+     *
+     * @since 20
+     */
+    NODE_TEXT_AREA_MAX_LINES = 8027,
+
+    /**
+     * @brief Set line spacing of the node. This attribute can be set, reset, and obtained as required through APIs.
+     *
+     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
+     * .value[0].i32: line spacing value. \n
+     * \n
+     * Format of the return value {@link ArkUI_AttributeItem}:\n
+     * .value[0].i32: line spacing value. \n
+     *
+     * @since 20
+     */
+    NODE_TEXT_AREA_LINE_SPACING = 8028,
+
+    /**
+     * @brief Set the line height of the node. This attribute can be set, reset, and obtained as required through APIs.
+     *
+     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
+     * .value[0].i32: line height value. \n
+     * \n
+     * Format of the return value {@link ArkUI_AttributeItem}: \n
+     * .value[0].i32: line height value. \n
+     *
+     * @since 20
+     */
+    NODE_TEXT_AREA_LINE_HEIGHT = 8031,
+
+    /**
      * @brief Defines the button text content. This attribute can be set, reset, and obtained as required through APIs.
      *
      * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
@@ -3523,12 +3604,10 @@ typedef enum {
      * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
      * .value[0].i32: button type. The parameter type is {@link ArkUI_ButtonType}.
      * The default value is <b>ARKUI_BUTTON_TYPE_CAPSULE</b>. \n
-     * After api 16 the default value change to  <b>ARKUI_BUTTON_ROUNDED_RECTANGLE</b>.
      * \n
      * Format of the return value {@link ArkUI_AttributeItem}:\n
      * .value[0].i32: button type. The parameter type is {@link ArkUI_ButtonType}.
      * The default value is <b>ARKUI_BUTTON_TYPE_CAPSULE</b>. \n
-     * After api 16 the default value change to  <b>ARKUI_BUTTON_ROUNDED_RECTANGLE</b>.
      *
      */
     NODE_BUTTON_TYPE,
@@ -5175,6 +5254,22 @@ typedef enum {
     NODE_SCROLL_BACK_TO_TOP = 1002021,
 
     /**
+     * @brief Defines the margin of the scrollbar.
+     * This attribute can be set, reset, and obtained as required through APIs.
+     *
+     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
+     * .value[0].f32: start margin of the scrollbar, in vp. The default value is <b>0</b>. \n
+     * .value[1].f32: end margin of the scrollbar, in vp. The default value is <b>0</b>. \n
+     * \n
+     * Format of the return value {@link ArkUI_AttributeItem}:\n
+     * .value[0].f32: start margin of the scrollbar, in vp. \n
+     * .value[1].f32: end margin of the scrollbar, in vp. \n
+     *
+     * @since 20
+     */
+    NODE_SCROLL_BAR_MARGIN = 1002022,
+
+    /**
      * @brief Defines the direction in which the list items are arranged. This attribute can be set, reset, and
      * obtained as required through APIs.
      *
@@ -5743,9 +5838,27 @@ typedef enum {
      * .value[0].f32: minimum main axis size of the child element, Unit: vp. \n
      * .value[1].i32: whether to turn pages by group. \n
      *
-     * @since 18
+     * @since 19
      */
     NODE_SWIPER_AUTO_FILL,
+
+    /**
+     * @brief Sets whether to maintain the visible content's position when data is inserted or deleted outside
+     * the display area of the <b>Swiper</b> component.
+     *
+     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
+     * .value[0].i32: whether to maintain the visible content's position when data is inserted or deleted outside
+     * the display area of the <b>Swiper</b> component. The value <b>0</b> means not to maintain the visible content's
+     * position, and <b>1</b> means the opposite. The default value is <b>0</b>. \n
+     * \n
+     * Format of the return value {@link ArkUI_AttributeItem}:\n
+     * .value[0].i32: whether to maintain the visible content's position when data is inserted or deleted outside
+     * the display area of the <b>Swiper</b> component. The value <b>0</b> means not to maintain the visible content's
+     * position, and <b>1</b> means the opposite. The default value is <b>0</b>. \n
+     *
+     * @since 20
+     */
+    NODE_SWIPER_MAINTAIN_VISIBLE_CONTENT_POSITION = 1001023,
 
     /**
      * @brief: Set the delineation component of the ListItem, supporting property settings, property resets, and
@@ -5972,6 +6085,19 @@ typedef enum {
      *
      */
     NODE_REFRESH_PULL_TO_REFRESH = 1009004,
+    /**
+     * @brief Sets the maximum pull-down distance for refreshing.
+     * This attribute can be set, reset, and obtained through the API as required.
+     *
+     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
+     * .value[0].f32: maximum pull-down distance, in vp.
+     * \n
+     * Format of the return value {@link ArkUI_AttributeItem}:\n
+     * .value[0].f32: maximum pull-down distance, in vp.
+     *
+     * @since 20
+     */
+    NODE_REFRESH_MAX_PULL_DOWN_DISTANCE = 1009005,
 
     /**
      * @brief Defines the main axis direction of the <b><WaterFlow></b> component layout.
@@ -6252,6 +6378,22 @@ typedef enum {
     NODE_GRID_CACHED_COUNT,
 
     /**
+    * @brief Defines the focus wrap mode for the <b>Grid</b> component.
+    * This attribute can be set, reset, and obtained as required through APIs.
+    *
+    * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
+    * .value[0].i32: focus wrap mode of the <b>Grid</b> component.
+    *                The parameter type is {@link ArkUI_FocusWrapMode}. \n
+    * \n
+    * Format of the return value {@link ArkUI_AttributeItem}:\n
+    * .value[0].i32: focus wrap mode of the <b>Grid</b> component.
+    *                The parameter type is {@link ArkUI_FocusWrapMode}. \n
+    *
+    * @since 20
+    */
+    NODE_GRID_FOCUS_WRAP_MODE,
+
+    /**
     * @brief Defines the column width of the text picker.
     * This attribute can be set, reset, and obtained as required through APIs.
     *
@@ -6301,6 +6443,29 @@ typedef enum {
      * @since 19
      */
     NODE_CALENDAR_PICKER_MARK_TODAY = 16007,
+
+    /**
+     * @brief Defines the want used to start EmbeddedAbility.
+     * This attribute can be set as required through APIs.
+     *
+     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
+     * .object: The want of EmbeddedComponent, with parameter type {@AbilityBase_Want}.
+     * The default value is <b>nullptr</b>.\n
+     *
+     * @since 20
+     */
+    NODE_EMBEDDED_COMPONENT_WANT = MAX_NODE_SCOPE_NUM * ARKUI_NODE_EMBEDDED_COMPONENT,
+
+    /**
+     * @brief Set onError and onTerminated callbacks for EMBEDDED_COMPONENT.
+     * This attribute can be set as required through APIs.
+     *
+     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
+     * .object: The option for EmbeddedComponent, with parameter type {@ArkUI_EmbeddedComponentOption}.\n
+     *
+     * @since 20
+     */
+    NODE_EMBEDDED_COMPONENT_OPTION,
 } ArkUI_NodeAttributeType;
 
 #define MAX_COMPONENT_EVENT_ARG_NUM 12
@@ -6705,6 +6870,15 @@ typedef enum {
      */
     NODE_TEXT_ON_DETECT_RESULT_UPDATE = MAX_NODE_SCOPE_NUM * ARKUI_NODE_TEXT,
     /**
+     * @brief Defines the long press event for span
+     *
+     * The event is triggered when the span is long pressed.
+     * When the event callback occurs, the {@link ArkUI_NodeEvent} object can be obtained from the
+     * {@link ArkUI_UIInputEvent} object.\n
+     * @since 20
+     */
+    NODE_TEXT_SPAN_ON_LONG_PRESS = 1001,
+    /**
      * @brief Defines the image loading success event.
      *
      * This event is triggered when an image is successfully loaded or decoded. \n
@@ -6948,6 +7122,19 @@ typedef enum {
     NODE_TEXT_INPUT_ON_CHANGE_WITH_PREVIEW_TEXT = 7013,
 
     /**
+     * @brief Defines the event triggered before content changes.
+     *
+     * When the event callback occurs, the union type {@link ArkUI_NodeEvent} is {@link ArkUI_TextChangeEvent}. \n
+     * {@link ArkUI_TextChangeEvent} contains the following parameters: \n
+     * <b>ArkUI_TextChangeEvent.pStr</b>: content in the <b>TextInput</b> component.
+     * <b>ArkUI_TextChangeEvent.pExtendStr</b>: content of the preview text in the <b>TextInput</b> component.
+     * <b>ArkUI_TextChangeEvent.number</b>: start position of the preview text in the <b>TextInput</b> component.
+     * 
+     * @since 20
+     */
+    NODE_TEXT_INPUT_ON_WILL_CHANGE = 7014,
+
+    /**
      * @brief Defines the event triggered when the input in the text box changes.
      *
       \n
@@ -7112,6 +7299,19 @@ typedef enum {
      * @since 15
      */
     NODE_TEXT_AREA_ON_CHANGE_WITH_PREVIEW_TEXT = 8012,
+
+    /**
+     * @brief Defines the event triggered before content changes
+     *
+     * When the event callback occurs, the union type {@link ArkUI_NodeEvent} is {@link ArkUI_TextChangeEvent}. \n
+     * {@link ArkUI_TextChangeEvent} contains the following parameters: \n
+     * <b>ArkUI_TextChangeEvent.pStr</b>: content in the <b>TextArea</b> component.
+     * <b>ArkUI_TextChangeEvent.pExtendStr</b>: content of the preview text in the <b>TextArea</b> component.
+     * <b>ArkUI_TextChangeEvent.number</b>: start position of the preview text in the <b>TextArea</b> component.
+     *
+     * @since 20
+     */
+    NODE_TEXT_AREA_ON_WILL_CHANGE = 8013,
 
     /**
      * @brief Defines the event triggered when the selected status of the <b>ARKUI_NODE_CHECKBOX</b> component changes.
@@ -9254,6 +9454,53 @@ int32_t OH_ArkUI_GetNodeSnapshot(ArkUI_NodeHandle node, ArkUI_SnapshotOptions* s
  * @since 15
  */
 int32_t OH_ArkUI_NodeUtils_GetPositionToParent(ArkUI_NodeHandle node, ArkUI_IntOffset* globalOffset);
+
+/**
+ * @brief Adds the UI state style supported by the component. To handle states change efficiently, need to specify the
+ * states of interest and the corresponding handler. When a state of interest occurs, the handler will be executed.
+ *  - You can adjust the UI style based on the current state within the callback. If this API is called multiple
+ * times on the same node, the last set of states and handler will take precedence.
+ *  - Some component types have default system handling for certain states. For example, the <b>Button</b>
+ * component has a default style effect for the PRESSED state. When custom state handling is implemented on such
+ * components, the default style effect will be applied first, followed by the custom style changes, resulting in
+ * a combined effect. To disable the default style effects, set <b>excludeInner</b> to <b>true</b>, if this is allowed
+ * by the system implementation.
+ *  - And when this API is called, the provided handler function will be executed immediately.
+ *  - There is no need to explicitly register a listener for the NORMAL state. Once a non-NORMAL state is registered,
+ * the system will automatically notify your application when the state changes back to NORMAL.
+ *
+ * @param node Target node.
+ * @param uiStates Target UI states to be handled on the node.
+ *        The combined result of all target UI states can be calculated using the <b>|</b> operator.
+ *        Example: <b>targetUIStates = ArkUI_UIState::PRESSED | ArkUI_UIState::FOCUSED</b>.
+ * @param statesChangeHandler Handler for UI state changes.
+ *        It rturns the current UI status. The value is the result of combining all current state enum values using the
+ *        <b>|</b> operator. You can determine the state using the <b>&</b> operator.
+ *        Example: <b>if (currentStates & ArkUI_UIState::PRESSED == ArkUI_UIState::PRESSED)</b>.
+ *        However, for checking the normal state, use the equality operator directly.
+ *        Example: <b>if (currentStates == ArkUI_UIState::NORMAL)</b>.
+ * @param excludeInner Whether to disable the default state styles.
+ * @param userData Custom data used in the <b>statesChangeHandler</b> callback.
+ * @return Returns the result code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @since 20
+ */
+ArkUI_ErrorCode OH_ArkUI_AddSupportedUIStates(ArkUI_NodeHandle node, int32_t uiStates,
+    void (statesChangeHandler)(int32_t currentStates, void* userData), bool excludeInner, void* userData);
+
+/**
+ * @brief Removes registered UI states. When all states registered using <b>OH_ArkUI_AddSupportedUIStates</b>
+ * are removed, the registered <b>stateChangeHandler</b> will no longer be executed.
+ * 
+ * @param node Target node.
+ * @param uiStates Target UI states to be removed.
+ * @return Returns the result code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @since 20
+ */
+ArkUI_ErrorCode OH_ArkUI_RemoveSupportedUIStates(ArkUI_NodeHandle node, int32_t uiStates);
 
 #ifdef __cplusplus
 };

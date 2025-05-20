@@ -152,7 +152,7 @@ typedef enum {
 
     /**
      * @brief Accessory device, such as the microphone on a remote control.
-     * @since 18
+     * @since 19
      */
     AUDIO_DEVICE_TYPE_ACCESSORY = 26,
 

@@ -1,4 +1,4 @@
-# Copyright (c) 2024 Huawei Device Co., Ltd.
+# Copyright (c) 2025 Huawei Device Co., Ltd.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at
@@ -13,21 +13,7 @@
 
 import("//build/ohos.gni")
 
-ohos_ndk_headers("ddk_header") {
-  dest_dir = "$ndk_headers_out_dir/ddk/"
-  sources = [
-    "ddk_api.h",
-    "ddk_types.h",
-  ]
-}
-
-ohos_ndk_library("libddk_base") {
-  ndk_description_file = "./libbase.ndk.json"
-  min_compact_version = "12"
-  output_name = "ddk_base"
-  system_capability = "SystemCapability.Driver.DDK.Extension"
-  system_capability_headers = [
-    "ddk/ddk_api.h",
-    "ddk/ddk_types.h",
-  ]
+ohos_ndk_headers("ani_header") {
+  dest_dir = "$ndk_headers_out_dir/ani"
+  sources = [ "./ani.h" ]
 }
