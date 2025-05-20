@@ -344,6 +344,10 @@
     },
     { "name": "OH_Drawing_MaskFilterCreateBlur" },
     { "name": "OH_Drawing_MaskFilterDestroy" },
+    {
+        "first_introduced": "20",
+        "name": "OH_Drawing_MatrixCopy"
+    },
     { "name": "OH_Drawing_MatrixCreate" },
     { "name": "OH_Drawing_MatrixCreateRotation" },
     { "name": "OH_Drawing_MatrixCreateScale" },
@@ -516,6 +520,22 @@
         "name": "OH_Drawing_PathGetMatrix"
     },
     {
+        "first_introduced": "20",
+        "name": "OH_Drawing_PathGetFillType"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_Drawing_PathIsEmpty"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_Drawing_PathIsRect"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_Drawing_PathSetPath"
+    },
+    {
         "first_introduced": "12",
         "name": "OH_Drawing_PenCopy"
     },
@@ -652,6 +672,10 @@
     {
         "first_introduced": "12",
         "name": "OH_Drawing_RoundRectGetCorner"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_Drawing_RoundRectCopy"
     },
     {
         "first_introduced": "12",
@@ -1181,6 +1205,10 @@
     {
         "first_introduced": "12",
         "name": "OH_Drawing_RegionCreate"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_Drawing_RegionCopy"
     },
     {
         "first_introduced": "12",
