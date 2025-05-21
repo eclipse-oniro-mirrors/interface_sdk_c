@@ -109,8 +109,6 @@ typedef enum {
     CAMERA_SWITCH = 7,
     /** mute switch. */
     MUTE_SWITCH = 8,
-    /** end. */
-    END,
 } PictureInPicture_PipControlType;
 
 /**
