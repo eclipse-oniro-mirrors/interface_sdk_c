@@ -41,6 +41,7 @@
 #define C_INCLUDE_DRAWING_TEXT_RUN_H
 
 #include "drawing_text_declaration.h"
+#include "drawing_text_typography.h"
 #include "drawing_types.h"
 
 #ifdef __cplusplus
@@ -208,6 +209,59 @@ void OH_Drawing_DestroyRunPositions(OH_Drawing_Array* positions);
  * @since 18
  */
 uint32_t OH_Drawing_GetRunGlyphCount(OH_Drawing_Run* run);
+
+/**
+ * @brief Gets the Font Object of run.
+ *
+ * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
+ * @param run Indicates the pointer to an <b>OH_Drawing_Run</b> object.
+ * @return The Font Object of run.
+ * @since 20
+ * @version 1.0
+ */
+OH_Drawing_Font* OH_Drawing_GetRunFont(OH_Drawing_Run* run);
+
+/**
+ * @brief Get the text direction.
+ *
+ * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
+ * @param run Indicates the pointer to an <b>OH_Drawing_Run</b> object.
+ * @return Return the text direction of an <b>OH_Drawing_TextDirection</b> object.
+ * @since 20
+ */
+OH_Drawing_TextDirection OH_Drawing_GetRunTextDirection(OH_Drawing_Run* run);
+
+/**
+ * @brief Gets the glyph width array.
+ *
+ * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
+ * @param run Indicates the pointer to an <b>OH_Drawing_Run</b> object.
+ * @param start The run of start index.
+ * @param length The run of length, if start and length are set to 0, then get all of the current run.
+ * @return Indicates the pointer to the glyph width array object <b>OH_Drawing_Array</b>.
+ * @since 20
+ */
+OH_Drawing_Array* OH_Drawing_GetRunGlyphAdvances(OH_Drawing_Run* run, uint32_t start, uint32_t length);
+
+/**
+ * @brief Gets the glyph width by index.
+ *
+ * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
+ * @param positions The glyph width array object <b>OH_Drawing_Array</b>.
+ * @param index The run of glyph index.
+ * @return The width of glyph.
+ * @since 20
+ */
+double OH_Drawing_GetRunGlyphAdvanceByIndex(OH_Drawing_Array* advances, size_t index);
+
+/**
+ * @brief Releases the memory of glyph width array.
+ *
+ * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
+ * @param advances The run of glyph width array object <b>OH_Drawing_Array</b>.
+ * @since 20
+ */
+void OH_Drawing_DestroyRunGlyphAdvances(OH_Drawing_Array* advances);
 #ifdef __cplusplus
 }
 #endif

@@ -1535,6 +1535,10 @@
         "name": "OH_Drawing_TypographyUpdateDecorationStyle"
     },
     {
+        "first_introduced": "20",
+        "name": "OH_Drawing_TypographyUpdateDecorationColor"
+    },
+    {
         "first_introduced": "12",
         "name": "OH_Drawing_TypographyTextGetLineStyle"
     },
@@ -1835,8 +1839,28 @@
         "name":"OH_Drawing_GetRunGlyphCount"
     },
     {
+        "first_introduced": "20",
+        "name":"OH_Drawing_GetRunTextDirection"
+    },
+    {
+        "first_introduced": "20",
+        "name":"OH_Drawing_GetRunGlyphAdvances"
+    },
+    {
+        "first_introduced": "20",
+        "name":"OH_Drawing_GetRunGlyphAdvanceByIndex"
+    },
+    {
+        "first_introduced": "20",
+        "name":"OH_Drawing_DestroyRunGlyphAdvances"
+    },
+    {
         "first_introduced": "14",
         "name":"OH_Drawing_GetFontCollectionGlobalInstance"
+    },
+    {
+        "first_introduced": "20",
+        "name":"OH_Drawing_GetRunFont"
     },
     {
         "first_introduced": "18",
