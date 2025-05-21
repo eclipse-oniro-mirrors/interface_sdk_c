@@ -1641,13 +1641,6 @@ NAPI_EXTERN napi_status napi_define_class(napi_env env,
                                           napi_value* result);
 
 /**
- * @brief To load native libraries and this interface is defined in native libraries.
- *
- * @since 17
- */
-NAPI_EXTERN void napi_onLoad();
-
-/**
  * @brief To create a new virtual machine context.
  * @param env Current running virtual machine context.
  * @param newEnv New generated virtual machine context which is expected to be used later.
