@@ -166,5 +166,265 @@
     {
         "first_introduced": "12",
         "name": "OH_CryptoSymKey_Destroy"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_CryptoAsymCipher_Create"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_CryptoAsymCipher_Init"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_CryptoAsymCipher_Final"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_CryptoAsymCipher_Destroy"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_CryptoSm2CiphertextSpec_Create"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_CryptoSm2CiphertextSpec_GetItem"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_CryptoSm2CiphertextSpec_SetItem"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_CryptoSm2CiphertextSpec_Encode"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_CryptoSm2CiphertextSpec_Destroy"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_CryptoKeyPair_GetPrivKey"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_CryptoPrivKeyEncodingParams_Create"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_CryptoPrivKeyEncodingParams_SetParam"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_CryptoPrivKeyEncodingParams_Destroy"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_CryptoPrivKey_Encode"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_CryptoPrivKey_GetParam"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_CryptoAsymKeySpec_GenEcCommonParamsSpec"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_CryptoAsymKeySpec_GenDhCommonParamsSpec"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_CryptoAsymKeySpec_Create"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_CryptoAsymKeySpec_SetParam"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_CryptoAsymKeySpec_SetCommonParamsSpec"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_CryptoAsymKeySpec_GetParam"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_CryptoAsymKeySpec_Destroy"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_CryptoAsymKeyGeneratorWithSpec_Create"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_CryptoAsymKeyGeneratorWithSpec_GenKeyPair"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_CryptoAsymKeyGeneratorWithSpec_Destroy"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_CryptoEcPoint_Create"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_CryptoEcPoint_GetCoordinate"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_CryptoEcPoint_SetCoordinate"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_CryptoEcPoint_Encode"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_CryptoEcPoint_Destroy"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_CryptoKdfParams_Create"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_CryptoKdfParams_SetParam"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_CryptoKdfParams_Destroy"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_CryptoKdf_Create"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_CryptoKdf_Derive"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_CryptoKdf_Destroy"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_CryptoKeyAgreement_Create"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_CryptoKeyAgreement_GenerateSecret"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_CryptoKeyAgreement_Destroy"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_CryptoMac_Create"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_CryptoMac_SetParam"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_CryptoMac_Init"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_CryptoMac_Update"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_CryptoMac_Final"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_CryptoMac_GetLength"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_CryptoMac_Destroy"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_CryptoRand_Create"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_CryptoRand_GenerateRandom"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_CryptoRand_GetAlgoName"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_CryptoRand_SetSeed"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_CryptoRand_Destroy"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_CryptoSign_Create"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_CryptoSign_Init"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_CryptoSign_Update"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_CryptoSign_Final"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_CryptoSign_GetAlgoName"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_CryptoSign_SetParam"
+    },
+    {
+        "first_introduced":"20",
+        "name": "OH_CryptoSign_GetParam"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_CryptoSign_Destroy"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_CryptoEccSignatureSpec_Create"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_CryptoEccSignatureSpec_GetRAndS"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_CryptoEccSignatureSpec_SetRAndS"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_CryptoEccSignatureSpec_Encode"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_CryptoEccSignatureSpec_Destroy"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_CryptoAsymKeyGenerator_SetPassword"
     }
 ]

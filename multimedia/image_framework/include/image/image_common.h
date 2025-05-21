@@ -290,9 +290,9 @@ Image_ErrorCode OH_PictureMetadata_SetProperty(OH_PictureMetadata *metadata, Ima
 /**
  * @brief Obtains the property of picture metadata. The output value.data is null-terminated.
  *
- * @param metadata The PictureMetadata pointer will be operated.
- * @param key The property's key.
- * @param value The property's value.
+ * @param metadata Pointer to OH_PictureMetadata.
+ * @param key Pointer to property's key.
+ * @param value Pointer to property's value. Output parameter.
  * @return Image functions result code.
  *         {@link IMAGE_SUCCESS} if the execution is successful.
  *         {@link IMAGE_INVALID_PARAMETER} metadata is nullptr, or key is nullptr, or value is nullptr.

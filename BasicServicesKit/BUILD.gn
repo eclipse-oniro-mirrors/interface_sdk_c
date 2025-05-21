@@ -27,7 +27,10 @@ ohos_ndk_library("libos_account_ndk") {
   system_capability = "SystemCapability.Account.OsAccount"
   ndk_description_file = "./libos_account.ndk.json"
   min_compact_version = "12"
-  system_capability_headers = [ "BasicServicesKit/os_account.h" ]
+  system_capability_headers = [
+    "BasicServicesKit/os_account.h",
+    "BasicServicesKit/os_account_common.h",
+  ]
 }
 
 ohos_ndk_headers("ohprint_header") {

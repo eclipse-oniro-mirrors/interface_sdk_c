@@ -104,6 +104,19 @@ struct mallinfo2 {
   size_t keepcost;
 };
 
+/**
+ * @brief Obtains the memory information allocated by malloc-related operations.
+ * @return A mallinfo struct containing details about memory allocation.
+ */
+struct mallinfo mallinfo(void);
+
+/**
+ * @brief Obtains the memory information allocated by malloc-related operations.
+ * @return A mallinfo2 struct containing details about memory allocation. Unlike mallinfo, this struct uses
+ * size_t for its counters, providing a larger range.
+ */
+struct mallinfo2 mallinfo2(void);
+
 #ifdef __cplusplus
 }
 #endif
