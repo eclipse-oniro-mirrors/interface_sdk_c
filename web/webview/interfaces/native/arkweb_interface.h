@@ -85,7 +85,7 @@ typedef enum {
 ArkWeb_AnyNativeAPI* OH_ArkWeb_GetNativeAPI(ArkWeb_NativeAPIVariantKind type);
 
 
-/*
+/**
  * @brief Register a scrolling event callback.
  * @param webTag The name of the web component.
  * @param callback The ArkWeb scrolling callback.
