@@ -331,9 +331,13 @@ int32_t OH_PictureInPicture_StopPip(uint32_t controllerId);
  * @param controllerId The picture-in-picture controller ID
  * @param width The picture-in-picture content width
  * @param height The picture-in-picture content height
+ * @return Return the result code.
+ *         {@link OK} the function call is successful.
+ *         {@link WINDOW_MANAGER_ERRORCODE_INCORRECT_PARAM} parameter error.
+ *         {@link WINDOW_MANAGER_ERRORCODE_PIP_INTERNAL_ERROR} pip internal error.
  * @since 20
  */
-void OH_PictureInPicture_UpdatePipContentSize(uint32_t controllerId, uint32_t width, uint32_t height);
+int32_t OH_PictureInPicture_UpdatePipContentSize(uint32_t controllerId, uint32_t width, uint32_t height);
 
 /**
  * @brief Update picture-in-picture control status.
@@ -341,9 +345,13 @@ void OH_PictureInPicture_UpdatePipContentSize(uint32_t controllerId, uint32_t wi
  * @param controllerId The picture-in-picture controller ID
  * @param controlType The picture-in-picture control type.
  * @param status The picture-in-picture control status.
-  * @since 20
+ * @return Return the result code.
+ *         {@link OK} the function call is successful.
+ *         {@link WINDOW_MANAGER_ERRORCODE_INCORRECT_PARAM} parameter error.
+ *         {@link WINDOW_MANAGER_ERRORCODE_PIP_INTERNAL_ERROR} pip internal error.
+ * @since 20
  */
-void OH_PictureInPicture_UpdatePipControlStatus(uint32_t controllerId, PictureInPicture_PipControlType controlType,
+int32_t OH_PictureInPicture_UpdatePipControlStatus(uint32_t controllerId, PictureInPicture_PipControlType controlType,
     PictureInPicture_PipControlStatus status);
 
 /**
@@ -352,9 +360,13 @@ void OH_PictureInPicture_UpdatePipControlStatus(uint32_t controllerId, PictureIn
  * @param controllerId The picture-in-picture controller ID
  * @param controlType The picture-in-picture control type.
  * @param enabled Indicate the picture-in-picture control is enabled.
+ * @return Return the result code.
+ *         {@link OK} the function call is successful.
+ *         {@link WINDOW_MANAGER_ERRORCODE_INCORRECT_PARAM} parameter error.
+ *         {@link WINDOW_MANAGER_ERRORCODE_PIP_INTERNAL_ERROR} pip internal error.
  * @since 20
  */
-void OH_PictureInPicture_SetPipControlEnabled(uint32_t controllerId, PictureInPicture_PipControlType controlType,
+int32_t OH_PictureInPicture_SetPipControlEnabled(uint32_t controllerId, PictureInPicture_PipControlType controlType,
     bool enabled);
 
 /**
