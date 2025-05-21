@@ -177,6 +177,10 @@
     { "name": "OH_Drawing_ColorFilterCreateCompose" },
     { "name": "OH_Drawing_ColorFilterCreateLinearToSrgbGamma" },
     { "name": "OH_Drawing_ColorFilterCreateLuma" },
+    {
+        "first_introduced": "20",
+        "name": "OH_Drawing_ColorFilterCreateLighting"
+    },
     { "name": "OH_Drawing_ColorFilterCreateMatrix" },
     { "name": "OH_Drawing_ColorFilterCreateSrgbGammaToLinear" },
     { "name": "OH_Drawing_ColorFilterDestroy" },
@@ -339,11 +343,23 @@
         "name": "OH_Drawing_ImageFilterCreateFromColorFilter"
     },
     {
+        "first_introduced": "20",
+        "name": "OH_Drawing_ImageFilterCreateOffset"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_Drawing_ImageFilterCreateFromShaderEffect"
+    },
+    {
         "first_introduced": "12",
         "name": "OH_Drawing_ImageFilterDestroy"
     },
     { "name": "OH_Drawing_MaskFilterCreateBlur" },
     { "name": "OH_Drawing_MaskFilterDestroy" },
+    {
+        "first_introduced": "20",
+        "name": "OH_Drawing_MatrixCopy"
+    },
     { "name": "OH_Drawing_MatrixCreate" },
     { "name": "OH_Drawing_MatrixCreateRotation" },
     { "name": "OH_Drawing_MatrixCreateScale" },
@@ -516,6 +532,22 @@
         "name": "OH_Drawing_PathGetMatrix"
     },
     {
+        "first_introduced": "20",
+        "name": "OH_Drawing_PathGetFillType"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_Drawing_PathIsEmpty"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_Drawing_PathIsRect"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_Drawing_PathSetPath"
+    },
+    {
         "first_introduced": "12",
         "name": "OH_Drawing_PenCopy"
     },
@@ -654,6 +686,10 @@
         "name": "OH_Drawing_RoundRectGetCorner"
     },
     {
+        "first_introduced": "20",
+        "name": "OH_Drawing_RoundRectCopy"
+    },
+    {
         "first_introduced": "12",
         "name": "OH_Drawing_RoundRectSetCorner"
     },
@@ -694,6 +730,10 @@
         "first_introduced": "12",
         "name": "OH_Drawing_ShaderEffectCreateRadialGradientWithLocalMatrix"
     },
+    {
+        "first_introduced": "20",
+        "name": "OH_Drawing_ShaderEffectCreateSweepGradientWithLocalMatrix"
+    },
     { "name": "OH_Drawing_ShaderEffectCreateSweepGradient" },
     {
         "first_introduced": "12",
@@ -702,6 +742,10 @@
     {
         "first_introduced": "12",
         "name": "OH_Drawing_ShaderEffectCreateTwoPointConicalGradient"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_Drawing_ShaderEffectCreateCompose"
     },
     { "name": "OH_Drawing_ShaderEffectDestroy" },
     {
@@ -1181,6 +1225,10 @@
     {
         "first_introduced": "12",
         "name": "OH_Drawing_RegionCreate"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_Drawing_RegionCopy"
     },
     {
         "first_introduced": "12",
@@ -1797,5 +1845,13 @@
     {
         "first_introduced": "20",
         "name": "OH_Drawing_SetTextStyleBadgeType"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_Drawing_SetTypographyTextAutoSpace"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_Drawing_SetTextHighContrast"
     }
 ]

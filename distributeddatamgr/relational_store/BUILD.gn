@@ -20,6 +20,7 @@ ohos_ndk_headers("native_rdb_ndk_header") {
   sources = [
     "./include/oh_cursor.h",
     "./include/oh_predicates.h",
+    "./include/oh_rdb_crypto_param.h",
     "./include/oh_rdb_transaction.h",
     "./include/oh_rdb_types.h",
     "./include/oh_value_object.h",
@@ -52,6 +53,7 @@ ohos_ndk_library("libnative_rdb_ndk") {
     "database/data/oh_data_values_buckets.h",
     "database/rdb/oh_cursor.h",
     "database/rdb/oh_predicates.h",
+    "database/rdb/oh_rdb_crypto_param.h",
     "database/rdb/oh_rdb_transaction.h",
     "database/rdb/oh_rdb_types.h",
     "database/rdb/oh_value_object.h",

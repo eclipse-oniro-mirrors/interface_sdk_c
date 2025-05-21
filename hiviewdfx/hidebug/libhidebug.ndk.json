@@ -50,6 +50,22 @@
     {
       "first_introduced": "20",
       "name": "OH_HiDebug_RestoreMallocDispatchTable"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_HiDebug_BacktraceFromFp"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_HiDebug_SymbolicAddress"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_HiDebug_CreateBacktraceObject"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_HiDebug_DestroyBacktraceObject"
     }
 
 ]

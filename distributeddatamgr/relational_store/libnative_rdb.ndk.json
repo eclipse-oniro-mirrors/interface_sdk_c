@@ -534,5 +534,97 @@
     {
         "first_introduced": "18",
         "name":"OH_Cursor_GetFloatVector"
+    },
+    {
+        "first_introduced": "20",
+        "name":"OH_Predicates_NotLike"
+    },
+    {
+        "first_introduced": "20",
+        "name":"OH_Predicates_Glob"
+    },
+    {
+        "first_introduced": "20",
+        "name":"OH_Predicates_NotGlob"
+    },
+    {
+        "first_introduced": "20",
+        "name":"OH_Predicates_Having"
+    },
+    {
+        "first_introduced": "20",
+        "name":"OH_Rdb_CreateCryptoParam"
+    },
+    {
+        "first_introduced": "20",
+        "name":"OH_Rdb_DestroyCryptoParam"
+    },
+    {
+        "first_introduced": "20",
+        "name":"OH_Crypto_SetEncryptionKey"
+    },
+    {
+        "first_introduced": "20",
+        "name":"OH_Crypto_SetIteration"
+    },
+    {
+        "first_introduced": "20",
+        "name":"OH_Crypto_SetEncryptionAlgo"
+    },
+    {
+        "first_introduced": "20",
+        "name":"OH_Crypto_SetHmacAlgo"
+    },
+    {
+        "first_introduced": "20",
+        "name":"OH_Crypto_SetKdfAlgo"
+    },
+    {
+        "first_introduced": "20",
+        "name":"OH_Crypto_SetCryptoPageSize"
+    },
+    {
+        "first_introduced": "20",
+        "name":"OH_RdbTrans_InsertWithConflictResolution"
+    },
+    {
+        "first_introduced": "20",
+        "name":"OH_RdbTrans_UpdateWithConflictResolution"
+    },
+    {
+        "first_introduced": "20",
+        "name":"OH_Rdb_SetCustomDir"
+    },
+    {
+        "first_introduced": "20",
+        "name":"OH_Rdb_SetReadOnly"
+    },
+    {
+        "first_introduced": "20",
+        "name":"OH_Rdb_SetPlugins"
+    },
+    {
+        "first_introduced": "20",
+        "name":"OH_Rdb_SetCryptoParam"
+    },
+    {
+        "first_introduced": "20",
+        "name":"OH_Rdb_InsertWithConflictResolution"
+    },
+    {
+        "first_introduced": "20",
+        "name":"OH_Rdb_UpdateWithConflictResolution"
+    },
+    {
+        "first_introduced": "20",
+        "name":"OH_Rdb_Attach"
+    },
+    {
+        "first_introduced": "20",
+        "name":"OH_Rdb_Detach"
+    },
+    {
+        "first_introduced": "20",
+        "name":"OH_Rdb_SetLocale"
     }
 ]
