@@ -5397,7 +5397,7 @@ typedef enum {
      * .value[0].i32: whether the <b>List</b> component starts layout from the end. The value <b>0</b> means layout
      * starts from the top, and <b>1</b> means layout starts from the end. The default value is <b>0</b>. \n
      *
-     * @since 18
+     * @since 19
      */
     NODE_LIST_STACK_FROM_END = 1003014,
 
