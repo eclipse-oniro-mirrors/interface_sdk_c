@@ -50,6 +50,10 @@
         "name": "OH_Drawing_BrushReset"
     },
     { "name": "OH_Drawing_CanvasCreate" },
+    {
+        "first_introduced": "20",
+        "name": "OH_Drawing_CanvasCreateWithPixelMap"
+    },
     { "name": "OH_Drawing_CanvasDestroy" },
     { "name": "OH_Drawing_CanvasBind" },
     { "name": "OH_Drawing_CanvasAttachPen" },
