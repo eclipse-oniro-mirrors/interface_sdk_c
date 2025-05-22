@@ -18,5 +18,29 @@
   {
       "first_introduced": "20",
       "name": "OH_Ability_UnregisterNativeChildProcessExitCallback"
+  },
+  {
+      "first_introduced": "20",
+      "name": "OH_Ability_CreateChildProcessConfigs"
+  },
+  {
+      "first_introduced": "20",
+      "name": "OH_Ability_DestroyChildProcessConfigs"
+  },
+  {
+      "first_introduced": "20",
+      "name": "OH_Ability_ChildProcessConfigs_SetIsolationMode"
+  },
+  {
+      "first_introduced": "20",
+      "name": "OH_Ability_ChildProcessConfigs_SetProcessName"
+  },
+  {
+      "first_introduced": "20",
+      "name": "OH_Ability_CreateNativeChildProcessWithConfigs"
+  },
+  {
+      "first_introduced": "20",
+      "name": "OH_Ability_StartNativeChildProcessWithConfigs"
   }
 ]
