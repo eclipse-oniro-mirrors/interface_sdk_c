@@ -1639,6 +1639,31 @@ NAPI_EXTERN napi_status napi_define_class(napi_env env,
                                           size_t property_count,
                                           const napi_property_descriptor* properties,
                                           napi_value* result);
+
+/**
+ * @brief To create a new virtual machine context.
+ * @param env Current running virtual machine context.
+ * @param newEnv New generated virtual machine context which is expected to be used later.
+ * 
+ * @return Returns the function execution status.
+ *         {@link napi_ok } If the function executed successfully.\n
+ *         {@link napi_invalid_arg } If the param env is nullptr.\n
+ *         {@link napi_pending_exception } If have uncaught exception, or exception occurs in execution.\n
+ * @since 20
+ */
+NAPI_EXTERN napi_status napi_create_ark_context(napi_env env, napi_env *newEnv);
+
+/**
+ * @brief To destroy a virtual machine context which will not be used again.
+ * @param env Virtual machine context expected to be destroyed.
+ *
+ * @return Returns the function execution status.
+ *         {@link napi_ok } If the function executed successfully.\n
+ *         {@link napi_invalid_arg } If the param env is nullptr.\n
+ *         {@link napi_pending_exception } If have uncaught exception, or exception occurs in execution.\n
+ * @since 20
+ */
+NAPI_EXTERN napi_status napi_destroy_ark_context(napi_env env);
 #ifdef __cplusplus
 }
 #endif
