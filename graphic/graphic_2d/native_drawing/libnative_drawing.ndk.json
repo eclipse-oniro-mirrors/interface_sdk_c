@@ -283,6 +283,22 @@
         "name": "OH_Drawing_FontMeasureText"
     },
     {
+        "first_introduced": "20",
+        "name": "OH_Drawing_FontMeasureTextWithBrushOrPen"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_Drawing_FontGetWidthsBounds"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_Drawing_FontGetPos"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_Drawing_FontGetSpacing"
+    },
+    {
         "first_introduced": "12",
         "name": "OH_Drawing_FontSetBaselineSnap"
     },
