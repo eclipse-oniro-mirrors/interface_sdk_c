@@ -27,7 +27,7 @@ ohos_ndk_library("libddk_base") {
   output_name = "ddk_base"
   system_capability = "SystemCapability.Driver.DDK.Extension"
   system_capability_headers = [
-    "base/ddk_api.h",
-    "base/ddk_types.h",
+    "ddk/ddk_api.h",
+    "ddk/ddk_types.h",
   ]
 }
