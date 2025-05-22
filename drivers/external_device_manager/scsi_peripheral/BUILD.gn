@@ -23,7 +23,7 @@ ohos_ndk_headers("scsi_header") {
 
 ohos_ndk_library("libscsi") {
   ndk_description_file = "./libscsi.ndk.json"
-  min_compact_version = "16"
+  min_compact_version = "18"
   output_name = "scsi"
   system_capability = "SystemCapability.Driver.SCSI.Extension"
   system_capability_headers = [
