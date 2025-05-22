@@ -139,14 +139,14 @@ typedef struct ArkUI_SwiperIndicator ArkUI_SwiperIndicator;
 /**
  * @brief Defines the digital indicator style for the swiper.
  *
- * @since 18
+ * @since 19
  */
 typedef struct ArkUI_SwiperDigitIndicator ArkUI_SwiperDigitIndicator;
 
 /**
  * @brief Defines the arrow style for the swiper.
  *
- * @since 18
+ * @since 19
  */
 typedef struct ArkUI_SwiperArrowStyle ArkUI_SwiperArrowStyle;
 
