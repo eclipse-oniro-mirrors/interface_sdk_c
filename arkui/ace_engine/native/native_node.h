@@ -4328,6 +4328,28 @@ typedef enum {
      */
     NODE_TEXT_PICKER_ENABLE_HAPTIC_FEEDBACK = 15010,
     /**
+     * @brief Defines the background color and border radius of the selected items.
+     * This attribute can be set, reset, and obtained as required through APIs.
+     *
+     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
+     * .value[0].u32: background color, in 0xARGB format, for example, <b>0xFF1122FF</b>. \n
+     * 1: .value[1].f32: radius of the four corners. \n
+     * 2: .value[1].f32: radius of the upper left corner. \n
+     * .value[2].f32: radius of the upper right corner. \n
+     * .value[3].f32: radius of the lower left corner. \n
+     * .value[4].f32: radius of the lower right corner. \n
+     * \n
+     * Format of the return value {@link ArkUI_AttributeItem}:\n
+     * .value[0].u32: background color, in 0xARGB format, for example, <b>0xFF1122FF</b>. \n     *
+     * .value[1].f32: radius of the upper left corner. \n
+     * .value[2].f32: radius of the upper right corner. \n
+     * .value[3].f32: radius of the lower left corner. \n
+     * .value[4].f32: radius of the lower right corner. \n
+     *
+     * @since 20
+     */
+    NODE_TEXT_PICKER_SELECTED_BACKGROUND_STYLE = 15011,
+    /**
      * @brief Defines the style of the background in the selected state of the calendar picker.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
