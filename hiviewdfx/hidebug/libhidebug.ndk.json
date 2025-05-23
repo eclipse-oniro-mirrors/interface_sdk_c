@@ -40,6 +40,18 @@
       "name": "OH_HiDebug_GetGraphicsMemory"
     },
     {
+      "first_introduced": "20",
+      "name": "OH_HiDebug_SetMallocDispatchTable"
+    },
+    {
+      "first_introduced": "20",
+      "name": "OH_HiDebug_GetDefaultMallocDispatchTable"
+    },
+    {
+      "first_introduced": "20",
+      "name": "OH_HiDebug_RestoreMallocDispatchTable"
+    },
+    {
         "first_introduced": "20",
         "name": "OH_HiDebug_BacktraceFromFp"
     },
@@ -55,4 +67,5 @@
         "first_introduced": "20",
         "name": "OH_HiDebug_DestroyBacktraceObject"
     }
+
 ]
