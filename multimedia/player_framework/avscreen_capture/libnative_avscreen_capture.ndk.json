@@ -130,5 +130,9 @@
     {
         "first_introduced": "20",
         "name": "OH_AVScreenCapture_SetCaptureContentChangedCallback"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_AVScreenCapture_StrategyForPrivacyMaskMode"
     }
 ]
