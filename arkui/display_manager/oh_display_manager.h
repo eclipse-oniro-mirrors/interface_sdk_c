@@ -347,7 +347,6 @@ NativeDisplayManager_ErrorCode OH_NativeDisplayManager_CreatePrimaryDisplay(
  * @brief the callback function type when available area change.
  *
  * @param displayId The changed display id.
- * @syscap SystemCapability.Window.SessionManager
  * @since 20
  */
 typedef void (*OH_NativeDisplayManager_AvailableAreaChangeCallback)(uint64_t displayId);
@@ -358,10 +357,9 @@ typedef void (*OH_NativeDisplayManager_AvailableAreaChangeCallback)(uint64_t dis
  * @param availableAreaChangeCallback Available area change callback.
  * @param listenerIndex Indicates the pointer to an <b>uint32_t</b> object. used in unregister call.
  * @return { @link DISPLAY_MANAGER_OK } If the operation is successful
- *         { @link DISPLAY_MANAGER_ERROR_INVALID_PARAM } If Parameter error.
+ *         { @link DISPLAY_MANAGER_ERROR_ILLEGAL_PARAM } If Parameter illegal.
  *         { @link DISPLAY_MANAGER_ERROR_DEVICE_NOT_SUPPORTED } device not support.
  *         { @link DISPLAY_MANAGER_ERROR_SYSTEM_ABNORMAL } If display manager service works abnormally.
- * @syscap SystemCapability.Window.SessionManager
  * @since 20
  */
 NativeDisplayManager_ErrorCode OH_NativeDisplayManager_RegisterAvailableAreaChangeListener(
@@ -372,16 +370,15 @@ NativeDisplayManager_ErrorCode OH_NativeDisplayManager_RegisterAvailableAreaChan
  *
  * @param listenerIndex The display changed listener index.
  * @return { @link DISPLAY_MANAGER_OK } If the operation is successful
- *         { @link DISPLAY_MANAGER_ERROR_INVALID_PARAM } If Parameter error.
+ *         { @link DISPLAY_MANAGER_ERROR_ILLEGAL_PARAM } If Parameter illegal.
  *         { @link DISPLAY_MANAGER_ERROR_DEVICE_NOT_SUPPORTED } device not support.
  *         { @link DISPLAY_MANAGER_ERROR_SYSTEM_ABNORMAL } If display manager service works abnormally.
- * @syscap SystemCapability.Window.SessionManager
  * @since 20
  */
 NativeDisplayManager_ErrorCode OH_NativeDisplayManager_UnregisterAvailableAreaChangeListener(uint32_t listenerIndex);
 
 /**
- * @brief Obtain the available area.
+ * @brief Create the available area.
  *
  * @param displayId The display id.
  * @param availableArea Indicates the pointer to an <b>NativeDisplayManager_Rect</b> object.
@@ -389,16 +386,24 @@ NativeDisplayManager_ErrorCode OH_NativeDisplayManager_UnregisterAvailableAreaCh
  *         { @link DISPLAY_MANAGER_ERROR_DEVICE_NOT_SUPPORTED } device not support.
  *         { @link DISPLAY_MANAGER_ERROR_INVALID_SCREEN } Invalid screen.
  *         { @link DISPLAY_MANAGER_ERROR_SYSTEM_ABNORMAL } If display manager service works abnormally.
- * @syscap SystemCapability.Window.SessionManager
  * @since 20
  */
-NativeDisplayManager_ErrorCode OH_NativeDisplayManager_GetAvailableArea(uint64_t displayId, NativeDisplayManager_Rect **availableArea);
+NativeDisplayManager_ErrorCode OH_NativeDisplayManager_CreateAvailableArea(uint64_t displayId, NativeDisplayManager_Rect **availableArea);
+
+/**
+ * @brief Destroy an <b>NativeDisplayManager_Rect</b> object and reclaims the memory occupied by the object.
+ *
+ * @param availableArea Indicates the pointer to an <b>NativeDisplayManager_Rect</b> object.
+ * @return { @link DISPLAY_MANAGER_OK } If the operation is successful
+ *         { @link DISPLAY_MANAGER_ERROR_ILLEGAL_PARAM } If Parameter illegal.
+ * @since 20
+ */
+NativeDisplayManager_ErrorCode OH_NativeDisplayManager_DestroyAvailableArea(NativeDisplayManager_Rect *availableArea);
 
 /**
  * @brief the callback function type when display connect.
  *
  * @param displayId The added display id.
- * @syscap SystemCapability.Window.SessionManager
  * @since 20
  */
 typedef void (*OH_NativeDisplayManager_DisplayAddCallback)(uint64_t displayId);
@@ -410,9 +415,8 @@ typedef void (*OH_NativeDisplayManager_DisplayAddCallback)(uint64_t displayId);
  * @param listenerIndex Indicates the pointer to an <b>uint32_t</b> object. used in unregister call.
  * @return { @link DISPLAY_MANAGER_OK } If the operation is successful
  *         { @link DISPLAY_MANAGER_ERROR_DEVICE_NOT_SUPPORTED } device not support.
- *         { @link DISPLAY_MANAGER_ERROR_INVALID_PARAM } If Parameter error.
+ *         { @link DISPLAY_MANAGER_ERROR_ILLEGAL_PARAM } If Parameter illegal.
  *         { @link DISPLAY_MANAGER_ERROR_SYSTEM_ABNORMAL } If display manager service works abnormally.
- * @syscap SystemCapability.Window.SessionManager
  * @since 20
  */
 NativeDisplayManager_ErrorCode OH_NativeDisplayManager_RegisterDisplayAddListener(
@@ -424,9 +428,8 @@ NativeDisplayManager_ErrorCode OH_NativeDisplayManager_RegisterDisplayAddListene
  * @param listenerIndex The display add listener index.
  * @return { @link DISPLAY_MANAGER_OK } If the operation is successful
  *         { @link DISPLAY_MANAGER_ERROR_DEVICE_NOT_SUPPORTED } device not support.
- *         { @link DISPLAY_MANAGER_ERROR_INVALID_PARAM } If Parameter error.
+ *         { @link DISPLAY_MANAGER_ERROR_ILLEGAL_PARAM } If Parameter illegal.
  *         { @link DISPLAY_MANAGER_ERROR_SYSTEM_ABNORMAL } If display manager service works abnormally.
- * @syscap SystemCapability.Window.SessionManager
  * @since 20
  */
 NativeDisplayManager_ErrorCode OH_NativeDisplayManager_UnregisterDisplayAddListener(uint32_t listenerIndex);
@@ -435,7 +438,6 @@ NativeDisplayManager_ErrorCode OH_NativeDisplayManager_UnregisterDisplayAddListe
  * @brief the callback function type when display disconnect.
  *
  * @param displayId The removed display id.
- * @syscap SystemCapability.Window.SessionManager
  * @since 20
  */
 typedef void (*OH_NativeDisplayManager_DisplayRemoveCallback)(uint64_t displayId);
@@ -447,9 +449,8 @@ typedef void (*OH_NativeDisplayManager_DisplayRemoveCallback)(uint64_t displayId
  * @param listenerIndex Indicates the pointer to an <b>uint32_t</b> object. used in unregister call.
  * @return { @link DISPLAY_MANAGER_OK } If the operation is successful
  *         { @link DISPLAY_MANAGER_ERROR_DEVICE_NOT_SUPPORTED } device not support.
- *         { @link DISPLAY_MANAGER_ERROR_INVALID_PARAM } If Parameter error.
+ *         { @link DISPLAY_MANAGER_ERROR_ILLEGAL_PARAM } If Parameter illegal.
  *         { @link DISPLAY_MANAGER_ERROR_SYSTEM_ABNORMAL } If display manager service works abnormally.
- * @syscap SystemCapability.Window.SessionManager
  * @since 20
  */
 NativeDisplayManager_ErrorCode OH_NativeDisplayManager_RegisterDisplayRemoveListener(
@@ -461,9 +462,8 @@ NativeDisplayManager_ErrorCode OH_NativeDisplayManager_RegisterDisplayRemoveList
  * @param listenerIndex The display remove listener index.
  * @return { @link DISPLAY_MANAGER_OK } If the operation is successful
  *         { @link DISPLAY_MANAGER_ERROR_DEVICE_NOT_SUPPORTED } device not support.
- *         { @link DISPLAY_MANAGER_ERROR_INVALID_PARAM } If Parameter error.
+ *         { @link DISPLAY_MANAGER_ERROR_ILLEGAL_PARAM } If Parameter illegal.
  *         { @link DISPLAY_MANAGER_ERROR_SYSTEM_ABNORMAL } If display manager service works abnormally.
- * @syscap SystemCapability.Window.SessionManager
  * @since 20
  */
 NativeDisplayManager_ErrorCode OH_NativeDisplayManager_UnregisterDisplayRemoveListener(uint32_t listenerIndex);
@@ -477,7 +477,6 @@ NativeDisplayManager_ErrorCode OH_NativeDisplayManager_UnregisterDisplayRemoveLi
  *         { @link DISPLAY_MANAGER_ERROR_DEVICE_NOT_SUPPORTED } device not support.
  *         { @link DISPLAY_MANAGER_ERROR_INVALID_SCREEN } Invalid screen.
  *         { @link DISPLAY_MANAGER_ERROR_SYSTEM_ABNORMAL } If display manager service works abnormally.
- * @syscap SystemCapability.Window.SessionManager
  * @since 20
  */
 NativeDisplayManager_ErrorCode OH_NativeDisplayManager_GetDisplaySourceMode(uint64_t displayId, NativeDisplayManager_SourceMode *sourceMode);
@@ -492,7 +491,6 @@ NativeDisplayManager_ErrorCode OH_NativeDisplayManager_GetDisplaySourceMode(uint
  *         { @link DISPLAY_MANAGER_ERROR_DEVICE_NOT_SUPPORTED } device not support.
  *         { @link DISPLAY_MANAGER_ERROR_INVALID_SCREEN } Invalid screen.
  *         { @link DISPLAY_MANAGER_ERROR_SYSTEM_ABNORMAL } If display manager service works abnormally.
- * @syscap SystemCapability.Window.SessionManager
  * @since 20
  */
 NativeDisplayManager_ErrorCode OH_NativeDisplayManager_GetDisplayPosition(uint64_t displayId, int32_t *x, int32_t *y);
