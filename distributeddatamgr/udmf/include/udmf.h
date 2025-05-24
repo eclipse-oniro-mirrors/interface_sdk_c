@@ -205,14 +205,14 @@ typedef void (*OH_Udmf_DataProgressListener)(OH_Udmf_ProgressInfo* progressInfo,
 typedef struct OH_UdmfOptions OH_UdmfOptions;
 
 /**
- * @brief Represents the parameters of udmf get data with data load.
+ * @brief Indicates data loading params.
  *
  * @since 20
  */
 typedef struct OH_UdmfDataLoadParams OH_UdmfDataLoadParams;
 
 /**
- * @brief Represents the udmf data load information.
+ * @brief Indicates data loading information.
  *
  * @since 20
  */
