@@ -300,7 +300,7 @@ OH_Drawing_ErrorCode OH_Drawing_FontMeasureText(const OH_Drawing_Font* font, con
  * @version 1.0
  */
 OH_Drawing_ErrorCode OH_Drawing_FontMeasureTextWithBrushOrPen(const OH_Drawing_Font* font, const void* text,
-    size_t byteLength, OH_Drawing_TextEncoding encoding, const OH_Drawing_Brush* brush, const OH_Drawing_Brush* pen,
+    size_t byteLength, OH_Drawing_TextEncoding encoding, const OH_Drawing_Brush* brush, const OH_Drawing_Pen* pen,
     OH_Drawing_Rect* bounds, float* textWidth);
 
 /**
@@ -322,7 +322,7 @@ OH_Drawing_ErrorCode OH_Drawing_FontMeasureTextWithBrushOrPen(const OH_Drawing_F
  * @version 1.0
  */
 OH_Drawing_ErrorCode OH_Drawing_FontGetWidthsBounds(const OH_Drawing_Font* font, const uint16_t* glyphs, int count,
-    const OH_Drawing_Brush* brush, const OH_Drawing_Brush* pen, float* widths, OH_Drawing_Array* bounds);
+    const OH_Drawing_Brush* brush, const OH_Drawing_Pen* pen, float* widths, OH_Drawing_Array* bounds);
 
 /**
  * @brief Retrieves the positions for each glyph, beginning at the specified origin.
@@ -332,7 +332,7 @@ OH_Drawing_ErrorCode OH_Drawing_FontGetWidthsBounds(const OH_Drawing_Font* font,
  * @param glyphs Indicates the array of glyph indices to be measured.
  * @param count Indicates the number of glyphs.
  * @param origin Indicates the location of the first glyph.
- * @param points Indicates the relative position for each glyph returned to tha caller.
+ * @param points Indicates the relative position for each glyph returned to the caller.
  * @return Returns the error code.
  *         Returns {@link OH_DRAWING_SUCCESS} if the operation is successful.
  *         Returns {@link OH_DRAWING_ERROR_INVALID_PARAMETER} if any of font, glyphs and points is nullptr or
@@ -341,7 +341,7 @@ OH_Drawing_ErrorCode OH_Drawing_FontGetWidthsBounds(const OH_Drawing_Font* font,
  * @version 1.0
  */
 OH_Drawing_ErrorCode OH_Drawing_FontGetPos(const OH_Drawing_Font* font, const uint16_t* glyphs, int count,
-    const OH_Drawing_Point* origin, OH_Drawing_Point2D* bounds);
+    const OH_Drawing_Point* origin, OH_Drawing_Point2D* points);
 
 /**
  * @brief Returns the recommended spacing between lines.
