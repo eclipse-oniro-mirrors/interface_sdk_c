@@ -224,11 +224,11 @@ typedef struct Http_Buffer {
  */
 typedef enum Http_AddressFamilyType {
   /** Default, The system automatically selects the IPv4 or IPv6 address of the domain name. */
-  HTTP_ADDRESS_FAIMILY_DEFAULT = 0,
+  HTTP_ADDRESS_FAMILY_DEFAULT = 0,
   /** IPv4, Selects the IPv4 address of the domain name. */
-  HTTP_ADDRESS_FAIMILY_ONLY_V4 = 1,
+  HTTP_ADDRESS_FAMILY_ONLY_V4 = 1,
   /** IPv6, Selects the IPv4 address of the domain name. */
-  HTTP_ADDRESS_FAIMILY_ONLY_V6 = 2
+  HTTP_ADDRESS_FAMILY_ONLY_V6 = 2
 } Http_AddressFamilyType;
  
 /**
