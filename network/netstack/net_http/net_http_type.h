@@ -50,73 +50,73 @@ extern "C" {
  */
 typedef enum Http_ErrCode {
   /** Operation success. */
-  HTTP_RESULT_OK = 0,
+  HTTP_NDK_RESULT_OK = 0,
   /** @brief Parameter error. */
-  HTTP_PARAMETER_ERROR = 401,
+  HTTP_NDK_PARAMETER_ERROR = 401,
   /** @brief Permission denied. */
-  HTTP_PERMISSION_DENIED = 201,
+  HTTP_NDK_PERMISSION_DENIED = 201,
   /** @brief Error code base. */
-  HTTP_NETSTACK_E_BASE = 2300000,
+  HTTP_NDK_NETSTACK_E_BASE = 2300000,
   /** @brief Unsupported protocol. */
-  HTTP_UNSUPPORTED_PROTOCOL = (HTTP_NETSTACK_E_BASE + 1),
+  HTTP_NDK_UNSUPPORTED_PROTOCOL = (HTTP_NDK_NETSTACK_E_BASE + 1),
   /** @brief Invalid URL format or missing URL. */
-  HTTP_INVALID_URL = (HTTP_NETSTACK_E_BASE + 3),
+  HTTP_NDK_INVALID_URL = (HTTP_NDK_NETSTACK_E_BASE + 3),
   /** @brief Failed to resolve the proxy name. */
-  HTTP_RESOLVE_PROXY_FAILED = (HTTP_NETSTACK_E_BASE + 5),
+  HTTP_NDK_RESOLVE_PROXY_FAILED = (HTTP_NDK_NETSTACK_E_BASE + 5),
   /** @brief Failed to resolve the host name. */
-  HTTP_RESOLVE_HOST_FAILED = (HTTP_NETSTACK_E_BASE + 6),
+  HTTP_NDK_RESOLVE_HOST_FAILED = (HTTP_NDK_NETSTACK_E_BASE + 6),
   /** @brief Failed to connect to the server. */
-  HTTP_CONNECT_SERVER_FAILED = (HTTP_NETSTACK_E_BASE + 7),
+  HTTP_NDK_CONNECT_SERVER_FAILED = (HTTP_NDK_NETSTACK_E_BASE + 7),
   /** @brief Invalid server response. */
-  HTTP_INVALID_SERVER_RESPONSE = (HTTP_NETSTACK_E_BASE + 8),
+  HTTP_NDK_INVALID_SERVER_RESPONSE = (HTTP_NDK_NETSTACK_E_BASE + 8),
   /** @brief Access to the remote resource denied. */
-  HTTP_ACCESS_REMOTE_DENIED = (HTTP_NETSTACK_E_BASE + 9),
+  HTTP_NDK_ACCESS_REMOTE_DENIED = (HTTP_NDK_NETSTACK_E_BASE + 9),
   /** @brief Error in the HTTP2 framing layer. */
-  HTTP_HTTP2_FRAMING_ERROR = (HTTP_NETSTACK_E_BASE + 16),
+  HTTP_NDK_HTTP2_FRAMING_ERROR = (HTTP_NDK_NETSTACK_E_BASE + 16),
   /** @brief Transferred a partial file. */
-  HTTP_TRANSFER_PARTIAL_FILE = (HTTP_NETSTACK_E_BASE + 18),
+  HTTP_NDK_TRANSFER_PARTIAL_FILE = (HTTP_NDK_NETSTACK_E_BASE + 18),
   /** @brief Failed to write the received data to the disk or application. */
-  HTTP_WRITE_DATA_FAILED = (HTTP_NETSTACK_E_BASE + 23),
+  HTTP_NDK_WRITE_DATA_FAILED = (HTTP_NDK_NETSTACK_E_BASE + 23),
   /** @brief Upload failed. */
-  HTTP_UPLOAD_FAILED = (HTTP_NETSTACK_E_BASE + 25),
+  HTTP_NDK_UPLOAD_FAILED = (HTTP_NDK_NETSTACK_E_BASE + 25),
   /** @brief Failed to open or read local data from the file or application. */
-  HTTP_OPEN_LOCAL_DATA_FAILED = (HTTP_NETSTACK_E_BASE + 26),
+  HTTP_NDK_OPEN_LOCAL_DATA_FAILED = (HTTP_NDK_NETSTACK_E_BASE + 26),
   /** @brief Out of memory. */
-  HTTP_OUT_OF_MEMORY = (HTTP_NETSTACK_E_BASE + 27),
+  HTTP_NDK_OUT_OF_MEMORY = (HTTP_NDK_NETSTACK_E_BASE + 27),
   /** @brief Operation timeout. */
-  HTTP_OPERATION_TIMEOUT = (HTTP_NETSTACK_E_BASE + 28),
+  HTTP_NDK_OPERATION_TIMEOUT = (HTTP_NDK_NETSTACK_E_BASE + 28),
   /** @brief The number of redirections reaches the maximum allowed. */
-  HTTP_REDIRECTIONS_TOO_LARGE = (HTTP_NETSTACK_E_BASE + 47),
+  HTTP_NDK_REDIRECTIONS_TOO_LARGE = (HTTP_NDK_NETSTACK_E_BASE + 47),
   /** @brief The server returned nothing (no header or data). */
-  HTTP_SERVER_RETURNED_NOTHING = (HTTP_NETSTACK_E_BASE + 52),
+  HTTP_NDK_SERVER_RETURNED_NOTHING = (HTTP_NDK_NETSTACK_E_BASE + 52),
   /** @brief Failed to send data to the peer. */
-  HTTP_SEND_DATA_FAILED = (HTTP_NETSTACK_E_BASE + 55),
+  HTTP_NDK_SEND_DATA_FAILED = (HTTP_NDK_NETSTACK_E_BASE + 55),
   /** @brief Failed to receive data from the peer. */
-  HTTP_RECEIVE_DATA_FAILED = (HTTP_NETSTACK_E_BASE + 56),
+  HTTP_NDK_RECEIVE_DATA_FAILED = (HTTP_NDK_NETSTACK_E_BASE + 56),
   /** @brief Local SSL certificate error. */
-  HTTP_SSL_CERTIFICATE_ERROR = (HTTP_NETSTACK_E_BASE + 58),
+  HTTP_NDK_SSL_CERTIFICATE_ERROR = (HTTP_NDK_NETSTACK_E_BASE + 58),
   /** @brief The specified SSL cipher cannot be used. */
-  HTTP_SSL_CIPHER_USED_ERROR = (HTTP_NETSTACK_E_BASE + 59),
+  HTTP_NDK_SSL_CIPHER_USED_ERROR = (HTTP_NDK_NETSTACK_E_BASE + 59),
   /** @brief Invalid SSL peer certificate or SSH remote key. */
-  HTTP_INVALID_SSL_PEER_CERT = (HTTP_NETSTACK_E_BASE + 60),
+  HTTP_NDK_INVALID_SSL_PEER_CERT = (HTTP_NDK_NETSTACK_E_BASE + 60),
   /** @brief Invalid HTTP encoding format. */
-  HTTP_INVALID_ENCODING_FORMAT = (HTTP_NETSTACK_E_BASE + 61),
+  HTTP_NDK_INVALID_ENCODING_FORMAT = (HTTP_NDK_NETSTACK_E_BASE + 61),
   /** @brief Maximum file size exceeded. */
-  HTTP_FILE_TOO_LARGE = (HTTP_NETSTACK_E_BASE + 63),
+  HTTP_NDK_FILE_TOO_LARGE = (HTTP_NDK_NETSTACK_E_BASE + 63),
   /** @brief Remote disk full. */
-  HTTP_REMOTE_DISK_FULL = (HTTP_NETSTACK_E_BASE + 70),
+  HTTP_NDK_REMOTE_DISK_FULL = (HTTP_NDK_NETSTACK_E_BASE + 70),
   /** @brief Remote file already exists. */
-  HTTP_REMOTE_FILE_EXISTS = (HTTP_NETSTACK_E_BASE + 73),
+  HTTP_NDK_REMOTE_FILE_EXISTS = (HTTP_NDK_NETSTACK_E_BASE + 73),
   /** @brief The SSL CA certificate does not exist or is inaccessible. */
-  HTTP_SSL_CA_NOT_EXIST = (HTTP_NETSTACK_E_BASE + 77),
+  HTTP_NDK_SSL_CA_NOT_EXIST = (HTTP_NDK_NETSTACK_E_BASE + 77),
   /** @brief Remote file not found. */
-  HTTP_REMOTE_FILE_NOT_FOUND = (HTTP_NETSTACK_E_BASE + 78),
+  HTTP_NDK_REMOTE_FILE_NOT_FOUND = (HTTP_NDK_NETSTACK_E_BASE + 78),
   /** @brief Authentication error. */
-  HTTP_AUTHENTICATION_ERROR = (HTTP_NETSTACK_E_BASE + 94),
+  HTTP_NDK_AUTHENTICATION_ERROR = (HTTP_NDK_NETSTACK_E_BASE + 94),
   /** @brief It is not allowed to access this domain. */
-  HTTP_ACCESS_DOMAIN_NOT_ALLOWED = (HTTP_NETSTACK_E_BASE + 998),
+  HTTP_NDK_ACCESS_DOMAIN_NOT_ALLOWED = (HTTP_NDK_NETSTACK_E_BASE + 998),
   /** @brief Unknown error. */
-  HTTP_UNKNOWN_ERROR = (HTTP_NETSTACK_E_BASE + 999)
+  HTTP_NDK_UNKNOWN_ERROR = (HTTP_NDK_NETSTACK_E_BASE + 999)
 } Http_ErrCode;
 
 /**
@@ -539,7 +539,7 @@ typedef void (*Http_OnProgressCallback)(uint64_t totalSize, uint64_t transferred
 typedef void (*Http_OnHeaderReceiveCallback)(Http_Headers *headers);
 
 /**
- * @brief Empty callback function for requested DataEnd or Canceled event callback.
+ * @brief Empty callback function for requested DataEnd or Canceled event callback
  *
  * @since 20
  */
