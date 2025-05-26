@@ -224,11 +224,11 @@ typedef struct Http_Buffer {
  */
 typedef enum Http_AddressFamilyType {
   /** Default, The system automatically selects the IPv4 or IPv6 address of the domain name. */
-  DEFAULT = 0,
+  HTTP_ADDRESS_FAIMILY_DEFAULT = 0,
   /** IPv4, Selects the IPv4 address of the domain name. */
-  ONLY_V4 = 1,
+  HTTP_ADDRESS_FAIMILY_ONLY_V4 = 1,
   /** IPv6, Selects the IPv4 address of the domain name. */
-  ONLY_V6 = 2
+  HTTP_ADDRESS_FAIMILY_ONLY_V6 = 2
 } Http_AddressFamilyType;
  
 /**
@@ -292,13 +292,13 @@ typedef enum Http_AddressFamilyType {
  */
 typedef enum Http_HttpProtocol {
   /** Default choose by curl. */
-  HTTP_NONE = 0,
+  OH_HTTP_NONE = 0,
   /** HTTP 1.1 version. */
-  HTTP1_1,
+  OH_HTTP1_1,
   /** HTTP 2 version. */
-  HTTP2,
+  OH_HTTP2,
   /** HTTP 3 version. */
-  HTTP3
+  OH_HTTP3
 } Http_HttpProtocol;
 
 /**
@@ -308,11 +308,11 @@ typedef enum Http_HttpProtocol {
  */
 typedef enum Http_CertType {
   /** PEM Cert Type. */
-  PEM = 0,
+  OH_HTTP_PEM = 0,
   /** DER Cert Type. */
-  DER = 1,
+  OH_HTTP_DER = 1,
   /** P12 Cert Type. */
-  P12 = 2
+  OH_HTTP_P12 = 2
 } Http_CertType;
 
 /**
