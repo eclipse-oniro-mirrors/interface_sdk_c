@@ -58,65 +58,65 @@ typedef enum Http_ErrCode {
   /** @brief Error code base. */
   HTTP_NETSTACK_E_BASE = 2300000,
   /** @brief Unsupported protocol. */
-  HTTP_UNSUPPORTED_PROTOCOL = (NETSTACK_E_BASE + 1),
+  HTTP_UNSUPPORTED_PROTOCOL = (HTTP_NETSTACK_E_BASE + 1),
   /** @brief Invalid URL format or missing URL. */
-  HTTP_INVALID_URL = (NETSTACK_E_BASE + 3),
+  HTTP_INVALID_URL = (HTTP_NETSTACK_E_BASE + 3),
   /** @brief Failed to resolve the proxy name. */
-  HTTP_RESOLVE_PROXY_FAILED = (NETSTACK_E_BASE + 5),
+  HTTP_RESOLVE_PROXY_FAILED = (HTTP_NETSTACK_E_BASE + 5),
   /** @brief Failed to resolve the host name. */
-  HTTP_RESOLVE_HOST_FAILED = (NETSTACK_E_BASE + 6),
+  HTTP_RESOLVE_HOST_FAILED = (HTTP_NETSTACK_E_BASE + 6),
   /** @brief Failed to connect to the server. */
-  HTTP_CONNECT_SERVER_FAILED = (NETSTACK_E_BASE + 7),
+  HTTP_CONNECT_SERVER_FAILED = (HTTP_NETSTACK_E_BASE + 7),
   /** @brief Invalid server response. */
-  HTTP_INVALID_SERVER_RESPONSE = (NETSTACK_E_BASE + 8),
+  HTTP_INVALID_SERVER_RESPONSE = (HTTP_NETSTACK_E_BASE + 8),
   /** @brief Access to the remote resource denied. */
-  HTTP_ACCESS_REMOTE_DENIED = (NETSTACK_E_BASE + 9),
+  HTTP_ACCESS_REMOTE_DENIED = (HTTP_NETSTACK_E_BASE + 9),
   /** @brief Error in the HTTP2 framing layer. */
-  HTTP_HTTP2_FRAMING_ERROR = (NETSTACK_E_BASE + 16),
+  HTTP_HTTP2_FRAMING_ERROR = (HTTP_NETSTACK_E_BASE + 16),
   /** @brief Transferred a partial file. */
-  HTTP_TRANSFER_PARTIAL_FILE = (NETSTACK_E_BASE + 18),
+  HTTP_TRANSFER_PARTIAL_FILE = (HTTP_NETSTACK_E_BASE + 18),
   /** @brief Failed to write the received data to the disk or application. */
-  HTTP_WRITE_DATA_FAILED = (NETSTACK_E_BASE + 23),
+  HTTP_WRITE_DATA_FAILED = (HTTP_NETSTACK_E_BASE + 23),
   /** @brief Upload failed. */
-  HTTP_UPLOAD_FAILED = (NETSTACK_E_BASE + 25),
+  HTTP_UPLOAD_FAILED = (HTTP_NETSTACK_E_BASE + 25),
   /** @brief Failed to open or read local data from the file or application. */
-  HTTP_OPEN_LOCAL_DATA_FAILED = (NETSTACK_E_BASE + 26),
+  HTTP_OPEN_LOCAL_DATA_FAILED = (HTTP_NETSTACK_E_BASE + 26),
   /** @brief Out of memory. */
-  HTTP_OUT_OF_MEMORY = (NETSTACK_E_BASE + 27),
+  HTTP_OUT_OF_MEMORY = (HTTP_NETSTACK_E_BASE + 27),
   /** @brief Operation timeout. */
-  HTTP_OPERATION_TIMEOUT = (NETSTACK_E_BASE + 28),
+  HTTP_OPERATION_TIMEOUT = (HTTP_NETSTACK_E_BASE + 28),
   /** @brief The number of redirections reaches the maximum allowed. */
-  HTTP_REDIRECTIONS_TOO_LARGE = (NETSTACK_E_BASE + 47),
+  HTTP_REDIRECTIONS_TOO_LARGE = (HTTP_NETSTACK_E_BASE + 47),
   /** @brief The server returned nothing (no header or data). */
-  HTTP_SERVER_RETURNED_NOTHING = (NETSTACK_E_BASE + 52),
+  HTTP_SERVER_RETURNED_NOTHING = (HTTP_NETSTACK_E_BASE + 52),
   /** @brief Failed to send data to the peer. */
-  HTTP_SEND_DATA_FAILED = (NETSTACK_E_BASE + 55),
+  HTTP_SEND_DATA_FAILED = (HTTP_NETSTACK_E_BASE + 55),
   /** @brief Failed to receive data from the peer. */
-  HTTP_RECEIVE_DATA_FAILED = (NETSTACK_E_BASE + 56),
+  HTTP_RECEIVE_DATA_FAILED = (HTTP_NETSTACK_E_BASE + 56),
   /** @brief Local SSL certificate error. */
-  HTTP_SSL_CERTIFICATE_ERROR = (NETSTACK_E_BASE + 58),
+  HTTP_SSL_CERTIFICATE_ERROR = (HTTP_NETSTACK_E_BASE + 58),
   /** @brief The specified SSL cipher cannot be used. */
-  HTTP_SSL_CIPHER_USED_ERROR = (NETSTACK_E_BASE + 59),
+  HTTP_SSL_CIPHER_USED_ERROR = (HTTP_NETSTACK_E_BASE + 59),
   /** @brief Invalid SSL peer certificate or SSH remote key. */
-  HTTP_INVALID_SSL_PEER_CERT = (NETSTACK_E_BASE + 60),
+  HTTP_INVALID_SSL_PEER_CERT = (HTTP_NETSTACK_E_BASE + 60),
   /** @brief Invalid HTTP encoding format. */
-  HTTP_INVALID_ENCODING_FORMAT = (NETSTACK_E_BASE + 61),
+  HTTP_INVALID_ENCODING_FORMAT = (HTTP_NETSTACK_E_BASE + 61),
   /** @brief Maximum file size exceeded. */
-  HTTP_FILE_TOO_LARGE = (NETSTACK_E_BASE + 63),
+  HTTP_FILE_TOO_LARGE = (HTTP_NETSTACK_E_BASE + 63),
   /** @brief Remote disk full. */
-  HTTP_REMOTE_DISK_FULL = (NETSTACK_E_BASE + 70),
+  HTTP_REMOTE_DISK_FULL = (HTTP_NETSTACK_E_BASE + 70),
   /** @brief Remote file already exists. */
-  HTTP_REMOTE_FILE_EXISTS = (NETSTACK_E_BASE + 73),
+  HTTP_REMOTE_FILE_EXISTS = (HTTP_NETSTACK_E_BASE + 73),
   /** @brief The SSL CA certificate does not exist or is inaccessible. */
-  HTTP_SSL_CA_NOT_EXIST = (NETSTACK_E_BASE + 77),
+  HTTP_SSL_CA_NOT_EXIST = (HTTP_NETSTACK_E_BASE + 77),
   /** @brief Remote file not found. */
-  HTTP_REMOTE_FILE_NOT_FOUND = (NETSTACK_E_BASE + 78),
+  HTTP_REMOTE_FILE_NOT_FOUND = (HTTP_NETSTACK_E_BASE + 78),
   /** @brief Authentication error. */
-  HTTP_AUTHENTICATION_ERROR = (NETSTACK_E_BASE + 94),
+  HTTP_AUTHENTICATION_ERROR = (HTTP_NETSTACK_E_BASE + 94),
   /** @brief It is not allowed to access this domain. */
-  HTTP_ACCESS_DOMAIN_NOT_ALLOWED = (NETSTACK_E_BASE + 998),
+  HTTP_ACCESS_DOMAIN_NOT_ALLOWED = (HTTP_NETSTACK_E_BASE + 998),
   /** @brief Unknown error. */
-  HTTP_UNKNOWN_ERROR = (NETSTACK_E_BASE + 999)
+  HTTP_UNKNOWN_ERROR = (HTTP_NETSTACK_E_BASE + 999)
 } Http_ErrCode;
 
 /**
