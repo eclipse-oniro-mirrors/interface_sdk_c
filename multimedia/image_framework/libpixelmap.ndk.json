@@ -16,6 +16,10 @@
         "name": "OH_PixelmapInitializationOptions_GetHeight"
     },
     {
+        "first_introduced": "20",
+        "name": "OH_PixelmapImageInfo_GetAlphaMode"
+    },
+    {
         "first_introduced": "12",
         "name": "OH_PixelmapInitializationOptions_SetHeight"
     },
@@ -100,6 +104,10 @@
         "name": "OH_PixelmapNative_CreatePixelmap"
     },
     {
+        "first_introduced": "20",
+        "name": "OH_PixelmapNative_CreatePixelmapUsingAllocator"
+    },
+    {
         "first_introduced": "12",
         "name": "OH_PixelmapNative_ReadPixels"
     },
@@ -170,6 +178,10 @@
     {
         "first_introduced": "12",
         "name": "OH_PixelmapNative_CreateEmptyPixelmap"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_PixelmapNative_CreateEmptyPixelmapUsingAllocator"
     },
     {
         "first_introduced": "12",
