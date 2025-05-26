@@ -539,7 +539,7 @@ typedef void (*Http_OnProgressCallback)(uint64_t totalSize, uint64_t transferred
 typedef void (*Http_OnHeaderReceiveCallback)(Http_Headers *headers);
 
 /**
- * @brief Empty callback function for requested DataEnd or Canceled event callback。
+ * @brief Empty callback function for requested DataEnd or Canceled event callback.
  *
  * @since 20
  */
