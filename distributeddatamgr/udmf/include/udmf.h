@@ -984,9 +984,9 @@ int OH_Udmf_UpdateUnifiedData(OH_UdmfOptions* options, OH_UdmfData* unifiedData)
 int OH_Udmf_DeleteUnifiedData(OH_UdmfOptions* options, OH_UdmfData** dataArray, unsigned int* dataSize);
 
 /**
- * @brief Destory data array memory.
+ * @brief Destroy data array memory.
  *
- * @param dataArray Represents a pointer to {@link OH_UdmfData}.
+ * @param dataArray Represents a point to {@link OH_UdmfData}.
  * @param dataSize Represents data size in list.
  * @see OH_UdmfData
  * @since 20
