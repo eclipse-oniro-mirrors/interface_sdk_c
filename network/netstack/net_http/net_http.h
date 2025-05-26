@@ -60,7 +60,7 @@ Http_Headers *OH_Http_CreateHeaders(void);
 /**
  * @brief Destroys the headers of a request or response.
  *
- * @param headers Pointer to the {@link Http_Headers} to be destroyed.
+ * @param headers Pointer to the {@link Http_Headers} to be destroyed, headers ends with null.
  * @syscap SystemCapability.Communication.NetStack
  * @since 20
  * @version 1.0
@@ -106,7 +106,7 @@ Http_HeaderEntry *OH_Http_GetHeaderEntries(Http_Headers *headers);
 /**
  * @brief Destroys all key-value pairs obtained in {@link OH_Http_GetHeaderEntries}.
  *
- * @param headerEntry Pointer to the {@link Http_HeaderEntry} to be destroyed.
+ * @param headerEntry Pointer to the {@link Http_HeaderEntry} to be destroyed, headerEntry ends with null.
  * @syscap SystemCapability.Communication.NetStack
  * @since 20
  * @version 1.0
