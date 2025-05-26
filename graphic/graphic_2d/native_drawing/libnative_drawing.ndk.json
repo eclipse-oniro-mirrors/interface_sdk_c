@@ -1016,7 +1016,7 @@
     },
     {
         "first_introduced": "20",
-        "name": "OH_Drawing_UnegisterFont"
+        "name": "OH_Drawing_UnregisterFont"
     },
     {
         "first_introduced": "12",
@@ -1860,6 +1860,6 @@
     },
     {
         "first_introduced": "20",
-        "name": "OH_Drawing_SetNoGlyphShow"
+        "name": "OH_Drawing_SetTextNoGlyphShow"
     }
 ]
