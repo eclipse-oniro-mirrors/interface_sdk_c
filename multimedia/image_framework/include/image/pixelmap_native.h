@@ -583,7 +583,7 @@ Image_ErrorCode OH_PixelmapImageInfo_GetHeight(OH_Pixelmap_ImageInfo *info, uint
  * @param alphaMode The number of imageinfo alphaMode.
  * @return Image functions result code.
  *     {@link IMAGE_SUCCESS} if the execution is successful.
- *     {@link IMAGE_BAD_PARAMETER} pixelmapNative is nullptr, or pixelmapNapi is not a pixelmap.
+ *     {@link IMAGE_BAD_PARAMETER} info is nullptr, or alphaMode is nullptr.
  * @since 20
  */
 Image_ErrorCode OH_PixelmapImageInfo_GetAlphaMode(OH_Pixelmap_ImageInfo *info, int32_t *alphaMode);
