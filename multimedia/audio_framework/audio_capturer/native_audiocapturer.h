@@ -335,13 +335,13 @@ typedef void (*OH_AudioCapturer_OnInterruptCallback)(OH_AudioCapturer* capturer,
  *
  * This function is similar with OH_AudioCapturer_Callbacks_Struct.OH_AudioCapturer_OnError.
  *
- * @param renderer AudioCapturer where this callback occurs.
+ * @param capturer AudioCapturer where this callback occurs.
  * @param userData User data which is passed by user.
  * @param error Error while using AudioCapturer.
  * @see OH_AudioCapturer_Callbacks_Struct.OH_AudioCapturer_OnError
  * @since 20
  */
-typedef void (*OH_AudioCapturer_OnErrorCallback)(OH_AudioCapturer* renderer, void* userData,
+typedef void (*OH_AudioCapturer_OnErrorCallback)(OH_AudioCapturer* capturer, void* userData,
     OH_AudioStream_Result error);
 
 /**
