@@ -189,7 +189,7 @@ typedef enum {
      * DMA supported hdr metadata.
      * @since 20
      */
-    IMAGE_ALLOCATOR_MODE_UNSUPPROTED = 7600501,
+    IMAGE_ALLOCATOR_MODE_UNSUPPORTED = 7600501,
     /** unknown error */
     IMAGE_UNKNOWN_ERROR = 7600901,
     /** decode data source exception */
@@ -265,16 +265,19 @@ typedef enum {
     /**
      * The system determines which memory to use to create the PixelMap.
      * 
+     * @since 20
      */
     IMAGE_ALLOCATOR_MODE_AUTO = 0,
     /**
      * Use DMA buffer to create the PixelMap.
      * 
+     * @since 20
      */
     IMAGE_ALLOCATOR_MODE_DMA = 1,
     /**
      * Use share memory to create the PixelMap.
      * 
+     * @since 20
      */
     IMAGE_ALLOCATOR_MODE_SHARED_MEMORY = 2,
 } IMAGE_ALLOCATOR_MODE;
