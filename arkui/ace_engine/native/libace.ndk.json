@@ -3040,6 +3040,14 @@
         "name": "OH_ArkUI_EnableDropDisallowedBadge"
     },
     {
+        "first_introduced": "20",
+        "name": "OH_ArkUI_DragEvent_SetDataLoadParams"
+    },
+        {
+        "first_introduced": "20",
+        "name": "OH_ArkUI_DragAction_SetDataLoadParams"
+    },
+    {
         "first_introduced": "18",
         "name": "OH_ArkUI_GestureInterrupter_GetUserData"
     },
