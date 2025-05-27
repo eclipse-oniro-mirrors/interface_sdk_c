@@ -233,6 +233,11 @@ typedef enum {
     IMAGE_PACKER_INVALID_PARAMETER = 7800202,
     /** encode failed */
     IMAGE_ENCODE_FAILED = 7800301,
+    /**
+     * @error Invalid parameter for ImageReceiver.
+     * @since 20
+     */
+    IMAGE_RECEIVER_INVALID_PARAMETER = 7900201,
 } Image_ErrorCode;
 
 /**
