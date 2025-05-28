@@ -451,6 +451,12 @@ enum  OH_Huks_ErrCode {
      * @since 11
      */
     OH_HUKS_ERR_CODE_DEVICE_PASSWORD_UNSET = 12000016,
+    /**
+     * The input parameter is invalid..
+     *
+     * @since 20
+     */
+    OH_HUKS_ERR_CODE_INVALID_ARGUMENT = 12000018
 };
 
 /**
@@ -488,6 +494,12 @@ enum OH_Huks_UserAuthType {
     OH_HUKS_USER_AUTH_TYPE_FACE = 1 << 1,
     /** PIN authentication. */
     OH_HUKS_USER_AUTH_TYPE_PIN = 1 << 2,
+    /**
+     * Enum for tui pin auth type.
+     * 
+     * @since 20
+     */
+    OH_HUKS_USER_AUTH_TYPE_TUI_PIN = 1 << 5,
 };
 
 /**
@@ -599,6 +611,20 @@ enum OH_Huks_SecureSignType {
      *  the authentication information and then be signed.
      */
     OH_HUKS_SECURE_SIGN_WITH_AUTHINFO = 1,
+};
+
+/**
+ * Enum for key wrap type
+ *
+ * @since 20
+ */
+enum OH_Huks_KeyWrapType {
+    /**
+     * The hardware unique key wrap type.
+     *
+     * @since 20
+     */
+    OH_HUKS_KEY_WRAP_TYPE_HUK_BASED = 2,
 };
 
 /**
@@ -973,6 +999,19 @@ struct OH_Huks_KeyMaterial25519 {
     uint32_t priKeySize;
     /** Reserved. */
     uint32_t reserved;
+};
+
+/**
+ * @brief Defines the structure of the alias set.
+ *
+ * @since 20
+ * @version 1.0
+ */
+struct OH_Huks_KeyAliasSet {
+    /** Number of aliases. */
+    uint32_t aliasesCnt;
+    /** Aliases array. */
+    struct OH_Huks_Blob *aliases;
 };
 
 #ifdef __cplusplus

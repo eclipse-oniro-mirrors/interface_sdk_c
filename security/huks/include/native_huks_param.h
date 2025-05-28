@@ -181,6 +181,15 @@ struct OH_Huks_Result OH_Huks_IsParamSetValid(const struct OH_Huks_ParamSet *par
  */
 struct OH_Huks_Result OH_Huks_CheckParamMatch(const struct OH_Huks_Param *baseParam, const struct OH_Huks_Param *param);
 
+/**
+ * @brief Destroys a parameter set.
+ *
+ * @param keyAliasSet Indicates the pointer to the parameter set to destroy.
+ * @since 20
+ * @version 1.0
+ */
+void OH_Huks_FreeKeyAliasSet(struct OH_Huks_KeyAliasSet *keyAliasSet);
+
 #ifdef __cplusplus
 }
 #endif
