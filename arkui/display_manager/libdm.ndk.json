@@ -113,7 +113,11 @@
     },
     {
         "first_instroduced":"20",
-        "name":"OH_NativeDisplayManager_GetAvailableArea"
+        "name":"OH_NativeDisplayManager_CreateAvailableArea"
+    },
+    {
+        "first_instroduced":"20",
+        "name":"OH_NativeDisplayManager_DestroyAvailableArea"
     },
     {
         "first_instroduced":"20",

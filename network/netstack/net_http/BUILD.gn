@@ -13,7 +13,22 @@
 
 import("//build/ohos.gni")
 
-ohos_ndk_headers("ani_header") {
-  dest_dir = "$ndk_headers_out_dir/ani"
-  sources = [ "./ani.h" ]
+ohos_ndk_library("libnet_http") {
+  output_name = "net_http"
+  output_extension = "so"
+  ndk_description_file = "./libnet_http.ndk.json"
+  min_compact_version = "1"
+  system_capability = "SystemCapability.Communication.NetStack"
+  system_capability_headers = [
+    "network/netstack/net_http.h",
+    "network/netstack/net_http_type.h",
+  ]
+}
+
+ohos_ndk_headers("nethttp_header") {
+  dest_dir = "$ndk_headers_out_dir/network/netstack"
+  sources = [
+    "net_http.h",
+    "net_http_type.h",
+  ]
 }

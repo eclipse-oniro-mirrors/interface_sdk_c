@@ -2366,6 +2366,71 @@ typedef enum {
     NODE_TEXT_LINE_COUNT = 1031,
 
     /**
+     * @brief Sets a linear gradient effect for text.
+     * This attribute can be set, reset, and obtained as required through APIs.
+     *
+     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
+     * .value[0].f32: start angle of the linear gradient.
+     * The setting takes effect only when <b>direction</b> is set to <b>ARKUI_LINEAR_GRADIENT_DIRECTION_CUSTOM</b>.
+     * A positive value indicates a clockwise rotation from the origin, (0, 0). The default value is <b>180</b>. \n
+     * .value[1].i32: direction of the linear gradient. When a direction other than
+     * <b>ARKUI_LINEAR_GRADIENT_DIRECTION_CUSTOM</b> is set, the <b>angle</b> property is ignored.
+     * The parameter type is {@link ArkUI_LinearGradientDirection}. \n
+     * .value[2].i32: whether the colors are repeated. The default value is <b>false</b>.
+     * .object: array of color stops, each of which consists of a color and its stop position.
+     * The parameter type is {@link ArkUI_ColorStop}. Invalid colors are automatically skipped. \n \n
+     * colors: colors of the color stops. \n
+     * stops: stop positions of the color stops. \n
+     * size: number of colors. \n
+     * \n
+     * Format of the return value {@link ArkUI_AttributeItem}:\n
+     * .value[0].f32: start angle of the linear gradient.
+     * When <b>direction</b> is set to <b>ARKUI_LINEAR_GRADIENT_DIRECTION_CUSTOM</b>, <b>angle</b> at the set value;
+     * otherwise, it is at default value. \n
+     * .value[1].i32: direction of the linear gradient. \n
+     * .value[2].i32: whether the colors are repeated. \n
+     * .object: array of color stops, each of which consists of a color and its stop position.
+     * The parameter type is {@link ArkUI_ColorStop}. Invalid colors are automatically skipped. \n \n
+     * colors: colors of the color stops. \n
+     * stops: stop positions of the color stops. \n
+     * size: number of colors. \n
+     *
+     * @since 20
+     */
+    NODE_TEXT_LINEAR_GRADIENT = 1033,
+
+    /**
+     * @brief Sets a radial gradient effect for text. This attribute can be set, reset, and obtained as required through APIs.
+     *
+     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
+     * .value[0]?.f32: X-coordinate of the radial gradient center relative to the upper left corner of the text. \n
+     * .value[1]?.f32: Y-coordinate of the radial gradient center relative to the upper left corner of the text. \n
+     * .value[2]?.f32: radius of the radial gradient. The default value is <b>0</b>. \n
+     * .value[3]?.i32: whether the colors are repeated.
+     * The value <b>1</b> means that the colors are repeated, and <b>0</b> means the opposite.\n \n
+     * .object: array of color stops, each of which consists of a color and its stop position.
+     * The parameter type is {@link ArkUI_ColorStop}. Invalid colors are automatically skipped. \n
+     * colors: colors of the color stops. \n
+     * stops: stop positions of the color stops. \n
+     * size: number of colors. \n
+     * \n
+     * Format of the return value {@link ArkUI_AttributeItem}:\n
+     * .value[0].f32: X-coordinate of the radial gradient center relative to the upper left corner of the text. \n
+     * .value[1].f32: Y-coordinate of the radial gradient center relative to the upper left corner of the text. \n
+     * .value[2].f32: radius of the radial gradient. The default value is <b>0</b>. \n
+     * .value[3].i32: whether the colors are repeated.
+     * The value <b>1</b> means that the colors are repeated, and <b>0</b> means the opposite.  \n
+     * .object: array of color stops, each of which consists of a color and its stop position.
+     * The parameter type is {@link ArkUI_ColorStop}. Invalid colors are automatically skipped. \n
+     * colors: colors of the color stops. \n
+     * stops: stop positions of the color stops. \n
+     * size: number of colors. \n
+     *
+     * @since 20
+     */
+    NODE_TEXT_RADIAL_GRADIENT = 1034,
+
+    /**
      * @brief Defines the text content attribute, which can be set, reset, and obtained as required through APIs.
      *
      * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
@@ -2622,6 +2687,19 @@ typedef enum {
      *
      */
     NODE_IMAGE_RESIZABLE,
+    /**
+     * @brief Defines the synchronous image loading attribute.
+     * This attribute can be set, reset, and obtained as required through APIs.
+     *
+     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
+     * .value[0].i32: whether to load the image synchronously. \n
+     * \n
+     * Format of the return value {@link ArkUI_AttributeItem}:\n
+     * .value[0].i32: whether to load the image synchronously. \n
+     *
+     * @since 20
+     */
+    NODE_IMAGE_SYNC_LOAD = 4012,
     /**
      * @brief Defines the color of the component when it is selected.
      * This attribute can be set, reset, and obtained as required through APIs.
@@ -4018,6 +4096,20 @@ typedef enum {
      */
     NODE_DATE_PICKER_ENABLE_HAPTIC_FEEDBACK = 13008,
     /**
+     * @brief Defines whether to support scroll looping for the date picker.
+     * This attribute can be set, reset, and obtained as required through APIs.
+     *
+     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
+     * .value[0].i32: whether to support scroll looping. The value <b>true</b> means to support scroll looping, and
+     * <b>false</b> means the opposite.\n
+     * \n
+     * Format of the return value {@link ArkUI_AttributeItem}:\n
+     * value[0].i32: The value <b>1</b> means to support scroll looping, and <b>0</b> means the opposite. \n
+     *
+     * @since 20
+     */
+     NODE_DATE_PICKER_CAN_LOOP = 13009,
+    /**
      * @brief Defines the time of the selected item. in the timer picker.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
@@ -4327,6 +4419,28 @@ typedef enum {
      * @since 18
      */
     NODE_TEXT_PICKER_ENABLE_HAPTIC_FEEDBACK = 15010,
+    /**
+     * @brief Defines the background color and border radius of the selected items.
+     * This attribute can be set, reset, and obtained as required through APIs.
+     *
+     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
+     * .value[0].u32: background color, in 0xARGB format, for example, <b>0xFF1122FF</b>. \n
+     * 1: .value[1].f32: radius of the four corners. \n
+     * 2: .value[1].f32: radius of the upper left corner. \n
+     * .value[2].f32: radius of the upper right corner. \n
+     * .value[3].f32: radius of the lower left corner. \n
+     * .value[4].f32: radius of the lower right corner. \n
+     * \n
+     * Format of the return value {@link ArkUI_AttributeItem}:\n
+     * .value[0].u32: background color, in 0xARGB format, for example, <b>0xFF1122FF</b>. \n     *
+     * .value[1].f32: radius of the upper left corner. \n
+     * .value[2].f32: radius of the upper right corner. \n
+     * .value[3].f32: radius of the lower left corner. \n
+     * .value[4].f32: radius of the lower right corner. \n
+     *
+     * @since 20
+     */
+    NODE_TEXT_PICKER_SELECTED_BACKGROUND_STYLE = 15011,
     /**
      * @brief Defines the style of the background in the selected state of the calendar picker.
      * This attribute can be set, reset, and obtained as required through APIs.
@@ -4665,6 +4779,32 @@ typedef enum {
      * @since 18
      */
     NODE_SLIDER_ENABLE_HAPTIC_FEEDBACK = 17013,
+
+    /**
+     * @brief Sets a custom component on the leading side of the Slider component.
+     *
+     * Attribute setting method {@link ArkUI_AttributeItem} parameter format:\n
+     * .object: Parameter type {@link ArkUI_NodeHandle}.
+     *
+     * The prefix component will be placed at the start position of the Slider，
+     * typically on the left side in LTR layouts.
+	 *
+	 * @since 20
+     */
+    NODE_SLIDER_PREFIX,
+
+    /**
+     * @brief Sets a custom component on the trailing side of the Slider component.
+     *
+     * Attribute setting method {@link link ArkUI_AttributeItem} parameter format:\n
+     * .object: Parameter type {@link ArkUI_NodeHandle}.
+     *
+     * The suffix component will be placed at the end position of the Slider,
+     * typically on the right side in LTR layouts.
+	 *
+	 * @since 20
+     */
+    NODE_SLIDER_SUFFIX,
 
     /**
      * @brief Set the selection status of an option button. Attribute setting,

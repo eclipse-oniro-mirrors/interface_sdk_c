@@ -45,14 +45,20 @@ extern "C" {
 bool canIUse(const char *cap);
 
 /**
- * @brief api version is greater or same than the given version.
+ * @brief determine whether the current operating system version is greater than or equal to the given value.
  *
- * @param majorVersion The major version number
- * @param minorVersion The minor version number
- * @param patchVersion The patch version number
- * @return true if api version is greater or same than the given version;
- *         otherwise false.
+ * @param majorVersion The major version number which betwen 1 and 999, such as 19 in api version 19.1.2
+ * @param minorVersion The minor version number which betwen 0 and 999, such as 1 in api version 19.1.2
+ * @param patchVersion The patch version number which betwen 0 and 999, such as 2 in api version 19.1.2
+ * @return true - operating system version is greater than or equal to the given value
+ *         false - operating system version is less than the given value or invalid api version
  * @since 19
+ * @example given version is "19.1"
+ * if (OH_IsApiVersionGreaterOrEqual(19, 1, 0)) {
+ *    // Use 19.1 APIs.
+ * } else {
+ *    // Alternative code for earlier versions.
+ * }
  */
 bool OH_IsApiVersionGreaterOrEqual(int majorVersion, int minorVersion, int patchVersion);
 

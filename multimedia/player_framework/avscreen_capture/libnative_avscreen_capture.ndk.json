@@ -133,6 +133,10 @@
     },
     {
         "first_introduced": "20",
+        "name": "OH_AVScreenCapture_SetCaptureArea"
+    },
+    {
+        "first_introduced": "20",
         "name": "OH_AVScreenCapture_StrategyForPrivacyMaskMode"
     }
 ]
