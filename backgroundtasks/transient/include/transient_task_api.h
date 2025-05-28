@@ -111,7 +111,7 @@ int32_t OH_BackgroundTaskManager_CancelSuspendDelay(int32_t requestId);
  * @since 20
  * @version 1.0
  */
-int32_t OH_BackgroundTaskManager_GetTransientTaskInfo(TransientTask_TransientTaskInfo  *transientTaskInfo);
+int32_t OH_BackgroundTaskManager_GetTransientTaskInfo(TransientTask_TransientTaskInfo *transientTaskInfo);
 
 #ifdef __cplusplus
 }
