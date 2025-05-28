@@ -758,11 +758,11 @@
     { "name": "malloc" },
     { "name": "mallopt" },
     { 
-        "first_introduced":"19",
+        "first_introduced":"20",
         "name": "mallinfo" 
     },
     { 
-        "first_introduced":"19",
+        "first_introduced":"20",
         "name": "mallinfo2" 
     },
     { "name": "malloc_usable_size" },
