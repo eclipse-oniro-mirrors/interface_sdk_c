@@ -670,5 +670,29 @@
     {
         "first_introduced": "19",
         "name": "OH_CaptureSession_EnableMacro"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_CaptureSession_IsWhiteBalanceModeSupported"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_CaptureSession_GetWhiteBalanceMode"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_CaptureSession_GetWhiteBalanceRange"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_CaptureSession_GetWhiteBalance"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_CaptureSession_SetWhiteBalance"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_CaptureSession_SetWhiteBalanceMode"
     }
 ]
