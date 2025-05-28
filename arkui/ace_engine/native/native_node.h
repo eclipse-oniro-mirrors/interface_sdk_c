@@ -2366,6 +2366,20 @@ typedef enum {
     NODE_TEXT_LINE_COUNT = 1031,
 
     /**
+     * @brief Sets whether to optimize the trailing spaces at the end of each line during text layout.
+     * This attribute can be set, reset, and obtained as required through APIs.
+     *
+     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
+     * value[0].i32: whether to optimize trailing spaces at the end of each line during text layout.
+     *               The default value is <b>false</b>. \n
+     * \n
+     * Format of the return value {@link ArkUI_AttributeItem}:\n
+     * value[0].i32: whether to optimize trailing spaces at the end of each line during text layout. \n
+     *
+     * @since 20
+     */
+    NODE_TEXT_OPTIMIZE_TRAILING_SPACE = 1032,
+    /**
      * @brief Sets a linear gradient effect for text.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
