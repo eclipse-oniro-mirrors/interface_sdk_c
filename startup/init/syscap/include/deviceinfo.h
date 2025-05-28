@@ -162,7 +162,7 @@ int OH_GetSdkApiVersion(void);
  * @syscap SystemCapability.Startup.SystemInfo
  * @return 0 ~ 999 - the sdk minor api version
  *         -1 - not found the sdk minor api version number, or failed to invoke the internal interface.
- * @since 19
+ * @since 20
  */
 int OH_GetSdkMinorApiVersion(void);
 
@@ -171,7 +171,7 @@ int OH_GetSdkMinorApiVersion(void);
  * @syscap SystemCapability.Startup.SystemInfo
  * @return 0 ~ 999 - the sdk patch api version
  *         -1 - not found the sdk patch api version number, or failed to invoke the internal interface.
- * @since 19
+ * @since 20
  */
 int OH_GetSdkPatchApiVersion(void);
 
