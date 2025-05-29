@@ -428,6 +428,14 @@
         "name": "OH_MD_KEY_VIDEO_ENCODER_ROI_PARAMS"
     },
     {
+        "first_introduced": "20",
+        "name": "OH_MD_KEY_SQR_FACTOR"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_MD_KEY_MAX_BITRATE"
+    },
+    {
         "first_introduced": "10",
         "name": "OH_AVCodec_GetCapability"
     },
