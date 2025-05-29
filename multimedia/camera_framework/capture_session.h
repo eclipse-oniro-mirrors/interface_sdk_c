@@ -956,6 +956,90 @@ Camera_ErrorCode OH_CaptureSession_IsMacroSupported(Camera_CaptureSession* sessi
  */
 Camera_ErrorCode OH_CaptureSession_EnableMacro(Camera_CaptureSession* session, bool enabled);
 
+/**
+ * @brief Checks whether the specified white balance mode is supported.
+ *
+ * @param session Pointer to an {@link Camera_CaptureSession} instance.
+ * @param whiteBalanceMode White balance mode.
+ * @param isSupported Pointer to the check result.
+ * @return Result code.
+ *         {@link #CAMERA_OK} is returned if the function is called successfully.
+ *         {@link #CAMERA_INVALID_ARGUMENT} is returned if the input parameter is missing or the parameter type is incorrect.
+ *         {@link #CAMERA_SESSION_NOT_CONFIG} is returned if the camera session is not configured.
+ * @since 20
+ */
+Camera_ErrorCode OH_CaptureSession_IsWhiteBalanceModeSupported(
+    Camera_CaptureSession *session, Camera_WhiteBalanceMode whiteBalanceMode, bool *isSupported);
+
+/**
+ * @brief Obtains the white balance mode in use.
+ *
+ * @param session Pointer to an {@link Camera_CaptureSession} instance.
+ * @param whiteBalanceMode Pointer to the white balance mode.
+ * @return Result code.
+ *         {@link #CAMERA_OK} is returned if the function is called successfully.
+ *         {@link #CAMERA_INVALID_ARGUMENT} is returned if the input parameter is missing or the parameter type is incorrect.
+ *         {@link #CAMERA_SESSION_NOT_CONFIG} is returned if the camera session is not configured.
+ * @since 20
+ */
+Camera_ErrorCode OH_CaptureSession_GetWhiteBalanceMode(
+    Camera_CaptureSession *session, Camera_WhiteBalanceMode *whiteBalanceMode);
+
+/**
+ * @brief Obtains the supported white balance color temperature range.
+ *
+ * @param session Pointer to an {@link Camera_CaptureSession} instance.
+ * @param minColorTemperature Pointer to the minimum color temperature.
+ * @param maxColorTemperature Pointer to the maximum color temperature.
+ * @return Result code.
+ *         {@link #CAMERA_OK} is returned if the function is called successfully.
+ *         {@link #CAMERA_INVALID_ARGUMENT} is returned if the input parameter is missing or the parameter type is incorrect.
+ *         {@link #CAMERA_SESSION_NOT_CONFIG} is returned if the camera session is not configured.
+ * @since 20
+ */
+Camera_ErrorCode OH_CaptureSession_GetWhiteBalanceRange(
+    Camera_CaptureSession *session, int32_t *minColorTemperature, int32_t *maxColorTemperature);
+
+/**
+ * @brief Obtains the white balance color temperature.
+ *
+ * @param session Pointer to an {@link Camera_CaptureSession} instance.
+ * @param colorTemperature Pointer to the color temperature.
+ * @return Result code.
+ *         {@link #CAMERA_OK} is returned if the function is called successfully.
+ *         {@link #CAMERA_INVALID_ARGUMENT} is returned if the input parameter is missing or the parameter type is incorrect.
+ *         {@link #CAMERA_SESSION_NOT_CONFIG} is returned if the camera session is not configured.
+ * @since 20
+ */
+Camera_ErrorCode OH_CaptureSession_GetWhiteBalance(Camera_CaptureSession *session, int32_t *colorTemperature);
+
+/**
+ * @brief Sets the white balance color temperature.
+ *
+ * @param session Pointer to an {@link Camera_CaptureSession} instance.
+ * @param colorTemperature Color temperature.
+ * @return Result code.
+ *         {@link #CAMERA_OK} is returned if the function is called successfully.
+ *         {@link #CAMERA_INVALID_ARGUMENT} is returned if the input parameter is missing or the parameter type is incorrect.
+ *         {@link #CAMERA_SESSION_NOT_CONFIG} is returned if the camera session is not configured.
+ * @since 20
+ */
+Camera_ErrorCode OH_CaptureSession_SetWhiteBalance(Camera_CaptureSession *session, int32_t colorTemperature);
+
+/**
+ * @brief Sets a white balance mode.
+ *
+ * @param session Pointer to an {@link Camera_CaptureSession} instance.
+ * @param whiteBalanceMode White balance mode.
+ * @return Result code.
+ *         {@link #CAMERA_OK} is returned if the function is called successfully.
+ *         {@link #CAMERA_INVALID_ARGUMENT} is returned if the input parameter is missing or the parameter type is incorrect.
+ *         {@link #CAMERA_SESSION_NOT_CONFIG} is returned if the camera session is not configured.
+ * @since 20
+ */
+Camera_ErrorCode OH_CaptureSession_SetWhiteBalanceMode(
+    Camera_CaptureSession *session, Camera_WhiteBalanceMode whiteBalanceMode);
+
 #ifdef __cplusplus
 }
 #endif
