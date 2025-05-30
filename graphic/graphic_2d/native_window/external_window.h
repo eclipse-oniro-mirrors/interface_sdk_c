@@ -879,7 +879,7 @@ int32_t OH_NativeWindow_GetMetadataValue(OHNativeWindow *window, OH_NativeBuffer
  *     {@link NATIVE_ERROR_INVALID_ARGUMENTS} 40001000 - window is NULL.
  *     {@link NATIVE_ERROR_CONSUMER_DISCONNECTED} 41211000 - the consumer is disconnected.
  *     {@link NATIVE_ERROR_BINDER_ERROR} 50401000 - ipc send failed.
- * @since 18
+ * @since 19
  * @version 1.0
  */
 int32_t OH_NativeWindow_CleanCache(OHNativeWindow *window);

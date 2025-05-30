@@ -52,7 +52,7 @@
         "name": "OH_NativeWindow_GetMetadataValue"
     },
     {
-        "first_introduced": "18",
+        "first_introduced": "19",
         "name": "OH_NativeWindow_CleanCache"
     }
 
