@@ -474,5 +474,29 @@
     {
         "first_introduced": "20",
         "name": "OH_AudioVolumeManager_UnregisterRingerModeChangeCallback"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_AudioRenderer_GetFastStatus"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_AudioCapturer_GetFastStatus"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_AudioStreamManager_IsFastPlaybackSupported"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_AudioStreamManager_IsFastRecordingSupported"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_AudioStreamBuilder_SetRendererFastStatusChangeCallback"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_AudioStreamBuilder_SetCapturerFastStatusChangeCallback"
     }
 ]
