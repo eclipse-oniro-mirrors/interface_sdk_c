@@ -86,7 +86,6 @@ void OH_Drawing_SetTextHighContrast(OH_Drawing_TextHighContrast action);
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @param undefinedGlyphDisplay Indicates a <b>OH_Drawing_TextUndefinedGlyphDisplay</b> to be set.
  * @since 20
- * @version 1.0
  */
 void OH_Drawing_SetTextUndefinedGlyphDisplay(OH_Drawing_TextUndefinedGlyphDisplay undefinedGlyphDisplay);
 #ifdef __cplusplus

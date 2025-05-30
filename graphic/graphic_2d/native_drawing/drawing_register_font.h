@@ -85,7 +85,6 @@ uint32_t OH_Drawing_RegisterFontBuffer(OH_Drawing_FontCollection*, const char* f
  * @param fontFamily Indicates the family-name of the font which need to be unregistered.
  * @return error code.
  * @since 20
- * @version 1.0
  */
 uint32_t OH_Drawing_UnregisterFont(OH_Drawing_FontCollection* fontCollection, const char* fontFamily);
 #ifdef __cplusplus
