@@ -1160,7 +1160,7 @@ typedef struct Camera_ConcurrentInfo {
  */
 typedef enum Camera_WhiteBalanceMode {
     /**
-     * Auto white balance mode.
+     * Automatic white balance mode.
      */
     CAMERA_WHITE_BALANCE_MODE_AUTO = 0,
 
@@ -1190,7 +1190,7 @@ typedef enum Camera_WhiteBalanceMode {
     CAMERA_WHITE_BALANCE_MODE_MANUAL = 5,
 
     /**
-     * Locked white balance mode.
+     * Lock white balance mode.
      */
     CAMERA_WHITE_BALANCE_MODE_LOCKED = 6
 } Camera_WhiteBalanceMode;
