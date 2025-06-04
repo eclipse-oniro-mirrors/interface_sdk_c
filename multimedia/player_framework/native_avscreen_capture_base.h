@@ -568,6 +568,7 @@ typedef struct OH_AVScreenCapture_CaptureStrategy OH_AVScreenCapture_CaptureStra
  */
 typedef void (*OH_AVScreenCapture_OnCaptureContentChanged)(OH_AVScreenCapture* capture,
     OH_AVScreenCaptureContentChangedEvent event, OH_Rect* area, void *userData);
+
 /**
  * @brief Initialization of OH_AVScreenCapture_UserSelectionInfo
  * @syscap SystemCapability.Multimedia.Media.AVScreenCapture
