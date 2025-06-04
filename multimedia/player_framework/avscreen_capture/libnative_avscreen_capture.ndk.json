@@ -133,11 +133,11 @@
     },
     {
         "first_introduced": "20",
-        "name": "OH_AVScreenCapture_SetSelectionCallback"
+        "name": "OH_AVScreenCapture_SetCaptureArea"
     },
     {
         "first_introduced": "20",
-        "name": "OH_AVScreenCapture_SetCaptureArea"
+        "name": "OH_AVScreenCapture_SetSelectionCallback"
     },
     {
         "first_introduced": "20",
