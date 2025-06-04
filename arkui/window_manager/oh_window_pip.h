@@ -341,7 +341,7 @@ void OH_PictureInPicture_SetPipControlEnabled(uint32_t controllerId, PictureInPi
  * @return Return the result code.
  *         {@link OK} the function call is successful.
  *         {@link WINDOW_MANAGER_ERRORCODE_INCORRECT_PARAM} parameter error.
- *         {@link WINDOW_MANAGER_ERRORCODE_DEVICE_NOT_SUPPORTED} capability not supported.
+ *         {@link WINDOW_MANAGER_ERRORCODE_PIP_INTERNAL_ERROR} pip internal error.
  * @since 20
  */
 int32_t OH_PictureInPicture_SetPipInitialSurfaceRect(uint32_t controllerId, uint32_t positionX, uint32_t positionY,
@@ -354,7 +354,7 @@ int32_t OH_PictureInPicture_SetPipInitialSurfaceRect(uint32_t controllerId, uint
  * @return Return the result code.
  *         {@link OK} the function call is successful.
  *         {@link WINDOW_MANAGER_ERRORCODE_INCORRECT_PARAM} parameter error.
- *         {@link WINDOW_MANAGER_ERRORCODE_DEVICE_NOT_SUPPORTED} capability not supported.
+ *         {@link WINDOW_MANAGER_ERRORCODE_PIP_INTERNAL_ERROR} pip internal error.
  * @since 20
  */
 int32_t OH_PictureInPicture_UnsetPipInitialSurfaceRect(uint32_t controllerId);
