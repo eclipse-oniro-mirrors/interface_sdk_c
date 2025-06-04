@@ -540,6 +540,7 @@ OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_SetCaptureContentChangedCallback(
  */
 OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_SetCaptureArea(struct OH_AVScreenCapture *capture,
     uint64_t displayId, OH_Rect* area);
+
 /**
  * @brief Register user selection notification callback function
  * @syscap SystemCapability.Multimedia.Media.AVScreenCapture
