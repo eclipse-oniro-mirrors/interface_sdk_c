@@ -133,6 +133,18 @@
     },
     {
         "first_introduced": "20",
+        "name": "OH_AVScreenCapture_SetSelectionCallback"
+    },
+    {
+        "first_introduced": "20",
         "name": "OH_AVScreenCapture_SetCaptureArea"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_AVScreenCapture_GetCaptureTypeSelected"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_AVScreenCapture_GetDisplayIdSelected"
     }
 ]
