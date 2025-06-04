@@ -283,19 +283,19 @@
         "name": "OH_Drawing_FontMeasureText"
     },
     {
-        "first_introduced": "20",
+        "first_introduced": "19",
         "name": "OH_Drawing_FontMeasureTextWithBrushOrPen"
     },
     {
-        "first_introduced": "20",
+        "first_introduced": "19",
         "name": "OH_Drawing_FontGetWidthsBounds"
     },
     {
-        "first_introduced": "20",
+        "first_introduced": "19",
         "name": "OH_Drawing_FontGetPos"
     },
     {
-        "first_introduced": "20",
+        "first_introduced": "19",
         "name": "OH_Drawing_FontGetSpacing"
     },
     {
@@ -1895,7 +1895,7 @@
         "name": "OH_Drawing_SetTypographyTextTrailingSpaceOptimized"
     },
     {
-        "first_introduced": "20",
+        "first_introduced": "19",
         "name":"OH_Drawing_CanvasDrawRecordCmdNesting"
     },
     {
