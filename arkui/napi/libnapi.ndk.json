@@ -249,6 +249,10 @@
     },
     {
         "first_introduced": "20",
+        "name": "napi_switch_ark_context"
+    },
+    {
+        "first_introduced": "20",
         "name": "napi_destroy_ark_context"
     }
 ]
