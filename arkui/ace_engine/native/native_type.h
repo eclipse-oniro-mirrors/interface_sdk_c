@@ -2264,6 +2264,11 @@ typedef enum {
      */
     ARKUI_ERROR_CODE_POST_CLONED_NO_COMPONENT_HIT_TO_RESPOND_TO_THE_EVENT = 180005,
     /**
+     * @error Input event type not supported.
+     * @since 20
+     */
+    ARKUI_ERROR_INPUT_EVENT_TYPE_NOT_SUPPORTED = 180006,
+    /**
      * @error invalid styled string.
      * @since 14
      */
