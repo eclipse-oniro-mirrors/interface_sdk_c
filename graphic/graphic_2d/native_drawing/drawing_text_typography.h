@@ -196,6 +196,11 @@ typedef enum {
     ALIGNMENT_BOTTOM_OF_ROW_BOX,
     /** Center of Row Box */
     ALIGNMENT_CENTER_OF_ROW_BOX,
+    /**
+     * Follow paragraph setting
+     * @since 20
+     */
+    ALIGNMENT_FOLLOW_PARAGRAPH,
 } OH_Drawing_PlaceholderVerticalAlignment;
 
 /**
@@ -591,6 +596,23 @@ typedef enum OH_Drawing_TextBadgeType {
     /* Sub badge */
     TEXT_SUBSCRIPT,
 } OH_Drawing_TextBadgeType;
+
+/**
+ * @brief Type of vertical alignment.
+ *
+ * @since 20
+ * @version 1.0
+ */
+typedef enum OH_Drawing_TextVerticalAlignment {
+    /** Baseline of text line */
+    TEXT_VERTICAL_ALIGNMENT_BASELINE,
+    /** Bottom of text line */
+    TEXT_VERTICAL_ALIGNMENT_BOTTOM,
+    /** Center of text line */
+    TEXT_VERTICAL_ALIGNMENT_CENTER,
+    /** Top of text line */
+    TEXT_VERTICAL_ALIGNMENT_TOP
+} OH_Drawing_TextVerticalAlignment;
 
 /**
  * @brief Defines the font style struct.
@@ -2359,6 +2381,19 @@ double OH_Drawing_TextStyleGetFontHeight(OH_Drawing_TextStyle* style);
  * @version 1.0
  */
 bool OH_Drawing_TextStyleGetHalfLeading(OH_Drawing_TextStyle* style);
+
+/**
+ * @brief Sets the typography vertical alignment mode.
+ *
+ * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
+ * @param style Indicates the pointer to an <b>OH_Drawing_TypographyStyle</b> object.
+ * @param align Indicates the typography vertical alignment mode. For details,
+ * see the enum <b>OH_Drawing_TextVerticalAlignment</b>.
+ * @since 20
+ * @version 1.0
+ */
+void OH_Drawing_SetTypographyVerticalAlignment(OH_Drawing_TypographyStyle* style,
+    OH_Drawing_TextVerticalAlignment align);
 
 /**
  * @brief Gets the locale.

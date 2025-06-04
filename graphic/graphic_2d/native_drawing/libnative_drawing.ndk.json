@@ -1917,5 +1917,9 @@
     {
         "first_introduced": "20",
         "name": "OH_Drawing_SetTextUndefinedGlyphDisplay"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_Drawing_SetTypographyVerticalAlignment"
     }
 ]
