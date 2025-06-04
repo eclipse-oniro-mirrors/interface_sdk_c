@@ -79,7 +79,7 @@ uint32_t OH_Drawing_RegisterFontBuffer(OH_Drawing_FontCollection*, const char* f
  * @brief Unregister a customized font by the font family.
  * Unregistering a font that is currently in used may lead to text rendering anomalies,
  * including garbled characters or missing glyphs.
- * Layout should be recalculated for all typography using the unregistered font family.
+ * All typography using the unregistered font family should be destroyed and re-created.
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @param fontCollection Indicates the pointer to an <b>OH_Drawing_FontCollection</b> object.
