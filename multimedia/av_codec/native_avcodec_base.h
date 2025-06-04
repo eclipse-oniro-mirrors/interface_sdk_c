@@ -1063,6 +1063,26 @@ extern const char *OH_MD_KEY_SQR_FACTOR;
  * @since 20
  */
 extern const char *OH_MD_KEY_MAX_BITRATE;
+/**
+ *
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
+ * @since 20
+*/
+extern const char *OH_MD_KEY_REFERENCE_TRACK_IDS;
+/**
+ * @brief Key for describing the track reference type, value type is string.
+ *
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
+ * @since 20
+*/
+extern const char *OH_MD_KEY_TRACK_REFERENCE_TYPE;
+/**
+ * @brief Key for describing the track description, value type is string.
+ *
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
+ * @since 20
+*/
+extern const char *OH_MD_KEY_TRACK_DESCRIPTION;
 
 /**
  * @brief Media type.
@@ -1079,6 +1099,14 @@ typedef enum OH_MediaType {
      * @since 12
      */
     MEDIA_TYPE_SUBTITLE = 2,
+    /** track is timed meta.
+     * @since 20
+     */
+    MEDIA_TYPE_TIMED_METADATA=5,
+    /** track is auxiliary.
+     * @since 20
+     */
+    MEDIA_TYPE_AUXILIARY=6,
 } OH_MediaType;
 
 /**
