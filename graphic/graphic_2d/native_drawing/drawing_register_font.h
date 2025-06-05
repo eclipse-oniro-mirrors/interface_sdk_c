@@ -77,7 +77,7 @@ uint32_t OH_Drawing_RegisterFontBuffer(OH_Drawing_FontCollection*, const char* f
 
 /**
  * @brief Unregister a customized font by the font family.
- * Unregistering a font that is currently in used may lead to text rendering anomalies,
+ * Unregistering a font that is currently in use by UI components may lead to text rendering anomalies,
  * including garbled characters or missing glyphs.
  * All typography using the unregistered font family should be destroyed and re-created.
  *
