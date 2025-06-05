@@ -554,7 +554,7 @@ OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_SetCaptureArea(struct OH_AVScreen
  *          {@link AV_SCREEN_CAPTURE_ERR_INVALID_VAL} input capture is nullptr.
  * @since 20
  */
- OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_SetSelectionCallback(struct OH_AVScreenCapture *capture,
+OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_SetSelectionCallback(struct OH_AVScreenCapture *capture,
     OH_AVScreenCapture_OnUserSelected callback, void *userData);
 
 /**
@@ -568,7 +568,8 @@ OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_SetCaptureArea(struct OH_AVScreen
  *         {@link AV_SCREEN_CAPTURE_ERR_INVALID_VAL} if selections is nullptr.
  * @since 20
  */
-OH_AVErrCode OH_AVScreenCapture_GetCaptureTypeSelected(OH_AVScreenCapture_UserSelectionInfo *selection, int32_t* type);
+OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_GetCaptureTypeSelected(OH_AVScreenCapture_UserSelectionInfo *selection,
+    int32_t* type);
 
 /**
  * @brief Get the Display ID of user selections in the confirmation interface
@@ -580,7 +581,7 @@ OH_AVErrCode OH_AVScreenCapture_GetCaptureTypeSelected(OH_AVScreenCapture_UserSe
  *         {@link AV_SCREEN_CAPTURE_ERR_INVALID_VAL} if selections is nullptr.
  * @since 20
  */
-OH_AVErrCode OH_AVScreenCapture_GetDisplayIdSelected(OH_AVScreenCapture_UserSelectionInfo *selection,
+OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_GetDisplayIdSelected(OH_AVScreenCapture_UserSelectionInfo *selection,
     uint64_t* displayId);
 #ifdef __cplusplus
 }
