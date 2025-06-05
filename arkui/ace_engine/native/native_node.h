@@ -2445,6 +2445,22 @@ typedef enum {
     NODE_TEXT_RADIAL_GRADIENT = 1034,
 
     /**
+     * @brief Sets the vertical alignment of the text content.
+     * This attribute can be set, reset, and obtained as required through APIs.
+     *
+     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
+     * .value[0].i32: vertical alignment of the text content, specified using the {@link ArkUI_TextVerticalAlignment}
+     * enum. The default value is <b>ARKUI_TEXT_VERTICAL_ALIGNMENT_BASELINE</b>. \n
+     * \n
+     * Format of the return value {@link ArkUI_AttributeItem}:\n
+     * .value[0].i32: vertical alignment of the text content, specified using the {@link ArkUI_TextVerticalAlignment}
+     * enum. \n
+     *
+     * @since 20
+     */
+    NODE_TEXT_VERTICAL_ALIGN = 1035,
+
+    /**
      * @brief Defines the text content attribute, which can be set, reset, and obtained as required through APIs.
      *
      * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
