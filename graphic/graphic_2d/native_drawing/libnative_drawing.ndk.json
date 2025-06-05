@@ -1047,6 +1047,10 @@
         "name": "OH_Drawing_RegisterFontBuffer"
     },
     {
+        "first_introduced": "20",
+        "name": "OH_Drawing_UnregisterFont"
+    },
+    {
         "first_introduced": "12",
         "name": "OH_Drawing_TypographyGetLineTextRange"
     },
@@ -1909,5 +1913,9 @@
     {
         "first_introduced": "20",
         "name": "OH_Drawing_SetTextHighContrast"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_Drawing_SetTextUndefinedGlyphDisplay"
     }
 ]
