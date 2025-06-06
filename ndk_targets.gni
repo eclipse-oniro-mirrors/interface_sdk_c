@@ -146,6 +146,8 @@ _ndk_library_targets = [
   "//interface/sdk_c/multimedia/player_framework/avmetadata_extractor:avmetadata_extractor_header",
   "//interface/sdk_c/multimedia/player_framework/avimage_generator:libavimage_generator",
   "//interface/sdk_c/multimedia/player_framework/avimage_generator:avimage_generator_header",
+  "//interface/sdk_c/multimedia/player_framework/avtranscoder:libavtranscoder",
+  "//interface/sdk_c/multimedia/player_framework/avtranscoder:avtranscoder_header",
   "//interface/sdk_c/multimedia/audio_framework:libohaudio_ndk",
   "//interface/sdk_c/multimedia/audio_framework:ohaudio_header",
   "//interface/sdk_c/multimedia/av_session:libohavsession_ndk",
