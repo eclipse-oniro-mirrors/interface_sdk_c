@@ -390,6 +390,22 @@ typedef enum {
 } ArkUI_TextAlignment;
 
 /**
+ * @brief Enumerates text vertical alignment styles.
+ *
+ * @since 20
+ */
+typedef enum {
+    /** Aligned to the baseline. */
+    ARKUI_TEXT_VERTICAL_ALIGNMENT_BASELINE = 0,
+    /** Bottom aligned. */
+    ARKUI_TEXT_VERTICAL_ALIGNMENT_BOTTOM,
+    /** Center aligned. */
+    ARKUI_TEXT_VERTICAL_ALIGNMENT_CENTER,
+    /** Top aligned. */
+    ARKUI_TEXT_VERTICAL_ALIGNMENT_TOP,
+} ArkUI_TextVerticalAlignment;
+
+/**
  * @brief Enumerates the types of the Enter key for a single-line text box.
  *
  * @since 12
@@ -1273,6 +1289,12 @@ typedef enum {
     ARKUI_IMAGE_SPAN_ALIGNMENT_CENTER,
     /** The image is top aligned with the text. */
     ARKUI_IMAGE_SPAN_ALIGNMENT_TOP,
+    /**
+     * The image alignment mode follows the text component's alignment mode.
+     *
+     * @since 20
+     */
+    ARKUI_IMAGE_SPAN_ALIGNMENT_FOLLOW_PARAGRAPH,
 } ArkUI_ImageSpanAlignment;
 
 /**
@@ -2263,6 +2285,11 @@ typedef enum {
      * @since 15
      */
     ARKUI_ERROR_CODE_POST_CLONED_NO_COMPONENT_HIT_TO_RESPOND_TO_THE_EVENT = 180005,
+    /**
+     * @error Input event type not supported.
+     * @since 20
+     */
+    ARKUI_ERROR_INPUT_EVENT_TYPE_NOT_SUPPORTED = 180006,
     /**
      * @error invalid styled string.
      * @since 14

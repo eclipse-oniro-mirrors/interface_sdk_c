@@ -1272,6 +1272,25 @@ int32_t OH_ArkUI_PointerEvent_SetClonedEventFingerIdByIndex(
  */
 int32_t OH_ArkUI_PointerEvent_PostClonedEvent(ArkUI_NodeHandle node, const ArkUI_UIInputEvent* event);
 
+/**
+ * @brief Use this method to obtain the execution status of the latest UI input related method.
+ *
+ * In most cases, this method is unnecessary unless you need to determine if the return value indicates an error.
+ * Here's an example of usage: For return values like float (where 0.0 doesn't indicate an error), use GetLatestStatus
+ * to confirm if an error occurred.
+ *    float x = OH_ArkUI_PointerEvent_GetX(event); 
+ *    if (ARKUI_ERROR_CODE_NO_ERROR != OH_ArkUI_UIInputEvent_GetLatestStatus()) {
+ *        // error
+ *        return;
+ *     }
+ * Note: The system clears the status of the previous function call each time a UIInput-related function is executed,
+ * ensuring you always get the latest status.
+ *
+ * @return Returns the ArkUI_ErrorCode.
+ * @since 20
+ */
+ArkUI_ErrorCode OH_ArkUI_UIInputEvent_GetLatestStatus();
+
 #ifdef __cplusplus
 };
 #endif
