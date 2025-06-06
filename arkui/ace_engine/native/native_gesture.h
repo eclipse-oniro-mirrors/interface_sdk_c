@@ -869,6 +869,31 @@ ArkUI_ErrorCode OH_ArkUI_PanGesture_GetDistanceByToolType(
     ArkUI_GestureRecognizer* recognizer, int toolType, double* distance);
 
 /**
+ * @brief Registers a callback that is executed after all gesture recognizers are collected.
+ * When the user begins touching the screen, the system performs hit testing and collects gesture recognizers
+ * based on the touch location. Subsequently, before processing any move events, the component can use this API
+ * to determine the gesture recognizers that will participate in and compete for recognition.
+ *
+ * @param node Handle to the node on which the callback is to be set.
+ * @param userData Custom data.
+ * @param touchTestDone Callback for completion of gesture recognizer collection.
+ * @return Result code.
+ *         {@link ARKUI_ERROR_CODE_NO_ERROR}: The operation is successful.
+ *         {@link ARKUI_ERROR_CODE_PARAM_INVALID}: A parameter error occurs.
+ * @since 20
+ */
+ArkUI_ErrorCode OH_ArkUI_SetTouchTestDoneCallback(
+    ArkUI_NodeHandle node,
+    void* userData,
+    void (*touchTestDone)(
+        ArkUI_GestureEvent* event,
+        ArkUI_GestureRecognizerHandleArray recognizers,
+        int32_t count,
+        void* userData
+    )
+);
+
+/**
  * @brief Defines the gesture APIs.
  *
  * @since 12
@@ -1161,6 +1186,20 @@ typedef struct {
 * @since 18
 */
 void* OH_ArkUI_GestureInterrupter_GetUserData(ArkUI_GestureInterruptInfo* event);
+
+/**
+ * @brief Prevents a gesture recognizer from participating in the current gesture recognition before all fingers are
+ * lifted.
+ * If the system has already determined the result of the gesture recognizer (regardless of success or failure),
+ * calling this API will be ineffective.
+ *
+ * @param recognizer Pointer to a gesture recognizer.
+ * @return Result code.
+ *         {@link ARKUI_ERROR_CODE_NO_ERROR}: The operation is successful.
+ *         {@link ARKUI_ERROR_CODE_PARAM_INVALID}: A parameter error occurs.
+ * @since 20
+ */
+ArkUI_ErrorCode OH_ArkUI_PreventGestureRecognizerBegin(ArkUI_GestureRecognizer* recognizer);
 
 #ifdef __cplusplus
 };
