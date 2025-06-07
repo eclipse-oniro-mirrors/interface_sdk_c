@@ -1074,7 +1074,7 @@ extern const char *OH_MD_KEY_MAX_BITRATE;
  *
  * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 20
-*/
+ */
 extern const char *OH_MD_KEY_VIDEO_ENCODER_ENABLE_PTS_BASED_RATECONTROL;
 
 /**
