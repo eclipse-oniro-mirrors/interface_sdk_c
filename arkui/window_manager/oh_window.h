@@ -286,8 +286,8 @@ void OH_WindowManager_ReleaseAllWindowLayoutInfoList(WindowManager_Rect* windowL
  *         {@link WINDOW_MANAGER_ERRORCODE_SYSTEM_ABNORMAL} the window manager service works abnormally.
  * @since 20
  */
-int32_t OH_WindowManager_InjectTouchEvent(int32_t windowId, Input_TouchEvent* touchEvent,
-    int32_t windowX, int32_t windowY););
+int32_t OH_WindowManager_InjectTouchEvent(
+    int32_t windowId, Input_TouchEvent* touchEvent, int32_t windowX, int32_t windowY);
 
 #ifdef __cplusplus
 }
