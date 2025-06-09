@@ -694,9 +694,9 @@ typedef enum {
  */
 typedef enum {
     /** Default mode, where focus does not wrap when arrow keys are used. */
-    ARKUI_FOCUS_WRAPMODE_DEFAULT = 0,
+    ARKUI_FOCUS_WRAP_MODE_DEFAULT = 0,
     /** Focus wraps automatically when arrow keys are used. */
-    ARKUI_FOCUS_WRAPMODE_WRAP_WITH_ARROW = 1,
+    ARKUI_FOCUS_WRAP_WITH_ARROW = 1,
 } ArkUI_FocusWrapMode;
 
 /**
