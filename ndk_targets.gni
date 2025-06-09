@@ -35,6 +35,8 @@ _ndk_library_targets = [
   "//interface/sdk_c/hiviewdfx/hitrace:libhitrace_ndk",
   "//interface/sdk_c/network/netstack/net_websocket:libnet_websocket",
   "//interface/sdk_c/network/netstack/net_websocket:websocket_header",
+  "//interface/sdk_c/network/netstack:net_http:libnet_http",
+  "//interface/sdk_c/network/netstack:net_http:nethttp_header",
   "//interface/sdk_c/network/netssl:libnet_ssl_ndk",
   "//interface/sdk_c/network/netssl:net_ssl_header",
   "//interface/sdk_c/security/access_token:libability_access_control",
