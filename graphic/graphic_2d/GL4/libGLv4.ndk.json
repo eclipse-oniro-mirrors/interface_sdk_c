@@ -978,5 +978,85 @@
     {
         "first_introduced": "20",
         "name": "glTexSubImage1D"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glBeginQuery"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glBeginTransformFeedback"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glCopyTexSubImage3D"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glDeleteQueries"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glEndQuery"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glEndTransformFeedback"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glGenQueries"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glGetActiveUniformBlockName"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glGetQueryObjectiv"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glGetStringi"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glLineStipple"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glTexImage3D"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glTransformFeedbackVaryings"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glUniformBlockBinding"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glUniformMatrix2x3fv"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glUniformMatrix2x4fv"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glUniformMatrix3x2fv"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glUniformMatrix3x4fv"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glUniformMatrix4x2fv"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glUniformMatrix4x3fv"
     }
 ]
