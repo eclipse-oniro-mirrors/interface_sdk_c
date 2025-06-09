@@ -1071,10 +1071,9 @@ extern const char *OH_MD_KEY_MAX_BITRATE;
  * This is an optional key that applies only to video encoder, default is 0.
  * If enabled, the PTS information must be carried in each video frame and sent to the encoder.
  * It is used in configure.
- *
  * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 20
- */
+*/
 extern const char *OH_MD_KEY_VIDEO_ENCODER_ENABLE_PTS_BASED_RATECONTROL;
 
 /**
