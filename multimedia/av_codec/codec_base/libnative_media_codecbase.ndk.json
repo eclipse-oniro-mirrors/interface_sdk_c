@@ -436,6 +436,10 @@
         "name": "OH_MD_KEY_MAX_BITRATE"
     },
     {
+        "first_introduced": "20",
+        "name": "OH_MD_KEY_VIDEO_ENCODER_ENABLE_PTS_BASED_RATECONTROL"
+    },
+    {
         "first_introduced": "10",
         "name": "OH_AVCodec_GetCapability"
     },
