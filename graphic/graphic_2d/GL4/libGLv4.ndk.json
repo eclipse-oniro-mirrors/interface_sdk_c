@@ -894,5 +894,89 @@
     {
         "first_introduced": "20",
         "name": "glViewport"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glCopyImageSubData"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glCopyTexImage1D"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glCopyTexImage2D"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glCopyTexSubImage1D"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glGetDoublev"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glGetFloatv"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glGetPointerv"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glGetTexLevelParameterfv"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glGetTexLevelParameteriv"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glGetTexParameterfv"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glGetTexParameteriv"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glHint"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glIsEnabled"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glIsTexture"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glIsVertexArray"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glLogicOp"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glMultiDrawElementsBaseVertex"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glPixelStoref"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glTexParameterf"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glTexParameteriv"
+    },
+    {
+        "first_introduced": "20",
+        "name": "glTexSubImage1D"
     }
 ]
