@@ -15,6 +15,8 @@
 
 /**
  * @addtogroup OH_PictureInPicture
+ * @{
+ *
  * @file oh_window_pip.h
  *
  * @brief Declares C APIs for picture in picture window
@@ -499,3 +501,4 @@ int32_t OH_PictureInPicture_UnregisterAllResizeListeners(uint32_t controllerId);
 #endif
 
 #endif // OH_WINDOW_PIP_H
+/** @} */
