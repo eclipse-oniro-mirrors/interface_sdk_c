@@ -242,13 +242,5 @@
     {
         "first_introduced": "18",
         "name": "napi_wrap_enhance"
-    },
-    {
-        "first_introduced": "20",
-        "name": "napi_create_ark_context"
-    },
-    {
-        "first_introduced": "20",
-        "name": "napi_destroy_ark_context"
     }
 ]
