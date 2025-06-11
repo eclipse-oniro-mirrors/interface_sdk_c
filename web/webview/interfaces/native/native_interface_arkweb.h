@@ -71,6 +71,20 @@ typedef void (*NativeArkWeb_OnValidCallback)(const char*);
 typedef void (*NativeArkWeb_OnDestroyCallback)(const char*);
 
 /**
+ * @brief Defines the blankless information.
+ *
+ * @since 20
+ */
+typedef struct {
+    /** The errCode of the blankless. */
+    ArkWeb_BlanklessErrorCode errCode;
+    /** The estimated similarity of the history snapshots. */
+    double similarity;
+    /** The loadingTime of the history loading. */
+    int32_t loadingTime;
+} ArkWeb_BlanklessInfo;
+
+/**
  * @brief Loads a piece of code and execute JS code in the context of the currently displayed page.
  *
  * @param webTag The name of the web component.
@@ -202,6 +216,71 @@ ArkWeb_ErrorCode OH_NativeArkWeb_LoadData(const char* webTag,
  */
 void OH_NativeArkWeb_RegisterAsyncThreadJavaScriptProxy(const char* webTag,
     const ArkWeb_ProxyObjectWithResult* proxyObject, const char* permission);
+
+/**
+ * @brief Sets whether to enable blankless page loading. This API must be used in pair with the
+ * OH_NativeArkWeb_GetBlanklessInfoWithKey API.
+ *
+ * @param webTag webTag used when the webviewController is created.
+ * @param key Key value that uniquely identifies the current page. It must be the same as the key value of the
+ * OH_NativeArkWeb_GetBlanklessInfoWithKey API.
+ * @param isStarted Whether to enable frame interpolation. The value true indicates to enable frame
+ * interpolation, and the value false indicates the opposite.
+ * The default value is false.
+ * The value can be true or false.
+ * Action for setting an invalid value: N/A.
+ * @return Whether the API is successfully called. For details, see ArkWeb_BlanklessErrorCode.
+ * @since 20
+ */
+ArkWeb_BlanklessErrorCode OH_NativeArkWeb_SetBlanklessLoadingWithKey(const char* webTag,
+                                                                     const char* key,
+                                                                     bool isStarted);
+
+/**
+ * @brief Clears the blankless loading cache of the page with a specified key value.
+ *
+ * @param key The list of key values of pages cached in the blankless loading solution. These key values are
+ * specified in OH_NativeArkWeb_GetBlanklessInfoWithKey.
+ * The default value is the list of key values of all pages cached in the blankless loading solution.
+ * The key length cannot exceed 2048 characters, and the number of keys must be less than or equal to 100. The
+ * URL is the same as that input to the Web component during page loading.
+ * When the key length exceeds 2048 characters, the key does not take effect. When the number of keys exceeds
+ * 100, the first 100 keys are used. If this parameter is set to NULL, the default value is used.
+ * @param size Size of the key list.
+ * @since 20
+ */
+void OH_NativeArkWeb_ClearBlanklessLoadingCache(const char* key[], uint32_t size);
+
+/**
+ * @brief Obtains the prediction information about the blankless loading solution and enables the generation
+ * of the transition frame for the current loading. The application determines whether to enable the blankless
+ * loading solution based on the information.
+ * This API applies to pages in an applet or web application whose URLs are not fixed or cannot be uniquely
+ * identified.
+ *
+ * @param webTag webTag used when the webviewController is created.
+ * Default value: N/A.
+ * The value cannot be empty.
+ * When an invalid value is set, the error code is returned, and the API does not take effect.
+ * @param key Key value that uniquely identifies the current page.
+ * @return Return value of the ArkWeb_BlanklessInfo type.
+ * @since 20
+ */
+ArkWeb_BlanklessInfo OH_NativeArkWeb_GetBlanklessInfoWithKey(const char* webTag, const char* key);
+
+/**
+ * @brief Sets the cache capacity of the blankless loading solution and returns the value that takes effect.
+ *
+ * @param capacity Cache capacity, in MB. The maximum value is 100 MB.
+ * The default value is 30 MB.
+ * The value ranges from 0 to 100. If this parameter is set to 0, no cache capacity is available and the
+ * functionality is disabled globally.
+ * When the value is set to a number smaller than 0, the value 0 takes effect. When the value is set to a
+ * number greater than 100, the value 100 takes effect.
+ * @return The effective value that ranges from 0 MB to 100 MB.
+ * @since 20
+ */
+uint32_t OH_NativeArkWeb_SetBlanklessLoadingCacheCapacity(uint32_t capacity);
 
 #ifdef __cplusplus
 };
