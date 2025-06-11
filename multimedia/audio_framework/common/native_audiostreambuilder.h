@@ -503,7 +503,6 @@ OH_AudioStream_Result OH_AudioStreamBuilder_SetCapturerErrorCallback(OH_AudioStr
  */
 OH_AudioStream_Result OH_AudioStreamBuilder_SetCapturerWillMuteWhenInterrupted(OH_AudioStreamBuilder* builder,
     bool muteWhenInterrupted);
-
 #ifdef __cplusplus
 }
 #endif

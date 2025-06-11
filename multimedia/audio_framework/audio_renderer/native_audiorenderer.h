@@ -197,6 +197,7 @@ OH_AudioStream_Result OH_AudioRenderer_GetSampleFormat(OH_AudioRenderer* rendere
  */
 OH_AudioStream_Result OH_AudioRenderer_GetLatencyMode(OH_AudioRenderer* renderer,
     OH_AudioStream_LatencyMode* latencyMode);
+
 /**
  * Query the renderer info of the renderer client.
  *
@@ -284,7 +285,6 @@ OH_AudioStream_Result OH_AudioRenderer_GetFrameSizeInCallback(OH_AudioRenderer* 
  *         {@link AUDIOSTREAM_ERROR_INVALID_PARAM} The param of renderer is nullptr.
  */
 OH_AudioStream_Result OH_AudioRenderer_GetSpeed(OH_AudioRenderer* renderer, float* speed);
-
 
 /**
  * Set the playback speed of the stream client
