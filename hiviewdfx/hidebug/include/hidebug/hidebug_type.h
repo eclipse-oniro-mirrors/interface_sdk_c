@@ -182,7 +182,7 @@ typedef enum HiDebug_TraceFlag {
 } HiDebug_TraceFlag;
 
 /**
- * @brief Defines structure type of malloc dispatch table.
+ * @brief Defines structure type for MallocDispatch table.
  *
  * @since 20
 */
