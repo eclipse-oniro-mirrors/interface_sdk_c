@@ -116,6 +116,10 @@
         "name": "OH_ImageSourceNative_CreateFromData"
     },
     {
+        "first_introduced": "20",
+        "name": "OH_ImageSourceNative_CreateFromDataWithUserBuffer"
+    },
+    {
         "first_introduced": "12",
         "name": "OH_ImageSourceNative_CreateFromRawFile"
     },
