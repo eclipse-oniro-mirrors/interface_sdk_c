@@ -591,9 +591,9 @@ typedef enum OH_Drawing_FontWidth {
 typedef enum OH_Drawing_TextBadgeType {
     /* No badge */
     TEXT_BADGE_NONE,
-    /* Super badge */
+    /* Superscript */
     TEXT_SUPERSCRIPT,
-    /* Sub badge */
+    /* Subscript */
     TEXT_SUBSCRIPT,
 } OH_Drawing_TextBadgeType;
 
@@ -3043,15 +3043,14 @@ size_t OH_Drawing_GetDrawingArraySize(OH_Drawing_Array* drawingArray);
 void OH_Drawing_SetTypographyTextTrailingSpaceOptimized(OH_Drawing_TypographyStyle* style, bool trailingSpaceOptimized);
 
 /**
- * @brief Set text badge type.
+ * @brief Sets whether to use superscript or subscript in text layout.
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @param style Indicates the pointer to an <b>OH_Drawing_TextStyle</b> object.
- * @param textBageType The type of text badge.
+ * @param style Pointer to an OH_Drawing_TextStyle object.
+ * @param textBadgeType Superscript or subscript to use.
  * @since 20
- * @version 1.0
  */
-void OH_Drawing_SetTextStyleBadgeType(OH_Drawing_TextStyle* style, OH_Drawing_TextBadgeType textBageType);
+void OH_Drawing_SetTextStyleBadgeType(OH_Drawing_TextStyle* style, OH_Drawing_TextBadgeType textBadgeType);
 
 /**
  * @brief Set whether to enable automatic spacing between Chinese and English for paragraph.
@@ -3061,7 +3060,7 @@ void OH_Drawing_SetTextStyleBadgeType(OH_Drawing_TextStyle* style, OH_Drawing_Te
  * @param enableAutoSpace Indicates Whether to enable automatic spacing between Chinese and English.
  * @since 20
  */
-void OH_Drawing_SetTypographyTextAutoSpace(OH_Drawing_TypographyStyle *style, bool enableAutoSpace);
+void OH_Drawing_SetTypographyTextAutoSpace(OH_Drawing_TypographyStyle* style, bool enableAutoSpace);
 
 #ifdef __cplusplus
 }
