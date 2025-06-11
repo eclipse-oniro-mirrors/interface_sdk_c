@@ -536,14 +536,14 @@ OH_AudioStream_Result OH_AudioRenderer_GetAudioTimestampInfo(OH_AudioRenderer* r
     int64_t* framePosition, int64_t* timestamp);
 
 /**
- * @brief Callback function of interrupt event on AudioRenderer.
+ * @brief Called when an interrupt event occurs in an AudioRenderer instance.
+ * This function is similar to OH_AudioRenderer_Callbacks_Struct.OH_AudioRenderer_OnInterruptEvent.
  *
- * This function is similar with OH_AudioRenderer_Callbacks_Struct.OH_AudioRenderer_OnInterruptEvent.
- *
- * @param renderer AudioRenderer where this callback occurs.
- * @param userData User data which is passed by user.
- * @param type Force type of this interrupt event.
- * @param hint Hint of this interrupt event.
+ * @param renderer Pointer to the AudioRenderer instance that triggers the callback.
+ * @param userData Pointer to the user data passed when setting the callback via
+ * OH_AudioStreamBuilder_SetRendererInterruptCallback.
+ * @param type Type of force that causes the interrupt event.
+ * @param hint Hint provided along with the interrupt event.
  * @see OH_AudioRenderer_Callbacks_Struct.OH_AudioRenderer_OnInterruptEvent.
  * @since 20
  */
@@ -551,13 +551,13 @@ typedef void (*OH_AudioRenderer_OnInterruptCallback)(OH_AudioRenderer* renderer,
     OH_AudioInterrupt_ForceType type, OH_AudioInterrupt_Hint hint);
 
 /**
- * @brief Callback function of error on AudioRenderer.
+ * @brief Called when an error event occurs in an AudioRenderer instance.
+ * This function is similar to OH_AudioRenderer_Callbacks_Struct.OH_AudioRenderer_OnError.
  *
- * This function is similar with OH_AudioRenderer_Callbacks_Struct.OH_AudioRenderer_OnError.
- *
- * @param renderer AudioRenderer where this callback occurs.
- * @param userData User data which is passed by user.
- * @param error Error while using AudioRenderer.
+ * @param renderer Pointer to the AudioRenderer instance that triggers the callback.
+ * @param userData Pointer to the user data passed when setting the callback via
+ * OH_AudioStreamBuilder_SetRendererErrorCallback.
+ * @param error Specific error information.
  * @see OH_AudioRenderer_Callbacks_Struct.OH_AudioRenderer_OnError
  * @since 20
  */
