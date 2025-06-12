@@ -167,6 +167,20 @@ typedef enum Input_KeyboardType {
 } Input_KeyboardType;
 
 /**
+ * @brief Enumerates the injection authorization status.
+ *
+ * @since 20
+ */
+typedef enum Input_InjectionStatus {
+    /** Unauthorized */
+    UNAUTHORIZED = 0,
+    /** Authorizing */
+    AUTHORIZING = 1,
+    /** Authorized */
+    AUTHORIZED = 2,
+} Input_InjectionStatus;
+
+/**
  * @brief Enumerates event source types.
  *
  * @since 12
@@ -269,7 +283,27 @@ typedef enum Input_Result {
      * @error No keyboard device connected
      * @since 15
      */
-    INPUT_KEYBOARD_DEVICE_NOT_EXIST = 3900002
+    INPUT_KEYBOARD_DEVICE_NOT_EXIST = 3900002,
+     /**
+     * @error Authorizing
+     * @since 20
+     */
+    INPUT_INJECTION_AUTHORIZING = 3900005,
+    /**
+     * @error Too many operations
+     * @since 20
+     */
+    INPUT_INJECTION_OPERATION_FREQUENT = 3900006,
+    /**
+     * @error Authorized
+     * @since 20
+     */
+    INPUT_INJECTION_AUTHORIZED = 3900007,
+    /**
+     * @error Authorized to other applications
+     * @since 20
+     */
+    INPUT_INJECTION_AUTHORIZED_OTHERS = 3900008,
 } Input_Result;
 
 /**
@@ -330,6 +364,13 @@ typedef void (*Input_DeviceAddedCallback)(int32_t deviceId);
  * @since 13
  */
 typedef void (*Input_DeviceRemovedCallback)(int32_t deviceId);
+
+/**
+ * @brief Defines the event injection callback.
+ * @param authorizedStatus Authorization status.
+ * @since 20
+ */
+typedef void (*Input_InjectAuthorizeCallback)(Input_InjectionStatus authorizedStatus);
 
 /**
  * @brief Defines the structure for the interceptor of event callbacks,
@@ -976,6 +1017,38 @@ int32_t OH_Input_GetTouchEventDisplayId(const struct Input_TouchEvent* touchEven
  * @since 12
  */
 void OH_Input_CancelInjection();
+
+/**
+ * @brief Requests for injection authorization.
+ *
+ * @param callback - callback used to return the result.
+ * @return OH_Input_RequestInjection function result code.
+ *         {@link INPUT_SUCCESS} Success.\n
+ *         {@link INPUT_PARAMETER_ERROR} The callback is NULL.\n
+ *         {@INPUT_DEVICE_NOT_SUPPORTED} Capability not supported.\n
+ *         {@link INPUT_SERVICE_EXCEPTION} Service error.\n
+ *         {@link INPUT_INJECTION_AUTHORIZING} Authorizing.\n
+ *         {@link INPUT_INJECTION_OPERATION_FREQUENT} Too many operations.\n
+ *         {@link INPUT_INJECTION_AUTHORIZED} Authorized.\n
+ *         {@link INPUT_INJECTION_AUTHORIZED_OTHERS} Authorized to other applications.\n
+ * @syscap SystemCapability.MultimodalInput.Input.Core
+ * @since 20
+ */
+
+Input_Result OH_Input_RequestInjection(Input_InjectAuthorizeCallback callback);
+
+/**
+ * @brief Queries the injection authorization status.
+ *
+ * @param status Injection authorization status. For details, see {@Link Input_InjectionStatus}.
+ * @return OH_Input_QueryAuthorizedStatus function result code.
+ *         {@link INPUT_SUCCESS} Success.\n
+ *         {@link INPUT_PARAMETER_ERROR} The status is NULL\n
+ *         {@link INPUT_SERVICE_EXCEPTION} Service error.\n
+ * @syscap SystemCapability.MultimodalInput.Input.Core
+ * @since 20
+ */
+Input_Result OH_Input_QueryAuthorizedStatus(Input_InjectionStatus* status);
 
 /**
  * @brief Creates an axis event object.
