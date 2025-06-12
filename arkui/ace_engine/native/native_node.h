@@ -5275,10 +5275,13 @@ typedef enum {
      * .value[1].f32: vertical scrolling offset, in vp. \n
      * .value[2]?.i32: scrolling duration, in milliseconds. Optional. \n
      * .value[3]?.i32: scrolling curve. Optional. The parameter type is {@link ArkUI_AnimationCurve}.
-     * The default value is <b>ARKUI_CURVE_EASE</b>. \n
-     * .value[4]?.i32: whether to enable the default spring animation. Optional. The default value <b>0</b> means not
-     * to enable the default spring animation. \n
-     * .value[5]?.i32: Optional value, sets whether scrolling can cross the boundary. \n
+     *                 The default value is <b>ARKUI_CURVE_EASE</b>. \n
+     * .value[4]?.i32: whether to enable the default spring animation. Optional.
+     *                 The default value <b>0</b> means not to enable the default spring animation. \n
+     * .value[5]?.i32: whether to convert the scroll animation to an overshoot animation when the boundary is reached.
+     *                 Optional. \n
+     * .value[6]?.i32: whether the component can stop at an overscrolled position.
+     *                 This parameter is supported since API version 20. \n
      * \n
      * Format of the return value {@link ArkUI_AttributeItem}:\n
      * .value[0].f32: horizontal scrolling offset, in vp. \n
