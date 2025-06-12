@@ -72,7 +72,8 @@ struct OH_Huks_Result OH_Huks_GetSdkVersion(struct OH_Huks_Blob *sdkVersion);
  * @return {@link OH_Huks_ErrCode#OH_HUKS_SUCCESS} 0 - If the operation is successful.
  *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_ILLEGAL_ARGUMENT} 401 - If keyAlias or paramSetIn or
  *             paramSetOut is invalid.
- *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_INTERNAL_ERROR} 12000012 - If system error ocurred.
+ *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_INTERNAL_ERROR} 12000012 - If Device environment or
+ *             input parameter abnormal..
  *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_FILE_OPERATION_FAIL} 12000004 - If failed to remove file,
  *             or if failed to write file.
  *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_INVALID_CRYPTO_ALG_ARGUMENT} 12000003 - If the key argument
@@ -83,7 +84,8 @@ struct OH_Huks_Result OH_Huks_GetSdkVersion(struct OH_Huks_Blob *sdkVersion);
  *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_COMMUNICATION_FAIL} 12000005 - If Ipc commuication failed.
  *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_CRYPTO_FAIL} 12000006 - If crypto engine failed.
  *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_INSUFFICIENT_MEMORY} 12000014 - If the memory is insufficient.
- *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_CALL_SERVICE_FAILED} 12000015 - If connect userIam failed.
+ *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_CALL_SERVICE_FAILED} 12000015 - If Failed to obtain
+ *             the security information via UserIAM.
  *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_DEVICE_PASSWORD_UNSET} 12000016 - If device password is required
  *             but not set.
  *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_FEATURE_NOT_SUPPORTED} 12000001 - If the feature is not support.
@@ -103,7 +105,8 @@ struct OH_Huks_Result OH_Huks_GenerateKeyItem(const struct OH_Huks_Blob *keyAlia
  *    For details, see {@link HuksTypeApi}.
  * @return {@link OH_Huks_ErrCode#OH_HUKS_SUCCESS} 0 - If the operation is successful.
  *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_ILLEGAL_ARGUMENT} 401 - If keyAlias or paramSet or key is invalid.
- *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_INTERNAL_ERROR} 12000012 - If system error ocurred.
+ *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_INTERNAL_ERROR} 12000012 - If Device environment or
+ *             input parameter abnormal..
  *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_FILE_OPERATION_FAIL} 12000004 - If failed to remove file,
  *             or if failed to write file.
  *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_INVALID_CRYPTO_ALG_ARGUMENT} 12000003 - If the key argument
@@ -112,7 +115,8 @@ struct OH_Huks_Result OH_Huks_GenerateKeyItem(const struct OH_Huks_Blob *keyAlia
  *             get key argument.
  *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_COMMUNICATION_FAIL} 12000005 - If Ipc commuication failed.
  *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_INSUFFICIENT_MEMORY} 12000014 - If the memory is insufficient.
- *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_CALL_SERVICE_FAILED} 12000015 - If connect userIam failed.
+ *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_CALL_SERVICE_FAILED} 12000015 - If Failed to obtain
+ *             the security information via UserIAM.
  *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_FEATURE_NOT_SUPPORTED} 12000001 - If the feature is not support.
  * @since 9
  * @version 1.0
@@ -133,7 +137,8 @@ struct OH_Huks_Result OH_Huks_ImportKeyItem(const struct OH_Huks_Blob *keyAlias,
  * @return {@link OH_Huks_ErrCode#OH_HUKS_SUCCESS} 0 - If the operation is successful.
  *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_ILLEGAL_ARGUMENT} 401 - If keyAlias or wrappingKeyAlias or
  *             paramSet or wrappedKeyData is invalid.
- *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_INTERNAL_ERROR} 12000012 - If system error ocurred.
+ *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_INTERNAL_ERROR} 12000012 - If Device environment or
+ *             input parameter abnormal..
  *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_FILE_OPERATION_FAIL} 12000004 - If failed to remove file,
  *             or if failed to write file.
  *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_INVALID_CRYPTO_ALG_ARGUMENT} 12000003 - If the key argument
@@ -143,7 +148,8 @@ struct OH_Huks_Result OH_Huks_ImportKeyItem(const struct OH_Huks_Blob *keyAlias,
  *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_COMMUNICATION_FAIL} 12000005 - If Ipc commuication failed.
  *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_CRYPTO_FAIL} 12000006 - If crypto engine failed.
  *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_INSUFFICIENT_MEMORY} 12000014 - If the memory is insufficient.
- *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_CALL_SERVICE_FAILED} 12000015 - If connect userIam failed.
+ *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_CALL_SERVICE_FAILED} 12000015 - If Failed to obtain
+ *             the security information via UserIAM.
  *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_FEATURE_NOT_SUPPORTED} 12000001 - If the feature is not support.
  * @since 9
  * @version 1.0
@@ -161,7 +167,8 @@ struct OH_Huks_Result OH_Huks_ImportWrappedKeyItem(const struct OH_Huks_Blob *ke
  * @param key Indicates the pointer to the public key exported.
  * @return {@link OH_Huks_ErrCode#OH_HUKS_SUCCESS} 0 - If the operation is successful.
  *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_ILLEGAL_ARGUMENT} 401 - If keyAlias or paramSet or key is invalid.
- *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_INTERNAL_ERROR} 12000012 - If system error ocurred.
+ *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_INTERNAL_ERROR} 12000012 - If Device environment or
+ *             input parameter abnormal..
  *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_ITEM_NOT_EXIST} 12000011 - If the key file is not exit.
  *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_INVALID_CRYPTO_ALG_ARGUMENT} 12000003 - If the key argument
  *             is invalid.
@@ -185,7 +192,8 @@ struct OH_Huks_Result OH_Huks_ExportPublicKeyItem(const struct OH_Huks_Blob *key
  *    By default, this parameter is a null pointer.
  * @return {@link OH_Huks_ErrCode#OH_HUKS_SUCCESS} 0 - If the operation is successful.
  *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_ILLEGAL_ARGUMENT} 401 - If keyAlias or paramSet is invalid.
- *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_INTERNAL_ERROR} 12000012 - If system error ocurred.
+ *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_INTERNAL_ERROR} 12000012 - If Device environment or
+ *             input parameter abnormal..
  *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_INVALID_CRYPTO_ALG_ARGUMENT} 12000003 - If the key argument
  *             is invalid.
  *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_ITEM_NOT_EXIST} 12000011 - If the key file is not exit.
@@ -209,7 +217,8 @@ struct OH_Huks_Result OH_Huks_DeleteKeyItem(const struct OH_Huks_Blob *keyAlias,
  * @return {@link OH_Huks_ErrCode#OH_HUKS_SUCCESS} 0 - If the operation is successful.
  *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_ILLEGAL_ARGUMENT} 401 - If keyAlias or paramSetIn or
  *             paramSetOut is invalid.
- *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_INTERNAL_ERROR} 12000012 - If system error ocurred.
+ *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_INTERNAL_ERROR} 12000012 - If Device environment or
+ *             input parameter abnormal..
  *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_INVALID_CRYPTO_ALG_ARGUMENT} 12000003 - If the key argument
  *             is invalid.
  *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_ITEM_NOT_EXIST} 12000011 - If the key file is not exit.
@@ -232,7 +241,8 @@ struct OH_Huks_Result OH_Huks_GetKeyItemParamSet(const struct OH_Huks_Blob *keyA
  *    By default, this parameter is a null pointer.
  * @return {@link OH_Huks_ErrCode#OH_HUKS_SUCCESS} 0 - If the operation is successful.
  *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_ILLEGAL_ARGUMENT} 401 - If keyAlias or paramSet is invalid.
- *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_INTERNAL_ERROR} 12000012 - If system error ocurred.
+ *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_INTERNAL_ERROR} 12000012 - If Device environment or
+ *             input parameter abnormal..
  *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_INVALID_CRYPTO_ALG_ARGUMENT} 12000003 - If the key argument
  *             is invalid.
  *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_ITEM_NOT_EXIST} 12000011 - If the key file is not exit.
@@ -256,7 +266,8 @@ struct OH_Huks_Result OH_Huks_IsKeyItemExist(const struct OH_Huks_Blob *keyAlias
  * @return {@link OH_Huks_ErrCode#OH_HUKS_SUCCESS} 0 - If the operation is successful.
  *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_ILLEGAL_ARGUMENT} 401 - If keyAlias or
  *             paramSet or certChain is invalid.
- *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_INTERNAL_ERROR} 12000012 - If system error ocurred.
+ *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_INTERNAL_ERROR} 12000012 - If Device environment or
+ *             input parameter abnormal..
  *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_INVALID_CRYPTO_ALG_ARGUMENT} 12000003 - If the key argument
  *             is invalid.
  *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_ITEM_NOT_EXIST} 12000011 - If the key file is not exit.
@@ -283,7 +294,8 @@ struct OH_Huks_Result OH_Huks_AttestKeyItem(const struct OH_Huks_Blob *keyAlias,
  * @return {@link OH_Huks_ErrCode#OH_HUKS_SUCCESS} 0 - If the operation is successful.
  *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_ILLEGAL_ARGUMENT} 401 - If keyAlias or
  *             paramSet or certChain is invalid.
- *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_INTERNAL_ERROR} 12000012 - If system error ocurred.
+ *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_INTERNAL_ERROR} 12000012 - If Device environment or
+ *             input parameter abnormal..
  *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_INVALID_CRYPTO_ALG_ARGUMENT} 12000003 - If the key argument
  *             is invalid.
  *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_ITEM_NOT_EXIST} 12000011 - If the key file is not exit.
@@ -314,7 +326,8 @@ struct OH_Huks_Result OH_Huks_AnonAttestKeyItem(const struct OH_Huks_Blob *keyAl
  * @return {@link OH_Huks_ErrCode#OH_HUKS_SUCCESS} 0 - If the operation is successful.
  *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_ILLEGAL_ARGUMENT} 401 - If keyAlias or paramSet or handle or
  *             token is invalid.
- *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_INTERNAL_ERROR} 12000012 - If system error ocurred.
+ *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_INTERNAL_ERROR} 12000012 - If Device environment or
+ *             input parameter abnormal..
  *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_INVALID_CRYPTO_ALG_ARGUMENT} 12000003 - If the key argument
  *             is invalid.
  *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_ITEM_NOT_EXIST} 12000011 - If the key file is not exit.
@@ -346,7 +359,8 @@ struct OH_Huks_Result OH_Huks_InitSession(const struct OH_Huks_Blob *keyAlias,
  * @return {@link OH_Huks_ErrCode#OH_HUKS_SUCCESS} 0 - If the operation is successful.
  *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_ILLEGAL_ARGUMENT} 401 - If handle or paramSet or inData or
  *             outData is invalid.
- *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_INTERNAL_ERROR} 12000012 - If system error ocurred.
+ *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_INTERNAL_ERROR} 12000012 - If Device environment or
+ *             input parameter abnormal..
  *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_INVALID_CRYPTO_ALG_ARGUMENT} 12000003 - If the key argument
  *             is invalid.
  *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_ITEM_NOT_EXIST} 12000011 - If the key file is not exit,
@@ -383,7 +397,8 @@ struct OH_Huks_Result OH_Huks_UpdateSession(const struct OH_Huks_Blob *handle,
  * @return {@link OH_Huks_ErrCode#OH_HUKS_SUCCESS} 0 - If the operation is successful.
  *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_ILLEGAL_ARGUMENT} 401 - If handle or paramSet or inData or
  *             outData is invalid.
- *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_INTERNAL_ERROR} 12000012 - If system error ocurred.
+ *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_INTERNAL_ERROR} 12000012 - If Device environment or
+ *             input parameter abnormal..
  *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_INVALID_CRYPTO_ALG_ARGUMENT} 12000003 - If the key argument
  *             is invalid.
  *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_ITEM_NOT_EXIST} 12000011 - If the key file is not exit,
@@ -419,7 +434,8 @@ struct OH_Huks_Result OH_Huks_FinishSession(const struct OH_Huks_Blob *handle,
  * @return {@link OH_Huks_ErrCode#OH_HUKS_SUCCESS} 0 - If the operation is successful.
  *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_ILLEGAL_ARGUMENT} 401 - If handle or paramSet or inData or
  *             outData is invalid.
- *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_INTERNAL_ERROR} 12000012 - If system error ocurred.
+ *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_INTERNAL_ERROR} 12000012 - If Device environment or
+ *             input parameter abnormal..
  *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_INVALID_CRYPTO_ALG_ARGUMENT} 12000003 - If the key argument
  *             is invalid.
  *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_ITEM_NOT_EXIST} 12000011 - or if the handle is not exist.
@@ -445,7 +461,8 @@ struct OH_Huks_Result OH_Huks_AbortSession(const struct OH_Huks_Blob *handle,
  * @param outData Indicates the pointer to the output data.
  * @return {@link OH_Huks_ErrCode#OH_HUKS_SUCCESS} 0 - If the operation is successful.
  *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_ILLEGAL_ARGUMENT} 401 - If paramSet or outData is invalid.
- *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_INTERNAL_ERROR} 12000012 - If system error ocurred.
+ *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_INTERNAL_ERROR} 12000012 - If Device environment or
+ *             input parameter abnormal..
  *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_COMMUNICATION_FAIL} 12000005 - If Ipc commuication failed.
  *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_INSUFFICIENT_MEMORY} 12000014 - If the memory is insufficient.
  * @since 20
@@ -470,7 +487,8 @@ struct OH_Huks_Result OH_Huks_ListAliases(const struct OH_Huks_ParamSet *paramSe
  *             or if failed to write file.
  *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_COMMUNICATION_FAIL} 12000005 - If Ipc commuication failed.
  *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_CRYPTO_FAIL} 12000006 - If crypto engine failed.
- *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_INTERNAL_ERROR} 12000012 - If system error ocurred.
+ *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_INTERNAL_ERROR} 12000012 - If Device environment or
+ *             input parameter abnormal..
  *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_INSUFFICIENT_MEMORY} 12000014 - If the memory is insufficient.
  *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_INVALID_ARGUMENT} 12000018 - If the input parameter is invalid.
  * @since 20
@@ -499,9 +517,11 @@ struct OH_Huks_Result OH_Huks_WrapKey(const struct OH_Huks_Blob *keyAlias, const
  *         verify failed.
  *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_KEY_AUTH_VERIFY_FAILED} 12000008 - If auth token verify failed.
  *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_KEY_AUTH_TIME_OUT} 12000009 - If authentication token timed out.
- *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_INTERNAL_ERROR} 12000012 - If system error ocurred.
+ *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_INTERNAL_ERROR} 12000012 - If Device environment or
+ *             input parameter abnormal..
  *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_INSUFFICIENT_MEMORY} 12000014 - If the memory is insufficient.
- *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_CALL_SERVICE_FAILED} 12000015 - If connect userIam failed.
+ *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_CALL_SERVICE_FAILED} 12000015 - If Failed to obtain
+ *             the security information via UserIAM.
  *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_INVALID_ARGUMENT} 12000018 - If the input parameter is invalid.
  * @since 20
  */
