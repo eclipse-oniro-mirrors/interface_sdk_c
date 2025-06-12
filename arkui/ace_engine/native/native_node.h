@@ -6605,7 +6605,7 @@ typedef enum {
     *
     * @since 20
     */
-    NODE_GRID_FOCUS_WRAP_MODE,
+    NODE_GRID_FOCUS_WRAP_MODE = 1013006,
 
     /**
     * @brief Defines the column width of the text picker.
