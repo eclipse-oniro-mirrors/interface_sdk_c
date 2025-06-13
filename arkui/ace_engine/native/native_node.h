@@ -2356,6 +2356,21 @@ typedef enum {
     NODE_IMMUTABLE_FONT_WEIGHT = 1030,
 
     /**
+     * @brief Sets whether to optimize the trailing spaces at the end of each line during text layout.
+     * This attribute can be set, reset, and obtained as required through APIs.
+     *
+     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
+     * value[0].i32: whether to optimize trailing spaces at the end of each line during text layout.
+     *               The default value is <b>false</b>. \n
+     * \n
+     * Format of the return value {@link ArkUI_AttributeItem}:\n
+     * value[0].i32: whether to optimize trailing spaces at the end of each line during text layout. \n
+     *
+     * @since 20
+     */
+    NODE_TEXT_OPTIMIZE_TRAILING_SPACE = 1032,
+
+    /**
      * @brief Defines the text line count attribute, which can only be obtained as required through APIs.
      *
      * Format of the return value {@link ArkUI_AttributeItem}:\n
@@ -2364,71 +2379,6 @@ typedef enum {
      * @since 20
      */
     NODE_TEXT_LINE_COUNT = 1031,
-
-    /**
-     * @brief Sets a linear gradient effect for text.
-     * This attribute can be set, reset, and obtained as required through APIs.
-     *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].f32: start angle of the linear gradient.
-     * The setting takes effect only when <b>direction</b> is set to <b>ARKUI_LINEAR_GRADIENT_DIRECTION_CUSTOM</b>.
-     * A positive value indicates a clockwise rotation from the origin, (0, 0). The default value is <b>180</b>. \n
-     * .value[1].i32: direction of the linear gradient. When a direction other than
-     * <b>ARKUI_LINEAR_GRADIENT_DIRECTION_CUSTOM</b> is set, the <b>angle</b> property is ignored.
-     * The parameter type is {@link ArkUI_LinearGradientDirection}. \n
-     * .value[2].i32: whether the colors are repeated. The default value is <b>false</b>.
-     * .object: array of color stops, each of which consists of a color and its stop position.
-     * The parameter type is {@link ArkUI_ColorStop}. Invalid colors are automatically skipped. \n \n
-     * colors: colors of the color stops. \n
-     * stops: stop positions of the color stops. \n
-     * size: number of colors. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].f32: start angle of the linear gradient.
-     * When <b>direction</b> is set to <b>ARKUI_LINEAR_GRADIENT_DIRECTION_CUSTOM</b>, <b>angle</b> at the set value;
-     * otherwise, it is at default value. \n
-     * .value[1].i32: direction of the linear gradient. \n
-     * .value[2].i32: whether the colors are repeated. \n
-     * .object: array of color stops, each of which consists of a color and its stop position.
-     * The parameter type is {@link ArkUI_ColorStop}. Invalid colors are automatically skipped. \n \n
-     * colors: colors of the color stops. \n
-     * stops: stop positions of the color stops. \n
-     * size: number of colors. \n
-     *
-     * @since 20
-     */
-    NODE_TEXT_LINEAR_GRADIENT = 1033,
-
-    /**
-     * @brief Sets a radial gradient effect for text. This attribute can be set, reset, and obtained as required through APIs.
-     *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0]?.f32: X-coordinate of the radial gradient center relative to the upper left corner of the text. \n
-     * .value[1]?.f32: Y-coordinate of the radial gradient center relative to the upper left corner of the text. \n
-     * .value[2]?.f32: radius of the radial gradient. The default value is <b>0</b>. \n
-     * .value[3]?.i32: whether the colors are repeated.
-     * The value <b>1</b> means that the colors are repeated, and <b>0</b> means the opposite.\n \n
-     * .object: array of color stops, each of which consists of a color and its stop position.
-     * The parameter type is {@link ArkUI_ColorStop}. Invalid colors are automatically skipped. \n
-     * colors: colors of the color stops. \n
-     * stops: stop positions of the color stops. \n
-     * size: number of colors. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].f32: X-coordinate of the radial gradient center relative to the upper left corner of the text. \n
-     * .value[1].f32: Y-coordinate of the radial gradient center relative to the upper left corner of the text. \n
-     * .value[2].f32: radius of the radial gradient. The default value is <b>0</b>. \n
-     * .value[3].i32: whether the colors are repeated.
-     * The value <b>1</b> means that the colors are repeated, and <b>0</b> means the opposite.  \n
-     * .object: array of color stops, each of which consists of a color and its stop position.
-     * The parameter type is {@link ArkUI_ColorStop}. Invalid colors are automatically skipped. \n
-     * colors: colors of the color stops. \n
-     * stops: stop positions of the color stops. \n
-     * size: number of colors. \n
-     *
-     * @since 20
-     */
-    NODE_TEXT_RADIAL_GRADIENT = 1034,
 
     /**
      * @brief Defines the text content attribute, which can be set, reset, and obtained as required through APIs.
@@ -3197,6 +3147,7 @@ typedef enum {
      * @since 15
      */
     NODE_TEXT_INPUT_LETTER_SPACING = 7032,
+
     /**
      * @brief Sets whether to enable preview text for the <b>TextInput</b> component.
      * This attribute can be set, reset, and obtained as required through APIs.
@@ -3249,16 +3200,16 @@ typedef enum {
      * @since 20
      */
      NODE_TEXT_INPUT_ENABLE_FILL_ANIMATION = 7036,
-     
+
     /**
      * @brief Set the line height of the input node.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
      * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: line height value. \n
+     * .value[0].i32: line height value.
      * \n
      * Format of the return value {@link ArkUI_AttributeItem}: \n
-     * .value[0].i32: line height value. \n
+     * .value[0].i32: line height value
      *
      * @since 20
      */
@@ -3547,6 +3498,7 @@ typedef enum {
      *
      */
     NODE_TEXT_AREA_SHOW_KEYBOARD_ON_FOCUS,
+
     /**
      * @brief When this property is set, the height of the textArea component is calculated using this property.
      *
@@ -3613,13 +3565,13 @@ typedef enum {
     NODE_TEXT_AREA_KEYBOARD_APPEARANCE = 8026,
 
     /**
-     * @brief Set the max lines of the node. This attrilbute can be set, reset, and obtained as required through APIs.
+     * @brief Set the max lines of the node. This attribute can be set, reset, and obtained as required through APIs.
      *
      * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: max lines count. \n
+     * .value[0].i32: max lines count.
      * \n
      * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: max lines count. \n
+     * .value[0].i32: max lines count.\n
      *
      * @since 20
      */
@@ -3639,13 +3591,42 @@ typedef enum {
     NODE_TEXT_AREA_LINE_SPACING = 8028,
 
     /**
+     * @brief Set the min lines of the node. This attribute can be set, reset, and obtained as required through APIs.
+     *
+     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
+     * .value[0].i32: min lines count.
+     * \n
+     * Format of the return value {@link ArkUI_AttributeItem}: \n
+     * .value[0].i32: min line count.\n
+     *
+     * @since 20
+     * 
+     */
+    NODE_TEXT_AREA_MIN_LINES = 8029,
+ 
+    /**
+     * @brief Set the max lines of the node with scroll.
+     * This attribute can be set, reset, and obtained as required through APIs.
+     *
+     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
+     * .value[0].i32: max lines count with scroll.
+     * \n
+     * Format of the return value {@link ArkUI_AttributeItem}: \n
+     * .value[0].i32: max line count with scroll.\n
+     *
+     * @since 20
+     *
+     */
+    NODE_TEXT_AREA_MAX_LINES_WITH_SCROLL = 8030,
+
+    /**
      * @brief Set the line height of the node. This attribute can be set, reset, and obtained as required through APIs.
      *
      * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: line height value. \n
+     * .value[0].i32: line height value.
      * \n
      * Format of the return value {@link ArkUI_AttributeItem}: \n
-     * .value[0].i32: line height value. \n
+     * .value[0].i32: line height value.
      *
      * @since 20
      */
@@ -6960,11 +6941,11 @@ typedef enum {
      */
     NODE_TEXT_ON_DETECT_RESULT_UPDATE = MAX_NODE_SCOPE_NUM * ARKUI_NODE_TEXT,
     /**
-     * @brief Defines the long press event for span
+     * @brief Defines the long press event for span.
      *
      * The event is triggered when the span is long pressed.
      * When the event callback occurs, the {@link ArkUI_NodeEvent} object can be obtained from the
-     * {@link ArkUI_UIInputEvent} object.\n
+     * {@link ArkUI_UIInputEvent} object. \n
      * @since 20
      */
     NODE_TEXT_SPAN_ON_LONG_PRESS = 1001,
@@ -7212,7 +7193,7 @@ typedef enum {
     NODE_TEXT_INPUT_ON_CHANGE_WITH_PREVIEW_TEXT = 7013,
 
     /**
-     * @brief Defines the event triggered before content changes.
+     * @brief Defines the event triggered before content changes
      *
      * When the event callback occurs, the union type {@link ArkUI_NodeEvent} is {@link ArkUI_TextChangeEvent}. \n
      * {@link ArkUI_TextChangeEvent} contains the following parameters: \n
@@ -7391,7 +7372,7 @@ typedef enum {
     NODE_TEXT_AREA_ON_CHANGE_WITH_PREVIEW_TEXT = 8012,
 
     /**
-     * @brief Defines the event triggered before content changes
+     * @brief Defines the event triggered before content changes.
      *
      * When the event callback occurs, the union type {@link ArkUI_NodeEvent} is {@link ArkUI_TextChangeEvent}. \n
      * {@link ArkUI_TextChangeEvent} contains the following parameters: \n
