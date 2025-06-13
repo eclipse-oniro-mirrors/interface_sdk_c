@@ -861,7 +861,8 @@ int OH_UdmfProperty_SetExtrasStringParam(OH_UdmfProperty* pThis,
 OH_UdmfOptions* OH_UdmfOptions_Create();
 
 /**
- * @brief Destroy a pointer that points to an instance of {@link OH_UdmfOptions}.
+ * @brief Destroy the heap memory pointed to by the pointer of {@link OH_UdmfOptions}.
+ * Note that this function cannot be called repeatedly for the same pointer.
  *
  * @param pThis Represents a pointer to an instance of {@link OH_UdmfOptions}.
  * @see OH_UdmfOptions.
