@@ -606,49 +606,5 @@
     {
         "first_introduced": "20",
         "name": "OH_Udmf_DestroyDataArray"
-    },
-    {
-        "first_introduced": "20",
-        "name": "OH_UdmfGetDataParams_SetAcceptableInfo"
-    },
-    {
-        "first_introduced": "20",
-        "name": "OH_UdmfDataLoadParams_Create"
-    },
-    {
-        "first_introduced": "20",
-        "name": "OH_UdmfDataLoadParams_Destroy"
-    },
-    {
-        "first_introduced": "20",
-        "name": "OH_UdmfDataLoadParams_SetLoadHandler"
-    },
-    {
-        "first_introduced": "20",
-        "name": "OH_UdmfDataLoadParams_SetDataLoadInfo"
-    },
-    {
-        "first_introduced": "20",
-        "name": "OH_UdmfDataLoadInfo_Create"
-    },
-    {
-        "first_introduced": "20",
-        "name": "OH_UdmfDataLoadInfo_Destroy"
-    },
-    {
-        "first_introduced": "20",
-        "name": "OH_UdmfDataLoadInfo_GetTypes"
-    },
-    {
-        "first_introduced": "20",
-        "name": "OH_UdmfDataLoadInfo_SetType"
-    },
-    {
-        "first_introduced": "20",
-        "name": "OH_UdmfDataLoadInfo_GetRecordCount"
-    },
-    {
-        "first_introduced": "20",
-        "name": "OH_UdmfDataLoadInfo_SetRecordCount"
     }
 ]
