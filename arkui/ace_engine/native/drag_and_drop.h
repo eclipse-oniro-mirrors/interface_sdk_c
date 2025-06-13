@@ -245,6 +245,28 @@ int32_t OH_ArkUI_DragEvent_SetDragResult(ArkUI_DragEvent* event, ArkUI_DragResul
 int32_t OH_ArkUI_DragEvent_SetData(ArkUI_DragEvent* event, OH_UdmfData* data);
 
 /**
+* @brief Use this method to provide a data loading parameter to the system instead of providing
+* a complete data object directly. When the user drags and drops to the target application,
+* the system will use this parameter to request data from you. This can greatly improve the efficiency
+* of the dragging operation for large amounts of data and the effectiveness of the drop data handling
+* in the target application.
+*
+* This method should be always prioritized over using {@link OH_ArkUI_DragEvent_SetData}.
+* See {@link OH_UdmfDataLoadParams_Create} in <b>udmf.h</b> for how to create and prepare the data loading parameter.
+*
+* [Note]: Please be awared this method is conflict with {@link OH_ArkUI_DragEvent_SetData}, and the system always use
+* the last called method as the final result.
+*
+* @param event Indicates the pointer to an <b>ArkUI_DragEvent</b> object.
+* @param dataLoadParams Indicates the data loading parameters which will be used when dropping.
+* @return Returns the result code.
+*         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+*         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+* @since 20
+*/
+ArkUI_ErrorCode OH_ArkUI_DragEvent_SetDataLoadParams(ArkUI_DragEvent* event, OH_UdmfDataLoadParams* dataLoadParams);
+
+/**
  * @brief Obtains the default drag data from a drag event.
  *
  * @param event Indicates the pointer to an <b>ArkUI_DragEvent</b> object.
@@ -784,6 +806,29 @@ int32_t OH_ArkUI_DragAction_SetTouchPointY(ArkUI_DragAction* dragAction, float y
  * @since 12
  */
 int32_t OH_ArkUI_DragAction_SetData(ArkUI_DragAction* dragAction, OH_UdmfData* data);
+
+/**
+ * @brief Use this method to provide a data loading parameter to the system instead of providing
+ * a complete data object directly. When the user drags and drops to the target application,
+ * the system will use this parameter to request data from you. This can greatly improve the efficiency
+ * of the dragging operation for large amounts of data and the effectiveness of the drop data handling
+ * in the target application.
+ *
+ * It's recommanded to use this method instead of using {@link OH_ArkUI_DragAction_SetData}.
+ * See {@link OH_UdmfDataLoadParams_Create} in <b>udmf.h</b> for how to create and prepare the data loading parameter.
+ *
+ * [Note]: Please be awared this method is conflict with {@link OH_ArkUI_DragAction_SetData}, and the system always use
+ * the last called method as the final result.
+ *
+ * @param dragAction Indicates the pointer to the target drag action object.
+ * @param dataLoadParams Indicates the data loading parameters which will be used when dropping.
+ * @return Returns the result code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @since 20
+ */
+ArkUI_ErrorCode OH_ArkUI_DragAction_SetDataLoadParams(ArkUI_DragAction* dragAction,
+    OH_UdmfDataLoadParams* dataLoadParams);
 
 /**
  * @brief Sets an <b>ArkUI_DragPreviewOption</b> object for the specified drag action object.
