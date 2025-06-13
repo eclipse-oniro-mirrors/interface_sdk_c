@@ -1199,7 +1199,7 @@ OH_UdmfDataLoadInfo* OH_UdmfDataLoadInfo_Create();
 /**
  * @brief Destroy the heap memory pointed to by the pointer of {@link OH_UdmfDataLoadInfo}.
  * Note that this function cannot be called repeatedly for the same pointer.
- * 
+ *
  * @param dataLoadInfo Represents a pointer to an instance of {@link OH_UdmfDataLoadInfo}.
  * @see OH_UdmfDataLoadInfo
  * @since 20
