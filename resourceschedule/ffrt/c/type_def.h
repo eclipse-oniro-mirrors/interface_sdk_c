@@ -148,6 +148,7 @@ typedef enum {
 #error "unsupported architecture"
 #endif
 } ffrt_storage_size_t;
+
 /**
  * @brief Enumerates the task types.
  *
