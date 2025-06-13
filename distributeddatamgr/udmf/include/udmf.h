@@ -1203,7 +1203,7 @@ OH_UdmfDataLoadInfo* OH_UdmfDataLoadInfo_Create();
  * @see OH_UdmfDataLoadInfo
  * @since 20
  */
-void OH_UdmfDataLoadInfo_Destroy(OH_UdmfDataLoadInfo* dataLoadInfo);
+void OH_UdmfDataLoadInfo_Destroy(OH_UdmfDataLoadInfo* pThis);
 
 /**
  * @brief Gets the types from the {@OH_UdmfDataLoadInfo}.
@@ -1220,7 +1220,7 @@ char** OH_UdmfDataLoadInfo_GetTypes(OH_UdmfDataLoadInfo* dataLoadInfo, unsigned 
  * @brief Sets the data load info to the {@OH_UdmfDataLoadInfo}.
  *
  * @param dataLoadInfo Represents a pointer to an instance of {@link OH_UdmfDataLoadInfo}.
- * @param types Represents the type of data.
+ * @param type Represents the type of data.
  * @see OH_UdmfDataLoadInfo
  * @since 20
  */
