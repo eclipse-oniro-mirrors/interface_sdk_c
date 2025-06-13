@@ -213,6 +213,34 @@ typedef struct OH_AVDataSource {
 } OH_AVDataSource;
 
 /**
+ * @brief the function pointer will be called to get sequence media data.
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
+ * @param data    OH_AVBuffer buffer to fill
+ * @param length   expected to read size;
+ * @param pos    current read offset
+ * @param userDta user-defined data
+ * @return  Actual size of data read to the buffer.
+ * @since 20
+ */
+typedef int32_t (*OH_AVDataSourceReadAtExt)(OH_AVBuffer *data, int32_t length, int64_t pos, void *userData);
+
+/**
+ * @brief User customized data source.
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
+ * @since 20
+ */
+typedef struct OH_AVDataSourceExt {
+    /**
+     * Total size of the data source.
+     */
+    int64_t size;
+    /**
+     * Callback interface for reading data from datasource.
+     */
+    OH_AVDataSourceReadAtExt readAt;
+} OH_AVDataSourceExt;
+
+/**
  * @brief Enumerates the mime types of video avc codec.
  *
  * @syscap SystemCapability.Multimedia.Media.CodecBase
