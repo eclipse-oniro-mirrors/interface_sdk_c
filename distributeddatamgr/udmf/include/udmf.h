@@ -1197,13 +1197,14 @@ void OH_UdmfDataLoadParams_SetDataLoadInfo(OH_UdmfDataLoadParams* params, OH_Udm
 OH_UdmfDataLoadInfo* OH_UdmfDataLoadInfo_Create();
 
 /**
- * @brief Destroy a pointer that points to an instance of {@link OH_UdmfDataLoadInfo}.
- *
- * @param pThis Represents a pointer to an instance of {@link OH_UdmfDataLoadInfo}.
+ * @brief Destroy the heap memory pointed to by the pointer of {@link OH_UdmfDataLoadInfo}.
+ * Note that this function cannot be called repeatedly for the same pointer.
+ * 
+ * @param dataLoadInfo Represents a pointer to an instance of {@link OH_UdmfDataLoadInfo}.
  * @see OH_UdmfDataLoadInfo
  * @since 20
  */
-void OH_UdmfDataLoadInfo_Destroy(OH_UdmfDataLoadInfo* pThis);
+void OH_UdmfDataLoadInfo_Destroy(OH_UdmfDataLoadInfo* dataLoadInfo);
 
 /**
  * @brief Gets the types from the {@OH_UdmfDataLoadInfo}.
