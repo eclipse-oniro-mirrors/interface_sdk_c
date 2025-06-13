@@ -456,7 +456,7 @@ struct OH_Huks_Result OH_Huks_ListAliases(const struct OH_Huks_ParamSet *paramSe
 
 /**
  * @brief Export the wrapped key encrypted by a specific key.
- * 
+ *
  * @param keyAlias Indicates the pointer to the alias of the key to export.
  * @param paramSet Indicates the pointer to the export parameters.
  * @param wrappedKey Indicates the - indicates the wrapped key to export.
@@ -473,13 +473,14 @@ struct OH_Huks_Result OH_Huks_ListAliases(const struct OH_Huks_ParamSet *paramSe
  *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_INTERNAL_ERROR} 12000012 - If system error ocurred.
  *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_INSUFFICIENT_MEMORY} 12000014 - If the memory is insufficient.
  *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_INVALID_ARGUMENT} 12000018 - If the input parameter is invalid.
+ * @since 20
  */
 struct OH_Huks_Result OH_Huks_WrapKey(const struct OH_Huks_Blob *keyAlias, const struct OH_Huks_ParamSet *paramSet,
     struct OH_Huks_Blob *wrappedKey);
 
 /**
  * @brief Import the wrapped key encrypted by a specific key.
- * 
+ *
  * @param keyAlias Indicates the pointer to the alias of the key to import.
  *     The alias must be unique in the process of the service. Otherwise, the key will be overwritten.
  * @param paramSet Indicates the pointer to the import parameters.
