@@ -672,18 +672,6 @@ typedef enum {
 } ArkUI_EffectEdge;
 
 /**
- * @brief Enumerates the focus wrap mode of components.
- *
- * @since 20
- */
-typedef enum {
-    /** Default mode, where focus does not wrap when arrow keys are used. */
-    ARKUI_FOCUS_WRAPMODE_DEFAULT = 0,
-    /** Focus wraps automatically when arrow keys are used. */
-    ARKUI_FOCUS_WRAPMODE_WRAP_WITH_ARROW = 1,
-} ArkUI_FocusWrapMode;
-
-/**
  * @brief Enumerates the scroll directions for the <b><Scroll></b> component.
  *
  * @since 12
