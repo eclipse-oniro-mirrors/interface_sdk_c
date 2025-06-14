@@ -89,7 +89,11 @@
     },
     {
         "first_instroduced":"20",
-        "name":"OH_PictureInPicture_CreatePip"
+        "name":"OH_PictureInPicture_CreatePipConfig"
+    },
+    {
+        "first_instroduced":"20",
+        "name":"OH_PictureInPicture_DestroyPipConfig"
     },
     {
         "first_instroduced":"20",
@@ -113,6 +117,10 @@
     },
     {
         "first_instroduced":"20",
+        "name":"OH_PictureInPicture_CreatePip"
+    },
+    {
+        "first_instroduced":"20",
         "name":"OH_PictureInPicture_DeletePip"
     },
     {
@@ -122,6 +130,10 @@
     {
         "first_instroduced":"20",
         "name":"OH_PictureInPicture_StopPip"
+    },
+    {
+        "first_instroduced":"20",
+        "name":"OH_PictureInPicture_UpdatePipContentSize"
     },
     {
         "first_instroduced":"20",
@@ -145,15 +157,15 @@
     },
     {
         "first_instroduced":"20",
-        "name":"OH_PictureInPicture_RegisterLifeCycleListener"
+        "name":"OH_PictureInPicture_RegisterLifecycleListener"
     },
     {
         "first_instroduced":"20",
-        "name":"OH_PictureInPicture_UnregisterLifeCycleListener"
+        "name":"OH_PictureInPicture_UnregisterLifecycleListener"
     },
     {
         "first_instroduced":"20",
-        "name":"OH_PictureInPicture_UnregisterAllLifeCycleListeners"
+        "name":"OH_PictureInPicture_UnregisterAllLifecycleListeners"
     },
     {
         "first_instroduced":"20",
