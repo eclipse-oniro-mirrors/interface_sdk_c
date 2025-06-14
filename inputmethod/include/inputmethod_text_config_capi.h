@@ -35,6 +35,7 @@
 #ifndef OHOS_INPUTMETHOD_TEXT_CONFIG_CAPI_H
 #define OHOS_INPUTMETHOD_TEXT_CONFIG_CAPI_H
 #include <stdint.h>
+#include <stddef.h>
 
 #include "inputmethod_cursor_info_capi.h"
 #include "inputmethod_text_avoid_info_capi.h"

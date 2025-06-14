@@ -38,7 +38,6 @@
 #include "stdint.h"
 
 #include "oh_window_comm.h"
-#include "multimodalinput/oh_input_manager.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -272,20 +271,6 @@ int32_t OH_WindowManager_GetAllWindowLayoutInfoList(int64_t displayId,
  * @since 17
  */
 void OH_WindowManager_ReleaseAllWindowLayoutInfoList(WindowManager_Rect* windowLayoutInfoList);
-
-/**
- * @brief app can inject a touchEvent to target window without Focus and zOrder changed, just send to ArkUI.
- *
- * @param windowId windowId when window is created.
- * @param touchEvent multimodal touchEvent.
- * @return Returns the result code.
- *         {@link OK} the function call is successful.
- *         {@link WINDOW_MANAGER_ERRORCODE_INVALID_PARAM} parameter error.
- *         {@link WINDOW_MANAGER_ERRORCODE_STATE_ABNORMAL} this window state is abnormal.
- *         {@link WINDOW_MANAGER_ERRORCODE_SYSTEM_ABNORMAL} the window manager service works abnormally.
- * @since 20
- */
-int32_t OH_WindowManager_InjectTouchEvent(int32_t windowId, Input_TouchEvent* touchEvent);
 
 #ifdef __cplusplus
 }

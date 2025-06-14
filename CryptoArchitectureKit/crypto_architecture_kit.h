@@ -19,7 +19,6 @@
  *
  * @brief Provides an entry to the crypto header files for you to reference.
  *
- * @syscap SystemCapability.Security.CryptoFramework
  * @since 12
  */
 
@@ -53,4 +52,4 @@
 /** @} */
 
 
-#endif /* CRYPTO_ARCHITECTURE_KIT_H*/
+#endif /* CRYPTO_ARCHITECTURE_KIT_H */

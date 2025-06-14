@@ -672,18 +672,6 @@ typedef enum {
 } ArkUI_EffectEdge;
 
 /**
- * @brief Enumerates the focus wrap mode of components.
- *
- * @since 20
- */
-typedef enum {
-    /** Default mode, where focus does not wrap when arrow keys are used. */
-    ARKUI_FOCUS_WRAPMODE_DEFAULT = 0,
-    /** Focus wraps automatically when arrow keys are used. */
-    ARKUI_FOCUS_WRAPMODE_WRAP_WITH_ARROW = 1,
-} ArkUI_FocusWrapMode;
-
-/**
  * @brief Enumerates the scroll directions for the <b><Scroll></b> component.
  *
  * @since 12
@@ -2269,6 +2257,11 @@ typedef enum {
      */
     ARKUI_ERROR_CODE_INVALID_STYLED_STRING = 180101,
     /**
+     * @error The gesture recognizer type is not supported.
+     * @since 18
+     */
+    ARKUI_ERROR_CODE_RECOGNIZER_TYPE_NOT_SUPPORTED = 180102,
+    /**
      * @error The uiContext is invalid.
      * @since 18
      */
@@ -2278,11 +2271,6 @@ typedef enum {
      * @since 18
      */
     ARKUI_ERROR_CODE_CALLBACK_INVALID = 190002,
-    /**
-     * @error The gesture recognizer type is not supported.
-     * @since 18
-     */
-    ARKUI_ERROR_CODE_RECOGNIZER_TYPE_NOT_SUPPORTED = 180102,
     /**
      * @error operation is not allowed for current drag drop pharse.
      * @since 19
@@ -2339,22 +2327,6 @@ typedef enum {
 } ArkUI_AccessibilityCheckedState;
 
 /**
- * @brief Define accessible action types.
- *
- * @since 12
- */
-typedef enum {
-    /** click action. */
-    ARKUI_ACCESSIBILITY_ACTION_CLICK = 1 << 0,
-    /** long click action. */
-    ARKUI_ACCESSIBILITY_ACTION_LONG_CLICK = 1 << 1,
-    /** cut action. */
-    ARKUI_ACCESSIBILITY_ACTION_CUT = 1 << 2,
-    /** copy action. */
-    ARKUI_ACCESSIBILITY_ACTION_COPY = 1 << 3,
-    /** paste action. */
-    ARKUI_ACCESSIBILITY_ACTION_PASTE = 1 << 4,
-} ArkUI_AccessibilityActionType;
 
 /**
  * @brief Enumerates the animation playback modes.
@@ -2380,7 +2352,7 @@ typedef enum {
  * @brief Define the rolling source enumeration value.
  *
  * @since 12
- */
+*/
 typedef enum {
     /** Finger drag. */
     ARKUI_SCROLL_SOURCE_DRAG = 0,
@@ -2399,6 +2371,24 @@ typedef enum {
     /** The scroll controller causes the scroll to drive the painting.*/
     ARKUI_SCROLL_SOURCE_ANIMATION,
 } ArkUI_ScrollSource;
+
+/**
+ * @brief Define accessible action types.
+ *
+ * @since 12
+ */
+typedef enum {
+    /** click action. */
+    ARKUI_ACCESSIBILITY_ACTION_CLICK = 1 << 0,
+    /** long click action. */
+    ARKUI_ACCESSIBILITY_ACTION_LONG_CLICK = 1 << 1,
+    /** cut action. */
+    ARKUI_ACCESSIBILITY_ACTION_CUT = 1 << 2,
+    /** copy action. */
+    ARKUI_ACCESSIBILITY_ACTION_COPY = 1 << 3,
+    /** paste action. */
+    ARKUI_ACCESSIBILITY_ACTION_PASTE = 1 << 4,
+} ArkUI_AccessibilityActionType;
 
 /**
  * @brief Defines the translation options for component transition.
@@ -4965,35 +4955,6 @@ float OH_ArkUI_ProgressLinearStyleOption_GetStrokeWidth(ArkUI_ProgressLinearStyl
 float OH_ArkUI_ProgressLinearStyleOption_GetStrokeRadius(ArkUI_ProgressLinearStyleOption* option);
 
 /**
- * @brief Creates an option for taking snapshot, the returned value must be released through
- *        {@link OH_ArkUI_DestroySnapshotOptions} when it's not used anymore.
- *
- * @return Returns the pointer to the created snapshot options object.If the object returns a null pointer,
- *         it indicates a creation failure, and the reason for the failure may be that the address space is full.
- * @since 15
- */
-ArkUI_SnapshotOptions* OH_ArkUI_CreateSnapshotOptions();
-
-/**
- * @brief Dispose a snapshot option object.
- *
- * @param snapshotOptions Indicates the pointer to the snapshot option.
- * @since 15
- */
-void OH_ArkUI_DestroySnapshotOptions(ArkUI_SnapshotOptions* snapshotOptions);
-
-/**
- * @brief Config the snapshot option with scale.
- *
- * @param snapshotOptions Indicates the pointer to the snapshot option.
- * @param scale Indicates the scale property to take the snapshot.
- * @return Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
- * @since 15
- */
-int32_t OH_ArkUI_SnapshotOptions_SetScale(ArkUI_SnapshotOptions* snapshotOptions, float scale);
-
-/**
  * @brief Create a cross-language option instance.
  *
  * @return Returns a cross-language option instance. If the result is a null pointer, it may be out of memory.
@@ -5027,6 +4988,35 @@ void OH_ArkUI_CrossLanguageOption_SetAttributeSettingStatus(ArkUI_CrossLanguageO
  * @since 15
  */
 bool OH_ArkUI_CrossLanguageOption_GetAttributeSettingStatus(ArkUI_CrossLanguageOption* option);
+
+/**
+ * @brief Creates an option for taking snapshot, the returned value must be released through
+ *        {@link OH_ArkUI_DestroySnapshotOptions} when it's not used anymore.
+ *
+ * @return Returns the pointer to the created snapshot options object.If the object returns a null pointer,
+ *         it indicates a creation failure, and the reason for the failure may be that the address space is full.
+ * @since 15
+ */
+ArkUI_SnapshotOptions* OH_ArkUI_CreateSnapshotOptions();
+
+/**
+ * @brief Dispose a snapshot option object.
+ *
+ * @param snapshotOptions Indicates the pointer to the snapshot option.
+ * @since 15
+ */
+void OH_ArkUI_DestroySnapshotOptions(ArkUI_SnapshotOptions* snapshotOptions);
+
+/**
+ * @brief Config the snapshot option with scale.
+ *
+ * @param snapshotOptions Indicates the pointer to the snapshot option.
+ * @param scale Indicates the scale property to take the snapshot.
+ * @return Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @since 15
+ */
+int32_t OH_ArkUI_SnapshotOptions_SetScale(ArkUI_SnapshotOptions* snapshotOptions, float scale);
 
 /**
  * @brief Defines the parameters for visible area change events.

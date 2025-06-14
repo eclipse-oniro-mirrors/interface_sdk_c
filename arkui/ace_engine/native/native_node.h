@@ -4754,6 +4754,32 @@ typedef enum {
     NODE_SLIDER_ENABLE_HAPTIC_FEEDBACK = 17013,
 
     /**
+     * @brief Sets a custom component on the leading side of the Slider component.
+     *
+     * Attribute setting method {@link ArkUI_AttributeItem} parameter format:\n
+     * .object: Parameter type {@link ArkUI_NodeHandle}.
+     *
+     * The prefix component will be placed at the start position of the Slider，
+     * typically on the left side in LTR layouts.
+	 *
+	 * @since 20
+     */
+    NODE_SLIDER_PREFIX,
+
+    /**
+     * @brief Sets a custom component on the trailing side of the Slider component.
+     *
+     * Attribute setting method {@link link ArkUI_AttributeItem} parameter format:\n
+     * .object: Parameter type {@link ArkUI_NodeHandle}.
+     *
+     * The suffix component will be placed at the end position of the Slider,
+     * typically on the right side in LTR layouts.
+	 *
+	 * @since 20
+     */
+    NODE_SLIDER_SUFFIX,
+
+    /**
      * @brief Set the selection status of an option button. Attribute setting,
      * attribute resetting, and attribute obtaining are supported.
      * Attribute setting method {@Link ArkUI_AttributeItem} Parameter format:\n
@@ -5164,10 +5190,13 @@ typedef enum {
      * .value[1].f32: vertical scrolling offset, in vp. \n
      * .value[2]?.i32: scrolling duration, in milliseconds. Optional. \n
      * .value[3]?.i32: scrolling curve. Optional. The parameter type is {@link ArkUI_AnimationCurve}.
-     * The default value is <b>ARKUI_CURVE_EASE</b>. \n
-     * .value[4]?.i32: whether to enable the default spring animation. Optional. The default value <b>0</b> means not
-     * to enable the default spring animation. \n
-     * .value[5]?.i32: Optional value, sets whether scrolling can cross the boundary. \n
+     *                 The default value is <b>ARKUI_CURVE_EASE</b>. \n
+     * .value[4]?.i32: whether to enable the default spring animation. Optional.
+     *                 The default value <b>0</b> means not to enable the default spring animation. \n
+     * .value[5]?.i32: whether to convert the scroll animation to an overshoot animation when the boundary is reached.
+     *                 Optional. \n
+     * .value[6]?.i32: whether the component can stop at an overscrolled position.
+     *                 This parameter is supported since API version 20. \n
      * \n
      * Format of the return value {@link ArkUI_AttributeItem}:\n
      * .value[0].f32: horizontal scrolling offset, in vp. \n
@@ -5435,6 +5464,7 @@ typedef enum {
      * .value[2]?.i32：Specify the alignment of the sliding element with the current container,The parameter type is
      * {@link ArkUI_ScrollAlignment}, default value is ARKUI_SCROLL_ALIGNMENT_START. \n
      * .value[3]?.f32: extra offset, in vp. The default value is <b>0</b>.
+     * This parameter is supported since API version 15. \n
      *
      */
     NODE_LIST_SCROLL_TO_INDEX,
@@ -6465,22 +6495,6 @@ typedef enum {
     NODE_GRID_CACHED_COUNT,
 
     /**
-    * @brief Defines the focus wrap mode for the <b>Grid</b> component.
-    * This attribute can be set, reset, and obtained as required through APIs.
-    *
-    * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-    * .value[0].i32: focus wrap mode of the <b>Grid</b> component.
-    *                The parameter type is {@link ArkUI_FocusWrapMode}. \n
-    * \n
-    * Format of the return value {@link ArkUI_AttributeItem}:\n
-    * .value[0].i32: focus wrap mode of the <b>Grid</b> component.
-    *                The parameter type is {@link ArkUI_FocusWrapMode}. \n
-    *
-    * @since 20
-    */
-    NODE_GRID_FOCUS_WRAP_MODE,
-
-    /**
     * @brief Defines the column width of the text picker.
     * This attribute can be set, reset, and obtained as required through APIs.
     *
@@ -6599,7 +6613,8 @@ typedef enum {
     /**
      * @brief Defines the gesture event type.
      *
-     * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is {@link ArkUI_UIInputEvent}.
+     * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
+     * {@link ArkUI_UIInputEvent}.
      */
     NODE_TOUCH_EVENT = 0,
 
