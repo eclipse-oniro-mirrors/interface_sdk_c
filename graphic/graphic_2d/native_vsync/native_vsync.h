@@ -56,11 +56,11 @@ typedef void (*OH_NativeVSync_FrameCallback)(long long timestamp, void *data);
  * @version 1.0
  */
 typedef struct {
-    /**The minimum frame rate of dynamical callback rate range */
+    /**The minimum frame rate of dynamical callback rate range. */
     int32_t min;
-    /**The maximum frame rate of dynamical callback rate range */
+    /**The maximum frame rate of dynamical callback rate range. */
     int32_t max;
-    /**The expected frame rate of dynamical callback rate range */
+    /**The expected frame rate of dynamical callback rate range. */
     int32_t expected;
 } OH_NativeVSync_ExpectedRateRange;
 
@@ -180,15 +180,13 @@ int OH_NativeVSync_GetPeriod(OH_NativeVSync* nativeVsync, long long* period);
 int OH_NativeVSync_DVSyncSwitch(OH_NativeVSync* nativeVsync, bool enable);
 
 /**
- * @brief Sets the desired VSync frame rate and the range of the desired frame rate.
+ * @brief Set vsync expected frame rate range.
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeVsync
- * @param nativeVsync Pointer to an instance of {@link OH_NativeVSync}.
- * @param range Pointer to an instance of {@link OH_NativeVSync_ExpectedRateRange}.\n
- * The valid range for the desired frame rate is: 0 <= minimum <= desired frame rate <= maximum <= 144.\n
- * A desired frame rate of 0 indicates that the desired frame rate is canceled.\n
- * The developer is responsible for managing the lifecycle of this pointer.
- * @return Returns 0 on success, other return values can be referenced from {@link OHNativeErrorCode}.
+ * @param nativeVsync Indicates the pointer to a NativeVsync.
+ * @param range Indicates the pointer to an expected rate range.
+ * @return {@link NATIVE_ERROR_OK} 0 - Success.
+ *     {@link NATIVE_ERROR_INVALID_ARGUMENTS} 40001000 - the parameter nativeVsync is NULL or range is NULL or Invalid.
  * @since 20
  * @version 1.0
  */
