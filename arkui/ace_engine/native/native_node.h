@@ -1106,13 +1106,13 @@ typedef enum {
      * .value[0].i32: blend mode. The parameter type is {@link ArkUI_BlendMode}. The default value is
      * <b>ARKUI_BLEND_MODE_NONE</b>. \n
      * .value[1].?i32: how the specified blend mode is applied. The parameter type is {@link ArkUI_BlendApplyType}.
-     * The default value is <b>BLEND_APPLY_TYPE_FAST</b>. \n
+     * The default value is <b>ARKUI_BLEND_APPLY_TYPE_FAST</b>. \n
      * \n
      * Format of the return value {@link ArkUI_AttributeItem}:\n
      * .value[0].i32: blend mode. The parameter type is {@link ArkUI_BlendMode}. The default value is
      * <b>ARKUI_BLEND_MODE_NONE</b>. \n
      * .value[1].i32: how the specified blend mode is applied. The parameter type is {@link ArkUI_BlendApplyType}.
-     * The default value is <b>BLEND_APPLY_TYPE_FAST</b>. \n
+     * The default value is <b>ARKUI_BLEND_APPLY_TYPE_FAST</b>. \n
      *
      */
     NODE_BLEND_MODE,
@@ -1967,6 +1967,25 @@ typedef enum {
      * @since 20
      */
     NODE_TRANSLATE_WITH_PERCENT = 103,
+
+    /**
+     * @brief Sets component rotation with multi-axis angle control. This attribute can be set, reset, and obtained as required through APIs.
+     *
+     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
+     * .value[0].f32: x-axis rotation angle. The default value is <b>0</b>. \n
+     * .value[1].f32: y-axis rotation angle. The default value is <b>0</b>. \n
+     * .value[2].f32: z-axis rotation angle. The default value is <b>0</b>. \n
+     * .value[3].f32: perspective distance from the viewpoint to the z=0 plane, in vp. The default value is <b>0</b>. \n
+     * \n
+     * Format of the return value {@link ArkUI_AttributeItem}:\n
+     * .value[0].f32: x-axis rotation angle. The default value is <b>0</b>.
+     * .value[1].f32: y-axis rotation angle. The default value is <b>0</b>. \n
+     * .value[2].f32: z-axis rotation angle. The default value is <b>0</b>. \n
+     * .value[3].f32: perspective distance from the viewpoint to the z=0 plane, in vp. The default value is <b>0</b>. \n
+     *
+     * @since 20
+     */
+    NODE_ROTATE_ANGLE = 104,
 
     /**
      * @brief Defines the text content attribute, which can be set, reset, and obtained as required through APIs.
@@ -5754,13 +5773,13 @@ typedef enum {
     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
     * .value[0].i32: number of elements to display per page. \n
     * .value[1]?.i32: whether to turn pages by group. The value <b>0</b> means to turn pages by child element,
-    * and <b>1</b> means to turn pages by group. This parameter is supported since API version 16. \n
+    * and <b>1</b> means to turn pages by group. This parameter is supported since API version 19. \n
     * .string?: this parameter can only be set to 'auto'. When 'auto' is set, the value[] parameters are ignored.
-    * This parameter is supported since API version 16. \n
+    * This parameter is supported since API version 19. \n
     * \n
     * Format of the return value {@link ArkUI_AttributeItem}:\n
     * .value[0].i32: number of elements to display per page. \n
-    * .value[1].i32: whether to turn pages by group. This parameter is supported since API version 16. \n
+    * .value[1].i32: whether to turn pages by group. This parameter is supported since API version 19. \n
     * .string: 'auto' or empty string.
     *
     */
@@ -5790,14 +5809,14 @@ typedef enum {
     * The parameter type is {@link ArkUI_SwiperArrow}.\n
     * The default value is <b>ARKUI_SWIPER_ARROW_HIDE</b>. \n
     * .?object: arrow style. The parameter type is {@link ArkUI_SwiperArrowStyle}. \n
-    * This parameter is supported since API version 16. \n
+    * This parameter is supported since API version 19. \n
     * \n
     * Format of the return value {@link ArkUI_AttributeItem}:\n
     * .value[0].i32: whether to show the arrow when the mouse pointer hovers over the navigation point indicator.
     * The parameter type is {@link ArkUI_SwiperArrow}.\n
     * The default value is <b>ARKUI_SWIPER_ARROW_HIDE</b>. \n
     * .object: arrow style. The parameter type is {@link ArkUI_SwiperArrowStyle}. \n
-    * This parameter is supported since API version 16. \n
+    * This parameter is supported since API version 19. \n
     *
     */
     NODE_SWIPER_SHOW_DISPLAY_ARROW,
@@ -5835,11 +5854,11 @@ typedef enum {
     * .value[1]?.i32: whether the cached items will be displayed. \n
     * The value <b>0</b> indicates that cached items will not be displayed, \n
     * and <b>1</b> indicates that cached nodes will be displayed. The default value is <b>0</b>. \n
-    * This parameter is supported from API version 16. \n
+    * This parameter is supported from API version 19. \n
     * \n
     * Format of the return value {@link ArkUI_AttributeItem}:\n
     * .value[0].i32: number of cached items in the swiper adapter. \n
-    * .value[1].i32: whether the cached items will be displayed. This parameter is supported from API version 16. \n
+    * .value[1].i32: whether the cached items will be displayed. This parameter is supported from API version 19. \n
     */
     NODE_SWIPER_CACHED_COUNT,
 
@@ -5882,14 +5901,14 @@ typedef enum {
     * .object: The parameter type is {@link ArkUI_SwiperIndicator} when the indicator type \n
     * is <b>ARKUI_SWIPER_INDICATOR_TYPE_DOT</b>. The parameter type is {@link ArkUI_SwiperDigitIndicator}
     * when the indicator type is <b>ARKUI_SWIPER_INDICATOR_TYPE_DIGIT</b>. \n
-    * {@link ArkUI_SwiperDigitIndicator} is supported since API version 16. \n
+    * {@link ArkUI_SwiperDigitIndicator} is supported since API version 19. \n
     * \n
     * Format of the return value {@link ArkUI_AttributeItem}:\n
     * .value[0].i32: navigation indicator type, the parameter type is {@link ArkUI_SwiperIndicatorType}.\n
     * .object: The parameter type is {@link ArkUI_SwiperIndicator} when the indicator type \n
     * is <b>ARKUI_SWIPER_INDICATOR_TYPE_DOT</b>. The parameter type is {@link ArkUI_SwiperDigitIndicator}
     * when the indicator type is <b>ARKUI_SWIPER_INDICATOR_TYPE_DIGIT</b>. \n
-    * {@link ArkUI_SwiperDigitIndicator} is supported since API version 16. \n
+    * {@link ArkUI_SwiperDigitIndicator} is supported since API version 19. \n
     *
     */
     NODE_SWIPER_INDICATOR,
@@ -7646,6 +7665,22 @@ typedef enum {
     NODE_SWIPER_EVENT_ON_CONTENT_DID_SCROLL,
 
     /**
+     * @brief Defines the event triggered when content in the swiper component will scroll.
+     * Instructions: Before page scrolling, the </b>ContentWillScrollCallback</b> callback is invoked. \n \n
+     * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
+     * {@link ArkUI_NodeComponentEvent}. \n
+     * {@link ArkUI_NodeComponentEvent} contains three parameters:\n
+     * <b>ArkUI_NodeComponentEvent.data[0].i32</b>: the index value of the current child page. \n
+     * <b>ArkUI_NodeComponentEvent.data[1].i32</b>: the index value of the child page that will display. \n
+     * <b>ArkUI_NodeComponentEvent.data[2].f32</b>: the sliding offset of each frame.
+     * Positive numbers indicating slide backward(e.g. from index=1 to index=0), negative numbers indicating
+     * slide forward(e.g. from index=0 to index=1). \n
+     *
+     * @since 15
+     */
+    NODE_SWIPER_EVENT_ON_CONTENT_WILL_SCROLL = 1001007,
+
+    /**
      * @brief Defines the event triggered when the selected index of the <b>ARKUI_NODE_SWIPER</b> changed.
      * 
      * This event is triggered under the following scenarios: \n
@@ -7678,22 +7713,6 @@ typedef enum {
      * @since 18
      */
     NODE_SWIPER_EVENT_ON_UNSELECTED = 1001006,
-
-    /**
-     * @brief Defines the event triggered when content in the swiper component will scroll.
-     * Instructions: Before page scrolling, the </b>ContentWillScrollCallback</b> callback is invoked. \n \n
-     * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
-     * {@link ArkUI_NodeComponentEvent}. \n
-     * {@link ArkUI_NodeComponentEvent} contains three parameters:\n
-     * <b>ArkUI_NodeComponentEvent.data[0].i32</b>: the index value of the current child page. \n
-     * <b>ArkUI_NodeComponentEvent.data[1].i32</b>: the index value of the child page that will display. \n
-     * <b>ArkUI_NodeComponentEvent.data[2].f32</b>: the sliding offset of each frame.
-     * Positive numbers indicating slide backward(e.g. from index=1 to index=0), negative numbers indicating
-     * slide forward(e.g. from index=0 to index=1). \n
-     *
-     * @since 15
-     */
-    NODE_SWIPER_EVENT_ON_CONTENT_WILL_SCROLL = 1001007,
 
     /**
      * @brief Defines the event triggered when the <b>ARKUI_NODE_SCROLL</b> component scrolls.
