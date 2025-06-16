@@ -1046,6 +1046,7 @@ Input_Result OH_Input_RequestInjection(Input_InjectAuthorizeCallback callback);
  *         {@link INPUT_SERVICE_EXCEPTION} Service error.\n
  * @since 20
  */
+
 Input_Result OH_Input_QueryAuthorizedStatus(Input_InjectionStatus* status);
 
 /**
