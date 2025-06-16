@@ -26,6 +26,7 @@ ohos_ndk_headers("ffrt_header") {
     "c/task.h",
     "c/timer.h",
     "c/type_def.h",
+    "c/fiber.h",
   ]
 }
 
@@ -43,5 +44,6 @@ ohos_ndk_library("libffrt_ndk") {
     "ffrt/task.h",
     "ffrt/timer.h",
     "ffrt/type_def.h",
+    "ffrt/fiber.h",
   ]
 }
