@@ -3357,10 +3357,6 @@
     },
     {
         "first_introduced": "20",
-        "name": "OH_ArkUI_RunTaskInScope"
-    },
-    {
-        "first_introduced": "20",
         "name": "OH_ArkUI_EmbeddedComponentOption_SetOnTerminated"
     }
 ]
