@@ -98,7 +98,7 @@ OH_Drawing_ImageFilter* OH_Drawing_ImageFilterCreateOffset(float x, float y, OH_
  * @brief Creates an <b>OH_Drawing_ImageFilter</b> object that applies the shader to the input.
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @param shaderEffct Indicates the shader effect to be applied to the image.
+ * @param shaderEffect Indicates the shader effect to be applied to the image.
  * @return Returns the pointer to the <b>OH_Drawing_ImageFilter</b> object created.
  *         If nullptr is returned, the creation fails.
  *         The possible cause of the failure is that the available memory is empty or
