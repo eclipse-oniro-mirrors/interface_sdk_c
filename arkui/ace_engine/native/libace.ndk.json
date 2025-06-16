@@ -2821,6 +2821,22 @@
     },
     {
         "first_introduced": "15",
+        "name": "OH_ArkUI_FocusRequest"
+    },
+    {
+        "first_introduced": "15",
+        "name": "OH_ArkUI_FocusClear"
+    },
+    {
+        "first_introduced": "15",
+        "name": "OH_ArkUI_FocusActivate"
+    },
+    {
+        "first_introduced": "15",
+        "name": "OH_ArkUI_FocusSetAutoTransfer"
+    },
+    {
+        "first_introduced": "15",
         "name": "OH_ArkUI_ProgressLinearStyleOption_Create"
     },
     {
@@ -2897,22 +2913,6 @@
     },
     {
         "first_introduced": "15",
-        "name": "OH_ArkUI_FocusRequest"
-    },
-    {
-        "first_introduced": "15",
-        "name": "OH_ArkUI_FocusClear"
-    },
-    {
-        "first_introduced": "15",
-        "name": "OH_ArkUI_FocusActivate"
-    },
-    {
-        "first_introduced": "15",
-        "name": "OH_ArkUI_FocusSetAutoTransfer"
-    },
-    {
-        "first_introduced": "15",
         "name": "OH_ArkUI_CreateSnapshotOptions"
     },
     {
@@ -2946,6 +2946,14 @@
     {
         "first_introduced": "15",
         "name": "OH_ArkUI_UIInputEvent_GetTargetDisplayId"
+    },
+    {
+        "first_introduced": "18",
+        "name": "OH_ArkUI_GestureInterrupter_GetUserData"
+    },
+    {
+        "first_introduced": "15",
+        "name": "OH_ArkUI_FocusSetKeyProcessingMode"
     },
     {
         "first_introduced": "18",
@@ -3001,6 +3009,10 @@
     },
     {
         "first_introduced": "15",
+        "name": "OH_ArkUI_PointerEvent_CreateClonedEvent"
+    },
+    {
+        "first_introduced": "15",
         "name": "OH_ArkUI_PointerEvent_DestroyClonedEvent"
     },
     {
@@ -3010,6 +3022,26 @@
     {
         "first_introduced": "15",
         "name": "OH_ArkUI_PointerEvent_SetClonedEventLocalPositionByIndex"
+    },
+        {
+        "first_introduced": "15",
+        "name": "OH_ArkUI_PointerEvent_SetClonedEventActionType"
+    },
+    {
+        "first_introduced": "15",
+        "name": "OH_ArkUI_PointerEvent_SetClonedEventChangedFingerId"
+    },
+    {
+        "first_introduced": "15",
+        "name": "OH_ArkUI_PointerEvent_SetClonedEventFingerIdByIndex"
+    },
+    {
+        "first_introduced": "15",
+        "name": "OH_ArkUI_PointerEvent_PostClonedEvent"
+    },
+    {
+        "first_introduced": "15",
+        "name": "OH_ArkUI_NodeUtils_GetPositionToParent"
     },
     {
         "first_introduced": "17",
@@ -3050,38 +3082,6 @@
     {
         "first_introduced": "17",
         "name": "OH_ArkUI_AxisEvent_GetScrollStep"
-    },
-    {
-        "first_introduced": "18",
-        "name": "OH_ArkUI_GestureInterrupter_GetUserData"
-    },
-    {
-        "first_introduced": "15",
-        "name": "OH_ArkUI_FocusSetKeyProcessingMode"
-    },
-    {
-        "first_introduced": "15",
-        "name": "OH_ArkUI_PointerEvent_CreateClonedEvent"
-    },
-    {
-        "first_introduced": "15",
-        "name": "OH_ArkUI_PointerEvent_SetClonedEventActionType"
-    },
-    {
-        "first_introduced": "15",
-        "name": "OH_ArkUI_PointerEvent_SetClonedEventChangedFingerId"
-    },
-    {
-        "first_introduced": "15",
-        "name": "OH_ArkUI_PointerEvent_SetClonedEventFingerIdByIndex"
-    },
-    {
-        "first_introduced": "15",
-        "name": "OH_ArkUI_PointerEvent_PostClonedEvent"
-    },
-    {
-        "first_introduced": "15",
-        "name": "OH_ArkUI_NodeUtils_GetPositionToParent"
     },
     {
         "first_introduced": "19",
@@ -3362,13 +3362,5 @@
     {
         "first_introduced": "20",
         "name": "OH_ArkUI_EmbeddedComponentOption_SetOnTerminated"
-    },
-    {
-        "first_introduced": "20",
-        "name": "OH_ArkUI_DragEvent_GetDragSource"
-    },
-    {
-        "first_introduced": "20",
-        "name": "OH_ArkUI_DragEvent_IsRemote"
     }
 ]
