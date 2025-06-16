@@ -1044,6 +1044,7 @@ Input_Result OH_Input_RequestInjection(Input_InjectAuthorizeCallback callback);
  *         {@link INPUT_SUCCESS} Success.\n
  *         {@link INPUT_PARAMETER_ERROR} The status is NULL\n
  *         {@link INPUT_SERVICE_EXCEPTION} Service error.\n
+ * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 20
  */
 
