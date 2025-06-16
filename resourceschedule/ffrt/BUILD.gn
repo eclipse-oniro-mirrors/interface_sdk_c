@@ -18,7 +18,6 @@ ohos_ndk_headers("ffrt_header") {
   dest_dir = "$ndk_headers_out_dir/ffrt"
   sources = [
     "c/condition_variable.h",
-    "c/fiber.h",
     "c/loop.h",
     "c/mutex.h",
     "c/queue.h",
@@ -36,7 +35,6 @@ ohos_ndk_library("libffrt_ndk") {
   system_capability = "SystemCapability.Resourceschedule.Ffrt.Core"
   system_capability_headers = [
     "ffrt/condition_variable.h",
-    "ffrt/fiber.h",    
     "ffrt/loop.h",
     "ffrt/mutex.h",
     "ffrt/queue.h",
