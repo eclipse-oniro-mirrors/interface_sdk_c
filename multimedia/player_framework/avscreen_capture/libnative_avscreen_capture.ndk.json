@@ -150,5 +150,9 @@
     {
         "first_introduced": "20",
         "name": "OH_AVScreenCapture_GetDisplayIdSelected"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_AVScreenCapture_StrategyForBFramesEncoding"
     }
 ]
