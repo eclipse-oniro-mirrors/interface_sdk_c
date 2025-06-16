@@ -9426,18 +9426,6 @@ float OH_ArkUI_SystemFontStyleEvent_GetFontSizeScale(const ArkUI_SystemFontStyle
 float OH_ArkUI_SystemFontStyleEvent_GetFontWeightScale(const ArkUI_SystemFontStyleEvent* event);
 
 /**
- * @brief Get the node handle by id.
- *
- * @param id The id of the target node handle.
- * @param node The handle of target node handle.
- * @return Error code.
- *         {@link ARKUI_ERROR_CODE_NO_ERROR} success.
- *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} Function parameter exception.
- * @since 15
- */
-int32_t OH_ArkUI_NodeUtils_GetAttachedNodeHandleById(const char* id, ArkUI_NodeHandle* node);
-
-/**
  * @brief Move the node handle to target parent node as child.
  *
  * @param node The node handle of the node to move.
@@ -9528,6 +9516,18 @@ int32_t OH_ArkUI_UnregisterLayoutCallbackOnNodeHandle(ArkUI_NodeHandle node);
 int32_t OH_ArkUI_UnregisterDrawCallbackOnNodeHandle(ArkUI_NodeHandle node);
 
 /**
+ * @brief Get the node handle by id.
+ *
+ * @param id The id of the target node handle.
+ * @param node The handle of target node handle.
+ * @return Error code.
+ *         {@link ARKUI_ERROR_CODE_NO_ERROR} success.
+ *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} Function parameter exception.
+ * @since 15
+ */
+int32_t OH_ArkUI_NodeUtils_GetAttachedNodeHandleById(const char* id, ArkUI_NodeHandle* node);
+
+/**
  * @brief Get the snapshot pixelmap for the given node synchronously, will get error if the node is not on the
  * tree or is not rendered yet.
  * Note: the pixelmap should be released through OH_PixelmapNative_Release when it's not used any more.
@@ -9603,21 +9603,6 @@ ArkUI_ErrorCode OH_ArkUI_AddSupportedUIStates(ArkUI_NodeHandle node, int32_t uiS
  * @since 20
  */
 ArkUI_ErrorCode OH_ArkUI_RemoveSupportedUIStates(ArkUI_NodeHandle node, int32_t uiStates);
-
-/**
- * @brief Run a custom function inside the UIContext scope.
- *
- * @param uiContext Indicates the pointer to a UI instance.
- * @param userData Indicates the pointer to the custom data.
- * @param callback The custom function.
- * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_CAPI_INIT_ERROR} if the CAPI init error.
- *         Returns {@link ARKUI_ERROR_CODE_UI_CONTEXT_INVALID} if the uiContext is invalid.
- *         Returns {@link ARKUI_ERROR_CODE_CALLBACK_INVALID} if the callback function is invalid.
- * @since 20
- */
-int32_t OH_ArkUI_RunTaskInScope(ArkUI_ContextHandle uiContext, void* userData, void(*callback)(void* userData));
 
 #ifdef __cplusplus
 };
