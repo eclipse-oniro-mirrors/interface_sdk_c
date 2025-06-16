@@ -578,7 +578,7 @@ Image_ErrorCode OH_PixelmapImageInfo_GetHeight(OH_Pixelmap_ImageInfo *info, uint
  * @param alphaMode The number of imageinfo alphaMode.
  * @return Image functions result code.
  *     {@link IMAGE_SUCCESS} if the execution is successful.
- *     {@link IMAGE_BAD_PARAMETER} pixelmapNative is nullptr, or pixelmapNapi is not a pixelmap.
+ *     {@link IMAGE_BAD_PARAMETER} info is nullptr, or alphaMode is nullptr.
  * @since 20
  */
 Image_ErrorCode OH_PixelmapImageInfo_GetAlphaMode(OH_Pixelmap_ImageInfo *info, int32_t *alphaMode);
@@ -921,7 +921,7 @@ Image_ErrorCode OH_PixelmapNative_CreateEmptyPixelmap(
  * @brief Creates a empty pixelmap based on options {@link OH_Pixelmap_InitializationOptions}, the memory type used
  * by the pixelmap can be specified by allocatorType {@link IMAGE_ALLOCATOR_MODE}. By default,
  * the system selects the memory type based on the image type, image size, platform capability, etc. When processing
- * the pixelmap returned by thisinterface, please always consider the impact of stride.
+ * the pixelmap returned by this interface, please always consider the impact of stride.
  *
  * @param options Pixelmap initialization properties including size, pixel format, alpha type, and editable flags.
  * @param allocator Indicate which memory type will be used by the returned pixelmap.
