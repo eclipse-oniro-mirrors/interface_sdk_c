@@ -246,14 +246,22 @@ typedef enum {
  * @since 13
  */
 typedef enum {
-    /*
-    * EXIF metadata.
-    */
+    /**
+     * EXIF metadata.
+     */
     EXIF_METADATA = 1,
-    /*
-    * Fragment metadata.
-    */
+
+    /**
+     * Fragment metadata.
+     */
     FRAGMENT_METADATA = 2,
+
+    /**
+     * Metadata of a GIF image.
+     *
+     * @since 20
+     */
+    GIF_METADATA = 5
 } Image_MetadataType;
 
 /**
@@ -1586,6 +1594,20 @@ static const char *OHOS_IMAGE_PROPERTY_FRAGMENT_WIDTH = "FragmentImageWidth";
  * @since 13
  */
 static const char *OHOS_IMAGE_PROPERTY_FRAGMENT_HEIGHT = "FragmentImageHeight";
+
+/**
+ * @brief Delay time of each frame in a GIF image in milliseconds.
+ *
+ * @since 20
+ */
+static const char *IMAGE_PROPERTY_GIF_DELAY_TIME = "GifDelayTime";
+
+/**
+ * @brief Disposal type of each frame in gif.
+ *
+ * @since 20
+ */
+static const char *IMAGE_PROPERTY_GIF_DISPOSAL_TYPE = "GifDisposalType";
 #ifdef __cplusplus
 };
 #endif
