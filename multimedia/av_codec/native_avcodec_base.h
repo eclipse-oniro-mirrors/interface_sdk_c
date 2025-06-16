@@ -1064,6 +1064,7 @@ extern const char *OH_MD_KEY_SQR_FACTOR;
  */
 extern const char *OH_MD_KEY_MAX_BITRATE;
 /**
+ * @brief Key for describing the reference relationship between tracks, value type is int32_t*.
  *
  * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 20
