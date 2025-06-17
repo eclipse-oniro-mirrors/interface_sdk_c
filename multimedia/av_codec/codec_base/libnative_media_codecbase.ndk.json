@@ -529,5 +529,9 @@
     {
         "first_introduced": "12",
         "name": "OH_AVCapability_GetFeatureProperties"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_MD_KEY_ENABLE_SYNC_MODE"
     }
 ]

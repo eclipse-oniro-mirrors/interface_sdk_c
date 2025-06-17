@@ -1033,6 +1033,20 @@ extern const char *OH_MD_KEY_VIDEO_ENCODER_REPEAT_PREVIOUS_FRAME_AFTER;
 extern const char *OH_MD_KEY_VIDEO_ENCODER_REPEAT_PREVIOUS_MAX_COUNT;
 
 /**
+ * @brief Key to enable synchronous mode, value type is (0 or 1): 1 is enabled, 0 otherwise.
+ *
+ * This is an optional key, default is 0.\n
+ * When enabled:
+ *       - Callbacks should NOT be set for codecs
+ *       - Buffer query APIs must be used instead
+ *       - Only used in configuration phase
+ *
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
+ * @since 20
+ */
+extern const char *OH_MD_KEY_ENABLE_SYNC_MODE;
+
+/**
  * @brief Media type.
  *
  * @syscap SystemCapability.Multimedia.Media.CodecBase
@@ -1047,6 +1061,14 @@ typedef enum OH_MediaType {
      * @since 12
      */
     MEDIA_TYPE_SUBTITLE = 2,
+    /** track is timed meta.
+     * @since 20
+     */
+    MEDIA_TYPE_TIMED_METADATA=5,
+    /** track is auxiliary.
+     * @since 20
+     */
+    MEDIA_TYPE_AUXILIARY=6,
 } OH_MediaType;
 
 /**

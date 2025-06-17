@@ -90,6 +90,22 @@
     {
         "first_introduced": "12",
         "name": "OH_VideoDecoder_RenderOutputBufferAtTime"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_VideoDecoder_QueryInputBuffer"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_VideoDecoder_QueryOutputBuffer"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_VideoDecoder_GetInputBuffer"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_VideoDecoder_GetOutputBuffer"
     }
 
 ]
