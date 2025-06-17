@@ -176,6 +176,11 @@ typedef enum OH_AVErrCode {
      */
     AV_ERR_IO_SSL_SERVER_CERT_UNTRUSTED = 5411010,
     /**
+     * @error unsupported request due to network protocols.
+     * @since 14
+     */
+    AV_ERR_IO_UNSUPPORTED_REQUEST = 5411011,
+    /**
      * @error Signals a stream format change in synchronous mode.
      * Required follow-up actions:
      *    - For video encoders: Call {@link OH_VideoEncoder_GetOutputDescription}
