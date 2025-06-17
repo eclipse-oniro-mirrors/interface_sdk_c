@@ -1,0 +1,82 @@
+[
+  { 
+    "first_introduced": "20",
+    "name": "OH_AVTranscoderConfig_Create" 
+  },
+  { 
+    "first_introduced": "20",
+    "name": "OH_AVTranscoderConfig_Release" 
+  },
+  { 
+    "first_introduced": "20",
+    "name": "OH_AVTranscoderConfig_SetSrcFD" 
+  },
+  { 
+    "first_introduced": "20",
+    "name": "OH_AVTranscoderConfig_SetDstFD" 
+  },
+  { 
+    "first_introduced": "20",
+    "name": "OH_AVTranscoderConfig_SetDstVideoType" 
+  },
+  { 
+    "first_introduced": "20",
+    "name": "OH_AVTranscoderConfig_SetDstAudioType" 
+  },
+  { 
+    "first_introduced": "20",
+    "name": "OH_AVTranscoderConfig_SetDstFileType" 
+  },
+  { 
+    "first_introduced": "20",
+    "name": "OH_AVTranscoderConfig_SetDstAudioBitrate" 
+  },
+  { 
+    "first_introduced": "20",
+    "name": "OH_AVTranscoderConfig_SetDstVideoBitrate" 
+  },
+  { 
+    "first_introduced": "20",
+    "name": "OH_AVTranscoderConfig_SetDstVideoResolution" 
+  },
+  { 
+    "first_introduced": "20",
+    "name": "OH_AVTranscoder_Create" 
+  },
+  { 
+    "first_introduced": "20",
+    "name": "OH_AVTranscoder_Prepare" 
+  },
+  { 
+    "first_introduced": "20",
+    "name": "OH_AVTranscoder_Start" 
+  },
+  { 
+    "first_introduced": "20",
+    "name": "OH_AVTranscoder_Pause" 
+  },
+  { 
+    "first_introduced": "20",
+    "name": "OH_AVTranscoder_Resume" 
+  },
+  { 
+    "first_introduced": "20",
+    "name": "OH_AVTranscoder_Cancel" 
+  },
+  { 
+    "first_introduced": "20",
+    "name": "OH_AVTranscoder_Release" 
+  },
+  { 
+    "first_introduced": "20",
+    "name": "OH_AVTranscoder_SetStateCallback" 
+  },
+  { 
+    "first_introduced": "20",
+    "name": "OH_AVTranscoder_SetErrorCallback" 
+  },
+  { 
+    "first_introduced": "20",
+    "name": "OH_AVTranscoder_SetProgressUpdateCallback" 
+  }
+]
