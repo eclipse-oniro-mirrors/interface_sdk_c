@@ -152,7 +152,7 @@ typedef enum {
 
     /**
      * @brief Accessory device, such as the microphone on a remote control.
-     * @since 18
+     * @since 19
      */
     AUDIO_DEVICE_TYPE_ACCESSORY = 26,
 
@@ -167,6 +167,12 @@ typedef enum {
      * @since 19
      */
     AUDIO_DEVICE_TYPE_LINE_DIGITAL = 28,
+
+    /**
+     * @brief Nearlink device.
+     * @since 20
+     */
+    AUDIO_DEVICE_TYPE_NEARLINK = 31,
 
     /**
      * @brief Default device type.

@@ -197,7 +197,7 @@ OH_AudioStream_Result OH_AudioStreamBuilder_SetCapturerInfo(OH_AudioStreamBuilde
 /**
  * Set the callbacks for the renderer client
  *
- * @deprecated since 18
+ * @deprecated since 20
  * @useinstead Set the callback functions separately using OH_AudioStreamBuilder_SetRendererWriteDataCallback,
  * OH_AudioStreamBuilder_SetRendererInterruptCallback, OH_AudioStreamBuilder_SetRendererOutputDeviceChangeCallback
  * and OH_AudioStreamBuilder_SetRendererErrorCallback.
@@ -251,7 +251,7 @@ OH_AudioStream_Result OH_AudioStreamBuilder_SetRendererPrivacy(OH_AudioStreamBui
 /**
  * Set the callbacks for the capturer client
  *
- * @deprecated since 18
+ * @deprecated since 20
  * @useinstead Set the callback functions separately using OH_AudioStreamBuilder_SetCapturerReadDataCallback,
  * OH_AudioStreamBuilder_SetCapturerDeviceChangeCallback, OH_AudioStreamBuilder_SetCapturerInterruptCallback
  * and OH_AudioStreamBuilder_SetCapturerErrorCallback.
@@ -276,17 +276,16 @@ OH_AudioStream_Result OH_AudioStreamBuilder_SetCapturerCallback(OH_AudioStreamBu
  * When using AudioRenderer apis, there are many instructions for application
  * to achieve better performance and lower power consumption:
  * In music or audiobook background playback situation, you can have low power
- * consumption by following this best practices document [Low-Power Rules in Music Playback Scenarios]{@link
- * https://developer.huawei.com/consumer/en/doc/best-practices/bpta-music-playback-scenarios}.
- * And for navigation situation, you can follow [Low-Power Rules in Navigation and Positioning Scenarios]{@link
- * https://developer.huawei.com/consumer/en/doc/best-practices/bpta-navigation-scenarios}.
+ * consumption by following this best practices document **Low-Power Rules in Music Playback Scenarios**.
+ * And for navigation situation, you can follow **Low-Power Rules in Navigation and Positioning Scenarios**.
  *
  * Application developer should also be careful when app goes to background, please check if your audio playback
- * is still needed, see [Audio Resources]{@link
- * https://developer.huawei.com/consumer/en/doc/best-practices/bpta-reasonable-audio-use}.
+ * is still needed, see **Audio Resources** in best practices document.
  * And avoiding to send silence audio data continuously to waste system resources, otherwise system will take
- * control measures when this behavior is detected, see [Audio Playback]{@link
- * https://developer.huawei.com/consumer/en/doc/best-practices/bpta-reasonable-audio-playback-use}.
+ * control measures when this behavior is detected, see **Audio Playback** in best practices document.
+ *
+ * If you want to use AudioRenderer api to implement a music playback application, there are also many interactive
+ * scenes to consider, see **Developing an Audio Application** in best practices document.
  *
  * @since 10
  *
@@ -414,7 +413,7 @@ OH_AudioStream_Result OH_AudioStreamBuilder_SetVolumeMode(OH_AudioStreamBuilder*
  * @return Result code.
  *     {@link AUDIOSTREAM_SUCCESS} Success.
  *     {@link AUDIOSTREAM_ERROR_INVALID_PARAM} Parameter is invalid, e.g. builder is nullptr, e.t.c.
- * @since 18
+ * @since 20
  */
 OH_AudioStream_Result OH_AudioStreamBuilder_SetRendererInterruptCallback(OH_AudioStreamBuilder* builder,
     OH_AudioRenderer_OnInterruptCallback callback, void* userData);
@@ -431,7 +430,7 @@ OH_AudioStream_Result OH_AudioStreamBuilder_SetRendererInterruptCallback(OH_Audi
  * @return Result code.
  *     {@link AUDIOSTREAM_SUCCESS} Success.
  *     {@link AUDIOSTREAM_ERROR_INVALID_PARAM} Parameter is invalid, e.g. builder is nullptr, e.t.c.
- * @since 18
+ * @since 20
  */
 OH_AudioStream_Result OH_AudioStreamBuilder_SetRendererErrorCallback(OH_AudioStreamBuilder* builder,
     OH_AudioRenderer_OnErrorCallback callback, void* userData);
@@ -448,7 +447,7 @@ OH_AudioStream_Result OH_AudioStreamBuilder_SetRendererErrorCallback(OH_AudioStr
  * @return Result code.
  *     {@link AUDIOSTREAM_SUCCESS} Success.
  *     {@link AUDIOSTREAM_ERROR_INVALID_PARAM} Parameter is invalid, e.g. builder is nullptr, e.t.c.
- * @since 18
+ * @since 20
  */
 OH_AudioStream_Result OH_AudioStreamBuilder_SetCapturerReadDataCallback(OH_AudioStreamBuilder* builder,
     OH_AudioCapturer_OnReadDataCallback callback, void* userData);
@@ -465,7 +464,7 @@ OH_AudioStream_Result OH_AudioStreamBuilder_SetCapturerReadDataCallback(OH_Audio
  * @return Result code.
  *     {@link AUDIOSTREAM_SUCCESS} Success.
  *     {@link AUDIOSTREAM_ERROR_INVALID_PARAM} Parameter is invalid, e.g. builder is nullptr, e.t.c.
- * @since 18
+ * @since 20
  */
 OH_AudioStream_Result OH_AudioStreamBuilder_SetCapturerDeviceChangeCallback(OH_AudioStreamBuilder* builder,
     OH_AudioCapturer_OnDeviceChangeCallback callback, void* userData);
@@ -482,7 +481,7 @@ OH_AudioStream_Result OH_AudioStreamBuilder_SetCapturerDeviceChangeCallback(OH_A
  * @return Result code.
  *     {@link AUDIOSTREAM_SUCCESS} Success.
  *     {@link AUDIOSTREAM_ERROR_INVALID_PARAM} Parameter is invalid, e.g. builder is nullptr, e.t.c.
- * @since 18
+ * @since 20
  */
 OH_AudioStream_Result OH_AudioStreamBuilder_SetCapturerInterruptCallback(OH_AudioStreamBuilder* builder,
     OH_AudioCapturer_OnInterruptCallback callback, void* userData);
@@ -499,10 +498,53 @@ OH_AudioStream_Result OH_AudioStreamBuilder_SetCapturerInterruptCallback(OH_Audi
  * @return Result code.
  *     {@link AUDIOSTREAM_SUCCESS} Success.
  *     {@link AUDIOSTREAM_ERROR_INVALID_PARAM} Parameter is invalid, e.g. builder is nullptr, e.t.c.
- * @since 18
+ * @since 20
  */
 OH_AudioStream_Result OH_AudioStreamBuilder_SetCapturerErrorCallback(OH_AudioStreamBuilder* builder,
     OH_AudioCapturer_OnErrorCallback callback, void* userData);
+
+/**
+ * @brief Set audio capturer configuration, if app want its recorder only to be muted instead of interrupted.
+ *
+ * @param builder reference provided by OH_AudioStreamBuilder_Create()
+ * @param muteWhenInterrupted use {@code true} if application want to be muted instead of interrupted.
+ * @return function result code:
+ *     {@link AUDIOSTREAM_SUCCESS} if the execution is successful.
+ *     {@link AUDIOSTREAM_ERROR_INVALID_PARAM} the param of builder is nullptr.
+ * @since 20
+ */
+OH_AudioStream_Result OH_AudioStreamBuilder_SetCapturerWillMuteWhenInterrupted(OH_AudioStreamBuilder* builder,
+    bool muteWhenInterrupted);
+
+/**    
+ * @brief Set the callback of fast status change event for audio renderer.
+ *
+ * @param builder Builder provided by OH_AudioStreamBuilder_Create()
+ * @param callback Callback function that will recevie the fast status change event.
+ * @param userData Pointer to an application data structure that will be passed to the callback functions.
+ * @return
+ *     {@link AUDIOSTREAM_SUCCESS} if the execution is successful.
+ *     {@link AUDIOSTREAM_ERROR_INVALID_PARAM} the param of builder or callback is nullptr.
+ * @since 20
+ */
+OH_AudioStream_Result OH_AudioStreamBuilder_SetRendererFastStatusChangeCallback(OH_AudioStreamBuilder* builder,
+    OH_AudioRenderer_OnFastStatusChange callback, void* userData);
+
+/**
+ * @brief Set the callback of fast status change event for audio capturer.
+ *
+ * @param builder Builder provided by OH_AudioStreamBuilder_Create()
+ * @param callback Callback function that will recevie the fast status change event.
+ * @param userData Pointer to an application data structure that will be passed to the callback functions.
+ * @return
+ *     {@link AUDIOSTREAM_SUCCESS} if the execution is successful.
+ *     {@link AUDIOSTREAM_ERROR_INVALID_PARAM} the param of builder or callback is nullptr.
+ * @since 20
+ */
+OH_AudioStream_Result OH_AudioStreamBuilder_SetCapturerFastStatusChangeCallback(OH_AudioStreamBuilder* builder,
+    OH_AudioCapturer_OnFastStatusChange callback, void* userData);
+
+
 #ifdef __cplusplus
 }
 #endif

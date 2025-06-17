@@ -29,12 +29,32 @@
     },
     { "name": "OH_Drawing_BrushDestroy" },
     { "name": "OH_Drawing_BrushGetAlpha" },
+    {
+        "first_introduced": "20",
+        "name": "OH_Drawing_BrushGetAlphaFloat"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_Drawing_BrushGetRedFloat"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_Drawing_BrushGetGreenFloat"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_Drawing_BrushGetBlueFloat"
+    },
     { "name": "OH_Drawing_BrushSetAlpha" },
     { "name": "OH_Drawing_BrushSetBlendMode" },
     { "name": "OH_Drawing_BrushIsAntiAlias" },
     { "name": "OH_Drawing_BrushSetAntiAlias" },
     { "name": "OH_Drawing_BrushGetColor" },
     { "name": "OH_Drawing_BrushSetColor" },
+    {
+        "first_introduced": "20",
+        "name": "OH_Drawing_BrushSetColor4f"
+    },
     { "name": "OH_Drawing_BrushSetFilter" },
     {
         "first_introduced": "12",
@@ -50,6 +70,10 @@
         "name": "OH_Drawing_BrushReset"
     },
     { "name": "OH_Drawing_CanvasCreate" },
+    {
+        "first_introduced": "20",
+        "name": "OH_Drawing_CanvasCreateWithPixelMap"
+    },
     { "name": "OH_Drawing_CanvasDestroy" },
     { "name": "OH_Drawing_CanvasBind" },
     { "name": "OH_Drawing_CanvasAttachPen" },
@@ -177,6 +201,10 @@
     { "name": "OH_Drawing_ColorFilterCreateCompose" },
     { "name": "OH_Drawing_ColorFilterCreateLinearToSrgbGamma" },
     { "name": "OH_Drawing_ColorFilterCreateLuma" },
+    {
+        "first_introduced": "20",
+        "name": "OH_Drawing_ColorFilterCreateLighting"
+    },
     { "name": "OH_Drawing_ColorFilterCreateMatrix" },
     { "name": "OH_Drawing_ColorFilterCreateSrgbGammaToLinear" },
     { "name": "OH_Drawing_ColorFilterDestroy" },
@@ -275,6 +303,22 @@
         "name": "OH_Drawing_FontMeasureText"
     },
     {
+        "first_introduced": "19",
+        "name": "OH_Drawing_FontMeasureTextWithBrushOrPen"
+    },
+    {
+        "first_introduced": "19",
+        "name": "OH_Drawing_FontGetWidthsBounds"
+    },
+    {
+        "first_introduced": "19",
+        "name": "OH_Drawing_FontGetPos"
+    },
+    {
+        "first_introduced": "19",
+        "name": "OH_Drawing_FontGetSpacing"
+    },
+    {
         "first_introduced": "12",
         "name": "OH_Drawing_FontSetBaselineSnap"
     },
@@ -339,11 +383,23 @@
         "name": "OH_Drawing_ImageFilterCreateFromColorFilter"
     },
     {
+        "first_introduced": "20",
+        "name": "OH_Drawing_ImageFilterCreateOffset"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_Drawing_ImageFilterCreateFromShaderEffect"
+    },
+    {
         "first_introduced": "12",
         "name": "OH_Drawing_ImageFilterDestroy"
     },
     { "name": "OH_Drawing_MaskFilterCreateBlur" },
     { "name": "OH_Drawing_MaskFilterDestroy" },
+    {
+        "first_introduced": "20",
+        "name": "OH_Drawing_MatrixCopy"
+    },
     { "name": "OH_Drawing_MatrixCreate" },
     { "name": "OH_Drawing_MatrixCreateRotation" },
     { "name": "OH_Drawing_MatrixCreateScale" },
@@ -516,6 +572,34 @@
         "name": "OH_Drawing_PathGetMatrix"
     },
     {
+        "first_introduced": "20",
+        "name": "OH_Drawing_PathGetFillType"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_Drawing_PathIsEmpty"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_Drawing_PathIsRect"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_Drawing_PathSetPath"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_Drawing_PathApproximate"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_Drawing_PathInterpolate"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_Drawing_PathIsInterpolate"
+    },
+    {
         "first_introduced": "12",
         "name": "OH_Drawing_PenCopy"
     },
@@ -523,11 +607,31 @@
     { "name": "OH_Drawing_PenDestroy" },
     { "name": "OH_Drawing_PenGetAlpha" },
     { "name": "OH_Drawing_PenSetAlpha" },
+    {
+        "first_introduced": "20",
+        "name": "OH_Drawing_PenGetAlphaFloat"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_Drawing_PenGetRedFloat"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_Drawing_PenGetGreenFloat"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_Drawing_PenGetBlueFloat"
+    },
     { "name": "OH_Drawing_PenSetBlendMode" },
     { "name": "OH_Drawing_PenIsAntiAlias" },
     { "name": "OH_Drawing_PenSetAntiAlias" },
     { "name": "OH_Drawing_PenGetColor" },
     { "name": "OH_Drawing_PenSetColor" },
+    {
+        "first_introduced": "20",
+        "name": "OH_Drawing_PenSetColor4f"
+    },
     { "name": "OH_Drawing_PenGetWidth" },
     { "name": "OH_Drawing_PenSetWidth" },
     { "name": "OH_Drawing_PenGetMiterLimit" },
@@ -654,6 +758,10 @@
         "name": "OH_Drawing_RoundRectGetCorner"
     },
     {
+        "first_introduced": "20",
+        "name": "OH_Drawing_RoundRectCopy"
+    },
+    {
         "first_introduced": "12",
         "name": "OH_Drawing_RoundRectSetCorner"
     },
@@ -694,6 +802,10 @@
         "first_introduced": "12",
         "name": "OH_Drawing_ShaderEffectCreateRadialGradientWithLocalMatrix"
     },
+    {
+        "first_introduced": "20",
+        "name": "OH_Drawing_ShaderEffectCreateSweepGradientWithLocalMatrix"
+    },
     { "name": "OH_Drawing_ShaderEffectCreateSweepGradient" },
     {
         "first_introduced": "12",
@@ -702,6 +814,10 @@
     {
         "first_introduced": "12",
         "name": "OH_Drawing_ShaderEffectCreateTwoPointConicalGradient"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_Drawing_ShaderEffectCreateCompose"
     },
     { "name": "OH_Drawing_ShaderEffectDestroy" },
     {
@@ -971,6 +1087,10 @@
         "name": "OH_Drawing_RegisterFontBuffer"
     },
     {
+        "first_introduced": "20",
+        "name": "OH_Drawing_UnregisterFont"
+    },
+    {
         "first_introduced": "12",
         "name": "OH_Drawing_TypographyGetLineTextRange"
     },
@@ -1181,6 +1301,10 @@
     {
         "first_introduced": "12",
         "name": "OH_Drawing_RegionCreate"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_Drawing_RegionCopy"
     },
     {
         "first_introduced": "12",
@@ -1469,6 +1593,26 @@
     {
         "first_introduced": "12",
         "name": "OH_Drawing_TypographyUpdateFontSize"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_Drawing_TypographyUpdateFontColor"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_Drawing_TypographyUpdateDecoration"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_Drawing_TypographyUpdateDecorationThicknessScale"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_Drawing_TypographyUpdateDecorationStyle"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_Drawing_TypographyUpdateDecorationColor"
     },
     {
         "first_introduced": "12",
@@ -1771,8 +1915,28 @@
         "name":"OH_Drawing_GetRunGlyphCount"
     },
     {
+        "first_introduced": "20",
+        "name":"OH_Drawing_GetRunTextDirection"
+    },
+    {
+        "first_introduced": "20",
+        "name":"OH_Drawing_GetRunGlyphAdvances"
+    },
+    {
+        "first_introduced": "20",
+        "name":"OH_Drawing_GetRunGlyphAdvanceByIndex"
+    },
+    {
+        "first_introduced": "20",
+        "name":"OH_Drawing_DestroyRunGlyphAdvances"
+    },
+    {
         "first_introduced": "14",
         "name":"OH_Drawing_GetFontCollectionGlobalInstance"
+    },
+    {
+        "first_introduced": "20",
+        "name":"OH_Drawing_GetRunFont"
     },
     {
         "first_introduced": "18",
@@ -1796,7 +1960,35 @@
     },
     {
         "first_introduced": "20",
+        "name": "OH_Drawing_SetTypographyTextTrailingSpaceOptimized"
+    },
+    {
+        "first_introduced": "19",
+        "name":"OH_Drawing_CanvasDrawRecordCmdNesting"
+    },
+    {
+        "first_introduced": "20",
         "name": "OH_Drawing_SetTextStyleBadgeType"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_Drawing_SetTypographyTextAutoSpace"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_Drawing_SetTextHighContrast"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_Drawing_SetTextUndefinedGlyphDisplay"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_Drawing_SetTypographyVerticalAlignment"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_Drawing_TypographyHandlerAddEncodedText"
     },
     {
         "first_introduced": "20",

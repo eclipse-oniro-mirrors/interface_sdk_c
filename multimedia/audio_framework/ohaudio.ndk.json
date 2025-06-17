@@ -388,30 +388,6 @@
         "name": "OH_AudioStreamBuilder_SetVolumeMode"
     },
     {
-        "first_introduced": "18",
-        "name": "OH_AudioStreamBuilder_SetRendererInterruptCallback"
-    },
-    {
-        "first_introduced": "18",
-        "name": "OH_AudioStreamBuilder_SetRendererErrorCallback"
-    },
-    {
-        "first_introduced": "18",
-        "name": "OH_AudioStreamBuilder_SetCapturerReadDataCallback"
-    },
-    {
-        "first_introduced": "18",
-        "name": "OH_AudioStreamBuilder_SetCapturerDeviceChangeCallback"
-    },
-    {
-        "first_introduced": "18",
-        "name": "OH_AudioStreamBuilder_SetCapturerInterruptCallback"
-    },
-    {
-        "first_introduced": "18",
-        "name": "OH_AudioStreamBuilder_SetCapturerErrorCallback"
-    },
-    {
         "first_introduced": "19",
         "name": "OH_AudioManager_GetAudioStreamManager"
     },
@@ -421,6 +397,106 @@
     },
     {
         "first_introduced": "20",
+        "name": "OH_AudioStreamBuilder_SetRendererInterruptCallback"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_AudioStreamBuilder_SetRendererErrorCallback"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_AudioStreamBuilder_SetCapturerReadDataCallback"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_AudioStreamBuilder_SetCapturerDeviceChangeCallback"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_AudioStreamBuilder_SetCapturerInterruptCallback"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_AudioStreamBuilder_SetCapturerErrorCallback"
+    },
+    {
+        "first_introduced": "20",
         "name": "OH_AudioStreamManager_IsAcousticEchoCancelerSupported"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_AudioStreamBuilder_SetCapturerWillMuteWhenInterrupted"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_AudioManager_RegisterAudioSceneChangeCallback"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_AudioManager_UnregisterAudioSceneChangeCallback"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_AudioManager_GetAudioVolumeManager"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_AudioVolumeManager_GetMaxVolumeByUsage"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_AudioVolumeManager_GetMinVolumeByUsage"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_AudioVolumeManager_GetVolumeByUsage"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_AudioVolumeManager_IsMuteByUsage"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_AudioVolumeManager_RegisterStreamVolumeChangeCallback"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_AudioVolumeManager_UnregisterStreamVolumeChangeCallback"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_AudioVolumeManager_GetRingerMode"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_AudioVolumeManager_RegisterRingerModeChangeCallback"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_AudioVolumeManager_UnregisterRingerModeChangeCallback"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_AudioRenderer_GetFastStatus"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_AudioCapturer_GetFastStatus"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_AudioStreamManager_IsFastPlaybackSupported"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_AudioStreamManager_IsFastRecordingSupported"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_AudioStreamBuilder_SetRendererFastStatusChangeCallback"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_AudioStreamBuilder_SetCapturerFastStatusChangeCallback"
     }
 ]

@@ -1160,171 +1160,171 @@
         "name": "OH_ArkUI_SwiperIndicator_GetMaxDisplayCount"
     },
     {
-        "first_introduced": "18",
+        "first_introduced": "19",
         "name": "OH_ArkUI_SwiperIndicator_SetIgnoreSizeOfBottom"
     },
     {
-        "first_introduced": "18",
+        "first_introduced": "19",
         "name": "OH_ArkUI_SwiperIndicator_GetIgnoreSizeOfBottom"
     },
     {
-        "first_introduced": "18",
+        "first_introduced": "19",
         "name": "OH_ArkUI_SwiperIndicator_SetSpace"
     },
     {
-        "first_introduced": "18",
+        "first_introduced": "19",
         "name": "OH_ArkUI_SwiperIndicator_GetSpace"
     },
     {
-        "first_introduced": "18",
+        "first_introduced": "19",
         "name": "OH_ArkUI_SwiperDigitIndicator_Create"
     },
     {
-        "first_introduced": "18",
+        "first_introduced": "19",
         "name": "OH_ArkUI_SwiperDigitIndicator_SetStartPosition"
     },
     {
-        "first_introduced": "18",
+        "first_introduced": "19",
         "name": "OH_ArkUI_SwiperDigitIndicator_GetStartPosition"
     },
     {
-        "first_introduced": "18",
+        "first_introduced": "19",
         "name": "OH_ArkUI_SwiperDigitIndicator_SetTopPosition"
     },
     {
-        "first_introduced": "18",
+        "first_introduced": "19",
         "name": "OH_ArkUI_SwiperDigitIndicator_GetTopPosition"
     },
     {
-        "first_introduced": "18",
+        "first_introduced": "19",
         "name": "OH_ArkUI_SwiperDigitIndicator_SetEndPosition"
     },
     {
-        "first_introduced": "18",
+        "first_introduced": "19",
         "name": "OH_ArkUI_SwiperDigitIndicator_GetEndPosition"
     },
     {
-        "first_introduced": "18",
+        "first_introduced": "19",
         "name": "OH_ArkUI_SwiperDigitIndicator_SetBottomPosition"
     },
     {
-        "first_introduced": "18",
+        "first_introduced": "19",
         "name": "OH_ArkUI_SwiperDigitIndicator_GetBottomPosition"
     },
     {
-        "first_introduced": "18",
+        "first_introduced": "19",
         "name": "OH_ArkUI_SwiperDigitIndicator_SetFontColor"
     },
     {
-        "first_introduced": "18",
+        "first_introduced": "19",
         "name": "OH_ArkUI_SwiperDigitIndicator_GetFontColor"
     },
     {
-        "first_introduced": "18",
+        "first_introduced": "19",
         "name": "OH_ArkUI_SwiperDigitIndicator_SetSelectedFontColor"
     },
     {
-        "first_introduced": "18",
+        "first_introduced": "19",
         "name": "OH_ArkUI_SwiperDigitIndicator_GetSelectedFontColor"
     },
     {
-        "first_introduced": "18",
+        "first_introduced": "19",
         "name": "OH_ArkUI_SwiperDigitIndicator_SetFontSize"
     },
     {
-        "first_introduced": "18",
+        "first_introduced": "19",
         "name": "OH_ArkUI_SwiperDigitIndicator_GetFontSize"
     },
     {
-        "first_introduced": "18",
+        "first_introduced": "19",
         "name": "OH_ArkUI_SwiperDigitIndicator_SetSelectedFontSize"
     },
     {
-        "first_introduced": "18",
+        "first_introduced": "19",
         "name": "OH_ArkUI_SwiperDigitIndicator_GetSelectedFontSize"
     },
     {
-        "first_introduced": "18",
+        "first_introduced": "19",
         "name": "OH_ArkUI_SwiperDigitIndicator_SetFontWeight"
     },
     {
-        "first_introduced": "18",
+        "first_introduced": "19",
         "name": "OH_ArkUI_SwiperDigitIndicator_GetFontWeight"
     },
     {
-        "first_introduced": "18",
+        "first_introduced": "19",
         "name": "OH_ArkUI_SwiperDigitIndicator_SetSelectedFontWeight"
     },
     {
-        "first_introduced": "18",
+        "first_introduced": "19",
         "name": "OH_ArkUI_SwiperDigitIndicator_GetSelectedFontWeight"
     },
     {
-        "first_introduced": "18",
+        "first_introduced": "19",
         "name": "OH_ArkUI_SwiperDigitIndicator_Destroy"
     },
     {
-        "first_introduced": "18",
+        "first_introduced": "19",
         "name": "OH_ArkUI_SwiperDigitIndicator_SetIgnoreSizeOfBottom"
     },
     {
-        "first_introduced": "18",
+        "first_introduced": "19",
         "name": "OH_ArkUI_SwiperDigitIndicator_GetIgnoreSizeOfBottom"
     },
     {
-        "first_introduced": "18",
+        "first_introduced": "19",
         "name": "OH_ArkUI_SwiperArrowStyle_Create"
     },
     {
-        "first_introduced": "18",
+        "first_introduced": "19",
         "name": "OH_ArkUI_SwiperArrowStyle_SetShowBackground"
     },
     {
-        "first_introduced": "18",
+        "first_introduced": "19",
         "name": "OH_ArkUI_SwiperArrowStyle_GetShowBackground"
     },
     {
-        "first_introduced": "18",
+        "first_introduced": "19",
         "name": "OH_ArkUI_SwiperArrowStyle_SetShowSidebarMiddle"
     },
     {
-        "first_introduced": "18",
+        "first_introduced": "19",
         "name": "OH_ArkUI_SwiperArrowStyle_GetShowSidebarMiddle"
     },
     {
-        "first_introduced": "18",
+        "first_introduced": "19",
         "name": "OH_ArkUI_SwiperArrowStyle_SetBackgroundSize"
     },
     {
-        "first_introduced": "18",
+        "first_introduced": "19",
         "name": "OH_ArkUI_SwiperArrowStyle_GetBackgroundSize"
     },
     {
-        "first_introduced": "18",
+        "first_introduced": "19",
         "name": "OH_ArkUI_SwiperArrowStyle_SetBackgroundColor"
     },
     {
-        "first_introduced": "18",
+        "first_introduced": "19",
         "name": "OH_ArkUI_SwiperArrowStyle_GetBackgroundColor"
     },
     {
-        "first_introduced": "18",
+        "first_introduced": "19",
         "name": "OH_ArkUI_SwiperArrowStyle_SetArrowSize"
     },
     {
-        "first_introduced": "18",
+        "first_introduced": "19",
         "name": "OH_ArkUI_SwiperArrowStyle_GetArrowSize"
     },
     {
-        "first_introduced": "18",
+        "first_introduced": "19",
         "name": "OH_ArkUI_SwiperArrowStyle_SetArrowColor"
     },
     {
-        "first_introduced": "18",
+        "first_introduced": "19",
         "name": "OH_ArkUI_SwiperArrowStyle_GetArrowColor"
     },
     {
-        "first_introduced": "18",
+        "first_introduced": "19",
         "name": "OH_ArkUI_SwiperArrowStyle_Destroy"
     },
     {
@@ -2240,6 +2240,10 @@
         "name": "OH_ArkUI_DragEvent_GetModifierKeyStates"
     },
     {
+        "first_introduced": "20",
+        "name": "OH_ArkUI_DragEvent_GetDisplayId"
+    },
+    {
         "first_introduced": "12",
         "name": "OH_ArkUI_SetDragEventStrictReportWithNode"
     },
@@ -2848,6 +2852,10 @@
         "name": "OH_ArkUI_PostFrameCallback"
     },
     {
+        "first_introduced": "20",
+        "name": "OH_ArkUI_PostIdleCallback"
+    },
+    {
         "first_introduced": "15",
         "name": "OH_ArkUI_HostWindowInfo_GetName"
     },
@@ -3028,6 +3036,18 @@
         "name": "OH_ArkUI_NotifyDragEndPendingDone"
     },
     {
+        "first_introduced": "20",
+        "name": "OH_ArkUI_EnableDropDisallowedBadge"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_ArkUI_DragEvent_SetDataLoadParams"
+    },
+        {
+        "first_introduced": "20",
+        "name": "OH_ArkUI_DragAction_SetDataLoadParams"
+    },
+    {
         "first_introduced": "18",
         "name": "OH_ArkUI_GestureInterrupter_GetUserData"
     },
@@ -3204,6 +3224,10 @@
         "name": "OH_ArkUI_CustomDialog_RegisterOnDidDisappearCallback"
     },
     {
+        "first_introduced": "20",
+        "name": "OH_ArkUI_CustomDialog_GetState"
+    },
+    {
         "first_introduced": "19",
         "name": "OH_ArkUI_TextPickerRangeContentArray_Create"
     },
@@ -3333,6 +3357,10 @@
     },
     {
         "first_introduced": "20",
+        "name": "OH_ArkUI_RunTaskInScope"
+    },
+    {
+        "first_introduced": "20",
         "name": "OH_ArkUI_EmbeddedComponentOption_SetOnTerminated"
     },
     {
@@ -3342,5 +3370,89 @@
     {
         "first_introduced": "20",
         "name": "OH_ArkUI_RemoveSupportedUIStates"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_ArkUI_DragEvent_GetDragSource"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_ArkUI_DragEvent_IsRemote"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_NativeXComponent_GetExtraMouseEventInfo"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_NativeXComponent_GetMouseEventModifierKeyStates"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_NativeXComponent_GetKeyEventModifierKeyStates"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_NativeXComponent_GetKeyEventNumLockState"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_NativeXComponent_GetKeyEventCapsLockState"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_NativeXComponent_GetKeyEventScrollLockState"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_ArkUI_XComponent_SetExpectedFrameRateRange"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_ArkUI_XComponent_RegisterOnFrameCallback"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_ArkUI_XComponent_UnregisterOnFrameCallback"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_ArkUI_XComponent_SetNeedSoftKeyboard"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_ArkUI_AccessibilityProvider_Create"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_ArkUI_AccessibilityProvider_Dispose"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_ArkUI_SurfaceCallback_SetSurfaceShowEvent"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_ArkUI_SurfaceCallback_SetSurfaceHideEvent"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_ArkUI_UIInputEvent_GetLatestStatus"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_ArkUI_NodeUtils_GetNodeHandleByUniqueId"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_ArkUI_NodeUtils_GetNodeUniqueId"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_ArkUI_PreventGestureRecognizerBegin"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_ArkUI_SetTouchTestDoneCallback"
     }
 ]

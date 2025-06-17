@@ -558,5 +558,105 @@
     {
         "first_introduced": "15",
         "name": "OH_UdmfGetDataParams_SetDataProgressListener"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_UdmfOptions_Create"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_UdmfOptions_Destroy"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_UdmfOptions_GetKey"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_UdmfOptions_SetKey"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_UdmfOptions_GetIntention"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_UdmfOptions_SetIntention"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_UdmfOptions_Reset"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_Udmf_GetUnifiedDataByOptions"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_Udmf_SetUnifiedDataByOptions"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_Udmf_UpdateUnifiedData"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_Udmf_DeleteUnifiedData"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_Udmf_DestroyDataArray"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_UdmfGetDataParams_SetAcceptableInfo"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_UdmfDataLoadParams_Create"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_UdmfDataLoadParams_Destroy"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_UdmfDataLoadParams_SetLoadHandler"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_UdmfDataLoadParams_SetDataLoadInfo"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_UdmfDataLoadInfo_Create"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_UdmfDataLoadInfo_Destroy"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_UdmfDataLoadInfo_GetTypes"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_UdmfDataLoadInfo_SetType"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_UdmfDataLoadInfo_GetRecordCount"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_UdmfDataLoadInfo_SetRecordCount"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_UdmfOptions_GetVisibility"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_UdmfOptions_SetVisibility"
     }
 ]

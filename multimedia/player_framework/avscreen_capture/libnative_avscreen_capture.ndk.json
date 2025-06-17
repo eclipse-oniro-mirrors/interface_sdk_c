@@ -110,5 +110,45 @@
     {
         "first_introduced": "15",
         "name": "OH_AVScreenCapture_SetDisplayCallback"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_AVScreenCapture_CreateCaptureStrategy"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_AVScreenCapture_ReleaseCaptureStrategy"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_AVScreenCapture_SetCaptureStrategy"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_AVScreenCapture_StrategyForKeepCaptureDuringCall"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_AVScreenCapture_SetCaptureContentChangedCallback"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_AVScreenCapture_SetCaptureArea"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_AVScreenCapture_StrategyForPrivacyMaskMode"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_AVScreenCapture_SetSelectionCallback"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_AVScreenCapture_GetCaptureTypeSelected"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_AVScreenCapture_GetDisplayIdSelected"
     }
 ]

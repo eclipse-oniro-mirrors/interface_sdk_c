@@ -65,7 +65,15 @@
     { "name": "ffrt_queue_create" },
     { "name": "ffrt_queue_destroy" },
     { "name": "ffrt_queue_submit" },
+    {
+        "first_introduced": "20",
+        "name": "ffrt_queue_submit_f"
+    },
     { "name": "ffrt_queue_submit_h" },
+    {
+        "first_introduced": "20",
+        "name": "ffrt_queue_submit_h_f"
+    },
     { "name": "ffrt_queue_wait" },
     { "name": "ffrt_queue_cancel" },
     { "name": "ffrt_usleep" },
@@ -90,7 +98,15 @@
     { "name": "ffrt_this_task_get_id" },
     { "name": "ffrt_alloc_auto_managed_function_storage_base" },
     { "name": "ffrt_submit_base" },
+    {
+        "first_introduced": "20",
+        "name": "ffrt_submit_f"
+    },
     { "name": "ffrt_submit_h_base" },
+    {
+        "first_introduced": "20",
+        "name": "ffrt_submit_h_f"
+    },
     {
         "first_introduced": "12",
         "name": "ffrt_task_handle_inc_ref"
@@ -98,6 +114,14 @@
     {
         "first_introduced": "12",
         "name": "ffrt_task_handle_dec_ref"
+    },
+    {
+        "first_introduced": "20",
+        "name": "ffrt_fiber_init"
+    },
+    {
+        "first_introduced": "20",
+        "name": "ffrt_fiber_switch"
     },
     { "name": "ffrt_task_handle_destroy" },
     { "name": "ffrt_wait_deps" },

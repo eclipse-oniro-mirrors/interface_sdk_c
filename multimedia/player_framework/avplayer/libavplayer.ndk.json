@@ -76,6 +76,10 @@
     "name": "OH_PLAYER_PLAYBACK_SPEED"
   },
   {
+    "first_introduced": "20",
+    "name": "OH_PLAYER_PLAYBACK_RATE"
+  },  
+  {
     "first_introduced": "12",
     "name": "OH_PLAYER_BITRATE"
   },
@@ -138,5 +142,9 @@
   {
     "first_introduced": "19",
     "name": "OH_AVPlayer_SetVolumeMode"
+  },
+  {
+    "first_introduced": "20",
+    "name": "OH_AVPlayer_SetPlaybackRate"
   }
 ]

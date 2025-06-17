@@ -30,6 +30,5 @@ ohos_ndk_library("libusb_ndk") {
   system_capability_headers = [
     "usb/usb_ddk_api.h",
     "usb/usb_ddk_types.h",
-    "base/ddk_types.h",
   ]
 }
