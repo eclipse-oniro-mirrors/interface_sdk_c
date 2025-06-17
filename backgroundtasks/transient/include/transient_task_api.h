@@ -101,7 +101,7 @@ int32_t OH_BackgroundTaskManager_GetRemainingDelayTime(int32_t requestId, int32_
 int32_t OH_BackgroundTaskManager_CancelSuspendDelay(int32_t requestId);
 
 /**
- * @brief Obtains all the transient task.
+ * @brief Obtains transient task info.
  *
  * @param transientTaskInfo Indicates the transient task info of an application.
  * @return {@link ERR_TRANSIENT_TASK_OK} 0 - Success.
@@ -111,7 +111,7 @@ int32_t OH_BackgroundTaskManager_CancelSuspendDelay(int32_t requestId);
  * @since 20
  * @version 1.0
  */
-int32_t OH_BackgroundTaskManager_GetAllTransientTasks(TransientTask_TransientTaskInfo  *transientTaskInfo);
+int32_t OH_BackgroundTaskManager_GetTransientTaskInfo(TransientTask_TransientTaskInfo *transientTaskInfo);
 
 #ifdef __cplusplus
 }
