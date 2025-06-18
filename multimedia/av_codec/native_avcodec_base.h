@@ -218,7 +218,7 @@ typedef struct OH_AVDataSource {
  * @param data    OH_AVBuffer buffer to fill
  * @param length   expected to read size;
  * @param pos    current read offset
- * @param userDta user-defined data
+ * @param userData user-defined data
  * @return  Actual size of data read to the buffer.
  * @since 20
  */
