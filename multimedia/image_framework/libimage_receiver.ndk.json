@@ -48,6 +48,14 @@
         "name": "OH_ImageReceiverNative_Off"
     },
     {
+        "first_introduced": "20",
+        "name": "OH_ImageReceiverNative_OnImageArrive"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_ImageReceiverNative_OffImageArrive"
+    },
+    {
         "first_introduced": "12",
         "name": "OH_ImageReceiverNative_GetSize"
     },

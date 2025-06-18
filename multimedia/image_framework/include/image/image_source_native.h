@@ -180,13 +180,13 @@ Image_ErrorCode OH_ImageSourceInfo_GetDynamicRange(OH_ImageSource_Info *info, bo
  * @brief Obtains the MIME type of an image source.
  *
  * @param info Pointer to the OH_ImageSource_Info struct.
- * @param mimeType Pointer to the MIME type of the image source.
+ * @param mimetype Pointer to the MIME type of the image source.
  * @return Returns one of the following result codes:
- * {@link IMAGE_SUCCESS}: The execution is successful.
- * {@link IMAGE_SOURCE_INVALID_PARAMETER}: info or mimeType is a null pointer.
+ * {@link IMAGE_SUCCESS} if the execution is successful.
+ * {@link IMAGE_SOURCE_INVALID_PARAMETER} if info or mimetype is a null pointer.
  * @since 20
  */
-Image_ErrorCode OH_ImageSourceInfo_GetMimeType(OH_ImageSource_Info *info, Image_MimeType *mimeType);
+Image_ErrorCode OH_ImageSourceInfo_GetMimeType(OH_ImageSource_Info *info, Image_MimeType *mimetype);
 
 /**
  * @brief delete OH_ImageSource_Info pointer.
@@ -375,30 +375,6 @@ Image_ErrorCode OH_DecodingOptions_SetDesiredDynamicRange(OH_DecodingOptions *op
     int32_t desiredDynamicRange);
 
 /**
- * @brief Sets the crop region for the decoding options.
- *
- * @param options Pointer to the decoding options.
- * @param cropRegion The target region will be cropped from the image.
- * @return Returns one of the following result codes:
- * {@link IMAGE_SUCCESS} if the execution is successful.
- * {@link IMAGE_SOURCE_INVALID_PARAMETER} if options or cropRegion is null pointer.
- * @since 19
- */
-Image_ErrorCode OH_DecodingOptions_SetCropRegion(OH_DecodingOptions *options, Image_Region *cropRegion);
-
-/**
- * @brief Gets the crop region for the decoding options.
- *
- * @param options Pointer to the decoding options.
- * @param cropRegion The target region will be cropped from the image.
- * @return Returns one of the following result codes:
- * {@link IMAGE_SUCCESS} if the execution is successful.
- * {@link IMAGE_SOURCE_INVALID_PARAMETER} if options or cropRegion is null pointer.
- * @since 19
- */
-Image_ErrorCode OH_DecodingOptions_GetCropRegion(OH_DecodingOptions *options, Image_Region *cropRegion);
-
-/**
  * @brief Obtains the color space set in the decoding options.
  *
  * @param options Pointer to the decoding options.
@@ -421,6 +397,30 @@ Image_ErrorCode OH_DecodingOptions_GetDesiredColorSpace(OH_DecodingOptions *opti
  * @since 20
  */
 Image_ErrorCode OH_DecodingOptions_SetDesiredColorSpace(OH_DecodingOptions *options, int32_t colorSpace);
+
+/**
+ * @brief Sets the crop region for the decoding options.
+ *
+ * @param options Pointer to the decoding options.
+ * @param cropRegion The target region will be cropped from the image.
+ * @return Returns one of the following result codes:
+ * {@link IMAGE_SUCCESS} if the execution is successful.
+ * {@link IMAGE_SOURCE_INVALID_PARAMETER} if options or cropRegion is null pointer.
+ * @since 19
+ */
+Image_ErrorCode OH_DecodingOptions_SetCropRegion(OH_DecodingOptions *options, Image_Region *cropRegion);
+
+/**
+ * @brief Gets the crop region for the decoding options.
+ *
+ * @param options Pointer to the decoding options.
+ * @param cropRegion The target region will be cropped from the image.
+ * @return Returns one of the following result codes:
+ * {@link IMAGE_SUCCESS} if the execution is successful.
+ * {@link IMAGE_SOURCE_INVALID_PARAMETER} if options or cropRegion is null pointer.
+ * @since 19
+ */
+Image_ErrorCode OH_DecodingOptions_GetCropRegion(OH_DecodingOptions *options, Image_Region *cropRegion);
 
 /**
  * @brief delete OH_DecodingOptions pointer.
