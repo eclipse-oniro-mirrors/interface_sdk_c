@@ -1077,6 +1077,20 @@ extern const char *OH_MD_KEY_MAX_BITRATE;
 extern const char *OH_MD_KEY_VIDEO_ENCODER_ENABLE_PTS_BASED_RATECONTROL;
 
 /**
+ * @brief Key to enable synchronous mode, value type is (0 or 1): 1 is enabled, 0 otherwise.
+ *
+ * This is an optional key, default is 0.\n
+ * When enabled:
+ *       - Callbacks should NOT be set for codecs
+ *       - Buffer query APIs must be used instead
+ *       - Only used in configuration phase
+ *
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
+ * @since 20
+ */
+extern const char *OH_MD_KEY_ENABLE_SYNC_MODE;
+
+/**
  * @brief Media type.
  *
  * @syscap SystemCapability.Multimedia.Media.CodecBase
