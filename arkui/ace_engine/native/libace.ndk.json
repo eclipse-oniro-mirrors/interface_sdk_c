@@ -3454,5 +3454,9 @@
     {
         "first_introduced": "20",
         "name": "OH_ArkUI_SetTouchTestDoneCallback"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_ArkUI_SetForceDarkConfig"
     }
 ]
