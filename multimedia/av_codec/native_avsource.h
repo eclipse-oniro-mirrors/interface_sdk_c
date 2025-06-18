@@ -81,7 +81,7 @@ OH_AVSource *OH_AVSource_CreateWithDataSource(OH_AVDataSource *dataSource);
  *  4. out of memory.
  *  5. demuxer engine is nullptr.
  * @since 20
-*/
+ */
 OH_AVSource *OH_AVSource_CreateWithDataSourceExt(OH_AVDataSourceExt *dataSource, void *userData);
 
 /**
