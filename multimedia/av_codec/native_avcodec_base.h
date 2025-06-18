@@ -1031,6 +1031,38 @@ extern const char *OH_MD_KEY_VIDEO_ENCODER_REPEAT_PREVIOUS_FRAME_AFTER;
  * @since 18
  */
 extern const char *OH_MD_KEY_VIDEO_ENCODER_REPEAT_PREVIOUS_MAX_COUNT;
+/**
+ * @brief Key to set the region of interest(ROI) as QpOffset-Rects, value type is string in the format
+ * "Top1,Left1-Bottom1,Right1=Offset1;Top2,Left2-Bottom2,Right2=Offset2;". Each "Top,Left-Bottom,Right=Offset"
+ * represents the coordinate information and quantization parameter of one ROI. Each "=Offset" in the string
+ * can be omitted, like "Top1,Left1-Bottom1,Right1;Top2,Left2-Bottom2,Right2=Offset2;", the encoder
+ * will use the default quantization parameter to perform the ROI encoding on the first ROI and
+ * use Offset2 on the second ROI.
+ *
+ * This is an optional key that applies only to video encoder.
+ * It is used in running process and is set with each frame.
+ * In surface mode, it is used in {@link OH_VideoEncoder_OnNeedInputParameter}.
+ * In buffer mode, it is configured via {@link OH_AVBuffer_SetParameter}.
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
+ * @since 20
+ */
+extern const char *OH_MD_KEY_VIDEO_ENCODER_ROI_PARAMS;
+/**
+ * @brief Key for the desired encoding quality, value type is int32_t, this key is only
+ * supported for encoders that are configured in Stable Quality RateControl, the higher
+ * values generally result in more efficient(smaller-sized) encoding.
+ *
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
+ * @since 20
+ */
+extern const char *OH_MD_KEY_SQR_FACTOR;
+/**
+ * @brief Key for maximum bitrate, value type is int64_t.
+ *
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
+ * @since 20
+ */
+extern const char *OH_MD_KEY_MAX_BITRATE;
 
 /**
  * @brief Media type.
@@ -1562,7 +1594,11 @@ typedef enum OH_BitrateMode {
     /** Variable Bit rate mode. */
     BITRATE_MODE_VBR = 1,
     /** Constant Quality mode. */
-    BITRATE_MODE_CQ = 2
+    BITRATE_MODE_CQ = 2,
+    /** Stable Quality Rate Control.
+     * @since 20
+     */
+    BITRATE_MODE_SQR = 3
 } OH_BitrateMode;
 
 #ifdef __cplusplus
