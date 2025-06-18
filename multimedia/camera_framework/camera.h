@@ -1152,6 +1152,49 @@ typedef struct Camera_ConcurrentInfo {
     uint32_t modeAndCapabilitySize;
 } Camera_ConcurrentInfo;
 
+/**
+ * @brief Enumerates the white balance modes.
+ *
+ * @since 20
+ * @version 1.0
+ */
+typedef enum Camera_WhiteBalanceMode {
+    /**
+     * Automatic white balance mode.
+     */
+    CAMERA_WHITE_BALANCE_MODE_AUTO = 0,
+
+    /**
+     * Cloudy white balance mode.
+     */
+    CAMERA_WHITE_BALANCE_MODE_CLOUDY = 1,
+
+    /**
+     * Incandescent white balance mode.
+     */
+    CAMERA_WHITE_BALANCE_MODE_INCANDESCENT = 2,
+
+    /**
+     * Fluorescent white balance mode.
+     */
+    CAMERA_WHITE_BALANCE_MODE_FLUORESCENT = 3,
+
+    /**
+     * Daylight white balance mode.
+     */
+    CAMERA_WHITE_BALANCE_MODE_DAYLIGHT = 4,
+
+    /**
+     * Manual white balance mode.
+     */
+    CAMERA_WHITE_BALANCE_MODE_MANUAL = 5,
+
+    /**
+     * Lock white balance mode.
+     */
+    CAMERA_WHITE_BALANCE_MODE_LOCKED = 6
+} Camera_WhiteBalanceMode;
+
 #ifdef __cplusplus
 }
 #endif
