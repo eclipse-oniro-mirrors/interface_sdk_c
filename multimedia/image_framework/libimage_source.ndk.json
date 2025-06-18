@@ -186,5 +186,9 @@
     {
         "first_introduced": "20",
         "name": "OH_ImageSourceNative_GetSupportedFormats"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_ImageSourceNative_CreatePictureAtIndex"
     }
 ]
