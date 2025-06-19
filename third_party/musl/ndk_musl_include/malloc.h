@@ -75,6 +75,7 @@ int mallopt(int param, int value);
  * @return  1 - The memory block was allocated using Standard C library Memory Allocator.
  *          0 - The memory block was not allocated using Standard C library Memory Allocator.
  *          -1 - The function is not implemented or other error.
+ * @since 19
  */
 int malloc_check_from_ptr(void *ptr);
 
