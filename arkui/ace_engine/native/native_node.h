@@ -1975,13 +1975,13 @@ typedef enum {
      * .value[0].f32: x-axis rotation angle. The default value is <b>0</b>. \n
      * .value[1].f32: y-axis rotation angle. The default value is <b>0</b>. \n
      * .value[2].f32: z-axis rotation angle. The default value is <b>0</b>. \n
-     * .value[3].f32: perspective distance from the viewpoint to the z=0 plane, in vp. The default value is <b>0</b>. \n
+     * .value[3].f32: perspective distance from the viewpoint to the z=0 plane, in px. The default value is <b>0</b>. \n
      * \n
      * Format of the return value {@link ArkUI_AttributeItem}:\n
      * .value[0].f32: x-axis rotation angle. The default value is <b>0</b>.
      * .value[1].f32: y-axis rotation angle. The default value is <b>0</b>. \n
      * .value[2].f32: z-axis rotation angle. The default value is <b>0</b>. \n
-     * .value[3].f32: perspective distance from the viewpoint to the z=0 plane, in vp. The default value is <b>0</b>. \n
+     * .value[3].f32: perspective distance from the viewpoint to the z=0 plane, in px. The default value is <b>0</b>. \n
      *
      * @since 20
      */
