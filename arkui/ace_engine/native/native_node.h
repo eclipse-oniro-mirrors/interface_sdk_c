@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2024 Huawei Device Co., Ltd.
+ * Copyright (c) 2024-2025 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -5733,6 +5733,22 @@ typedef enum {
     NODE_LIST_FOCUS_WRAP_MODE = 1003015,
 
     /**
+     * @brief Defines whether the <b>List</b> component loads child nodes synchronously.
+     * This attribute can be set, reset, and obtained as required through APIs.
+     *
+     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
+     * .value[0].i32: whether the <b>List</b> component synchronously loads child nodes.
+     * The value <b>0</b> means loading by frames, and <b>1</b> means synchronous loading. \n
+     * \n
+     * Format of the return value {@link ArkUI_AttributeItem}:\n
+     * .value[0].i32: whether the <b>List</b> component synchronously loads child nodes.
+     * The value <b>0</b> means loading by frames, and <b>1</b> means synchronous loading. \n
+     *
+     * @since 20
+     */
+    NODE_LIST_SYNC_LOAD = 1003016,
+
+    /**
      * @brief Defines whether to enable loop playback for the swiper.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
@@ -6509,6 +6525,22 @@ typedef enum {
     NODE_WATER_FLOW_LAYOUT_MODE,
 
     /**
+     * @brief Defines whether the <b>WaterFlow</b> component loads child nodes synchronously.
+     * This attribute can be set, reset, and obtained as required through APIs.
+     *
+     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
+     * .value[0].i32: whether the <b>WaterFlow</b> component synchronously loads child nodes.
+     * The value <b>0</b> means loading by frames, and <b>1</b> means synchronous loading. \n
+     * \n
+     * Format of the return value {@link ArkUI_AttributeItem}:\n
+     * .value[0].i32: whether the <b>WaterFlow</b> component synchronously loads child nodes.
+     * The value <b>0</b> means loading by frames, and <b>1</b> means synchronous loading. \n
+     *
+     * @since 20
+     */
+    NODE_WATER_FLOW_SYNC_LOAD = 1010012,
+
+    /**
      * @brief Set the auxiliary line in the RelativeContaine container, supporting property setting,
      * property reset and property acquisition interfaces.
      *
@@ -6628,6 +6660,22 @@ typedef enum {
     * @since 20
     */
     NODE_GRID_FOCUS_WRAP_MODE = 1013006,
+
+    /**
+     * @brief Defines whether the <b>Grid</b> component loads child nodes synchronously.
+     * This attribute can be set, reset, and obtained as required through APIs.
+     *
+     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
+     * .value[0].i32: whether the <b>Grid</b> component synchronously loads child nodes.
+     * The value <b>0</b> means loading by frames, and <b>1</b> means synchronous loading. \n
+     * \n
+     * Format of the return value {@link ArkUI_AttributeItem}:\n
+     * .value[0].i32: whether the <b>Grid</b> component synchronously loads child nodes.
+     * The value <b>0</b> means loading by frames, and <b>1</b> means synchronous loading. \n
+     *
+     * @since 20
+     */
+    NODE_GRID_SYNC_LOAD = 1013007,
 
     /**
     * @brief Defines the column width of the text picker.
