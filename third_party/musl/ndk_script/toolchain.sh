@@ -2,7 +2,7 @@
 # Copyright (c) Huawei Technologies Co., Ltd. 2020-2030. All rights reserved.
 set -e
 
-while getopts "o:i:l:t:h" arg
+while getopts "o:i:l:t:p:h" arg
 do
     case "${arg}" in
         "o")
@@ -13,6 +13,9 @@ do
             ;;
         "l")
             TOOL_DIR=${OPTARG}
+            ;;
+        "p")
+            PYTHON_DIR=${OPTARG}
             ;;
         "h")
             echo "help"
@@ -35,6 +38,17 @@ done
 
 cp -rfp ${SOURCE_DIR}/lib   ${OUT_DIR}
 cp -rfp ${SOURCE_DIR}/include  ${OUT_DIR}
+
+if [ -n "${PYTHON_DIR+x}" ]; then
+    if [ -e "${OUT_DIR}/python3" ]; then
+        rm -rf ${OUT_DIR}/python3
+    fi
+    VERSION_NAME=$(ls -1 "${PYTHON_DIR}" | head -n 1)
+    cp -rfp ${PYTHON_DIR}/${VERSION_NAME} ${OUT_DIR}/python3
+    if [ -e "${OUT_DIR}/bin/libpython3.11.dll" ]; then
+        cp -rfp ${PYTHON_DIR}/3.11.4/bin/libpython3.11.dll ${OUT_DIR}/bin/libpython3.11.dll
+    fi
+fi
 
 function strip_dir() {
     for file in `ls $1`
