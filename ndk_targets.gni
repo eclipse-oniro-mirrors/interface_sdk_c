@@ -142,6 +142,8 @@ _ndk_library_targets = [
   "//interface/sdk_c/multimedia/player_framework/avscreen_capture:native_avscreen_capture_header",
   "//interface/sdk_c/multimedia/player_framework/avplayer:libavplayer",
   "//interface/sdk_c/multimedia/player_framework/avplayer:avplayer_header",
+  "//interface/sdk_c/multimedia/player_framework/lowpower_avsink:lowpower_avsink_header",
+  "//interface/sdk_c/multimedia/player_framework/lowpower_avsink:liblowpower_avsink",
   "//interface/sdk_c/multimedia/player_framework/avrecorder:libavrecorder",
   "//interface/sdk_c/multimedia/player_framework/avrecorder:avrecorder_header",
   "//interface/sdk_c/multimedia/player_framework/avmetadata_extractor:libavmetadata_extractor",
@@ -262,6 +264,8 @@ _ndk_library_targets = [
   "//interface/sdk_c/telephony/core_service:telephony_radio_header",
   "//interface/sdk_c/ConnectivityKit/wifi:libwifi_ndk",
   "//interface/sdk_c/ConnectivityKit/wifi:wifi_ndk_header",
+  "//interface/sdk_c/TEEKit:libteec",
+  "//interface/sdk_c/TEEKit:tee_ndk_header",
 ]
 
 _ndk_base_libs = [
@@ -305,8 +309,12 @@ if (host_os == "mac") {
   ]
 }
 
-all_ndk_targets_list = _ndk_library_targets + _ndk_base_libs +
-                       _ndk_sysroot_uapi + _ndk_cmake + _ndk_ninja
+_ndk_tee_build_tool =
+    [ "//base/tee/tee_dev_kit/sdk/build:tee_ndk_ta_linux_compile" ]
+
+all_ndk_targets_list =
+    _ndk_library_targets + _ndk_base_libs + _ndk_sysroot_uapi + _ndk_cmake +
+    _ndk_ninja + _ndk_tee_build_tool
 
 if (build_windows_ndk_target) {
   all_ndk_targets_list +=
