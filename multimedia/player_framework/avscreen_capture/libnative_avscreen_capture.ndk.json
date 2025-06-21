@@ -141,6 +141,10 @@
     },
     {
         "first_introduced": "20",
+        "name": "OH_AVScreenCapture_StrategyForCanvasFollowRotation"
+    },
+    {
+        "first_introduced": "20",
         "name": "OH_AVScreenCapture_SetSelectionCallback"
     },
     {
