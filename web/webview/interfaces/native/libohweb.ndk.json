@@ -342,5 +342,17 @@
     {
         "first_introduced": "20",
         "name": "OH_NativeArkWeb_SetBlanklessLoadingCacheCapacity"
+    },
+    {
+        "first_introduced": "20",
+        "name": "ArkWeb_HttpBodyStreamAsyncReadCallback"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_ArkWebHttpBodyStream_AsyncRead"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_ArkWebHttpBodyStream_SetAsyncReadCallback"
     }
 ]

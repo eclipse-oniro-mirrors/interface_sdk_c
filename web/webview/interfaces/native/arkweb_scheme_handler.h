@@ -275,10 +275,9 @@ typedef void (*ArkWeb_HttpBodyStreamReadCallback)(const ArkWeb_HttpBodyStream* h
  * @syscap SystemCapability.Web.Webview.Core
  * @since 20
  */
-typedef void (*ArkWeb_HttpBodyStreamAsyncReadCallback)(
-    const ArkWeb_HttpBodyStream *httpBodyStream,
-    uint8_t *buffer,
-    int bytesRead);
+typedef void (*ArkWeb_HttpBodyStreamAsyncReadCallback)(const ArkWeb_HttpBodyStream *httpBodyStream,
+                                                       uint8_t *buffer,
+                                                       int bytesRead);
 
 /**
  * @brief  Callback when the init operation done.
@@ -448,6 +447,7 @@ void* OH_ArkWebHttpBodyStream_GetUserData(const ArkWeb_HttpBodyStream* httpBodyS
  */
 int32_t OH_ArkWebHttpBodyStream_SetReadCallback(ArkWeb_HttpBodyStream* httpBodyStream,
                                                 ArkWeb_HttpBodyStreamReadCallback readCallback);
+                                                
 /**
  * @brief Set the callback for OH_ArkWebHttpBodyStream_AsyncRead.
  *
