@@ -8,6 +8,10 @@
         "name": "OH_HiCollie_Init_JankDetection"
     },
     {
+        "first_introduced": "18",
+        "name": "OH_HiCollie_Init_StuckDetectionWithTimeout"
+    },
+    {
         "first_introduced": "12",
         "name": "OH_HiCollie_Report"
     },
