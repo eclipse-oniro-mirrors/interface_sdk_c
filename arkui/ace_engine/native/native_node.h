@@ -143,6 +143,11 @@ typedef enum {
      * @since 20
      */
     ARKUI_NODE_EMBEDDED_COMPONENT,
+    /**
+     * Undefined.
+     * @since 20
+     */
+    ARKUI_NODE_UNDEFINED,
 } ArkUI_NodeType;
 
 /**
@@ -9850,6 +9855,24 @@ int32_t OH_ArkUI_NodeUtils_GetNodeHandleByUniqueId(const uint32_t uniqueId, ArkU
  * @since 20
  */
 int32_t OH_ArkUI_NodeUtils_GetNodeUniqueId(ArkUI_NodeHandle node, int32_t* uniqueId);
+
+/**
+ * @brief Sets the inverse color algorithm for components and instances.
+ *
+ * @param uiContext Indicates the context in which the inverse color feature should take effect. If the value is null,
+ *                  the feature applies to the entire application process.
+ * @param forceDark Indicates whether the inverse color feature is enabled.
+ * @param nodeType Indicates the component type for which to enable the inverse color feature. If the value is null,
+ *                 enabling the feature for all components.
+ * @param colorInvertFunc Indicates the user-defined inverse color algorithm.
+ * @return Returns the error code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ERROR_CODE_CAPI_INIT_ERROR} if CAPI init error.
+           Returns {@link ARKUI_ERROR_CODE_FORCE_DARK_CONFIG_INVALID} if force dark config is invalid.
+ * @since 20
+ */
+int32_t OH_ArkUI_SetForceDarkConfig(ArkUI_ContextHandle uiContext, bool forceDark, ArkUI_NodeType nodeType,
+    uint32_t (*colorInvertFunc)(uint32_t color));
 
 #ifdef __cplusplus
 };
