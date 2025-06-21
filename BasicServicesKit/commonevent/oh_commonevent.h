@@ -36,7 +36,6 @@
 #ifndef OH_COMMONEVENT_H
 #define OH_COMMONEVENT_H
 
-#include <stddef.h>
 #include <stdint.h>
 
 #ifdef __cplusplus
