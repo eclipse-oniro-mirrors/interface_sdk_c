@@ -81,7 +81,7 @@ typedef enum OH_AVPixelFormat {
      */
     AV_PIXEL_FORMAT_RGBA = 5,
     /** RGBA1010102
-     * since 20
+     * @since 20
      */
     AV_PIXEL_FORMAT_RGBA1010102 = 6,
 } OH_AVPixelFormat;
