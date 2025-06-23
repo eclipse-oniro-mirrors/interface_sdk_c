@@ -877,8 +877,8 @@ ArkUI_ErrorCode OH_ArkUI_PanGesture_GetDistanceByToolType(
  * @param node Handle to the node on which the callback is to be set.
  * @param userData Custom data.
  * @param touchTestDone Callback for completion of gesture recognizer collection.
-                        - event: Basic information of the gesture.
-                        - recognizers: Array of gesture recognizers.
+ *                      - event: Basic information of the gesture.
+ *                      - recognizers: Array of gesture recognizers.
  *                      - count: Number of gesture recognizers.
  * @return Result code.
  *         {@link ARKUI_ERROR_CODE_NO_ERROR}: The operation is successful.
