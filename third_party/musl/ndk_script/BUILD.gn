@@ -24,7 +24,6 @@ ndk_musl_include = "ndk_musl_include"
 interface_musl_dir = "//interface/sdk_c/third_party/musl"
 target_version_dir = "ndk_musl_include/info"
 target_version_file = "application_target_sdk_version.h"
-prebuilts_python = "//prebuilts/python"
 
 if (host_os == "mac") {
   if (host_cpu == "arm64") {
@@ -60,10 +59,8 @@ if (host_os == "mac") {
     args +=
         [ "-l" ] + [ rebase_path("${darwin_system_toolchains_dir}/llvm/bin") ]
     if (host_cpu == "arm64") {
-      args += [ "-p" ] + [ rebase_path("${prebuilts_python}/darwin-arm64") ]
       deps = [ ":darwin_arm64" ]
     } else {
-      args += [ "-p" ] + [ rebase_path("${prebuilts_python}/darwin-x86") ]
       deps = [ ":darwin_x86_64" ]
     }
   }
@@ -92,13 +89,13 @@ if (host_os == "mac") {
     args += [ "-o" ] + [ rebase_path("${ndk_linux_toolchains_out_dir}") ]
     args +=
         [ "-l" ] + [ rebase_path("${linux_aarch64_toolchains_dir}/llvm/bin") ]
-    args += [ "-p" ] + [ rebase_path("${prebuilts_python}/linux-aarch64") ]
     deps = [ ":linux_arm64" ]
   }
 } else {
   windows_x86_64_toolchain_dir = "${toolchains_dir}/windows-x86_64"
   ohos_arm64_toolchain_dir = "${toolchains_dir}/ohos-arm64"
   linux_x86_64_toolchains_dir = "${toolchains_dir}/linux-x86_64"
+  prebuilts_python = "//prebuilts/python"
   ohos_ndk_toolchains("linux_x86_64") {
     dest_dir = "$ndk_linux_toolchains_out_dir"
     sources = [
