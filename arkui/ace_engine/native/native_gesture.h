@@ -841,7 +841,7 @@ int32_t OH_ArkUI_GetGestureParam_distanceThreshold(ArkUI_GestureRecognizer* reco
 * @param recognizer Indicates the pointer to a gesture recognizer.
 * @param size Size of the array of minimum movement distance thresholds.
 * @param toolTypeArray Pointer to the array of tool types for which thresholds are set.
-* @param distanceArray Pointer to the array of minimum movement distances.
+* @param distanceArray Pointer to the array of minimum movement distances, in px.
 * @return Returns the result code.
 *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
 *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
@@ -857,7 +857,7 @@ ArkUI_ErrorCode OH_ArkUI_PanGesture_SetDistanceMap(
 *
 * @param recognizer Indicates the pointer to a gesture recognizer.
 * @param toolType Tool type for which you want to obtain the threshold.
-* @param distance Gesture movement threshold of the gesture recognizer.
+* @param distance Gesture movement threshold of the gesture recognizer, in px.
 * @return Returns the result code.
 *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
 *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
