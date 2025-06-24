@@ -293,7 +293,7 @@ uint32_t OH_NativeArkWeb_SetBlanklessLoadingCacheCapacity(uint32_t capacity);
  *                                                       initializing the CookieManager interface. please
  *   													 initialize the CookieManager interface using
  *  													 OH_ArkWeb_GetNativeAPI first.
- *                                                       
+ *
  * @syscap SystemCapability.Web.Webview.Core
  * @since 20
  */
