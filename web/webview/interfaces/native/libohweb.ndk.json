@@ -354,5 +354,13 @@
     {
         "first_introduced": "20",
         "name": "OH_ArkWebHttpBodyStream_SetAsyncReadCallback"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_ArkWebCookieManager_SaveCookieSync"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_ArkWebCookieManager_SaveCookieAsync"
     }
 ]
