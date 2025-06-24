@@ -124,6 +124,49 @@ OH_AudioCommon_Result OH_AudioManager_RegisterAudioSceneChangeCallback(OH_AudioM
 OH_AudioCommon_Result OH_AudioManager_UnregisterAudioSceneChangeCallback(OH_AudioManager *manager,
     OH_AudioManager_OnAudioSceneChangeCallback callback);
 
+/**
+ * @brief Sets the loudness gain of current renderer. The default loudness gain is 0.0dB.
+ *        The stream usage of the audio renderer must be {@link OH_AudioStream_Usage#AUDIOSTREAM_USAGE_MUSIC},
+ *        {@link OH_AudioStream_Usage#AUDIOSTREAM_USAGE_MOVIE} or
+ *        {@link OH_AudioStream_Usage#AUDIOSTREAM_USAGE_AUDIOBOOK}.
+ *        The latency mode of the audio renderer must be
+ *        {@link OH_AudioStream_LatencyMode#AUDIOSTREAM_LATENCY_MODE_NORMAL}.
+ *        OH_AudioRenderer routing through the high-resolution playback path does not support this operation.
+ *
+ * @since 20
+ *
+ * @param renderer Reference created by OH_AudioStreamBuilder_GenerateRenderer()
+ * @param loudnessGain loudness gain to set which changes from -90.0 to 24.0. It is expressed in dB.
+ * @return Function result code:
+ *         {@link AUDIOSTREAM_SUCCESS} If the execution is successful.
+ *         {@link AUDIOSTREAM_ERROR_INVALID_PARAM}:
+ *                                                 1.The param of renderer is nullptr;
+ *                                                 2.The param of loudnessGain is invalid.
+ *         {@link AUDIOSTREAM_ERROR_ILLEGAL_STATE} This audio renderer is not supported to set loudness gain.
+ *         {@link AUDIOSTREAM_ERROR_SYSTEM}:
+ *                                          1.Crash or blocking occurs in system process.
+ *                                          2.Other unexpected error from internal system.
+ */
+OH_AudioStream_Result OH_AudioRenderer_SetLoudnessGain(OH_AudioRenderer* renderer, float loudnessGain);
+
+/**
+ * Get the loudness gain of current renderer.
+ *
+ * @since 20
+ *
+ * @param renderer Reference created by OH_AudioStreamBuilder_GenerateRenderer()
+ * @param loudnessGain Pointer to a variable to receive the loudness gain.
+ * @return Function result code:
+ *         {@link AUDIOSTREAM_SUCCESS} If the execution is successful.
+ *         {@link AUDIOSTREAM_ERROR_INVALID_PARAM}:
+ *                                                 1.The param of renderer is nullptr;
+ *                                                 2.The param of loudnessGain is nullptr.
+ *         {@link AUDIOSTREAM_ERROR_SYSTEM}:
+ *                                          1.Crash or blocking occurs in system process.
+ *                                          2.Other unexpected error from internal system.
+ */
+OH_AudioStream_Result OH_AudioRenderer_GetLoudnessGain(OH_AudioRenderer* renderer, float* loudnessGain);
+
 #ifdef __cplusplus
 }
 #endif
