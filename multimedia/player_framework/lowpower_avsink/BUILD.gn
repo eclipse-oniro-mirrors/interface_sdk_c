@@ -1,0 +1,41 @@
+# Copyright (C) 2025 Huawei Device Co., Ltd.
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+import("//build/ohos.gni")
+import("//build/ohos/ndk/ndk.gni")
+import("//foundation/multimedia/player_framework/config.gni")
+
+ohos_ndk_headers("lowpower_avsink_header") {
+  dest_dir = "$ndk_headers_out_dir/multimedia/player_framework"
+  sources = [
+    "../lowpower_audio_sink.h",
+    "../lowpower_audio_sink_base.h",
+    "../lowpower_avsink_base.h",
+    "../lowpower_video_sink.h",
+    "../lowpower_video_sink_base.h",
+  ]
+}
+
+ohos_ndk_library("liblowpower_avsink") {
+  ndk_description_file = "./liblowpower_avsink.ndk.json"
+  output_name = "lowpower_avsink"
+  output_extension = "so"
+  system_capability = "SystemCapability.Multimedia.Media.LowPowerAVSink"
+  system_capability_headers = [
+    "multimedia/player_framework/lowpower_audio_sink_base.h",
+    "multimedia/player_framework/lowpower_audio_sink.h",
+    "multimedia/player_framework/lowpower_avsink_base.h",
+    "multimedia/player_framework/lowpower_video_sink_base.h",
+    "multimedia/player_framework/lowpower_video_sink.h",
+  ]
+}

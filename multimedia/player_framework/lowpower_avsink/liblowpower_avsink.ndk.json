@@ -1,0 +1,222 @@
+[
+  {
+    "first_introduced": "20",
+    "name": "OH_AVSamplesBuffer_AppendOneBuffer"
+  },
+  {
+    "first_introduced": "20",
+    "name": "OH_AVSamplesBuffer_GetRemainedCapacity"
+  },
+  {
+    "first_introduced": "20",
+    "name": "OH_LowPowerAudioSink_CreateByMime"
+  },
+  {
+    "first_introduced": "20",
+    "name": "OH_LowPowerAudioSink_Configure"
+  },
+  {
+    "first_introduced": "20",
+    "name": "OH_LowPowerAudioSink_SetParameter"
+  },
+  {
+    "first_introduced": "20",
+    "name": "OH_LowPowerAudioSink_GetParameter"
+  },
+  {
+    "first_introduced": "20",
+    "name": "OH_LowPowerAudioSink_Prepare"
+  },
+  {
+    "first_introduced": "20",
+    "name": "OH_LowPowerAudioSink_Start"
+  },
+  {
+    "first_introduced": "20",
+    "name": "OH_LowPowerAudioSink_Pause"
+  },
+  {
+    "first_introduced": "20",
+    "name": "OH_LowPowerAudioSink_Resume"
+  },
+  {
+    "first_introduced": "20",
+    "name": "OH_LowPowerAudioSink_Flush"
+  },
+  {
+    "first_introduced": "20",
+    "name": "OH_LowPowerAudioSink_Stop"
+  },
+  {
+    "first_introduced": "20",
+    "name": "OH_LowPowerAudioSink_Reset"
+  },
+  {
+    "first_introduced": "20",
+    "name": "OH_LowPowerAudioSink_Destroy"
+  },
+  {
+    "first_introduced": "20",
+    "name": "OH_LowPowerAudioSink_SetVolume"
+  },
+  {
+    "first_introduced": "20",
+    "name": "OH_LowPowerAudioSink_SetPlaybackSpeed"
+  },
+  {
+    "first_introduced": "20",
+    "name": "OH_LowPowerAudioSink_ReturnSamples"
+  },
+  {
+    "first_introduced": "20",
+    "name": "OH_LowPowerAudioSink_RegisterCallback"
+  },
+  {
+    "first_introduced": "20",
+    "name": "OH_LowPowerAudioSinkCallback_Create"
+  },
+  {
+    "first_introduced": "20",
+    "name": "OH_LowPowerAudioSinkCallback_Destroy"
+  },
+  {
+    "first_introduced": "20",
+    "name": "OH_LowPowerAudioSinkCallback_SetPositionUpdateListener"
+  },
+  {
+    "first_introduced": "20",
+    "name": "OH_LowPowerAudioSinkCallback_SetDataNeededListener"
+  },
+  {
+    "first_introduced": "20",
+    "name": "OH_LowPowerAudioSinkCallback_SetErrorListener"
+  },
+  {
+    "first_introduced": "20",
+    "name": "OH_LowPowerAudioSinkCallback_SetInterruptListener"
+  },
+  {
+    "first_introduced": "20",
+    "name": "OH_LowPowerAudioSinkCallback_SetDeviceChangeListener"
+  },
+  {
+    "first_introduced": "20",
+    "name": "OH_LowPowerAudioSinkCallback_SetEosListener"
+  },
+  {
+    "first_introduced": "20",
+    "name": "OH_LowPowerVideoSink_CreateByMime"
+  },
+  {
+    "first_introduced": "20",
+    "name": "OH_LowPowerVideoSink_Configure"
+  },
+  {
+    "first_introduced": "20",
+    "name": "OH_LowPowerVideoSink_SetParameter"
+  },
+  {
+    "first_introduced": "20",
+    "name": "OH_LowPowerVideoSink_GetParameter"
+  },
+  {
+    "first_introduced": "20",
+    "name": "OH_LowPowerVideoSink_SetVideoSurface"
+  },
+  {
+    "first_introduced": "20",
+    "name": "OH_LowPowerVideoSink_Prepare"
+  },
+  {
+    "first_introduced": "20",
+    "name": "OH_LowPowerVideoSink_StartDecoder"
+  },
+  {
+    "first_introduced": "20",
+    "name": "OH_LowPowerVideoSink_RenderFirstFrame"
+  },
+  {
+    "first_introduced": "20",
+    "name": "OH_LowPowerVideoSink_StartRenderer"
+  },
+  {
+    "first_introduced": "20",
+    "name": "OH_LowPowerVideoSink_Pause"
+  },
+  {
+    "first_introduced": "20",
+    "name": "OH_LowPowerVideoSink_Resume"
+  },
+  {
+    "first_introduced": "20",
+    "name": "OH_LowPowerVideoSink_Flush"
+  },
+  {
+    "first_introduced": "20",
+    "name": "OH_LowPowerVideoSink_Stop"
+  },
+  {
+    "first_introduced": "20",
+    "name": "OH_LowPowerVideoSink_Reset"
+  },
+  {
+    "first_introduced": "20",
+    "name": "OH_LowPowerVideoSink_Destroy"
+  },
+  {
+    "first_introduced": "20",
+    "name": "OH_LowPowerVideoSink_SetSyncAudioSink"
+  },
+  {
+    "first_introduced": "20",
+    "name": "OH_LowPowerVideoSink_SetTargetStartFrame"
+  },
+  {
+    "first_introduced": "20",
+    "name": "OH_LowPowerVideoSink_SetPlaybackSpeed"
+  },
+  {
+    "first_introduced": "20",
+    "name": "OH_LowPowerVideoSink_ReturnSamples"
+  },
+  {
+    "first_introduced": "20",
+    "name": "OH_LowPowerVideoSink_RegisterCallback"
+  },
+  {
+    "first_introduced": "20",
+    "name": "OH_LowPowerVideoSinkCallback_Create"
+  },
+  {
+    "first_introduced": "20",
+    "name": "OH_LowPowerVideoSinkCallback_Destroy"
+  },
+  {
+    "first_introduced": "20",
+    "name": "OH_LowPowerVideoSinkCallback_SetDataNeededListener"
+  },
+  {
+    "first_introduced": "20",
+    "name": "OH_LowPowerVideoSinkCallback_SetAnchorUpdateListener"
+  },
+  {
+    "first_introduced": "20",
+    "name": "OH_LowPowerVideoSinkCallback_SetErrorListener"
+  },
+  {
+    "first_introduced": "20",
+    "name": "OH_LowPowerVideoSinkCallback_SetRenderStartListener"
+  },
+  {
+    "first_introduced": "20",
+    "name": "OH_LowPowerVideoSinkCallback_SetStreamChangedListener"
+  },
+  {
+    "first_introduced": "20",
+    "name": "OH_LowPowerVideoSinkCallback_SetFirstFrameDecodedListener"
+  },
+  {
+    "first_introduced": "20",
+    "name": "OH_LowPowerVideoSinkCallback_SetEosListener"
+  }
+]
