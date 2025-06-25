@@ -433,6 +433,18 @@
     },
     {
         "first_introduced": "20",
+        "name": "OH_MD_KEY_REFERENCE_TRACK_IDS"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_MD_KEY_TRACK_REFERENCE_TYPE"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_MD_KEY_TRACK_DESCRIPTION"
+    },
+    {
+        "first_introduced": "20",
         "name": "OH_MD_KEY_MAX_BITRATE"
     },
     {
