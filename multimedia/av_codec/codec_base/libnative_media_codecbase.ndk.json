@@ -440,6 +440,10 @@
         "name": "OH_MD_KEY_VIDEO_ENCODER_ENABLE_PTS_BASED_RATECONTROL"
     },
     {
+        "first_introduced": "20",
+        "name": "OH_MD_KEY_ENABLE_SYNC_MODE"
+    },
+    {
         "first_introduced": "10",
         "name": "OH_AVCodec_GetCapability"
     },
@@ -545,9 +549,5 @@
     {
         "first_introduced": "12",
         "name": "OH_AVCapability_GetFeatureProperties"
-    },
-    {
-        "first_introduced": "20",
-        "name": "OH_MD_KEY_ENABLE_SYNC_MODE"
     }
 ]
