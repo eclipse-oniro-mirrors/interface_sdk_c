@@ -107,6 +107,7 @@ struct mallinfo2 {
 /**
  * @brief Obtains the memory information allocated by malloc-related operations.
  * @return A mallinfo struct containing details about memory allocation.
+ * @since 20
  */
 struct mallinfo mallinfo(void);
 
@@ -114,6 +115,7 @@ struct mallinfo mallinfo(void);
  * @brief Obtains the memory information allocated by malloc-related operations.
  * @return A mallinfo2 struct containing details about memory allocation. Unlike mallinfo, this struct uses
  * size_t for its counters, providing a larger range.
+ * @since 20
  */
 struct mallinfo2 mallinfo2(void);
 
