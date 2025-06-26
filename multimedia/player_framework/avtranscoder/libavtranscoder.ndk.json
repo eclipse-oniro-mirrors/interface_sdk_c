@@ -78,5 +78,9 @@
   { 
     "first_introduced": "20",
     "name": "OH_AVTranscoder_SetProgressUpdateCallback" 
+  },
+  { 
+    "first_introduced": "20",
+    "name": "OH_AVTranscoderConfig_EnableBFrame" 
   }
 ]
