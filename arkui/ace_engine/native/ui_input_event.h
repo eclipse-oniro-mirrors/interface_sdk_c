@@ -149,6 +149,22 @@ typedef enum {
      *  during the hit test.
      */
     HTM_NONE,
+
+    /**
+     * The node and its child nodes participate in hit tests, while blocking hit tests for all sibling nodes and parent
+     * nodes with lower priority.
+     *
+     * @since 20
+     */
+    HTM_BLOCK_HIERARCHY,
+
+    /**
+     * The node does not respond to hit tests, and none of its descendants (including children and grandchildren)
+     * participate in hit tests either.
+     *
+     * @since 20
+     */
+    HTM_BLOCK_DESCENDANTS,
 } HitTestMode;
 
 /**

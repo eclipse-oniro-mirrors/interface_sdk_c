@@ -827,7 +827,21 @@ typedef enum {
      * considered during the hit test. */
     ARKUI_HIT_TEST_MODE_TRANSPARENT,
     /** The node does not respond to the hit test of a touch event. */
-    ARKUI_HIT_TEST_MODE_NONE
+    ARKUI_HIT_TEST_MODE_NONE,
+    /**
+     * The node and its child nodes participate in hit tests, while blocking hit tests for all sibling nodes and
+     * parent nodes with lower priority.
+     *
+     * @since 20
+     */
+    ARKUI_HIT_TEST_MODE_BLOCK_HIERARCHY,
+    /**
+     * The node does not respond to hit tests, and none of its descendants (including children and grandchildren)
+     * participate in hit tests either.
+     *
+     * @since 20
+     */
+    ARKUI_HIT_TEST_MODE_BLOCK_DESCENDANTS,
 } ArkUI_HitTestMode;
 
 /**
