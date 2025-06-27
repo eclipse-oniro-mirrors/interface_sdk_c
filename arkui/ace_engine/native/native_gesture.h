@@ -209,6 +209,20 @@ typedef enum {
 
     /** A group of gestures. */
     GROUP_GESTURE,
+
+    /**
+     * The click gesture registed through onClick.
+     *
+     * @since 20
+     */
+    CLICK_GESTURE,
+
+    /**
+     * Drag gesture used for drag and drop.
+     *
+     * @since 20
+     */
+    DRAG_DROP,
 } ArkUI_GestureRecognizerType;
 
 /**
