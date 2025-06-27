@@ -71,6 +71,13 @@ typedef void (*NativeArkWeb_OnValidCallback)(const char*);
 typedef void (*NativeArkWeb_OnDestroyCallback)(const char*);
 
 /**
+ * @brief Defines the callback of save cookie.
+ *
+ * @since 20
+ */
+typedef void (*OH_ArkWeb_OnCookieSaveCallback)();
+
+/**
  * @brief Defines the blankless information.
  *
  * @since 20
