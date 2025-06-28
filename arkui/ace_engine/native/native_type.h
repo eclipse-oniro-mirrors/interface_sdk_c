@@ -2175,7 +2175,7 @@ typedef enum {
     ARKUI_ERROR_CODE_NODE_NOT_ON_MAIN_TREE = 106203,
     /**
      * @error The node is running on invalid thread.
-     * @since 18
+     * @since 20
      */
     ARKUI_ERROR_CODE_NODE_ON_INVALID_THREAD = 106204,
     /**

@@ -60,6 +60,7 @@ typedef enum {
     /**
      * API related to supported multi thread UI components.
      * For details, see the struct definition in <arkui/native_node.h>.
+     * @since 20
      */
     ARKUI_MULTI_THREAD_NATIVE_NODE,
 } ArkUI_NativeAPIVariantKind;
