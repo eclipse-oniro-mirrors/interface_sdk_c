@@ -605,7 +605,7 @@ typedef void (*OH_AudioRenderer_OnFastStatusChange)(
  * {@link OH_AudioStream_Usage#AUDIOSTREAM_USAGE_MUSIC}, {@link OH_AudioStream_Usage#AUDIOSTREAM_USAGE_MOVIE}
  * or {@link OH_AudioStream_Usage#AUDIOSTREAM_USAGE_AUDIOBOOK}.
  * The latency mode of the audio renderer must be {@link OH_AudioStream_LatencyMode#AUDIOSTREAM_LATENCY_MODE_NORMAL}.
- * OH_AudioRenderer routing through the high-resolution playback path does not support this operation.
+ * If AudioRenderer is played through the high-resolution pipe, this operation is not supported.
  *
  * @param renderer AudioRender created by OH_AudioStreamBuilder_GenerateRenderer()
  * @param loudnessGain Loudness gain to set which changes from -90.0 to 24.0, expressing in dB.
