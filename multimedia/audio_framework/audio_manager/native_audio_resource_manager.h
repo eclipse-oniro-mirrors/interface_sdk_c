@@ -68,7 +68,7 @@ OH_AudioCommon_Result OH_AudioManager_GetAudioResourceManager(OH_AudioResourceMa
  * @brief Declare the audio workgroup.
  *     The handle of audio workgroup is used for workgroup related functions.
  *     The system will manage cpu resources on a workgroup basis instead of thread.
- *     For parallel task threads, you can add them into one workgroup, and for 
+ *     For parallel task threads, you can add them into one workgroup, and for
  *     asynchronous task threads, use one workgroup for each thread.
  *     There is an upper limit to the total number of workgroups for each process,
  *     so application should release the workgroup which is no longer in use.
@@ -79,7 +79,7 @@ typedef struct OH_AudioWorkgroup OH_AudioWorkgroup;
 
 /**
  * @brief Create a workgroup for audio data processing threads in application.
- *     System manages cpu resources by workgroup configuration. 
+ *     System manages cpu resources by workgroup configuration.
  *
  * @param resourceManager {@link OH_AudioResourceManager} handle
  *     provided by {@link OH_AudioManager_GetAudioRoutingManager}.
@@ -129,7 +129,7 @@ OH_AudioCommon_Result OH_AudioWorkgroup_AddCurrentThread(OH_AudioWorkgroup *grou
  *
  * @param group {@link OH_AudioWorkgroup} handle provided by {@link OH_AudioResourceManager_CreateWorkgroup}.
  * @param tokenId id for thread returned by {link OH_AudioWorkgroup_AddCurrentThread}
- * @return 
+ * @return
  *     {@link #AUDIOCOMMON_RESULT_SUCCESS} if execution succeeds
  *     {@link #AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM} if input param is nullptr or token id is invalid
  *     {@link #AUDIOCOMMON_RESULT_ERROR_SYSTEM} system process error occurs
