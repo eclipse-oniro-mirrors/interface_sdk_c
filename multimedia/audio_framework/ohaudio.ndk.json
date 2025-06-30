@@ -506,5 +506,33 @@
     {
         "first_introduced": "20",
         "name": "OH_AudioRenderer_GetLoudnessGain"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_AudioManager_GetAudioResourceManager"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_AudioResourceManager_CreateWorkgroup"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_AudioResourceManager_ReleaseWorkgroup"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_AudioWorkgroup_AddCurrentThread"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_AudioWorkgroup_RemoveThread"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_AudioWorkgroup_Start"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_AudioWorkgroup_Stop"
     }
 ]
