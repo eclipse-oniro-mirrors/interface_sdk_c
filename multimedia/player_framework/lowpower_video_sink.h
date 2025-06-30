@@ -375,7 +375,7 @@ OH_AVErrCode OH_LowPowerVideoSinkCallback_Destroy(OH_LowPowerVideoSinkCallback* 
  * @since 20
  */
 OH_AVErrCode OH_LowPowerVideoSinkCallback_SetDataNeededListener(
-    OH_LowPowerVideoSinkCallback* callback, OH_LowPowerVideoSink_OnDataNeeded onDataNeeded,void* userData);
+    OH_LowPowerVideoSinkCallback *callback, OH_LowPowerVideoSink_OnDataNeeded onDataNeeded, void *userData);
 
 /**
  * @brief Add onError listener to the lowpower video sink callback instance.
@@ -466,4 +466,4 @@ OH_AVErrCode OH_LowPowerVideoSinkCallback_SetEosListener(OH_LowPowerVideoSinkCal
 
 #endif // NATIVE_LOWPOWER_VIDEO_SINK_H
 
-/** @} */
+/** @} */
