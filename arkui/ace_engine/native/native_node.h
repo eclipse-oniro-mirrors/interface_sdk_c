@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2024 Huawei Device Co., Ltd.
+ * Copyright (c) 2024-2025 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -143,6 +143,11 @@ typedef enum {
      * @since 20
      */
     ARKUI_NODE_EMBEDDED_COMPONENT,
+    /**
+     * Undefined.
+     * @since 20
+     */
+    ARKUI_NODE_UNDEFINED,
 } ArkUI_NodeType;
 
 /**
@@ -1967,6 +1972,25 @@ typedef enum {
      * @since 20
      */
     NODE_TRANSLATE_WITH_PERCENT = 103,
+
+    /**
+     * @brief Sets component rotation with multi-axis angle control. This attribute can be set, reset, and obtained as required through APIs.
+     *
+     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
+     * .value[0].f32: x-axis rotation angle. The default value is <b>0</b>. \n
+     * .value[1].f32: y-axis rotation angle. The default value is <b>0</b>. \n
+     * .value[2].f32: z-axis rotation angle. The default value is <b>0</b>. \n
+     * .value[3].f32: perspective distance from the viewpoint to the z=0 plane, in px. The default value is <b>0</b>. \n
+     * \n
+     * Format of the return value {@link ArkUI_AttributeItem}:\n
+     * .value[0].f32: x-axis rotation angle. The default value is <b>0</b>.
+     * .value[1].f32: y-axis rotation angle. The default value is <b>0</b>. \n
+     * .value[2].f32: z-axis rotation angle. The default value is <b>0</b>. \n
+     * .value[3].f32: perspective distance from the viewpoint to the z=0 plane, in px. The default value is <b>0</b>. \n
+     *
+     * @since 20
+     */
+    NODE_ROTATE_ANGLE = 104,
 
     /**
      * @brief Defines the text content attribute, which can be set, reset, and obtained as required through APIs.
@@ -5177,7 +5201,8 @@ typedef enum {
      * The parameter type is {@link ArkUI_EdgeEffect}. The default value is <b>ARKUI_EDGE_EFFECT_NONE</b>.\n
      * .value[1]?.i32: whether to enable the scroll effect when the component content size is smaller than the
      * component itself. Optional. The value <b>1</b> means to enable the scroll effect, and <b>0</b> means the
-     * opposite. The default value is <b>1</b>. \n
+     * opposite. The default value for the List/Grid/WaterFlow component is <b>0</b>, and the default value for the
+     * Scroll component is <b>1</b>. \n
      * .value[2]?.i32: direction in which the effect takes effect. The parameter type is {@link ArkUI_EffectEdge}.
      * The default value is <b>ARKUI_EFFECT_EDGE_START | ARKUI_EFFECT_EDGE_END</b>. This parameter is supported since
      * API version 16. \n
@@ -5275,10 +5300,13 @@ typedef enum {
      * .value[1].f32: vertical scrolling offset, in vp. \n
      * .value[2]?.i32: scrolling duration, in milliseconds. Optional. \n
      * .value[3]?.i32: scrolling curve. Optional. The parameter type is {@link ArkUI_AnimationCurve}.
-     * The default value is <b>ARKUI_CURVE_EASE</b>. \n
-     * .value[4]?.i32: whether to enable the default spring animation. Optional. The default value <b>0</b> means not
-     * to enable the default spring animation. \n
-     * .value[5]?.i32: Optional value, sets whether scrolling can cross the boundary. \n
+     *                 The default value is <b>ARKUI_CURVE_EASE</b>. \n
+     * .value[4]?.i32: whether to enable the default spring animation. Optional.
+     *                 The default value <b>0</b> means not to enable the default spring animation. \n
+     * .value[5]?.i32: whether to convert the scroll animation to an overshoot animation when the boundary is reached.
+     *                 Optional. \n
+     * .value[6]?.i32: whether the component can stop at an overscrolled position.
+     *                 This parameter is supported since API version 20. \n
      * \n
      * Format of the return value {@link ArkUI_AttributeItem}:\n
      * .value[0].f32: horizontal scrolling offset, in vp. \n
@@ -5711,6 +5739,22 @@ typedef enum {
     NODE_LIST_FOCUS_WRAP_MODE = 1003015,
 
     /**
+     * @brief Defines whether the <b>List</b> component loads child nodes synchronously.
+     * This attribute can be set, reset, and obtained as required through APIs.
+     *
+     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
+     * .value[0].i32: whether the <b>List</b> component synchronously loads child nodes.
+     * The value <b>0</b> means loading by frames, and <b>1</b> means synchronous loading. \n
+     * \n
+     * Format of the return value {@link ArkUI_AttributeItem}:\n
+     * .value[0].i32: whether the <b>List</b> component synchronously loads child nodes.
+     * The value <b>0</b> means loading by frames, and <b>1</b> means synchronous loading. \n
+     *
+     * @since 20
+     */
+    NODE_LIST_SYNC_LOAD = 1003016,
+
+    /**
      * @brief Defines whether to enable loop playback for the swiper.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
@@ -5851,13 +5895,13 @@ typedef enum {
     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
     * .value[0].i32: number of elements to display per page. \n
     * .value[1]?.i32: whether to turn pages by group. The value <b>0</b> means to turn pages by child element,
-    * and <b>1</b> means to turn pages by group. This parameter is supported since API version 16. \n
+    * and <b>1</b> means to turn pages by group. This parameter is supported since API version 19. \n
     * .string?: this parameter can only be set to 'auto'. When 'auto' is set, the value[] parameters are ignored.
-    * This parameter is supported since API version 16. \n
+    * This parameter is supported since API version 19. \n
     * \n
     * Format of the return value {@link ArkUI_AttributeItem}:\n
     * .value[0].i32: number of elements to display per page. \n
-    * .value[1].i32: whether to turn pages by group. This parameter is supported since API version 16. \n
+    * .value[1].i32: whether to turn pages by group. This parameter is supported since API version 19. \n
     * .string: 'auto' or empty string.
     *
     */
@@ -5887,14 +5931,14 @@ typedef enum {
     * The parameter type is {@link ArkUI_SwiperArrow}.\n
     * The default value is <b>ARKUI_SWIPER_ARROW_HIDE</b>. \n
     * .?object: arrow style. The parameter type is {@link ArkUI_SwiperArrowStyle}. \n
-    * This parameter is supported since API version 16. \n
+    * This parameter is supported since API version 19. \n
     * \n
     * Format of the return value {@link ArkUI_AttributeItem}:\n
     * .value[0].i32: whether to show the arrow when the mouse pointer hovers over the navigation point indicator.
     * The parameter type is {@link ArkUI_SwiperArrow}.\n
     * The default value is <b>ARKUI_SWIPER_ARROW_HIDE</b>. \n
     * .object: arrow style. The parameter type is {@link ArkUI_SwiperArrowStyle}. \n
-    * This parameter is supported since API version 16. \n
+    * This parameter is supported since API version 19. \n
     *
     */
     NODE_SWIPER_SHOW_DISPLAY_ARROW,
@@ -5932,11 +5976,11 @@ typedef enum {
     * .value[1]?.i32: whether the cached items will be displayed. \n
     * The value <b>0</b> indicates that cached items will not be displayed, \n
     * and <b>1</b> indicates that cached nodes will be displayed. The default value is <b>0</b>. \n
-    * This parameter is supported from API version 16. \n
+    * This parameter is supported from API version 19. \n
     * \n
     * Format of the return value {@link ArkUI_AttributeItem}:\n
     * .value[0].i32: number of cached items in the swiper adapter. \n
-    * .value[1].i32: whether the cached items will be displayed. This parameter is supported from API version 16. \n
+    * .value[1].i32: whether the cached items will be displayed. This parameter is supported from API version 19. \n
     */
     NODE_SWIPER_CACHED_COUNT,
 
@@ -5979,14 +6023,14 @@ typedef enum {
     * .object: The parameter type is {@link ArkUI_SwiperIndicator} when the indicator type \n
     * is <b>ARKUI_SWIPER_INDICATOR_TYPE_DOT</b>. The parameter type is {@link ArkUI_SwiperDigitIndicator}
     * when the indicator type is <b>ARKUI_SWIPER_INDICATOR_TYPE_DIGIT</b>. \n
-    * {@link ArkUI_SwiperDigitIndicator} is supported since API version 16. \n
+    * {@link ArkUI_SwiperDigitIndicator} is supported since API version 19. \n
     * \n
     * Format of the return value {@link ArkUI_AttributeItem}:\n
     * .value[0].i32: navigation indicator type, the parameter type is {@link ArkUI_SwiperIndicatorType}.\n
     * .object: The parameter type is {@link ArkUI_SwiperIndicator} when the indicator type \n
     * is <b>ARKUI_SWIPER_INDICATOR_TYPE_DOT</b>. The parameter type is {@link ArkUI_SwiperDigitIndicator}
     * when the indicator type is <b>ARKUI_SWIPER_INDICATOR_TYPE_DIGIT</b>. \n
-    * {@link ArkUI_SwiperDigitIndicator} is supported since API version 16. \n
+    * {@link ArkUI_SwiperDigitIndicator} is supported since API version 19. \n
     *
     */
     NODE_SWIPER_INDICATOR,
@@ -6487,6 +6531,22 @@ typedef enum {
     NODE_WATER_FLOW_LAYOUT_MODE,
 
     /**
+     * @brief Defines whether the <b>WaterFlow</b> component loads child nodes synchronously.
+     * This attribute can be set, reset, and obtained as required through APIs.
+     *
+     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
+     * .value[0].i32: whether the <b>WaterFlow</b> component synchronously loads child nodes.
+     * The value <b>0</b> means loading by frames, and <b>1</b> means synchronous loading. \n
+     * \n
+     * Format of the return value {@link ArkUI_AttributeItem}:\n
+     * .value[0].i32: whether the <b>WaterFlow</b> component synchronously loads child nodes.
+     * The value <b>0</b> means loading by frames, and <b>1</b> means synchronous loading. \n
+     *
+     * @since 20
+     */
+    NODE_WATER_FLOW_SYNC_LOAD = 1010012,
+
+    /**
      * @brief Set the auxiliary line in the RelativeContaine container, supporting property setting,
      * property reset and property acquisition interfaces.
      *
@@ -6605,7 +6665,23 @@ typedef enum {
     *
     * @since 20
     */
-    NODE_GRID_FOCUS_WRAP_MODE,
+    NODE_GRID_FOCUS_WRAP_MODE = 1013006,
+
+    /**
+     * @brief Defines whether the <b>Grid</b> component loads child nodes synchronously.
+     * This attribute can be set, reset, and obtained as required through APIs.
+     *
+     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
+     * .value[0].i32: whether the <b>Grid</b> component synchronously loads child nodes.
+     * The value <b>0</b> means loading by frames, and <b>1</b> means synchronous loading. \n
+     * \n
+     * Format of the return value {@link ArkUI_AttributeItem}:\n
+     * .value[0].i32: whether the <b>Grid</b> component synchronously loads child nodes.
+     * The value <b>0</b> means loading by frames, and <b>1</b> means synchronous loading. \n
+     *
+     * @since 20
+     */
+    NODE_GRID_SYNC_LOAD = 1013007,
 
     /**
     * @brief Defines the column width of the text picker.
@@ -7806,6 +7882,20 @@ typedef enum {
      * @since 15
      */
     NODE_SWIPER_EVENT_ON_CONTENT_WILL_SCROLL = 1001007,
+
+    /**
+     * @brief Defines the <b>ARKUI_NODE_SWIPER</b> scroll state change event.
+     * This event is triggered when the scroll state of the <b>Swiper</b> component changes during user dragging,
+     * during the animation phase after the user lifts their finger, or upon stopping of scrolling.
+     * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
+     * {@link ArkUI_NodeComponentEvent}. \n
+     * {@link ArkUI_NodeComponentEvent} contains one parameter:\n
+     * <b>ArkUI_NodeComponentEvent.data[0].i32</b>: current scroll state. The parameter type is
+     * {@link ArkUI_ScrollState}. \n
+     *
+     * @since 20
+     */
+    NODE_SWIPER_EVENT_ON_SCROLL_STATE_CHANGED = 1001008,
 
     /**
      * @brief Defines the event triggered when the <b>ARKUI_NODE_SCROLL</b> component scrolls.
@@ -9298,6 +9388,19 @@ int32_t OH_ArkUI_NodeUtils_GetLayoutPositionInWindow(ArkUI_NodeHandle node, ArkU
 int32_t OH_ArkUI_NodeUtils_GetLayoutPositionInScreen(ArkUI_NodeHandle node, ArkUI_IntOffset* screenOffset);
 
 /**
+ * @brief Obtains the offset of a component relative to the global display.
+ * The relative position does not count in transformation attributes, such as translate.
+ *
+ * @param node Pointer to the <b>ArkUI_NodeHandle</b> representing the component.
+ * @param offset Offset of the component relative to the global display, in px.
+ * @return Result code.
+ *         {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @since 20
+ */
+int32_t OH_ArkUI_NodeUtils_GetLayoutPositionInGlobalDisplay(ArkUI_NodeHandle node, ArkUI_IntOffset* offset);
+
+/**
  * @brief Obtain the position of the component in the window, including the properties of graphic translation changes.
  *
  * @param node ArkUI_NodeHandle pointer.
@@ -9766,6 +9869,24 @@ int32_t OH_ArkUI_NodeUtils_GetNodeHandleByUniqueId(const uint32_t uniqueId, ArkU
  * @since 20
  */
 int32_t OH_ArkUI_NodeUtils_GetNodeUniqueId(ArkUI_NodeHandle node, int32_t* uniqueId);
+
+/**
+ * @brief Sets the inverse color algorithm for components and instances.
+ *
+ * @param uiContext Indicates the context in which the inverse color feature should take effect. If the value is null,
+ *                  the feature applies to the entire application process.
+ * @param forceDark Indicates whether the inverse color feature is enabled.
+ * @param nodeType Indicates the component type for which to enable the inverse color feature. If the value is null,
+ *                 enabling the feature for all components.
+ * @param colorInvertFunc Indicates the user-defined inverse color algorithm.
+ * @return Returns the error code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ERROR_CODE_CAPI_INIT_ERROR} if CAPI init error.
+           Returns {@link ARKUI_ERROR_CODE_FORCE_DARK_CONFIG_INVALID} if force dark config is invalid.
+ * @since 20
+ */
+int32_t OH_ArkUI_SetForceDarkConfig(ArkUI_ContextHandle uiContext, bool forceDark, ArkUI_NodeType nodeType,
+    uint32_t (*colorInvertFunc)(uint32_t color));
 
 #ifdef __cplusplus
 };

@@ -19,7 +19,7 @@ ohos_ndk_library("libhuks_ndk") {
   ndk_description_file = "./libhuks.ndk.json"
   min_compact_version = "1"
 
-  system_capability = "SystemCapability.Security.Huks"
+  system_capability = "SystemCapability.Security.Huks.Core"
   system_capability_headers = [
     "huks/native_huks_api.h",
     "huks/native_huks_param.h",

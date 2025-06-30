@@ -317,10 +317,6 @@
     },
     {
         "first_introduced": "14",
-        "name": "OH_Input_GetIntervalSinceLastInput"
-    },
-    {
-        "first_introduced": "14",
         "name": "OH_Input_CreateAllSystemHotkeys"
     },
     {
@@ -370,6 +366,10 @@
     {
         "first_introduced": "14",
         "name": "OH_Input_GetRepeat"
+    },
+    {
+        "first_introduced": "14",
+        "name": "OH_Input_GetIntervalSinceLastInput"
     },
     {
         "first_introduced": "13",
@@ -501,6 +501,21 @@
     },
     {
         "first_introduced": "20",
+        "name": "OH_Input_QueryMaxTouchPoints"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_Input_RequestInjection"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_Input_QueryAuthorizedStatus"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_Input_GetPointerLocation"
+    },
+    {
         "name": "OH_Input_SetMouseEventGlobalX"
     },
     {

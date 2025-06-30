@@ -167,6 +167,20 @@ typedef enum Input_KeyboardType {
 } Input_KeyboardType;
 
 /**
+ * @brief Enumerates the injection authorization status.
+ *
+ * @since 20
+ */
+typedef enum Input_InjectionStatus {
+    /** Unauthorized */
+    UNAUTHORIZED = 0,
+    /** Authorizing */
+    AUTHORIZING = 1,
+    /** Authorized */
+    AUTHORIZED = 2,
+} Input_InjectionStatus;
+
+/**
  * @brief Enumerates event source types.
  *
  * @since 12
@@ -269,7 +283,37 @@ typedef enum Input_Result {
      * @error No keyboard device connected
      * @since 15
      */
-    INPUT_KEYBOARD_DEVICE_NOT_EXIST = 3900002
+    INPUT_KEYBOARD_DEVICE_NOT_EXIST = 3900002,
+     /**
+     * @error Authorizing
+     * @since 20
+     */
+    INPUT_INJECTION_AUTHORIZING = 3900005,
+    /**
+     * @error Too many operations
+     * @since 20
+     */
+    INPUT_INJECTION_OPERATION_FREQUENT = 3900006,
+    /**
+     * @error Authorized
+     * @since 20
+     */
+    INPUT_INJECTION_AUTHORIZED = 3900007,
+    /**
+     * @error Authorized to other applications
+     * @since 20
+     */
+    INPUT_INJECTION_AUTHORIZED_OTHERS = 3900008,
+    /**
+     * @error App is not the focused app
+     * @since 20
+     */
+    INPUT_APP_NOT_FOCUSED = 3900009,
+    /**
+     * @error The device has no pointer
+     * @since 20
+     */
+    INPUT_DEVICE_NO_POINTER = 3900010,
 } Input_Result;
 
 /**
@@ -330,6 +374,13 @@ typedef void (*Input_DeviceAddedCallback)(int32_t deviceId);
  * @since 13
  */
 typedef void (*Input_DeviceRemovedCallback)(int32_t deviceId);
+
+/**
+ * @brief Defines the event injection callback.
+ * @param authorizedStatus Authorization status.
+ * @since 20
+ */
+typedef void (*Input_InjectAuthorizeCallback)(Input_InjectionStatus authorizedStatus);
 
 /**
  * @brief Defines the structure for the interceptor of event callbacks,
@@ -1073,6 +1124,37 @@ int32_t OH_Input_GetTouchEventGlobalY(const struct Input_TouchEvent* touchEvent)
 void OH_Input_CancelInjection();
 
 /**
+ * @brief Requests for injection authorization.
+ *
+ * @param callback - callback used to return the result.
+ * @return OH_Input_RequestInjection function result code.
+ *         {@link INPUT_SUCCESS} Success.\n
+ *         {@link INPUT_PARAMETER_ERROR} The callback is NULL.\n
+ *         {@INPUT_DEVICE_NOT_SUPPORTED} Capability not supported.\n
+ *         {@link INPUT_SERVICE_EXCEPTION} Service error.\n
+ *         {@link INPUT_INJECTION_AUTHORIZING} Authorizing.\n
+ *         {@link INPUT_INJECTION_OPERATION_FREQUENT} Too many operations.\n
+ *         {@link INPUT_INJECTION_AUTHORIZED} Authorized.\n
+ *         {@link INPUT_INJECTION_AUTHORIZED_OTHERS} Authorized to other applications.\n
+ * @since 20
+ */
+
+Input_Result OH_Input_RequestInjection(Input_InjectAuthorizeCallback callback);
+
+/**
+ * @brief Queries the injection authorization status.
+ *
+ * @param status Injection authorization status. For details, see {@Link Input_InjectionStatus}.
+ * @return OH_Input_QueryAuthorizedStatus function result code.
+ *         {@link INPUT_SUCCESS} Success.\n
+ *         {@link INPUT_PARAMETER_ERROR} The status is NULL\n
+ *         {@link INPUT_SERVICE_EXCEPTION} Service error.\n
+ * @since 20
+ */
+
+Input_Result OH_Input_QueryAuthorizedStatus(Input_InjectionStatus* status);
+
+/**
  * @brief Creates an axis event object.
  *
  * @return If the operation is successful, a {@Link Input_AxisEvent} object is returned.
@@ -1778,44 +1860,6 @@ Input_Result OH_Input_AddHotkeyMonitor(const Input_Hotkey* hotkey, Input_HotkeyC
 Input_Result OH_Input_RemoveHotkeyMonitor(const Input_Hotkey* hotkey, Input_HotkeyCallback callback);
 
 /**
- * @brief Registers a listener for device hot swap events.
- *
- * @param listener Pointer to an {@Link Input_DeviceListener} object.
- *
- * @return OH_Input_RegisterDeviceListener status code, specifically,
- *         {@link INPUT_SUCCESS} if the operation is successful;\n
- *         {@link INPUT_PARAMETER_ERROR} if listener is NULL;
- * @syscap SystemCapability.MultimodalInput.Input.Core
- * @since 13
- */
-Input_Result OH_Input_RegisterDeviceListener(Input_DeviceListener* listener);
-
-/**
- * @brief Unregisters the listener for device hot swap events.
- *
- * @param listener Pointer to the listener for device hot swap events. For details, see {@Link Input_DeviceListener}.
- *
- * @return OH_Input_UnregisterDeviceListener status code, specifically,
- *         {@link INPUT_SUCCESS} if the operation is successful;\n
- *         {@link INPUT_PARAMETER_ERROR} if listener is NULL or no listener is registered;
- *         {@link INPUT_SERVICE_EXCEPTION} if the service is abnormal.
- * @syscap SystemCapability.MultimodalInput.Input.Core
- * @since 13
- */
-Input_Result OH_Input_UnregisterDeviceListener(Input_DeviceListener* listener);
-
-/**
- * @brief Unregisters the listener for all device hot swap events.
- *
- * @return OH_Input_UnregisterDeviceListener status code, specifically,
- *         {@link INPUT_SUCCESS} if the operation is successful;\n
- *         {@link INPUT_SERVICE_EXCEPTION} if the service is abnormal.
- * @syscap SystemCapability.MultimodalInput.Input.Core
- * @since 13
- */
-Input_Result OH_Input_UnregisterDeviceListeners();
-
-/**
  * @brief Obtains the IDs of all input devices.
  *
  * @param deviceIds Array of input device IDs.
@@ -1967,6 +2011,44 @@ Input_Result OH_Input_GetDeviceVendor(Input_DeviceInfo *deviceInfo, int32_t *ven
 Input_Result OH_Input_GetDeviceAddress(Input_DeviceInfo *deviceInfo, char **address);
 
 /**
+ * @brief Registers a listener for device hot swap events.
+ *
+ * @param listener Pointer to an {@Link Input_DeviceListener} object.
+ *
+ * @return OH_Input_RegisterDeviceListener status code, specifically,
+ *         {@link INPUT_SUCCESS} if the operation is successful;\n
+ *         {@link INPUT_PARAMETER_ERROR} if listener is NULL;
+ * @syscap SystemCapability.MultimodalInput.Input.Core
+ * @since 13
+ */
+Input_Result OH_Input_RegisterDeviceListener(Input_DeviceListener* listener);
+
+/**
+ * @brief Unregisters the listener for device hot swap events.
+ *
+ * @param listener Pointer to the listener for device hot swap events. For details, see {@Link Input_DeviceListener}.
+ *
+ * @return OH_Input_UnregisterDeviceListener status code, specifically,
+ *         {@link INPUT_SUCCESS} if the operation is successful;\n
+ *         {@link INPUT_PARAMETER_ERROR} if listener is NULL or no listener is registered;
+ *         {@link INPUT_SERVICE_EXCEPTION} if the service is abnormal.
+ * @syscap SystemCapability.MultimodalInput.Input.Core
+ * @since 13
+ */
+Input_Result OH_Input_UnregisterDeviceListener(Input_DeviceListener* listener);
+
+/**
+ * @brief Unregisters the listener for all device hot swap events.
+ *
+ * @return OH_Input_UnregisterDeviceListener status code, specifically,
+ *         {@link INPUT_SUCCESS} if the operation is successful;\n
+ *         {@link INPUT_SERVICE_EXCEPTION} if the service is abnormal.
+ * @syscap SystemCapability.MultimodalInput.Input.Core
+ * @since 13
+ */
+Input_Result OH_Input_UnregisterDeviceListeners();
+
+/**
  * @brief Obtains the function key status.
  *
  * @param keyCode Function key value. Supported function keys include capsLock, NumLock, and ScrollLock.
@@ -1980,6 +2062,35 @@ Input_Result OH_Input_GetDeviceAddress(Input_DeviceInfo *deviceInfo, char **addr
  * @since 15
  */
 Input_Result OH_Input_GetFunctionKeyState(int32_t keyCode, int32_t *state);
+
+/**
+ * @brief Get pointer location.
+ *
+ * @param displayId The displayId for the pointer location.
+ * @param displayX The displayX for the pointer location.
+ * @param displayY The displayY for the pointer location.
+ * @return OH_Input_GetPointerLocation function api result code
+ *         {@link INPUT_SUCCESS} if the operation is successful;
+ *         {@link INPUT_PARAMETER_ERROR} if parameter is a null pointer;
+ *         {@link INPUT_APP_NOT_FOCUSED} if the app is not the focused app;
+ *         {@link INPUT_DEVICE_NO_POINTER} if the device has no pointer;
+ *         {@link INPUT_SERVICE_EXCEPTION} if the service is exception.
+ * @since 20
+ */
+Input_Result OH_Input_GetPointerLocation(int32_t *displayId, double *displayX, double *displayY);
+
+/**
+ * @brief Queries the maximum number of touch points supported by the current device.
+ *      If -1 is returned, the number is unknown.
+ *
+ * @param count Maximum number of touch points supported.
+ * @return OH_Input_QueryMaxTouchPoints function api result code
+ *         {@link INPUT_SUCCESS} if the operation is successful;
+ *         {@link INPUT_PARAMETER_ERROR} if count is a null pointer.
+ * @since 20
+*/
+Input_Result OH_Input_QueryMaxTouchPoints(int32_t *count);
+
 #ifdef __cplusplus
 }
 #endif

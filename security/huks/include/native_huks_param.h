@@ -23,7 +23,6 @@
  *    a parameter set, and destroying a parameter set.
  *    They can also be used to obtain parameters, copy parameter sets, and check parameter validity.
  *
- * @syscap SystemCapability.Security.Huks
  * @since 9
  * @version 1.0
  */
@@ -34,7 +33,7 @@
  * @brief Provides APIs for constructing, using, and destroying parameter sets.
  *
  * @library libhuks_ndk.z.so
- * @syscap SystemCapability.Security.Huks
+ * @syscap SystemCapability.Security.Huks.Core
  *
  * include "huks/include/native_huks_type.h"
  * @kit UniversalKeystoreKit

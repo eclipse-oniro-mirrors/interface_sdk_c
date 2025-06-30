@@ -861,7 +861,8 @@ int OH_UdmfProperty_SetExtrasStringParam(OH_UdmfProperty* pThis,
 OH_UdmfOptions* OH_UdmfOptions_Create();
 
 /**
- * @brief Destroy a pointer that points to an instance of {@link OH_UdmfOptions}.
+ * @brief Destroy the heap memory pointed to by the pointer of {@link OH_UdmfOptions}.
+ * Note that this function cannot be called repeatedly for the same pointer.
  *
  * @param pThis Represents a pointer to an instance of {@link OH_UdmfOptions}.
  * @see OH_UdmfOptions.
@@ -1197,9 +1198,10 @@ void OH_UdmfDataLoadParams_SetDataLoadInfo(OH_UdmfDataLoadParams* params, OH_Udm
 OH_UdmfDataLoadInfo* OH_UdmfDataLoadInfo_Create();
 
 /**
- * @brief Destroy a pointer that points to an instance of {@link OH_UdmfDataLoadInfo}.
+ * @brief Destroy the heap memory pointed to by the pointer of {@link OH_UdmfDataLoadInfo}.
+ * Note that this function cannot be called repeatedly for the same pointer.
  *
- * @param pThis Represents a pointer to an instance of {@link OH_UdmfDataLoadInfo}.
+ * @param dataLoadInfo Represents a pointer to an instance of {@link OH_UdmfDataLoadInfo}.
  * @see OH_UdmfDataLoadInfo
  * @since 20
  */
@@ -1220,7 +1222,7 @@ char** OH_UdmfDataLoadInfo_GetTypes(OH_UdmfDataLoadInfo* dataLoadInfo, unsigned 
  * @brief Sets the data load info to the {@OH_UdmfDataLoadInfo}.
  *
  * @param dataLoadInfo Represents a pointer to an instance of {@link OH_UdmfDataLoadInfo}.
- * @param types Represents the type of data.
+ * @param type Represents the type of data.
  * @see OH_UdmfDataLoadInfo
  * @since 20
  */

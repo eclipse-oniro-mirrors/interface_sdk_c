@@ -213,6 +213,34 @@ typedef struct OH_AVDataSource {
 } OH_AVDataSource;
 
 /**
+ * @brief the function pointer will be called to get sequence media data.
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
+ * @param data    OH_AVBuffer buffer to fill
+ * @param length   expected to read size;
+ * @param pos    current read offset
+ * @param userData user-defined data
+ * @return  Actual size of data read to the buffer.
+ * @since 20
+ */
+typedef int32_t (*OH_AVDataSourceReadAtExt)(OH_AVBuffer *data, int32_t length, int64_t pos, void *userData);
+
+/**
+ * @brief User customized data source.
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
+ * @since 20
+ */
+typedef struct OH_AVDataSourceExt {
+    /**
+     * Total size of the data source.
+     */
+    int64_t size;
+    /**
+     * Callback interface for reading data from datasource.
+     */
+    OH_AVDataSourceReadAtExt readAt;
+} OH_AVDataSourceExt;
+
+/**
  * @brief Enumerates the mime types of video avc codec.
  *
  * @syscap SystemCapability.Multimedia.Media.CodecBase
@@ -1063,6 +1091,27 @@ extern const char *OH_MD_KEY_SQR_FACTOR;
  * @since 20
  */
 extern const char *OH_MD_KEY_MAX_BITRATE;
+/**
+ * @brief Key for describing the reference relationship between tracks, value type is int32_t*.
+ *
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
+ * @since 20
+*/
+extern const char *OH_MD_KEY_REFERENCE_TRACK_IDS;
+/**
+ * @brief Key for describing the track reference type, value type is string.
+ *
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
+ * @since 20
+*/
+extern const char *OH_MD_KEY_TRACK_REFERENCE_TYPE;
+/**
+ * @brief Key for describing the track description, value type is string.
+ *
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
+ * @since 20
+*/
+extern const char *OH_MD_KEY_TRACK_DESCRIPTION;
 
 /**
  * @brief Key to enable Bitrate Control Based on Presentation Time Stamp(PTS),
@@ -1075,6 +1124,20 @@ extern const char *OH_MD_KEY_MAX_BITRATE;
  * @since 20
 */
 extern const char *OH_MD_KEY_VIDEO_ENCODER_ENABLE_PTS_BASED_RATECONTROL;
+
+/**
+ * @brief Key to enable synchronous mode, value type is (0 or 1): 1 is enabled, 0 otherwise.
+ *
+ * This is an optional key, default is 0.\n
+ * When enabled:
+ *       - Callbacks should NOT be set for codecs
+ *       - Buffer query APIs must be used instead
+ *       - Only used in configuration phase
+ *
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
+ * @since 20
+ */
+extern const char *OH_MD_KEY_ENABLE_SYNC_MODE;
 
 /**
  * @brief Media type.
@@ -1091,6 +1154,14 @@ typedef enum OH_MediaType {
      * @since 12
      */
     MEDIA_TYPE_SUBTITLE = 2,
+    /** track is timed meta.
+     * @since 20
+     */
+    MEDIA_TYPE_TIMED_METADATA = 5,
+    /** track is auxiliary.
+     * @since 20
+     */
+    MEDIA_TYPE_AUXILIARY = 6,
 } OH_MediaType;
 
 /**
@@ -1607,7 +1678,7 @@ typedef enum OH_BitrateMode {
     BITRATE_MODE_VBR = 1,
     /** Constant Quality mode. */
     BITRATE_MODE_CQ = 2,
-    /** Stable Quality Rate Control mode.
+    /** Stable Quality RateControl.
      * @since 20
      */
     BITRATE_MODE_SQR = 3

@@ -216,7 +216,7 @@ typedef enum InputMethod_TextInputType {
      */
     IME_TEXT_INPUT_TYPE_NUMBER_DECIMAL = 12,
     /**
-     * The text input type is ONE_TIME_CODE.
+     * The text input type is ONE TIME CODE.
      *
      * @since 20
      */

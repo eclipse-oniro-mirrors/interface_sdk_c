@@ -1989,5 +1989,17 @@
     {
         "first_introduced": "20",
         "name": "OH_Drawing_TypographyHandlerAddEncodedText"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_Drawing_CopyTextStyle"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_Drawing_CopyTypographyStyle"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_Drawing_CopyTextShadow"
     }
 ]

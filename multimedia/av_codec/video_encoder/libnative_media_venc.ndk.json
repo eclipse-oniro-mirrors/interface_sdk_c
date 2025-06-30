@@ -90,5 +90,21 @@
     {
         "first_introduced": "12",
         "name": "OH_VideoEncoder_PushInputParameter"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_VideoEncoder_QueryInputBuffer"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_VideoEncoder_QueryOutputBuffer"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_VideoEncoder_GetInputBuffer"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_VideoEncoder_GetOutputBuffer"
     }
 ]

@@ -543,14 +543,14 @@ OH_AudioStream_Result OH_AudioRenderer_GetAudioTimestampInfo(OH_AudioRenderer* r
     int64_t* framePosition, int64_t* timestamp);
 
 /**
- * @brief Callback function of interrupt event on AudioRenderer.
+ * @brief Called when an interrupt event occurs in an AudioRenderer instance.
+ * This function is similar to OH_AudioRenderer_Callbacks_Struct.OH_AudioRenderer_OnInterruptEvent.
  *
- * This function is similar with OH_AudioRenderer_Callbacks_Struct.OH_AudioRenderer_OnInterruptEvent.
- *
- * @param renderer AudioRenderer where this callback occurs.
- * @param userData User data which is passed by user.
- * @param type Force type of this interrupt event.
- * @param hint Hint of this interrupt event.
+ * @param renderer Pointer to the AudioRenderer instance that triggers the callback.
+ * @param userData Pointer to the user data passed when setting the callback via
+ * OH_AudioStreamBuilder_SetRendererInterruptCallback.
+ * @param type Type of force that causes the interrupt event.
+ * @param hint Hint provided along with the interrupt event.
  * @see OH_AudioRenderer_Callbacks_Struct.OH_AudioRenderer_OnInterruptEvent.
  * @since 20
  */
@@ -558,13 +558,13 @@ typedef void (*OH_AudioRenderer_OnInterruptCallback)(OH_AudioRenderer* renderer,
     OH_AudioInterrupt_ForceType type, OH_AudioInterrupt_Hint hint);
 
 /**
- * @brief Callback function of error on AudioRenderer.
+ * @brief Called when an error event occurs in an AudioRenderer instance.
+ * This function is similar to OH_AudioRenderer_Callbacks_Struct.OH_AudioRenderer_OnError.
  *
- * This function is similar with OH_AudioRenderer_Callbacks_Struct.OH_AudioRenderer_OnError.
- *
- * @param renderer AudioRenderer where this callback occurs.
- * @param userData User data which is passed by user.
- * @param error Error while using AudioRenderer.
+ * @param renderer Pointer to the AudioRenderer instance that triggers the callback.
+ * @param userData Pointer to the user data passed when setting the callback via
+ * OH_AudioStreamBuilder_SetRendererErrorCallback.
+ * @param error Specific error information.
  * @see OH_AudioRenderer_Callbacks_Struct.OH_AudioRenderer_OnError
  * @since 20
  */
@@ -598,6 +598,39 @@ typedef void (*OH_AudioRenderer_OnFastStatusChange)(
     void* userData,
     OH_AudioStream_FastStatus status
 );
+
+/**
+ * @brief Sets the loudness gain of current renderer.
+ * The default loudness gain is 0.0dB. The stream usage of the audio renderer must be
+ * {@link OH_AudioStream_Usage#AUDIOSTREAM_USAGE_MUSIC}, {@link OH_AudioStream_Usage#AUDIOSTREAM_USAGE_MOVIE}
+ * or {@link OH_AudioStream_Usage#AUDIOSTREAM_USAGE_AUDIOBOOK}.
+ * The latency mode of the audio renderer must be {@link OH_AudioStream_LatencyMode#AUDIOSTREAM_LATENCY_MODE_NORMAL}.
+ * If AudioRenderer is played through the high-resolution pipe, this operation is not supported.
+ *
+ * @param renderer AudioRender created by OH_AudioStreamBuilder_GenerateRenderer()
+ * @param loudnessGain Loudness gain to set which changes from -90.0 to 24.0, expressing in dB.
+ * @return Function result code:
+ *         {@link AUDIOSTREAM_SUCCESS} If the execution is successful.
+ *         {@link AUDIOSTREAM_ERROR_INVALID_PARAM}:
+ *                                                 1.The param of renderer is nullptr or not supported to set gain;
+ *                                                 2.The param of loudnessGain is invalid.
+ * @since 20
+ */
+OH_AudioStream_Result OH_AudioRenderer_SetLoudnessGain(OH_AudioRenderer* renderer, float loudnessGain);
+
+/**
+ * @brief Get the loudness gain of current renderer.
+ *
+ * @param renderer AudioRender created by OH_AudioStreamBuilder_GenerateRenderer()
+ * @param loudnessGain Pointer to a variable to receive the loudness gain.
+ * @return Function result code:
+ *         {@link AUDIOSTREAM_SUCCESS} If the execution is successful.
+ *         {@link AUDIOSTREAM_ERROR_INVALID_PARAM}:
+ *                                                 1.The param of renderer is nullptr;
+ *                                                 2.The param of loudnessGain is nullptr.
+ * @since 20
+ */
+OH_AudioStream_Result OH_AudioRenderer_GetLoudnessGain(OH_AudioRenderer* renderer, float* loudnessGain);
 
 #ifdef __cplusplus
 }

@@ -694,9 +694,9 @@ typedef enum {
  */
 typedef enum {
     /** Default mode, where focus does not wrap when arrow keys are used. */
-    ARKUI_FOCUS_WRAPMODE_DEFAULT = 0,
+    ARKUI_FOCUS_WRAP_MODE_DEFAULT = 0,
     /** Focus wraps automatically when arrow keys are used. */
-    ARKUI_FOCUS_WRAPMODE_WRAP_WITH_ARROW = 1,
+    ARKUI_FOCUS_WRAP_WITH_ARROW = 1,
 } ArkUI_FocusWrapMode;
 
 /**
@@ -827,7 +827,21 @@ typedef enum {
      * considered during the hit test. */
     ARKUI_HIT_TEST_MODE_TRANSPARENT,
     /** The node does not respond to the hit test of a touch event. */
-    ARKUI_HIT_TEST_MODE_NONE
+    ARKUI_HIT_TEST_MODE_NONE,
+    /**
+     * The node and its child nodes participate in hit tests, while blocking hit tests for all sibling nodes and
+     * parent nodes with lower priority.
+     *
+     * @since 20
+     */
+    ARKUI_HIT_TEST_MODE_BLOCK_HIERARCHY,
+    /**
+     * The node does not respond to hit tests, and none of its descendants (including children and grandchildren)
+     * participate in hit tests either.
+     *
+     * @since 20
+     */
+    ARKUI_HIT_TEST_MODE_BLOCK_DESCENDANTS,
 } ArkUI_HitTestMode;
 
 /**
@@ -2246,6 +2260,11 @@ typedef enum {
      * @since 15
      */
     ARKUI_ERROR_CODE_NODE_NOT_ON_MAIN_TREE = 106203,
+    /**
+     * @error Force dark config is invalid.
+     * @since 20
+     */
+    ARKUI_ERROR_CODE_FORCE_DARK_CONFIG_INVALID = 106205,
     /**
      * @error The node requesting focus is not focusable.
      * @since 15

@@ -209,6 +209,20 @@ typedef enum {
 
     /** A group of gestures. */
     GROUP_GESTURE,
+
+    /**
+     * The click gesture registed through onClick.
+     *
+     * @since 20
+     */
+    CLICK_GESTURE,
+
+    /**
+     * Drag gesture used for drag and drop.
+     *
+     * @since 20
+     */
+    DRAG_DROP,
 } ArkUI_GestureRecognizerType;
 
 /**
@@ -841,7 +855,7 @@ int32_t OH_ArkUI_GetGestureParam_distanceThreshold(ArkUI_GestureRecognizer* reco
 * @param recognizer Indicates the pointer to a gesture recognizer.
 * @param size Size of the array of minimum movement distance thresholds.
 * @param toolTypeArray Pointer to the array of tool types for which thresholds are set.
-* @param distanceArray Pointer to the array of minimum movement distances.
+* @param distanceArray Pointer to the array of minimum movement distances, in px.
 * @return Returns the result code.
 *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
 *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
@@ -857,7 +871,7 @@ ArkUI_ErrorCode OH_ArkUI_PanGesture_SetDistanceMap(
 *
 * @param recognizer Indicates the pointer to a gesture recognizer.
 * @param toolType Tool type for which you want to obtain the threshold.
-* @param distance Gesture movement threshold of the gesture recognizer.
+* @param distance Gesture movement threshold of the gesture recognizer, in px.
 * @return Returns the result code.
 *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
 *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
@@ -877,6 +891,9 @@ ArkUI_ErrorCode OH_ArkUI_PanGesture_GetDistanceByToolType(
  * @param node Handle to the node on which the callback is to be set.
  * @param userData Custom data.
  * @param touchTestDone Callback for completion of gesture recognizer collection.
+ *                      - event: Basic information of the gesture.
+ *                      - recognizers: Array of gesture recognizers.
+ *                      - count: Number of gesture recognizers.
  * @return Result code.
  *         {@link ARKUI_ERROR_CODE_NO_ERROR}: The operation is successful.
  *         {@link ARKUI_ERROR_CODE_PARAM_INVALID}: A parameter error occurs.

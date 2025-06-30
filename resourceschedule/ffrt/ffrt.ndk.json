@@ -115,6 +115,14 @@
         "first_introduced": "12",
         "name": "ffrt_task_handle_dec_ref"
     },
+    {
+        "first_introduced": "20",
+        "name": "ffrt_fiber_init"
+    },
+    {
+        "first_introduced": "20",
+        "name": "ffrt_fiber_switch"
+    },
     { "name": "ffrt_task_handle_destroy" },
     { "name": "ffrt_wait_deps" },
     { "name": "ffrt_wait" },

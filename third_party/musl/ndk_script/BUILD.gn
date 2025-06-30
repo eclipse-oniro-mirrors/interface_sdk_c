@@ -89,13 +89,13 @@ if (host_os == "mac") {
     args += [ "-o" ] + [ rebase_path("${ndk_linux_toolchains_out_dir}") ]
     args +=
         [ "-l" ] + [ rebase_path("${linux_aarch64_toolchains_dir}/llvm/bin") ]
-
     deps = [ ":linux_arm64" ]
   }
 } else {
   windows_x86_64_toolchain_dir = "${toolchains_dir}/windows-x86_64"
   ohos_arm64_toolchain_dir = "${toolchains_dir}/ohos-arm64"
   linux_x86_64_toolchains_dir = "${toolchains_dir}/linux-x86_64"
+  prebuilts_python = "//prebuilts/python"
   ohos_ndk_toolchains("linux_x86_64") {
     dest_dir = "$ndk_linux_toolchains_out_dir"
     sources = [
@@ -147,6 +147,7 @@ if (host_os == "mac") {
     args += [ "-o" ] + [ rebase_path("${ndk_linux_toolchains_out_dir}") ]
     args +=
         [ "-l" ] + [ rebase_path("${linux_x86_64_toolchains_dir}/llvm/bin") ]
+    args += [ "-p" ] + [ rebase_path("${prebuilts_python}/linux-x86") ]
     deps = [ ":linux_x86_64" ]
   }
 
@@ -163,6 +164,7 @@ if (host_os == "mac") {
     } else {
       args +=
           [ "-l" ] + [ rebase_path("${linux_x86_64_toolchains_dir}/llvm/bin") ]
+      args += [ "-p" ] + [ rebase_path("${prebuilts_python}/windows-x86") ]
     }
     deps = [ ":windows_x86_64" ]
   }

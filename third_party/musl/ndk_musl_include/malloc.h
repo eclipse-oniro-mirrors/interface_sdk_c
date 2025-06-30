@@ -75,6 +75,7 @@ int mallopt(int param, int value);
  * @return  1 - The memory block was allocated using Standard C library Memory Allocator.
  *          0 - The memory block was not allocated using Standard C library Memory Allocator.
  *          -1 - The function is not implemented or other error.
+ * @since 19
  */
 int malloc_check_from_ptr(void *ptr);
 
@@ -107,6 +108,7 @@ struct mallinfo2 {
 /**
  * @brief Obtains the memory information allocated by malloc-related operations.
  * @return A mallinfo struct containing details about memory allocation.
+ * @since 20
  */
 struct mallinfo mallinfo(void);
 
@@ -114,6 +116,7 @@ struct mallinfo mallinfo(void);
  * @brief Obtains the memory information allocated by malloc-related operations.
  * @return A mallinfo2 struct containing details about memory allocation. Unlike mallinfo, this struct uses
  * size_t for its counters, providing a larger range.
+ * @since 20
  */
 struct mallinfo2 mallinfo2(void);
 

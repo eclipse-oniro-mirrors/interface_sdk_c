@@ -517,7 +517,7 @@ Image_ErrorCode OH_ImageSourceNative_CreatePixelmap(OH_ImageSourceNative *source
  *         {@link IMAGE_SUCCESS} if the execution is successful.
  *         {@link IMAGE_BAD_PARAMETER} source is nullptr, or picture is nullptr.
  *         {@link IMAGE_BAD_SOURCE} data source exception.
- *         {@link IMAGE_SOURCE_UNSUPPORTED_MIMETYPE} unsupported mime type.
+ *         {@link IMAGE_SOURCE_UNSUPPORTED_MIME_TYPE} unsupported mime type.
  *         {@link IMAGE_SOURCE_TOO_LARGE} image to large.
  *         {@link IMAGE_SOURCE_UNSUPPORTED_ALLOCATOR_TYPE} unsupported allocator type,
  *         e.g., use share memory to decode a HDR image as only DMA supported hdr metadata.
@@ -563,6 +563,24 @@ Image_ErrorCode OH_ImageSourceNative_CreatePixelmapList(OH_ImageSourceNative *so
  * @since 13
  */
 Image_ErrorCode OH_ImageSourceNative_CreatePicture(OH_ImageSourceNative *source, OH_DecodingOptionsForPicture *options,
+    OH_PictureNative **picture);
+
+/**
+ * @brief Decodes an image at the specified index into a Picture object.
+ *
+ * @param source Pointer to the image source.
+ * @param index Image index.
+ * @param picture Double pointer to the Picture object obtained after decoding.
+ * @return Returns one of the following result codes:
+ *         {@link IMAGE_SUCCESS} if the execution is successful.
+ *         {@link IMAGE_BAD_SOURCE} if the data source is abnormal.
+ *         {@link IMAGE_SOURCE_UNSUPPORTED_MIME_TYPE} if the image format is unsupported.
+ *         {@link IMAGE_SOURCE_TOO_LARGE} if the image is too large.
+ *         {@link IMAGE_SOURCE_UNSUPPORTED_OPTIONS} if the operation is not supported, for example, invalid index.
+ *         {@link IMAGE_DECODE_FAILED} if decoding failed.
+ * @since 20
+ */
+Image_ErrorCode OH_ImageSourceNative_CreatePictureAtIndex(OH_ImageSourceNative *source, uint32_t index,
     OH_PictureNative **picture);
 
 /**
