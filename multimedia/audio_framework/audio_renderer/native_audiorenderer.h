@@ -632,6 +632,28 @@ OH_AudioStream_Result OH_AudioRenderer_SetLoudnessGain(OH_AudioRenderer* rendere
  */
 OH_AudioStream_Result OH_AudioRenderer_GetLoudnessGain(OH_AudioRenderer* renderer, float* loudnessGain);
 
+/**
+ * @brief Callback function of write data on Render.
+ *
+ * Different with OH_AudioRenderer_OnWriteDataCallback, this function allows the caller to write partial data which
+ * ranges from 0 to the callback buffer size. If 0 is returned, the callback thread will sleep for a while. Otherwise,
+ * the system may callback again immediately.
+ *
+ * @param renderer AudioRenderer where this callback occurs.
+ * @param userData User data which is passed by user.
+ * @param audioData Audio data pointer, where user should fill in audio data.
+ * @param audioDataSize Size of audio data that user should fill in.
+ * @return Length of the valid data that has written into audioData buffer. The return value must be in range of
+ * [0, audioDataSize]. If the return value is less than 0, the system changes it to 0. And, if the return value is
+ * greater than audioDataSize, the system changes it to audioDataSize. Note that the length of the returned buffer
+ * must be an integer multiple of the length of the single sample data. For example, for 2 channels and S16 format
+ * audio data, it must be an integer multiple of 4(2*16/8). Otherwise, it may cause noise during playback.
+ * @see OH_AudioRenderer_OnWriteDataCallback
+ * @since 20
+ */
+typedef int32_t (*OH_AudioRenderer_OnWriteDataCallbackAdvanced)(OH_AudioRenderer* renderer, void* userData,
+    void* audioData, int32_t audioDataSize);
+
 #ifdef __cplusplus
 }
 #endif

@@ -534,5 +534,9 @@
     {
         "first_introduced": "20",
         "name": "OH_AudioWorkgroup_Stop"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_AudioStreamBuilder_SetRendererWriteDataCallbackAdvanced"
     }
 ]
