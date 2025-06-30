@@ -38,4 +38,4 @@ ohos_ndk_library("liblowpower_avsink") {
     "multimedia/player_framework/lowpower_video_sink_base.h",
     "multimedia/player_framework/lowpower_video_sink.h",
   ]
-}
+}
