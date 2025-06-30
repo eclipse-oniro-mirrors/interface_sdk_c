@@ -19,8 +19,6 @@
  *
  * @brief Provide the definition of the C interface for the audio module.
  *
- * @syscap SystemCapability.Multimedia.Audio.Core
- *
  * @since 20
  */
 
@@ -69,6 +67,11 @@ OH_AudioCommon_Result OH_AudioManager_GetAudioResourceManager(OH_AudioResourceMa
 /**
  * @brief Declare the audio workgroup.
  *     The handle of audio workgroup is used for workgroup related functions.
+ *     The system will manage cpu resources on a workgroup basis instead of thread.
+ *     For parallel task threads, you can add them into one workgroup, and for 
+ *     asynchronous task threads, use one workgroup for each thread.
+ *     There is an upper limit to the total number of workgroups for each process,
+ *     so application should release the workgroup which is no longer in use.
  *
  * @since 20
  */
@@ -76,7 +79,7 @@ typedef struct OH_AudioWorkgroup OH_AudioWorkgroup;
 
 /**
  * @brief Create a workgroup for audio data processing threads in application.
- *     System manages cpu resources by workgroup configuration.
+ *     System manages cpu resources by workgroup configuration. 
  *
  * @param resourceManager {@link OH_AudioResourceManager} handle
  *     provided by {@link OH_AudioManager_GetAudioRoutingManager}.
@@ -126,7 +129,7 @@ OH_AudioCommon_Result OH_AudioWorkgroup_AddCurrentThread(OH_AudioWorkgroup *grou
  *
  * @param group {@link OH_AudioWorkgroup} handle provided by {@link OH_AudioResourceManager_CreateWorkgroup}.
  * @param tokenId id for thread returned by {link OH_AudioWorkgroup_AddCurrentThread}
- * @return
+ * @return 
  *     {@link #AUDIOCOMMON_RESULT_SUCCESS} if execution succeeds
  *     {@link #AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM} if input param is nullptr or token id is invalid
  *     {@link #AUDIOCOMMON_RESULT_ERROR_SYSTEM} system process error occurs
@@ -135,11 +138,12 @@ OH_AudioCommon_Result OH_AudioWorkgroup_AddCurrentThread(OH_AudioWorkgroup *grou
 OH_AudioCommon_Result OH_AudioWorkgroup_RemoveThread(OH_AudioWorkgroup *group, int32_t tokenId);
 
 /**
- * @brief Notify system the audio workgroup start working.
+ * @brief Notify system the audio workgroup start working. Call this function before processing the audio frame.
  *
  * @param group {@link OH_AudioWorkgroup} handle provided by {@link OH_AudioResourceManager_CreateWorkgroup}.
- * @param startTime the time when audio thread start working, using system time.
+ * @param startTime the time when audio thread start working, using system time. The unit of time is milliseconds.
  * @param deadlineTime the time before which audio work should be finished, otherwise underrun may happens.
+ *     The unit of time is milliseconds.
  * @return
  *     {@link #AUDIOCOMMON_RESULT_SUCCESS} if execution succeeds
  *     {@link #AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM} if input param is nullptr, or time is invalid
@@ -149,7 +153,8 @@ OH_AudioCommon_Result OH_AudioWorkgroup_RemoveThread(OH_AudioWorkgroup *group, i
 OH_AudioCommon_Result OH_AudioWorkgroup_Start(OH_AudioWorkgroup *group, uint64_t startTime, uint64_t deadlineTime);
 
 /**
- * @brief Notify system the audio workgroup stop working.
+ * @brief Notify system the audio workgroup stop working. Call this function after the audio frame processing
+ *     is completed.
  *
  * @param group {@link OH_AudioWorkgroup} handle provided by {@link OH_AudioResourceManager_CreateWorkgroup}.
  * @return
@@ -163,6 +168,6 @@ OH_AudioCommon_Result OH_AudioWorkgroup_Stop(OH_AudioWorkgroup *group);
 #ifdef __cplusplus
 }
 #endif
-
+ 
 #endif // NATIVE_AUDIO_RESOURCE_MANAGER_H
 /** @} */
