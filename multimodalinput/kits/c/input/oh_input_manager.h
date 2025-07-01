@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2024 Huawei Device Co., Ltd.
+ * Copyright (c) 2024-2025 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -650,6 +650,18 @@ int32_t OH_Input_GetKeyEventDisplayId(const struct Input_KeyEvent* keyEvent);
 int32_t OH_Input_InjectMouseEvent(const struct Input_MouseEvent* mouseEvent);
 
 /**
+ * @brief Inject mouse event using global coordinate.
+ *
+ * @param mouseEvent - the mouse event to be injected, set up effective globalX globalY.
+ * @return OH_Input_InjectMouseEventGlobal function result code.
+ *         {@link INPUT_SUCCESS} inject mouseEvent success.\n
+ *         {@link INPUT_PERMISSION_DENIED} Permission verification failed.\n
+ *         {@link INPUT_PARAMETER_ERROR} Parameter check failed.\n
+ * @since 20
+ */
+int32_t OH_Input_InjectMouseEventGlobal(const struct Input_MouseEvent* mouseEvent);
+
+/**
  * @brief Creates a mouse event object.
  *
  * @return Returns an {@link Input_MouseEvent} pointer object if the operation is successful.
@@ -850,6 +862,42 @@ void OH_Input_SetMouseEventDisplayId(struct Input_MouseEvent* mouseEvent, int32_
 int32_t OH_Input_GetMouseEventDisplayId(const struct Input_MouseEvent* mouseEvent);
 
 /**
+ * @brief Set the global X coordinate of the mouse event.
+ *
+ * @param mouseEvent Mouse event object.
+ * @param globalX Global X coordinate.
+ * @since 20
+ */
+void OH_Input_SetMouseEventGlobalX(struct Input_MouseEvent* mouseEvent, int32_t globalX);
+
+/**
+ * @brief Queries the global X coordinate of the mouse event.
+ *
+ * @param mouseEvent Mouse event object.
+ * @return Global X coordinate.
+ * @since 20
+ */
+int32_t OH_Input_GetMouseEventGlobalX(const struct Input_MouseEvent* mouseEvent);
+
+/**
+ * @brief Set the global Y coordinate of the mouse event.
+ *
+ * @param mouseEvent Mouse event object.
+ * @param globalY Global Y coordinate.
+ * @since 20
+ */
+void OH_Input_SetMouseEventGlobalY(struct Input_MouseEvent* mouseEvent, int32_t globalY);
+
+/**
+ * @brief Queries the global Y coordinate of the mouse event.
+ *
+ * @param mouseEvent Mouse event object.
+ * @return Global Y coordinate.
+ * @since 20
+ */
+int32_t OH_Input_GetMouseEventGlobalY(const struct Input_MouseEvent* mouseEvent);
+
+/**
  * @brief Inject touch event.
  *
  * @param touchEvent - the touch event to be injected.
@@ -860,6 +908,17 @@ int32_t OH_Input_GetMouseEventDisplayId(const struct Input_MouseEvent* mouseEven
  * @since 12
  */
 int32_t OH_Input_InjectTouchEvent(const struct Input_TouchEvent* touchEvent);
+
+/**
+ * @brief Inject touch event using global coordinate.
+ *
+ * @param touchEvent - the touch event to be injected, set up effective globalX globalY.
+ * @return OH_Input_InjectTouchEventGlobal function result code.
+ *         {@link INPUT_SUCCESS} inject touchEvent success.\n
+ *         {@link INPUT_PARAMETER_ERROR} Parameter check failed.\n
+ * @since 20
+ */
+int32_t OH_Input_InjectTouchEventGlobal(const struct Input_TouchEvent* touchEvent);
 
 /**
  * @brief Creates a touch event object.
@@ -1019,6 +1078,42 @@ void OH_Input_SetTouchEventDisplayId(struct Input_TouchEvent* touchEvent, int32_
  * @since 15
 */
 int32_t OH_Input_GetTouchEventDisplayId(const struct Input_TouchEvent* touchEvent);
+
+/**
+ * @brief Set the global X coordinate of the touch event.
+ *
+ * @param touchEvent Touch event object.
+ * @param globalX Global X coordinate.
+ * @since 20
+ */
+void OH_Input_SetTouchEventGlobalX(struct Input_TouchEvent* touchEvent, int32_t globalX);
+
+/**
+ * @brief Queries the global X coordinate of the touch event.
+ *
+ * @param touchEvent Touch event object.
+ * @return Global X coordinate.
+ * @since 20
+ */
+int32_t OH_Input_GetTouchEventGlobalX(const struct Input_TouchEvent* touchEvent);
+
+/**
+ * @brief Set the global Y coordinate of the touch event.
+ *
+ * @param touchEvent Touch event object.
+ * @param globalY Global Y coordinate.
+ * @since 20
+ */
+void OH_Input_SetTouchEventGlobalY(struct Input_TouchEvent* touchEvent, int32_t globalY);
+
+/**
+ * @brief Queries the global Y coordinate of the touch event.
+ *
+ * @param touchEvent Touch event object.
+ * @return Global Y coordinate.
+ * @since 20
+ */
+int32_t OH_Input_GetTouchEventGlobalY(const struct Input_TouchEvent* touchEvent);
 
 /**
  * @brief Cancels event injection and revokes authorization.
@@ -1319,6 +1414,54 @@ Input_Result OH_Input_SetAxisEventDisplayId(Input_AxisEvent* axisEvent, int32_t 
  * @since 15
  */
 Input_Result OH_Input_GetAxisEventDisplayId(const Input_AxisEvent* axisEvent, int32_t* displayId);
+
+/**
+ * @brief Set the global X coordinate of the axis event.
+ *
+ * @param axisEvent Axis event object. For details, see {@Link Input_AxisEvent}.
+ * @param globalX Global X coordinate.
+ * @return OH_Input_SetAxisEventGlobalX function result code.
+ *        {@link INPUT_SUCCESS} Success.\n
+ *        {@link INPUT_PARAMETER_ERROR} The axisEvent is NULL.\n
+ * @since 20
+ */
+Input_Result OH_Input_SetAxisEventGlobalX(struct Input_AxisEvent* axisEvent, int32_t globalX);
+
+/**
+ * @brief Queries the global X coordinate of the axis event.
+ *
+ * @param axisEvent Axis event object. For details, see {@Link Input_AxisEvent}.
+ * @param globalX Global X coordinate.
+ * @return OH_Input_GetAxisEventGlobalX function result code.
+ *         {@link INPUT_SUCCESS} Success.\n
+ *         {@link INPUT_PARAMETER_ERROR} The axisEvent is NULL or the globalX is NULL.\n
+ * @since 20
+ */
+Input_Result OH_Input_GetAxisEventGlobalX(const Input_AxisEvent* axisEvent, int32_t* globalX);
+
+/**
+ * @brief Set the global Y coordinate of the axis event.
+ *
+ * @param axisEvent Axis event object. For details, see {@Link Input_AxisEvent}.
+ * @param globalY Global Y coordinate.
+ * @return OH_Input_SetAxisEventGlobalY function result code.
+ *         {@link INPUT_SUCCESS} Success.\n
+ *         {@link INPUT_PARAMETER_ERROR} The axisEvent is NULL.\n
+ * @since 20
+ */
+Input_Result OH_Input_SetAxisEventGlobalY(struct Input_AxisEvent* axisEvent, int32_t globalY);
+
+/**
+ * @brief Queries the global Y coordinate of the axis event.
+ *
+ * @param axisEvent Axis event object. For details, see {@Link Input_AxisEvent}.
+ * @param globalY Global Y coordinate.
+ * @return OH_Input_GetAxisEventGlobalY function result code.
+ *         {@link INPUT_SUCCESS} Success.\n
+ *         {@link INPUT_PARAMETER_ERROR} The axisEvent is NULL or the globalY is NULL.\n
+ * @since 20
+ */
+Input_Result OH_Input_GetAxisEventGlobalY(const Input_AxisEvent* axisEvent, int32_t* globalY);
 
 /**
  * @brief Adds a listener of key events.
