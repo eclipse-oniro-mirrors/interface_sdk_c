@@ -1020,6 +1020,19 @@ int32_t OH_ArkWebResourceHandler_DidFailWithError(const ArkWeb_ResourceHandler* 
                                                   ArkWeb_NetError errorCode);
 
 /**
+ * @brief Notify the ArkWeb that this request should be failed.
+ * @param resourceHandler The ArkWeb_ResourceHandler for the request.
+ * @param errorCode The error code for this request. Refer to arkweb_net_error_list.h.
+ * @param completeIfNoResponse If completeIfNoResponse is true, when DidFailWithErrorV2 is called, if DidReceiveResponse has not been called, a response is automatically constructed and the current request is terminated.
+ * @return {@link ARKWEB_NET_OK} 0 - Success.
+ *         {@link ARKWEB_INVALID_PARAM} 17100101 - Invalid param, the errorCode is either ARKWEB_NET_OK or outside the range of error codes in ArkWeb_NetError.
+ * @since 20
+ */
+int32_t OH_ArkWebResourceHandler_DidFailWithErrorV2(const ArkWeb_ResourceHandler* resourceHandler,
+                                                    ArkWeb_NetError errorCode,
+												    bool completeIfNoResponse);
+
+/**
  * @brief Release the string acquired by native function.
  * @param string The string to be released.
  *
