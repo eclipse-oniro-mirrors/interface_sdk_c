@@ -1024,7 +1024,8 @@ int32_t OH_ArkWebResourceHandler_DidFailWithError(const ArkWeb_ResourceHandler* 
  * @param resourceHandler The ArkWeb_ResourceHandler for the request.
  * @param errorCode The error code for this request. Refer to arkweb_net_error_list.h.
  * @param completeIfNoResponse If completeIfNoResponse is true, when DidFailWithErrorV2 is called,
- *        if DidReceiveResponse has not been called, a response is automatically constructed and the current request is terminated.
+ *        if DidReceiveResponse has not been called,
+ *        a response is automatically constructed and the current request is terminated.
  * @return {@link ARKWEB_NET_OK} 0 - Success.
  *         {@link ARKWEB_INVALID_PARAM} 17100101 - Invalid param, the errorCode is either ARKWEB_NET_OK
  *                                                 or outside the range of error codes in ArkWeb_NetError.
