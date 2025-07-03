@@ -390,6 +390,15 @@ extern const char *OH_AVCODEC_MIMETYPE_SUBTITLE_WEBVTT;
  * @since 18
  */
 extern const char *OH_AVCODEC_MIMETYPE_AUDIO_RAW;
+
+/**
+ * @brief Enumerates the mime types of audio G711 A-law codec.
+ *
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
+ * @since 20
+ */
+extern const char *OH_AVCODEC_MIMETYPE_AUDIO_G711A;
+
 /**
  * @brief Enumerates the MIME type of video mpeg2 codec.
  *

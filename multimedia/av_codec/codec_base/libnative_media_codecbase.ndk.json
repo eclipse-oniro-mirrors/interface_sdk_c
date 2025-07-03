@@ -80,6 +80,10 @@
         "name": "OH_AVCODEC_MIMETYPE_AUDIO_RAW"
     },
     {
+        "first_introduced": "20",
+        "name": "OH_AVCODEC_MIMETYPE_AUDIO_G711A"
+    },
+    {
         "first_introduced": "17",
         "name": "OH_AVCODEC_MIMETYPE_VIDEO_MPEG2"
     },
