@@ -362,5 +362,9 @@
     {
         "first_introduced": "20",
         "name": "OH_ArkWebCookieManager_SaveCookieAsync"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_ArkWebResourceHandler_DidFailWithErrorV2"
     }
 ]
