@@ -158,5 +158,9 @@
     {
         "first_introduced": "20",
         "name": "OH_AVScreenCapture_StrategyForBFramesEncoding"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_AVScreenCapture_StrategyForPickerPopUp"
     }
 ]
