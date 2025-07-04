@@ -350,6 +350,25 @@ const char *OH_AVFormat_DumpInfo(struct OH_AVFormat *format);
  */
 bool OH_AVFormat_GetIntBuffer(struct OH_AVFormat *format, const char *key, int32_t **addr, size_t *size);
 
+/**
+ * @brief Write an array of int32_t values to an OH_AVFormat object.
+ *
+ * @syscap SystemCapability.Multimedia.Media.Core
+ * @param format pointer to an OH_AVFormat instance
+ * @param key Data identifier key
+ * @param addr Pointer to the source data buffer
+ * @param size Number of elements to write (in elements, not bytes)
+ * @return The return value is TRUE for success, FALSE for failure
+ * Possible failure causes:
+ * 1. input format is nullptr.
+ * 2. input format's magic error.
+ * 3. key is nullptr.
+ * 4. addr is nullptr.
+ * 5. size is zero.
+ * @since 20
+ */
+bool OH_AVFormat_SetIntBuffer(struct OH_AVFormat *format, const char *key, const int32_t *addr, size_t size);
+
 #ifdef __cplusplus
 }
 #endif
