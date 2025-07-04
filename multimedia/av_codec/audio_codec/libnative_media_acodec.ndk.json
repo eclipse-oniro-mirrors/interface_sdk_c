@@ -62,5 +62,21 @@
     {
         "first_introduced": "12",
         "name": "OH_AudioCodec_SetDecryptionConfig"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_AudioCodec_QueryInputBuffer"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_AudioCodec_GetInputBuffer"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_AudioCodec_QueryOutputBuffer"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_AudioCodec_GetOutputBuffer"
     }
 ]
