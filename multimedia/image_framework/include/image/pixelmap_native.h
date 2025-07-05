@@ -663,7 +663,7 @@ Image_ErrorCode OH_PixelmapNative_CreatePixelmap(uint8_t *data, size_t dataLengt
  *         {@link IMAGE_TOO_LARGE} too large data or image.
  *         {@link IMAGE_UNSUPPORTED_OPERATION} unsupported operations.
  *         {@link IMAGE_DMA_OPERATION_FAILED} DMA operation failed.
- *         {@link IMAGE_ALLOCATOR_MODE_UNSUPPROTED} unsupported allocator mode, e.g.,
+ *         {@link IMAGE_ALLOCATOR_MODE_UNSUPPORTED} unsupported allocator mode, e.g.,
  *         use share memory to create a HDR image as only DMA supported hdr metadata.
  * @since 20
  */
@@ -931,7 +931,7 @@ Image_ErrorCode OH_PixelmapNative_CreateEmptyPixelmap(
  *         {@link IMAGE_BAD_PARAMETER} If the param is nullptr or invalid.
  *         {@link IMAGE_TOO_LARGE} too large data or image.
  *         {@link IMAGE_UNSUPPORTED_OPERATION} unsupported operations.
- *         {@link IMAGE_ALLOCATOR_MODE_UNSUPPROTED} unsupported allocator mode, e.g., use
+ *         {@link IMAGE_ALLOCATOR_MODE_UNSUPPORTED} unsupported allocator mode, e.g., use
  *         share memory to create a HDR image as only DMA supported hdr metadata.
  * @since 20
  */
