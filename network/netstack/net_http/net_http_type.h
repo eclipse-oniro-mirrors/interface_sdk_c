@@ -514,7 +514,7 @@ typedef void (*Http_ResponseCallback)(struct Http_Response *response, uint32_t e
  * @brief Callback function that is invoked when a response body is received.
  *
  * @param data Response body.
- * @param size_t the length of response body.
+ * @param length Length of response body.
  * @since 20
  */
 typedef void (*Http_OnDataReceiveCallback)(const char *data, size_t length);
