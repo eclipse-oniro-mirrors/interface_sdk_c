@@ -451,6 +451,12 @@ enum  OH_Huks_ErrCode {
      */
     OH_HUKS_ERR_CODE_DEVICE_PASSWORD_UNSET = 12000016,
     /**
+     * The key with same alias is already exist.
+     *
+     * @since 20
+     */
+    OH_HUKS_ERR_CODE_KEY_ALREADY_EXIST = 12000017,
+    /**
      * The input parameter is invalid..
      *
      * @since 20
