@@ -257,10 +257,6 @@
     },
     {
         "first_introduced": "20",
-        "name": "glDispatchCompute"
-    },
-    {
-        "first_introduced": "20",
         "name": "glDrawArrays"
     },
     {
@@ -870,10 +866,6 @@
     {
         "first_introduced": "20",
         "name": "glVertexAttrib4fv"
-    },
-    {
-        "first_introduced": "20",
-        "name": "glVertexAttribDivisor"
     },
     {
         "first_introduced": "20",
