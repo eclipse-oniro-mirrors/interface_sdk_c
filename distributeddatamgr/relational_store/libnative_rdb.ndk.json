@@ -45,6 +45,10 @@
         "name":"OH_Rdb_SetDbType"
     },
     {
+        "first_introduced": "20",
+        "name":"OH_Rdb_SetSemanticIndex"
+    },
+    {
         "first_introduced": "17",
         "name":"OH_Rdb_SetTokenizer"
     },
