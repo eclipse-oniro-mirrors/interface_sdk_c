@@ -387,6 +387,22 @@ NetConn_ErrorCode OH_NetConn_GetPacUrl(char *pacUrl);
  */
 int32_t OH_NetConn_QueryProbeResult(char *destination, int32_t duration, NetConn_ProbeResultInfo *probeResultInfo);
 
+/**
+ * @brief Query a network trace route.
+ *
+ * @param destination Pointer to the destination.
+ * @param option Pointer to the trace route option
+ * @param traceRouteInfo Pointer to trace route result.
+ * @return 0 - Success.
+ *         201 - Missing permissions.
+ *         401 - Parameter error.
+ *         2100003 - Internal error.
+ * @permission ohos.permission.INTERNET and ohos.permission.LOCATION and ohos.permission.ACCESS_TRACE_ROUTE_INFO
+ * @since 20
+ */
+int32_t OH_NetConn_QueryTraceRoute(char *destination, NetConn_TraceRouteOption *option,
+    NetConn_TraceRouteInfo *traceRouteInfo);
+
 #ifdef __cplusplus
 }
 #endif
