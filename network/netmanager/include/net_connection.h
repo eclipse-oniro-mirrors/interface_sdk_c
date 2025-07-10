@@ -382,7 +382,7 @@ NetConn_ErrorCode OH_NetConn_GetPacUrl(char *pacUrl);
  *         201 - Missing permissions.
  *         401 - Parameter error.
  *         2100003 - Internal error.
- * @permission ohos.permission.INTERNET and ohos.permission.ACCESS_TRACE_ROUTE_INFO
+ * @permission ohos.permission.INTERNET
  * @since 20
  */
 int32_t OH_NetConn_QueryProbeResult(char *destination, int32_t duration, NetConn_ProbeResultInfo *probeResultInfo);
