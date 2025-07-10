@@ -405,33 +405,6 @@ typedef struct NetConn_ProbeResultInfo {
     uint32_t rtt[NETCONN_MAX_RTT_NUM];
 } NetConn_ProbeResultInfo;
 
-/**
- * @brief Defines the network trace route option.
- *
- * @since 20
- */
-typedef struct NetConn_TraceRouteOption {
-    /** Maximum number of jumps, default is 30 */
-    uint8_t maxJumpNumber;
-    /** Port number */
-    NetConn_PacketsType packetsType;
-} NetConn_TraceRouteOption;
- 
-/**
- * @brief Defines the trace route information.
- *
- * @since 20
- */
-typedef struct NetConn_TraceRouteInfo {
-    /** Number of jumps */
-    uint8_t JumpNo;
-    /** host name or address */
-    char address[NETCONN_MAX_STR_LEN];
-    /** RTT in micro seconds */
-    uint32_t rtt[NETCONN_MAX_RTT_NUM];
-} NetConn_TraceRouteInfo;
-
-
 #ifdef __cplusplus
 }
 #endif
