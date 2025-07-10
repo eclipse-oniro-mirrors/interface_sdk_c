@@ -132,18 +132,6 @@ typedef enum NetConn_ErrorCode {
 } NetConn_ErrorCode;
 
 /**
- * @brief Enumerates packets type of trace route.
- *
- * @since 20
- */
-typedef enum NetConn_PacketsType {
-    /** ICMP */
-    NETCONN_PACKETS_ICMP = 0,
-    /** UDP */
-    NETCONN_PACKETS_UDP = 1
-} NetConn_PacketsType;
-
-/**
  * @brief Defines the network handle.
  *
  * @since 11
