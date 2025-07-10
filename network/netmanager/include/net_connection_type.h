@@ -424,7 +424,7 @@ typedef struct NetConn_TraceRouteOption {
  */
 typedef struct NetConn_TraceRouteInfo {
     /** Number of jumps */
-    uint8_t jumpNo;
+    uint8_t JumpNo;
     /** host name or address */
     char address[NETCONN_MAX_STR_LEN];
     /** RTT in micro seconds */
