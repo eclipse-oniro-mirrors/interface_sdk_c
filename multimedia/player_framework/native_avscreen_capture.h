@@ -74,7 +74,7 @@ OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_Init(struct OH_AVScreenCapture *c
 
 /**
  * @brief Start the av screen capture
- * @@param {struct OH_AVScreenCapture*} capture Pointer to an OH_AVScreenCapture instance
+ * @param {struct OH_AVScreenCapture*} capture Pointer to an OH_AVScreenCapture instance
  * @return Function result code.
  *         {@link AV_SCREEN_CAPTURE_ERR_OK} if the execution is successful.
  *         {@link AV_SCREEN_CAPTURE_ERR_INVALID_VAL} input capture is nullptr.
@@ -101,6 +101,7 @@ OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_StopScreenCapture(struct OH_AVScr
 /**
  * @brief Start av screen record use to start save screen record file.
  * @param {struct OH_AVScreenCapture*} capture Pointer to an OH_AVScreenCapture instance
+ * @return Function result code.
  *         {@link AV_SCREEN_CAPTURE_ERR_OK} if the execution is successful.
  *         {@link AV_SCREEN_CAPTURE_ERR_INVALID_VAL} input capture is nullptr.
  *         {@link AV_SCREEN_CAPTURE_ERR_UNSUPPORT} device doesn't support certain configurations. add since api20.
@@ -380,7 +381,7 @@ OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_ContentFilter_AddWindowContent(
 
 /**
  * @brief Resize the Resolution of the Screen
- * @@param {struct OH_AVScreenCapture*} capture Pointer to an OH_AVScreenCapture instance
+ * @param {struct OH_AVScreenCapture*} capture Pointer to an OH_AVScreenCapture instance
  * @param {int32_t} width Video frame width of avscreeencapture
  * @param {int32_t} height Video frame height of avscreeencapture
  * @return Function result code.
