@@ -74,16 +74,14 @@ OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_Init(struct OH_AVScreenCapture *c
 
 /**
  * @brief Start the av screen capture
- * @syscap SystemCapability.Multimedia.Media.AVScreenCapture
- * @param capture Pointer to an OH_AVScreenCapture instance
- * @param type Information describing the data type of the capture
+ * @param {struct OH_AVScreenCapture*} capture Pointer to an OH_AVScreenCapture instance
  * @return Function result code.
  *         {@link AV_SCREEN_CAPTURE_ERR_OK} if the execution is successful.
  *         {@link AV_SCREEN_CAPTURE_ERR_INVALID_VAL} input capture is nullptr.
+ *         {@link AV_SCREEN_CAPTURE_ERR_UNSUPPORT} device doesn't support certain configurations. add since api20.
  *         {@link AV_SCREEN_CAPTURE_ERR_OPERATE_NOT_PERMIT} opertation not be permitted, set privacy authority enabled
  *         failed or start ScreenCapture failed.
  * @since 10
- * @version 1.0
  */
 OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_StartScreenCapture(struct OH_AVScreenCapture *capture);
 
@@ -102,15 +100,14 @@ OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_StopScreenCapture(struct OH_AVScr
 
 /**
  * @brief Start av screen record use to start save screen record file.
- * @syscap SystemCapability.Multimedia.Media.AVScreenCapture
- * @param capture Pointer to an OH_AVScreenCapture instance
+ * @param {struct OH_AVScreenCapture*} capture Pointer to an OH_AVScreenCapture instance
  * @return Function result code.
  *         {@link AV_SCREEN_CAPTURE_ERR_OK} if the execution is successful.
  *         {@link AV_SCREEN_CAPTURE_ERR_INVALID_VAL} input capture is nullptr.
+ *         {@link AV_SCREEN_CAPTURE_ERR_UNSUPPORT} device doesn't support certain configurations. add since api20.
  *         {@link AV_SCREEN_CAPTURE_ERR_OPERATE_NOT_PERMIT} opertation not be permitted, set privacy authority enabled
  *         failed or start ScreenRecording failed.
  * @since 10
- * @version 1.0
  */
 OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_StartScreenRecording(struct OH_AVScreenCapture *capture);
 
@@ -288,33 +285,31 @@ OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_SetErrorCallback(struct OH_AVScre
     OH_AVScreenCapture_OnError callback, void *userData);
 
 /**
- * @brief Start the av screen capture, video data provided by OHNativeWindow
- * @syscap SystemCapability.Multimedia.Media.AVScreenCapture
- * @param capture Pointer to an OH_AVScreenCapture instance
- * @param window Pointer to an OHNativeWindow instance
+ * @brief Start the av screen capture, video data provided by OHNativeWindow.
+ * @param {struct OH_AVScreenCapture*} capture Pointer to an OH_AVScreenCapture instance.
+ * @param {OHNativeWindow*} window Pointer to an OHNativeWindow instance.
  * @return Function result code.
  *         {@link AV_SCREEN_CAPTURE_ERR_OK} if the execution is successful.
  *         {@link AV_SCREEN_CAPTURE_ERR_INVALID_VAL} input capture is nullptr or input window is nullptr or
  *         input windowSurface is nullptr.
+ *         {@link AV_SCREEN_CAPTURE_ERR_UNSUPPORT} device doesn't support certain configurations. add since api20.
  *         {@link AV_SCREEN_CAPTURE_ERR_OPERATE_NOT_PERMIT} opertation not be permitted, set privacy authority enabled
  *         failed or start ScreenCaptureWithSurface failed.
  * @since 12
- * @version 1.0
  */
 OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_StartScreenCaptureWithSurface(struct OH_AVScreenCapture *capture,
     OHNativeWindow *window);
 
 /**
  * @brief Set canvas rotation when capturing screen
- * @syscap SystemCapability.Multimedia.Media.AVScreenCapture
- * @param capture Pointer to an OH_AVScreenCapture instance
- * @param canvasRotation whether to rotate the canvas
+ * @param {struct OH_AVScreenCapture*} capture Pointer to an OH_AVScreenCapture instance
+ * @param {bool} canvasRotation whether to rotate the canvas
  * @return Function result code.
  *         {@link AV_SCREEN_CAPTURE_ERR_OK} if the execution is successful.
  *         {@link AV_SCREEN_CAPTURE_ERR_INVALID_VAL} input capture is nullptr.
+ *         {@link AV_SCREEN_CAPTURE_ERR_UNSUPPORT} device doesn't support current interface. add since api20.
  *         {@link AV_SCREEN_CAPTURE_ERR_OPERATE_NOT_PERMIT} opertation not be permitted, set CanvasRotation failed.
  * @since 12
- * @version 1.0
  */
 OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_SetCanvasRotation(struct OH_AVScreenCapture *capture,
     bool canvasRotation);
@@ -386,63 +381,59 @@ OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_ContentFilter_AddWindowContent(
 
 /**
  * @brief Resize the Resolution of the Screen
- * @syscap SystemCapability.Multimedia.Media.AVScreenCapture
- * @param capture Pointer to an OH_AVScreenCapture instance
- * @param width Video frame width of avscreeencapture
- * @param height Video frame height of avscreeencapture
+ * @param {struct OH_AVScreenCapture*} capture Pointer to an OH_AVScreenCapture instance
+ * @param {int32_t} width Video frame width of avscreeencapture
+ * @param {int32_t} height Video frame height of avscreeencapture
  * @return Function result code.
  *         {@link AV_SCREEN_CAPTURE_ERR_OK} if the execution is successful.
  *         {@link AV_SCREEN_CAPTURE_ERR_INVALID_VAL} input capture is nullptr.
+ *         {@link AV_SCREEN_CAPTURE_ERR_UNSUPPORT} device doesn't support current interface. add since api20.
  *         {@link AV_SCREEN_CAPTURE_ERR_OPERATE_NOT_PERMIT} opertation not be permitted.
  * @since 12
- * @version 1.0
  */
 OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_ResizeCanvas(struct OH_AVScreenCapture *capture,
     int32_t width, int32_t height);
 
 /**
  * @brief skip some windows' privacy mode of current app during the screen recording
- * @syscap SystemCapability.Multimedia.Media.AVScreenCapture
- * @param capture Pointer to an OH_AVScreenCapture instance
- * @param windowIDs Pointer of windowID list
- * @param windowCount length of windowID list
+ * @param {struct OH_AVScreenCapture*} capture Pointer to an OH_AVScreenCapture instance
+ * @param {int32_t*} windowIDs Pointer of windowID list
+ * @param {int32_t} windowCount length of windowID list
  * @return Function result code.
  *         {@link AV_SCREEN_CAPTURE_ERR_OK} if the execution is successful.
  *         {@link AV_SCREEN_CAPTURE_ERR_INVALID_VAL} input capture is nullptr or input windowIDs are not belong current
  *         app.
+ *         {@link AV_SCREEN_CAPTURE_ERR_UNSUPPORT} device doesn't support current interface. add since api20.
  *         {@link AV_SCREEN_CAPTURE_ERR_OPERATE_NOT_PERMIT} opertation not be permitted.
  * @since 12
- * @version 1.0
  */
 OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_SkipPrivacyMode(struct OH_AVScreenCapture *capture,
     int32_t *windowIDs, int32_t windowCount);
 
 /**
  * @brief set up the max number of video frame per second
- * @syscap SystemCapability.Multimedia.Media.AVScreenCapture
- * @param capture Pointer to an OH_AVScreenCapture instance
- * @param frameRate max frame rate of video
+ * @param {struct OH_AVScreenCapture*} capture Pointer to an OH_AVScreenCapture instance
+ * @param {int32_t} frameRate max frame rate of video
  * @return Function result code.
  *         {@link AV_SCREEN_CAPTURE_ERR_OK} if the execution is successful.
  *         {@link AV_SCREEN_CAPTURE_ERR_INVALID_VAL} input capture is nullptr or frameRate is not support.
+ *         {@link AV_SCREEN_CAPTURE_ERR_UNSUPPORT} device doesn't support current interface. add since api20.
  *         {@link AV_SCREEN_CAPTURE_ERR_OPERATE_NOT_PERMIT} opertation not be permitted.
  * @since 14
- * @version 1.0
  */
 OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_SetMaxVideoFrameRate(struct OH_AVScreenCapture *capture,
     int32_t frameRate);
 
 /**
  * @brief determines whether the cursor is visible in the session
- * @syscap SystemCapability.Multimedia.Media.AVScreenCapture
- * @param capture Pointer to an OH_AVScreenCapture instance
- * @param showCursor The switch of the cursor
+ * @param {struct OH_AVScreenCapture* } capture Pointer to an OH_AVScreenCapture instance
+ * @param {bool} showCursor The switch of the cursor
  * @return Function result code.
  *         {@link AV_SCREEN_CAPTURE_ERR_OK} if the execution is successful.
  *         {@link AV_SCREEN_CAPTURE_ERR_INVALID_VAL} input capture is nullptr.
+ *         {@link AV_SCREEN_CAPTURE_ERR_UNSUPPORT} device doesn't support current interface. add since api20.
  *         {@link AV_SCREEN_CAPTURE_ERR_OPERATE_NOT_PERMIT} opertation not be permitted, show cursor failed.
  * @since 15
- * @version 1.0
  */
 OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_ShowCursor(struct OH_AVScreenCapture *capture,
     bool showCursor);
