@@ -419,7 +419,6 @@ OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_SkipPrivacyMode(struct OH_AVScree
  *         {@link AV_SCREEN_CAPTURE_ERR_UNSUPPORT} device doesn't support current interface. add since api20.
  *         {@link AV_SCREEN_CAPTURE_ERR_OPERATE_NOT_PERMIT} opertation not be permitted.
  * @since 14
- * @version 1.0
  */
 OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_SetMaxVideoFrameRate(struct OH_AVScreenCapture *capture,
     int32_t frameRate);
