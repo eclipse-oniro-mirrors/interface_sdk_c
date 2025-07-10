@@ -53,6 +53,7 @@ extern "C" {
 #define NETCONN_MAX_ROUTE_SIZE 64
 #define NETCONN_MAX_EXCLUSION_SIZE 256
 #define NETCONN_MAX_STR_LEN 256
+#define NETCONN_MAX_RTT_NUM 4
 
 /**
  * @brief Defines network capabilities.
@@ -379,6 +380,18 @@ typedef struct NetConn_NetConnCallback {
     /** Callback for network blocked status changed */
     OH_NetConn_NetBlockStatusChange onNetBlockStatusChange;
 } NetConn_NetConnCallback;
+
+/**
+ * @brief Defines the probe result information.
+ *
+ * @since 20
+ */
+typedef struct NetConn_ProbeResultInfo {
+    /** Number of jumps */
+    uint8_t lossRate;
+    /** RTT in micro seconds, min/avg/max/std */
+    uint32_t rtt[NETCONN_MAX_RTT_NUM];
+} NetConn_ProbeResultInfo;
 
 #ifdef __cplusplus
 }
