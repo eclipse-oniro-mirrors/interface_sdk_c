@@ -774,6 +774,18 @@ typedef enum {
     REASON_OLD_DEVICE_UNAVAILABLE = 2,
     /* Device is overrode by user or system. */
     REASON_OVERRODE = 3,
+    /**
+     * @brief Device information when the audio session is activated.
+     *
+     * @since 20
+     */
+    REASON_SESSION_ACTIVATED = 4,
+    /**
+     * @brief There is a higher-priority stream, causing the system device to change.
+     *
+     * @since 20
+     */
+    REASON_STREAM_PRIORITY_CHANGED = 5,
 } OH_AudioStream_DeviceChangeReason;
 
 /**
