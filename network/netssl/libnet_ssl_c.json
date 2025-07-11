@@ -22,9 +22,5 @@
     {
         "first_introduced":"18",
         "name": "OH_Netstack_IsCleartextPermittedByHostName"
-    },
-    {
-        "first_introduced":"20",
-        "name": "OH_Netstack_IsCleartextCfgByComponent"
     }
 ]
