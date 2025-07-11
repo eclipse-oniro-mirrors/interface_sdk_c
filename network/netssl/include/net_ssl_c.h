@@ -150,7 +150,7 @@ int32_t OH_Netstack_IsCleartextPermittedByHostName(const char *hostname, bool *i
  * @systemapi Hide this for inner system use.
  * @since 20
  */
-int32_t OH_Netstack_IsCleartextCfgByComponent(const char *component, bool *componentCfg)
+int32_t OH_Netstack_IsCleartextCfgByComponent(const char *component, bool *componentCfg);
 
 #ifdef __cplusplus
 }
