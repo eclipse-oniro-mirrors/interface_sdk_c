@@ -711,6 +711,12 @@ typedef enum {
     ARKUI_SCROLL_DIRECTION_HORIZONTAL,
     /** Scrolling is not allowed. */
     ARKUI_SCROLL_DIRECTION_NONE = 3,
+    /**
+     * Free scrolling in both directions.
+     *
+     * @since 20
+     */
+    ARKUI_SCROLL_DIRECTION_FREE = 4,
 } ArkUI_ScrollDirection;
 
 /**
