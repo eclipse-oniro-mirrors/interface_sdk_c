@@ -132,6 +132,18 @@ typedef enum NetConn_ErrorCode {
 } NetConn_ErrorCode;
 
 /**
+ * @brief Enumerates packets type of trace route.
+ *
+ * @since 20
+ */
+typedef enum NetConn_PacketsType {
+    /** ICMP */
+    NETCONN_PACKETS_ICMP = 0,
+    /** UDP */
+    NETCONN_PACKETS_UDP = 1
+} NetConn_PacketsType;
+
+/**
  * @brief Defines the network handle.
  *
  * @since 11
@@ -392,6 +404,32 @@ typedef struct NetConn_ProbeResultInfo {
     /** RTT in micro seconds, min/avg/max/std */
     uint32_t rtt[NETCONN_MAX_RTT_NUM];
 } NetConn_ProbeResultInfo;
+
+/**
+ * @brief Defines the network trace route option.
+ *
+ * @since 20
+ */
+typedef struct NetConn_TraceRouteOption {
+    /** Maximum number of jumps, default is 30 */
+    uint8_t maxJumpNumber;
+    /** Packets type */
+    NetConn_PacketsType packetsType;
+} NetConn_TraceRouteOption;
+ 
+/**
+ * @brief Defines the trace route information.
+ *
+ * @since 20
+ */
+typedef struct NetConn_TraceRouteInfo {
+    /** Number of jumps */
+    uint8_t jumpNo;
+    /** host name or address */
+    char address[NETCONN_MAX_STR_LEN];
+    /** RTT in micro seconds */
+    uint32_t rtt[NETCONN_MAX_RTT_NUM];
+} NetConn_TraceRouteInfo;
 
 #ifdef __cplusplus
 }
