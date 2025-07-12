@@ -395,8 +395,6 @@ int32_t OH_NetConn_QueryProbeResult(char *destination, int32_t duration, NetConn
  * @param traceRouteInfo Pointer to trace route result.
  * @return 0 - Success.
  *         201 - Missing permissions.
- *         401 - Parameter error.
- *         2100003 - Internal error.
  * @permission ohos.permission.INTERNET and ohos.permission.LOCATION and ohos.permission.ACCESS_TRACE_ROUTE_INFO
  * @since 20
  */
