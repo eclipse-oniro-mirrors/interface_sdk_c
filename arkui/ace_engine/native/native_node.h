@@ -8090,10 +8090,8 @@ typedef enum {
      * This event is triggered when the user is about to release the drag on the scrollable container component. \n
      * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
      * {@link ArkUI_NodeComponentEvent}. \n
-     * {@link ArkUI_NodeComponentEvent} contains two parameters: \n
+     * {@link ArkUI_NodeComponentEvent} contains one parameter: \n
      * <b>ArkUI_NodeComponentEvent.data[0].f32</b>: speed at which the user releases the drag, in vp. \n
-     * <b>ArkUI_NodeComponentEvent.data[1].f32</b>: estimated stop position of the scroll. \n
-     * @return No return value, or a number to set the actual stop position of the scroll.
      *
      * @since 20
      */
