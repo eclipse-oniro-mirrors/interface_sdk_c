@@ -460,6 +460,14 @@
         "name": "OH_MD_KEY_ENABLE_SYNC_MODE"
     },
     {
+        "first_introduced": "20",
+        "name": "OH_MD_KEY_VIDEO_ENCODER_ENABLE_B_FRAME"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_MD_KEY_VIDEO_ENCODER_MAX_B_FRAMES"
+    },
+    {
         "first_introduced": "10",
         "name": "OH_AVCodec_GetCapability"
     },
