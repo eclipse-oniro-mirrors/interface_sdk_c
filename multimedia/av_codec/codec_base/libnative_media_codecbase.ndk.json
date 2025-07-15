@@ -507,6 +507,10 @@
         "name": "OH_AVCapability_GetAudioSupportedSampleRates"
     },
     {
+        "first_introduced": "20",
+        "name": "OH_AVCapability_GetAudioSupportedSampleRateRanges"
+    },
+    {
         "first_introduced": "10",
         "name": "OH_AVCapability_GetAudioChannelCountRange"
     },
