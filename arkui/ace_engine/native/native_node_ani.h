@@ -75,6 +75,21 @@ int32_t OH_ArkUI_NativeModule_GetNodeHandleFromAniValue(ani_env* env, ani_object
 int32_t OH_ArkUI_NativeModule_GetContextFromAniValue(ani_env* env, ani_object context, ArkUI_ContextHandle* handle);
 
 /**
+  * @brief Obtains a <b>NodeContent</b> object on the ArkTS side and maps it to an <b>ArkUI_NodeContentHandle</b>
+  * object on the native side.
+  *
+  * @param env Indicates the ANI environment pointer.
+  * @param nodeContent Indicates the <b>NodeContent</b> object created on the ArkTS side.
+  * @param content Indicates the pointer to the <b>ArkUI_NodeContentHandle</b> object.
+  * @return Returns the error code.
+  *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+  *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+  * @since 20
+  */
+int32_t OH_ArkUI_NativeModule_GetNodeContentFromAniValue(
+    ani_env *env, ani_object nodeContent, ArkUI_NodeContentHandle *content);
+
+/**
  * @brief Obtains the parameters of the NavDestination component where the node is located.
  *
  * @param node The node.
