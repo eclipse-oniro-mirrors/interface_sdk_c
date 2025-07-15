@@ -4947,11 +4947,11 @@ typedef enum {
      *
      * Attribute setting method {@Link ArkUI_AttributeItem} Parameter format:\n
      * .size: number of the images.\n
-     * .object: array of the images, the type is {@ArkUI_ImageAnimatorFrameInfo} array.\n
+     * .object: array of the images, the type is {@Link ArkUI_ImageAnimatorFrameInfo} array.\n
      * \n
      * Attribute obtaining method return value {@Link ArkUI_AttributeItem} format:\n
      * .size: number of the images.\n
-     * .object: array of the images, the type is {@ArkUI_ImageAnimatorFrameInfo} array.\n
+     * .object: array of the images, the type is {@Link ArkUI_ImageAnimatorFrameInfo} array.\n
      *
     */
     NODE_IMAGE_ANIMATOR_IMAGES = ARKUI_NODE_IMAGE_ANIMATOR * MAX_NODE_SCOPE_NUM,
