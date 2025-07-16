@@ -612,7 +612,6 @@ enum OH_Huks_SecureSignType {
      * The carried authentication information contains personal identification details. Developers are required
      * to clearly state the purpose of use, retention policy, and destruction method of such personal information in
      * their privacy statement.
-     
      */
     OH_HUKS_SECURE_SIGN_WITH_AUTHINFO = 1,
 };
