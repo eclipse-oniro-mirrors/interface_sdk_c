@@ -131,7 +131,6 @@
         "first_introduced": "20",
         "name": "ffrt_queue_attr_get_mode"
     },
-    { "name": "ffrt_queue_attr_get_mode" },
     { "name": "ffrt_task_handle_destroy" },
     { "name": "ffrt_wait_deps" },
     { "name": "ffrt_wait" },
