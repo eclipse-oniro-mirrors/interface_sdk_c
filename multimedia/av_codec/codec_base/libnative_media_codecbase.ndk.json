@@ -468,6 +468,10 @@
         "name": "OH_MD_KEY_VIDEO_ENCODER_MAX_B_FRAMES"
     },
     {
+        "first_introduced": "20",
+        "name": "OH_MD_KEY_VIDEO_DECODER_BLANK_FRAME_ON_SHUTDOWN"
+    },
+    {
         "first_introduced": "10",
         "name": "OH_AVCodec_GetCapability"
     },
