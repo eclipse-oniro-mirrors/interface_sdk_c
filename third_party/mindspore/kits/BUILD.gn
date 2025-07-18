@@ -34,4 +34,13 @@ ohos_ndk_library("mindspore_lib") {
   ndk_description_file = "./mindspore_lib.ndk.json"
   system_capability = "SystemCapability.Ai.MindSpore"
   min_compact_version = "9"
+  system_capability_headers = [
+    "mindspore/context.h",
+    "mindspore/data_type.h",
+    "mindspore/format.h",
+    "mindspore/model.h",
+    "mindspore/status.h",
+    "mindspore/tensor.h",
+    "mindspore/types.h",
+  ]
 }
