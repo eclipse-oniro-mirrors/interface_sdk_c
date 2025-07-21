@@ -694,5 +694,37 @@
     {
         "first_introduced": "20",
         "name": "OH_CaptureSession_SetWhiteBalanceMode"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_CaptureSession_RegisterSystemPressureLevelChangeCallback"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_CaptureSession_UnregisterSystemPressureLevelChangeCallback"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_CaptureSession_IsControlCenterSupported"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_CaptureSession_GetSupportedEffectTypes"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_CaptureSession_DeleteSupportedEffectTypes"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_CaptureSession_EnableControlCenter"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_CaptureSession_RegisterControlCenterEffectStatusChangeCallback"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_CaptureSession_UnregisterControlCenterEffectStatusChangeCallback"
     }
 ]
