@@ -611,9 +611,13 @@ enum OH_Huks_ChallengePosition {
  */
 enum OH_Huks_SecureSignType {
     /**
-     *  The signature carries authentication information. This field is specified when a key
-     *  is generated or imported. When the key is used to sign data, the data will be added with
-     *  the authentication information and then be signed.
+     * The signature carries authentication information. This field is specified when a key
+     * is generated or imported. When the key is used to sign data, the data will be added with
+     * the authentication information and then be signed.
+     * NOTICE:
+     * The carried authentication information contains personal identification details. Developers are required
+     * to clearly state the purpose of use, retention policy, and destruction method of such personal information in
+     * their privacy statement.
      */
     OH_HUKS_SECURE_SIGN_WITH_AUTHINFO = 1,
 };
