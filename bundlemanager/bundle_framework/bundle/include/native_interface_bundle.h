@@ -80,41 +80,41 @@ struct OH_NativeBundle_ElementName {
 };
 
 /**
- * @brief Indicates information of metadata
+ * @brief Indicates information of metadata.
  *
  * @since 20
  */
 typedef struct OH_NativeBundle_Metadata {
     /**
-     * @brief Indicates the metadata name
+     * @brief Indicates the metadata name.
      */
     char* name;
     /**
-     * @brief Indicates the metadata value
+     * @brief Indicates the metadata value.
      */
     char* value;
     /**
-     * @brief Indicates the metadata resource
+     * @brief Indicates the metadata resource.
      */
     char* resource;
 } OH_NativeBundle_Metadata;
 
 /**
- * @brief Indicates information of module metadata
+ * @brief Indicates information of module metadata.
  *
  * @since 20
  */
 typedef struct OH_NativeBundle_ModuleMetadata {
     /**
-     * @brief Indicates the moduleName of module
+     * @brief Indicates the moduleName of module.
      */
     char* moduleName;
     /**
-     * @brief Indicates the metadata array of module
+     * @brief Indicates the metadata array of module.
      */
     OH_NativeBundle_Metadata* metadataArray;
     /**
-     * @brief Indicates the metadata array size of module
+     * @brief Indicates the metadata array size of module.
      */
     size_t metadataArraySize;
 } OH_NativeBundle_ModuleMetadata;
