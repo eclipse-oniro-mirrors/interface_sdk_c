@@ -1,0 +1,38 @@
+[
+    {
+        "first_introduced": "20",
+        "name": "TEEC_InitializeContext"
+    },
+    {
+        "first_introduced": "20",
+        "name": "TEEC_FinalizeContext"
+    },
+    {
+        "first_introduced": "20",
+        "name": "TEEC_OpenSession"
+    },
+    {
+        "first_introduced": "20",
+        "name": "TEEC_CloseSession"
+    },
+    {
+        "first_introduced": "20",
+        "name": "TTEEC_InvokeCommand"
+    },
+    {
+        "first_introduced": "20",
+        "name": "TEEC_RegisterSharedMemory"
+    },
+    {
+        "first_introduced": "20",
+        "name": "TEEC_AllocateSharedMemory"
+    },
+    {
+        "first_introduced": "20",
+        "name": "TEEC_ReleaseSharedMemory"
+    },
+    {
+        "first_introduced": "20",
+        "name": "TEEC_RequestCancellation"
+    }
+]
