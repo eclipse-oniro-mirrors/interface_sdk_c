@@ -751,7 +751,12 @@ enum OH_Huks_Tag {
     OH_HUKS_TAG_ATTESTATION_ID_SEC_LEVEL_INFO = OH_HUKS_TAG_TYPE_BYTES | 514,
     /** Version information used in the attestation. */
     OH_HUKS_TAG_ATTESTATION_ID_VERSION_INFO = OH_HUKS_TAG_TYPE_BYTES | 515,
-
+    /**
+     * @brief The tag indicates whether to overwrite the key with same alias
+     *
+     * @since 20
+     */
+    OH_HUKS_TAG_KEY_OVERRIDE = OH_HUKS_TAG_TYPE_BOOL | 520,
     /**
      * 601 to 1000 are reserved for other tags.
      *
