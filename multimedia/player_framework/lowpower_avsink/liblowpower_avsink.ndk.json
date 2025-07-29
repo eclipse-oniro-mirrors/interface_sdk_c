@@ -69,6 +69,10 @@
   },
   {
     "first_introduced": "20",
+    "name": "OH_LowPowerAudioSink_SetLoudnessGain"
+  },
+  {
+    "first_introduced": "20",
     "name": "OH_LowPowerAudioSink_RegisterCallback"
   },
   {
@@ -219,4 +223,4 @@
     "first_introduced": "20",
     "name": "OH_LowPowerVideoSinkCallback_SetEosListener"
   }
-]
+]
