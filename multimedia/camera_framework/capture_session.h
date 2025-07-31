@@ -1163,6 +1163,39 @@ Camera_ErrorCode OH_CaptureSession_RegisterControlCenterEffectStatusChangeCallba
 Camera_ErrorCode OH_CaptureSession_UnregisterControlCenterEffectStatusChangeCallback(Camera_CaptureSession* session,
     OH_CaptureSession_OnControlCenterEffectStatusChange controlCenterEffectStatusChange);
 
+/**
+ * @brief Capture session macro status change callback.
+ *
+ * @param session Pointer to the {@link Camera_CaptureSession} which deliver the callback.
+ * @param isMacroDetected The macro detection result which delivered by the callback.
+ * @since 20
+ */
+typedef void (*OH_CaptureSession_OnMacroStatusChange)(Camera_CaptureSession* session, bool isMacroDetected);
+
+/**
+ * @brief Register macro status change event callback.
+ *
+ * @param session Pointer to the {@link Camera_CaptureSession} instance.
+ * @param macroStatusChange The {@link OH_CaptureSession_OnMacroStatusChange} to be registered.
+ * @return {@link #CAMERA_OK} if the method call succeeds.
+ *         {@link #CAMERA_INVALID_ARGUMENT} if parameter missing or parameter type incorrect.
+ * @since 20
+ */
+Camera_ErrorCode OH_CaptureSession_RegisterMacroStatusChangeCallback(
+    Camera_CaptureSession* session, OH_CaptureSession_OnMacroStatusChange macroStatusChange);
+
+/**
+ * @brief Unregister macro status change callback.
+ *
+ * @param session Pointer to the {@link Camera_CaptureSession} instance.
+ * @param macroStatusChange The {@link OH_CaptureSession_OnMacroStatusChange} to be unregistered.
+ * @return {@link #CAMERA_OK} if the method call succeeds.
+ *         {@link #CAMERA_INVALID_ARGUMENT} if parameter missing or parameter type incorrect.
+ * @since 20
+ */
+Camera_ErrorCode OH_CaptureSession_UnregisterMacroStatusChangeCallback(
+    Camera_CaptureSession* session, OH_CaptureSession_OnMacroStatusChange macroStatusChange);
+
 #ifdef __cplusplus
 }
 #endif
