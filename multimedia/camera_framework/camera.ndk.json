@@ -726,5 +726,13 @@
     {
         "first_introduced": "20",
         "name": "OH_CaptureSession_UnregisterControlCenterEffectStatusChangeCallback"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_CaptureSession_RegisterMacroStatusChangeCallback"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_CaptureSession_UnregisterMacroStatusChangeCallback"
     }
 ]
