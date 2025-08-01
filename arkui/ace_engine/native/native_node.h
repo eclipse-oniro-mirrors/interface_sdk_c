@@ -1823,6 +1823,8 @@ typedef enum {
      * Format of the {@link ArkUI_AttributeItem} parameter for obtaining the attribute:\n
      * .value[0].i32: component ID. \n
      *
+     * @deprecated since 20
+     * @useinstead OH_ArkUI_NodeUtils_GetNodeUniqueId
      */
     NODE_UNIQUE_ID = 95,
 
