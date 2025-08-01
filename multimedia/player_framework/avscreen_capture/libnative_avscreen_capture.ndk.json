@@ -162,5 +162,9 @@
     {
         "first_introduced": "20",
         "name": "OH_AVScreenCapture_StrategyForPickerPopUp"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_AVScreenCapture_StrategyForFillMode"
     }
 ]

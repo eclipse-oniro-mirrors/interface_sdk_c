@@ -20,7 +20,7 @@
  * @brief Provides APIs of request capability for Screen Capture.
  * @since 10
  */
- 
+
 /**
  * @file native_avscreen_capture_base.h
  *
@@ -31,7 +31,7 @@
  * @kit MediaKit
  * @since 10
  */
- 
+
 #ifndef NATIVE_AVSCREEN_CAPTURE_BASE_H
 #define NATIVE_AVSCREEN_CAPTURE_BASE_H
 
@@ -495,6 +495,24 @@ typedef enum OH_AVScreenCaptureContentChangedEvent_Enum {
     /* ScreenCapture stopped by user */
     OH_SCREEN_CAPTURE_CONTENT_UNAVAILABLE = 2,
 } OH_AVScreenCaptureContentChangedEvent;
+
+/**
+ * @brief content fill mode.
+ *
+ * @since 20
+ */
+typedef enum OH_AVScreenCapture_FillMode {
+    /**
+     * Keep the original image aspect ratio to match the target
+     * image size. If the ratio is inconsistent, there may be black edges.
+     */
+    OH_SCREENCAPTURE_FILLMODE_ASPECT_SCALE_FIT = 0,
+    /**
+     * The image is stretched to match the target output size.
+     * If the ratios are inconsistent, the image will be deformed.
+     */
+    OH_SCREENCAPTURE_FILLMODE_SCALE_TO_FILL = 1,
+} OH_AVScreenCapture_FillMode;
 
 /**
  * @brief When state of OH_AVScreenCapture is changed, the function pointer will be called.
