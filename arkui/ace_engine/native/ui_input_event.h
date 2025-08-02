@@ -309,7 +309,7 @@ int32_t OH_ArkUI_UIInputEvent_GetType(const ArkUI_UIInputEvent* event);
  * 2. For key events, use {@link OH_ArkUI_KeyEvent_GetType} instead.
  *
  * @param event Pointer to the current UI input event.
- * @return Returns the action type of the current UI input event; returns <b>0</b> if any parameter error occurs.
+ * @return Returns the action type of the current UI input event; returns <b>-1</b> if any parameter error occurs.
  * @since 12
  */
 int32_t OH_ArkUI_UIInputEvent_GetAction(const ArkUI_UIInputEvent* event);
