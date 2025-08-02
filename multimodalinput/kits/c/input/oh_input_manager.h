@@ -506,6 +506,10 @@ int32_t OH_Input_GetKeySwitch(const struct Input_KeyState* keyState);
 
 /**
  * @brief Inject system keys.
+ * since API 20, it is recommended to use OH_Input_RequestInjection
+ * to request authorization before using the interface,
+ * and then use OH_Input_QueryAuthorizedStatus to query the authorization status.
+ * When the authorization status is AUTHORIZED, use the interface.
  *
  * @param keyEvent - the key event to be injected.
  * @return OH_Input_InjectKeyEvent function result code.
@@ -638,6 +642,10 @@ int32_t OH_Input_GetKeyEventDisplayId(const struct Input_KeyEvent* keyEvent);
 
 /**
  * @brief Inject mouse event.
+ * since API 20, it is recommended to use OH_Input_RequestInjection
+ * to request authorization before using the interface,
+ * and then use OH_Input_QueryAuthorizedStatus to query the authorization status.
+ * When the authorization status is AUTHORIZED, use the interface.
  *
  * @param mouseEvent - the mouse event to be injected.
  * @return OH_Input_InjectMouseEvent function result code.
@@ -651,6 +659,10 @@ int32_t OH_Input_InjectMouseEvent(const struct Input_MouseEvent* mouseEvent);
 
 /**
  * @brief Inject mouse event using global coordinate.
+ * since API 20, it is recommended to use OH_Input_RequestInjection
+ * to request authorization before using the interface,
+ * and then use OH_Input_QueryAuthorizedStatus to query the authorization status.
+ * When the authorization status is AUTHORIZED, use the interface.
  *
  * @param mouseEvent - the mouse event to be injected, set up effective globalX globalY.
  * @return OH_Input_InjectMouseEventGlobal function result code.
@@ -899,6 +911,10 @@ int32_t OH_Input_GetMouseEventGlobalY(const struct Input_MouseEvent* mouseEvent)
 
 /**
  * @brief Inject touch event.
+ * since API 20, it is recommended to use OH_Input_RequestInjection
+ * to request authorization before using the interface,
+ * and then use OH_Input_QueryAuthorizedStatus to query the authorization status.
+ * When the authorization status is AUTHORIZED, use the interface.
  *
  * @param touchEvent - the touch event to be injected.
  * @return OH_Input_InjectTouchEvent function result code.
@@ -911,11 +927,16 @@ int32_t OH_Input_InjectTouchEvent(const struct Input_TouchEvent* touchEvent);
 
 /**
  * @brief Inject touch event using global coordinate.
+ * since API 20, it is recommended to use OH_Input_RequestInjection
+ * to request authorization before using the interface,
+ * and then use OH_Input_QueryAuthorizedStatus to query the authorization status.
+ * When the authorization status is AUTHORIZED, use the interface.
  *
  * @param touchEvent - the touch event to be injected, set up effective globalX globalY.
  * @return OH_Input_InjectTouchEventGlobal function result code.
  *         {@link INPUT_SUCCESS} inject touchEvent success.\n
  *         {@link INPUT_PARAMETER_ERROR} Parameter check failed.\n
+ *         {@link INPUT_PERMISSION_DENIED} Permission verification failed.\n
  * @since 20
  */
 int32_t OH_Input_InjectTouchEventGlobal(const struct Input_TouchEvent* touchEvent);
