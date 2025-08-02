@@ -314,6 +314,9 @@ typedef ArkUI_TouchRecognizerHandle* ArkUI_TouchRecognizerHandleArray;
 
 /**
  * @brief Defines a callback function for notifying gesture recognizer destruction.
+ *
+ * @param recognizer Indicates the pointer to a gesture recognizer.
+ * @param userData Indicates the custom data.
  * @since 12
  */
 typedef void (*ArkUI_GestureRecognizerDisposeNotifyCallback)(ArkUI_GestureRecognizer* recognizer, void* userData);
