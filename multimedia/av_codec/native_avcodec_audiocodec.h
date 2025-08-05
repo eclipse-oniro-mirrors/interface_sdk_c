@@ -203,8 +203,8 @@ OH_AVErrCode OH_AudioCodec_Reset(OH_AVCodec *codec);
  * be manually released by calling {@link OH_AVFormat_Destroy}.
  * @syscap SystemCapability.Multimedia.Media.AudioCodec
  * @param codec Pointer to an OH_AVCodec instance
- * @return Returns the OH_AVFormat handle pointer, the life cycle is refreshed with the next GetOutputMediaDescription,
- * or destroyed with OH_AVCodec;
+ * @return Returns the OH_AVFormat handle pointer, the life cycle is refreshed with
+ * the next {@link OH_AudioCodec_GetOutputDescription}, or destroyed with OH_AVCodec;
  * @since 11
  */
 OH_AVFormat *OH_AudioCodec_GetOutputDescription(OH_AVCodec *codec);
