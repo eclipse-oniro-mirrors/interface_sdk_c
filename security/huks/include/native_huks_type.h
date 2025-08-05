@@ -386,8 +386,9 @@ enum OH_Huks_ImportKeyType {
 };
 
 /**
- * @brief Enumerates the key storage modes.
- *
+ * @brief Enumerates the salt_len types to set when PSS padding is used in RSA signing or signature
+ * verification.
+ * 
  * @since 10
  * @version 1.0
  */
@@ -623,7 +624,7 @@ enum OH_Huks_SecureSignType {
 };
 
 /**
- * Enum for key wrap type
+ * Enum for key wrap type.
  *
  * @since 20
  */

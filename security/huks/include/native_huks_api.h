@@ -489,7 +489,7 @@ struct OH_Huks_Result OH_Huks_ListAliases(const struct OH_Huks_ParamSet *paramSe
  *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_FILE_OPERATION_FAIL} 12000004 - If failed to remove file,
  *             or if failed to write file.
  *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_COMMUNICATION_FAIL} 12000005 - If Ipc commuication failed.
- *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_CRYPTO_FAIL} 12000011 - If the base key file is not exit.
+ *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_ITEM_NOT_EXIST} 12000011 - If the key file is not exit.
  *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_INTERNAL_ERROR} 12000012 - If system error ocurred.
  *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_INSUFFICIENT_MEMORY} 12000014 - If the memory is insufficient.
  *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_INVALID_ARGUMENT} 12000018 - If the input parameter is invalid.
