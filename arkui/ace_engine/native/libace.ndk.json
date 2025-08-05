@@ -3043,7 +3043,7 @@
         "first_introduced": "20",
         "name": "OH_ArkUI_DragEvent_SetDataLoadParams"
     },
-        {
+    {
         "first_introduced": "20",
         "name": "OH_ArkUI_DragAction_SetDataLoadParams"
     },
@@ -3530,5 +3530,13 @@
     {
         "first_introduced": "20",
         "name": "OH_ArkUI_NativeModule_GetNavDestinationAniParam"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_ArkUI_NativeModule_GetDrawableDescriptorFromAniValue"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_ArkUI_NativeModule_GetDrawableDescriptorFromResourceAniValue"
     }
 ]
