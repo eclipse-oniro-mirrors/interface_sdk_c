@@ -1115,6 +1115,14 @@ extern const char *OH_MD_KEY_VIDEO_ENCODER_MAX_B_FRAMES;
  */
 extern const char *OH_MD_KEY_VIDEO_ENCODER_ROI_PARAMS;
 /**
+ *
+ * @brief Key for front moov of the mp4 and m4a media file, value type is int32_t (0 or 1):1 is enabled, 0 otherwise.
+ * This key may affect the performance of the stop function of the mp4 and m4a muxer.
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
+ * @since 20
+ */
+extern const char *OH_MD_KEY_ENABLE_MOOV_FRONT;
+/**
  * @brief Key for the desired encoding quality, value type is int32_t, this key is only
  * supported for encoders that are configured in Stable Quality RateControl, the higher
  * values generally result in more efficient(smaller-sized) encoding.
