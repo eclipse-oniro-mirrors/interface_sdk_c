@@ -180,6 +180,7 @@ HiDebug_ErrorCode OH_HiDebug_SetMallocDispatchTable(struct HiDebug_MallocDispatc
  * @brief Obtain current MallocDispatch table.
  *
  * @return Returns a pointer to MallocDispatch table on success, or NULL on failure.
+ *
  * @since 20
  */
 HiDebug_MallocDispatch* OH_HiDebug_GetDefaultMallocDispatchTable(void);
