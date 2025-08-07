@@ -115,7 +115,7 @@ typedef enum {
  * @since 12
  */
 typedef enum {
-    /* Sequential recognition. Gestures are recognized in the registration sequence until all gestures are recognized
+    /** Sequential recognition. Gestures are recognized in the registration sequence until all gestures are recognized
      * successfully. Once one gesture fails to be recognized, all subsequent gestures fail to be recognized.
      * Only the last gesture in the gesture group can respond to the end event. */
     SEQUENTIAL_GROUP = 0,
