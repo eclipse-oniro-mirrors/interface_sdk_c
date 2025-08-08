@@ -334,5 +334,9 @@
   {
     "first_introduced": "11",
     "name": "OH_AI_ExportWeightsCollaborateWithMicro"
+  },
+  {
+    "first_introduced": "20",
+    "name": "OH_AI_ModelLoadConfig"
   }
 ]
