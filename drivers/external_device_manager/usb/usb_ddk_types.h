@@ -301,7 +301,9 @@ typedef enum {
      *  @deprecate since 16
      */
     USB_DDK_FAILED = -1,
-    /** @error Permission denied. */
+    /** @error Permission denied.
+     *  @since 14
+     */
     USB_DDK_NO_PERM = 201,
     /** @error Invalid parameter. */
     USB_DDK_INVALID_PARAMETER = 401,
@@ -319,7 +321,9 @@ typedef enum {
     USB_DDK_DEVICE_BUSY = -6,
     /** @error Invalid operation. */
     USB_DDK_INVALID_OPERATION = 27400002,
-    /** @error Device I/O operation failed. */
+    /** @error Device I/O operation failed.
+     *  @since 14
+     */
     USB_DDK_IO_FAILED = 27400003,
     /** @error Transmission timeout. */
     USB_DDK_TIMEOUT = 27400004,
