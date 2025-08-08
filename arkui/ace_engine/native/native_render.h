@@ -272,8 +272,8 @@ int32_t OH_ArkUI_RenderNodeUtils_AddChild(ArkUI_RenderNodeHandle node, ArkUI_Ren
  *
  * @param node the parent RenderNode.
  * @param child the child RenderNode to insert.
- * @param sibling the reference sibling node.
- *                If the sibling node does not exist in the children, the child component will be added to the end.
+ * @param sibling the reference sibling node. If the sibling node does not exist in the children,
+ *     the child component will be added to the end.
  * @return Error code.
  *         {@link ARKUI_ERROR_CODE_NO_ERROR} Success.
  *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} Function parameter exception.
@@ -1144,7 +1144,7 @@ int32_t OH_ArkUI_RenderNodeUtils_AttachColorProperty(
  * @brief Attach a float animatable property to the target content modifier.
  *
  * @param modifier {@link ArkUI_RenderContentModifierHandle} Set float animatable property to the target content
- * modifier.
+ *     modifier.
  * @param property {@link ArkUI_FloatAnimatablePropertyHandle} Handle to the float animatable property.
  * @return Error code.
  *         {@link ARKUI_ERROR_CODE_NO_ERROR} Success.
@@ -1159,7 +1159,7 @@ int32_t OH_ArkUI_RenderNodeUtils_AttachFloatAnimatableProperty(
  * @brief Attach a vector2 animatable property to the target content modifier.
  *
  * @param modifier {@link ArkUI_RenderContentModifierHandle} Set vector2 animatable property to the target content
- * modifier.
+ *     modifier.
  * @param property {@link ArkUI_Vector2AnimatablePropertyHandle} Handle to the vector2 animatable property.
  * @return Error code.
  *         {@link ARKUI_ERROR_CODE_NO_ERROR} Success.
@@ -1174,7 +1174,7 @@ int32_t OH_ArkUI_RenderNodeUtils_AttachVector2AnimatableProperty(
  * @brief Attach a color property to the target content modifier.
  *
  * @param modifier {@link ArkUI_RenderContentModifierHandle} Set color animatable property to the target content
- * modifier.
+ *     modifier.
  * @param property {@link ArkUI_ColorAnimatablePropertyHandle} Handle to the color animatable property.
  * @return Error code.
  *         {@link ARKUI_ERROR_CODE_NO_ERROR} Success.
