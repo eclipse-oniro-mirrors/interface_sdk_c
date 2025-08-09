@@ -457,6 +457,10 @@
     },
     {
         "first_introduced": "20",
+        "name": "OH_AudioStreamManager_IsEnableIntelligentNoiseReduction"  
+    },
+    {
+        "first_introduced": "20",
         "name": "OH_AudioStreamBuilder_SetCapturerWillMuteWhenInterrupted"
     },
     {
