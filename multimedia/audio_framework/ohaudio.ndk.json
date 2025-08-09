@@ -455,10 +455,7 @@
         "first_introduced": "20",
         "name": "OH_AudioStreamManager_IsAcousticEchoCancelerSupported"
     },
-    {
-        "first_introduced": "20",
-        "name": "OH_AudioStreamManager_IsEnableIntelligentNoiseReduction"  
-    },
+
     {
         "first_introduced": "20",
         "name": "OH_AudioStreamBuilder_SetCapturerWillMuteWhenInterrupted"
@@ -574,5 +571,9 @@
     {
         "first_introduced": "20",
         "name": "OH_AudioStreamBuilder_SetRendererWriteDataCallbackAdvanced"
+    },
+    {
+        "first_introduced": "21",
+        "name": "OH_AudioStreamManager_IsEnableIntelligentNoiseReduction"  
     }
 ]
