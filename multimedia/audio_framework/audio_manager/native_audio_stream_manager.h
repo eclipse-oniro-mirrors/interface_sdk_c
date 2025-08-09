@@ -140,13 +140,13 @@ bool OH_AudioStreamManager_IsFastRecordingSupported(
 
 
 /**
- * @brief Return if the system VOIP scene supports intelligent noise reduction.
+ * @brief Return if the system recording supports intelligent noise reduction.
  *
  * @param streamManager {@link OH_AudioStreamManager} handle
  *     provided by {@link OH_AudioManager_GetAudioStreamManager}.
  * @param streamInfo reference of stream info structure to describe basic audio format.
  * @param source stream source type used to decide the audio device and pipe type selection result.
- * @return {@code true} if the system VOIP scene supports intelligent noise reduction.
+ * @return {@code true} if the system recording supports supports intelligent noise reduction.
  * @since 21
  */
 bool OH_AudioStreamManager_IsEnableIntelligentNoiseReduction(
