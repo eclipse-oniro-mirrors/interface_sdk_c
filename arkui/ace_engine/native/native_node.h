@@ -3722,7 +3722,8 @@ typedef enum {
    NODE_TEXT_AREA_MIN_LINES = 8029,
  
     /**
-     * @brief Set the max lines of the node with scroll. This attribute can be set, reset, and obtained as required through APIs.
+     * @brief Set the max lines of the node with scroll.
+     * This attribute can be set, reset, and obtained as required through APIs.
      *
      * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
      * .value[0].i32: max lines count with scroll.
@@ -3730,8 +3731,7 @@ typedef enum {
      * Format of the return value {@link ArkUI_AttributeItem}: \n
      * .value[0].i32: max line count with scroll.\n
      *
-     * @since 20 
-     *
+     * @since 20
      */
    NODE_TEXT_AREA_MAX_LINES_WITH_SCROLL = 8030,
 
@@ -4949,11 +4949,11 @@ typedef enum {
      *
      * Attribute setting method {@Link ArkUI_AttributeItem} Parameter format:\n
      * .size: number of the images.\n
-     * .object: array of the images, the type is {@Link ArkUI_ImageAnimatorFrameInfo} array.\n
+     * .object: array of the images, the type is {@ArkUI_ImageAnimatorFrameInfo} array.\n
      * \n
      * Attribute obtaining method return value {@Link ArkUI_AttributeItem} format:\n
      * .size: number of the images.\n
-     * .object: array of the images, the type is {@Link ArkUI_ImageAnimatorFrameInfo} array.\n
+     * .object: array of the images, the type is {@ArkUI_ImageAnimatorFrameInfo} array.\n
      *
     */
     NODE_IMAGE_ANIMATOR_IMAGES = ARKUI_NODE_IMAGE_ANIMATOR * MAX_NODE_SCOPE_NUM,
@@ -8419,6 +8419,7 @@ int32_t OH_ArkUI_NodeEvent_GetStringValue(ArkUI_NodeEvent* event, int32_t index,
  * @param size Indicates the array length.
  * @return Returns the error code.
  *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_NODE_EVENT_NO_RETURN} if the component event does not support return values.
  *         Returns {@link ARKUI_ERROR_CODE_NODE_EVENT_PARAM_INVALID} if data does not exist in the component event.
  * @since 12
  */
