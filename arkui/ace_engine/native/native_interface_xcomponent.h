@@ -93,6 +93,12 @@ typedef enum {
     ARKUI_XCOMPONENT_AI_ANALYSIS_STOPPED = 110003,
 } ArkUI_XComponent_ImageAnalyzerState;
 
+/**
+ * @brief Represents the type of touch event.
+ *
+ * @since 8
+ * @version 1.0
+ */
 typedef enum {
     /** Trigger a touch event when a finger is pressed. */
     OH_NATIVEXCOMPONENT_DOWN = 0,
@@ -210,6 +216,12 @@ typedef enum {
     OH_NATIVEXCOMPONENT_SOURCETOOL_TOUCHPAD = 9,
 } OH_NativeXComponent_TouchEvent_SourceTool;
 
+/**
+ * @brief Represents the historical point.
+ *
+ * @since 10
+ * @version 1.0
+ */
 typedef struct {
     /** Unique identifier of a finger. */
     int32_t id;
@@ -237,6 +249,12 @@ typedef struct {
     OH_NativeXComponent_TouchEvent_SourceTool sourceTool;
 } OH_NativeXComponent_HistoricalPoint;
 
+/**
+ * @brief Represents the touch point information of touch event.
+ *
+ * @since 8
+ * @version 1.0
+ */
 typedef struct {
     /** Unique identifier of a finger. */
     int32_t id;
@@ -260,7 +278,12 @@ typedef struct {
     bool isPressed;
 } OH_NativeXComponent_TouchPoint;
 
-// Represents the touch point information.
+/**
+ * @brief Represents the touch event.
+ *
+ * @since 8
+ * @version 1.0
+ */
 typedef struct {
     /** Unique identifier of a finger. */
     int32_t id;
@@ -553,7 +576,8 @@ int32_t OH_NativeXComponent_GetTouchPointDisplayY(OH_NativeXComponent* component
  *
  * @param component Indicates the pointer to this <b>OH_NativeXComponent</b> instance.
  * @param window Indicates the native window handler.
- * @param historicalPoints Indicates the pointer to the current historicalPoints.
+ * @param size Length of the historical touch point array.
+ * @param historicalPoints Pointer to the historical touch point array.
  * @return Returns the status code of the execution.
  * @since 10
  * @version 1.0
@@ -622,7 +646,7 @@ int32_t OH_NativeXComponent_GetExtraMouseEventInfo(OH_NativeXComponent* componen
 /**
  * @brief Obtains the state of the modifier keys of the mouse event.
  *
- * @param ExtraMouseEventInfo Indicates the pointer to this <b>OH_NativeXComponent_ExtraMouseEventInfo</b> instance.
+ * @param extraMouseEventInfo Indicates the pointer to this <b>OH_NativeXComponent_ExtraMouseEventInfo</b> instance.
  * @param keys Pointer to a variable where the current combination of pressed modifier keys will be returned.
  *        The application can use bitwise operations to determine the state of each modifier key.
  *        Modifier keys can be referred to {@link ArkUI_ModifierKeyName}.
@@ -632,7 +656,8 @@ int32_t OH_NativeXComponent_GetExtraMouseEventInfo(OH_NativeXComponent* componen
  * @since 20
  * @version 1.0
  */
-int32_t OH_NativeXComponent_GetMouseEventModifierKeyStates(OH_NativeXComponent_ExtraMouseEventInfo* ExtraMouseEventInfo, uint64_t* keys);
+int32_t OH_NativeXComponent_GetMouseEventModifierKeyStates(
+    OH_NativeXComponent_ExtraMouseEventInfo* extraMouseEventInfo, uint64_t* keys);
 
 /**
  * @brief Registers a callback for this <b>OH_NativeXComponent</b> instance.
@@ -796,7 +821,7 @@ int32_t OH_NativeXComponent_GetKeyEventScrollLockState(OH_NativeXComponent_KeyEv
  * @brief Set the Expected FrameRateRange.
  *
  * @param component Indicates the pointer to this <b>OH_NativeXComponent</b> instance.
- * @param callback Indicates the pointer to a expected rate range.
+ * @param range Indicates the pointer to a expected rate range.
  * @return Returns the status code of the execution.
  * @since 11
  * @version 1.0
