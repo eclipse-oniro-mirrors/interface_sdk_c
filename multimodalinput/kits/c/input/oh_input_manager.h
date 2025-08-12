@@ -2085,6 +2085,18 @@ Input_Result OH_Input_UnregisterDeviceListeners();
 Input_Result OH_Input_GetFunctionKeyState(int32_t keyCode, int32_t *state);
 
 /**
+ * @brief Queries the maximum number of touch points supported by the current device.
+ *      If -1 is returned, the number is unknown.
+ *
+ * @param count Maximum number of touch points supported.
+ * @return OH_Input_QueryMaxTouchPoints function api result code
+ *         {@link INPUT_SUCCESS} if the operation is successful;
+ *         {@link INPUT_PARAMETER_ERROR} if count is a null pointer.
+ * @since 20
+*/
+Input_Result OH_Input_QueryMaxTouchPoints(int32_t *count);
+
+/**
  * @brief Get pointer location.
  *
  * @param displayId The displayId for the pointer location.
@@ -2099,19 +2111,6 @@ Input_Result OH_Input_GetFunctionKeyState(int32_t keyCode, int32_t *state);
  * @since 20
  */
 Input_Result OH_Input_GetPointerLocation(int32_t *displayId, double *displayX, double *displayY);
-
-/**
- * @brief Queries the maximum number of touch points supported by the current device.
- *      If -1 is returned, the number is unknown.
- *
- * @param count Maximum number of touch points supported.
- * @return OH_Input_QueryMaxTouchPoints function api result code
- *         {@link INPUT_SUCCESS} if the operation is successful;
- *         {@link INPUT_PARAMETER_ERROR} if count is a null pointer.
- * @since 20
-*/
-Input_Result OH_Input_QueryMaxTouchPoints(int32_t *count);
-
 #ifdef __cplusplus
 }
 #endif
