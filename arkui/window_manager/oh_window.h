@@ -314,6 +314,16 @@ WindowManager_ErrorCode OH_NativeWindowManager_GetAllMainWindowInfo(
 void OH_NativeWindowManager_ReleaseAllMainWindowInfo(WindowManager_MainWindowInfo* infoList);
 
 /**
+ * @brief Callback interface for getting main windows' snapshot.
+ *
+ * @param snapshotPixelMapList List of windows' snapshot
+ * @param snapshotListSize Size of snapshotPixelMapList
+ * @since 21
+ */ 
+typedef void (*OH_NativeWindowManager_WindowSnapshotCallback)(const OH_PixelmapNative* snapshotPixelMapList,
+    size_t snapshotListSize);
+
+/**
  * @brief Get snapshot of  the specified windows.
  *
  * @permission {@code ohos.permission.CUSTOM_SCREEN_CAPTURE}
@@ -330,16 +340,6 @@ void OH_NativeWindowManager_ReleaseAllMainWindowInfo(WindowManager_MainWindowInf
  */
 WindowManager_ErrorCode OH_NativeWindowManager_GetMainWindowSnapshot(int32_t* windowIdList, size_t windowIdListSize,
     WindowManager_WindowSnapshotConfig config, OH_NativeWindowManager_WindowSnapshotCallback callback);
-
-/**
- * @brief Callback interface for getting main windows' snapshot.
- *
- * @param snapshotPixelMapList List of windows' snapshot
- * @param snapshotListSize Size of snapshotPixelMapList
- * @since 21
- */ 
-typedef void (*OH_NativeWindowManager_MainWindowSnapshotCallback)(const OH_PixelmapNative* snapshotPixelMapList,
-    size_t snapshotListSize)
 
 /**
  * @brief Release main window snapshot list.
