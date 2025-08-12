@@ -314,7 +314,7 @@ WindowManager_ErrorCode OH_NativeWindowManager_GetAllMainWindowInfo(
 void OH_NativeWindowManager_ReleaseAllMainWindowInfo(WindowManager_MainWindowInfo* infoList);
 
 /**
- * @brief Get snapshot of the window with the specified id.
+ * @brief Get snapshot of  the specified windows.
  *
  * @permission {@code ohos.permission.CUSTOM_SCREEN_CAPTURE}
  * @param windowIdList Main window id list for getting snapshot.
