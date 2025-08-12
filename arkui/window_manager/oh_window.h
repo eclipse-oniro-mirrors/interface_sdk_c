@@ -334,8 +334,8 @@ WindowManager_ErrorCode OH_NativeWindowManager_GetMainWindowSnapshot(int32_t* wi
 /**
  * @brief Callback interface for getting main windows' snapshot.
  *
- * @param snapshotPixelMapList list of windows' snapshot
- * @param snapshotListSize size of snapshotPixelMapList
+ * @param snapshotPixelMapList List of windows' snapshot
+ * @param snapshotListSize Size of snapshotPixelMapList
  * @since 21
  */ 
 typedef void (*OH_NativeWindowManager_MainWindowSnapshotCallback)(const OH_PixelmapNative* snapshotPixelMapList,
