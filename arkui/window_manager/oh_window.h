@@ -302,7 +302,7 @@ int32_t OH_WindowManager_InjectTouchEvent(
  *         {@link WINDOW_MANAGER_ERRORCODE_SYSTEM_ABNORMAL} the window manager service works abnormally.
  * @since 21
  */
-WindowManager_ErrorCode OH_NativeWindowManager_GetAllMainWindowInfo(
+int32_t OH_WindowManager_GetAllMainWindowInfo(
     WindowManager_MainWindowInfo** infoList, size_t* mainWindowInfoSize);
 
 /**
@@ -311,7 +311,7 @@ WindowManager_ErrorCode OH_NativeWindowManager_GetAllMainWindowInfo(
  * @param infoList Pointer to the main window info list.
  * @since 21
  */
-void OH_NativeWindowManager_ReleaseAllMainWindowInfo(WindowManager_MainWindowInfo* infoList);
+void OH_WindowManager_ReleaseAllMainWindowInfo(WindowManager_MainWindowInfo* infoList);
 
 /**
  * @brief Callback interface for getting main windows' snapshot.
@@ -320,7 +320,7 @@ void OH_NativeWindowManager_ReleaseAllMainWindowInfo(WindowManager_MainWindowInf
  * @param snapshotListSize Size of snapshotPixelMapList
  * @since 21
  */ 
-typedef void (*OH_NativeWindowManager_WindowSnapshotCallback)(const OH_PixelmapNative* snapshotPixelMapList,
+typedef void (*OH_WindowManager_WindowSnapshotCallback)(const OH_PixelmapNative* snapshotPixelMapList,
     size_t snapshotListSize);
 
 /**
@@ -338,8 +338,8 @@ typedef void (*OH_NativeWindowManager_WindowSnapshotCallback)(const OH_PixelmapN
  *         {@link WINDOW_MANAGER_ERRORCODE_SYSTEM_ABNORMAL} the window manager service works abnormally.
  * @since 21
  */
-WindowManager_ErrorCode OH_NativeWindowManager_GetMainWindowSnapshot(int32_t* windowIdList, size_t windowIdListSize,
-    WindowManager_WindowSnapshotConfig config, OH_NativeWindowManager_WindowSnapshotCallback callback);
+int32_t OH_WindowManager_GetMainWindowSnapshot(int32_t* windowIdList, size_t windowIdListSize,
+    WindowManager_WindowSnapshotConfig config, OH_WindowManager_WindowSnapshotCallback callback);
 
 /**
  * @brief Release main window snapshot list.
@@ -347,7 +347,7 @@ WindowManager_ErrorCode OH_NativeWindowManager_GetMainWindowSnapshot(int32_t* wi
  * @param snapshotPixelMapList Indicates the pointer of a windows' snapshot list.
  * @since 21
  */
-void OH_NativeWindowManager_ReleaseMainWindowSnapshot(const OH_PixelmapNative* snapshotPixelMapList);
+void OH_WindowManager_ReleaseMainWindowSnapshot(const OH_PixelmapNative* snapshotPixelMapList);
 
 #ifdef __cplusplus
 }
