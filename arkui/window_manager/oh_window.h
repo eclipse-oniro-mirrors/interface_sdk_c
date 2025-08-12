@@ -290,10 +290,10 @@ int32_t OH_WindowManager_InjectTouchEvent(
     int32_t windowId, Input_TouchEvent* touchEvent, int32_t windowX, int32_t windowY);
 
 /**
- * @brief Get all main window information, including screen id, window id and window label.
+ * @brief Get all main window info on device.
  *
- * @param infoList main window info list.
- * @param mainWindowInfoSize size of info list.
+ * @param infoList Indicates the pointer to a main window info list.
+ * @param mainWindowInfoSize The size of main window info list.
  * @return Returns the status code of the execution.
  *         {@link WS_OK} the function call is successful.
  *         {@link WINDOW_MANAGER_ERRORCODE_NO_PERMISSION} permission verification failed.
@@ -305,46 +305,47 @@ WindowManager_ErrorCode OH_NativeWindowManager_GetAllMainWindowInfo(
     WindowManager_MainWindowInfo** infoList, size_t* mainWindowInfoSize);
 
 /**
- * @brief Release all main window information.
+ * @brief Release all main window info list.
  *
  * @param infoList Pointer to the main window info list.
- * @param mainWindowInfoSize size of info list.
- * @return Returns the status code of the execution.
- *         {@link WS_OK} the function call is successful.
- *         {@link WINDOW_MANAGER_ERRORCODE_NO_PERMISSION} permission verification failed.
- *         {@link WINDOW_MANAGER_ERRORCODE_DEVICE_NOT_SUPPORTED} capability not supported.
  * @since 21
  */
-WindowManager_ErrorCode OH_NativeWindowManager_ReleaseAllMainWindowInfo(
-    WindowManager_MainWindowInfo* infoList);
+void OH_NativeWindowManager_ReleaseAllMainWindowInfo(WindowManager_MainWindowInfo* infoList);
 
 /**
- * @brief Get callback interface for capturing a screenshot of a specified window.
+ * @brief Get snapshot of the window with the specified id.
  *
- * @param snapshotPixelMapList list of windows' snapshot
- * @param snapshotListSize size of snapshotPixelMapList
+ * @param windowIdList Main window id list for getting snapshot.
+ * @param windowIdListSize Size of main window id list.
+ * @param config Configuration for getting snapshot.
+ * @param callback Snapshot callback object.
  * @return Returns the status code of the execution.
  *         {@link WS_OK} the function call is successful.
  *         {@link WINDOW_MANAGER_ERRORCODE_NO_PERMISSION} permission verification failed.
  *         {@link WINDOW_MANAGER_ERRORCODE_DEVICE_NOT_SUPPORTED} capability not supported.
  *         {@link WINDOW_MANAGER_ERRORCODE_SYSTEM_ABNORMAL} the window manager service works abnormally.
  * @since 21
+ */
+WindowManager_ErrorCode OH_NativeWindowManager_GetMainWindowSnapshot(int32_t* windowIdList, size_t windowIdListSize,
+    WindowManager_WindowSnapshotConfig config, OH_NativeWindowManager_WindowSnapshotCallback callback);
+
+/**
+ * @brief Callback interface for getting main windows' snapshot.
+ *
+ * @param snapshotPixelMapList list of windows' snapshot
+ * @param snapshotListSize size of snapshotPixelMapList
+ * @since 21
  */ 
 typedef void (*OH_NativeWindowManager_MainWindowSnapshotCallback)(const OH_PixelmapNative* snapshotPixelMapList,
     size_t snapshotListSize)
 
 /**
- * @brief Release all main window information.
+ * @brief Release main window snapshot list.
  *
- * @param snapshotPixelMapList list of windows' snapshot.
- * @return Returns the status code of the execution.
- *         {@link WS_OK} the function call is successful.
- *         {@link WINDOW_MANAGER_ERRORCODE_NO_PERMISSION} permission verification failed.
- *         {@link WINDOW_MANAGER_ERRORCODE_DEVICE_NOT_SUPPORTED} capability not supported.
+ * @param snapshotPixelMapList Indicates the pointer of a windows' snapshot list.
  * @since 21
  */
-WindowManager_ErrorCode OH_NativeWindowManager_ReleaseMainWindowSnapshot(
-    const OH_PixelmapNative* snapshotPixelMapList);
+void OH_NativeWindowManager_ReleaseMainWindowSnapshot(const OH_PixelmapNative* snapshotPixelMapList);
 
 #ifdef __cplusplus
 }
