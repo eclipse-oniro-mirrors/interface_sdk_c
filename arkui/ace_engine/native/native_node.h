@@ -50,6 +50,11 @@
 extern "C" {
 #endif
 
+/**
+ * @brief Define commponents max function size.
+ *
+ * @since 12
+ */
 #define MAX_NODE_SCOPE_NUM 1000
 
 /**
@@ -6815,6 +6820,11 @@ typedef enum {
     NODE_EMBEDDED_COMPONENT_OPTION,
 } ArkUI_NodeAttributeType;
 
+/**
+ * @brief Define commponent event max args size.
+ *
+ * @since 12
+ */
 #define MAX_COMPONENT_EVENT_ARG_NUM 12
 /**
  * @brief Defines the parameter type of the component callback event.
@@ -9694,7 +9704,6 @@ ArkUI_ContextHandle OH_ArkUI_GetContextByNode(ArkUI_NodeHandle node);
 * @return Error code.
 *         {@link ARKUI_ERROR_CODE_NO_ERROR} Success.
 *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} Function parameter exception.
-*         {@link ARKUI_ERROR_CODE_ATTRIBUTE_OR_EVENT_NOT_SUPPORTED} The component does not support this event.
 * @since 12
 */
 int32_t OH_ArkUI_RegisterSystemColorModeChangeEvent(ArkUI_NodeHandle node,
@@ -9718,7 +9727,6 @@ void OH_ArkUI_UnregisterSystemColorModeChangeEvent(ArkUI_NodeHandle node);
 * @return Error code.
 *         {@link ARKUI_ERROR_CODE_NO_ERROR} Success.
 *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} Function parameter exception.
-*         {@link ARKUI_ERROR_CODE_ATTRIBUTE_OR_EVENT_NOT_SUPPORTED} The component does not support this event.
 * @since 12
 */
 int32_t OH_ArkUI_RegisterSystemFontStyleChangeEvent(ArkUI_NodeHandle node,
