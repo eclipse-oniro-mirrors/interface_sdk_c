@@ -24,8 +24,8 @@
 
 /**
  * @file init_sync.h
- * @kit BasicServicesKit
  * @brief Declares APIs for notifying events to the Init process.
+ * @kit BasicServicesKit
  * @library NA
  * @syscap SystemCapability.Startup.SystemInfo
  * @since 10
@@ -61,8 +61,8 @@ extern int NotifyInit(unsigned long event);
 #ifdef __cplusplus
 #if __cplusplus
 }
-#endif
-#endif
+#endif // #if __cplusplus
+#endif // #ifdef __cplusplus
 
 #endif // BASE_STARTUP_INITLITE_NOTIFY_H
 /** @} */
