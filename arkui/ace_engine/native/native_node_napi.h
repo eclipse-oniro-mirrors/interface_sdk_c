@@ -397,12 +397,13 @@ ArkUI_ErrorCode OH_ArkUI_InitModuleForArkTSEnv(napi_env env);
 void OH_ArkUI_NotifyArkTSEnvDestroy(napi_env env);
 
 /**
- * @brief Register a callback to be executed at the end of the next idle frame.If there is no next frame, will request one automatically.
+ * @brief Register a callback to be executed at the end of the next idle frame.
+ *        If there is no next frame, will request one automatically.
  *
  * @param uiContext ArkUI_ContextHandle.
  * @param userData Indicates the custom data to be saved.
  * @param callback Custom callback function.
- * @param nanoTimeLeft The remaining time from the deadline for this frame.
+ * @param nanoTimeLeft Time remaining until the end of the current frame.
  * @param frameCount Frame count.
  * @return Returns the result code.
  *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
