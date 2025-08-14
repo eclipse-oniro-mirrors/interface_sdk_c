@@ -140,15 +140,15 @@ bool OH_AudioStreamManager_IsFastRecordingSupported(
 
 
 /**
- * @brief Return if the system recording supports ANR for current device.
+ * @brief Return if the system recording supports intelligent noise reduction for current device.
  *
  * @param streamManager {@link OH_AudioStreamManager} handle
  *     provided by {@link OH_AudioManager_GetAudioStreamManager}.
  * @param source stream source type used to decide the audio device and pipe type selection result.
- * @return {@code true} if the system recording supports supports ANR for current device.
+ * @return {@code true} if the system recording supports supports intelligent noise reduction for current device.
  * @since 21
  */
-bool OH_AudioStreamManager_IsCurrentDeviceEnableAnr(
+bool OH_AudioStreamManager_IsCurrentDeviceEnableIntelligentNoiseReduction(
     OH_AudioStreamManager *streamManager, OH_AudioStream_SourceType source);
 
 #ifdef __cplusplus
