@@ -318,7 +318,7 @@ typedef struct HiDebug_Backtrace_Object__* HiDebug_Backtrace_Object;
  *
  * @since 21
  */
-typedef struct GraphicsMemorySummary {
+typedef struct HiDebug_GraphicsMemorySummary {
     /**
      * GL memory
      */
@@ -328,7 +328,7 @@ typedef struct GraphicsMemorySummary {
      * graph memory
      */
     uint32_t graph;
-} GraphicsMemorySummary;
+} HiDebug_GraphicsMemorySummary;
 
 #ifdef __cplusplus
 }
