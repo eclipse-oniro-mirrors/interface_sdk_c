@@ -349,21 +349,7 @@ typedef struct OH_NativeXComponent OH_NativeXComponent;
  * @version 1.0
  */
 typedef struct OH_NativeXComponent_Callback {
-    /**
-     * @brief Called when the surface is created.
-     *
-     * <p><strong>API Note</strong>
-     *
-     * <strong>Performance Note</strong>
-     * <p>By default, the window buffer in the current operating system is accessed via the CPU. If an application
-     * does not need to access the window buffer data using the CPU, it can proactively disable CPU access to
-     * enhance energy efficiency and reduce power consumption.
-     * </p>
-     * <p>For details about how to optimize power consumption for data read/write operations in data buffers,
-     * see [How do I proactively disable CPU access to window buffers to reduce power consumption?]{@link https://developer.huawei.com/consumer/en/doc/harmonyos-faqs/faqs-arkgraphics-2d-14}.</p>
-     * </p>
-     *
-     */
+    /** Called when the surface is created. */
     void (*OnSurfaceCreated)(OH_NativeXComponent* component, void* window);
     /** Called when the surface is changed. */
     void (*OnSurfaceChanged)(OH_NativeXComponent* component, void* window);
