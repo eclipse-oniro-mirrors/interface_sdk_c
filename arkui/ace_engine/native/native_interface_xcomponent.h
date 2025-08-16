@@ -843,8 +843,8 @@ int32_t OH_NativeXComponent_UnregisterOnFrameCallback(OH_NativeXComponent* compo
  * @param component Indicates the pointer to the <b>OH_NativeXComponent</b> instance.
  * @param root Indicates the pointer to the component instance created by the native API.
  * @return Returns the error code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ *         Returns {@link OH_NATIVEXCOMPONENT_RESULT_SUCCESS} if the operation is successful.
+ *         Returns {@link OH_NATIVEXCOMPONENT_RESULT_BAD_PARAMETER} if a parameter error occurs.
  *
  * @since 12
  * @deprecated since 20
@@ -858,8 +858,8 @@ int32_t OH_NativeXComponent_AttachNativeRootNode(OH_NativeXComponent* component,
  * @param component Indicates the pointer to the <b>OH_NativeXComponent</b> instance.
  * @param root Indicates the pointer to the component instance created by the native API.
  * @return Returns the error code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ *         Returns {@link OH_NATIVEXCOMPONENT_RESULT_SUCCESS} if the operation is successful.
+ *         Returns {@link OH_NATIVEXCOMPONENT_RESULT_BAD_PARAMETER} if a parameter error occurs.
  *
  * @since 12
  * @deprecated since 20
