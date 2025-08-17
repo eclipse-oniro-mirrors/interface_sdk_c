@@ -95,7 +95,7 @@ if (host_os == "mac") {
   windows_x86_64_toolchain_dir = "${toolchains_dir}/windows-x86_64"
   ohos_arm64_toolchain_dir = "${toolchains_dir}/ohos-arm64"
   linux_x86_64_toolchains_dir = "${toolchains_dir}/linux-x86_64"
-  prebuilts_python = "//prebuilts/python"
+  prebuilts_python = "//prebuilts/python_llvm"
   ohos_ndk_toolchains("linux_x86_64") {
     dest_dir = "$ndk_linux_toolchains_out_dir"
     sources = [
