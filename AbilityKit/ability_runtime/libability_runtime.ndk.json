@@ -180,6 +180,14 @@
         "name": "OH_AbilityRuntime_ApplicationContextGetResourceDir"
     },
 	{
+        "first_introduced": "20",
+        "name": "OH_AbilityRuntime_ApplicationContextGetLaunchParameter"
+    },
+	{
+        "first_introduced": "20",
+        "name": "OH_AbilityRuntime_ApplicationContextGetLatestParameter"
+    },
+	{
         "first_introduced": "21",
         "name": "OH_AbilityRuntime_ApplicationContextGetVersionCode"
     }
