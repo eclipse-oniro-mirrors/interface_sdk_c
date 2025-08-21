@@ -7317,6 +7317,16 @@ typedef enum {
     NODE_ON_HOVER_MOVE = 29,
 
     /**
+     * @brief Defines the size change event.
+     * 
+     * The event will be triggered when the component size changes.
+     * When the event callback occurs, the {@link ArkUI_NodeEvent} object can be obtained from the
+     * {@link ArkUI_UIInputEvent} object. \n
+     * @since 21
+    */
+    NODE_ON_SIZE_CHANGE = 30,
+
+    /**
      * @brief Triggers onDetectResultUpdate callback
      * when the text is set to TextDataDetectorConfig and recognized successfully.
      *
@@ -10138,6 +10148,36 @@ int32_t OH_ArkUI_PostUITask(ArkUI_ContextHandle context, void* taskData, void (*
  * @since 20
  */
 int32_t OH_ArkUI_PostUITaskAndWait(ArkUI_ContextHandle context, void* taskData, void (*task)(void* taskData));
+
+/**
+ * @brief Register common event callback of target node.
+ *
+ * @param node The ArkUI-NodeHandle pointer.
+ * @param eventType Indicates the type of event to set.
+ * @param userData Indicates the pointer to the custom data.
+ * @param callback Indicates the event callback function.
+ * @return Returns the result code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} Function params is invalid.
+ *         Returns {@link ARKUI_ERROR_CODE_NODE_UNSUPPORTED_EVENT_TYPE} Function parameter eventType is not supported.
+ * @since 21
+ */
+int32_t OH_ArkUI_NativeModule_RegisterCommonEvent(ArkUI_NodeHandle node, ArkUI_NodeEventType eventType,
+    void* userData, void (*callback)(ArkUI_NodeEvent* event));
+
+/**
+ * @brief Unregister common event callback of target node.
+ *
+ * @param node The ArkUI-NodeHandle pointer.
+ * @param eventType Indicates the type of event to set.
+ * @return Returns the result code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} Function params is invalid.
+ *         Returns {@link ARKUI_ERROR_CODE_NODE_UNSUPPORTED_EVENT_TYPE} Function parameter eventType is not supported.
+ * @since 21
+ */
+int32_t OH_ArkUI_NativeModule_UnregisterCommonEvent(ArkUI_NodeHandle node, ArkUI_NodeEventType eventType);
+
 #ifdef __cplusplus
 };
 #endif

@@ -2301,6 +2301,11 @@ typedef enum {
     ARKUI_ERROR_CODE_NODE_EVENT_PARAM_INVALID = 106108,
     /** The component event does not support return values. */
     ARKUI_ERROR_CODE_NODE_EVENT_NO_RETURN = 106109,
+    /**
+     * @error The event type is not supported by the node.
+     * @since 21
+     */
+    ARKUI_ERROR_CODE_NODE_UNSUPPORTED_EVENT_TYPE = 106110,
     /** The index value is invalid. */
     ARKUI_ERROR_CODE_NODE_INDEX_INVALID = 106200,
     /**  Failed to query route navigation information. */
