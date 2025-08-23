@@ -499,7 +499,6 @@ ArkUI_ErrorCode OH_ArkUI_DragEvent_GetDisplayId(ArkUI_DragEvent *event, int32_t 
  * @return Returns the result code.
  *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
  *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
- *         Returns {@link ARKUI_ERROR_CODE_DRAG_DATA_SYNC_FAILED} if the data sync is not allowed or failed.
  * @since 15
  */
 int32_t OH_ArkUI_DragEvent_StartDataLoading(
