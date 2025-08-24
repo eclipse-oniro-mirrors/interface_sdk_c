@@ -1807,8 +1807,8 @@ typedef enum {
      *
      */
     NODE_VISIBLE_AREA_CHANGE_RATIO = 93,
-
-    /**
+    
+     /**
      * @brief Sets the transition effect when the component is inserted or deleted.
      * This attribute can be set, and obtained as required through APIs.
      *
@@ -1981,7 +1981,8 @@ typedef enum {
     NODE_TRANSLATE_WITH_PERCENT = 103,
 
     /**
-     * @brief Sets component rotation with multi-axis angle control. This attribute can be set, reset, and obtained as required through APIs.
+     * @brief Sets component rotation with multi-axis angle control. This attribute can be set, reset,
+     * and obtained as required through APIs.
      *
      * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
      * .value[0].f32: x-axis rotation angle. The default value is <b>0</b>. \n
@@ -2445,7 +2446,8 @@ typedef enum {
     NODE_TEXT_LINEAR_GRADIENT = 1033,
 
     /**
-     * @brief Sets a radial gradient effect for text. This attribute can be set, reset, and obtained as required through APIs.
+     * @brief Sets a radial gradient effect for text.
+     * This attribute can be set, reset, and obtained as required through APIs.
      *
      * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
      * .value[0]?.f32: X-coordinate of the radial gradient center relative to the upper left corner of the text. \n
@@ -3379,6 +3381,7 @@ typedef enum {
      * @since 15
      */
     NODE_TEXT_INPUT_LETTER_SPACING = 7032,
+
     /**
      * @brief Sets whether to enable preview text for the <b>TextInput</b> component.
      * This attribute can be set, reset, and obtained as required through APIs.
@@ -3430,17 +3433,17 @@ typedef enum {
      *
      * @since 20
      */
-     NODE_TEXT_INPUT_ENABLE_FILL_ANIMATION = 7036,
-     
+    NODE_TEXT_INPUT_ENABLE_FILL_ANIMATION = 7036,
+
     /**
      * @brief Set the line height of the input node.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
      * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: line height value. \n
+     * .value[0].i32: line height value.
      * \n
      * Format of the return value {@link ArkUI_AttributeItem}: \n
-     * .value[0].i32: line height value. \n
+     * .value[0].i32: line height value
      *
      * @since 20
      */
@@ -3729,6 +3732,7 @@ typedef enum {
      *
      */
     NODE_TEXT_AREA_SHOW_KEYBOARD_ON_FOCUS,
+
     /**
      * @brief When this property is set, the height of the textArea component is calculated using this property.
      *
@@ -3795,13 +3799,13 @@ typedef enum {
     NODE_TEXT_AREA_KEYBOARD_APPEARANCE = 8026,
 
     /**
-     * @brief Set the max lines of the node. This attrilbute can be set, reset, and obtained as required through APIs.
+     * @brief Set the max lines of the node. This attribute can be set, reset, and obtained as required through APIs.
      *
      * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: max lines count. \n
+     * .value[0].i32: max lines count.
      * \n
      * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: max lines count. \n
+     * .value[0].i32: max lines count.\n
      *
      * @since 20
      */
@@ -3820,19 +3824,19 @@ typedef enum {
      */
     NODE_TEXT_AREA_LINE_SPACING = 8028,
 
-	/**
-    * @brief Set the min lines of the node. This attribute can be set, reset, and obtained as required through APIs.
-    *
-    * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-    * .value[0].i32: min lines count.
-    * \n
-    * Format of the return value {@link ArkUI_AttributeItem}: \n
-    * .value[0].i32: min line count.\n
-    *
-    * @since 20
-    * 
-    */
-   NODE_TEXT_AREA_MIN_LINES = 8029,
+    /**
+     * @brief Set the min lines of the node. This attribute can be set, reset, and obtained as required through APIs.
+     *
+     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
+     * .value[0].i32: min lines count.
+     * \n
+     * Format of the return value {@link ArkUI_AttributeItem}: \n
+     * .value[0].i32: min line count.\n
+     *
+     * @since 20
+     * 
+     */
+    NODE_TEXT_AREA_MIN_LINES = 8029,
  
     /**
      * @brief Set the max lines of the node with scroll.
@@ -3846,16 +3850,16 @@ typedef enum {
      *
      * @since 20
      */
-   NODE_TEXT_AREA_MAX_LINES_WITH_SCROLL = 8030,
+    NODE_TEXT_AREA_MAX_LINES_WITH_SCROLL = 8030,
 
     /**
      * @brief Set the line height of the node. This attribute can be set, reset, and obtained as required through APIs.
      *
      * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: line height value. \n
+     * .value[0].i32: line height value.
      * \n
      * Format of the return value {@link ArkUI_AttributeItem}: \n
-     * .value[0].i32: line height value. \n
+     * .value[0].i32: line height value
      *
      * @since 20
      */
@@ -4403,7 +4407,7 @@ typedef enum {
      *
      */
     NODE_TIME_PICKER_SELECTED_TEXT_STYLE,
-     /**
+    /**
      * @brief Defines the start time of the time picker.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
@@ -6977,7 +6981,8 @@ typedef enum {
     /**
      * @brief Defines the gesture event type.
      *
-     * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is {@link ArkUI_UIInputEvent}.
+     * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
+     * {@link ArkUI_UIInputEvent}.
      */
     NODE_TOUCH_EVENT = 0,
 
@@ -7335,11 +7340,11 @@ typedef enum {
      */
     NODE_TEXT_ON_DETECT_RESULT_UPDATE = MAX_NODE_SCOPE_NUM * ARKUI_NODE_TEXT,
     /**
-     * @brief Defines the long press event for span
+     * @brief Defines the long press event for span.
      *
      * The event is triggered when the span is long pressed.
      * When the event callback occurs, the {@link ArkUI_NodeEvent} object can be obtained from the
-     * {@link ArkUI_UIInputEvent} object.\n
+     * {@link ArkUI_UIInputEvent} object. \n
      * @since 20
      */
     NODE_TEXT_SPAN_ON_LONG_PRESS = 1001,
@@ -7587,7 +7592,7 @@ typedef enum {
     NODE_TEXT_INPUT_ON_CHANGE_WITH_PREVIEW_TEXT = 7013,
 
     /**
-     * @brief Defines the event triggered before content changes.
+     * @brief Defines the event triggered before content changes
      *
      * When the event callback occurs, the union type {@link ArkUI_NodeEvent} is {@link ArkUI_TextChangeEvent}. \n
      * {@link ArkUI_TextChangeEvent} contains the following parameters: \n
@@ -7766,7 +7771,7 @@ typedef enum {
     NODE_TEXT_AREA_ON_CHANGE_WITH_PREVIEW_TEXT = 8012,
 
     /**
-     * @brief Defines the event triggered before content changes
+     * @brief Defines the event triggered before content changes.
      *
      * When the event callback occurs, the union type {@link ArkUI_NodeEvent} is {@link ArkUI_TextChangeEvent}. \n
      * {@link ArkUI_TextChangeEvent} contains the following parameters: \n
@@ -9867,18 +9872,6 @@ float OH_ArkUI_SystemFontStyleEvent_GetFontSizeScale(const ArkUI_SystemFontStyle
 float OH_ArkUI_SystemFontStyleEvent_GetFontWeightScale(const ArkUI_SystemFontStyleEvent* event);
 
 /**
- * @brief Get the node handle by id.
- *
- * @param id The id of the target node handle.
- * @param node The handle of target node handle.
- * @return Error code.
- *         {@link ARKUI_ERROR_CODE_NO_ERROR} success.
- *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} Function parameter exception.
- * @since 15
- */
-int32_t OH_ArkUI_NodeUtils_GetAttachedNodeHandleById(const char* id, ArkUI_NodeHandle* node);
-
-/**
  * @brief Move the node handle to target parent node as child.
  *
  * @param node The node handle of the node to move.
@@ -9931,7 +9924,6 @@ int32_t OH_ArkUI_NodeUtils_GetCrossLanguageOption(ArkUI_NodeHandle node, ArkUI_C
 int32_t OH_ArkUI_RegisterLayoutCallbackOnNodeHandle(ArkUI_NodeHandle node,
     void* userData, void (*onLayoutCompleted)(void* userData));
 
-
 /**
  * @brief Registers a callback for node when draw is completed.
  *
@@ -9967,6 +9959,18 @@ int32_t OH_ArkUI_UnregisterLayoutCallbackOnNodeHandle(ArkUI_NodeHandle node);
  * @since 15
  */
 int32_t OH_ArkUI_UnregisterDrawCallbackOnNodeHandle(ArkUI_NodeHandle node);
+
+/**
+ * @brief Get the node handle by id.
+ *
+ * @param id The id of the target node handle.
+ * @param node The handle of target node handle.
+ * @return Error code.
+ *         {@link ARKUI_ERROR_CODE_NO_ERROR} success.
+ *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} Function parameter exception.
+ * @since 15
+ */
+int32_t OH_ArkUI_NodeUtils_GetAttachedNodeHandleById(const char* id, ArkUI_NodeHandle* node);
 
 /**
  * @brief Get the snapshot pixelmap for the given node synchronously, will get error if the node is not on the
@@ -10048,7 +10052,7 @@ ArkUI_ErrorCode OH_ArkUI_RemoveSupportedUIStates(ArkUI_NodeHandle node, int32_t 
 /**
  * @brief Run a custom function inside the UIContext scope.
  *
- * @param uiContext Indicates the pointer to a UI instance.
+ * @param uiContext ArkUI_ContextHandle.
  * @param userData Indicates the pointer to the custom data.
  * @param callback The custom function.
  * @return Returns the result code.
