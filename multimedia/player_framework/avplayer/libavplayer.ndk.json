@@ -146,5 +146,9 @@
   {
     "first_introduced": "20",
     "name": "OH_AVPlayer_SetPlaybackRate"
+  },
+  {
+    "first_introduced": "21",
+    "name": "OH_AVPlayer_SetLoudnessGain"
   }
 ]
