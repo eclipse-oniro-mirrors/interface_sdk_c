@@ -589,15 +589,13 @@ typedef enum OH_Drawing_FontWidth {
  */
 typedef enum OH_Drawing_TextStyleAttributeId {
     /** Line height maximum */
-    TEXT_STYLE_ATTR_D_LINE_HEIGHT_MAXIMUM = 0,
+    TEXT_STYLE_ATTR_D_LINE_HEIGHT_MAXIMUM = 100,
     /** Line height minimum */
-    TEXT_STYLE_ATTR_D_LINE_HEIGHT_MINIMUM = 1,
-    /** Line spacing */
-    TEXT_STYLE_ATTR_D_LINE_SPACING = 2,
+    TEXT_STYLE_ATTR_D_LINE_HEIGHT_MINIMUM = 101,
     /** Line height style */
-    TEXT_STYLE_ATTR_I_LINE_HEIGHT_STYLE = 3,
+    TEXT_STYLE_ATTR_I_LINE_HEIGHT_STYLE = 102,
     /** Font width */
-    TEXT_STYLE_ATTR_I_FONT_WIDTH = 4,
+    TEXT_STYLE_ATTR_I_FONT_WIDTH = 103,
 } OH_Drawing_TextStyleAttributeId;
 
 /**
@@ -605,7 +603,7 @@ typedef enum OH_Drawing_TextStyleAttributeId {
  *
  * @since 21
  */
-typedef enum OH_Drawing_LineHeightStyle{
+typedef enum OH_Drawing_LineHeightStyle {
     /** Use the font size as the scale factor for line height scaling */
     TEXT_LINE_HEIGHT_BY_FONT_SIZE = 0,
     /** Use the text height after shaping as the scale factor for line height scaling */
@@ -619,15 +617,15 @@ typedef enum OH_Drawing_LineHeightStyle{
  */
 typedef enum OH_Drawing_TypographyStyleAttributeId {
     /** Line height maximum */
-    TYPOGRAPHY_STYLE_ATTR_D_LINE_HEIGHT_MAXIMUM = 0,
+    TYPOGRAPHY_STYLE_ATTR_D_LINE_HEIGHT_MAXIMUM = 300,
     /** Line height minimum */
-    TYPOGRAPHY_STYLE_ATTR_D_LINE_HEIGHT_MINIMUM = 1,
+    TYPOGRAPHY_STYLE_ATTR_D_LINE_HEIGHT_MINIMUM = 301,
     /** Line spacing */
-    TYPOGRAPHY_STYLE_ATTR_D_LINE_SPACING = 2,
+    TYPOGRAPHY_STYLE_ATTR_D_LINE_SPACING = 302,
     /** Line height style */
-    TYPOGRAPHY_STYLE_ATTR_I_LINE_HEIGHT_STYLE = 3,
+    TYPOGRAPHY_STYLE_ATTR_I_LINE_HEIGHT_STYLE = 303,
     /** Font width */
-    TYPOGRAPHY_STYLE_ATTR_I_FONT_WIDTH = 4,
+    TYPOGRAPHY_STYLE_ATTR_I_FONT_WIDTH = 304,
 } OH_Drawing_TypographyStyleAttributeId;
 
 /**
@@ -640,7 +638,8 @@ typedef enum OH_Drawing_TypographyStyleAttributeId {
  * @return Returns interface call status.
  * @since 21
  */
-int OH_Drawing_SetTextStyleAttributeDouble(OH_Drawing_TextStyle* style, OH_Drawing_TextStyleAttributeId id, double value);
+int OH_Drawing_SetTextStyleAttributeDouble(OH_Drawing_TextStyle* style,
+    OH_Drawing_TextStyleAttributeId id, double value);
 
 /**
  * @brief Gets the double type property's value from the text style.
@@ -652,7 +651,8 @@ int OH_Drawing_SetTextStyleAttributeDouble(OH_Drawing_TextStyle* style, OH_Drawi
  * @return Returns interface call status.
  * @since 21
  */
-int OH_Drawing_GetTextStyleAttributeDouble(OH_Drawing_TextStyle* style, OH_Drawing_TextStyleAttributeId id, double* value);
+int OH_Drawing_GetTextStyleAttributeDouble(const OH_Drawing_TextStyle* style,
+    OH_Drawing_TextStyleAttributeId id, double* value);
 
 /**
  * @brief Sets int value to the text style attribute.
@@ -664,7 +664,8 @@ int OH_Drawing_GetTextStyleAttributeDouble(OH_Drawing_TextStyle* style, OH_Drawi
  * @return Returns interface call status.
  * @since 21
  */
-int OH_Drawing_SetTextStyleAttributeInt(OH_Drawing_TextStyle* style, OH_Drawing_TextStyleAttributeId id, int value);
+int OH_Drawing_SetTextStyleAttributeInt(OH_Drawing_TextStyle* style,
+    OH_Drawing_TextStyleAttributeId id, int value);
 
 /**
  * @brief Gets the int type property's value from the text style.
@@ -676,7 +677,8 @@ int OH_Drawing_SetTextStyleAttributeInt(OH_Drawing_TextStyle* style, OH_Drawing_
  * @return Returns interface call status.
  * @since 21
  */
-int OH_Drawing_GetTextStyleAttributeInt(OH_Drawing_TextStyle* style, OH_Drawing_TextStyleAttributeId id, int* value);
+int OH_Drawing_GetTextStyleAttributeInt(const OH_Drawing_TextStyle* style,
+    OH_Drawing_TextStyleAttributeId id, int* value);
 
 /**
  * @brief Sets double value to the typography style attribute.
@@ -688,7 +690,8 @@ int OH_Drawing_GetTextStyleAttributeInt(OH_Drawing_TextStyle* style, OH_Drawing_
  * @return Returns interface call status.
  * @since 21
  */
-int OH_Drawing_SetTypographyStyleAttributeDouble(OH_Drawing_TypographyStyle* style, OH_Drawing_TypographyStyleAttributeId id, double value);
+int OH_Drawing_SetTypographyStyleAttributeDouble(OH_Drawing_TypographyStyle* style,
+    OH_Drawing_TypographyStyleAttributeId id, double value);
 
 /**
  * @brief Gets the double type property's value from the typography style.
@@ -700,7 +703,8 @@ int OH_Drawing_SetTypographyStyleAttributeDouble(OH_Drawing_TypographyStyle* sty
  * @return Returns interface call status.
  * @since 21
  */
-int OH_Drawing_GetTypographyStyleAttributeDouble(OH_Drawing_TypographyStyle* style, OH_Drawing_TypographyStyleAttributeId id, double* value);
+int OH_Drawing_GetTypographyStyleAttributeDouble(const OH_Drawing_TypographyStyle* style,
+    OH_Drawing_TypographyStyleAttributeId id, double* value);
 
 /**
  * @brief Sets int value to the typography style attribute.
@@ -712,7 +716,8 @@ int OH_Drawing_GetTypographyStyleAttributeDouble(OH_Drawing_TypographyStyle* sty
  * @return Returns interface call status.
  * @since 21
  */
-int OH_Drawing_SetTypographyStyleAttributeInt(OH_Drawing_TypographyStyle* style, OH_Drawing_TypographyStyleAttributeId id, int value);
+int OH_Drawing_SetTypographyStyleAttributeInt(OH_Drawing_TypographyStyle* style,
+    OH_Drawing_TypographyStyleAttributeId id, int value);
 
 /**
  * @brief Gets the int type property's value from the typography style.
@@ -724,8 +729,8 @@ int OH_Drawing_SetTypographyStyleAttributeInt(OH_Drawing_TypographyStyle* style,
  * @return Returns interface call status.
  * @since 21
  */
-int OH_Drawing_GetTypographyStyleAttributeInt(OH_Drawing_TypographyStyle* style, OH_Drawing_TypographyStyleAttributeId id, int* value);
-
+int OH_Drawing_GetTypographyStyleAttributeInt(const OH_Drawing_TypographyStyle* style,
+    OH_Drawing_TypographyStyleAttributeId id, int* value);
 
 /**
  * @brief Type of badge.
