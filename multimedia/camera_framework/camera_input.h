@@ -171,6 +171,41 @@ Camera_ErrorCode OH_CameraInput_Close(Camera_Input* cameraInput);
  */
 Camera_ErrorCode OH_CameraInput_Release(Camera_Input* cameraInput);
 
+/**
+ * @brief Query whether physical camera orientation is variable under different fold status.
+ *
+ * @param {CameraInput} cameraInput the {@link Camera_Input} instance.
+ * @param {bool} isVariable the result of whether physical camera orientation is variable.
+ * @return {@link #CAMERA_OK} if the method call succeeds.
+ *         {@link #CAMERA_INVALID_ARGUMENT} if parameter missing or parameter type incorrect.
+ * @since 21
+ */
+Camera_ErrorCode OH_CameraInput_IsPhysicalCameraOrientationVariable(Camera_Input* cameraInput, bool* isVariable);
+
+/**
+ * @brief Get physical camera orientation under current fold status.
+ *
+ * @param cameraInput the {@link Camera_Input} instance.
+ * @param orientation the physical camera orientation of current fold status.
+ * @return {@link #CAMERA_OK} if the method call succeeds.
+ *         {@link #CAMERA_INVALID_ARGUMENT} if parameter missing or parameter type incorrect.
+ * @since 21
+ */
+Camera_ErrorCode OH_CameraInput_GetPhysicalCameraOrientation(Camera_Input* cameraInput, uint32_t* orientation);
+
+/**
+ * @brief Choose whether to use the physical camera orientation.
+ *
+ * @param cameraInput the {@link Camera_Input} instance.
+ * @param isUsed the flag of whether to use physical camera orientation.
+ * @return {@link #CAMERA_OK} if the method call succeeds.
+ *         {@link #CAMERA_INVALID_ARGUMENT} if parameter missing or parameter type incorrect.
+ *         {@link #CAMERA_OPERATION_NOT_ALLOWED} if operation not allowed.
+ *         {@link #CAMERA_SERVICE_FATAL_ERROR} if camera service fatal error.
+ * @since 21
+ */
+Camera_ErrorCode OH_CameraInput_UsePhysicalCameraOrientation(Camera_Input* cameraInput, bool isUsed);
+
 #ifdef __cplusplus
 }
 #endif
