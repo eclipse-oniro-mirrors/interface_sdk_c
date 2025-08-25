@@ -319,7 +319,7 @@ AbilityRuntime_ErrorCode OH_AbilityRuntime_ApplicationContextGetVersionCode(int6
  *         {@link ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID} if the buffer or writeLength is null,
  *         or the buffer size is less than the minimum buffer size.
  *         {@link ABILITY_RUNTIME_ERROR_CODE_CONTEXT_NOT_EXIST} if the application context does not exist.
- * @since 20
+ * @since 21
  */
 AbilityRuntime_ErrorCode OH_AbilityRuntime_ApplicationContextGetLaunchParameter(
     char* buffer, const int32_t bufferSize, int32_t* writeLength);
@@ -336,7 +336,7 @@ AbilityRuntime_ErrorCode OH_AbilityRuntime_ApplicationContextGetLaunchParameter(
  *         {@link ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID} if the buffer or writeLength is null,
  *         or the buffer size is less than the minimum buffer size.
  *         {@link ABILITY_RUNTIME_ERROR_CODE_CONTEXT_NOT_EXIST} if the application context does not exist.
- * @since 20
+ * @since 21
  */
 AbilityRuntime_ErrorCode OH_AbilityRuntime_ApplicationContextGetLatestParameter(
     char* buffer, const int32_t bufferSize, int32_t* writeLength);
