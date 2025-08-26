@@ -348,35 +348,35 @@
         "name":"OH_AudioSessionManager_UnregisterSessionDeactivatedCallback"
     },
     {
-        "first_introduced": "12",
+        "first_introduced": "20",
         "name":"OH_AudioSessionManager_SetScene"
     },
     {
-        "first_introduced": "12",
+        "first_introduced": "20",
         "name":"OH_AudioSessionManager_RegisterStateChangeCallback"
     },
     {
-        "first_introduced": "12",
+        "first_introduced": "20",
         "name":"OH_AudioSessionManager_UnregisterStateChangeCallback"
     },
     {
-        "first_introduced": "12",
+        "first_introduced": "20",
         "name":"OH_AudioSessionManager_SetDefaultOutputDevice"
     },
     {
-        "first_introduced": "12",
+        "first_introduced": "20",
         "name":"OH_AudioSessionManager_GetDefaultOutputDevice"
     },
     {
-        "first_introduced": "12",
+        "first_introduced": "20",
         "name":"OH_AudioSessionManager_ReleaseDevices"
     },
     {
-        "first_introduced": "12",
+        "first_introduced": "20",
         "name":"OH_AudioSessionManager_RegisterCurrentOutputDeviceChangeCallback"
     },
     {
-        "first_introduced": "12",
+        "first_introduced": "20",
         "name":"OH_AudioSessionManager_UnregisterCurrentOutputDeviceChangeCallback"
     },
     {
