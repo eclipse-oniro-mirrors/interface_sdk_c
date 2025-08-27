@@ -292,7 +292,7 @@ int32_t OH_WindowManager_InjectTouchEvent(
 /**
  * @brief Get all main window info on device.
  *
- * @permission {@code ohos.permission.CUSTOM_SCREEN_CAPTURE}
+ * @permission ohos.permission.CUSTOM_SCREEN_CAPTURE
  * @param infoList Indicates the pointer to a main window info list.
  * @param mainWindowInfoSize The size of main window info list.
  * @return Returns the status code of the execution.
@@ -319,14 +319,14 @@ void OH_WindowManager_ReleaseAllMainWindowInfo(WindowManager_MainWindowInfo* inf
  * @param snapshotPixelMapList List of windows' snapshot
  * @param snapshotListSize Size of snapshotPixelMapList
  * @since 21
- */ 
-typedef void (*OH_WindowManager_WindowSnapshotCallback)(const OH_PixelmapNative* snapshotPixelMapList,
+ */
+typedef struct (*OH_WindowManager_WindowSnapshotCallback)(const OH_PixelmapNative* snapshotPixelMapList,
     size_t snapshotListSize);
 
 /**
  * @brief Get snapshot of  the specified windows.
  *
- * @permission {@code ohos.permission.CUSTOM_SCREEN_CAPTURE}
+ * @permission ohos.permission.CUSTOM_SCREEN_CAPTURE
  * @param windowIdList Main window id list for getting snapshot.
  * @param windowIdListSize Size of main window id list.
  * @param config Configuration for getting snapshot.
