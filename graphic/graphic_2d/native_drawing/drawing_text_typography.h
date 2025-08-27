@@ -48,6 +48,7 @@
 #include <stddef.h>
 #endif
 #include "drawing_canvas.h"
+#include "drawing_error_code.h"
 #include "drawing_color.h"
 #include "drawing_font.h"
 #include "drawing_text_declaration.h"
