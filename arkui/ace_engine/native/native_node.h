@@ -8300,6 +8300,48 @@ typedef enum {
      */
     NODE_SCROLL_EVENT_ON_ZOOM_STOP,
     /**
+     * @brief Defines the callback for when the scrollable will start dragging.
+     *
+     * This event is triggered when the scrollable will start dragging. \n
+     * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
+     * {@link ArkUI_NodeComponentEvent}. \n
+     * {@link ArkUI_NodeComponentEvent} contains no parameters: \n
+     * @since 21
+     */
+    NODE_SCROLL_EVENT_ON_WILL_START_DRAGGING = 1002013,
+    /**
+     * @brief Defines the callback for when the scrollable did end dragging.
+     *
+     * This event is triggered when the scrollable did end dragging. \n
+     * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
+     * {@link ArkUI_NodeComponentEvent}. \n
+     * {@link ArkUI_NodeComponentEvent} contains one parameter: \n
+     * <b>ArkUI_NodeComponentEvent.data[0].i32</b>: whether start fling animation. \n
+     *
+     * @since 21
+     */
+    NODE_SCROLL_EVENT_ON_DID_STOP_DRAGGING = 1002014,
+    /**
+     * @brief Defines the callback for when the scrollable will start fling.
+     *
+     * This event is triggered when the scrollable will start fling. \n
+     * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
+     * {@link ArkUI_NodeComponentEvent}. \n
+     * {@link ArkUI_NodeComponentEvent} contains no parameters: \n
+     * @since 21
+     */
+    NODE_SCROLL_EVENT_ON_WILL_START_FLING = 1002015,
+    /**
+     * @brief Defines the callback for when the scrollable did end fling.
+     *
+     * This event is triggered when the scrollable did end fling. \n
+     * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
+     * {@link ArkUI_NodeComponentEvent}. \n
+     * {@link ArkUI_NodeComponentEvent} contains no parameters: \n
+     * @since 21
+     */
+    NODE_SCROLL_EVENT_ON_DID_STOP_FLING = 1002016,
+    /**
      * @brief Defines the enumerated values of the event triggered, \n
      * when a subcomponent of ARKUI_NODE_LIST is moved into or out of the list display area. \n
      * Condition for triggering the event: \n
