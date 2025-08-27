@@ -238,7 +238,7 @@ typedef struct {
     /** Display id of the window. */
     uint64_t displayId;
     /** Window id. */
-    int32_t windowId;
+    int32_t windowId;;
     /** Showing state of the window. */
     bool showing;
     /** Label of the window. */
