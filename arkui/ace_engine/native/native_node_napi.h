@@ -412,7 +412,7 @@ void OH_ArkUI_NotifyArkTSEnvDestroy(napi_env env);
  *         Returns {@link ARKUI_ERROR_CODE_CALLBACK_INVALID} if the callback function is invalid.
  * @since 20
  */
- int32_t OH_ArkUI_PostIdleCallback(ArkUI_ContextHandle uiContext, void* userData,
+int32_t OH_ArkUI_PostIdleCallback(ArkUI_ContextHandle uiContext, void* userData,
     void (*callback)(uint64_t nanoTimeLeft, uint32_t frameCount, void* userData));
 
 #ifdef __cplusplus
