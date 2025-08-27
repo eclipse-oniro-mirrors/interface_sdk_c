@@ -589,13 +589,13 @@ typedef enum OH_Drawing_FontWidth {
  */
 typedef enum OH_Drawing_TextStyleAttributeId {
     /** Line height maximum */
-    TEXT_STYLE_ATTR_D_LINE_HEIGHT_MAXIMUM = 100,
+    TEXT_STYLE_ATTR_D_LINE_HEIGHT_MAXIMUM = 0,
     /** Line height minimum */
-    TEXT_STYLE_ATTR_D_LINE_HEIGHT_MINIMUM = 101,
+    TEXT_STYLE_ATTR_D_LINE_HEIGHT_MINIMUM = 1,
     /** Line height style */
-    TEXT_STYLE_ATTR_I_LINE_HEIGHT_STYLE = 102,
+    TEXT_STYLE_ATTR_I_LINE_HEIGHT_STYLE = 2,
     /** Font width */
-    TEXT_STYLE_ATTR_I_FONT_WIDTH = 103,
+    TEXT_STYLE_ATTR_I_FONT_WIDTH = 3,
 } OH_Drawing_TextStyleAttributeId;
 
 /**
@@ -617,15 +617,15 @@ typedef enum OH_Drawing_LineHeightStyle {
  */
 typedef enum OH_Drawing_TypographyStyleAttributeId {
     /** Line height maximum */
-    TYPOGRAPHY_STYLE_ATTR_D_LINE_HEIGHT_MAXIMUM = 300,
+    TYPOGRAPHY_STYLE_ATTR_D_LINE_HEIGHT_MAXIMUM = 0,
     /** Line height minimum */
-    TYPOGRAPHY_STYLE_ATTR_D_LINE_HEIGHT_MINIMUM = 301,
+    TYPOGRAPHY_STYLE_ATTR_D_LINE_HEIGHT_MINIMUM = 1,
     /** Line spacing */
-    TYPOGRAPHY_STYLE_ATTR_D_LINE_SPACING = 302,
+    TYPOGRAPHY_STYLE_ATTR_D_LINE_SPACING = 2,
     /** Line height style */
-    TYPOGRAPHY_STYLE_ATTR_I_LINE_HEIGHT_STYLE = 303,
+    TYPOGRAPHY_STYLE_ATTR_I_LINE_HEIGHT_STYLE = 3,
     /** Font width */
-    TYPOGRAPHY_STYLE_ATTR_I_FONT_WIDTH = 304,
+    TYPOGRAPHY_STYLE_ATTR_I_FONT_WIDTH = 4,
 } OH_Drawing_TypographyStyleAttributeId;
 
 /**
