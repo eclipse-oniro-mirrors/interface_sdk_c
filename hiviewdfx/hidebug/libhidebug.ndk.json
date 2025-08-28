@@ -44,6 +44,10 @@
       "name": "OH_HiDebug_GetGraphicsMemory"
     },
     {
+        "first_introduced": "21",
+        "name": "OH_HiDebug_GetGraphicsMemorySummary"
+    },
+    {
       "first_introduced": "20",
       "name": "OH_HiDebug_SetMallocDispatchTable"
     },
