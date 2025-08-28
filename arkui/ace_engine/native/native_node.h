@@ -7365,12 +7365,17 @@ typedef enum {
 
     /**
      * @brief Defines the size change event.
-     * 
+     *
      * The event will be triggered when the component size changes.
-     * When the event callback occurs, the {@link ArkUI_NodeEvent} object can be obtained from the
-     * {@link ArkUI_UIInputEvent} object. \n
+     * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
+     * {@link ArkUI_NodeComponentEvent}. 
+     * {@link ArkUI_NodeComponentEvent} contains four parameters:
+     * <b>ArkUI_NodeComponentEvent.data[0].f32</b>: the width of the old rectangle.
+     * <b>ArkUI_NodeComponentEvent.data[1].f32</b>: the height of the old rectangle.
+     * <b>ArkUI_NodeComponentEvent.data[2].f32</b>: the width of the new rectangle.
+     * <b>ArkUI_NodeComponentEvent.data[3].f32</b>: the height of the new rectangle.
      * @since 21
-    */
+     */
     NODE_ON_SIZE_CHANGE = 30,
 
     /**
