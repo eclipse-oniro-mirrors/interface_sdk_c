@@ -467,8 +467,8 @@ float OH_ArkUI_DragEvent_GetVelocity(ArkUI_DragEvent* event);
  * @brief Obtains the pressed status of modifier keys from a drag event.
  *
  * @param event Indicates the pointer to an <b>ArkUI_DragEvent</b> object.
- * @param keys {@link ArkUI_ModifierKeyName} Indicates the returned combination of modifier keys that are currently pressed.
- *             The application can determine the pressed modifier keys through bitwise operations.
+ * @param keys {@link ArkUI_ModifierKeyName} Indicates the returned combination of modifier keys that are
+ *             currently pressed. The application can determine the pressed modifier keys through bitwise operations.
  * @return Returns the result code.
  *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
  *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
@@ -967,7 +967,6 @@ int32_t OH_ArkUI_NotifyDragEndPendingDone(int32_t requestIdentify);
  *  to pass a character array for receiving the string and explicitly specify the array length. It is
  *  recommended that the array length be no less than 128 characters. If the length cannot accommodate
  *  the actual bundle name length, the ERROR result will be returned.
- * 
  * @param event Indicates the pointer to an <b>ArkUI_DragEvent</b> object.
  * @param bundleName A string array used to receive the source application's bundle name.
  * @param length Use this to explicitly specify the length of the incoming string array.
