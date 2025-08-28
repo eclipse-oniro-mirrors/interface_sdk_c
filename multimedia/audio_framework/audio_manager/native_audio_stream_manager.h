@@ -140,12 +140,12 @@ bool OH_AudioStreamManager_IsFastRecordingSupported(
 
 
 /**
- * @brief Return if the system recording supports intelligent noise reduction for current device.
+ * @brief Return if the system recording enables intelligent noise reduction for current device.
  *
  * @param streamManager {@link OH_AudioStreamManager} handle
  *     provided by {@link OH_AudioManager_GetAudioStreamManager}.
  * @param source stream source type used to decide the audio device and pipe type selection result.
- * @return {@code true} if the system recording supports supports intelligent noise reduction for current device.
+ * @return {@code true} if the system recording enables intelligent noise reduction for current device.
  * @since 21
  */
 bool OH_AudioStreamManager_IsCurrentDeviceEnableIntelligentNoiseReduction(
