@@ -82,7 +82,8 @@ def clean_ndk_ani_headers(ndk_header_path):
         process_header_file(file_path)
 
 
-def clean_json__systemCapability_headers(capability_header_path):
+# Clear the ani header file in the systemCapability configuration json file
+def clean_json_systemCapability_headers(capability_header_path):
     try:
         with open(capability_header_path, 'r') as f:
             systemCapabilitys = json.load(f)
@@ -94,7 +95,7 @@ def clean_json__systemCapability_headers(capability_header_path):
     for _systemCapability in systemCapabilitys:
         # filtering ani header file
         systemCapabilitys[_systemCapability] = [item for item in systemCapabilitys[_systemCapability]
-                    if os.path.basename(item) not in _ANI_HEADER_LISTS]
+            if os.path.basename(item) not in _ANI_HEADER_LISTS]
 
     # Saving the modified JSON
     try:
@@ -116,7 +117,7 @@ def main():
         return
     
     clean_ndk_ani_headers(args.ndk_header_path)
-    clean_json__systemCapability_headers(args.system_capability_header_config)
+    clean_json_systemCapability_headers(args.system_capability_header_config)
     print("Ani Header file cleanup complete!")
 
 
