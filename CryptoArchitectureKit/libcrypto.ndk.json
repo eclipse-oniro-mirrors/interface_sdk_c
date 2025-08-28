@@ -368,6 +368,10 @@
         "name": "OH_CryptoRand_SetSeed"
     },
     {
+        "first_introduced": "21",
+        "name": "OH_CryptoRand_EnableHardwareEntropy"
+    },
+    {
         "first_introduced": "20",
         "name": "OH_CryptoRand_Destroy"
     },
