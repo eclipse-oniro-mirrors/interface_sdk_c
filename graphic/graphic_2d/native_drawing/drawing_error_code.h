@@ -71,7 +71,7 @@ typedef enum {
      */
     OH_DRAWING_ERROR_ALLOCATION_FAILED = 26200002,
     /**
-     * @error attribute id is not recognized or supported.
+     * @error The attribute id is not recognized or supported.
      * @since 21
      */
     OH_DRAWING_ERROR_ATTRIBUTE_ID_MISMATCH = 26200003,
