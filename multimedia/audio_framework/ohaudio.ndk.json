@@ -573,6 +573,6 @@
     },
     {
         "first_introduced": "21",
-        "name": "OH_AudioStreamManager_isIntelligentNoiseReductionEnabledForCurrentDevice"
+        "name": "OH_AudioStreamManager_IsIntelligentNoiseReductionEnabledForCurrentDevice"
     }
 ]
