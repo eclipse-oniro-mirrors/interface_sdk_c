@@ -128,7 +128,7 @@ typedef enum {
     DISPLAY_MANAGER_ERROR_SYSTEM_ABNORMAL = 1400003,
 
     /**
-     * @error Operation illegal param
+     * @error Operation illegal param.
      *
      * @since 20
      */
