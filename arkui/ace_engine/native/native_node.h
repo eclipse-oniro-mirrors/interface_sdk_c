@@ -2539,6 +2539,22 @@ typedef enum {
     NODE_TEXT_VERTICAL_ALIGN = 1035,
 
     /**
+     * @brief Sets the content align of the text.
+     * This attribute can be set, reset, and obtained as required through APIs.
+     *
+     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
+     * .value[0].i32: content align of the text, specified using the {@link ArkUI_TextContentAlign}
+     * enum. The default value is <b>ARKUI_TEXT_CONTENT_ALIGN_TOP</b>. \n
+     * \n
+     * Format of the return value {@link ArkUI_AttributeItem}:\n
+     * .value[0].i32: content align of the text, specified using the {@link ArkUI_TextContentAlign}
+     * enum. \n
+     *
+     * @since 21
+     */
+    NODE_TEXT_CONTENT_ALIGN = 1036,
+
+    /**
      * @brief Defines the text content attribute, which can be set, reset, and obtained as required through APIs.
      *
      * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n

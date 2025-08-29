@@ -413,6 +413,20 @@ typedef enum {
 } ArkUI_TextVerticalAlignment;
 
 /**
+ * @brief Enumerates text content align styles.
+ *
+ * @since 21
+ */
+typedef enum {
+    /** Top aligned. */
+    ARKUI_TEXT_CONTENT_ALIGN_TOP = 0,
+    /** Center aligned. */
+    ARKUI_TEXT_CONTENT_ALIGN_CENTER = 1,
+    /** Bottom aligned. */
+    ARKUI_TEXT_CONTENT_ALIGN_BOTTOM = 2,
+} ArkUI_TextContentAlign;
+
+/**
  * @brief Enumerates the types of the Enter key for a single-line text box.
  *
  * @since 12
