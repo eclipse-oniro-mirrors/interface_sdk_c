@@ -42,5 +42,9 @@
   {
       "first_introduced": "20",
       "name": "OH_Ability_StartNativeChildProcessWithConfigs"
+  },
+  {
+      "first_introduced": "21",
+      "name": "OH_Ability_ChildProcessConfigs_SetIsolationUid"
   }
 ]
