@@ -2037,5 +2037,37 @@
     {
         "first_introduced": "20",
         "name": "OH_Drawing_FontFeaturesDestroy"
+    },
+    {
+        "first_introduced": "21",
+        "name": "OH_Drawing_SetTextStyleAttributeDouble"
+    },
+    {
+        "first_introduced": "21",
+        "name": "OH_Drawing_GetTextStyleAttributeDouble"
+    },
+    {
+        "first_introduced": "21",
+        "name": "OH_Drawing_SetTextStyleAttributeInt"
+    },
+    {
+        "first_introduced": "21",
+        "name": "OH_Drawing_GetTextStyleAttributeInt"
+    },
+    {
+        "first_introduced": "21",
+        "name": "OH_Drawing_SetTypographyStyleAttributeDouble"
+    },
+    {
+        "first_introduced": "21",
+        "name": "OH_Drawing_GetTypographyStyleAttributeDouble"
+    },
+    {
+        "first_introduced": "21",
+        "name": "OH_Drawing_SetTypographyStyleAttributeInt"
+    },
+    {
+        "first_introduced": "21",
+        "name": "OH_Drawing_GetTypographyStyleAttributeInt"
     }
 ]
