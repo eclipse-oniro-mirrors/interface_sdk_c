@@ -650,13 +650,12 @@ OH_Drawing_ErrorCode OH_Drawing_SetTextStyleAttributeDouble(OH_Drawing_TextStyle
 /**
  * @brief Gets the double type property's value from the text style.
  *
- * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @param style Indicates the pointer to an <b>OH_Drawing_TextStyle</b> object.
  * @param id Indicates the attribute id.
  * @param value Indicates the return value of the interface.
  * @return Returns the error code.
  *         Returns {@link OH_DRAWING_SUCCESS} if the operation is successful.
- *         Returns {@link OH_DRAWING_ERROR_INVALID_PARAMETER} if the style or value is nullptr.
+ *         Returns {@link OH_DRAWING_ERROR_INVALID_PARAMETER} if the style is nullptr.
  *         Returns {@link OH_DRAWING_ERROR_ATTRIBUTE_ID_MISMATCH} if the attribute id is not recognized or supported.
  * @since 21
  */
@@ -666,7 +665,6 @@ OH_Drawing_ErrorCode OH_Drawing_GetTextStyleAttributeDouble(const OH_Drawing_Tex
 /**
  * @brief Sets int value to the text style attribute.
  *
- * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @param style Indicates the pointer to an <b>OH_Drawing_TextStyle</b> object.
  * @param id Indicates the attribute id.
  * @param value Indicates the value to set.
@@ -684,13 +682,12 @@ OH_Drawing_ErrorCode OH_Drawing_SetTextStyleAttributeInt(OH_Drawing_TextStyle* s
 /**
  * @brief Gets the int type property's value from the text style.
  *
- * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @param style Indicates the pointer to an <b>OH_Drawing_TextStyle</b> object.
  * @param id Indicates the attribute id.
  * @param value Indicates the return value of the interface.
  * @return Returns the error code.
  *         Returns {@link OH_DRAWING_SUCCESS} if the operation is successful.
- *         Returns {@link OH_DRAWING_ERROR_INVALID_PARAMETER} if the style or value is nullptr.
+ *         Returns {@link OH_DRAWING_ERROR_INVALID_PARAMETER} if the style is nullptr.
  *         Returns {@link OH_DRAWING_ERROR_ATTRIBUTE_ID_MISMATCH} if the attribute id is not recognized or supported.
  * @since 21
  */
@@ -700,7 +697,6 @@ OH_Drawing_ErrorCode OH_Drawing_GetTextStyleAttributeInt(const OH_Drawing_TextSt
 /**
  * @brief Sets double value to the typography style attribute.
  *
- * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @param style Indicates the pointer to an <b>OH_Drawing_TypographyStyle</b> object.
  * @param id Indicates the attribute id.
  * @param value Indicates the value to set.
@@ -718,13 +714,12 @@ OH_Drawing_ErrorCode OH_Drawing_SetTypographyStyleAttributeDouble(OH_Drawing_Typ
 /**
  * @brief Gets the double type property's value from the typography style.
  *
- * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @param style Indicates the pointer to an <b>OH_Drawing_TypographyStyle</b> object.
  * @param id Indicates the attribute id.
  * @param value Indicates the return value of the interface.
  * @return Returns the error code.
  *         Returns {@link OH_DRAWING_SUCCESS} if the operation is successful.
- *         Returns {@link OH_DRAWING_ERROR_INVALID_PARAMETER} if the style or value is nullptr.
+ *         Returns {@link OH_DRAWING_ERROR_INVALID_PARAMETER} if the style is nullptr.
  *         Returns {@link OH_DRAWING_ERROR_ATTRIBUTE_ID_MISMATCH} if the attribute id is not recognized or supported.
  * @since 21
  */
@@ -734,7 +729,6 @@ OH_Drawing_ErrorCode OH_Drawing_GetTypographyStyleAttributeDouble(const OH_Drawi
 /**
  * @brief Sets int value to the typography style attribute.
  *
- * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @param style Indicates the pointer to an <b>OH_Drawing_TypographyStyle</b> object.
  * @param id Indicates the attribute id.
  * @param value Indicates the value to set.
@@ -752,13 +746,12 @@ OH_Drawing_ErrorCode OH_Drawing_SetTypographyStyleAttributeInt(OH_Drawing_Typogr
 /**
  * @brief Gets the int type property's value from the typography style.
  *
- * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @param style Indicates the pointer to an <b>OH_Drawing_TypographyStyle</b> object.
  * @param id Indicates the attribute id.
  * @param value Indicates the return value of the interface.
  * @return Returns the error code.
  *         Returns {@link OH_DRAWING_SUCCESS} if the operation is successful.
- *         Returns {@link OH_DRAWING_ERROR_INVALID_PARAMETER} if the style or value is nullptr.
+ *         Returns {@link OH_DRAWING_ERROR_INVALID_PARAMETER} if the style is nullptr.
  *         Returns {@link OH_DRAWING_ERROR_ATTRIBUTE_ID_MISMATCH} if the attribute id is not recognized or supported.
  * @since 21
  */
