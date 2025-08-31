@@ -98,6 +98,9 @@
     {
         "first_introduced": "18",
         "name": "OH_Pasteboard_GetChangeCount"
-        
+    },
+    {
+        "first_introduced": "21",
+        "name": "OH_Pasteboard_SyncDelayedDataAsync"
     }
 ]
