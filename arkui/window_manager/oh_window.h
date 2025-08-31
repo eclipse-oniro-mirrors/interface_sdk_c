@@ -197,7 +197,6 @@ int32_t OH_WindowManager_SetWindowBrightness(int32_t windowId, float brightness)
  * @param isKeepScreenOn keep screen on if true, or not if false.
  * @return Returns the result code.
  *         {@link OK} the function call is successful.
- *         {@link WINDOW_MANAGER_ERRORCODE_INVALID_PARAM} parameter error.
  *         {@link WINDOW_MANAGER_ERRORCODE_STATE_ABNORMAL} this window state is abnormal.
  *         {@link WINDOW_MANAGER_ERRORCODE_SYSTEM_ABNORMAL} the window manager service works abnormally.
  * @since 15
@@ -212,7 +211,6 @@ int32_t OH_WindowManager_SetWindowKeepScreenOn(int32_t windowId, bool isKeepScre
  * @param isPrivacy In private mode if true, or not if false.
  * @return Returns the result code.
  *         {@link OK} the function call is successful.
- *         {@link WINDOW_MANAGER_ERRORCODE_INVALID_PARAM} parameter error.
  *         {@link WINDOW_MANAGER_ERRORCODE_STATE_ABNORMAL} this window state is abnormal.
  *         {@link WINDOW_MANAGER_ERRORCODE_SYSTEM_ABNORMAL} the window manager service works abnormally.
  *         {@link WINDOW_MANAGER_ERRORCODE_NO_PERMISSION} permission verification failed.
