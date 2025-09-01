@@ -3984,25 +3984,19 @@ typedef enum {
      */
     NODE_XCOMPONENT_ID = MAX_NODE_SCOPE_NUM * ARKUI_NODE_XCOMPONENT,
     /**
-     * @brief Defines the type of the <b><XComponent></b> component.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief Specifies the type of the <b>XComponent</b> component. This attribute is read-only. \n
+     * The type of the <b>XComponent</b> component must be explicitly set during creation using {@link ARKUI_NODE_XCOMPONENT} or {@link ARKUI_NODE_XCOMPONENT_TEXTURE}, and cannot be modified afterward. \n
+     * Attempting to change the type through {@link setAttribute} will cause rendering exceptions.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: type {@link ArkUI_XComponentType}. The default value is <b>ARKUI_XCOMPONENT_TYPE_SURFACE</b>. \n
-     * \n
      * Format of the return value {@link ArkUI_AttributeItem}:\n
      * .value[0].i32: type {@link ArkUI_XComponentType}. \n
      *
      */
     NODE_XCOMPONENT_TYPE,
     /**
-     * @brief Defines the width and height of the <b><XComponent></b> component.
-     * This attribute can be set and obtained as required through APIs.
+     * @brief Specifies the size of the <b>XComponent</b> component. This attribute is read-only. \n
+     * Attempting to modify the size through {@link setAttribute} will have no effect.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].u32: width, in px. \n
-     * .value[1].u32: height, in px. \n
-     * \n
      * Format of the return value {@link ArkUI_AttributeItem}:\n
      * .value[0].u32: width, in px. \n
      * .value[1].u32: height, in px. \n
