@@ -1024,8 +1024,7 @@ int32_t OH_ArkWebResourceHandler_DidFailWithError(const ArkWeb_ResourceHandler* 
  *        if DidReceiveResponse has not been called,
  *        a response is automatically constructed and the current request is terminated.
  * @return {@link ARKWEB_NET_OK} 0 - Success.
- *         {@link ARKWEB_INVALID_PARAM} 17100101 - Invalid param, the errorCode is either ARKWEB_NET_OK
- *                                                 or outside the range of error codes in ArkWeb_NetError.
+ *         {@link ARKWEB_INVALID_PARAM} 17100101 - Invalid param, the resourceHandler is nullptr.
  * @since 20
  */
 int32_t OH_ArkWebResourceHandler_DidFailWithErrorV2(const ArkWeb_ResourceHandler* resourceHandler,
