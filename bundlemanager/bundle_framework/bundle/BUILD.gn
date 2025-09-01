@@ -18,7 +18,11 @@ config("bundle_ndk_config") {
 }
 ohos_ndk_headers("bundle_header") {
   dest_dir = "$ndk_headers_out_dir/bundle/"
-  sources = [ "./include/native_interface_bundle.h" ]
+  sources = [
+    "./include/ability_resource_info.h",
+    "./include/bundle_manager_common.h",
+    "./include/native_interface_bundle.h",
+  ]
 }
 
 ohos_ndk_library("libbundle_ndk") {
@@ -26,5 +30,9 @@ ohos_ndk_library("libbundle_ndk") {
   min_compact_version = "9"
   output_name = "bundle_ndk"
   system_capability = "SystemCapability.BundleManager.BundleFramework.Core"
-  system_capability_headers = [ "bundle/native_interface_bundle.h" ]
+  system_capability_headers = [
+    "bundle/native_interface_bundle.h",
+    "bundle/bundle_manager_common.h",
+    "bundle/ability_resource_info.h",
+  ]
 }
