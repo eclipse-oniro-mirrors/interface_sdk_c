@@ -18,6 +18,7 @@ import re
 import argparse
 import shutil
 import json
+import stat
 from typing import List
 
 # ani header file list
@@ -99,7 +100,9 @@ def clean_json_systemCapability_headers(capability_header_path):
 
     # Saving the modified JSON
     try:
-        with open(capability_header_path, 'w') as f:
+        fd = os.open(capability_header_path, os.O_WRONLY | os.O_TRUNC | os.O_CREAT,
+                     stat.S_IRUSR | stat.S_IWUSR)
+        with os.fdopen(fd, 'w') as f:
             json.dump(systemCapabilitys, f, indent=2)
         print("JSON file updated successfully")
     except Exception as e:
