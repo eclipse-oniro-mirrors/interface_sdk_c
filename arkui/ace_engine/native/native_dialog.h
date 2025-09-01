@@ -983,8 +983,7 @@ int32_t OH_ArkUI_CustomDialog_SetShadow(ArkUI_CustomDialogOptions* options, ArkU
  * @brief Sets the custom shadow of the dialog box background.
  *
  * @param options Dialog box parameters.
- * @param customShadow Custom shadow parameter. The format is the same as that of
- * the <b>NODE_CUSTOM_SHADOW</b> property.
+ * @param customShadow Custom shadow parameter. The format is the same as that of the <b>NODE_SHADOW</b> property.
  * @return Returns the error code.
  *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
  *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
