@@ -54,6 +54,13 @@ extern "C" {
 typedef struct OH_AVSamplesBuffer OH_AVSamplesBuffer;
 
 /**
+ * @brief Forward declaration of OH_LowPowerAVSink_Capability.
+ *
+ * @since 21
+ */
+typedef struct OH_LowPowerAVSink_Capability OH_LowPowerAVSink_Capability;
+
+/**
  * @brief Append one OH_AVBuffer data to framePacketBuffer instance.
  *
  * @param samplesBuffer OH_AVSamplesBuffer instance
@@ -82,4 +89,4 @@ int32_t OH_AVSamplesBuffer_GetRemainedCapacity(OH_AVSamplesBuffer *samplesBuffer
 #endif
 #endif // NATIVE_LOWPOWER_AVSINK_BASE_H
 
-/** @} */
+/** @} */
