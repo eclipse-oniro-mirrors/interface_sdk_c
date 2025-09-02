@@ -1389,7 +1389,7 @@ Input_Result OH_Input_GetAxisEventSourceType(const Input_AxisEvent* axisEvent, I
  *
  * @param axisEvent Axis event object. For details, see {@Link Input_AxisEvent}.
  * @param windowId The windowId for the axis event.
- * @return OH_Input_SetAxisEventDisplayY function result code.
+ * @return OH_Input_SetAxisEventWindowId function result code.
  *         {@link INPUT_SUCCESS} Sets the Y coordinate of the axis event success.\n
  *         {@link INPUT_PARAMETER_ERROR} The axisEvent is NULL.\n
  * @syscap SystemCapability.MultimodalInput.Input.Core
@@ -1402,7 +1402,7 @@ Input_Result OH_Input_SetAxisEventWindowId(Input_AxisEvent* axisEvent, int32_t w
  *
  * @param axisEvent Axis event object. For details, see {@Link Input_AxisEvent}.
  * @param windowId The windowId for the axis event.
- * @return OH_Input_GetAxisEventDisplayY function result code.
+ * @return OH_Input_GetAxisEventWindowId function result code.
  *         {@link INPUT_SUCCESS} Obtains the Y coordinate of the axis event success.\n
  *         {@link INPUT_PARAMETER_ERROR} The axisEvent is NULL or the displayY is NULL.\n
  * @syscap SystemCapability.MultimodalInput.Input.Core
@@ -1415,7 +1415,7 @@ Input_Result OH_Input_GetAxisEventWindowId(const Input_AxisEvent* axisEvent, int
  *
  * @param axisEvent Axis event object. For details, see {@Link Input_AxisEvent}.
  * @param displayId The displayId for the axis event.
- * @return OH_Input_SetAxisEventDisplayY function result code.
+ * @return OH_Input_SetAxisEventDisplayId function result code.
  *         {@link INPUT_SUCCESS} Sets the Y coordinate of the axis event success.\n
  *         {@link INPUT_PARAMETER_ERROR} The axisEvent is NULL.\n
  * @syscap SystemCapability.MultimodalInput.Input.Core
@@ -1428,7 +1428,7 @@ Input_Result OH_Input_SetAxisEventDisplayId(Input_AxisEvent* axisEvent, int32_t 
  *
  * @param axisEvent Axis event object. For details, see {@Link Input_AxisEvent}.
  * @param displayId The displayId for the axis event.
- * @return OH_Input_GetAxisEventDisplayY function result code.
+ * @return OH_Input_GetAxisEventDisplayId function result code.
  *         {@link INPUT_SUCCESS} Obtains the Y coordinate of the axis event success.\n
  *         {@link INPUT_PARAMETER_ERROR} The axisEvent is NULL or the displayY is NULL.\n
  * @syscap SystemCapability.MultimodalInput.Input.Core
@@ -1775,7 +1775,7 @@ void OH_Input_SetFinalKey(Input_Hotkey *hotkey, int32_t finalKey);
  *
  * @param hotkey Hotkey key object.
  * @param finalKeyCode Returns the key value of the decorated key.
- * @return OH_Input_GetfinalKey status code, specifically,
+ * @return OH_Input_GetFinalKey status code, specifically,
  *         {@link INPUT_SUCCESS} if the operation is successful;\n
  *         {@link INPUT_PARAMETER_ERROR} The hotkey is NULL or the finalKeyCode is NULL;\n
  *         {@Link INPUT_DEVICE_NOT_SUPPORTED} Capability not supported.\n
@@ -1840,7 +1840,7 @@ void OH_Input_SetRepeat(Input_Hotkey* hotkey, bool isRepeat);
  *
  * @param hotkey Shortcut key object.
  * @param isRepeat Whether a key event is repeated.
- * @return OH_Input_GetIsRepeat status code, specifically,
+ * @return OH_Input_GetRepeat status code, specifically,
  *         {@link INPUT_SUCCESS} if the operation is successful;\n
  *         {@link INPUT_PARAMETER_ERROR} otherwise;\n
  *         {@Link INPUT_DEVICE_NOT_SUPPORTED} Capability not supported.\n
@@ -2061,7 +2061,7 @@ Input_Result OH_Input_UnregisterDeviceListener(Input_DeviceListener* listener);
 /**
  * @brief Unregisters the listener for all device hot swap events.
  *
- * @return OH_Input_UnregisterDeviceListener status code, specifically,
+ * @return OH_Input_UnregisterDeviceListeners status code, specifically,
  *         {@link INPUT_SUCCESS} if the operation is successful;\n
  *         {@link INPUT_SERVICE_EXCEPTION} if the service is abnormal.
  * @syscap SystemCapability.MultimodalInput.Input.Core
@@ -2093,7 +2093,7 @@ Input_Result OH_Input_GetFunctionKeyState(int32_t keyCode, int32_t *state);
  *         {@link INPUT_SUCCESS} if the operation is successful;
  *         {@link INPUT_PARAMETER_ERROR} if count is a null pointer.
  * @since 20
-*/
+ */
 Input_Result OH_Input_QueryMaxTouchPoints(int32_t *count);
 
 /**
