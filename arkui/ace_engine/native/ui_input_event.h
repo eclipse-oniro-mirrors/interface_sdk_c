@@ -61,9 +61,9 @@ typedef enum {
     ARKUI_UIINPUTEVENT_TYPE_AXIS = 2,
     /** Mouse event. */
     ARKUI_UIINPUTEVENT_TYPE_MOUSE = 3,
-    /** 
+    /**
      * @brief key event.
-     * 
+     *
      * @since 20
      */
     ARKUI_UIINPUTEVENT_TYPE_KEY = 4,
@@ -429,7 +429,7 @@ float OH_ArkUI_PointerEvent_GetXByIndex(const ArkUI_UIInputEvent* event, uint32_
  *
  * @param event Indicates the pointer to the UI input event.
  * @return Returns the Y coordinate relative to the upper left corner of the current component;
- * returns <b>0.0</b> if any parameter error occurs.
+ * returns <b>0.0f</b> if any parameter error occurs.
  * @since 12
  */
 float OH_ArkUI_PointerEvent_GetY(const ArkUI_UIInputEvent* event);
@@ -453,7 +453,7 @@ float OH_ArkUI_PointerEvent_GetYByIndex(const ArkUI_UIInputEvent* event, uint32_
  *
  * @param event Indicates the pointer to the UI input event.
  * @return Returns the X coordinate relative to the upper left corner of the current application window;
- * returns <b>0.0</b> if any parameter error occurs.
+ * returns <b>0.0f</b> if any parameter error occurs.
  * @since 12
  */
 float OH_ArkUI_PointerEvent_GetWindowX(const ArkUI_UIInputEvent* event);
@@ -477,7 +477,7 @@ float OH_ArkUI_PointerEvent_GetWindowXByIndex(const ArkUI_UIInputEvent* event, u
  *
  * @param event Indicates the pointer to the UI input event.
  * @return Returns the Y coordinate relative to the upper left corner of the current application window;
- * returns <b>0.0</b> if any parameter error occurs.
+ * returns <b>0.0f</b> if any parameter error occurs.
  * @since 12
  */
 float OH_ArkUI_PointerEvent_GetWindowY(const ArkUI_UIInputEvent* event);
@@ -501,7 +501,7 @@ float OH_ArkUI_PointerEvent_GetWindowYByIndex(const ArkUI_UIInputEvent* event, u
  *
  * @param event Indicates the pointer to the UI input event.
  * @return Returns the X coordinate relative to the upper left corner of the current screen;
- * returns <b>0.0</b> if any parameter error occurs.
+ * returns <b>0.0f</b> if any parameter error occurs.
  * @since 12
  */
 float OH_ArkUI_PointerEvent_GetDisplayX(const ArkUI_UIInputEvent* event);
@@ -525,7 +525,7 @@ float OH_ArkUI_PointerEvent_GetDisplayXByIndex(const ArkUI_UIInputEvent* event, 
  *
  * @param event Indicates the pointer to the UI input event.
  * @return Returns the Y coordinate relative to the upper left corner of the current screen;
- * returns <b>0.0</b> if any parameter error occurs.
+ * returns <b>0.0f</b> if any parameter error occurs.
  * @since 12
  */
 float OH_ArkUI_PointerEvent_GetDisplayY(const ArkUI_UIInputEvent* event);
