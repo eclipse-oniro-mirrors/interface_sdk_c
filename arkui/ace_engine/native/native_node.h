@@ -2386,17 +2386,7 @@ typedef enum {
      * @since 15
      */
     NODE_IMMUTABLE_FONT_WEIGHT = 1030,
-
-    /**
-     * @brief Defines the text line count attribute, which can only be obtained as required through APIs.
-     *
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: line count of the node.
-     *
-     * @since 20
-     */
-    NODE_TEXT_LINE_COUNT = 1031,
-
+ 
     /**
      * @brief Sets whether to optimize the trailing spaces at the end of each line during text layout.
      * This attribute can be set, reset, and obtained as required through APIs.
@@ -2411,6 +2401,17 @@ typedef enum {
      * @since 20
      */
     NODE_TEXT_OPTIMIZE_TRAILING_SPACE = 1032,
+
+    /**
+     * @brief Defines the text line count attribute, which can only be obtained as required through APIs.
+     *
+     * Format of the return value {@link ArkUI_AttributeItem}:\n
+     * .value[0].i32: line count of the node.
+     *
+     * @since 20
+     */
+    NODE_TEXT_LINE_COUNT = 1031,
+
     /**
      * @brief Sets a linear gradient effect for text.
      * This attribute can be set, reset, and obtained as required through APIs.
