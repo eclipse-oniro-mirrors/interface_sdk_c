@@ -326,7 +326,7 @@ typedef void (*OH_WindowManager_WindowSnapshotCallback)(const OH_PixelmapNative*
 /**
  * @brief Get snapshot of  the specified windows.
  *
- * @permission @code ohos.permission.CUSTOM_SCREEN_CAPTURE
+ * @permission ohos.permission.CUSTOM_SCREEN_CAPTURE
  * @param windowIdList Main window id list for getting snapshot.
  * @param windowIdListSize Size of main window id list.
  * @param config Configuration for getting snapshot.
