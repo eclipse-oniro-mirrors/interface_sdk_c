@@ -56,7 +56,7 @@ typedef struct OH_AVSamplesBuffer OH_AVSamplesBuffer;
 /**
  * @brief Forward declaration of OH_LowPowerAVSink_Capability.
  *
- * @since 21
+ * @since 20
  */
 typedef struct OH_LowPowerAVSink_Capability OH_LowPowerAVSink_Capability;
 
