@@ -90,7 +90,7 @@ int32_t OH_AVSamplesBuffer_GetRemainedCapacity(OH_AVSamplesBuffer *samplesBuffer
  * This function queries and returns the capability set supported by the current
  * lowpower audio/video sink, including but not limited to supported media formats, etc.
  *
- * @return {OH_LowPowerAVSink_Capability*} 
+ * @return {OH_LowPowerAVSink_Capability*}
  * - A pointer to the capability structure if the sink supports capability queries and the query is successful.
  * - nullptr if the sink does not support capability queries or the query fails.
  *
