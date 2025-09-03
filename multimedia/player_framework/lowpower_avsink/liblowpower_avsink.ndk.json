@@ -9,6 +9,10 @@
   },
   {
     "first_introduced": "20",
+    "name": "OH_LowPowerAVSink_GetCapability"
+  },
+  {
+    "first_introduced": "21",
     "name": "OH_LowPowerAudioSink_CreateByMime"
   },
   {
@@ -185,6 +189,10 @@
   },
   {
     "first_introduced": "20",
+    "name": "OH_LowPowerVideoSink_GetLatestPts"
+  },
+  {
+    "first_introduced": "21",
     "name": "OH_LowPowerVideoSink_RegisterCallback"
   },
   {
