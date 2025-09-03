@@ -68,7 +68,7 @@
     "name": "OH_LowPowerAudioSink_ReturnSamples"
   },
   {
-    "first_introduced": "20",
+    "first_introduced": "21",
     "name": "OH_LowPowerAudioSink_SetLoudnessGain"
   },
   {
