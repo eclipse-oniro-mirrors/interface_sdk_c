@@ -125,7 +125,6 @@ int32_t OH_WindowManager_IsWindowShown(int32_t windowId, bool* isShow);
  * @param windowId WindowId when window is created.
  * @return Returns the result code.
  *         {@link OK} the function call is successful.
- *         {@link WINDOW_MANAGER_ERRORCODE_INVALID_PARAM} parameter error.
  *         {@link WINDOW_MANAGER_ERRORCODE_STATE_ABNORMAL} this window state is abnormal.
  *         {@link WINDOW_MANAGER_ERRORCODE_SYSTEM_ABNORMAL} the window manager service works abnormally.
  * @since 15
@@ -139,7 +138,6 @@ int32_t OH_WindowManager_ShowWindow(int32_t windowId);
  * @param isTouchable Indicates whether the specified window can be touched.
  * @return Returns the result code.
  *         {@link OK} the function call is successful.
- *         {@link WINDOW_MANAGER_ERRORCODE_INVALID_PARAM} parameter error.
  *         {@link WINDOW_MANAGER_ERRORCODE_STATE_ABNORMAL} this window state is abnormal.
  *         {@link WINDOW_MANAGER_ERRORCODE_SYSTEM_ABNORMAL} the window manager service works abnormally.
  * @since 15
