@@ -2093,7 +2093,7 @@ Input_Result OH_Input_GetFunctionKeyState(int32_t keyCode, int32_t *state);
  *         {@link INPUT_SUCCESS} if the operation is successful;
  *         {@link INPUT_PARAMETER_ERROR} if count is a null pointer.
  * @since 20
-*/
+ */
 Input_Result OH_Input_QueryMaxTouchPoints(int32_t *count);
 
 /**
