@@ -291,6 +291,7 @@ bool OH_Pasteboard_HasData(OH_Pasteboard* pasteboard);
 /**
  * @brief Obtains data from the Pasteboard.
  *
+ * @permission ohos.permission.READ_PASTEBOARD
  * @param pasteboard Pointer to the {@link OH_Pasteboard} instance.
  * @param status The status code of the execution. For details, see {@link PASTEBOARD_ErrCode}.
  * @return Returns the pointer to the {@link OH_UdmfData} instance.
