@@ -4998,7 +4998,7 @@ typedef enum {
     NODE_SLIDER_SUFFIX,
 
     /**
-     * @brief Defines the color of the slider. This attribute can be set, reset, and obtained as required through APIs.
+     * @brief Defines the color of the slider block. This attribute can be set, reset, and obtained as required through APIs.
      *
      * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
      * .object: array of color stops, each of which consists of a color and its stop position.
