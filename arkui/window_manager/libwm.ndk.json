@@ -203,5 +203,21 @@
     {
         "first_instroduced":"20",
         "name":"OH_PictureInPicture_UnregisterAllResizeListeners"
+    },
+    {
+        "first_instroduced":"21",
+        "name":"OH_WindowManager_GetAllMainWindowInfo"
+    },
+    {
+        "first_instroduced":"21",
+        "name":"OH_WindowManager_ReleaseAllMainWindowInfo"
+    },
+    {
+        "first_instroduced":"21",
+        "name":"OH_WindowManager_GetMainWindowSnapshot"
+    },
+    {
+        "first_instroduced":"21",
+        "name":"OH_WindowManager_ReleaseMainWindowSnapshot"
     }
 ]
