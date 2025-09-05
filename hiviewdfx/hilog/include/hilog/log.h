@@ -23,6 +23,8 @@
  * and log level.
  *
  * @kit PerformanceAnalysisKit
+ * @include <hilog/log.h>
+ * @library libhilog_ndk.z.so
  * @syscap SystemCapability.HiviewDFX.HiLog
  *
  * @since 8
