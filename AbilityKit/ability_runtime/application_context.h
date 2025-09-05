@@ -294,7 +294,7 @@ AbilityRuntime_ErrorCode OH_AbilityRuntime_StartSelfUIAbility(AbilityBase_Want *
 AbilityRuntime_ErrorCode OH_AbilityRuntime_StartSelfUIAbilityWithStartOptions(AbilityBase_Want *want,
     AbilityRuntime_StartOptions *options);
 
-    /**
+/**
  * @brief Obtain the version code of the application.
  *
  * @param versionCode The version code of the application.
@@ -340,6 +340,8 @@ AbilityRuntime_ErrorCode OH_AbilityRuntime_ApplicationContextGetLaunchParameter(
  */
 AbilityRuntime_ErrorCode OH_AbilityRuntime_ApplicationContextGetLatestParameter(
     char* buffer, const int32_t bufferSize, int32_t* writeLength);
+
+/**
  * @brief Starts self UIAbility with start options and receives the process ID.
  *
  * @permission ohos.permission.NDK_START_SELF_UI_ABILITY
