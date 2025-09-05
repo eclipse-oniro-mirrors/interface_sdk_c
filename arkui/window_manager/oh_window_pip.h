@@ -358,7 +358,7 @@ int32_t OH_PictureInPicture_UpdatePipControlStatus(uint32_t controllerId, Pictur
     PictureInPicture_PipControlStatus status);
 
 /**
- * @brief Set picture-in-picture controll enable status.
+ * @brief Set picture-in-picture control enable status.
  *
  * @param controllerId The picture-in-picture controller ID
  * @param controlType The picture-in-picture control type.

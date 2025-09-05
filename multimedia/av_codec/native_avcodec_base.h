@@ -944,8 +944,8 @@ extern const char *OH_MD_KEY_VIDEO_PIC_WIDTH;
 extern const char *OH_MD_KEY_VIDEO_PIC_HEIGHT;
 /**
  * @brief Key to enable the low latency mode, value type is int32_t (0 or 1):1 is enabled, 0 otherwise.
- * If enabled, the video encoder or video decoder doesn't hold input and output data more than required by
- * the codec standards. This is an optional key that applies only to video encoder or video decoder.
+ * If enabled, the video decoder doesn't hold input and output data more than required by
+ * the codec standards. This is an optional key that applies only to video decoder.
  * It is used in configure.
  *
  * @syscap SystemCapability.Multimedia.Media.CodecBase

@@ -1373,7 +1373,7 @@ JSVM_EXTERN JSVM_Status OH_JSVM_GetValueInt64(JSVM_Env env,
  * @param result Number of bytes copied into the buffer, excluding the null terminator.
  * @return Returns JSVM funtions result code.
  *         {@link JSVM_OK } If the function executed successfully.\n
- *         {@link JSVM_NUMBER_EXPECTED } If a non-number JSVM_Value is passed in.\n
+ *         {@link JSVM_STRING_EXPECTED } If a non-string JSVM_Value is passed in.\n
  * @since 11
  */
 JSVM_EXTERN JSVM_Status OH_JSVM_GetValueStringLatin1(JSVM_Env env,
@@ -1394,7 +1394,7 @@ JSVM_EXTERN JSVM_Status OH_JSVM_GetValueStringLatin1(JSVM_Env env,
  * @param result Number of bytes copied into the buffer, excluding the null terminator.
  * @return Returns JSVM funtions result code.
  *         {@link JSVM_OK } If the function executed successfully.\n
- *         {@link JSVM_NUMBER_EXPECTED } If a non-number JSVM_Value is passed in.\n
+ *         {@link JSVM_STRING_EXPECTED } If a non-string JSVM_Value is passed in.\n
  * @since 11
  */
 JSVM_EXTERN JSVM_Status OH_JSVM_GetValueStringUtf8(JSVM_Env env,
@@ -1415,7 +1415,7 @@ JSVM_EXTERN JSVM_Status OH_JSVM_GetValueStringUtf8(JSVM_Env env,
  * @param result Number of 2-byte code units copied into the buffer, excluding the null terminator.
  * @return Returns JSVM funtions result code.
  *         {@link JSVM_OK } If the function executed successfully.\n
- *         {@link JSVM_NUMBER_EXPECTED } If a non-number JSVM_Value is passed in.\n
+ *         {@link JSVM_STRING_EXPECTED } If a non-string JSVM_Value is passed in.\n
  * @since 11
  */
 JSVM_EXTERN JSVM_Status OH_JSVM_GetValueStringUtf16(JSVM_Env env,

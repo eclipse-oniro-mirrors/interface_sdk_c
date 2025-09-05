@@ -24,6 +24,18 @@
         "name": "OH_CameraInput_Release"
     },
     {
+        "first_introduced": "21",
+        "name": "OH_CameraInput_IsPhysicalCameraOrientationVariable"
+    },
+    {
+        "first_introduced": "21",
+        "name": "OH_CameraInput_GetPhysicalCameraOrientation"
+    },
+    {
+        "first_introduced": "21",
+        "name": "OH_CameraInput_UsePhysicalCameraOrientation"
+    },
+    {
         "first_introduced": "11",
         "name": "OH_CameraManager_RegisterCallback"
     },
@@ -734,5 +746,13 @@
     {
         "first_introduced": "20",
         "name": "OH_CaptureSession_UnregisterMacroStatusChangeCallback"
+    },
+    {
+        "first_introduced": "21",
+        "name": "OH_PhotoOutput_IsPhotoQualityPrioritizationSupported"
+    },
+    {
+        "first_introduced": "21",
+        "name": "OH_PhotoOutput_SetPhotoQualityPrioritization"
     }
 ]

@@ -1257,11 +1257,19 @@ typedef enum {
      * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
      * .value[0].f32: position along the x-axis, in px. \n
      * .value[1].f32: position along the y-axis, in px. \n
-     * \n
+     * .value[2].?i32: the alignment mode. The data type is {@link ArkUI_Alignment}.
+     * The default value is <b>ARKUI_ALIGNMENT_TOP_START</b>. \n
+     * .value[3].?i32: the direction. The type is {@link ArkUI_Direction}.
+     * The default value is <b>ARKUI_DIRECTION_AUTO</b>. \n
      * Format of the return value {@link ArkUI_AttributeItem}:\n
      * .value[0].f32: position along the x-axis, in px. \n
      * .value[1].f32: position along the y-axis, in px. \n
+     * .value[2].i32: the alignment mode. The data type is {@link ArkUI_Alignment}.
+     * The default value is <b>ARKUI_ALIGNMENT_TOP_START</b>. \n
+     * .value[3].i32: the direction. The type is {@link ArkUI_Direction}.
+     * The default value is <b>ARKUI_DIRECTION_AUTO</b>. \n
      *
+     * @since 21
      */
     NODE_BACKGROUND_IMAGE_POSITION,
     /**
@@ -2000,6 +2008,53 @@ typedef enum {
     NODE_ROTATE_ANGLE = 104,
 
     /**
+     * @brief Defines the width attribute with param type LayoutPolicy, which can be set, reset, and obtained
+     * as required through APIs.
+     *
+     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
+     * .value[0].i32: the LayoutPolicy that the width of the component follows.\n
+     * The parameter type is {@link ArkUI_LayoutPolicy}. \n
+     * \n
+     * Format of the return value {@link ArkUI_AttributeItem}:\n
+     * .value[0].i32: the LayoutPolicy that the width of the component follows.\n
+     * The parameter type is {@link ArkUI_LayoutPolicy}. \n
+     *
+     * @since 21
+     */
+    NODE_WIDTH_LAYOUTPOLICY = 105,
+
+    /**
+     * @brief Defines the height attribute with param type LayoutPolicy, which can be set, reset, and obtained
+     * as required through APIs.
+     *
+     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
+     * .value[0].i32: the LayoutPolicy that the height of the component follows.\n
+     * The parameter type is {@link ArkUI_LayoutPolicy}. \n
+     * \n
+     * Format of the return value {@link ArkUI_AttributeItem}:\n
+     * .value[0].i32: the LayoutPolicy that the height of the component follows.\n
+     * The parameter type is {@link ArkUI_LayoutPolicy}. \n
+     *
+     * @since 21
+     */
+    NODE_HEIGHT_LAYOUTPOLICY = 106,
+
+    /**
+     * @brief Defines the position attribute in param type Edges, which specifies the position of the component
+     * by the distance relative to the parent container's four edges. This attribute can be set, reset, and obtained as
+     * required through APIs.
+     *
+     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
+     * .object indicates struct of edges for position. The parameter type is {@link ArkUI_PositionEdges}. \n
+     * \n
+     * Format of the return value {@link ArkUI_AttributeItem}:\n
+     * .object indicates struct of edges for position. The parameter type is {@link ArkUI_PositionEdges}. \n
+     *
+     * @since 21
+     */
+    NODE_POSITION_EDGES = 107,
+
+    /**
      * @brief Defines the text content attribute, which can be set, reset, and obtained as required through APIs.
      *
      * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
@@ -2492,6 +2547,22 @@ typedef enum {
     NODE_TEXT_VERTICAL_ALIGN = 1035,
 
     /**
+     * @brief Sets the content align of the text.
+     * This attribute can be set, reset, and obtained as required through APIs.
+     *
+     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
+     * .value[0].i32: content align of the text, specified using the {@link ArkUI_TextContentAlign}
+     * enum. The default value is <b>ARKUI_TEXT_CONTENT_ALIGN_TOP</b>. \n
+     * \n
+     * Format of the return value {@link ArkUI_AttributeItem}:\n
+     * .value[0].i32: content align of the text, specified using the {@link ArkUI_TextContentAlign}
+     * enum. \n
+     *
+     * @since 21
+     */
+    NODE_TEXT_CONTENT_ALIGN = 1036,
+
+    /**
      * @brief Defines the text content attribute, which can be set, reset, and obtained as required through APIs.
      *
      * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
@@ -2869,6 +2940,19 @@ typedef enum {
      * @since 21
      */
     NODE_IMAGE_ORIENTATION = 4020,
+    /**
+     * @brief Set the range of SVG parsing capabilities supported through enable switch.
+     * This attribute can be set, reset, and obtained as required through APIs.
+     *
+     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
+     * .value[0].i32: enable switch.\n
+     * \n
+     * Format of the return value {@link ArkUI_AttributeItem}:\n
+     * .value[0].i32: enable switch.\n
+     *
+     * @since 21
+     */
+    NODE_IMAGE_SUPPORT_SVG2 = 4021, 
     /**
      * @brief Defines the color of the component when it is selected.
      * This attribute can be set, reset, and obtained as required through APIs.
@@ -4088,25 +4172,19 @@ typedef enum {
      */
     NODE_XCOMPONENT_ID = MAX_NODE_SCOPE_NUM * ARKUI_NODE_XCOMPONENT,
     /**
-     * @brief Defines the type of the <b><XComponent></b> component.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief Specifies the type of the <b>XComponent</b> component. This attribute is read-only. \n
+     * The type of the <b>XComponent</b> component must be explicitly set during creation using {@link ARKUI_NODE_XCOMPONENT} or {@link ARKUI_NODE_XCOMPONENT_TEXTURE}, and cannot be modified afterward. \n
+     * Attempting to change the type through {@link setAttribute} will cause rendering exceptions.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: type {@link ArkUI_XComponentType}. The default value is <b>ARKUI_XCOMPONENT_TYPE_SURFACE</b>. \n
-     * \n
      * Format of the return value {@link ArkUI_AttributeItem}:\n
      * .value[0].i32: type {@link ArkUI_XComponentType}. \n
      *
      */
     NODE_XCOMPONENT_TYPE,
     /**
-     * @brief Defines the width and height of the <b><XComponent></b> component.
-     * This attribute can be set and obtained as required through APIs.
+     * @brief Specifies the size of the <b>XComponent</b> component. This attribute is read-only. \n
+     * Attempting to modify the size through {@link setAttribute} will have no effect.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].u32: width, in px. \n
-     * .value[1].u32: height, in px. \n
-     * \n
      * Format of the return value {@link ArkUI_AttributeItem}:\n
      * .value[0].u32: width, in px. \n
      * .value[1].u32: height, in px. \n
@@ -7323,6 +7401,21 @@ typedef enum {
     NODE_ON_HOVER_MOVE = 29,
 
     /**
+     * @brief Defines the size change event.
+     *
+     * The event will be triggered when the component size changes.
+     * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
+     * {@link ArkUI_NodeComponentEvent}. 
+     * {@link ArkUI_NodeComponentEvent} contains four parameters:
+     * <b>ArkUI_NodeComponentEvent.data[0].f32</b>: the width of the old rectangle.
+     * <b>ArkUI_NodeComponentEvent.data[1].f32</b>: the height of the old rectangle.
+     * <b>ArkUI_NodeComponentEvent.data[2].f32</b>: the width of the new rectangle.
+     * <b>ArkUI_NodeComponentEvent.data[3].f32</b>: the height of the new rectangle.
+     * @since 21
+     */
+    NODE_ON_SIZE_CHANGE = 30,
+
+    /**
      * @brief Triggers onDetectResultUpdate callback
      * when the text is set to TextDataDetectorConfig and recognized successfully.
      *
@@ -9895,8 +9988,8 @@ int32_t OH_ArkUI_NodeUtils_MoveTo(ArkUI_NodeHandle node, ArkUI_NodeHandle target
 
 /**
  * @brief Triggers node updates in the current frame.
- * When node attributes are modified after the current frame's build phase (i.e., after
- * the unified processing of dirty nodes), the node updates will be deferred to the next
+ * When node attributes are modified after the current frame's build phase,
+ * the node updates will be deferred to the next
  * frame. This function forces immediate node updates within the current frame to
  * ensure rendering effects are applied synchronously.
  *
@@ -10129,7 +10222,7 @@ int32_t OH_ArkUI_SetForceDarkConfig(ArkUI_ContextHandle uiContext, bool forceDar
  * @return Returns the result code.
  *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
  *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if context or asyncUITask is nullptr.
- * @since 20
+ * @since 21
  */
 int32_t OH_ArkUI_PostAsyncUITask(ArkUI_ContextHandle context, void* asyncUITaskData,
     void (*asyncUITask)(void* asyncUITaskData), void (*onFinish)(void* asyncUITaskData));
@@ -10143,7 +10236,7 @@ int32_t OH_ArkUI_PostAsyncUITask(ArkUI_ContextHandle context, void* asyncUITaskD
  * @return Returns the result code.
  *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
  *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if context or task is nullptr.
- * @since 20
+ * @since 21
  */
 int32_t OH_ArkUI_PostUITask(ArkUI_ContextHandle context, void* taskData, void (*task)(void* taskData));
 
@@ -10156,9 +10249,67 @@ int32_t OH_ArkUI_PostUITask(ArkUI_ContextHandle context, void* taskData, void (*
  * @return Returns the result code.
  *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
  *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if context or task is nullptr.
- * @since 20
+ * @since 21
  */
 int32_t OH_ArkUI_PostUITaskAndWait(ArkUI_ContextHandle context, void* taskData, void (*task)(void* taskData));
+
+/**
+ * @brief Register common event callback of target node.
+ *
+ * @param node The ArkUI-NodeHandle pointer.
+ * @param eventType Indicates the type of event to set.
+ * @param userData Indicates the pointer to the custom data.
+ * @param callback Indicates the event callback function.
+ * @return Returns the result code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} Function params is invalid.
+ *         Returns {@link ARKUI_ERROR_CODE_NODE_UNSUPPORTED_EVENT_TYPE} Function parameter eventType is not supported.
+ * @since 21
+ */
+int32_t OH_ArkUI_NativeModule_RegisterCommonEvent(ArkUI_NodeHandle node, ArkUI_NodeEventType eventType,
+    void* userData, void (*callback)(ArkUI_NodeEvent* event));
+
+/**
+ * @brief Unregister common event callback of target node.
+ *
+ * @param node The ArkUI-NodeHandle pointer.
+ * @param eventType Indicates the type of event to set.
+ * @return Returns the result code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} Function params is invalid.
+ *         Returns {@link ARKUI_ERROR_CODE_NODE_UNSUPPORTED_EVENT_TYPE} Function parameter eventType is not supported.
+ * @since 21
+ */
+int32_t OH_ArkUI_NativeModule_UnregisterCommonEvent(ArkUI_NodeHandle node, ArkUI_NodeEventType eventType);
+
+/**
+ * @brief Register common visible area approximate change event callback of target node.
+ *
+ * @param node The ArkUI-NodeHandle pointer.
+ * @param ratios Threshold array representing the visible area of the component.
+ * @param size The size of the ratios.
+ * @param expectedUpdateInterval The expected calculation interval for developers.
+ * @param userData Indicates the pointer to the custom data.
+ * @param callback Indicates the event callback function.
+ * @return Returns the result code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} Function params is invalid.
+ * @since 21
+ */
+int32_t OH_ArkUI_NativeModule_RegisterCommonVisibleAreaApproximateChangeEvent(ArkUI_NodeHandle node, float* ratios,
+    int32_t size, float expectedUpdateInterval, void* userData, void (*callback)(ArkUI_NodeEvent* event));
+
+/**
+ * @brief Unregister common visible area approximate change event callback of target node.
+ *
+ * @param node The ArkUI-NodeHandle pointer.
+ * @return Returns the result code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} Function params is invalid.
+ * @since 21
+ */
+int32_t OH_ArkUI_NativeModule_UnregisterCommonVisibleAreaApproximateChangeEvent(ArkUI_NodeHandle node);
+
 #ifdef __cplusplus
 };
 #endif

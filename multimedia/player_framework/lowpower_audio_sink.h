@@ -268,7 +268,7 @@ OH_AVErrCode OH_LowPowerAudioSink_ReturnSamples(OH_LowPowerAudioSink* sink, OH_A
  * otherwise, returns a specific error code as defined in {@link OH_AVErrCode}
  * {@link AV_ERR_INVALID_VAL} the sink is nullptr or loudnessGain is out of valid range.
  * {@link AV_ERR_SERVICE_DIED} media service is died.
- * @since 20
+ * @since 21
  */
 OH_AVErrCode OH_LowPowerAudioSink_SetLoudnessGain(OH_LowPowerAudioSink* sink, float loudnessGain);
 

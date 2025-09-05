@@ -94,6 +94,34 @@ typedef struct {
 } ArkWeb_BlanklessInfo;
 
 /**
+ * @brief ArkWeb Engine Version.
+ *
+ * <strong>ArkWeb Dual Web Engine Versioning Convention</strong>:
+ * <p>See [ArkWeb Dual Web Engine Versioning Convention] for switching between Legacy and Evergreen Web Engine.
+ *
+ * @since 20
+ */
+typedef enum {
+    /**
+     * the system default ArkWeb engine.
+     * @since 20
+     */
+    SYSTEM_DEFAULT = 0,
+
+    /**
+     * ArkWeb M114 version.
+     * @since 20
+     */
+    ARKWEB_M114 = 1,
+
+    /**
+     * ArkWeb M132 version.
+     * @since 20
+     */
+    ARKWEB_M132 = 2,
+} ArkWebEngineVersion;
+
+/**
  * @brief Loads a piece of code and execute JS code in the context of the currently displayed page.
  *
  * @param webTag The name of the web component.
@@ -314,6 +342,30 @@ ArkWeb_ErrorCode OH_ArkWebCookieManager_SaveCookieSync();
  * @since 20
  */
 void OH_ArkWebCookieManager_SaveCookieAsync(OH_ArkWeb_OnCookieSaveCallback callback);
+
+/**
+ * Set active ArkWeb engine version.
+ * If the system does not support the specified version, it will not take effect.
+ *
+ * This is a global static API that must be called before initializeWebEngine, and it will have no effect if any
+ * Web components are loaded.
+ *
+ * <strong>Legacy Web Engine Compatibility Note</strong>:
+ * <p>When using legacy ArkWeb Engine, some ArkWeb newly created API will not take effect,<br>
+ * see [Compatible with Legacy Web Engine in release note] for compatibility guidelines.
+ * </p>
+ *
+ * @param { ArkWebEngineVersion } webEngineVersion - the ArkWebEngineVersion
+ * @since 20
+ */
+void OH_NativeArkWeb_SetActiveWebEngineVersion(ArkWebEngineVersion webEngineVersion);
+
+/**
+ * Get currently active ArkWeb engine version.
+ * @return { ArkWebEngineVersion } Active ArkWeb Engine version as defined by ArkWebEngineVersion
+ * @since 20
+ */
+ArkWebEngineVersion OH_NativeArkWeb_GetActiveWebEngineVersion();
 
 #ifdef __cplusplus
 };

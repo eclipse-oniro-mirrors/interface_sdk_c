@@ -190,5 +190,9 @@
 	{
         "first_introduced": "21",
         "name": "OH_AbilityRuntime_ApplicationContextGetVersionCode"
+    },
+    {
+        "first_introduced": "21",
+        "name": "OH_AbilityRuntime_StartSelfUIAbilityWithPidResult"
     }
 ]
