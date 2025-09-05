@@ -569,5 +569,21 @@
     {
         "first_introduced": "20",
         "name": "OH_Input_InjectTouchEventGlobal"
+    },
+    {
+        "first_introduced": "21",
+        "name": "OH_Input_GetKeyEventId"
+    },
+    {
+        "first_introduced": "21",
+        "name": "OH_Input_AddKeyEventHook"
+    },
+    {
+        "first_introduced": "21",
+        "name": "OH_Input_RemoveKeyEventHook"
+    },
+    {
+        "first_introduced": "21",
+        "name": "OH_Input_DispatchToNextHandler"
     }
 ]
