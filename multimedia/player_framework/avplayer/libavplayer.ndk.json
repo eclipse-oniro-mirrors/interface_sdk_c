@@ -150,5 +150,9 @@
   {
     "first_introduced": "21",
     "name": "OH_AVPlayer_SetLoudnessGain"
+  },
+  {
+    "first_introduced": "21", 
+    "name": "OH_AVPlayer_SetDataSource"
   }
 ]
