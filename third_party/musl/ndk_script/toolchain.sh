@@ -74,3 +74,6 @@ function remove_unnecessary_file() {
 }
 remove_unnecessary_file
 strip_dir ${OUT_DIR}/lib
+if [ -f "${OUT_DIR}/bin/python/lib/python3.11/lldb/_lldb.so" ]; then
+    ${TOOL_DIR}/llvm-strip ${OUT_DIR}/bin/python/lib/python3.11/lldb/_lldb.so
+fi
