@@ -17,7 +17,7 @@
     },
     {
         "first_introduced": "20",
-        "name": "TTEEC_InvokeCommand"
+        "name": "TEEC_InvokeCommand"
     },
     {
         "first_introduced": "20",
