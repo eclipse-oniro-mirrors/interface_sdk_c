@@ -53,7 +53,6 @@ extern "C" {
  *                        If false, the status bar is displayed and hidden with no animation.
  * @return Returns the result code.
  *         {@link OK} the function call is successful.
- *         {@link WINDOW_MANAGER_ERRORCODE_INVALID_PARAM} parameter error.
  *         {@link WINDOW_MANAGER_ERRORCODE_DEVICE_NOT_SUPPORTED} capability not supported.
  *         {@link WINDOW_MANAGER_ERRORCODE_STATE_ABNORMAL} this window state is abnormal.
  *         {@link WINDOW_MANAGER_ERRORCODE_SYSTEM_ABNORMAL} the window manager service works abnormally.
@@ -68,7 +67,6 @@ int32_t OH_WindowManager_SetWindowStatusBarEnabled(int32_t windowId, bool enable
  * @param color The color value to set, the format is ARGB.
  * @return Returns the result code.
  *         {@link OK} the function call is successful.
- *         {@link WINDOW_MANAGER_ERRORCODE_INVALID_PARAM} parameter error.
  *         {@link WINDOW_MANAGER_ERRORCODE_DEVICE_NOT_SUPPORTED} capability not supported.
  *         {@link WINDOW_MANAGER_ERRORCODE_STATE_ABNORMAL} this window state is abnormal.
  *         {@link WINDOW_MANAGER_ERRORCODE_SYSTEM_ABNORMAL} the window manager service works abnormally.
@@ -85,7 +83,6 @@ int32_t OH_WindowManager_SetWindowStatusBarColor(int32_t windowId, int32_t color
  *                        If false, the navigation bar is displayed and hidden with no animation.
  * @return Returns the result code.
  *         {@link OK} the function call is successful.
- *         {@link WINDOW_MANAGER_ERRORCODE_INVALID_PARAM} parameter error.
  *         {@link WINDOW_MANAGER_ERRORCODE_DEVICE_NOT_SUPPORTED} capability not supported.
  *         {@link WINDOW_MANAGER_ERRORCODE_STATE_ABNORMAL} this window state is abnormal.
  *         {@link WINDOW_MANAGER_ERRORCODE_SYSTEM_ABNORMAL} the window manager service works abnormally.
@@ -128,7 +125,6 @@ int32_t OH_WindowManager_IsWindowShown(int32_t windowId, bool* isShow);
  * @param windowId WindowId when window is created.
  * @return Returns the result code.
  *         {@link OK} the function call is successful.
- *         {@link WINDOW_MANAGER_ERRORCODE_INVALID_PARAM} parameter error.
  *         {@link WINDOW_MANAGER_ERRORCODE_STATE_ABNORMAL} this window state is abnormal.
  *         {@link WINDOW_MANAGER_ERRORCODE_SYSTEM_ABNORMAL} the window manager service works abnormally.
  * @since 15
@@ -142,7 +138,6 @@ int32_t OH_WindowManager_ShowWindow(int32_t windowId);
  * @param isTouchable Indicates whether the specified window can be touched.
  * @return Returns the result code.
  *         {@link OK} the function call is successful.
- *         {@link WINDOW_MANAGER_ERRORCODE_INVALID_PARAM} parameter error.
  *         {@link WINDOW_MANAGER_ERRORCODE_STATE_ABNORMAL} this window state is abnormal.
  *         {@link WINDOW_MANAGER_ERRORCODE_SYSTEM_ABNORMAL} the window manager service works abnormally.
  * @since 15
@@ -156,7 +151,6 @@ int32_t OH_WindowManager_SetWindowTouchable(int32_t windowId, bool isTouchable);
  * @param isFocusable Window can be focused or not.
  * @return Returns the result code.
  *         {@link OK} the function call is successful.
- *         {@link WINDOW_MANAGER_ERRORCODE_INVALID_PARAM} parameter error.
  *         {@link WINDOW_MANAGER_ERRORCODE_STATE_ABNORMAL} this window state is abnormal.
  *         {@link WINDOW_MANAGER_ERRORCODE_SYSTEM_ABNORMAL} the window manager service works abnormally.
  * @since 15
@@ -197,7 +191,6 @@ int32_t OH_WindowManager_SetWindowBrightness(int32_t windowId, float brightness)
  * @param isKeepScreenOn keep screen on if true, or not if false.
  * @return Returns the result code.
  *         {@link OK} the function call is successful.
- *         {@link WINDOW_MANAGER_ERRORCODE_INVALID_PARAM} parameter error.
  *         {@link WINDOW_MANAGER_ERRORCODE_STATE_ABNORMAL} this window state is abnormal.
  *         {@link WINDOW_MANAGER_ERRORCODE_SYSTEM_ABNORMAL} the window manager service works abnormally.
  * @since 15
@@ -212,7 +205,6 @@ int32_t OH_WindowManager_SetWindowKeepScreenOn(int32_t windowId, bool isKeepScre
  * @param isPrivacy In private mode if true, or not if false.
  * @return Returns the result code.
  *         {@link OK} the function call is successful.
- *         {@link WINDOW_MANAGER_ERRORCODE_INVALID_PARAM} parameter error.
  *         {@link WINDOW_MANAGER_ERRORCODE_STATE_ABNORMAL} this window state is abnormal.
  *         {@link WINDOW_MANAGER_ERRORCODE_SYSTEM_ABNORMAL} the window manager service works abnormally.
  *         {@link WINDOW_MANAGER_ERRORCODE_NO_PERMISSION} permission verification failed.
@@ -242,7 +234,6 @@ int32_t OH_WindowManager_GetWindowProperties(
  * @return Returns the result code.
  *         {@link OK} the function call is successful, return pixel map ptr in pixelMap.
  *         {@link WINDOW_MANAGER_ERRORCODE_INVALID_PARAM} parameter error.
- *         {@link WINDOW_MANAGER_ERRORCODE_STATE_ABNORMAL} this window state is abnormal.
  *         {@link WINDOW_MANAGER_ERRORCODE_SYSTEM_ABNORMAL} the window manager service works abnormally.
  * @since 15
  */
