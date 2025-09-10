@@ -2605,7 +2605,7 @@ typedef enum {
      *
      * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
      * .value[0].i32: content align of the text, specified using the {@link ArkUI_TextContentAlign}
-     * enum. The default value is <b>ARKUI_TEXT_CONTENT_ALIGN_TOP</b>. \n
+     * enum. The default value is <b>ARKUI_TEXT_CONTENT_ALIGN_CENTER</b>. \n
      * \n
      * Format of the return value {@link ArkUI_AttributeItem}:\n
      * .value[0].i32: content align of the text, specified using the {@link ArkUI_TextContentAlign}
