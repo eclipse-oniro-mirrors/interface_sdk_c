@@ -380,6 +380,46 @@
         "name":"OH_AudioSessionManager_UnregisterCurrentOutputDeviceChangeCallback"
     },
     {
+        "first_introduced": "21",
+        "name":"OH_AudioSessionManager_GetAvailableDevices"
+    },
+    {
+        "first_introduced": "21",
+        "name":"OH_AudioSessionManager_RegisterAvailableDevicesChangeCallback"
+    },
+    {
+        "first_introduced": "21",
+        "name":"OH_AudioSessionManager_UnRegisterAvailableDevicesChangeCallback"
+    },
+    {
+        "first_introduced": "21",
+        "name":"OH_AudioSessionManager_SelectMediaInputDevice"
+    },
+    {
+        "first_introduced": "21",
+        "name":"OH_AudioSessionManager_GetSelectedMediaInputDevice"
+    },
+    {
+        "first_introduced": "21",
+        "name":"OH_AudioSessionManager_SetBluetoothAndNearlinkPreferredRecordCategory"
+    },
+    {
+        "first_introduced": "21",
+        "name":"OH_AudioSessionManager_GetBluetoothAndNearlinkPreferredRecordCategory"
+    },
+    {
+        "first_introduced": "21",
+        "name":"OH_AudioSessionManager_RegisterCurrentInputDeviceChangeCallback"
+    },
+    {
+        "first_introduced": "21",
+        "name":"OH_AudioSessionManager_UnregisterCurrentInputDeviceChangeCallback"
+    },
+    {
+        "first_introduced": "21",
+        "name":"OH_AudioSessionManager_ReleaseDevice"
+    },
+    {
         "first_introduced": "12",
         "name": "OH_GetAudioManager"
     },
