@@ -40,7 +40,6 @@
 #ifndef DRAWING_TEXT_FONT_DESCRIPTOR_H
 #define DRAWING_TEXT_FONT_DESCRIPTOR_H
 
-#include "drawing_memory_stream.h"
 #include "drawing_text_declaration.h"
 #include "drawing_text_typography.h"
 
@@ -170,14 +169,15 @@ const OH_Drawing_String* OH_Drawing_GetSystemFontFullNameByIndex(OH_Drawing_Arra
 void OH_Drawing_DestroySystemFontFullNames(OH_Drawing_Array* fullNameArray);
 
 /**
- * @brief Obtains an array of font full descriptors from a memory stream.
+ * @brief Retrieves an array of font full descriptors from raw binary data.
  *
- * @param stream Indicates the pointer to the memory stream <b>OH_Drawing_MemoryStream</b> containing font data.
- * @return Returns a pointer to <b>OH_Drawing_Array</b> structure containing font full descriptors.
- *         Returns <b>NULL</b> if parsing fails or the stream contains invalid data.
+ * @param data Pointer to the raw binary font data buffer.
+ * @param size Size of the font data buffer in bytes.
+ * @return Returns a pointer to <b>OH_Drawing_Array</b> containing font full descriptors. 
+ *         Returns <b>NULL</b> if the operation fails due to invalid data format or parsing errors.
  * @since 22
  */
-OH_Drawing_Array* OH_Drawing_GetFontFullDescriptorsFromStream(OH_Drawing_MemoryStream* stream);
+OH_Drawing_Array* OH_Drawing_GetFontFullDescriptorsFromStream(const void* data, size_t size);
 
 /**
  * @brief Obtains an array of font full descriptors from font file path.
