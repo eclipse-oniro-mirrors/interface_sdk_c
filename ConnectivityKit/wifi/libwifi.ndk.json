@@ -2,5 +2,9 @@
     {
         "first_introduced": "13",
         "name": "OH_Wifi_IsWifiEnabled"
+    },
+    {
+        "first_introduced": "21",
+        "name": "OH_Wifi_GetDeviceMacAddress"
     }
 ]
