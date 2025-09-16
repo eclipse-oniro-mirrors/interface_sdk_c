@@ -172,6 +172,10 @@
         "name": "OH_ArkUI_AxisEvent_GetAxisAction"
     },
     {
+        "first_introduced": "21",
+        "name": "OH_ArkUI_AxisEvent_HasAxis"
+    },
+    {
         "first_introduced": "12",
         "name": "OH_ArkUI_GetNodeHandleFromNapiValue"
     },
