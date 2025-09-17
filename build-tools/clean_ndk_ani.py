@@ -24,6 +24,7 @@ from typing import List
 # ani header file list
 _ANI_HEADER_LISTS = [
     "native_node_ani.h",
+    "ani.h",
 ]
 
 # Precompiled regular expression
