@@ -253,7 +253,7 @@ OH_AVErrCode OH_VideoDecoder_Reset(OH_AVCodec *codec);
  * @syscap SystemCapability.Multimedia.Media.VideoDecoder
  * @param codec Pointer to an OH_AVCodec instance
  * @return Returns a pointer to an OH_AVFormat instance.
- * Return nullptr if the decoder is nullptr or invaild.
+ * Return nullptr if the decoder is nullptr or invalid.
  * @since 9
  */
 OH_AVFormat *OH_VideoDecoder_GetOutputDescription(OH_AVCodec *codec);
@@ -493,7 +493,7 @@ OH_AVBuffer *OH_VideoDecoder_GetInputBuffer(struct OH_AVCodec *codec, uint32_t i
  * {@link AV_ERR_INVALID_STATE}, this interface was called in invalid state.
  * {@link AV_ERR_OPERATE_NOT_PERMIT}, not permitted in asynchronous mode.
  * {@link AV_ERR_STREAM_CHANGED}, stream format changed, call {@link OH_VideoDecoder_GetOutputDescription} to
- * retrieve new steam information.
+ * retrieve new stream information.
  * {@link AV_ERR_TRY_AGAIN_LATER}, query failed, recommended retry after delay.
  * @since 20
  */
