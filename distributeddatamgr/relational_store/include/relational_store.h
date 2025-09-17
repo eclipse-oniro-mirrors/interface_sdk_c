@@ -1380,6 +1380,8 @@ Rdb_TableDetails *OH_Rdb_GetTableDetails(Rdb_ProgressDetails *progress, int32_t 
 /**
  * @brief The callback function of progress.
  *
+ * @param context Represents user-provided data context,
+ *     which will be passed back into the function when invoked.
  * @param progressDetails The details of the sync progress.
  * @see Rdb_ProgressDetails.
  * @since 11
