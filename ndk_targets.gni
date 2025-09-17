@@ -269,6 +269,8 @@ _ndk_library_targets = [
   "//interface/sdk_c/ConnectivityKit/wifi:wifi_ndk_header",
   "//interface/sdk_c/TEEKit:libteec",
   "//interface/sdk_c/TEEKit:tee_ndk_header",
+  "//interface/sdk_c/GameControllerKit:ohgame_controller_header",
+  "//interface/sdk_c/GameControllerKit:libohgame_controller",
 ]
 
 _ndk_base_libs = [

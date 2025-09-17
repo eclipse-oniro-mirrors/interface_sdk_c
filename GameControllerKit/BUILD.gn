@@ -1,0 +1,41 @@
+# Copyright (c) 2025 Huawei Device Co., Ltd.
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+import("//build/ohos.gni")
+import("//build/ohos_var.gni")
+
+ohos_ndk_headers("ohgame_controller_header") {
+  dest_dir = "$ndk_headers_out_dir/GameControllerKit/"
+  sources = [
+    "game_controller_type.h",
+    "game_device.h",
+    "game_device_event.h",
+    "game_pad.h",
+    "game_pad_event.h",
+  ]
+}
+
+ohos_ndk_library("libohgame_controller") {
+  output_name = "ohgame_controller"
+  output_extension = "z.so"
+  system_capability = "SystemCapability.Game.GameController"
+  ndk_description_file = "libohgame_controller.ndk.json"
+  min_compact_version = "21"
+  system_capability_headers = [
+    "game_controller_type.h",
+    "game_device_event.h",
+    "game_device.h",
+    "game_pad_event.h",
+    "game_pad.h",
+  ]
+}
