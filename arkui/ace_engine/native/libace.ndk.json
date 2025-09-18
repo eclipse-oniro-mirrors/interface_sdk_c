@@ -4210,5 +4210,21 @@
     {
         "first_introduced": "22",
         "name": "OH_ArkUI_ShowCounterConfig_GetCounterTextOverflowColor"
+    },
+    {
+        "first_introduced": "22",
+        "name": "OH_ArkUI_XComponentSurfaceConfig_Create"
+    },
+    {
+        "first_introduced": "22",
+        "name": "OH_ArkUI_XComponentSurfaceConfig_Dispose"
+    },
+    {
+        "first_introduced": "22",
+        "name": "OH_ArkUI_XComponentSurfaceConfig_SetIsOpaque"
+    },
+    {
+        "first_introduced": "22",
+        "name": "OH_ArkUI_SurfaceHolder_SetSurfaceConfig"
     }
 ]
