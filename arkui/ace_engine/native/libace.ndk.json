@@ -4178,5 +4178,29 @@
     {
         "first_introduced": "21",
         "name": "OH_ArkUI_PixelRoundPolicy_GetEnd"
+    },
+    {
+        "first_introduced": "22",
+        "name": "OH_ArkUI_ShowCounterConfig_Create"
+    },
+    {
+        "first_introduced": "22",
+        "name": "OH_ArkUI_ShowCounterConfig_Dispose"
+    },
+    {
+        "first_introduced": "22",
+        "name": "OH_ArkUI_ShowCounterConfig_SetCounterTextColor"
+    },
+    {
+        "first_introduced": "22",
+        "name": "OH_ArkUI_ShowCounterConfig_SetCounterTextOverflowColor"
+    },
+    {
+        "first_introduced": "22",
+        "name": "OH_ArkUI_ShowCounterConfig_GetCounterTextColor"
+    },
+    {
+        "first_introduced": "22",
+        "name": "OH_ArkUI_ShowCounterConfig_GetCounterTextOverflowColor"
     }
 ]
