@@ -34,13 +34,10 @@
  * @syscap SystemCapability.HiviewDFX.HiProfiler.HiDebug
  * @since 12
  */
-
 #ifndef HIVIEWDFX_HIDEBUG_H
 #define HIVIEWDFX_HIDEBUG_H
-
 #include <stdint.h>
 #include "hidebug_type.h"
-
 #ifdef __cplusplus
 extern "C" {
 #endif // __cplusplus
@@ -261,9 +258,34 @@ void OH_HiDebug_DestroyBacktraceObject(HiDebug_Backtrace_Object object);
  */
 HiDebug_ErrorCode OH_HiDebug_GetGraphicsMemorySummary(uint32_t interval, HiDebug_GraphicsMemorySummary *summary);
 
+/**
+ * @brief Defines the callback of the lightweight performance stack.
+ *
+ * @param stacks Stacks.
+ * @since 22
+ */
+typedef void (*OH_HiDebug_ThreadLiteSamplingCallback)(const char* stacks);
+
+/**
+ * Requests stack sampling for the current process.
+ * The calling thread is blocked until the sampling is complete.
+ *
+ * @param config Sampling configuration parameters.
+ * @param stacksCallback Callback of the sampling stack. This function is called after the sampling to pass
+ * the sampling stack information.
+ * @return Result code.
+ *         {@link HIDEBUG_SUCCESS } The operation is successful.
+ *         {@link HIDEBUG_INVALID_ARGUMENT } Invalid argument.
+ *         {@link HIDEBUG_NOT_SUPPORTED } The device does not support sampling.
+ *         {@link HIDEBUG_UNDER_SAMPLING } The sampling is in progress.
+ *         {@link HIDEBUG_RESOURCE_UNAVAILABLE } Resource unavailable.
+ * @since 22
+ */
+HiDebug_ErrorCode OH_HiDebug_RequestThreadLiteSampling(
+    HiDebug_ProcessSamplerConfig* config, OH_HiDebug_ThreadLiteSamplingCallback stacksCallback);
 #ifdef __cplusplus
 }
 #endif // __cplusplus
-/** @} */
 
+/** @} */
 #endif // HIVIEWDFX_HIDEBUG_H

@@ -74,5 +74,9 @@
     {
         "first_introduced": "20",
         "name": "OH_HiDebug_DestroyBacktraceObject"
+    },
+    {
+        "first_introduced": "22",
+        "name": "OH_HiDebug_RequestThreadLiteSampling"
     }
 ]
