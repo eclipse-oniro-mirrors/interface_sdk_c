@@ -541,7 +541,7 @@ OH_AudioCommon_Result OH_AudioSessionManager_UnregisterCurrentOutputDeviceChange
  * @param audioDeviceDescriptorArray the {@link OH_AudioDeviceDescriptorArray}
  *     pointer variable which will be set the audio device descriptors value
  *     Do not release the audioDeviceDescriptorArray pointer separately
- *     instead call {@link OH_AudioRoutingManager_ReleaseDevices} to release the DeviceDescriptor array
+ *     instead call {@link OH_AudioSessionManager_ReleaseDevices} to release the DeviceDescriptor array
  *     when it is no use anymore.
  * @return {@link #AUDIOCOMMON_RESULT_SUCCESS} if execution succeeds.
  *     or {@link #AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM} if parameter validation fails.
@@ -714,5 +714,5 @@ OH_AudioCommon_Result OH_AudioSessionManager_ReleaseDevice(
 }
 #endif
 
-#endif // NATIVE_AUDIO_ROUTING_MANAGER_H
+#endif // NATIVE_AUDIO_SESSION_MANAGER_H
 /** @} */
