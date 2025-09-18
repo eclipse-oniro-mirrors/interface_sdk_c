@@ -37,6 +37,7 @@ _DIR_NOT_PROCESS = [
     "x86_64-linux-ohos"
 ]
 
+
 class HeaderProcessor:
     MAX_LINE_LENGTH = 120  # 最大行长度限制（超过则换行显示版本宏）
 
