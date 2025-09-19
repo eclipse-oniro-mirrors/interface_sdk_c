@@ -311,7 +311,7 @@ void OH_WindowManager_ReleaseAllMainWindowInfo(WindowManager_MainWindowInfo* inf
  * @param snapshotListSize Size of snapshotPixelMapList
  * @since 21
  */
-typedef void (*OH_WindowManager_WindowSnapshotCallback)(const OH_PixelmapNative* snapshotPixelMapList,
+typedef void (*OH_WindowManager_WindowSnapshotCallback)(const OH_PixelmapNative** snapshotPixelMapList,
     size_t snapshotListSize);
 
 /**
