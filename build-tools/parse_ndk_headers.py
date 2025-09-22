@@ -189,18 +189,24 @@ class HeaderProcessor:
 
 
     def _get_version_macro(self, since_version: str, deprecated_version: str) -> str:
-        """根据since版本格式和deprecated数字生成对应宏"""
         distributeos_pattern = re.compile(r'^(\d+)\.(\d+)\.(\d+)\((\d+)\)$')
         since_match = distributeos_pattern.match(since_version)
 
+        # 生成基础版本since宏（__DISTRIBUTEOS_AVAILABILITY 或 __OH_AVAILABILITY）
         if since_match:
-            # 生成__DISTRIBUTEOS_AVAILABILITY宏
             major, minor, patch, oh_version = since_match.groups()
-            return (f'__DISTRIBUTEOS_AVAILABILITY(__HMS_VERSION({major},{minor.zfill(2)},{patch.zfill(2)}), '
-                    f'__OH_VERSION({oh_version},{deprecated_version}))')
+            base_macro = (f'__DISTRIBUTEOS_AVAILABILITY(__DISTRIBUTEOS_VERSION({major},{minor.zfill(2)},{patch.zfill(2)}), '
+                        f'__OH_VERSION({oh_version},0))')
         else:
-            # 纯数字格式，生成__OH_AVAILABILITY宏
-            return f'__OH_AVAILABILITY(__OH_VERSION({since_version},{deprecated_version}))'
+            base_macro = f'__OH_AVAILABILITY(__OH_VERSION({since_version},0))'
+
+        # 若deprecated_version != "0"，追加__OH_DEPRECATED宏
+        if deprecated_version != "0":
+            deprecated_macro = f'__OH_DEPRECATED(__OH_VERSION({deprecated_version},0))'
+            return f"{base_macro} {deprecated_macro}"
+
+        # 无废弃时仅返回基础since宏
+        return base_macro
 
 
     def _format_declaration(self, decl: str, macro: str) -> str:
