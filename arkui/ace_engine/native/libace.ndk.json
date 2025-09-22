@@ -4310,5 +4310,29 @@
     {
         "first_introduced": "22",
         "name": "OH_ArkUI_SelectedDataDetectorConfig_GetTypes"
+    },
+    {
+        "first_introduced": "22",
+        "name": "OH_ArkUI_GridLayoutOptions_Create"
+    },
+    {
+        "first_introduced": "22",
+        "name": "OH_ArkUI_GridLayoutOptions_Dispose"
+    },
+    {
+        "first_introduced": "22",
+        "name": "OH_ArkUI_GridLayoutOptions_SetIrregularIndexes"
+    },
+    {
+        "first_introduced": "22",
+        "name": "OH_ArkUI_GridLayoutOptions_GetIrregularIndexes"
+    },
+    {
+        "first_introduced": "22",
+        "name": "OH_ArkUI_GridLayoutOptions_RegisterGetIrregularSizeByIndexCallback"
+    },
+    {
+        "first_introduced": "22",
+        "name": "OH_ArkUI_GridLayoutOptions_RegisterGetRectByIndexCallback"
     }
 ]
