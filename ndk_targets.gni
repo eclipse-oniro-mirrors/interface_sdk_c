@@ -19,6 +19,8 @@ _ndk_library_targets = [
   "//interface/sdk_c/sensors/miscdevice/vibrator:ndk_vibrator_header",
   "//interface/sdk_c/third_party/zlib:libz_ndk",
   "//interface/sdk_c/third_party/zlib:zlib_header",
+  "//interface/sdk_c/global/i18n:native_i18n_header",
+  "//interface/sdk_c/global/i18n:native_i18n_ndk",
   "//interface/sdk_c/global/resource_management:librawfile_ndk",
   "//interface/sdk_c/global/resource_management:rawfile_header",
   "//interface/sdk_c/global/resource_management:native_resmgr_ndk",
