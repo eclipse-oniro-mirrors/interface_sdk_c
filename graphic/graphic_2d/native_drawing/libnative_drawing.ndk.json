@@ -1127,6 +1127,34 @@
         "name": "OH_Drawing_DestroyFontDescriptors"
     },
     {
+        "first_introduced": "22",
+        "name": "OH_Drawing_GetFontFullDescriptorsFromStream"
+    },
+    {
+        "first_introduced": "22",
+        "name": "OH_Drawing_GetFontFullDescriptorsFromPath"
+    },
+    {
+        "first_introduced": "22",
+        "name": "OH_Drawing_GetFontFullDescriptorByIndex"
+    },
+    {
+        "first_introduced": "22",
+        "name": "OH_Drawing_DestroyFontFullDescriptors"
+    },
+    {
+        "first_introduced": "22",
+        "name": "OH_Drawing_GetFontFullDescriptorAttributeInt"
+    },
+    {
+        "first_introduced": "22",
+        "name": "OH_Drawing_GetFontFullDescriptorAttributeBool"
+    },
+    {
+        "first_introduced": "22",
+        "name": "OH_Drawing_GetFontFullDescriptorAttributeString"
+    },
+    {
         "first_introduced": "12",
         "name": "OH_Drawing_CreateFontParser"
     },
@@ -2069,33 +2097,5 @@
     {
         "first_introduced": "21",
         "name": "OH_Drawing_GetTypographyStyleAttributeInt"
-    },
-    {
-        "first_introduced": "22",
-        "name": "OH_Drawing_GetFontFullDescriptorsFromStream"
-    },
-    {
-        "first_introduced": "22",
-        "name": "OH_Drawing_GetFontFullDescriptorsFromPath"
-    },
-    {
-        "first_introduced": "22",
-        "name": "OH_Drawing_GetFontFullDescriptorByIndex"
-    },
-    {
-        "first_introduced": "22",
-        "name": "OH_Drawing_DestroyFontFullDescriptors"
-    },
-    {
-        "first_introduced": "22",
-        "name": "OH_Drawing_GetFontFullDescriptorAttributeInt"
-    },
-    {
-        "first_introduced": "22",
-        "name": "OH_Drawing_GetFontFullDescriptorAttributeBool"
-    },
-    {
-        "first_introduced": "22",
-        "name": "OH_Drawing_GetFontFullDescriptorAttributeString"
     }
 ]
