@@ -4188,6 +4188,22 @@
         "name": "OH_ArkUI_PixelRoundPolicy_GetEnd"
     },
     {
+        "first_introduced": "20",
+        "name": "OH_ArkUI_NativeModule_GetNodeHandleFromAniValue"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_ArkUI_NativeModule_GetContextFromAniValue"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_ArkUI_NativeModule_GetNodeContentFromAniValue"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_ArkUI_NativeModule_GetNavDestinationAniParam"
+    },
+    {
         "first_introduced": "22",
         "name": "OH_ArkUI_Swiper_FinishAnimation"
     },

@@ -36,6 +36,7 @@ if (!is_arkui_x) {
       "native_interface_focus.h",
       "native_key_event.h",
       "native_node.h",
+      "native_node_ani.h",
       "native_node_napi.h",
       "native_render.h",
       "native_type.h",
