@@ -394,7 +394,7 @@ OH_Drawing_ErrorCode OH_Drawing_MatrixGetAll(OH_Drawing_Matrix* matrix, float va
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @param a Indicates the pointer to an <b>OH_Drawing_Matrix</b> object.
  * @param b Indicates the pointer to an <b>OH_Drawing_Matrix</b> object.
- * @since 12
+ * @since 21
  * @version 1.0
  */
 OH_Drawing_ErrorCode OH_Drawing_MatrixPreConcat(OH_Drawing_Matrix* a, OH_Drawing_Matrix* b);
