@@ -4189,6 +4189,10 @@
     },
     {
         "first_introduced": "22",
+        "name": "OH_ArkUI_Swiper_FinishAnimation"
+    },
+    {
+        "first_introduced": "22",
         "name": "OH_ArkUI_ShowCounterConfig_Create"
     },
     {
