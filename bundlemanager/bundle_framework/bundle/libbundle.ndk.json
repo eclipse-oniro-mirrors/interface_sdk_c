@@ -45,10 +45,6 @@
     },
     {
       "first_introduced": "21",
-      "name": "OH_NativeBundle_GetIcon"
-    },
-    {
-      "first_introduced": "21",
       "name": "OH_NativeBundle_GetLabel"
     },
     {
@@ -66,5 +62,9 @@
     {
       "first_introduced": "21",
       "name": "OH_NativeBundle_GetSize"
+    },
+    {
+      "first_introduced": "21",
+      "name": "OH_NativeBundle_GetDrawableDescriptor"
     }
 ]
