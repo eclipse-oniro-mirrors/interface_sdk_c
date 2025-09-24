@@ -277,15 +277,13 @@ OH_Drawing_ErrorCode OH_Drawing_RectDestroyArray(OH_Drawing_Array* rectArray);
 /**
  * @brief Determine whether one <b>OH_Drawing_Rect</b> object totally contains another <b>OH_Drawing_Rect</b> object.
  *
- * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @param rect Indicates the pointer to an <b>OH_Drawing_Rect</b> object.
  * @param other Indicates the pointer to an <b>OH_Drawing_Rect</b> object.
  * @param isContains Indicates whether rect totally contains other.
  * @return Returns the error code.
  *         Returns {@link OH_DRAWING_SUCCESS} if the operation is successful.
- *         Returns {@link OH_DRAWING_ERROR_INVALID_PARAMETER} if rectArray or rect is nullptr,
- *                 or index is valid.
- * @since 21
+ *         Returns {@link OH_DRAWING_ERROR_INCORRECT_PARAMETER} if rect or other is nullptr.
+ * @since 22
  * @version 1.0
  */
 OH_Drawing_ErrorCode OH_Drawing_RectContains(OH_Drawing_Rect* rect, const OH_Drawing_Rect* other, bool* isContains);
@@ -293,7 +291,6 @@ OH_Drawing_ErrorCode OH_Drawing_RectContains(OH_Drawing_Rect* rect, const OH_Dra
 /**
  * @brief Add the specified values to the left and top boundaried of an <b>OH_Drawing_Rect</b> object.
  *
- * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @param rect Indicates the pointer to an <b>OH_Drawing_Rect</b> object.
  * @param left Indicates the value added to the left boundary of an <b>OH_Drawing_Rect</b> object.
  * @param top Indicates the value added to the top boundary of an <b>OH_Drawing_Rect</b> object.
@@ -301,9 +298,8 @@ OH_Drawing_ErrorCode OH_Drawing_RectContains(OH_Drawing_Rect* rect, const OH_Dra
  * @param bottom Indicates the value added to the bottom boundary of an <b>OH_Drawing_Rect</b> object.
  * @return Returns the error code.
  *         Returns {@link OH_DRAWING_SUCCESS} if the operation is successful.
- *         Returns {@link OH_DRAWING_ERROR_INVALID_PARAMETER} if rectArray or rect is nullptr,
- *                 or index is valid.
- * @since 21
+ *         Returns {@link OH_DRAWING_ERROR_INCORRECT_PARAMETER} if rect is nullptr.
+ * @since 22
  * @version 1.0
  */
 OH_Drawing_ErrorCode OH_Drawing_RectInset(OH_Drawing_Rect* rect, float left, float top, float right, float bottom);

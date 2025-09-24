@@ -391,10 +391,12 @@ OH_Drawing_ErrorCode OH_Drawing_MatrixGetAll(OH_Drawing_Matrix* matrix, float va
  *                   | J K L |     | A B C |     | AJ+DK+GL BJ+EK+HL CJ+FK+IL |
  *           b * a = | M N O |  *  | D E F |  =  | AM+DN+GO BM+EN+HO CM+FN+IO |
  *                   | P Q R |     | G H I |     | AP+DQ+GR BP+EQ+HR CP+FQ+IR |
- * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @param a Indicates the pointer to an <b>OH_Drawing_Matrix</b> object.
  * @param b Indicates the pointer to an <b>OH_Drawing_Matrix</b> object.
- * @since 21
+ * @return Returns the error code.
+ *         Returns {@link OH_DRAWING_SUCCESS} if the operation is successful.
+ *         Returns {@link OH_DRAWING_ERROR_INCORRECT_PARAMETER} if a or b is nullptr.
+ * @since 22
  * @version 1.0
  */
 OH_Drawing_ErrorCode OH_Drawing_MatrixPreConcat(OH_Drawing_Matrix* a, OH_Drawing_Matrix* b);

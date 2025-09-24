@@ -165,9 +165,11 @@ void OH_Drawing_RegionDestroy(OH_Drawing_Region* region);
 /**
  * @brief Set an <b>OH_Drawing_Region</b> empty.
  *
- * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @param region Indicates the pointer to an <b>OH_Drawing_Region</b> object.
- * @since 21
+ * @return Returns the error code.
+ *         Returns {@link OH_DRAWING_SUCCESS} if the operation is successful.
+ *         Returns {@link OH_DRAWING_ERROR_INCORRECT_PARAMETER} if region is nullptr.
+ * @since 22
  * @version 1.0
  */
 OH_Drawing_ErrorCode OH_Drawing_RegionEmpty(OH_Drawing_Region* region);
