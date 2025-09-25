@@ -226,6 +226,8 @@ _ndk_library_targets = [
   "//interface/sdk_c/resourceschedule/qos_manager:qos_header",
   "//interface/sdk_c/resourceschedule/background_process_manager:libbackground_process_manager_ndk",
   "//interface/sdk_c/resourceschedule/background_process_manager:background_process_manager_header",
+  "//interface/sdk_c/filemanagement/cloud_disk_manager:libohclouddiskmanager",
+  "//interface/sdk_c/filemanagement/cloud_disk_manager:oh_cloud_disk_manager",
   "//interface/sdk_c/filemanagement/fileio:libohfileio",
   "//interface/sdk_c/filemanagement/fileio:oh_fileio_header",
   "//interface/sdk_c/filemanagement/environment:libohenvironment",
