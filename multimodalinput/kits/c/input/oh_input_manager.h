@@ -2215,7 +2215,7 @@ Input_Result OH_Input_SetPointerVisible(bool visible);
  *
  * @param windowId Window ID. The value is an integer greater than or equal to -1.
  * @param pointerStyle Pointer to the pointerStyle.
- * @return OH_Input_SetPointerVisible function api result code
+ * @return OH_Input_GetPointerStyle function api result code
  *         {@link INPUT_SUCCESS} if the operation is successful;
  *         {@link INPUT_PARAMETER_ERROR} if parameter is a null pointer or window ID is invalid;
  *         {@link INPUT_SERVICE_EXCEPTION} if the service is exception.
@@ -2228,7 +2228,7 @@ Input_Result OH_Input_GetPointerStyle(int32_t windowId, int32_t *pointerStyle);
  *
  * @param windowId Window ID. The value is an integer greater than or equal to 0.
  * @param pointerStyle Pointer style.The value should be a member of the {@link Input_PointerStyle} enumeration.
- * @return OH_Input_SetPointerVisible function api result code
+ * @return OH_Input_SetPointerStyle function api result code
  *         {@link INPUT_SUCCESS} if the operation is successful;
  *         {@link INPUT_PARAMETER_ERROR} if window ID is invalid or pointerStyle is invalid;
  *         {@link INPUT_SERVICE_EXCEPTION} if the service is exception.
@@ -2261,7 +2261,7 @@ void OH_Input_CustomCursor_Destroy(Input_CustomCursor** customCursor);
  *
  * @param customCursor Pointer to an {@link Input_CustomCursor} object.
  * @param pixelMap Pointer to a {@link OH_PixelmapNative}  object.
- * @return OH_Input_SetCustomCursorPixelMap function result code.
+ * @return OH_Input_CustomCursor_GetPixelMap function result code.
  *         {@link INPUT_SUCCESS} if the operation is successful;
  *         {@link INPUT_PARAMETER_ERROR} The customCursor is NULL.
  * @since 22
@@ -2274,7 +2274,7 @@ Input_Result OH_Input_CustomCursor_GetPixelMap(Input_CustomCursor* customCursor,
  * @param customCursor Pointer to an {@link Input_CustomCursor} object.
  * @param anchorX Pointer to horizontal coordinate of the cursor focus.
  * @param anchorY Pointer to vertical coordinate of the cursor focus.
- * @return OH_Input_SetCustomCursorFocusX function result code.
+ * @return OH_Input_CustomCursor_GetAnchor function result code.
  *         {@link INPUT_SUCCESS} if the operation is successful;
  *         {@link INPUT_PARAMETER_ERROR} The customCursor is NULL.
  * @since 22
@@ -2304,7 +2304,7 @@ void OH_Input_CursorConfig_Destroy(Input_CursorConfig** cursorConfig);
  *
  * @param cursorConfig Pointer to an {@link Input_CursorConfig} object.
  * @param followSystem Pointer of the config whether to adjust the cursor size based on system settings
- * @return OH_Input_GetCursorOptionsFollowSystem function result code.
+ * @return OH_Input_CursorConfig_IsFollowSystem function result code.
  *         {@link INPUT_SUCCESS} if the operation is successful;
  *         {@link INPUT_PARAMETER_ERROR} The cursorOptions or followSystem the is NULL.
  * @since 22
