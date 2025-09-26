@@ -219,5 +219,13 @@
     {
         "first_instroduced":"21",
         "name":"OH_WindowManager_ReleaseMainWindowSnapshot"
+    },
+    {
+        "first_instroduced":"22",
+        "name":"OH_WindowManager_LockCursor"
+    },
+    {
+        "first_instroduced":"22",
+        "name":"OH_WindowManager_UnlockCursor"
     }
 ]
