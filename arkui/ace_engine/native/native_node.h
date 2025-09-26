@@ -1310,19 +1310,20 @@ typedef enum {
      * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
      * .value[0].f32: position along the x-axis, in px. \n
      * .value[1].f32: position along the y-axis, in px. \n
-     * .value[2].?i32: the alignment mode. The data type is {@link ArkUI_Alignment}.
+     * .value[2].?i32: the alignment mode. The data type is {@link ArkUI_Alignment}, and supported since API 21.
      * The default value is <b>ARKUI_ALIGNMENT_TOP_START</b>. \n
-     * .value[3].?i32: the direction. The type is {@link ArkUI_Direction}.
+     * .value[3].?i32: the direction. The type is {@link ArkUI_Direction}, and supported since API 21.
      * The default value is <b>ARKUI_DIRECTION_AUTO</b>. \n
+     * In most cases, this parameter should be set to Auto, this allowing the system to handle
+     * the layout direction automatically. If you need to keep a specific direction in any situation, set it to
+     * either LTR (Left-to-Right) or RTL (Right-to-Left). Optional.
      * Format of the return value {@link ArkUI_AttributeItem}:\n
      * .value[0].f32: position along the x-axis, in px. \n
      * .value[1].f32: position along the y-axis, in px. \n
-     * .value[2].i32: the alignment mode. The data type is {@link ArkUI_Alignment}.
+     * .value[2].i32: the alignment mode. The data type is {@link ArkUI_Alignment}, and supported since API 21.
      * The default value is <b>ARKUI_ALIGNMENT_TOP_START</b>. \n
-     * .value[3].i32: the direction. The type is {@link ArkUI_Direction}.
+     * .value[3].i32: the direction. The type is {@link ArkUI_Direction}, and supported since API 21.
      * The default value is <b>ARKUI_DIRECTION_AUTO</b>. \n
-     *
-     * @since 21
      */
     NODE_BACKGROUND_IMAGE_POSITION,
     /**
