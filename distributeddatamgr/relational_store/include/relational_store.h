@@ -1615,9 +1615,9 @@ int OH_Rdb_SetLocale(OH_Rdb_Store *store, const char *locale);
 /**
  * @brief The callback function of database corruption handle.
  *
- * @param store Represents a pointer to an OH_Rdb_Store instance.
- * @param context Represents the context corruption handle.
  * @param config Represents a pointer to an OH_Rdb_ConfigV2 configuration of the database related to this RDB store.
+ * @param context Represents the context corruption handler.
+ * @param store Represents a pointer to an OH_Rdb_Store instance.
  * @since 22
  */
 typedef void (*Rdb_CorruptedHandler)(OH_Rdb_ConfigV2 *config, void *context, OH_Rdb_Store *store);
@@ -1625,9 +1625,9 @@ typedef void (*Rdb_CorruptedHandler)(OH_Rdb_ConfigV2 *config, void *context, OH_
 /**
  * @brief Registers corrupted handler for the database.
  *
- * @param store Represents a pointer to an OH_Rdb_Store instance.
  * @param config Represents a pointer to an OH_Rdb_ConfigV2 configuration of the database related to this RDB store.
  * @param context Represents the context corruption handle.
+ * @param handler The callback function of database corruption handle.
  * @return Returns a specific error code.
  *     {@link RDB_OK} if the execution is successful.
  *     {@link RDB_ERR} - Indicates that the function execution exception.
@@ -1637,7 +1637,7 @@ typedef void (*Rdb_CorruptedHandler)(OH_Rdb_ConfigV2 *config, void *context, OH_
  * @since 22
  */
 int OH_Rdb_RegisterCorruptedHandler(OH_Rdb_ConfigV2 *config, void *context, Rdb_CorruptedHandler *handler);
- 
+
 /**
  * @brief Unregisters corrupted handler for the database.
  *
