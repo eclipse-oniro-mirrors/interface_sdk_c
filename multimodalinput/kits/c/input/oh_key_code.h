@@ -50,7 +50,7 @@ typedef enum {
     /** Function (Fn) key */
     KEYCODE_FN = 0,
     /**
-     * Function (Home) key 
+     * Function (Home) key
      * @since 22
      */
     KEYCODE_HOME = 1,
@@ -361,12 +361,12 @@ typedef enum {
     /** Key ( on numeric keypad */
     KEYCODE_NUMPAD_LEFT_PAREN = 2121,
     /** 
-     *Key ) on numeric keypad 
+     *Key ) on numeric keypad
      * @since 22
      */
     KEYCODE_NUMPAD_RIGHT_PAREN = 2122,
     /**
-     * Multi-task key 
+     * Multi-task key
      * @since 22
      */
     KEYCODE_VIRTUAL_MULTITASK = 2210,
@@ -441,17 +441,17 @@ typedef enum {
      */
     KEYCODE_SLEEP = 2600,
     /**
-     *Zenkaku/Hankaku key 
+     * Zenkaku/Hankaku key
      * @since 22
      */
     KEYCODE_ZENKAKU_HANKAKU = 2601,
     /**
-     *102nd key 
+     *102nd key
      * @since 22
      */
     KEYCODE_102ND = 2602,
     /**
-     * Ro key 
+     * Ro key
      * @since 22
      */
     KEYCODE_RO = 2603,
@@ -461,7 +461,7 @@ typedef enum {
      */
     KEYCODE_KATAKANA = 2604,
     /** 
-     * Hiragana key 
+     * Hiragana key
      * @since 22
      */
     KEYCODE_HIRAGANA = 2605,
@@ -471,7 +471,7 @@ typedef enum {
      */
     KEYCODE_HENKAN = 2606,
     /** 
-     * Katakana/Hiragana key 
+     * Katakana/Hiragana key
      * @since 22
      */
     KEYCODE_KATAKANA_HIRAGANA = 2607,
@@ -486,7 +486,7 @@ typedef enum {
      */
     KEYCODE_LINEFEED = 2609,
     /** 
-     * Macro key 
+     * Macro key
      * @since 22
      */
     KEYCODE_MACRO = 2610,
@@ -561,7 +561,7 @@ typedef enum {
      */
     KEYCODE_CUT = 2624,
     /** 
-     *  Help key 
+     * Help key
      * @since 22
      */
     KEYCODE_HELP = 2625,
@@ -1006,7 +1006,7 @@ typedef enum {
      */
     KEYCODE_MEDIA_REPEAT = 2714,
     /** 
-     * Images key 
+     * Images key
      * @since 22
      */
     KEYCODE_IMAGES = 2715,
@@ -1020,7 +1020,7 @@ typedef enum {
      * @since 22
      */
     KEYCODE_TASKMANAGER = 2717,
-    /** 
+    /**
      * Log key
      * @since 22
      */
@@ -1056,7 +1056,7 @@ typedef enum {
      */
     KEYCODE_BRIGHTNESS_MIN = 2724,
     /** 
-     * Max Brightness key 
+     * Max Brightness key
      * @since 22
      */
     KEYCODE_BRIGHTNESS_MAX = 2725,
@@ -1136,7 +1136,7 @@ typedef enum {
      */
     KEYCODE_MSDOS = 2808,
     /** 
-     * Screen Lock key 
+     * Screen Lock key
      * @since 22
      */
     KEYCODE_SCREENLOCK = 2809,
