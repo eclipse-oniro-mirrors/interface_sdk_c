@@ -250,7 +250,7 @@ typedef enum {
     KEYCODE_PAGE_UP = 2068,
     /** Page Down key */
     KEYCODE_PAGE_DOWN = 2069,
-    /** Esc key */
+    /** ESC key */
     KEYCODE_ESCAPE = 2070,
     /** Delete key */
     KEYCODE_FORWARD_DEL = 2071,
@@ -407,7 +407,7 @@ typedef enum {
     KEYCODE_BUTTON_L2 = 2309,
     /**
      * Joystick key R2
-     * @since 15
+     * @since 22
      */
     KEYCODE_BUTTON_R2 = 2310,
     /**
