@@ -8726,7 +8726,7 @@ typedef enum {
      * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
      * {@link ArkUI_NodeComponentEvent}. \n
      * {@link ArkUI_NodeComponentEvent} contains no parameters: \n
-     * @since 22
+     * @since 21
      */
     NODE_SCROLL_EVENT_ON_WILL_START_DRAGGING = 1002013,
     /**
@@ -8738,7 +8738,7 @@ typedef enum {
      * {@link ArkUI_NodeComponentEvent} contains one parameter: \n
      * <b>ArkUI_NodeComponentEvent.data[0].i32</b>: whether start fling animation. \n
      *
-     * @since 22
+     * @since 21
      */
     NODE_SCROLL_EVENT_ON_DID_STOP_DRAGGING = 1002014,
     /**
@@ -8748,7 +8748,7 @@ typedef enum {
      * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
      * {@link ArkUI_NodeComponentEvent}. \n
      * {@link ArkUI_NodeComponentEvent} contains no parameters: \n
-     * @since 22
+     * @since 21
      */
     NODE_SCROLL_EVENT_ON_WILL_START_FLING = 1002015,
     /**
@@ -8758,7 +8758,7 @@ typedef enum {
      * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
      * {@link ArkUI_NodeComponentEvent}. \n
      * {@link ArkUI_NodeComponentEvent} contains no parameters: \n
-     * @since 22
+     * @since 21
      */
     NODE_SCROLL_EVENT_ON_DID_STOP_FLING = 1002016,
     /**
