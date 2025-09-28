@@ -280,15 +280,9 @@ typedef enum {
     KEYCODE_INSERT = 2083,
     /** Forward key */
     KEYCODE_FORWARD = 2084,
-    /**
-     * Play key
-     * @since 22
-     */
+    /** Play key */
     KEYCODE_MEDIA_PLAY = 2085,
-    /**
-     * Pause key
-     * @since 22
-     */
+    /** Pause key */
     KEYCODE_MEDIA_PAUSE = 2086,
     /** Close key */
     KEYCODE_MEDIA_CLOSE = 2087,
@@ -360,10 +354,7 @@ typedef enum {
     KEYCODE_NUMPAD_EQUALS = 2120,
     /** Key ( on numeric keypad */
     KEYCODE_NUMPAD_LEFT_PAREN = 2121,
-    /** 
-     *Key ) on numeric keypad
-     * @since 22
-     */
+    /** Key ) on numeric keypad */
     KEYCODE_NUMPAD_RIGHT_PAREN = 2122,
     /**
      * Multi-task key
