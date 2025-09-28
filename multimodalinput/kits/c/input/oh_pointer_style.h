@@ -32,8 +32,8 @@
  * @since 22
  */
 
-#ifndef OH_POINTER_H
-#define OH_POINTER_H
+#ifndef OH_POINTER_STYLE_H
+#define OH_POINTER_STYLE_H
 
 #ifdef __cplusplus
 extern "C" {
@@ -328,4 +328,4 @@ typedef enum Input_PointerStyle {
 #endif
 /** @} */
 
-#endif /* OH_POINTER_H */
+#endif /* OH_POINTER_STYLE_H */
