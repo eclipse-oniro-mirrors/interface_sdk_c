@@ -23,7 +23,7 @@
  */
 
 /**
- * @file oh_pointer.h
+ * @file oh_pointer_style.h
  *
  * @brief Defines the pointer structure and related enumeration values.
  * @kit InputKit
