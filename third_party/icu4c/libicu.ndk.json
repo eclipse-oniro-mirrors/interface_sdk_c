@@ -2090,5 +2090,97 @@
     {
         "first_introduced": "15",
         "name":"u_errorName"
+    },
+    {
+        "first_introduced": "21",
+        "name":"u_charAge"
+    },
+    {
+        "first_introduced": "21",
+        "name":"u_getUnicodeVersion"
+    },
+    {
+        "first_introduced": "21",
+        "name":"uldn_open"
+    },
+    {
+        "first_introduced": "21",
+        "name":"uldn_close"
+    },
+    {
+        "first_introduced": "21",
+        "name":"uldn_getLocale"
+    },
+    {
+        "first_introduced": "21",
+        "name":"uldn_getDialectHandling"
+    },
+    {
+        "first_introduced": "21",
+        "name":"uldn_localeDisplayName"
+    },
+    {
+        "first_introduced": "21",
+        "name":"uldn_languageDisplayName"
+    },
+    {
+        "first_introduced": "21",
+        "name":"uldn_scriptDisplayName"
+    },
+    {
+        "first_introduced": "21",
+        "name":"uldn_scriptCodeDisplayName"
+    },
+    {
+        "first_introduced": "21",
+        "name":"uldn_regionDisplayName"
+    },
+    {
+        "first_introduced": "21",
+        "name":"uldn_variantDisplayName"
+    },
+    {
+        "first_introduced": "21",
+        "name":"uldn_keyDisplayName"
+    },
+    {
+        "first_introduced": "21",
+        "name":"uldn_keyValueDisplayName"
+    },
+    {
+        "first_introduced": "21",
+        "name":"uldn_openForContext"
+    },
+    {
+        "first_introduced": "21",
+        "name":"uldn_getContext"
+    },
+    {
+        "first_introduced": "21",
+        "name":"ulocdata_getCLDRVersion"
+    },
+    {
+        "first_introduced": "21",
+        "name":"u_versionFromString"
+    },
+    {
+        "first_introduced": "21",
+        "name":"u_versionFromUString"
+    },
+    {
+        "first_introduced": "21",
+        "name":"u_versionToString"
+    },
+    {
+        "first_introduced": "21",
+        "name":"u_getVersion"
+    },
+    {
+        "first_introduced": "21",
+        "name":"utf8_back1SafeBody"
+    },
+    {
+        "first_introduced": "21",
+        "name":"utf8_prevCharSafeBody "
     }
 ]
