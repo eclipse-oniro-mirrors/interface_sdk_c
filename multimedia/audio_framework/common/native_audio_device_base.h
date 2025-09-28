@@ -340,7 +340,7 @@ OH_AudioCommon_Result OH_AudioDeviceDescriptor_GetDeviceType(OH_AudioDeviceDescr
  * @param audioDeviceDescriptor reference returned by {@link OH_AudioRoutingManager_GetDevices} or
  * {@link OH_AudioRouterManager_OnDeviceChangedCallback}.
  * @param id pointer variable that will be set the device id value.
- * @return {@link #AUDIODEVICE_SUCCESS} or {@link #AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM}.
+ * @return {@link #AUDIOCOMMON_RESULT_SUCCESS} or {@link #AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM}.
  * @since 12
  */
 OH_AudioCommon_Result OH_AudioDeviceDescriptor_GetDeviceId(OH_AudioDeviceDescriptor *audioDeviceDescriptor,
