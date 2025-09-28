@@ -86,7 +86,7 @@ typedef enum {
     KEYCODE_MEDIA_PREVIOUS = 13,
     /**
      * Rewind key
-     * @since 22.
+     * @since 22
      */
     KEYCODE_MEDIA_REWIND = 14,
     /**
