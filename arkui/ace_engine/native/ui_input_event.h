@@ -260,7 +260,7 @@ enum {
 };
 
 /**
- * @brief Defines an enum for the axis types for axis events.
+ * @brief Enumerates the axis types for axis events.
  *
  * @since 21
  */
@@ -1021,11 +1021,12 @@ double OH_ArkUI_AxisEvent_GetPinchAxisScaleValue(const ArkUI_UIInputEvent* event
 int32_t OH_ArkUI_AxisEvent_GetAxisAction(const ArkUI_UIInputEvent* event);
 
 /**
- * @brief Checks whether this event contains a specified axis type.
+ * @brief Checks whether this axis event contains the specified axis type.
  *
  * @param event Indicates the pointer to the current UI input event.
  * @param axis Axis type of the axis event.
- * @return Returns <b>true</b> if the event contains the specified axis type; returns <b>false</b> otherwise.
+ * @return Whether the current axis event contains the specified axis type.
+ * Returns <b>true</b> if the axis event contains the specified axis type, and <b>false</b> otherwise.
  * @since 21
  */
 int32_t OH_ArkUI_AxisEvent_HasAxis(const ArkUI_UIInputEvent* event, int32_t axis);
