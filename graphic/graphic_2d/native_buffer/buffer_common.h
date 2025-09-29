@@ -210,7 +210,8 @@ typedef struct OH_NativeBuffer_StaticMetadata {
 } OH_NativeBuffer_StaticMetadata;
 
 /**
- * @brief Indicates the HDR metadata key of a native buffer.
+ * @brief Indicates the descriptive information of a native buffer, 
+ *  such as HDR metadata, ROI metadata, etc.
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeBuffer
  * @since 12
@@ -222,7 +223,19 @@ typedef enum OH_NativeBuffer_MetadataKey {
     /** value: OH_NativeBuffer_StaticMetadata*/
     OH_HDR_STATIC_METADATA,
     /** byte stream of SEI in video stream*/
-    OH_HDR_DYNAMIC_METADATA
+    OH_HDR_DYNAMIC_METADATA,
+    /**
+     * Region of interest(ROI) metadata is used to conifgure ROI feature in video encoding. Value type is string in the format
+     * "Top1,Left1-Bottom1,Right1=Offset1;Top2,Left2-Bottom2,Right2=Offset2;". Each "Top,Left-Bottom,Right=Offset"
+     * represents the coordinate information and quantization parameter of one ROI. Each "=Offset" in the string
+     * can be omitted, like "Top1,Left1-Bottom1,Right1;Top2,Left2-Bottom2,Right2=Offset2;", the encoder
+     * will use the default quantization parameter to perform the ROI encoding on the first ROI and
+     * use Offset2 on the second ROI. Note that the number of ROIs that can be applied simultaneously does not exceed six,
+     * and the total area must not exceed one-fifth of the total image area.
+     *
+     * @since 22
+     */
+    OH_REGION_OF_INTEREST_METADATA
 } OH_NativeBuffer_MetadataKey;
 
 #ifdef __cplusplus
