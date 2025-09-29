@@ -1620,7 +1620,7 @@ int OH_Rdb_SetLocale(OH_Rdb_Store *store, const char *locale);
  * @param store Represents a pointer to an OH_Rdb_Store instance.
  * @since 22
  */
-typedef void (*Rdb_CorruptedHandler)(void *context, OH_Rdb_ConfigV2 *config, OH_Rdb_Store *store)
+typedef void (*Rdb_CorruptedHandler)(void *context, OH_Rdb_ConfigV2 *config, OH_Rdb_Store *store);
 
 /**
  * @brief Registers corrupted handler for the database.
@@ -1636,7 +1636,7 @@ typedef void (*Rdb_CorruptedHandler)(void *context, OH_Rdb_ConfigV2 *config, OH_
  * @see OH_Rdb_RegisterCorruptedHandler.
  * @since 22
  */
-int OH_Rdb_RegisterCorruptedHandler(const OH_Rdb_ConfigV2 *config, void *context, const Rdb_CorruptedHandler handler)
+int OH_Rdb_RegisterCorruptedHandler(const OH_Rdb_ConfigV2 *config, void *context, const Rdb_CorruptedHandler handler);
 
 /**
  * @brief Unregisters corrupted handler for the database.
@@ -1651,7 +1651,7 @@ int OH_Rdb_RegisterCorruptedHandler(const OH_Rdb_ConfigV2 *config, void *context
  * @see OH_Rdb_UnregisterCorruptedHandler.
  * @since 22
  */
-int OH_Rdb_UnregisterCorruptedHandler(const OH_Rdb_ConfigV2 *config, void *context, const Rdb_CorruptedHandler handler)
+int OH_Rdb_UnregisterCorruptedHandler(const OH_Rdb_ConfigV2 *config, void *context, const Rdb_CorruptedHandler handler);
 
 #ifdef __cplusplus
 };
