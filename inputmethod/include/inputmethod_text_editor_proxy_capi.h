@@ -60,7 +60,9 @@ typedef struct InputMethod_TextEditorProxy InputMethod_TextEditorProxy;
  * registration.\n
  *
  * @param textEditorProxy Represents a pointer to an {@link InputMethod_TextEditorProxy} instance.
- * @param config Represents a pointer to an {@link InputMethod_TextConfig} instance.
+ * @param config Represents a pointer to an {@link InputMethod_TextConfig} instance. You can only access the memory when
+ * this callback is called. After this callback returns, the memory will be released and you should not access this
+ * memory again.
  * @since 12
  */
 typedef void (*OH_TextEditorProxy_GetTextConfigFunc)(
@@ -74,7 +76,8 @@ typedef void (*OH_TextEditorProxy_GetTextConfigFunc)(
  *
  * @param textEditorProxy Represents a pointer to the {@link InputMethod_TextEditorProxy} instance which will be set
  * in.
- * @param text Represents a pointer to the text to be inserted.
+ * @param text Represents a pointer to the text to be inserted. You can only access the memory when this callback
+ * is called. After this callback returns, the memory will be released and you should not access this memory again.
  * @param length Represents the length of the text to be inserted.
  * @since 12
  */
@@ -181,7 +184,9 @@ typedef void (*OH_TextEditorProxy_HandleExtendActionFunc)(
  *
  * @param textEditorProxy Represents a pointer to an {@link InputMethod_TextEditorProxy} instance which will be set in.
  * @param number Represents the number of characters to be get.
- * @param text Represents the left text of cursor, you need to assing this parameter.
+ * @param text Represents the left text of cursor, you need to assing this parameter. You can only access the memory
+ * when this callback is called. After this callback returns, the memory will be released and you should not access this
+ * memory again.
  * @param length Represents the length of the left text of cursor, you need to assing this parameter.
  * @since 12
  */
@@ -196,7 +201,9 @@ typedef void (*OH_TextEditorProxy_GetLeftTextOfCursorFunc)(
  *
  * @param textEditorProxy Represents a pointer to an {@link InputMethod_TextEditorProxy} instance which will be set in.
  * @param number Represents the number of characters to be get.
- * @param text Represents the right text of cursor, you need to assing this parameter.
+ * @param text Represents the right text of cursor, you need to assing this parameter. You can only access the memory
+ * when this callback is called. After this callback returns, the memory will be released and you should not access this
+ * memory again.
  * @param length Represents the length of the right text of cursor.
  * @since 12
  */
@@ -222,7 +229,8 @@ typedef int32_t (*OH_TextEditorProxy_GetTextIndexAtCursorFunc)(InputMethod_TextE
  * registration.\n
  *
  * @param textEditorProxy Represents a pointer to an {@link InputMethod_TextEditorProxy} instance which will be set in.
- * @param privateCommand Private command from input method.
+ * @param privateCommand Private command from input method. You can only access the memory when this callback is called.
+ * After this callback returns, the memory will be released and you should not access this memory again.
  * @param size Size of private command.
  * @return Returns the result of handling private command.
  * @since 12
@@ -237,7 +245,8 @@ typedef int32_t (*OH_TextEditorProxy_ReceivePrivateCommandFunc)(
  * registration.\n
  *
  * @param textEditorProxy Represents a pointer to an {@link InputMethod_TextEditorProxy} instance which will be set in.
- * @param text Represents text to be previewd.
+ * @param text Represents text to be previewd. You can only access the memory when this callback is called.
+ * After this callback returns, the memory will be released and you should not access this memory again.
  * @param length Length of preview text.
  * @param start Start position of preview text.
  * @param end End position of preview text.
@@ -695,6 +704,28 @@ InputMethod_ErrorCode OH_TextEditorProxy_GetSetPreviewTextFunc(
  */
 InputMethod_ErrorCode OH_TextEditorProxy_GetFinishTextPreviewFunc(
     InputMethod_TextEditorProxy *proxy, OH_TextEditorProxy_FinishTextPreviewFunc *finishTextPreviewFunc);
+
+/**
+ * @brief Configure the execution thread (main thread/IPC thread) for the callback functions of
+ * {@link InputMethod_TextEditorProxy}.
+ * This interface only controls all callbacks in {@link InputMethod_TextEditorProxy} except
+ * {@link OH_TextEditorProxy_GetTextConfigFunc}.
+ * The execution thread of {@link OH_TextEditorProxy_GetTextConfigFunc} is determined by the thread that calls
+ * {@link OH_InputMethodController_Attach} and is not affected by this interface.
+ *
+ * @param proxy Pointer to the target {@link InputMethod_TextEditorProxy} instance.
+ * @param isCallbackInMainThread Thread execution strategy
+ *                              - true: The callback function is switched to the main thread for execution (to avoid
+ * multi-thread concurrency)
+ *                              - false: The callback function is executed in the IPC thread (there may be multi-thread
+ * concurrency)
+ * @return Execution result.
+ *     {@link IME_ERR_OK} - Configuration succeeded.
+ *     {@link IME_ERR_NULL_POINTER} - Returned when proxy is NULL.
+ * @since 22
+ */
+InputMethod_ErrorCode OH_TextEditorProxy_SetCallbackInMainThread(
+    InputMethod_TextEditorProxy *proxy, bool isCallbackInMainThread);
 #ifdef __cplusplus
 }
 #endif /* __cplusplus */
