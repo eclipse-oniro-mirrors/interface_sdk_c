@@ -198,6 +198,18 @@ typedef enum OH_ContainerFormatType {
 } OH_ContainerFormatType;
 
 /**
+ * @brief Screen recording highlight mode definition
+ *
+ * @since 22
+ */
+typedef enum OH_ScreenCaptureHighlightMode {
+    /**Default mode, highlight recording area with closed border*/
+    OH_HIGHLIGHT_MODE_CLOSED = 0,
+    /** highlight recording area with corner wrap border */
+    OH_HIGHLIGHT_MODE_CORNER_WRAP = 1,
+} OH_ScreenCaptureHighlightMode;
+
+/**
  * @brief Audio capture info struct
  * @syscap SystemCapability.Multimedia.Media.AVScreenCapture
  *
@@ -310,6 +322,20 @@ typedef struct OH_RecorderInfo {
     /* Recorder file format */
     OH_ContainerFormatType fileFormat;
 } OH_RecorderInfo;
+
+/**
+ * @brief Highlight configure for Capture rectangle frame  info
+ *
+ * @since 22
+ */
+typedef struct OH_AVScreenCaptureHighlightConfig {
+    /** define the style of the capture area frame. */
+    OH_ScreenCaptureHighlightMode mode;
+    /** define the thickness of the frame line*/
+    uint32_t lineThickness;
+    /** define the color of the frame line*/
+    uint32_t lineColor;
+} OH_AVScreenCaptureHighlightConfig;
 
 /**
  * @brief AV screeen capture config info
