@@ -226,11 +226,11 @@ typedef enum OH_NativeBuffer_MetadataKey {
     OH_HDR_DYNAMIC_METADATA,
     /**
      * Region of interest(ROI) metadata is used to conifgure ROI feature in video encoding. Value type is string in the format
-     * "Top1,Left1-Bottom1,Right1=Offset1;Top2,Left2-Bottom2,Right2=Offset2;". Each "Top,Left-Bottom,Right=Offset"
-     * represents the coordinate information and quantization parameter of one ROI. Each "=Offset" in the string
-     * can be omitted, like "Top1,Left1-Bottom1,Right1;Top2,Left2-Bottom2,Right2=Offset2;", the encoder
-     * will use the default quantization parameter to perform the ROI encoding on the first ROI and
-     * use Offset2 on the second ROI. Note that the number of ROIs that can be applied simultaneously does not exceed six,
+     * "Top1,Left1-Bottom1,Right1=QpOffset1;Top2,Left2-Bottom2,Right2=QpOffset2;". Each "Top,Left-Bottom,Right=QpOffset"
+     * represents the coordinate information and quantization parameter offset of one ROI. Each "=QpOffset" in the string
+     * can be omitted, like "Top1,Left1-Bottom1,Right1;Top2,Left2-Bottom2,Right2=QpOffset2;", the encoder
+     * will use the default quantization parameter offset to perform the ROI encoding on the first ROI and
+     * use QpOffset2 on the second ROI. Note that the number of ROIs that can be applied simultaneously does not exceed six,
      * and the total area must not exceed one-fifth of the total image area.
      *
      * @since 22
