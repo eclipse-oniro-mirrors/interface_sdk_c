@@ -1777,10 +1777,6 @@
     },
     {
         "first_introduced": "12",
-        "name":"utrans_transIncrementalUChars"
-    },
-    {
-        "first_introduced": "12",
         "name":"utrans_getSourceSet"
     },
     {
@@ -2186,5 +2182,9 @@
     {
         "first_introduced": "21",
         "name":"utf8_prevCharSafeBody"
+    },
+    {
+        "first_introduced": "21",
+        "name":"utrans_transIncrementalUChars"
     }
 ]
