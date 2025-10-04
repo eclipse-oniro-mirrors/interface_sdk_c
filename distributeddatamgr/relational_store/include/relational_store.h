@@ -1612,6 +1612,47 @@ int OH_Rdb_Detach(OH_Rdb_Store *store, const char *attachName, int64_t waitTime,
  */
 int OH_Rdb_SetLocale(OH_Rdb_Store *store, const char *locale);
 
+/**
+ * @brief The callback function of database corruption handle.
+ *
+ * @param context Represents the context corruption handler.
+ * @param config Represents a pointer to an OH_Rdb_ConfigV2 configuration of the database related to this RDB store.
+ * @param store Represents a pointer to an OH_Rdb_Store instance.
+ * @since 22
+ */
+typedef void (*Rdb_CorruptedHandler)(void *context, OH_Rdb_ConfigV2 *config, OH_Rdb_Store *store);
+
+/**
+ * @brief Registers corrupted handler for the database.
+ *
+ * @param config Represents a pointer to an OH_Rdb_ConfigV2 configuration of the database related to this RDB store.
+ * @param context Represents the context corruption handle.
+ * @param handler The callback function of database corruption handle.
+ * @return Returns a specific error code.
+ *     {@link RDB_OK} if the execution is successful.
+ *     {@link RDB_E_INVALID_ARGS} - The error code for common invalid args.
+ *     {@link RDB_E_SUB_OVER_LIMIT} - Indicates the number of subscriptions exceeds the limit.
+ * Specific error codes can be referenced {@link OH_Rdb_ErrCode}.
+ * @see OH_Rdb_RegisterCorruptedHandler.
+ * @since 22
+ */
+int OH_Rdb_RegisterCorruptedHandler(const OH_Rdb_ConfigV2 *config, void *context, const Rdb_CorruptedHandler handler);
+
+/**
+ * @brief Unregisters corrupted handler for the database.
+ *
+ * @param config Represents a pointer to an OH_Rdb_ConfigV2 configuration of the database related to this RDB store.
+ * @param context Represents the context corruption handle.
+ * @param handler The callback function of database corruption handle.
+ * @return Returns a specific error code.
+ *     {@link RDB_OK} if the execution is successful.
+ *     {@link RDB_E_INVALID_ARGS} - The error code for common invalid args.
+ * Specific error codes can be referenced {@link OH_Rdb_ErrCode}.
+ * @see OH_Rdb_UnregisterCorruptedHandler.
+ * @since 22
+ */
+int OH_Rdb_UnregisterCorruptedHandler(const OH_Rdb_ConfigV2 *config, void *context, const Rdb_CorruptedHandler handler);
+
 #ifdef __cplusplus
 };
 #endif
