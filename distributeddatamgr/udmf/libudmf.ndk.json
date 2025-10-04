@@ -655,8 +655,88 @@
         "first_introduced": "20",
         "name": "OH_UdmfOptions_GetVisibility"
     },
-    {
-        "first_introduced": "20",
+    {	
+        "first_introduced": "20",	
         "name": "OH_UdmfOptions_SetVisibility"
+    },      
+    {
+        "first_introduced": "22",
+        "name": "OH_UdsPlainText_GetDetails"
+    },
+    {
+        "first_introduced": "22",
+        "name": "OH_UdsPlainText_SetDetails"
+    },
+    {
+        "first_introduced": "22",
+        "name": "OH_UdsHyperlink_GetDetails"
+    },
+    {
+        "first_introduced": "22",
+        "name": "OH_UdsHyperlink_SetDetails"
+    },
+    {
+        "first_introduced": "22",
+        "name": "OH_UdsHtml_GetDetails"
+    },
+    {
+        "first_introduced": "22",
+        "name": "OH_UdsHtml_SetDetails"
+    },
+    {
+        "first_introduced": "22",
+        "name": "OH_UdsAppItem_GetDetails"
+    },
+    {
+        "first_introduced": "22",
+        "name": "OH_UdsAppItem_SetDetails"
+    },
+    {
+        "first_introduced": "22",
+        "name": "OH_UdsFileUri_GetDetails"
+    },
+    {
+        "first_introduced": "22",
+        "name": "OH_UdsFileUri_SetDetails"
+    },
+    {
+        "first_introduced": "22",
+        "name": "OH_UdsPixelMap_GetDetails"
+    },
+    {
+        "first_introduced": "22",
+        "name": "OH_UdsPixelMap_SetDetails"
+    },
+    {
+        "first_introduced": "22",
+        "name": "OH_UdsDetails_Create"
+    },
+    {
+        "first_introduced": "22",
+        "name": "OH_UdsDetails_Destroy"
+    },
+    {
+        "first_introduced": "22",
+        "name": "OH_UdsDetails_HasKey"
+    },
+    {
+        "first_introduced": "22",
+        "name": "OH_UdsDetails_Remove"
+    },
+    {
+        "first_introduced": "22",
+        "name": "OH_UdsDetails_Clear"
+    },
+    {
+        "first_introduced": "22",
+        "name": "OH_UdsDetails_SetValue"
+    },
+    {
+        "first_introduced": "22",
+        "name": "OH_UdsDetails_GetValue"
+    },
+    {
+        "first_introduced": "22",
+        "name": "OH_UdsDetails_GetAllKeys"
     }
 ]
