@@ -254,5 +254,29 @@
     {
         "first_introduced": "20",
         "name": "napi_destroy_ark_context"
+    },
+    {
+        "first_introduced": "21",
+        "name": "napi_open_critical_scope"
+    },
+    {
+        "first_introduced": "21",
+        "name": "napi_close_critical_scope"
+    },
+    {
+        "first_introduced": "21",
+        "name": "napi_get_buffer_string_utf16_in_critical_scope"
+    },
+    {
+        "first_introduced": "21",
+        "name": "napi_create_strong_reference"
+    },
+    {
+        "first_introduced": "21",
+        "name": "napi_delete_strong_reference"
+    },
+    {
+        "first_introduced": "21",
+        "name": "napi_get_strong_reference_value"
     }
 ]
