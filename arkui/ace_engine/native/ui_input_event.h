@@ -1524,7 +1524,7 @@ float OH_ArkUI_CoastingAxisEvent_GetDeltaY(ArkUI_CoastingAxisEvent* event);
  *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
  * @since 22
  */
-int32_t OH_ArkuI_CoastingAxisEvent_SetPropagation(ArkuI_CopastingAxisEvent* event, bool propagation);
+int32_t OH_ArkUI_CoastingAxisEvent_SetPropagation(ArkUI_CoastingAxisEvent* event, bool propagation);
 
 #ifdef __cplusplus
 };
