@@ -34,6 +34,6 @@ ohos_ndk_library("libohinput_ndk") {
     "multimodalinput/oh_axis_type.h",
     "multimodalinput/oh_input_manager.h",
     "multimodalinput/oh_key_code.h",
-    "multimodalinput/input/oh_pointer_style.h",
+    "multimodalinput/oh_pointer_style.h",
   ]
 }
