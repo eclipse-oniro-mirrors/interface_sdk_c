@@ -543,10 +543,10 @@ typedef enum {
      * This attribute can be set and obtained as required through APIs.
      *
      * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute,
-     * which supports five types of shapes:\n
+     * which supports four types of shapes:\n
      * 1. Rectangle:\n
      * .value[0].i32: type of shape. The parameter type is {@link ArkUI_ClipType}.
-     * The value is <b>ARKUI_CLIP_TYPE_RECTANGLE</b> for the rectangle shape.\n
+     * The value is <b>ARKUI_CLIP_TYPE_RECTANGLE</b> for the rectangle shape. \n
      * .value[1].f32: width of the rectangle.\n
      * .value[2].f32: height of rectangle.\n
      * .value[3].f32: width of the rounded corner of the rectangle.\n
@@ -555,26 +555,34 @@ typedef enum {
      * .value[6]?.f32: radius of the bottom left corner of the rectangular shape.\n
      * .value[7]?.f32: radius of the top right corner of the rectangular shape.\n
      * .value[8]?.f32: radius of the bottom right corner of the rectangular shape.\n
+     * ?.object: clipOption of the rectangle. The parameter type is {@link ArkUI_RenderNodeClipOption} type.
+     * It takes effect when only the .object parameter is passed, ArkUI_RenderNodeClipOption type is rectangle, and .size must be equal to 1.
      * 2. Circle:\n
      * .value[0].i32: type of shape. The parameter type is {@link ArkUI_ClipType}.
      * The value is <b>ARKUI_CLIP_TYPE_CIRCLE</b> for the circle shape.\n
      * .value[1].f32: width of the circle.\n
      * .value[2].f32: height of the circle.\n
+     * ?.object: clipOption of the circle. The parameter type is {@link ArkUI_RenderNodeClipOption} type.
+     * It takes effect when only the .object parameter is passed, ArkUI_RenderNodeClipOption type is circle, and .size must be equal to 1.
      * 3.Ellipse:\n
      * .value[0].i32: type of shape. The parameter type is {@link ArkUI_ClipType}.
      * The value is <b>ARKUI_CLIP_TYPE_ELLIPSE</b> for the ellipse shape.\n
      * .value[1].f32: width of the ellipse.\n
      * .value[2].f32: height of the ellipse.\n
+     * ?.object: clipOption of the ellipse. The parameter type is {@link ArkUI_RenderNodeClipOption} type.
+     * It takes effect when only the .object parameter is passed, ArkUI_RenderNodeClipOption type is ellipse, and .size must be equal to 1.
      * 4. Path:\n
      * .value[0].i32: type of shape. The parameter type is {@link ArkUI_ClipType}.
      * The value is <b>ARKUI_CLIP_TYPE_PATH</b> for the path shape.\n
      * .value[1].f32: width of the path.\n
      * .value[2].f32: height of the path.\n
      * .string: command for drawing the path.\n
-     * Format of the return value {@link ArkUI_AttributeItem}, which supports five types of shapes:\n
+     * ?.object: clipOption of the path. The parameter type is {@link ArkUI_RenderNodeClipOption} type.
+     * It takes effect when only the .object parameter is passed, ArkUI_RenderNodeClipOption type is path, and .size must be equal to 1.
+     * Format of the return value {@link ArkUI_AttributeItem}, which supports four types of shapes: \n
      * 1. Rectangle:\n
      * .value[0].i32: type of shape. The parameter type is {@link ArkUI_ClipType}.
-     * The value is <b>ARKUI_CLIP_TYPE_RECTANGLE</b> for the rectangle shape.\n
+     * The value is <b>ARKUI_CLIP_TYPE_RECTANGLE</b> for the rectangle shape. \n
      * .value[1].f32: width of the rectangle.\n
      * .value[2].f32: height of rectangle.\n
      * .value[3].f32: width of the rounded corner of the rectangle.\n
@@ -583,16 +591,22 @@ typedef enum {
      * .value[6].f32: radius of the bottom left corner of the rectangular shape; \n
      * .value[7].f32: radius of the top right corner of the rectangular shape; \n
      * .value[8].f32: radius of the bottom right corner of the rectangular shape; \n
+     * .value[9]?.f32: horizontal coordinate offset of the rectangle. \n
+     * .value[10]?.f32: vertical coordinate offset of the rectangle. \n
      * 2. Circle:\n
      * .value[0].i32: type of shape. The parameter type is {@link ArkUI_ClipType}.
      * The value is <b>ARKUI_CLIP_TYPE_CIRCLE</b> for the circle shape.\n
      * .value[1].f32: width of the circle.\n
      * .value[2].f32: height of the circle.\n
+     * .value[3]?.f32: horizontal coordinate offset of the circle.\n
+     * .value[4]?.f32: vertical coordinate offset of the circle.\n
      * 3.Ellipse:\n
      * .value[0].i32: type of shape. The parameter type is {@link ArkUI_ClipType}.
      * The value is <b>ARKUI_CLIP_TYPE_ELLIPSE</b> for the ellipse shape.\n
      * .value[1].f32: width of the ellipse.\n
      * .value[2].f32: height of the ellipse.\n
+     * .value[3]?.f32: horizontal coordinate offset of the ellipse.\n
+     * .value[4]?.f32: vertical coordinate offset of the ellipse.\n
      * 4. Path:\n
      * .value[0].i32: type of shape. The parameter type is {@link ArkUI_ClipType}.
      * The value is <b>ARKUI_CLIP_TYPE_PATH</b> for the path shape.\n
