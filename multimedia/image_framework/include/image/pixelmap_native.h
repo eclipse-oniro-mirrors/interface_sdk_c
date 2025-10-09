@@ -1021,9 +1021,9 @@ Image_ErrorCode OH_PixelmapNative_CreateEmptyPixelmapUsingAllocator(
     OH_Pixelmap_InitializationOptions *options, IMAGE_ALLOCATOR_MODE allocator, OH_PixelmapNative **pixelmap);
 
 /**
- * @brief Creates a PixelMap from a Surface with the Surface ID.
+ * @brief Creates a PixelMap from a surface with the surface ID.
  *
- * @param surfaceId The Surface ID.
+ * @param surfaceId The surface ID.
  * @param pixelmap The PixelMap to be created.
  * @return Function result code:
  *         {@link IMAGE_SUCCESS} If the operation is successful.
