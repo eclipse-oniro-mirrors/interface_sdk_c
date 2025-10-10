@@ -454,6 +454,10 @@
         "name": "OH_Drawing_MatrixPostTranslate"
     },
     { "name": "OH_Drawing_MatrixConcat" },
+    { 
+        "first_introduced": "22",
+        "name": "OH_Drawing_MatrixPreConcat"
+    },
     { "name": "OH_Drawing_MatrixGetValue" },
     { "name": "OH_Drawing_MatrixRotate" },
     { "name": "OH_Drawing_MatrixTranslate" },
@@ -1367,6 +1371,10 @@
         "name": "OH_Drawing_RegionDestroy"
     },
     {
+        "first_introduced": "22",
+        "name": "OH_Drawing_RegionEmpty"
+    },
+    {
         "first_introduced": "12",
         "name": "OH_Drawing_RegionSetRect"
     },
@@ -1797,6 +1805,14 @@
     {
         "first_introduced": "18",
         "name":"OH_Drawing_RectDestroyArray"
+    },
+    {
+        "first_introduced": "22",
+        "name":"OH_Drawing_RectContains"
+    },
+    {
+        "first_introduced": "22",
+        "name":"OH_Drawing_RectInset"
     },
     {
         "first_introduced": "18",
