@@ -961,6 +961,7 @@ int OH_UdmfOptions_SetVisibility(OH_UdmfOptions* pThis, Udmf_Visibility visibili
  *         {@link UDMF_E_OK} success.
  *         {@link UDMF_E_INVALID_PARAM} The error code for common invalid args.
  *         {@link UDMF_ERR} Internal data error.
+ *             The possible cause is that the server is faulty or the memory is insufficient.
  * @see OH_UdmfProperty Udmf_Intention Udmf_ErrCode.
  * @since 12
  */
@@ -971,12 +972,14 @@ int OH_Udmf_GetUnifiedData(const char* key, Udmf_Intention intention, OH_UdmfDat
  *
  * @param options Represents a pointer to an instance of {@link OH_UdmfOptions}.
  * @param dataArray Represents output params of {@link OH_UdmfData}.
- * This pointer needs to be released using the {@link OH_Udmf_DestroyDataArray} function.
+ *     It should be accessed using {@link OH_UDMF_GetDataElementAt} to retrieve elements by index.
+ *     This pointer needs to be released using the {@link OH_Udmf_DestroyDataArray} function.
  * @param dataSize Represents the data count of output params.
  * @return Returns the status code of the execution. See {@link Udmf_ErrCode}.
  *         {@link UDMF_E_OK} success.
  *         {@link UDMF_E_INVALID_PARAM} The error code for common invalid args.
  *         {@link UDMF_ERR} Internal data error.
+ *             The possible cause is that the server is faulty or the memory is insufficient.
  * @see OH_UdmfData Udmf_Intention Udmf_ErrCode.
  * @since 20
  */
@@ -994,6 +997,7 @@ int OH_Udmf_GetUnifiedDataByOptions(OH_UdmfOptions* options, OH_UdmfData** dataA
  *         {@link UDMF_E_OK} success.
  *         {@link UDMF_E_INVALID_PARAM} The error code for common invalid args.
  *         {@link UDMF_ERR} Internal data error.
+ *             The possible cause is that the server is faulty or the memory is insufficient.
  * @see OH_UdmfProperty Udmf_Intention Udmf_ErrCode.
  * @since 12
  */
@@ -1012,6 +1016,7 @@ int OH_Udmf_SetUnifiedData(Udmf_Intention intention, OH_UdmfData* unifiedData,
  *         {@link UDMF_E_OK} success.
  *         {@link UDMF_E_INVALID_PARAM} The error code for common invalid args.
  *         {@link UDMF_ERR} Internal data error.
+ *             The possible cause is that the server is faulty or the memory is insufficient.
  * @see OH_UdmfOptions OH_UdmfData Udmf_ErrCode.
  * @since 20
  */
@@ -1026,6 +1031,7 @@ int OH_Udmf_SetUnifiedDataByOptions(OH_UdmfOptions* options, OH_UdmfData *unifie
  *         {@link UDMF_E_OK} success.
  *         {@link UDMF_E_INVALID_PARAM} The error code for common invalid args.
  *         {@link UDMF_ERR} Internal data error.
+ *             The possible cause is that the server is faulty or the memory is insufficient.
  * @see OH_UdmfOptions OH_UdmfData Udmf_ErrCode.
  * @since 20
  */
@@ -1036,16 +1042,29 @@ int OH_Udmf_UpdateUnifiedData(OH_UdmfOptions* options, OH_UdmfData* unifiedData)
  *
  * @param options Represents a pointer to an instance of {@link OH_UdmfOptions}.
  * @param dataArray Represents output params of {@link OH_UdmfData}.
- * This pointer needs to be released using the {@link OH_Udmf_DestroyDataArray} function.
+ *     It should be accessed using {@link OH_UDMF_GetDataElementAt} to retrieve elements by index.
+ *     This pointer needs to be released using the {@link OH_Udmf_DestroyDataArray} function.
  * @param dataSize Represents the data count of output params.
  * @return Returns the status code of the execution. See {@link Udmf_ErrCode}.
  *         {@link UDMF_E_OK} success.
  *         {@link UDMF_E_INVALID_PARAM} The error code for common invalid args.
  *         {@link UDMF_ERR} Internal data error.
+ *             The possible cause is that the server is faulty or the memory is insufficient.
  * @see OH_UdmfData Udmf_Intention Udmf_ErrCode.
  * @since 20
  */
 int OH_Udmf_DeleteUnifiedData(OH_UdmfOptions* options, OH_UdmfData** dataArray, unsigned int* dataSize);
+
+/**
+ * @brief Gets the pointer to the element at the specified index from the input array.
+ *
+ * @param dataArray A pointer to an array of {@link OH_UdmfData} pointers.
+ * @param index The index of the desired element. Note that the input index should not exceed the array range.
+ * @return A pointer to the {@link OH_UdmfData} element at the specified index; returns NULL if the array is NULL.
+ * @see OH_UdmfData
+ * @since 22
+ */
+OH_UdmfData* OH_UDMF_GetDataElementAt(OH_UdmfData** dataArray, unsigned int index);
 
 /**
  * @brief Destroy data array memory.
