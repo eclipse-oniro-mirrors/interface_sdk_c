@@ -155,13 +155,13 @@ enum {
     /** 
      * @brief The key type.
      * 
-     * @since 21
+     * @since 22
      */
     UI_INPUT_EVENT_SOURCE_TYPE_KEY = 4,
     /** 
      * @brief The joystick type.
      * 
-     * @since 21
+     * @since 22
      */
     UI_INPUT_EVENT_SOURCE_TYPE_JOYSTICK = 5,
 };
@@ -292,7 +292,7 @@ enum {
 /**
  * @brief Enumerates the axis types for axis events.
  *
- * @since 21
+ * @since 22
  */
 enum {
     /** Vertical scroll axis. */
@@ -1057,7 +1057,7 @@ int32_t OH_ArkUI_AxisEvent_GetAxisAction(const ArkUI_UIInputEvent* event);
  * @param axis Axis type of the axis event.
  * @return Whether the current axis event contains the specified axis type.
  * Returns <b>true</b> if the axis event contains the specified axis type, and <b>false</b> otherwise.
- * @since 21
+ * @since 22
  */
 int32_t OH_ArkUI_AxisEvent_HasAxis(const ArkUI_UIInputEvent* event, int32_t axis);
 
