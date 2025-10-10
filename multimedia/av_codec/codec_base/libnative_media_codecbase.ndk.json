@@ -476,6 +476,10 @@
         "name": "OH_MD_KEY_VIDEO_DECODER_BLANK_FRAME_ON_SHUTDOWN"
     },
     {
+        "first_introduced": "22",
+        "name": "OH_MD_KEY_VIDEO_NATIVE_BUFFER_FORMAT"
+    },
+    {
         "first_introduced": "10",
         "name": "OH_AVCodec_GetCapability"
     },
