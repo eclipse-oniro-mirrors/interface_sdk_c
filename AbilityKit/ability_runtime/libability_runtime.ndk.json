@@ -194,5 +194,9 @@
     {
         "first_introduced": "21",
         "name": "OH_AbilityRuntime_StartSelfUIAbilityWithPidResult"
+    },
+    {
+        "first_introduced": "22",
+        "name": "OH_AbilityRuntime_ApplicationContextGetLogFileDir"
     }
 ]
