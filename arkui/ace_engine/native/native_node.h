@@ -6823,6 +6823,26 @@ typedef enum {
     NODE_SWIPER_MAINTAIN_VISIBLE_CONTENT_POSITION = 1001023,
 
     /**
+     * @brief Specifies the responsive column layout policy for the <b>Swiper</b> component.
+     * This attribute can be set, reset, and obtained as required through APIs.
+     *
+     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute: \n
+     * .value[0].i32: number of columns at different breakpoint specifications.
+     * The data type is {@link ArkUI_ItemFillPolicy}. \n
+     * .value[1]?.f32: whether to paginate by group. The value <b>0</b> means to paginate by individual child elements,
+     * and <b>1</b> means to paginate by groups of child elements displayed within the viewport.
+     * The default value is <b>0</b>.
+     * \n
+     * Format of the return value {@link ArkUI_AttributeItem}: \n
+     * .value[0].i32: number of columns at different breakpoint specifications.
+     * The data type is {@link ArkUI_ItemFillPolicy}. \n
+     * .value[1].f32: whether to paginate by group. \n
+     *
+     * @since 22
+     */
+    NODE_SWIPER_ITEMFILLPOLICY = 1001024,
+
+    /**
      * @brief: Set the delineation component of the ListItem, supporting property settings, property resets, and
      * property acquisition interfaces.
      *
