@@ -116,6 +116,14 @@
         "name": "OH_PixelmapNative_WritePixels"
     },
     {
+        "first_introduced": "22",
+        "name": "OH_PixelmapNative_ReadPixelsFromArea"
+    },
+    {
+        "first_introduced": "22",
+        "name": "OH_PixelmapNative_WritePixelsToArea"
+    },
+    {
         "first_introduced": "13",
         "name": "OH_PixelmapNative_GetArgbPixels"
     },
@@ -152,6 +160,18 @@
         "name": "OH_PixelmapNative_Translate"
     },
     {
+        "first_introduced": "22",
+        "name": "OH_PixelmapNative_CreateAlphaPixelmap"
+    },
+    {
+        "first_introduced": "22",
+        "name": "OH_PixelmapNative_Clone"
+    },
+    {
+        "first_introduced": "22",
+        "name": "OH_PixelmapNative_CreateCroppedAndScaledPixelMap"
+    },
+    {
         "first_introduced": "12",
         "name": "OH_PixelmapNative_Rotate"
     },
@@ -182,6 +202,14 @@
     {
         "first_introduced": "20",
         "name": "OH_PixelmapNative_CreateEmptyPixelmapUsingAllocator"
+    },
+    {
+        "first_introduced": "22",
+        "name": "OH_PixelmapNative_CreatePixelmapFromSurface"
+    },
+    {
+        "first_introduced": "22",
+        "name": "OH_PixelmapNative_CreatePixelmapFromNativeBuffer"
     },
     {
         "first_introduced": "12",
@@ -230,5 +258,13 @@
     {
         "first_introduced": "15",
         "name": "OH_PixelmapNative_UnaccessPixels"
+    },
+    {
+        "first_introduced": "22",
+        "name": "OH_PixelmapNative_GetUniqueId"
+    },
+    {
+        "first_introduced": "22",
+        "name": "OH_PixelmapNative_IsReleased"
     }
 ]
