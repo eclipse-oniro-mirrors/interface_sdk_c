@@ -57,11 +57,11 @@ typedef enum Rdb_EncryptionAlgo {
      */
     RDB_AES_256_GCM = 0,
     /**
-     * @brief Indicates the database is unencrypted using RDB_AES_256_CBC.
+     * @brief Indicates the database is encrypted using RDB_AES_256_CBC.
      */
     RDB_AES_256_CBC,
     /**
-     * @brief Indicates the database is encrypted using RDB_PLAIN_TEXT.
+     * @brief Indicates the database is unencrypted using RDB_PLAIN_TEXT.
      */
     RDB_PLAIN_TEXT,
 } Rdb_EncryptionAlgo;
