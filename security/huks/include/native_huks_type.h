@@ -759,6 +759,12 @@ enum OH_Huks_Tag {
      */
     OH_HUKS_TAG_KEY_OVERRIDE = OH_HUKS_TAG_TYPE_BOOL | 520,
     /**
+     * @brief The tag indicates the length of AEAD for CCM mode.
+     *
+     * @since 22
+     */
+    OH_HUKS_TAG_AE_TAG_LEN = OH_HUKS_TAG_TYPE_UINT | 521,
+    /**
      * 601 to 1000 are reserved for other tags.
      *
      * Extended tags. The value range is 1001 to 9999.
