@@ -366,6 +366,15 @@ typedef struct HiTraceId {
 } HiTraceId;
 
 /**
+ * @brief Defines the callback type used in trace status switch event.
+ *     The value of traceStatus indicates the current trace status.
+ *
+ * @param traceStatus The current trace status, true for open, false for close.
+ * @since 22
+ */
+typedef void (*OH_HiTrace_TraceEventListener)(bool traceStatus);
+
+/**
  * @brief Starts tracing of a process.
  *
  * This API starts tracing, creates a <b>HiTraceId</b> instance, and sets it to the TLS of the calling thread.
@@ -806,6 +815,39 @@ void OH_HiTrace_CountTraceEx(HiTrace_Output_Level level, const char* name, int64
  * @since 19
  */
 bool OH_HiTrace_IsTraceEnabled(void);
+
+/**
+ * @brief Register trace switch notification callback.
+ *
+ * Register a callback function to execute specific trace-related behavior when trace
+ * status is changed. The current status will be passed as 0 for off or 1 for on as callback function
+ * paramter representing current trace status. The maximum number of registered callback functions is 10.
+ *
+ * @param callback The callback function to be invoked when trace status is changed.
+ * @return The callback registeration status.
+ *     >= 0: Successfully registered and callback index used for unregister.
+ *    -1: Reaches max number of callback functions.
+ *    -2: Invalid parameter.
+ * @atomicservice
+ * @since 22
+ */
+int32_t OH_HiTrace_RegisterTraceListener(OH_HiTrace_TraceEventListener callback);
+
+/**
+ * @brief Unregister trace switch notification callback.
+ *
+ * Unregister the callback function registeration for trace switch
+ * notification with provided registered callback function index.
+ *
+ * @param index The callback function index to be unregistered.
+ * @return The callback unregisteration status.
+ *     0: Success.
+ *    -1: Callback function with target index has not been registered.
+ *    -2: Invalid index range.
+ * @atomicservice
+ * @since 22
+ */
+int32_t OH_HiTrace_UnregisterTraceListener(int32_t index);
 
 #ifdef __cplusplus
 }
