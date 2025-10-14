@@ -60,6 +60,11 @@ typedef enum Rdb_EncryptionAlgo {
      * @brief Indicates the database is encrypted using RDB_AES_256_CBC.
      */
     RDB_AES_256_CBC,
+    /**
+     * @brief Indicates the database is not encrypted.
+     * @since 22
+     */
+    RDB_PLAIN_TEXT,
 } Rdb_EncryptionAlgo;
 
 /**
