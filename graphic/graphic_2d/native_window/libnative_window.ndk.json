@@ -54,6 +54,10 @@
     {
         "first_introduced": "19",
         "name": "OH_NativeWindow_CleanCache"
+    },
+    {
+        "first_introduced": "22",
+        "name": "OH_NativeWindow_PreAllocBuffers"
     }
 
 ]
