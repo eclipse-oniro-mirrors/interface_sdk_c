@@ -47,15 +47,14 @@ extern "C" {
 #endif
 
 /**
- * @brief the callback funcation type when keyEvent was filter
+ * @brief Defines a function for filtering multimodal key events
  * @param keyEvent multimodal keyEvent
  * @since 12
  */
 typedef bool (*OH_NativeWindowManager_KeyEventFilter)(Input_KeyEvent* keyEvent);
 
 /**
- * @brief Registers a  filter callback for the window ,the callback is called when the
- * window is dispatched to the event
+ * @brief Registers a function for filtering multimodal key events
  *
  * @param windowId windowId when window is created
  * @param keyEventFilter key event callback ,called when the window is dispatched
@@ -110,7 +109,7 @@ WindowManager_ErrorCode OH_NativeWindowManager_RegisterMouseEventFilter(int32_t 
 WindowManager_ErrorCode OH_NativeWindowManager_UnregisterMouseEventFilter(int32_t windowId);
 
 /**
- * @brief the callback function type when touchEvent was filter
+ * @brief Defines a function for filtering multimodal touch events
  * @param touchEvent multimodal touchEvent
  * @since 15
  */
