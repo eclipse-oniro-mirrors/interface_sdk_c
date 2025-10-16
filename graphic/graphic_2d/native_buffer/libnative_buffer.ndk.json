@@ -20,5 +20,9 @@
     {
         "first_introduced": "12",
         "name": "OH_NativeBuffer_GetMetadataValue"
+    },
+    {
+        "first_introduced": "22",
+        "name": "OH_NativeBuffer_MapWaitFence"
     }
 ]
