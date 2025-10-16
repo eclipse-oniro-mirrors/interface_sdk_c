@@ -203,11 +203,11 @@ typedef enum OH_ContainerFormatType {
  * @since 22
  */
 typedef enum OH_CapturePickerMode {
-    /** Show physical screen options only */
-    OH_CAPTURE_PICKER_MODE_SCREEN_ONLY = 0,
-
     /** Show application window options only */
-    OH_CAPTURE_PICKER_MODE_WINDOW_ONLY = 1,
+    OH_CAPTURE_PICKER_MODE_WINDOW_ONLY = 0,
+
+    /** Show physical screen options only */
+    OH_CAPTURE_PICKER_MODE_SCREEN_ONLY = 1,
 
     /** Show both screen and window options (default mode) */
     OH_CAPTURE_PICKER_MODE_SCREEN_AND_WINDOW = 2,
