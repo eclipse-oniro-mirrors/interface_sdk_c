@@ -248,6 +248,10 @@
       "name": "OH_AI_DeviceInfoSetPriority"
   },
   {
+      "first_introduced": "22",
+      "name": "OH_AI_DeviceInfoGetPriority"
+  },
+  {
       "first_introduced": "10",
       "name": "OH_AI_GetElementOfNNRTDeviceDescs"
   },

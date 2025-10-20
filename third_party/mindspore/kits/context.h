@@ -337,7 +337,7 @@ OH_AI_API void OH_AI_DeviceInfoSetPriority(OH_AI_DeviceInfoHandle device_info, O
  * @brief Obtain the NNRT priority, Only valid for NNRT.
  * @param device_info Device info object handle.
  * @return NNRT priority.
- * @since 10
+ * @since 22
  */
 OH_AI_API OH_AI_Priority OH_AI_DeviceInfoGetPriority(const OH_AI_DeviceInfoHandle device_info);
 
