@@ -84,6 +84,38 @@
         "name": "OH_AVCODEC_MIMETYPE_AUDIO_G711A"
     },
     {
+        "first_introduced": "22",
+        "name": "OH_AVCODEC_MIMETYPE_AUDIO_ALAC"
+    },
+    {
+        "first_introduced": "22",
+        "name": "OH_AVCODEC_MIMETYPE_AUDIO_AC3"
+    },
+    {
+        "first_introduced": "22",
+        "name": "OH_AVCODEC_MIMETYPE_AUDIO_EAC3"
+    },
+    {
+        "first_introduced": "22",
+        "name": "OH_AVCODEC_MIMETYPE_AUDIO_WMAV1"
+    },
+    {
+        "first_introduced": "22",
+        "name": "OH_AVCODEC_MIMETYPE_AUDIO_WMAV2"
+    },
+    {
+        "first_introduced": "22",
+        "name": "OH_AVCODEC_MIMETYPE_AUDIO_WMAPRO"
+    },
+    {
+        "first_introduced": "22",
+        "name": "OH_AVCODEC_MIMETYPE_AUDIO_GSM"
+    },
+    {
+        "first_introduced": "22",
+        "name": "OH_AVCODEC_MIMETYPE_AUDIO_GSM_MS"
+    },
+    {
         "first_introduced": "17",
         "name": "OH_AVCODEC_MIMETYPE_VIDEO_MPEG2"
     },
