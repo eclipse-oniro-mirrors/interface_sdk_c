@@ -296,42 +296,42 @@ typedef enum OH_NativeBuffer_Format {
      */
     NATIVEBUFFER_PIXEL_FMT_YUV_422_I,
     /**
-     * YCBCR422 semi-planar format
+     * YCBCR422 semi-plannar format
      * @since 12
      */
     NATIVEBUFFER_PIXEL_FMT_YCBCR_422_SP,
     /**
-     * YCRCB422 semi-planar format
+     * YCRCB422 semi-plannar format
      * @since 12
      */
     NATIVEBUFFER_PIXEL_FMT_YCRCB_422_SP,
     /**
-     * YCBCR420 semi-planar format
+     * YCBCR420 semi-plannar format
      * @since 12
      */
     NATIVEBUFFER_PIXEL_FMT_YCBCR_420_SP,
     /**
-     * YCRCB420 semi-planar format
+     * YCRCB420 semi-plannar format
      * @since 12
      */
     NATIVEBUFFER_PIXEL_FMT_YCRCB_420_SP,
     /**
-     * YCBCR422 planar format
+     * YCBCR422 plannar format
      * @since 12
      */
     NATIVEBUFFER_PIXEL_FMT_YCBCR_422_P,
     /**
-     * YCRCB422 planar format
+     * YCRCB422 plannar format
      * @since 12
      */
     NATIVEBUFFER_PIXEL_FMT_YCRCB_422_P,
     /**
-     * YCBCR420 planar format
+     * YCBCR420 plannar format
      * @since 12
      */
     NATIVEBUFFER_PIXEL_FMT_YCBCR_420_P,
     /**
-     * YCRCB420 planar format
+     * YCRCB420 plannar format
      * @since 12
      */
     NATIVEBUFFER_PIXEL_FMT_YCRCB_420_P,
@@ -396,7 +396,7 @@ typedef enum OH_NativeBuffer_Format {
      */
     NATIVEBUFFER_PIXEL_FMT_Y16 = 41,
     /**
-     * vendor mask format
+     * vender mask format
      * @since 12
      */
     NATIVEBUFFER_PIXEL_FMT_VENDER_MASK = 0X7FFF0000,
