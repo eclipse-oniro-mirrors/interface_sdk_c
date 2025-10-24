@@ -627,6 +627,8 @@ typedef enum OH_Drawing_TypographyStyleAttributeId {
     TYPOGRAPHY_STYLE_ATTR_I_LINE_HEIGHT_STYLE = 3,
     /** Font width */
     TYPOGRAPHY_STYLE_ATTR_I_FONT_WIDTH = 4,
+    /** compress head punctuation */
+    TYPOGRAPHY_STYLE_ATTR_B_COMPRESS_HEAD_PUNCTUATION = 9,
 } OH_Drawing_TypographyStyleAttributeId;
 
 /**
