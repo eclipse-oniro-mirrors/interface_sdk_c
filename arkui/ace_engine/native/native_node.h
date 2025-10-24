@@ -6861,14 +6861,14 @@ typedef enum {
      * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute: \n
      * .value[0].i32: number of columns at different breakpoint specifications.
      * The data type is {@link ArkUI_ItemFillPolicy}. \n
-     * .value[1]?.f32: whether to paginate by group. The value <b>0</b> means to paginate by individual child elements,
+     * .value[1]?.i32: whether to paginate by group. The value <b>0</b> means to paginate by individual child elements,
      * and <b>1</b> means to paginate by groups of child elements displayed within the viewport.
      * The default value is <b>0</b>.
      * \n
      * Format of the return value {@link ArkUI_AttributeItem}: \n
      * .value[0].i32: number of columns at different breakpoint specifications.
      * The data type is {@link ArkUI_ItemFillPolicy}. \n
-     * .value[1].f32: whether to paginate by group. \n
+     * .value[1].i32: whether to paginate by group. \n
      *
      * @since 22
      */
