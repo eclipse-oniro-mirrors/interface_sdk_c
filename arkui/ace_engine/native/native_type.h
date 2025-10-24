@@ -797,20 +797,17 @@ typedef enum {
  * @since 22
  */
 typedef enum {
+    /** No responsive breakpoint configuration. */
+    ARKUI_ITEMFILLPOLICY_NONE = -1,
     /**
-     * For <b>List</b> and <b>Swiper</b> components: Display 1 column when component width corresponds to SM
-     * and smaller devices, 2 columns for MD devices, and 3 columns for LG and larger devices.
-     * For <b>Grid</b> and <b>WaterFlow</b> components: Display 2 columns when component width corresponds to SM
-     * and smaller devices, 3 columns for MD devices, and 5 columns for LG and larger devices.
+     * Default responsive layout:
+     * <b>List</b> or <b>Swiper</b> component: 1 column (SM or smaller), 2 columns (MD), 3 columns (LG or larger).
+     * <b>Grid</b> or <b>WaterFlow</b> component: 2 columns (SM or smaller), 3 columns (MD), 5 columns (LG or larger).
      */
     ARKUI_ITEMFILLPOLICY_DEFAULT = 0,
-    /**
-     * Display 1 column for SM and smaller devices, 2 columns for MD devices, and 3 columns for LG and larger devices.
-     */
+    /** 1 column (SM or smaller), 2 columns (MD), 3 columns (LG or larger). */
     ARKUI_ITEMFILLPOLICY_SM1MD2LG3 = 1,
-    /**
-     * Display 2 columns for SM and smaller devices, 3 columns for MD devices, and 5 columns for LG and larger devices.
-     */
+    /** 2 columns (SM or smaller), 3 columns (MD), 5 columns (LG or larger). */
     ARKUI_ITEMFILLPOLICY_SM2MD3LG5 = 2,
 } ArkUI_ItemFillPolicy;
 
