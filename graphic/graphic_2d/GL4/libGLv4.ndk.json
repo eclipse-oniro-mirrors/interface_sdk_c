@@ -1101,7 +1101,7 @@
     },
     {
         "first_introduced": "22",
-        "name": "glGetQueryObjectiv"
+        "name": "glGetQueryObjectuiv"
     },
     {
         "first_introduced": "22",
@@ -1221,7 +1221,7 @@
     },
     {
         "first_introduced": "22",
-        "name": "glVertexAttrib4usv" 
+        "name": "glVertexAttrib4usv"
     },
     {
         "first_introduced": "22",
