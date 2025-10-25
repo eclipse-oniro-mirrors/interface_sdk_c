@@ -24,15 +24,15 @@
         "name": "OH_CameraInput_Release"
     },
     {
-        "first_introduced": "21",
+        "first_introduced": "22",
         "name": "OH_CameraInput_IsPhysicalCameraOrientationVariable"
     },
     {
-        "first_introduced": "21",
+        "first_introduced": "22",
         "name": "OH_CameraInput_GetPhysicalCameraOrientation"
     },
     {
-        "first_introduced": "21",
+        "first_introduced": "22",
         "name": "OH_CameraInput_UsePhysicalCameraOrientation"
     },
     {
