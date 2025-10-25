@@ -2245,6 +2245,25 @@ typedef enum {
      * .value[2].i32: text decoration style {@link ArkUI_TextDecorationStyle}. \n
      *
      */
+    /**
+     * @brief Defines the text decoration style and color.
+     * This attribute can be set, reset, and obtained as required through APIs.
+     *
+     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
+     * .value[0].i32: text decoration type {@link ArkUI_TextDecorationType}.
+     * The default value is <b>ARKUI_TEXT_DECORATION_TYPE_NONE</b>.\n
+     * .value[1]?.u32: text decoration color, in 0xARGB format. For example, 0xFFFF0000 indicates red. Optional.\n
+     * .value[2]?.i32: text decoration style {@link ArkUI_TextDecorationStyle}. \n
+     * .value[3].f32: text decoration thickness scale. \n
+     * \n
+     * Format of the return value {@link ArkUI_AttributeItem}:\n
+     * .value[0].i32: text decoration type {@link ArkUI_TextDecorationType}.\n
+     * .value[1].u32: text decoration color, in 0xARGB format. \n
+     * .value[2].i32: text decoration style {@link ArkUI_TextDecorationStyle}. \n
+     * .value[3].f32: text decoration thickness scale. \n
+     *
+     *  since 23
+     */
     NODE_TEXT_DECORATION,
     /**
      * @brief Defines the text case attribute, which can be set, reset, and obtained as required through APIs.
@@ -2753,6 +2772,37 @@ typedef enum {
      *
      */
     NODE_TEXT_LINE_HEIGHT_MULTIPLE = 1042,
+
+    /**
+     * @brief Get the text layout manager of the text.
+     *
+     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
+     * .object: the layout manager of text. The parameter type is {@link ArkUI_TextLayoutManager}.\n
+     *
+     * @since 23
+     */
+    NODE_TEXT_LAYOUT_MANAGER = 1043,
+
+    /**
+     * @brief Set the edit menu options of the text.
+     *
+     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
+     * .object: the edit menu options of text. The parameter type is {@link ArkUI_TextEditMenuOptions}.\n
+     *
+     * @since 23
+     */
+    NODE_TEXT_EDIT_MENU_OPTIONS = 1044,
+
+    /**
+     * @brief Bind the selection menu for text.
+     *
+     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
+     * .object: the custom selection menu of text.
+     *     The parameter type is {@link ArkUI_SelectionMenuOptions}.\n
+     *
+     * @since 23
+     */
+    NODE_TEXT_BIND_SELECTION_MENU = 1045,
 
     /**
      * @brief Defines the text content attribute, which can be set, reset, and obtained as required through APIs.

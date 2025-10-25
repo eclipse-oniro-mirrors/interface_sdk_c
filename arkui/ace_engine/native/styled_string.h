@@ -175,6 +175,82 @@ int32_t OH_ArkUI_UnmarshallStyledStringDescriptor(
 int32_t OH_ArkUI_MarshallStyledStringDescriptor(
     uint8_t* buffer, size_t bufferSize, ArkUI_StyledString_Descriptor* descriptor, size_t* resultSize);
 
+/**
+ * @brief Defines the layout manager of text.
+ *
+ * @since 23
+ */
+typedef struct ArkUI_TextLayoutManager ArkUI_TextLayoutManager;
+
+/**
+ * @brief Dispose an object of the text layout manager.
+ *
+ * @param layoutManager Pointer to the ArkUI_TextLayoutManager object to be disposed.
+ * @since 23
+ */
+void OH_ArkUI_TextLayoutManager_Dispose(ArkUI_TextLayoutManager* layoutManager);
+
+/**
+ * @brief Gets the line count.
+ *
+ * @param layoutManager Indicates the pointer to an <b>ArkUI_TextLayoutManager</b> object.
+ * @param outLineCount Returns the line count.
+ * @return Returns the result code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ * @since 23
+ */
+ArkUI_ErrorCode OH_ArkUI_TextLayoutManager_GetLineCount(ArkUI_TextLayoutManager* layoutManager, int32_t* outLineCount);
+
+/**
+ * @brief Gets the rects for range.
+ *
+ * @param layoutManager Indicates the pointer to an <b>ArkUI_TextLayoutManager</b> object.
+ * @param start Indicates the start of range to set.
+ * @param end Indicates the end of range to set.
+ * @param widthStyle Indicates the width style to set.
+ *     For details, see the enum <b>OH_Drawing_RectWidthStyle</b>.
+ * @param heightStyle Indicates the height style to set.
+ *     For details, see the enum <b>OH_Drawing_RectHeightStyle</b>.
+ * @param outTextBoxes Returns the array of rects for range.
+ * @return Returns the result code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ * @since 23
+ */
+ArkUI_ErrorCode OH_ArkUI_TextLayoutManager_GetRectsForRange(ArkUI_TextLayoutManager* layoutManager,
+    int32_t start, int32_t end, OH_Drawing_RectWidthStyle widthStyle, OH_Drawing_RectHeightStyle heightStyle,
+    OH_Drawing_TextBox** outTextBoxes);
+
+/**
+ * @brief Gets the glyph position at coordinate.
+ *
+ * @param layoutManager Indicates the pointer to an <b>ArkUI_TextLayoutManager</b> object.
+ * @param dx Indicates the positionX of typography to set.
+ * @param dy Indicates the positionY of typography to set.
+ * @param outPos Returns the glyph position at coordinate.
+ * @return Returns the result code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ * @since 23
+ */
+ArkUI_ErrorCode OH_ArkUI_TextLayoutManager_GetGlyphPositionAtCoordinate(
+    ArkUI_TextLayoutManager* layoutManager, double dx, double dy, OH_Drawing_PositionAndAffinity** outPos);
+
+/**
+ * @brief Get line metrics information.
+ *
+ * @param layoutManager Indicates the pointer to a typography object <b>ArkUI_TextLayoutManager</b>.
+ * @param lineNumber Indicates the number of line.
+ * @param outMetrics Indicates the pointer to a line metrics object <b>OH_Drawing_LineMetrics</b>.
+ * @return Returns the result code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ * @since 23
+ */
+ArkUI_ErrorCode OH_ArkUI_TextLayoutManager_GetLineMetrics(ArkUI_TextLayoutManager* layoutManager,
+    int32_t lineNumber, OH_Drawing_LineMetrics* outMetrics);
+
 #ifdef __cplusplus
 };
 #endif
