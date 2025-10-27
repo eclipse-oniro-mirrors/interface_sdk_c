@@ -129,18 +129,6 @@
     },
     {
         "first_introduced": "22",
-        "name": "OH_AVCODEC_MIMETYPE_VIDEO_AV1"
-    },
-    {
-        "first_introduced": "22",
-        "name": "OH_AVCODEC_MIMETYPE_VIDEO_VP9"
-    },
-    {
-        "first_introduced": "22",
-        "name": "OH_AVCODEC_MIMETYPE_VIDEO_VP8"
-    },
-    {
-        "first_introduced": "22",
         "name": "OH_AVCODEC_MIMETYPE_VIDEO_VC1"
     },
     {
