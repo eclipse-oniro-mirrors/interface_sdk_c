@@ -603,6 +603,10 @@
         "name": "OH_AVCapability_GetVideoSupportedPixelFormats"
     },
     {
+        "first_introduced": "22",
+        "name": "OH_AVCapability_GetVideoSupportedNativeBufferFormats"
+    },
+    {
         "first_introduced": "10",
         "name": "OH_AVCapability_GetSupportedProfiles"
     },
