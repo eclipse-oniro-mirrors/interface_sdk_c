@@ -966,6 +966,7 @@ typedef enum {
      * @brief Defines the overlay attribute, which can be set, reset, and obtained as required through APIs.
      *
      * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
+     * You can set the overlay content through .string or .object as follow, and .string has higher priority.
      * .string: mask text.\n
      * .value[0]?.i32: position of the overlay relative to the component. Optional.
      * The parameter type is {@link ArkUI_Alignment}.
@@ -983,7 +984,7 @@ typedef enum {
      * .object: the node tree used as the overlay.
      * The parameter type is {@link ArkUI_NodeHandle}.
      * The default value is <b>nullptr.</b> \n
-     * this parameter is conflict with .string, and it has lower priority than .string. Optional.
+     * this parameter is conflict with .string, and it has lower priority than .string.
      * \n
      * Format of the return value {@link ArkUI_AttributeItem}:\n
      * .string: mask text.\n
