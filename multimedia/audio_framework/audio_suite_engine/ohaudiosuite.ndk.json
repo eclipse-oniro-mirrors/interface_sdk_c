@@ -1,0 +1,158 @@
+[
+    {
+        "first_introduced": "22",
+        "name": "OH_AudioSuiteEngine_Create"
+    },
+    {
+        "first_introduced": "22",
+        "name": "OH_AudioSuiteEngine_Destroy"
+    },
+    {
+        "first_introduced": "22",
+        "name": "OH_AudioSuiteEngine_CreatePipeline"
+    },
+    {
+        "first_introduced": "22",
+        "name": "OH_AudioSuiteEngine_DestroyPipeline"
+    },
+    {
+        "first_introduced": "22",
+        "name": "OH_AudioSuiteEngine_StartPipeline"
+    },
+    {
+        "first_introduced": "22",
+        "name": "OH_AudioSuiteEngine_StopPipeline"
+    },
+    {
+        "first_introduced": "22",
+        "name": "OH_AudioSuiteEngine_GetPipelineState"
+    },
+    {
+        "first_introduced": "22",
+        "name": "OH_AudioSuiteEngine_RenderFrame"
+    },
+    {
+        "first_introduced": "22",
+        "name": "OH_AudioSuiteEngine_MultiRenderFrame"
+    },
+    {
+        "first_introduced": "22",
+        "name": "OH_AudioSuiteNodeBuilder_Create"
+    },
+    {
+        "first_introduced": "22",
+        "name": "OH_AudioSuiteNodeBuilder_Destroy"
+    },
+    {
+        "first_introduced": "22",
+        "name": "OH_AudioSuiteNodeBuilder_Reset"
+    },
+    {
+        "first_introduced": "22",
+        "name": "OH_AudioSuiteNodeBuilder_SetNodeType"
+    },
+    {
+        "first_introduced": "22",
+        "name": "OH_AudioSuiteNodeBuilder_SetFormat"
+    },
+    {
+        "first_introduced": "22",
+        "name": "OH_AudioSuiteNodeBuilder_SetRequestDataCallback"
+    },
+    {
+        "first_introduced": "22",
+        "name": "OH_AudioSuiteEngine_CreateNode"
+    },
+    {
+        "first_introduced": "22",
+        "name": "OH_AudioSuiteEngine_DestroyNode"
+    },
+    {
+        "first_introduced": "22",
+        "name": "OH_AudioSuiteEngine_GetNodeBypassStatus"
+    },
+    {
+        "first_introduced": "22",
+        "name": "OH_AudioSuiteEngine_BypassEffectNode"
+    },
+    {
+        "first_introduced": "22",
+        "name": "OH_AudioSuiteEngine_ConnectNodes"
+    },
+    {
+        "first_introduced": "22",
+        "name": "OH_AudioSuiteEngine_DisconnectNodes"
+    },
+    {
+        "first_introduced": "22",
+        "name": "OH_AudioSuiteEngine_SetEqualizerFrequencyBandGains"
+    },
+    {
+        "first_introduced": "22",
+        "name": "OH_AudioSuiteEngine_GetEqualizerFrequencyBandGains"
+    },
+    {
+        "first_introduced": "22",
+        "name": "OH_AudioSuiteEngine_SetSoundFieldType"
+    },
+    {
+        "first_introduced": "22",
+        "name": "OH_AudioSuiteEngine_GetSoundFieldType"
+    },
+    {
+        "first_introduced": "22",
+        "name": "OH_AudioSuiteEngine_SetEnvironmentType"
+    },
+    {
+        "first_introduced": "22",
+        "name": "OH_AudioSuiteEngine_GetEnvironmentType"
+    },
+    {
+        "first_introduced": "22",
+        "name": "OH_AudioSuiteEngine_SetVoiceBeautifierType"
+    },
+    {
+        "first_introduced": "22",
+        "name": "OH_AudioSuiteEngine_GetVoiceBeautifierType"
+    },
+    {
+        "first_introduced": "22",
+        "name": "OH_AudioSuiteEngine_SetAudioFormat"
+    },
+    {
+        "first_introduced": "22",
+        "name": "OH_EQUALIZER_PARAM_DEFAULT"
+    },
+    {
+        "first_introduced": "22",
+        "name": "OH_EQUALIZER_PARAM_BALLADS"
+    },
+    {
+        "first_introduced": "22",
+        "name": "OH_EQUALIZER_PARAM_CHINESE_STYLE"
+    },
+    {
+        "first_introduced": "22",
+        "name": "OH_EQUALIZER_PARAM_CLASSICAL"
+    },
+    {
+        "first_introduced": "22",
+        "name": "OH_EQUALIZER_PARAM_DANCE_MUSIC"
+    },
+    {
+        "first_introduced": "22",
+        "name": "OH_EQUALIZER_PARAM_JAZZ"
+    },
+    {
+        "first_introduced": "22",
+        "name": "OH_EQUALIZER_PARAM_POP"
+    },
+    {
+        "first_introduced": "22",
+        "name": "OH_EQUALIZER_PARAM_RB"
+    },
+    {
+        "first_introduced": "22",
+        "name": "OH_EQUALIZER_PARAM_ROCK"
+    }
+]
