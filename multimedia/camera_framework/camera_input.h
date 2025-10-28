@@ -178,7 +178,7 @@ Camera_ErrorCode OH_CameraInput_Release(Camera_Input* cameraInput);
  * @param {bool} isVariable the result of whether physical camera orientation is variable.
  * @return {@link #CAMERA_OK} if the method call succeeds.
  *         {@link #CAMERA_INVALID_ARGUMENT} if parameter missing or parameter type incorrect.
- * @since 21
+ * @since 22
  */
 Camera_ErrorCode OH_CameraInput_IsPhysicalCameraOrientationVariable(Camera_Input* cameraInput, bool* isVariable);
 
@@ -189,7 +189,7 @@ Camera_ErrorCode OH_CameraInput_IsPhysicalCameraOrientationVariable(Camera_Input
  * @param orientation the physical camera orientation of current fold status.
  * @return {@link #CAMERA_OK} if the method call succeeds.
  *         {@link #CAMERA_INVALID_ARGUMENT} if parameter missing or parameter type incorrect.
- * @since 21
+ * @since 22
  */
 Camera_ErrorCode OH_CameraInput_GetPhysicalCameraOrientation(Camera_Input* cameraInput, uint32_t* orientation);
 
@@ -202,7 +202,7 @@ Camera_ErrorCode OH_CameraInput_GetPhysicalCameraOrientation(Camera_Input* camer
  *         {@link #CAMERA_INVALID_ARGUMENT} if parameter missing or parameter type incorrect.
  *         {@link #CAMERA_OPERATION_NOT_ALLOWED} if operation not allowed.
  *         {@link #CAMERA_SERVICE_FATAL_ERROR} if camera service fatal error.
- * @since 21
+ * @since 22
  */
 Camera_ErrorCode OH_CameraInput_UsePhysicalCameraOrientation(Camera_Input* cameraInput, bool isUsed);
 
