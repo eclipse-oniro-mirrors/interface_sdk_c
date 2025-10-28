@@ -6253,11 +6253,13 @@ typedef enum {
      * .value[0].i32: number of cached items in the list adapter. \n
      * .value[1]?.i32: whether to show cached items. The value <b>0</b> means to hide cached items, and <b>0</b> means
      * to show cached items. The default value is <b>0</b>. This parameter is supported since API version 15. \n
+     * .value[2]?.i32: maximum cache count. This parameter is supported since API version 22.
      * \n
      * Format of the return value {@link ArkUI_AttributeItem}:\n
      * .value[0].i32: number of cached items in the list adapter. \n
      * .value[1].i32: whether to show cached items. The value <b>0</b> means to hide cached items, and <b>0</b> means
      * to show cached items. This parameter is supported since API version 15. \n
+     * .value[2].i32: maximum cache count. This parameter is supported since API version 22.
      *
      */
     NODE_LIST_CACHED_COUNT,
