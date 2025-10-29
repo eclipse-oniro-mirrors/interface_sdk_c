@@ -5573,7 +5573,7 @@ int32_t OH_ArkUI_VisibleAreaEventOptions_SetExpectedUpdateInterval(
 *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
 *         If an error code is returned, it may be due to a failure in parameter validation;
 *         the parameter must not be null.
-* @since 21
+* @since 22
 */
 int32_t OH_ArkUI_VisibleAreaEventOptions_SetMeasureFromViewport(
     ArkUI_VisibleAreaEventOptions* option, bool measureFromViewport);
@@ -5609,7 +5609,7 @@ int32_t OH_ArkUI_VisibleAreaEventOptions_GetExpectedUpdateInterval(ArkUI_Visible
  * @param option Instance of visible area change event parameters.
  * @return Returns the flag for controlling of the visible area calculation. Default value: <b>false</b>.
  *
- * @since 21
+ * @since 22
  */
 bool OH_ArkUI_VisibleAreaEventOptions_GetMeasureFromViewport(ArkUI_VisibleAreaEventOptions* option);
 

@@ -1898,7 +1898,7 @@ typedef enum {
      * .value[...].f32: threshold array. \n
      * .object: the {@link ArkUI_VisibleAreaEventOptions} objcet.
      *
-     * @since 21
+     * @since 22
      */
     NODE_VISIBLE_AREA_CHANGE_RATIO = 93,
 
