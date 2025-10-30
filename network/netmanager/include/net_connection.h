@@ -181,10 +181,9 @@ int32_t OH_NetConn_GetAllNets(NetConn_NetHandleList *netHandleList);
  * @brief Registers a custom DNS resolver.
  *
  * @param resolver Pointer to the custom DNS resolver.
- * @return 0 - Success. 201 - Missing permissions.
+ * @return 0 - Success.
  *         401 - Parameter error. 2100002 - Unable to connect to service.
  *         2100003 - Internal error.
- * @permission ohos.permission.INTERNET
  * @syscap SystemCapability.Communication.NetManager.Core
  * @deprecated since 13
  * @useinstead OH_NetConn_RegisterDnsResolver
@@ -196,10 +195,9 @@ int32_t OHOS_NetConn_RegisterDnsResolver(OH_NetConn_CustomDnsResolver resolver);
 /**
  * @brief Unregisters a custom DNS resolver.
  *
- * @return 0 - Success. 201 - Missing permissions.
- *         401 - Parameter error. 2100002 - Unable to connect to service.
+ * @return 0 - Success.
+ *         2100002 - Unable to connect to service.
  *         2100003 - Internal error.
- * @permission ohos.permission.INTERNET
  * @syscap SystemCapability.Communication.NetManager.Core
  * @deprecated since 13
  * @useinstead OH_NetConn_UnregisterDnsResolver
@@ -213,9 +211,7 @@ int32_t OHOS_NetConn_UnregisterDnsResolver(void);
  *
  * @param resolver Pointer to the custom DNS resolver.
  * @return Returns the result code.
- *         {@link NETMANAGER_EXT_SUCCESS} if the operation is successful.
  *         {@link NETMANAGER_ERR_PERMISSION_DENIED} Missing permissions, add permission.
- *         {@link NETMANAGER_ERR_PARAMETER_ERROR} Parameter error. Please enter a correct parameter.
  * @permission ohos.permission.INTERNET
  * @syscap SystemCapability.Communication.NetManager.Core
  * @since 13
@@ -226,10 +222,9 @@ int32_t OH_NetConn_RegisterDnsResolver(OH_NetConn_CustomDnsResolver resolver);
 /**
  * @brief Unregisters a custom DNS resolver.
  *
- * @return 0 - Success. 201 - Missing permissions.
+ * @return 0 - Success.
  *         401 - Parameter error. 2100002 - Unable to connect to service.
  *         2100003 - Internal error.
- * @permission ohos.permission.INTERNET
  * @syscap SystemCapability.Communication.NetManager.Core
  * @since 13
  * @version 1.0
