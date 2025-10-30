@@ -211,7 +211,7 @@ int32_t OHOS_NetConn_UnregisterDnsResolver(void);
  *
  * @param resolver Pointer to the custom DNS resolver.
  * @return Returns the result code.
-           {@link NETMANAGER_EXT_SUCCESS} if the operation is successful.
+ *         {@link NETMANAGER_EXT_SUCCESS} if the operation is successful.
  *         {@link NETMANAGER_ERR_PARAMETER_ERROR} Parameter error. Please enter a correct parameter.
  * @syscap SystemCapability.Communication.NetManager.Core
  * @since 13
