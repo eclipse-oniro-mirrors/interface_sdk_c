@@ -223,7 +223,7 @@ int32_t OH_NetConn_RegisterDnsResolver(OH_NetConn_CustomDnsResolver resolver);
  * @brief Unregisters a custom DNS resolver.
  *
  * @return 0 - Success.
- *         401 - Parameter error. 2100002 - Unable to connect to service.
+ *         2100002 - Unable to connect to service.
  *         2100003 - Internal error.
  * @syscap SystemCapability.Communication.NetManager.Core
  * @since 13
