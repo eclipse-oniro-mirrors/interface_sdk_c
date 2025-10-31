@@ -41,6 +41,7 @@
 #include "native_averrors.h"
 #include "native_avformat.h"
 #include "native_avcodec_base.h"
+#include "native_buffer/buffer_common.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -398,6 +399,28 @@ bool OH_AVCapability_AreVideoSizeAndFrameRateSupported(OH_AVCapability *capabili
  */
 OH_AVErrCode OH_AVCapability_GetVideoSupportedPixelFormats(OH_AVCapability *capability, const int32_t **pixelFormats,
                                                            uint32_t *pixelFormatNum);
+
+                                                           /**
+ * @brief Get the native buffer formats supported by the video codec.
+ *
+ * This function provides information about the native buffer formats that the video codec can handle.
+ *
+ * @param capability A pointer to a valid video codec capability instance.
+ * @param nativeBufferFormats Output parameter. A pointer to the native buffer format array,
+ * refer to {@link OH_NativeBuffer_Format}
+ * @param nativeBufferFormatNum Output parameter. The element number of the native buffer format array
+ * @return Returns AV_ERR_OK if the execution is successful,
+ * otherwise returns a specific error code, refer to {@link OH_AVErrCode}
+ * {@link AV_ERR_INVALID_VAL}, the capability is invalid, the capability is an audio codec capability pointer,
+ * the nativeBufferFormats is nullptr, or the nativeBufferFormatNum is nullptr.
+ * {@link AV_ERR_UNKNOWN}, unknown error.
+ * {@link AV_ERR_NO_MEMORY}, internal use memory malloc failed.
+ *
+ * @since 22
+ */
+OH_AVErrCode OH_AVCapability_GetVideoSupportedNativeBufferFormats(OH_AVCapability *capability,
+                                                                  const OH_NativeBuffer_Format **nativeBufferFormats,
+                                                                  uint32_t *nativeBufferFormatNum);
 
 /**
  * @brief Get the codec's supported profiles.
