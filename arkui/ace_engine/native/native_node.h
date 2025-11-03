@@ -2133,6 +2133,21 @@ typedef enum {
     NODE_PIXEL_ROUND = 109,
 
     /**
+     * @brief Defines the motion path attribute, which can be set, reset, and obtained as required through APIs.
+     *
+     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute: \n
+     * .object indicates a pointer to the ArkUI_MotionPathOptions. The parameter type is
+     * {@link ArkUI_MotionPathOptions}. \n
+     * \n
+     * Format of the return value {@link ArkUI_AttributeItem}: \n
+     * .object indicates a pointer to the ArkUI_MotionPathOptions. The parameter type is
+     * {@link ArkUI_MotionPathOptions}. \n
+     *
+     * @since 23
+     */
+    NODE_MOTION_PATH = 111,
+
+    /**
      * @brief Defines the hover effect applied when the component is hovered over. This attribute can be set, reset, and obtained as required through APIs.
      *
      * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute: \n
