@@ -2706,7 +2706,7 @@ typedef enum {
      */
     NODE_TEXT_MIN_LINES = 1037,
 
-    /*
+    /**
      * @brief Enables the selected data detector.
      *
      * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
@@ -2718,19 +2718,6 @@ typedef enum {
      * @since 22
      */
     NODE_TEXT_ENABLE_SELECTED_DATA_DETECTOR = 1038,
-
-    /**
-     * @brief Configs selected data detector.
-     *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .object: the configuration of selected data detector. The parameter type is {@link ArkUI_SelectedDataDetectorConfig}.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .object: the configuration of selected data detector. The parameter type is {@link ArkUI_SelectedDataDetectorConfig}.\n
-     *
-     * @since 22
-     */
-    NODE_TEXT_SELECTED_DATA_DETECTOR_CONFIG = 1039,
 
     /**
      * @brief Defines the minimum text line height attribute, which can be set, reset, and obtained as required through APIs.
@@ -3861,19 +3848,6 @@ typedef enum {
     NODE_TEXT_INPUT_ENABLE_SELECTED_DATA_DETECTOR = 7038,
 
     /**
-     * @brief Configs selected data detector.
-     *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .object: the configuration of selected data detector. The parameter type is {@link ArkUI_SelectedDataDetectorConfig}.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .object: the configuration of selected data detector. The parameter type is {@link ArkUI_SelectedDataDetectorConfig}.\n
-     *
-     * @since 22
-     */
-    NODE_TEXT_INPUT_SELECTED_DATA_DETECTOR_CONFIG = 7039,
-
-    /**
      * @brief Defines the counter settings. This attribute can be set, reset, and obtained as required through APIs.
      *
      * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
@@ -4341,19 +4315,6 @@ typedef enum {
      * @since 22
      */
     NODE_TEXT_AREA_ENABLE_SELECTED_DATA_DETECTOR = 8033,
-    
-    /**
-     * @brief Configs selected data detector.
-     *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .object: the configuration of selected data detector. The parameter type is {@link ArkUI_SelectedDataDetectorConfig}.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .object: the configuration of selected data detector. The parameter type is {@link ArkUI_SelectedDataDetectorConfig}.\n
-     *
-     * @since 22
-     */
-    NODE_TEXT_AREA_SELECTED_DATA_DETECTOR_CONFIG = 8034,
     
     /**
      * @brief Defines the color of the scrollbar. This attribute can be set, reset, and obtained as required

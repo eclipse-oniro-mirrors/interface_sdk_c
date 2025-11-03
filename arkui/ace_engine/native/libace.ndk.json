@@ -4304,22 +4304,6 @@
         "name": "OH_ArkUI_SurfaceHolder_SetSurfaceConfig"
     },
     {
-        "first_introduced": "22",
-        "name": "OH_ArkUI_SelectedDataDetectorConfig_Create"
-    },
-    {
-        "first_introduced": "22",
-        "name": "OH_ArkUI_SelectedDataDetectorConfig_Dispose"
-    },
-    {
-        "first_introduced": "22",
-        "name": "OH_ArkUI_SelectedDataDetectorConfig_SetTypes"
-    },
-    {
-        "first_introduced": "22",
-        "name": "OH_ArkUI_SelectedDataDetectorConfig_GetTypes"
-    },
-    {
         "first_introduced": "23",
         "name": "OH_ArkUI_TextLayoutManager_Dispose"
     },
