@@ -624,6 +624,25 @@ enum OH_Huks_SecureSignType {
 };
 
 /**
+ * @brief Enumerates the types of keys.
+ *
+ * @since 22
+ */
+typedef enum OH_Huks_KeyClassType {
+    /**
+     * @brief The default type specifics the key is stored in huks.
+     *
+     * @since 22
+     */
+    OH_HUKS_KEY_CLASS_DEFAULT = 0,
+    /**
+     * @brief The key is stored in external crypto provider.
+     *
+     * @since 22
+     */
+    OH_HUKS_KEY_CLASS_EXTENSION = 1,
+} OH_Huks_KeyClassType;
+/**
  * Enum for key wrap type.
  *
  * @since 20
@@ -764,6 +783,12 @@ enum OH_Huks_Tag {
      * @since 22
      */
     OH_HUKS_TAG_AE_TAG_LEN = OH_HUKS_TAG_TYPE_UINT | 521,
+    /**
+     * @brief The tag indicates the key class type.
+     *
+     * @since 22
+     */
+    OH_HUKS_TAG_KEY_CLASS = OH_HUKS_TAG_TYPE_UINT | 522,
     /**
      * 601 to 1000 are reserved for other tags.
      *
