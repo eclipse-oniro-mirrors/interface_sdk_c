@@ -3838,7 +3838,7 @@ typedef enum {
      * @brief Enables selected data detector.
      *
      * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: Enable selected text recognition, default value false.\n
+     * .value[0].i32: Enable selected text recognition, default value true.\n
      * \n
      * Format of the return value {@link ArkUI_AttributeItem}:\n
      * .value[0].i32: Whether selected text recognition is enabled.\n
@@ -4307,7 +4307,7 @@ typedef enum {
      * @brief Enables selected data detector.
      *
      * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: Enable selected text recognition, default value false.\n
+     * .value[0].i32: Enable selected text recognition, default value true.\n
      * \n
      * Format of the return value {@link ArkUI_AttributeItem}:\n
      * .value[0].i32: Whether selected text recognition is enabled.\n
