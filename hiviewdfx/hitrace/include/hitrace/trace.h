@@ -277,15 +277,11 @@ typedef enum HiTrace_Communication_Mode {
  * @brief Enumerates the HiTrace output levels. The output level threshold system parameter determines
  * the minimum output trace.
  *
- * @atomicservice
- *
  * @since 19
  */
 typedef enum HiTrace_Output_Level {
     /**
      * @brief Output level only for debug usage.
-     *
-     * @atomicservice
      *
      * @since 19
      */
@@ -293,15 +289,11 @@ typedef enum HiTrace_Output_Level {
     /**
      * @brief Output level for log version usage.
      *
-     * @atomicservice
-     *
      * @since 19
      */
     HITRACE_LEVEL_INFO = 1,
     /**
      * @brief Output level for log version usage, with higher priority than HITRACE_LEVEL_INFO.
-     *
-     * @atomicservice
      *
      * @since 19
      */
@@ -309,15 +301,11 @@ typedef enum HiTrace_Output_Level {
     /**
      * @brief Output level for nolog version usage.
      *
-     * @atomicservice
-     *
      * @since 19
      */
     HITRACE_LEVEL_COMMERCIAL = 3,
     /**
      * @brief Output level for range limit.
-     *
-     * @atomicservice
      *
      * @since 19
      */
@@ -733,7 +721,6 @@ void OH_HiTrace_CountTrace(const char *name, int64_t count);
  * @param level Trace output priority level.
  * @param name Name of the synchronous trace task.
  * @param customArgs key=value pair, multiple pairs use comma as separator.
- * @atomicservice
  * @since 19
  */
 void OH_HiTrace_StartTraceEx(HiTrace_Output_Level level, const char* name, const char* customArgs);
@@ -747,7 +734,6 @@ void OH_HiTrace_StartTraceEx(HiTrace_Output_Level level, const char* name, const
  * invocation in the service process.
  *
  * @param level Trace output priority level.
- * @atomicservice
  * @since 19
  */
 void OH_HiTrace_FinishTraceEx(HiTrace_Output_Level level);
@@ -772,7 +758,6 @@ void OH_HiTrace_FinishTraceEx(HiTrace_Output_Level level);
  * @param taskId ID of the asynchronous trace task.
  * @param customCategory Label used to aggregate the asynchronous trace.
  * @param customArgs key=value pair, multiple pairs use comma as separator.
- * @atomicservice
  * @since 19
  */
 void OH_HiTrace_StartAsyncTraceEx(HiTrace_Output_Level level, const char* name, int32_t taskId,
@@ -788,7 +773,6 @@ void OH_HiTrace_StartAsyncTraceEx(HiTrace_Output_Level level, const char* name, 
  * @param level Trace output priority level.
  * @param name Name of the asynchronous trace task.
  * @param taskId ID of the asynchronous trace task.
- * @atomicservice
  * @since 19
  */
 void OH_HiTrace_FinishAsyncTraceEx(HiTrace_Output_Level level, const char* name, int32_t taskId);
@@ -802,7 +786,6 @@ void OH_HiTrace_FinishAsyncTraceEx(HiTrace_Output_Level level, const char* name,
  * @param level Trace output priority level.
  * @param name Name of the integer variable. It does not need to be the same as the real variable name.
  * @param count Integer value. Generally, an integer variable can be passed.
- * @atomicservice
  * @since 19
  */
 void OH_HiTrace_CountTraceEx(HiTrace_Output_Level level, const char* name, int64_t count);
@@ -811,7 +794,6 @@ void OH_HiTrace_CountTraceEx(HiTrace_Output_Level level, const char* name, int64
  * @brief Get the trace output status of the calling process.
  *
  * @return Returns whether the calling process is allowed to output trace.
- * @atomicservice
  * @since 19
  */
 bool OH_HiTrace_IsTraceEnabled(void);
@@ -828,7 +810,6 @@ bool OH_HiTrace_IsTraceEnabled(void);
  *     >= 0: Successfully registered and callback index used for unregister.
  *    -1: Reaches max number of callback functions.
  *    -2: Invalid parameter.
- * @atomicservice
  * @since 22
  */
 int32_t OH_HiTrace_RegisterTraceListener(OH_HiTrace_TraceEventListener callback);
@@ -844,7 +825,6 @@ int32_t OH_HiTrace_RegisterTraceListener(OH_HiTrace_TraceEventListener callback)
  *     0: Success.
  *    -1: Callback function with target index has not been registered.
  *    -2: Invalid index range.
- * @atomicservice
  * @since 22
  */
 int32_t OH_HiTrace_UnregisterTraceListener(int32_t index);

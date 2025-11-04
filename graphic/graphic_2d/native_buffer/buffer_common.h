@@ -149,6 +149,16 @@ typedef enum OH_NativeBuffer_MetadataType {
      */
     OH_IMAGE_HDR_VIVID_SINGLE,
     /**
+     * HDR IMAGE ISO DUAL.
+     * @since 23
+     */
+    OH_IMAGE_HDR_ISO_DUAL,
+    /**
+     * HDR IMAGE ISO SINGLE.
+     * @since 23
+     */
+    OH_IMAGE_HDR_ISO_SINGLE,
+    /**
      * NONE Metadata
      * @since 13
      */
@@ -248,6 +258,182 @@ typedef enum OH_NativeBuffer_MetadataKey {
      */
     OH_REGION_OF_INTEREST_METADATA
 } OH_NativeBuffer_MetadataKey;
+
+/**
+ * @brief Indicates the format of a native buffer.
+ *
+ * @syscap SystemCapability.Graphic.Graphic2D.NativeBuffer
+ * @since 10
+ * @version 1.0
+ */
+typedef enum OH_NativeBuffer_Format {
+    /**
+     * CLUT8 format
+     * @since 12
+     */
+    NATIVEBUFFER_PIXEL_FMT_CLUT8 = 0,
+    /**
+     * CLUT1 format
+     * @since 12
+     */
+    NATIVEBUFFER_PIXEL_FMT_CLUT1,
+    /**
+     * CLUT4 format
+     * @since 12
+     */
+    NATIVEBUFFER_PIXEL_FMT_CLUT4,
+    NATIVEBUFFER_PIXEL_FMT_RGB_565 = 3,               /// < RGB565 format */
+    NATIVEBUFFER_PIXEL_FMT_RGBA_5658,                 /// < RGBA5658 format */
+    NATIVEBUFFER_PIXEL_FMT_RGBX_4444,                 /// < RGBX4444 format */
+    NATIVEBUFFER_PIXEL_FMT_RGBA_4444,                 /// < RGBA4444 format */
+    NATIVEBUFFER_PIXEL_FMT_RGB_444,                   /// < RGB444 format */
+    NATIVEBUFFER_PIXEL_FMT_RGBX_5551,                 /// < RGBX5551 format */
+    NATIVEBUFFER_PIXEL_FMT_RGBA_5551,                 /// < RGBA5551 format */
+    NATIVEBUFFER_PIXEL_FMT_RGB_555,                   /// < RGB555 format */
+    NATIVEBUFFER_PIXEL_FMT_RGBX_8888,                 /// < RGBX8888 format */
+    NATIVEBUFFER_PIXEL_FMT_RGBA_8888,                 /// < RGBA8888 format */
+    NATIVEBUFFER_PIXEL_FMT_RGB_888,                   /// < RGB888 format */
+    NATIVEBUFFER_PIXEL_FMT_BGR_565,                   /// < BGR565 format */
+    NATIVEBUFFER_PIXEL_FMT_BGRX_4444,                 /// < BGRX4444 format */
+    NATIVEBUFFER_PIXEL_FMT_BGRA_4444,                 /// < BGRA4444 format */
+    NATIVEBUFFER_PIXEL_FMT_BGRX_5551,                 /// < BGRX5551 format */
+    NATIVEBUFFER_PIXEL_FMT_BGRA_5551,                 /// < BGRA5551 format */
+    NATIVEBUFFER_PIXEL_FMT_BGRX_8888,                 /// < BGRX8888 format */
+    NATIVEBUFFER_PIXEL_FMT_BGRA_8888,                 /// < BGRA8888 format */
+    /**
+     * YUV422 interleaved format
+     * @since 12
+     */
+    NATIVEBUFFER_PIXEL_FMT_YUV_422_I,
+    /**
+     * YCBCR422 semi-plannar format
+     * @since 12
+     */
+    NATIVEBUFFER_PIXEL_FMT_YCBCR_422_SP,
+    /**
+     * YCRCB422 semi-plannar format
+     * @since 12
+     */
+    NATIVEBUFFER_PIXEL_FMT_YCRCB_422_SP,
+    /**
+     * YCBCR420 semi-plannar format
+     * @since 12
+     */
+    NATIVEBUFFER_PIXEL_FMT_YCBCR_420_SP,
+    /**
+     * YCRCB420 semi-plannar format
+     * @since 12
+     */
+    NATIVEBUFFER_PIXEL_FMT_YCRCB_420_SP,
+    /**
+     * YCBCR422 plannar format
+     * @since 12
+     */
+    NATIVEBUFFER_PIXEL_FMT_YCBCR_422_P,
+    /**
+     * YCRCB422 plannar format
+     * @since 12
+     */
+    NATIVEBUFFER_PIXEL_FMT_YCRCB_422_P,
+    /**
+     * YCBCR420 plannar format
+     * @since 12
+     */
+    NATIVEBUFFER_PIXEL_FMT_YCBCR_420_P,
+    /**
+     * YCRCB420 plannar format
+     * @since 12
+     */
+    NATIVEBUFFER_PIXEL_FMT_YCRCB_420_P,
+    /**
+     * YUYV422 packed format
+     * @since 12
+     */
+    NATIVEBUFFER_PIXEL_FMT_YUYV_422_PKG,
+    /**
+     * UYVY422 packed format
+     * @since 12
+     */
+    NATIVEBUFFER_PIXEL_FMT_UYVY_422_PKG,
+    /**
+     * YVYU422 packed format
+     * @since 12
+     */
+    NATIVEBUFFER_PIXEL_FMT_YVYU_422_PKG,
+    /**
+     * VYUY422 packed format
+     * @since 12
+     */
+    NATIVEBUFFER_PIXEL_FMT_VYUY_422_PKG,
+    /**
+     * RGBA_1010102 packed format
+     * @since 12
+     */
+    NATIVEBUFFER_PIXEL_FMT_RGBA_1010102,
+    /**
+     * YCBCR420 semi-planar 10bit packed format
+     * @since 12
+     */
+    NATIVEBUFFER_PIXEL_FMT_YCBCR_P010,
+    /**
+     * YCRCB420 semi-planar 10bit packed format
+     * @since 12
+     */
+    NATIVEBUFFER_PIXEL_FMT_YCRCB_P010,
+    /**
+     * Raw 10bit packed format
+     * @since 12
+     */
+    NATIVEBUFFER_PIXEL_FMT_RAW10,
+    /**
+     * BLOB format
+     * @since 15
+     */
+    NATIVEBUFFER_PIXEL_FMT_BLOB,
+    /**
+     * RGBA16 float format
+     * @since 15
+     */
+    NATIVEBUFFER_PIXEL_FMT_RGBA16_FLOAT,
+    /**
+     * Y8 format
+     * @since 20
+     */
+    NATIVEBUFFER_PIXEL_FMT_Y8 = 40,
+    /**
+     * Y16 format
+     * @since 20
+     */
+    NATIVEBUFFER_PIXEL_FMT_Y16 = 41,
+    /**
+     * vender mask format
+     * @since 12
+     */
+    NATIVEBUFFER_PIXEL_FMT_VENDER_MASK = 0X7FFF0000,
+    NATIVEBUFFER_PIXEL_FMT_BUTT = 0X7FFFFFFF          /// < Invalid pixel format */
+} OH_NativeBuffer_Format;
+
+/**
+ * @brief Indicates the transform type of a native buffer.
+ *
+ * @syscap SystemCapability.Graphic.Graphic2D.NativeBuffer
+ * @since 12
+ * @version 1.0
+ */
+typedef enum OH_NativeBuffer_TransformType {
+    NATIVEBUFFER_ROTATE_NONE = 0,         /**< No rotation */
+    NATIVEBUFFER_ROTATE_90,               /**< Rotation by 90 degrees */
+    NATIVEBUFFER_ROTATE_180,              /**< Rotation by 180 degrees */
+    NATIVEBUFFER_ROTATE_270,              /**< Rotation by 270 degrees */
+    NATIVEBUFFER_FLIP_H,                  /**< Flip horizontally */
+    NATIVEBUFFER_FLIP_V,                  /**< Flip vertically */
+    NATIVEBUFFER_FLIP_H_ROT90,            /**< Flip horizontally and rotate 90 degrees */
+    NATIVEBUFFER_FLIP_V_ROT90,            /**< Flip vertically and rotate 90 degrees */
+    NATIVEBUFFER_FLIP_H_ROT180,           /**< Flip horizontally and rotate 180 degrees */
+    NATIVEBUFFER_FLIP_V_ROT180,           /**< Flip vertically and rotate 180 degrees */
+    NATIVEBUFFER_FLIP_H_ROT270,           /**< Flip horizontally and rotate 270 degrees */
+    NATIVEBUFFER_FLIP_V_ROT270,           /**< Flip vertically and rotate 270 degrees */
+} OH_NativeBuffer_TransformType;
 
 #ifdef __cplusplus
 }

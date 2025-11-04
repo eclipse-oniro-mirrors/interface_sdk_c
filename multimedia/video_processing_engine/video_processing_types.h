@@ -121,9 +121,6 @@ extern const char* VIDEO_DETAIL_ENHANCER_PARAMETER_KEY_QUALITY_LEVEL;
  * Use {@link OH_VideoProcessing_SetParameter} to set parameter into video processing instance.
  * Use {@link OH_VideoProcessing_GetParameter} to get the current mode.
  *
- * @see OH_AVFormat_SetIntValue
- * @see OH_VideoProcessing_SetParameter
- * @see OH_VideoProcessing_GetParameter
  * @since 22
  */
 extern const char* VIDEO_METADATA_GENERATOR_STYLE_CONTROL;

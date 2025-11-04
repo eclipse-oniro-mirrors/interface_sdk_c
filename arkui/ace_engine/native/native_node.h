@@ -966,6 +966,7 @@ typedef enum {
      * @brief Defines the overlay attribute, which can be set, reset, and obtained as required through APIs.
      *
      * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
+     * You can set the overlay content through .string or .object as follow, and .string has higher priority.
      * .string: mask text.\n
      * .value[0]?.i32: position of the overlay relative to the component. Optional.
      * The parameter type is {@link ArkUI_Alignment}.
@@ -983,7 +984,7 @@ typedef enum {
      * .object: the node tree used as the overlay.
      * The parameter type is {@link ArkUI_NodeHandle}.
      * The default value is <b>nullptr.</b> \n
-     * this parameter is conflict with .string, and it has lower priority than .string. Optional.
+     * this parameter is conflict with .string, and it has lower priority than .string.
      * \n
      * Format of the return value {@link ArkUI_AttributeItem}:\n
      * .string: mask text.\n
@@ -1897,7 +1898,7 @@ typedef enum {
      * .value[...].f32: threshold array. \n
      * .object: the {@link ArkUI_VisibleAreaEventOptions} objcet.
      *
-     * @since 21
+     * @since 22
      */
     NODE_VISIBLE_AREA_CHANGE_RATIO = 93,
 
@@ -2244,6 +2245,25 @@ typedef enum {
      * .value[1].u32: text decoration color, in 0xARGB format. \n
      * .value[2].i32: text decoration style {@link ArkUI_TextDecorationStyle}. \n
      *
+     */
+    /**
+     * @brief Defines the text decoration style and color.
+     * This attribute can be set, reset, and obtained as required through APIs.
+     *
+     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
+     * .value[0].i32: text decoration type {@link ArkUI_TextDecorationType}.
+     * The default value is <b>ARKUI_TEXT_DECORATION_TYPE_NONE</b>.\n
+     * .value[1]?.u32: text decoration color, in 0xARGB format. For example, 0xFFFF0000 indicates red. Optional.\n
+     * .value[2]?.i32: text decoration style {@link ArkUI_TextDecorationStyle}. \n
+     * .value[3].f32: text decoration thickness scale. \n
+     * \n
+     * Format of the return value {@link ArkUI_AttributeItem}:\n
+     * .value[0].i32: text decoration type {@link ArkUI_TextDecorationType}.\n
+     * .value[1].u32: text decoration color, in 0xARGB format. \n
+     * .value[2].i32: text decoration style {@link ArkUI_TextDecorationStyle}. \n
+     * .value[3].f32: text decoration thickness scale. \n
+     *
+     *  since 23
      */
     NODE_TEXT_DECORATION,
     /**
@@ -2686,7 +2706,7 @@ typedef enum {
      */
     NODE_TEXT_MIN_LINES = 1037,
 
-    /*
+    /**
      * @brief Enables the selected data detector.
      *
      * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
@@ -2698,19 +2718,6 @@ typedef enum {
      * @since 22
      */
     NODE_TEXT_ENABLE_SELECTED_DATA_DETECTOR = 1038,
-
-    /**
-     * @brief Configs selected data detector.
-     *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .object: the configuration of selected data detector. The parameter type is {@link ArkUI_SelectedDataDetectorConfig}.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .object: the configuration of selected data detector. The parameter type is {@link ArkUI_SelectedDataDetectorConfig}.\n
-     *
-     * @since 22
-     */
-    NODE_TEXT_SELECTED_DATA_DETECTOR_CONFIG = 1039,
 
     /**
      * @brief Defines the minimum text line height attribute, which can be set, reset, and obtained as required through APIs.
@@ -2753,6 +2760,37 @@ typedef enum {
      *
      */
     NODE_TEXT_LINE_HEIGHT_MULTIPLE = 1042,
+
+    /**
+     * @brief Get the text layout manager of the text.
+     *
+     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
+     * .object: the layout manager of text. The parameter type is {@link ArkUI_TextLayoutManager}.\n
+     *
+     * @since 23
+     */
+    NODE_TEXT_LAYOUT_MANAGER = 1043,
+
+    /**
+     * @brief Set the edit menu options of the text.
+     *
+     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
+     * .object: the edit menu options of text. The parameter type is {@link ArkUI_TextEditMenuOptions}.\n
+     *
+     * @since 23
+     */
+    NODE_TEXT_EDIT_MENU_OPTIONS = 1044,
+
+    /**
+     * @brief Bind the selection menu for text.
+     *
+     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
+     * .object: the custom selection menu of text.
+     *     The parameter type is {@link ArkUI_SelectionMenuOptions}.\n
+     *
+     * @since 23
+     */
+    NODE_TEXT_BIND_SELECTION_MENU = 1045,
 
     /**
      * @brief Defines the text content attribute, which can be set, reset, and obtained as required through APIs.
@@ -3800,7 +3838,7 @@ typedef enum {
      * @brief Enables selected data detector.
      *
      * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: Enable selected text recognition, default value false.\n
+     * .value[0].i32: Enable selected text recognition, default value true.\n
      * \n
      * Format of the return value {@link ArkUI_AttributeItem}:\n
      * .value[0].i32: Whether selected text recognition is enabled.\n
@@ -3808,19 +3846,6 @@ typedef enum {
      * @since 22
      */
     NODE_TEXT_INPUT_ENABLE_SELECTED_DATA_DETECTOR = 7038,
-
-    /**
-     * @brief Configs selected data detector.
-     *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .object: the configuration of selected data detector. The parameter type is {@link ArkUI_SelectedDataDetectorConfig}.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .object: the configuration of selected data detector. The parameter type is {@link ArkUI_SelectedDataDetectorConfig}.\n
-     *
-     * @since 22
-     */
-    NODE_TEXT_INPUT_SELECTED_DATA_DETECTOR_CONFIG = 7039,
 
     /**
      * @brief Defines the counter settings. This attribute can be set, reset, and obtained as required through APIs.
@@ -4282,7 +4307,7 @@ typedef enum {
      * @brief Enables selected data detector.
      *
      * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: Enable selected text recognition, default value false.\n
+     * .value[0].i32: Enable selected text recognition, default value true.\n
      * \n
      * Format of the return value {@link ArkUI_AttributeItem}:\n
      * .value[0].i32: Whether selected text recognition is enabled.\n
@@ -4290,19 +4315,6 @@ typedef enum {
      * @since 22
      */
     NODE_TEXT_AREA_ENABLE_SELECTED_DATA_DETECTOR = 8033,
-    
-    /**
-     * @brief Configs selected data detector.
-     *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .object: the configuration of selected data detector. The parameter type is {@link ArkUI_SelectedDataDetectorConfig}.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .object: the configuration of selected data detector. The parameter type is {@link ArkUI_SelectedDataDetectorConfig}.\n
-     *
-     * @since 22
-     */
-    NODE_TEXT_AREA_SELECTED_DATA_DETECTOR_CONFIG = 8034,
     
     /**
      * @brief Defines the color of the scrollbar. This attribute can be set, reset, and obtained as required
@@ -6252,11 +6264,13 @@ typedef enum {
      * .value[0].i32: number of cached items in the list adapter. \n
      * .value[1]?.i32: whether to show cached items. The value <b>0</b> means to hide cached items, and <b>0</b> means
      * to show cached items. The default value is <b>0</b>. This parameter is supported since API version 15. \n
+     * .value[2]?.i32: maximum cache count. This parameter is supported since API version 22.
      * \n
      * Format of the return value {@link ArkUI_AttributeItem}:\n
      * .value[0].i32: number of cached items in the list adapter. \n
      * .value[1].i32: whether to show cached items. The value <b>0</b> means to hide cached items, and <b>0</b> means
      * to show cached items. This parameter is supported since API version 15. \n
+     * .value[2].i32: maximum cache count. This parameter is supported since API version 22.
      *
      */
     NODE_LIST_CACHED_COUNT,
@@ -6861,14 +6875,14 @@ typedef enum {
      * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute: \n
      * .value[0].i32: number of columns at different breakpoint specifications.
      * The data type is {@link ArkUI_ItemFillPolicy}. \n
-     * .value[1]?.f32: whether to paginate by group. The value <b>0</b> means to paginate by individual child elements,
+     * .value[1]?.i32: whether to paginate by group. The value <b>0</b> means to paginate by individual child elements,
      * and <b>1</b> means to paginate by groups of child elements displayed within the viewport.
      * The default value is <b>0</b>.
      * \n
      * Format of the return value {@link ArkUI_AttributeItem}: \n
      * .value[0].i32: number of columns at different breakpoint specifications.
      * The data type is {@link ArkUI_ItemFillPolicy}. \n
-     * .value[1].f32: whether to paginate by group. \n
+     * .value[1].i32: whether to paginate by group. \n
      *
      * @since 22
      */
@@ -8743,7 +8757,7 @@ typedef enum {
      * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
      * {@link ArkUI_NodeComponentEvent}. \n
      * {@link ArkUI_NodeComponentEvent} contains three parameters:\n
-     * <b>ArkUI_NodeComponentEvent.data[0].i32</b>: the index value of the current child page. \n
+     * <b>ArkUI_NodeComponentEvent.data[0].i32</b>: the index value of the current child page. Modify this value to control event interception: Set it to 0 to intercept, 1 to allow.\n
      * <b>ArkUI_NodeComponentEvent.data[1].i32</b>: the index value of the child page that will display. \n
      * <b>ArkUI_NodeComponentEvent.data[2].f32</b>: the sliding offset of each frame.
      * Positive numbers indicating slide backward(e.g. from index=1 to index=0), negative numbers indicating
@@ -10943,7 +10957,7 @@ int32_t OH_ArkUI_SetForceDarkConfig(ArkUI_ContextHandle uiContext, bool forceDar
  * @return Returns the result code.
  *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
  *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if context or asyncUITask is nullptr.
- * @since 21
+ * @since 22
  */
 int32_t OH_ArkUI_PostAsyncUITask(ArkUI_ContextHandle context, void* asyncUITaskData,
     void (*asyncUITask)(void* asyncUITaskData), void (*onFinish)(void* asyncUITaskData));
@@ -10957,7 +10971,7 @@ int32_t OH_ArkUI_PostAsyncUITask(ArkUI_ContextHandle context, void* asyncUITaskD
  * @return Returns the result code.
  *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
  *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if context or task is nullptr.
- * @since 21
+ * @since 22
  */
 int32_t OH_ArkUI_PostUITask(ArkUI_ContextHandle context, void* taskData, void (*task)(void* taskData));
 
@@ -10970,7 +10984,7 @@ int32_t OH_ArkUI_PostUITask(ArkUI_ContextHandle context, void* taskData, void (*
  * @return Returns the result code.
  *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
  *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if context or task is nullptr.
- * @since 21
+ * @since 22
  */
 int32_t OH_ArkUI_PostUITaskAndWait(ArkUI_ContextHandle context, void* taskData, void (*task)(void* taskData));
 

@@ -400,6 +400,63 @@ extern const char *OH_AVCODEC_MIMETYPE_AUDIO_RAW;
 extern const char *OH_AVCODEC_MIMETYPE_AUDIO_G711A;
 
 /**
+ * @brief Enumerates the mime types of ALAC (Apple Lossless Audio Codec).
+ *
+ * @since 22
+ */
+extern const char *OH_AVCODEC_MIMETYPE_AUDIO_ALAC;
+
+/**
+ * @brief Enumerates the mime types of audio AC-3 codec.
+ *
+ * @since 22
+ */
+extern const char *OH_AVCODEC_MIMETYPE_AUDIO_AC3;
+
+/**
+ * @brief Enumerates the mime types of audio Enhanced AC-3 codec.
+ *
+ * @since 22
+ */
+extern const char *OH_AVCODEC_MIMETYPE_AUDIO_EAC3;
+
+
+/**
+ * @brief Enumerates the mime types of windows media audio 1 codec.
+ *
+ * @since 22
+ */
+extern const char *OH_AVCODEC_MIMETYPE_AUDIO_WMAV1;
+
+/**
+ * @brief Enumerates the mime types of windows media audio 2 codec.
+ *
+ * @since 22
+ */
+extern const char *OH_AVCODEC_MIMETYPE_AUDIO_WMAV2;
+
+/**
+ * @brief Enumerates the mime types of windows media audio 9 professional codec.
+ *
+ * @since 22
+ */
+extern const char *OH_AVCODEC_MIMETYPE_AUDIO_WMAPRO;
+
+/**
+ * @brief Enumerates the mime types of audio GSM codec.
+ *
+ * @since 22
+ */
+extern const char *OH_AVCODEC_MIMETYPE_AUDIO_GSM;
+
+/**
+ * @brief Enumerates the mime types of audio GSM Microsoft varient codec.
+ *
+ * @since 22
+ */
+extern const char *OH_AVCODEC_MIMETYPE_AUDIO_GSM_MS;
+
+/**
  * @brief Enumerates the MIME type of video mpeg2 codec.
  *
  * @syscap SystemCapability.Multimedia.Media.CodecBase

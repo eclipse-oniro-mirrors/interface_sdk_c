@@ -2015,6 +2015,10 @@
         "name": "OH_Drawing_CanvasDrawArcWithCenter"
     },
     {
+        "first_introduced": "23",
+        "name": "OH_Drawing_CanvasDrawPixelMapMesh"
+    },
+    {
         "first_introduced": "18",
         "name": "OH_Drawing_CanvasDrawPixelMapNine"
     },
