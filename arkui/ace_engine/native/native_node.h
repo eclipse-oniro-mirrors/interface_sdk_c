@@ -10916,6 +10916,20 @@ int32_t OH_ArkUI_NodeUtils_GetNodeHandleByUniqueId(const uint32_t uniqueId, ArkU
 int32_t OH_ArkUI_NodeUtils_GetNodeUniqueId(ArkUI_NodeHandle node, int32_t* uniqueId);
 
 /**
+ * @brief Returns true if the node is in the render state. A node is considered to be in the render state if its
+ * corresponding RenderNode is on the render tree.
+ *
+ * @param node ArkUI_NodeHandle pointer.
+ * @param isInRenderState If the node is in the render state.
+ * @return Error code.
+ *         {@link ARKUI_ERROR_CODE_NO_ERROR} Success.
+ *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} Function parameter exception.
+ *         {@link ARKUI_ERROR_CODE_CAPI_INIT_ERROR} if the CAPI init error.
+ * @since 23
+ */
+int32_t OH_ArkUI_NativeModule_IsInRenderState(ArkUI_NodeHandle node, bool* isInRenderState);
+
+/**
  * @brief Sets the inverse color algorithm for components and instances.
  *
  * @param uiContext Indicates the context in which the inverse color feature should take effect.
