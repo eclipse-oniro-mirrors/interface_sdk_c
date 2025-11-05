@@ -611,6 +611,13 @@ extern const char *OH_MD_KEY_I_FRAME_INTERVAL;
  */
 extern const char *OH_MD_KEY_ROTATION;
 
+/** 
+ * @brief Key for setting video transform type, value type is int32_t, see {@link OH_NativeBuffer_TransformType}.
+ * If not set, the value is 0 ref to {@link NATIVEBUFFER_ROTATE_NONE}.
+ * It is used in configure/setparameter of video decoder, only used for surface mode.
+ */
+extern const char *OH_MD_KEY_VIDEO_TRANSFORM_TYPE;
+
 /**
  * @brief Key for video YUV value range flag, value type is bool, true for full range, false for limited range.
  *
