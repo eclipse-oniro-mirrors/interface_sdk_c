@@ -1,0 +1,46 @@
+[
+    {
+        "first_introduced": "22",
+        "name": "OH_Huks_RegisterProvider"
+    },
+    {
+        "first_introduced": "22",
+        "name": "OH_Huks_UnregisterProvider"
+    },
+    {
+        "first_introduced": "22",
+        "name": "OH_Huks_OpenResource"
+    },
+    {
+        "first_introduced": "22",
+        "name": "OH_Huks_CloseResource"
+    },
+    {
+        "first_introduced": "22",
+        "name": "OH_Huks_GetUkeyPinAuthState"
+    },
+    {
+        "first_introduced": "22",
+        "name": "OH_Huks_GetProperty"
+    },
+    {
+        "first_introduced": "22",
+        "name": "OH_Huks_InitExternalCryptoParamSet"
+    },
+    {
+        "first_introduced": "22",
+        "name": "OH_Huks_AddExternalCryptoParams"
+    },
+    {
+        "first_introduced": "22",
+        "name": "OH_Huks_BuildExternalCryptoParamSet"
+    },
+    {
+        "first_introduced": "22",
+        "name": "OH_Huks_FreeExternalCryptoParamSet"
+    },
+    {
+        "first_introduced": "22",
+        "name": "OH_Huks_GetExternalCryptoParam"
+    }
+]

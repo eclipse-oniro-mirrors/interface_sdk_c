@@ -27,10 +27,25 @@ ohos_ndk_library("libhuks_ndk") {
   ]
 }
 
+ohos_ndk_library("libhuks_external_crypto") {
+  output_name = "huks_external_crypto"
+  output_extension = "z.so"
+  ndk_description_file = "./libhuks.external.crypto.ndk.json"
+  min_compact_version = "1"
+
+  system_capability = "SystemCapability.Security.Huks.CryptoExtension"
+  system_capability_headers = [
+    "huks/native_huks_external_crypto_api.h",
+    "huks/native_huks_external_crypto_type.h",
+  ]
+}
+
 ohos_ndk_headers("huks_header") {
   dest_dir = "$ndk_headers_out_dir/huks"
   sources = [
     "./include/native_huks_api.h",
+    "./include/native_huks_external_crypto_api.h",
+    "./include/native_huks_external_crypto_type.h",
     "./include/native_huks_param.h",
     "./include/native_huks_type.h",
   ]
