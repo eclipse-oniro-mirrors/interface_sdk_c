@@ -400,7 +400,7 @@ bool OH_AVCapability_AreVideoSizeAndFrameRateSupported(OH_AVCapability *capabili
 OH_AVErrCode OH_AVCapability_GetVideoSupportedPixelFormats(OH_AVCapability *capability, const int32_t **pixelFormats,
                                                            uint32_t *pixelFormatNum);
 
-                                                           /**
+/**
  * @brief Get the native buffer formats supported by the video codec.
  *
  * This function provides information about the native buffer formats that the video codec can handle.
