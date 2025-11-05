@@ -612,14 +612,24 @@ extern const char *OH_MD_KEY_I_FRAME_INTERVAL;
 extern const char *OH_MD_KEY_ROTATION;
 
 /**
- * @brief Key for setting video transform type, value type is int32_t, see {@link OH_NativeBuffer_TransformType}.
+ * @brief Key for video transform type, value type is int32_t, see {@link OH_NativeBuffer_TransformType}.
  *
- * This key is used in the configuration or parameter setting of video decoders, specifically for surface mode.
- * If not set, the value is 0 referring to {@link NATIVEBUFFER_ROTATE_NONE}.
+ * This key is used to set the surface transform for video decoders (surface mode).
+ * If not specified, the default value is 0 ({@link NATIVEBUFFER_ROTATE_NONE}).
+ * This key and {@link OH_MD_KEY_ROTATION} are mutually exclusive. If both are provided,
+ * OH_MD_KEY_VIDEO_TRANSFORM_TYPE takes precedence.
+ *
+ * Note: The mapping between transform constants and rotation degrees in {@link OH_MD_KEY_ROTATION}
+ * is reversed (directions are opposite). The correspondence is:
+ * - {@link NATIVEBUFFER_ROTATE_NONE}  => same as OH_MD_KEY_ROTATION = 0
+ * - {@link NATIVEBUFFER_ROTATE_90}    => same as OH_MD_KEY_ROTATION = 270
+ * - {@link NATIVEBUFFER_ROTATE_180}   => same as OH_MD_KEY_ROTATION = 180
+ * - {@link NATIVEBUFFER_ROTATE_270}   => same as OH_MD_KEY_ROTATION = 90
  *
  * @since 22
  */
 extern const char *OH_MD_KEY_VIDEO_TRANSFORM_TYPE;
+
 /**
  * @brief Key for video YUV value range flag, value type is bool, true for full range, false for limited range.
  *
