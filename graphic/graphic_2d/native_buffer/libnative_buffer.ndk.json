@@ -24,5 +24,21 @@
     {
         "first_introduced": "22",
         "name": "OH_NativeBuffer_MapWaitFence"
+    },
+    {
+        "first_introduced": "23",
+        "name": "OH_NativeBuffer_WriteToParcel"
+    },
+    {
+        "first_introduced": "23",
+        "name": "OH_NativeBuffer_ReadFromParcel"
+    },
+    {
+        "first_introduced": "23",
+        "name": "OH_NativeBuffer_IsSupported"
+    },
+    {
+        "first_introduced": "23",
+        "name": "OH_NativeBuffer_MapAndGetConfig"
     }
 ]

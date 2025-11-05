@@ -924,7 +924,7 @@ int32_t OH_NativeWindow_PreAllocBuffers(OHNativeWindow *window, uint32_t allocBu
  * @since 23
  * @version 1.0
  */
-int32_t OH_NativeWindow_LockBuffer(OHNativeWindow *window, Region region, OHNativeWindowBuffer **buffer);
+int32_t OH_NativeWindow_LockBuffer(OHNativeWindow* window, Region region, OHNativeWindowBuffer** buffer);
 
 /**
  * @brief Flushes the <b>OHNativeWindowBuffer</b> filled with the content to the buffer queue through an \n
@@ -937,7 +937,7 @@ int32_t OH_NativeWindow_LockBuffer(OHNativeWindow *window, Region region, OHNati
  * @since 23
  * @version 1.0
  */
-int32_t OH_NativeWindow_UnlockAndFlushBuffer(OHNativeWindow *window);
+int32_t OH_NativeWindow_UnlockAndFlushBuffer(OHNativeWindow* window);
 #ifdef __cplusplus
 }
 #endif
