@@ -619,8 +619,9 @@ extern const char *OH_MD_KEY_ROTATION;
  * This key and {@link OH_MD_KEY_ROTATION} are mutually exclusive. If both are provided,
  * OH_MD_KEY_VIDEO_TRANSFORM_TYPE takes precedence.
  *
- * Note: The mapping between transform constants and rotation degrees in {@link OH_MD_KEY_ROTATION}
- * is reversed (directions are opposite). The correspondence is:
+ * Note that the degrees specified in {@link OH_MD_KEY_ROTATION} represent clockwise rotation, which are
+ * opposite to the direction of rotation defined by the transform constants in {@link OH_NativeBuffer_TransformType}.
+ * The correspondence is:
  * - {@link NATIVEBUFFER_ROTATE_NONE}  => same as OH_MD_KEY_ROTATION = 0
  * - {@link NATIVEBUFFER_ROTATE_90}    => same as OH_MD_KEY_ROTATION = 270
  * - {@link NATIVEBUFFER_ROTATE_180}   => same as OH_MD_KEY_ROTATION = 180
