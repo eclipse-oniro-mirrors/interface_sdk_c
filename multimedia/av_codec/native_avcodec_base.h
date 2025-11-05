@@ -443,6 +443,17 @@ extern const char *OH_AVCODEC_MIMETYPE_AUDIO_WMAV2;
 extern const char *OH_AVCODEC_MIMETYPE_AUDIO_WMAPRO;
 
 /**
+ * @brief Key for specifying the number of bytes per audio packet. The value type is int32_t.
+ *
+ * This key is required only for Windows Media audio decoders. The supported decoder MIME types
+ * include {@link OH_AVCODEC_MIMETYPE_AUDIO_WMAV1}, {@link OH_AVCODEC_MIMETYPE_AUDIO_WMAV2},
+ * and {@link OH_AVCODEC_MIMETYPE_AUDIO_WMAPRO}.
+ *
+ * @since 22
+ */
+extern const char *OH_MD_KEY_BLOCK_ALIGN;
+
+/**
  * @brief Enumerates the mime types of audio GSM codec.
  *
  * @since 22
