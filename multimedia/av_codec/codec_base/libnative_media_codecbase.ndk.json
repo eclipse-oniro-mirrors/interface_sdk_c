@@ -216,6 +216,10 @@
         "name": "OH_MD_KEY_ROTATION"
     },
     {
+        "first_introduced": "20",
+        "name": "OH_MD_KEY_VIDEO_TRANSFORM_TYPE"
+    },
+    {
         "first_introduced": "10",
         "name": "OH_MD_KEY_CODEC_CONFIG"
     },
