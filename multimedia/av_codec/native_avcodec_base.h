@@ -618,9 +618,8 @@ extern const char *OH_MD_KEY_ROTATION;
  * If not specified, the default value is 0 ({@link NATIVEBUFFER_ROTATE_NONE}).
  * This key and {@link OH_MD_KEY_ROTATION} are mutually exclusive. If both are provided,
  * OH_MD_KEY_VIDEO_TRANSFORM_TYPE takes precedence.
- *
- * Note that the degrees specified in {@link OH_MD_KEY_ROTATION} represent clockwise rotation, which are
- * opposite to the direction of rotation defined by the transform constants in {@link OH_NativeBuffer_TransformType}.
+ * Note that the degrees specified in {@link OH_NativeBuffer_TransformType} represent counter-clockwise rotation,
+ * which are opposite to the direction of rotation defined by {@link OH_MD_KEY_ROTATION}.
  * The correspondence is:
  * - {@link NATIVEBUFFER_ROTATE_NONE}  => same as OH_MD_KEY_ROTATION = 0
  * - {@link NATIVEBUFFER_ROTATE_90}    => same as OH_MD_KEY_ROTATION = 270
