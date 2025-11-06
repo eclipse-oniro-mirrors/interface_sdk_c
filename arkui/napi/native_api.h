@@ -124,6 +124,13 @@ typedef struct napi_critical_scope__* napi_critical_scope;
 typedef struct napi_strong_ref__* napi_strong_ref;
 
 /**
+ * @brief Native finalize callback is utilized to recycle native object resource.
+ *
+ * @since 22
+ */
+typedef void (*napi_finalize_callback)(void* finalize_data, void* finalize_hint);
+
+/**
  * @brief Loads an .abc file as a module. This API returns the namespace of the module.
  * @param env Current running virtual machine context.
  * @param path Path of the .abc file or name of the module to load.
@@ -2974,6 +2981,52 @@ NAPI_EXTERN napi_status napi_delete_strong_reference(napi_env env, napi_strong_r
  * @since 21
  */
 NAPI_EXTERN napi_status napi_get_strong_reference_value(napi_env env, napi_strong_ref ref, napi_value* result);
+
+/**
+ * @brief Creates an ArkTS string from a UTF16-encoded C string.
+ * @param env Current running virtual machine context.
+ * @param str C string encoded in UTF16 format.
+ * @param length The length of the C string 'str'.
+ * @param finalize_callback Native finalize callback used to recycle native resource.
+ * @param finalize_hint Optional contextual hint that is passed to the finalize_callback.
+ * @param result Result of the ArkTS string from the UTF16-encoded C string.
+ *
+ * @return Returns the function execution status.
+ *         {@link napi_ok } If the function executed successfully.\n
+ *         {@link napi_invalid_arg } If the param env, str and(or) result is nullptr;\n
+ *                                   If the param length is not equal with NAPI_AUTO_LENGTH and\n
+ *                                   length is larger than INT_MAX;\n
+ * @since 22
+ */
+NAPI_EXTERN napi_status napi_create_external_string_utf16(napi_env env,
+                                                          const char16_t* str,
+                                                          size_t length,
+                                                          napi_finalize_callback finalize_callback,
+                                                          void* finalize_hint,
+                                                          napi_value* result);
+
+ /**
+ * @brief Creates an ArkTS string from a ASCII-encoded C string.
+ * @param env Current running virtual machine context.
+ * @param str C string encoded in ASCII format.
+ * @param length The length of the C string 'str'.
+ * @param finalize_callback Native finalize callback used to recycle native resource.
+ * @param finalize_hint Optional contextual hint that is passed to the finalize_callback.
+ * @param result Result of the ArkTS string from the ASCII-encoded C string.
+ *
+ * @return Returns the function execution status.
+ *         {@link napi_ok } If the function executed successfully.\n
+ *         {@link napi_invalid_arg } If the param env, str and(or) result is nullptr;\n
+ *                                   If the param length is not equal with NAPI_AUTO_LENGTH and\n
+ *                                   length is larger than INT_MAX;\n
+ * @since 22
+ */
+NAPI_EXTERN napi_status napi_create_external_string_ascii(napi_env env,
+                                                          const char* str,
+                                                          size_t length,
+                                                          napi_finalize_callback finalize_callback,
+                                                          void* finalize_hint,
+                                                          napi_value* result);
 #ifdef __cplusplus
 }
 #endif
