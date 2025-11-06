@@ -4498,5 +4498,9 @@
     {
         "first_introduced": "22",
         "name": "OH_ArkUI_CoastingAxisEvent_SetPropagation"
+    },
+    {
+        "first_introduced": "23",
+        "name": "OH_ArkUI_NativeModule_IsInRenderState"
     }
 ]
