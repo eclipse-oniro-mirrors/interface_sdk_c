@@ -117,6 +117,13 @@ typedef enum Ability_NativeChildProcess_ErrCode {
      * @since 20
      */
     NCP_ERR_CALLBACK_NOT_EXIST = 16010009,
+
+    /**
+     * @error The specified PID does not exist or is not a child process of the current process
+     * or is a SELF_FORK mode child process.
+     * @since 22
+     */
+    NCP_ERR_INVALID_PID = 16010010,
 } Ability_NativeChildProcess_ErrCode;
 
 /**
@@ -476,6 +483,24 @@ Ability_NativeChildProcess_ErrCode OH_Ability_RegisterNativeChildProcessExitCall
  */
 Ability_NativeChildProcess_ErrCode OH_Ability_UnregisterNativeChildProcessExitCallback(
     OH_Ability_OnNativeChildProcessExit onProcessExit);
+
+/**
+ * @brief Terminates a child process created by the current process.
+ *
+ * <p>**NOTE**:
+ * <br>Child processes created in SELF_FORK mode cannot be terminated.
+ * </p>
+ *
+ * @param pid Process ID of the target child process to terminate.
+ * @return Returns {@link NCP_NO_ERROR} if the operation succeeds.
+ *         Returns {@link NCP_ERR_INVALID_PID} if:
+ *           - The specified PID does not exist
+ *           - The PID is not a child process of the current process
+ *           - The PID is a SELF_FORK mode child process
+ *         For details, see {@link Ability_NativeChildProcess_ErrCode}.
+ * @since 22
+ */
+Ability_NativeChildProcess_ErrCode OH_Ability_KillChildProcess(int32_t pid);
 
 #ifdef __cplusplus
 } // extern "C"

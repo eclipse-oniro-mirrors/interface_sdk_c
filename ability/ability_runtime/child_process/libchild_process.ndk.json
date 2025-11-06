@@ -46,5 +46,9 @@
   {
       "first_introduced": "21",
       "name": "OH_Ability_ChildProcessConfigs_SetIsolationUid"
+  },
+  {
+    "first_introduced": "22",
+    "name": "OH_Ability_KillChildProcess"
   }
 ]
