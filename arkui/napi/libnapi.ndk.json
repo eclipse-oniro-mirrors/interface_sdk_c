@@ -286,5 +286,17 @@
     {
         "first_introduced": "22",
         "name": "napi_create_external_string_ascii"
+    },
+    {
+        "first_introduced": "22",
+        "name": "napi_create_strong_sendable_reference"
+    },
+    {
+        "first_introduced": "22",
+        "name": "napi_delete_strong_sendable_reference"
+    },
+    {
+        "first_introduced": "22",
+        "name": "napi_get_strong_sendable_reference_value"
     }
 ]
