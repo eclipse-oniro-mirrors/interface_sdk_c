@@ -124,6 +124,13 @@ typedef struct napi_critical_scope__* napi_critical_scope;
 typedef struct napi_strong_ref__* napi_strong_ref;
 
 /**
+ * @brief Native strong sendable reference of an sendable ArkTS object.
+ *
+ * @since 22
+ */
+typedef struct napi_sendable_ref__* napi_sendable_ref;
+
+/**
  * @brief Native finalize callback is utilized to recycle native object resource.
  *
  * @since 22
@@ -3027,6 +3034,49 @@ NAPI_EXTERN napi_status napi_create_external_string_ascii(napi_env env,
                                                           napi_finalize_callback finalize_callback,
                                                           void* finalize_hint,
                                                           napi_value* result);
+
+/**
+ * @brief Creates a strong sendable reference for an ArkTS object to extend its lifespan. The caller needs to manage
+ *        the sendable reference lifespan.
+ * @param env Current running virtual machine context.
+ * @param value The sendable ArkTS object that is being referenced.
+ * @param result The napi_sendable_ref pointing to the new strong sendable reference.
+ *
+ * @return Returns the function execution status.
+ *         {@link napi_ok } If the function executed successfully.\n
+ *         {@link napi_invalid_arg } If env, value or result is nullptr.\n
+ * @since 22
+ */
+NAPI_EXTERN napi_status napi_create_strong_sendable_reference(napi_env env,
+                                                              napi_value value,
+                                                              napi_sendable_ref* result);
+
+/**
+ * @brief Deletes the strong sendable reference passed in.
+ * @param env Current running virtual machine context.
+ * @param ref The sendable reference to be deleted.
+ *
+ * @return Returns the function execution status.
+ *         {@link napi_ok } If the function executed successfully.\n
+ *         {@link napi_invalid_arg } If env or ref is nullptr.\n
+ * @since 22
+ */
+NAPI_EXTERN napi_status napi_delete_strong_sendable_reference(napi_env env, napi_sendable_ref ref);
+
+/**
+ * @brief Obtains the ArkTS Object associated with the strong reference.
+ * @param env Current running virtual machine context.
+ * @param ref The sendable reference of the sendable object value being requested.
+ * @param result The sendable ArkTS object referenced by the sendable reference.
+ *
+ * @return Returns the function execution status.
+ *         {@link napi_ok } If the function executed successfully.\n
+ *         {@link napi_invalid_arg } If env, ref or result is nullptr.\n
+ * @since 22
+ */
+NAPI_EXTERN napi_status napi_get_strong_sendable_reference_value(napi_env env,
+                                                                 napi_sendable_ref ref,
+                                                                 napi_value* result);
 #ifdef __cplusplus
 }
 #endif
