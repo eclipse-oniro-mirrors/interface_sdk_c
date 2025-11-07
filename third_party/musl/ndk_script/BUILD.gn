@@ -35,6 +35,7 @@ if (host_os == "mac") {
   }
 
   darwin_system_toolchains_dir = "${toolchains_dir}/${toolchains_file_name}"
+  prebuilts_python = "//prebuilts/python_llvm"
   ohos_ndk_toolchains("${deps_name}") {
     dest_dir = "$ndk_darwin_toolchains_out_dir"
     sources = [
@@ -59,8 +60,10 @@ if (host_os == "mac") {
     args +=
         [ "-l" ] + [ rebase_path("${darwin_system_toolchains_dir}/llvm/bin") ]
     if (host_cpu == "arm64") {
+      args += [ "-p" ] + [ rebase_path("${prebuilts_python}/darwin-arm64") ]
       deps = [ ":darwin_arm64" ]
     } else {
+      args += [ "-p" ] + [ rebase_path("${prebuilts_python}/darwin-x86") ]
       deps = [ ":darwin_x86_64" ]
     }
   }
