@@ -2816,6 +2816,26 @@ typedef enum {
     NODE_TEXT_BIND_SELECTION_MENU = 1045,
 
     /**
+     * @brief Sets the text selection area, which will be highlighted.
+     * This attribute can be set, reset, and obtained as required through APIs.
+     *
+     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
+     * .value[0].i32: start position of the text selection. \n
+     * .value[1].i32: end position of the text selection. \n
+     * .object: selection options including the menu popup policy.
+     *     The parameter type is {@link ArkUI_SelectionOptions}. \n
+     * \n
+     * Format of the return value {@link ArkUI_AttributeItem}:\n
+     * .value[0].i32: start position of the text selection. \n
+     * .value[1].i32: end position of the text selection. \n
+     * .object: selection options including the menu popup policy.
+     *     The parameter type is {@link ArkUI_SelectionOptions}. \n
+     *
+     * @since 23
+     */
+    NODE_TEXT_TEXT_SELECTION = 1046,
+
+    /**
      * @brief Whether to compress punctuation at the beginning of line.
      *
      * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
