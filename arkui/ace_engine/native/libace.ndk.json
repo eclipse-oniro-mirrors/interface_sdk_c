@@ -4502,5 +4502,17 @@
     {
         "first_introduced": "23",
         "name": "OH_ArkUI_NativeModule_IsInRenderState"
+    },
+    {
+        "first_introduced": "23",
+        "name": "OH_ArkUI_RenderNodeUtils_GetRenderNode"
+    },
+    {
+        "first_introduced": "23",
+        "name": "OH_ArkUI_NativeModule_AdoptChild"
+    },
+    {
+        "first_introduced": "23",
+        "name": "OH_ArkUI_NativeModule_RemoveAdoptedChild"
     }
 ]
