@@ -2330,8 +2330,8 @@ Input_Result OH_Input_CursorConfig_IsFollowSystem(Input_CursorConfig *cursorConf
  * @return OH_Input_SetCustomCursor function result code.
  *         {@link INPUT_SUCCESS} if the operation is successful;
  *         {@link INPUT_PARAMETER_ERROR} if window ID is abnormal or customCursor is invalid;
- *         {@link INPUT_INVALID_WINDOWID} if window ID is invaild;
- *         {@link INPUT_DEVICE_NOT_SUPPORTED} Capability not supported;
+ *         {@link INPUT_INVALID_WINDOWID} if window ID is invaild.
+ *         {@link INPUT_DEVICE_NOT_SUPPORTED} Capability not supported.
  *         {@link INPUT_SERVICE_EXCEPTION} if the service is exception.
  * @since 22
  */
