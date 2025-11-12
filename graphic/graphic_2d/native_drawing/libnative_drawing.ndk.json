@@ -2117,5 +2117,121 @@
     {
         "first_introduced": "21",
         "name": "OH_Drawing_GetTypographyStyleAttributeInt"
+    },
+    {
+        "first_introduced": "23",
+        "name": "OH_Drawing_LatticeCreate"
+    },
+    {
+        "first_introduced": "23",
+        "name": "OH_Drawing_LatticeDestroy"
+    },
+    {
+        "first_introduced": "23",
+        "name": "OH_Drawing_MatrixIsAffine"
+    },
+    {
+        "first_introduced": "23",
+        "name": "OH_Drawing_MatrixPreSkew"
+    },
+    {
+        "first_introduced": "23",
+        "name": "OH_Drawing_MatrixRectStaysRect"
+    },
+    {
+        "first_introduced": "23",
+        "name": "OH_Drawing_MatrixSetSinCos"
+    },
+    {
+        "first_introduced": "23",
+        "name": "OH_Drawing_PathIteratorCreate"
+    },
+    {
+        "first_introduced": "23",
+        "name": "OH_Drawing_PathIteratorDestroy"
+    },
+    {
+        "first_introduced": "23",
+        "name": "OH_Drawing_PathIteratorHasNext"
+    },
+    {
+        "first_introduced": "23",
+        "name": "OH_Drawing_PathIteratorNext"
+    },
+    {
+        "first_introduced": "23",
+        "name": "OH_Drawing_PathIteratorPeek"
+    },
+    {
+        "first_introduced": "23",
+        "name": "OH_Drawing_PathIsInverseFillType"
+    },
+    {
+        "first_introduced": "23",
+        "name": "OH_Drawing_PathToggleInverseFillType"
+    },
+    {
+        "first_introduced": "23",
+        "name": "OH_Drawing_RectIsEmpty"
+    },
+    {
+        "first_introduced": "23",
+        "name": "OH_Drawing_RectOffset"
+    },
+    {
+        "first_introduced": "23",
+        "name": "OH_Drawing_RectOffsetTo"
+    },
+    {
+        "first_introduced": "23",
+        "name": "OH_Drawing_RectSetEmpty"
+    },
+    {
+        "first_introduced": "23",
+        "name": "OH_Drawing_RectSort"
+    },
+    {
+        "first_introduced": "23",
+        "name": "OH_Drawing_RectUnion"
+    },
+    {
+        "first_introduced": "23",
+        "name": "OH_Drawing_RegionGetBoundaryPath"
+    },
+    {
+        "first_introduced": "23",
+        "name": "OH_Drawing_RegionGetBounds"
+    },
+    {
+        "first_introduced": "23",
+        "name": "OH_Drawing_RegionIsComplex"
+    },
+    {
+        "first_introduced": "23",
+        "name": "OH_Drawing_RegionIsEmpty"
+    },
+    {
+        "first_introduced": "23",
+        "name": "OH_Drawing_RegionIsRect"
+    },
+    {
+        "first_introduced": "23",
+        "name": "OH_Drawing_RegionQuickContains"
+    },
+    {
+        "first_introduced": "23",
+        "name": "OH_Drawing_RegionQuickReject"
+    },
+    {
+        "first_introduced": "23",
+        "name": "OH_Drawing_RegionTranslate"
+    },
+    {
+        "first_introduced": "23",
+        "name": "OH_Drawing_TypefaceIsBold"
+    },
+    {
+        "first_introduced": "23",
+        "name": "OH_Drawing_TypefaceIsItalic"
     }
 ]
