@@ -375,12 +375,12 @@ typedef struct {
 /**
  * @brief UMP input handler function type
  *
- * @param context User context pointer
+ * @param userData User context
  * @param events Received MIDI event list
  * @param event_size Length of received MIDI event list
  * @since 24
  */
-typedef void (*MidiUmpInputHandler)(void *context, MidiEventChunk *events, size_t event_size);
+typedef void (*MidiUmpInputHandler)(void *userData, MidiEventChunk *events, size_t event_size);
 
 /**
  * @brief Device change handler function type
