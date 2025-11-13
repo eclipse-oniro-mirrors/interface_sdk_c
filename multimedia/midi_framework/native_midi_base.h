@@ -27,7 +27,7 @@
  * @brief Declare underlying data structure for MIDI module.
  *
  * @library libohmidi.so
- * @syscap SystemCapability.Multimedia.Audio.Midi
+ * @syscap SystemCapability.Multimedia.Audio.Core
  * @kit AudioKit
  * @since 24
  * @version 1.0

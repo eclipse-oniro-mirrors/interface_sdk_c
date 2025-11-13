@@ -30,7 +30,7 @@
  * MIDI message sending and receiving, and device status monitoring.
  *
  * @library libohmidi.so
- * @syscap SystemCapability.Multimedia.Audio.Midi
+ * @syscap SystemCapability.Multimedia.Audio.Core
  * @kit AudioKit
  * @since 24
  * @version 1.0
