@@ -118,7 +118,7 @@ MidiStatusCode OH_MIDI_UnregisterDeviceChangeHandler(MidiClient *client);
  * @note This is a synchronous operation. For asynchronous operations, please call in your own thread.
  * @since 24
  */
-MidiDevice* OH_MIDI_OpenDevice(MidiClient *client, DeviceId deviceId);
+MidiDevice* OH_MIDI_OpenDevice(MidiClient *client, MidiDeviceId deviceId);
 
 /**
  * @brief Close MIDI device
@@ -131,7 +131,7 @@ MidiDevice* OH_MIDI_OpenDevice(MidiClient *client, DeviceId deviceId);
  * or {@link #MIDI_ERR_DEVICE_NOT_OPEN} if device is not open.
  * @since 24
  */
-MidiStatusCode OH_MIDI_CloseDevice(MidiClient *client, DeviceId deviceId);
+MidiStatusCode OH_MIDI_CloseDevice(MidiClient *client, MidiDeviceId deviceId);
 
 /**
  * @brief Open MIDI input port
@@ -149,7 +149,7 @@ MidiStatusCode OH_MIDI_CloseDevice(MidiClient *client, DeviceId deviceId);
  * or {@link #MIDI_ERR_DEVICE_NOT_OPEN} if device is not open.
  * @since 24
  */
-MidiStatusCode OH_MIDI_OpenInputPort(MidiClient *client, DeviceId deviceId, size_t portIndex,
+MidiStatusCode OH_MIDI_OpenInputPort(MidiClient *client, MidiDeviceId deviceId, size_t portIndex,
                                       MidiUmpInputHandler inputCallback, void *userData);
 
 /**
@@ -165,7 +165,7 @@ MidiStatusCode OH_MIDI_OpenInputPort(MidiClient *client, DeviceId deviceId, size
  * or {@link #MIDI_ERR_DEVICE_NOT_OPEN} if device is not open.
  * @since 24
  */
-MidiStatusCode OH_MIDI_OpenOutputPort(MidiClient *client, DeviceId deviceId, size_t portIndex);
+MidiStatusCode OH_MIDI_OpenOutputPort(MidiClient *client, MidiDeviceId deviceId, size_t portIndex);
 
 /**
  * @brief Close MIDI input port
@@ -179,7 +179,7 @@ MidiStatusCode OH_MIDI_OpenOutputPort(MidiClient *client, DeviceId deviceId, siz
  * or {@link #MIDI_ERR_INVALID_PORT} if portIndex is invalid.
  * @since 24
  */
-MidiStatusCode OH_MIDI_CloseInputPort(MidiClient *client, DeviceId deviceId, size_t portIndex);
+MidiStatusCode OH_MIDI_CloseInputPort(MidiClient *client, MidiDeviceId deviceId, size_t portIndex);
 
 /**
  * @brief Close MIDI output port
@@ -193,7 +193,7 @@ MidiStatusCode OH_MIDI_CloseInputPort(MidiClient *client, DeviceId deviceId, siz
  * or {@link #MIDI_ERR_INVALID_PORT} if portIndex is invalid.
  * @since 24
  */
-MidiStatusCode OH_MIDI_CloseOutputPort(MidiClient *client, DeviceId deviceId, size_t portIndex);
+MidiStatusCode OH_MIDI_CloseOutputPort(MidiClient *client, MidiDeviceId deviceId, size_t portIndex);
 
 /**
  * @brief Send MIDI message through output port
@@ -211,7 +211,7 @@ MidiStatusCode OH_MIDI_CloseOutputPort(MidiClient *client, DeviceId deviceId, si
  * or {@link #MIDI_ERR_GENERIC_IPC_FAILURE} if message sending fails.
  * @since 24
  */
-MidiStatusCode OH_MIDI_Send(MidiClient *client, DeviceId deviceId, size_t portIndex, 
+MidiStatusCode OH_MIDI_Send(MidiClient *client, MidiDeviceId deviceId, size_t portIndex, 
                              MidiEventChunk *events, size_t event_size);
 
 #ifdef __cplusplus

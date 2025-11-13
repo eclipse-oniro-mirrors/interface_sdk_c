@@ -62,7 +62,7 @@ typedef uint64_t MidiTimestamp;
  *
  * @since 24
  */
-typedef int64_t DeviceId;
+typedef int64_t MidiDeviceId;
 
 /**
  * @brief MIDI status code enumeration
@@ -299,7 +299,7 @@ typedef struct {
      *
      * @since 24
      */
-    DeviceId deviceId;
+    MidiDeviceId midiDeviceId;
     
     /**
      * @brief Product name.
@@ -355,7 +355,7 @@ typedef struct {
      *
      * @since 24
      */
-    DeviceId deviceId;
+    MidiDeviceId midiDeviceId;
     
     /**
      * @brief Number of ports.
