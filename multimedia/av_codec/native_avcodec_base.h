@@ -487,7 +487,7 @@ extern const char *OH_AVCODEC_MIMETYPE_VIDEO_H263;
 extern const char *OH_AVCODEC_MIMETYPE_VIDEO_VC1;
 
 /**
- * @brief Enumerates the MIME type of video MS VIDEO1 codec.
+ * @brief Enumerates the MIME type of video MSVIDEO1 codec.
  *
  * @since 22
  */
