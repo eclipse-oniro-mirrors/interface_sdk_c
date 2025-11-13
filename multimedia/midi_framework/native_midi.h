@@ -49,9 +49,9 @@ extern "C" {
  *
  * @param[out] numDevices Returned device count
  * @return Device information array, caller must free the returned pointer using free()
- * @return {@link #HMIDI_ERR_OK} if execution succeeds,
- * or {@link #HMIDI_ERR_GENERIC_INVALID_ARGUMENT} if numDevices is nullptr,
- * or {@link #HMIDI_ERR_GENERIC_IPC_FAILURE} if IPC communication fails.
+ * @return {@link #MIDI_ERR_OK} if execution succeeds,
+ * or {@link #MIDI_ERR_GENERIC_INVALID_ARGUMENT} if numDevices is nullptr,
+ * or {@link #MIDI_ERR_GENERIC_IPC_FAILURE} if IPC communication fails.
  * @since 24
  */
 DeviceInformation *OH_MIDI_GetDevices(size_t *numDevices);
@@ -60,9 +60,9 @@ DeviceInformation *OH_MIDI_GetDevices(size_t *numDevices);
  * @brief Create MIDI client and connect to system service
  *
  * @return Client pointer, returns nullptr if creation fails
- * @return {@link #HMIDI_ERR_OK} if execution succeeds,
- * or {@link #HMIDI_ERR_GENERIC_IPC_FAILURE} if system service connection fails,
- * or {@link #HMIDI_ERR_INSUFFICIENT_RESULT_SPACE} if system resources are insufficient.
+ * @return {@link #MIDI_ERR_OK} if execution succeeds,
+ * or {@link #MIDI_ERR_GENERIC_IPC_FAILURE} if system service connection fails,
+ * or {@link #MIDI_ERR_INSUFFICIENT_RESULT_SPACE} if system resources are insufficient.
  * @since 24
  */
 MidiClient* OH_MIDI_CreateClient();
@@ -71,12 +71,12 @@ MidiClient* OH_MIDI_CreateClient();
  * @brief Destroy MIDI client and disconnect
  *
  * @param client Target client
- * @return {@link #HMIDI_ERR_OK} if execution succeeds,
- * or {@link #HMIDI_ERR_INVALID_CLIENT} if client is invalid or already destroyed,
- * or {@link #HMIDI_ERR_GENERIC_IPC_FAILURE} if IPC communication fails during destruction.
+ * @return {@link #MIDI_ERR_OK} if execution succeeds,
+ * or {@link #MIDI_ERR_INVALID_CLIENT} if client is invalid or already destroyed,
+ * or {@link #MIDI_ERR_GENERIC_IPC_FAILURE} if IPC communication fails during destruction.
  * @since 24
  */
-HMidiStatusCode OH_MIDI_DestroyClient(MidiClient *client);
+MidiStatusCode OH_MIDI_DestroyClient(MidiClient *client);
 
 /**
  * @brief Register device change notification handler
@@ -84,12 +84,12 @@ HMidiStatusCode OH_MIDI_DestroyClient(MidiClient *client);
  * @param client Target client
  * @param handler Handler function
  * @param userData User context
- * @return {@link #HMIDI_ERR_OK} if execution succeeds,
- * or {@link #HMIDI_ERR_INVALID_CLIENT} if client is invalid,
- * or {@link #HMIDI_ERR_GENERIC_INVALID_ARGUMENT} if handler is nullptr.
+ * @return {@link #MIDI_ERR_OK} if execution succeeds,
+ * or {@link #MIDI_ERR_INVALID_CLIENT} if client is invalid,
+ * or {@link #MIDI_ERR_GENERIC_INVALID_ARGUMENT} if handler is nullptr.
  * @since 24
  */
-HMidiStatusCode OH_MIDI_RegisterDeviceChangeHandler(MidiClient *client, 
+MidiStatusCode OH_MIDI_RegisterDeviceChangeHandler(MidiClient *client, 
                                                     MidiDeviceChangeHandler handler, 
                                                     void *userData);
 
@@ -97,12 +97,12 @@ HMidiStatusCode OH_MIDI_RegisterDeviceChangeHandler(MidiClient *client,
  * @brief Unregister device change notification handler
  *
  * @param client Target client
- * @return {@link #HMIDI_ERR_OK} if execution succeeds,
- * or {@link #HMIDI_ERR_INVALID_CLIENT} if client is invalid,
- * or {@link #HMIDI_ERR_GENERIC_IPC_FAILURE} if IPC communication fails.
+ * @return {@link #MIDI_ERR_OK} if execution succeeds,
+ * or {@link #MIDI_ERR_INVALID_CLIENT} if client is invalid,
+ * or {@link #MIDI_ERR_GENERIC_IPC_FAILURE} if IPC communication fails.
  * @since 24
  */
-HMidiStatusCode OH_MIDI_UnregisterDeviceChangeHandler(MidiClient *client);
+MidiStatusCode OH_MIDI_UnregisterDeviceChangeHandler(MidiClient *client);
 
 /**
  * @brief Open MIDI device
@@ -110,11 +110,11 @@ HMidiStatusCode OH_MIDI_UnregisterDeviceChangeHandler(MidiClient *client);
  * @param client Target client
  * @param deviceId Device ID
  * @return Device handle with operation result, returns nullptr if opening fails
- * @return {@link #HMIDI_ERR_OK} if execution succeeds,
- * or {@link #HMIDI_ERR_INVALID_CLIENT} if client is invalid,
- * or {@link #HMIDI_ERR_INVALID_DEVICE} if deviceId is invalid,
- * or {@link #HMIDI_ERR_DEVICE_ALREADY_OPEN} if device is already open,
- * or {@link #HMIDI_ERR_DEVICE_ACTIVATION_FAILED} if device activation fails.
+ * @return {@link #MIDI_ERR_OK} if execution succeeds,
+ * or {@link #MIDI_ERR_INVALID_CLIENT} if client is invalid,
+ * or {@link #MIDI_ERR_INVALID_DEVICE} if deviceId is invalid,
+ * or {@link #MIDI_ERR_DEVICE_ALREADY_OPEN} if device is already open,
+ * or {@link #MIDI_ERR_DEVICE_ACTIVATION_FAILED} if device activation fails.
  * @note This is a synchronous operation. For asynchronous operations, please call in your own thread.
  * @since 24
  */
@@ -125,13 +125,13 @@ MidiDevice* OH_MIDI_OpenDevice(MidiClient *client, DeviceId deviceId);
  *
  * @param client Target client
  * @param deviceId Target device ID
- * @return {@link #HMIDI_ERR_OK} if execution succeeds,
- * or {@link #HMIDI_ERR_INVALID_CLIENT} if client is invalid,
- * or {@link #HMIDI_ERR_INVALID_DEVICE} if deviceId is invalid,
- * or {@link #HMIDI_ERR_DEVICE_NOT_OPEN} if device is not open.
+ * @return {@link #MIDI_ERR_OK} if execution succeeds,
+ * or {@link #MIDI_ERR_INVALID_CLIENT} if client is invalid,
+ * or {@link #MIDI_ERR_INVALID_DEVICE} if deviceId is invalid,
+ * or {@link #MIDI_ERR_DEVICE_NOT_OPEN} if device is not open.
  * @since 24
  */
-HMidiStatusCode OH_MIDI_CloseDevice(MidiClient *client, DeviceId deviceId);
+MidiStatusCode OH_MIDI_CloseDevice(MidiClient *client, DeviceId deviceId);
 
 /**
  * @brief Open MIDI input port
@@ -141,15 +141,15 @@ HMidiStatusCode OH_MIDI_CloseDevice(MidiClient *client, DeviceId deviceId);
  * @param portIndex Port index
  * @param inputCallback Data reception callback function
  * @param userData Callback context
- * @return {@link #HMIDI_ERR_OK} if execution succeeds,
- * or {@link #HMIDI_ERR_INVALID_CLIENT} if client is invalid,
- * or {@link #HMIDI_ERR_INVALID_DEVICE} if deviceId is invalid,
- * or {@link #HMIDI_ERR_INVALID_PORT} if portIndex is invalid,
- * or {@link #HMIDI_ERR_GENERIC_INVALID_ARGUMENT} if inputCallback is nullptr,
- * or {@link #HMIDI_ERR_DEVICE_NOT_OPEN} if device is not open.
+ * @return {@link #MIDI_ERR_OK} if execution succeeds,
+ * or {@link #MIDI_ERR_INVALID_CLIENT} if client is invalid,
+ * or {@link #MIDI_ERR_INVALID_DEVICE} if deviceId is invalid,
+ * or {@link #MIDI_ERR_INVALID_PORT} if portIndex is invalid,
+ * or {@link #MIDI_ERR_GENERIC_INVALID_ARGUMENT} if inputCallback is nullptr,
+ * or {@link #MIDI_ERR_DEVICE_NOT_OPEN} if device is not open.
  * @since 24
  */
-HMidiStatusCode OH_MIDI_OpenInputPort(MidiClient *client, DeviceId deviceId, size_t portIndex,
+MidiStatusCode OH_MIDI_OpenInputPort(MidiClient *client, DeviceId deviceId, size_t portIndex,
                                       MidiUmpInputHandler inputCallback, void *userData);
 
 /**
@@ -158,14 +158,14 @@ HMidiStatusCode OH_MIDI_OpenInputPort(MidiClient *client, DeviceId deviceId, siz
  * @param client Target client
  * @param deviceId Target device ID
  * @param portIndex Port index
- * @return {@link #HMIDI_ERR_OK} if execution succeeds,
- * or {@link #HMIDI_ERR_INVALID_CLIENT} if client is invalid,
- * or {@link #HMIDI_ERR_INVALID_DEVICE} if deviceId is invalid,
- * or {@link #HMIDI_ERR_INVALID_PORT} if portIndex is invalid,
- * or {@link #HMIDI_ERR_DEVICE_NOT_OPEN} if device is not open.
+ * @return {@link #MIDI_ERR_OK} if execution succeeds,
+ * or {@link #MIDI_ERR_INVALID_CLIENT} if client is invalid,
+ * or {@link #MIDI_ERR_INVALID_DEVICE} if deviceId is invalid,
+ * or {@link #MIDI_ERR_INVALID_PORT} if portIndex is invalid,
+ * or {@link #MIDI_ERR_DEVICE_NOT_OPEN} if device is not open.
  * @since 24
  */
-HMidiStatusCode OH_MIDI_OpenOutputPort(MidiClient *client, DeviceId deviceId, size_t portIndex);
+MidiStatusCode OH_MIDI_OpenOutputPort(MidiClient *client, DeviceId deviceId, size_t portIndex);
 
 /**
  * @brief Close MIDI input port
@@ -173,13 +173,13 @@ HMidiStatusCode OH_MIDI_OpenOutputPort(MidiClient *client, DeviceId deviceId, si
  * @param client Target client
  * @param deviceId Target device ID
  * @param portIndex Port index
- * @return {@link #HMIDI_ERR_OK} if execution succeeds,
- * or {@link #HMIDI_ERR_INVALID_CLIENT} if client is invalid,
- * or {@link #HMIDI_ERR_INVALID_DEVICE} if deviceId is invalid,
- * or {@link #HMIDI_ERR_INVALID_PORT} if portIndex is invalid.
+ * @return {@link #MIDI_ERR_OK} if execution succeeds,
+ * or {@link #MIDI_ERR_INVALID_CLIENT} if client is invalid,
+ * or {@link #MIDI_ERR_INVALID_DEVICE} if deviceId is invalid,
+ * or {@link #MIDI_ERR_INVALID_PORT} if portIndex is invalid.
  * @since 24
  */
-HMidiStatusCode OH_MIDI_CloseInputPort(MidiClient *client, DeviceId deviceId, size_t portIndex);
+MidiStatusCode OH_MIDI_CloseInputPort(MidiClient *client, DeviceId deviceId, size_t portIndex);
 
 /**
  * @brief Close MIDI output port
@@ -187,13 +187,13 @@ HMidiStatusCode OH_MIDI_CloseInputPort(MidiClient *client, DeviceId deviceId, si
  * @param client Target client
  * @param deviceId Target device ID
  * @param portIndex Port index
- * @return {@link #HMIDI_ERR_OK} if execution succeeds,
- * or {@link #HMIDI_ERR_INVALID_CLIENT} if client is invalid,
- * or {@link #HMIDI_ERR_INVALID_DEVICE} if deviceId is invalid,
- * or {@link #HMIDI_ERR_INVALID_PORT} if portIndex is invalid.
+ * @return {@link #MIDI_ERR_OK} if execution succeeds,
+ * or {@link #MIDI_ERR_INVALID_CLIENT} if client is invalid,
+ * or {@link #MIDI_ERR_INVALID_DEVICE} if deviceId is invalid,
+ * or {@link #MIDI_ERR_INVALID_PORT} if portIndex is invalid.
  * @since 24
  */
-HMidiStatusCode OH_MIDI_CloseOutputPort(MidiClient *client, DeviceId deviceId, size_t portIndex);
+MidiStatusCode OH_MIDI_CloseOutputPort(MidiClient *client, DeviceId deviceId, size_t portIndex);
 
 /**
  * @brief Send MIDI message through output port
@@ -203,15 +203,15 @@ HMidiStatusCode OH_MIDI_CloseOutputPort(MidiClient *client, DeviceId deviceId, s
  * @param portIndex Port index
  * @param events Event list to be sent
  * @param event_size Length of event list to be sent
- * @return {@link #HMIDI_ERR_OK} if execution succeeds,
- * or {@link #HMIDI_ERR_INVALID_CLIENT} if client is invalid,
- * or {@link #HMIDI_ERR_INVALID_DEVICE} if deviceId is invalid,
- * or {@link #HMIDI_ERR_INVALID_PORT} if portIndex is invalid,
- * or {@link #HMIDI_ERR_GENERIC_INVALID_ARGUMENT} if events is nullptr or event_size is 0,
- * or {@link #HMIDI_ERR_GENERIC_IPC_FAILURE} if message sending fails.
+ * @return {@link #MIDI_ERR_OK} if execution succeeds,
+ * or {@link #MIDI_ERR_INVALID_CLIENT} if client is invalid,
+ * or {@link #MIDI_ERR_INVALID_DEVICE} if deviceId is invalid,
+ * or {@link #MIDI_ERR_INVALID_PORT} if portIndex is invalid,
+ * or {@link #MIDI_ERR_GENERIC_INVALID_ARGUMENT} if events is nullptr or event_size is 0,
+ * or {@link #MIDI_ERR_GENERIC_IPC_FAILURE} if message sending fails.
  * @since 24
  */
-HMidiStatusCode OH_MIDI_Send(MidiClient *client, DeviceId deviceId, size_t portIndex, 
+MidiStatusCode OH_MIDI_Send(MidiClient *client, DeviceId deviceId, size_t portIndex, 
                              MidiEventChunk *events, size_t event_size);
 
 #ifdef __cplusplus

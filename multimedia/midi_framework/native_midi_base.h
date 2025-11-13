@@ -48,14 +48,14 @@ extern "C" {
  *
  * @since 24
  */
-typedef uint32_t HMidiUmp;
+typedef uint32_t MidiUmp;
 
 /**
- * @brief HMIDI timestamp type (nanoseconds)
+ * @brief MIDI timestamp type (nanoseconds)
  *
  * @since 24
  */
-typedef uint64_t HMidiTimestamp;
+typedef uint64_t MidiTimestamp;
 
 /**
  * @brief Device ID type
@@ -65,7 +65,7 @@ typedef uint64_t HMidiTimestamp;
 typedef int64_t DeviceId;
 
 /**
- * @brief HMIDI status code enumeration
+ * @brief MIDI status code enumeration
  *
  * @since 24
  */
@@ -75,85 +75,85 @@ typedef enum {
      *
      * @since 24
      */
-    HMIDI_ERR_OK = 0,
+    MIDI_ERR_OK = 0,
     
     /**
      * @error Invalid parameter.
      *
      * @since 24
      */
-    HMIDI_ERR_GENERIC_INVALID_ARGUMENT,
+    MIDI_ERR_GENERIC_INVALID_ARGUMENT,
     
     /**
      * @error IPC communication failure.
      *
      * @since 24
      */
-    HMIDI_ERR_GENERIC_IPC_FAILURE,
+    MIDI_ERR_GENERIC_IPC_FAILURE,
     
     /**
      * @error Insufficient result space.
      *
      * @since 24
      */
-    HMIDI_ERR_INSUFFICIENT_RESULT_SPACE,
+    MIDI_ERR_INSUFFICIENT_RESULT_SPACE,
     
     /**
      * @error Driver already registered.
      *
      * @since 24
      */
-    HMIDI_ERR_DRIVER_ALREADY_REGISTERED,
+    MIDI_ERR_DRIVER_ALREADY_REGISTERED,
     
     /**
      * @error Invalid client.
      *
      * @since 24
      */
-    HMIDI_ERR_INVALID_CLIENT,
+    MIDI_ERR_INVALID_CLIENT,
     
     /**
      * @error Invalid driver.
      *
      * @since 24
      */
-    HMIDI_ERR_INVALID_DRIVER,
+    MIDI_ERR_INVALID_DRIVER,
     
     /**
      * @error Invalid device.
      *
      * @since 24
      */
-    HMIDI_ERR_INVALID_DEVICE,
+    MIDI_ERR_INVALID_DEVICE,
     
     /**
      * @error Invalid port.
      *
      * @since 24
      */
-    HMIDI_ERR_INVALID_PORT,
+    MIDI_ERR_INVALID_PORT,
     
     /**
      * @error Device already open.
      *
      * @since 24
      */
-    HMIDI_ERR_DEVICE_ALREADY_OPEN,
+    MIDI_ERR_DEVICE_ALREADY_OPEN,
     
     /**
      * @error Device not open.
      *
      * @since 24
      */
-    HMIDI_ERR_DEVICE_NOT_OPEN,
+    MIDI_ERR_DEVICE_NOT_OPEN,
     
     /**
      * @error Device activation failed.
      *
      * @since 24
      */
-    HMIDI_ERR_DEVICE_ACTIVATION_FAILED
-} HMidiStatusCode;
+    MIDI_ERR_DEVICE_ACTIVATION_FAILED
+} MidiStatusCode;
 
 /**
  * @brief Port direction enumeration
@@ -166,14 +166,14 @@ typedef enum {
      *
      * @since 24
      */
-    HMIDI_PORT_DIRECTION_INPUT  = 1,
+    MIDI_PORT_DIRECTION_INPUT  = 1,
     
     /**
      * Output port.
      *
      * @since 24
      */
-    HMIDI_PORT_DIRECTION_OUTPUT = 2
+    MIDI_PORT_DIRECTION_OUTPUT = 2
 } MidiPortDirection;
 
 /**
@@ -208,15 +208,15 @@ typedef enum {
      *
      * @since 24
      */
-    HMIDI_DATA_PROTOCOL_MIDI1 = 1,
+    MIDI_DATA_PROTOCOL_MIDI1 = 1,
     
     /**
      * MIDI 2.0 data format.
      *
      * @since 24
      */
-    HMIDI_DATA_PROTOCOL_MIDI2 = 2
-} HMidiDataProtocol;
+    MIDI_DATA_PROTOCOL_MIDI2 = 2
+} MidiDataProtocol;
 
 /**
  * @brief Device change action type
@@ -250,7 +250,7 @@ typedef struct {
      *
      * @since 24
      */
-    HMidiStatusCode statusCode;
+    MidiStatusCode statusCode;
     
     /**
      * @brief Error description information.
@@ -258,7 +258,7 @@ typedef struct {
      * @since 24
      */
     char error[256];
-} HMidiResult;
+} MidiResult;
 
 /**
  * @brief MIDI event chunk structure
@@ -278,14 +278,14 @@ typedef struct {
      *
      * @since 24
      */
-    HMidiTimestamp timestamp;
+    MidiTimestamp timestamp;
     
     /**
      * @brief UMP buffer pointer.
      *
      * @since 24
      */
-    HMidiUmp *buffer;
+    MidiUmp *buffer;
 } MidiEventChunk;
 
 /**
