@@ -18,7 +18,7 @@
  *
  * @brief Provide the definition of the C interface for the MIDI module.
  *
- * @since 23
+ * @since 24
  * @version 1.0
  */
 /**
@@ -29,7 +29,7 @@
  * @library libohmidi.so
  * @syscap SystemCapability.Multimedia.Audio.Midi
  * @kit AudioKit
- * @since 23
+ * @since 24
  * @version 1.0
  */
 #ifndef NATIVE_MIDI_BASE_H
@@ -46,111 +46,111 @@ extern "C" {
 /**
  * @brief MIDI 2.0 UMP message element (32-bit)
  *
- * @since 23
+ * @since 24
  */
 typedef uint32_t HMidiUmp;
 
 /**
  * @brief HMIDI timestamp type (nanoseconds)
  *
- * @since 23
+ * @since 24
  */
 typedef uint64_t HMidiTimestamp;
 
 /**
  * @brief Device ID type
  *
- * @since 23
+ * @since 24
  */
 typedef int64_t DeviceId;
 
 /**
  * @brief HMIDI status code enumeration
  *
- * @since 23
+ * @since 24
  */
 typedef enum {
     /**
      * @error Operation successful.
      *
-     * @since 23
+     * @since 24
      */
     HMIDI_ERR_OK = 0,
     
     /**
      * @error Invalid parameter.
      *
-     * @since 23
+     * @since 24
      */
     HMIDI_ERR_GENERIC_INVALID_ARGUMENT,
     
     /**
      * @error IPC communication failure.
      *
-     * @since 23
+     * @since 24
      */
     HMIDI_ERR_GENERIC_IPC_FAILURE,
     
     /**
      * @error Insufficient result space.
      *
-     * @since 23
+     * @since 24
      */
     HMIDI_ERR_INSUFFICIENT_RESULT_SPACE,
     
     /**
      * @error Driver already registered.
      *
-     * @since 23
+     * @since 24
      */
     HMIDI_ERR_DRIVER_ALREADY_REGISTERED,
     
     /**
      * @error Invalid client.
      *
-     * @since 23
+     * @since 24
      */
     HMIDI_ERR_INVALID_CLIENT,
     
     /**
      * @error Invalid driver.
      *
-     * @since 23
+     * @since 24
      */
     HMIDI_ERR_INVALID_DRIVER,
     
     /**
      * @error Invalid device.
      *
-     * @since 23
+     * @since 24
      */
     HMIDI_ERR_INVALID_DEVICE,
     
     /**
      * @error Invalid port.
      *
-     * @since 23
+     * @since 24
      */
     HMIDI_ERR_INVALID_PORT,
     
     /**
      * @error Device already open.
      *
-     * @since 23
+     * @since 24
      */
     HMIDI_ERR_DEVICE_ALREADY_OPEN,
     
     /**
      * @error Device not open.
      *
-     * @since 23
+     * @since 24
      */
     HMIDI_ERR_DEVICE_NOT_OPEN,
     
     /**
      * @error Device activation failed.
      *
-     * @since 23
+     * @since 24
      */
     HMIDI_ERR_DEVICE_ACTIVATION_FAILED
 } HMidiStatusCode;
@@ -158,20 +158,20 @@ typedef enum {
 /**
  * @brief Port direction enumeration
  *
- * @since 23
+ * @since 24
  */
 typedef enum {
     /**
      * Input port.
      *
-     * @since 23
+     * @since 24
      */
     HMIDI_PORT_DIRECTION_INPUT  = 1,
     
     /**
      * Output port.
      *
-     * @since 23
+     * @since 24
      */
     HMIDI_PORT_DIRECTION_OUTPUT = 2
 } MidiPortDirection;
@@ -179,20 +179,20 @@ typedef enum {
 /**
  * @brief MIDI transport protocol enumeration
  *
- * @since 23
+ * @since 24
  */
 typedef enum {
     /**
      * MIDI 1.0 protocol.
      *
-     * @since 23
+     * @since 24
      */
     MIDI_TRANSPORT_PROTOCOL_MIDI1 = 1,
     
     /**
      * UMP (Universal MIDI Packet) protocol.
      *
-     * @since 23
+     * @since 24
      */
     MIDI_TRANSPORT_PROTOCOL_UMP   = 2
 } MidiTransportProtocol;
@@ -200,20 +200,20 @@ typedef enum {
 /**
  * @brief MIDI data protocol enumeration
  *
- * @since 23
+ * @since 24
  */
 typedef enum {
     /**
      * MIDI 1.0 data format.
      *
-     * @since 23
+     * @since 24
      */
     HMIDI_DATA_PROTOCOL_MIDI1 = 1,
     
     /**
      * MIDI 2.0 data format.
      *
-     * @since 23
+     * @since 24
      */
     HMIDI_DATA_PROTOCOL_MIDI2 = 2
 } HMidiDataProtocol;
@@ -221,20 +221,20 @@ typedef enum {
 /**
  * @brief Device change action type
  *
- * @since 23
+ * @since 24
  */
 typedef enum {
     /**
      * Device connected.
      *
-     * @since 23
+     * @since 24
      */
     MIDI_DEVICE_CHANGE_ACTION_CONNECTED,
     
     /**
      * Device disconnected.
      *
-     * @since 23
+     * @since 24
      */
     MIDI_DEVICE_CHANGE_ACTION_DISCONNECTED
 } MidiDeviceChangeAction;
@@ -242,20 +242,20 @@ typedef enum {
 /**
  * @brief API return result structure
  *
- * @since 23
+ * @since 24
  */
 typedef struct {
     /**
      * @brief Status code.
      *
-     * @since 23
+     * @since 24
      */
     HMidiStatusCode statusCode;
     
     /**
      * @brief Error description information.
      *
-     * @since 23
+     * @since 24
      */
     char error[256];
 } HMidiResult;
@@ -263,27 +263,27 @@ typedef struct {
 /**
  * @brief MIDI event chunk structure
  *
- * @since 23
+ * @since 24
  */
 typedef struct {
     /**
      * @brief Buffer valid size (in uint32_t elements).
      *
-     * @since 23
+     * @since 24
      */
     size_t sizeInInts;
     
     /**
      * @brief Absolute timestamp (nanoseconds).
      *
-     * @since 23
+     * @since 24
      */
     HMidiTimestamp timestamp;
     
     /**
      * @brief UMP buffer pointer.
      *
-     * @since 23
+     * @since 24
      */
     HMidiUmp *buffer;
 } MidiEventChunk;
@@ -291,27 +291,27 @@ typedef struct {
 /**
  * @brief Device information structure
  *
- * @since 23
+ * @since 24
  */
 typedef struct {
     /**
      * @brief Device unique identifier.
      *
-     * @since 23
+     * @since 24
      */
     DeviceId deviceId;
     
     /**
      * @brief Product name.
      *
-     * @since 23
+     * @since 24
      */
     char productName[256];
     
     /**
      * @brief Vendor name.
      *
-     * @since 23
+     * @since 24
      */
     char vendorName[256];
 } DeviceInformation;
@@ -319,27 +319,27 @@ typedef struct {
 /**
  * @brief Port information structure
  *
- * @since 23
+ * @since 24
  */
 typedef struct {
     /**
      * @brief Port direction (input/output).
      *
-     * @since 23
+     * @since 24
      */
     MidiPortDirection direction;
     
     /**
      * @brief Port name.
      *
-     * @since 23
+     * @since 24
      */
     char name[256];
     
     /**
      * @brief Transport protocol.
      *
-     * @since 23
+     * @since 24
      */
     MidiTransportProtocol transportProtocol;
 } MidiPortInformation;
@@ -347,27 +347,27 @@ typedef struct {
 /**
  * @brief MIDI device structure with port information
  *
- * @since 23
+ * @since 24
  */
 typedef struct {
     /**
      * @brief Device ID.
      *
-     * @since 23
+     * @since 24
      */
     DeviceId deviceId;
     
     /**
      * @brief Number of ports.
      *
-     * @since 23
+     * @since 24
      */
     size_t numPorts;
     
     /**
      * @brief Port information array.
      *
-     * @since 23
+     * @since 24
      */
     MidiPortInformation *ports;
 } MidiDevice;
@@ -378,7 +378,7 @@ typedef struct {
  * @param context User context pointer
  * @param events Received MIDI event list
  * @param event_size Length of received MIDI event list
- * @since 23
+ * @since 24
  */
 typedef void (*MidiUmpInputHandler)(void *context, MidiEventChunk *events, size_t event_size);
 
@@ -388,7 +388,7 @@ typedef void (*MidiUmpInputHandler)(void *context, MidiEventChunk *events, size_
  * @param userData User context
  * @param action Device change action
  * @param deviceInfo Changed device information
- * @since 23
+ * @since 24
  */
 typedef void (*MidiDeviceChangeHandler)(void *userData, 
                                          MidiDeviceChangeAction action, 
@@ -398,7 +398,7 @@ typedef void (*MidiDeviceChangeHandler)(void *userData,
  * @brief Declare the MIDI client.
  * The handle of MIDI client is used for MIDI client related functions.
  *
- * @since 23
+ * @since 24
  */
 typedef struct MidiClientStruct MidiClient;
 
