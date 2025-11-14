@@ -389,7 +389,7 @@
     },
     {
         "first_introduced": "21",
-        "name":"OH_AudioSessionManager_UnRegisterAvailableDevicesChangeCallback"
+        "name":"OH_AudioSessionManager_UnregisterAvailableDevicesChangeCallback"
     },
     {
         "first_introduced": "21",
