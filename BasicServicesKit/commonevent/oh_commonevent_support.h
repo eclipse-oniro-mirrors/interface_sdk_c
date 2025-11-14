@@ -579,6 +579,13 @@ static const char* const COMMON_EVENT_MINORSMODE_OFF = "usual.event.MINORSMODE_O
 static const char* const COMMON_EVENT_MANAGED_BROWSER_POLICY_CHANGED = "usual.event.MANAGED_BROWSER_POLICY_CHANGED";
 
 /**
+ * @brief This common event means that table mode has been changed.
+ *
+ * @since 21
+ */
+static const char* const COMMON_EVENT_TABLET_MODE_CHANGED  = "usual.event.TABLET_MODE_CHANGED";
+
+/**
  * @brief This common event means that lid state has been changed.
  *
  * @since 21
