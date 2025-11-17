@@ -17,8 +17,9 @@ import argparse
 import re
 import sys
 import os
-import time
-from typing import Optional, Tuple
+import subprocess
+import tempfile
+from typing import Optional, Tuple, Pattern, List
 
 
 # 不需要处理的头文件，一般为系统文件或者三方库文件
@@ -251,6 +252,99 @@ def _process_subdir_files(root: str, processor: HeaderProcessor) -> None:
             processor.process_file(os.path.join(root, file_name))
 
 
+def check_file_api_version(root: str, sdk_api_version: int) -> List[str]:
+    violation_files = []
+    since_pattern = re.compile(r'@since\s+([^\s\n\r]+)')
+
+    for file_name in os.listdir(root):
+        if not file_name.endswith('.h'):
+            continue
+        file_path = os.path.join(root, file_name)
+
+        file_results = process_single_file(file_path, since_pattern, sdk_api_version)
+        if file_results:
+            violation_files.append(file_path)
+    return violation_files
+
+
+def process_single_file(file_path: str, since_pattern: Pattern, sdk_api_version: int) -> Optional[List[str]]:
+    """处理单个文件，返回匹配的since值列表"""
+    try:
+        with open(file_path, 'r', encoding='utf-8') as f:
+            content = f.read()
+    except Exception as e:
+        print(f"读取文件失败")
+        return None
+
+    matches = since_pattern.findall(content)
+    if not matches:
+        return None
+
+    # 检查是否需要运行解析器
+    if _has_violation_version(matches, sdk_api_version):
+        return matches
+
+    return None
+
+
+def _has_violation_version(matches: List[str], sdk_api_version: int) -> bool:
+    """检查是否存在违规版本号"""
+    for since_value in matches:
+        if not since_value.isdigit():
+            continue
+        if int(since_value) > sdk_api_version:
+            return True
+    return False
+
+
+def run_capi_parser(input_path, sdk_api_version):
+    """
+    调用Python脚本并传递--input参数
+    Args:
+        script_path: 要调用的Python脚本路径
+        input_path: 输入文件/文件夹路径
+    """
+    # 获取当前脚本的绝对路径
+    current_script_path = os.path.abspath(__file__)
+    script_path = os.path.join(os.path.dirname((current_script_path)), "parse_interfaces_since.py")
+
+    # 创建临时文件并写入所有路径
+    with tempfile.NamedTemporaryFile(mode='w', delete=False, suffix='.txt') as f:
+        for path in input_path:
+            f.write(f"{path}\n")
+        input_list_filename = f.name
+    try:
+        # 使用当前Python解释器运行脚本
+        result = subprocess.run([
+            sys.executable,  # 使用当前Python解释器
+            script_path,
+            '--input', str(input_list_filename),
+            '--sdk-api-version', str(sdk_api_version)
+        ], capture_output=True, text=True, check=True)
+
+        if result.stdout:
+            print(f"API校验成功: {result.stdout}")
+
+    except subprocess.CalledProcessError as e:
+        err_msg = f"校验API版本失败，返回: {e.stderr}"
+        raise ValueError(err_msg)
+    except FileNotFoundError:
+        err_msg = f"文件未找到: {script_path}"
+        raise ValueError(err_msg)
+    except Exception as e:
+        err_msg = f"执行过程中发生错误: {e}"
+        raise ValueError(err_msg)
+
+    finally:
+        # 确保临时文件被清理
+        try:
+            if os.path.exists(input_list_filename):
+                os.unlink(input_list_filename)
+                print(f"临时文件已清理: {input_list_filename}")
+        except Exception as cleanup_error:
+            print(f"清理临时文件时出错: {cleanup_error}")
+
+
 def add_files_to_process(header_path, recursive=True):
     """遍历目录并处理符合条件的头文件"""
     abs_root_dir = os.path.abspath(header_path)
@@ -271,14 +365,36 @@ def add_files_to_process(header_path, recursive=True):
         _process_subdir_files(root, header_processor)
 
 
+def check_api_version_method(options):
+    """遍历目录并检查API LEVEL"""
+    abs_root_dir = os.path.abspath(options.input)
+    sdk_api_version = options.sdk_api_version
+    if not sdk_api_version.isdigit():
+        raise ValueError(f"api version must be digits!")
+    sdk_version_num = int(sdk_api_version)
+    if sdk_version_num == 0:
+        print("无需校验！")
+        return
+
+    violation_files = []  # 保存违规文件列表
+    for root, dirs, files in os.walk(abs_root_dir, topdown=True):
+        violation_files.extend(check_file_api_version(root, sdk_version_num))
+
+    if violation_files:
+        run_capi_parser(violation_files, options.sdk_api_version)
+
+
 def main():
     parser = argparse.ArgumentParser(description="Process ndk header files to add version macros.")
-    parser.add_argument('--input', required=True, help="NDK头文件路径")
+    parser.add_argument('--input', required=True, help="头文件路径")
+    parser.add_argument('--sdk-api-version', required=True, help="当前构建API版本")
     args = parser.parse_args()
 
     if not os.path.exists(args.input):
         print(f"ndk header path does not exist -> {args.input}")
         exit(1)
+
+    check_api_version_method(args)
 
     add_files_to_process(args.input)
 
