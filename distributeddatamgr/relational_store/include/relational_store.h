@@ -604,6 +604,7 @@ int OH_Rdb_InsertWithConflictResolution(OH_Rdb_Store *store, const char *table, 
  * @param table Represents the target table.
  * @param rows Represents the rows data to be inserted into the table.
  * @param resolution Represents the resolution when conflict occurs.
+ * The default parameter is {@link Rdb_ConflictResolution.RDB_CONFLICT_NONE}.
  * @param changes Represents the number of successful insertions.
  * @return Returns the status code of the execution.
  *         Returns {@link RDB_OK} if the execution is successful.
@@ -623,6 +624,11 @@ int OH_Rdb_InsertWithConflictResolution(OH_Rdb_Store *store, const char *table, 
  *         Returns {@link RDB_E_SQLITE_MISMATCH} SQLite: Data type mismatch.
  *         Returns {@link RDB_E_SQLITE_CONSTRAINT} SQLite: Abort due to constraint violation.
  * @since 18
+ * @warning A maximum of 32766 parameters can be inserted at a time. If the number of parameters exceeds the upper
+ * limit, the error code 14800000 is returned. The product of the number of inserted data records and the size of the
+ * union of all fields in the inserted data equals the number of parameters. For example, if the size of the union is
+ * 10, a maximum of 3276 data records can be inserted (3276 × 10 = 32760). Ensure that your application complies with
+ * this constraint when calling this API to avoid errors caused by excessive parameters.
  */
 int OH_Rdb_BatchInsert(OH_Rdb_Store *store, const char *table,
     const OH_Data_VBuckets *rows, Rdb_ConflictResolution resolution, int64_t *changes);
