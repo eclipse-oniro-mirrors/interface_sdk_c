@@ -47,8 +47,8 @@ extern "C" {
 
 #define OH_CM_MAX_LEN_CERTIFICATE_CHAIN   24588
 #define OH_CM_MAX_LEN_URI              256
-#define OH_CM_MAX_LEN_CERT_ALIAS       129 
-#define OH_CM_MAX_LEN_TYPE_NAME       1025 
+#define OH_CM_MAX_LEN_CERT_ALIAS       129
+#define OH_CM_MAX_LEN_TYPE_NAME       1025
 
 /**
  * @brief Enumerates the error codes.
@@ -65,11 +65,11 @@ typedef enum {
      */
     OH_CM_HAS_NO_PERMISSION = 201,
     /**
-     * Capability not supported. 
+     * Capability not supported.
      */
     OH_CM_CAPABILITY_NOT_SUPPORTED = 801,
     /**
-     * Indicates that internal error. Possible causes: 1. IPC communication failed; 
+     * Indicates that internal error. Possible causes: 1. IPC communication failed;
      * 2. Memory operation error; 3. File operation error.
      */
     OH_CM_INNER_FAILURE = 17500001,
@@ -115,7 +115,7 @@ typedef enum {
  */
 typedef enum {
     /**
-     * Indicates the default purpose. 
+     * Indicates the default purpose.
      */
     OH_CM_CERT_PURPOSE_DEFAULT = 0,
     /**
@@ -139,11 +139,11 @@ typedef enum {
  */
 typedef struct {
     /**
-     * Data size. 
+     * Data size.
      */
     uint32_t size;
     /**
-     * Pointer to the memory in which the data is stored. 
+     * Pointer to the memory in which the data is stored.
      */
     uint8_t *data;
 } OH_CM_Blob;
@@ -167,7 +167,7 @@ typedef struct {
      */
     char alias[OH_CM_MAX_LEN_CERT_ALIAS];
     /**
-     * Indicates the uri of Credential. 
+     * Indicates the uri of Credential.
      */
     char keyUri[OH_CM_MAX_LEN_URI];
     /**
@@ -179,11 +179,11 @@ typedef struct {
      */
     uint32_t keyNum;
     /**
-     * Indicates the certificate binary data which max length is defined by OH_CM_MAX_LEN_CERTIFICATE_CHAIN. 
+     * Indicates the certificate binary data which max length is defined by OH_CM_MAX_LEN_CERTIFICATE_CHAIN.
      */
     OH_CM_Blob credData;
     /**
-     * Indicates the certificate purpose. 
+     * Indicates the certificate purpose.
      */
     OH_CM_CertificatePurpose certPurpose;
 } OH_CM_Credential;
@@ -195,11 +195,11 @@ typedef struct {
  */
 typedef struct {
     /**
-     * Indicates the credential count. 
+     * Indicates the credential count.
      */
     uint32_t credentialCount;
     /**
-     * Indicates the credential data. 
+     * Indicates the credential data.
      */
     OH_CM_Credential *credential;
 } OH_CM_CredentialDetailList;
