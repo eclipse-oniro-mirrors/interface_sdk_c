@@ -6514,20 +6514,6 @@ typedef enum {
 } ArkUI_TextResponseType;
 
 /**
- * @brief Enumerates the haptic feedback mode.
- *
- * @since 23
- */
-typedef enum {
-    /** No haptic feedback. */
-    ARKUI_HAPTIC_FEEDBACK_MODE_DISABLED = 0,
-    /**Defines always haptic feedback. */
-    ARKUI_HAPTIC_FEEDBACK_MODE_ENABLED  = 1,
-    /** Defines automatically haptic feedback. */
-    ARKUI_HAPTIC_FEEDBACK_MODE_AUTO = 2,
-} ArkUI_HapticFeedbackMode;
-
-/**
  * @brief Create an object of the text selection menu options.
  *
  * @return A pointer to the ArkUI_TextSelectionMenuOptions.
@@ -6617,31 +6603,6 @@ ArkUI_ErrorCode OH_ArkUI_TextSelectionMenuOptions_SetResponseType(ArkUI_TextSele
  */
 ArkUI_ErrorCode OH_ArkUI_TextSelectionMenuOptions_GetResponseType(ArkUI_TextSelectionMenuOptions* selectionMenuOptions,
     ArkUI_TextResponseType* responseType);
-
-/**
- * @brief Sets the haptic feedback mode of a configuration object for selected text recognition.
- *
- * @param selectionMenuOptions Pointer to the ArkUI_TextSelectionMenuOptions object.
- * @param hapticFeedbackMode The haptic feedback mode of {@link ArkUI_HapticFeedbackMode}.
- * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
- * @since 23
- */
-ArkUI_ErrorCode OH_ArkUI_TextSelectionMenuOptions_SetHapticFeedbackMode(
-    ArkUI_TextSelectionMenuOptions* selectionMenuOptions, ArkUI_HapticFeedbackMode hapticFeedbackMode);
-/**
- * @brief Gets the haptic feedback mode of a configuration object for selected text recognition.
- *
- * @param selectionMenuOptions Pointer to the ArkUI_TextSelectionMenuOptions object.
- * @param mode The haptic feedback mode of {@link ArkUI_HapticFeedbackMode}.
- * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
- * @since 23
- */
-ArkUI_ErrorCode OH_ArkUI_TextSelectionMenuOptions_GetHapticFeedbackMode(
-    ArkUI_TextSelectionMenuOptions* selectionMenuOptions, ArkUI_HapticFeedbackMode* mode);
 
 /**
  * @brief Set the event to be called when selection menu show.
