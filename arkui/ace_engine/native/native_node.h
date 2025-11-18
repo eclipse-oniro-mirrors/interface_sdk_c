@@ -2165,6 +2165,29 @@ typedef enum {
     NODE_PIXEL_ROUND = 109,
 
     /**
+     * @brief Defines the component event response region. This attribute can be set, reset, and obtained as required through APIs.
+     *
+     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
+     * .data[0].i32: input tool type for the response region, specified using the {@link ArkUI_ResponseRegionSupportedTool} enum. Default value: <b>ARKUI_RESPONSE_REGIN_SUPPORTED_TOOL_ALL</b>.
+     * .data[1].f32: x-coordinate of the pointer position relative to the upper left corner of the component, in vp. \n
+     * .data[2].f32: y-coordinate of the pointer position relative to the upper left corner of the component, in vp. \n
+     * .data[3].f32: width of the response region. The value is a percentage. \n
+     * .data[4].f32: height of the response region. The value is a percentage. \n
+     * .data[5...].f32: additional response regions in the same parameter order. \n
+     * \n
+     * Format of the return value {@link ArkUI_AttributeItem}:\n
+     * .data[0].i32: input tool type for the response region, specified using the {@link ArkUI_ResponseRegionSupportedTool} enum. Default value: <b>ARKUI_RESPONSE_REGIN_SUPPORTED_TOOL_ALL</b>.
+     * .data[1].f32: x-coordinate of the pointer position relative to the upper left corner of the component, in vp. \n
+     * .data[2].f32: y-coordinate of the pointer position relative to the upper left corner of the component, in vp. \n
+     * .data[3].f32: width of the response region. The value is a percentage. \n
+     * .data[4].f32: height of the response region. The value is a percentage. \n
+     * .data[5...].f32: additional response regions in the same parameter order.
+     *
+     * @since 23
+     */
+    NODE_RESPONSE_REGION_LIST = 116,
+
+    /**
      * @brief Defines the text content attribute, which can be set, reset, and obtained as required through APIs.
      *
      * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
