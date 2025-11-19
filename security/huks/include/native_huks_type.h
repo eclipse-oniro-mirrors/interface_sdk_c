@@ -462,7 +462,56 @@ enum  OH_Huks_ErrCode {
      *
      * @since 20
      */
-    OH_HUKS_ERR_CODE_INVALID_ARGUMENT = 12000018
+    OH_HUKS_ERR_CODE_INVALID_ARGUMENT = 12000018,
+
+    /**
+     * The item already exists.
+     *
+     * @since 22
+     */
+    OH_HUKS_ERR_CODE_ITEM_EXISTS = 12000019,
+
+    /**
+     * An error occurred in the external module.
+     *
+     * @since 22
+     */
+    OH_HUKS_ERR_CODE_EXTERNAL_MODULE = 12000020,
+
+    /**
+     * The Ukey PIN is locked.
+     *
+     * @since 22
+     */
+    OH_HUKS_ERR_CODE_PIN_LOCKED = 12000021,
+
+    /**
+     * The Ukey PIN is incorrect.
+     *
+     * @since 22
+     */
+    OH_HUKS_ERR_CODE_PIN_INCORRECT = 12000022,
+
+    /**
+     * The Ukey PIN is not authenticated.
+     *
+     * @since 22
+     */
+    OH_HUKS_ERR_CODE_PIN_NO_AUTH = 12000023,
+
+    /**
+     * The device or resource is busy.
+     *
+     * @since 22
+     */
+    OH_HUKS_ERR_CODE_BUSY = 12000024,
+
+    /**
+     * The resource exceeds  the limit.
+     *
+     * @since 22
+     */
+    OH_HUKS_ERR_CODE_EXCEED_LIMIT = 12000025,
 };
 
 /**

@@ -320,31 +320,39 @@ struct OH_Huks_Result OH_Huks_AnonAttestKeyItem(const struct OH_Huks_Blob *keyAl
     const struct OH_Huks_ParamSet *paramSet, struct OH_Huks_CertChain *certChain);
 
 /**
- * @brief Initializes the key session interface and obtains a handle (mandatory) and challenge value (optional).
+ * @brief Initializes the key session interface and obtains a handle (mandatory) and token value (optional).
  *
  * @param keyAlias Indicates the pointer to the alias of the target key.
  * @param paramSet Indicates the pointer to the parameters for the initialization operation.
  * @param handle Indicates the pointer to the handle of the key session obtained.
  *    This handle is required for subsequent operations, including {@link OH_Huks_UpdateSession},
  * {@link OH_Huks_FinishSession}, and {@link OH_Huks_AbortSession}.
- * @param token Indicates the pointer to the token used for key access control.
+ * @param token Indicates the pointer to the token value obtained.
  * @return {@link OH_Huks_ErrCode#OH_HUKS_SUCCESS} 0 - If the operation is successful.
  *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_ILLEGAL_ARGUMENT} 401 - If keyAlias or paramSet or handle or
- *             token is invalid.
- *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_INTERNAL_ERROR} 12000012 - If Device environment or
- *             input parameter abnormal..
+ *         token is invalid.
+ *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_INTERNAL_ERROR} 12000012 - If system error ocurred.
  *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_INVALID_CRYPTO_ALG_ARGUMENT} 12000003 - If the key argument
- *             is invalid.
+ *         is invalid.
  *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_ITEM_NOT_EXIST} 12000011 - If the key file is not exit.
  *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_MISSING_CRYPTO_ALG_ARGUMENT} 12000002 - If failed to
- *             get key argument.
+ *         get key argument.
  *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_COMMUNICATION_FAIL} 12000005 - If Ipc commuication failed.
  *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_SESSION_LIMIT} 12000010 - If reached max session limit.
- *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_CRYPTO_FAIL} 12000006 - If crypto engine failed.
+ *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_CRYPTO_FAIL} 12000006 - If crypto engine
+ *         the Ukey driver operation failed.
  *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_INSUFFICIENT_MEMORY} 12000014 - If the memory is insufficient.
  *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_FEATURE_NOT_SUPPORTED} 12000001 - If the feature is not support.
- *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_INVALID_ARGUMENT} 12000018 - If the input parameter is invalid.
- *             since api 22.
+ *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_INVALID_ARGUMENT} 12000018 - If the input parameter is invalid,
+ *         add since api 22.
+ *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_EXTERNAL_MODULE} 12000020 - If the provider operation failed,
+ *         add since api 22.
+ *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_PIN_LOCKED} 12000021 - If the UKey PIN is locked,
+ *         add since api 22.
+ *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_PIN_NO_AUTH} 12000023 - If the Ukey PIN not authenticated,
+ *         add since api 22.
+ *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_BUSY} 12000024 - If the provider or Ukey is busy,
+ *         add since api 22.
  * @since 9
  * @version 1.0
  * @see OH_Huks_UpdateSession
@@ -365,26 +373,34 @@ struct OH_Huks_Result OH_Huks_InitSession(const struct OH_Huks_Blob *keyAlias,
  * @param outData Indicates the pointer to the output data.
  * @return {@link OH_Huks_ErrCode#OH_HUKS_SUCCESS} 0 - If the operation is successful.
  *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_ILLEGAL_ARGUMENT} 401 - If handle or paramSet or inData or
- *             outData is invalid.
- *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_INTERNAL_ERROR} 12000012 - If Device environment or
- *             input parameter abnormal..
+ *         outData is invalid.
+ *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_INTERNAL_ERROR} 12000012 - If system error ocurred.
  *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_INVALID_CRYPTO_ALG_ARGUMENT} 12000003 - If the key argument
- *             is invalid.
+ *         is invalid.
  *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_ITEM_NOT_EXIST} 12000011 - If the key file is not exit,
- *             or if the handle is not exist.
+ *         or if the handle is not exist.
  *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_MISSING_CRYPTO_ALG_ARGUMENT} 12000002 - If failed to
- *             get key argument.
+ *         get key argument.
  *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_COMMUNICATION_FAIL} 12000005 - If Ipc commuication failed.
  *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_CREDENTIAL_NOT_EXIST} 12000013 - If credemtial is not exist.
- *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_CRYPTO_FAIL} 12000006 - If crypto engine failed.
+ *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_CRYPTO_FAIL} 12000006 - If crypto engine
+ *         the Ukey driver operation failed.
  *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_KEY_AUTH_VERIFY_FAILED} 12000008 - If auth token verify failed.
  *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_KEY_AUTH_PERMANENTLY_INVALIDATED} 12000007 - If auth token info
- *             verify failed.
+ *         verify failed.
  *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_KEY_AUTH_TIME_OUT} 12000009 - If authentication token timed out.
  *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_INSUFFICIENT_MEMORY} 12000014 - If the memory is insufficient.
  *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_DEVICE_PASSWORD_UNSET} 12000016 - If device password is required
- *             but not set.
+ *         but not set.
  *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_FEATURE_NOT_SUPPORTED} 12000001 - If the feature is not support.
+ *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_EXTERNAL_MODULE} 12000020 - If the provider operation failed,
+ *         add since api 22.
+ *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_PIN_LOCKED} 12000021 - If the UKey PIN is locked,
+ *         add since api 22.
+ *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_PIN_NO_AUTH} 12000023 - If the Ukey PIN not authenticated,
+ *         add since api 22.
+ *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_BUSY} 12000024 - If the provider or Ukey is busy,
+ *         add since api 22.
  * @since 9
  * @version 1.0
  * @see OH_Huks_InitSession
@@ -414,7 +430,8 @@ struct OH_Huks_Result OH_Huks_UpdateSession(const struct OH_Huks_Blob *handle,
  *             get key argument.
  *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_COMMUNICATION_FAIL} 12000005 - If Ipc commuication failed.
  *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_CREDENTIAL_NOT_EXIST} 12000013 - If credemtial is not exist.
- *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_CRYPTO_FAIL} 12000006 - If crypto engine failed.
+ *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_CRYPTO_FAIL} 12000006 - If crypto engine
+ *         or the Ukey driver operation failed.
  *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_KEY_AUTH_VERIFY_FAILED} 12000008 - If auth token verify failed.
  *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_KEY_AUTH_PERMANENTLY_INVALIDATED} 12000007 - If auth token info
  *             verify failed.
@@ -425,6 +442,14 @@ struct OH_Huks_Result OH_Huks_UpdateSession(const struct OH_Huks_Blob *handle,
  *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_FEATURE_NOT_SUPPORTED} 12000001 - If the feature is not support.
  *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_KEY_ALREADY_EXIST} 12000017 - If the key with same alias is
  *             already exist, add since api 20.
+ *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_EXTERNAL_MODULE} 12000020 - If the provider operation failed,
+ *         add since api 22.
+ *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_PIN_LOCKED} 12000021 - If the UKey PIN is locked,
+ *         add since api 22.
+ *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_PIN_NO_AUTH} 12000023 - If the Ukey PIN not authenticated,
+ *         add since api 22.
+ *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_BUSY} 12000024 - If the provider or Ukey is busy,
+ *         add since api 22.
  * @since 9
  * @version 1.0
  * @see OH_Huks_InitSession
@@ -442,17 +467,20 @@ struct OH_Huks_Result OH_Huks_FinishSession(const struct OH_Huks_Blob *handle,
  *    By default, this parameter is a null pointer.
  * @return {@link OH_Huks_ErrCode#OH_HUKS_SUCCESS} 0 - If the operation is successful.
  *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_ILLEGAL_ARGUMENT} 401 - If handle or paramSet or inData or
- *             outData is invalid.
- *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_INTERNAL_ERROR} 12000012 - If Device environment or
- *             input parameter abnormal..
+ *         outData is invalid.
+ *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_INTERNAL_ERROR} 12000012 - If system error ocurred.
  *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_INVALID_CRYPTO_ALG_ARGUMENT} 12000003 - If the key argument
- *             is invalid.
+ *         is invalid.
  *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_ITEM_NOT_EXIST} 12000011 - or if the handle is not exist.
  *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_MISSING_CRYPTO_ALG_ARGUMENT} 12000002 - If failed to
- *             get key argument.
+ *         get key argument.
  *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_COMMUNICATION_FAIL} 12000005 - If Ipc commuication failed.
  *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_CREDENTIAL_NOT_EXIST} 12000013 - If credemtial is not exist.
  *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_INSUFFICIENT_MEMORY} 12000014 - If the memory is insufficient.
+ *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_EXTERNAL_MODULE} 12000020 - If the provider operation failed,
+ *         add since api 22.
+ *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_BUSY} 12000024 - If the provider or Ukey is busy,
+ *         add since api 22.
  * @since 9
  * @version 1.0
  * @see OH_Huks_InitSession
