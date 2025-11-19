@@ -124,6 +124,59 @@ typedef struct {
 } ArkUI_GridItemRect;
 
 /**
+ * @brief Enumerates the selected indicator type of picker.
+ *
+ * @since 23
+ */
+typedef enum {
+    /** background. */
+    ARKUI_PICKER_INDICATOR_BACKGROUND = 0,
+    /** divider. */
+    ARKUI_PICKER_INDICATOR_DIVIDER = 1,
+} ArkUI_PickerIndicatorType;
+
+/**
+ * @brief Style parameters of background indicator.
+ *
+ * @since 23
+ */
+typedef struct {
+    /**  background color, 0xARGB format for example <b>0xFF1122FF</b> */
+    uint32_t backgroundColor;
+    /** radius of the top left corner. */
+    float topLeftRadius;
+    /** radius of the top right corner */
+    float topRightRadius;
+    /** radius of the bottom left corner */
+    float bottomLeftRadius;
+    /** radius of the bottom right corner. */
+    float bottomRightRadius;
+} ArkUI_PickerIndicatorBackground;
+
+/**
+ * @brief Style parameters of divider indicator.
+ *
+ * @since 23
+ */
+typedef struct {
+    /** stroke width */
+    float strokeWidth;
+    /** divider color, 0xARGB format for example <b>0xFF1122FF</b> */
+    uint32_t dividerColor;
+    /** the distance between the divider and the beginning of the side of the picker (unit: vp). */
+    float startMargin;
+    /** the distance between the divider and the end of the side of the picker (unit: vp). */
+    float endMargin;
+} ArkUI_PickerIndicatorDivider;
+
+/**
+ * @brief Definition of indicator style.
+ *
+ * @since 23
+ */
+typedef struct ArkUI_PickerIndicatorStyle ArkUI_PickerIndicatorStyle;
+
+/**
  * @brief Defines the <b>Grid</b> layout options.
  *
  * @since 22
@@ -7160,6 +7213,52 @@ void OH_ArkUI_SelectedDragPreviewStyle_SetColor(
 uint32_t OH_ArkUI_SelectedDragPreviewStyle_GetColor(
     ArkUI_SelectedDragPreviewStyle* config);
 
+/**
+ * @brief Create the ArkUI_PickerIndicatorStyle instance.
+ *
+ * @param type The picker selection indicator enumeration type.
+ * @return  ArkUI_PickerIndicatorStyle instance. If the instance returns a null pointer,
+ *         it indicates creation failure, and the reason for the failure may be that the address space is full or
+ *         the type not supported.
+ * @since 23
+*/
+ArkUI_PickerIndicatorStyle* OH_ArkUI_PickerIndicatorStyle_Create(ArkUI_PickerIndicatorType type);
+
+/**
+* @brief Destroy the ArkUI_PickerIndicatorStyle instance.
+*
+* @param style The ArkUI_PickerIndicatorStyle instance to be destroyed.
+* @since 23
+*/
+void OH_ArkUI_PickerIndicatorStyle_Dispose(ArkUI_PickerIndicatorStyle* style);
+
+/**
+* @brief Set the parameters of background style.
+*
+* @param style The ArkUI_PickerIndicatorStyle instance.
+* @param background The parameters of background style.
+* @return Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if success.
+*         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} The parameters set need to be consistent with
+*         the type of the created instance. If they are not consistent, this error code will be returned.
+*         This interface only takes effect when the type is "background".
+* @since 23
+*/
+ArkUI_ErrorCode OH_ArkUI_PickerIndicatorStyle_ConfigureBackground(ArkUI_PickerIndicatorStyle* style,
+    ArkUI_PickerIndicatorBackground* background);
+
+/**
+* @brief Set the parameters of divider style.
+*
+* @param style The ArkUI_PickerIndicatorStyle instance.
+* @param divider The parameters of divider style.
+* @return Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if success.
+*         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} The parameters set need to be consistent with
+*         the type of the created instance. If they are not consistent, this error code will be returned.
+*         This interface only takes effect when the type is "divider".
+* @since 23
+*/
+ArkUI_ErrorCode OH_ArkUI_PickerIndicatorStyle_ConfigureDivider(ArkUI_PickerIndicatorStyle* style,
+    ArkUI_PickerIndicatorDivider* divider);
 #ifdef __cplusplus
 };
 #endif
