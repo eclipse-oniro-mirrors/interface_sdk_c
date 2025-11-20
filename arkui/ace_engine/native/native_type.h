@@ -314,6 +314,13 @@ typedef struct ArkUI_PixelRoundPolicy ArkUI_PixelRoundPolicy;
 typedef struct ArkUI_ShowCounterConfig ArkUI_ShowCounterConfig;
 
 /**
+ * @brief Defines the text content base controller.
+ *
+ * @since 23
+ */
+typedef struct ArkUI_TextContentBaseController ArkUI_TextContentBaseController;
+
+/**
  * @brief Defines the event callback type.
  *
  * @since 12
@@ -6677,6 +6684,32 @@ ArkUI_ErrorCode OH_ArkUI_TextSelectionMenuOptions_RegisterOnMenuShowCallback(
 ArkUI_ErrorCode OH_ArkUI_TextSelectionMenuOptions_RegisterOnMenuHideCallback(
     ArkUI_TextSelectionMenuOptions* selectionMenuOptions, void* userData,
     void (*callback)(int32_t start, int32_t end, void* userData));
+
+/**
+ * @brief Create an object of the text content base controller.
+ *
+ * @return A pointer to the controller object.
+ * @since 23
+ */
+ArkUI_TextContentBaseController* OH_ArkUI_TextContentBaseController_Create();
+
+/**
+ * @brief Dispose an object of the text content base controller.
+ *
+ * @param {ArkUI_TextContentBaseController*} controller Pointer to the controller object to be disposed.
+ * @since 23
+ */
+void OH_ArkUI_TextContentBaseController_Dispose(ArkUI_TextContentBaseController* controller);
+
+/**
+ * @brief Delete the character before the caret of the input field component in editing state.
+ *        Otherwise, delete the last character of the input field component.
+ *
+ * @param {ArkUI_TextContentBaseController*} controller Pointer to the configuration object to be modified.
+ * @since 23
+ */
+void OH_ArkUI_TextContentBaseController_DeleteBackward(ArkUI_TextContentBaseController* controller);
+
 #ifdef __cplusplus
 };
 #endif
