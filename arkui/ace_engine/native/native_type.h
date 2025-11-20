@@ -3062,6 +3062,22 @@ typedef enum {
 } ArkUI_ListItemSwipeActionDirection;
 
 /**
+ * @brief Enumerates the input tool types supported for response region configuration.
+ *
+ * @since 23
+ */
+typedef enum {
+    /** All input tool types. */
+    ARKUI_RESPONSE_REGIN_SUPPORTED_TOOL_ALL = 0,
+    /** Finger input. */
+    ARKUI_RESPONSE_REGIN_SUPPORTED_TOOL_FINGER = 1,
+    /** Stylus input. */
+    ARKUI_RESPONSE_REGIN_SUPPORTED_TOOL_PEN = 2,
+    /** Mouse input. */
+    ARKUI_RESPONSE_REGIN_SUPPORTED_TOOL_MOUSE = 3,
+} ArkUI_ResponseRegionSupportedTool;
+
+/**
  * @brief Defines parameter used by the system font style callback event.
  *
  * @since 12
