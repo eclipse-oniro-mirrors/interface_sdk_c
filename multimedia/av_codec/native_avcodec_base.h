@@ -567,7 +567,7 @@ extern const char *OH_MD_KEY_AUDIO_SAMPLE_FORMAT;
  */
 extern const char *OH_MD_KEY_FRAME_RATE;
 /**
- * @brief video encode bitrate mode, the value type is int32_t, see {@link OH_VideoEncodeBitrateMode}.
+ * @brief video encode bitrate mode, the value type is int32_t, see {@link OH_BitrateMode}.
  *
  * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 9
