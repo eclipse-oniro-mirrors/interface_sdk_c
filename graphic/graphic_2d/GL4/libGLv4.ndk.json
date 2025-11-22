@@ -1733,10 +1733,6 @@
     },
     {
         "first_introduced": "22",
-        "name": "glDrawTransformFeedbackStream"
-    },
-    {
-        "first_introduced": "22",
         "name": "glBeginQueryIndexed"
     },
     {
@@ -2081,10 +2077,6 @@
     },
     {
         "first_introduced": "22",
-        "name": "glGetActiveAtomicCounterBufferiv"
-    },
-    {
-        "first_introduced": "22",
         "name": "glTexStorage1D"
     },
     {
@@ -2094,14 +2086,6 @@
     {
         "first_introduced": "22",
         "name": "glTexStorage3D"
-    },
-    {
-        "first_introduced": "22",
-        "name": "glDrawTransformFeedbackInstanced"
-    },
-    {
-        "first_introduced": "22",
-        "name": "glDrawTransformFeedbackStreamInstanced"
     },
     {
         "first_introduced": "22",
