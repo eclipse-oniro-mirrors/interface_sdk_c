@@ -590,7 +590,7 @@ static const char* const COMMON_EVENT_TABLET_MODE_CHANGED  = "usual.event.TABLET
  *
  * @since 21
  */
-static const char* const COMMON_EVENT_LID_STATE_CHANGED = "usual.event.LID_STATE_CHANGED;
+static const char* const COMMON_EVENT_LID_STATE_CHANGED = "usual.event.LID_STATE_CHANGED";
 #ifdef __cplusplus
 }
 #endif
