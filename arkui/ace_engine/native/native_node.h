@@ -2165,6 +2165,71 @@ typedef enum {
     NODE_PIXEL_ROUND = 109,
 
     /**
+     * @brief Defines the hover effect applied when the component is hovered over. This attribute can be set, reset, and obtained as required through APIs.
+     *
+     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute: \n
+     * .value[0].i32: Hover effect applied when the component is hovered over.
+     * The parameter type is {@link ArkUI_HoverEffect}. The default value is <b>ARKUI_HOVER_EFFECT_AUTO</b>. \n
+     * \n
+     * Format of the return value {@link ArkUI_AttributeItem}: \n
+     * .value[0].i32: Hover effect applied when the component is hovered over.
+     * The parameter type is {@link ArkUI_HoverEffect}. \n
+     *
+     * @since 23
+     */
+    NODE_HOVER_EFFECT = 112,
+
+    /**
+     * @brief Configures the container as a focus group with the specified identifier. This attribute can be set, reset, and obtained as required through APIs.
+     *
+     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute: \n
+     * .string: focus scope identifier. \n
+     * .value[0]?.i32: whether the scope is a focus group. The default value is <b>0</b>. The value is <b>1</b> or <b>0</b>. \n
+     * .value[1]?.i32: whether arrow keys can move focus outside the focus group. This setting only takes effect when <b>isGroup</b> is <b>true</b>. The default value is <b>1</b>.
+     * The value is <b>1</b> or <b>0</b>. \n
+     * \n
+     * Format of the return value {@link ArkUI_AttributeItem}:\n
+     * .string: focus scope identifier. \n
+     * .value[0]?.i32: whether the scope is a focus group. The default value is <b>0</b>. The value is <b>1</b> or <b>0</b>. \n
+     * .value[1]?.i32: whether arrow keys can move focus outside the focus group. This setting only takes effect when <b>isGroup</b> is <b>true</b>. The default value is <b>1</b>.
+     * The value is <b>1</b> or <b>0</b>. \n
+     *
+     * @since 23
+     */
+    NODE_FOCUS_SCOPE_ID = 113,
+
+    /**
+     * @brief Sets the component focus priority within a specific focus scope. This attribute can be set, reset, and obtained as required through APIs.
+     *
+     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute: \n
+     * .string: focus scope identifier. \n
+     * .value[0]?.i32: focus priority within the focus scope. The parameter type is {@link ArkUI_FocusPriority}.
+     * The default value is <b>ARKUI_FOCUS_PRIORITY_AUTO</b>. \n
+     * \n
+     * Format of the return value {@link ArkUI_AttributeItem}:\n
+     * .string: focus scope identifier. \n
+     * .value[0]?.i32: focus priority within the focus scope. The parameter type is {@link ArkUI_FocusPriority}. \n
+     *
+     * @since 23
+     */
+    NODE_FOCUS_SCOPE_PRIORITY = 114,
+
+    /**
+     * @brief Sets the distance threshold for click events. This attribute can be set, reset, and obtained as required through APIs.
+     *
+     * @note If finger movement exceeds the preset distance limit, click event recognition will fail.
+     *
+     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute: \n
+     * .value[0].f32: distance threshold for click events.
+     * \n
+     * Format of the return value {@link ArkUI_AttributeItem}: \n
+     * .value[0].f32: distance threshold for click events. \n
+     *
+     * @since 23
+     */
+    NODE_ON_CLICK_EVENT_DISTANCE_THRESHOLD = 115,
+
+    /**
      * @brief Defines the component event response region. This attribute can be set, reset, and obtained as required through APIs.
      *
      * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n

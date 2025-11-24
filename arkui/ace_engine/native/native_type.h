@@ -2704,6 +2704,37 @@ typedef enum {
 } ArkUI_AnimationDirection;
 
 /**
+ * @brief Enumerates the hover effects when a component is hovered over.
+ *
+ * @since 23
+ */
+typedef enum {
+    /** Default effect. */
+    ARKUI_HOVER_EFFECT_AUTO = 0,
+    /** Scale effect. */
+    ARKUI_HOVER_EFFECT_SCALE,
+    /** Highlight effect. */
+    ARKUI_HOVER_EFFECT_HIGHLIGHT,
+    /** No effect. */
+    ARKUI_HOVER_EFFECT_NONE,
+} ArkUI_HoverEffect;
+
+/**
+ * @brief Enumerates the priority levels for focus management within the application.
+ * These levels determine the sequence in which UI components receive focus during user interaction.
+ *
+ * @since 23
+ */
+typedef enum {
+    /** Default priority. */
+    ARKUI_FOCUS_PRIORITY_AUTO = 0,
+    /** Higher priority. */
+    ARKUI_FOCUS_PRIORITY_PRIOR = 2000,
+    /** Previous focus priority. */
+    ARKUI_FOCUS_PRIORITY_PREVIOUS = 3000,
+} ArkUI_FocusPriority;
+
+/**
  * @brief Define the rolling source enumeration value.
  *
  * @since 12
