@@ -11196,7 +11196,7 @@ int32_t OH_ArkUI_NodeUtils_GetNodeHandleByUniqueId(const uint32_t uniqueId, ArkU
  * @param node The ArkUI-NodeHandle pointer.
  * @param uniqueId The uniqueId of the target node handle, default value is -1.
  * @return Error code.
- *         {@link ARKUI_ERROR_CODE_NO_ERROR} success.
+ *         {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
  *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} Function parameter exception.
  *         {@link ARKUI_ERROR_CODE_CAPI_INIT_ERROR} if the CAPI init error.
  * @since 20
@@ -11210,7 +11210,7 @@ int32_t OH_ArkUI_NodeUtils_GetNodeUniqueId(ArkUI_NodeHandle node, int32_t* uniqu
  * @param node ArkUI_NodeHandle pointer.
  * @param isInRenderState If the node is in the render state.
  * @return Error code.
- *         {@link ARKUI_ERROR_CODE_NO_ERROR} Success.
+ *         {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
  *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} Function parameter exception.
  *         {@link ARKUI_ERROR_CODE_CAPI_INIT_ERROR} if the CAPI init error.
  * @since 23
@@ -11225,8 +11225,8 @@ int32_t OH_ArkUI_NativeModule_IsInRenderState(ArkUI_NodeHandle node, bool* isInR
  * @param node ArkUI_NodeHandle pointer, the parent node that will adopt the child node.
  * @param child ArkUI_NodeHandle pointer, the target node being adopted.
  * @return Error code.
- *         {@link ARKUI_ERROR_CODE_NO_ERROR} Success.
- *         {@link ARKUI_ERROR_CODE_CAPI_INIT_ERROR} The CAPI init error.
+ *         {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         {@link ARKUI_ERROR_CODE_CAPI_INIT_ERROR} if the CAPI init error.
  *         {@link ARKUI_ERROR_CODE_NODE_HAS_PARENT} The child already has a parent node.
  *         {@link ARKUI_ERROR_CODE_NODE_CAN_NOT_BE_ADOPTED} The child can not be adopted.
  *         {@link ARKUI_ERROR_CODE_NODE_CAN_NOT_ADOPT_TO} The node can not adopt children.
@@ -11240,8 +11240,8 @@ int32_t OH_ArkUI_NativeModule_AdoptChild(ArkUI_NodeHandle node, ArkUI_NodeHandle
  * @param node ArkUI_NodeHandle pointer, the parent node.
  * @param child ArkUI_NodeHandle pointer, the node being removed.
  * @return Error code.
- *         {@link ARKUI_ERROR_CODE_NO_ERROR} Success.
- *         {@link ARKUI_ERROR_CODE_CAPI_INIT_ERROR} The CAPI init error.
+ *         {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         {@link ARKUI_ERROR_CODE_CAPI_INIT_ERROR} if the CAPI init error.
  *         {@link ARKUI_ERROR_CODE_NODE_IS_NOT_IN_ADOPTED_CHILDREN} This child node is not adopted by the parent node.
  * @since 23
  */
