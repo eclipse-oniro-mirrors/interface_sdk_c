@@ -2816,6 +2816,20 @@ typedef enum {
     NODE_TEXT_BIND_SELECTION_MENU = 1045,
 
     /**
+     * @brief Whether to compress punctuation at the beginning of line.
+     *
+     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
+     * .value[0].i32:  Whether enable the feature, true means enable this feature, false means disable.
+     * The default value is false.\n
+     * \n
+     * Format of the return value {@link ArkUI_AttributeItem}:\n
+     * .value[0].i32: Whether compress punctuation at the beginning of line.\n
+     *
+     * @since 23
+     */
+    NODE_TEXT_COMPRESS_LEADING_PUNCTUATION = 1048,
+
+    /**
      * @brief Defines the text content attribute, which can be set, reset, and obtained as required through APIs.
      *
      * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
@@ -3908,6 +3922,20 @@ typedef enum {
     NODE_TEXT_INPUT_TEXT_CONTENT_CONTROLLER_BASE = 7041,
 
     /**
+     * @brief Whether to compress punctuation at the beginning of line.
+     *
+     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
+     * .value[0].i32:  Whether enable the feature, true means enable this feature, false means disable.
+     * The default value is false.\n
+     * \n
+     * Format of the return value {@link ArkUI_AttributeItem}:\n
+     * .value[0].i32: Whether compress punctuation at the beginning of line.\n
+     *
+     * @since 23
+     */
+    NODE_TEXT_INPUT_COMPRESS_LEADING_PUNCTUATION = 7044,
+
+    /**
      * @brief Defines the default placeholder text for the multi-line text box.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
@@ -4393,6 +4421,20 @@ typedef enum {
      * @since 23
      */
     NODE_TEXT_AREA_TEXT_CONTENT_CONTROLLER_BASE = 8037,
+
+    /**
+     * @brief Whether to compress punctuation at the beginning of line.
+     *
+     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
+     * .value[0].i32:  Whether enable the feature, true means enable this feature, false means disable.
+     * The default value is false.\n
+     * \n
+     * Format of the return value {@link ArkUI_AttributeItem}:\n
+     * .value[0].i32: Whether compress punctuation at the beginning of line.\n
+     *
+     * @since 23
+     */
+    NODE_TEXT_AREA_COMPRESS_LEADING_PUNCTUATION = 8040,
 
     /**
      * @brief Defines the button text content. This attribute can be set, reset, and obtained as required through APIs.
