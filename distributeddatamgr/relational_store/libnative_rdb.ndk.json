@@ -645,6 +645,22 @@
     },
     {
         "first_introduced": "23",
+        "name":"OH_Rdb_QueryWithoutRowCount"
+    },
+    {
+        "first_introduced": "23",
+        "name":"OH_Rdb_QuerySqlWithoutRowCount"
+    },
+    {
+        "first_introduced": "23",
+        "name":"OH_RdbTrans_QueryWithoutRowCount"
+    },
+    {
+        "first_introduced": "23",
+        "name":"OH_RdbTrans_QuerySqlWithoutRowCount"
+    },
+    {
+        "first_introduced": "23",
         "name":"OH_RdbTrans_BatchInsertWithReturning"
     },
     {
@@ -690,5 +706,5 @@
     {
         "first_introduced": "23",
         "name":"OH_RDB_GetChanedCount"
-    }
+    },
 ]
