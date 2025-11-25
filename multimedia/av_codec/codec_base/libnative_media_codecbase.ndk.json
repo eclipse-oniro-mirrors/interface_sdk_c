@@ -120,6 +120,18 @@
         "name": "OH_AVCODEC_MIMETYPE_AUDIO_GSM_MS"
     },
     {
+        "first_introduced": "23",
+        "name": "OH_AVCODEC_MIMETYPE_AUDIO_TWINVQ"
+    },
+    {
+        "first_introduced": "23",
+        "name": "OH_AVCODEC_MIMETYPE_AUDIO_ILBC"
+    },
+    {
+        "first_introduced": "23",
+        "name": "OH_AVCODEC_MIMETYPE_AUDIO_TRUEHD"
+    },
+    {
         "first_introduced": "17",
         "name": "OH_AVCODEC_MIMETYPE_VIDEO_MPEG2"
     },
