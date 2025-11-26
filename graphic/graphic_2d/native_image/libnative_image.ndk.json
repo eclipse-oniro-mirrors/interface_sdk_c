@@ -58,5 +58,13 @@
     {
         "first_introduced": "22",
         "name": "OH_NativeImage_AcquireLatestNativeWindowBuffer"
+    },
+    {
+        "first_introduced": "23",
+        "name": "OH_NativeImage_IsReleased"
+    },
+    {
+        "first_introduced": "23",
+        "name": "OH_NativeImage_Release"
     }
 ]
