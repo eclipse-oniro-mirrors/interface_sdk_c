@@ -579,7 +579,8 @@ static const char* const COMMON_EVENT_MINORSMODE_OFF = "usual.event.MINORSMODE_O
 static const char* const COMMON_EVENT_MANAGED_BROWSER_POLICY_CHANGED = "usual.event.MANAGED_BROWSER_POLICY_CHANGED";
 
 /**
- * @brief This common event means that the open and closed state of the stand associated with the tablet mode has changed.
+ * @brief This common event means that the open and closed state of the stand associated
+ * with the tablet mode has changed.
  * This is a protected common event that can only be sent by system.
  * @since 22
  */
