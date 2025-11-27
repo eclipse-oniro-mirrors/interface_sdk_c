@@ -56,7 +56,7 @@ typedef enum {
      *
      * @since 22
      */
-    OUT_NODE_TYPE_DEFAULT = 101,
+    OUTPUT_NODE_TYPE_DEFAULT = 101,
     /**
      * Equalization node type.
      * The audio format output by the equalizer node is as follows:
@@ -88,8 +88,8 @@ typedef enum {
      */
     EFFECT_NODE_TYPE_SOUND_FIELD = 203,
     /**
-     * Audio Separation node type, it can only connect to output node.
-     * The audio format output by the scene effect node is as follows:
+     * Audio separation node type, it can only connect to output node.
+     * The audio format output by the audio separation node is as follows:
      * Sample rate: 48000 Hz.
      * Sample format: {@link AUDIO_SAMPLE_F32LE}.
      * Channels: 4(First 2 channels for vocals; last 2 channels for accompaniment).
@@ -109,7 +109,7 @@ typedef enum {
     EFFECT_NODE_TYPE_VOICE_BEAUTIFIER = 205,
     /**
      * Scene effect node type.
-     * The audio format output by the scene effect node is as follows:
+     * The audio format output by the environment node is as follows:
      * Sample rate: 48000 Hz.
      * Sample format: {@link AUDIO_SAMPLE_S16LE}.
      * Channels: 2.
@@ -119,8 +119,8 @@ typedef enum {
     EFFECT_NODE_TYPE_ENVIRONMENT_EFFECT = 206,
     /**
      * Audio mixer node type.
-     * The audio format output by the scene effect node is as follows:
-     * Sample rate: The highest sampling rate in the input sampling rate.
+     * The audio format output by the mixer node is as follows:
+     * Sample rate: {@link AudioSamplingRate}.
      * Sample format: {@link AUDIO_SAMPLE_F32LE}.
      * Channels: 2.
      *
@@ -246,7 +246,6 @@ typedef enum {
      */
     AUDIOSUITE_ERROR_REQUIRED_PARAMETERS_MISSING = 11,
 } OH_AudioSuite_Result;
-
 /**
  * @brief Define the audio sample format.
  *
@@ -284,7 +283,6 @@ typedef enum {
      */
     AUDIO_SAMPLE_F32LE = 4,
 } OH_Audio_SampleFormat;
-
 /**
  * @brief Define the audio encoding type.
  *
@@ -432,7 +430,7 @@ typedef struct OH_AudioDataArray {
      *
      * @since 22
      */
-    int arraySize;
+    int32_t arraySize;
     /**
      * @brief Audio requestFrameSize count.
      *
@@ -472,7 +470,6 @@ typedef enum {
      */
     SOUND_FIELD_WIDE = 4,
 } OH_SoundFieldType;
-
 /**
  * @brief Define the environment type.
  *
@@ -504,7 +501,6 @@ typedef enum {
      */
     ENVIRONMENT_TYPE_GRAMOPHONE = 4
 } OH_EnvironmentType;
-
 /**
  * @brief Define voice beautifier type.
  *
@@ -536,7 +532,6 @@ typedef enum {
      */
     VOICE_BEAUTIFIER_TYPE_RECORDING_STUDIO = 4
 } OH_VoiceBeautifierType;
-
 /**
  * @brief Define the number of equalizer frequency bands
  *
@@ -555,7 +550,7 @@ typedef struct OH_EqualizerFrequencyBandGains {
      * Frequencies: 31 Hz, 62 Hz, 125 Hz, 250 Hz, 500 Hz, 1 kHz, 2 kHz, 4 kHz, 8 kHz, 16 kHz.
      *
      * @since 22
-    */
+     */
     int32_t gains[EQUALIZER_BAND_NUM];
 } OH_EqualizerFrequencyBandGains;
 
@@ -566,7 +561,6 @@ typedef struct OH_EqualizerFrequencyBandGains {
  * @since 22
  */
 extern const OH_EqualizerFrequencyBandGains OH_EQUALIZER_PARAM_DEFAULT;
-
 /**
  * Ballad equalization effect band gains.
  * Gains is {3, 5, 2, -4, 1, 2, -3, 1, 4, 5}.

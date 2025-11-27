@@ -491,6 +491,34 @@ extern const char *OH_AVCODEC_MIMETYPE_VIDEO_MPEG4_PART2;
 extern const char *OH_AVCODEC_MIMETYPE_VIDEO_H263;
 
 /**
+ * @brief Enumerates the MIME type of video VC-1 codec.
+ *
+ * @since 22
+ */
+extern const char *OH_AVCODEC_MIMETYPE_VIDEO_VC1;
+
+/**
+ * @brief Enumerates the MIME type of video MSVIDEO1 codec.
+ *
+ * @since 22
+ */
+extern const char *OH_AVCODEC_MIMETYPE_VIDEO_MSVIDEO1;
+
+/**
+ * @brief Enumerates the MIME type of video WMV3 codec.
+ *
+ * @since 22
+ */
+extern const char *OH_AVCODEC_MIMETYPE_VIDEO_WMV3;
+
+/**
+ * @brief Enumerates the MIME type of video MJPEG codec.
+ *
+ * @since 22
+ */
+extern const char *OH_AVCODEC_MIMETYPE_VIDEO_MJPEG;
+
+/**
  * @brief Key for timeStamp in surface's extraData, value type is int64_t.
  *
  * @syscap SystemCapability.Multimedia.Media.CodecBase
@@ -621,6 +649,25 @@ extern const char *OH_MD_KEY_I_FRAME_INTERVAL;
  * @since 9
  */
 extern const char *OH_MD_KEY_ROTATION;
+
+/**
+ * @brief Key for video transform type, value type is int32_t, see {@link OH_NativeBuffer_TransformType}.
+ *
+ * This key is used to set the surface transform for video decoders (surface mode).
+ * If not specified, the default value is 0 ({@link NATIVEBUFFER_ROTATE_NONE}).
+ * This key and {@link OH_MD_KEY_ROTATION} are mutually exclusive. If both are provided,
+ * OH_MD_KEY_VIDEO_TRANSFORM_TYPE takes precedence.
+ * Note that the degrees specified in {@link OH_NativeBuffer_TransformType} represent counter-clockwise rotation,
+ * which are opposite to the direction of rotation defined by {@link OH_MD_KEY_ROTATION}.
+ * The correspondence is:
+ * - {@link NATIVEBUFFER_ROTATE_NONE}  => same as OH_MD_KEY_ROTATION = 0
+ * - {@link NATIVEBUFFER_ROTATE_90}    => same as OH_MD_KEY_ROTATION = 270
+ * - {@link NATIVEBUFFER_ROTATE_180}   => same as OH_MD_KEY_ROTATION = 180
+ * - {@link NATIVEBUFFER_ROTATE_270}   => same as OH_MD_KEY_ROTATION = 90
+ *
+ * @since 22
+ */
+extern const char *OH_MD_KEY_VIDEO_TRANSFORM_TYPE;
 
 /**
  * @brief Key for video YUV value range flag, value type is bool, true for full range, false for limited range.
@@ -1471,6 +1518,32 @@ typedef enum OH_H263Profile {
 } OH_H263Profile;
 
 /**
+ * @brief VC-1 Profile
+ *
+ * @since 22
+ */
+typedef enum OH_VC1Profile {
+    /** Simple profile */
+    VC1_PROFILE_SIMPLE = 0,
+    /** Main profile */
+    VC1_PROFILE_MAIN = 1,
+    /** Advanced profile */
+    VC1_PROFILE_ADVANCED = 2,
+} OH_VC1Profile;
+
+/**
+ * @brief WMV3 Profile
+ *
+ * @since 22
+ */
+typedef enum OH_WMV3Profile {
+    /** Simple profile */
+    WMV3_PROFILE_SIMPLE = 0,
+    /** Main profile */
+    WMV3_PROFILE_MAIN = 1,
+} OH_WMV3Profile;
+
+/**
  * @brief Enumerates the muxer output file format
  *
  * @syscap SystemCapability.Multimedia.Media.CodecBase
@@ -1793,6 +1866,44 @@ typedef enum OH_H263Level {
     /** 70 level */
     H263_LEVEL_70 = 7,
 } OH_H263Level;
+
+/**
+ * @brief VC-1 Level.
+ *
+ * @since 22
+ */
+typedef enum OH_VC1Level {
+    /** L0 level */
+    VC1_LEVEL_L0 = 0,
+    /** L1 level */
+    VC1_LEVEL_L1 = 1,
+    /** L2 level */
+    VC1_LEVEL_L2 = 2,
+    /** L3 level */
+    VC1_LEVEL_L3 = 3,
+    /** L4 level */
+    VC1_LEVEL_L4 = 4,
+    /** LOW level */
+    VC1_LEVEL_LOW = 5,
+    /** MEDIUM level */
+    VC1_LEVEL_MEDIUM = 6,
+    /** HIGH level */
+    VC1_LEVEL_HIGH = 7,
+} OH_VC1Level;
+
+/**
+ * @brief WMV3 Level.
+ *
+ * @since 22
+ */
+typedef enum OH_WMV3Level {
+    /** LOW level */
+    WMV3_LEVEL_LOW = 0,
+    /** MEDIUM level */
+    WMV3_LEVEL_MEDIUM = 1,
+    /** HIGH level */
+    WMV3_LEVEL_HIGH = 2,
+} OH_WMV3Level;
 
 /**
  * @brief The reference mode in temporal group of picture.

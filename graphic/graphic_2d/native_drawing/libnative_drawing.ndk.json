@@ -2233,5 +2233,13 @@
     {
         "first_introduced": "23",
         "name": "OH_Drawing_TypefaceIsItalic"
+    },
+    {
+        "first_introduced": "23",
+        "name": "OH_Drawing_SetTypographyStyleAttributeBool"
+    },
+    {
+        "first_introduced": "23",
+        "name": "OH_Drawing_GetTypographyStyleAttributeBool"
     }
 ]

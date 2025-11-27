@@ -64,6 +64,8 @@ extern "C" {
  *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_ITEM_NOT_EXIST} 12000019 - If the provider is already registered.
  *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_EXTERNAL_ERROR} 12000020 - If an error occured in
  *     the dependent module.
+ *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_EXCEED_LIMIT} 12000025 - If the number of providers exceeds
+ *             the limit.
  * @since 22
  */
 struct OH_Huks_Result OH_Huks_RegisterProvider(
@@ -82,7 +84,7 @@ struct OH_Huks_Result OH_Huks_RegisterProvider(
  *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_COMMUNICATION_FAIL} 12000005 - If Ipc commuication failed.
  *         {@link OH_Huks_ErrCode#HUKS_ERR_CODE_ITEM_NOT_EXIST} 12000011 - If the provider not found.
  *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_INSUFFICIENT_MEMORY} 12000014 - If the memory is insufficient.
- *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_ILLEGAL_ARGUMENT} 12000018 - If providerName is invalid.
+ *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_ILLEGAL_ARGUMENT} 12000018 - If providerName or paramSet is invalid.
  *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_EXTERNAL_ERROR} 12000020 - If an error occured in
  *     the dependent module.
  * @since 22
@@ -99,13 +101,14 @@ struct OH_Huks_Result OH_Huks_UnregisterProvider(
  * @return {@link OH_Huks_ErrCode#OH_HUKS_SUCCESS} 0 - If the operation is successful.
  *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_NOT_SUPPORTED_API} 801 - api is not supported
  *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_COMMUNICATION_FAIL} 12000005 - If Ipc commuication failed.
- *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_CRYPTO_FAIL} 12000006 - If the external crypto engine failed.
+ *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_CRYPTO_FAIL} 12000006 - If the Ukey driver operation failed.
  *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_INSUFFICIENT_MEMORY} 12000014 - If the memory is insufficient.
- *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_ILLEGAL_ARGUMENT} 12000018 - If index or paramSet
+ *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_ILLEGAL_ARGUMENT} 12000018 - If resourceId or paramSet
  *     or resourceId is invalid.
- *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_EXTERNAL_ERROR} 12000020 - If the provider exec failed.
- *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_MISMATCH} 12000021 - If the new remote handle is not same with the
- *     previous cached handle.
+ *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_EXTERNAL_ERROR} 12000020 - If the provider operation failed.
+ *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_PIN_LOCKED} 12000021 - If the Ukey PIN is locked.
+ *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_BUSY} 12000024 - If the provider or Ukey is busy.
+ *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_EXCEED_LIMIT} 12000025 - If the opened resources exceeds the limit.
  * @since 22
  */
 struct OH_Huks_Result OH_Huks_OpenResource(
@@ -119,12 +122,13 @@ struct OH_Huks_Result OH_Huks_OpenResource(
  * @return {@link OH_Huks_ErrCode#OH_HUKS_SUCCESS} 0 - If the operation is successful.
  *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_NOT_SUPPORTED_API} 801 - api is not supported
  *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_COMMUNICATION_FAIL} 12000005 - If Ipc commuication failed.
- *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_CRYPTO_FAIL} 12000006 - If the external crypto engine failed.
- *         {@link OH_Huks_ErrCode#HUKS_ERR_CODE_ITEM_NOT_EXIST} 12000011 - If not found the cached handle
- *     specified by index.
+ *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_CRYPTO_FAIL} 12000006 - If the Ukey driver operation failed.
+ *         {@link OH_Huks_ErrCode#HUKS_ERR_CODE_ITEM_NOT_EXIST} 12000011 - If not found the cached resource id.
  *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_INSUFFICIENT_MEMORY} 12000014 - If the memory is insufficient.
- *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_ILLEGAL_ARGUMENT} 12000018 - If index or paramSet is invalid.
- *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_EXTERNAL_ERROR} 12000020 - If the provider exec failed.
+ *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_ILLEGAL_ARGUMENT} 12000018 - If resourceId or paramSet is invalid.
+ *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_EXTERNAL_ERROR} 12000020 - If the provider operation failed.
+ *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_PIN_LOCKED} 12000021 - If the Ukey PIN is locked.
+ *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_BUSY} 12000024 - If the provider or Ukey is busy.
  * @since 22
  */
 struct OH_Huks_Result OH_Huks_CloseResource(
@@ -161,13 +165,15 @@ struct OH_Huks_Result OH_Huks_GetUkeyPinAuthState(
  * @return {@link OH_Huks_ErrCode#OH_HUKS_SUCCESS} 0 - If the operation is successful.
  *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_NOT_SUPPORTED_API} 801 - api is not supported
  *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_COMMUNICATION_FAIL} 12000005 - If Ipc commuication failed.
- *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_CRYPTO_FAIL} 12000006 - If the external crypto engine failed.
- *         {@link OH_Huks_ErrCode#HUKS_ERR_CODE_ITEM_NOT_EXIST} 12000011 - If not found the cached handle
- *     specified by index.
+ *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_CRYPTO_FAIL} 12000006 - If the Ukey driver operation failed.
+ *         {@link OH_Huks_ErrCode#HUKS_ERR_CODE_ITEM_NOT_EXIST} 12000011 - If not found the cached resource id
  *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_INSUFFICIENT_MEMORY} 12000014 - If the memory is insufficient.
- *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_ILLEGAL_ARGUMENT} 12000018 - If the index or propertyId or paramSet
- *     or callback is invalid.
- *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_EXTERNAL_ERROR} 12000020 - If the provider exec failed.
+ *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_ILLEGAL_ARGUMENT} 12000018 - If the resourceId
+ *         or propertyId or paramSet or callback is invalid.
+ *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_EXTERNAL_ERROR} 12000020 - If the provider operation failed.
+ *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_PIN_LOCKED} 12000021 - If the Ukey PIN is locked.
+ *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_PIN_NO_AUTH} 12000023 - If the Ukey PIN is not authenticated.
+ *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_BUSY} 12000024 - If the provider or Ukey is busy.
  * @since 22
  */
 struct OH_Huks_Result OH_Huks_GetProperty(const struct OH_Huks_Blob *resourceId,

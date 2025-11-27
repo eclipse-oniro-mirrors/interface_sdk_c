@@ -132,6 +132,22 @@
         "name": "OH_AVCODEC_MIMETYPE_VIDEO_H263"
     },
     {
+        "first_introduced": "22",
+        "name": "OH_AVCODEC_MIMETYPE_VIDEO_VC1"
+    },
+    {
+        "first_introduced": "22",
+        "name": "OH_AVCODEC_MIMETYPE_VIDEO_MSVIDEO1"
+    },
+    {
+        "first_introduced": "22",
+        "name": "OH_AVCODEC_MIMETYPE_VIDEO_WMV3"
+    },
+    {
+        "first_introduced": "22",
+        "name": "OH_AVCODEC_MIMETYPE_VIDEO_MJPEG"
+    },
+    {
         "first_introduced": "9",
         "name": "OH_ED_KEY_TIME_STAMP"
     },
@@ -218,6 +234,10 @@
     {
         "first_introduced": "9",
         "name": "OH_MD_KEY_ROTATION"
+    },
+    {
+        "first_introduced": "22",
+        "name": "OH_MD_KEY_VIDEO_TRANSFORM_TYPE"
     },
     {
         "first_introduced": "10",

@@ -1,0 +1,22 @@
+[
+    {
+        "first_introduced": "22",
+        "name": "OH_CertManager_GetUkeyCertificate"
+    },
+    {
+        "first_introduced": "22",
+        "name": "OH_CertManager_GetPrivateCertificate"
+    },
+    {
+        "first_introduced": "22",
+        "name": "OH_CertManager_GetPublicCertificate"
+    },
+    {
+        "first_introduced": "22",
+        "name": "OH_CertManager_FreeUkeyCertificate"
+    },
+    {
+        "first_introduced": "22",
+        "name": "OH_CertManager_FreeCredential"
+    }
+]

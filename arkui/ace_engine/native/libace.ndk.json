@@ -3067,7 +3067,7 @@
         "first_introduced": "20",
         "name": "OH_ArkUI_DragEvent_SetDataLoadParams"
     },
-        {
+    {
         "first_introduced": "20",
         "name": "OH_ArkUI_DragAction_SetDataLoadParams"
     },
@@ -4217,6 +4217,15 @@
     },
     {
         "first_introduced": "22",
+        "name": "OH_ArkUI_NativeModule_GetDrawableDescriptorFromAniValue"
+    },
+    {
+        "first_introduced": "22",
+        "name": "OH_ArkUI_NativeModule_GetDrawableDescriptorFromResourceAniValue"
+    
+    },
+    {
+        "first_introduced": "22",
         "name": "OH_ArkUI_Swiper_FinishAnimation"
     },
     {
@@ -4437,14 +4446,6 @@
     },
     {
         "first_introduced": "23",
-        "name": "OH_ArkUI_TextSelectionMenuOptions_SetHapticFeedbackMode"
-    },
-    {
-        "first_introduced": "23",
-        "name": "OH_ArkUI_TextSelectionMenuOptions_GetHapticFeedbackMode"
-    },
-    {
-        "first_introduced": "23",
         "name": "OH_ArkUI_TextSelectionMenuOptions_RegisterOnMenuShowCallback"
     },
     {
@@ -4505,6 +4506,22 @@
     },
     {
         "first_introduced": "23",
+        "name": "OH_ArkUI_SelectionOptions_Create"
+    },
+    {
+        "first_introduced": "23",
+        "name": "OH_ArkUI_SelectionOptions_Dispose"
+    },
+    {
+        "first_introduced": "23",
+        "name": "OH_ArkUI_SelectionOptions_SetMenuPolicy"
+    },
+    {
+        "first_introduced": "23",
+        "name": "OH_ArkUI_SelectionOptions_GetMenuPolicy"
+    },
+    {
+        "first_introduced": "23",
         "name": "OH_ArkUI_RenderNodeUtils_GetRenderNode"
     },
     {
@@ -4514,5 +4531,66 @@
     {
         "first_introduced": "23",
         "name": "OH_ArkUI_NativeModule_RemoveAdoptedChild"
+    },
+    {
+
+        "first_introduced": "23",
+        "name": "OH_ArkUI_NodeEvent_GetTouchTestInfo"
+    },
+    {
+        "first_introduced": "23",
+        "name": "OH_ArkUI_TouchTestInfo_GetTouchTestInfoList"
+    },
+    {
+        "first_introduced": "23",
+        "name": "OH_ArkUI_TouchTestInfoItem_GetX"
+    },
+    {
+        "first_introduced": "23",
+        "name": "OH_ArkUI_TouchTestInfoItem_GetY"
+    },
+    {
+        "first_introduced": "23",
+        "name": "OH_ArkUI_TouchTestInfoItem_GetWindowX"
+    },
+    {
+        "first_introduced": "23",
+        "name": "OH_ArkUI_TouchTestInfoItem_GetWindowY"
+    },
+    {
+        "first_introduced": "23",
+        "name": "OH_ArkUI_TouchTestInfoItem_GetXRelativeToParent"
+    },
+    {
+        "first_introduced": "23",
+        "name": "OH_ArkUI_TouchTestInfoItem_GetYRelativeToParent"
+    },
+    {
+        "first_introduced": "23",
+        "name": "OH_ArkUI_TouchTestInfoItem_GetChildRect"
+    },
+    {
+        "first_introduced": "23",
+        "name": "OH_ArkUI_TouchTestInfoItem_GetChildId"
+    },
+    {
+        "first_introduced": "23",
+        "name": "OH_ArkUI_TouchTestInfo_SetTouchResultStrategy"
+    },
+    {
+        "first_introduced": "23",
+        "name": "OH_ArkUI_TouchTestInfo_SetTouchResultId"
+    },
+    {
+        "first_introduced": "23",
+        "name": "OH_ArkUI_TextContentBaseController_Create"
+    },
+    {
+        "first_introduced": "23",
+        "name": "OH_ArkUI_TextContentBaseController_Dispose"
+    },
+    {
+        "first_introduced": "23",
+        "name": "OH_ArkUI_TextContentBaseController_DeleteBackward"
     }
 ]

@@ -314,6 +314,13 @@ typedef struct ArkUI_PixelRoundPolicy ArkUI_PixelRoundPolicy;
 typedef struct ArkUI_ShowCounterConfig ArkUI_ShowCounterConfig;
 
 /**
+ * @brief Defines the text content base controller.
+ *
+ * @since 23
+ */
+typedef struct ArkUI_TextContentBaseController ArkUI_TextContentBaseController;
+
+/**
  * @brief Defines the event callback type.
  *
  * @since 12
@@ -790,20 +797,17 @@ typedef enum {
  * @since 22
  */
 typedef enum {
+    /** No responsive breakpoint configuration. */
+    ARKUI_ITEMFILLPOLICY_NONE = -1,
     /**
-     * For <b>List</b> and <b>Swiper</b> components: Display 1 column when component width corresponds to SM
-     * and smaller devices, 2 columns for MD devices, and 3 columns for LG and larger devices.
-     * For <b>Grid</b> and <b>WaterFlow</b> components: Display 2 columns when component width corresponds to SM
-     * and smaller devices, 3 columns for MD devices, and 5 columns for LG and larger devices.
+     * Default responsive layout:
+     * <b>List</b> or <b>Swiper</b> component: 1 column (SM or smaller), 2 columns (MD), 3 columns (LG or larger).
+     * <b>Grid</b> or <b>WaterFlow</b> component: 2 columns (SM or smaller), 3 columns (MD), 5 columns (LG or larger).
      */
     ARKUI_ITEMFILLPOLICY_DEFAULT = 0,
-    /**
-     * Display 1 column for SM and smaller devices, 2 columns for MD devices, and 3 columns for LG and larger devices.
-     */
+    /** 1 column (SM or smaller), 2 columns (MD), 3 columns (LG or larger). */
     ARKUI_ITEMFILLPOLICY_SM1MD2LG3 = 1,
-    /**
-     * Display 2 columns for SM and smaller devices, 3 columns for MD devices, and 5 columns for LG and larger devices.
-     */
+    /** 2 columns (SM or smaller), 3 columns (MD), 5 columns (LG or larger). */
     ARKUI_ITEMFILLPOLICY_SM2MD3LG5 = 2,
 } ArkUI_ItemFillPolicy;
 
@@ -2700,6 +2704,37 @@ typedef enum {
 } ArkUI_AnimationDirection;
 
 /**
+ * @brief Enumerates the hover effects when a component is hovered over.
+ *
+ * @since 23
+ */
+typedef enum {
+    /** Default effect. */
+    ARKUI_HOVER_EFFECT_AUTO = 0,
+    /** Scale effect. */
+    ARKUI_HOVER_EFFECT_SCALE,
+    /** Highlight effect. */
+    ARKUI_HOVER_EFFECT_HIGHLIGHT,
+    /** No effect. */
+    ARKUI_HOVER_EFFECT_NONE,
+} ArkUI_HoverEffect;
+
+/**
+ * @brief Enumerates the priority levels for focus management within the application.
+ * These levels determine the sequence in which UI components receive focus during user interaction.
+ *
+ * @since 23
+ */
+typedef enum {
+    /** Default priority. */
+    ARKUI_FOCUS_PRIORITY_AUTO = 0,
+    /** Higher priority. */
+    ARKUI_FOCUS_PRIORITY_PRIOR = 2000,
+    /** Previous focus priority. */
+    ARKUI_FOCUS_PRIORITY_PREVIOUS = 3000,
+} ArkUI_FocusPriority;
+
+/**
  * @brief Define the rolling source enumeration value.
  *
  * @since 12
@@ -3040,6 +3075,20 @@ typedef enum {
 } ArkUI_PixelRoundCalcPolicy;
 
 /**
+ * @brief Menu pop-up strategy.
+ *
+ * @since 23
+ */
+typedef enum {
+    /** Determine whether to pop up the menu according to the underlying default logic. */
+    ARKUI_MENU_POLICY_DEFAULT = 0,
+    /** Never pop up the menu. */
+    ARKUI_MENU_POLICY_HIDE = 1,
+    /** Always pop up the menu. */
+    ARKUI_MENU_POLICY_SHOW = 2,
+} ArkUI_MenuPolicy;
+
+/**
  * @brief Define the direction to expand the swipe action.
  *
  * @since 21
@@ -3056,6 +3105,22 @@ typedef enum {
      */
     ARKUI_LIST_ITEM_SWIPE_ACTION_DIRECTION_END = 1,
 } ArkUI_ListItemSwipeActionDirection;
+
+/**
+ * @brief Enumerates the input tool types supported for response region configuration.
+ *
+ * @since 23
+ */
+typedef enum {
+    /** All input tool types. */
+    ARKUI_RESPONSE_REGIN_SUPPORTED_TOOL_ALL = 0,
+    /** Finger input. */
+    ARKUI_RESPONSE_REGIN_SUPPORTED_TOOL_FINGER = 1,
+    /** Stylus input. */
+    ARKUI_RESPONSE_REGIN_SUPPORTED_TOOL_PEN = 2,
+    /** Mouse input. */
+    ARKUI_RESPONSE_REGIN_SUPPORTED_TOOL_MOUSE = 3,
+} ArkUI_ResponseRegionSupportedTool;
 
 /**
  * @brief Defines parameter used by the system font style callback event.
@@ -3084,6 +3149,13 @@ typedef struct ArkUI_TextPickerRangeContentArray ArkUI_TextPickerRangeContentArr
    * @since 19
    */
 typedef struct ArkUI_TextCascadePickerRangeContentArray ArkUI_TextCascadePickerRangeContentArray;
+
+ /**
+   * @brief Defines the options for selection operation.
+   *
+   * @since 23
+   */
+typedef struct ArkUI_SelectionOptions ArkUI_SelectionOptions;
 
 /**
 * @brief Creates a size constraint.
@@ -6517,20 +6589,6 @@ typedef enum {
 } ArkUI_TextResponseType;
 
 /**
- * @brief Enumerates the haptic feedback mode.
- *
- * @since 23
- */
-typedef enum {
-    /** No haptic feedback. */
-    ARKUI_HAPTIC_FEEDBACK_MODE_DISABLED = 0,
-    /**Defines always haptic feedback. */
-    ARKUI_HAPTIC_FEEDBACK_MODE_ENABLED  = 1,
-    /** Defines automatically haptic feedback. */
-    ARKUI_HAPTIC_FEEDBACK_MODE_AUTO = 2,
-} ArkUI_HapticFeedbackMode;
-
-/**
  * @brief Create an object of the text selection menu options.
  *
  * @return A pointer to the ArkUI_TextSelectionMenuOptions.
@@ -6622,31 +6680,6 @@ ArkUI_ErrorCode OH_ArkUI_TextSelectionMenuOptions_GetResponseType(ArkUI_TextSele
     ArkUI_TextResponseType* responseType);
 
 /**
- * @brief Sets the haptic feedback mode of a configuration object for selected text recognition.
- *
- * @param selectionMenuOptions Pointer to the ArkUI_TextSelectionMenuOptions object.
- * @param hapticFeedbackMode The haptic feedback mode of {@link ArkUI_HapticFeedbackMode}.
- * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
- * @since 23
- */
-ArkUI_ErrorCode OH_ArkUI_TextSelectionMenuOptions_SetHapticFeedbackMode(
-    ArkUI_TextSelectionMenuOptions* selectionMenuOptions, ArkUI_HapticFeedbackMode hapticFeedbackMode);
-/**
- * @brief Gets the haptic feedback mode of a configuration object for selected text recognition.
- *
- * @param selectionMenuOptions Pointer to the ArkUI_TextSelectionMenuOptions object.
- * @param mode The haptic feedback mode of {@link ArkUI_HapticFeedbackMode}.
- * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
- * @since 23
- */
-ArkUI_ErrorCode OH_ArkUI_TextSelectionMenuOptions_GetHapticFeedbackMode(
-    ArkUI_TextSelectionMenuOptions* selectionMenuOptions, ArkUI_HapticFeedbackMode* mode);
-
-/**
  * @brief Set the event to be called when selection menu show.
  *
  * @param selectionMenuOptions Pointer to the ArkUI_TextSelectionMenuOptions object.
@@ -6680,6 +6713,67 @@ ArkUI_ErrorCode OH_ArkUI_TextSelectionMenuOptions_RegisterOnMenuShowCallback(
 ArkUI_ErrorCode OH_ArkUI_TextSelectionMenuOptions_RegisterOnMenuHideCallback(
     ArkUI_TextSelectionMenuOptions* selectionMenuOptions, void* userData,
     void (*callback)(int32_t start, int32_t end, void* userData));
+
+/**
+ * @brief Create selection options.
+ *
+ * @return A pointer to the selection options object.
+ * @since 23
+ */
+ArkUI_SelectionOptions* OH_ArkUI_SelectionOptions_Create();
+
+/**
+ * @brief Dispose selection options object.
+ *
+ * @param {ArkUI_SelectionOptions*} options Pointer to the selection options object. to be disposed.
+ * @since 23
+ */
+void OH_ArkUI_SelectionOptions_Dispose(ArkUI_SelectionOptions* options);
+
+/**
+ * @brief Sets the menu policy for selection options.
+ *
+ * @param {ArkUI_SelectionOptions*} options Pointer to the selection options.
+ * @param {ArkUI_MenuPolicy} menuPolicy The menu policy.
+ * @since 23
+ */
+void OH_ArkUI_SelectionOptions_SetMenuPolicy(
+    ArkUI_SelectionOptions* options, ArkUI_MenuPolicy menuPolicy);
+
+/**
+ * @brief Gets the menu policy of selection options.
+ *
+ * @param {ArkUI_SelectionOptions*} options Pointer to the selection options object.
+ * @return Returns the menu policy.
+ * @since 23
+ */
+ArkUI_MenuPolicy OH_ArkUI_SelectionOptions_GetMenuPolicy(ArkUI_SelectionOptions* options);
+
+/**
+ * @brief Create an object of the text content base controller.
+ *
+ * @return A pointer to the controller object.
+ * @since 23
+ */
+ArkUI_TextContentBaseController* OH_ArkUI_TextContentBaseController_Create();
+
+/**
+ * @brief Dispose an object of the text content base controller.
+ *
+ * @param {ArkUI_TextContentBaseController*} controller Pointer to the controller object to be disposed.
+ * @since 23
+ */
+void OH_ArkUI_TextContentBaseController_Dispose(ArkUI_TextContentBaseController* controller);
+
+/**
+ * @brief Delete the character before the caret of the input field component in editing state.
+ *        Otherwise, delete the last character of the input field component.
+ *
+ * @param {ArkUI_TextContentBaseController*} controller Pointer to the configuration object to be modified.
+ * @since 23
+ */
+void OH_ArkUI_TextContentBaseController_DeleteBackward(ArkUI_TextContentBaseController* controller);
+
 #ifdef __cplusplus
 };
 #endif

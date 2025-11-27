@@ -34,6 +34,7 @@
 #ifndef OH_WINDOW_H
 #define OH_WINDOW_H
 
+#include <cstddef>
 #include "stdbool.h"
 #include "stdint.h"
 
