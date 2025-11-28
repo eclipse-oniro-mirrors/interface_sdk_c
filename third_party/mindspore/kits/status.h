@@ -89,11 +89,17 @@ typedef enum OH_AI_Status {
   OH_AI_STATUS_LITE_INFER_INVALID =
     OH_AI_COMPCODE_LITE | (0x0FFFFFFF & -501), /**< Invalid infer shape before runtime. */
 
-  // User input param error code, range: [-600, 700)
+  // User input param error code, range: [-600, -700)
   OH_AI_STATUS_LITE_INPUT_PARAM_INVALID =
     OH_AI_COMPCODE_LITE | (0x0FFFFFFF & -600), /**< Invalid input param by user. */
+  
+  // AIPP module error code, range: [-700, -800)
+  OH_AI_STATUS_LITE_AIPP_NOT_SUPPORTED = OH_AI_COMPCODE_LITE | (0x0FFFFFFF & -700), /**< Not support AIPP. */
+  OH_AI_STATUS_LITE_AIPP_INFER_ERROR = OH_AI_COMPCODE_LITE | (0x0FFFFFFF & -701), /** Failed to infer with AIPP. */
 } OH_AI_Status;
 #ifdef __cplusplus
 }
 #endif
+
+/** @} */
 #endif  // MINDSPORE_INCLUDE_C_API_STATUS_C_H
