@@ -114,8 +114,9 @@ class InterfaceExtractor:
         """提取since版本号"""
         if not comment:
             return None
-        match = re.search(r'@since\s+([^\s\n\r]+)', comment)
-        return match.group(1) if match else None
+        matches = re.findall(r'@since\s+([^\s\n\r]+)', comment)
+        # 出现多段注释且@since有多个时，使用最后一个作为判断标准
+        return matches[-1] if matches else None
 
 
     def _create_interface_info(self, cursor, node_type: str, interface_name: Optional[str] = None, parent_type: Optional[str] = None) -> Dict[str, Any]:
