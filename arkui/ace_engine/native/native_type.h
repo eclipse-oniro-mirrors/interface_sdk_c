@@ -6845,6 +6845,18 @@ void OH_ArkUI_TextContentBaseController_Dispose(ArkUI_TextContentBaseController*
 void OH_ArkUI_TextContentBaseController_DeleteBackward(ArkUI_TextContentBaseController* controller);
 
 /**
+ * @brief Scroll the input field component to make the specified content visible.
+ *
+ * @param {ArkUI_TextContentBaseController*} controller Pointer to the
+ * configuration object to be modified.
+ * @param {int32_t} start The start offset of the content to be made visible.
+ * @param {int32_t} end The end offset of the content to be made visible
+ * @since 23
+ */
+void OH_ArkUI_TextContentBaseController_ScrollToVisible(
+    ArkUI_TextContentBaseController *controller, int32_t start, int32_t end);
+
+/**
  * @brief Enumerates the MarqueeStartPolicy.
  *
  * @since 23
