@@ -407,7 +407,7 @@ OH_AI_API OH_AI_Status OH_AI_ModelLoadConfig(OH_AI_ModelHandle model, const char
 
 /**
  * @brief Run model inference with configuration.
- * 
+ *
  * @param model Model object handle.
  * @param inputs The array that includes all input tensor handles.
  * @param outputs The array that includes all output tensor handles.
@@ -418,8 +418,8 @@ OH_AI_API OH_AI_Status OH_AI_ModelLoadConfig(OH_AI_ModelHandle model, const char
  * @since 23
  */
 OH_AI_API OH_AI_Status OH_AI_ModelPredictWithConfig(OH_AI_ModelHandle model, const OH_AI_TensorHandleArray inputs,
-                                             OH_AI_TensorHandleArray *outputs, const char *config,
-                                             const OH_AI_KernelCallBack before, const OH_AI_KernelCallBack after);
+    OH_AI_TensorHandleArray *outputs, const char *config,
+    const OH_AI_KernelCallBack before, const OH_AI_KernelCallBack after);
 #ifdef __cplusplus
 }
 #endif
