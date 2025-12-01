@@ -1725,7 +1725,7 @@ int OH_Rdb_RekeyEx(OH_Rdb_Store *store, OH_Rdb_CryptoParam *param);
  *         Returns {@link RDB_E_SQLITE_TOO_BIG} SQLite: TEXT or BLOB exceeds size limit.
  *         Returns {@link RDB_E_SQLITE_MISMATCH} SQLite: Data type mismatch.
  *         Returns {@link RDB_E_SQLITE_CONSTRAINT} SQLite: Abort due to constraint violation.
- *         Returns {@link RDB_E_SQLITE_ERROR} SQLite: Generic error.
+ *         Returns {@link RDB_E_SQLITE_ERROR} SQL syntax errors, non-existent tables or columns, and other SQLite errors.
  * Specific error codes can be referenced {@link OH_Rdb_ErrCode}.
  * @see OH_Rdb_Store, OH_Data_VBuckets, OH_Rdb_ErrCode, OH_RDB_ReturningContext.
  * @since 23
@@ -1758,7 +1758,7 @@ int OH_Rdb_BatchInsertWithReturning(OH_Rdb_Store *store, const char *table, cons
  *         Returns {@link RDB_E_SQLITE_TOO_BIG} SQLite: TEXT or BLOB exceeds size limit.
  *         Returns {@link RDB_E_SQLITE_MISMATCH} SQLite: Data type mismatch.
  *         Returns {@link RDB_E_SQLITE_CONSTRAINT} SQLite: Abort due to constraint violation.
- *         Returns {@link RDB_E_SQLITE_ERROR} SQLite: Generic error.
+ *         Returns {@link RDB_E_SQLITE_ERROR} SQL syntax errors, non-existent tables or columns, and other SQLite errors.
  * Specific error codes can be referenced {@link OH_Rdb_ErrCode}.
  * @see OH_Rdb_Store, OH_Data_VBuckets, OH_Predicates, OH_Rdb_ErrCode, OH_RDB_ReturningContext.
  * @since 23
@@ -1787,7 +1787,7 @@ int OH_Rdb_UpdateWithReturning(OH_Rdb_Store *store, OH_VBucket *row, OH_Predicat
  *         Returns {@link RDB_E_SQLITE_IOERR} SQLite: Some kind of disk I/O error occurred.
  *         Returns {@link RDB_E_SQLITE_TOO_BIG} SQLite: TEXT or BLOB exceeds size limit.
  *         Returns {@link RDB_E_SQLITE_MISMATCH} SQLite: Data type mismatch.
- *         Returns {@link RDB_E_SQLITE_ERROR} SQLite: Generic error.
+ *         Returns {@link RDB_E_SQLITE_ERROR} SQL syntax errors, non-existent tables or columns, and other SQLite errors.
  * Specific error codes can be referenced {@link OH_Rdb_ErrCode}.
  * @see OH_Rdb_Store, OH_Predicates, OH_Rdb_ErrCode, OH_RDB_ReturningContext.
  * @since 23

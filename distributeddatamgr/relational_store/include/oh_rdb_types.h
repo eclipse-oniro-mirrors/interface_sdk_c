@@ -142,8 +142,7 @@ OH_Cursor *OH_RDB_GetReturningValues(OH_RDB_ReturningContext *context);
  * @brief Get the number of rows affected bu this operation.
  *
  * @param context Represents a pointer to an instance of OH_RDB_ReturningContext.
- * @return Return the number of entries that have changed.
- *         If Get changed failed, -1 is returned.
+ * @return Return the number of entries that have changed. If Get changed failed, -1 is returned.
  * @since 23
  */
 int64_t OH_RDB_GetChanedCount(OH_RDB_ReturningContext *context);
