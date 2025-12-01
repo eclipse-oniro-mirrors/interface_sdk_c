@@ -1329,6 +1329,13 @@ extern const char *OH_MD_KEY_VIDEO_DECODER_BLANK_FRAME_ON_SHUTDOWN;
 extern const char *OH_MD_KEY_VIDEO_NATIVE_BUFFER_FORMAT;
 
 /**
+ * @brief Key for skip samples of audio frame. value type is a uint8_t pointer.
+ *
+ * @since 23
+ */
+extern const char *OH_MD_KEY_BUFFER_SKIP_SAMPLES_INFO;
+
+/**
  * @brief Media type.
  *
  * @syscap SystemCapability.Multimedia.Media.CodecBase
