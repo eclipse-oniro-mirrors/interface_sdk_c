@@ -945,27 +945,6 @@ typedef enum {
      * @brief Defines the overlay attribute, which can be set, reset, and obtained as required through APIs.
      *
      * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .string: mask text.\n
-     * .value[0]?.i32: position of the overlay relative to the component. Optional.
-     * The parameter type is {@link ArkUI_Alignment}.
-     * The default value is <b>ARKUI_ALIGNMENT_TOP_START.</b> \n
-     * .value[1]?.f32: offset of the overlay relative to the upper left corner of itself on the x-axis, in vp. Optional. \n
-     * .value[2]?.f32: offset of the overlay relative to the upper left corner of itself on the y-axis, in vp. Optional.
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .string: mask text.\n
-     * .value[0].i32: position of the overlay relative to the component.
-     * The parameter type is {@link ArkUI_Alignment}.
-     * The default value is <b>ARKUI_ALIGNMENT_TOP_START.</b> \n
-     * .value[1].f32: offset of the overlay relative to the upper left corner of itself on the x-axis, in vp. \n
-     * .value[2].f32: offset of the overlay relative to the upper left corner of itself on the y-axis, in vp.
-     *
-     * @since 12
-     */
-    /**
-     * @brief Defines the overlay attribute, which can be set, reset, and obtained as required through APIs.
-     *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
      * You can set the overlay content through .string or .object as follow, and .string has higher priority.
      * .string: mask text.\n
      * .value[0]?.i32: position of the overlay relative to the component. Optional.
@@ -975,7 +954,7 @@ typedef enum {
      * .value[2]?.f32: offset of the overlay relative to the upper left corner of itself on the y-axis, in vp. Optional.
      * \n
      * .value[3]?.i32: the layout direction.
-     * The parameter type is {@link ArkUI_Direction}.
+     * The parameter type is {@link ArkUI_Direction}, supported since API 21.
      * The default value is <b>ARKUI_DIRECTION_LTR.</b> \n
      * In most cases, this parameter should be set to Auto, this allowing the system to handle
      * the layout direction automatically. If you need to keep a specific direction in any situation, set it to
@@ -994,11 +973,9 @@ typedef enum {
      * .value[1].f32: offset of the overlay relative to the upper left corner of itself on the x-axis, in vp. \n
      * .value[2].f32: offset of the overlay relative to the upper left corner of itself on the y-axis, in vp.
      * .value[3].i32: the layout direction.
-     * The parameter type is {@link ArkUI_Direction}.
+     * The parameter type is {@link ArkUI_Direction}, supported since API 21.
      * The default value is <b>ARKUI_DIRECTION_LTR.</b> \n
      * .object: the overlay node handle. \n
-     *
-     * @since 21
      */
     NODE_OVERLAY,
     /**
@@ -1304,20 +1281,6 @@ typedef enum {
      */
     NODE_MARK_ANCHOR,
 
-    /**
-     * @brief Defines the position of the background image in the component, that is, the coordinates relative to
-     * the upper left corner of the component. This attribute can be set, reset, and obtained as required through APIs.
-     *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].f32: position along the x-axis, in px. \n
-     * .value[1].f32: position along the y-axis, in px. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].f32: position along the x-axis, in px. \n
-     * .value[1].f32: position along the y-axis, in px. \n
-     *
-     * @since 12
-     */
     /**
      * @brief Defines the position of the background image in the component, that is, the coordinates relative to
      * the upper left corner of the component. This attribute can be set, reset, and obtained as required through APIs.
