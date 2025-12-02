@@ -315,6 +315,72 @@ enum {
     UI_FOCUS_AXIS_EVENT_ABS_HAT0X = 6,
     /** ABS_HAT0Y. */
     UI_FOCUS_AXIS_EVENT_ABS_HAT0Y = 7,
+    /**
+     * Game controller RX-axis.
+     *
+     * @since 23
+     */
+    UI_FOCUS_AXIS_EVENT_ABS_RX = 8,
+    /**
+     * Game controller RY-axis.
+     *
+     * @since 23
+     */
+    UI_FOCUS_AXIS_EVENT_ABS_RY = 9,
+    /**
+     * Game controller THROTTLE-axis.
+     *
+     * @since 23
+     */
+    UI_FOCUS_AXIS_EVENT_ABS_THROTTLE = 10,
+    /**
+     * Game controller RUDDER-axis.
+     *
+     * @since 23
+     */
+    UI_FOCUS_AXIS_EVENT_ABS_RUDDER = 11,
+    /**
+     * Game controller WHEEL-axis.
+     *
+     * @since 23
+     */
+    UI_FOCUS_AXIS_EVENT_ABS_WHEEL = 12,
+    /**
+     * Game controller HAT1X-axis.
+     *
+     * @since 23
+     */
+    UI_FOCUS_AXIS_EVENT_ABS_HAT1X = 13,
+    /**
+     * Game controller HAT1Y-axis.
+     *
+     * @since 23
+     */
+    UI_FOCUS_AXIS_EVENT_ABS_HAT1Y = 14,
+    /**
+     * Game controller HAT2X-axis.
+     *
+     * @since 23
+     */
+    UI_FOCUS_AXIS_EVENT_ABS_HAT2X = 15,
+    /**
+     * Game controller HAT2Y-axis.
+     *
+     * @since 23
+     */
+    UI_FOCUS_AXIS_EVENT_ABS_HAT2Y = 16,
+    /**
+     * Game controller HAT3X-axis.
+     *
+     * @since 23
+     */
+    UI_FOCUS_AXIS_EVENT_ABS_HAT3X = 17,
+    /**
+     * Game controller HAT3Y-axis.
+     *
+     * @since 23
+     */
+    UI_FOCUS_AXIS_EVENT_ABS_HAT3Y = 18,
 };
 
 /**
