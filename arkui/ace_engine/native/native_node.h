@@ -2253,6 +2253,19 @@ typedef enum {
     NODE_RESPONSE_REGION_LIST = 116,
 
     /**
+     * @brief Defines the event monopolization attribute. This attribute can be set, reset, and obtained as required through APIs.
+     *
+     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute: \n
+     * .value[0].i32: Boolean value (1 or 0).
+     * \n
+     * Format of the return value {@link ArkUI_AttributeItem}: \n
+     * .value[0].i32: Boolean value (1 or 0).
+     *
+     * @since 23
+     */
+    NODE_MONOPOLIZE_EVENTS = 117,
+
+    /**
      * @brief Sets the weight of the component in a chain, which is used to re-lay out components that form the chain.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
