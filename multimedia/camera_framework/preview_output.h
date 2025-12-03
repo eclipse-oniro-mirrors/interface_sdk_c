@@ -289,6 +289,7 @@ Camera_ErrorCode OH_PreviewOutput_IsBandwidthCompressionSupported(Camera_Preview
  * @param previewOutput the {@link Camera_PreviewOutput} instance which used to enable bandwidth compression or not.
  * @param enabled the flag indicates whether bandwidth compression is enabled.
  * @return {@link #CAMERA_OK} if the method call succeeds.
+ *         {@link #CAMERA_OPERATION_NOT_ALLOWED} if operation not allowed.
  *         {@link #CAMERA_INVALID_ARGUMENT} if parameter missing or parameter type incorrect.
  *         {@link #CAMERA_SESSION_NOT_CONFIG} if the capture session not config.
  *         {@link #CAMERA_SERVICE_FATAL_ERROR} if camera service fatal error.
