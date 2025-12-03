@@ -548,6 +548,10 @@
         "name": "OH_MD_KEY_VIDEO_NATIVE_BUFFER_FORMAT"
     },
     {
+        "first_introduced": "23",
+        "name": "OH_MD_KEY_BUFFER_SKIP_SAMPLES_INFO"
+    },
+    {
         "first_introduced": "10",
         "name": "OH_AVCodec_GetCapability"
     },
