@@ -693,7 +693,7 @@
     },
     {
         "first_introduced": "23",
-        "name":"OH_RDB_SetReturningField"
+        "name":"OH_RDB_SetReturningFields"
     },
     {
         "first_introduced": "23",
@@ -705,6 +705,6 @@
     },
     {
         "first_introduced": "23",
-        "name":"OH_RDB_GetChanedCount"
+        "name":"OH_RDB_GetChangedCount"
     }
 ]

@@ -88,8 +88,8 @@ typedef struct OH_RDB_ReturningContext OH_RDB_ReturningContext;
  * @brief Creates an OH_RDB_ReturningContext instance object.
  *
  * @return Returns a pointer to OH_RDB_ReturningContext instance when the execution is successful.
- * Otherwise, nullptr is returned. The memory must be released through the OH_RDB_DestroyReturningContext
- * interface after the use is complete.
+ *     Otherwise, nullptr is returned. The memory must be released through the OH_RDB_DestroyReturningContext
+ *     interface after the use is complete.
  * @see OH_RDB_DestroyReturningContext.
  * @since 23
  */
@@ -98,29 +98,29 @@ OH_RDB_ReturningContext *OH_RDB_CreateReturningContext(void);
 /**
  * @brief Destroys an OH_RDB_ReturningContext instance object.
  *
- * @param context Represents a pointer to an instance of OH_RDB_ReturningContext.
+ * @param context Represents a pointer to {@link OH_RDB_ReturningContext} instance.
  * @since 23
  */
 void OH_RDB_DestroyReturningContext(OH_RDB_ReturningContext *context);
 
 /**
- * @brief Get the number of rows affected bu this operation.
+ * @brief Set the returning fields.
  *
- * @param context Represents a pointer to an instance of OH_RDB_ReturningContext.
- * @param columnNames Indicates the columnNames to returning.
- * @param len Indicates the length of columnNames.
+ * @param context Represents a pointer to {@link OH_RDB_ReturningContext} instance.
+ * @param fields Indicates the columnNames to returning.
+ * @param len Indicates the length of fields.
  * @return Returns the error code.
  *         Returns {@link RDB_OK} if the execution is successful.
  *         Returns {@link RDB_E_INVALID_ARGS} if invalid input parameter.
  * @since 23
  */
-int OH_RDB_SetReturningField(OH_RDB_ReturningContext *context, const char *const columnNames[], int32_t len);
+int OH_RDB_SetReturningFields(OH_RDB_ReturningContext *context, const char *const fields[], int32_t len);
 
 /**
- * @brief Get the number of rows affected bu this operation.
+ * @brief Set the maximum returning value.
  *
- * @param context Represents a pointer to an instance of OH_RDB_ReturningContext.
- * @param count Indicate the maximum entry of the returned result set.
+ * @param context Represents a pointer to {@link OH_RDB_ReturningContext} instance.
+ * @param count Indicates the maximum entry of the returned result set.
  * @return Returns the error code.
  *         Returns {@link RDB_OK} if the execution is successful.
  *         Returns {@link RDB_E_INVALID_ARGS} if invalid input parameter.
@@ -129,23 +129,23 @@ int OH_RDB_SetReturningField(OH_RDB_ReturningContext *context, const char *const
 int OH_RDB_SetMaxReturningCount(OH_RDB_ReturningContext *context, int32_t count);
 
 /**
- * @brief Get the cursor of data changes contains a maximun of 1024 records.
+ * @brief Get the cursor of data changes, includes 1024 by default.
  *
- * @param context Represents a pointer to an instance of OH_RDB_ReturningContext.
+ * @param context Represents a pointer to {@link OH_RDB_ReturningContext} instance.
  * @return a pointer to the instance of the {@link OH_Cursor} structure is returned.
- *         If Get Cursor failed, nullptr is returned.
+ *     If Get Cursor failed, nullptr is returned.
  * @since 23
  */
 OH_Cursor *OH_RDB_GetReturningValues(OH_RDB_ReturningContext *context);
 
 /**
- * @brief Get the number of rows affected bu this operation.
+ * @brief Get the number of rows affected by this operation.
  *
- * @param context Represents a pointer to an instance of OH_RDB_ReturningContext.
- * @return Return the number of entries that have changed, If Get changed failed, -1 is returned.
+ * @param context Represents a pointer to {@link OH_RDB_ReturningContext} instance.
+ * @return the number of entries that have changed, it will return -1 if get the change fails.
  * @since 23
  */
-int64_t OH_RDB_GetChanedCount(OH_RDB_ReturningContext *context);
+int64_t OH_RDB_GetChangedCount(OH_RDB_ReturningContext *context);
 #ifdef __cplusplus
 };
 #endif

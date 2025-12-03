@@ -429,7 +429,7 @@ int OH_RdbTrans_Execute(OH_Rdb_Transaction *trans, const char *sql, const OH_Dat
 int OH_RdbTrans_Destroy(OH_Rdb_Transaction *trans);
 
 /**
- * @brief Inserts a batch of data into the target table and output a cursor of changed fields.
+ * @brief Inserts a batch of data into the target table and output change info to context.
  *
  * @param trans Represents a pointer to an instance of OH_Rdb_Transaction.
  * @param table Represents the target table.
@@ -463,10 +463,10 @@ int OH_RdbTrans_BatchInsertWithReturning(OH_Rdb_Transaction *trans, const char *
     Rdb_ConflictResolution resolution, OH_RDB_ReturningContext *context);
 
 /**
- * @brief Updates data in the database based on specified conditions and output a cursor of changed fields.
+ * @brief Updates data in the database based on specified conditions and output change info to context.
  *
  * @param trans Represents a pointer to an instance of OH_Rdb_Transaction.
- * @param row Represents the row data to be inserted into the table.
+ * @param row Represents the row data to be updated into the table.
  * @param predicates Represents a pointer to an {link OH_Predicates} instance.
  * @param resolution Represents the resolution when conflict occurs.
  * @param context Represents a pointer to a pointer to an {@link OH_RDB_ReturningContext} instance.
@@ -498,7 +498,7 @@ int OH_RdbTrans_UpdateWithReturning(OH_Rdb_Transaction *trans, OH_VBucket *row, 
     Rdb_ConflictResolution resolution, OH_RDB_ReturningContext *context);
 
 /**
- * @brief Deletes data from the database based on specified conditions and output a cursor of changed fields.
+ * @brief Deletes data from the database based on specified conditions and output change info to context.
  *
  * @param trans Represents a pointer to an instance of OH_Rdb_Transaction.
  * @param predicates Represents a pointer to an {@link OH_Predicates} instance.
