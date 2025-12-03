@@ -468,6 +468,27 @@ extern const char *OH_AVCODEC_MIMETYPE_AUDIO_GSM;
 extern const char *OH_AVCODEC_MIMETYPE_AUDIO_GSM_MS;
 
 /**
+ * @brief Enumerates the mime types of audio TwinVQ codec.
+ *
+ * @since 23
+ */
+extern const char *OH_AVCODEC_MIMETYPE_AUDIO_TWINVQ;
+
+/**
+ * @brief Enumerates the mime types of audio internet low bitrate codec.
+ *
+ * @since 23
+ */
+extern const char *OH_AVCODEC_MIMETYPE_AUDIO_ILBC;
+
+/**
+ * @brief Enumerates the mime types of audio TrueHD codec.
+ *
+ * @since 23
+ */
+extern const char *OH_AVCODEC_MIMETYPE_AUDIO_TRUEHD;
+
+/**
  * @brief Enumerates the MIME type of video mpeg2 codec.
  *
  * @syscap SystemCapability.Multimedia.Media.CodecBase
