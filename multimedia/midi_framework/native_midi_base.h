@@ -44,363 +44,300 @@ extern "C" {
 #endif
 
 /**
- * @brief MIDI 2.0 UMP message element (32-bit)
- *
- * @since 24
- */
-typedef uint32_t MidiUmp;
-
-/**
- * @brief MIDI timestamp type (nanoseconds)
- *
- * @since 24
- */
-typedef uint64_t MidiTimestamp;
-
-/**
- * @brief Device ID type
- *
- * @since 24
- */
-typedef int64_t MidiDeviceId;
-
-/**
  * @brief MIDI status code enumeration
- *
  * @since 24
  */
 typedef enum {
     /**
      * @error Operation successful.
-     *
-     * @since 24
      */
-    MIDI_ERR_OK = 0,
-    
+    MIDI_STATUS_OK = 0,
+
     /**
-     * @error Invalid parameter.
-     *
-     * @since 24
+     * @error Invalid parameter (e.g., null pointer).
      */
-    MIDI_ERR_GENERIC_INVALID_ARGUMENT,
-    
+    MIDI_STATUS_GENERIC_INVALID_ARGUMENT,
+
     /**
      * @error IPC communication failure.
-     *
-     * @since 24
      */
-    MIDI_ERR_GENERIC_IPC_FAILURE,
-    
+    MIDI_STATUS_GENERIC_IPC_FAILURE,
+
     /**
      * @error Insufficient result space.
-     *
-     * @since 24
+     * Returned when the buffer provided by the caller is too small to hold the result.
      */
-    MIDI_ERR_INSUFFICIENT_RESULT_SPACE,
-    
+    MIDI_STATUS_INSUFFICIENT_RESULT_SPACE,
+
     /**
-     * @error Driver already registered.
-     *
-     * @since 24
+     * @error Invalid client handle.
      */
-    MIDI_ERR_DRIVER_ALREADY_REGISTERED,
-    
+    MIDI_STATUS_INVALID_CLIENT,
+
     /**
-     * @error Invalid client.
-     *
-     * @since 24
+     * @error Invalid device handle.
      */
-    MIDI_ERR_INVALID_CLIENT,
-    
+    MIDI_STATUS_INVALID_DEVICE_HANDLE,
+
     /**
-     * @error Invalid driver.
-     *
-     * @since 24
+     * @error Invalid port configuration.
      */
-    MIDI_ERR_INVALID_DRIVER,
-    
+    MIDI_STATUS_INVALID_PORT,
+
     /**
-     * @error Invalid device.
-     *
-     * @since 24
+     * @error Device is already open.
      */
-    MIDI_ERR_INVALID_DEVICE,
-    
+    MIDI_STATUS_DEVICE_ALREADY_OPEN,
+
     /**
-     * @error Invalid port.
-     *
-     * @since 24
+     * @error Device is not open.
      */
-    MIDI_ERR_INVALID_PORT,
-    
+    MIDI_STATUS_DEVICE_NOT_OPEN,
+
     /**
-     * @error Device already open.
-     *
-     * @since 24
+     * @error Send buffer is full.
+     * Returned by non-blocking send when the atomic message cannot fit in the buffer.
      */
-    MIDI_ERR_DEVICE_ALREADY_OPEN,
-    
+    MIDI_STATUS_WOULD_BLOCK,
+
     /**
-     * @error Device not open.
-     *
-     * @since 24
+     * @error The MIDI system service has died or disconnected.
+     * This is a fatal error. The client must be destroyed and recreated.
      */
-    MIDI_ERR_DEVICE_NOT_OPEN,
-    
+    MIDI_STATUS_SERVICE_DIED,
+
     /**
-     * @error Device activation failed.
-     *
-     * @since 24
+     * @error Unknown system error.
      */
-    MIDI_ERR_DEVICE_ACTIVATION_FAILED
+    MIDI_STATUS_UNKNOWN_ERROR = -1
 } MidiStatusCode;
 
 /**
  * @brief Port direction enumeration
- *
  * @since 24
  */
 typedef enum {
     /**
-     * Input port.
-     *
-     * @since 24
+     * @brief Input port (Device -> Host).
      */
     MIDI_PORT_DIRECTION_INPUT  = 1,
-    
+
     /**
-     * Output port.
-     *
-     * @since 24
+     * @brief Output port (Host -> Device).
      */
     MIDI_PORT_DIRECTION_OUTPUT = 2
 } MidiPortDirection;
 
 /**
  * @brief MIDI transport protocol enumeration
- *
  * @since 24
  */
 typedef enum {
     /**
-     * MIDI 1.0 protocol.
-     *
-     * @since 24
+     * @brief Legacy MIDI 1.0 Byte Stream.
+     * The SDK will automatically convert this to UMP internally.
      */
     MIDI_TRANSPORT_PROTOCOL_MIDI1 = 1,
-    
+
     /**
-     * UMP (Universal MIDI Packet) protocol.
-     *
-     * @since 24
+     * @brief Universal MIDI Packet (UMP).
+     * Native MIDI 2.0 format (32-bit words).
      */
     MIDI_TRANSPORT_PROTOCOL_UMP   = 2
 } MidiTransportProtocol;
 
 /**
- * @brief MIDI data protocol enumeration
- *
+ * @brief MIDI Device Type
  * @since 24
  */
 typedef enum {
     /**
-     * MIDI 1.0 data format.
-     *
-     * @since 24
+     * @brief USB MIDI Device.
      */
-    MIDI_DATA_PROTOCOL_MIDI1 = 1,
-    
+    MIDI_DEVICE_TYPE_USB = 0,
+
     /**
-     * MIDI 2.0 data format.
-     *
-     * @since 24
+     * @brief Bluetooth LE MIDI Device.
      */
-    MIDI_DATA_PROTOCOL_MIDI2 = 2
-} MidiDataProtocol;
+    MIDI_DEVICE_TYPE_BLE = 1
+} MidiDeviceType;
 
 /**
- * @brief Device change action type
- *
+ * @brief Device connection state change action
  * @since 24
  */
 typedef enum {
     /**
-     * Device connected.
-     *
-     * @since 24
+     * @brief A MIDI device has been connected (attached).
      */
-    MIDI_DEVICE_CHANGE_ACTION_CONNECTED,
-    
+    MIDI_DEVICE_CHANGE_ACTION_CONNECTED = 0,
+
     /**
-     * Device disconnected.
-     *
-     * @since 24
+     * @brief A MIDI device has been disconnected (detached).
      */
-    MIDI_DEVICE_CHANGE_ACTION_DISCONNECTED
+    MIDI_DEVICE_CHANGE_ACTION_DISCONNECTED = 1
 } MidiDeviceChangeAction;
 
 /**
- * @brief API return result structure
- *
+ * @brief MIDI Event Structure (Universal)
+ * Designed to handle both raw Byte Stream (MIDI 1.0) and UMP.
  * @since 24
  */
 typedef struct {
     /**
-     * @brief Status code.
-     *
-     * @since 24
+     * @brief Timestamp in nanoseconds.
+     * 0 indicates "send immediately".
      */
-    MidiStatusCode statusCode;
-    
+    uint64_t timestamp;
+
     /**
-     * @brief Error description information.
-     *
-     * @since 24
+     * @brief Data length in bytes.
+     * - For MIDI 1.0: The number of bytes (e.g., 3 for NoteOn).
+     * - For UMP: The number of bytes (e.g., 8 for a 64-bit UMP packet).
      */
-    char error[256];
-} MidiResult;
+    size_t length;
+
+    /**
+     * @brief Pointer to data.
+     * Can point to a uint8_t array (MIDI 1.0) or a casted uint32_t array (UMP).
+     */
+    const uint8_t *data;
+} MidiEvent;
 
 /**
- * @brief MIDI event chunk structure
- *
+ * @brief Device Information
+ * Used for enumeration and display.
  * @since 24
  */
 typedef struct {
     /**
-     * @brief Buffer valid size (in uint32_t elements).
-     *
-     * @since 24
+     * @brief Unique identifier for the MIDI device.
      */
-    size_t sizeInInts;
-    
-    /**
-     * @brief Absolute timestamp (nanoseconds).
-     *
-     * @since 24
-     */
-    MidiTimestamp timestamp;
-    
-    /**
-     * @brief UMP buffer pointer.
-     *
-     * @since 24
-     */
-    MidiUmp *buffer;
-} MidiEventChunk;
+    int64_t midiDeviceId;
 
-/**
- * @brief Device information structure
- *
- * @since 24
- */
-typedef struct {
     /**
-     * @brief Device unique identifier.
-     *
-     * @since 24
+     * @brief Type of the device (USB, BLE, etc.).
      */
-    MidiDeviceId midiDeviceId;
-    
+    MidiDeviceType deviceType;
+
     /**
-     * @brief Product name.
-     *
-     * @since 24
+     * @brief Product name of the device (e.g., "Yamaha UX16").
      */
     char productName[256];
-    
+
     /**
-     * @brief Vendor name.
-     *
-     * @since 24
+     * @brief Vendor name of the device.
      */
     char vendorName[256];
 } DeviceInformation;
 
 /**
- * @brief Port information structure
- *
+ * @brief Port Descriptor (Lightweight)
+ * Used for identifying ports in Open/Send calls to avoid large stack copies.
  * @since 24
  */
 typedef struct {
     /**
-     * @brief Port direction (input/output).
-     *
-     * @since 24
+     * @brief The unique ID of the port within the device (index).
+     */
+    uint32_t portIndex;
+
+    /**
+     * @brief The protocol the application wishes to use.
+     * If protocol is MIDI1, the SDK handles conversion to UMP automatically.
+     */
+    MidiTransportProtocol protocol;
+} MidiPortDescriptor;
+
+/**
+ * @brief Port Information (Detailed)
+ * Used for enumeration (contains display names).
+ * @since 24
+ */
+typedef struct {
+    /**
+     * @brief The index of the port.
+     */
+    uint32_t portIndex;
+
+    /**
+     * @brief The ID of the device this port belongs to.
+     */
+    int64_t deviceId;
+
+    /**
+     * @brief Direction of the port (Input/Output).
      */
     MidiPortDirection direction;
-    
+
     /**
-     * @brief Port name.
-     *
-     * @since 24
+     * @brief Human-readable name of the port.
      */
     char name[256];
-    
-    /**
-     * @brief Transport protocol.
-     *
-     * @since 24
-     */
-    MidiTransportProtocol transportProtocol;
 } MidiPortInformation;
 
 /**
- * @brief MIDI device structure with port information
+ * @brief Opaque handle for MIDI Client
+ */
+typedef struct MidiClientStruct MidiClient;
+
+/**
+ * @brief Opaque handle for MIDI Device Session
+ */
+typedef struct MidiDeviceStruct MidiDevice;
+
+/**
+ * @brief Callback for monitoring device connection/disconnection
  *
+ * @param userData User context provided during client creation.
+ * @param action Device change action (Connected/Disconnected).
+ * @param deviceInfo Information of the changed device.
+ * @since 24
+ */
+typedef void (*MidiDeviceChangeHandler)(void *userData,
+                                         MidiDeviceChangeAction action,
+                                         DeviceInformation deviceInfo);
+
+/**
+ * @brief Callback for receiving MIDI data (Batch Processing)
+ *
+ * @note The callback is invoked on a high-priority thread.
+ * @note The 'events' array and its data pointers are transient and valid ONLY 
+ * for the duration of this callback. If you need to keep the data, copy it.
+ *
+ * @param userData User context provided during port opening.
+ * @param events Pointer to the array of MIDI events received.
+ * @param eventCount The number of events in the array.
+ * @since 24
+ */
+typedef void (*MidiInputHandler)(void *userData, const MidiEvent *events, size_t eventCount);
+
+/**
+ * @brief Callback for handling client-level errors
+ * * Invoked when a critical error occurs in the MIDI service (e.g., service crash).
+ * Applications may need to recreate the client when this occurs.
+ *
+ * @param userData User context provided during client creation.
+ * @param code The error code indicating the cause.
+ * @since 24
+ */
+typedef void (*OnMidiError)(void *userData, MidiStatusCode code);
+
+/**
+ * @brief Client callbacks structure
  * @since 24
  */
 typedef struct {
     /**
-     * @brief Device ID.
-     *
-     * @since 24
+     * @brief Handler for device hotplug events.
      */
-    MidiDeviceId midiDeviceId;
-    
+    MidiDeviceChangeHandler onDeviceChange;
+
     /**
-     * @brief Number of ports.
-     *
-     * @since 24
+     * @brief Handler for critical service errors.
      */
-    size_t numPorts;
-    
-    /**
-     * @brief Port information array.
-     *
-     * @since 24
-     */
-    MidiPortInformation *ports;
-} MidiDevice;
-
-/**
- * @brief UMP input handler function type
- *
- * @param userData User context
- * @param events Received MIDI event list
- * @param event_size Length of received MIDI event list
- * @since 24
- */
-typedef void (*MidiUmpInputHandler)(void *userData, MidiEventChunk *events, size_t event_size);
-
-/**
- * @brief Device change handler function type
- *
- * @param userData User context
- * @param action Device change action
- * @param deviceInfo Changed device information
- * @since 24
- */
-typedef void (*MidiDeviceChangeHandler)(void *userData, 
-                                         MidiDeviceChangeAction action, 
-                                         DeviceInformation deviceInfo);
-
-/**
- * @brief Declare the MIDI client.
- * The handle of MIDI client is used for MIDI client related functions.
- *
- * @since 24
- */
-typedef struct MidiClientStruct MidiClient;
+    OnMidiError onMidiError;
+} OH_MIDI_Callbacks;
 
 #ifdef __cplusplus
 }
