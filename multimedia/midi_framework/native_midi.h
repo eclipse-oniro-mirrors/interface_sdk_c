@@ -216,6 +216,23 @@ MidiStatusCode OH_MIDI_Send(MidiDevice *device,
                             uint32_t eventCount,
                             uint32_t *eventsWritten);
 
+/**
+ * @brief Flush pending messages in output buffer
+ *
+ * Immediately discards all MIDI events currently waiting in the output buffer 
+ * for the specified port. This includes events scheduled for future timestamps 
+ * that haven't been processed by the service yet.
+ *
+ * @note This does NOT send "All Notes Off" messages. It simply clears the queue.
+ *
+ * @param device Target device handle.
+ * @param descriptor Target port and protocol.
+ * @return {@link #MIDI_STATUS_OK} if execution succeeds,
+ * or {@link #MIDI_STATUS_INVALID_DEVICE_HANDLE} if device is invalid.
+ * @since 24
+ */
+MidiStatusCode OH_MIDI_Flush(MidiDevice *device, MidiPortDescriptor descriptor);
+
 #ifdef __cplusplus
 }
 #endif
