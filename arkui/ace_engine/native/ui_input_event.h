@@ -1363,22 +1363,26 @@ int32_t OH_ArkUI_UIInputEvent_GetModifierKeyStates(const ArkUI_UIInputEvent* eve
 int64_t OH_ArkUI_PointerEvent_GetPressedTimeByIndex(const ArkUI_UIInputEvent* event, uint32_t pointerIndex);
 
 /**
- * @brief Obtains the x-axis offset of the mouse pointer position relative to the position in the previously reported
- * mouse event. This value may be less than the difference between the two reported X coordinates when the mouse pointer
- * is near the screen edge.
+ * @brief Obtains the movement increment of the mouse device along the X-axis in a two-dimensional plane.
+ * Its value represents the raw movement data from the mouse device, expressed in units of physical
+ * distance in the real world. The reported value is determined by the hardware itself and does not
+ * correspond to the physical or logical pixels on the screen.
+ * 
  * @param event Pointer to an <b>ArkUI_UIInputEvent</b> object.
- * @return Returns the x-axis offset of the mouse pointer position relative to the position in the previously reported
+ * @return Returns the x-axis offset of the mouse position relative to the position in the previously reported
  * mouse event; returns <b>0.0f</b> if any parameter error occurs.
  * @since 15
  */
 float OH_ArkUI_MouseEvent_GetRawDeltaX(const ArkUI_UIInputEvent* event);
 
 /**
- * @brief Obtains the y-axis offset of the mouse pointer position relative to the position in the previously reported
- * mouse event. This value may be less than the difference between the two reported Y coordinates when the mouse pointer
- * is near the screen edge.
+ * @brief Obtains the movement increment of the mouse device along the Y-axis in a two-dimensional plane.
+ * Its value represents the raw movement data from the mouse device, expressed in units of physical
+ * distance in the real world. The reported value is determined by the hardware itself and does not
+ * correspond to the physical or logical pixels on the screen.
+ * 
  * @param event Pointer to an <b>ArkUI_UIInputEvent</b> object.
- * @return Returns the y-axis offset of the mouse pointer position relative to the position in the previously reported
+ * @return Returns the y-axis offset of the mouse position relative to the position in the previously reported
  * mouse event; returns <b>0.0f</b> if any parameter error occurs.
  * @since 15
  */
