@@ -1196,6 +1196,38 @@ Camera_ErrorCode OH_CaptureSession_RegisterMacroStatusChangeCallback(
 Camera_ErrorCode OH_CaptureSession_UnregisterMacroStatusChangeCallback(
     Camera_CaptureSession* session, OH_CaptureSession_OnMacroStatusChange macroStatusChange);
 
+/**
+ * @brief Capture session iso change callback.
+ *
+ * @param session Pointer to the {@link Camera_CaptureSession} which deliver the callback.
+ * @param isoValue The iso value which delivered by the callback.
+ * @since 22
+ */
+typedef void (*OH_CaptureSession_OnIsoChange)(Camera_CaptureSession* session, int32_t isoValue);
+
+/**
+ * @brief Register iso change event callback.
+ *
+ * @param session Pointer to the {@link Camera_CaptureSession} instance.
+ * @param isoChange The {@link OH_CaptureSession_OnIsoChange} to be registered.
+ * @return {@link #CAMERA_OK} if the method call succeeds.
+ * {@link #CAMERA_INVALID_ARGUMENT} if parameter missing or parameter type incorrect.
+ * @since 22
+ */
+Camera_ErrorCode OH_CaptureSession_RegisterIsoChangeCallback(
+    Camera_CaptureSession* session, OH_CaptureSession_OnIsoChange isoChange);
+
+/**
+ * @brief Unregister iso change callback.
+ *
+ * @param session Pointer to the {@link Camera_CaptureSession} instance.
+ * @param isoChange The {@link OH_CaptureSession_OnIsoChange} to be unregistered.
+ * @return {@link #CAMERA_OK} if the method call succeeds.
+ * {@link #CAMERA_INVALID_ARGUMENT} if parameter missing or parameter type incorrect.
+ * @since 22
+ */
+Camera_ErrorCode OH_CaptureSession_UnregisterIsoChangeCallback(
+    Camera_CaptureSession* session, OH_CaptureSession_OnIsoChange isoChange);
 #ifdef __cplusplus
 }
 #endif
