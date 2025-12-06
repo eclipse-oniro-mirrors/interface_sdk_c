@@ -85,9 +85,9 @@ uint32_t OH_Drawing_RegisterFontBuffer(OH_Drawing_FontCollection*, const char* f
  * @return error code.
  * @since 23
  */
- uint32_t OH_Drawing_RegisterFontByIndex(OH_Drawing_FontCollection* fontCollection,
+uint32_t OH_Drawing_RegisterFontByIndex(OH_Drawing_FontCollection* fontCollection,
     const char* fontFamily, const char* familySrc, uint32_t index);
- 
+
 /**
  * @brief Defines an <b>OH_Drawing_RegisterFontBufferByIndex</b>, which is used to register font from ttc buffer.
  *
