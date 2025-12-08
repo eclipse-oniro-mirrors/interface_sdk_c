@@ -16,7 +16,7 @@
  * @addtogroup OHMIDI
  * @{
  *
- * @brief Provide the definition of the C interface for the MIDI module.
+ * @brief Provide the definition of the C interface for the Midi module.
  *
  * @since 24
  * @version 1.0
@@ -24,10 +24,10 @@
 /**
  * @file native_midi.h
  *
- * @brief Declare MIDI related interfaces.
+ * @brief Declare Midi related interfaces.
  *
- * This file interfaces are used for MIDI device management, 
- * MIDI message sending and receiving, and device status monitoring.
+ * This file interfaces are used for Midi device management, 
+ * Midi message sending and receiving, and device status monitoring.
  *
  * @library libohmidi.so
  * @syscap SystemCapability.Multimedia.Audio.Core
@@ -45,32 +45,31 @@ extern "C" {
 #endif
 
 /**
- * @brief Create MIDI client instance
+ * @brief Create Midi client instance
  *
- * @param[out] client Pointer to receive the new client handle.
+ * @param client Pointer to receive the new client handle.
  * @param callbacks Callback structure for system events.
  * @param userData User context to be passed to callbacks.
  * @return {@link #MIDI_STATUS_OK} if execution succeeds,
  * or {@link #MIDI_STATUS_GENERIC_INVALID_ARGUMENT} if client is nullptr.
+ * or {@link #MIDI_STATUS_GENERIC_IPC_FAILURE} if connection to system service fails.
  * @since 24
  */
-MidiStatusCode OH_MIDI_CreateClient(MidiClient **client, OH_MIDI_Callbacks callbacks, void *userData);
+OH_MidiStatusCode OH_MidiClient_Create(OH_MidiClient **client, OH_MidiCallbacks callbacks, void *userData);
 
 /**
- * @brief Destroy MIDI client and release resources
+ * @brief Destroy Midi client and release resources
  *
  * @param client Target client handle.
  * @return {@link #MIDI_STATUS_OK} if execution succeeds.
+ * or {@link #MIDI_STATUS_INVALID_CLIENT} if client is NULL or invalid.
+ * or {@link #MIDI_STATUS_GENERIC_IPC_FAILURE} if connection to system service fails.
  * @since 24
  */
-MidiStatusCode OH_MIDI_DestroyClient(MidiClient *client);
-
-// ============================================================================================
-// Device Enumeration
-// ============================================================================================
+OH_MidiStatusCode OH_MidiClient_Destroy(OH_MidiClient *client);
 
 /**
- * @brief Enumerate all MIDI devices (Double Call Pattern)
+ * @brief Enumerate all Midi devices (Double Call Pattern)
  *
  * Pattern:
  * 1. Call with informations=nullptr to get the count in numDevices.
@@ -78,119 +77,124 @@ MidiStatusCode OH_MIDI_DestroyClient(MidiClient *client);
  * 3. Call with allocated buffer to get data.
  *
  * @param client Target client handle.
- * @param[out] informations User-allocated buffer, or nullptr.
- * @param[in,out] numDevices Capacity (in) / Actual count (out).
+ * @param infos User-allocated buffer, or nullptr.
+ * @param numDevices Capacity (in) / Actual count (out).
  * @return {@link #MIDI_STATUS_OK} if execution succeeds,
- * or {@link #MIDI_STATUS_INSUFFICIENT_RESULT_SPACE} if buffer is too small.
+ * or {@link #MIDI_STATUS_INVALID_CLIENT} if client is invalid.
+ * or {@link #MIDI_STATUS_INSUFFICIENT_RESULT_SPACE} if buffer capacity is too small.
+ * or {@link #MIDI_STATUS_GENERIC_INVALID_ARGUMENT} if numDevices or infos is nullptr.
+ * or {@link #MIDI_STATUS_GENERIC_IPC_FAILURE} if connection to system service fails.
  * @since 24
  */
-MidiStatusCode OH_MIDI_GetDevices(MidiClient *client, DeviceInformation *informations, size_t *numDevices);
+OH_MidiStatusCode OH_MidiGetDevices(OH_MidiClient *client, OH_MidiDeviceInformation *infos, size_t *numDevices);
 
 // ============================================================================================
 // Device Management
 // ============================================================================================
 
 /**
- * @brief Open MIDI device
+ * @brief Open Midi device
  *
  * @param client Target client handle.
  * @param deviceId Device ID.
- * @param[out] deviceHandle Pointer to receive the device handle.
+ * @param device Pointer to receive the device handle.
  * @return {@link #MIDI_STATUS_OK} if execution succeeds.
+ * or {@link #MIDI_STATUS_INVALID_CLIENT} if client is invalid.
+ * or {@link #MIDI_STATUS_GENERIC_INVALID_ARGUMENT} if device is nullptr, or the deviceId does not exist.
+ * or {@link #MIDI_STATUS_GENERIC_IPC_FAILURE} if connection to system service fails.
  * @since 24
  */
-MidiStatusCode OH_MIDI_OpenDevice(MidiClient *client, int64_t deviceId, MidiDevice **deviceHandle);
+OH_MidiStatusCode OH_MidiOpenDevice(OH_MidiClient *client, int64_t deviceId, OH_MidiDevice **device);
 
 /**
- * @brief Open MIDI BLE device
+ * @brief Open Midi BLE device
  *
  * @param client Target client handle.
- * @param deviceAddress BLE Mac Address.
- * @param[out] deviceHandle Pointer to receive the device handle.
+ * @param deviceAddr BLE Mac Address.
+ * @param[out] device Pointer to receive the device handle.
  * @return {@link #MIDI_STATUS_OK} if execution succeeds.
+ * or {@link #MIDI_STATUS_INVALID_CLIENT} if client is invalid.
+ * or {@link #MIDI_STATUS_GENERIC_INVALID_ARGUMENT} if device is nullptr, or the deviceAddr does not exist.
+ * or {@link #MIDI_STATUS_GENERIC_IPC_FAILURE} if connection to system service fails.
  * @since 24
  */
-MidiStatusCode OH_MIDI_OpenBleDevice(MidiClient *client, const char *deviceAddress, MidiDevice **deviceHandle);
+OH_MidiStatusCode OH_MidiOpenBleDevice(OH_MidiClient *client, const char *deviceAddr, OH_MidiDevice **device);
 
 /**
- * @brief Close MIDI device
+ * @brief Close Midi device
  *
- * @param deviceHandle Target device handle.
+ * @param device Target device handle.
  * @return {@link #MIDI_STATUS_OK} if execution succeeds.
+ * or {@link #Midi_STATUS_INVALID_DEVICE_HANDLE} if device is invalid.
  * @since 24
  */
-MidiStatusCode OH_MIDI_CloseDevice(MidiDevice *deviceHandle);
-
-// ============================================================================================
-// Port Management
-// ============================================================================================
+OH_MidiStatusCode OH_MidiCloseDevice(OH_MidiDevice *device);
 
 /**
  * @brief Get port information (Double Call Pattern)
  *
  * @param device Target device handle.
- * @param[out] portInfos User-allocated buffer, or nullptr.
- * @param[in,out] numPorts Capacity (in) / Actual count (out).
+ * @param infos User-allocated buffer, or nullptr.
+ * @param numPorts Capacity (in) / Actual count (out).
  * @return {@link #MIDI_STATUS_OK} if execution succeeds.
+ * or {@link #Midi_STATUS_INVALID_DEVICE_HANDLE} if device is invalid.
+ * or {@link #MIDI_STATUS_INSUFFICIENT_RESULT_SPACE} if buffer capacity is too small.
+ * or {@link #MIDI_STATUS_GENERIC_INVALID_ARGUMENT} if numPorts or infos is nullptr.
+ * or {@link #MIDI_STATUS_GENERIC_IPC_FAILURE} if connection to system service fails.
  * @since 24
  */
-MidiStatusCode OH_MIDI_GetDevicePorts(MidiDevice *device, MidiPortInformation *portInfos, size_t *numPorts);
+OH_MidiStatusCode OH_MidiGetDevicePorts(OH_MidiDevice *device, OH_MidiPortInformation *infos, size_t *numPorts);
 
 /**
- * @brief Open MIDI input port (Receive Data)
+ * @brief Open Midi input port (Receive Data)
  *
- * Registers a callback to receive MIDI data in batches.
+ * Registers a callback to receive Midi data in batches.
  *
  * @param device Target device handle.
  * @param descriptor Port index and protocol configuration.
  * @param inputHandler Callback function invoked when data is available.
  * @param userData Context pointer passed to the callback.
- * @return {@link #MIDI_STATUS_OK} if execution succeeds,
+ * @return {@link #MIDI_STATUS_OK} if execution succeeds.
  * or {@link #MIDI_STATUS_INVALID_DEVICE_HANDLE} if device is invalid.
+ * or {@link #MIDI_STATUS_INVALID_PORT} if portindex is invalid or not a input port.
+ * or {@link #MIDI_STATUS_GENERIC_INVALID_ARGUMENT} if inputHandler is nullptr.
+ * or {@link #MIDI_STATUS_GENERIC_IPC_FAILURE} if connection to system service fails.
  * @since 24
  */
-MidiStatusCode OH_MIDI_OpenInputPort(MidiDevice *device,
-                                     MidiPortDescriptor descriptor,
-                                     MidiInputHandler inputHandler,
-                                     void *userData);
+OH_MidiStatusCode OH_MidiOpenInputPort(OH_MidiDevice *device,
+                                       OH_MidiPortDescriptor descriptor,
+                                       OH_MidiInputHandler inputHandler,
+                                       void *userData);
 
 /**
- * @brief Open MIDI output port (Send Data)
+ * @brief Open Midi output port (Send Data)
  *
  * @param device Target device handle.
  * @param descriptor Port index and protocol configuration.
  * @return {@link #MIDI_STATUS_OK} if execution succeeds.
+ * or {@link #MIDI_STATUS_INVALID_DEVICE_HANDLE} if device is invalid.
+ * or {@link #MIDI_STATUS_INVALID_PORT} if portindex is invalid or not a output port.
+ * or {@link #MIDI_STATUS_GENERIC_IPC_FAILURE} if connection to system service fails.
  * @since 24
  */
-MidiStatusCode OH_MIDI_OpenOutputPort(MidiDevice *device,
-                                      MidiPortDescriptor descriptor);
+OH_MidiStatusCode OH_MidiOpenOutputPort(OH_MidiDevice *device,
+                                        OH_MidiPortDescriptor descriptor);
 
 /**
- * @brief Close MIDI input port
+ * @brief Close Midi input port
  *
  * @param device Target device handle.
  * @param portIndex Port index.
  * @return {@link #MIDI_STATUS_OK} if execution succeeds.
+ * or {@link #MIDI_STATUS_INVALID_DEVICE_HANDLE} if device is invalid.
+ * or {@link #MIDI_STATUS_INVALID_PORT} if portindex is invalid, or not open.
+ * or {@link #MIDI_STATUS_GENERIC_IPC_FAILURE} if connection to system service fails.
  * @since 24
  */
-MidiStatusCode OH_MIDI_CloseInputPort(MidiDevice *device, uint32_t portIndex);
+OH_MidiStatusCode OH_MidiClosePort(OH_MidiDevice *device, uint32_t portIndex);
 
 /**
- * @brief Close MIDI output port
- *
- * @param device Target device handle.
- * @param portIndex Port index.
- * @return {@link #MIDI_STATUS_OK} if execution succeeds.
- * @since 24
- */
-MidiStatusCode OH_MIDI_CloseOutputPort(MidiDevice *device, uint32_t portIndex);
-
-// ============================================================================================
-// Data Transfer
-// ============================================================================================
-
-/**
- * @brief Send MIDI messages (Batch, Non-blocking & Atomic)
+ * @brief Send Midi messages (Batch, Non-blocking & Atomic)
  *
  * Attempts to write an array of events to the shared memory buffer.
  *
@@ -204,17 +208,21 @@ MidiStatusCode OH_MIDI_CloseOutputPort(MidiDevice *device, uint32_t portIndex);
  * @param descriptor Target port and protocol.
  * @param events Pointer to the array of events to send.
  * @param eventCount Number of events in the array.
- * @param[out] eventsWritten (Optional) Returns the number of events successfully consumed.
+ * @param eventsWritten Returns the number of events successfully consumed.
  * @return {@link #MIDI_STATUS_OK} if all events were written.
- * @return {@link #MIDI_STATUS_WOULD_BLOCK} if buffer is full (check eventsWritten).
- * @return {@link #MIDI_STATUS_INVALID_...} if arguments are invalid.
+ * or {@link #MIDI_STATUS_INVALID_DEVICE_HANDLE} if device is invalid.
+ * or {@link #MIDI_STATUS_INVALID_PORT} if portindex is invalid, or not open.
+ * or {@link #MIDI_STATUS_WOULD_BLOCK} if buffer is full (check eventsWritten).
+ * or {@link #MIDI_STATUS_GENERIC_INVALID_ARGUMENT} if arguments are invalid.
  * @since 24
  */
-MidiStatusCode OH_MIDI_Send(MidiDevice *device,
-                            MidiPortDescriptor descriptor,
-                            const MidiEvent *events,
-                            uint32_t eventCount,
-                            uint32_t *eventsWritten);
+OH_MidiStatusCode OH_MidiSend(OH_MidiDevice *device,
+                           OH_MidiPortDescriptor descriptor,
+                           OH_MidiEvent *events,
+                           uint32_t eventCount,
+                           uint32_t *eventsWritten);
+
+
 
 /**
  * @brief Flush pending messages in output buffer
