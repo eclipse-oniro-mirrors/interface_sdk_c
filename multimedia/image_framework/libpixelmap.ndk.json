@@ -208,6 +208,10 @@
         "name": "OH_PixelmapNative_CreatePixelmapFromSurface"
     },
     {
+        "first_introduced": "23",
+        "name": "OH_PixelmapNative_CreatePixelmapFromSurfaceWithTransformation"
+    },
+    {
         "first_introduced": "22",
         "name": "OH_PixelmapNative_CreatePixelmapFromNativeBuffer"
     },
