@@ -117,12 +117,12 @@ typedef enum {
     /**
      * @brief Input port (Device -> Host).
      */
-    Midi_PORT_DIRECTION_INPUT  = 1,
+    MIDI_PORT_DIRECTION_INPUT  = 1,
 
     /**
      * @brief Output port (Host -> Device).
      */
-    Midi_PORT_DIRECTION_OUTPUT = 2
+    MIDI_PORT_DIRECTION_OUTPUT = 2
 } OH_MidiPortDirection;
 
 /**
@@ -134,13 +134,13 @@ typedef enum {
      * @brief Legacy Midi 1.0 Byte Stream.
      * Even when this protocol is selected, data is transported as UMP(with 0x2 as status byte).
      */
-    Midi_TRANSPORT_PROTOCOL_Midi1 = 1,
+    MIDI_TRANSPORT_PROTOCOL_MIDI1 = 1,
 
     /**
      * @brief Universal Midi Packet (UMP).
      * Native Midi 2.0 format (32-bit words).
      */
-    Midi_TRANSPORT_PROTOCOL_UMP   = 2
+    MIDI_TRANSPORT_PROTOCOL_UMP   = 2
 } OH_MidiTransportProtocol;
 
 /**
@@ -151,12 +151,12 @@ typedef enum {
     /**
      * @brief USB Midi Device.
      */
-    Midi_DEVICE_TYPE_USB = 0,
+    MIDI_DEVICE_TYPE_USB = 0,
 
     /**
      * @brief Bluetooth LE Midi Device.
      */
-    Midi_DEVICE_TYPE_BLE = 1
+    MIDI_DEVICE_TYPE_BLE = 1
 } OH_MidiDeviceType;
 
 /**
@@ -167,12 +167,12 @@ typedef enum {
     /**
      * @brief A Midi device has been connected (attached).
      */
-    Midi_DEVICE_CHANGE_ACTION_CONNECTED = 0,
+    MIDI_DEVICE_CHANGE_ACTION_CONNECTED = 0,
 
     /**
      * @brief A Midi device has been disconnected (detached).
      */
-    Midi_DEVICE_CHANGE_ACTION_DISCONNECTED = 1
+    MIDI_DEVICE_CHANGE_ACTION_DISCONNECTED = 1
 } OH_MidiDeviceChangeAction;
 
 /**
