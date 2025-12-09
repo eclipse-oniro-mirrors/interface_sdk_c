@@ -2567,6 +2567,18 @@ typedef enum {
      * @since 15
      */
     ARKUI_ERROR_CODE_COMPONENT_SNAPSHOT_TIMEOUT = 160002,
+    /**
+     * @error The provided color space or dynamic range mode is not supported. For details about the error codes,
+     * see [Snapshot Error Codes](../apis-arkui/errorcode-snapshot.md).
+     * @since 23
+     */
+    ARKUI_ERROR_CODE_COMPONENT_SNAPSHOT_MODE_NOT_SUPPORTED = 160003,
+    /**
+     * @error The isAuto parameter of the color space or dynamic range mode is set to true for offscreen node snapshot.
+     * For details about the error codes, see [Snapshot Error Codes](../apis-arkui/errorcode-snapshot.md).
+     * @since 23
+     */
+    ARKUI_ERROR_CODE_COMPONENT_SNAPSHOT_AUTO_NOT_SUPPORTED = 160004,
     /** The component is not a scroll container. */
     ARKUI_ERROR_CODE_NON_SCROLLABLE_CONTAINER = 180001,
     /** The buffer is not large enough. */
@@ -5643,6 +5655,50 @@ void OH_ArkUI_DestroySnapshotOptions(ArkUI_SnapshotOptions* snapshotOptions);
  * @since 15
  */
 int32_t OH_ArkUI_SnapshotOptions_SetScale(ArkUI_SnapshotOptions* snapshotOptions, float scale);
+
+/**
+ * @brief Sets the color mode for snapshot capture.
+ * By default, snapshots are captured in SRGB mode, which may lose visual effects for components using wide color
+ * gamut display modes.
+ * If the target component's color space is known, specify it through <b>colorSpace</b> and set <b>isAuto</b> to
+ * <b>false</b> to achieve optimal snapshot quality.
+ * Since determining the exact color space used by a component is often difficult, set <b>isAuto</b> to <b>true</b>
+ * to let the system automatically select the appropriate color space.
+ * If <b>isAuto</b> is set to <b>true</b>, the <b>colorSpace</b> parameter value is ignored.
+ *
+ * @param snapshotOptions Pointer to the target snapshot configuration options.
+ * @param colorSpace Target color space. Supported values: <b>3</b> (DISPLAY_P3), <b>4</b> (SRGB), <b>27</b>
+ *                   (DISPLAY_BT2020_SRGB).
+ * @param isAuto Whether to auto-detect the color space.
+ *               <b>true</b>: ignores the <b>colorSpace</b> parameter value and auto-detects the color space.
+ *               <b>false</b>: uses the color space specified by <b>colorSpace</b>.
+ * @return Returns the result code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @since 23
+ */
+int32_t OH_ArkUI_SnapshotOptions_SetColorMode(ArkUI_SnapshotOptions* snapshotOptions, int32_t colorSpace, bool isAuto);
+
+/**
+ * @brief Sets the dynamic range mode for snapshot capture.
+ * By default, the system captures snapshots in {@link ARKUI_DYNAMIC_RANGE_MODE_STANDARD} mode.
+ * To use a specific mode, specify it via the <b>dynamicRangeMode</b> parameter and set <b>isAuto</b> to <b>false</b>.
+ * Alternatively, set <b>isAuto</b> to <b>true</b> to let the system auto-detect the appropriate dynamic range mode.
+ * If <b>isAuto</b> is set to <b>true</b>, the <b>dynamicRangeMode</b> parameter value is ignored.
+ *
+ * @param snapshotOptions Pointer to the target snapshot configuration options.
+ * @param dynamicRangeMode Target dynamic range mode, specified using {@link ArkUI_DynamicRangeMode}.
+ * @param isAuto Whether to auto-detect the dynamic range mode.
+ *               <b>true</b>: ignores the <b>dynamicRangeMode</b> parameter value and auto-detects the dynamic range
+ *                            mode.
+ *               <b>false</b>: uses the dynamic range mode specified by <b>dynamicRangeMode</b>.
+ * @return Returns the result code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @since 23
+ */
+int32_t OH_ArkUI_SnapshotOptions_SetDynamicRangeMode(
+    ArkUI_SnapshotOptions* snapshotOptions, int32_t dynamicRangeMode, bool isAuto);
 
 /**
  * @brief Create a cross-language option instance.

@@ -11501,6 +11501,29 @@ int32_t OH_ArkUI_UnregisterDrawCallbackOnNodeHandle(ArkUI_NodeHandle node);
  *         Returns {@link ARKUI_ERROR_CODE_COMPONENT_SNAPSHOT_TIMEOUT} if the snapshot taking is timeout.
  * @since 15
  */
+/**
+ * @brief Obtains a snapshot of a given component. If the node is not in the component tree or has not been rendered,
+ * the snapshot operation will fail. When the <b>Pixelmap</b> object created is no longer in use, it should be released
+ * by calling {@link OH_PixelmapNative_Release}.
+ *
+ * @param node Target node.
+ * @param snapshotOptions Snapshot settings. If the value is null, the default settings are used.
+ *         Snapshot settings include scaling, color space, and dynamic range configuration.
+ *         Scaling: floating-point value greater than 0.
+ *         Color space: <b>3</b> (DISPLAY_P3), <b>4</b> (SRGB), <b>27</b> (DISPLAY_BT2020_SRGB).
+ *         Dynamic range: {@link ArkUI_DynamicRangeMode}.
+ * @param pixelmap Pointer to the <b>Pixelmap</b> object created by the system.
+ * @return Result code.
+ *         {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ *         Returns {@link ARKUI_ERROR_CODE_INTERNAL_ERROR} if the snapshot fails, returning a null pointer.
+ *         Returns {@link ARKUI_ERROR_CODE_COMPONENT_SNAPSHOT_TIMEOUT} if the snapshot operation times out.
+ *         Returns {@link ARKUI_ERROR_CODE_COMPONENT_SNAPSHOT_MODE_NOT_SUPPORTED} if the provided color space or
+ *         dynamic range mode is not supported.
+ *         Returns {@link ARKUI_ERROR_CODE_COMPONENT_SNAPSHOT_AUTO_NOT_SUPPORTED} if the isAuto parameter of the color
+ *         space or dynamic range mode is set to true for offscreen node snapshot.
+ * @since 23
+ */
 int32_t OH_ArkUI_GetNodeSnapshot(ArkUI_NodeHandle node, ArkUI_SnapshotOptions* snapshotOptions,
     OH_PixelmapNative** pixelmap);
 
