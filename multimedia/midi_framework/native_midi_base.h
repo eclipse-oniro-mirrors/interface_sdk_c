@@ -98,6 +98,12 @@ typedef enum {
     MIDI_STATUS_TIMEOUT,
 
     /**
+     * @error The client has reached the maximum number of open ports allowed.
+     * To open a new port, the client must close an existing one first.
+     */
+    MIDI_STATUS_TOO_MANY_OPEN_PORTS,
+
+    /**
      * @error The Midi system service has died or disconnected.
      * The client must be destroyed and recreated.
      */
@@ -269,7 +275,7 @@ typedef struct {
     /**
      * @brief Name of the port.
      */
-    char name[256];
+    char name[42];
 } OH_MidiPortInformation;
 
 /**
