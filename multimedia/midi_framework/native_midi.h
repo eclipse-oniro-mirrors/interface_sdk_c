@@ -214,15 +214,45 @@ OH_MidiStatusCode OH_MidiClosePort(OH_MidiDevice *device, uint32_t portIndex);
  * or {@link #MIDI_STATUS_INVALID_PORT} if portindex is invalid, or not open.
  * or {@link #MIDI_STATUS_WOULD_BLOCK} if buffer is full (check eventsWritten).
  * or {@link #MIDI_STATUS_GENERIC_INVALID_ARGUMENT} if arguments are invalid.
+ * or {@link #MIDI_STATUS_GENERIC_IPC_FAILURE} if connection to system service fails.
  * @since 24
  */
 OH_MidiStatusCode OH_MidiSend(OH_MidiDevice *device,
-                           OH_MidiPortDescriptor descriptor,
-                           OH_MidiEvent *events,
-                           uint32_t eventCount,
-                           uint32_t *eventsWritten);
+                              OH_MidiPortDescriptor descriptor,
+                              OH_MidiEvent *events,
+                              uint32_t eventCount,
+                              uint32_t *eventsWritten);
 
-
+/**
+ * @brief Send a large SysEx message (Byte-Stream to UMP Helper)
+ *
+ * This is a UTILITY function for applications that handle SysEx as raw byte streams(Midi 1,0 style, F0...F7).
+ *
+ * How it works:
+ * 1. It automatically fragments the raw bytes into a sequence of UMP Type 3(64-bit Data Message) packets.
+ * 2. It sends these packets sequentially using OH_MidiSend.
+ *
+ * @note If your application already generates UMP packets(Type 3) for SysEx,
+ * DO NOT use this function. Use OH_MidiSend directly.
+ *
+ * @warning **BLOCKING CALL**: This function executes a loop and may block if the buffer fills up.
+ *
+ * @param device Target device handle.
+ * @param portIndex Target port index.
+ * @param data Pointer to the array of events to send.
+ * @param byteSize Number of events in the array.
+ * @return {@link #MIDI_STATUS_OK} if all events were written.
+ * or {@link #MIDI_STATUS_INVALID_DEVICE_HANDLE} if device is invalid.
+ * or {@link #MIDI_STATUS_INVALID_PORT} if portindex is invalid, or not open.
+ * or {@link #MIDI_STATUS_TIMEOUT} could not be completed within a reasonable time,
+ *                                 may use OH_MIDIFlushOutputPort to reset.
+ * or {@link #MIDI_STATUS_GENERIC_INVALID_ARGUMENT} if arguments are invalid.
+ * @since 24
+ */
+OH_MidiStatusCode OH_MidiSendSysEx(OH_MidiDevice *device,
+                                   uint32_t portIndex,
+                                   uint8_t *data,
+                                   uint32_t byteSize);
 
 /**
  * @brief Flush pending messages in output buffer
@@ -234,12 +264,14 @@ OH_MidiStatusCode OH_MidiSend(OH_MidiDevice *device,
  * @note This does NOT send "All Notes Off" messages. It simply clears the queue.
  *
  * @param device Target device handle.
- * @param descriptor Target port and protocol.
+ * @param portIndex Target port index.
  * @return {@link #MIDI_STATUS_OK} if execution succeeds,
  * or {@link #MIDI_STATUS_INVALID_DEVICE_HANDLE} if device is invalid.
+ * or {@link #MIDI_STATUS_INVALID_PORT} if portIndex invalid or not a output port.
+ * or {@link #MIDI_STATUS_GENERIC_IPC_FAILURE} if connection to system service fails.
  * @since 24
  */
-MidiStatusCode OH_MIDI_Flush(MidiDevice *device, MidiPortDescriptor descriptor);
+OH_MidiStatusCode OH_MIDIFlushOutputPort(MidiDevice *device, uint32_t portIndex);
 
 #ifdef __cplusplus
 }
