@@ -152,7 +152,7 @@ OH_MidiStatusCode OH_MidiGetDevicePorts(OH_MidiDevice *device, OH_MidiPortInform
  *
  * @param device Target device handle.
  * @param descriptor Port index and protocol configuration.
- * @param inputHandler Callback function invoked when data is available.
+ * @param callback Callback function invoked when data is available.
  * @param userData Context pointer passed to the callback.
  * @return {@link #MIDI_STATUS_OK} if execution succeeds.
  * or {@link #MIDI_STATUS_INVALID_DEVICE_HANDLE} if device is invalid.
@@ -163,7 +163,7 @@ OH_MidiStatusCode OH_MidiGetDevicePorts(OH_MidiDevice *device, OH_MidiPortInform
  */
 OH_MidiStatusCode OH_MidiOpenInputPort(OH_MidiDevice *device,
                                        OH_MidiPortDescriptor descriptor,
-                                       OH_MidiInputHandler inputHandler,
+                                       OH_OnMidiReceived callback,
                                        void *userData);
 
 /**
@@ -271,7 +271,7 @@ OH_MidiStatusCode OH_MidiSendSysEx(OH_MidiDevice *device,
  * or {@link #MIDI_STATUS_GENERIC_IPC_FAILURE} if connection to system service fails.
  * @since 24
  */
-OH_MidiStatusCode OH_MIDIFlushOutputPort(MidiDevice *device, uint32_t portIndex);
+OH_MidiStatusCode OH_MidiFlushOutputPort(MidiDevice *device, uint32_t portIndex);
 
 #ifdef __cplusplus
 }

@@ -306,7 +306,7 @@ typedef void (*OH_OnMidiDeviceChange)(void *userData,
  * @param eventCount The number of events in the array.
  * @since 24
  */
-typedef void (*OH_MidiInputHandler)(void *userData, const OH_MidiEvent *events, size_t eventCount);
+typedef void (*OH_OnMidiReceived)(void *userData, const OH_MidiEvent *events, size_t eventCount);
 
 /**
  * @brief Callback for handling client-level errors
