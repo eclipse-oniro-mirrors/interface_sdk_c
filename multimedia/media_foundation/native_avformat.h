@@ -161,6 +161,17 @@ bool OH_AVFormat_Copy(struct OH_AVFormat *to, struct OH_AVFormat *from);
 bool OH_AVFormat_SetIntValue(struct OH_AVFormat *format, const char *key, int32_t value);
 
 /**
+ * @brief Write unsigned integer data to OH_AVFormat
+ * @param format pointer to an OH_AVFormat instance
+ * @param key key to write data
+ * @param value written data
+ * @return The return value is TRUE for success, FALSE for failure
+ * Possible failure causes: 1. input format is nullptr. 2. input format's magic error. 3. key is nullptr.
+ * @since 23
+ */
+bool OH_AVFormat_SetUintValue(struct OH_AVFormat *format, const char *key, uint32_t value);
+
+/**
  * @brief Write Long data to OH_AVFormat
  * @syscap SystemCapability.Multimedia.Media.Core
  * @param format pointer to an OH_AVFormat instance
@@ -241,6 +252,18 @@ bool OH_AVFormat_SetBuffer(struct OH_AVFormat *format, const char *key, const ui
  * @version 1.0
  */
 bool OH_AVFormat_GetIntValue(struct OH_AVFormat *format, const char *key, int32_t *out);
+
+/**
+ * @brief Read unsigned integer data from OH_AVFormat
+ * @param format pointer to an OH_AVFormat instance
+ * @param key read key value
+ * @param out read data
+ * @return The return value is TRUE for success, FALSE for failure
+ * Possible failure causes: 1. input format is nullptr. 2. input format's magic error. 3. key is nullptr.
+ * 4. out is nullptr.
+ * @since 23
+ */
+bool OH_AVFormat_GetUintValue(struct OH_AVFormat *format, const char *key, uint32_t *out);
 
 /**
  * @brief Read Long data from OH_AVFormat
