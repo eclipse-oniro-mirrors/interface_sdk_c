@@ -93,6 +93,11 @@ typedef enum {
     MIDI_STATUS_WOULD_BLOCK,
 
     /**
+     * @error Operation can not be handle in a resonable time.
+     */
+    MIDI_STATUS_TIMEOUT,
+
+    /**
      * @error The Midi system service has died or disconnected.
      * The client must be destroyed and recreated.
      */
