@@ -778,5 +778,13 @@
     {
         "first_introduced": "23",
         "name": "OH_PreviewOutput_EnableBandwidthCompression"
+    },
+    {
+        "first_introduced": "23",
+        "name": "OH_CameraManager_GetSupportedFullCameraOutputCapabilityWithSceneMode"
+    },
+    {
+        "first_introduced": "23",
+        "name": "OH_PhotoNative_GetUncompressedImage"
     }
 ]
