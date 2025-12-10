@@ -88,10 +88,6 @@ OH_MidiStatusCode OH_MidiClient_Destroy(OH_MidiClient *client);
  */
 OH_MidiStatusCode OH_MidiGetDevices(OH_MidiClient *client, OH_MidiDeviceInformation *infos, size_t *numDevices);
 
-// ============================================================================================
-// Device Management
-// ============================================================================================
-
 /**
  * @brief Open Midi device
  *
@@ -100,6 +96,7 @@ OH_MidiStatusCode OH_MidiGetDevices(OH_MidiClient *client, OH_MidiDeviceInformat
  * @param device Pointer to receive the device handle.
  * @return {@link #MIDI_STATUS_OK} if execution succeeds.
  * or {@link #MIDI_STATUS_INVALID_CLIENT} if client is invalid.
+ * or {@link #MIDI_STATUS_DEVICE_ALREADY_OPEN} if device is opened by this client.
  * or {@link #MIDI_STATUS_GENERIC_INVALID_ARGUMENT} if device is nullptr, or the deviceId does not exist.
  * or {@link #MIDI_STATUS_GENERIC_IPC_FAILURE} if connection to system service fails.
  * @since 24
