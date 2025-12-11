@@ -133,7 +133,9 @@ OH_AVErrCode OH_AVSource_Destroy(OH_AVSource *source);
  * @param source Pointer to an OH_AVSource instance.
  * @return Returns the source's format info if the execution is successful, otherwise returns nullptr.
  * Possible failure causes:
- *  1. source is invalid.
+ *  1. source is invalid;
+ *  2. NULL or non OH_AVSource instance;
+ *  3. the source has not been initialized.
  * @since 10
 */
 OH_AVFormat *OH_AVSource_GetSourceFormat(OH_AVSource *source);
