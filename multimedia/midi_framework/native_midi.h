@@ -148,7 +148,7 @@ OH_MidiStatusCode OH_MidiGetDevicePorts(OH_MidiDevice *device, OH_MidiPortInform
  * Registers a callback to receive Midi data in batches.
  *
  * @param device Target device handle.
- * @param descriptor Port index and protocol configuration.
+ * @param portIndex Port index on device.
  * @param callback Callback function invoked when data is available.
  * @param userData Context pointer passed to the callback.
  * @return {@link #MIDI_STATUS_OK} if execution succeeds.
@@ -159,7 +159,7 @@ OH_MidiStatusCode OH_MidiGetDevicePorts(OH_MidiDevice *device, OH_MidiPortInform
  * @since 24
  */
 OH_MidiStatusCode OH_MidiOpenInputPort(OH_MidiDevice *device,
-                                       OH_MidiPortDescriptor descriptor,
+                                       uint32_t portIndex,
                                        OH_OnMidiReceived callback,
                                        void *userData);
 
@@ -268,7 +268,7 @@ OH_MidiStatusCode OH_MidiSendSysEx(OH_MidiDevice *device,
  * or {@link #MIDI_STATUS_GENERIC_IPC_FAILURE} if connection to system service fails.
  * @since 24
  */
-OH_MidiStatusCode OH_MidiFlushOutputPort(MidiDevice *device, uint32_t portIndex);
+OH_MidiStatusCode OH_MidiFlushOutputPort(OH_MidiDevice *device, uint32_t portIndex);
 
 #ifdef __cplusplus
 }

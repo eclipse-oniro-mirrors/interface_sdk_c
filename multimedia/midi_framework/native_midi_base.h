@@ -280,7 +280,7 @@ typedef struct {
     /**
      * @brief Name of the port.
      */
-    char name[42];
+    char name[64];
 } OH_MidiPortInformation;
 
 /**
