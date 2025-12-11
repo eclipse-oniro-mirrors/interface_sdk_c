@@ -922,7 +922,7 @@ int32_t OH_NativeWindow_PreAllocBuffers(OHNativeWindow *window, uint32_t allocBu
  * @param buffer Indicates the pointer to an <b>OHNativeWindowBuffer</b> pointer.
  * @return {@link NATIVE_ERROR_OK} 0 - Success.
  *     {@link NATIVE_ERROR_INVALID_ARGUMENTS} 40001000 - window or buffer is NULL.
- *     {@link SURFACE_ERROR_ERROR} 50002000 - surface of window is NULL.
+ *     {@link NATIVE_ERROR_UNKNOWN} 50002000 - surface of window is NULL.
  * @since 23
  * @version 1.0
  */
@@ -937,7 +937,7 @@ int32_t OH_NativeWindow_LockBuffer(OHNativeWindow* window, Region region, OHNati
  * @param window Indicates the pointer to a <b>OHNativeWindow</b> instance.
  * @return {@link NATIVE_ERROR_OK} 0 - Success.
  *     {@link NATIVE_ERROR_INVALID_ARGUMENTS} 40001000 - window is NULL.
- *     {@link SURFACE_ERROR_ERROR} 50002000 - surface of window is NULL.
+ *     {@link NATIVE_ERROR_UNKNOWN} 50002000 - surface of window is NULL.
  * @since 23
  * @version 1.0
  */
