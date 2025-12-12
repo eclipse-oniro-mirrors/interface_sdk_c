@@ -14,17 +14,6 @@
  */
 
 /**
- * @addtogroup HiDebug
- * @{
- *
- * @brief Provides debug code define.
- *
- * For example, you can use these code for check result or parameter of HiDebug function.
- *
- * @since 12
- */
-
-/**
  * @file hidebug_type.h
  *
  * @brief Defines the code of the HiDebug module.
@@ -32,6 +21,17 @@
  * @kit PerformanceAnalysisKit
  * @library libohhidebug.so
  * @syscap SystemCapability.HiviewDFX.HiProfiler.HiDebug
+ * @since 12
+ */
+
+/**
+ * @addtogroup HiDebug
+ * @{
+ *
+ * @brief Provides debug code define.
+ *
+ * For example, you can use these code for check result or parameter of HiDebug function.
+ *
  * @since 12
  */
 
@@ -376,6 +376,31 @@ typedef struct HiDebug_ProcessSamplerConfig {
      */
     uint32_t reserved;
 } HiDebug_ProcessSamplerConfig;
+
+/**
+ * @brief Types of crash objects for diagnostic information
+ *
+ * @since 23
+ */
+typedef enum HiDebug_CrashObjType {
+    /** Null-terminated string */
+    HIDEBUG_CRASHOBJ_STRING = 0,
+
+    /** 64-byte memory block */
+    HIDEBUG_CRASHOBJ_MEMORY_64B = 1,
+
+    /** 256-byte memory block */
+    HIDEBUG_CRASHOBJ_MEMORY_256B = 2,
+
+    /**1KB memory block */
+    HIDEBUG_CRASHOBJ_MEMORY_1024B = 3,
+
+    /** 2KB memory block */
+    HIDEBUG_CRASHOBJ_MEMORY_2048B = 4,
+
+    /**4KB memory block */
+    HIDEBUG_CRASHOBJ_MEMORY_4096B = 5
+} HiDebug_CrashObjType;
 
 #ifdef __cplusplus
 }
