@@ -392,13 +392,13 @@ typedef enum HiDebug_CrashObjType {
     /** 256-byte memory block */
     HIDEBUG_CRASHOBJ_MEMORY_256B = 2,
 
-    /**1KB memory block */
+    /** 1KB memory block */
     HIDEBUG_CRASHOBJ_MEMORY_1024B = 3,
 
     /** 2KB memory block */
     HIDEBUG_CRASHOBJ_MEMORY_2048B = 4,
 
-    /**4KB memory block */
+    /** 4KB memory block */
     HIDEBUG_CRASHOBJ_MEMORY_4096B = 5
 } HiDebug_CrashObjType;
 
