@@ -1,4 +1,3 @@
-
 /*
  * Copyright (c) 2024 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -15,17 +14,6 @@
  */
 
 /**
- * @file hidebug.h
- *
- * @brief Defines the debug functions of the HiDebug module.
- *
- * @library libohhidebug.so
- * @kit PerformanceAnalysisKit
- * @syscap SystemCapability.HiviewDFX.HiProfiler.HiDebug
- * @since 12
- */
-
-/**
  * @addtogroup HiDebug
  * @{
  *
@@ -33,6 +21,17 @@
  *
  * For example, you can use these functions to obtain cpu uage, memory, heap, capture trace.
  *
+ * @since 12
+ */
+
+/**
+ * @file hidebug.h
+ *
+ * @brief Defines the debug functions of the HiDebug module.
+ *
+ * @library libohhidebug.so
+ * @kit PerformanceAnalysisKit
+ * @syscap SystemCapability.HiviewDFX.HiProfiler.HiDebug
  * @since 12
  */
 #ifndef HIVIEWDFX_HIDEBUG_H
