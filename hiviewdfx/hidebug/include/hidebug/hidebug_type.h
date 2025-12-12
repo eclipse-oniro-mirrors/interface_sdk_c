@@ -220,32 +220,32 @@ typedef struct HiDebug_JsStackFrame {
      * The pc relative to the start of current file in /proc/self/maps
      */
     uint64_t relativePc;
- 
+
     /**
      * The line number of the source code from url
      */
     int32_t line;
- 
+
     /**
      * The column number of the source code from url
      */
     int32_t column;
- 
+
     /**
      * The name parsed by pc from /proc/self/maps, maybe NULL
      */
     const char* mapName;
- 
+
     /**
      * The functionName of current frame, maybe NULL
      */
     const char* functionName;
- 
+
     /**
      * The url of current frame, maybe NULL
      */
     const char* url;
- 
+
     /**
      * The packageName of current frame, maybe NULL
      */
@@ -262,27 +262,27 @@ typedef struct HiDebug_NativeStackFrame {
      * The pc relative to the start of current file in /proc/self/maps
      */
     uint64_t relativePc;
- 
+
     /**
      * The pc relative to the start of current function
      */
     uint64_t funcOffset;
- 
+
     /**
      * The name parsed by pc from /proc/self/maps
      */
     const char* mapName;
- 
+
     /**
      * The functionName parsed by relativePc from symbol table in elf, maybe NULL
      */
     const char* functionName;
- 
+
     /**
      * The buildId parsed from .note.gnu.build-id in elf, maybe NULL
      */
     const char* buildId;
- 
+
     /**
      * Reserved, maybe NULL
      */
