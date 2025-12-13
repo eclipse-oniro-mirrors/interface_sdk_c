@@ -124,6 +124,59 @@ typedef struct {
 } ArkUI_GridItemRect;
 
 /**
+ * @brief Enumerates the selected indicator type of picker.
+ *
+ * @since 23
+ */
+typedef enum {
+    /** background. */
+    ARKUI_PICKER_INDICATOR_BACKGROUND = 0,
+    /** divider. */
+    ARKUI_PICKER_INDICATOR_DIVIDER = 1,
+} ArkUI_PickerIndicatorType;
+
+/**
+ * @brief Style parameters of background indicator.
+ *
+ * @since 23
+ */
+typedef struct {
+    /**  background color, 0xARGB format for example <b>0xFF1122FF</b> */
+    uint32_t backgroundColor;
+    /** radius of the top left corner. */
+    float topLeftRadius;
+    /** radius of the top right corner */
+    float topRightRadius;
+    /** radius of the bottom left corner */
+    float bottomLeftRadius;
+    /** radius of the bottom right corner. */
+    float bottomRightRadius;
+} ArkUI_PickerIndicatorBackground;
+
+/**
+ * @brief Style parameters of divider indicator.
+ *
+ * @since 23
+ */
+typedef struct {
+    /** stroke width */
+    float strokeWidth;
+    /** divider color, 0xARGB format for example <b>0xFF1122FF</b> */
+    uint32_t dividerColor;
+    /** the distance between the divider and the beginning of the side of the picker (unit: vp). */
+    float startMargin;
+    /** the distance between the divider and the end of the side of the picker (unit: vp). */
+    float endMargin;
+} ArkUI_PickerIndicatorDivider;
+
+/**
+ * @brief Definition of indicator style.
+ *
+ * @since 23
+ */
+typedef struct ArkUI_PickerIndicatorStyle ArkUI_PickerIndicatorStyle;
+
+/**
  * @brief Defines the <b>Grid</b> layout options.
  *
  * @since 22
@@ -312,6 +365,19 @@ typedef struct ArkUI_PixelRoundPolicy ArkUI_PixelRoundPolicy;
  * @since 22
  */
 typedef struct ArkUI_ShowCounterConfig ArkUI_ShowCounterConfig;
+
+/**
+ * @brief Defines the text content base controller.
+ *
+ * @since 23
+ */
+typedef struct ArkUI_TextContentBaseController ArkUI_TextContentBaseController;
+
+/**
+ * @brief Defines the selected drag preview style configuration.
+ * @since 23
+ */
+typedef struct ArkUI_SelectedDragPreviewStyle ArkUI_SelectedDragPreviewStyle;
 
 /**
  * @brief Defines the event callback type.
@@ -2470,27 +2536,27 @@ typedef enum {
     ARKUI_ERROR_CODE_FORCE_DARK_CONFIG_INVALID = 106205,
     /**
      * @error The node has already been adopted.
-     * @since 23
+     * @since 22
      */
     ARKUI_ERROR_CODE_NODE_IS_ADOPTED = 106206,
     /**
      * @error This node already has a parent node.
-     * @since 23
+     * @since 22
      */
     ARKUI_ERROR_CODE_NODE_HAS_PARENT = 106207,
     /**
      * @error The node cannot be adopted.
-     * @since 23
+     * @since 22
      */
     ARKUI_ERROR_CODE_NODE_CAN_NOT_BE_ADOPTED = 106208,
     /**
      * @error The node cannot adopt children.
-     * @since 23
+     * @since 22
      */
     ARKUI_ERROR_CODE_NODE_CAN_NOT_ADOPT_TO = 106209,
     /**
      * @error This child node is not adopted by the parent node.
-     * @since 23
+     * @since 22
      */
     ARKUI_ERROR_CODE_NODE_IS_NOT_IN_ADOPTED_CHILDREN = 106210,
     /**
@@ -2520,18 +2586,18 @@ typedef enum {
     ARKUI_ERROR_CODE_PARAM_OUT_OF_RANGE = 106405,
     /**
      * @error The RenderNode is obtained from a FrameNode.
-     * @since 23
+     * @since 22
      */
     ARKUI_ERROR_CODE_RENDER_IS_FROM_FRAME_NODE = 106406,
     /**
      * @error The RenderNode is obtained from a FrameNode,
      * and its corresponding FrameNode is no longer in the adopted state.
-     * @since 23
+     * @since 22
      */
     ARKUI_ERROR_CODE_RENDER_HAS_INVALID_FRAME_NODE = 106407,
     /**
      * @error The node is not adopted.
-     * @since 23
+     * @since 22
      */
     ARKUI_ERROR_CODE_RENDER_NOT_ADOPTED_NODE = 106408,
     /**
@@ -2554,6 +2620,18 @@ typedef enum {
      * @since 15
      */
     ARKUI_ERROR_CODE_COMPONENT_SNAPSHOT_TIMEOUT = 160002,
+    /**
+     * @error The provided color space or dynamic range mode is not supported. For details about the error codes,
+     * see [Snapshot Error Codes](../apis-arkui/errorcode-snapshot.md).
+     * @since 23
+     */
+    ARKUI_ERROR_CODE_COMPONENT_SNAPSHOT_MODE_NOT_SUPPORTED = 160003,
+    /**
+     * @error The isAuto parameter of the color space or dynamic range mode is set to true for offscreen node snapshot.
+     * For details about the error codes, see [Snapshot Error Codes](../apis-arkui/errorcode-snapshot.md).
+     * @since 23
+     */
+    ARKUI_ERROR_CODE_COMPONENT_SNAPSHOT_AUTO_NOT_SUPPORTED = 160004,
     /** The component is not a scroll container. */
     ARKUI_ERROR_CODE_NON_SCROLLABLE_CONTAINER = 180001,
     /** The buffer is not large enough. */
@@ -2695,6 +2773,37 @@ typedef enum {
      *  in forward direction. */
     ARKUI_ANIMATION_DIRECTION_ALTERNATE_REVERSE,
 } ArkUI_AnimationDirection;
+
+/**
+ * @brief Enumerates the hover effects when a component is hovered over.
+ *
+ * @since 23
+ */
+typedef enum {
+    /** Default effect. */
+    ARKUI_HOVER_EFFECT_AUTO = 0,
+    /** Scale effect. */
+    ARKUI_HOVER_EFFECT_SCALE,
+    /** Highlight effect. */
+    ARKUI_HOVER_EFFECT_HIGHLIGHT,
+    /** No effect. */
+    ARKUI_HOVER_EFFECT_NONE,
+} ArkUI_HoverEffect;
+
+/**
+ * @brief Enumerates the priority levels for focus management within the application.
+ * These levels determine the sequence in which UI components receive focus during user interaction.
+ *
+ * @since 23
+ */
+typedef enum {
+    /** Default priority. */
+    ARKUI_FOCUS_PRIORITY_AUTO = 0,
+    /** Higher priority. */
+    ARKUI_FOCUS_PRIORITY_PRIOR = 2000,
+    /** Previous focus priority. */
+    ARKUI_FOCUS_PRIORITY_PREVIOUS = 3000,
+} ArkUI_FocusPriority;
 
 /**
  * @brief Define the rolling source enumeration value.
@@ -3037,6 +3146,20 @@ typedef enum {
 } ArkUI_PixelRoundCalcPolicy;
 
 /**
+ * @brief Menu pop-up strategy.
+ *
+ * @since 23
+ */
+typedef enum {
+    /** Determine whether to pop up the menu according to the underlying default logic. */
+    ARKUI_MENU_POLICY_DEFAULT = 0,
+    /** Never pop up the menu. */
+    ARKUI_MENU_POLICY_HIDE = 1,
+    /** Always pop up the menu. */
+    ARKUI_MENU_POLICY_SHOW = 2,
+} ArkUI_MenuPolicy;
+
+/**
  * @brief Define the direction to expand the swipe action.
  *
  * @since 21
@@ -3053,6 +3176,92 @@ typedef enum {
      */
     ARKUI_LIST_ITEM_SWIPE_ACTION_DIRECTION_END = 1,
 } ArkUI_ListItemSwipeActionDirection;
+
+/**
+ * @brief Enumerates the input tool types supported for response region configuration.
+ *
+ * @since 23
+ */
+typedef enum {
+    /** All input tool types. */
+    ARKUI_RESPONSE_REGIN_SUPPORTED_TOOL_ALL = 0,
+    /** Finger input. */
+    ARKUI_RESPONSE_REGIN_SUPPORTED_TOOL_FINGER = 1,
+    /** Stylus input. */
+    ARKUI_RESPONSE_REGIN_SUPPORTED_TOOL_PEN = 2,
+    /** Mouse input. */
+    ARKUI_RESPONSE_REGIN_SUPPORTED_TOOL_MOUSE = 3,
+} ArkUI_ResponseRegionSupportedTool;
+/**
+ * @brief Define the types for expanding the safe area in layout.
+ *
+ * @since 23
+ */
+typedef enum {
+    /** Default non-safe area of the system, including the status bar and navigation bar. */
+    ARKUI_LAYOUT_SAFE_AREA_TYPE_SYSTEM = 1,
+} ArkUI_LayoutSafeAreaType;
+/**
+ * @brief Define the edges for expanding the safe area in layout.
+ *
+ * @since 23
+ */
+typedef enum {
+    /** Top edge of the safe area. */
+    ARKUI_LAYOUT_SAFE_AREA_EDGE_TOP = 1,
+    /** Bottom edge of the safe area. */
+    ARKUI_LAYOUT_SAFE_AREA_EDGE_BOTTOM = 1 << 1,
+    /** Start edge of the safe area. */
+    ARKUI_LAYOUT_SAFE_AREA_EDGE_START = 1 << 2,
+    /** End edge of the safe area. */
+    ARKUI_LAYOUT_SAFE_AREA_EDGE_END = 1 << 3,
+    /** Vertical edge of the safe area. */
+    ARKUI_LAYOUT_SAFE_AREA_EDGE_VERTICAL = ARKUI_LAYOUT_SAFE_AREA_EDGE_TOP | ARKUI_LAYOUT_SAFE_AREA_EDGE_BOTTOM,
+    /** Horizontal edge of the safe area. */
+    ARKUI_LAYOUT_SAFE_AREA_EDGE_HORIZONTAL = ARKUI_LAYOUT_SAFE_AREA_EDGE_START | ARKUI_LAYOUT_SAFE_AREA_EDGE_END,
+    /** All edges of the safe area. */
+    ARKUI_LAYOUT_SAFE_AREA_EDGE_ALL = ARKUI_LAYOUT_SAFE_AREA_EDGE_VERTICAL | ARKUI_LAYOUT_SAFE_AREA_EDGE_HORIZONTAL,
+} ArkUI_LayoutSafeAreaEdge;
+
+/**
+ * @brief Enumerates the localizedAlignment modes.
+ *
+ * @since 23
+ */
+typedef enum {
+    /** Top start. */
+    ARKUI_LOCALIZED_ALIGNMENT_TOP_START = 0,
+    /** Top center. */
+    ARKUI_LOCALIZED_ALIGNMENT_TOP,
+    /** Top end. */
+    ARKUI_LOCALIZED_ALIGNMENT_TOP_END,
+    /** Vertically centered start. */
+    ARKUI_LOCALIZED_ALIGNMENT_START,
+    /** Horizontally and vertically centered. */
+    ARKUI_LOCALIZED_ALIGNMENT_CENTER,
+    /** Vertically centered end. */
+    ARKUI_LOCALIZED_ALIGNMENT_END,
+    /** Bottom start. */
+    ARKUI_LOCALIZED_ALIGNMENT_BOTTOM_START,
+    /** Horizontally centered on the bottom. */
+    ARKUI_LOCALIZED_ALIGNMENT_BOTTOM,
+    /** Bottom end. */
+    ARKUI_LOCALIZED_ALIGNMENT_BOTTOM_END,
+} ArkUI_LocalizedAlignment;
+/**
+ * @brief Enumerates the graphics rendering strategy.
+ *
+ * @since 23
+ */
+typedef enum {
+    /** The current component and its child components will be drawn directly onto the screen canvas. */
+    ARKUI_RENDERSTRATEGY_FAST = 0,
+    /**
+    * The current component and its child components will first be drawn onto an off-screen canvas,
+    *     then undergo some graphic rendering operations, and finally be drawn onto the main canvas.
+    */
+    ARKUI_RENDERSTRATEGY_OFFSCREEN,
+} ArkUI_RenderStrategy;
 
 /**
  * @brief Defines parameter used by the system font style callback event.
@@ -3081,6 +3290,13 @@ typedef struct ArkUI_TextPickerRangeContentArray ArkUI_TextPickerRangeContentArr
    * @since 19
    */
 typedef struct ArkUI_TextCascadePickerRangeContentArray ArkUI_TextCascadePickerRangeContentArray;
+
+ /**
+   * @brief Defines the options for selection operation.
+   *
+   * @since 23
+   */
+typedef struct ArkUI_SelectionOptions ArkUI_SelectionOptions;
 
 /**
 * @brief Creates a size constraint.
@@ -5494,6 +5710,50 @@ void OH_ArkUI_DestroySnapshotOptions(ArkUI_SnapshotOptions* snapshotOptions);
 int32_t OH_ArkUI_SnapshotOptions_SetScale(ArkUI_SnapshotOptions* snapshotOptions, float scale);
 
 /**
+ * @brief Sets the color mode for snapshot capture.
+ * By default, snapshots are captured in SRGB mode, which may lose visual effects for components using wide color
+ * gamut display modes.
+ * If the target component's color space is known, specify it through <b>colorSpace</b> and set <b>isAuto</b> to
+ * <b>false</b> to achieve optimal snapshot quality.
+ * Since determining the exact color space used by a component is often difficult, set <b>isAuto</b> to <b>true</b>
+ * to let the system automatically select the appropriate color space.
+ * If <b>isAuto</b> is set to <b>true</b>, the <b>colorSpace</b> parameter value is ignored.
+ *
+ * @param snapshotOptions Pointer to the target snapshot configuration options.
+ * @param colorSpace Target color space. Supported values: <b>3</b> (DISPLAY_P3), <b>4</b> (SRGB), <b>27</b>
+ *                   (DISPLAY_BT2020_SRGB).
+ * @param isAuto Whether to auto-detect the color space.
+ *               <b>true</b>: ignores the <b>colorSpace</b> parameter value and auto-detects the color space.
+ *               <b>false</b>: uses the color space specified by <b>colorSpace</b>.
+ * @return Returns the result code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @since 23
+ */
+int32_t OH_ArkUI_SnapshotOptions_SetColorMode(ArkUI_SnapshotOptions* snapshotOptions, int32_t colorSpace, bool isAuto);
+
+/**
+ * @brief Sets the dynamic range mode for snapshot capture.
+ * By default, the system captures snapshots in {@link ARKUI_DYNAMIC_RANGE_MODE_STANDARD} mode.
+ * To use a specific mode, specify it via the <b>dynamicRangeMode</b> parameter and set <b>isAuto</b> to <b>false</b>.
+ * Alternatively, set <b>isAuto</b> to <b>true</b> to let the system auto-detect the appropriate dynamic range mode.
+ * If <b>isAuto</b> is set to <b>true</b>, the <b>dynamicRangeMode</b> parameter value is ignored.
+ *
+ * @param snapshotOptions Pointer to the target snapshot configuration options.
+ * @param dynamicRangeMode Target dynamic range mode, specified using {@link ArkUI_DynamicRangeMode}.
+ * @param isAuto Whether to auto-detect the dynamic range mode.
+ *               <b>true</b>: ignores the <b>dynamicRangeMode</b> parameter value and auto-detects the dynamic range
+ *                            mode.
+ *               <b>false</b>: uses the dynamic range mode specified by <b>dynamicRangeMode</b>.
+ * @return Returns the result code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @since 23
+ */
+int32_t OH_ArkUI_SnapshotOptions_SetDynamicRangeMode(
+    ArkUI_SnapshotOptions* snapshotOptions, int32_t dynamicRangeMode, bool isAuto);
+
+/**
  * @brief Create a cross-language option instance.
  *
  * @return Returns a cross-language option instance. If the result is a null pointer, it may be out of memory.
@@ -6514,20 +6774,6 @@ typedef enum {
 } ArkUI_TextResponseType;
 
 /**
- * @brief Enumerates the haptic feedback mode.
- *
- * @since 23
- */
-typedef enum {
-    /** No haptic feedback. */
-    ARKUI_HAPTIC_FEEDBACK_MODE_DISABLED = 0,
-    /**Defines always haptic feedback. */
-    ARKUI_HAPTIC_FEEDBACK_MODE_ENABLED  = 1,
-    /** Defines automatically haptic feedback. */
-    ARKUI_HAPTIC_FEEDBACK_MODE_AUTO = 2,
-} ArkUI_HapticFeedbackMode;
-
-/**
  * @brief Create an object of the text selection menu options.
  *
  * @return A pointer to the ArkUI_TextSelectionMenuOptions.
@@ -6619,31 +6865,6 @@ ArkUI_ErrorCode OH_ArkUI_TextSelectionMenuOptions_GetResponseType(ArkUI_TextSele
     ArkUI_TextResponseType* responseType);
 
 /**
- * @brief Sets the haptic feedback mode of a configuration object for selected text recognition.
- *
- * @param selectionMenuOptions Pointer to the ArkUI_TextSelectionMenuOptions object.
- * @param hapticFeedbackMode The haptic feedback mode of {@link ArkUI_HapticFeedbackMode}.
- * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
- * @since 23
- */
-ArkUI_ErrorCode OH_ArkUI_TextSelectionMenuOptions_SetHapticFeedbackMode(
-    ArkUI_TextSelectionMenuOptions* selectionMenuOptions, ArkUI_HapticFeedbackMode hapticFeedbackMode);
-/**
- * @brief Gets the haptic feedback mode of a configuration object for selected text recognition.
- *
- * @param selectionMenuOptions Pointer to the ArkUI_TextSelectionMenuOptions object.
- * @param mode The haptic feedback mode of {@link ArkUI_HapticFeedbackMode}.
- * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
- * @since 23
- */
-ArkUI_ErrorCode OH_ArkUI_TextSelectionMenuOptions_GetHapticFeedbackMode(
-    ArkUI_TextSelectionMenuOptions* selectionMenuOptions, ArkUI_HapticFeedbackMode* mode);
-
-/**
  * @brief Set the event to be called when selection menu show.
  *
  * @param selectionMenuOptions Pointer to the ArkUI_TextSelectionMenuOptions object.
@@ -6677,6 +6898,509 @@ ArkUI_ErrorCode OH_ArkUI_TextSelectionMenuOptions_RegisterOnMenuShowCallback(
 ArkUI_ErrorCode OH_ArkUI_TextSelectionMenuOptions_RegisterOnMenuHideCallback(
     ArkUI_TextSelectionMenuOptions* selectionMenuOptions, void* userData,
     void (*callback)(int32_t start, int32_t end, void* userData));
+
+/**
+ * @brief Create selection options.
+ *
+ * @return A pointer to the selection options object.
+ * @since 23
+ */
+ArkUI_SelectionOptions* OH_ArkUI_SelectionOptions_Create();
+
+/**
+ * @brief Dispose selection options object.
+ *
+ * @param {ArkUI_SelectionOptions*} options Pointer to the selection options object. to be disposed.
+ * @since 23
+ */
+void OH_ArkUI_SelectionOptions_Dispose(ArkUI_SelectionOptions* options);
+
+/**
+ * @brief Sets the menu policy for selection options.
+ *
+ * @param {ArkUI_SelectionOptions*} options Pointer to the selection options.
+ * @param {ArkUI_MenuPolicy} menuPolicy The menu policy.
+ * @since 23
+ */
+void OH_ArkUI_SelectionOptions_SetMenuPolicy(
+    ArkUI_SelectionOptions* options, ArkUI_MenuPolicy menuPolicy);
+
+/**
+ * @brief Gets the menu policy of selection options.
+ *
+ * @param {ArkUI_SelectionOptions*} options Pointer to the selection options object.
+ * @return Returns the menu policy.
+ * @since 23
+ */
+ArkUI_MenuPolicy OH_ArkUI_SelectionOptions_GetMenuPolicy(ArkUI_SelectionOptions* options);
+
+/**
+ * @brief Create an object of the text content base controller.
+ *
+ * @return A pointer to the controller object.
+ * @since 23
+ */
+ArkUI_TextContentBaseController* OH_ArkUI_TextContentBaseController_Create();
+
+/**
+ * @brief Dispose an object of the text content base controller.
+ *
+ * @param {ArkUI_TextContentBaseController*} controller Pointer to the controller object to be disposed.
+ * @since 23
+ */
+void OH_ArkUI_TextContentBaseController_Dispose(ArkUI_TextContentBaseController* controller);
+
+/**
+ * @brief Delete the character before the caret of the input field component in editing state.
+ *        Otherwise, delete the last character of the input field component.
+ *
+ * @param {ArkUI_TextContentBaseController*} controller Pointer to the configuration object to be modified.
+ * @since 23
+ */
+void OH_ArkUI_TextContentBaseController_DeleteBackward(ArkUI_TextContentBaseController* controller);
+
+/**
+ * @brief Scroll the input field component to make the specified content visible.
+ *
+ * @param {ArkUI_TextContentBaseController*} controller Pointer to the
+ * configuration object to be modified.
+ * @param {int32_t} start The start offset of the content to be made visible.
+ * @param {int32_t} end The end offset of the content to be made visible
+ * @since 23
+ */
+void OH_ArkUI_TextContentBaseController_ScrollToVisible(
+    ArkUI_TextContentBaseController *controller, int32_t start, int32_t end);
+
+/**
+ * @brief Defines the motion path options for path animation.
+ *
+ * @since 23
+ */
+typedef struct ArkUI_MotionPathOptions ArkUI_MotionPathOptions;
+
+/**
+ * @brief Create an object of the motion path options for path animation.
+ *        In the newly created ArkUI_MotionPathOptions, the "path" value is an empty string, the "from" value is 0,
+ *        the "to" value is 1, and the "rotatable" value is false.
+ *
+ * @return A pointer to the ArkUI_MotionPathOptions.
+ * @since 23
+ */
+ArkUI_MotionPathOptions* OH_ArkUI_MotionPathOptions_Create();
+
+/**
+ * @brief Dispose the ArkUI_MotionPathOptions object.
+ *
+ * @param options Pointer to the ArkUI_MotionPathOptions object to be disposed.
+ * @since 23
+ */
+void OH_ArkUI_MotionPathOptions_Dispose(ArkUI_MotionPathOptions* options);
+
+/**
+ * @brief Sets the the motion path for the animation using an SVG path string. The path supports using "start" and
+ *        "end" as placeholders for the starting and ending points, for example:
+ *        "Mstart.x start.y L50 50 Lend.x end.y Z". Refer to the SVG path format for the path string.
+ *        When set to an empty string, it is equivalent to not setting a path animation.
+ *
+ * @param options Pointer to the ArkUI_MotionPathOptions object.
+ * @param svgPath The motion path for the path animation.
+ * @return Returns the result code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ * @since 23
+ */
+ArkUI_ErrorCode OH_ArkUI_MotionPathOptions_SetPath(ArkUI_MotionPathOptions* options, const char* svgPath);
+
+/**
+ * @brief Gets the motion path string in the ArkUI_MotionPathOptions object.
+ *
+ * @param options Pointer to the ArkUI_MotionPathOptions object.
+ * @param svgPathBuffer Buffer pointer to the motion path string.
+ * @param bufferSize The buffer size of the svgPathBuffer parameter.
+ * @param writeLength Indicates the string length actually written to the buffer
+ *                    when returning {@link ARKUI_ERROR_CODE_NO_ERROR}.
+ *                    Indicates the minimum buffer size that can accommodate the target
+ *                    when {@link ARKUI_ERROR_CODE_BUFFER_SIZE_ERROR} is returned.
+ * @return Returns the result code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ *         Returns {@link ARKUI_ERROR_CODE_BUFFER_SIZE_ERROR} if the buffer size is less than the minimum buffer size.
+ * @since 23
+ */
+ArkUI_ErrorCode OH_ArkUI_MotionPathOptions_GetPath(const ArkUI_MotionPathOptions* options, char* svgPathBuffer,
+    const int32_t bufferSize, int32_t* writeLength);
+
+/**
+ * @brief Sets the starting progress in the ArkUI_MotionPathOptions. Progress refers to the ratio of the length of the
+ *        path that has been traveled to the total length of the entire path. The value range is [0.0, 1.0], and the
+ *        "from" value should be less than or equal to the "to" value; otherwise, an ARKUI_ERROR_CODE_PARAM_OUT_OF_RANGE
+ *        error code will be returned.
+ *
+ * @param options Pointer to the ArkUI_MotionPathOptions object.
+ * @param from The starting progress in the ArkUI_MotionPathOptions.
+ * @return Returns the result code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_OUT_OF_RANGE} if the "from" value is out of range or the "from" value
+ *                 is greater than the "to" value.
+ * @since 23
+ */
+ArkUI_ErrorCode OH_ArkUI_MotionPathOptions_SetFrom(ArkUI_MotionPathOptions* options, const float from);
+
+/**
+ * @brief Gets the starting progress in the ArkUI_MotionPathOptions object.
+ *
+ * @param options Pointer to the ArkUI_MotionPathOptions object.
+ * @param from The starting progress in the ArkUI_MotionPathOptions.
+ * @return Returns the result code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ * @since 23
+ */
+ArkUI_ErrorCode OH_ArkUI_MotionPathOptions_GetFrom(const ArkUI_MotionPathOptions* options, float* from);
+
+/**
+ * @brief Sets the endpoint progress in the ArkUI_MotionPathOptions. Progress refers to the ratio of the length of the
+ *        path that has been traveled to the total length of the entire path. The value range is [0.0, 1.0], and the
+ *        "from" value should be less than or equal to the "to" value; otherwise, an ARKUI_ERROR_CODE_PARAM_OUT_OF_RANGE
+ *        error code will be returned.
+ *
+ * @param options Pointer to the ArkUI_MotionPathOptions object.
+ * @param to The endpoint progress in the ArkUI_MotionPathOptions.
+ * @return Returns the result code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_OUT_OF_RANGE} if the "to" value is out of range or the "to" value
+ *                 is less than the "from" value.
+ * @since 23
+ */
+ArkUI_ErrorCode OH_ArkUI_MotionPathOptions_SetTo(ArkUI_MotionPathOptions* options, const float to);
+
+/**
+ * @brief Gets the endpoint progress in the ArkUI_MotionPathOptions object.
+ *
+ * @param options Pointer to the ArkUI_MotionPathOptions object.
+ * @param to The endpoint progress in the ArkUI_MotionPathOptions.
+ * @return Returns the result code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ * @since 23
+ */
+ArkUI_ErrorCode OH_ArkUI_MotionPathOptions_GetTo(const ArkUI_MotionPathOptions* options, float* to);
+
+/**
+ * @brief Sets the rotatable parameter in the ArkUI_MotionPathOptions. It indicates whether to rotate along the path.
+ *        True means rotating along the path, while false means not rotating along the path.
+ *
+ * @param options Pointer to the ArkUI_MotionPathOptions object.
+ * @param rotatable The rotatable parameter in the ArkUI_MotionPathOptions.
+ * @return Returns the result code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ * @since 23
+ */
+ArkUI_ErrorCode OH_ArkUI_MotionPathOptions_SetRotatable(ArkUI_MotionPathOptions* options, const bool rotatable);
+
+/**
+ * @brief Gets the rotatable parameter in the ArkUI_MotionPathOptions.
+ *
+ * @param options Pointer to the ArkUI_MotionPathOptions object.
+ * @param rotatable The rotatable parameter in the ArkUI_MotionPathOptions.
+ * @return Returns the result code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ * @since 23
+ */
+ArkUI_ErrorCode OH_ArkUI_MotionPathOptions_GetRotatable(const ArkUI_MotionPathOptions* options, bool* rotatable);
+
+/**
+ * @brief Enumerates the MarqueeStartPolicy.
+ *
+ * @since 23
+ */
+typedef enum {
+    /** Start marquee in any case. This is the default policy. */
+    ARKUI_MARQUEESTARTPOLICY_DEFAULT = 0,
+    /** Start marquee only when get focus. */
+    ARKUI_MARQUEESTARTPOLICY_ONFOCUS = 1
+} ArkUI_MarqueeStartPolicy;
+
+/**
+ * @brief Enumerates the MarqueeUpdatePolicy.
+ *
+ * @since 23
+ */
+typedef enum {
+    /** Reset scroll position and restart scroll. */
+    ARKUI_MARQUEEUPDATEPOLICY_DEFAULT = 0,
+    /** Preserve scroll position, just change to new text. */
+    ARKUI_MARQUEEUPDATEPOLICY_PRESERVEPOSITION = 1
+} ArkUI_MarqueeUpdatePolicy;
+
+/**
+ * @brief Defines the marquee options of text.
+ *
+ * @since 23
+ */
+typedef struct ArkUI_TextMarqueeOptions ArkUI_TextMarqueeOptions;
+
+/**
+ * @brief Create an option object for marquee animation of text.
+ *
+ * @return A pointer to the option object.
+ * @since 23
+ */
+ArkUI_TextMarqueeOptions* OH_ArkUI_TextMarqueeOptions_Create();
+
+/**
+ * @brief Dispose the option object for marquee animation of text.
+ *
+ * @param option Pointer to the option object to be disposed.
+ * @since 23
+ */
+void OH_ArkUI_TextMarqueeOptions_Dispose(ArkUI_TextMarqueeOptions* option);
+
+/**
+ * @brief Sets the start flag of the option object for marquee animation of text.
+ *
+ * @param option Pointer to the option object to be modified.
+ * @param start Flag of is need to start marquee. True means start marquee, false means stop marquee.
+ * @since 23
+ */
+void OH_ArkUI_TextMarqueeOptions_SetStart(ArkUI_TextMarqueeOptions* option, bool start);
+
+/**
+ * @brief Gets the start flag of the option object for marquee animation of text.
+ *
+ * @param option Pointer to the option object.
+ * @return Returns the start flag.
+ * @since 23
+ */
+bool OH_ArkUI_TextMarqueeOptions_GetStart(ArkUI_TextMarqueeOptions* option);
+
+/**
+ * @brief Sets the step size of the option object for marquee animation of text.
+ *
+ * @param option Pointer to the option object to be modified.
+ * @param step The step size of the marquee. The unit is vp.
+ * @since 23
+ */
+void OH_ArkUI_TextMarqueeOptions_SetStep(ArkUI_TextMarqueeOptions* option, float step);
+
+/**
+ * @brief Gets the step size of the option object for marquee animation of text.
+ *
+ * @param option Pointer to the option object.
+ * @return Returns the step size of the marquee. The unit is vp.
+ * @since 23
+ */
+float OH_ArkUI_TextMarqueeOptions_GetStep(ArkUI_TextMarqueeOptions* option);
+
+/**
+ * @brief Sets the spacing between two rounds of the option object for marquee animation of text.
+ *
+ * @param option Pointer to the option object to be modified.
+ * @param spacing The spacing between two rounds of marquee. The unit is vp.
+ * @since 23
+ */
+void OH_ArkUI_TextMarqueeOptions_SetSpacing(ArkUI_TextMarqueeOptions* option, float spacing);
+
+/**
+ * @brief Gets the spacing between two rounds of the option object for marquee animation of text.
+ *
+ * @param option Pointer to the option object.
+ * @return Returns the spacing between two rounds of marquee. The unit is vp.
+ * @since 23
+ */
+float OH_ArkUI_TextMarqueeOptions_GetSpacing(ArkUI_TextMarqueeOptions* option);
+
+/**
+ * @brief Sets the rounds of the option object for marquee animation of text.
+ *
+ * @param option Pointer to the option object to be modified.
+ * @param loop The rounds of the marquee.
+ * @since 23
+ */
+void OH_ArkUI_TextMarqueeOptions_SetLoop(ArkUI_TextMarqueeOptions* option, int32_t loop);
+
+/**
+ * @brief Gets the rounds of the option object for marquee animation of text.
+ *
+ * @param option Pointer to the option object.
+ * @return Returns the rounds of the marquee.
+ * @since 23
+ */
+int32_t OH_ArkUI_TextMarqueeOptions_GetLoop(ArkUI_TextMarqueeOptions* option);
+
+/**
+ * @brief Sets the fromStart flag of the option object for marquee animation of text.
+ *
+ * @param option Pointer to the option object to be modified.
+ * @param fromStart The running direction of the marquee, true means running from start.
+ * @since 23
+ */
+void OH_ArkUI_TextMarqueeOptions_SetFromStart(ArkUI_TextMarqueeOptions* option, bool fromStart);
+
+/**
+ * @brief Gets the fromStart flag of the option object for marquee animation of text.
+ *
+ * @param option Pointer to the option object.
+ * @return Returns the fromStart flag.
+ * @since 23
+ */
+bool OH_ArkUI_TextMarqueeOptions_GetFromStart(ArkUI_TextMarqueeOptions* option);
+
+/**
+ * @brief Sets the delay time between each round of the option object for marquee animation of text.
+ *
+ * @param option Pointer to the option object to be modified.
+ * @param delay The delay time between each round of the marquee.
+ * @since 23
+ */
+void OH_ArkUI_TextMarqueeOptions_SetDelay(ArkUI_TextMarqueeOptions* option, int32_t delay);
+
+/**
+ * @brief Gets the delay time between each round of the option object for marquee animation of text.
+ *
+ * @param option Pointer to the option object.
+ * @return Returns the delay time between each round of the marquee.
+ * @since 23
+ */
+int32_t OH_ArkUI_TextMarqueeOptions_GetDelay(ArkUI_TextMarqueeOptions* option);
+
+/**
+ * @brief Sets the fadeout flag of the option object for marquee animation of text.
+ *
+ * @param option Pointer to the option object to be modified.
+ * @param fadeout The flag of whether the text is faded out.
+ * @since 23
+ */
+void OH_ArkUI_TextMarqueeOptions_SetFadeout(ArkUI_TextMarqueeOptions* option, bool fadeout);
+
+/**
+ * @brief Gets the fadeout flag of the option object for marquee animation of text.
+ *
+ * @param option Pointer to the option object.
+ * @return Returns the fadeout flag.
+ * @since 23
+ */
+bool OH_ArkUI_TextMarqueeOptions_GetFadeout(ArkUI_TextMarqueeOptions* option);
+
+/**
+ * @brief Sets the start policy of the option object for marquee animation of text.
+ *
+ * @param option Pointer to the option object to be modified.
+ * @param startPolicy The start policy for marquee.
+ * @since 23
+ */
+void OH_ArkUI_TextMarqueeOptions_SetStartPolicy(ArkUI_TextMarqueeOptions* option, ArkUI_MarqueeStartPolicy startPolicy);
+
+/**
+ * @brief Gets the start policy of the option object for marquee animation of text.
+ *
+ * @param option Pointer to the option object.
+ * @return Returns the start policy for marquee.
+ * @since 23
+ */
+ArkUI_MarqueeStartPolicy OH_ArkUI_TextMarqueeOptions_GetStartPolicy(ArkUI_TextMarqueeOptions* option);
+
+/**
+ * @brief Sets the update policy of the option object for marquee animation of text.
+ *
+ * @param option Pointer to the option object to be modified.
+ * @param updatePolicy The update policy for marquee.
+ * @since 23
+ */
+void OH_ArkUI_TextMarqueeOptions_SetUpdatePolicy(ArkUI_TextMarqueeOptions* option,
+    ArkUI_MarqueeUpdatePolicy updatePolicy);
+
+/**
+ * @brief Gets the update policy of the option object for marquee animation of text.
+ *
+ * @param option Pointer to the option object.
+ * @return Returns the update policy for marquee.
+ * @since 23
+ */
+ArkUI_MarqueeUpdatePolicy OH_ArkUI_TextMarqueeOptions_GetUpdatePolicy(ArkUI_TextMarqueeOptions* option);
+
+/**
+ * @brief Create a configuration object for selected drag preview style.
+ * @return A pointer to the configuration object.
+ * @since 23
+ */
+ArkUI_SelectedDragPreviewStyle* OH_ArkUI_SelectedDragPreviewStyle_Create();
+
+/**
+ * @brief Dispose a configuration object for selected drag preview style.
+ * @param config Pointer to the configuration object to be disposed.
+ * @since 23
+ */
+void OH_ArkUI_SelectedDragPreviewStyle_Dispose(ArkUI_SelectedDragPreviewStyle* config);
+
+/**
+ * @brief Sets the color of background for selected drag preview style.
+ * @param config Pointer to the configuration object to be modified.
+ * @param color Background color.
+ * @since 23
+ */
+void OH_ArkUI_SelectedDragPreviewStyle_SetColor(
+    ArkUI_SelectedDragPreviewStyle* config, uint32_t color);
+
+/**
+ * @brief Gets the color of background for selected drag preview style.
+ * @param config Pointer to the configuration object.
+ * @return Returns the background color.
+ * @since 23
+ */
+uint32_t OH_ArkUI_SelectedDragPreviewStyle_GetColor(
+    ArkUI_SelectedDragPreviewStyle* config);
+
+/**
+ * @brief Create the ArkUI_PickerIndicatorStyle instance.
+ *
+ * @param type The picker selection indicator enumeration type.
+ * @return  ArkUI_PickerIndicatorStyle instance. If the instance returns a null pointer,
+ *         it indicates creation failure, and the reason for the failure may be that the address space is full or
+ *         the type not supported.
+ * @since 23
+*/
+ArkUI_PickerIndicatorStyle* OH_ArkUI_PickerIndicatorStyle_Create(ArkUI_PickerIndicatorType type);
+
+/**
+* @brief Destroy the ArkUI_PickerIndicatorStyle instance.
+*
+* @param style The ArkUI_PickerIndicatorStyle instance to be destroyed.
+* @since 23
+*/
+void OH_ArkUI_PickerIndicatorStyle_Dispose(ArkUI_PickerIndicatorStyle* style);
+
+/**
+* @brief Set the parameters of background style.
+*
+* @param style The ArkUI_PickerIndicatorStyle instance.
+* @param background The parameters of background style.
+* @return Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if success.
+*         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} The parameters set need to be consistent with
+*         the type of the created instance. If they are not consistent, this error code will be returned.
+*         This interface only takes effect when the type is "background".
+* @since 23
+*/
+ArkUI_ErrorCode OH_ArkUI_PickerIndicatorStyle_ConfigureBackground(ArkUI_PickerIndicatorStyle* style,
+    ArkUI_PickerIndicatorBackground* background);
+
+/**
+* @brief Set the parameters of divider style.
+*
+* @param style The ArkUI_PickerIndicatorStyle instance.
+* @param divider The parameters of divider style.
+* @return Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if success.
+*         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} The parameters set need to be consistent with
+*         the type of the created instance. If they are not consistent, this error code will be returned.
+*         This interface only takes effect when the type is "divider".
+* @since 23
+*/
+ArkUI_ErrorCode OH_ArkUI_PickerIndicatorStyle_ConfigureDivider(ArkUI_PickerIndicatorStyle* style,
+    ArkUI_PickerIndicatorDivider* divider);
 #ifdef __cplusplus
 };
 #endif

@@ -258,6 +258,31 @@ typedef enum Camera_Connection {
 } Camera_Connection;
 
 /**
+ * @brief Describes the query information of the camera device.
+ *
+ * @since 23
+ * @version 1.0
+ */
+typedef struct Camera_DeviceQueryInfo {
+    /**
+     * Camera type list.
+     */
+    Camera_Type* cameraType;
+    /**
+     * Camera type size.
+     */
+    uint32_t cameraTypeSize;
+    /**
+     * Camera position attribute.
+     */
+    Camera_Position cameraPosition;
+    /**
+     * Camera connection type attribute.
+     */
+    Camera_Connection connectionType;
+} Camera_DeviceQueryInfo;
+
+/**
  * @brief Enum for camera format type.
  *
  * @since 11
@@ -441,7 +466,7 @@ typedef enum Camera_ImageRotation {
 
     /**
      * The capture image rotates 0 degrees.
-     * @since 21
+     * @since 22
      */
     CAMERA_IMAGE_ROTATION_0 = 0,
 
@@ -452,7 +477,7 @@ typedef enum Camera_ImageRotation {
 
     /**
      * The capture image rotates 90 degrees.
-     * @since 21
+     * @since 22
      */
     CAMERA_IMAGE_ROTATION_90 = 90,
 
@@ -463,7 +488,7 @@ typedef enum Camera_ImageRotation {
 
     /**
      * The capture image rotates 180 degrees.
-     * @since 21
+     * @since 22
      */
     CAMERA_IMAGE_ROTATION_180 = 180,
 
@@ -474,7 +499,7 @@ typedef enum Camera_ImageRotation {
 
     /**
      * The capture image rotates 270 degrees.
-     * @since 21
+     * @since 22
      */
     CAMERA_IMAGE_ROTATION_270 = 270,
 } Camera_ImageRotation;
@@ -529,7 +554,7 @@ typedef enum Camera_TorchMode {
 
     /**
      * The device torch is always off.
-     * @since 21
+     * @since 22
      */
     CAMERA_TORCH_MODE_OFF = 0,
 
@@ -540,7 +565,7 @@ typedef enum Camera_TorchMode {
 
     /**
      * The device torch is always on.
-     * @since 21
+     * @since 22
      */
     CAMERA_TORCH_MODE_ON = 1,
 
@@ -553,7 +578,7 @@ typedef enum Camera_TorchMode {
     /**
      * The device continuously monitors light levels and
      * uses the torch when necessary.
-     * @since 21
+     * @since 22
      */
     CAMERA_TORCH_MODE_AUTO = 2
 } Camera_TorchMode;
@@ -572,7 +597,7 @@ typedef enum Camera_SmoothZoomMode {
 
     /**
      * Normal smooth zoom mode.
-     * @since 21
+     * @since 22
      */
     CAMERA_SMOOTH_ZOOM_MODE_NORMAL = 0
 } Camera_SmoothZoomMode;
@@ -1059,7 +1084,7 @@ typedef enum Camera_FoldStatus {
 
     /**
      * Non_foldable status.
-     * @since 21
+     * @since 22
      */
     CAMERA_FOLD_STATUS_NON_FOLDABLE = 0,
 
@@ -1070,7 +1095,7 @@ typedef enum Camera_FoldStatus {
 
     /**
      * Expanded status.
-     * @since 21
+     * @since 22
      */
     CAMERA_FOLD_STATUS_EXPANDED = 1,
 
@@ -1081,7 +1106,7 @@ typedef enum Camera_FoldStatus {
 
     /**
      * Folded status.
-     * @since 21
+     * @since 22
      */
     CAMERA_FOLD_STATUS_FOLDED = 2
 } Camera_FoldStatus;

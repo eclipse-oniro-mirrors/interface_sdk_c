@@ -158,5 +158,53 @@
     {
         "first_introduced": "22",
         "name": "OH_AudioSuiteEngine_IsNodeTypeSupported"
+    },
+    {
+        "first_introduced": "23",
+        "name": "OH_AudioSuiteEngine_SetSpaceRenderPositionParams"
+    },
+    {
+        "first_introduced": "23",
+        "name": "OH_AudioSuiteEngine_GetSpaceRenderPositionParams"
+    },
+    {
+        "first_introduced": "23",
+        "name": "OH_AudioSuiteEngine_SetSpaceRenderRotationParams"
+    },
+    {
+        "first_introduced": "23",
+        "name": "OH_AudioSuiteEngine_GetSpaceRenderRotationParams"
+    },
+    {
+        "first_introduced": "23",
+        "name": "OH_AudioSuiteEngine_SetSpaceRenderExtensionParams"
+    },
+    {
+        "first_introduced": "23",
+        "name": "OH_AudioSuiteEngine_GetSpaceRenderExtensionParams"
+    },
+    {
+        "first_introduced": "23",
+        "name": "OH_AudioSuiteEngine_SetTempoAndPitch"
+    },
+    {
+        "first_introduced": "23",
+        "name": "OH_AudioSuiteEngine_GetTempoAndPitch"
+    },
+    {
+        "first_introduced": "23",
+        "name": "OH_AudioSuiteEngine_SetPureVoiceChangeOption"
+    },
+    {
+        "first_introduced": "23",
+        "name": "OH_AudioSuiteEngine_GetPureVoiceChangeOption"
+    },
+    {
+        "first_introduced": "23",
+        "name": "OH_AudioSuiteEngine_SetGeneralVoiceChangeType"
+    },
+    {
+        "first_introduced": "23",
+        "name": "OH_AudioSuiteEngine_GetGeneralVoiceChangeType"
     }
 ]

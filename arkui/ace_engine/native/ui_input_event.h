@@ -315,6 +315,72 @@ enum {
     UI_FOCUS_AXIS_EVENT_ABS_HAT0X = 6,
     /** ABS_HAT0Y. */
     UI_FOCUS_AXIS_EVENT_ABS_HAT0Y = 7,
+    /**
+     * Game controller RX-axis.
+     *
+     * @since 23
+     */
+    UI_FOCUS_AXIS_EVENT_ABS_RX = 8,
+    /**
+     * Game controller RY-axis.
+     *
+     * @since 23
+     */
+    UI_FOCUS_AXIS_EVENT_ABS_RY = 9,
+    /**
+     * Game controller THROTTLE-axis.
+     *
+     * @since 23
+     */
+    UI_FOCUS_AXIS_EVENT_ABS_THROTTLE = 10,
+    /**
+     * Game controller RUDDER-axis.
+     *
+     * @since 23
+     */
+    UI_FOCUS_AXIS_EVENT_ABS_RUDDER = 11,
+    /**
+     * Game controller WHEEL-axis.
+     *
+     * @since 23
+     */
+    UI_FOCUS_AXIS_EVENT_ABS_WHEEL = 12,
+    /**
+     * Game controller HAT1X-axis.
+     *
+     * @since 23
+     */
+    UI_FOCUS_AXIS_EVENT_ABS_HAT1X = 13,
+    /**
+     * Game controller HAT1Y-axis.
+     *
+     * @since 23
+     */
+    UI_FOCUS_AXIS_EVENT_ABS_HAT1Y = 14,
+    /**
+     * Game controller HAT2X-axis.
+     *
+     * @since 23
+     */
+    UI_FOCUS_AXIS_EVENT_ABS_HAT2X = 15,
+    /**
+     * Game controller HAT2Y-axis.
+     *
+     * @since 23
+     */
+    UI_FOCUS_AXIS_EVENT_ABS_HAT2Y = 16,
+    /**
+     * Game controller HAT3X-axis.
+     *
+     * @since 23
+     */
+    UI_FOCUS_AXIS_EVENT_ABS_HAT3X = 17,
+    /**
+     * Game controller HAT3Y-axis.
+     *
+     * @since 23
+     */
+    UI_FOCUS_AXIS_EVENT_ABS_HAT3Y = 18,
 };
 
 /**
@@ -1297,22 +1363,26 @@ int32_t OH_ArkUI_UIInputEvent_GetModifierKeyStates(const ArkUI_UIInputEvent* eve
 int64_t OH_ArkUI_PointerEvent_GetPressedTimeByIndex(const ArkUI_UIInputEvent* event, uint32_t pointerIndex);
 
 /**
- * @brief Obtains the x-axis offset of the mouse pointer position relative to the position in the previously reported
- * mouse event. This value may be less than the difference between the two reported X coordinates when the mouse pointer
- * is near the screen edge.
+ * @brief Obtains the movement increment of the mouse device along the X-axis in a two-dimensional plane.
+ * Its value represents the raw movement data from the mouse device, expressed in units of physical
+ * distance in the real world. The reported value is determined by the hardware itself and does not
+ * correspond to the physical or logical pixels on the screen.
+ * 
  * @param event Pointer to an <b>ArkUI_UIInputEvent</b> object.
- * @return Returns the x-axis offset of the mouse pointer position relative to the position in the previously reported
+ * @return Returns the x-axis offset of the mouse position relative to the position in the previously reported
  * mouse event; returns <b>0.0f</b> if any parameter error occurs.
  * @since 15
  */
 float OH_ArkUI_MouseEvent_GetRawDeltaX(const ArkUI_UIInputEvent* event);
 
 /**
- * @brief Obtains the y-axis offset of the mouse pointer position relative to the position in the previously reported
- * mouse event. This value may be less than the difference between the two reported Y coordinates when the mouse pointer
- * is near the screen edge.
+ * @brief Obtains the movement increment of the mouse device along the Y-axis in a two-dimensional plane.
+ * Its value represents the raw movement data from the mouse device, expressed in units of physical
+ * distance in the real world. The reported value is determined by the hardware itself and does not
+ * correspond to the physical or logical pixels on the screen.
+ * 
  * @param event Pointer to an <b>ArkUI_UIInputEvent</b> object.
- * @return Returns the y-axis offset of the mouse pointer position relative to the position in the previously reported
+ * @return Returns the y-axis offset of the mouse position relative to the position in the previously reported
  * mouse event; returns <b>0.0f</b> if any parameter error occurs.
  * @since 15
  */

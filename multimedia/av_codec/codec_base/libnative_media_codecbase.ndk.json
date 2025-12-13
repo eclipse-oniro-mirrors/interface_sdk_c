@@ -120,6 +120,18 @@
         "name": "OH_AVCODEC_MIMETYPE_AUDIO_GSM_MS"
     },
     {
+        "first_introduced": "23",
+        "name": "OH_AVCODEC_MIMETYPE_AUDIO_TWINVQ"
+    },
+    {
+        "first_introduced": "23",
+        "name": "OH_AVCODEC_MIMETYPE_AUDIO_ILBC"
+    },
+    {
+        "first_introduced": "23",
+        "name": "OH_AVCODEC_MIMETYPE_AUDIO_TRUEHD"
+    },
+    {
         "first_introduced": "17",
         "name": "OH_AVCODEC_MIMETYPE_VIDEO_MPEG2"
     },
@@ -234,6 +246,10 @@
     {
         "first_introduced": "9",
         "name": "OH_MD_KEY_ROTATION"
+    },
+    {
+        "first_introduced": "22",
+        "name": "OH_MD_KEY_VIDEO_TRANSFORM_TYPE"
     },
     {
         "first_introduced": "10",
@@ -530,6 +546,10 @@
     {
         "first_introduced": "22",
         "name": "OH_MD_KEY_VIDEO_NATIVE_BUFFER_FORMAT"
+    },
+    {
+        "first_introduced": "23",
+        "name": "OH_MD_KEY_BUFFER_SKIP_SAMPLES_INFO"
     },
     {
         "first_introduced": "10",

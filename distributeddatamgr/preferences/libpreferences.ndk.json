@@ -98,5 +98,129 @@
     {
         "first_introduced": "13",
         "name": "OH_PreferencesValue_GetString"
+    },
+    {
+        "first_introduced": "23",
+        "name": "OH_Preferences_DeletePreferences"
+    },
+    {
+        "first_introduced": "23",
+        "name": "OH_Preferences_SetValue"
+    },
+    {
+        "first_introduced": "23",
+        "name": "OH_Preferences_GetValue"
+    },
+    {
+        "first_introduced": "23",
+        "name": "OH_Preferences_GetAll"
+    },
+    {
+        "first_introduced": "23",
+        "name": "OH_Preferences_HasKey"
+    },
+    {
+        "first_introduced": "23",
+        "name": "OH_Preferences_Flush"
+    },
+    {
+        "first_introduced": "23",
+        "name": "OH_Preferences_ClearCache"
+    },
+    {
+        "first_introduced": "23",
+        "name": "OH_Preferences_RegisterMultiProcessDataObserver"
+    },
+    {
+        "first_introduced": "23",
+        "name": "OH_Preferences_UnregisterMultiProcessDataObserver"
+    },
+    {
+        "first_introduced": "23",
+        "name": "OH_PreferencesPair_Destroy"
+    },
+    {
+        "first_introduced": "23",
+        "name": "OH_PreferencesValue_Create"
+    },
+    {
+        "first_introduced": "23",
+        "name": "OH_PreferencesValue_Destroy"
+    },
+    {
+        "first_introduced": "23",
+        "name": "OH_PreferencesValue_SetInt"
+    },
+    {
+        "first_introduced": "23",
+        "name": "OH_PreferencesValue_SetBool"
+    },
+    {
+        "first_introduced": "23",
+        "name": "OH_PreferencesValue_SetString"
+    },
+    {
+        "first_introduced": "23",
+        "name": "OH_PreferencesValue_SetInt64"
+    },
+    {
+        "first_introduced": "23",
+        "name": "OH_PreferencesValue_GetInt64"
+    },
+    {
+        "first_introduced": "23",
+        "name": "OH_PreferencesValue_SetDouble"
+    },
+    {
+        "first_introduced": "23",
+        "name": "OH_PreferencesValue_GetDouble"
+    },
+    {
+        "first_introduced": "23",
+        "name": "OH_PreferencesValue_SetIntArray"
+    },
+    {
+        "first_introduced": "23",
+        "name": "OH_PreferencesValue_GetIntArray"
+    },
+    {
+        "first_introduced": "23",
+        "name": "OH_PreferencesValue_SetBoolArray"
+    },
+    {
+        "first_introduced": "23",
+        "name": "OH_PreferencesValue_GetBoolArray"
+    },
+    {
+        "first_introduced": "23",
+        "name": "OH_PreferencesValue_SetStringArray"
+    },
+    {
+        "first_introduced": "23",
+        "name": "OH_PreferencesValue_GetStringArray"
+    },
+    {
+        "first_introduced": "23",
+        "name": "OH_PreferencesValue_SetInt64Array"
+    },
+    {
+        "first_introduced": "23",
+        "name": "OH_PreferencesValue_GetInt64Array"
+    },
+    {
+        "first_introduced": "23",
+        "name": "OH_PreferencesValue_SetDoubleArray"
+    },
+    {
+        "first_introduced": "23",
+        "name": "OH_PreferencesValue_GetDoubleArray"
+    },
+    {
+        "first_introduced": "23",
+        "name": "OH_PreferencesValue_SetBlob"
+    },
+    {
+        "first_introduced": "23",
+        "name": "OH_PreferencesValue_GetBlob"
     }
 ]

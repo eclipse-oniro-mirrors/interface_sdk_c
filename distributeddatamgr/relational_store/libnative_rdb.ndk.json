@@ -642,5 +642,69 @@
     {
         "first_introduced": "22",
         "name":"OH_Rdb_RekeyEx"
+    },
+    {
+        "first_introduced": "23",
+        "name":"OH_Rdb_QueryWithoutRowCount"
+    },
+    {
+        "first_introduced": "23",
+        "name":"OH_Rdb_QuerySqlWithoutRowCount"
+    },
+    {
+        "first_introduced": "23",
+        "name":"OH_RdbTrans_QueryWithoutRowCount"
+    },
+    {
+        "first_introduced": "23",
+        "name":"OH_RdbTrans_QuerySqlWithoutRowCount"
+    },
+    {
+        "first_introduced": "23",
+        "name":"OH_RdbTrans_BatchInsertWithReturning"
+    },
+    {
+        "first_introduced": "23",
+        "name":"OH_RdbTrans_UpdateWithReturning"
+    },
+    {
+        "first_introduced": "23",
+        "name":"OH_RdbTrans_DeleteWithReturning"
+    },
+    {
+        "first_introduced": "23",
+        "name":"OH_Rdb_BatchInsertWithReturning"
+    },
+    {
+        "first_introduced": "23",
+        "name":"OH_Rdb_UpdateWithReturning"
+    },
+    {
+        "first_introduced": "23",
+        "name":"OH_Rdb_DeleteWithReturning"
+    },
+    {
+        "first_introduced": "23",
+        "name":"OH_RDB_CreateReturningContext"
+    },
+    {
+        "first_introduced": "23",
+        "name":"OH_RDB_DestroyReturningContext"
+    },
+    {
+        "first_introduced": "23",
+        "name":"OH_RDB_SetReturningFields"
+    },
+    {
+        "first_introduced": "23",
+        "name":"OH_RDB_SetMaxReturningCount"
+    },
+    {
+        "first_introduced": "23",
+        "name":"OH_RDB_GetReturningValues"
+    },
+    {
+        "first_introduced": "23",
+        "name":"OH_RDB_GetChangedCount"
     }
 ]

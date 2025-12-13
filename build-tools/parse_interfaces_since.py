@@ -17,6 +17,7 @@ import argparse
 import re
 import sys
 import os
+import tempfile
 from typing import List, Dict, Set, Optional, Any
 import clang.cindex
 from clang.cindex import Config, Index, CursorKind, TypeKind
@@ -114,8 +115,9 @@ class InterfaceExtractor:
         """提取since版本号"""
         if not comment:
             return None
-        match = re.search(r'@since\s+([^\s\n\r]+)', comment)
-        return match.group(1) if match else None
+        matches = re.findall(r'@since\s+([^\s\n\r]+)', comment)
+        # 出现多段注释且@since有多个时，使用最后一个作为判断标准
+        return matches[-1] if matches else None
 
 
     def _create_interface_info(self, cursor, node_type: str, interface_name: Optional[str] = None, parent_type: Optional[str] = None) -> Dict[str, Any]:
@@ -132,7 +134,8 @@ class InterfaceExtractor:
             'location': f"{cursor.location.file.name}:{cursor.location.line}",
             'comment': cursor.raw_comment.strip() if cursor.raw_comment else "",
             'display_name': cursor.displayname,
-            'parent_type': parent_type  # 父节点类型
+            'parent_type': parent_type,  # 父节点类型
+            'line': f"(行号:{cursor.location.line})"
         }
 
 
@@ -151,7 +154,6 @@ class InterfaceExtractor:
             return
 
         type_name = cursor.spelling
-
         # 检查是否已处理过
         processed_sets = {
             "enum": self.processed_enums,
@@ -314,12 +316,150 @@ def splice_check_results(interfaces: List[Dict], sdk_api_version: str, path: str
             line_parts.extend([interface['parent_type'], interface['interface_name']])
         else:
             line_parts.append(interface['interface_name'])
-
-        violation_line = "{}\n".format("#".join(line_parts))
+        violation_line = "{}{}\n".format("#".join(line_parts), interface['line'])
 
         # 如果传入了violation_list，也追加到该列表中
         if violation_list is not None:
             violation_list.append(violation_line)
+
+
+def find_since_define_pattern_with_line_numbers(file_path):
+    """在文件中查找匹配指定正则表达式的模式，并返回包含行号的信息"""
+    # 正则表达式格式:包括@since注释块、可选的@version注释、#define结束标志
+    pattern = r'^\s*\* @since (\d+)(?:\s*\*\s*@version \d+(?:\.\d+)?)?\s*\*/\s*\n#define\s+(\w+)'
+
+    try:
+        with open(file_path, 'r', encoding='utf-8') as file:
+            content = file.read()
+
+        matches_info = []
+        for match in re.finditer(pattern, content, re.MULTILINE | re.DOTALL):
+            since_number = match.group(1)
+            macro_name = match.group(2)
+
+            # 计算行号：统计 match.start() 之前的换行符数量
+            line_number = content.count('\n', 0, match.start()) + 1
+
+            # 获取 #define 所在的具体行
+            match_text = match.group(0)
+
+            # 计算 #define 在匹配文本中的相对位置
+            define_pos_in_match = match_text.find('#define')
+
+            if define_pos_in_match != -1:
+                # 计算 #define 在完整内容中的绝对位置
+                define_abs_pos = match.start() + define_pos_in_match
+                # 重新计算行号，这次是基于 #define 的位置
+                define_line_number = content.count('\n', 0, define_abs_pos) + 1
+
+                matches_info.append({
+                    'since_number': since_number,
+                    'macro_name': macro_name,
+                    'line_number': define_line_number,
+                })
+        return matches_info
+    except FileNotFoundError:
+        logging.error(f"文件 {file_path} 不存在")
+        return []
+    except Exception as e:
+        logging.error(f"读取文件 {file_path} 时出错: {e}")
+        return []
+
+
+def replace_pragma_pack(file_paths):
+    """查找并替换 #pragma pack(数字) 为空白行"""
+    # 读取输入文件内容
+    with open(file_paths, 'r', encoding='utf-8') as f:
+        content = f.read()
+
+    # 正则表达式匹配 #pragma pack(数字) 模式
+    pattern = r'#pragma\s+pack\(\d+\)'
+
+    matches = re.findall(pattern, content, re.DOTALL)
+    if matches:
+        # 使用正则表达式替换匹配的行为空行
+        new_content = re.sub(pattern, '', content, flags=re.MULTILINE)
+
+        # 创建临时文件
+        temp_fd, temp_path = tempfile.mkstemp(suffix='.txt', prefix='temp_', text=True)
+        try:
+            # 写入临时文件
+            with os.fdopen(temp_fd, 'w', encoding='utf-8') as f:
+                f.write(new_content)
+            print(f"已创建临时文件: {temp_path}")
+            return temp_path
+        except Exception as e:
+            os.close(temp_fd)
+            if os.path.exists(temp_path):
+                os.unlink(temp_path)
+            raise e
+
+    else:
+        print(f"{file_paths} 文件未找到匹配")
+        return None
+
+
+def check_files_for_pattern(file_paths: str, interfaces: List[Dict]):
+    """检查多个文件中是否存在该模式，并记录行号"""
+    # 使用新的函数获取包含行号的匹配信息
+    matches_info = find_since_define_pattern_with_line_numbers(file_paths)
+
+    if matches_info:
+        for i, match_info in enumerate(matches_info, 1):
+            since_number = match_info['since_number']
+            macro_name = match_info['macro_name']
+            line_number = match_info['line_number']
+
+            interface_info = {
+                'interface_name': macro_name,
+                'since_version': since_number,
+                'node_type': "macro",
+                'cursor_kind': "",
+                'location': f"{file_paths}:{line_number}",
+                'comment': match_info.get('match_text', ''),
+                'display_name': "",
+                'parent_type': "",
+                'line': f"(行号:{str(line_number)})"
+            }
+            interfaces.append(interface_info)
+    else:
+        print(f"{file_paths} 文件未找到匹配")
+
+
+def process_with_temp_file(extractor: InterfaceExtractor, temp_path: str):
+    """使用临时文件处理接口信息"""
+    try:
+        # 从临时文件提取接口信息
+        return extractor.extract_interfaces(temp_path)
+    except FileNotFoundError:
+        err_msg = f"临时文件未找到: {temp_path}"
+        raise ValueError(err_msg)
+    except Exception as e:
+        err_msg = f"提取接口时发生错误: {e}"
+        raise ValueError(err_msg)
+    finally:
+        # 确保清理临时文件
+        try:
+            if os.path.exists(temp_path):
+                os.unlink(temp_path)
+                print(f"已清理临时文件: {temp_path}")
+        except Exception as cleanup_error:
+            print(f"清理临时文件时出错: {cleanup_error}")
+
+
+def get_interfaces_info(path: str):
+    """获取接口信息"""
+    # 初始化提取器
+    extractor = InterfaceExtractor(get_libclang_path())
+
+    temp_path = replace_pragma_pack(path)
+
+    # 如果使用临时文件，确保清理
+    if temp_path:
+        return process_with_temp_file(extractor, temp_path)
+    else:
+        # 直接处理原始文件
+        return extractor.extract_interfaces(path)
 
 
 def main():
@@ -333,10 +473,6 @@ def main():
     if not os.path.exists(args.input):
         print(f"header path list does not exist -> {args.input}")
         exit(1)
-
-    # 初始化提取器
-    libclang_path = get_libclang_path()
-    extractor = InterfaceExtractor(libclang_path)
 
     # 从文件读取输入路径
     try:
@@ -352,8 +488,11 @@ def main():
         # 检查输入文件
         if not os.path.exists(path):
             continue
-        # 提取接口
-        interfaces = extractor.extract_interfaces(path)
+
+        interfaces = get_interfaces_info(path)
+
+        #查找是否有define
+        check_files_for_pattern(path, interfaces)
         if not interfaces:
             print("未找到带有@since注解的接口")
             continue

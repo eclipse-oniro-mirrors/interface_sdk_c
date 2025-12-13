@@ -215,7 +215,6 @@
   "SystemCapability.Ability.AbilityRuntime.FAModel",
   "SystemCapability.Ability.AbilityRuntime.AbilityCore",
   "SystemCapability.Ability.AbilityRuntime.Mission",
-  "SystemCapability.Ability.AbilityTools.AbilityAssistant",
   "SystemCapability.Ability.Form",
   "SystemCapability.Ability.DistributedAbilityManager",
   "SystemCapability.Ability.AbilityRuntime.QuickFix",

@@ -668,6 +668,14 @@
         "name": "OH_CameraManager_GetCameraDevice"
     },
     {
+        "first_introduced": "23",
+        "name": "OH_CameraManager_GetCameraDevices"
+    },
+    {
+        "first_introduced": "23",
+        "name": "OH_CameraManager_DeleteCameraDevices"
+    },
+    {
         "first_introduced": "18",
         "name": "OH_CameraManager_GetCameraConcurrentInfos"
     },
@@ -754,5 +762,21 @@
     {
         "first_introduced": "21",
         "name": "OH_PhotoOutput_SetPhotoQualityPrioritization"
+    },
+    {
+        "first_introduced": "22",
+        "name": "OH_CaptureSession_RegisterIsoChangeCallback"
+    },
+    {
+        "first_introduced": "22",
+        "name": "OH_CaptureSession_UnregisterIsoChangeCallback"
+    },
+    {
+        "first_introduced": "23",
+        "name": "OH_PreviewOutput_IsBandwidthCompressionSupported"
+    },
+    {
+        "first_introduced": "23",
+        "name": "OH_PreviewOutput_EnableBandwidthCompression"
     }
 ]
