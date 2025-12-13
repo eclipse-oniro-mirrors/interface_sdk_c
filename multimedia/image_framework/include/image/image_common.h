@@ -255,6 +255,12 @@ typedef enum {
      * @since 15
      */
     IMAGE_SOURCE_UNSUPPORTED_ALLOCATOR_TYPE = 7700201,
+    /**
+     * @error Unsupported metadata. For example, the property key is not supported,
+     *     or the property value is invalid.
+     * @since 23
+     */
+    IMAGE_SOURCE_UNSUPPORTED_METADATA = 7700202,
     /* @error unsupported options, e.g, cannot convert image into desired pixel format.
      * @since 15
      */
