@@ -30,7 +30,7 @@
  * Midi message sending and receiving, and device status monitoring.
  *
  * @library libohmidi.so
- * @syscap SystemCapability.Multimedia.Audio.Core
+ * @syscap SystemCapability.Multimedia.Audio.Midi
  * @kit AudioKit
  * @since 24
  * @version 1.0
@@ -106,6 +106,7 @@ OH_MidiStatusCode OH_MidiOpenDevice(OH_MidiClient *client, int64_t deviceId, OH_
 /**
  * @brief Open Midi BLE device
  *
+ * @permission ohos.permission.ACCESS_BLUETOOTH
  * @param client Target client handle.
  * @param deviceAddr BLE Mac Address.
  * @param[out] device Pointer to receive the device handle.
@@ -202,7 +203,7 @@ OH_MidiStatusCode OH_MidiClosePort(OH_MidiDevice *device, uint32_t portIndex);
  * successfully enqueued.
  *
  * @param device Target device handle.
- * @param descriptor Target port and protocol.
+ * @param portIndex Target portIndex.
  * @param events Pointer to the array of events to send.
  * @param eventCount Number of events in the array.
  * @param eventsWritten Returns the number of events successfully consumed.
@@ -215,7 +216,7 @@ OH_MidiStatusCode OH_MidiClosePort(OH_MidiDevice *device, uint32_t portIndex);
  * @since 24
  */
 OH_MidiStatusCode OH_MidiSend(OH_MidiDevice *device,
-                              OH_MidiPortDescriptor descriptor,
+                              uint32_t portIndex,
                               OH_MidiEvent *events,
                               uint32_t eventCount,
                               uint32_t *eventsWritten);
@@ -228,9 +229,6 @@ OH_MidiStatusCode OH_MidiSend(OH_MidiDevice *device,
  * How it works:
  * 1. It automatically fragments the raw bytes into a sequence of UMP Type 3(64-bit Data Message) packets.
  * 2. It sends these packets sequentially using OH_MidiSend.
- *
- * @note If your application already generates UMP packets(Type 3) for SysEx,
- * DO NOT use this function. Use OH_MidiSend directly.
  *
  * @warning **BLOCKING CALL**: This function executes a loop and may block if the buffer fills up.
  *

@@ -98,6 +98,12 @@ typedef enum {
     MIDI_STATUS_TIMEOUT,
 
     /**
+     * @error The client has reached the maximum number of open devices allowed.
+     * To open a new device, the client must close an existing one first.
+     */
+    MIDI_STATUS_TOO_MANY_OPEN_DEVICES,
+
+    /**
      * @error The client has reached the maximum number of open ports allowed.
      * To open a new port, the client must close an existing one first.
      */
@@ -142,8 +148,9 @@ typedef enum {
  */
 typedef enum {
     /**
-     * @brief Legacy Midi 1.0 Byte Stream.
-     * Even when this protocol is selected, data is transported as UMP(with 0x2 as status byte).
+     * @brief Midi 1.0 Packet.
+     * Even when this protocol is selected,
+     * data is transported as UMP(with 0x2 as status byte).
      */
     MIDI_TRANSPORT_PROTOCOL_MIDI1 = 1,
 
@@ -159,14 +166,7 @@ typedef enum {
  * @since 24
  */
 typedef enum {
-    /**
-     * @brief USB Midi Device.
-     */
     MIDI_DEVICE_TYPE_USB = 0,
-
-    /**
-     * @brief Bluetooth LE Midi Device.
-     */
     MIDI_DEVICE_TYPE_BLE = 1
 } OH_MidiDeviceType;
 
@@ -175,14 +175,7 @@ typedef enum {
  * @since 24
  */
 typedef enum {
-    /**
-     * @brief A Midi device has been connected (attached).
-     */
     MIDI_DEVICE_CHANGE_ACTION_CONNECTED = 0,
-
-    /**
-     * @brief A Midi device has been disconnected (detached).
-     */
     MIDI_DEVICE_CHANGE_ACTION_DISCONNECTED = 1
 } OH_MidiDeviceChangeAction;
 
