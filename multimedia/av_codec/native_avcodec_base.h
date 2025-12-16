@@ -73,14 +73,14 @@ typedef struct OH_AVCodec OH_AVCodec;
 typedef void (*OH_AVCodecOnError)(OH_AVCodec *codec, int32_t errorCode, void *userData);
 
 /**
- * @brief When the output stream changes, the function pointer will be called to report the new stream description
- * information. It should be noted that the life cycle of the OH_AVFormat pointer
- * is only valid when the function pointer is called, and it is forbidden to continue to access after the call ends.
- *
+ * @brief When the resolution of the decoding input stream or the resolution of the encoding output stream changes,
+ * the function pointer will be called to report the new stream description information.
+ * It should be noted that the life cycle of the OH_AVFormat pointer is only valid when the function pointer is called,
+ * and it is forbidden to continue to access after the call ends.
  * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @param codec OH_AVCodec instance
  * @param format New output stream description information
- * @param userData User specific data
+ * @param userData The data that the user rely on to execute the callback.
  * @since 9
  */
 typedef void (*OH_AVCodecOnStreamChanged)(OH_AVCodec *codec, OH_AVFormat *format, void *userData);
@@ -93,7 +93,7 @@ typedef void (*OH_AVCodecOnStreamChanged)(OH_AVCodec *codec, OH_AVFormat *format
  * @param codec OH_AVCodec instance
  * @param index The index corresponding to the newly available input buffer.
  * @param data New available input buffer.
- * @param userData User specific data
+ * @param userData The data that the user rely on to execute the callback.
  * @deprecated since 11
  * @useinstead OH_AVCodecOnNeedInputBuffer
  * @since 9
@@ -110,8 +110,8 @@ typedef void (*OH_AVCodecOnNeedInputData)(OH_AVCodec *codec, uint32_t index, OH_
  * @param codec OH_AVCodec instance
  * @param index The index corresponding to the new output Buffer.
  * @param data Buffer containing the new output data
- * @param attr The description of the new output Buffer, please refer to {@link OH_AVCodecBufferAttr}
- * @param userData specified data
+ * @param attr The description of the new output buffer, please refer to {@link OH_AVCodecBufferAttr}
+ * @param userData The data that the user rely on to execute the callback.
  * @deprecated since 11
  * @useinstead OH_AVCodecOnNewOutputBuffer
  * @since 9
@@ -127,7 +127,7 @@ typedef void (*OH_AVCodecOnNewOutputData)(OH_AVCodec *codec, uint32_t index, OH_
  * @param codec OH_AVCodec instance
  * @param index The index corresponding to the newly available input buffer.
  * @param buffer New available input buffer.
- * @param userData User specific data
+ * @param userData The data that the user rely on to execute the callback.
  * @since 11
  */
 typedef void (*OH_AVCodecOnNeedInputBuffer)(OH_AVCodec *codec, uint32_t index, OH_AVBuffer *buffer, void *userData);
@@ -140,7 +140,7 @@ typedef void (*OH_AVCodecOnNeedInputBuffer)(OH_AVCodec *codec, uint32_t index, O
  * @param codec OH_AVCodec instance
  * @param index The index corresponding to the new output Buffer.
  * @param buffer Buffer containing the new output buffer.
- * @param userData specified data
+ * @param userData The data that the user rely on to execute the callback.
  * @since 11
  */
 typedef void (*OH_AVCodecOnNewOutputBuffer)(OH_AVCodec *codec, uint32_t index, OH_AVBuffer *buffer, void *userData);
