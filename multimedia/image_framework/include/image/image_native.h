@@ -73,7 +73,7 @@ typedef struct OH_ImageBufferData {
     /** byte length of the buffer */
     size_t bufferSize;
     /** native buffer of the image. */
-    OH_NativeBuffer **nativeBuffer;
+    OH_NativeBuffer *nativeBuffer;
 } OH_ImageBufferData;
 
 /**
