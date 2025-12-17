@@ -283,6 +283,24 @@ typedef void (*OH_HiDebug_ThreadLiteSamplingCallback)(const char* stacks);
  */
 HiDebug_ErrorCode OH_HiDebug_RequestThreadLiteSampling(
     HiDebug_ProcessSamplerConfig* config, OH_HiDebug_ThreadLiteSamplingCallback stacksCallback);
+
+/**
+ * @brief Attaches diagnostic information to the current crash context.
+ *
+ * @param type Type of diagnostic data.
+ * @param addr Point to the data buffer(must remain valid until crash).
+ * @return Handle to the previously set crash object(0 if none).
+ * @since 23
+ */
+uint64_t OH_HiDebug_SetCrashObj(HiDebug_CrashObjType type, void* addr);
+
+/**
+ * @brief Detaches diagnostic information from the current crash context.
+ *
+ * @param crashObj Handle returned by OH_HiDebug_SetCrashObj.
+ * @since 23
+ */
+void OH_HiDebug_ResetCrashObj(uint64_t crashObj);
 #ifdef __cplusplus
 }
 #endif // __cplusplus
