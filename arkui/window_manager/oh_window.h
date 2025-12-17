@@ -201,7 +201,7 @@ int32_t OH_WindowManager_SetWindowKeepScreenOn(int32_t windowId, bool isKeepScre
 /**
  * @brief Sets whether is private mode or not.
  *
- * @permission {@code ohos.permission.PRIVACY_WINDOW}
+ * @permission ohos.permission.PRIVACY_WINDOW
  * @param windowId WindowId when window is created.
  * @param isPrivacy In private mode if true, or not if false.
  * @return Returns the result code.
