@@ -2267,6 +2267,22 @@
         "name": "OH_Drawing_GetTypographyStyleAttributeBool"
     },
     {
+        "first_introduced": "24",
+        "name": "OH_Drawing_TypographyGetCharacterRangeForGlyphRange"
+    },
+    {
+        "first_introduced": "24",
+        "name": "OH_Drawing_TypographyGetCharacterPositionAtCoordinate"
+    },
+    {
+        "first_introduced": "24",
+        "name": "OH_Drawing_TypographyGetGlyphRangeForCharacterRange"
+    },
+    {
+        "first_introduced": "24",
+        "name": "OH_Drawing_DestroyRange"
+    },
+    {
         "first_introduced": "23",
         "name": "OH_Drawing_DestroyPositionAndAffinity"
     },
