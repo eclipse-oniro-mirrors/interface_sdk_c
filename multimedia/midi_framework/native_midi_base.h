@@ -143,23 +143,41 @@ typedef enum {
 } OH_MidiPortDirection;
 
 /**
- * @brief Midi transport protocol enumeration
+ * @brief Midi transport protocol semantics.
+ *
+ * @note **CRITICAL**: The SDK ALWAYS uses UMP (Universal Midi Packet) format for data transfer,
+ * regardless of the selected protocol. This enum defines the "Behavior" and "Semantics"
+ * of the connection, not the data structure.
+ *
  * @since 24
  */
 typedef enum {
     /**
-     * @brief Midi 1.0 Packet.
-     * Even when this protocol is selected,
-     * data is transported as UMP(with 0x2 as status byte).
+     * @brief Legacy Midi 1.0 Semantics.
+     *
+     * Behavior:
+     * - The service expects UMP Stream (mostly Type 2 for Voice, Type 3 for SysEx).
+     * - If the target hardware is Midi 1.0: The service converts UMP back to Byte Stream (F0...F7).
+     * - If the target hardware is Midi 2.0: The service sends UMP Type 2/3 packets.
+     *
+     * @note SysEx handling: Application must send SysEx as UMP Type 3 (64-bit Data Messages).
+     * The service handles the unpacking to raw bytes if necessary.
      */
-    MIDI_TRANSPORT_PROTOCOL_MIDI1 = 1,
+    MIDI_PROTOCOL_1_0 = 1,
 
     /**
-     * @brief Universal Midi Packet (UMP).
-     * Native Midi 2.0 format (32-bit words).
+     * @brief Midi 2.0 Semantics.
+     *
+     * Behavior:
+     * - The service expects UMP Stream (Type 4 for Voice, Type 3 for SysEx, Type F for Utility).
+     * - Enables high-resolution data, per-note controllers, and attribute exchange.
+     *
+     * @note Fallback Policy: If this protocol is requested but the hardware only supports Midi 1.0,
+     * the service will perform "Best-Effort" translation (e.g., downscaling 32-bit velocity
+     * to 7-bit, converting Type 4 to Type 2). Some data precision may be lost.
      */
-    MIDI_TRANSPORT_PROTOCOL_UMP   = 2
-} OH_MidiTransportProtocol;
+    MIDI_PROTOCOL_2_0 = 2
+} OH_MidiProtocol;
 
 /**
  * @brief Midi Device Type
@@ -222,6 +240,14 @@ typedef struct {
     OH_MidiDeviceType deviceType;
 
     /**
+     * @brief The native protocol supported by the hardware.
+     * * - If MIDI_PROTOCOL_1_0: The device is a legacy device or currently configured as such.
+     * - If MIDI_PROTOCOL_2_0: The device supports MIDI 2.0 features (e.g., has completed MIDI-CI).
+     * * @note Applications can use this to decide whether to enable high-resolution UI controls.
+     */
+    OH_MidiProtocol nativeProtocol;
+
+    /**
      * @brief Product name of the device.
      */
     char productName[256];
@@ -240,13 +266,28 @@ typedef struct {
     /**
      * @brief The unique ID of the port within the device (index).
      */
-    uint32_t portIndex;
+    uint32_t portIndex;.
 
     /**
-     * @brief The protocol the application wishes to use.
-     * If protocol is Midi1, the SDK will use 0x2 as status byte in UMP packet.
+     * @brief The requested protocol behavior for this session.
+     *
+     * This field dictates how the Service translates data between the App and the Hardware.
+     *
+     * **Compatibility Behavior:**
+     *
+     * 1. **Request MIDI_PROTOCOL_1_0 on a 2.0 Device**: (Safe)
+     * - The service creates a virtual 1.0 view.
+     * - App sends UMP Type 2 (Midi 1.0 Channel Voice).
+     * - Device receives UMP Type 2.
+     * - Fully compatible.
+     *
+     * 2. **Request MIDI_PROTOCOL_2_0 on a 1.0 Device**: (Lossy)
+     * - The service creates a virtual 2.0 view.
+     * - App sends UMP Type 4 (Midi 2.0 Voice).
+     * - Service **Down-converts** Type 4 to Type 2/Byte Stream (e.g., clipping Velocity, dropping Per-Note data).
+     * - **Warning**: Data precision will be lost. Advanced messages may be dropped.
      */
-    OH_MidiTransportProtocol protocol;
+    OH_MidiProtocol protocol;
 } OH_MidiPortDescriptor;
 
 /**

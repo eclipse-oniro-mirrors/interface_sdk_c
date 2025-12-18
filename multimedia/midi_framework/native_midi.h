@@ -224,7 +224,9 @@ OH_MidiStatusCode OH_MidiSend(OH_MidiDevice *device,
 /**
  * @brief Send a large SysEx message (Byte-Stream to UMP Helper)
  *
- * This is a UTILITY function for applications that handle SysEx as raw byte streams(Midi 1,0 style, F0...F7).
+ * This is a UTILITY function for applications that handle SysEx as raw byte streams(Midi 1.0 style, F0...F7).
+ * This works for BOTH MIDI_PROTOCOL_1_0 and MIDI_PROTOCOL_2_0 sessions.
+ * The underlying service handles the final conversion based on the device's actual capabilities.
  *
  * How it works:
  * 1. It automatically fragments the raw bytes into a sequence of UMP Type 3(64-bit Data Message) packets.
