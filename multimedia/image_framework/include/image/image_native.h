@@ -38,7 +38,6 @@
 
 #include "image_common.h"
 #include "native_buffer/native_buffer.h"
-#include "native_color_space_manager.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -180,13 +179,13 @@ Image_ErrorCode OH_ImageNative_Release(OH_ImageNative *image);
  * @brief Get colorspace from an {@link OH_ImageNative} object.
  *
  * @param image Indicates the pointer to an {@link OH_ImageNative} object.
- * @param colorSpaceName Indicates the pointer to the obtained color space name.
+ * @param colorSpaceName Indicates the pointer to the obtained color space name, see {@link ColorSpaceName}.
  * @return Returns one of the following result codes:
  * {@link IMAGE_SUCCESS} if the execution is successful.
  * {@link IMAGE_BAD_PARAMETER} if bad parameter.
  * @since 23
  */
-Image_ErrorCode OH_ImageNative_GetColorSpace(OH_ImageNative *image, ColorSpaceName *colorSpaceName);
+Image_ErrorCode OH_ImageNative_GetColorSpace(OH_ImageNative *image, int32_t *colorSpaceName);
 
 /**
  * @brief Obtains the image format from an {@link OH_ImageNative} object.
