@@ -46,6 +46,8 @@ _ndk_library_targets = [
   "//interface/sdk_c/security/huks:libhuks_ndk",
   "//interface/sdk_c/security/huks:libhuks_external_crypto",
   "//interface/sdk_c/security/huks:huks_header",
+  "//interface/sdk_c/security/device_certificate/certmanager:libohcert_manager",
+  "//interface/sdk_c/security/device_certificate/certmanager:cm_header",
   "//interface/sdk_c/security/asset:libasset_ndk",
   "//interface/sdk_c/security/asset:asset_header",
   "//interface/sdk_c/startup/init/syscap:libdeviceinfo_ndk",
