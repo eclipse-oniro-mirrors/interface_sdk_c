@@ -67,7 +67,7 @@ typedef struct OH_ImageBufferData {
     int32_t *rowStride;
     /** pixelStride of each component. */
     int32_t *pixelStride;
-    /** number of stride.  */
+    /** number of strides.  */
     int32_t  numStride;
     /** byte length of the buffer  */
     size_t  bufferSize;
