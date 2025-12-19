@@ -162,5 +162,45 @@
   {
     "first_introduced": "22", 
     "name": "OH_AVPlayer_GetTrackDescription"
+ },
+  {
+    "first_introduced": "23",
+    "name": "OH_AVPlayer_GetPlaybackStatisticMetrics"
+  },
+  {
+    "first_introduced": "23",
+    "name": "OH_MEDIA_EVENT_INFO_PREPARE_DURATION"
+  },
+  {
+    "first_introduced": "23",
+    "name": "OH_MEDIA_EVENT_INFO_RESOURCE_CONNECTION_DURATION"
+  },
+  {
+    "first_introduced": "23",
+    "name": "OH_MEDIA_EVENT_INFO_FIRST_FRAME_DECAPSULATION_DURATION"
+  },
+  {
+    "first_introduced": "23",
+    "name": "OH_MEDIA_EVENT_INFO_TOTAL_PLAYING_TIME"
+  },
+  {
+    "first_introduced": "23",
+    "name": "OH_MEDIA_EVENT_INFO_DOWNLOAD_REQUEST_COUNT"
+  },
+  {
+    "first_introduced": "23",
+    "name": "OH_MEDIA_EVENT_INFO_DOWNLOAD_TOTAL_TIME"
+  },
+  {
+    "first_introduced": "23",
+    "name": "OH_MEDIA_EVENT_INFO_DOWNLOAD_TOTAL_SIZE"
+  },
+  {
+    "first_introduced": "23",
+    "name": "OH_MEDIA_EVENT_INFO_STALLING_COUNT"
+  },
+  {
+    "first_introduced": "23",
+    "name": "OH_MEDIA_EVENT_INFO_TOTAL_STALLING_TIME"
   }
 ]
