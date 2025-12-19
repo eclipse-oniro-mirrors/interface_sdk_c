@@ -14,7 +14,7 @@
  */
 
 /**
- * @addtogroup OH_PictureInPicture
+ * @addtogroup WindowManager
  * @{
  *
  * @file oh_window_pip.h
