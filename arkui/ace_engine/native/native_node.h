@@ -9775,7 +9775,7 @@ typedef enum {
      * are counted as a child component. \n
      * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
      * {@link ArkUI_NodeComponentEvent}. \n
-     * {@link ArkUI_NodeComponentEvent} contains three parameters: \n
+     * {@link ArkUI_NodeComponentEvent} contains six parameters: \n
      * <b>ArkUI_NodeComponentEvent.data[0].i32</b>: index of the first child component in the list display area. \n
      * <b>ArkUI_NodeComponentEvent.data[1].i32</b>: area in the list item group where the list display area starts.
      * The type is {@link ArkUI_ListItemGroupArea}. \n
@@ -9865,7 +9865,7 @@ typedef enum {
      * first or last subcomponent in the waterfall display area changes. \n
      * When the event callback occurs, the union type in the {@Link ArkUI_NodeEvent} object is \n
      * {@Link ArkUI_NodeComponentEvent}. \n
-     * {@Link ArkUI_NodeComponentEvent} contains three parameters: \n
+     * {@Link ArkUI_NodeComponentEvent} contains two parameters: \n
      * ArkUI_NodeComponentEvent.data[0].i32: The index value of the \n
      * start position of the currently displayed WaterFlow. \n
      * ArkUI_NodeComponentEvent.data[1].i32: The index value of \n
