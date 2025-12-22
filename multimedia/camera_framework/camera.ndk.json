@@ -798,5 +798,13 @@
     {
         "first_introduced": "23",
         "name": "OH_PhotoNative_GetUncompressedImage"
+    },
+    {
+        "first_introduced": "23",
+        "name": "OH_CameraInput_RegisterOcclusionDetectionCallback"
+    },
+    {
+        "first_introduced": "23",
+        "name": "OH_CameraInput_UnregisterOcclusionDetectionCallback"
     }
 ]
