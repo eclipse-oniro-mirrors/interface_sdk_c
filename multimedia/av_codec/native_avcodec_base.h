@@ -489,6 +489,27 @@ extern const char *OH_AVCODEC_MIMETYPE_AUDIO_ILBC;
 extern const char *OH_AVCODEC_MIMETYPE_AUDIO_TRUEHD;
 
 /**
+ * @brief Enumerates the mime types of audio DV Audio codec.
+ *
+ * @since 23
+ */
+extern const char *OH_AVCODEC_MIMETYPE_AUDIO_DVAUDIO;
+
+/**
+ * @brief Enumerates the mime types of audio DTS codec.
+ *
+ * @since 23
+ */
+extern const char *OH_AVCODEC_MIMETYPE_AUDIO_DTS;
+
+/**
+ * @brief Enumerates the mime types of audio COOK codec.
+ *
+ * @since 23
+ */
+extern const char *OH_AVCODEC_MIMETYPE_AUDIO_COOK;
+
+/**
  * @brief Enumerates the MIME type of video mpeg2 codec.
  *
  * @syscap SystemCapability.Multimedia.Media.CodecBase

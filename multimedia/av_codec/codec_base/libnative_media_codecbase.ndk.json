@@ -132,6 +132,21 @@
         "name": "OH_AVCODEC_MIMETYPE_AUDIO_TRUEHD"
     },
     {
+        "first_introduced": "23",
+        "name": "OH_AVCODEC_MIMETYPE_AUDIO_DVAUDIO",
+        "type": "variable"
+    },
+    {
+        "first_introduced": "23",
+        "name": "OH_AVCODEC_MIMETYPE_AUDIO_DTS",
+        "type": "variable"
+    },
+    {
+        "first_introduced": "23",
+        "name": "OH_AVCODEC_MIMETYPE_AUDIO_COOK",
+        "type": "variable"
+    },
+    {
         "first_introduced": "17",
         "name": "OH_AVCODEC_MIMETYPE_VIDEO_MPEG2"
     },
