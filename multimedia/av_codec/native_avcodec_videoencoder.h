@@ -145,7 +145,6 @@ OH_AVErrCode OH_VideoEncoder_RegisterCallback(OH_AVCodec *codec, OH_AVCodecCallb
  * {@link AV_ERR_NO_MEMORY}, internal errors in the input encode instance, such as an abnormal NULL.
  * {@link AV_ERR_INVALID_VAL}, the input codec pointer is non encoder instance or NULL.
  * {@link AV_ERR_UNKNOWN}, unknown error.
- * {@link AV_ERR_OPERATE_NOT_PERMIT}, internal execution error.
  * {@link AV_ERR_INVALID_STATE}, this interface was called in invalid state, must be called before Prepare.
  * @since 12
  */
