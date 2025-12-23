@@ -67,28 +67,28 @@ typedef struct ArkUI_CoastingAxisEvent ArkUI_CoastingAxisEvent;
 /**
  * @brief Defines the touch test info.
  *
- * @since 23
+ * @since 22
  */
 typedef struct ArkUI_TouchTestInfo ArkUI_TouchTestInfo;
 
 /**
  * @brief Defines the touch test info item.
  *
- * @since 23
+ * @since 22
  */
 typedef struct ArkUI_TouchTestInfoItem ArkUI_TouchTestInfoItem;
 
 /**
  * @brief Defines the touch test info item handle.
  *
- * @since 23
+ * @since 22
  */
 typedef ArkUI_TouchTestInfoItem* ArkUI_TouchTestInfoItemHandle;
 
 /**
  * @brief Defines the gesture recognizer handle array.
  *
- * @since 23
+ * @since 22
  */
 typedef ArkUI_TouchTestInfoItemHandle* ArkUI_TouchTestInfoItemArray;
 
@@ -315,6 +315,72 @@ enum {
     UI_FOCUS_AXIS_EVENT_ABS_HAT0X = 6,
     /** ABS_HAT0Y. */
     UI_FOCUS_AXIS_EVENT_ABS_HAT0Y = 7,
+    /**
+     * Game controller RX-axis.
+     *
+     * @since 23
+     */
+    UI_FOCUS_AXIS_EVENT_ABS_RX = 8,
+    /**
+     * Game controller RY-axis.
+     *
+     * @since 23
+     */
+    UI_FOCUS_AXIS_EVENT_ABS_RY = 9,
+    /**
+     * Game controller THROTTLE-axis.
+     *
+     * @since 23
+     */
+    UI_FOCUS_AXIS_EVENT_ABS_THROTTLE = 10,
+    /**
+     * Game controller RUDDER-axis.
+     *
+     * @since 23
+     */
+    UI_FOCUS_AXIS_EVENT_ABS_RUDDER = 11,
+    /**
+     * Game controller WHEEL-axis.
+     *
+     * @since 23
+     */
+    UI_FOCUS_AXIS_EVENT_ABS_WHEEL = 12,
+    /**
+     * Game controller HAT1X-axis.
+     *
+     * @since 23
+     */
+    UI_FOCUS_AXIS_EVENT_ABS_HAT1X = 13,
+    /**
+     * Game controller HAT1Y-axis.
+     *
+     * @since 23
+     */
+    UI_FOCUS_AXIS_EVENT_ABS_HAT1Y = 14,
+    /**
+     * Game controller HAT2X-axis.
+     *
+     * @since 23
+     */
+    UI_FOCUS_AXIS_EVENT_ABS_HAT2X = 15,
+    /**
+     * Game controller HAT2Y-axis.
+     *
+     * @since 23
+     */
+    UI_FOCUS_AXIS_EVENT_ABS_HAT2Y = 16,
+    /**
+     * Game controller HAT3X-axis.
+     *
+     * @since 23
+     */
+    UI_FOCUS_AXIS_EVENT_ABS_HAT3X = 17,
+    /**
+     * Game controller HAT3Y-axis.
+     *
+     * @since 23
+     */
+    UI_FOCUS_AXIS_EVENT_ABS_HAT3Y = 18,
 };
 
 /**
@@ -366,7 +432,7 @@ enum {
 /**
  * @brief Define the touch test strategy.
  *
- * @since 23
+ * @since 22
  */
 typedef enum {
     /** Custom dispatch has no effect; the system distributes events based on the hit status of the current node. */
@@ -1297,22 +1363,26 @@ int32_t OH_ArkUI_UIInputEvent_GetModifierKeyStates(const ArkUI_UIInputEvent* eve
 int64_t OH_ArkUI_PointerEvent_GetPressedTimeByIndex(const ArkUI_UIInputEvent* event, uint32_t pointerIndex);
 
 /**
- * @brief Obtains the x-axis offset of the mouse pointer position relative to the position in the previously reported
- * mouse event. This value may be less than the difference between the two reported X coordinates when the mouse pointer
- * is near the screen edge.
+ * @brief Obtains the movement increment of the mouse device along the X-axis in a two-dimensional plane.
+ * Its value represents the raw movement data from the mouse device, expressed in units of physical
+ * distance in the real world. The reported value is determined by the hardware itself and does not
+ * correspond to the physical or logical pixels on the screen.
+ * 
  * @param event Pointer to an <b>ArkUI_UIInputEvent</b> object.
- * @return Returns the x-axis offset of the mouse pointer position relative to the position in the previously reported
+ * @return Returns the x-axis offset of the mouse position relative to the position in the previously reported
  * mouse event; returns <b>0.0f</b> if any parameter error occurs.
  * @since 15
  */
 float OH_ArkUI_MouseEvent_GetRawDeltaX(const ArkUI_UIInputEvent* event);
 
 /**
- * @brief Obtains the y-axis offset of the mouse pointer position relative to the position in the previously reported
- * mouse event. This value may be less than the difference between the two reported Y coordinates when the mouse pointer
- * is near the screen edge.
+ * @brief Obtains the movement increment of the mouse device along the Y-axis in a two-dimensional plane.
+ * Its value represents the raw movement data from the mouse device, expressed in units of physical
+ * distance in the real world. The reported value is determined by the hardware itself and does not
+ * correspond to the physical or logical pixels on the screen.
+ * 
  * @param event Pointer to an <b>ArkUI_UIInputEvent</b> object.
- * @return Returns the y-axis offset of the mouse pointer position relative to the position in the previously reported
+ * @return Returns the y-axis offset of the mouse position relative to the position in the previously reported
  * mouse event; returns <b>0.0f</b> if any parameter error occurs.
  * @since 15
  */
@@ -1581,7 +1651,7 @@ int32_t OH_ArkUI_CoastingAxisEvent_SetPropagation(ArkUI_CoastingAxisEvent* event
  * @param size Indicates the size of the array of touch test info list.
  * @return Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if success.
  *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
- * @since 23
+ * @since 22
  */
 ArkUI_ErrorCode OH_ArkUI_TouchTestInfo_GetTouchTestInfoList(ArkUI_TouchTestInfo* info,
     ArkUI_TouchTestInfoItemArray* array, int32_t* size);
@@ -1593,7 +1663,7 @@ ArkUI_ErrorCode OH_ArkUI_TouchTestInfo_GetTouchTestInfoList(ArkUI_TouchTestInfo*
  * @param info Indicates the pointer to the touch test info item.
  * @return Returns the X coordinate relative to the upper left corner of the parent component.
  * returns <b>0</b> if any parameter error occurs.
- * @since 23
+ * @since 22
  */
 float OH_ArkUI_TouchTestInfoItem_GetX(const ArkUI_TouchTestInfoItem* info);
 
@@ -1604,7 +1674,7 @@ float OH_ArkUI_TouchTestInfoItem_GetX(const ArkUI_TouchTestInfoItem* info);
  * @param info Indicates the pointer to the touch test info item.
  * @return Returns the Y coordinate relative to the upper left corner of the parent component.
  * returns <b>0</b> if any parameter error occurs.
- * @since 23
+ * @since 22
  */
 float OH_ArkUI_TouchTestInfoItem_GetY(const ArkUI_TouchTestInfoItem* info);
 
@@ -1615,7 +1685,7 @@ float OH_ArkUI_TouchTestInfoItem_GetY(const ArkUI_TouchTestInfoItem* info);
  * @param info Indicates the pointer to the touch test info item.
  * @return Returns the X coordinate relative to the upper left corner of the current application window.
  * returns <b>0.0f</b> if any parameter error occurs.
- * @since 23
+ * @since 22
  */
 float OH_ArkUI_TouchTestInfoItem_GetWindowX(const ArkUI_TouchTestInfoItem* info);
 
@@ -1626,7 +1696,7 @@ float OH_ArkUI_TouchTestInfoItem_GetWindowX(const ArkUI_TouchTestInfoItem* info)
  * @param info Indicates the pointer to the touch test info item.
  * @return Returns the Y coordinate relative to the upper left corner of the current application window.
  * returns <b>0.0f</b> if any parameter error occurs.
- * @since 23
+ * @since 22
  */
 float OH_ArkUI_TouchTestInfoItem_GetWindowY(const ArkUI_TouchTestInfoItem* info);
 
@@ -1637,7 +1707,7 @@ float OH_ArkUI_TouchTestInfoItem_GetWindowY(const ArkUI_TouchTestInfoItem* info)
  * @param info Indicates the pointer to the touch test info item.
  * @return Returns the X coordinate relative to the upper left corner of the parent component.
  * returns <b>0</b> if any parameter error occurs.
- * @since 23
+ * @since 22
  */
 float OH_ArkUI_TouchTestInfoItem_GetXRelativeToParent(const ArkUI_TouchTestInfoItem* info);
 
@@ -1648,7 +1718,7 @@ float OH_ArkUI_TouchTestInfoItem_GetXRelativeToParent(const ArkUI_TouchTestInfoI
  * @param info Indicates the pointer to the touch test info item.
  * @return Returns the Y coordinate relative to the upper left corner of the parent component.
  * returns <b>0</b> if any parameter error occurs.
- * @since 23
+ * @since 22
  */
 float OH_ArkUI_TouchTestInfoItem_GetYRelativeToParent(const ArkUI_TouchTestInfoItem* info);
 
@@ -1659,7 +1729,7 @@ float OH_ArkUI_TouchTestInfoItem_GetYRelativeToParent(const ArkUI_TouchTestInfoI
  * @param childRect Indicates the pointer to the child frame rect.
  * @return Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if success.
  *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
- * @since 23
+ * @since 22
  */
 ArkUI_ErrorCode OH_ArkUI_TouchTestInfoItem_GetChildRect(const ArkUI_TouchTestInfoItem* info, ArkUI_Rect* childRect);
 
@@ -1672,7 +1742,7 @@ ArkUI_ErrorCode OH_ArkUI_TouchTestInfoItem_GetChildRect(const ArkUI_TouchTestInf
  * @return Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if success.
  *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
  *         Returns {@link ARKUI_ERROR_CODE_BUFFER_SIZE_NOT_ENOUGH} if the buffer is not large enough.
- * @since 23
+ * @since 22
  */
 ArkUI_ErrorCode OH_ArkUI_TouchTestInfoItem_GetChildId(const ArkUI_TouchTestInfoItem* info, char* buffer,
     int32_t bufferSize);
@@ -1684,7 +1754,7 @@ ArkUI_ErrorCode OH_ArkUI_TouchTestInfoItem_GetChildId(const ArkUI_TouchTestInfoI
  * @param {ArkUI_TouchTestStrategy} strategy The touch test strategy.
  * @return Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if success.
  * Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
- * @since 23
+ * @since 22
  */
 ArkUI_ErrorCode OH_ArkUI_TouchTestInfo_SetTouchResultStrategy(ArkUI_TouchTestInfo* info,
     ArkUI_TouchTestStrategy strategy);
@@ -1696,7 +1766,7 @@ ArkUI_ErrorCode OH_ArkUI_TouchTestInfo_SetTouchResultStrategy(ArkUI_TouchTestInf
  * @param {pointer} id The sub component's name.
  * @return Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if success.
  * Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
- * @since 23
+ * @since 22
  */
 ArkUI_ErrorCode OH_ArkUI_TouchTestInfo_SetTouchResultId(ArkUI_TouchTestInfo* info, const char* id);
 

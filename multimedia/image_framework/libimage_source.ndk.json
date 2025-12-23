@@ -152,12 +152,68 @@
         "name": "OH_ImageSourceNative_GetImageProperty"
     },
     {
+        "first_introduced": "23",
+        "name": "OH_ImageSourceNative_GetImagePropertyShort"
+    },
+    {
+        "first_introduced": "23",
+        "name": "OH_ImageSourceNative_GetImagePropertyLong"
+    },
+    {
+        "first_introduced": "23",
+        "name": "OH_ImageSourceNative_GetImagePropertyDouble"
+    },
+    {
+        "first_introduced": "23",
+        "name": "OH_ImageSourceNative_GetImagePropertyArraySize"
+    },
+    {
+        "first_introduced": "23",
+        "name": "OH_ImageSourceNative_GetImagePropertyString"
+    },
+    {
+        "first_introduced": "23",
+        "name": "OH_ImageSourceNative_GetImagePropertyIntArray"
+    },
+    {
+        "first_introduced": "23",
+        "name": "OH_ImageSourceNative_GetImagePropertyDoubleArray"
+    },
+    {
+        "first_introduced": "23",
+        "name": "OH_ImageSourceNative_GetImagePropertyBlob"
+    },
+    {
         "first_introduced": "19",
         "name": "OH_ImageSourceNative_GetImagePropertyWithNull"
     },
     {
         "first_introduced": "12",
         "name": "OH_ImageSourceNative_ModifyImageProperty"
+    },
+    {
+        "first_introduced": "23",
+        "name": "OH_ImageSourceNative_ModifyImagePropertyShort"
+    },
+    {
+        "first_introduced": "23",
+        "name": "OH_ImageSourceNative_ModifyImagePropertyLong"
+    },
+    {
+        "first_introduced": "23",
+        "name": "OH_ImageSourceNative_ModifyImagePropertyDouble"
+    },
+    {
+        "first_introduced": "23",
+        "name": "OH_ImageSourceNative_ModifyImagePropertyIntArray"
+    },
+    {
+        "first_introduced": "23",
+        "name": "OH_ImageSourceNative_ModifyImagePropertyDoubleArray"
+    },
+    {
+        "first_introduced": "23",
+        "name": "OH_ImageSourceNative_ModifyImagePropertyBlob"
     },
     {
         "first_introduced": "12",

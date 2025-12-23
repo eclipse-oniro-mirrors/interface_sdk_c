@@ -35,7 +35,6 @@
  * @library libhuks_ndk.z.so
  * @syscap SystemCapability.Security.Huks.Core
  *
- * include "huks/include/native_huks_type.h"
  * @kit UniversalKeystoreKit
  * @since 9
  * @version 1.0

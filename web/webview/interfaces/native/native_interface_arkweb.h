@@ -123,7 +123,7 @@ typedef enum {
     /**
      * ArkWeb auto use the newest ArkWeb Engine version.
      * Evergreen Web Engine.
-     * @since 21
+     * @since 23
      */
     ARKWEB_EVERGREEN = 99999,
 } ArkWebEngineVersion;
@@ -265,6 +265,7 @@ void OH_NativeArkWeb_RegisterAsyncThreadJavaScriptProxy(const char* webTag,
  * @brief Sets whether to enable blankless page loading. This API must be used in pair with the
  * OH_NativeArkWeb_GetBlanklessInfoWithKey API.
  *
+ * @permission ohos.permission.INTERNET and ohos.permission.GET_NETWORK_INFO
  * @param webTag webTag used when the webviewController is created.
  * @param key Key value that uniquely identifies the current page. It must be the same as the key value of the
  * OH_NativeArkWeb_GetBlanklessInfoWithKey API.
@@ -302,6 +303,7 @@ void OH_NativeArkWeb_ClearBlanklessLoadingCache(const char* key[], uint32_t size
  * This API applies to pages in an applet or web application whose URLs are not fixed or cannot be uniquely
  * identified.
  *
+ * @permission ohos.permission.INTERNET and ohos.permission.GET_NETWORK_INFO
  * @param webTag webTag used when the webviewController is created.
  * Default value: N/A.
  * The value cannot be empty.
@@ -375,9 +377,19 @@ void OH_NativeArkWeb_SetActiveWebEngineVersion(ArkWebEngineVersion webEngineVers
 ArkWebEngineVersion OH_NativeArkWeb_GetActiveWebEngineVersion();
 
 /**
+ * Delays the initialization of the web engine. By default, the web engine is initialized when the CookieManager
+ * interface is called. By setting the 'lazy' parameter to true, the web engine will not be initialized when the
+ * CookieManager interface is called. Instead, the web engine will be initialized either when the web component is
+ * created or when initializeWebEngine is called.
+ * @param { bool } lazy - Controls whether to delay the initialization of the web engine.
+ * @since 22
+ */
+void OH_NativeArkWeb_LazyInitializeWebEngineInCookieManager(bool lazy);
+
+/**
  * Check if the currently active ArkWeb engine is Evergreen.
  * @return { bool } true means the application is using the Evergreen Web Engine, false means not.
- * @since 21
+ * @since 23
  */
 bool OH_NativeArkWeb_IsActiveWebEngineEvergreen();
 

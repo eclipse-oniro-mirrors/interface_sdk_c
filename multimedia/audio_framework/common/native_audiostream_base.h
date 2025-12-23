@@ -901,6 +901,34 @@ typedef enum {
     AUDIOSTREAM_VOLUMEMODE_APP_INDIVIDUAL = 1
 } OH_AudioStream_VolumeMode;
 
+/**
+ * @brief Defines audio latency types.
+ *
+ * @since 23
+ */
+typedef enum {
+    /**
+     * Type to get latency of all audio processing units, including software and hardware.
+     *
+     * @since 23
+     */
+    AUDIOSTREAM_LATENCY_TYPE_ALL = 0,
+
+    /**
+     * Type to get latency of software part, including audio effects in software.
+     *
+     * @since 23
+     */
+    AUDIOSTREAM_LATENCY_TYPE_SOFTWARE = 1,
+
+    /**
+     * Type to get latency of hardware part, including audio effects in hal, driver and hardware.
+     *
+     * @since 23
+     */
+    AUDIOSTREAM_LATENCY_TYPE_HARDWARE = 2
+} OH_AudioStream_LatencyType;
+
 #ifdef __cplusplus
 }
 #endif

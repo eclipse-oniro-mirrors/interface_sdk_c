@@ -373,6 +373,37 @@ extern const char* OH_PLAYER_MESSAGE_TYPE;
 extern const char* OH_PLAYER_IS_LIVE_STREAM;
 
 /**
+ * @brief Key to get the value whether the media resource contains video content,
+ *        value type is int32_t. 1 means true and 0 means false.
+ *        Media description key, see {@link OH_AVPlayer_GetMediaDescription}
+ * @since 22
+ */
+extern const char* OH_PLAYER_MD_KEY_HAS_VIDEO;
+
+/**
+ * @brief Key to get the value whether the media resource contains audio content,
+ *        value type is int32_t. 1 means true and 0 means false.
+ *        Media description key, see {@link OH_AVPlayer_GetMediaDescription}
+ * @since 22
+ */
+extern const char* OH_PLAYER_MD_KEY_HAS_AUDIO;
+
+/**
+ * @brief Key to get the value whether the media resource contains subtitle content,
+ *        value type is int32_t. 1 means true and 0 means false.
+ *        Media description key, see {@link OH_AVPlayer_GetMediaDescription}
+ * @since 22
+ */
+extern const char* OH_PLAYER_MD_KEY_HAS_SUBTITLE;
+
+/**
+ * @brief Key to get is track index, value type is int32_t.
+ *        Track description key, see {@link OH_AVPlayer_GetTrackDescription}
+ * @since 22
+ */
+extern const char* OH_PLAYER_MD_KEY_TRACK_INDEX;
+
+/**
  * @brief Called when a player message or alarm is received.
  * @syscap SystemCapability.Multimedia.Media.AVPlayer
  * @param player The pointer to an OH_AVPlayer instance.
@@ -438,6 +469,69 @@ typedef struct AVPlayerCallback {
     OH_AVPlayerOnInfo onInfo;
     OH_AVPlayerOnError onError;
 } AVPlayerCallback;
+
+/**
+ * @brief Key to get prepare duration value in statistic metrics info,
+ *     value type is uint32_t, in milliseconds.
+ * @since 23
+ */
+extern const char* OH_MEDIA_EVENT_INFO_PREPARE_DURATION;
+
+/**
+ * @brief Key to get resource link establishment time in statistic metrics info,
+ *     value type is uint32_t, in milliseconds.
+ * @since 23
+ */
+extern const char* OH_MEDIA_EVENT_INFO_RESOURCE_CONNECTION_DURATION;
+
+/**
+ * @brief Key to get decapsulation time of the first sample in statistic metrics info,
+ *     value type is uint32_t, in milliseconds.
+ * @since 23
+ */
+extern const char* OH_MEDIA_EVENT_INFO_FIRST_FRAME_DECAPSULATION_DURATION;
+
+/**
+ * @brief Key to get cumulative playback time in statistic metrics info,
+ *     value type is uint32_t, in milliseconds.
+ * @since 23
+ */
+extern const char* OH_MEDIA_EVENT_INFO_TOTAL_PLAYING_TIME;
+
+/**
+ * @brief Key to get cumulative times of media resource loading request in statistic metrics info,
+ *     value type is uint32_t.
+ * @since 23
+ */
+extern const char* OH_MEDIA_EVENT_INFO_DOWNLOAD_REQUEST_COUNT;
+
+/**
+ * @brief Key to get the total time spent loading the media resource in statistic metrics info,
+ *     value type is uint32_t, in milliseconds.
+ * @since 23
+ */
+extern const char* OH_MEDIA_EVENT_INFO_DOWNLOAD_TOTAL_TIME;
+
+/**
+ * @brief Key to get size of loaded media resources in statistic metrics info,
+ *     value type is int64_t.
+ * @since 23
+ */
+extern const char* OH_MEDIA_EVENT_INFO_DOWNLOAD_TOTAL_SIZE;
+
+/**
+ * @brief Key to get cumulative stalling count in statistic metrics info,
+ *     value type is uint32_t.
+ * @since 23
+ */
+extern const char* OH_MEDIA_EVENT_INFO_STALLING_COUNT;
+
+/**
+ * @brief Key to get the cumulative stalling time in statistic metrics info,
+ *     value type is uint32_t,in milliseconds.
+ * @since 23
+ */
+extern const char* OH_MEDIA_EVENT_INFO_TOTAL_STALLING_TIME;
 
 #ifdef __cplusplus
 }

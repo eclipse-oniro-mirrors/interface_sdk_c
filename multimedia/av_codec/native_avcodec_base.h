@@ -468,6 +468,27 @@ extern const char *OH_AVCODEC_MIMETYPE_AUDIO_GSM;
 extern const char *OH_AVCODEC_MIMETYPE_AUDIO_GSM_MS;
 
 /**
+ * @brief Enumerates the mime types of audio TwinVQ codec.
+ *
+ * @since 23
+ */
+extern const char *OH_AVCODEC_MIMETYPE_AUDIO_TWINVQ;
+
+/**
+ * @brief Enumerates the mime types of audio internet low bitrate codec.
+ *
+ * @since 23
+ */
+extern const char *OH_AVCODEC_MIMETYPE_AUDIO_ILBC;
+
+/**
+ * @brief Enumerates the mime types of audio TrueHD codec.
+ *
+ * @since 23
+ */
+extern const char *OH_AVCODEC_MIMETYPE_AUDIO_TRUEHD;
+
+/**
  * @brief Enumerates the MIME type of video mpeg2 codec.
  *
  * @syscap SystemCapability.Multimedia.Media.CodecBase
@@ -649,6 +670,25 @@ extern const char *OH_MD_KEY_I_FRAME_INTERVAL;
  * @since 9
  */
 extern const char *OH_MD_KEY_ROTATION;
+
+/**
+ * @brief Key for video transform type, value type is int32_t, see {@link OH_NativeBuffer_TransformType}.
+ *
+ * This key is used to set the surface transform for video decoders (surface mode).
+ * If not specified, the default value is 0 ({@link NATIVEBUFFER_ROTATE_NONE}).
+ * This key and {@link OH_MD_KEY_ROTATION} are mutually exclusive. If both are provided,
+ * OH_MD_KEY_VIDEO_TRANSFORM_TYPE takes precedence.
+ * Note that the degrees specified in {@link OH_NativeBuffer_TransformType} represent counter-clockwise rotation,
+ * which are opposite to the direction of rotation defined by {@link OH_MD_KEY_ROTATION}.
+ * The correspondence is:
+ * - {@link NATIVEBUFFER_ROTATE_NONE}  => same as OH_MD_KEY_ROTATION = 0
+ * - {@link NATIVEBUFFER_ROTATE_90}    => same as OH_MD_KEY_ROTATION = 270
+ * - {@link NATIVEBUFFER_ROTATE_180}   => same as OH_MD_KEY_ROTATION = 180
+ * - {@link NATIVEBUFFER_ROTATE_270}   => same as OH_MD_KEY_ROTATION = 90
+ *
+ * @since 22
+ */
+extern const char *OH_MD_KEY_VIDEO_TRANSFORM_TYPE;
 
 /**
  * @brief Key for video YUV value range flag, value type is bool, true for full range, false for limited range.
@@ -1308,6 +1348,13 @@ extern const char *OH_MD_KEY_VIDEO_DECODER_BLANK_FRAME_ON_SHUTDOWN;
  * @since 22
  */
 extern const char *OH_MD_KEY_VIDEO_NATIVE_BUFFER_FORMAT;
+
+/**
+ * @brief Key for skip samples of audio frame. value type is a uint8_t pointer.
+ *
+ * @since 23
+ */
+extern const char *OH_MD_KEY_BUFFER_SKIP_SAMPLES_INFO;
 
 /**
  * @brief Media type.

@@ -35,7 +35,8 @@ _DIR_NOT_PROCESS = [
     "GLES3",
     "i686-linux-ohos",
     "linux",
-    "x86_64-linux-ohos"
+    "x86_64-linux-ohos",
+    "TEEKit"
 ]
 
 

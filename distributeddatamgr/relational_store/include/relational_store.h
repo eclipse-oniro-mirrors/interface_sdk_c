@@ -35,17 +35,16 @@
  * @syscap SystemCapability.DistributedDataManager.RelationalStore.Core
  * @since 10
  */
-
 #ifndef RELATIONAL_STORE_H
 #define RELATIONAL_STORE_H
 
 #include "database/rdb/oh_cursor.h"
 #include "database/rdb/oh_predicates.h"
-#include "database/rdb/oh_value_object.h"
-#include "database/rdb/oh_values_bucket.h"
+#include "database/rdb/oh_rdb_crypto_param.h"
 #include "database/rdb/oh_rdb_transaction.h"
 #include "database/rdb/oh_rdb_types.h"
-#include "database/rdb/oh_rdb_crypto_param.h"
+#include "database/rdb/oh_value_object.h"
+#include "database/rdb/oh_values_bucket.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -702,6 +701,35 @@ int OH_Rdb_Delete(OH_Rdb_Store *store, OH_Predicates *predicates);
  * @since 10
  */
 OH_Cursor *OH_Rdb_Query(OH_Rdb_Store *store, OH_Predicates *predicates, const char *const *columnNames, int length);
+
+/**
+ * @brief Queries data in the database based on specified conditions without row count.
+ *
+ * @param store Represents a pointer to an {@link OH_Rdb_Store} instance.
+ * @param predicates Represents a pointer to an {@link OH_Predicates} instance.
+ * Indicates the specified query condition.
+ * @param columns Indicates the columns to query. If the value is empty array, the query applies to all columns.
+ * @param length Indicates the length of columns.
+ * @return If the query is successful, a pointer to the instance of the {@link OH_Cursor} structure is returned.
+ *         If Get store failed or resultSet is nullptr, nullptr is returned.
+ * @see OH_Rdb_Store, OH_Predicates, OH_Cursor.
+ * @since 23
+ */
+OH_Cursor *OH_Rdb_QueryWithoutRowCount(OH_Rdb_Store *store, OH_Predicates *predicates,
+    const char * const columns[], int length);
+
+/**
+ * @brief Queries data in the database based on an SQL statement without row count.
+ *
+ * @param store Represents a pointer to an {@link OH_Rdb_Store} instance.
+ * @param sql Indicates the SQL statement to execute.
+ * @param args Represents a pointer to an instance of OH_Data_Values and  it is the selection arguments.
+ * @return If the query is successful, a pointer to the instance of the {@link OH_Cursor} structure is returned.
+ *         If sql statement is invalid or the memory allocate failed, nullptr is returned.
+ * @see OH_Rdb_Store.
+ * @since 23
+ */
+OH_Cursor *OH_Rdb_QuerySqlWithoutRowCount(OH_Rdb_Store *store, const char *sql, const OH_Data_Values *args);
 
 /**
  * @brief Executes an SQL statement.
@@ -1673,6 +1701,101 @@ int OH_Rdb_UnregisterCorruptedHandler(const OH_Rdb_ConfigV2 *config, void *conte
  */
 int OH_Rdb_RekeyEx(OH_Rdb_Store *store, OH_Rdb_CryptoParam *param);
 
+/**
+ * @brief Inserts a batch of data into the target table and output change info to context.
+ *
+ * @param store Represents a pointer to an {@link OH_Rdb_Store} instance.
+ * @param table Represents the target table.
+ * @param rows Represents the rows data to be inserted into the table.
+ * @param resolution Represents the resolution when conflict occurs.
+ * @param context Represents a pointer to a pointer to an {@link OH_RDB_ReturningContext} instance.
+ * @return Returns the status code of the execution.
+ *         Returns {@link RDB_OK} if the execution is successful.
+ *         Returns {@link RDB_E_INVALID_ARGS} if invalid input parameter.
+ *         Returns {@link RDB_E_WAL_SIZE_OVER_LIMIT} the WAL file size over default limit.
+ *         Returns {@link RDB_E_NOT_SUPPORTED} The error code for not support.
+ *         Returns {@link RDB_E_DATABASE_BUSY} The error code for database busy.
+ *         Returns {@link RDB_E_SQLITE_FULL} SQLite: The database is full.
+ *         Returns {@link RDB_E_SQLITE_CORRUPT} database corrupted.
+ *         Returns {@link RDB_E_SQLITE_PERM} SQLite: Access permission denied.
+ *         Returns {@link RDB_E_SQLITE_BUSY} SQLite: The database file is locked.
+ *         Returns {@link RDB_E_SQLITE_LOCKED} SQLite: A table in the database is locked.
+ *         Returns {@link RDB_E_SQLITE_READONLY} SQLite: Attempt to write a readonly database.
+ *         Returns {@link RDB_E_SQLITE_IOERR} SQLite: Some kind of disk I/O error occurred.
+ *         Returns {@link RDB_E_SQLITE_TOO_BIG} SQLite: TEXT or BLOB exceeds size limit.
+ *         Returns {@link RDB_E_SQLITE_MISMATCH} SQLite: Data type mismatch.
+ *         Returns {@link RDB_E_SQLITE_CONSTRAINT} SQLite: Abort due to constraint violation.
+ *         Returns {@link RDB_E_SQLITE_ERROR} SQLite error.
+ *             Possible causes: syntax error, such as a table or column not existing.
+ * Specific error codes can be referenced {@link OH_Rdb_ErrCode}.
+ * @see OH_Rdb_Store, OH_Data_VBuckets, OH_Rdb_ErrCode, OH_RDB_ReturningContext.
+ * @since 23
+ */
+int OH_Rdb_BatchInsertWithReturning(OH_Rdb_Store *store, const char *table, const OH_Data_VBuckets *rows,
+    Rdb_ConflictResolution resolution, OH_RDB_ReturningContext *context);
+
+/**
+ * @brief Updates data in the database based on specified conditions and output change info to context.
+ *
+ * @param store Represents a pointer to an {@link OH_Rdb_Store} instance.
+ * @param row Represents the row data to be updated into the table.
+ * @param predicates Represents  a pointer to an {link OH_Predicates} instance.
+ * @param resolution Represents the resolution when conflict occurs.
+ * @param context Represents a pointer to a pointer to an {@link OH_RDB_ReturningContext} instance.
+ * @return Returns the status code of the execution.
+ *         Returns {@link RDB_OK} if the execution is successful.
+ *         Returns {@link RDB_E_INVALID_ARGS} if invalid input parameter.
+ *         Returns {@link RDB_E_WAL_SIZE_OVER_LIMIT} the WAL file size over default limit.
+ *         Returns {@link RDB_E_NOT_SUPPORTED} The error code for not support.
+ *         Returns {@link RDB_E_EMPTY_VALUES_BUCKET} The error code for a values bucket is empty.
+ *         Returns {@link RDB_E_DATABASE_BUSY} The error code for database busy.
+ *         Returns {@link RDB_E_SQLITE_FULL} SQLite: The database is full.
+ *         Returns {@link RDB_E_SQLITE_CORRUPT} database corrupted.
+ *         Returns {@link RDB_E_SQLITE_PERM} SQLite: Access permission denied.
+ *         Returns {@link RDB_E_SQLITE_BUSY} SQLite: The database file is locked.
+ *         Returns {@link RDB_E_SQLITE_LOCKED} SQLite: A table in the database is locked.
+ *         Returns {@link RDB_E_SQLITE_READONLY} SQLite: Attempt to write a readonly database.
+ *         Returns {@link RDB_E_SQLITE_IOERR} SQLite: Some kind of disk I/O error occurred.
+ *         Returns {@link RDB_E_SQLITE_TOO_BIG} SQLite: TEXT or BLOB exceeds size limit.
+ *         Returns {@link RDB_E_SQLITE_MISMATCH} SQLite: Data type mismatch.
+ *         Returns {@link RDB_E_SQLITE_CONSTRAINT} SQLite: Abort due to constraint violation.
+ *         Returns {@link RDB_E_SQLITE_ERROR} SQLite error.
+ *             Possible causes: syntax error, such as a table or column not existing.
+ * Specific error codes can be referenced {@link OH_Rdb_ErrCode}.
+ * @see OH_Rdb_Store, OH_Data_VBuckets, OH_Predicates, OH_Rdb_ErrCode, OH_RDB_ReturningContext.
+ * @since 23
+ */
+int OH_Rdb_UpdateWithReturning(OH_Rdb_Store *store, OH_VBucket *row, OH_Predicates *predicates,
+    Rdb_ConflictResolution resolution, OH_RDB_ReturningContext *context);
+
+/**
+ * @brief Deletes data from the database based on specified conditions and output change info to context.
+ *
+ * @param store Represents a pointer to an {@link OH_Rdb_Store} instance.
+ * @param predicates Represents a pointer to an {@link OH_Predicates} instance.
+ * @param context Represents a pointer to an {@link OH_RDB_ReturningContext} instance.
+ * @return Returns the status code of the execution.
+ *         Returns {@link RDB_OK} if the execution is successful.
+ *         Returns {@link RDB_E_INVALID_ARGS} if invalid input parameter.
+ *         Returns {@link RDB_E_WAL_SIZE_OVER_LIMIT} the WAL file size over default limit.
+ *         Returns {@link RDB_E_NOT_SUPPORTED} The error code for not support.
+ *         Returns {@link RDB_E_DATABASE_BUSY} The error code for database busy.
+ *         Returns {@link RDB_E_SQLITE_FULL} SQLite: The database is full.
+ *         Returns {@link RDB_E_SQLITE_CORRUPT} database corrupted.
+ *         Returns {@link RDB_E_SQLITE_PERM} SQLite: Access permission denied.
+ *         Returns {@link RDB_E_SQLITE_BUSY} SQLite: The database file is locked.
+ *         Returns {@link RDB_E_SQLITE_LOCKED} SQLite: A table in the database is locked.
+ *         Returns {@link RDB_E_SQLITE_READONLY} SQLite: Attempt to write a readonly database.
+ *         Returns {@link RDB_E_SQLITE_IOERR} SQLite: Some kind of disk I/O error occurred.
+ *         Returns {@link RDB_E_SQLITE_TOO_BIG} SQLite: TEXT or BLOB exceeds size limit.
+ *         Returns {@link RDB_E_SQLITE_MISMATCH} SQLite: Data type mismatch.
+ *         Returns {@link RDB_E_SQLITE_ERROR} SQLite error.
+ *             Possible causes: syntax error, such as a table or column not existing.
+ * Specific error codes can be referenced {@link OH_Rdb_ErrCode}.
+ * @see OH_Rdb_Store, OH_Predicates, OH_Rdb_ErrCode, OH_RDB_ReturningContext.
+ * @since 23
+ */
+int OH_Rdb_DeleteWithReturning(OH_Rdb_Store *store, OH_Predicates *predicates, OH_RDB_ReturningContext *context);
 #ifdef __cplusplus
 };
 #endif

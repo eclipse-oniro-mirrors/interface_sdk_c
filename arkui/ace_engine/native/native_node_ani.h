@@ -104,6 +104,36 @@ int32_t OH_ArkUI_NativeModule_GetNodeContentFromAniValue(
  */
 ArkUI_ErrorCode OH_ArkUI_NativeModule_GetNavDestinationAniParam(ArkUI_NodeHandle node, ani_env* env, ani_value* param);
 
+/**
+ * @brief Obtains a <b>DrawableDescriptor</b> object on the ArkTS side and maps it to an
+ * <b>ArkUI_DrawableDescriptro</b> object on the native side.
+ *
+ * @param env Indicates the ANI environment pointer.
+ * @param drawable Indicates the <b>DrawableDescriptor</b> object created on the ArkTS side.
+ * @param drawableDescriptor Indicates the pointer to the <b>ArkUI_DrawableDescriptro</b> object.
+ * @return Returns the error code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @since 22
+ */
+int32_t OH_ArkUI_NativeModule_GetDrawableDescriptorFromAniValue(
+    ani_env *env, ani_object drawable, ArkUI_DrawableDescriptor **drawableDescriptor);
+
+/**
+ * @brief Obtains a <b>Resource</b> object on the ArkTS side and maps it to an
+ * <b>ArkUI_DrawableDescriptro</b> object on the native side.
+ *
+ * @param env Indicates the ANI environment pointer.
+ * @param resource Indicates the <b>Resource</b> object created on the ArkTS side.
+ * @param drawableDescriptor Indicates the pointer to the <b>ArkUI_DrawableDescriptro</b> object.
+ * @return Returns the error code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @since 22
+ */
+int32_t OH_ArkUI_NativeModule_GetDrawableDescriptorFromResourceAniValue(
+    ani_env *env, ani_object resource, ArkUI_DrawableDescriptor **drawableDescriptor);
+
 #ifdef __cplusplus
 };
 #endif
