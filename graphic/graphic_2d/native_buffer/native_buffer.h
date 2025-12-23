@@ -341,7 +341,7 @@ int32_t OH_NativeBuffer_GetMetadataValue(OH_NativeBuffer *buffer, OH_NativeBuffe
  * @param virAddr Indicates the address of the <b>OH_NativeBuffer</b> in virtual memory.
  * @return {@link NATIVE_ERROR_OK} 0 - Success.
  * {@link NATIVE_ERROR_INVALID_ARGUMENTS} 40001000 - buffer or virAddr is NULL or invalid fenceFd.
- * @since 22
+ * @since 23
  * @version 1.0
  */
 int32_t OH_NativeBuffer_MapWaitFence(OH_NativeBuffer *buffer, int32_t fenceFd, void **virAddr);
