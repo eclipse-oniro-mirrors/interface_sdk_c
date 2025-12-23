@@ -18,5 +18,41 @@
     {
       "first_introduced": "18",
       "name": "OH_AVMetadataExtractor_Release"
+    },
+    {
+      "first_introduced": "23",
+      "name": "OH_AVMetadataExtractor_OutputParam_Create"
+    },
+    {
+      "first_introduced": "23",
+      "name": "OH_AVMetadataExtractor_OutputParam_Destroy"
+    },
+    {
+      "first_introduced": "23",
+      "name": "OH_AVMetadataExtractor_OutputParam_SetSize"
+    },
+    {
+      "first_introduced": "23",
+      "name": "OH_AVMetadataExtractor_FetchFrameByTime"
+    },
+    {
+      "first_introduced": "23",
+      "name": "OH_AVMetadataExtractor_FetchFramesByTimes"
+    },
+    {
+      "first_introduced": "23",
+      "name": "OH_AVMetadataExtractor_CancelAllFetchFrames"
+    },
+    {
+      "first_introduced": "23",
+      "name": "OH_AVMetadataExtractor_GetTrackDescription"
+    },
+    {
+      "first_introduced": "23",
+      "name": "OH_AVMetadataExtractor_GetCustomInfo"
+    },
+    {
+      "first_introduced": "23",
+      "name": "OH_AVMetadataExtractor_SetMediaSource"
     }
-]
+]
