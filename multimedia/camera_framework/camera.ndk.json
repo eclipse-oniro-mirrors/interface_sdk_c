@@ -504,6 +504,10 @@
         "name": "OH_PhotoOutput_GetPhotoRotation"
     },
     {
+        "first_introduced": "23",
+        "name": "OH_PhotoOutput_GetPhotoRotationWithoutDeviceDegree"
+    },
+    {
         "first_introduced": "12",
         "name": "OH_PhotoOutput_EnableMovingPhoto"
     },
@@ -554,6 +558,10 @@
     {
         "first_introduced": "12",
         "name": "OH_PreviewOutput_GetPreviewRotation"
+    },
+    {
+        "first_introduced": "23",
+        "name": "OH_PreviewOutput_GetPreviewRotationWithoutDisplayRotation"
     },
     {
         "first_introduced": "12",
@@ -614,6 +622,10 @@
     {
         "first_introduced": "12",
         "name": "OH_VideoOutput_GetVideoRotation"
+    },
+    {
+        "first_introduced": "23",
+        "name": "OH_VideoOutput_GetVideoRotationWithoutDeviceDegree"
     },
     {
         "first_introduced": "12",
