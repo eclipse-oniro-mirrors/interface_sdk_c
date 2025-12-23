@@ -114,7 +114,7 @@ ArkUI_ErrorCode OH_ArkUI_NativeModule_GetNavDestinationAniParam(ArkUI_NodeHandle
  * @return Returns the error code.
  *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
  *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
- * @since 22
+ * @since 23
  */
 int32_t OH_ArkUI_NativeModule_GetDrawableDescriptorFromAniValue(
     ani_env *env, ani_object drawable, ArkUI_DrawableDescriptor **drawableDescriptor);
@@ -129,7 +129,7 @@ int32_t OH_ArkUI_NativeModule_GetDrawableDescriptorFromAniValue(
  * @return Returns the error code.
  *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
  *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
- * @since 22
+ * @since 23
  */
 int32_t OH_ArkUI_NativeModule_GetDrawableDescriptorFromResourceAniValue(
     ani_env *env, ani_object resource, ArkUI_DrawableDescriptor **drawableDescriptor);

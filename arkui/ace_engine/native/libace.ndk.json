@@ -4232,11 +4232,11 @@
         "name": "OH_ArkUI_NativeModule_GetNavDestinationAniParam"
     },
     {
-        "first_introduced": "22",
+        "first_introduced": "23",
         "name": "OH_ArkUI_NativeModule_GetDrawableDescriptorFromAniValue"
     },
     {
-        "first_introduced": "22",
+        "first_introduced": "23",
         "name": "OH_ArkUI_NativeModule_GetDrawableDescriptorFromResourceAniValue"
     
     },
