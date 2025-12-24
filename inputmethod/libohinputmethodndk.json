@@ -342,5 +342,9 @@
     {
         "first_introduced": "22",
         "name": "OH_TextEditorProxy_SetCallbackInMainThread"
+    },
+    {
+        "first_introduced": "23",
+        "name": "OH_InputMethodController_AttachWithUIContext"
     }
 ]
