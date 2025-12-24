@@ -392,6 +392,32 @@ bool OH_AVFormat_GetIntBuffer(struct OH_AVFormat *format, const char *key, int32
  */
 bool OH_AVFormat_SetIntBuffer(struct OH_AVFormat *format, const char *key, const int32_t *addr, size_t size);
 
+/**
+ * @brief Get the total number of keys contained in OH_AVFormat.
+ * @param format Pointer to an OH_AVFormat instance
+ * @return Returns the number of keys on success; returns 0 on failure
+ * @details Possible failure causes:
+ * 1. input format is NULL;
+ * 2. system resources are insufficient.
+ * @since 23
+ */
+uint32_t OH_AVFormat_GetKeyCount(OH_AVFormat *format);
+
+/**
+ * @brief Get the key name string by index from OH_AVFormat.
+ * @param format Pointer to an OH_AVFormat instance
+ * @param index Zero-based index of the key to query, range: [0, OH_AVFormat_GetKeyCount(format))
+ * @param key Output pointer to receive the key name string; the lifecycle is bound to the format
+ * @return Returns TRUE on success, FALSE on failure
+ * @details Possible failure causes:
+ * 1. input format is NULL;
+ * 2. index is out of range;
+ * 3. key is NULL;
+ * 4. system resources are insufficient.
+ * @since 23
+ */
+bool OH_AVFormat_GetKey(OH_AVFormat *format, uint32_t index, const char **key);
+
 #ifdef __cplusplus
 }
 #endif

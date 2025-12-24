@@ -108,6 +108,58 @@
     "name": "OH_PLAYER_IS_LIVE_STREAM"
   },
   {
+    "first_introduced": "23",
+    "name": "OH_PLAYER_SEI_PAYLOAD_TYPE"
+  },
+  {
+    "first_introduced": "23",
+    "name": "OH_PLAYER_SEI_PAYLOAD_CONTENT"
+  },
+  {
+    "first_introduced": "23",
+    "name": "OH_PLAYER_SUPER_RESOLUTION_ENABLE_STATE"
+  },
+  {
+    "first_introduced": "23",
+    "name": "OH_PLAYER_TRACH_CHANGE_INFO_TRACK_INDEX"
+  },
+  {
+    "first_introduced": "23",
+    "name": "OH_PLAYER_TRACH_CHANGE_INFO_TRACK_SELECTED"
+  },
+  {
+    "first_introduced": "23",
+    "name": "OH_PLAYER_SUBTITLE_UPDATE_INFO_DURATION"
+  },
+  {
+    "first_introduced": "23",
+    "name": "OH_PLAYER_SUBTITLE_UPDATE_INFO_START_TIME"
+  },
+  {
+    "first_introduced": "23",
+    "name": "OH_PLAYER_SUBTITLE_UPDATE_INFO_TEXT"
+  },
+  {
+    "first_introduced": "23",
+    "name": "OH_PLAYER_SERVER_IP_ADDRESS"
+  },
+  {
+    "first_introduced": "23",
+    "name": "OH_PLAYER_IS_DOWNLOADING"
+  },
+  {
+    "first_introduced": "23",
+    "name": "OH_PLAYER_BUFFER_DURATION"
+  },
+  {
+    "first_introduced": "23",
+    "name": "OH_PLAYER_DOWNLOAD_RATE"
+  },
+  {
+    "first_introduced": "23",
+    "name": "OH_PLAYER_AVG_DOWNLOAD_RATE"
+  },
+  {
     "first_introduced": "12",
     "name": "OH_AVPlayer_SetOnInfoCallback"
   },
@@ -202,5 +254,137 @@
   {
     "first_introduced": "23",
     "name": "OH_MEDIA_EVENT_INFO_TOTAL_STALLING_TIME"
+  },
+  {
+    "first_introduced": "23",
+    "name": "OH_AVPlayer_AddFdSubtitleSource"
+  },
+  {
+    "first_introduced": "23",
+    "name": "OH_AVPlayer_AddUrlSubtitleSource"
+  },
+  {
+    "first_introduced": "23",
+    "name": "OH_AVPlayer_SetPlaybackRange"
+  },
+  {
+    "first_introduced": "23",
+    "name": "OH_AVPlayer_SetMediaMuted"
+  },
+  {
+    "first_introduced": "23",
+    "name": "OH_AVPlayer_GetPlaybackPosition"
+  },
+  {
+    "first_introduced": "23",
+    "name": "OH_AVPlayer_IsSeekContinuousSupported"
+  },
+  {
+    "first_introduced": "23",
+    "name": "OH_AVPlayer_SelectTrackWithMode"
+  },
+  {
+    "first_introduced": "23",
+    "name": "OH_AVPlayer_SetAmplitudeUpdateCallback"
+  },
+  {
+    "first_introduced": "23",
+    "name": "OH_AVPlayer_SetSeiReceivedCallback"
+  },
+  {
+    "first_introduced": "23",
+    "name": "OH_AVSeiMessage_GetSeiCount"
+  },
+  {
+    "first_introduced": "23",
+    "name": "OH_AVSeiMessage_GetSei"
+  },
+  {
+    "first_introduced": "23",
+    "name": "OH_AVPlayer_SetTargetVideoWindowSize"
+  },
+  {
+    "first_introduced": "23",
+    "name": "OH_AVPlayer_SetVideoSuperResolutionEnable"
+  },
+  {
+    "first_introduced": "23",
+    "name": "OH_AVPlaybackStrategy_Create"
+  },
+  {
+    "first_introduced": "23",
+    "name": "OH_AVPlaybackStrategy_Destroy"
+  },
+  {
+    "first_introduced": "23",
+    "name": "OH_AVPlaybackStrategy_SetPreferredWidth"
+  },
+  {
+    "first_introduced": "23",
+    "name": "OH_AVPlaybackStrategy_SetPreferredHeight"
+  },
+  {
+    "first_introduced": "23",
+    "name": "OH_AVPlaybackStrategy_SetPreferredBufferDuration"
+  },
+  {
+    "first_introduced": "23",
+    "name": "OH_AVPlaybackStrategy_SetPreferredHdr"
+  },
+  {
+    "first_introduced": "23",
+    "name": "OH_AVPlaybackStrategy_SetPreferredSubtitleLanguage"
+  },
+  {
+    "first_introduced": "23",
+    "name": "OH_AVPlaybackStrategy_SetPreferredAudioLanguage"
+  },
+  {
+    "first_introduced": "23",
+    "name": "OH_AVPlaybackStrategy_SetMutedMediaType"
+  },
+  {
+    "first_introduced": "23",
+    "name": "OH_AVPlaybackStrategy_SetShowFirstFrameOnPrepare"
+  },
+  {
+    "first_introduced": "23",
+    "name": "OH_AVPlaybackStrategy_SetThresholdForAutoQuickPlay"
+  },
+  {
+    "first_introduced": "23",
+    "name": "OH_AVPlaybackStrategy_SetSuperResolutionEnable"
+  },
+  {
+    "first_introduced": "23",
+    "name": "OH_AVPlaybackStrategy_SetPreferredBufferDurationForPlaying"
+  },
+  {
+    "first_introduced": "23",
+    "name": "OH_AVPlaybackStrategy_SetKeepDecodingOnMute"
+  },
+  {
+    "first_introduced": "23",
+    "name": "OH_AVPlayer_SetPlaybackStrategy"
+  },
+  {
+    "first_introduced": "23",
+    "name": "OH_AVPlayer_GetPlaybackInfo"
+  },
+  {
+    "first_introduced": "23",
+    "name": "OH_AVPlayer_SetMediaSource"
+  },
+  {
+    "first_introduced": "23",
+    "name": "OH_AVPlayer_GetTrackCount"
+  },
+  {
+    "first_introduced": "23",
+    "name": "OH_AVPlayer_GetTrackFormat"
+  },
+  {
+    "first_introduced": "23",
+    "name": "OH_AVPlayer_GetPlaybackRate"
   }
 ]
