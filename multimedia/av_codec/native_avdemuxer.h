@@ -254,6 +254,7 @@ OH_AVErrCode OH_AVDemuxer_SetDemuxerMediaKeySystemInfoCallback(OH_AVDemuxer *dem
  * @param mediaKeySystemInfo Pointer to DRM information, please refer to {@link DRM_MediaKeySystemInfo}
  * @return
  * {@link AV_ERR_OK} execution successful.
+ * {@link AV_ERR_OPERATE_NOT_PERMIT} If the demuxer engine is not inited or init failed.
  * {@link AV_ERR_INVALID_VAL}
  * 1. the input demuxer pointer is non demuxer instance or NULL;
  * 2. the mediaKeySystemInfo is NULL.
