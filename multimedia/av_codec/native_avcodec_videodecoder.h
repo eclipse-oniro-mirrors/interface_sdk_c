@@ -547,7 +547,7 @@ OH_AVErrCode OH_VideoDecoder_IsValid(OH_AVCodec *codec, bool *isValid);
  * In Surface mode, both secure and non secure video Path are supported.
  * In Buffer mode, only non secure video Path are supported.
  * @return {@link AV_ERR_OK}, execution is successful
- *         {@link AV_ERR_OPERATE_NOT_PERMIT} 
+ *         {@link AV_ERR_OPERATE_NOT_PERMIT}
  *         1. internal execution error;
  *         2. the decode service process is abnormal;
  *         3. the media key session service is in an wrong state.
