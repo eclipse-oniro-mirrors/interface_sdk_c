@@ -225,6 +225,12 @@ int OH_RdbTrans_InsertWithConflictResolution(OH_Rdb_Transaction *trans, const ch
 /**
  * @brief Inserts a batch of data into the target table.
  *
+ * A maximum of 32766 parameters can be inserted at a time. If the number of parameters exceeds the upper limit,
+ * the error code RDB_E_INVALID_ARGS is returned. The product of the number of inserted data records and the size of
+ * the union of all fields in the inserted data equals the number of parameters. For example, if the size of the union
+ * is 10, a maximum of 3276 data records can be inserted (3276 × 10 = 32760). Ensure that your application complies
+ * with this constraint when calling this API to avoid errors caused by excessive parameters.
+ *
  * @param trans Represents a pointer to an instance of OH_Rdb_Transaction.
  * @param table Represents the target table.
  * @param rows Represents the rows data to be inserted into the table.
@@ -431,6 +437,12 @@ int OH_RdbTrans_Destroy(OH_Rdb_Transaction *trans);
 /**
  * @brief Inserts a batch of data into the target table and output change info to context.
  *
+ * A maximum of 32766 parameters can be inserted at a time. If the number of parameters exceeds the upper limit,
+ * the error code RDB_E_INVALID_ARGS is returned. The product of the number of inserted data records and the size of
+ * the union of all fields in the inserted data equals the number of parameters. For example, if the size of the union
+ * is 10, a maximum of 3276 data records can be inserted (3276 × 10 = 32760). Ensure that your application complies
+ * with this constraint when calling this API to avoid errors caused by excessive parameters.
+ *
  * @param trans Represents a pointer to an instance of OH_Rdb_Transaction.
  * @param table Represents the target table.
  * @param rows Represents the rows data to be inserted into the table.
@@ -445,10 +457,8 @@ int OH_RdbTrans_Destroy(OH_Rdb_Transaction *trans);
  *         Returns {@link RDB_E_ALREADY_CLOSED} database already closed.
  *         Returns {@link RDB_E_SQLITE_FULL} SQLite: The database is full.
  *         Returns {@link RDB_E_SQLITE_CORRUPT} database corrupted.
- *         Returns {@link RDB_E_SQLITE_PERM} SQLite: Access permission denied.
  *         Returns {@link RDB_E_SQLITE_BUSY} SQLite: The database file is locked.
  *         Returns {@link RDB_E_SQLITE_LOCKED} SQLite: A table in the database is locked.
- *         Returns {@link RDB_E_SQLITE_READONLY} SQLite: Attempt to write a readonly database.
  *         Returns {@link RDB_E_SQLITE_IOERR} SQLite: Some kind of disk I/O error occurred.
  *         Returns {@link RDB_E_SQLITE_TOO_BIG} SQLite: TEXT or BLOB exceeds size limit.
  *         Returns {@link RDB_E_SQLITE_MISMATCH} SQLite: Data type mismatch.
@@ -480,10 +490,8 @@ int OH_RdbTrans_BatchInsertWithReturning(OH_Rdb_Transaction *trans, const char *
  *         Returns {@link RDB_E_ALREADY_CLOSED} database already closed.
  *         Returns {@link RDB_E_SQLITE_FULL} SQLite: The database is full.
  *         Returns {@link RDB_E_SQLITE_CORRUPT} database corrupted.
- *         Returns {@link RDB_E_SQLITE_PERM} SQLite: Access permission denied.
  *         Returns {@link RDB_E_SQLITE_BUSY} SQLite: The database file is locked.
  *         Returns {@link RDB_E_SQLITE_LOCKED} SQLite: A table in the database is locked.
- *         Returns {@link RDB_E_SQLITE_READONLY} SQLite: Attempt to write a readonly database.
  *         Returns {@link RDB_E_SQLITE_IOERR} SQLite: Some kind of disk I/O error occurred.
  *         Returns {@link RDB_E_SQLITE_TOO_BIG} SQLite: TEXT or BLOB exceeds size limit.
  *         Returns {@link RDB_E_SQLITE_MISMATCH} SQLite: Data type mismatch.
@@ -512,10 +520,8 @@ int OH_RdbTrans_UpdateWithReturning(OH_Rdb_Transaction *trans, OH_VBucket *row, 
  *         Returns {@link RDB_E_ALREADY_CLOSED} database already closed.
  *         Returns {@link RDB_E_SQLITE_FULL} SQLite: The database is full.
  *         Returns {@link RDB_E_SQLITE_CORRUPT} database corrupted.
- *         Returns {@link RDB_E_SQLITE_PERM} SQLite: Access permission denied.
  *         Returns {@link RDB_E_SQLITE_BUSY} SQLite: The database file is locked.
  *         Returns {@link RDB_E_SQLITE_LOCKED} SQLite: A table in the database is locked.
- *         Returns {@link RDB_E_SQLITE_READONLY} SQLite: Attempt to write a readonly database.
  *         Returns {@link RDB_E_SQLITE_IOERR} SQLite: Some kind of disk I/O error occurred.
  *         Returns {@link RDB_E_SQLITE_TOO_BIG} SQLite: TEXT or BLOB exceeds size limit.
  *         Returns {@link RDB_E_SQLITE_MISMATCH} SQLite: Data type mismatch.
