@@ -620,6 +620,10 @@
         "name": "OH_AudioStreamManager_IsIntelligentNoiseReductionEnabledForCurrentDevice"
     },
     {
+        "first_introduced":"23",
+        "name": "OH_AudioSessionManager_IsOtherMediaPlaying"
+    },
+    {
         "first_introduced": "23",
         "name": "OH_AudioRenderer_GetLatency"
     }
