@@ -161,18 +161,19 @@ typedef enum {
 } ArkUI_NodeType;
 
 /**
- * @brief Defines the general input parameter structure of the {@link setAttribute} function.
+ * @brief Defines the general input parameter structure of the {@link setAttribute} function. The property
+ * setting interfaces can utilize the member variables within it to store data of specific parameter types.
  *
  * @since 12
  */
 typedef struct {
-    /** Numeric array. */
+    /** A number array, used to store parameters of the number array type. */
     const ArkUI_NumberValue* value;
-    /** Size of the numeric array. */
+    /** The size of the number array, used together with the variable value, indicating the length of the value array. */
     int32_t size;
-    /** String type. */
+    /** String type, used to store parameters of the string type. */
     const char* string;
-    /** Object type. */
+    /** Object type, used to store parameters of the object type. */
     void* object;
 } ArkUI_AttributeItem;
 
