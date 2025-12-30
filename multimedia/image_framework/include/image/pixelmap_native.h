@@ -434,9 +434,9 @@ Image_ErrorCode OH_PixelmapInitializationOptions_GetPixelFormat(OH_Pixelmap_Init
     int32_t *pixelFormat);
 
 /**
- * @brief Set pixelFormat number for InitializationOtions struct.
+ * @brief Set pixelFormat number for InitializationOptions struct.
  *
- * @param options The InitializationOtions pointer will be operated.
+ * @param options The InitializationOptions pointer will be operated.
  * @param pixelFormat the number of image pixelFormat.
  * @return Function result code:
  *         {@link IMAGE_SUCCESS} - if the operation is successful.
@@ -447,9 +447,9 @@ Image_ErrorCode OH_PixelmapInitializationOptions_SetPixelFormat(OH_Pixelmap_Init
     int32_t pixelFormat);
 
 /**
- * @brief Get pixelFormat number for InitializationOtions struct.
+ * @brief Get pixelFormat number for InitializationOptions struct.
  *
- * @param options The InitializationOtions pointer will be operated.
+ * @param options The InitializationOptions pointer will be operated.
  * @param srcpixelFormat the number of image srcpixelFormat.
  * @return Function result code:
  *         {@link IMAGE_SUCCESS} - if the operation is successful.
@@ -460,9 +460,9 @@ Image_ErrorCode OH_PixelmapInitializationOptions_GetSrcPixelFormat(OH_Pixelmap_I
     int32_t *srcpixelFormat);
 
 /**
- * @brief Set pixelFormat number for InitializationOtions struct.
+ * @brief Set pixelFormat number for InitializationOptions struct.
  *
- * @param options The InitializationOtions pointer will be operated.
+ * @param options The InitializationOptions pointer will be operated.
  * @param srcpixelFormat the number of image srcpixelFormat.
  * @return Function result code:
  *         {@link IMAGE_SUCCESS} - if the operation is successful.
@@ -499,9 +499,9 @@ Image_ErrorCode OH_PixelmapInitializationOptions_SetRowStride(OH_Pixelmap_Initia
     int32_t rowStride);
 
 /**
- * @brief Get alphaType number for InitializationOtions struct.
+ * @brief Get alphaType number for InitializationOptions struct.
  *
- * @param options The InitializationOtions pointer will be operated.
+ * @param options The InitializationOptions pointer will be operated.
  * @param alphaType the number of image alphaType.
  * @return Function result code:
  *         {@link IMAGE_SUCCESS} - if the operation is successful.
@@ -842,6 +842,7 @@ Image_ErrorCode OH_PixelmapNative_ToSdr(OH_PixelmapNative *pixelmap);
  * @brief Obtains pixel map information of this image.
  *
  * @param pixelmap The Pixelmap pointer will be operated.
+ * @param imageInfo Indicates the pointer to the image information.
  * @return Function result code:
  *         {@link IMAGE_SUCCESS} - The operation is successful.
  *         {@link IMAGE_BAD_PARAMETER} - Parameter error.Possible causes:
