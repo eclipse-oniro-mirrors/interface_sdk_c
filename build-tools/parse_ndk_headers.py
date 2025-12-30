@@ -67,8 +67,13 @@ class HeaderProcessor:
             , re.MULTILINE | re.DOTALL
         )
 
-        # @since支持三种格式：数字或x.y.z(n)和x.y.z
-        self.since_pattern = re.compile(r'@since\s+(\d+(?:\.\d+\.\d+(?:\(\d+\))?)?)')
+        # @since 支持: 
+        #   - 纯数字: 22
+        #   - 三段: 26.0.1
+        #   - 三段+括号: 5.0.3(15)
+        self.since_pattern = re.compile(
+            r'@since\s+(\d+(?:\.\d+\.\d+(?:\(\d+\))?)?)'
+        )
         # @deprecated since仅支持数字格式
         self.deprecated_pattern = re.compile(r'@deprecated since\s+(\d+)')
 
@@ -224,18 +229,12 @@ class HeaderProcessor:
             patch = m.group(3)
         else:
             # 未知格式，保守处理为纯数字（可选：也可报错或跳过）
+            raise ValueError(f"Invalid since_version format: {since_version}")
             major = since_version
             minor = '0'
             patch = '0'
 
-        base_macro = f'__API_AVAILABILITY(__API_VERSION({major}, {minor}, {patch}))'
-
-        # 处理废弃版本（假设 @deprecated since 后跟纯数字，如 14）
-        if deprecated_version != "0":
-            deprecated_macro = f'__API_DEPRECATED(__API_VERSION({deprecated_version}, 0, 0))'
-            return f"{base_macro} {deprecated_macro}"
-
-        # 无废弃时仅返回基础since宏
+        base_macro = f'__attribute__((__availability__(ohos, introduced={major}.{minor}.{patch})))'
         return base_macro
 
 
