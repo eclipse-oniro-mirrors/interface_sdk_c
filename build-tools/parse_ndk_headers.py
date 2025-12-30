@@ -19,9 +19,7 @@ import sys
 import os
 import subprocess
 import tempfile
-import fcntl
 from typing import Optional, Tuple, Pattern, List
-from pycparser import c_parser, c_ast
 
 
 # 不需要处理的头文件，一般为系统文件或者三方库文件
@@ -44,17 +42,6 @@ _DIR_NOT_PROCESS = [
 
 class HeaderProcessor:
     MAX_LINE_LENGTH = 120  # 最大行长度限制（超过则换行显示版本宏）
-
-
-    @staticmethod
-    def _acquire_lock(lock_path):
-        lock_file = open(lock_path, 'w')
-        try:
-            fcntl.flock(lock_file, fcntl.LOCK_EX | fcntl.LOCK_NB)
-            return lock_file
-        except IOError:
-            lock_file.close()
-            return None
 
 
     def __init__(self):
@@ -80,8 +67,8 @@ class HeaderProcessor:
             , re.MULTILINE | re.DOTALL
         )
 
-        # @since支持两种格式：数字或x.y.z(n)
-        self.since_pattern = re.compile(r'@since\s+(\d+(?:\.\d+\.\d+\(\d+\))?)')
+        # @since支持三种格式：数字或x.y.z(n)和x.y.z
+        self.since_pattern = re.compile(r'@since\s+(\d+(?:\.\d+\.\d+(?:\(\d+\))?)?)')
         # @deprecated since仅支持数字格式
         self.deprecated_pattern = re.compile(r'@deprecated since\s+(\d+)')
 
@@ -90,27 +77,21 @@ class HeaderProcessor:
 
 
     def process_file(self, file_path: str) -> None:
-        temp_path = None
+        """处理单个头文件"""
         try:
-            with open(file_path, 'r', encoding='utf-8') as f:
+            with open(file_path, 'r+', encoding='utf-8') as f:
                 content = f.read()
-            modified, has_changes = self._process_content(content)
-            if has_changes:
-                temp_path = f"{file_path}.tmp.{int(time.time())}.{os.getpid()}"
-                with open(temp_path, 'w', encoding='utf-8') as f:
+                modified, has_changes = self._process_content(content)
+
+                if has_changes:
+                    f.seek(0)
                     f.write(modified)
-                os.replace(temp_path, file_path)
-                temp_path = None  # 标记为已替换
-                print(f"modify success: {file_path}")
+                    f.truncate()
+                    print(f"modify success: {file_path}")
+                else:
+                    print(f"No modifications are needed: {file_path}")
         except Exception as e:
             print(f"Processing failed. {file_path}: {str(e)}")
-            raise
-        finally:
-            if temp_path and os.path.exists(temp_path):
-                try:
-                    os.unlink(temp_path)
-                except:
-                    pass
 
 
     def _process_content(self, content: str) -> tuple[str, bool]:
@@ -157,16 +138,7 @@ class HeaderProcessor:
             # 替换原注释块+代码块内容
             old_segment = comment_block + whitespace + content[code_start_idx:code_end_idx]
             new_segment = comment_block + whitespace + formatted_code
-            # content = content.replace(old_segment, new_segment, 1)
-            # 使用位置索引而非字符串替换
-            start_pos = match.start()
-            end_pos = code_end_idx
-            new_content = (
-                content[:start_pos] + 
-                comment_block + whitespace + formatted_code + 
-                content[end_pos:]
-            )
-            content = new_content
+            content = content.replace(old_segment, new_segment, 1)
 
         return content
 
@@ -219,20 +191,48 @@ class HeaderProcessor:
 
 
     def _get_version_macro(self, since_version: str, deprecated_version: str) -> str:
+        """
+        根据 @since 的值生成对应的 API 可用性宏。
+        支持格式：
+        - 纯数字：15                → __API_VERSION(15,0,0)
+        - 三段式：15.0.0 / 15.0.1   → __API_VERSION(15,0,0) / __API_VERSION(15,0,1)
+        - 四段式：5.0.3(15)         → __API_VERSION(15,0,0)  （取括号内为主版本）
+        """
+        # 匹配 x.y.z(n) 格式，例如 5.0.3(15)
         distributeos_pattern = re.compile(r'^(\d+)\.(\d+)\.(\d+)\((\d+)\)$')
-        since_match = distributeos_pattern.match(since_version)
+        # 匹配 x.y.z 格式，例如 15.0.1
+        triple_pattern = re.compile(r'^(\d+)\.(\d+)\.(\d+)$')
 
-        # 生成基础版本since宏（__DISTRIBUTEOS_AVAILABILITY 或 __OH_AVAILABILITY）
-        if since_match:
-            major, minor, patch, oh_version = since_match.groups()
-            base_macro = (f'__DISTRIBUTEOS_AVAILABILITY(__DISTRIBUTEOS_VERSION({major}, {minor.zfill(2)}, {patch.zfill(2)}), '
-                        f'__OH_VERSION({oh_version}, 0))')
+        major = minor = patch = None
+
+        if since_version.isdigit():
+            # 格式1: @since 15
+            major = since_version
+            minor = '0'
+            patch = '0'
+        elif distributeos_pattern.match(since_version):
+            # 格式2: @since 5.0.3(15) → 使用括号内的 15 作为主版本
+            n = distributeos_pattern.match(since_version).group(4)
+            major = n
+            minor = '0'
+            patch = '0'
+        elif triple_pattern.match(since_version):
+            # 格式3/4: @since 15.0.0 或 15.0.1
+            m = triple_pattern.match(since_version)
+            major = m.group(1)
+            minor = m.group(2)
+            patch = m.group(3)
         else:
-            base_macro = f'__OH_AVAILABILITY(__OH_VERSION({since_version}, 0))'
+            # 未知格式，保守处理为纯数字（可选：也可报错或跳过）
+            major = since_version
+            minor = '0'
+            patch = '0'
 
-        # 若deprecated_version != "0"，追加__OH_DEPRECATED宏
+        base_macro = f'__API_AVAILABILITY(__API_VERSION({major}, {minor}, {patch}))'
+
+        # 处理废弃版本（假设 @deprecated since 后跟纯数字，如 14）
         if deprecated_version != "0":
-            deprecated_macro = f'__OH_DEPRECATED(__OH_VERSION({deprecated_version}, 0))'
+            deprecated_macro = f'__API_DEPRECATED(__API_VERSION({deprecated_version}, 0, 0))'
             return f"{base_macro} {deprecated_macro}"
 
         # 无废弃时仅返回基础since宏
@@ -375,43 +375,23 @@ def run_capi_parser(input_path, sdk_api_version):
 
 
 def add_files_to_process(header_path, recursive=True):
-    lock_path = os.path.join(header_path, '.parse_ndk.lock')
-    lock_file = _acquire_lock(lock_path)
-    if not lock_file:
-        print("Another instance is running, exiting...")
-        return
-    try:
-        """遍历目录并处理符合条件的头文件"""
-        abs_root_dir = os.path.abspath(header_path)
-        header_processor = HeaderProcessor()
+    """遍历目录并处理符合条件的头文件"""
+    abs_root_dir = os.path.abspath(header_path)
+    header_processor = HeaderProcessor()
 
-        for root, dirs, files in os.walk(abs_root_dir, topdown=True):
-            rel_dir_path = os.path.relpath(root, abs_root_dir)
+    for root, dirs, files in os.walk(abs_root_dir, topdown=True):
+        rel_dir_path = os.path.relpath(root, abs_root_dir)
 
-            if root == abs_root_dir:
-                _process_root_files(root, header_processor)
-                continue
+        if root == abs_root_dir:
+            _process_root_files(root, header_processor)
+            continue
 
-            if _is_blacklist_dir(rel_dir_path):
-                dirs[:] = []
-                print(f"the dir is in blacklists: {root}")
-                continue
+        if _is_blacklist_dir(rel_dir_path):
+            dirs[:] = []
+            print(f"the dir is in blacklists: {root}")
+            continue
 
-            _process_subdir_files(root, header_processor)
-        pass
-    finally:
-        try:
-            fcntl.flock(lock_file, fcntl.LOCK_UN)
-        except:
-            pass
-        try:
-            lock_file.close()
-        except:
-            pass
-        try:
-            os.unlink(lock_path)
-        except:
-            pass
+        _process_subdir_files(root, header_processor)
 
 
 def check_api_version_method(options):
