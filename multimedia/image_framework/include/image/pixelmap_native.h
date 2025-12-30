@@ -499,7 +499,7 @@ Image_ErrorCode OH_PixelmapInitializationOptions_SetRowStride(OH_Pixelmap_Initia
     int32_t rowStride);
 
 /**
- * @brief Get alphaType number for InitializationOptions struct.
+ * @brief Get alphaType number for InitializationOtions struct.
  *
  * @param options The InitializationOptions pointer will be operated.
  * @param alphaType the number of image alphaType.
