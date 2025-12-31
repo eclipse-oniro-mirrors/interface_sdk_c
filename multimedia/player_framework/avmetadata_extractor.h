@@ -104,6 +104,7 @@ bool OH_AVMetadataExtractor_OutputParam_SetSize(OH_AVMetadataExtractor_OutputPar
  *                see {@link OH_AVMetadataExtractor_OutputParam}.
  *                If nullptr, the fetched frame uses video original size
  * @param pixelMap The fetched output image from the video source. For details, see {@link OH_PixelmapNative}.
+ *                Note: user need release pixelMap by {@link OH_PixelmapNative_Destroy} after use.
  * @return Function result code.
  *         {@link AV_ERR_OK} if the execution is successful.
  *         {@link AV_ERR_INVALID_VAL} if the input param is invalid.
@@ -119,6 +120,8 @@ OH_AVErrCode OH_AVMetadataExtractor_FetchFrameByTime(OH_AVMetadataExtractor *ext
 
 /**
  * @brief defines the callback function for frames fetched by AVMetadataExtractor
+ *     Note: frameInfo will be released automatically after callback, but user should release
+ *     frameInfo.image manually by {@linke OH_PixelmapNative_Destroy} to avoid memory leaks.
  *
  * @since 23
  */
@@ -170,6 +173,7 @@ void OH_AVMetadataExtractor_CancelAllFetchFrames(OH_AVMetadataExtractor *extract
  * @param index The index of the track description to retrieve.
  * @return Returns a pointer to an OH_AVFormat instance containing track description for success, nullptr for failure.
  *         Possible failure causes: extractor is nullptr, no source set, or format is unsupported.
+ *         Note: User need release OH_AVFormat by {@link OH_AVFormat_Destroy} after use.
  * @since 23
  */
 OH_AVFormat *OH_AVMetadataExtractor_GetTrackDescription(OH_AVMetadataExtractor *extractor, uint32_t index);
@@ -180,6 +184,7 @@ OH_AVFormat *OH_AVMetadataExtractor_GetTrackDescription(OH_AVMetadataExtractor *
  * @param extractor Pointer to an OH_AVMetadataExtractor instance.
  * @return Returns a pointer to an OH_AVFormat instance containing custom metadata for success, nullptr for failure.
  *         Possible failure causes: extractor is nullptr, no source set, or custom info not found.
+ *         Note: User need release OH_AVFormat by {@link OH_AVFormat_Destroy} after use.
  * @since 23
  */
 OH_AVFormat *OH_AVMetadataExtractor_GetCustomInfo(OH_AVMetadataExtractor *extractor);

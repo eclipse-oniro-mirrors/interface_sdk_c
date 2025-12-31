@@ -575,6 +575,8 @@ typedef void (*OH_AVPlayerOnErrorCallback)(OH_AVPlayer *player, int32_t errorCod
  * @brief Called when the maximum audio level values are calculated.
  * @param player Pointer to an OH_AVPlayer instance.
  * @param amplitudes The pointer to the maximum audio level values array.
+ *        Note: the amplitudes array will be released after callback automatically.
+ *        If necessary, user need copy the data for the further use.
  * @param size The size of the maximum audio level values array.
  * @param userData Pointer to user specific data.
  * @since 23
@@ -586,7 +588,9 @@ typedef void (*OH_AVPlayerOnAmplitudeUpdateCallback)(OH_AVPlayer *player, double
  * @brief Describes the handle used to obtain SEI messages. This is used when in subscriptions to SEI message events.
  * and the callback returns detailed SEI information.
  * @param player Pointer to an OH_AVPlayer instance
- * @param message SEI message array
+ * @param message SEI message array.
+ *        Note: the message array will be released after callback automatically.
+ *        If necessary, user need copy the data for the further use.
  * @param playbackPosition playback position
  * @param userData Pointer to user specific data
  * @since 23
