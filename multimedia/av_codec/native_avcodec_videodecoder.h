@@ -66,7 +66,6 @@ OH_AVCodec *OH_VideoDecoder_CreateByMime(const char *mime);
 /**
  * @brief Create a video decoder instance through the video decoder name.
  * The premise of using this interface is to know the exact name of the decoder.
- * The decoder name can be obtained through capability query.
  * @syscap SystemCapability.Multimedia.Media.VideoDecoder
  * @param name video codec name
  * @return Returns a Pointer to an OH_AVCodec instance.
@@ -76,8 +75,7 @@ OH_AVCodec *OH_VideoDecoder_CreateByMime(const char *mime);
 OH_AVCodec *OH_VideoDecoder_CreateByName(const char *name);
 
 /**
- * @brief Clear the internal resources of the decoder and destroy the decoder instance.
- * Can not be destroyed repeatedly.
+ * @brief Clear the internal resources of the decoder and destroy the decoder instance
  * @syscap SystemCapability.Multimedia.Media.VideoDecoder
  * @param codec Pointer to an OH_AVCodec instance
  * @return Returns AV_ERR_OK if succeed,
@@ -96,7 +94,7 @@ OH_AVErrCode OH_VideoDecoder_Destroy(OH_AVCodec *codec);
  * @syscap SystemCapability.Multimedia.Media.VideoDecoder
  * @param codec Pointer to an OH_AVCodec instance
  * @param callback A collection of all callback functions, see {@link OH_AVCodecAsyncCallback}
- * @param userData The data that the user rely on to execute the callback
+ * @param userData User specific data
  * @return Returns AV_ERR_OK if the execution is successful,
  * otherwise returns a specific error code, refer to {@link OH_AVErrCode}.
  * {@link AV_ERR_NO_MEMORY}, instance has already destroyed.
@@ -115,7 +113,7 @@ OH_AVErrCode OH_VideoDecoder_SetCallback(OH_AVCodec *codec, OH_AVCodecAsyncCallb
  * @syscap SystemCapability.Multimedia.Media.VideoDecoder
  * @param codec Pointer to an OH_AVCodec instance
  * @param callback A collection of all callback functions, see {@link OH_AVCodecCallback}
- * @param userData The data that the user rely on to execute the callback
+ * @param userData User specific data
  * @return Returns AV_ERR_OK if the execution is successful,
  * otherwise returns a specific error code, refer to {@link OH_AVErrCode}.
  * {@link AV_ERR_NO_MEMORY}, instance has already destroyed.
@@ -128,8 +126,7 @@ OH_AVErrCode OH_VideoDecoder_RegisterCallback(OH_AVCodec *codec, OH_AVCodecCallb
 
 /**
  * @brief Specify the output Surface to provide video decoding output,
- * this interface must be called before Prepare is called.
- * This interface can be directly called in the Executing state.
+ * this interface must be called before Prepare is called
  * @syscap SystemCapability.Multimedia.Media.VideoDecoder
  * @param codec Pointer to an OH_AVCodec instance
  * @param window A pointer to a OHNativeWindow instance, see {@link OHNativeWindow}
@@ -148,7 +145,7 @@ OH_AVErrCode OH_VideoDecoder_SetSurface(OH_AVCodec *codec, OHNativeWindow *windo
 
 /**
  * @brief To configure the video decoder, typically, you need to configure the description information of the decoded
- * video, which can be extracted from the OH_AVSource. This interface must be called before Prepare is called.
+ * video track, which can be extracted from the OH_AVSource. This interface must be called before Prepare is called.
  * @syscap SystemCapability.Multimedia.Media.VideoDecoder
  * @param codec Pointer to an OH_AVCodec instance
  * @param format A pointer to an OH_AVFormat to give the description of the video track to be decoded
@@ -203,9 +200,8 @@ OH_AVErrCode OH_VideoDecoder_Prepare(OH_AVCodec *codec);
 OH_AVErrCode OH_VideoDecoder_Start(OH_AVCodec *codec);
 
 /**
- * @brief Stop the decoder and release the input and output buffer. After stopping,
- * you can re-enter the Running state through Start, but it should be noted that
- * if Codec-Specific-Data has been input to the decoder before, it needs to be input again.
+ * @brief Stop the decoder. After stopping, you can re-enter the Started state through Start,
+ * but it should be noted that if Codec-Specific-Data has been input to the decoder before, it needs to be input again.
  * @syscap SystemCapability.Multimedia.Media.VideoDecoder
  * @param codec Pointer to an OH_AVCodec instance
  * @return Returns AV_ERR_OK if the execution is successful,
@@ -220,9 +216,9 @@ OH_AVErrCode OH_VideoDecoder_Start(OH_AVCodec *codec);
 OH_AVErrCode OH_VideoDecoder_Stop(OH_AVCodec *codec);
 
 /**
- * @brief Clear the input and output data buffered and parameters in the decoder, for example, PPS/SPS in H264 format.
- * After this interface is called, all the buffer indexes previously reported through the asynchronous callback
- * will be invalidated, make sure not to access the buffers corresponding to these indexes.
+ * @brief Clear the input and output data buffered in the decoder. After this interface is called, all the Buffer
+ * indexes previously reported through the asynchronous callback will be invalidated, make sure not to access
+ * the Buffers corresponding to these indexes.
  * @syscap SystemCapability.Multimedia.Media.VideoDecoder
  * @param codec Pointer to an OH_AVCodec instance
  * @return Returns AV_ERR_OK if the execution is successful,
@@ -237,8 +233,8 @@ OH_AVErrCode OH_VideoDecoder_Stop(OH_AVCodec *codec);
 OH_AVErrCode OH_VideoDecoder_Flush(OH_AVCodec *codec);
 
 /**
- * @brief Reset the decoder, the decoder returns to the Initialized state.
- * To continue decoding, you need to call the Configure interface again to configure the decoder instance.
+ * @brief Reset the decoder. To continue decoding, you need to call the Configure interface again
+ * to configure the decoder instance.
  * @syscap SystemCapability.Multimedia.Media.VideoDecoder
  * @param codec Pointer to an OH_AVCodec instance
  * @return Returns AV_ERR_OK if the execution is successful,
@@ -254,7 +250,7 @@ OH_AVErrCode OH_VideoDecoder_Reset(OH_AVCodec *codec);
 /**
  * @brief Get the description information of the output data of the decoder, refer to {@link OH_AVFormat}
  * It should be noted that the life cycle of the OH_AVFormat instance pointed to by the return value * needs
- * to be released by {@link OH_AVFormat_Destroy}.
+ * to be manually released by the caller.
  * @syscap SystemCapability.Multimedia.Media.VideoDecoder
  * @param codec Pointer to an OH_AVCodec instance
  * @return Returns a pointer to an OH_AVFormat instance.
@@ -291,7 +287,7 @@ OH_AVErrCode OH_VideoDecoder_SetParameter(OH_AVCodec *codec, OH_AVFormat *format
  * process of the decoder, such as PPS/SPS data in H264 format.
  * @syscap SystemCapability.Multimedia.Media.VideoDecoder
  * @param codec Pointer to an OH_AVCodec instance
- * @param index Enter the index value corresponding to the buffer, should be given by {@link OH_AVCodecOnNeedInputData}.
+ * @param index Enter the index value corresponding to the Buffer
  * @param attr Information describing the data contained in the Buffer
  * @return Returns AV_ERR_OK if the execution is successful,
  * otherwise returns a specific error code, refer to {@link OH_AVErrCode}.
@@ -312,7 +308,7 @@ OH_AVErrCode OH_VideoDecoder_PushInputData(OH_AVCodec *codec, uint32_t index, OH
  * calling this interface only returns the output buffer corresponding to the specified index to the decoder.
  * @syscap SystemCapability.Multimedia.Media.VideoDecoder
  * @param codec Pointer to an OH_AVCodec instance
- * @param index The index value corresponding to the output Buffer, should be given by {@link OH_AVCodecOnNewOutputData}
+ * @param index The index value corresponding to the output Buffer
  * @return Returns AV_ERR_OK if the execution is successful,
  * otherwise returns a specific error code, refer to {@link OH_AVErrCode}.
  * {@link AV_ERR_NO_MEMORY}, instance has already destroyed.
@@ -330,8 +326,7 @@ OH_AVErrCode OH_VideoDecoder_RenderOutputData(OH_AVCodec *codec, uint32_t index)
  * @brief Return the processed output Buffer to the decoder.
  * @syscap SystemCapability.Multimedia.Media.VideoDecoder
  * @param codec Pointer to an OH_AVCodec instance
- * @param index The index value corresponding to the output Buffer,
- * should be given by {@link OH_AVCodecOnNewOutputData}.
+ * @param index The index value corresponding to the output Buffer
  * @return Returns AV_ERR_OK if the execution is successful,
  * otherwise returns a specific error code, refer to {@link OH_AVErrCode}.
  * {@link AV_ERR_NO_MEMORY}, instance has already destroyed.
@@ -346,18 +341,15 @@ OH_AVErrCode OH_VideoDecoder_RenderOutputData(OH_AVCodec *codec, uint32_t index)
 OH_AVErrCode OH_VideoDecoder_FreeOutputData(OH_AVCodec *codec, uint32_t index);
 
 /**
- * @brief Notify the video decoder that the buffer corresponding to the index has been filled with input data.
- * {@link OH_AVCodecOnNeedInputBuffer} callback will report the available input buffer and
- * the corresponding index value. Once the buffer with the specified index is submitted to the video decoder,
- * the buffer cannot be accessed again until the {@link OH_AVCodecOnNeedInputBuffer} callback is received again
- * reporting that the buffer with the same index is available. In addition, for some decoders, it is required
- * to input Codec-Specific-Data to the decoder at the beginning to initialize the decoding process of the decoder,
- * such as PPS/SPS data in H264 format. The invoker can use this interface to transfer the parameters required
- * for decoding to the decoder, such as PPS/SPS data in H264 format.
- * The parameters can be sent to the decoder independently or together with the data to be decoded.
+ * @brief Submit the input buffer filled with data to the video decoder. The {@link OH_AVCodecOnNeedInputBuffer}
+ * callback will report the available input buffer and the corresponding index value. Once the buffer with the
+ * specified index is submitted to the video decoder, the buffer cannot be accessed again until the
+ * {@link OH_AVCodecOnNeedInputBuffer} callback is received again reporting that the buffer with the same index is
+ * available. In addition, for some decoders, it is required to input Codec-Specific-Data to the decoder at the
+ * beginning to initialize the decoding process of the decoder, such as PPS/SPS data in H264 format.
  * @syscap SystemCapability.Multimedia.Media.VideoDecoder
  * @param codec Pointer to an OH_AVCodec instance
- * @param index The index of the input buffer, should be given by {@link OH_AVCodecOnNeedInputBuffer}.
+ * @param index The index of the input buffer.
  * @return Returns AV_ERR_OK if the execution is successful,
  * otherwise returns a specific error code, refer to {@link OH_AVErrCode}.
  * {@link AV_ERR_NO_MEMORY}, instance has already destroyed.
@@ -377,8 +369,7 @@ OH_AVErrCode OH_VideoDecoder_PushInputBuffer(OH_AVCodec *codec, uint32_t index);
  * calling this interface only returns the output buffer corresponding to the specified index to the decoder.
  * @syscap SystemCapability.Multimedia.Media.VideoDecoder
  * @param codec Pointer to an OH_AVCodec instance
- * @param index The index value corresponding to the output Buffer,
- * should be given by {@link OH_AVCodecOnNewOutputBuffer}.
+ * @param index The index value corresponding to the output Buffer
  * @return Returns AV_ERR_OK if the execution is successful,
  * otherwise returns a specific error code, refer to {@link OH_AVErrCode}.
  * {@link AV_ERR_NO_MEMORY}, instance has already destroyed.
@@ -423,13 +414,10 @@ OH_AVErrCode OH_VideoDecoder_RenderOutputBuffer(OH_AVCodec *codec, uint32_t inde
 OH_AVErrCode OH_VideoDecoder_RenderOutputBufferAtTime(OH_AVCodec *codec, uint32_t index, int64_t renderTimestampNs);
 
 /**
- * @brief Return the processed output buffer to the decoder.
- * Need to call this interface to release output buffer immediately after using.
- * Otherwise, the decoding process will be blocked.
+ * @brief Return the processed output Buffer to the decoder.
  * @syscap SystemCapability.Multimedia.Media.VideoDecoder
  * @param codec Pointer to an OH_AVCodec instance
- * @param index The index value corresponding to the output Buffer,
- * should be given by {@link OH_AVCodecOnNewOutputBuffer}.
+ * @param index The index value corresponding to the output Buffer
  * @return Returns AV_ERR_OK if the execution is successful,
  * otherwise returns a specific error code, refer to {@link OH_AVErrCode}.
  * {@link AV_ERR_NO_MEMORY}, instance has already destroyed.
@@ -528,8 +516,8 @@ OH_AVBuffer *OH_VideoDecoder_GetOutputBuffer(struct OH_AVCodec *codec, uint32_t 
  * switchback from the background.
  * @syscap SystemCapability.Multimedia.Media.VideoDecoder
  * @param codec Pointer to an OH_AVCodec instance
- * @param isValid Output parameter. A pointer to a bool instance, it is true if the codec instance is valid,
- * false if the codec instance is invalid. It is recommend that the invoker initialize isValid to false
+ * @param isValid Output parameter. A pointer to a boolean instance, it is true if the codec instance is valid,
+ * false if the codec instance is invalid
  * @return Returns AV_ERR_OK if the execution is successful,
  * otherwise returns a specific error code, refer to {@link OH_AVErrCode}.
  * {@link AV_ERR_INVALID_VAL}, the input codec pointer is non decoder instance or NULL.
@@ -538,14 +526,12 @@ OH_AVBuffer *OH_VideoDecoder_GetOutputBuffer(struct OH_AVCodec *codec, uint32_t 
 OH_AVErrCode OH_VideoDecoder_IsValid(OH_AVCodec *codec, bool *isValid);
 
 /**
- * @brief Set decryption configuration. Call this interface before calling the Prepare interface.
+ * @brief Set decryption info.
  *
  * @syscap SystemCapability.Multimedia.Media.VideoDecoder
  * @param codec Pointer to an OH_AVCodec instance
  * @param mediaKeySession A media key session instance with decryption function.
- * @param secureVideoPath Secure video Path. Set the secure video path as true and the non secure video path as false.
- * In Surface mode, both secure and non secure video Path are supported.
- * In Buffer mode, only non secure video Path are supported.
+ * @param secureVideoPath Require secure decoder or not.
  * @return {@link AV_ERR_OK}, execution is successful
  *         {@link AV_ERR_OPERATE_NOT_PERMIT}
  *         1. internal execution error;

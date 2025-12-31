@@ -59,7 +59,7 @@ typedef struct OH_AVDemuxer OH_AVDemuxer;
 typedef struct DRM_MediaKeySystemInfo DRM_MediaKeySystemInfo;
 
 /**
- * @brief Pointer type for media key system information callback function.
+ * @brief Callback for getting media key system information from media source.
  * @deprecated since 14
  * @useinstead Demuxer_MediaKeySystemInfoCallback
  * @since 11
@@ -67,7 +67,7 @@ typedef struct DRM_MediaKeySystemInfo DRM_MediaKeySystemInfo;
 typedef void (*DRM_MediaKeySystemInfoCallback)(DRM_MediaKeySystemInfo *mediaKeySystemInfo);
 
 /**
- * @brief Pointer type for media key system information callback function.
+ * @brief Call back will be invoked when updating DRM information.
  * @param demuxer Player OH_AVDemuxer.
  * @param mediaKeySystemInfo DRM information.
  * @since 12
@@ -76,7 +76,7 @@ typedef void (*Demuxer_MediaKeySystemInfoCallback)(OH_AVDemuxer *demuxer, DRM_Me
 
 /**
  * @brief Creates an OH_AVDemuxer instance for getting samples from source.
- * For the create, destrory, and use of source, please refer to {@link OH_AVSource}.
+ * Free the resources of the instance by calling OH_AVDemuxer_Destroy.
  * @syscap SystemCapability.Multimedia.Media.Spliter
  * @param source Pointer to an OH_AVSource instance.
  * @return Returns a pointer to an OH_AVDemuxer instance if the execution is successful, otherwise returns nullptr.
@@ -139,8 +139,8 @@ OH_AVErrCode OH_AVDemuxer_SelectTrackByID(OH_AVDemuxer *demuxer, uint32_t trackI
 OH_AVErrCode OH_AVDemuxer_UnselectTrackByID(OH_AVDemuxer *demuxer, uint32_t trackIndex);
 
 /**
- * @brief Obtain samples and related information for the specified track.
- * Note that the track index must be selected before reading sample. The demuxer will advance
+ * @brief Get the current encoded sample and sample-related information from the specified
+ * track. The track index must be selected before reading sample. The demuxer will advance
  * automatically after calling this interface.
  * @syscap SystemCapability.Multimedia.Media.Spliter
  * @param demuxer Pointer to an OH_AVDemuxer instance.
@@ -168,8 +168,8 @@ OH_AVErrCode OH_AVDemuxer_ReadSample(OH_AVDemuxer *demuxer, uint32_t trackIndex,
     OH_AVMemory *sample, OH_AVCodecBufferAttr *info);
 
 /**
- * @brief Obtain samples and related information for the specified track.
- * Note that the track index must be selected before reading sample. The demuxer will advance
+ * @brief Get the current encoded sample and sample-related information from the specified
+ * track. The track index must be selected before reading sample. The demuxer will advance
  * automatically after calling this interface.
  * @syscap SystemCapability.Multimedia.Media.Spliter
  * @param demuxer Pointer to an OH_AVDemuxer instance.
@@ -216,7 +216,7 @@ OH_AVErrCode OH_AVDemuxer_ReadSampleBuffer(OH_AVDemuxer *demuxer, uint32_t track
 OH_AVErrCode OH_AVDemuxer_SeekToTime(OH_AVDemuxer *demuxer, int64_t millisecond, OH_AVSeekMode mode);
 
 /**
- * @brief Set DRM information callback function.
+ * @brief Method to set player media key system info callback.
  * @syscap SystemCapability.Multimedia.Media.Spliter
  * @param demuxer Pointer to an OH_AVDemuxer instance
  * @param callback object pointer.
@@ -232,7 +232,7 @@ OH_AVErrCode OH_AVDemuxer_SetMediaKeySystemInfoCallback(OH_AVDemuxer *demuxer,
     DRM_MediaKeySystemInfoCallback callback);
 
 /**
- * @brief Set DRM information callback function.
+ * @brief Method to set player media key system info callback.
  * @syscap SystemCapability.Multimedia.Media.Spliter
  * @param demuxer Pointer to an OH_AVDemuxer instance
  * @param callback object pointer.
@@ -246,12 +246,11 @@ OH_AVErrCode OH_AVDemuxer_SetDemuxerMediaKeySystemInfoCallback(OH_AVDemuxer *dem
     Demuxer_MediaKeySystemInfoCallback callback);
 
 /**
- * @brief Obtain DRM information. After the {@link Demuxer_MediaKeySystemInfoCallback}
- * or {@link DRM_MediaKeySystemInfoCallback} callback is successful,
- * this interface can be called to obtain DRM information.
+ * @brief Obtains media key system info to create media key session.
  * @syscap SystemCapability.Multimedia.Media.Spliter
  * @param demuxer Pointer to an OH_AVDemuxer instance
- * @param mediaKeySystemInfo Pointer to DRM information, please refer to {@link DRM_MediaKeySystemInfo}
+ * @param mediaKeySystemInfo Indicates the media key system info which ram space allocated by callee and
+ * released by caller.
  * @return
  * {@link AV_ERR_OK} execution successful.
  * {@link AV_ERR_OPERATE_NOT_PERMIT} If the demuxer engine is not inited or init failed.

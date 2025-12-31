@@ -54,11 +54,10 @@ extern "C" {
 typedef struct OH_AVSource OH_AVSource;
 
 /**
- * @brief Create OH_AVSource instance for user-defined data source resource objects.
- * The instance can be released by calling the interface {@link OH_AVSource_Destroy}.
+ * @brief Creates an OH_AVSource instance that models the media with dataSource.
  * @syscap SystemCapability.Multimedia.Media.Spliter
- * @param dataSource User customized media resource.
- * @return Returns a pointer to an OH_AVSource instance if the execution is successful, otherwise returns NULL.
+ * @param dataSource An Struct for a remote media resource.
+ * @return Returns a pointer to an OH_AVSource instance if the execution is successful, otherwise returns nullptr.
  * Possible failure causes:
  *  1. dataSource is nullptr.
  *  2. dataSource->size == 0.
@@ -71,7 +70,6 @@ OH_AVSource *OH_AVSource_CreateWithDataSource(OH_AVDataSource *dataSource);
 
 /**
  * @brief Creates an OH_AVSource instance with dataSource and userData.
- * The instance can be released by calling the interface {@link OH_AVSource_Destroy}.
  * @syscap SystemCapability.Multimedia.Media.Spliter
  * @param dataSource A pointer to the data source structure, which can obtain the input data.
  * @param userData A pointer to user-defined data.
@@ -87,8 +85,7 @@ OH_AVSource *OH_AVSource_CreateWithDataSource(OH_AVDataSource *dataSource);
 OH_AVSource *OH_AVSource_CreateWithDataSourceExt(OH_AVDataSourceExt *dataSource, void *userData);
 
 /**
- * @brief To create an OH_AVSource instance for the resource object corresponding to a unified resource identifier,
- * The instance can be released by calling the interface {@link OH_AVSource_Destroy}.
+ * @brief Creates an OH_AVSource instance that models the media at the URI.
  * @syscap SystemCapability.Multimedia.Media.Spliter
  * @param uri An URI for a remote media resource.
  * @return Returns a pointer to an OH_AVSource instance if the execution is successful, otherwise returns nullptr.
@@ -101,11 +98,7 @@ OH_AVSource *OH_AVSource_CreateWithDataSourceExt(OH_AVDataSourceExt *dataSource,
 OH_AVSource *OH_AVSource_CreateWithURI(char *uri);
 
 /**
- * @brief Create an OH_AVSource instance for the resource object corresponding to the fileDescriptor.
- * The instance can be released by calling the interface {@link OH_AVSource_Destroy}.
- * If the input offset is not the starting position of the file, or the size is not the size of the file,
- * it may result in undefined errors such as create OH_AVSource failure and
- * subsequent demuxer failure due to incomplete data acquisition.
+ * @brief Creates an OH_AVSource instance that models the media at the FileDescriptor.
  * @syscap SystemCapability.Multimedia.Media.Spliter
  * @param fd The fileDescriptor of data source.
  * @param offset The offset into the file to start reading.
@@ -122,9 +115,7 @@ OH_AVSource *OH_AVSource_CreateWithURI(char *uri);
 OH_AVSource *OH_AVSource_CreateWithFD(int32_t fd, int64_t offset, int64_t size);
 
 /**
- * @brief Destroy the OH_AVSource instance and clean up the internal resources.
- * The same instance can only be destroyed once. The destroyed instance cannot be used again until it is recreated.
- * Suggest setting the pointer to NULL after the instance is successfully destroyed.
+ * @brief Destroy the OH_AVSource instance and free the internal resources.
  * @syscap SystemCapability.Multimedia.Media.Spliter
  * @param source Pointer to an OH_AVSource instance.
  * @return Returns AV_ERR_OK if the execution is successful,
@@ -144,9 +135,7 @@ OH_AVErrCode OH_AVSource_Destroy(OH_AVSource *source);
  * @param source Pointer to an OH_AVSource instance.
  * @return Returns the source's format info if the execution is successful, otherwise returns nullptr.
  * Possible failure causes:
- * 1. source is invalid;
- * 2. NULL or non OH_AVSource instance;
- * 3. the source has not been initialized.
+ *  1. source is invalid.
  * @since 10
 */
 OH_AVFormat *OH_AVSource_GetSourceFormat(OH_AVSource *source);
