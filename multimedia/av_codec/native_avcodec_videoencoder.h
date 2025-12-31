@@ -87,8 +87,8 @@ OH_AVCodec *OH_VideoEncoder_CreateByName(const char *name);
  * @param codec Pointer to an OH_AVCodec instance
  * @return Returns AV_ERR_OK if the execution is successful,
  * otherwise returns a specific error code, refer to {@link OH_AVErrCode}.
- * {@link AV_ERR_NO_MEMORY}, internal errors in the input encode instance, such as an abnormal NULL.
- * {@link AV_ERR_INVALID_VAL}, the input codec pointer is non encoder instance or NULL.
+ * {@link AV_ERR_NO_MEMORY}, inner resource has already released.
+ * {@link AV_ERR_INVALID_VAL}, the encoder is nullptr or invalid.
  * {@link AV_ERR_UNKNOWN}, unknown error.
  * {@link AV_ERR_OPERATE_NOT_PERMIT}, internal execution error.
  * @since 9
@@ -104,8 +104,8 @@ OH_AVErrCode OH_VideoEncoder_Destroy(OH_AVCodec *codec);
  * @param userData User specific data
  * @return Returns AV_ERR_OK if the execution is successful,
  * otherwise returns a specific error code, refer to {@link OH_AVErrCode}.
- * {@link AV_ERR_NO_MEMORY}, internal errors in the input encode instance, such as an abnormal NULL.
- * {@link AV_ERR_INVALID_VAL}, the input codec pointer is non encoder instance or NULL.
+ * {@link AV_ERR_NO_MEMORY}, inner resource has already released.
+ * {@link AV_ERR_INVALID_VAL}, the encoder is nullptr or invalid.
  * {@link AV_ERR_UNKNOWN}, unknown error.
  * {@link AV_ERR_OPERATE_NOT_PERMIT}, internal execution error.
  * @deprecated since 11
@@ -123,8 +123,8 @@ OH_AVErrCode OH_VideoEncoder_SetCallback(OH_AVCodec *codec, OH_AVCodecAsyncCallb
  * @param userData User specific data
  * @return Returns AV_ERR_OK if the execution is successful,
  * otherwise returns a specific error code, refer to {@link OH_AVErrCode}.
- * {@link AV_ERR_NO_MEMORY}, internal errors in the input encode instance, such as an abnormal NULL.
- * {@link AV_ERR_INVALID_VAL}, the input codec pointer is non encoder instance or NULL.
+ * {@link AV_ERR_NO_MEMORY}, inner resource has already released.
+ * {@link AV_ERR_INVALID_VAL}, the encoder is nullptr or invalid.
  * {@link AV_ERR_UNKNOWN}, unknown error.
  * {@link AV_ERR_OPERATE_NOT_PERMIT}, internal execution error.
  * @since 11
@@ -142,8 +142,8 @@ OH_AVErrCode OH_VideoEncoder_RegisterCallback(OH_AVCodec *codec, OH_AVCodecCallb
  * @param userData User specific data
  * @return Returns AV_ERR_OK if the execution is successful,
  * otherwise returns a specific error code, refer to {@link OH_AVErrCode}.
- * {@link AV_ERR_NO_MEMORY}, internal errors in the input encode instance, such as an abnormal NULL.
- * {@link AV_ERR_INVALID_VAL}, the input codec pointer is non encoder instance or NULL.
+ * {@link AV_ERR_NO_MEMORY}, inner resource has already released.
+ * {@link AV_ERR_INVALID_VAL}, the encoder is nullptr or invalid.
  * {@link AV_ERR_UNKNOWN}, unknown error.
  * {@link AV_ERR_OPERATE_NOT_PERMIT}, internal execution error.
  * {@link AV_ERR_INVALID_STATE}, this interface was called in invalid state, must be called before Prepare.
@@ -161,7 +161,7 @@ OH_AVErrCode OH_VideoEncoder_RegisterParameterCallback(OH_AVCodec *codec,
  * @param format A pointer to an OH_AVFormat that gives the description of the video track to be encoded
  * @return Returns AV_ERR_OK if the execution is successful,
  * otherwise returns a specific error code, refer to {@link OH_AVErrCode}.
- * {@link AV_ERR_NO_MEMORY}, internal errors in the input encode instance, such as an abnormal NULL.
+ * {@link AV_ERR_NO_MEMORY}, instance has already released.
  * {@link AV_ERR_INVALID_VAL}
  * 1. the input codec pointer is non encoder instance or NULL;
  * 2. unsupported input format parameters.
@@ -180,7 +180,7 @@ OH_AVErrCode OH_VideoEncoder_Configure(OH_AVCodec *codec, OH_AVFormat *format);
  * @return Returns AV_ERR_OK if the execution is successful,
  * otherwise returns a specific error code, refer to {@link OH_AVErrCode}.
  * {@link AV_ERR_NO_MEMORY}, instance has already released.
- * {@link AV_ERR_INVALID_VAL}, the input codec pointer is non encoder instance or NULL.
+ * {@link AV_ERR_INVALID_VAL}, the encoder is nullptr or invalid.
  * {@link AV_ERR_UNKNOWN}, unknown error.
  * {@link AV_ERR_OPERATE_NOT_PERMIT}, internal execution error.
  * {@link AV_ERR_INVALID_STATE}, this interface was called in invalid state.
@@ -195,8 +195,8 @@ OH_AVErrCode OH_VideoEncoder_Prepare(OH_AVCodec *codec);
  * @param codec Pointer to an OH_AVCodec instance
  * @return Returns AV_ERR_OK if the execution is successful,
  * otherwise returns a specific error code, refer to {@link OH_AVErrCode}.
- * {@link AV_ERR_NO_MEMORY}, internal errors in the input encode instance, such as an abnormal NULL.
- * {@link AV_ERR_INVALID_VAL}, the input codec pointer is non encoder instance or NULL.
+ * {@link AV_ERR_NO_MEMORY}, instance has already released.
+ * {@link AV_ERR_INVALID_VAL}, the encoder is nullptr or invalid.
  * {@link AV_ERR_UNKNOWN}, unknown error.
  * {@link AV_ERR_OPERATE_NOT_PERMIT}, internal execution error.
  * {@link AV_ERR_INVALID_STATE}, this interface was called in invalid state.
@@ -210,8 +210,8 @@ OH_AVErrCode OH_VideoEncoder_Start(OH_AVCodec *codec);
  * @param codec Pointer to an OH_AVCodec instance
  * @return Returns AV_ERR_OK if the execution is successful,
  * otherwise returns a specific error code, refer to {@link OH_AVErrCode}.
- * {@link AV_ERR_NO_MEMORY}, internal errors in the input encode instance, such as an abnormal NULL.
- * {@link AV_ERR_INVALID_VAL}, the input codec pointer is non encoder instance or NULL.
+ * {@link AV_ERR_NO_MEMORY}, instance has already released.
+ * {@link AV_ERR_INVALID_VAL}, the encoder is nullptr or invalid.
  * {@link AV_ERR_UNKNOWN}, unknown error.
  * {@link AV_ERR_OPERATE_NOT_PERMIT}, internal execution error.
  * {@link AV_ERR_INVALID_STATE}, this interface was called in invalid state.
@@ -227,8 +227,8 @@ OH_AVErrCode OH_VideoEncoder_Stop(OH_AVCodec *codec);
  * @param codec Pointer to an OH_AVCodec instance
  * @return Returns AV_ERR_OK if the execution is successful,
  * otherwise returns a specific error code, refer to {@link OH_AVErrCode}.
- * {@link AV_ERR_NO_MEMORY}, internal errors in the input encode instance, such as an abnormal NULL.
- * {@link AV_ERR_INVALID_VAL}, the input codec pointer is non encoder instance or NULL.
+ * {@link AV_ERR_NO_MEMORY}, instance has already released.
+ * {@link AV_ERR_INVALID_VAL}, the encoder is nullptr or invalid.
  * {@link AV_ERR_UNKNOWN}, unknown error.
  * {@link AV_ERR_OPERATE_NOT_PERMIT}, internal execution error.
  * {@link AV_ERR_INVALID_STATE}, this interface was called in invalid state.
@@ -243,8 +243,8 @@ OH_AVErrCode OH_VideoEncoder_Flush(OH_AVCodec *codec);
  * @param codec Pointer to an OH_AVCodec instance
  * @return Returns AV_ERR_OK if the execution is successful,
  * otherwise returns a specific error code, refer to {@link OH_AVErrCode}.
- * {@link AV_ERR_NO_MEMORY}, internal errors in the input encode instance, such as an abnormal NULL.
- * {@link AV_ERR_INVALID_VAL}, the input codec pointer is non encoder instance or NULL.
+ * {@link AV_ERR_NO_MEMORY}, instance has already released.
+ * {@link AV_ERR_INVALID_VAL}, the encoder is nullptr or invalid.
  * {@link AV_ERR_UNKNOWN}, unknown error.
  * {@link AV_ERR_OPERATE_NOT_PERMIT}, internal execution error.
  * @since 9
@@ -271,7 +271,7 @@ OH_AVFormat *OH_VideoEncoder_GetOutputDescription(OH_AVCodec *codec);
  * @param format OH_AVFormat handle pointer
  * @return Returns AV_ERR_OK if the execution is successful,
  * otherwise returns a specific error code, refer to {@link OH_AVErrCode}.
- * {@link AV_ERR_NO_MEMORY}, internal errors in the input encode instance, such as an abnormal NULL.
+ * {@link AV_ERR_NO_MEMORY}, instance has already released.
  * {@link AV_ERR_INVALID_VAL}
  * 1. the input codec pointer is non encoder instance or NULL;
  * 2. unsupported input format parameters.
@@ -303,8 +303,9 @@ OH_AVErrCode OH_VideoEncoder_GetSurface(OH_AVCodec *codec, OHNativeWindow **wind
  * @param index The index value corresponding to the output Buffer
  * @return Returns AV_ERR_OK if the execution is successful,
  * otherwise returns a specific error code, refer to {@link OH_AVErrCode}.
- * {@link AV_ERR_NO_MEMORY}, internal errors in the input encode instance, such as an abnormal NULL.
- * {@link AV_ERR_INVALID_VAL}, the input codec pointer is non encoder instance or NULL.
+ * {@link AV_ERR_NO_MEMORY}, instance has already released.
+ * {@link AV_ERR_INVALID_VAL}, the encoder is nullptr or invalid.
+ * Buffer index should be given by {@link OH_AVCodecOnNewOutputData}.
  * {@link AV_ERR_UNKNOWN}, unknown error.
  * {@link AV_ERR_OPERATE_NOT_PERMIT}, internal execution error.
  * {@link AV_ERR_INVALID_STATE}, this interface was called in invalid state.
@@ -321,8 +322,8 @@ OH_AVErrCode OH_VideoEncoder_FreeOutputData(OH_AVCodec *codec, uint32_t index);
  * @param codec Pointer to an OH_AVCodec instance
  * @return Returns AV_ERR_OK if the execution is successful,
  * otherwise returns a specific error code, refer to {@link OH_AVErrCode}.
- * {@link AV_ERR_NO_MEMORY}, internal errors in the input encode instance, such as an abnormal NULL.
- * {@link AV_ERR_INVALID_VAL}, the input codec pointer is non encoder instance or NULL.
+ * {@link AV_ERR_NO_MEMORY}, instance has already released.
+ * {@link AV_ERR_INVALID_VAL}, the encoder is nullptr or invalid.
  * {@link AV_ERR_UNKNOWN}, unknown error.
  * {@link AV_ERR_OPERATE_NOT_PERMIT}, internal execution error.
  * {@link AV_ERR_INVALID_STATE}, this interface was called in invalid state.
@@ -338,8 +339,9 @@ OH_AVErrCode OH_VideoEncoder_NotifyEndOfStream(OH_AVCodec *codec);
  * @param attr Information describing the data contained in the Buffer
  * @return Returns AV_ERR_OK if the execution is successful,
  * otherwise returns a specific error code, refer to {@link OH_AVErrCode}.
- * {@link AV_ERR_NO_MEMORY}, internal errors in the input encode instance, such as an abnormal NULL.
- * {@link AV_ERR_INVALID_VAL}, the input codec pointer is non encoder instance or NULL.
+ * {@link AV_ERR_NO_MEMORY}, instance has already released.
+ * {@link AV_ERR_INVALID_VAL}, the encoder is nullptr or invalid.
+ * Buffer index should be given by {@link OH_AVCodecOnNeedInputData}.
  * {@link AV_ERR_UNKNOWN}, unknown error.
  * {@link AV_ERR_OPERATE_NOT_PERMIT}, internal execution error.
  * {@link AV_ERR_INVALID_STATE}, this interface was called in invalid state.
@@ -356,7 +358,7 @@ OH_AVErrCode OH_VideoEncoder_PushInputData(OH_AVCodec *codec, uint32_t index, OH
  * @param index Enter the index value corresponding to the Buffer
  * @return Returns AV_ERR_OK if the execution is successful,
  * otherwise returns a specific error code, refer to {@link OH_AVErrCode}.
- * {@link AV_ERR_NO_MEMORY}, internal errors in the input encode instance, such as an abnormal NULL.
+ * {@link AV_ERR_NO_MEMORY}, instance has already released.
  * {@link AV_ERR_INVALID_VAL}
  * 1. the input codec pointer is non encoder instance or NULL;
  * 2. unsupported input format parameters.
@@ -376,8 +378,9 @@ OH_AVErrCode OH_VideoEncoder_PushInputBuffer(OH_AVCodec *codec, uint32_t index);
  * @param index Enter the index value corresponding to the input parameter
  * @return Returns AV_ERR_OK if the execution is successful,
  * otherwise returns a specific error code, refer to {@link OH_AVErrCode}.
- * {@link AV_ERR_NO_MEMORY}, internal errors in the input encode instance, such as an abnormal NULL.
- * {@link AV_ERR_INVALID_VAL}, the input codec pointer is non encoder instance or NULL.
+ * {@link AV_ERR_NO_MEMORY}, instance has already released.
+ * {@link AV_ERR_INVALID_VAL}, the encoder is nullptr or invalid.
+ * Index should be given by {@link OH_VideoEncoder_OnNeedInputParameter}.
  * {@link AV_ERR_UNKNOWN}, unknown error.
  * {@link AV_ERR_OPERATE_NOT_PERMIT}, internal execution error.
  * {@link AV_ERR_INVALID_STATE}, this interface was called in invalid state.
@@ -392,7 +395,7 @@ OH_AVErrCode OH_VideoEncoder_PushInputParameter(OH_AVCodec *codec, uint32_t inde
  * @param index The index value corresponding to the output Buffer
  * @return Returns AV_ERR_OK if the execution is successful,
  * otherwise returns a specific error code, refer to {@link OH_AVErrCode}.
- * {@link AV_ERR_NO_MEMORY}, internal errors in the input encode instance, such as an abnormal NULL.
+ * {@link AV_ERR_NO_MEMORY}, instance has already released.
  * {@link AV_ERR_INVALID_VAL}
  * 1. the input codec pointer is non encoder instance or NULL;
  * 2. unsupported input format parameters;
