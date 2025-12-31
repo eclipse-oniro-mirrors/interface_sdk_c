@@ -375,6 +375,6 @@ typedef void (*OH_AudioCapturer_OnFastStatusChange)(
 #ifdef __cplusplus
 }
 #endif
-
+xx
 #endif // NATIVE_AUDIOCAPTURER_H
 /** @} */
