@@ -10,7 +10,7 @@
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
- * limitations under the License.ss
+ * limitations under the License.
  */
 
 /**
@@ -566,6 +566,26 @@ OH_AudioStream_Result OH_AudioStreamBuilder_SetRendererFastStatusChangeCallback(
 OH_AudioStream_Result OH_AudioStreamBuilder_SetCapturerFastStatusChangeCallback(OH_AudioStreamBuilder* builder,
     OH_AudioCapturer_OnFastStatusChange callback, void* userData);
 
+/**
+ * Sets target mode when using playback capture. Mode will decide what kind of streams to capture.
+ * This function is only available for {@link #AUDIOSTREAM_TYPE_CAPTURER} type.
+ * After setting playback capture mode, the {@link #OH_AudioStream_SourceType} will be ignored, so
+ * caller do not need to use {@link #OH_AudioStreamBuilder_SetCapturerInfo} if you only want to capture
+ * playback streams.
+ * Note that playback capture is only available for specific system applications currently, others do
+ * not have authorization.
+ *
+ * @param builder Reference provided by OH_AudioStreamBuilder_Create().
+ * @param mode The playback capture mode to set. This can be a combination of the available
+ *     {@link #OH_AudioStream_PlaybackCaptureMode}.
+ * @return Function result code:
+ *     {@link #AUDIOSTREAM_SUCCESS} If the execution is successful.
+ *     {@link #AUDIOSTREAM_ERROR_INVALID_PARAM} 1.The param of builder is nullptr;
+ *                                             2.The param of mode is invalid.
+ * @since 23
+ */
+OH_AudioStream_Result OH_AudioStreamBuilder_SetPlaybackCaptureMode(OH_AudioStreamBuilder* builder,
+    uint32_t mode);
 
 #ifdef __cplusplus
 }
