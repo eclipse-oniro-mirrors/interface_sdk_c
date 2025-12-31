@@ -589,7 +589,7 @@ extern const char *OH_AVCODEC_MIMETYPE_VIDEO_WVC1;
 extern const char *OH_AVCODEC_MIMETYPE_VIDEO_DVVIDEO;
  
 /**
- * @brief Enumerates the MIME type of video raw codec.
+ * @brief Enumerates the MIME type of video raw.
  *
  * @since 23
  * */
@@ -1674,7 +1674,7 @@ typedef enum OH_VP9Profile {
 } OH_VP9Profile;
 
 /**
-* @brief WVC1 Profile
+* @brief WVC1 Profile.
 *
 * @since 23
 */
