@@ -69,10 +69,14 @@ class HeaderProcessor:
 
         # @since 支持: 
         #   - 纯数字: 22
-        #   - 三段: 26.0.1
+        #   - 三段点分式: 26.0.1
         #   - 三段+括号: 5.0.3(15)
         self.since_pattern = re.compile(
-            r'@since\s+(\d+(?:\.\d+\.\d+(?:\(\d+\))?)?)'
+            r'@since\s+('
+                r'\d+\.\d+\.\d+\(\d+\)|'   # x.y.z(n)
+                r'\d+\.\d+\.\d+|'          # x.y.z
+                r'\d+'                     # x
+            r')(?=\s|$|[*/])'              # 后面可以有空白、行尾、或注释符号
         )
         # @deprecated since仅支持数字格式
         self.deprecated_pattern = re.compile(r'@deprecated since\s+(\d+)')
@@ -199,43 +203,32 @@ class HeaderProcessor:
         """
         根据 @since 的值生成对应的 API 可用性宏。
         支持格式：
-        - 纯数字：15                → __API_VERSION(15,0,0)
-        - 三段式：15.0.0 / 15.0.1   → __API_VERSION(15,0,0) / __API_VERSION(15,0,1)
-        - 四段式：5.0.3(15)         → __API_VERSION(15,0,0)  （取括号内为主版本）
+        - 纯数字：15                 → introduced=15.0.0
+        - 三段点分式：15.0.1         → introduced=15.0.1
+        - 三段+括号：5.0.3(15)       → introduced=15.0.0（取括号内为主版本）
         """
-        # 匹配 x.y.z(n) 格式，例如 5.0.3(15)
-        distributeos_pattern = re.compile(r'^(\d+)\.(\d+)\.(\d+)\((\d+)\)$')
-        # 匹配 x.y.z 格式，例如 15.0.1
-        triple_pattern = re.compile(r'^(\d+)\.(\d+)\.(\d+)$')
-
-        major = minor = patch = None
-
+        # 1. 纯数字格式：如 "26"
         if since_version.isdigit():
-            # 格式1: @since 15
-            major = since_version
-            minor = '0'
-            patch = '0'
-        elif distributeos_pattern.match(since_version):
-            # 格式2: @since 5.0.3(15) → 使用括号内的 15 作为主版本
-            n = distributeos_pattern.match(since_version).group(4)
-            major = n
-            minor = '0'
-            patch = '0'
-        elif triple_pattern.match(since_version):
-            # 格式3/4: @since 15.0.0 或 15.0.1
-            m = triple_pattern.match(since_version)
-            major = m.group(1)
-            minor = m.group(2)
-            patch = m.group(3)
-        else:
-            # 未知格式，保守处理为纯数字（可选：也可报错或跳过）
-            raise ValueError(f"Invalid since_version format: {since_version}")
-            major = since_version
-            minor = '0'
-            patch = '0'
+            major, minor, patch = since_version, '0', '0'
 
-        base_macro = f'__attribute__((__availability__(ohos, introduced={major}.{minor}.{patch})))'
-        return base_macro
+        # 2. 三段+括号格式：如 "5.0.3(15)"
+        elif (dist_match := re.fullmatch(r'(\d+)\.(\d+)\.(\d+)\((\d+)\)', since_version)):
+            # 使用括号内的版本作为主 API Level
+            major = dist_match.group(4)
+            minor = patch = '0'
+
+        # 3. 标准三段式：如 "26.0.0" 或 "26.0.1"
+        elif (triple_match := re.fullmatch(r'(\d+)\.(\d+)\.(\d+)', since_version)):
+            major = triple_match.group(1)
+            minor = triple_match.group(2)
+            patch = triple_match.group(3)
+
+        # 4. 不支持的格式抛异常
+        else:
+            raise ValueError(f"Invalid @since version format: '{since_version}'. "
+                            f"Expected formats: X, X.Y.Z, or X.Y.Z(N).")
+
+        return f'__attribute__((__availability__(ohos, introduced={major}.{minor}.{patch})))'
 
 
     def _format_declaration(self, decl: str, macro: str) -> str:

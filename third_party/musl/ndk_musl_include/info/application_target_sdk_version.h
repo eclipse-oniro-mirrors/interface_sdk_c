@@ -23,10 +23,7 @@ extern "C" {
 #define __INNER_CONCAT(a,b) a##.##b
 
 // 编码时候用来隔离接口代码的宏
-#define APIAVAILABLE(maj,min,patch) __builtin_available(ohos maj##.##min##.##patch, *)
-#define _APIAVAILABLE(_1, _2, _3, N, ...)  __APIAVAILABLE_##N(_1, _2, _3)
-#define __APIAVAILABLE_1(maj, ...)  __builtin_available(ohos maj, *)
-#define __APIAVAILABLE_3(maj, min, patch)  __builtin_available(ohos __INNER_CONCAT(__INNER_CONCAT(maj, min), patch), *)
+#define APIAVAILABLE(maj, min, patch)  __builtin_available(ohos maj##.##min##.##patch, *)
 
 #define SDK_VERSION_FUTURE 9999
 #define SDK_VERSION_7 7
