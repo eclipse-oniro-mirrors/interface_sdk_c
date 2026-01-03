@@ -707,6 +707,7 @@ OH_AVFormat *OH_AVPlayer_GetTrackDescription(OH_AVPlayer *player, uint32_t index
 
 /**
  * @brief Get the statistic metrics info of current player.
+ *     This API can be called only when the AVPlayer is in the prepared, playing, paused, completed, or stopped state.
  *     It should be noted that the life cycle of the OH_AVFormat instance pointed to by the return value * needs
  *     to be manually released by the caller.
  * @param {OH_AVPlayer*} player Pointer to an OH_AVPlayer instance
@@ -871,7 +872,7 @@ OH_AVFormat *OH_AVSeiMessage_GetSei(OH_AVSeiMessageArray *message, uint32_t inde
  *         {@link AV_ERR_OPERATE_NOT_PERMIT} if Operation not allowed.
  *         {@link AV_ERR_SUPER_RESOLUTION_UNSUPPORTED} if Super resolution is not supported.
  *         {@link AV_ERR_SUPER_RESOLUTION_NOT_ENABLED} if Missing enable super resolution feature in{@link
- *          PlaybackStrategy}.
+ *          OH_AVPlaybackStrategy}.
  * @since 23
  */
 OH_AVErrCode OH_AVPlayer_SetTargetVideoWindowSize(OH_AVPlayer *player, int32_t width, int32_t height);
@@ -879,7 +880,7 @@ OH_AVErrCode OH_AVPlayer_SetTargetVideoWindowSize(OH_AVPlayer *player, int32_t w
 /**
  * @brief Enable or disable super-resolution dynamically. This API can be called when the AVPlayer is in the
  * initialized, prepared, playing, paused, completed, or stopped state.
- * Must enable super-resolution feature in {@link PlaybackStrategy} before calling prepare.
+ * Must enable super-resolution feature in {@link OH_AVPlaybackStrategy} before calling prepare.
  * @param player Pointer to an OH_AVPlayer instance.
  * @param enabled true: super-resolution enabled; false: super-resolution disabled.
  * @return Function result code.
@@ -888,7 +889,7 @@ OH_AVErrCode OH_AVPlayer_SetTargetVideoWindowSize(OH_AVPlayer *player, int32_t w
  *         {@link AV_ERR_OPERATE_NOT_PERMIT} if Operation not allowed.
  *         {@link AV_ERR_SUPER_RESOLUTION_UNSUPPORTED} if Super resolution is not supported.
  *         {@link AV_ERR_SUPER_RESOLUTION_NOT_ENABLED} if Missing enable super resolution feature in{@link
- *          PlaybackStrategy}.
+ *          OH_AVPlaybackStrategy}.
  * @since 23
  */
 OH_AVErrCode OH_AVPlayer_SetVideoSuperResolutionEnable(OH_AVPlayer *player, bool enabled);
