@@ -216,6 +216,22 @@
     "name": "OH_AVPlayer_GetTrackDescription"
  },
   {
+    "first_introduced": "22", 
+    "name": "OH_PLAYER_MD_KEY_HAS_VIDEO"
+  },
+  {
+    "first_introduced": "22", 
+    "name": "OH_PLAYER_MD_KEY_HAS_AUDIO"
+  },
+  {
+    "first_introduced": "22", 
+    "name": "OH_PLAYER_MD_KEY_HAS_SUBTITLE"
+  },
+  {
+    "first_introduced": "22", 
+    "name": "OH_PLAYER_MD_KEY_TRACK_INDEX"
+  },
+  {
     "first_introduced": "23",
     "name": "OH_AVPlayer_GetPlaybackStatisticMetrics"
   },
