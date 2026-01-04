@@ -537,15 +537,14 @@ OH_AVErrCode OH_VideoDecoder_IsValid(OH_AVCodec *codec, bool *isValid);
  * @param codec Pointer to an OH_AVCodec instance
  * @param mediaKeySession A media key session instance with decryption function.
  * @param secureVideoPath Require secure decoder or not.
- * @return {@link AV_ERR_OK}, execution is successful
+ * @return {@link AV_ERR_OK}0 - Success
  *         {@link AV_ERR_OPERATE_NOT_PERMIT}
  *         1. internal execution error;
  *         2. the decode service process is abnormal;
  *         3. the media key session service is in an wrong state.
  *         {@link AV_ERR_NO_MEMORY}, instance has already released or no memory.
- *         {@link AV_ERR_INVALID_VAL}
- *         1. the input codec pointer is non decoder instance or NULL;
- *         2. mediaKeySession is NULL or invalid.
+ *         {@link AV_ERR_INVALID_VAL} 3 - If the codec instance is nullptr or invalid,
+ *         the mediaKeySession is nullptr or invalid.
  * @since 11
 */
 OH_AVErrCode OH_VideoDecoder_SetDecryptionConfig(OH_AVCodec *codec, MediaKeySession *mediaKeySession,

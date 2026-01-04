@@ -220,10 +220,9 @@ OH_AVErrCode OH_AVDemuxer_SeekToTime(OH_AVDemuxer *demuxer, int64_t millisecond,
  * @syscap SystemCapability.Multimedia.Media.Spliter
  * @param demuxer Pointer to an OH_AVDemuxer instance
  * @param callback object pointer.
- * @return
- * {@link AV_ERR_OK} execution successful.
- * {@link AV_ERR_OPERATE_NOT_PERMIT} demuxer is not properly initialized.
- * {@link AV_ERR_INVALID_VAL} the input demuxer pointer is non demuxer instance or NULL.
+ * @return {@link AV_ERR_OK} 0 - Success
+ *         {@link AV_ERR_OPERATE_NOT_PERMIT} 2 - If the demuxer engine is not inited or init failed.
+ *         {@link AV_ERR_INVALID_VAL} 3 - If the demuxer instance is nullptr or invalid.
  * @deprecated since 14
  * @useinstead OH_AVDemuxer_SetDemuxerMediaKeySystemInfoCallback
  * @since 11
@@ -236,10 +235,9 @@ OH_AVErrCode OH_AVDemuxer_SetMediaKeySystemInfoCallback(OH_AVDemuxer *demuxer,
  * @syscap SystemCapability.Multimedia.Media.Spliter
  * @param demuxer Pointer to an OH_AVDemuxer instance
  * @param callback object pointer.
- * @return
- * {@link AV_ERR_OK} execution successful.
- * {@link AV_ERR_OPERATE_NOT_PERMIT} demuxer is not properly initialized.
- * {@link AV_ERR_INVALID_VAL} the input demuxer pointer is non demuxer instance or NULL.
+ * @return {@link AV_ERR_OK} 0 - Success
+ *         {@link AV_ERR_OPERATE_NOT_PERMIT} 2 - If the demuxer engine is not inited or init failed.
+ *         {@link AV_ERR_INVALID_VAL} 3 - If the demuxer instance is nullptr or invalid.
  * @since 12
  */
 OH_AVErrCode OH_AVDemuxer_SetDemuxerMediaKeySystemInfoCallback(OH_AVDemuxer *demuxer,
@@ -251,12 +249,10 @@ OH_AVErrCode OH_AVDemuxer_SetDemuxerMediaKeySystemInfoCallback(OH_AVDemuxer *dem
  * @param demuxer Pointer to an OH_AVDemuxer instance
  * @param mediaKeySystemInfo Indicates the media key system info which ram space allocated by callee and
  * released by caller.
- * @return
- * {@link AV_ERR_OK} execution successful.
- * {@link AV_ERR_OPERATE_NOT_PERMIT} If the demuxer engine is not inited or init failed.
- * {@link AV_ERR_INVALID_VAL}
- * 1. the input demuxer pointer is non demuxer instance or NULL;
- * 2. the mediaKeySystemInfo is NULL.
+ * @return {@link AV_ERR_OK} 0 - Success
+ *         {@link AV_ERR_OPERATE_NOT_PERMIT} 2 - If the demuxer engine is not inited or init failed.
+ *         {@link AV_ERR_INVALID_VAL} 3 - If the demuxer instance is nullptr or invalid
+ *          or the mediaKeySystemInfo is nullptr.
  * @since 11
  */
 OH_AVErrCode OH_AVDemuxer_GetMediaKeySystemInfo(OH_AVDemuxer *demuxer, DRM_MediaKeySystemInfo *mediaKeySystemInfo);
