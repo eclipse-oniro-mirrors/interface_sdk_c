@@ -323,9 +323,9 @@ typedef int64_t (*OH_AVMediaSourceLoaderOnSourceOpenedCallback)(OH_AVMediaSource
  * The client must return the handle immediately after processing the request.
  * @param uuid ID for the resource handle.
  * @param requestedOffset Offset of the current media data relative to the start of the resource.
- * @param requestedLength length of the current request.
+ * @param requestedLength Length of the current request.
  *     -1 means reaching the end of the resource, need to inform the player of the end of
- *     the push through the (@link #finishLoading) method.
+ *     the push through the (@link OH_AVMediaSourceLoadingRequest_FinishLoading) method.
  * @param userData The data set by user in OH_AVMediaSourceLoader_SetSourceReadCallback
  * @since 23
  */
