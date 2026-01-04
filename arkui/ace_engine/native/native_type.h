@@ -385,7 +385,7 @@ typedef struct ArkUI_SelectedDragPreviewStyle ArkUI_SelectedDragPreviewStyle;
  * @since 12
  */
 typedef struct {
-    /** Custom type. */
+    /** Custom type, data of a user-defined type that is passed as a parameter during callbacks. */
     void* userData;
     /** Event callback. */
     void (*callback)(void* userData);
@@ -396,11 +396,11 @@ typedef struct {
  * @since 12
  */
 typedef union {
-    /** Floating-point type. */
+    /** Floating-point type, used to store a floating-point value. */
     float f32;
-    /** Signed integer. */
+    /** Signed integer, used to store a signed integer value. */
     int32_t i32;
-    /** Unsigned integer. */
+    /** Unsigned integer, used to store an unsigned integer value. */
     uint32_t u32;
 } ArkUI_NumberValue;
 
