@@ -121,8 +121,7 @@ OH_AVErrCode OH_AVMetadataExtractor_FetchFrameByTime(OH_AVMetadataExtractor *ext
 /**
  * @brief defines the callback function for frames fetched by AVMetadataExtractor
  *     Note: frameInfo will be released automatically after callback, but user should release
- *     frameInfo.image manually by {@linke OH_PixelmapNative_Destroy} to avoid memory leaks.
- *
+ *     frameInfo.image manually by {@link OH_PixelmapNative_Destroy} to avoid memory leaks.
  * @since 23
  */
 typedef void (*OH_AVMetadataExtractor_OnFrameFetched)(OH_AVMetadataExtractor *extractor,
