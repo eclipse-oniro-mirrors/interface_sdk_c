@@ -640,8 +640,7 @@ Image_ErrorCode OH_PixelmapImageInfo_GetRowStride(OH_Pixelmap_ImageInfo *info, u
 Image_ErrorCode OH_PixelmapImageInfo_GetPixelFormat(OH_Pixelmap_ImageInfo *info, int32_t *pixelFormat);
 
 /**
- * @brief To get the alpha type of a premultiplied format image, it is
- *     recommended to use OH_PixelmapImageInfo_GetAlphaMode.
+ * @brief Get alphaType number for imageinfo struct.
  *
  * @param info The imageinfo pointer will be operated.
  * @param alphaType The number of imageinfo alphaType.
