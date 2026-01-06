@@ -156,12 +156,14 @@ typedef enum {
      * @brief Legacy Midi 1.0 Semantics.
      *
      * Behavior:
-     * - The service expects UMP Stream (mostly Type 2 for Voice, Type 3 for SysEx).
-     * - If the target hardware is Midi 1.0: The service converts UMP back to Byte Stream (F0...F7).
-     * - If the target hardware is Midi 2.0: The service sends UMP Type 2/3 packets.
+     * - The service expects UMP packets strictly compatible with Midi 1.0.
+     * - **MT 0x0**: Utility Messages (e.g., JR Timestamps).
+     * - **MT 0x1**: System Real Time and System Common Messages.
+     * - **MT 0x2**: MIDI 1.0 Channel Voice Messages (32-bit).
+     * - **MT 0x3**: Data Messages (64-bit) used for SysEx (7-bit payload).
      *
-     * @note SysEx handling: Application must send SysEx as UMP Type 3 (64-bit Data Messages).
-     * The service handles the unpacking to raw bytes if necessary.
+     * - If the target hardware is Midi 1.0: The service converts UMP back to Byte Stream (F0...F7).
+     * - If the target hardware is Midi 2.0: The service sends these packets as-is (encapsulated Midi 1.0).
      */
     MIDI_PROTOCOL_1_0 = 1,
 
@@ -169,12 +171,17 @@ typedef enum {
      * @brief Midi 2.0 Semantics.
      *
      * Behavior:
-     * - The service expects UMP Stream (Type 4 for Voice, Type 3 for SysEx, Type F for Utility).
-     * - Enables high-resolution data, per-note controllers, and attribute exchange.
+     * - The service expects UMP packets leveraging Midi 2.0 features.
+     * - **MT 0x4**: MIDI 2.0 Channel Voice Messages (64-bit, high resolution).
+     * - **MT 0x0**: Utility Messages (JR Timestamps).
+     * - **MT 0xD**: Flex Data Messages (128-bit, e.g., Text, Lyrics).
+     * - **MT 0xF**: UMP Stream Messages (128-bit, Endpoint Discovery, Function Blocks).
+     * - **MT 0x3 / MT 0x5**: Data Messages (64-bit or 128-bit).
      *
      * @note Fallback Policy: If this protocol is requested but the hardware only supports Midi 1.0,
      * the service will perform "Best-Effort" translation (e.g., downscaling 32-bit velocity
-     * to 7-bit, converting Type 4 to Type 2). Some data precision may be lost.
+     * to 7-bit, converting Type 4 back to Type 2). Some data precision or message types (like Flex Data)
+     * may be lost or ignored.
      */
     MIDI_PROTOCOL_2_0 = 2
 } OH_MidiProtocol;
@@ -284,7 +291,7 @@ typedef struct {
      * 2. **Request MIDI_PROTOCOL_2_0 on a 1.0 Device**: (Lossy)
      * - The service creates a virtual 2.0 view.
      * - App sends UMP Type 4 (Midi 2.0 Voice).
-     * - Service **Down-converts** Type 4 to Type 2/Byte Stream (e.g., clipping Velocity, dropping Per-Note data).
+     * - Service **Down-converts** Type 4 to Type 2 (e.g., clipping Velocity, dropping Per-Note data).
      * - **Warning**: Data precision will be lost. Advanced messages may be dropped.
      */
     OH_MidiProtocol protocol;

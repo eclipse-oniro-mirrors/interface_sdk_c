@@ -160,7 +160,7 @@ OH_MidiStatusCode OH_MidiGetDevicePorts(OH_MidiDevice *device, OH_MidiPortInform
  * @since 24
  */
 OH_MidiStatusCode OH_MidiOpenInputPort(OH_MidiDevice *device,
-                                       uint32_t portIndex,
+                                       OH_MidiPortDescriptor portIndex,
                                        OH_OnMidiReceived callback,
                                        void *userData);
 
