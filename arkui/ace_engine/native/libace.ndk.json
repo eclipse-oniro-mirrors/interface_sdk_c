@@ -4768,5 +4768,9 @@
     {
         "first_introduced": "23",
         "name": "OH_ArkUI_PickerIndicatorStyle_ConfigureDivider"
+    },
+    {
+        "first_introduced": "23",
+        "name": "OH_ArkUI_NativeModule_GetNativeAccessibilityProvider"
     }
 ]
