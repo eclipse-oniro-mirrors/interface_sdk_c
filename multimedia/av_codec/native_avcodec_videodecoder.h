@@ -153,8 +153,8 @@ OH_AVErrCode OH_VideoDecoder_SetSurface(OH_AVCodec *codec, OHNativeWindow *windo
  * otherwise returns a specific error code, refer to {@link OH_AVErrCode}.
  * {@link AV_ERR_NO_MEMORY}, instance has already released.
  * {@link AV_ERR_INVALID_VAL}
- * 1. the input codec pointer is non decoder instance or NULL;
- * 2. Invalid param in format.
+ * 1. an invalid decoder instance pointer is passed to parameter codec, including a null pointer;
+ * 2. an invalid pointer is passed to parameter format, including a null pointer.
  * {@link AV_ERR_UNKNOWN}, unknown error.
  * {@link AV_ERR_OPERATE_NOT_PERMIT}, internal execution error.
  * {@link AV_ERR_INVALID_STATE}, this interface was called in invalid state, must be called before Prepare.
@@ -270,8 +270,8 @@ OH_AVFormat *OH_VideoDecoder_GetOutputDescription(OH_AVCodec *codec);
  * otherwise returns a specific error code, refer to {@link OH_AVErrCode}.
  * {@link AV_ERR_NO_MEMORY}, instance has already released.
  * {@link AV_ERR_INVALID_VAL}
- * 1. the input codec pointer is non decoder instance or NULL;
- * 2. invalid param in format.
+ * 1. an invalid decoder instance pointer is passed to parameter codec, including a null pointer;
+ * 2. an invalid pointer is passed to parameter format, including a null pointer.
  * {@link AV_ERR_UNKNOWN}, unknown error.
  * {@link AV_ERR_OPERATE_NOT_PERMIT}, internal execution error.
  * {@link AV_ERR_INVALID_STATE}, this interface was called in invalid state.
@@ -428,9 +428,9 @@ OH_AVErrCode OH_VideoDecoder_RenderOutputBufferAtTime(OH_AVCodec *codec, uint32_
  * otherwise returns a specific error code, refer to {@link OH_AVErrCode}.
  * {@link AV_ERR_NO_MEMORY}, instance has already released.
  * {@link AV_ERR_INVALID_VAL}
- * 1. the input codec pointer is non decoder instance or NULL;
- * 2. the index is vaild or consecutively assigned to the same index,
- * the error do not affect the subsequent decode process.
+ * 1. an invalid decoder instance pointer is passed to parameter codec, including a null pointer;
+ * 2. invalid index or consecutive assignment to the same index,
+ * the error does not affect the subsequent decode process.
  * {@link AV_ERR_UNKNOWN}, unknown error.
  * {@link AV_ERR_OPERATE_NOT_PERMIT}, internal execution error.
  * {@link AV_ERR_INVALID_STATE}, this interface was called in invalid state.

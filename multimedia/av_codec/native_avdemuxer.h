@@ -96,7 +96,8 @@ OH_AVDemuxer *OH_AVDemuxer_CreateWithSource(OH_AVSource *source);
  * @param demuxer Pointer to an OH_AVDemuxer instance.
  * @return Returns AV_ERR_OK if the execution is successful,
  * otherwise returns a specific error code, refer to {@link OH_AVErrCode}
- * {@link AV_ERR_INVALID_VAL} the input demuxer pointer is non demuxer instance or NULL.
+ * {@link AV_ERR_INVALID_VAL} an invalid demuxer instance pointer is passed to parameter demuxer,
+ * including a null pointer;
  * @since 10
 */
 OH_AVErrCode OH_AVDemuxer_Destroy(OH_AVDemuxer *demuxer);
@@ -114,7 +115,7 @@ OH_AVErrCode OH_AVDemuxer_Destroy(OH_AVDemuxer *demuxer);
  * otherwise returns a specific error code, refer to {@link OH_AVErrCode}
  * {@link AV_ERR_OPERATE_NOT_PERMIT} demuxer is not properly initialized.
  * {@link AV_ERR_INVALID_VAL}
- * 1. the input demuxer pointer is non demuxer instance or NULL;
+ * 1. an invalid demuxer instance pointer is passed to parameter demuxer, including a null pointer;
  * 2. trackIndex is out of range;
  * 3. track is not supported to be read.
  * @since 10
@@ -150,8 +151,8 @@ OH_AVErrCode OH_AVDemuxer_UnselectTrackByID(OH_AVDemuxer *demuxer, uint32_t trac
  * @return Returns AV_ERR_OK if the execution is successful,
  * otherwise returns a specific error code, refer to {@link OH_AVErrCode}
  * {@link AV_ERR_INVALID_VAL}
- * 1. the input demuxer pointer is non demuxer instance or NULL;
- * 2. sample is a NULL pointer;
+ * 1. an invalid demuxer instance pointer is passed to parameter demuxer, including a null pointer;
+ * 2. a null pointer is passed to parameter sample;
  * 3. trackIndex is out of range;
  * 4. the input sample is empty.
  * 5. the input info is empty.
@@ -178,8 +179,8 @@ OH_AVErrCode OH_AVDemuxer_ReadSample(OH_AVDemuxer *demuxer, uint32_t trackIndex,
  * @return Returns AV_ERR_OK if the execution is successful,
  * otherwise returns a specific error code, refer to {@link OH_AVErrCode}
  * {@link AV_ERR_INVALID_VAL}
- * 1. the input demuxer pointer is non demuxer instance or NULL;
- * 2. sample is a NULL pointer;
+ * 1. an invalid demuxer instance pointer is passed to parameter demuxer, including a null pointer;
+ * 2. a null pointer is passed to parameter sample;
  * 3. trackIndex is out of range;
  * 4. the input sample is empty.
  * {@link AV_ERR_OPERATE_NOT_PERMIT}
@@ -202,7 +203,7 @@ OH_AVErrCode OH_AVDemuxer_ReadSampleBuffer(OH_AVDemuxer *demuxer, uint32_t track
  * @return Returns AV_ERR_OK if the execution is successful,
  * otherwise returns a specific error code, refer to {@link OH_AVErrCode}
  * {@link AV_ERR_INVALID_VAL}
- * 1. the input demuxer pointer is non demuxer instance or NULL;
+ * 1. an invalid demuxer instance pointer is passed to parameter demuxer, including a null pointer;
  * 2. the millisecond value is out of range.
  * {@link AV_ERR_OPERATE_NOT_PERMIT}
  * 1. trackIndex has not been selected;
