@@ -283,7 +283,7 @@ typedef struct {
     /**
      * @brief The unique ID of the port within the device (index).
      */
-    uint32_t portIndex;.
+    uint32_t portIndex;
 
     /**
      * @brief The requested protocol behavior for this session.
