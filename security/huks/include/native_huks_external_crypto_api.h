@@ -1,6 +1,6 @@
 
 /*
- * Copyright (c) 2022-2025 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2026 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -53,19 +53,19 @@ extern "C" {
  * @param providerName Indicates the name of the provider.
  * @param paramSet Indicates the pointer to the register parameters.
  * @return {@link OH_Huks_ErrCode#OH_HUKS_SUCCESS} 0 - If the operation is successful.
- *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_PERMISSION_FAIL} 201 - - If the permission check failed,
+ *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_PERMISSION_FAIL} 201 - If the permission check failed,
  *             please apply for the required permissions first.
  *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_NOT_SUPPORTED_API} 801 - api is not supported
  *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_MISSING_CRYPTO_ALG_ARGUMENT} 12000002 - If failed to
  *         get provider argument.
- *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_COMMUNICATION_FAIL} 12000005 - If Ipc commuication failed.
+ *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_COMMUNICATION_FAIL} 12000005 - If Ipc communication failed.
  *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_INSUFFICIENT_MEMORY} 12000014 - If the memory is insufficient.
  *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_ILLEGAL_ARGUMENT} 12000018 - If providerName or paramSet is invalid.
  *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_ITEM_NOT_EXIST} 12000019 - If the provider is already registered.
- *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_EXTERNAL_ERROR} 12000020 - If an error occured in
+ *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_EXTERNAL_ERROR} 12000020 - If an error occurred in
  *     the dependent module.
- *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_EXCEED_LIMIT} 12000025 - If the number of providers exceeds
- *             the limit.
+ *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_EXCEED_LIMIT} 12000025 - If the number of providers exceeds the
+ *     limit.
  * @since 22
  */
 struct OH_Huks_Result OH_Huks_RegisterProvider(
@@ -78,15 +78,16 @@ struct OH_Huks_Result OH_Huks_RegisterProvider(
  * @param providerName Indicates the name of the provider.
  * @param paramSet Indicates the pointer to the register parameters.
  * @return {@link OH_Huks_ErrCode#OH_HUKS_SUCCESS} 0 - If the operation is successful.
- *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_PERMISSION_FAIL} 201 - - If the permission check failed,
+ *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_PERMISSION_FAIL} 201 - If the permission check failed,
  *             please apply for the required permissions first.
  *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_NOT_SUPPORTED_API} 801 - api is not supported
- *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_COMMUNICATION_FAIL} 12000005 - If Ipc commuication failed.
- *         {@link OH_Huks_ErrCode#HUKS_ERR_CODE_ITEM_NOT_EXIST} 12000011 - If the provider not found.
+ *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_COMMUNICATION_FAIL} 12000005 - If Ipc communication failed.
+ *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_ITEM_NOT_EXIST} 12000011 - If the provider not found.
+ *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_INTERNAL_ERROR} 12000012 - If the device environment or input
+ *     parameter abnormal.
+ *     This may happen for several reasons, such as the model already being unloaded.
  *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_INSUFFICIENT_MEMORY} 12000014 - If the memory is insufficient.
  *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_ILLEGAL_ARGUMENT} 12000018 - If providerName or paramSet is invalid.
- *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_EXTERNAL_ERROR} 12000020 - If an error occured in
- *     the dependent module.
  * @since 22
  */
 struct OH_Huks_Result OH_Huks_UnregisterProvider(
@@ -100,14 +101,20 @@ struct OH_Huks_Result OH_Huks_UnregisterProvider(
  * @param paramSet Indicates the pointer to the handle operation parameters.
  * @return {@link OH_Huks_ErrCode#OH_HUKS_SUCCESS} 0 - If the operation is successful.
  *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_NOT_SUPPORTED_API} 801 - api is not supported
- *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_COMMUNICATION_FAIL} 12000005 - If Ipc commuication failed.
- *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_CRYPTO_FAIL} 12000006 - If the Ukey driver operation failed.
+ *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_COMMUNICATION_FAIL} 12000005 - If Ipc communication failed.
+ *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_CRYPTO_FAIL} 12000006 - If the UKey driver operation failed.
+ *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_ITEM_NOT_EXIST} 12000011 - If not found the cached resource id.
+ *     This may happen because the resourceId has not been opened.
+ *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_INTERNAL_ERROR} 12000012 - If the device environment or input
+ *     parameter abnormal.
+ *     This error may occur if the process function is not found, or due to other issues.
  *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_INSUFFICIENT_MEMORY} 12000014 - If the memory is insufficient.
+ *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_ITEM_NOT_EXIST} 12000017 - If the resource with the resourceId is
+ *     already opened.
  *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_ILLEGAL_ARGUMENT} 12000018 - If resourceId or paramSet
  *     or resourceId is invalid.
  *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_EXTERNAL_ERROR} 12000020 - If the provider operation failed.
- *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_PIN_LOCKED} 12000021 - If the Ukey PIN is locked.
- *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_BUSY} 12000024 - If the provider or Ukey is busy.
+ *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_BUSY} 12000024 - If the provider or UKey is busy.
  *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_EXCEED_LIMIT} 12000025 - If the opened resources exceeds the limit.
  * @since 22
  */
@@ -121,35 +128,39 @@ struct OH_Huks_Result OH_Huks_OpenResource(
  * @param paramSet Indicates the pointer to the handle operation parameters.
  * @return {@link OH_Huks_ErrCode#OH_HUKS_SUCCESS} 0 - If the operation is successful.
  *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_NOT_SUPPORTED_API} 801 - api is not supported
- *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_COMMUNICATION_FAIL} 12000005 - If Ipc commuication failed.
- *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_CRYPTO_FAIL} 12000006 - If the Ukey driver operation failed.
- *         {@link OH_Huks_ErrCode#HUKS_ERR_CODE_ITEM_NOT_EXIST} 12000011 - If not found the cached resource id.
+ *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_COMMUNICATION_FAIL} 12000005 - If Ipc communication failed.
+ *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_CRYPTO_FAIL} 12000006 - If the UKey driver operation failed.
+ *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_INTERNAL_ERROR} 12000012 - If the device environment or input
+ *     parameter abnormal.
+ *     This error may occur if the process function is not found, or due to other issues.
  *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_INSUFFICIENT_MEMORY} 12000014 - If the memory is insufficient.
  *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_ILLEGAL_ARGUMENT} 12000018 - If resourceId or paramSet is invalid.
  *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_EXTERNAL_ERROR} 12000020 - If the provider operation failed.
- *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_PIN_LOCKED} 12000021 - If the Ukey PIN is locked.
- *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_BUSY} 12000024 - If the provider or Ukey is busy.
+ *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_BUSY} 12000024 - If the provider or UKey is busy.
  * @since 22
  */
 struct OH_Huks_Result OH_Huks_CloseResource(
     const struct OH_Huks_Blob *resourceId, const OH_Huks_ExternalCryptoParamSet *paramSet);
 
 /**
- * @brief Get the pin auth state of the specified Ukey resource id.
+ * @brief Get the pin auth state of the specified UKey resource id.
  *
  * @param resourceId Indicates the resource id of the provider.
  * @param paramSet Indicates the pointer to the pin auth parameters.
  * @param authState Indicates the auth state of the specified index.
  * @return {@link OH_Huks_ErrCode#OH_HUKS_SUCCESS} 0 - If the operation is successful.
  *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_NOT_SUPPORTED_API} 801 - api is not supported
- *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_COMMUNICATION_FAIL} 12000005 - If Ipc commuication failed.
- *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_CRYPTO_FAIL} 12000006 - If the Ukey driver operation failed.
- *         {@link OH_Huks_ErrCode#HUKS_ERR_CODE_ITEM_NOT_EXIST} 12000011 - If not found the cached resource id.
+ *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_COMMUNICATION_FAIL} 12000005 - If Ipc communication failed.
+ *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_CRYPTO_FAIL} 12000006 - If the UKey driver operation failed.
+ *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_ITEM_NOT_EXIST} 12000011 - If not found the cached resource id.
+ *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_INTERNAL_ERROR} 12000012 - If the device environment or input
+ *     parameter abnormal.
+ *     This error may occur if the process function is not found, or due to other issues.
  *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_INSUFFICIENT_MEMORY} 12000014 - If the memory is insufficient.
  *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_ILLEGAL_ARGUMENT} 12000018 - If resourceId or paramSet
  *     or authState is invalid.
  *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_EXTERNAL_ERROR} 12000020 - If the provider operation failed.
- *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_BUSY} 12000024 - If the provider or Ukey is busy.
+ *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_BUSY} 12000024 - If the provider or UKey is busy.
  * @since 22
  */
 struct OH_Huks_Result OH_Huks_GetUkeyPinAuthState(
@@ -160,22 +171,26 @@ struct OH_Huks_Result OH_Huks_GetUkeyPinAuthState(
  * @brief The general get operations of the external provider.
  *
  * @param resourceId Indicates the resource id of the provider.
- * @param propertyId Indicates the name of the property function to operate defined in GMT 0016-2023.
+ * @param propertyId Indicates the name of the property function to be operated (as defined in GMT 0016-2023).
  * @param paramSetIn Indicates the pointer to the input operation parameters.
- * @param paramSetOut Indicates the pointer to the output parameters and must contained the param
+ * @param paramSetOut Indicates the pointer to the output parameters and must contain the parameter.
  * OH_HUKS_EXT_CRYPTO_TAG_EXTRA_DATA.
  * @return {@link OH_Huks_ErrCode#OH_HUKS_SUCCESS} 0 - If the operation is successful.
  *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_NOT_SUPPORTED_API} 801 - api is not supported
- *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_COMMUNICATION_FAIL} 12000005 - If Ipc commuication failed.
- *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_CRYPTO_FAIL} 12000006 - If the Ukey driver operation failed.
- *         {@link OH_Huks_ErrCode#HUKS_ERR_CODE_ITEM_NOT_EXIST} 12000011 - If not found the cached resource id
+ *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_COMMUNICATION_FAIL} 12000005 - If Ipc communication failed.
+ *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_CRYPTO_FAIL} 12000006 - If the UKey driver operation failed.
+ *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_ITEM_NOT_EXIST} 12000011 - If not found the cached resource id.
+ *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_INTERNAL_ERROR} 12000012 - If the device environment or input
+ *     parameter abnormal.
+ *     This error may occur if the process function is not found, or due to other issues.
  *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_INSUFFICIENT_MEMORY} 12000014 - If the memory is insufficient.
- *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_ILLEGAL_ARGUMENT} 12000018 - If the resourceId
- *         or propertyId or paramSet or callback is invalid.
+ *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_ILLEGAL_ARGUMENT} 12000018 - If the resourceId or propertyId or
+ *     paramSet
+ *     or callback is invalid.
  *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_EXTERNAL_ERROR} 12000020 - If the provider operation failed.
- *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_PIN_LOCKED} 12000021 - If the Ukey PIN is locked.
- *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_PIN_NO_AUTH} 12000023 - If the Ukey PIN is not authenticated.
- *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_BUSY} 12000024 - If the provider or Ukey is busy.
+ *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_PIN_LOCKED} 12000021 - If the UKey PIN is locked.
+ *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_PIN_NO_AUTH} 12000023 - If the UKey PIN is not authenticated.
+ *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_BUSY} 12000024 - If the provider or UKey is busy.
  * @since 22
  */
 struct OH_Huks_Result OH_Huks_GetProperty(const struct OH_Huks_Blob *resourceId,
@@ -188,7 +203,7 @@ struct OH_Huks_Result OH_Huks_GetProperty(const struct OH_Huks_Blob *resourceId,
  * @param paramSet Indicates the double pointer to the parameter set to initialize.
  * @return {@link OH_Huks_ErrCode#OH_HUKS_SUCCESS} 0 - If the initialization is successful.
  *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_INSUFFICIENT_MEMORY} 12000014 - If the memory is insufficient.
- *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_ILLEGAL_ARGUMENT} 401 - If the paramset is null.
+ *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_INVALID_ARGUMENT} 12000018 - If the paramSet is null.
  * @since 22
  */
 struct OH_Huks_Result OH_Huks_InitExternalCryptoParamSet(OH_Huks_ExternalCryptoParamSet **paramSet);
@@ -200,7 +215,8 @@ struct OH_Huks_Result OH_Huks_InitExternalCryptoParamSet(OH_Huks_ExternalCryptoP
  * @param params Indicates the pointer to the array of parameters to add.
  * @param paramCnt Indicates the number of parameters to add.
  * @return {@link OH_Huks_ErrCode#OH_HUKS_SUCCESS} 0 - If the operation is successful.
- *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_ILLEGAL_ARGUMENT} 401 - If params is null or paramSet is invalid.
+ *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_INVALID_ARGUMENT} 12000018 - If params is null or paramSet is
+ *         invalid.
  * @since 22
  */
 struct OH_Huks_Result OH_Huks_AddExternalCryptoParams(OH_Huks_ExternalCryptoParamSet *paramSet,
@@ -211,8 +227,8 @@ struct OH_Huks_Result OH_Huks_AddExternalCryptoParams(OH_Huks_ExternalCryptoPara
  *
  * @param paramSet Indicates the double pointer to the parameter set to construct.
  * @return {@link OH_Huks_ErrCode#OH_HUKS_SUCCESS} 0 - If the operation is successful.
- *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_ILLEGAL_ARGUMENT} 401 - If paramSet is invalid.
  *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_INSUFFICIENT_MEMORY} 12000014 - If the memory is insufficient.
+ *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_INVALID_ARGUMENT} 12000018 - If paramSet is invalid.
  * @since 22
  */
 struct OH_Huks_Result OH_Huks_BuildExternalCryptoParamSet(OH_Huks_ExternalCryptoParamSet **paramSet);
@@ -232,7 +248,7 @@ void OH_Huks_FreeExternalCryptoParamSet(OH_Huks_ExternalCryptoParamSet **paramSe
  * @param tag Indicates the value of the parameter to be obtained.
  * @param param Indicates the double pointer to the parameter obtained.
  * @return {@link OH_Huks_ErrCode#OH_HUKS_SUCCESS} 0 - If the operation is successful,
- *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_ILLEGAL_ARGUMENT} 401 - If paramSet or param is invalid,
+ *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_INVALID_ARGUMENT} 12000018 - If paramSet or param is invalid,
  *             or if the param doesn't exist in the pararmset.
  * @since 22
  */
