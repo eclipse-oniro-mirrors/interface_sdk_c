@@ -135,8 +135,8 @@ OH_AVErrCode OH_VideoDecoder_RegisterCallback(OH_AVCodec *codec, OH_AVCodecCallb
  * {@link AV_ERR_NO_MEMORY}, inner resource has already released.
  * {@link AV_ERR_OPERATE_NOT_PERMIT}, not permit to call the interface in buffer mode.
  * {@link AV_ERR_INVALID_VAL}
- * 1. the input codec pointer is non decoder instance or NULL;
- * 2. window is NULL.
+ * 1. an invalid decoder instance pointer is passed to parameter codec, including a null pointer;
+ * 2. a null pointer is passed to parameter window.
  * {@link AV_ERR_UNKNOWN}, unknown error.
  * {@link AV_ERR_INVALID_STATE}, this interface was called in invalid state.
  * @since 9
