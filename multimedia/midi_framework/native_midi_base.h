@@ -115,6 +115,11 @@ typedef enum {
     MIDI_STATUS_DEVICE_ALREADY_OPEN,
 
     /**
+     * @error The client has already opened this port.
+     */
+    MIDI_STATUS_PORT_ALREADY_OPEN,
+
+    /**
      * @error The Midi system service has died or disconnected.
      * The client must be destroyed and recreated.
      */
@@ -248,8 +253,8 @@ typedef struct {
 
     /**
      * @brief The native protocol supported by the hardware.
-     * * - If MIDI_PROTOCOL_1_0: The device is a legacy device or currently configured as such.
-     * - If MIDI_PROTOCOL_2_0: The device supports MIDI 2.0 features (e.g., has completed MIDI-CI).
+     * - If MIDI_PROTOCOL_1_0: The device is a legacy device or currently configured as such.
+     * - If MIDI_PROTOCOL_2_0: The device supports MIDI 2.0 features.
      * * @note Applications can use this to decide whether to enable high-resolution UI controls.
      */
     OH_MidiProtocol nativeProtocol;
@@ -263,6 +268,11 @@ typedef struct {
      * @brief Vendor name of the device.
      */
     char vendorName[256];
+
+    /**
+     * @brief Physical address or unique identifier.
+     */
+    char deviceAddress[64];
 } OH_MidiDeviceInformation;
 
 /**
