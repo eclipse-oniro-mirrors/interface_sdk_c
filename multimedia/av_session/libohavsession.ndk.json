@@ -44,6 +44,10 @@
         "name":"OH_AVSession_SetLoopMode"
     },
     {
+        "first_introduced": "23",
+        "name":"OH_AVSession_SetRemoteCastEnabled"
+    },
+    {
         "first_introduced": "13",
         "name":"OH_AVSession_RegisterCommandCallback"
     },
@@ -90,6 +94,34 @@
     {
         "first_introduced": "13",
         "name":"OH_AVSession_UnregisterToggleFavoriteCallback"
+    },
+    {
+        "first_introduced": "23",
+        "name":"OH_AVSession_RegisterOutputDeviceChangeCallback"
+    },
+    {
+        "first_introduced": "23",
+        "name":"OH_AVSession_UnregisterOutputDeviceChangeCallback"
+    },
+    {
+        "first_introduced": "23",
+        "name":"OH_AVSession_AcquireSession"
+    },
+    {
+        "first_introduced": "23",
+        "name":"OH_AVSession_CreateAVCastController"
+    },
+    {
+        "first_introduced": "23",
+        "name":"OH_AVSession_StopCasting"
+    },
+    {
+        "first_introduced": "23",
+        "name":"OH_AVSession_AcquireOutputDevice"
+    },
+    {
+        "first_introduced": "23",
+        "name":"OH_AVSession_ReleaseOutputDevice"
     },
     {
         "first_introduced": "13",
@@ -156,11 +188,267 @@
         "name": "OH_AVMetadataBuilder_SetDisplayTags"
     },
     {
+        "first_introduced": "23",
+        "name": "OH_AVMetadataBuilder_SetFilter"
+    },
+    {
         "first_introduced": "13",
         "name": "OH_AVMetadataBuilder_GenerateAVMetadata"
     },
     {
         "first_introduced": "13",
         "name": "OH_AVMetadata_Destroy"
+    },
+    {
+        "first_introduced": "23",
+        "name": "OH_AVSession_AVMediaDescription_GetAssetId"
+    },
+    {
+        "first_introduced": "23",
+        "name": "OH_AVSession_AVMediaDescription_GetTitle"
+    },
+    {
+        "first_introduced": "23",
+        "name": "OH_AVSession_AVMediaDescription_GetSubtitle"
+    },
+    {
+        "first_introduced": "23",
+        "name": "OH_AVSession_AVMediaDescription_GetArtist"
+    },
+    {
+        "first_introduced": "23",
+        "name": "OH_AVSession_AVMediaDescription_GetAlbumCoverUri"
+    },
+    {
+        "first_introduced": "23",
+        "name": "OH_AVSession_AVMediaDescription_GetMediaType"
+    },
+    {
+        "first_introduced": "23",
+        "name": "OH_AVSession_AVMediaDescription_GetLyricContent"
+    },
+    {
+        "first_introduced": "23",
+        "name": "OH_AVSession_AVMediaDescription_GetDuration"
+    },
+    {
+        "first_introduced": "23",
+        "name": "OH_AVSession_AVMediaDescription_GetMediaUri"
+    },
+    {
+        "first_introduced": "23",
+        "name": "OH_AVSession_AVMediaDescription_GetStartPosition"
+    },
+    {
+        "first_introduced": "23",
+        "name": "OH_AVSession_AVMediaDescription_GetMediaSize"
+    },
+    {
+        "first_introduced": "23",
+        "name": "OH_AVSession_AVMediaDescription_GetAlbumTitle"
+    },
+    {
+        "first_introduced": "23",
+        "name": "OH_AVSession_AVMediaDescription_GetAppName"
+    },
+    {
+        "first_introduced": "23",
+        "name": "OH_AVSession_AVMediaDescription_Destroy"
+    },
+    {
+        "first_introduced": "23",
+        "name": "OH_AVSession_AVMediaDescriptionBuilder_GenerateAVMediaDescription"
+    },
+    {
+        "first_introduced": "23",
+        "name": "OH_AVSession_AVMediaDescriptionBuilder_Create"
+    },
+    {
+        "first_introduced": "23",
+        "name": "OH_AVSession_AVMediaDescriptionBuilder_Destroy"
+    },
+    {
+        "first_introduced": "23",
+        "name": "OH_AVSession_AVMediaDescriptionBuilder_SetAssetId"
+    },
+    {
+        "first_introduced": "23",
+        "name": "OH_AVSession_AVMediaDescriptionBuilder_SetTitle"
+    },
+    {
+        "first_introduced": "23",
+        "name": "OH_AVSession_AVMediaDescriptionBuilder_SetSubTitle"
+    },
+    {
+        "first_introduced": "23",
+        "name": "OH_AVSession_AVMediaDescriptionBuilder_SetArtist"
+    },
+    {
+        "first_introduced": "23",
+        "name": "OH_AVSession_AVMediaDescriptionBuilder_SetAlbumCoverUri"
+    },
+    {
+        "first_introduced": "23",
+        "name": "OH_AVSession_AVMediaDescriptionBuilder_SetMediaType"
+    },
+    {
+        "first_introduced": "23",
+        "name": "OH_AVSession_AVMediaDescriptionBuilder_SetLyricContent"
+    },
+    {
+        "first_introduced": "23",
+        "name": "OH_AVSession_AVMediaDescriptionBuilder_SetDuration"
+    },
+    {
+        "first_introduced": "23",
+        "name": "OH_AVSession_AVMediaDescriptionBuilder_SetMediaUri"
+    },
+    {
+        "first_introduced": "23",
+        "name": "OH_AVSession_AVMediaDescriptionBuilder_SetStartPosition"
+    },
+    {
+        "first_introduced": "23",
+        "name": "OH_AVSession_AVMediaDescriptionBuilder_SetMediaSize"
+    },
+    {
+        "first_introduced": "23",
+        "name": "OH_AVSession_AVMediaDescriptionBuilder_SetAlbumTitle"
+    },
+    {
+        "first_introduced": "23",
+        "name": "OH_AVSession_AVMediaDescriptionBuilder_SetAppName"
+    },
+    {
+        "first_introduced": "23",
+        "name": "OH_AVCastController_Destroy"
+    },
+    {
+        "first_introduced": "23",
+        "name": "OH_AVCastController_GetPlaybackState"
+    },
+    {
+        "first_introduced": "23",
+        "name": "OH_AVCastController_RegisterPlaybackStateChangedCallback"
+    },
+    {
+        "first_introduced": "23",
+        "name": "OH_AVCastController_UnregisterPlaybackStateChangedCallback"
+    },
+    {
+        "first_introduced": "23",
+        "name": "OH_AVCastController_RegisterMediaItemChangedCallback"
+    },
+    {
+        "first_introduced": "23",
+        "name": "OH_AVCastController_UnregisterMediaItemChangedCallback"
+    },
+    {
+        "first_introduced": "23",
+        "name": "OH_AVCastController_RegisterPlayNextCallback"
+    },
+    {
+        "first_introduced": "23",
+        "name": "OH_AVCastController_UnregisterPlayNextCallback"
+    },
+    {
+        "first_introduced": "23",
+        "name": "OH_AVCastController_RegisterPlayPreviousCallback"
+    },
+    {
+        "first_introduced": "23",
+        "name": "OH_AVCastController_UnregisterPlayPreviousCallback"
+    },
+    {
+        "first_introduced": "23",
+        "name": "OH_AVCastController_RegisterSeekDoneCallback"
+    },
+    {
+        "first_introduced": "23",
+        "name": "OH_AVCastController_UnregisterSeekDoneCallback"
+    },
+    {
+        "first_introduced": "23",
+        "name": "OH_AVCastController_RegisterEndOfStreamCallback"
+    },
+    {
+        "first_introduced": "23",
+        "name": "OH_AVCastController_UnregisterEndOfStreamCallback"
+    },
+    {
+        "first_introduced": "23",
+        "name": "OH_AVCastController_RegisterErrorCallback"
+    },
+    {
+        "first_introduced": "23",
+        "name": "OH_AVCastController_UnregisterErrorCallback"
+    },
+    {
+        "first_introduced": "23",
+        "name": "OH_AVCastController_SendCommonCommand"
+    },
+    {
+        "first_introduced": "23",
+        "name": "OH_AVCastController_SendSeekCommand"
+    },
+    {
+        "first_introduced": "23",
+        "name": "OH_AVCastController_SendFastForwardCommand"
+    },
+    {
+        "first_introduced": "23",
+        "name": "OH_AVCastController_SendRewindCommand"
+    },
+    {
+        "first_introduced": "23",
+        "name": "OH_AVCastController_SendSetSpeedCommand"
+    },
+    {
+        "first_introduced": "23",
+        "name": "OH_AVCastController_SendVolumeCommand"
+    },
+    {
+        "first_introduced": "23",
+        "name": "OH_AVCastController_Prepare"
+    },
+    {
+        "first_introduced": "23",
+        "name": "OH_AVCastController_Start"
+    },
+    {
+        "first_introduced": "23",
+        "name": "OH_AVSession_GetPlaybackState"
+    },
+    {
+        "first_introduced": "23",
+        "name": "OH_AVSession_GetPlaybackPosition"
+    },
+    {
+        "first_introduced": "23",
+        "name": "OH_AVSession_GetPlaybackSpeed"
+    },
+    {
+        "first_introduced": "23",
+        "name": "OH_AVSession_GetPlaybackVolume"
+    },
+    {
+        "first_introduced": "23",
+        "name": "OH_DeviceInfo_GetAVCastCategory"
+    },
+    {
+        "first_introduced": "23",
+        "name": "OH_DeviceInfo_GetDeviceId"
+    },
+    {
+        "first_introduced": "23",
+        "name": "OH_DeviceInfo_GetDeviceName"
+    },
+    {
+        "first_introduced": "23",
+        "name": "OH_DeviceInfo_GetDeviceType"
+    },
+    {
+        "first_introduced": "23",
+        "name": "OH_DeviceInfo_GetSupportedProtocols"
     }
 ]
