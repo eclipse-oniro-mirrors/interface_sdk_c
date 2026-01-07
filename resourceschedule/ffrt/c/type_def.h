@@ -77,17 +77,20 @@ typedef enum {
     ffrt_qos_default,
     /** User initiated. */
     ffrt_qos_user_initiated,
-    /** Deadline request.
+    /**
+     * Deadline request.
      *
      * @since 23
      */
     ffrt_qos_deadline_request,
-    /** User interactive.
+    /**
+     * User interactive.
      *
      * @since 23
      */
     ffrt_qos_user_interactive,
-    /** Max qos.
+    /**
+     * Max qos.
      *
      * @since 23
      */
@@ -386,17 +389,20 @@ enum qos_default {
     qos_default = ffrt_qos_default,
     /** User initiated. */
     qos_user_initiated = ffrt_qos_user_initiated,
-    /** Deadline request.
+    /**
+     * Deadline request.
      *
      * @since 23
      */
     qos_deadline_request = ffrt_qos_deadline_request,
-    /** User interactive.
+    /**
+     * User interactive.
      *
      * @since 23
      */
     qos_user_interactive = ffrt_qos_user_interactive,
-    /** Max qos.
+    /**
+     * Max qos.
      *
      * @since 23
      */
