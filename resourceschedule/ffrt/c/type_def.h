@@ -406,7 +406,7 @@ enum qos_default {
      *
      * @since 23
      */
-    qos_max = ffrt_qos_max,
+    qos_max = ffrt_qos_user_interactive,
 };
 
 /**
