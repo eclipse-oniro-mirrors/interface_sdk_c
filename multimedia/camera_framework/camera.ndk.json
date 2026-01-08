@@ -806,5 +806,17 @@
     {
         "first_introduced": "23",
         "name": "OH_CameraInput_UnregisterOcclusionDetectionCallback"
+    },
+        {
+        "first_introduced": "23",
+        "name": "OH_MetadataOutput_AddMetadataObjectTypes"
+    },
+        {
+        "first_introduced": "23",
+        "name": "OH_MetadataOutput_RemoveMetadataObjectTypes"
+    },
+        {
+        "first_introduced": "23",
+        "name": "OH_CameraManager_CreateMetadataOutputWithObjectTypes"
     }
 ]
