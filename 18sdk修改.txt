@@ -1,0 +1,68 @@
+typedef enum Camera_MetadataObjectType {
+    /**
+     * Face detection.
+     */
+    FACE_DETECTION = 0,
+    
+    /**
+     * Face detection type.
+     * @since 23
+     */
+    CAMERA_METADATA_OBJECT_TYPE_FACE_DETECTION = 0,
+ 
+    /**
+     * Human body detection type.
+     * @since 23
+     */
+    CAMERA_METADATA_OBJECT_TYPE_HUMAN_BODY = 1
+} Camera_MetadataObjectType;
+
+
+
+
+
+
+/**
+ * @brief Create a metadata output with object types instance.
+ *
+ * @param cameraManager the {@link Camera_Manager} instance.
+ * @param metadataObjectTypes the {@link Camera_MetadataObjectType} to create {@link Camera_MetadataOutput}.
+ * @param size the size of the {@link Camera_MetadataObjectType}.
+ * @param metadataOutput the {@link Camera_MetadataOutput} will be created if the method call succeeds.
+ * @return {@link #CAMERA_OK} if the method call succeeds.
+ *         {@link #INVALID_ARGUMENT} if parameter missing or parameter type incorrect.
+ *         {@link #CAMERA_SERVICE_FATAL_ERROR} if camera service fatal error.
+ * @since 23
+ */
+Camera_ErrorCode OH_CameraManager_CreateMetadataOutputWithObjectTypes(Camera_Manager* cameraManager,
+    const Camera_MetadataObjectType* metadataObjectTypes, uint32_t size, Camera_MetadataOutput** metadataOutput);
+	
+	
+	
+/**
+ * @brief add metadata object types.
+ *
+ * @param metadataOutput the {@link Camera_MetadataOutput} instance.
+ * @param types the target {@link Camera_MetadataObjectType} to add.
+ * @param size the size of the metadata Object types.
+ * @return {@link #CAMERA_OK} if the method call succeeds.
+ *         {@link #INVALID_ARGUMENT} if parameter missing or parameter type incorrect.
+ *         {@link #CAMERA_SERVICE_FATAL_ERROR} if camera service fatal error.
+ * @since 23
+ */
+Camera_ErrorCode OH_MetadataOutput_AddMetadataObjectTypes(Camera_MetadataOutput* metadataOutput, 
+    Camera_MetadataObjectType* types, uint32_t size);
+ 
+/**
+ * @brief remove metadata object types.
+ *
+ * @param metadataOutput the {@link Camera_MetadataOutput} instance.
+ * @param types the target {@link Camera_MetadataObjectType} to remove.
+ * @param size the size of the metadata Object types.
+ * @return {@link #CAMERA_OK} if the method call succeeds.
+ *         {@link #INVALID_ARGUMENT} if parameter missing or parameter type incorrect.
+ *         {@link #CAMERA_SERVICE_FATAL_ERROR} if camera service fatal error.
+ * @since 23
+ */
+Camera_ErrorCode OH_MetadataOutput_RemoveMetadataObjectTypes(Camera_MetadataOutput* metadataOutput, 
+    Camera_MetadataObjectType* types, uint32_t size);
