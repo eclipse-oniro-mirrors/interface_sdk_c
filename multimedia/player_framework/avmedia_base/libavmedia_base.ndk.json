@@ -1,0 +1,74 @@
+[
+  {
+    "first_introduced": "23",
+    "name": "OH_AVMETA_KEY_TRACK_INDEX"
+  },
+  {
+    "first_introduced": "23",
+    "name": "OH_AVMETA_KEY_TRACK_TYPE"
+  },
+  {
+    "first_introduced": "23",
+    "name": "OH_AVMETA_KEY_MIME_TYPE"
+  },
+  {
+    "first_introduced": "23",
+    "name": "OH_AVMETA_KEY_DURATION"
+  },
+  {
+    "first_introduced": "23",
+    "name": "OH_AVMETA_KEY_BITRATE"
+  },
+  {
+    "first_introduced": "23",
+    "name": "OH_AVMETA_KEY_FRAME_RATE"
+  },
+  {
+    "first_introduced": "23",
+    "name": "OH_AVMETA_KEY_WIDTH"
+  },
+  {
+    "first_introduced": "23",
+    "name": "OH_AVMETA_KEY_HEIGHT"
+  },
+  {
+    "first_introduced": "23",
+    "name": "OH_AVMETA_KEY_CHANNEL_COUNT"
+  },
+  {
+    "first_introduced": "23",
+    "name": "OH_AVMETA_KEY_SAMPLE_RATE"
+  },
+  {
+    "first_introduced": "23",
+    "name": "OH_AVMETA_KEY_SAMPLE_DEPTH"
+  },
+  {
+    "first_introduced": "23",
+    "name": "OH_AVMETA_KEY_LANGUAGE"
+  },
+  {
+    "first_introduced": "23",
+    "name": "OH_AVMETA_KEY_TRACK_NAME"
+  },
+  {
+    "first_introduced": "23",
+    "name": "OH_AVMETA_KEY_HDR_TYPE"
+  },
+  {
+    "first_introduced": "23",
+    "name": "OH_AVMETA_KEY_ORIGINAL_WIDTH"
+  },
+  {
+    "first_introduced": "23",
+    "name": "OH_AVMETA_KEY_ORIGINAL_HEIGHT"
+  },
+  {
+    "first_introduced": "23",
+    "name": "OH_AVMETA_KEY_REF_TRACK_IDS"
+  },
+  {
+    "first_introduced": "23",
+    "name": "OH_AVMETA_KEY_TRACK_REF_TYPE"
+  }
+]

@@ -161,18 +161,19 @@ typedef enum {
 } ArkUI_NodeType;
 
 /**
- * @brief Defines the general input parameter structure of the {@link setAttribute} function.
+ * @brief Defines the general input parameter structure of the {@link setAttribute} function. The property
+ * setting interfaces can utilize the member variables within it to store data of specific parameter types.
  *
  * @since 12
  */
 typedef struct {
-    /** Numeric array. */
+    /** A number array, used to store parameters of the number array type. */
     const ArkUI_NumberValue* value;
-    /** Size of the numeric array. */
+    /** The size of the number array, used together with the variable value, indicating the length of the value array. */
     int32_t size;
-    /** String type. */
+    /** String type, used to store parameters of the string type. */
     const char* string;
-    /** Object type. */
+    /** Object type, used to store parameters of the object type. */
     void* object;
 } ArkUI_AttributeItem;
 
@@ -2439,7 +2440,7 @@ typedef enum {
      * The default value is <b>ARKUI_TEXT_DECORATION_TYPE_NONE</b>.\n
      * .value[1]?.u32: text decoration color, in 0xARGB format. For example, 0xFFFF0000 indicates red. Optional.\n
      * .value[2]?.i32: text decoration style {@link ArkUI_TextDecorationStyle}. \n
-     * .value[3].f32: text decoration thickness scale. \n
+     * .value[3]?.f32: text decoration thickness scale. \n
      * \n
      * Format of the return value {@link ArkUI_AttributeItem}:\n
      * .value[0].i32: text decoration type {@link ArkUI_TextDecorationType}.\n
@@ -2447,7 +2448,7 @@ typedef enum {
      * .value[2].i32: text decoration style {@link ArkUI_TextDecorationStyle}. \n
      * .value[3].f32: text decoration thickness scale. \n
      *
-     *  since 23
+     *  since 22
      */
     NODE_TEXT_DECORATION,
     /**
@@ -2948,10 +2949,10 @@ typedef enum {
     /**
      * @brief Get the text layout manager of the text.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
+     * Format of the return value {@link ArkUI_AttributeItem}:\n
      * .object: the layout manager of text. The parameter type is {@link ArkUI_TextLayoutManager}.\n
      *
-     * @since 23
+     * @since 22
      */
     NODE_TEXT_LAYOUT_MANAGER = 1043,
 
@@ -2961,7 +2962,7 @@ typedef enum {
      * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
      * .object: the edit menu options of text. The parameter type is {@link ArkUI_TextEditMenuOptions}.\n
      *
-     * @since 23
+     * @since 22
      */
     NODE_TEXT_EDIT_MENU_OPTIONS = 1044,
 
@@ -2972,7 +2973,7 @@ typedef enum {
      * .object: the custom selection menu of text.
      *     The parameter type is {@link ArkUI_SelectionMenuOptions}.\n
      *
-     * @since 23
+     * @since 22
      */
     NODE_TEXT_BIND_SELECTION_MENU = 1045,
 
@@ -6974,6 +6975,25 @@ typedef enum {
     NODE_LIST_LANES_ITEMFILLPOLICY = 1003018,
 
     /**
+     * @brief Specifies whether to support empty branch rendering in lazy loading mode for the <b>List</b> container. 
+     * This attribute can be set, reset, and obtained as required through APIs. When enabled in lazy loading mode, 
+     * empty branches (items without content) in the <b>List</b> will be rendered and set to width 0 and height 0, 
+     * which may affect the overall layout and scrolling behavior. This is typically used in scenarios where the
+     * data source may have gaps or when maintaining specific layout positions is required.
+     *
+     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
+     * .value[0].i32: whether to support empty branch rendering in lazy loading mode.
+     * <b>0</b>: Disable empty branch support. Empty branches will not be rendered. <b>1</b>: Enable empty branch support. 
+     * Empty branches will be rendered as placeholder items. Default value: <b>0</b>.\n
+     * \n
+     * Format of the return value {@link ArkUI_AttributeItem}:\n
+     * .value[0].i32: whether empty branch rendering is enabled. <b>0</b>: Disabled. <b>1</b>: Enabled.\n
+     *
+     * @since 23
+     */
+    NODE_LIST_SUPPORT_EMPTY_BRANCH_IN_LAZY_LOADING = 1003019,
+
+    /**
      * @brief Defines whether to enable loop playback for the swiper.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
@@ -7779,16 +7799,21 @@ typedef enum {
 
     /**
      * @brief Scroll to the specified index.
-     * 
+     *
      * When activating the smooth animation, all items passed through will be loaded and layout calculated, which can
      * lead to performance issues when loading a large number of items.\n
      * \n
      * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32：The index value of the target element to be slid to in the current container.\n
-     * .value[1]?.i32：Set whether there is an action when sliding to the index value of a list item in the list, where
-     * 1 indicates an action and 0 indicates no action. Default value is 0。\n
-     * .value[2]?.i32：Specify the alignment of the sliding element with the current container，The parameter type is
-     * {@link ArkUI_ScrollAlignment}. Default value is </b>ARKUI_SCROLL_ALIGNMENT_START</b>。\n
+     * .value[0].i32: The index value of the target element to be slid to in the current container.\n
+     * .value[1].i32: Set whether there is an action when sliding to the index value of a list item in the list, where
+     * 1 indicates an action and 0 indicates no action. This parameter is optional, default value is 0.\n
+     * .value[2].i32: Specify the alignment of the sliding element with the current container, The parameter type is
+     * {@link ArkUI_ScrollAlignment}. This parameter is optional, default value is </b>ARKUI_SCROLL_ALIGNMENT_START</b>. \n
+     * .value[3].f32: Extra offset after scrolling to a specified index, in vp. This parameter is optional, the default
+     * value is <b>0</b>.
+     * If value[3] is positive, it will offset further towards the bottom.
+     * If value[3] is negative, it will offset further towards the top.
+     * This parameter is supported since API version 23. \n
      *
      */
     NODE_WATER_FLOW_SCROLL_TO_INDEX,
@@ -8092,6 +8117,46 @@ typedef enum {
      * @since 23
      */
     NODE_GRID_MULTI_SELECTABLE = 1013013,
+  
+    /**
+     * @brief Scroll to the specified index.
+     *
+     * When activating the smooth animation, all items passed through will be loaded and layout calculated, which can
+     * lead to performance issues when loading a large number of items.\n
+     * \n
+     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
+     * .value[0].i32: The index value of the target element to be slid to in the current container.\n
+     * .value[1].i32: Set whether there is an animation when sliding to the target element, where
+     * 1 indicates an animation and 0 indicates no animation. This parameter is optional. default value is 0. \n
+     * .value[2].i32: Specify the alignment of the target element with the current container. The parameter type is
+     * {@link ArkUI_ScrollAlignment}. This parameter is optional, default value is </b>ARKUI_SCROLL_ALIGNMENT_AUTO</b>. \n
+     * .value[3].f32: Extra offset after scrolling to a specified index, in vp. This parameter is optional, the default
+     * value is <b>0</b>. 
+     * If value[3] is positive, it will offset further towards the bottom.
+     * If value[3] is negative, it will offset further towards the top. \n
+     *
+     * @since 23
+     */
+    NODE_GRID_SCROLL_TO_INDEX = 1013014,
+
+    /**
+     * @brief Specifies whether to support empty branch rendering in lazy loading mode for the <b>Grid</b> container. 
+     * This attribute can be set, reset, and obtained as required through APIs. When enabled in lazy loading mode, 
+     * empty branches (items without content) in the <b>Grid</b> will be rendered and set to width 0 and height 0, 
+     * which may affect the overall layout and scrolling behavior. This is typically used in scenarios where the
+     * data source may have gaps or when maintaining specific layout positions is required.
+     *
+     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
+     * .value[0].i32: whether to support empty branch rendering in lazy loading mode.
+     * <b>0</b>: Disable empty branch support. Empty branches will not be rendered. <b>1</b>: Enable empty branch support. 
+     * Empty branches will be rendered as placeholder items. Default value: <b>0</b>.\n
+     * \n
+     * Format of the return value {@link ArkUI_AttributeItem}:\n
+     * .value[0].i32: whether empty branch rendering is enabled. <b>0</b>: Disabled. <b>1</b>: Enabled.\n
+     *
+     * @since 23
+     */
+    NODE_GRID_SUPPORT_EMPTY_BRANCH_IN_LAZY_LOADING = 1013015,
 
     /**
      * @brief Sets the style of the <b>GridItem</b> component.
@@ -9737,7 +9802,7 @@ typedef enum {
      * are counted as a child component. \n
      * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
      * {@link ArkUI_NodeComponentEvent}. \n
-     * {@link ArkUI_NodeComponentEvent} contains three parameters: \n
+     * {@link ArkUI_NodeComponentEvent} contains six parameters: \n
      * <b>ArkUI_NodeComponentEvent.data[0].i32</b>: index of the first child component in the list display area. \n
      * <b>ArkUI_NodeComponentEvent.data[1].i32</b>: area in the list item group where the list display area starts.
      * The type is {@link ArkUI_ListItemGroupArea}. \n
@@ -9827,7 +9892,7 @@ typedef enum {
      * first or last subcomponent in the waterfall display area changes. \n
      * When the event callback occurs, the union type in the {@Link ArkUI_NodeEvent} object is \n
      * {@Link ArkUI_NodeComponentEvent}. \n
-     * {@Link ArkUI_NodeComponentEvent} contains three parameters: \n
+     * {@Link ArkUI_NodeComponentEvent} contains two parameters: \n
      * ArkUI_NodeComponentEvent.data[0].i32: The index value of the \n
      * start position of the currently displayed WaterFlow. \n
      * ArkUI_NodeComponentEvent.data[1].i32: The index value of \n

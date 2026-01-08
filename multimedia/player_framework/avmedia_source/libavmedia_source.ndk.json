@@ -1,0 +1,86 @@
+[
+  {
+    "first_introduced": "23",
+    "name": "OH_AVHttpHeader_Create"
+  },
+  {
+    "first_introduced": "23",
+    "name": "OH_AVHttpHeader_Destroy"
+  },
+  {
+    "first_introduced": "23",
+    "name": "OH_AVHttpHeader_GetCount"
+  },
+  {
+    "first_introduced": "23",
+    "name": "OH_AVHttpHeader_AddRecord"
+  },
+  {
+    "first_introduced": "23",
+    "name": "OH_AVHttpHeader_GetRecord"
+  },
+  {
+    "first_introduced": "23",
+    "name": "OH_AVMediaSource_CreateWithUrl"
+  },
+  {
+    "first_introduced": "23",
+    "name": "OH_AVMediaSource_CreateWithDataSource"
+  },
+  {
+    "first_introduced": "23",
+    "name": "OH_AVMediaSource_CreateWithFd"
+  },
+  {
+    "first_introduced": "23",
+    "name": "OH_AVMediaSource_Destroy"
+  },
+  {
+    "first_introduced": "23",
+    "name": "OH_AVMediaSource_SetMimeType"
+  },
+  {
+    "first_introduced": "23",
+    "name": "OH_AVMediaSourceLoadingRequest_GetUrl"
+  },
+  {
+    "first_introduced": "23",
+    "name": "OH_AVMediaSourceLoadingRequest_GetHttpHeader"
+  },
+  {
+    "first_introduced": "23",
+    "name": "OH_AVMediaSourceLoadingRequest_RespondData"
+  },
+  {
+    "first_introduced": "23",
+    "name": "OH_AVMediaSourceLoadingRequest_RespondHeader"
+  },
+  {
+    "first_introduced": "23",
+    "name": "OH_AVMediaSourceLoadingRequest_FinishLoading"
+  },
+  {
+    "first_introduced": "23",
+    "name": "OH_AVMediaSourceLoader_Create"
+  },
+  {
+    "first_introduced": "23",
+    "name": "OH_AVMediaSourceLoader_Destroy"
+  },
+  {
+    "first_introduced": "23",
+    "name": "OH_AVMediaSource_SetMediaSourceLoader"
+  },
+  {
+    "first_introduced": "23",
+    "name": "OH_AVMediaSourceLoader_SetSourceOpenCallback"
+  },
+  {
+    "first_introduced": "23",
+    "name": "OH_AVMediaSourceLoader_SetSourceReadCallback"
+  },
+  {
+    "first_introduced": "23",
+    "name": "OH_AVMediaSourceLoader_SetSourceCloseCallback"
+  }
+]

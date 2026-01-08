@@ -200,6 +200,10 @@
         "name": "OH_AbilityRuntime_ApplicationContextGetLogFileDir"
     },
     {
+        "first_introduced": "23",
+        "name": "OH_AbilityRuntime_ApplicationContextNotifyPageChanged"
+    },
+    {
         "first_introduced": "24",
         "name": "OH_AbilityRuntime_Context_GetCacheDir"
     },

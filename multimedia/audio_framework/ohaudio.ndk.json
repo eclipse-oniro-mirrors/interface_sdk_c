@@ -420,6 +420,10 @@
         "name":"OH_AudioSessionManager_ReleaseDevice"
     },
     {
+        "first_introduced": "23",
+        "name":"OH_AudioSessionManager_EnableMuteSuggestionWhenMixWithOthers"
+    },
+    {
         "first_introduced": "12",
         "name": "OH_GetAudioManager"
     },
@@ -614,5 +618,13 @@
     {
         "first_introduced": "21",
         "name": "OH_AudioStreamManager_IsIntelligentNoiseReductionEnabledForCurrentDevice"
+    },
+    {
+        "first_introduced":"23",
+        "name": "OH_AudioSessionManager_IsOtherMediaPlaying"
+    },
+    {
+        "first_introduced": "23",
+        "name": "OH_AudioRenderer_GetLatency"
     }
 ]

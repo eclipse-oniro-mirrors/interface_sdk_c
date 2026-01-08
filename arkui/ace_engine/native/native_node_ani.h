@@ -20,7 +20,7 @@
  * @brief Provides UI capabilities of ArkUI on the native side, such as UI component creation and destruction,
  * tree node operations, attribute setting, and event listening.
  *
- * @since 12
+ * @since 23
  */
 
 /**
@@ -32,7 +32,7 @@
  * @library libace_ndk.z.so
  * @syscap SystemCapability.ArkUI.ArkUI.Full
  * @kit ArkUI
- * @since 20
+ * @since 23
  */
 
 #ifndef ARKUI_NATIVE_NODE_ANI_H
@@ -56,7 +56,7 @@ extern "C" {
  * @return Returns the error code.
  *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
  *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
- * @since 22
+ * @since 23
  */
 int32_t OH_ArkUI_NativeModule_GetNodeHandleFromAniValue(ani_env* env, ani_object frameNode, ArkUI_NodeHandle* handle);
 
@@ -70,7 +70,7 @@ int32_t OH_ArkUI_NativeModule_GetNodeHandleFromAniValue(ani_env* env, ani_object
  * @return Returns the error code.
  *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
  *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
- * @since 22
+ * @since 23
  */
 int32_t OH_ArkUI_NativeModule_GetContextFromAniValue(ani_env* env, ani_object context, ArkUI_ContextHandle* handle);
 
@@ -84,7 +84,7 @@ int32_t OH_ArkUI_NativeModule_GetContextFromAniValue(ani_env* env, ani_object co
   * @return Returns the error code.
   *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
   *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
-  * @since 20
+  * @since 23
   */
 int32_t OH_ArkUI_NativeModule_GetNodeContentFromAniValue(
     ani_env *env, ani_object nodeContent, ArkUI_NodeContentHandle *content);
@@ -100,7 +100,7 @@ int32_t OH_ArkUI_NativeModule_GetNodeContentFromAniValue(
  *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
  *         Returns {@link ARKUI_ERROR_CODE_GET_INFO_FAILED} if query information failed,
  *         this may be because the node is not in NavDestination.
- * @since 20
+ * @since 23
  */
 ArkUI_ErrorCode OH_ArkUI_NativeModule_GetNavDestinationAniParam(ArkUI_NodeHandle node, ani_env* env, ani_value* param);
 
@@ -114,7 +114,7 @@ ArkUI_ErrorCode OH_ArkUI_NativeModule_GetNavDestinationAniParam(ArkUI_NodeHandle
  * @return Returns the error code.
  *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
  *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
- * @since 22
+ * @since 23
  */
 int32_t OH_ArkUI_NativeModule_GetDrawableDescriptorFromAniValue(
     ani_env *env, ani_object drawable, ArkUI_DrawableDescriptor **drawableDescriptor);
@@ -129,7 +129,7 @@ int32_t OH_ArkUI_NativeModule_GetDrawableDescriptorFromAniValue(
  * @return Returns the error code.
  *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
  *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
- * @since 22
+ * @since 23
  */
 int32_t OH_ArkUI_NativeModule_GetDrawableDescriptorFromResourceAniValue(
     ani_env *env, ani_object resource, ArkUI_DrawableDescriptor **drawableDescriptor);

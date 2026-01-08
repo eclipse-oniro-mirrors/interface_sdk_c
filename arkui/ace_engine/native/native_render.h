@@ -331,7 +331,7 @@ int32_t OH_ArkUI_RenderNodeUtils_ClearChildren(ArkUI_RenderNodeHandle node);
  *         {@link ARKUI_ERROR_CODE_NO_ERROR} Success.
  *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} Function parameter exception.
  *         {@link ARKUI_ERROR_CODE_CAPI_INIT_ERROR} if CAPI init error.
- *         {@link ARKUI_ERROR_CODE_CHILD_RENDER_NOT_EXIST} The child does not exist.
+ *         {@link ARKUI_ERROR_CODE_RENDER_CHILD_NOT_EXIST} The child does not exist.
  *         {@link ARKUI_ERROR_CODE_RENDER_IS_FROM_FRAME_NODE} if the RenderNode is obtained from a FrameNode. Add since api 22.
  * @since 20
  */
@@ -346,7 +346,7 @@ int32_t OH_ArkUI_RenderNodeUtils_GetChild(ArkUI_RenderNodeHandle node, int32_t i
  *         {@link ARKUI_ERROR_CODE_NO_ERROR} Success.
  *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} Function parameter exception.
  *         {@link ARKUI_ERROR_CODE_CAPI_INIT_ERROR} if CAPI init error.
- *         {@link ARKUI_ERROR_CODE_CHILD_RENDER_NOT_EXIST} The child does not exist.
+ *         {@link ARKUI_ERROR_CODE_RENDER_CHILD_NOT_EXIST} The child does not exist.
  *         {@link ARKUI_ERROR_CODE_RENDER_IS_FROM_FRAME_NODE} if the node is obtained from a FrameNode.
  *         Add since api 22.
  * @since 20
@@ -362,7 +362,7 @@ int32_t OH_ArkUI_RenderNodeUtils_GetFirstChild(ArkUI_RenderNodeHandle node, ArkU
  *         {@link ARKUI_ERROR_CODE_NO_ERROR} Success.
  *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} Function parameter exception.
  *         {@link ARKUI_ERROR_CODE_CAPI_INIT_ERROR} if CAPI init error.
- *         {@link ARKUI_ERROR_CODE_CHILD_RENDER_NOT_EXIST} The child does not exist.
+ *         {@link ARKUI_ERROR_CODE_RENDER_CHILD_NOT_EXIST} The child does not exist.
  * @since 20
  */
 int32_t OH_ArkUI_RenderNodeUtils_GetNextSibling(ArkUI_RenderNodeHandle node, ArkUI_RenderNodeHandle* sibling);
@@ -376,7 +376,7 @@ int32_t OH_ArkUI_RenderNodeUtils_GetNextSibling(ArkUI_RenderNodeHandle node, Ark
  *         {@link ARKUI_ERROR_CODE_NO_ERROR} Success.
  *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} Function parameter exception.
  *         {@link ARKUI_ERROR_CODE_CAPI_INIT_ERROR} if CAPI init error.
- *         {@link ARKUI_ERROR_CODE_CHILD_RENDER_NOT_EXIST} The child does not exist.
+ *         {@link ARKUI_ERROR_CODE_RENDER_CHILD_NOT_EXIST} The child does not exist.
  * @since 20
  */
 int32_t OH_ArkUI_RenderNodeUtils_GetPreviousSibling(ArkUI_RenderNodeHandle node, ArkUI_RenderNodeHandle* sibling);
@@ -778,7 +778,6 @@ int32_t OH_ArkUI_RenderNodeUtils_GetRotation(ArkUI_RenderNodeHandle node, float*
  *         {@link ARKUI_ERROR_CODE_NO_ERROR} Success.
  *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} Function parameter exception.
  *         {@link ARKUI_ERROR_CODE_CAPI_INIT_ERROR} if CAPI init error.
- *         {@link ARKUI_ERROR_CODE_PARAM_OUT_OF_RANGE} Parameter out of range.
  *         {@link ARKUI_ERROR_CODE_RENDER_IS_FROM_FRAME_NODE} if the node is obtained from a FrameNode.
  *         Add since api 22.
  * @since 20
@@ -1193,10 +1192,7 @@ int32_t OH_ArkUI_RenderNodeUtils_AttachContentModifier(
 /**
  * @brief Create a content modifier handle.
  *
- * @return Error code.
- *         {@link ARKUI_ERROR_CODE_NO_ERROR} Success.
- *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} Function parameter exception.
- *         {@link ARKUI_ERROR_CODE_CAPI_INIT_ERROR} if CAPI init error.
+ * @return {@link ArkUI_RenderContentModifierHandle} A content modifier handle.
  * @since 20
  */
 ArkUI_RenderContentModifierHandle OH_ArkUI_RenderNodeUtils_CreateContentModifier();
@@ -1886,10 +1882,6 @@ void OH_ArkUI_RenderNodeUtils_DisposeRenderNodeMaskOption(ArkUI_RenderNodeMaskOp
  *
  * @param mask Pointer to the RenderNodeMask option.
  * @param fillColor The fill color of the mask.
- * @return Error code.
- *         {@link ARKUI_ERROR_CODE_NO_ERROR} Success.
- *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} Function parameter exception.
- *         {@link ARKUI_ERROR_CODE_CAPI_INIT_ERROR} if CAPI init error.
  * @since 20
  */
 void OH_ArkUI_RenderNodeUtils_SetRenderNodeMaskOptionFillColor(ArkUI_RenderNodeMaskOption* mask, uint32_t fillColor);
@@ -1899,10 +1891,6 @@ void OH_ArkUI_RenderNodeUtils_SetRenderNodeMaskOptionFillColor(ArkUI_RenderNodeM
  *
  * @param mask Pointer to the RenderNodeMask option.
  * @param strokeColor The stroke color of the mask.
- * @return Error code.
- *         {@link ARKUI_ERROR_CODE_NO_ERROR} Success.
- *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} Function parameter exception.
- *         {@link ARKUI_ERROR_CODE_CAPI_INIT_ERROR} if CAPI init error.
  * @since 20
  */
 void OH_ArkUI_RenderNodeUtils_SetRenderNodeMaskOptionStrokeColor(
@@ -1913,10 +1901,6 @@ void OH_ArkUI_RenderNodeUtils_SetRenderNodeMaskOptionStrokeColor(
  *
  * @param mask Pointer to the RenderNodeMask option.
  * @param strokeWidth The stroke width of the mask.
- * @return Error code.
- *         {@link ARKUI_ERROR_CODE_NO_ERROR} Success.
- *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} Function parameter exception.
- *         {@link ARKUI_ERROR_CODE_CAPI_INIT_ERROR} if CAPI init error.
  * @since 20
  */
 void OH_ArkUI_RenderNodeUtils_SetRenderNodeMaskOptionStrokeWidth(ArkUI_RenderNodeMaskOption* mask, float strokeWidth);
