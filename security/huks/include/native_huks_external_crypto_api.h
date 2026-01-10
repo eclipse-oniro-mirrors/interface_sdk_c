@@ -100,19 +100,19 @@ struct OH_Huks_Result OH_Huks_UnregisterProvider(
  * @param resourceId Indicates the resource id of the provider.
  * @param paramSet Indicates the pointer to the handle operation parameters.
  * @return {@link OH_Huks_ErrCode#OH_HUKS_SUCCESS} 0 - If the operation is successful.
- * {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_NOT_SUPPORTED_API} 801 - API is not supported
- * {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_COMMUNICATION_FAIL} 12000005 - If IPC communication failed.
- * {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_CRYPTO_FAIL} 12000006 - If the UKey driver operation failed.
- * {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_ITEM_NOT_EXIST} 12000011 - If the cached resource ID is not found.
- * This may happen because the resourceId has not been opened.
- * {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_INTERNAL_ERROR} 12000012 - If the device environment or input parameter is abnormal.
- * This error may occur if the process function is not found, or due to other issues.
- * {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_INSUFFICIENT_MEMORY} 12000014 - If the memory is insufficient.
- * {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_KEY_ALREADY_EXIST} 12000017 - If the resource with the resourceId is already open.
- * {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_ILLEGAL_ARGUMENT} 12000018 - If resourceId or paramSet is invalid.
- * {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_EXTERNAL_ERROR} 12000020 - If the provider operation failed.
- * {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_BUSY} 12000024 - If the provider or UKey is busy.
- * {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_EXCEED_LIMIT} 12000025 - If the opened resources exceed the limit.
+ *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_NOT_SUPPORTED_API} 801 - API is not supported
+ *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_COMMUNICATION_FAIL} 12000005 - If IPC communication failed.
+ *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_CRYPTO_FAIL} 12000006 - If the UKey driver operation failed.
+ *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_ITEM_NOT_EXIST} 12000011 - If the cached resource ID is not found.
+ *     This may happen because the resourceId has not been opened.
+ *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_INTERNAL_ERROR} 12000012 - If the device environment or input parameter is abnormal.
+ *     This error may occur if the process function is not found, or due to other issues.
+ *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_INSUFFICIENT_MEMORY} 12000014 - If the memory is insufficient.
+ *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_KEY_ALREADY_EXIST} 12000017 - If the resource with the resourceId is already open.
+ *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_ILLEGAL_ARGUMENT} 12000018 - If resourceId or paramSet is invalid.
+ *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_EXTERNAL_ERROR} 12000020 - If the provider operation failed.
+ *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_BUSY} 12000024 - If the provider or UKey is busy.
+ *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_EXCEED_LIMIT} 12000025 - If the opened resources exceed the limit.
  * @since 22
  */
 struct OH_Huks_Result OH_Huks_OpenResource(
