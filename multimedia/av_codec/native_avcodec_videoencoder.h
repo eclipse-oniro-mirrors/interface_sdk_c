@@ -166,7 +166,7 @@ OH_AVErrCode OH_VideoEncoder_RegisterParameterCallback(OH_AVCodec *codec,
  * 1. an invalid encoder instance pointer is passed to parameter codec, including a null pointer;
  * 2. unsupported input format parameters.
  * {@link AV_ERR_UNKNOWN}, unknown error.
-* {@link AV_ERR_OPERATE_NOT_PERMIT}, internal execution error.
+ * {@link AV_ERR_OPERATE_NOT_PERMIT}, internal execution error.
  * {@link AV_ERR_INVALID_STATE}, this interface was called in invalid state, must be called before Prepare.
  * @since 9
  */
@@ -361,7 +361,6 @@ OH_AVErrCode OH_VideoEncoder_PushInputData(OH_AVCodec *codec, uint32_t index, OH
  * {@link AV_ERR_NO_MEMORY}, instance has already released.
  * {@link AV_ERR_INVALID_VAL}
  * 1. an invalid encoder instance pointer is passed to parameter codec, including a null pointer;
- * 2. unsupported input format parameters.
  * {@link AV_ERR_UNKNOWN}, unknown error.
  * {@link AV_ERR_OPERATE_NOT_PERMIT}, internal execution error.
  * {@link AV_ERR_INVALID_STATE}, this interface was called in invalid state.
@@ -398,8 +397,7 @@ OH_AVErrCode OH_VideoEncoder_PushInputParameter(OH_AVCodec *codec, uint32_t inde
  * {@link AV_ERR_NO_MEMORY}, instance has already released.
  * {@link AV_ERR_INVALID_VAL}
  * 1. an invalid encoder instance pointer is passed to parameter codec, including a null pointer;
- * 2. unsupported input format parameters;
- * 3. invalid index or consecutive assignment to the same index,
+ * 2. invalid index or consecutive assignment to the same index,
  * the error does not affect the subsequent encode process.
  * {@link AV_ERR_UNKNOWN}, unknown error.
  * {@link AV_ERR_OPERATE_NOT_PERMIT}, internal execution error.

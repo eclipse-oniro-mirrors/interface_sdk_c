@@ -176,7 +176,7 @@ OH_AVErrCode OH_VideoDecoder_Configure(OH_AVCodec *codec, OH_AVFormat *format);
  * {@link AV_ERR_UNKNOWN}, unknown error.
  * {@link AV_ERR_INVALID_STATE}, this interface was called in invalid state.
  * {@link AV_ERR_OPERATE_NOT_PERMIT}
- * 1. internal execution error；
+ * 1. internal execution error;
  * 2. decoder is in Buffer mode and color space conversion is configured.
  * @since 9
  */
@@ -413,7 +413,7 @@ OH_AVErrCode OH_VideoDecoder_RenderOutputBuffer(OH_AVCodec *codec, uint32_t inde
  * {@link AV_ERR_NO_MEMORY}, the codec has already released.
  * {@link AV_ERR_INVALID_VAL}, the parameter is invalid.
  * {@link AV_ERR_UNKNOWN}, unknown error.
-* {@link AV_ERR_OPERATE_NOT_PERMIT}, internal execution error.
+ * {@link AV_ERR_OPERATE_NOT_PERMIT}, internal execution error.
  * {@link AV_ERR_INVALID_STATE}, this interface was called in invalid state.
  * @since 12
  */
