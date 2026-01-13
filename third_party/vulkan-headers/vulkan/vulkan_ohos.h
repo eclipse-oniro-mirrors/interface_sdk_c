@@ -489,7 +489,8 @@ typedef struct VkMemoryGetNativeBufferInfoOHOS {
  */
 typedef struct VkExternalFormatOHOS {
     /**
-     * sType is a VkStructureType value identifying this structure. sType must be VK_STRUCTURE_TYPE_EXTERNAL_FORMAT_OHOS.
+     * sType is a VkStructureType value identifying this structure.
+     * sType must be VK_STRUCTURE_TYPE_EXTERNAL_FORMAT_OHOS.
      */
     VkStructureType    sType;
     /**
