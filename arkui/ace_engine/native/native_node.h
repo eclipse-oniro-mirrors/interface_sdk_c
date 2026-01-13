@@ -11909,47 +11909,6 @@ int32_t OH_ArkUI_SetForceDarkConfig(ArkUI_ContextHandle uiContext, bool forceDar
     uint32_t (*colorInvertFunc)(uint32_t color));
 
 /**
- * @brief Post UI task to background threads.
- *
- * @param context UIContext pointer of the page where the UI task located.
- * @param asyncUITaskData Parameter of asyncUITask and onFinish.
- * @param asyncUITask Function executed by a background thread.
- * @param onFinish Function executed by UI thread after async UI task is executed.
- * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if context or asyncUITask is nullptr.
- * @since 22
- */
-int32_t OH_ArkUI_PostAsyncUITask(ArkUI_ContextHandle context, void* asyncUITaskData,
-    void (*asyncUITask)(void* asyncUITaskData), void (*onFinish)(void* asyncUITaskData));
-
-/**
- * @brief Post UI task to UI thread.
- *
- * @param context UIContext pointer of the page where the UI task located.
- * @param taskData Parameter of task.
- * @param task Function executed by UI thread.
- * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if context or task is nullptr.
- * @since 22
- */
-int32_t OH_ArkUI_PostUITask(ArkUI_ContextHandle context, void* taskData, void (*task)(void* taskData));
-
-/**
- * @brief Post UI task to UI thread and wait until UI task finished.
- *
- * @param context UIContext pointer of the page where the UI task located.
- * @param taskData Parameter of task.
- * @param task Function executed by UI thread.
- * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if context or task is nullptr.
- * @since 22
- */
-int32_t OH_ArkUI_PostUITaskAndWait(ArkUI_ContextHandle context, void* taskData, void (*task)(void* taskData));
-
-/**
  * @brief Register common event callback of target node.
  *
  * @param node The ArkUI-NodeHandle pointer.
@@ -12048,6 +12007,34 @@ int32_t OH_ArkUI_NativeModule_ConvertPositionFromWindow(ArkUI_NodeHandle targetN
 int32_t OH_ArkUI_Swiper_FinishAnimation(ArkUI_NodeHandle node);
 
 /**
+ * @brief Post UI task to background threads.
+ *
+ * @param context UIContext pointer of the page where the UI task located.
+ * @param asyncUITaskData Parameter of asyncUITask and onFinish.
+ * @param asyncUITask Function executed by a background thread.
+ * @param onFinish Function executed by UI thread after async UI task is executed.
+ * @return Returns the result code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if context or asyncUITask is nullptr.
+ * @since 22
+ */
+int32_t OH_ArkUI_PostAsyncUITask(ArkUI_ContextHandle context, void* asyncUITaskData,
+    void (*asyncUITask)(void* asyncUITaskData), void (*onFinish)(void* asyncUITaskData));
+
+/**
+ * @brief Post UI task to UI thread.
+ *
+ * @param context UIContext pointer of the page where the UI task located.
+ * @param taskData Parameter of task.
+ * @param task Function executed by UI thread.
+ * @return Returns the result code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if context or task is nullptr.
+ * @since 22
+ */
+int32_t OH_ArkUI_PostUITask(ArkUI_ContextHandle context, void* taskData, void (*task)(void* taskData));
+
+/**
  * @brief set the visiblity of the menubar.
  *
  * @param uiContext ArkUI_ContextHandle. - The designated ArkUI container context.
@@ -12062,6 +12049,18 @@ int32_t OH_ArkUI_Swiper_FinishAnimation(ArkUI_NodeHandle node);
  */
 int32_t OH_ArkUI_NativeModule_AtomicServiceMenuBarSetVisible(ArkUI_ContextHandle uiContext, bool visible);
 
+/**
+ * @brief Post UI task to UI thread and wait until UI task finished.
+ *
+ * @param context UIContext pointer of the page where the UI task located.
+ * @param taskData Parameter of task.
+ * @param task Function executed by UI thread.
+ * @return Returns the result code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if context or task is nullptr.
+ * @since 22
+ */
+int32_t OH_ArkUI_PostUITaskAndWait(ArkUI_ContextHandle context, void* taskData, void (*task)(void* taskData));
 #ifdef __cplusplus
 };
 #endif
