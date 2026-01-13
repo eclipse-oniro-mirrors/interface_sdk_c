@@ -222,7 +222,7 @@ typedef void (*OH_CameraInput_OnOcclusionDetectionCallback)(const Camera_Input* 
  * @param cameraInput the {@link Camera_Input} instance.
  * @param occlusionDetectionCallback callback used for subscription.
  * @return {@link #CAMERA_OK} if the method call succeeds.
- *         {@link #INVALID_ARGUMENT} if parameter missing or parameter type incorrect.
+ *         {@link #CAMERA_INVALID_ARGUMENT} if parameter missing or parameter type incorrect.
  * @since 23
  */
 Camera_ErrorCode OH_CameraInput_RegisterOcclusionDetectionCallback(Camera_Input* cameraInput,
@@ -234,7 +234,7 @@ Camera_ErrorCode OH_CameraInput_RegisterOcclusionDetectionCallback(Camera_Input*
  * @param cameraInput the {@link Camera_Input} instance.
  * @param occlusionDetectionCallback callback used for unsubscription.
  * @return {@link #CAMERA_OK} if the method call succeeds.
- *         {@link #INVALID_ARGUMENT} if parameter missing or parameter type incorrect.
+ *         {@link #CAMERA_INVALID_ARGUMENT} if parameter missing or parameter type incorrect.
  * @since 23
  */
 Camera_ErrorCode OH_CameraInput_UnregisterOcclusionDetectionCallback(Camera_Input* cameraInput,

@@ -164,7 +164,7 @@ Camera_ErrorCode OH_MetadataOutput_Release(Camera_MetadataOutput* metadataOutput
  * @param types the target {@link Camera_MetadataObjectType} to add.
  * @param size the size of the metadata Object types.
  * @return {@link #CAMERA_OK} if the method call succeeds.
- *         {@link #INVALID_ARGUMENT} if parameter missing or parameter type incorrect.
+ *         {@link #CAMERA_INVALID_ARGUMENT} if parameter missing or parameter type incorrect.
  *         {@link #CAMERA_SERVICE_FATAL_ERROR} if camera service fatal error.
  * @since 23
  */
@@ -178,7 +178,7 @@ Camera_ErrorCode OH_MetadataOutput_AddMetadataObjectTypes(Camera_MetadataOutput*
  * @param types the target {@link Camera_MetadataObjectType} to remove.
  * @param size the size of the metadata Object types.
  * @return {@link #CAMERA_OK} if the method call succeeds.
- *         {@link #INVALID_ARGUMENT} if parameter missing or parameter type incorrect.
+ *         {@link #CAMERA_INVALID_ARGUMENT} if parameter missing or parameter type incorrect.
  *         {@link #CAMERA_SERVICE_FATAL_ERROR} if camera service fatal error.
  * @since 23
  */
