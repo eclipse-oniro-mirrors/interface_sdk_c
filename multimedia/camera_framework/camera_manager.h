@@ -423,6 +423,21 @@ Camera_ErrorCode OH_CameraManager_CreateMetadataOutput(Camera_Manager* cameraMan
     const Camera_MetadataObjectType* profile, Camera_MetadataOutput** metadataOutput);
 
 /**
+ * @brief Create a metadata output with object types instance.
+ *
+ * @param cameraManager the {@link Camera_Manager} instance.
+ * @param metadataObjectTypes the {@link Camera_MetadataObjectType} to create {@link Camera_MetadataOutput}.
+ * @param size the size of the {@link Camera_MetadataObjectType}.
+ * @param metadataOutput the {@link Camera_MetadataOutput} will be created if the method call succeeds.
+ * @return {@link #CAMERA_OK} if the method call succeeds.
+ *         {@link #INVALID_ARGUMENT} if parameter missing or parameter type incorrect.
+ *         {@link #CAMERA_SERVICE_FATAL_ERROR} if camera service fatal error.
+ * @since 23
+ */
+Camera_ErrorCode OH_CameraManager_CreateMetadataOutputWithObjectTypes(Camera_Manager* cameraManager,
+    const Camera_MetadataObjectType* metadataObjectTypes, uint32_t size, Camera_MetadataOutput** metadataOutput);
+
+/**
  * @brief Gets supported scene mode for specific camera.
  *
  * @param camera the {@link Camera_Device} to be queryed.
