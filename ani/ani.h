@@ -13,6 +13,18 @@
  * limitations under the License.
  */
 
+ /**
+ * @file ani.h
+ *
+ * @brief Defines native api of ArkTS 1.2 native module.
+ *
+ * @kit ArkTS
+ * @library libani.z.so
+ * @syscap SystemCapability.ArkCompiler.ANI
+ * @since 23
+ * @version 1.0
+ */
+ 
 #ifndef __ANI_H__
 #define __ANI_H__
 // NOLINTBEGIN
