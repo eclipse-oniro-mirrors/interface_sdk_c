@@ -2281,5 +2281,17 @@
     {
         "first_introduced": "23",
         "name": "OH_Drawing_IsFontSupportedFromBuffer"
+    },
+    {
+        "first_introduced": "24",
+        "name": "OH_Drawing_TypographyLayoutWithConstraints"
+    },
+    {
+        "first_introduced": "24",
+        "name": "OH_Drawing_GetRangeByArrayIndex"
+    },
+    {
+        "first_introduced": "24",
+        "name": "OH_Drawing_DestroyArray"
     }
 ]

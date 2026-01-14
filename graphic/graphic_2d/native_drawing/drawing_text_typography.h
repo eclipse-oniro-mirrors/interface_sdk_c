@@ -892,6 +892,19 @@ typedef struct {
 } OH_Drawing_StrutStyle;
 
 /**
+ * @brief Defines the rect size.
+ *
+ * @since 24
+ * @version 1.0
+ */
+typedef struct {
+    /** Rect width */
+    double width;
+    /** Rect height */
+    double height;
+} OH_Drawing_RectSize;
+
+/**
  * @brief Creates an <b>OH_Drawing_TypographyStyle</b> object.
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
@@ -1316,6 +1329,47 @@ void OH_Drawing_TypographyPaint(OH_Drawing_Typography* typography, OH_Drawing_Ca
  */
 void OH_Drawing_TypographyPaintOnPath(OH_Drawing_Typography* typography, OH_Drawing_Canvas* canvas,
     OH_Drawing_Path* path, double hOffset, double vOffset);
+
+/**
+ * @brief Layout text within a constrained rectangle.
+ *
+ * @param typography Indicates the pointer to the text <b>OH_Drawing_Typography</b> object.
+ * @param constraintsRect Constraints height and width for layout.
+ * @param fitStrRangeArr On return, contains the character range of the paragraph that actually fit.
+ * Indicates the pointer to the array object <b>OH_Drawing_Array</b>.
+ * @param fitStrRangeArrayLen On return, the size of the fit string array.
+ * @return Returns an <b>OH_Drawing_RectSize</b> object that paragraph's actually rectangle.
+ * @since 24
+ */
+OH_Drawing_RectSize OH_Drawing_TypographyLayoutWithConstraints(OH_Drawing_Typography* typography,
+    OH_Drawing_RectSize constraintsRect, OH_Drawing_Array** fitStrRangeArr, size_t* fitStrRangeArrayLen);
+
+/**
+ * @brief Get range by array index.
+ *
+ * @param array Indicates the pointer to the text <b>OH_Drawing_Array</b> object.
+ * @param index Range's index in array.
+ * @return Returns Indicates the pointer to an <b>OH_Drawing_Range</b> object.
+ * @since 24
+ */
+OH_Drawing_Range* OH_Drawing_GetRangeByArrayIndex(OH_Drawing_Array* array, size_t index);
+
+/**
+ * @brief Releases the memory occupied by an <b>OH_Drawing_Array</b> object.
+ *
+ * @param array Indicates the pointer to the text <b>OH_Drawing_Array</b> object.
+ * Supported array type: Fonts full name array, get by <b>OH_Drawing_GetSystemFontFullNamesByType</b>.
+ * Supported array type: Text lines array, get by <b>OH_Drawing_TypographyTextLines</b>.
+ * Supported array type: String indices array, get by <b>OH_Drawing_GetRunStringIndices</b>.
+ * Supported array type: Rect array, get by <b>OH_Drawing_RectCreateArray</b>.
+ * Supported array type: FontDescriptors array, get by <b>OH_Drawing_GetFontFullDescriptorsFromStream</b>.
+ * Supported array type: Text ranges array, get by <b>OH_Drawing_TypographyLayoutWithConstraints</b>.
+ * @return Returns an error code.
+ *         Returns {@link OH_DRAWING_SUCCESS} if the operation is successful.
+ *         Returns {@link OH_DRAWING_ERROR_INCORRECT_PARAMETER} if the array is nullptr or not supported.
+ * @since 24
+ */
+OH_Drawing_ErrorCode OH_Drawing_DestroyArray(OH_Drawing_Array* array);
 
 /**
  * @brief Gets the max width.
