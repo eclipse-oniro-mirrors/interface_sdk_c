@@ -748,7 +748,7 @@ OH_AudioCommon_Result OH_AudioSessionManager_ReleaseDevice(
  * @return {@link #AUDIOCOMMON_RESULT_SUCCESS} If the execution is successful.
  *     or {@link #AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM} Parameter validation fails.
  *     or {@link #AUDIOCOMMON_RESULT_ERROR_ILLEGAL_STATE} Function is called without setting
- *     {@link #OH_AudioSession_Scene} or called before audio session activation.
+ *     {@link #OH_AudioSession_Scene} or called after audio session activation.
  *     or {@link #AUDIOCOMMON_RESULT_ERROR_SYSTEM} Audio client call audio service error, system internal error.
  * @since 23
  */
