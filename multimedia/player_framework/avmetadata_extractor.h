@@ -242,6 +242,21 @@ OH_AVErrCode OH_AVMetadataExtractor_SetFDSource(OH_AVMetadataExtractor* extracto
  *         {@link AV_ERR_NO_MEMORY} if internal memory allocation failed.
  * @since 18
  */
+ /**
+ * @brief Extract metadata info from the media source.
+ *        This function must be called after source set.
+ *
+ * @param extractor Pointer to an OH_AVMetadataExtractor instance.
+ * @param avMetadata Pointer to an {@link OH_AVFormat} instance, its content contains the fetched metadata info.
+ * @return Function result code.
+ *         {@link AV_ERR_OK} if the execution is successful.
+ *         {@link AV_ERR_INVALID_VAL} if input extractor is nullptr or input param is invalid.
+ *         {@link AV_ERR_OPERATE_NOT_PERMIT} if operation not allowed.
+ *         {@link AV_ERR_UNSUPPORTED_FORMAT} if format is unsupported.
+ *         {@link AV_ERR_NO_MEMORY} if internal memory allocation failed.
+ *         {@link AV_ERR_IO_CLEARTEXT_NOT_PERMITTED} if http cleartext traffic is not permitted.
+ * @since 23
+ */
 OH_AVErrCode OH_AVMetadataExtractor_FetchMetadata(OH_AVMetadataExtractor* extractor, OH_AVFormat* avMetadata);
 
 /**
