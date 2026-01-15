@@ -19,7 +19,7 @@
  *
  * @brief The VideoEncoder module provides interfaces for video encoding.
  *
- * @syscap SystemCapability.Multimedia.VideoEncoder
+ * @syscap SystemCapability.Multimedia.Media.VideoEncoder
  * @since 9
  */
 
@@ -90,7 +90,7 @@ OH_AVCodec *OH_VideoEncoder_CreateByName(const char *name);
  * {@link AV_ERR_NO_MEMORY}, inner resource has already released.
  * {@link AV_ERR_INVALID_VAL}, the encoder is nullptr or invalid.
  * {@link AV_ERR_UNKNOWN}, unknown error.
- * {@link AV_ERR_SERVICE_DIED}, avcodec service is died.
+ * {@link AV_ERR_OPERATE_NOT_PERMIT}, internal execution error.
  * @since 9
  */
 OH_AVErrCode OH_VideoEncoder_Destroy(OH_AVCodec *codec);
@@ -145,7 +145,7 @@ OH_AVErrCode OH_VideoEncoder_RegisterCallback(OH_AVCodec *codec, OH_AVCodecCallb
  * {@link AV_ERR_NO_MEMORY}, inner resource has already released.
  * {@link AV_ERR_INVALID_VAL}, the encoder is nullptr or invalid.
  * {@link AV_ERR_UNKNOWN}, unknown error.
- * {@link AV_ERR_SERVICE_DIED}, avcodec service is died.
+ * {@link AV_ERR_OPERATE_NOT_PERMIT}, internal execution error.
  * {@link AV_ERR_INVALID_STATE}, this interface was called in invalid state, must be called before Prepare.
  * @since 12
  */
@@ -162,9 +162,11 @@ OH_AVErrCode OH_VideoEncoder_RegisterParameterCallback(OH_AVCodec *codec,
  * @return Returns AV_ERR_OK if the execution is successful,
  * otherwise returns a specific error code, refer to {@link OH_AVErrCode}.
  * {@link AV_ERR_NO_MEMORY}, instance has already released.
- * {@link AV_ERR_INVALID_VAL}, the encoder is nullptr or invalid. Invalid param in format.
+ * {@link AV_ERR_INVALID_VAL}
+ * 1. an invalid encoder instance pointer is passed to parameter codec, including a null pointer;
+ * 2. unsupported input format parameters.
  * {@link AV_ERR_UNKNOWN}, unknown error.
- * {@link AV_ERR_SERVICE_DIED}, avcodec service is died.
+ * {@link AV_ERR_OPERATE_NOT_PERMIT}, internal execution error.
  * {@link AV_ERR_INVALID_STATE}, this interface was called in invalid state, must be called before Prepare.
  * @since 9
  */
@@ -180,7 +182,7 @@ OH_AVErrCode OH_VideoEncoder_Configure(OH_AVCodec *codec, OH_AVFormat *format);
  * {@link AV_ERR_NO_MEMORY}, instance has already released.
  * {@link AV_ERR_INVALID_VAL}, the encoder is nullptr or invalid.
  * {@link AV_ERR_UNKNOWN}, unknown error.
- * {@link AV_ERR_SERVICE_DIED}, avcodec service is died.
+ * {@link AV_ERR_OPERATE_NOT_PERMIT}, internal execution error.
  * {@link AV_ERR_INVALID_STATE}, this interface was called in invalid state.
  * @since 9
  */
@@ -196,7 +198,7 @@ OH_AVErrCode OH_VideoEncoder_Prepare(OH_AVCodec *codec);
  * {@link AV_ERR_NO_MEMORY}, instance has already released.
  * {@link AV_ERR_INVALID_VAL}, the encoder is nullptr or invalid.
  * {@link AV_ERR_UNKNOWN}, unknown error.
- * {@link AV_ERR_SERVICE_DIED}, avcodec service is died.
+ * {@link AV_ERR_OPERATE_NOT_PERMIT}, internal execution error.
  * {@link AV_ERR_INVALID_STATE}, this interface was called in invalid state.
  * @since 9
  */
@@ -211,7 +213,7 @@ OH_AVErrCode OH_VideoEncoder_Start(OH_AVCodec *codec);
  * {@link AV_ERR_NO_MEMORY}, instance has already released.
  * {@link AV_ERR_INVALID_VAL}, the encoder is nullptr or invalid.
  * {@link AV_ERR_UNKNOWN}, unknown error.
- * {@link AV_ERR_SERVICE_DIED}, avcodec service is died.
+ * {@link AV_ERR_OPERATE_NOT_PERMIT}, internal execution error.
  * {@link AV_ERR_INVALID_STATE}, this interface was called in invalid state.
  * @since 9
  */
@@ -228,7 +230,7 @@ OH_AVErrCode OH_VideoEncoder_Stop(OH_AVCodec *codec);
  * {@link AV_ERR_NO_MEMORY}, instance has already released.
  * {@link AV_ERR_INVALID_VAL}, the encoder is nullptr or invalid.
  * {@link AV_ERR_UNKNOWN}, unknown error.
- * {@link AV_ERR_SERVICE_DIED}, avcodec service is died.
+ * {@link AV_ERR_OPERATE_NOT_PERMIT}, internal execution error.
  * {@link AV_ERR_INVALID_STATE}, this interface was called in invalid state.
  * @since 9
  */
@@ -244,8 +246,7 @@ OH_AVErrCode OH_VideoEncoder_Flush(OH_AVCodec *codec);
  * {@link AV_ERR_NO_MEMORY}, instance has already released.
  * {@link AV_ERR_INVALID_VAL}, the encoder is nullptr or invalid.
  * {@link AV_ERR_UNKNOWN}, unknown error.
- * {@link AV_ERR_SERVICE_DIED}, avcodec service is died.
- * {@link AV_ERR_INVALID_STATE}, this interface was called in invalid state.
+ * {@link AV_ERR_OPERATE_NOT_PERMIT}, internal execution error.
  * @since 9
  */
 OH_AVErrCode OH_VideoEncoder_Reset(OH_AVCodec *codec);
@@ -271,9 +272,11 @@ OH_AVFormat *OH_VideoEncoder_GetOutputDescription(OH_AVCodec *codec);
  * @return Returns AV_ERR_OK if the execution is successful,
  * otherwise returns a specific error code, refer to {@link OH_AVErrCode}.
  * {@link AV_ERR_NO_MEMORY}, instance has already released.
- * {@link AV_ERR_INVALID_VAL}, the encoder is nullptr or invalid. Invalid param in format.
+ * {@link AV_ERR_INVALID_VAL}
+ * 1. an invalid encoder instance pointer is passed to parameter codec, including a null pointer;
+ * 2. unsupported input format parameters.
  * {@link AV_ERR_UNKNOWN}, unknown error.
- * {@link AV_ERR_SERVICE_DIED}, avcodec service is died.
+ * {@link AV_ERR_OPERATE_NOT_PERMIT}, internal execution error.
  * {@link AV_ERR_INVALID_STATE}, this interface was called in invalid state.
  * @since 9
  */
@@ -287,11 +290,8 @@ OH_AVErrCode OH_VideoEncoder_SetParameter(OH_AVCodec *codec, OH_AVFormat *format
  * managing the life cycle of the window, call OH_NativeWindow_DestroyNativeWindow() when done.
  * @return Returns AV_ERR_OK if the execution is successful,
  * otherwise returns a specific error code, refer to {@link OH_AVErrCode}.
- * {@link AV_ERR_NO_MEMORY}, inner resource has already released.
  * {@link AV_ERR_INVALID_VAL}, the encoder is nullptr or invalid.
- * {@link AV_ERR_UNKNOWN}, unknown error.
- * {@link AV_ERR_SERVICE_DIED}, avcodec service is died.
- * {@link AV_ERR_INVALID_STATE}, this interface was called in invalid state.
+ * {@link AV_ERR_OPERATE_NOT_PERMIT}, internal execution error.
  * @since 9
  */
 OH_AVErrCode OH_VideoEncoder_GetSurface(OH_AVCodec *codec, OHNativeWindow **window);
@@ -307,7 +307,7 @@ OH_AVErrCode OH_VideoEncoder_GetSurface(OH_AVCodec *codec, OHNativeWindow **wind
  * {@link AV_ERR_INVALID_VAL}, the encoder is nullptr or invalid.
  * Buffer index should be given by {@link OH_AVCodecOnNewOutputData}.
  * {@link AV_ERR_UNKNOWN}, unknown error.
- * {@link AV_ERR_SERVICE_DIED}, avcodec service is died.
+ * {@link AV_ERR_OPERATE_NOT_PERMIT}, internal execution error.
  * {@link AV_ERR_INVALID_STATE}, this interface was called in invalid state.
  * @deprecated since 11
  * @useinstead OH_VideoEncoder_FreeOutputBuffer
@@ -325,7 +325,7 @@ OH_AVErrCode OH_VideoEncoder_FreeOutputData(OH_AVCodec *codec, uint32_t index);
  * {@link AV_ERR_NO_MEMORY}, instance has already released.
  * {@link AV_ERR_INVALID_VAL}, the encoder is nullptr or invalid.
  * {@link AV_ERR_UNKNOWN}, unknown error.
- * {@link AV_ERR_SERVICE_DIED}, avcodec service is died.
+ * {@link AV_ERR_OPERATE_NOT_PERMIT}, internal execution error.
  * {@link AV_ERR_INVALID_STATE}, this interface was called in invalid state.
  * @since 9
  */
@@ -343,7 +343,7 @@ OH_AVErrCode OH_VideoEncoder_NotifyEndOfStream(OH_AVCodec *codec);
  * {@link AV_ERR_INVALID_VAL}, the encoder is nullptr or invalid.
  * Buffer index should be given by {@link OH_AVCodecOnNeedInputData}.
  * {@link AV_ERR_UNKNOWN}, unknown error.
- * {@link AV_ERR_SERVICE_DIED}, avcodec service is died.
+ * {@link AV_ERR_OPERATE_NOT_PERMIT}, internal execution error.
  * {@link AV_ERR_INVALID_STATE}, this interface was called in invalid state.
  * @deprecated since 11
  * @useinstead OH_VideoEncoder_PushInputBuffer
@@ -381,7 +381,7 @@ OH_AVErrCode OH_VideoEncoder_PushInputBuffer(OH_AVCodec *codec, uint32_t index);
  * {@link AV_ERR_INVALID_VAL}, the encoder is nullptr or invalid.
  * Index should be given by {@link OH_VideoEncoder_OnNeedInputParameter}.
  * {@link AV_ERR_UNKNOWN}, unknown error.
- * {@link AV_ERR_SERVICE_DIED}, avcodec service is died.
+ * {@link AV_ERR_OPERATE_NOT_PERMIT}, internal execution error.
  * {@link AV_ERR_INVALID_STATE}, this interface was called in invalid state.
  * @since 12
  */
@@ -395,10 +395,12 @@ OH_AVErrCode OH_VideoEncoder_PushInputParameter(OH_AVCodec *codec, uint32_t inde
  * @return Returns AV_ERR_OK if the execution is successful,
  * otherwise returns a specific error code, refer to {@link OH_AVErrCode}.
  * {@link AV_ERR_NO_MEMORY}, instance has already released.
- * {@link AV_ERR_INVALID_VAL}, the encoder is nullptr or invalid.
- * Buffer index should be given by {@link OH_AVCodecOnNewOutputBuffer}.
+ * {@link AV_ERR_INVALID_VAL}
+ * 1. an invalid encoder instance pointer is passed to parameter codec, including a null pointer;
+ * 2. invalid index or consecutive assignment to the same index,
+ * the error does not affect the subsequent encode process.
  * {@link AV_ERR_UNKNOWN}, unknown error.
- * {@link AV_ERR_SERVICE_DIED}, avcodec service is died.
+ * {@link AV_ERR_OPERATE_NOT_PERMIT}, internal execution error.
  * {@link AV_ERR_INVALID_STATE}, this interface was called in invalid state.
  * @since 11
  */
@@ -420,7 +422,6 @@ OH_AVErrCode OH_VideoEncoder_FreeOutputBuffer(OH_AVCodec *codec, uint32_t index)
  * {@link AV_ERR_NO_MEMORY}, internal errors in the input encode instance, such as an abnormal NULL.
  * {@link AV_ERR_INVALID_VAL}, the encoder is nullptr or invalid.
  * {@link AV_ERR_UNKNOWN}, unknown error.
- * {@link AV_ERR_SERVICE_DIED}, avcodec service is died.
  * {@link AV_ERR_INVALID_STATE}, this interface was called in invalid state.
  * {@link AV_ERR_OPERATE_NOT_PERMIT}, not permitted in asynchronous mode.
  * {@link AV_ERR_TRY_AGAIN_LATER}, query failed, recommended retry after delay..
@@ -458,7 +459,6 @@ OH_AVBuffer *OH_VideoEncoder_GetInputBuffer(struct OH_AVCodec *codec, uint32_t i
  * {@link AV_ERR_NO_MEMORY}, internal errors in the input encode instance, such as an abnormal NULL.
  * {@link AV_ERR_INVALID_VAL}, the encoder is nullptr or invalid.
  * {@link AV_ERR_UNKNOWN}, unknown error.
- * {@link AV_ERR_SERVICE_DIED}, avcodec service is died.
  * {@link AV_ERR_INVALID_STATE}, this interface was called in invalid state.
  * {@link AV_ERR_OPERATE_NOT_PERMIT}, not permitted in asynchronous mode.
  * {@link AV_ERR_STREAM_CHANGED}, stream format changed, call {@link OH_VideoEncoder_GetOutputDescription} to
