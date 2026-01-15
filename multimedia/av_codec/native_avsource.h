@@ -148,7 +148,7 @@ OH_AVFormat *OH_AVSource_GetSourceFormat(OH_AVSource *source);
  * @param trackIndex The track index to get format.
  * @return Returns the track's format info if the execution is successful, otherwise returns nullptr.
  * Possible failure causes:
- * 1. an invalid source instance pointer is passed to parameter source, including a null pointer;
+ * 1. source is invalid.
  * 2. trackIndex is out of range.
  * @since 10
 */
