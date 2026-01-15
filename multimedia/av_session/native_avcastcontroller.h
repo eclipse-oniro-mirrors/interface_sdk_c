@@ -51,7 +51,7 @@ extern "C" {
 /**
  * @brief OH_AVCastController object
  *
- * A pointer can be created using {@link OH_AVSession_GetAVCastController} method.
+ * A pointer can be created using the {@link OH_AVSession_CreateAVCastController} method.
  *
  * @since 23
  * @version 1.0
@@ -59,7 +59,7 @@ extern "C" {
 typedef struct OH_AVCastController OH_AVCastController;
 
 /**
- * @brief Declaring the callback struct for PlaybackStateChanged
+ * @brief Declaring the callback struct for playback state change
  *
  * @since 23
  * @version 1.0
@@ -68,7 +68,7 @@ typedef AVSessionCallback_Result(*OH_AVCastControllerCallback_PlaybackStateChang
     OH_AVCastController* avcastcontroller, OH_AVSession_AVPlaybackState* playbackState, void* userData);
 
 /**
- * @brief Declaring the callback struct for mediaItemChange
+ * @brief Declaring the callback struct for media item change
  *
  * @since 23
  * @version 1.0
@@ -487,7 +487,7 @@ AVSession_ErrCode OH_AVCastController_SendVolumeCommand(OH_AVCastController* avc
  * @brief Request to prepare the current player item, this is needed for sink media information displaying.
  *
  * @param avcastcontroller The avcastcontroller instance pointer
- * @param avqueueItem  item media item info {@link OH_AVSession_AVQueueItem}.
+ * @param avqueueItem  media item info {@link OH_AVSession_AVQueueItem}.
  * @return Function result code:
  *         {@link AV_SESSION_ERR_SUCCESS} If the execution is successful.
  *         {@link AV_SESSION_ERR_SERVICE_EXCEPTION} Internal server error.
@@ -501,16 +501,16 @@ AVSession_ErrCode OH_AVCastController_Prepare(OH_AVCastController* avcastcontrol
     OH_AVSession_AVQueueItem* avqueueItem);
 
 /**
- * @brief Request to Play the current item, should contain mediauriotherwise the playback will fail.
+ * @brief Request to Play the current item, should contain media uri otherwise the playback will fail.
  *
  * @param avcastcontroller The avcastcontroller instance pointer
- * @param avqueueItem  item media item info {@link OH_AVSession_AVQueueItem}.
+ * @param avqueueItem  media item info {@link OH_AVSession_AVQueueItem}.
  * @return Function result code:
  *         {@link AV_SESSION_ERR_SUCCESS} If the execution is successful.
  *         {@link AV_SESSION_ERR_SERVICE_EXCEPTION} Internal server error.
  *         {@link AV_SESSION_ERR_INVALID_PARAMETER}
  *                                                 1. The param of avcastcontroller is nullptr.
- *                                                 2. The param of callback is nullptr.
+ *                                                 2. The param of avqueueItem is nullptr.
  * @since 23
  */
 AVSession_ErrCode OH_AVCastController_Start(OH_AVCastController* avcastcontroller,

@@ -62,9 +62,9 @@ extern "C" {
 typedef struct OH_AVSession OH_AVSession;
 
 /**
- * @brief AVSession object
+ * @brief OH_AVCastController object
  *
- * A pointer can be created using {@link OH_AVSession_GetAVCastController} method.
+ * A pointer can be created using the {@link OH_AVSession_CreateAVCastController} method.
  *
  * @since 23
  * @version 1.0
