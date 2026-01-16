@@ -3139,23 +3139,6 @@ typedef enum {
 } ArkUI_CornerDirection;
 
 /**
- * @brief Enumerates the LayoutPolicy.
- *
- * @since 21
- */
-typedef enum {
-    /** The component fills its parent, which means its size is as large as its parent */
-    ARKUI_LAYOUTPOLICY_MATCHPARENT = 0,
-    /**
-     * The component fills its content, which means its size is as large as its children but it is constrained
-     * by its parent.
-     */
-    ARKUI_LAYOUTPOLICY_WRAPCONTENT,
-    /** The component fills its content which means its size is as large as its children. */
-    ARKUI_LAYOUTPOLICY_FIXATIDEALSIZE,
-} ArkUI_LayoutPolicy;
-
-/**
  * @brief Enumerates the PixelRoundPolicy.
  *
  * @since 21
@@ -3286,6 +3269,23 @@ typedef enum {
     */
     ARKUI_RENDERSTRATEGY_OFFSCREEN,
 } ArkUI_RenderStrategy;
+
+/**
+ * @brief Enumerates the LayoutPolicy.
+ *
+ * @since 21
+ */
+typedef enum {
+    /** The component fills its parent, which means its size is as large as its parent */
+    ARKUI_LAYOUTPOLICY_MATCHPARENT = 0,
+    /**
+     * The component fills its content, which means its size is as large as its children but it is constrained
+     * by its parent.
+     */
+    ARKUI_LAYOUTPOLICY_WRAPCONTENT,
+    /** The component fills its content which means its size is as large as its children. */
+    ARKUI_LAYOUTPOLICY_FIXATIDEALSIZE,
+} ArkUI_LayoutPolicy;
 
 /**
  * @brief Defines parameter used by the system font style callback event.
