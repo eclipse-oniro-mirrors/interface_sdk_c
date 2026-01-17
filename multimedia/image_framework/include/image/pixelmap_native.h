@@ -1100,10 +1100,10 @@ Image_ErrorCode OH_PixelmapNative_CreateEmptyPixelmap(
     OH_Pixelmap_InitializationOptions *options, OH_PixelmapNative **pixelmap);
 
 /**
- * @brief Creates a empty pixelmap based on options {@link OH_Pixelmap_InitializationOptions}, the memory type used by the
- * pixelmap can be specified by allocatorType {@link IMAGE_ALLOCATOR_MODE}. By default, the system selects the memory
- * type based on the image type, image size, platform capability, etc. When processing the pixelmap returned by this
- * interface, please always consider the impact of stride.
+ * @brief Creates a empty pixelmap based on options {@link OH_Pixelmap_InitializationOptions}, the memory type used
+ * by the pixelmap can be specified by allocatorType {@link IMAGE_ALLOCATOR_MODE}. By default,
+ * the system selects the memory type based on the image type, image size, platform capability, etc. When processing
+ * the pixelmap returned by this interface, please always consider the impact of stride.
  *
  * @param options Pixelmap initialization properties including size, pixel format, alpha type, and editable flags.
  * @param allocator Indicate which memory type will be used by the returned pixelmap.

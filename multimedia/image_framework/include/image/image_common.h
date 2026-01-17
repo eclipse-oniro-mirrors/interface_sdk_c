@@ -201,8 +201,9 @@ typedef enum {
     IMAGE_UNSUPPORTED_CONVERSION = 7600203,
     /** invalid region */
     IMAGE_INVALID_REGION = 7600204,
-    /** @error unsupported memory format
-     *  @since 13
+    /**
+     * @error unsupported memory format
+     * @since 13
      */
     IMAGE_UNSUPPORTED_MEMORY_FORMAT = 7600205,
     /**
@@ -328,19 +329,19 @@ typedef enum {
 typedef enum {
     /**
      * The system determines which memory to use to create the PixelMap.
-     * 
+     *
      * @since 20
      */
     IMAGE_ALLOCATOR_MODE_AUTO = 0,
     /**
      * Use DMA buffer to create the PixelMap.
-     * 
+     *
      * @since 20
      */
     IMAGE_ALLOCATOR_MODE_DMA = 1,
     /**
      * Use share memory to create the PixelMap.
-     * 
+     *
      * @since 20
      */
     IMAGE_ALLOCATOR_MODE_SHARED_MEMORY = 2,
