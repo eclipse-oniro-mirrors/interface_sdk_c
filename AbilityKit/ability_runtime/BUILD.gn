@@ -18,10 +18,10 @@ ohos_ndk_headers("ability_runtime_ndk_header") {
   sources = [
     "./ability_runtime_common.h",
     "./application_context.h",
-    "./context_constant.h",
-    "./start_options.h",
-    "./extension_ability.h",
     "./context.h",
+    "./context_constant.h",
+    "./extension_ability.h",
+    "./start_options.h",
   ]
 }
 
@@ -34,9 +34,9 @@ ohos_ndk_library("libability_runtime") {
   system_capability_headers = [
     "AbilityKit/ability_runtime/ability_runtime_common.h",
     "AbilityKit/ability_runtime/application_context.h",
-    "AbilityKit/ability_runtime/context_constant.h",
-    "AbilityKit/ability_runtime/start_options.h",
-    "AbilityKit/ability_runtime/extension_ability.h",
     "AbilityKit/ability_runtime/context.h",
+    "AbilityKit/ability_runtime/context_constant.h",
+    "AbilityKit/ability_runtime/extension_ability.h",
+    "AbilityKit/ability_runtime/start_options.h",
   ]
 }
