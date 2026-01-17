@@ -668,7 +668,7 @@ enum OH_Huks_UserAuthType {
     OH_HUKS_USER_AUTH_TYPE_PIN = 1 << 2,
     /**
      * Enum for tui pin auth type.
-     * 
+     *
      * @since 20
      */
     OH_HUKS_USER_AUTH_TYPE_TUI_PIN = 1 << 5,
