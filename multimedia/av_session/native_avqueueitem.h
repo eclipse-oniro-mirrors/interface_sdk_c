@@ -231,7 +231,7 @@ AVQueueItem_Result OH_AVSession_AVMediaDescriptionBuilder_SetDuration(OH_AVSessi
  * @brief Set the media uri of the resource
  *
  * @param builder The AVMediaDescription builder instance pointer
- * @param mediaUri The mediaUri of the resource.
+ * @param mediaUri The media uri of the resource.
  * @return Function result code:
  *         {@link AVQUEUEITEM_SUCCESS} If the execution is successful.
  *         {@link AVQUEUEITEM_ERROR_INVALID_PARAM}:
@@ -366,7 +366,7 @@ AVQueueItem_Result OH_AVSession_AVMediaDescription_GetArtist(OH_AVSession_AVMedi
  * @brief Get the media image url of the resource
  *
  * @param description The AVMediaDescription instance pointer
- * @param albumCoverUri The media image url of resource.
+ * @param albumCoverUri Pointer variable that will be set to media image url.
  * @return Function result code:
  *         {@link AVQUEUEITEM_SUCCESS} If the execution is successful.
  *         {@link AVQUEUEITEM_ERROR_INVALID_PARAM}:
@@ -482,10 +482,10 @@ AVQueueItem_Result OH_AVSession_AVMediaDescription_GetAlbumTitle(OH_AVSession_AV
     char** albumTitle);
 
 /**
- * @brief Get the appName of the resource
+ * @brief Get the app name of the resource
  *
  * @param description The AVMediaDescription instance pointer
- * @param appName Pointer variable that will be set app name of resource.
+ * @param appName Pointer variable that will be set to app name of resource.
  * @return Function result code:
  *         {@link AVQUEUEITEM_SUCCESS} If the execution is successful.
  *         {@link AVQUEUEITEM_ERROR_INVALID_PARAM}:

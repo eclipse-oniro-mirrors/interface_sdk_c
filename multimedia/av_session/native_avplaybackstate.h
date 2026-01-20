@@ -19,8 +19,6 @@
  *
  * @brief Provide the definition of the C interface for the avsession module.
  *
- * @syscap SystemCapability.Multimedia.AVSession.Core
- *
  * @since 23
  * @version 1.0
  */
