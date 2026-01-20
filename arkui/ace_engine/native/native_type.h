@@ -5728,6 +5728,41 @@ float OH_ArkUI_ProgressLinearStyleOption_GetStrokeWidth(ArkUI_ProgressLinearStyl
 float OH_ArkUI_ProgressLinearStyleOption_GetStrokeRadius(ArkUI_ProgressLinearStyleOption* option);
 
 /**
+ * @brief Create a cross-language option instance.
+ *
+ * @return Returns a cross-language option instance. If the result is a null pointer, it may be out of memory.
+ * @since 15
+ */
+ArkUI_CrossLanguageOption* OH_ArkUI_CrossLanguageOption_Create(void);
+
+/**
+ * @brief Destroy the cross-language option instance.
+ *
+ * @param option The cross-language option instance.
+ * @since 15
+ */
+void OH_ArkUI_CrossLanguageOption_Destroy(ArkUI_CrossLanguageOption* option);
+
+/**
+ * @brief Enable the attribute setting in the cross-language option.
+ *
+ * @param option The cross-language option.
+ * @param enabled The attribute setting in the cross-language option.
+ * Default value: false.
+ * @since 15
+ */
+void OH_ArkUI_CrossLanguageOption_SetAttributeSettingStatus(ArkUI_CrossLanguageOption* option, bool enabled);
+
+/**
+ * @brief Get the attribute setting enable of the cross-language option.
+ *
+ * @param option The cross-language option.
+ * @return The attribute setting enable of the cross-language option.
+ * @since 15
+ */
+bool OH_ArkUI_CrossLanguageOption_GetAttributeSettingStatus(ArkUI_CrossLanguageOption* option);
+
+/**
  * @brief Creates an option for taking snapshot, the returned value must be released through
  *        {@link OH_ArkUI_DestroySnapshotOptions} when it's not used anymore.
  *
@@ -5799,41 +5834,6 @@ int32_t OH_ArkUI_SnapshotOptions_SetColorMode(ArkUI_SnapshotOptions* snapshotOpt
  */
 int32_t OH_ArkUI_SnapshotOptions_SetDynamicRangeMode(
     ArkUI_SnapshotOptions* snapshotOptions, int32_t dynamicRangeMode, bool isAuto);
-
-/**
- * @brief Create a cross-language option instance.
- *
- * @return Returns a cross-language option instance. If the result is a null pointer, it may be out of memory.
- * @since 15
- */
-ArkUI_CrossLanguageOption* OH_ArkUI_CrossLanguageOption_Create(void);
-
-/**
- * @brief Destroy the cross-language option instance.
- *
- * @param option The cross-language option instance.
- * @since 15
- */
-void OH_ArkUI_CrossLanguageOption_Destroy(ArkUI_CrossLanguageOption* option);
-
-/**
- * @brief Enable the attribute setting in the cross-language option.
- *
- * @param option The cross-language option.
- * @param enabled The attribute setting in the cross-language option.
- * Default value: false.
- * @since 15
- */
-void OH_ArkUI_CrossLanguageOption_SetAttributeSettingStatus(ArkUI_CrossLanguageOption* option, bool enabled);
-
-/**
- * @brief Get the attribute setting enable of the cross-language option.
- *
- * @param option The cross-language option.
- * @return The attribute setting enable of the cross-language option.
- * @since 15
- */
-bool OH_ArkUI_CrossLanguageOption_GetAttributeSettingStatus(ArkUI_CrossLanguageOption* option);
 
 /**
  * @brief Defines the parameters for visible area change events.
