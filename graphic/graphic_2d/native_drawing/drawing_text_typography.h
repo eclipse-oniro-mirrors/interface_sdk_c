@@ -809,11 +809,11 @@ OH_Drawing_ErrorCode OH_Drawing_GetTypographyStyleAttributeBool(OH_Drawing_Typog
  * @version 1.0
  */
 typedef enum OH_Drawing_TextBadgeType {
-    /* No badge */
+    /** No badge */
     TEXT_BADGE_NONE,
-    /* Superscript */
+    /** Superscript */
     TEXT_SUPERSCRIPT,
-    /* Subscript */
+    /** Subscript */
     TEXT_SUBSCRIPT,
 } OH_Drawing_TextBadgeType;
 
@@ -1231,20 +1231,6 @@ void OH_Drawing_TypographyHandlerPushTextStyle(OH_Drawing_TypographyCreate* hand
  * @version 1.0
  */
 void OH_Drawing_TypographyHandlerAddText(OH_Drawing_TypographyCreate* handler, const char* text);
-
-/**
- * @brief Sets the text content. The content supports UTF-8, UTF-16, and UTF-32 formats.
- *
- * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @param handler Indicates the pointer to an <b>OH_Drawing_TypographyCreate</b> object.
- * @param text Indicates the pointer to the text content to set.
- * @param byteLength Set the byte length of the text content.
- * @param textEncodingType Indicates the text encoding type <b>OH_Drawing_TextEncoding</b>.
- * @since 20
- * @version 1.0
- */
-void OH_Drawing_TypographyHandlerAddEncodedText(OH_Drawing_TypographyCreate* handler, const void* text,
-    size_t byteLength, OH_Drawing_TextEncoding textEncodingType);
 
 /**
  * @brief Removes the topmost style in the stack, leaving the remaining styles in effect.
@@ -2628,6 +2614,16 @@ void OH_Drawing_SetTypographyVerticalAlignment(OH_Drawing_TypographyStyle* style
 const char* OH_Drawing_TextStyleGetLocale(OH_Drawing_TextStyle* style);
 
 /**
+ * @brief Sets whether to use superscript or subscript in text layout.
+ *
+ * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
+ * @param style Pointer to an OH_Drawing_TextStyle object.
+ * @param textBadgeType Superscript or subscript to use.
+ * @since 20
+ */
+void OH_Drawing_SetTextStyleBadgeType(OH_Drawing_TextStyle* style, OH_Drawing_TextBadgeType textBadgeType);
+
+/**
  * @brief Sets the text style, including font weight, font width and font slant.
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
@@ -3251,26 +3247,30 @@ void OH_Drawing_SetTypographyTextTab(OH_Drawing_TypographyStyle* style, OH_Drawi
 size_t OH_Drawing_GetDrawingArraySize(OH_Drawing_Array* drawingArray);
 
 /**
-* @brief Sets whether to optimize whitespace at the end of each line for text typography.
-*
-* @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
-* @param style Indicates the pointer to an <b>OH_Drawing_TypographyStyle</b> object.
-* @param trailingSpaceOptimized Boolean value indicating whether to optimize whitespace at the end of each line
-* for text typography to set.
-* @since 20
-* @version 1.0
-*/
+ * @brief Sets whether to optimize whitespace at the end of each line for text typography.
+ *
+ * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
+ * @param style Indicates the pointer to an <b>OH_Drawing_TypographyStyle</b> object.
+ * @param trailingSpaceOptimized Boolean value indicating whether to optimize whitespace at the end of each line
+ * for text typography to set.
+ * @since 20
+ * @version 1.0
+ */
 void OH_Drawing_SetTypographyTextTrailingSpaceOptimized(OH_Drawing_TypographyStyle* style, bool trailingSpaceOptimized);
 
 /**
- * @brief Sets whether to use superscript or subscript in text layout.
+ * @brief Sets the text content. The content supports UTF-8, UTF-16, and UTF-32 formats.
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @param style Pointer to an OH_Drawing_TextStyle object.
- * @param textBadgeType Superscript or subscript to use.
+ * @param handler Indicates the pointer to an <b>OH_Drawing_TypographyCreate</b> object.
+ * @param text Indicates the pointer to the text content to set.
+ * @param byteLength Set the byte length of the text content.
+ * @param textEncodingType Indicates the text encoding type <b>OH_Drawing_TextEncoding</b>.
  * @since 20
+ * @version 1.0
  */
-void OH_Drawing_SetTextStyleBadgeType(OH_Drawing_TextStyle* style, OH_Drawing_TextBadgeType textBadgeType);
+void OH_Drawing_TypographyHandlerAddEncodedText(OH_Drawing_TypographyCreate* handler, const void* text,
+    size_t byteLength, OH_Drawing_TextEncoding textEncodingType);
 
 /**
  * @brief Set whether to enable automatic spacing between Chinese and English for paragraph.
