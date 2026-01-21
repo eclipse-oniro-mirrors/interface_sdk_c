@@ -6069,6 +6069,31 @@ void OH_ArkUI_EmbeddedComponentOption_SetOnTerminated(
     ArkUI_EmbeddedComponentOption* option, void (*callback)(int32_t code, AbilityBase_Want* want));
 
 /**
+ * @brief Expand the swipe action.
+ *
+ * @param node List Item node.
+ * @param direction expand direction of swipeAction.
+ * @return Error code.
+ *         {@link ARKUI_ERROR_CODE_NO_ERROR} success.
+ *         {@link ARKUI_ERROR_CODE_PARAM_ERROR} The component type of the node is incorrect.
+ *         {@link ARKUI_ERROR_CODE_NODE_NOT_ON_MAIN_TREE} The node not mounted to component tree.
+ * @since 21
+ */
+int32_t OH_ArkUI_ListItemSwipeAction_Expand(ArkUI_NodeHandle node, ArkUI_ListItemSwipeActionDirection direction);
+
+/**
+ * @brief Collapse the swipe action.
+ *
+ * @param node List Item node.
+ * @return Error code.
+ *         {@link ARKUI_ERROR_CODE_NO_ERROR} success.
+ *         {@link ARKUI_ERROR_CODE_PARAM_ERROR} The component type of the node is incorrect.
+ *         {@link ARKUI_ERROR_CODE_NODE_NOT_ON_MAIN_TREE} The node not mounted to component tree.
+ * @since 21
+ */
+int32_t OH_ArkUI_ListItemSwipeAction_Collapse(ArkUI_NodeHandle node);
+
+/**
  * @brief Create an edge object for position attribute.
  *
  * @return A pointer to the edge object.
@@ -6176,31 +6201,6 @@ void OH_ArkUI_PositionEdges_SetRight(ArkUI_PositionEdges* edges, float value);
  * @since 21
  */
 int32_t OH_ArkUI_PositionEdges_GetRight(ArkUI_PositionEdges* edges, float* value);
-
-/**
- * @brief Expand the swipe action.
- *
- * @param node List Item node.
- * @param direction expand direction of swipeAction.
- * @return Error code.
- *         {@link ARKUI_ERROR_CODE_NO_ERROR} success.
- *         {@link ARKUI_ERROR_CODE_PARAM_ERROR} The component type of the node is incorrect.
- *         {@link ARKUI_ERROR_CODE_NODE_NOT_ON_MAIN_TREE} The node not mounted to component tree.
- * @since 21
- */
-int32_t OH_ArkUI_ListItemSwipeAction_Expand(ArkUI_NodeHandle node, ArkUI_ListItemSwipeActionDirection direction);
-
-/**
- * @brief Collapse the swipe action.
- *
- * @param node List Item node.
- * @return Error code.
- *         {@link ARKUI_ERROR_CODE_NO_ERROR} success.
- *         {@link ARKUI_ERROR_CODE_PARAM_ERROR} The component type of the node is incorrect.
- *         {@link ARKUI_ERROR_CODE_NODE_NOT_ON_MAIN_TREE} The node not mounted to component tree.
- * @since 21
- */
-int32_t OH_ArkUI_ListItemSwipeAction_Collapse(ArkUI_NodeHandle node);
 
 /**
  * @brief Create a policy object for PixelRound attribute.
