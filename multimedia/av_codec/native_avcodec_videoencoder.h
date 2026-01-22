@@ -503,10 +503,7 @@ OH_AVFormat *OH_VideoEncoder_GetInputDescription(OH_AVCodec *codec);
  * false if the codec instance is invalid
  * @return Returns AV_ERR_OK if the execution is successful,
  * otherwise returns a specific error code, refer to {@link OH_AVErrCode}.
- * {@link AV_ERR_NO_MEMORY}, instance has already released.
  * {@link AV_ERR_INVALID_VAL}, the encoder is nullptr or invalid.
- * {@link AV_ERR_UNKNOWN}, unknown error.
- * {@link AV_ERR_SERVICE_DIED}, avcodec service is died.
  * @since 10
  */
 OH_AVErrCode OH_VideoEncoder_IsValid(OH_AVCodec *codec, bool *isValid);
