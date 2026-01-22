@@ -4153,10 +4153,10 @@ typedef enum {
      * This attribute can be set, reset, and obtained as required through APIs.
      *
      * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: line height value. \n
+     * .value[0].i32: line height value.
      * \n
      * Format of the return value {@link ArkUI_AttributeItem}: \n
-     * .value[0].i32: line height value. \n
+     * .value[0].i32: line height value
      *
      * @since 20
      */
@@ -4634,13 +4634,13 @@ typedef enum {
     NODE_TEXT_AREA_KEYBOARD_APPEARANCE = 8026,
 
     /**
-     * @brief Set the max lines of the node. This attrilbute can be set, reset, and obtained as required through APIs.
+     * @brief Set the max lines of the node. This attribute can be set, reset, and obtained as required through APIs.
      *
      * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: max lines count. \n
+     * .value[0].i32: max lines count.
      * \n
      * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: max lines count. \n
+     * .value[0].i32: max lines count.\n
      *
      * @since 20
      */
@@ -4691,10 +4691,10 @@ typedef enum {
      * @brief Set the line height of the node. This attribute can be set, reset, and obtained as required through APIs.
      *
      * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: line height value. \n
+     * .value[0].i32: line height value.
      * \n
      * Format of the return value {@link ArkUI_AttributeItem}: \n
-     * .value[0].i32: line height value. \n
+     * .value[0].i32: line height value
      *
      * @since 20
      */
@@ -9086,7 +9086,7 @@ typedef enum {
     NODE_TEXT_INPUT_ON_CHANGE_WITH_PREVIEW_TEXT = 7013,
 
     /**
-     * @brief Defines the event triggered before content changes.
+     * @brief Defines the event triggered before content changes
      *
      * When the event callback occurs, the union type {@link ArkUI_NodeEvent} is {@link ArkUI_TextChangeEvent}. \n
      * {@link ArkUI_TextChangeEvent} contains the following parameters: \n
@@ -9265,7 +9265,7 @@ typedef enum {
     NODE_TEXT_AREA_ON_CHANGE_WITH_PREVIEW_TEXT = 8012,
 
     /**
-     * @brief Defines the event triggered before content changes
+     * @brief Defines the event triggered before content changes.
      *
      * When the event callback occurs, the union type {@link ArkUI_NodeEvent} is {@link ArkUI_TextChangeEvent}. \n
      * {@link ArkUI_TextChangeEvent} contains the following parameters: \n
