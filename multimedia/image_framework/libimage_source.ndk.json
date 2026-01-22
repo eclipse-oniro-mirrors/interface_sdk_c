@@ -84,20 +84,20 @@
         "name": "OH_DecodingOptions_GetCropAndScaleStrategy"
     },
     {
-        "first_introduced": "19",
-        "name": "OH_DecodingOptions_SetCropRegion"
-    },
-    {
-        "first_introduced": "19",
-        "name": "OH_DecodingOptions_GetCropRegion"
-    },
-    {
         "first_introduced": "20",
         "name": "OH_DecodingOptions_GetDesiredColorSpace"
     },
     {
         "first_introduced": "20",
         "name": "OH_DecodingOptions_SetDesiredColorSpace"
+    },
+    {
+        "first_introduced": "19",
+        "name": "OH_DecodingOptions_SetCropRegion"
+    },
+    {
+        "first_introduced": "19",
+        "name": "OH_DecodingOptions_GetCropRegion"
     },
     {
         "first_introduced": "12",

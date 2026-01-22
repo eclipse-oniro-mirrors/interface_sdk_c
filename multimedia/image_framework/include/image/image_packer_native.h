@@ -104,7 +104,11 @@ Image_ErrorCode OH_PackingOptions_Create(OH_PackingOptions **options);
  * @param options The OH_PackingOptions pointer will be operated.
  * @param format the number of image format.The user can pass in a null pointer and zero size, we will allocate memory,
  * but user must free memory after use.
- * @return Returns {@link Image_ErrorCode}
+ * @return Image functions result code.
+ *         {@link IMAGE_SUCCESS} if the execution is successful.
+ *         {@link IMAGE_BAD_PARAMETER} options is nullptr, or format is nullptr.
+ *         {@link IMAGE_ALLOC_FAILED} allocate memory failed.
+ *         {@link IMAGE_COPY_FAILED} copy memory failed
  * @since 12
  */
 Image_ErrorCode OH_PackingOptions_GetMimeType(OH_PackingOptions *options,
@@ -128,7 +132,11 @@ Image_ErrorCode OH_PackingOptions_GetMimeTypeWithNull(OH_PackingOptions *options
  *
  * @param options The OH_PackingOptions pointer will be operated.
  * @param format the number of image format.
- * @return Returns {@link Image_ErrorCode}
+ * @return Returns Image functions result code.
+ *         {@link IMAGE_SUCCESS} if the execution is successful.
+ *         {@link IMAGE_BAD_PARAMETER} options is nullptr, or format is nullptr.
+ *         {@link IMAGE_ALLOC_FAILED} allocate memory failed.
+ *         {@link IMAGE_COPY_FAILED} copy memory failed.
  * @since 12
  */
 Image_ErrorCode OH_PackingOptions_SetMimeType(OH_PackingOptions *options,
@@ -139,7 +147,9 @@ Image_ErrorCode OH_PackingOptions_SetMimeType(OH_PackingOptions *options,
  *
  * @param options The OH_PackingOptions pointer will be operated.
  * @param quality The number of image quality.
- * @return Returns {@link Image_ErrorCode}
+ * @return Returns Image functions result code.
+ *         {@link IMAGE_SUCCESS} if the execution is successful.
+ *         {@link IMAGE_BAD_PARAMETER} options is nullptr, or quality is nullptr.
  * @since 12
  */
 Image_ErrorCode OH_PackingOptions_GetQuality(OH_PackingOptions *options,
@@ -150,7 +160,9 @@ Image_ErrorCode OH_PackingOptions_GetQuality(OH_PackingOptions *options,
  *
  * @param options The OH_PackingOptions pointer will be operated.
  * @param quality The number of image quality.
- * @return Returns {@link Image_ErrorCode}
+ * @return Returns Image functions result code.
+ *         {@link IMAGE_SUCCESS} if the execution is successful.
+ *         {@link IMAGE_BAD_PARAMETER} options is nullptr.
  * @since 12
  */
 Image_ErrorCode OH_PackingOptions_SetQuality(OH_PackingOptions *options,
@@ -161,7 +173,9 @@ Image_ErrorCode OH_PackingOptions_SetQuality(OH_PackingOptions *options,
  *
  * @param options The OH_PackingOptions pointer will be operated.
  * @param needsPackProperties Whether the image properties can be saved, like Exif.
- * @return Returns {@link Image_ErrorCode}
+ * @return Returns Image functions result code.
+ *         {@link IMAGE_SUCCESS} if the execution is successful.
+ *         {@link IMAGE_BAD_PARAMETER} options is nullptr, or needsPackProperties is nullptr.
  * @since 12
  */
 Image_ErrorCode OH_PackingOptions_GetNeedsPackProperties(OH_PackingOptions *options,
@@ -172,7 +186,9 @@ Image_ErrorCode OH_PackingOptions_GetNeedsPackProperties(OH_PackingOptions *opti
  *
  * @param options The OH_PackingOptions pointer will be operated.
  * @param needsPackProperties Whether the image properties can be saved, like Exif.
- * @return Returns {@link Image_ErrorCode}
+ * @return Image functions result code.
+ *         {@link IMAGE_SUCCESS} if the execution is successful.
+ *         {@link IMAGE_BAD_PARAMETER} options is nullptr.
  * @since 12
  */
 Image_ErrorCode OH_PackingOptions_SetNeedsPackProperties(OH_PackingOptions *options,
@@ -183,8 +199,9 @@ Image_ErrorCode OH_PackingOptions_SetNeedsPackProperties(OH_PackingOptions *opti
  *
  * @param options The PackingOptions pointer will be operated. Pointer connot be null.
  * @param desiredDynamicRange The number of dynamic range {@link IMAGE_PACKER_DYNAMIC_RANGE}. Pointer connot be null.
- * @return Returns {@link Image_ErrorCode} IMAGE_SUCCESS - The operation is successful.
- * returns {@link Image_ErrorCode} IMAGE_BAD_PARAMETER - Parameter error.Possible causes:Parameter verification failed.
+ * @return Image functions result code.
+ *         {@link IMAGE_SUCCESS} if the execution is successful.
+ *         {@link IMAGE_BAD_PARAMETER} options is nullptr, or desiredDynamicRange is nullptr.
  * @since 12
  */
 Image_ErrorCode OH_PackingOptions_GetDesiredDynamicRange(OH_PackingOptions *options, int32_t* desiredDynamicRange);
@@ -194,8 +211,9 @@ Image_ErrorCode OH_PackingOptions_GetDesiredDynamicRange(OH_PackingOptions *opti
  *
  * @param options The PackingOptions pointer will be operated. Pointer connot be null.
  * @param desiredDynamicRange The number of dynamic range {@link IMAGE_PACKER_DYNAMIC_RANGE}.
- * @return Returns {@link Image_ErrorCode} IMAGE_SUCCESS - The operation is successful.
- * returns {@link Image_ErrorCode} IMAGE_BAD_PARAMETER - Parameter error.Possible causes:Parameter verification failed.
+ * @return Image functions result code.
+ *         {@link IMAGE_SUCCESS} if the execution is successful.
+ *         {@link IMAGE_BAD_PARAMETER} options is nullptr.
  * @since 12
  */
 Image_ErrorCode OH_PackingOptions_SetDesiredDynamicRange(OH_PackingOptions *options, int32_t desiredDynamicRange);
@@ -204,7 +222,9 @@ Image_ErrorCode OH_PackingOptions_SetDesiredDynamicRange(OH_PackingOptions *opti
  * @brief delete OH_PackingOptions pointer.
  *
  * @param options The OH_PackingOptions pointer will be operated.
- * @return Returns {@link Image_ErrorCode}
+ * @return Image functions result code.
+ *         {@link IMAGE_SUCCESS} if the execution is successful.
+ *         {@link IMAGE_BAD_PARAMETER} options is nullptr.
  * @since 12
  */
 Image_ErrorCode OH_PackingOptions_Release(OH_PackingOptions *options);
@@ -354,7 +374,11 @@ Image_ErrorCode OH_ImagePackerNative_Create(OH_ImagePackerNative **imagePacker);
  * @param imageSource The imageSource to be packed.
  * @param outData The output data buffer to store the packed image.
  * @param size A pointer to the size of the output data buffer.
- * @return Returns {@link Image_ErrorCode}
+ * @return Image functions result code.
+ *         {@link IMAGE_SUCCESS} if the execution is successful.
+ *         {@link IMAGE_BAD_PARAMETER}imagePacker is nullptr, or options is nullptr,
+ *         or imageSource is nullptr, or outData is nullptr.
+ *         {@link IMAGE_ENCODE_FAILED} encode failed.
  * @since 12
  */
 Image_ErrorCode OH_ImagePackerNative_PackToDataFromImageSource(OH_ImagePackerNative *imagePacker,
@@ -368,7 +392,11 @@ Image_ErrorCode OH_ImagePackerNative_PackToDataFromImageSource(OH_ImagePackerNat
  * @param pixelmap The pixelmap to be packed.
  * @param outData The output data buffer to store the packed image.
  * @param size A pointer to the size of the output data buffer.
- * @return Returns {@link Image_ErrorCode}
+ * @return Image functions result code.
+ *         {@link IMAGE_SUCCESS} if the execution is successful.
+ *         {@link IMAGE_BAD_PARAMETER}imagePacker is nullptr, or options is nullptr,
+ *         or pixelmap is nullptr, or outData is nullptr.
+ *         {@link IMAGE_ENCODE_FAILED} encode failed.
  * @since 12
  */
 Image_ErrorCode OH_ImagePackerNative_PackToDataFromPixelmap(OH_ImagePackerNative *imagePacker,
@@ -418,7 +446,11 @@ Image_ErrorCode OH_ImagePackerNative_PackToDataFromPixelmapSequence(OH_ImagePack
  * @param options Indicates the encoding {@link OH_PackingOptions}.
  * @param imageSource The imageSource to be packed.
  * @param fd Indicates a writable file descriptor.
- * @return Returns {@link Image_ErrorCode}
+ * @return Image functions result code.
+ *         {@link IMAGE_SUCCESS} if the execution is successful.
+ *         {@link IMAGE_BAD_PARAMETER}imagePacker is nullptr, or options is nullptr,
+ *         or imageSource is nullptr, or fd is invalid.
+ *         {@link IMAGE_ENCODE_FAILED} encode failed.
  * @since 12
  */
 Image_ErrorCode OH_ImagePackerNative_PackToFileFromImageSource(OH_ImagePackerNative *imagePacker,
@@ -431,7 +463,11 @@ Image_ErrorCode OH_ImagePackerNative_PackToFileFromImageSource(OH_ImagePackerNat
   * @param options Indicates the encoding {@link OH_PackingOptions}.
   * @param pixelmap The pixelmap to be packed.
   * @param fd Indicates a writable file descriptor.
-  * @return Returns {@link Image_ErrorCode}
+  * @return @return Image functions result code.
+ *         {@link IMAGE_SUCCESS} if the execution is successful.
+ *         {@link IMAGE_BAD_PARAMETER}imagePacker is nullptr, or options is nullptr,
+ *         or pixelmap is nullptr, or fd is invalid.
+ *         {@link IMAGE_ENCODE_FAILED} encode failed.
   * @since 12
  */
 Image_ErrorCode OH_ImagePackerNative_PackToFileFromPixelmap(OH_ImagePackerNative *imagePacker,
@@ -474,7 +510,9 @@ Image_ErrorCode OH_ImagePackerNative_PackToFileFromPixelmapSequence(OH_ImagePack
   * @brief Releases an imagePacker object.
   *
   * @param imagePacker A pointer to the image packer object to be released.
-  * @return Returns {@link Image_ErrorCode}
+  * @return Returns Image functions result code.
+ *         {@link IMAGE_SUCCESS} if the execution is successful.
+ *         {@link IMAGE_BAD_PARAMETER} imagePacker is nullptr.
   * @since 12
  */
 Image_ErrorCode OH_ImagePackerNative_Release(OH_ImagePackerNative *imagePacker);
