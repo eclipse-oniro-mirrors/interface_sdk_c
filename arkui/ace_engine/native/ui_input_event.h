@@ -103,9 +103,9 @@ typedef enum {
     ARKUI_UIINPUTEVENT_TYPE_AXIS = 2,
     /** Mouse event. */
     ARKUI_UIINPUTEVENT_TYPE_MOUSE = 3,
-    /** 
+    /**
      * @brief key event.
-     * 
+     *
      * @since 20
      */
     ARKUI_UIINPUTEVENT_TYPE_KEY = 4,
@@ -502,7 +502,7 @@ int32_t OH_ArkUI_UIInputEvent_GetSourceType(const ArkUI_UIInputEvent* event);
 
 /**
  * @brief Obtains the tool type of a UI input event.
- * 
+ *
  * The input tool is the device used to interact with the input source, such as a finger or stylus.
  * It is defined by the UI_INPUT_EVENT_TOOL_TYPE_XXX enum.
  * These tools do not produce events directly but drive the input source to generate them.
@@ -1565,7 +1565,7 @@ int32_t OH_ArkUI_PointerEvent_PostClonedEvent(ArkUI_NodeHandle node, const ArkUI
  * In most cases, this method is unnecessary unless you need to determine if the return value indicates an error.
  * Here's an example of usage: For return values like float (where 0.0 doesn't indicate an error), use GetLatestStatus
  * to confirm if an error occurred.
- *    float x = OH_ArkUI_PointerEvent_GetX(event); 
+ *    float x = OH_ArkUI_PointerEvent_GetX(event);
  *    if (ARKUI_ERROR_CODE_NO_ERROR != OH_ArkUI_UIInputEvent_GetLatestStatus()) {
  *        // error
  *        return;
