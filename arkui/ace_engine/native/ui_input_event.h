@@ -1559,6 +1559,7 @@ int32_t OH_ArkUI_PointerEvent_SetClonedEventFingerIdByIndex(
  */
 int32_t OH_ArkUI_PointerEvent_PostClonedEvent(ArkUI_NodeHandle node, const ArkUI_UIInputEvent* event);
 
+
 /**
  * @brief Use this method to obtain the execution status of the latest UI input related method.
  *
