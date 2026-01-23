@@ -4996,5 +4996,17 @@
     {
         "first_introduced": "24",
         "name": "OH_ArkUI_NativeModule_GetPageRootNodeHandleByContext"
+    },
+    {
+        "first_introduced": "24",
+        "name": "OH_ArkUI_TextLayoutManager_GetCharacterPositionAtCoordinate"
+    },
+    {
+        "first_introduced": "24",
+        "name": "OH_ArkUI_TextLayoutManager_GetGlyphRangeForCharacterRange"
+    },
+    {
+        "first_introduced": "24",
+        "name": "OH_ArkUI_TextLayoutManager_GetCharacterRangeForGlyphRange"
     }
 ]
