@@ -11860,7 +11860,7 @@ ArkUI_ErrorCode OH_ArkUI_RemoveSupportedUIStates(ArkUI_NodeHandle node, int32_t 
 /**
  * @brief Run a custom function inside the UIContext scope.
  *
- * @param uiContext ArkUI_ContextHandle.
+ * @param uiContext Indicates the pointer to a UI instance.
  * @param userData Indicates the pointer to the custom data.
  * @param callback The custom function.
  * @return Returns the result code.
