@@ -2784,7 +2784,7 @@ typedef enum {
      * @since 20
      */
     NODE_TEXT_LINE_COUNT = 1031,
-
+ 
     /**
      * @brief Sets whether to optimize the trailing spaces at the end of each line during text layout.
      * This attribute can be set, reset, and obtained as required through APIs.
@@ -2799,6 +2799,7 @@ typedef enum {
      * @since 20
      */
     NODE_TEXT_OPTIMIZE_TRAILING_SPACE = 1032,
+
     /**
      * @brief Sets a linear gradient effect for text.
      * This attribute can be set, reset, and obtained as required through APIs.
@@ -4095,6 +4096,7 @@ typedef enum {
      * @since 15
      */
     NODE_TEXT_INPUT_LETTER_SPACING = 7032,
+
     /**
      * @brief Sets whether to enable preview text for the <b>TextInput</b> component.
      * This attribute can be set, reset, and obtained as required through APIs.
@@ -4146,8 +4148,8 @@ typedef enum {
      *
      * @since 20
      */
-     NODE_TEXT_INPUT_ENABLE_FILL_ANIMATION = 7036,
-     
+    NODE_TEXT_INPUT_ENABLE_FILL_ANIMATION = 7036,
+
     /**
      * @brief Set the line height of the input node.
      * This attribute can be set, reset, and obtained as required through APIs.
@@ -4597,6 +4599,7 @@ typedef enum {
      *
      */
     NODE_TEXT_AREA_SHOW_KEYBOARD_ON_FOCUS,
+
     /**
      * @brief When this property is set, the height of the textArea component is calculated using this property.
      *
@@ -4688,19 +4691,19 @@ typedef enum {
      */
     NODE_TEXT_AREA_LINE_SPACING = 8028,
 
-	/**
-    * @brief Set the min lines of the node. This attribute can be set, reset, and obtained as required through APIs.
-    *
-    * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-    * .value[0].i32: min lines count.
-    * \n
-    * Format of the return value {@link ArkUI_AttributeItem}: \n
-    * .value[0].i32: min line count.\n
-    *
-    * @since 20
-    * 
-    */
-   NODE_TEXT_AREA_MIN_LINES = 8029,
+    /**
+     * @brief Set the min lines of the node. This attribute can be set, reset, and obtained as required through APIs.
+     *
+     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
+     * .value[0].i32: min lines count.
+     * \n
+     * Format of the return value {@link ArkUI_AttributeItem}: \n
+     * .value[0].i32: min line count.\n
+     *
+     * @since 20
+     * 
+     */
+    NODE_TEXT_AREA_MIN_LINES = 8029,
  
     /**
      * @brief Set the max lines of the node with scroll.
@@ -4714,7 +4717,7 @@ typedef enum {
      *
      * @since 20
      */
-   NODE_TEXT_AREA_MAX_LINES_WITH_SCROLL = 8030,
+    NODE_TEXT_AREA_MAX_LINES_WITH_SCROLL = 8030,
 
     /**
      * @brief Set the line height of the node. This attribute can be set, reset, and obtained as required through APIs.
@@ -4756,7 +4759,7 @@ typedef enum {
      * @since 22
      */
     NODE_TEXT_AREA_ENABLE_SELECTED_DATA_DETECTOR = 8033,
-    
+
     /**
      * @brief Defines the color of the scrollbar. This attribute can be set, reset, and obtained as required
      * through APIs.
@@ -4855,7 +4858,7 @@ typedef enum {
      * @since 23
      */
     NODE_TEXT_AREA_FALLBACK_LINE_SPACING = 8042,
-    
+
     /**
      * @brief Writing direction of the text.
      * This attribute can be set, reset, and obtained as required through APIs.
@@ -5435,7 +5438,7 @@ typedef enum {
      *
      */
     NODE_TIME_PICKER_SELECTED_TEXT_STYLE,
-     /**
+    /**
      * @brief Defines the start time of the time picker.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
