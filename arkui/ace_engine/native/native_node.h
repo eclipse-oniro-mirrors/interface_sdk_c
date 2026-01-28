@@ -2835,7 +2835,8 @@ typedef enum {
     NODE_TEXT_LINEAR_GRADIENT = 1033,
 
     /**
-     * @brief Sets a radial gradient effect for text. This attribute can be set, reset, and obtained as required through APIs.
+     * @brief Sets a radial gradient effect for text.
+     * This attribute can be set, reset, and obtained as required through APIs.
      *
      * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
      * .value[0]?.f32: X-coordinate of the radial gradient center relative to the upper left corner of the text. \n
