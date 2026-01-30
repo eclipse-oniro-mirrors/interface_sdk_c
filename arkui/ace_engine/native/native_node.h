@@ -9608,7 +9608,7 @@ typedef enum {
      * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
      * {@link ArkUI_NodeComponentEvent}. \n
      * {@link ArkUI_NodeComponentEvent} contains three parameters:\n
-     * <b>ArkUI_NodeComponentEvent.data[0].i32</b>: the index value of the current child page. Modify this value to control event interception: Set it to 0 to intercept, 1 to allow.\n
+     * <b>ArkUI_NodeComponentEvent.data[0].i32</b>: the index value of the current child page. \n
      * <b>ArkUI_NodeComponentEvent.data[1].i32</b>: the index value of the child page that will display. \n
      * <b>ArkUI_NodeComponentEvent.data[2].f32</b>: the sliding offset of each frame.
      * Positive numbers indicating slide backward(e.g. from index=1 to index=0), negative numbers indicating
