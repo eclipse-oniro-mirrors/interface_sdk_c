@@ -39,8 +39,25 @@
 extern "C" {
 #endif
 
+/**
+* @brief Maximum length of the HTTP request directory path.
+*
+* @since 20
+*/
 #define OHOS_HTTP_MAX_PATH_LEN 128
+
+/**
+* @brief Maximum length of the HTTP request string.
+*
+* @since 20
+*/
 #define OHOS_HTTP_MAX_STR_LEN 256
+
+/**
+* @brief Maximum number of DNS servers supported by an HTTP request.
+*
+* @since 20
+*/
 #define OHOS_HTTP_DNS_SERVER_NUM_MAX 3
 
 /**
