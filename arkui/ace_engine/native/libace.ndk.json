@@ -4984,5 +4984,9 @@
     {
         "first_introduced": "24",
         "name": "OH_ArkUI_Swiper_ShowNext"
+    },
+    {
+        "first_introduced": "24",
+        "name": "OH_ArkUI_NativeModule_GetPageRootNodeHandleByContext"
     }
 ]
