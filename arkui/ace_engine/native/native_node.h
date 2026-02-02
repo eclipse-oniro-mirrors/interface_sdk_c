@@ -3375,22 +3375,19 @@ typedef enum {
      */
     NODE_IMAGE_FILL_COLOR,
     /**
-     * @brief Resize the image when stretching it with array or a lattice object.
-     * The parameter types for setting and getting should be the same.
+     * @brief Sets the resizable image options.
      *
      * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
      * .value[0].f32: width of the left edge. The unit is vp. \n
      * .value[1].f32: width of the top edge. The unit is vp. \n
      * .value[2].f32: width of the right edge. The unit is vp. \n
      * .value[3].f32: width of the bottom edge. The unit is vp. \n
-     * .object: The parameter type is {@link OH_Drawing_Lattice},add since api 24.\n
-     * 
+     * \n
      * Format of the return value {@link ArkUI_AttributeItem}:\n
      * .value[0].f32: width of the left edge. The unit is vp. \n
      * .value[1].f32: width of the top edge. The unit is vp. \n
      * .value[2].f32: width of the right edge. The unit is vp. \n
      * .value[3].f32: width of the bottom edge. The unit is vp. \n
-     * .object: The parameter type is {@link OH_Drawing_Lattice},add since api 24.\n
      *
      */
     NODE_IMAGE_RESIZABLE,
@@ -3423,17 +3420,14 @@ typedef enum {
      */
     NODE_IMAGE_SOURCE_SIZE = 4013,
     /**
-     * @brief Support the implementation of affine image transformations using floating-point numbers or matrix objects.
+     * @brief Defines the display tranformation matrix for an image.
      * This attribute can be set, reset, and obtained as required through APIs.
-     * The parameter types for setting and getting should be the same.
      *
      * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
      * .value[0...15].f32: 16 floating-point numbers.\n
-     * .object: The parameter type is {@link ArkUI_Matrix4},add since api 24.\n
-     * 
+     * \n
      * Format of the return value {@link ArkUI_AttributeItem}:\n
      * .value[0...15].f32: 16 floating-point numbers.\n
-     * .object: The parameter type is {@link ArkUI_Matrix4},add since api 24.\n
      *
      * @since 21
      */
