@@ -202,57 +202,5 @@
     {
         "first_introduced": "23",
         "name": "OH_AbilityRuntime_ApplicationContextNotifyPageChanged"
-    },
-    {
-        "first_introduced": "24",
-        "name": "OH_AbilityRuntime_Context_GetCacheDir"
-    },
-    {
-        "first_introduced": "24",
-        "name": "OH_AbilityRuntime_Context_GetTempDir"
-    },
-    {
-        "first_introduced": "24",
-        "name": "OH_AbilityRuntime_Context_GetFilesDir"
-    },
-    {
-        "first_introduced": "24",
-        "name": "OH_AbilityRuntime_Context_GetDatabaseDir"
-    },
-    {
-        "first_introduced": "24",
-        "name": "OH_AbilityRuntime_Context_GetPreferencesDir"
-    },
-    {
-        "first_introduced": "24",
-        "name": "OH_AbilityRuntime_Context_GetBundleCodeDir"
-    },
-    {
-        "first_introduced": "24",
-        "name": "OH_AbilityRuntime_Context_GetDistributedFilesDir"
-    },
-    {
-        "first_introduced": "24",
-        "name": "OH_AbilityRuntime_Context_GetResourceDir"
-    },
-    {
-        "first_introduced": "24",
-        "name": "OH_AbilityRuntime_Context_GetCloudFileDir"
-    },
-    {
-        "first_introduced": "24",
-        "name": "OH_AbilityRuntime_Context_GetAreaMode"
-    },
-    {
-        "first_introduced": "24",
-        "name": "OH_AbilityRuntime_Context_SetAreaMode"
-    },
-    {
-        "first_introduced": "24",
-        "name": "OH_AbilityRuntime_Context_GetLogFileDir"
-    },
-    {
-        "first_introduced": "24",
-        "name": "OH_AbilityRuntime_Context_GetProcessName"
     }
 ]
