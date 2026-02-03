@@ -1,0 +1,22 @@
+[
+    {
+        "first_introduced": "24",
+        "name": "OH_Http_AddInterceptor"
+    },
+    {
+        "first_introduced": "24",
+        "name": "OH_Http_RemoveInterceptor"
+    },
+    {
+        "first_introduced": "24",
+        "name": "OH_Http_RemoveAllInterceptors"
+    },
+    {
+        "first_introduced": "24",
+        "name": "OH_Http_StartAllInterceptors"
+    },
+    {
+        "first_introduced": "24",
+        "name": "OH_Http_StopAllInterceptors"
+    }
+]
