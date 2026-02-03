@@ -249,22 +249,12 @@ typedef enum {
  * @version 1.0
  */
 typedef enum {
-    /** Head modal. It is valid only when maxLine is set to 1 in OH_Drawing_TypographyStyle. */
+    /** Head modal */
     ELLIPSIS_MODAL_HEAD = 0,
-    /** Middle modal. It is valid only when maxLine is set to 1 in OH_Drawing_TypographyStyle. */
+    /** Middle modal */
     ELLIPSIS_MODAL_MIDDLE = 1,
     /** Tail modal */
     ELLIPSIS_MODAL_TAIL = 2,
-    /**
-     * Head modal. It is valid for any value of maxLines in OH_Drawing_TypographyStyle.
-     * @since 24
-     */
-    ELLIPSIS_MODAL_MULTILINE_HEAD = 3,
-    /**
-     * Middle modal. It is valid for any value of maxLines in OH_Drawing_TypographyStyle.
-     * @since 24
-     */
-    ELLIPSIS_MODAL_MULTILINE_MIDDLE = 4,
 } OH_Drawing_EllipsisModal;
 
 /**
@@ -652,11 +642,6 @@ typedef enum OH_Drawing_TypographyStyleAttributeId {
      * @since 23
      */
     TYPOGRAPHY_STYLE_ATTR_B_FALLBACK_LINE_SPACING = 7,
-    /**
-     * Ellipsis modal
-     * @since 24
-     */
-    TYPOGRAPHY_STYLE_ATTR_I_ELLIPSIS_MODAL = 8,
 } OH_Drawing_TypographyStyleAttributeId;
 
 /**
