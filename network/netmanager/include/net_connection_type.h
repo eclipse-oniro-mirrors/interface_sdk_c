@@ -46,13 +46,60 @@
 extern "C" {
 #endif
 
+/**
+ * @brief Length of the netHandles array in the member variable of NetConn_NetHandleList.
+ *
+ * @since 11
+ */
 #define NETCONN_MAX_NET_SIZE 32
+
+/**
+ * @brief Length of the bearerTypes array in the NetConn_NetCapabilities member variable.
+ *
+ * @since 11
+ */
 #define NETCONN_MAX_BEARER_TYPE_SIZE 32
+
+/**
+ * @brief Length of the netCaps array in the NetConn_NetCapabilities member variable.
+ *
+ * @since 11
+ */
 #define NETCONN_MAX_CAP_SIZE 32
+
+/**
+ * @brief Length of the netAddrlist and dnsList arrays in the NetConn_ConnectionProperties member variable.
+ *
+ * @since 11
+ */
 #define NETCONN_MAX_ADDR_SIZE 32
+
+/**
+ * @brief Length of the routeList array in the NetConn_ConnectionProperties member variable.
+ *
+ * @since 11
+ */
 #define NETCONN_MAX_ROUTE_SIZE 64
+
+/**
+ * @brief Length of the exclusionList array in the NetConn_HttpProxy member variable.
+ *
+ * @since 11
+ */
 #define NETCONN_MAX_EXCLUSION_SIZE 256
+
+/**
+ * @brief Length of the host array of the NetConn_HttpProxy member variable.
+ *
+ * @since 11
+ */
 #define NETCONN_MAX_STR_LEN 256
+
+/**
+ * @brief Length of the rtts array in the NetConn_ProbeResultlnfo member variable.
+ *
+ * @since 11
+ */
 #define NETCONN_MAX_RTT_NUM 4
 
 /**
