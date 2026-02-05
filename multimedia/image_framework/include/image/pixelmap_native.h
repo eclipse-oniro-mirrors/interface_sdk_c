@@ -1019,8 +1019,8 @@ Image_ErrorCode OH_PixelmapNative_Rotate(OH_PixelmapNative *pixelmap, float angl
  * @brief Flips this image horizontally or vertically, or both.
  *
  * @param pixelmap The Pixelmap pointer will be operated.
- * @param shouldFilpHorizontally Whether to flip the image horizontally.
- * @param shouldFilpVertically Whether to flip the image vertically.
+ * @param shouldFlipHorizontally Whether to flip the image horizontally.
+ * @param shouldFlipVertically Whether to flip the image vertically.
  * @return Function result code:
  *         {@link IMAGE_SUCCESS} - The operation is successful.
  *         {@link IMAGE_BAD_PARAMETER} - Parameter error.Possible causes:
@@ -1028,7 +1028,8 @@ Image_ErrorCode OH_PixelmapNative_Rotate(OH_PixelmapNative *pixelmap, float angl
  *         2.pixelmap's inner pixelmap is nullptr.
  * @since 12
  */
-Image_ErrorCode OH_PixelmapNative_Flip(OH_PixelmapNative *pixelmap, bool shouldFilpHorizontally, bool shouldFilpVertically);
+Image_ErrorCode OH_PixelmapNative_Flip(OH_PixelmapNative *pixelmap, bool shouldFlipHorizontally,
+    bool shouldFlipVertically);
 
 /**
  * @brief Crops this image based on the input size.
