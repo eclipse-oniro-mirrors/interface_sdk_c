@@ -26,7 +26,7 @@ ohos_ndk_library("libohmidi_ndk") {
   output_name = "ohmidi"
   output_extension = "so"
   ndk_description_file = "./ohmidi.ndk.json"
-  system_capability = "SystemCapability.Multimedia.Audio.Core"
+  system_capability = "SystemCapability.Multimedia.Audio.MIDI"
   system_capability_headers = [
     "native_midi_base.h",
     "native_midi.h",

@@ -1,54 +1,62 @@
 [
     {
         "first_introduced": "24",
-        "name": "OH_MidiClient_Create"
+        "name": "OH_MIDIClientCreate"
     },
     {
         "first_introduced": "24",
-        "name": "OH_MidiClient_Destroy"
+        "name": "OH_MIDIClientDestroy"
     },
     {
         "first_introduced": "24",
-        "name": "OH_MidiGetDevices"
+        "name": "OH_MIDIGetPortCount"
     },
     {
         "first_introduced": "24",
-        "name": "OH_MidiOpenDevice"
+        "name": "OH_MIDIGetPortInfos"
     },
     {
         "first_introduced": "24",
-        "name": "OH_MidiOpenBleDevice"
+        "name": "OH_MIDIOpenDevice"
     },
     {
         "first_introduced": "24",
-        "name": "OH_MidiCloseDevice"
+        "name": "OH_MIDIOpenBleDevice"
     },
     {
         "first_introduced": "24",
-        "name": "OH_MidiGetDevicePorts"
+        "name": "OH_MIDICloseDevice"
     },
     {
         "first_introduced": "24",
-        "name": "OH_MidiOpenInputPort"
+        "name": "OH_MIDIGetDeviceCount"
     },
     {
         "first_introduced": "24",
-        "name": "OH_MidiOpenOutputPort"
+        "name": "OH_MIDIGetDeviceInfos"
     },
     {
         "first_introduced": "24",
-        "name": "OH_MidiClosePort"
+        "name": "OH_MIDIOpenInputPort"
     },
     {
         "first_introduced": "24",
-        "name": "OH_MidiSend"
+        "name": "OH_MIDIOpenOutputPort"
     },
     {
         "first_introduced": "24",
-        "name": "OH_MidiSendSysEx"
+        "name": "OH_MIDIClosePort"
     },
     {
         "first_introduced": "24",
-        "name": "OH_MidiFlushOutputPort"
+        "name": "OH_MIDISend"
+    },
+    {
+        "first_introduced": "24",
+        "name": "OH_MIDISendSysEx"
+    },
+    {
+        "first_introduced": "24",
+        "name": "OH_MIDIFlushOutputPort"
     }
 ]
