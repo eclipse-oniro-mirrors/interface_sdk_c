@@ -8884,6 +8884,21 @@ typedef enum {
     NODE_ON_STACK_OVERFLOW_SCROLL = 35,
 
     /**
+     * @brief Defines the event triggered when the component is focused and need to decide whether softkeyboard is needed.
+     *
+     * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
+     * {@link ArkUI_NodeComponentEvent}. \n
+     * {@link ArkUI_NodeComponentEvent} does not contain parameters.
+     *
+     * @return Whether softkeyboard is needed. \n
+     * You can set the return value using <b>OH_ArkUI_NodeEvent_SetReturnNumberValue</b>. \n
+     * value.i32 at index 0 in the return value indicates whether softkeyboard is needed.
+     * <b>0</b>: not needed. <b>1</b>: needed. \n
+     * @since 24
+     */
+    NODE_ON_NEED_SOFTKEYBOARD = 36,
+
+    /**
      * @brief Triggers onDetectResultUpdate callback
      * when the text is set to TextDataDetectorConfig and recognized successfully.
      *
