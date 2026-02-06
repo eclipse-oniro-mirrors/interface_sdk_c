@@ -121,6 +121,12 @@ typedef enum {
     MIDI_STATUS_PORT_ALREADY_OPEN,
 
     /**
+     * @error The system-wide or per-application limit for MIDI clients has been reached.
+     * The application should wait or release other resources before retrying.
+     */
+    MIDI_STATUS_TOO_MANY_CLIENTS,
+
+    /**
      * @error The MIDI system service has died or disconnected.
      * The client must be destroyed and recreated.
      */

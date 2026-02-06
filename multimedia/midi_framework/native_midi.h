@@ -48,12 +48,23 @@ extern "C" {
 /**
  * @brief Create MIDI client instance
  *
+ * @note **Resource Management & Best Practices**:
+ * MIDI is a delay-sensitive system service. To ensure real-time performance (QoS)
+ * and system stability, the service enforces the following limits:
+ * 1. **System-wide limit**: A global maximum number of active MIDI clients allowed.
+ * 2. **Per-Application limit**: A maximum number of MIDI clients allowed per App UID.
+ *
+ * Applications are **strongly recommended** to maintain a single `OH_MIDIClient`
+ * instance throughout their lifecycle and use it to manage multiple devices/ports.
+ *
  * @param client Pointer to receive the new client handle.
  * @param callbacks Callback structure for system events.
  * @param userData User context to be passed to callbacks.
  * @return {@link #MIDI_STATUS_OK} if execution succeeds,
  * or {@link #MIDI_STATUS_GENERIC_INVALID_ARGUMENT} if client is nullptr.
  * or {@link #MIDI_STATUS_GENERIC_IPC_FAILURE} if connection to system service fails.
+ * or {@link #MIDI_STATUS_TOO_MANY_CLIENTS} if creation failed due to resource limits.
+ * This occurs if the calling application exceeded its per-UID quota or the system is busy.
  * @since 24
  */
 OH_MIDIStatusCode OH_MIDIClientCreate(OH_MIDIClient **client, OH_MIDICallbacks callbacks, void *userData);
@@ -65,13 +76,9 @@ OH_MIDIStatusCode OH_MIDIClientCreate(OH_MIDIClient **client, OH_MIDICallbacks c
  * @return {@link #MIDI_STATUS_OK} if execution succeeds.
  * or {@link #MIDI_STATUS_INVALID_CLIENT} if client is NULL or invalid.
  * or {@link #MIDI_STATUS_GENERIC_IPC_FAILURE} if connection to system service fails.
- * @warning All devices and ports opened through this client must be closed
- * in reverse order before destroying the client:
- * 1. Close all ports (OH_MIDIClosePort)
- * 2. Close all devices (OH_MIDICloseDevice)
- * 3. Destroy client (OH_MIDIClientDestroy)
- *
- * Failing to follow this order may result in resource leaks.
+ * @note Destroying client automatically closes all devices and ports (anti-failure mechanism).
+ * It is recommended to close resources in reverse order (ports→devices→client) for code clarity,
+ * but this is not a mandatory requirement.
  * @since 24
  */
 OH_MIDIStatusCode OH_MIDIClientDestroy(OH_MIDIClient *client);
@@ -160,6 +167,8 @@ OH_MIDIStatusCode OH_MIDIOpenBleDevice(OH_MIDIClient *client, const char *device
 
 /**
  * @brief Close MIDI device
+ *
+ * @note Closing a device automatically closes all opened ports on that device.
  *
  * @param device Target device handle.
  * @return {@link #MIDI_STATUS_OK} if execution succeeds.
