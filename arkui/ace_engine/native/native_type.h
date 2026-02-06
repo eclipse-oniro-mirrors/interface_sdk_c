@@ -6923,7 +6923,7 @@ typedef enum {
  */
 typedef enum {
     /**
-     * Places as many words on a line as possible
+     * Puts as many words on a line as possible
      * and moves to the next line only if no more words can fit into the same line.
      *
      * @since 24
