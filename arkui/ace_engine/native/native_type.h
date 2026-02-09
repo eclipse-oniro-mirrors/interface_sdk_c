@@ -6827,6 +6827,67 @@ typedef struct OH_ArkUI_TextDataDetectorConfig OH_ArkUI_TextDataDetectorConfig;
 typedef struct OH_ArkUI_TextEditorSelectionMenuOptions OH_ArkUI_TextEditorSelectionMenuOptions;
 
 /**
+ * @brief Defines prompt options when text editor has no input.
+ *
+ * @since 24
+ */
+typedef struct OH_ArkUI_TextEditorPlaceholderOptions OH_ArkUI_TextEditorPlaceholderOptions;
+
+/**
+ * @brief Defines styled string controller for text editor.
+ *
+ * @since 24
+ */
+typedef struct OH_ArkUI_TextEditorStyledStringController OH_ArkUI_TextEditorStyledStringController;
+
+/**
+ * @brief Defines paragraph style for text editor.
+ *
+ * @since 24
+ */
+typedef struct OH_ArkUI_TextEditorParagraphStyle OH_ArkUI_TextEditorParagraphStyle;
+
+/**
+ * @brief Defines shadow options.
+ *
+ * @since 24
+ */
+typedef struct OH_ArkUI_ShadowOptions OH_ArkUI_ShadowOptions;
+
+/**
+ * @brief Defines text style for text editor.
+ *
+ * @since 24
+ */
+typedef struct OH_ArkUI_TextEditorTextStyle OH_ArkUI_TextEditorTextStyle;
+
+/**
+ * @brief Enumerates the haptic feedback mode.
+ *
+ * @since 24
+ */
+typedef enum {
+    /**
+     * No haptic feedback.
+     *
+     * @since 24
+     */
+    OH_ARKUI_HAPTIC_FEEDBACK_MODE_DISABLED = 0,
+    /**
+     * Defines always haptic feedback.
+     *
+     * @since 24
+     */
+    OH_ARKUI_HAPTIC_FEEDBACK_MODE_ENABLED = 1,
+    /**
+     * Defines automatically haptic feedback.
+     *
+     * @since 24
+     */
+    OH_ARKUI_HAPTIC_FEEDBACK_MODE_AUTO = 2,
+} OH_ArkUI_HapticFeedbackMode;
+
+/**
  * @brief Enumerates the text editor span type.
  *
  * @since 24
@@ -7587,27 +7648,27 @@ void OH_ArkUI_DecorationStyleOptions_Destroy(OH_ArkUI_DecorationStyleOptions* op
  * @brief Sets the decoration type of decoration line style.
  *
  * @param options Pointer to the {@link OH_ArkUI_DecorationStyleOptions} object.
- * @param type The decoration type {@link OH_ArkUI_TextDecorationType}.
+ * @param type The decoration type {@link ArkUI_TextDecorationType}.
  * @return Returns the result code.
  *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
  *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_DecorationStyleOptions_SetTextDecorationType(OH_ArkUI_DecorationStyleOptions* options,
-    OH_ArkUI_TextDecorationType type);
+    ArkUI_TextDecorationType type);
 
 /**
  * @brief Gets the decoration type of decoration line style.
  *
  * @param options Pointer to the {@link OH_ArkUI_DecorationStyleOptions} object.
- * @param type The decoration type {@link OH_ArkUI_TextDecorationType}.
+ * @param type The decoration type {@link ArkUI_TextDecorationType}.
  * @return Returns the result code.
  *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
  *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_DecorationStyleOptions_GetTextDecorationType(OH_ArkUI_DecorationStyleOptions* options,
-    OH_ArkUI_TextDecorationType* type);
+    ArkUI_TextDecorationType* type);
 
 /**
  * @brief Sets the color of decoration line.
@@ -7714,7 +7775,7 @@ void OH_ArkUI_TextDataDetectorConfig_Destroy(OH_ArkUI_TextDataDetectorConfig* co
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_TextDataDetectorConfig_SetTypes(
-    OH_ArkUI_TextDataDetectorConfig* config, const OH_ArkUI_TextDataDetectorType* types, int32_t length);
+    OH_ArkUI_TextDataDetectorConfig* config, const ArkUI_TextDataDetectorType* types, int32_t length);
 
 /**
  * @brief Gets the types of data detector config.
@@ -7732,7 +7793,7 @@ ArkUI_ErrorCode OH_ArkUI_TextDataDetectorConfig_SetTypes(
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_TextDataDetectorConfig_GetTypes(OH_ArkUI_TextDataDetectorConfig* config,
-    OH_ArkUI_TextDataDetectorType* buffer, int32_t bufferSize, int32_t* writeLength);
+    ArkUI_TextDataDetectorType* buffer, int32_t bufferSize, int32_t* writeLength);
 
 /**
  * @brief Sets the event to be called when data detector works.
@@ -7824,13 +7885,6 @@ ArkUI_ErrorCode OH_ArkUI_TextDataDetectorConfig_SetEnablePreviewMenu(
  */
 ArkUI_ErrorCode OH_ArkUI_TextDataDetectorConfig_GetEnablePreviewMenu(
     OH_ArkUI_TextDataDetectorConfig* config, bool* enablePreviewMenu);
-
-/**
- * @brief Defines prompt options when text editor has no input.
- *
- * @since 24
- */
-typedef struct OH_ArkUI_TextEditorPlaceholderOptions OH_ArkUI_TextEditorPlaceholderOptions;
 
 /**
  * @brief Create a placeholder options object.
@@ -8020,13 +8074,6 @@ ArkUI_ErrorCode OH_ArkUI_TextEditorPlaceholderOptions_GetFontColor(OH_ArkUI_Text
     uint32_t* fontColor);
 
 /**
- * @brief Defines styled string controller for text editor.
- *
- * @since 24
- */
-typedef struct OH_ArkUI_TextEditorStyledStringController OH_ArkUI_TextEditorStyledStringController;
-
-/**
  * @brief Create a styled string controller object for text editor.
  * When the object is no longer in use, invoke {@link OH_ArkUI_TextEditorStyledStringController_Destroy} to destroy it.
  *
@@ -8154,13 +8201,6 @@ ArkUI_ErrorCode OH_ArkUI_TextEditorStyledStringController_GetCaretRect(
  */
 ArkUI_ErrorCode OH_ArkUI_TextEditorStyledStringController_DeleteBackward(
     OH_ArkUI_TextEditorStyledStringController* controller);
-
-/**
- * @brief Defines paragraph style for text editor.
- *
- * @since 24
- */
-typedef struct OH_ArkUI_TextEditorParagraphStyle OH_ArkUI_TextEditorParagraphStyle;
 
 /**
  * @brief Create a paragraph style object for text editor.
@@ -8320,7 +8360,7 @@ ArkUI_ErrorCode OH_ArkUI_TextEditorParagraphStyle_GetWordBreak(OH_ArkUI_TextEdit
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_TextEditorParagraphStyle_SetLineBreakStrategy(OH_ArkUI_TextEditorParagraphStyle* style,
-    ArkUI_LineBreakStrategy lineBreakStrategy);
+    OH_ArkUI_LineBreakStrategy lineBreakStrategy);
 
 /**
  * @brief Get line break strategy of paragraph style.
@@ -8333,7 +8373,7 @@ ArkUI_ErrorCode OH_ArkUI_TextEditorParagraphStyle_SetLineBreakStrategy(OH_ArkUI_
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_TextEditorParagraphStyle_GetLineBreakStrategy(OH_ArkUI_TextEditorParagraphStyle* style,
-    ArkUI_LineBreakStrategy* lineBreakStrategy);
+    OH_ArkUI_LineBreakStrategy* lineBreakStrategy);
 
 /**
  * @brief Set paragraph spacing of paragraph style.
@@ -8425,13 +8465,6 @@ ArkUI_ErrorCode OH_ArkUI_TextEditorParagraphStyle_GetTextDirection(OH_ArkUI_Text
  */
 ArkUI_ErrorCode OH_ArkUI_TextEditorStyledStringController_SetTypingParagraphStyle(
     OH_ArkUI_TextEditorStyledStringController* controller, OH_ArkUI_TextEditorParagraphStyle* style);
-
-/**
- * @brief Defines shadow options.
- *
- * @since 24
- */
-typedef struct OH_ArkUI_ShadowOptions OH_ArkUI_ShadowOptions;
 
 /**
  * @brief Create a shadow options object.
@@ -8593,13 +8626,6 @@ ArkUI_ErrorCode OH_ArkUI_ShadowOptions_SetFill(OH_ArkUI_ShadowOptions* options, 
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_ShadowOptions_GetFill(OH_ArkUI_ShadowOptions* options, bool* isFill);
-
-/**
- * @brief Defines text style for text editor.
- *
- * @since 24
- */
-typedef struct OH_ArkUI_TextEditorTextStyle OH_ArkUI_TextEditorTextStyle;
 
 /**
  * @brief Create a text style object.
@@ -9020,7 +9046,7 @@ void OH_ArkUI_TextEditorSelectionMenuOptions_Destroy(OH_ArkUI_TextEditorSelectio
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_TextEditorSelectionMenuOptions_SetSpanType(
-    OH_ArkUI_TextEditorSelectionMenuOptions* options, ArkUI_TextEditorSpanType textEditorSpanType);
+    OH_ArkUI_TextEditorSelectionMenuOptions* options, OH_ArkUI_TextEditorSpanType textEditorSpanType);
 
 /**
  * @brief Gets the span type of selection menu in TextEditor.
@@ -9033,7 +9059,7 @@ ArkUI_ErrorCode OH_ArkUI_TextEditorSelectionMenuOptions_SetSpanType(
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_TextEditorSelectionMenuOptions_GetSpanType(
-    OH_ArkUI_TextEditorSelectionMenuOptions* options, ArkUI_TextEditorSpanType* textEditorSpanType);
+    OH_ArkUI_TextEditorSelectionMenuOptions* options, OH_ArkUI_TextEditorSpanType* textEditorSpanType);
 
 /**
  * @brief Sets the content of selection menu in TextEditor.
@@ -9072,7 +9098,7 @@ ArkUI_ErrorCode OH_ArkUI_TextEditorSelectionMenuOptions_GetContentNode(OH_ArkUI_
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_TextEditorSelectionMenuOptions_SetResponseType(
-    OH_ArkUI_TextEditorSelectionMenuOptions* options, ArkUI_TextEditorResponseType responseType);
+    OH_ArkUI_TextEditorSelectionMenuOptions* options, OH_ArkUI_TextEditorResponseType responseType);
 
 /**
  * @brief Gets the response type of selection menu in TextEditor.
@@ -9085,7 +9111,7 @@ ArkUI_ErrorCode OH_ArkUI_TextEditorSelectionMenuOptions_SetResponseType(
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_TextEditorSelectionMenuOptions_GetResponseType(
-    OH_ArkUI_TextEditorSelectionMenuOptions* options, ArkUI_TextEditorResponseType* responseType);
+    OH_ArkUI_TextEditorSelectionMenuOptions* options, OH_ArkUI_TextEditorResponseType* responseType);
 
 /**
  * @brief Sets the type of selection menu in TextEditor.
@@ -9098,7 +9124,7 @@ ArkUI_ErrorCode OH_ArkUI_TextEditorSelectionMenuOptions_GetResponseType(
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_TextEditorSelectionMenuOptions_SetMenuType(OH_ArkUI_TextEditorSelectionMenuOptions* options,
-    ArkUI_TextMenuType menuType);
+    OH_ArkUI_TextMenuType menuType);
 
 /**
  * @brief Gets the type of selection menu in TextEditor.
@@ -9111,7 +9137,7 @@ ArkUI_ErrorCode OH_ArkUI_TextEditorSelectionMenuOptions_SetMenuType(OH_ArkUI_Tex
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_TextEditorSelectionMenuOptions_GetMenuType(OH_ArkUI_TextEditorSelectionMenuOptions* options,
-    ArkUI_TextMenuType* menuType);
+    OH_ArkUI_TextMenuType* menuType);
 
 /**
  * @brief Sets the event to be called when selection menu shows.
@@ -9193,7 +9219,7 @@ ArkUI_ErrorCode OH_ArkUI_TextEditorSelectionMenuOptions_RegisterOnMenuDisappearC
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_TextEditorSelectionMenuOptions_SetHapticFeedbackMode(
-    OH_ArkUI_TextEditorSelectionMenuOptions* options, ArkUI_HapticFeedbackMode mode);
+    OH_ArkUI_TextEditorSelectionMenuOptions* options, OH_ArkUI_HapticFeedbackMode mode);
 
 /**
  * @brief Gets the haptic feedback mode of selection menu in TextEditor.
@@ -9206,7 +9232,7 @@ ArkUI_ErrorCode OH_ArkUI_TextEditorSelectionMenuOptions_SetHapticFeedbackMode(
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_TextEditorSelectionMenuOptions_GetHapticFeedbackMode(
-    OH_ArkUI_TextEditorSelectionMenuOptions* options, ArkUI_HapticFeedbackMode* mode);
+    OH_ArkUI_TextEditorSelectionMenuOptions* options, OH_ArkUI_HapticFeedbackMode* mode);
 
 /**
  * @brief Close selection menu of text editor with styled string controller.
