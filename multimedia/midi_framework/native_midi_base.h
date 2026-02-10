@@ -127,6 +127,13 @@ typedef enum {
     MIDI_STATUS_TOO_MANY_CLIENTS,
 
     /**
+     * @error Permission denied.
+     * Returned when the application attempts to perform an operation
+     * without the required permission (e.g., Bluetooth for BLE devices).
+     */
+    MIDI_STATUS_PERMISSION_DENIED,
+
+    /**
      * @error The MIDI system service has died or disconnected.
      * The client must be destroyed and recreated.
      */
@@ -259,22 +266,27 @@ typedef struct {
      * @brief The native protocol supported by the hardware.
      * - If MIDI_PROTOCOL_1_0: The device is a legacy device or currently configured as such.
      * - If MIDI_PROTOCOL_2_0: The device supports MIDI 2.0 features.
-     * * @note Applications can use this to decide whether to enable high-resolution UI controls.
+     * @note Applications can use this to decide whether to enable high-resolution UI controls.
      */
     OH_MIDIProtocol nativeProtocol;
 
     /**
-     * @brief Product name of the device.
+     * @brief Device name.
      */
-    char productName[256];
+    char deviceName[256];
 
     /**
-     * @brief Vendor name of the device.
+     * @brief Vendor ID.
      */
-    char vendorName[256];
+    uint32_t vendorId;
 
     /**
-     * @brief Physical address or unique identifier.
+     * @brief Product ID.
+     */
+    uint32_t productId;
+
+    /**
+     * @brief Physical address (for BLE device).
      */
     char deviceAddress[64];
 } OH_MIDIDeviceInformation;
