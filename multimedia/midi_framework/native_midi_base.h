@@ -57,33 +57,33 @@ typedef enum {
     /**
      * @error Invalid parameter (e.g., null pointer).
      */
-    MIDI_STATUS_GENERIC_INVALID_ARGUMENT,
+    MIDI_STATUS_GENERIC_INVALID_ARGUMENT = 35500001,
 
     /**
      * @error IPC communication failure.
      */
-    MIDI_STATUS_GENERIC_IPC_FAILURE,
+    MIDI_STATUS_GENERIC_IPC_FAILURE = 35500002,
 
     /**
      * @error Insufficient result space.
      * Returned when the buffer provided by the caller is too small to hold the result.
      */
-    MIDI_STATUS_INSUFFICIENT_RESULT_SPACE,
+    MIDI_STATUS_INSUFFICIENT_RESULT_SPACE = 35500003,
 
     /**
      * @error Invalid client handle.
      */
-    MIDI_STATUS_INVALID_CLIENT,
+    MIDI_STATUS_INVALID_CLIENT = 35500004,
 
     /**
      * @error Invalid device handle.
      */
-    MIDI_STATUS_INVALID_DEVICE_HANDLE,
+    MIDI_STATUS_INVALID_DEVICE_HANDLE = 35500005,
 
     /**
      * @error Invalid port index.
      */
-    MIDI_STATUS_INVALID_PORT,
+    MIDI_STATUS_INVALID_PORT = 35500006,
 
     /**
      * @error Send buffer is transiently full.
@@ -91,58 +91,58 @@ typedef enum {
      * Returned by non-blocking send when message cannot fit in the buffer.
      * Retry the operation with a short delay (recommended: 10ms).
      */
-    MIDI_STATUS_WOULD_BLOCK,
+    MIDI_STATUS_WOULD_BLOCK = 35500007,
 
     /**
      * @error Operation can not be handled in a reasonable time.
      */
-    MIDI_STATUS_TIMEOUT,
+    MIDI_STATUS_TIMEOUT = 35500008,
 
     /**
      * @error The client has reached the maximum number of open devices allowed.
      * To open a new device, the client must close an existing one first.
      */
-    MIDI_STATUS_TOO_MANY_OPEN_DEVICES,
+    MIDI_STATUS_TOO_MANY_OPEN_DEVICES = 35500009,
 
     /**
      * @error The client has reached the maximum number of open ports allowed.
      * To open a new port, the client must close an existing one first.
      */
-    MIDI_STATUS_TOO_MANY_OPEN_PORTS,
+    MIDI_STATUS_TOO_MANY_OPEN_PORTS = 35500010,
 
     /**
      * @error The client has already opened this device.
      */
-    MIDI_STATUS_DEVICE_ALREADY_OPEN,
+    MIDI_STATUS_DEVICE_ALREADY_OPEN = 35500011,
 
     /**
      * @error The client has already opened this port.
      */
-    MIDI_STATUS_PORT_ALREADY_OPEN,
+    MIDI_STATUS_PORT_ALREADY_OPEN = 35500012,
 
     /**
      * @error The system-wide or per-application limit for MIDI clients has been reached.
      * The application should wait or release other resources before retrying.
      */
-    MIDI_STATUS_TOO_MANY_CLIENTS,
+    MIDI_STATUS_TOO_MANY_CLIENTS = 35500013,
 
     /**
      * @error Permission denied.
      * Returned when the application attempts to perform an operation
      * without the required permission (e.g., Bluetooth for BLE devices).
      */
-    MIDI_STATUS_PERMISSION_DENIED,
+    MIDI_STATUS_PERMISSION_DENIED = 35500014,
 
     /**
      * @error The MIDI system service has died or disconnected.
      * The client must be destroyed and recreated.
      */
-    MIDI_STATUS_SERVICE_DIED,
+    MIDI_STATUS_SERVICE_DIED = 35500015,
 
     /**
      * @error Unknown system error.
      */
-    MIDI_STATUS_UNKNOWN_ERROR = -1
+    MIDI_STATUS_SYSTEM_ERROR = 35500100
 } OH_MIDIStatusCode;
 
 /**
@@ -278,12 +278,12 @@ typedef struct {
     /**
      * @brief Vendor ID.
      */
-    uint32_t vendorId;
+    uint64_t vendorId;
 
     /**
      * @brief Product ID.
      */
-    uint32_t productId;
+    uint64_t productId;
 
     /**
      * @brief Physical address (for BLE device).
