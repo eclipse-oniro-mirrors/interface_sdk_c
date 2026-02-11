@@ -352,11 +352,13 @@ typedef struct {
 
 /**
  * @brief Declare the midi client
+ * @since 24
  */
 typedef struct OH_MIDIClientStruct OH_MIDIClient;
 
 /**
  * @brief Declare the midi device
+ * @since 24
  */
 typedef struct OH_MIDIDeviceStruct OH_MIDIDevice;
 
