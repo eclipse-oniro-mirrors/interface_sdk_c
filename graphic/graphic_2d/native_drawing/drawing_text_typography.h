@@ -892,12 +892,11 @@ typedef struct {
 } OH_Drawing_StrutStyle;
 
 /**
- * @brief Defines the rect size.
+ * @brief Defines the text rect struct.
  *
  * @since 24
- * @version 1.0
  */
-typedef struct {
+typedef struct OH_Drawing_RectSize {
     /** Rect width */
     double width;
     /** Rect height */
@@ -1337,11 +1336,12 @@ void OH_Drawing_TypographyPaintOnPath(OH_Drawing_Typography* typography, OH_Draw
  * @param constraintsRect Constraints height and width for layout.
  * @param fitStrRangeArr On return, contains the character range of the paragraph that actually fit.
  * Indicates the pointer to the array object <b>OH_Drawing_Array</b>.
+ * Releases memory by <b>OH_Drawing_ReleaseArrayBuffer</b>.
  * @param fitStrRangeArrayLen On return, the size of the fit string array.
- * @return Returns an <b>OH_Drawing_RectSize</b> object that paragraph's actually rectangle.
+ * @return Returns an <b>OH_Drawing_RectSize</b> object that represents the paragraph's actual rectangle.
  * @since 24
  */
-OH_Drawing_RectSize OH_Drawing_TypographyLayoutWithConstraints(OH_Drawing_Typography* typography,
+OH_Drawing_RectSize OH_Drawing_TypographyLayoutWithConstraintsWithBuffer(OH_Drawing_Typography* typography,
     OH_Drawing_RectSize constraintsRect, OH_Drawing_Array** fitStrRangeArr, size_t* fitStrRangeArrayLen);
 
 /**
@@ -1369,7 +1369,7 @@ OH_Drawing_Range* OH_Drawing_GetRangeByArrayIndex(OH_Drawing_Array* array, size_
  *         Returns {@link OH_DRAWING_ERROR_INCORRECT_PARAMETER} if the array is nullptr or not supported.
  * @since 24
  */
-OH_Drawing_ErrorCode OH_Drawing_DestroyArray(OH_Drawing_Array* array);
+OH_Drawing_ErrorCode OH_Drawing_ReleaseArrayBuffer(OH_Drawing_Array* array);
 
 /**
  * @brief Gets the max width.
