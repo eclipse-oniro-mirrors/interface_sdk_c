@@ -2268,19 +2268,19 @@
     },
     {
         "first_introduced": "24",
-        "name": "OH_Drawing_TypographyGetCharacterRangeForGlyphRange"
+        "name": "OH_Drawing_TypographyGetCharacterRangeForGlyphRangeWithBuffer"
     },
     {
         "first_introduced": "24",
-        "name": "OH_Drawing_TypographyGetCharacterPositionAtCoordinate"
+        "name": "OH_Drawing_TypographyGetCharacterPositionAtCoordinateWithBuffer"
     },
     {
         "first_introduced": "24",
-        "name": "OH_Drawing_TypographyGetGlyphRangeForCharacterRange"
+        "name": "OH_Drawing_TypographyGetGlyphRangeForCharacterRangeWithBuffer"
     },
     {
         "first_introduced": "24",
-        "name": "OH_Drawing_DestroyRange"
+        "name": "OH_Drawing_ReleaseRangeBuffer"
     },
     {
         "first_introduced": "23",
