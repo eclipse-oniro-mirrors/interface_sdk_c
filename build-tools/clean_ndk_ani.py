@@ -67,27 +67,33 @@ def process_header_file(file_path):
     return modified
 
 
+# 删除文件
+def _delete_ani_file(file_path):
+    try:
+        os.remove(file_path)
+        print(f"Deleted ani header file: {file_path}")
+    except OSError as e:
+        print(f"Error deleting {file_path}: {str(e)}")
+
+
 def clean_ndk_ani_headers(ndk_header_path):
     if not _ANI_HEADER_LISTS:
         print("Warning: ani header file list is empty")
         return
 
-    # all files to be processed
     file_paths = []
     for root, _, files in os.walk(ndk_header_path):
         for file in files:
-            if file.endswith('.h'):
-                file_path = os.path.join(root, file)
-                if file in _ANI_HEADER_LISTS:
-                    try:
-                        os.remove(file_path)
-                        print(f"Deleted ani header file: {file_path}")
-                    except OSError as e:
-                        print(f"Error deleting {file_path}: {str(e)}")
-                else:
-                    file_paths.append(file_path)
-    
-    # Bulk processing file include
+            if not file.endswith('.h'):
+                continue
+
+            file_path = os.path.join(root, file)
+            if file in _ANI_HEADER_LISTS:
+                _delete_ani_file(file_path)
+            else:
+                file_paths.append(file_path)
+
+    # 批量处理文件
     for file_path in file_paths:
         process_header_file(file_path)
 
