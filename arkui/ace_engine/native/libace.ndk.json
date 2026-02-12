@@ -5478,6 +5478,10 @@
         "name": "OH_ArkUI_NativeModule_GetNativeAccessibilityProvider"
     },
     {
+        "first_introduced": "24",
+        "name": "OH_ArkUI_AccessibilityElementInfoSetComponentIdentifier"
+    },
+    {
         "first_introduced": "23",
         "name": "OH_ArkUI_Swiper_StartFakeDrag"
     },
