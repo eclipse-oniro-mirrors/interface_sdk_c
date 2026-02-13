@@ -16,14 +16,14 @@
  * @addtogroup OHMIDI
  * @{
  *
- * @brief Provide the definition of the C interface for the MIDI module.
+ * @brief Provides the definition of the C interface for the MIDI module.
  *
  * @since 24
  */
 /**
  * @file native_midi.h
  *
- * @brief Declare MIDI related interfaces.
+ * @brief Declares MIDI related interfaces.
  *
  * This file interfaces are used for MIDI device management,
  * MIDI message sending and receiving, and device status monitoring.
@@ -44,7 +44,7 @@ extern "C" {
 #endif
 
 /**
- * @brief Create MIDI client instance
+ * @brief Creates MIDI client instance.
  *
  * @note **Resource Management & Best Practices**:
  * MIDI is a delay-sensitive system service. To ensure real-time performance (QoS)
@@ -68,7 +68,7 @@ extern "C" {
 OH_MIDIStatusCode OH_MIDIClient_Create(OH_MIDIClient **client, OH_MIDICallbacks callbacks, void *userData);
 
 /**
- * @brief Destroy MIDI client and release resources
+ * @brief Destroys MIDI client and releases resources.
  *
  * @param client Target client handle.
  * @return {@link #MIDI_STATUS_OK} if execution succeeds.
@@ -123,7 +123,7 @@ OH_MIDIStatusCode OH_MIDIClient_GetDeviceInfos(OH_MIDIClient *client,
                                                size_t *actualNumDevices);
 
 /**
- * @brief Open MIDI device
+ * @brief Opens MIDI device.
  *
  * @param client Target client handle.
  * @param deviceId Device ID.
@@ -166,7 +166,7 @@ OH_MIDIStatusCode OH_MIDIClient_OpenBleDevice(OH_MIDIClient *client,
                                                void *userData);
 
 /**
- * @brief Close MIDI device
+ * @brief Closes MIDI device.
  *
  * @note Closing a device automatically closes all opened ports on that device.
  *
@@ -224,7 +224,7 @@ OH_MIDIStatusCode OH_MIDIClient_GetPortInfos(OH_MIDIClient *client,
                                              size_t *actualNumPorts);
 
 /**
- * @brief Open MIDI input port (Receive Data)
+ * @brief Opens MIDI input port (Receive Data).
  *
  * Registers a callback to receive MIDI data in batches.
  *
@@ -244,7 +244,7 @@ OH_MIDIStatusCode OH_MIDIDevice_OpenInputPort(
     OH_MIDIDevice *device, OH_MIDIPortDescriptor descriptor, OH_MIDIDevice_OnReceived callback, void *userData);
 
 /**
- * @brief Open MIDI output port (Send Data)
+ * @brief Opens MIDI output port (Send Data).
  *
  * @param device Target device handle.
  * @param descriptor Port index and protocol configuration.
@@ -258,7 +258,7 @@ OH_MIDIStatusCode OH_MIDIDevice_OpenInputPort(
 OH_MIDIStatusCode OH_MIDIDevice_OpenOutputPort(OH_MIDIDevice *device, OH_MIDIPortDescriptor descriptor);
 
 /**
- * @brief Close MIDI input port
+ * @brief Closes MIDI input port.
  *
  * @param device Target device handle.
  * @param portIndex Port index.
@@ -271,7 +271,7 @@ OH_MIDIStatusCode OH_MIDIDevice_OpenOutputPort(OH_MIDIDevice *device, OH_MIDIPor
 OH_MIDIStatusCode OH_MIDIDevice_ClosePort(OH_MIDIDevice *device, uint32_t portIndex);
 
 /**
- * @brief Send MIDI messages (Batch, Non-blocking & Atomic)
+ * @brief Sends MIDI messages (Batch, Non-blocking & Atomic).
  *
  * Attempts to write an array of events to the shared memory buffer.
  *
@@ -298,7 +298,7 @@ OH_MIDIStatusCode OH_MIDIDevice_Send(
     OH_MIDIDevice *device, uint32_t portIndex, OH_MIDIEvent *events, uint32_t eventCount, uint32_t *eventsWritten);
 
 /**
- * @brief Send a large SysEx message (Byte-Stream to UMP Helper)
+ * @brief Sends a large SysEx message (Byte-Stream to UMP Helper).
  *
  * This is a UTILITY function for applications that handle SysEx as raw byte streams(MIDI 1.0 style, F0...F7).
  * This works for BOTH MIDI_PROTOCOL_1_0 and MIDI_PROTOCOL_2_0 sessions.
@@ -325,7 +325,7 @@ OH_MIDIStatusCode OH_MIDIDevice_Send(
 OH_MIDIStatusCode OH_MIDIDevice_SendSysEx(OH_MIDIDevice *device, uint32_t portIndex, uint8_t *data, uint32_t byteSize);
 
 /**
- * @brief Flush pending messages in output buffer
+ * @brief Flushes pending messages in output buffer.
  *
  * Immediately discards all MIDI events currently waiting in the output buffer
  * for the specified port. This includes events scheduled for future timestamps

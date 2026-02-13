@@ -16,14 +16,14 @@
  * @addtogroup OHMIDI
  * @{
  *
- * @brief Provide the definition of the C interface for the MIDI module.
+ * @brief Provides the definition of the C interface for the MIDI module.
  *
  * @since 24
  */
 /**
  * @file native_midi_base.h
  *
- * @brief Declare underlying data structure for MIDI module.
+ * @brief Declares underlying data structure for MIDI module.
  *
  * @library libohmidi.so
  * @syscap SystemCapability.Multimedia.Audio.MIDI
@@ -453,14 +453,14 @@ typedef struct {
 } OH_MIDIPortDescriptor;
 
 /**
- * @brief Declare the midi client
+ * @brief Declares the MIDI client.
  *
  * @since 24
  */
 typedef struct OH_MIDIClientStruct OH_MIDIClient;
 
 /**
- * @brief Declare the midi device
+ * @brief Declares the MIDI device.
  *
  * @since 24
  */
