@@ -45,7 +45,11 @@
     },
     {
         "first_introduced": "24",
-        "name": "OH_MIDIDevice_ClosePort"
+        "name": "OH_MIDIDevice_CloseInputPort"
+    },
+    {
+        "first_introduced": "24",
+        "name": "OH_MIDIDevice_CloseOutputPort"
     },
     {
         "first_introduced": "24",
