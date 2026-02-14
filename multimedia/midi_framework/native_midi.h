@@ -138,32 +138,32 @@ OH_MIDIStatusCode OH_MIDIClient_GetDeviceInfos(OH_MIDIClient *client,
 OH_MIDIStatusCode OH_MIDIClient_OpenDevice(OH_MIDIClient *client, int64_t deviceId, OH_MIDIDevice **device);
 
 /**
- * @brief Opens a MIDI BLE device asynchronously.
+ * @brief Open MIDI BLE device asynchronously.
  *
- * Initiates a connection to a Bluetooth LE MIDI device. This function returns immediately,
- * and the connection result is delivered via the provided callback.
+ * Initiates the opening of a Bluetooth LE MIDI device. This function returns immediately,
+ * and the result is delivered via the provided callback.
  *
  * @permission ohos.permission.ACCESS_BLUETOOTH
  *
  * @param client Target client handle.
  * @param deviceAddr The MAC address of the BLE device (e.g., "AA:BB:CC:DD:EE:FF").
- * @param callback The callback function to be invoked when the connection process completes.
+ * @param callback The callback function to be invoked when the open process completes.
  * @param userData User context pointer to be passed to the callback.
- * @return {@link #MIDI_STATUS_OK} if the connection request was successfully dispatched.
+ * @return {@link #MIDI_STATUS_OK} if the open request was successfully dispatched.
  * {@link #MIDI_STATUS_INVALID_CLIENT} if client is invalid.
- * {@link #MIDI_STATUS_GENERIC_INVALID_ARGUMENT} if deviceAddr or callback is NULL.
+ * {@link #MIDI_STATUS_GENERIC_INVALID_ARGUMENT} if deviceAddr or callback is nullptr.
  * {@link #MIDI_STATUS_PERMISSION_DENIED} if Bluetooth permission is missing.
  * {@link #MIDI_STATUS_GENERIC_IPC_FAILURE} if the service is unreachable.
- * @note This function triggers a BLE scan and connection process which may take time.
+ * @note This function triggers a BLE scan and open process which may take time.
  * @warning If Bluetooth permission is denied, the callback will be invoked with
  * opened=false and device=NULL. The application should check the 'opened' parameter
  * before attempting to use the device handle.
  * @since 24
  */
 OH_MIDIStatusCode OH_MIDIClient_OpenBleDevice(OH_MIDIClient *client,
-                                               const char *deviceAddr,
-                                               OH_MIDIClient_OnDeviceOpened callback,
-                                               void *userData);
+                                              const char *deviceAddr,
+                                              OH_MIDIClient_OnDeviceOpened callback,
+                                              void *userData);
 
 /**
  * @brief Closes MIDI device.
