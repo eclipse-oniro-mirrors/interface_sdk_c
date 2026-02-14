@@ -44,7 +44,7 @@ extern "C" {
 #endif
 
 /**
- * @brief Creates MIDI client instance.
+ * @brief Creates a MIDI client instance.
  *
  * @note **Resource Management & Best Practices**:
  * MIDI is a delay-sensitive system service. To ensure real-time performance (QoS)
@@ -123,7 +123,7 @@ OH_MIDIStatusCode OH_MIDIClient_GetDeviceInfos(OH_MIDIClient *client,
                                                size_t *actualNumDevices);
 
 /**
- * @brief Opens MIDI device.
+ * @brief Opens a MIDI device.
  *
  * @param client Target client handle.
  * @param deviceId Device ID.
@@ -138,7 +138,7 @@ OH_MIDIStatusCode OH_MIDIClient_GetDeviceInfos(OH_MIDIClient *client,
 OH_MIDIStatusCode OH_MIDIClient_OpenDevice(OH_MIDIClient *client, int64_t deviceId, OH_MIDIDevice **device);
 
 /**
- * @brief Opens MIDI BLE device asynchronously.
+ * @brief Opens a MIDI BLE device asynchronously.
  *
  * Initiates a connection to a Bluetooth LE MIDI device. This function returns immediately,
  * and the connection result is delivered via the provided callback.
@@ -224,7 +224,7 @@ OH_MIDIStatusCode OH_MIDIClient_GetPortInfos(OH_MIDIClient *client,
                                              size_t *actualNumPorts);
 
 /**
- * @brief Opens MIDI input port (Receive Data).
+ * @brief Opens a MIDI input port (Receive Data).
  *
  * Registers a callback to receive MIDI data in batches.
  *
@@ -234,7 +234,7 @@ OH_MIDIStatusCode OH_MIDIClient_GetPortInfos(OH_MIDIClient *client,
  * @param userData Context pointer passed to the callback.
  * @return {@link #MIDI_STATUS_OK} if execution succeeds.
  * or {@link #MIDI_STATUS_INVALID_DEVICE_HANDLE} if device is invalid.
- * or {@link #MIDI_STATUS_INVALID_PORT} if portIndex is invalid or not a input port.
+ * or {@link #MIDI_STATUS_INVALID_PORT} if portIndex is invalid or not an input port.
  * or {@link #MIDI_STATUS_PORT_ALREADY_OPEN} if port is already opened by this client.
  * or {@link #MIDI_STATUS_GENERIC_INVALID_ARGUMENT} if callback is NULL.
  * or {@link #MIDI_STATUS_GENERIC_IPC_FAILURE} if connection to system service fails.
@@ -244,7 +244,7 @@ OH_MIDIStatusCode OH_MIDIDevice_OpenInputPort(
     OH_MIDIDevice *device, OH_MIDIPortDescriptor descriptor, OH_MIDIDevice_OnReceived callback, void *userData);
 
 /**
- * @brief Opens MIDI output port (Send Data).
+ * @brief Opens a MIDI output port (Send Data).
  *
  * @param device Target device handle.
  * @param descriptor Port index and protocol configuration.
