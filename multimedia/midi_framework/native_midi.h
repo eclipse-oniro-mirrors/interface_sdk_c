@@ -101,26 +101,26 @@ OH_MIDIStatusCode OH_MIDIClient_GetDeviceCount(OH_MIDIClient *client, size_t *co
  *
  * Fills the user-allocated buffer with device information.
  *
- * @note Race Condition Handling:
- * If the number of devices increases between calling OH_MIDIClient_GetDeviceCount and this function,
- * this function will only fill up to 'capacity' devices and set 'actualNumDevices' to 'capacity'.
- * If the number decreases, it will fill the actual available devices.
- * Always check 'actualNumDevices' for the real number of records written.
+ * @note If the actual number of connected devices exceeds 'capacity', only 'capacity' records
+ * are written to the buffer, and 'actualDeviceCount' is set to 'capacity'. The function
+ * returns {@link #MIDI_STATUS_OK} but the buffer contains partial data.
+ * If the actual number is less than or equal to 'capacity', all available device information
+ * is written, and 'actualDeviceCount' reflects the actual count.
  *
  * @param client The MIDI client handle.
  * @param infos User-allocated buffer to store device information.
  * @param capacity The maximum number of elements the 'infos' buffer can hold.
- * @param actualNumDevices Pointer to receive the actual number of devices written to the buffer.
+ * @param actualDeviceCount Pointer to receive the actual number of devices written to the buffer.
  * @return {@link #MIDI_STATUS_OK} on success.
  * or {@link #MIDI_STATUS_INVALID_CLIENT} if client is invalid.
- * or {@link #MIDI_STATUS_GENERIC_INVALID_ARGUMENT} if infos or actualNumDevices is NULL.
+ * or {@link #MIDI_STATUS_GENERIC_INVALID_ARGUMENT} if infos or actualDeviceCount is NULL.
  * or {@link #MIDI_STATUS_GENERIC_IPC_FAILURE} if connection to system service fails.
  * @since 24
  */
 OH_MIDIStatusCode OH_MIDIClient_GetDeviceInfos(OH_MIDIClient *client,
                                                OH_MIDIDeviceInformation *infos,
                                                size_t capacity,
-                                               size_t *actualNumDevices);
+                                               size_t *actualDeviceCount);
 
 /**
  * @brief Opens a MIDI device.
@@ -161,9 +161,9 @@ OH_MIDIStatusCode OH_MIDIClient_OpenDevice(OH_MIDIClient *client, int64_t device
  * @since 24
  */
 OH_MIDIStatusCode OH_MIDIClient_OpenBleDevice(OH_MIDIClient *client,
-                                               const char *deviceAddr,
-                                               OH_MIDIClient_OnDeviceOpened callback,
-                                               void *userData);
+                                              const char *deviceAddr,
+                                              OH_MIDIClient_OnDeviceOpened callback,
+                                              void *userData);
 
 /**
  * @brief Closes MIDI device.
@@ -199,20 +199,20 @@ OH_MIDIStatusCode OH_MIDIClient_GetPortCount(OH_MIDIClient *client, int64_t devi
  *
  * Fills the user-allocated buffer with port information.
  *
- * @note Race Condition Handling:
- * If the number of ports increases between calling OH_MIDIGetPortCount and this function,
- * this function will only fill up to 'capacity' ports, 'actualNumPorts' set to 'capacity'.
- * If the number decreases, it will fill the actual available ports.
- * Always check 'actualNumPorts' for the real number of records written.
+ * @note If the actual number of ports exceeds 'capacity', only 'capacity' records
+ * are written to the buffer, and 'actualPortCount' is set to 'capacity'. The function
+ * returns {@link #MIDI_STATUS_OK} but the buffer contains partial data.
+ * If the actual number is less than or equal to 'capacity', all available port information
+ * is written, and 'actualPortCount' reflects the actual count.
  *
  * @param client The MIDI client handle.
  * @param deviceId The target device ID.
  * @param infos User-allocated buffer to store port information.
  * @param capacity The maximum number of elements the 'infos' buffer can hold.
- * @param actualNumPorts Pointer to receive the actual number of ports written to the buffer.
+ * @param actualPortCount Pointer to receive the actual number of ports written to the buffer.
  * @return {@link #MIDI_STATUS_OK} on success.
  * or {@link #MIDI_STATUS_INVALID_CLIENT} if client is invalid.
- * or {@link #MIDI_STATUS_GENERIC_INVALID_ARGUMENT} if infos or actualNumPorts is NULL.
+ * or {@link #MIDI_STATUS_GENERIC_INVALID_ARGUMENT} if infos or actualPortCount is NULL.
  * or {@link #MIDI_STATUS_GENERIC_INVALID_ARGUMENT} if deviceId is invalid.
  * or {@link #MIDI_STATUS_GENERIC_IPC_FAILURE} if connection to system service fails.
  * @since 24
@@ -221,7 +221,7 @@ OH_MIDIStatusCode OH_MIDIClient_GetPortInfos(OH_MIDIClient *client,
                                              int64_t deviceId,
                                              OH_MIDIPortInformation *infos,
                                              size_t capacity,
-                                             size_t *actualNumPorts);
+                                             size_t *actualPortCount);
 
 /**
  * @brief Opens a MIDI input port (Receive Data).
