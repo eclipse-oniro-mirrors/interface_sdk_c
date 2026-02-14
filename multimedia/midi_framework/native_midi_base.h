@@ -244,7 +244,7 @@ typedef enum {
 } OH_MIDIProtocol;
 
 /**
- * @brief MIDI Device Type.
+ * @brief MIDI Device type.
  *
  * @since 24
  */
@@ -444,7 +444,7 @@ typedef struct {
      * 2. **Request MIDI_PROTOCOL_2_0 on a 1.0 Device**: (Lossy)
      * - The service creates a virtual 2.0 view.
      * - App sends UMP Type 4 (MIDI 2.0 Voice).
-     * - Service **Down-converts** Type 4 to Type 2 (e.g., clipping Velocity, dropping Per-Note data).
+     * - Service **down-converts** Type 4 to Type 2 (e.g., clipping velocity, dropping per-note data).
      * - **Warning**: Data precision will be lost. Advanced messages may be dropped.
      *
      * @since 24
