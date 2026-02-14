@@ -217,7 +217,7 @@ typedef enum {
      * - **MT 0x1**: System Real Time and System Common Messages.
      * - **MT 0x2**: MIDI 1.0 Channel Voice Messages (32-bit).
      * - **MT 0x3**: Data Messages (64-bit) used for SysEx (7-bit payload).
-     * - If the target hardware is MIDI 1.0: The service converts UMP back to Byte Stream (F0...F7).
+     * - If the target hardware is MIDI 1.0: The service converts UMP back to byte Stream (F0...F7).
      * - If the target hardware is MIDI 2.0: The service sends these packets as-is (encapsulated MIDI 1.0).
      *
      * @since 24
@@ -482,8 +482,9 @@ typedef void (*OH_MIDICallback_OnDeviceChange)(
  * @brief Callback for receiving MIDI data (Batch Processing).
  *
  * @warning **CRITICAL: Memory Safety**
- * The 'events' array and all data pointers within are **transient and ONLY valid
- * during this callback**. Accessing these pointers after the callback returns
+ * The events array and all data pointers within
+ * are **transient and ONLY valid during this callback**.
+ * Accessing these pointers after the callback returns
  * causes **undefined behavior** (crashes, memory corruption).
  * You MUST copy any data you need to keep.
  *
