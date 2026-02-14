@@ -23,7 +23,7 @@
 /**
  * @file native_midi_base.h
  *
- * @brief Declares underlying data structure for MIDI module.
+ * @brief Declares the underlying data structure for MIDI module.
  *
  * @library libohmidi.so
  * @syscap SystemCapability.Multimedia.Audio.MIDI
@@ -171,7 +171,7 @@ typedef enum {
     MIDI_STATUS_SERVICE_DIED = 35500015,
 
     /**
-     * @error System-level error such as insufficient memory or system service failure.
+     * @error System-level errors such as insufficient memory or system service failure.
      *
      * @since 24
      */
@@ -217,7 +217,7 @@ typedef enum {
      * - **MT 0x1**: System Real Time and System Common Messages.
      * - **MT 0x2**: MIDI 1.0 Channel Voice Messages (32-bit).
      * - **MT 0x3**: Data Messages (64-bit) used for SysEx (7-bit payload).
-     * - If the target hardware is MIDI 1.0: The service converts UMP back to byte Stream (F0...F7).
+     * - If the target hardware is MIDI 1.0: The service converts UMP back to byte stream (F0...F7).
      * - If the target hardware is MIDI 2.0: The service sends these packets as-is (encapsulated MIDI 1.0).
      *
      * @since 24
@@ -287,7 +287,7 @@ typedef enum {
 
 /**
  * @brief MIDI Event Structure (Universal).
- * Designed to handle both raw byte Stream (MIDI 1.0) and UMP.
+ * Designed to handle both raw byte stream (MIDI 1.0) and UMP.
  *
  * @since 24
  */
