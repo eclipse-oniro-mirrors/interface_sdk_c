@@ -138,7 +138,7 @@ OH_MIDIStatusCode OH_MIDIClient_GetDeviceInfos(OH_MIDIClient *client,
 OH_MIDIStatusCode OH_MIDIClient_OpenDevice(OH_MIDIClient *client, int64_t deviceId, OH_MIDIDevice **device);
 
 /**
- * @brief Open MIDI BLE device asynchronously.
+ * @brief Opens MIDI BLE device asynchronously.
  *
  * Initiates the opening of a Bluetooth LE MIDI device. This function returns immediately,
  * and the result is delivered via the provided callback.
