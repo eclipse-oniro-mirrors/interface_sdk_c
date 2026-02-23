@@ -131,6 +131,7 @@ OH_MIDIStatusCode OH_MIDIClient_GetDeviceInfos(OH_MIDIClient *client,
  * @return {@link #MIDI_STATUS_OK} if execution succeeds.
  *     or {@link #MIDI_STATUS_INVALID_CLIENT} if client is invalid.
  *     or {@link #MIDI_STATUS_DEVICE_ALREADY_OPEN} if device is already opened by this client.
+ *     or {@link #MIDI_STATUS_TOO_MANY_OPEN_DEVICES} if the client has reached the maximum number of open devices.
  *     or {@link #MIDI_STATUS_GENERIC_INVALID_ARGUMENT} if device is NULL, or the deviceId does not exist.
  *     or {@link #MIDI_STATUS_GENERIC_IPC_FAILURE} if connection to system service fails.
  * @since 24
@@ -153,6 +154,7 @@ OH_MIDIStatusCode OH_MIDIClient_OpenDevice(OH_MIDIClient *client, int64_t device
  *     or {@link #MIDI_STATUS_INVALID_CLIENT} if client is invalid.
  *     or {@link #MIDI_STATUS_GENERIC_INVALID_ARGUMENT} if deviceAddr or callback is nullptr.
  *     or {@link #MIDI_STATUS_PERMISSION_DENIED} if Bluetooth permission is missing.
+ *     or {@link #MIDI_STATUS_TOO_MANY_OPEN_DEVICES} if the client has reached the maximum number of open devices.
  *     or {@link #MIDI_STATUS_GENERIC_IPC_FAILURE} if the service is unreachable.
  * @note This function triggers a BLE scan and open process which may take time.
  * @warning If Bluetooth permission is denied, the {@link #OH_MIDIClient_OnDeviceOpened} will be
@@ -236,6 +238,7 @@ OH_MIDIStatusCode OH_MIDIClient_GetPortInfos(OH_MIDIClient *client,
  *     or {@link #MIDI_STATUS_INVALID_DEVICE_HANDLE} if device is invalid.
  *     or {@link #MIDI_STATUS_INVALID_PORT} if the port is invalid or not an input port.
  *     or {@link #MIDI_STATUS_PORT_ALREADY_OPEN} if the port is already opened by this client.
+ *     or {@link #MIDI_STATUS_TOO_MANY_OPEN_PORTS} if the maximum number of open ports has been reached.
  *     or {@link #MIDI_STATUS_GENERIC_INVALID_ARGUMENT} if callback is NULL.
  *     or {@link #MIDI_STATUS_GENERIC_IPC_FAILURE} if connection to system service fails.
  * @since 24
@@ -252,6 +255,7 @@ OH_MIDIStatusCode OH_MIDIDevice_OpenInputPort(
  *     or {@link #MIDI_STATUS_INVALID_DEVICE_HANDLE} if device is invalid.
  *     or {@link #MIDI_STATUS_INVALID_PORT} if the port is invalid or not a output port.
  *     or {@link #MIDI_STATUS_PORT_ALREADY_OPEN} if the port is already opened by this client.
+ *     or {@link #MIDI_STATUS_TOO_MANY_OPEN_PORTS} if the maximum number of open ports has been reached.
  *     or {@link #MIDI_STATUS_GENERIC_IPC_FAILURE} if connection to system service fails.
  * @since 24
  */
