@@ -205,7 +205,7 @@ typedef enum {
      * @brief Legacy MIDI 1.0 Semantics.
      * Behavior:
      * - The service expects UMP packets strictly compatible with MIDI 1.0.
-     * - **MT 0x0**: Utility Messages (e.g., JR Timestamps).
+     * - **MT 0x0**: Utility Messages (Timestamps).
      * - **MT 0x1**: System Real Time and System Common Messages.
      * - **MT 0x2**: MIDI 1.0 Channel Voice Messages (32-bit).
      * - **MT 0x3**: Data Messages (64-bit) used for SysEx (7-bit payload).
@@ -221,7 +221,7 @@ typedef enum {
      * Behavior:
      * - The service expects UMP packets leveraging MIDI 2.0 features.
      * - **MT 0x4**: MIDI 2.0 Channel Voice Messages (64-bit, high resolution).
-     * - **MT 0x0**: Utility Messages (JR Timestamps).
+     * - **MT 0x0**: Utility Messages (Timestamps).
      * - **MT 0xD**: Flex Data Messages (128-bit, e.g., Text, Lyrics).
      * - **MT 0xF**: UMP Stream Messages (128-bit, Endpoint Discovery, Function Blocks).
      * - **MT 0x3 / MT 0x5**: Data Messages (64-bit or 128-bit).
