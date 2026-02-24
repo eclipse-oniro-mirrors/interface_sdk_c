@@ -180,6 +180,7 @@ OH_MIDIStatusCode OH_MIDIClient_OpenBLEDevice(OH_MIDIClient *client,
  *
  * @param device Target device handle.
  * @return {@link #OH_MIDI_STATUS_OK} if execution succeeds.
+ *     or {@link #OH_MIDI_STATUS_INVALID_CLIENT} if client is invalid.
  *     or {@link #OH_MIDI_STATUS_INVALID_DEVICE_HANDLE} if device is invalid.
  * @since 24
  */
