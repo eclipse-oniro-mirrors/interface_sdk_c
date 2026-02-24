@@ -53,42 +53,42 @@ typedef enum {
      *
      * @since 24
      */
-    MIDI_STATUS_OK = 0,
+    OH_MIDI_STATUS_OK = 0,
 
     /**
      * @error Invalid parameter (e.g., null pointer).
      *
      * @since 24
      */
-    MIDI_STATUS_GENERIC_INVALID_ARGUMENT = 35500001,
+    OH_MIDI_STATUS_GENERIC_INVALID_ARGUMENT = 35500001,
 
     /**
      * @error IPC communication failure.
      *
      * @since 24
      */
-    MIDI_STATUS_GENERIC_IPC_FAILURE = 35500002,
+    OH_MIDI_STATUS_GENERIC_IPC_FAILURE = 35500002,
 
     /**
      * @error Invalid client handle.
      *
      * @since 24
      */
-    MIDI_STATUS_INVALID_CLIENT = 35500003,
+    OH_MIDI_STATUS_INVALID_CLIENT = 35500003,
 
     /**
      * @error Invalid device handle.
      *
      * @since 24
      */
-    MIDI_STATUS_INVALID_DEVICE_HANDLE = 35500004,
+    OH_MIDI_STATUS_INVALID_DEVICE_HANDLE = 35500004,
 
     /**
      * @error Invalid port index.
      *
      * @since 24
      */
-    MIDI_STATUS_INVALID_PORT = 35500005,
+    OH_MIDI_STATUS_INVALID_PORT = 35500005,
 
     /**
      * @error Send buffer is transiently full.
@@ -98,14 +98,14 @@ typedef enum {
      *
      * @since 24
      */
-    MIDI_STATUS_WOULD_BLOCK = 35500006,
+    OH_MIDI_STATUS_WOULD_BLOCK = 35500006,
 
     /**
      * @error Operation can not be handled in a reasonable time.
      *
      * @since 24
      */
-    MIDI_STATUS_TIMEOUT = 35500007,
+    OH_MIDI_STATUS_TIMEOUT = 35500007,
 
     /**
      * @error The client has reached the maximum number of open devices allowed.
@@ -113,7 +113,7 @@ typedef enum {
      *
      * @since 24
      */
-    MIDI_STATUS_TOO_MANY_OPEN_DEVICES = 35500008,
+    OH_MIDI_STATUS_TOO_MANY_OPEN_DEVICES = 35500008,
 
     /**
      * @error The client has reached the maximum number of open ports allowed.
@@ -121,21 +121,21 @@ typedef enum {
      *
      * @since 24
      */
-    MIDI_STATUS_TOO_MANY_OPEN_PORTS = 35500009,
+    OH_MIDI_STATUS_TOO_MANY_OPEN_PORTS = 35500009,
 
     /**
      * @error The client has already opened this device.
      *
      * @since 24
      */
-    MIDI_STATUS_DEVICE_ALREADY_OPEN = 35500010,
+    OH_MIDI_STATUS_DEVICE_ALREADY_OPEN = 35500010,
 
     /**
      * @error The client has already opened this port.
      *
      * @since 24
      */
-    MIDI_STATUS_PORT_ALREADY_OPEN = 35500011,
+    OH_MIDI_STATUS_PORT_ALREADY_OPEN = 35500011,
 
     /**
      * @error The system-wide or per-application limit for MIDI clients has been reached.
@@ -143,7 +143,7 @@ typedef enum {
      *
      * @since 24
      */
-    MIDI_STATUS_TOO_MANY_CLIENTS = 35500012,
+    OH_MIDI_STATUS_TOO_MANY_CLIENTS = 35500012,
 
     /**
      * @error Permission denied.
@@ -152,7 +152,7 @@ typedef enum {
      *
      * @since 24
      */
-    MIDI_STATUS_PERMISSION_DENIED = 35500013,
+    OH_MIDI_STATUS_PERMISSION_DENIED = 35500013,
 
     /**
      * @error The MIDI system service has died or disconnected.
@@ -160,14 +160,14 @@ typedef enum {
      *
      * @since 24
      */
-    MIDI_STATUS_SERVICE_DIED = 35500014,
+    OH_MIDI_STATUS_SERVICE_DIED = 35500014,
 
     /**
      * @error System-level errors such as insufficient memory or system service failure.
      *
      * @since 24
      */
-    MIDI_STATUS_SYSTEM_ERROR = 35500100
+    OH_MIDI_STATUS_SYSTEM_ERROR = 35500100
 } OH_MIDIStatusCode;
 
 /**
@@ -181,14 +181,14 @@ typedef enum {
      *
      * @since 24
      */
-    MIDI_PORT_DIRECTION_INPUT = 0,
+    OH_MIDI_PORT_DIRECTION_INPUT = 0,
 
     /**
      * @brief Output port (Host -> Device).
      *
      * @since 24
      */
-    MIDI_PORT_DIRECTION_OUTPUT = 1
+    OH_MIDI_PORT_DIRECTION_OUTPUT = 1
 } OH_MIDIPortDirection;
 
 /**
@@ -214,7 +214,7 @@ typedef enum {
      *
      * @since 24
      */
-    MIDI_PROTOCOL_1_0 = 1,
+    OH_MIDI_PROTOCOL_1_0 = 1,
 
     /**
      * @brief MIDI 2.0 Semantics.
@@ -232,7 +232,7 @@ typedef enum {
      *
      * @since 24
      */
-    MIDI_PROTOCOL_2_0 = 2
+    OH_MIDI_PROTOCOL_2_0 = 2
 } OH_MIDIProtocol;
 
 /**
@@ -246,14 +246,14 @@ typedef enum {
      *
      * @since 24
      */
-    MIDI_DEVICE_TYPE_USB = 0,
+    OH_MIDI_DEVICE_TYPE_USB = 0,
 
     /**
      * @brief Bluetooth Low Energy MIDI device.
      *
      * @since 24
      */
-    MIDI_DEVICE_TYPE_BLE = 1
+    OH_MIDI_DEVICE_TYPE_BLE = 1
 } OH_MIDIDeviceType;
 
 /**
@@ -267,14 +267,14 @@ typedef enum {
      *
      * @since 24
      */
-    MIDI_DEVICE_CHANGE_ACTION_CONNECTED = 0,
+    OH_MIDI_DEVICE_CHANGE_ACTION_CONNECTED = 0,
 
     /**
      * @brief Device disconnected.
      *
      * @since 24
      */
-    MIDI_DEVICE_CHANGE_ACTION_DISCONNECTED = 1
+    OH_MIDI_DEVICE_CHANGE_ACTION_DISCONNECTED = 1
 } OH_MIDIDeviceChangeAction;
 
 /**
@@ -334,8 +334,8 @@ typedef struct {
     /**
      * @brief The native protocol supported by the hardware.
      *
-     * - If MIDI_PROTOCOL_1_0: The device is a legacy device or currently configured as such.
-     * - If MIDI_PROTOCOL_2_0: The device supports MIDI 2.0 features.
+     * - If OH_MIDI_PROTOCOL_1_0: The device is a legacy device or currently configured as such.
+     * - If OH_MIDI_PROTOCOL_2_0: The device supports MIDI 2.0 features.
      * @note Applications can use this to decide whether to enable high-resolution UI controls.
      *
      * @since 24
@@ -427,13 +427,13 @@ typedef struct {
      *
      * **Compatibility Behavior:**
      *
-     * 1. **Request MIDI_PROTOCOL_1_0 on a 2.0 Device**: (Safe)
+     * 1. **Request OH_MIDI_PROTOCOL_1_0 on a 2.0 Device**: (Safe)
      * - The service creates a virtual 1.0 view.
      * - App sends UMP Type 2 (MIDI 1.0 Channel Voice).
      * - Device receives UMP Type 2.
      * - Fully compatible.
      *
-     * 2. **Request MIDI_PROTOCOL_2_0 on a 1.0 Device**: (Lossy)
+     * 2. **Request OH_MIDI_PROTOCOL_2_0 on a 1.0 Device**: (Lossy)
      * - The service creates a virtual 2.0 view.
      * - App sends UMP Type 4 (MIDI 2.0 Voice).
      * - Service **down-converts** Type 4 to Type 2 (e.g., clipping velocity, dropping per-note data).
@@ -509,7 +509,7 @@ typedef void (*OH_MIDICallback_OnError)(void *userData, OH_MIDIStatusCode code);
  * This callback is invoked when the BLE device open attempt finishes, either successfully
  * or with a failure.
  *
- * @param userData The user context pointer passed to {@link OH_MIDIOpenBLEDevice}.
+ * @param userData The user context pointer passed to {@link OH_MIDIClient_OpenBLEDevice}.
  * @param opened Indicates whether the device was successfully opened.
  * true: Device successfully opened, device handle is valid.
  * false: Device open failed, device handle is NULL.
