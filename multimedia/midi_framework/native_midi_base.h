@@ -91,9 +91,9 @@ typedef enum {
     OH_MIDI_STATUS_INVALID_PORT = 35500005,
 
     /**
-     * @error Send buffer is transiently full.
+     * @error The send buffer is transiently full.
      * Indicates that the shared memory buffer currently lacks space.
-     * Returned by non-blocking send when message cannot fit in the buffer.
+     * Returned by non-blocking send when a message cannot fit in the buffer.
      * Retry the operation with a short delay (recommended: 10ms).
      *
      * @since 24
@@ -194,7 +194,7 @@ typedef enum {
 /**
  * @brief MIDI transport protocol semantics.
  *
- * @note **CRITICAL**: The SDK ALWAYS uses UMP (Universal MIDI Packet) format for data transfer,
+ * @note **CRITICAL**: The SDK always uses UMP (Universal MIDI Packet) format for data transfer,
  * regardless of the selected protocol. This enum defines the "Behavior" and "Semantics"
  * of the connection, not the data structure.
  *
@@ -205,7 +205,7 @@ typedef enum {
      * @brief Legacy MIDI 1.0 Semantics.
      * Behavior:
      * - The service expects UMP packets strictly compatible with MIDI 1.0.
-     * - **MT 0x0**: Utility Messages (Timestamps).
+     * - **MT 0x0**: Utility Messages (e.g., Timestamps).
      * - **MT 0x1**: System Real Time and System Common Messages.
      * - **MT 0x2**: MIDI 1.0 Channel Voice Messages (32-bit).
      * - **MT 0x3**: Data Messages (64-bit) used for SysEx (7-bit payload).
@@ -408,7 +408,7 @@ typedef struct {
 } OH_MIDIPortInformation;
 
 /**
- * @brief Port Descriptor
+ * @brief Port Descriptor.
  *
  * @since 24
  */
@@ -423,7 +423,7 @@ typedef struct {
     /**
      * @brief The requested protocol behavior for this session.
      *
-     * This field dictates how the Service translates data between the App and the Hardware.
+     * This field dictates how the Service translates data between the app and the hardware.
      *
      * **Compatibility Behavior:**
      *
@@ -445,14 +445,14 @@ typedef struct {
 } OH_MIDIPortDescriptor;
 
 /**
- * @brief Declares the MIDI client.
+ * @brief Declares a MIDI client.
  *
  * @since 24
  */
 typedef struct OH_MIDIClientStruct OH_MIDIClient;
 
 /**
- * @brief Declares the MIDI device.
+ * @brief Declares a MIDI device.
  *
  * @since 24
  */
@@ -462,7 +462,7 @@ typedef struct OH_MIDIDeviceStruct OH_MIDIDevice;
  * @brief Callback for monitoring device connection/disconnection.
  *
  * @param userData User context provided during client creation.
- * @param action Device change action (Connected/Disconnected).
+ * @param action Device change action (connected/disconnected).
  * @param deviceInfo Information of the changed device.
  *
  * @since 24
@@ -474,7 +474,7 @@ typedef void (*OH_MIDICallback_OnDeviceChange)(
  * @brief Callback for receiving MIDI data (Batch Processing).
  *
  * @warning **CRITICAL: Memory Safety**
- * The events array and all data pointers within
+ * The events array and all data pointers within it
  * are **transient and ONLY valid during this callback**.
  * Accessing these pointers after the callback returns
  * causes **undefined behavior** (crashes, memory corruption).
@@ -509,17 +509,17 @@ typedef void (*OH_MIDICallback_OnError)(void *userData, OH_MIDIStatusCode code);
  * This callback is invoked when the BLE device open attempt finishes, either successfully
  * or with a failure.
  *
- * @param userData The user context pointer passed to {@link OH_MIDIClient_OpenBLEDevice}.
+ * @param userData The user context pointer passed to {@link #OH_MIDIClient_OpenBLEDevice}.
  * @param opened Indicates whether the device was successfully opened.
- * true: Device successfully opened, device handle is valid.
- * false: Device open failed, device handle is NULL.
+ *     True: Device successfully opened, device handle is valid.
+ *     False: Device open failed, device handle is NULL.
  * @param device The handle of the opened device.
- * If opened is true, the application MUST close this handle using
- * {@link OH_MIDIClient_CloseDevice} when it is no longer needed.
- * If opened is false, this parameter is NULL.
+ *     If opened is true, the application MUST close this handle using
+ * {@link #OH_MIDIClient_CloseDevice} when it is no longer needed.
+ *     If opened is false, this parameter is NULL.
  * @param info The information of the opened device.
  * Note: This object is valid ONLY within the scope of this callback.
- * If you need to persist specific attributes (e.g., ID or Name), copy them.
+ *     If you need to persist specific attributes (e.g., ID or Name), copy them.
  *
  * @since 24
  */
