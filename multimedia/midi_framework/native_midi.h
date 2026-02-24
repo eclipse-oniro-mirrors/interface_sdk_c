@@ -55,6 +55,8 @@ extern "C" {
  * Applications are **strongly recommended** to maintain a single `OH_MIDIClient`
  * instance throughout their lifecycle and use it to manage multiple devices/ports.
  *
+ * @note Use {@link #OH_MIDIClient_Destroy} to release the client and all associated resources.
+ *
  * @param client Pointer to receive the new client handle.
  * @param callbacks Callback structure for system events.
  * @param userData User context to be passed to callbacks.
@@ -77,6 +79,7 @@ OH_MIDIStatusCode OH_MIDIClient_Create(OH_MIDIClient **client, OH_MIDICallbacks 
  * @note Destroying the client automatically will close all devices and ports (fail-safe mechanism).
  *     It is recommended to close resources in reverse order (ports→devices→client) for code clarity,
  *     but this is not a mandatory requirement.
+ * @note Paired with {@link #OH_MIDIClient_Create}.
  * @since 24
  */
 OH_MIDIStatusCode OH_MIDIClient_Destroy(OH_MIDIClient *client);
@@ -134,6 +137,7 @@ OH_MIDIStatusCode OH_MIDIClient_GetDeviceInfos(OH_MIDIClient *client,
  *     or {@link #MIDI_STATUS_TOO_MANY_OPEN_DEVICES} if the client has reached the maximum number of open devices.
  *     or {@link #MIDI_STATUS_GENERIC_INVALID_ARGUMENT} if device is null, or the deviceId does not exist.
  *     or {@link #MIDI_STATUS_GENERIC_IPC_FAILURE} if connection to system service fails.
+ * @note Use {@link #OH_MIDIDevice_Close} to release the device resource.
  * @since 24
  */
 OH_MIDIStatusCode OH_MIDIClient_OpenDevice(OH_MIDIClient *client, int64_t deviceId, OH_MIDIDevice **device);
@@ -157,6 +161,7 @@ OH_MIDIStatusCode OH_MIDIClient_OpenDevice(OH_MIDIClient *client, int64_t device
  *     or {@link #MIDI_STATUS_TOO_MANY_OPEN_DEVICES} if the client has reached the maximum number of open devices.
  *     or {@link #MIDI_STATUS_GENERIC_IPC_FAILURE} if the service is unreachable.
  * @note This function triggers a BLE scan and open process which may take time.
+ * @note Use {@link #OH_MIDIDevice_Close} to release the device resource.
  * @warning If Bluetooth permission is denied, the {@link #OH_MIDIClient_OnDeviceOpened} will be
  *     invoked with opened parameter set to false and device parameter set to null. The application
  *     should check the opened parameter before attempting to use the device handle.
@@ -171,6 +176,7 @@ OH_MIDIStatusCode OH_MIDIClient_OpenBLEDevice(OH_MIDIClient *client,
  * @brief Closes the MIDI device.
  *
  * @note Closing a device automatically closes all opened ports on that device.
+ * @note Paired with {@link #OH_MIDIClient_OpenDevice} and {@link #OH_MIDIClient_OpenBLEDevice}.
  *
  * @param device Target device handle.
  * @return {@link #MIDI_STATUS_OK} if execution succeeds.
@@ -241,6 +247,7 @@ OH_MIDIStatusCode OH_MIDIClient_GetPortInfos(OH_MIDIClient *client,
  *     or {@link #MIDI_STATUS_TOO_MANY_OPEN_PORTS} if the maximum number of open ports has been reached.
  *     or {@link #MIDI_STATUS_GENERIC_INVALID_ARGUMENT} if callback is null.
  *     or {@link #MIDI_STATUS_GENERIC_IPC_FAILURE} if connection to system service fails.
+ * @note Use {@link #OH_MIDIDevice_CloseInputPort} to close the input port.
  * @since 24
  */
 OH_MIDIStatusCode OH_MIDIDevice_OpenInputPort(
@@ -257,6 +264,7 @@ OH_MIDIStatusCode OH_MIDIDevice_OpenInputPort(
  *     or {@link #MIDI_STATUS_PORT_ALREADY_OPEN} if the port is already opened by this client.
  *     or {@link #MIDI_STATUS_TOO_MANY_OPEN_PORTS} if the maximum number of open ports has been reached.
  *     or {@link #MIDI_STATUS_GENERIC_IPC_FAILURE} if connection to system service fails.
+ * @note Use {@link #OH_MIDIDevice_CloseOutputPort} to close the output port.
  * @since 24
  */
 OH_MIDIStatusCode OH_MIDIDevice_OpenOutputPort(OH_MIDIDevice *device, OH_MIDIPortDescriptor descriptor);
@@ -270,6 +278,7 @@ OH_MIDIStatusCode OH_MIDIDevice_OpenOutputPort(OH_MIDIDevice *device, OH_MIDIPor
  *     or {@link #MIDI_STATUS_INVALID_DEVICE_HANDLE} if device is invalid.
  *     or {@link #MIDI_STATUS_INVALID_PORT} if portIndex is invalid or not an open input port.
  *     or {@link #MIDI_STATUS_GENERIC_IPC_FAILURE} if connection to system service fails.
+ * @note Paired with {@link #OH_MIDIDevice_OpenInputPort}.
  * @since 24
  */
 OH_MIDIStatusCode OH_MIDIDevice_CloseInputPort(OH_MIDIDevice *device, uint32_t portIndex);
@@ -283,6 +292,7 @@ OH_MIDIStatusCode OH_MIDIDevice_CloseInputPort(OH_MIDIDevice *device, uint32_t p
  *     or {@link #MIDI_STATUS_INVALID_DEVICE_HANDLE} if device is invalid.
  *     or {@link #MIDI_STATUS_INVALID_PORT} if portIndex is invalid or not an open output port.
  *     or {@link #MIDI_STATUS_GENERIC_IPC_FAILURE} if connection to system service fails.
+ * @note Paired with {@link #OH_MIDIDevice_OpenOutputPort}.
  * @since 24
  */
 OH_MIDIStatusCode OH_MIDIDevice_CloseOutputPort(OH_MIDIDevice *device, uint32_t portIndex);
