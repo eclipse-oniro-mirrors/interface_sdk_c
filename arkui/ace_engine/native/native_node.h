@@ -3025,6 +3025,20 @@ typedef enum {
     NODE_TEXT_TEXT_SELECTION = 1046,
 
     /**
+     * @brief Whether to avoid an orphan word on the last line of the paragraph.
+     *
+     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
+     * .value[0].i32:  Whether enable the feature, true means enable this feature, false means disable.
+     * The default value is false.\n
+     * \n
+     * Format of the return value {@link ArkUI_AttributeItem}:\n
+     * .value[0].i32: The current state of this feature.\n
+     *
+     * @since 26.0.0
+     */
+ 	  NODE_TEXT_ORPHAN_CHAR_OPTIMIZATION = 1047,
+
+    /**
      * @brief Whether to compress punctuation at the beginning of line.
      *
      * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
@@ -4273,6 +4287,20 @@ typedef enum {
     NODE_TEXT_INPUT_ELLIPSIS_MODE = 7042,
 
     /**
+     * @brief Whether to avoid an orphan word on the last line of the paragraph.
+     *
+     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
+     * .value[0].i32:  Whether enable the feature, true means enable this feature, false means disable.
+     * The default value is false.\n
+     * \n
+     * Format of the return value {@link ArkUI_AttributeItem}:\n
+     * .value[0].i32: The current state of this feature.\n
+     *
+     * @since 26.0.0
+     */
+ 	  NODE_TEXT_INPUT_ORPHAN_CHAR_OPTIMIZATION = 7043,
+
+    /**
      * @brief Whether to compress punctuation at the beginning of line.
      *
      * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
@@ -4859,6 +4887,20 @@ typedef enum {
      *  @since 24
      */
     NODE_TEXT_AREA_ELLIPSIS_MODE = 8038,
+
+    /**
+     * @brief Whether to avoid an orphan word on the last line of the paragraph.
+     *
+     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
+     * .value[0].i32:  Whether enable the feature true means enable this feature, false means disable.
+     * The default value is false.\n
+     * \n
+     * Format of the return value {@link ArkUI_AttributeItem}:\n
+     * .value[0].i32: The current state of this feature.\n
+     *
+     * @since 26.0.0
+     */
+    NODE_TEXT_AREA_ORPHAN_CHAR_OPTIMIZATION = 8039,
 
     /**
      * @brief Whether to compress punctuation at the beginning of line.
