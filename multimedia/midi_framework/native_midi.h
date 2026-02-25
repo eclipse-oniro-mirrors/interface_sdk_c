@@ -182,6 +182,7 @@ OH_MIDIStatusCode OH_MIDIClient_OpenBLEDevice(OH_MIDIClient *client,
  * @note Closing a device automatically closes all opened ports on that device.
  * @note Paired with {@link #OH_MIDIClient_OpenDevice} or {@link #OH_MIDIClient_OpenBLEDevice}.
  *
+ * @param client Target client handle.
  * @param device Target device handle.
  * @return {@link #OH_MIDI_STATUS_OK} if execution succeeds.
  *     or {@link #OH_MIDI_STATUS_INVALID_CLIENT} if client is invalid.
