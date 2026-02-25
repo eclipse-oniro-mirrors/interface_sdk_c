@@ -76,7 +76,7 @@ OH_MIDIStatusCode OH_MIDIClient_Create(OH_MIDIClient **client, OH_MIDICallbacks 
  *     It is recommended to close resources in reverse order (ports->devices->client) for code clarity,
  *     but this is not a mandatory requirement.
  *
- * @note Paired with {@link #OH_MIDIClient_Create}.
+ *     Paired with {@link #OH_MIDIClient_Create}.
  *
  * @param client Target client handle.
  * @return {@link #OH_MIDI_STATUS_OK} if execution succeeds.
