@@ -196,9 +196,9 @@ typedef enum {
  * @since 24
  */
 typedef struct {
-    /** Key of font variation coordinate */
+    /** key of font variation coordinate */
     char* axisKey;
-    /** Value of font variation coordinate */
+    /** value of font variation coordinate */
     double value;
 } OH_Drawing_FontVariationInstanceCoordinate;
 
