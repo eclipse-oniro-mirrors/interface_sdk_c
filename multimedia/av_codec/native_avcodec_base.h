@@ -1441,6 +1441,33 @@ extern const char *OH_MD_KEY_VIDEO_NATIVE_BUFFER_FORMAT;
 extern const char *OH_MD_KEY_BUFFER_SKIP_SAMPLES_INFO;
 
 /**
+ * @brief Key for latitude, value type is float, The range is from -90 to 90.
+ * Representing the latitude within the geographical location
+ *
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
+ * @since 24
+ */
+extern const char *OH_MD_KEY_LATITUDE;
+
+/**
+ * @brief Key for longitude, value type is float, The range is from -180 to 180.
+ * Representing the longitude within the geographical location
+ *
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
+ * @since 24
+ */
+extern const char *OH_MD_KEY_LONGITUDE;
+
+/**
+ * @brief Key for altitude, value type is float.
+ * This is an optional key. Representing the altitude within the geographical location
+ *
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
+ * @since 24
+ */
+extern const char *OH_MD_KEY_ALTITUDE;
+
+/**
  * @brief Media type.
  *
  * @syscap SystemCapability.Multimedia.Media.CodecBase
