@@ -140,12 +140,12 @@ typedef enum {
     */
     FULL_DESCRIPTOR_ATTR_S_LICENSE = 18,
     /**
-    * The array of font variation axis
+    * The array of the font variation axis
     * @since 24
     */
     FULL_DESCRIPTOR_ATTR_O_VARIATION_AXIS = 19,
     /**
-    * The array of font variation instance
+    * The array of the font variation instance
     * @since 24
     */
     FULL_DESCRIPTOR_ATTR_O_VARIATION_INSTANCE = 20,
@@ -179,16 +179,16 @@ typedef enum {
 } OH_Drawing_FontVariationAxisAttributeId;
 
 /**
-* @brief Defines the font variation coordinate.
-*
-* @since 24
-*/
-typedef struct {
-    /** key of font variation coordinate */
-    char* axisKey;
-    /** value of font variation coordinate */
-    double value;
-} OH_Drawing_FontVariationInstanceCoordinate;
+ * @brief An enumeration of font variation instance attribute.
+ *
+ * @since 24
+ */
+typedef enum {
+    /** The name of the font variation instance */
+    FONT_VARIATION_INSTANCE_ATTR_S_NAME = 0,
+    /** The local name of the font variation instance */
+    FONT_VARIATION_INSTANCE_ATTR_S_LOCAL_NAME = 1,
+} OH_Drawing_FontVariationInstanceAttributeId;
 
 /**
  * @brief Defines the font variation coordinate.
@@ -410,7 +410,7 @@ OH_Drawing_Array* OH_Drawing_GetFontFullDescriptorAttributeArray(const OH_Drawin
  *
  * @param array Pointer to the array of font variation axis <b>OH_Drawing_Array</b>.
  * @param index Zero-based index position of the variation axis to retrieve.
- * @return Returns a pointer to the <b>OH_Drawing_FontVariationAxis</b> at the specified index.
+ * @return Returns a pointer to <b>OH_Drawing_FontVariationAxis</b> at the specified index.
  *         Returns <b>NULL</b> if the index is out of bounds or the array is invalid.
  * @since 24
  */
@@ -419,7 +419,7 @@ OH_Drawing_FontVariationAxis* OH_Drawing_GetFontVariationAxisByIndex(OH_Drawing_
 /**
  * @brief Releases the memory occupied by an array of font variation axis.
  *
- * @param fontVariaAxisArray Indicates an array of font variaiton axis object <b>OH_Drawing_Array</b>.
+ * @param fontVariaAxisArray Indicates an array of font variation axis object <b>OH_Drawing_Array</b>.
  * @since 24
  */
 void OH_Drawing_DestroyFontVariationAxis(OH_Drawing_Array* fontVariaAxisArray);
@@ -458,16 +458,15 @@ OH_Drawing_ErrorCode OH_Drawing_GetFontVariationAxisAttributeInt(OH_Drawing_Font
  * @brief Retrieves a string attribute value from a font variation axis.
  *
  * @note The caller is responsible for manually releasing the internal <b>strData</b> member of the
- *       <b>OH_Drawing_String></b> structure when it is no longer needed.
+ *       <b>OH_Drawing_String</b> structure when it is no longer needed.
  *
  * @param variationAxis Pointer to the font variation axis <b>OH_Drawing_FontVariationAxis</b>.
  * @param id Attribute identifier from <b>OH_Drawing_FontVariationAxisAttributeId</b> enumeration.
- * @param str Output parameter to receive the requested string attribute value.
+ * @param str Output parameter to receive pointer to the requested string attribute value.
  * @return Returns the error code.
  *         Returns <b>OH_DRAWING_SUCCESS</b> if the operation is successful.
  *         Returns <b>OH_DRAWING_ERROR_INCORRECT_PARAMETER</b> if the variationAxis or str is NULL.
  *         Returns <b>OH_DRAWING_ERROR_ATTRIBUTE_ID_MISMATCH</b> if the attribute id is not recognized or supported.
-
  * @since 24
  */
 OH_Drawing_ErrorCode OH_Drawing_GetFontVariationAxisAttributeStr(OH_Drawing_FontVariationAxis* variationAxis,
@@ -478,7 +477,7 @@ OH_Drawing_ErrorCode OH_Drawing_GetFontVariationAxisAttributeStr(OH_Drawing_Font
  *
  * @param array Pointer to the array of font variation instance <b>OH_Drawing_Array</b>.
  * @param index Zero-based index position of the variation instance to retrieve.
- * @return Returns a pointer to the <b>OH_Drawing_FontVariationInstance</b> at the specified index.
+ * @return Returns a pointer to <b>OH_Drawing_FontVariationInstance</b> at the specified index.
  *         Returns <b>NULL</b> if the index is out of bounds or the array is invalid.
  * @since 24
  */
@@ -487,16 +486,16 @@ OH_Drawing_FontVariationInstance* OH_Drawing_GetFontVariationInstanceByIndex(OH_
 /**
  * @brief Releases the memory occupied by an array of font variation instance.
  *
- * @param fontVariaAxisInstance Indicates an array of font variaiton instance object <b>OH_Drawing_Array</b>.
+ * @param fontVariaAxisInstance Indicates an array of font variation instance object <b>OH_Drawing_Array</b>.
  * @since 24
  */
-void OH_Drawing_DestroyFontVariationInstance(OH_Drawing_Array* FontVariationInstance);
+void OH_Drawing_DestroyFontVariationInstance(OH_Drawing_Array* FontVariaAxisInstance);
 
 /**
  * @brief Retrieves a string attribute value from a font variation instance.
  *
  * @note The caller is responsible for manually releasing the internal <b>strData</b> member of the
- *       <b>OH_Drawing_String></b> structure when it is no longer needed.
+ *       <b>OH_Drawing_String</b> structure when it is no longer needed.
  *
  * @param variationInstance Pointer to the font variation instance <b>OH_Drawing_FontVariationInstance</b>.
  * @param id Attribute identifier from <b>OH_Drawing_FontVariationInstanceAttributeId</b> enumeration.
@@ -507,10 +506,8 @@ void OH_Drawing_DestroyFontVariationInstance(OH_Drawing_Array* FontVariationInst
  *         Returns <b>OH_DRAWING_ERROR_ATTRIBUTE_ID_MISMATCH</b> if the attribute id is not recognized or supported.
  * @since 24
  */
-OH_Drawing_ErrorCode OH_Drawing_GetFontVariationInstanceAttributeStr(
-    OH_Drawing_FontVariationInstance* variationInstance,
-    OH_Drawing_FontVariationInstanceAttributeId id,
-    OH_Drawing_String *str);
+OH_Drawing_ErrorCode OH_Drawing_GetFontVariationInstanceAttributeStr(OH_Drawing_FontVariationInstance* variationInstance,
+    OH_Drawing_FontVariationInstanceAttributeId id, OH_Drawing_String *str);
 
 /**
  * @brief Get the <b>OH_Drawing_FontVariationInstanceCoordinate</b> object.
@@ -527,7 +524,7 @@ OH_Drawing_FontVariationInstanceCoordinate* OH_Drawing_GetFontVariationInstanceC
  * @brief Get the <b>OH_Drawing_FontFullDescriptor</b> object by the font full name and the font type
  *
  * @param fullName Indicates the full name object <b>OH_Drawing_String</b>.
- * @param fontType Indicates the enumerates of system font type object <b>OH_Drawing_SystemFontType</b>.
+ * @param fontType Indicates enumerates of system font type object <b>OH_Drawing_SystemFontType</b>.
  * @return Returns the pointer to a font full descriptor object <b>OH_Drawing_FontFullDescriptor</b>.
  * @since 24
  */
