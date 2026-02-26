@@ -196,9 +196,9 @@ typedef enum {
  * @since 24
  */
 typedef struct {
-    /** key of font variation coordinate */
+    /** Key of font variation coordinate */
     char* axisKey;
-    /** value of font variation coordinate */
+    /** Value of font variation coordinate */
     double value;
 } OH_Drawing_FontVariationInstanceCoordinate;
 
@@ -509,7 +509,7 @@ void OH_Drawing_DestroyFontVariationInstance(OH_Drawing_Array* fontVariaAxisInst
 OH_Drawing_ErrorCode OH_Drawing_GetFontVariationInstanceAttributeStr(
     OH_Drawing_FontVariationInstance* variationInstance,
     OH_Drawing_FontVariationInstanceAttributeId id,
-    OH_Drawing_String *str);
+    OH_Drawing_String* str);
 
 /**
  * @brief Get the <b>OH_Drawing_FontVariationInstanceCoordinate</b> object.
@@ -520,7 +520,7 @@ OH_Drawing_ErrorCode OH_Drawing_GetFontVariationInstanceAttributeStr(
  * @since 24
  */
 OH_Drawing_FontVariationInstanceCoordinate* OH_Drawing_GetFontVariationInstanceCoordinate(
-    OH_Drawing_FontVariationInstance* variationInstance, size_t *arrayLength);
+    OH_Drawing_FontVariationInstance* variationInstance, size_t* arrayLength);
 
 /**
  * @brief Get the <b>OH_Drawing_FontFullDescriptor</b> object by the font full name and the font type
