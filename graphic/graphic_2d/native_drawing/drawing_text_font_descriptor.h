@@ -489,7 +489,7 @@ OH_Drawing_FontVariationInstance* OH_Drawing_GetFontVariationInstanceByIndex(OH_
  * @param fontVariaAxisInstance Indicates an array of font variation instance object <b>OH_Drawing_Array</b>.
  * @since 24
  */
-void OH_Drawing_DestroyFontVariationInstance(OH_Drawing_Array* FontVariaAxisInstance);
+void OH_Drawing_DestroyFontVariationInstance(OH_Drawing_Array* fontVariaAxisInstance);
 
 /**
  * @brief Retrieves a string attribute value from a font variation instance.
