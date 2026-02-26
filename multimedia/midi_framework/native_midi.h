@@ -180,7 +180,7 @@ OH_MIDIStatusCode OH_MIDIClient_OpenBLEDevice(OH_MIDIClient *client,
  * @brief Closes the MIDI device.
  *
  * @note Closing a device automatically closes all opened ports on that device.
- * @note Paired with {@link #OH_MIDIClient_OpenDevice} or {@link #OH_MIDIClient_OpenBLEDevice}.
+ *     Paired with {@link #OH_MIDIClient_OpenDevice} or {@link #OH_MIDIClient_OpenBLEDevice}.
  *
  * @param client Target client handle.
  * @param device Target device handle.
