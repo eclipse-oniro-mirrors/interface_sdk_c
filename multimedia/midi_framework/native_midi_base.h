@@ -483,7 +483,7 @@ typedef void (*OH_MIDICallback_OnDeviceChange)(
  * @warning This callback is invoked on a high-priority system thread.
  * Do **not** perform blocking operations, heavy computation, or I/O.
  *
- * @param userData User context provided during port opening.
+ * @param userData The user context pointer passed to {@link #OH_MIDIClient_Create}.
  * @param events Pointer to the array of MIDI events received.
  * @param eventCount The number of events in the array.
  *
@@ -496,7 +496,7 @@ typedef void (*OH_MIDIDevice_OnReceived)(void *userData, const OH_MIDIEvent *eve
  * Invoked when a critical error occurs in the MIDI service (e.g., service crash).
  * Applications may need to recreate the client when this occurs.
  *
- * @param userData User context provided during client creation.
+ * @param userData The user context pointer passed to {@link #OH_MIDIClient_Create}.
  * @param code The error code indicating the cause.
  *
  * @since 24
