@@ -336,8 +336,8 @@ OH_MIDIStatusCode OH_MIDIDevice_CloseOutputPort(OH_MIDIDevice *device, uint32_t 
  *     or {@link #OH_MIDI_STATUS_GENERIC_IPC_FAILURE} if connection to system service fails.
  * @since 24
  */
-OH_MIDIStatusCode OH_MIDIDevice_Send(OH_MIDIDevice *device, uint32_t portIndex, const
-    OH_MIDIEvent *events, uint32_t eventCount, uint32_t *eventsWritten);
+OH_MIDIStatusCode OH_MIDIDevice_Send(OH_MIDIDevice *device, uint32_t portIndex,
+    const OH_MIDIEvent *events, uint32_t eventCount, uint32_t *eventsWritten);
 
 /**
  * @brief Sends a large SysEx message (Byte-Stream to UMP Helper).
