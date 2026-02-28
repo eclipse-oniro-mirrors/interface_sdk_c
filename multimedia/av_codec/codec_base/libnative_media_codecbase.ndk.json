@@ -613,15 +613,18 @@
     },
     {
         "first_introduced": "24",
-        "name": "OH_MD_KEY_LATITUDE"
+        "name": "OH_MD_KEY_LATITUDE",
+        "type": "variable"
     },
     {
         "first_introduced": "24",
-        "name": "OH_MD_KEY_LONGITUDE"
+        "name": "OH_MD_KEY_LONGITUDE",
+        "type": "variable"
     },
     {
         "first_introduced": "24",
-        "name": "OH_MD_KEY_ALTITUDE"
+        "name": "OH_MD_KEY_ALTITUDE",
+        "type": "variable"
     },
     {
         "first_introduced": "10",
