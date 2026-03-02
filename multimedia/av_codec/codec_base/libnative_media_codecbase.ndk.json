@@ -612,6 +612,21 @@
         "name": "OH_MD_KEY_BUFFER_SKIP_SAMPLES_INFO"
     },
     {
+        "first_introduced": "24",
+        "name": "OH_MD_KEY_LATITUDE",
+        "type": "variable"
+    },
+    {
+        "first_introduced": "24",
+        "name": "OH_MD_KEY_LONGITUDE",
+        "type": "variable"
+    },
+    {
+        "first_introduced": "24",
+        "name": "OH_MD_KEY_ALTITUDE",
+        "type": "variable"
+    },
+    {
         "first_introduced": "10",
         "name": "OH_AVCodec_GetCapability"
     },
