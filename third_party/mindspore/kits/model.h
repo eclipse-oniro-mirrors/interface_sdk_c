@@ -45,6 +45,11 @@ extern "C" {
 
 typedef void *OH_AI_ModelHandle;
 
+/**
+ * @brief Defines a pointer to a training configuration object.
+ *
+ * @since 11
+ */
 typedef void *OH_AI_TrainCfgHandle;
 
 typedef struct OH_AI_TensorHandleArray {
