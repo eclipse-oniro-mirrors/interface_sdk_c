@@ -4854,6 +4854,14 @@
         "name": "OH_ArkUI_Matrix4_GetElements"
     },
     {
+        "first_introduced": "24",
+        "name": "OH_ArkUI_DrawableDescriptor_SetAnimationStopMode"
+    },
+    {
+        "first_introduced": "24",
+        "name": "OH_ArkUI_DrawableDescriptor_GetAnimationStopMode"
+    },
+    {
         "first_introduced": "23",
         "name": "OH_ArkUI_TextMarqueeOptions_Create"
     },
