@@ -359,6 +359,11 @@ typedef enum Camera_FlashMode {
  */
 typedef enum Camera_ExposureMode {
     /**
+     * Unspecified exposure mode.
+     */
+    EXPOSURE_MODE_UNSPECIFIED = -1,
+    
+    /**
      * Lock exposure mode.
      */
     EXPOSURE_MODE_LOCKED = 0,
