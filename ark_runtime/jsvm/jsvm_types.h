@@ -395,7 +395,6 @@ typedef enum {
     JSVM_MEMORY_PRESSURE_LEVEL_CRITICAL,
     /**
      * Notifies that the system is running low on memory and triggers garbage collection immediately.
-     *
      * @since 22
      */
     JSVM_MEMORY_PRESSURE_LEVEL_LOW_MEMORY,
