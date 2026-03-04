@@ -1167,6 +1167,50 @@
         "name": "OH_Drawing_GetFontFullDescriptorAttributeString"
     },
     {
+        "first_introduced": "24",
+        "name": "OH_Drawing_GetFontFullDescriptorAttributeArray"
+    },
+    {
+        "first_introduced": "24",
+        "name": "OH_Drawing_GetFontVariationAxisByIndex"
+    },
+    {
+        "first_introduced": "24",
+        "name": "OH_Drawing_DestroyFontVariationAxis"
+    },
+    {
+        "first_introduced": "24",
+        "name": "OH_Drawing_GetFontVariationAxisAttributeDouble"
+    },
+    {
+        "first_introduced": "24",
+        "name": "OH_Drawing_GetFontVariationAxisAttributeInt"
+    },
+    {
+        "first_introduced": "24",
+        "name": "OH_Drawing_GetFontVariationAxisAttributeStr"
+    },
+    {
+        "first_introduced": "24",
+        "name": "OH_Drawing_GetFontVariationInstanceByIndex"
+    },
+    {
+        "first_introduced": "24",
+        "name": "OH_Drawing_DestroyFontVariationInstance"
+    },
+    {
+        "first_introduced": "24",
+        "name": "OH_Drawing_GetFontVariationInstanceAttributeStr"
+    },
+    {
+        "first_introduced": "24",
+        "name": "OH_Drawing_GetFontVariationInstanceCoordinate"
+    },
+    {
+        "first_introduced": "24",
+        "name": "OH_Drawing_GetFontFullDescriptorByFullName"
+    },
+    {
         "first_introduced": "23",
         "name": "OH_Drawing_GetFontUnicodeArrayFromBuffer"
     },
