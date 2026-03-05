@@ -449,6 +449,8 @@ void OH_Drawing_CanvasDrawCircle(OH_Drawing_Canvas* canvas, const OH_Drawing_Poi
  * @return Returns the error code.
  *         Returns {@link OH_DRAWING_SUCCESS} if the operation is successful.
  *         Returns {@link OH_DRAWING_ERROR_INVALID_PARAMETER} if canvas is nullptr.
+ *         Returns {@link OH_DRAWING_ERROR_PARAMETER_OUT_OF_RANGE} if the enumeration values of blendMode
+ *                 exceed the enumeration range.
  * @since 12
  * @version 1.0
  */
@@ -648,6 +650,8 @@ void OH_Drawing_CanvasClipPath(OH_Drawing_Canvas* canvas, const OH_Drawing_Path*
  * @return Returns the error code.
  *         Returns {@link OH_DRAWING_SUCCESS} if the operation is successful.
  *         Returns {@link OH_DRAWING_ERROR_INVALID_PARAMETER} if canvas or region is nullptr.
+ *         Returns {@link OH_DRAWING_ERROR_PARAMETER_OUT_OF_RANGE} if the enumeration values of clipOp
+ *                 exceed the enumeration range.
  * @since 12
  * @version 1.0
  */
