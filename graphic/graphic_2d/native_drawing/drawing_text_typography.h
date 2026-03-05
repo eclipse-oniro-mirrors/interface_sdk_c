@@ -1180,7 +1180,7 @@ void OH_Drawing_TextStyleGetForegroundPen(OH_Drawing_TextStyle* style, OH_Drawin
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @param style Indicates the pointer to a text style object <b>OH_Drawing_TextStyle</b>.
- * @param foregroundPen Indicates the pointer to a brush object <b>OH_Drawing_Brush</b>.
+ * @param backgroundBrush Indicates the pointer to a brush object <b>OH_Drawing_Brush</b>.
  * @since 12
  * @version 1.0
  */
