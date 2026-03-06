@@ -600,6 +600,7 @@ OH_AVErrCode OH_AVPlayer_SetDecryptionConfig(OH_AVPlayer *player, MediaKeySessio
  * @param userData Pointer to user specific data.
  * @return Function result code.
  *         {@link AV_ERR_OK} if the execution is successful.
+ *         {@link AV_ERR_NO_MEMORY} if memory alloc failed.
  *         {@link AV_ERR_INVALID_VAL} if input player is null or player SetOnInfoCallback failed.
  * @since 12
  */
@@ -613,6 +614,7 @@ OH_AVErrCode OH_AVPlayer_SetOnInfoCallback(OH_AVPlayer *player, OH_AVPlayerOnInf
  * @param userData Pointer to user specific data.
  * @return Function result code.
  *         {@link AV_ERR_OK} if the execution is successful.
+ *         {@link AV_ERR_NO_MEMORY} if memory alloc failed.
  *         {@link AV_ERR_INVALID_VAL} if input player is null or player SetOnErrorCallback failed.
  * @since 12
  */
