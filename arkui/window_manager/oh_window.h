@@ -387,7 +387,8 @@ int32_t OH_WindowManager_UnlockCursor(int32_t windowId);
  *             1. Invalid parameter range.
  * @since 26.0.0
  */
-int32_t OH_WindowManager_FrameMetrics_IsFirstDrawFrame(OH_WindowManager_FrameMetrics* metrics, bool* isFirstDrawFrame);
+int32_t OH_WindowManager_FrameMetrics_IsFirstDrawFrame(
+    const OH_WindowManager_FrameMetrics* metrics, bool* isFirstDrawFrame);
 
 /**
  * @brief Get the time taken to process external input events in one frame.
@@ -401,8 +402,8 @@ int32_t OH_WindowManager_FrameMetrics_IsFirstDrawFrame(OH_WindowManager_FrameMet
  *             1. Invalid parameter range.
  * @since 26.0.0
  */
-int32_t OH_WindowManager_FrameMetrics_GetInputHandlingDuration(OH_WindowManager_FrameMetrics* metrics,
-    uint64_t* duration);
+int32_t OH_WindowManager_FrameMetrics_GetInputHandlingDuration(
+    const OH_WindowManager_FrameMetrics* metrics, uint64_t* duration);
 
 /**
  * @brief Get the time taken for layout measurement in one frame.
@@ -416,8 +417,8 @@ int32_t OH_WindowManager_FrameMetrics_GetInputHandlingDuration(OH_WindowManager_
  *             1. Invalid parameter range.
  * @since 26.0.0
  */
-int32_t OH_WindowManager_FrameMetrics_GetLayoutMeasureDuration(OH_WindowManager_FrameMetrics* metrics,
-    uint64_t* duration);
+int32_t OH_WindowManager_FrameMetrics_GetLayoutMeasureDuration(
+    const OH_WindowManager_FrameMetrics* metrics, uint64_t* duration);
 
 /**
  * @brief Get the start timestamp of the current frame.
@@ -431,7 +432,8 @@ int32_t OH_WindowManager_FrameMetrics_GetLayoutMeasureDuration(OH_WindowManager_
  *             1. Invalid parameter range.
  * @since 26.0.0
  */
-int32_t OH_WindowManager_FrameMetrics_GetVsyncTimestamp(OH_WindowManager_FrameMetrics* metrics, uint64_t* timestamp);
+int32_t OH_WindowManager_FrameMetrics_GetVsyncTimestamp(
+    const OH_WindowManager_FrameMetrics* metrics, uint64_t* timestamp);
 
 /**
  * @brief Subscribe to the listening event for changes in the window frame rate metrics.
