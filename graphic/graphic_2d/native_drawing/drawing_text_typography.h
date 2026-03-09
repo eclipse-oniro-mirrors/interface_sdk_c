@@ -1180,11 +1180,11 @@ void OH_Drawing_TextStyleGetForegroundPen(OH_Drawing_TextStyle* style, OH_Drawin
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @param style Indicates the pointer to a text style object <b>OH_Drawing_TextStyle</b>.
- * @param foregroundPen Indicates the pointer to a brush object <b>OH_Drawing_Brush</b>.
+ * @param backgroundBrush Indicates the pointer to a brush object <b>OH_Drawing_Brush</b>.
  * @since 12
  * @version 1.0
  */
-void OH_Drawing_SetTextStyleBackgroundBrush(OH_Drawing_TextStyle* style, OH_Drawing_Brush* foregroundPen);
+void OH_Drawing_SetTextStyleBackgroundBrush(OH_Drawing_TextStyle* style, OH_Drawing_Brush* backgroundBrush);
 
 /**
  * @brief Gets the background brush style.
@@ -1312,13 +1312,13 @@ void OH_Drawing_TypographyLayout(OH_Drawing_Typography* typography, double maxWi
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @param typography Indicates the pointer to an <b>OH_Drawing_Typography</b> object.
  * @param canvas Indicates the pointer to an <b>OH_Drawing_Canvas</b> object.
- * @param potisionX Indicates the x coordinate.
- * @param potisionY Indicates the y coordinate.
+ * @param positionX Indicates the x coordinate.
+ * @param positionY Indicates the y coordinate.
  * @since 8
  * @version 1.0
  */
 void OH_Drawing_TypographyPaint(OH_Drawing_Typography* typography, OH_Drawing_Canvas* canvas,
-    double potisionX, double potisionY);
+    double positionX, double positionY);
 
 /**
  * @brief Paints path text on the canvas.
@@ -1638,12 +1638,12 @@ size_t OH_Drawing_GetPositionFromPositionAndAffinity(OH_Drawing_PositionAndAffin
  * @brief Gets affinity from position and affinity.
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @param positionandaffinity Indicates the pointer to an <b>OH_Drawing_PositionAndAffinity</b> object.
+ * @param positionAndAffinity Indicates the pointer to an <b>OH_Drawing_PositionAndAffinity</b> object.
  * @return Returns affinity from position and affinity.
  * @since 11
  * @version 1.0
  */
-int OH_Drawing_GetAffinityFromPositionAndAffinity(OH_Drawing_PositionAndAffinity* positionandaffinity);
+int OH_Drawing_GetAffinityFromPositionAndAffinity(OH_Drawing_PositionAndAffinity* positionAndAffinity);
 
 /**
  * @brief Gets the word boundary.
