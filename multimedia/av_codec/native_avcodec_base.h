@@ -603,6 +603,13 @@ extern const char *OH_AVCODEC_MIMETYPE_VIDEO_RAWVIDEO;
 extern const char *OH_AVCODEC_MIMETYPE_VIDEO_MPEG1;
 
 /**
+ * @brief Enumerates the MIME type of video Cinepak codec.
+ *
+ * @since 24
+ * */
+extern const char *OH_AVCODEC_MIMETYPE_VIDEO_CINEPAK;
+
+/**
  * @brief Enumerates the MIME type of video MSVIDEO1 codec.
  *
  * @since 22
