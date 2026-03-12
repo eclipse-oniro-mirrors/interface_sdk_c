@@ -671,6 +671,60 @@ float OH_ArkUI_PointerEvent_GetY(const ArkUI_UIInputEvent* event);
 float OH_ArkUI_PointerEvent_GetYByIndex(const ArkUI_UIInputEvent* event, uint32_t pointerIndex);
 
 /**
+ * @brief Obtains the X coordinate relative to the upper left corner of the current component
+ * from a directional input event (such as a touch event, mouse event, or axis event) based on the real-time position.
+ *
+ * @param event Pointer to the current UI input event.
+ * @return Returns the X coordinate relative to the upper left corner of the current component
+ *         from a directional input event; returns 0.0f if any parameter error occurs.
+ * @since 26.0.0
+ */
+float OH_ArkUI_PointerEvent_GetCurrentLocalX(const ArkUI_UIInputEvent* event);
+
+/**
+ * @brief Obtains the X coordinate of the touch point relative to the upper left corner of the current component from
+ * a directional input event (such as a touch event, mouse event, or axis event) based on the real-time position.
+ * For all types of events, an index value less than 0 is considered invalid.
+ * For mouse and axis events, a non-zero index value is considered invalid.
+ * For touch events, obtains the X coordinate of a specific touch point relative
+ * to the upper left corner of the current component based on the given index.
+ *
+ * @param event Pointer to the current UI input event.
+ * @param pointerIndex Index of the target touch point in the multi-touch data list.
+ * @return Returns the X coordinate of the specific touch point relative to the upper left corner
+ *         of the current component; returns 0.0f if any parameter error occurs.
+ * @since 26.0.0
+ */
+float OH_ArkUI_PointerEvent_GetCurrentLocalXByIndex(const ArkUI_UIInputEvent* event, uint32_t pointerIndex);
+
+/**
+ * @brief Obtains the Y coordinate relative to the upper left corner of the current component
+ * from a directional input event (such as a touch event, mouse event, or axis event) based on the real-time position.
+ *
+ * @param event Pointer to the current UI input event.
+ * @return Returns the Y coordinate relative to the upper left corner of the current component
+ *         for a directional input event; returns 0.0f if any parameter error occurs.
+ * @since 26.0.0
+ */
+float OH_ArkUI_PointerEvent_GetCurrentLocalY(const ArkUI_UIInputEvent* event);
+
+/**
+ * @brief Obtains the Y coordinate of the touch point relative to the upper left corner of the current component from
+ * a directional input event (such as a touch event, mouse event, or axis event) based on the real-time position.
+ * For all types of events, an index value less than 0 is considered invalid.
+ * For mouse and axis events, a non-zero index value is considered invalid.
+ * For touch events, obtains the Y coordinate of a specific touch point relative
+ * to the upper left corner of the current component based on the given index.
+ *
+ * @param event Pointer to the current UI input event.
+ * @param pointerIndex Index of the target touch point in the multi-touch data list.
+ * @return Returns the Y coordinate of the specific touch point relative to the upper left corner
+ *         of the current component; returns 0.0f if any parameter error occurs.
+ * @since 26.0.0
+ */
+float OH_ArkUI_PointerEvent_GetCurrentLocalYByIndex(const ArkUI_UIInputEvent* event, uint32_t pointerIndex);
+
+/**
  * @brief Obtains the X coordinate relative to the upper left corner of the current application window from a
  * directional input event (such as a touch event, mouse event, or axis event).
  *
