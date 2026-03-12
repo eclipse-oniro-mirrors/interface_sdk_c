@@ -27,6 +27,7 @@ ohos_ndk_headers("ohaudio_header") {
     "audio_renderer/native_audiorenderer.h",
     "common/native_audio_common.h",
     "common/native_audio_device_base.h",
+    "common/native_audio_session_base.h",
     "common/native_audiostream_base.h",
     "common/native_audiostreambuilder.h",
   ]
@@ -50,5 +51,6 @@ ohos_ndk_library("libohaudio_ndk") {
     "ohaudio/native_audio_stream_manager.h",
     "ohaudio/native_audio_volume_manager.h",
     "ohaudio/native_audio_resource_manager.h",
+    "ohaudio/native_audio_session_base.h",
   ]
 }
