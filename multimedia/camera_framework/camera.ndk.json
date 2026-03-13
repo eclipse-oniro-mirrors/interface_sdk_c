@@ -818,5 +818,153 @@
         {
         "first_introduced": "23",
         "name": "OH_CameraManager_CreateMetadataOutputWithObjectTypes"
+    },
+    {
+        "first_introduced": "24",
+        "name": "OH_CameraDevice_GetLensEquivalentFocalLengths"  
+    },
+    {
+        "first_introduced": "24",
+        "name": "OH_CameraDevice_IsLogicalCamera"  
+    },
+    {
+        "first_introduced": "24",
+        "name": "OH_CameraDevice_GetLogicalCameraConstituentCameraDevices"  
+    },
+    {
+        "first_introduced": "24",
+        "name": "OH_CameraDevice_GetConstituentCamerasSize"  
+    },
+    {
+        "first_introduced": "24",
+        "name": "OH_CameraDevice_GetLensFocalLength"  
+    },
+    {
+        "first_introduced": "24",
+        "name": "OH_CameraDevice_GetMinimumFocusDistance"  
+    },
+    {
+        "first_introduced": "24",
+        "name": "OH_CameraDevice_GetLensDistortion"  
+    },
+    {
+        "first_introduced": "24",
+        "name": "OH_CameraDevice_GetIntrinsicCalibration"  
+    },
+    {
+        "first_introduced": "24",
+        "name": "OH_CameraDevice_GetSensorPhysicalSize"  
+    },
+    {
+        "first_introduced": "24",
+        "name": "OH_CameraDevice_GetSensorPixelArraySize"  
+    },
+    {
+        "first_introduced": "24",
+        "name": "OH_CaptureSession_RegisterFlashStateChangeCallback"  
+    },
+    {
+        "first_introduced": "24",
+        "name": "OH_CaptureSession_UnregisterFlashStateChangeCallback"  
+    },
+    {
+        "first_introduced": "24",
+        "name": "OH_CaptureSession_IsExposureMeteringModeSupported"  
+    },
+    {
+        "first_introduced": "24",
+        "name": "OH_CaptureSession_GetExposureMeteringMode"  
+    },
+    {
+        "first_introduced": "24",
+        "name": "OH_CaptureSession_SetExposureMeteringMode"  
+    },
+    {
+        "first_introduced": "24",
+        "name": "OH_CaptureSession_GetSupportedISORange"  
+    },
+    {
+        "first_introduced": "24",
+        "name": "OH_CaptureSession_GetIso"  
+    },
+    {
+        "first_introduced": "24",
+        "name": "OH_CaptureSession_SetIso"  
+    },
+    {
+        "first_introduced": "24",
+        "name": "OH_CaptureSession_GetSupportedPhysicalApertures"  
+    },
+    {
+        "first_introduced": "24",
+        "name": "OH_CaptureSession_GetPhysicalAperturesSize"  
+    },
+    {
+        "first_introduced": "24",
+        "name": "OH_CaptureSession_GetPhysicalAperture"  
+    },
+    {
+        "first_introduced": "24",
+        "name": "OH_CaptureSession_SetPhysicalAperture"  
+    },
+    {
+        "first_introduced": "24",
+        "name": "OH_CaptureSession_GetSupportedExposureDurationRange"  
+    },
+    {
+        "first_introduced": "24",
+        "name": "OH_CaptureSession_SetExposureDuration"  
+    },
+    {
+        "first_introduced": "24",
+        "name": "OH_CaptureSession_GetExposureDuration"  
+    },
+    {
+        "first_introduced": "24",
+        "name": "OH_CaptureSession_RegisterExposureInfoChangeCallback"  
+    },
+    {
+        "first_introduced": "24",
+        "name": "OH_CaptureSession_UnregisterExposureInfoChangeCallback"  
+    },
+    {
+        "first_introduced": "24",
+        "name": "OH_CaptureSession_GetFocusDistance"  
+    },
+    {
+        "first_introduced": "24",
+        "name": "OH_CaptureSession_SetFocusDistance"  
+    },
+    {
+        "first_introduced": "24",
+        "name": "OH_CaptureSession_IsFocusDistanceSupported"  
+    },
+    {
+        "first_introduced": "24",
+        "name": "OH_CaptureSession_GetRAWCaptureZoomRatioRange"  
+    },
+    {
+        "first_introduced": "24",
+        "name": "OH_CaptureSession_IsOISModeSupported"  
+    },
+    {
+        "first_introduced": "24",
+        "name": "OH_CaptureSession_GetCurrentOISMode"  
+    },
+    {
+        "first_introduced": "24",
+        "name": "OH_CaptureSession_SetOISMode"  
+    },
+    {
+        "first_introduced": "24",
+        "name": "OH_CaptureSession_GetSupportedOISBiasRange"  
+    },
+    {
+        "first_introduced": "24",
+        "name": "OH_CaptureSession_GetCurrentCustomOISBias"  
+    },
+    {
+        "first_introduced": "24",
+        "name": "OH_CaptureSession_SetOISModeCustom"  
     }
 ]
