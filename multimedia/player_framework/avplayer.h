@@ -651,8 +651,8 @@ OH_AVErrCode OH_AVPlayer_SetVolumeMode(OH_AVPlayer *player, OH_AudioStream_Volum
  *         {@link AV_ERR_INVALID_VAL}:The value of <b>player</b> is a null pointer or
  *                                    the value of <b>loudnessGain</b> is invalid.
  *         {@link AV_ERR_INVALID_STATE}: The function is called in an incorrect state. or the stream usage of
- *                                      audioRendererInfo is not one of {@link StreamUsage#STREAM_USAGE_MUSIC},
- *                                 {@link StreamUsage#STREAM_USAGE_MOVIE} or {@link StreamUsage#STREAM_USAGE_AUDIOBOOK}.
+ *                                      audioRendererInfo is not one of {@link OH_AudioStream_Usage#AUDIOSTREAM_USAGE_MUSIC},
+ *                                 {@link OH_AudioStream_Usage#AUDIOSTREAM_USAGE_MOVIE} or {@link OH_AudioStream_Usage#AUDIOSTREAM_USAGE_AUDIOBOOK}.
  *         {@link AV_ERR_SERVICE_DIED}:  System errors such as media service breakdown.
  * @since 21
  */
