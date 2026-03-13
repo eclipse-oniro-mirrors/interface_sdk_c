@@ -293,7 +293,7 @@ typedef struct Camera_DeviceQueryInfo {
  *
  * @since 24
  */
-typedef enum OH_Camera_SensorColorFilterArrangement{
+typedef enum OH_Camera_SensorColorFilterArrangement {
     /**
      * Blue-Green-Green-Red (BGGR) filter arrangement.
      * @since 24
@@ -313,7 +313,7 @@ typedef enum OH_Camera_SensorColorFilterArrangement{
     OH_CAMERA_SENSOR_CFA_GRBG = 2,
 
     /**
-     * Red-Green-Green-Blue (RGGB) filter arrangement. 
+     * Red-Green-Green-Blue (RGGB) filter arrangement.
      * @since 24
      */
     OH_CAMERA_SENSOR_CFA_RGGB = 3
@@ -404,7 +404,7 @@ typedef enum OH_Camera_FlashState {
      * Flash is unavailable, default value.
      * @since 24
      */
-   OH_CAMERA_FLASH_STATE_UNAVAILABLE = 0,
+    OH_CAMERA_FLASH_STATE_UNAVAILABLE = 0,
 
     /**
      * This status indicates that the flash is available.
@@ -460,7 +460,7 @@ typedef enum OH_Camera_ExposureMeteringMode {
      */
     OH_CAMERA_EXPOSURE_METERING_MODE_MATRIX = 0,
 
-    /** 
+    /**
      * Center metering mode: Focuses in on light near the center of the screen, ideal for shooting portraits.
      * @since 24
      */

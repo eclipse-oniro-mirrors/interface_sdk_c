@@ -97,7 +97,8 @@ Camera_ErrorCode OH_CameraDevice_GetHostDeviceType(Camera_Device* camera, Camera
  *         {@link #CAMERA_SERVICE_FATAL_ERROR} if camera service fatal error
  * @since 24
  */
-Camera_ErrorCode OH_CameraDevice_GetLensEquivalentFocalLengths(const Camera_Device* camera, uint32_t** equivalentFocalLengths, uint32_t* size);
+Camera_ErrorCode OH_CameraDevice_GetLensEquivalentFocalLengths(const Camera_Device* camera,
+    uint32_t** equivalentFocalLengths, uint32_t* size);
 
 /**
  * @brief Checks if a camera device is a logical camera.
@@ -123,7 +124,8 @@ Camera_ErrorCode OH_CameraDevice_IsLogicalCamera(const Camera_Device* camera, bo
  *         {@link #CAMERA_SERVICE_FATAL_ERROR} if camera service fatal error
  * @since 24
  */
-Camera_ErrorCode OH_CameraDevice_GetLogicalCameraConstituentCameraDevices(const Camera_Device* logicalCamera, Camera_Device* constituentCameras, uint32_t size);
+Camera_ErrorCode OH_CameraDevice_GetLogicalCameraConstituentCameraDevices(const Camera_Device* logicalCamera,
+    Camera_Device* constituentCameras, uint32_t size);
 
 /**
  * @brief Gets the array size of the constituent cameras.
@@ -184,7 +186,8 @@ Camera_ErrorCode OH_CameraDevice_GetLensDistortion(const Camera_Device* camera, 
  *         {@link #CAMERA_SERVICE_FATAL_ERROR} if camera service fails
  * @since 24
  */
-Camera_ErrorCode OH_CameraDevice_GetIntrinsicCalibration(const Camera_Device* camera, float** intrinsicCalibration, uint32_t* size);
+Camera_ErrorCode OH_CameraDevice_GetIntrinsicCalibration(const Camera_Device* camera, float** intrinsicCalibration,
+    uint32_t* size);
 
 /**
  * @brief Gets the physical size of a camera sensor.
@@ -210,7 +213,8 @@ Camera_ErrorCode OH_CameraDevice_GetSensorPhysicalSize(const Camera_Device* came
  *         {@link #CAMERA_SERVICE_FATAL_ERROR} if camera service fails
  * @since 24
  */
-Camera_ErrorCode OH_CameraDevice_GetSensorPixelArraySize(const Camera_Device* camera, uint32_t* width, uint32_t* height);
+Camera_ErrorCode OH_CameraDevice_GetSensorPixelArraySize(const Camera_Device* camera,
+    uint32_t* width, uint32_t* height);
 
 /**
  * @brief Gets the color filter arrangement of a camera sensor.
@@ -222,7 +226,8 @@ Camera_ErrorCode OH_CameraDevice_GetSensorPixelArraySize(const Camera_Device* ca
  *         {@link #CAMERA_SERVICE_FATAL_ERROR} if camera service fails
  * @since 24
  */
-Camera_ErrorCode OH_CameraDevice_GetSensorColorFilterArrangement(const Camera_Device* camera, OH_Camera_SensorColorFilterArrangement* sensorCFA);
+Camera_ErrorCode OH_CameraDevice_GetSensorColorFilterArrangement(const Camera_Device* camera,
+    OH_Camera_SensorColorFilterArrangement* sensorCFA);
 #ifdef __cplusplus
 }
 #endif

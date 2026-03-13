@@ -448,7 +448,8 @@ Camera_ErrorCode OH_CaptureSession_SetFlashMode(Camera_CaptureSession* session, 
  * @param flashState The {@link OH_Camera_FlashState} which delivered by the callback.
  * @since 24
  */
-typedef void (*OH_CaptureSession_OnFlashStateChange)(const Camera_CaptureSession* session, OH_Camera_FlashState flashState);
+typedef void (*OH_CaptureSession_OnFlashStateChange)(const Camera_CaptureSession* session,
+    OH_Camera_FlashState flashState);
 
 /**
  * @brief Register flash state change event callback.
@@ -561,7 +562,8 @@ Camera_ErrorCode OH_CaptureSession_IsExposureMeteringModeSupported(const Camera_
  *         {@link #CAMERA_SESSION_NOT_CONFIG} if the capture session not config.
  * @since 24
  */
-Camera_ErrorCode OH_CaptureSession_GetExposureMeteringMode(const Camera_CaptureSession* session, OH_Camera_ExposureMeteringMode* exposureMeteringMode);
+Camera_ErrorCode OH_CaptureSession_GetExposureMeteringMode(const Camera_CaptureSession* session
+    OH_Camera_ExposureMeteringMode* exposureMeteringMode);
 
 /**
  * @brief Set exposure metering mode.
@@ -574,7 +576,8 @@ Camera_ErrorCode OH_CaptureSession_GetExposureMeteringMode(const Camera_CaptureS
  *         {@link #CAMERA_SESSION_NOT_CONFIG} if the capture session not config.
  * @since 24
  */
-Camera_ErrorCode OH_CaptureSession_SetExposureMeteringMode(const Camera_CaptureSession* session, OH_Camera_ExposureMeteringMode exposureMeteringMode);
+Camera_ErrorCode OH_CaptureSession_SetExposureMeteringMode(const Camera_CaptureSession* session,
+    OH_Camera_ExposureMeteringMode exposureMeteringMode);
 
 /**
  * @brief Query the iso range.
@@ -618,13 +621,13 @@ Camera_ErrorCode OH_CaptureSession_GetIso(const Camera_CaptureSession* session, 
 Camera_ErrorCode OH_CaptureSession_SetIso(const Camera_CaptureSession* session, int32_t isoValue);
 
 /**
- * @brief Gets the supported physical apertures list. 
+ * @brief Gets the supported physical apertures list.
  * Gets the array size of the physical apertures by calling {@link OH_CaptureSession_GetPhysicalAperturesSize}.
  *
  * @param session the {@link Camera_CaptureSession} instance
  * @param apertures pointer to an array for storing physical aperture values
  * @param size the size of physical apertures by calling {@link OH_CaptureSession_GetPhysicalAperturesSize}
- * @return {@link #CAMERA_OK} success 
+ * @return {@link #CAMERA_OK} success
  *         {@link #CAMERA_INVALID_ARGUMENT} if parameter missing or parameter type incorrect.
  *         {@link #CAMERA_OPERATION_NOT_ALLOWED} if operation not allowed, session or inputdevice maybe abnormal.
  *         {@link #CAMERA_SESSION_NOT_CONFIG} if session config locked.
@@ -722,12 +725,13 @@ Camera_ErrorCode OH_CaptureSession_GetExposureBias(Camera_CaptureSession* sessio
  *         {@link #CAMERA_SESSION_NOT_CONFIG} if the capture session not config.
  * @since 24
  */
-Camera_ErrorCode OH_CaptureSession_GetSupportedExposureDurationRange(const Camera_CaptureSession* session, int32_t* minExposureDuration,
-    int32_t* maxExposureDuration);
+Camera_ErrorCode OH_CaptureSession_GetSupportedExposureDurationRange(const Camera_CaptureSession* session,
+    int32_t* minExposureDuration, int32_t* maxExposureDuration);
 
 /**
  * @brief Set exposure duration. Units: Microseconds.
- * If the sensor can't expose this duration exactly, it will shorten the duration to the nearest supported value, which is
+ * If the sensor can't expose this duration exactly,
+ *     it will shorten the duration to the nearest supported value, which is
  * reporeted by Callback {@link OH_CaptureSession_OnExposureDurationChange}.
  *
  * @param session Pointer to the {@link Camera_CaptureSession} instance.
@@ -760,7 +764,8 @@ Camera_ErrorCode OH_CaptureSession_GetExposureDuration(const Camera_CaptureSessi
  * @param exposureDuration The exposure duration which delivered by the callback.
  * @since 24
  */
-typedef void (*OH_CaptureSession_OnExposureDurationChange)(const Camera_CaptureSession* session, int32_t exposureDuration);
+typedef void (*OH_CaptureSession_OnExposureDurationChange)(const Camera_CaptureSession* session,
+    int32_t exposureDuration);
 
 /**
  * @brief Register exposure info change event callback.
@@ -772,8 +777,8 @@ typedef void (*OH_CaptureSession_OnExposureDurationChange)(const Camera_CaptureS
  * {@link #CAMERA_INVALID_ARGUMENT} if parameter missing or parameter type incorrect.
  * @since 24
  */
-Camera_ErrorCode OH_CaptureSession_RegisterExposureInfoChangeCallback(
-    const Camera_CaptureSession* session, OH_CaptureSession_OnExposureDurationChange exposureDurationChange);
+Camera_ErrorCode OH_CaptureSession_RegisterExposureInfoChangeCallback(const Camera_CaptureSession* session,
+    OH_CaptureSession_OnExposureDurationChange exposureDurationChange);
 
 /**
  * @brief @brief Unregister exposure info change callback.Invoke this method after finishing camera operations.
@@ -1526,7 +1531,8 @@ Camera_ErrorCode OH_CaptureSession_UnregisterIsoChangeCallback(
  *         {@link #CAMERA_SESSION_NOT_CONFIG} if the capture session not config.
  * @since 24
  */
-Camera_ErrorCode OH_CaptureSession_GetRAWCaptureZoomRatioRange(const Camera_CaptureSession* session, float* minZoom, float* maxZoom);
+Camera_ErrorCode OH_CaptureSession_GetRAWCaptureZoomRatioRange(const Camera_CaptureSession* session,
+    float* minZoom, float* maxZoom);
 
 /**
  * @brief Checks if the specified OIS mode is supported.
