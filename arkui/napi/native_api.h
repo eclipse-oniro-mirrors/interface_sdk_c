@@ -124,6 +124,12 @@ typedef struct napi_critical_scope__* napi_critical_scope;
 typedef struct napi_strong_ref__* napi_strong_ref;
 
 /**
+ * @brief Callsite info handle for caching inline cache (IC) information of property access.
+ * @since 24
+ */
+typedef struct napi_callsite_info__* napi_callsite_info;
+
+/**
  * @brief Native strong sendable reference of an sendable ArkTS object.
  *
  * @since 22
@@ -3093,6 +3099,85 @@ NAPI_EXTERN napi_status napi_get_strong_sendable_reference_value(napi_env env,
 NAPI_EXTERN napi_status napi_throw_business_error(napi_env env,
                                                   int32_t errorCode,
                                                   const char* msg);
+
+/**
+ * @brief Creates a callsite info handle for caching inline cache (IC) information of property access.
+ *        Each different callsite should create an independent handle. The same handle can be reused across
+ *        multiple calls but must not be used across threads. When no longer needed, napi_delete_callsite_info
+ *        must be called to release the handle.
+ * @param env Current running virtual machine context.
+ * @param result Pointer to napi_callsite_info to receive the created callsite info handle.
+ *
+ * @return Returns the function execution status.
+ *         {@link napi_ok } If the function executed successfully.\n
+ *         {@link napi_invalid_arg } If env or result is nullptr.\n
+ *         {@link napi_pending_exception } If a pending exception existed before the call.\n
+ *         {@link napi_generic_failure } If the callsite info creation failed.\n
+ * @since 24
+ */
+NAPI_EXTERN napi_status napi_create_callsite_info(napi_env env, napi_callsite_info* result);
+
+/**
+ * @brief Deletes a callsite info handle and releases associated cache resources.
+ * @param env Current running virtual machine context.
+ * @param info The callsite info handle to be deleted.
+ *
+ * @return Returns the function execution status.
+ *         {@link napi_ok } If the function executed successfully.\n
+ *         {@link napi_invalid_arg } If env is nullptr.\n
+ * @since 24
+ */
+NAPI_EXTERN napi_status napi_delete_callsite_info(napi_env env, napi_callsite_info info);
+
+/**
+ * @brief Uses callsite info to quickly get an object property value. When the IC hits (the object has the same
+ *        hidden class), it skips the regular hash table lookup and prototype chain traversal. The info parameter
+ *        can be NULL, in which case the behavior is equivalent to napi_get_property.
+ * @param env Current running virtual machine context.
+ * @param object The object to get the property from.
+ * @param key The key name of the property to get.
+ * @param info Callsite info handle for IC caching. Can be NULL.
+ * @param result Pointer to napi_value to receive the property value.
+ * @param hit Receives whether the IC cache was hit (true) or missed (false).
+ *
+ * @return Returns the function execution status.
+ *         {@link napi_ok } If the function executed successfully.\n
+ *         {@link napi_invalid_arg } If env, object, key or result is nullptr.\n
+ *         {@link napi_object_expected } If the param object is not an ArkTS Object.\n
+ *         {@link napi_pending_exception } If have uncaught exception, or exception occurred in execution.\n
+ * @since 24
+ */
+NAPI_EXTERN napi_status napi_get_property_with_callsite_info(napi_env env,
+                                                             napi_value object,
+                                                             napi_value key,
+                                                             napi_callsite_info info,
+                                                             napi_value* result,
+                                                             bool* hit);
+
+/**
+ * @brief Uses callsite info to quickly set an object property value. When the IC hits (the object has the same
+ *        hidden class), it skips the regular property setting process. The info parameter can be NULL, in which
+ *        case the behavior is equivalent to napi_set_property.
+ * @param env Current running virtual machine context.
+ * @param object The object to set the property on.
+ * @param key The key name of the property to set.
+ * @param value The property value to set.
+ * @param info Callsite info handle for IC caching. Can be NULL.
+ * @param hit Receives whether the IC cache was hit (true) or missed (false).
+ *
+ * @return Returns the function execution status.
+ *         {@link napi_ok } If the function executed successfully.\n
+ *         {@link napi_invalid_arg } If env, object, key or value is nullptr.\n
+ *         {@link napi_object_expected } If the param object is not an ArkTS Object.\n
+ *         {@link napi_pending_exception } If have uncaught exception, or exception occurred in execution.\n
+ * @since 24
+ */
+NAPI_EXTERN napi_status napi_set_property_with_callsite_info(napi_env env,
+                                                             napi_value object,
+                                                             napi_value key,
+                                                             napi_value value,
+                                                             napi_callsite_info info,
+                                                             bool* hit);
 #ifdef __cplusplus
 }
 #endif
