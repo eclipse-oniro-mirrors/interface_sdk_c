@@ -1,0 +1,1029 @@
+From b10dfd618c8aa739922821413efb2ebf17a9e6ce Mon Sep 17 00:00:00 2001
+From: z30014341 <zhoujing96@huawei.com>
+Date: Thu, 12 Mar 2026 17:53:00 +0800
+Subject: [PATCH] TicketNo: DTS0000000000000 Description: star capture
+ Team:OTHERS Feature or Bugfix:Feature Binary Source: NA
+ PrivateCode(Yes/No):No
+
+Change-Id: I433ffe962cede5352bf9517fb8e6cb055ff77bdf
+---
+ multimedia/camera_framework/camera.h          | 187 ++++++++-
+ multimedia/camera_framework/camera.ndk.json   | 148 +++++++
+ multimedia/camera_framework/camera_device.h   | 137 ++++++
+ multimedia/camera_framework/camera_input.h    |   6 +
+ multimedia/camera_framework/capture_session.h | 389 ++++++++++++++++++
+ 5 files changed, 865 insertions(+), 2 deletions(-)
+
+diff --git a/multimedia/camera_framework/camera.h b/multimedia/camera_framework/camera.h
+index 9df37ef7a..a63c2e2a9 100644
+--- a/multimedia/camera_framework/camera.h
++++ b/multimedia/camera_framework/camera.h
+@@ -121,6 +121,12 @@ typedef enum Camera_ErrorCode {
+      */
+     CAMERA_UNRESOLVED_CONFLICTS_WITH_CURRENT_CONFIGURATIONS = 7400110,
+ 
++    /**
++     * Multiple cameras cannot be opened simultaneously.
++     * @since 24
++     */
++    CAMERA_MULTI_CAMERA_NOT_SUPPORTED = 7400113,
++
+     /**
+      * Camera service fatal error.
+      */
+@@ -282,6 +288,37 @@ typedef struct Camera_DeviceQueryInfo {
+     Camera_Connection connectionType;
+ } Camera_DeviceQueryInfo;
+ 
++/**
++ * @brief Sensor color filter arrangement.
++ *
++ * @since 24
++ */
++typedef enum OH_Camera_SensorColorFilterArrangement{
++    /**
++     * Blue-Green-Green-Red (BGGR) filter arrangement.
++     * @since 24
++     */
++    OH_CAMERA_SENSOR_CFA_BGGR = 0,
++
++    /**
++     * Green-Blue-Red-Green (GBRG) filter arrangement.
++     * @since 24
++     */
++    OH_CAMERA_SENSOR_CFA_GBRG = 1,
++
++    /**
++     * Green-Red-Green-Blue (GRBG) filter arrangement.
++     * @since 24
++     */
++    OH_CAMERA_SENSOR_CFA_GRBG = 2,
++
++    /**
++     * Red-Green-Green-Blue (RGGB) filter arrangement. 
++     * @since 24
++     */
++    OH_CAMERA_SENSOR_CFA_RGGB = 3
++} OH_Camera_SensorColorFilterArrangement;
++
+ /**
+  * @brief Enum for camera format type.
+  *
+@@ -294,6 +331,12 @@ typedef enum Camera_Format {
+      */
+     CAMERA_FORMAT_RGBA_8888 = 3,
+ 
++    /**
++     * DNG Format.
++     * @since 24
++     */
++    CAMERA_FORMAT_DNG = 4,
++
+     /**
+      * YUV 420 Format.
+      */
+@@ -351,6 +394,31 @@ typedef enum Camera_FlashMode {
+     FLASH_MODE_ALWAYS_OPEN = 3
+ } Camera_FlashMode;
+ 
++/**
++ * @brief Enum for flash state.
++ *
++ * @since 24
++ */
++typedef enum OH_Camera_FlashState {
++    /**
++     * Flash is unavailable, default value.
++     * @since 24
++     */
++   OH_CAMERA_FLASH_STATE_UNAVAILABLE = 0,
++
++    /**
++     * This status indicates that the flash is available.
++     * @since 24
++     */
++    OH_CAMERA_FLASH_STATE_READY = 1,
++
++    /**
++     * This status indicates that flashing can be performed.
++     * @since 24
++     */
++    OH_CAMERA_FLASH_STATE_FLASHING = 2
++} OH_Camera_FlashState;
++
+ /**
+  * @brief Enum for exposure mode.
+  *
+@@ -380,6 +448,31 @@ typedef enum Camera_ExposureMode {
+     EXPOSURE_MODE_CONTINUOUS_AUTO = 2
+ } Camera_ExposureMode;
+ 
++/**
++ * @brief Enum for exposure metering mode.
++ *
++ * @since 24
++ */
++typedef enum OH_Camera_ExposureMeteringMode {
++    /**
++     * Matrix metering mode: Measures the light in the whole frame, ideal for shooting natural landscapes.
++     * @since 24
++     */
++    OH_CAMERA_EXPOSURE_METERING_MODE_MATRIX = 0,
++
++    /** 
++     * Center metering mode: Focuses in on light near the center of the screen, ideal for shooting portraits.
++     * @since 24
++     */
++    OH_CAMERA_EXPOSURE_METERING_MODE_CENTER = 1,
++
++    /**
++     * Spot metering mode: Focuses in on light from a specific tiny region, such as a subject's eyes.
++     * @since 24
++     */
++    OH_CAMERA_EXPOSURE_METERING_MODE_SPOT = 2
++} OH_Camera_ExposureMeteringMode;
++
+ /**
+  * @brief Enum for focus mode.
+  *
+@@ -550,13 +643,13 @@ typedef enum Camera_MetadataObjectType {
+      * Face detection.
+      */
+     FACE_DETECTION = 0,
+-    
++
+     /**
+      * Face detection type.
+      * @since 23
+      */
+     CAMERA_METADATA_OBJECT_TYPE_FACE_DETECTION = 0,
+- 
++
+     /**
+      * Human body detection type.
+      * @since 23
+@@ -1423,6 +1516,96 @@ typedef struct Camera_OcclusionDetectionResult {
+     bool isCameraLensDirty;
+ } Camera_OcclusionDetectionResult;
+ 
++/**
++ * @brief Describes the zoom range configuration.
++ * @since 24
++ */
++typedef struct OH_Camera_ZoomRange {
++    /**
++     * Minimum zoom value.
++     * @since 24
++     */
++    float minZoom;
++
++    /**
++     * Maximum zoom value.
++     * @since 24
++    */
++    float maxZoom;
++} OH_Camera_ZoomRange;
++
++/**
++ * @brief Describes the physical aperture configuration.
++ * @since 24
++ */
++typedef struct OH_Camera_PhysicalAperture {
++    /**
++     * Zoom range specification.
++     * @since 24
++     */
++    OH_Camera_ZoomRange zoomRange;
++
++    /**
++     * Array of supported aperture values.
++     * @since 24
++     */
++    float* apertures;
++
++    /**
++     * Number of aperture values.
++     * @since 24
++     */
++    size_t apertureCount;
++} OH_Camera_PhysicalAperture;
++
++/**
++ * @brief Enum for OIS (Optical Image Stabilization) mode.
++ *
++ * @since 24
++ * @version 1.0
++ */
++typedef enum OH_Camera_OISMode {
++    /**
++     * OIS is disabled.
++     * @since 24
++     */
++    OH_CAMERA_OIS_MODE_OFF = 0,
++
++    /**
++     * OIS is controlled automatically.
++     * @since 24
++     */
++    OH_CAMERA_OIS_MODE_AUTO = 1,
++
++    /** 
++     * OIS is controlled by the application.
++     * @since 24
++     */
++    OH_CAMERA_OIS_MODE_CUSTOM = 2
++} OH_Camera_OISMode;
++
++/**
++ * @brief Enum for OIS (Optical Image Stabilization) axes.
++ *
++ * @since 24
++ * @version 1.0
++ */
++typedef enum OH_Camera_OISAxes {
++    /**
++     * Pitch axis: up-and-down rotation of the camera body.
++     * Rotation around the horizontal axis through the lens.
++     * @since 24
++     */
++    OH_CAMERA_OIS_AXES_PITCH = 0,
++
++    /**
++     * Yaw axis: side-to-side rotation of the camera body.
++     * Rotation around the vertical axis.
++     * @since 24
++     */
++    OH_CAMERA_OIS_AXES_YAW = 1
++} OH_Camera_OISAxes;
++
+ #ifdef __cplusplus
+ }
+ #endif
+diff --git a/multimedia/camera_framework/camera.ndk.json b/multimedia/camera_framework/camera.ndk.json
+index 41d44db6e..e69440021 100644
+--- a/multimedia/camera_framework/camera.ndk.json
++++ b/multimedia/camera_framework/camera.ndk.json
+@@ -818,5 +818,153 @@
+     {
+         "first_introduced": "23",
+         "name": "OH_CameraManager_CreateMetadataOutputWithObjectTypes"  
++    },
++    {
++        "first_introduced": "24",
++        "name": "OH_CameraDevice_GetLensEquivalentFocalLengths"  
++    },
++    {
++        "first_introduced": "24",
++        "name": "OH_CameraDevice_IsLogicalCamera"  
++    },
++    {
++        "first_introduced": "24",
++        "name": "OH_CameraDevice_GetLogicalCameraConstituentCameraDevices"  
++    },
++    {
++        "first_introduced": "24",
++        "name": "OH_CameraDevice_GetConstituentCamerasSize"  
++    },
++    {
++        "first_introduced": "24",
++        "name": "OH_CameraDevice_GetLensFocalLength"  
++    },
++    {
++        "first_introduced": "24",
++        "name": "OH_CameraDevice_GetMinimumFocusDistance"  
++    },
++    {
++        "first_introduced": "24",
++        "name": "OH_CameraDevice_GetLensDistortion"  
++    },
++    {
++        "first_introduced": "24",
++        "name": "OH_CameraDevice_GetIntrinsicCalibration"  
++    },
++    {
++        "first_introduced": "24",
++        "name": "OH_CameraDevice_GetSensorPhysicalSize"  
++    },
++    {
++        "first_introduced": "24",
++        "name": "OH_CameraDevice_GetSensorPixelArraySize"  
++    },
++    {
++        "first_introduced": "24",
++        "name": "OH_CaptureSession_RegisterFlashStateChangeCallback"  
++    },
++    {
++        "first_introduced": "24",
++        "name": "OH_CaptureSession_UnregisterFlashStateChangeCallback"  
++    },
++    {
++        "first_introduced": "24",
++        "name": "OH_CaptureSession_IsExposureMeteringModeSupported"  
++    },
++    {
++        "first_introduced": "24",
++        "name": "OH_CaptureSession_GetExposureMeteringMode"  
++    },
++    {
++        "first_introduced": "24",
++        "name": "OH_CaptureSession_SetExposureMeteringMode"  
++    },
++    {
++        "first_introduced": "24",
++        "name": "OH_CaptureSession_GetSupportedISORange"  
++    },
++    {
++        "first_introduced": "24",
++        "name": "OH_CaptureSession_GetIso"  
++    },
++    {
++        "first_introduced": "24",
++        "name": "OH_CaptureSession_SetIso"  
++    },
++    {
++        "first_introduced": "24",
++        "name": "OH_CaptureSession_GetSupportedPhysicalApertures"  
++    },
++    {
++        "first_introduced": "24",
++        "name": "OH_CaptureSession_GetPhysicalAperturesSize"  
++    },
++    {
++        "first_introduced": "24",
++        "name": "OH_CaptureSession_GetPhysicalAperture"  
++    },
++    {
++        "first_introduced": "24",
++        "name": "OH_CaptureSession_SetPhysicalAperture"  
++    },
++    {
++        "first_introduced": "24",
++        "name": "OH_CaptureSession_GetSupportedExposureDurationRange"  
++    },
++    {
++        "first_introduced": "24",
++        "name": "OH_CaptureSession_SetExposureDuration"  
++    },
++    {
++        "first_introduced": "24",
++        "name": "OH_CaptureSession_GetExposureDuration"  
++    },
++    {
++        "first_introduced": "24",
++        "name": "OH_CaptureSession_RegisterExposureInfoChangeCallback"  
++    },
++    {
++        "first_introduced": "24",
++        "name": "OH_CaptureSession_UnregisterExposureInfoChangeCallback"  
++    },
++    {
++        "first_introduced": "24",
++        "name": "OH_CaptureSession_GetFocusDistance"  
++    },
++    {
++        "first_introduced": "24",
++        "name": "OH_CaptureSession_SetFocusDistance"  
++    },
++    {
++        "first_introduced": "24",
++        "name": "OH_CaptureSession_IsFocusDistanceSupported"  
++    },
++    {
++        "first_introduced": "24",
++        "name": "OH_CaptureSession_GetRAWCaptureZoomRatioRange"  
++    },
++    {
++        "first_introduced": "24",
++        "name": "OH_CaptureSession_IsOISModeSupported"  
++    },
++    {
++        "first_introduced": "24",
++        "name": "OH_CaptureSession_GetCurrentOISMode"  
++    },
++    {
++        "first_introduced": "24",
++        "name": "OH_CaptureSession_SetOISMode"  
++    },
++    {
++        "first_introduced": "24",
++        "name": "OH_CaptureSession_GetSupportedOISBiasRange"  
++    },
++    {
++        "first_introduced": "24",
++        "name": "OH_CaptureSession_GetCurrentCustomOISBias"  
++    },
++    {
++        "first_introduced": "24",
++        "name": "OH_CaptureSession_SetOISModeCustom"  
+     }
+ ]
+diff --git a/multimedia/camera_framework/camera_device.h b/multimedia/camera_framework/camera_device.h
+index d96589b3c..df6aa3826 100644
+--- a/multimedia/camera_framework/camera_device.h
++++ b/multimedia/camera_framework/camera_device.h
+@@ -86,6 +86,143 @@ Camera_ErrorCode OH_CameraDevice_GetHostDeviceName(Camera_Device* camera, char**
+  */
+ Camera_ErrorCode OH_CameraDevice_GetHostDeviceType(Camera_Device* camera, Camera_HostDeviceType* hostDeviceType);
+ 
++/**
++ * @brief Gets the equivalent focal lengths of a camera device.
++ *
++ * @param camera Pointer to the Camera_Device used to retrieve attributes.
++ * @param equivalentFocalLengths Output parameter, returns equivalent focal lengths array.
++ * @param size Output parameter, returns array size.
++ * @return {@link #CAMERA_OK} if successful
++ *         {@link #CAMERA_INVALID_ARGUMENT} if parameter missing or type incorrect
++ *         {@link #CAMERA_SERVICE_FATAL_ERROR} if camera service fatal error
++ * @since 24
++ */
++Camera_ErrorCode OH_CameraDevice_GetLensEquivalentFocalLengths(const Camera_Device* camera, uint32_t** equivalentFocalLengths, uint32_t* size);
++
++/**
++ * @brief Checks if a camera device is a logical camera.
++ *
++ * @param camera Pointer to the Camera_Device used to retrieve attributes.
++ * @param isLogicalCamera Output parameter, returns boolean indicating if it's a logical camera.
++ * @return {@link #CAMERA_OK} if successful
++ *         {@link #CAMERA_INVALID_ARGUMENT} if parameter missing or type incorrect
++ *         {@link #CAMERA_SERVICE_FATAL_ERROR} if camera service fatal error
++ * @since 24
++ */
++Camera_ErrorCode OH_CameraDevice_IsLogicalCamera(const Camera_Device* camera, bool* isLogicalCamera);
++
++/**
++ * @brief Gets the constituent camera devices of a logical camera.
++ * Gets the array size of the constituent cameras by calling {@link OH_CameraDevice_GetConstituentCamerasSize} .
++ *
++ * @param logicalCamera Pointer to the logical Camera_Device.
++ * @param constituentCameras Output parameter, returns array of constituent camera devices.
++ * @param size size the size of constituentCameras.
++ * @return {@link #CAMERA_OK} if successful
++ *         {@link #CAMERA_INVALID_ARGUMENT} if parameter missing or type incorrect
++ *         {@link #CAMERA_SERVICE_FATAL_ERROR} if camera service fatal error
++ * @since 24
++ */
++Camera_ErrorCode OH_CameraDevice_GetLogicalCameraConstituentCameraDevices(const Camera_Device* logicalCamera, Camera_Device* constituentCameras, uint32_t size);
++
++/**
++ * @brief Gets the array size of the constituent cameras.
++ *
++ * @param logicalCamera Pointer to the logical Camera_Device.
++ * @param size The size of the array
++ * @return {@link #CAMERA_OK} if the method call succeeds.
++ *         {@link #CAMERA_INVALID_ARGUMENT} if parameter missing or parameter type incorrect.
++ * @since 24
++ */
++Camera_ErrorCode OH_CameraDevice_GetConstituentCamerasSize(const Camera_Device* logicalCamera, uint32_t* size);
++
++/**
++ * @brief Gets the focal length of a camera lens.
++ *
++ * @param camera Pointer to the Camera_Device used to retrieve attributes.
++ * @param lensFocalLength Output parameter, returns lens focal length value.
++ * @return {@link #CAMERA_OK} if successful
++ *         {@link #CAMERA_INVALID_ARGUMENT} if parameter missing or type incorrect
++ *         {@link #CAMERA_SERVICE_FATAL_ERROR} if camera service fatal error
++ * @since 24
++ */
++Camera_ErrorCode OH_CameraDevice_GetLensFocalLength(const Camera_Device* camera, float* lensFocalLength);
++
++/**
++ * @brief Gets the minimum focus distance of a camera device.
++ *
++ * @param camera Pointer to the Camera_Device used to retrieve attributes.
++ * @param minimumFocusDistance Output parameter, returns the minimum focus distance.
++ * @return {@link #CAMERA_OK} if the operation succeeds
++ *         {@link #CAMERA_INVALID_ARGUMENT} if parameter is missing or invalid
++ *         {@link #CAMERA_SERVICE_FATAL_ERROR} if camera service fails
++ * @since 24
++ */
++Camera_ErrorCode OH_CameraDevice_GetMinimumFocusDistance(const Camera_Device* camera, float* minimumFocusDistance);
++
++/**
++ * @brief Gets the lens distortion parameters of a camera device.
++ *
++ * @param camera Pointer to the Camera_Device used to retrieve attributes.
++ * @param lens Output parameter, returns the lens distortion parameters array.
++ * @param size Output parameter, returns the size of the array.
++ * @return {@link #CAMERA_OK} if the operation succeeds
++ *         {@link #CAMERA_INVALID_ARGUMENT} if parameter is missing or invalid
++ *         {@link #CAMERA_SERVICE_FATAL_ERROR} if camera service fails
++ * @since 24
++ */
++Camera_ErrorCode OH_CameraDevice_GetLensDistortion(const Camera_Device* camera, float** lens, uint32_t* size);
++
++/**
++ * @brief Gets the intrinsic calibration parameters of a camera device.
++ *
++ * @param camera Pointer to the Camera_Device used to retrieve attributes.
++ * @param intrinsicCalibration Output parameter, returns the intrinsic calibration parameters array.
++ * @param size Output parameter, returns the size of the array.
++ * @return {@link #CAMERA_OK} if the operation succeeds
++ *         {@link #CAMERA_INVALID_ARGUMENT} if parameter is missing or invalid
++ *         {@link #CAMERA_SERVICE_FATAL_ERROR} if camera service fails
++ * @since 24
++ */
++Camera_ErrorCode OH_CameraDevice_GetIntrinsicCalibration(const Camera_Device* camera, float** intrinsicCalibration, uint32_t* size);
++
++/**
++ * @brief Gets the physical size of a camera sensor.
++ *
++ * @param camera Pointer to the Camera_Device used to retrieve attributes.
++ * @param width Output parameter, returns the sensor width in millimeters.
++ * @param height Output parameter, returns the sensor height in millimeters.
++ * @return {@link #CAMERA_OK} if the operation succeeds
++ *         {@link #CAMERA_INVALID_ARGUMENT} if parameter is missing or invalid
++ *         {@link #CAMERA_SERVICE_FATAL_ERROR} if camera service fails
++ * @since 24
++ */
++Camera_ErrorCode OH_CameraDevice_GetSensorPhysicalSize(const Camera_Device* camera, float* width, float* height);
++
++/**
++ * @brief Gets the pixel array size of a camera sensor.
++ *
++ * @param camera Pointer to the Camera_Device used to retrieve attributes.
++ * @param width Output parameter, returns the pixel array width in pixels.
++ * @param height Output parameter, returns the pixel array height in pixels.
++ * @return {@link #CAMERA_OK} if the operation succeeds
++ *         {@link #CAMERA_INVALID_ARGUMENT} if parameter is missing or invalid
++ *         {@link #CAMERA_SERVICE_FATAL_ERROR} if camera service fails
++ * @since 24
++ */
++Camera_ErrorCode OH_CameraDevice_GetSensorPixelArraySize(const Camera_Device* camera, uint32_t* width, uint32_t* height);
++
++/**
++ * @brief Gets the color filter arrangement of a camera sensor.
++ *
++ * @param camera Pointer to the Camera_Device used to retrieve attributes.
++ * @param sensorCFA Output parameter, returns the sensor color filter arrangement enum value.
++ * @return {@link #CAMERA_OK} if the operation succeeds
++ *         {@link #CAMERA_INVALID_ARGUMENT} if parameter is missing or invalid
++ *         {@link #CAMERA_SERVICE_FATAL_ERROR} if camera service fails
++ * @since 24
++ */
++Camera_ErrorCode OH_CameraDevice_GetSensorColorFilterArrangement(const Camera_Device* camera, OH_Camera_SensorColorFilterArrangement* sensorCFA);
+ #ifdef __cplusplus
+ }
+ #endif
+diff --git a/multimedia/camera_framework/camera_input.h b/multimedia/camera_framework/camera_input.h
+index 460b950c0..ab92a0ab5 100644
+--- a/multimedia/camera_framework/camera_input.h
++++ b/multimedia/camera_framework/camera_input.h
+@@ -117,6 +117,8 @@ Camera_ErrorCode OH_CameraInput_UnregisterCallback(Camera_Input* cameraInput, Ca
+  *         {@link #CAMERA_CONFLICT_CAMERA} if can not use camera cause of conflict.
+  *         {@link #CAMERA_DEVICE_DISABLED} if camera disabled cause of security reason.
+  *         {@link #CAMERA_SERVICE_FATAL_ERROR} if camera service fatal error.
++ *         {@link #CAMERA_MULTI_CAMERA_NOT_SUPPORTED} if multiple cameras cannot be opened simultaneously. [since 24]. 
++ *         It is suggested to use {@link OH_CameraManager_GetCameraConcurrentInfos} to check the concurrent infos.
+  * @since 11
+  */
+ Camera_ErrorCode OH_CameraInput_Open(Camera_Input* cameraInput);
+@@ -131,6 +133,8 @@ Camera_ErrorCode OH_CameraInput_Open(Camera_Input* cameraInput);
+  *         {@link #CAMERA_CONFLICT_CAMERA} if can not use camera cause of conflict.
+  *         {@link #CAMERA_DEVICE_DISABLED} if camera disabled cause of security reason.
+  *         {@link #CAMERA_SERVICE_FATAL_ERROR} if camera service fatal error.
++ *         {@link #CAMERA_MULTI_CAMERA_NOT_SUPPORTED} if multiple cameras cannot be opened simultaneously. [since 24].
++ *         It is suggested to use {@link OH_CameraManager_GetCameraConcurrentInfos} to check the concurrent infos.
+  * @since 12
+  */
+ Camera_ErrorCode OH_CameraInput_OpenSecureCamera(Camera_Input* cameraInput, uint64_t* secureSeqId);
+@@ -145,6 +149,8 @@ Camera_ErrorCode OH_CameraInput_OpenSecureCamera(Camera_Input* cameraInput, uint
+  *         {@link #CAMERA_CONFLICT_CAMERA} if can not use camera cause of conflict.
+  *         {@link #CAMERA_DEVICE_DISABLED} if camera disabled cause of security reason.
+  *         {@link #CAMERA_SERVICE_FATAL_ERROR} if camera service fatal error.
++ *         {@link #CAMERA_MULTI_CAMERA_NOT_SUPPORTED} if multiple cameras cannot be opened simultaneously. [since 24].
++ *         It is suggested to use {@link OH_CameraManager_GetCameraConcurrentInfos} to check the concurrent infos.
+  * @since 18
+  */
+ Camera_ErrorCode OH_CameraInput_OpenConcurrentCameras(Camera_Input* cameraInput, Camera_ConcurrentType type);
+diff --git a/multimedia/camera_framework/capture_session.h b/multimedia/camera_framework/capture_session.h
+index d4b08ba2a..b55c25878 100644
+--- a/multimedia/camera_framework/capture_session.h
++++ b/multimedia/camera_framework/capture_session.h
+@@ -441,6 +441,39 @@ Camera_ErrorCode OH_CaptureSession_GetFlashMode(Camera_CaptureSession* session,
+  */
+ Camera_ErrorCode OH_CaptureSession_SetFlashMode(Camera_CaptureSession* session, Camera_FlashMode flashMode);
+ 
++/**
++ * @brief Capture session flash state change callback.
++ *
++ * @param session Pointer to the {@link Camera_CaptureSession} which deliver the callback.
++ * @param flashState The {@link OH_Camera_FlashState} which delivered by the callback.
++ * @since 24
++ */
++typedef void (*OH_CaptureSession_OnFlashStateChange)(const Camera_CaptureSession* session, OH_Camera_FlashState flashState);
++
++/**
++ * @brief Register flash state change event callback.
++ *
++ * @param session Pointer to the {@link Camera_CaptureSession} instance.
++ * @param flashStateChange The {@link OH_CaptureSession_OnFlashStateChange} to be registered.
++ * @return {@link #CAMERA_OK} if the method call succeeds.
++ *         {@link #CAMERA_INVALID_ARGUMENT} if parameter missing or parameter type incorrect.
++ * @since 24
++ */
++Camera_ErrorCode OH_CaptureSession_RegisterFlashStateChangeCallback(const Camera_CaptureSession* session,
++    OH_CaptureSession_OnFlashStateChange flashStateChange);
++
++/**
++ * @brief Unregister flash state change callback.
++ *
++ * @param session Pointer to the {@link Camera_CaptureSession} instance.
++ * @param flashStateChange The {@link OH_CaptureSession_OnFlashStateChange} to be unregistered.
++ * @return {@link #CAMERA_OK} if the method call succeeds.
++ *         {@link #CAMERA_INVALID_ARGUMENT} if parameter missing or parameter type incorrect.
++ * @since 24
++ */
++Camera_ErrorCode OH_CaptureSession_UnregisterFlashStateChangeCallback(const Camera_CaptureSession* session,
++    OH_CaptureSession_OnFlashStateChange flashStateChange);
++
+ /**
+  * @brief Check whether a specified exposure mode is supported.
+  *
+@@ -503,6 +536,141 @@ Camera_ErrorCode OH_CaptureSession_GetMeteringPoint(Camera_CaptureSession* sessi
+  */
+ Camera_ErrorCode OH_CaptureSession_SetMeteringPoint(Camera_CaptureSession* session, Camera_Point point);
+ 
++/**
++ * @brief Check whether a specified exposure metering mode is supported.
++ *
++ * @param session Pointer to the {@link Camera_CaptureSession} instance.
++ * @param exposureMeteringMode The {@link OH_Camera_ExposureMeteringMode} to be checked.
++ * @param isSupported Pointer to the result of whether exposure mode supported.
++ * @return {@link #CAMERA_OK} if the method call succeeds.
++ *         {@link #CAMERA_INVALID_ARGUMENT} if parameter missing or parameter type incorrect.
++ *         {@link #CAMERA_SESSION_NOT_CONFIG} if the capture session not config.
++ * @since 24
++ */
++Camera_ErrorCode OH_CaptureSession_IsExposureMeteringModeSupported(const Camera_CaptureSession* session,
++    OH_Camera_ExposureMeteringMode exposureMeteringMode, bool* isSupported);
++
++/**
++ * @brief Get current exposure metering mode.
++ *
++ * @param session Pointer to the {@link Camera_CaptureSession} instance.
++ * @param exposureMeteringMode Pointer to the {@link OH_Camera_ExposureMeteringMode} instance.
++ * @return {@link #CAMERA_OK} if the method call succeeds.
++ *         {@link #CAMERA_INVALID_ARGUMENT} if parameter missing or parameter type incorrect.
++ *         {@link #CAMERA_OPERATION_NOT_ALLOWED} if operation not allowed, session or inputdevice maybe abnormal.
++ *         {@link #CAMERA_SESSION_NOT_CONFIG} if the capture session not config.
++ * @since 24
++ */
++Camera_ErrorCode OH_CaptureSession_GetExposureMeteringMode(const Camera_CaptureSession* session, OH_Camera_ExposureMeteringMode* exposureMeteringMode);
++
++/**
++ * @brief Set exposure metering mode.
++ *
++ * @param session Pointer to the {@link Camera_CaptureSession} instance.
++ * @param exposureMeteringMode The target {@link OH_Camera_ExposureMeteringMode} to set.
++ * @return {@link #CAMERA_OK} if the method call succeeds.
++ *         {@link #CAMERA_INVALID_ARGUMENT} if parameter missing or parameter type incorrect.
++ *         {@link #CAMERA_OPERATION_NOT_ALLOWED} if operation not allowed, session or inputdevice maybe abnormal.
++ *         {@link #CAMERA_SESSION_NOT_CONFIG} if the capture session not config.
++ * @since 24
++ */
++Camera_ErrorCode OH_CaptureSession_SetExposureMeteringMode(const Camera_CaptureSession* session, OH_Camera_ExposureMeteringMode exposureMeteringMode);
++
++/**
++ * @brief Query the iso range.
++ *
++ * @param session the {@link Camera_CaptureSession} instance.
++ * @param minIsoValue the minimum of iso value.
++ * @param maxIsoValue the Maximum of iso value.
++ * @return {@link #CAMERA_OK} if the method call succeeds.
++ *         {@link #CAMERA_INVALID_ARGUMENT} if parameter missing or parameter type incorrect.
++ *         {@link #CAMERA_OPERATION_NOT_ALLOWED} if operation not allowed, session or inputdevice maybe abnormal.
++ *         {@link #CAMERA_SESSION_NOT_CONFIG} if the capture session not config.
++ * @since 24
++ */
++Camera_ErrorCode OH_CaptureSession_GetSupportedISORange(const Camera_CaptureSession* session,
++    int32_t *minIsoValue, int32_t *maxIsoValue);
++
++/**
++ * @brief Get current iso sensitivity value, as defined in ISO 12232:2006.
++ *
++ * @param session Pointer to the {@link Camera_CaptureSession} instance.
++ * @param isoValue Pointer to the current iso sensitivity value.
++ * @return {@link #CAMERA_OK} if the method call succeeds.
++ *         {@link #CAMERA_INVALID_ARGUMENT} if parameter missing or parameter type incorrect.
++ *         {@link #CAMERA_OPERATION_NOT_ALLOWED} if operation not allowed, session or inputdevice maybe abnormal.
++ *         {@link #CAMERA_SESSION_NOT_CONFIG} if session config locked.
++ * @since 24
++ */
++Camera_ErrorCode OH_CaptureSession_GetIso(const Camera_CaptureSession* session, int32_t* isoValue);
++
++/**
++ * @brief Sets ISO sensitivity value, within the range of getSupportedIsoRange. This control is only effective if
++ * ExposureMode is set to EXPOSURE_MODE_LOCKED.
++ * @param session Pointer to the {@link Camera_CaptureSession} instance.
++ * @param isoValue Indicates target iso value to set.
++ * @return {@link #CAMERA_OK} if the method call succeeds.
++ *         {@link #INVALID_ARGUMENT} if parameter missing or parameter type incorrect.
++ *         {@link #CAMERA_OPERATION_NOT_ALLOWED} if operation not allowed, session or inputdevice maybe abnormal.
++ *         {@link #CAMERA_SESSION_NOT_CONFIG} if the capture session not config.
++ * @since 24
++ */
++Camera_ErrorCode OH_CaptureSession_SetIso(const Camera_CaptureSession* session, int32_t isoValue);
++
++/**
++ * @brief Gets the supported physical apertures list. 
++ * Gets the array size of the physical apertures by calling {@link OH_CaptureSession_GetPhysicalAperturesSize}.
++ *
++ * @param session the {@link Camera_CaptureSession} instance
++ * @param apertures pointer to an array for storing physical aperture values
++ * @param size the size of physical apertures by calling {@link OH_CaptureSession_GetPhysicalAperturesSize}
++ * @return {@link #CAMERA_OK} success 
++ *         {@link #CAMERA_INVALID_ARGUMENT} if parameter missing or parameter type incorrect.
++ *         {@link #CAMERA_OPERATION_NOT_ALLOWED} if operation not allowed, session or inputdevice maybe abnormal.
++ *         {@link #CAMERA_SESSION_NOT_CONFIG} if session config locked.
++ * @since 24
++ */
++Camera_ErrorCode OH_CaptureSession_GetSupportedPhysicalApertures(const Camera_CaptureSession* session,
++    OH_Camera_PhysicalAperture* apertures, uint32_t size);
++
++/**
++ * @brief Gets the array size of the physical apertures.
++ *
++ * @param session the {@link Camera_CaptureSession} instance.
++ * @param size returned the array size of the physical apertures.
++ * @return {@link #CAMERA_OK} if the method call succeeds.
++ *         {@link #CAMERA_INVALID_ARGUMENT} if parameter missing or parameter type incorrect.
++ * @since 24
++ */
++Camera_ErrorCode OH_CaptureSession_GetPhysicalAperturesSize(const Camera_CaptureSession* session,
++    uint32_t* size);
++
++/**
++ * @brief Get current physical aperture value
++ *
++ * @param session the {@link Camera_CaptureSession} instance
++ * @param aperture returned current aperture value
++ * @return {@link #CAMERA_OK} success 
++ *         {@link #CAMERA_INVALID_ARGUMENT} if parameter missing or parameter type incorrect.
++ *         {@link #CAMERA_OPERATION_NOT_ALLOWED} if operation not allowed, session or inputdevice maybe abnormal.
++ *         {@link #CAMERA_SESSION_NOT_CONFIG} if session config locked.
++ * @since 24
++ */
++Camera_ErrorCode OH_CaptureSession_GetPhysicalAperture(const Camera_CaptureSession* session, double* aperture);
++
++/**
++ * @brief Set physical aperture value
++ *
++ * @param session the {@link Camera_CaptureSession} instance
++ * @param aperture the aperture value to set
++ * @return {@link #CAMERA_OK} success 
++ *         {@link #CAMERA_INVALID_ARGUMENT} if parameter missing or parameter type incorrect.
++ *         {@link #CAMERA_OPERATION_NOT_ALLOWED} if operation not allowed, session or inputdevice maybe abnormal.
++ *         {@link #CAMERA_SESSION_NOT_CONFIG} if session config locked.
++ * @since 24
++ */
++Camera_ErrorCode OH_CaptureSession_SetPhysicalAperture(const Camera_CaptureSession* session, double aperture);
++
+ /**
+  * @brief Query the exposure compensation range.
+  *
+@@ -542,6 +710,83 @@ Camera_ErrorCode OH_CaptureSession_SetExposureBias(Camera_CaptureSession* sessio
+  */
+ Camera_ErrorCode OH_CaptureSession_GetExposureBias(Camera_CaptureSession* session, float* exposureBias);
+ 
++/**
++ * @brief Get the supported range of exposure durations. Units: Microseconds.
++ *
++ * @param session Pointer to the {@link Camera_CaptureSession} instance.
++ * @param minExposureDuration Pointer to the minimum of exposure duration.
++ * @param maxExposureDuration Pointer to the maximum of exposure duration.
++ * @return {@link #CAMERA_OK} if the method call succeeds.
++ *         {@link #CAMERA_INVALID_ARGUMENT} if parameter missing or parameter type incorrect.
++ *         {@link #CAMERA_OPERATION_NOT_ALLOWED} if operation not allowed, session or inputdevice maybe abnormal.
++ *         {@link #CAMERA_SESSION_NOT_CONFIG} if the capture session not config.
++ * @since 24
++ */
++Camera_ErrorCode OH_CaptureSession_GetSupportedExposureDurationRange(const Camera_CaptureSession* session, int32_t* minExposureDuration,
++    int32_t* maxExposureDuration);
++
++/**
++ * @brief Set exposure duration. Units: Microseconds.
++ * If the sensor can't expose this duration exactly, it will shorten the duration to the nearest supported value, which is
++ * reporeted by Callback {@link OH_CaptureSession_OnExposureDurationChange}.
++ *
++ * @param session Pointer to the {@link Camera_CaptureSession} instance.
++ * @param exposureDuration the target exposure duration to set.
++ * @return {@link #CAMERA_OK} if the method call succeeds.
++ *         {@link #CAMERA_INVALID_ARGUMENT} if parameter missing or parameter type incorrect.
++ *         {@link #CAMERA_OPERATION_NOT_ALLOWED} if operation not allowed, session or inputdevice maybe abnormal.
++ *         {@link #CAMERA_SESSION_NOT_CONFIG} if the capture session not config.
++ * @since 24
++ */
++Camera_ErrorCode OH_CaptureSession_SetExposureDuration(const Camera_CaptureSession* session, int32_t exposureDuration);
++
++/**
++ * @brief Get current exposure duration. Units: Microseconds.
++ *
++ * @param session Pointer to the {@link Camera_CaptureSession} instance.
++ * @param exposureDuration Pointer to the current exposure duration.
++ * @return {@link #CAMERA_OK} if the method call succeeds.
++ *         {@link #CAMERA_INVALID_ARGUMENT} if parameter missing or parameter type incorrect.
++ *         {@link #CAMERA_OPERATION_NOT_ALLOWED} if operation not allowed, session or inputdevice maybe abnormal.
++ *         {@link #CAMERA_SESSION_NOT_CONFIG} if the capture session not config.
++ * @since 24
++ */
++Camera_ErrorCode OH_CaptureSession_GetExposureDuration(const Camera_CaptureSession* session, int32_t* exposureDuration);
++
++/**
++ * @brief Capture session exposure duration change callback.
++ *
++ * @param session Pointer to the {@link Camera_CaptureSession} which deliver the callback.
++ * @param exposureDuration The exposure duration which delivered by the callback.
++ * @since 24
++ */
++typedef void (*OH_CaptureSession_OnExposureDurationChange)(const Camera_CaptureSession* session, int32_t exposureDuration);
++
++/**
++ * @brief Register exposure info change event callback.
++ *    After exposure parameters are changed, the system will returns the updated exposure infos.
++ *
++ * @param session Pointer to the {@link Camera_CaptureSession} instance.
++ * @param exposureDurationChange The {@link OH_CaptureSession_OnExposureDurationChange} to be registered.
++ * @return {@link #CAMERA_OK} if the method call succeeds.
++ * {@link #CAMERA_INVALID_ARGUMENT} if parameter missing or parameter type incorrect.
++ * @since 24
++ */
++Camera_ErrorCode OH_CaptureSession_RegisterExposureInfoChangeCallback(
++    const Camera_CaptureSession* session, OH_CaptureSession_OnExposureDurationChange exposureDurationChange);
++
++/**
++ * @brief @brief Unregister exposure info change callback.Invoke this method after finishing camera operations.
++ *
++ * @param session Pointer to the {@link Camera_CaptureSession} instance.
++ * @param exposureDurationChange The {@link OH_CaptureSession_OnExposureDurationChange} to be unregistered.
++ * @return {@link #CAMERA_OK} if the method call succeeds.
++ * {@link #CAMERA_INVALID_ARGUMENT} if parameter missing or parameter type incorrect.
++ * @since 24
++ */
++Camera_ErrorCode OH_CaptureSession_UnregisterExposureInfoChangeCallback(
++    const Camera_CaptureSession* session, OH_CaptureSession_OnExposureDurationChange exposureDurationChange); 
++
+ /**
+  * @brief Check whether a specified focus mode is supported.
+  *
+@@ -811,6 +1056,46 @@ Camera_ErrorCode OH_CaptureSession_GetExposureValue(Camera_CaptureSession* sessi
+  */
+ Camera_ErrorCode OH_CaptureSession_GetFocalLength(Camera_CaptureSession* session, float* focalLength);
+ 
++/**
++ * @brief Get current focus distance, ranging from 0.0 to 1.0, with 0.0 being shortest
++ * distance at which the lens can focus and 1.0 the furthest. The default value is 1.0.
++ *
++ * @param session Pointer to the {@link Camera_CaptureSession} instance.
++ * @param focusDistance Pointer to the current focus distance.
++ * @return {@link #CAMERA_OK} if the method call succeeds.
++ *         {@link #CAMERA_INVALID_ARGUMENT} if parameter missing or parameter type incorrect.
++ *         {@link #CAMERA_OPERATION_NOT_ALLOWED} if operation not allowed, session or inputdevice maybe abnormal.
++ *         {@link #CAMERA_SESSION_NOT_CONFIG} if session config locked.
++ * @since 24
++ */
++Camera_ErrorCode OH_CaptureSession_GetFocusDistance(const Camera_CaptureSession* session, float* focusDistance);
++
++/**
++ * @brief Sets focus distance. Possible distance values range from 0.0 to 1.0, with 0.0 being shortest
++ * distance at which the lens can focus and 1.0 the furthest. The default value is 1.0.
++ *
++ * @param session Pointer to the {@link Camera_CaptureSession} instance.
++ * @param focusDistance The focus distance to be set.
++ * @return {@link #CAMERA_OK} if the method call succeeds.
++ *         {@link #INVALID_ARGUMENT} if parameter missing or parameter type incorrect.
++ *         {@link #CAMERA_OPERATION_NOT_ALLOWED} if operation not allowed, session or inputdevice maybe abnormal.
++ *         {@link #CAMERA_SESSION_NOT_CONFIG} if the capture session not config.
++ * @since 24
++ */
++Camera_ErrorCode OH_CaptureSession_SetFocusDistance(const Camera_CaptureSession* session, float focusDistance);
++
++/**
++ * @brief Check whether focus distance is supported.
++ *
++ * @param session Pointer to the {@link Camera_CaptureSession} instance.
++ * @param isSupported Pointer to the result of whether focus distance is supported.
++ * @return {@link #CAMERA_OK} if the method call succeeds.
++ *         {@link #CAMERA_INVALID_ARGUMENT} if parameter missing or parameter type incorrect.
++ *         {@link #CAMERA_SESSION_NOT_CONFIG} if the capture session not config.
++ * @since 24
++ */
++Camera_ErrorCode OH_CaptureSession_IsFocusDistanceSupported(const Camera_CaptureSession* session, bool* isSupported);
++
+ /**
+  * @brief Set target zoom ratio by smooth method.
+  *
+@@ -1228,6 +1513,110 @@ Camera_ErrorCode OH_CaptureSession_RegisterIsoChangeCallback(
+  */
+ Camera_ErrorCode OH_CaptureSession_UnregisterIsoChangeCallback(
+     Camera_CaptureSession* session, OH_CaptureSession_OnIsoChange isoChange);
++
++/**
++ * @brief Query the raw zoom range.
++ *
++ * @param session the {@link Camera_CaptureSession} instance.
++ * @param minZoom the minimum of zoom value.
++ * @param maxZoom the Maximum of zoom value.
++ * @return {@link #CAMERA_OK} if the method call succeeds.
++ *         {@link #INVALID_ARGUMENT} if parameter missing or parameter type incorrect.
++ *          {@link #CAMERA_OPERATION_NOT_ALLOWED} if operation not allowed, session or inputdevice maybe abnormal.
++ *         {@link #CAMERA_SESSION_NOT_CONFIG} if the capture session not config.
++ * @since 24
++ */
++Camera_ErrorCode OH_CaptureSession_GetRAWCaptureZoomRatioRange(const Camera_CaptureSession* session, float* minZoom, float* maxZoom);
++
++/**
++ * @brief Checks if the specified OIS mode is supported.
++ *
++ * @param session Pointer to a session.
++ * @param oisMode The OIS mode {@link OH_Camera_OISMode} to check.
++ * @param isSupported Output parameter indicating support status.
++ * @return {@link #CAMERA_OK} if the method call succeeds.
++ *         {@link #CAMERA_INVALID_ARGUMENT} if parameters are invalid.
++ *         {@link #CAMERA_OPERATION_NOT_ALLOWED} if operation is not allowed.
++ *         {@link #CAMERA_SESSION_NOT_CONFIG} if the capture session not config.
++ * @since 24
++ */
++Camera_ErrorCode OH_CaptureSession_IsOISModeSupported(const Camera_CaptureSession* session,
++    OH_Camera_OISMode oisMode, bool* isSupported);
++
++/**
++ * @brief Gets the supported bias range for the specified OIS axis.
++ *
++ * @param session Pointer to a session.
++ * @param oisAxis The OIS axis {@link OH_Camera_OISAxes}
++ * @param minBias Output parameter for minimum bias value.
++ * @param maxBias Output parameter for maximum bias value.
++ * @param step Output parameter for bias step value.
++ * @return {@link #CAMERA_OK} if the method call succeeds.
++ *         {@link #CAMERA_INVALID_ARGUMENT} if parameters are invalid.
++ *         {@link #CAMERA_OPERATION_NOT_ALLOWED} if operation is not allowed.
++ *         {@link #CAMERA_SESSION_NOT_CONFIG} if the capture session not config.
++ * @since 24
++ */
++Camera_ErrorCode OH_CaptureSession_GetSupportedOISBiasRange(const Camera_CaptureSession* session,
++    OH_Camera_OISAxes oisAxis, float* minBias, float* maxBias, float* step);
++
++/**
++ * @brief Gets the current OIS mode.
++ *
++ * @param session Pointer to a session.
++ * @param oisMode Output parameter for current OIS mode {@link OH_Camera_OISMode}.
++ * @return {@link #CAMERA_OK} if the method call succeeds.
++ *         {@link #CAMERA_INVALID_ARGUMENT} if parameters are invalid.
++ *         {@link #CAMERA_OPERATION_NOT_ALLOWED} if operation is not allowed.
++ *         {@link #CAMERA_SESSION_NOT_CONFIG} if the capture session not config.
++ * @since 24
++ */
++Camera_ErrorCode OH_CaptureSession_GetCurrentOISMode(const Camera_CaptureSession* session,
++    OH_Camera_OISMode* oisMode);
++
++/**
++ * @brief Gets the current custom bias values for all OIS axes.
++ *
++ * @param session Pointer to a session.
++ * @param pitchBias Output parameter for pitch axis bias value.
++ * @param yawBias Output parameter for yaw axis bias value.
++ * @return {@link #CAMERA_OK} if the method call succeeds.
++ *         {@link #CAMERA_INVALID_ARGUMENT} if parameters are invalid.
++ *         {@link #CAMERA_OPERATION_NOT_ALLOWED} if operation is not allowed.
++ *         {@link #CAMERA_SESSION_NOT_CONFIG} if the capture session not config.
++ * @since 24
++ */
++Camera_ErrorCode OH_CaptureSession_GetCurrentCustomOISBias(const Camera_CaptureSession* session,
++    float* pitchBias, float* yawBias);
++
++/**
++ * @brief Sets the OIS mode.
++ *
++ * @param session Pointer to a session.
++ * @param oisMode The OIS mode {@link OH_Camera_OISMode} to set.
++ * @return {@link #CAMERA_OK} if the method call succeeds.
++ *         {@link #CAMERA_INVALID_ARGUMENT} if parameters are invalid.
++ *         {@link #CAMERA_OPERATION_NOT_ALLOWED} if operation is not allowed.
++ *         {@link #CAMERA_SESSION_NOT_CONFIG} if the capture session not config.
++ * @since 24
++ */
++Camera_ErrorCode OH_CaptureSession_SetOISMode(const Camera_CaptureSession* session,
++    OH_Camera_OISMode oisMode);
++
++/**
++ * @brief Sets custom OIS bias values for all axes.
++ *
++ * @param session Pointer to a session.
++ * @param pitchBias Bias value for pitch axis.
++ * @param yawBias Bias value for yaw axis.
++ * @return {@link #CAMERA_OK} if the method call succeeds.
++ *         {@link #CAMERA_INVALID_ARGUMENT} if parameters are invalid.
++ *         {@link #CAMERA_OPERATION_NOT_ALLOWED} if operation is not allowed.
++ *         {@link #CAMERA_SESSION_NOT_CONFIG} if the capture session not config.
++ * @since 24
++ */
++Camera_ErrorCode OH_CaptureSession_SetOISModeCustom(const Camera_CaptureSession* session,
++    float pitchBias, float yawBias);
+ #ifdef __cplusplus
+ }
+ #endif
+-- 
+2.45.2.huawei.10
+
