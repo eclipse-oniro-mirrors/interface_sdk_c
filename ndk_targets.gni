@@ -114,6 +114,8 @@ _ndk_library_targets = [
   "//interface/sdk_c/NotificationKit:ohnotification_header",
   "//interface/sdk_c/ConnectivityKit/bluetooth:libbluetooth_ndk",
   "//interface/sdk_c/ConnectivityKit/bluetooth:bluetooth_ndk_header",
+  "//interface/sdk_c/ContentEmbedKit/content_embed:libcontent_embed_ndk",
+  "//interface/sdk_c/ContentEmbedKit/content_embed:content_embed_ndk_header",
   "//interface/sdk_c/third_party/libuv:libuv_ndk",
   "//interface/sdk_c/third_party/libuv:libuv_header",
   "//interface/sdk_c/third_party/libuv:libuv_uv_header",
