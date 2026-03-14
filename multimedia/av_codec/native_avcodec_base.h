@@ -2230,7 +2230,11 @@ typedef enum OH_BitrateMode {
     /** Stable Quality RateControl.
      * @since 20
      */
-    BITRATE_MODE_SQR = 3
+    BITRATE_MODE_SQR = 3,
+    /** CBR for High Quality.
+     * @since 26.0.0
+     */
+    BITRATE_MODE_CBR_HIGH_QUALITY = 4
 } OH_BitrateMode;
 
 #ifdef __cplusplus
