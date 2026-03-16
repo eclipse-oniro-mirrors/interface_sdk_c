@@ -91,7 +91,7 @@ typedef enum Wifi_ResultCode {
  */
 typedef enum {
     /** Not disconnert */
-    DISCONNECT = -1, 
+    DISCONNECT = -1,
     /** Default link */
     DEFAULT_LINK = 0,
     /** WiFi 7 single link */
