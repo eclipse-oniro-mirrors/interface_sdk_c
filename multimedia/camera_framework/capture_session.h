@@ -649,7 +649,7 @@ Camera_ErrorCode OH_CaptureSession_GetPhysicalAperturesSize(const Camera_Capture
     uint32_t* size);
 
 /**
- * @brief Get current physical aperture value
+ * @brief Gets the current physical aperture value
  *
  * @param session the {@link Camera_CaptureSession} instance
  * @param aperture returned current aperture value
