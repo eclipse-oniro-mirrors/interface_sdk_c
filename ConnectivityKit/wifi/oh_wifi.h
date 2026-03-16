@@ -37,6 +37,18 @@ extern "C" {
 #endif
 
 /**
+ * @brief Indicates the maximum length of a Wi-Fi SSID.
+ * @since 24
+ * The maximum length is 32, and the last bit is reserved and set to <b>\0</b>. \n
+ */
+#define WIFI_MAX_SSID_LEN 33 // 32 + \0
+/**
+ * @brief Indicates the maximum length of a Wi-Fi MAC address or a Wi-Fi BSSID.
+ * @since 24
+ */
+#define WIFI_MAC_LEN 18
+
+/**
  * @brief Enumerates the wifi result codes.
  *
  * @since 13
@@ -73,18 +85,6 @@ typedef enum Wifi_ResultCode {
 } Wifi_ResultCode;
 
 /**
- * @brief Indicates the maximum length of a Wi-Fi SSID.
- *
- * The maximum length is 32, and the last bit is reserved and set to <b>\0</b>. \n
- */
-#define WIFI_MAX_SSID_LEN 33 // 32 + \0
-/**
- * @brief Indicates the maximum length of a Wi-Fi MAC address or a Wi-Fi BSSID.
- *
- */
-#define WIFI_MAC_LEN 18
- 
-/**
  * @brief Enumerates Wi-Fi connection states.
  *
  * @since 24
@@ -92,17 +92,17 @@ typedef enum Wifi_ResultCode {
 typedef enum {
     /** Not disconnert */
     DISCONNECT = -1, 
-    /** Default link */   
+    /** Default link */
     DEFAULT_LINK = 0,
-    /** WiFi 7 single link */ 
+    /** WiFi 7 single link */
     WIFI7_SINGLE_LINK = 1,
-    /** WiFi 7 MLSR */ 
+    /** WiFi 7 MLSR */
     WIFI7_MLSR = 2,
-    /** WiFi 7 EMLSR */ 
+    /** WiFi 7 EMLSR */
     WIFI7_EMLSR = 3,
-    /** WiFi 7 STR */ 
+    /** WiFi 7 STR */
     WIFI7_STR = 4,
-    /** WiFi 7 not MLO */ 
+    /** WiFi 7 not MLO */
     WIFI7_LEGACY = 5
 } OHWifiLinkType;
  
@@ -233,7 +233,6 @@ typedef enum {
     /** Invalid channel width. */
     WIDTH_INVALID
 } OHWifiChannelWidth;
-
 /**
  * @brief Enumerates Wi-Fi categories.
  *
@@ -251,7 +250,6 @@ typedef enum {
     /** Wi-Fi 7 enhanced category. */
     CATEGORY_WIFI7_PLUS = 5
 } OHWifiCategory;
- 
 /**
  * @brief Represents the Wi-Fi connection information.
  *
@@ -342,19 +340,19 @@ Wifi_ResultCode OH_Wifi_IsWifiEnabled(bool *enabled);
 Wifi_ResultCode OH_Wifi_GetDeviceMacAddress(char *macAddr, unsigned int *macAddrLen);
 
 /**
- * @brief Get wifi linked info.
- *
- * @param OHWifiLinkedInfo - the data structure and macro of the Wi-Fi connection information.
- * @permission ohos.permission.GET_WIFI_INFO.
- * @return wifi functions result code.
- *     For a detailed definition, please refer to {@link Wifi_ResultCode}.
- *     {@link WIFI_SUCCESS} Successfully obtained the device IP address.
- *     {@link WIFI_PERMISSION_DENIED} Permission denied.
- *     {@link WIFI_NOT_SUPPORTED} Capability not supported.
- *     {@link WIFI_INVALID_PARAM} The input parameter ipAddr is a null pointer.
- *     {@link WIFI_OPERATION_FAILED} Internal execution failed.
- * @since 24.0.0
- */
+ * @brief Get wifi linked info.
+ *
+ * @param info - the data structure and macro of the Wi-Fi connection information.
+ * @permission ohos.permission.GET_WIFI_INFO.
+ * @return wifi functions result code.
+ *     For a detailed definition, please refer to {@link Wifi_ResultCode}.
+ *     {@link WIFI_SUCCESS} Successfully obtained the device IP address.
+ *     {@link WIFI_PERMISSION_DENIED} Permission denied.
+ *     {@link WIFI_NOT_SUPPORTED} Capability not supported.
+ *     {@link WIFI_INVALID_PARAM} The input parameter ipAddr is a null pointer.
+ *     {@link WIFI_OPERATION_FAILED} Internal execution failed.
+ * @since 24
+ */
 Wifi_ResultCode OH_Wifi_GetLinkedInfo(OHWifiLinkedInfo *info);
 #ifdef __cplusplus
 }
