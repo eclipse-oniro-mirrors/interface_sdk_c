@@ -246,5 +246,21 @@
     {
         "first_introduced": "20",
         "name": "OH_ImageSourceNative_CreatePictureAtIndex"
+    },
+    {
+        "first_introduced": "24",
+        "name": "OH_ImageSourceNative_CreateImageRawData"
+    },
+    {
+        "first_introduced": "24",
+        "name": "OH_ImageSourceNative_GetBufferFromRawData"
+    },
+    {
+        "first_introduced": "24",
+        "name": "OH_ImageSourceNative_GetBitsPerPixelFromRawData"
+    },
+    {
+        "first_introduced": "24",
+        "name": "OH_ImageSourceNative_DestroyImageRawData"
     }
 ]
