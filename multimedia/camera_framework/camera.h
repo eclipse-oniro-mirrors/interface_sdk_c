@@ -1577,7 +1577,7 @@ typedef enum OH_Camera_OISMode {
      */
     OH_CAMERA_OIS_MODE_AUTO = 1,
 
-    /** 
+    /**
      * OIS is controlled by the application.
      * @since 24
      */
