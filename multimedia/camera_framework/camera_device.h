@@ -118,7 +118,7 @@ Camera_ErrorCode OH_CameraDevice_IsLogicalCamera(const Camera_Device* camera, bo
  *
  * @param logicalCamera Pointer to the logical Camera_Device.
  * @param constituentCameras Output parameter, returns array of constituent camera devices.
- * @param size size the size of constituentCameras.
+ * @param size the size of constituentCameras.
  * @return {@link #CAMERA_OK} if successful
  *         {@link #CAMERA_INVALID_ARGUMENT} if parameter missing or type incorrect
  *         {@link #CAMERA_SERVICE_FATAL_ERROR} if camera service fatal error

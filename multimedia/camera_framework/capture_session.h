@@ -562,7 +562,7 @@ Camera_ErrorCode OH_CaptureSession_IsExposureMeteringModeSupported(const Camera_
  *         {@link #CAMERA_SESSION_NOT_CONFIG} if the capture session not config.
  * @since 24
  */
-Camera_ErrorCode OH_CaptureSession_GetExposureMeteringMode(const Camera_CaptureSession* session
+Camera_ErrorCode OH_CaptureSession_GetExposureMeteringMode(const Camera_CaptureSession* session,
     OH_Camera_ExposureMeteringMode* exposureMeteringMode);
 
 /**
@@ -602,7 +602,7 @@ Camera_ErrorCode OH_CaptureSession_GetSupportedISORange(const Camera_CaptureSess
  * @return {@link #CAMERA_OK} if the method call succeeds.
  *         {@link #CAMERA_INVALID_ARGUMENT} if parameter missing or parameter type incorrect.
  *         {@link #CAMERA_OPERATION_NOT_ALLOWED} if operation not allowed, session or inputdevice maybe abnormal.
- *         {@link #CAMERA_SESSION_NOT_CONFIG} if session config locked.
+ *         {@link #CAMERA_SESSION_NOT_CONFIG} if the capture session not config.
  * @since 24
  */
 Camera_ErrorCode OH_CaptureSession_GetIso(const Camera_CaptureSession* session, int32_t* isoValue);
@@ -630,7 +630,7 @@ Camera_ErrorCode OH_CaptureSession_SetIso(const Camera_CaptureSession* session, 
  * @return {@link #CAMERA_OK} success
  *         {@link #CAMERA_INVALID_ARGUMENT} if parameter missing or parameter type incorrect.
  *         {@link #CAMERA_OPERATION_NOT_ALLOWED} if operation not allowed, session or inputdevice maybe abnormal.
- *         {@link #CAMERA_SESSION_NOT_CONFIG} if session config locked.
+ *         {@link #CAMERA_SESSION_NOT_CONFIG} if the capture session not config.
  * @since 24
  */
 Camera_ErrorCode OH_CaptureSession_GetSupportedPhysicalApertures(const Camera_CaptureSession* session,
@@ -653,23 +653,23 @@ Camera_ErrorCode OH_CaptureSession_GetPhysicalAperturesSize(const Camera_Capture
  *
  * @param session the {@link Camera_CaptureSession} instance
  * @param aperture returned current aperture value
- * @return {@link #CAMERA_OK} success 
+ * @return {@link #CAMERA_OK} success
  *         {@link #CAMERA_INVALID_ARGUMENT} if parameter missing or parameter type incorrect.
  *         {@link #CAMERA_OPERATION_NOT_ALLOWED} if operation not allowed, session or inputdevice maybe abnormal.
- *         {@link #CAMERA_SESSION_NOT_CONFIG} if session config locked.
+ *         {@link #CAMERA_SESSION_NOT_CONFIG} if the capture session not config.
  * @since 24
  */
 Camera_ErrorCode OH_CaptureSession_GetPhysicalAperture(const Camera_CaptureSession* session, double* aperture);
 
 /**
- * @brief Set physical aperture value
+ * @brief Set physical aperture value.
  *
  * @param session the {@link Camera_CaptureSession} instance
  * @param aperture the aperture value to set
  * @return {@link #CAMERA_OK} success
  *         {@link #CAMERA_INVALID_ARGUMENT} if parameter missing or parameter type incorrect.
  *         {@link #CAMERA_OPERATION_NOT_ALLOWED} if operation not allowed, session or inputdevice maybe abnormal.
- *         {@link #CAMERA_SESSION_NOT_CONFIG} if session config locked.
+ *         {@link #CAMERA_SESSION_NOT_CONFIG} if the capture session not config.
  * @since 24
  */
 Camera_ErrorCode OH_CaptureSession_SetPhysicalAperture(const Camera_CaptureSession* session, double aperture);
@@ -781,7 +781,7 @@ Camera_ErrorCode OH_CaptureSession_RegisterExposureInfoChangeCallback(const Came
     OH_CaptureSession_OnExposureDurationChange exposureDurationChange);
 
 /**
- * @brief @brief Unregister exposure info change callback.Invoke this method after finishing camera operations.
+ * @brief Unregister exposure info change callback.Invoke this method after finishing camera operations.
  *
  * @param session Pointer to the {@link Camera_CaptureSession} instance.
  * @param exposureDurationChange The {@link OH_CaptureSession_OnExposureDurationChange} to be unregistered.
@@ -1070,7 +1070,7 @@ Camera_ErrorCode OH_CaptureSession_GetFocalLength(Camera_CaptureSession* session
  * @return {@link #CAMERA_OK} if the method call succeeds.
  *         {@link #CAMERA_INVALID_ARGUMENT} if parameter missing or parameter type incorrect.
  *         {@link #CAMERA_OPERATION_NOT_ALLOWED} if operation not allowed, session or inputdevice maybe abnormal.
- *         {@link #CAMERA_SESSION_NOT_CONFIG} if session config locked.
+ *         {@link #CAMERA_SESSION_NOT_CONFIG} if the capture session not config.
  * @since 24
  */
 Camera_ErrorCode OH_CaptureSession_GetFocusDistance(const Camera_CaptureSession* session, float* focusDistance);
