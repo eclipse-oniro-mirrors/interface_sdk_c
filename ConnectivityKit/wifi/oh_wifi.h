@@ -32,6 +32,8 @@
 #ifndef OH_WIFI_H
 #define OH_WIFI_H
 
+#include "wifi_linked_info.h"
+
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -105,6 +107,22 @@ Wifi_ResultCode OH_Wifi_IsWifiEnabled(bool *enabled);
  * @since 21
  */
 Wifi_ResultCode OH_Wifi_GetDeviceMacAddress(char *macAddr, unsigned int *macAddrLen);
+
+/**
+ * @brief Get wifi linked info.
+ *
+ * @param OHWifiLinkedInfo - the data structure and macro of the Wi-Fi connection information.
+ * @permission ohos.permission.GET_WIFI_INFO.
+ * @return wifi functions result code.
+ *     For a detailed definition, please refer to {@link Wifi_ResultCode}.
+ *     {@link WIFI_SUCCESS} Successfully obtained the device IP address.
+ *     {@link WIFI_PERMISSION_DENIED} Permission denied.
+ *     {@link WIFI_NOT_SUPPORTED} Capability not supported.
+ *     {@link WIFI_INVALID_PARAM} The input parameter ipAddr is a null pointer.
+ *     {@link WIFI_OPERATION_FAILED} Internal execution failed.
+ * @since 24.0.0
+ */
+Wifi_ResultCode OH_Wifi_GetLinkedInfo(OHWifiLinkedInfo *info);
 #ifdef __cplusplus
 }
 #endif
