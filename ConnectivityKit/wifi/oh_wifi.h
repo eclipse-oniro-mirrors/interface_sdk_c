@@ -22,9 +22,9 @@
  */
 /**
  * @file oh_wifi.h
- * @brief Define interfaces for querying wifi switch status.
  * @kit ConnectivityKit
- * @library libwifi_ndk.so
+ * @brief Define interfaces for querying wifi switch status.
+ * @library libwifi.so
  * @syscap SystemCapability.Communication.WiFi.STA
  * @since 13
  */
@@ -91,19 +91,19 @@ typedef enum Wifi_ResultCode {
  */
 typedef enum {
     /** Not disconnert */
-    DISCONNECT = -1,
+    WIFI_LINK_DISCONNECT = -1,
     /** Default link */
-    DEFAULT_LINK = 0,
+    WIFI_LINK_DEFAULT_LINK = 0,
     /** WiFi 7 single link */
-    WIFI7_SINGLE_LINK = 1,
+    WIFI_LINK_WIFI7_SINGLE_LINK = 1,
     /** WiFi 7 MLSR */
-    WIFI7_MLSR = 2,
+    WIFI_LINK_WIFI7_MLSR = 2,
     /** WiFi 7 EMLSR */
-    WIFI7_EMLSR = 3,
+    WIFI_LINK_WIFI7_EMLSR = 3,
     /** WiFi 7 STR */
-    WIFI7_STR = 4,
+   WIFI_LINK_WIFI7_STR = 4,
     /** WiFi 7 not MLO */
-    WIFI7_LEGACY = 5
+    WIFI_LINK_WIFI7_LEGACY = 5
 } OHWifiLinkType;
  
 /**
@@ -301,7 +301,7 @@ typedef struct {
     OHWifiCategory supportedWifiCategory;
     /** Whether is HiLink network */
     int isHiLinkNetwork;
-    /** IP address of the connected hotspot */
+    /** IP address of the connected network */
     unsigned int ipAddress;
 } OHWifiLinkedInfo;
 
@@ -346,10 +346,10 @@ Wifi_ResultCode OH_Wifi_GetDeviceMacAddress(char *macAddr, unsigned int *macAddr
  * @permission ohos.permission.GET_WIFI_INFO.
  * @return wifi functions result code.
  *     For a detailed definition, please refer to {@link Wifi_ResultCode}.
- *     {@link WIFI_SUCCESS} Successfully obtained the device IP address.
+ *     {@link WIFI_SUCCESS} Successfully obtained the wifi linked info.
  *     {@link WIFI_PERMISSION_DENIED} Permission denied.
  *     {@link WIFI_NOT_SUPPORTED} Capability not supported.
- *     {@link WIFI_INVALID_PARAM} The input parameter ipAddr is a null pointer.
+ *     {@link WIFI_INVALID_PARAM} The input parameter info is a null pointer.
  *     {@link WIFI_OPERATION_FAILED} Internal execution failed.
  * @since 24
  */
