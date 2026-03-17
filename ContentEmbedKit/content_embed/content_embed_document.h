@@ -139,7 +139,7 @@ ContentEmbed_ErrorCode OH_ContentEmbed_CreateDocumentByFile(
  *
  * @param srcFilePath Represents source file path.
  * @param length Represents source file path length.
- * @param document Represents a pointer to an {@link ContentEmbed_Document} instance which will be Loaded.
+ * @param document Represents a pointer to an {@link ContentEmbed_Document} instance which will be loaded.
  * @return Returns a specific error code.
  *     {@link CE_ERR_OK} - success.
  *     {@link CE_ERR_PARAM_INVALID} - parameter check failed.
@@ -155,7 +155,7 @@ ContentEmbed_ErrorCode OH_ContentEmbed_LoadDocumentFromFile(
 /**
  * @brief Reads a compound document from {@link ContentEmbed_Document} instance.
  *
- * @param buffer Represents the buffer data read from an {@link ContentEmbed_Stream} instance.
+ * @param buffer Represents the buffer data read from an {@link ContentEmbed_Document} instance.
  * @param length Represents the length of the buffer data.
  * @param document Represents a pointer to an {@link ContentEmbed_Document} instance.
  * @param offset Represents pointer position of reading.
@@ -346,7 +346,7 @@ ContentEmbed_ErrorCode OH_ContentEmbed_Storage_GetStream(
  * @brief Delete a specific Storage or Stream directory entry in directory tree.
  *
  * @param parentStorage Represents a pointer to an {@link ContentEmbed_Storage} instance.
- * @param name Represents the name of a Storage or Stream which will be delete.
+ * @param name Represents the name of a storage or stream which will be delete.
  * @return Returns a specific error code.
  *     {@link CE_ERR_OK} - success.
  *     {@link CE_ERR_PARAM_INVALID} - parameter check failed.
@@ -709,7 +709,7 @@ ContentEmbed_ErrorCode OH_ContentEmbed_StorageElement_IsStorage(const ContentEmb
  *     {@link CE_ERR_PARAM_INVALID} - parameter check failed.
  *     {@link CE_ERR_NULL_POINTER} - unexpected null pointer.
  * Specific error codes can be referenced {@link ContentEmbed_ErrorCode}.
- * @since 23
+ * @since 24
  */
 ContentEmbed_ErrorCode OH_ContentEmbed_StorageElement_IsStream(
     const ContentEmbed_StorageElement *element, bool *isStream);

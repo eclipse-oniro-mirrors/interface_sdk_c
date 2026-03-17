@@ -277,12 +277,12 @@ typedef void (*OH_ContentEmbed_Extension_OnGetCapabilityFunc)(
     ContentEmbed_ObjectHandle object, uint32_t *bitmask);
 
 /**
- * @brief Register function {@link OH_ContentEmbed_Extension_RegisterOnCreateFunc} into
+ * @brief Register function {@link OH_ContentEmbed_Extension_OnCreateFunc} into
  *        {@link ContentEmbed_ExtensionInstance}.
  *
  * @param instance Represents a pointer to an {@link ContentEmbed_ExtensionInstance} instance
  *                 which will be set function in.
- * @param onCreateFunc Represents function {@link OH_ContentEmbed_Extension_OnCreateFunc} which will be set.
+ * @param onCreateFunc Represents function {@link OH_ContentEmbed_Extension_OnCreateFunc} which will be set in.
  * @return Returns a specific error code.
  *     {@link CE_ERR_OK} - success.
  *     {@link CE_ERR_PARAM_INVALID} - parameter check failed.
@@ -294,12 +294,12 @@ ContentEmbed_ErrorCode OH_ContentEmbed_Extension_RegisterOnCreateFunc(
     ContentEmbed_ExtensionInstanceHandle instance, OH_ContentEmbed_Extension_OnCreateFunc onCreateFunc);
 
 /**
- * @brief Register function {@link OH_ContentEmbed_Extension_RegisterOnDestroyFunc} into
+ * @brief Register function {@link OH_ContentEmbed_Extension_OnDestroyFunc} into
  *        {@link ContentEmbed_ExtensionInstance}.
  *
  * @param instance Represents a pointer to an {@link ContentEmbed_ExtensionInstance} instance
  *                 which will be set function in.
- * @param onDestroyFunc Represents function {@link OH_ContentEmbed_Extension_OnDestroyFunc} which will be set.
+ * @param onDestroyFunc Represents function {@link OH_ContentEmbed_Extension_OnDestroyFunc} which will be set in.
  * @return Returns a specific error code.
  *     {@link CE_ERR_OK} - success.
  *     {@link CE_ERR_PARAM_INVALID} - parameter check failed.
@@ -381,13 +381,13 @@ ContentEmbed_ErrorCode OH_ContentEmbed_Extension_UnRegisterOnObjectDetachFunc(
     ContentEmbed_ExtensionInstanceHandle instance);
 
 /**
- * @brief Register function {@link OH_ContentEmbed_Extension_RegisterOnWriteToDataStreamFunc} into
+ * @brief Register function {@link OH_ContentEmbed_Extension_OnWriteToDataStreamFunc} into
  *        {@link ContentEmbed_ObjectHandle}.
  *
  * @param object Represents a pointer to an {@link ContentEmbed_ObjectHandle} object
  *                 which will be set function in.
  * @param onWriteToDataStreamFunc Represents function {@link OH_ContentEmbed_Extension_OnWriteToDataStreamFunc}
- *                                which will be set.
+ *                                which will be set in.
  * @return Returns a specific error code.
  *     {@link CE_ERR_OK} - success.
  *     {@link CE_ERR_PARAM_INVALID} - parameter check failed.
@@ -400,12 +400,13 @@ ContentEmbed_ErrorCode OH_ContentEmbed_Extension_RegisterOnWriteToDataStreamFunc
     OH_ContentEmbed_Extension_OnWriteToDataStreamFunc onWriteToDataStreamFunc);
 
 /**
- * @brief Register function {@link OH_ContentEmbed_Extension_RegisterOnGetSnapshotFunc} into
+ * @brief Register function {@link OH_ContentEmbed_Extension_OnGetSnapshotFunc} into
  *        {@link ContentEmbed_ObjectHandle}.
  *
  * @param object Represents a pointer to an {@link ContentEmbed_ObjectHandle} object
  *                 which will be set function in.
- * @param onGetSnapshotFunc Represents function {@link OH_ContentEmbed_Extension_OnGetSnapshotFunc} which will be set.
+ * @param onGetSnapshotFunc Represents function {@link OH_ContentEmbed_Extension_OnGetSnapshotFunc}
+ *                          which will be set in.
  * @return Returns a specific error code.
  *     {@link CE_ERR_OK} - success.
  *     {@link CE_ERR_PARAM_INVALID} - parameter check failed.
@@ -417,12 +418,12 @@ ContentEmbed_ErrorCode OH_ContentEmbed_Extension_RegisterOnGetSnapshotFunc(
     ContentEmbed_ObjectHandle object, OH_ContentEmbed_Extension_OnGetSnapshotFunc onGetSnapshotFunc);
 
 /**
- * @brief Register function {@link OH_ContentEmbed_Extension_RegisterOnDoEditFunc} into
+ * @brief Register function {@link OH_ContentEmbed_Extension_OnDoEditFunc} into
  *        {@link ContentEmbed_ObjectHandle}.
  *
  * @param object Represents a pointer to an {@link ContentEmbed_ObjectHandle} object
  *                 which will be set function in.
- * @param onDoEditFunc Represents function {@link OH_ContentEmbed_Extension_OnDoEditFunc} which will be set.
+ * @param onDoEditFunc Represents function {@link OH_ContentEmbed_Extension_OnDoEditFunc} which will be set in.
  * @return Returns a specific error code.
  *     {@link CE_ERR_OK} - success.
  *     {@link CE_ERR_PARAM_INVALID} - parameter check failed.
@@ -434,13 +435,13 @@ ContentEmbed_ErrorCode OH_ContentEmbed_Extension_RegisterOnDoEditFunc(
     ContentEmbed_ObjectHandle object, OH_ContentEmbed_Extension_OnDoEditFunc onDoEditFunc);
 
 /**
- * @brief Register function {@link OH_ContentEmbed_Extension_RegisterOnGetEditStatusFunc} into
+ * @brief Register function {@link OH_ContentEmbed_Extension_OnGetEditStatusFunc} into
  *        {@link ContentEmbed_ObjectHandle}.
  *
  * @param object Represents a pointer to an {@link ContentEmbed_ObjectHandle} object
  *                 which will be set function in.
  * @param onGetEditStatusFunc Represents function {@link OH_ContentEmbed_Extension_OnGetEditStatusFunc}
- *                            which will be set.
+ *                            which will be set in.
  * @return Returns a specific error code.
  *     {@link CE_ERR_OK} - success.
  *     {@link CE_ERR_PARAM_INVALID} - parameter check failed.
@@ -452,13 +453,13 @@ ContentEmbed_ErrorCode OH_ContentEmbed_Extension_RegisterOnGetEditStatusFunc(
     ContentEmbed_ObjectHandle object, OH_ContentEmbed_Extension_OnGetEditStatusFunc onGetEditStatusFunc);
 
 /**
- * @brief Register function {@link OH_ContentEmbed_Extension_RegisterOnGetCapabilityFunc} into
+ * @brief Register function {@link OH_ContentEmbed_Extension_OnGetCapabilityFunc} into
  *        {@link ContentEmbed_ObjectHandle}.
  *
  * @param object Represents a pointer to an {@link ContentEmbed_ObjectHandle} object
  *                 which will be set function in.
  * @param onGetCapabilityFunc Represents function {@link OH_ContentEmbed_Extension_OnGetCapabilityFunc}
- *                            which will be set.
+ *                            which will be set in.
  * @return Returns a specific error code.
  *     {@link CE_ERR_OK} - success.
  *     {@link CE_ERR_PARAM_INVALID} - parameter check failed.
@@ -511,7 +512,7 @@ ContentEmbed_ErrorCode OH_ContentEmbed_Extension_CallbackToOnUpdate(
  *     {@link CE_ERR_OK} - success.
  *     {@link CE_ERR_PARAM_INVALID} - parameter check failed.
  *     {@link CE_ERR_NULL_POINTER} - unexpected null pointer.
- *     {@link CE_ERR_CLIENT_CALLBACK_NOT_REGISTERED} - Client callback not registered.
+ *     {@link CE_ERR_CLIENT_CALLBACK_NOT_REGISTERED} - client callback not registered.
  *     {@link CE_ERR_DEVICE_NOT_SUPPORTED} - the device is not supported.
  *     {@link CE_ERR_CLIENT_CALLBACK_FAILED} - the client callback fails.
  *     {@link CE_ERR_IN_DLP_SANDBOX} - application is in dlp sandbox.
@@ -529,7 +530,7 @@ ContentEmbed_ErrorCode OH_ContentEmbed_Extension_CallbackToOnError(
  *     {@link CE_ERR_OK} - success.
  *     {@link CE_ERR_PARAM_INVALID} - parameter check failed.
  *     {@link CE_ERR_NULL_POINTER} - unexpected null pointer.
- *     {@link CE_ERR_CLIENT_CALLBACK_NOT_REGISTERED} - Client callback not registered.
+ *     {@link CE_ERR_CLIENT_CALLBACK_NOT_REGISTERED} - client callback not registered.
  *     {@link CE_ERR_DEVICE_NOT_SUPPORTED} - the device is not supported.
  *     {@link CE_ERR_CLIENT_CALLBACK_FAILED} - the client callback fails.
  *     {@link CE_ERR_IN_DLP_SANDBOX} - application is in dlp sandbox.
@@ -546,7 +547,7 @@ ContentEmbed_ErrorCode OH_ContentEmbed_Extension_CallbackToOnEditingFinished(
  *     {@link CE_ERR_OK} - success.
  *     {@link CE_ERR_PARAM_INVALID} - parameter check failed.
  *     {@link CE_ERR_NULL_POINTER} - unexpected null pointer.
- *     {@link CE_ERR_CLIENT_CALLBACK_NOT_REGISTERED} - Client callback not registered.
+ *     {@link CE_ERR_CLIENT_CALLBACK_NOT_REGISTERED} - client callback not registered.
  *     {@link CE_ERR_DEVICE_NOT_SUPPORTED} - the device is not supported.
  *     {@link CE_ERR_CLIENT_CALLBACK_FAILED} - the client callback fails.
  *     {@link CE_ERR_IN_DLP_SANDBOX} - application is in dlp sandbox.
