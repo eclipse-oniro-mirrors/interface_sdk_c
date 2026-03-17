@@ -32,7 +32,7 @@
 #ifndef OH_WIFI_H
 #define OH_WIFI_H
 
-#include <cstdint>
+#include <stdint.h>
 
 #ifdef __cplusplus
 extern "C" {
