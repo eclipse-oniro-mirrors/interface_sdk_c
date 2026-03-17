@@ -299,7 +299,7 @@ typedef struct ContentEmbed_Capability ContentEmbed_Capability;
  */
 ContentEmbed_ErrorCode OH_ContentEmbed_CreateExtensionProxy(ContentEmbed_Document *document,
                                                             ContentEmbed_ExtensionProxy **proxy,
-                                                            void* contextPtr);
+                                                            void *contextPtr);
 
 /**
  * @brief Destroy an {@link ContentEmbed_ExtensionProxy} instance and reclaims the memory occupied by the instance.
@@ -351,6 +351,7 @@ typedef void (*OH_ContentEmbed_ClientCallbackOnErrorFunc)(
  *
  * @param proxy Represents a pointer to an
  *              {@link ContentEmbed_ExtensionProxy} instance which will be set in.
+ * @param dataModified Indicates whether the data has been modified.
  * @since 24
  */
 typedef void (*OH_ContentEmbed_ClientCallbackOnEditingFinishedFunc)(
@@ -370,10 +371,10 @@ typedef void (*OH_ContentEmbed_ClientCallbackOnExtensionStoppedFunc)(
     ContentEmbed_ExtensionProxy *proxy);
 
 /**
- * @brief Register function {@link OH_ContentEmbed_Proxy_RegisterOnUpdateFunc} into {@link ContentEmbed_ExtensionProxy}.
+ * @brief Register function {@link OH_ContentEmbed_ClientCallbackOnUpdateFunc} into {@link ContentEmbed_ExtensionProxy}.
  *
  * @param proxy Represents a pointer to an {@link ContentEmbed_ExtensionProxy} instance which will be set function in.
- * @param onUpdateFunc Represents function {@link OH_ContentEmbed_ClientCallbackOnUpdateFunc} which will be set.
+ * @param onUpdateFunc Represents function {@link OH_ContentEmbed_ClientCallbackOnUpdateFunc} which will be set in.
  * @return Returns a specific error code.
  *     {@link CE_ERR_OK} - success.
  *     {@link CE_ERR_PARAM_INVALID} - parameter check failed.
@@ -386,10 +387,10 @@ ContentEmbed_ErrorCode OH_ContentEmbed_Proxy_RegisterOnUpdateFunc(
     ContentEmbed_ExtensionProxy *proxy, OH_ContentEmbed_ClientCallbackOnUpdateFunc onUpdateFunc);
 
 /**
- * @brief Register function {@link OH_ContentEmbed_Proxy_RegisterOnErrorFunc} into {@link ContentEmbed_ExtensionProxy}.
+ * @brief Register function {@link OH_ContentEmbed_ClientCallbackOnErrorFunc} into {@link ContentEmbed_ExtensionProxy}.
  *
  * @param proxy Represents a pointer to an {@link ContentEmbed_ExtensionProxy} instance which will be set function in.
- * @param onErrorFunc Represents function {@link OH_ContentEmbed_ClientCallbackOnErrorFunc} which will be set.
+ * @param onErrorFunc Represents function {@link OH_ContentEmbed_ClientCallbackOnErrorFunc} which will be set in.
  * @return Returns a specific error code.
  *     {@link CE_ERR_OK} - success.
  *     {@link CE_ERR_PARAM_INVALID} - parameter check failed.
@@ -402,12 +403,12 @@ ContentEmbed_ErrorCode OH_ContentEmbed_Proxy_RegisterOnErrorFunc(
     ContentEmbed_ExtensionProxy *proxy, OH_ContentEmbed_ClientCallbackOnErrorFunc onErrorFunc);
 
 /**
- * @brief Register function {@link OH_ContentEmbed_Proxy_RegisterOnEditingFinishedFunc} into
+ * @brief Register function {@link OH_ContentEmbed_ClientCallbackOnEditingFinishedFunc} into
  *        {@link ContentEmbed_ExtensionProxy}.
  *
  * @param proxy Represents a pointer to an {@link ContentEmbed_ExtensionProxy} instance which will be set function in.
  * @param onEditingFinishedFunc Represents function {@link OH_ContentEmbed_ClientCallbackOnEditingFinishedFunc}
- *                              which will be set.
+ *                              which will be set in.
  * @return Returns a specific error code.
  *     {@link CE_ERR_OK} - success.
  *     {@link CE_ERR_PARAM_INVALID} - parameter check failed.
@@ -420,12 +421,12 @@ ContentEmbed_ErrorCode OH_ContentEmbed_Proxy_RegisterOnEditingFinishedFunc(
     ContentEmbed_ExtensionProxy *proxy, OH_ContentEmbed_ClientCallbackOnEditingFinishedFunc onEditingFinishedFunc);
 
 /**
- * @brief Register function {@link OH_ContentEmbed_Proxy_RegisterOnExtensionStoppedFunc} into
+ * @brief Register function {@link OH_ContentEmbed_ClientCallbackOnExtensionStoppedFunc} into
  *        {@link ContentEmbed_ExtensionProxy}.
  *
  * @param proxy Represents a pointer to an {@link ContentEmbed_ExtensionProxy} instance which will be set function in.
  * @param onExtensionStoppedFunc Represents function {@link OH_ContentEmbed_ClientCallbackOnExtensionStoppedFunc}
- *                              which will be set.
+ *                              which will be set in.
  * @return Returns a specific error code.
  *     {@link CE_ERR_OK} - success.
  *     {@link CE_ERR_PARAM_INVALID} - parameter check failed.
