@@ -21,9 +21,9 @@
  * @since 13
  */
 /**
- * @file oh_wifi.h	 
- * @brief Define interfaces for querying wifi switch status. 
- * @kit ConnectivityKit	 
+ * @file oh_wifi.h
+ * @brief Define interfaces for querying wifi switch status.
+ * @kit ConnectivityKit
  * @library libwifi_ndk.so
  * @syscap SystemCapability.Communication.WiFi.STA
  * @since 13
