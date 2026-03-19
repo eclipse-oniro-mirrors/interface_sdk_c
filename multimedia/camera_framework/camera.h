@@ -1459,7 +1459,13 @@ typedef enum Camera_ControlCenterEffectType {
     /**
      * Control center portrait effect type.
      */
-    CONTROL_CENTER_EFFECT_TYPE_PORTRAIT = 1
+    CONTROL_CENTER_EFFECT_TYPE_PORTRAIT = 1,
+
+    /**
+     * Applies a auto-framing effect.
+     * @since 24
+     */
+    CONTROL_CENTER_EFFECT_TYPE_AUTO_FRAMING = 2
 } Camera_ControlCenterEffectType;
 
 /**

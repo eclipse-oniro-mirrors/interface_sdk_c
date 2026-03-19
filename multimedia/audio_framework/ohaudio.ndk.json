@@ -634,5 +634,17 @@
     {
         "first_introduced": "23",
         "name": "OH_AudioStreamBuilder_SetPlaybackCaptureMode"
+    },
+    {
+        "first_introduced": "24",
+        "name": "OH_AudioRenderer_SetIndependentAudioSessionStrategy"
+    },
+    {
+        "first_introduced": "24",
+        "name": "OH_AudioCapturer_SetIndependentAudioSessionStrategy"
+    },
+    {
+        "first_introduced": "24",
+        "name":"OH_AudioSessionManager_SetBehavior"
     }
 ]

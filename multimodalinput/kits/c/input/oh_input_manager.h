@@ -2586,6 +2586,22 @@ Input_Result OH_Input_CursorConfig_IsFollowSystem(Input_CursorConfig *cursorConf
  */
 Input_Result OH_Input_SetCustomCursor(int32_t windowId, Input_CustomCursor* customCursor,
                                       Input_CursorConfig* cursorConfig);
+
+/**
+ * @brief Bind the stylus to the display.
+ *
+ * @permission ohos.permission.INPUT_DEVICE_CONFIGURATOR
+ * @param inputDeviceId Input device id.
+ * @param displayId Display id.
+ * @return OH_Input_BindInputDeviceToDisplay function api result code.
+ *         {@link INPUT_SUCCESS} if the operation is successful.
+ *         {@link INPUT_PERMISSION_DENIED} Permission verification failed.
+ *         {@link INPUT_PARAMETER_ERROR} The input device does not exist or
+ *         the display does not exist or the input device is not a stylus.
+ *         {@link INPUT_SERVICE_EXCEPTION} if the service is exception.
+ * @since 24
+ */
+Input_Result OH_Input_BindInputDeviceToDisplay(int32_t inputDeviceId, int32_t displayId);
 #ifdef __cplusplus
 }
 #endif
