@@ -26,5 +26,13 @@
     {
         "first_introduced": "24",
         "name": "OH_HiCollie_ReportInputBlock"
+    },
+    {
+        "first_introduced": "24",
+        "name": "OH_HiCollie_SetFreezeCallback"
+    },
+    {
+        "first_introduced": "24",
+        "name": "OH_HiCollie_AssociateProcessReport"
     }
 ]
