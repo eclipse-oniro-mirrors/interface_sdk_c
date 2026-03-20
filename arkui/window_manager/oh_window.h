@@ -425,7 +425,7 @@ int32_t OH_WindowManager_FrameMetrics_GetLayoutMeasureDuration(
  *
  * @param metrics Frame metrics data object.
  * @param timestamp This parameter is the return value of the function,
- *     indicating the start timestamp of the current frame.
+ *     indicating the start timestamp of the current frame, in nanoseconds.
  * @return Returns the status code of the execution.
  *         {@link WS_OK} the function call is successful.
  *         {@link WINDOW_MANAGER_ERRORCODE_INCORRECT_PARAM} Parameter error. Possible cause:
