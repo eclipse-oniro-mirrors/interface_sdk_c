@@ -395,7 +395,7 @@ int32_t OH_WindowManager_FrameMetrics_IsFirstDrawFrame(
  *
  * @param metrics Frame metrics data object.
  * @param duration This parameter is the return value of the function,
- *     indicating the time taken to process external input events in one frame.
+ *     indicating the time taken to process external input events in one frame, in nanoseconds.
  * @return Returns the status code of the execution.
  *         {@link WS_OK} the function call is successful.
  *         {@link WINDOW_MANAGER_ERRORCODE_INCORRECT_PARAM} Parameter error. Possible cause:
@@ -410,7 +410,7 @@ int32_t OH_WindowManager_FrameMetrics_GetInputHandlingDuration(
  *
  * @param metrics Frame metrics data object.
  * @param duration This parameter is the return value of the function,
- *     indicating the time taken for layout measurement in one frame.
+ *     indicating the time taken for layout measurement in one frame, in nanoseconds.
  * @return Returns the status code of the execution.
  *         {@link WS_OK} the function call is successful.
  *         {@link WINDOW_MANAGER_ERRORCODE_INCORRECT_PARAM} Parameter error. Possible cause:
@@ -441,6 +441,8 @@ int32_t OH_WindowManager_FrameMetrics_GetVsyncTimestamp(
  *     After the application registers the frame metrics change listener, the registered callback will only be
  *     triggered when the client UI content is redrawn (e.g., page switching, interaction with responsive
  *     components, setting background color and opacity, etc.).
+ *     To unsubscribe from the listening event for changes in the window frame rate metrics, call
+ *     OH_WindowManager_UnregisterFrameMetricsMeasuredCallback.
  *
  * @param windowId WindowId when window is created.
  * @param callback Callback used to return the result of frame metrics.
@@ -459,6 +461,8 @@ int32_t OH_WindowManager_RegisterFrameMetricsMeasuredCallback(int32_t windowId,
 /**
  * @brief Unsubscribe from the listening event for changes in the window frame rate metrics.
  *     This interface must be used after loadContent() or setUIContent() has taken effect.
+ *     To subscribe to the listening event for changes in the window frame rate metrics, call
+ *     OH_WindowManager_RegisterFrameMetricsMeasuredCallback.
  *
  * @param windowId WindowId when window is created.
  * @param callback Callback used to return the result of frame metrics.
