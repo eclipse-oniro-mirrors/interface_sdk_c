@@ -750,6 +750,23 @@ OH_AudioCommon_Result OH_AudioSessionManager_EnableMuteSuggestionWhenMixWithOthe
 bool OH_AudioSessionManager_IsOtherMediaPlaying(OH_AudioSessionManager *audioSessionManager);
 
 /**
+ * @brief Set mute hint for all capturer streams in the current audio session.
+ * This function sends a hint to the audio framework to mute or unmute all capturer streams
+ * belonging to the current application session.
+ *
+ * @param audioSessionManager the {@link #OH_AudioSessionManager}
+ *     returned by the {@link #OH_AudioManager_GetAudioSessionManager}.
+ * @param mute Sets true to hint all running capturer streams as muted by application itself.
+ * @return {@link #AUDIOCOMMON_RESULT_SUCCESS} If the execution is successful.
+ *     or {@link #AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM} The param of audioSessionManager is nullptr.
+ *     or {@link #AUDIOCOMMON_RESULT_ERROR_ILLEGAL_STATE} Operation not permitted at current state,
+ *          there is no audio capturer running.
+ * @since 24
+ */
+OH_AudioCommon_Result OH_AudioSessionManager_SetCapturerMuteHint(
+    OH_AudioSessionManager *audioSessionManager, bool mute);
+
+/**
  * @brief Set audio session behavior parameters (supporting multiple flag combinations)
  * This interface takes effect only after the interface {@link #OH_AudioSessionManager_SetScene} is called.
  * Each time you call this interface to set parameters,

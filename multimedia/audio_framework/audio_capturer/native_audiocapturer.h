@@ -405,6 +405,18 @@ OH_AudioStream_Result OH_AudioCapturer_RequestPlaybackCaptureStart(OH_AudioCaptu
     OH_AudioCapturer_OnPlaybackCaptureStartCallback callback, void* userData);
 
 /**
+ * @brief Set mute hint for the capturer.
+ *
+ * @param capturer Reference created by OH_AudioStreamBuilder_GenerateCapturer()
+ * @param muteHint mute use true if application recording stream muted by application itself.
+ * @return {@link #AUDIOSTREAM_SUCCESS} If the execution is successful.
+ *     or {@link #AUDIOSTREAM_ERROR_INVALID_PARAM} The parameter of capturer is nullptr.
+ *     or {@link #AUDIOSTREAM_ERROR_ILLEGAL_STATE} Operation not permitted at current state, stream is not running.
+ * @since 24
+ */
+OH_AudioStream_Result OH_AudioCapturer_SetMuteHint(OH_AudioCapturer* capturer, bool muteHint);
+
+/**
  * @brief Configure audio session strategy and behavior parameters to adjust the focus preemption policy.
  * Each time you call this interface to set parameters,
  * you need to call the interface {@link #OH_AudioCapturer_Start} again for the settings to take effect.
