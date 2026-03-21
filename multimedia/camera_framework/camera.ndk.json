@@ -92,6 +92,10 @@
         "name": "OH_CameraManager_CreatePreviewOutput"
     },
     {
+        "first_introduced": "24",
+        "name": "OH_CameraManager_CreateDeferredPreviewOutput"
+    },
+    {
         "first_introduced": "12",
         "name": "OH_CameraManager_CreatePreviewOutputUsedInPreconfig"
     },
@@ -790,6 +794,10 @@
     {
         "first_introduced": "23",
         "name": "OH_PreviewOutput_EnableBandwidthCompression"
+    },
+    {
+        "first_introduced": "24",
+        "name": "OH_PreviewOutput_AddDeferredSurface"
     },
     {
         "first_introduced": "23",
