@@ -96,7 +96,7 @@ typedef enum {
 } BatteryInfo_BatteryPluggedType;
 
 /**
- * @brief This API returns the current battery capacity.
+ * @brief This API returns the current battery capacity in percent.
  *
  * @return Returns number between 0 and 100.
  * @since 13
