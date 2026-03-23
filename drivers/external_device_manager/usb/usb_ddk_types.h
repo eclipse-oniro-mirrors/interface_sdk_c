@@ -358,7 +358,7 @@ typedef struct Usb_NonRootHubArray {
      * @since 26.0.0
      */
     uint32_t num;
-} Usb_DeviceArray;
+} Usb_NonRootHubArray;
 #ifdef __cplusplus
 }
 /** @} */
