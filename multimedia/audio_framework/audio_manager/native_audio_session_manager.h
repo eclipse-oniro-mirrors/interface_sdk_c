@@ -758,7 +758,7 @@ bool OH_AudioSessionManager_IsOtherMediaPlaying(OH_AudioSessionManager *audioSes
  *
  * @param audioSessionManager the {@link #OH_AudioSessionManager}
  *     returned by the {@link #OH_AudioManager_GetAudioSessionManager}.
- * @param mute Sets true to hint all running capturer streams as muted by application itself.
+ * @param mute use true if application recording stream muted by application itself.
  * @return Function result code:
  *     {@link #AUDIOCOMMON_RESULT_SUCCESS} If the execution is successful.
  *     {@link #AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM} The param of audioSessionManager is nullptr.
