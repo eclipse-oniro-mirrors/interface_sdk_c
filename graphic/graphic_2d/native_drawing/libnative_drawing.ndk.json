@@ -476,6 +476,18 @@
         "name": "OH_Drawing_PathBuildFromSvgString"
     },
     { "name": "OH_Drawing_PathConvertToSvgString" },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_Drawing_PathGetPointData"
+ 	},
+ 	{
+        "first_introduced": "26.0.0",
+        "name": "OH_Drawing_PathGetVerbData"
+ 	},
+ 	{
+        "first_introduced": "26.0.0",
+        "name": "OH_Drawing_PathGetConicWeightData"
+ 	},
     { "name": "OH_Drawing_PathCreate" },
     { "name": "OH_Drawing_PathCopy" },
     { "name": "OH_Drawing_PathDestroy" },
