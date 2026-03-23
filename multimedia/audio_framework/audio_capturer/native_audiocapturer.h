@@ -411,12 +411,12 @@ OH_AudioStream_Result OH_AudioCapturer_RequestPlaybackCaptureStart(OH_AudioCaptu
  * its muted state to system.
  * Mute hint state can only be set when current stream is in running state.
  *
- * @param capturer Reference created by OH_AudioStreamBuilder_GenerateCapturer()
- * @param mute mute use true if application recording stream muted by application itself.
+ * @param capturer Reference created by OH_AudioStreamBuilder_GenerateCapturer().
+ * @param mute use true if application recording stream muted by application itself.
  * @return Function result code:
- *        {@link #AUDIOSTREAM_SUCCESS} If the execution is successful.
- *        {@link #AUDIOSTREAM_ERROR_INVALID_PARAM} The param of capturer is nullptr.
- *        {@link #AUDIOSTREAM_ERROR_ILLEGAL_STATE} Operation not permitted at current state, stream is not running.
+ *         {@link AUDIOSTREAM_SUCCESS} If the execution is successful.
+ *         {@link AUDIOSTREAM_ERROR_INVALID_PARAM} The param of capturer is nullptr.
+ *         {@link AUDIOSTREAM_ERROR_ILLEGAL_STATE} Operation not permitted at current state, stream is not running.
  * @since 24
  */
 OH_AudioStream_Result OH_AudioCapturer_SetMuteHint(OH_AudioCapturer* capturer, bool mute);
