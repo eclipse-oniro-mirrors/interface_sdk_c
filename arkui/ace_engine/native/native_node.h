@@ -12845,6 +12845,38 @@ int32_t OH_ArkUI_PostUITask(ArkUI_ContextHandle context, void* taskData, void (*
 int32_t OH_ArkUI_NativeModule_AtomicServiceMenuBarSetVisible(ArkUI_ContextHandle uiContext, bool visible);
 
 /**
+ * @brief Registers a callback for listening for component dimension and area changes.
+ *
+ * This function can be called for a valid {@link ArkUI_NodeHandle} node at any time. \n
+ * The newly registered callback will replace the previously registered callback for this event and will take effect from the next frame. \n
+ * 
+ * When the callback is no longer needed, call {@link OH_ArkUI_NativeModule_UnregisterCommonAreaApproximateChangeEvent} to unregister it. \n
+ * Otherwise, the callback will be automatically unregistered when the node is released.
+ *
+ * @param node Pointer to {@link ArkUI_NodeHandle}.
+ * @param expectedUpdateInterval Expected calculation interval, in milliseconds.
+ * @param userData Pointer to custom data.
+ * @param callback Event callback.
+ * @return Result code. \n
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful. \n
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs. \n
+ * @since 26.0.0
+ */
+int32_t OH_ArkUI_NativeModule_RegisterCommonAreaApproximateChangeEvent(ArkUI_NodeHandle node,
+    float expectedUpdateInterval, void* userData, void (*callback)(ArkUI_NodeEvent* event));
+
+/**
+ * @brief Unregisters the callback bound to the dimensions and area changes of a component.
+ *
+ * @param node Pointer to {@link ArkUI_NodeHandle}.
+ * @return Result code. \n
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful. \n
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs. \n
+ * @since 26.0.0
+ */
+int32_t OH_ArkUI_NativeModule_UnregisterCommonAreaApproximateChangeEvent(ArkUI_NodeHandle node);
+
+/**
  * @brief Post UI task to UI thread and wait until UI task finished.
  *
  * @param context UIContext pointer of the page where the UI task located.
