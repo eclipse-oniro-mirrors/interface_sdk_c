@@ -35,7 +35,12 @@
 #ifndef HTTP_INTERCEPTOR_TYPE_H
 #define HTTP_INTERCEPTOR_TYPE_H
 
-#include <stdlib.h>
+#include <stdint.h>
+#ifdef __cplusplus
+#include <cstddef>
+#else
+#include <stddef.h>
+#endif
 #include "net_http_type.h"
 
 #ifdef __cplusplus
