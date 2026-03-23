@@ -413,7 +413,7 @@ OH_AudioStream_Result OH_AudioCapturer_RequestPlaybackCaptureStart(OH_AudioCaptu
  *
  * @param capturer Reference created by OH_AudioStreamBuilder_GenerateCapturer()
  * @param mute mute use true if application recording stream muted by application itself.
- * @return Function result code: 
+ * @return Function result code:
  *        {@link #AUDIOSTREAM_SUCCESS} If the execution is successful.
  *        {@link #AUDIOSTREAM_ERROR_INVALID_PARAM} The param of capturer is nullptr.
  *        {@link #AUDIOSTREAM_ERROR_ILLEGAL_STATE} Operation not permitted at current state, stream is not running.

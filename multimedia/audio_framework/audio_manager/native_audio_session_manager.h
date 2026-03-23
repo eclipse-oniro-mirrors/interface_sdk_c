@@ -750,20 +750,23 @@ OH_AudioCommon_Result OH_AudioSessionManager_EnableMuteSuggestionWhenMixWithOthe
 bool OH_AudioSessionManager_IsOtherMediaPlaying(OH_AudioSessionManager *audioSessionManager);
 
 /**
- * @brief Set mute hint for all capturer streams in the current audio session.
- * This function sends a hint to the audio framework to mute or unmute all capturer streams
- * belonging to the current application session.
+ * @brief Sets recording mute state to audio system.
+ * This method is used as a hint for power optimization, it does not mute the recording stream, only affects
+ * internal processing strategy. Audio system may disable some recording effects when application notifies
+ * its muted state to system.
+ * Mute hint state can only be set when there is at least one running stream in current process.
  *
  * @param audioSessionManager the {@link #OH_AudioSessionManager}
  *     returned by the {@link #OH_AudioManager_GetAudioSessionManager}.
  * @param mute Sets true to hint all running capturer streams as muted by application itself.
- * @return {@link #AUDIOCOMMON_RESULT_SUCCESS} If the execution is successful.
- *     or {@link #AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM} The param of audioSessionManager is nullptr.
- *     or {@link #AUDIOCOMMON_RESULT_ERROR_ILLEGAL_STATE} Operation not permitted at current state,
- *          there is no audio capturer running.
+ * @return Function result code:
+ *     {@link #AUDIOCOMMON_RESULT_SUCCESS} If the execution is successful.
+ *     {@link #AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM} The param of audioSessionManager is nullptr.
+ *     {@link #AUDIOCOMMON_RESULT_ERROR_ILLEGAL_STATE} Operation not permitted at current state,
+ *         there is no audio capturer running.
  * @since 24
  */
-OH_AudioCommon_Result OH_AudioSessionManager_SetCapturerMuteHint(
+OH_AudioCommon_Result OH_AudioSessionManager_SetCaptureMuteHint(
     OH_AudioSessionManager *audioSessionManager, bool mute);
 
 /**
