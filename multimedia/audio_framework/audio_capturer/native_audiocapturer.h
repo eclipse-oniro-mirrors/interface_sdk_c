@@ -405,16 +405,21 @@ OH_AudioStream_Result OH_AudioCapturer_RequestPlaybackCaptureStart(OH_AudioCaptu
     OH_AudioCapturer_OnPlaybackCaptureStartCallback callback, void* userData);
 
 /**
- * @brief Set mute hint for the capturer.
+ * @brief Sets recording mute state to audio system.
+ * This method is used as a hint for power optimization, it does not mute the recording stream, only affects
+ * internal processing strategy. Audio system may disable some recording effects when application notifies
+ * its muted state to system.
+ * Mute hint state can only be set when current stream is in running state.
  *
  * @param capturer Reference created by OH_AudioStreamBuilder_GenerateCapturer()
- * @param muteHint mute use true if application recording stream muted by application itself.
- * @return {@link #AUDIOSTREAM_SUCCESS} If the execution is successful.
- *     or {@link #AUDIOSTREAM_ERROR_INVALID_PARAM} The parameter of capturer is nullptr.
- *     or {@link #AUDIOSTREAM_ERROR_ILLEGAL_STATE} Operation not permitted at current state, stream is not running.
+ * @param mute mute use true if application recording stream muted by application itself.
+ * @return Function result code: 
+ *        {@link #AUDIOSTREAM_SUCCESS} If the execution is successful.
+ *        {@link #AUDIOSTREAM_ERROR_INVALID_PARAM} The param of capturer is nullptr.
+ *        {@link #AUDIOSTREAM_ERROR_ILLEGAL_STATE} Operation not permitted at current state, stream is not running.
  * @since 24
  */
-OH_AudioStream_Result OH_AudioCapturer_SetMuteHint(OH_AudioCapturer* capturer, bool muteHint);
+OH_AudioStream_Result OH_AudioCapturer_SetMuteHint(OH_AudioCapturer* capturer, bool mute);
 
 /**
  * @brief Configure audio session strategy and behavior parameters to adjust the focus preemption policy.
