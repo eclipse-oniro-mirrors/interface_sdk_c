@@ -9537,16 +9537,6 @@ typedef enum {
      * {@link ArkUI_StringAsyncEvent}. \n
      * {@link ArkUI_StringAsyncEvent} contains one parameter:\n
      * <b>ArkUI_StringAsyncEvent.pStr</b>: text that is pasted
-     *
-     */
-    /**
-     * @brief Defines the event triggered when the paste button on the pasteboard, which displays when the text box
-     * is long pressed, is clicked.
-     * \n
-     * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
-     * {@link ArkUI_StringAsyncEvent}. \n
-     * {@link ArkUI_StringAsyncEvent} contains one parameter:\n
-     * <b>ArkUI_StringAsyncEvent.pStr</b>: text that is pasted
      * \n
      * Since 26.0.0, the callback can return whether the paste is allowed.\n
      * @return Whether the paste is allowed. \n
@@ -9767,22 +9757,13 @@ typedef enum {
      * {@link ArkUI_StringAsyncEvent}. \n
      * {@link ArkUI_StringAsyncEvent} contains one parameter:\n
      * <b>ArkUI_StringAsyncEvent.pStr</b>: text that is pasted
-     *
-     */
-    /**
-     * @brief Defines the event triggered when the paste button on the pasteboard, which displays when the text box is
-     * long pressed, is clicked.
-     * \n
-     * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
-     * {@link ArkUI_StringAsyncEvent}. \n
-     * {@link ArkUI_StringAsyncEvent} contains one parameter:\n
-     * <b>ArkUI_StringAsyncEvent.pStr</b>: text that is pasted.
      * \n
      * Since 26.0.0, the callback can return whether the paste is allowed.\n
      * @return Whether the paste is allowed. \n
      * You can set the return value using <b>OH_ArkUI_NodeEvent_SetReturnNumberValue</b>. \n
      * value.i32 at index 0 in the return value indicates whether the paste is allowed. \n
      * <b>0</b>: not allowed. <b>1</b>: allowed. \n
+     *
      */
     NODE_TEXT_AREA_ON_PASTE,
     /**
