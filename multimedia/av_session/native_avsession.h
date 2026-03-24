@@ -74,6 +74,9 @@ typedef struct OH_AVCastController OH_AVCastController;
 /**
  * @brief Declaring the callback struct for playback command
  *
+ * @param session the OH_AVSession instance pointer.
+ * @param command playback command
+ * @param userData userdata which is passed by register.
  * @since 13
  * @version 1.0
  */
@@ -83,6 +86,9 @@ typedef AVSessionCallback_Result (*OH_AVSessionCallback_OnCommand)(OH_AVSession*
 /**
  * @brief Declaring the callback struct for forward command
  *
+ * @param session the OH_AVSession instance pointer.
+ * @param seekTime forward time, described by milliseconds.
+ * @param userData userdata which is passed by register.
  * @since 13
  * @version 1.0
  */
@@ -92,6 +98,9 @@ typedef AVSessionCallback_Result (*OH_AVSessionCallback_OnFastForward)(OH_AVSess
 /**
  * @brief Declaring the callback struct for rewind command
  *
+ * @param session the OH_AVSession instance pointer.
+ * @param seekTime rewind time, described by milliseconds.
+ * @param userData userdata which is passed by register.
  * @since 13
  * @version 1.0
  */
@@ -101,6 +110,9 @@ typedef AVSessionCallback_Result (*OH_AVSessionCallback_OnRewind)(OH_AVSession* 
 /**
  * @brief Declaring the callback struct for seek command
  *
+ * @param session the OH_AVSession instance pointer.
+ * @param seekTime position after seek, described by milliseconds.
+ * @param userData userdata which is passed by register.
  * @since 13
  * @version 1.0
  */
@@ -110,6 +122,9 @@ typedef AVSessionCallback_Result (*OH_AVSessionCallback_OnSeek)(OH_AVSession* se
 /**
  * @brief Declaring the callback struct for set loop mode command
  *
+ * @param session the OH_AVSession instance pointer.
+ * @param curLoopMode current loop mode.
+ * @param userData userdata which is passed by register.
  * @since 13
  * @version 1.0
  */
@@ -119,6 +134,9 @@ typedef AVSessionCallback_Result (*OH_AVSessionCallback_OnSetLoopMode)(OH_AVSess
 /**
  * @brief Declaring the callback struct for toggle favorite command
  *
+ * @param session the OH_AVSession instance pointer.
+ * @param assetId the assetId for which the favorite status needs to be switched.
+ * @param userData userdata which is passed by register.
  * @since 13
  * @version 1.0
  */
@@ -128,6 +146,11 @@ typedef AVSessionCallback_Result (*OH_AVSessionCallback_OnToggleFavorite)(OH_AVS
 /**
  * @brief Declaring the callback struct for output device change
  *
+ * @param session the OH_AVSession instance pointer.
+ * @param state the {@link AVSession_ConnectionState} of output device.
+ * @param outputDeviceInfo the {@link AVSession_OutputDeviceInfo} pointer variable which will be set
+ * current output device info. Do not release the outputDeviceInfo pointer separately,
+ * instead call {@link OH_AVSession_ReleaseOutputDevice} to release the outputDeviceInfo when it is not used anymore.
  * @since 23
  * @version 1.0
  */
