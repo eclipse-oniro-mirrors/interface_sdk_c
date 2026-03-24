@@ -24,7 +24,7 @@ ohos_ndk_headers("content_embed_ndk_header") {
 }
 
 ohos_ndk_library("libcontent_embed_ndk") {
-  output_name = "content_embed"
+  output_name = "content_embed_ndk"
   output_extension = "so"
   system_capability = "SystemCapability.ContentEmbed.ObjectEditor"
   ndk_description_file = "./content_embed.ndk.json"

@@ -190,5 +190,9 @@
     {
         "first_introduced": "24",
         "name": "OH_AVScreenCapture_GetMultiDisplayIdsSelected"
+    },
+    {
+        "first_introduced": "24",
+        "name": "OH_AVScreenCapture_SetPrivacyProtectCallback"
     }
 ]

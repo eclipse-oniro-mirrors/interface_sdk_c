@@ -461,7 +461,7 @@ typedef struct OH_MIDIDeviceStruct OH_MIDIDevice;
 /**
  * @brief Callback for monitoring device connection/disconnection.
  *
- * @param userData User context provided during client creation.
+ * @param userData The user context pointer passed to {@link #OH_MIDIClient_Create}.
  * @param action Device change action (connected/disconnected).
  * @param deviceInfo Information of the changed device.
  *
@@ -469,6 +469,18 @@ typedef struct OH_MIDIDeviceStruct OH_MIDIDevice;
  */
 typedef void (*OH_MIDICallback_OnDeviceChange)(
     void *userData, OH_MIDIDeviceChangeAction action, OH_MIDIDeviceInformation deviceInfo);
+
+/**
+ * @brief Callback for handling client-level errors.
+ * Invoked when a critical error occurs in the MIDI service (e.g., service crash).
+ * Applications may need to recreate the client when this occurs.
+ *
+ * @param userData The user context pointer passed to {@link #OH_MIDIClient_Create}.
+ * @param code The error code indicating the cause.
+ *
+ * @since 24
+ */
+typedef void (*OH_MIDICallback_OnError)(void *userData, OH_MIDIStatusCode code);
 
 /**
  * @brief Callback for receiving MIDI data (Batch Processing).
@@ -483,25 +495,13 @@ typedef void (*OH_MIDICallback_OnDeviceChange)(
  * @warning This callback is invoked on a high-priority system thread.
  * Do **not** perform blocking operations, heavy computation, or I/O.
  *
- * @param userData The user context pointer passed to {@link #OH_MIDIClient_Create}.
+ * @param userData The user context pointer passed to {@link #OH_MIDIDevice_OpenInputPort}.
  * @param events Pointer to the array of MIDI events received.
  * @param eventCount The number of events in the array.
  *
  * @since 24
  */
 typedef void (*OH_MIDIDevice_OnReceived)(void *userData, const OH_MIDIEvent *events, size_t eventCount);
-
-/**
- * @brief Callback for handling client-level errors.
- * Invoked when a critical error occurs in the MIDI service (e.g., service crash).
- * Applications may need to recreate the client when this occurs.
- *
- * @param userData The user context pointer passed to {@link #OH_MIDIClient_Create}.
- * @param code The error code indicating the cause.
- *
- * @since 24
- */
-typedef void (*OH_MIDICallback_OnError)(void *userData, OH_MIDIStatusCode code);
 
 /**
  * @brief Callback for the result of asynchronously opening a BLE device.

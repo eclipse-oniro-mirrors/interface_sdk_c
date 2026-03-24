@@ -194,6 +194,7 @@ OH_MIDIStatusCode OH_MIDIClient_OpenDevice(OH_MIDIClient *client, int64_t device
  * @param userData User context pointer to be passed to the callback.
  * @return {@link #OH_MIDI_STATUS_OK} if the open request was successfully dispatched.
  *     or {@link #OH_MIDI_STATUS_INVALID_CLIENT} if client is invalid.
+ *     or {@link #OH_MIDI_STATUS_DEVICE_ALREADY_OPEN} if device is already opened by this client.
  *     or {@link #OH_MIDI_STATUS_GENERIC_INVALID_ARGUMENT} if deviceAddr or callback is null.
  *     or {@link #OH_MIDI_STATUS_PERMISSION_DENIED} if Bluetooth permission is missing.
  *     or {@link #OH_MIDI_STATUS_TOO_MANY_OPEN_DEVICES} if the client has reached the maximum number of open devices.

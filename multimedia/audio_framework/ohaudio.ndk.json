@@ -636,6 +636,26 @@
         "name": "OH_AudioStreamBuilder_SetPlaybackCaptureMode"
     },
     {
+        "first_introduced": "24",
+        "name": "OH_AudioRenderer_SetIndependentAudioSessionStrategy"
+    },
+    {
+        "first_introduced": "24",
+        "name": "OH_AudioCapturer_SetIndependentAudioSessionStrategy"
+    },
+    {
+        "first_introduced": "24",
+        "name":"OH_AudioSessionManager_SetBehavior"
+    },
+    {
+        "first_introduced": "24",
+        "name":"OH_AudioSessionManager_SetCaptureMuteHint"
+    },
+    {
+        "first_introduced": "24",
+        "name":"OH_AudioCapturer_SetMuteHint"
+    },
+    {
         "first_introduced": "26",
         "name": "OH_AudioStreamManager_IsMultichannelPlaybackSupported"
     },
@@ -646,5 +666,5 @@
     {
         "first_introduced": "26",
         "name": "OH_AudioStreamManager_IsOffloadPlaybackSupported"
-    }
+    },
 ]

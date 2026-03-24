@@ -45,6 +45,7 @@
 #include "native_audiostream_base.h"
 #include "native_audio_device_base.h"
 #include "multimedia/native_audio_channel_layout.h"
+#include "native_audio_session_base.h"
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -677,6 +678,25 @@ typedef int32_t (*OH_AudioRenderer_OnWriteDataCallbackAdvanced)(OH_AudioRenderer
  */
 OH_AudioStream_Result OH_AudioRenderer_GetLatency(OH_AudioRenderer* renderer,
     OH_AudioStream_LatencyType type, int32_t* latencyMs);
+
+/**
+ * @brief Configure audio session strategy and behavior parameters to adjust the focus preemption policy.
+ * Each time you call this interface to set parameters,
+ * you need to call the interface {@link #OH_AudioRenderer_Start} again for the settings to take effect.
+ *
+ * @param renderer AudioRenderer created by OH_AudioStreamBuilder_GenerateRenderer().
+ * @param strategy pointer to {@link #OH_AudioSession_Strategy}
+ * which is used to set the audio session strategy.
+ * @param behavior Audio session behavior flag, which can be a single flag or a bitwise
+ * OR combination of multiple flags {@link #OH_AudioSession_BehaviorFlags}.
+ * @return {@link #AUDIOSTREAM_SUCCESS} If the execution is successful.
+ *     or {@link #AUDIOSTREAM_ERROR_INVALID_PARAM} If the parameter is null or out of range.
+ *     or {@link #AUDIOSTREAM_ERROR_ILLEGAL_STATE} Running and released are illegal states.
+ * @since 24
+ */
+OH_AudioStream_Result OH_AudioRenderer_SetIndependentAudioSessionStrategy(
+    OH_AudioRenderer* renderer, const OH_AudioSession_Strategy* strategy, uint32_t behavior);
+
 #ifdef __cplusplus
 }
 #endif
