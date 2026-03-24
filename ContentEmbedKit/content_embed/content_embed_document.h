@@ -44,7 +44,7 @@ extern "C" {
  *
  * @since 24
  */
-#define MAX_PATH_LENGTH (1 * 1024)
+#define MAX_PATH_LENGTH (4 * 1024)
 
 /**
  * @brief Define the ContentEmbed_Document structure type.
@@ -262,6 +262,10 @@ ContentEmbed_ErrorCode OH_ContentEmbed_Document_Flush(const ContentEmbed_Documen
  * {@link OH_ContentEmbed_DestroyStorage} to avoid memory leaks.
  *
  * @param parentStorage Represents a pointer to an {@link ContentEmbed_Storage} instance.
+ *                      when an entry is to be deleted from the parent storage, invoke either
+ *                      {@link OH_ContentEmbed_Storage_DeleteEntry} for a specific entry or
+ *                      {@link OH_ContentEmbed_Storage_DeleteAllEntry} to remove all entries,
+ *                      depending on the required operation.
  * @param name Represents the name of an {@link ContentEmbed_Storage} instance which will be created.
  * @param childStorage Output parameter represents a pointer to an {@link ContentEmbed_Storage} instance.
  * @return Returns a specific error code.
@@ -304,6 +308,10 @@ ContentEmbed_ErrorCode OH_ContentEmbed_Storage_GetStorage(
  * {@link OH_ContentEmbed_DestroyStream} to avoid memory leaks.
  *
  * @param parentStorage Represents a pointer to an {@link ContentEmbed_Storage} instance.
+ *                      when an entry is to be deleted from the parent storage, invoke either
+ *                      {@link OH_ContentEmbed_Storage_DeleteEntry} for a specific entry or
+ *                      {@link OH_ContentEmbed_Storage_DeleteAllEntry} to remove all entries,
+ *                      depending on the required operation.
  * @param name Represents the name of an {@link ContentEmbed_Stream} instance which will be created.
  * @param childStream Output parameter represents a pointer to an {@link ContentEmbed_Stream} instance.
  * @return Returns a specific error code.
@@ -343,7 +351,7 @@ ContentEmbed_ErrorCode OH_ContentEmbed_Storage_GetStream(
     ContentEmbed_Storage *parentStorage, const char *name, ContentEmbed_Stream **childStream);
 
 /**
- * @brief Delete a specific Storage or Stream directory entry in directory tree.
+ * @brief Delete a specific storage or stream directory entry in directory tree.
  *
  * @param parentStorage Represents a pointer to an {@link ContentEmbed_Storage} instance.
  * @param name Represents the name of a storage or stream which will be delete.
@@ -360,6 +368,22 @@ ContentEmbed_ErrorCode OH_ContentEmbed_Storage_GetStream(
  */
 ContentEmbed_ErrorCode OH_ContentEmbed_Storage_DeleteEntry(
     ContentEmbed_Storage *parentStorage, const char *name);
+
+/**
+ * @brief Delete all entries of the storage from the directory tree to clear the storage.
+ *
+ * @param storage Represents a pointer to an {@link ContentEmbed_Storage} instance.
+ * @return Returns a specific error code.
+ *     {@link CE_ERR_OK} - success.
+ *     {@link CE_ERR_PARAM_INVALID} - parameter check failed.
+ *     {@link CE_ERR_NULL_POINTER} - unexpected null pointer.
+ *     {@link CE_ERR_DEVICE_NOT_SUPPORTED} - the device is not supported.
+ *     {@link CE_ERR_STORAGE_OPERATION_FAILED} - the storage operation failed.
+ *     {@link CE_ERR_IN_DLP_SANDBOX} - application is in dlp sandbox.
+ * Specific error codes can be referenced {@link ContentEmbed_ErrorCode}.
+ * @since 24
+ */
+ContentEmbed_ErrorCode OH_ContentEmbed_Storage_DeleteAllEntry(ContentEmbed_Storage *storage);
 
 /**
  * @brief Destroy an {@link ContentEmbed_Storage} instance and reclaims the memory occupied by the instance.
@@ -626,7 +650,7 @@ ContentEmbed_ErrorCode OH_ContentEmbed_StorageElements_GetCount(const ContentEmb
  * @since 24
  */
 ContentEmbed_ErrorCode OH_ContentEmbed_StorageElements_GetElement(const ContentEmbed_StorageElements *storageElements,
-    size_t index, ContentEmbed_StorageElement *storageElement);
+    size_t index, ContentEmbed_StorageElement **storageElement);
 
 /**
  * @brief Gets the name of the {@link ContentEmbed_StorageElement}.
@@ -662,7 +686,7 @@ ContentEmbed_ErrorCode OH_ContentEmbed_StorageElement_GetName(const ContentEmbed
  * @since 24
  */
 ContentEmbed_ErrorCode OH_ContentEmbed_StorageElement_GetCTime(
-    const ContentEmbed_StorageElement *element, ulong *ctime);
+    const ContentEmbed_StorageElement *element, uint64_t *ctime);
 
 /**
  * @brief Get element modify time.
@@ -679,7 +703,7 @@ ContentEmbed_ErrorCode OH_ContentEmbed_StorageElement_GetCTime(
  * @since 24
  */
 ContentEmbed_ErrorCode OH_ContentEmbed_StorageElement_GetMTime(
-    const ContentEmbed_StorageElement *element, ulong *mtime);
+    const ContentEmbed_StorageElement *element, uint64_t *mtime);
 
 /**
  * @brief Checks whether the {@link ContentEmbed_StorageElement} is a storage.

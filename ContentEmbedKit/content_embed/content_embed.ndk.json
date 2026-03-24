@@ -57,6 +57,10 @@
     },
     {
         "first_introduced": "24",
+        "name": "OH_ContentEmbed_Storage_DeleteAllEntry"
+    },
+    {
+        "first_introduced": "24",
         "name": "OH_ContentEmbed_DestroyStorage"
     },
     {
