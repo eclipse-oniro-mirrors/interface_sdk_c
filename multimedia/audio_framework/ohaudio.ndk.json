@@ -666,5 +666,5 @@
     {
         "first_introduced": "26",
         "name": "OH_AudioStreamManager_IsOffloadPlaybackSupported"
-    },
+    }
 ]
