@@ -169,6 +169,8 @@ typedef enum {
 typedef enum {
     /**
      * @brief Recommend to continue the playback.
+     * This event indicates that the application does not need to stop audio playback when switching devices.
+     * However, it should not be used to restart audio playback that has already been paused or stopped.
      */
     DEVICE_CHANGE_RECOMMEND_TO_CONTINUE = 0,
 
