@@ -148,8 +148,8 @@
         "name": "OH_UdsHtml_SetPlainContent"
     },
     {
-        "first_introduced": "26",
-        "name": "OH_UdsHtml_SetUriAuthorizationPolicies"
+        "first_introduced": "26.0.0",
+        "name": "OH_UdsHtml_SetAuthPolicy"
     },
     {
         "first_introduced": "12",
@@ -316,10 +316,6 @@
         "name": "OH_UdmfProperty_GetExtrasStringParam"
     },
     {
-        "first_introduced": "26",
-        "name": "OH_UdmfProperty_GetUriAuthorizationPolicies"
-    },
-    {
         "first_introduced": "12",
         "name": "OH_UdmfProperty_SetTag"
     },
@@ -336,8 +332,8 @@
         "name": "OH_UdmfProperty_SetExtrasStringParam"
     },
     {
-        "first_introduced": "26",
-        "name": "OH_UdmfProperty_SetUriAuthorizationPolicies"
+        "first_introduced": "26.0.0",
+        "name": "OH_UdmfProperty_SetAuthPermission"
     },
     {
         "first_introduced": "12",
@@ -436,8 +432,8 @@
         "name": "OH_UdsFileUri_SetFileType"
     },
     {
-        "first_introduced": "26",
-        "name": "OH_UdsFileUri_SetUriAuthorizationPolicies"
+        "first_introduced": "26.0.0",
+        "name": "OH_UdsFileUri_SetAuthPolicy"
     },
     {
         "first_introduced": "13",
