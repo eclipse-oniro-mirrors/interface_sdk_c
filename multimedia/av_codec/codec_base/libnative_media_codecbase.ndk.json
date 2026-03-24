@@ -208,6 +208,11 @@
         "type": "variable"
     },
     {
+        "first_introduced": "24",
+        "name": "OH_AVCODEC_MIMETYPE_VIDEO_CINEPAK",
+        "type": "variable"
+    },
+    {
         "first_introduced": "22",
         "name": "OH_AVCODEC_MIMETYPE_VIDEO_MSVIDEO1"
     },
