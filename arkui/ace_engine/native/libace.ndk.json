@@ -6439,6 +6439,22 @@
         "name": "OH_ArkUI_PickerIndicatorStyle_ConfigureDivider"
     },
     {
+        "first_introduced": "26.0.0",
+        "name": "OH_ArkUI_PointerEvent_GetCurrentLocalX"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_ArkUI_PointerEvent_GetCurrentLocalXByIndex"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_ArkUI_PointerEvent_GetCurrentLocalY"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_ArkUI_PointerEvent_GetCurrentLocalYByIndex"
+    },
+    {
         "first_introduced": "23",
         "name": "OH_ArkUI_NativeModule_GetNativeAccessibilityProvider"
     },
