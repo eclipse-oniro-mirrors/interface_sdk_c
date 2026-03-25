@@ -347,14 +347,15 @@ typedef struct Usb_DeviceArray {
  * @since 26.0.0
  */
 typedef struct Usb_NonRootHubArray {
+
     /**
-     * Array of non-root hub device IDs. The non-root USB hub device ID is constructed by left-shifting the bus\n
-     * number by 32 bits and adding the device address.
+     * Array of non-root hub device IDs. The non-root USB hub device ID is constructed by left-shifting the bus number by 32 bits and adding the device address.
      * @since 26.0.0
      */
     uint64_t* nonRootHubIds;
+
     /**
-     * Number of non-root hubs. If the value is 0, no non-root hub are present.
+     * Number of non-root hubs. If the value is 0, no non-root hubs are present.
      * @since 26.0.0
      */
     uint32_t num;
