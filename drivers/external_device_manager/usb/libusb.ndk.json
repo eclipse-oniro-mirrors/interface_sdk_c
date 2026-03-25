@@ -36,6 +36,9 @@
         "name": "OH_Usb_SendControlWriteRequest"
     },
     {
+        "name": "OH_Usb_ControlTransfer"
+    },
+    {
         "name": "OH_Usb_SendPipeRequest"
     },
     {
