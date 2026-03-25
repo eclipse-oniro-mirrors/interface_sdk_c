@@ -91,12 +91,12 @@ typedef enum OH_AVCodecType {
      */
     OH_AVCODEC_TYPE_VIDEO_DECODER = 1,
     /**
-     * Indicates audio encoder.
+     * Indicates audio encoder
      * @since 24
      */
     OH_AVCODEC_TYPE_AUDIO_ENCODER = 2,
     /**
-     * Indicates audio decoder.
+     * Indicates audio decoder
      * @since 24
      */
     OH_AVCODEC_TYPE_AUDIO_DECODER = 3
@@ -175,8 +175,8 @@ bool OH_AVCapability_IsHardware(OH_AVCapability *capability);
  * @brief Check if the capability instance is describing a secure codec.
  *
  * @param capability Codec capability pointer
- * @return Returns true if the capability instance is decribing a secure codec,
- * false if the capability instance is describing a non-secure codec,
+ * @return Returns true if the capability instance is describing a secure codec,
+ * false if the capability instance is describing a non-secure codec
  * @since 24
  */
 bool OH_AVCapability_IsSecure(OH_AVCapability *capability);
