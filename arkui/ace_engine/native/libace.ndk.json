@@ -6545,5 +6545,17 @@
     {
         "first_introduced": "24",
         "name": "OH_ArkUI_DigitalCrownEvent_SetStopPropagation"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_ArkUI_TextController_Create"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_ArkUI_TextController_Destroy"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_ArkUI_TextController_SetStyledString"
     }
 ]
