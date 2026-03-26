@@ -79,12 +79,12 @@ void OH_AVMetadataExtractor_OutputParam_Destroy(OH_AVMetadataExtractor_OutputPar
 
 /**
  * @brief Set an OH_AVMetadataExtractor_OutputParam instance's size attribute
- * If the width or height is negtive, use the original video width or height;
+ * If the width or height is negative, use the original video width or height;
  * If the width or height is zero, keep the aspect ratio and scale image.
  * If width and height both are positive, scale image with input width and height parameter.
  * @param outputParam - Pointer to an OH_AVMetadataExtractor_OutputParam instance.
- * @param width - The width of output image, scaled if neccessary.
- * @param height - The height of output image, scaled if neccessary.
+ * @param width - The width of output image, scaled if necessary.
+ * @param height - The height of output image, scaled if necessary.
  * @return The return value is TRUE for success, FALSE for failure.
  *     Possible failure causes: outputParam is nullptr.
  * @since 23
@@ -119,7 +119,7 @@ OH_AVErrCode OH_AVMetadataExtractor_FetchFrameByTime(OH_AVMetadataExtractor *ext
     OH_PixelmapNative** pixelMap);
 
 /**
- * @brief defines the callback function for frames fetched by AVMetadataExtractor
+ * @brief Defines the callback function for frames fetched by AVMetadataExtractor
  *     Note: frameInfo will be released automatically after callback, but user should release
  *     frameInfo.image manually by {@link OH_PixelmapNative_Destroy} to avoid memory leaks.
  * @since 23
@@ -158,7 +158,7 @@ OH_AVErrCode OH_AVMetadataExtractor_FetchFramesByTimes(OH_AVMetadataExtractor *e
 /**
  * @brief Cancel the batch fetch images operation (initiated by {@link OH_AVMetadataExtractor_FetchFramesByTimes}).
  * The pending fetches are cancelled and marked with CANCELLED result
- * in {@OH_AVMetadataExtractor_OnFrameFetched} callback
+ * in {@link OH_AVMetadataExtractor_OnFrameFetched} callback
  *
  * @param extractor - Pointer to an OH_AVMetadataExtractor instance.
  * @since 23
