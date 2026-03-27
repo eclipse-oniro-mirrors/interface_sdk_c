@@ -162,7 +162,7 @@ typedef enum Camera_Status {
 } Camera_Status;
 
 /**
- * @brief Enum for scence mode.
+ * @brief Enum for scene mode.
  *
  * @since 12
  * @version 1.0
@@ -532,7 +532,7 @@ typedef enum Camera_FocusState {
  */
 typedef enum Camera_VideoStabilizationMode {
     /**
-     * Turn off video stablization.
+     * Turn off video stabilization.
      */
     STABILIZATION_MODE_OFF = 0,
 

@@ -372,7 +372,7 @@ Camera_ErrorCode OH_CaptureSession_Start(Camera_CaptureSession* session);
 /**
  * @brief Stop capture session.
  *
- * @param session the {@link Camera_CaptureSession} instance to be stoped.
+ * @param session the {@link Camera_CaptureSession} instance to be stopped.
  * @return {@link #CAMERA_OK} if the method call succeeds.
  *         {@link #INVALID_ARGUMENT} if parameter missing or parameter type incorrect.
  *         {@link #CAMERA_SERVICE_FATAL_ERROR} if camera service fatal error.
@@ -383,7 +383,7 @@ Camera_ErrorCode OH_CaptureSession_Stop(Camera_CaptureSession* session);
 /**
  * @brief Release capture session.
  *
- * @param session the {@link Camera_CaptureSession} instance to be release.
+ * @param session the {@link Camera_CaptureSession} instance to be released.
  * @return {@link #CAMERA_OK} if the method call succeeds.
  *         {@link #INVALID_ARGUMENT} if parameter missing or parameter type incorrect.
  *         {@link #CAMERA_SERVICE_FATAL_ERROR} if camera service fatal error.
