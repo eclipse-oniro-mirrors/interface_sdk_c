@@ -20,7 +20,6 @@
  * @brief Provide the definition of the C interface for the native OsAccount.
  * @since 12
  */
-
 /**
  * @file os_account_common.h
  *
@@ -47,11 +46,29 @@ typedef enum OsAccount_ErrCode {
     /** @error Operation is successful.*/
     OS_ACCOUNT_ERR_OK = 0,
 
+    /**
+     * @error Permission denied.
+     * @since 26.0.0
+     */
+    OS_ACCOUNT_ERR_PERMISSION_DENIED = 201,
+
     /** @error Internal error.*/
     OS_ACCOUNT_ERR_INTERNAL_ERROR = 12300001,
 
     /** @error Invalid parameter.*/
-    OS_ACCOUNT_ERR_INVALID_PARAMETER = 12300002
+    OS_ACCOUNT_ERR_INVALID_PARAMETER = 12300002,
+
+    /**
+     * @error Account not found.
+     * @since 26.0.0
+     */
+    OS_ACCOUNT_ERR_ACCOUNT_NOT_FOUND = 12300003,
+
+    /**
+     * @error Restricted account.
+     * @since 26.0.0
+     */
+    OS_ACCOUNT_ERR_RESTRICTED_ACCOUNT = 12300008
 } OsAccount_ErrCode;
 
 #ifdef __cplusplus
