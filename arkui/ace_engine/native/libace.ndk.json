@@ -6573,5 +6573,13 @@
     {
         "first_introduced": "26.0.0",
         "name": "OH_ArkUI_TextController_SetStyledString"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_ArkUI_RenderNodeUtils_SetRoundRectShapeOptionValue"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_ArkUI_RenderNodeUtils_SetRectShapeOptionValue"
     }
 ]
