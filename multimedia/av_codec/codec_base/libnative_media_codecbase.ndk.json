@@ -618,6 +618,11 @@
     },
     {
         "first_introduced": "24",
+        "name": "OH_MD_KEY_ENABLE_BUFFER_SKIP_SAMPLES",
+        "type": "variable"
+    },
+    {
+        "first_introduced": "24",
         "name": "OH_MD_KEY_LATITUDE",
         "type": "variable"
     },

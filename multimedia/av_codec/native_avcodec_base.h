@@ -1448,6 +1448,16 @@ extern const char *OH_MD_KEY_VIDEO_NATIVE_BUFFER_FORMAT;
 extern const char *OH_MD_KEY_BUFFER_SKIP_SAMPLES_INFO;
 
 /**
+ * @brief Key to enable {@link OH_MD_KEY_BUFFER_SKIP_SAMPLES_INFO} in audio decoder,
+ * value type is int32_t (0 or 1): 1 is enabled, 0 is disabled.
+ *
+ * This is an optional key, default is 0.
+ *
+ * @since 24
+ */
+extern const char *OH_MD_KEY_ENABLE_BUFFER_SKIP_SAMPLES;
+
+/**
  * @brief Key for latitude, value type is float, The range is [-90.0, 90.0].
  * Represents the latitude of the geographic location.
  *
