@@ -57,7 +57,7 @@ typedef struct ArkUI_UIInputEvent ArkUI_UIInputEvent;
  * a certain decay curve. You can listen for such events to handle the flick effect
  * immediately after the regular axis events.
  *
- * It only can be received when user flings on the touchpad with two fingers and any components register
+ * It can only be received when user flings on the touchpad with two fingers and any components register
  * NODE_ON_COASTING_AXIS_EVENT through {@link registerNodeEvent} exist under the pointer location.
  *
  * @since 22
@@ -1297,7 +1297,7 @@ int32_t OH_ArkUI_AxisEvent_HasAxis(const ArkUI_UIInputEvent* event, int32_t axis
 int32_t OH_ArkUI_PointerEvent_SetInterceptHitTestMode(const ArkUI_UIInputEvent* event, HitTestMode mode);
 
 /**
- * @brief Get the value of the button type for mouse events.
+ * @brief Gets the value of the button type for mouse events.
  *
  * @param event Represents a pointer to the current UI input event.
  * @return Return to the mouse button type, where <b>1</b> is the left button, <b>2</b> is the right button,

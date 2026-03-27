@@ -33,8 +33,8 @@
  * @since 12
  */
 
-#ifndef ARKUI_NATIVE_GESTTURE_H
-#define ARKUI_NATIVE_GESTTURE_H
+#ifndef ARKUI_NATIVE_GESTURE_H
+#define ARKUI_NATIVE_GESTURE_H
 
 #include "ui_input_event.h"
 #include "native_type.h"
@@ -1255,5 +1255,5 @@ ArkUI_ErrorCode OH_ArkUI_PreventGestureRecognizerBegin(ArkUI_GestureRecognizer* 
 };
 #endif
 
-#endif // ARKUI_NATIVE_GESTTURE_H
+#endif // ARKUI_NATIVE_GESTURE_H
 /** @} */
