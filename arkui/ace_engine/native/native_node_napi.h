@@ -63,7 +63,7 @@ int32_t OH_ArkUI_GetNodeHandleFromNapiValue(napi_env env, napi_value frameNode, 
  * @brief Obtains a <b>UIContext</b> object on the ArkTS side and maps it to an <b>ArkUI_ContextHandle</b> object on the
  * native side.
  *
- * @param env ndicates the NAPI environment pointer.
+ * @param env Indicates the NAPI environment pointer.
  * @param value Indicates the <b>UIContext</b> object created on the ArkTS side.
  * @param context Indicates the pointer to the <b>ArkUI_ContextHandle</b> object.
  * @return Returns the error code.
@@ -78,7 +78,7 @@ int32_t OH_ArkUI_GetContextFromNapiValue(napi_env env, napi_value value, ArkUI_C
   * @brief Obtains a <b>NodeContent</b> object on the ArkTS side and maps it to an <b>ArkUI_NodeContentHandle</b>
   * object on the native side.
   *
-  * @param env ndicates the NAPI environment pointer.
+  * @param env Indicates the NAPI environment pointer.
   * @param value Indicates the <b>NodeContent</b> object created on the ArkTS side.
   * @param content Indicates the pointer to the <b>ArkUI_NodeContentHandle</b> object.
   * @return Returns the error code.
