@@ -240,20 +240,16 @@ int32_t OH_Usb_SendControlWriteRequest(uint64_t interfaceHandle, const struct Us
     uint32_t timeout, const uint8_t *data, uint32_t dataLen);
 
 /**
- * @brief Performs a USB control transfer. The direction of the transfer is inferred from the bmRequestType field of\n
- * the setup packet.
+ * @brief Performs a USB control transfer. The direction of the transfer is inferred from the bmRequestType field of the setup packet.
  *
  * @permission ohos.permission.ACCESS_DDK_USB
  * @param deviceID An ID for the device to communicate with
  * @param setupPacket Configuration parameters for the setup packet in control transfer requests
- * @param data A suitably-sized data buffer for either input or output based on the direction bits\n
- * within bmRequestType.
- * @param timeout Timeout (in milliseconds) that this function should wait before giving up due to no response being\n
- * received. For an unlimited timeout, use value 0.
+ * @param data A suitably-sized data buffer for either input or output based on the direction bits within bmRequestType.
+ * @param timeout Timeout (in milliseconds) that this function should wait before giving up due to no response being received. For an unlimited timeout, use value 0.
  * @return on success, the number of bytes actually transferred.
  *         {@link USB_DDK_NO_PERM} Permission authentication failed.
- *         {@link USB_DDK_INVALID_OPERATION} DDK Service not initialized. Please invoke OH_Usb_Init to complete the\n
- *         initialization process first.
+ *         {@link USB_DDK_INVALID_OPERATION} DDK Service not initialized. Please invoke OH_Usb_Init to complete the initialization process first.
  *         {@link USB_DDK_INVALID_PARAMETER} The setupPacket or data parameters are invalid.
  *         {@link USB_DDK_TIMEOUT} The control transfer timed out.
  *         {@link USB_DDK_IO_FAILED} Control transfer request I/O exception.
@@ -346,8 +342,7 @@ int32_t OH_Usb_GetDevices(struct Usb_DeviceArray *devices);
  * @param nonRootHub Returns the list of queried non-root hubs.
  * @return {@link USB_DDK_SUCCESS} Query operation successful.
  *         {@link USB_DDK_NO_PERM} Permission authentication failed.
- *         {@link USB_DDK_INVALID_OPERATION} DDK Service not initialized. Please invoke OH_Usb_Init to complete the\n
- *         initialization process first.
+ *         {@link USB_DDK_INVALID_OPERATION} DDK Service not initialized. Please invoke OH_Usb_Init to complete the initialization process first.
  *         {@link USB_DDK_INVALID_PARAMETER} The parameter nonRootHub is null.
  * @since 26.0.0
  */
