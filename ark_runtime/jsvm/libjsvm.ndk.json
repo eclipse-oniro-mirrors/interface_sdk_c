@@ -886,5 +886,13 @@
     {
         "first_introduced": "20",
         "name": "OH_JSVM_SetDebugOption"
+    },
+    {
+        "first_introduced": "24",
+        "name": "OH_JSVM_BackgroundDeserialize"
+    },
+    {
+        "first_introduced": "24",
+        "name": "OH_JSVM_ReleaseDeserializeResult"
     }
 ]
