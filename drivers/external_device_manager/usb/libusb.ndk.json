@@ -1,59 +1,78 @@
 [
     {
+        "first_introduced":"10",
         "name": "OH_Usb_Init"
     },
     {
+        "first_introduced":"10",
         "name": "OH_Usb_Release"
     },
     {
+        "first_introduced":"18",
         "name": "OH_Usb_ReleaseResource"
     },
     {
+        "first_introduced":"10",
         "name": "OH_Usb_GetDeviceDescriptor"
     },
     {
+        "first_introduced":"10",
         "name": "OH_Usb_GetConfigDescriptor"
     },
     {
+        "first_introduced":"10",
         "name": "OH_Usb_FreeConfigDescriptor"
     },
     {
+        "first_introduced":"10",
         "name": "OH_Usb_ClaimInterface"
     },
     {
+        "first_introduced":"10",
         "name": "OH_Usb_ReleaseInterface"
     },
     {
+        "first_introduced":"10",
         "name": "OH_Usb_SelectInterfaceSetting"
     },
     {
+        "first_introduced":"10",
         "name": "OH_Usb_GetCurrentInterfaceSetting"
     },
     {
+        "first_introduced":"10",
         "name": "OH_Usb_SendControlReadRequest"
     },
     {
+        "first_introduced":"10",
         "name": "OH_Usb_SendControlWriteRequest"
     },
     {
+        "first_introduced":"26.0.0",
         "name": "OH_Usb_ControlTransfer"
     },
     {
+        "first_introduced":"10",
         "name": "OH_Usb_SendPipeRequest"
     },
     {
+        "first_introduced":"12",
         "name": "OH_Usb_SendPipeRequestWithAshmem"
     },
     {
+        "first_introduced":"10",
         "name": "OH_Usb_CreateDeviceMemMap"
     },
     {
+        "first_introduced":"10",
         "name": "OH_Usb_DestroyDeviceMemMap"
     },
     {
+        "first_introduced":"18",
         "name": "OH_Usb_GetDevices"
     },
     {
+        "first_introduced":"26.0.0",
         "name": "OH_Usb_GetNonRootHubs"
     }
 ]
