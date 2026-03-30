@@ -3120,38 +3120,38 @@ typedef enum {
 } ArkUI_UIState;
 
 /**
- * @brief Enumerates the edge derection.
+ * @brief Enumerates the edge direction.
  *
  * @since 20
  */
 typedef enum {
-    /** Set all edge derection. */
+    /** Set all edge direction. */
     ARKUI_EDGE_DIRECTION_ALL = 0,
-    /** Set left edge derection. */
+    /** Set left edge direction. */
     ARKUI_EDGE_DIRECTION_LEFT,
-    /** Set right edge derection. */
+    /** Set right edge direction. */
     ARKUI_EDGE_DIRECTION_RIGHT,
-    /** Set top edge derection. */
+    /** Set top edge direction. */
     ARKUI_EDGE_DIRECTION_TOP,
-    /** Set bottom edge derection. */
+    /** Set bottom edge direction. */
     ARKUI_EDGE_DIRECTION_BOTTOM,
 } ArkUI_EdgeDirection;
  
 /**
- * @brief Enumerates the corner derection.
+ * @brief Enumerates the corner direction.
  *
  * @since 20
  */
 typedef enum {
-    /** Set all corner derection. */
+    /** Set all corner direction. */
     ARKUI_CORNER_DIRECTION_ALL = 0,
-    /** Set top left corner derection. */
+    /** Set top left corner direction. */
     ARKUI_CORNER_DIRECTION_TOP_LEFT,
-    /** Set top right corner derection. */
+    /** Set top right corner direction. */
     ARKUI_CORNER_DIRECTION_TOP_RIGHT,
-    /** Set bottom left corner derection. */
+    /** Set bottom left corner direction. */
     ARKUI_CORNER_DIRECTION_BOTTOM_LEFT,
-    /** Set bottom right corner derection. */
+    /** Set bottom right corner direction. */
     ARKUI_CORNER_DIRECTION_BOTTOM_RIGHT,
 } ArkUI_CornerDirection;
 
