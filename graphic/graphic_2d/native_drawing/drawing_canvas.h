@@ -829,7 +829,7 @@ void OH_Drawing_CanvasClear(OH_Drawing_Canvas* canvas, uint32_t color);
 void OH_Drawing_CanvasSetMatrix(OH_Drawing_Canvas* canvas, OH_Drawing_Matrix* matrix);
 
 /**
- * @brief Reset matrix to the idenmtity matrix, any prior matrix state is overwritten.
+ * @brief Reset matrix to the identity matrix, any prior matrix state is overwritten.
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @param canvas Indicates the pointer to an <b>OH_Drawing_Canvas</b> object.
@@ -1016,7 +1016,7 @@ OH_Drawing_ErrorCode OH_Drawing_CanvasDrawRecordCmdNesting(OH_Drawing_Canvas* ca
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @param canvas Indicates the pointer to an <b>OH_Drawing_Canvas</b> object.
- * @param path Indicates the pointer to an <b>OH_Drawing_Paht</b> object.
+ * @param path Indicates the pointer to an <b>OH_Drawing_Path</b> object.
  * @param quickReject Indicates if the path has been cut off.
  * @return Returns the error code.
  *         Returns {@link OH_DRAWING_SUCCESS} if the operation is successful.

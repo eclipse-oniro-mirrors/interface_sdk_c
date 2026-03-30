@@ -114,7 +114,7 @@ OH_Drawing_ColorFilter* OH_Drawing_ColorFilterCreateSrgbGammaToLinear(void);
 OH_Drawing_ColorFilter* OH_Drawing_ColorFilterCreateLuma(void);
 
 /**
- * @brief Creates an <b>OH_Drawing_ColorFilter</b> with the given mutColor used to multiply source color and addColor
+ * @brief Creates an <b>OH_Drawing_ColorFilter</b> with the given mulColor used to multiply source color and addColor
  * used to add to source color. The Alpha channel will not be affected.
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
