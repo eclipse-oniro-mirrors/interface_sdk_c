@@ -51,7 +51,7 @@ extern "C" {
 /**
  * @brief Preview output object
  *
- * A pointer can be created using {@link Camera_PreviewOutput} method.
+ * A pointer can be created using {@link Camera_PreviewOutput}.
  *
  * @since 11
  * @version 1.0
@@ -149,7 +149,7 @@ Camera_ErrorCode OH_PreviewOutput_Start(Camera_PreviewOutput* previewOutput);
 /**
  * @brief Stop preview output.
  *
- * @param previewOutput the {@link Camera_PreviewOutput} instance to be stoped.
+ * @param previewOutput the {@link Camera_PreviewOutput} instance to be stopped.
  * @return {@link #CAMERA_OK} if the method call succeeds.
  *         {@link #INVALID_ARGUMENT} if parameter missing or parameter type incorrect.
  *         {@link #CAMERA_SERVICE_FATAL_ERROR} if camera service fatal error.
@@ -183,7 +183,7 @@ Camera_ErrorCode OH_PreviewOutput_GetActiveProfile(Camera_PreviewOutput* preview
 /**
  * @brief Delete preview profile instance.
  *
- * @param profile the {@link Camera_Profile} instance to deleted.
+ * @param profile the {@link Camera_Profile} instance to be deleted.
  * @return {@link #CAMERA_OK} if the method call succeeds.
  *         {@link #CAMERA_INVALID_ARGUMENT} if parameter missing or parameter type incorrect.
  * @since 12
