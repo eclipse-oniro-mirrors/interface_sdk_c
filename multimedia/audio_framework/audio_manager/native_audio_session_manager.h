@@ -32,7 +32,7 @@
  *
  * This file interfaces are used for the creation of audioSessionManager
  * as well as activating/deactivating the audio session
- * as well as checking and listening the audio session decativated events.
+ * as well as checking and listening the audio session deactivated events.
  *
  * @library libohaudio.so
  * @syscap SystemCapability.Multimedia.Audio.Core
