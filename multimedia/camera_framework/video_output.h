@@ -181,7 +181,7 @@ Camera_ErrorCode OH_VideoOutput_GetActiveProfile(Camera_VideoOutput* videoOutput
 /**
  * @brief Delete video profile instance.
  *
- * @param profile the {@link Camera_VideoProfile} instance to be deleted.
+ * @param profile the {@link Camera_VideoProfile} instance to deleted.
  * @return {@link #CAMERA_OK} if the method call succeeds.
  *         {@link #CAMERA_INVALID_ARGUMENT} if parameter missing or parameter type incorrect.
  * @since 12
