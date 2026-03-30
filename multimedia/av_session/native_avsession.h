@@ -157,7 +157,7 @@ AVSession_ErrCode OH_AVSession_Create(AVSession_Type sessionType, const char* se
     const char* bundleName, const char* abilityName, OH_AVSession** avsession);
 
 /**
- * @brief Request to destory the avsession.
+ * @brief Request to destroy the avsession.
  *
  * @param avsession The avsession instance pointer
  * @return Function result code：

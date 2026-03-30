@@ -79,7 +79,7 @@ typedef struct OH_AVMetadataStruct OH_AVMetadata;
 AVMetadata_Result OH_AVMetadataBuilder_Create(OH_AVMetadataBuilder** builder);
 
 /**
- * @brief Destroy a bulder.
+ * @brief Destroy a builder.
  *
  * @param builder The metadata builder instance pointer
  * @return Function result code:
@@ -297,10 +297,10 @@ AVMetadata_Result OH_AVMetadataBuilder_SetDisplayTags(OH_AVMetadataBuilder* buil
 AVMetadata_Result OH_AVMetadataBuilder_SetFilter(OH_AVMetadataBuilder* builder, uint32_t filter);
 
 /**
- * @brief Create the avmetadta.
+ * @brief Create the avmetadata.
  *
  * @param builder The metadata builder instance pointer
- * @param avMetadata Pointer to a viriable to receive the avMetadata object.
+ * @param avMetadata Pointer to a variable to receive the avMetadata object.
  * @return Function result code:
  *         {@link AVMETADATA_SUCCESS} If the execution is successful.
  *         {@link AVMETADATA_ERROR_NO_MEMORY} No memory to allocate a new instance.
@@ -313,9 +313,9 @@ AVMetadata_Result OH_AVMetadataBuilder_GenerateAVMetadata(OH_AVMetadataBuilder* 
     OH_AVMetadata** avMetadata);
 
 /**
- * @brief Request to release the avmetadta.
+ * @brief Request to release the avmetadata.
  *
- * @param avMetadata Pointer to a viriable to receive the avMetadata object.
+ * @param avMetadata Pointer to a variable to receive the avMetadata object.
  * @return Function result code:
  *         {@link AVMETADATA_SUCCESS} If the execution is successful.
  *         {@link AVMETADATA_ERROR_INVALID_PARAM} The param of avMetadata is nullptr.
