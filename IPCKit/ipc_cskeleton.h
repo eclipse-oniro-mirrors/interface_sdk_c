@@ -48,7 +48,7 @@ extern "C" {
 #endif
 
 /**
- * @brief Joints this thread to the IPC worker thread pool.
+ * @brief Joins this thread to the IPC worker thread pool.
  *
  * @syscap SystemCapability.Communication.IPC.Core
  * @since 12
