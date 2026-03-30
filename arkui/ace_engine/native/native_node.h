@@ -51,7 +51,7 @@ extern "C" {
 #endif
 
 /**
- * @brief Define commponents max function size.
+ * @brief Define components max function size.
  *
  * @since 12
  */
@@ -8981,7 +8981,7 @@ typedef enum {
 } ArkUI_NodeAttributeType;
 
 /**
- * @brief Define commponent event max args size.
+ * @brief Define component event max args size.
  *
  * @since 12
  */
