@@ -444,6 +444,10 @@
         "name": "OH_MD_KEY_VIDEO_ENCODER_TEMPORAL_GOP_REFERENCE_MODE"
     },
     {
+        "first_introduced": "26",
+        "name": "OH_MD_KEY_VIDEO_ENCODER_TEMPORAL_LAYER_ID"
+    },
+    {
         "first_introduced": "12",
         "name": "OH_MD_KEY_VIDEO_ENCODER_LTR_FRAME_COUNT"
     },
