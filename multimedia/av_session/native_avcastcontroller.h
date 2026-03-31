@@ -61,6 +61,10 @@ typedef struct OH_AVCastController OH_AVCastController;
 /**
  * @brief Declaring the callback struct for playback state change
  *
+ * @param avcastcontroller the OH_AVCastController instance pointer.
+ * @param playbackState the {@link OH_AVSession_AVPlaybackState}
+ * pointer variable which will be set the changed playback state.
+ * @param userdata userdata which is passed by register.
  * @since 23
  * @version 1.0
  */
@@ -70,6 +74,10 @@ typedef AVSessionCallback_Result(*OH_AVCastControllerCallback_PlaybackStateChang
 /**
  * @brief Declaring the callback struct for media item change
  *
+ * @param avcastcontroller the OH_AVCastController instance pointer.
+ * @param avQueueItem the {@link OH_AVSession_AVQueueItem}
+ * pointer variable which will be set the changed media item info.
+ * @param userdata userdata which is passed by register
  * @since 23
  * @version 1.0
  */
@@ -79,6 +87,8 @@ typedef AVSessionCallback_Result(*OH_AVCastControllerCallback_MediaItemChange)(O
 /**
  * @brief Declaring the callback struct for Play Next
  *
+ * @param avcastcontroller the OH_AVCastController instance pointer.
+ * @param userdata userdata which is passed by register.
  * @since 23
  * @version 1.0
  */
@@ -88,6 +98,8 @@ typedef AVSessionCallback_Result(*OH_AVCastControllerCallback_PlayNext)(OH_AVCas
 /**
  * @brief Declaring the callback struct for Play Previous
  *
+ * @param avcastcontroller the OH_AVCastController instance pointer.
+ * @param userdata userdata which is passed by register.
  * @since 23
  * @version 1.0
  */
@@ -97,6 +109,9 @@ typedef AVSessionCallback_Result(*OH_AVCastControllerCallback_PlayPrevious)(OH_A
 /**
  * @brief Declaring the callback struct for seekDone
  *
+ * @param avcastcontroller the OH_AVCastController instance pointer.
+ * @param position position value after seek.
+ * @param userdata userdata which is passed by register.
  * @since 23
  * @version 1.0
  */
@@ -106,6 +121,8 @@ typedef AVSessionCallback_Result(*OH_AVCastControllerCallback_SeekDone)(OH_AVCas
 /**
  * @brief Declaring the callback struct for EndOfStream
  *
+ * @param avcastcontroller the OH_AVCastController instance pointer.
+ * @param userdata userdata which is passed by register.
  * @since 23
  * @version 1.0
  */
@@ -115,6 +132,9 @@ typedef AVSessionCallback_Result(*OH_AVCastControllerCallback_EndOfStream)(OH_AV
 /**
  * @brief Declaring the callback struct for cast play error
  *
+ * @param avcastcontroller the OH_AVCastController instance pointer.
+ * @param userdata userdata which is passed by register.
+ * @param error cast play error code
  * @since 23
  * @version 1.0
  */
