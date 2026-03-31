@@ -18,7 +18,7 @@
  * @{
  *
  * @brief Provides APIs of Drm.
- * @kit DrmKit.
+ * @kit DrmKit
  * @since 11
  * @version 1.0
  */
@@ -28,7 +28,7 @@
  * @brief Defines the Drm MediaKeySession APIs. Provide following function:
  * generate media key request, process media key response, event listening,
  * get content protection level, check media key status, remove media key etc..
- * @library libnative_drm.so
+ * @library libnative_drm.z.so
  * @syscap SystemCapability.Multimedia.Drm.Core
  * @since 11
  * @version 1.0
@@ -44,8 +44,8 @@
 #include "native_drm_common.h"
 
 #ifdef __cplusplus
-extern "C"
-{
+extern "C" {
+
 #endif
 
 /**
@@ -147,8 +147,8 @@ Drm_ErrCode OH_MediaKeySession_GenerateMediaKeyRequest(MediaKeySession *mediaKey
 /**
  * @brief Process media key response.
  * @param mediaKeySession Media key session instance.
- * @param response Media Key resposne.
- * @param responseLen Media Key resposne len.
+ * @param response Media Key response.
+ * @param responseLen Media Key response len.
  * @param offlineMediaKeyId Offline media key identifier.
  * @param offlineMediaKeyIdLen Offline media key identifier len for in buffer and out data.
  * @return {@link DRM_ERR_OK} 0 - Success.
@@ -287,7 +287,7 @@ Drm_ErrCode OH_MediaKeySession_SetCallback(MediaKeySession *mediaKeySession,
     OH_MediaKeySession_Callback *callback);
 
 /**
- * @brief Release the resource before the session gonna be unused.
+ * @brief Release the resource before the session going to be unused.
  * @param mediaKeySession Media key session instance.
  * @return {@link DRM_ERR_OK} 0 - Success.
  *         {@link DRM_ERR_INVALID_VAL} 24700503 - The parameter passed in is a null pointer or invalid.
@@ -301,5 +301,5 @@ Drm_ErrCode OH_MediaKeySession_Destroy(MediaKeySession *mediaKeySession);
 }
 #endif
 
-#endif // OHOS_DRM_NATIVE_MEDIA_KEY_SYSTEM_H
+#endif // OHOS_DRM_NATIVE_MEDIA_KEY_SESSION_H
 /** @} */
