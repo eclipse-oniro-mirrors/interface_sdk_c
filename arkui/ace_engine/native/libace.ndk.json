@@ -4124,6 +4124,14 @@
         "name": "OH_ArkUI_NativeModule_UnregisterCommonVisibleAreaApproximateChangeEvent"
     },
     {
+        "first_introduced": "26.0.0",
+        "name": "OH_ArkUI_NativeModule_RegisterCommonAreaApproximateChangeEvent"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_ArkUI_NativeModule_UnregisterCommonAreaApproximateChangeEvent"
+    },
+    {
         "first_introduced": "23",
         "name": "OH_ArkUI_NativeModule_ConvertPositionToWindow"
     },
