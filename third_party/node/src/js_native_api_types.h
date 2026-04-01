@@ -3,7 +3,7 @@
 
 // This file needs to be compatible with C compilers.
 // This is a public include file, and these includes have essentially
-// became part of its API.
+// became part of it's API.
 #include <stddef.h>  // NOLINT(modernize-deprecated-headers)
 #include <stdint.h>  // NOLINT(modernize-deprecated-headers)
 
