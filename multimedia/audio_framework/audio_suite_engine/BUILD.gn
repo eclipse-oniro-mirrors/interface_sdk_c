@@ -19,6 +19,7 @@ ohos_ndk_headers("ohaudiosuite_header") {
   sources = [
     "native_audio_suite_base.h",
     "native_audio_suite_engine.h",
+    "native_audio_converter.h",
   ]
 }
 
@@ -30,5 +31,6 @@ ohos_ndk_library("libohaudiosuite_ndk") {
   system_capability_headers = [
     "native_audio_suite_base.h",
     "native_audio_suite_engine.h",
+    "native_audio_converter.h",
   ]
 }
