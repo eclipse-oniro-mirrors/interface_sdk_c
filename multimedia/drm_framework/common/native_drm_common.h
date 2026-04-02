@@ -28,6 +28,7 @@
  *
  * @brief Defines the Drm common struct.
  * @library libnative_drm.so
+ * @syscap SystemCapability.Multimedia.Drm.Core
  * @since 11
  * @version 1.0
  */
@@ -77,7 +78,6 @@ typedef enum DRM_EventType {
 
 /**
  * @brief Content protection level.
- * @syscap SystemCapability.Multimedia.Drm.Core
  * @since 11
  * @version 1.0
  */
