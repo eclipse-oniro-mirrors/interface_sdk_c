@@ -1,5 +1,21 @@
 [
     {
+      "first_introduced": "23",
+      "name": "OH_ComposeOptions_Create"
+    },
+    {
+      "first_introduced": "23",
+      "name": "OH_ComposeOptions_SetDesiredPixelFormat"
+    },
+    {
+      "first_introduced": "23",
+      "name": "OH_ComposeOptions_GetDesiredPixelFormat"
+    },
+    {
+      "first_introduced": "23",
+      "name": "OH_ComposeOptions_Release"
+    },
+    {
       "first_introduced": "13",
       "name": "OH_PictureNative_CreatePicture"
     },
@@ -10,6 +26,10 @@
     {
       "first_introduced": "13",
       "name": "OH_PictureNative_GetHdrComposedPixelmap"
+    },
+    {
+      "first_introduced": "23",
+      "name": "OH_PictureNative_GetHdrComposedPixelmapWithOptions"
     },
     {
       "first_introduced": "13",

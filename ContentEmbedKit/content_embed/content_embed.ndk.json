@@ -1,0 +1,338 @@
+[
+    {
+        "first_introduced": "24",
+        "name": "OH_ContentEmbed_CreateDocumentByHmid"
+    },
+    {
+        "first_introduced": "24",
+        "name": "OH_ContentEmbed_CreateDocumentByFile"
+    },
+    {
+        "first_introduced": "24",
+        "name": "OH_ContentEmbed_LoadDocumentFromFile"
+    },
+    {
+        "first_introduced": "24",
+        "name": "OH_ContentEmbed_Document_Read"
+    },
+    {
+        "first_introduced": "24",
+        "name": "OH_ContentEmbed_Document_GetHmid"
+    },
+    {
+        "first_introduced": "24",
+        "name": "OH_ContentEmbed_Document_IsLinking"
+    },
+    {
+        "first_introduced": "24",
+        "name": "OH_ContentEmbed_Document_GetNativeFilePath"
+    },
+    {
+        "first_introduced": "24",
+        "name": "OH_ContentEmbed_Document_GetRootStorage"
+    },
+    {
+        "first_introduced": "24",
+        "name": "OH_ContentEmbed_Document_Flush"
+    },
+    {
+        "first_introduced": "24",
+        "name": "OH_ContentEmbed_Storage_CreateStorage"
+    },
+    {
+        "first_introduced": "24",
+        "name": "OH_ContentEmbed_Storage_GetStorage"
+    },
+    {
+        "first_introduced": "24",
+        "name": "OH_ContentEmbed_Storage_CreateStream"
+    },
+    {
+        "first_introduced": "24",
+        "name": "OH_ContentEmbed_Storage_GetStream"
+    },
+    {
+        "first_introduced": "24",
+        "name": "OH_ContentEmbed_Storage_DeleteEntry"
+    },
+    {
+        "first_introduced": "24",
+        "name": "OH_ContentEmbed_Storage_DeleteAllEntry"
+    },
+    {
+        "first_introduced": "24",
+        "name": "OH_ContentEmbed_DestroyStorage"
+    },
+    {
+        "first_introduced": "24",
+        "name": "OH_ContentEmbed_Stream_Read"
+    },
+    {
+        "first_introduced": "24",
+        "name": "OH_ContentEmbed_Stream_Write"
+    },
+    {
+        "first_introduced": "24",
+        "name": "OH_ContentEmbed_Stream_Seek"
+    },
+    {
+        "first_introduced": "24",
+        "name": "OH_ContentEmbed_Stream_GetPosition"
+    },
+    {
+        "first_introduced": "24",
+        "name": "OH_ContentEmbed_Stream_GetSize"
+    },
+    {
+        "first_introduced": "24",
+        "name": "OH_ContentEmbed_DestroyStream"
+    },
+    {
+        "first_introduced": "24",
+        "name": "OH_ContentEmbed_DestroyDocument"
+    },
+        {
+        "first_introduced": "24",
+        "name": "OH_ContentEmbed_Storage_GetHmid"
+    },
+    {
+        "first_introduced": "24",
+        "name": "OH_ContentEmbed_Storage_SetHmid"
+    },
+    {
+        "first_introduced": "24",
+        "name": "OH_ContentEmbed_StorageElements_Create"
+    },
+    {
+        "first_introduced": "24",
+        "name": "OH_ContentEmbed_StorageElements_Destroy"
+    },
+    {
+        "first_introduced": "24",
+        "name": "OH_ContentEmbed_Storage_GetElements"
+    },
+        {
+        "first_introduced": "24",
+        "name": "OH_ContentEmbed_StorageElements_GetCount"
+    },
+    {
+        "first_introduced": "24",
+        "name": "OH_ContentEmbed_StorageElements_GetElement"
+    },
+    {
+        "first_introduced": "24",
+        "name": "OH_ContentEmbed_StorageElement_GetName"
+    },
+    {
+        "first_introduced": "24",
+        "name": "OH_ContentEmbed_StorageElement_GetCTime"
+    },
+    {
+        "first_introduced": "24",
+        "name": "OH_ContentEmbed_StorageElement_GetMTime"
+    },
+        {
+        "first_introduced": "24",
+        "name": "OH_ContentEmbed_StorageElement_IsStorage"
+    },
+    {
+        "first_introduced": "24",
+        "name": "OH_ContentEmbed_StorageElement_IsStream"
+    },
+    {
+        "first_introduced": "24",
+        "name": "OH_ContentEmbed_Storage_CopyTo"
+    },
+    {
+        "first_introduced": "24",
+        "name": "OH_ContentEmbed_Extension_GetContentEmbedContext"
+    },
+    {
+        "first_introduced": "24",
+        "name": "OH_ContentEmbed_Extension_GetContext"
+    },
+    {
+        "first_introduced": "24",
+        "name": "OH_ContentEmbed_Extension_GetExtensionInstance"
+    },
+    {
+        "first_introduced": "24",
+        "name": "OH_ContentEmbed_Extension_RegisterOnCreateFunc"
+    },
+        {
+        "first_introduced": "24",
+        "name": "OH_ContentEmbed_Extension_RegisterOnDestroyFunc"
+    },
+    {
+        "first_introduced": "24",
+        "name": "OH_ContentEmbed_Extension_RegisterOnObjectAttachFunc"
+    },
+    {
+        "first_introduced": "24",
+        "name": "OH_ContentEmbed_Extension_UnRegisterOnObjectAttachFunc"
+    },
+    {
+        "first_introduced": "24",
+        "name": "OH_ContentEmbed_Extension_RegisterOnObjectDetachFunc"
+    },
+        {
+        "first_introduced": "24",
+        "name": "OH_ContentEmbed_Extension_UnRegisterOnObjectDetachFunc"
+    },
+    {
+        "first_introduced": "24",
+        "name": "OH_ContentEmbed_Extension_RegisterOnWriteToDataStreamFunc"
+    },
+    {
+        "first_introduced": "24",
+        "name": "OH_ContentEmbed_Extension_RegisterOnGetSnapshotFunc"
+    },
+    {
+        "first_introduced": "24",
+        "name": "OH_ContentEmbed_Extension_RegisterOnDoEditFunc"
+    },
+        {
+        "first_introduced": "24",
+        "name": "OH_ContentEmbed_Extension_RegisterOnGetEditStatusFunc"
+    },
+    {
+        "first_introduced": "24",
+        "name": "OH_ContentEmbed_Extension_RegisterOnGetCapabilityFunc"
+    },
+    {
+        "first_introduced": "24",
+        "name": "OH_ContentEmbed_Extension_GetContentEmbedDocument"
+    },
+    {
+        "first_introduced": "24",
+        "name": "OH_ContentEmbed_Extension_CallbackToOnUpdate"
+    },
+        {
+        "first_introduced": "24",
+        "name": "OH_ContentEmbed_Extension_CallbackToOnError"
+    },
+    {
+        "first_introduced": "24",
+        "name": "OH_ContentEmbed_Extension_CallbackToOnEditingFinished"
+    },
+    {
+        "first_introduced": "24",
+        "name": "OH_ContentEmbed_Extension_CallbackToOnExtensionStopped"
+    },
+    {
+        "first_introduced": "24",
+        "name": "OH_ContentEmbed_Extension_SetSnapshot"
+    },
+        {
+        "first_introduced": "24",
+        "name": "OH_ContentEmbed_Extension_ContextStartSelfUIAbility"
+    },
+    {
+        "first_introduced": "24",
+        "name": "OH_ContentEmbed_Extension_ContextStartSelfUIAbilityWithStartOptions"
+    },
+    {
+        "first_introduced": "24",
+        "name": "OH_ContentEmbed_Extension_ContextTerminateAbility"
+    },
+    {
+        "first_introduced": "24",
+        "name": "OH_ContentEmbed_CreateContentEmbedInfo"
+    },
+    {
+        "first_introduced": "24",
+        "name": "OH_ContentEmbed_DestroyContentEmbedInfo"
+    },
+    {
+        "first_introduced": "24",
+        "name": "OH_ContentEmbed_GetContentEmbedInfo"
+    },
+    {
+        "first_introduced": "24",
+        "name": "OH_ContentEmbed_GetFormatCountFromInfo"
+    },
+    {
+        "first_introduced": "24",
+        "name": "OH_ContentEmbed_GetFormatFromInfo"
+    },
+        {
+        "first_introduced": "24",
+        "name": "OH_ContentEmbed_CreateContentEmbedFormat"
+    },
+    {
+        "first_introduced": "24",
+        "name": "OH_ContentEmbed_DestroyContentEmbedFormat"
+    },
+    {
+        "first_introduced": "24",
+        "name": "OH_ContentEmbed_GetContentEmbedFormatByHmidAndLocale"
+    },
+    {
+        "first_introduced": "24",
+        "name": "OH_ContentEmbed_GetHmidFromFormat"
+    },
+        {
+        "first_introduced": "24",
+        "name": "OH_ContentEmbed_GetNameAndDescriptionFromFormat"
+    },
+    {
+        "first_introduced": "24",
+        "name": "OH_ContentEmbed_GetIconFromFormat"
+    },
+    {
+        "first_introduced": "24",
+        "name": "OH_ContentEmbed_GetFileNameExtensionsFromFormat"
+    },
+    {
+        "first_introduced": "24",
+        "name": "OH_ContentEmbed_CreateExtensionProxy"
+    },
+        {
+        "first_introduced": "24",
+        "name": "OH_ContentEmbed_DestroyExtensionProxy"
+    },
+    {
+        "first_introduced": "24",
+        "name": "OH_ContentEmbed_Proxy_RegisterOnUpdateFunc"
+    },
+    {
+        "first_introduced": "24",
+        "name": "OH_ContentEmbed_Proxy_RegisterOnErrorFunc"
+    },
+    {
+        "first_introduced": "24",
+        "name": "OH_ContentEmbed_Proxy_RegisterOnEditingFinishedFunc"
+    },
+        {
+        "first_introduced": "24",
+        "name": "OH_ContentEmbed_Proxy_RegisterOnExtensionStoppedFunc"
+    },
+    {
+        "first_introduced": "24",
+        "name": "OH_ContentEmbed_Proxy_StartWork"
+    },
+    {
+        "first_introduced": "24",
+        "name": "OH_ContentEmbed_Proxy_StopWork"
+    },
+    {
+        "first_introduced": "24",
+        "name": "OH_ContentEmbed_Proxy_GetSnapshot"
+    },
+        {
+        "first_introduced": "24",
+        "name": "OH_ContentEmbed_Proxy_DoEdit"
+    },
+    {
+        "first_introduced": "24",
+        "name": "OH_ContentEmbed_Proxy_GetEditStatus"
+    },
+    {
+        "first_introduced": "24",
+        "name": "OH_ContentEmbed_Proxy_GetCapability"
+    },
+    {
+        "first_introduced": "24",
+        "name": "OH_ContentEmbed_Proxy_GetDocument"
+    }
+]

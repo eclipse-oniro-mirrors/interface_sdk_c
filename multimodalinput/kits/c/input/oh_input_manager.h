@@ -338,6 +338,60 @@ typedef enum Input_Result {
 } Input_Result;
 
 /**
+ * @brief Input_TouchEventToolType
+ * @since 24
+ */
+typedef enum Input_TouchEventToolType {
+    /**
+    * Finger
+    * @since 24
+    */
+    TOOL_TYPE_FINGER = 0,
+
+    /**
+    * Pen
+    * @since 24
+    */
+    TOOL_TYPE_PEN = 1,
+
+    /**
+    * Rubber
+    * @since 24
+    */
+    TOOL_TYPE_RUBBER = 2,
+
+    /**
+    * Brush
+    * @since 24
+    */
+    TOOL_TYPE_BRUSH = 3,
+
+    /**
+    * Pencil
+    * @since 24
+    */
+    TOOL_TYPE_PENCIL = 4,
+
+    /**
+    * Air brush
+    * @since 24
+    */
+    TOOL_TYPE_AIRBRUSH = 5,
+
+    /**
+    * Mouse
+    * @since 24
+    */
+    TOOL_TYPE_MOUSE = 6,
+
+    /**
+    * lens
+    * @since 24
+    */
+    TOOL_TYPE_LENS = 7,
+} Input_TouchEventToolType;
+
+/**
  * @brief Callback used to return shortcut key events.
  * @since 14
  */
@@ -1239,6 +1293,102 @@ void OH_Input_SetTouchEventGlobalY(struct Input_TouchEvent* touchEvent, int32_t 
  * @since 20
  */
 int32_t OH_Input_GetTouchEventGlobalY(const struct Input_TouchEvent* touchEvent);
+
+/**
+ * @brief Set the pressure of the touch event.
+ *
+ * @param touchEvent Touch event object.
+ * @param pressure Pressure, the value ranges from 0 to 1.
+* @return OH_Input_SetTouchEventPressure function result code.
+ *         {@link INPUT_SUCCESS} Sets the pressure of the touch event success.\n
+ *         {@link INPUT_PARAMETER_ERROR} The touchEvent is NULL or pressure value not within range.\n
+ * @since 24
+ */
+Input_Result OH_Input_SetTouchEventPressure(struct Input_TouchEvent* touchEvent, double pressure);
+
+/**
+ * @brief Obtains the pressure of a touch event.
+ *
+ * @param touchEvent Touch event object.
+ * @return pressure.
+ * @since 24
+ */
+double OH_Input_GetTouchEventPressure(const struct Input_TouchEvent* touchEvent);
+
+/**
+ * @brief Set the window X coordinate of the touch event.
+ *
+ * @param touchEvent Touch event object.
+ * @param windowX Window X coordinate.
+ * @since 24
+ */
+void OH_Input_SetTouchEventWindowX(struct Input_TouchEvent* touchEvent, int32_t windowX);
+
+/**
+ * @brief Queries the window X coordinate of the touch event.
+ *
+ * @param touchEvent Touch event object.
+ * @return window X coordinate.
+ * @since 24
+ */
+int32_t OH_Input_GetTouchEventWindowX(const struct Input_TouchEvent* touchEvent);
+
+/**
+ * @brief Set the window Y coordinate of the touch event.
+ *
+ * @param touchEvent Touch event object.
+ * @param windowY Window Y coordinate.
+ * @since 24
+ */
+void OH_Input_SetTouchEventWindowY(struct Input_TouchEvent* touchEvent, int32_t windowY);
+
+/**
+ * @brief Queries the window Y coordinate of the touch event.
+ *
+ * @param touchEvent Touch event object.
+ * @return window Y coordinate.
+ * @since 24
+ */
+int32_t OH_Input_GetTouchEventWindowY(const struct Input_TouchEvent* touchEvent);
+
+/**
+ * @brief Set the down time of the touch event.
+ *
+ * @param touchEvent Touch event object.
+ * @param downTime Down time.
+ * @since 24
+ */
+void OH_Input_SetTouchEventDownTime(struct Input_TouchEvent* touchEvent, int64_t downTime);
+
+/**
+ * @brief Obtains the down time of a touch event.
+ *
+ * @param touchEvent Touch event object.
+ * @return down time.
+ * @since 24
+ */
+int64_t OH_Input_GetTouchEventDownTime(const struct Input_TouchEvent* touchEvent);
+
+/**
+ * @brief Set the tool type of the touch event.
+ *
+ * @param touchEvent Touch event object.
+ * @param toolType Tool type. refer to Input_TouchEventToolType for value range.
+ * @return OH_Input_SetTouchEventToolType function result code.
+ *         {@link INPUT_SUCCESS} Sets the toolType success.\n
+ *         {@link INPUT_PARAMETER_ERROR} The touchEvent is NULL or toolType value not within range.\n
+ * @since 24
+ */
+Input_Result OH_Input_SetTouchEventToolType(struct Input_TouchEvent* touchEvent, Input_TouchEventToolType toolType);
+
+/**
+ * @brief Obtains the tool type of a touch event.
+ *
+ * @param touchEvent Touch event object.
+ * @return toolType.
+ * @since 24
+ */
+Input_TouchEventToolType OH_Input_GetTouchEventToolType(const struct Input_TouchEvent* touchEvent);
 
 /**
  * @brief Cancels event injection and revokes authorization.
@@ -2217,136 +2367,6 @@ Input_Result OH_Input_QueryMaxTouchPoints(int32_t *count);
 Input_Result OH_Input_GetPointerLocation(int32_t *displayId, double *displayX, double *displayY);
 
 /**
- * @brief Sets the visible status of the mouse pointer.
- *
- * @param visible Whether the mouse pointer is visible. The value true indicates that the pointer
- * @return OH_Input_SetPointerVisible function api result code
- *         {@link INPUT_SUCCESS} if the operation is successful;
- *         {@link INPUT_DEVICE_NOT_SUPPORTED} if the device is not supported.
- *         {@link INPUT_SERVICE_EXCEPTION} if the service is exception.
- * @since 22
- */
-Input_Result OH_Input_SetPointerVisible(bool visible);
- 
-/**
- * @brief Obtains the mouse pointer style.
- *
- * @param windowId Window ID. The value is an integer greater than or equal to -1.
- * @param pointerStyle Pointer to the pointerStyle.
- * @return OH_Input_GetPointerStyle function api result code
- *         {@link INPUT_SUCCESS} if the operation is successful;
- *         {@link INPUT_PARAMETER_ERROR} if parameter is a null pointer or window ID is invalid;
- *         {@link INPUT_SERVICE_EXCEPTION} if the service is exception.
- * @since 22
- */
-Input_Result OH_Input_GetPointerStyle(int32_t windowId, int32_t *pointerStyle);
- 
-/**
- * @brief Sets the mouse pointer style.
- *
- * @param windowId Window ID. The value is an integer greater than or equal to 0.
- * @param pointerStyle Pointer style.The value should be a member of the {@link Input_PointerStyle} enumeration.
- * @return OH_Input_SetPointerStyle function api result code
- *         {@link INPUT_SUCCESS} if the operation is successful;
- *         {@link INPUT_PARAMETER_ERROR} if window ID is invalid or pointerStyle is invalid;
- *         {@link INPUT_SERVICE_EXCEPTION} if the service is exception.
- * @since 22
- */
-Input_Result OH_Input_SetPointerStyle(int32_t windowId, int32_t pointerStyle);
- 
-/**
- * @brief Creates a CustomCursor object.
- *
- * @param pixelMap Pointer to a {@link OH_PixelmapNative}  object.
- * @param anchorX Horizontal coordinate of the cursor focus.
- * @param anchorY Vertical coordinate of the cursor focus.
- * @return Returns an {@link Input_CustomCursor} pointer object if the operation is successful.
- * returns a null pointer otherwise.
- * @since 22
- */
-Input_CustomCursor* OH_Input_CustomCursor_Create(OH_PixelmapNative* pixelMap, int32_t anchorX, int32_t anchorY);
- 
-/**
- * @brief Destroys a CustomCursor object.
- *
- * @param customCursor Pointer to a pointer to an {@link Input_CustomCursor} object.
- * @since 22
- */
-void OH_Input_CustomCursor_Destroy(Input_CustomCursor** customCursor);
- 
-/**
- * @brief Obtains the pixelMap of the CustomCursor.
- *
- * @param customCursor Pointer to an {@link Input_CustomCursor} object.
- * @param pixelMap Pointer to a {@link OH_PixelmapNative}  object.
- * @return OH_Input_CustomCursor_GetPixelMap function result code.
- *         {@link INPUT_SUCCESS} if the operation is successful;
- *         {@link INPUT_PARAMETER_ERROR} The customCursor is NULL.
- * @since 22
- */
-Input_Result OH_Input_CustomCursor_GetPixelMap(Input_CustomCursor* customCursor, OH_PixelmapNative** pixelMap);
- 
-/**
- * @brief Obtains the anchor of the CustomCursor.
- *
- * @param customCursor Pointer to an {@link Input_CustomCursor} object.
- * @param anchorX Pointer to horizontal coordinate of the cursor focus.
- * @param anchorY Pointer to vertical coordinate of the cursor focus.
- * @return OH_Input_CustomCursor_GetAnchor function result code.
- *         {@link INPUT_SUCCESS} if the operation is successful;
- *         {@link INPUT_PARAMETER_ERROR} The customCursor is NULL.
- * @since 22
- */
-Input_Result OH_Input_CustomCursor_GetAnchor(Input_CustomCursor* customCursor, int32_t* anchorX, int32_t* anchorY);
- 
-/**
- * @brief Creates a CursorConfig object.
- *
- * @param followSystem Pointer of the config whether to adjust the cursor size based on system settings
- * @return Returns an {@link Input_CursorConfig} pointer object if the operation is successful.
- *         returns a null pointer otherwise.
- * @since 22
- */
-Input_CursorConfig* OH_Input_CursorConfig_Create(bool followSystem);
- 
-/**
- * @brief Destroys a CursorConfig object.
- *
- * @param cursorConfig Pointer to a pointer to an {@link cursorConfig} object.
- * @since 22
- */
-void OH_Input_CursorConfig_Destroy(Input_CursorConfig** cursorConfig);
- 
-/**
- * @brief Obtains the followSystem of the cursorConfig.
- *
- * @param cursorConfig Pointer to an {@link Input_CursorConfig} object.
- * @param followSystem Pointer of the config whether to adjust the cursor size based on system settings
- * @return OH_Input_CursorConfig_IsFollowSystem function result code.
- *         {@link INPUT_SUCCESS} if the operation is successful;
- *         {@link INPUT_PARAMETER_ERROR} The cursorOptions or followSystem the is NULL.
- * @since 22
- */
-Input_Result OH_Input_CursorConfig_IsFollowSystem(Input_CursorConfig *cursorConfig, bool *followSystem);
- 
-/**
- * @brief Sets the custom cursor style.
- *
- * @param windowId Window ID. The value is an integer greater than or equal to 0.
- * @param customCursor Pointer to an {@link Input_CustomCursor} object.
- * @param cursorConfig Pointer to an {@link cursorConfig} object.
- * @return OH_Input_SetCustomCursor function result code.
- *         {@link INPUT_SUCCESS} if the operation is successful;
- *         {@link INPUT_PARAMETER_ERROR} if window ID is abnormal or customCursor is invalid;
- *         {@link INPUT_INVALID_WINDOWID} if window ID is invaild.
- *         {@link INPUT_DEVICE_NOT_SUPPORTED} Capability not supported.
- *         {@link INPUT_SERVICE_EXCEPTION} if the service is exception.
- * @since 22
- */
-Input_Result OH_Input_SetCustomCursor(int32_t windowId, Input_CustomCursor* customCursor,
-                                      Input_CursorConfig* cursorConfig);
-
-/**
  * @brief Creates a cursor info object.
  *
  * @return Returns an {@link Input_CursorInfo} cursor object if the operation is successful.
@@ -2436,6 +2456,152 @@ Input_Result OH_Input_GetMouseEventCursorInfo(const struct Input_MouseEvent* mou
  * @since 22
  */
 Input_Result OH_Input_GetCursorInfo(Input_CursorInfo* cursorInfo, OH_PixelmapNative** pixelmap);
+
+/**
+ * @brief Sets the visible status of the mouse pointer.
+ *
+ * @param visible Whether the mouse pointer is visible. The value true indicates that the pointer
+ * @return OH_Input_SetPointerVisible function api result code
+ *         {@link INPUT_SUCCESS} if the operation is successful;
+ *         {@link INPUT_DEVICE_NOT_SUPPORTED} if the device is not supported.
+ *         {@link INPUT_SERVICE_EXCEPTION} if the service is exception.
+ * @since 22
+ */
+Input_Result OH_Input_SetPointerVisible(bool visible);
+
+/**
+ * @brief Obtains the mouse pointer style.
+ *
+ * @param windowId Window ID. The value is an integer greater than or equal to -1.
+ * @param pointerStyle Pointer to the pointerStyle.
+ * @return OH_Input_GetPointerStyle function api result code
+ *         {@link INPUT_SUCCESS} if the operation is successful;
+ *         {@link INPUT_PARAMETER_ERROR} if parameter is a null pointer or window ID is invalid;
+ *         {@link INPUT_SERVICE_EXCEPTION} if the service is exception.
+ * @since 22
+ */
+Input_Result OH_Input_GetPointerStyle(int32_t windowId, int32_t *pointerStyle);
+
+/**
+ * @brief Sets the mouse pointer style.
+ *
+ * @param windowId Window ID. The value is an integer greater than or equal to 0.
+ * @param pointerStyle Pointer style.The value should be a member of the {@link Input_PointerStyle} enumeration.
+ * @return OH_Input_SetPointerStyle function api result code
+ *         {@link INPUT_SUCCESS} if the operation is successful;
+ *         {@link INPUT_PARAMETER_ERROR} if window ID is invalid or pointerStyle is invalid;
+ *         {@link INPUT_SERVICE_EXCEPTION} if the service is exception.
+ * @since 22
+ */
+Input_Result OH_Input_SetPointerStyle(int32_t windowId, int32_t pointerStyle);
+
+/**
+ * @brief Creates a CustomCursor object.
+ *
+ * @param pixelMap Pointer to a {@link OH_PixelmapNative}  object.
+ * @param anchorX Horizontal coordinate of the cursor focus.
+ * @param anchorY Vertical coordinate of the cursor focus.
+ * @return Returns an {@link Input_CustomCursor} pointer object if the operation is successful.
+ * returns a null pointer otherwise.
+ * @since 22
+ */
+Input_CustomCursor* OH_Input_CustomCursor_Create(OH_PixelmapNative* pixelMap, int32_t anchorX, int32_t anchorY);
+
+/**
+ * @brief Destroys a CustomCursor object.
+ *
+ * @param customCursor Pointer to a pointer to an {@link Input_CustomCursor} object.
+ * @since 22
+ */
+void OH_Input_CustomCursor_Destroy(Input_CustomCursor** customCursor);
+
+/**
+ * @brief Obtains the pixelMap of the CustomCursor.
+ *
+ * @param customCursor Pointer to an {@link Input_CustomCursor} object.
+ * @param pixelMap Pointer to a {@link OH_PixelmapNative}  object.
+ * @return OH_Input_CustomCursor_GetPixelMap function result code.
+ *         {@link INPUT_SUCCESS} if the operation is successful;
+ *         {@link INPUT_PARAMETER_ERROR} The customCursor is NULL.
+ * @since 22
+ */
+Input_Result OH_Input_CustomCursor_GetPixelMap(Input_CustomCursor* customCursor, OH_PixelmapNative** pixelMap);
+
+/**
+ * @brief Obtains the anchor of the CustomCursor.
+ *
+ * @param customCursor Pointer to an {@link Input_CustomCursor} object.
+ * @param anchorX Pointer to horizontal coordinate of the cursor focus.
+ * @param anchorY Pointer to vertical coordinate of the cursor focus.
+ * @return OH_Input_CustomCursor_GetAnchor function result code.
+ *         {@link INPUT_SUCCESS} if the operation is successful;
+ *         {@link INPUT_PARAMETER_ERROR} The customCursor is NULL.
+ * @since 22
+ */
+Input_Result OH_Input_CustomCursor_GetAnchor(Input_CustomCursor* customCursor, int32_t* anchorX, int32_t* anchorY);
+
+/**
+ * @brief Creates a CursorConfig object.
+ *
+ * @param followSystem Pointer of the config whether to adjust the cursor size based on system settings
+ * @return Returns an {@link Input_CursorConfig} pointer object if the operation is successful.
+ * returns a null pointer otherwise.
+ * @since 22
+ */
+Input_CursorConfig* OH_Input_CursorConfig_Create(bool followSystem);
+
+/**
+ * @brief Destroys a CursorConfig object.
+ *
+ * @param cursorConfig Pointer to a pointer to an {@link cursorConfig} object.
+ * @since 22
+ */
+void OH_Input_CursorConfig_Destroy(Input_CursorConfig** cursorConfig);
+
+/**
+ * @brief Obtains the followSystem of the cursorConfig.
+ *
+ * @param cursorConfig Pointer to an {@link Input_CursorConfig} object.
+ * @param followSystem Pointer of the config whether to adjust the cursor size based on system settings
+ * @return OH_Input_CursorConfig_IsFollowSystem function result code.
+ *         {@link INPUT_SUCCESS} if the operation is successful;
+ *         {@link INPUT_PARAMETER_ERROR} The cursorOptions or followSystem the is NULL.
+ * @since 22
+ */
+Input_Result OH_Input_CursorConfig_IsFollowSystem(Input_CursorConfig *cursorConfig, bool *followSystem);
+
+/**
+ * @brief Sets the custom cursor style.
+ *
+ * @param windowId Window ID. The value is an integer greater than or equal to 0.
+ * @param customCursor Pointer to an {@link Input_CustomCursor} object.
+ * @param cursorConfig Pointer to an {@link cursorConfig} object.
+ * @return OH_Input_SetCustomCursor function result code.
+ *         {@link INPUT_SUCCESS} if the operation is successful;
+ *         {@link INPUT_PARAMETER_ERROR} if window ID is abnormal or customCursor is invalid;
+ *         {@link INPUT_INVALID_WINDOWID} if window ID is invaild.
+ *         {@link INPUT_DEVICE_NOT_SUPPORTED} Capability not supported.
+ *         {@link INPUT_SERVICE_EXCEPTION} if the service is exception.
+ * @since 22
+ */
+Input_Result OH_Input_SetCustomCursor(int32_t windowId, Input_CustomCursor* customCursor,
+                                      Input_CursorConfig* cursorConfig);
+
+/**
+ * @brief Bind the stylus to the display.
+ *
+ * @permission ohos.permission.INPUT_DEVICE_CONFIGURATOR
+ * @param inputDeviceId Input device id.
+ * @param displayId Display id.
+ * @return OH_Input_BindInputDeviceToDisplay function api result code.
+ *         {@link INPUT_SUCCESS} if the operation is successful.
+ *         {@link INPUT_PERMISSION_DENIED} Permission verification failed.
+ *         {@link INPUT_PARAMETER_ERROR} The input device does not exist or
+ *         the display does not exist or the input device is not a stylus.
+ *         {@link INPUT_SERVICE_EXCEPTION} if the service is exception.
+ * @since 24
+ */
+Input_Result OH_Input_BindInputDeviceToDisplay(int32_t inputDeviceId, int32_t displayId);
 #ifdef __cplusplus
 }
 #endif

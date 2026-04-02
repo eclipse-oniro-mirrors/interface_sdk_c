@@ -490,7 +490,7 @@ OH_AVErrCode OH_AVPlayer_SetLooping(OH_AVPlayer *player, bool loop);
  *         or player SetPlayerCallback failed.
  * @since 11
  * @deprecated since 12
- * @useinstead {@link OH_AVPlayer_SetPlayerOnInfoCallback} {@link OH_AVPlayer_SetPlayerOnErrorCallback}
+ * @useinstead {@link OH_AVPlayer_SetOnInfoCallback} {@link OH_AVPlayer_SetOnErrorCallback}
  * @version 1.0
  */
 OH_AVErrCode OH_AVPlayer_SetPlayerCallback(OH_AVPlayer *player, AVPlayerCallback callback);
@@ -600,6 +600,7 @@ OH_AVErrCode OH_AVPlayer_SetDecryptionConfig(OH_AVPlayer *player, MediaKeySessio
  * @param userData Pointer to user specific data.
  * @return Function result code.
  *         {@link AV_ERR_OK} if the execution is successful.
+ *         {@link AV_ERR_NO_MEMORY} if memory alloc failed.
  *         {@link AV_ERR_INVALID_VAL} if input player is null or player SetOnInfoCallback failed.
  * @since 12
  */
@@ -613,6 +614,7 @@ OH_AVErrCode OH_AVPlayer_SetOnInfoCallback(OH_AVPlayer *player, OH_AVPlayerOnInf
  * @param userData Pointer to user specific data.
  * @return Function result code.
  *         {@link AV_ERR_OK} if the execution is successful.
+ *         {@link AV_ERR_NO_MEMORY} if memory alloc failed.
  *         {@link AV_ERR_INVALID_VAL} if input player is null or player SetOnErrorCallback failed.
  * @since 12
  */
@@ -649,8 +651,8 @@ OH_AVErrCode OH_AVPlayer_SetVolumeMode(OH_AVPlayer *player, OH_AudioStream_Volum
  *         {@link AV_ERR_INVALID_VAL}:The value of <b>player</b> is a null pointer or
  *                                    the value of <b>loudnessGain</b> is invalid.
  *         {@link AV_ERR_INVALID_STATE}: The function is called in an incorrect state. or the stream usage of
- *                                      audioRendererInfo is not one of {@link StreamUsage#STREAM_USAGE_MUSIC},
- *                                 {@link StreamUsage#STREAM_USAGE_MOVIE} or {@link StreamUsage#STREAM_USAGE_AUDIOBOOK}.
+ *                                      audioRendererInfo is not one of {@link OH_AudioStream_Usage#AUDIOSTREAM_USAGE_MUSIC},
+ *                                 {@link OH_AudioStream_Usage#AUDIOSTREAM_USAGE_MOVIE} or {@link OH_AudioStream_Usage#AUDIOSTREAM_USAGE_AUDIOBOOK}.
  *         {@link AV_ERR_SERVICE_DIED}:  System errors such as media service breakdown.
  * @since 21
  */
@@ -707,6 +709,7 @@ OH_AVFormat *OH_AVPlayer_GetTrackDescription(OH_AVPlayer *player, uint32_t index
 
 /**
  * @brief Get the statistic metrics info of current player.
+ *     This API can be called only when the AVPlayer is in the prepared, playing, paused, completed, or stopped state.
  *     It should be noted that the life cycle of the OH_AVFormat instance pointed to by the return value * needs
  *     to be manually released by the caller.
  * @param {OH_AVPlayer*} player Pointer to an OH_AVPlayer instance
@@ -871,7 +874,7 @@ OH_AVFormat *OH_AVSeiMessage_GetSei(OH_AVSeiMessageArray *message, uint32_t inde
  *         {@link AV_ERR_OPERATE_NOT_PERMIT} if Operation not allowed.
  *         {@link AV_ERR_SUPER_RESOLUTION_UNSUPPORTED} if Super resolution is not supported.
  *         {@link AV_ERR_SUPER_RESOLUTION_NOT_ENABLED} if Missing enable super resolution feature in{@link
- *          PlaybackStrategy}.
+ *          OH_AVPlaybackStrategy}.
  * @since 23
  */
 OH_AVErrCode OH_AVPlayer_SetTargetVideoWindowSize(OH_AVPlayer *player, int32_t width, int32_t height);
@@ -879,7 +882,7 @@ OH_AVErrCode OH_AVPlayer_SetTargetVideoWindowSize(OH_AVPlayer *player, int32_t w
 /**
  * @brief Enable or disable super-resolution dynamically. This API can be called when the AVPlayer is in the
  * initialized, prepared, playing, paused, completed, or stopped state.
- * Must enable super-resolution feature in {@link PlaybackStrategy} before calling prepare.
+ * Must enable super-resolution feature in {@link OH_AVPlaybackStrategy} before calling prepare.
  * @param player Pointer to an OH_AVPlayer instance.
  * @param enabled true: super-resolution enabled; false: super-resolution disabled.
  * @return Function result code.
@@ -888,7 +891,7 @@ OH_AVErrCode OH_AVPlayer_SetTargetVideoWindowSize(OH_AVPlayer *player, int32_t w
  *         {@link AV_ERR_OPERATE_NOT_PERMIT} if Operation not allowed.
  *         {@link AV_ERR_SUPER_RESOLUTION_UNSUPPORTED} if Super resolution is not supported.
  *         {@link AV_ERR_SUPER_RESOLUTION_NOT_ENABLED} if Missing enable super resolution feature in{@link
- *          PlaybackStrategy}.
+ *          OH_AVPlaybackStrategy}.
  * @since 23
  */
 OH_AVErrCode OH_AVPlayer_SetVideoSuperResolutionEnable(OH_AVPlayer *player, bool enabled);

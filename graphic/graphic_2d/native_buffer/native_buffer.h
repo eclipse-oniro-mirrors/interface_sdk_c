@@ -74,9 +74,21 @@ typedef enum OH_NativeBuffer_Usage {
      * @since 20
      */
     NATIVEBUFFER_USAGE_MEM_MMZ_CACHE = (1ULL << 5),
+    /**
+     * @since 12
+     */
     NATIVEBUFFER_USAGE_HW_RENDER = (1ULL << 8),       /// < For GPU write case */
+    /**
+     * @since 12
+     */
     NATIVEBUFFER_USAGE_HW_TEXTURE = (1ULL << 9),      /// < For GPU read case */
+    /**
+     * @since 12
+     */
     NATIVEBUFFER_USAGE_CPU_READ_OFTEN = (1ULL << 16), /// < Often be mapped for direct CPU reads */
+    /**
+     * @since 12
+     */
     NATIVEBUFFER_USAGE_ALIGNMENT_512 = (1ULL << 18),  /// < 512 bytes alignment */
 } OH_NativeBuffer_Usage;
 
@@ -114,6 +126,9 @@ typedef struct {
     int32_t height;          ///< Height in pixels
     int32_t format;          ///< One of PixelFormat
     int32_t usage;           ///< Combination of buffer usage
+    /**
+     * @since 10
+     */
     int32_t stride;          ///< the stride of memory in bytes
 } OH_NativeBuffer_Config;
 

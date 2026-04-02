@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2021-2025 Huawei Device Co., Ltd.
+ * Copyright (c) 2021-2026 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -42,6 +42,7 @@
 
 #include "drawing_error_code.h"
 #include "drawing_types.h"
+#include "drawing_path_iterator.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -154,7 +155,7 @@ OH_Drawing_Path* OH_Drawing_PathCreate(void);
  * @brief Creates an <b>OH_Drawing_Path</b> copy object.
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @param path Indicates the pointer to an <b>OH_Drawing_Rect</b> object.
+ * @param path Indicates the pointer to an <b>OH_Drawing_Path</b> object.
  * @return Returns the pointer to the <b>OH_Drawing_Path</b> object created.
  * @since 12
  * @version 1.0
@@ -560,6 +561,61 @@ void OH_Drawing_PathAddCircle(OH_Drawing_Path* path,
  * @version 1.0
  */
 bool OH_Drawing_PathBuildFromSvgString(OH_Drawing_Path* path, const char* str);
+
+/**
+ * @brief Convert path to an SVG string.
+ *
+ * @param path Indicates the pointer to an <b>OH_Drawing_Path</b> object.
+ * @param str Indicates the SVG string. API users are responsible for allocating and freeing memory.
+ * @param strSize Indicates the SVG string memory size in bytes.
+ * @return Returns the error code.
+ *         Returns {@link OH_DRAWING_SUCCESS} if the operation is successful.
+ *         Returns {@link OH_DRAWING_ERROR_INVALID_PARAMETER} if path or strSize is nullptr.
+ * @since 26.0.0
+ */
+OH_Drawing_ErrorCode OH_Drawing_PathConvertToSvgString(const OH_Drawing_Path* path, char* str, size_t* strSize);
+
+/**
+ * @brief Get path point data.
+ *
+ * @param path Indicates the pointer to an <b>OH_Drawing_Path</b> object.
+ * @param points Indicates the path point array.
+ * @param count Indicates the size of point array.
+ * @return Returns the error code.
+ *         Returns {@link OH_DRAWING_SUCCESS} if the operation is successful.
+ *         Returns {@link OH_DRAWING_ERROR_INVALID_PARAMETER} if path or count is nullptr.
+ * @since 26.0.0
+ */
+OH_Drawing_ErrorCode OH_Drawing_PathGetPointData(
+    const OH_Drawing_Path* path, OH_Drawing_Point2D* points, uint32_t* count);
+
+/**
+ * @brief Get path verb data.
+ *
+ * @param path Indicates the pointer to an <b>OH_Drawing_Path</b> object.
+ * @param verbs Indicates the path verb array.
+ * @param count Indicates the size of verb array.
+ * @return Returns the error code.
+ *         Returns {@link OH_DRAWING_SUCCESS} if the operation is successful.
+ *         Returns {@link OH_DRAWING_ERROR_INVALID_PARAMETER} if path or count is nullptr.
+ * @since 26.0.0
+ */
+OH_Drawing_ErrorCode OH_Drawing_PathGetVerbData(const OH_Drawing_Path* path, OH_Drawing_PathIteratorVerb* verbs,
+    uint32_t* count);
+
+/**
+ * @brief Get path conic weight data.
+ *
+ * @param path Indicates the pointer to an <b>OH_Drawing_Path</b> object.
+ * @param conicWeights Indicates the path conic weight array.
+ * @param count Indicates the size of conic weight array.
+ * @return Returns the error code.
+ *         Returns {@link OH_DRAWING_SUCCESS} if the operation is successful.
+ *         Returns {@link OH_DRAWING_ERROR_INVALID_PARAMETER} if path or count is nullptr.
+ * @since 26.0.0
+ */
+OH_Drawing_ErrorCode OH_Drawing_PathGetConicWeightData(
+    const OH_Drawing_Path* path, float* conicWeights, uint32_t* count);
 
 /**
  * @brief Return the status that point (x, y) is contained by path.

@@ -33,6 +33,10 @@
   },
   {
     "first_introduced": "23",
+    "name": "OH_AVMediaSource_Destroy"
+  },
+  {
+    "first_introduced": "23",
     "name": "OH_AVMediaSource_SetMimeType"
   },
   {

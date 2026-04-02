@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2024 Huawei Device Co., Ltd.
+ * Copyright (c) 2024-2025 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -41,69 +41,12 @@
 #define NATIVE_AVMETADATA_H
 
 #include <stdint.h>
+#include "native_avsession_errors.h"
+#include "native_avsession_base.h"
 
 #ifdef __cplusplus
 extern "C" {
 #endif
-
-/**
- * @brief AVMetadata error code
- *
- * @since 13
- * @version 1.0
- */
-typedef enum {
-    /**
-     * @error The call was successful.
-     */
-    AVMETADATA_SUCCESS = 0,
-
-    /**
-     * @error This means that the function was executed with an invalid input parameter.
-     */
-    AVMETADATA_ERROR_INVALID_PARAM = 1,
-
-    /**
-     * @error This means there is no memory left.
-     */
-    AVMETADATA_ERROR_NO_MEMORY = 2,
-} AVMetadata_Result;
-
-/**
- * @brief Defines the skip interval when fastforward or rewind.
- *
- * @since 13
- * @version 1.0
- */
-typedef enum {
-    /**
-     * @brief 10 seconds
-     */
-    SECONDS_10 = 10,
-
-    /**
-     * @brief 15 seconds
-     */
-    SECONDS_15 = 15,
-
-    /**
-     * @brief 30 seconds
-     */
-    SECONDS_30 = 30,
-} AVMetadata_SkipIntervals;
-
-/**
- * @brief Display tag
- *
- * @since 13
- * @version 1.0
- */
-typedef enum {
-    /**
-     * @brief Indicate the audio vivid property.
-     */
-    AVSESSION_DISPLAYTAG_AUDIO_VIVID = 1,
-} AVMetadata_DisplayTag;
 
 /**
  * @brief Declaring the avmetadata builder.
@@ -136,7 +79,7 @@ typedef struct OH_AVMetadataStruct OH_AVMetadata;
 AVMetadata_Result OH_AVMetadataBuilder_Create(OH_AVMetadataBuilder** builder);
 
 /**
- * @brief Destroy a bulder.
+ * @brief Destroy a builder.
  *
  * @param builder The metadata builder instance pointer
  * @return Function result code:
@@ -340,10 +283,24 @@ AVMetadata_Result OH_AVMetadataBuilder_SetSkipIntervals(OH_AVMetadataBuilder* bu
 AVMetadata_Result OH_AVMetadataBuilder_SetDisplayTags(OH_AVMetadataBuilder* builder, int32_t tags);
 
 /**
- * @brief Create the avmetadta.
+ * @brief Set the protocols supported
  *
  * @param builder The metadata builder instance pointer
- * @param avMetadata Pointer to a viriable to receive the avMetadata object.
+ * @param filter The protocols supported by this session,if not set, the default is {@link TYPE_CAST_PLUS_STREAM}
+ * @return Function result code:
+ *         {@link AVMETADATA_SUCCESS} If the execution is successful.
+ *         {@link AVMETADATA_ERROR_INVALID_PARAM}:
+ *                                                 1.The param of builder is nullptr;
+ *                                                 2.The param of filter is invalid.
+ * @since 23
+ */
+AVMetadata_Result OH_AVMetadataBuilder_SetFilter(OH_AVMetadataBuilder* builder, uint32_t filter);
+
+/**
+ * @brief Create the avmetadata.
+ *
+ * @param builder The metadata builder instance pointer
+ * @param avMetadata Pointer to a variable to receive the avMetadata object.
  * @return Function result code:
  *         {@link AVMETADATA_SUCCESS} If the execution is successful.
  *         {@link AVMETADATA_ERROR_NO_MEMORY} No memory to allocate a new instance.
@@ -356,9 +313,9 @@ AVMetadata_Result OH_AVMetadataBuilder_GenerateAVMetadata(OH_AVMetadataBuilder* 
     OH_AVMetadata** avMetadata);
 
 /**
- * @brief Request to release the avmetadta.
+ * @brief Request to release the avmetadata.
  *
- * @param avMetadata Pointer to a viriable to receive the avMetadata object.
+ * @param avMetadata Pointer to a variable to receive the avMetadata object.
  * @return Function result code:
  *         {@link AVMETADATA_SUCCESS} If the execution is successful.
  *         {@link AVMETADATA_ERROR_INVALID_PARAM} The param of avMetadata is nullptr.

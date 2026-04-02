@@ -393,6 +393,12 @@ typedef enum {
     JSVM_MEMORY_PRESSURE_LEVEL_MODERATE,
     /** critical pressure. */
     JSVM_MEMORY_PRESSURE_LEVEL_CRITICAL,
+    /**
+     * Notifies that the system is running low on memory and triggers garbage collection immediately.
+     *
+     * @since 22
+     */
+    JSVM_MEMORY_PRESSURE_LEVEL_LOW_MEMORY,
 } JSVM_MemoryPressureLevel;
 
 /**
@@ -430,6 +436,14 @@ typedef enum {
     JSVM_COMPILE_COMPILE_PROFILE,
     /** switch for source map support. */
     JSVM_COMPILE_ENABLE_SOURCE_MAP,
+    /** background deserialize code cache result.
+     * @since 24
+     */
+    JSVM_COMPILE_BACKGROUND_DESERIALIZE_RESULT,
+    /** whether the code cache is rejected.
+     * @since 24
+     */
+    JSVM_COMPILE_CODE_CACHE_REJECTED,
 } JSVM_CompileOptionId;
 
 /**
@@ -1025,6 +1039,14 @@ typedef enum {
     /** Scope check. */
     JSVM_SCOPE_CHECK,
 } JSVM_DebugOption;
+
+/**
+ * @brief To represent a JavaScript background deserialize result.
+ *
+ * @since 24
+ */
+typedef struct JSVM_DeserializeResult__* JSVM_DeserializeResult;
+
 /** @} */
 #endif /* ARK_RUNTIME_JSVM_JSVM_TYPE_H */
 

@@ -540,6 +540,76 @@ extern const char *OH_AVCODEC_MIMETYPE_VIDEO_H263;
 extern const char *OH_AVCODEC_MIMETYPE_VIDEO_VC1;
 
 /**
+* @brief Enumerates the MIME type of video AV1 codec.
+ *
+ * @since 23
+ * */
+extern const char *OH_AVCODEC_MIMETYPE_VIDEO_AV1;
+ 
+/**
+ * @brief Enumerates the MIME type of video VP9 codec.
+ *
+ * @since 23
+ */
+extern const char *OH_AVCODEC_MIMETYPE_VIDEO_VP9;
+
+/**
+ * @brief Enumerates the MIME type of video VP8 codec.
+ *
+ * @since 23
+ */
+extern const char *OH_AVCODEC_MIMETYPE_VIDEO_VP8;
+
+/**
+ * @brief Enumerates the MIME type of video RV30 codec.
+ *
+ * @since 23
+ * */
+extern const char *OH_AVCODEC_MIMETYPE_VIDEO_RV30;
+
+/**
+ * @brief Enumerates the MIME type of video RV40 codec.
+ *
+ * @since 23
+ * */
+extern const char *OH_AVCODEC_MIMETYPE_VIDEO_RV40;
+ 
+/**
+ * @brief Enumerates the MIME type of video WVC1 codec.
+ *
+ * @since 23
+ * */
+extern const char *OH_AVCODEC_MIMETYPE_VIDEO_WVC1;
+ 
+/**
+ * @brief Enumerates the MIME type of video DV codec.
+ *
+ * @since 23
+ * */
+extern const char *OH_AVCODEC_MIMETYPE_VIDEO_DVVIDEO;
+ 
+/**
+ * @brief Enumerates the MIME type of video raw.
+ *
+ * @since 23
+ * */
+extern const char *OH_AVCODEC_MIMETYPE_VIDEO_RAWVIDEO;
+
+/**
+ * @brief Enumerates the MIME type of video MPEG1 codec.
+ *
+ * @since 23
+ * */
+extern const char *OH_AVCODEC_MIMETYPE_VIDEO_MPEG1;
+
+/**
+ * @brief Enumerates the MIME type of video Cinepak codec.
+ *
+ * @since 24
+ * */
+extern const char *OH_AVCODEC_MIMETYPE_VIDEO_CINEPAK;
+
+/**
  * @brief Enumerates the MIME type of video MSVIDEO1 codec.
  *
  * @since 22
@@ -985,6 +1055,19 @@ extern const char *OH_MD_KEY_VIDEO_ENCODER_TEMPORAL_GOP_SIZE;
  */
 extern const char *OH_MD_KEY_VIDEO_ENCODER_TEMPORAL_GOP_REFERENCE_MODE;
 /**
+ * @brief Key for the temporal layer ID within a Group of Pictures (GOP), the value type is int32_t.
+ * It is specific to video encoders and is available only when temporal level sacle is enabled.
+ * To retrieve the value associated with this key:
+ * 1. Obtain the encoded stream information (AVBuffer) via
+ *  {@link OH_AVCodecOnNewOutputBuffer} or {@link OH_VideoEncoder_GetOutputBuffer}.
+ * 2. Retrieve the parameter information (AVFormat) from the buffer
+ *  using {@link OH_AVBuffer_GetParameter}.
+ * 3. Use {@link OH_AVFormat_GetIntValue} with this key to get the corresponding value.
+ *
+ * @since 26.0.0
+ */
+extern const char *OH_MD_KEY_VIDEO_ENCODER_TEMPORAL_LAYER_ID;
+/**
  * @brief Key for describing the count of used long-term reference frames, value type is int32_t, must be within the
  * supported range. To get supported range, you should query whether the capability is supported through the interface
  * {@link OH_AVCapability_GetFeatureProperties} with enum {@link VIDEO_ENCODER_LONG_TERM_REFERENCE}, otherwise, not set
@@ -1378,6 +1461,40 @@ extern const char *OH_MD_KEY_VIDEO_NATIVE_BUFFER_FORMAT;
 extern const char *OH_MD_KEY_BUFFER_SKIP_SAMPLES_INFO;
 
 /**
+ * @brief Key to enable {@link OH_MD_KEY_BUFFER_SKIP_SAMPLES_INFO} in audio decoder,
+ * value type is int32_t (0 or 1): 1 is enabled, 0 is disabled.
+ *
+ * This is an optional key, default is 0.
+ *
+ * @since 24
+ */
+extern const char *OH_MD_KEY_ENABLE_BUFFER_SKIP_SAMPLES;
+
+/**
+ * @brief Key for latitude, value type is float, The range is [-90.0, 90.0].
+ * Represents the latitude of the geographic location.
+ *
+ * @since 24
+ */
+extern const char *OH_MD_KEY_LATITUDE;
+
+/**
+ * @brief Key for longitude, value type is float, The range is [-180.0, 180.0].
+ * Represents the longitude of the geographic location.
+ *
+ * @since 24
+ */
+extern const char *OH_MD_KEY_LONGITUDE;
+
+/**
+ * @brief Key for altitude, value type is float.
+ * This is an optional key. Represents the altitude of the geographic location.
+ *
+ * @since 24
+ */
+extern const char *OH_MD_KEY_ALTITUDE;
+
+/**
  * @brief Media type.
  *
  * @syscap SystemCapability.Multimedia.Media.CodecBase
@@ -1581,6 +1698,46 @@ typedef enum OH_VC1Profile {
 } OH_VC1Profile;
 
 /**
+ * @brief AV1 Profile
+ *
+ * @since 23
+ */
+typedef enum OH_AV1Profile {
+    /** Main profile */
+    AV1_PROFILE_MAIN = 0,
+    /** High profile */
+    AV1_PROFILE_HIGH = 1,
+    /** Professional profile */
+    AV1_PROFILE_PROFESSIONAL = 2,
+} OH_AV1Profile;
+
+/**
+* @brief VP9 Profile
+*
+* @since 23
+*/
+typedef enum OH_VP9Profile {
+    /** 0 profile */
+    VP9_PROFILE_0 = 0,
+    /** 1 profile */
+    VP9_PROFILE_1 = 1,
+    /** 2 profile */
+    VP9_PROFILE_2 = 2,
+    /** 3 profile */
+    VP9_PROFILE_3 = 3,
+} OH_VP9Profile;
+
+/**
+* @brief WVC1 Profile.
+*
+* @since 23
+*/
+typedef enum OH_WVC1Profile {
+    /** Advanced profile */
+    WVC1_PROFILE_ADVANCED = 0,
+ } OH_WVC1Profile;
+
+/**
  * @brief WMV3 Profile
  *
  * @since 22
@@ -1627,6 +1784,11 @@ typedef enum OH_AVOutputFormat {
      * @since 20
      */
     AV_OUTPUT_FORMAT_FLAC = 12,
+    /**
+     * The muxer output ogg file format.
+     * @since 23
+     */
+    AV_OUTPUT_FORMAT_OGG = 13,
 } OH_AVOutputFormat;
 
 /**
@@ -1941,6 +2103,116 @@ typedef enum OH_VC1Level {
 } OH_VC1Level;
 
 /**
+ * @brief AV1 Level.
+ *
+ * @since 23
+ */
+typedef enum OH_AV1Level {
+    /** 2.0 level */
+    AV1_LEVEL_20 = 0,
+    /** 2.1 level */
+    AV1_LEVEL_21 = 1,
+    /** 2.2 level */
+    AV1_LEVEL_22 = 2,
+    /** 2.3 level */
+    AV1_LEVEL_23 = 3,
+    /** 3.0 level */
+    AV1_LEVEL_30 = 4,
+    /** 3.1 level */
+    AV1_LEVEL_31 = 5,
+    /** 3.2 level */
+    AV1_LEVEL_32 = 6,
+    /** 3.3 level */
+    AV1_LEVEL_33 = 7,
+    /** 4.0 level */
+    AV1_LEVEL_40 = 8,
+    /** 4.1 level */
+    AV1_LEVEL_41 = 9,
+    /** 4.2 level */
+    AV1_LEVEL_42 = 10,
+    /** 4.3 level */
+    AV1_LEVEL_43 = 11,
+    /** 5.0 level */
+    AV1_LEVEL_50 = 12,
+    /** 5.1 level */
+    AV1_LEVEL_51 = 13,
+    /** 5.2 level */
+    AV1_LEVEL_52 = 14,
+    /** 5.3 level */
+    AV1_LEVEL_53 = 15,
+    /** 6.0 level */
+    AV1_LEVEL_60 = 16,
+    /** 6.1 level */
+    AV1_LEVEL_61 = 17,
+    /** 6.2 level */
+    AV1_LEVEL_62 = 18,
+    /** 6.3 level */
+    AV1_LEVEL_63 = 19,
+    /** 7.0 level */
+    AV1_LEVEL_70 = 20,
+    /** 7.1 level */
+    AV1_LEVEL_71 = 21,
+    /** 7.2 level */
+    AV1_LEVEL_72 = 22,
+    /** 7.3 level */
+    AV1_LEVEL_73 = 23,
+} OH_AV1Level;
+
+/**
+ * @brief VP9 Level.
+ *
+ * @since 23
+ */
+typedef enum OH_VP9Level {
+    /** 1 level */
+    VP9_LEVEL_1 = 0,
+    /** 1.1 level */
+    VP9_LEVEL_11 = 1,
+    /** 2 level */
+    VP9_LEVEL_2 = 2,
+    /** 2.1 level */
+    VP9_LEVEL_21 = 3,
+    /** 3 level */
+    VP9_LEVEL_3 = 4,
+    /** 3.1 level */
+    VP9_LEVEL_31 = 5,
+    /** 4 level */
+    VP9_LEVEL_4 = 6,
+    /** 4.1 level */
+    VP9_LEVEL_41 = 7,
+    /** 5 level */
+    VP9_LEVEL_5 = 8,
+    /** 5.1 level */
+    VP9_LEVEL_51 = 9,
+    /** 5.2 level */
+    VP9_LEVEL_52 = 10,
+    /** 6 level */
+    VP9_LEVEL_6 = 11,
+    /** 6.1 level */
+    VP9_LEVEL_61 = 12,
+    /** 6.2 level */
+    VP9_LEVEL_62 = 13,
+} OH_VP9Level;
+
+/**
+ * @brief WVC1 level.
+ *
+ * @since 23
+ */
+typedef enum OH_WVC1Level {
+    /** L0 level */
+    WVC1_LEVEL_L0 = 0,
+    /** L1 level */
+    WVC1_LEVEL_L1 = 1,
+    /** L2 level */
+    WVC1_LEVEL_L2 = 2,
+    /** L3 level */
+    WVC1_LEVEL_L3 = 3,
+    /** L4 level */
+    WVC1_LEVEL_L4 = 4,
+} OH_WVC1Level;
+
+/**
  * @brief WMV3 Level.
  *
  * @since 22
@@ -1988,7 +2260,11 @@ typedef enum OH_BitrateMode {
     /** Stable Quality RateControl.
      * @since 20
      */
-    BITRATE_MODE_SQR = 3
+    BITRATE_MODE_SQR = 3,
+    /** CBR for High Quality.
+     * @since 26.0.0
+     */
+    BITRATE_MODE_CBR_HIGH_QUALITY = 4
 } OH_BitrateMode;
 
 #ifdef __cplusplus

@@ -211,8 +211,8 @@ Camera_ErrorCode OH_CameraManager_GetSupportedCameraOutputCapability(Camera_Mana
  * @brief Gets supported output capability for specific camera and specific sceneMode.
  *
  * @param cameraManager the {@link Camera_Manager} instance.
- * @param camera the {@link Camera_Device} to be queryed.
- * @param sceneMode the {@link Camera_SceneMode} to be queryed.
+ * @param camera the {@link Camera_Device} to be queried.
+ * @param sceneMode the {@link Camera_SceneMode} to be queried.
  * @param cameraOutputCapability the supported {@link Camera_OutputCapability} will be filled
  *        if the method call succeeds.
  * @return {@link #CAMERA_OK} if the method call succeeds.
@@ -312,7 +312,7 @@ Camera_ErrorCode OH_CameraManager_CreateCameraInput_WithPositionAndType(Camera_M
  *
  * @param cameraManager the {@link Camera_Manager} instance.
  * @param profile the {@link Camera_Profile} to create {@link Camera_PreviewOutput}.
- * @param surfaceId the which use to create {@link Camera_PreviewOutput}.
+ * @param surfaceId the identifier used to create {@link Camera_PreviewOutput}.
  * @param previewOutput the {@link Camera_PreviewOutput} will be created if the method call succeeds.
  * @return {@link #CAMERA_OK} if the method call succeeds.
  *         {@link #INVALID_ARGUMENT} if parameter missing or parameter type incorrect.
@@ -323,10 +323,25 @@ Camera_ErrorCode OH_CameraManager_CreatePreviewOutput(Camera_Manager* cameraMana
     const char* surfaceId, Camera_PreviewOutput** previewOutput);
 
 /**
+ * @brief Create a defer preview output instance.The caller must call {@link OH_PreviewOutput_Release}
+ *     to free the memory of the output.
+ *
+ * @param cameraManager the {@link Camera_Manager} instance.
+ * @param profile the {@link Camera_Profile} to create {@link Camera_PreviewOutput}.
+ * @param previewOutput the {@link Camera_PreviewOutput} will be created if the method call succeeds.
+ * @return {@link #CAMERA_OK} if the method call succeeds.
+ *         {@link #CAMERA_INVALID_ARGUMENT} if parameter missing or parameter type incorrect.
+ *         {@link #CAMERA_SERVICE_FATAL_ERROR} if camera service fatal error.
+ * @since 24
+ */
+Camera_ErrorCode OH_CameraManager_CreateDeferredPreviewOutput(const Camera_Manager* cameraManager,
+    const Camera_Profile* profile, Camera_PreviewOutput** previewOutput);
+
+/**
  * @brief Create a preview output instance used in preconfig.
  *
  * @param cameraManager the {@link Camera_Manager} instance.
- * @param surfaceId the which use to create {@link Camera_PreviewOutput}.
+ * @param surfaceId the identifier used to create {@link Camera_PreviewOutput}.
  * @param previewOutput the {@link Camera_PreviewOutput} will be created if the method call succeeds.
  * @return {@link #CAMERA_OK} if the method call succeeds.
  *         {@link #CAMERA_INVALID_ARGUMENT} if parameter missing or parameter type incorrect.
@@ -341,7 +356,7 @@ Camera_ErrorCode OH_CameraManager_CreatePreviewOutputUsedInPreconfig(Camera_Mana
  *
  * @param cameraManager the {@link Camera_Manager} instance.
  * @param profile the {@link Camera_Profile} to create {@link Camera_PhotoOutput}.
- * @param surfaceId the which use to create {@link Camera_PhotoOutput}.
+ * @param surfaceId the identifier used to create {@link Camera_PhotoOutput}.
  * @param photoOutput the {@link Camera_PhotoOutput} will be created if the method call succeeds.
  * @return {@link #CAMERA_OK} if the method call succeeds.
  *         {@link #INVALID_ARGUMENT} if parameter missing or parameter type incorrect.
@@ -355,7 +370,7 @@ Camera_ErrorCode OH_CameraManager_CreatePhotoOutput(Camera_Manager* cameraManage
  * @brief Create a photo output instance used in preconfig.
  *
  * @param cameraManager the {@link Camera_Manager} instance.
- * @param surfaceId the which use to create {@link Camera_PhotoOutput}.
+ * @param surfaceId the identifier used to create {@link Camera_PhotoOutput}.
  * @param photoOutput the {@link Camera_PhotoOutput} will be created if the method call succeeds.
  * @return {@link #CAMERA_OK} if the method call succeeds.
  *         {@link #CAMERA_INVALID_ARGUMENT} if parameter missing or parameter type incorrect.
@@ -384,7 +399,7 @@ Camera_ErrorCode OH_CameraManager_CreatePhotoOutputWithoutSurface(Camera_Manager
  *
  * @param cameraManager the {@link Camera_Manager} instance.
  * @param profile the {@link Camera_VideoProfile} to create {@link Camera_VideoOutput}.
- * @param surfaceId the which use to create {@link Camera_VideoOutput}.
+ * @param surfaceId the identifier used to create {@link Camera_VideoOutput}.
  * @param videoOutput the {@link Camera_VideoOutput} will be created if the method call succeeds.
  * @return {@link #CAMERA_OK} if the method call succeeds.
  *         {@link #INVALID_ARGUMENT} if parameter missing or parameter type incorrect.
@@ -398,7 +413,7 @@ Camera_ErrorCode OH_CameraManager_CreateVideoOutput(Camera_Manager* cameraManage
  * @brief Create a video output instance used in preconfig.
  *
  * @param cameraManager the {@link Camera_Manager} instance.
- * @param surfaceId the which use to create {@link Camera_VideoOutput}.
+ * @param surfaceId the identifier used to create {@link Camera_VideoOutput}.
  * @param videoOutput the {@link Camera_VideoOutput} will be created if the method call succeeds.
  * @return {@link #CAMERA_OK} if the method call succeeds.
  *         {@link #CAMERA_INVALID_ARGUMENT} if parameter missing or parameter type incorrect.
@@ -423,9 +438,24 @@ Camera_ErrorCode OH_CameraManager_CreateMetadataOutput(Camera_Manager* cameraMan
     const Camera_MetadataObjectType* profile, Camera_MetadataOutput** metadataOutput);
 
 /**
+ * @brief Create a metadata output with object types instance.
+ *
+ * @param cameraManager the {@link Camera_Manager} instance.
+ * @param metadataObjectTypes the {@link Camera_MetadataObjectType} to create {@link Camera_MetadataOutput}.
+ * @param size the size of the {@link Camera_MetadataObjectType}.
+ * @param metadataOutput the {@link Camera_MetadataOutput} will be created if the method call succeeds.
+ * @return {@link #CAMERA_OK} if the method call succeeds.
+ *         {@link #CAMERA_INVALID_ARGUMENT} if parameter missing or parameter type incorrect.
+ *         {@link #CAMERA_SERVICE_FATAL_ERROR} if camera service fatal error.
+ * @since 23
+ */
+Camera_ErrorCode OH_CameraManager_CreateMetadataOutputWithObjectTypes(Camera_Manager* cameraManager,
+    const Camera_MetadataObjectType* metadataObjectTypes, uint32_t size, Camera_MetadataOutput** metadataOutput);
+
+/**
  * @brief Gets supported scene mode for specific camera.
  *
- * @param camera the {@link Camera_Device} to be queryed.
+ * @param camera the {@link Camera_Device} to be queried.
  * @param sceneModes the supported {@link Camera_SceneMode} will be filled if the method call succeeds.
  * @param size the size of supported {@link Camera_SceneMode} list will be filled if the method call succeeds.
  * @return {@link #CAMERA_OK} if the method call succeeds.
@@ -485,6 +515,32 @@ Camera_ErrorCode OH_CameraManager_IsTorchSupportedByTorchMode(Camera_Manager* ca
  */
 Camera_ErrorCode OH_CameraManager_SetTorchMode(Camera_Manager* cameraManager,
     Camera_TorchMode torchMode);
+
+/**
+ * @brief Check whether the device supports the torch level control.
+ *
+ * @param cameraManager the {@link Camera_Manager} instance.
+ * @param isTorchLevelControlSupported whether device supports the torch level control.
+ * @return {@link #CAMERA_OK} if the method call succeeds.
+ *         {@link #CAMERA_INVALID_ARGUMENT} if parameter missing or parameter type incorrect.
+ *         {@link #CAMERA_SERVICE_FATAL_ERROR} if camera service fatal error.
+ * @since 26.0.0
+ */
+Camera_ErrorCode OH_CameraManager_IsTorchLevelControlSupported(const Camera_Manager* cameraManager,
+    bool* isTorchLevelControlSupported);
+
+/**
+ * @brief Set camera torch mode to {@link Camera_TorchMode.CAMERA_TORCH_MODE_ON} with target level.
+ *
+ * @param cameraManager the {@link Camera_Manager} instance.
+ * @param torchLevel the target torch level. The valid values range from 0.0 to 1.0.
+ * @return {@link #CAMERA_OK} if the method call succeeds.
+ *         {@link #CAMERA_INVALID_ARGUMENT} if parameter missing or parameter type incorrect.
+ *         {@link #CAMERA_SERVICE_FATAL_ERROR} if camera service fatal error.
+ * @since 26.0.0
+ */
+Camera_ErrorCode OH_CameraManager_SetTorchModeOnWithLevel(const Camera_Manager* cameraManager,
+    double torchLevel);
 
 /**
  * @brief Queries a specified device based on position and type.

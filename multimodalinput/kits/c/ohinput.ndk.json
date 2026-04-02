@@ -588,6 +588,38 @@
     },
     {
         "first_introduced": "22",
+        "name": "OH_Input_CursorInfo_Create"
+    },
+    {
+        "first_introduced": "22",
+        "name": "OH_Input_CursorInfo_Destroy"
+    },
+    {
+        "first_introduced": "22",
+        "name": "OH_Input_CursorInfo_IsVisible"
+    },
+    {
+        "first_introduced": "22",
+        "name": "OH_Input_CursorInfo_GetStyle"
+    },
+    {
+        "first_introduced": "22",
+        "name": "OH_Input_CursorInfo_GetSizeLevel"
+    },
+    {
+        "first_introduced": "22",
+        "name": "OH_Input_CursorInfo_GetColor"
+    },
+    {
+        "first_introduced": "22",
+        "name": "OH_Input_GetMouseEventCursorInfo"
+    },
+    {
+        "first_introduced": "22",
+        "name": "OH_Input_GetCursorInfo"
+    },
+    {
+        "first_introduced": "22",
         "name": "OH_Input_SetPointerVisible"
     },
     {
@@ -631,35 +663,47 @@
         "name": "OH_Input_SetCustomCursor"
     },
     {
-        "first_introduced": "22",
-        "name": "OH_Input_CursorInfo_Create"
+        "first_introduced": "24",
+        "name": "OH_Input_SetTouchEventPressure"
     },
     {
-        "first_introduced": "22",
-        "name": "OH_Input_CursorInfo_Destroy"
+        "first_introduced": "24",
+        "name": "OH_Input_GetTouchEventPressure"
     },
     {
-        "first_introduced": "22",
-        "name": "OH_Input_CursorInfo_IsVisible"
+        "first_introduced": "24",
+        "name": "OH_Input_SetTouchEventWindowX"
     },
     {
-        "first_introduced": "22",
-        "name": "OH_Input_CursorInfo_GetStyle"
+        "first_introduced": "24",
+        "name": "OH_Input_GetTouchEventWindowX"
     },
     {
-        "first_introduced": "22",
-        "name": "OH_Input_CursorInfo_GetSizeLevel"
+        "first_introduced": "24",
+        "name": "OH_Input_SetTouchEventWindowY"
     },
     {
-        "first_introduced": "22",
-        "name": "OH_Input_CursorInfo_GetColor"
+        "first_introduced": "24",
+        "name": "OH_Input_GetTouchEventWindowY"
     },
     {
-        "first_introduced": "22",
-        "name": "OH_Input_GetMouseEventCursorInfo"
+        "first_introduced": "24",
+        "name": "OH_Input_SetTouchEventDownTime"
     },
     {
-        "first_introduced": "22",
-        "name": "OH_Input_GetCursorInfo"
+        "first_introduced": "24",
+        "name": "OH_Input_GetTouchEventDownTime"
+    },
+    {
+        "first_introduced": "24",
+        "name": "OH_Input_SetTouchEventToolType"
+    },
+    {
+        "first_introduced": "24",
+        "name": "OH_Input_GetTouchEventToolType"
+    },
+    {
+        "first_introduced": "24",
+        "name": "OH_Input_BindInputDeviceToDisplay"
     }
 ]

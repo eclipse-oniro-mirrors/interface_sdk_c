@@ -254,7 +254,7 @@ OH_Drawing_ErrorCode OH_Drawing_RectGetArraySize(OH_Drawing_Array* rectArray, si
  * @return Returns the error code.
  *         Returns {@link OH_DRAWING_SUCCESS} if the operation is successful.
  *         Returns {@link OH_DRAWING_ERROR_INVALID_PARAMETER} if rectArray or rect is nullptr,
- *                 or index is valid.
+ *                 or index is invalid.
  * @since 18
  * @version 1.0
  */
@@ -289,7 +289,7 @@ OH_Drawing_ErrorCode OH_Drawing_RectDestroyArray(OH_Drawing_Array* rectArray);
 OH_Drawing_ErrorCode OH_Drawing_RectContains(OH_Drawing_Rect* rect, const OH_Drawing_Rect* other, bool* isContains);
 
 /**
- * @brief Add the specified values to the left and top boundaried of an <b>OH_Drawing_Rect</b> object.
+ * @brief Add the specified values to the left and top boundaries of an <b>OH_Drawing_Rect</b> object.
  *
  * @param rect Indicates the pointer to an <b>OH_Drawing_Rect</b> object.
  * @param left Indicates the value added to the left boundary of an <b>OH_Drawing_Rect</b> object.

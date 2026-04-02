@@ -117,6 +117,8 @@ Camera_ErrorCode OH_CameraInput_UnregisterCallback(Camera_Input* cameraInput, Ca
  *         {@link #CAMERA_CONFLICT_CAMERA} if can not use camera cause of conflict.
  *         {@link #CAMERA_DEVICE_DISABLED} if camera disabled cause of security reason.
  *         {@link #CAMERA_SERVICE_FATAL_ERROR} if camera service fatal error.
+ *         {@link #CAMERA_MULTI_CAMERA_NOT_SUPPORTED} if multiple cameras cannot be opened simultaneously. [since 24].
+ *         It is suggested to use {@link OH_CameraManager_GetCameraConcurrentInfos} to check the concurrent infos.
  * @since 11
  */
 Camera_ErrorCode OH_CameraInput_Open(Camera_Input* cameraInput);
@@ -131,6 +133,8 @@ Camera_ErrorCode OH_CameraInput_Open(Camera_Input* cameraInput);
  *         {@link #CAMERA_CONFLICT_CAMERA} if can not use camera cause of conflict.
  *         {@link #CAMERA_DEVICE_DISABLED} if camera disabled cause of security reason.
  *         {@link #CAMERA_SERVICE_FATAL_ERROR} if camera service fatal error.
+ *         {@link #CAMERA_MULTI_CAMERA_NOT_SUPPORTED} if multiple cameras cannot be opened simultaneously. [since 24].
+ *         It is suggested to use {@link OH_CameraManager_GetCameraConcurrentInfos} to check the concurrent infos.
  * @since 12
  */
 Camera_ErrorCode OH_CameraInput_OpenSecureCamera(Camera_Input* cameraInput, uint64_t* secureSeqId);
@@ -145,6 +149,8 @@ Camera_ErrorCode OH_CameraInput_OpenSecureCamera(Camera_Input* cameraInput, uint
  *         {@link #CAMERA_CONFLICT_CAMERA} if can not use camera cause of conflict.
  *         {@link #CAMERA_DEVICE_DISABLED} if camera disabled cause of security reason.
  *         {@link #CAMERA_SERVICE_FATAL_ERROR} if camera service fatal error.
+ *         {@link #CAMERA_MULTI_CAMERA_NOT_SUPPORTED} if multiple cameras cannot be opened simultaneously. [since 24].
+ *         It is suggested to use {@link OH_CameraManager_GetCameraConcurrentInfos} to check the concurrent infos.
  * @since 18
  */
 Camera_ErrorCode OH_CameraInput_OpenConcurrentCameras(Camera_Input* cameraInput, Camera_ConcurrentType type);
@@ -205,6 +211,40 @@ Camera_ErrorCode OH_CameraInput_GetPhysicalCameraOrientation(Camera_Input* camer
  * @since 22
  */
 Camera_ErrorCode OH_CameraInput_UsePhysicalCameraOrientation(Camera_Input* cameraInput, bool isUsed);
+
+/**
+ * @brief Camera input occlusion detection result callback.
+ *
+ * @param cameraInput the {@link Camera_Input} which deliver the callback.
+ * @param occlusionDetectionResult the {@link Camera_OcclusionDetectionResult} of the camera.
+ * @since 23
+ */
+typedef void (*OH_CameraInput_OnOcclusionDetectionCallback)(const Camera_Input* cameraInput,
+    Camera_OcclusionDetectionResult occlusionDetectionResult);
+
+/**
+ * @brief Subscribes to occlusion detection callback.
+ *
+ * @param cameraInput the {@link Camera_Input} instance.
+ * @param occlusionDetectionCallback callback used for subscription.
+ * @return {@link #CAMERA_OK} if the method call succeeds.
+ *         {@link #CAMERA_INVALID_ARGUMENT} if parameter missing or parameter type incorrect.
+ * @since 23
+ */
+Camera_ErrorCode OH_CameraInput_RegisterOcclusionDetectionCallback(Camera_Input* cameraInput,
+    OH_CameraInput_OnOcclusionDetectionCallback occlusionDetectionCallback);
+
+/**
+ * @brief Unsubscribes from occlusion detection callback.
+ *
+ * @param cameraInput the {@link Camera_Input} instance.
+ * @param occlusionDetectionCallback callback used for unsubscription.
+ * @return {@link #CAMERA_OK} if the method call succeeds.
+ *         {@link #CAMERA_INVALID_ARGUMENT} if parameter missing or parameter type incorrect.
+ * @since 23
+ */
+Camera_ErrorCode OH_CameraInput_UnregisterOcclusionDetectionCallback(Camera_Input* cameraInput,
+    OH_CameraInput_OnOcclusionDetectionCallback occlusionDetectionCallback);
 
 #ifdef __cplusplus
 }

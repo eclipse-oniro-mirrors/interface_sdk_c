@@ -367,6 +367,13 @@ typedef struct ArkUI_PixelRoundPolicy ArkUI_PixelRoundPolicy;
 typedef struct ArkUI_ShowCounterConfig ArkUI_ShowCounterConfig;
 
 /**
+ * @brief Defines the matrix4 object.
+ *
+ * @since 24
+ */
+typedef struct ArkUI_Matrix4 ArkUI_Matrix4;
+
+/**
  * @brief Defines the text content base controller.
  *
  * @since 23
@@ -385,7 +392,7 @@ typedef struct ArkUI_SelectedDragPreviewStyle ArkUI_SelectedDragPreviewStyle;
  * @since 12
  */
 typedef struct {
-    /** Custom type. */
+    /** Custom type, data of a user-defined type that is passed as a parameter during callbacks. */
     void* userData;
     /** Event callback. */
     void (*callback)(void* userData);
@@ -396,11 +403,11 @@ typedef struct {
  * @since 12
  */
 typedef union {
-    /** Floating-point type. */
+    /** Floating-point type, used to store a floating-point value. */
     float f32;
-    /** Signed integer. */
+    /** Signed integer, used to store a signed integer value. */
     int32_t i32;
-    /** Unsigned integer. */
+    /** Unsigned integer, used to store an unsigned integer value. */
     uint32_t u32;
 } ArkUI_NumberValue;
 
@@ -1995,6 +2002,16 @@ typedef enum {
     ARKUI_ELLIPSIS_MODE_CENTER,
     /** An ellipsis is used at the end of the line of text. */
     ARKUI_ELLIPSIS_MODE_END,
+    /**
+     *@brief An ellipsis is used at the start of the line of text for multiline and single line.
+     *@since 24
+     */
+    ARKUI_ELLIPSIS_MODE_MULTILINE_START,
+    /**
+     *@brief An ellipsis is used at the center of the line of text for multiline and single line.
+     *@since 24
+     */
+    ARKUI_ELLIPSIS_MODE_MULTILINE_CENTER,
 } ArkUI_EllipsisMode;
 
 /**
@@ -2686,6 +2703,11 @@ typedef enum {
      */
     ARKUI_ERROR_CODE_INVALID_STYLED_STRING = 180101,
     /**
+     * @error The gesture recognizer type is not supported.
+     * @since 18
+     */
+    ARKUI_ERROR_CODE_RECOGNIZER_TYPE_NOT_SUPPORTED = 180102,
+    /**
      * @error The uiContext is invalid.
      * @since 18
      */
@@ -2695,11 +2717,6 @@ typedef enum {
      * @since 18
      */
     ARKUI_ERROR_CODE_CALLBACK_INVALID = 190002,
-    /**
-     * @error The gesture recognizer type is not supported.
-     * @since 18
-     */
-    ARKUI_ERROR_CODE_RECOGNIZER_TYPE_NOT_SUPPORTED = 180102,
     /**
      * @error operation is not allowed for current drag drop pharse.
      * @since 19
@@ -2759,24 +2776,6 @@ typedef enum {
     /** The Checkbox checked. */
     ARKUI_ACCESSIBILITY_CHECKED,
 } ArkUI_AccessibilityCheckedState;
-
-/**
- * @brief Define accessible action types.
- *
- * @since 12
- */
-typedef enum {
-    /** click action. */
-    ARKUI_ACCESSIBILITY_ACTION_CLICK = 1 << 0,
-    /** long click action. */
-    ARKUI_ACCESSIBILITY_ACTION_LONG_CLICK = 1 << 1,
-    /** cut action. */
-    ARKUI_ACCESSIBILITY_ACTION_CUT = 1 << 2,
-    /** copy action. */
-    ARKUI_ACCESSIBILITY_ACTION_COPY = 1 << 3,
-    /** paste action. */
-    ARKUI_ACCESSIBILITY_ACTION_PASTE = 1 << 4,
-} ArkUI_AccessibilityActionType;
 
 /**
  * @brief Enumerates the animation playback modes.
@@ -2852,6 +2851,24 @@ typedef enum {
     /** The scroll controller causes the scroll to drive the painting.*/
     ARKUI_SCROLL_SOURCE_ANIMATION,
 } ArkUI_ScrollSource;
+
+/**
+ * @brief Define accessible action types.
+ *
+ * @since 12
+ */
+typedef enum {
+    /** click action. */
+    ARKUI_ACCESSIBILITY_ACTION_CLICK = 1 << 0,
+    /** long click action. */
+    ARKUI_ACCESSIBILITY_ACTION_LONG_CLICK = 1 << 1,
+    /** cut action. */
+    ARKUI_ACCESSIBILITY_ACTION_CUT = 1 << 2,
+    /** copy action. */
+    ARKUI_ACCESSIBILITY_ACTION_COPY = 1 << 3,
+    /** paste action. */
+    ARKUI_ACCESSIBILITY_ACTION_PASTE = 1 << 4,
+} ArkUI_AccessibilityActionType;
 
 /**
  * @brief Defines the translation options for component transition.
@@ -3103,57 +3120,40 @@ typedef enum {
 } ArkUI_UIState;
 
 /**
- * @brief Enumerates the edge derection.
+ * @brief Enumerates the edge direction.
  *
  * @since 20
  */
 typedef enum {
-    /** Set all edge derection. */
+    /** Set all edge direction. */
     ARKUI_EDGE_DIRECTION_ALL = 0,
-    /** Set left edge derection. */
+    /** Set left edge direction. */
     ARKUI_EDGE_DIRECTION_LEFT,
-    /** Set right edge derection. */
+    /** Set right edge direction. */
     ARKUI_EDGE_DIRECTION_RIGHT,
-    /** Set top edge derection. */
+    /** Set top edge direction. */
     ARKUI_EDGE_DIRECTION_TOP,
-    /** Set bottom edge derection. */
+    /** Set bottom edge direction. */
     ARKUI_EDGE_DIRECTION_BOTTOM,
 } ArkUI_EdgeDirection;
  
 /**
- * @brief Enumerates the corner derection.
+ * @brief Enumerates the corner direction.
  *
  * @since 20
  */
 typedef enum {
-    /** Set all corner derection. */
+    /** Set all corner direction. */
     ARKUI_CORNER_DIRECTION_ALL = 0,
-    /** Set top left corner derection. */
+    /** Set top left corner direction. */
     ARKUI_CORNER_DIRECTION_TOP_LEFT,
-    /** Set top right corner derection. */
+    /** Set top right corner direction. */
     ARKUI_CORNER_DIRECTION_TOP_RIGHT,
-    /** Set bottom left corner derection. */
+    /** Set bottom left corner direction. */
     ARKUI_CORNER_DIRECTION_BOTTOM_LEFT,
-    /** Set bottom right corner derection. */
+    /** Set bottom right corner direction. */
     ARKUI_CORNER_DIRECTION_BOTTOM_RIGHT,
 } ArkUI_CornerDirection;
-
-/**
- * @brief Enumerates the LayoutPolicy.
- *
- * @since 21
- */
-typedef enum {
-    /** The component fills its parent, which means its size is as large as its parent */
-    ARKUI_LAYOUTPOLICY_MATCHPARENT = 0,
-    /**
-     * The component fills its content, which means its size is as large as its children but it is constrained
-     * by its parent.
-     */
-    ARKUI_LAYOUTPOLICY_WRAPCONTENT,
-    /** The component fills its content which means its size is as large as its children. */
-    ARKUI_LAYOUTPOLICY_FIXATIDEALSIZE,
-} ArkUI_LayoutPolicy;
 
 /**
  * @brief Enumerates the PixelRoundPolicy.
@@ -3288,6 +3288,23 @@ typedef enum {
 } ArkUI_RenderStrategy;
 
 /**
+ * @brief Enumerates the LayoutPolicy.
+ *
+ * @since 21
+ */
+typedef enum {
+    /** The component fills its parent, which means its size is as large as its parent */
+    ARKUI_LAYOUTPOLICY_MATCHPARENT = 0,
+    /**
+     * The component fills its content, which means its size is as large as its children but it is constrained
+     * by its parent.
+     */
+    ARKUI_LAYOUTPOLICY_WRAPCONTENT,
+    /** The component fills its content which means its size is as large as its children. */
+    ARKUI_LAYOUTPOLICY_FIXATIDEALSIZE,
+} ArkUI_LayoutPolicy;
+
+/**
  * @brief Defines parameter used by the system font style callback event.
  *
  * @since 12
@@ -3314,6 +3331,22 @@ typedef struct ArkUI_TextPickerRangeContentArray ArkUI_TextPickerRangeContentArr
    * @since 19
    */
 typedef struct ArkUI_TextCascadePickerRangeContentArray ArkUI_TextCascadePickerRangeContentArray;
+
+/**
+ * @brief Defines a two-dimensional point struct, with coordinates stored as float type.
+ *
+ * @since 24
+ */
+typedef struct {
+    /**
+     * x-axis coordinate.
+     */
+    float x;
+    /**
+     * y-axis coordinate.
+     */
+    float y;
+} ArkUI_PointF;
 
  /**
    * @brief Defines the options for selection operation.
@@ -5344,7 +5377,7 @@ void OH_ArkUI_AccessibilityState_Dispose(ArkUI_AccessibilityState* state);
  * @brief Set accessibility state disabled.
  *
  * @param state accessibility state object.
- * @param isDisabled accessibility state disabled， Value 1 indicates disabled and 0 indicates enbled.
+ * @param isDisabled accessibility state disabled, Value 1 indicates disabled and 0 indicates enbled.
  * @since 12
 */
 void OH_ArkUI_AccessibilityState_SetDisabled(ArkUI_AccessibilityState* state, int32_t isDisabled);
@@ -5353,7 +5386,7 @@ void OH_ArkUI_AccessibilityState_SetDisabled(ArkUI_AccessibilityState* state, in
  * @brief Get accessibility state disabled.
  *
  * @param state accessibility state object.
- * @return accessibility state disabled， Value 1 indicates disabled and 0 indicates enbled. The default value is 0.
+ * @return accessibility state disabled, Value 1 indicates disabled and 0 indicates enbled. The default value is 0.
  *         If the function parameter is abnormal, return the default value.
  * @since 12
 */
@@ -5363,7 +5396,7 @@ int32_t OH_ArkUI_AccessibilityState_IsDisabled(ArkUI_AccessibilityState* state);
  * @brief Set accessibility state selected.
  *
  * @param state accessibility state object.
- * @param isSelected accessibility state selected， Value 1 indicates selected， and 0 indicates not selected.
+ * @param isSelected accessibility state selected, Value 1 indicates selected, and 0 indicates not selected.
  *        The default value is 0.
  * @since 12
 */
@@ -5373,7 +5406,7 @@ void OH_ArkUI_AccessibilityState_SetSelected(ArkUI_AccessibilityState* state, in
  * @brief Get accessibility state selected.
  *
  * @param state accessibility state object.
- * @return accessibility state selected， Value 1 indicates selected， and 0 indicates not selected.
+ * @return accessibility state selected, Value 1 indicates selected, and 0 indicates not selected.
  *         The default value is 0.
  *         If the function parameter is abnormal, return the default value.
  * @since 12
@@ -5384,7 +5417,7 @@ int32_t OH_ArkUI_AccessibilityState_IsSelected(ArkUI_AccessibilityState* state);
  * @brief Set accessibility checked state.
  *
  * @param state accessibility state object.
- * @param checkedState checked state，and uses the {@link ArkUI_AccessibilityCheckedState} enumeration value,
+ * @param checkedState checked state, and uses the {@link ArkUI_AccessibilityCheckedState} enumeration value,
  *        The default value is ARKUI_ACCESSIBILITY_UNCHECKED.
  * @since 12
 */
@@ -5394,7 +5427,7 @@ void OH_ArkUI_AccessibilityState_SetCheckedState(ArkUI_AccessibilityState* state
  * @brief Get accessibility checked state.
  *
  * @param state accessibility state object.
- * @return checked state，and uses the {@link ArkUI_AccessibilityCheckedState} enumeration value,
+ * @return checked state, and uses the {@link ArkUI_AccessibilityCheckedState} enumeration value,
  *         The default value is ARKUI_ACCESSIBILITY_UNCHECKED.
  *         If the function parameter is abnormal, return the default value.
  * @since 12
@@ -5422,7 +5455,7 @@ void OH_ArkUI_AccessibilityValue_Dispose(ArkUI_AccessibilityValue* value);
  * @brief Set accessibility minimum value.
  *
  * @param value accessibility value object.
- * @param min minimum value based on range components, The default value is -1。
+ * @param min minimum value based on range components, The default value is -1.
  * @since 12
 */
 void OH_ArkUI_AccessibilityValue_SetMin(ArkUI_AccessibilityValue* value, int32_t min);
@@ -5431,7 +5464,7 @@ void OH_ArkUI_AccessibilityValue_SetMin(ArkUI_AccessibilityValue* value, int32_t
  * @brief Get accessibility minimum value.
  *
  * @param value accessibility value object.
- * @return minimum value based on range components, The default value is -1。
+ * @return minimum value based on range components, The default value is -1.
  *         If the function parameter is abnormal, return -1.
  * @since 12
 */
@@ -5441,7 +5474,7 @@ int32_t OH_ArkUI_AccessibilityValue_GetMin(ArkUI_AccessibilityValue* value);
  * @brief Set accessibility minimum value.
  *
  * @param value accessibility value object.
- * @param max maximum value based on range components, The default value is -1。
+ * @param max maximum value based on range components, The default value is -1.
  * @since 12
 */
 void OH_ArkUI_AccessibilityValue_SetMax(ArkUI_AccessibilityValue* value, int32_t max);
@@ -5450,7 +5483,7 @@ void OH_ArkUI_AccessibilityValue_SetMax(ArkUI_AccessibilityValue* value, int32_t
  * @brief Get accessibility minimum value.
  *
  * @param value accessibility value object.
- * @return maximum value based on range components, The default value is -1。
+ * @return maximum value based on range components, The default value is -1.
  *         If the function parameter is abnormal, return -1.
  * @since 12
 */
@@ -5460,7 +5493,7 @@ int32_t OH_ArkUI_AccessibilityValue_GetMax(ArkUI_AccessibilityValue* value);
  * @brief Set accessibility current value.
  *
  * @param value accessibility value object.
- * @param current value based on range components, The default value is -1。
+ * @param current value based on range components, The default value is -1.
  * @since 12
 */
 void OH_ArkUI_AccessibilityValue_SetCurrent(ArkUI_AccessibilityValue* value, int32_t current);
@@ -5469,7 +5502,7 @@ void OH_ArkUI_AccessibilityValue_SetCurrent(ArkUI_AccessibilityValue* value, int
  * @brief Get accessibility current value.
  *
  * @param value accessibility value object.
- * @return current value based on range components, The default value is -1。
+ * @return current value based on range components, The default value is -1.
  *         If the function parameter is abnormal, return -1.
  * @since 12
 */
@@ -5536,13 +5569,13 @@ int32_t OH_ArkUI_AccessibilityValue_GetRangeCurrent(ArkUI_AccessibilityValue* va
  * @brief Set accessibility text value.
  *
  * @param value accessibility value object.
- * @param text The textual description information of the component, which defaults to an empty string。
+ * @param text The textual description information of the component, which defaults to an empty string.
  * @since 12
 */
 void OH_ArkUI_AccessibilityValue_SetText(ArkUI_AccessibilityValue* value, const char* text);
 
 /**
- * @brief Get accessibility text value。
+ * @brief Get accessibility text value.
  *
  * @param value accessibility value object.
  * @return The textual description information of the component, which defaults to an empty string;
@@ -5705,6 +5738,41 @@ float OH_ArkUI_ProgressLinearStyleOption_GetStrokeWidth(ArkUI_ProgressLinearStyl
 float OH_ArkUI_ProgressLinearStyleOption_GetStrokeRadius(ArkUI_ProgressLinearStyleOption* option);
 
 /**
+ * @brief Create a cross-language option instance.
+ *
+ * @return Returns a cross-language option instance. If the result is a null pointer, it may be out of memory.
+ * @since 15
+ */
+ArkUI_CrossLanguageOption* OH_ArkUI_CrossLanguageOption_Create(void);
+
+/**
+ * @brief Destroy the cross-language option instance.
+ *
+ * @param option The cross-language option instance.
+ * @since 15
+ */
+void OH_ArkUI_CrossLanguageOption_Destroy(ArkUI_CrossLanguageOption* option);
+
+/**
+ * @brief Enable the attribute setting in the cross-language option.
+ *
+ * @param option The cross-language option.
+ * @param enabled The attribute setting in the cross-language option.
+ * Default value: false.
+ * @since 15
+ */
+void OH_ArkUI_CrossLanguageOption_SetAttributeSettingStatus(ArkUI_CrossLanguageOption* option, bool enabled);
+
+/**
+ * @brief Get the attribute setting enable of the cross-language option.
+ *
+ * @param option The cross-language option.
+ * @return The attribute setting enable of the cross-language option.
+ * @since 15
+ */
+bool OH_ArkUI_CrossLanguageOption_GetAttributeSettingStatus(ArkUI_CrossLanguageOption* option);
+
+/**
  * @brief Creates an option for taking snapshot, the returned value must be released through
  *        {@link OH_ArkUI_DestroySnapshotOptions} when it's not used anymore.
  *
@@ -5776,41 +5844,6 @@ int32_t OH_ArkUI_SnapshotOptions_SetColorMode(ArkUI_SnapshotOptions* snapshotOpt
  */
 int32_t OH_ArkUI_SnapshotOptions_SetDynamicRangeMode(
     ArkUI_SnapshotOptions* snapshotOptions, int32_t dynamicRangeMode, bool isAuto);
-
-/**
- * @brief Create a cross-language option instance.
- *
- * @return Returns a cross-language option instance. If the result is a null pointer, it may be out of memory.
- * @since 15
- */
-ArkUI_CrossLanguageOption* OH_ArkUI_CrossLanguageOption_Create(void);
-
-/**
- * @brief Destroy the cross-language option instance.
- *
- * @param option The cross-language option instance.
- * @since 15
- */
-void OH_ArkUI_CrossLanguageOption_Destroy(ArkUI_CrossLanguageOption* option);
-
-/**
- * @brief Enable the attribute setting in the cross-language option.
- *
- * @param option The cross-language option.
- * @param enabled The attribute setting in the cross-language option.
- * Default value: false.
- * @since 15
- */
-void OH_ArkUI_CrossLanguageOption_SetAttributeSettingStatus(ArkUI_CrossLanguageOption* option, bool enabled);
-
-/**
- * @brief Get the attribute setting enable of the cross-language option.
- *
- * @param option The cross-language option.
- * @return The attribute setting enable of the cross-language option.
- * @since 15
- */
-bool OH_ArkUI_CrossLanguageOption_GetAttributeSettingStatus(ArkUI_CrossLanguageOption* option);
 
 /**
  * @brief Defines the parameters for visible area change events.
@@ -6046,6 +6079,31 @@ void OH_ArkUI_EmbeddedComponentOption_SetOnTerminated(
     ArkUI_EmbeddedComponentOption* option, void (*callback)(int32_t code, AbilityBase_Want* want));
 
 /**
+ * @brief Expand the swipe action.
+ *
+ * @param node List Item node.
+ * @param direction expand direction of swipeAction.
+ * @return Error code.
+ *         {@link ARKUI_ERROR_CODE_NO_ERROR} success.
+ *         {@link ARKUI_ERROR_CODE_PARAM_ERROR} The component type of the node is incorrect.
+ *         {@link ARKUI_ERROR_CODE_NODE_NOT_ON_MAIN_TREE} The node not mounted to component tree.
+ * @since 21
+ */
+int32_t OH_ArkUI_ListItemSwipeAction_Expand(ArkUI_NodeHandle node, ArkUI_ListItemSwipeActionDirection direction);
+
+/**
+ * @brief Collapse the swipe action.
+ *
+ * @param node List Item node.
+ * @return Error code.
+ *         {@link ARKUI_ERROR_CODE_NO_ERROR} success.
+ *         {@link ARKUI_ERROR_CODE_PARAM_ERROR} The component type of the node is incorrect.
+ *         {@link ARKUI_ERROR_CODE_NODE_NOT_ON_MAIN_TREE} The node not mounted to component tree.
+ * @since 21
+ */
+int32_t OH_ArkUI_ListItemSwipeAction_Collapse(ArkUI_NodeHandle node);
+
+/**
  * @brief Create an edge object for position attribute.
  *
  * @return A pointer to the edge object.
@@ -6153,31 +6211,6 @@ void OH_ArkUI_PositionEdges_SetRight(ArkUI_PositionEdges* edges, float value);
  * @since 21
  */
 int32_t OH_ArkUI_PositionEdges_GetRight(ArkUI_PositionEdges* edges, float* value);
-
-/**
- * @brief Expand the swipe action.
- *
- * @param node List Item node.
- * @param direction expand direction of swipeAction.
- * @return Error code.
- *         {@link ARKUI_ERROR_CODE_NO_ERROR} success.
- *         {@link ARKUI_ERROR_CODE_PARAM_ERROR} The component type of the node is incorrect.
- *         {@link ARKUI_ERROR_CODE_NODE_NOT_ON_MAIN_TREE} The node not mounted to component tree.
- * @since 21
- */
-int32_t OH_ArkUI_ListItemSwipeAction_Expand(ArkUI_NodeHandle node, ArkUI_ListItemSwipeActionDirection direction);
-
-/**
- * @brief Collapse the swipe action.
- *
- * @param node List Item node.
- * @return Error code.
- *         {@link ARKUI_ERROR_CODE_NO_ERROR} success.
- *         {@link ARKUI_ERROR_CODE_PARAM_ERROR} The component type of the node is incorrect.
- *         {@link ARKUI_ERROR_CODE_NODE_NOT_ON_MAIN_TREE} The node not mounted to component tree.
- * @since 21
- */
-int32_t OH_ArkUI_ListItemSwipeAction_Collapse(ArkUI_NodeHandle node);
 
 /**
  * @brief Create a policy object for PixelRound attribute.
@@ -6631,6 +6664,20 @@ typedef enum {
     ARKUI_TEXT_MENU_ITEM_ID_ASK_AI = 15,
 
     /**
+     * Indicates the TextMenuItemId for auto fill.
+     *
+     * @since 24
+     */
+    ARKUI_TEXT_MENU_ITEM_ID_AUTO_FILL = 16,
+
+    /**
+     * Indicates the TextMenuItemId for password vault.
+     *
+     * @since 24
+     */
+    ARKUI_TEXT_MENU_ITEM_ID_PASSWORD_VAULT = 17,
+
+    /**
      * Inclusive begin of app-reserved ID range.
      */
     ARKUI_TEXT_MENU_ITEM_ID_APP_RESERVED_BEGIN = 10000,
@@ -6759,6 +6806,206 @@ ArkUI_ErrorCode OH_ArkUI_TextEditMenuOptions_RegisterOnMenuItemClickCallback(
 typedef struct ArkUI_TextSelectionMenuOptions ArkUI_TextSelectionMenuOptions;
 
 /**
+ * @brief Defines the decoration style.
+ *
+ * @since 24
+ */
+typedef struct OH_ArkUI_DecorationStyleOptions OH_ArkUI_DecorationStyleOptions;
+
+/**
+ * @brief Defines the config of data detector.
+ *
+ * @since 24
+ */
+typedef struct OH_ArkUI_TextDataDetectorConfig OH_ArkUI_TextDataDetectorConfig;
+
+/**
+ * @brief Defines the selection menu option of text editor.
+ *
+ * @since 24
+ */
+typedef struct OH_ArkUI_TextEditorSelectionMenuOptions OH_ArkUI_TextEditorSelectionMenuOptions;
+
+/**
+ * @brief Defines prompt options when text editor has no input.
+ *
+ * @since 24
+ */
+typedef struct OH_ArkUI_TextEditorPlaceholderOptions OH_ArkUI_TextEditorPlaceholderOptions;
+
+/**
+ * @brief Defines styled string controller for text editor.
+ *
+ * @since 24
+ */
+typedef struct OH_ArkUI_TextEditorStyledStringController OH_ArkUI_TextEditorStyledStringController;
+
+/**
+ * @brief Defines paragraph style for text editor.
+ *
+ * @since 24
+ */
+typedef struct OH_ArkUI_TextEditorParagraphStyle OH_ArkUI_TextEditorParagraphStyle;
+
+/**
+ * @brief Defines shadow options.
+ *
+ * @since 24
+ */
+typedef struct OH_ArkUI_ShadowOptions OH_ArkUI_ShadowOptions;
+
+/**
+ * @brief Defines text style for text editor.
+ *
+ * @since 24
+ */
+typedef struct OH_ArkUI_TextEditorTextStyle OH_ArkUI_TextEditorTextStyle;
+
+/**
+ * @brief Enumerates the haptic feedback mode.
+ *
+ * @since 24
+ */
+typedef enum {
+    /**
+     * No haptic feedback.
+     *
+     * @since 24
+     */
+    OH_ARKUI_HAPTIC_FEEDBACK_MODE_DISABLED = 0,
+    /**
+     * Defines always haptic feedback.
+     *
+     * @since 24
+     */
+    OH_ARKUI_HAPTIC_FEEDBACK_MODE_ENABLED = 1,
+    /**
+     * Defines automatically haptic feedback.
+     *
+     * @since 24
+     */
+    OH_ARKUI_HAPTIC_FEEDBACK_MODE_AUTO = 2,
+} OH_ArkUI_HapticFeedbackMode;
+
+/**
+ * @brief Enumerates the text editor span type.
+ *
+ * @since 24
+ */
+typedef enum {
+    /**
+     * The span type of text.
+     *
+     * @since 24
+     */
+    OH_ARKUI_TEXT_EDITOR_SPAN_TYPE_TEXT = 0,
+    /**
+     * The span type of image.
+     *
+     * @since 24
+     */
+    OH_ARKUI_TEXT_EDITOR_SPAN_TYPE_IMAGE = 1,
+    /**
+     * The span type of mixed.
+     *
+     * @since 24
+     */
+    OH_ARKUI_TEXT_EDITOR_SPAN_TYPE_MIXED = 2,
+    /**
+     * The span type of builder.
+     *
+     * @since 24
+     */
+    OH_ARKUI_TEXT_EDITOR_SPAN_TYPE_BUILDER = 3,
+    /**
+     * The span type of default.
+     *
+     * @since 24
+     */
+    OH_ARKUI_TEXT_EDITOR_SPAN_TYPE_DEFAULT = 4
+} OH_ArkUI_TextEditorSpanType;
+
+/**
+ * @brief Enumerates the text editor response type.
+ *
+ * @since 24
+ */
+typedef enum {
+    /**
+     * The text editor response type of right click.
+     *
+     * @since 24
+     */
+    OH_ARKUI_TEXT_EDITOR_RESPONSE_TYPE_RIGHT_CLICK = 0,
+    /**
+     * The text editor response type of long press.
+     *
+     * @since 24
+     */
+    OH_ARKUI_TEXT_EDITOR_RESPONSE_TYPE_LONG_PRESS = 1,
+    /**
+     * The text editor response type of select.
+     *
+     * @since 24
+     */
+    OH_ARKUI_TEXT_EDITOR_RESPONSE_TYPE_SELECT = 2,
+    /**
+     * The text editor response type of default.
+     *
+     * @since 24
+     */
+    OH_ARKUI_TEXT_EDITOR_RESPONSE_TYPE_DEFAULT = 3,
+} OH_ArkUI_TextEditorResponseType;
+
+/**
+ * @brief Enumerates the text menu type.
+ *
+ * @since 24
+ */
+typedef enum {
+    /**
+     * The text menu type of selection menu.
+     *
+     * @since 24
+     */
+    OH_ARKUI_TEXT_EDITOR_SELECTION_MENU = 0,
+    /**
+     * The text menu type of preview menu.
+     *
+     * @since 24
+     */
+    OH_ARKUI_TEXT_EDITOR_PREVIEW_MENU = 1,
+} OH_ArkUI_TextMenuType;
+
+/**
+ * @brief Define line break types.
+ *
+ * @since 24
+ */
+typedef enum {
+    /**
+     * Places as many words on a line as possible
+     * and moves to the next line only if no more words can fit into the same line.
+     *
+     * @since 24
+     */
+    OH_ARKUI_LINE_BREAK_STRATEGY_GREEDY = 0,
+    /**
+     * Fills in lines as much as possible on the basis of BALANCED,
+     * which may results in a large blank area on the last line.
+     *
+     * @since 24
+     */
+    OH_ARKUI_LINE_BREAK_STRATEGY_HIGH_QUALITY = 1,
+    /**
+     * Without splitting words, the width of each line in a paragraph is the same as much as possible.
+     *
+     * @since 24
+     */
+    OH_ARKUI_LINE_BREAK_STRATEGY_BALANCE = 2,
+} OH_ArkUI_LineBreakStrategy;
+
+/**
  * @brief Enumerates the text span type.
  *
  * @since 22
@@ -6797,6 +7044,26 @@ typedef enum {
      */
     ARKUI_TEXT_RESPONSE_TYPE_DEFAULT = 3,
 } ArkUI_TextResponseType;
+
+/**
+* @brief Enumerates raw input event types.
+*
+* @since 26.0.0
+*/
+typedef enum {
+    /**
+     * Touch event.
+     *
+     * @since 26.0.0
+     */
+    ARKUI_RAW_INPUT_EVENT_TYPE_TOUCH = 0,
+    /**
+     * Mouse event.
+     *
+     * @since 26.0.0
+     */
+    ARKUI_RAW_INPUT_EVENT_TYPE_MOUSE = 1,
+} ArkUI_RawInputEventType;
 
 /**
  * @brief Create an object of the text selection menu options.
@@ -7381,6 +7648,1716 @@ uint32_t OH_ArkUI_SelectedDragPreviewStyle_GetColor(
     ArkUI_SelectedDragPreviewStyle* config);
 
 /**
+ * @brief Creates an decoration line style object.
+ * When the object is no longer in use, invoke {@link OH_ArkUI_DecorationStyleOptions_Destroy} to destroy it.
+ *
+ * @return A pointer to the option object.
+ * @since 24
+ */
+OH_ArkUI_DecorationStyleOptions* OH_ArkUI_DecorationStyleOptions_Create();
+
+/**
+ * @brief Destroys the decoration line style object.
+ *
+ * @param options Pointer to the option object to be destroyed.
+ * @since 24
+ */
+void OH_ArkUI_DecorationStyleOptions_Destroy(OH_ArkUI_DecorationStyleOptions* options);
+
+/**
+ * @brief Sets the decoration type of decoration line style.
+ *
+ * @param options Pointer to the {@link OH_ArkUI_DecorationStyleOptions} object.
+ * @param type The decoration type {@link ArkUI_TextDecorationType}.
+ * @return Returns the result code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ * @since 24
+ */
+ArkUI_ErrorCode OH_ArkUI_DecorationStyleOptions_SetTextDecorationType(OH_ArkUI_DecorationStyleOptions* options,
+    ArkUI_TextDecorationType type);
+
+/**
+ * @brief Gets the decoration type of decoration line style.
+ *
+ * @param options Pointer to the {@link OH_ArkUI_DecorationStyleOptions} object.
+ * @param type The decoration type {@link ArkUI_TextDecorationType}.
+ * @return Returns the result code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ * @since 24
+ */
+ArkUI_ErrorCode OH_ArkUI_DecorationStyleOptions_GetTextDecorationType(OH_ArkUI_DecorationStyleOptions* options,
+    ArkUI_TextDecorationType* type);
+
+/**
+ * @brief Sets the color of decoration line.
+ *
+ * @param options Pointer to the {@link OH_ArkUI_DecorationStyleOptions} object.
+ * @param color Color of decoration line.
+ * @return Returns the result code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ * @since 24
+ */
+ArkUI_ErrorCode OH_ArkUI_DecorationStyleOptions_SetColor(OH_ArkUI_DecorationStyleOptions* options, uint32_t color);
+
+/**
+ * @brief Gets the color of decoration line.
+ *
+ * @param options Pointer to the {@link OH_ArkUI_DecorationStyleOptions} object.
+ * @param color Color of decoration line.
+ * @return Returns the result code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ * @since 24
+ */
+ArkUI_ErrorCode OH_ArkUI_DecorationStyleOptions_GetColor(OH_ArkUI_DecorationStyleOptions* options, uint32_t* color);
+
+/**
+ * @brief Sets the style of decoration line.
+ *
+ * @param options Pointer to the {@link OH_ArkUI_DecorationStyleOptions} object.
+ * @param style Style of decoration line.
+ * @return Returns the result code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ * @since 24
+ */
+ArkUI_ErrorCode OH_ArkUI_DecorationStyleOptions_SetTextDecorationStyle(OH_ArkUI_DecorationStyleOptions* options,
+    ArkUI_TextDecorationStyle style);
+
+/**
+ * @brief Gets the style of decoration line.
+ *
+ * @param options Pointer to the {@link OH_ArkUI_DecorationStyleOptions} object.
+ * @param style Style of decoration line.
+ * @return Returns the result code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ * @since 24
+ */
+ArkUI_ErrorCode OH_ArkUI_DecorationStyleOptions_GetTextDecorationStyle(OH_ArkUI_DecorationStyleOptions* options,
+    ArkUI_TextDecorationStyle* style);
+
+/**
+ * @brief Sets the thickness scale of decoration line.
+ *
+ * @param options Pointer to the {@link OH_ArkUI_DecorationStyleOptions} object.
+ * @param thicknessScale Thickness of decoration line.
+ * @return Returns the result code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ * @since 24
+ */
+ArkUI_ErrorCode OH_ArkUI_DecorationStyleOptions_SetThicknessScale(
+    OH_ArkUI_DecorationStyleOptions* options, float thicknessScale);
+
+/**
+ * @brief Gets the thickness scale of decoration line.
+ *
+ * @param options Pointer to the {@link OH_ArkUI_DecorationStyleOptions} object.
+ * @param thicknessScale Thickness of decoration line.
+ * @return Returns the result code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ * @since 24
+ */
+ArkUI_ErrorCode OH_ArkUI_DecorationStyleOptions_GetThicknessScale(OH_ArkUI_DecorationStyleOptions* options,
+    float* thicknessScale);
+
+/**
+ * @brief Creates a data detector config object.
+ * When the object is no longer in use, invoke {@link OH_ArkUI_TextDataDetectorConfig_Destroy} to destroy it.
+ *
+ * @return A pointer to the option object.
+ * @since 24
+ */
+OH_ArkUI_TextDataDetectorConfig* OH_ArkUI_TextDataDetectorConfig_Create();
+
+/**
+ * @brief Destroys the data detector config object.
+ *
+ * @param config Pointer to the object to be destroyed.
+ * @since 24
+ */
+void OH_ArkUI_TextDataDetectorConfig_Destroy(OH_ArkUI_TextDataDetectorConfig* config);
+
+/**
+ * @brief Sets the types of data detector config.
+ *
+ * @param config Pointer to the {@link OH_ArkUI_TextDataDetectorConfig} object.
+ * @param types Types of data detector config.
+ * @param length Number of types.
+ * @return Returns the result code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ * @since 24
+ */
+ArkUI_ErrorCode OH_ArkUI_TextDataDetectorConfig_SetTypes(
+    OH_ArkUI_TextDataDetectorConfig* config, const ArkUI_TextDataDetectorType* types, int32_t length);
+
+/**
+ * @brief Gets the types of data detector config.
+ *
+ * @param config Pointer to the {@link OH_ArkUI_TextDataDetectorConfig} object.
+ * @param buffer Buffer pointer to the type array.
+ * @param bufferSize Buffer size reserved for types by developer.
+ *                   It should be larger than writeLength,
+ *                   otherwise the operation will return ARKUI_ERROR_CODE_BUFFER_SIZE_ERROR.
+ * @param writeLength Number of types.
+ * @return Returns the result code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ *         Returns {@link ARKUI_ERROR_CODE_BUFFER_SIZE_ERROR} if bufferSize is less than writeLength.
+ * @since 24
+ */
+ArkUI_ErrorCode OH_ArkUI_TextDataDetectorConfig_GetTypes(OH_ArkUI_TextDataDetectorConfig* config,
+    ArkUI_TextDataDetectorType* buffer, int32_t bufferSize, int32_t* writeLength);
+
+/**
+ * @brief Sets the event to be called when data detector works.
+ *
+ * @param config Pointer to the {@link OH_ArkUI_TextDataDetectorConfig} object.
+ * @param userData User data.
+ * @param callback detect result update callback.
+ * @return Returns the result code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ * @since 24
+ */
+ArkUI_ErrorCode OH_ArkUI_TextDataDetectorConfig_RegisterOnDetectResultUpdateCallback(
+    OH_ArkUI_TextDataDetectorConfig* config, void* userData,
+    void (*callback)(const char* result, int32_t length, void* userData));
+
+/**
+ * @brief Sets the color of detected content.
+ *
+ * @param config Pointer to the {@link OH_ArkUI_TextDataDetectorConfig} object.
+ * @param color Color of detected content.
+ * @return Returns the result code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ * @since 24
+ */
+ArkUI_ErrorCode OH_ArkUI_TextDataDetectorConfig_SetColor(OH_ArkUI_TextDataDetectorConfig* config, uint32_t color);
+
+/**
+ * @brief Gets the color of detected content.
+ *
+ * @param config Pointer to the {@link OH_ArkUI_TextDataDetectorConfig} object.
+ * @param color Color of detected content.
+ * @return Returns the result code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ * @since 24
+ */
+ArkUI_ErrorCode OH_ArkUI_TextDataDetectorConfig_GetColor(OH_ArkUI_TextDataDetectorConfig* config, uint32_t* color);
+
+/**
+ * @brief Sets the decoration style of detected content.
+ *
+ * @param config Pointer to the {@link OH_ArkUI_TextDataDetectorConfig} object.
+ * @param decoration Decoration style of detected content.
+ * @return Returns the result code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ * @since 24
+ */
+ArkUI_ErrorCode OH_ArkUI_TextDataDetectorConfig_SetDecorationStyleOptions(
+    OH_ArkUI_TextDataDetectorConfig* config, OH_ArkUI_DecorationStyleOptions* decoration);
+
+/**
+ * @brief Gets the decoration style of detected content.
+ *
+ * @param config Pointer to the {@link OH_ArkUI_TextDataDetectorConfig} object.
+ * @param decoration Decoration style of detected content.
+ * @return Returns the result code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ * @since 24
+ */
+ArkUI_ErrorCode OH_ArkUI_TextDataDetectorConfig_GetDecorationStyleOptions(
+    OH_ArkUI_TextDataDetectorConfig* config, OH_ArkUI_DecorationStyleOptions* decoration);
+
+/**
+ * @brief Sets whether to display a preview menu when the detected content is long-pressed.
+ *
+ * @param config Pointer to the {@link OH_ArkUI_TextDataDetectorConfig} object.
+ * @param enablePreviewMenu Whether to display a preview menu when the detected content is long-pressed.
+ * @return Returns the result code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ * @since 24
+ */
+ArkUI_ErrorCode OH_ArkUI_TextDataDetectorConfig_SetEnablePreviewMenu(
+    OH_ArkUI_TextDataDetectorConfig* config, bool enablePreviewMenu);
+
+/**
+ * @brief Gets whether to display a preview menu when the detected content is long-pressed.
+ *
+ * @param config Pointer to the {@link OH_ArkUI_TextDataDetectorConfig} object.
+ * @param enablePreviewMenu Whether to display a preview menu when the detected content is long-pressed.
+ * @return Returns the result code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ * @since 24
+ */
+ArkUI_ErrorCode OH_ArkUI_TextDataDetectorConfig_GetEnablePreviewMenu(
+    OH_ArkUI_TextDataDetectorConfig* config, bool* enablePreviewMenu);
+
+/**
+ * @brief Defines controller for text.
+ * @since 26.0.0
+ */
+typedef struct OH_ArkUI_TextController OH_ArkUI_TextController;
+
+/**
+ * @brief Create a controller object for text.
+ * @return A pointer to the text controller object.
+ * @since 26.0.0
+ */
+OH_ArkUI_TextController* OH_ArkUI_TextController_Create();
+
+/**
+ * @brief Destroys the text controller.
+ *
+ * @param controller <b>Text</b> controller.
+ * @since 26.0.0
+ */
+void OH_ArkUI_TextController_Destroy(OH_ArkUI_TextController* controller);
+
+/**
+ * @brief Set the StyledString of the text.
+ *
+ * @param controller the controller of the text.
+ * @param descriptor Pointer to an <b>ArkUI_StyledString_Descriptor</b> object, which will be set to Text.
+ * @return Returns the result code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ * @since 26.0.0
+ */
+ArkUI_ErrorCode OH_ArkUI_TextController_SetStyledString(
+    OH_ArkUI_TextController* controller, ArkUI_StyledString_Descriptor* descriptor);
+
+/**
+ * @brief Create a placeholder options object.
+ * When the object is no longer in use, invoke {@link OH_ArkUI_TextEditorPlaceholderOptions_Destroy} to destroy it.
+ *
+ * @return A pointer to the configuration object.
+ * @since 24
+ */
+OH_ArkUI_TextEditorPlaceholderOptions* OH_ArkUI_TextEditorPlaceholderOptions_Create();
+
+/**
+ * @brief Destroys the placeholder options object.
+ *
+ * @param options <b>TextEditor</b> placeholder options.
+ * @since 24
+ */
+void OH_ArkUI_TextEditorPlaceholderOptions_Destroy(OH_ArkUI_TextEditorPlaceholderOptions* options);
+
+/**
+ * @brief Set the hint text of placeholder options.
+ *
+ * @param options <b>TextEditor</b> placeholder options.
+ * @param value The hint text.
+ * @return Returns the result code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ * @since 24
+ */
+ArkUI_ErrorCode OH_ArkUI_TextEditorPlaceholderOptions_SetValue(
+    OH_ArkUI_TextEditorPlaceholderOptions* options, const char* value);
+
+/**
+ * @brief Get the hint text of placeholder options.
+ *
+ * @param options <b>TextEditor</b> placeholder options.
+ * @param buffer The buffer to which hint text writes to the memory,
+ *               memory space needs to be allocated by the developer.
+ * @param bufferSize The buffer size
+ * @param writeLength Indicates the string length actually written to the buffer
+ *                    when returning {@link ARKUI_ERROR_CODE_NO_ERROR}.
+ *                    Indicates the minimum buffer size that can accommodate the target
+ *                    when {@link ARKUI_ERROR_CODE_BUFFER_SIZE_ERROR} is returned.
+ * @return The error code.
+ *         {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} if the node, buffer or writeLength is null.
+ *         {@link ARKUI_ERROR_CODE_BUFFER_SIZE_ERROR} If the buffer size is less than the minimum buffer size.
+ * @since 24
+ */
+ArkUI_ErrorCode OH_ArkUI_TextEditorPlaceholderOptions_GetValue(
+    OH_ArkUI_TextEditorPlaceholderOptions* options, char* buffer, int32_t bufferSize, int32_t* writeLength);
+
+/**
+ * @brief Sets font size of placeholder options.
+ *
+ * @param options <b>TextEditor</b> placeholder options.
+ * @param fontSize The font size.
+ * @return Returns the result code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ * @since 24
+ */
+ArkUI_ErrorCode OH_ArkUI_TextEditorPlaceholderOptions_SetFontSize(
+    OH_ArkUI_TextEditorPlaceholderOptions* options, float fontSize);
+
+/**
+ * @brief Gets font size of placeholder options.
+ *
+ * @param options <b>TextEditor</b> placeholder options.
+ * @param fontSize The font size.
+ * @return Returns the result code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ * @since 24
+ */
+ArkUI_ErrorCode OH_ArkUI_TextEditorPlaceholderOptions_GetFontSize(
+    OH_ArkUI_TextEditorPlaceholderOptions* options, float* fontSize);
+
+/**
+ * @brief Set font weight of placeholder options.
+ *
+ * @param options <b>TextEditor</b> placeholder options.
+ * @param fontWeight The font weight.
+ * @return Returns the result code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ * @since 24
+ */
+ArkUI_ErrorCode OH_ArkUI_TextEditorPlaceholderOptions_SetFontWeight(
+    OH_ArkUI_TextEditorPlaceholderOptions* options, uint32_t fontWeight);
+
+/**
+ * @brief Get font weight of placeholder options.
+ *
+ * @param options <b>TextEditor</b> placeholder options.
+ * @param fontWeight The font weight.
+ * @return Returns the result code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ * @since 24
+ */
+ArkUI_ErrorCode OH_ArkUI_TextEditorPlaceholderOptions_GetFontWeight(
+    OH_ArkUI_TextEditorPlaceholderOptions* options, uint32_t* fontWeight);
+
+/**
+ * @brief Set the font family of placeholder options.
+ *
+ * @param options <b>TextEditor</b> placeholder options.
+ * @param fontFamily The font family.
+ * @return Returns the result code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ * @since 24
+ */
+ArkUI_ErrorCode OH_ArkUI_TextEditorPlaceholderOptions_SetFontFamily(
+    OH_ArkUI_TextEditorPlaceholderOptions* options, const char* fontFamily);
+
+/**
+ * @brief Get the font family of placeholder options.
+ *
+ * @param options <b>TextEditor</b> placeholder options.
+ * @param buffer The buffer to which font family writes to the memory,
+ *               memory space needs to be allocated by the developer.
+ * @param bufferSize The buffer size
+ * @param writeLength Indicates the string length actually written to the buffer
+ *                    when returning {@link ARKUI_ERROR_CODE_NO_ERROR}.
+ *                    Indicates the minimum buffer size that can accommodate the target
+ *                    when {@link ARKUI_ERROR_CODE_BUFFER_SIZE_ERROR} is returned.
+ * @return The error code.
+ *         {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} if the node, buffer or writeLength is null.
+ *         {@link ARKUI_ERROR_CODE_BUFFER_SIZE_ERROR} If the buffer size is less than the minimum buffer size.
+ * @since 24
+ */
+ArkUI_ErrorCode OH_ArkUI_TextEditorPlaceholderOptions_GetFontFamily(
+    OH_ArkUI_TextEditorPlaceholderOptions* options, char* buffer, int32_t bufferSize, int32_t* writeLength);
+
+/**
+ * @brief Set the font style of placeholder options.
+ *
+ * @param options <b>TextEditor</b> placeholder options.
+ * @param fontStyle The font style.
+ * @return Returns the result code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ * @since 24
+ */
+ArkUI_ErrorCode OH_ArkUI_TextEditorPlaceholderOptions_SetFontStyle(
+    OH_ArkUI_TextEditorPlaceholderOptions* options, ArkUI_FontStyle fontStyle);
+
+/**
+ * @brief Get the font style of placeholder options.
+ *
+ * @param options <b>TextEditor</b> placeholder options.
+ * @param fontStyle The font style.
+ * @return Returns the result code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ * @since 24
+ */
+ArkUI_ErrorCode OH_ArkUI_TextEditorPlaceholderOptions_GetFontStyle(
+    OH_ArkUI_TextEditorPlaceholderOptions* options, ArkUI_FontStyle* fontStyle);
+
+/**
+ * @brief Set the font color of placeholder options.
+ *
+ * @param options <b>TextEditor</b> placeholder options.
+ * @param fontColor The font color.
+ * @return Returns the result code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ * @since 24
+ */
+ArkUI_ErrorCode OH_ArkUI_TextEditorPlaceholderOptions_SetFontColor(
+    OH_ArkUI_TextEditorPlaceholderOptions* options, uint32_t fontColor);
+
+/**
+ * @brief Get the font color of placeholder options.
+ *
+ * @param options <b>TextEditor</b> placeholder options.
+ * @param fontColor The font color.
+ * @return Returns the result code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ * @since 24
+ */
+ArkUI_ErrorCode OH_ArkUI_TextEditorPlaceholderOptions_GetFontColor(OH_ArkUI_TextEditorPlaceholderOptions* options,
+    uint32_t* fontColor);
+
+/**
+ * @brief Create a styled string controller object for text editor.
+ * When the object is no longer in use, invoke {@link OH_ArkUI_TextEditorStyledStringController_Destroy} to destroy it.
+ *
+ * @return A pointer to the styled string controller object.
+ * @since 24
+ */
+OH_ArkUI_TextEditorStyledStringController* OH_ArkUI_TextEditorStyledStringController_Create();
+
+/**
+ * @brief Destroys the styled string controller.
+ *
+ * @param controller <b>TextEditor</b> styled string controller.
+ * @since 24
+ */
+void OH_ArkUI_TextEditorStyledStringController_Destroy(OH_ArkUI_TextEditorStyledStringController* controller);
+
+/**
+ * @brief Set caret offset with styled string controller.
+ *
+ * @param controller <b>TextEditor</b> styled string controller.
+ * @param caretOffset caret position.
+ * @return Returns the result code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ * @since 24
+ */
+ArkUI_ErrorCode OH_ArkUI_TextEditorStyledStringController_SetCaretOffset(
+    OH_ArkUI_TextEditorStyledStringController* controller, int32_t caretOffset);
+
+/**
+ * @brief Get caret offset with styled string controller.
+ *
+ * @param controller <b>TextEditor</b> styled string controller.
+ * @param caretOffset caret position.
+ * @return Returns the result code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ * @since 24
+ */
+ArkUI_ErrorCode OH_ArkUI_TextEditorStyledStringController_GetCaretOffset(
+    OH_ArkUI_TextEditorStyledStringController* controller, int32_t* caretOffset);
+
+/**
+ * @brief Set selection area with styled string controller.
+ *
+ * @param controller <b>TextEditor</b> styled string controller.
+ * @param start selection area start.
+ * @param end selection area end.
+ * @param menuPolicy selection area menu policy.
+ * @return Returns the result code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ * @since 24
+ */
+ArkUI_ErrorCode OH_ArkUI_TextEditorStyledStringController_SetSelection(
+    OH_ArkUI_TextEditorStyledStringController* controller, uint32_t start, uint32_t end, ArkUI_MenuPolicy menuPolicy);
+
+/**
+ * @brief Get editing state of text editor with styled string controller.
+ *
+ * @param controller <b>TextEditor</b> styled string controller.
+ * @param isEditing editing state.
+ * @return Returns the result code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ * @since 24
+ */
+ArkUI_ErrorCode OH_ArkUI_TextEditorStyledStringController_IsEditing(
+    OH_ArkUI_TextEditorStyledStringController* controller, bool* isEditing);
+
+/**
+ * @brief Exit editing state of text editor with styled string controller.
+ *
+ * @param controller <b>TextEditor</b> styled string controller.
+ * @return Returns the result code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ * @since 24
+ */
+ArkUI_ErrorCode OH_ArkUI_TextEditorStyledStringController_StopEditing(
+    OH_ArkUI_TextEditorStyledStringController* controller);
+
+/**
+ * @brief Get preview text content with styled string controller.
+ *
+ * @param controller <b>TextEditor</b> styled string controller.
+ * @param offset Preview text position.
+ * @param buffer The buffer to which preview text content writes to the memory,
+ *               memory space needs to be allocated by the developer.
+ * @param bufferSize The buffer size
+ * @param writeLength Indicates the string length actually written to the buffer
+ *                    when returning {@link ARKUI_ERROR_CODE_NO_ERROR}.
+ *                    Indicates the minimum buffer size that can accommodate the target
+ *                    when {@link ARKUI_ERROR_CODE_BUFFER_SIZE_ERROR} is returned.
+ * @return Returns the result code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ * @since 24
+ */
+ArkUI_ErrorCode OH_ArkUI_TextEditorStyledStringController_GetPreviewText(
+    OH_ArkUI_TextEditorStyledStringController* controller, uint32_t* offset, char* buffer,
+    int32_t bufferSize, int32_t* writeLength);
+
+/**
+ * @brief Get caret rect with styled string controller.
+ *
+ * @param controller <b>TextEditor</b> styled string controller.
+ * @param rect caret area info.
+ * @return Returns the result code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ * @since 24
+ */
+ArkUI_ErrorCode OH_ArkUI_TextEditorStyledStringController_GetCaretRect(
+    OH_ArkUI_TextEditorStyledStringController* controller, ArkUI_Rect* rect);
+
+/**
+ * @brief Delete character with styled string controller.
+ *
+ * @param controller <b>TextEditor</b> styled string controller.
+ * @return Returns the result code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ * @since 24
+ */
+ArkUI_ErrorCode OH_ArkUI_TextEditorStyledStringController_DeleteBackward(
+    OH_ArkUI_TextEditorStyledStringController* controller);
+
+/**
+ * @brief Create a paragraph style object for text editor.
+ * When the object is no longer in use, invoke {@link OH_ArkUI_TextEditorParagraphStyle_Destroy} to destroy it.
+ *
+ * @return A pointer to the paragraph style object.
+ * @since 24
+ */
+OH_ArkUI_TextEditorParagraphStyle* OH_ArkUI_TextEditorParagraphStyle_Create();
+
+/**
+ * @brief Destroys the paragraph style object.
+ *
+ * @param style <b>TextEditor</b> paragraph style.
+ * @since 24
+ */
+void OH_ArkUI_TextEditorParagraphStyle_Destroy(OH_ArkUI_TextEditorParagraphStyle* style);
+
+/**
+ * @brief Sets text alignment in paragraph style.
+ *
+ * @param style paragraph style.
+ * @param align text alignment.
+ * @return Returns the result code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ * @since 24
+ */
+ArkUI_ErrorCode OH_ArkUI_TextEditorParagraphStyle_SetTextAlign(
+    OH_ArkUI_TextEditorParagraphStyle* style, ArkUI_TextAlignment align);
+
+/**
+ * @brief Get text alignment in paragraph style.
+ *
+ * @param style paragraph style.
+ * @param align text alignment.
+ * @return Returns the result code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ * @since 24
+ */
+ArkUI_ErrorCode OH_ArkUI_TextEditorParagraphStyle_GetTextAlign(
+    OH_ArkUI_TextEditorParagraphStyle* style, ArkUI_TextAlignment* align);
+
+/**
+ * @brief Set pixelmap of leading margin in paragraph style.
+ *
+ * @param style paragraph style.
+ * @param pixelmap pixelmap of leading margin.
+ * @return Returns the result code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ * @since 24
+ */
+ArkUI_ErrorCode OH_ArkUI_TextEditorParagraphStyle_SetLeadingMarginPixelMap(
+    OH_ArkUI_TextEditorParagraphStyle* style, struct OH_PixelmapNative* pixelmap);
+
+/**
+ * @brief Get pixelmap of leading margin in paragraph style.
+ *
+ * @param style paragraph style.
+ * @param pixelmap pixelmap of leading margin.
+ * @return Returns the result code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ * @since 24
+ */
+ArkUI_ErrorCode OH_ArkUI_TextEditorParagraphStyle_GetLeadingMarginPixelMap(
+    OH_ArkUI_TextEditorParagraphStyle* style, struct OH_PixelmapNative** pixelmap);
+
+/**
+ * @brief Set width of leading margin in paragraph style.
+ *
+ * @param style paragraph style.
+ * @param width width of leading margin.
+ * @return Returns the result code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ * @since 24
+ */
+ArkUI_ErrorCode OH_ArkUI_TextEditorParagraphStyle_SetLeadingMarginWidth(OH_ArkUI_TextEditorParagraphStyle* style,
+    uint32_t width);
+
+/**
+ * @brief Get width of leading margin in paragraph style.
+ *
+ * @param style paragraph style.
+ * @param width width of leading margin.
+ * @return Returns the result code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ * @since 24
+ */
+ArkUI_ErrorCode OH_ArkUI_TextEditorParagraphStyle_GetLeadingMarginWidth(OH_ArkUI_TextEditorParagraphStyle* style,
+    uint32_t* width);
+
+/**
+ * @brief Sets height of leading margin in paragraph style.
+ *
+ * @param style paragraph style.
+ * @param height height of leading margin.
+ * @return Returns the result code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ * @since 24
+ */
+ArkUI_ErrorCode OH_ArkUI_TextEditorParagraphStyle_SetLeadingMarginHeight(OH_ArkUI_TextEditorParagraphStyle* style,
+    uint32_t height);
+
+/**
+ * @brief Get height of leading margin in paragraph style.
+ *
+ * @param style paragraph style.
+ * @param height height of leading margin.
+ * @return Returns the result code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ * @since 24
+ */
+ArkUI_ErrorCode OH_ArkUI_TextEditorParagraphStyle_GetLeadingMarginHeight(OH_ArkUI_TextEditorParagraphStyle* style,
+    uint32_t* height);
+
+/**
+ * @brief Set word break of paragraph style.
+ *
+ * @param style paragraph style.
+ * @param wordBreak word break.
+ * @return Returns the result code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ * @since 24
+ */
+ArkUI_ErrorCode OH_ArkUI_TextEditorParagraphStyle_SetWordBreak(OH_ArkUI_TextEditorParagraphStyle* style,
+    ArkUI_WordBreak wordBreak);
+
+/**
+ * @brief Get word break of paragraph style.
+ *
+ * @param style paragraph style.
+ * @param wordBreak word break.
+ * @return Returns the result code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ * @since 24
+ */
+ArkUI_ErrorCode OH_ArkUI_TextEditorParagraphStyle_GetWordBreak(OH_ArkUI_TextEditorParagraphStyle* style,
+    ArkUI_WordBreak* wordBreak);
+
+/**
+ * @brief Set line break strategy of paragraph style.
+ *
+ * @param style paragraph style.
+ * @param lineBreakStrategy line break strategy.
+ * @return Returns the result code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ * @since 24
+ */
+ArkUI_ErrorCode OH_ArkUI_TextEditorParagraphStyle_SetLineBreakStrategy(OH_ArkUI_TextEditorParagraphStyle* style,
+    OH_ArkUI_LineBreakStrategy lineBreakStrategy);
+
+/**
+ * @brief Get line break strategy of paragraph style.
+ *
+ * @param style paragraph style.
+ * @param lineBreakStrategy line break strategy.
+ * @return Returns the result code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ * @since 24
+ */
+ArkUI_ErrorCode OH_ArkUI_TextEditorParagraphStyle_GetLineBreakStrategy(OH_ArkUI_TextEditorParagraphStyle* style,
+    OH_ArkUI_LineBreakStrategy* lineBreakStrategy);
+
+/**
+ * @brief Set paragraph spacing of paragraph style.
+ *
+ * @param style paragraph style.
+ * @param paragraphSpacing paragraph spacing.
+ * @return Returns the result code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ * @since 24
+ */
+ArkUI_ErrorCode OH_ArkUI_TextEditorParagraphStyle_SetParagraphSpacing(OH_ArkUI_TextEditorParagraphStyle* style,
+    uint32_t paragraphSpacing);
+
+/**
+ * @brief Get paragraph spacing of paragraph style.
+ *
+ * @param style paragraph style.
+ * @param paragraphSpacing paragraph spacing.
+ * @return Returns the result code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ * @since 24
+ */
+ArkUI_ErrorCode OH_ArkUI_TextEditorParagraphStyle_GetParagraphSpacing(OH_ArkUI_TextEditorParagraphStyle* style,
+    uint32_t* paragraphSpacing);
+
+/**
+ * @brief Set text vertical alignment of paragraph style.
+ *
+ * @param style paragraph style.
+ * @param verticalAlignment text vertical alignment.
+ * @return Returns the result code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ * @since 24
+ */
+ArkUI_ErrorCode OH_ArkUI_TextEditorParagraphStyle_SetTextVerticalAlign(OH_ArkUI_TextEditorParagraphStyle* style,
+    ArkUI_TextVerticalAlignment verticalAlignment);
+
+/**
+ * @brief Get text vertical alignment of paragraph style.
+ *
+ * @param style paragraph style.
+ * @param verticalAlignment text vertical alignment.
+ * @return Returns the result code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ * @since 24
+ */
+ArkUI_ErrorCode OH_ArkUI_TextEditorParagraphStyle_GetTextVerticalAlign(OH_ArkUI_TextEditorParagraphStyle* style,
+    ArkUI_TextVerticalAlignment* verticalAlignment);
+
+/**
+ * @brief Set text direction of paragraph style.
+ *
+ * @param style paragraph style.
+ * @param textDirection text direction.
+ * @return Returns the result code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ * @since 24
+ */
+ArkUI_ErrorCode OH_ArkUI_TextEditorParagraphStyle_SetTextDirection(OH_ArkUI_TextEditorParagraphStyle* style,
+    ArkUI_TextDirection textDirection);
+
+/**
+ * @brief Get text direction of paragraph style.
+ *
+ * @param style paragraph style.
+ * @param textDirection text direction.
+ * @return Returns the result code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ * @since 24
+ */
+ArkUI_ErrorCode OH_ArkUI_TextEditorParagraphStyle_GetTextDirection(OH_ArkUI_TextEditorParagraphStyle* style,
+    ArkUI_TextDirection* textDirection);
+
+/**
+ * @brief Set preset paragraph style with styled string controller.
+ *
+ * @param controller <b>TextEditor</b> styled string controller.
+ * @param style preset paragraph style.
+ * @return Returns the result code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ * @since 24
+ */
+ArkUI_ErrorCode OH_ArkUI_TextEditorStyledStringController_SetTypingParagraphStyle(
+    OH_ArkUI_TextEditorStyledStringController* controller, OH_ArkUI_TextEditorParagraphStyle* style);
+
+/**
+ * @brief Create a shadow options object.
+ * When the object is no longer in use, invoke {@link OH_ArkUI_ShadowOptions_Destroy} to destroy it.
+ *
+ * @return A pointer to the shadow options object.
+ * @since 24
+ */
+OH_ArkUI_ShadowOptions* OH_ArkUI_ShadowOptions_Create();
+
+/**
+ * @brief Destroys the shadow options object.
+ *
+ * @param options Pointer to the object to be destroyed.
+ * @since 24
+ */
+void OH_ArkUI_ShadowOptions_Destroy(OH_ArkUI_ShadowOptions* options);
+
+/**
+ * @brief Sets blur radius of the shadow options.
+ *
+ * @param options shadow options.
+ * @param radius blur radius of the shadow.
+ * @return Returns the result code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ * @since 24
+ */
+ArkUI_ErrorCode OH_ArkUI_ShadowOptions_SetRadius(OH_ArkUI_ShadowOptions* options, float radius);
+
+/**
+ * @brief Gets blur radius of the shadow options.
+ *
+ * @param options shadow options.
+ * @param radius blur radius of the shadow.
+ * @return Returns the result code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ * @since 24
+ */
+ArkUI_ErrorCode OH_ArkUI_ShadowOptions_GetRadius(OH_ArkUI_ShadowOptions* options, float* radius);
+
+/**
+ * @brief Set shadow type of the shadow options.
+ *
+ * @param options shadow options.
+ * @param type shadow type.
+ * @return Returns the result code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ * @since 24
+ */
+ArkUI_ErrorCode OH_ArkUI_ShadowOptions_SetType(OH_ArkUI_ShadowOptions* options, ArkUI_ShadowType type);
+
+/**
+ * @brief Get shadow type of the shadow options.
+ *
+ * @param options shadow options.
+ * @param type shadow type.
+ * @return Returns the result code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ * @since 24
+ */
+ArkUI_ErrorCode OH_ArkUI_ShadowOptions_GetType(OH_ArkUI_ShadowOptions* options, ArkUI_ShadowType* type);
+
+/**
+ * @brief Set shadow color of the shadow options.
+ *
+ * @param options shadow options.
+ * @param color shadow color.
+ * @return Returns the result code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ * @since 24
+ */
+ArkUI_ErrorCode OH_ArkUI_ShadowOptions_SetColor(OH_ArkUI_ShadowOptions* options, uint32_t color);
+
+/**
+ * @brief Get shadow color of the shadow options.
+ *
+ * @param options shadow options.
+ * @param color shadow color.
+ * @return Returns the result code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ * @since 24
+ */
+ArkUI_ErrorCode OH_ArkUI_ShadowOptions_GetColor(OH_ArkUI_ShadowOptions* options, uint32_t* color);
+
+/**
+ * @brief Set offset of the shadow along the x-axis.
+ *
+ * @param options shadow options.
+ * @param offsetX offset of the shadow along the x-axis.
+ * @return Returns the result code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ * @since 24
+ */
+ArkUI_ErrorCode OH_ArkUI_ShadowOptions_SetOffsetX(OH_ArkUI_ShadowOptions* options, float offsetX);
+
+/**
+ * @brief Get offset of the shadow along the x-axis.
+ *
+ * @param options shadow options.
+ * @param offsetX offset of the shadow along the x-axis.
+ * @return Returns the result code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ * @since 24
+ */
+ArkUI_ErrorCode OH_ArkUI_ShadowOptions_GetOffsetX(OH_ArkUI_ShadowOptions* options, float* offsetX);
+
+/**
+ * @brief Set offset of the shadow along the y-axis.
+ *
+ * @param options shadow options.
+ * @param offsetY offset of the shadow along the y-axis.
+ * @return Returns the result code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ * @since 24
+ */
+ArkUI_ErrorCode OH_ArkUI_ShadowOptions_SetOffsetY(OH_ArkUI_ShadowOptions* options, float offsetY);
+
+/**
+ * @brief Get offset of the shadow along the y-axis.
+ *
+ * @param options shadow options.
+ * @param offsetY offset of the shadow along the y-axis.
+ * @return Returns the result code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ * @since 24
+ */
+ArkUI_ErrorCode OH_ArkUI_ShadowOptions_GetOffsetY(OH_ArkUI_ShadowOptions* options, float* offsetY);
+
+/**
+ * @brief Set whether to fill the inside of the component with shadow.
+ *
+ * @param options shadow options.
+ * @param isFill whether to fill the inside of the component with shadow.
+ * @return Returns the result code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ * @since 24
+ */
+ArkUI_ErrorCode OH_ArkUI_ShadowOptions_SetFill(OH_ArkUI_ShadowOptions* options, bool isFill);
+
+/**
+ * @brief Get whether to fill the inside of the component with shadow.
+ *
+ * @param options shadow options.
+ * @param isFill whether to fill the inside of the component with shadow.
+ * @return Returns the result code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ * @since 24
+ */
+ArkUI_ErrorCode OH_ArkUI_ShadowOptions_GetFill(OH_ArkUI_ShadowOptions* options, bool* isFill);
+
+/**
+ * @brief Create a text style object.
+ * When the object is no longer in use, invoke {@link OH_ArkUI_TextEditorTextStyle_Destroy} to destroy it.
+ *
+ * @return A pointer to the text style object.
+ * @since 24
+ */
+OH_ArkUI_TextEditorTextStyle* OH_ArkUI_TextEditorTextStyle_Create();
+
+/**
+ * @brief Destroys the text style object.
+ *
+ * @param style Pointer to the object to be destroyed.
+ * @since 24
+ */
+void OH_ArkUI_TextEditorTextStyle_Destroy(OH_ArkUI_TextEditorTextStyle* style);
+
+/**
+ * @brief Set font color of the text style.
+ *
+ * @param style <b>TextEditor</b> text style.
+ * @param color font color.
+ * @return Returns the result code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ * @since 24
+ */
+ArkUI_ErrorCode OH_ArkUI_TextEditorTextStyle_SetFontColor(OH_ArkUI_TextEditorTextStyle* style, uint32_t color);
+
+/**
+ * @brief Get font color of the text style.
+ *
+ * @param style <b>TextEditor</b> text style.
+ * @param color font color.
+ * @return Returns the result code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ * @since 24
+ */
+ArkUI_ErrorCode OH_ArkUI_TextEditorTextStyle_GetFontColor(OH_ArkUI_TextEditorTextStyle* style, uint32_t* color);
+
+/**
+ * @brief Set font size of the text style.
+ *
+ * @param style <b>TextEditor</b> text style.
+ * @param size font size.
+ * @return Returns the result code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ * @since 24
+ */
+ArkUI_ErrorCode OH_ArkUI_TextEditorTextStyle_SetFontSize(OH_ArkUI_TextEditorTextStyle* style, float size);
+
+/**
+ * @brief Get font size of the text style.
+ *
+ * @param style <b>TextEditor</b> text style.
+ * @param size font size.
+ * @return Returns the result code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ * @since 24
+ */
+ArkUI_ErrorCode OH_ArkUI_TextEditorTextStyle_GetFontSize(OH_ArkUI_TextEditorTextStyle* style, float* size);
+
+/**
+ * @brief Set font style of the text style.
+ *
+ * @param style <b>TextEditor</b> text style.
+ * @param fontStyle font style.
+ * @return Returns the result code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ * @since 24
+ */
+ArkUI_ErrorCode OH_ArkUI_TextEditorTextStyle_SetFontStyle(OH_ArkUI_TextEditorTextStyle* style,
+    ArkUI_FontStyle fontStyle);
+
+/**
+ * @brief Get font style of the text style.
+ *
+ * @param style <b>TextEditor</b> text style.
+ * @param fontStyle font style.
+ * @return Returns the result code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ * @since 24
+ */
+ArkUI_ErrorCode OH_ArkUI_TextEditorTextStyle_GetFontStyle(OH_ArkUI_TextEditorTextStyle* style,
+    ArkUI_FontStyle* fontStyle);
+
+/**
+ * @brief Set font weight of the text style.
+ *
+ * @param style <b>TextEditor</b> text style.
+ * @param fontWeight font weight.
+ * @return Returns the result code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ * @since 24
+ */
+ArkUI_ErrorCode OH_ArkUI_TextEditorTextStyle_SetFontWeight(OH_ArkUI_TextEditorTextStyle* style, uint32_t fontWeight);
+
+/**
+ * @brief Get font weight of the text style.
+ *
+ * @param style <b>TextEditor</b> text style.
+ * @param fontWeight font weight.
+ * @return Returns the result code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ * @since 24
+ */
+ArkUI_ErrorCode OH_ArkUI_TextEditorTextStyle_GetFontWeight(OH_ArkUI_TextEditorTextStyle* style, uint32_t* fontWeight);
+
+/**
+ * @brief Set font family of the text style.
+ *
+ * @param style <b>TextEditor</b> text style.
+ * @param fontFamily font family.
+ * @return Returns the result code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ * @since 24
+ */
+ArkUI_ErrorCode OH_ArkUI_TextEditorTextStyle_SetFontFamily(OH_ArkUI_TextEditorTextStyle* style, const char* fontFamily);
+
+/**
+ * @brief Get font family of the text style.
+ *
+ * @param style <b>TextEditor</b> text style.
+ * @param buffer The buffer to which font family content writes to the memory,
+ *               memory space needs to be allocated by the developer.
+ * @param bufferSize The buffer size
+ * @param writeLength Indicates the string length actually written to the buffer
+ *                    when returning {@link ARKUI_ERROR_CODE_NO_ERROR}.
+ *                    Indicates the minimum buffer size that can accommodate the target
+ *                    when {@link ARKUI_ERROR_CODE_BUFFER_SIZE_ERROR} is returned.
+ * @return Returns the result code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ * @since 24
+ */
+ArkUI_ErrorCode OH_ArkUI_TextEditorTextStyle_GetFontFamily(OH_ArkUI_TextEditorTextStyle* style,
+    char* buffer, int32_t bufferSize, int32_t* writeLength);
+
+/**
+ * @brief Set text decoration options of the text style.
+ *
+ * @param style <b>TextEditor</b> text style.
+ * @param options text decoration options.
+ * @return Returns the result code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ * @since 24
+ */
+ArkUI_ErrorCode OH_ArkUI_TextEditorTextStyle_SetDecoration(OH_ArkUI_TextEditorTextStyle* style,
+    OH_ArkUI_DecorationStyleOptions* options);
+
+/**
+ * @brief Get text decoration options of the text style.
+ *
+ * @param style <b>TextEditor</b> text style.
+ * @param options text decoration options.
+ * @return Returns the result code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ * @since 24
+ */
+ArkUI_ErrorCode OH_ArkUI_TextEditorTextStyle_GetDecoration(OH_ArkUI_TextEditorTextStyle* style,
+    OH_ArkUI_DecorationStyleOptions* options);
+
+/**
+ * @brief Set text shadow options of the text style.
+ *
+ * @param style <b>TextEditor</b> text style.
+ * @param options text shadow options.
+ * @param length the length of text shadow options.
+ * @return Returns the result code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ * @since 24
+ */
+ArkUI_ErrorCode OH_ArkUI_TextEditorTextStyle_SetTextShadows(OH_ArkUI_TextEditorTextStyle* style,
+    const OH_ArkUI_ShadowOptions** options, int32_t length);
+
+/**
+ * @brief Get text shadow options of the text style.
+ *
+ * @param style <b>TextEditor</b> text style.
+ * @param shadowOptions text shadow options.
+ * @param shadowOptionsSize buffer size for shadow options.
+ * @param writeLength the actual size of text shadow options in text style.
+ * @return Returns the result code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ * @since 24
+ */
+ArkUI_ErrorCode OH_ArkUI_TextEditorTextStyle_GetTextShadows(OH_ArkUI_TextEditorTextStyle* style,
+    OH_ArkUI_ShadowOptions** shadowOptions, uint32_t shadowOptionsSize, uint32_t* writeLength);
+
+/**
+ * @brief Set text line height of the text style.
+ *
+ * @param style <b>TextEditor</b> text style.
+ * @param lineHeight text line height.
+ * @return Returns the result code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ * @since 24
+ */
+ArkUI_ErrorCode OH_ArkUI_TextEditorTextStyle_SetLineHeight(OH_ArkUI_TextEditorTextStyle* style, int32_t lineHeight);
+
+/**
+ * @brief Get text line height of the text style.
+ *
+ * @param style <b>TextEditor</b> text style.
+ * @param lineHeight text line height.
+ * @return Returns the result code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ * @since 24
+ */
+ArkUI_ErrorCode OH_ArkUI_TextEditorTextStyle_GetLineHeight(OH_ArkUI_TextEditorTextStyle* style, int32_t* lineHeight);
+
+/**
+ * @brief Set letter spacing of the text style.
+ *
+ * @param style <b>TextEditor</b> text style.
+ * @param letterSpacing letter spacing.
+ * @return Returns the result code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ * @since 24
+ */
+ArkUI_ErrorCode OH_ArkUI_TextEditorTextStyle_SetLetterSpacing(OH_ArkUI_TextEditorTextStyle* style,
+    int32_t letterSpacing);
+
+/**
+ * @brief Get letter spacing of the text style.
+ *
+ * @param style <b>TextEditor</b> text style.
+ * @param letterSpacing letter spacing.
+ * @return Returns the result code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ * @since 24
+ */
+ArkUI_ErrorCode OH_ArkUI_TextEditorTextStyle_GetLetterSpacing(OH_ArkUI_TextEditorTextStyle* style,
+    int32_t* letterSpacing);
+
+/**
+ * @brief Set font feature of the text style.
+ *
+ * @param style <b>TextEditor</b> text style.
+ * @param fontFeature font feature.
+ * @return Returns the result code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ * @since 24
+ */
+ArkUI_ErrorCode OH_ArkUI_TextEditorTextStyle_SetFontFeature(OH_ArkUI_TextEditorTextStyle* style,
+    const char* fontFeature);
+
+/**
+ * @brief Get font feature of the text style.
+ *
+ * @param style <b>TextEditor</b> text style.
+ * @param buffer The buffer to which font feature content writes to the memory,
+ *               memory space needs to be allocated by the developer.
+ * @param bufferSize The buffer size
+ * @param writeLength Indicates the string length actually written to the buffer
+ *                    when returning {@link ARKUI_ERROR_CODE_NO_ERROR}.
+ *                    Indicates the minimum buffer size that can accommodate the target
+ *                    when {@link ARKUI_ERROR_CODE_BUFFER_SIZE_ERROR} is returned.
+ * @return Returns the result code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ * @since 24
+ */
+ArkUI_ErrorCode OH_ArkUI_TextEditorTextStyle_GetFontFeature(OH_ArkUI_TextEditorTextStyle* style, char* buffer,
+    int32_t bufferSize, int32_t* writeLength);
+
+/**
+ * @brief Set whether half leading is enabled in the text style.
+ *
+ * @param style <b>TextEditor</b> text style.
+ * @param halfLeading whether half leading is enabled.
+ * @return Returns the result code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ * @since 24
+ */
+ArkUI_ErrorCode OH_ArkUI_TextEditorTextStyle_SetHalfLeading(OH_ArkUI_TextEditorTextStyle* style, bool halfLeading);
+
+/**
+ * @brief Get whether half leading is enabled in the text style.
+ *
+ * @param style <b>TextEditor</b> text style.
+ * @param halfLeading whether half leading is enabled.
+ * @return Returns the result code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ * @since 24
+ */
+ArkUI_ErrorCode OH_ArkUI_TextEditorTextStyle_GetHalfLeading(OH_ArkUI_TextEditorTextStyle* style, bool* halfLeading);
+
+/**
+ * @brief Set text background color in the text style.
+ *
+ * @param style <b>TextEditor</b> text style.
+ * @param color text background color.
+ * @return Returns the result code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ * @since 24
+ */
+ArkUI_ErrorCode OH_ArkUI_TextEditorTextStyle_SetTextBackgroundColor(OH_ArkUI_TextEditorTextStyle* style,
+    uint32_t color);
+
+/**
+ * @brief Get text background color in the text style.
+ *
+ * @param style <b>TextEditor</b> text style.
+ * @param color text background color.
+ * @return Returns the result code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ * @since 24
+ */
+ArkUI_ErrorCode OH_ArkUI_TextEditorTextStyle_GetTextBackgroundColor(OH_ArkUI_TextEditorTextStyle* style,
+    uint32_t* color);
+
+/**
+ * @brief Set the rounded corner radius of the text background in the text style.
+ *
+ * @param style <b>TextEditor</b> text style.
+ * @param topLeft radius of the upper left corner of text background.
+ * @param topRight radius of the upper right corner of text background.
+ * @param bottomLeft radius of the lower left corner of text background.
+ * @param bottomRight radius of the lower right corner of text background.
+ * @return Returns the result code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ * @since 24
+ */
+ArkUI_ErrorCode OH_ArkUI_TextEditorTextStyle_SetTextBackgroundRadius(OH_ArkUI_TextEditorTextStyle* style, float topLeft,
+    float topRight, float bottomLeft, float bottomRight);
+
+/**
+ * @brief Get the rounded corner radius of the text background in the text style.
+ *
+ * @param style <b>TextEditor</b> text style.
+ * @param topLeft radius of the upper left corner of text background.
+ * @param topRight radius of the upper right corner of text background.
+ * @param bottomLeft radius of the lower left corner of text background.
+ * @param bottomRight radius of the lower right corner of text background.
+ * @return Returns the result code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ * @since 24
+ */
+ArkUI_ErrorCode OH_ArkUI_TextEditorTextStyle_GetTextBackgroundRadius(OH_ArkUI_TextEditorTextStyle* style,
+    float* topLeft, float* topRight, float* bottomLeft, float* bottomRight);
+
+/**
+ * @brief Set the preset typing style with styled string controller.
+ *
+ * @param controller <b>TextEditor</b> styled string controller.
+ * @param style the preset typing style.
+ * @return Returns the result code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ * @since 24
+ */
+ArkUI_ErrorCode OH_ArkUI_TextEditorStyledStringController_SetTypingStyle(
+    OH_ArkUI_TextEditorStyledStringController* controller, OH_ArkUI_TextEditorTextStyle* style);
+
+/**
+ * @brief Get the preset typing style with styled string controller.
+ *
+ * @param controller <b>TextEditor</b> styled string controller.
+ * @param style the preset typing style.
+ * @return Returns the result code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ * @since 24
+ */
+ArkUI_ErrorCode OH_ArkUI_TextEditorStyledStringController_GetTypingStyle(
+    OH_ArkUI_TextEditorStyledStringController* controller, OH_ArkUI_TextEditorTextStyle* style);
+
+/**
+ * @brief Creates a TextEditor selection menu options object.
+ * When the object is no longer in use, invoke {@link OH_ArkUI_TextEditorSelectionMenuOptions_Destroy} to destroy it.
+ *
+ * @return A pointer to the OH_ArkUI_TextEditorSelectionMenuOptions.
+ * @since 24
+ */
+OH_ArkUI_TextEditorSelectionMenuOptions* OH_ArkUI_TextEditorSelectionMenuOptions_Create();
+
+/**
+ * @brief Destroys the TextEditor selection menu options object.
+ *
+ * @param options Pointer to the {@link OH_ArkUI_TextEditorSelectionMenuOptions} object to be destroyed.
+ * @since 24
+ */
+void OH_ArkUI_TextEditorSelectionMenuOptions_Destroy(OH_ArkUI_TextEditorSelectionMenuOptions* options);
+
+/**
+ * @brief Sets the span type of selection menu in TextEditor.
+ *
+ * @param options Pointer to the {@link OH_ArkUI_TextEditorSelectionMenuOptions} object.
+ * @param textEditorSpanType span type.
+ * @return Returns the result code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ * @since 24
+ */
+ArkUI_ErrorCode OH_ArkUI_TextEditorSelectionMenuOptions_SetSpanType(
+    OH_ArkUI_TextEditorSelectionMenuOptions* options, OH_ArkUI_TextEditorSpanType textEditorSpanType);
+
+/**
+ * @brief Gets the span type of selection menu in TextEditor.
+ *
+ * @param options Pointer to the {@link OH_ArkUI_TextEditorSelectionMenuOptions} object.
+ * @param textEditorSpanType span type.
+ * @return Returns the result code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ * @since 24
+ */
+ArkUI_ErrorCode OH_ArkUI_TextEditorSelectionMenuOptions_GetSpanType(
+    OH_ArkUI_TextEditorSelectionMenuOptions* options, OH_ArkUI_TextEditorSpanType* textEditorSpanType);
+
+/**
+ * @brief Sets the content of selection menu in TextEditor.
+ *
+ * @param options Pointer to the {@link OH_ArkUI_TextEditorSelectionMenuOptions} object.
+ * @param node content node.
+ * @return Returns the result code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ * @since 24
+ */
+ArkUI_ErrorCode OH_ArkUI_TextEditorSelectionMenuOptions_SetContentNode(OH_ArkUI_TextEditorSelectionMenuOptions* options,
+    ArkUI_NodeHandle node);
+
+/**
+ * @brief Gets the content node of selection menu in TextEditor.
+ *
+ * @param options Pointer to the {@link OH_ArkUI_TextEditorSelectionMenuOptions} object.
+ * @param node content node.
+ * @return Returns the result code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ * @since 24
+ */
+ArkUI_ErrorCode OH_ArkUI_TextEditorSelectionMenuOptions_GetContentNode(OH_ArkUI_TextEditorSelectionMenuOptions* options,
+    ArkUI_NodeHandle* node);
+
+/**
+ * @brief Sets the response type of selection menu in TextEditor.
+ *
+ * @param options Pointer to the {@link OH_ArkUI_TextEditorSelectionMenuOptions} object.
+ * @param responseType response type.
+ * @return Returns the result code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ * @since 24
+ */
+ArkUI_ErrorCode OH_ArkUI_TextEditorSelectionMenuOptions_SetResponseType(
+    OH_ArkUI_TextEditorSelectionMenuOptions* options, OH_ArkUI_TextEditorResponseType responseType);
+
+/**
+ * @brief Gets the response type of selection menu in TextEditor.
+ *
+ * @param options Pointer to the {@link OH_ArkUI_TextEditorSelectionMenuOptions} object.
+ * @param responseType response type.
+ * @return Returns the result code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ * @since 24
+ */
+ArkUI_ErrorCode OH_ArkUI_TextEditorSelectionMenuOptions_GetResponseType(
+    OH_ArkUI_TextEditorSelectionMenuOptions* options, OH_ArkUI_TextEditorResponseType* responseType);
+
+/**
+ * @brief Sets the type of selection menu in TextEditor.
+ *
+ * @param options Pointer to the {@link OH_ArkUI_TextEditorSelectionMenuOptions} object.
+ * @param menuType menu type.
+ * @return Returns the result code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ * @since 24
+ */
+ArkUI_ErrorCode OH_ArkUI_TextEditorSelectionMenuOptions_SetMenuType(OH_ArkUI_TextEditorSelectionMenuOptions* options,
+    OH_ArkUI_TextMenuType menuType);
+
+/**
+ * @brief Gets the type of selection menu in TextEditor.
+ *
+ * @param options Pointer to the {@link OH_ArkUI_TextEditorSelectionMenuOptions} object.
+ * @param menuType Menu type.
+ * @return Returns the result code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ * @since 24
+ */
+ArkUI_ErrorCode OH_ArkUI_TextEditorSelectionMenuOptions_GetMenuType(OH_ArkUI_TextEditorSelectionMenuOptions* options,
+    OH_ArkUI_TextMenuType* menuType);
+
+/**
+ * @brief Sets the event to be called when selection menu shows.
+ *
+ * @param options Pointer to the {@link OH_ArkUI_TextEditorSelectionMenuOptions} object.
+ * @param userData User data.
+ * @param callback The callback function of menu show.
+ *     start The start offset of the selected content.
+ *     end The end offset of the selected content.
+ *     callbackUserData The user data.
+ * @return Returns the result code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ * @since 24
+ */
+ArkUI_ErrorCode OH_ArkUI_TextEditorSelectionMenuOptions_RegisterOnMenuShowCallback(
+    OH_ArkUI_TextEditorSelectionMenuOptions* options, void* userData,
+    void (*callback)(int32_t start, int32_t end, void* callbackUserData));
+
+/**
+ * @brief Sets the event to be called when selection menu hides.
+ *
+ * @param options Pointer to the {@link OH_ArkUI_TextEditorSelectionMenuOptions} object.
+ * @param userData user data.
+ * @param callback The callback function of menu hide.
+ *     start The start offset of the selected content.
+ *     end The end offset of the selected content.
+ *     userData The user data.
+ * @return Returns the result code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ * @since 24
+ */
+ArkUI_ErrorCode OH_ArkUI_TextEditorSelectionMenuOptions_RegisterOnMenuHideCallback(
+    OH_ArkUI_TextEditorSelectionMenuOptions* options, void* userData,
+    void (*callback)(int32_t start, int32_t end, void* callbackUserData));
+
+/**
+ * @brief Sets the event to be called when selection menu appears.
+ *
+ * @param options Pointer to the {@link OH_ArkUI_TextEditorSelectionMenuOptions} object.
+ * @param userData user data.
+ * @param callback The callback function of menu appear.
+ *     start The start offset of the selected content.
+ *     end The end offset of the selected content.
+ *     userData The user data.
+ * @return Returns the result code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ * @since 24
+ */
+ArkUI_ErrorCode OH_ArkUI_TextEditorSelectionMenuOptions_RegisterOnMenuAppearCallback(
+    OH_ArkUI_TextEditorSelectionMenuOptions* options, void* userData,
+    void (*callback)(int32_t start, int32_t end, void* callbackUserData));
+
+/**
+ * @brief Sets the event to be called when selection menu disappears.
+ *
+ * @param options Pointer to the {@link OH_ArkUI_TextEditorSelectionMenuOptions} object.
+ * @param userData user data.
+ * @param callback The callback function of menu disappear.
+ *     userData The user data.
+ * @return Returns the result code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ * @since 24
+ */
+ArkUI_ErrorCode OH_ArkUI_TextEditorSelectionMenuOptions_RegisterOnMenuDisappearCallback(
+    OH_ArkUI_TextEditorSelectionMenuOptions* options, void* userData, void (*callback)(void* callbackUserData));
+
+/**
+ * @brief Sets the haptic feedback mode of selection menu in TextEditor.
+ *
+ * @param options Pointer to the {@link OH_ArkUI_TextEditorSelectionMenuOptions} object.
+ * @param mode haptic feedback mode.
+ * @return Returns the result code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ * @since 24
+ */
+ArkUI_ErrorCode OH_ArkUI_TextEditorSelectionMenuOptions_SetHapticFeedbackMode(
+    OH_ArkUI_TextEditorSelectionMenuOptions* options, OH_ArkUI_HapticFeedbackMode mode);
+
+/**
+ * @brief Gets the haptic feedback mode of selection menu in TextEditor.
+ *
+ * @param options Pointer to the {@link OH_ArkUI_TextEditorSelectionMenuOptions} object.
+ * @param mode haptic feedback mode.
+ * @return Returns the result code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ * @since 24
+ */
+ArkUI_ErrorCode OH_ArkUI_TextEditorSelectionMenuOptions_GetHapticFeedbackMode(
+    OH_ArkUI_TextEditorSelectionMenuOptions* options, OH_ArkUI_HapticFeedbackMode* mode);
+
+/**
+ * @brief Close selection menu of text editor with styled string controller.
+ *
+ * @param controller <b>TextEditor</b> styled string controller.
+ * @return Returns the result code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ * @since 24
+ */
+ArkUI_ErrorCode OH_ArkUI_TextEditorStyledStringController_CloseSelectionMenu(
+    OH_ArkUI_TextEditorStyledStringController* controller);
+
+/**
+ * @brief Gets the selection of text editor with styled string controller.
+ *
+ * @note All input pointer parameters must be allocated, managed, and released by the caller.
+ * @param controller <b>TextEditor</b> styled string controller.
+ * @param start Start offset of selection.
+ * @param end End offset of selection.
+ * @return Returns the result code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ * @since 24
+ */
+ArkUI_ErrorCode OH_ArkUI_TextEditorStyledStringController_GetSelection(
+    const OH_ArkUI_TextEditorStyledStringController* controller, uint32_t* start, uint32_t* end);
+
+/**
+ * @brief Sets the styled string of text editor.
+ *
+ * @note All input pointer parameters must be allocated, managed, and released by the caller.
+ * @param controller <b>TextEditor</b> styled string controller.
+ * @param descriptor Pointer to a <b>ArkUI_StyledString_Descriptor</b> object.
+ * @return Returns the result code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ * @since 24
+ */
+ArkUI_ErrorCode OH_ArkUI_TextEditorStyledStringController_SetStyledString(
+    const OH_ArkUI_TextEditorStyledStringController* controller, const ArkUI_StyledString_Descriptor* descriptor);
+
+/**
+ * @brief Gets the styled string of text editor.
+ *
+ * @note All input pointer parameters must be allocated, managed, and released by the caller.
+ * @param controller <b>TextEditor</b> styled string controller.
+ * @param descriptor Pointer to a <b>ArkUI_StyledString_Descriptor</b> object.
+ * @return Returns the result code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ * @since 24
+ */
+ArkUI_ErrorCode OH_ArkUI_TextEditorStyledStringController_GetStyledString(
+    const OH_ArkUI_TextEditorStyledStringController* controller, ArkUI_StyledString_Descriptor* descriptor);
+
+/**
+ * @brief Sets the styled string placeholder.
+ *
+ * @note All input pointer parameters must be allocated, managed, and released by the caller.
+ * @param controller <b>TextEditor</b> styled string controller.
+ * @param descriptor Pointer to a <b>ArkUI_StyledString_Descriptor</b> object.
+ * @return Returns the result code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ * @since 24
+ */
+ArkUI_ErrorCode OH_ArkUI_TextEditorStyledStringController_SetStyledPlaceholder(
+    const OH_ArkUI_TextEditorStyledStringController* controller, const ArkUI_StyledString_Descriptor* descriptor);
+
+/**
  * @brief Create the ArkUI_PickerIndicatorStyle instance.
  *
  * @param type The picker selection indicator enumeration type.
@@ -7426,6 +9403,713 @@ ArkUI_ErrorCode OH_ArkUI_PickerIndicatorStyle_ConfigureBackground(ArkUI_PickerIn
 */
 ArkUI_ErrorCode OH_ArkUI_PickerIndicatorStyle_ConfigureDivider(ArkUI_PickerIndicatorStyle* style,
     ArkUI_PickerIndicatorDivider* divider);
+
+/**
+ * @brief Defines the scale options for matrix scaling.
+ *
+ * @since 24
+ */
+typedef struct ArkUI_Matrix4ScaleOptions ArkUI_Matrix4ScaleOptions;
+
+/**
+ * @brief Create an object of ArkUI_Matrix4ScaleOptions.
+ *        In the newly created options, the default values for the scaling coefficients in the x, y and z directions
+ *        are 1, and the default values for centerX, centerY are 0. 
+ *
+ * @return Returns a pointer to the newly created ArkUI_Matrix4ScaleOptions.
+ * @since 24
+ */
+ArkUI_Matrix4ScaleOptions* OH_ArkUI_Matrix4ScaleOptions_Create();
+
+/**
+ * @brief Disposes the ArkUI_Matrix4ScaleOptions object.
+ *
+ * @param options Pointer to the ArkUI_Matrix4ScaleOptions instance to be destroyed.
+ * @since 24
+ */
+void OH_ArkUI_Matrix4ScaleOptions_Dispose(ArkUI_Matrix4ScaleOptions* options);
+
+/**
+ * @brief Set the scaling factor in the x direction in ArkUI_Matrix4ScaleOptions. 
+ *
+ * @param options Pointer to the ArkUI_Matrix4ScaleOptions object.
+ * @param scaleX The scaling factor in the x direction. Value range: (-∞, +∞).
+ * @return Returns the result code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful. 
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ * @since 24
+ */
+ArkUI_ErrorCode OH_ArkUI_Matrix4ScaleOptions_SetX(ArkUI_Matrix4ScaleOptions* options, const float scaleX);
+
+/**
+ * @brief Get the scaling factor in the x direction in ArkUI_Matrix4ScaleOptions.
+ *        If the value of x is never set, its default value is 1.
+ *
+ * @param options Pointer to the ArkUI_Matrix4ScaleOptions object.
+ * @param scaleX The scaling factor in the x direction.
+ * @return Returns the result code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ * @since 24
+ */
+ArkUI_ErrorCode OH_ArkUI_Matrix4ScaleOptions_GetX(const ArkUI_Matrix4ScaleOptions* options, float* scaleX);
+
+/**
+ * @brief Set the scaling factor in the y direction in ArkUI_Matrix4ScaleOptions.
+ *
+ * @param options Pointer to the ArkUI_Matrix4ScaleOptions object.
+ * @param scaleY The scaling factor in the y direction. Value range: (-∞, +∞).
+ * @return Returns the result code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ * @since 24
+ */
+ArkUI_ErrorCode OH_ArkUI_Matrix4ScaleOptions_SetY(ArkUI_Matrix4ScaleOptions* options, const float scaleY);
+
+/**
+ * @brief Get the scaling factor in the y direction in ArkUI_Matrix4ScaleOptions.
+ *        If the value of y is never set, its default value is 1.
+ *
+ * @param options Pointer to the ArkUI_Matrix4ScaleOptions object.
+ * @param scaleY The scaling factor in the y direction.
+ * @return Returns the result code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ * @since 24
+ */
+ArkUI_ErrorCode OH_ArkUI_Matrix4ScaleOptions_GetY(const ArkUI_Matrix4ScaleOptions* options, float* scaleY);
+
+/**
+ * @brief Set the scaling factor in the z direction in ArkUI_Matrix4ScaleOptions.
+ *
+ * @param options Pointer to the ArkUI_Matrix4ScaleOptions object.
+ * @param scaleZ The scaling factor in the z direction. Value range: (-∞, +∞).
+ * @return Returns the result code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ * @since 24
+ */
+ArkUI_ErrorCode OH_ArkUI_Matrix4ScaleOptions_SetZ(ArkUI_Matrix4ScaleOptions* options, const float scaleZ);
+
+/**
+ * @brief Get the scaling factor in the z direction in ArkUI_Matrix4ScaleOptions.
+ *        If the value of z is never set, its default value is 1.
+ *
+ * @param options Pointer to the ArkUI_Matrix4ScaleOptions object.
+ * @param scaleZ The scaling factor in the z direction.
+ * @return Returns the result code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ * @since 24
+ */
+ArkUI_ErrorCode OH_ArkUI_Matrix4ScaleOptions_GetZ(const ArkUI_Matrix4ScaleOptions* options, float* scaleZ);
+
+/**
+ * @brief Set x offset relative to the transformation center. 0 means no additional x-direction offset from the
+ *        transformation center. The unit is px.
+ *
+ * @param options Pointer to the ArkUI_Matrix4ScaleOptions object.
+ * @param centerX The x offset relative to the transformation center. Value range: (-∞, +∞).
+ * @return Returns the result code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ * @since 24
+ */
+ArkUI_ErrorCode OH_ArkUI_Matrix4ScaleOptions_SetCenterX(ArkUI_Matrix4ScaleOptions* options, const float centerX);
+
+/**
+ * @brief Get the value of centerX from the options, which represents the x-direction offset relative to the
+ *        transformation center. The unit is px. If the value of centerX is never set, its default value is 0.
+ *
+ * @param options Pointer to the ArkUI_Matrix4ScaleOptions object.
+ * @param centerX The x-direction offset relative to the transformation center.
+ * @return Returns the result code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ * @since 24
+ */
+ArkUI_ErrorCode OH_ArkUI_Matrix4ScaleOptions_GetCenterX(const ArkUI_Matrix4ScaleOptions* options, float* centerX);
+
+/**
+ * @brief Set y offset relative to the transformation center. 0 means no additional y-direction offset from the
+ *        transformation center. The unit is px.
+ *
+ * @param options Pointer to the ArkUI_Matrix4ScaleOptions object.
+ * @param centerY The y offset relative to the transformation center. Value range: (-∞, +∞).
+ * @return Returns the result code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ * @since 24
+ */
+ArkUI_ErrorCode OH_ArkUI_Matrix4ScaleOptions_SetCenterY(ArkUI_Matrix4ScaleOptions* options, const float centerY);
+
+/**
+ * @brief Get the value of centerY from the options, which represents the y-direction offset relative to the
+ *        transformation center. The unit is px. If the value of centerY is never set, its default value is 0.
+ *
+ * @param options Pointer to the ArkUI_Matrix4ScaleOptions object.
+ * @param centerY The y-direction offset relative to the transformation center.
+ * @return Returns the result code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ * @since 24
+ */
+ArkUI_ErrorCode OH_ArkUI_Matrix4ScaleOptions_GetCenterY(const ArkUI_Matrix4ScaleOptions* options, float* centerY);
+
+/**
+ * @brief Defines the rotation options for matrix rotating.
+ *
+ * @since 24
+ */
+typedef struct ArkUI_Matrix4RotationOptions ArkUI_Matrix4RotationOptions;
+
+/**
+ * @brief Create an object of ArkUI_Matrix4RotationOptions.
+ *        In the newly created options, the x, y, and z values in the direction vector specifying the rotation axis
+ *        are undetermined; The default values for centerX, centerY are 0; The default value for angle is 0.
+ *        If none of x, y, z are specified, it is equivalent to x=0, y=0, z=1, which means rotation around the z-axis.
+ *        Once any one of x, y, z is specified, the remaining unspecified values are equivalent to 0.
+ *
+ * @return Returns a pointer to the newly created ArkUI_Matrix4RotationOptions.
+ * @since 24
+ */
+ArkUI_Matrix4RotationOptions* OH_ArkUI_Matrix4RotationOptions_Create();
+
+/**
+ * @brief Disposes the ArkUI_Matrix4RotationOptions object.
+ *
+ * @param options Pointer to the ArkUI_Matrix4RotationOptions instance to be destroyed.
+ * @since 24
+ */
+void OH_ArkUI_Matrix4RotationOptions_Dispose(ArkUI_Matrix4RotationOptions* options);
+
+/**
+ * @brief Set the value of the direction vector for the x-axis direction in ArkUI_Matrix4RotationOptions.
+ *
+ * @param options Pointer to the ArkUI_Matrix4RotationOptions object.
+ * @param x The value of the direction vector for the x-axis direction. Value range: (-∞, +∞).
+ * @return Returns the result code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ * @since 24
+ */
+ArkUI_ErrorCode OH_ArkUI_Matrix4RotationOptions_SetX(ArkUI_Matrix4RotationOptions* options, const float x);
+
+/**
+ * @brief Get the value of the direction vector for the x-axis direction in ArkUI_Matrix4RotationOptions.
+ *        If the value of x is never set, its value will be undefined, so the function will return
+ *        ARKUI_ERROR_CODE_PARAM_INVALID.
+ *
+ * @param options Pointer to the ArkUI_Matrix4RotationOptions object.
+ * @param x The value of the direction vector for the x-axis direction.
+ * @return Returns the result code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ * @since 24
+ */
+ArkUI_ErrorCode OH_ArkUI_Matrix4RotationOptions_GetX(const ArkUI_Matrix4RotationOptions* options, float* x);
+
+/**
+ * @brief Set the value of the direction vector for the y-axis direction in ArkUI_Matrix4RotationOptions.
+ *
+ * @param options Pointer to the ArkUI_Matrix4RotationOptions object.
+ * @param y The value of the direction vector for the y-axis direction. Value range: (-∞, +∞).
+ * @return Returns the result code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ * @since 24
+ */
+ArkUI_ErrorCode OH_ArkUI_Matrix4RotationOptions_SetY(ArkUI_Matrix4RotationOptions* options, const float y);
+
+/**
+ * @brief Get the value of the direction vector for the y-axis direction in ArkUI_Matrix4RotationOptions.
+ *        If the value of y is never set, its value will be undefined, so the function will return
+ *        ARKUI_ERROR_CODE_PARAM_INVALID.
+ *
+ * @param options Pointer to the ArkUI_Matrix4RotationOptions object.
+ * @param y The value of the direction vector for the y-axis direction.
+ * @return Returns the result code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ * @since 24
+ */
+ArkUI_ErrorCode OH_ArkUI_Matrix4RotationOptions_GetY(const ArkUI_Matrix4RotationOptions* options, float* y);
+
+/**
+ * @brief Set the value of the direction vector for the z-axis direction in ArkUI_Matrix4RotationOptions.
+ *
+ * @param options Pointer to the ArkUI_Matrix4RotationOptions object.
+ * @param z The value of the direction vector for the z-axis direction. Value range: (-∞, +∞).
+ * @return Returns the result code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ * @since 24
+ */
+ArkUI_ErrorCode OH_ArkUI_Matrix4RotationOptions_SetZ(ArkUI_Matrix4RotationOptions* options, const float z);
+
+/**
+ * @brief Get the value of the direction vector for the z-axis direction in ArkUI_Matrix4RotationOptions.
+ *        If the value of z is never set, its value will be undefined, so the function will return
+ *        ARKUI_ERROR_CODE_PARAM_INVALID.
+ *
+ * @param options Pointer to the ArkUI_Matrix4RotationOptions object.
+ * @param z The value of the direction vector for the z-axis direction.
+ * @return Returns the result code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ * @since 24
+ */
+ArkUI_ErrorCode OH_ArkUI_Matrix4RotationOptions_GetZ(const ArkUI_Matrix4RotationOptions* options, float* z);
+
+/**
+ * @brief Set the value of the rotation angle in ArkUI_Matrix4RotationOptions. The unit is degree.
+ *
+ * @param options Pointer to the ArkUI_Matrix4RotationOptions object.
+ * @param angle The value of the rotation angle in ArkUI_Matrix4RotationOptions. Value range: (-∞, +∞).
+ * @return Returns the result code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ * @since 24
+ */
+ArkUI_ErrorCode OH_ArkUI_Matrix4RotationOptions_SetAngle(ArkUI_Matrix4RotationOptions* options, const float angle);
+
+/**
+ * @brief Get the value of the rotation angle in ArkUI_Matrix4RotationOptions. The unit is degree.
+ *        If the value of angle is never set, its default value is 0.
+ *
+ * @param options Pointer to the ArkUI_Matrix4RotationOptions object.
+ * @param angle The value of the rotation angle in ArkUI_Matrix4RotationOptions.
+ * @return Returns the result code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ * @since 24
+ */
+ArkUI_ErrorCode OH_ArkUI_Matrix4RotationOptions_GetAngle(const ArkUI_Matrix4RotationOptions* options, float* angle);
+
+/**
+ * @brief Set x offset relative to the transformation center. 0 means no additional x-direction offset from the
+ *        transformation center. The unit is px.
+ *
+ * @param options Pointer to the ArkUI_Matrix4RotationOptions object.
+ * @param centerX The x offset relative to the transformation center. Value range: (-∞, +∞).
+ * @return Returns the result code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ * @since 24
+ */
+ArkUI_ErrorCode OH_ArkUI_Matrix4RotationOptions_SetCenterX(ArkUI_Matrix4RotationOptions* options, const float centerX);
+
+/**
+ * @brief Get the value of centerX from the options, which represents the x-direction offset relative to the
+ *        transformation center. The unit is px. If the value of centerX is never set, its default value is 0.
+ *
+ * @param options Pointer to the ArkUI_Matrix4RotationOptions object.
+ * @param centerX The x-direction offset relative to the transformation center.
+ * @return Returns the result code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ * @since 24
+ */
+ArkUI_ErrorCode OH_ArkUI_Matrix4RotationOptions_GetCenterX(const ArkUI_Matrix4RotationOptions* options, float* centerX);
+
+/**
+ * @brief Set y offset relative to the transformation center. 0 means no additional y-direction offset from the
+ *        transformation center. The unit is px.
+ *
+ * @param options Pointer to the ArkUI_Matrix4RotationOptions object.
+ * @param centerY The y offset relative to the transformation center. Value range: (-∞, +∞).
+ * @return Returns the result code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ * @since 24
+ */
+ArkUI_ErrorCode OH_ArkUI_Matrix4RotationOptions_SetCenterY(ArkUI_Matrix4RotationOptions* options, const float centerY);
+
+/**
+ * @brief Get the value of centerY from the options, which represents the y-direction offset relative to the
+ *        transformation center. The unit is px. If the value of centerY is never set, its default value is 0.
+ *
+ * @param options Pointer to the ArkUI_Matrix4RotationOptions object.
+ * @param centerY The y-direction offset relative to the transformation center.
+ * @return Returns the result code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ * @since 24
+ */
+ArkUI_ErrorCode OH_ArkUI_Matrix4RotationOptions_GetCenterY(const ArkUI_Matrix4RotationOptions* options, float* centerY);
+
+/**
+ * @brief Defines the translation options for matrix translating.
+ *
+ * @since 24
+ */
+typedef struct ArkUI_Matrix4TranslationOptions ArkUI_Matrix4TranslationOptions;
+
+/**
+ * @brief Create an object of ArkUI_Matrix4TranslationOptions.
+ *        In the newly created options, the default values for x, y and z are 0.
+ *
+ * @return Returns a pointer to the newly created ArkUI_Matrix4TranslationOptions.
+ * @since 24
+ */
+ArkUI_Matrix4TranslationOptions* OH_ArkUI_Matrix4TranslationOptions_Create();
+
+/**
+ * @brief Disposes the ArkUI_Matrix4TranslationOptions object.
+ *
+ * @param options Pointer to the ArkUI_Matrix4TranslationOptions instance to be destroyed.
+ * @since 24
+ */
+void OH_ArkUI_Matrix4TranslationOptions_Dispose(ArkUI_Matrix4TranslationOptions* options);
+
+/**
+ * @brief Set the translation value in the x-axis direction. The unit is px.
+ *        If the value of x is never set, its default value is 0.
+ *
+ * @param options Pointer to the ArkUI_Matrix4TranslationOptions object.
+ * @param x The translation value in the x-axis direction. Value range: (-∞, +∞).
+ * @return Returns the result code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ * @since 24
+ */
+ArkUI_ErrorCode OH_ArkUI_Matrix4TranslationOptions_SetX(ArkUI_Matrix4TranslationOptions* options, const float x);
+
+/**
+ * @brief Get the translation value in the x-axis direction from ArkUI_Matrix4TranslationOptions.
+ *
+ * @param options Pointer to the ArkUI_Matrix4TranslationOptions object.
+ * @param x The translation value in the x-axis direction.
+ * @return Returns the result code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ * @since 24
+ */
+ArkUI_ErrorCode OH_ArkUI_Matrix4TranslationOptions_GetX(const ArkUI_Matrix4TranslationOptions* options, float* x);
+
+/**
+ * @brief Set the translation value in the y-axis direction. The unit is px.
+ *        If the value of y is never set, its default value is 0.
+ *
+ * @param options Pointer to the ArkUI_Matrix4TranslationOptions object.
+ * @param y The translation value in the y-axis direction. Value range: (-∞, +∞).
+ * @return Returns the result code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ * @since 24
+ */
+ArkUI_ErrorCode OH_ArkUI_Matrix4TranslationOptions_SetY(ArkUI_Matrix4TranslationOptions* options, const float y);
+
+/**
+ * @brief Get the translation value in the y-axis direction from ArkUI_Matrix4TranslationOptions.
+ *
+ * @param options Pointer to the ArkUI_Matrix4TranslationOptions object.
+ * @param y The translation value in the y-axis direction.
+ * @return Returns the result code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ * @since 24
+ */
+ArkUI_ErrorCode OH_ArkUI_Matrix4TranslationOptions_GetY(const ArkUI_Matrix4TranslationOptions* options, float* y);
+
+/**
+ * @brief Set the translation value in the z-axis direction. The unit is px.
+ *        If the value of z is never set, its default value is 0.
+ *
+ * @param options Pointer to the ArkUI_Matrix4TranslationOptions object.
+ * @param z The translation value in the z-axis direction. Value range: (-∞, +∞).
+ * @return Returns the result code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ * @since 24
+ */
+ArkUI_ErrorCode OH_ArkUI_Matrix4TranslationOptions_SetZ(ArkUI_Matrix4TranslationOptions* options, const float z);
+
+/**
+ * @brief Get the translation value in the z-axis direction from ArkUI_Matrix4TranslationOptions.
+ *
+ * @param options Pointer to the ArkUI_Matrix4TranslationOptions object.
+ * @param z The translation value in the z-axis direction.
+ * @return Returns the result code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ * @since 24
+ */
+ArkUI_ErrorCode OH_ArkUI_Matrix4TranslationOptions_GetZ(const ArkUI_Matrix4TranslationOptions* options, float* z);
+
+/**
+ * @brief Create an identity matrix4 object.
+ *
+ * @return Returns the created identity matrix4 object.
+ * @since 24
+ */
+ArkUI_Matrix4* OH_ArkUI_Matrix4_CreateIdentity();
+
+/**
+ * @brief Specify each element of the matrix to create a matrix4 object.
+ *
+ * @param elements Pointer to the array of expected matrix element data. The length of array should be greater than
+ *                 or equal to 16. The parameter must not be null.
+ * @return Returns the newly created matrix4 object.
+ *         If the pointer of elements is null, the function will return null.
+ * @since 24
+ */
+ArkUI_Matrix4* OH_ArkUI_Matrix4_CreateByElements(const float* elements);
+
+/**
+ * @brief Disposes a matrix4 object.
+ *
+ * @param matrix Pointer to the matrix4 object to be disposed.
+ * @since 24
+ */
+void OH_ArkUI_Matrix4_Dispose(ArkUI_Matrix4* matrix);
+
+/**
+ * @brief Create a copy of the matrix4 object.
+ *
+ * @param matrix Pointer to the original matrix4 object.
+ * @return Returns the newly created matrix4 object.
+ * @since 24
+ */
+ArkUI_Matrix4* OH_ArkUI_Matrix4_Copy(const ArkUI_Matrix4* matrix);
+
+/**
+ * @brief Perform an inverse matrix transformation on the input matrix.
+ *        If the matrix is invertible, this function will modify the input matrix; otherwise, the matrix will remain
+ *        unchanged and an error code will be returned.
+ *
+ * @param matrix Pointer to the matrix4 object to be inverted.
+ * @return Returns the result code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if the matrix is not invertible.
+ * @since 24
+ */
+ArkUI_ErrorCode OH_ArkUI_Matrix4_Invert(ArkUI_Matrix4* matrix);
+
+/**
+ * @brief Combine another matrix with the original matrix, and storing the resulting matrix in oriMatrix.
+ *        The resulting matrix is equivalent to first applying the transformation of oriMatrix and then applying
+ *        the transformation of anotherMatrix. This function will alter the oriMatrix object.
+ *
+ * @param oriMatrix Pointer to the original matrix4 object.
+ * @param anotherMatrix Pointer to another matrix object to be combined.
+ * @return Returns the result code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ * @since 24
+ */
+ArkUI_ErrorCode OH_ArkUI_Matrix4_Combine(ArkUI_Matrix4* oriMatrix, const ArkUI_Matrix4* anotherMatrix);
+
+/**
+ * @brief Apply a tranlation transformation to the original matrix to obtain the translated matrix. Each translation
+ *        transformation is applied cumulatively. This function will alter the input matrix object.
+ *
+ * @param matrix Pointer to the matrix4 object to be translated.
+ * @param translate Pointer to the translation options.
+ * @return Returns the result code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ * @since 24
+ */
+ArkUI_ErrorCode OH_ArkUI_Matrix4_Translate(ArkUI_Matrix4* matrix, const ArkUI_Matrix4TranslationOptions* translate);
+
+/**
+ * @brief Apply a scale transformation to the original matrix to obtain the scaled matrix. Each scale
+ *        transformation is applied cumulatively. This function will alter the input matrix object.
+ *
+ * @param matrix Pointer to the matrix4 object to be scaled.
+ * @param scale Pointer to the scale options.
+ * @return Returns the result code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ * @since 24
+ */
+ArkUI_ErrorCode OH_ArkUI_Matrix4_Scale(ArkUI_Matrix4* matrix, const ArkUI_Matrix4ScaleOptions* scale);
+
+/**
+ * @brief Apply a rotation transformation to the original matrix to obtain the rotated matrix. Each rotation
+ *        transformation is applied cumulatively. This function will alter the input matrix object.
+ *
+ * @param matrix Pointer to the matrix4 object to be rotated.
+ * @param rotate Pointer to the rotation options.
+ * @return Returns the result code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ * @since 24
+ */
+ArkUI_ErrorCode OH_ArkUI_Matrix4_Rotate(ArkUI_Matrix4* matrix, const ArkUI_Matrix4RotationOptions* rotate);
+
+/**
+ * @brief Apply a skew transformation to the original matrix to obtain the skewed matrix. Each skew
+ *        transformation is applied cumulatively. This function will alter the input matrix object.
+ *
+ * @param matrix Pointer to the matrix4 object to be skewed. It must not be null.
+ * @param skewX Skew coefficient in the x direction.
+ * @param skewY Skew coefficient in the y direction.
+ * @return Returns the result code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ * @since 24
+ */
+ArkUI_ErrorCode OH_ArkUI_Matrix4_Skew(ArkUI_Matrix4* matrix, const float skewX, const float skewY);
+
+/**
+ * @brief Calculate the new coordinate position of a point after it has been transformed by a matrix.
+ *        The calculated transformed coordinate point will be filled into the ArkUI_PointF structure
+ *        pointed to by result.
+ *
+ * @param matrix Pointer to the matrix4 object.
+ * @param oriPoint Pointer to the original coordinate point.
+ * @param result Pointer to the result point. It must not be null.
+ * @return Returns the result code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ * @since 24
+ */
+ArkUI_ErrorCode OH_ArkUI_Matrix4_TransformPoint(const ArkUI_Matrix4* matrix, const ArkUI_PointF* oriPoint, ArkUI_PointF* result);
+
+/**
+ * @brief Map the vertex coordinates of one polygon to the vertex coordinates of another polygon, and calculate the required
+ *        matrix. The resulting matrix will be filled into the object pointed to by matrix.
+ * 
+ * @param matrix Pointer to the original matrix4 object. The result matrix will be filled into the object pointed to by it.
+ *               It must not be null.
+ * @param src Pointer to the array of original polygon coordinate points. The array should be at least as long as pointCount.
+ * @param dst Pointer to the array of polygon coordinate points after mapping. The array should be at least as long as pointCount.
+ * @param pointCount The number of polygon points, which must be one of the values 0, 1, 2, 3, or 4.
+ * @return Returns the result code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ * @since 24
+ */
+ArkUI_ErrorCode OH_ArkUI_Matrix4_SetPolyToPoly(ArkUI_Matrix4* matrix, const ArkUI_PointF* src, const ArkUI_PointF* dst, const uint32_t pointCount);
+
+/**
+ * @brief Obtain the 16 elements of the matrix and fill them into the array pointed to by result.
+ *        The array pointed to by result must have space for 16 float elements.
+ *
+ * @param matrix Pointer to the original matrix4 object.
+ * @param result Pointer to an array that can hold 16 floating-point numbers. It must not be null.
+ * @return Returns the result code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ * @since 24
+ */
+ArkUI_ErrorCode OH_ArkUI_Matrix4_GetElements(const ArkUI_Matrix4* matrix, float* result);
+
+/**
+ * @brief Defines the font weight configuration of text.
+ *
+ * @since 24
+ */
+typedef struct OH_ArkUI_FontWeightConfigs OH_ArkUI_FontWeightConfigs;
+
+/**
+ * @brief Defines the font configuration of text.
+ *
+ * @since 24
+ */
+typedef struct OH_ArkUI_FontConfigs OH_ArkUI_FontConfigs;
+
+/**
+ * @brief Create an option object for font weight configuration of text.
+ *
+ * @return A pointer to the option object.
+ * @since 24
+ */
+OH_ArkUI_FontWeightConfigs* OH_ArkUI_FontWeightConfigs_Create();
+
+/**
+ * @brief Destroy an option object for font weight configuration of text.
+ *
+ * @param option Pointer to the option object to be destroyed.
+ * @since 24
+ */
+void OH_ArkUI_FontWeightConfigs_Destroy(OH_ArkUI_FontWeightConfigs* option);
+
+/**
+ * @brief Sets the enableVariableFontWeight flag of an option object for font weight configuration of text.
+ * The flag defines whether VariableFontWeight is supported. The default value is false.
+ * True means enable VariableFontWeight, false means disable VariableFontWeight.
+ *
+ * @param option Pointer to the option object to be modified.
+ * @param enable enableVariableFontWeight Flag.
+ * @since 24
+ */
+void OH_ArkUI_FontWeightConfigs_SetEnableVariableFontWeight(OH_ArkUI_FontWeightConfigs* option, bool enable);
+
+/**
+ * @brief Gets the enableVariableFontWeight flag of an option object for font weight configuration of text.
+ * The flag defines whether VariableFontWeight is supported. The default value is false.
+ * True means enable VariableFontWeight, false means disable VariableFontWeight.
+ *
+ * @param option Pointer to the option object.
+ * @return Returns the enableVariableFontWeight flag.
+ * @since 24
+ */
+bool OH_ArkUI_FontWeightConfigs_GetEnableVariableFontWeight(OH_ArkUI_FontWeightConfigs* option);
+
+/**
+ * @brief Sets the enableDeviceFontWeightCategory flag of an option object for font weight configuration of text.
+ * Defines whether font weight will be automatically updated when the device's font weight category changes.
+ * The default value is true.
+ * True means font weight will be automatically updated when the device's font weight category changes.
+ * False means font weight will not be automatically updated when the device's font weight category changes.
+ *
+ * @param option Pointer to the option object to be modified.
+ * @param enable enableDeviceFontWeightCategory Flag.
+ * @since 24
+ */
+void OH_ArkUI_FontWeightConfigs_SetEnableDeviceFontWeightCategory(OH_ArkUI_FontWeightConfigs* option, bool enable);
+ 
+/**
+ * @brief Gets the enableDeviceFontWeightCategory flag of an option object for font weight configuration of text.
+ * Defines whether font weight will be automatically updated when the device's font weight category changes.
+ * The default value is true.
+ * True means font weight will be automatically updated when the device's font weight category changes.
+ * False means font weight will not be automatically updated when the device's font weight category changes.
+ *
+ * @param option Pointer to the option object.
+ * @return Returns the enableDeviceFontWeightCategory flag.
+ * @since 24
+ */
+bool OH_ArkUI_FontWeightConfigs_GetEnableDeviceFontWeightCategory(OH_ArkUI_FontWeightConfigs* option);
+
+/**
+ * @brief Create an option object for font configuration of text.
+ *
+ * @return A pointer to the option object.
+ * @since 24
+ */
+OH_ArkUI_FontConfigs* OH_ArkUI_FontConfigs_Create();
+
+/**
+ * @brief Destroy an option object for font configuration of text.
+ *
+ * @param option Pointer to the option object to be destroyed.
+ * @since 24
+ */
+void OH_ArkUI_FontConfigs_Destroy(OH_ArkUI_FontConfigs* option);
+
+/**
+ * @brief Sets the font weight configs of an option object for font configuration of text.
+ *
+ * @param option Pointer to the option object to be modified.
+ * @param fontWeightConfigs font weight configs.
+ * @since 24
+ */
+void OH_ArkUI_FontConfigs_SetFontWeightConfigs(OH_ArkUI_FontConfigs* option,
+    OH_ArkUI_FontWeightConfigs* fontWeightConfigs);
+ 
+/**
+ * @brief Gets the font weight configs of an option object for font configuration of text.
+ *
+ * @param option Pointer to the option object.
+ * @return Returns the font weight configs.
+ * @since 24
+ */
+OH_ArkUI_FontWeightConfigs* OH_ArkUI_FontConfigs_GetFontWeightConfigs(OH_ArkUI_FontConfigs* option);
+
 #ifdef __cplusplus
 };
 #endif

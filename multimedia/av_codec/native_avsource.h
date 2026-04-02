@@ -120,7 +120,8 @@ OH_AVSource *OH_AVSource_CreateWithFD(int32_t fd, int64_t offset, int64_t size);
  * @param source Pointer to an OH_AVSource instance.
  * @return Returns AV_ERR_OK if the execution is successful,
  * otherwise returns a specific error code, refer to {@link OH_AVErrCode}
- *          {@link AV_ERR_INVALID_VAL} source is invalid.
+ * {@link AV_ERR_INVALID_VAL}, an invalid source instance pointer is passed to parameter source,
+ * including a null pointer;
  * @since 10
 */
 OH_AVErrCode OH_AVSource_Destroy(OH_AVSource *source);
@@ -147,8 +148,8 @@ OH_AVFormat *OH_AVSource_GetSourceFormat(OH_AVSource *source);
  * @param trackIndex The track index to get format.
  * @return Returns the track's format info if the execution is successful, otherwise returns nullptr.
  * Possible failure causes:
- *  1. source is invalid.
- *  2. trackIndex is out of range.
+ * 1. source is invalid.
+ * 2. trackIndex is out of range.
  * @since 10
 */
 OH_AVFormat *OH_AVSource_GetTrackFormat(OH_AVSource *source, uint32_t trackIndex);

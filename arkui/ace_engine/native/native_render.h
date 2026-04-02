@@ -778,7 +778,6 @@ int32_t OH_ArkUI_RenderNodeUtils_GetRotation(ArkUI_RenderNodeHandle node, float*
  *         {@link ARKUI_ERROR_CODE_NO_ERROR} Success.
  *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} Function parameter exception.
  *         {@link ARKUI_ERROR_CODE_CAPI_INIT_ERROR} if CAPI init error.
- *         {@link ARKUI_ERROR_CODE_PARAM_OUT_OF_RANGE} Parameter out of range.
  *         {@link ARKUI_ERROR_CODE_RENDER_IS_FROM_FRAME_NODE} if the node is obtained from a FrameNode.
  *         Add since api 22.
  * @since 20
@@ -1045,7 +1044,7 @@ int32_t OH_ArkUI_RenderNodeUtils_GetBorderColor(ArkUI_RenderNodeHandle node, Ark
  *
  * @param node Handle to the target render node.
  * @param borderRadius Handle to border radius option.
- * @r eturn Error code.
+ * @return Error code.
  *         {@link ARKUI_ERROR_CODE_NO_ERROR} Success.
  *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} Function parameter exception.
  *         {@link ARKUI_ERROR_CODE_CAPI_INIT_ERROR} if CAPI init error.
@@ -1193,10 +1192,7 @@ int32_t OH_ArkUI_RenderNodeUtils_AttachContentModifier(
 /**
  * @brief Create a content modifier handle.
  *
- * @return Error code.
- *         {@link ARKUI_ERROR_CODE_NO_ERROR} Success.
- *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} Function parameter exception.
- *         {@link ARKUI_ERROR_CODE_CAPI_INIT_ERROR} if CAPI init error.
+ * @return {@link ArkUI_RenderContentModifierHandle} A content modifier handle.
  * @since 20
  */
 ArkUI_RenderContentModifierHandle OH_ArkUI_RenderNodeUtils_CreateContentModifier();
@@ -1886,10 +1882,6 @@ void OH_ArkUI_RenderNodeUtils_DisposeRenderNodeMaskOption(ArkUI_RenderNodeMaskOp
  *
  * @param mask Pointer to the RenderNodeMask option.
  * @param fillColor The fill color of the mask.
- * @return Error code.
- *         {@link ARKUI_ERROR_CODE_NO_ERROR} Success.
- *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} Function parameter exception.
- *         {@link ARKUI_ERROR_CODE_CAPI_INIT_ERROR} if CAPI init error.
  * @since 20
  */
 void OH_ArkUI_RenderNodeUtils_SetRenderNodeMaskOptionFillColor(ArkUI_RenderNodeMaskOption* mask, uint32_t fillColor);
@@ -1899,10 +1891,6 @@ void OH_ArkUI_RenderNodeUtils_SetRenderNodeMaskOptionFillColor(ArkUI_RenderNodeM
  *
  * @param mask Pointer to the RenderNodeMask option.
  * @param strokeColor The stroke color of the mask.
- * @return Error code.
- *         {@link ARKUI_ERROR_CODE_NO_ERROR} Success.
- *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} Function parameter exception.
- *         {@link ARKUI_ERROR_CODE_CAPI_INIT_ERROR} if CAPI init error.
  * @since 20
  */
 void OH_ArkUI_RenderNodeUtils_SetRenderNodeMaskOptionStrokeColor(
@@ -1913,10 +1901,6 @@ void OH_ArkUI_RenderNodeUtils_SetRenderNodeMaskOptionStrokeColor(
  *
  * @param mask Pointer to the RenderNodeMask option.
  * @param strokeWidth The stroke width of the mask.
- * @return Error code.
- *         {@link ARKUI_ERROR_CODE_NO_ERROR} Success.
- *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} Function parameter exception.
- *         {@link ARKUI_ERROR_CODE_CAPI_INIT_ERROR} if CAPI init error.
  * @since 20
  */
 void OH_ArkUI_RenderNodeUtils_SetRenderNodeMaskOptionStrokeWidth(ArkUI_RenderNodeMaskOption* mask, float strokeWidth);
@@ -1992,6 +1976,38 @@ void OH_ArkUI_RenderNodeUtils_DisposeRenderNodeClipOption(ArkUI_RenderNodeClipOp
  * @since 22
  */
 int32_t OH_ArkUI_RenderNodeUtils_GetRenderNode(ArkUI_NodeHandle node, ArkUI_RenderNodeHandle* renderNode);
+
+/**
+ * @brief Sets the bounding rectangle for a rounded rectangle shape option
+ * This function defines the geometric frame of a rounded rectangle by specifying its position and dimensions.
+ *
+ * @param option Pointer to the rounded rectangle shape option to be configured
+ * @param x X-coordinate of the rectangle's top-left corner, determining the left boundary position
+ * @param y Y-coordinate of the rectangle's top-left corner, determining the top boundary position
+ * @param width Width of the rectangle, representing the horizontal extent from the X-coordinate,
+ *     which determines the right boundary position (right = x + width)
+ * @param height Height of the rectangle, representing the vertical extent from the Y-coordinate,
+ *     which determines the bottom boundary position (bottom = y + height)
+ * @since 26.0.0
+ */
+void OH_ArkUI_RenderNodeUtils_SetRoundRectShapeOptionValue(
+    ArkUI_RoundRectShapeOption* option, float x, float y, float width, float height);
+
+/**
+ * @brief Sets the bounding rectangle for a rectangle shape option
+ * This function defines the geometric frame of a rectangle by specifying its position and dimensions.
+ *
+ * @param option Pointer to the rectangle shape option to be configured
+ * @param x X-coordinate of the rectangle's top-left corner, determining the left boundary position
+ * @param y Y-coordinate of the rectangle's top-left corner, determining the top boundary position
+ * @param width Width of the rectangle, representing the horizontal extent from the X-coordinate,
+ *     which determines the right boundary position (right = x + width)
+ * @param height Height of the rectangle, representing the vertical extent from the Y-coordinate,
+ *     which determines the bottom boundary position (bottom = y + height)
+ * @since 26.0.0
+ */
+void OH_ArkUI_RenderNodeUtils_SetRectShapeOptionValue(
+    ArkUI_RectShapeOption* option, float x, float y, float width, float height);
 
 #ifdef __cplusplus
 };

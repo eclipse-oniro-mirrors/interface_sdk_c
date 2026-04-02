@@ -14,7 +14,7 @@
  */
 
 /**
- * @addtogroup avmetakeys
+ * @addtogroup AVMediaBase
  * @{
  *
  * @brief Defines the avmetakeys.

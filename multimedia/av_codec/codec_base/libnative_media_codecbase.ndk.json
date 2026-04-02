@@ -163,6 +163,56 @@
         "name": "OH_AVCODEC_MIMETYPE_VIDEO_VC1"
     },
     {
+        "first_introduced": "23",
+        "name": "OH_AVCODEC_MIMETYPE_VIDEO_AV1",
+        "type": "variable"
+    },
+    {
+        "first_introduced": "23",
+        "name": "OH_AVCODEC_MIMETYPE_VIDEO_VP9",
+        "type": "variable"
+    },
+    {
+        "first_introduced": "23",
+        "name": "OH_AVCODEC_MIMETYPE_VIDEO_VP8",
+        "type": "variable"
+    },
+    {
+        "first_introduced": "23",
+        "name": "OH_AVCODEC_MIMETYPE_VIDEO_RV30",
+        "type": "variable"
+    },
+    {
+        "first_introduced": "23",
+        "name": "OH_AVCODEC_MIMETYPE_VIDEO_RV40",
+        "type": "variable"
+    },
+    {
+        "first_introduced": "23",
+        "name": "OH_AVCODEC_MIMETYPE_VIDEO_WVC1",
+        "type": "variable"
+    },
+    {
+        "first_introduced": "23",
+        "name": "OH_AVCODEC_MIMETYPE_VIDEO_DVVIDEO",
+        "type": "variable"
+    },
+    {
+        "first_introduced": "23",
+        "name": "OH_AVCODEC_MIMETYPE_VIDEO_RAWVIDEO",
+        "type": "variable"
+    },
+    {
+        "first_introduced": "23",
+        "name": "OH_AVCODEC_MIMETYPE_VIDEO_MPEG1",
+        "type": "variable"
+    },
+    {
+        "first_introduced": "24",
+        "name": "OH_AVCODEC_MIMETYPE_VIDEO_CINEPAK",
+        "type": "variable"
+    },
+    {
         "first_introduced": "22",
         "name": "OH_AVCODEC_MIMETYPE_VIDEO_MSVIDEO1"
     },
@@ -399,6 +449,10 @@
         "name": "OH_MD_KEY_VIDEO_ENCODER_TEMPORAL_GOP_REFERENCE_MODE"
     },
     {
+        "first_introduced": "26",
+        "name": "OH_MD_KEY_VIDEO_ENCODER_TEMPORAL_LAYER_ID"
+    },
+    {
         "first_introduced": "12",
         "name": "OH_MD_KEY_VIDEO_ENCODER_LTR_FRAME_COUNT"
     },
@@ -565,6 +619,26 @@
     {
         "first_introduced": "23",
         "name": "OH_MD_KEY_BUFFER_SKIP_SAMPLES_INFO"
+    },
+    {
+        "first_introduced": "24",
+        "name": "OH_MD_KEY_ENABLE_BUFFER_SKIP_SAMPLES",
+        "type": "variable"
+    },
+    {
+        "first_introduced": "24",
+        "name": "OH_MD_KEY_LATITUDE",
+        "type": "variable"
+    },
+    {
+        "first_introduced": "24",
+        "name": "OH_MD_KEY_LONGITUDE",
+        "type": "variable"
+    },
+    {
+        "first_introduced": "24",
+        "name": "OH_MD_KEY_ALTITUDE",
+        "type": "variable"
     },
     {
         "first_introduced": "10",

@@ -75,6 +75,13 @@ typedef struct ArkUI_AccessibilityProvider ArkUI_AccessibilityProvider;
 typedef struct ArkUI_AccessibilityActionArguments ArkUI_AccessibilityActionArguments;
 
 /**
+ * @brief Defines the pointer to the ArkUI native component object
+ *
+ * @since 23
+ */
+typedef struct ArkUI_Node* ArkUI_NodeHandle;
+
+/**
  * @brief Defines an enum for accessibility action types.
  *
  * @since 13
@@ -1135,6 +1142,33 @@ int32_t OH_ArkUI_AccessibilityEventSetElementInfo(
 */
 int32_t OH_ArkUI_FindAccessibilityActionArgumentByKey(
     ArkUI_AccessibilityActionArguments* arguments, const char* key, char** value);
+
+/**
+ * @brief Obtains the pointer to the <b> ArkUI_AccessibilityProvider</b>
+ * instance of this <b>ArkUI_NodeHandle</b> instance.
+ *
+ * @param node Indicates the pointer to the <b>ArkUI_NodeHandle</b> instance.
+ * @param provider Indicates the pointer to the <b>ArkUI_AccessibilityProvider</b> instance.
+ * @return Returns the result code.
+ * @return Returns <b>ARKUI_ERROR_CODE_NO_ERROR<b> if the operation is successful.
+ *         Returns <b>ARKUI_ERROR_CODE_PARAM_INVALID<b> if a parameter error occurs:1. node or
+ *         provider is nullptr. 2. the type of node is not ARKUI_NODE_CUSTOM.
+ * @since 23
+ */
+int32_t OH_ArkUI_NativeModule_GetNativeAccessibilityProvider(
+    ArkUI_NodeHandle* node, ArkUI_AccessibilityProvider** provider);
+
+/**
+ * @brief Sets the component identifier for an <b>ArkUI_AccessibilityElementInfo</b> object.
+ *
+ * @param elementInfo Indicates the pointer to an <b>ArkUI_AccessibilityElementInfo</b> object.
+ * @param identifier Indicates the component identifier. A string up to 1024 bytes.
+ * @return Returns {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_SUCCESSFUL} if the operation is successful.
+ *         Returns {@link ARKUI_ACCESSIBILITY_NATIVE_RESULT_BAD_PARAMETER} if a parameter is incorrect.
+ * @since 24
+ */
+int32_t OH_ArkUI_AccessibilityElementInfoSetComponentIdentifier(
+    ArkUI_AccessibilityElementInfo* elementInfo, const char* identifier);
 #ifdef __cplusplus
 };
 #endif

@@ -185,6 +185,16 @@ OH_AVMediaSource *OH_AVMediaSource_CreateWithDataSource(OH_AVDataSource *dataSou
 OH_AVMediaSource *OH_AVMediaSource_CreateWithFd(int32_t fd, int64_t offset, int64_t size);
 
 /**
+ * @brief Release media source instance
+ * @param source Pointer to an OH_AVMediaSource instance
+ * @return Function result code.
+ *     (@link AV_ERR_OK) if the execution is successful.
+ *     (@link AV_ERR_INVALID_VAL) if source is nullptr or release failed.
+ * @since 23
+ */
+OH_AVErrCode OH_AVMediaSource_Destroy(OH_AVMediaSource *source);
+
+/**
  * @brief Set media mime type to handle extended media source.
  * @param source Pointer to a OH_AVMediaSource.
 
@@ -313,9 +323,9 @@ typedef int64_t (*OH_AVMediaSourceLoaderOnSourceOpenedCallback)(OH_AVMediaSource
  * The client must return the handle immediately after processing the request.
  * @param uuid ID for the resource handle.
  * @param requestedOffset Offset of the current media data relative to the start of the resource.
- * @param requestedLength length of the current request.
+ * @param requestedLength Length of the current request.
  *     -1 means reaching the end of the resource, need to inform the player of the end of
- *     the push through the (@link #finishLoading) method.
+ *     the push through the (@link OH_AVMediaSourceLoadingRequest_FinishLoading) method.
  * @param userData The data set by user in OH_AVMediaSourceLoader_SetSourceReadCallback
  * @since 23
  */

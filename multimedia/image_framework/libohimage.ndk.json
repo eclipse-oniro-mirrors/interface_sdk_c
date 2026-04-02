@@ -30,5 +30,17 @@
     {
         "first_introduced": "12",
         "name": "OH_ImageNative_Release"
+    },
+    {
+        "first_introduced": "23",
+        "name": "OH_ImageNative_GetColorSpace"
+    },
+    {
+        "first_introduced": "23",
+        "name": "OH_ImageNative_GetFormat"
+    },
+    {
+        "first_introduced": "23",
+        "name": "OH_ImageNative_GetBufferData"
     }
 ]

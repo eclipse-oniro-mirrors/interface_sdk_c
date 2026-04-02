@@ -17,6 +17,12 @@
  * @addtogroup WindowManager
  * @{
  *
+ * @brief Provides abilities of windowManager on the native side, such as picture in picture window.
+ *
+ * @since 12
+ */
+
+/**
  * @file oh_window_pip.h
  *
  * @brief Declares C APIs for picture in picture window

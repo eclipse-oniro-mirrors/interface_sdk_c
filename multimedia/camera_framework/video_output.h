@@ -51,7 +51,7 @@ extern "C" {
 /**
  * @brief Video output object
  *
- * A pointer can be created using {@link Camera_VideoOutput} method.
+ * A pointer can be created using {@link Camera_VideoOutput}.
  *
  * @since 11
  * @version 1.0
@@ -147,7 +147,7 @@ Camera_ErrorCode OH_VideoOutput_Start(Camera_VideoOutput* videoOutput);
 /**
  * @brief Stop video output.
  *
- * @param videoOutput the {@link Camera_VideoOutput} instance to be stoped.
+ * @param videoOutput the {@link Camera_VideoOutput} instance to be stopped.
  * @return {@link #CAMERA_OK} if the method call succeeds.
  *         {@link #INVALID_ARGUMENT} if parameter missing or parameter type incorrect.
  *         {@link #CAMERA_SERVICE_FATAL_ERROR} if camera service fatal error.
@@ -224,6 +224,19 @@ Camera_ErrorCode OH_VideoOutput_EnableMirror(Camera_VideoOutput* videoOutput, bo
  * @since 12
  */
 Camera_ErrorCode  OH_VideoOutput_GetVideoRotation(Camera_VideoOutput* videoOutput, int deviceDegree,
+    Camera_ImageRotation* imageRotation);
+
+/**
+ * @brief Gets the video rotation angle without device degree.
+ *
+ * @param videoOutput the {@link Camera_VideoOutput} instance which used to get the video rotation angle.
+ * @param imageRotation the {@link Camera_ImageRotation} result of video rotation angle.
+ * @return {@link #CAMERA_OK} if the method call succeeds.
+ *         {@link #CAMERA_INVALID_ARGUMENT} if parameter missing or parameter type incorrect.
+ *         {@link #CAMERA_SERVICE_FATAL_ERROR} if camera service fatal error.
+ * @since 23
+ */
+Camera_ErrorCode OH_VideoOutput_GetVideoRotationWithoutDeviceDegree(Camera_VideoOutput* videoOutput,
     Camera_ImageRotation* imageRotation);
 
 /**

@@ -38,66 +38,79 @@ _HEADER_PATTERN = re.compile(
 def process_header_file(file_path):
     """processing single header file"""
     modified = False
+    
+    # 处理行信息
+    def process_lines(content):
+        """处理文件内容，过滤匹配的行，返回新内容和是否修改的标记"""
+        new_content = []
+        line_modified = False
+        for line in content.splitlines():
+            if not _HEADER_PATTERN.match(line):
+                new_content.append(line)
+            else:
+                line_modified = True
+        return '\n'.join(new_content), line_modified
+
     try:
         with open(file_path, 'r+', encoding='utf-8') as f:
             content = f.read()
-            # Use a regular expression to process all rows at once
-            new_content = []
-            for line in content.splitlines():
-                if not _HEADER_PATTERN.match(line):
-                    new_content.append(line)
-                else:
-                    modified = True
+            # 处理行信息
+            new_content, modified = process_lines(content)
             
             if modified:
                 f.seek(0)
-                f.write('\n'.join(new_content))
+                f.write(new_content)
                 f.truncate()
     except Exception as e:
         print(f"process file {file_path} failed: {str(e)}")
+    
     return modified
+
+
+# 删除文件
+def _delete_ani_file(file_path):
+    try:
+        os.remove(file_path)
+        print(f"Deleted ani header file: {file_path}")
+    except OSError as e:
+        print(f"Error deleting {file_path}: {str(e)}")
 
 
 def clean_ndk_ani_headers(ndk_header_path):
     if not _ANI_HEADER_LISTS:
-        print("Warning: ani header file list")
+        print("Warning: ani header file list is empty")
         return
 
-    # all files to be processed
     file_paths = []
     for root, _, files in os.walk(ndk_header_path):
         for file in files:
             if not file.endswith('.h'):
                 continue
-                
+
             file_path = os.path.join(root, file)
             if file in _ANI_HEADER_LISTS:
-                try:
-                    os.remove(file_path)
-                    print(f"Deleted ani header file: {file_path}")
-                except OSError as e:
-                    print(f"Error deleting {file_path}: {str(e)}")
+                _delete_ani_file(file_path)
             else:
                 file_paths.append(file_path)
-    
-    # Bulk processing file include
+
+    # 批量处理文件
     for file_path in file_paths:
         process_header_file(file_path)
 
 
 # Clear the ani header file in the systemCapability configuration json file
-def clean_json_systemCapability_headers(capability_header_path):
+def clean_json_system_capability_headers(capability_header_path):
     try:
         with open(capability_header_path, 'r') as f:
-            systemCapabilitys = json.load(f)
+            system_capabilities = json.load(f)
     except Exception as e:
         print(f"Error reading JSON file: {str(e)}")
         return
 
     # Traverse all levels of items
-    for _systemCapability in systemCapabilitys:
+    for system_capability in system_capabilities:
         # filtering ani header file
-        systemCapabilitys[_systemCapability] = [item for item in systemCapabilitys[_systemCapability]
+        system_capabilities[system_capability] = [item for item in system_capabilities[system_capability]
             if os.path.basename(item) not in _ANI_HEADER_LISTS]
 
     # Saving the modified JSON
@@ -105,7 +118,7 @@ def clean_json_systemCapability_headers(capability_header_path):
         fd = os.open(capability_header_path, os.O_WRONLY | os.O_TRUNC | os.O_CREAT,
                      stat.S_IRUSR | stat.S_IWUSR)
         with os.fdopen(fd, 'w') as f:
-            json.dump(systemCapabilitys, f, indent=2)
+            json.dump(system_capabilities, f, indent=2)
         print("JSON file updated successfully")
     except Exception as e:
         print(f"Error saving JSON file: {str(e)}")
@@ -122,7 +135,7 @@ def main():
         return
     
     clean_ndk_ani_headers(args.ndk_header_path)
-    clean_json_systemCapability_headers(args.system_capability_header_config)
+    clean_json_system_capability_headers(args.system_capability_header_config)
     print("Ani Header file cleanup complete!")
 
 

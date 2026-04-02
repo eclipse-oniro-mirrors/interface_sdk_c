@@ -449,6 +449,8 @@ void OH_Drawing_CanvasDrawCircle(OH_Drawing_Canvas* canvas, const OH_Drawing_Poi
  * @return Returns the error code.
  *         Returns {@link OH_DRAWING_SUCCESS} if the operation is successful.
  *         Returns {@link OH_DRAWING_ERROR_INVALID_PARAMETER} if canvas is nullptr.
+ *         Returns {@link OH_DRAWING_ERROR_PARAMETER_OUT_OF_RANGE} if the enumeration values of blendMode
+ *                 exceed the enumeration range.
  * @since 12
  * @version 1.0
  */
@@ -648,6 +650,8 @@ void OH_Drawing_CanvasClipPath(OH_Drawing_Canvas* canvas, const OH_Drawing_Path*
  * @return Returns the error code.
  *         Returns {@link OH_DRAWING_SUCCESS} if the operation is successful.
  *         Returns {@link OH_DRAWING_ERROR_INVALID_PARAMETER} if canvas or region is nullptr.
+ *         Returns {@link OH_DRAWING_ERROR_PARAMETER_OUT_OF_RANGE} if the enumeration values of clipOp
+ *                 exceed the enumeration range.
  * @since 12
  * @version 1.0
  */
@@ -825,7 +829,7 @@ void OH_Drawing_CanvasClear(OH_Drawing_Canvas* canvas, uint32_t color);
 void OH_Drawing_CanvasSetMatrix(OH_Drawing_Canvas* canvas, OH_Drawing_Matrix* matrix);
 
 /**
- * @brief Reset matrix to the idenmtity matrix, any prior matrix state is overwritten.
+ * @brief Reset matrix to the identity matrix, any prior matrix state is overwritten.
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @param canvas Indicates the pointer to an <b>OH_Drawing_Canvas</b> object.
@@ -833,6 +837,17 @@ void OH_Drawing_CanvasSetMatrix(OH_Drawing_Canvas* canvas, OH_Drawing_Matrix* ma
  * @version 1.0
  */
 void OH_Drawing_CanvasResetMatrix(OH_Drawing_Canvas* canvas);
+
+/**
+ * @brief Reset the clip status.
+ *
+ * @param canvas Indicates the pointer to an <b>OH_Drawing_Canvas</b> object.
+ * @return Returns the error code.
+ *         Returns {@link OH_DRAWING_SUCCESS} if the operation is successful.
+ *         Returns {@link OH_DRAWING_ERROR_INVALID_PARAMETER} if canvas is nullptr.
+ * @since 26.0.0
+ */
+OH_Drawing_ErrorCode OH_Drawing_CanvasResetClip(OH_Drawing_Canvas* canvas);
 
 /**
  * @brief Draws the specified source rectangle of the image onto the canvas,
@@ -1001,7 +1016,7 @@ OH_Drawing_ErrorCode OH_Drawing_CanvasDrawRecordCmdNesting(OH_Drawing_Canvas* ca
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @param canvas Indicates the pointer to an <b>OH_Drawing_Canvas</b> object.
- * @param path Indicates the pointer to an <b>OH_Drawing_Paht</b> object.
+ * @param path Indicates the pointer to an <b>OH_Drawing_Path</b> object.
  * @param quickReject Indicates if the path has been cut off.
  * @return Returns the error code.
  *         Returns {@link OH_DRAWING_SUCCESS} if the operation is successful.

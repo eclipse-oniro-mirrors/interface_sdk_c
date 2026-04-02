@@ -117,7 +117,8 @@ JSVM_EXTERN JSVM_Status OH_JSVM_Init(const JSVM_InitOptions* options);
  * @param options The options for create the VM instance.
  * @param result The new VM instance.
  * @return Returns JSVM funtions result code.
- *         {@link JSVM_OK } If the function executed successfully.\n
+ *         Returns {@link JSVM_OK } If the function executed successfully.\n
+ *         Returns {@link JSVM_INVALID_ARG } if the any of the input arguments is NULL. \n
  * @since 11
  */
 JSVM_EXTERN JSVM_Status OH_JSVM_CreateVM(const JSVM_CreateVMOptions* options,
@@ -129,7 +130,9 @@ JSVM_EXTERN JSVM_Status OH_JSVM_CreateVM(const JSVM_CreateVMOptions* options,
  *
  * @param vm The VM instance to set mircrotasks policy.
  * @param policy Policy for running microtasks.
- * @return Returns JSVM_OK if the API succeeded.
+ * @return Returns JSVM funtions result code.
+ *         Returns {@link JSVM_OK } If the function executed successfully.\n
+ *         Returns {@link JSVM_INVALID_ARG } If `vm` is NULL or `policy` is out of range.\n
  * @since 18
  */
 JSVM_EXTERN JSVM_Status OH_JSVM_SetMicrotaskPolicy(JSVM_VM vm,
@@ -140,7 +143,8 @@ JSVM_EXTERN JSVM_Status OH_JSVM_SetMicrotaskPolicy(JSVM_VM vm,
  *
  * @param vm The VM instance to be Destroyed.
  * @return Returns JSVM funtions result code.
- *         {@link JSVM_OK } If the function executed successfully.\n
+ *         Returns {@link JSVM_OK } If the function executed successfully.\n
+ *         Returns {@link JSVM_INVALID_ARG } If `vm` is NULL.\n
  * @since 11
  */
 JSVM_EXTERN JSVM_Status OH_JSVM_DestroyVM(JSVM_VM vm);
@@ -247,7 +251,8 @@ JSVM_EXTERN JSVM_Status OH_JSVM_CreateEnv(JSVM_VM vm,
  * @param index The index of the environment in the snapshot.
  * @param result The new environment created.
  * @return Returns JSVM funtions result code.
- *         {@link JSVM_OK } If the function executed successfully.\n
+ *         Returns {@link JSVM_OK } If the function executed successfully.\n
+ *         Returns {@link JSVM_GENERIC_FAILURE } If the snapshot context for `index` could not be created.\n
  * @since 11
  */
 JSVM_EXTERN JSVM_Status OH_JSVM_CreateEnvFromSnapshot(JSVM_VM vm,
@@ -311,7 +316,12 @@ JSVM_EXTERN JSVM_Status OH_JSVM_GetVM(JSVM_Env env,
  * @param cacheRejected Whether the code cache rejected by compilation.
  * @param result The compiled script.
  * @return Returns JSVM funtions result code.
- *         {@link JSVM_OK } If the function executed successfully.\n
+ *         Returns {@link JSVM_OK } If the function executed successfully.\n
+ *         Returns {@link JSVM_INVALID_ARG } if the any of the input arguments is NULL. \n
+ *         Returns {@link JSVM_STRING_EXPECTED } If `script` is not a string.\n
+ *         Returns {@link JSVM_GENERIC_FAILURE } If compilation failed (e.g. compiler returned empty).\n
+ *         Returns {@link JSVM_CANNOT_RUN_JS} if an exception occurs. \n
+ *         Returns {@link JSVM_PENDING_EXCEPTION} if an exception occurs. \n
  * @since 11
  */
 JSVM_EXTERN JSVM_Status OH_JSVM_CompileScript(JSVM_Env env,
@@ -335,7 +345,12 @@ JSVM_EXTERN JSVM_Status OH_JSVM_CompileScript(JSVM_Env env,
  * @param origin The information of source code.
  * @param result The compiled script.
  * @return Returns JSVM funtions result code.
- *         {@link JSVM_OK } If the function executed successfully.\n
+ *         Returns {@link JSVM_OK } If the function executed successfully.\n
+ *         Returns {@link JSVM_INVALID_ARG } if the any of the input arguments is NULL. \n
+ *         Returns {@link JSVM_STRING_EXPECTED } If `script` is not a string.\n
+ *         Returns {@link JSVM_GENERIC_FAILURE } If compilation failed.\n
+ *         Returns {@link JSVM_CANNOT_RUN_JS} if an exception occurs. \n
+ *         Returns {@link JSVM_PENDING_EXCEPTION} if an exception occurs. \n
  * @since 12
  */
 JSVM_EXTERN JSVM_Status OH_JSVM_CompileScriptWithOrigin(JSVM_Env env,
@@ -3694,6 +3709,33 @@ JSVM_EXTERN JSVM_Status OH_JSVM_RemoveHandlerForGC(JSVM_VM vm,
                                                    JSVM_CBTriggerTimeForGC triggerTime,
                                                    JSVM_HandlerForGC handler,
                                                    void* userData);
+
+/**
+ * @brief Deserialize JavaScript code cache in thread pool, and release
+ * JSVM_DeserializeResult with OH_JSVM_ReleaseDeserializeResult.
+ *
+ * @param vm The VM instance where background deserialize will be performed.
+ * @param cacheData Code cache data to be deserialized.
+ * @param result The result of background deserialize.
+ * @return Returns JSVM funtions result code.
+ *         {@link JSVM_OK } if the function executed successfully.\n
+ *         {@link JSVM_INVALID_ARG } if any of the pointer arguments is NULL.\n
+ * @since 24
+ */
+JSVM_EXTERN JSVM_Status OH_JSVM_BackgroundDeserialize(
+    JSVM_VM vm, JSVM_CodeCache cacheData, JSVM_DeserializeResult* result);
+
+/**
+ * @brief Release deserialize result.
+ *
+ * @param result The background deserialize result to be release.
+ * @return Returns JSVM funtions result code.
+ *         {@link JSVM_OK } if the function executed successfully.\n
+ *         {@link JSVM_INVALID_ARG } if any of the pointer arguments is NULL.\n
+ * @since 24
+ */
+JSVM_EXTERN JSVM_Status OH_JSVM_ReleaseDeserializeResult(JSVM_DeserializeResult result);
+
 EXTERN_C_END
 /** @} */
 #endif /* ARK_RUNTIME_JSVM_JSVM_H */

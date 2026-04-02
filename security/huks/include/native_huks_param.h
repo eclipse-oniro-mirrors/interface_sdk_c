@@ -50,7 +50,11 @@ extern "C" {
 #endif
 
 /**
- * @brief Initializes a parameter set.
+ * @brief Initializing the parameter set, with no parameter information, allocating the default available memory space
+ *        for the parameter set.
+ *        The parameter set after initialisation needs to be released via OH_Huks_FreeParamSet.
+ *        The set of parameters to which parameters are added must use OH_Huks_AddParams to add parameters and must use
+ *        OH_Huks_BuildParamSet to construct the parameter set.
  *
  * @param paramSet Indicates the double pointer to the parameter set to initialize.
  * @return {@link OH_Huks_ErrCode#OH_HUKS_SUCCESS} 0 - If the initialization is successful.
@@ -76,7 +80,8 @@ struct OH_Huks_Result OH_Huks_AddParams(struct OH_Huks_ParamSet *paramSet,
     const struct OH_Huks_Param *params, uint32_t paramCnt);
 
 /**
- * @brief Constructs a parameter set.
+ * @brief After initializing the parameter set and adding parameters, serialize the parameter set and copy the
+ *        blob type data to the adjacent memory area at the end of the paramSet structure.
  *
  * @param paramSet Indicates the double pointer to the parameter set to construct.
  * @return {@link OH_Huks_ErrCode#OH_HUKS_SUCCESS} 0 - If the operation is successful.
@@ -120,7 +125,7 @@ struct OH_Huks_Result OH_Huks_CopyParamSet(const struct OH_Huks_ParamSet *fromPa
  * @param param Indicates the double pointer to the parameter obtained.
  * @return {@link OH_Huks_ErrCode#OH_HUKS_SUCCESS} 0 - If the operation is successful,
  *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_ILLEGAL_ARGUMENT} 401 - If paramSet or param is invalid,
- *         or if the param doesn't exist in the pararmset.
+ *         or if the param doesn't exist in the pararmSet.
  * @since 9
  * @version 1.0
  */
@@ -180,9 +185,9 @@ struct OH_Huks_Result OH_Huks_IsParamSetValid(const struct OH_Huks_ParamSet *par
 struct OH_Huks_Result OH_Huks_CheckParamMatch(const struct OH_Huks_Param *baseParam, const struct OH_Huks_Param *param);
 
 /**
- * @brief Destroys a parameter set.
+ * @brief Destroys a key alias parameter set.
  *
- * @param keyAliasSet Indicates the pointer to the parameter set to destroy.
+ * @param keyAliasSet Indicates the pointer to the key alias parameter set to destroy.
  * @since 20
  * @version 1.0
  */

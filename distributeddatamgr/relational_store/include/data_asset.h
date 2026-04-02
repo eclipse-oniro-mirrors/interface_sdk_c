@@ -146,6 +146,7 @@ int OH_Data_Asset_SetPath(Data_Asset *asset, const char *path);
  *
  * @param asset Represents a pointer to an {@link Data_Asset} instance.
  * @param createTime Indicates the create time to set.
+ * There is no specific unit. Developers can specify it themselves.
  * @return Returns a specific error code.
  *     {@link RDB_OK} - success.
  *     {@link RDB_E_INVALID_ARGS} - The error code for common invalid args.
@@ -160,6 +161,7 @@ int OH_Data_Asset_SetCreateTime(Data_Asset *asset, int64_t createTime);
  *
  * @param asset Represents a pointer to an {@link Data_Asset} instance.
  * @param modifyTime Indicates the create time to set.
+ * There is no specific unit. Developers can specify it themselves.
  * @return Returns a specific error code.
  *     {@link RDB_OK} - success.
  *     {@link RDB_E_INVALID_ARGS} - The error code for common invalid args.
@@ -254,6 +256,7 @@ int OH_Data_Asset_GetPath(Data_Asset *asset, char *path, size_t *length);
  * @param asset Represents a pointer to an {@link Data_Asset} instance.
  * @param createTime This parameter is the output parameter,
  * and the create time of the asset as a int64_t is written to this variable.
+ * There is no specific unit. Developers can specify it themselves.
  * @return Returns a specific error code.
  *     {@link RDB_ERR} - Indicates that the function execution exception.
  *     {@link RDB_OK} - success.
@@ -270,6 +273,7 @@ int OH_Data_Asset_GetCreateTime(Data_Asset *asset, int64_t *createTime);
  * @param asset Represents a pointer to an {@link Data_Asset} instance.
  * @param modifyTime This parameter is the output parameter,
  * and the create time of the asset as a int64_t is written to this variable.
+ * There is no specific unit. Developers can specify it themselves.
  * @return Returns a specific error code.
  *     {@link RDB_ERR} - Indicates that the function execution exception.
  *     {@link RDB_OK} - success.

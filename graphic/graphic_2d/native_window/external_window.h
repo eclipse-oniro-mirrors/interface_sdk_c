@@ -278,7 +278,7 @@ typedef enum NativeWindowOperation {
 /**
  * @brief Indicates Scaling Mode.
  * @since 9
- * @deprecated(since = "10")
+ * @deprecated since 10
  * @useinstead OHScalingModeV2
  */
 typedef enum {
@@ -337,7 +337,7 @@ typedef enum {
 /**
  * @brief Enumerates the HDR metadata keys.
  * @since 9
- * @deprecated(since = "10")
+ * @deprecated since 10
  */
 typedef enum {
     OH_METAKEY_RED_PRIMARY_X = 0,
@@ -359,7 +359,7 @@ typedef enum {
 /**
  * @brief Defines the HDR metadata.
  * @since 9
- * @deprecated(since = "10")
+ * @deprecated since 10
  */
 typedef struct {
     OHHDRMetadataKey key;
@@ -369,7 +369,7 @@ typedef struct {
 /**
  * @brief Defines the ExtData Handle
  * @since 9
- * @deprecated(since = "10")
+ * @deprecated since 10
  */
 typedef struct OHExtDataHandle {
     /**< Handle fd, -1 if not supported */
@@ -626,7 +626,7 @@ int32_t OH_NativeWindow_GetNativeObjectMagic(void *obj);
  * @return Returns an error code, 0 is success, otherwise, failed.
  * @since 9
  * @version 1.0
- * @deprecated(since = "10")
+ * @deprecated since 10
  * @useinstead OH_NativeWindow_NativeWindowSetScalingModeV2
  */
 int32_t OH_NativeWindow_NativeWindowSetScalingMode(OHNativeWindow *window, uint32_t sequence,
@@ -643,7 +643,7 @@ int32_t OH_NativeWindow_NativeWindowSetScalingMode(OHNativeWindow *window, uint3
  * @return Returns an error code, 0 is success, otherwise, failed.
  * @since 9
  * @version 1.0
- * @deprecated(since = "10")
+ * @deprecated since 10
  */
 int32_t OH_NativeWindow_NativeWindowSetMetaData(OHNativeWindow *window, uint32_t sequence, int32_t size,
                                                 const OHHDRMetaData *metaData);
@@ -660,7 +660,7 @@ int32_t OH_NativeWindow_NativeWindowSetMetaData(OHNativeWindow *window, uint32_t
  * @return Returns an error code, 0 is success, otherwise, failed.
  * @since 9
  * @version 1.0
- * @deprecated(since = "10")
+ * @deprecated since 10
  */
 int32_t OH_NativeWindow_NativeWindowSetMetaDataSet(OHNativeWindow *window, uint32_t sequence, OHHDRMetadataKey key,
                                                    int32_t size, const uint8_t *metaData);
@@ -674,7 +674,7 @@ int32_t OH_NativeWindow_NativeWindowSetMetaDataSet(OHNativeWindow *window, uint3
  * @return Returns an error code, 0 is success, otherwise, failed.
  * @since 9
  * @version 1.0
- * @deprecated(since = "10")
+ * @deprecated since 10
  */
 int32_t OH_NativeWindow_NativeWindowSetTunnelHandle(OHNativeWindow *window, const OHExtDataHandle *handle);
 
