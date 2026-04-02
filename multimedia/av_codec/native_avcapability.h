@@ -41,7 +41,7 @@
 #include "native_averrors.h"
 #include "native_avformat.h"
 #include "native_avcodec_base.h"
-#include "buffer_common.h"
+#include "native_buffer/buffer_common.h"
 
 #ifdef __cplusplus
 extern "C" {
