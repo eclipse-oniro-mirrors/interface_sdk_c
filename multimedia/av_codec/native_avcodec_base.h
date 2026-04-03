@@ -1067,6 +1067,91 @@ extern const char *OH_MD_KEY_VIDEO_ENCODER_TEMPORAL_GOP_REFERENCE_MODE;
  * @since 26.0.0
  */
 extern const char *OH_MD_KEY_VIDEO_ENCODER_TEMPORAL_LAYER_ID;
+
+/**
+ * @brief Key for describing the downsampling width in video encoder preprocess, value type is int32_t.
+ *
+ * It is used in configure or set parameter.
+ * This key must be used with {@link OH_MD_KEY_VIDEO_ENCODER_PREPROC_DOWNSAMPLING_HEIGHT} together.
+ * 1. When the downsampling width and height are the same and qualified as zero, the downsampling is disabled.
+ * 2. When the downsampling width and height are within the supported range, the downsampling is enabled.
+ * It's recommended to query the supported downsampling range through
+ * the interface {@link OH_AVCapability_IsVideoSizeSupported}.
+ * 3. When the downsampling width and height are not within the supported range, error will be returned.
+ *
+ * @since 26.0.0
+ */
+extern const char *OH_MD_KEY_VIDEO_ENCODER_PREPROC_DOWNSAMPLING_WIDTH;
+
+/**
+ * @brief Key for describing the downsampling height in video encoder preprocess, value type is int32_t.
+ *
+ * It is used in configure or set parameter.
+ * This key must be used with {@link OH_MD_KEY_VIDEO_ENCODER_PREPROC_DOWNSAMPLING_WIDTH} together.
+ * Refer to {@link OH_MD_KEY_VIDEO_ENCODER_PREPROC_DOWNSAMPLING_WIDTH} for more details on usage and restrictions.
+ *
+ * @since 26.0.0
+ */
+extern const char *OH_MD_KEY_VIDEO_ENCODER_PREPROC_DOWNSAMPLING_HEIGHT;
+
+/**
+ * @brief Key for describing the crop top in video encoder preprocess, value type is int32_t.
+ *
+ * It is used in configure or set parameter.
+ * The caller must use this key with the other crop keys:
+ * {@link OH_MD_KEY_VIDEO_ENCODER_PREPROC_CROP_BOTTOM}/
+ * {@link OH_MD_KEY_VIDEO_ENCODER_PREPROC_CROP_LEFT}/
+ * {@link OH_MD_KEY_VIDEO_ENCODER_PREPROC_CROP_RIGHT} together.
+ * 1. when crop top, bottom, left, right are all 0, the crop is disabled.
+ * 2. When the crop values are within the supported range, the crop is enabled.
+ * It's recommended to query the supported crop range through
+ * the interface {@link OH_AVCapability_IsVideoSizeSupported}.
+ * 3. When the crop values are not within the supported range, error will be returned.
+ *
+ * @since 26.0.0
+ */
+extern const char *OH_MD_KEY_VIDEO_ENCODER_PREPROC_CROP_TOP;
+
+/**
+ * @brief Key for describing the crop bottom in video encoder preprocess, value type is int32_t.
+ *
+ * Refer to {@link OH_MD_KEY_VIDEO_ENCODER_PREPROC_CROP_TOP} for more details on usage and restrictions.
+ *
+ * @since 26.0.0
+ */
+extern const char *OH_MD_KEY_VIDEO_ENCODER_PREPROC_CROP_BOTTOM;
+
+/**
+ * @brief Key for describing the crop left in video encoder preprocess, value type is int32_t.
+ *
+ * Refer to {@link OH_MD_KEY_VIDEO_ENCODER_PREPROC_CROP_TOP} for more details on usage and restrictions.
+ *
+ * @since 26.0.0
+ */
+extern const char *OH_MD_KEY_VIDEO_ENCODER_PREPROC_CROP_LEFT;
+
+/**
+ * @brief Key for describing the crop right in video encoder preprocess, value type is int32_t.
+ *
+ * Refer to {@link OH_MD_KEY_VIDEO_ENCODER_PREPROC_CROP_TOP} for more details on usage and restrictions.
+ *
+ * @since 26.0.0
+ */
+extern const char *OH_MD_KEY_VIDEO_ENCODER_PREPROC_CROP_RIGHT;
+
+/**
+ * @brief Key for describing the drop frame rate in video encoder preprocess, value type is int32_t.
+ *
+ * It is used in configure or set parameter.
+ * The caller must ensure original frame rate is set, refer to {@link OH_MD_KEY_FRAME_RATE}.
+ * 1. when value is set to 0, the drop frame is disabled.
+ * 2. when value is set to positive value and less than original frame rate, it will drop frames to match the set frame rate.
+ * 3. when value is set to negative value or equal to or greater than original frame rate, error will be returned.
+ *
+ * @since 26.0.0
+ */
+extern const char *OH_MD_KEY_VIDEO_ENCODER_PREPROC_DROP_TO_FRAME_RATE;
+
 /**
  * @brief Key for describing the count of used long-term reference frames, value type is int32_t, must be within the
  * supported range. To get supported range, you should query whether the capability is supported through the interface
