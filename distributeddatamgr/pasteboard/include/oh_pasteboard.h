@@ -28,7 +28,7 @@
  * @file oh_pasteboard.h
  *
  * @brief Provides data structure, enum types, and APIs for accessing the system pasteboard.
- * 
+ *
  * @kit BasicServicesKit
  * @library libpasteboard.so
  * @syscap SystemCapability.MiscServices.Pasteboard
@@ -313,7 +313,7 @@ int OH_Pasteboard_GetDataSource(OH_Pasteboard* pasteboard, char* source, unsigne
  * @param type Data type to be checked, which includes the basic data types and custom data types. The options of the
  * basic data types are as follows: **"text/plain"**, **"text/html"**, **"text/uri"**, **"text/want"**,
  * and **"pixelMap"**. For details, see {@link Macros}.
- * @return Returns a Boolean value indicating whether the pasteboard contains data of the specified type. The value 
+ * @return Returns a Boolean value indicating whether the pasteboard contains data of the specified type. The value
  * **true** means the pasteboard contains data of the specified type; the value **false** means the opposite.
  * @see OH_Pasteboard.
  * @since 13
