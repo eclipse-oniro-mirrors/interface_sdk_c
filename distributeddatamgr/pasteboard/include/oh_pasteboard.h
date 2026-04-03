@@ -45,34 +45,34 @@ extern "C" {
 #endif
 
 /**
-* @brief MIME type of plain text.
-*
-* @since 22
-*/
+ * @brief MIME type of plain text.
+ *
+ * @since 22
+ */
 #define PASTEBOARD_MIMETYPE_TEXT_PLAIN "text/plain"
 /**
-* @brief MIME type of URI.
-*
-* @since 22
-*/
+ * @brief MIME type of URI.
+ *
+ * @since 22
+ */
 #define PASTEBOARD_MIMETYPE_TEXT_URI "text/uri"
 /**
-* @brief MIME type of HTML text.
-*
-* @since 22
-*/
+ * @brief MIME type of HTML text.
+ *
+ * @since 22
+ */
 #define PASTEBOARD_MIMETYPE_TEXT_HTML "text/html"
 /**
-* @brief MIME type of PixelMap.
-*
-* @since 22
-*/
+ * @brief MIME type of PixelMap.
+ *
+ * @since 22
+ */
 #define PASTEBOARD_MIMETYPE_PIXELMAP "pixelMap"
 /**
-* @brief MIME type of want.
-*
-* @since 22
-*/
+ * @brief MIME type of want.
+ *
+ * @since 22
+ */
 #define PASTEBOARD_MIMETYPE_TEXT_WANT "text/want"
 
 /**
@@ -468,7 +468,7 @@ void OH_Pasteboard_GetDataParams_SetFileConflictOptions(Pasteboard_GetDataParams
 
 /**
  * @brief Sets a progress listener in a {@link Pasteboard_GetDataParams} instance.
- * 
+ *
  * @param params Pointer to an **OH_Pasteboard_GetDataParams** instance.
  * @param listener Progress listener.
  * @see Pasteboard_GetDataParams OH_Pasteboard_ProgressListener.
@@ -489,7 +489,7 @@ int OH_Pasteboard_ProgressInfo_GetProgress(Pasteboard_ProgressInfo* progressInfo
 
 /**
  * @brief Cancels the ongoing paste operation when the pasteboard data is obtained.
- * 
+ *
  * @param params Pointer to an **OH_Pasteboard_GetDataParams** instance.
  * @see Pasteboard_GetDataParams.
  * @since 15
@@ -519,7 +519,7 @@ OH_UdmfData* OH_Pasteboard_GetDataWithProgress(OH_Pasteboard* pasteboard, Pasteb
  * it should call the {@link OH_Pasteboard_SetData} API to submit all copied data or call the
  * **OH_Pasteboard_SyncDelayedDataAsync** API to notify the pasteboard to obtain all data. The application can exit only
  * after the data sync is complete. Otherwise, other applications may fail to obtain the data.
- * 
+ *
  * @param pasteboard Pointer to an {@link OH_Pasteboard} instance.
  * @param callback Indicates the pointer to the callback that is called after the synchronize is finished.
  * @since 21
