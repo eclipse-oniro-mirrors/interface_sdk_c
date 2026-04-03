@@ -37,7 +37,7 @@
 
 /**
 * @brief Enumerates the IPC error codes.
-* 
+*
 * @since 12
 */
 typedef enum {

@@ -27,7 +27,7 @@
  *
  * @brief Provides C APIs for creating and destroying a remote object, transferring data, and observing the dead status
  *     of a remote object.
- * 
+ *
  * @library libipc_capi.so
  * @kit IPCKit
  * @syscap SystemCapability.Communication.IPC.Core
@@ -47,7 +47,7 @@ extern "C" {
 
 /**
 * @brief Defines an object that receives death notifications.
-* 
+*
 * @syscap SystemCapability.Communication.IPC.Core
 * @since 12
 */
@@ -55,7 +55,7 @@ struct OHIPCDeathRecipient;
 
 /**
 * @brief Defines an object that receives death notifications.
-* 
+*
 * @syscap SystemCapability.Communication.IPC.Core
 * @since 12
 */
@@ -63,7 +63,7 @@ typedef struct OHIPCDeathRecipient OHIPCDeathRecipient;
 
 /**
  * @brief Called to process the peer request at the stub.
- * 
+ *
  * @syscap SystemCapability.Communication.IPC.Core
  * @param code Customized communication command word.
  * Value range: [0x01, 0x00ffffff]
@@ -81,7 +81,7 @@ typedef int (*OH_OnRemoteRequestCallback)(uint32_t code, const OHIPCParcel *data
 
 /**
  * @brief Called when an observed object is destroyed.
- * 
+ *
  * @syscap SystemCapability.Communication.IPC.Core
  * @param userData Pointer to the private user data. It can be NULL.
  * @since 12
@@ -90,7 +90,7 @@ typedef void (*OH_OnRemoteDestroyCallback)(void *userData);
 
 /**
  * @brief Creates an **OHIPCRemoteStub** object.
- * 
+ *
  * @syscap SystemCapability.Communication.IPC.Core
  * @param descriptor Pointer to the descriptor of the **OHIPCRemoteStub** object to create. It cannot be NULL.
  * @param requestCallback Callback used to process the data request. It cannot be NULL.
@@ -105,7 +105,7 @@ OHIPCRemoteStub* OH_IPCRemoteStub_Create(const char *descriptor, OH_OnRemoteRequ
 
 /**
  * @brief Destroys an **OHIPCRemoteStub** object.
- * 
+ *
  * @syscap SystemCapability.Communication.IPC.Core
  * @param stub Pointer to the **OHIPCRemoteStub** object to destroy.
  * @since 12
@@ -114,7 +114,7 @@ void OH_IPCRemoteStub_Destroy(OHIPCRemoteStub *stub);
 
 /**
  * @brief Destroys an **OHIPCRemoteProxy** object.
- * 
+ *
  * @syscap SystemCapability.Communication.IPC.Core
  * @param proxy Pointer to the **OHIPCRemoteProxy** object to destroy.
  * @since 12
@@ -123,7 +123,7 @@ void OH_IPCRemoteProxy_Destroy(OHIPCRemoteProxy *proxy);
 
 /**
  * @brief Enumerates the IPC request modes.
- * 
+ *
  * @since 12
  */
 typedef enum {
@@ -175,7 +175,7 @@ int OH_IPCRemoteProxy_SendRequest(const OHIPCRemoteProxy *proxy, uint32_t code, 
 
 /**
  * @brief Obtains the interface descriptor from the stub.
- * 
+ *
  * @syscap SystemCapability.Communication.IPC.Core
  * @param proxy Pointer to the **OHIPCRemoteProxy** object. It cannot be NULL.
  * @param descriptor Pointer to the address of the memory for holding the interface descriptor. The memory is allocated
@@ -197,7 +197,7 @@ int OH_IPCRemoteProxy_GetInterfaceDescriptor(OHIPCRemoteProxy *proxy, char **des
 
 /**
  * @brief Defines a callback to be invoked when the remote **OHIPCRemoteStub** object dies unexpectedly.
- * 
+ *
  * @syscap SystemCapability.Communication.IPC.Core
  * @param userData Pointer to the private user data. It can be NULL.
  * @since 12
@@ -206,7 +206,7 @@ typedef void (*OH_OnDeathRecipientCallback)(void *userData);
 
 /**
  * @brief Defines a callback to be invoked when the **OHIPCDeathRecipient** object is destroyed.
- * 
+ *
  * @syscap SystemCapability.Communication.IPC.Core
  * @param userData Pointer to the private user data. It can be NULL.
  * @since 12
@@ -216,7 +216,7 @@ typedef void (*OH_OnDeathRecipientDestroyCallback)(void *userData);
 /**
  * @brief Creates an **OHIPCDeathRecipient** object, which triggers a notification when the **OHIPCRemoteStub** object
  * dies unexpectedly.
- * 
+ *
  * @syscap SystemCapability.Communication.IPC.Core
  * @param deathRecipientCallback Callback to be invoked when the **OHIPCRemoteStub** object is dead. It cannot be NULL.
  * @param destroyCallback Callback to be invoked when the object is destroyed. It can be NULL.
@@ -230,7 +230,7 @@ OHIPCDeathRecipient* OH_IPCDeathRecipient_Create(OH_OnDeathRecipientCallback dea
 
 /**
  * @brief Destroys an **OHIPCDeathRecipient** object.
- * 
+ *
  * @syscap SystemCapability.Communication.IPC.Core
  * @param recipient Pointer to the **OHIPCDeathRecipient** object to destroy.
  * @since 12
@@ -239,7 +239,7 @@ void OH_IPCDeathRecipient_Destroy(OHIPCDeathRecipient *recipient);
 
 /**
  * @brief Subscribes to the death of an **OHIPCRemoteStub** object for an **OHIPCRemoteProxy** object.
- * 
+ *
  * @syscap SystemCapability.Communication.IPC.Core
  * @param proxy Pointer to the **OHIPCRemoteProxy** object that subscribes to the death notification. It cannot be NULL.
  * @param recipient Pointer to the object that receives the death notification of the **OHIPCRemoteStub** object. It
@@ -253,7 +253,7 @@ int OH_IPCRemoteProxy_AddDeathRecipient(OHIPCRemoteProxy *proxy, OHIPCDeathRecip
 
 /**
  * @brief Unsubscribes from the death of the **OHIPCRemoteStub** object for an **OHIPCRemoteProxy** object.
- * 
+ *
  * @syscap SystemCapability.Communication.IPC.Core
  * @param proxy Pointer to the **OHIPCRemoteProxy** object that unsubscribes from the death notification. It cannot be
  * NULL.
@@ -268,7 +268,7 @@ int OH_IPCRemoteProxy_RemoveDeathRecipient(OHIPCRemoteProxy *proxy, OHIPCDeathRe
 
 /**
  * @brief Checks whether the **OHIPCRemoteStub** object corresponding to the **OHIPCRemoteProxy** object is dead.
- * 
+ *
  * @syscap SystemCapability.Communication.IPC.Core
  * @param proxy Pointer to the **OHIPCRemoteProxy** object to check. It cannot be NULL.
  * @return Returns **1** if the **OHIPCRemoteStub** object is dead or invalid parameters are found; returns **0**

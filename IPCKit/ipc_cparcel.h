@@ -25,7 +25,7 @@
  * @file ipc_cparcel.h
  *
  * @brief Provides C APIs for IPC serialization and deserialization.
- * 
+ *
  * @library libipc_capi.so
  * @kit IPCKit
  * @syscap SystemCapability.Communication.IPC.Core
@@ -43,7 +43,7 @@ extern "C" {
 
 /**
 * @brief Defines an IPC serialized object.
-* 
+*
 * @syscap SystemCapability.Communication.IPC.Core
 * @since 12
 */
@@ -51,7 +51,7 @@ struct OHIPCParcel;
 
 /**
 * @brief Defines an IPC serialized object.
-* 
+*
 * @syscap SystemCapability.Communication.IPC.Core
 * @since 12
 */
@@ -59,7 +59,7 @@ typedef struct OHIPCParcel OHIPCParcel;
 
 /**
 * @brief Defines an IPC remote proxy object.
-* 
+*
 * @syscap SystemCapability.Communication.IPC.Core
 * @since 12
 */
@@ -67,7 +67,7 @@ struct OHIPCRemoteProxy;
 
 /**
 * @brief Defines an IPC remote proxy object.
-* 
+*
 * @syscap SystemCapability.Communication.IPC.Core
 * @since 12
 */
@@ -75,7 +75,7 @@ typedef struct OHIPCRemoteProxy OHIPCRemoteProxy;
 
 /**
 * @brief Defines an IPC remote service object.
-* 
+*
 * @syscap SystemCapability.Communication.IPC.Core
 * @since 12
 */
@@ -83,7 +83,7 @@ struct OHIPCRemoteStub;
 
 /**
 * @brief Defines an IPC remote service object.
-* 
+*
 * @syscap SystemCapability.Communication.IPC.Core
 * @since 12
 */
@@ -91,7 +91,7 @@ typedef struct OHIPCRemoteStub OHIPCRemoteStub;
 
 /**
  * @brief Defines the type of a memory allocation function.
- * 
+ *
  * @syscap SystemCapability.Communication.IPC.Core
  * @param len Length of the memory to be allocated.
  * @return Returns the address of the memory allocated if the operation is successful; returns NULL otherwise.
@@ -101,7 +101,7 @@ typedef void* (*OH_IPC_MemAllocator)(int32_t len);
 
 /**
  * @brief Creates an **OHIPCParcel** object, which cannot exceed 204,800 bytes.
- * 
+ *
  * @syscap SystemCapability.Communication.IPC.Core
  * @return Returns the pointer to the **OHIPCParcel** object created if the operation is successful; returns NULL
  *     otherwise.
@@ -111,7 +111,7 @@ OHIPCParcel* OH_IPCParcel_Create(void);
 
 /**
  * @brief Destroys an **OHIPCParcel** object.
- * 
+ *
  * @syscap SystemCapability.Communication.IPC.Core
  * @param parcel Pointer to the **OHIPCParcel** object to destroy.
  * @since 12
@@ -120,7 +120,7 @@ void OH_IPCParcel_Destroy(OHIPCParcel *parcel);
 
 /**
  * @brief Obtains the size of the data contained in an **OHIPCParcel** object.
- * 
+ *
  * @syscap SystemCapability.Communication.IPC.Core
  * @param parcel Pointer to the **OHIPCParcel** object. It cannot be NULL.
  * @return Returns the data size obtained if the operation is successful; returns **-1** if invalid parameters are
@@ -131,7 +131,7 @@ int OH_IPCParcel_GetDataSize(const OHIPCParcel *parcel);
 
 /**
  * @brief Obtains the number of bytes that can be written to an **OHIPCParcel** object.
- * 
+ *
  * @syscap SystemCapability.Communication.IPC.Core
  * @param parcel Pointer to the **OHIPCParcel** object. It cannot be NULL.
  * @return Returns the number of bytes that can be written to the **OHIPCParcel** object; returns **-1** if invalid
@@ -142,7 +142,7 @@ int OH_IPCParcel_GetWritableBytes(const OHIPCParcel *parcel);
 
 /**
  * @brief Obtains the number of bytes that can be read from an **OHIPCParcel** object.
- * 
+ *
  * @syscap SystemCapability.Communication.IPC.Core
  * @param parcel Pointer to the **OHIPCParcel** object. It cannot be NULL.
  * @return Returns the number of bytes that can be read from the **OHIPCParcel** object.
@@ -153,7 +153,7 @@ int OH_IPCParcel_GetReadableBytes(const OHIPCParcel *parcel);
 
 /**
  * @brief Obtains the position where data is read in an **OHIPCParcel** object.
- * 
+ *
  * @syscap SystemCapability.Communication.IPC.Core
  * @param parcel Pointer to the **OHIPCParcel** object. It cannot be NULL.
  * @return Returns the current read position obtained if the operation is successful; returns **-1** if invalid
@@ -164,7 +164,7 @@ int OH_IPCParcel_GetReadPosition(const OHIPCParcel *parcel);
 
 /**
  * @brief Obtains the position where data is written in an **OHIPCParcel** object.
- * 
+ *
  * @syscap SystemCapability.Communication.IPC.Core
  * @param parcel Pointer to the **OHIPCParcel** object. It cannot be NULL.
  * @return Returns the current write position obtained if the operation is successful; returns **-1** if invalid
@@ -175,7 +175,7 @@ int OH_IPCParcel_GetWritePosition(const OHIPCParcel *parcel);
 
 /**
  * @brief Resets the position to read data in an **OHIPCParcel** object.
- * 
+ *
  * @syscap SystemCapability.Communication.IPC.Core
  * @param parcel Pointer to the **OHIPCParcel** object. It cannot be NULL.
  * @param newReadPos New position to read data. The value ranges from **0** to the current data size.
@@ -187,7 +187,7 @@ int OH_IPCParcel_RewindReadPosition(OHIPCParcel *parcel, uint32_t newReadPos);
 
 /**
  * @brief Resets the position to write data in an **OHIPCParcel** object.
- * 
+ *
  * @syscap SystemCapability.Communication.IPC.Core
  * @param parcel Pointer to the **OHIPCParcel** object. It cannot be NULL.
  * @param newWritePos New position to write data. The value ranges from **0** to the current data size.
@@ -199,7 +199,7 @@ int OH_IPCParcel_RewindWritePosition(OHIPCParcel *parcel, uint32_t newWritePos);
 
 /**
  * @brief Writes an int8_t value to an **OHIPCParcel** object.
- * 
+ *
  * @syscap SystemCapability.Communication.IPC.Core
  * @param parcel Pointer to the **OHIPCParcel** object. It cannot be NULL.
  * @param value Value to write.
@@ -212,7 +212,7 @@ int OH_IPCParcel_WriteInt8(OHIPCParcel *parcel, int8_t value);
 
 /**
  * @brief Reads an int8_t value from an **OHIPCParcel** object.
- * 
+ *
  * @syscap SystemCapability.Communication.IPC.Core
  * @param parcel Pointer to the **OHIPCParcel** object. It cannot be NULL.
  * @param value Pointer to the buffer for holding the read data. It cannot be NULL.
@@ -225,7 +225,7 @@ int OH_IPCParcel_ReadInt8(const OHIPCParcel *parcel, int8_t *value);
 
 /**
  * @brief Writes an int16_t value to an **OHIPCParcel** object.
- * 
+ *
  * @syscap SystemCapability.Communication.IPC.Core
  * @param parcel Pointer to the **OHIPCParcel** object. It cannot be NULL.
  * @param value Value to write.
@@ -238,7 +238,7 @@ int OH_IPCParcel_WriteInt16(OHIPCParcel *parcel, int16_t value);
 
 /**
  * @brief Reads an int16_t value from an **OHIPCParcel** object.
- * 
+ *
  * @syscap SystemCapability.Communication.IPC.Core
  * @param parcel Pointer to the **OHIPCParcel** object. It cannot be NULL.
  * @param value Pointer to the buffer for holding the read data. It cannot be NULL.
@@ -264,7 +264,7 @@ int OH_IPCParcel_WriteInt32(OHIPCParcel *parcel, int32_t value);
 
 /**
  * @brief Reads an int32_t value from an **OHIPCParcel** object.
- * 
+ *
  * @syscap SystemCapability.Communication.IPC.Core
  * @param parcel Pointer to the **OHIPCParcel** object. It cannot be NULL.
  * @param value Pointer to the buffer for holding the read data. It cannot be NULL.
@@ -277,7 +277,7 @@ int OH_IPCParcel_ReadInt32(const OHIPCParcel *parcel, int32_t *value);
 
 /**
  * @brief Writes an int64_t value to an **OHIPCParcel** object.
- * 
+ *
  * @syscap SystemCapability.Communication.IPC.Core
  * @param parcel Pointer to the **OHIPCParcel** object. It cannot be NULL.
  * @param value Value to write.
@@ -290,7 +290,7 @@ int OH_IPCParcel_WriteInt64(OHIPCParcel *parcel, int64_t value);
 
 /**
  * @brief Reads an int64_t value from an **OHIPCParcel** object.
- * 
+ *
  * @syscap SystemCapability.Communication.IPC.Core
  * @param parcel Pointer to the **OHIPCParcel** object. It cannot be NULL.
  * @param value Pointer to the buffer for holding the read data. It cannot be NULL.
@@ -303,7 +303,7 @@ int OH_IPCParcel_ReadInt64(const OHIPCParcel *parcel, int64_t *value);
 
 /**
  * @brief Writes a float value to an **OHIPCParcel** object.
- * 
+ *
  * @syscap SystemCapability.Communication.IPC.Core
  * @param parcel Pointer to the **OHIPCParcel** object. It cannot be NULL.
  * @param value Value to write.
@@ -329,7 +329,7 @@ int OH_IPCParcel_ReadFloat(const OHIPCParcel *parcel, float *value);
 
 /**
  * @brief Writes a double value to an **OHIPCParcel** object.
- * 
+ *
  * @syscap SystemCapability.Communication.IPC.Core
  * @param parcel Pointer to the **OHIPCParcel** object. It cannot be NULL.
  * @param value Value to write.
@@ -342,7 +342,7 @@ int OH_IPCParcel_WriteDouble(OHIPCParcel *parcel, double value);
 
 /**
  * @brief Reads a double value from an **OHIPCParcel** object.
- * 
+ *
  * @syscap SystemCapability.Communication.IPC.Core
  * @param parcel Pointer to the **OHIPCParcel** object. It cannot be NULL.
  * @param value Pointer to the buffer for holding the read data. It cannot be NULL.
@@ -355,7 +355,7 @@ int OH_IPCParcel_ReadDouble(const OHIPCParcel *parcel, double *value);
 
 /**
  * @brief Writes a string including a string terminator to an **OHIPCParcel** object.
- * 
+ *
  * @syscap SystemCapability.Communication.IPC.Core
  * @param parcel Pointer to the **OHIPCParcel** object. It cannot be NULL.
  * @param str Pointer to the string to write. It cannot be NULL.
@@ -368,7 +368,7 @@ int OH_IPCParcel_WriteString(OHIPCParcel *parcel, const char *str);
 
 /**
  * @brief Reads a string from an **OHIPCParcel** object. You can obtain the length of the string from **strlen**.
- * 
+ *
  * @syscap SystemCapability.Communication.IPC.Core
  * @param parcel Pointer to the **OHIPCParcel** object. It cannot be NULL.
  * @return Returns the address of the string read if the operation is successful; returns NULL if the operation fails
@@ -379,7 +379,7 @@ const char* OH_IPCParcel_ReadString(const OHIPCParcel *parcel);
 
 /**
  * @brief Writes data of the specified length from the memory to an **OHIPCParcel** object.
- * 
+ *
  * @syscap SystemCapability.Communication.IPC.Core
  * @param parcel Pointer to the **OHIPCParcel** object. It cannot be NULL.
  * @param buffer Pointer to the address of the memory information to write.
@@ -393,7 +393,7 @@ int OH_IPCParcel_WriteBuffer(OHIPCParcel *parcel, const uint8_t *buffer, int32_t
 
 /**
  * @brief Reads memory information of the specified length from an **OHIPCParcel** object.
- * 
+ *
  * @syscap SystemCapability.Communication.IPC.Core
  * @param parcel Pointer to the **OHIPCParcel** object. It cannot be NULL.
  * @param len Length of the memory to be read.
@@ -405,7 +405,7 @@ const uint8_t* OH_IPCParcel_ReadBuffer(const OHIPCParcel *parcel, int32_t len);
 
 /**
  * @brief Writes an **OHIPCRemoteStub** object to an **OHIPCParcel** object.
- * 
+ *
  * @syscap SystemCapability.Communication.IPC.Core
  * @param parcel Pointer to the **OHIPCParcel** object. It cannot be NULL.
  * @param stub Pointer to the **OHIPCRemoteStub** object to write. It cannot be NULL.
@@ -418,7 +418,7 @@ int OH_IPCParcel_WriteRemoteStub(OHIPCParcel *parcel, const OHIPCRemoteStub *stu
 
 /**
  * @brief Reads the **OHIPCRemoteStub** object from an **OHIPCParcel** object.
- * 
+ *
  * @syscap SystemCapability.Communication.IPC.Core
  * @param parcel Pointer to the **OHIPCParcel** object. It cannot be NULL.
  * @return Returns the pointer to the **OHIPCRemoteStub** object read if the operation is successful; returns NULL
@@ -429,7 +429,7 @@ OHIPCRemoteStub* OH_IPCParcel_ReadRemoteStub(const OHIPCParcel *parcel);
 
 /**
  * @brief Writes an **OHIPCRemoteProxy** object to an **OHIPCParcel** object.
- * 
+ *
  * @syscap SystemCapability.Communication.IPC.Core
  * @param parcel Pointer to the **OHIPCParcel** object. It cannot be NULL.
  * @param proxy Pointer to the **OHIPCRemoteProxy** object to write. It cannot be NULL.
@@ -442,7 +442,7 @@ int OH_IPCParcel_WriteRemoteProxy(OHIPCParcel *parcel, const OHIPCRemoteProxy *p
 
 /**
  * @brief Reads the **OHIPCRemoteProxy** object from an **OHIPCParcel** object.
- * 
+ *
  * @syscap SystemCapability.Communication.IPC.Core
  * @param parcel Pointer to the **OHIPCParcel** object. It cannot be NULL.
  * @return Returns the pointer to the **OHIPCRemoteProxy** object created if the operation is successful; returns NULL
@@ -453,7 +453,7 @@ OHIPCRemoteProxy* OH_IPCParcel_ReadRemoteProxy(const OHIPCParcel *parcel);
 
 /**
  * @brief Writes a file descriptor to an **OHIPCParcel** object.
- * 
+ *
  * @syscap SystemCapability.Communication.IPC.Core
  * @param parcel Pointer to the **OHIPCParcel** object. It cannot be NULL.
  * @param fd Pointer to the file descriptor to write.
@@ -466,7 +466,7 @@ int OH_IPCParcel_WriteFileDescriptor(OHIPCParcel *parcel, int32_t fd);
 
 /**
  * @brief Reads a file descriptor from an **OHIPCParcel** object.
- * 
+ *
  * @syscap SystemCapability.Communication.IPC.Core
  * @param parcel Pointer to the **OHIPCParcel** object. It cannot be NULL.
  * @param fd Pointer to the file descriptor to read. It cannot be NULL.
@@ -479,7 +479,7 @@ int OH_IPCParcel_ReadFileDescriptor(const OHIPCParcel *parcel, int32_t *fd);
 
 /**
  * @brief Appends data to an **OHIPCParcel** object.
- * 
+ *
  * @syscap SystemCapability.Communication.IPC.Core
  * @param parcel Pointer to the **OHIPCParcel** object. It cannot be NULL.
  * @param data Pointer to the data to append. It cannot be NULL.
@@ -492,7 +492,7 @@ int OH_IPCParcel_Append(OHIPCParcel *parcel, const OHIPCParcel *data);
 
 /**
  * @brief Writes an interface token to an **OHIPCParcel** object for interface identity verification.
- * 
+ *
  * @syscap SystemCapability.Communication.IPC.Core
  * @param parcel Pointer to the **OHIPCParcel** object. It cannot be NULL.
  * @param token Pointer to the interface token to write. It cannot be NULL.
@@ -505,7 +505,7 @@ int OH_IPCParcel_WriteInterfaceToken(OHIPCParcel *parcel, const char *token);
 
 /**
  * @brief Reads an interface token from an **OHIPCParcel** object for interface identity verification.
- * 
+ *
  * @syscap SystemCapability.Communication.IPC.Core
  * @param parcel Pointer to the **OHIPCParcel** object. It cannot be NULL.
  * @param token Double pointer to the interface token to read. The memory is allocated by the allocator provided by the
