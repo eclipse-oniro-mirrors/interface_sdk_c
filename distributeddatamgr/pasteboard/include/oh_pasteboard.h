@@ -489,7 +489,7 @@ int OH_Pasteboard_ProgressInfo_GetProgress(Pasteboard_ProgressInfo* progressInfo
 
 /**
  * @brief Cancels the ongoing paste operation when the pasteboard data is obtained.
- * 
+ *
  * @param params Pointer to an **OH_Pasteboard_GetDataParams** instance.
  * @see Pasteboard_GetDataParams.
  * @since 15
