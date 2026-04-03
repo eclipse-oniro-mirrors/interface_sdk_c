@@ -1,3 +1,4 @@
+
 /*
  * Copyright (c) 2024 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -27,183 +28,194 @@
 /**
  * @file oh_pasteboard.h
  *
- * @brief Provides APIs and enums of the Pasteboard module.
- *
+ * @brief Provides data structure, enum types, and APIs for accessing the system pasteboard.
+ * 
  * @kit BasicServicesKit
  * @library libpasteboard.so
  * @syscap SystemCapability.MiscServices.Pasteboard
  *
  * @since 13
  */
-
 #ifndef OH_PASTEBOARD_H
 #define OH_PASTEBOARD_H
-
 #include <inttypes.h>
 #include <stdbool.h>
 #include "database/udmf/udmf.h"
-
 #ifdef __cplusplus
 extern "C" {
 #endif
 
 /**
- * @brief MIME type of plain text.
- *
- * @since 22
- */
+* @brief MIME type of plain text.
+*
+* @since 22
+*/
 #define PASTEBOARD_MIMETYPE_TEXT_PLAIN "text/plain"
 /**
- * @brief MIME type of URI.
- *
- * @since 22
- */
+* @brief MIME type of URI.
+*
+* @since 22
+*/
 #define PASTEBOARD_MIMETYPE_TEXT_URI "text/uri"
 /**
- * @brief MIME type of HTML text.
- *
- * @since 22
- */
+* @brief MIME type of HTML text.
+*
+* @since 22
+*/
 #define PASTEBOARD_MIMETYPE_TEXT_HTML "text/html"
 /**
- * @brief MIME type of PixelMap.
- *
- * @since 22
- */
+* @brief MIME type of PixelMap.
+*
+* @since 22
+*/
 #define PASTEBOARD_MIMETYPE_PIXELMAP "pixelMap"
 /**
- * @brief MIME type of want.
- *
- * @since 22
- */
+* @brief MIME type of want.
+*
+* @since 22
+*/
 #define PASTEBOARD_MIMETYPE_TEXT_WANT "text/want"
 
 /**
- * @brief Enumerates the types of data changes that can be observed.
- *
+ * @brief Enumerates the data change types of the pasteboard.
+ * 
  * @since 13
  */
 typedef enum Pasteboard_NotifyType {
     /**
-     * @brief Change of the Pasteboard data in the local device.
+     * @brief The pasteboard data of the local device is changed.
+     * 
      */
     NOTIFY_LOCAL_DATA_CHANGE = 1,
+
     /**
-     * @brief Change of the Pasteboard data in the remote devices.
+     * @brief The pasteboard data of a non-local device on the network is changed.
+     * 
      */
     NOTIFY_REMOTE_DATA_CHANGE = 2
 } Pasteboard_NotifyType;
 
 /**
- * @brief Enumerates the types of file confilct options when getting data from the Pastedboard.
- *
+ * @brief Enumerates the options used to resolve file copy conflicts.
+ * 
  * @since 15
  */
 typedef enum Pasteboard_FileConflictOptions {
     /**
-     * @brief Overwrite when destUir has file with same name.
+     * @brief Overwrites the file with the same name in the destination directory.
+     * 
      */
     PASTEBOARD_OVERWRITE = 0,
+
     /**
-     * @brief Skip when destUir has file with same name.
+     * @brief Skips the file if there is a file with the same name in the destination directory.
+     * 
      */
     PASTEBOARD_SKIP = 1
 } Pasteboard_FileConflictOptions;
 
 /**
- * @brief Enumerates the types of progress indicator when getting data from the Pastedboard.
- *
+ * @brief Enumerates the progress indicator options. You can use the default progress indicator as required.
+ * 
  * @since 15
  */
 typedef enum Pasteboard_ProgressIndicator {
     /**
-     * @brief Getting data without system default progress indicator.
+     * @brief The system default progress indicator is not used.
+     * 
      */
     PASTEBOARD_NONE = 0,
+
     /**
-     * @brief Getting data with system default progress indicator.
+     * @brief The system default progress indicator is used.
+     * 
      */
     PASTEBOARD_DEFAULT = 1
 } Pasteboard_ProgressIndicator;
 
 /**
- * @brief Represents the Pasteboard progress information.
- *
+ * @brief Defines a struct for the progress information.
+ * 
  * @since 15
  */
 typedef struct Pasteboard_ProgressInfo Pasteboard_ProgressInfo;
 
 /**
- * @brief Defines the callback function used to return the progress information when getting PasteData.
- *
- * @param progressInfo The progress information notified to Application.
+ * @brief Defines a callback to be invoked to obtain the progress information when the default progress indicator is
+ * not used.
+ * 
+ * @param progressInfo A struct for the progress information. 
+ * This information is reported only when {@link Pasteboard_ProgressInfo} is set to **NONE**.
  * @since 15
  */
 typedef void (*OH_Pasteboard_ProgressListener)(Pasteboard_ProgressInfo* progressInfo);
 
 /**
- * @brief Represents the pasteboard get data parameters when getting data from Pasteboard.
- *
+ * @brief Defines the parameters required for obtaining the pasteboard data and paste progress.
+ * 
  * @since 15
  */
 typedef struct Pasteboard_GetDataParams Pasteboard_GetDataParams;
 
 /**
- * @brief Defines the callback function used to return the Pasteboard data changed.
- *
- * @param context The context set by {@link OH_PasteboardObserver_SetData} function.
- * @param type The types of data changes. For details, see {@link Pasteboard_NotifyType}.
+ * @brief Defines a callback to be invoked when the pasteboard content changes.
+ * 
+ * @param context Context information, which is passed by the {@link OH_PasteboardObserver_SetData} function.
+ * @param type Data change type. For details, see {@link Pasteboard_NotifyType}.
  * @since 13
  */
 typedef void (*Pasteboard_Notify)(void* context, Pasteboard_NotifyType type);
 
 /**
- * @brief Defines the callback function used free the context.
- * @param context Pointer to the context which is to be free.
+ * @brief Defines a callback to be invoked to release the context when the pasteboard observer object is destroyed.
+ * 
+ * @param context Pointer to the context to release.
  * @since 13
  */
 typedef void (*Pasteboard_Finalize)(void* context);
 
 /**
- * @brief Defines the Pasteboard subscriber information
- *
+ * @brief Defines the pasteboard observer.
+ * 
  * @since 13
  */
 typedef struct OH_PasteboardObserver OH_PasteboardObserver;
 
 /**
- * @brief Creates a {@link OH_PasteboardObserver} instance.
- *
- * @return Returns the pointer to the {@link OH_PasteboardObserver} instance created if the operation is successful.
- * Returns nullptr if the operation is failed.
+ * @brief Creates an {@link OH_PasteboardObserver} instance and a pointer to it.
+ * 
+ * @return Returns a pointer to the {@link OH_PasteboardObserver} instance created if the operation is successful;
+ * returns **nullptr** otherwise.
+ * If this pointer is no longer required, use {@link OH_PasteboardObserver_Destroy} to destroy it. Otherwise, memory
+ * leaks may occur.
  * @see OH_PasteboardObserver.
  * @since 13
  */
 OH_PasteboardObserver* OH_PasteboardObserver_Create();
 
 /**
- * @brief Destroy a {@link OH_PasteboardObserver} instance.
- *
- * @param observer Pointer to the {@link OH_PasteboardObserver} instance to destroy.
- * @return Returns the status code of the execution. For details, see {@link PASTEBOARD_ErrCode}.
- *         Returns {@link ERR_OK} if the operation is successful.
- *         Returns {@link ERR_INVALID_PARAMETER} if invalid args are detected.
+ * @brief Destroys the {@link OH_PasteboardObserver} instance.
+ * 
+ * @param observer Pointer to an {@link OH_PasteboardObserver} instance.
+ * @return Returns an error code. For details about the error codes, see {@link PASTEBOARD_ErrCode}.
+ * Returns **ERR_OK** if the operation is successful.
+ * Returns **ERR_INVALID_PARAMETER** if an invalid parameter is passed in.
  * @see OH_PasteboardObserver PASTEBOARD_ErrCode.
  * @since 13
  */
 int OH_PasteboardObserver_Destroy(OH_PasteboardObserver* observer);
 
 /**
- * @brief Sets a callback function to return the Pasteboard data changed.
- *
- * @param observer Pointer to the {@link OH_PasteboardObserver} instance.
- * @param context Pointer to the context set, which is the first parameter in Pasteboard_Notify.
- * @param callback Callback to set. For details, see {@link Pasteboard_Notify}.
- * @param finalize Optional callback that can free context when destroy observer.
- *         For details, see {@link Pasteboard_Finalize}.
- * @return Returns the status code of the execution. For details, see {@link PASTEBOARD_ErrCode}.
- *         Returns {@link ERR_OK} if the operation is successful.
- *         Returns {@link ERR_INVALID_PARAMETER} if invalid args are detected.
+ * @brief Sets a callback for the pasteboard observer.
+ * 
+ * @param observer Pointer to an {@link OH_PasteboardObserver} instance.
+ * @param context Pointer to the context, which is passed to {@link Pasteboard_Notify} as the first parameter.
+ * @param callback Callback to be invoked when the data changes. For details, see {@link Pasteboard_Notify}.
+ * @param finalize Optional callback, which can be used to release context data when the pasteboard observer is
+ * destroyed. For details, see {@link Pasteboard_Finalize}.
+ * @return Returns an error code. For details about the error codes, see {@link PASTEBOARD_ErrCode}.
+ * Returns **ERR_OK** if the operation is successful.
+ * Returns **ERR_INVALID_PARAMETER** if an invalid parameter is passed in.
  * @see OH_PasteboardObserver Pasteboard_Notify PASTEBOARD_ErrCode.
  * @since 13
  */
@@ -211,209 +223,220 @@ int OH_PasteboardObserver_SetData(OH_PasteboardObserver* observer, void* context
     const Pasteboard_Notify callback, const Pasteboard_Finalize finalize);
 
 /**
- * @brief Represents the Pasteboard information.
- *
+ * @brief Defines the pasteboard object to operate the system pasteboard.
+ * 
  * @since 13
  */
 typedef struct OH_Pasteboard OH_Pasteboard;
 
 /**
- * @brief Creates a {@link OH_Pasteboard} instance.
- *
- * @return Returns the pointer to the {@link OH_Pasteboard} instance created if the operation is successful.
- * Returns nullptr if the memory is not enough.
+ * @brief Creates an {@link OH_Pasteboard} instance and a pointer to it.
+ * 
+ * @return Returns a pointer to the {@link OH_Pasteboard} instance created if the operation is successful; 
+ * returns **nullptr** otherwise.
+ * If this pointer is no longer required, use {@link OH_PasteboardObserver_Destroy} to destroy it. Otherwise, memory
+ * leaks may occur.
  * @see OH_Pasteboard.
  * @since 13
  */
 OH_Pasteboard* OH_Pasteboard_Create();
 
 /**
- * @brief Destroy a {@link OH_Pasteboard} instance.
- *
- * @param pasteboard Pointer to the {@link OH_Pasteboard} instance to destroy.
+ * @brief Destroys the {@link OH_Pasteboard} instance.
+ * 
+ * @param pasteboard Pointer to an {@link OH_Pasteboard} instance.
  * @see OH_Pasteboard.
  * @since 13
  */
 void OH_Pasteboard_Destroy(OH_Pasteboard* pasteboard);
 
 /**
- * @brief Subscribes to the Pasteboard data change.
- *
- * @param pasteboard Pointer to the {@link OH_Pasteboard} instance.
- * @param type Event type to subscribe to report the pasteboard data change.
- *         For details, see {@link Pasteboard_NotifyType}.
- * @param observer - Pointer to the observer information, which specifies the callback used to
- * reporting the pasteboard data change. For details, see {@link OH_PasteboardObserver}.
- * @return Returns the status code of the execution. For details, {@link PASTEBOARD_ErrCode}.
- *         Returns {@link ERR_OK} if the operation is successful.
- *         Returns {@link ERR_INVALID_PARAMETER} if invalid args are detected.
+ * @brief Subscribes to the pasteboard observer.
+ * 
+ * @param pasteboard Pointer to an {@link OH_Pasteboard} instance.
+ * @param type Subscribed data change type of the pasteboard. For details, see {@link Pasteboard_NotifyType}.
+ * @param observer Pointer to an {@link OH_PasteboardObserver} instance. It specifies the callback to be invoked when
+ * the pasteboard data changes. For details, see {@link OH_PasteboardObserver}.
+ * @return Returns an error code. For details about the error codes, see {@link PASTEBOARD_ErrCode}.
+ * Returns **ERR_OK** if the operation is successful.
+ * Returns **ERR_INVALID_PARAMETER** if an invalid parameter is passed in.
  * @see OH_Pasteboard OH_PasteboardObserver Pasteboard_NotifyType PASTEBOARD_ErrCode.
  * @since 13
  */
 int OH_Pasteboard_Subscribe(OH_Pasteboard* pasteboard, int type, const OH_PasteboardObserver* observer);
 
 /**
- * @brief Unsubscribes from the Pasteboard data change.
- *
- * @param pasteboard Pointer to the {@link OH_Pasteboard} instance.
- * @param type Event type to subscribe to report the pasteboard data change.
- *         For details, see {@link Pasteboard_NotifyType}.
- * @param observer - Pointer to the observer information, which specifies the callback used to
- * reporting the pasteboard data change. For details, see {@link OH_PasteboardObserver}.
- * @return Returns the status code of the execution. For details, {@link PASTEBOARD_ErrCode}.
- *         Returns {@link ERR_OK} if the operation is successful.
- *         Returns {@link ERR_INVALID_PARAMETER} if invalid args are detected.
+ * @brief Unsubscribes from the pasteboard observer.
+ * 
+ * @param pasteboard Pointer to an {@link OH_Pasteboard} instance.
+ * @param type Subscribed data change type of the pasteboard. For details, see {@link Pasteboard_NotifyType}.
+ * @param observer Pointer to an {@link OH_PasteboardObserver} instance. It specifies the callback to be invoked when
+ * the pasteboard data changes. For details, see {@link OH_PasteboardObserver}.
+ * @return Returns an error code. For details about the error codes, see {@link PASTEBOARD_ErrCode}.
+ * Returns **ERR_OK** if the operation is successful.
+ * Returns **ERR_INVALID_PARAMETER** if an invalid parameter is passed in.
  * @see OH_Pasteboard OH_PasteboardObserver Pasteboard_NotifyType PASTEBOARD_ErrCode.
  * @since 13
  */
 int OH_Pasteboard_Unsubscribe(OH_Pasteboard* pasteboard, int type, const OH_PasteboardObserver* observer);
 
 /**
- * @brief Checks whether the Pasteboard data is from a remote device.
- *
- * @param pasteboard Pointer to the {@link OH_Pasteboard} instance.
- * @return Returns a boolean value, which indicates whether the the data is from a remote device.
- *         The value {@code false} means Pasteboard data is not from a remote device.
- *         The value {@code true} means the opposite.
+ * @brief Checks whether the pasteboard data comes from remote devices.
+ * 
+ * @param pasteboard Pointer to an {@link OH_Pasteboard} instance.
+ * @return Returns a Boolean value indicating whether the data comes from a remote device. The value **true** means the
+ * data is from a remote device; **false** means the data is from the local device.
  * @see OH_Pasteboard.
  * @since 13
  */
 bool OH_Pasteboard_IsRemoteData(OH_Pasteboard* pasteboard);
 
 /**
- * @brief Obtains the source of Pasteboard data.
- *
- * @param pasteboard Pointer to the {@link OH_Pasteboard} instance.
- * @param source Pointer to the source data.
- * @param len Length of the source data.
- * @return Returns the status code of the execution. For details, see {@link PASTEBOARD_ErrCode}.
- *         Returns {@link ERR_OK} if the operation is successful.
- *         Returns {@link ERR_INVALID_PARAMETER} if invalid args are detected.
+ * @brief Obtains the pasteboard data source.
+ * 
+ * @param pasteboard Pointer to an {@link OH_Pasteboard} instance.
+ * @param source Pointer to the pasteboard data source instance. You need to allocate the memory for the pointer before
+ * calling this API.
+ * @param len Memory length corresponding to the source. If the memory length is insufficient, the API call will fail.
+ * The recommended length is 128 bytes.
+ * @return Returns an error code. For details about the error codes, see {@link PASTEBOARD_ErrCode}.
+ * Returns **ERR_OK** if the operation is successful.
+ * Returns **ERR_INVALID_PARAMETER** if an invalid parameter is passed in.
  * @see OH_Pasteboard PASTEBOARD_ErrCode.
  * @since 13
  */
 int OH_Pasteboard_GetDataSource(OH_Pasteboard* pasteboard, char* source, unsigned int len);
 
 /**
- * @brief Checks whether the Pasteboard has the specified type of data.
- *
- * @param pasteboard Pointer to the {@link OH_Pasteboard} instance.
- * @param type Poniter to the type of data to check.
- * @return Returns a boolean value, which indicates whether the Pasteboard has the specified type of data.
- *         The value {@code true} means the Pasteboard has the specified type of data.
- *         The value {@code false} means the opposite.
+ * @brief Checks whether the pasteboard contains data of the specified type.
+ * 
+ * @param pasteboard Pointer to an {@link OH_Pasteboard} instance.
+ * @param type Data type to be checked, which includes the basic data types and custom data types. The options of the
+ * basic data types are as follows: **"text/plain"**, **"text/html"**, **"text/uri"**, **"text/want"**, 
+ * and **"pixelMap"**. For details, see {@link Macros}.
+ * @return Returns a Boolean value indicating whether the pasteboard contains data of the specified type. The value 
+ * **true** means the pasteboard contains data of the specified type; the value **false** means the opposite.
  * @see OH_Pasteboard.
  * @since 13
  */
 bool OH_Pasteboard_HasType(OH_Pasteboard* pasteboard, const char* type);
 
 /**
- * @brief Checks whether there is data in the Pasteboard.
- *
- * @param pasteboard Pointer to the {@link OH_Pasteboard} instance.
- * @return Returns a boolean value, which indicates whether there is data in the Pasteboard.
- *         The value {@code true} means there is data in Pasteboard.
- *         The value {@code false} means the opposite.
+ * @brief Checks whether the pasteboard contains data.
+ * 
+ * @param pasteboard Pointer to an {@link OH_Pasteboard} instance.
+ * @return Returns a Boolean value indicating whether the pasteboard contains data. The value **true** means the
+ * pasteboard contains data; the value **false** means the opposite.
  * @see OH_Pasteboard.
  * @since 13
  */
 bool OH_Pasteboard_HasData(OH_Pasteboard* pasteboard);
 
 /**
- * @brief Checks whether the paste data is in a remote device.
- *
- * @param pasteboard Pointer to the {@link OH_Pasteboard} instance.
- * @return Returns a boolean value, which indicates whether the paste data is in a remote device.
- *         The value {@code true} means the paste data is in a remote device.
- *         The value {@code false} means the opposite.
+ * @brief Checks whether the pasteboard data is on a remote device. Transferring data across devices takes time. If the
+ * pasteboard data is on a remote device, do not check for custom data types or read the pasteboard data on the UI
+ * thread.
+ * 
+ * @param pasteboard Pointer to an {@link OH_Pasteboard} instance.
+ * @return Returns the check result. The value **true** indicates that the pasteboard data is on a remote device, 
+ * and **false** indicates the opposite. Default value: **false**.
  * @see OH_Pasteboard.
  * @since 24
  */
 bool OH_Pasteboard_HasRemoteData(OH_Pasteboard* pasteboard);
 
 /**
- * @brief Obtains data from the Pasteboard.
- *
+ * @brief Obtains data from the pasteboard.
+ * 
  * @permission ohos.permission.READ_PASTEBOARD
- * @param pasteboard Pointer to the {@link OH_Pasteboard} instance.
- * @param status The status code of the execution. For details, see {@link PASTEBOARD_ErrCode}.
- * @return Returns the pointer to the {@link OH_UdmfData} instance.
+ * @param pasteboard Pointer to an {@link OH_Pasteboard} instance.
+ * @param status Output parameter, indicating the error code of the operation.
+ * For details about the error codes, see {@link PASTEBOARD_ErrCode}.
+ * @return Returns the pointer to an {@link OH_UdmfData} instance obtained if the operation is successful; returns a
+ * null pointer otherwise.
  * @see OH_Pasteboard OH_UdmfData PASTEBOARD_ErrCode.
  * @since 13
  */
 OH_UdmfData* OH_Pasteboard_GetData(OH_Pasteboard* pasteboard, int* status);
 
 /**
- * @brief Writes data to the Pasteboard.
- *
+ * @brief Writes the unified data object to the OH_Pasteboard instance.
+ * 
  * @param pasteboard Pointer to the {@link OH_Pasteboard} instance.
- * @param data Pointer to the {@link OH_UdmfData} instance.
- * @return Returns the status code of the execution. For details, see {@link PASTEBOARD_ErrCode}.
- *         Returns {@link ERR_OK} if the operation is successful.
- *         Returns {@link ERR_INVALID_PARAMETER} if invalid args are detected.
+ * @param data Pointer to an {@link OH_UdmfData} instance.
+ * @return Returns an error code. For details about the error codes, see {@link PASTEBOARD_ErrCode}.
+ * Returns **ERR_OK** if the operation is successful.
+ * Returns **ERR_INVALID_PARAMETER** if an invalid parameter is passed in.
  * @see OH_Pasteboard OH_UdmfData PASTEBOARD_ErrCode.
  * @since 13
  */
 int OH_Pasteboard_SetData(OH_Pasteboard* pasteboard, OH_UdmfData* data);
 
 /**
- * @brief Clears the data in the Pastedboard.
- *
- * @param pasteboard Pointer to the {@link OH_Pasteboard} instance.
- * @return Returns the status code of the execution. For details, see {@link PASTEBOARD_ErrCode}.
- *         Returns {@link ERR_OK} if the operation is successful.
- *         Returns {@link ERR_INVALID_PARAMETER} if invalid args are detected.
+ * @brief Clears data in the Pastedboard.
+ * 
+ * @param pasteboard Pointer to an {@link OH_Pasteboard} instance.
+ * @return Returns an error code. For details about the error codes, see {@link PASTEBOARD_ErrCode}.
+ * Returns **ERR_OK** if the operation is successful.
+ * Returns **ERR_INVALID_PARAMETER** if an invalid parameter is passed in.
  * @see OH_Pasteboard PASTEBOARD_ErrCode.
  * @since 13
  */
 int OH_Pasteboard_ClearData(OH_Pasteboard* pasteboard);
 
 /**
- * @brief Obtains all MIME types of Pasteboard data.
- *
- * @param pasteboard Pointer to the {@link OH_Pasteboard} instance.
- * @param count Poniter to the count of MIME types.
- * @return Returns char array of MIME types in the Pasteboard.
- * Returns nullptr if the operation is failed.
+ * @brief Obtains the types of data in the pasteboard.
+ * 
+ * @param pasteboard Pointer to an {@link OH_Pasteboard} instance.
+ * @param count Pointer to the number of MIME types obtained.
+ * @return Returns the types obtained if the operation is successful; returns **nullptr** otherwise.
  * @see OH_Pasteboard.
  * @since 14
  */
 char **OH_Pasteboard_GetMimeTypes(OH_Pasteboard *pasteboard, unsigned int *count);
 
 /**
- * @brief Gets the number of Pasteboard data changes.
- *
- * @param pasteboard Pointer to the {@link OH_Pasteboard} instance.
- * @return the number of Pasteboard data changes.
- * Returns 0 means initial value or invalid value.In this case, no action is required.
+ * @brief Obtains the number of pasteboard content changes.
+ * 
+ * @param pasteboard Pointer to an {@link OH_Pasteboard} instance.
+ * @return Returns the number of pasteboard content changes if this API is called successfully; 
+ * otherwise, returns **0**.
+ * Even though the pasteboard data expires, or the data becomes empty because of the called **OH_Pasteboard_ClearData**
+ * API, the number of data changes remains.
+ * When the system is restarted, or the pasteboard service is restarted due to an exception, the number of pasteboard
+ * data changes counts from 0. In addition, copying the same data repeatedly is considered to change the data for
+ * multiple times. Therefore, each time the data is copied, the number of data changes increases.
  * @since 18
  */
 uint32_t OH_Pasteboard_GetChangeCount(OH_Pasteboard *pasteboard);
 
 /**
- * @brief Create a pointer to the instance of the {@link Pasteboard_GetDataParams}.
- *
- * @return If the operation is successful, a pointer to the instance of the {@link Pasteboard_GetDataParams}
- * structure is returned. If the operation is failed, nullptr is returned.
+ * @brief Creates a {@link Pasteboard_GetDataParams} instance and a pointer to it.
+ * 
+ * @return Returns a pointer to the {@link Pasteboard_GetDataParams} instance created if the operation is successful;
+ * returns **nullptr** otherwise.
+ * If this pointer is no longer required, use {@link OH_Pasteboard_GetDataParams_Destroy} to destroy it. Otherwise,
+ * memory leaks may occur.
  * @see Pasteboard_GetDataParams.
  * @since 15
  */
 Pasteboard_GetDataParams *OH_Pasteboard_GetDataParams_Create(void);
 
 /**
- * @brief Destroy a pointer that points to an instance of {@link Pasteboard_GetDataParams}.
- *
- * @param params Represents a pointer to an instance of {@link Pasteboard_GetDataParams}.
+ * @brief Destroys the {@link Pasteboard_GetDataParams} instance.
+ * 
+ * @param params Pointer to an **OH_Pasteboard_GetDataParams** instance.
  * @see Pasteboard_GetDataParams.
  * @since 15
  */
 void OH_Pasteboard_GetDataParams_Destroy(Pasteboard_GetDataParams* params);
 
 /**
- * @brief Set the progress indicator to the {@link Pasteboard_GetDataParams}.
- *
- * @param params Represents a pointer to an instance of {@link Pasteboard_GetDataParams}.
- * @param progressIndicator Represents to the progress indicator.
+ * @brief Sets a progress indicator in {@link Pasteboard_GetDataParams}. 
+ * You can use the default progress indicator as required.
+ * 
+ * @param params Pointer to an **OH_Pasteboard_GetDataParams** instance.
+ * @param progressIndicator Progress indicator to set.
  * @see Pasteboard_GetDataParams Pasteboard_ProgressIndicator.
  * @since 15
  */
@@ -421,21 +444,23 @@ void OH_Pasteboard_GetDataParams_SetProgressIndicator(Pasteboard_GetDataParams* 
     Pasteboard_ProgressIndicator progressIndicator);
 
 /**
- * @brief Set the destination uri to the {@link Pasteboard_GetDataParams}.
- *
- * @param params Represents a pointer to an instance of {@link Pasteboard_GetDataParams}.
- * @param destUri Pointer to a destination uri.
- * @param destUriLen Indicates the length of destination uri.
+ * @brief Sets the destination URI for copying files. If file processing is not supported, this parameter is not
+ * required. If the application involves complex file processing policies or needs to distinguish file multipathing
+ * storage, you are advised not to set this parameter but let the application copies files by itself.
+ * 
+ * @param params Pointer to an **OH_Pasteboard_GetDataParams** instance.
+ * @param destUri Destination URI of the copied file.
+ * @param destUriLen Length of the destination URI of the copied file.
  * @see Pasteboard_GetDataParams.
  * @since 15
  */
 void OH_Pasteboard_GetDataParams_SetDestUri(Pasteboard_GetDataParams* params, const char* destUri, uint32_t destUriLen);
 
 /**
- * @brief Set the file conflict options to the {@link Pasteboard_GetDataParams}.
- *
- * @param params Represents a pointer to an instance of {@link Pasteboard_GetDataParams}.
- * @param option Represents to the file conflict options.
+ * @brief Sets the options used to resolve file copy conflicts in a {@link Pasteboard_GetDataParams} instance.
+ * 
+ * @param params Pointer to an **OH_Pasteboard_GetDataParams** instance.
+ * @param option Options used to resolve file copy conflicts. The default value is **PASTEBOARD_OVERWRITE**.
  * @see Pasteboard_GetDataParams Pasteboard_FileConflictOptions.
  * @since 15
  */
@@ -443,10 +468,10 @@ void OH_Pasteboard_GetDataParams_SetFileConflictOptions(Pasteboard_GetDataParams
     Pasteboard_FileConflictOptions option);
 
 /**
- * @brief Set the progress indicator to the {@link Pasteboard_GetDataParams}.
- *
- * @param params Represents a pointer to an instance of {@link Pasteboard_GetDataParams}.
- * @param listener Represents to the data progress listener.
+ * @brief Sets a progress listener in a {@link Pasteboard_GetDataParams} instance.
+ * 
+ * @param params Pointer to an **OH_Pasteboard_GetDataParams** instance.
+ * @param listener Progress listener.
  * @see Pasteboard_GetDataParams OH_Pasteboard_ProgressListener.
  * @since 15
  */
@@ -454,32 +479,34 @@ void OH_Pasteboard_GetDataParams_SetProgressListener(Pasteboard_GetDataParams* p
     const OH_Pasteboard_ProgressListener listener);
 
 /**
- * @brief Get the progress from the {@link Pasteboard_ProgressInfo}.
- *
- * @param progressInfo Represents a pointer to an instance of {@link Pasteboard_ProgressInfo}.
- * @return Returns the progress.
+ * @brief Obtains the paste progress in a {@link Pasteboard_ProgressInfo} instance.
+ * 
+ * @param progressInfo Pointer to a {@link Pasteboard_ProgressInfo} instance.
+ * @return Percentage of the paste progress.
  * @see Pasteboard_ProgressInfo.
  * @since 15
  */
 int OH_Pasteboard_ProgressInfo_GetProgress(Pasteboard_ProgressInfo* progressInfo);
 
 /**
- * @brief Defines the cancel function used to cancel the progress when getting PasteData.
- *
- * @param params Pointer to indicates the {@link Pasteboard_GetDataParams}.
+ * @brief Cancels the ongoing paste operation when the pasteboard data is obtained.
+ * 
+ * @param params Pointer to an **OH_Pasteboard_GetDataParams** instance.
  * @see Pasteboard_GetDataParams.
  * @since 15
  */
 void OH_Pasteboard_ProgressCancel(Pasteboard_GetDataParams* params);
 
 /**
- * @brief Obtains data from the Pasteboard with system progress indicator.
- *
+ * @brief Obtains the pasteboard data and paste progress. Folders cannot be copied.
+ * 
  * @permission ohos.permission.READ_PASTEBOARD
- * @param pasteboard Pointer to the {@link OH_Pasteboard} instance.
- * @param params Pointer to indicates the  {@link OH_Pasteboard_GetDataParams}.
- * @param status The status code of the execution. For details, see {@link PASTEBOARD_Errcode}.
- * @return Returns the pointer to the {@link OH_PasteData} instance.
+ * @param pasteboard Pointer to an {@link OH_Pasteboard} instance.
+ * @param params Pointer to an **OH_Pasteboard_GetDataParams** instance.
+ * @param status Output parameter, indicating the error code of the operation.
+ * For details about the error codes, see {@link PASTEBOARD_ErrCode}.
+ * @return Returns a pointer to the **OH_UdmfData** instance obtained if the operation is successful; returns a null
+ * pointer otherwise.
  * @see OH_Pasteboard OH_PasteData PASTEBOARD_ErrCode.
  * @since 15
  */
@@ -487,14 +514,18 @@ OH_UdmfData* OH_Pasteboard_GetDataWithProgress(OH_Pasteboard* pasteboard, Pasteb
     int* status);
 
 /**
- * @brief Notifies the system pasteboard to synchronize all time-lapse paste data from application.
- *
- * @param pasteboard Pointer to the {@link OH_Pasteboard} instance.
+ * @brief Syncs all delayed data from the application to the pasteboard. Use this API together with the
+ * {@link OH_UdmfRecordProvider_SetData}API.When the application uses the delayed copy feature,
+ * only the data types supported by the application are written to the pasteboard. Before the application exits,
+ * it should call the {@link OH_Pasteboard_SetData} API to submit all copied data or call the
+ * **OH_Pasteboard_SyncDelayedDataAsync** API to notify the pasteboard to obtain all data. The application can exit only
+ * after the data sync is complete. Otherwise, other applications may fail to obtain the data.
+ * 
+ * @param pasteboard Pointer to an {@link OH_Pasteboard} instance.
  * @param callback Indicates the pointer to the callback that is called after the synchronize is finished.
  * @since 21
  */
 void OH_Pasteboard_SyncDelayedDataAsync(OH_Pasteboard* pasteboard, void (*callback)(int errorCode));
-
 #ifdef __cplusplus
 };
 #endif
