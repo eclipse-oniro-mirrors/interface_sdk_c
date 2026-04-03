@@ -88,7 +88,8 @@ OH_AVCodec *OH_VideoEncoder_CreateByName(const char *name);
  * @param mime mime type description string, refer to {@link AVCODEC_MIME_TYPE}
  * @return Returns AV_ERR_OK if the execution is successful,
  * otherwise returns a specific error code, refer to {@link OH_AVErrCode}.
- * @since 26.0.
+ *
+ * @since 26.0.0
  */
 OH_AVErrCode OH_VideoEncoder_CreatePrimaryWithPreproc(const char *mime, OH_AVCodec **codec);
 
