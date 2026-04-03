@@ -411,7 +411,7 @@ uint32_t OH_Pasteboard_GetChangeCount(OH_Pasteboard *pasteboard);
 
 /**
  * @brief Creates a {@link Pasteboard_GetDataParams} instance and a pointer to it.
- * 
+ *
  * @return Returns a pointer to the {@link Pasteboard_GetDataParams} instance created if the operation is successful;
  * returns **nullptr** otherwise.
  * If this pointer is no longer required, use {@link OH_Pasteboard_GetDataParams_Destroy} to destroy it. Otherwise,
