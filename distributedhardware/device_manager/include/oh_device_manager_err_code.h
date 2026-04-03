@@ -25,7 +25,7 @@
  * @file oh_device_manager_err_code.h
  *
  * @brief Declares the error codes of the distributed device management module.
- * 
+ *
  * @kit DistributedServiceKit
  * @library libdevicemanager_ndk.so
  * @syscap SystemCapability.DistributedHardware.DeviceManager
