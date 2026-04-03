@@ -760,16 +760,16 @@ OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_SetPrivacyProtectCallback(struct 
  *         {@link AV_SCREEN_CAPTURE_ERR_INVALID_VAL} strategy value is nullptr.
  * @since 26.0.0
  */
-OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_StrategyForPause(
-    OH_AVScreenCapture_CaptureStrategy *strategy, bool value);
+OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_StrategyForPause(OH_AVScreenCapture_CaptureStrategy *strategy,
+    bool value);
 
 /**
  * @brief Pause screen capture
  * @param {OH_AVScreenCapture*} capture Initialized screen capture instance.
  * @return Function result code.
  *         {@link AV_SCREEN_CAPTURE_ERR_OK} if the execution is successful.
- *         {@link AV_SCREEN_CAPTURE_ERR_INVALID_VAL} strategy value is nullptr.
- *         {@link AV_SCREEN_CAPTURE_ERR_OPERATE_NOT_PERMIT} operation not be permitted.
+ *         {@link AV_SCREEN_CAPTURE_ERR_INVALID_VAL} capture value is nullptr.
+ *         {@link AV_SCREEN_CAPTURE_ERR_OPERATE_NOT_PERMIT} opertation not be permitted.
  * @since 26.0.0
  */
 OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_PauseScreenCapture(struct OH_AVScreenCapture *capture);
@@ -779,9 +779,8 @@ OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_PauseScreenCapture(struct OH_AVSc
  * @param {OH_AVScreenCapture*} capture Initialized screen capture instance.
  * @return Function result code.
  *         {@link AV_SCREEN_CAPTURE_ERR_OK} if the execution is successful.
- *         {@link AV_SCREEN_CAPTURE_ERR_INVALID_VAL} strategy value is nullptr.
- *         {@link AV_SCREEN_CAPTURE_ERR_OPERATE_NOT_PERMIT} operation not be permitted.
- * otherwise returns a specific error code, refer to {@link OH_AVSCREEN_CAPTURE_ErrCode}
+ *         {@link AV_SCREEN_CAPTURE_ERR_INVALID_VAL} capture value is nullptr.
+ *         {@link AV_SCREEN_CAPTURE_ERR_OPERATE_NOT_PERMIT} opertation not be permitted.
  * @since 26.0.0
  */
 OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_ResumeScreenCapture(struct OH_AVScreenCapture *capture);
