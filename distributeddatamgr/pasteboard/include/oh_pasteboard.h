@@ -108,7 +108,7 @@ typedef enum Pasteboard_FileConflictOptions {
 
     /**
      * @brief Skips the file if there is a file with the same name in the destination directory.
-     * 
+     *
      */
     PASTEBOARD_SKIP = 1
 } Pasteboard_FileConflictOptions;
@@ -143,7 +143,7 @@ typedef struct Pasteboard_ProgressInfo Pasteboard_ProgressInfo;
  * @brief Defines a callback to be invoked to obtain the progress information when the default progress indicator is
  * not used.
  *
- * @param progressInfo A struct for the progress information. 
+ * @param progressInfo A struct for the progress information.
  * This information is reported only when {@link Pasteboard_ProgressInfo} is set to **NONE**.
  * @since 15
  */
@@ -398,7 +398,7 @@ char **OH_Pasteboard_GetMimeTypes(OH_Pasteboard *pasteboard, unsigned int *count
  * @brief Obtains the number of pasteboard content changes.
  *
  * @param pasteboard Pointer to an {@link OH_Pasteboard} instance.
- * @return Returns the number of pasteboard content changes if this API is called successfully; 
+ * @return Returns the number of pasteboard content changes if this API is called successfully;
  * otherwise, returns **0**.
  * Even though the pasteboard data expires, or the data becomes empty because of the called **OH_Pasteboard_ClearData**
  * API, the number of data changes remains.
