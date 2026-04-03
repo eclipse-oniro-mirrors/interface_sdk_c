@@ -257,7 +257,7 @@
     },
     {
         "first_introduced": "26",
-        "name": "OH_AbilityRuntime_DestroyAllExtensionInfos"
+        "name": "OH_AbilityRuntime_ReleaseAllExtensionInfos"
     },
     {
         "first_introduced": "26",
@@ -281,14 +281,14 @@
     },
     {
         "first_introduced": "26",
-        "name": "OH_AbilityRuntime_QuerySelfModularObjectExtensionInfos"
+        "name": "OH_AbilityRuntime_AcquireSelfModularObjectExtensionInfos"
     },
     {
         "first_introduced": "26",
-        "name": "OH_AbilityRuntime_GetCountFromAllMoeInfos"
+        "name": "OH_AbilityRuntime_GetCountFromAllModObjExtensionInfos"
     },
     {
         "first_introduced": "26",
-        "name": "OH_AbilityRuntime_GetMoeInfoByIndex"
+        "name": "OH_AbilityRuntime_GetModObjExtensionInfoByIndex"
     }
 ]
