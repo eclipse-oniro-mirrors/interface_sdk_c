@@ -25,7 +25,7 @@
  * @file ipc_kit.h
  *
  * @brief Provides an entry to the IPC header files for you to reference.
- * 
+ *
  * @library libipc_capi.so
  * @kit IPCKit
  * @syscap SystemCapability.Communication.IPC.Core

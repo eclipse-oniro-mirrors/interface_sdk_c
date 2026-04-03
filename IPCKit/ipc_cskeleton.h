@@ -92,7 +92,7 @@ uint64_t OH_IPCSkeleton_GetSelfTokenId(void);
 /**
  * @brief Obtains the PID of the caller. This function must be called in the IPC context. Otherwise, the local PID is
  *     returned.
- * 
+ *
  * @syscap SystemCapability.Communication.IPC.Core
  * @return Returns the caller PID.
  * @since 12

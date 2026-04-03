@@ -155,7 +155,7 @@ typedef struct {
 
 /**
  * @brief Sends an IPC message.
- * 
+ *
  * @syscap SystemCapability.Communication.IPC.Core
  * @param proxy Pointer to the **OHIPCRemoteProxy** object. It cannot be NULL.
  * @param code Customized IPC command word, in the range [0x01, 0x00ffffff].

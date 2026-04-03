@@ -25,7 +25,7 @@
  * @file ipc_error_code.h
  *
  * @brief Defines the IPC error codes.
- * 
+ *
  * @library libipc_capi.so
  * @kit IPCKit
  * @syscap SystemCapability.Communication.IPC.Core

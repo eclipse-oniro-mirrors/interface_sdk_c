@@ -316,7 +316,7 @@ int OH_IPCParcel_WriteFloat(OHIPCParcel *parcel, float value);
 
 /**
  * @brief Reads a float value from an **OHIPCParcel** object.
- * 
+ *
  * @syscap SystemCapability.Communication.IPC.Core
  * @param parcel Pointer to the **OHIPCParcel** object. It cannot be NULL.
  * @param value Pointer to the buffer for holding the read data. It cannot be NULL.
