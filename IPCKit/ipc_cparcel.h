@@ -514,7 +514,7 @@ int OH_IPCParcel_WriteInterfaceToken(OHIPCParcel *parcel, const char *token);
  * @param len Pointer to the length of the interface token read, including the terminator. It cannot be NULL.
  * @param allocator Memory allocator specified by the user for allocating memory for **token**. It cannot be NULL.
  * @return Returns {@link OH_IPC_ErrorCode#OH_IPC_SUCCESS} if the operation is successful.
- *     Returns {@link OH_IPC_ErrorCode#OH_IPC_CHECK_PARAM_ERROR} if invalid parameters are found. Returns 
+ *     Returns {@link OH_IPC_ErrorCode#OH_IPC_CHECK_PARAM_ERROR} if invalid parameters are found. Returns
  *     {@link OH_IPC_ErrorCode#OH_IPC_PARCEL_READ_ERROR} if the read operation fails.
  * @since 12
  */

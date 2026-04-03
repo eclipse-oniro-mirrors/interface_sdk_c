@@ -134,7 +134,7 @@ int OH_IPCSkeleton_SetMaxWorkThreadNum(const int maxThreadNum);
 
 /**
  * @brief Resets the caller identity credential (including the token ID, UID, and PID) to that of this process and
- *     returns the caller credential information. The credential information is used in 
+ *     returns the caller credential information. The credential information is used in
  *     **OH_IPCSkeleton_SetCallingIdentity**.
  * 
  * @syscap SystemCapability.Communication.IPC.Core
@@ -154,7 +154,7 @@ int OH_IPCSkeleton_ResetCallingIdentity(char **identity, int32_t *len, OH_IPC_Me
  * @brief Sets the caller credential information to the IPC context.
  * 
  * @syscap SystemCapability.Communication.IPC.Core
- * @param identity Pointer to the caller credential, which cannot be empty. The value is returned by 
+ * @param identity Pointer to the caller credential, which cannot be empty. The value is returned by
  *     **OH_IPCSkeleton_ResetCallingIdentity**.
  * @return Returns {@link OH_IPC_ErrorCode#OH_IPC_SUCCESS} if the operation is successful.
  *     Returns {@link OH_IPC_ErrorCode#OH_IPC_CHECK_PARAM_ERROR} if the parameters are incorrect.
