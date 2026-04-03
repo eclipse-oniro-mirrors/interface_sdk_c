@@ -43,7 +43,7 @@ extern "C" {
 
 /**
  * @brief Error codes of the distributed device management module.
- * 
+ *
  * @since 20
  */
 
