@@ -1073,6 +1073,7 @@ extern const char *OH_MD_KEY_VIDEO_ENCODER_TEMPORAL_LAYER_ID;
  *
  * It is used in configure or set parameter.
  * This key must be used with {@link OH_MD_KEY_VIDEO_ENCODER_PREPROC_DOWNSAMPLING_HEIGHT} together.
+ * Using restrictions:
  * 1. When the downsampling width and height are the same and qualified as zero, the downsampling is disabled.
  * 2. When the downsampling width and height are within the supported range, the downsampling is enabled.
  * It's recommended to query the supported downsampling range through
@@ -1095,26 +1096,36 @@ extern const char *OH_MD_KEY_VIDEO_ENCODER_PREPROC_DOWNSAMPLING_WIDTH;
 extern const char *OH_MD_KEY_VIDEO_ENCODER_PREPROC_DOWNSAMPLING_HEIGHT;
 
 /**
- * @brief Key for describing the crop top in video encoder preprocess, value type is int32_t.
+ * @brief Key for describing the top-coordinate (y) of the crop rectangle in video encoder preprocess, value type is int32_t.
  *
+ * The value represents the top-most row included in the crop frame, where row indices start at 0.
  * It is used in configure or set parameter.
- * The caller must use this key with the other crop keys:
- * {@link OH_MD_KEY_VIDEO_ENCODER_PREPROC_CROP_BOTTOM}/
- * {@link OH_MD_KEY_VIDEO_ENCODER_PREPROC_CROP_LEFT}/
- * {@link OH_MD_KEY_VIDEO_ENCODER_PREPROC_CROP_RIGHT} together.
- * 1. when crop top, bottom, left, right are all 0, the crop is disabled.
- * 2. When the crop values are within the supported range, the crop is enabled.
+ * The Caller must use "left, top, right, bottom" together to define the crop rectangle, corresponding to:
+ * {@link OH_MD_KEY_VIDEO_ENCODER_PREPROC_CROP_LEFT},
+ * {@link OH_MD_KEY_VIDEO_ENCODER_PREPROC_CROP_TOP},
+ * {@link OH_MD_KEY_VIDEO_ENCODER_PREPROC_CROP_RIGHT},
+ * {@link OH_MD_KEY_VIDEO_ENCODER_PREPROC_CROP_BOTTOM}.
+ * (left, top) is the coordinate of the top-left corner of the crop rectangle.
+ * (right, bottom) is the coordinate of the bottom-right corner of the crop rectangle.
+ * The width and height of the crop rectangle can be calculated as:
+ * width = right - left + 1
+ * height = bottom - top + 1
+ * Using restrictions:
+ * 1. when crop left, top, right, bottom are all 0, the crop is disabled.
+ * 2. When the crop width, height are within the supported range, the crop is enabled.
  * It's recommended to query the supported crop range through
  * the interface {@link OH_AVCapability_IsVideoSizeSupported}.
  * 3. When the crop values are not within the supported range, error will be returned.
- *
+ * 4. When crop is enabled, the encoder will only encode the cropped area of the input frame.
+ * The content outside the crop rectangle will be discarded and not participate in encoding. 
  * @since 26.0.0
  */
 extern const char *OH_MD_KEY_VIDEO_ENCODER_PREPROC_CROP_TOP;
 
 /**
- * @brief Key for describing the crop bottom in video encoder preprocess, value type is int32_t.
+ * @brief Key for describing the bottom-coordinate (y) of the crop rectangle in video encoder preprocess, value type is int32_t.
  *
+ * The value represents the bottom-most row included in the crop frame, where row indices start at 0.
  * Refer to {@link OH_MD_KEY_VIDEO_ENCODER_PREPROC_CROP_TOP} for more details on usage and restrictions.
  *
  * @since 26.0.0
@@ -1122,8 +1133,9 @@ extern const char *OH_MD_KEY_VIDEO_ENCODER_PREPROC_CROP_TOP;
 extern const char *OH_MD_KEY_VIDEO_ENCODER_PREPROC_CROP_BOTTOM;
 
 /**
- * @brief Key for describing the crop left in video encoder preprocess, value type is int32_t.
+ * @brief Key for describing the left-coordinate (x) of the crop rectangle in video encoder preprocess, value type is int32_t.
  *
+ * The value represents the left-most column included in the crop frame, where column indices start at 0.
  * Refer to {@link OH_MD_KEY_VIDEO_ENCODER_PREPROC_CROP_TOP} for more details on usage and restrictions.
  *
  * @since 26.0.0
@@ -1144,6 +1156,7 @@ extern const char *OH_MD_KEY_VIDEO_ENCODER_PREPROC_CROP_RIGHT;
  *
  * It is used in configure or set parameter.
  * The caller must ensure original frame rate is set, refer to {@link OH_MD_KEY_FRAME_RATE}.
+ * Using restrictions:
  * 1. when value is set to 0, the drop frame is disabled.
  * 2. when value is set to positive value and less than original frame rate, it will drop frames to match the set frame rate.
  * 3. when value is set to negative value or equal to or greater than original frame rate, error will be returned.
