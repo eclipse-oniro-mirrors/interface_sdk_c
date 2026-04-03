@@ -113,7 +113,7 @@ extern "C" {
 #define OH_HUKS_SIGNATURE_MIN_SIZE 64
 
 /**
- * @brief Maximum byte size of exportd data.
+ * @brief Maximum byte size of exported data.
  *
  * @since 9
  * @version 1.0
@@ -575,7 +575,7 @@ enum  OH_Huks_ErrCode {
      */
     OH_HUKS_ERR_CODE_KEY_ALREADY_EXIST = 12000017,
     /**
-     * The input parameter is invalid..
+     * The input parameter is invalid.
      *
      * @since 20
      */
@@ -624,7 +624,7 @@ enum  OH_Huks_ErrCode {
     OH_HUKS_ERR_CODE_BUSY = 12000024,
 
     /**
-     * The resource exceeds  the limit.
+     * The resource exceeds the limit.
      *
      * @since 22
      */

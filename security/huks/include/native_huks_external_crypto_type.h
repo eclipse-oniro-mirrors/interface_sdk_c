@@ -180,7 +180,7 @@ typedef enum OH_Huks_ExternalCryptoTag {
     OH_HUKS_EXT_CRYPTO_TAG_PURPOSE = OH_HUKS_TAG_TYPE_INT | 200005,
 
     /**
-     * @brief The timeout of get properity operation.
+     * @brief The timeout of get property operation.
      *
      * @since 22
      */

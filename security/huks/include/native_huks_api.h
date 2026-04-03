@@ -402,7 +402,7 @@ struct OH_Huks_Result OH_Huks_InitSession(const struct OH_Huks_Blob *keyAlias,
  *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_MISSING_CRYPTO_ALG_ARGUMENT} 12000002 - If failed to
  *             get key argument.
  *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_COMMUNICATION_FAIL} 12000005 - If Ipc communication failed.
- *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_CREDENTIAL_NOT_EXIST} 12000013 - If credemtial is not exist.
+ *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_CREDENTIAL_NOT_EXIST} 12000013 - If credential is not exist.
  *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_CRYPTO_FAIL} 12000006 - If crypto engine
  *             the Ukey driver operation failed.
  *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_KEY_AUTH_VERIFY_FAILED} 12000008 - If auth token verify failed.
@@ -451,7 +451,7 @@ struct OH_Huks_Result OH_Huks_UpdateSession(const struct OH_Huks_Blob *handle,
  *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_MISSING_CRYPTO_ALG_ARGUMENT} 12000002 - If failed to
  *             get key argument.
  *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_COMMUNICATION_FAIL} 12000005 - If Ipc communication failed.
- *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_CREDENTIAL_NOT_EXIST} 12000013 - If credemtial is not exist.
+ *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_CREDENTIAL_NOT_EXIST} 12000013 - If credential is not exist.
  *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_CRYPTO_FAIL} 12000006 - If crypto engine
  *         or the Ukey driver operation failed.
  *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_KEY_AUTH_VERIFY_FAILED} 12000008 - If auth token verify failed.
@@ -500,7 +500,7 @@ struct OH_Huks_Result OH_Huks_FinishSession(const struct OH_Huks_Blob *handle,
  *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_MISSING_CRYPTO_ALG_ARGUMENT} 12000002 - If failed to
  *             get key argument.
  *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_COMMUNICATION_FAIL} 12000005 - If Ipc communication failed.
- *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_CREDENTIAL_NOT_EXIST} 12000013 - If credemtial is not exist.
+ *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_CREDENTIAL_NOT_EXIST} 12000013 - If credential is not exist.
  *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_INSUFFICIENT_MEMORY} 12000014 - If the memory is insufficient.
  *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_EXTERNAL_MODULE} 12000020 - If the provider operation failed,
  *             added since api level 22.
