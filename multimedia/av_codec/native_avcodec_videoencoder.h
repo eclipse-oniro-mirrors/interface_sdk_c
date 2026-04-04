@@ -84,8 +84,10 @@ OH_AVCodec *OH_VideoEncoder_CreateByName(const char *name);
 /**
  * @brief Creates a primary video encoder with preprocessor
  *
- * @param codec Pointer to an OH_AVCodec instance
  * @param mime mime type description string, refer to {@link AVCODEC_MIME_TYPE}
+ * @param codec Double pointer to an OH_AVCodec instance, used to receive the created encoder.
+ *              If the creation is successful, the encoder needs to be released by calling
+ *              {@link OH_VideoEncoder_Destroy}.
  * @return Returns AV_ERR_OK if the execution is successful,
  * otherwise returns a specific error code, refer to {@link OH_AVErrCode}.
  * @since 26.0.0
@@ -95,8 +97,10 @@ OH_AVErrCode OH_VideoEncoder_CreatePrimaryWithPreproc(const char *mime, OH_AVCod
 /**
  * @brief Creates a secondary video encoder from a primary video encoder
  *
- * @param codec Pointer to an OH_AVCodec instance
  * @param primary Pointer to a primary OH_AVCodec instance
+ * @param codec Double pointer to an OH_AVCodec instance, used to receive the created encoder.
+ *              If the creation is successful, the encoder needs to be released by calling
+ *              {@link OH_VideoEncoder_Destroy}.
  * @return Returns AV_ERR_OK if the execution is successful,
  * otherwise returns a specific error code, refer to {@link OH_AVErrCode}.
  * @since 26.0.0
