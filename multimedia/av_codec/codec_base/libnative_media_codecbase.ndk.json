@@ -758,15 +758,15 @@
     {
         "first_introduced": "26.0.0",
         "name": "OH_MD_KEY_VIDEO_ENCODER_PREPROC_DOWNSAMPLING_WIDTH"
-    }
+    },
     {
         "first_introduced": "26.0.0",
         "name": "OH_MD_KEY_VIDEO_ENCODER_PREPROC_DOWNSAMPLING_HEIGHT"
-    }
+    },
     {
         "first_introduced": "26.0.0",
         "name": "OH_MD_KEY_VIDEO_ENCODER_PREPROC_CROP_TOP"
-    }
+    },
     {
         "first_introduced": "26.0.0",
         "name": "OH_MD_KEY_VIDEO_ENCODER_PREPROC_CROP_BOTTOM"
@@ -778,7 +778,7 @@
     {
         "first_introduced": "26.0.0",
         "name": "OH_MD_KEY_VIDEO_ENCODER_PREPROC_CROP_RIGHT"
-    }
+    },
     {
         "first_introduced": "26.0.0",
         "name": "OH_MD_KEY_VIDEO_ENCODER_PREPROC_DROP_TO_FRAME_RATE"
