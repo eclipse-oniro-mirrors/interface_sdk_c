@@ -92,11 +92,11 @@ typedef struct ContentEmbed_StorageElements ContentEmbed_StorageElements;
 typedef struct ContentEmbed_Stream ContentEmbed_Stream;
 
 /**
- * @brief Create a new {@link ContentEmbed_Document} instance using the provided hmid.
+ * @brief Create a new {@link ContentEmbed_Document} instance using the provided oeid.
  * The caller is responsible for destroying the instance by calling
  * {@link OH_ContentEmbed_DestroyDocument} to avoid memory leaks.
  *
- * @param hmid Represents hmid value.
+ * @param oeid Represents oeid value.
  * @param document Represents a pointer to an {@link ContentEmbed_Document} instance which will be created.
  * @return Returns a specific error code.
  *     {@link CE_ERR_OK} - success.
@@ -107,8 +107,8 @@ typedef struct ContentEmbed_Stream ContentEmbed_Stream;
  * Specific error codes can be referenced {@link ContentEmbed_ErrorCode}.
  * @since 24
  */
-ContentEmbed_ErrorCode OH_ContentEmbed_CreateDocumentByHmid(
-    const char *hmid, ContentEmbed_Document **document);
+ContentEmbed_ErrorCode OH_ContentEmbed_CreateDocumentByOEid(
+    const char *oeid, ContentEmbed_Document **document);
 
 /**
  * @brief Create a new {@link ContentEmbed_Document} instance from the source file.
@@ -174,10 +174,10 @@ ContentEmbed_ErrorCode OH_ContentEmbed_Document_Read(
     uint8_t *buffer, size_t length, ContentEmbed_Document *document, size_t offset, size_t *readSize);
 
 /**
- * @brief Get hmid from {@link ContentEmbed_Document} instance.
+ * @brief Get oeid from {@link ContentEmbed_Document} instance.
  *
  * @param document Represents a pointer to an {@link ContentEmbed_Document} instance.
- * @param hmid Output parameter represents the hmid value.
+ * @param oeid Output parameter represents the oeid value.
  * @return Returns a specific error code.
  *     {@link CE_ERR_OK} - success.
  *     {@link CE_ERR_PARAM_INVALID} - parameter check failed.
@@ -186,8 +186,8 @@ ContentEmbed_ErrorCode OH_ContentEmbed_Document_Read(
  * Specific error codes can be referenced {@link ContentEmbed_ErrorCode}.
  * @since 24
  */
-ContentEmbed_ErrorCode OH_ContentEmbed_Document_GetHmid(
-    const ContentEmbed_Document *document, char *hmid);
+ContentEmbed_ErrorCode OH_ContentEmbed_Document_GetOEid(
+    const ContentEmbed_Document *document, char *oeid);
 
 /**
  * @brief whether the source file is linked to the {@link ContentEmbed_Document} instance.
@@ -529,40 +529,42 @@ ContentEmbed_ErrorCode OH_ContentEmbed_DestroyStream(ContentEmbed_Stream *stream
 ContentEmbed_ErrorCode OH_ContentEmbed_DestroyDocument(ContentEmbed_Document *document);
 
 /**
- * @brief Gets the hmid of the {@link ContentEmbed_Storage}.
+ * @brief Gets the oeid of the {@link ContentEmbed_Storage}.
  *
  * @param storage Represents a pointer to an {@link ContentEmbed_Storage} instance.
- * @param hmid Output parameter represents a pointer to a char array where the hmid will be stored.
- * @param hmidSize Represents the size of the hmid buffer.
+ * @param oeid Output parameter represents a pointer to a char array where the oeid will be stored.
+ * @param oeidSize Represents the size of the oeid buffer.
  * @return Returns a specific error code.
  *     {@link CE_ERR_OK} - success.
  *     {@link CE_ERR_PARAM_INVALID} - parameter check failed.
  *     {@link CE_ERR_NULL_POINTER} - unexpected null pointer.
+ *     {@link CE_ERR_STORAGE_OPERATION_FAILED} - the storage operation failed.
  *     {@link CE_ERR_DEVICE_NOT_SUPPORTED} - the device is not supported.
  *     {@link CE_ERR_IN_DLP_SANDBOX} - application is in dlp sandbox.
  * Specific error codes can be referenced {@link ContentEmbed_ErrorCode}.
  * @since 24
  */
-ContentEmbed_ErrorCode OH_ContentEmbed_Storage_GetHmid(ContentEmbed_Storage *storage,
-    char *hmid, size_t hmidSize);
+ContentEmbed_ErrorCode OH_ContentEmbed_Storage_GetOEid(ContentEmbed_Storage *storage,
+    char *oeid, size_t oeidSize);
 
 /**
- * @brief Sets the hmid of the {@link ContentEmbed_Storage}.
+ * @brief Sets the oeid of the {@link ContentEmbed_Storage}.
  *
  * @param storage Represents a pointer to an {@link ContentEmbed_Storage} instance.
- * @param hmid Input parameter represents a pointer to a char array containing the hmid to be set.
- * @param hmidSize Represents the size of the hmid buffer.
+ * @param oeid Input parameter represents a pointer to a char array containing the oeid to be set.
+ * @param oeidSize Represents the size of the oeid buffer.
  * @return Returns a specific error code.
  *     {@link CE_ERR_OK} - success.
  *     {@link CE_ERR_PARAM_INVALID} - parameter check failed.
  *     {@link CE_ERR_NULL_POINTER} - unexpected null pointer.
+ *     {@link CE_ERR_STORAGE_OPERATION_FAILED} - the storage operation failed.
  *     {@link CE_ERR_DEVICE_NOT_SUPPORTED} - the device is not supported.
  *     {@link CE_ERR_IN_DLP_SANDBOX} - application is in dlp sandbox.
  * Specific error codes can be referenced {@link ContentEmbed_ErrorCode}.
  * @since 24
  */
-ContentEmbed_ErrorCode OH_ContentEmbed_Storage_SetHmid(ContentEmbed_Storage *storage,
-    char *hmid, size_t hmidSize);
+ContentEmbed_ErrorCode OH_ContentEmbed_Storage_SetOEid(ContentEmbed_Storage *storage,
+    char *oeid, size_t oeidSize);
 
 /**
  * @brief Creates an {@link ContentEmbed_StorageElements} instance and initializes it.
@@ -607,6 +609,7 @@ ContentEmbed_ErrorCode OH_ContentEmbed_StorageElements_Destroy(ContentEmbed_Stor
  *     {@link CE_ERR_OK} - success.
  *     {@link CE_ERR_PARAM_INVALID} - parameter check failed.
  *     {@link CE_ERR_NULL_POINTER} - unexpected null pointer.
+ *     {@link CE_ERR_STORAGE_OPERATION_FAILED} - the storage operation failed.
  *     {@link CE_ERR_DEVICE_NOT_SUPPORTED} - the device is not supported.
  *     {@link CE_ERR_IN_DLP_SANDBOX} - application is in dlp sandbox.
  * Specific error codes can be referenced {@link ContentEmbed_ErrorCode}.
@@ -732,6 +735,8 @@ ContentEmbed_ErrorCode OH_ContentEmbed_StorageElement_IsStorage(const ContentEmb
  *     {@link CE_ERR_OK} - success.
  *     {@link CE_ERR_PARAM_INVALID} - parameter check failed.
  *     {@link CE_ERR_NULL_POINTER} - unexpected null pointer.
+ *     {@link CE_ERR_DEVICE_NOT_SUPPORTED} - the device is not supported.
+ *     {@link CE_ERR_IN_DLP_SANDBOX} - application is in dlp sandbox.
  * Specific error codes can be referenced {@link ContentEmbed_ErrorCode}.
  * @since 24
  */
@@ -747,6 +752,7 @@ ContentEmbed_ErrorCode OH_ContentEmbed_StorageElement_IsStream(
  *     {@link CE_ERR_OK} - success.
  *     {@link CE_ERR_PARAM_INVALID} - parameter check failed.
  *     {@link CE_ERR_NULL_POINTER} - unexpected null pointer.
+ *     {@link CE_ERR_STORAGE_OPERATION_FAILED} - the storage operation failed.
  *     {@link CE_ERR_DEVICE_NOT_SUPPORTED} - the device is not supported.
  *     {@link CE_ERR_IN_DLP_SANDBOX} - application is in dlp sandbox.
  * Specific error codes can be referenced {@link ContentEmbed_ErrorCode}.
