@@ -7278,6 +7278,19 @@ typedef enum {
     NODE_SCROLL_ENABLE_BOUNCES_ZOOM = 1002026,
 
     /**
+     * @brief Sets whether dragging scrolling with the left mouse button pressed is supported.
+     *
+     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
+     * .value[0].i32: whether dragging scrolling with the left mouse button pressed is supported. <b>0</b>: no; <b>1</b>: yes. Default value: <b>0</b>. \n
+     * \n
+     * Format of the return value {@link ArkUI_AttributeItem}:\n
+     * .value[0].i32: whether dragging scrolling with the left mouse button pressed is supported. <b>0</b>: no; <b>1</b>: yes. \n
+     *
+     * @since 26.0.0
+     */
+    NODE_SCROLL_ENABLE_SCROLL_WITH_MOUSE = 1002027,
+
+    /**
      * @brief Sets whether to automatically adjust the margin of the scrollbar to avoid the component's <b>NODE_PADDING</b>, <b>NODE_SCROLL_CONTENT_START_OFFSET</b>, and <b>NODE_SCROLL_CONTENT_END_OFFSET</b> areas.
      *
      * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute\n
@@ -9470,6 +9483,17 @@ typedef enum {
      * @since 24
      */
     NODE_ON_NEED_SOFTKEYBOARD = 36,
+
+    /**
+     * @brief This callback is invoked when the events and gestures on this node and
+     * higher-priority nodes are collected. \n
+     * This callback is used to intervene in the collection result of events and gestures. \n
+     * 
+     * When the event callback occurs, the {@link ArkUI_GestureCollectInterceptInfo} object can be obtained from the
+     * {@link ArkUI_NodeEvent} object. \n
+     * @since 26.0.0
+     */
+    NODE_ON_GESTURE_COLLECT_INTERCEPT = 37,
 
     /**
      * @brief Triggers onDetectResultUpdate callback
@@ -13231,6 +13255,18 @@ int32_t OH_ArkUI_Swiper_ShowNext(ArkUI_NodeHandle node);
  */
 int32_t OH_ArkUI_NativeModule_GetPageRootNodeHandleByContext(
     ArkUI_ContextHandle context, ArkUI_NodeHandle* rootNode);
+
+/**
+ * @brief Obtains the <b>ArkUI_GestureCollectInterceptInfo</b> object from a specified <b>ArkUI_NodeEvent</b> object.
+ *
+ * @param nodeEvent Pointer to the <b>ArkUI_NodeEvent</b> object.
+ * @return Returns the pointer to the <b>ArkUI_GestureCollectInterceptInfo</b> object.
+ *         It is valid only during callback and does not need to be released.
+ *         Returns <b>null</b> if the input parameter is invalid or the
+ *         information is not gesture collection interception information.
+ * @since 26.0.0
+ */
+ArkUI_GestureCollectInterceptInfo* OH_ArkUI_NodeEvent_GetGestureCollectInterceptInfo(ArkUI_NodeEvent* nodeEvent);
 
 #ifdef __cplusplus
 };
