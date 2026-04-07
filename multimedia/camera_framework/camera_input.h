@@ -117,8 +117,6 @@ Camera_ErrorCode OH_CameraInput_UnregisterCallback(Camera_Input* cameraInput, Ca
  *         {@link #CAMERA_CONFLICT_CAMERA} if can not use camera cause of conflict.
  *         {@link #CAMERA_DEVICE_DISABLED} if camera disabled cause of security reason.
  *         {@link #CAMERA_SERVICE_FATAL_ERROR} if camera service fatal error.
- *         {@link #CAMERA_MULTI_CAMERA_NOT_SUPPORTED} if multiple cameras cannot be opened simultaneously. [since 24].
- *         It is suggested to use {@link OH_CameraManager_GetCameraConcurrentInfos} to check the concurrent infos.
  * @since 11
  */
 Camera_ErrorCode OH_CameraInput_Open(Camera_Input* cameraInput);
@@ -133,8 +131,6 @@ Camera_ErrorCode OH_CameraInput_Open(Camera_Input* cameraInput);
  *         {@link #CAMERA_CONFLICT_CAMERA} if can not use camera cause of conflict.
  *         {@link #CAMERA_DEVICE_DISABLED} if camera disabled cause of security reason.
  *         {@link #CAMERA_SERVICE_FATAL_ERROR} if camera service fatal error.
- *         {@link #CAMERA_MULTI_CAMERA_NOT_SUPPORTED} if multiple cameras cannot be opened simultaneously. [since 24].
- *         It is suggested to use {@link OH_CameraManager_GetCameraConcurrentInfos} to check the concurrent infos.
  * @since 12
  */
 Camera_ErrorCode OH_CameraInput_OpenSecureCamera(Camera_Input* cameraInput, uint64_t* secureSeqId);
@@ -149,8 +145,6 @@ Camera_ErrorCode OH_CameraInput_OpenSecureCamera(Camera_Input* cameraInput, uint
  *         {@link #CAMERA_CONFLICT_CAMERA} if can not use camera cause of conflict.
  *         {@link #CAMERA_DEVICE_DISABLED} if camera disabled cause of security reason.
  *         {@link #CAMERA_SERVICE_FATAL_ERROR} if camera service fatal error.
- *         {@link #CAMERA_MULTI_CAMERA_NOT_SUPPORTED} if multiple cameras cannot be opened simultaneously. [since 24].
- *         It is suggested to use {@link OH_CameraManager_GetCameraConcurrentInfos} to check the concurrent infos.
  * @since 18
  */
 Camera_ErrorCode OH_CameraInput_OpenConcurrentCameras(Camera_Input* cameraInput, Camera_ConcurrentType type);

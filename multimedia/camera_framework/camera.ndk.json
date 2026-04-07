@@ -841,7 +841,7 @@
     },
     {
         "first_introduced": "24",
-        "name": "OH_CameraDevice_GetConstituentCamerasSize"
+        "name": "OH_CameraDevice_DeleteConstituentCameraDevices"
     },
     {
         "first_introduced": "24",
@@ -905,7 +905,7 @@
     },
     {
         "first_introduced": "24",
-        "name": "OH_CaptureSession_GetPhysicalAperturesSize"
+        "name": "OH_CaptureSession_DeletePhysicalApertures"
     },
     {
         "first_introduced": "24",
@@ -970,6 +970,10 @@
     {
         "first_introduced": "24",
         "name": "OH_CaptureSession_GetCurrentCustomOISBias"
+    },
+    {
+        "first_introduced": "24",
+        "name": "OH_CameraDevice_GetSensorColorFilterArrangement"
     },
     {
         "first_introduced": "24",

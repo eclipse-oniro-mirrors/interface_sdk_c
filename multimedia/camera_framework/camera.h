@@ -122,12 +122,6 @@ typedef enum Camera_ErrorCode {
     CAMERA_UNRESOLVED_CONFLICTS_WITH_CURRENT_CONFIGURATIONS = 7400110,
 
     /**
-     * Multiple cameras cannot be opened simultaneously.
-     * @since 24
-     */
-    CAMERA_MULTI_CAMERA_NOT_SUPPORTED = 7400113,
-
-    /**
      * Camera service fatal error.
      */
     CAMERA_SERVICE_FATAL_ERROR = 7400201
@@ -445,7 +439,13 @@ typedef enum Camera_ExposureMode {
     /**
      * Continuous automatic exposure.
      */
-    EXPOSURE_MODE_CONTINUOUS_AUTO = 2
+    EXPOSURE_MODE_CONTINUOUS_AUTO = 2,
+
+    /**
+     * Manual exposure mode.
+     * @since 24
+     */
+    EXPOSURE_MODE_MANUAL = 3
 } Camera_ExposureMode;
 
 /**
