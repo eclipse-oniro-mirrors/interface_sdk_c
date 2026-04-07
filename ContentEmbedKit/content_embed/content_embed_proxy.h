@@ -178,9 +178,9 @@ ContentEmbed_ErrorCode OH_ContentEmbed_CreateContentEmbedFormat(ContentEmbed_For
 ContentEmbed_ErrorCode OH_ContentEmbed_DestroyContentEmbedFormat(ContentEmbed_Format *format);
 
 /**
- * @brief Get a {@link ContentEmbed_Format} instance using hmid and locale.
+ * @brief Get a {@link ContentEmbed_Format} instance using oeid and locale.
  *
- * @param hmid Represents the hmid value.
+ * @param oeid Represents the oeid value.
  * @param locale Represents the locale value.
  * @param format Output parameter represents a pointer to an {@link ContentEmbed_Format} instance.
  * @return Returns a specific error code.
@@ -191,15 +191,15 @@ ContentEmbed_ErrorCode OH_ContentEmbed_DestroyContentEmbedFormat(ContentEmbed_Fo
  * Specific error codes can be referenced {@link ContentEmbed_ErrorCode}.
  * @since 24
  */
-ContentEmbed_ErrorCode OH_ContentEmbed_GetContentEmbedFormatByHmidAndLocale(const char *hmid,
+ContentEmbed_ErrorCode OH_ContentEmbed_GetContentEmbedFormatByOEidAndLocale(const char *oeid,
                                                                             const char *locale,
                                                                             ContentEmbed_Format *format);
 
 /**
- * @brief Get hmid from {@link ContentEmbed_Format} instance.
+ * @brief Get oeid from {@link ContentEmbed_Format} instance.
  *
  * @param format Represents a pointer to an {@link ContentEmbed_Format} instance.
- * @param hmid Output parameter represents the hmid value.
+ * @param oeid Output parameter represents the oeid value.
  * @return Returns a specific error code.
  *     {@link CE_ERR_OK} - success.
  *     {@link CE_ERR_PARAM_INVALID} - parameter check failed.
@@ -207,7 +207,7 @@ ContentEmbed_ErrorCode OH_ContentEmbed_GetContentEmbedFormatByHmidAndLocale(cons
  * Specific error codes can be referenced {@link ContentEmbed_ErrorCode}.
  * @since 24
  */
-ContentEmbed_ErrorCode OH_ContentEmbed_GetHmidFromFormat(const ContentEmbed_Format *format, char *hmid);
+ContentEmbed_ErrorCode OH_ContentEmbed_GetOEidFromFormat(const ContentEmbed_Format *format, char *oeid);
 
 /**
  * @brief Get name and description from {@link ContentEmbed_Format} instance.
@@ -449,6 +449,9 @@ ContentEmbed_ErrorCode OH_ContentEmbed_Proxy_RegisterOnExtensionStoppedFunc(
  *     {@link CE_ERR_SYSTEM_ABNORMAL} - the system service works abnormally.
  *     {@link CE_ERR_DEVICE_NOT_SUPPORTED} - the device is not supported.
  *     {@link CE_ERR_IN_DLP_SANDBOX} - application is in dlp sandbox.
+ *     {@link CE_ERR_CONNECT_LIMIT_EXCEED} - connections exceeds the limit.
+ *     {@link CE_ERR_FILE_NOT_GRANT} - file is not authorized.
+ *     {@link CE_ERR_DISK_FULL} - the disk is full.
  * Specific error codes can be referenced {@link ContentEmbed_ErrorCode}.
  * @since 24
  */
@@ -481,6 +484,7 @@ ContentEmbed_ErrorCode OH_ContentEmbed_Proxy_StopWork(ContentEmbed_ExtensionProx
  *     {@link CE_ERR_EXTENSION_ERROR} - an error occurred in the extension application.
  *     {@link CE_ERR_DEVICE_NOT_SUPPORTED} - the device is not supported.
  *     {@link CE_ERR_IN_DLP_SANDBOX} - application is in dlp sandbox.
+ *     {@link CE_ERR_EXTENSION_NOT_SUPPORT} - the capability is not supported by OE Extension.
  * Specific error codes can be referenced {@link ContentEmbed_ErrorCode}.
  * @since 24
  */
@@ -497,6 +501,7 @@ ContentEmbed_ErrorCode OH_ContentEmbed_Proxy_GetSnapshot(ContentEmbed_ExtensionP
  *     {@link CE_ERR_EXTENSION_ERROR} - an error occurred in the extension application.
  *     {@link CE_ERR_DEVICE_NOT_SUPPORTED} - the device is not supported.
  *     {@link CE_ERR_IN_DLP_SANDBOX} - application is in dlp sandbox.
+ *     {@link CE_ERR_EXTENSION_NOT_SUPPORT} - the capability is not supported by OE Extension.
  * Specific error codes can be referenced {@link ContentEmbed_ErrorCode}.
  * @since 24
  */
@@ -539,7 +544,7 @@ ContentEmbed_ErrorCode OH_ContentEmbed_Proxy_GetCapability(ContentEmbed_Extensio
 
 /**
  * @brief Get the document from the {@link ContentEmbed_ExtensionProxy} instance.
- * The document can be created by calling {@link OH_ContentEmbed_CreateDocumentByHmid},
+ * The document can be created by calling {@link OH_ContentEmbed_CreateDocumentByOEid},
  * {@link OH_ContentEmbed_CreateDocumentByFile}, or {@link OH_ContentEmbed_LoadDocumentFromFile}.
  * The document should be destroyed by calling
  * {@link OH_ContentEmbed_DestroyDocument} when it is no longer needed.
