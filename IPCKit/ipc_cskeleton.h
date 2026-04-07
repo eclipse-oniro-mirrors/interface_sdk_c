@@ -140,7 +140,7 @@ int OH_IPCSkeleton_SetMaxWorkThreadNum(const int maxThreadNum);
  * @syscap SystemCapability.Communication.IPC.Core
  * @param identity Double pointer to the address of the memory for holding the caller identity information. The memory
  *     is allocated by the allocator provided by the user and needs to be released. This pointer cannot be NULL.
- * @param len Pointer to the length of the data written to the identity. The value cannot be empty.
+ * @param len Pointer to the length of the data written to the identity. It cannot be NULL.
  * @param allocator Memory allocator specified by the user for allocating memory for **identity**. It cannot be NULL.
  * @return Returns {@link OH_IPC_ErrorCode#OH_IPC_SUCCESS} if the operation is successful.
  *     Returns {@link OH_IPC_ErrorCode#OH_IPC_CHECK_PARAM_ERROR} if the parameters are incorrect.
@@ -154,7 +154,7 @@ int OH_IPCSkeleton_ResetCallingIdentity(char **identity, int32_t *len, OH_IPC_Me
  * @brief Sets the caller credential information to the IPC context.
  *
  * @syscap SystemCapability.Communication.IPC.Core
- * @param identity Pointer to the caller credential, which cannot be empty. The value is returned by
+ * @param identity Pointer to the caller credential, which cannot be NULL. The value is returned by
  *     **OH_IPCSkeleton_ResetCallingIdentity**.
  * @return Returns {@link OH_IPC_ErrorCode#OH_IPC_SUCCESS} if the operation is successful.
  *     Returns {@link OH_IPC_ErrorCode#OH_IPC_CHECK_PARAM_ERROR} if the parameters are incorrect.
