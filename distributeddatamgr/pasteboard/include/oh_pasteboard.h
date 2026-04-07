@@ -233,7 +233,7 @@ typedef struct OH_Pasteboard OH_Pasteboard;
  *
  * @return Returns a pointer to the {@link OH_Pasteboard} instance created if the operation is successful;
  * returns **nullptr** otherwise.
- * If this pointer is no longer required, use {@link OH_PasteboardObserver_Destroy} to destroy it. Otherwise, memory
+ * If this pointer is no longer required, use {@link OH_Pasteboard_Destroy} to destroy it. Otherwise, memory
  * leaks may occur.
  * @see OH_Pasteboard.
  * @since 13
