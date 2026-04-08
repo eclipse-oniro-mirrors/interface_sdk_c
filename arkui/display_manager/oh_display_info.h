@@ -60,7 +60,7 @@ extern "C" {
  * @version 1.0
  */
 typedef enum {
-    /** device rotation 0 degree */
+    /** device rotation 0 degrees */
     DISPLAY_MANAGER_ROTATION_0 = 0,
 
     /** device rotation 90 degrees */
@@ -69,7 +69,7 @@ typedef enum {
     /** device rotation 180 degrees */
     DISPLAY_MANAGER_ROTATION_180 = 2,
 
-    /** device rotation 270 degree */
+    /** device rotation 270 degrees */
     DISPLAY_MANAGER_ROTATION_270 = 3,
 } NativeDisplayManager_Rotation;
 
@@ -92,7 +92,7 @@ typedef enum {
     /** device landscape inverted show */
     DISPLAY_MANAGER_LANDSCAPE_INVERTED = 3,
 
-    /** device unknow show */
+    /** device unknown show */
     DISPLAY_MANAGER_UNKNOWN,
 } NativeDisplayManager_Orientation;
 
