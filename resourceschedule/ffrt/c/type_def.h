@@ -51,13 +51,13 @@
  * @since 12
  */
 typedef enum {
-    /** Should be distributed at once if possible, handle time equals to send time, prior to high level. */
+    /** Should be distributed at once if possible, handle time equals send time, prior to high level. */
     ffrt_queue_priority_immediate = 0,
     /** High priority, sorted by handle time, prior to low level. */
     ffrt_queue_priority_high,
     /** Low priority, sorted by handle time, prior to idle level. */
     ffrt_queue_priority_low,
-    /** Lowest priority, sorted by handle time, only distribute when there is no other level inside queue. */
+    /** Lowest priority, sorted by handle time, only distribute when there is no other level inside the queue. */
     ffrt_queue_priority_idle,
 } ffrt_queue_priority_t;
 
@@ -71,7 +71,7 @@ typedef enum {
     ffrt_qos_inherit = -1,
     /** Background task. */
     ffrt_qos_background,
-    /** Real-time tool. */
+    /** Real-time utility. */
     ffrt_qos_utility,
     /** Default type. */
     ffrt_qos_default,
@@ -90,7 +90,7 @@ typedef enum {
      */
     ffrt_qos_user_interactive,
     /**
-     * Max qos.
+     * Maximum QoS.
      *
      * @since 23
      */
@@ -258,7 +258,7 @@ typedef enum {
     ffrt_error_timedout = ETIMEDOUT,
     /** A busy error. */
     ffrt_error_busy = EBUSY,
-    /** A invalid value error. */
+    /** An invalid value error. */
     ffrt_error_inval = EINVAL
 } ffrt_error_t;
 
@@ -383,7 +383,7 @@ enum qos_default {
     qos_inherit = ffrt_qos_inherit,
     /** Background task. */
     qos_background = ffrt_qos_background,
-    /** Real-time tool. */
+    /** Real-time utility. */
     qos_utility = ffrt_qos_utility,
     /** Default type. */
     qos_default = ffrt_qos_default,
@@ -402,7 +402,7 @@ enum qos_default {
      */
     qos_user_interactive = ffrt_qos_user_interactive,
     /**
-     * Max qos.
+     * Maximum QoS.
      *
      * @since 23
      */
