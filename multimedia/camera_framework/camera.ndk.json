@@ -982,5 +982,17 @@
     {
         "first_introduced": "26",
         "name": "OH_CameraManager_SetTorchModeOnWithLevel"
+    },
+    {
+        "first_introduced": "26",
+        "name": "OH_CaptureSession_GetColorTintRange"  
+    },
+    {
+        "first_introduced": "26",
+        "name": "OH_CaptureSession_GetColorTint"  
+    },
+    {
+        "first_introduced": "26",
+        "name": "OH_CaptureSession_SetColorTint"  
     }
 ]
