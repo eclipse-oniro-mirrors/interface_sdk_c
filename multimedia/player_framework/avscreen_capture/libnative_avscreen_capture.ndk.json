@@ -194,5 +194,17 @@
     {
         "first_introduced": "24",
         "name": "OH_AVScreenCapture_SetPrivacyProtectCallback"
+    },
+    {
+        "first_introduced": "26",
+        "name": "OH_AVScreenCapture_StrategyForPause"
+    },
+    {
+        "first_introduced": "26",
+        "name": "OH_AVScreenCapture_PauseScreenCapture"
+    },
+    {
+        "first_introduced": "26",
+        "name": "OH_AVScreenCapture_ResumeScreenCapture"
     }
 ]
