@@ -138,7 +138,7 @@ OH_AudioCommon_Result OH_AudioRoutingManager_GetAvailableDevices(
     OH_AudioDevice_Usage deviceUsage, OH_AudioDeviceDescriptorArray **audioDeviceDescriptorArray);
 
 /**
- * @brief Get preferred ouput devices by audio usage.
+ * @brief Get preferred output devices by audio usage.
  *
  * @param audioRoutingManager the {@link OH_AudioRoutingManager} handle returned
  * by {@link OH_AudioManager_GetAudioRoutingManager}.
@@ -292,6 +292,7 @@ OH_AudioCommon_Result OH_AudioRoutingManager_SetMicBlockStatusCallback(
     OH_AudioRoutingManager *audioRoutingManager,
     OH_AudioRoutingManager_OnDeviceBlockStatusCallback callback,
     void *userData);
+
 #ifdef __cplusplus
 }
 #endif

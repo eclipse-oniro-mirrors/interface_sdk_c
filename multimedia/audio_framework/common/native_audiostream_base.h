@@ -723,7 +723,7 @@ typedef struct OH_AudioCapturer_Callbacks_Struct {
      * is used to handle audio capturer stream events.
      *
      * @deprecated since 20
-     * @useinstead OH_AudioRenderer_OutputDeviceChangeCallback
+     * @useinstead OH_AudioCapturer_OnDeviceChangeCallback
      * @since 10
      */
     int32_t (*OH_AudioCapturer_OnStreamEvent)(
@@ -816,9 +816,9 @@ typedef void (*OH_AudioRenderer_OnMarkReachedCallback)(OH_AudioRenderer* rendere
  * @param renderer AudioRenderer where this event occurs.
  * @param userData User data which is passed by user.
  * @param audioData Audio data which is written by user.
- * @param audioDataSize Audio data size which is the size of audio data written by user.
+ * @param audioDataSize Audio data size which is the size of audio data written by user, unit is byte.
  * @param metadata Metadata which is written by user.
- * @param metadataSize Metadata size which is the size of metadata written by user.
+ * @param metadataSize Metadata size which is the size of metadata written by user, unit is byte.
  * @return Error code of the callback function returned by user.
  * @since 12
  */
@@ -855,9 +855,9 @@ typedef enum {
  * @since 12
  */
 typedef enum {
-    /** Result of audio data callabck is invalid. */
+    /** Result of audio data callback is invalid. */
     AUDIO_DATA_CALLBACK_RESULT_INVALID = -1,
-    /** Result of audio data callabck is valid. */
+    /** Result of audio data callback is valid. */
     AUDIO_DATA_CALLBACK_RESULT_VALID = 0,
 } OH_AudioData_Callback_Result;
 
@@ -871,7 +871,7 @@ typedef enum {
  * @param renderer AudioRenderer where this callback occurs.
  * @param userData User data which is passed by user.
  * @param audioData Audio data pointer, where user should fill in audio data.
- * @param audioDataSize Size of audio data that user should fill in.
+ * @param audioDataSize Size of audio data that user should fill in, unit is byte.
  * @return Audio Data callback result.
  * @see OH_AudioRenderer_Callbacks_Struct.OH_AudioRenderer_OnWriteData
  * @since 12
