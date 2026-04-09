@@ -103,6 +103,30 @@ OH_Drawing_ErrorCode OH_Drawing_PointGetY(const OH_Drawing_Point* point, float* 
 OH_Drawing_ErrorCode OH_Drawing_PointSet(OH_Drawing_Point* point, float x, float y);
 
 /**
+ * @brief Negates the point's coordinates.
+ *
+ * @param point Indicates the pointer to an <b>OH_Drawing_Point</b> object.
+ * @return Returns the error code.
+ *         Returns {@link OH_DRAWING_SUCCESS} if the operation is successful.
+ *         Returns {@link OH_DRAWING_ERROR_INCORRECT_PARAMETER} if point is nullptr.
+ * @since 26.0.0
+ */
+OH_Drawing_ErrorCode OH_Drawing_PointNegate(OH_Drawing_Point* point);
+
+/**
+ * @brief Offsets the point's coordinates by dx, dy.
+ *
+ * @param point Indicates the pointer to an <b>OH_Drawing_Point</b> object.
+ * @param dx Indicates the distance to offset on the x-axis in pixels.
+ * @param dy Indicates the distance to offset on the y-axis in pixels.
+ * @return Returns the error code.
+ *         Returns {@link OH_DRAWING_SUCCESS} if the operation is successful.
+ *         Returns {@link OH_DRAWING_ERROR_INCORRECT_PARAMETER} if point is nullptr.
+ * @since 26.0.0
+ */
+OH_Drawing_ErrorCode OH_Drawing_PointOffset(OH_Drawing_Point* point, float dx, float dy);
+
+/**
  * @brief Destroys an <b>OH_Drawing_Point</b> object and reclaims the memory occupied by the object.
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
