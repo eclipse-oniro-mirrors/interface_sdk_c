@@ -649,12 +649,28 @@
         "name": "OH_AVCodec_GetCapabilityByCategory"
     },
     {
+        "first_introduced": "24",
+        "name": "OH_AVCodec_GetCapabilityList"
+    },
+    {
         "first_introduced": "10",
         "name": "OH_AVCapability_IsHardware"
     },
     {
+        "first_introduced": "24",
+        "name": "OH_AVCapability_IsSecure"
+    },
+    {
         "first_introduced": "10",
         "name": "OH_AVCapability_GetName"
+    },
+    {
+        "first_introduced": "24",
+        "name": "OH_AVCapability_GetMimeType"
+    },
+    {
+        "first_introduced": "24",
+        "name": "OH_AVCapability_CheckMimeType"
     },
     {
         "first_introduced": "10",
