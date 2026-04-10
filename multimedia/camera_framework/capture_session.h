@@ -622,11 +622,11 @@ Camera_ErrorCode OH_CaptureSession_SetIso(const Camera_CaptureSession* session, 
 
 /**
  * @brief Gets the supported physical apertures list.
- * Gets the array size of the physical apertures by calling {@link OH_CaptureSession_GetPhysicalAperturesSize}.
+ * Release the physical apertures memory by calling {@link OH_CaptureSession_DeletePhysicalApertures}.
  *
  * @param session the {@link Camera_CaptureSession} instance
  * @param apertures pointer to an array for storing physical aperture values
- * @param size the size of physical apertures by calling {@link OH_CaptureSession_GetPhysicalAperturesSize}
+ * @param size the size of physical apertures.
  * @return {@link #CAMERA_OK} success
  *         {@link #CAMERA_INVALID_ARGUMENT} if parameter missing or parameter type incorrect.
  *         {@link #CAMERA_OPERATION_NOT_ALLOWED} if operation not allowed, session or inputdevice maybe abnormal.
@@ -634,19 +634,20 @@ Camera_ErrorCode OH_CaptureSession_SetIso(const Camera_CaptureSession* session, 
  * @since 24
  */
 Camera_ErrorCode OH_CaptureSession_GetSupportedPhysicalApertures(const Camera_CaptureSession* session,
-    OH_Camera_PhysicalAperture* apertures, uint32_t size);
+    OH_Camera_PhysicalAperture** apertures, uint32_t* size);
 
 /**
- * @brief Gets the array size of the physical apertures.
+ * @brief Delete the physical apertures.
  *
  * @param session the {@link Camera_CaptureSession} instance.
- * @param size returned the array size of the physical apertures.
+ * @param apertures pointer to an array for storing physical aperture values
+ * @param size the array size of the physical apertures.
  * @return {@link #CAMERA_OK} if the method call succeeds.
  *         {@link #CAMERA_INVALID_ARGUMENT} if parameter missing or parameter type incorrect.
  * @since 24
  */
-Camera_ErrorCode OH_CaptureSession_GetPhysicalAperturesSize(const Camera_CaptureSession* session,
-    uint32_t* size);
+Camera_ErrorCode OH_CaptureSession_DeletePhysicalApertures(const Camera_CaptureSession* session,
+    OH_Camera_PhysicalAperture* apertures, uint32_t size);
 
 /**
  * @brief Gets the current physical aperture value
@@ -1663,6 +1664,35 @@ Camera_ErrorCode OH_CaptureSession_SetOISMode(const Camera_CaptureSession* sessi
  */
 Camera_ErrorCode OH_CaptureSession_SetOISModeCustom(const Camera_CaptureSession* session,
     float pitchBias, float yawBias);
+
+/**
+ * @brief Gets the zoom point infos.
+ * Release the zoom point infos memory by calling {@link OH_CaptureSession_DeleteZoomPointInfos}.
+ *
+ * @param session Pointer to the {@link Camera_CaptureSession} instance.
+ * @param size Pointer to the size of queried zoom point info.
+ * @param zoomPointInfo Double pointer to the queried zoom point info.
+ * @return {@link #CAMERA_OK} is returned if the function is called successfully.
+ *         {@link #CAMERA_INVALID_ARGUMENT} if parameters are invalid.
+ *         {@link #CAMERA_OPERATION_NOT_ALLOWED} if operation is not allowed.
+ *         {@link #CAMERA_SESSION_NOT_CONFIG} if the capture session not config.
+ * @since 26.0.0
+ */
+Camera_ErrorCode OH_CaptureSession_GetZoomPointInfos(const Camera_CaptureSession* session, uint32_t* size,
+    OH_Camera_ZoomPointInfo** zoomPointInfo);
+ 
+/**
+ * @brief Delete the zoom point infos.
+ *
+ * @param session Pointer to the {@link Camera_CaptureSession} instance.
+ * @param zoomPointInfo the target {@link Camera_ZoomPointInfo} list to be deleted if the method call succeeds.
+ * @return {@link #CAMERA_OK} if the method call succeeds.
+ *         {@link #CAMERA_INVALID_ARGUMENT} if parameter missing or parameter type incorrect.
+ * @since 26.0.0
+ */
+Camera_ErrorCode OH_CaptureSession_DeleteZoomPointInfos(const Camera_CaptureSession* session,
+    OH_Camera_ZoomPointInfo* zoomPointInfo);
+
 #ifdef __cplusplus
 }
 #endif

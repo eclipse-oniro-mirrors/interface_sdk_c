@@ -122,12 +122,6 @@ typedef enum Camera_ErrorCode {
     CAMERA_UNRESOLVED_CONFLICTS_WITH_CURRENT_CONFIGURATIONS = 7400110,
 
     /**
-     * Multiple cameras cannot be opened simultaneously.
-     * @since 24
-     */
-    CAMERA_MULTI_CAMERA_NOT_SUPPORTED = 7400113,
-
-    /**
      * Camera service fatal error.
      */
     CAMERA_SERVICE_FATAL_ERROR = 7400201
@@ -445,7 +439,13 @@ typedef enum Camera_ExposureMode {
     /**
      * Continuous automatic exposure.
      */
-    EXPOSURE_MODE_CONTINUOUS_AUTO = 2
+    EXPOSURE_MODE_CONTINUOUS_AUTO = 2,
+
+    /**
+     * Manual exposure mode.
+     * @since 24
+     */
+    EXPOSURE_MODE_MANUAL = 3
 } Camera_ExposureMode;
 
 /**
@@ -1611,6 +1611,25 @@ typedef enum OH_Camera_OISAxes {
      */
     OH_CAMERA_OIS_AXES_YAW = 1
 } OH_Camera_OISAxes;
+
+/**
+ * @brief Describes the zoom point info.
+ *
+ * @since 26.0.0
+ */
+typedef struct OH_Camera_ZoomPointInfo {
+    /**
+     * Zoom ratio.
+     * @since 26.0.0
+     */
+    float zoomRatio;
+ 
+    /**
+     * Equivalent focal length.
+     * @since 26.0.0
+     */
+    uint32_t equivalentFocalLength;
+} OH_Camera_ZoomPointInfo;
 
 #ifdef __cplusplus
 }
