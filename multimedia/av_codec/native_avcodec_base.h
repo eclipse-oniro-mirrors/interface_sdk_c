@@ -1102,7 +1102,8 @@ extern const char *OH_MD_KEY_VIDEO_ENCODER_PREPROC_DOWNSAMPLING_WIDTH;
 extern const char *OH_MD_KEY_VIDEO_ENCODER_PREPROC_DOWNSAMPLING_HEIGHT;
 
 /**
- * @brief Key for describing the left-coordinate (x) of the crop rectangle in video encoder preprocess, value type is int32_t.
+ * @brief Key for describing the left-coordinate (x) of the crop rectangle in video encoder preprocess,
+ * value type is int32_t.
  *
  * The value represents the left-most column included in the crop frame, where column indices start at 0.
  * The Caller must use "left, top, right, bottom" together to define the crop rectangle, corresponding to:
@@ -1135,7 +1136,8 @@ extern const char *OH_MD_KEY_VIDEO_ENCODER_PREPROC_DOWNSAMPLING_HEIGHT;
 extern const char *OH_MD_KEY_VIDEO_ENCODER_PREPROC_CROP_LEFT;
 
 /**
- * @brief Key for describing the top-coordinate (y) of the crop rectangle in video encoder preprocess, value type is int32_t.
+ * @brief Key for describing the top-coordinate (y) of the crop rectangle in video encoder preprocess,
+ * value type is int32_t.
  *
  * The value represents the top-most row included in the crop frame, where row indices start at 0.
  * Refer to {@link OH_MD_KEY_VIDEO_ENCODER_PREPROC_CROP_LEFT} for more details on usage and restrictions.
@@ -1145,7 +1147,8 @@ extern const char *OH_MD_KEY_VIDEO_ENCODER_PREPROC_CROP_LEFT;
 extern const char *OH_MD_KEY_VIDEO_ENCODER_PREPROC_CROP_TOP;
 
 /**
- * @brief Key for describing the right-coordinate (x) of the crop rectangle in video encoder preprocess, value type is int32_t.
+ * @brief Key for describing the right-coordinate (x) of the crop rectangle in video encoder preprocess,
+ * value type is int32_t.
  *
  * The value represents the right-most column included in the crop frame, where column indices start at 0.
  * Refer to {@link OH_MD_KEY_VIDEO_ENCODER_PREPROC_CROP_LEFT} for more details on usage and restrictions.
@@ -1155,7 +1158,8 @@ extern const char *OH_MD_KEY_VIDEO_ENCODER_PREPROC_CROP_TOP;
 extern const char *OH_MD_KEY_VIDEO_ENCODER_PREPROC_CROP_RIGHT;
 
 /**
- * @brief Key for describing the bottom-coordinate (y) of the crop rectangle in video encoder preprocess, value type is int32_t.
+ * @brief Key for describing the bottom-coordinate (y) of the crop rectangle in video encoder preprocess,
+ * value type is int32_t.
  *
  * The value represents the bottom-most row included in the crop frame, where row indices start at 0.
  * Refer to {@link OH_MD_KEY_VIDEO_ENCODER_PREPROC_CROP_LEFT} for more details on usage and restrictions.
