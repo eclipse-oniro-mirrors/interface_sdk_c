@@ -82,7 +82,7 @@ OH_AVCodec *OH_VideoEncoder_CreateByMime(const char *mime);
 OH_AVCodec *OH_VideoEncoder_CreateByName(const char *name);
 
 /**
- * @brief Creates a primary video encoder with preprocessor
+ * @brief Creates a primary video encoder with preprocessor.
  *
  * Creates a primary video encoder instance that supports:
  * 1. Preprocessing features (downsampling, cropping, drop frame)
@@ -96,19 +96,19 @@ OH_AVCodec *OH_VideoEncoder_CreateByName(const char *name);
  *              by calling {@link OH_VideoEncoder_Destroy}.
  *
  * @return Returns {@link AV_ERR_OK} if the execution is successful.
+ *         For other error codes, refer to {@link OH_AVErrCode}.
  *         Returns {@link AV_ERR_INVALID_VAL} if:
  *         - mime is NULL
  *         - codec is NULL
  *         Returns {@link AV_ERR_UNSUPPORT} if mime type is not supported.
  *         Returns {@link AV_ERR_NO_MEMORY} if memory allocation fails.
- *         For other error codes, refer to {@link OH_AVErrCode}.
  *
  * @since 26.0.0
  */
 OH_AVErrCode OH_VideoEncoder_CreatePrimaryWithPreproc(const char *mime, OH_AVCodec **codec);
 
 /**
- * @brief Creates a secondary video encoder from a primary video encoder
+ * @brief Creates a secondary video encoder from a primary video encoder.
  *
  * Creates a secondary video encoder instance from a primary encoder created by
  * {@link OH_VideoEncoder_CreatePrimaryWithPreproc}. The secondary encoder:
@@ -126,13 +126,13 @@ OH_AVErrCode OH_VideoEncoder_CreatePrimaryWithPreproc(const char *mime, OH_AVCod
  *              by calling {@link OH_VideoEncoder_Destroy}.
  *
  * @return Returns {@link AV_ERR_OK} if the execution is successful.
+ *         For other error codes, refer to {@link OH_AVErrCode}.
  *         Returns {@link AV_ERR_INVALID_VAL} if:
  *         - primary is NULL
  *         - codec is NULL
  *         - primary is not a valid primary encoder
  *         Returns {@link AV_ERR_UNSUPPORT} if primary encoder already has an existing secondary encoder.
  *         Returns {@link AV_ERR_NO_MEMORY} if memory allocation fails.
- *         For other error codes, refer to {@link OH_AVErrCode}.
  *
  * @note Lifecycle management:
  *       - The lifecycle of primary encoder must be longer than secondary encoder.
