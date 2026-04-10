@@ -1175,7 +1175,7 @@ extern const char *OH_MD_KEY_VIDEO_ENCODER_PREPROC_CROP_BOTTOM;
  * The caller must ensure original frame rate is set, refer to {@link OH_MD_KEY_FRAME_RATE}.
  *
  * Using restrictions:
- * 1. When value is set to 0, the drop frame is disabled.
+ * 1. When value is set to 0.0, the drop frame is disabled.
  * 2. When value is set to positive value and less than original frame rate,
  *    it will drop frames to match the set frame rate.
  * 3. When value is set to negative value or equal to or greater than original frame rate,
