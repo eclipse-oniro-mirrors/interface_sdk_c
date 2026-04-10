@@ -1165,7 +1165,7 @@ extern const char *OH_MD_KEY_VIDEO_ENCODER_PREPROC_CROP_RIGHT;
 extern const char *OH_MD_KEY_VIDEO_ENCODER_PREPROC_CROP_BOTTOM;
 
 /**
- * @brief Key for describing the drop frame rate in video encoder preprocess, value type is int32_t.
+ * @brief Key for describing the drop frame rate in video encoder preprocess, value type is double.
  *
  * It is used in configure or set parameter.
  * The caller must ensure original frame rate is set, refer to {@link OH_MD_KEY_FRAME_RATE}.
