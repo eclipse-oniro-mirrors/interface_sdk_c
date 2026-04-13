@@ -1075,12 +1075,15 @@ extern const char *OH_MD_KEY_VIDEO_ENCODER_TEMPORAL_LAYER_ID;
  * This key must be used with {@link OH_MD_KEY_VIDEO_ENCODER_PREPROC_DOWNSAMPLING_HEIGHT} together.
  *
  * Using restrictions:
- * 1. When the downsampling width and height are the same and qualified as zero, the downsampling is disabled.
- * 2. When the downsampling width and height are within the supported range, the downsampling is enabled.
+ * 1. The downsampling width and height must be configured or set together.
+ *    If only one of them is configured, {@link AV_ERR_INVALID_VAL} will be returned.
+ * 2. When the downsampling width and height are the same and qualified as zero, the downsampling is disabled.
+ * 3. When the downsampling width and height are within the supported range, the downsampling is enabled.
  *    It's recommended to query the supported downsampling range through
  *    the interface {@link OH_AVCapability_IsVideoSizeSupported}.
- * 3. When the downsampling width and height are not within the supported range, error will be returned.
- * 4. Cannot be used together with crop parameters ({@link OH_MD_KEY_VIDEO_ENCODER_PREPROC_CROP_LEFT},
+ * 4. When the downsampling width and height are not within the supported range,
+ *    {@link AV_ERR_INVALID_VAL} will be returned.
+ * 5. Cannot be used together with crop parameters ({@link OH_MD_KEY_VIDEO_ENCODER_PREPROC_CROP_LEFT},
  *    {@link OH_MD_KEY_VIDEO_ENCODER_PREPROC_CROP_TOP}, {@link OH_MD_KEY_VIDEO_ENCODER_PREPROC_CROP_RIGHT},
  *    {@link OH_MD_KEY_VIDEO_ENCODER_PREPROC_CROP_BOTTOM}).
  *    If both downsampling and crop parameters are set through {@link OH_VideoEncoder_Configure} or
@@ -1118,17 +1121,20 @@ extern const char *OH_MD_KEY_VIDEO_ENCODER_PREPROC_DOWNSAMPLING_HEIGHT;
  * - height = bottom - top + 1
  *
  * Using restrictions:
- * 1. When crop left, top, right, bottom are all 0, the crop is disabled.
- * 2. When the crop width, height are within the supported range, the crop is enabled.
+ * 1. Crop left, top, right, bottom must be configured together. If only part of them is configured,
+ *    {@link AV_ERR_INVALID_VAL} will be returned.
+ * 2. When crop left, top, right, bottom are all 0, the crop is disabled.
+ * 3. When the crop width, height are within the supported range, the crop is enabled.
  *    It's recommended to query the supported crop range through
  *    the interface {@link OH_AVCapability_IsVideoSizeSupported}.
- * 3. When the crop values are not within the supported range, error will be returned.
- * 4. Cannot be used together with downsampling parameters
+ * 4. When the crop values are not within the supported range,
+ *    {@link AV_ERR_INVALID_VAL} will be returned.
+ * 5. Cannot be used together with downsampling parameters
  *    ({@link OH_MD_KEY_VIDEO_ENCODER_PREPROC_DOWNSAMPLING_WIDTH},
  *    {@link OH_MD_KEY_VIDEO_ENCODER_PREPROC_DOWNSAMPLING_HEIGHT}).
  *    If both crop and downsampling parameters are set through {@link OH_VideoEncoder_Configure} or
  *    {@link OH_VideoEncoder_SetParameter}, {@link AV_ERR_INVALID_VAL} will be returned.
- * 5. When crop is enabled, the encoder will only encode the cropped area of the input frame.
+ * 6. When crop is enabled, the encoder will only encode the cropped area of the input frame.
  *    The content outside the crop rectangle will be discarded and not participate in encoding.
  *
  * @since 26.0.0
@@ -1179,7 +1185,7 @@ extern const char *OH_MD_KEY_VIDEO_ENCODER_PREPROC_CROP_BOTTOM;
  * 2. When value is set to positive value and less than original frame rate,
  *    it will drop frames to match the set frame rate.
  * 3. When value is set to negative value or equal to or greater than original frame rate,
- *    error will be returned.
+ *    {@link AV_ERR_INVALID_VAL} will be returned.
  * 4. Can be used together with downsampling parameters
  *    ({@link OH_MD_KEY_VIDEO_ENCODER_PREPROC_DOWNSAMPLING_WIDTH},
  *    {@link OH_MD_KEY_VIDEO_ENCODER_PREPROC_DOWNSAMPLING_HEIGHT}).

@@ -98,9 +98,9 @@ OH_AVCodec *OH_VideoEncoder_CreateByName(const char *name);
  * @return Returns {@link AV_ERR_OK} if the execution is successful.
  *         For other error codes, refer to {@link OH_AVErrCode}.
  *         Returns {@link AV_ERR_INVALID_VAL} if:
- *         - mime is NULL
- *         - codec is NULL
- *         Returns {@link AV_ERR_UNSUPPORT} if mime type is not supported.
+ *         - mime is NULL.
+ *         - codec is NULL.
+ *         - mime type is not supported.
  *         Returns {@link AV_ERR_NO_MEMORY} if memory allocation fails.
  *
  * @since 26.0.0
@@ -128,10 +128,10 @@ OH_AVErrCode OH_VideoEncoder_CreatePrimaryWithPreproc(const char *mime, OH_AVCod
  * @return Returns {@link AV_ERR_OK} if the execution is successful.
  *         For other error codes, refer to {@link OH_AVErrCode}.
  *         Returns {@link AV_ERR_INVALID_VAL} if:
- *         - primary is NULL
- *         - codec is NULL
- *         - primary is not a valid primary encoder
- *         Returns {@link AV_ERR_UNSUPPORT} if primary encoder already has an existing secondary encoder.
+ *         - primary is NULL.
+ *         - codec is NULL.
+ *         - primary is not a valid primary encoder.
+ *         Returns {@link AV_ERR_OPERATE_NOT_PERMIT} if primary encoder already has an existing secondary encoder.
  *         Returns {@link AV_ERR_NO_MEMORY} if memory allocation fails.
  *
  * @note Lifecycle management:
