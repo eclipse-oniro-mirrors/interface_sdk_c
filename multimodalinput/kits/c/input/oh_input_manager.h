@@ -2471,6 +2471,7 @@ Input_Result OH_Input_SetPointerVisible(bool visible);
 
 /**
  * @brief Obtains the mouse pointer style.
+ * This API only supports getting the mouse pointer style of window within the current application process.
  *
  * @param windowId Window ID. The value is an integer greater than or equal to -1.
  * @param pointerStyle Pointer to the pointerStyle.
@@ -2484,6 +2485,7 @@ Input_Result OH_Input_GetPointerStyle(int32_t windowId, int32_t *pointerStyle);
 
 /**
  * @brief Sets the mouse pointer style.
+ * This API only supports setting the mouse pointer style of window within the current application process.
  *
  * @param windowId Window ID. The value is an integer greater than or equal to 0.
  * @param pointerStyle Pointer style.The value should be a member of the {@link Input_PointerStyle} enumeration.
@@ -2572,6 +2574,7 @@ Input_Result OH_Input_CursorConfig_IsFollowSystem(Input_CursorConfig *cursorConf
 
 /**
  * @brief Sets the custom cursor style.
+ * This API only supports setting the custom cursor style of window within the current application process.
  *
  * @param windowId Window ID. The value is an integer greater than or equal to 0.
  * @param customCursor Pointer to an {@link Input_CustomCursor} object.
