@@ -1179,6 +1179,7 @@ extern const char *OH_MD_KEY_VIDEO_ENCODER_PREPROC_CROP_BOTTOM;
  *
  * It is used in configure or set parameter.
  * The caller must ensure original frame rate is set, refer to {@link OH_MD_KEY_FRAME_RATE}.
+ * The value precision is retained to 2 decimal places using round half up.
  *
  * Using restrictions:
  * 1. When value is set to 0.0, the drop frame is disabled.
