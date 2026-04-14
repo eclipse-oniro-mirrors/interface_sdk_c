@@ -9032,6 +9032,7 @@ typedef enum {
      * @since 26.0.0
      */
     NODE_PICKER_ITEM_HEIGHT = 1018005,
+
 } ArkUI_NodeAttributeType;
 
 /**
