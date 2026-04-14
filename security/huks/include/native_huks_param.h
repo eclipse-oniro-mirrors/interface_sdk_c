@@ -125,7 +125,7 @@ struct OH_Huks_Result OH_Huks_CopyParamSet(const struct OH_Huks_ParamSet *fromPa
  * @param param Indicates the double pointer to the parameter obtained.
  * @return {@link OH_Huks_ErrCode#OH_HUKS_SUCCESS} 0 - If the operation is successful,
  *         {@link OH_Huks_ErrCode#OH_HUKS_ERR_CODE_ILLEGAL_ARGUMENT} 401 - If paramSet or param is invalid,
- *         or if the param doesn't exist in the pararmSet.
+ *         or if the param doesn't exist in the paramSet.
  * @since 9
  * @version 1.0
  */

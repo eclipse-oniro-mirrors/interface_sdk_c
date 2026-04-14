@@ -95,6 +95,13 @@ typedef struct ArkUI_Node* ArkUI_NodeHandle;
 typedef struct ArkUI_NativeDialog* ArkUI_NativeDialogHandle;
 
 /**
+ * @brief Defines information about gesture collection interception.
+ *
+ * @since 26.0.0
+ */
+typedef struct ArkUI_GestureCollectInterceptInfo ArkUI_GestureCollectInterceptInfo;
+
+/**
  * @brief Defines the return value structure for the <b>onGetIrregularSizeByIndex</b> callback
  * in <b>Grid</b> layout options.
  *
@@ -3120,38 +3127,38 @@ typedef enum {
 } ArkUI_UIState;
 
 /**
- * @brief Enumerates the edge derection.
+ * @brief Enumerates the edge direction.
  *
  * @since 20
  */
 typedef enum {
-    /** Set all edge derection. */
+    /** Set all edge direction. */
     ARKUI_EDGE_DIRECTION_ALL = 0,
-    /** Set left edge derection. */
+    /** Set left edge direction. */
     ARKUI_EDGE_DIRECTION_LEFT,
-    /** Set right edge derection. */
+    /** Set right edge direction. */
     ARKUI_EDGE_DIRECTION_RIGHT,
-    /** Set top edge derection. */
+    /** Set top edge direction. */
     ARKUI_EDGE_DIRECTION_TOP,
-    /** Set bottom edge derection. */
+    /** Set bottom edge direction. */
     ARKUI_EDGE_DIRECTION_BOTTOM,
 } ArkUI_EdgeDirection;
  
 /**
- * @brief Enumerates the corner derection.
+ * @brief Enumerates the corner direction.
  *
  * @since 20
  */
 typedef enum {
-    /** Set all corner derection. */
+    /** Set all corner direction. */
     ARKUI_CORNER_DIRECTION_ALL = 0,
-    /** Set top left corner derection. */
+    /** Set top left corner direction. */
     ARKUI_CORNER_DIRECTION_TOP_LEFT,
-    /** Set top right corner derection. */
+    /** Set top right corner direction. */
     ARKUI_CORNER_DIRECTION_TOP_RIGHT,
-    /** Set bottom left corner derection. */
+    /** Set bottom left corner direction. */
     ARKUI_CORNER_DIRECTION_BOTTOM_LEFT,
-    /** Set bottom right corner derection. */
+    /** Set bottom right corner direction. */
     ARKUI_CORNER_DIRECTION_BOTTOM_RIGHT,
 } ArkUI_CornerDirection;
 
@@ -7046,6 +7053,26 @@ typedef enum {
 } ArkUI_TextResponseType;
 
 /**
+* @brief Enumerates raw input event types.
+*
+* @since 26.0.0
+*/
+typedef enum {
+    /**
+     * Touch event.
+     *
+     * @since 26.0.0
+     */
+    ARKUI_RAW_INPUT_EVENT_TYPE_TOUCH = 0,
+    /**
+     * Mouse event.
+     *
+     * @since 26.0.0
+     */
+    ARKUI_RAW_INPUT_EVENT_TYPE_MOUSE = 1,
+} ArkUI_RawInputEventType;
+
+/**
  * @brief Create an object of the text selection menu options.
  *
  * @return A pointer to the ArkUI_TextSelectionMenuOptions.
@@ -7885,6 +7912,40 @@ ArkUI_ErrorCode OH_ArkUI_TextDataDetectorConfig_SetEnablePreviewMenu(
  */
 ArkUI_ErrorCode OH_ArkUI_TextDataDetectorConfig_GetEnablePreviewMenu(
     OH_ArkUI_TextDataDetectorConfig* config, bool* enablePreviewMenu);
+
+/**
+ * @brief Defines controller for text.
+ * @since 26.0.0
+ */
+typedef struct OH_ArkUI_TextController OH_ArkUI_TextController;
+
+/**
+ * @brief Create a controller object for text.
+ * @return A pointer to the text controller object.
+ * @since 26.0.0
+ */
+OH_ArkUI_TextController* OH_ArkUI_TextController_Create();
+
+/**
+ * @brief Destroys the text controller.
+ *
+ * @param controller <b>Text</b> controller.
+ * @since 26.0.0
+ */
+void OH_ArkUI_TextController_Destroy(OH_ArkUI_TextController* controller);
+
+/**
+ * @brief Set the StyledString of the text.
+ *
+ * @param controller the controller of the text.
+ * @param descriptor Pointer to an <b>ArkUI_StyledString_Descriptor</b> object, which will be set to Text.
+ * @return Returns the result code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ * @since 26.0.0
+ */
+ArkUI_ErrorCode OH_ArkUI_TextController_SetStyledString(
+    OH_ArkUI_TextController* controller, ArkUI_StyledString_Descriptor* descriptor);
 
 /**
  * @brief Create a placeholder options object.
@@ -9247,6 +9308,63 @@ ArkUI_ErrorCode OH_ArkUI_TextEditorStyledStringController_CloseSelectionMenu(
     OH_ArkUI_TextEditorStyledStringController* controller);
 
 /**
+ * @brief Gets the selection of text editor with styled string controller.
+ *
+ * @note All input pointer parameters must be allocated, managed, and released by the caller.
+ * @param controller <b>TextEditor</b> styled string controller.
+ * @param start Start offset of selection.
+ * @param end End offset of selection.
+ * @return Returns the result code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ * @since 24
+ */
+ArkUI_ErrorCode OH_ArkUI_TextEditorStyledStringController_GetSelection(
+    const OH_ArkUI_TextEditorStyledStringController* controller, uint32_t* start, uint32_t* end);
+
+/**
+ * @brief Sets the styled string of text editor.
+ *
+ * @note All input pointer parameters must be allocated, managed, and released by the caller.
+ * @param controller <b>TextEditor</b> styled string controller.
+ * @param descriptor Pointer to a <b>ArkUI_StyledString_Descriptor</b> object.
+ * @return Returns the result code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ * @since 24
+ */
+ArkUI_ErrorCode OH_ArkUI_TextEditorStyledStringController_SetStyledString(
+    const OH_ArkUI_TextEditorStyledStringController* controller, const ArkUI_StyledString_Descriptor* descriptor);
+
+/**
+ * @brief Gets the styled string of text editor.
+ *
+ * @note All input pointer parameters must be allocated, managed, and released by the caller.
+ * @param controller <b>TextEditor</b> styled string controller.
+ * @param descriptor Pointer to a <b>ArkUI_StyledString_Descriptor</b> object.
+ * @return Returns the result code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ * @since 24
+ */
+ArkUI_ErrorCode OH_ArkUI_TextEditorStyledStringController_GetStyledString(
+    const OH_ArkUI_TextEditorStyledStringController* controller, ArkUI_StyledString_Descriptor* descriptor);
+
+/**
+ * @brief Sets the styled string placeholder.
+ *
+ * @note All input pointer parameters must be allocated, managed, and released by the caller.
+ * @param controller <b>TextEditor</b> styled string controller.
+ * @param descriptor Pointer to a <b>ArkUI_StyledString_Descriptor</b> object.
+ * @return Returns the result code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ * @since 24
+ */
+ArkUI_ErrorCode OH_ArkUI_TextEditorStyledStringController_SetStyledPlaceholder(
+    const OH_ArkUI_TextEditorStyledStringController* controller, const ArkUI_StyledString_Descriptor* descriptor);
+
+/**
  * @brief Create the ArkUI_PickerIndicatorStyle instance.
  *
  * @param type The picker selection indicator enumeration type.
@@ -9998,6 +10116,51 @@ void OH_ArkUI_FontConfigs_SetFontWeightConfigs(OH_ArkUI_FontConfigs* option,
  * @since 24
  */
 OH_ArkUI_FontWeightConfigs* OH_ArkUI_FontConfigs_GetFontWeightConfigs(OH_ArkUI_FontConfigs* option);
+
+/**
+ * @brief Enumerates the tree operating status for the cross-language option.
+ *
+ * @since 26.0.0
+ */
+typedef enum {
+    /**
+     * Undefined, the initial value of the node tree operating status. Nodes in this status do not support cross-language node tree operations.
+     *
+     * @since 26.0.0
+     */
+    OH_ARKUI_TREE_OPERATING_STATUS_UNDEFINED = 0,
+    /**
+     * Enable, which means that when the option is applied to the node, the node's tree operating status will be enabled.
+     *
+     * @since 26.0.0
+     */
+    OH_ARKUI_TREE_OPERATING_STATUS_ENABLE = 1,
+    /**
+     * Disable, which means that when the option is applied to the node, the node's tree operating status will be disabled.
+     *
+     * @since 26.0.0
+     */
+    OH_ARKUI_TREE_OPERATING_STATUS_DISABLE = 2,
+} OH_ArkUI_CrossLanguageOperatingStatus;
+
+/**
+ * @brief Sets the tree operating status for the cross-language option.
+ *
+ * @param option The cross-language option.
+ * @param status The tree operating status to be set for the cross-language option.
+ * Default value: OH_ARKUI_TREE_OPERATING_STATUS_UNDEFINED.
+ * @since 26.0.0
+ */
+void OH_ArkUI_CrossLanguageOption_SetTreeOperatingStatus(ArkUI_CrossLanguageOption* option, OH_ArkUI_CrossLanguageOperatingStatus status);
+
+/**
+ * @brief Gets the tree operating status of the cross-language option.
+ *
+ * @param option The cross-language option.
+ * @return Return the tree operating status of the cross-language option.
+ * @since 26.0.0
+ */
+OH_ArkUI_CrossLanguageOperatingStatus OH_ArkUI_CrossLanguageOption_GetTreeOperatingStatus(ArkUI_CrossLanguageOption* option);
 
 #ifdef __cplusplus
 };

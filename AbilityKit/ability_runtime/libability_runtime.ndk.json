@@ -254,5 +254,41 @@
     {
         "first_introduced": "24",
         "name": "OH_AbilityRuntime_Context_GetProcessName"
+    },
+    {
+        "first_introduced": "26",
+        "name": "OH_AbilityRuntime_ReleaseAllExtensionInfos"
+    },
+    {
+        "first_introduced": "26",
+        "name": "OH_AbilityRuntime_GetModularObjectExtensionInfoLaunchMode"
+    },
+    {
+        "first_introduced": "26",
+        "name": "OH_AbilityRuntime_GetModularObjectExtensionInfoProcessMode"
+    },
+    {
+        "first_introduced": "26",
+        "name": "OH_AbilityRuntime_GetModularObjectExtensionInfoThreadMode"
+    },
+    {
+        "first_introduced": "26",
+        "name": "OH_AbilityRuntime_GetModularObjectExtensionInfoElementName"
+    },
+    {
+        "first_introduced": "26",
+        "name": "OH_AbilityRuntime_GetModularObjectExtensionInfoDisableState"
+    },
+    {
+        "first_introduced": "26",
+        "name": "OH_AbilityRuntime_AcquireSelfModularObjectExtensionInfos"
+    },
+    {
+        "first_introduced": "26",
+        "name": "OH_AbilityRuntime_GetCountFromAllModObjExtensionInfos"
+    },
+    {
+        "first_introduced": "26",
+        "name": "OH_AbilityRuntime_GetModObjExtensionInfoByIndex"
     }
 ]

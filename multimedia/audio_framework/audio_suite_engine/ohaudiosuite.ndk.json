@@ -206,5 +206,21 @@
     {
         "first_introduced": "23",
         "name": "OH_AudioSuiteEngine_GetGeneralVoiceChangeType"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_AudioConverter_Create"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_AudioConverter_Destroy"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_AudioConverter_SetInputCallback"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_AudioConverter_Process"
     }
 ]

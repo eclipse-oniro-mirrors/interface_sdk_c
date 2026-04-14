@@ -26,7 +26,7 @@
  /**
  * @file native_avplaybackstate.h
  *
- * @brief Declare playbackstate interfaces.
+ * @brief Declare playbackState interfaces.
  *
  * @library libohavsession.so
  * @syscap SystemCapability.Multimedia.AVSession.Core
@@ -86,7 +86,7 @@ AVSession_ErrCode OH_AVSession_GetPlaybackState(OH_AVSession_AVPlaybackState* pl
     AVSession_PlaybackState* state);
 
 /**
- * @brief Get position of PlayBackState.
+ * @brief Get position of PlaybackState.
  *
  * @param playbackState reference returned by {@link OH_AVSession_AVPlaybackState}
  * @param position the pointer {@link AVSession_PlaybackPosition} variable that will be set playback position value.
@@ -100,7 +100,7 @@ AVSession_ErrCode OH_AVSession_GetPlaybackPosition(OH_AVSession_AVPlaybackState*
     AVSession_PlaybackPosition* position);
 
 /**
- * @brief Get speed of PlayBackState.
+ * @brief Get speed of PlaybackState.
  *
  * @param playbackState reference returned by {@link OH_AVSession_AVPlaybackState}
  * @param speed the pointer variable that will be set the speed.
@@ -114,7 +114,7 @@ AVSession_ErrCode OH_AVSession_GetPlaybackSpeed(OH_AVSession_AVPlaybackState* pl
     int32_t* speed);
 
 /**
- * @brief Get volume of PlayBackState.
+ * @brief Get volume of PlaybackState.
  *
  * @param playbackState reference returned by {@link OH_AVSession_AVPlaybackState}
  * @param volume the pointer variable that will be set the volume.

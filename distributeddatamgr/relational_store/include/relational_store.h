@@ -1573,7 +1573,7 @@ int OH_Rdb_CreateTransaction(OH_Rdb_Store *store, const OH_RDB_TransOptions *opt
  * @param store Represents a pointer to an OH_Rdb_Store instance.
  * @param config Represents a pointer to an OH_Rdb_ConfigV2 configuration of the database related to this RDB store.
  * @param attachName Represents the alias of the database.
- * @param waitTime Represents the maximum time allowed for attaching the database, valid range is 1 to 300.
+ * @param waitTime Represents the maximum time allowed for attaching the database, in seconds, valid range is 1 to 300.
  * @param attachedNumber Represents the number of attached databases, It is an output parameter.
  * @return Returns the status code of the execution.
  *         Returns {@link RDB_OK} if the execution is successful.
@@ -1603,7 +1603,7 @@ int OH_Rdb_Attach(OH_Rdb_Store *store, const OH_Rdb_ConfigV2 *config, const char
  *
  * @param store Represents a pointer to an OH_Rdb_Store instance.
  * @param attachName Represents the alias of the database.
- * @param waitTime Represents the maximum time allowed for detaching the database, valid range is 1 to 300.
+ * @param waitTime Represents the maximum time allowed for detaching the database, in seconds, valid range is 1 to 300.
  * @param attachedNumber Represents the number of attached databases, It is an output parameter.
  * @return Returns the status code of the execution.
  *         Returns {@link RDB_OK} if the execution is successful.

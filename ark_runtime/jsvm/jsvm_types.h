@@ -171,6 +171,25 @@ typedef void(JSVM_CDECL* JSVM_Finalize)(JSVM_Env env,
                                         void* finalizeData,
                                         void* finalizeHint);
 
+#ifdef JSVM_EXPERIMENTAL
+/**
+ * @brief Finalize callback for ArrayBuffers created from external memory.
+ *
+ * Similar to JSVM_Finalize, but includes a copied parameter indicating whether the
+ * engine copied the external data into an internal buffer (true) or used zero-copy (false).
+ * When copied is true, the engine does not hold a reference to the original external data,
+ * so the caller may free it immediately after the API call returns. When copied is false,
+ * finalizeData points to the original external memory that the engine is releasing — the
+ * callback should free it.
+ *
+ * @since 26.0.0
+ */
+typedef void(JSVM_CDECL* JSVM_FinalizeArrayBuffer)(JSVM_Env env,
+                                                   void* finalizeData,
+                                                   void* finalizeHint,
+                                                   bool copied);
+#endif // JSVM_EXPERIMENTAL
+
 /**
  * @brief Function pointer type for callback of ASCII output stream. The first parameter data is the data pointer.
  * And the second parameter size is the data size to output. A null data pointer indicates the end of the stream.
@@ -394,9 +413,7 @@ typedef enum {
     /** critical pressure. */
     JSVM_MEMORY_PRESSURE_LEVEL_CRITICAL,
     /**
-     * Notifies that the system is running low on memory.
-     * WARNING: It has strong negative impact on the garbage collection performance.
-     * RECOMMEND: Use the other value instead to influence the garbage collection schedule.
+     * Notifies that the system is running low on memory and triggers garbage collection immediately.
      *
      * @since 22
      */
@@ -438,6 +455,14 @@ typedef enum {
     JSVM_COMPILE_COMPILE_PROFILE,
     /** switch for source map support. */
     JSVM_COMPILE_ENABLE_SOURCE_MAP,
+    /** background deserialize code cache result.
+     * @since 24
+     */
+    JSVM_COMPILE_BACKGROUND_DESERIALIZE_RESULT,
+    /** whether the code cache is rejected.
+     * @since 24
+     */
+    JSVM_COMPILE_CODE_CACHE_REJECTED,
 } JSVM_CompileOptionId;
 
 /**
@@ -1033,6 +1058,14 @@ typedef enum {
     /** Scope check. */
     JSVM_SCOPE_CHECK,
 } JSVM_DebugOption;
+
+/**
+ * @brief To represent a JavaScript background deserialize result.
+ *
+ * @since 24
+ */
+typedef struct JSVM_DeserializeResult__* JSVM_DeserializeResult;
+
 /** @} */
 #endif /* ARK_RUNTIME_JSVM_JSVM_TYPE_H */
 

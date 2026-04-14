@@ -603,6 +603,13 @@ extern const char *OH_AVCODEC_MIMETYPE_VIDEO_RAWVIDEO;
 extern const char *OH_AVCODEC_MIMETYPE_VIDEO_MPEG1;
 
 /**
+ * @brief Enumerates the MIME type of video Cinepak codec.
+ *
+ * @since 24
+ * */
+extern const char *OH_AVCODEC_MIMETYPE_VIDEO_CINEPAK;
+
+/**
  * @brief Enumerates the MIME type of video MSVIDEO1 codec.
  *
  * @since 22
@@ -1048,6 +1055,19 @@ extern const char *OH_MD_KEY_VIDEO_ENCODER_TEMPORAL_GOP_SIZE;
  */
 extern const char *OH_MD_KEY_VIDEO_ENCODER_TEMPORAL_GOP_REFERENCE_MODE;
 /**
+ * @brief Key for the temporal layer ID within a Group of Pictures (GOP), the value type is int32_t.
+ * It is specific to video encoders and is available only when temporal level sacle is enabled.
+ * To retrieve the value associated with this key:
+ * 1. Obtain the encoded stream information (AVBuffer) via
+ *  {@link OH_AVCodecOnNewOutputBuffer} or {@link OH_VideoEncoder_GetOutputBuffer}.
+ * 2. Retrieve the parameter information (AVFormat) from the buffer
+ *  using {@link OH_AVBuffer_GetParameter}.
+ * 3. Use {@link OH_AVFormat_GetIntValue} with this key to get the corresponding value.
+ *
+ * @since 26.0.0
+ */
+extern const char *OH_MD_KEY_VIDEO_ENCODER_TEMPORAL_LAYER_ID;
+/**
  * @brief Key for describing the count of used long-term reference frames, value type is int32_t, must be within the
  * supported range. To get supported range, you should query whether the capability is supported through the interface
  * {@link OH_AVCapability_GetFeatureProperties} with enum {@link VIDEO_ENCODER_LONG_TERM_REFERENCE}, otherwise, not set
@@ -1439,6 +1459,40 @@ extern const char *OH_MD_KEY_VIDEO_NATIVE_BUFFER_FORMAT;
  * @since 23
  */
 extern const char *OH_MD_KEY_BUFFER_SKIP_SAMPLES_INFO;
+
+/**
+ * @brief Key to enable {@link OH_MD_KEY_BUFFER_SKIP_SAMPLES_INFO} in audio decoder,
+ * value type is int32_t (0 or 1): 1 is enabled, 0 is disabled.
+ *
+ * This is an optional key, default is 0.
+ *
+ * @since 24
+ */
+extern const char *OH_MD_KEY_ENABLE_BUFFER_SKIP_SAMPLES;
+
+/**
+ * @brief Key for latitude, value type is float, The range is [-90.0, 90.0].
+ * Represents the latitude of the geographic location.
+ *
+ * @since 24
+ */
+extern const char *OH_MD_KEY_LATITUDE;
+
+/**
+ * @brief Key for longitude, value type is float, The range is [-180.0, 180.0].
+ * Represents the longitude of the geographic location.
+ *
+ * @since 24
+ */
+extern const char *OH_MD_KEY_LONGITUDE;
+
+/**
+ * @brief Key for altitude, value type is float.
+ * This is an optional key. Represents the altitude of the geographic location.
+ *
+ * @since 24
+ */
+extern const char *OH_MD_KEY_ALTITUDE;
 
 /**
  * @brief Media type.
@@ -2206,7 +2260,11 @@ typedef enum OH_BitrateMode {
     /** Stable Quality RateControl.
      * @since 20
      */
-    BITRATE_MODE_SQR = 3
+    BITRATE_MODE_SQR = 3,
+    /** CBR for High Quality.
+     * @since 26.0.0
+     */
+    BITRATE_MODE_CBR_HIGH_QUALITY = 4
 } OH_BitrateMode;
 
 #ifdef __cplusplus

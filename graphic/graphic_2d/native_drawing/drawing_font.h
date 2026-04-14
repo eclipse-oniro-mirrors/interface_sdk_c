@@ -167,7 +167,7 @@ bool OH_Drawing_FontIsForceAutoHinting(const OH_Drawing_Font* font);
 void OH_Drawing_FontSetTypeface(OH_Drawing_Font* font, OH_Drawing_Typeface* typeface);
 
 /**
- * @brief Gets an <b>OH_Drawing_Typeface</b> object from the <b>OH_Drawing_Typeface</b> object.
+ * @brief Gets an <b>OH_Drawing_Typeface</b> object from the <b>OH_Drawing_Font</b> object.
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @param font Indicates the pointer to an <b>OH_Drawing_Font</b> object.

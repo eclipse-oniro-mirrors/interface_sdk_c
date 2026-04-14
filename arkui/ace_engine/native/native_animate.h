@@ -541,7 +541,7 @@ ArkUI_AnimatorOption* OH_ArkUI_AnimatorOption_Create(int32_t keyframeSize);
 void OH_ArkUI_AnimatorOption_Dispose(ArkUI_AnimatorOption* option);
 
 /**
- * @brief Sets the duration for thea nimation of an animator, in milliseconds.
+ * @brief Sets the duration for the animation of an animator, in milliseconds.
  *
  * @param option Indicates the target animator parameter object.
  * @param value Indicates the playback duration, in milliseconds.

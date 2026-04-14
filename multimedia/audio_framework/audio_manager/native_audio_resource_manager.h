@@ -168,6 +168,6 @@ OH_AudioCommon_Result OH_AudioWorkgroup_Stop(OH_AudioWorkgroup *group);
 #ifdef __cplusplus
 }
 #endif
- 
+
 #endif // NATIVE_AUDIO_RESOURCE_MANAGER_H
 /** @} */

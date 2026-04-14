@@ -48,6 +48,38 @@ extern "C" {
 #endif
 
 /**
+ * @brief Describes authorization permission values.
+ *
+ * @since 26.0.0
+ */
+typedef enum Udmf_AuthPermission {
+    /**
+     * @brief No permission.
+     *
+     * @since 26.0.0
+     */
+    UDMF_PERM_NONE = 0,
+    /**
+     * @brief Read permission.
+     *
+     * @since 26.0.0
+     */
+    UDMF_PERM_READ = 1u << 0,
+    /**
+     * @brief Write permission.
+     *
+     * @since 26.0.0
+     */
+    UDMF_PERM_WRITE = 1u << 1,
+    /**
+     * @brief Persist permission.
+     *
+     * @since 26.0.0
+     */
+    UDMF_PERM_PERSIST = 1u << 2,
+} Udmf_AuthPermission;
+
+/**
  * @brief Describes the unified data struct of plaintext.
  *
  * @since 12
@@ -414,6 +446,18 @@ int OH_UdsHtml_SetPlainContent(OH_UdsHtml* pThis, const char* plainContent);
 int OH_UdsHtml_SetDetails(OH_UdsHtml* pThis, const OH_UdsDetails* details);
 
 /**
+ * @brief Set the authorization policy to {@link OH_UdsHtml}.
+ * @param pThis Represents a pointer to an instance of {@link OH_UdsHtml}.
+ * @param authPolicy Represents auth policy.
+ * @return Returns the status code of the execution. See {@link Udmf_ErrCode}.
+ *         {@link UDMF_E_OK} success.
+ *         {@link UDMF_E_INVALID_PARAM} The error code for common invalid args.
+ * @since 26.0.0
+ * @see OH_UdsHtml Udmf_ErrCode
+ */
+int OH_UdsHtml_SetAuthPolicy(OH_UdsHtml* pThis, uint32_t authPolicy);
+
+/**
  * @brief Creation a pointer to the instance of the {@link OH_UdsAppItem}.
  *
  * @return If the operation is successful, a pointer to the instance of the {@link OH_UdsAppItem}
@@ -706,6 +750,18 @@ int OH_UdsFileUri_SetFileType(OH_UdsFileUri* pThis, const char* fileType);
  * @since 22
  */
 int OH_UdsFileUri_SetDetails(OH_UdsFileUri* pThis, const OH_UdsDetails* details);
+
+/**
+ * @brief Set the authorization policy to {@link OH_UdsFileUri}.
+ * @param pThis Represents a pointer to an instance of {@link OH_UdsFileUri}.
+ * @param authPolicy Indicates the identity authorization policy.
+ * @return Returns the status code of the execution. See {@link Udmf_ErrCode}.
+ *         {@link UDMF_E_OK} success.
+ *         {@link UDMF_E_INVALID_PARAM} The error code for common invalid args.
+ * @see OH_UdsFileUri Udmf_ErrCode
+ * @since 26.0.0
+ */
+int OH_UdsFileUri_SetAuthPolicy(OH_UdsFileUri* pThis, uint32_t authPolicy);
 
 /**
  * @brief Creation a pointer to the instance of the {@link OH_UdsPixelMap}.

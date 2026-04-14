@@ -201,7 +201,7 @@ int OH_Crypto_SetKdfAlgo(OH_Rdb_CryptoParam *param, int32_t algo);
  * @brief Sets the page size used when opening an encrypted database.
  *
  * @param param Represents a pointer to an instance of OH_Rdb_CryptoParam.
- * @param size Represents the page size.
+ * @param size Represents the page size, in bytes.
  * @return Returns the error code.
  *         Returns {@link RDB_OK} if the execution is successful.
  *         Returns {@link RDB_E_INVALID_ARGS} if invalid input parameter.

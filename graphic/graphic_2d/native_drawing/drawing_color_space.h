@@ -67,7 +67,7 @@ OH_Drawing_ColorSpace* OH_Drawing_ColorSpaceCreateSrgb(void);
 OH_Drawing_ColorSpace* OH_Drawing_ColorSpaceCreateSrgbLinear(void);
 
 /**
- * @brief Destroy an <b>OH_Drawing_ColorSpace</b> object.
+ * @brief Destroys an <b>OH_Drawing_ColorSpace</b> object.
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @param colorSpace Indicates the pointer to an <b>OH_Drawing_ColorSpace</b> object.

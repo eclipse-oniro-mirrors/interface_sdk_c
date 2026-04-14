@@ -1,0 +1,66 @@
+[
+    {
+        "first_introduced": "24",
+        "name": "OH_MIDIClient_Create"
+    },
+    {
+        "first_introduced": "24",
+        "name": "OH_MIDIClient_Destroy"
+    },
+    {
+        "first_introduced": "24",
+        "name": "OH_MIDIClient_GetPortCount"
+    },
+    {
+        "first_introduced": "24",
+        "name": "OH_MIDIClient_GetPortInfos"
+    },
+    {
+        "first_introduced": "24",
+        "name": "OH_MIDIClient_OpenDevice"
+    },
+    {
+        "first_introduced": "24",
+        "name": "OH_MIDIClient_OpenBLEDevice"
+    },
+    {
+        "first_introduced": "24",
+        "name": "OH_MIDIClient_CloseDevice"
+    },
+    {
+        "first_introduced": "24",
+        "name": "OH_MIDIClient_GetDeviceCount"
+    },
+    {
+        "first_introduced": "24",
+        "name": "OH_MIDIClient_GetDeviceInfos"
+    },
+    {
+        "first_introduced": "24",
+        "name": "OH_MIDIDevice_OpenInputPort"
+    },
+    {
+        "first_introduced": "24",
+        "name": "OH_MIDIDevice_OpenOutputPort"
+    },
+    {
+        "first_introduced": "24",
+        "name": "OH_MIDIDevice_CloseInputPort"
+    },
+    {
+        "first_introduced": "24",
+        "name": "OH_MIDIDevice_CloseOutputPort"
+    },
+    {
+        "first_introduced": "24",
+        "name": "OH_MIDIDevice_Send"
+    },
+    {
+        "first_introduced": "24",
+        "name": "OH_MIDIDevice_SendSysEx"
+    },
+    {
+        "first_introduced": "24",
+        "name": "OH_MIDIDevice_FlushOutputPort"
+    }
+]

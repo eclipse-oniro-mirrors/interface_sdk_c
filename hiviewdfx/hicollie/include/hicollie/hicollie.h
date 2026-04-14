@@ -82,6 +82,11 @@ typedef enum HiCollie_ErrorCode {
      * @since 18
      */
     HICOLLIE_WRONG_TIMER_ID_OUTPUT_PARAM = 29800006,
+    /**
+     * Call Report interface too frequently
+     * @since 24
+     */
+    OH_HICOLLIE_REACH_REPORT_LIMIT = 29800007,
 } HiCollie_ErrorCode;
 
 /**
@@ -98,7 +103,7 @@ typedef void (*OH_HiCollie_Task)(void);
 /**
  * @brief In jank scenario, you need to insert two stub functions before and after
  * each event processing of your business thread.
- * By checking these two function executing timestamp, HiCollie will know cosuming time for every event.
+ * By checking these two function executing timestamp, HiCollie will know consuming time for every event.
  * If it exceeds the preset threshold, a jank event will be reported.
  * This is the stub function inserted before each event processing.
  *
@@ -110,7 +115,7 @@ typedef void (*OH_HiCollie_BeginFunc)(const char* eventName);
 /**
  * @brief In jank scenario, you need to insert two stub functions before and after
  * each event processing of your business thread.
- * By checking these two function executing timestamp, HiCollie will know cosuming time for every event.
+ * By checking these two function executing timestamp, HiCollie will know consuming time for every event.
  * If it exceeds the preset threshold, a jank event will be reported.
  * This is the stub function inserted after each event processing.
  *
@@ -126,7 +131,7 @@ typedef void (*OH_HiCollie_EndFunc)(const char* eventName);
  * @since 12
  */
 typedef struct HiCollie_DetectionParam {
-    /** In jank scenario, it's the theshold exceed which sample stack will be collected. */
+    /** In jank scenario, it's the threshold exceed which sample stack will be collected. */
     int sampleStackTriggerTime;
     /** extended parameter for future use. */
     int reserved;
@@ -186,6 +191,15 @@ HiCollie_ErrorCode OH_HiCollie_Init_JankDetection(OH_HiCollie_BeginFunc* beginFu
  * @since 12
  */
 HiCollie_ErrorCode OH_HiCollie_Report(bool* isSixSecond);
+
+/**
+ * @brief Report a stuck event while user input not response.
+ *
+ * @return {@link HICOLLIE_SUCCESS} 0 - Success.
+ *         {@link HICOLLIE_REMOTE_FAILED} 29800002 - Remote call failed.
+ * @since 24
+ */
+HiCollie_ErrorCode OH_HiCollie_ReportInputBlock();
 
 /**
  * @brief When user call {@link OH_HiCollie_SetTimer} and do not call {@link OH_HiCollie_CancelTimer}
@@ -252,6 +266,96 @@ HiCollie_ErrorCode OH_HiCollie_SetTimer(HiCollie_SetTimerParam param, int *id);
  * @since 18
  */
 void OH_HiCollie_CancelTimer(int id);
+
+/**
+ * @brief Defines the freeze types returns in FreezeCallback
+ *
+ * @since 24
+ */
+typedef enum OH_HiCollie_Freeze_Type {
+    /**
+     * @brief Main thread watchdog timeout for one period.
+     *
+     * @since 24
+     */
+    OH_THREAD_BLOCK_3S,
+    /**
+     * @brief Main thread watchdog timeout for two periods.
+     *
+     * @since 24
+     */
+    OH_THREAD_BLOCK_6S,
+    /**
+     * @brief Ability lifecycle timeout for one period.
+     *
+     * @since 24
+     */
+    OH_LIFECYCLE_HALF_TIMEOUT,
+    /**
+     * @brief Ability lifecycle timeout for two periods.
+     *
+     * @since 24
+     */
+    OH_LIFECYCLE_TIMEOUT,
+    /**
+     * @brief Input event processing timeout.
+     *
+     * @since 24
+     */
+    OH_APP_INPUT_BLOCK,
+    /**
+     * @brief Freeze event reported by {@link OH_HiCollie_Report}.
+     *
+     * @since 24
+     */
+    OH_BUSINESS_THREAD_BLOCK_3S,
+    /**
+     * @brief Freeze event reported by {@link OH_HiCollie_Report}.
+     *
+     * @since 24
+     */
+    OH_BUSINESS_THREAD_BLOCK_6S,
+    /**
+     * @brief Freeze event reported by {@link OH_HiCollie_ReportInputBlock}.
+     *
+     * @since 24
+     */
+    OH_BUSINESS_INPUT_BLOCK
+} OH_HiCollie_Freeze_Type;
+
+/**
+ * @brief the freeze callback used in {@link OH_HiCollie_SetFreezeCallback}
+ *
+ * @param type Freeze event type in {@link OH_HiCollie_Freeze_Type}
+ * @param buffer log buffer provided by the system, whose content will be moved to APP_FREEZE or APP_HICOLLIE
+ *                 HiAppEvent
+ * @param size buffer size can be used
+ * @return used buffer size
+ * @since 24
+ */
+typedef size_t (*OH_HiCollie_FreezeCallback)(OH_HiCollie_Freeze_Type type, void* buffer, size_t size);
+
+/**
+ * @brief Set freeze callback to system, system will callback when system detect freeze
+ *
+ * @param callback The function callback {@link OH_HiCollie_FreezeCallback}.
+ * @return The previous callback
+ * @since 24
+ */
+void* OH_HiCollie_SetFreezeCallback(OH_HiCollie_FreezeCallback callback);
+
+/**
+ * @brief Report a stuck event from process distinct from main app process.
+ * The APP_HICOLLIE event will be generated and caller process may not be killed
+ *
+ * @param isFreezeEvent boolean. True, BUSINESS_THREAD_BLOCK_6S will be reported.
+ *                                   False, BUSINESS_THREAD_BLOCK_3S will be reported.
+ *
+ * @return {@link HICOLLIE_SUCCESS} 0 - Success.
+ *         {@link OH_HICOLLIE_REACH_REPORT_LIMIT} 29800007 - report too frequently
+ * @since 24
+ */
+HiCollie_ErrorCode OH_HiCollie_AssociateProcessReport(bool isFreezeEvent);
 
 #ifdef __cplusplus
 }

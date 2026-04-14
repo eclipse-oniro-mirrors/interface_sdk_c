@@ -4,7 +4,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -12,7 +12,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 /**
  * @addtogroup Preferences
  * @{
@@ -23,12 +22,11 @@
  *
  * @since 13
  */
-
 /**
  * @file oh_preferences.h
  *
- * @brief Defines the APIS and enums of Preference.
- *
+ * @brief Provides APIs and structs for accessing the **Preferences** object.
+ * 
  * @kit ArkData
  * @library libohpreferences.so
  * @syscap SystemCapability.DistributedDataManager.Preferences.Core
@@ -50,208 +48,210 @@ extern "C" {
 #endif
 
 /**
- * @brief Represents a Preferences instance.
- *
+ * @brief Represents a **Preferences** object.
+ * 
  * @since 13
  */
 typedef struct OH_Preferences OH_Preferences;
 
 /**
- * @brief Call to return the change in KV pairs.
- *
- * @param context Pointer to the context of data observer.
- * @param pairs Pointer to the KV pairs to be observed.
- * @param count Number of KV pairs to be observed.
+ * @brief Defines a struct for the callback for data changes.
+ * 
+ * @param context Pointer to the application context.
+ * @param pairs Pointer to the changed KV data.
+ * @param count Number of KV pairs changed.
  * @see OH_PreferencesPair.
  * @since 13
  */
 typedef void (*OH_PreferencesDataObserver)(void *context, const OH_PreferencesPair *pairs, uint32_t count);
 
 /**
- * @brief Opens a Preferences object.
- *
- * @param option Pointer to an {@Link OH_PreferencesOption} instance.
- * @param errCode Pointer to the status code of the execution. For details, See {@link OH_Preferences_ErrCode}.
- * @return Returns an pointer to the Preferences object in {@Link OH_Preferences} if the operation is successful,
- * returns nullptr otherwise.
- *         {@link PREFERENCES_OK} indicates the operation is successful.
- *         {@link PREFERENCES_ERROR_INVALID_PARAM} indicates invalid args are passed in.
- *         {@link PREFERENCES_ERROR_NOT_SUPPORTED} indicates the capability is not supported.
- *         {@link PREFERENCES_ERROR_DELETE_FILE} indicates delete file failed.
- *         {@link PREFERENCES_ERROR_STORAGE} indicates an storage error.
- *         {@link PREFERENCES_ERROR_MALLOC} indicates an malloc memory error.
+ * @brief Opens a **Preferences** instance and creates a pointer to it.
+ * If this pointer is no longer required, use {@link OH_Preferences_Close} to close the instance.
+ * 
+ * @param option Pointer to the {@link OH_PreferencesOption} instance.
+ * @param errCode Pointer to the error code returned. For details, see {@link OH_Preferences_ErrCode}.
+ * **PREFERENCES_OK** indicates the operation is successful.
+ * **PREFERENCES_ERROR_INVALID_PARAM** indicates invalid parameters are specified.
+ * **PREFERENCES_ERROR_NOT_SUPPORTED** indicates the system capability is not supported.
+ * **PREFERENCES_ERROR_DELETE_FILE** indicates the file fails to be deleted.
+ * **PREFERENCES_ERROR_STORAGE** indicates the storage is abnormal.
+ * **PREFERENCES_ERROR_MALLOC** indicates a failure in memory allocation.
+ * @return Returns a pointer to the {@link OH_Preferences} instance opened if the operation is successful; returns a
+ * null pointer otherwise.
  * @see OH_Preferences OH_PreferencesOption.
  * @since 13
  */
 OH_Preferences *OH_Preferences_Open(OH_PreferencesOption *option, int *errCode);
 
 /**
- * @brief Closes a Preferences object.
- *
- * @param preference Pointer to the {@Link OH_Preferences} instance to close.
- * @return Returns the status code of the execution. For details, see {@Link OH_Preferences_ErrCode}.
- *         {@link PREFERENCES_OK} indicates the operation is successful.
- *         {@link PREFERENCES_ERROR_INVALID_PARAM} indicates invalid args are passed in.
- *         {@link PREFERENCES_ERROR_STORAGE} indicates an storage error.
- *         {@link PREFERENCES_ERROR_MALLOC} indicates an malloc memory error.
+ * @brief Closes a **Preferences** instance.
+ * 
+ * @param preference Pointer to the {@link OH_Preferences} instance to close.
+ * @return Returns an error code. For details, see {@link OH_Preferences_ErrCode}.
+ * **PREFERENCES_OK** indicates the operation is successful.
+ * **PREFERENCES_ERROR_INVALID_PARAM** indicates invalid parameters are specified.
+ * **PREFERENCES_ERROR_STORAGE** indicates the storage is abnormal.
+ * **PREFERENCES_ERROR_MALLOC** indicates a failure in memory allocation.
  * @see OH_Preferences.
  * @since 13
  */
 int OH_Preferences_Close(OH_Preferences *preference);
 
 /**
- * @brief Delete a Preferences object.
- *
- * @param option Pointer to an {@Link OH_PreferencesOption} instance.
- * @return Returns the status code of the execution. For details, see {@Link OH_Preferences_ErrCode}.
- *         {@link PREFERENCES_OK} indicates the operation is successful.
- *         {@link PREFERENCES_ERROR_INVALID_PARAM} indicates invalid args are passed in.
- *         {@link PREFERENCES_ERROR_NOT_SUPPORTED} indicates the capability is not supported.
- *         {@link PREFERENCES_ERROR_DELETE_FILE} indicates delete file failed.
+ * @brief Deletes the specified **Preferences** object.
+ * 
+ * @param option Pointer to the {@link OH_PreferencesOption} instance.
+ * @return Returns an error code.
+ * **PREFERENCES_OK** indicates the operation is successful.
+ * **PREFERENCES_ERROR_INVALID_PARAM** indicates invalid parameters are specified.
+ * **PREFERENCES_ERROR_NOT_SUPPORTED** indicates the system capability is not supported.
+ * **PREFERENCES_ERROR_DELETE_FILE** indicates the file fails to be deleted.
  * @see OH_Preferences.
  * @since 23
  */
 int OH_Preferences_DeletePreferences(OH_PreferencesOption *option);
 
 /**
- * @brief Obtains the integer value in a Preferences object based on the given key.
- *
- * @param preference Pointer to the target {@Link OH_Preferences} instance.
+ * @brief Obtains an integer corresponding to the specified key in a **Preferences** instance.
+ * 
+ * @param preference Pointer to the {@link OH_Preferences} instance.
  * @param key Pointer to the key of the value to obtain.
- * @param value Pointer to the value obtained.
- * @return Returns the status code of the execution.
- *         {@link PREFERENCES_OK} indicates the operation is successful.
- *         {@link PREFERENCES_ERROR_INVALID_PARAM} indicates invalid args are passed in.
- *         {@link PREFERENCES_ERROR_STORAGE} indicates an storage error.
- *         {@link PREFERENCES_ERROR_MALLOC} indicates an malloc memory error.
- *         {@link PREFERENCES_ERROR_KEY_NOT_FOUND} indicates the key does not exist.
+ * @param value Pointer to the integer value obtained.
+ * @return Returns an error code.
+ * **PREFERENCES_OK** indicates the operation is successful.
+ * **PREFERENCES_ERROR_INVALID_PARAM** indicates invalid parameters are specified.
+ * **PREFERENCES_ERROR_STORAGE** indicates the storage is abnormal.
+ * **PREFERENCES_ERROR_MALLOC** indicates a failure in memory allocation.
+ * **PREFERENCES_ERROR_KEY_NOT_FOUND** indicates the specified key does not exist.
  * @see OH_Preferences.
  * @since 13
  */
 int OH_Preferences_GetInt(OH_Preferences *preference, const char *key, int *value);
 
 /**
- * @brief Obtains the Boolean value in a Preferences object based on the given key.
- *
- * @param preference Pointer to the target {@Link OH_Preferences} instance.
+ * @brief Obtains a Boolean value corresponding to the specified key in a **Preferences** instance.
+ * 
+ * @param preference Pointer to the {@link OH_Preferences} instance.
  * @param key Pointer to the key of the value to obtain.
  * @param value Pointer to the Boolean value obtained.
- * @return Returns the status code of the execution.
- *         {@link PREFERENCES_OK} indicates the operation is successful.
- *         {@link PREFERENCES_ERROR_INVALID_PARAM} indicates invalid args are passed in.
- *         {@link PREFERENCES_ERROR_STORAGE} indicates an storage error.
- *         {@link PREFERENCES_ERROR_MALLOC} indicates an malloc memory error.
- *         {@link PREFERENCES_ERROR_KEY_NOT_FOUND} indicates the key does not exist.
+ * @return Returns an error code.
+ * **PREFERENCES_OK** indicates the operation is successful.
+ * **PREFERENCES_ERROR_INVALID_PARAM** indicates invalid parameters are specified.
+ * **PREFERENCES_ERROR_STORAGE** indicates the storage is abnormal.
+ * **PREFERENCES_ERROR_MALLOC** indicates a failure in memory allocation.
+ * **PREFERENCES_ERROR_KEY_NOT_FOUND** indicates the specified key does not exist.
  * @see OH_Preferences.
  * @since 13
  */
 int OH_Preferences_GetBool(OH_Preferences *preference, const char *key, bool *value);
 
 /**
- * @brief Obtains the string value in a Preferences object based on the given key.
- *
- * @param preference Pointer to the target {@Link OH_Preferences} instance.
+ * @brief Obtains a string corresponding to the specified key in a **Preferences** instance.
+ * 
+ * @param preference Pointer to the {@link OH_Preferences} instance.
  * @param key Pointer to the key of the value to obtain.
- * @param value Double pointer to the value obtained in an char * array. Release {@Link OH_Preferences_FreeString} the
- * memory by user when this parameter is no longer required.
+ * @param value Double pointer to the string obtained. If the string is not required, you can use
+ * {@link OH_Preferences_FreeString} to free the string (release the memory occupied by the string).
  * @param valueLen Pointer to the length of the string obtained.
- * @return Returns the status code of the execution.
- *         {@link PREFERENCES_OK} indicates the operation is successful.
- *         {@link PREFERENCES_ERROR_INVALID_PARAM} indicates invalid args are passed in.
- *         {@link PREFERENCES_ERROR_STORAGE} indicates an storage error.
- *         {@link PREFERENCES_ERROR_MALLOC} indicates an malloc memory error.
- *         {@link PREFERENCES_ERROR_KEY_NOT_FOUND} indicates the key does not exist.
+ * @return Returns an error code.
+ * **PREFERENCES_OK** indicates the operation is successful.
+ * **PREFERENCES_ERROR_INVALID_PARAM** indicates invalid parameters are specified.
+ * **PREFERENCES_ERROR_STORAGE** indicates the storage is abnormal.
+ * **PREFERENCES_ERROR_MALLOC** indicates a failure in memory allocation.
+ * **PREFERENCES_ERROR_KEY_NOT_FOUND** indicates the specified key does not exist.
  * @see OH_Preferences.
  * @since 13
  */
 int OH_Preferences_GetString(OH_Preferences *preference, const char *key, char **value, uint32_t *valueLen);
 
 /**
- * @brief Free a string got by Preferences object.
- *
- * @param string Point to string need to free.
+ * @brief Releases a string obtained from a **Preferences** instance.
+ * 
+ * @param string Pointer to the string to release.
  * @see OH_Preferences.
  * @since 13
  */
 void OH_Preferences_FreeString(char *string);
 
 /**
- * @brief Sets an integer in a Preferences object.
- *
- * @param preference Pointer to the target {@Link OH_Preferences} instance.
- * @param key Pointer to the key to set.
- * @param value Value to set.
- * @return Returns the status code of the execution.
- *         {@link PREFERENCES_OK} indicates the operation is successful.
- *         {@link PREFERENCES_ERROR_INVALID_PARAM} indicates invalid args are passed in.
- *         {@link PREFERENCES_ERROR_STORAGE} indicates an storage error.
- *         {@link PREFERENCES_ERROR_MALLOC} indicates an malloc memory error.
+ * @brief Sets an integer based on the specified key in a **Preferences** instance.
+ * 
+ * @param preference Pointer to the {@link OH_Preferences} instance.
+ * @param key Pointer to the key of the value to set.
+ * @param value Integer value to be set.
+ * @return Returns an error code.
+ * **PREFERENCES_OK** indicates the operation is successful.
+ * **PREFERENCES_ERROR_INVALID_PARAM** indicates invalid parameters are specified.
+ * **PREFERENCES_ERROR_STORAGE** indicates the storage is abnormal.
+ * **PREFERENCES_ERROR_MALLOC** indicates a failure in memory allocation.
  * @see OH_Preferences.
  * @since 13
  */
 int OH_Preferences_SetInt(OH_Preferences *preference, const char *key, int value);
 
 /**
- * @brief Sets a Boolean value in a Preferences object.
- *
- * @param preference Pointer to the target {@Link OH_Preferences} instance.
- * @param key Pointer to the key to set.
- * @param value Boolean value to set.
- * @return Returns the status code of the execution.
- *         {@link PREFERENCES_OK} indicates the operation is successful.
- *         {@link PREFERENCES_ERROR_INVALID_PARAM} indicates invalid args are passed in.
- *         {@link PREFERENCES_ERROR_STORAGE} indicates an storage error.
- *         {@link PREFERENCES_ERROR_MALLOC} indicates an malloc memory error.
+ * @brief Sets a Boolean value based on the specified key in a **Preferences** instance.
+ * 
+ * @param preference Pointer to the {@link OH_Preferences} instance.
+ * @param key Pointer to the key of the value to set.
+ * @param value Boolean value to be set.
+ * @return Returns an error code.
+ * **PREFERENCES_OK** indicates the operation is successful.
+ * **PREFERENCES_ERROR_INVALID_PARAM** indicates invalid parameters are specified.
+ * **PREFERENCES_ERROR_STORAGE** indicates the storage is abnormal.
+ * **PREFERENCES_ERROR_MALLOC** indicates a failure in memory allocation.
  * @see OH_Preferences.
  * @since 13
  */
 int OH_Preferences_SetBool(OH_Preferences *preference, const char *key, bool value);
 
 /**
- * @brief Sets a string in a Preferences object.
- *
- * @param preference Pointer to the target {@Link OH_Preferences} instance.
- * @param key Pointer to the key to set.
- * @param value Point to string to set.
- * @return Returns the status code of the execution.
- *         {@link PREFERENCES_OK} indicates the operation is successful.
- *         {@link PREFERENCES_ERROR_INVALID_PARAM} indicates invalid args are passed in.
- *         {@link PREFERENCES_ERROR_STORAGE} indicates an storage error.
- *         {@link PREFERENCES_ERROR_MALLOC} indicates an malloc memory error.
+ * @brief Sets a string based on the specified key in a **Preferences** instance.
+ * 
+ * @param preference Pointer to the {@link OH_Preferences} instance.
+ * @param key Pointer to the key of the value to set.
+ * @param value Pointer to the string to set.
+ * @return Returns an error code.
+ * **PREFERENCES_OK** indicates the operation is successful.
+ * **PREFERENCES_ERROR_INVALID_PARAM** indicates invalid parameters are specified.
+ * **PREFERENCES_ERROR_STORAGE** indicates the storage is abnormal.
+ * **PREFERENCES_ERROR_MALLOC** indicates a failure in memory allocation.
  * @see OH_Preferences.
  * @since 13
  */
 int OH_Preferences_SetString(OH_Preferences *preference, const char *key, const char *value);
 
 /**
- * @brief Deletes a KV pair from a Preferences object.
- *
- * @param preference Pointer to the target {@Link OH_Preferences} instance.
- * @param key Pointer to the key of the data to delete.
- * @return Returns the status code of the execution.
- *         {@link PREFERENCES_OK} indicates the operation is successful.
- *         {@link PREFERENCES_ERROR_INVALID_PARAM} indicates invalid args are passed in.
- *         {@link PREFERENCES_ERROR_STORAGE} indicates an storage error.
- *         {@link PREFERENCES_ERROR_MALLOC} indicates an malloc memory error.
+ * @brief Deletes the KV data corresponding to the specified key from a **Preferences** instance.
+ * 
+ * @param preference Pointer to the {@link OH_Preferences} instance.
+ * @param key Pointer to the key of the KV pair to delete.
+ * @return Returns an error code.
+ * **PREFERENCES_OK** indicates the operation is successful.
+ * **PREFERENCES_ERROR_INVALID_PARAM** indicates invalid parameters are specified.
+ * **PREFERENCES_ERROR_STORAGE** indicates the storage is abnormal.
+ * **PREFERENCES_ERROR_MALLOC** indicates a failure in memory allocation.
  * @see OH_Preferences.
  * @since 13
  */
 int OH_Preferences_Delete(OH_Preferences *preference, const char *key);
 
 /**
- * @brief Registers a data observer for a Preferences object.
- *
- * @param preference Pointer to the target {@Link OH_Preferences} instance.
- * @param context Pointer to the context of the data observer.
- * @param observer the {@Link OH_PreferencesDataObserver} to register.
+ * @brief Subscribes to data changes of the specified keys. If the value of the specified key changes, a callback will
+ * be invoked after **OH_Preferences_Close()** is called.
+ * 
+ * @param preference Pointer to the {@link OH_Preferences} instance.
+ * @param context Pointer to the application context.
+ * @param observer {@link OH_PreferencesDataObserver} callback to be invoked when data changes.
  * @param keys Pointer to the keys to observe.
- * @param keyCount Number of keys to observe.
- * @return Returns the status code of the execution.
- *         {@link PREFERENCES_OK} indicates the operation is successful.
- *         {@link PREFERENCES_ERROR_INVALID_PARAM} indicates invalid args are passed in.
- *         {@link PREFERENCES_ERROR_STORAGE} indicates an storage error.
- *         {@link PREFERENCES_ERROR_MALLOC} indicates an malloc memory error.
- *         {@link PREFERENCES_ERROR_GET_DATAOBSMGRCLIENT} indicates get dataObsMgrClient error.
+ * @param keyCount Number of keys.
+ * @return Returns an error code.
+ * **PREFERENCES_OK** indicates the operation is successful.
+ * **PREFERENCES_ERROR_INVALID_PARAM** indicates invalid parameters are specified.
+ * **PREFERENCES_ERROR_STORAGE** indicates the storage is abnormal.
+ * **PREFERENCES_ERROR_MALLOC** indicates a failure in memory allocation.
+ * **PREFERENCES_ERROR_GET_DATAOBSMGRCLIENT** indicates a failure in obtaining the data change subscription service.
  * @see OH_Preferences OH_PreferencesDataObserver.
  * @since 13
  */
@@ -259,18 +259,18 @@ int OH_Preferences_RegisterDataObserver(OH_Preferences *preference, void *contex
     OH_PreferencesDataObserver observer, const char *keys[], uint32_t keyCount);
 
 /**
- * @brief Unregisters a data observer for a Preferences object.
- *
- * @param preference Pointer to the target {@Link OH_Preferences} instance.
- * @param context Pointer to the context of the data observer.
- * @param observer the {@Link OH_PreferencesDataObserver} to unregister.
+ * @brief Unsubscribes from data changes of the specified keys.
+ * 
+ * @param preference Pointer to the {@link OH_Preferences} instance.
+ * @param context Pointer to the application context.
+ * @param observer {@link OH_PreferencesDataObserver} callback to be invoked when data changes.
  * @param keys Pointer to the keys observed. If this parameter is null, this API unregisters the listening for all keys.
- * @param keyCount Number of the keys.
- * @return Returns the status code of the execution.
- *         {@link PREFERENCES_OK} indicates the operation is successful.
- *         {@link PREFERENCES_ERROR_INVALID_PARAM} indicates invalid args are passed in.
- *         {@link PREFERENCES_ERROR_STORAGE} indicates an storage error.
- *         {@link PREFERENCES_ERROR_MALLOC} indicates an malloc memory error.
+ * @param keyCount Number of keys.
+ * @return Returns an error code.
+ * **PREFERENCES_OK** indicates the operation is successful.
+ * **PREFERENCES_ERROR_INVALID_PARAM** indicates invalid parameters are specified.
+ * **PREFERENCES_ERROR_STORAGE** indicates the storage is abnormal.
+ * **PREFERENCES_ERROR_MALLOC** indicates a failure in memory allocation.
  * @see OH_Preferences OH_PreferencesDataObserver.
  * @since 13
  */
@@ -290,107 +290,107 @@ int OH_Preferences_UnregisterDataObserver(OH_Preferences *preference, void *cont
 int OH_Preferences_IsStorageTypeSupported(Preferences_StorageType type, bool *isSupported);
 
 /**
- * @brief Sets value {@Link OH_PreferencesValue} in a Preferences object.
- *
- * @param preference Pointer to the target {@Link OH_Preferences} instance.
- * @param key Pointer to the key to set.
- * @param value Pointer to the value {@Link OH_PreferencesValue} to set.
- * @return Returns the status code of the execution.
- *         {@link PREFERENCES_OK} indicates the operation is successful.
- *         {@link PREFERENCES_ERROR_INVALID_PARAM} indicates invalid args are passed in.
- *         {@link PREFERENCES_ERROR_STORAGE} indicates an storage error.
- *         {@link PREFERENCES_ERROR_MALLOC} indicates an malloc memory error.
+ * @brief Sets {@link OH_PreferencesValue} in the **Preferences** object.
+ * 
+ * @param preference Pointer to the target {@link OH_Preferences} instance.
+ * @param key Pointer to the key of the value to set.
+ * @param value Pointer to the {@link OH_PreferencesValue} value to set.
+ * @return Returns an error code.
+ * **PREFERENCES_OK** indicates the operation is successful.
+ * **PREFERENCES_ERROR_INVALID_PARAM** indicates invalid parameters are specified.
+ * **PREFERENCES_ERROR_STORAGE** indicates a storage exception.
+ * **PREFERENCES_ERROR_MALLOC** indicates a failure in memory allocation.
  * @see OH_Preferences.
  * @since 23
  */
 int OH_Preferences_SetValue(OH_Preferences *preference, const char *key, OH_PreferencesValue *value);
 
 /**
- * @brief Obtains value in a Preferences object based on the given key.
- *
- * @param preference Pointer to the target {@Link OH_Preferences} instance.
- * @param key Pointer to the key of the value obtained.
- * @param value Pointer to the value {@Link OH_PreferencesValue} obtained.
- * @return Returns the status code of the execution.
- *         {@link PREFERENCES_OK} indicates the operation is successful.
- *         {@link PREFERENCES_ERROR_INVALID_PARAM} indicates invalid args are passed in.
- *         {@link PREFERENCES_ERROR_STORAGE} indicates an storage error.
- *         {@link PREFERENCES_ERROR_MALLOC} indicates an malloc memory error.
- *         {@link PREFERENCES_ERROR_KEY_NOT_FOUND} indicates the key does not exist.
+ * @brief Obtains the value from the **Preferences** object based on the given key.
+ * 
+ * @param preference Pointer to the target {@link OH_Preferences} instance.
+ * @param key Pointer to the key of the value to obtain.
+ * @param value Double pointer to {@link OH_PreferencesValue}.
+ * @return Returns an error code.
+ * **PREFERENCES_OK** indicates the operation is successful.
+ * **PREFERENCES_ERROR_INVALID_PARAM** indicates invalid parameters are specified.
+ * **PREFERENCES_ERROR_STORAGE** indicates a storage exception.
+ * **PREFERENCES_ERROR_MALLOC** indicates a failure in memory allocation.
+ * **PREFERENCES_ERROR_KEY_NOT_FOUND** indicates the specified key does not exist.
  * @see OH_Preferences.
  * @since 23
  */
 int OH_Preferences_GetValue(OH_Preferences *preference, const char *key, OH_PreferencesValue **value);
 
 /**
- * @brief Obtains all value in a Preferences object.
- *
- * @param preference Pointer to the target {@Link OH_Preferences} instance.
- * @param pairs Pointer to the KV pairs to be observed. Release {@Link OH_Preferences_FreeString} the
- * memory by user when this parameter is no longer required.
- * @param count Pointer to the all value size obtained.
- * @return Returns the status code of the execution.
- *         {@link PREFERENCES_OK} indicates the operation is successful.
- *         {@link PREFERENCES_ERROR_INVALID_PARAM} indicates invalid args are passed in.
- *         {@link PREFERENCES_ERROR_STORAGE} indicates an storage error.
- *         {@link PREFERENCES_ERROR_MALLOC} indicates an malloc memory error.
- *         {@link PREFERENCES_ERROR_KEY_NOT_FOUND} indicates the key does not exist.
+ * @brief Obtains all the values from the **Preferences** object.
+ * 
+ * @param preference Pointer to the target {@link OH_Preferences} instance.
+ * @param pairs Pointer to the KV data to obtain. When the KV data is no longer needed, call
+ * {@link OH_Preferences_FreeString} to free the memory.
+ * @param count Pointer to the count of all obtained values.
+ * @return Returns an error code.
+ * **PREFERENCES_OK** indicates the operation is successful.
+ * **PREFERENCES_ERROR_INVALID_PARAM** indicates invalid parameters are specified.
+ * **PREFERENCES_ERROR_STORAGE** indicates a storage exception.
+ * **PREFERENCES_ERROR_MALLOC** indicates a failure in memory allocation.
+ * **PREFERENCES_ERROR_KEY_NOT_FOUND** indicates the specified key does not exist.
  * @see OH_Preferences.
  * @since 23
  */
 int OH_Preferences_GetAll(OH_Preferences *preference, OH_PreferencesPair **pairs, uint32_t *count);
 
 /**
- * @brief Check whether a Preferences object contains a KV pair matching a specified key.
- *
- * @param preference Pointer to the target {@Link OH_Preferences} instance.
- * @param key Pointer to the key of the data to Check.
- * @return Returns the status code of the execution.
- *         {@link PREFERENCES_OK} indicates the operation is successful.
- *         {@link PREFERENCES_ERROR_INVALID_PARAM} indicates invalid args are passed in.
+ * @brief Checks whether the **Preferences** object contains KV data matching the specified key. Returns **true** if
+ * present, and **false** otherwise.
+ * 
+ * @param preference Pointer to the target {@link OH_Preferences} instance.
+ * @param key Pointer to the key to check.
+ * @return Returns **true** if the **Preferences** object contains KV data that matches the specified key; returns **
+ * false** otherwise.
  * @see OH_Preferences.
  * @since 23
  */
 bool OH_Preferences_HasKey(OH_Preferences *preference, const char *key);
 
 /**
- * @brief Save the {@link OH_Preferences} object cache to the xml file
- *
- * @param preference Pointer to the target {@Link OH_Preferences} instance.
- * @return Returns the status code of the execution.
- *         {@link PREFERENCES_OK} indicates the operation is successful.
- *         {@link PREFERENCES_ERROR_INVALID_PARAM} indicates invalid args are passed in.
- *         {@link PREFERENCES_ERROR_NOT_SUPPORTED} indicates the capability is not supported.
+ * @brief Saves the cache of the {@link OH_Preferences} object to an XML file.
+ * 
+ * @param preference Pointer to the target {@link OH_Preferences} instance.
+ * @return Returns an error code.
+ * **PREFERENCES_OK** indicates the operation is successful.
+ * **PREFERENCES_ERROR_INVALID_PARAM** indicates invalid parameters are specified.
+ * **PREFERENCES_ERROR_NOT_SUPPORTED** indicates the system capability is not supported.
  * @see OH_Preferences.
  * @since 23
  */
 int OH_Preferences_Flush(OH_Preferences *preference);
 
 /**
- * @brief Clears all value from the {@link OH_Preferences} object cache.
- *
- * @param preference Pointer to the target {@Link OH_Preferences} instance.
- * @return Returns the status code of the execution.
- *         {@link PREFERENCES_OK} indicates the operation is successful.
- *         {@link PREFERENCES_ERROR_INVALID_PARAM} indicates invalid args are passed in.
- *         {@link PREFERENCES_ERROR_NOT_SUPPORTED} indicates the capability is not supported.
+ * @brief Clears all values in the cache of the {@link OH_Preferences} object.
+ * 
+ * @param preference Pointer to the target {@link OH_Preferences} instance.
+ * @return Returns an error code.
+ * **PREFERENCES_OK** indicates the operation is successful.
+ * **PREFERENCES_ERROR_INVALID_PARAM** indicates invalid parameters are specified.
+ * **PREFERENCES_ERROR_NOT_SUPPORTED** indicates the system capability is not supported.
  * @see OH_Preferences.
  * @since 23
  */
 int OH_Preferences_ClearCache(OH_Preferences *preference);
 
 /**
- * @brief Registers a multi process data observer for a Preferences object.
- *
- * @param preference Pointer to the target {@Link OH_Preferences} instance.
- * @param context Pointer to the context of the data observer.
- * @param observer the {@Link OH_PreferencesDataObserver} to register.
- * @return Returns the status code of the execution.
- *         {@link PREFERENCES_OK} indicates the operation is successful.
- *         {@link PREFERENCES_ERROR_INVALID_PARAM} indicates invalid args are passed in.
- *         {@link PREFERENCES_ERROR_STORAGE} indicates an storage error.
- *         {@link PREFERENCES_ERROR_MALLOC} indicates an malloc memory error.
- *         {@link PREFERENCES_ERROR_GET_DATAOBSMGRCLIENT} indicates get dataObsMgrClient error.
+ * @brief Registers a multi-process data observer for the **Preferences** object.
+ * 
+ * @param preference Pointer to the target {@link OH_Preferences} instance.
+ * @param context Pointer to the data observer context.
+ * @param observer The {@link OH_PreferencesDataObserver} callback function to register.
+ * @return Returns an error code.
+ * **PREFERENCES_OK** indicates the operation is successful.
+ * **PREFERENCES_ERROR_INVALID_PARAM** indicates invalid parameters are specified.
+ * **PREFERENCES_ERROR_STORAGE** indicates a storage exception.
+ * **PREFERENCES_ERROR_MALLOC** indicates a failure in memory allocation.
+ * **PREFERENCES_ERROR_GET_DATAOBSMGRCLIENT** indicates a failure in obtaining the data change subscription service.
  * @see OH_Preferences OH_PreferencesDataObserver.
  * @since 23
  */
@@ -398,16 +398,16 @@ int OH_Preferences_RegisterMultiProcessDataObserver(OH_Preferences *preference, 
     OH_PreferencesDataObserver observer);
 
 /**
- * @brief Unregisters a multi process data observer for a Preferences object.
- *
- * @param preference Pointer to the target {@Link OH_Preferences} instance.
- * @param context Pointer to the context of the data observer.
- * @param observer the {@Link OH_PreferencesDataObserver} to unregister.
- * @return Returns the status code of the execution.
- *         {@link PREFERENCES_OK} indicates the operation is successful.
- *         {@link PREFERENCES_ERROR_INVALID_PARAM} indicates invalid args are passed in.
- *         {@link PREFERENCES_ERROR_STORAGE} indicates an storage error.
- *         {@link PREFERENCES_ERROR_MALLOC} indicates an malloc memory error.
+ * @brief Unregisters the multi-process data observer of the **Preferences** object.
+ * 
+ * @param preference Pointer to the target {@link OH_Preferences} instance.
+ * @param context Pointer to the data observer context.
+ * @param observer The {@link OH_PreferencesDataObserver} callback function to unregister.
+ * @return Returns an error code.
+ * **PREFERENCES_OK** indicates the operation is successful.
+ * **PREFERENCES_ERROR_INVALID_PARAM** indicates invalid parameters are specified.
+ * **PREFERENCES_ERROR_STORAGE** indicates a storage exception.
+ * **PREFERENCES_ERROR_MALLOC** indicates a failure in memory allocation.
  * @see OH_Preferences OH_PreferencesDataObserver.
  * @since 23
  */

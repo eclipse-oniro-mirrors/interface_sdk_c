@@ -208,6 +208,11 @@
         "type": "variable"
     },
     {
+        "first_introduced": "24",
+        "name": "OH_AVCODEC_MIMETYPE_VIDEO_CINEPAK",
+        "type": "variable"
+    },
+    {
         "first_introduced": "22",
         "name": "OH_AVCODEC_MIMETYPE_VIDEO_MSVIDEO1"
     },
@@ -444,6 +449,10 @@
         "name": "OH_MD_KEY_VIDEO_ENCODER_TEMPORAL_GOP_REFERENCE_MODE"
     },
     {
+        "first_introduced": "26",
+        "name": "OH_MD_KEY_VIDEO_ENCODER_TEMPORAL_LAYER_ID"
+    },
+    {
         "first_introduced": "12",
         "name": "OH_MD_KEY_VIDEO_ENCODER_LTR_FRAME_COUNT"
     },
@@ -612,6 +621,26 @@
         "name": "OH_MD_KEY_BUFFER_SKIP_SAMPLES_INFO"
     },
     {
+        "first_introduced": "24",
+        "name": "OH_MD_KEY_ENABLE_BUFFER_SKIP_SAMPLES",
+        "type": "variable"
+    },
+    {
+        "first_introduced": "24",
+        "name": "OH_MD_KEY_LATITUDE",
+        "type": "variable"
+    },
+    {
+        "first_introduced": "24",
+        "name": "OH_MD_KEY_LONGITUDE",
+        "type": "variable"
+    },
+    {
+        "first_introduced": "24",
+        "name": "OH_MD_KEY_ALTITUDE",
+        "type": "variable"
+    },
+    {
         "first_introduced": "10",
         "name": "OH_AVCodec_GetCapability"
     },
@@ -620,12 +649,28 @@
         "name": "OH_AVCodec_GetCapabilityByCategory"
     },
     {
+        "first_introduced": "24",
+        "name": "OH_AVCodec_GetCapabilityList"
+    },
+    {
         "first_introduced": "10",
         "name": "OH_AVCapability_IsHardware"
     },
     {
+        "first_introduced": "24",
+        "name": "OH_AVCapability_IsSecure"
+    },
+    {
         "first_introduced": "10",
         "name": "OH_AVCapability_GetName"
+    },
+    {
+        "first_introduced": "24",
+        "name": "OH_AVCapability_GetMimeType"
+    },
+    {
+        "first_introduced": "24",
+        "name": "OH_AVCapability_CheckMimeType"
     },
     {
         "first_introduced": "10",

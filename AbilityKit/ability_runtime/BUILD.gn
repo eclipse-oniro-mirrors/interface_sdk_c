@@ -21,6 +21,7 @@ ohos_ndk_headers("ability_runtime_ndk_header") {
     "./context.h",
     "./context_constant.h",
     "./extension_ability.h",
+    "./modular_object_extension_manager.h",
     "./start_options.h",
   ]
 }
@@ -37,6 +38,7 @@ ohos_ndk_library("libability_runtime") {
     "AbilityKit/ability_runtime/context.h",
     "AbilityKit/ability_runtime/context_constant.h",
     "AbilityKit/ability_runtime/extension_ability.h",
+    "AbilityKit/ability_runtime/modular_object_extension_manager.h",
     "AbilityKit/ability_runtime/start_options.h",
   ]
 }

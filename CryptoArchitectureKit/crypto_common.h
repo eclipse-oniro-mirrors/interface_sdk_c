@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2024 Huawei Device Co., Ltd.
+ * Copyright (C) 2024-2026 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -74,7 +74,12 @@ typedef enum {
      * @since 20
      */
     CRYPTO_PARAMETER_CHECK_FAILED = 17620003,
-    /** Indicates that crypto operation error. */
+    /**
+     * Indicates an invalid function call.
+     * @since 26.0.0
+     */
+    CRYPTO_INVALID_CALL = 17620004,
+    /** Indicates a crypto operation error. */
     CRYPTO_OPERTION_ERROR = 17630001,
 } OH_Crypto_ErrCode;
 

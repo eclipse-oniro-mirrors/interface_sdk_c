@@ -6,5 +6,9 @@
     {
         "first_introduced": "21",
         "name": "OH_Wifi_GetDeviceMacAddress"
+    },
+    {
+        "first_introduced": "24",
+        "name": "OH_Wifi_GetLinkedInfo"
     }
 ]

@@ -63,7 +63,7 @@ int32_t OH_ArkUI_GetNodeHandleFromNapiValue(napi_env env, napi_value frameNode, 
  * @brief Obtains a <b>UIContext</b> object on the ArkTS side and maps it to an <b>ArkUI_ContextHandle</b> object on the
  * native side.
  *
- * @param env ndicates the NAPI environment pointer.
+ * @param env Indicates the NAPI environment pointer.
  * @param value Indicates the <b>UIContext</b> object created on the ArkTS side.
  * @param context Indicates the pointer to the <b>ArkUI_ContextHandle</b> object.
  * @return Returns the error code.
@@ -78,7 +78,7 @@ int32_t OH_ArkUI_GetContextFromNapiValue(napi_env env, napi_value value, ArkUI_C
   * @brief Obtains a <b>NodeContent</b> object on the ArkTS side and maps it to an <b>ArkUI_NodeContentHandle</b>
   * object on the native side.
   *
-  * @param env ndicates the NAPI environment pointer.
+  * @param env Indicates the NAPI environment pointer.
   * @param value Indicates the <b>NodeContent</b> object created on the ArkTS side.
   * @param content Indicates the pointer to the <b>ArkUI_NodeContentHandle</b> object.
   * @return Returns the error code.
@@ -414,6 +414,21 @@ void OH_ArkUI_NotifyArkTSEnvDestroy(napi_env env);
  */
  int32_t OH_ArkUI_PostIdleCallback(ArkUI_ContextHandle uiContext, void* userData,
     void (*callback)(uint64_t nanoTimeLeft, uint32_t frameCount, void* userData));
+
+/**
+ * @brief Enables or disables event passthrough. Event passthrough indicates that an event is directly delivered to a
+ * component without resampling during event distribution.
+ *
+ * @param uiContext UIContext object used to bind the instance.
+ * @param enabled Whether to enable event passthrough. true: enable ; false (default value): disable.
+ * @param type Raw input event type {@link ArkUI_RawInputEventType} for enabling or disabling event passthrough.
+ * @return Result code. \n
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful. \n
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if the UIContext object is invalid.
+ * @since 26.0.0
+ */
+ArkUI_ErrorCode OH_ArkUI_EnableEventPassthrough(ArkUI_ContextHandle uiContext, bool enabled,
+    ArkUI_RawInputEventType type);
 
 #ifdef __cplusplus
 };

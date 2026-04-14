@@ -607,6 +607,11 @@ typedef enum OH_Drawing_TextStyleAttributeId {
     TEXT_STYLE_ATTR_I_LINE_HEIGHT_STYLE = 2,
     /** Font width */
     TEXT_STYLE_ATTR_I_FONT_WIDTH = 3,
+    /**
+     * Font edging
+     * @since 24
+     */
+    TEXT_STYLE_ATTR_I_FONT_EDGING = 4,
 } OH_Drawing_TextStyleAttributeId;
 
 /**
@@ -657,6 +662,21 @@ typedef enum OH_Drawing_TypographyStyleAttributeId {
      * @since 24
      */
     TYPOGRAPHY_STYLE_ATTR_I_ELLIPSIS_MODAL = 8,
+    /**
+     * Line head indent array
+     * @since 26.0.0
+     */
+    TYPOGRAPHY_STYLE_ATTR_DA_LINE_HEAD_INDENT = 9,
+    /**
+     * First line head indent
+     * @since 26.0.0
+     */
+    TYPOGRAPHY_STYLE_ATTR_D_FIRST_LINE_HEAD_INDENT = 10,
+    /**
+     * Line tail indent array
+     * @since 26.0.0
+     */
+    TYPOGRAPHY_STYLE_ATTR_DA_LINE_TAIL_INDENT = 11,
 } OH_Drawing_TypographyStyleAttributeId;
 
 /**
@@ -816,7 +836,39 @@ OH_Drawing_ErrorCode OH_Drawing_SetTypographyStyleAttributeBool(OH_Drawing_Typog
  */
 OH_Drawing_ErrorCode OH_Drawing_GetTypographyStyleAttributeBool(OH_Drawing_TypographyStyle* style,
     OH_Drawing_TypographyStyleAttributeId id, bool* value);
-    
+
+/**
+ * @brief Set the double array value for the typographic style attribute.
+ *
+ * @param style Indicates the pointer to an <b>OH_Drawing_TypographyStyle</b> object.
+ * @param id Indicates the attribute id.
+ * @param arrayValue Indicates the array value to set.
+ * @param arrayLength Indicates the array length.
+ * @return Returns the error code.
+ *         Returns {@link OH_DRAWING_SUCCESS} if the operation is successful.
+ *         Returns {@link OH_DRAWING_ERROR_INVALID_PARAMETER} if the style is nullptr.
+ *         Returns {@link OH_DRAWING_ERROR_ATTRIBUTE_ID_MISMATCH} if the attribute id is not recognized or supported.
+ * @since 26.0.0
+ */
+OH_Drawing_ErrorCode OH_Drawing_SetTypographyStyleAttributeDoubleArray(OH_Drawing_TypographyStyle* style,
+    OH_Drawing_TypographyStyleAttributeId id, double* arrayValue, size_t arrayLength);
+
+/**
+ * @brief Gets the double array value for the typographic style attribute.
+ *
+ * @param style Indicates the pointer to an <b>OH_Drawing_TypographyStyle</b> object.
+ * @param id Indicates the attribute id.
+ * @param arrayValue Output parameter to receive the array value, When no longer needed, use 'free()' to release.
+ * @param arrayLength Output parameter to receive the length of the array.
+ * @return Returns the error code.
+ *         Returns {@link OH_DRAWING_SUCCESS} if the operation is successful.
+ *         Returns {@link OH_DRAWING_ERROR_INVALID_PARAMETER} if the style is nullptr.
+ *         Returns {@link OH_DRAWING_ERROR_ATTRIBUTE_ID_MISMATCH} if the attribute id is not recognized or supported.
+ * @since 26.0.0
+ */
+OH_Drawing_ErrorCode OH_Drawing_GetTypographyStyleAttributeDoubleArray(const OH_Drawing_TypographyStyle* style,
+    OH_Drawing_TypographyStyleAttributeId id, double** arrayValue, size_t* arrayLength);
+
 /**
  * @brief Type of badge.
  *
@@ -905,6 +957,18 @@ typedef struct {
     /** The families of the font to use when calculating the strut */
     char** families;
 } OH_Drawing_StrutStyle;
+
+/**
+ * @brief Defines the text rect struct.
+ *
+ * @since 24
+ */
+typedef struct OH_Drawing_RectSize {
+    /** Rect width */
+    double width;
+    /** Rect height */
+    double height;
+} OH_Drawing_RectSize;
 
 /**
  * @brief Creates an <b>OH_Drawing_TypographyStyle</b> object.
@@ -1163,11 +1227,11 @@ void OH_Drawing_TextStyleGetForegroundPen(OH_Drawing_TextStyle* style, OH_Drawin
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @param style Indicates the pointer to a text style object <b>OH_Drawing_TextStyle</b>.
- * @param foregroundPen Indicates the pointer to a brush object <b>OH_Drawing_Brush</b>.
+ * @param backgroundBrush Indicates the pointer to a brush object <b>OH_Drawing_Brush</b>.
  * @since 12
  * @version 1.0
  */
-void OH_Drawing_SetTextStyleBackgroundBrush(OH_Drawing_TextStyle* style, OH_Drawing_Brush* foregroundPen);
+void OH_Drawing_SetTextStyleBackgroundBrush(OH_Drawing_TextStyle* style, OH_Drawing_Brush* backgroundBrush);
 
 /**
  * @brief Gets the background brush style.
@@ -1295,13 +1359,13 @@ void OH_Drawing_TypographyLayout(OH_Drawing_Typography* typography, double maxWi
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @param typography Indicates the pointer to an <b>OH_Drawing_Typography</b> object.
  * @param canvas Indicates the pointer to an <b>OH_Drawing_Canvas</b> object.
- * @param potisionX Indicates the x coordinate.
- * @param potisionY Indicates the y coordinate.
+ * @param positionX Indicates the x coordinate.
+ * @param positionY Indicates the y coordinate.
  * @since 8
  * @version 1.0
  */
 void OH_Drawing_TypographyPaint(OH_Drawing_Typography* typography, OH_Drawing_Canvas* canvas,
-    double potisionX, double potisionY);
+    double positionX, double positionY);
 
 /**
  * @brief Paints path text on the canvas.
@@ -1317,6 +1381,49 @@ void OH_Drawing_TypographyPaint(OH_Drawing_Typography* typography, OH_Drawing_Ca
  */
 void OH_Drawing_TypographyPaintOnPath(OH_Drawing_Typography* typography, OH_Drawing_Canvas* canvas,
     OH_Drawing_Path* path, double hOffset, double vOffset);
+
+/**
+ * @brief Layout text within a constrained rectangle.
+ *
+ * @param typography Indicates the pointer to the text <b>OH_Drawing_Typography</b> object.
+ * @param constraintsRect Constraints height and width for layout.
+ * @param fitStrRangeArr On return, contains the character range of the paragraph that actually fit.
+ * Indicates the pointer to the array object <b>OH_Drawing_Array</b>.
+ * Releases memory by <b>OH_Drawing_ReleaseArrayBuffer</b>.
+ * @param fitStrRangeArrayLen On return, the size of the fit string array.
+ * @return Returns an <b>OH_Drawing_RectSize</b> object that represents the paragraph's actual rectangle.
+ * @since 24
+ */
+OH_Drawing_RectSize OH_Drawing_TypographyLayoutWithConstraintsWithBuffer(OH_Drawing_Typography* typography,
+    OH_Drawing_RectSize constraintsRect, OH_Drawing_Array** fitStrRangeArr, size_t* fitStrRangeArrayLen);
+
+/**
+ * @brief Get range by array index.
+ *
+ * @param array Indicates the pointer to the text <b>OH_Drawing_Array</b> object.
+ * @param index Range's index in array.
+ * @return Returns Indicates the pointer to an <b>OH_Drawing_Range</b> object.
+ * @since 24
+ */
+OH_Drawing_Range* OH_Drawing_GetRangeByArrayIndex(OH_Drawing_Array* array, size_t index);
+
+/**
+ * @brief Releases the memory occupied by an <b>OH_Drawing_Array</b> object.
+ *
+ * @param array Indicates the pointer to the text <b>OH_Drawing_Array</b> object.
+ * Supported array type: Fonts full name array, get by <b>OH_Drawing_GetSystemFontFullNamesByType</b>.
+ * Supported array type: Text lines array, get by <b>OH_Drawing_TypographyGetTextLines</b>.
+ * Supported array type: String indices array, get by <b>OH_Drawing_GetRunStringIndices</b>.
+ * Supported array type: Rect array, get by <b>OH_Drawing_RectCreateArray</b>.
+ * Supported array type: FontDescriptors array, get by <b>OH_Drawing_GetFontFullDescriptorsFromStream</b>.
+ * Supported array type: FontDescriptors array, get by <b>OH_Drawing_GetFontFullDescriptorsFromPath</b>.
+ * Supported array type: Text ranges array, get by <b>OH_Drawing_TypographyLayoutWithConstraintsWithBuffer</b>.
+ * @return Returns an error code.
+ *         Returns {@link OH_DRAWING_SUCCESS} if the operation is successful.
+ *         Returns {@link OH_DRAWING_ERROR_INCORRECT_PARAMETER} if the array is nullptr or not supported.
+ * @since 24
+ */
+OH_Drawing_ErrorCode OH_Drawing_ReleaseArrayBuffer(OH_Drawing_Array* array);
 
 /**
  * @brief Gets the max width.
@@ -1579,12 +1686,12 @@ size_t OH_Drawing_GetPositionFromPositionAndAffinity(OH_Drawing_PositionAndAffin
  * @brief Gets affinity from position and affinity.
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @param positionandaffinity Indicates the pointer to an <b>OH_Drawing_PositionAndAffinity</b> object.
+ * @param positionAndAffinity Indicates the pointer to an <b>OH_Drawing_PositionAndAffinity</b> object.
  * @return Returns affinity from position and affinity.
  * @since 11
  * @version 1.0
  */
-int OH_Drawing_GetAffinityFromPositionAndAffinity(OH_Drawing_PositionAndAffinity* positionandaffinity);
+int OH_Drawing_GetAffinityFromPositionAndAffinity(OH_Drawing_PositionAndAffinity* positionAndAffinity);
 
 /**
  * @brief Gets the word boundary.
@@ -2402,6 +2509,17 @@ void OH_Drawing_TextStyleAddFontFeature(OH_Drawing_TextStyle* style, const char*
  * @version 1.0
  */
 void OH_Drawing_TextStyleAddFontVariation(OH_Drawing_TextStyle* style, const char* axis, const float value);
+
+/**
+ * @brief Add font variation with normalization data.
+ *
+ * @param style Indicates the pointer to an <b>OH_Drawing_TextStyle</b> object.
+ * @param axis Indicates the pointer to font variation axis.
+ * @param normalizedValue Indicates the font variation value to set.
+ * @since 24
+ */
+void OH_Drawing_TextStyleAddFontVariationWithNormalization(OH_Drawing_TextStyle* style,
+    const char* axis, const float normalizedValue);
 
 /**
  * @brief Get all font features.

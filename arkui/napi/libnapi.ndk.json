@@ -302,5 +302,21 @@
     {
         "first_introduced": "23",
         "name": "napi_throw_business_error"
+    },
+    {
+        "first_introduced": "24",
+        "name": "napi_create_callsite_info"
+    },
+    {
+        "first_introduced": "24",
+        "name": "napi_delete_callsite_info"
+    },
+    {
+        "first_introduced": "24",
+        "name": "napi_get_property_with_callsite_info"
+    },
+    {
+        "first_introduced": "24",
+        "name": "napi_set_property_with_callsite_info"
     }
 ]

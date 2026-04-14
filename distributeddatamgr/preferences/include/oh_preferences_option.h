@@ -4,7 +4,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -12,7 +12,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 /**
  * @addtogroup Preferences
  * @{
@@ -23,12 +22,11 @@
  *
  * @since 13
  */
-
 /**
  * @file oh_preferences_option.h
  *
- * @brief Defines the APIs and enums related to preferences option.
- *
+ * @brief Provides APIs and structs for accessing the **PreferencesOption** object.
+ * 
  * @kit ArkData
  * @library libohpreferences.so
  * @syscap SystemCapability.DistributedDataManager.Preferences.Core
@@ -46,93 +44,106 @@ extern "C" {
 #endif
 
 /**
- * @brief Represents an OH_PreferencesOption instance.
- *
+ * @brief Defines a struct for **Preferences** configuration.
+ * 
  * @since 13
  */
 typedef struct OH_PreferencesOption OH_PreferencesOption;
 
 /**
  * @brief Enumerates the preferences storage types.
- *
+ * 
  * @since 18
  */
 typedef enum Preferences_StorageType {
-    /** XML storage*/
+    /**
+     * XML. In this type is used, data operations are performed in the memory and data is persisted after
+     * {@link OH_Preferences_Close} is called. This type does not multi-processes operations.
+    */
     PREFERENCES_STORAGE_XML = 0,
-    /** GSKV storage */
+    /**
+     * CLKV. If this type is used, data operations are flushed on a real-time basis. This type supports multi-process
+     * operations.
+    */
     PREFERENCES_STORAGE_GSKV
 } Preferences_StorageType;
 
 /**
- * @brief Creates an {@Link OH_PreferencesOption} instance.
- *
- * @return Returns a pointer to the {@Link OH_PreferencesOption} instance created if the operation is successful;
- * returns nullptr otherwise while malloc memory failed.
+ * @brief Creates a {@link OH_PreferencesOption} instance and a pointer to it.
+ * If this pointer is no longer required, use {@link OH_PreferencesOption_Destroy} to destroy it. Otherwise, memory
+ * leaks may occur.
+ * 
+ * @return Returns a pointer to the {@link OH_PreferencesOption} instance created if the operation is successful;
+ * returns a null pointer otherwise.
  * @see OH_PreferencesOption.
  * @since 13
  */
 OH_PreferencesOption *OH_PreferencesOption_Create(void);
 
 /**
- * @brief Sets the file path in an {@Link OH_PreferencesOption} instance.
- *
- * @param option Pointer to the target {@Link OH_PreferencesOption} instance.
+ * @brief Sets the file name for an {@link OH_PreferencesOption} instance.
+ * 
+ * @param option Pointer to the {@link OH_PreferencesOption} instance.
  * @param fileName Pointer to the file name to set.
- * @return Returns the status code of the execution.
- *         {@link PREFERENCES_OK} success.
- *         {@link PREFERENCES_ERROR_INVALID_PARAM} indicates invalid args are passed in.
+ * @return Error code.
+ * **PREFERENCES_OK** indicates the operation is successful.
+ * **PREFERENCES_ERROR_INVALID_PARAM** indicates invalid parameters are specified.
  * @see OH_PreferencesOption.
  * @since 13
  */
 int OH_PreferencesOption_SetFileName(OH_PreferencesOption *option, const char *fileName);
 
 /**
- * @brief Sets the bundle name in an {@Link OH_PreferencesOption} instance.
- *
- * @param option Pointer to the target {@Link OH_PreferencesOption} instance.
+ * @brief Sets the bundle name for an {@link OH_PreferencesOption} instance.
+ * 
+ * @param option Pointer to the {@link OH_PreferencesOption} instance.
  * @param bundleName Pointer to the bundle name to set.
- * @return Returns the status code of the execution.
- *         {@link PREFERENCES_OK} success.
- *         {@link PREFERENCES_ERROR_INVALID_PARAM} indicates invalid args are passed in.
+ * @return Error code.
+ * **PREFERENCES_OK** indicates the operation is successful.
+ * **PREFERENCES_ERROR_INVALID_PARAM** indicates invalid parameters are specified.
  * @see OH_PreferencesOption.
  * @since 13
  */
 int OH_PreferencesOption_SetBundleName(OH_PreferencesOption *option, const char *bundleName);
 
 /**
- * @brief Sets the data group ID in an {@Link OH_PreferencesOption} instance.
- *
- * @param option Represents a pointer to an {@link OH_PreferencesOption} instance.
- * @param dataGroupId Represents preferences data group id param.
- * @return Returns the status code of the execution.
- *         {@link PREFERENCES_OK} success.
- *         {@link PREFERENCES_ERROR_INVALID_PARAM} indicates invalid args are passed in.
+ * @brief Sets the application group ID for an {@link OH_PreferencesOption} instance.
+ * After the application group ID is set, the **Preferences** instance will be created in the sandbox directory of the
+ * application group ID. The application group ID must be obtained from AppGallery. This parameter is not supported
+ * currently.
+ * If the application group ID is an empty string, the **Preferences** instance will be created in the sandbox
+ * directory of the current application.
+ * 
+ * @param option Pointer to the {@link OH_PreferencesOption} instance.
+ * @param dataGroupId Pointer to the application group ID to set.
+ * @return Error code.
+ * **PREFERENCES_OK** indicates the operation is successful.
+ * **PREFERENCES_ERROR_INVALID_PARAM** indicates invalid parameters are specified.
  * @see OH_PreferencesOption.
  * @since 13
  */
 int OH_PreferencesOption_SetDataGroupId(OH_PreferencesOption *option, const char *dataGroupId);
 
 /**
- * @brief Sets the storage type in an {@Link OH_PreferencesOption} instance.
- *
- * @param option Represents a pointer to an {@link OH_PreferencesOption} instance.
- * @param type Represents preferences storage type.
- * @return Returns the status code of the execution.
- *         {@link PREFERENCES_OK} success.
- *         {@link PREFERENCES_ERROR_INVALID_PARAM} indicates invalid args are passed in.
+ * @brief Sets the storage type for a **Preferences** instance.
+ * 
+ * @param option Pointer to the configuration whose storage type is to set.
+ * @param type Storage type to set.
+ * @return Error code.
+ * **PREFERENCES_OK** indicates the operation is successful.
+ * **PREFERENCES_ERROR_INVALID_PARAM** indicates invalid parameters are specified.
  * @see OH_PreferencesOption.
  * @since 18
  */
 int OH_PreferencesOption_SetStorageType(OH_PreferencesOption *option, Preferences_StorageType type);
 
 /**
- * @brief Destroys an {@Link OH_PreferencesOption} instance.
- *
- * @param option Pointer to the {@Link OH_PreferencesOption} instance to destroy.
- * @return Returns the status code of the execution.
- *         {@link PREFERENCES_OK} indicates the operation is successful.
- *         {@link PREFERENCES_ERROR_INVALID_PARAM} indicates invalid args are passed in.
+ * @brief Destroys an {@link OH_PreferencesOption} instance.
+ * 
+ * @param option Pointer to the {@link OH_PreferencesOption} instance.
+ * @return Operation status code.
+ * **PREFERENCES_OK** indicates the operation is successful.
+ * **PREFERENCES_ERROR_INVALID_PARAM** indicates invalid parameters are specified.
  * @see OH_PreferencesOption.
  * @since 13
  */

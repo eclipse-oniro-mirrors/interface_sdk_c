@@ -1082,6 +1082,21 @@ typedef enum {
      */
     KEYCODE_KBDINPUTASSIST_CANCEL = 2731,
     /**
+     * Mouse Assistant key
+     * @since 24
+     */
+    KEYCODE_MOUSE_ASSISTANT = 2732,
+    /**
+     * Mouse Intelligence Selection key
+     * @since 24
+     */
+    KEYCODE_MOUSE_INTELLIGENCE_SELECTION = 2733,
+    /**
+     * Single tapping the smart phone's touch screen event, which is used when the Always On Display is enabled
+     * @since 26.0.0
+     */
+    KEYCODE_AOD_SINGLE_CLICK = 2740,
+    /**
      * Front key, which is used to launch the windshield defogger
      * @since 22
      */
@@ -1385,7 +1400,12 @@ typedef enum {
      * Smart watch's left button
      * @since 22
      */
-    KEYCODE_DIV = 3220
+    KEYCODE_DIV = 3220,
+    /**
+     * XKEY
+     * @since 26.0.0
+     */
+    KEYCODE_XKEY = 3232,
 } Input_KeyCode;
 
 #ifdef __cplusplus
