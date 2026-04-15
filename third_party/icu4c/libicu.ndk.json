@@ -897,7 +897,7 @@
     },
     {
         "first_introduced": "12",
-        "name":"UCNV_TO_U_CALLBACK_ESCAPE "
+        "name":"UCNV_TO_U_CALLBACK_ESCAPE"
     },
     {
         "first_introduced": "12",
@@ -2186,5 +2186,33 @@
     {
         "first_introduced": "22",
         "name":"utrans_transIncrementalUChars"
+    },
+    {
+        "first_introduced": "26",
+        "name": "UCNV_FROM_U_CALLBACK_STOP"
+    },
+    {
+        "first_introduced": "26",
+        "name": "UCNV_TO_U_CALLBACK_STOP"
+    },
+    {
+        "first_introduced": "26",
+        "name": "UCNV_FROM_U_CALLBACK_SKIP"
+    },
+    {
+        "first_introduced": "26",
+        "name": "UCNV_FROM_U_CALLBACK_SUBSTITUTE"
+    },
+    {
+        "first_introduced": "26",
+        "name": "UCNV_FROM_U_CALLBACK_ESCAPE"
+    },
+    {
+        "first_introduced": "26",
+        "name": "UCNV_TO_U_CALLBACK_SKIP"
+    },
+    {
+        "first_introduced": "26",
+        "name": "UCNV_TO_U_CALLBACK_SUBSTITUTE"
     }
 ]
