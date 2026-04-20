@@ -147,7 +147,7 @@ OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_AcquireAudioBuffer(struct OH_AVSc
  * @syscap SystemCapability.Multimedia.Media.AVScreenCapture
  * @param capture Pointer to an OH_AVScreenCapture instance
  * @param fence A processing state of display buffer
- * @param timestamp Information about the video buffer
+ * @param timestamp Information about the video buffer, in nanosecond
  * @param region Information about the video buffer
  * @return Returns a pointer to an OH_NativeBuffer instance
  * @since 10
