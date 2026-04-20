@@ -248,6 +248,22 @@
         "name": "OH_AudioRoutingManager_ReleaseDevices"
     },
     {
+        "first_introduced": "26.0.0",
+        "name": "OH_AudioRoutingManager_RegisterPreferredOutputDevicesChangeCallback"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_AudioRoutingManager_UnregisterPreferredOutputDevicesChangeCallback"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_AudioRoutingManager_RegisterPreferredInputDevicesChangeCallback"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_AudioRoutingManager_UnregisterPreferredInputDevicesChangeCallback"
+    },
+    {
         "first_introduced": "12",
         "name": "OH_AudioDeviceDescriptor_GetDeviceRole"
     },

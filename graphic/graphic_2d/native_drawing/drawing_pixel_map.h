@@ -4,7 +4,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -19,16 +19,13 @@
  *
  * @brief Provides functions such as 2D graphics rendering, text drawing, and image display.
  *
- * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- *
  * @since 8
  * @version 1.0
  */
-
 /**
  * @file drawing_pixel_map.h
  *
- * @brief Declares functions related to the <b>pixelmap</b> object in the drawing module.
+ * @brief This file declares the functions related to the pixel map in the drawing module.
  *
  * @kit ArkGraphics2D
  * @library libnative_drawing.so
@@ -47,49 +44,52 @@ extern "C" {
 #endif
 
 /**
- * @brief Introduces the native pixel map information defined by image framework.
+ * @brief Defines a pixel map defined by the image framework.
+ *
  * @since 12
  * @version 1.0
  */
 typedef struct NativePixelMap_ NativePixelMap_;
 
 /**
- * @brief Introduces the native pixel map information defined by image framework.
+ * @brief Defines a pixel map defined by the image framework.
+ *
  * @since 12
  * @version 1.0
  */
 typedef struct OH_PixelmapNative OH_PixelmapNative;
 
 /**
- * @brief Gets an <b>OH_Drawing_PixelMap</b> object.
+ * @brief Obtains the pixel map defined by this module from a pixel map defined by the image framework.
  *
- * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @param nativePixelMap Indicates a pointer to an native pixelmap supported by image framework.
- * @return Returns the pointer to the <b>OH_Drawing_PixelMap</b> object.
+ * @param nativePixelMap Pointer to a {@link NativePixelMap_} object, which is the pixel map defined by the image
+ * framework.
+ * @return Returns the pointer to an {@link OH_Drawing_PixelMap} object, which is the pixel map defined by this module.
+ * If NULL is returned, the creation fails. The possible failure cause is that **NativePixelMap_** is NULL.
  * @since 12
  * @version 1.0
  */
 OH_Drawing_PixelMap* OH_Drawing_PixelMapGetFromNativePixelMap(NativePixelMap_* nativePixelMap);
 
 /**
- * @brief Gets an <b>OH_Drawing_PixelMap</b> object.
+ * @brief Obtains the pixel map defined by this module from a pixel map defined by the image framework.
  *
- * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @param pixelmapNative Indicates a pointer to the <b>OH_PixelmapNative</b> object supported by image framework.
- * @return Returns the pointer to the <b>OH_Drawing_PixelMap</b> object.
- *         If nullptr is returned, the get operation fails.
- *         The possible cause of the failure is that a nullptr is passed.
+ * @param pixelmapNative Pointer to a {@link OH_PixelmapNative} object, which is the pixel map defined by the image
+ * framework.
+ * @return Returns the pointer to an {@link OH_Drawing_PixelMap} object, which is the pixel map defined by this module.
+ * If NULL is returned, the creation fails. The possible failure cause is that **OH_PixelmapNative** is NULL.
  * @since 12
  * @version 1.0
  */
 OH_Drawing_PixelMap* OH_Drawing_PixelMapGetFromOhPixelMapNative(OH_PixelmapNative* pixelmapNative);
 
 /**
- * @brief Dissolves the relationship between <b>OH_Drawing_PixelMap</b> object and <b>NativePixelMap_</b> or
-          <b>OH_PixelmapNative</b> which is build by 'GetFrom' function.
+ * @brief Removes the relationship between a pixel map defined by this module and a pixel map defined by the image
+ * framework. The relationship is established by calling  {@link OH_Drawing_PixelMapGetFromNativePixelMap}  or
+ * {@link OH_Drawing_PixelMapGetFromOhPixelMapNative}
+ * .
  *
- * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @param pixelMap Indicates a pointer to the <b>OH_Drawing_PixelMap</b>.
+ * @param pixelMap Pointer to an {@link OH_Drawing_PixelMap} object.
  * @since 12
  * @version 1.0
  */

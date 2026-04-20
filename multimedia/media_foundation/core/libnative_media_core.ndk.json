@@ -35,5 +35,29 @@
     { "name": "OH_AVBuffer_SetParameter" },
     { "name": "OH_AVBuffer_GetAddr" },
     { "name": "OH_AVBuffer_GetCapacity" },
-    { "name": "OH_AVBuffer_GetNativeBuffer" }
+    { "name": "OH_AVBuffer_GetNativeBuffer" },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_AudioVividMetaBuilder_Create"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_AudioVividMetaBuilder_UpdateObjectPos"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_AudioVividMetaBuilder_UpdateObjectGain"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_AudioVividMetaBuilder_GetMetaLen"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_AudioVividMetaBuilder_GetMeta"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_AudioVividMetaBuilder_Destroy"
+    }
 ]

@@ -45,7 +45,7 @@ extern "C" {
 #endif
 
 /**
- * @brief Defines the native displaySoloist struct.
+ * @brief Provides the declaration of an **OH_DisplaySoloist** struct.
  *
  * @since 12
  * @version 1.0
@@ -53,61 +53,67 @@ extern "C" {
 typedef struct OH_DisplaySoloist OH_DisplaySoloist;
 
 /**
- * @brief Defines the native displaySoloist callback.
+ * @brief Defines the pointer to an OH_DisplaySoloist callback function.
  *
- * @param timestamp Indicates the current timestamp.
- * @param targetTimestamp Indicates the target timestamp.
- * @param data Indicates the pointer to user data.
+ * @param timestamp Current frame VSync timestamp.
+ * @param targetTimestamp Expected VSync timestamp of the next frame.
+ * @param data Pointer to user-defined data.
  * @since 12
  * @version 1.0
  */
 typedef void (*OH_DisplaySoloist_FrameCallback)(long long timestamp, long long targetTimestamp, void* data);
 
 /**
- * @brief Defines the expected frame rate range struct.
+ * @brief This struct describes the expected frame rate range.
  *
  * @since 12
  * @version 1.0
  */
 typedef struct {
-    /** The minimum frame rate of dynamical callback rate range. */
+    /**
+     * Minimum value of the expected frame rate range. The value range is [0,120].
+     */
     int32_t min;
-    /** The maximum frame rate of dynamical callback rate range. */
+    /**
+     * Maximum value of the expected frame rate range. The value range is [0,120].
+     */
     int32_t max;
-    /** The expected frame rate of dynamical callback rate range. */
+    /**
+     * Expected frame rate. The value range is [0,120].
+     */
     int32_t expected;
 } DisplaySoloist_ExpectedRateRange;
 
 /**
- * @brief Creates a <b>OH_DisplaySoloist</b> instance.\n
+ * @brief Creates an **OH_DisplaySoloist** instance. A new **OH_DisplaySoloist** instance is created each time this API
+ * is called.
  *
- * @param useExclusiveThread Indicates whether the vsync run in a exclusive thread.
- * @return Returns the pointer to the <b>OH_DisplaySoloist</b> instance created if the execution is successful.
- * if nullptr is returned, the creation fails.
- * the possible cause of the failure is that the available memory is empty.
+ * @param useExclusiveThread Whether the **OH_DisplaySoloist** instance is an exclusive thread. **true** means yes; **
+ * false** otherwise.
+ * @return Returns the pointer to the {@link OH_DisplaySoloist} instance created if the operation is successful;
+ * returns a null pointer otherwise. The failure cause may be out of memory.
  * @since 12
  * @version 1.0
  */
 OH_DisplaySoloist* OH_DisplaySoloist_Create(bool useExclusiveThread);
 
 /**
- * @brief Destroys a <b>OH_DisplaySoloist</b> instance and reclaims the memory occupied by the object.
+ * @brief Destroys an **OH_DisplaySoloist** object and reclaims the memory occupied.
  *
- * @param displaySoloist Indicates the pointer to a native displaySoloist.
- * @return Returns int32_t, returns 0 if the execution is successful, returns -1 if displaySoloist is incorrect.
+ * @param displaySoloist Pointer to the {@link OH_DisplaySoloist} instance.
+ * @return Returns **0** if the operation is successful; returns **-1** otherwise.
  * @since 12
  * @version 1.0
  */
 int32_t OH_DisplaySoloist_Destroy(OH_DisplaySoloist* displaySoloist);
 
 /**
- * @brief Start to request next vsync with callback.
+ * @brief Sets a callback function for each frame. The callback function is triggered each time a VSync signal arrives.
  *
- * @param displaySoloist Indicates the pointer to a native displaySoloist.
- * @param callback Indicates the OH_DisplaySoloist_FrameCallback which will be called when next vsync coming.
- * @param data Indicates data whick will be used in callback.
- * @return Returns int32_t, returns 0 if the execution is successful.
- * returns -1 if displaySoloist or callback is incorrect.
+ * @param displaySoloist Pointer to the {@link OH_DisplaySoloist} instance.
+ * @param callback Callback function to be triggered when the next VSync signal arrives.
+ * @param data Pointer to the user-defined data struct. The type is void.
+ * @return Returns **0** if the operation is successful; returns **-1** otherwise.
  * @since 12
  * @version 1.0
  */
@@ -117,20 +123,19 @@ int32_t OH_DisplaySoloist_Start(
 /**
  * @brief Stop to request next vsync with callback.
  *
- * @param displaySoloist Indicates the pointer to a native displaySoloist.
- * @return Returns int32_t, returns 0 if the execution is successful, returns -1 if displaySoloist is incorrect.
+ * @param displaySoloist Pointer to the {@link OH_DisplaySoloist} instance.
+ * @return Returns **0** if the operation is successful; returns **-1** otherwise.
  * @since 12
  * @version 1.0
  */
 int32_t OH_DisplaySoloist_Stop(OH_DisplaySoloist* displaySoloist);
 
 /**
- * @brief Set vsync expected frame rate range.
+ * @brief Sets the expected frame rate range.
  *
- * @param displaySoloist Indicates the pointer to a native displaySoloist.
- * @param range Indicates the pointer to an expected rate range.
- * @return Returns int32_t, returns 0 if the execution is successful
- * returns -1 if displaySoloist or range is incorrect.
+ * @param displaySoloist Pointer to the {@link OH_DisplaySoloist} instance.
+ * @param range Pointer to the {@link DisplaySoloist_ExpectedRateRange} instance.
+ * @return Returns **0** if the operation is successful; returns **-1** otherwise.
  * @since 12
  * @version 1.0
  */

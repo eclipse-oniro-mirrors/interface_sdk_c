@@ -587,6 +587,32 @@ static const char* const COMMON_EVENT_MANAGED_BROWSER_POLICY_CHANGED = "usual.ev
 static const char* const COMMON_EVENT_TABLET_MODE_CHANGED = "usual.event.TABLET_MODE_CHANGED";
 
 /**
+ * @brief This common event indicates that specific volumes on the device have been decrypted.
+ * This is a protected common event that can only be sent by system.
+ *
+ * @since 26.0.0
+ */
+static const char* const COMMON_EVENT_VOLUME_DECRYPTED = "usual.event.VOLUME_DECRYPTED";
+
+/**
+ * @brief This common event indicates that specific volumes on the device have been encrypted.
+ * This is a protected common event that can only be sent by system.
+ *
+ * @since 26.0.0
+ */
+static const char* const COMMON_EVENT_VOLUME_ENCRYPTED = "usual.event.VOLUME_ENCRYPTED";
+
+/**
+ * @brief This common event indicates that specific volumes on the device have had their encryption policy set.
+ * To subscribe to this protected common event, your application must have the
+ * ohos.permission.QUERY_VOLUME_ENCRYPTION_STATUS permission.
+ * This is a protected common event that can only be sent by system.
+ *
+ * @since 26.0.0
+ */
+static const char* const COMMON_EVENT_VOLUME_ENCRYPTION_POLICY_SET = "usual.event.VOLUME_ENCRYPTION_POLICY_SET";
+
+/**
  * @brief This common event means that the state (open or closed) of the laptop lid has changed.
  * This is a protected common event that can only be sent by system.
  * @since 23

@@ -4,7 +4,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -12,7 +12,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 /**
  * @addtogroup rawfile
  * @{
@@ -24,13 +23,11 @@
  * @since 8
  * @version 1.0
  */
-
 /**
  * @file raw_file_manager.h
  *
- * @brief Declares native functions for the resource manager.
- *
- * You can use the resource manager to open raw files for subsequent operations, such as seeking and reading.
+ * @brief Provides file management functions for the **rawfile** directory. You can use the **ResourceManager** to open
+ * a rawfile and perform operations such as data search and reading.
  *
  * @syscap SystemCapability.Global.ResourceManager
  * @library librawfile.z.so
@@ -52,10 +49,9 @@ extern "C" {
 struct NativeResourceManager;
 
 /**
- * @brief Presents the resource manager.
- *
- * This class encapsulates the native implementation of the JavaScript resource manager. The pointer to a
- * <b>ResourceManager</b> object can be obtained by calling {@link OH_ResourceManager_InitNativeResourceManager}.
+ * @brief Represents the native **ResourceManager**. This class encapsulates the native implementation of the
+ * JavaScript **ResourceManager**. The pointer to **ResourceManager** can be obtained by using
+ * {@link OH_ResourceManager_InitNativeResourceManager}.
  *
  * @since 8
  * @version 1.0
@@ -63,40 +59,35 @@ struct NativeResourceManager;
 typedef struct NativeResourceManager NativeResourceManager;
 
 /**
- * @brief Obtains the native resource manager based on the JavaScript resource manager.
+ * @brief Obtains the native **ResourceManager** based on the JavaScript **ResourceManager** to implement rawfile-
+ * specific functions.
  *
- * You need to obtain the resource manager to process raw files as required.
- *
- * @param env Indicates the pointer to the JavaScript Native Interface (napi) environment.
- * @param jsResMgr Indicates the JavaScript resource manager.
- * @return Returns the pointer to {@link NativeResourceManager}. If failed returns nullptr.
+ * @param env Pointer to the JavaScript Native API (napi) environment.
+ * @param jsResMgr JavaScript **ResourceManager** object.
+ * @return Pointer to {@link NativeResourceManager}. If the operation fails, a null pointer is returned.
  * @since 8
  * @version 1.0
  */
 NativeResourceManager *OH_ResourceManager_InitNativeResourceManager(napi_env env, napi_value jsResMgr);
 
 /**
- * @brief Releases the native resource manager.
+ * @brief Releases the native **ResourceManager**.
  *
- *
- *
- * @param resMgr Indicates the pointer to {@link RawDir}.
+ * @param resMgr Pointer to {@link NativeResourceManager}.
  * @since 8
  * @version 1.0
  */
 void OH_ResourceManager_ReleaseNativeResourceManager(NativeResourceManager *resMgr);
 
 /**
- * @brief Opens a raw file directory.
+ * @brief Traverses all files in the **rawfile** directory.
  *
- * After it is opened, you can traverse its raw files.
- *
- * @param mgr Indicates the pointer to {@link NativeResourceManager} obtained by calling
+ * @param mgr Pointer to {@link NativeResourceManager}, which is obtained by calling
  * {@link OH_ResourceManager_InitNativeResourceManager}.
- * @param dirName Indicates the name of the raw file directory to open. You can pass an empty string to open the
- * top-level raw file directory.
- * @return Returns the pointer to {@link RawDir}. If failed or mgr is nullptr also returns nullptr.
- *         After you finish using the pointer, call {@link OH_ResourceManager_CloseRawDir} to release it.
+ * @param dirName Pointer to the name of the directory to open. If this field is left empty, the root directory will be
+ * opened.
+ * @return Pointer to {@link RawDir}. After using the pointer, call {@link OH_ResourceManager_CloseRawDir} to release
+ * it. If the operation fails or **mgr** is empty, a null pointer is returned.
  * @see OH_ResourceManager_InitNativeResourceManager
  * @see OH_ResourceManager_CloseRawDir
  * @since 8
@@ -105,15 +96,13 @@ void OH_ResourceManager_ReleaseNativeResourceManager(NativeResourceManager *resM
 RawDir *OH_ResourceManager_OpenRawDir(const NativeResourceManager *mgr, const char *dirName);
 
 /**
- * @brief Opens a raw file.
+ * @brief Opens a rawfile and reads the data in it.
  *
- * After it is opened, you can read its data.
- *
- * @param mgr Indicates the pointer to {@link NativeResourceManager} obtained by calling
+ * @param mgr Pointer to {@link NativeResourceManager}, which is obtained by calling
  * {@link OH_ResourceManager_InitNativeResourceManager}.
- * @param fileName Indicates the file path relative to the top-level raw file directory.
- * @return Returns the pointer to {@link RawFile}. If failed or mgr and fileName is nullptr also returns nullptr.
- * After you finish using the pointer, call {@link OH_ResourceManager_CloseRawFile} to release it.
+ * @param fileName Pointer to the name of the file in the relative path of the **rawfile** root directory.
+ * @return Pointer to {@link RawDir}. After using the pointer, call {@link OH_ResourceManager_CloseRawFile} to release
+ * it. If the operation fails or **mgr** or **fileName** is empty, a null pointer is returned.
  * @see OH_ResourceManager_InitNativeResourceManager
  * @see OH_ResourceManager_CloseRawFile
  * @since 8
@@ -122,15 +111,13 @@ RawDir *OH_ResourceManager_OpenRawDir(const NativeResourceManager *mgr, const ch
 RawFile *OH_ResourceManager_OpenRawFile(const NativeResourceManager *mgr, const char *fileName);
 
 /**
- * @brief Opens a raw file.
+ * @brief Opens a large rawfile and reads the data in it.
  *
- * After it is opened, you can read its data.
- *
- * @param mgr Indicates the pointer to {@link NativeResourceManager} obtained by calling
+ * @param mgr Pointer to {@link NativeResourceManager}, which is obtained by calling
  * {@link OH_ResourceManager_InitNativeResourceManager}.
- * @param fileName Indicates the file path relative to the top-level raw file directory.
- * @return Returns the pointer to {@link RawFile64}. If failed or mgr and fileName is nullptr also returns nullptr.
- * After you finish using the pointer, call {@link OH_ResourceManager_CloseRawFile64} to release it.
+ * @param fileName Pointer to the name of the file in the relative path of the **rawfile** root directory.
+ * @return Pointer to {@link RawFile64}. After using this pointer, call {@link OH_ResourceManager_CloseRawFile64} to
+ * release it. If the operation fails or **mgr** or **fileName** is empty, a null pointer is returned.
  * @see OH_ResourceManager_InitNativeResourceManager
  * @see OH_ResourceManager_CloseRawFile64
  * @since 11
@@ -139,12 +126,12 @@ RawFile *OH_ResourceManager_OpenRawFile(const NativeResourceManager *mgr, const 
 RawFile64 *OH_ResourceManager_OpenRawFile64(const NativeResourceManager *mgr, const char *fileName);
 
 /**
- * @brief Whether the rawfile resource is a directory or not.
+ * @brief Checks whether the path of a raw file is a subdirectory in the **rawfile** directory.
  *
- * @param mgr Indicates the pointer to {@link NativeResourceManager} obtained by calling
+ * @param mgr Pointer to {@link NativeResourceManager}, which is obtained by calling
  * {@link OH_ResourceManager_InitNativeResourceManager}.
- * @param path Indicates the rawfile resource relative path.
- * @return Returns true means the file path is directory, else false.
+ * @param path Path of a rawfile.
+ * @return **true** if the path is a subdirectory in the **rawfile** directory; **false** otherwise.
  * @since 12
  * @version 1.0
  */

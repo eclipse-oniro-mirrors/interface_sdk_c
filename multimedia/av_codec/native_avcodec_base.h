@@ -1495,6 +1495,54 @@ extern const char *OH_MD_KEY_LONGITUDE;
 extern const char *OH_MD_KEY_ALTITUDE;
 
 /**
+ * @brief Key for getting screen capture rectangular window. Value type is a int32_t array, the array length is 4.
+ * Get the rectangular window in captured screen, represent [top, left, width, height] in the int32_t array,
+ * which can be obtained by calling {@link OH_AVFormat_GetIntBuffer}.
+ *
+ * @since 26.0.0
+ */
+extern const char *OH_MD_KEY_SCREEN_CAPTURE_WINDOW_RECT;
+
+/**
+ * @brief Key for setting the Audio Vivid signal input format.
+ *
+ * Required for Audio Vivid encoder. Specifies the signal format of input data.
+ * The value should be from {@link OH_AudioVividSignalFormat}.
+ *
+ * @since 26.0.0
+ */
+extern const char *OH_MD_KEY_AUDIO_VIVID_SIGNAL_FORMAT;
+
+/**
+ * @brief Key for setting the soundbed channel layout.
+ *
+ * Configures the channel layout for soundbed. The value should be from {@link OH_AudioChannelLayout}.
+ *
+ * @since 26.0.0
+ */
+extern const char *OH_MD_KEY_AUDIO_SOUNDBED_LAYOUT;
+
+/**
+ * @brief Key for setting the soundbed bitrate in bits per second.
+ *
+ * Configures the bitrate for soundbed channels. The actual bitrate may be adjusted by the encoder
+ * based on codec capabilities and constraints.
+ *
+ * @since 26.0.0
+ */
+extern const char *OH_MD_KEY_AUDIO_SOUNDBED_BITRATE;
+
+/**
+ * @brief Key for setting the audio object bitrate in bits per second.
+ *
+ * Configures the bitrate for audio objects. The actual bitrate may be adjusted by the encoder
+ * based on codec capabilities and constraints.
+ *
+ * @since 26.0.0
+ */
+extern const char *OH_MD_KEY_AUDIO_OBJECT_BITRATE;
+
+/**
  * @brief Media type.
  *
  * @syscap SystemCapability.Multimedia.Media.CodecBase
@@ -1789,6 +1837,11 @@ typedef enum OH_AVOutputFormat {
      * @since 23
      */
     AV_OUTPUT_FORMAT_OGG = 13,
+    /**
+     * The muxer output flv file format.
+     * @since 26.0.0
+     */
+    AV_OUTPUT_FORMAT_FLV = 14,
 } OH_AVOutputFormat;
 
 /**

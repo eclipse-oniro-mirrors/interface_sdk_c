@@ -4,7 +4,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -18,17 +18,14 @@
  * @{
  *
  * @brief Provides functions such as 2D graphics rendering, text drawing, and image display.
- * 
- * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  *
  * @since 8
  * @version 1.0
  */
-
 /**
  * @file drawing_color.h
  *
- * @brief Declares functions related to the <b>color</b> object in the drawing module.
+ * @brief This file declares the functions related to the color in the drawing module.
  *
  * @kit ArkGraphics2D
  * @library libnative_drawing.so
@@ -49,11 +46,10 @@ extern "C" {
 /**
  * @brief Converts four variables (alpha, red, green, and blue) into a 32-bit (ARGB) variable that describes a color.
  *
- * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @param alpha Indicates a variable that describes alpha. The value ranges from 0x00 to 0xFF.
- * @param red Indicates a variable that describes red. The value ranges from 0x00 to 0xFF.
- * @param green Indicates a variable that describes green. The value ranges from 0x00 to 0xFF.
- * @param blue Indicates a variable that describes blue. The value ranges from 0x00 to 0xFF.
+ * @param alpha Alpha, which is a variable ranging from 0x00 to 0xFF.
+ * @param red Read, which is a variable ranging from 0x00 to 0xFF.
+ * @param green Green, which is a variable ranging from 0x00 to 0xFF.
+ * @param blue Blue, which is a variable ranging from 0x00 to 0xFF.
  * @return Returns a 32-bit (ARGB) variable that describes the color.
  * @since 8
  * @version 1.0

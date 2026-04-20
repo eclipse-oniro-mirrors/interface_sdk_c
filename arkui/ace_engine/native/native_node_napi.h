@@ -90,11 +90,11 @@ int32_t OH_ArkUI_GetNodeContentFromNapiValue(napi_env env, napi_value value, Ark
 
 /**
  * @brief Obtains a <b>DrawableDescriptor</b> object on the ArkTS side and maps it to an
- * <b>ArkUI_DrawableDescriptro</b> object on the native side.
+ * <b>ArkUI_DrawableDescriptor</b> object on the native side.
  *
  * @param env Indicates the NAPI environment pointer.
  * @param value Indicates the <b>DrawableDescriptor</b> object created on the ArkTS side.
- * @param drawableDescriptor Indicates the pointer to the <b>ArkUI_DrawableDescriptro</b> object.
+ * @param drawableDescriptor Indicates the pointer to the <b>ArkUI_DrawableDescriptor</b> object.
  * @return Returns the error code.
  *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
  *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
@@ -105,11 +105,11 @@ int32_t OH_ArkUI_GetDrawableDescriptorFromNapiValue(
 
 /**
  * @brief Obtains a <b>Resource</b> object on the ArkTS side and maps it to an
- * <b>ArkUI_DrawableDescriptro</b> object on the native side.
+ * <b>ArkUI_DrawableDescriptor</b> object on the native side.
  *
  * @param env Indicates the NAPI environment pointer.
  * @param value Indicates the <b>Resource</b> object created on the ArkTS side.
- * @param drawableDescriptor Indicates the pointer to the <b>ArkUI_DrawableDescriptro</b> object.
+ * @param drawableDescriptor Indicates the pointer to the <b>ArkUI_DrawableDescriptor</b> object.
  * @return Returns the error code.
  *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
  *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.

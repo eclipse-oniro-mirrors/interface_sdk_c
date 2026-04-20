@@ -66,6 +66,21 @@ typedef void (*OH_WindowManager_FrameMetricsMeasuredCallback)(
     int32_t windowId, const OH_WindowManager_FrameMetrics* metrics);
 
 /**
+ * @brief Window density information, including the system display size scaling factor, system default display size
+ *     scaling factor, and custom display size scaling factor of the screen where the window is located.
+ *
+ * @since 26.0.0
+ */
+typedef struct OH_WindowManager_DensityInfo OH_WindowManager_DensityInfo;
+
+/**
+ * @brief Density info callback type.
+ *
+ * @since 26.0.0
+ */
+typedef void (*OH_WindowManager_DensityInfoCallback)(int32_t windowId, const OH_WindowManager_DensityInfo* info);
+
+/**
  * @brief Enumerates the result types of the wm interface
  *
  * @since 12

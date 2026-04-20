@@ -62,6 +62,11 @@ typedef enum OHNativeErrorCode {
     NATIVE_ERROR_NO_PERMISSION = 40301000,
     /** @error no idle buffer is available */
     NATIVE_ERROR_NO_BUFFER = 40601000,
+    /**
+     * @error invalid operation
+     * @since 26.0.0
+     */
+    NATIVE_ERROR_INVALID_OPERATION = 41201000,
     /** @error the consumer side doesn't exist */
     NATIVE_ERROR_NO_CONSUMER = 41202000,
     /** @error uninitialized */

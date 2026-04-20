@@ -4,7 +4,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -12,21 +12,21 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 /**
  * @addtogroup AbilityBase
  * @{
  *
  * @brief Describe the functions of want.
- *
- * @syscap SystemCapability.Ability.AbilityBase
  * @since 15
  */
-
 /**
  * @file want.h
  *
- * @brief Defines the want APIs.
+ * @brief Want is a carrier for information transfer between objects (application components). Want can be used as a
+ * parameter of **startAbility** to specify a startup target and information that needs to be carried during startup,
+ * for example, **bundleName** and **abilityName**, which respectively indicate the bundle name of the target ability
+ * and the ability name in the bundle. When ability A needs to start ability B and transfer some data to ability B, it
+ * can use Want a carrier to transfer the data.
  *
  * @library libability_base_want.so
  * @kit AbilityKit
@@ -46,16 +46,28 @@ extern "C" {
 #endif
 
 /**
- * @brief Indicates information of element.
+ * @brief The struct describes the Element in {@link Want}.
  *
  * @since 15
  */
 typedef struct AbilityBase_Element {
-    /** Indicates the name of application. */
+    /**
+     * Pointer to the bundle name of the application.
+     *
+     * @since 15
+     */
     char* bundleName;
-    /** Indicates the name of module. */
+    /**
+     * Pointer to the module name.
+     *
+     * @since 15
+     */
     char* moduleName;
-    /** Indicates the name of ability. */
+    /**
+     * Pointer to the ability name.
+     *
+     * @since 15
+     */
     char* abilityName;
 } AbilityBase_Element;
 
@@ -63,203 +75,206 @@ struct AbilityBase_Want;
 typedef struct AbilityBase_Want AbilityBase_Want;
 
 /**
- * @brief Create want.
+ * @brief Creates Want.
  *
- * @param element Information of element.
- * @return Returns the newly created AbilityBase_Want object.
- *
+ * @param element Element struct.
+ * @return Pointer to Want.
  * @since 15
  */
 AbilityBase_Want* OH_AbilityBase_CreateWant(AbilityBase_Element element);
 
 /**
- * @brief Destroy input want.
+ * @brief Destroys Want. Want cannot be used after being destroyed. Otherwise, undefined behavior may occur.
  *
- * @param want The want to be deleted.
- * @return The error code.
- *         {@link ABILITY_BASE_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         {@link ABILITY_BASE_ERROR_CODE_PARAM_INVALID} if the want is invalid.
+ * @param want Pointer to Want.
+ * @return One of the following execution results:
+ *      **ABILITY_BASE_ERROR_CODE_NO_ERROR**: Want is destroyed.
+ *      **ABILITY_BASE_ERROR_CODE_PARAM_INVALID**: **element** is invalid.
  * @since 15
  */
 AbilityBase_ErrorCode OH_AbilityBase_DestroyWant(AbilityBase_Want* want);
 
 /**
- * @brief Set want element.
+ * @brief Sets the Element struct, which consists of **bundleName**, **moduleName**, and **abilityName** in Want.
  *
- * @param want The want that needs to be set element.
- * @param element Information of element.
- * @return The error code.
- *         {@link ABILITY_BASE_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         {@link ABILITY_BASE_ERROR_CODE_PARAM_INVALID} if the want is invalid.
+ * @param want Pointer to Want.
+ * @param element Element struct.
+ * @return One of the following execution results:
+ *      **ABILITY_BASE_ERROR_CODE_NO_ERROR**: The setting is successful.
+ *      **ABILITY_BASE_ERROR_CODE_PARAM_INVALID**: **want** is null or **element** is invalid.
  * @since 15
  */
 AbilityBase_ErrorCode OH_AbilityBase_SetWantElement(AbilityBase_Want* want, AbilityBase_Element element);
 
 /**
- * @brief Get want element.
+ * @brief Obtains the Element struct, which consists of **bundleName**, **moduleName**, and **abilityName** in Want.
  *
- * @param want The want for the element that has been obtained.
- * @param element The element obtained from want.
- * @return The error code.
- *         {@link ABILITY_BASE_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         {@link ABILITY_BASE_ERROR_CODE_PARAM_INVALID} if the want or element is invalid.
+ * @param want Pointer to Want.
+ * @param element Pointer to the Element struct.
+ * @return One of the following execution results:
+ *      **ABILITY_BASE_ERROR_CODE_NO_ERROR**: The element struct is obtained.
+ *      **ABILITY_BASE_ERROR_CODE_PARAM_INVALID**: **want** is null or **element** is invalid.
  * @since 15
  */
 AbilityBase_ErrorCode OH_AbilityBase_GetWantElement(AbilityBase_Want* want, AbilityBase_Element* element);
 
 /**
- * @brief Set want char param.
+ * @brief Sets **Param** in Want. For details about **Param**, see {@link parameters in Want}.
  *
- * @param want The want needs to be set char param.
- * @param key The key of char param.
- * @param value The value of char param.
- * @return The error code.
- *         {@link ABILITY_BASE_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         {@link ABILITY_BASE_ERROR_CODE_PARAM_INVALID} if the input parameters are invalid.
+ * @param want Pointer to Want.
+ * @param key Pointer to a key in Want.
+ * @param value Pointer to the value of the key in Want.
+ * @return One of the following execution results:
+ *      **ABILITY_BASE_ERROR_CODE_NO_ERROR**: The setting is successful.
+ *      **ABILITY_BASE_ERROR_CODE_PARAM_INVALID**: **want** is null or invalid.
  * @since 15
  */
 AbilityBase_ErrorCode OH_AbilityBase_SetWantCharParam(AbilityBase_Want* want, const char* key, const char* value);
 
 /**
- * @brief Get want char param.
+ * @brief Obtains **Param** set by {@link OH_AbilityBase_SetWantCharParam} in Want.
  *
- * @param want The want for the char param that has been obtained.
- * @param key The key of char param.
- * @param value The value of char param.
- * @param valueSize Size of the value.
- * @return The error code.
- *         {@link ABILITY_BASE_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         {@link ABILITY_BASE_ERROR_CODE_PARAM_INVALID} if the input parameters are invalid.
+ * @param want Pointer to Want.
+ * @param key Pointer to a key in Want.
+ * @param value Pointer to the value of the key in Want.
+ * @param valueSize Length of the value string. If **valueSize** is less than the actual value length,
+ *      the {@link ABILITY_BASE_ERROR_CODE_PARAM_INVALID} error is reported.
+ * @return One of the following execution results:
+ *      **ABILITY_BASE_ERROR_CODE_NO_ERROR**: The param struct is obtained.
+ *      **ABILITY_BASE_ERROR_CODE_PARAM_INVALID**: **want** is null or invalid.
  * @since 15
  */
 AbilityBase_ErrorCode OH_AbilityBase_GetWantCharParam(AbilityBase_Want* want, const char* key,
     char* value, size_t valueSize);
 
 /**
- * @brief Add fd to want.
+ * @brief Adds a Want file descriptor. The file descriptor can be obtained through {@link fs.open}.
  *
- * @param want The want needs to be add fd.
- * @param key The key of the fd.
- * @param fd File Descriptor.
- * @return The error code.
- *         {@link ABILITY_BASE_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         {@link ABILITY_BASE_ERROR_CODE_PARAM_INVALID} if the input parameters are invalid.
+ * @param want Pointer to Want.
+ * @param key Pointer to a key in Want.
+ * @param fd File descriptor, which is obtained by calling {@link fs.open}.
+ * @return One of the following execution results:
+ *      **ABILITY_BASE_ERROR_CODE_NO_ERROR**: The Want file descriptor is added.
+ *      **ABILITY_BASE_ERROR_CODE_PARAM_INVALID**: **want** is null or invalid.
  * @since 15
  */
 AbilityBase_ErrorCode OH_AbilityBase_AddWantFd(AbilityBase_Want* want, const char* key, int32_t fd);
 
 /**
- * @brief Get fd from want.
+ * @brief Obtains a Want file descriptor.
  *
- * @param want The want that includes fd.
- * @param key The key of the fd.
- * @param fd File Descriptor.
- * @return The error code.
- *         {@link ABILITY_BASE_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         {@link ABILITY_BASE_ERROR_CODE_PARAM_INVALID} if the input parameters are invalid.
+ * @param want Pointer to Want.
+ * @param key Pointer to a key in Want.
+ * @param fd Pointer to the file descriptor.
+ * @return One of the following execution results:
+ *      **ABILITY_BASE_ERROR_CODE_NO_ERROR**: The Want file descriptor is obtained.
+ *      **ABILITY_BASE_ERROR_CODE_PARAM_INVALID**: **want** is null or invalid.
  * @since 15
  */
 AbilityBase_ErrorCode OH_AbilityBase_GetWantFd(AbilityBase_Want* want, const char* key, int32_t* fd);
 
 /**
- * @brief Set uri to want.
+ * @brief Sets **uri** in Want. For details about the URI, see {@link uri in Want}.
  *
- * @param want The want needs to set uri.
- * @param uri The uri of the want.
- * @return The error code.
- *         {@link ABILITY_BASE_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         {@link ABILITY_BASE_ERROR_CODE_PARAM_INVALID} if the input parameters are invalid.
+ * @param want Pointer to Want.
+ * @param uri Pointer to a URI. If a URI is specified in Want, Want will match the specified URI information. For
+ *      details about the URI, see {@link uri in Want}.
+ * @return One of the following execution results:
+ *      **ABILITY_BASE_ERROR_CODE_NO_ERROR**: The setting is successful.
+ *      **ABILITY_BASE_ERROR_CODE_PARAM_INVALID**: **want** is null or invalid.
  * @since 17
  */
 AbilityBase_ErrorCode OH_AbilityBase_SetWantUri(AbilityBase_Want* want, const char* uri);
 
 /**
- * @brief Get uri from want.
+ * @brief Obtains **uri** set in Want. For details about the URI, see {@link uri in Want}.
  *
- * @param want The want that includes uri.
- * @param uri The uri of the want.
- * @param uriSize Size of the uri.
- * @return The error code.
- *         {@link ABILITY_BASE_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         {@link ABILITY_BASE_ERROR_CODE_PARAM_INVALID} if the input parameters are invalid.
+ * @param want Pointer to Want.
+ * @param uri Pointer to a URI. If a URI is specified in Want, Want will match the specified URI information. For
+ *      details about the URI, see {@link uri in Want}.
+ * @param uriSize Length of the URI string. If **uriSize** is less than the actual URI length,
+ *      the {@link ABILITY_BASE_ERROR_CODE_PARAM_INVALID} error is reported.
+ * @return One of the following execution results:
+ *      **ABILITY_BASE_ERROR_CODE_NO_ERROR**: The URI string in Want is obtained.
+ *      **ABILITY_BASE_ERROR_CODE_PARAM_INVALID**: **want** is null or invalid.
  * @since 17
  */
 AbilityBase_ErrorCode OH_AbilityBase_GetWantUri(AbilityBase_Want* want, char* uri, size_t uriSize);
 
 /**
- * @brief Set int32_t to want.
+ * @brief Sets a value of the int32_t type in Want.
  *
- * @param want The want needs to set int32_t value.
- * @param key The key of int32_t param.
- * @param value The value of int32_t param.
- * @return The error code.
- *         {@link ABILITY_BASE_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         {@link ABILITY_BASE_ERROR_CODE_PARAM_INVALID} if the input parameters are invalid.
+ * @param want Pointer to Want.
+ * @param key Pointer to a key in Want.
+ * @param value Value of the int32_t type of the key.
+ * @return One of the following execution results:
+ *      **ABILITY_BASE_ERROR_CODE_NO_ERROR**: The setting is successful.
+ *      **ABILITY_BASE_ERROR_CODE_PARAM_INVALID**: **want** is null or invalid.
  * @since 17
  */
 AbilityBase_ErrorCode OH_AbilityBase_SetWantInt32Param(AbilityBase_Want* want, const char* key, int32_t value);
 
 /**
- * @brief Get int32_t from want.
+ * @brief Obtains a value of the int32_t type set in Want.
  *
- * @param want The want includes int32_t value.
- * @param key The key of int32_t param.
- * @param value The value of int32_t param.
- * @return The error code.
- *         {@link ABILITY_BASE_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         {@link ABILITY_BASE_ERROR_CODE_PARAM_INVALID} if the input parameters are invalid.
+ * @param want Pointer to Want.
+ * @param key Pointer to a key in Want.
+ * @param value Pointer to the value of the int32_t type of the key.
+ * @return One of the following execution results:
+ *      **ABILITY_BASE_ERROR_CODE_NO_ERROR**: The value of the int32_t type is obtained.
+ *      **ABILITY_BASE_ERROR_CODE_PARAM_INVALID**: **want** is null or invalid.
  * @since 17
  */
 AbilityBase_ErrorCode OH_AbilityBase_GetWantInt32Param(AbilityBase_Want* want, const char* key, int32_t* value);
 
 /**
- * @brief Set bool to want.
+ * @brief Sets a value of the bool type in Want.
  *
- * @param want The want needs to set bool value.
- * @param key The key of bool param.
- * @param value The value of bool param.
- * @return The error code.
- *         {@link ABILITY_BASE_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         {@link ABILITY_BASE_ERROR_CODE_PARAM_INVALID} if the input parameters are invalid.
+ * @param want Pointer to Want.
+ * @param key Pointer to a key in Want.
+ * @param value Value of the bool type of the key.
+ * @return One of the following execution results:
+ *      **ABILITY_BASE_ERROR_CODE_NO_ERROR**: The setting is successful.
+ *      **ABILITY_BASE_ERROR_CODE_PARAM_INVALID**: **want** is null or invalid.
  * @since 17
  */
 AbilityBase_ErrorCode OH_AbilityBase_SetWantBoolParam(AbilityBase_Want* want, const char* key, bool value);
 
 /**
- * @brief Get bool from want.
+ * @brief Obtains a value of the bool type set in Want.
  *
- * @param want The want needs to set bool value.
- * @param key The key of bool param.
- * @param value The value of bool param.
- * @return The error code.
- *         {@link ABILITY_BASE_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         {@link ABILITY_BASE_ERROR_CODE_PARAM_INVALID} if the input parameters are invalid.
+ * @param want Pointer to Want.
+ * @param key Pointer to a key in Want.
+ * @param value Pointer to the value of the bool type of the key.
+ * @return One of the following execution results:
+ *      **ABILITY_BASE_ERROR_CODE_NO_ERROR**: The value of the bool type is obtained.
+ *      **ABILITY_BASE_ERROR_CODE_PARAM_INVALID**: **want** is null or invalid.
  * @since 17
  */
 AbilityBase_ErrorCode OH_AbilityBase_GetWantBoolParam(AbilityBase_Want* want, const char* key, bool* value);
 
 /**
- * @brief Set double to want.
+ * @brief Sets a value of the double type in Want.
  *
- * @param want The want needs to set double value.
- * @param key The key of double param.
- * @param value The value of double param.
- * @return The error code.
- *         {@link ABILITY_BASE_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         {@link ABILITY_BASE_ERROR_CODE_PARAM_INVALID} if the input parameters are invalid.
+ * @param want Pointer to Want.
+ * @param key Pointer to a key in Want.
+ * @param value Value of the double type of the key.
+ * @return One of the following execution results:
+ *      **ABILITY_BASE_ERROR_CODE_NO_ERROR**: The setting is successful.
+ *      **ABILITY_BASE_ERROR_CODE_PARAM_INVALID**: **want** is null or invalid.
  * @since 17
  */
 AbilityBase_ErrorCode OH_AbilityBase_SetWantDoubleParam(AbilityBase_Want* want, const char* key, double value);
 
 /**
- * @brief Get double from want.
+ * @brief Obtains a value of the double type set in Want.
  *
- * @param want The want needs to set double value.
- * @param key The key of double param.
- * @param value The value of double param.
- * @return The error code.
- *         {@link ABILITY_BASE_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         {@link ABILITY_BASE_ERROR_CODE_PARAM_INVALID} if the input parameters are invalid.
+ * @param want Pointer to Want.
+ * @param key Pointer to a key in Want.
+ * @param value Pointer to the value of the double type of the key.
+ * @return One of the following execution results:
+ *      **ABILITY_BASE_ERROR_CODE_NO_ERROR**: The value of the double type is obtained.
+ *      **ABILITY_BASE_ERROR_CODE_PARAM_INVALID**: **want** is null or invalid.
  * @since 17
  */
 AbilityBase_ErrorCode OH_AbilityBase_GetWantDoubleParam(AbilityBase_Want* want, const char* key, double* value);

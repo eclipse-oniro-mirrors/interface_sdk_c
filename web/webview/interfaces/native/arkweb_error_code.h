@@ -93,36 +93,46 @@ ARKWEB_COOKIE_SAVE_FAILED = 17100109,
 } ArkWeb_ErrorCode;
 
 /**
- * @brief Defines an enum for the error codes of the white screen optimization solution.
+ * @brief Enumerates the error codes for the blankless loading.
  *
  * @since 20
  */
 typedef enum ArkWeb_BlanklessErrorCode {
-/** @error The operation is successful. */
+/**
+ * Operation successful.
+ */
 ARKWEB_BLANKLESS_SUCCESS = 0,
 
-/** @error Unidentified error. */
+/**
+ * Unknown error.
+ */
 ARKWEB_BLANKLESS_ERR_UNKNOWN = -1,
 
-/** @error Invalid parameter. */
+/**
+ * Invalid parameter.
+ */
 ARKWEB_BLANKLESS_ERR_INVALID_ARGS = -2,
 
-/** @error The web controller is not bound to a component. */
+/**
+ * **WebViewController** is not bound to any component.
+ */
 ARKWEB_BLANKLESS_ERR_CONTROLLER_NOT_INITED = -3,
 
 /**
- * @error The key value is not matched. The OH_NativeArkWeb_SetBlanklessLoadingWithKey
- * and OH_NativeArkWeb_GetBlanklessInfoWithKey APIs must be used in pair and use the same key value.
+ * The key value is not matched. The **OH_NativeArkWeb_SetBlanklessLoadingWithKey** and **
+ * OH_NativeArkWeb_GetBlanklessInfoWithKey** APIs must be used in pair and use the same key value.
  */
 ARKWEB_BLANKLESS_ERR_KEY_NOT_MATCH = -4,
 
 /**
- * @error If the similarity is low, the system determines that the change is too large.
- * As a result, the OH_NativeArkWeb_SetBlanklessLoadingWithKey API fails to enable frame interpolation.
+ * When the similarity is low, the system will deem the scene change too abrupt and frame insertion through the **
+ * OH_NativeArkWeb_SetBlanklessLoadingWithKey** API will fail.
  */
 ARKWEB_BLANKLESS_ERR_SIGNIFICANT_CHANGE = -5,
 
-/** @error The device does not support this feature. */
+/**
+ * This device does not support this feature.
+ */
 ARKWEB_BLANKLESS_ERR_DEVICE_NOT_SUPPORT = 801,
 } ArkWeb_BlanklessErrorCode;
 

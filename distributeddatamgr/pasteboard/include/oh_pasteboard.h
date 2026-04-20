@@ -372,7 +372,7 @@ OH_UdmfData* OH_Pasteboard_GetData(OH_Pasteboard* pasteboard, int* status);
 int OH_Pasteboard_SetData(OH_Pasteboard* pasteboard, OH_UdmfData* data);
 
 /**
- * @brief Clears data in the Pastedboard.
+ * @brief Clears data in the Pasteboard.
  *
  * @param pasteboard Pointer to an {@link OH_Pasteboard} instance.
  * @return Returns an error code. For details about the error codes, see {@link PASTEBOARD_ErrCode}.
@@ -424,7 +424,7 @@ Pasteboard_GetDataParams *OH_Pasteboard_GetDataParams_Create(void);
 /**
  * @brief Destroys the {@link Pasteboard_GetDataParams} instance.
  *
- * @param params Pointer to an **OH_Pasteboard_GetDataParams** instance.
+ * @param params Pointer to an **Pasteboard_GetDataParams** instance.
  * @see Pasteboard_GetDataParams.
  * @since 15
  */
@@ -434,7 +434,7 @@ void OH_Pasteboard_GetDataParams_Destroy(Pasteboard_GetDataParams* params);
  * @brief Sets a progress indicator in {@link Pasteboard_GetDataParams}.
  * You can use the default progress indicator as required.
  *
- * @param params Pointer to an **OH_Pasteboard_GetDataParams** instance.
+ * @param params Pointer to an **Pasteboard_GetDataParams** instance.
  * @param progressIndicator Progress indicator to set.
  * @see Pasteboard_GetDataParams Pasteboard_ProgressIndicator.
  * @since 15
@@ -447,7 +447,7 @@ void OH_Pasteboard_GetDataParams_SetProgressIndicator(Pasteboard_GetDataParams* 
  * required. If the application involves complex file processing policies or needs to distinguish file multipathing
  * storage, you are advised not to set this parameter but let the application copies files by itself.
  *
- * @param params Pointer to an **OH_Pasteboard_GetDataParams** instance.
+ * @param params Pointer to an **Pasteboard_GetDataParams** instance.
  * @param destUri Destination URI of the copied file.
  * @param destUriLen Length of the destination URI of the copied file.
  * @see Pasteboard_GetDataParams.
@@ -458,7 +458,7 @@ void OH_Pasteboard_GetDataParams_SetDestUri(Pasteboard_GetDataParams* params, co
 /**
  * @brief Sets the options used to resolve file copy conflicts in a {@link Pasteboard_GetDataParams} instance.
  *
- * @param params Pointer to an **OH_Pasteboard_GetDataParams** instance.
+ * @param params Pointer to an **Pasteboard_GetDataParams** instance.
  * @param option Options used to resolve file copy conflicts. The default value is **PASTEBOARD_OVERWRITE**.
  * @see Pasteboard_GetDataParams Pasteboard_FileConflictOptions.
  * @since 15
@@ -469,7 +469,7 @@ void OH_Pasteboard_GetDataParams_SetFileConflictOptions(Pasteboard_GetDataParams
 /**
  * @brief Sets a progress listener in a {@link Pasteboard_GetDataParams} instance.
  *
- * @param params Pointer to an **OH_Pasteboard_GetDataParams** instance.
+ * @param params Pointer to an **Pasteboard_GetDataParams** instance.
  * @param listener Progress listener.
  * @see Pasteboard_GetDataParams OH_Pasteboard_ProgressListener.
  * @since 15
@@ -490,7 +490,7 @@ int OH_Pasteboard_ProgressInfo_GetProgress(Pasteboard_ProgressInfo* progressInfo
 /**
  * @brief Cancels the ongoing paste operation when the pasteboard data is obtained.
  *
- * @param params Pointer to an **OH_Pasteboard_GetDataParams** instance.
+ * @param params Pointer to an **Pasteboard_GetDataParams** instance.
  * @see Pasteboard_GetDataParams.
  * @since 15
  */
@@ -501,7 +501,7 @@ void OH_Pasteboard_ProgressCancel(Pasteboard_GetDataParams* params);
  *
  * @permission ohos.permission.READ_PASTEBOARD
  * @param pasteboard Pointer to an {@link OH_Pasteboard} instance.
- * @param params Pointer to an **OH_Pasteboard_GetDataParams** instance.
+ * @param params Pointer to an **Pasteboard_GetDataParams** instance.
  * @param status Output parameter, indicating the error code of the operation.
  * For details about the error codes, see {@link PASTEBOARD_ErrCode}.
  * @return Returns a pointer to the **OH_UdmfData** instance obtained if the operation is successful; returns a null

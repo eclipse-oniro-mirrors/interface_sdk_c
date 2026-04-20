@@ -136,12 +136,24 @@
         "name": "OH_PixelmapNative_GetImageInfo"
     },
     {
+        "first_introduced": "26.0.0",
+        "name": "OH_PixelmapNative_SetOpacity"
+    },
+    {
         "first_introduced": "12",
         "name": "OH_PixelmapNative_Opacity"
     },
     {
+        "first_introduced": "26.0.0",
+        "name": "OH_PixelmapNative_ApplyScale"
+    },
+    {
         "first_introduced": "12",
         "name": "OH_PixelmapNative_Scale"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_PixelmapNative_ApplyScaleWithAntiAliasing"
     },
     {
         "first_introduced": "12",
@@ -154,6 +166,10 @@
     {
         "first_introduced": "18",
         "name": "OH_PixelmapNative_CreateScaledPixelMapWithAntiAliasing"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_PixelmapNative_ApplyTranslate"
     },
     {
         "first_introduced": "12",
@@ -172,12 +188,24 @@
         "name": "OH_PixelmapNative_CreateCroppedAndScaledPixelMap"
     },
     {
+        "first_introduced": "26.0.0",
+        "name": "OH_PixelmapNative_ApplyRotate"
+    },
+    {
         "first_introduced": "12",
         "name": "OH_PixelmapNative_Rotate"
     },
     {
+        "first_introduced": "26.0.0",
+        "name": "OH_PixelmapNative_ApplyFlip"
+    },
+    {
         "first_introduced": "12",
         "name": "OH_PixelmapNative_Flip"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_PixelmapNative_ApplyCrop"
     },
     {
         "first_introduced": "12",
@@ -190,6 +218,10 @@
     {
         "first_introduced": "18",
         "name": "OH_PixelmapNative_Destroy"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_PixelmapNative_ConvertAlphaType"
     },
     {
         "first_introduced": "12",

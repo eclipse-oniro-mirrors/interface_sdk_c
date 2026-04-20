@@ -4,7 +4,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *    http://www.apache.org/licenses/LICENSE-2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -12,21 +12,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 /**
  * @addtogroup AbilityRuntime
  * @{
  *
  * @brief Provide the definition of the C interface for the native AbilityRuntime
- *
- * @syscap SystemCapability.Ability.AbilityRuntime.Core
  * @since 13
  */
-
 /**
  * @file ability_runtime_common.h
  *
- * @brief Declare the common types for the native AbilityRuntime.
+ * @brief The file declares the error codes of the AbilityRuntime module.
  *
  * @library libability_runtime.so
  * @kit AbilityKit
@@ -42,114 +38,146 @@ extern "C" {
 #endif
 
 /**
- * @brief Enumerates the error codes.
+ * @brief Enumerates the error codes of the AbilityRuntime module.
  *
  * @since 13
  */
 typedef enum {
-    /** @error No error. */
+    /**
+     * Operation successful.
+     *
+     * @since 13
+     */
     ABILITY_RUNTIME_ERROR_CODE_NO_ERROR = 0,
     /**
-     * @error permission denied.
+     * Permission verification fails.
+     *
      * @since 15
      */
     ABILITY_RUNTIME_ERROR_CODE_PERMISSION_DENIED = 201,
-    /** @error Invalid parameters. */
+    /**
+     * Invalid parameter.
+     *
+     * @since 13
+     */
     ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID = 401,
     /**
-     * @error StartSelfUIAbility is not supported.
+     * The device type is not supported.
+     *
      * @since 15
      */
     ABILITY_RUNTIME_ERROR_CODE_NOT_SUPPORTED = 801,
     /**
-     * @error No such ability.
+     * The specified ability name does not exist.
+     *
      * @since 15
      */
     ABILITY_RUNTIME_ERROR_CODE_NO_SUCH_ABILITY = 16000001,
     /**
-     * @error Incorrect ability type.
+     * The ability type is incorrect.
+     *
      * @since 15
      */
     ABILITY_RUNTIME_ERROR_CODE_INCORRECT_ABILITY_TYPE = 16000002,
     /**
-     * @error The crowdtesting application expires.
+     * The crowdtesting application expires.
+     *
      * @since 15
      */
     ABILITY_RUNTIME_ERROR_CODE_CROWDTEST_EXPIRED = 16000008,
     /**
-     * @error The ability cannot be started in Wukong Mode.
+     * An ability cannot be started or stopped in Wukong mode.
+     *
      * @since 15
      */
     ABILITY_RUNTIME_ERROR_CODE_WUKONG_MODE = 16000009,
-    /** @error The context does not exist. */
+    /**
+     * The context does not exist.
+     *
+     * @since 13
+     */
     ABILITY_RUNTIME_ERROR_CODE_CONTEXT_NOT_EXIST = 16000011,
     /**
-     * @error The app is controlled.
+     * The application is under control.
+     *
      * @since 15
      */
     ABILITY_RUNTIME_ERROR_CODE_CONTROLLED = 16000012,
     /**
-     * @error The app is controlled by EDM.
+     * The application is under control by EDM.
+     *
      * @since 15
      */
     ABILITY_RUNTIME_ERROR_CODE_EDM_CONTROLLED = 16000013,
     /**
-     * @error Cross-app start is not allowed.
+     * Redirection to third-party applications is not allowed in API versions later than 11.
+     *
      * @since 15
      */
     ABILITY_RUNTIME_ERROR_CODE_CROSS_APP = 16000018,
     /**
-     * @error Internal error.
+     * Internal server error.
+     *
      * @since 15
      */
     ABILITY_RUNTIME_ERROR_CODE_INTERNAL = 16000050,
     /**
-     * @error Not top ability.
+     * The application is not on top.
+     *
      * @since 15
      */
     ABILITY_RUNTIME_ERROR_CODE_NOT_TOP_ABILITY = 16000053,
     /**
-     * @error Setting visibility is disabled.
+     * Setting the window visibility during startup is not allowed.
+     *
      * @since 17
      */
     ABILITY_RUNTIME_ERROR_VISIBILITY_SETTING_DISABLED = 16000067,
     /**
-     * @error App clone or multi-instance is not supported.
+     * The application does not support clone or multi-instance mode.
+     *
      * @since 17
      */
     ABILITY_RUNTIME_ERROR_CODE_MULTI_APP_NOT_SUPPORTED = 16000072,
     /**
-     * @error The app instance key is invalid.
+     * The multi-instance key is invalid.
+     *
      * @since 17
      */
     ABILITY_RUNTIME_ERROR_CODE_INVALID_APP_INSTANCE_KEY = 16000076,
     /**
-     * @error The number of app instances reaches the limit.
+     * The number of instances has reached the upper limit.
+     *
      * @since 17
      */
     ABILITY_RUNTIME_ERROR_CODE_UPPER_LIMIT_REACHED = 16000077,
     /**
-     * @error The multi-instance is not supported.
+     * The application does not support multi-instance mode.
+     *
      * @since 17
      */
     ABILITY_RUNTIME_ERROR_MULTI_INSTANCE_NOT_SUPPORTED = 16000078,
     /**
-     * @error The APP_INSTANCE_KEY cannot be specified.
+     * Setting **APP_INSTANCE_KEY** is not supported.
+     *
      * @since 17
      */
     ABILITY_RUNTIME_ERROR_CODE_APP_INSTANCE_KEY_NOT_SUPPORTED = 16000079,
     /**
-     * @error Failed to obtain the target application information.
+     * Failed to obtain the application information.
+     *
      * @since 21
      */
     ABILITY_RUNTIME_ERROR_CODE_GET_APPLICATION_INFO_FAILED = 16000081,
     /**
-     * @error Start UIAbility timeout.
+     * Starting the UIAbility times out.
+     *
      * @since 21
      */
     ABILITY_RUNTIME_ERROR_CODE_START_TIMEOUT = 16000133,
     /**
-     * @error The API does not support being called in the main thread.
+     * The function cannot be called on the main thread of the application.
+     *
      * @since 21
      */
     ABILITY_RUNTIME_ERROR_CODE_MAIN_THREAD_NOT_SUPPORTED = 16000134,

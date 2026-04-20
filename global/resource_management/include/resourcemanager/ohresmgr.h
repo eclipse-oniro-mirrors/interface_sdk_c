@@ -4,7 +4,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -12,7 +12,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 /**
  * @addtogroup resourcemanager
  * @{
@@ -21,11 +20,11 @@
  *
  * @since 12
  */
-
 /**
  * @file ohresmgr.h
  *
- * @brief Provides the implementation of the interface.
+ * @brief Provides native APIs for obtaining resources.
+ *
  * @syscap SystemCapability.Global.ResourceManager
  * @library libohresmgr.so
  * @kit LocalizationKit
@@ -316,99 +315,92 @@ ResourceManager_ErrorCode OH_ResourceManager_GetDrawableDescriptorDataByName(con
     const char *resName, ArkUI_DrawableDescriptor **drawableDescriptor, uint32_t density, uint32_t type);
 
 /**
- * @brief Obtains the symbol resource.
+ * @brief Obtains a **symbol** resource based on the specified resource ID.
  *
- * Obtains the symbol resource corresponding to the specified resource ID.
- *
- * @param mgr Indicates the pointer to {@link NativeResourceManager}
- *        {@link OH_ResourceManager_InitNativeResourceManager}.
- * @param resId Indicates the resource ID.
- * @param resultValue the result write to resultValue.
- * @return {@link SUCCESS} 0 - Success.
- *         {@link ERROR_CODE_INVALID_INPUT_PARAMETER} 401 - The input parameter invalid.
-           Possible causes: Incorrect parameter types.
-           {@link ERROR_CODE_RES_ID_NOT_FOUND} 9001001 - Invalid resource ID.
-           {@link ERROR_CODE_RES_NOT_FOUND_BY_ID} 9001002 - No matching resource is found based on the resource ID.
-           {@link ERROR_CODE_RES_REF_TOO_MUCH} 9001006 - The resource is referenced cyclically.
+ * @param mgr Pointer to {@link NativeResourceManager}. It is obtained by using
+ * {@link OH_ResourceManager_InitNativeResourceManager}.
+ * @param resId Resource ID.
+ * @param resultValue Result of writing **resultValue**.
+ * @return {@link SUCCESS} 0 - The operation is successful.
+ * {@link ERROR_CODE_INVALID_INPUT_PARAMETER} 401 - The input parameter is invalid. Possible causes: 1. The parameter
+ * type is incorrect. 2. Parameter verification failed.
+ * {@link ERROR_CODE_RES_ID_NOT_FOUND} 9001001 - The resource ID is invalid.
+ * {@link ERROR_CODE_RES_NOT_FOUND_BY_ID} 9001002 - No matching resource is found based on the resource ID.
+ * {@link ERROR_CODE_RES_REF_TOO_MUCH} 9001006 - The resource is cyclically referenced.
  * @since 12
  */
 ResourceManager_ErrorCode OH_ResourceManager_GetSymbol(const NativeResourceManager *mgr, uint32_t resId,
     uint32_t *resultValue);
 
 /**
- * @brief Obtains the symbol resource.
+ * @brief Obtains a **symbol** resource based on the specified resource name.
  *
- * Obtains the symbol resource corresponding to the specified resource name.
- *
- * @param mgr Indicates the pointer to {@link NativeResourceManager}
- *        {@link OH_ResourceManager_InitNativeResourceManager}.
- * @param resName Indicates the resource name.
- * @param resultValue the result write to resultValue.
- * @return {@link SUCCESS} 0 - Success.
- *         {@link ERROR_CODE_INVALID_INPUT_PARAMETER} 401 - The input parameter invalid.
-           Possible causes: Incorrect parameter types.
-           {@link ERROR_CODE_RES_NAME_NOT_FOUND} 9001003 - Invalid resource name.
-           {@link ERROR_CODE_RES_NOT_FOUND_BY_NAME} 9001004 - No matching resource is found based on the resource name.
-           {@link ERROR_CODE_RES_REF_TOO_MUCH} 9001006 - The resource is referenced cyclically.
+ * @param mgr Pointer to {@link NativeResourceManager}. It is obtained by using
+ * {@link OH_ResourceManager_InitNativeResourceManager}.
+ * @param resName Resource name.
+ * @param resultValue Result of writing **resultValue**.
+ * @return {@link SUCCESS} 0 - The operation is successful.
+ * {@link ERROR_CODE_INVALID_INPUT_PARAMETER} 401 - The input parameter is invalid. Possible causes: 1. The parameter
+ * type is incorrect. 2. Parameter verification failed.
+ * {@link ERROR_CODE_RES_NAME_NOT_FOUND} 9001003 - The resource name is invalid.
+ * {@link ERROR_CODE_RES_NOT_FOUND_BY_NAME} 9001004 - No matching resource is found based on the resource name.
+ * {@link ERROR_CODE_RES_REF_TOO_MUCH} 9001006 - The resource is cyclically referenced.
  * @since 12
  */
 ResourceManager_ErrorCode OH_ResourceManager_GetSymbolByName(const NativeResourceManager *mgr, const char *resName,
     uint32_t *resultValue);
 
 /**
- * @brief Obtains locales list.
+ * @brief Obtains the language list. After using this API, you need to call **OH_ResourceManager_ReleaseStringArray()**
+ * to release the memory of **localinfo**.
  *
- * You need to call the OH_ResourceManager_ReleaseStringArray() method to release the memory of localinfo.
- *
- * @param mgr Indicates the pointer to {@link NativeResourceManager}
- *        {@link OH_ResourceManager_InitNativeResourceManager}.
- * @param resultValue the result write to resultValue.
- * @param resultLen the locales length write to resultLen.
- * @param includeSystem the parameter controls whether to include system resources,
- * the default value is false, it has no effect when only system resources query the locales list.
- * @return {@link SUCCESS} 0 - Success.
- *         {@link ERROR_CODE_INVALID_INPUT_PARAMETER} 401 - The input parameter invalid.
-           Possible causes: Incorrect parameter types.
- *         {@link ERROR_CODE_OUT_OF_MEMORY} 9001100 - Out of memory.
+ * @param mgr Pointer to {@link NativeResourceManager}. It is obtained by using
+ * {@link OH_ResourceManager_InitNativeResourceManager}.
+ * @param resultValue Result of writing **resultValue**.
+ * @param resultLen Length of locales written to **resultLen**.
+ * @param includeSystem Whether system resources are included. The default value is **false**. This parameter does not
+ * take effect if only system resources are involved when you query the list of locales.
+ * @return {@link SUCCESS} 0 - The operation is successful.
+ * {@link ERROR_CODE_INVALID_INPUT_PARAMETER} 401 - The input parameter is invalid. Possible causes: 1. The parameter
+ * type is incorrect. 2. Parameter verification failed.
+ * {@link ERROR_CODE_OUT_OF_MEMORY} 9001100 - A memory overflow occurs.
  * @since 12
  */
 ResourceManager_ErrorCode OH_ResourceManager_GetLocales(const NativeResourceManager *mgr, char ***resultValue,
     uint32_t *resultLen, bool includeSystem = false);
 
 /**
- * @brief Obtains locales list.
+ * @brief Obtains the language list. After using this API, you need to call **OH_ResourceManager_ReleaseStringArray()**
+ * to release the memory of **localinfo**.
  *
- * You need to call the OH_ResourceManager_ReleaseStringArray() method to release the memory of localinfo.
- *
- * @param mgr Indicates the pointer to {@link NativeResourceManager}
- *        {@link OH_ResourceManager_InitNativeResourceManager}.
- * @param resultValue the result write to resultValue.
- * @param resultLen the locales length write to resultLen.
- * @param includeSystem the parameter controls whether to include system resources.
- * If this attribute is not required, set this parameter to false.
- * @return {@link SUCCESS} 0 - Success.
- *         {@link ERROR_CODE_INVALID_INPUT_PARAMETER} 401 - The input parameter invalid.
-           Possible causes: Incorrect parameter types.
- *         {@link ERROR_CODE_OUT_OF_MEMORY} 9001100 - Out of memory.
+ * @param mgr Pointer to {@link NativeResourceManager}. It is obtained by using
+ * {@link OH_ResourceManager_InitNativeResourceManager}.
+ * @param resultValue Result of writing **resultValue**.
+ * @param resultLen Length of locales written to **resultLen**.
+ * @param includeSystem Whether system resources are included. If this parameter is not required, set it to **false**.
+ * @return {@link SUCCESS} 0 - The operation is successful.
+ * {@link ERROR_CODE_INVALID_INPUT_PARAMETER} 401 - The input parameter is invalid. Possible causes: 1. The parameter
+ * type is incorrect. 2. Parameter verification failed.
+ * {@link ERROR_CODE_OUT_OF_MEMORY} 9001100 - A memory overflow occurs.
  * @since 12
  */
 ResourceManager_ErrorCode OH_ResourceManager_GetLocalesData(const NativeResourceManager *mgr, char ***resultValue,
     uint32_t *resultLen, bool includeSystem);
 
 /**
- * @brief Obtains the device configuration.
+ * @brief Obtains the device configuration. After this API is used, call {@link OH_ResourceManager_ReleaseConfiguration}
+ * to release the memory. If the **ResourceManager_Configuration** object is created by using malloc, call **free()**
+ * to release the object.
  *
- * You need to call the OH_ResourceManager_ReleaseConfiguration() method to release the memory.
- * If you use malloc to create a ResourceManager_Configuration object, you also need to call free to release it.
- *
- * @param mgr Indicates the pointer to {@link NativeResourceManager}
- *        {@link OH_ResourceManager_InitNativeResourceManager}.
- * @param configuration the result write to ResourceManager_Configuration.
- * @return {@link SUCCESS} 0 - Success.
- *         {@link ERROR_CODE_INVALID_INPUT_PARAMETER} 401 - The input parameter invalid.
-           Possible causes: Incorrect parameter types.
-           {@link ERROR_CODE_SYSTEM_RES_MANAGER_GET_FAILED} 9001009 - If failed to access the system resource.
-           {@link ERROR_CODE_OUT_OF_MEMORY} 9001100 - Out of memory.
+ * @param mgr Pointer to {@link NativeResourceManager}. It is obtained by using
+ * {@link OH_ResourceManager_InitNativeResourceManager}.
+ * @param configuration Device configuration. The return value of **configuration.screenDensity** is the rounded value
+ * of the device's DPI divided by 160.
+ * @return {@link SUCCESS} 0 - The operation is successful.
+ * {@link ERROR_CODE_INVALID_INPUT_PARAMETER} 401 - The input parameter is invalid. Possible causes: 1. The parameter
+ * type is incorrect. 2. Parameter verification failed.
+ * {@link ERROR_CODE_SYSTEM_RES_MANAGER_GET_FAILED} 9001009 - The attempt to access system resources fails.
+ * {@link ERROR_CODE_OUT_OF_MEMORY} 9001100 - A memory overflow occurs.
  * @since 12
  * @deprecated since 20
  * @useinstead OH_ResourceManager_GetResourceConfiguration
@@ -417,469 +409,439 @@ ResourceManager_ErrorCode OH_ResourceManager_GetConfiguration(const NativeResour
     ResourceManager_Configuration *configuration);
 
 /**
- * @brief Obtains the device configuration.
- *
- * You need to call the OH_ResourceManager_ReleaseConfiguration() method to release the memory.
- * If you use malloc to create a ResourceManager_Configuration object, you also need to call free to release it.
+ * @brief Obtains the device configuration. After this API is used, call {@link OH_ResourceManager_ReleaseConfiguration}
+ * to release the memory. If the **ResourceManager_Configuration** object is created by using malloc, call **free()**
+ * to release the object.
  *
  * @param {NativeResourceManager} mgr Indicates the pointer to {@link NativeResourceManager}
- *        {@link OH_ResourceManager_InitNativeResourceManager}.
+ * {@link OH_ResourceManager_InitNativeResourceManager}.
  * @param {ResourceManager_Configuration} configuration the result write to ResourceManager_Configuration.
- * @return {@link SUCCESS} 0 - Success.
-           {@link ERROR_CODE_SYSTEM_RES_MANAGER_GET_FAILED} 9001009 - If failed to access the system resource.
-           {@link ERROR_CODE_OUT_OF_MEMORY} 9001100 - Out of memory.
+ * @return {@link SUCCESS} 0 - The operation is successful.
+ * {@link ERROR_CODE_SYSTEM_RES_MANAGER_GET_FAILED} 9001009 - The attempt to access system resources fails.
+ * {@link ERROR_CODE_OUT_OF_MEMORY} 9001100 - A memory overflow occurs.
  * @since 20
  */
 ResourceManager_ErrorCode OH_ResourceManager_GetResourceConfiguration(const NativeResourceManager *mgr,
     ResourceManager_Configuration *configuration);
 
 /**
- * @brief Release the device configuration.
- * @param configuration the object need to release.
- * @return {@link SUCCESS} 0 - Success.
-           {@link ERROR_CODE_INVALID_INPUT_PARAMETER} 401 - The input parameter invalid.
-           Possible causes: Incorrect parameter types.
+ * @brief Releases the memory requested by using the {@link OH_ResourceManager_GetConfiguration} and
+ * {@link OH_ResourceManager_GetResourceConfiguration} methods.
+ *
+ * @param configuration Configuration object whose memory needs to be released.
+ * @return {@link SUCCESS} 0 - The operation is successful.
+ * {@link ERROR_CODE_INVALID_INPUT_PARAMETER} 401 - The input parameter is invalid. Possible causes: 1. The parameter
+ * type is incorrect. 2. Parameter verification failed.
  * @since 12
  */
 ResourceManager_ErrorCode OH_ResourceManager_ReleaseConfiguration(ResourceManager_Configuration *configuration);
 
 /**
- * @brief Obtains the character string.
+ * @brief Obtains a **string** resource based on the specified resource ID. The obtain common string resources, use **
+ * OH_ResourceManager_GetString(mgr, resId, resultValue)**. The obtain formatted string resources with the **%d**, **%s*
+ * *, and **%f** placeholders, use **OH_ResourceManager_GetString(mgr, resId, resultValue, 10, "format", 10.10)**.
+ * After using this API, you need to call **free()** to release the memory of the strings.
  *
- * Obtains the character string corresponding to a specified resource ID.
- * Obtain normal resource by calling OH_ResourceManager_GetString(mgr, resId, resultValue),
-   obtain a formatted resource with replacements for %d, %s, %f,
-   call OH_ResourceManager_GetString(mgr, resId, resultValue, 10, "format", 10.10).
- * You need to call free() to release the memory for the string.
- *
- * @param mgr Indicates the pointer to {@link NativeResourceManager}
- *        {@link OH_ResourceManager_InitNativeResourceManager}.
- * @param resId Indicates the resource ID.
- * @param resultValue the result write to resultValue.
+ * @param mgr Pointer to {@link NativeResourceManager}. It is obtained by using
+ * {@link OH_ResourceManager_InitNativeResourceManager}.
+ * @param resId Resource ID.
+ * @param resultValue Result of writing **resultValue**.
  * @param { const char* | int | float } args - Indicates the formatting string resource parameters.
- * @return {@link SUCCESS} 0 - Success.
- *         {@link ERROR_CODE_INVALID_INPUT_PARAMETER} 401 - The input parameter invalid.
-           Possible causes: Incorrect parameter types.
-           {@link ERROR_CODE_RES_ID_NOT_FOUND} 9001001 - Invalid resource ID.
-           {@link ERROR_CODE_RES_NOT_FOUND_BY_ID} 9001002 - No matching resource is found based on the resource ID.
-           {@link ERROR_CODE_RES_REF_TOO_MUCH} 9001006 - The resource is referenced cyclically.
-           {@link ERROR_CODE_OUT_OF_MEMORY} 9001100 - Out of memory.
+ * @return {@link SUCCESS} 0 - The operation is successful.
+ * {@link ERROR_CODE_INVALID_INPUT_PARAMETER} 401 - The input parameter is invalid. Possible causes: 1. The parameter
+ * type is incorrect. 2. Parameter verification failed.
+ * {@link ERROR_CODE_RES_ID_NOT_FOUND} 9001001 - The resource ID is invalid.
+ * {@link ERROR_CODE_RES_NOT_FOUND_BY_ID} 9001002 - No matching resource is found based on the resource ID.
+ * {@link ERROR_CODE_RES_REF_TOO_MUCH} 9001006 - The resource is cyclically referenced.
+ * {@link ERROR_CODE_OUT_OF_MEMORY} 9001100 - A memory overflow occurs.
  * @since 12
  */
 ResourceManager_ErrorCode OH_ResourceManager_GetString(const NativeResourceManager *mgr, uint32_t resId,
     char **resultValue, ...);
 
 /**
- * @brief Obtains the character string.
+ * @brief Obtains a **string** resource based on the specified resource name. The obtain common string resources, use **
+ * OH_ResourceManager_GetString(mgr, resName, resultValue)**. The obtain formatted string resources with the **%d**, **%
+ * s**, and **%f** placeholders, use **OH_ResourceManager_GetString(mgr, resName, resultValue, 10, "format", 10.10)**.
+ * After using this API, you need to call **free()** to release the memory of the strings.
  *
- * Obtains the character string corresponding to a specified resource name.
- * Obtain normal resource by calling OH_ResourceManager_GetString(mgr, resName, resultValue),
-   obtain a formatted resource with replacements for %d, %s, %f,
-   call OH_ResourceManager_GetString(mgr, resName, resultValue, 10, "format", 10.10).
- * You need to call free() to release the memory for the string.
- *
- * @param mgr Indicates the pointer to {@link NativeResourceManager}
- *        {@link OH_ResourceManager_InitNativeResourceManager}.
- * @param resName Indicates the resource name.
- * @param resultValue the result write to resultValue.
+ * @param mgr Pointer to {@link NativeResourceManager}. It is obtained by using
+ * {@link OH_ResourceManager_InitNativeResourceManager}.
+ * @param resName Resource name.
+ * @param resultValue Result of writing **resultValue**.
  * @param { const char* | int | float } args - Indicates the formatting string resource parameters.
- * @return {@link SUCCESS} 0 - Success.
- *         {@link ERROR_CODE_INVALID_INPUT_PARAMETER} 401 - The input parameter invalid.
-           Possible causes: Incorrect parameter types.
-           {@link ERROR_CODE_RES_NAME_NOT_FOUND} 9001003 - Invalid resource name.
-           {@link ERROR_CODE_RES_NOT_FOUND_BY_NAME} 9001004 - No matching resource is found based on the resource name.
-           {@link ERROR_CODE_RES_REF_TOO_MUCH} 9001006 - The resource is referenced cyclically.
-           {@link ERROR_CODE_OUT_OF_MEMORY} 9001100 - Out of memory.
+ * @return {@link SUCCESS} 0 - The operation is successful.
+ * {@link ERROR_CODE_INVALID_INPUT_PARAMETER} 401 - The input parameter is invalid. Possible causes: 1. The parameter
+ * type is incorrect. 2. Parameter verification failed.
+ * {@link ERROR_CODE_RES_NAME_NOT_FOUND} 9001003 - The resource name is invalid.
+ * {@link ERROR_CODE_RES_NOT_FOUND_BY_NAME} 9001004 - No matching resource is found based on the resource name.
+ * {@link ERROR_CODE_RES_REF_TOO_MUCH} 9001006 - The resource is cyclically referenced.
+ * {@link ERROR_CODE_OUT_OF_MEMORY} 9001100 - A memory overflow occurs.
  * @since 12
  */
 ResourceManager_ErrorCode OH_ResourceManager_GetStringByName(const NativeResourceManager *mgr, const char *resName,
     char **resultValue, ...);
 
 /**
- * @brief Obtains the array of character strings.
+ * @brief Obtains a string array based on the specified resource ID. After using this API, you need to call **
+ * OH_ResourceManager_ReleaseStringArray()** to release the memory of the string array.
  *
- * Obtains the array of character strings corresponding to a specified resource ID.
- * You need to call the OH_ResourceManager_ReleaseStringArray() method to release the memory of string array.
- *
- * @param mgr Indicates the pointer to {@link NativeResourceManager}
- *        {@link OH_ResourceManager_InitNativeResourceManager}.
- * @param resId Indicates the resource ID.
- * @param resultValue the result write to resultValue.
- * @param resultLen the StringArray length write to resultLen.
- * @return {@link SUCCESS} 0 - Success.
- *         {@link ERROR_CODE_INVALID_INPUT_PARAMETER} 401 - The input parameter invalid.
-           Possible causes: Incorrect parameter types.
-           {@link ERROR_CODE_RES_ID_NOT_FOUND} 9001001 - Invalid resource ID.
-           {@link ERROR_CODE_RES_NOT_FOUND_BY_ID} 9001002 - No matching resource is found based on the resource ID.
-           {@link ERROR_CODE_RES_REF_TOO_MUCH} 9001006 - The resource is referenced cyclically.
-           {@link ERROR_CODE_OUT_OF_MEMORY} 9001100 - Out of memory.
+ * @param mgr Pointer to {@link NativeResourceManager}. It is obtained by using
+ * {@link OH_ResourceManager_InitNativeResourceManager}.
+ * @param resId Resource ID.
+ * @param resultValue Result of writing **resultValue**.
+ * @param resultLen Length of **StringArray** written to **resultLen**.
+ * @return {@link SUCCESS} 0 - The operation is successful.
+ * {@link ERROR_CODE_INVALID_INPUT_PARAMETER} 401 - The input parameter is invalid. Possible causes: 1. The parameter
+ * type is incorrect. 2. Parameter verification failed.
+ * {@link ERROR_CODE_RES_ID_NOT_FOUND} 9001001 - The resource ID is invalid.
+ * {@link ERROR_CODE_RES_NOT_FOUND_BY_ID} 9001002 - No matching resource is found based on the resource ID.
+ * {@link ERROR_CODE_RES_REF_TOO_MUCH} 9001006 - The resource is cyclically referenced.
+ * {@link ERROR_CODE_OUT_OF_MEMORY} 9001100 - A memory overflow occurs.
  * @since 12
  */
 ResourceManager_ErrorCode OH_ResourceManager_GetStringArray(const NativeResourceManager *mgr, uint32_t resId,
     char ***resultValue, uint32_t *resultLen);
 
 /**
- * @brief Obtains the array of character strings.
+ * @brief Obtains a string array based on the specified resource name. After using this API, you need to call **
+ * OH_ResourceManager_ReleaseStringArray()** to release the memory of the string array.
  *
- * Obtains the array of character strings corresponding to a specified resource name.
- * You need to call the OH_ResourceManager_ReleaseStringArray() method to release the memory of string array.
- *
- * @param mgr Indicates the pointer to {@link NativeResourceManager}
- *        {@link OH_ResourceManager_InitNativeResourceManager}.
- * @param resName Indicates the resource name.
- * @param resultValue the result write to resultValue.
- * @param resultLen the StringArray length write to resultLen.
- * @return {@link SUCCESS} 0 - Success.
- *         {@link ERROR_CODE_INVALID_INPUT_PARAMETER} 401 - The input parameter invalid.
-           Possible causes: Incorrect parameter types.
-           {@link ERROR_CODE_RES_NAME_NOT_FOUND} 9001003 - Invalid resource name.
-           {@link ERROR_CODE_RES_NOT_FOUND_BY_NAME} 9001004 - No matching resource is found based on the resource name.
-           {@link ERROR_CODE_RES_REF_TOO_MUCH} 9001006 - The resource is referenced cyclically.
-           {@link ERROR_CODE_OUT_OF_MEMORY} 9001100 - Out of memory.
+ * @param mgr Pointer to {@link NativeResourceManager}. It is obtained by using
+ * {@link OH_ResourceManager_InitNativeResourceManager}.
+ * @param resName Resource name.
+ * @param resultValue Result of writing **resultValue**.
+ * @param resultLen Length of **StringArray** written to **resultLen**.
+ * @return {@link SUCCESS} 0 - The operation is successful.
+ * {@link ERROR_CODE_INVALID_INPUT_PARAMETER} 401 - The input parameter is invalid. Possible causes: 1. The parameter
+ * type is incorrect. 2. Parameter verification failed.
+ * {@link ERROR_CODE_RES_NAME_NOT_FOUND} 9001003 - The resource name is invalid.
+ * {@link ERROR_CODE_RES_NOT_FOUND_BY_NAME} 9001004 - No matching resource is found based on the resource name.
+ * {@link ERROR_CODE_RES_REF_TOO_MUCH} 9001006 - The resource is cyclically referenced.
+ * {@link ERROR_CODE_OUT_OF_MEMORY} 9001100 - A memory overflow occurs.
  * @since 12
  */
 ResourceManager_ErrorCode OH_ResourceManager_GetStringArrayByName(const NativeResourceManager *mgr,
     const char *resName, char ***resultValue, uint32_t *resultLen);
 
 /**
- * @brief Release the array of character strings.
- * @param resValue the array of character strings corresponding to the specified resource name.
- * @param len the length of array.
- * @return {@link SUCCESS} 0 - Success.
-           {@link ERROR_CODE_INVALID_INPUT_PARAMETER} 401 - The input parameter invalid.
-           Possible causes: Incorrect parameter types.
+ * @brief Releases the memory of the string array.
+ *
+ * @param resValue String array whose memory needs to be released.
+ * @param len Length of the string array.
+ * @return {@link SUCCESS} 0 - The operation is successful.
+ * {@link ERROR_CODE_INVALID_INPUT_PARAMETER} 401 - The input parameter is invalid. Possible causes: 1. The parameter
+ * type is incorrect. 2. Parameter verification failed.
  * @since 12
  */
 ResourceManager_ErrorCode OH_ResourceManager_ReleaseStringArray(char ***resValue, uint32_t len);
 
 /**
- * @brief Obtains the singular-plural character string represented.
+ * @brief Obtains singular and plural strings based on the specified resource ID. After using this API, you need to
+ * call **free()** to release the memory of the strings.
  *
- * Obtains the singular-plural character string represented by the ID string corresponding to the specified number.
- * You need to call free() to release the memory for the string.
- *
- * @param mgr Indicates the pointer to {@link NativeResourceManager}
- *        {@link OH_ResourceManager_InitNativeResourceManager}.
- * @param resId Indicates the resource ID.
- * @param num - Indicates the number.
- * @param resultValue the result write to resultValue.
- * @return {@link SUCCESS} 0 - Success.
- *         {@link ERROR_CODE_INVALID_INPUT_PARAMETER} 401 - The input parameter invalid.
-           Possible causes: Incorrect parameter types.
-           {@link ERROR_CODE_RES_ID_NOT_FOUND} 9001001 - Invalid resource ID.
-           {@link ERROR_CODE_RES_NOT_FOUND_BY_ID} 9001002 - No matching resource is found based on the resource ID.
-           {@link ERROR_CODE_RES_REF_TOO_MUCH} 9001006 - The resource is referenced cyclically.
-           {@link ERROR_CODE_OUT_OF_MEMORY} 9001100 - Out of memory.
+ * @param mgr Pointer to {@link NativeResourceManager}. It is obtained by using
+ * {@link OH_ResourceManager_InitNativeResourceManager}.
+ * @param resId Resource ID.
+ * @param num Number.
+ * @param resultValue Result of writing **resultValue**.
+ * @return {@link SUCCESS} 0 - The operation is successful.
+ * {@link ERROR_CODE_INVALID_INPUT_PARAMETER} 401 - The input parameter is invalid. Possible causes: 1. The parameter
+ * type is incorrect. 2. Parameter verification failed.
+ * {@link ERROR_CODE_RES_ID_NOT_FOUND} 9001001 - The resource ID is invalid.
+ * {@link ERROR_CODE_RES_NOT_FOUND_BY_ID} 9001002 - No matching resource is found based on the resource ID.
+ * {@link ERROR_CODE_RES_REF_TOO_MUCH} 9001006 - The resource is cyclically referenced.
+ * {@link ERROR_CODE_OUT_OF_MEMORY} 9001100 - A memory overflow occurs.
  * @since 12
- * @deprecated since 18
+ * @deprecated since 16
  * @useinstead OH_ResourceManager_GetIntPluralString
  */
 ResourceManager_ErrorCode OH_ResourceManager_GetPluralString(const NativeResourceManager *mgr, uint32_t resId,
     uint32_t num, char **resultValue);
 
 /**
- * @brief Obtains the singular-plural character string represented.
+ * @brief Obtains singular and plural strings based on the specified resource name. After using this API, you need to
+ * call **free()** to release the memory of the strings.
  *
- * Obtains the singular-plural character string represented by the Name string corresponding to the specified number.
- * You need to call free() to release the memory for the string.
- *
- * @param mgr Indicates the pointer to {@link NativeResourceManager}
- *        {@link OH_ResourceManager_InitNativeResourceManager}.
- * @param resName Indicates the resource name.
- * @param num - Indicates the number.
- * @param resultValue the result write to resultValue.
- * @return {@link SUCCESS} 0 - Success.
- *         {@link ERROR_CODE_INVALID_INPUT_PARAMETER} 401 - The input parameter invalid.
-           Possible causes: Incorrect parameter types.
-           {@link ERROR_CODE_RES_NAME_NOT_FOUND} 9001003 - Invalid resource name.
-           {@link ERROR_CODE_RES_NOT_FOUND_BY_NAME} 9001004 - No matching resource is found based on the resource name.
-           {@link ERROR_CODE_RES_REF_TOO_MUCH} 9001006 - The resource is referenced cyclically.
-           {@link ERROR_CODE_OUT_OF_MEMORY} 9001100 - Out of memory.
+ * @param mgr Pointer to {@link NativeResourceManager}. It is obtained by using
+ * {@link OH_ResourceManager_InitNativeResourceManager}.
+ * @param resName Resource name.
+ * @param num Number.
+ * @param resultValue Result of writing **resultValue**.
+ * @return {@link SUCCESS} 0 - The operation is successful.
+ * {@link ERROR_CODE_INVALID_INPUT_PARAMETER} 401 - The input parameter is invalid. Possible causes: 1. The parameter
+ * type is incorrect. 2. Parameter verification failed.
+ * {@link ERROR_CODE_RES_NAME_NOT_FOUND} 9001003 - The resource name is invalid.
+ * {@link ERROR_CODE_RES_NOT_FOUND_BY_NAME} 9001004 - No matching resource is found based on the resource name.
+ * {@link ERROR_CODE_RES_REF_TOO_MUCH} 9001006 - The resource is cyclically referenced.
+ * {@link ERROR_CODE_OUT_OF_MEMORY} 9001100 - A memory overflow occurs.
  * @since 12
- * @deprecated since 18
+ * @deprecated since 16
  * @useinstead OH_ResourceManager_GetIntPluralStringByName
  */
 ResourceManager_ErrorCode OH_ResourceManager_GetPluralStringByName(const NativeResourceManager *mgr,
     const char *resName, uint32_t num, char **resultValue);
 
 /**
- * @brief Obtains the singular-plural character string represented.
+ * @brief Obtains singular and plural strings based on the specified resource ID. After using this API, you need to
+ * call **free()** to release the memory of the strings.
  *
- * Obtains the singular-plural character string represented by the ID string corresponding to the specified number.
- * You need to call free() to release the memory for the string.
- *
- * @param mgr Indicates the pointer to {@link NativeResourceManager}
- *        {@link OH_ResourceManager_InitNativeResourceManager}.
- * @param resId Indicates the resource ID.
- * @param num - an integer used to get the correct string for the current plural rules.
- * @param resultValue the result write to resultValue.
+ * @param mgr Pointer to {@link NativeResourceManager}. It is obtained by using
+ * {@link OH_ResourceManager_InitNativeResourceManager}.
+ * @param resId Resource ID.
+ * @param num Quantity value (an integer number). Its string representation is obtained based on the current language's
+ * plural rules.
+ * @param resultValue Result of writing **resultValue**.
  * @param { const char* | int | float } args - Indicates the formatting string resource parameters.
- * @return {@link SUCCESS} 0 - Success.
- *         {@link ERROR_CODE_INVALID_INPUT_PARAMETER} 401 - The input parameter invalid.
-           Possible causes: Incorrect parameter types.
-           {@link ERROR_CODE_RES_ID_NOT_FOUND} 9001001 - Invalid resource ID.
-           {@link ERROR_CODE_RES_NOT_FOUND_BY_ID} 9001002 - No matching resource is found based on the resource ID.
-           {@link ERROR_CODE_RES_REF_TOO_MUCH} 9001006 - The resource is referenced cyclically.
-           {@link ERROR_CODE_OUT_OF_MEMORY} 9001100 - Out of memory.
+ * @return {@link SUCCESS} 0 - The operation is successful.
+ * {@link ERROR_CODE_INVALID_INPUT_PARAMETER} 401 - The input parameter is invalid. Possible causes: 1. The parameter
+ * type is incorrect. 2. Parameter verification failed.
+ * {@link ERROR_CODE_RES_ID_NOT_FOUND} 9001001 - The resource ID is invalid.
+ * {@link ERROR_CODE_RES_NOT_FOUND_BY_ID} 9001002 - No matching resource is found based on the resource ID.
+ * {@link ERROR_CODE_RES_REF_TOO_MUCH} 9001006 - The resource is cyclically referenced.
+ * {@link ERROR_CODE_OUT_OF_MEMORY} 9001100 - A memory overflow occurs.
  * @since 18
  */
 ResourceManager_ErrorCode OH_ResourceManager_GetIntPluralString(const NativeResourceManager *mgr, uint32_t resId,
     uint32_t num, char **resultValue, ...);
 
 /**
- * @brief Obtains the singular-plural character string represented.
+ * @brief Obtains singular and plural strings based on the specified resource name. After using this API, you need to
+ * call **free()** to release the memory of the strings.
  *
- * Obtains the singular-plural character string represented by the ID string corresponding to the specified number.
- * You need to call free() to release the memory for the string.
- *
- * @param mgr Indicates the pointer to {@link NativeResourceManager}
- *        {@link OH_ResourceManager_InitNativeResourceManager}.
- * @param resId Indicates the resource ID.
- * @param num - a double parameter used to get the correct string for the current plural rules.
- * @param resultValue the result write to resultValue.
+ * @param mgr Pointer to {@link NativeResourceManager}. It is obtained by using
+ * {@link OH_ResourceManager_InitNativeResourceManager}.
+ * @param resName Resource name.
+ * @param num Quantity value (an integer number). Its string representation is obtained based on the current language's
+ * plural rules.
+ * @param resultValue Result of writing **resultValue**.
  * @param { const char* | int | float } args - Indicates the formatting string resource parameters.
- * @return {@link SUCCESS} 0 - Success.
- *         {@link ERROR_CODE_INVALID_INPUT_PARAMETER} 401 - The input parameter invalid.
-           Possible causes: Incorrect parameter types.
-           {@link ERROR_CODE_RES_ID_NOT_FOUND} 9001001 - Invalid resource ID.
-           {@link ERROR_CODE_RES_NOT_FOUND_BY_ID} 9001002 - No matching resource is found based on the resource ID.
-           {@link ERROR_CODE_RES_REF_TOO_MUCH} 9001006 - The resource is referenced cyclically.
-           {@link ERROR_CODE_OUT_OF_MEMORY} 9001100 - Out of memory.
- * @since 18
- */
-ResourceManager_ErrorCode OH_ResourceManager_GetDoublePluralString(const NativeResourceManager *mgr, uint32_t resId,
-    double num, char **resultValue, ...);
-
-/**
- * @brief Obtains the singular-plural character string represented.
- *
- * Obtains the singular-plural character string represented by the Name string corresponding to the specified number.
- * You need to call free() to release the memory for the string.
- *
- * @param mgr Indicates the pointer to {@link NativeResourceManager}
- *        {@link OH_ResourceManager_InitNativeResourceManager}.
- * @param resName Indicates the resource name.
- * @param num - an integer used to get the correct string for the current plural rules.
- * @param resultValue the result write to resultValue.
- * @param { const char* | int | float } args - Indicates the formatting string resource parameters.
- * @return {@link SUCCESS} 0 - Success.
- *         {@link ERROR_CODE_INVALID_INPUT_PARAMETER} 401 - The input parameter invalid.
-           Possible causes: Incorrect parameter types.
-           {@link ERROR_CODE_RES_NAME_NOT_FOUND} 9001003 - Invalid resource name.
-           {@link ERROR_CODE_RES_NOT_FOUND_BY_NAME} 9001004 - No matching resource is found based on the resource name.
-           {@link ERROR_CODE_RES_REF_TOO_MUCH} 9001006 - The resource is referenced cyclically.
-           {@link ERROR_CODE_OUT_OF_MEMORY} 9001100 - Out of memory.
+ * @return {@link SUCCESS} 0 - The operation is successful.
+ * {@link ERROR_CODE_INVALID_INPUT_PARAMETER} 401 - The input parameter is invalid. Possible causes: 1. The parameter
+ * type is incorrect. 2. Parameter verification failed.
+ * {@link ERROR_CODE_RES_NAME_NOT_FOUND} 9001003 - The resource name is invalid.
+ * {@link ERROR_CODE_RES_NOT_FOUND_BY_NAME} 9001004 - No matching resource is found based on the resource name.
+ * {@link ERROR_CODE_RES_REF_TOO_MUCH} 9001006 - The resource is cyclically referenced.
+ * {@link ERROR_CODE_OUT_OF_MEMORY} 9001100 - A memory overflow occurs.
  * @since 18
  */
 ResourceManager_ErrorCode OH_ResourceManager_GetIntPluralStringByName(const NativeResourceManager *mgr,
     const char *resName, uint32_t num, char **resultValue, ...);
 
 /**
- * @brief Obtains the singular-plural character string represented.
+ * @brief Obtains singular and plural strings based on the specified resource ID. After using this API, you need to
+ * call **free()** to release the memory of the strings.
  *
- * Obtains the singular-plural character string represented by the Name string corresponding to the specified number.
- * You need to call free() to release the memory for the string.
- *
- * @param mgr Indicates the pointer to {@link NativeResourceManager}
- *        {@link OH_ResourceManager_InitNativeResourceManager}.
- * @param resName Indicates the resource name.
- * @param num - a double parameter used to get the correct string for the current plural rules.
- * @param resultValue the result write to resultValue.
+ * @param mgr Pointer to {@link NativeResourceManager}. It is obtained by using
+ * {@link OH_ResourceManager_InitNativeResourceManager}.
+ * @param resId Resource ID.
+ * @param num Quantity value (a floating point number). Its string representation is obtained based on the current
+ * language's plural rules.
+ * @param resultValue Result of writing **resultValue**.
  * @param { const char* | int | float } args - Indicates the formatting string resource parameters.
- * @return {@link SUCCESS} 0 - Success.
- *         {@link ERROR_CODE_INVALID_INPUT_PARAMETER} 401 - The input parameter invalid.
-           Possible causes: Incorrect parameter types.
-           {@link ERROR_CODE_RES_NAME_NOT_FOUND} 9001003 - Invalid resource name.
-           {@link ERROR_CODE_RES_NOT_FOUND_BY_NAME} 9001004 - No matching resource is found based on the resource name.
-           {@link ERROR_CODE_RES_REF_TOO_MUCH} 9001006 - The resource is referenced cyclically.
-           {@link ERROR_CODE_OUT_OF_MEMORY} 9001100 - Out of memory.
+ * @return {@link SUCCESS} 0 - The operation is successful.
+ * {@link ERROR_CODE_INVALID_INPUT_PARAMETER} 401 - The input parameter is invalid. Possible causes: 1. The parameter
+ * type is incorrect. 2. Parameter verification failed.
+ * {@link ERROR_CODE_RES_ID_NOT_FOUND} 9001001 - The resource ID is invalid.
+ * {@link ERROR_CODE_RES_NOT_FOUND_BY_ID} 9001002 - No matching resource is found based on the resource ID.
+ * {@link ERROR_CODE_RES_REF_TOO_MUCH} 9001006 - The resource is cyclically referenced.
+ * {@link ERROR_CODE_OUT_OF_MEMORY} 9001100 - A memory overflow occurs.
+ * @since 18
+ */
+ResourceManager_ErrorCode OH_ResourceManager_GetDoublePluralString(const NativeResourceManager *mgr, uint32_t resId,
+    double num, char **resultValue, ...);
+
+/**
+ * @brief Obtains singular and plural strings based on the specified resource name. After using this API, you need to
+ * call **free()** to release the memory of the strings.
+ *
+ * @param mgr Pointer to {@link NativeResourceManager}. It is obtained by using
+ * {@link OH_ResourceManager_InitNativeResourceManager}.
+ * @param resName Resource name.
+ * @param num Quantity value (a floating point number). Its string representation is obtained based on the current
+ * language's plural rules.
+ * @param resultValue Result of writing **resultValue**.
+ * @param { const char* | int | float } args - Indicates the formatting string resource parameters.
+ * @return {@link SUCCESS} 0 - The operation is successful.
+ * {@link ERROR_CODE_INVALID_INPUT_PARAMETER} 401 - The input parameter is invalid. Possible causes: 1. The parameter
+ * type is incorrect. 2. Parameter verification failed.
+ * {@link ERROR_CODE_RES_NAME_NOT_FOUND} 9001003 - The resource name is invalid.
+ * {@link ERROR_CODE_RES_NOT_FOUND_BY_NAME} 9001004 - No matching resource is found based on the resource name.
+ * {@link ERROR_CODE_RES_REF_TOO_MUCH} 9001006 - The resource is cyclically referenced.
+ * {@link ERROR_CODE_OUT_OF_MEMORY} 9001100 - A memory overflow occurs.
  * @since 18
  */
 ResourceManager_ErrorCode OH_ResourceManager_GetDoublePluralStringByName(const NativeResourceManager *mgr,
     const char *resName, double num, char **resultValue, ...);
 
 /**
- * @brief Obtains the color resource.
+ * @brief Obtains a color value based on the specified resource ID.
  *
- * Obtains the color resource corresponding to the specified resource ID.
- *
- * @param mgr Indicates the pointer to {@link NativeResourceManager}
- *        {@link OH_ResourceManager_InitNativeResourceManager}.
- * @param resId Indicates the resource ID.
- * @param resultValue the result write to resultValue.
- * @return {@link SUCCESS} 0 - Success.
- *         {@link ERROR_CODE_INVALID_INPUT_PARAMETER} 401 - The input parameter invalid.
-           Possible causes: Incorrect parameter types.
-           {@link ERROR_CODE_RES_ID_NOT_FOUND} 9001001 - Invalid resource ID.
-           {@link ERROR_CODE_RES_NOT_FOUND_BY_ID} 9001002 - No matching resource is found based on the resource ID.
-           {@link ERROR_CODE_RES_REF_TOO_MUCH} 9001006 - The resource is referenced cyclically.
+ * @param mgr Pointer to {@link NativeResourceManager}. It is obtained by using
+ * {@link OH_ResourceManager_InitNativeResourceManager}.
+ * @param resId Resource ID.
+ * @param resultValue Result of writing **resultValue**.
+ * @return {@link SUCCESS} 0 - The operation is successful.
+ * {@link ERROR_CODE_INVALID_INPUT_PARAMETER} 401 - The input parameter is invalid. Possible causes: 1. The parameter
+ * type is incorrect. 2. Parameter verification failed.
+ * {@link ERROR_CODE_RES_ID_NOT_FOUND} 9001001 - The resource ID is invalid.
+ * {@link ERROR_CODE_RES_NOT_FOUND_BY_ID} 9001002 - No matching resource is found based on the resource ID.
+ * {@link ERROR_CODE_RES_REF_TOO_MUCH} 9001006 - The resource is cyclically referenced.
  * @since 12
  */
 ResourceManager_ErrorCode OH_ResourceManager_GetColor(const NativeResourceManager *mgr, uint32_t resId,
     uint32_t *resultValue);
 
 /**
- * @brief Obtains the color resource.
+ * @brief Obtains a color value based on the specified resource ID.
  *
- * Obtains the color resource corresponding to the specified resource name.
- *
- * @param mgr Indicates the pointer to {@link NativeResourceManager}
- *        {@link OH_ResourceManager_InitNativeResourceManager}.
- * @param resName Indicates the resource name.
- * @param resultValue the result write to resultValue.
- * @return {@link SUCCESS} 0 - Success.
- *         {@link ERROR_CODE_INVALID_INPUT_PARAMETER} 401 - The input parameter invalid.
-           Possible causes: Incorrect parameter types.
-           {@link ERROR_CODE_RES_NAME_NOT_FOUND} 9001003 - Invalid resource name.
-           {@link ERROR_CODE_RES_NOT_FOUND_BY_NAME} 9001004 - No matching resource is found based on the resource name.
-           {@link ERROR_CODE_RES_REF_TOO_MUCH} 9001006 - The resource is referenced cyclically.
+ * @param mgr Pointer to {@link NativeResourceManager}. It is obtained by using
+ * {@link OH_ResourceManager_InitNativeResourceManager}.
+ * @param resName Resource name.
+ * @param resultValue Result of writing **resultValue**.
+ * @return {@link SUCCESS} 0 - The operation is successful.
+ * {@link ERROR_CODE_INVALID_INPUT_PARAMETER} 401 - The input parameter is invalid. Possible causes: 1. The parameter
+ * type is incorrect. 2. Parameter verification failed.
+ * {@link ERROR_CODE_RES_NAME_NOT_FOUND} 9001003 - The resource name is invalid.
+ * {@link ERROR_CODE_RES_NOT_FOUND_BY_NAME} 9001004 - No matching resource is found based on the resource name.
+ * {@link ERROR_CODE_RES_REF_TOO_MUCH} 9001006 - The resource is cyclically referenced.
  * @since 12
  */
 ResourceManager_ErrorCode OH_ResourceManager_GetColorByName(const NativeResourceManager *mgr, const char *resName,
     uint32_t *resultValue);
 
 /**
- * @brief Obtains the Int resource.
+ * @brief Obtains an int value based on the specified resource ID.
  *
- * Obtains the Int resource corresponding to the specified resource ID.
- *
- * @param mgr Indicates the pointer to {@link NativeResourceManager}
- *        {@link OH_ResourceManager_InitNativeResourceManager}.
- * @param resId Indicates the resource ID.
- * @param resultValue the result write to resultValue.
- * @return {@link SUCCESS} 0 - Success.
- *         {@link ERROR_CODE_INVALID_INPUT_PARAMETER} 401 - The input parameter invalid.
-           Possible causes: Incorrect parameter types.
-           {@link ERROR_CODE_RES_ID_NOT_FOUND} 9001001 - Invalid resource ID.
-           {@link ERROR_CODE_RES_NOT_FOUND_BY_ID} 9001002 - No matching resource is found based on the resource ID.
-           {@link ERROR_CODE_RES_REF_TOO_MUCH} 9001006 - The resource is referenced cyclically.
+ * @param mgr Pointer to {@link NativeResourceManager}. It is obtained by using
+ * {@link OH_ResourceManager_InitNativeResourceManager}.
+ * @param resId Resource ID.
+ * @param resultValue Result of writing **resultValue**.
+ * @return {@link SUCCESS} 0 - The operation is successful.
+ * {@link ERROR_CODE_INVALID_INPUT_PARAMETER} 401 - The input parameter is invalid. Possible causes: 1. The parameter
+ * type is incorrect. 2. Parameter verification failed.
+ * {@link ERROR_CODE_RES_ID_NOT_FOUND} 9001001 - The resource ID is invalid.
+ * {@link ERROR_CODE_RES_NOT_FOUND_BY_ID} 9001002 - No matching resource is found based on the resource ID.
+ * {@link ERROR_CODE_RES_REF_TOO_MUCH} 9001006 - The resource is cyclically referenced.
  * @since 12
  */
 ResourceManager_ErrorCode OH_ResourceManager_GetInt(const NativeResourceManager *mgr, uint32_t resId,
     int *resultValue);
 
 /**
- * @brief Obtains the Int resource.
+ * @brief Obtains an int value based on the specified resource name.
  *
- * Obtains the Int resource corresponding to the specified resource name.
- *
- * @param mgr Indicates the pointer to {@link NativeResourceManager}
- *        {@link OH_ResourceManager_InitNativeResourceManager}.
- * @param resName Indicates the resource name.
- * @param resultValue the result write to resultValue.
- * @return {@link SUCCESS} 0 - Success.
- *         {@link ERROR_CODE_INVALID_INPUT_PARAMETER} 401 - The input parameter invalid.
-           Possible causes: Incorrect parameter types.
-           {@link ERROR_CODE_RES_NAME_NOT_FOUND} 9001003 - Invalid resource name.
-           {@link ERROR_CODE_RES_NOT_FOUND_BY_NAME} 9001004 - No matching resource is found based on the resource name.
-           {@link ERROR_CODE_RES_REF_TOO_MUCH} 9001006 - The resource is referenced cyclically.
+ * @param mgr Pointer to {@link NativeResourceManager}. It is obtained by using
+ * {@link OH_ResourceManager_InitNativeResourceManager}.
+ * @param resName Resource name.
+ * @param resultValue Result of writing **resultValue**.
+ * @return {@link SUCCESS} 0 - The operation is successful.
+ * {@link ERROR_CODE_INVALID_INPUT_PARAMETER} 401 - The input parameter is invalid. Possible causes: 1. The parameter
+ * type is incorrect. 2. Parameter verification failed.
+ * {@link ERROR_CODE_RES_NAME_NOT_FOUND} 9001003 - The resource name is invalid.
+ * {@link ERROR_CODE_RES_NOT_FOUND_BY_NAME} 9001004 - No matching resource is found based on the resource name.
+ * {@link ERROR_CODE_RES_REF_TOO_MUCH} 9001006 - The resource is cyclically referenced.
  * @since 12
  */
 ResourceManager_ErrorCode OH_ResourceManager_GetIntByName(const NativeResourceManager *mgr, const char *resName,
     int *resultValue);
 
 /**
- * @brief Obtains the Float resource.
+ * @brief Obtains a float value based on the specified resource ID.
  *
- * Obtains the Int resource corresponding to the specified resource ID.
- *
- * @param mgr Indicates the pointer to {@link NativeResourceManager}
- *        {@link OH_ResourceManager_InitNativeResourceManager}.
- * @param resId Indicates the resource ID.
- * @param resultValue the result write to resultValue.
- * @return {@link SUCCESS} 0 - Success.
- *         {@link ERROR_CODE_INVALID_INPUT_PARAMETER} 401 - The input parameter invalid.
-           Possible causes: Incorrect parameter types.
-           {@link ERROR_CODE_RES_ID_NOT_FOUND} 9001001 - Invalid resource ID.
-           {@link ERROR_CODE_RES_NOT_FOUND_BY_ID} 9001002 - No matching resource is found based on the resource ID.
-           {@link ERROR_CODE_RES_REF_TOO_MUCH} 9001006 - The resource is referenced cyclically.
+ * @param mgr Pointer to {@link NativeResourceManager}. It is obtained by using
+ * {@link OH_ResourceManager_InitNativeResourceManager}.
+ * @param resId Resource ID.
+ * @param resultValue Result of writing **resultValue**.
+ * @return {@link SUCCESS} 0 - The operation is successful.
+ * {@link ERROR_CODE_INVALID_INPUT_PARAMETER} 401 - The input parameter is invalid. Possible causes: 1. The parameter
+ * type is incorrect. 2. Parameter verification failed.
+ * {@link ERROR_CODE_RES_ID_NOT_FOUND} 9001001 - The resource ID is invalid.
+ * {@link ERROR_CODE_RES_NOT_FOUND_BY_ID} 9001002 - No matching resource is found based on the resource ID.
+ * {@link ERROR_CODE_RES_REF_TOO_MUCH} 9001006 - The resource is cyclically referenced.
  * @since 12
  */
 ResourceManager_ErrorCode OH_ResourceManager_GetFloat(const NativeResourceManager *mgr, uint32_t resId,
     float *resultValue);
 
 /**
- * @brief Obtains the Float resource.
+ * @brief Obtains a float value based on the specified resource name.
  *
- * Obtains the Float resource corresponding to the specified resource name.
- *
- * @param mgr Indicates the pointer to {@link NativeResourceManager}
- *        {@link OH_ResourceManager_InitNativeResourceManager}.
- * @param resName Indicates the resource name.
- * @param resultValue the result write to resultValue.
- * @return {@link SUCCESS} 0 - Success.
- *         {@link ERROR_CODE_INVALID_INPUT_PARAMETER} 401 - The input parameter invalid.
-           Possible causes: Incorrect parameter types.
-           {@link ERROR_CODE_RES_NAME_NOT_FOUND} 9001003 - Invalid resource name.
-           {@link ERROR_CODE_RES_NOT_FOUND_BY_NAME} 9001004 - No matching resource is found based on the resource name.
-           {@link ERROR_CODE_RES_REF_TOO_MUCH} 9001006 - The resource is referenced cyclically.
+ * @param mgr Pointer to {@link NativeResourceManager}. It is obtained by using
+ * {@link OH_ResourceManager_InitNativeResourceManager}.
+ * @param resName Resource name.
+ * @param resultValue Result of writing **resultValue**.
+ * @return {@link SUCCESS} 0 - The operation is successful.
+ * {@link ERROR_CODE_INVALID_INPUT_PARAMETER} 401 - The input parameter is invalid. Possible causes: 1. The parameter
+ * type is incorrect. 2. Parameter verification failed.
+ * {@link ERROR_CODE_RES_NAME_NOT_FOUND} 9001003 - The resource name is invalid.
+ * {@link ERROR_CODE_RES_NOT_FOUND_BY_NAME} 9001004 - No matching resource is found based on the resource name.
+ * {@link ERROR_CODE_RES_REF_TOO_MUCH} 9001006 - The resource is cyclically referenced.
  * @since 12
  */
 ResourceManager_ErrorCode OH_ResourceManager_GetFloatByName(const NativeResourceManager *mgr, const char *resName,
     float *resultValue);
 
 /**
- * @brief Obtains the boolean result.
+ * @brief Obtains a bool value based on the specified resource ID.
  *
- * Obtains the boolean result with a specified resource ID.
- *
- * @param mgr Indicates the pointer to {@link NativeResourceManager}
- *        {@link OH_ResourceManager_InitNativeResourceManager}.
- * @param resId Indicates the resource ID.
- * @param resultValue the result write to resultValue.
- * @return {@link SUCCESS} 0 - Success.
- *         {@link ERROR_CODE_INVALID_INPUT_PARAMETER} 401 - The input parameter invalid.
-           Possible causes: Incorrect parameter types.
-           {@link ERROR_CODE_RES_ID_NOT_FOUND} 9001001 - Invalid resource ID.
-           {@link ERROR_CODE_RES_NOT_FOUND_BY_ID} 9001002 - No matching resource is found based on the resource ID.
-           {@link ERROR_CODE_RES_REF_TOO_MUCH} 9001006 - The resource is referenced cyclically.
+ * @param mgr Pointer to {@link NativeResourceManager}. It is obtained by using
+ * {@link OH_ResourceManager_InitNativeResourceManager}.
+ * @param resId Resource ID.
+ * @param resultValue Result of writing **resultValue**.
+ * @return {@link SUCCESS} 0 - The operation is successful.
+ * {@link ERROR_CODE_INVALID_INPUT_PARAMETER} 401 - The input parameter is invalid. Possible causes: 1. The parameter
+ * type is incorrect. 2. Parameter verification failed.
+ * {@link ERROR_CODE_RES_ID_NOT_FOUND} 9001001 - The resource ID is invalid.
+ * {@link ERROR_CODE_RES_NOT_FOUND_BY_ID} 9001002 - No matching resource is found based on the resource ID.
+ * {@link ERROR_CODE_RES_REF_TOO_MUCH} 9001006 - The resource is cyclically referenced.
  * @since 12
  */
 ResourceManager_ErrorCode OH_ResourceManager_GetBool(const NativeResourceManager *mgr, uint32_t resId,
     bool *resultValue);
 
 /**
- * @brief Obtains the boolean result.
+ * @brief Obtains a bool value based on the specified resource name.
  *
- * Obtains the boolean result with a specified resource name.
- *
- * @param mgr Indicates the pointer to {@link NativeResourceManager}
- *        {@link OH_ResourceManager_InitNativeResourceManager}.
- * @param resName Indicates the resource name.
- * @param resultValue the result write to resultValue.
- * @return {@link SUCCESS} 0 - Success.
- *         {@link ERROR_CODE_INVALID_INPUT_PARAMETER} 401 - The input parameter invalid.
-           Possible causes: Incorrect parameter types.
-           {@link ERROR_CODE_RES_NAME_NOT_FOUND} 9001003 - Invalid resource name.
-           {@link ERROR_CODE_RES_NOT_FOUND_BY_NAME} 9001004 - No matching resource is found based on the resource name.
-           {@link ERROR_CODE_RES_REF_TOO_MUCH} 9001006 - The resource is referenced cyclically.
+ * @param mgr Pointer to {@link NativeResourceManager}. It is obtained by using
+ * {@link OH_ResourceManager_InitNativeResourceManager}.
+ * @param resName Resource name.
+ * @param resultValue Result of writing **resultValue**.
+ * @return {@link SUCCESS} 0 - The operation is successful.
+ * {@link ERROR_CODE_INVALID_INPUT_PARAMETER} 401 - The input parameter is invalid. Possible causes: 1. The parameter
+ * type is incorrect. 2. Parameter verification failed.
+ * {@link ERROR_CODE_RES_NAME_NOT_FOUND} 9001003 - The resource name is invalid.
+ * {@link ERROR_CODE_RES_NOT_FOUND_BY_NAME} 9001004 - No matching resource is found based on the resource name.
+ * {@link ERROR_CODE_RES_REF_TOO_MUCH} 9001006 - The resource is cyclically referenced.
  * @since 12
  */
 ResourceManager_ErrorCode OH_ResourceManager_GetBoolByName(const NativeResourceManager *mgr, const char *resName,
     bool *resultValue);
 
 /**
- * @brief Add overlay resources during application runtime.
- * @param mgr Indicates the pointer to {@link NativeResourceManager}
- *        {@link OH_ResourceManager_InitNativeResourceManager}.
- * @param path Indicates the application overlay path.
- * @return {@link SUCCESS} 0 - Success.
- *         {@link ERROR_CODE_INVALID_INPUT_PARAMETER} 401 - The input parameter invalid.
-           Possible causes: Incorrect parameter types.
-           {@link ERROR_CODE_OVERLAY_RES_PATH_INVALID} 9001010 - Invalid overlay path.
+ * @brief Adds overlay resources when an application is running.
+ *
+ * @param mgr Pointer to {@link NativeResourceManager}. It is obtained by using
+ * {@link OH_ResourceManager_InitNativeResourceManager}.
+ * @param path Resource path.
+ * @return {@link SUCCESS} 0 - The operation is successful.
+ * {@link ERROR_CODE_INVALID_INPUT_PARAMETER} 401 - The input parameter is invalid. Possible causes: 1. The parameter
+ * type is incorrect. 2. Parameter verification failed.
+ * {@link ERROR_CODE_OVERLAY_RES_PATH_INVALID} 9001010 - The resource path is invalid.
  * @since 12
  */
 ResourceManager_ErrorCode OH_ResourceManager_AddResource(const NativeResourceManager *mgr, const char *path);
 
 /**
- * @brief Remove overlay resources during application runtime.
- * @param mgr Indicates the pointer to {@link NativeResourceManager}
- *        {@link OH_ResourceManager_InitNativeResourceManager}.
- * @param path Indicates the application overlay path.
- * @return {@link SUCCESS} 0 - Success.
- *         {@link ERROR_CODE_INVALID_INPUT_PARAMETER} 401 - The input parameter invalid.
-           Possible causes: Incorrect parameter types.
-           {@link ERROR_CODE_OVERLAY_RES_PATH_INVALID} 9001010 - Invalid overlay path.
+ * @brief Removes overlay resources when an application is running.
+ *
+ * @param mgr Pointer to {@link NativeResourceManager}. It is obtained by using
+ * {@link OH_ResourceManager_InitNativeResourceManager}.
+ * @param path Resource path.
+ * @return {@link SUCCESS} 0 - The operation is successful.
+ * {@link ERROR_CODE_INVALID_INPUT_PARAMETER} 401 - The input parameter is invalid. Possible causes: 1. The parameter
+ * type is incorrect. 2. Parameter verification failed.
+ * {@link ERROR_CODE_OVERLAY_RES_PATH_INVALID} 9001010 - The resource path is invalid.
  * @since 12
  */
 ResourceManager_ErrorCode OH_ResourceManager_RemoveResource(const NativeResourceManager *mgr, const char *path);

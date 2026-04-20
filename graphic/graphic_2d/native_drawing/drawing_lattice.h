@@ -4,7 +4,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -21,17 +21,17 @@
  *
  * @since 8
  */
-
 /**
  * @file drawing_lattice.h
  *
- * @brief Declares functions related to the <b>lattice</b> object in the drawing module.
+ * @brief This file declares the functions related to the rectangular lattice object.
  *
  * @kit ArkGraphics2D
  * @library libnative_drawing.so
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @since 23
  */
+
 #ifndef C_INCLUDE_DRAWING_LATTICE_H
 #define C_INCLUDE_DRAWING_LATTICE_H
 
@@ -43,59 +43,75 @@ extern "C" {
 #endif
 
 /**
- * @brief Enumerates the types of rectangles used to fill the lattices. This enum is used only in Lattice.
+ * @brief Enumerates the types of rectangles used to fill the lattices. It is applicable only to rectangular lattice
+ * objects.
  *
  * @since 23
  */
 typedef enum {
-    /** Draws an image into the lattice */
+    /**
+     * Draws an image into the rectangular lattice.
+     *
+     * @since 23
+     */
     DEFAULT,
-    /** Sets the lattice to transparent */
+    /**
+     * Sets the rectangular lattice to be transparent.
+     *
+     * @since 23
+     */
     TRANSPARENT,
-    /** Draws the colors in the fColors array in Lattice into the lattice */
+    /**
+     * Draws the colors from the **fColors** array of the rectangular lattice object into the lattice.
+     *
+     * @since 23
+     */
     FIXED_COLOR,
 } OH_Drawing_LatticeRectType;
 
 /**
- * @brief Destroys an <b>OH_Drawing_Lattice</b> object and reclaims the memory occupied by the object.
+ * @brief Destroys an **OH_Drawing_Lattice** object and reclaims the memory occupied by the object.
  *
- * @param lattice Indicates the pointer to an <b>OH_Drawing_Lattice</b> object.
- * @return Returns the error code.
- *         Returns {@link OH_DRAWING_SUCCESS} If the operation is successful.
- *         Returns {@link OH_DRAWING_ERROR_INCORRECT_PARAMETER} If lattice is nullptr.
+ * @param lattice Pointer to an {@link OH_Drawing_Lattice} object.
+ * @return Execution result.
+ * **OH_DRAWING_SUCCESS** if the operation is successful.
+ * **OH_DRAWING_ERROR_INCORRECT_PARAMETER** if **OHDrawingLattice* lattice** is a null pointer.
  * @since 23
  */
 OH_Drawing_ErrorCode OH_Drawing_LatticeDestroy(OH_Drawing_Lattice* lattice);
 
 /**
- * @brief Creates an <b>OH_Drawing_Lattice</b> that divides the image into lattices.
- *     The lattices on both even columns and even rows are fixed,
- *     and they are drawn at their original size if the target is large enough.
- *     If the target is too small to hold the fixed lattices, all the fixed lattices are scaled down to fit the target,
- *     and the lattices that are not on even columns and even rows are scaled to accommodate the remaining space.
+ * @brief Divides the image into lattices. The lattices on both even columns and even rows are fixed, and they are
+ * drawn at their original size if the target is large enough. If the target is too small to hold the fixed lattices,
+ * all the fixed lattices are scaled down to fit the target, and the lattices that are not on even columns and even
+ * rows are scaled to accommodate the remaining space.
  *
- * @param xDivs Indicates the array of X coordinates used to divide the image. The value is an integer.
- * @param yDivs Indicates the array of Y coordinates used to divide the image. The value is an integer.
- * @param xCount Indicates the number of xDivs. The value range is [0, 5].
- * @param yCount Indicates the number of yDivs. The value range is [0, 5].
- * @param bounds Indicates source bounds to draw. The rectangle parameter must be an integer.
- *     The default value is the rectangle size of the original image. If the rectangle parameter is a decimal,
- *     the decimal part is discarded and converted into an integer.
- * @param rectTypes Indicates array that holds the rectangle types.
- * @param rectTypeCount Indicates the number of rectTypes. If rectTypes is not a null pointer,
- *     its size must be (xCount + 1) * (yCount + 1). If it is null, the size is 0.
- * @param colors Array that holds the colors used to fill the lattices.
- * @param colorCount Indicates the number of colors. If colors is not a null pointer,
- *     its size must be (xCount + 1) * (yCount + 1). If it is null, the size is 0.
- * @param lattice The pointer to the <b>OH_Drawing_Lattice</b> object created returned to the caller.
- * @return Returns the error code.
- *         Returns {@link OH_DRAWING_SUCCESS} if the operation is successful.
- *         Returns {@link OH_DRAWING_ERROR_INCORRECT_PARAMETER} if xDivs or yDivs is nullptr;
- *                     if rectTypes or colors exists, rectTypeCount or colorCount
- *                         does not equal (xCount + 1) * (yCount + 1);
- *                     if rectTypes or colors is nullptr, rectTypeCount or colorCount does not equal 0.
- *         Returns {@link OH_DRAWING_ERROR_PARAMETER_OUT_OF_RANGE} the enumeration values of rectTypes
- *                 exceed the enumeration range.
+ * @param xDivs Array of X coordinates used to divide the image. The value is an integer.
+ * @param yDivs Array of Y coordinates used to divide the image. The value is an integer.
+ * @param xCount Size of the array that holds the X coordinates. The value range is [0, 5].
+ * @param yCount Size of the array that holds the Y coordinates. The value range is [0, 5].
+ * @param bounds The original bounding rectangle to be drawn, which defaults to the size of the original image
+ * rectangle. The value must be an integer and is rounded down.
+ * @param rectTypes Array of rectangle types used to fill the lattice.
+ * @param rectTypeCount Size of the **rectTypes** array. If **rectTypes** is not a null pointer, the array size must be
+ * **(xCount + 1)*(yCount + 1)**.
+ * If **rectTypes** is a null pointer, the array size must be **0**.
+ * @param colors Array of colors used to fill the lattice.
+ * @param colorCount Size of the **colors** array. If **colors** is not a null pointer, the array size must be **(
+ * xCount + 1)*(yCount + 1)**.
+ * If **colors** is a null pointer, the array size must be **0**.
+ * @param lattice Double pointer to an {@link OH_Drawing_Lattice} object, which serves as an output parameter returned
+ * to the caller.
+ * @return Execution result.
+ * Returns **OH_DRAWING_SUCCESS** if the operation is successful.
+ * Returns **OH_DRAWING_ERROR_INCORRECT_PARAMETER** for any of the following reasons:
+ * - **xDivs** or **yDivs** is a null pointer.
+ * - **rectTypes** is not a null pointer, and **rectTypeCount** is not equal to **(xCount + 1)*(yCount + 1)**.
+ * - **colors** is not a null pointer, and **colorCount** is not equal to **(xCount + 1)*(yCount + 1)**.
+ * - **rectTypes** is a null pointer, and **rectTypeCount** is not equal to **0**.
+ * - **colors** is a null pointer, and **colorCount** is not equal to **0**.
+ * Returns **OH_DRAWING_ERROR_PARAMETER_OUT_OF_RANGE**, indicating that the enumeration value in **rectTypes** exceeds
+ * the valid enumeration range.
  * @since 23
  */
 OH_Drawing_ErrorCode OH_Drawing_LatticeCreate(const int* xDivs, const int* yDivs, uint32_t xCount, uint32_t yCount,
