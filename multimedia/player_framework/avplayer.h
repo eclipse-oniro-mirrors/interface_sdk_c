@@ -1123,7 +1123,7 @@ OH_AVPlayerVideoOutput* OH_AVPlayer_SetVideoSideOutput(OH_AVPlayer *player, OHNa
  *         Returns VIDEO_OUTPUT_NO_IMAGE when there is no frame ready to render.
  * @since 26.0.0
  */
-VideoOutputResult OH_AVPlayerVideoOutput_GetNewestVideoSample(OH_AVPlayerVideoOutput * videoOutput);
+VideoOutputResult OH_AVPlayerVideoOutput_GetNewestVideoSample(OH_AVPlayerVideoOutput *videoOutput);
 
 #ifdef __cplusplus
 }
