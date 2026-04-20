@@ -264,7 +264,7 @@ typedef enum AVPlayerTrackSwitchMode {
  * @brief Result of Video output.
  * @since 26.0.0
  */
-typedef enum VideoOutputResult{
+typedef enum VideoOutputResult {
     /**
      * @brief Output one decoded video frame.
      * @since 26.0.0
