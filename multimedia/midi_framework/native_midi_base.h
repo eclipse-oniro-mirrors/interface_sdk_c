@@ -279,7 +279,7 @@ typedef enum {
 
 /**
  * @brief MIDI Event Structure (Universal).
- * Designed to handle both raw byte stream (MIDI 1.0) and UMP.
+ * The event data is transferred in Universal MIDI Packets (UMP) format.
  *
  * @since 24
  */
