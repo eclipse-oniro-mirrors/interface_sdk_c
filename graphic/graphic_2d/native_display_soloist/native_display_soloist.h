@@ -121,7 +121,7 @@ int32_t OH_DisplaySoloist_Start(
     OH_DisplaySoloist* displaySoloist, OH_DisplaySoloist_FrameCallback callback, void* data);
 
 /**
- * @brief Stop to request next vsync with callback.
+ * @brief Stops requesting the next VSync signal and triggering the callback function.
  *
  * @param displaySoloist Pointer to the {@link OH_DisplaySoloist} instance.
  * @return Returns **0** if the operation is successful; returns **-1** otherwise.
