@@ -1495,8 +1495,9 @@ Camera_ErrorCode OH_CaptureSession_SetWhiteBalance(Camera_CaptureSession *sessio
  *         {@link #CAMERA_SESSION_NOT_CONFIG} is returned if the session is not configured when the function is called.
  * @since 26.0.0
  */
-Camera_ErrorCode OH_CaptureSession_GetColorTintRange(const Camera_CaptureSession* session, int32_t *minColorTint, int32_t *maxColorTint);
- 
+Camera_ErrorCode OH_CaptureSession_GetColorTintRange(const Camera_CaptureSession* session,
+    int32_t *minColorTint, int32_t *maxColorTint);
+
 /**
  * @brief Obtains the white balance color tint.
  *
