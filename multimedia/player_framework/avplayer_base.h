@@ -61,8 +61,6 @@ typedef struct OH_AVSeiMessageArray OH_AVSeiMessageArray;
  */
 typedef struct OH_AVPlaybackStrategy OH_AVPlaybackStrategy;
 
-typedef struct OH_AVPlayerVideoOutput OH_AVPlayerVideoOutput;
-
 /**
  * @brief Player States
  * @syscap SystemCapability.Multimedia.Media.AVPlayer
