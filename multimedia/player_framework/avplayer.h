@@ -66,10 +66,10 @@ typedef struct MediaKeySession MediaKeySession;
  * @version 1.0
  */
 typedef struct DRM_MediaKeySystemInfo DRM_MediaKeySystemInfo;
+
 /**
  * @brief OH_AVPlayerVideoOutput field.
  * @since 26
- * @version 1.0
  */
 typedef struct OH_AVPlayerVideoOutput OH_AVPlayerVideoOutput;
 
