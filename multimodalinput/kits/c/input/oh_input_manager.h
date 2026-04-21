@@ -2610,7 +2610,7 @@ Input_Result OH_Input_SetCustomCursor(int32_t windowId, Input_CustomCursor* cust
  *         {@link INPUT_PARAMETER_ERROR} The input device does not exist or
  *         the display does not exist or the input device is not a stylus.
  *         {@link INPUT_SERVICE_EXCEPTION} if the service is exception.
- * @since 24
+ * @since 26.0.0
  */
 Input_Result OH_Input_BindInputDeviceToDisplay(int32_t inputDeviceId, int32_t displayId);
 #ifdef __cplusplus
