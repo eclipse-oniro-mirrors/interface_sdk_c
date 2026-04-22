@@ -632,10 +632,10 @@ Camera_ErrorCode OH_CaptureSession_SetWhiteBalance(Camera_CaptureSession* sessio
  * @param session Pointer to a {@link Camera_CaptureSession} instance.
  * @param minColorTint Pointer to the minimum color tint.
  * @param maxColorTint Pointer to the maximum color tint.
- * @return Result code.
- *         {@link #CAMERA_OK} is returned if the function is called successfully.
- *         {@link #CAMERA_INVALID_ARGUMENT} is returned if an input parameter is missing or the parameter type is incorrect.
- *         {@link #CAMERA_SESSION_NOT_CONFIG} is returned if the session is not configured when the function is called.
+ * @return Result code. 
+ *         {@link CAMERA_OK} is returned if the function is called successfully.
+ *         {@link CAMERA_INVALID_ARGUMENT} is returned if an input parameter is missing or the parameter type is incorrect.
+ *         {@link CAMERA_SESSION_NOT_CONFIG} is returned if the session is not configured when the function is called.
  * @since 26.0.0
  */
 Camera_ErrorCode OH_CaptureSession_GetColorTintRange(const Camera_CaptureSession* session,
@@ -646,10 +646,10 @@ Camera_ErrorCode OH_CaptureSession_GetColorTintRange(const Camera_CaptureSession
  *
  * @param session Pointer to a {@link Camera_CaptureSession} instance.
  * @param colorTint Pointer to the color tint.
- * @return Result code.
- *         {@link #CAMERA_OK} is returned if the function is called successfully.
- *         {@link #CAMERA_INVALID_ARGUMENT} is returned if an input parameter is missing or the parameter type is incorrect.
- *         {@link #CAMERA_SESSION_NOT_CONFIG} is returned if the session is not configured when the function is called.
+ * @return Result code. 
+ *         {@link CAMERA_OK} is returned if the function is called successfully.
+ *         {@link CAMERA_INVALID_ARGUMENT} is returned if an input parameter is missing or the parameter type is incorrect.
+ *         {@link CAMERA_SESSION_NOT_CONFIG} is returned if the session is not configured when the function is called.
  * @since 26.0.0
  */
 Camera_ErrorCode OH_CaptureSession_GetColorTint(const Camera_CaptureSession* session, int32_t *colorTint);
@@ -660,9 +660,9 @@ Camera_ErrorCode OH_CaptureSession_GetColorTint(const Camera_CaptureSession* ses
  * @param session Pointer to a {@link Camera_CaptureSession} instance.
  * @param colorTint Color tint.
  * @return Result code.
- *         {@link #CAMERA_OK} is returned if the function is called successfully.
- *         {@link #CAMERA_INVALID_ARGUMENT} is returned if an input parameter is missing or the parameter type is incorrect.
- *         {@link #CAMERA_SESSION_NOT_CONFIG} is returned if the session is not configured when the function is called.
+ *         {@link CAMERA_OK} is returned if the function is called successfully.
+ *         {@link CAMERA_INVALID_ARGUMENT} is returned if an input parameter is missing or the parameter type is incorrect.
+ *         {@link CAMERA_SESSION_NOT_CONFIG} is returned if the session is not configured when the function is called.
  * @since 26.0.0
  */
 Camera_ErrorCode OH_CaptureSession_SetColorTint(const Camera_CaptureSession* session, int32_t colorTint);
