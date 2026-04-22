@@ -1498,15 +1498,14 @@ Camera_ErrorCode OH_CaptureSession_RegisterMacroStatusChangeCallback(Camera_Capt
 Camera_ErrorCode OH_CaptureSession_UnregisterMacroStatusChangeCallback(Camera_CaptureSession* session,
     OH_CaptureSession_OnMacroStatusChange macroStatusChange);
 
-/**
- * @brief Register system pressure level changes callback.
- *
- * @param session Pointer to a {@link Camera_CaptureSession} instance.
- * @param systemPressureLevelChange the {@link OH_CaptureSession_OnSystemPressureLevelChange} to be registered.
- * @return Result code.
- *         {@link #CAMERA_OK} is returned if the function is called successfully.
- *         {@link #CAMERA_INVALID_ARGUMENT} is returned if an input parameter is missing or the parameter type is incorrect.
- * @since 20
+/**	 
+ * @brief Registers a callback to listen for capture system pressure level changes.	 
+ *	 
+ * @param session Pointer to the Camera_CaptureSession instance that transfers the callback.	 
+ * @param systemPressureLevelChange Target callback, which is OH_CaptureSession_OnSystemPressureLevelChange.	 
+ * @return **CAMERA_OK**: The operation is successful.	 
+ *     <br>**CAMERA_INVALID_ARGUMENT**: A parameter is missing or the parameter type is incorrect.	 
+ * @since 20	 
  */
 Camera_ErrorCode OH_CaptureSession_RegisterSystemPressureLevelChangeCallback(Camera_CaptureSession* session,
     OH_CaptureSession_OnSystemPressureLevelChange systemPressureLevelChange);
