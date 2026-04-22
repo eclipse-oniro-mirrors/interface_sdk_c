@@ -1499,20 +1499,6 @@ Camera_ErrorCode OH_CaptureSession_UnregisterMacroStatusChangeCallback(Camera_Ca
     OH_CaptureSession_OnMacroStatusChange macroStatusChange);
 
 /**
- * @brief Sets a white balance mode.
- *
- * @param session Pointer to a {@link Camera_CaptureSession} instance.
- * @param whiteBalanceMode White balance mode.
- * @return Result code.
- *         {@link #CAMERA_OK} is returned if the function is called successfully.
- *         {@link #CAMERA_INVALID_ARGUMENT} is returned if an input parameter is missing or the parameter type is incorrect.
- *         {@link #CAMERA_SESSION_NOT_CONFIG} is returned if the session is not configured when the function is called.
- * @since 20
- */
-Camera_ErrorCode OH_CaptureSession_SetWhiteBalanceMode(
-    Camera_CaptureSession *session, Camera_WhiteBalanceMode whiteBalanceMode);
-
-/**
  * @brief Register system pressure level changes callback.
  *
  * @param session Pointer to a {@link Camera_CaptureSession} instance.
