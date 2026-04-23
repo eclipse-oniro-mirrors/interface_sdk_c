@@ -26,8 +26,8 @@
 /**
  * @file ddk_api.h
  *
- * @brief Declares the Base DDK APIs.
- *
+ * @brief Declares the BASE DDK APIs used by the USB host to access USB devices.
+ * 
  * @library libddk_base.z.so
  * @kit DriverDevelopmentKit
  * @syscap SystemCapability.Driver.DDK.Extension
@@ -45,51 +45,52 @@ extern "C" {
 #endif /* __cplusplus */
 
 /**
- * @brief Creates shared memory. To prevent resource leakage, destroy the shared memory that is not required by\n
- * calling <b>OH_DDK_DestroyAshmem</b>.
- *
- * @param name Pointer to the shared memory to create.
- * @param size Size of the buffer corresponding to the shared memory.
- * @param ashmem Pointer to the shared memory created.
- * @return {@link DDK_SUCCESS} the operation is successful.
- *         {@link DDK_INVALID_PARAMETER} name is NULL, size is 0 or ashmem is NULL.
- *         {@link DDK_FAILURE} create the shared memory failed or create structure DDK_Ashmem failed.
+ * @brief Creates an **Ashmem** object. To prevent resource leakage, call **OH_DDK_DestroyAshmem** to destroy the
+ * **Ashmem** object when it is no longer needed.
+ * 
+ * @param name Pointer to the name of the **Ashmem** object.
+ * @param size Buffer size of the **Ashmem** object.
+ * @param ashmem Pointer to the **Ashmem** object.
+ * @return {@link DDK_SUCCESS}: The API call is successful.
+ *     {@link DDK_INVALID_PARAMETER}: The input **name** is a null pointer, the value of **size** is 0, or the input
+ *     **ashmem** is a null pointer.
+ *     {@link DDK_FAILURE}: The attempt to create an **Ashmem** object or the DDK_Ashmem structure fails.
  * @since 12
  */
 DDK_RetCode OH_DDK_CreateAshmem(const uint8_t *name, uint32_t size, DDK_Ashmem **ashmem);
 
 /**
- * @brief Maps the created shared memory to the user space. Unmap the shared memory that is not required by using\n
- * <b>OH_DDK_UnmapAshmem</b>.
- *
- * @param ashmem Pointer of the shared memory to map.
- * @param ashmemMapType Protection permission value of the shared memory.
- * @return {@link DDK_SUCCESS} the operation is successful.
- *         {@link DDK_NULL_PTR} ashmem is NULL.
- *         {@link DDK_FAILURE} the fd of ashmem is invalid.
- *         {@link DDK_INVALID_OPERATION} use function MapAshmem failed.
+ * @brief Maps the created **Ashmem** object to the user space. Call **OH_DDK_UnmapAshmem** to unmap the **Ashmem**
+ * object when it is no longer needed.
+ * 
+ * @param ashmem Pointer to the **Ashmem** object.
+ * @param ashmemMapType Mapping type for the **Ashmem** object.
+ * @return {@link DDK_SUCCESS}: The API call is successful.
+ *     {@link DDK_NULL_PTR}: The input **ashmem** is a null pointer.
+ *     {@link DDK_FAILURE}: The file descriptor of the **Ashmem** object is invalid.
+ *     {@link DDK_INVALID_OPERATION}: The attempt to call MapAshmem fails.
  * @since 12
  */
 DDK_RetCode OH_DDK_MapAshmem(DDK_Ashmem *ashmem, const uint8_t ashmemMapType);
 
 /**
- * @brief Unmaps shared memory.
- *
- * @param ashmem Pointer of the shared memory to unmap.
- * @return {@link DDK_SUCCESS} the operation is successful.
- *         {@link DDK_NULL_PTR} ashmem is NULL.
- *         {@link DDK_FAILURE} the fd of ashmem is invalid.
+ * @brief Unmaps an **Ashmem** object.
+ * 
+ * @param ashmem Pointer to the **Ashmem** object.
+ * @return {@link DDK_SUCCESS}: The API call is successful.
+ *     {@link DDK_NULL_PTR}: The input **ashmem** is a null pointer.
+ *     {@link DDK_FAILURE}: The file descriptor of the **Ashmem** object is invalid.
  * @since 12
  */
 DDK_RetCode OH_DDK_UnmapAshmem(DDK_Ashmem *ashmem);
 
 /**
- * @brief Destroys shared memory.
- *
- * @param ashmem Pointer of the shared memory to destroy.
- * @return {@link DDK_SUCCESS} the operation is successful.
- *         {@link DDK_NULL_PTR} ashmem is NULL.
- *         {@link DDK_FAILURE} the fd of ashmem is invalid.
+ * @brief Destroys an **Ashmem** object.
+ * 
+ * @param ashmem Pointer to the **Ashmem** object.
+ * @return {@link DDK_SUCCESS}: The API call is successful.
+ *     {@link DDK_NULL_PTR}: The input **ashmem** is a null pointer.
+ *     {@link DDK_FAILURE}: The file descriptor of the **Ashmem** object is invalid.
  * @since 12
  */
 DDK_RetCode OH_DDK_DestroyAshmem(DDK_Ashmem *ashmem);

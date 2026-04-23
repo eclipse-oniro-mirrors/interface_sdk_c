@@ -26,7 +26,7 @@
 /**
  * @file ddk_types.h
  *
- * @brief Provides the enums, structs, and macros used in USB Base APIs.
+ * @brief Provides BASE DDK types and declares the macros, enums, and data structures required by the BASE DDK APIs.
  *
  * @library libddk_base.z.so
  * @kit DriverDevelopmentKit
@@ -45,45 +45,65 @@ extern "C" {
 #endif /* __cplusplus */
 
 /**
- * @brief Defines the shared memory created by using <b>OH_DDK_CreateAshmem</b>.\n
- * A buffer for the shared memory provides better performance.
+ * @brief Device memory map created by calling **OH_DDK_CreateAshmem**. A buffer using the device memory map can
+ * provide better performance.
  *
  * @since 12
  */
 typedef struct DDK_Ashmem {
-    /** File descriptor of the shared memory. */
+    /**
+     * File descriptor of the **Ashmem** object.
+     */
     int32_t ashmemFd;
-    /** Buffer address. */
+    /**
+     * Buffer address.
+     */
     const uint8_t *address;
-    /** Buffer size. */
+    /**
+     * Buffer size.
+     */
     const uint32_t size;
-    /** Offset of the used buffer. The default value is 0, which indicates that there is no offset\n
-     * and the buffer starts from the specified address.
+    /**
+     * Offset of the used buffer. The default value is **0**, indicating that there is no offset and the buffer starts
+     * from the specified address.
      */
     uint32_t offset;
-    /** Length of the used buffer. By default, the value is equal to the size, which indicates that\n
-     * the entire buffer is used.
+    /**
+     * Length of the buffer. By default, the value is equal to that of **size**, indicating that the entire buffer is
+     * used.
      */
     uint32_t bufferLength;
-    /** Length of the transferred data. */
+    /**
+     * Length of the transferred data.
+     */
     uint32_t transferredLength;
 } DDK_Ashmem;
 
 /**
- * @brief Enumerates the error codes used in the Base DDK.
+ * @brief Enumerates error codes used in the BASE DDK.
  *
  * @since 12
  */
 typedef enum {
-    /** @error Operation success */
+    /**
+     * Operation success.
+     */
     DDK_SUCCESS = 0,
-    /** @error Operation failed */
+    /**
+     * Operation failed.
+     */
     DDK_FAILURE = 28600001,
-    /** @error Invalid parameter */
+    /**
+     * Invalid parameter.
+     */
     DDK_INVALID_PARAMETER = 28600002,
-    /** @error Invalid operation */
+    /**
+     * Invalid operation.
+     */
     DDK_INVALID_OPERATION = 28600003,
-    /** @error Null pointer exception */
+    /**
+     * Null pointer.
+     */
     DDK_NULL_PTR = 28600004
 } DDK_RetCode;
 #ifdef __cplusplus

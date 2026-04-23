@@ -17,16 +17,16 @@
  * @addtogroup ScsiPeripheralDDK
  * @{
  *
- * @brief Provide ScsiPeripheral DDK interface, including initializing DDK, releasing DDK, opening devices, reading\n
- * and writing devices, etc.
+ * @brief Provide ScsiPeripheral DDK interface, including initializing DDK, releasing DDK, opening devices, reading and
+ * writing devices, etc.
  * @since 18
  */
 
 /**
  * @file scsi_peripheral_api.h
  *
- * @brief Declares the ScsiPeripheral DDK APIs.
- *
+ * @brief Declares the SCSI Peripheral DDK APIs used by the host to access the SCSI device.
+ * 
  * @kit DriverDevelopmentKit
  * @library libscsi.z.so
  * @syscap SystemCapability.Driver.SCSI.Extension
@@ -44,277 +44,290 @@ extern "C" {
 #endif /* __cplusplus */
 
 /**
- * @brief Initializes the ScsiPeripheral DDK.
- *
+ * @brief Initializes the SCSI Peripheral DDK.
+ * 
  * @permission ohos.permission.ACCESS_DDK_SCSI_PERIPHERAL
- * @return {@link SCSIPERIPHERAL_DDK_SUCCESS} the operation is successful.
- *         {@link SCSIPERIPHERAL_DDK_NO_PERM} permission check failed.
- *         {@link SCSIPERIPHERAL_DDK_INIT_ERROR} the ddk init error.
- *         {@link SCSIPERIPHERAL_DDK_SERVICE_ERROR} communication with ddk service failed.
+ * @return {@link SCSIPERIPHERAL_DDK_SUCCESS}: The API call is successful.
+ *     {@link SCSIPERIPHERAL_DDK_NO_PERM}: The permission verification fails.
+ *     {@link SCSIPERIPHERAL_DDK_INIT_ERROR}: The DDK initialization fails.
+ *     {@link SCSIPERIPHERAL_DDK_SERVICE_ERROR}: The communication with the DDK service fails.
  * @since 18
  */
 int32_t OH_ScsiPeripheral_Init(void);
 
 /**
- * @brief Releases the ScsiPeripheral DDK.
- *
+ * @brief Releases the SCSI Peripheral DDK.
+ * 
  * @permission ohos.permission.ACCESS_DDK_SCSI_PERIPHERAL
- * @return {@link SCSIPERIPHERAL_DDK_SUCCESS} the operation is successful.
- *         {@link SCSIPERIPHERAL_DDK_NO_PERM} permission check failed.
- *         {@link SCSIPERIPHERAL_DDK_INIT_ERROR} the ddk not init.
- *         {@link SCSIPERIPHERAL_DDK_SERVICE_ERROR} communication with ddk service failed.
+ * @return {@link SCSIPERIPHERAL_DDK_SUCCESS}: The API call is successful.
+ *     {@link SCSIPERIPHERAL_DDK_NO_PERM}: The permission verification fails.
+ *     {@link SCSIPERIPHERAL_DDK_INIT_ERROR}: The DDK is not initialized.
+ *     {@link SCSIPERIPHERAL_DDK_SERVICE_ERROR}: The communication with the DDK service fails.
  * @since 18
  */
 int32_t OH_ScsiPeripheral_Release(void);
 
 /**
- * @brief Open SCSI device by deviceId.
- *
+ * @brief Opens the SCSI device specified by **deviceId** and **interfaceIndex**. The **deviceId** can be obtained by
+ * shifting the bus number of the USB device left by 32 bits and then performing a bitwise OR operation with the device
+ * address. **interfaceIndex** refers to the index of the USB interface to be opened.
+ * 
  * @permission ohos.permission.ACCESS_DDK_SCSI_PERIPHERAL
- * @param deviceId ID of the device to be operated.
- * @param interfaceIndex Interface index, which corresponds to interface which supports USB Protocol UAS.
- * @param dev Device handle.
- * @return {@link SCSIPERIPHERAL_DDK_SUCCESS} the operation is successful.
- *         {@link SCSIPERIPHERAL_DDK_NO_PERM} permission check failed.
- *         {@link SCSIPERIPHERAL_DDK_INIT_ERROR} the ddk not init.
- *         {@link SCSIPERIPHERAL_DDK_INVALID_PARAMETER} dev is null.
- *         {@link SCSIPERIPHERAL_DDK_SERVICE_ERROR} communication with ddk service failed.
- *         {@link SCSIPERIPHERAL_DDK_MEMORY_ERROR} memory data operation failed.
- *         {@link SCSIPERIPHERAL_DDK_IO_ERROR} i/o operation error.
- *         {@link SCSIPERIPHERAL_DDK_DEVICE_NOT_FOUND} device not found by deviceId.
- *         {@link SCSIPERIPHERAL_DDK_INVALID_OPERATION} this operation is not supported.
- *         {@link SCSIPERIPHERAL_DDK_TIMEOUT} transmission timeout.
+ * @param deviceId Device ID.
+ * @param interfaceIndex Interface index for the API of the SCSI device.
+ * @param dev Device handle. For details, see {@link ScsiPeripheral_Device}.
+ * @return {@link SCSIPERIPHERAL_DDK_SUCCESS}: The API call is successful.
+ *     {@link SCSIPERIPHERAL_DDK_NO_PERM}: The permission verification fails.
+ *     {@link SCSIPERIPHERAL_DDK_INIT_ERROR}: The DDK is not initialized.
+ *     {@link SCSIPERIPHERAL_DDK_INVALID_PARAMETER}: The input **dev** or ***dev** is null.
+ *     {@link SCSIPERIPHERAL_DDK_SERVICE_ERROR}: The communication with the DDK service fails.
+ *     {@link SCSIPERIPHERAL_DDK_MEMORY_ERROR}: The memory operation fails.
+ *     {@link SCSIPERIPHERAL_DDK_IO_ERROR}: An I/O error occurs.
+ *     {@link SCSIPERIPHERAL_DDK_DEVICE_NOT_FOUND}: No device is found based on the specified **deviceId** and
+ *     **interfaceIndex**.
+ *     {@link SCSIPERIPHERAL_DDK_INVALID_OPERATION}: The operation is not supported.
  * @since 18
  */
 int32_t OH_ScsiPeripheral_Open(uint64_t deviceId, uint8_t interfaceIndex, ScsiPeripheral_Device **dev);
 
 /**
- * @brief Close SCSI device.
- *
+ * @brief Closes the SCSI device.
+ * 
  * @permission ohos.permission.ACCESS_DDK_SCSI_PERIPHERAL
- * @param dev Device handle.
- * @return {@link SCSIPERIPHERAL_DDK_SUCCESS} the operation is successful.
- *         {@link SCSIPERIPHERAL_DDK_NO_PERM} permission check failed.
- *         {@link SCSIPERIPHERAL_DDK_INIT_ERROR} the ddk not init.
- *         {@link SCSIPERIPHERAL_DDK_INVALID_PARAMETER} dev is null.
- *         {@link SCSIPERIPHERAL_DDK_SERVICE_ERROR} communication with ddk service failed.
- *         {@link SCSIPERIPHERAL_DDK_IO_ERROR} i/o operation error.
+ * @param dev Device handle. For details, see {@link ScsiPeripheral_Device}.
+ * @return {@link SCSIPERIPHERAL_DDK_SUCCESS}: The API call is successful.
+ *     {@link SCSIPERIPHERAL_DDK_NO_PERM}: The permission verification fails.
+ *     {@link SCSIPERIPHERAL_DDK_INIT_ERROR}: The DDK is not initialized.
+ *     {@link SCSIPERIPHERAL_DDK_INVALID_PARAMETER}: The input **dev** or ***dev** is null.
+ *     {@link SCSIPERIPHERAL_DDK_SERVICE_ERROR}: The communication with the DDK service fails.
+ *     {@link SCSIPERIPHERAL_DDK_IO_ERROR}: An I/O error occurs.
  * @since 18
  */
 int32_t OH_ScsiPeripheral_Close(ScsiPeripheral_Device **dev);
 
 /**
- * @brief Check if the logical unit is ready.
- *
+ * @brief Checks whether the logical unit is ready.
+ * 
  * @permission ohos.permission.ACCESS_DDK_SCSI_PERIPHERAL
- * @param dev Device handle.
- * @param request Test unit ready request information.
- * @param response The response parameters.
- * @return {@link SCSIPERIPHERAL_DDK_SUCCESS} the operation is successful.
- *         {@link SCSIPERIPHERAL_DDK_NO_PERM} permission check failed.
- *         {@link SCSIPERIPHERAL_DDK_INIT_ERROR} the ddk not init.
- *         {@link SCSIPERIPHERAL_DDK_INVALID_PARAMETER} dev is null or request is null or response is null.
- *         {@link SCSIPERIPHERAL_DDK_SERVICE_ERROR} communication with ddk service failed.
- *         {@link SCSIPERIPHERAL_DDK_MEMORY_ERROR} memory data operation failed.
- *         {@link SCSIPERIPHERAL_DDK_IO_ERROR} i/o operation error.
- *         {@link SCSIPERIPHERAL_DDK_TIMEOUT} transmission timeout.
- *         {@link SCSIPERIPHERAL_DDK_INVALID_OPERATION} this operation is not supported.
+ * @param dev Device handle. For details, see {@link ScsiPeripheral_Device}.
+ * @param request Request of the **test unit ready** command.
+ *     For details, see {@link ScsiPeripheral_TestUnitReadyRequest}.
+ * @param response Response returned by the **test unit ready** command.
+ *     For details, see {@link ScsiPeripheral_Response}.
+ * @return {@link SCSIPERIPHERAL_DDK_SUCCESS}: The API call is successful.
+ *     {@link SCSIPERIPHERAL_DDK_NO_PERM}: The permission verification fails.
+ *     {@link SCSIPERIPHERAL_DDK_INIT_ERROR}: The DDK is not initialized.
+ *     {@link SCSIPERIPHERAL_DDK_INVALID_PARAMETER}: The input **dev**, **request**, or **response** is null.
+ *     {@link SCSIPERIPHERAL_DDK_SERVICE_ERROR}: The communication with the DDK service fails.
+ *     {@link SCSIPERIPHERAL_DDK_MEMORY_ERROR}: The memory operation fails.
+ *     {@link SCSIPERIPHERAL_DDK_IO_ERROR}: An I/O error occurs.
+ *     {@link SCSIPERIPHERAL_DDK_TIMEOUT}: The transmission times out.
+ *     {@link SCSIPERIPHERAL_DDK_INVALID_OPERATION}: The operation is not supported.
  * @since 18
  */
 int32_t OH_ScsiPeripheral_TestUnitReady(ScsiPeripheral_Device *dev, ScsiPeripheral_TestUnitReadyRequest *request,
     ScsiPeripheral_Response *response);
 
 /**
- * @brief Get the information regarding the logical unit and SCSI target device.
- *
+ * @brief Queries basic information about the SCSI device.
+ * 
  * @permission ohos.permission.ACCESS_DDK_SCSI_PERIPHERAL
- * @param dev Device handle.
- * @param request Inquiry request information.
- * @param inquiryInfo The data of inquiry command.
- * @param response The response parameters.
- * @return {@link SCSIPERIPHERAL_DDK_SUCCESS} the operation is successful.
- *         {@link SCSIPERIPHERAL_DDK_NO_PERM} permission check failed.
- *         {@link SCSIPERIPHERAL_DDK_INIT_ERROR} the ddk not init.
- *         {@link SCSIPERIPHERAL_DDK_INVALID_PARAMETER} dev is null or request is null or inquiryInfo is null or\n
- *             inquiryInfo->data is null or response is null.
- *         {@link SCSIPERIPHERAL_DDK_SERVICE_ERROR} communication with ddk service failed.
- *         {@link SCSIPERIPHERAL_DDK_MEMORY_ERROR} memory data operation failed.
- *         {@link SCSIPERIPHERAL_DDK_IO_ERROR} i/o operation error.
- *         {@link SCSIPERIPHERAL_DDK_TIMEOUT} transmission timeout.
- *         {@link SCSIPERIPHERAL_DDK_INVALID_OPERATION} this operation is not supported.
+ * @param dev Device handle. For details, see {@link ScsiPeripheral_Device}.
+ * @param request Request of the **inquiry** command. For details, see {@link ScsiPeripheral_InquiryRequest}.
+ * @param inquiryInfo Query result returned by the **inquiry** command.
+ *     For details, see {@link ScsiPeripheral_InquiryInfo}.
+ * @param response Raw response returned by the inquiry command. For details, see {@link ScsiPeripheral_Response}.
+ * @return {@link SCSIPERIPHERAL_DDK_SUCCESS}: The API call is successful.
+ *     {@link SCSIPERIPHERAL_DDK_NO_PERM}: The permission verification fails.
+ *     {@link SCSIPERIPHERAL_DDK_INIT_ERROR}: The DDK is not initialized.
+ *     {@link SCSIPERIPHERAL_DDK_INVALID_PARAMETER}: The input **dev**, **request**, **inquiryInfo**,
+ *     **inquiryInfo->data**, or **response** is null.
+ *     {@link SCSIPERIPHERAL_DDK_SERVICE_ERROR}: The communication with the DDK service fails.
+ *     {@link SCSIPERIPHERAL_DDK_MEMORY_ERROR}: The memory operation fails.
+ *     {@link SCSIPERIPHERAL_DDK_IO_ERROR}: An I/O error occurs.
+ *     {@link SCSIPERIPHERAL_DDK_TIMEOUT}: The transmission times out.
+ *     {@link SCSIPERIPHERAL_DDK_INVALID_OPERATION}: The operation is not supported.
  * @since 18
  */
 int32_t OH_ScsiPeripheral_Inquiry(ScsiPeripheral_Device *dev, ScsiPeripheral_InquiryRequest *request,
     ScsiPeripheral_InquiryInfo *inquiryInfo, ScsiPeripheral_Response *response);
 
 /**
- * @brief Get the device capacity.
- *
+ * @brief Obtains the capacity information about the SCSI device.
+ * 
  * @permission ohos.permission.ACCESS_DDK_SCSI_PERIPHERAL
- * @param dev Device handle.
- * @param request ReadCapacity request information.
- * @param capacityInfo The data of read capacity command.
- * @param response The response parameters.
- * @return {@link SCSIPERIPHERAL_DDK_SUCCESS} the operation is successful.
- *         {@link SCSIPERIPHERAL_DDK_NO_PERM} permission check failed.
- *         {@link SCSIPERIPHERAL_DDK_INIT_ERROR} the ddk not init.
- *         {@link SCSIPERIPHERAL_DDK_INVALID_PARAMETER} dev is null or request is null or capacityInfo is null or\n
- *             response is null.
- *         {@link SCSIPERIPHERAL_DDK_SERVICE_ERROR} communication with ddk service failed.
- *         {@link SCSIPERIPHERAL_DDK_MEMORY_ERROR} memory data operation failed.
- *         {@link SCSIPERIPHERAL_DDK_IO_ERROR} i/o operation error.
- *         {@link SCSIPERIPHERAL_DDK_TIMEOUT} transmission timeout.
- *         {@link SCSIPERIPHERAL_DDK_INVALID_OPERATION} this operation is not supported.
+ * @param dev Device handle. For details, see {@link ScsiPeripheral_Device}.
+ * @param request Request of the **read capacity** command.
+ *     For details, see {@link ScsiPeripheral_ReadCapacityRequest}.
+ * @param capacityInfo Capacity information returned by the **read capacity** command.
+ *     For details, see {@link ScsiPeripheral_CapacityInfo}.
+ * @param response Original response returned by the **read capacity** command.
+ *     For details, see {@link ScsiPeripheral_Response}.
+ * @return {@link SCSIPERIPHERAL_DDK_SUCCESS}: The API call is successful.
+ *     {@link SCSIPERIPHERAL_DDK_NO_PERM}: The permission verification fails.
+ *     {@link SCSIPERIPHERAL_DDK_INIT_ERROR}: The DDK is not initialized.
+ *     {@link SCSIPERIPHERAL_DDK_INVALID_PARAMETER}: The input **dev**, **request**, **capacityInfo**, or **response**
+ *     is null.
+ *     {@link SCSIPERIPHERAL_DDK_SERVICE_ERROR}: The communication with the DDK service fails.
+ *     {@link SCSIPERIPHERAL_DDK_MEMORY_ERROR}: The memory operation fails.
+ *     {@link SCSIPERIPHERAL_DDK_IO_ERROR}: An I/O error occurs.
+ *     {@link SCSIPERIPHERAL_DDK_TIMEOUT}: The transmission times out.
+ *     {@link SCSIPERIPHERAL_DDK_INVALID_OPERATION}: The operation is not supported.
  * @since 18
  */
 int32_t OH_ScsiPeripheral_ReadCapacity10(ScsiPeripheral_Device *dev, ScsiPeripheral_ReadCapacityRequest *request,
     ScsiPeripheral_CapacityInfo *capacityInfo, ScsiPeripheral_Response *response);
 
 /**
- * @brief Get the sense data.
- *
+ * @brief Obtains sense data, that is, information returned by the SCSI device to the host to report the device status,
+ * error information, and diagnosis information.
+ * 
  * @permission ohos.permission.ACCESS_DDK_SCSI_PERIPHERAL
- * @param dev Device handle.
- * @param request RequestSense request information.
- * @param response The response parameters.
- * @return {@link SCSIPERIPHERAL_DDK_SUCCESS} the operation is successful.
- *         {@link SCSIPERIPHERAL_DDK_NO_PERM} permission check failed.
- *         {@link SCSIPERIPHERAL_DDK_INIT_ERROR} the ddk not init.
- *         {@link SCSIPERIPHERAL_DDK_INVALID_PARAMETER} dev is null or request is null or response is null.
- *         {@link SCSIPERIPHERAL_DDK_SERVICE_ERROR} communication with ddk service failed.
- *         {@link SCSIPERIPHERAL_DDK_MEMORY_ERROR} memory data operation failed.
- *         {@link SCSIPERIPHERAL_DDK_IO_ERROR} i/o operation error.
- *         {@link SCSIPERIPHERAL_DDK_TIMEOUT} transmission timeout.
- *         {@link SCSIPERIPHERAL_DDK_INVALID_OPERATION} this operation is not supported.
+ * @param dev Device handle. For details, see {@link ScsiPeripheral_Device}.
+ * @param request Request of the **Request Sense** command.
+ *     For details, see {@link ScsiPeripheral_RequestSenseRequest}.
+ * @param response Response returned by the **Request Sense** command.
+ *     For details, see {@link ScsiPeripheral_Response}.
+ * @return {@link SCSIPERIPHERAL_DDK_SUCCESS}: The API call is successful.
+ *     {@link SCSIPERIPHERAL_DDK_NO_PERM}: The permission verification fails.
+ *     {@link SCSIPERIPHERAL_DDK_INIT_ERROR}: The DDK is not initialized.
+ *     {@link SCSIPERIPHERAL_DDK_INVALID_PARAMETER}: The input **dev**, **request**, or **response** is null.
+ *     {@link SCSIPERIPHERAL_DDK_SERVICE_ERROR}: The communication with the DDK service fails.
+ *     {@link SCSIPERIPHERAL_DDK_MEMORY_ERROR}: The memory operation fails.
+ *     {@link SCSIPERIPHERAL_DDK_IO_ERROR}: An I/O error occurs.
+ *     {@link SCSIPERIPHERAL_DDK_TIMEOUT}: The transmission times out.
+ *     {@link SCSIPERIPHERAL_DDK_INVALID_OPERATION}: The operation is not supported.
  * @since 18
  */
 int32_t OH_ScsiPeripheral_RequestSense(ScsiPeripheral_Device *dev, ScsiPeripheral_RequestSenseRequest *request,
     ScsiPeripheral_Response *response);
 
 /**
- * @brief Read from the specified logical block(s).
- *
+ * @brief Reads data from the specified logical block(s).
+ * 
  * @permission ohos.permission.ACCESS_DDK_SCSI_PERIPHERAL
- * @param dev Device handle.
- * @param request The request parameters.
- * @param response The response parameters.
- * @return {@link SCSIPERIPHERAL_DDK_SUCCESS} the operation is successful.
- *         {@link SCSIPERIPHERAL_DDK_NO_PERM} permission check failed.
- *         {@link SCSIPERIPHERAL_DDK_INIT_ERROR} the ddk not init.
- *         {@link SCSIPERIPHERAL_DDK_INVALID_PARAMETER} dev is null or request is null or request->data is null or\n
- *             response is null.
- *         {@link SCSIPERIPHERAL_DDK_SERVICE_ERROR} communication with ddk service failed.
- *         {@link SCSIPERIPHERAL_DDK_MEMORY_ERROR} memory data operation failed.
- *         {@link SCSIPERIPHERAL_DDK_IO_ERROR} i/o operation error.
- *         {@link SCSIPERIPHERAL_DDK_TIMEOUT} transmission timeout.
- *         {@link SCSIPERIPHERAL_DDK_INVALID_OPERATION} this operation is not supported.
+ * @param dev Device handle. For details, see {@link ScsiPeripheral_Device}.
+ * @param request Request of the **read** command. For details, see {@link ScsiPeripheral_IORequest}.
+ * @param response Response returned by the **read** command. For details, see {@link ScsiPeripheral_Response}.
+ * @return {@link SCSIPERIPHERAL_DDK_SUCCESS}: The API call is successful.
+ *     {@link SCSIPERIPHERAL_DDK_NO_PERM}: The permission verification fails.
+ *     {@link SCSIPERIPHERAL_DDK_INIT_ERROR}: The DDK is not initialized.
+ *     {@link SCSIPERIPHERAL_DDK_INVALID_PARAMETER}: The input **dev**, **request**, **request->data**, or **response**
+ *     is null.
+ *     {@link SCSIPERIPHERAL_DDK_SERVICE_ERROR}: The communication with the DDK service fails.
+ *     {@link SCSIPERIPHERAL_DDK_MEMORY_ERROR}: The memory operation fails.
+ *     {@link SCSIPERIPHERAL_DDK_IO_ERROR}: An I/O error occurs.
+ *     {@link SCSIPERIPHERAL_DDK_TIMEOUT}: The transmission times out.
+ *     {@link SCSIPERIPHERAL_DDK_INVALID_OPERATION}: The operation is not supported.
  * @since 18
  */
 int32_t OH_ScsiPeripheral_Read10(ScsiPeripheral_Device *dev, ScsiPeripheral_IORequest *request,
     ScsiPeripheral_Response *response);
 
 /**
- * @brief Write data to the specified logical block(s).
- *
+ * @brief Writes data to the specified logical block(s) of a device.
+ * 
  * @permission ohos.permission.ACCESS_DDK_SCSI_PERIPHERAL
- * @param dev Device handle.
- * @param request The request parameters.
- * @param response The response parameters.
- * @return {@link SCSIPERIPHERAL_DDK_SUCCESS} the operation is successful.
- *         {@link SCSIPERIPHERAL_DDK_NO_PERM} permission check failed.
- *         {@link SCSIPERIPHERAL_DDK_INIT_ERROR} the ddk not init.
- *         {@link SCSIPERIPHERAL_DDK_INVALID_PARAMETER} dev is null or request is null or request->data is null or\n
- *             response is null.
- *         {@link SCSIPERIPHERAL_DDK_SERVICE_ERROR} communication with ddk service failed.
- *         {@link SCSIPERIPHERAL_DDK_MEMORY_ERROR} memory data operation failed.
- *         {@link SCSIPERIPHERAL_DDK_IO_ERROR} i/o operation error.
- *         {@link SCSIPERIPHERAL_DDK_TIMEOUT} transmission timeout.
- *         {@link SCSIPERIPHERAL_DDK_INVALID_OPERATION} this operation is not supported.
+ * @param dev Device handle. For details, see {@link ScsiPeripheral_Device}.
+ * @param request Request of the **write** command. For details, see {@link ScsiPeripheral_IORequest}.
+ * @param response Response returned by the **write** command. For details, see {@link ScsiPeripheral_Response}.
+ * @return {@link SCSIPERIPHERAL_DDK_SUCCESS}: The API call is successful.
+ *     {@link SCSIPERIPHERAL_DDK_NO_PERM}: The permission verification fails.
+ *     {@link SCSIPERIPHERAL_DDK_INIT_ERROR}: The DDK is not initialized.
+ *     {@link SCSIPERIPHERAL_DDK_INVALID_PARAMETER}: The input **dev**, **request**, **request->data**, or **response**
+ *     is null.
+ *     {@link SCSIPERIPHERAL_DDK_SERVICE_ERROR}: The communication with the DDK service fails.
+ *     {@link SCSIPERIPHERAL_DDK_MEMORY_ERROR}: The memory operation fails.
+ *     {@link SCSIPERIPHERAL_DDK_IO_ERROR}: An I/O error occurs.
+ *     {@link SCSIPERIPHERAL_DDK_TIMEOUT}: The transmission times out.
+ *     {@link SCSIPERIPHERAL_DDK_INVALID_OPERATION}: The operation is not supported.
  * @since 18
  */
 int32_t OH_ScsiPeripheral_Write10(ScsiPeripheral_Device *dev, ScsiPeripheral_IORequest *request,
     ScsiPeripheral_Response *response);
 
 /**
- * @brief Verify the specified logical block(s) on the medium.
- *
+ * @brief Verifies the specified logical block(s).
+ * 
  * @permission ohos.permission.ACCESS_DDK_SCSI_PERIPHERAL
- * @param dev Device handle.
- * @param request Verify request information.
- * @param response The response parameters.
- * @return {@link SCSIPERIPHERAL_DDK_SUCCESS} the operation is successful.
- *         {@link SCSIPERIPHERAL_DDK_NO_PERM} permission check failed.
- *         {@link SCSIPERIPHERAL_DDK_INIT_ERROR} the ddk not init.
- *         {@link SCSIPERIPHERAL_DDK_INVALID_PARAMETER} dev is null or request is null or response is null.
- *         {@link SCSIPERIPHERAL_DDK_SERVICE_ERROR} communication with ddk service failed.
- *         {@link SCSIPERIPHERAL_DDK_MEMORY_ERROR} memory data operation failed.
- *         {@link SCSIPERIPHERAL_DDK_IO_ERROR} i/o operation error.
- *         {@link SCSIPERIPHERAL_DDK_TIMEOUT} transmission timeout.
- *         {@link SCSIPERIPHERAL_DDK_INVALID_OPERATION} this operation is not supported.
+ * @param dev Device handle. For details, see {@link ScsiPeripheral_Device}.
+ * @param request Request of the **verify** command. For details, see {@link ScsiPeripheral_VerifyRequest}.
+ * @param response Response returned by the **verify** command. For details, see {@link ScsiPeripheral_Response}.
+ * @return {@link SCSIPERIPHERAL_DDK_SUCCESS}: The API call is successful.
+ *     {@link SCSIPERIPHERAL_DDK_NO_PERM}: The permission verification fails.
+ *     {@link SCSIPERIPHERAL_DDK_INIT_ERROR}: The DDK is not initialized.
+ *     {@link SCSIPERIPHERAL_DDK_INVALID_PARAMETER}: The input **dev**, **request**, or **response** is null.
+ *     {@link SCSIPERIPHERAL_DDK_SERVICE_ERROR}: The communication with the DDK service fails.
+ *     {@link SCSIPERIPHERAL_DDK_MEMORY_ERROR}: The memory operation fails.
+ *     {@link SCSIPERIPHERAL_DDK_IO_ERROR}: An I/O error occurs.
+ *     {@link SCSIPERIPHERAL_DDK_TIMEOUT}: The transmission times out.
+ *     {@link SCSIPERIPHERAL_DDK_INVALID_OPERATION}: The operation is not supported.
  * @since 18
  */
 int32_t OH_ScsiPeripheral_Verify10(ScsiPeripheral_Device *dev, ScsiPeripheral_VerifyRequest *request,
     ScsiPeripheral_Response *response);
 
 /**
- * @brief Send SCSI command that specified by CDB.
- *
+ * @brief Sends SCSI commands in CDB mode.
+ * 
  * @permission ohos.permission.ACCESS_DDK_SCSI_PERIPHERAL
- * @param dev Device handle.
- * @param request The request parameters.
- * @param response The response parameters.
- * @return {@link SCSIPERIPHERAL_DDK_SUCCESS} the operation is successful.
- *         {@link SCSIPERIPHERAL_DDK_NO_PERM} permission check failed.
- *         {@link SCSIPERIPHERAL_DDK_INIT_ERROR} the ddk not init.
- *         {@link SCSIPERIPHERAL_DDK_INVALID_PARAMETER} dev is null or request is null or request->data is null or\n
- *             request->cdbLength is 0 or response is null.
- *         {@link SCSIPERIPHERAL_DDK_SERVICE_ERROR} communication with ddk service failed.
- *         {@link SCSIPERIPHERAL_DDK_MEMORY_ERROR} memory data operation failed.
- *         {@link SCSIPERIPHERAL_DDK_IO_ERROR} i/o operation error.
- *         {@link SCSIPERIPHERAL_DDK_TIMEOUT} transmission timeout.
- *         {@link SCSIPERIPHERAL_DDK_INVALID_OPERATION} this operation is not supported.
+ * @param dev Device handle. For details, see {@link ScsiPeripheral_Device}.
+ * @param request Request. For details, see {@link ScsiPeripheral_Request}.
+ * @param response Response. For details, see {@link ScsiPeripheral_Response}.
+ * @return {@link SCSIPERIPHERAL_DDK_SUCCESS}: The API call is successful.
+ *     {@link SCSIPERIPHERAL_DDK_NO_PERM}: The permission verification fails.
+ *     {@link SCSIPERIPHERAL_DDK_INIT_ERROR}: The DDK is not initialized.
+ *     {@link SCSIPERIPHERAL_DDK_INVALID_PARAMETER}: The input **dev**, **request**, **request->data**, or **response**
+ *     is null, or **request->cdbLength** is 0.
+ *     {@link SCSIPERIPHERAL_DDK_SERVICE_ERROR}: The communication with the DDK service fails.
+ *     {@link SCSIPERIPHERAL_DDK_MEMORY_ERROR}: The memory operation fails.
+ *     {@link SCSIPERIPHERAL_DDK_IO_ERROR}: An I/O error occurs.
+ *     {@link SCSIPERIPHERAL_DDK_TIMEOUT}: The transmission times out.
+ *     {@link SCSIPERIPHERAL_DDK_INVALID_OPERATION}: The operation is not supported.
  * @since 18
  */
 int32_t OH_ScsiPeripheral_SendRequestByCdb(ScsiPeripheral_Device *dev, ScsiPeripheral_Request *request,
     ScsiPeripheral_Response *response);
 
 /**
- * @brief Creates a buffer. To avoid resource leakage, destroy a buffer by calling\n
- * <b>OH_ScsiPeripheral_DestroyDeviceMemMap</b> after use.
- *
- * @param dev Device handle.
+ * @brief Creates a buffer. To avoid resource leakage, use {@link OH_ScsiPeripheral_DestroyDeviceMemMap} to destroy a
+ * buffer after use.
+ * 
+ * @param dev Device handle. For details, see {@link ScsiPeripheral_Device}.
  * @param size Buffer size.
- * @param devMmap Data memory map, through which the created buffer is returned to the caller.
- * @return {@link SCSIPERIPHERAL_DDK_SUCCESS} the operation is successful.
- *         {@link SCSIPERIPHERAL_DDK_INVALID_PARAMETER} dev is null or devMmap is null.
- *         {@link SCSIPERIPHERAL_DDK_MEMORY_ERROR} memory data operation failed.
+ * @param devMmap Device memory mapping used to return the created buffer to the caller.
+ *     For details, see {@link ScsiPeripheral_DeviceMemMap}.
+ * @return {@link SCSIPERIPHERAL_DDK_SUCCESS}: The API call is successful.
+ *     {@link SCSIPERIPHERAL_DDK_INVALID_PARAMETER}: The input **dev**, **devMmap**, or ***devMmap** is null.
+ *     {@link SCSIPERIPHERAL_DDK_MEMORY_ERROR}: The memory operation fails.
  * @since 18
  */
 int32_t OH_ScsiPeripheral_CreateDeviceMemMap(ScsiPeripheral_Device *dev, size_t size,
     ScsiPeripheral_DeviceMemMap **devMmap);
 
 /**
- * @brief Destroys a buffer. To avoid resource leakage, destroy a buffer in time after use.
- *
- * @param devMmap Device memory map created by calling <b>OH_ScsiPeripheral_CreateDeviceMemMap</b>.
- * @return {@link SCSIPERIPHERAL_DDK_SUCCESS} the operation is successful.
- *         {@link SCSIPERIPHERAL_DDK_INVALID_PARAMETER} devMmap is null.
- *         {@link SCSIPERIPHERAL_DDK_MEMORY_ERROR} memory data operation failed.
+ * @brief Destroys a buffer. To prevent resource leakage, destroy a buffer in time after use.
+ * 
+ * @param devMmap Buffer to be destroyed, which is created by calling {@link OH_ScsiPeripheral_CreateDeviceMemMap}.
+ *     For details, see {@link ScsiPeripheral_DeviceMemMap}.
+ * @return {@link SCSIPERIPHERAL_DDK_SUCCESS}: The API call is successful.
+ *     {@link SCSIPERIPHERAL_DDK_INVALID_PARAMETER}: The input **devMmap** is null.
+ *     {@link SCSIPERIPHERAL_DDK_MEMORY_ERROR}: The memory operation fails.
  * @since 18
  */
 int32_t OH_ScsiPeripheral_DestroyDeviceMemMap(ScsiPeripheral_DeviceMemMap *devMmap);
 
 /**
- * @brief Parse the basic sense data of Information、Command-specific information、Sense key specific.
- *
- * @param senseData Sense data.
- * @param senseDataLen The length of sense data.
- * @param senseInfo Basic sense data.
- * @return {@link SCSIPERIPHERAL_DDK_SUCCESS} the operation is successful.
- *         {@link SCSIPERIPHERAL_DDK_INVALID_PARAMETER} senseData is null or senseInfo is null or\n
- *             senseData format is not Descriptor/Fixed format or\n
- *             senseDataLen is smaller than SCSIPERIPHERAL_MIN_DESCRIPTOR_FORMAT_SENSE or\n
- *             senseDataLen is smaller than SCSIPERIPHERAL_MIN_FIXED_FORMAT_SENSE.
+ * @brief Parses basic sense data, including the **Information**, **Command specific information**,
+ * and **Sense key specific** fields.
+ * 
+ * @param senseData Sense data to be parsed.
+ * @param senseDataLen Length of sense data.
+ * @param senseInfo Basic sense data after parsing. For details, see {@link ScsiPeripheral_BasicSenseInfo}.
+ * @return {@link SCSIPERIPHERAL_DDK_SUCCESS}: The API call is successful.
+ *     {@link SCSIPERIPHERAL_DDK_INVALID_PARAMETER}: The input **senseData** is not a descriptor or is not of the fixed
+ *     format, or **senseDataLen** is smaller than
+ *     **SCSIPERIPHERAL_MIN_DESCRIPTOR_FORMAT_SENSE** or **SCSIPERIPHERAL_MIN_FIXED_FORMAT_SENSE**.
  * @since 18
  */
 int32_t OH_ScsiPeripheral_ParseBasicSenseInfo(uint8_t *senseData, uint8_t senseDataLen,
