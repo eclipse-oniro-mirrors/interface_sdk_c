@@ -44,7 +44,7 @@
 extern "C" {
 #endif
 
-/** 
+/**
  * @brief Defines the data structures (opaque) for the USB serial port device.
  * 
  * @since 18
@@ -123,7 +123,7 @@ typedef struct UsbSerial_Params {
 
 /**
  * @brief Defines the flow control mode for the USB Serial DDK.
- * 
+ *
  * @since 18
  */
 typedef enum {

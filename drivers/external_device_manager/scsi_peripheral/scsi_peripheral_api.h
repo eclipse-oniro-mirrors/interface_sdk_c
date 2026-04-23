@@ -92,7 +92,7 @@ int32_t OH_ScsiPeripheral_Open(uint64_t deviceId, uint8_t interfaceIndex, ScsiPe
 
 /**
  * @brief Closes the SCSI device.
- * 
+ *
  * @permission ohos.permission.ACCESS_DDK_SCSI_PERIPHERAL
  * @param dev Device handle. For details, see {@link ScsiPeripheral_Device}.
  * @return {@link SCSIPERIPHERAL_DDK_SUCCESS}: The API call is successful.

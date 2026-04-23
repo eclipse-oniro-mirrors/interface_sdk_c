@@ -75,7 +75,7 @@ DDK_RetCode OH_DDK_MapAshmem(DDK_Ashmem *ashmem, const uint8_t ashmemMapType);
 
 /**
  * @brief Unmaps an **Ashmem** object.
- * 
+ *
  * @param ashmem Pointer to the **Ashmem** object.
  * @return {@link DDK_SUCCESS}: The API call is successful.
  *     {@link DDK_NULL_PTR}: The input **ashmem** is a null pointer.

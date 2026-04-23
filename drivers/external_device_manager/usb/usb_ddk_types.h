@@ -20,7 +20,6 @@
  * @brief Provides USB DDK types and declares the macros, enumerated variables, and\n
  * data structures required by the USB DDK APIs.
  *
- * @kit DriverDevelopmentKit
  * @syscap SystemCapability.Driver.USB.Extension
  * @since 10
  * @version 1.0
@@ -475,7 +474,7 @@ typedef enum {
 /**
  * @brief Defines the device ID list, which is used to store the device IDs and device quantity obtained using
  * **OH_Usb_GetDevices**.
- * 
+ *
  * @since 18
  */
 typedef struct Usb_DeviceArray {
@@ -492,7 +491,7 @@ typedef struct Usb_DeviceArray {
 } Usb_DeviceArray;
 
 /**
- * @brief Non-root hub list.
+ * @brief The list of non-root hubs.
  *
  * @since 26.0.0
  */

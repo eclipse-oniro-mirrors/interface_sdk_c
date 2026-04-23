@@ -20,7 +20,6 @@
  * @brief Provides USB DDK APIs to open and close USB interfaces, perform non-isochronous and isochronous\n
  * data transfer over USB pipes, and implement control transfer and interrupt transfer, etc.
  *
- * @kit DriverDevelopmentKit
  * @syscap SystemCapability.Driver.USB.Extension
  * @since 10
  * @version 1.0
@@ -220,7 +219,7 @@ int32_t OH_Usb_SendControlReadRequest(uint64_t interfaceHandle, const struct Usb
 
 /**
  * @brief Sends a control write transfer request. This API works in a synchronous manner.
- * 
+ *
  * @permission ohos.permission.ACCESS_DDK_USB
  * @param interfaceHandle Interface operation handle.
  * @param setup Request parameters. For details, see {@link UsbControlRequestSetup}.

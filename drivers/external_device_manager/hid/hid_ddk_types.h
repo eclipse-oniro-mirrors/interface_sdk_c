@@ -1049,7 +1049,7 @@ typedef struct Hid_DeviceHandle Hid_DeviceHandle;
 
 /**
  * @brief Defines the report (data packets exchanged between the HID device and the host) type.
- * 
+ *
  * @since 18
  */
 typedef enum {

@@ -155,7 +155,7 @@ typedef struct ScsiPeripheral_Device ScsiPeripheral_Device;
 /**
  * @brief Represents the device memory mapping created by calling **OH_ScsiPeripheral_CreateDeviceMemMap**. The buffer
  * that uses the device memory mapping can provide better performance.
- * 
+ *
  * @since 18
  */
 typedef struct ScsiPeripheral_DeviceMemMap {

@@ -220,7 +220,7 @@ int32_t OH_UsbSerial_SetTimeout(UsbSerial_Device *dev, int timeout);
  * the receiver.
  * If flow control is required, call this API to set flow control parameters. If this API is not called, flow control
  * is not performed by default.
- * 
+ *
  * @permission ohos.permission.ACCESS_DDK_USB_SERIAL
  * @param dev Device handle.
  * @param flowControl Flow control mode. For details, see {@link UsbSerial_FlowControl}.
