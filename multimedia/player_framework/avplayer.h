@@ -69,7 +69,7 @@ typedef struct DRM_MediaKeySystemInfo DRM_MediaKeySystemInfo;
 
 /**
  * @brief OH_AVPlayerVideoOutput field.
- * @since 26
+ * @since 26.0.0
  */
 typedef struct OH_AVPlayerVideoOutput OH_AVPlayerVideoOutput;
 
