@@ -771,6 +771,25 @@ OH_Drawing_ErrorCode OH_Drawing_FontGetTextPath(const OH_Drawing_Font* font, con
     OH_Drawing_TextEncoding encoding, float x, float y, OH_Drawing_Path* path);
 
 /**
+ * @brief Gets the path outline for the given text with font fallback support.
+ *
+ * @param font Indicates the pointer to an <b>OH_Drawing_Font</b> object.
+ * @param text Indicates the pointer to the text data.
+ * @param byteLength Indicates the length of the text in bytes.
+ * @param encoding Indicates the text encoding type.
+ * @param x Indicates the x coordinate for the text path.
+ * @param y Indicates the y coordinate for the text path.
+ * @param path Indicates the pointer to an <b>OH_Drawing_Path</b> object to store the text path outline.
+ * @return Returns the error code.
+ *         Returns {@link OH_DRAWING_SUCCESS} if the operation is successful.
+ *         Returns {@link OH_DRAWING_ERROR_INCORRECT_PARAMETER} if any of font, text or path is nullptr, or
+ *                 byteLength is 0.
+ * @since 26.0.0
+ */
+OH_Drawing_ErrorCode OH_Drawing_FontGetTextPathWithFallback(const OH_Drawing_Font* font, const void* text,
+    size_t byteLength, OH_Drawing_TextEncoding encoding, float x, float y, OH_Drawing_Path* path);
+
+/**
  * @brief Creates an **OH_Drawing_FontFeatures** object.
  *
  * @return Returns a pointer to the created {@link OH_Drawing_FontFeatures} object.
