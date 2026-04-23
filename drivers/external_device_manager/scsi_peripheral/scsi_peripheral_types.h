@@ -26,7 +26,7 @@
  * @file scsi_peripheral_types.h
  *
  * @brief Provides the enum variables, structures, and macros used in the SCSI Peripheral DDK APIs.
- * 
+ *
  * @kit DriverDevelopmentKit
  * @library libscsi.z.so
  * @syscap SystemCapability.Driver.SCSI.Extension
@@ -59,7 +59,7 @@ extern "C" {
 
 /**
  * @brief SCSI Peripheral DDK error codes.
- * 
+ *
  * @since 18
  */
 typedef enum {
@@ -107,7 +107,7 @@ typedef enum {
 
 /**
  * @brief Enumerates the SCSI status codes used for the response.
- * 
+ *
  * @since 18
  */
 typedef enum {
@@ -147,7 +147,7 @@ typedef enum {
 
 /**
  * @brief Opaque SCSI device structure.
- * 
+ *
  * @since 18
  */
 typedef struct ScsiPeripheral_Device ScsiPeripheral_Device;
@@ -185,7 +185,7 @@ typedef struct ScsiPeripheral_DeviceMemMap {
 
 /**
  * @brief Defines the read/write operation request.
- * 
+ *
  * @since 18
  */
 typedef struct ScsiPeripheral_IORequest {
@@ -228,7 +228,7 @@ typedef struct ScsiPeripheral_IORequest {
 
 /**
  * @brief Defines the request structure.
- * 
+ *
  * @since 18
  */
 typedef struct ScsiPeripheral_Request {
@@ -263,7 +263,7 @@ typedef struct ScsiPeripheral_Request {
 
 /**
  * @brief Defines the response structure.
- * 
+ *
  * @since 18
  */
 typedef struct ScsiPeripheral_Response {
@@ -306,7 +306,7 @@ typedef struct ScsiPeripheral_Response {
 
 /**
  * @brief Defines the request structure of the **test unit ready** command.
- * 
+ *
  * @since 18
  */
 typedef struct ScsiPeripheral_TestUnitReadyRequest {
@@ -322,7 +322,7 @@ typedef struct ScsiPeripheral_TestUnitReadyRequest {
 
 /**
  * @brief Defines the request structure of the **inquiry** command.
- * 
+ *
  * @since 18
  */
 typedef struct ScsiPeripheral_InquiryRequest {
@@ -375,7 +375,7 @@ typedef struct ScsiPeripheral_InquiryRequest {
 
 /**
  * @brief Defines the SCSI inquiry data.
- * 
+ *
  * @since 18
  */
 typedef struct ScsiPeripheral_InquiryInfo {
@@ -397,7 +397,7 @@ typedef struct ScsiPeripheral_InquiryInfo {
 
 /**
  * @brief Request structure of the **read capacity** command.
- * 
+ *
  * @since 18
  */
 typedef struct ScsiPeripheral_ReadCapacityRequest {
@@ -421,7 +421,7 @@ typedef struct ScsiPeripheral_ReadCapacityRequest {
 
 /**
  * @brief Defines the SCSI read capacity.
- * 
+ *
  * @since 18
  */
 typedef struct ScsiPeripheral_CapacityInfo {
@@ -437,7 +437,7 @@ typedef struct ScsiPeripheral_CapacityInfo {
 
 /**
  * @brief Defines the request structure of the **Request Sense** command.
- * 
+ *
  * @since 18
  */
 typedef struct ScsiPeripheral_RequestSenseRequest {
@@ -462,7 +462,7 @@ typedef struct ScsiPeripheral_RequestSenseRequest {
 
 /**
  * @brief Defines the basic information about the sense data.
- * 
+ *
  * @since 18
  */
 typedef struct ScsiPeripheral_BasicSenseInfo {
@@ -494,7 +494,7 @@ typedef struct ScsiPeripheral_BasicSenseInfo {
 
 /**
  * @brief Defines the request structure of the **verify** command.
- * 
+ *
  * @since 18
  */
 typedef struct ScsiPeripheral_VerifyRequest {

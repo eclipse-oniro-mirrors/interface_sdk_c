@@ -29,7 +29,7 @@
  * @file hid_ddk_types.h
  *
  * @brief Defines the enum variables and structs used in the HID DDK.
- * 
+ *
  * @library libhid.z.so
  * @syscap SystemCapability.Driver.HID.Extension
  * @since 11
@@ -47,7 +47,7 @@ extern "C" {
 
 /**
  * @brief Represents the event information.
- * 
+ *
  * @since 11
  * @version 1.0
  */
@@ -68,7 +68,7 @@ typedef struct Hid_EmitItem {
 
 /**
  * @brief Enumerates the properties of input devices.
- * 
+ *
  * @since 11
  * @version 1.0
  */
@@ -105,7 +105,7 @@ typedef enum {
 
 /**
  * @brief Defines a struct for basic device information.
- * 
+ *
  * @since 11
  * @version 1.0
  */
@@ -142,7 +142,7 @@ typedef struct Hid_Device {
 
 /**
  * @brief Enumerates the event types.
- * 
+ *
  * @since 11
  * @version 1.0
  */
@@ -171,7 +171,7 @@ typedef enum {
 
 /**
  * @brief Enumerates sync events.
- * 
+ *
  * @since 11
  * @version 1.0
  */
@@ -196,7 +196,7 @@ typedef enum {
 
 /**
  * @brief Enumerates the key codes.
- * 
+ *
  * @since 11
  * @version 1.0
  */
@@ -645,7 +645,7 @@ typedef enum {
 
 /**
  * @brief Enumerates the absolute coordinates.
- * 
+ *
  * @since 11
  * @version 1.0
  */
@@ -758,7 +758,7 @@ typedef enum {
 
 /**
  * @brief Enumerates the relative coordinates.
- * 
+ *
  * @since 11
  * @version 1.0
  */
@@ -817,7 +817,7 @@ typedef enum {
 
 /**
  * @brief Enumerates miscellaneous input events.
- * 
+ *
  * @since 11
  * @version 1.0
  */
@@ -850,7 +850,7 @@ typedef enum {
 
 /**
  * @brief Defines a struct for an array of event types.
- * 
+ *
  * @since 11
  * @version 1.0
  */
@@ -867,7 +867,7 @@ typedef struct Hid_EventTypeArray {
 
 /**
  * @brief Defines a struct for the key code array.
- * 
+ *
  * @since 11
  * @version 1.0
  */
@@ -884,7 +884,7 @@ typedef struct Hid_KeyCodeArray {
 
 /**
  * @brief Defines an array of absolute coordinates.
- * 
+ *
  * @since 11
  * @version 1.0
  */
@@ -901,7 +901,7 @@ typedef struct Hid_AbsAxesArray {
 
 /**
  * @brief Defines an array of relative coordinates.
- * 
+ *
  * @since 11
  * @version 1.0
  */
@@ -918,7 +918,7 @@ typedef struct Hid_RelAxesArray {
 
 /**
  * @brief Defines an array of miscellaneous events.
- * 
+ *
  * @since 11
  * @version 1.0
  */
@@ -935,7 +935,7 @@ typedef struct Hid_MscEventArray {
 
 /**
  * @brief Defines a struct for the event properties of a device.
- * 
+ *
  * @since 11
  * @version 1.0
  */
@@ -973,7 +973,7 @@ typedef struct Hid_EventProperties {
 
 /**
  * @brief Enumerates the HID DDK error codes.
- * 
+ *
  * @since 11
  * @version 1.0
  */
@@ -1035,14 +1035,14 @@ typedef enum {
 
 /**
  * @brief Defines the maximum size of the report buffer.
- * 
+ *
  * @since 18
  */
 #define HID_MAX_REPORT_BUFFER_SIZE (16 * 1024 - 1)
 
 /**
  * @brief Defines the opaque USB HID device structure.
- * 
+ *
  * @since 18
  */
 typedef struct Hid_DeviceHandle Hid_DeviceHandle;
@@ -1069,7 +1069,7 @@ typedef enum {
 
 /**
  * @brief Defines the raw device information.
- * 
+ *
  * @since 18
  */
 typedef struct Hid_RawDevInfo {

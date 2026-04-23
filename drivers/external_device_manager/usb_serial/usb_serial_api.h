@@ -27,7 +27,7 @@
  * @file usb_serial_api.h
  *
  * @brief Declares the USB Serial DDK APIs used by the host to access the serial port device through the USB port.
- * 
+ *
  * @kit DriverDevelopmentKit
  * @library libusb_serial_ndk.z.so
  * @syscap SystemCapability.Driver.UsbSerial.Extension
@@ -46,7 +46,7 @@ extern "C" {
 
 /**
  * @brief Initializes the USB Serial DDK.
- * 
+ *
  * @permission ohos.permission.ACCESS_DDK_USB_SERIAL
  * @return {@link USB_SERIAL_DDK_SUCCESS}: The operation is successful.
  *     {@link USB_SERIAL_DDK_NO_PERM}: The permission verification fails.
@@ -57,7 +57,7 @@ int32_t OH_UsbSerial_Init(void);
 
 /**
  * @brief Releases the USB Serial DDK.
- * 
+ *
  * @permission ohos.permission.ACCESS_DDK_USB_SERIAL
  * @return {@link USB_SERIAL_DDK_SUCCESS}: The operation is successful.
  *     {@link USB_SERIAL_DDK_NO_PERM}: The permission verification fails.
@@ -69,7 +69,7 @@ int32_t OH_UsbSerial_Release(void);
 
 /**
  * @brief Opens the USB serial port device based on the specified **deviceId** and **interfaceIndex**.
- * 
+ *
  * @permission ohos.permission.ACCESS_DDK_USB_SERIAL
  * @param deviceId Device ID.
  * @param interfaceIndex Interface index, which corresponds to {@link bInterfaceNumber} in the USB protocol.
@@ -89,7 +89,7 @@ int32_t OH_UsbSerial_Open(uint64_t deviceId, uint8_t interfaceIndex, UsbSerial_D
 
 /**
  * @brief Closes the USB serial port device.
- * 
+ *
  * @permission ohos.permission.ACCESS_DDK_USB_SERIAL
  * @param dev Device handle.
  * @return {@link USB_SERIAL_DDK_SUCCESS}: The operation is successful.
@@ -106,7 +106,7 @@ int32_t OH_UsbSerial_Close(UsbSerial_Device **dev);
 
 /**
  * @brief Reads data from the USB serial port device to the buffer.
- * 
+ *
  * @permission ohos.permission.ACCESS_DDK_USB_SERIAL
  * @param dev Device handle.
  * @param buff Buffer for storing the data read from the USB serial port device.
@@ -130,7 +130,7 @@ int32_t OH_UsbSerial_Read(UsbSerial_Device *dev, uint8_t *buff, uint32_t bufferS
 
 /**
  * @brief Writes the data in the buffer to the USB serial port device.
- * 
+ *
  * @permission ohos.permission.ACCESS_DDK_USB_SERIAL
  * @param dev Device handle.
  * @param buff Buffer to which the data of the USB serial port device is written.
@@ -152,7 +152,7 @@ int32_t OH_UsbSerial_Write(UsbSerial_Device *dev, uint8_t *buff, uint32_t buffer
  * @brief Sets the baud rate for a USB serial port device. If the parameters of the USB serial port device are set to
  * the default values (the data bit is **8**, the stop bit is **1**, and parity is disabled for data transfer), you
  * only need to call this API to set the baud rate.
- * 
+ *
  * @permission ohos.permission.ACCESS_DDK_USB_SERIAL
  * @param dev Device handle.
  * @param baudRate Baud rate of the USB serial port device.
@@ -172,7 +172,7 @@ int32_t OH_UsbSerial_SetBaudRate(UsbSerial_Device *dev, uint32_t baudRate);
  * @brief Sets the parameters of the USB serial port device. If the parameters of the USB serial port device are not
  * set to the default values (the data bit is **8**, the stop bit is **1**, and parity is disabled for data transfer),
  * you only need to call this API to set the related parameters.
- * 
+ *
  * @permission ohos.permission.ACCESS_DDK_USB_SERIAL
  * @param dev Device handle.
  * @param params USB serial port device parameters. For details, see {@link UsbSerial_Params}.
@@ -194,7 +194,7 @@ int32_t OH_UsbSerial_SetParams(UsbSerial_Device *dev, UsbSerial_Params *params);
  * called, the timeout value is **0** by default, indicating that data is returned immediately regardless of whether
  * data is read. If you need to wait for a certain period of time or data must be read, call this API to set the
  * timeout interval.
- * 
+ *
  * @permission ohos.permission.ACCESS_DDK_USB_SERIAL
  * @param dev Device handle.
  * @param timeout Timeout interval for reading data from a USB serial port device, in milliseconds. The value range is
@@ -242,7 +242,7 @@ int32_t OH_UsbSerial_SetFlowControl(UsbSerial_Device *dev, UsbSerial_FlowControl
  * application closes the file descriptor or exits before the data is completely sent out, some data may be lost.
  * If the data is not sent out, some data may be lost. You can call this API to ensure that all data is sent before
  * subsequent operations are performed.
- * 
+ *
  * @permission ohos.permission.ACCESS_DDK_USB_SERIAL
  * @param dev Device handle.
  * @return {@link USB_SERIAL_DDK_SUCCESS}: The operation is successful.
@@ -261,7 +261,7 @@ int32_t OH_UsbSerial_Flush(UsbSerial_Device *dev);
  * @brief Flushes the input buffer. The data in the buffer is cleared immediately. During the communication with the
  * USB serial port device, especially in the debugging phase, disordered data packets or other exceptions may occur.
  * You can call this API to clear these exceptions to restore the communication.
- * 
+ *
  * @permission ohos.permission.ACCESS_DDK_USB_SERIAL
  * @param dev Device handle.
  * @return {@link USB_SERIAL_DDK_SUCCESS}: The operation is successful.
@@ -280,7 +280,7 @@ int32_t OH_UsbSerial_FlushInput(UsbSerial_Device *dev);
  * @brief Flushes the output buffer. The data in the buffer is cleared immediately. During the communication with the
  * USB serial port device, especially in the debugging phase, disordered data packets or other exceptions may occur.
  * You can call this API to clear these exceptions to restore the communication.
- * 
+ *
  * @permission ohos.permission.ACCESS_DDK_USB_SERIAL
  * @param dev Device handle.
  * @return {@link USB_SERIAL_DDK_SUCCESS}: The operation is successful.

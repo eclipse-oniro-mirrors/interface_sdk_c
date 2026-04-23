@@ -26,7 +26,7 @@
  * @file scsi_peripheral_api.h
  *
  * @brief Declares the SCSI Peripheral DDK APIs used by the host to access the SCSI device.
- * 
+ *
  * @kit DriverDevelopmentKit
  * @library libscsi.z.so
  * @syscap SystemCapability.Driver.SCSI.Extension
@@ -45,7 +45,7 @@ extern "C" {
 
 /**
  * @brief Initializes the SCSI Peripheral DDK.
- * 
+ *
  * @permission ohos.permission.ACCESS_DDK_SCSI_PERIPHERAL
  * @return {@link SCSIPERIPHERAL_DDK_SUCCESS}: The API call is successful.
  *     {@link SCSIPERIPHERAL_DDK_NO_PERM}: The permission verification fails.
@@ -57,7 +57,7 @@ int32_t OH_ScsiPeripheral_Init(void);
 
 /**
  * @brief Releases the SCSI Peripheral DDK.
- * 
+ *
  * @permission ohos.permission.ACCESS_DDK_SCSI_PERIPHERAL
  * @return {@link SCSIPERIPHERAL_DDK_SUCCESS}: The API call is successful.
  *     {@link SCSIPERIPHERAL_DDK_NO_PERM}: The permission verification fails.
@@ -71,7 +71,7 @@ int32_t OH_ScsiPeripheral_Release(void);
  * @brief Opens the SCSI device specified by **deviceId** and **interfaceIndex**. The **deviceId** can be obtained by
  * shifting the bus number of the USB device left by 32 bits and then performing a bitwise OR operation with the device
  * address. **interfaceIndex** refers to the index of the USB interface to be opened.
- * 
+ *
  * @permission ohos.permission.ACCESS_DDK_SCSI_PERIPHERAL
  * @param deviceId Device ID.
  * @param interfaceIndex Interface index for the API of the SCSI device.
@@ -107,7 +107,7 @@ int32_t OH_ScsiPeripheral_Close(ScsiPeripheral_Device **dev);
 
 /**
  * @brief Checks whether the logical unit is ready.
- * 
+ *
  * @permission ohos.permission.ACCESS_DDK_SCSI_PERIPHERAL
  * @param dev Device handle. For details, see {@link ScsiPeripheral_Device}.
  * @param request Request of the **test unit ready** command.
@@ -130,7 +130,7 @@ int32_t OH_ScsiPeripheral_TestUnitReady(ScsiPeripheral_Device *dev, ScsiPeripher
 
 /**
  * @brief Queries basic information about the SCSI device.
- * 
+ *
  * @permission ohos.permission.ACCESS_DDK_SCSI_PERIPHERAL
  * @param dev Device handle. For details, see {@link ScsiPeripheral_Device}.
  * @param request Request of the **inquiry** command. For details, see {@link ScsiPeripheral_InquiryRequest}.
@@ -154,7 +154,7 @@ int32_t OH_ScsiPeripheral_Inquiry(ScsiPeripheral_Device *dev, ScsiPeripheral_Inq
 
 /**
  * @brief Obtains the capacity information about the SCSI device.
- * 
+ *
  * @permission ohos.permission.ACCESS_DDK_SCSI_PERIPHERAL
  * @param dev Device handle. For details, see {@link ScsiPeripheral_Device}.
  * @param request Request of the **read capacity** command.
@@ -181,7 +181,7 @@ int32_t OH_ScsiPeripheral_ReadCapacity10(ScsiPeripheral_Device *dev, ScsiPeriphe
 /**
  * @brief Obtains sense data, that is, information returned by the SCSI device to the host to report the device status,
  * error information, and diagnosis information.
- * 
+ *
  * @permission ohos.permission.ACCESS_DDK_SCSI_PERIPHERAL
  * @param dev Device handle. For details, see {@link ScsiPeripheral_Device}.
  * @param request Request of the **Request Sense** command.
@@ -204,7 +204,7 @@ int32_t OH_ScsiPeripheral_RequestSense(ScsiPeripheral_Device *dev, ScsiPeriphera
 
 /**
  * @brief Reads data from the specified logical block(s).
- * 
+ *
  * @permission ohos.permission.ACCESS_DDK_SCSI_PERIPHERAL
  * @param dev Device handle. For details, see {@link ScsiPeripheral_Device}.
  * @param request Request of the **read** command. For details, see {@link ScsiPeripheral_IORequest}.
@@ -226,7 +226,7 @@ int32_t OH_ScsiPeripheral_Read10(ScsiPeripheral_Device *dev, ScsiPeripheral_IORe
 
 /**
  * @brief Writes data to the specified logical block(s) of a device.
- * 
+ *
  * @permission ohos.permission.ACCESS_DDK_SCSI_PERIPHERAL
  * @param dev Device handle. For details, see {@link ScsiPeripheral_Device}.
  * @param request Request of the **write** command. For details, see {@link ScsiPeripheral_IORequest}.
@@ -248,7 +248,7 @@ int32_t OH_ScsiPeripheral_Write10(ScsiPeripheral_Device *dev, ScsiPeripheral_IOR
 
 /**
  * @brief Verifies the specified logical block(s).
- * 
+ *
  * @permission ohos.permission.ACCESS_DDK_SCSI_PERIPHERAL
  * @param dev Device handle. For details, see {@link ScsiPeripheral_Device}.
  * @param request Request of the **verify** command. For details, see {@link ScsiPeripheral_VerifyRequest}.
@@ -269,7 +269,7 @@ int32_t OH_ScsiPeripheral_Verify10(ScsiPeripheral_Device *dev, ScsiPeripheral_Ve
 
 /**
  * @brief Sends SCSI commands in CDB mode.
- * 
+ *
  * @permission ohos.permission.ACCESS_DDK_SCSI_PERIPHERAL
  * @param dev Device handle. For details, see {@link ScsiPeripheral_Device}.
  * @param request Request. For details, see {@link ScsiPeripheral_Request}.
@@ -292,7 +292,7 @@ int32_t OH_ScsiPeripheral_SendRequestByCdb(ScsiPeripheral_Device *dev, ScsiPerip
 /**
  * @brief Creates a buffer. To avoid resource leakage, use {@link OH_ScsiPeripheral_DestroyDeviceMemMap} to destroy a
  * buffer after use.
- * 
+ *
  * @param dev Device handle. For details, see {@link ScsiPeripheral_Device}.
  * @param size Buffer size.
  * @param devMmap Device memory mapping used to return the created buffer to the caller.
@@ -307,7 +307,7 @@ int32_t OH_ScsiPeripheral_CreateDeviceMemMap(ScsiPeripheral_Device *dev, size_t 
 
 /**
  * @brief Destroys a buffer. To prevent resource leakage, destroy a buffer in time after use.
- * 
+ *
  * @param devMmap Buffer to be destroyed, which is created by calling {@link OH_ScsiPeripheral_CreateDeviceMemMap}.
  *     For details, see {@link ScsiPeripheral_DeviceMemMap}.
  * @return {@link SCSIPERIPHERAL_DDK_SUCCESS}: The API call is successful.
@@ -320,7 +320,7 @@ int32_t OH_ScsiPeripheral_DestroyDeviceMemMap(ScsiPeripheral_DeviceMemMap *devMm
 /**
  * @brief Parses basic sense data, including the **Information**, **Command specific information**,
  * and **Sense key specific** fields.
- * 
+ *
  * @param senseData Sense data to be parsed.
  * @param senseDataLen Length of sense data.
  * @param senseInfo Basic sense data after parsing. For details, see {@link ScsiPeripheral_BasicSenseInfo}.

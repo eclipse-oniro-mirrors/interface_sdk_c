@@ -27,7 +27,7 @@
  * @file ddk_api.h
  *
  * @brief Declares the BASE DDK APIs used by the USB host to access USB devices.
- * 
+ *
  * @library libddk_base.z.so
  * @kit DriverDevelopmentKit
  * @syscap SystemCapability.Driver.DDK.Extension
@@ -47,7 +47,7 @@ extern "C" {
 /**
  * @brief Creates an **Ashmem** object. To prevent resource leakage, call **OH_DDK_DestroyAshmem** to destroy the
  * **Ashmem** object when it is no longer needed.
- * 
+ *
  * @param name Pointer to the name of the **Ashmem** object.
  * @param size Buffer size of the **Ashmem** object.
  * @param ashmem Pointer to the **Ashmem** object.
@@ -62,7 +62,7 @@ DDK_RetCode OH_DDK_CreateAshmem(const uint8_t *name, uint32_t size, DDK_Ashmem *
 /**
  * @brief Maps the created **Ashmem** object to the user space. Call **OH_DDK_UnmapAshmem** to unmap the **Ashmem**
  * object when it is no longer needed.
- * 
+ *
  * @param ashmem Pointer to the **Ashmem** object.
  * @param ashmemMapType Mapping type for the **Ashmem** object.
  * @return {@link DDK_SUCCESS}: The API call is successful.
@@ -86,7 +86,7 @@ DDK_RetCode OH_DDK_UnmapAshmem(DDK_Ashmem *ashmem);
 
 /**
  * @brief Destroys an **Ashmem** object.
- * 
+ *
  * @param ashmem Pointer to the **Ashmem** object.
  * @return {@link DDK_SUCCESS}: The API call is successful.
  *     {@link DDK_NULL_PTR}: The input **ashmem** is a null pointer.

@@ -27,7 +27,7 @@
  * @file usb_serial_types.h
  *
  * @brief Provides the enum variables, structures, and macros used in USB Serial DDK APIs.
- * 
+ *
  * @kit DriverDevelopmentKit
  * @library libusb_serial_ndk.z.so
  * @syscap SystemCapability.Driver.UsbSerial.Extension
@@ -46,14 +46,14 @@ extern "C" {
 
 /**
  * @brief Defines the data structures (opaque) for the USB serial port device.
- * 
+ *
  * @since 18
  */
 typedef struct UsbSerial_Device UsbSerial_Device;
 
 /**
  * @brief Defines the return codes used by the USB Serial DDK.
- * 
+ *
  * @since 18
  */
 typedef enum {
@@ -98,7 +98,7 @@ typedef enum {
 
 /**
  * @brief Defines the USB serial port parameters for the USB Serial DDK.
- * 
+ *
  * @since 18
  */
 typedef struct UsbSerial_Params {
@@ -143,7 +143,7 @@ typedef enum {
 
 /**
  * @brief Defines the enums of the parity parameter used by the USB Serial DDK.
- * 
+ *
  * @since 18
  */
 typedef enum {

@@ -51,7 +51,7 @@ extern "C" {
 
 /**
  * @brief Initializes the USB DDK.
- * 
+ *
  * @permission ohos.permission.ACCESS_DDK_USB
  * @return {@link USB_DDK_SUCCESS}: The operation is successful.
  *     {@link USB_DDK_INVALID_OPERATION}: The USB DDK service connection fails, or an internal error occurs.
@@ -64,7 +64,7 @@ int32_t OH_Usb_Init(void);
 
 /**
  * @brief Releases the USB DDK.
- * 
+ *
  * @permission ohos.permission.ACCESS_DDK_USB
  * @since 10
  * @version 1.0
@@ -73,7 +73,7 @@ void OH_Usb_Release(void);
 
 /**
  * @brief Releases the USB DDK.
- * 
+ *
  * @permission ohos.permission.ACCESS_DDK_USB
  * @return {@link USB_DDK_SUCCESS}: The operation is successful.
  *     {@link USB_DDK_NO_PERM}: The permission check fails.
@@ -85,7 +85,7 @@ int32_t OH_Usb_ReleaseResource(void);
 
 /**
  * @brief Obtains the device descriptor.
- * 
+ *
  * @permission ohos.permission.ACCESS_DDK_USB
  * @param deviceId Device ID.
  * @param desc Device descriptor. For details, see {@link UsbDeviceDescriptor}.
@@ -101,7 +101,7 @@ int32_t OH_Usb_GetDeviceDescriptor(uint64_t deviceId, struct UsbDeviceDescriptor
 /**
  * @brief Obtains the configuration descriptor. To avoid memory leakage, use {@link OH_Usb_FreeConfigDescriptor} to
  * release a descriptor after use.
- * 
+ *
  * @permission ohos.permission.ACCESS_DDK_USB
  * @param deviceId Device ID.
  * @param configIndex Configuration index, which corresponds to the **bConfigurationValue** field in the USB
@@ -122,7 +122,7 @@ int32_t OH_Usb_GetConfigDescriptor(
 
 /**
  * @brief Releases a configuration descriptor after use to prevent memory leakage.
- * 
+ *
  * @permission ohos.permission.ACCESS_DDK_USB
  * @param config Configuration descriptor, which is obtained by calling {@link OH_Usb_GetConfigDescriptor}.
  * @since 10
@@ -132,7 +132,7 @@ void OH_Usb_FreeConfigDescriptor(struct UsbDdkConfigDescriptor * const config);
 
 /**
  * @brief Claims a USB interface.
- * 
+ *
  * @permission ohos.permission.ACCESS_DDK_USB
  * @param deviceId Device ID.
  * @param interfaceIndex Interface index, which corresponds to {@link bInterfaceNumber} in the USB protocol.
@@ -150,7 +150,7 @@ int32_t OH_Usb_ClaimInterface(uint64_t deviceId, uint8_t interfaceIndex, uint64_
 
 /**
  * @brief Releases a USB interface.
- * 
+ *
  * @permission ohos.permission.ACCESS_DDK_USB
  * @param interfaceHandle Interface operation handle.
  * @return {@link USB_DDK_SUCCESS}: The operation is successful.
@@ -164,7 +164,7 @@ int32_t OH_Usb_ReleaseInterface(uint64_t interfaceHandle);
 
 /**
  * @brief Activates the alternate setting of a USB interface.
- * 
+ *
  * @permission ohos.permission.ACCESS_DDK_USB
  * @param interfaceHandle Interface operation handle.
  * @param settingIndex Alternate setting index, which corresponds to the **bAlternateSetting** field of the interface
@@ -180,7 +180,7 @@ int32_t OH_Usb_SelectInterfaceSetting(uint64_t interfaceHandle, uint8_t settingI
 
 /**
  * @brief Obtains the activated alternate setting of a USB interface.
- * 
+ *
  * @permission ohos.permission.ACCESS_DDK_USB
  * @param interfaceHandle Interface operation handle.
  * @param settingIndex Alternate setting index, which corresponds to the **bAlternateSetting** field of the interface
@@ -196,7 +196,7 @@ int32_t OH_Usb_GetCurrentInterfaceSetting(uint64_t interfaceHandle, uint8_t *set
 
 /**
  * @brief Sends a control read transfer request. This API works in a synchronous manner.
- * 
+ *
  * @permission ohos.permission.ACCESS_DDK_USB
  * @param interfaceHandle Interface operation handle.
  * @param setup Request parameters. For details, see {@link UsbControlRequestSetup}.
@@ -242,7 +242,7 @@ int32_t OH_Usb_SendControlWriteRequest(uint64_t interfaceHandle, const struct Us
 /**
  * @brief Sends a pipe request. This API works in a synchronous manner. It applies to interrupt transfer and bulk
  * transfer.
- * 
+ *
  * @permission ohos.permission.ACCESS_DDK_USB
  * @param pipe Pipe used to transfer data.
  * @param devMmap Data buffer, which can be obtained by calling {@link OH_Usb_CreateDeviceMemMap}.
@@ -262,7 +262,7 @@ int32_t OH_Usb_SendPipeRequest(const struct UsbRequestPipe *pipe, UsbDeviceMemMa
 /**
  * @brief Sends a pipe request based on the shared memory. This API returns the result synchronously. It applies to
  * interrupt transfer and bulk transfer.
- * 
+ *
  * @permission ohos.permission.ACCESS_DDK_USB
  * @param pipe Pipe used to transfer data.
  * @param ashmem Shared memory, which can be obtained through {@link OH_DDK_CreateAshmem}.
@@ -281,7 +281,7 @@ int32_t OH_Usb_SendPipeRequestWithAshmem(const struct UsbRequestPipe *pipe, DDK_
 /**
  * @brief Creates a buffer. To avoid resource leakage, use {@link OH_Usb_DestroyDeviceMemMap} to destroy a buffer after
  * use.
- * 
+ *
  * @permission ohos.permission.ACCESS_DDK_USB
  * @param deviceId Device ID.
  * @param size Buffer size.
@@ -297,7 +297,7 @@ int32_t OH_Usb_CreateDeviceMemMap(uint64_t deviceId, size_t size, UsbDeviceMemMa
 
 /**
  * @brief Destroys a buffer. To prevent resource leakage, destroy a buffer in time after use.
- * 
+ *
  * @permission ohos.permission.ACCESS_DDK_USB
  * @param devMmap Destroys the buffer created by calling {@link OH_Usb_CreateDeviceMemMap}.
  * @since 10
@@ -310,7 +310,7 @@ void OH_Usb_DestroyDeviceMemMap(UsbDeviceMemMap *devMmap);
  * memory usage, the size of the requested device ID array is recommended not to exceed 128. After using the struct,
  * release the memory of its members; otherwise, resource leaks may occur. Besides, make sure that the obtained USB
  * device ID has been filtered by **vid** in the driver configuration information.
- * 
+ *
  * @permission ohos.permission.ACCESS_DDK_USB
  * @param devices Device memory address, which is used to store the obtained device ID list and quantity.
  * @return {@link USB_DDK_SUCCESS}: The operation is successful.

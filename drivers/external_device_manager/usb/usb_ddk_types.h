@@ -48,7 +48,7 @@ extern "C" {
 #endif /* __cplusplus */
 /**
  * @brief Setup data for control transfer. It corresponds to <b>Setup Data</b> in the USB protocol.
- * 
+ *
  * @since 10
  * @version 1.0
  */
@@ -79,7 +79,7 @@ typedef struct UsbControlRequestSetup {
 
 /**
  * @brief Defines standard device descriptors, which correspond to **Standard Device Descriptor** in the USB protocol.
- * 
+ *
  * @since 10
  * @version 1.0
  */
@@ -146,7 +146,7 @@ typedef struct UsbDeviceDescriptor {
 /**
  * @brief Defines standard configuration descriptors, which correspond to **Standard Configuration Descriptor** in the
  * USB protocol.
- * 
+ *
  * @since 10
  * @version 1.0
  */
@@ -189,7 +189,7 @@ typedef struct UsbConfigDescriptor {
 /**
  * @brief Defines standard interface descriptors, which correspond to **Standard Interface Descriptor** in the USB
  * protocol.
- * 
+ *
  * @since 10
  * @version 1.0
  */
@@ -236,7 +236,7 @@ typedef struct UsbInterfaceDescriptor {
 /**
  * @brief Defines standard endpoint descriptors, which correspond to **Standard Endpoint Descriptor** in the USB
  * protocol.
- * 
+ *
  * @since 10
  * @version 1.0
  */
@@ -277,7 +277,7 @@ typedef struct UsbEndpointDescriptor {
 
 /**
  * @brief Defines endpoint descriptors.
- * 
+ *
  * @since 10
  * @version 1.0
  */
@@ -298,7 +298,7 @@ typedef struct UsbDdkEndpointDescriptor {
 
 /**
  * @brief Defines USB interface descriptors.
- * 
+ *
  * @since 10
  * @version 1.0
  */
@@ -323,7 +323,7 @@ typedef struct UsbDdkInterfaceDescriptor {
 
 /**
  * @brief Defines a USB DDK API, which is a collection of alternate settings for a particular USB interface.
- * 
+ *
  * @since 10
  * @version 1.0
  */
@@ -340,7 +340,7 @@ typedef struct UsbDdkInterface {
 
 /**
  * @brief Defines configuration descriptors.
- * 
+ *
  * @since 10
  * @version 1.0
  */
@@ -365,7 +365,7 @@ typedef struct UsbDdkConfigDescriptor {
 
 /**
  * @brief Defines a USB request pipe.
- * 
+ *
  * @since 10
  * @version 1.0
  */
@@ -387,7 +387,7 @@ typedef struct UsbRequestPipe {
 /**
  * @brief Device memory map created by calling <b>OH_Usb_CreateDeviceMemMap</b>. A buffer using the device memory map
  * can improve data transmission performance.
- * 
+ *
  * @since 10
  * @version 1.0
  */
@@ -418,7 +418,7 @@ typedef struct UsbDeviceMemMap {
 
 /**
  * @brief USB DDK error code definitions.
- * 
+ *
  * @since 10
  * @version 1.0
  */
