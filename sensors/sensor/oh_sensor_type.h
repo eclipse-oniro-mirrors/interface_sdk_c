@@ -446,7 +446,7 @@ int32_t OH_SensorSubscriptionAttribute_GetSamplingInterval(Sensor_SubscriptionAt
 /**
  * @brief Defines the callback function used to report sensor data.
  *
- * @param event Pointer to the sensor data infomation.
+ * @param event Pointer to the sensor data information.
  * @since 11
  */
 typedef void (*Sensor_EventCallback)(Sensor_Event *event);
