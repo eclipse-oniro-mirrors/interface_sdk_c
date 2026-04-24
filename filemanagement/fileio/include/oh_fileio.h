@@ -23,10 +23,11 @@
 
 /**
  * @file oh_fileio.h
- * @kit CoreFileKit
  *
- * @brief Provide fileio APIS.
+ * @brief Defines the native APIs used to obtain the location of a file.
+ *
  * @library libohfileio.so
+ * @kit CoreFileKit
  * @syscap SystemCapability.FileManagement.File.FileIO
  * @since 12
  */
@@ -42,29 +43,36 @@ extern "C" {
 
 /**
  * @brief Enumerates the file location.
+ *
  * @since 12
  */
 typedef enum FileIO_FileLocation {
     /**
-     * @brief Indicates the file located on the local.
+     * @brief The file is stored on the local device.
+     *
+     * @since 12
      */
     LOCAL = 1,
     /**
-     * @brief Indicates the file located on the cloud.
+     * @brief The file is stored on the cloud.
+     *
+     * @since 12
      */
     CLOUD = 2,
     /**
-     * @brief Indicates the file located on the local and cloud.
+     * @brief The file is stored on the local device and cloud.
+     *
+     * @since 12
      */
     LOCAL_AND_CLOUD = 3
 } FileIO_FileLocation;
 
 /**
- * @brief Get the file location.
+ * @brief Obtains the location of a file.
  *
- * @param uri Input a pointer to a uri.
- * @param uriLength Input the length of the uri.
- * @param location Output the result of file location.
+ * @param uri Pointer to the URI of the file.
+ * @param uriLength Length of the URI.
+ * @param location Pointer to the location of the file obtained.
  * @return Return the status code of the execution.
  *         {@link ERR_INVALID_PARAMETER} 401 - Invalid input parameter, pointer is null.
  *         {@link ERR_ENOENT} 13900002 - No such file or directory.
@@ -77,6 +85,5 @@ FileManagement_ErrCode OH_FileIO_GetFileLocation(char *uri, int uriLength,
 #ifdef __cplusplus
 };
 #endif
-
-#endif //FILE_MANAGEMENT_FILEIO_OH_FILEIO_H
 /** @} */
+#endif //FILE_MANAGEMENT_FILEIO_OH_FILEIO_H
