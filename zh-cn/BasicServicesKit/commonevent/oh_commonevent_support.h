@@ -1,4 +1,3 @@
-
 /*
  * Copyright (c) 2024 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -13,19 +12,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
-/**
- * @file oh_commonevent_support.h
- *
- * @brief Provides common event constants defined by the system.
- *
- * @library libohcommonevent.so
- * @kit BasicServicesKit
- * @syscap SystemCapability.Notification.CommonEvent
- * @since 12
- * @version 1.0
- */
-
 /**
  * @addtogroup OH_CommonEvent
  * @{
@@ -34,224 +20,232 @@
  *
  * @since 12
  */
+/**
+ * @file oh_commonevent_support.h
+ *
+ * @brief 提供系统定义的公共事件常量。
+ *
+ * @library libohcommonevent.so
+ * @kit BasicServicesKit
+ * @syscap SystemCapability.Notification.CommonEvent
+ * @since 12
+ * @version 1.0
+ */
+
 #ifndef OH_COMMONEVENT_SUPPORT_H
 #define OH_COMMONEVENT_SUPPORT_H
+
 #include <stdint.h>
+
 #ifdef __cplusplus
 extern "C" {
 #endif
 
 /**
- * @brief Indicates the common event that the device is being shut down and the final shutdown will proceed.
+ * @brief 表示设备正在关闭并将继续直至最终关闭的公共事件。
  *
  * @since 12
  */
 static const char* const COMMON_EVENT_SHUTDOWN = "usual.event.SHUTDOWN";
 
 /**
- * @brief Indicates the common event that the charging state, level, and other information about the battery have
- * changed.
+ * @brief 表示电池充电状态、电平和其他信息发生变化的公共事件。
  *
  * @since 12
  */
 static const char* const COMMON_EVENT_BATTERY_CHANGED = "usual.event.BATTERY_CHANGED";
 
 /**
- * @brief Indicates the common event that the battery level is low.
+ * @brief 表示电池电量低的公共事件。
  *
  * @since 12
  */
 static const char* const COMMON_EVENT_BATTERY_LOW = "usual.event.BATTERY_LOW";
 
 /**
- * @brief Indicates the common event that the battery exits the low state.
+ * @brief 表示电池退出低电平状态的公共事件。
  *
  * @since 12
  */
 static const char* const COMMON_EVENT_BATTERY_OKAY = "usual.event.BATTERY_OKAY";
 
 /**
- * @brief Indicates the common event that the device is connected to an external power supply.
+ * @brief 表示设备连接到外部电源的公共事件。
  *
  * @since 12
  */
 static const char* const COMMON_EVENT_POWER_CONNECTED = "usual.event.POWER_CONNECTED";
 
 /**
- * @brief Indicates the common event that the device is disconnected from the external power supply.
+ * @brief 表示设备与外部电源断开的公共事件。
  *
  * @since 12
  */
 static const char* const COMMON_EVENT_POWER_DISCONNECTED = "usual.event.POWER_DISCONNECTED";
 
 /**
- * @brief Indicates the common event that the device screen is off and the device is sleeping.
+ * @brief 表示设备屏幕关闭且设备处于睡眠状态的公共事件。
  *
  * @since 12
  */
 static const char* const COMMON_EVENT_SCREEN_OFF = "usual.event.SCREEN_OFF";
 
 /**
- * @brief Indicates the common event that the device screen is on and the device is in interactive state.
+ * @brief 表示设备屏幕打开且设备处于交互状态的公共事件。
  *
  * @since 12
  */
 static const char* const COMMON_EVENT_SCREEN_ON = "usual.event.SCREEN_ON";
 
 /**
- * @brief Indicates the common event that the device is about to enter the hibernation mode.
+ * @brief 表示设备即将进入休眠模式的公共事件的动作。
  *
  * @since 15
  */
 static const char* const COMMON_EVENT_ENTER_HIBERNATE = "usual.event.ENTER_HIBERNATE";
 
 /**
- * @brief Indicates the common event that the device exits the hibernation mode.
+ * @brief 表示设备退出休眠模式的公共事件的动作。
  *
  * @since 15
  */
 static const char* const COMMON_EVENT_EXIT_HIBERNATE = "usual.event.EXIT_HIBERNATE";
 
 /**
- * @brief Indicates the common event that the device's thermal level has changed.
+ * @brief 表示设备热状态的公共事件。
  *
  * @since 12
  */
 static const char* const COMMON_EVENT_THERMAL_LEVEL_CHANGED = "usual.event.THERMAL_LEVEL_CHANGED";
 
 /**
- * @brief Indicates the common event that the system time has changed.
+ * @brief 表示系统时间更改的公共事件。
  *
  * @since 12
  */
 static const char* const COMMON_EVENT_TIME_TICK = "usual.event.TIME_TICK";
 
 /**
- * @brief Indicates the common event that the system time has been set.
+ * @brief 表示设置系统时间的公共事件。
  *
  * @since 12
  */
 static const char* const COMMON_EVENT_TIME_CHANGED = "usual.event.TIME_CHANGED";
 
 /**
- * @brief Indicates the common event that the system time zone has changed.
+ * @brief 表示系统时区更改的公共事件。
  *
  * @since 12
  */
 static const char* const COMMON_EVENT_TIMEZONE_CHANGED = "usual.event.TIMEZONE_CHANGED";
 
 /**
- * @brief Indicates the common event that a new application package has been installed on the device.
+ * @brief 表示设备上已安装新应用包的公共事件。
  *
  * @since 12
  */
 static const char* const COMMON_EVENT_PACKAGE_ADDED = "usual.event.PACKAGE_ADDED";
 
 /**
- * @brief Indicates the common event that an installed application has been uninstalled from the device with the
- * application data retained.
+ * @brief 表示已从设备卸载已安装的应用程序，但应用程序数据保留的公共事件。
  *
  * @since 12
  */
 static const char* const COMMON_EVENT_PACKAGE_REMOVED = "usual.event.PACKAGE_REMOVED";
 
 /**
- * @brief Indicates the common event that an installed bundle has been uninstalled from the device with the application
- * data retained.
+ * @brief 表示已从设备中卸载已安装的捆绑包，但应用程序数据仍保留的公共事件。
  *
  * @since 12
  */
 static const char* const COMMON_EVENT_BUNDLE_REMOVED = "usual.event.BUNDLE_REMOVED";
 
 /**
- * @brief Indicates the common event that an installed application, including both the application data and code, has
- * been completely uninstalled from the device.
+ * @brief 表示已从设备中完全卸载已安装的应用程序（包括应用程序数据和代码）的公共事件。
  *
  * @since 12
  */
 static const char* const COMMON_EVENT_PACKAGE_FULLY_REMOVED = "usual.event.PACKAGE_FULLY_REMOVED";
 
 /**
- * @brief Indicates the common event that an application package has been changed (for example, a component in the
- * package has been enabled or disabled).
+ * @brief 表示应用包已更改的公共事件（例如，包中的组件已启用或禁用）。
  *
  * @since 12
  */
 static const char* const COMMON_EVENT_PACKAGE_CHANGED = "usual.event.PACKAGE_CHANGED";
 
 /**
- * @brief Indicates the common event that the user has restarted the application package and killed all its processes.
+ * @brief 表示用户重启应用包并杀死其所有进程的普通事件的动作。
  *
  * @since 12
  */
 static const char* const COMMON_EVENT_PACKAGE_RESTARTED = "usual.event.PACKAGE_RESTARTED";
 
 /**
- * @brief Indicates the common event that the user cleared the application package data.
+ * @brief 表示用户清除应用包数据的公共事件的动作。
  *
  * @since 12
  */
 static const char* const COMMON_EVENT_PACKAGE_DATA_CLEARED = "usual.event.PACKAGE_DATA_CLEARED";
 
 /**
- * @brief Indicates the common event that the user has cleared the application package data cache.
+ * @brief 表示用户清除应用包缓存数据的公共事件。
  *
  * @since 12
  */
 static const char* const COMMON_EVENT_PACKAGE_CACHE_CLEARED = "usual.event.PACKAGE_CACHE_CLEARED";
 
 /**
- * @brief Indicates the common event that application packages have been suspended.
+ * @brief 表示应用包已挂起的公共事件。
  *
  * @since 12
  */
 static const char* const COMMON_EVENT_PACKAGES_SUSPENDED = "usual.event.PACKAGES_SUSPENDED";
 
 /**
- * @brief Indicates the common event that application packages are suspended.
+ * @brief 表示应用包被挂起的公共事件。
  *
  * @since 12
  */
 static const char* const COMMON_EVENT_MY_PACKAGE_SUSPENDED = "usual.event.MY_PACKAGE_SUSPENDED";
 
 /**
- * @brief Indicates the common event that application packages have not been suspended.
+ * @brief 表示应用包未挂起的公共事件。
  *
  * @since 12
  */
 static const char* const COMMON_EVENT_MY_PACKAGE_UNSUSPENDED = "usual.event.MY_PACKAGE_UNSUSPENDED";
 
 /**
- * @brief Indicates the common event that the device locale has changed.
+ * @brief 表示设备区域设置已更改的公共事件。
  *
  * @since 12
  */
 static const char* const COMMON_EVENT_LOCALE_CHANGED = "usual.event.LOCALE_CHANGED";
 
 /**
- * @brief Indicates the common event that the device storage is insufficient.
+ * @brief 表示设备存储空间不足的公共事件。
  *
  * @since 12
  */
 static const char* const COMMON_EVENT_MANAGE_PACKAGE_STORAGE = "usual.event.MANAGE_PACKAGE_STORAGE";
 
 /**
- * @brief Indicates the common event that the credential-encrypted storage has been unlocked for the current user when
- * the device is unlocked upon restart.
+ * @brief 表示设备重启后解锁时，当前用户的凭据加密存储已解锁的公共事件。
  *
  * @since 12
  */
 static const char* const COMMON_EVENT_USER_UNLOCKED = "usual.event.USER_UNLOCKED";
 
 /**
- * @brief Indicates the common event that a distributed account is successfully logged out.
+ * @brief 表示分布式账号登出成功的公共事件。
  *
  * @since 12
  */
 static const char* const COMMON_EVENT_DISTRIBUTED_ACCOUNT_LOGOUT = "common.event.DISTRIBUTED_ACCOUNT_LOGOUT";
 
 /**
- * @brief Indicates the common event that the token of a distributed account is invalid.
+ * @brief 表示分布式账号token令牌无效的公共事件。
  *
  * @since 12
  */
@@ -259,92 +253,91 @@ static const char* const COMMON_EVENT_DISTRIBUTED_ACCOUNT_TOKEN_INVALID =
     "common.event.DISTRIBUTED_ACCOUNT_TOKEN_INVALID";
 
 /**
- * @brief Indicates the common event that a distributed account is deregistered.
+ * @brief 表示分布式账号注销的公共事件。
  *
  * @since 12
  */
 static const char* const COMMON_EVENT_DISTRIBUTED_ACCOUNT_LOGOFF = "common.event.DISTRIBUTED_ACCOUNT_LOGOFF";
 
 /**
- * @brief Indicates the common event that the Wi-Fi state has changed to a new state, such as enabled or disabled.
+ * @brief 表示Wi-Fi状态公共事件，如启用和禁用。
  *
  * @since 12
  */
 static const char* const COMMON_EVENT_WIFI_POWER_STATE = "usual.event.wifi.POWER_STATE";
 
 /**
- * @brief Indicates the common event that the Wi-Fi access point has been scanned and proven to be available.
+ * @brief 表示Wi-Fi接入点已被扫描并证明可用的公共事件。
  *
  * @since 12
  */
 static const char* const COMMON_EVENT_WIFI_SCAN_FINISHED = "usual.event.wifi.SCAN_FINISHED";
 
 /**
- * @brief Indicates the common event that the Wi-Fi signal strength (RSSI) has changed.
+ * @brief 表示Wi-Fi信号强度（RSSI）改变的公共事件。
  *
  * @since 12
  */
 static const char* const COMMON_EVENT_WIFI_RSSI_VALUE = "usual.event.wifi.RSSI_VALUE";
 
 /**
- * @brief Indicates the common event that the Wi-Fi connection state has changed.
+ * @brief 表示Wi-Fi连接状态发生改变的公共事件。
  *
  * @since 12
  */
 static const char* const COMMON_EVENT_WIFI_CONN_STATE = "usual.event.wifi.CONN_STATE";
 
 /**
- * @brief Indicates the common event that the Wi-Fi hotspot state has changed to a new state, such as enabled or
- * disabled.
+ * @brief 表示Wi-Fi热点状态的公共事件，如启用或禁用。
  *
  * @since 12
  */
 static const char* const COMMON_EVENT_WIFI_HOTSPOT_STATE = "usual.event.wifi.HOTSPOT_STATE";
 
 /**
- * @brief Indicates the common event that a client has joined the Wi-Fi hotspot of the current device.
+ * @brief 表示客户端加入当前设备Wi-Fi热点的公共事件。
  *
  * @since 12
  */
 static const char* const COMMON_EVENT_WIFI_AP_STA_JOIN = "usual.event.wifi.WIFI_HS_STA_JOIN";
 
 /**
- * @brief Indicates the common event that a client has leave the Wi-Fi hotspot of the current device.
+ * @brief 表示客户端加入当前设备Wi-Fi热点的公共事件。
  *
  * @since 12
  */
 static const char* const COMMON_EVENT_WIFI_AP_STA_LEAVE = "usual.event.wifi.WIFI_HS_STA_LEAVE";
 
 /**
- * @brief Indicates the common event that the state of MPLINK (an enhanced Wi-Fi feature) has changed.
+ * @brief 表示MPLink（增强Wi-Fi功能）状态已更改的公共事件。
  *
  * @since 12
  */
 static const char* const COMMON_EVENT_WIFI_MPLINK_STATE_CHANGE = "usual.event.wifi.mplink.STATE_CHANGE";
 
 /**
- * @brief Indicates the common event that the Wi-Fi P2P connection state has changed.
+ * @brief 表示Wi-Fi P2P连接状态改变的公共事件。
  *
  * @since 12
  */
 static const char* const COMMON_EVENT_WIFI_P2P_CONN_STATE = "usual.event.wifi.p2p.CONN_STATE_CHANGE";
 
 /**
- * @brief Indicates the common event that the Wi-Fi P2P state has changed to enabled or disabled.
+ * @brief 表示Wi-Fi P2P状态公共事件，如启用和禁用。
  *
  * @since 12
  */
 static const char* const COMMON_EVENT_WIFI_P2P_STATE_CHANGED = "usual.event.wifi.p2p.STATE_CHANGE";
 
 /**
- * @brief Indicates the common event that the state of the Wi-Fi P2P peer device has changed.
+ * @brief 表示Wi-Fi P2P对等体状态变化的公共事件。
  *
  * @since 12
  */
 static const char* const COMMON_EVENT_WIFI_P2P_PEERS_STATE_CHANGED = "usual.event.wifi.p2p.DEVICES_CHANGE";
 
 /**
- * @brief Indicates the common event that the Wi-Fi P2P discovery state has changed.
+ * @brief 表示Wi-Fi P2P发现状态变化的公共事件。
  *
  * @since 12
  */
@@ -352,7 +345,7 @@ static const char* const COMMON_EVENT_WIFI_P2P_PEERS_DISCOVERY_STATE_CHANGED =
     "usual.event.wifi.p2p.PEER_DISCOVERY_STATE_CHANGE";
 
 /**
- * @brief Indicates the common event that the state of the Wi-Fi P2P local device has changed.
+ * @brief 表示Wi-Fi P2P当前设备状态变化的公共事件。
  *
  * @since 12
  */
@@ -360,244 +353,218 @@ static const char* const COMMON_EVENT_WIFI_P2P_CURRENT_DEVICE_STATE_CHANGED =
     "usual.event.wifi.p2p.CURRENT_DEVICE_CHANGE";
 
 /**
- * @brief Indicates the common event that the Wi-Fi P2P group information has changed.
+ * @brief 表示Wi-Fi P2P群组信息已更改的公共事件。
  *
  * @since 12
  */
 static const char* const COMMON_EVENT_WIFI_P2P_GROUP_STATE_CHANGED = "usual.event.wifi.p2p.GROUP_STATE_CHANGED";
 
 /**
- * @brief Indicates the common event that the state of the device NFC adapter has changed.
+ * @brief 表示设备NFC状态已更改的公共事件。
  *
  * @since 12
  */
 static const char* const COMMON_EVENT_NFC_ACTION_ADAPTER_STATE_CHANGED = "usual.event.nfc.action.ADAPTER_STATE_CHANGED";
 
 /**
- * @brief Indicates the common event that the NFC RF field is on.
+ * @brief 表示检测到NFC场强进入的公共事件。
  *
  * @since 12
  */
 static const char* const COMMON_EVENT_NFC_ACTION_RF_FIELD_ON_DETECTED = "usual.event.nfc.action.RF_FIELD_ON_DETECTED";
 
 /**
- * @brief Indicates the common event that the NFC RF field is off.
+ * @brief 表示检测到NFC场强离开的公共事件。
  *
  * @since 12
  */
 static const char* const COMMON_EVENT_NFC_ACTION_RF_FIELD_OFF_DETECTED = "usual.event.nfc.action.RF_FIELD_OFF_DETECTED";
 
 /**
- * @brief Indicates the common event that the system stops charging the battery.
+ * @brief 表示系统停止为电池充电的公共事件。
  *
  * @since 12
  */
 static const char* const COMMON_EVENT_DISCHARGING = "usual.event.DISCHARGING";
 
 /**
- * @brief Indicates the common event that the system starts charging the battery.
+ * @brief 表示系统开始为电池充电的公共事件。
  *
  * @since 12
  */
 static const char* const COMMON_EVENT_CHARGING = "usual.event.CHARGING";
 
 /**
- * @brief Indicates the common event that the system standby mode has changed.
+ * @brief 表示系统待机空闲模式已更改的公共事件。
  *
  * @since 12
  */
 static const char* const COMMON_EVENT_DEVICE_IDLE_MODE_CHANGED = "usual.event.DEVICE_IDLE_MODE_CHANGED";
 
 /**
- * @brief Indicates the common event that the device enters the charging idle mode.
+ * @brief 表示设备进入充电空闲模式的公共事件。
  *
  * @since 12
  */
 static const char* const COMMON_EVENT_CHARGE_IDLE_MODE_CHANGED = "usual.event.CHARGE_IDLE_MODE_CHANGED";
 
 /**
- * @brief Indicates the common event that the system power saving mode is changed.
+ * @brief 表示系统节能模式更改的公共事件。
  *
  * @since 12
  */
 static const char* const COMMON_EVENT_POWER_SAVE_MODE_CHANGED = "usual.event.POWER_SAVE_MODE_CHANGED";
 
 /**
- * @brief Indicates the common event that the USB device state has changed.
+ * @brief 表示USB设备状态发生变化的公共事件。
  *
  * @since 12
  */
 static const char* const COMMON_EVENT_USB_STATE = "usual.event.hardware.usb.action.USB_STATE";
 
 /**
- * @brief Indicates the common event that the USB port state of the user device has changed.
+ * @brief 表示用户设备的USB端口状态发生改变的公共事件。
  *
  * @since 12
  */
 static const char* const COMMON_EVENT_USB_PORT_CHANGED = "usual.event.hardware.usb.action.USB_PORT_CHANGED";
 
 /**
- * @brief Indicates the common event that a USB device has been attached when the user device functions as a USB host.
+ * @brief 当用户设备作为USB主机时，USB设备已挂载的公共事件。
  *
  * @since 12
  */
 static const char* const COMMON_EVENT_USB_DEVICE_ATTACHED = "usual.event.hardware.usb.action.USB_DEVICE_ATTACHED";
 
 /**
- * @brief Indicates the common event that a USB device has been detached when the user device functions as a USB host.
+ * @brief 当用户设备作为USB主机时，USB设备被卸载的公共事件。
  *
  * @since 12
  */
 static const char* const COMMON_EVENT_USB_DEVICE_DETACHED = "usual.event.hardware.usb.action.USB_DEVICE_DETACHED";
 
 /**
- * @brief Indicates the common event that the airplane mode of a device has changed.
+ * @brief 表示设备飞行模式已更改的公共事件。
  *
  * @since 12
  */
 static const char* const COMMON_EVENT_AIRPLANE_MODE_CHANGED = "usual.event.AIRPLANE_MODE";
 
 /**
- * @brief Indicates the common event of screen splitting.
+ * @brief 表示分屏的公共事件。
  *
  * @since 12
  */
 static const char* const COMMON_EVENT_SPLIT_SCREEN = "common.event.SPLIT_SCREEN";
 
 /**
- * @brief Indicates the common event that a quick fix is applied to an application.
+ * @brief 表示快速修复应用的公共事件。
  *
  * @since 12
  */
 static const char* const COMMON_EVENT_QUICK_FIX_APPLY_RESULT = "usual.event.QUICK_FIX_APPLY_RESULT";
 
 /**
- * @brief Indicates the common event that a quick fix is revoked.
+ * @brief 表示撤销快速修复的公共事件。
  *
  * @since 12
  */
 static const char* const COMMON_EVENT_QUICK_FIX_REVOKE_RESULT = "usual.event.QUICK_FIX_REVOKE_RESULT";
 
 /**
- * @brief Indicates the common event that the user information has been updated.
+ * @brief 表示用户信息已更新的公共事件。
  *
  * @since 12
  */
 static const char* const COMMON_EVENT_USER_INFO_UPDATED = "usual.event.USER_INFO_UPDATED";
 
 /**
- * @brief Indicates the common event that the SIM card state has been updated.
+ * @brief 表示SIM卡状态更新的公共事件。
  *
  * @since 12
  */
 static const char* const COMMON_EVENT_SIM_STATE_CHANGED = "usual.event.SIM_STATE_CHANGED";
 
 /**
- * @brief Indicates the common event that the call state has been updated.
- *
- * To subscribe to this protected common event, your application must have the ohos.permission.GET_TELEPHONY_STATE
- * permission.
+ * @brief 表示呼叫状态更新的公共事件。
+ * 要订阅此事件，您的应用必须具备ohos.permission.GET_TELEPHONY_STATE权限。
  *
  * @since 12
  */
 static const char* const COMMON_EVENT_CALL_STATE_CHANGED = "usual.event.CALL_STATE_CHANGED";
 
 /**
- * @brief Indicates the common event that the network state has been updated.
+ * @brief 表示网络状态更新的公共事件。
  *
  * @since 12
  */
 static const char* const COMMON_EVENT_NETWORK_STATE_CHANGED = "usual.event.NETWORK_STATE_CHANGED";
 
 /**
- * @brief Indicates the common event that the signal information has been updated.
+ * @brief 表示信号信息更新的公共事件。
  *
  * @since 12
  */
 static const char* const COMMON_EVENT_SIGNAL_INFO_CHANGED = "usual.event.SIGNAL_INFO_CHANGED";
 
 /**
- * @brief Indicates the common event that the screen has been unlocked.
+ * @brief 表示屏幕解锁的公共事件。
  *
  * @since 12
  */
 static const char* const COMMON_EVENT_SCREEN_UNLOCKED = "usual.event.SCREEN_UNLOCKED";
 
 /**
- * @brief Indicates the common event that the screen has been locked.
+ * @brief 表示屏幕锁定的公共事件。
  *
  * @since 12
  */
 static const char* const COMMON_EVENT_SCREEN_LOCKED = "usual.event.SCREEN_LOCKED";
 
 /**
- * @brief Indicates the common event that the HTTP proxy configuration has changed.
+ * @brief 表示HTTP代理的配置信息发生变化的公共事件。
  *
  * @since 12
  */
 static const char* const COMMON_EVENT_HTTP_PROXY_CHANGE = "usual.event.HTTP_PROXY_CHANGE";
 
 /**
- * @brief Indicates the common event that the network connection state has changed.
+ * @brief 表示网络连接状态变化的公共事件。
  *
  * @since 12
  */
 static const char* const COMMON_EVENT_CONNECTIVITY_CHANGE = "usual.event.CONNECTIVITY_CHANGE";
 
 /**
- * @brief Indicates the common event that the minor mode is enabled.
+ * @brief 表示未成年人模式开启的公共事件。
  *
  * @since 12
  */
 static const char* const COMMON_EVENT_MINORSMODE_ON = "usual.event.MINORSMODE_ON";
 
 /**
- * @brief Indicates the common event that the minor mode is disabled.
+ * @brief 表示未成年人模式关闭的公共事件。
  *
  * @since 12
  */
 static const char* const COMMON_EVENT_MINORSMODE_OFF = "usual.event.MINORSMODE_OFF";
 
 /**
- * @brief Indicates the common event that the browser hosting policy has been changed.
+ * @brief 表示浏览器托管策略已更改。
  *
  * @since 15
  */
 static const char* const COMMON_EVENT_MANAGED_BROWSER_POLICY_CHANGED = "usual.event.MANAGED_BROWSER_POLICY_CHANGED";
 
 /**
- * @brief Indicates the common event that the tablet mode of a device has been changed.
+ * @brief 表示可感知支架开合的设备，其支架开合状态变化的公共事件。
  *
  * @since 23
  */
 static const char* const COMMON_EVENT_TABLET_MODE_CHANGED = "usual.event.TABLET_MODE_CHANGED";
 
 /**
- * @brief This common event indicates that specific volumes on the device have been decrypted.
- *
- * @since 26.0.0
- */
-static const char* const COMMON_EVENT_VOLUME_DECRYPTED = "usual.event.VOLUME_DECRYPTED";
-
-/**
- * @brief This common event indicates that specific volumes on the device have been encrypted.
- *
- * @since 26.0.0
- */
-static const char* const COMMON_EVENT_VOLUME_ENCRYPTED = "usual.event.VOLUME_ENCRYPTED";
-
-/**
- * @brief This common event indicates that specific volumes on the device have had their encryption policy set.
- *
- * To subscribe to this protected common event, your application must have the
- * ohos.permission.QUERY_VOLUME_ENCRYPTION_STATUS permission.
- *
- * @since 26.0.0
- */
-static const char* const COMMON_EVENT_VOLUME_ENCRYPTION_POLICY_SET = "usual.event.VOLUME_ENCRYPTION_POLICY_SET";
-
-/**
- * @brief Indicates the common event that the lid state of a device has been changed.
+ * @brief 表示可感知开合盖子的设备，其开合盖状态变化的公共事件。
  *
  * @since 23
  */
@@ -606,5 +573,4 @@ static const char* const COMMON_EVENT_LID_STATE_CHANGED = "usual.event.LID_STATE
 }
 #endif
 #endif // OH_COMMONEVENT_SUPPORT_H
-
 /** @} */
