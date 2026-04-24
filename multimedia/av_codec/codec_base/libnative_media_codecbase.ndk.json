@@ -661,6 +661,11 @@
         "type": "variable"
     },
     {
+        "first_introduced": "26.0.0",
+        "name": "OH_MD_KEY_SCREEN_CAPTURE_WINDOW_RECT",
+        "type": "variable"
+    },
+    {
         "first_introduced": "10",
         "name": "OH_AVCodec_GetCapability"
     },
