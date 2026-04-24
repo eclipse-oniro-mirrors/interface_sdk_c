@@ -58,7 +58,7 @@ typedef struct UsbControlRequestSetup {
      */
     uint8_t bmRequestType;
     /**
-     * Request command.
+     * Specific request.
      */
     uint8_t bRequest;
     /**
@@ -385,7 +385,7 @@ typedef struct UsbRequestPipe {
 } __attribute__((aligned(8))) UsbRequestPipe;
 
 /**
- * @brief Device memory map created by calling <b>OH_Usb_CreateDeviceMemMap</b>. A buffer using the device memory map
+ * @brief Device memory map created by calling {@link OH_Usb_CreateDeviceMemMap}. A buffer using the device memory map
  * can improve data transmission performance.
  *
  * @since 10
@@ -433,7 +433,7 @@ typedef enum {
      */
     USB_DDK_FAILED = -1,
     /**
-     * Permission denied.
+     * No permission.
      * @since 14
      */
     USB_DDK_NO_PERM = 201,
@@ -447,7 +447,7 @@ typedef enum {
      */
     USB_DDK_MEMORY_ERROR = 27400001,
     /**
-     * Null pointer exception
+     * Null pointer.
      * @deprecated since 16
      */
     USB_DDK_NULL_PTR = -5,
@@ -461,7 +461,7 @@ typedef enum {
      */
     USB_DDK_INVALID_OPERATION = 27400002,
     /**
-     * Device I/O operation failed.
+     * Device I/O operation failure.
      * @since 14
      */
     USB_DDK_IO_FAILED = 27400003,
@@ -473,7 +473,7 @@ typedef enum {
 
 /**
  * @brief Defines the device ID list, which is used to store the device IDs and device quantity obtained using
- * **OH_Usb_GetDevices**.
+ * {@link OH_Usb_GetDevices}.
  *
  * @since 18
  */
@@ -491,7 +491,8 @@ typedef struct Usb_DeviceArray {
 } Usb_DeviceArray;
 
 /**
- * @brief The list of non-root hubs.
+ * @brief The list of non-root hubs, which is used to store the non-root hub IDs and quantity obtained using
+ * {@link OH_Usb_GetNonRootHubs}.
  *
  * @since 26.0.0
  */

@@ -45,7 +45,7 @@ extern "C" {
 #endif /* __cplusplus */
 
 /**
- * @brief Device memory map created by calling **OH_DDK_CreateAshmem**. A buffer using the device memory map can
+ * @brief Device memory map created by calling {@link OH_DDK_CreateAshmem}. A buffer using the device memory map can
  * provide better performance.
  *
  * @since 12

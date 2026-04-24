@@ -44,14 +44,14 @@ extern "C" {
 #endif /* __cplusplus */
 
 /**
- * @brief The min length of descriptor format sense data: 8.
+ * @brief Defines the minimum length of the sensing data in the descriptor format.
  *
  * @since 18
  */
 #define SCSIPERIPHERAL_MIN_DESCRIPTOR_FORMAT_SENSE 8
 
 /**
- * @brief The min length of fixed format sense data: 18.
+ * @brief Defines the minimum length of the sensing data in the fixed format.
  *
  * @since 18
  */
@@ -153,8 +153,8 @@ typedef enum {
 typedef struct ScsiPeripheral_Device ScsiPeripheral_Device;
 
 /**
- * @brief Represents the device memory mapping created by calling **OH_ScsiPeripheral_CreateDeviceMemMap**. The buffer
- * that uses the device memory mapping can provide better performance.
+ * @brief Represents the device memory mapping created by calling {@link OH_ScsiPeripheral_CreateDeviceMemMap}. The
+ * buffer that uses the device memory mapping can provide better performance.
  *
  * @since 18
  */
@@ -220,7 +220,7 @@ typedef struct ScsiPeripheral_IORequest {
 } ScsiPeripheral_IORequest;
 
 /**
- * @brief The max length of command descriptor block: 16.
+ * @brief Maximum length of a command description block.
  *
  * @since 18
  */
@@ -255,7 +255,7 @@ typedef struct ScsiPeripheral_Request {
 } ScsiPeripheral_Request;
 
 /**
- * @brief The max length of sense data: 252.
+ * @brief Defines the maximum length of the sensing data.
  *
  * @since 18
  */
@@ -353,21 +353,21 @@ typedef struct ScsiPeripheral_InquiryRequest {
 } ScsiPeripheral_InquiryRequest;
 
 /**
- * @brief The length of vendor identification: 8.
+ * @brief Defines the length of a vendor ID.
  *
  * @since 18
  */
 #define SCSIPERIPHERAL_VENDOR_ID_LEN 8
 
 /**
- * @brief The length of product identification: 16.
+ * @brief Defines the length of a product ID.
  *
  * @since 18
  */
 #define SCSIPERIPHERAL_PRODUCT_ID_LEN 16
 
 /**
- * @brief The length of product revision: 4.
+ * @brief Defines the length of a product revision version.
  *
  * @since 18
  */
@@ -383,11 +383,17 @@ typedef struct ScsiPeripheral_InquiryInfo {
      * Device type.
      */
     uint8_t deviceType;
-    /** Vendor identification. */
+    /**
+     * Vendor ID.
+     */
     char idVendor[SCSIPERIPHERAL_VENDOR_ID_LEN + 1];
-    /** Product identification. */
+    /**
+     * Product ID.
+     */
     char idProduct[SCSIPERIPHERAL_PRODUCT_ID_LEN + 1];
-    /** Product revision. */
+    /**
+     * Product version.
+     */
     char revProduct[SCSIPERIPHERAL_PRODUCT_REV_LEN + 1];
     /**
      * Inquiry data.
@@ -499,7 +505,7 @@ typedef struct ScsiPeripheral_BasicSenseInfo {
  */
 typedef struct ScsiPeripheral_VerifyRequest {
     /**
-     * Start address of a logical block.
+     * Start address of logical blocks.
      */
     uint32_t lbAddress;
     /**

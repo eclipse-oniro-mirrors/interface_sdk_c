@@ -322,8 +322,7 @@ void OH_Usb_DestroyDeviceMemMap(UsbDeviceMemMap *devMmap);
 int32_t OH_Usb_GetDevices(struct Usb_DeviceArray *devices);
 
 /**
- * @brief Performs a USB control transfer. The direction of the transfer is inferred from the bmRequestType field
- * of the setup packet.
+ * @brief Performs a USB control transfer. This API works in a synchronous manner.
  *
  * @permission ohos.permission.ACCESS_DDK_USB
  * @param deviceID An ID for the device to communicate with
@@ -334,7 +333,7 @@ int32_t OH_Usb_GetDevices(struct Usb_DeviceArray *devices);
  *     received. For an unlimited timeout, use value 0.
  * @return on success, the number of bytes actually transferred.
  *     {@link USB_DDK_NO_PERM} Permission authentication failed.
- *     {@link USB_DDK_INVALID_OPERATION} DDK Service not initialized. Please invoke OH_Usb_Init to complete the
+ *     {@link USB_DDK_INVALID_OPERATION} DDK Service not initialized. Please invoke {@link OH_Usb_Init} to complete the
  *     initialization process first.
  *     {@link USB_DDK_INVALID_PARAMETER} The setupPacket or data parameters are invalid.
  *     {@link USB_DDK_TIMEOUT} The control transfer timed out.
@@ -345,14 +344,17 @@ int32_t OH_Usb_ControlTransfer(uint64_t deviceID, const struct UsbControlRequest
     uint32_t timeout);
 
 /**
- * @brief Query and return the list of non-root hubs.
+ * @brief Queries and returns the list of non-root hubs. Ensure that the pointer parameters passed in are valid. To
+ * avoid excessive memory usage, the size of the requested non-root hub ID array is recommended not to exceed 128.
+ * After using the struct, release the memory of its members; otherwise, resource leaks may occur.
  *
  * @permission ohos.permission.ACCESS_DDK_USB
  * @param nonRootHub Returns the list of queried non-root hubs.
  * @return {@link USB_DDK_SUCCESS} Query operation successful.
- *         {@link USB_DDK_NO_PERM} Permission authentication failed.
- *         {@link USB_DDK_INVALID_OPERATION} DDK Service not initialized. Please invoke OH_Usb_Init to complete the initialization process first.
- *         {@link USB_DDK_INVALID_PARAMETER} The parameter nonRootHub is null.
+ *     {@link USB_DDK_NO_PERM} Permission authentication failed.
+ *     {@link USB_DDK_INVALID_OPERATION} DDK Service not initialized. Please invoke {@link OH_Usb_Init} to complete the
+ *     initialization process first.
+ *     {@link USB_DDK_INVALID_PARAMETER} The parameter nonRootHub is null.
  * @since 26.0.0
  */
 int32_t OH_Usb_GetNonRootHubs(struct Usb_NonRootHubArray *nonRootHub);

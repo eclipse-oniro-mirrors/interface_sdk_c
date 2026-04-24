@@ -45,7 +45,7 @@ extern "C" {
 #endif /* __cplusplus */
 
 /**
- * @brief Creates an **Ashmem** object. To prevent resource leakage, call **OH_DDK_DestroyAshmem** to destroy the
+ * @brief Creates an **Ashmem** object. To prevent resource leakage, call {@link OH_DDK_DestroyAshmem} to destroy the
  * **Ashmem** object when it is no longer needed.
  *
  * @param name Pointer to the name of the **Ashmem** object.
@@ -60,7 +60,7 @@ extern "C" {
 DDK_RetCode OH_DDK_CreateAshmem(const uint8_t *name, uint32_t size, DDK_Ashmem **ashmem);
 
 /**
- * @brief Maps the created **Ashmem** object to the user space. Call **OH_DDK_UnmapAshmem** to unmap the **Ashmem**
+ * @brief Maps the created **Ashmem** object to the user space. Call {@link OH_DDK_UnmapAshmem} to unmap the **Ashmem**
  * object when it is no longer needed.
  *
  * @param ashmem Pointer to the **Ashmem** object.

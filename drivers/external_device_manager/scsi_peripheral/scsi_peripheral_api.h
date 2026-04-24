@@ -326,8 +326,8 @@ int32_t OH_ScsiPeripheral_DestroyDeviceMemMap(ScsiPeripheral_DeviceMemMap *devMm
  * @param senseInfo Basic sense data after parsing. For details, see {@link ScsiPeripheral_BasicSenseInfo}.
  * @return {@link SCSIPERIPHERAL_DDK_SUCCESS}: The API call is successful.
  *     {@link SCSIPERIPHERAL_DDK_INVALID_PARAMETER}: The input **senseData** is not a descriptor or is not of the fixed
- *     format, or **senseDataLen** is smaller than
- *     **SCSIPERIPHERAL_MIN_DESCRIPTOR_FORMAT_SENSE** or **SCSIPERIPHERAL_MIN_FIXED_FORMAT_SENSE**.
+ *     format, or **senseDataLen** is smaller than {@link SCSIPERIPHERAL_MIN_DESCRIPTOR_FORMAT_SENSE}
+ *     or {@link SCSIPERIPHERAL_MIN_FIXED_FORMAT_SENSE}.
  * @since 18
  */
 int32_t OH_ScsiPeripheral_ParseBasicSenseInfo(uint8_t *senseData, uint8_t senseDataLen,

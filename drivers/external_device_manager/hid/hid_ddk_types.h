@@ -924,7 +924,7 @@ typedef struct Hid_RelAxesArray {
  */
 typedef struct Hid_MscEventArray {
     /**
-     * Array of Miscellaneous events.
+     * Miscellaneous events.
      */
     Hid_MscEvent *hidMscEvent;
     /**
@@ -961,13 +961,21 @@ typedef struct Hid_EventProperties {
      */
     struct Hid_MscEventArray hidMiscellaneous;
 
-    /** Maximum values of the absolute coordinates */
+    /**
+     * Maximum values of the absolute coordinates.
+     */
     int32_t hidAbsMax[64];
-    /** Minimum values of the absolute coordinates */
+    /**
+     * Minimum values of the absolute coordinates.
+     */
     int32_t hidAbsMin[64];
-    /** Fuzzy values of the absolute coordinates */
+    /**
+     * Fuzzy values of the absolute coordinates.
+     */
     int32_t hidAbsFuzz[64];
-    /** Fixed values of the absolute coordinates */
+    /**
+     * Fixed values of the absolute coordinates.
+     */
     int32_t hidAbsFlat[64];
 } Hid_EventProperties;
 
