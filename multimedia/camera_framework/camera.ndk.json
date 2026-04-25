@@ -980,11 +980,19 @@
         "name": "OH_CaptureSession_SetOISModeCustom"
     },
     {
-        "first_introduced": "26",
+        "first_introduced": "26.0.0",
+        "name": "OH_CaptureSession_RegisterExposureStateChangeCallback"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_CaptureSession_UnregisterExposureStateChangeCallback"
+    },
+    {
+        "first_introduced": "26.0.0",
         "name": "OH_CameraManager_IsTorchLevelControlSupported"
     },
     {
-        "first_introduced": "26",
+        "first_introduced": "26.0.0",
         "name": "OH_CameraManager_SetTorchModeOnWithLevel"
     },
     {
@@ -1004,7 +1012,7 @@
         "name": "OH_CaptureSession_GetZoomPointInfos"
     },
     {
-        "first_introduced": "26",
+        "first_introduced": "26.0.0",
         "name": "OH_CaptureSession_DeleteZoomPointInfos"
     }
 ]

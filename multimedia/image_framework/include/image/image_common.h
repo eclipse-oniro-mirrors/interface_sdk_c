@@ -1931,8 +1931,7 @@ static const char *OHOS_DNG_PROPERTY_BAYER_GREEN_SPLIT = "BayerGreenSplit";
 
 /**
  * @brief The linear response limit.
- * It is used in {@link OH_ImageSourceNative_GetImagePropertyArraySize} and
- * {@link OH_ImageSourceNative_GetImagePropertyDoubleArray}.
+ * It is used in {@link OH_ImageSourceNative_GetImagePropertyDouble}.
  *
  * @since 24
  */

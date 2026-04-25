@@ -6916,7 +6916,8 @@ typedef enum {
      *
      * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
      * .value[0].i32: scrollbar status. The parameter type is {@link ArkUI_ScrollBarDisplayMode}. The default value is
-     * <b>ARKUI_SCROLL_BAR_DISPLAY_MODE_AUTO</b>. \n
+     * <b>ARKUI_SCROLL_BAR_DISPLAY_MODE_AUTO</b> for the <b>List</b>, <b>Grid</b>, and <b>Scroll</b> components, and
+     * <b>ARKUI_SCROLL_BAR_DISPLAY_MODE_OFF</b> for the <b>WaterFlow</b> component. \n
      * \n
      * Format of the return value {@link ArkUI_AttributeItem}:\n
      * .value[0].i32: scrollbar status. The parameter type is {@link ArkUI_ScrollBarDisplayMode}. \n
@@ -7223,7 +7224,9 @@ typedef enum {
      * This attribute can be set, reset, and obtained as required through APIs.
      *
      * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute: \n
-     * .value[0].i32: clip content mode, The parameter type is {@link ArkUI_ContentClipMode}. \n
+     * .value[0].i32: clip content mode. The parameter type is {@link ArkUI_ContentClipMode}. The default value is
+     * <b>ARKUI_CONTENT_CLIP_MODE_BOUNDARY</b> for the <b>Grid</b> and <b>Scroll</b> components, and
+     * <b>ARKUI_CONTENT_CLIP_MODE_CONTENT_ONLY</b> for the <b>List</b> and <b>WaterFlow</b> components. \n
      * \n
      * Format of the return value {@link ArkUI_AttributeItem}: \n
      * .value[0].i32: clip content mode, The parameter type is {@link ArkUI_ContentClipMode}. \n
@@ -7238,7 +7241,9 @@ typedef enum {
      *
      * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute: \n
      * .value[0].i32: whether the scrollable scrolls back to top when status bar is clicked.
-     * The value <b>1</b> means to scroll back to top, and <b>0</b> means the opposite. The default value is <b>0/b>. \n
+     * The value <b>1</b> means to scroll back to top, and <b>0</b> means the opposite. The default value is <b>0</b>
+     * for API versions earlier than 18. For API version 18 and later, the default value is <b>0</b> for the
+     * horizontal scroll direction and <b>1</b> for the vertical scroll direction. \n
      * \n
      * Format of the return value {@link ArkUI_AttributeItem}: \n
      * .value[0].i32: whether the scrollable scrolls back to top when status bar is clicked. \n
@@ -7398,13 +7403,13 @@ typedef enum {
      *
      * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
      * .value[0].i32: number of cached items in the list adapter. \n
-     * .value[1]?.i32: whether to show cached items. The value <b>0</b> means to hide cached items, and <b>0</b> means
+     * .value[1]?.i32: whether to show cached items. The value <b>0</b> means to hide cached items, and <b>1</b> means
      * to show cached items. The default value is <b>0</b>. This parameter is supported since API version 15. \n
      * .value[2]?.i32: maximum cache count. This parameter is supported since API version 22.
      * \n
      * Format of the return value {@link ArkUI_AttributeItem}:\n
      * .value[0].i32: number of cached items in the list adapter. \n
-     * .value[1].i32: whether to show cached items. The value <b>0</b> means to hide cached items, and <b>0</b> means
+     * .value[1].i32: whether to show cached items. The value <b>0</b> means to hide cached items, and <b>1</b> means
      * to show cached items. This parameter is supported since API version 15. \n
      * .value[2].i32: maximum cache count. This parameter is supported since API version 22.
      *
@@ -8351,7 +8356,7 @@ typedef enum {
      * cancels refresh, and <b>0</b> means the opposite. Default value: <b>1</b>.
      * \n
      * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * * .value[0].i32: whether the pull-up gesture cancels refresh. The value <b>1</b> means that the pull-up gesture
+     * .value[0].i32: whether the pull-up gesture cancels refresh. The value <b>1</b> means that the pull-up gesture
      * cancels refresh, and <b>0</b> means the opposite.
      *
      * @since 23
@@ -8784,7 +8789,7 @@ typedef enum {
      *
      * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
      * .value[0].i32: whether to enable edit mode for the <b>Grid</b> component.
-     * </b>: Disable edit mode. <b>1</b>: Enable edit mode. Default value: <b>0</b>.\n
+     * <b>0</b>: Disable edit mode. <b>1</b>: Enable edit mode. Default value: <b>0</b>.\n
      * \n
      * Format of the return value {@link ArkUI_AttributeItem}:\n
      * .value[0].i32: whether to enable edit mode for the <b>Grid</b> component.
@@ -8874,11 +8879,11 @@ typedef enum {
      * This attribute can be set, reset, and obtained as required through APIs.
      *
      * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute: \n
-     * .value[0].i32: style of the <b>GridItem</b> component, specified using {@link ArkUI_SliderStyle}. \n
+     * .value[0].i32: style of the <b>GridItem</b> component, specified using {@link ArkUI_GridItemStyle}. \n
      * The default value is <b>GRID_ITEM_STYLE_NONE</b>. \n
      * \n
      * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: style of the <b>GridItem</b> component, specified using {@link ArkUI_SliderStyle}. \n
+     * .value[0].i32: style of the <b>GridItem</b> component, specified using {@link ArkUI_GridItemStyle}. \n
      *
      * @since 22
      */
