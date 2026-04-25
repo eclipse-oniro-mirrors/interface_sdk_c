@@ -4,7 +4,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -12,22 +12,19 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
- 
 /**
  * @addtogroup Image_NativeModule
  * @{
  *
  * @brief Provides APIs for obtaining picture data and information.
  *
- * @syscap SystemCapability.Multimedia.Image.Core
  * @since 13
  */
-
 /**
  * @file picture_native.h
  *
- * @brief Declares the APIs that can access a picture.
- *
+ * @brief The file declares the APIs for obtaining picture data and information.
+ * 
  * @library libpicture.so
  * @kit ImageKit
  * @syscap SystemCapability.Multimedia.Image.Core
@@ -43,92 +40,91 @@ extern "C" {
 #endif
 
 /**
- * @brief Define a Picture struct type, used for picture pointer controls.
- *
+ * @brief The struct is used to perform operations related to the picture.
+ * 
  * @since 13
  */
 struct OH_PictureNative;
 
 /**
- * @brief Define a Picture struct type, used for picture pointer controls.
- *
+ * @brief The struct is used to perform operations related to the picture.
+ * 
  * @since 13
  */
 typedef struct OH_PictureNative OH_PictureNative;
 
 /**
- * @brief Define a AuxiliaryPicture struct type, used for auxiliary
- * picture pointer controls.
- *
+ * @brief The struct describes the auxiliary picture, which is used to perform operations related to the auxiliary
+ * picture.
+ * 
  * @since 13
  */
 struct OH_AuxiliaryPictureNative;
 
 /**
- * @brief Define a AuxiliaryPicture struct type, used for auxiliary
- * picture pointer controls.
- *
+ * @brief The struct describes the auxiliary picture, which is used to perform operations related to the auxiliary
+ * picture.
+ * 
  * @since 13
  */
 typedef struct OH_AuxiliaryPictureNative OH_AuxiliaryPictureNative;
 
 /**
- * @brief Define a AuxiliaryPictureInfo struct type, used for auxiliary
- * picture info controls.
- *
+ * @brief The struct describes the auxiliary picture information, which is used to perform operations related to the
+ * auxiliary picture information.
+ * 
  * @since 13
  */
 struct OH_AuxiliaryPictureInfo;
 
 /**
- * @brief Define a AuxiliaryPictureInfo struct type, used for auxiliary
- * picture info controls.
- *
+ * @brief The struct describes the auxiliary picture information, which is used to perform operations related to the
+ * auxiliary picture information.
+ * 
  * @since 13
  */
 typedef struct OH_AuxiliaryPictureInfo OH_AuxiliaryPictureInfo;
 
 /**
- * @brief Define a auxiliary picture type.
+ * @brief Type of the auxiliary picture.
  *
  * @since 13
  */
 typedef enum {
-    /*
-    * Gainmap
-    */
+    /**
+     * Gainmap
+     */
     AUXILIARY_PICTURE_TYPE_GAINMAP = 1,
-    /*
-    * Depth map
-    */
+    /**
+     * Depth map
+     */
     AUXILIARY_PICTURE_TYPE_DEPTH_MAP = 2,
-    /*
-    * Unrefocus map
-    */
+    /**
+     * Unrefocus map
+     */
     AUXILIARY_PICTURE_TYPE_UNREFOCUS_MAP = 3,
-    /*
-    * Linear map
-    */
+    /**
+     * Linear map
+     */
     AUXILIARY_PICTURE_TYPE_LINEAR_MAP = 4,
-    /*
-    * Fragment map
-    */
+    /**
+     * Fragment map
+     */
     AUXILIARY_PICTURE_TYPE_FRAGMENT_MAP = 5,
 } Image_AuxiliaryPictureType;
 
 /**
- * @brief Define a OH_ComposeOptions struct type, Describes compose parameters.
- *
- * Used to specify the parameters used for composition, such as the target pixel format.
- *
+ * @brief **OH_ComposeOptions** is the HDR composition option struct encapsulated at the native layer. It is used to
+ * specify parameters used for HDR composition, such as the target pixel format.
+ * 
  * @since 23
  */
 typedef struct OH_ComposeOptions OH_ComposeOptions;
 
 /**
- * @brief Create a instance for OH_ComposeOptions struct.
- *
- * @param options The OH_ComposeOptions pointer will be operated.
+ * @brief Creates an **OH_ComposeOptions** instance.
+ * 
+ * @param options Pointer to **OH_ComposeOptions**.
  * @return Image functions result code.
  *         {@link IMAGE_SUCCESS} if the execution is successful.
  *         {@link IMAGE_BAD_PARAMETER} options is nullptr.
@@ -137,10 +133,10 @@ typedef struct OH_ComposeOptions OH_ComposeOptions;
 Image_ErrorCode OH_ComposeOptions_Create(OH_ComposeOptions **options);
 
 /**
- * @brief Set desired pixel format for ComposeOptions.
- *
- * @param options The OH_ComposeOptions pointer will be operated.
- * @param desiredPixelFormat The desired pixel format will be set, RGBA_1010102\YCBCR_P010\YCRCB_P010 are supported.
+ * @brief Sets the pixel format in **OH_ComposeOptions**.
+ * 
+ * @param options Pointer to **OH_ComposeOptions**.
+ * @param desiredPixelFormat Pixel format. The RGBA_1010102, YCBCR_P010, and YCRCB_P010 formats are supported.
  * @return Image functions result code.
  *         {@link IMAGE_SUCCESS} if the execution is successful.
  *         {@link IMAGE_BAD_PARAMETER} options is nullptr, or desiredPixelFormat is not supported.
@@ -149,21 +145,21 @@ Image_ErrorCode OH_ComposeOptions_Create(OH_ComposeOptions **options);
 Image_ErrorCode OH_ComposeOptions_SetDesiredPixelFormat(OH_ComposeOptions *options, PIXEL_FORMAT desiredPixelFormat);
 
 /**
- * @brief Get desired pixel format for ComposeOptions.
- *
- * @param options The OH_ComposeOptions pointer will be operated.
- * @param desiredPixelFormat The desired pixel format.
+ * @brief Obtains the pixel format in **OH_ComposeOptions**.
+ * 
+ * @param options Pointer to **OH_ComposeOptions**.
+ * @param desiredPixelFormat Pixel format in the composition options.
  * @return Image functions result code.
  *         {@link IMAGE_SUCCESS} if the execution is successful.
- *         {@link IMAGE_BAD_PARAMETER} options is nullptr, or desiredPixelFormat is nullptr.
+ *         {@link IMAGE_BAD_PARAMETER} options is nullptr,or desiredPixelFormat is nullptr.
  * @since 23
  */
 Image_ErrorCode OH_ComposeOptions_GetDesiredPixelFormat(OH_ComposeOptions *options, PIXEL_FORMAT *desiredPixelFormat);
 
 /**
- * @brief Releases an OH_ComposeOptions object.
- *
- * @param options Indicates a OH_ComposeOptions pointer.
+ * @brief Releases the pointer to **OH_ComposeOptions**.
+ * 
+ * @param options Pointer to **OH_ComposeOptions**.
  * @return Image functions result code.
  *         {@link IMAGE_SUCCESS} if the execution is successful.
  *         {@link IMAGE_BAD_PARAMETER} options is nullptr.
@@ -172,10 +168,10 @@ Image_ErrorCode OH_ComposeOptions_GetDesiredPixelFormat(OH_ComposeOptions *optio
 Image_ErrorCode OH_ComposeOptions_Release(OH_ComposeOptions *options);
 
 /**
- * @brief Create a <b>Picture</b> object.
- *
- * @param mainPixelmap The pixel map of the main image.
- * @param picture Picture pointer for created.
+ * @brief Creates the pointer to an OH_PictureNative object.
+ * 
+ * @param mainPixelmap Pointer to the OH_PixelmapNative object of the main picture.
+ * @param picture Double pointer to the OH_PictureNative object created.
  * @return Image functions result code.
  *         {@link IMAGE_SUCCESS} if the execution is successful.
  *         {@link IMAGE_BAD_PARAMETER} mainPixelmap is nullptr, or picture is nullptr.
@@ -184,10 +180,10 @@ Image_ErrorCode OH_ComposeOptions_Release(OH_ComposeOptions *options);
 Image_ErrorCode OH_PictureNative_CreatePicture(OH_PixelmapNative *mainPixelmap, OH_PictureNative **picture);
 
 /**
- * @brief Obtains the pixel map of the main image.
- *
- * @param picture The Picture pointer will be operated.
- * @param mainPixelmap Main pixel map pointer for obtained.
+ * @brief Obtains the pointer to the OH_PixelmapNative object of a main picture.
+ * 
+ * @param picture Pointer to an OH_PictureNative object.
+ * @param mainPixelmap Double pointer to the OH_PixelmapNative object obtained.
  * @return Image functions result code.
  *         {@link IMAGE_SUCCESS} if the execution is successful.
  *         {@link IMAGE_BAD_PARAMETER} picture is nullptr, or mainPixelmap is nullptr.
@@ -196,10 +192,10 @@ Image_ErrorCode OH_PictureNative_CreatePicture(OH_PixelmapNative *mainPixelmap, 
 Image_ErrorCode OH_PictureNative_GetMainPixelmap(OH_PictureNative *picture, OH_PixelmapNative **mainPixelmap);
 
 /**
- * @brief Obtains the hdr pixel map.
- *
- * @param picture The Picture pointer will be operated.
- * @param hdrPixelmap Hdr pixel map pointer for obtained.
+ * @brief Obtains the pointer to the OH_PixelmapNative object of an HDR picture.
+ * 
+ * @param picture Pointer to an OH_PictureNative object.
+ * @param hdrPixelmap Double pointer to the OH_PixelmapNative object of the HDR picture.
  * @return Image functions result code.
  *         {@link IMAGE_SUCCESS} if the execution is successful.
  *         {@link IMAGE_BAD_PARAMETER} picture is nullptr, or hdrPixelmap is nullptr.
@@ -209,25 +205,24 @@ Image_ErrorCode OH_PictureNative_GetMainPixelmap(OH_PictureNative *picture, OH_P
 Image_ErrorCode OH_PictureNative_GetHdrComposedPixelmap(OH_PictureNative *picture, OH_PixelmapNative **hdrPixelmap);
 
 /**
- * @brief Obtains the hdr pixel map with options.
- *
- * @param picture The Picture pointer will be operated.
- * @param options The compose options.
- * @param hdrPixelmap Hdr pixel map pointer for obtained.
+ * @brief Obtains the pointer to **OH_PixelmapNative** of an HDR picture based on **OH_ComposeOptions**.
+ * 
+ * @param picture Pointer to an OH_PictureNative object.
+ * @param options Pointer to **OH_ComposeOptions**.
+ * @param hdrPixelmap Pointer to **OH_PixelmapNative** of the obtained HDR picture.
  * @return Image functions result code.
  *         {@link IMAGE_SUCCESS} if the execution is successful.
  *         {@link IMAGE_BAD_PARAMETER} picture is nullptr, or hdrPixelmap is nullptr.
  *         {@link IMAGE_UNSUPPORTED_OPERATION} Unsupported operation, e.g. the picture does not has a gainmap.
  * @since 23
  */
-Image_ErrorCode OH_PictureNative_GetHdrComposedPixelmapWithOptions(OH_PictureNative *picture,
-    OH_ComposeOptions *options, OH_PixelmapNative **hdrPixelmap);
+Image_ErrorCode OH_PictureNative_GetHdrComposedPixelmapWithOptions(OH_PictureNative *picture, OH_ComposeOptions *options, OH_PixelmapNative **hdrPixelmap);
 
 /**
- * @brief Obtains the gainmap pixel map.
- *
- * @param picture The Picture pointer will be operated.
- * @param gainmapPixelmap Gainmap pointer for obtained.
+ * @brief Obtains the pointer to the OH_PixelmapNative object of a gain map.
+ * 
+ * @param picture Pointer to an OH_PictureNative object.
+ * @param gainmapPixelmap Double pointer to the OH_PixelmapNative object of the gain map.
  * @return Image functions result code.
  *         {@link IMAGE_SUCCESS} if the execution is successful.
  *         {@link IMAGE_BAD_PARAMETER} picture is nullptr, or gainmapPixelmap is nullptr.
@@ -236,11 +231,11 @@ Image_ErrorCode OH_PictureNative_GetHdrComposedPixelmapWithOptions(OH_PictureNat
 Image_ErrorCode OH_PictureNative_GetGainmapPixelmap(OH_PictureNative *picture, OH_PixelmapNative **gainmapPixelmap);
 
 /**
- * @brief Set auxiliary picture.
- *
- * @param picture The Picture pointer will be operated.
- * @param type The type of auxiliary picture.
- * @param auxiliaryPicture AuxiliaryPicture object.
+ * @brief Sets an auxiliary picture.
+ * 
+ * @param picture Pointer to an OH_PictureNative object.
+ * @param type Type of the auxiliary picture.
+ * @param auxiliaryPicture Pointer to an OH_AuxiliaryPictureNative object.
  * @return Image functions result code.
  *         {@link IMAGE_SUCCESS} if the execution is successful.
  *         {@link IMAGE_BAD_PARAMETER} picture is nullptr, or auxiliaryPicture is nullptr, or the type is invalid.
@@ -250,11 +245,11 @@ Image_ErrorCode OH_PictureNative_SetAuxiliaryPicture(OH_PictureNative *picture, 
     OH_AuxiliaryPictureNative *auxiliaryPicture);
 
 /**
- * @brief Obtains the auxiliary picture based on type.
- *
- * @param picture The Picture pointer will be operated.
- * @param type The type of auxiliary picture.
- * @param auxiliaryPicture AuxiliaryPicture pointer for obtained.
+ * @brief Obtains an auxiliary picture by type.
+ * 
+ * @param picture Pointer to an OH_PictureNative object.
+ * @param type Type of the auxiliary picture.
+ * @param auxiliaryPicture Double pointer to the OH_AuxiliaryPictureNative object obtained.
  * @return Image functions result code.
  *         {@link IMAGE_SUCCESS} if the execution is successful.
  *         {@link IMAGE_BAD_PARAMETER} picture is nullptr, or auxiliaryPicture is nullptr, or the type is invalid.
@@ -264,11 +259,11 @@ Image_ErrorCode OH_PictureNative_GetAuxiliaryPicture(OH_PictureNative *picture, 
     OH_AuxiliaryPictureNative **auxiliaryPicture);
 
 /**
- * @brief Obtains the metadata of main picture.
- *
- * @param picture The Picture pointer will be operated.
- * @param metadataType The type of metadata.
- * @param metadata The metadata of main picture.
+ * @brief Obtains the metadata of a main picture.
+ * 
+ * @param picture Pointer to an OH_PictureNative object.
+ * @param metadataType Metadata type.
+ * @param metadata Double pointer to the metadata.
  * @return Image functions result code.
  *         {@link IMAGE_SUCCESS} if the execution is successful.
  *         {@link IMAGE_BAD_PARAMETER} picture is nullptr, or metadata is nullptr.
@@ -279,11 +274,11 @@ Image_ErrorCode OH_PictureNative_GetMetadata(OH_PictureNative *picture, Image_Me
     OH_PictureMetadata **metadata);
 
 /**
- * @brief Set main picture metadata.
- *
- * @param picture The Picture pointer will be operated.
- * @param metadataType The type of metadata.
- * @param metadata The metadata will be set.
+ * @brief Sets the metadata for a main picture.
+ * 
+ * @param picture Pointer to an OH_PictureNative object.
+ * @param metadataType Metadata type.
+ * @param metadata Pointer to the metadata.
  * @return Image functions result code.
  *         {@link IMAGE_SUCCESS} if the execution is successful.
  *         {@link IMAGE_BAD_PARAMETER} picture is nullptr, or metadata is nullptr.
@@ -294,9 +289,9 @@ Image_ErrorCode OH_PictureNative_SetMetadata(OH_PictureNative *picture, Image_Me
     OH_PictureMetadata *metadata);
 
 /**
- * @brief Releases this Picture object.
- *
- * @param picture The Picture pointer will be operated.
+ * @brief Releases the pointer to an OH_PictureNative object.
+ * 
+ * @param picture Pointer to an OH_PictureNative object.
  * @return Image functions result code.
  *         {@link IMAGE_SUCCESS} if the execution is successful.
  *         {@link IMAGE_BAD_PARAMETER} picture is nullptr.
@@ -305,13 +300,14 @@ Image_ErrorCode OH_PictureNative_SetMetadata(OH_PictureNative *picture, Image_Me
 Image_ErrorCode OH_PictureNative_Release(OH_PictureNative *picture);
 
 /**
- * @brief Create a <b>AuxiliaryPicture</b> object.
- *
- * @param data The image data buffer.
- * @param dataLength The length of data.
- * @param size The size of auxiliary picture.
- * @param type The type of auxiliary picture.
- * @param auxiliaryPicture AuxiliaryPicture pointer for created.
+ * @brief Creates the pointer to an OH_AuxiliaryPictureNative object. This API supports only continuous pixel data
+ * whose {@link pixel format} is BGRA_8888 and creates an auxiliary picture in RGBA_8888 format.
+ * 
+ * @param data Pointer to the image data.
+ * @param dataLength Length of the image data.
+ * @param size Pointer to the size of the auxiliary picture.
+ * @param type Type of the auxiliary picture.
+ * @param auxiliaryPicture Double pointer to the OH_AuxiliaryPictureNative object created.
  * @return Image functions result code.
  *         {@link IMAGE_SUCCESS} if the execution is successful.
  *         {@link IMAGE_BAD_PARAMETER} data is nullptr, or dataLength is invalid, or size is nullptr, or the type
@@ -322,11 +318,11 @@ Image_ErrorCode OH_AuxiliaryPictureNative_Create(uint8_t *data, size_t dataLengt
     Image_AuxiliaryPictureType type, OH_AuxiliaryPictureNative **auxiliaryPicture);
 
 /**
- * @brief Write pixels to auxiliary picture.
- *
- * @param auxiliaryPicture The AuxiliaryPicture pointer will be operated.
- * @param source The pixels will be written.
- * @param bufferSize The size of pixels.
+ * @brief Reads pixels in the buffer and writes the result to an auxiliary picture.
+ * 
+ * @param auxiliaryPicture Pointer to an OH_AuxiliaryPictureNative object.
+ * @param source Pixels to be written.
+ * @param bufferSize Buffer size.
  * @return Image functions result code.
  *         {@link IMAGE_SUCCESS} if the execution is successful.
  *         {@link IMAGE_BAD_PARAMETER} auxiliaryPicture is nullptr, or source is nullptr, or the bufferSize is invalid.
@@ -338,11 +334,11 @@ Image_ErrorCode OH_AuxiliaryPictureNative_WritePixels(OH_AuxiliaryPictureNative 
     size_t bufferSize);
 
 /**
- * @brief Read pixels from auxiliary picture.
- *
- * @param auxiliaryPicture The AuxiliaryPicture pointer will be operated.
- * @param destination The pixels will be read.
- * @param bufferSize The size of pixels for reading.
+ * @brief Reads pixels of an auxiliary picture and writes the result to the buffer.
+ * 
+ * @param auxiliaryPicture Pointer to an OH_AuxiliaryPictureNative object.
+ * @param destination Pointer to the buffer to which the pixels of the auxiliary data will be written.
+ * @param bufferSize Pointer to the buffer size.
  * @return Image functions result code.
  *         {@link IMAGE_SUCCESS} if the execution is successful.
  *         {@link IMAGE_BAD_PARAMETER} auxiliaryPicture is nullptr, or destination is nullptr,
@@ -355,10 +351,10 @@ Image_ErrorCode OH_AuxiliaryPictureNative_ReadPixels(OH_AuxiliaryPictureNative *
     size_t *bufferSize);
 
 /**
- * @brief Obtains the type of auxiliary picture.
- *
- * @param auxiliaryPicture The AuxiliaryPicture pointer will be operated.
- * @param type The type of auxiliary picture.
+ * @brief Obtains the type of an auxiliary picture.
+ * 
+ * @param auxiliaryPicture Pointer to an OH_AuxiliaryPictureNative object.
+ * @param type Pointer to the auxiliary picture type.
  * @return Image functions result code.
  *         {@link IMAGE_SUCCESS} if the execution is successful.
  *         {@link IMAGE_BAD_PARAMETER} auxiliaryPicture is nullptr, or type is nullptr.
@@ -368,10 +364,10 @@ Image_ErrorCode OH_AuxiliaryPictureNative_GetType(OH_AuxiliaryPictureNative *aux
     Image_AuxiliaryPictureType *type);
 
 /**
- * @brief Obtains the info of auxiliary picture.
- *
- * @param auxiliaryPicture The AuxiliaryPicture pointer will be operated.
- * @param info The info of auxiliary picture.
+ * @brief Obtains the information of an auxiliary picture.
+ * 
+ * @param auxiliaryPicture Pointer to an OH_AuxiliaryPictureNative object.
+ * @param info Double pointer to the auxiliary picture information.
  * @return Image functions result code.
  *         {@link IMAGE_SUCCESS} if the execution is successful.
  *         {@link IMAGE_BAD_PARAMETER} auxiliaryPicture is nullptr, or info is nullptr.
@@ -381,10 +377,10 @@ Image_ErrorCode OH_AuxiliaryPictureNative_GetInfo(OH_AuxiliaryPictureNative *aux
     OH_AuxiliaryPictureInfo **info);
 
 /**
- * @brief Set auxiliary picture info.
- *
- * @param auxiliaryPicture The AuxiliaryPicture pointer will be operated.
- * @param info The info will be set.
+ * @brief Sets the information for an auxiliary picture.
+ * 
+ * @param auxiliaryPicture Pointer to an OH_AuxiliaryPictureNative object.
+ * @param info Pointer to the auxiliary picture information.
  * @return Image functions result code.
  *         {@link IMAGE_SUCCESS} if the execution is successful.
  *         {@link IMAGE_BAD_PARAMETER} auxiliaryPicture is nullptr, or info is nullptr.
@@ -394,11 +390,11 @@ Image_ErrorCode OH_AuxiliaryPictureNative_SetInfo(OH_AuxiliaryPictureNative *aux
     OH_AuxiliaryPictureInfo *info);
 
 /**
- * @brief Obtains the metadata of auxiliary picture.
- *
- * @param auxiliaryPicture The AuxiliaryPicture pointer will be operated.
- * @param metadataType The type of metadata.
- * @param metadata The metadata of auxiliary picture.
+ * @brief Obtains the metadata of an auxiliary picture.
+ * 
+ * @param auxiliaryPicture Pointer to an OH_AuxiliaryPictureNative object.
+ * @param metadataType Metadata type.
+ * @param metadata Double pointer to the metadata.
  * @return Image functions result code.
  *         {@link IMAGE_SUCCESS} if the execution is successful.
  *         {@link IMAGE_BAD_PARAMETER} auxiliaryPicture is nullptr, or metadata is nullptr.
@@ -410,11 +406,11 @@ Image_ErrorCode OH_AuxiliaryPictureNative_GetMetadata(OH_AuxiliaryPictureNative 
     Image_MetadataType metadataType, OH_PictureMetadata **metadata);
 
 /**
- * @brief Set auxiliary picture metadata.
- *
- * @param auxiliaryPicture The AuxiliaryPicture pointer will be operated.
- * @param metadataType The type of metadata.
- * @param metadata The metadata will be set.
+ * @brief Sets the metadata for an auxiliary picture.
+ * 
+ * @param auxiliaryPicture Pointer to an OH_AuxiliaryPictureNative object.
+ * @param metadataType Metadata type.
+ * @param metadata Pointer to the metadata.
  * @return Image functions result code.
  *         {@link IMAGE_SUCCESS} if the execution is successful.
  *         {@link IMAGE_BAD_PARAMETER} auxiliaryPicture is nullptr, or metadata is nullptr.
@@ -426,9 +422,9 @@ Image_ErrorCode OH_AuxiliaryPictureNative_SetMetadata(OH_AuxiliaryPictureNative 
     Image_MetadataType metadataType, OH_PictureMetadata *metadata);
 
 /**
- * @brief Releases this AuxiliaryPicture object.
- *
- * @param picture The Picture pointer will be operated.
+ * @brief Releases the pointer to an OH_AuxiliaryPictureNative object.
+ * 
+ * @param picture Pointer to an OH_AuxiliaryPictureNative object.
  * @return Image functions result code.
  *         {@link IMAGE_SUCCESS} if the execution is successful.
  *         {@link IMAGE_BAD_PARAMETER} picture is nullptr.
@@ -437,9 +433,9 @@ Image_ErrorCode OH_AuxiliaryPictureNative_SetMetadata(OH_AuxiliaryPictureNative 
 Image_ErrorCode OH_AuxiliaryPictureNative_Release(OH_AuxiliaryPictureNative *picture);
 
 /**
- * @brief Create a <b>AuxiliaryPictureInfo</b> object.
- *
- * @param info The AuxiliaryPictureInfo pointer will be operated.
+ * @brief Creates an OH_AuxiliaryPictureInfo object.
+ * 
+ * @param info Double pointer to the OH_AuxiliaryPictureInfo object created.
  * @return Image functions result code.
  *         {@link IMAGE_SUCCESS} if the execution is successful.
  *         {@link IMAGE_BAD_PARAMETER} info is nullptr.
@@ -448,10 +444,10 @@ Image_ErrorCode OH_AuxiliaryPictureNative_Release(OH_AuxiliaryPictureNative *pic
 Image_ErrorCode OH_AuxiliaryPictureInfo_Create(OH_AuxiliaryPictureInfo **info);
 
 /**
- * @brief Obtains the type of auxiliary picture info.
- *
- * @param info The AuxiliaryPictureInfo pointer will be operated.
- * @param type The type of auxiliary picture info.
+ * @brief Obtains the auxiliary picture type in **OH_AuxiliaryPictureInfo**.
+ * 
+ * @param info Pointer to the OH_AuxiliaryPictureInfo object.
+ * @param type Pointer to the type of the auxiliary picture.
  * @return Image functions result code.
  *         {@link IMAGE_SUCCESS} if the execution is successful.
  *         {@link IMAGE_BAD_PARAMETER} info is nullptr, or type is nullptr.
@@ -460,10 +456,10 @@ Image_ErrorCode OH_AuxiliaryPictureInfo_Create(OH_AuxiliaryPictureInfo **info);
 Image_ErrorCode OH_AuxiliaryPictureInfo_GetType(OH_AuxiliaryPictureInfo *info, Image_AuxiliaryPictureType *type);
 
 /**
- * @brief Set auxiliary picture info type.
- *
- * @param info The AuxiliaryPictureInfo pointer will be operated.
- * @param type The type will be set.
+ * @brief Sets the auxiliary picture type in **OH_AuxiliaryPictureInfo**.
+ * 
+ * @param info Pointer to the OH_AuxiliaryPictureInfo object.
+ * @param type Type of the auxiliary picture.
  * @return Image functions result code.
  *         {@link IMAGE_SUCCESS} if the execution is successful.
  *         {@link IMAGE_BAD_PARAMETER} info is nullptr, or type is invalid.
@@ -472,10 +468,10 @@ Image_ErrorCode OH_AuxiliaryPictureInfo_GetType(OH_AuxiliaryPictureInfo *info, I
 Image_ErrorCode OH_AuxiliaryPictureInfo_SetType(OH_AuxiliaryPictureInfo *info, Image_AuxiliaryPictureType type);
 
 /**
- * @brief Obtains the size of auxiliary picture info.
- *
- * @param info The AuxiliaryPictureInfo pointer will be operated.
- * @param size The size of auxiliary picture info.
+ * @brief Obtains the image size in **OH_AuxiliaryPictureInfo**.
+ * 
+ * @param info Pointer to the OH_AuxiliaryPictureInfo object.
+ * @param size Pointer to the size.
  * @return Image functions result code.
  *         {@link IMAGE_SUCCESS} if the execution is successful.
  *         {@link IMAGE_BAD_PARAMETER} info is nullptr, or size is nullptr.
@@ -484,10 +480,10 @@ Image_ErrorCode OH_AuxiliaryPictureInfo_SetType(OH_AuxiliaryPictureInfo *info, I
 Image_ErrorCode OH_AuxiliaryPictureInfo_GetSize(OH_AuxiliaryPictureInfo *info, Image_Size *size);
 
 /**
- * @brief Set auxiliary picture info size.
- *
- * @param info The AuxiliaryPictureInfo pointer will be operated.
- * @param size The size will be set.
+ * @brief Sets the image size in **OH_AuxiliaryPictureInfo**.
+ * 
+ * @param info Pointer to the OH_AuxiliaryPictureInfo object.
+ * @param size Pointer to the size.
  * @return Image functions result code.
  *         {@link IMAGE_SUCCESS} if the execution is successful.
  *         {@link IMAGE_BAD_PARAMETER} info is nullptr, or size is nullptr.
@@ -496,10 +492,11 @@ Image_ErrorCode OH_AuxiliaryPictureInfo_GetSize(OH_AuxiliaryPictureInfo *info, I
 Image_ErrorCode OH_AuxiliaryPictureInfo_SetSize(OH_AuxiliaryPictureInfo *info, Image_Size *size);
 
 /**
- * @brief Obtains the rowStride of auxiliary picture info.
- *
- * @param info The AuxiliaryPictureInfo pointer will be operated.
- * @param rowStride The rowStride of auxiliary picture info.
+ * @brief Obtains the row stride in **OH_AuxiliaryPictureInfo**.
+ * 
+ * @param info Pointer to the OH_AuxiliaryPictureInfo object.
+ * @param rowStride Pointer to the row stride, which is the number of bytes from one row of pixels in memory to the
+ * next row of pixels in memory.
  * @return Image functions result code.
  *         {@link IMAGE_SUCCESS} if the execution is successful.
  *         {@link IMAGE_BAD_PARAMETER} info is nullptr, or rowStride is nullptr.
@@ -508,10 +505,11 @@ Image_ErrorCode OH_AuxiliaryPictureInfo_SetSize(OH_AuxiliaryPictureInfo *info, I
 Image_ErrorCode OH_AuxiliaryPictureInfo_GetRowStride(OH_AuxiliaryPictureInfo *info, uint32_t *rowStride);
 
 /**
- * @brief Set auxiliary picture info rowStride.
- *
- * @param info The AuxiliaryPictureInfo pointer will be operated.
- * @param rowStride The rowStride will be set.
+ * @brief Sets the row stride in **OH_AuxiliaryPictureInfo**.
+ * 
+ * @param info Pointer to the OH_AuxiliaryPictureInfo object.
+ * @param rowStride Row stride, which is the number of bytes from one row of pixels in memory to the next row of pixels
+ * in memory.
  * @return Image functions result code.
  *         {@link IMAGE_SUCCESS} if the execution is successful.
  *         {@link IMAGE_BAD_PARAMETER} info is nullptr, or rowStride is nullptr.
@@ -520,10 +518,10 @@ Image_ErrorCode OH_AuxiliaryPictureInfo_GetRowStride(OH_AuxiliaryPictureInfo *in
 Image_ErrorCode OH_AuxiliaryPictureInfo_SetRowStride(OH_AuxiliaryPictureInfo *info, uint32_t rowStride);
 
 /**
- * @brief Obtains the pixelFormat of auxiliary picture info.
- *
- * @param info The AuxiliaryPictureInfo pointer will be operated.
- * @param pixelFormat The pixelFormat will be get.
+ * @brief Obtains the pixel format in **OH_AuxiliaryPictureInfo**.
+ * 
+ * @param info Pointer to the OH_AuxiliaryPictureInfo object.
+ * @param pixelFormat Pointer to the pixel format obtained.
  * @return Image functions result code.
  *         {@link IMAGE_SUCCESS} if the execution is successful.
  *         {@link IMAGE_BAD_PARAMETER} info is nullptr, or pixelFormat is nullptr.
@@ -532,10 +530,10 @@ Image_ErrorCode OH_AuxiliaryPictureInfo_SetRowStride(OH_AuxiliaryPictureInfo *in
 Image_ErrorCode OH_AuxiliaryPictureInfo_GetPixelFormat(OH_AuxiliaryPictureInfo *info, PIXEL_FORMAT *pixelFormat);
 
 /**
- * @brief Set auxiliary picture info pixelFormat.
- *
- * @param info The AuxiliaryPictureInfo pointer will be operated.
- * @param pixelFormat The pixelFormat will be set.
+ * @brief Sets the pixel format in **OH_AuxiliaryPictureInfo**.
+ * 
+ * @param info Pointer to the OH_AuxiliaryPictureInfo object.
+ * @param pixelFormat Pixel format.
  * @return Image functions result code.
  *         {@link IMAGE_SUCCESS} if the execution is successful.
  *         {@link IMAGE_BAD_PARAMETER} info is nullptr.
@@ -544,9 +542,9 @@ Image_ErrorCode OH_AuxiliaryPictureInfo_GetPixelFormat(OH_AuxiliaryPictureInfo *
 Image_ErrorCode OH_AuxiliaryPictureInfo_SetPixelFormat(OH_AuxiliaryPictureInfo *info, PIXEL_FORMAT pixelFormat);
 
 /**
- * @brief Releases this AuxiliaryPictureInfo object.
- *
- * @param info The AuxiliaryPictureInfo pointer will be operated.
+ * @brief Releases the pointer to an OH_AuxiliaryPictureInfo object.
+ * 
+ * @param info Pointer to the OH_AuxiliaryPictureInfo object.
  * @return Image functions result code.
  *         {@link IMAGE_SUCCESS} if the execution is successful.
  *         {@link IMAGE_BAD_PARAMETER} info is nullptr.
