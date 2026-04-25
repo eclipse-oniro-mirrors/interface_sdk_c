@@ -42,7 +42,7 @@
 
 #include <stdint.h>
 
-#include "ddk_types.h"
+#include "ddk/ddk_types.h"
 #include "usb_ddk_types.h"
 
 #ifdef __cplusplus
