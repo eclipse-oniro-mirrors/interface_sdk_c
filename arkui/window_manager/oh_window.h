@@ -592,7 +592,7 @@ int32_t OH_WindowManager_UnregisterDensityInfoChangeCallback(int32_t windowId,
  *             1. Invalid parameter range.
  * @since 24
  */
-int32_t OH_WindowManager_DensityInfo_Release(OH_WindowManager_DensityInfo* info);
+int32_t OH_WindowManager_DensityInfo_Release(const OH_WindowManager_DensityInfo* info);
 
 #ifdef __cplusplus
 }
