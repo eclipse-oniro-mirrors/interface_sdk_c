@@ -404,11 +404,11 @@
     "name": "OH_AVPlayer_GetPlaybackRate"
   },
   {
-    "first_introduced": "26", 
+    "first_introduced": "26.0.0", 
     "name": "OH_AVPlayer_SetVideoSideOutput"
   },
   {
-    "first_introduced": "26", 
+    "first_introduced": "26.0.0", 
     "name": "OH_AVPlayerVideoOutput_GetNewestVideoSample"
   }
 ]
