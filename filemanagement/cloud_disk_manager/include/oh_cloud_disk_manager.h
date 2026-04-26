@@ -25,7 +25,7 @@
  * @file oh_cloud_disk_manager.h
  *
  * @brief This file defines the APIs for the cloud disk management module.
- *
+ * 
  * @library libohclouddiskmanager.so
  * @kit CoreFileKit
  * @syscap SystemCapability.FileManagement.CloudDiskManager
@@ -47,43 +47,43 @@ extern "C" {
 
 /**
  * @brief Enumerates the file sync states.
- *
+ * 
  * @since 21
  *
  */
 typedef enum CloudDisk_SyncState {
     /**
-     * @brief The cloud disk is idle and not performing any synchronization.
+     * @brief The file is idle, and no sync operation is performed.
      *
      * @since 21
      */
     IDLE = 0,
     /**
-     * @brief The cloud disk is currently synchronizing.
+     * @brief The file is being synced.
      *
      * @since 21
      */
     SYNCING = 1,
     /**
-     * @brief The cloud disk synchronization completed successfully.
+     * @brief The file is synced successfully.
      *
      * @since 21
      */
     SYNC_SUCCEEDED = 2,
     /**
-     * @brief The cloud disk synchronization failed.
+     * @brief The file fails to be synced.
      *
      * @since 21
      */
     SYNC_FAILED = 3,
     /**
-     * @brief The cloud disk synchronization was canceled.
+     * @brief The file sync is canceled.
      *
      * @since 21
      */
     SYNC_CANCELED = 4,
     /**
-     * @brief The cloud disk synchronization encountered a conflict.
+     * @brief The file sync conflicts.
      *
      * @since 21
      */
@@ -92,42 +92,42 @@ typedef enum CloudDisk_SyncState {
 
 /**
  * @brief Enumerates the file change types.
- *
+ * 
  * @since 21
  */
 typedef enum CloudDisk_OperationType {
     /**
-     * @brief Create a file or folder.
+     * @brief Create a file or directory.
      *
      * @since 21
      */
     CREATE = 0,
     /**
-     * @brief Delete a file or folder.
+     * @brief Delete a file or directory.
      *
      * @since 21
      */
     DELETE = 1,
     /**
-     * @brief Move a file or folder from a source location.
+     * @brief Move this file or directory.
      *
      * @since 21
      */
     MOVE_FROM = 2,
     /**
-     * @brief Move a file or folder to a target location.
+     * @brief Move to this file or directory.
      *
      * @since 21
      */
     MOVE_TO = 3,
     /**
-     * @brief Close a file after writing to operations.
+     * @brief Close the file after the write operation.
      *
      * @since 21
      */
     CLOSE_WRITE = 4,
     /**
-     * @brief The sync folder path is invalid.
+     * @brief Invalid sync root path.
      *
      * @since 21
      */
@@ -136,7 +136,7 @@ typedef enum CloudDisk_OperationType {
 
 /**
  * @brief Enumerates the file sync failure causes.
- *
+ * 
  * @since 21
  */
 typedef enum CloudDisk_ErrorReason {
@@ -147,25 +147,25 @@ typedef enum CloudDisk_ErrorReason {
      */
     INVALID_ARGUMENT = 0,
     /**
-     * @brief The specified file does not exist.
+     * @brief The file or directory does not exist.
      *
      * @since 21
      */
     NO_SUCH_FILE = 1,
     /**
-     * @brief There is no space left on the device.
+     * @brief The remaining space on the device is insufficient.
      *
      * @since 21
      */
     NO_SPACE_LEFT = 2,
     /**
-     * @brief The operation is out of the valid range.
+     * @brief The file is not in the sync root path.
      *
      * @since 21
      */
     OUT_OF_RANGE = 3,
     /**
-     * @brief The sync state is not set for the cloud disk.
+     * @brief The sync state is not set.
      *
      * @since 21
      */
@@ -174,18 +174,18 @@ typedef enum CloudDisk_ErrorReason {
 
 /**
  * @brief A struct that encapsulates the file path information.
- *
+ * 
  * @since 21
  */
 typedef struct CloudDisk_PathInfo {
     /**
-     * @brief The file path as a null-terminated string.
+     * @brief Pointer to the file path, which ends with '\0'.
      *
      * @since 21
      */
     char *value;
     /**
-     * @brief Length of the file path, excluding the '0' character at the end.
+     * @brief Length of the file path, excluding the '\0' character at the end.
      *
      * @since 21
      */
@@ -193,20 +193,20 @@ typedef struct CloudDisk_PathInfo {
 } CloudDisk_PathInfo;
 
 /**
- * @brief Defines the file ID information.
+ * @brief a struct that encapsulates the file ID.
  * @since 21
  */
 typedef CloudDisk_PathInfo CloudDisk_FileIdInfo;
 
 /**
- * @brief Defines the sync folder path information.
+ * @brief a struct that encapsulates the sync root path.
  * @since 21
  */
 typedef CloudDisk_PathInfo CloudDisk_SyncFolderPath;
 
 /**
  * @brief A struct that encapsulates the file sync state.
- *
+ * 
  * @since 21
  */
 typedef struct CloudDisk_FileSyncState {
@@ -228,14 +228,14 @@ typedef struct CloudDisk_FileSyncState {
  * @brief A struct that encapsulates the event data generated when a single file under the sync root path is changed.
  * It includes the file's unique ID, the parent directory's unique ID, relative path, change type, file size, and
  * timestamp.
- *
+ * 
  * @since 21
  */
 typedef struct CloudDisk_ChangeData {
     /**
-     * @brief The update sequence number for the change event.
-     * Increases by 1 each time the file is changed, and is monotonically increasing.
-     * Used for incremental change queries.
+     * @brief Update sequence number of the change event.
+     * It is incremented by 1 monotonically each time a file is changed,
+     * and is used for incremental change query. Value range: [0, 2^64 – 1]
      *
      * @since 21
      */
@@ -265,19 +265,19 @@ typedef struct CloudDisk_ChangeData {
      */
     CloudDisk_OperationType operationType;
     /**
-     * @brief The size of the file in bytes.
+     * @brief File size, in bytes.
      *
      * @since 21
      */
     uint64_t size{0};
     /**
-     * @brief The last modified time of the file, in milliseconds.
+     * @brief File modification time, in milliseconds.
      *
      * @since 21
      */
     uint64_t mtime{0};
     /**
-     * @brief The timestamp of the change event, in milliseconds.
+     * @brief Time when a change event occurs, in milliseconds.
      *
      * @since 21
      */
@@ -287,31 +287,31 @@ typedef struct CloudDisk_ChangeData {
 /**
  * @brief A struct that encapsulates the file change result under the sync root path. It includes the next change
  * sequence number, end flag, and an array of change data items.
- *
+ * 
  * @since 21
  */
 typedef struct CloudDisk_ChangesResult {
     /**
-     * @brief The next update sequence number for incremental queries.
+     * @brief Valid start change sequence number that can be queried next time.
      *
      * @since 21
      */
     uint64_t nextUsn{0};
     /**
-     * @brief Indicates whether the end of the change log is reached.
-     * If true, all file changes have been returned.
+     * @brief Whether the change is the last entry in the sync root path's change history. 
+     * The value true means it is the last one; the value false means it is not.
      *
      * @since 21
      */
     bool isEof{false};
     /**
-     * @brief The number of change data items in the array.
+     * @brief Number of elements in the change history array.
      *
      * @since 21
      */
     size_t bufferLength{0};
     /**
-     * @brief The array of file change data items.
+     * @brief Change history array.
      *
      * @since 21
      */
@@ -321,7 +321,7 @@ typedef struct CloudDisk_ChangesResult {
 /**
  * @brief A struct that encapsulates the list of files that failed to synchronize. It includes the file path
  * information and the specific failure cause.
- *
+ * 
  * @since 21
  */
 typedef struct CloudDisk_FailedList {
@@ -342,7 +342,7 @@ typedef struct CloudDisk_FailedList {
 /**
  * @brief A struct that encapsulates the file sync result. It includes the absolute path of the file, sync result, and
  * sync state or failure cause.
- *
+ * 
  * @since 21
  */
 typedef struct CloudDisk_ResultList {
@@ -353,8 +353,8 @@ typedef struct CloudDisk_ResultList {
      */
     CloudDisk_PathInfo pathInfo;
     /**
-     * @brief Indicates whether the synchronization operation was successful.
-     * If true, syncState is valid; if false, errorReason is valid.
+     * @brief Whether the operation is successful. The value true indicates the operation is successful;
+     * the value false (default) indicates the opposite.
      *
      * @since 21
      */
@@ -366,8 +366,7 @@ typedef struct CloudDisk_ResultList {
      */
     CloudDisk_SyncState syncState;
     /**
-     * @brief Reason why the file sync state fails to be obtained.
-     * It takes effect only when **isSuccess** is set to **false**.
+     * @brief Reason why the file sync state fails to be obtained. It takes effect only when **isSuccess** is set to **false**.
      *
      * @since 21
      */
@@ -376,18 +375,18 @@ typedef struct CloudDisk_ResultList {
 
 /**
  * @brief Enumerates the sync root path states.
- *
+ * 
  * @since 21
  */
 typedef enum CloudDisk_SyncFolderState {
     /**
-     * @brief Indicates that the state of sync folder is inactive.
+     * @brief The sync root path is inactive.
      *
      * @since 21
      */
     INACTIVE = 0,
     /**
-     * @brief Indicates that the state of sync folder is active.
+     * @brief The sync root path is active.
      *
      * @since 21
      */
@@ -396,7 +395,7 @@ typedef enum CloudDisk_SyncFolderState {
 
 /**
  * @brief A struct that encapsulates the display name of the sync root path.
- *
+ * 
  * @since 21
  */
 typedef struct CloudDisk_DisplayNameInfo {
@@ -407,8 +406,9 @@ typedef struct CloudDisk_DisplayNameInfo {
      */
     uint32_t displayNameResId;
     /**
-     * @brief Indicates the user-defined alias.
-     *
+     * @brief Pointer to the custom alias, which cannot contain the following characters: \/*?<>|:".
+     * Additionally, the full name cannot be composed solely of spaces, a single dot (.), or two consecutive dots (..).
+	 *
      * @since 21
      */
     char *customAlias;
@@ -422,7 +422,7 @@ typedef struct CloudDisk_DisplayNameInfo {
 
 /**
  * @brief A struct that encapsulates the sync root property information.
- *
+ * 
  * @since 21
  */
 typedef struct CloudDisk_SyncFolder {
@@ -448,7 +448,7 @@ typedef struct CloudDisk_SyncFolder {
 
 /**
  * @brief Registers a callback to obtain file changes in the sync root path.
- *
+ * 
  * @param syncFolderPath Sync root path. For details, see {@link CloudDisk_PathInfo}.
  * @param callback Registered callback.
  * @return Returns {@link CLOUD_DISK_OK} if the API is called successfully; returns {@link CloudDisk_ErrorCode}
@@ -462,7 +462,7 @@ CloudDisk_ErrorCode OH_CloudDisk_RegisterSyncFolderChanges(const CloudDisk_SyncF
 
 /**
  * @brief Unregisters the callback for file changes in the sync root path.
- *
+ * 
  * @param syncFolderPath Sync root path. For details, see {@link CloudDisk_PathInfo}.
  * @return Returns {@link CLOUD_DISK_OK} if the API is called successfully; returns {@link CloudDisk_ErrorCode}
  *     otherwise.
@@ -472,7 +472,7 @@ CloudDisk_ErrorCode OH_CloudDisk_UnregisterSyncFolderChanges(const CloudDisk_Syn
 
 /**
  * @brief Obtains the change history in the sync root path.
- *
+ * 
  * @param syncFolderPath Sync root path. For details, see {@link CloudDisk_PathInfo}.
  * @param startUsn Start change sequence number. The value range is [0, 2^64 – 1].
  * @param count Number of file changes. The value range is [1, 100].
@@ -488,7 +488,7 @@ CloudDisk_ErrorCode OH_CloudDisk_GetSyncFolderChanges(const CloudDisk_SyncFolder
 
 /**
  * @brief Sets the file sync state in the sync root path.
- *
+ * 
  * @param syncFolderPath Sync root path. For details, see {@link CloudDisk_PathInfo}.
  * @param fileSyncStates The array of {@link CloudDisk_FileSyncState} specifying the file paths and their target sync
  *     states.
@@ -508,7 +508,7 @@ CloudDisk_ErrorCode OH_CloudDisk_SetFileSyncStates(const CloudDisk_SyncFolderPat
 
 /**
  * @brief Obtains the file sync state in the sync root path.
- *
+ * 
  * @param syncFolderPath Sync root path. For details, see {@link CloudDisk_PathInfo}.
  * @param paths The array of file paths to query.
  * @param bufferLength Length of the sync state array. The value range is [1, 100].
@@ -526,7 +526,7 @@ CloudDisk_ErrorCode OH_CloudDisk_GetFileSyncStates(const CloudDisk_SyncFolderPat
 
 /**
  * @brief Registers a sync root.
- *
+ * 
  * @param syncFolder Sync root path to be registered. For details, see {@link CloudDisk_SyncFolder}.
  * @return Returns {@link CLOUD_DISK_OK} if the API is called successfully; returns {@link CloudDisk_ErrorCode}
  *     otherwise.
@@ -536,7 +536,7 @@ CloudDisk_ErrorCode OH_CloudDisk_RegisterSyncFolder(const CloudDisk_SyncFolder *
 
 /**
  * @brief Unregisters the sync root.
- *
+ * 
  * @param syncFolderPath Sync root path. For details, see {@link CloudDisk_PathInfo}.
  * @return Returns {@link CLOUD_DISK_OK} if the API is called successfully; returns {@link CloudDisk_ErrorCode}
  *     otherwise.
@@ -546,7 +546,7 @@ CloudDisk_ErrorCode OH_CloudDisk_UnregisterSyncFolder(const CloudDisk_SyncFolder
 
 /**
  * @brief Activates the sync root.
- *
+ * 
  * @param syncFolderPath Sync root path. For details, see {@link CloudDisk_PathInfo}.
  * @return Returns {@link CLOUD_DISK_OK} if the API is called successfully; returns {@link CloudDisk_ErrorCode}
  *     otherwise.
@@ -556,7 +556,7 @@ CloudDisk_ErrorCode OH_CloudDisk_ActiveSyncFolder(const CloudDisk_SyncFolderPath
 
 /**
  * @brief Deactivates the sync root.
- *
+ * 
  * @param syncFolderPath Sync root path. For details, see {@link CloudDisk_PathInfo}.
  * @return Returns {@link CLOUD_DISK_OK} if the API is called successfully; returns {@link CloudDisk_ErrorCode}
  *     otherwise.
@@ -566,7 +566,7 @@ CloudDisk_ErrorCode OH_CloudDisk_DeactiveSyncFolder(const CloudDisk_SyncFolderPa
 
 /**
  * @brief Obtains all sync roots.
- *
+ * 
  * @param syncFolders Double pointer to the sync root path array {@link CloudDisk_SyncFolder}.
  * @param count Pointer to the number of sync roots registered by the current cloud disk.
  * @return Returns {@link CLOUD_DISK_OK} if the API is called successfully; returns {@link CloudDisk_ErrorCode}
@@ -577,7 +577,7 @@ CloudDisk_ErrorCode OH_CloudDisk_GetSyncFolders(CloudDisk_SyncFolder **syncFolde
 
 /**
  * @brief Updates the sync root alias.
- *
+ * 
  * @param syncFolderPath Sync root path. For details, see {@link CloudDisk_PathInfo}.
  * @param customAlias Indicates the user-defined alias.
  * @param customAliasLength Length of the custom alias. Value range: [0, 255].
