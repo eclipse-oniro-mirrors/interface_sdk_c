@@ -24,7 +24,7 @@
  * @file oh_cloud_disk_error_code.h
  *
  * @brief This file defines the error codes for the cloud disk management module.
- * 
+ *
  * @library libohclouddiskmanager.so
  * @kit CoreFileKit
  * @syscap SystemCapability.FileManagement.CloudDiskManager
@@ -41,7 +41,7 @@ extern "C" {
 
 /**
  * @brief Enumerates the error codes of the cloud disk management module.
- * 
+ *
  * @since 21
  */
 typedef enum CloudDisk_ErrorCode {
