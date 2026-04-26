@@ -21,10 +21,10 @@
  * @version 1.0
  */
 /**
- * @file cloud_disk_error_code.h
+ * @file oh_cloud_disk_error_code.h
  *
  * @brief This file defines the error codes for the cloud disk management module.
- *
+ * 
  * @library libohclouddiskmanager.so
  * @kit CoreFileKit
  * @syscap SystemCapability.FileManagement.CloudDiskManager
@@ -41,114 +41,114 @@ extern "C" {
 
 /**
  * @brief Enumerates the error codes of the cloud disk management module.
- *
+ * 
  * @since 21
  */
 typedef enum CloudDisk_ErrorCode {
     /**
-     * @brief Operation completed successfully.
+     * @brief The API is called successfully.
      *
      * @since 21
      */
     CLOUD_DISK_OK = 0,
     /**
-     * @brief Permission verification failed.
+     * @brief The permission verification fails.
      *
      * @since 21
      */
     CLOUD_DISK_PERMISSION_DENIED = 201,
     /**
-     * @brief Device not supported.
+     * @brief This feature is not supported on the device.
      *
      * @since 21
      */
     CLOUD_DISK_NOT_SUPPORTED = 801,
     /**
-     * @brief Invalid input parameter.
+     * @brief The input parameter is invalid.
      *
      * @since 21
      */
     CLOUD_DISK_INVALID_ARG = 34400001,
     /**
-     * @brief Sync folder path unauthorized.
+     * @brief The sync root path is not authorized.
      *
      * @since 21
      */
     CLOUD_DISK_SYNC_FOLDER_PATH_UNAUTHORIZED = 34400002,
     /**
-     * @brief Inter-process communication (IPC) failure.
+     * @brief IPC connection fails.
      *
      * @since 21
      */
     CLOUD_DISK_IPC_FAILED = 34400003,
     /**
-     * @brief Sync folder exceeds the allowed limit.
+     * @brief The number of sync root paths exceeds the upper limit.
      *
      * @since 21
      */
     CLOUD_DISK_SYNC_FOLDER_LIMIT_EXCEEDED = 34400004,
     /**
-     * @brief Sync folder conflicts with an existing sync folder of this application.
+     * @brief The sync root path conflicts with the existing sync root path of the application.
      *
      * @since 21
      */
     CLOUD_DISK_CONFLICT_THIS_APP = 34400005,
     /**
-     * @brief Sync folder conflicts with an existing sync folder of another application.
+     * @brief The sync root path conflicts with the existing sync root path of another application.
      *
      * @since 21
      */
     CLOUD_DISK_CONFLICT_OTHER_APP = 34400006,
     /**
-     * @brief Failed to register sync folder.
+     * @brief The sync root path fails to be registered.
      *
      * @since 21
      */
     CLOUD_DISK_REGISTER_SYNC_FOLDER_FAILED = 34400007,
     /**
-     * @brief Sync folder is not registered.
+     * @brief The sync root path is not registered.
      *
      * @since 21
      */
     CLOUD_DISK_SYNC_FOLDER_NOT_REGISTERED = 34400008,
     /**
-     * @brief Failed to unregister sync folder.
+     * @brief The sync root path fails to be unregistered.
      *
      * @since 21
      */
     CLOUD_DISK_UNREGISTER_SYNC_FOLDER_FAILED = 34400009,
     /**
-     * @brief Sync folder path does not exist.
+     * @brief The sync root path does not exist.
      *
      * @since 21
      */
     CLOUD_DISK_SYNC_FOLDER_PATH_NOT_EXIST = 34400010,
     /**
-     * @brief Change listener is not registered.
+     * @brief The change listener is not registered.
      *
      * @since 21
      */
     CLOUD_DISK_LISTENER_NOT_REGISTERED = 34400011,
     /**
-     * @brief Change listener is already registered.
+     * @brief The change listener has been registered.
      *
      * @since 21
      */
     CLOUD_DISK_LISTENER_ALREADY_REGISTERED = 34400012,
     /**
-     * @brief Invalid change sequence. Full query is recommended.
+     * @brief The change sequence is invalid. You are advised to query all change sequences.
      *
      * @since 21
      */
     CLOUD_DISK_INVALID_CHANGE_SEQUENCE = 34400013,
     /**
-     * @brief Temporary failure. Retry is recommended (e.g., network issues).
+     * @brief Temporary failure (for example, due to high underlying I/O load or insufficient memory). Please try again.
      *
      * @since 21
      */
     CLOUD_DISK_TRY_AGAIN = 34400014,
     /**
-     * @brief Cloud disk is not allowed on this device.
+     * @brief This feature is not allowed on the current device.
      *
      * @since 21
      */
