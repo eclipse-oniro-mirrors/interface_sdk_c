@@ -298,7 +298,7 @@ typedef struct CloudDisk_ChangesResult {
      */
     uint64_t nextUsn{0};
     /**
-     * @brief Whether the change is the last entry in the sync root path's change history. 
+     * @brief Whether the change is the last entry in the sync root path's change history.
      * The value true means it is the last one; the value false means it is not.
      *
      * @since 21
@@ -366,7 +366,8 @@ typedef struct CloudDisk_ResultList {
      */
     CloudDisk_SyncState syncState;
     /**
-     * @brief Reason why the file sync state fails to be obtained. It takes effect only when **isSuccess** is set to **false**.
+     * @brief Reason why the file sync state fails to be obtained.
+     * It takes effect only when **isSuccess** is set to **false**.
      *
      * @since 21
      */
