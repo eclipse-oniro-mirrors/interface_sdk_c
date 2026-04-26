@@ -109,11 +109,10 @@ Image_ErrorCode OH_PackingOptions_Create(OH_PackingOptions **options);
  * @param options Pointer to an OH_PackingOptions struct.
  * @param format Pointer to the MIME type. You can pass in a null pointer with the size set to zero. In this case,
  *     the system will allocate memory, but you must release the memory after use.
- * @return Image functions result code.
- *         {@link IMAGE_SUCCESS} if the execution is successful.
- *         {@link IMAGE_BAD_PARAMETER} options is nullptr, or format is nullptr.
- *         {@link IMAGE_ALLOC_FAILED} allocate memory failed.
- *         {@link IMAGE_COPY_FAILED} copy memory failed
+ * @return {@link IMAGE_SUCCESS} if the execution is successful.
+ *     <br>{@link IMAGE_BAD_PARAMETER} options is nullptr, or format is nullptr.
+ *     <br>{@link IMAGE_ALLOC_FAILED} allocate memory failed.
+ *     <br>{@link IMAGE_COPY_FAILED} copy memory failed
  * @since 12
  */
 Image_ErrorCode OH_PackingOptions_GetMimeType(OH_PackingOptions *options,
@@ -124,9 +123,8 @@ Image_ErrorCode OH_PackingOptions_GetMimeType(OH_PackingOptions *options,
  *
  * @param options Pointer to an OH_PackingOptions struct.
  * @param format Pointer to the MIME type.
- * @return Returns functions result code.
- *         {@link IMAGE_SUCCESS} if the execution is successful.
- *         {@link IMAGE_PACKER_INVALID_PARAMETER} if options or format is nullptr.
+ * @return {@link IMAGE_SUCCESS} if the execution is successful.
+ *     <br>{@link IMAGE_PACKER_INVALID_PARAMETER} if options or format is nullptr.
  * @since 19
  */
 Image_ErrorCode OH_PackingOptions_GetMimeTypeWithNull(OH_PackingOptions *options,
@@ -137,11 +135,10 @@ Image_ErrorCode OH_PackingOptions_GetMimeTypeWithNull(OH_PackingOptions *options
  * 
  * @param options Pointer to an OH_PackingOptions struct.
  * @param format Pointer to a MIME type string in the form "type/subtype".
- * @return Returns Image functions result code.
- *         {@link IMAGE_SUCCESS} if the execution is successful.
- *         {@link IMAGE_BAD_PARAMETER} options is nullptr, or format is nullptr.
- *         {@link IMAGE_ALLOC_FAILED} allocate memory failed.
- *         {@link IMAGE_COPY_FAILED} copy memory failed.
+ * @return {@link IMAGE_SUCCESS} if the execution is successful.
+ *     <br>{@link IMAGE_BAD_PARAMETER} options is nullptr, or format is nullptr.
+ *     <br>{@link IMAGE_ALLOC_FAILED} allocate memory failed.
+ *     <br>{@link IMAGE_COPY_FAILED} copy memory failed.
  * @since 12
  */
 Image_ErrorCode OH_PackingOptions_SetMimeType(OH_PackingOptions *options,
@@ -152,9 +149,8 @@ Image_ErrorCode OH_PackingOptions_SetMimeType(OH_PackingOptions *options,
  * 
  * @param options Pointer to an OH_PackingOptions struct.
  * @param quality Pointer to the encoding quality.
- * @return Returns Image functions result code.
- *         {@link IMAGE_SUCCESS} if the execution is successful.
- *         {@link IMAGE_BAD_PARAMETER} options is nullptr, or quality is nullptr.
+ * @return {@link IMAGE_SUCCESS} if the execution is successful.
+ *     <br>{@link IMAGE_BAD_PARAMETER} options is nullptr, or quality is nullptr.
  * @since 12
  */
 Image_ErrorCode OH_PackingOptions_GetQuality(OH_PackingOptions *options,
@@ -165,9 +161,8 @@ Image_ErrorCode OH_PackingOptions_GetQuality(OH_PackingOptions *options,
  * 
  * @param options Pointer to an OH_PackingOptions struct.
  * @param quality Encoding quality.
- * @return Returns Image functions result code.
- *         {@link IMAGE_SUCCESS} if the execution is successful.
- *         {@link IMAGE_BAD_PARAMETER} options is nullptr.
+ * @return {@link IMAGE_SUCCESS} if the execution is successful.
+ *     <br>{@link IMAGE_BAD_PARAMETER} options is nullptr.
  * @since 12
  */
 Image_ErrorCode OH_PackingOptions_SetQuality(OH_PackingOptions *options,
@@ -179,9 +174,8 @@ Image_ErrorCode OH_PackingOptions_SetQuality(OH_PackingOptions *options,
  * @param options Pointer to an OH_PackingOptions struct.
  * @param needsPackProperties Whether to encode image property information (for example, Exif). The values include **true**
  * (yes) and **false** (no).
- * @return Returns Image functions result code.
- *         {@link IMAGE_SUCCESS} if the execution is successful.
- *         {@link IMAGE_BAD_PARAMETER} options is nullptr, or needsPackProperties is nullptr.
+ * @return {@link IMAGE_SUCCESS} if the execution is successful.
+ *     <br>{@link IMAGE_BAD_PARAMETER} options is nullptr, or needsPackProperties is nullptr.
  * @since 12
  */
 Image_ErrorCode OH_PackingOptions_GetNeedsPackProperties(OH_PackingOptions *options,
@@ -193,9 +187,8 @@ Image_ErrorCode OH_PackingOptions_GetNeedsPackProperties(OH_PackingOptions *opti
  * @param options Pointer to an OH_PackingOptions struct.
  * @param needsPackProperties Whether to encode image property information (for example, Exif). The values include **true**
  * (yes) and **false** (no).
- * @return Image functions result code.
- *         {@link IMAGE_SUCCESS} if the execution is successful.
- *         {@link IMAGE_BAD_PARAMETER} options is nullptr.
+ * @return {@link IMAGE_SUCCESS} if the execution is successful.
+ *     <br>{@link IMAGE_BAD_PARAMETER} options is nullptr.
  * @since 12
  */
 Image_ErrorCode OH_PackingOptions_SetNeedsPackProperties(OH_PackingOptions *options,
@@ -206,9 +199,8 @@ Image_ErrorCode OH_PackingOptions_SetNeedsPackProperties(OH_PackingOptions *opti
  * 
  * @param options Pointer to an OH_PackingOptions struct.
  * @param desiredDynamicRange Desired dynamic range. For details about the available options, see {@link IMAGE_PACKER_DYNAMIC_RANGE}
- * @return Image functions result code.
- *         {@link IMAGE_SUCCESS} if the execution is successful.
- *         {@link IMAGE_BAD_PARAMETER} options is nullptr, or desiredDynamicRange is nullptr.
+ * @return {@link IMAGE_SUCCESS} if the execution is successful.
+ *     <br>{@link IMAGE_BAD_PARAMETER} options is nullptr, or desiredDynamicRange is nullptr.
  * @since 12
  */
 Image_ErrorCode OH_PackingOptions_GetDesiredDynamicRange(OH_PackingOptions *options, int32_t* desiredDynamicRange);
@@ -219,9 +211,8 @@ Image_ErrorCode OH_PackingOptions_GetDesiredDynamicRange(OH_PackingOptions *opti
  * @param options Pointer to an OH_PackingOptions struct.
  * @param desiredDynamicRange Desired dynamic range. For details about the available options, see
  * {@link IMAGE_PACKER_DYNAMIC_RANGE}.
- * @return Image functions result code.
- *         {@link IMAGE_SUCCESS} if the execution is successful.
- *         {@link IMAGE_BAD_PARAMETER} options is nullptr.
+ * @return {@link IMAGE_SUCCESS} if the execution is successful.
+ *     <br>{@link IMAGE_BAD_PARAMETER} options is nullptr.
  * @since 12
  */
 Image_ErrorCode OH_PackingOptions_SetDesiredDynamicRange(OH_PackingOptions *options, int32_t desiredDynamicRange);
@@ -230,9 +221,8 @@ Image_ErrorCode OH_PackingOptions_SetDesiredDynamicRange(OH_PackingOptions *opti
  * @brief Releases the pointer to an OH_PackingOptions struct.
  * 
  * @param options Pointer to an OH_PackingOptions struct.
- * @return Image functions result code.
- *         {@link IMAGE_SUCCESS} if the execution is successful.
- *         {@link IMAGE_BAD_PARAMETER} options is nullptr.
+ * @return {@link IMAGE_SUCCESS} if the execution is successful.
+ *     <br>{@link IMAGE_BAD_PARAMETER} options is nullptr.
  * @since 12
  */
 Image_ErrorCode OH_PackingOptions_Release(OH_PackingOptions *options);
@@ -241,9 +231,8 @@ Image_ErrorCode OH_PackingOptions_Release(OH_PackingOptions *options);
  * @brief Creates the pointer to an OH_PackingOptionsForSequence struct.
  * 
  * @param options Double pointer to OH_PackingOptionsForSequence.
- * @return Image functions result code.
- *         {@link IMAGE_SUCCESS} if the execution is successful.
- *         {@link IMAGE_BAD_PARAMETER} options is nullptr.
+ * @return {@link IMAGE_SUCCESS} if the execution is successful.
+ *     <br>{@link IMAGE_BAD_PARAMETER} options is nullptr.
  * @since 18
  */
 Image_ErrorCode OH_PackingOptionsForSequence_Create(OH_PackingOptionsForSequence **options);
@@ -253,9 +242,8 @@ Image_ErrorCode OH_PackingOptionsForSequence_Create(OH_PackingOptionsForSequence
  * 
  * @param options Pointer to OH_PackingOptionsForSequence.
  * @param frameCount Number of frames.
- * @return Image functions result code.
- *         {@link IMAGE_SUCCESS} if the execution is successful.
- *         {@link IMAGE_BAD_PARAMETER} options is nullptr.
+ * @return {@link IMAGE_SUCCESS} if the execution is successful.
+ *     <br>{@link IMAGE_BAD_PARAMETER} options is nullptr.
  * @since 18
  */
 Image_ErrorCode OH_PackingOptionsForSequence_SetFrameCount(OH_PackingOptionsForSequence *options,
@@ -266,9 +254,8 @@ Image_ErrorCode OH_PackingOptionsForSequence_SetFrameCount(OH_PackingOptionsForS
  * 
  * @param options Pointer to OH_PackingOptionsForSequence.
  * @param frameCount Pointer to the number of frames.
- * @return Image functions result code.
- *         {@link IMAGE_SUCCESS} if the execution is successful.
- *         {@link IMAGE_BAD_PARAMETER} options or frameCount is nullptr.
+ * @return {@link IMAGE_SUCCESS} if the execution is successful.
+ *     <br>{@link IMAGE_BAD_PARAMETER} options or frameCount is nullptr.
  * @since 18
  */
 Image_ErrorCode OH_PackingOptionsForSequence_GetFrameCount(OH_PackingOptionsForSequence *options,
@@ -280,9 +267,8 @@ Image_ErrorCode OH_PackingOptionsForSequence_GetFrameCount(OH_PackingOptionsForS
  * @param options Pointer to OH_PackingOptionsForSequence.
  * @param delayTimeList Pointer to the delay time array.
  * @param delayTimeListLength Length of the delay time array.
- * @return Image functions result code.
- *         {@link IMAGE_SUCCESS} if the execution is successful.
- *         {@link IMAGE_BAD_PARAMETER} options or delayTimeList is nullptr.
+ * @return {@link IMAGE_SUCCESS} if the execution is successful.
+ *     <br>{@link IMAGE_BAD_PARAMETER} options or delayTimeList is nullptr.
  * @since 18
  */
 Image_ErrorCode OH_PackingOptionsForSequence_SetDelayTimeList(OH_PackingOptionsForSequence *options,
@@ -294,9 +280,8 @@ Image_ErrorCode OH_PackingOptionsForSequence_SetDelayTimeList(OH_PackingOptionsF
  * @param options Pointer to OH_PackingOptionsForSequence.
  * @param delayTimeList Pointer to the delay time array.
  * @param delayTimeListLength Length of the delay time array.
- * @return Image functions result code.
- *         {@link IMAGE_SUCCESS} if the execution is successful.
- *         {@link IMAGE_BAD_PARAMETER} options or delayTimeList is nullptr.
+ * @return {@link IMAGE_SUCCESS} if the execution is successful.
+ *     <br>{@link IMAGE_BAD_PARAMETER} options or delayTimeList is nullptr.
  * @since 18
  */
 Image_ErrorCode OH_PackingOptionsForSequence_GetDelayTimeList(OH_PackingOptionsForSequence *options,
@@ -313,9 +298,8 @@ Image_ErrorCode OH_PackingOptionsForSequence_GetDelayTimeList(OH_PackingOptionsF
  *     **2**: Restores the background color.
  *     **3**: Restores to the previous state.
  * @param disposalTypesLength Length of the disposal type array.
- * @return Image functions result code.
- *         {@link IMAGE_SUCCESS} if the execution is successful.
- *         {@link IMAGE_BAD_PARAMETER} options or disposalTypes is nullptr.
+ * @return {@link IMAGE_SUCCESS} if the execution is successful.
+ *     <br>{@link IMAGE_BAD_PARAMETER} options or disposalTypes is nullptr.
  * @since 18
  */
 Image_ErrorCode OH_PackingOptionsForSequence_SetDisposalTypes(OH_PackingOptionsForSequence *options,
@@ -327,9 +311,8 @@ Image_ErrorCode OH_PackingOptionsForSequence_SetDisposalTypes(OH_PackingOptionsF
  * @param options Pointer to OH_PackingOptionsForSequence.
  * @param disposalTypes Pointer to the disposal type array.
  * @param disposalTypesLength Length of the disposal type array.
- * @return Image functions result code.
- *         {@link IMAGE_SUCCESS} if the execution is successful.
- *         {@link IMAGE_BAD_PARAMETER} options or disposalTypes is nullptr.
+ * @return {@link IMAGE_SUCCESS} if the execution is successful.
+ *     <br>{@link IMAGE_BAD_PARAMETER} options or disposalTypes is nullptr.
  * @since 18
  */
 Image_ErrorCode OH_PackingOptionsForSequence_GetDisposalTypes(OH_PackingOptionsForSequence *options,
@@ -341,9 +324,8 @@ Image_ErrorCode OH_PackingOptionsForSequence_GetDisposalTypes(OH_PackingOptionsF
  * 
  * @param options Pointer to OH_PackingOptionsForSequence .
  * @param loopCount Number of loops.
- * @return Image functions result code.
- *         {@link IMAGE_SUCCESS} if the execution is successful.
- *         {@link IMAGE_BAD_PARAMETER} options is nullptr.
+ * @return {@link IMAGE_SUCCESS} if the execution is successful.
+ *     <br>{@link IMAGE_BAD_PARAMETER} options is nullptr.
  * @since 18
  */
 Image_ErrorCode OH_PackingOptionsForSequence_SetLoopCount(OH_PackingOptionsForSequence *options, uint32_t loopCount);
@@ -353,9 +335,8 @@ Image_ErrorCode OH_PackingOptionsForSequence_SetLoopCount(OH_PackingOptionsForSe
  * 
  * @param options Pointer to OH_PackingOptionsForSequence.
  * @param loopCount Pointer to the number of loops.
- * @return Image functions result code.
- *         {@link IMAGE_SUCCESS} if the execution is successful.
- *         {@link IMAGE_BAD_PARAMETER} options or loopCount is nullptr.
+ * @return {@link IMAGE_SUCCESS} if the execution is successful.
+ *     <br>{@link IMAGE_BAD_PARAMETER} options or loopCount is nullptr.
  * @since 18
  */
 Image_ErrorCode OH_PackingOptionsForSequence_GetLoopCount(OH_PackingOptionsForSequence *options, uint32_t *loopCount);
@@ -364,9 +345,8 @@ Image_ErrorCode OH_PackingOptionsForSequence_GetLoopCount(OH_PackingOptionsForSe
  * @brief Releases the pointer to an OH_PackingOptionsForSequence struct.
  * 
  * @param options Pointer to OH_PackingOptionsForSequence.
- * @return Image functions result code.
- *         {@link IMAGE_SUCCESS} if the execution is successful.
- *         {@link IMAGE_BAD_PARAMETER} options is nullptr.
+ * @return {@link IMAGE_SUCCESS} if the execution is successful.
+ *     <br>{@link IMAGE_BAD_PARAMETER} options is nullptr.
  * @since 18
  */
 Image_ErrorCode OH_PackingOptionsForSequence_Release(OH_PackingOptionsForSequence *options);
@@ -388,11 +368,10 @@ Image_ErrorCode OH_ImagePackerNative_Create(OH_ImagePackerNative **imagePacker);
  * @param imageSource Pointer to the image source to encode.
  * @param outData Pointer to the buffer used to store the output data.
  * @param size Pointer to the size of the buffer.
- * @return Image functions result code.
- *         {@link IMAGE_SUCCESS} if the execution is successful.
- *         {@link IMAGE_BAD_PARAMETER}imagePacker is nullptr, or options is nullptr,
+ * @return {@link IMAGE_SUCCESS} if the execution is successful.
+ *     <br>{@link IMAGE_BAD_PARAMETER}imagePacker is nullptr, or options is nullptr,
  *         or imageSource is nullptr, or outData is nullptr.
- *         {@link IMAGE_ENCODE_FAILED} encode failed.
+ *     <br>{@link IMAGE_ENCODE_FAILED} encode failed.
  * @since 12
  */
 Image_ErrorCode OH_ImagePackerNative_PackToDataFromImageSource(OH_ImagePackerNative *imagePacker,
@@ -406,11 +385,10 @@ Image_ErrorCode OH_ImagePackerNative_PackToDataFromImageSource(OH_ImagePackerNat
  * @param pixelmap Pointer to the PixelMap to encode.
  * @param outData Pointer to the buffer used to store the output data.
  * @param size Pointer to the size of the buffer.
- * @return Image functions result code.
- *         {@link IMAGE_SUCCESS} if the execution is successful.
- *         {@link IMAGE_BAD_PARAMETER}imagePacker is nullptr, or options is nullptr,
+ * @return {@link IMAGE_SUCCESS} if the execution is successful.
+ *     <br>{@link IMAGE_BAD_PARAMETER}imagePacker is nullptr, or options is nullptr,
  *         or pixelmap is nullptr, or outData is nullptr.
- *         {@link IMAGE_ENCODE_FAILED} encode failed.
+ *     <br>{@link IMAGE_ENCODE_FAILED} encode failed.
  * @since 12
  */
 Image_ErrorCode OH_ImagePackerNative_PackToDataFromPixelmap(OH_ImagePackerNative *imagePacker,
@@ -424,11 +402,10 @@ Image_ErrorCode OH_ImagePackerNative_PackToDataFromPixelmap(OH_ImagePackerNative
  * @param picture Pointer to the picture to encode.
  * @param outData Pointer to the buffer used to store the output data.
  * @param size Pointer to the size of the buffer.
- * @return Image functions result code.
- *         {@link IMAGE_SUCCESS} if the execution is successful.
- *         {@link IMAGE_BAD_PARAMETER} imagePacker is nullptr, or picture is nullptr, or outData is nullptr,
+ * @return {@link IMAGE_SUCCESS} if the execution is successful.
+ *     <br>{@link IMAGE_BAD_PARAMETER} imagePacker is nullptr, or picture is nullptr, or outData is nullptr,
  *         or size is invalid.
- *         {@link IMAGE_ENCODE_FAILED} encode failed.
+ *     <br>{@link IMAGE_ENCODE_FAILED} encode failed.
  * @since 13
  */
 Image_ErrorCode OH_ImagePackerNative_PackToDataFromPicture(OH_ImagePackerNative *imagePacker,
@@ -443,10 +420,9 @@ Image_ErrorCode OH_ImagePackerNative_PackToDataFromPicture(OH_ImagePackerNative 
  * @param sequenceLength Length of the PixelMap sequence.
  * @param outData Pointer to the buffer used to store the output data.
  * @param outDataSize Pointer to the size of the buffer.
- * @return Image functions result code.
- *         {@link IMAGE_SUCCESS} if the execution is successful.
- *         {@link IMAGE_BAD_PARAMETER} one of the pointer type parameters is nullptr, or size/length is invalid
- *         {@link IMAGE_ENCODE_FAILED} encode failed.
+ * @return {@link IMAGE_SUCCESS} if the execution is successful.
+ *     <br>{@link IMAGE_BAD_PARAMETER} one of the pointer type parameters is nullptr, or size/length is invalid
+ *     <br>{@link IMAGE_ENCODE_FAILED} encode failed.
  * @since 18
  */
 Image_ErrorCode OH_ImagePackerNative_PackToDataFromPixelmapSequence(OH_ImagePackerNative *imagePacker,
@@ -460,11 +436,10 @@ Image_ErrorCode OH_ImagePackerNative_PackToDataFromPixelmapSequence(OH_ImagePack
  * @param options Pointer to an OH_PackingOptions struct.
  * @param imageSource Pointer to the image source to encode.
  * @param fd File descriptor, which is writable.
- * @return Image functions result code.
- *         {@link IMAGE_SUCCESS} if the execution is successful.
- *         {@link IMAGE_BAD_PARAMETER}imagePacker is nullptr, or options is nullptr,
+ * @return {@link IMAGE_SUCCESS} if the execution is successful.
+ *     <br>{@link IMAGE_BAD_PARAMETER}imagePacker is nullptr, or options is nullptr,
  *         or imageSource is nullptr, or fd is invalid.
- *         {@link IMAGE_ENCODE_FAILED} encode failed.
+ *     <br>{@link IMAGE_ENCODE_FAILED} encode failed.
  * @since 12
  */
 Image_ErrorCode OH_ImagePackerNative_PackToFileFromImageSource(OH_ImagePackerNative *imagePacker,
@@ -477,11 +452,10 @@ Image_ErrorCode OH_ImagePackerNative_PackToFileFromImageSource(OH_ImagePackerNat
  * @param options Pointer to an OH_PackingOptions struct.
  * @param pixelmap Pointer to the PixelMap to encode.
  * @param fd File descriptor, which is writable.
- * @return @return Image functions result code.
- *         {@link IMAGE_SUCCESS} if the execution is successful.
- *         {@link IMAGE_BAD_PARAMETER}imagePacker is nullptr, or options is nullptr,
+ * @return {@link IMAGE_SUCCESS} if the execution is successful.
+ *     <br>{@link IMAGE_BAD_PARAMETER}imagePacker is nullptr, or options is nullptr,
  *         or pixelmap is nullptr, or fd is invalid.
- *         {@link IMAGE_ENCODE_FAILED} encode failed.
+ *     <br>{@link IMAGE_ENCODE_FAILED} encode failed.
   * @since 12
  */
 Image_ErrorCode OH_ImagePackerNative_PackToFileFromPixelmap(OH_ImagePackerNative *imagePacker,
@@ -494,10 +468,9 @@ Image_ErrorCode OH_ImagePackerNative_PackToFileFromPixelmap(OH_ImagePackerNative
  * @param options Pointer to an OH_PackingOptions struct.
  * @param picture Pointer to the picture to encode.
  * @param fd File descriptor, which is writable.
- * @return Image functions result code.
- *         {@link IMAGE_SUCCESS} if the execution is successful.
- *         {@link IMAGE_BAD_PARAMETER} imagePacker is nullptr, or picture is nullptr, or fd is invalid.
- *         {@link IMAGE_ENCODE_FAILED} encode failed.
+ * @return {@link IMAGE_SUCCESS} if the execution is successful.
+ *     <br>{@link IMAGE_BAD_PARAMETER} imagePacker is nullptr, or picture is nullptr, or fd is invalid.
+ *     <br>{@link IMAGE_ENCODE_FAILED} encode failed.
  * @since 13
  */
 Image_ErrorCode OH_ImagePackerNative_PackToFileFromPicture(OH_ImagePackerNative *imagePacker,
@@ -511,10 +484,9 @@ Image_ErrorCode OH_ImagePackerNative_PackToFileFromPicture(OH_ImagePackerNative 
  * @param pixelmapSequence Double pointer to the PixelMap sequence to encode.
  * @param sequenceLength Length of the PixelMap sequence.
  * @param fd File descriptor, which is writable.
- * @return Image functions result code.
- *         {@link IMAGE_SUCCESS} if the execution is successful.
- *         {@link IMAGE_BAD_PARAMETER} one of the pointer type parameters is nullptr, or length is invalid
- *         {@link IMAGE_ENCODE_FAILED} encode failed.
+ * @return {@link IMAGE_SUCCESS} if the execution is successful.
+ *     <br>{@link IMAGE_BAD_PARAMETER} one of the pointer type parameters is nullptr, or length is invalid
+ *     <br>{@link IMAGE_ENCODE_FAILED} encode failed.
  * @since 18
  */
 Image_ErrorCode OH_ImagePackerNative_PackToFileFromPixelmapSequence(OH_ImagePackerNative *imagePacker,
@@ -524,9 +496,8 @@ Image_ErrorCode OH_ImagePackerNative_PackToFileFromPixelmapSequence(OH_ImagePack
  * @brief Releases the pointer to an OH_ImagePackerNative struct.
  * 
  * @param imagePacker Pointer to OH_ImagePackerNative.
- * @return Returns Image functions result code.
- *         {@link IMAGE_SUCCESS} if the execution is successful.
- *         {@link IMAGE_BAD_PARAMETER} imagePacker is nullptr.
+ * @return {@link IMAGE_SUCCESS} if the execution is successful.
+ *     <br>{@link IMAGE_BAD_PARAMETER} imagePacker is nullptr.
  * @since 12
  */
 Image_ErrorCode OH_ImagePackerNative_Release(OH_ImagePackerNative *imagePacker);
@@ -536,12 +507,11 @@ Image_ErrorCode OH_ImagePackerNative_Release(OH_ImagePackerNative *imagePacker);
  * 
  * @param supportedFormats Double pointer to the supported image formats.
  * @param length Pointer to the size of the array.
- * @return One of the following result codes: 
- * {@link IMAGE_SUCCESS} if the execution is successful.
- * {@link IMAGE_BAD_PARAMETER} if <b>supportedFormats</b> or <b>length</b> is empty.
+ * @return {@link IMAGE_SUCCESS} if the execution is successful.
+ *     <br>{@link IMAGE_BAD_PARAMETER} if <b>supportedFormats</b> or <b>length</b> is empty.
  * @since 20
  */
-Image_ErrorCode OH_ImagePackerNative_GetSupportedFormats(Image_MimeType** supportedFormats, size_t* length)
+Image_ErrorCode OH_ImagePackerNative_GetSupportedFormats(Image_MimeType** supportedFormats, size_t* length);
 
 #ifdef __cplusplus
 };

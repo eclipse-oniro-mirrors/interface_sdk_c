@@ -92,9 +92,9 @@ typedef void (*OH_ImageReceiver_ImageArriveCallback)(OH_ImageReceiverNative *rec
  * @brief Creates an OH_ImageReceiverOptions object at the application layer.
  * 
  * @param options Double pointer to the OH_ImageReceiverOptions object created.
- * @return Returns {@link Image_ErrorCode} IMAGE_SUCCESS - if the operation is successful.
- *         returns {@link Image_ErrorCode} IMAGE_BAD_PARAMETER - if bad parameter.
- *         returns {@link Image_ErrorCode} IMAGE_ALLOC_FAILED - if alloc failed.
+ * @return {@link Image_ErrorCode} IMAGE_SUCCESS - if the operation is successful.
+ *     <br>{@link Image_ErrorCode} IMAGE_BAD_PARAMETER - if bad parameter.
+ *     <br>{@link Image_ErrorCode} IMAGE_ALLOC_FAILED - if alloc failed.
  * @since 12
  */
 Image_ErrorCode OH_ImageReceiverOptions_Create(OH_ImageReceiverOptions **options);
@@ -104,8 +104,8 @@ Image_ErrorCode OH_ImageReceiverOptions_Create(OH_ImageReceiverOptions **options
  * 
  * @param options Pointer to an OH_ImageReceiverOptions object.
  * @param size Pointer to the Image_Size object obtained.
- * @return Returns {@link Image_ErrorCode} IMAGE_SUCCESS - if the operation is successful.
- *         returns {@link Image_ErrorCode} IMAGE_BAD_PARAMETER - if bad parameter.
+ * @return {@link Image_ErrorCode} IMAGE_SUCCESS - if the operation is successful.
+ *     <br>{@link Image_ErrorCode} IMAGE_BAD_PARAMETER - if bad parameter.
  * @since 12
  */
 Image_ErrorCode OH_ImageReceiverOptions_GetSize(OH_ImageReceiverOptions* options, Image_Size* size);
@@ -115,8 +115,8 @@ Image_ErrorCode OH_ImageReceiverOptions_GetSize(OH_ImageReceiverOptions* options
  * 
  * @param options Pointer to an OH_ImageReceiverOptions object.
  * @param size Image_Size object.
- * @return Returns {@link Image_ErrorCode} IMAGE_SUCCESS - if the operation is successful.
- *         returns {@link Image_ErrorCode} IMAGE_BAD_PARAMETER - if bad parameter.
+ * @return {@link Image_ErrorCode} IMAGE_SUCCESS - if the operation is successful.
+ *     <br>{@link Image_ErrorCode} IMAGE_BAD_PARAMETER - if bad parameter.
  * @since 12
  */
 Image_ErrorCode OH_ImageReceiverOptions_SetSize(OH_ImageReceiverOptions* options, Image_Size size);
@@ -126,8 +126,8 @@ Image_ErrorCode OH_ImageReceiverOptions_SetSize(OH_ImageReceiverOptions* options
  * 
  * @param options Pointer to an OH_ImageReceiverOptions object.
  * @param capacity Pointer to the capacity obtained.
- * @return Returns {@link Image_ErrorCode} IMAGE_SUCCESS - if the operation is successful.
- *         returns {@link Image_ErrorCode} IMAGE_BAD_PARAMETER - if bad parameter.
+ * @return {@link Image_ErrorCode} IMAGE_SUCCESS - if the operation is successful.
+ *     <br>{@link Image_ErrorCode} IMAGE_BAD_PARAMETER - if bad parameter.
  * @since 12
  */
 Image_ErrorCode OH_ImageReceiverOptions_GetCapacity(OH_ImageReceiverOptions* options, int32_t* capacity);
@@ -137,8 +137,8 @@ Image_ErrorCode OH_ImageReceiverOptions_GetCapacity(OH_ImageReceiverOptions* opt
  * 
  * @param options Pointer to an OH_ImageReceiverOptions object.
  * @param capacity Capacity.
- * @return Returns {@link Image_ErrorCode} IMAGE_SUCCESS - if the operation is successful.
- *         returns {@link Image_ErrorCode} IMAGE_BAD_PARAMETER - if bad parameter.
+ * @return {@link Image_ErrorCode} IMAGE_SUCCESS - if the operation is successful.
+ *     <br>{@link Image_ErrorCode} IMAGE_BAD_PARAMETER - if bad parameter.
  * @since 12
  */
 Image_ErrorCode OH_ImageReceiverOptions_SetCapacity(OH_ImageReceiverOptions* options, int32_t capacity);
@@ -147,8 +147,8 @@ Image_ErrorCode OH_ImageReceiverOptions_SetCapacity(OH_ImageReceiverOptions* opt
  * @brief Releases an OH_ImageReceiverOptions object.
  * 
  * @param options Pointer to an OH_ImageReceiverOptions object.
- * @return Returns {@link Image_ErrorCode} IMAGE_SUCCESS - if the operation is successful.
- *         returns {@link Image_ErrorCode} IMAGE_BAD_PARAMETER - if bad parameter.
+ * @return {@link Image_ErrorCode} IMAGE_SUCCESS - if the operation is successful.
+ *     <br>{@link Image_ErrorCode} IMAGE_BAD_PARAMETER - if bad parameter.
  * @see OH_ImageReceiverOptions
  * @since 12
  */
@@ -159,9 +159,9 @@ Image_ErrorCode OH_ImageReceiverOptions_Release(OH_ImageReceiverOptions* options
  * 
  * @param options Pointer to an OH_ImageReceiverOptions object.
  * @param receiver Double pointer to the OH_ImageReceiverNative object obtained.
- * @return Returns {@link Image_ErrorCode} IMAGE_SUCCESS - if the operation is successful.
- *         returns {@link Image_ErrorCode} IMAGE_BAD_PARAMETER - if bad parameter.
- *         returns {@link Image_ErrorCode} IMAGE_ALLOC_FAILED - if alloc failed.
+ * @return {@link Image_ErrorCode} IMAGE_SUCCESS - if the operation is successful.
+ *     <br>{@link Image_ErrorCode} IMAGE_BAD_PARAMETER - if bad parameter.
+ *     <br>{@link Image_ErrorCode} IMAGE_ALLOC_FAILED - if alloc failed.
  * @since 12
  */
 Image_ErrorCode OH_ImageReceiverNative_Create(OH_ImageReceiverOptions* options, OH_ImageReceiverNative** receiver);
@@ -171,9 +171,9 @@ Image_ErrorCode OH_ImageReceiverNative_Create(OH_ImageReceiverOptions* options, 
  * 
  * @param receiver Pointer to an OH_ImageReceiverNative object.
  * @param surfaceId Pointer to the surface ID obtained.
- * @return Returns {@link Image_ErrorCode} IMAGE_SUCCESS - if the operation is successful.
- *         returns {@link Image_ErrorCode} IMAGE_BAD_PARAMETER - if bad parameter.
- *         returns {@link Image_ErrorCode} IMAGE_UNKNOWN_ERROR - inner unknown error.
+ * @return {@link Image_ErrorCode} IMAGE_SUCCESS - if the operation is successful.
+ *     <br>{@link Image_ErrorCode} IMAGE_BAD_PARAMETER - if bad parameter.
+ *     <br>{@link Image_ErrorCode} IMAGE_UNKNOWN_ERROR - inner unknown error.
  * @see OH_ImageReceiverNative
  * @since 12
  */
@@ -184,10 +184,10 @@ Image_ErrorCode OH_ImageReceiverNative_GetReceivingSurfaceId(OH_ImageReceiverNat
  * 
  * @param receiver Pointer to an OH_ImageReceiverNative object.
  * @param image Double pointer to the image obtained, which is an OH_ImageNative object at the application layer.
- * @return Returns {@link Image_ErrorCode} IMAGE_SUCCESS - if the operation is successful.
- *         returns {@link Image_ErrorCode} IMAGE_BAD_PARAMETER - if bad parameter.
- *         returns {@link Image_ErrorCode} IMAGE_UNKNOWN_ERROR - inner unknown error.
- *         returns {@link Image_ErrorCode} IMAGE_ALLOC_FAILED - if alloc failed.
+ * @return {@link Image_ErrorCode} IMAGE_SUCCESS - if the operation is successful.
+ *     <br>{@link Image_ErrorCode} IMAGE_BAD_PARAMETER - if bad parameter.
+ *     <br>{@link Image_ErrorCode} IMAGE_UNKNOWN_ERROR - inner unknown error.
+ *     <br>{@link Image_ErrorCode} IMAGE_ALLOC_FAILED - if alloc failed.
  * @see OH_ImageReceiverNative, OH_ImageNative
  * @since 12
  */
@@ -198,10 +198,10 @@ Image_ErrorCode OH_ImageReceiverNative_ReadLatestImage(OH_ImageReceiverNative* r
  * 
  * @param receiver Pointer to an OH_ImageReceiverNative object.
  * @param image Double pointer to the image obtained, which is an OH_ImageNative object at the application layer.
- * @return Returns {@link Image_ErrorCode} IMAGE_SUCCESS - if the operation is successful.
- *         returns {@link Image_ErrorCode} IMAGE_BAD_PARAMETER - if bad parameter.
- *         returns {@link Image_ErrorCode} IMAGE_UNKNOWN_ERROR - inner unknown error.
- *         returns {@link Image_ErrorCode} IMAGE_ALLOC_FAILED - if alloc failed.
+ * @return {@link Image_ErrorCode} IMAGE_SUCCESS - if the operation is successful.
+ *     <br>{@link Image_ErrorCode} IMAGE_BAD_PARAMETER - if bad parameter.
+ *     <br>{@link Image_ErrorCode} IMAGE_UNKNOWN_ERROR - inner unknown error.
+ *     <br>{@link Image_ErrorCode} IMAGE_ALLOC_FAILED - if alloc failed.
  * @see OH_ImageReceiverNative, OH_ImageNative
  * @since 12
  */
@@ -212,8 +212,8 @@ Image_ErrorCode OH_ImageReceiverNative_ReadNextImage(OH_ImageReceiverNative* rec
  * 
  * @param receiver Pointer to an OH_ImageReceiverNative object.
  * @param callback Callback to register.
- * @return Returns {@link Image_ErrorCode} IMAGE_SUCCESS - if the operation is successful.
- *         returns {@link Image_ErrorCode} IMAGE_BAD_PARAMETER - if bad parameter.
+ * @return {@link Image_ErrorCode} IMAGE_SUCCESS - if the operation is successful.
+ *     <br>{@link Image_ErrorCode} IMAGE_BAD_PARAMETER - if bad parameter.
  * @see OH_ImageReceiverNative, OH_ImageReceiver_OnCallback
  * @since 12
  */
@@ -223,8 +223,8 @@ Image_ErrorCode OH_ImageReceiverNative_On(OH_ImageReceiverNative* receiver, OH_I
  * @brief Unregisters the {@link OH_ImageReceiver_OnCallback} callback.
  * 
  * @param receiver Pointer to an OH_ImageReceiverNative object.
- * @return Returns {@link Image_ErrorCode} IMAGE_SUCCESS - if the operation is successful.
- *         returns {@link Image_ErrorCode} IMAGE_BAD_PARAMETER - if bad parameter.
+ * @return {@link Image_ErrorCode} IMAGE_SUCCESS - if the operation is successful.
+ *     <br>{@link Image_ErrorCode} IMAGE_BAD_PARAMETER - if bad parameter.
  * @see OH_ImageReceiverNative, OH_ImageReceiverNative_On
  * @since 12
  */
@@ -235,8 +235,8 @@ Image_ErrorCode OH_ImageReceiverNative_Off(OH_ImageReceiverNative* receiver);
  * 
  * @param receiver Pointer to an OH_ImageReceiverNative object.
  * @param size Pointer to the Image_Size object obtained.
- * @return Returns {@link Image_ErrorCode} IMAGE_SUCCESS - if the operation is successful.
- *         returns {@link Image_ErrorCode} IMAGE_BAD_PARAMETER - if bad parameter.
+ * @return {@link Image_ErrorCode} IMAGE_SUCCESS - if the operation is successful.
+ *     <br>{@link Image_ErrorCode} IMAGE_BAD_PARAMETER - if bad parameter.
  * @see OH_ImageReceiverNative, Image_Size
  * @since 12
  */
@@ -247,8 +247,8 @@ Image_ErrorCode OH_ImageReceiverNative_GetSize(OH_ImageReceiverNative* receiver,
  * 
  * @param receiver Pointer to an OH_ImageReceiverNative object.
  * @param capacity Pointer to the capacity obtained.
- * @return Returns {@link Image_ErrorCode} IMAGE_SUCCESS - if the operation is successful.
- *         returns {@link Image_ErrorCode} IMAGE_BAD_PARAMETER - if bad parameter.
+ * @return {@link Image_ErrorCode} IMAGE_SUCCESS - if the operation is successful.
+ *     <br>{@link Image_ErrorCode} IMAGE_BAD_PARAMETER - if bad parameter.
  * @see OH_ImageReceiverNative
  * @since 12
  */
@@ -258,8 +258,8 @@ Image_ErrorCode OH_ImageReceiverNative_GetCapacity(OH_ImageReceiverNative* recei
  * @brief Releases an OH_ImageReceiverNative object.
  * 
  * @param receiver Pointer to an OH_ImageReceiverNative object.
- * @return Returns {@link Image_ErrorCode} IMAGE_SUCCESS - if the operation is successful.
- *         returns {@link Image_ErrorCode} IMAGE_BAD_PARAMETER - if bad parameter.
+ * @return {@link Image_ErrorCode} IMAGE_SUCCESS - if the operation is successful.
+ *     <br>{@link Image_ErrorCode} IMAGE_BAD_PARAMETER - if bad parameter.
  * @see OH_ImageReceiverNative
  * @since 12
  */
@@ -271,9 +271,8 @@ Image_ErrorCode OH_ImageReceiverNative_Release(OH_ImageReceiverNative* receiver)
  * @param receiver Pointer to an OH_ImageReceiverNative object that processes the callback.
  * @param callback Callback to register.
  * @param userData Pointer to user data.
- * @return Result code:
- *     {@link Image_ErrorCode} IMAGE_SUCCESS is returned if the operation is successful.
- *     {@link Image_ErrorCode} IMAGE_RECEIVER_INVALID_PARAMETER is returned if receiver or callback is null.
+ * @return {@link Image_ErrorCode} IMAGE_SUCCESS is returned if the operation is successful.
+ *     <br>{@link Image_ErrorCode} IMAGE_RECEIVER_INVALID_PARAMETER is returned if receiver or callback is null.
  * @since 20
  */
 
@@ -285,7 +284,7 @@ Image_ErrorCode OH_ImageReceiverNative_OnImageArrive(OH_ImageReceiverNative* rec
  * @param receiver Pointer to an OH_ImageReceiverNative object that processes the callback.
  * @param callback Callback to unregister.
  * @return {@link Image_ErrorCode} IMAGE_SUCCESS - Operation succeeded.
- *         {@link Image_ErrorCode} IMAGE_RECEIVER_INVALID_PARAMETER - <b>receiver</b> is empty or <b>callback</b> is not registered.
+ *     <br>{@link Image_ErrorCode} IMAGE_RECEIVER_INVALID_PARAMETER - <b>receiver</b> is empty or <b>callback</b> is not registered.
  * @since 20
  */
 Image_ErrorCode OH_ImageReceiverNative_OffImageArrive(OH_ImageReceiverNative* receiver, OH_ImageReceiver_ImageArriveCallback callback);
