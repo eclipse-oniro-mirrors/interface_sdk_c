@@ -468,7 +468,7 @@ typedef struct OH_Rect {
     int32_t x;
     /* y-coordinate of screen recording */
     int32_t y;
-    /* Width of screen recording, in px */
+    /* Width of screen recording, in px  */
     int32_t width;
     /* Height of screen recording, in px */
     int32_t height;
