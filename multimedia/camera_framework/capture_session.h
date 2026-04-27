@@ -649,7 +649,8 @@ Camera_ErrorCode OH_CaptureSession_GetColorTintRange(const Camera_CaptureSession
  * @param colorTint Pointer to the color tint.
  * @return Result code.
  *         {@link CAMERA_OK} is returned if the function is called successfully.
- *         {@link CAMERA_INVALID_ARGUMENT} is returned if an input parameter is missing or the parameter type is incorrect.
+ *         {@link CAMERA_INVALID_ARGUMENT} is returned if an input
+                parameter is missing or the parameter type is incorrect.
  *         {@link CAMERA_SESSION_NOT_CONFIG} is returned if the session is not configured when the function is called.
  * @since 26.0.0
  */
