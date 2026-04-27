@@ -166,7 +166,7 @@ OH_AudioStream_Result OH_AudioCapturer_GetStreamId(OH_AudioCapturer* capturer, u
  * @since 10
  *
  * @param capturer Reference created by OH_AudioStreamBuilder_GenerateCapturer()
- * @param rate The state value to be updated
+ * @param rate Pointer to a variable that will be set for the sampling rate.
  * @return Function result code:
  *         {@link AUDIOSTREAM_SUCCESS} If the execution is successful.
  *         {@link AUDIOSTREAM_ERROR_INVALID_PARAM} The param of capturer is nullptr.
@@ -249,8 +249,8 @@ OH_AudioStream_Result OH_AudioCapturer_GetFrameSizeInCallback(OH_AudioCapturer* 
  *
  * @param capturer Reference created by OH_AudioStreamBuilder_GenerateCapturer()
  * @param clockId {@link #CLOCK_MONOTONIC}
- * @param framePosition Pointer to a variable to receive the position
- * @param timestamp Pointer to a variable to receive the timestamp
+ * @param framePosition Pointer to a variable to receive the position.
+ * @param timestamp Pointer to a variable to receive the timestamp, unit is nanosecond.
  * @return Function result code:
  *         {@link AUDIOSTREAM_SUCCESS} If the execution is successful.
  *         {@link AUDIOSTREAM_ERROR_INVALID_PARAM}:
@@ -295,7 +295,7 @@ OH_AudioStream_Result OH_AudioCapturer_GetOverflowCount(OH_AudioCapturer* captur
  * @param userData Pointer to the user data passed when setting the callback via
  * OH_AudioStreamBuilder_SetCapturerReadDataCallback.
  * @param audioData Pointer to the available audio data.
- * @param audioDataSize Size of the available audio data.
+ * @param audioDataSize Size of the available audio data, unit is byte.
  * @see OH_AudioCapturer_Callbacks_Struct.OH_AudioCapturer_OnReadData
  * @since 20
  */

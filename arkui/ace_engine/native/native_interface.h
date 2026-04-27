@@ -93,6 +93,22 @@ typedef enum {
 void* OH_ArkUI_QueryModuleInterfaceByName(ArkUI_NativeAPIVariantKind type, const char* structName);
 
 /**
+ * @brief Retrieves the latest error message, which includes the error code, method name, and error cause.
+ * When other interfaces return an error code, they save the corresponding error message,
+ * and this interface can retrieve the currently stored error message.
+ * The information returned by this interface may evolve with versions and is intended solely for
+ * output to aid in analysis and troubleshooting. It should not be used for logical decisions.
+ *
+ * The returned string is a thread-local global string created by the system. The caller must not modify its content.
+ * If any editing is required, create a copy of the string content
+ * yourself. No memory deallocation is required by the caller.
+ *
+ * @return Returns the most recent error message.
+ * @since 26.0.0
+ */
+const char* OH_ArkUI_NativeModule_GetErrorMessage();
+
+/**
  * @brief Obtains the macro function corresponding to a struct pointer based on the struct type.
  *
  * @code {.cpp}

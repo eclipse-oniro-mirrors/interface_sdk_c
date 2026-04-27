@@ -3489,17 +3489,15 @@ typedef enum {
      */
     NODE_IMAGE_SOURCE_SIZE = 4013,
     /**
-     * @brief Support the implementation of affine image transformations using floating-point numbers or matrix objects.
+     * @brief Support the implementation of affine image transformations using floating-point numbers.
      * This attribute can be set, reset, and obtained as required through APIs.
      * The parameter types for setting and getting should be the same.
      *
      * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
      * .value[0...15].f32: 16 floating-point numbers.\n
-     * .object: The parameter type is {@link ArkUI_Matrix4},add since api 24.\n
      * 
      * Format of the return value {@link ArkUI_AttributeItem}:\n
      * .value[0...15].f32: 16 floating-point numbers.\n
-     * .object: The parameter type is {@link ArkUI_Matrix4},add since api 24.\n
      *
      * @since 21
      */
@@ -4396,6 +4394,19 @@ typedef enum {
     NODE_TEXT_INPUT_TEXT_OVERFLOW = 7049,
 
     /**
+     * @brief Defines the text decoration style and color for single-line text box.
+     * This attribute can be set, reset, and obtained as required through APIs.
+     *
+     * ?.object: Optional. The decoration style options. The parameter type is {@link OH_ArkUI_DecorationStyleOptions}.\n
+     * \n
+     * Format of the return value {@link ArkUI_AttributeItem}:\n
+     * .object: The decoration style options. The parameter type is {@link OH_ArkUI_DecorationStyleOptions}.\n
+     *
+     * @since 26.0.0
+     */
+    NODE_TEXT_INPUT_DECORATION = 7050,
+
+    /**
      * @brief Defines the default placeholder text for the multi-line text box.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
@@ -5010,6 +5021,19 @@ typedef enum {
      *  @since 24
      */
     NODE_TEXT_AREA_TEXT_OVERFLOW = 8046,
+
+    /**
+     * @brief Defines the text decoration style and color for multi-line text box.
+     * This attribute can be set, reset, and obtained as required through APIs.
+     *
+     * ?.object: Optional. The decoration style options. The parameter type is {@link OH_ArkUI_DecorationStyleOptions}.\n
+     * \n
+     * Format of the return value {@link ArkUI_AttributeItem}:\n
+     * .object: The decoration style options. The parameter type is {@link OH_ArkUI_DecorationStyleOptions}.\n
+     *
+     * @since 26.0.0
+     */
+    NODE_TEXT_AREA_DECORATION = 8047,
 
     /**
      * @brief Defines the button text content. This attribute can be set, reset, and obtained as required through APIs.
@@ -6858,6 +6882,20 @@ typedef enum {
      NODE_TEXT_EDITOR_ORPHAN_CHAR_OPTIMIZATION,
 
     /**
+     * @brief Whether to enable horizontal scrolling when text is wider than the view.
+     * The default value is false, and text will be wrapped by the view.
+     *
+     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
+     * .value[0].i32: The horizontally scrolling state.\n
+     * \n
+     * Format of the return value {@link ArkUI_AttributeItem}:\n
+     * .value[0].i32: The horizontally scrolling state.\n
+     *
+     * @since 26.0.0
+     */
+    NODE_TEXT_EDITOR_HORIZONTAL_SCROLLING,
+
+    /**
      * @brief Defines the alignment mode of the child components in the container. This attribute can be set, reset,
      * and obtained as required through APIs.
      *
@@ -6876,7 +6914,8 @@ typedef enum {
      *
      * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
      * .value[0].i32: scrollbar status. The parameter type is {@link ArkUI_ScrollBarDisplayMode}. The default value is
-     * <b>ARKUI_SCROLL_BAR_DISPLAY_MODE_AUTO</b>. \n
+     * <b>ARKUI_SCROLL_BAR_DISPLAY_MODE_AUTO</b> for the <b>List</b>, <b>Grid</b>, and <b>Scroll</b> components, and
+     * <b>ARKUI_SCROLL_BAR_DISPLAY_MODE_OFF</b> for the <b>WaterFlow</b> component. \n
      * \n
      * Format of the return value {@link ArkUI_AttributeItem}:\n
      * .value[0].i32: scrollbar status. The parameter type is {@link ArkUI_ScrollBarDisplayMode}. \n
@@ -7183,7 +7222,9 @@ typedef enum {
      * This attribute can be set, reset, and obtained as required through APIs.
      *
      * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute: \n
-     * .value[0].i32: clip content mode, The parameter type is {@link ArkUI_ContentClipMode}. \n
+     * .value[0].i32: clip content mode. The parameter type is {@link ArkUI_ContentClipMode}. The default value is
+     * <b>ARKUI_CONTENT_CLIP_MODE_BOUNDARY</b> for the <b>Grid</b> and <b>Scroll</b> components, and
+     * <b>ARKUI_CONTENT_CLIP_MODE_CONTENT_ONLY</b> for the <b>List</b> and <b>WaterFlow</b> components. \n
      * \n
      * Format of the return value {@link ArkUI_AttributeItem}: \n
      * .value[0].i32: clip content mode, The parameter type is {@link ArkUI_ContentClipMode}. \n
@@ -7198,7 +7239,9 @@ typedef enum {
      *
      * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute: \n
      * .value[0].i32: whether the scrollable scrolls back to top when status bar is clicked.
-     * The value <b>1</b> means to scroll back to top, and <b>0</b> means the opposite. The default value is <b>0/b>. \n
+     * The value <b>1</b> means to scroll back to top, and <b>0</b> means the opposite. The default value is <b>0</b>
+     * for API versions earlier than 18. For API version 18 and later, the default value is <b>0</b> for the
+     * horizontal scroll direction and <b>1</b> for the vertical scroll direction. \n
      * \n
      * Format of the return value {@link ArkUI_AttributeItem}: \n
      * .value[0].i32: whether the scrollable scrolls back to top when status bar is clicked. \n
@@ -7278,6 +7321,19 @@ typedef enum {
     NODE_SCROLL_ENABLE_BOUNCES_ZOOM = 1002026,
 
     /**
+     * @brief Sets whether dragging scrolling with the left mouse button pressed is supported.
+     *
+     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
+     * .value[0].i32: whether dragging scrolling with the left mouse button pressed is supported. <b>0</b>: no; <b>1</b>: yes. Default value: <b>0</b>. \n
+     * \n
+     * Format of the return value {@link ArkUI_AttributeItem}:\n
+     * .value[0].i32: whether dragging scrolling with the left mouse button pressed is supported. <b>0</b>: no; <b>1</b>: yes. \n
+     *
+     * @since 26.0.0
+     */
+    NODE_SCROLL_ENABLE_SCROLL_WITH_MOUSE = 1002027,
+
+    /**
      * @brief Sets whether to automatically adjust the margin of the scrollbar to avoid the component's <b>NODE_PADDING</b>, <b>NODE_SCROLL_CONTENT_START_OFFSET</b>, and <b>NODE_SCROLL_CONTENT_END_OFFSET</b> areas.
      *
      * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute\n
@@ -7345,13 +7401,13 @@ typedef enum {
      *
      * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
      * .value[0].i32: number of cached items in the list adapter. \n
-     * .value[1]?.i32: whether to show cached items. The value <b>0</b> means to hide cached items, and <b>0</b> means
+     * .value[1]?.i32: whether to show cached items. The value <b>0</b> means to hide cached items, and <b>1</b> means
      * to show cached items. The default value is <b>0</b>. This parameter is supported since API version 15. \n
      * .value[2]?.i32: maximum cache count. This parameter is supported since API version 22.
      * \n
      * Format of the return value {@link ArkUI_AttributeItem}:\n
      * .value[0].i32: number of cached items in the list adapter. \n
-     * .value[1].i32: whether to show cached items. The value <b>0</b> means to hide cached items, and <b>0</b> means
+     * .value[1].i32: whether to show cached items. The value <b>0</b> means to hide cached items, and <b>1</b> means
      * to show cached items. This parameter is supported since API version 15. \n
      * .value[2].i32: maximum cache count. This parameter is supported since API version 22.
      *
@@ -7605,6 +7661,19 @@ typedef enum {
      * @since 23
      */
     NODE_LIST_SUPPORT_EMPTY_BRANCH_IN_LAZY_LOADING = 1003019,
+
+    /**
+     * @brief Sets the back button behavior for the List component. Attribute setting, resetting, and obtaining APIs are supported.
+     *
+     * The parameter format for setting properties using {@link ArkUI_AttributeItem} is as follows:
+     * .value[0].i32: Whether to collapse the scroll menu when the back button is clicked. 0: no; 1: yes. Default value: 1.
+     * 
+     * The parameter format for obtaining properties using {@link ArkUI_AttributeItem} is as follows:
+     * .value[0].i32: Whether to collapse the scroll menu when the back button is clicked. 0: no; 1: yes.
+     *
+     * @since 26.0.0
+     */
+    NODE_LIST_BACK_PRESS_BEHAVIOR = 1003020,
 
     /**
      * @brief Defines whether to enable loop playback for the swiper.
@@ -8285,7 +8354,7 @@ typedef enum {
      * cancels refresh, and <b>0</b> means the opposite. Default value: <b>1</b>.
      * \n
      * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * * .value[0].i32: whether the pull-up gesture cancels refresh. The value <b>1</b> means that the pull-up gesture
+     * .value[0].i32: whether the pull-up gesture cancels refresh. The value <b>1</b> means that the pull-up gesture
      * cancels refresh, and <b>0</b> means the opposite.
      *
      * @since 23
@@ -8718,7 +8787,7 @@ typedef enum {
      *
      * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
      * .value[0].i32: whether to enable edit mode for the <b>Grid</b> component.
-     * </b>: Disable edit mode. <b>1</b>: Enable edit mode. Default value: <b>0</b>.\n
+     * <b>0</b>: Disable edit mode. <b>1</b>: Enable edit mode. Default value: <b>0</b>.\n
      * \n
      * Format of the return value {@link ArkUI_AttributeItem}:\n
      * .value[0].i32: whether to enable edit mode for the <b>Grid</b> component.
@@ -8808,11 +8877,11 @@ typedef enum {
      * This attribute can be set, reset, and obtained as required through APIs.
      *
      * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute: \n
-     * .value[0].i32: style of the <b>GridItem</b> component, specified using {@link ArkUI_SliderStyle}. \n
+     * .value[0].i32: style of the <b>GridItem</b> component, specified using {@link ArkUI_GridItemStyle}. \n
      * The default value is <b>GRID_ITEM_STYLE_NONE</b>. \n
      * \n
      * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: style of the <b>GridItem</b> component, specified using {@link ArkUI_SliderStyle}. \n
+     * .value[0].i32: style of the <b>GridItem</b> component, specified using {@link ArkUI_GridItemStyle}. \n
      *
      * @since 22
      */
@@ -9470,6 +9539,17 @@ typedef enum {
      * @since 24
      */
     NODE_ON_NEED_SOFTKEYBOARD = 36,
+
+    /**
+     * @brief This callback is invoked when the events and gestures on this node and
+     * higher-priority nodes are collected. \n
+     * This callback is used to intervene in the collection result of events and gestures. \n
+     * 
+     * When the event callback occurs, the {@link ArkUI_GestureCollectInterceptInfo} object can be obtained from the
+     * {@link ArkUI_NodeEvent} object. \n
+     * @since 26.0.0
+     */
+    NODE_ON_GESTURE_COLLECT_INTERCEPT = 37,
 
     /**
      * @brief Triggers onDetectResultUpdate callback
@@ -13231,6 +13311,18 @@ int32_t OH_ArkUI_Swiper_ShowNext(ArkUI_NodeHandle node);
  */
 int32_t OH_ArkUI_NativeModule_GetPageRootNodeHandleByContext(
     ArkUI_ContextHandle context, ArkUI_NodeHandle* rootNode);
+
+/**
+ * @brief Obtains the <b>ArkUI_GestureCollectInterceptInfo</b> object from a specified <b>ArkUI_NodeEvent</b> object.
+ *
+ * @param nodeEvent Pointer to the <b>ArkUI_NodeEvent</b> object.
+ * @return Returns the pointer to the <b>ArkUI_GestureCollectInterceptInfo</b> object.
+ *         It is valid only during callback and does not need to be released.
+ *         Returns <b>null</b> if the input parameter is invalid or the
+ *         information is not gesture collection interception information.
+ * @since 26.0.0
+ */
+ArkUI_GestureCollectInterceptInfo* OH_ArkUI_NodeEvent_GetGestureCollectInterceptInfo(ArkUI_NodeEvent* nodeEvent);
 
 #ifdef __cplusplus
 };

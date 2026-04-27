@@ -261,5 +261,5 @@ OH_AudioCommon_Result OH_AudioVolumeManager_UnregisterRingerModeChangeCallback(
 }
 #endif
 
-#endif // NATIVE_AUDIO_ROUTING_MANAGER_H
+#endif // NATIVE_AUDIO_VOLUME_MANAGER_H
 /** @} */

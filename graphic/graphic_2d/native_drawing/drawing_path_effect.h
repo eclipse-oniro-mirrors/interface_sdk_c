@@ -4,7 +4,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -19,16 +19,13 @@
  *
  * @brief Provides functions such as 2D graphics rendering, text drawing, and image display.
  *
- * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- *
  * @since 12
  * @version 1.0
  */
-
 /**
  * @file drawing_path_effect.h
  *
- * @brief Declares functions related to the <b>pathEffect</b> object in the drawing module.
+ * @brief This file declares the functions related to the path effect in the drawing module.
  *
  * @kit ArkGraphics2D
  * @library libnative_drawing.so
@@ -47,84 +44,89 @@ extern "C" {
 #endif
 
 /**
- * @brief Enumerate path dash style.
+ * @brief Enumerates the drawing styles for path effects.
  *
  * @since 18
  * @version 1.0
  */
 typedef enum {
-    /** Indicates translation effect. */
+    /**
+     * Translation effect.
+     */
     DRAWING_PATH_DASH_STYLE_TRANSLATE,
-    /** Indicates rotation effect. */
+    /**
+     * Rotation effect.
+     */
     DRAWING_PATH_DASH_STYLE_ROTATE,
-    /** Indicates morph effect. */
+    /**
+     * Morphing effect.
+     */
     DRAWING_PATH_DASH_STYLE_MORPH,
 } OH_Drawing_PathDashStyle;
 
 /**
- * @brief Creates an <b>OH_Drawing_PathEffect</b> object that is a combination of paths,
- * applying the inner path effect first and then the outer path effect.
+ * @brief Creates a path effect by sequentially applying the inner effect and then the outer effect.
  *
- * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @param outer Indicates an <b>OH_Drawing_PathEffect</b> object
- * @param inner Indicates an <b>OH_Drawing_PathEffect</b> object
- * @return Returns the pointer to the <b>OH_Drawing_PathEffect</b> object created.
+ * @param outer Pointer to an outer effect, which is an {@link OH_Drawing_PathEffect} object.
+ * @param inner Pointer to an inner effect, which is an {@link OH_Drawing_PathEffect} object.
+ * @return Returns a pointer to the created {@link OH_Drawing_PathEffect} object.
+ * If a null pointer is returned, the creation fails. The possible failure cause is that **inner** or **inner** is a
+ * null pointer.
  * @since 18
  * @version 1.0
  */
 OH_Drawing_PathEffect* OH_Drawing_CreateComposePathEffect(OH_Drawing_PathEffect* outer, OH_Drawing_PathEffect* inner);
 
 /**
- * @brief Creates an <b>OH_Drawing_PathEffect</b> object
- * that turns the included angle of the path into a fillet of a specified radius.
+ * @brief Creates a path effect that transforms the sharp angle between line segments into a rounded corner with the
+ * specified radius.
  *
- * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @param radius Indicates the degree of curvature of the arc, the radius must be greater than zero.
- * @return Returns the pointer to the <b>OH_Drawing_PathEffect</b> object created.
- *         If nullptr is returned, the creation fails.
- *         The possible cause of the failure is radius is zero or less.
+ * @param radius Radius of the rounded corner. The value is valid only when it is greater than 0.
+ * @return Returns a pointer to the created {@link OH_Drawing_PathEffect} object.
+ * If a null pointer is returned, the creation fails. The possible failure cause is that **radius** is less than or
+ * equal to **0**.
  * @since 18
  * @version 1.0
  */
 OH_Drawing_PathEffect* OH_Drawing_CreateCornerPathEffect(float radius);
 
 /**
- * @brief Creates an <b>OH_Drawing_PathEffect</b> object.
+ * @brief Creates a dashed path effect. The dashed line effect is determined by a group of "on" and "off" intervals.
+ * This API may return an error code. For details, call {@link OH_Drawing_ErrorCodeGet}.
+ * If **intervals** is NULL or **count** is less than or equal to 0, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
  *
- * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @param intervals Indicates a array which contain an even number of entries.
- * @param count Indicates the number of elements of the intervals array.
- * @param phase Indicates the offset into intervals array.
- * @return Returns the pointer to the <b>OH_Drawing_PathEffect</b> object created.
+ * @param intervals Pointer to the start address of the dashed line interval array. In the array, an even entry
+ * indicates an "on" interval and an odd entry indicates an "off" interval. The unit is px.
+ * @param count Number of entries in the dashed line interval array. The value must be an even number greater than 0.
+ * @param phase Offset in the dashed line interval array.
+ * @return Returns a pointer to the created {@link OH_Drawing_PathEffect} object.
  * @since 12
  * @version 1.0
  */
 OH_Drawing_PathEffect* OH_Drawing_CreateDashPathEffect(float* intervals, int count, float phase);
 
 /**
- * @brief Creates an <b>OH_Drawing_PathEffect</b> object
- * that breaks the path and creates an irregular distribution on the path.
+ * @brief Creates a path effect that segments the path and scatters the segments in an irregular pattern along the path.
  *
- * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @param segLength Indicates the maximum segment length of the path.
- * @param deviation Indicates the deviation during drawing.
- * @return Returns the pointer to the <b>OH_Drawing_PathEffect</b> object created.
+ * @param segLength Distance along the path at which each segment is fragmented. An effect is created when it is
+ * greater than 0.
+ * @param deviation Maximum amount by which the end points of the segments can be randomly displaced during rendering.
+ * @return Returns a pointer to the created {@link OH_Drawing_PathEffect} object.
  * @since 18
  * @version 1.0
  */
 OH_Drawing_PathEffect* OH_Drawing_CreateDiscretePathEffect(float segLength, float deviation);
 
 /**
- * @brief Creates an <b>OH_Drawing_PathEffect</b> object and sets the path effect to a dash effect.
+ * @brief Creates a dashed path effect.
  *
- * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @param path Indicates the pointer to an <b>OH_Drawing_Path</b> object.
- * @param advance Indicates the distance between the dashed segments.
- * @param phase Indicates the offset into intervals array.
- * @param type Indicates the type of the path dash effect.
- * @return Returns the pointer to the <b>OH_Drawing_PathEffect</b> object created.
- *         If nullptr is returned, the creation fails.
- *         The possible cause of the failure is advance and phase are zero or less.
+ * @param path Pointer to an {@link OH_Drawing_Path} object.
+ * @param advance Length of each dashed line segment.
+ * @param phase Offset of the pattern within the dash segment length.
+ * @param type Style of the dashed path effect.
+ * @return Returns a pointer to the created {@link OH_Drawing_PathEffect} object.
+ * If a null pointer is returned, the creation fails. The possible failure cause is that **path** is a null pointer or *
+ * *advance** is less than or equal to **0**.
  * @since 18
  * @version 1.0
  */
@@ -132,12 +134,13 @@ OH_Drawing_PathEffect* OH_Drawing_CreatePathDashEffect(const OH_Drawing_Path* pa
     OH_Drawing_PathDashStyle type);
 
 /**
- * @brief Creates an <b>OH_Drawing_PathEffect</b> object by overlaying two path effects.
+ * @brief Creates an overlay path effect based on two distinct path effects that take effect separately.
  *
- * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @param firstPathEffect Indicates the pointer to an <b>OH_Drawing_PathEffect</b> object.
- * @param secondPathEffect Indicates the pointer to an <b>OH_Drawing_PathEffect</b> object.
- * @return Returns the pointer to the <b>OH_Drawing_PathEffect</b> object created.
+ * @param firstPathEffect Pointer to an {@link OH_Drawing_PathEffect} object.
+ * @param secondPathEffect Pointer to an {@link OH_Drawing_PathEffect} object.
+ * @return Returns a pointer to the created {@link OH_Drawing_PathEffect} object.
+ * If a null pointer is returned, the creation fails. The possible failure cause is that **firstPathEffect** or **
+ * secondPathEffect** is a null pointer.
  * @since 18
  * @version 1.0
  */
@@ -145,10 +148,9 @@ OH_Drawing_PathEffect* OH_Drawing_CreateSumPathEffect(OH_Drawing_PathEffect* fir
     OH_Drawing_PathEffect* secondPathEffect);
 
 /**
- * @brief Destroys an <b>OH_Drawing_PathEffect</b> object and reclaims the memory occupied by the object.
+ * @brief Destroys an **OH_Drawing_PathEffect** object and reclaims the memory occupied by the object.
  *
- * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @param pathEffect Indicates the pointer to an <b>OH_Drawing_PathEffect</b> object.
+ * @param pathEffect Pointer to an {@link OH_Drawing_PathEffect} object.
  * @since 12
  * @version 1.0
  */

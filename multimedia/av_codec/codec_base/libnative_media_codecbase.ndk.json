@@ -641,6 +641,26 @@
         "type": "variable"
     },
     {
+        "first_introduced": "26.0.0",
+        "name": "OH_MD_KEY_AUDIO_VIVID_SIGNAL_FORMAT",
+        "type": "variable"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_MD_KEY_AUDIO_SOUNDBED_LAYOUT",
+        "type": "variable"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_MD_KEY_AUDIO_SOUNDBED_BITRATE",
+        "type": "variable"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_MD_KEY_AUDIO_OBJECT_BITRATE",
+        "type": "variable"
+    },
+    {
         "first_introduced": "10",
         "name": "OH_AVCodec_GetCapability"
     },
@@ -649,12 +669,28 @@
         "name": "OH_AVCodec_GetCapabilityByCategory"
     },
     {
+        "first_introduced": "24",
+        "name": "OH_AVCodec_GetCapabilityList"
+    },
+    {
         "first_introduced": "10",
         "name": "OH_AVCapability_IsHardware"
     },
     {
+        "first_introduced": "24",
+        "name": "OH_AVCapability_IsSecure"
+    },
+    {
         "first_introduced": "10",
         "name": "OH_AVCapability_GetName"
+    },
+    {
+        "first_introduced": "24",
+        "name": "OH_AVCapability_GetMimeType"
+    },
+    {
+        "first_introduced": "24",
+        "name": "OH_AVCapability_CheckMimeType"
     },
     {
         "first_introduced": "10",

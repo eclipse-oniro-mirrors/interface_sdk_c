@@ -4,7 +4,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -19,7 +19,6 @@
  *
  * @brief Provides the native colorSpaceManager capability.
  *
- * @syscap SystemCapability.Graphic.Graphic2D.ColorManager.Core
  * @since 13
  * @version 1.0
  */
@@ -27,7 +26,7 @@
 /**
  * @file native_color_space_manager.h
  *
- * @brief Defines the functions for obtaining and using a native colorSpaceManager.
+ * @brief This file declares the functions for creating and using a color space.
  *
  * @kit ArkGraphics2D
  * @library libnative_color_space_manager.so
@@ -35,6 +34,7 @@
  * @since 13
  * @version 1.0
  */
+
 #ifndef C_INCLUDE_NATIVE_COLOR_SPACE_MANAGER_H_
 #define C_INCLUDE_NATIVE_COLOR_SPACE_MANAGER_H_
 
@@ -43,106 +43,197 @@ extern "C" {
 #endif
 
 /**
- * @brief Defines a colorspace manager.
+ * @brief Provides the declaration of an **OH_NativeColorSpaceManager** struct.
+ *
  * @since 13
  */
 typedef struct OH_NativeColorSpaceManager OH_NativeColorSpaceManager;
 
 /**
- * @brief Enumerates color space types.
+ * @brief Defines an enum for the color space names.
+ *
  * @since 13
  */
 typedef enum {
-    /** Indicates an unknown color space. */
+    /**
+     * Unknown color space.
+     */
     NONE = 0,
-    /** Indicates the color space based on Adobe RGB. */
+    /**
+     * Color space based on Adobe RGB.
+     */
     ADOBE_RGB = 1,
-    /** Indicates the color space based on SMPTE RP 431-2-2007 and IEC 61966-2.1:1999. */
+    /**
+     * Color space based on SMPTE RP 431-2-2007 and IEC 61966-2.1:1999.
+     */
     DCI_P3 = 2,
-    /** Indicates the color space based on SMPTE RP 431-2-2007 and IEC 61966-2.1:1999. */
+    /**
+     * Color space based on SMPTE RP 431-2-2007 and IEC 61966-2.1:1999.
+     */
     DISPLAY_P3 = 3,
-    /** Indicates the standard red green blue (SRGB) color space based on IEC 61966-2.1:1999. */
+    /**
+     * Standard Red Green Blue (SRGB) color space based on IEC 61966-2.1:1999.
+     */
     SRGB = 4,
-    /** Indicates the color space based on ITU-R BT.709. */
+    /**
+     * Color space based on ITU-R BT.709.
+     */
     BT709 = 6,
-    /** Indicates the color space based on ITU-R BT.601. */
+    /**
+     * Color space based on ITU-R BT.601.
+     */
     BT601_EBU = 7,
-    /** Indicates the color space based on ITU-R BT.601. */
+    /**
+     * Color space based on ITU-R BT.601.
+     */
     BT601_SMPTE_C = 8,
-    /** Indicates the color space based on ITU-R BT.2020. */
+    /**
+     * Color space based on ITU-R BT.2020.
+     */
     BT2020_HLG = 9,
-    /** Indicates the color space based on ITU-R BT.2020. */
+    /**
+     * Color space based on ITU-R BT.2020.
+     */
     BT2020_PQ = 10,
-    /** PRIMARIES_P3_D65 | TRANSFUNC_HLG | RANGE_FULL */
+    /**
+     * Color space with the color primaries of P3_D65, the transfer characteristics of HLG, and the color range of Full.
+     */
     P3_HLG = 11,
-    /** PRIMARIES_P3_D65 | TRANSFUNC_PQ | RANGE_FULL */
+    /**
+     * Color space with the color primaries of P3_D65, the transfer characteristics of PQ, and the color range of Full.
+     */
     P3_PQ = 12,
-    /** PRIMARIES_ADOBE_RGB | TRANSFUNC_ADOBE_RGB | RANGE_LIMIT */
+    /**
+     * Color space with the color primaries of ADOBE_RGB, the transfer characteristics of ADOBE_RGB, and the color
+     * range of LIMIT.
+     */
     ADOBE_RGB_LIMIT = 13,
-    /** PRIMARIES_P3_D65 | TRANSFUNC_SRGB | RANGE_LIMIT */
+    /**
+     * Color space with the color primaries of P3_D65, the transfer characteristics of SRGB, and the color range of
+     * LIMIT.
+     */
     DISPLAY_P3_LIMIT = 14,
-    /** PRIMARIES_SRGB | TRANSFUNC_SRGB | RANGE_LIMIT */
+    /**
+     * Color space with the color primaries of SRGB, the transfer characteristics of SRGB, and the color range of LIMIT.
+     */
     SRGB_LIMIT = 15,
-    /** PRIMARIES_BT709 | TRANSFUNC_BT709 | RANGE_LIMIT */
+    /**
+     * Color space with the color primaries of BT.709, the transfer characteristics of BT.709, and the color range of
+     * LIMIT.
+     */
     BT709_LIMIT = 16,
-    /** PRIMARIES_BT601_P | TRANSFUNC_BT709 | RANGE_LIMIT */
+    /**
+     * Color space with the color primaries of BT.601_P, the transfer characteristics of BT.709, and the color range of
+     * LIMIT.
+     */
     BT601_EBU_LIMIT = 17,
-    /** PRIMARIES_BT601_N | TRANSFUNC_BT709 | RANGE_LIMIT */
+    /**
+     * Color space with the color primaries of BT.601_N, the transfer characteristics of BT.709, and the color range of
+     * LIMIT.
+     */
     BT601_SMPTE_C_LIMIT = 18,
-    /** PRIMARIES_BT2020 | TRANSFUNC_HLG | RANGE_LIMIT */
+    /**
+     * Color space with the color primaries of BT.2020, the transfer characteristics of HLG, and the color range of
+     * LIMIT.
+     */
     BT2020_HLG_LIMIT = 19,
-    /** PRIMARIES_BT2020 | TRANSFUNC_PQ | RANGE_LIMIT */
+    /**
+     * Color space with the color primaries of BT.2020, the transfer characteristics of PQ, and the color range of
+     * LIMIT.
+     */
     BT2020_PQ_LIMIT = 20,
-    /** PRIMARIES_P3_D65 | TRANSFUNC_HLG | RANGE_LIMIT */
+    /**
+     * Color space with the color primaries of P3_D65, the transfer characteristics of HLG, and the color range of
+     * LIMIT.
+     */
     P3_HLG_LIMIT = 21,
-    /** PRIMARIES_P3_D65 | TRANSFUNC_PQ | RANGE_LIMIT */
+    /**
+     * Color space with the color primaries of P3_D65, the transfer characteristics of PQ, and the color range of LIMIT.
+     */
     P3_PQ_LIMIT = 22,
-    /** PRIMARIES_P3_D65 | TRANSFUNC_LINEAR */
+    /**
+     * Color space with the color primaries of P3_D65 and the transfer characteristic of LINEAR.
+     */
     LINEAR_P3 = 23,
-    /** PRIMARIES_SRGB | TRANSFUNC_LINEAR */
+    /**
+     * Color space with the color primaries of SRGB and the transfer characteristic of LINEAR.
+     */
     LINEAR_SRGB = 24,
-    /** PRIMARIES_BT709 | TRANSFUNC_LINEAR */
+    /**
+     * Color space with the color primaries of BT.709 and the transfer characteristic of LINEAR.
+     */
     LINEAR_BT709 = LINEAR_SRGB,
-    /** PRIMARIES_BT2020 | TRANSFUNC_LINEAR */
+    /**
+     * Color space with the color primaries of BT.2020 and the transfer characteristic of LINEAR.
+     */
     LINEAR_BT2020 = 25,
-    /** PRIMARIES_SRGB | TRANSFUNC_SRGB | RANGE_FULL */
+    /**
+     * Color space with the color primaries of SRGB, the transfer characteristics of SRGB, and the color range of Full.
+     */
     DISPLAY_SRGB = SRGB,
-    /** PRIMARIES_P3_D65 | TRANSFUNC_SRGB | RANGE_FULL */
+    /**
+     * Color space with the color primaries of P3_D65, the transfer characteristics of SRGB, and the color range of
+     * Full.
+     */
     DISPLAY_P3_SRGB = DISPLAY_P3,
-    /** PRIMARIES_P3_D65 | TRANSFUNC_HLG | RANGE_FULL */
+    /**
+     * Color space with the color primaries of P3_D65, the transfer characteristics of HLG, and the color range of Full.
+     */
     DISPLAY_P3_HLG = P3_HLG,
-    /** PRIMARIES_DISPLAY_P3 | TRANSFUNC_PQ | RANGE_FULL */
+    /**
+     * Color space with the color primaries of P3_D65, the transfer characteristics of PQ, and the color range of Full.
+     */
     DISPLAY_P3_PQ = P3_PQ,
-    /** Indicates a customized color space. */
+    /**
+     * Custom color space.
+     */
     CUSTOM = 5,
 } ColorSpaceName;
 
 /**
- * @brief Describes the primary colors red, green, blue and white point coordinated as (x, y)
- * in color space, in terms of real world chromaticities.
+ * @brief Describes the color space primaries.
+ *
  * @since 13
  */
 typedef struct {
-    /** Coordinate value x of red color */
+    /**
+     * X-coordinate of the red color.
+     */
     float rX;
-    /** Coordinate value y of red color */
+    /**
+     * Y-coordinate of the red color.
+     */
     float rY;
-    /** Coordinate value x of green color */
+    /**
+     * X-coordinate of the green color.
+     */
     float gX;
-    /** Coordinate value y of green color */
+    /**
+     * Y-coordinate of the green color.
+     */
     float gY;
-    /** Coordinate value x of blue color */
+    /**
+     * X-coordinate of the blue color.
+     */
     float bX;
-    /** Coordinate value y of blue color */
+    /**
+     * Y-coordinate of the blue color.
+     */
     float bY;
-    /** Coordinate value x of white point */
+    /**
+     * X-coordinate of the white point.
+     */
     float wX;
-    /** Coordinate value y of white point */
+    /**
+     * Y-coordinate of the white point.
+     */
     float wY;
 } ColorSpacePrimaries;
 
 /**
- * @brief Indicates white point coordinated as (x, y) return array.
+ * @brief This struct describes a white point array. Each white point indicates the coordinates of white in the active
+ * color space.
+ *
  * @since 13
  */
 typedef struct {
@@ -151,27 +242,28 @@ typedef struct {
 } WhitePointArray;
 
 /**
- * @brief Creates a <b>NativeColorSpaceManager</b> instance by colorSpaceName.
- * A new <b>NativeColorSpaceManager</b> instance is created each time this function is called.
+ * @brief Creates an **OH_NativeColorSpaceManager** instance based on a color space name.
+ * A new **OH_NativeColorSpaceManager** instance is created each time this function is called.
  *
- * @syscap SystemCapability.Graphic.Graphic2D.ColorManager.Core
- * @param colorSpaceName Indicates the NativeColorSpace connection name.
- * @return Returns the pointer to the <b>NativeColorSpaceManager</b> instance created.
- * Creation failed, cause memory shortage.
+ * @param colorSpaceName Color space name of the created {@link OH_NativeColorSpaceManager} instance.
+ * @return Returns a pointer to the {@link OH_NativeColorSpaceManager} instance. If the memory is insufficient, the **
+ * OH_NativeColorSpaceManager** instance fails to be created.
  * @since 13
  * @version 1.0
  */
 OH_NativeColorSpaceManager* OH_NativeColorSpaceManager_CreateFromName(ColorSpaceName colorSpaceName);
 
 /**
- * @brief Creates a <b>NativeColorSpaceManager</b> instance by primaries and gamma.
- * A new <b>NativeColorSpaceManager</b> instance is created each time this function is called.
+ * @brief Creates an **OH_NativeColorSpaceManager** instance based on the color primaries and gamma value.
+ * A new **OH_NativeColorSpaceManager** instance is created each time this function is called.
  *
- * @syscap SystemCapability.Graphic.Graphic2D.ColorManager.Core
- * @param primaries Indicates the NativeColorSpace connection primaries.
- * @param gamma Indicates the NativeColorSpace connection gamma.
- * @return Returns the pointer to the <b>NativeColorSpaceManager</b> instance created.
- * Creation failed, cause memory shortage.
+ * @param primaries Primary color of the created {@link OH_NativeColorSpaceManager} instance.
+ * @param gamma Gamma value of the created {@link OH_NativeColorSpaceManager} instance. The gamma value is a floating
+ * point number used to correct the brightness range.
+ * Generally, the gamma value is positive. A negative value results in increased brightness in low-light areas and
+ * decreased brightness in high-light areas. The value **0** indicates a linear color space.
+ * @return Returns a pointer to the {@link OH_NativeColorSpaceManager} instance.
+ * If the memory is insufficient, the **OH_NativeColorSpaceManager** instance fails to be created.
  * @since 13
  * @version 1.0
  */
@@ -179,21 +271,20 @@ OH_NativeColorSpaceManager* OH_NativeColorSpaceManager_CreateFromPrimariesAndGam
     ColorSpacePrimaries primaries, float gamma);
 
 /**
- * @brief Delete the NativeColorSpaceManager instance.
+ * @brief Destroys an **OH_NativeColorSpaceManager** instance.
  *
- * @syscap SystemCapability.Graphic.Graphic2D.ColorManager.Core
- * @param nativeColorSpaceManager Indicates the pointer to a <b>NativeColorSpaceManager</b> instance.
+ * @param nativeColorSpaceManager Pointer to an **OH_NativeColorSpaceManager** instance.
  * @since 13
  * @version 1.0
  */
 void OH_NativeColorSpaceManager_Destroy(OH_NativeColorSpaceManager* nativeColorSpaceManager);
 
 /**
- * @brief Get colorSpace name.
+ * @brief Obtains the color space name.
  *
- * @syscap SystemCapability.Graphic.Graphic2D.ColorManager.Core
- * @param nativeColorSpaceManager Indicates the pointer to a <b>NativeColorSpaceManager</b> instance.
- * @return Returns value, return value > 0 && value <= 25, success, return value == 0 , failed.
+ * @param nativeColorSpaceManager Pointer to an **OH_NativeColorSpaceManager** instance.
+ * @return Returns the color space name, which is defined in {@link ColorSpaceName}. The return value **0** means that
+ * the function call fails.
  * @since 13
  * @version 1.0
  */
@@ -201,11 +292,10 @@ int OH_NativeColorSpaceManager_GetColorSpaceName(
     OH_NativeColorSpaceManager* nativeColorSpaceManager);
 
 /**
- * @brief Get white point.
+ * @brief Obtains the white points.
  *
- * @syscap SystemCapability.Graphic.Graphic2D.ColorManager.Core
- * @param nativeColorSpaceManager Indicates the pointer to a <b>NativeColorSpaceManager</b> instance.
- * @return Returns float array, return array = <0.f, 0.f>, failed, otherwise, true.
+ * @param nativeColorSpaceManager Pointer to an **OH_NativeColorSpaceManager** instance.
+ * @return Returns a float array of white points. The value **<0.0, 0.0>** means that the function call fails.
  * @since 13
  * @version 1.0
  */
@@ -213,11 +303,10 @@ WhitePointArray OH_NativeColorSpaceManager_GetWhitePoint(
     OH_NativeColorSpaceManager* nativeColorSpaceManager);
 
 /**
- * @brief Get gamma.
+ * @brief Obtains the gamma value.
  *
- * @syscap SystemCapability.Graphic.Graphic2D.ColorManager.Core
- * @param nativeColorSpaceManager Indicates the pointer to a <b>NativeColorSpaceManager</b> instance.
- * @return Returns float, return value == 0.f, failed, otherwise, true.
+ * @param nativeColorSpaceManager Pointer to an **OH_NativeColorSpaceManager** instance.
+ * @return Returns a float value. The value **0.0** means that the function call fails.
  * @since 13
  * @version 1.0
  */

@@ -4,7 +4,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -19,16 +19,14 @@
  *
  * @brief Provides functions such as 2D graphics rendering, text drawing, and image display.
  *
- * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- *
  * @since 12
  * @version 1.0
  */
-
 /**
  * @file drawing_sampling_options.h
  *
- * @brief Declares functions related to the <b>sampling options</b> object in the drawing module.
+ * @brief This file declares the functions related to sampling in the drawing module. It is used for image or texture
+ * sampling.
  *
  * @kit ArkGraphics2D
  * @library libnative_drawing.so
@@ -47,40 +45,52 @@ extern "C" {
 #endif
 
 /**
- * @brief Enumerates storage filter mode.
+ * @brief Defines an enum for the filter modes.
  *
  * @since 12
  * @version 1.0
  */
 typedef enum {
-    /** single sample point (nearest neighbor) */
+    /**
+     * Nearest filter mode.
+     */
     FILTER_MODE_NEAREST,
-    /** interpolate between 2x2 sample points (bilinear interpolation) */
+    /**
+     * Linear filter mode.
+     */
     FILTER_MODE_LINEAR,
 } OH_Drawing_FilterMode;
 
 /**
- * @brief Enumerates storage formats mipmap mode.
+ * @brief Defines an enum for the mipmap modes.
  *
  * @since 12
  * @version 1.0
  */
 typedef enum {
-    /** ignore mipmap levels, sample from the "base" */
+    /**
+     * Mipmap level ignored.
+     */
     MIPMAP_MODE_NONE,
-    /** sample from the nearest level */
+    /**
+     * Nearest sampling from two adjacent mipmap levels.
+     */
     MIPMAP_MODE_NEAREST,
-    /** interpolate between the two nearest levels */
+    /**
+     * Linear interpolation sampling between two adjacent mipmap levels.
+     */
     MIPMAP_MODE_LINEAR,
 } OH_Drawing_MipmapMode;
 
 /**
- * @brief Creates an <b>OH_Drawing_SamplingOptions</b> object.
+ * @brief Creates an **OH_Drawing_SamplingOptions** object.
+ * This API may return an error code. For details, call {@link OH_Drawing_ErrorCodeGet}.
+ * If **mipmapMode** is not set to one of the enumerated values, **OH_DRAWING_ERROR_PARAMETER_OUT_OF_RANGE** is
+ * returned.
  *
- * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @param filterMode sampling filter mode.
- * @param mipmapMode sampling mipmap mode..
- * @return Returns the pointer to the <b>OH_Drawing_SamplingOptions</b> object created.
+ * @param filterMode Filter sampling mode.
+ * @param mipmapMode Mipmap mode.
+ * @return Returns a pointer to the created {@link OH_Drawing_SamplingOptions} object.
  * @since 12
  * @version 1.0
  */
@@ -88,21 +98,20 @@ OH_Drawing_SamplingOptions* OH_Drawing_SamplingOptionsCreate(OH_Drawing_FilterMo
     OH_Drawing_MipmapMode mipmapMode);
 
 /**
- * @brief Creates an <b>OH_Drawing_SamplingOptions</b> copy object.
+ * @brief Creates a copy of an {@link OH_Drawing_SamplingOptions} object.
  *
- * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @param samplingOptions Indicates the pointer to an <b>OH_Drawing_SamplingOptions</b> object.
- * @return Returns the pointer to the <b>OH_Drawing_SamplingOptions</b> object created.
+ * @param samplingOptions Pointer to the {@link OH_Drawing_SamplingOptions} object.
+ * @return Returns a pointer to the created {@link OH_Drawing_SamplingOptions} object copy. If NULL is returned, the
+ * creation fails. The possible failure cause is that no memory is available or **samplingOptions** is NULL.
  * @since 20
  * @version 1.0
  */
 OH_Drawing_SamplingOptions* OH_Drawing_SamplingOptionsCopy(OH_Drawing_SamplingOptions* samplingOptions);
 
 /**
- * @brief Destroys an <b>OH_Drawing_SamplingOptions</b> object and reclaims the memory occupied by the object.
+ * @brief Destroys an **OH_Drawing_SamplingOptions** object and reclaims the memory occupied by the object.
  *
- * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @param samplingOptions Indicates the pointer to an <b>OH_Drawing_SamplingOptions</b> object.
+ * @param samplingOptions Pointer to the {@link OH_Drawing_SamplingOptions} object.
  * @since 12
  * @version 1.0
  */

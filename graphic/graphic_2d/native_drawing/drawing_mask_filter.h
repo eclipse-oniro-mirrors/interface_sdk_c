@@ -4,7 +4,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -19,16 +19,13 @@
  *
  * @brief Provides functions such as 2D graphics rendering, text drawing, and image display.
  *
- * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- *
  * @since 11
  * @version 1.0
  */
-
 /**
  * @file drawing_mask_filter.h
  *
- * @brief Declares functions related to the <b>maskFilter</b> object in the drawing module.
+ * @brief This file declares the functions related to the mask filter in the drawing module.
  *
  * @kit ArkGraphics2D
  * @library libnative_drawing.so
@@ -47,48 +44,48 @@ extern "C" {
 #endif
 
 /**
- * @brief Enumerates blur type.
+ * @brief Defines an enum for the blur types.
  *
  * @since 11
  * @version 1.0
  */
 typedef enum {
     /**
-     * Fuzzy inside and outside.
+     * Blurs both inside and outside the original border.
      */
     NORMAL,
     /**
-     * Solid inside, fuzzy outside.
+     * Draws solid inside the border, and blurs outside.
      */
     SOLID,
     /**
-     * Nothing inside, fuzzy outside.
+     * Draws nothing inside the border, and blurs outside.
      */
     OUTER,
     /**
-     * Fuzzy inside, nothing outside.
+     * Blurs inside the border, and draws nothing outside.
      */
     INNER,
 } OH_Drawing_BlurType;
 
 /**
- * @brief Creates an <b>OH_Drawing_MaskFilter</b> with a blur effect.
+ * @brief Creates an **OH_Drawing_MaskFilter** object with a blur type.
  *
- * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @param blurType Indicates the blur type.
- * @param sigma Indicates the standard deviation of the Gaussian blur to apply. Must be > 0.
- * @param respectCTM Indicates the blur's sigma is modified by the CTM, default is true.
- * @return Returns the pointer to the <b>OH_Drawing_MaskFilter</b> object created.
+ * @param blurType Blur type.
+ * @param sigma Standard deviation of the Gaussian blur to apply. The value must be greater than 0.
+ * @param respectCTM Whether the blur standard deviation is modified by the current transformation matrix (CTM). The
+ * default value is **true**. **true**: The blur standard deviation is affected by the CTM. **false**: The blur
+ * standard deviation is fixed and not affected by the CTM.
+ * @return Returns the pointer to the **OH_Drawing_MaskFilter** object created.
  * @since 11
  * @version 1.0
  */
 OH_Drawing_MaskFilter* OH_Drawing_MaskFilterCreateBlur(OH_Drawing_BlurType blurType, float sigma, bool respectCTM);
 
 /**
- * @brief Destroys an <b>OH_Drawing_MaskFilter</b> object and reclaims the memory occupied by the object.
+ * @brief Destroys an **OH_Drawing_MaskFilter** object and reclaims the memory occupied by the object.
  *
- * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @param maskFilter Indicates the pointer to an <b>OH_Drawing_MaskFilter</b> object.
+ * @param maskFilter Pointer to an **OH_Drawing_MaskFilter** object.
  * @since 11
  * @version 1.0
  */

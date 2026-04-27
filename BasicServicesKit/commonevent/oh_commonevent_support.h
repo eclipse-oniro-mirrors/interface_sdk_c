@@ -99,14 +99,14 @@ static const char* const COMMON_EVENT_SCREEN_OFF = "usual.event.SCREEN_OFF";
 static const char* const COMMON_EVENT_SCREEN_ON = "usual.event.SCREEN_ON";
 
 /**
- * @brief This commonEvent means when the device is is about to enter the hibernate mode.
+ * @brief This commonEvent means when the device is about to enter the hibernate mode.
  *
  * @since 15
  */
 static const char* const COMMON_EVENT_ENTER_HIBERNATE = "usual.event.ENTER_HIBERNATE";
 
 /**
- * @brief This commonEvent means when the device is exits the hibernate mode.
+ * @brief This commonEvent means when the device exits the hibernate mode.
  *
  * @since 15
  */
@@ -546,7 +546,7 @@ static const char* const COMMON_EVENT_SCREEN_LOCKED = "usual.event.SCREEN_LOCKED
 static const char* const COMMON_EVENT_HTTP_PROXY_CHANGE = "usual.event.HTTP_PROXY_CHANGE";
 
 /**
- * @brief This commonEvent means when the network connectivityy change.
+ * @brief This commonEvent means when the network connectivity change.
  *
  * This is a protected common event that can only be sent by system.
  *
@@ -585,6 +585,32 @@ static const char* const COMMON_EVENT_MANAGED_BROWSER_POLICY_CHANGED = "usual.ev
  * @since 23
  */
 static const char* const COMMON_EVENT_TABLET_MODE_CHANGED = "usual.event.TABLET_MODE_CHANGED";
+
+/**
+ * @brief This common event indicates that specific volumes on the device have been decrypted.
+ * This is a protected common event that can only be sent by system.
+ *
+ * @since 26.0.0
+ */
+static const char* const COMMON_EVENT_VOLUME_DECRYPTED = "usual.event.VOLUME_DECRYPTED";
+
+/**
+ * @brief This common event indicates that specific volumes on the device have been encrypted.
+ * This is a protected common event that can only be sent by system.
+ *
+ * @since 26.0.0
+ */
+static const char* const COMMON_EVENT_VOLUME_ENCRYPTED = "usual.event.VOLUME_ENCRYPTED";
+
+/**
+ * @brief This common event indicates that specific volumes on the device have had their encryption policy set.
+ * To subscribe to this protected common event, your application must have the
+ * ohos.permission.QUERY_VOLUME_ENCRYPTION_STATUS permission.
+ * This is a protected common event that can only be sent by system.
+ *
+ * @since 26.0.0
+ */
+static const char* const COMMON_EVENT_VOLUME_ENCRYPTION_POLICY_SET = "usual.event.VOLUME_ENCRYPTION_POLICY_SET";
 
 /**
  * @brief This common event means that the state (open or closed) of the laptop lid has changed.

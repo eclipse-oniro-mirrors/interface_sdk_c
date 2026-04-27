@@ -171,7 +171,7 @@ HiDebug_ErrorCode OH_HiDebug_RequestTrace(OH_HiDebug_RequestTraceConfig *config,
  * @param value Indicates value of graphics memory, in kibibytes.
  * @return Result code
  *         {@link HIDEBUG_SUCCESS} Get graphics memory success.
- *         {@link HIDEBUG_INVALID_ARGUMENT} Invalid argument，value is null.
+ *         {@link HIDEBUG_INVALID_ARGUMENT} Invalid argument, value is null.
  *         {@link HIDEBUG_TRACE_ABNORMAL} Failed to get the application memory due to a remote exception.
  * @since 14
  */
@@ -318,12 +318,14 @@ uint64_t OH_HiDebug_SetCrashObj(HiDebug_CrashObjType type, void* addr);
 void OH_HiDebug_ResetCrashObj(uint64_t crashObj);
 
 /**
- * @brief Starts resource profiler for the current process. When {@link HIDEBUG_RES_PROF_SUCCESS} is returned, you
- * can call {@link OH_HiDebug_StopProfiler} to stop the resource collection. If {@link OH_HiDebug_StopProfiler} is
- * not called, the resource collection will continue until the maximum duration is reached.
+ * @brief Starts Resource Profiler for the current process asynchronously.
+ * The callback is invoked only after profiling stops, including auto-stop caused by the maximum duration.
+ * When profiling output is available, the callback carries the output file path. If profiling stops without
+ * producing output, the callback is invoked with a NULL file path.
  *
  * @param type Type of resource to be profiled.
  * @param config Configuration parameters for the profiler.
+ * @param callback Callback to receive the profiling result. See {@link OH_HiDebug_ProfilingCallback}.
  * @return Result code
  *         {@link HIDEBUG_RES_PROF_SUCCESS} Resource profiler started successfully.
  *         {@link HIDEBUG_RES_PROF_INVALID_ARG} Invalid resource profiler argument.
@@ -337,8 +339,6 @@ void OH_HiDebug_ResetCrashObj(uint64_t crashObj);
  *         {@link HIDEBUG_RES_PROF_ALREADY_STARTED} Resource profiler already started.
  *         {@link HIDEBUG_RES_PROF_PROCESS_OVERLIMIT} Resource profiler process count exceeds the limit.
  *         {@link HIDEBUG_RES_PROF_CONFLICT} Resource profiler conflicts with CLI tools or system profiling tasks.
- *         {@link HIDEBUG_RES_PROF_AUTO_STOPPED_BY_DURATION} Resource profiler automatically stopped due to the
- *         duration limit.
  *         {@link HIDEBUG_RES_PROF_DAILY_QUOTA_EXCEEDED} Daily quota exceeded during resource profiling.
  *         {@link HIDEBUG_RES_PROF_CPU_OVERLOADED} System is experiencing high CPU utilization.
  *         {@link HIDEBUG_RES_PROF_MEM_PRESSURE_CRITICAL} Insufficient available memory.
@@ -346,7 +346,8 @@ void OH_HiDebug_ResetCrashObj(uint64_t crashObj);
  *         {@link HIDEBUG_RES_PROF_FAILURE} Failed to start the resource profiler.
  * @since 24
  */
-HiDebug_ErrorCode OH_HiDebug_StartProfiler(OH_HiDebug_ResourceType type, OH_HiDebug_ResProfilerConfig* config);
+HiDebug_ErrorCode OH_HiDebug_StartProfiler(OH_HiDebug_ResourceType type, OH_HiDebug_ResProfilerConfig* config,
+    OH_HiDebug_ProfilingCallback callback);
 
 /**
  * @brief Stops resource profiler for the current process. This API can be called after the
@@ -359,6 +360,46 @@ HiDebug_ErrorCode OH_HiDebug_StartProfiler(OH_HiDebug_ResourceType type, OH_HiDe
  * @since 24
  */
 HiDebug_ErrorCode OH_HiDebug_StopProfiler(void);
+
+/**
+ * @brief Callback triggered for listening. You can use FDs to write memory data in your app so that you can export the
+ *     data using the hidumper command.
+ *
+ * @param fd FD used to write memory data in the app.
+ * @param tag Callback type. You can process the related logic based on the callback type.
+ * @param mayReportToOEM Whether the data will be uploaded to the OEM. If the value is true, the data will be uploaded
+ *     to the OEM. Pay attention to data privacy and security issues.
+ * @param arg Callback argument. You can pass different arguments based on the value of type.
+ * @return Whether the operation is successful.
+ * @since 26.0.0
+ */
+typedef bool (*OH_HiDebug_MemDumpListener)(int32_t fd, OH_HiDebug_MemListenerType tag,
+                                           bool mayReportToOEM, const char* arg);
+
+/**
+ * @brief Registers a listener triggered when the memory watermark of an app is high or the memory information is
+ *     manually exported by hidumper. The third-party app framework or app developer calls back the registered function
+ *     to dump the app's internal memory information to hidumper or upload the information to the OME vendor through
+ *     commercial gray release.
+ * OH_HiDebug_UnregisterMemDumpListener is used to unregister the listener.
+ * @param name Consumer type ID.
+ * @param listener Callback triggered for listening.
+ * @return Result code.
+ * {@link HIDEBUG_SUCCESS } Operation succeeded.
+ * {@link HIDEBUG_INVALID_ARGUMENT } Invalid argument.
+ * @since 26.0.0
+ */
+HiDebug_ErrorCode OH_HiDebug_RegisterMemDumpListener(const char* name, OH_HiDebug_MemDumpListener listener);
+
+/**
+ * @brief Unregisters a memory dump listener that has been successfully registered.
+ * @param name Consumer type ID.
+ * @return Result code.
+ * {@link HIDEBUG_SUCCESS } Operation succeeded.
+ * {@link HIDEBUG_INVALID_ARGUMENT } Invalid argument.
+ * @since 26.0.0
+ */
+HiDebug_ErrorCode OH_HiDebug_UnregisterMemDumpListener(const char* name);
 #ifdef __cplusplus
 }
 #endif // __cplusplus

@@ -191,6 +191,13 @@ extern "C" {
  */
 #define DOMAIN_OS "OS"
 
+/**
+ * @brief appfreeze warning event.
+ *
+ * @since 26.0.0
+ */
+#define OH_EVENT_APP_FREEZE_WARNING "APPFREEZE_WARNING"
+
 #ifdef __cplusplus
 }
 #endif

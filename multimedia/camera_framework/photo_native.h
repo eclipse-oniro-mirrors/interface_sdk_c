@@ -4,7 +4,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -12,24 +12,20 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 /**
  * @addtogroup OH_Camera
  * @{
  *
  * @brief Provide the definition of the C interface for the camera module.
  *
- * @syscap SystemCapability.Multimedia.Camera.Core
- *
  * @since 12
  * @version 1.0
  */
-
 /**
  * @file photo_native.h
  *
- * @brief Declare the camera photo concepts.
- *
+ * @brief The file declares the camera photo concepts.
+ * 
  * @library libohcamera.so
  * @kit CameraKit
  * @syscap SystemCapability.Multimedia.Camera.Core
@@ -51,45 +47,43 @@ extern "C" {
 #endif
 
 /**
- * @brief Camera photo object
- *
- * A pointer can be created using {@link OH_PhotoNative} method.
- *
+ * @brief The struct describes the photo object, which is a full-quality image object.
+ * 
  * @since 12
  * @version 1.0
  */
 typedef struct OH_PhotoNative OH_PhotoNative;
 
 /**
- * @brief Get main image.
- *
- * @param photo the {@link OH_PhotoNative} instance.
- * @param mainImage the {@link OH_ImageNative} which use to get main image.
- * @return {@link #CAMERA_OK} if the method call succeeds.
- *         {@link #INVALID_ARGUMENT} if parameter missing or parameter type incorrect.
+ * @brief Obtains a full-quality image.
+ * 
+ * @param photo Pointer to an **OH_PhotoNative** instance.
+ * @param mainImage Double pointer to the full-quality image, which is an **OH_ImageNative** instance.
+ * @return **CAMERA_OK**: The operation is successful.
+ *     <br>**CAMERA_INVALID_ARGUMENT**: A parameter is missing or the parameter type is incorrect.
  * @since 12
  * @version 1.0
  */
 Camera_ErrorCode OH_PhotoNative_GetMainImage(OH_PhotoNative* photo, OH_ImageNative** mainImage);
 
 /**
- * @brief Get the uncompressed image.
- *
- * @param photo the {@link OH_PhotoNative} instance.
- * @param picture the {@link OH_PictureNative} which use to get the uncompressed image.
- * @return {@link #CAMERA_OK} if the method call succeeds.
- *         {@link #CAMERA_INVALID_ARGUMENT} if parameter missing or parameter type incorrect.
+ * @brief Obtains an uncompressed image.
+ * 
+ * @param photo Pointer to an **OH_PhotoNative** instance.
+ * @param picture Double pointer to the uncompressed image, which is an **OH_PictureNative** instance.
+ * @return **CAMERA_OK**: The operation is successful.
+ *     <br>**CAMERA_INVALID_ARGUMENT**: A parameter is missing or the parameter type is incorrect.
  * @since 23
  * @version 1.0
  */
 Camera_ErrorCode OH_PhotoNative_GetUncompressedImage(OH_PhotoNative* photo, OH_PictureNative** picture);
 
 /**
- * @brief Release camera photo.
- *
- * @param photo the {@link OH_PhotoNative} instance to released.
- * @return {@link #CAMERA_OK} if the method call succeeds.
- *         {@link #INVALID_ARGUMENT} if parameter missing or parameter type incorrect.
+ * @brief Releases a full-quality image.
+ * 
+ * @param photo Pointer to the **OH_PhotoNative** instance to release.
+ * @return **CAMERA_OK**: The operation is successful.
+ *     <br>**CAMERA_INVALID_ARGUMENT**: A parameter is missing or the parameter type is incorrect.
  * @since 12
  * @version 1.0
  */

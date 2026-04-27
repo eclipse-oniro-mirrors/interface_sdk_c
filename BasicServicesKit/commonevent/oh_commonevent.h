@@ -182,7 +182,7 @@ CommonEvent_Subscriber* OH_CommonEvent_CreateSubscriber(const CommonEvent_Subscr
     CommonEvent_ReceiveCallback callback);
 
 /**
- * @brief Destory the subscriber.
+ * @brief Destroy the subscriber.
  *
  * @param subscriber Indicates the created subscriber.
  * @since 12
@@ -628,7 +628,7 @@ CommonEvent_ErrCode OH_CommonEvent_SetDoubleArrayToParameters(CommonEvent_Parame
     const double* value, size_t num);
 
 /**
- * @brief Publish a commen event.
+ * @brief Publish a common event.
  *
  * @param event Indicates the name of the common event.
  * @return Returns the error code.
@@ -643,7 +643,7 @@ CommonEvent_ErrCode OH_CommonEvent_SetDoubleArrayToParameters(CommonEvent_Parame
 CommonEvent_ErrCode OH_CommonEvent_Publish(const char* event);
 
 /**
- * @brief Publish a commen event with specified publish information.
+ * @brief Publish a common event with specified publish information.
  *
  * @param event Indicates the name of the common event.
  * @param info Indicates the publish information.

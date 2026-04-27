@@ -4,7 +4,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -12,7 +12,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 /**
  * @addtogroup rawfile
  * @{
@@ -24,13 +23,10 @@
  * @since 8
  * @version 1.0
  */
-
 /**
  * @file raw_file.h
  *
- * @brief Declares native functions related to raw file.
- *
- * For example, you can use the functions to search for, read, and close raw files.
+ * @brief Provides functions related to rawfiles, including searching for, reading, and closing rawfiles.
  *
  * @syscap SystemCapability.Global.ResourceManager
  * @library librawfile.z.so
@@ -52,7 +48,7 @@ extern "C" {
 struct RawFile;
 
 /**
- * @brief Provides access to a raw file.
+ * @brief Provides access to large rawfiles.
  *
  * @since 11
  * @version 1.0
@@ -60,9 +56,7 @@ struct RawFile;
 struct RawFile64;
 
 /**
- * @brief Provides access to a raw file.
- *
- *
+ * @brief Provides access to rawfiles.
  *
  * @since 8
  * @version 1.0
@@ -70,7 +64,7 @@ struct RawFile64;
 typedef struct RawFile RawFile;
 
 /**
- * @brief Provides access to a raw file.
+ * @brief Provides access to large rawfiles.
  *
  * @since 11
  * @version 1.0
@@ -78,102 +72,107 @@ typedef struct RawFile RawFile;
 typedef struct RawFile64 RawFile64;
 
 /**
- * @brief Represent the raw file descriptor's info.
- *
- * The RawFileDescriptor is an output parameter in the {@link OH_ResourceManager_GetRawFileDescriptor},
- * and describes the raw file's file descriptor, start position and the length in the HAP.
+ * @brief Defines the file descriptor of a rawfile. **RawFileDescriptor** is an output parameter of
+ * {@link OH_ResourceManager_GetRawFileDescriptor}. It contains the file descriptor of a rawfile and the start position
+ * and length of the rawfile in the HAP.
  *
  * @since 8
  * @version 1.0
  */
 typedef struct {
-    /** the raw file fd */
+    /**
+     * File descriptor of the rawfile, in int.
+     */
     int fd;
 
-    /** the offset from where the raw file starts in the HAP */
+    /**
+     * Start position of the rawfile in the HAP, in long.
+     */
     long start;
 
-    /** the length of the raw file in the HAP. */
+    /**
+     * Length of the rawfile in the HAP, in long.
+     */
     long length;
 } RawFileDescriptor;
 
 /**
- * @brief Represent the raw file descriptor's info.
- *
- * The RawFileDescriptor64 is an output parameter in the {@link OH_ResourceManager_GetRawFileDescriptor64},
- * and describes the raw file's file descriptor, start position and the length in the HAP.
+ * @brief Defines the file descriptor of a rawfile. **RawFileDescriptor** is an output parameter of
+ * {@link OH_ResourceManager_GetRawFileDescriptor}. It contains the file descriptor of a rawfile and the start position
+ * and length of the rawfile in the HAP.
  *
  * @since 11
  * @version 1.0
  */
 typedef struct {
-    /** the raw file fd */
+    /**
+     * File descriptor of the rawfile, in int.
+     */
     int fd;
 
-    /** the offset from where the raw file starts in the HAP */
+    /**
+     * Start position of the rawfile in the HAP, in long.
+     */
     int64_t start;
 
-    /** the length of the raw file in the HAP. */
+    /**
+     * Length of the rawfile in the HAP, in long.
+     */
     int64_t length;
 } RawFileDescriptor64;
 
 /**
- * @brief Reads a raw file.
+ * @brief Reads data of the specified length from the current position in a rawfile.
  *
- * This function attempts to read data of <b>length</b> bytes from the current offset.
- *
- * @param rawFile Indicates the pointer to {@link RawFile}.
- * @param buf Indicates the pointer to the buffer for receiving the data read.
- * @param length Indicates the number of bytes to read.
- * @return Returns the number of bytes read if any;
- *         if the number reaches the end of file (EOF) or rawFile is nullptr also returns <b>0</b>
+ * @param rawFile Pointer to {@link RawFile}.
+ * @param buf Pointer to the buffer for receiving the read data.
+ * @param length Length of the data to read.
+ * @return Number of read bytes. If the read length exceeds the length of the file end or rawfile is empty, **0** is
+ * returned.
  * @since 8
  * @version 1.0
  */
 int OH_ResourceManager_ReadRawFile(const RawFile *rawFile, void *buf, size_t length);
 
 /**
- * @brief Uses the 32-bit data type to seek a data read position based on the specified offset within a raw file.
+ * @brief Searches for the data read/write position in a rawfile based on the specified offset.
  *
- * @param rawFile Indicates the pointer to {@link RawFile}.
- * @param offset Indicates the specified offset.
- * @param whence Indicates the new read position, which can be one of the following values: \n
- * <b>0</b>: The new read position is set to <b>offset</b>. \n
- * <b>1</b>: The read position is set to the current position plus <b>offset</b>. \n
- * <b>2</b>: The read position is set to the end of file (EOF) plus <b>offset</b>.
- * @return Returns <b>(int) 0</b> if the operation is successful; returns <b>(int) -1</b> if an error
- * occurs.
+ * @param rawFile Pointer to {@link RawFile}.
+ * @param offset Specified offset.
+ * @param whence Read/Write position. The options are as follows:
+ * **0**: The read/write position is the start position of the file plus the offset.
+ * **1**: The read/write position is the current position plus the offset.
+ * **2**: The read/write position is the end position of the file plus the offset.
+ * @return **0** if the search is successful; **-1** otherwise.
  * @since 8
  * @version 1.0
  */
 int OH_ResourceManager_SeekRawFile(const RawFile *rawFile, long offset, int whence);
 
 /**
- * @brief Obtains the raw file length represented by an long.
+ * @brief Obtains the length of the rawfile, in long.
  *
- * @param rawFile Indicates the pointer to {@link RawFile}.
- * @return Returns the total length of the raw file. If rawFile is nullptr also returns 0.
+ * @param rawFile Pointer to {@link RawFile}.
+ * @return Overall length of the rawfile. If the rawfile is empty, **0** is returned.
  * @since 8
  * @version 1.0
  */
 long OH_ResourceManager_GetRawFileSize(RawFile *rawFile);
 
 /**
- * @brief Obtains the remaining raw file length represented by an long.
+ * @brief Obtains the remaining length of the rawfile, in long.
  *
- * @param rawFile Indicates the pointer to {@link RawFile}.
- * @return Returns the remaining length of the raw file. If rawFile is nullptr also returns 0.
+ * @param rawFile Pointer to {@link RawFile}.
+ * @return Remaining length of the rawfile. If the rawfile is empty, **0** is returned.
  * @since 11
  * @version 1.0
  */
 long OH_ResourceManager_GetRawFileRemainingLength(const RawFile *rawFile);
 
 /**
- * @brief Closes an opened {@link RawFile} and releases all associated resources.
+ * @brief Closes a {@link RawFile} and releases all associated resources.
  *
- *
- *
- * @param rawFile Indicates the pointer to {@link RawFile}.
+ * @param rawFile Pointer to {@link RawFile}.
  * @see OH_ResourceManager_OpenRawFile
  * @since 8
  * @version 1.0
@@ -181,25 +180,22 @@ long OH_ResourceManager_GetRawFileRemainingLength(const RawFile *rawFile);
 void OH_ResourceManager_CloseRawFile(RawFile *rawFile);
 
 /**
- * @brief Obtains the current offset of a raw file, represented by an long.
+ * @brief Obtains the current offset of a rawfile, in long. Current offset of the rawfile.
  *
- * The current offset of a raw file.
- *
- * @param rawFile Indicates the pointer to {@link RawFile}.
- * @return Returns the current offset of a raw file. If rawFile is nullptr also returns 0.
+ * @param rawFile Pointer to {@link RawFile}.
+ * @return Current offset of the rawfile. If the rawfile is empty, **0** is returned.
  * @since 8
  * @version 1.0
  */
 long OH_ResourceManager_GetRawFileOffset(const RawFile *rawFile);
 
 /**
- * @brief Opens the file descriptor of a raw file based on the long offset and file length.
+ * @brief Opens a rawfile based on the specified offset (in long) and file length (in long) and obtains the file
+ * descriptor. The file descriptor obtained can be used to read the file.
  *
- * The opened raw file descriptor is used to read the raw file.
- *
- * @param rawFile Indicates the pointer to {@link RawFile}.
+ * @param rawFile Pointer to {@link RawFile}.
  * @param descriptor Indicates the raw file's file descriptor, start position and the length in the HAP.
- * @return Returns true: open the raw file descriptor successfully, false: the raw file is not allowed to access.
+ * @return <b>true</b> if the file is opened; returns <b>false</b> if the access to the file is rejected.
  * @since 8
  * @version 1.0
  * @deprecated since 12
@@ -208,25 +204,24 @@ long OH_ResourceManager_GetRawFileOffset(const RawFile *rawFile);
 bool OH_ResourceManager_GetRawFileDescriptor(const RawFile *rawFile, RawFileDescriptor &descriptor);
 
 /**
- * @brief Obtains the file descriptor of a raw file based on the long offset and file length.
+ * @brief Opens a rawfile based on the specified offset (in long) and file length (in long) and obtains the file
+ * descriptor. The file descriptor obtained can be used to read the file.
  *
- * The obtains raw file descriptor is used to read the raw file.
- *
- * @param rawFile Indicates the pointer to {@link RawFile}.
- * @param descriptor Indicates the raw file's file descriptor, start position and the length in the HAP.
- * @return Returns true: obtains the raw file descriptor successfully, false: the raw file is not allowed to access.
+ * @param rawFile Pointer to {@link RawFile}.
+ * @param descriptor File descriptor of the rawfile, start position of the rawfile in the HAP, and length of the
+ * rawfile.
+ * @return <b>true</b> if the file is opened; returns <b>false</b> if the access to the file is rejected.
  * @since 12
  * @version 1.0
  */
 bool OH_ResourceManager_GetRawFileDescriptorData(const RawFile *rawFile, RawFileDescriptor *descriptor);
 
 /**
- * @brief Closes the file descriptor of a raw file.
- *
- * The opened raw file descriptor must be released after used to avoid the file descriptor leak.
+ * @brief Releases the file descriptor of a rawfile. To prevent file descriptor leakage, you are advised to release a
+ * rawfile descriptor immediately after use.
  *
  * @param descriptor Indicates the raw file's file descriptor, start position and the length in the HAP.
- * @return Returns true: closes the raw file descriptor successfully, false: closes the raw file descriptor failed.
+ * @return Returns <b>true</b> if the file descriptor is released; returns <b>false</b> otherwise.
  * @since 8
  * @version 1.0
  * @deprecated since 12
@@ -235,63 +230,60 @@ bool OH_ResourceManager_GetRawFileDescriptorData(const RawFile *rawFile, RawFile
 bool OH_ResourceManager_ReleaseRawFileDescriptor(const RawFileDescriptor &descriptor);
 
 /**
- * @brief Release the file descriptor of a raw file.
+ * @brief Releases the file descriptor of a rawfile. To prevent file descriptor leakage, you are advised to release a
+ * rawfile descriptor immediately after use.
  *
- * The opened raw file descriptor must be released after used to avoid the file descriptor leak.
- *
- * @param descriptor Indicates the raw file's file descriptor, start position and the length in the HAP.
- * @return Returns true: release the raw file descriptor successfully, false: release the raw file descriptor failed.
+ * @param descriptor File descriptor of the rawfile. It contains the file descriptor, start position in the HAP, and
+ * file length.
+ * @return Returns <b>true</b> if the file descriptor is released; returns <b>false</b> otherwise.
  * @since 12
  * @version 1.0
  */
 bool OH_ResourceManager_ReleaseRawFileDescriptorData(const RawFileDescriptor *descriptor);
 
 /**
- * @brief Reads a raw file.
+ * @brief Reads data of the specified length from the current position in a large rawfile.
  *
- * This function attempts to read data of <b>length</b> bytes from the current offset. using a 64-bit
- *
- * @param rawFile Indicates the pointer to {@link RawFile64}.
- * @param buf Indicates the pointer to the buffer for receiving the data read.
- * @param length Indicates the number of bytes to read.
- * @return Returns the number of bytes read if any;
- *         returns <b>0</b> if the number reaches the end of file (EOF). or rawFile is nullptr also returns 0
+ * @param rawFile Pointer to {@link RawFile64}.
+ * @param buf Pointer to the buffer for receiving the read data.
+ * @param length Length of the data to read.
+ * @return Number of read bytes. If the read length exceeds the length of the file end or rawfile is empty, **0** is
+ * returned.
  * @since 11
  * @version 1.0
  */
 int64_t OH_ResourceManager_ReadRawFile64(const RawFile64 *rawFile, void *buf, int64_t length);
 
 /**
- * @brief Uses the 64-bit data type to seek a data read position based on the specified offset within a raw file.
+ * @brief Searches for the data read/write position in a large rawfile based on the specified offset.
  *
- * @param rawFile Indicates the pointer to {@link RawFile64}.
- * @param offset Indicates the specified offset.
- * @param whence Indicates the new read position, which can be one of the following values: \n
- * <b>0</b>: The new read position is set to <b>offset</b>. \n
- * <b>1</b>: The read position is set to the current position plus <b>offset</b>. \n
- * <b>2</b>: The read position is set to the end of file (EOF) plus <b>offset</b>.
- * @return Returns <b>(int) 0</b> if the operation is successful; returns <b>(int) -1</b> if an error
- * occurs.
+ * @param rawFile Pointer to {@link RawFile64}.
+ * @param offset Specified offset.
+ * @param whence Read/Write position. The options are as follows:
+ * **0**: The read/write position is the start position of the file plus the offset.
+ * **1**: The read/write position is the current position plus the offset.
+ * **2**: The read/write position is the end position of the file plus the offset.
+ * @return **0** if the search is successful; **-1** otherwise.
  * @since 11
  * @version 1.0
  */
 int OH_ResourceManager_SeekRawFile64(const RawFile64 *rawFile, int64_t offset, int whence);
 
 /**
- * @brief Obtains the raw file length represented by an int64_t.
+ * @brief Obtains the length of a large rawfile, in int64_t.
  *
- * @param rawFile Indicates the pointer to {@link RawFile64}.
- * @return Returns the total length of the raw file. If rawFile is nullptr also returns 0.
+ * @param rawFile Pointer to {@link RawFile64}.
+ * @return Overall length of the rawfile. If the rawfile is empty, **0** is returned.
  * @since 11
  * @version 1.0
  */
 int64_t OH_ResourceManager_GetRawFileSize64(RawFile64 *rawFile);
 
 /**
- * @brief Obtains the remaining raw file length represented by an int64_t.
+ * @brief Obtains the remaining length of a large rawfile, in int64_t.
  *
- * @param rawFile Indicates the pointer to {@link RawFile64}.
- * @return Returns the remaining length of the raw file. If rawFile is nullptr also returns 0.
+ * @param rawFile Pointer to {@link RawFile64}.
+ * @return Remaining length of the rawfile. If the rawfile is empty, **0** is returned.
  * @since 11
  * @version 1.0
  */
@@ -300,9 +292,7 @@ int64_t OH_ResourceManager_GetRawFileRemainingLength64(const RawFile64 *rawFile)
 /**
  * @brief Closes an opened {@link RawFile64} and releases all associated resources.
  *
- *
- *
- * @param rawFile Indicates the pointer to {@link RawFile64}.
+ * @param rawFile Pointer to {@link RawFile64}.
  * @see OH_ResourceManager_OpenRawFile64
  * @since 11
  * @version 1.0
@@ -310,37 +300,35 @@ int64_t OH_ResourceManager_GetRawFileRemainingLength64(const RawFile64 *rawFile)
 void OH_ResourceManager_CloseRawFile64(RawFile64 *rawFile);
 
 /**
- * @brief Obtains the current offset of a raw file, represented by an int64_t.
+ * @brief Obtains the offset of a large rawfile, in int64_t.
  *
- * The current offset of a raw file.
- *
- * @param rawFile Indicates the pointer to {@link RawFile64}.
- * @return Returns the current offset of a raw file. If rawFile is nullptr also returns 0.
+ * @param rawFile Pointer to {@link RawFile64}.
+ * @return Current offset of the rawfile. If the rawfile is empty, **0** is returned.
  * @since 11
  * @version 1.0
  */
 int64_t OH_ResourceManager_GetRawFileOffset64(const RawFile64 *rawFile);
 
 /**
- * @brief Opens the file descriptor of a raw file based on the int64_t offset and file length.
+ * @brief Opens a large rawfile based on the specified offset (in int64_t) and file length (in int64_t) and obtains the
+ * file descriptor. The file descriptor obtained can be used to read the file.
  *
- * The opened raw file descriptor is used to read the raw file.
- *
- * @param rawFile Indicates the pointer to {@link RawFile64}.
- * @param descriptor Indicates the raw file's file descriptor, start position and the length in the HAP.
- * @return Returns true: open the raw file descriptor successfully, false: the raw file is not allowed to access.
+ * @param rawFile Pointer to {@link RawFile64}.
+ * @param descriptor File descriptor of the rawfile, start position of the rawfile in the HAP, and length of the
+ * rawfile.
+ * @return <b>true</b> if the file is opened; returns <b>false</b> if the access to the file is rejected.
  * @since 11
  * @version 1.0
  */
 bool OH_ResourceManager_GetRawFileDescriptor64(const RawFile64 *rawFile, RawFileDescriptor64 *descriptor);
 
 /**
- * @brief Closes the file descriptor of a raw file.
+ * @brief Releases the file descriptor of a rawfile. To prevent file descriptor leakage, you are advised to release a
+ * rawfile descriptor immediately after use.
  *
- * The opened raw file descriptor must be released after used to avoid the file descriptor leak.
- *
- * @param descriptor Indicates the raw file's file descriptor, start position and the length in the HAP.
- * @return Returns true: closes the raw file descriptor successfully, false: closes the raw file descriptor failed.
+ * @param descriptor File descriptor of the rawfile. It contains the file descriptor, start position in the HAP, and
+ * file length.
+ * @return Returns <b>true</b> if the file descriptor is released; returns <b>false</b> otherwise.
  * @since 11
  * @version 1.0
  */

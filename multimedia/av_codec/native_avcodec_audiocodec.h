@@ -241,8 +241,6 @@ OH_AVErrCode OH_AudioCodec_SetParameter(OH_AVCodec *codec, const OH_AVFormat *fo
  * {@link AV_ERR_INVALID_VAL}, input parameter is empty or invalid. Buffer index
  * should be given by {@link OH_AVCodecOnNeedInputBuffer}.
  * {@link AV_ERR_INVALID_STATE}, the interface was called in an invalid state.
- * {@link AV_ERR_OPERATE_NOT_PERMIT}, operation not permitted.
- * This could be due to an incorrect state or an unsupported operation.
  * {@link AV_ERR_UNKNOWN}, internal error occurred, it is recommended to check the logs.
  * @since 11
  */

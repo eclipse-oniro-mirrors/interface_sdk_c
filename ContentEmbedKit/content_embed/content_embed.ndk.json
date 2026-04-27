@@ -1,7 +1,7 @@
 [
     {
         "first_introduced": "24",
-        "name": "OH_ContentEmbed_CreateDocumentByHmid"
+        "name": "OH_ContentEmbed_CreateDocumentByOEid"
     },
     {
         "first_introduced": "24",
@@ -17,7 +17,7 @@
     },
     {
         "first_introduced": "24",
-        "name": "OH_ContentEmbed_Document_GetHmid"
+        "name": "OH_ContentEmbed_Document_GetOEid"
     },
     {
         "first_introduced": "24",
@@ -93,11 +93,11 @@
     },
         {
         "first_introduced": "24",
-        "name": "OH_ContentEmbed_Storage_GetHmid"
+        "name": "OH_ContentEmbed_Storage_GetOEid"
     },
     {
         "first_introduced": "24",
-        "name": "OH_ContentEmbed_Storage_SetHmid"
+        "name": "OH_ContentEmbed_Storage_SetOEid"
     },
     {
         "first_introduced": "24",
@@ -265,11 +265,11 @@
     },
     {
         "first_introduced": "24",
-        "name": "OH_ContentEmbed_GetContentEmbedFormatByHmidAndLocale"
+        "name": "OH_ContentEmbed_GetContentEmbedFormatByOEidAndLocale"
     },
     {
         "first_introduced": "24",
-        "name": "OH_ContentEmbed_GetHmidFromFormat"
+        "name": "OH_ContentEmbed_GetOEidFromFormat"
     },
         {
         "first_introduced": "24",

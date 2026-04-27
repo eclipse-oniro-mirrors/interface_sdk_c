@@ -17,6 +17,7 @@ import("//build/ohos/ndk/ndk.gni")
 ohos_ndk_headers("ohaudiosuite_header") {
   dest_dir = "$ndk_headers_out_dir/ohaudiosuite"
   sources = [
+    "native_audio_converter.h",
     "native_audio_suite_base.h",
     "native_audio_suite_engine.h",
   ]
@@ -30,5 +31,6 @@ ohos_ndk_library("libohaudiosuite_ndk") {
   system_capability_headers = [
     "native_audio_suite_base.h",
     "native_audio_suite_engine.h",
+    "native_audio_converter.h",
   ]
 }

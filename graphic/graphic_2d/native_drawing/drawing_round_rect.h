@@ -4,7 +4,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -19,16 +19,13 @@
  *
  * @brief Provides functions such as 2D graphics rendering, text drawing, and image display.
  *
- * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- *
  * @since 11
  * @version 1.0
  */
-
 /**
  * @file drawing_round_rect.h
  *
- * @brief Declares functions related to the <b>roundRect</b> object in the drawing module.
+ * @brief This file declares the functions related to the rounded rectangle in the drawing module.
  *
  * @kit ArkGraphics2D
  * @library libnative_drawing.so
@@ -48,61 +45,64 @@ extern "C" {
 #endif
 
 /**
- * @brief Enumerates of corner radii position.
+ * @brief Defines an enum for the corner positions of a rounded rectangle.
  *
  * @since 12
  * @version 1.0
  */
 typedef enum {
     /**
-     * Index of top-left corner radii.
+     * Top left corner of the rounded rectangle.
      */
     CORNER_POS_TOP_LEFT,
     /**
-     * Index of top-right corner radii.
+     * Top right corner of the rounded rectangle.
      */
     CORNER_POS_TOP_RIGHT,
     /**
-     * Index of bottom-right corner radii.
+     * Bottom right corner of the rounded rectangle.
      */
     CORNER_POS_BOTTOM_RIGHT,
     /**
-     * Index of bottom-left corner radii.
+     * Bottom left corner of the rounded rectangle.
      */
     CORNER_POS_BOTTOM_LEFT,
 } OH_Drawing_CornerPos;
 
 /**
- * @brief Creates an <b>OH_Drawing_RoundRect</b> object.
+ * @brief Creates an **OH_Drawing_RoundRect** object. This API may return an error code. For details, call
+ * {@link OH_Drawing_ErrorCodeGet}
+ * .
+ * If **rect** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
  *
- * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @param rect Indicates the pointer to an <b>OH_Drawing_Rect</b> object.
- * @param xRad Indicates the corner radii on x-axis.
- * @param yRad Indicates the corner radii on y-axis.
- * @return Returns the pointer to the <b>OH_Drawing_RoundRect</b> object created.
+ * @param rect Pointer to an **OH_Drawing_Rect** object.
+ * @param xRad Radius of the rounded corner on the X axis. A negative number is invalid.
+ * @param yRad Radius of the rounded corner on the Y axis. A negative number is invalid.
+ * @return Returns the pointer to the **OH_Drawing_RoundRect** object created.
  * @since 11
  * @version 1.0
  */
 OH_Drawing_RoundRect* OH_Drawing_RoundRectCreate(const OH_Drawing_Rect* rect, float xRad, float yRad);
 
 /**
- * @brief Creates an <b>OH_Drawing_RoundRect</b> copy object.
+ * @brief Creates a copy of a rounded rectangle.
  *
- * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @param roundRect Indicates the pointer to an <b>OH_Drawing_RoundRect</b> object to copy.
- * @return Returns the pointer to the <b>OH_Drawing_RoundRect</b> object created.
+ * @param roundRect Pointer to an {@link OH_Drawing_RoundRect} object.
+ * @return Returns the pointer to the new **OH_Drawing_RoundRect** object created.
  * @since 20
  * @version 1.0
  */
 OH_Drawing_RoundRect* OH_Drawing_RoundRectCopy(const OH_Drawing_RoundRect* roundRect);
 
 /**
- * @brief Sets the radiusX and radiusY for a specific corner position.
+ * @brief Sets the radii of the specified rounded corner in this rounded rectangle.
+ * This API may return an error code. For details, call {@link OH_Drawing_ErrorCodeGet}.
+ * If **roundRect** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
  *
- * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @param roundRect Indicates the pointer to an <b>OH_Drawing_Rect</b> object.
- * @param pos Indicates the corner radii position.
- * @param radii Indicates the corner radii on x-axis and y-axis.
+ * @param roundRect Pointer to an **OH_Drawing_RoundRect** object.
+ * @param pos Position of the rounded corner. For details about the available options, see {@link OH_Drawing_CornerPos}.
+ * @param radii OH_Drawing_Corner_Radii struct, including the radii on the X axis and Y axis. A radius less than or
+ * equal to 0 is invalid.
  * @since 12
  * @version 1.0
  */
@@ -110,37 +110,36 @@ void OH_Drawing_RoundRectSetCorner(OH_Drawing_RoundRect* roundRect,
     OH_Drawing_CornerPos pos, OH_Drawing_Corner_Radii radii);
 
 /**
- * @brief Gets an <b>OH_Drawing_Corner_Radii</b> struct, the point is round corner radiusX and radiusY.
+ * @brief Obtains the radii of the specified rounded corner in a rounded rectangle.
+ * This API may return an error code. For details, call {@link OH_Drawing_ErrorCodeGet}.
+ * If **roundRect** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
  *
- * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @param roundRect Indicates the pointer to an <b>OH_Drawing_RoundRect</b> object.
- * @param pos Indicates the corner radii position.
- * @return Returns the corner radii of <b>OH_Drawing_Corner_Radii</b> struct.
+ * @param roundRect Pointer to an **OH_Drawing_RoundRect** object.
+ * @param pos Position of the rounded corner. For details about the available options, see {@link OH_Drawing_CornerPos}.
+ * @return Returns an OH_Drawing_Corner_Radii struct, including the radii on the X axis and Y axis.
  * @since 12
  * @version 1.0
  */
 OH_Drawing_Corner_Radii OH_Drawing_RoundRectGetCorner(OH_Drawing_RoundRect* roundRect, OH_Drawing_CornerPos pos);
 
 /**
- * @brief Destroys an <b>OH_Drawing_RoundRect</b> object and reclaims the memory occupied by the object.
+ * @brief Destroys an **OH_Drawing_RoundRect** object and reclaims the memory occupied by the object.
  *
- * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @param roundRect Indicates the pointer to an <b>OH_Drawing_RoundRect</b> object.
+ * @param roundRect Pointer to an **OH_Drawing_RoundRect** object.
  * @since 11
  * @version 1.0
  */
 void OH_Drawing_RoundRectDestroy(OH_Drawing_RoundRect* roundRect);
 
 /**
- * @brief Translates round rect by (dx, dy).
+ * @brief Translates a rounded rectangle by an offset along the X axis and Y axis.
  *
- * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @param roundRect Indicates the pointer to an <b>OH_Drawing_RoundRect</b> object.
- * @param dx Indicates the offsets added to rect left and rect right.
- * @param dy Indicates the offsets added to rect top and rect bottom.
- * @return Returns the error code.
- *         Returns {@link OH_DRAWING_SUCCESS} if the operation is successful.
- *         Returns {@link OH_DRAWING_ERROR_INVALID_PARAMETER} if roundRect is nullptr.
+ * @param roundRect Pointer to an {@link OH_Drawing_Point2D} object.
+ * @param dx X offset.
+ * @param dy Y offset.
+ * @return Returns one of the following result codes:
+ * **OH_DRAWING_SUCCESS** if the operation is successful.
+ * **OH_DRAWING_ERROR_INVALID_PARAMETER** if **roundRect** is NULL.
  * @since 12
  * @version 1.0
  */

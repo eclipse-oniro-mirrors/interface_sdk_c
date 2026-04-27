@@ -103,7 +103,7 @@ typedef void (*OH_HiCollie_Task)(void);
 /**
  * @brief In jank scenario, you need to insert two stub functions before and after
  * each event processing of your business thread.
- * By checking these two function executing timestamp, HiCollie will know cosuming time for every event.
+ * By checking these two function executing timestamp, HiCollie will know consuming time for every event.
  * If it exceeds the preset threshold, a jank event will be reported.
  * This is the stub function inserted before each event processing.
  *
@@ -115,7 +115,7 @@ typedef void (*OH_HiCollie_BeginFunc)(const char* eventName);
 /**
  * @brief In jank scenario, you need to insert two stub functions before and after
  * each event processing of your business thread.
- * By checking these two function executing timestamp, HiCollie will know cosuming time for every event.
+ * By checking these two function executing timestamp, HiCollie will know consuming time for every event.
  * If it exceeds the preset threshold, a jank event will be reported.
  * This is the stub function inserted after each event processing.
  *
@@ -131,7 +131,7 @@ typedef void (*OH_HiCollie_EndFunc)(const char* eventName);
  * @since 12
  */
 typedef struct HiCollie_DetectionParam {
-    /** In jank scenario, it's the theshold exceed which sample stack will be collected. */
+    /** In jank scenario, it's the threshold exceed which sample stack will be collected. */
     int sampleStackTriggerTime;
     /** extended parameter for future use. */
     int reserved;
