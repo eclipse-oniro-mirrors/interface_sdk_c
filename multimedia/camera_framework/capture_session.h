@@ -646,7 +646,7 @@ Camera_ErrorCode OH_CaptureSession_GetColorTintRange(const Camera_CaptureSession
  *
  * @param session Pointer to a {@link Camera_CaptureSession} instance.
  * @param colorTint Pointer to the color tint.
- * @return Result code. 
+ * @return Result code.
  *         {@link CAMERA_OK} is returned if the function is called successfully.
  *         {@link CAMERA_INVALID_ARGUMENT} is returned if an input parameter is missing or the parameter type is incorrect.
  *         {@link CAMERA_SESSION_NOT_CONFIG} is returned if the session is not configured when the function is called.
@@ -661,7 +661,8 @@ Camera_ErrorCode OH_CaptureSession_GetColorTint(const Camera_CaptureSession* ses
  * @param colorTint Color tint.
  * @return Result code.
  *         {@link CAMERA_OK} is returned if the function is called successfully.
- *         {@link CAMERA_INVALID_ARGUMENT} is returned if an input parameter is missing or the parameter type is incorrect.
+ *         {@link CAMERA_INVALID_ARGUMENT} is returned if an input parameter is missing
+                or the parameter type is incorrect.
  *         {@link CAMERA_SESSION_NOT_CONFIG} is returned if the session is not configured when the function is called.
  * @since 26.0.0
  */
@@ -1499,13 +1500,13 @@ Camera_ErrorCode OH_CaptureSession_UnregisterMacroStatusChangeCallback(Camera_Ca
     OH_CaptureSession_OnMacroStatusChange macroStatusChange);
 
 /**	 
- * @brief Registers a callback to listen for capture system pressure level changes.	 
- *	 
- * @param session Pointer to the Camera_CaptureSession instance that transfers the callback.	 
- * @param systemPressureLevelChange Target callback, which is OH_CaptureSession_OnSystemPressureLevelChange.	 
- * @return **CAMERA_OK**: The operation is successful.	 
- *     <br>**CAMERA_INVALID_ARGUMENT**: A parameter is missing or the parameter type is incorrect.	 
- * @since 20	 
+ * @brief Registers a callback to listen for capture system pressure level changes.
+ *
+ * @param session Pointer to the Camera_CaptureSession instance that transfers the callback.
+ * @param systemPressureLevelChange Target callback, which is OH_CaptureSession_OnSystemPressureLevelChange.
+ * @return **CAMERA_OK**: The operation is successful.
+ *     <br>**CAMERA_INVALID_ARGUMENT**: A parameter is missing or the parameter type is incorrect.
+ * @since 20
  */
 Camera_ErrorCode OH_CaptureSession_RegisterSystemPressureLevelChangeCallback(Camera_CaptureSession* session,
     OH_CaptureSession_OnSystemPressureLevelChange systemPressureLevelChange);
