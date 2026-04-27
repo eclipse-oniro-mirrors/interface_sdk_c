@@ -2384,14 +2384,14 @@ typedef enum OH_FRAME_RETENTION_MODE {
      * the current playback speed via {@link OH_MD_KEY_VIDEO_DECODER_SPEED}.
      * @since 26.0.0
      */
-    OH_FRAME_RETENTION_MODE_ADAPTIVE,
+    OH_FRAME_RETENTION_MODE_ADAPTIVE = 1,
     /**
      * Uniform frame retention mode. Retains frames evenly according to a user-configured retention ratio
      * (configured via {@link OH_MD_KEY_VIDEO_DECODER_FRAME_RETENTION_RATIO}).
      * If the retention ratio is not explicitly configured, the decoder limits the output to a maximum of 30 fps.
      * @since 26.0.0
      */
-    OH_FRAME_RETENTION_MODE_UNIFORM
+    OH_FRAME_RETENTION_MODE_UNIFORM = 2
 } OH_FRAME_RETENTION_MODE;
 
 #ifdef __cplusplus
