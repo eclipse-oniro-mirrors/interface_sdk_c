@@ -204,7 +204,7 @@ int32_t OH_Usb_GetCurrentInterfaceSetting(uint64_t interfaceHandle, uint8_t *set
  * @param data Data to transfer.
  * @param dataLen Data length. The return value indicates the length of the actually read data.
  * @return {@link USB_DDK_SUCCESS}: The operation is successful.
- *     {@link USB_DDK_FAILED}: The permission check fails.
+ *     {@link USB_DDK_NO_PERM}: The permission check fails.
  *     {@link USB_DDK_INVALID_OPERATION}: The USB DDK service connection fails.
  *     {@link USB_DDK_INVALID_PARAMETER}: The input **setup**, **data**, or **dataLen** is a null pointer, or the value
  *     of **datalen** is less than the length of the read data.
@@ -227,7 +227,7 @@ int32_t OH_Usb_SendControlReadRequest(uint64_t interfaceHandle, const struct Usb
  * @param data Data to transfer.
  * @param dataLen Data length.
  * @return {@link USB_DDK_SUCCESS}: The operation is successful.
- *     {@link USB_DDK_FAILED}: The permission check fails.
+ *     {@link USB_DDK_NO_PERM}: The permission check fails.
  *     {@link USB_DDK_INVALID_OPERATION}: The USB DDK service connection fails.
  *     {@link USB_DDK_INVALID_PARAMETER}: The input **setup** or **data** is a null pointer.
  *     {@link USB_DDK_MEMORY_ERROR}: The attempt to copy the memory that stores the read data fails.

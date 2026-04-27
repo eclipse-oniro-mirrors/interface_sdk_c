@@ -133,7 +133,7 @@ int32_t OH_UsbSerial_Read(UsbSerial_Device *dev, uint8_t *buff, uint32_t bufferS
  *
  * @permission ohos.permission.ACCESS_DDK_USB_SERIAL
  * @param dev Device handle.
- * @param buff Buffer to which the data of the USB serial port device is written.
+ * @param buff Buffer whose data is written into the USB serial port device.
  * @param bufferSize Buffer size.
  * @param bytesWritten Number of bytes that are actually written.
  * @return {@link USB_SERIAL_DDK_SUCCESS}: The operation is successful.

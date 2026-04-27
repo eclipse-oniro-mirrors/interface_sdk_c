@@ -99,7 +99,7 @@ int32_t OH_Hid_EmitEvent(int32_t deviceId, const Hid_EmitItem items[], uint16_t 
  * @return {@link HID_DDK_SUCCESS}: The API call is successful.
  *     {@link HID_DDK_NO_PERM}: The permission verification fails.
  *     {@link HID_DDK_INVALID_OPERATION}: The hid_ddk service connection fails or the caller is not the device creator.
- *     {@link HID_DDK_FAILURE}: The corresponding device does not exist.
+ *     {@link HID_DDK_NULL_PTR}: The corresponding device does not exist.
  * @since 11
  * @version 1.0
  */

@@ -115,8 +115,7 @@ typedef struct UsbSerial_Params {
      */
     uint8_t nStopBits;
     /**
-     * Parity parameter setting. **0**: no parity; **1**: odd parity; **2**: even parity; **3**: mark parity (parity
-     * bit always 1); **4**: space parity (parity bit always 0)
+     * Parity parameter setting. **0**: no parity; **1**: odd parity; **2**: even parity.
      */
     uint8_t parity;
 } __attribute__((aligned(8))) UsbSerial_Params;
