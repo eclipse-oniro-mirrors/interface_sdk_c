@@ -706,5 +706,9 @@
     {
         "first_introduced": "26.0.0",
         "name": "OH_AudioDeviceEnhanceManager_SelectInputDeviceForAudioCapturer"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_AudioStreamBuilder_SetCapturerLoopbackEffectEnabled"
     }
 ]
