@@ -21,7 +21,7 @@
  * @version 1.0
  */
 /**
- * @file oh_cloud_disk_error_code.h
+ * @file cloud_disk_error_code.h
  *
  * @brief This file defines the error codes for the cloud disk management module.
  *
