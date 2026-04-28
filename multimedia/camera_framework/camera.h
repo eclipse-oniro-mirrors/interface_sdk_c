@@ -306,6 +306,12 @@ typedef enum Camera_Format {
     CAMERA_FORMAT_DNG = 4,
 
     /**
+     * Enhanced DNG image format.
+     * @since 26.0.0
+     */
+    CAMERA_FORMAT_DNG_XDRAW = 5,
+
+    /**
      * YUV 420 SP.
      */
     CAMERA_FORMAT_YUV_420_SP = 1003,
