@@ -522,7 +522,7 @@ OH_AVErrCode OH_VideoDecoder_QueryOutputBuffer(struct OH_AVCodec *codec, uint32_
 
 /**
  * @brief Obtains the instance of the available output buffer. Note that this function works only in synchronous mode.
- * 
+ *
  * @param codec Pointer to a video decoder instance.
  * @param index Index of the output buffer. It can be obtained by calling {@link OH_VideoDecoder_QueryOutputBuffer}.
  * @return Pointer to the OH_AVBuffer instance created. If the operation fails, NULL is returned.

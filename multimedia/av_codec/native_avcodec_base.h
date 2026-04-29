@@ -1528,7 +1528,7 @@ extern const char *OH_MD_KEY_DECODING_TIMESTAMP;
 /**
  * @brief Pointer to the key that describes the duration corresponding to the audio, video, or subtitle sample carried
  * in AVBuffer, in microseconds. The value type is int64_t.
- * 
+ *
  * @since 12
  */
 extern const char *OH_MD_KEY_BUFFER_DURATION;
