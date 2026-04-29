@@ -234,7 +234,7 @@ OH_AVErrCode OH_LowPowerAudioSink_SetVolume(OH_LowPowerAudioSink* sink, const fl
  * @brief Set playback speed for the lowpower audio sink.
  *
  * @param {OH_LowPowerAudioSink*} sink Pointer to an OH_LowPowerAudioSink instance
- * @param {const float} speed The playback speed value needs to be specified, the valid value is 0.1-4.0
+ * @param {const float} speed The playback speed value needs to be specified, the valid value is 0.25-4.0
  * @return Returns AV_ERR_OK if the execution is successful,
  * otherwise returns a specific error code, refer to {@link OH_AVErrCode}
  * {@link AV_ERR_INVALID_VAL} the sink or format is nullptr or invalid. Invalid param in format.
