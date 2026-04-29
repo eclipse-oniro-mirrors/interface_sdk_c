@@ -692,7 +692,7 @@ extern const char *OH_MD_KEY_MAX_INPUT_SIZE;
  * @brief Pointer to the key that describes the video width. The value type is int32_t.
  *
  * For video encoding, this key sets the target encoding resolution.
- * For video decoding, this key is a resolution hint used by the decoder to pre-allocate internal buffers. 
+ * For video decoding, this key is a resolution hint used by the decoder to pre-allocate internal buffers.
  * The actual decoded output dimensions are provided via {@link OH_MD_KEY_VIDEO_PIC_WIDTH}.
  *
  * While this key primarily governs memory allocation,
@@ -1018,7 +1018,7 @@ extern const char *OH_MD_KEY_IDENTIFICATION_HEADER;
 /**
  * @brief Pointer to the key that describes the vorbis setup header. The value type is uint8_t*. This key applies only
  * to Vorbis decoders.
- * 
+ *
  * @since 10
  */
 extern const char *OH_MD_KEY_SETUP_HEADER;
@@ -1392,14 +1392,14 @@ extern const char *OH_MD_KEY_VIDEO_CROP_RIGHT;
 /**
  * @brief Pointer to the key that describes the stride of the video frame. The value type is int32_t.
  *
- * The stride represents the actual byte distance between the start of two adjacent rows in memory. 
- * Due to hardware alignment requirements, stride is typically greater than or equal to the effective image width. 
- * When stride equals width, no horizontal padding is present.Always obtain the actual stride value from 
- * {@link OH_VideoEncoder_GetInputDescription}, {@link OH_VideoDecoder_GetOutputDescription}, 
+ * The stride represents the actual byte distance between the start of two adjacent rows in memory.
+ * Due to hardware alignment requirements, stride is typically greater than or equal to the effective image width.
+ * When stride equals width, no horizontal padding is present.Always obtain the actual stride value from
+ * {@link OH_VideoEncoder_GetInputDescription}, {@link OH_VideoDecoder_GetOutputDescription},
  * or the OH_AVFormat parameter in the {@link OH_AVCodecOnStreamChanged} callback, rather than assuming a fixed value.
  *
  * For usage examples, see step 8 in buffer mode in
- * [Video Encoding](docroot://media/avcodec/video-encoding.md#buffer-mode) 
+ * [Video Encoding](docroot://media/avcodec/video-encoding.md#buffer-mode)
  * or step 11 in buffer mode in [Video Decoding](docroot://media/avcodec/video-decoding.md#buffer-mode).
  * 
  * @since 12
@@ -1409,8 +1409,8 @@ extern const char *OH_MD_KEY_VIDEO_STRIDE;
 /**
  * @brief Pointer to the key that describes the height of the video frame. The value type is int32_t.
  *
- * The slice height represents the total number of rows allocated in memory for a plane. Due to hardware alignment 
- * requirements, sliceHeight is typically greater than or equal to the effective image height. 
+ * The slice height represents the total number of rows allocated in memory for a plane. Due to hardware alignment
+ * requirements, sliceHeight is typically greater than or equal to the effective image height.
  * The U plane starts at offset (sliceHeight * stride) from the Y plane origin.
  * Always obtain the actual slice height value from {@link OH_VideoEncoder_GetInputDescription},
  * {@link OH_VideoDecoder_GetOutputDescription}, or the OH_AVFormat parameter in the {@link OH_AVCodecOnStreamChanged}
@@ -1425,12 +1425,12 @@ extern const char *OH_MD_KEY_VIDEO_STRIDE;
 extern const char *OH_MD_KEY_VIDEO_SLICE_HEIGHT;
 
 /**
- * @brief Pointer to the key that describes the actual effective width of the decoded video frame. 
+ * @brief Pointer to the key that describes the actual effective width of the decoded video frame.
  * The value type is int32_t. This key is read-only and used only for video decoding.
  *
- * When {@link OH_VideoDecoder_GetOutputDescription} is called, or when the decoded output stream changes via the 
+ * When {@link OH_VideoDecoder_GetOutputDescription} is called, or when the decoded output stream changes via the
  * {@link OH_AVCodecOnStreamChanged} callback, this value can be obtained from the returned OH_AVFormat instance.
- * This value represents the cropped visible width and differs from {@link OH_MD_KEY_WIDTH} set during Configure, 
+ * This value represents the cropped visible width and differs from {@link OH_MD_KEY_WIDTH} set during Configure,
  * which is a configuration hint for buffer pre-allocation.
  * When cropping is present, use this value (not stride) as the actual image width for display or saving.
  * 
@@ -1443,10 +1443,10 @@ extern const char *OH_MD_KEY_VIDEO_SLICE_HEIGHT;
 extern const char *OH_MD_KEY_VIDEO_PIC_WIDTH;
 
 /**
- * @brief Pointer to the key that describes the actual effective height of the decoded video frame. 
+ * @brief Pointer to the key that describes the actual effective height of the decoded video frame.
  * The value type is int32_t. This key is read-only and used only for video decoding.
  *
- * When {@link OH_VideoDecoder_GetOutputDescription} is called, or when the decoded output stream changes via the 
+ * When {@link OH_VideoDecoder_GetOutputDescription} is called, or when the decoded output stream changes via the
  * {@link OH_AVCodecOnStreamChanged} callback, this value can be obtained from the returned OH_AVFormat instance.
  * This value represents the cropped visible height and differs from OH_MD_KEY_HEIGHT set during Configure,
  *  which is a configuration hint for buffer pre-allocation.

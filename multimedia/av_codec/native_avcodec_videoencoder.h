@@ -232,7 +232,6 @@ OH_AVErrCode OH_VideoEncoder_RegisterParameterCallback(OH_AVCodec *codec,
  * This function is used to verify the validity of configuration parameters. Some invalid parameters are not forcibly
  * verified. The default values are used or discarded. Some invalid parameters are forcibly verified. The rules are as
  * follows:
- *
  * The value ranges of the following parameters can be obtained through
  * [Capability Query](docroot://media/avcodec/obtain-supported-codecs.md).
  * {@link OH_MD_KEY_I_FRAME_INTERVAL} does not support capability query currently.
@@ -596,7 +595,7 @@ OH_AVErrCode OH_VideoEncoder_QueryOutputBuffer(struct OH_AVCodec *codec, uint32_
 OH_AVBuffer *OH_VideoEncoder_GetOutputBuffer(struct OH_AVCodec *codec, uint32_t index);
 
 /**
- * @brief Obtains the description of the image received by a video encoder. This function must be called after 
+ * @brief Obtains the description of the image received by a video encoder. This function must be called after
  * {@link OH_VideoEncoder_Configure} is called.
  *
  * You must call {@link OH_AVFormat_Destroy} to release the OH_AVFormat instance in the return value.

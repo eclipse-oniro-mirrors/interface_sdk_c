@@ -259,9 +259,9 @@ OH_AVErrCode OH_VideoDecoder_Flush(OH_AVCodec *codec);
 OH_AVErrCode OH_VideoDecoder_Reset(OH_AVCodec *codec);
 
 /**
- * @brief Obtains the {@link OH_AVFormat} information about the decoder's output data. 
+ * @brief Obtains the {@link OH_AVFormat} information about the decoder's output data.
  *
- * For details, see {@link OH_AVFormat}. You must call {@link OH_AVFormat_Destroy} to 
+ * For details, see {@link OH_AVFormat}. You must call {@link OH_AVFormat_Destroy} to
  * release the {@link OH_AVFormat} instance when its lifecycle ends.
  * 
  * @param codec Pointer to a video decoder instance.
@@ -535,7 +535,7 @@ OH_AVBuffer *OH_VideoDecoder_GetOutputBuffer(struct OH_AVCodec *codec, uint32_t 
  *
  * @param codec Pointer to a video decoder instance.
  * @param isValid Pointer of the Boolean type. The value indicates the validity of the decoder service only when the
- *     function returns {@link AV_ERR_OK}. The value **true** means that the decoder service is valid, 
+ *     function returns {@link AV_ERR_OK}. The value **true** means that the decoder service is valid,
  *     and **false** means the opposite. It is recommended that you initialize **isValid** to **false**.
  * @return {@link AV_ERR_OK}: The operation is successful.
  *     <br>{@link AV_ERR_INVALID_VAL}: The value of **codec** is nullptr or does not point to a decoder instance.

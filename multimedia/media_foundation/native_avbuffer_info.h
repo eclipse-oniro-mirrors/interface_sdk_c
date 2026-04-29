@@ -32,9 +32,6 @@
  * @since 9
  */
 
-
-
-
 #ifndef NATIVE_AVBUFFER_INFO_H
 #define NATIVE_AVBUFFER_INFO_H
 #include <stdint.h>
