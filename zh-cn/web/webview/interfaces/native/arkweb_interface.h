@@ -86,11 +86,11 @@ ArkWeb_AnyNativeAPI* OH_ArkWeb_GetNativeAPI(ArkWeb_NativeAPIVariantKind type);
 
 
 /**
- * @brief Register a scrolling event callback.
- * @param webTag Name of the **Web** component.
- * @param callback Callback used when a page is scrolled.
- * @param userData Pointer to user-defined data.
- * @return **true** is returned if the operation is successful; otherwise, **false** is returned.
+ * @brief 注册组件滚动时的回调函数。
+ * @param webTag Web组件的名称。
+ * @param callback 页面滚动时的回调函数。
+ * @param userData 用户自定义的数据。
+ * @return 如果回调设置成功，则返回true，否则返回false。
  * @since 18
  */
 bool OH_ArkWeb_RegisterScrollCallback(

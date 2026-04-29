@@ -133,12 +133,12 @@ typedef ArkWeb_JavaScriptValuePtr (*ArkWeb_OnJavaScriptProxyCallbackWithResult)(
 typedef void (*ArkWeb_OnComponentCallback)(const char* webTag, void* userData);
 
 /**
- * @brief Called when the **Web** component is scrolled.
+ * @brief 定义Web组件滚动时的回调函数的类型。
  *
- * @param webTag Name of the **Web** component.
- * @param userData Pointer to user-defined data.
- * @param x Scrolling offset of the X axis. Unit: vp.
- * @param y Scrolling offset of the Y axis. Unit: vp.
+ * @param webTag Web组件名称。
+ * @param userData 用户自定义的数据。
+ * @param x X轴滚动偏移。单位：vp.
+ * @param y Y轴滚动偏移。单位：vp.
  * @since 18
  */
 typedef void (*ArkWeb_OnScrollCallback)(const char* webTag, void* userData, double x, double y);
