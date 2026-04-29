@@ -26,7 +26,7 @@
 /**
  * @file raw_dir.h
  *
- * @brief Provides functions related to rawfile directories, including traversing and closing rawfile directories.
+ * @brief 提供rawfile目录相关功能，包括遍历和关闭rawfile目录。
  *
  * @syscap SystemCapability.Global.ResourceManager
  * @library librawfile.z.so
@@ -44,7 +44,7 @@ extern "C" {
 struct RawDir;
 
 /**
- * @brief Provides access to the **rawfile** directory.
+ * @brief 提供对rawfile目录的访问。
  *
  * @since 8
  * @version 1.0
@@ -52,14 +52,12 @@ struct RawDir;
 typedef struct RawDir RawDir;
 
 /**
- * @brief Obtains the name of a file in **rawfile** based on the index. You can use this function to traverse the **
- * rawfile** directory.
+ * @brief 通过索引获取rawfile文件名称。可以使用此方法遍历rawfile目录。
  *
- * @param rawDir Pointer to {@link RawDir}.
- * @param index Index of the rawfile in {@link RawDir}.
- * @return File name obtained if the rawfile exists in the directory. The file name returned can be used as the input
- *     parameter of {@link OH_ResourceManager_OpenRawFile}.
- *     <br>If no file is found after all files in the directory are traversed, **NULL** is returned.
+ * @param rawDir 表示指向{@link RawDir}的指针。
+ * @param index 表示文件在{@link RawDir}中的索引位置。
+ * @return 通过索引返回文件名称，此返回值可以作为{@link OH_ResourceManager_OpenRawFile}的输入参数。
+ *     <br>如果遍历完所有文件仍未找到，则返回NULL。
  * @see OH_ResourceManager_OpenRawFile
  * @since 8
  * @version 1.0
@@ -67,11 +65,10 @@ typedef struct RawDir RawDir;
 const char *OH_ResourceManager_GetRawFileName(RawDir *rawDir, int index);
 
 /**
- * @brief Obtains the number of rawfiles in {@link RawDir}. You can use this function to obtain available indexes in
- * {@link OH_ResourceManager_GetRawFileName}.
+ * @brief 获取{@link RawDir}中的rawfile数量。通过此方法可以获取{@link OH_ResourceManager_GetRawFileName}中可用的索引。
  *
- * @param rawDir Pointer to {@link RawDir}.
- * @return Number of files in **rawDir**. If **rawDir** is empty, **0** is returned.
+ * @param rawDir 表示指向{@link RawDir}的指针。
+ * @return 返回rawDir下的文件个数。如果rawDir为空时返回0。
  * @see OH_ResourceManager_GetRawFileName
  * @since 8
  * @version 1.0
@@ -79,9 +76,9 @@ const char *OH_ResourceManager_GetRawFileName(RawDir *rawDir, int index);
 int OH_ResourceManager_GetRawFileCount(RawDir *rawDir);
 
 /**
- * @brief Closes an opened {@link RawDir} and releases all associated resources.
+ * @brief 关闭已打开的{@link RawDir}并释放所有相关联资源。
  *
- * @param rawDir Pointer to {@link RawDir}.
+ * @param rawDir 表示指向{@link RawDir}的指针。
  * @see OH_ResourceManager_OpenRawDir
  * @since 8
  * @version 1.0
