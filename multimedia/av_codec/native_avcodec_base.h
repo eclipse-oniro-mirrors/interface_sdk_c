@@ -1,4 +1,3 @@
-
 /*
  * Copyright (C) 2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -829,8 +828,8 @@ extern const char *OH_MD_KEY_VIDEO_TRANSFORM_TYPE;
 extern const char *OH_MD_KEY_RANGE_FLAG;
 
 /**
- * @brief Pointer to the key that describes the video primary colors. The value type is int32_t. The default value is **
- * COLOR_PRIMARY_UNSPECIFIED**. For details, see {@link OH_ColorPrimary}. The value complies with Table 2 in H.273.
+ * @brief Pointer to the key that describes the video primary colors. The value type is int32_t. The default value is
+ * **COLOR_PRIMARY_UNSPECIFIED**. For details, see {@link OH_ColorPrimary}. The value complies with Table 2 in H.273.
  * 
  * @since 10
  */
