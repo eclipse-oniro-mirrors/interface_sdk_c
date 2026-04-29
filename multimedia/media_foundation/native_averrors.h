@@ -217,16 +217,6 @@ typedef enum OH_AVErrCode {
      * @since 23
      */
     AV_ERR_SUPER_RESOLUTION_NOT_ENABLED = 5410004,
-    /**
-	 * No PlaybackStrategy set to enable super-resolution feature.
-	 * @since 23
-	 */
-    AV_ERR_SUPER_RESOLUTION_NOT_ENABLED = 5410008,
-    /**
-     * Super-resolution unsupported.
-     * @since 23
-     */
-    AV_ERR_SUPER_RESOLUTION_UNSUPPORTED = 5410007
 } OH_AVErrCode;
 #ifdef __cplusplus
 }

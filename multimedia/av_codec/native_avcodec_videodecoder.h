@@ -281,7 +281,7 @@ OH_AVFormat *OH_VideoDecoder_GetOutputDescription(OH_AVCodec *codec);
  * @param format Pointer to an OH_AVFormat instance.
  * @return {@link AV_ERR_OK}: The operation is successful.
  *     <br>{@link AV_ERR_NO_MEMORY}: The decoder instance has been destroyed.
- *     <br>{@link AV_ERR_INVALID_VAL}:<br>1. The value of **codec** is nullptr or does not point to a decoder instance.
+ *     <br>{@link AV_ERR_INVALID_VAL}: <br>1. The value of **codec** is nullptr or does not point to a decoder instance.
  *     <br>2. The format is not supported.
  *     <br>{@link AV_ERR_UNKNOWN}: An unknown error occurs.
  *     <br>{@link AV_ERR_INVALID_STATE}: The function is called in an incorrect state.
