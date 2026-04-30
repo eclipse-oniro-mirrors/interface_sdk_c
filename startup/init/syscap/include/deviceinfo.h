@@ -24,7 +24,7 @@
  * @file deviceinfo.h
  * @kit BasicServicesKit
  * @brief Declares the APIs for querying device information.
- * 
+ *
  * @library libdeviceinfo_ndk.z.so
  * @syscap SystemCapability.Startup.SystemInfo
  * @since 10
@@ -284,7 +284,7 @@ int OH_GetDistributionOSApiVersion(void);
 
 /**
  * @brief Obtains the ISV distribution OS release type.
- * 
+ *
  * @return Returns an ISV distribution OS release type.
  *     <br>If no ISV is specified, the value of {@link OH_GetOsReleaseType} is returned.
  * @syscap SystemCapability.Startup.SystemInfo
