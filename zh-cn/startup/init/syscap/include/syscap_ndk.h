@@ -56,5 +56,5 @@ bool canIUse(const char *cap);
 }
 #endif // #if __cplusplus
 #endif // #ifdef __cplusplus
-#endif // SYSCAP_NDK_H
+#endif
 /** @} */
