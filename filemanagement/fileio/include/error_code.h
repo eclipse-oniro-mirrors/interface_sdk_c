@@ -18,14 +18,17 @@
  * @{
  *
  * @brief Provide the definition of the error codes.
+ *
  * @since 12
  */
 
 /**
  * @file error_code.h
- * @kit CoreFileKit
- * @library NA
+ *
  * @brief Declare the error codes of file management module.
+ *
+ * @library NA
+ * @kit CoreFileKit
  * @syscap SystemCapability.FileManagement.File.FileIO
  * @since 12
  */
@@ -39,39 +42,56 @@ extern "C" {
 
 /**
  * @brief error codes of file management
+ *
  * @since 12
  */
 typedef enum FileManagement_ErrCode {
     /**
-     * operation completed successfully.
+     * @brief The API is called successfully.
+     *
+     * @since 12
      */
     ERR_OK = 0,
     /**
-     * permission verification failed.
+     * @brief The permission verification fails.
+     *
+     * @since 12
      */
     ERR_PERMISSION_ERROR = 201,
     /**
-     * invalid input parameter.
+     * @brief Invalid parameter.
+     *
+     * @since 12
      */
     ERR_INVALID_PARAMETER = 401,
     /**
-     * device not supported.
+     * @brief The device does not support this API.
+     *
+     * @since 12
      */
     ERR_DEVICE_NOT_SUPPORTED = 801,
     /**
-     * operation not permitted.
+     * @brief The operation is not allowed.
+     *
+     * @since 12
      */
     ERR_EPERM = 13900001,
     /**
-     * no such file or directory.
+     * @brief The file or folder does not exist.
+     *
+     * @since 12
      */
     ERR_ENOENT = 13900002,
     /**
-     * out of memory.
+     * @brief out of memory.
+     *
+     * @since 12
      */
     ERR_ENOMEM = 13900011,
     /**
-     * unknown error.
+     * @brief Internal unknown error.
+     *
+     * @since 12
      */
     ERR_UNKNOWN = 13900042
 } FileManagement_ErrCode;
@@ -79,6 +99,5 @@ typedef enum FileManagement_ErrCode {
 #ifdef __cplusplus
 }
 #endif
-
-#endif // FILE_MANAGEMENT_FILEIO_ERROR_CODE_H
 /** @} */
+#endif // FILE_MANAGEMENT_FILEIO_ERROR_CODE_H

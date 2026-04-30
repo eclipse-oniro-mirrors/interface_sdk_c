@@ -26,8 +26,9 @@
  * @file oh_environment.h
  *
  * @brief Provide environment APIS.
- * @kit CoreFileKit
+ *
  * @library libohenvironment.so
+ * @kit CoreFileKit
  * @syscap SystemCapability.FileManagement.File.Environment.FolderObtain
  * @since 12
  */
@@ -41,9 +42,10 @@
 extern "C" {
 #endif
 /**
- * @brief Get the user Download directory.
+ * @brief Obtains the sandbox path of the Download root directory.
  *
- * @param result Output a pointer to a string. Please use free() to clear the resource.
+ * @param result Double pointer to the path of the Download root directory. You also need to include malloc.h and
+ *     use free() to release the memory allocated.
  * @return Return the status code of the execution.
  *         {@link ERR_INVALID_PARAMETER} 401 - Invalid input parameter, pointer is null.
  *         {@link ERR_DEVICE_NOT_SUPPORTED} 801 - Device not supported.
@@ -53,9 +55,10 @@ extern "C" {
 FileManagement_ErrCode OH_Environment_GetUserDownloadDir(char **result);
 
 /**
- * @brief Get the user Desktop directory.
+ * @brief Obtains the sandbox path of the Desktop root directory.
  *
- * @param result Output a pointer to a string. Please use free() to clear the resource.
+ * @param result Double pointer to the path of the Desktop root directory. You also need to include malloc.h and
+ *     use free() to release the memory allocated.
  * @return Return the status code of the execution.
  *         {@link ERR_INVALID_PARAMETER} 401 - Invalid input parameter, pointer is null.
  *         {@link ERR_DEVICE_NOT_SUPPORTED} 801 - Device not supported.
@@ -65,9 +68,10 @@ FileManagement_ErrCode OH_Environment_GetUserDownloadDir(char **result);
 FileManagement_ErrCode OH_Environment_GetUserDesktopDir(char **result);
 
 /**
- * @brief Get the user Document directory.
+ * @brief Obtains the sandbox path of the Document root directory.
  *
- * @param result Output a pointer to a string. Please use free() to clear the resource.
+ * @param result Double pointer to the path of the Document root directory. You also need to include malloc.h and
+ *     use free() to release the memory allocated.
  * @return Return the status code of the execution.
  *         {@link ERR_INVALID_PARAMETER} 401 - Invalid input parameter, pointer is null.
  *         {@link ERR_DEVICE_NOT_SUPPORTED} 801 - Device not supported.
@@ -79,6 +83,5 @@ FileManagement_ErrCode OH_Environment_GetUserDocumentDir(char **result);
 #ifdef __cplusplus
 };
 #endif
-
-#endif //FILE_MANAGEMENT_ENVIRONMENT_OH_ENVIRONMENT_H
 /** @} */
+#endif //FILE_MANAGEMENT_ENVIRONMENT_OH_ENVIRONMENT_H
