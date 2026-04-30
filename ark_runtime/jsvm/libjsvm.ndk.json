@@ -888,6 +888,18 @@
         "name": "OH_JSVM_SetDebugOption"
     },
     {
+        "first_introduced": "26.0.0",
+        "name": "OH_JSVM_TakeRawHeapSnapshot"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_JSVM_SetHeapThresholdCallback"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_JSVM_ClearHeapThresholdCallback"
+    },
+    {
         "first_introduced": "24",
         "name": "OH_JSVM_BackgroundDeserialize"
     },

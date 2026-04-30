@@ -191,7 +191,7 @@ typedef void(JSVM_CDECL* JSVM_FinalizeArrayBuffer)(JSVM_Env env,
 #endif // JSVM_EXPERIMENTAL
 
 /**
- * @brief Function pointer type for callback of ASCII output stream. The first parameter data is the data pointer.
+ * @brief Function pointer type for callback of output stream. The first parameter data is the data pointer.
  * And the second parameter size is the data size to output. A null data pointer indicates the end of the stream.
  * The third parameter streamData is the pointer passed in together with the callback to the API functions that
  * generate data to the output stream. The callback returns true to indicate the stream can continue to accept
@@ -1058,6 +1058,16 @@ typedef enum {
     /** Scope check. */
     JSVM_SCOPE_CHECK,
 } JSVM_DebugOption;
+
+/**
+ * @brief Function pointer type for heap threshold callback.
+ *
+ * @param vm The VM instance whose heap usage is observed at or above the threshold.
+ * @param threshold The heap usage threshold in bytes.
+ * @param data The native pointer data.
+ * @since 26.0.0
+ */
+typedef void(JSVM_CDECL* JSVM_HandlerForHeapThreshold)(JSVM_VM vm, uint64_t threshold, void* data);
 
 /**
  * @brief To represent a JavaScript background deserialize result.
