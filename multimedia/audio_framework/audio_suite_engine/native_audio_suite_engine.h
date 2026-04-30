@@ -824,7 +824,7 @@ OH_AudioSuite_Result OH_AudioSuiteEngine_GetGeneralVoiceChangeType(
  * If audioSuitePipeline is NULL: output all pipelines (all pipelines/nodes under the engine).
  * Otherwise, output only the snapshot of this pipeline and nodes.
  * @param fd is a file handle, indicates the location where the snapshot information is stored.
- * If the fd is less than 0, the snapshot information is stored in the log. 
+ * If the fd is less than 0, the snapshot information is stored in the log.
  * Otherwise, the snapshot is stored in the file pointed to by the fd handle in append mode.
  * @return {@link #AUDIOSUITE_SUCCESS} if execution succeeds,
  * or {@link #AUDIOSUITE_ERROR_INVALID_PARAM} if parameter is nullptr or not valid value.
