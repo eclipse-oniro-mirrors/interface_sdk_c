@@ -12,20 +12,19 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 /**
  * @addtogroup DeviceInfo
  * @{
  *
- * @brief Provides APIs for querying terminal device information.
+ * Provides APIs for querying terminal device information.
  *
  * @since 10
  */
-
 /**
  * @file deviceinfo.h
  * @kit BasicServicesKit
- * @brief Declares APIs for querying terminal device information.
+ * @brief Declares the APIs for querying device information.
+ * 
  * @library libdeviceinfo_ndk.z.so
  * @syscap SystemCapability.Startup.SystemInfo
  * @since 10
@@ -41,200 +40,253 @@ extern "C" {
 #endif
 
 /**
- * Obtains the device type represented by a string,
- * which can be {@code phone} (or {@code default} for phones), {@code wearable}, {@code liteWearable},
- * {@code tablet}, {@code tv}, {@code car}, or {@code smartVision}.
+ * @brief Obtains the device type.
+ * 
+ * @return Returns one of the following values:
+ *     <br>**phone** (or **default**),
+ *     <br>**wearable**,
+ *     <br>**liteWearable**,
+ *     <br>**tablet**,
+ *     <br>**tv**,
+ *     <br>**car**,
+ *     <br>**smartVision**
  * @syscap SystemCapability.Startup.SystemInfo
  * @since 10
  */
 const char *OH_GetDeviceType(void);
 
 /**
- * Obtains the device manufacturer represented by a string.
+ * @brief Obtains the device manufacturer.
+ *
+ * @return Returns a device manufacturer. The value is of the string type.
  * @syscap SystemCapability.Startup.SystemInfo
  * @since 10
  */
 const char *OH_GetManufacture(void);
 
 /**
- * Obtains the device brand represented by a string.
+ * @brief Obtains the device brand.
+ *
+ * @return Returns a device brand. The value is of the string type.
  * @syscap SystemCapability.Startup.SystemInfo
  * @since 10
  */
 const char *OH_GetBrand(void);
 
 /**
- * Obtains the product name speaded in the market
+ * @brief Obtains the market name.
+ *
+ * @return Returns a market name. The value is of the string type.
  * @syscap SystemCapability.Startup.SystemInfo
  * @since 10
  */
 const char *OH_GetMarketName(void);
 
 /**
- * Obtains the product series represented by a string.
+ * @brief Obtains the product series.
+ *
+ * @return Returns the product series. The value is of the string type.
  * @syscap SystemCapability.Startup.SystemInfo
  * @since 10
  */
 const char *OH_GetProductSeries(void);
 
 /**
- * Obtains the product model represented by a string.
+ * @brief Obtains the product model.
+ *
+ * @return Returns a product model. The value is of the string type.
  * @syscap SystemCapability.Startup.SystemInfo
  * @since 10
  */
 const char *OH_GetProductModel(void);
 
 /**
- * Obtains the software model represented by a string.
+ * @brief Obtains the software model.
+ *
+ * @return Returns a software model. The value is of the string type.
  * @syscap SystemCapability.Startup.SystemInfo
  * @since 10
  */
 const char *OH_GetSoftwareModel(void);
 
 /**
- * Obtains the hardware model represented by a string.
+ * @brief Obtains the hardware model.
+ *
+ * @return Returns a hardware model. The value is of the string type.
  * @syscap SystemCapability.Startup.SystemInfo
  * @since 10
  */
 const char *OH_GetHardwareModel(void);
 
 /**
- * Obtains the bootloader version number represented by a string.
+ * @brief Obtains the Bootloader version.
+ *
+ * @return Returns a Bootloader version. The value is of the string type.
  * @syscap SystemCapability.Startup.SystemInfo
  * @since 10
  */
 const char *OH_GetBootloaderVersion(void);
 
 /**
- * Obtains the application binary interface (Abi) list represented by a string.
+ * @brief Obtains the ABI list.
+ *
+ * @return Returns an ABI list. The value is of the string type.
  * @syscap SystemCapability.Startup.SystemInfo
  * @since 10
  */
 const char *OH_GetAbiList(void);
 
 /**
- * Obtains the security patch tag represented by a string.
+ * @brief Obtains the security patch tag.
+ *
+ * @return Returns a security patch tag. The value is of the string type.
  * @syscap SystemCapability.Startup.SystemInfo
  * @since 10
  */
 const char *OH_GetSecurityPatchTag(void);
 
 /**
- * Obtains the product version displayed for customer represented by a string.
+ * @brief Obtains the display version.
+ *
+ * @return Returns a display version. The value is of the string type.
  * @syscap SystemCapability.Startup.SystemInfo
  * @since 10
  */
 const char *OH_GetDisplayVersion(void);
 
 /**
- * Obtains the incremental version represented by a string.
+ * @brief Obtains the incremental version.
+ *
+ * @return Returns an incremental version. The value is of the string type.
  * @syscap SystemCapability.Startup.SystemInfo
  * @since 10
  */
 const char *OH_GetIncrementalVersion(void);
 
 /**
- * Obtains the OS release type represented by a string.
- *
- * <p>The OS release category can be {@code Release}, {@code Beta}, or {@code Canary}.
- * The specific release type may be {@code Release}, {@code Beta1}, or others alike.
+ * @brief Obtains the OS release type represented by a string.
+ * @return Returns an OS release type. The options include **Release**, **Beta**, and **Canary**.
+ *     <br>A specific release type may be **Release**, **Beta1**, or another similar type.
  * @syscap SystemCapability.Startup.SystemInfo
  * @since 10
  */
 const char *OH_GetOsReleaseType(void);
 
 /**
- * Obtains the OS full version name represented by a string.
+ * @brief Obtains the OS full name.
+ *
+ * @return Returns an OS full name. The value is of the string type.
  * @syscap SystemCapability.Startup.SystemInfo
  * @since 10
  */
 const char *OH_GetOSFullName(void);
 
 /**
- * Obtains the SDK API version number.
+ * @brief Obtains the SDK API version.
+ *
+ * @return Returns an SDK API version.
  * @syscap SystemCapability.Startup.SystemInfo
  * @since 10
  */
 int OH_GetSdkApiVersion(void);
 
 /**
- * Obtains the first API version number.
+ * @brief Obtains the first API version.
+ *
+ * @return Returns the first API version.
  * @syscap SystemCapability.Startup.SystemInfo
  * @since 10
  */
 int OH_GetFirstApiVersion(void);
 
 /**
- * Obtains the version ID by a string.
+ * @brief Obtains the version ID.
+ *
+ * @return Returns a version ID. The value is of the string type.
  * @syscap SystemCapability.Startup.SystemInfo
  * @since 10
  */
 const char *OH_GetVersionId(void);
 
 /**
- * Obtains the build type of the current running OS.
+ * @brief Obtains the build type.
+ *
+ * @return Returns a build type. The value is of the string type.
  * @syscap SystemCapability.Startup.SystemInfo
  * @since 10
  */
 const char *OH_GetBuildType(void);
 
 /**
- * Obtains the build user of the current running OS.
+ * @brief Obtains the build user.
+ *
+ * @return Returns a build user. The value is of the string type.
  * @syscap SystemCapability.Startup.SystemInfo
  * @since 10
  */
 const char *OH_GetBuildUser(void);
 
 /**
- * Obtains the build host of the current running OS.
+ * @brief Obtains the build host.
+ *
+ * @return Returns a build host. The value is of the string type.
  * @syscap SystemCapability.Startup.SystemInfo
  * @since 10
  */
 const char *OH_GetBuildHost(void);
 
 /**
- * Obtains the build time of the current running OS.
+ * @brief Obtains the build time.
+ *
+ * @return Returns the build time. The value is of the string type.
  * @syscap SystemCapability.Startup.SystemInfo
  * @since 10
  */
 const char *OH_GetBuildTime(void);
 
 /**
- * Obtains the version hash of the current running OS.
+ * @brief Obtains the build root hash.
+ *
+ * @return Returns a build root hash. The value is of the string type.
  * @syscap SystemCapability.Startup.SystemInfo
  * @since 10
  */
 const char *OH_GetBuildRootHash(void);
 
 /**
- * Obtains the Distribution OS name represented by a string.
- *
- * <p>Independent Software Vendor (ISV) may distribute OHOS with their own OS name.
- * If ISV not specified, it will return an empty string
+ * @brief Obtains the Distribution OS name represented by a string.
+ * @return Returns an ISV distribution OS name.
+ *     <br>If no ISV is specified, an empty string is returned.
  * @syscap SystemCapability.Startup.SystemInfo
  * @since 10
  */
 const char *OH_GetDistributionOSName(void);
 
 /**
- * Obtains the ISV distribution OS version represented by a string.
- * If ISV not specified, it will return the same value as OH_GetOSFullName
+ * @brief Obtains the ISV distribution OS version.
+ * 
+ * @return Returns an ISV distribution OS version.
+ *     <br>If no ISV is specified, the value of {@link OH_GetOSFullName} is returned.
  * @syscap SystemCapability.Startup.SystemInfo
  * @since 10
  */
 const char *OH_GetDistributionOSVersion(void);
 
 /**
- * Obtains the ISV distribution OS api version represented by a integer.
- * If ISV not specified, it will return the same value as OH_GetSdkApiVersion
+ * @brief Obtains the ISV distribution OS API version.
+ * 
+ * @return Returns an ISV distribution OS API version.
+ *     <br>If no ISV is specified, the value of {@link OH_GetSdkApiVersion} is returned.
  * @syscap SystemCapability.Startup.SystemInfo
  * @since 10
  */
 int OH_GetDistributionOSApiVersion(void);
 
 /**
- * Obtains the ISV distribution OS release type represented by a string.
- * If ISV not specified, it will return the same value as OH_GetOsReleaseType
+ * @brief Obtains the ISV distribution OS release type.
+ * 
+ * @return Returns an ISV distribution OS release type.
+ *     <br>If no ISV is specified, the value of {@link OH_GetOsReleaseType} is returned.
  * @syscap SystemCapability.Startup.SystemInfo
  * @since 10
  */
@@ -243,7 +295,7 @@ const char *OH_GetDistributionOSReleaseType(void);
 #ifdef __cplusplus
 #if __cplusplus
 }
-#endif
-#endif
-#endif
+#endif // #if __cplusplus
+#endif // #ifdef __cplusplus
+#endif // DEVICEINFO_CSDK_H
 /** @} */
