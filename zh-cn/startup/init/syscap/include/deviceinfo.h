@@ -24,7 +24,7 @@
  * @file deviceinfo.h
  * @kit BasicServicesKit
  * @brief 声明用于查询终端设备信息的API。
- * 
+ *
  * @library libdeviceinfo_ndk.z.so
  * @syscap SystemCapability.Startup.SystemInfo
  * @since 10
