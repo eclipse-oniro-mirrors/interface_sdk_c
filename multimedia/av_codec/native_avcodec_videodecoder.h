@@ -1,4 +1,3 @@
-
 /*
  * Copyright (C) 2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -21,7 +20,7 @@
  *
  * @since 9
  */
- /**
+/**
  * @file native_avcodec_videodecoder.h
  *
  * @brief The file declares the native APIs used for video decoding.
@@ -42,7 +41,7 @@ extern "C" {
 #endif
 
 /**
- * @brief Forward declaration of MediaKeySession.
+ * @brief Describes a native object for MediaKeySession.
  *
  * @since 11
  */
@@ -52,8 +51,8 @@ typedef struct MediaKeySession MediaKeySession;
  * @brief Creates a video decoder instance based on a MIME type. This function is recommended in most cases.
  *
  * @param mime Pointer to a string that describes the MIME type. For details, see {@link AVCODEC_MIME_TYPE}.
- * @return Pointer to the video decoder instance.<br> If the decoder type is not supported
- * or the memory is insufficient, NULL is returned.
+ * @return Pointer to the video decoder instance.
+ *     <br> If the decoder type is not supported or the memory is insufficient, NULL is returned.
  * @since 9
  */
 OH_AVCodec *OH_VideoDecoder_CreateByMime(const char *mime);
@@ -63,7 +62,7 @@ OH_AVCodec *OH_VideoDecoder_CreateByMime(const char *mime);
  * of the decoder. The decoder name can be obtained through capability query.
  *
  * For details, see [Obtaining Supported Codecs](docroot://media/avcodec/obtain-supported-codecs.md#Creating a Codec with the Specified Name).
- *
+ * 
  * @param name Pointer to a video decoder name.
  * @return Pointer to the video decoder instance.
  *     <br>If the decoder name is not supported or the memory is insufficient, NULL is returned.
@@ -80,7 +79,7 @@ OH_AVCodec *OH_VideoDecoder_CreateByName(const char *name);
  *     <br>{@link AV_ERR_NO_MEMORY}: The decoder instance has been destroyed.
  *     <br>{@link AV_ERR_INVALID_VAL}: The value of **codec** is nullptr or does not point to a decoder instance.
  *     <br>{@link AV_ERR_UNKNOWN}: An unknown error occurs.
- *     <br>{@link AV_ERR_OPERATE_NOT_PERMIT}: An internal execution error occurs.
+ *     <br>{@link AV_ERR_OPERATE_NOT_PERMIT}: operation not permitted.
  * @since 9
  */
 OH_AVErrCode OH_VideoDecoder_Destroy(OH_AVCodec *codec);
@@ -96,7 +95,7 @@ OH_AVErrCode OH_VideoDecoder_Destroy(OH_AVCodec *codec);
  *     <br>{@link AV_ERR_NO_MEMORY}: The decoder instance has been destroyed.
  *     <br>{@link AV_ERR_INVALID_VAL}: The value of **codec** is nullptr or does not point to a decoder instance.
  *     <br>{@link AV_ERR_UNKNOWN}: An unknown error occurs.
- *     <br>{@link AV_ERR_OPERATE_NOT_PERMIT}: An internal execution error occurs.
+ *     <br>{@link AV_ERR_OPERATE_NOT_PERMIT}: operation not permitted.
  * @deprecated since 11
  * @useinstead OH_VideoDecoder_RegisterCallback
  * @since 9
@@ -114,7 +113,7 @@ OH_AVErrCode OH_VideoDecoder_SetCallback(OH_AVCodec *codec, OH_AVCodecAsyncCallb
  *     <br>{@link AV_ERR_NO_MEMORY}: The decoder instance has been destroyed.
  *     <br>{@link AV_ERR_INVALID_VAL}: The value of **codec** is nullptr or does not point to a decoder instance.
  *     <br>{@link AV_ERR_UNKNOWN}: An unknown error occurs.
- *     <br>{@link AV_ERR_OPERATE_NOT_PERMIT}: An internal execution error occurs.
+ *     <br>{@link AV_ERR_OPERATE_NOT_PERMIT}: operation not permitted.
  * @since 11
  */
 OH_AVErrCode OH_VideoDecoder_RegisterCallback(OH_AVCodec *codec, OH_AVCodecCallback callback, void *userData);
@@ -131,8 +130,8 @@ OH_AVErrCode OH_VideoDecoder_RegisterCallback(OH_AVCodec *codec, OH_AVCodecCallb
  *     <br>{@link AV_ERR_NO_MEMORY}: The decoder instance has been destroyed.
  *     <br>{@link AV_ERR_OPERATE_NOT_PERMIT}: The function is called in the buffer mode.
  *     It can be called only in the surface mode.
- *     <br>{@link AV_ERR_INVALID_VAL}: 1. The value of **codec** is nullptr or does not point to a decoder instance.
- *     2. The value of **window** is nullptr.
+ *     <br>{@link AV_ERR_INVALID_VAL}: <br>1. The value of **codec** is nullptr or does not point
+ *     to a decoder instance. <br>2. The value of **window** is nullptr.
  *     <br>{@link AV_ERR_UNKNOWN}: An unknown error occurs.
  *     <br>{@link AV_ERR_INVALID_STATE}: The function is called in an incorrect state.
  * @since 9
@@ -141,11 +140,11 @@ OH_AVErrCode OH_VideoDecoder_SetSurface(OH_AVCodec *codec, OHNativeWindow *windo
 
 /**
  * @brief Configures a video decoder. It is typically necessary to provide the information about the video to decode,
- * which can be extracted from {@link OH_AVSource}.
- * This function must be called prior to {@link OH_VideoDecoder_Prepare}.
+ * which can be extracted from {@link OH_AVSource}. This function must be called prior to
+ * {@link OH_VideoDecoder_Prepare}.
  *
- * The value ranges of the following parameters can be obtained from
- * [Capability Query](docroot://media/avcodec/obtain-supported-codecs.md).
+ * The value ranges of the following parameters can be obtained
+ * from [Capability Query](docroot://media/avcodec/obtain-supported-codecs.md).
  * All the values of **OH_MD_KEY_ROTATION** are supported.
  *
  * If the current platform does not support **OH_MD_KEY_VIDEO_ENABLE_LOW_LATENCY**, no error is reported and the normal
@@ -160,27 +159,27 @@ OH_AVErrCode OH_VideoDecoder_SetSurface(OH_AVCodec *codec, OHNativeWindow *windo
  * | {@link OH_MD_KEY_ROTATION}| AV_ERR_OK       | AV_ERR_INVALID_VAL       | AV_ERR_OK      |
  * @note You are advised to set the parameters based on the maximum resolution supported by the instance.
  * Otherwise, an exception may occur when streams with the resolution higher than the maximum resolution
- * are to be decoded.
- * This setting directly affects the memory usage of the application.
+ * are to be decoded. This setting directly affects the memory usage of the application.
  *
  * @param codec Pointer to a video decoder instance.
  * @param format Pointer to an OH_AVFormat instance, which provides the description information about the video track
  *     to be decoded.
  * @return {@link AV_ERR_OK}: The operation is successful.
  *     <br>{@link AV_ERR_NO_MEMORY}: The decoder instance has been destroyed.
- *     <br>{@link AV_ERR_INVALID_VAL}: 1. The value of **codec** is nullptr or does not point to a decoder instance.
- *     2. The format is not supported.
+ *     <br>{@link AV_ERR_INVALID_VAL}:<br>1. The value of **codec** is nullptr or does not point to a decoder instance.
+ *     <br>2. The format is not supported.
  *     <br>{@link AV_ERR_UNKNOWN}: An unknown error occurs.
- *     <br>{@link AV_ERR_OPERATE_NOT_PERMIT}: An internal execution error occurs.
+ *     <br>{@link AV_ERR_OPERATE_NOT_PERMIT}: operation not permitted.
  *     <br>{@link AV_ERR_INVALID_STATE}: The function is not called prior to {@link OH_VideoDecoder_Prepare}.
  *     <br>{@link AV_ERR_VIDEO_UNSUPPORTED_COLOR_SPACE_CONVERSION}: video unsupported color space conversion.
+ *     <br>{@link AV_ERR_UNSUPPORT}: unsupported pixel format.
  * @since 9
  */
 OH_AVErrCode OH_VideoDecoder_Configure(OH_AVCodec *codec, OH_AVFormat *format);
 
 /**
- * @brief Prepares internal resources for a video decoder. This function must be called after {@link
- * OH_VideoDecoder_Configure}.
+ * @brief Prepares internal resources for a video decoder. This function must be called after
+ * {@link OH_VideoDecoder_Configure}.
  *
  * @param codec Pointer to a video decoder instance.
  * @return {@link AV_ERR_OK}: The operation is successful.
@@ -188,8 +187,8 @@ OH_AVErrCode OH_VideoDecoder_Configure(OH_AVCodec *codec, OH_AVFormat *format);
  *     <br>{@link AV_ERR_INVALID_VAL}: The value of **codec** is nullptr or does not point to a decoder instance.
  *     <br>{@link AV_ERR_UNKNOWN}: An unknown error occurs.
  *     <br>{@link AV_ERR_INVALID_STATE}: The function is called in an incorrect state.
- *     <br>{@link AV_ERR_OPERATE_NOT_PERMIT}: 1. An internal execution error occurs.
- *     2. decoder is in Buffer mode and color space conversion is configured.
+ *     <br>{@link AV_ERR_OPERATE_NOT_PERMIT}: <br>1.operation not permitted.
+ *     <br>2. decoder is in Buffer mode and color space conversion is configured.
  * @since 9
  */
 OH_AVErrCode OH_VideoDecoder_Prepare(OH_AVCodec *codec);
@@ -205,7 +204,7 @@ OH_AVErrCode OH_VideoDecoder_Prepare(OH_AVCodec *codec);
  *     <br>{@link AV_ERR_INVALID_VAL}: The value of **codec** is nullptr or does not point to a decoder instance.
  *     <br>{@link AV_ERR_UNKNOWN}: An unknown error occurs.
  *     <br>{@link AV_ERR_INVALID_STATE}: The function is called in an incorrect state.
- *     <br>{@link AV_ERR_OPERATE_NOT_PERMIT}: 1. An internal execution error occurs. 2. CSC is configured, but
+ *     <br>{@link AV_ERR_OPERATE_NOT_PERMIT}: <br>1. operation not permitted.<br>2. CSC is configured, but
  *     {@link OH_VideoDecoder_Prepare} is not called.
  * @since 9
  */
@@ -223,7 +222,7 @@ OH_AVErrCode OH_VideoDecoder_Start(OH_AVCodec *codec);
  *     <br>{@link AV_ERR_INVALID_VAL}: The value of **codec** is nullptr or does not point to a decoder instance.
  *     <br>{@link AV_ERR_UNKNOWN}: An unknown error occurs.
  *     <br>{@link AV_ERR_INVALID_STATE}: The function is called in an incorrect state.
- *     <br>{@link AV_ERR_OPERATE_NOT_PERMIT}: An internal execution error occurs.
+ *     <br>{@link AV_ERR_OPERATE_NOT_PERMIT}: operation not permitted.
  * @since 9
  */
 OH_AVErrCode OH_VideoDecoder_Stop(OH_AVCodec *codec);
@@ -240,7 +239,7 @@ OH_AVErrCode OH_VideoDecoder_Stop(OH_AVCodec *codec);
  *     <br>{@link AV_ERR_INVALID_VAL}: The value of **codec** is nullptr or does not point to a decoder instance.
  *     <br>{@link AV_ERR_UNKNOWN}: An unknown error occurs.
  *     <br>{@link AV_ERR_INVALID_STATE}: The function is called in an incorrect state.
- *     <br>{@link AV_ERR_OPERATE_NOT_PERMIT}: An internal execution error occurs.
+ *     <br>{@link AV_ERR_OPERATE_NOT_PERMIT}: operation not permitted.
  * @since 9
  */
 OH_AVErrCode OH_VideoDecoder_Flush(OH_AVCodec *codec);
@@ -254,7 +253,7 @@ OH_AVErrCode OH_VideoDecoder_Flush(OH_AVCodec *codec);
  *     <br>{@link AV_ERR_NO_MEMORY}: The decoder instance has been destroyed.
  *     <br>{@link AV_ERR_INVALID_VAL}: The value of **codec** is nullptr or does not point to a decoder instance.
  *     <br>{@link AV_ERR_UNKNOWN}: An unknown error occurs.
- *     <br>{@link AV_ERR_OPERATE_NOT_PERMIT}: An internal execution error occurs.
+ *     <br>{@link AV_ERR_OPERATE_NOT_PERMIT}: operation not permitted.
  * @since 9
  */
 OH_AVErrCode OH_VideoDecoder_Reset(OH_AVCodec *codec);
@@ -264,7 +263,7 @@ OH_AVErrCode OH_VideoDecoder_Reset(OH_AVCodec *codec);
  *
  * For details, see {@link OH_AVFormat}. You must call {@link OH_AVFormat_Destroy} to
  * release the {@link OH_AVFormat} instance when its lifecycle ends.
- *
+ * 
  * @param codec Pointer to a video decoder instance.
  * @return Pointer to an OH_AVFormat instance.
  *    <br>If the value of **codec** is nullptr or does not point to a decoder instance, NULL is returned.
@@ -282,11 +281,11 @@ OH_AVFormat *OH_VideoDecoder_GetOutputDescription(OH_AVCodec *codec);
  * @param format Pointer to an OH_AVFormat instance.
  * @return {@link AV_ERR_OK}: The operation is successful.
  *     <br>{@link AV_ERR_NO_MEMORY}: The decoder instance has been destroyed.
- *     <br>{@link AV_ERR_INVALID_VAL}: 1. The value of **codec** is nullptr or does not point to a decoder instance.
- *     2. The format is not supported.
+ *     <br>{@link AV_ERR_INVALID_VAL}: <br>1. The value of **codec** is nullptr or does not point to a decoder instance.
+ *     <br>2. The format is not supported.
  *     <br>{@link AV_ERR_UNKNOWN}: An unknown error occurs.
  *     <br>{@link AV_ERR_INVALID_STATE}: The function is called in an incorrect state.
- *     <br>{@link AV_ERR_OPERATE_NOT_PERMIT}: An internal execution error occurs.
+ *     <br>{@link AV_ERR_OPERATE_NOT_PERMIT}: operation not permitted.
  * @since 9
  */
 OH_AVErrCode OH_VideoDecoder_SetParameter(OH_AVCodec *codec, OH_AVFormat *format);
@@ -305,10 +304,11 @@ OH_AVErrCode OH_VideoDecoder_SetParameter(OH_AVCodec *codec, OH_AVFormat *format
  * @param attr Description information about the data in the buffer.
  * @return {@link AV_ERR_OK}: The operation is successful.
  *     <br>{@link AV_ERR_NO_MEMORY}: The decoder instance has been destroyed.
- *     <br>{@link AV_ERR_INVALID_VAL}: The value of **codec** is nullptr or does not point to a decoder instance.
+ *     <br>{@link AV_ERR_INVALID_VAL}: <br>1. The value of **codec** is nullptr or does not point to a decoder instance.
+ *     <br>2. The index is invalid. This error does not affect the subsequent decoding process.
  *     <br>{@link AV_ERR_UNKNOWN}: An unknown error occurs.
  *     <br>{@link AV_ERR_INVALID_STATE}: The function is called in an incorrect state.
- *     <br>{@link AV_ERR_OPERATE_NOT_PERMIT}: An internal execution error occurs.
+ *     <br>{@link AV_ERR_OPERATE_NOT_PERMIT}: operation not permitted.
  * @deprecated since 11
  * @useinstead OH_VideoDecoder_PushInputBuffer
  * @since 9
@@ -325,10 +325,11 @@ OH_AVErrCode OH_VideoDecoder_PushInputData(OH_AVCodec *codec, uint32_t index, OH
  * @param index Index of an output buffer. The value is provided by {@link OH_AVCodecOnNewOutputData}.
  * @return {@link AV_ERR_OK}: The operation is successful.
  *     <br>{@link AV_ERR_NO_MEMORY}: The decoder instance has been destroyed.
- *     <br>{@link AV_ERR_INVALID_VAL}: The value of codec is nullptr or does not point to a decoder instance.
+ *     <br>{@link AV_ERR_INVALID_VAL}: <br>1. The value of **codec** is nullptr or does not point to a decoder instance.
+ *     <br>2. The index is invalid. This error does not affect the subsequent decoding process.
  *     <br>{@link AV_ERR_UNKNOWN}: An unknown error occurs.
  *     <br>{@link AV_ERR_INVALID_STATE}: The function is called in an incorrect state.
- *     <br>{@link AV_ERR_OPERATE_NOT_PERMIT}: An internal execution error occurs.
+ *     <br>{@link AV_ERR_OPERATE_NOT_PERMIT}: operation not permitted.
  * @deprecated since 11
  * @useinstead OH_VideoDecoder_RenderOutputBuffer
  * @since 9
@@ -342,10 +343,11 @@ OH_AVErrCode OH_VideoDecoder_RenderOutputData(OH_AVCodec *codec, uint32_t index)
  * @param index Index of an output buffer. The value is provided by {@link OH_AVCodecOnNewOutputData}.
  * @return {@link AV_ERR_OK}: The operation is successful.
  *     <br>{@link AV_ERR_NO_MEMORY}: The decoder instance has been destroyed.
- *     <br>{@link AV_ERR_INVALID_VAL}: The value of **codec** is nullptr or does not point to a decoder instance.
+ *     <br>{@link AV_ERR_INVALID_VAL}: <br>1. The value of **codec** is nullptr or does not point to a decoder instance.
+ *     <br>2. The index is invalid. This error does not affect the subsequent decoding process.
  *     <br>{@link AV_ERR_UNKNOWN}: An unknown error occurs.
  *     <br>{@link AV_ERR_INVALID_STATE}: The function is called in an incorrect state.
- *     <br>{@link AV_ERR_OPERATE_NOT_PERMIT}: An internal execution error occurs.
+ *     <br>{@link AV_ERR_OPERATE_NOT_PERMIT}: operation not permitted.
  * @deprecated since 11
  * @useinstead OH_VideoDecoder_FreeOutputBuffer
  * @since 9
@@ -368,10 +370,11 @@ OH_AVErrCode OH_VideoDecoder_FreeOutputData(OH_AVCodec *codec, uint32_t index);
  * @param index Index of an input buffer. The value is provided by {@link OH_AVCodecOnNeedInputBuffer}.
  * @return {@link AV_ERR_OK}: The operation is successful.
  *     <br>{@link AV_ERR_NO_MEMORY}: The decoder instance has been destroyed.
- *     <br>{@link AV_ERR_INVALID_VAL}: The value of **codec** is nullptr or does not point to a decoder instance.
+ *     <br>{@link AV_ERR_INVALID_VAL}: <br>1. The value of **codec** is nullptr or does not point to a decoder instance.
+ *     <br>2. The index is invalid. This error does not affect the subsequent decoding process.
  *     <br>{@link AV_ERR_UNKNOWN}: An unknown error occurs.
  *     <br>{@link AV_ERR_INVALID_STATE}: The function is called in an incorrect state.
- *     <br>{@link AV_ERR_OPERATE_NOT_PERMIT}: An internal execution error occurs.
+ *     <br>{@link AV_ERR_OPERATE_NOT_PERMIT}: operation not permitted.
  *     <br>{@link AV_ERR_DRM_DECRYPT_FAILED}: The DRM-protected video buffer fails to be decrypted.
  *     You are advised to view logs.
  * @since 11
@@ -388,10 +391,11 @@ OH_AVErrCode OH_VideoDecoder_PushInputBuffer(OH_AVCodec *codec, uint32_t index);
  * @param index Index of an output buffer. The value is provided by {@link OH_AVCodecOnNewOutputBuffer}.
  * @return {@link AV_ERR_OK}: The operation is successful.
  *     <br>{@link AV_ERR_NO_MEMORY}: The decoder instance has been destroyed.
- *     <br>{@link AV_ERR_INVALID_VAL}: The value of **codec** is nullptr or does not point to a decoder instance.
+ *     <br>{@link AV_ERR_INVALID_VAL}: <br>1. The value of **codec** is nullptr or does not point to a decoder instance.
+ *     <br>2. The index is invalid. This error does not affect the subsequent decoding process.
  *     <br>{@link AV_ERR_UNKNOWN}: An unknown error occurs.
  *     <br>{@link AV_ERR_INVALID_STATE}: The function is called in an incorrect state.
- *     <br>{@link AV_ERR_OPERATE_NOT_PERMIT}: An internal execution error occurs.
+ *     <br>{@link AV_ERR_OPERATE_NOT_PERMIT}: operation not permitted.
  * @since 11
  */
 OH_AVErrCode OH_VideoDecoder_RenderOutputBuffer(OH_AVCodec *codec, uint32_t index);
@@ -417,19 +421,20 @@ OH_AVErrCode OH_VideoDecoder_RenderOutputBuffer(OH_AVCodec *codec, uint32_t inde
  * surface ignores the timestamp and renders the buffer at the earliest feasible time. In this case, no frames are
  * discarded.
  *
- *4. If you want the system to handle frame-dropping based on the display's refresh rate, you have to use
+ * 4. If you want the system to handle frame-dropping based on the display's refresh rate, you have to use
  * this function. Otherwise, your application manages frame-dropping on its own.
  *
  * @param codec Pointer to a video decoder instance.
  * @param index Index of an output buffer. The value is provided by {@link OH_AVCodecOnNewOutputBuffer}.
  * @param renderTimestampNs Timestamp (in nanoseconds) when the output buffer is sent to the surface. The value must be
- * greater than 0 and should be generated by the clock of the std::chrono::steady_clock standard library.
+ *     greater than 0 and should be generated by the clock of the std::chrono::steady_clock standard library.
  * @return {@link AV_ERR_OK}: The operation is successful.
  *     <br>{@link AV_ERR_NO_MEMORY}: The decoder instance has been destroyed.
- *     <br>{@link AV_ERR_INVALID_VAL}: The value of **codec** is nullptr or does not point to a decoder instance.
+ *     <br>{@link AV_ERR_INVALID_VAL}: <br>1. The value of **codec** is nullptr or does not point to a decoder instance.
+ *     <br>2. The index is invalid. This error does not affect the subsequent decoding process.
  *     <br>{@link AV_ERR_UNKNOWN}: An unknown error occurs.
  *     <br>{@link AV_ERR_INVALID_STATE}: The function is called in an incorrect state.
- *     <br>{@link AV_ERR_OPERATE_NOT_PERMIT}: An internal execution error occurs.
+ *     <br>{@link AV_ERR_OPERATE_NOT_PERMIT}: operation not permitted.
  * @since 12
  */
 OH_AVErrCode OH_VideoDecoder_RenderOutputBufferAtTime(OH_AVCodec *codec, uint32_t index, int64_t renderTimestampNs);
@@ -437,18 +442,19 @@ OH_AVErrCode OH_VideoDecoder_RenderOutputBufferAtTime(OH_AVCodec *codec, uint32_
 /**
  * @brief Frees an output buffer of a video decoder. You need to call this function to release the output buffer in a
  * timely manner. Otherwise, the decoding process is blocked.
- * For details, see step 12 in surface mode or step 10 in buffer mode in {@link Video Decoding}.
+ *
+ * For details,
+ * see step 12 in surface mode or step 10 in buffer mode in [Video Decoding](docroot://media/avcodec/video-decoding.md).
  *
  * @param codec Pointer to a video decoder instance.
  * @param index Index of an output buffer. The value is provided by {@link OH_AVCodecOnNewOutputBuffer}.
  * @return {@link AV_ERR_OK}: The operation is successful.
  *     <br>{@link AV_ERR_NO_MEMORY}: The decoder instance has been destroyed.
- *     <br>{@link AV_ERR_INVALID_VAL}: 1. The value of **codec** is nullptr or does not point to a decoder instance.
- *     2. The index is invalid or the same index is used consecutively.
- *     This error does not affect the subsequent decoding process.
+ *     <br>{@link AV_ERR_INVALID_VAL}: <br>1. The value of **codec** is nullptr or does not point to a decoder instance.
+ *     <br>2. The index is invalid. This error does not affect the subsequent decoding process.
  *     <br>{@link AV_ERR_UNKNOWN}: An unknown error occurs.
  *     <br>{@link AV_ERR_INVALID_STATE}: The function is called in an incorrect state.
- *     <br>{@link AV_ERR_OPERATE_NOT_PERMIT}: An internal execution error occurs.
+ *     <br>{@link AV_ERR_OPERATE_NOT_PERMIT}: operation not permitted.
  * @since 11
  */
 OH_AVErrCode OH_VideoDecoder_FreeOutputBuffer(OH_AVCodec *codec, uint32_t index);
@@ -508,7 +514,7 @@ OH_AVBuffer *OH_VideoDecoder_GetInputBuffer(struct OH_AVCodec *codec, uint32_t i
  *     <br>{@link AV_ERR_INVALID_STATE}: The function is called in an incorrect state.
  *     <br>{@link AV_ERR_OPERATE_NOT_PERMIT}: This function is called in asynchronous mode.
  *     <br>{@link AV_ERR_STREAM_CHANGED}: The stream format has changed. You can call
- *     <br>{@link OH_VideoDecoder_GetOutputDescription} to obtain the new stream information.
+ *     {@link OH_VideoDecoder_GetOutputDescription} to obtain the new stream information.
  *     <br>{@link AV_ERR_TRY_AGAIN_LATER}: The query fails. Try again after a short interval.
  * @since 20
  */
@@ -543,16 +549,16 @@ OH_AVErrCode OH_VideoDecoder_IsValid(OH_AVCodec *codec, bool *isValid);
  * @param codec Pointer to a video decoder instance.
  * @param mediaKeySession Pointer to a media key session instance with decryption capabilities.
  * @param secureVideoPath Whether a secure video channel is used. The value **true** means a secure video channel, and
- * **false** means a non-secure video channel.
+ *     **false** means a non-secure video channel.
  *     In [surface mode](docroot://media/avcodec/video-decoding.md#surface-mode),
  *     both secure and non-secure video channels are supported.
  *     In [buffer mode](docroot://media/avcodec/video-decoding.md#buffer-mode),
  *     only non-secure video channels are supported.
  * @return {@link AV_ERR_OK}: The operation is successful.
- *     <br>{@link AV_ERR_OPERATE_NOT_PERMIT}: 1. An internal execution error occurs.
- *     2. The decoding service process is abnormal. 3.The media key session service is in an error state.
- *     <br>{@link AV_ERR_INVALID_VAL}: 1. The value of **codec** is nullptr or does not point to a decoder instance.
- *     2. The valueof **mediaKeySession** is nullptr or invalid.
+ *     <br>{@link AV_ERR_OPERATE_NOT_PERMIT}: <br>1. operation not permitted.
+ *     <br>2. The decoding service process is abnormal.<br>3.The media key session service is in an error state.
+ *     <br>{@link AV_ERR_INVALID_VAL}:<br>1. The value of **codec** is nullptr or does not point to a decoder instance.
+ *     <br>2. The valueof **mediaKeySession** is nullptr or invalid.
  *     <br>{@link AV_ERR_NO_MEMORY}: The decoder instance has been destroyed.
  * @since 11
  */

@@ -33,11 +33,9 @@
 
 #ifndef NATIVE_AVCODEC_VIDEOENCODER_H
 #define NATIVE_AVCODEC_VIDEOENCODER_H
-
 #include <stdint.h>
 #include <stdio.h>
 #include "native_avcodec_base.h"
-
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -50,8 +48,8 @@ extern "C" {
  * OH_VideoEncoder_RegisterParameterCallback.
  *
  * In buffer mode, OH_AVBuffer can directly carry the encoding parameter associated with each frame. Currently, it can
- * manage parameters, including **QPMin**, **QPMax**, and reference frames for Long Term Reference (LTR), on a per-
- * frame basis.
+ * manage parameters, including **QPMin**, **QPMax**, and reference frames for Long Term Reference (LTR), on a
+ * per-frame basis.
  *
  * @param codec Pointer to a video encoder instance.
  * @param index Index of the frame to encode.
@@ -160,9 +158,9 @@ OH_AVErrCode OH_VideoEncoder_CreateSecondaryFromPrimary(OH_AVCodec *primary, OH_
  * @return {@link AV_ERR_OK}: The operation is successful.
  *     <br>{@link AV_ERR_NO_MEMORY}: An internal exception occurs in the encoder instance,
  *     for example, an unexpected nullptr.
- *     <br>{@link AV_ERR_NO_MEMORY}: The value of **codec** is nullptr or does not point to an encoder instance.
+ *     <br>{@link AV_ERR_INVALID_VAL}: The value of **codec** is nullptr or does not point to an encoder instance.
  *     <br>{@link AV_ERR_UNKNOWN}: An unknown error occurs.
- *     <br>{@link AV_ERR_OPERATE_NOT_PERMIT}: An internal execution error occurs.
+ *     <br>{@link AV_ERR_OPERATE_NOT_PERMIT}: operation not permitted.
  * @since 9
  */
 OH_AVErrCode OH_VideoEncoder_Destroy(OH_AVCodec *codec);
@@ -175,11 +173,11 @@ OH_AVErrCode OH_VideoEncoder_Destroy(OH_AVCodec *codec);
  * @param callback Callback function.
  * @param userData Pointer to the data on which the caller depends when executing the callback.
  * @return {@link AV_ERR_OK}: The operation is successful.
- *     <br>{@link AV_ERR_NO_MEMORY}: An internal exception occurs in the encoder instance,
- *     for example, an unexpected nullptr.
- *     <br>{@link AV_ERR_NO_MEMORY}: The value of **codec** is nullptr or does not point to an encoder instance.
+ *     <br>{@link AV_ERR_NO_MEMORY}: An internal exception occurs in the encoder instance, for example,
+ *     an unexpected nullptr.
+ *     <br>{@link AV_ERR_INVALID_VAL}: The value of **codec** is nullptr or does not point to an encoder instance.
  *     <br>{@link AV_ERR_UNKNOWN}: An unknown error occurs.
- *     <br>{@link AV_ERR_OPERATE_NOT_PERMIT}: An internal execution error occurs.
+ *     <br>{@link AV_ERR_OPERATE_NOT_PERMIT}: operation not permitted.
  * @deprecated since 11
  * @useinstead OH_VideoEncoder_RegisterCallback
  * @since 9
@@ -194,11 +192,11 @@ OH_AVErrCode OH_VideoEncoder_SetCallback(OH_AVCodec *codec, OH_AVCodecAsyncCallb
  * @param callback Callback function.
  * @param userData Pointer to the data on which the caller depends when executing the callback.
  * @return {@link AV_ERR_OK}: The operation is successful.
- *     <br>{@link AV_ERR_NO_MEMORY}: An internal exception occurs in the encoder instance,
- *     for example, an unexpected nullptr.
- *     <br>{@link AV_ERR_NO_MEMORY}: The value of **codec** is nullptr or does not point to an encoder instance.
+ *     <br>{@link AV_ERR_NO_MEMORY}: An internal exception occurs in the encoder instance, for example,
+ *     an unexpected nullptr.
+ *     <br>{@link AV_ERR_INVALID_VAL}: The value of **codec** is nullptr or does not point to an encoder instance.
  *     <br>{@link AV_ERR_UNKNOWN}: An unknown error occurs.
- *     <br>{@link AV_ERR_OPERATE_NOT_PERMIT}: An internal execution error occurs.
+ *     <br>{@link AV_ERR_OPERATE_NOT_PERMIT}: operation not permitted.
  * @since 11
  */
 OH_AVErrCode OH_VideoEncoder_RegisterCallback(OH_AVCodec *codec, OH_AVCodecCallback callback, void *userData);
@@ -214,11 +212,11 @@ OH_AVErrCode OH_VideoEncoder_RegisterCallback(OH_AVCodec *codec, OH_AVCodecCallb
  * @param onInputParameter Pointer to the input parameter callback.
  * @param userData Pointer to the data on which the caller depends when executing the callback.
  * @return {@link AV_ERR_OK}: The operation is successful.
- *     <br>{@link AV_ERR_NO_MEMORY}: An internal exception occurs in the encoder instance,
- *     for example, an unexpected nullptr.
- *     <br>{@link AV_ERR_NO_MEMORY}: The value of **codec** is nullptr or does not point to an encoder instance.
+ *     <br>{@link AV_ERR_NO_MEMORY}: An internal exception occurs in the encoder instance, for example,
+ *     an unexpected nullptr.
+ *     <br>{@link AV_ERR_INVALID_VAL}: The value of **codec** is nullptr or does not point to an encoder instance.
  *     <br>{@link AV_ERR_UNKNOWN}: An unknown error occurs.
- *     <br>{@link AV_ERR_OPERATE_NOT_PERMIT}: An internal execution error occurs.
+ *     <br>{@link AV_ERR_OPERATE_NOT_PERMIT}: operation not permitted.
  *     <br>{@link AV_ERR_INVALID_STATE}: The function is not called prior to {@link OH_VideoEncoder_Prepare}.
  * @since 12
  */
@@ -227,19 +225,21 @@ OH_AVErrCode OH_VideoEncoder_RegisterParameterCallback(OH_AVCodec *codec,
                                                        void *userData);
 
 /**
- * @brief Configures a video encoder. Typically, you need to configure the description information about the video
- * track to be encoded, such as the width, height, and pixel format. This function must be called prior to {@link
- * OH_VideoEncoder_Prepare}.
+ * @brief Configures encoding parameters for a video encoder. Typically, you need to configure the description
+ * information about the video frames, such as the frame width, height, and pixel format.
+ * This function must be called prior to {@link OH_VideoEncoder_Prepare}.
  *
  * This function is used to verify the validity of configuration parameters. Some invalid parameters are not forcibly
  * verified. The default values are used or discarded. Some invalid parameters are forcibly verified. The rules are as
  * follows:
- * The value ranges of the following parameters can be obtained
- * from [Capability Query](docroot://media/avcodec/obtain-supported-codecs.md).
- * All the values of **OH_MD_KEY_I_FRAME_INTERVAL** are supported.
+ * The value ranges of the following parameters can be obtained through
+ * [Capability Query](docroot://media/avcodec/obtain-supported-codecs.md).
+ * {@link OH_MD_KEY_I_FRAME_INTERVAL} does not support capability query currently.
  *
- * If the current platform does not support **OH_MD_KEY_VIDEO_ENCODER_ENABLE_TEMPORAL_SCALABILITY** or
- * **OH_MD_KEY_VIDEO_ENCODER_LTR_FRAME_COUNT**, no error is reported and the normal encoding process is used.
+ * When attempting to set the {@link OH_MD_KEY_VIDEO_ENCODER_ENABLE_TEMPORAL_SCALABILITY} or
+ * {@link OH_MD_KEY_VIDEO_ENCODER_LTR_FRAME_COUNT} parameter on an unsupported platform,
+ * this API will not return an error; instead, it will follow its normal execution path.
+ *
  * Parameter verification rules are as follows:
  * | Key     | Value Within the Range| Value Out of Range| No Value Configured|
  * | ------- | -------- | -------- | ------ |
@@ -250,31 +250,32 @@ OH_AVErrCode OH_VideoEncoder_RegisterParameterCallback(OH_AVCodec *codec,
  * | OH_MD_KEY_PROFILE {@link OH_MD_KEY_PROFILE}   | AV_ERR_OK | AV_ERR_INVALID_VAL | AV_ERR_OK |
  * | OH_MD_KEY_I_FRAME_INTERVAL | AV_ERR_OK |  \\       | AV_ERR_OK |
  *
- * | OH_MD_KEY_<br>BITRATE | OH_MD_KEY_<br>QUALITY| OH_MD_KEY_<br>VIDEO_ENCODER_BITRATE_MODE| Return Value|Description |
+ * | OH_MD_KEY_<br>BITRATE | OH_MD_KEY_<br>QUALITY |OH_MD_KEY_<br>VIDEO_ENCODER_BITRATE_MODE|Return Value| Description|
  * | :-------- | :---------| :---------- | ---- | ---------- |
  * | \\      | \\      | \\           |  AV_ERR_OK    | The default value of the encoder is used.|
- * | Out of range| Out of range| Unsupported mode| AV_ERR_INVALID_VAL| An error is reported for all abnormal values. |
- * | Normal value    | Normal value    | \\  | AV_ERR_INVALID_VAL   | The bit rate conflicts with the quality.  |
+ * | Out of range| Out of range| Unsupported mode| AV_ERR_INVALID_VAL   | An error is reported for all abnormal values.|
+ * | Normal value    | Normal value    | \\   | AV_ERR_INVALID_VAL   | The bit rate conflicts with the quality.  |
  * | Normal value    | \\      | \\           | AV_ERR_OK     | The default bit rate control mode is enabled.|
  * | Normal value    | \\      | BITRATE_MODE_VBR and BITRATE_MODE_CBR     | AV_ERR_OK     |    -     |
- * | Normal value    | \\      | BITRATE_MODE_CQ   | AV_ERR_INVALID_VAL   | The bit rate conflicts with the CQ mode.  |
+ * | Normal value    | \\      | BITRATE_MODE_CQ | AV_ERR_INVALID_VAL   | The bit rate conflicts with the CQ mode.  |
  * | \\      | Normal value    | \\           | AV_ERR_OK     | The CQ mode is enabled.|
  * | \\      | Normal value    | BITRATE_MODE_CQ           | AV_ERR_OK     |   -      |
- * | \\ | Normal value | BITRATE_MODE_VBR and BITRATE_MODE_CBR  | AV_ERR_INVALID_VAL | The quality conflicts with the VBR or CBR mode.|
- * | \\      | \\      | BITRATE_MODE_VBR and BITRATE_MODE_CBR     | AV_ERR_OK     | The default bit rate of the encoder is used.|
+ * | \\      | Normal value | BITRATE_MODE_VBR and BITRATE_MODE_CBR | AV_ERR_INVALID_VAL | The quality conflicts with the VBR or CBR mode.|
+ * | \\      | \\   | BITRATE_MODE_VBR and BITRATE_MODE_CBR | AV_ERR_OK | The default bit rate of the encoder is used.|
  * | \\      | \\      | BITRATE_MODE_CQ           | AV_ERR_OK    | The default quality is used. |
  *
  * @param codec Pointer to a video encoder instance.
  * @param format Pointer to an OH_AVFormat instance, which provides the description information about the video track
  * to be encoded.
  * @return {@link AV_ERR_OK}: The operation is successful.
- *     <br>{@link AV_ERR_NO_MEMORY}: An internal exception occurs in the encoder instance,
- *     for example, an unexpected nullptr.
- *     <br>{@link AV_ERR_NO_MEMORY}: 1. The value of **codec** is nullptr or does not point to an encoder instance.
- *     2. The format is not supported.
+ *     <br>{@link AV_ERR_NO_MEMORY}: An internal exception occurs in the encoder instance, for example,
+ *     an unexpected nullptr.
+ *     <br>{@link AV_ERR_INVALID_VAL}:<br>1. The value of **codec** is nullptr or does not point to an encoder instance.
+ *     <br>2. The format is not supported.
  *     <br>{@link AV_ERR_UNKNOWN}: An unknown error occurs.
- *     <br>{@link AV_ERR_OPERATE_NOT_PERMIT}: An internal execution error occurs.
+ *     <br>{@link AV_ERR_OPERATE_NOT_PERMIT}: operation not permitted.
  *     <br>{@link AV_ERR_INVALID_STATE}: The function is not called prior to {@link OH_VideoEncoder_Prepare}.
+ *     <br>{@link AV_ERR_UNSUPPORT}: unsupported pixel format.
  * @since 9
  */
 OH_AVErrCode OH_VideoEncoder_Configure(OH_AVCodec *codec, OH_AVFormat *format);
@@ -286,10 +287,10 @@ OH_AVErrCode OH_VideoEncoder_Configure(OH_AVCodec *codec, OH_AVFormat *format);
  * @param codec Pointer to a video encoder instance.
  * @return {@link AV_ERR_OK}: The operation is successful.
  *     <br>{@link AV_ERR_NO_MEMORY}: An internal error occurs in the input encoder instance.
- *     <br>{@link AV_ERR_NO_MEMORY}: The value of **codec** is nullptr or does not point to an encoder instance.
+ *     <br>{@link AV_ERR_INVALID_VAL}: The value of **codec** is nullptr or does not point to an encoder instance.
  *     <br>{@link AV_ERR_UNKNOWN}: An unknown error occurs.
- *     <br>{@link AV_ERR_OPERATE_NOT_PERMIT}: An internal execution error occurs.
- *     <br>{@link AV_ERR_INVALID_STATE}: The function is called in an incorrect state.
+ *     <br>{@link AV_ERR_OPERATE_NOT_PERMIT}: operation not permitted.
+ *     <br>{@link AV_ERR_INVALID_STATE}: This API cannot be called in the current encoder state.
  * @since 9
  */
 OH_AVErrCode OH_VideoEncoder_Prepare(OH_AVCodec *codec);
@@ -306,12 +307,12 @@ OH_AVErrCode OH_VideoEncoder_Prepare(OH_AVCodec *codec);
  *
  * @param codec Pointer to a video encoder instance.
  * @return {@link AV_ERR_OK}: The operation is successful.
- *     <br>{@link AV_ERR_NO_MEMORY}: An internal exception occurs in the encoder instance,
- *     for example, an unexpected nullptr.
- *     <br>{@link AV_ERR_NO_MEMORY}: The value of **codec** is nullptr or does not point to an encoder instance.
+ *     <br>{@link AV_ERR_NO_MEMORY}: An internal exception occurs in the encoder instance, for example,
+ *     an unexpected nullptr.
+ *     <br>{@link AV_ERR_INVALID_VAL}: The value of **codec** is nullptr or does not point to an encoder instance.
  *     <br>{@link AV_ERR_UNKNOWN}: An unknown error occurs.
- *     <br>{@link AV_ERR_OPERATE_NOT_PERMIT}: An internal execution error occurs.
- *     <br>{@link AV_ERR_INVALID_STATE}: The function is called in an incorrect state.
+ *     <br>{@link AV_ERR_OPERATE_NOT_PERMIT}: operation not permitted.
+ *     <br>{@link AV_ERR_INVALID_STATE}: This API cannot be called in the current encoder state..
  * @since 9
  */
 OH_AVErrCode OH_VideoEncoder_Start(OH_AVCodec *codec);
@@ -322,12 +323,12 @@ OH_AVErrCode OH_VideoEncoder_Start(OH_AVCodec *codec);
  *
  * @param codec Pointer to a video encoder instance.
  * @return {@link AV_ERR_OK}: The operation is successful.
- *     <br>{@link AV_ERR_NO_MEMORY}: An internal exception occurs in the encoder instance,
- *     for example, an unexpected nullptr.
- *     <br>{@link AV_ERR_NO_MEMORY}: The value of **codec** is nullptr or does not point to an encoder instance.
+ *     <br>{@link AV_ERR_NO_MEMORY}: An internal exception occurs in the encoder instance, for example,
+ *     an unexpected nullptr.
+ *     <br>{@link AV_ERR_INVALID_VAL}: The value of **codec** is nullptr or does not point to an encoder instance.
  *     <br>{@link AV_ERR_UNKNOWN}: An unknown error occurs.
- *     <br>{@link AV_ERR_OPERATE_NOT_PERMIT}: An internal execution error occurs.
- *     <br>{@link AV_ERR_INVALID_STATE}: The function is called in an incorrect state.
+ *     <br>{@link AV_ERR_OPERATE_NOT_PERMIT}: operation not permitted.
+ *     <br>{@link AV_ERR_INVALID_STATE}: This API cannot be called in the current encoder state.
  * @since 9
  */
 OH_AVErrCode OH_VideoEncoder_Stop(OH_AVCodec *codec);
@@ -341,27 +342,27 @@ OH_AVErrCode OH_VideoEncoder_Stop(OH_AVCodec *codec);
  *
  * @param codec Pointer to a video encoder instance.
  * @return {@link AV_ERR_OK}: The operation is successful.
- *     <br>{@link AV_ERR_NO_MEMORY}: An internal exception occurs in the encoder instance,
- *     for example, an unexpected nullptr.
- *     <br>{@link AV_ERR_NO_MEMORY}: The value of **codec** is nullptr or does not point to an encoder instance.
+ *     <br>{@link AV_ERR_NO_MEMORY}: An internal exception occurs in the encoder instance, for example,
+ *     an unexpected nullptr.
+ *     <br>{@link AV_ERR_INVALID_VAL}: The value of **codec** is nullptr or does not point to an encoder instance.
  *     <br>{@link AV_ERR_UNKNOWN}: An unknown error occurs.
- *     <br>{@link AV_ERR_OPERATE_NOT_PERMIT}: An internal execution error occurs.
- *     <br>{@link AV_ERR_INVALID_STATE}: The function is called in an incorrect state.
+ *     <br>{@link AV_ERR_OPERATE_NOT_PERMIT}: operation not permitted.
+ *     <br>{@link AV_ERR_INVALID_STATE}: This API cannot be called in the current encoder state.
  * @since 9
  */
 OH_AVErrCode OH_VideoEncoder_Flush(OH_AVCodec *codec);
 
 /**
- * @brief Resets a video encoder. The encoder returns to the initial state. To continue encoding, you must call {@link
- * OH_VideoEncoder_Configure} to configure the encoder again.
+ * @brief Resets a video encoder. The encoder returns to the initial state. To continue encoding, you must call
+ * {@link OH_VideoEncoder_Configure} to configure the encoder again.
  *
  * @param codec Pointer to a video encoder instance.
  * @return {@link AV_ERR_OK}: The operation is successful.
- *     <br>{@link AV_ERR_NO_MEMORY}: An internal exception occurs in the encoder instance,
- *     for example, an unexpected nullptr.
- *     <br>{@link AV_ERR_NO_MEMORY}: The value of **codec** is nullptr or does not point to an encoder instance.
+ *     <br>{@link AV_ERR_NO_MEMORY}: An internal exception occurs in the encoder instance, for example,
+ *     an unexpected nullptr.
+ *     <br>{@link AV_ERR_INVALID_VAL}: The value of **codec** is nullptr or does not point to an encoder instance.
  *     <br>{@link AV_ERR_UNKNOWN}: An unknown error occurs.
- *     <br>{@link AV_ERR_OPERATE_NOT_PERMIT}: An internal execution error occurs.
+ *     <br>{@link AV_ERR_OPERATE_NOT_PERMIT}: operation not permitted.
  * @since 9
  */
 OH_AVErrCode OH_VideoEncoder_Reset(OH_AVCodec *codec);
@@ -387,27 +388,27 @@ OH_AVFormat *OH_VideoEncoder_GetOutputDescription(OH_AVCodec *codec);
  * @param codec Pointer to a video encoder instance.
  * @param format Pointer to an OH_AVFormat instance.
  * @return {@link AV_ERR_OK}: The operation is successful.
- *     <br>{@link AV_ERR_NO_MEMORY}: An internal exception occurs in the encoder instance,
- *     for example, an unexpected nullptr.
- *     <br>{@link AV_ERR_NO_MEMORY}: 1. The value of **codec** is nullptr or does not point to an encoder instance.
- *     2. The format is not supported.
+ *     <br>{@link AV_ERR_NO_MEMORY}: An internal exception occurs in the encoder instance, for example,
+ *     an unexpected nullptr.
+ *     <br>{@link AV_ERR_INVALID_VAL}:<br>1. The value of **codec** is nullptr or does not point to an encoder instance.
+ *     <br>2. The format is not supported.
  *     <br>{@link AV_ERR_UNKNOWN}: An unknown error occurs.
- *     <br>{@link AV_ERR_OPERATE_NOT_PERMIT}: An internal execution error occurs.
- *     <br>{@link AV_ERR_INVALID_STATE}: The function is called in an incorrect state.
+ *     <br>{@link AV_ERR_OPERATE_NOT_PERMIT}: operation not permitted.
+ *     <br>{@link AV_ERR_INVALID_STATE}: This API cannot be called in the current encoder state.
  * @since 9
  */
 OH_AVErrCode OH_VideoEncoder_SetParameter(OH_AVCodec *codec, OH_AVFormat *format);
 
 /**
- * @brief Obtains the input surface from a video encoder. This function must be called after
- * **OH_VideoEncoder_Configure** but before {@link OH_VideoEncoder_Prepare}.
+ * @brief Obtains the input surface from a video encoder. This function must be called after **
+ * OH_VideoEncoder_Configure** but before {@link OH_VideoEncoder_Prepare}.
  *
  * @param codec Pointer to a video encoder instance.
  * @param window Double pointer to an OHNativeWindow instance. The application manages the lifecycle of the window and
  *     calls {@link OH_NativeWindow_DestroyNativeWindow} to release the window when the lifecycle ends.
  * @return {@link AV_ERR_OK}: The operation is successful.
- *     <br>{@link AV_ERR_NO_MEMORY}: The value of **codec** is nullptr or does not point to an encoder instance.
- *     <br>{@link AV_ERR_OPERATE_NOT_PERMIT}: An internal execution error occurs.
+ *     <br>{@link AV_ERR_INVALID_VAL}: The value of **codec** is nullptr or does not point to an encoder instance.
+ *     <br>{@link AV_ERR_OPERATE_NOT_PERMIT}: operation not permitted.
  * @since 9
  */
 OH_AVErrCode OH_VideoEncoder_GetSurface(OH_AVCodec *codec, OHNativeWindow **window);
@@ -418,12 +419,13 @@ OH_AVErrCode OH_VideoEncoder_GetSurface(OH_AVCodec *codec, OHNativeWindow **wind
  * @param codec Pointer to a video encoder instance.
  * @param index Index of the output buffer. The value is provided by {@link OH_AVCodecOnNewOutputData}.
  * @return {@link AV_ERR_OK}: The operation is successful.
- *     <br>{@link AV_ERR_NO_MEMORY}: An internal exception occurs in the encoder instance,
- *     for example, an unexpected nullptr.
- *     <br>{@link AV_ERR_NO_MEMORY}: The value of **codec** is nullptr or does not point to an encoder instance.
+ *     <br>{@link AV_ERR_NO_MEMORY}: An internal exception occurs in the encoder instance, for example,
+ *     an unexpected nullptr.
+ *     <br>{@link AV_ERR_INVALID_VAL}:<br>1. The value of **codec** is nullptr or does not point to an encoder instance.
+ *     <br>2. The index is invalid. This error does not affect the subsequent encoding process.
  *     <br>{@link AV_ERR_UNKNOWN}: An unknown error occurs.
- *     <br>{@link AV_ERR_OPERATE_NOT_PERMIT}: An internal execution error occurs.
- *     <br>{@link AV_ERR_INVALID_STATE}: The function is called in an incorrect state.
+ *     <br>{@link AV_ERR_OPERATE_NOT_PERMIT}: operation not permitted.
+ *     <br>{@link AV_ERR_INVALID_STATE}: This API cannot be called in the current encoder state.
  * @deprecated since 11
  * @useinstead OH_VideoEncoder_FreeOutputBuffer
  * @since 9
@@ -437,12 +439,12 @@ OH_AVErrCode OH_VideoEncoder_FreeOutputData(OH_AVCodec *codec, uint32_t index);
  *
  * @param codec Pointer to a video encoder instance.
  * @return {@link AV_ERR_OK}: The operation is successful.
- *     <br>{@link AV_ERR_NO_MEMORY}: An internal exception occurs in the encoder instance,
- *     for example, an unexpected nullptr.
- *     <br>{@link AV_ERR_NO_MEMORY}: The value of **codec** is nullptr or does not point to an encoder instance.
+ *     <br>{@link AV_ERR_NO_MEMORY}: An internal exception occurs in the encoder instance, for example,
+ *     an unexpected nullptr.
+ *     <br>{@link AV_ERR_INVALID_VAL}: The value of **codec** is nullptr or does not point to an encoder instance.
  *     <br>{@link AV_ERR_UNKNOWN}: An unknown error occurs.
- *     <br>{@link AV_ERR_OPERATE_NOT_PERMIT}: An internal execution error occurs.
- *     <br>{@link AV_ERR_INVALID_STATE}: The function is called in an incorrect state.
+ *     <br>{@link AV_ERR_OPERATE_NOT_PERMIT}: operation not permitted.
+ *     <br>{@link AV_ERR_INVALID_STATE}: This API cannot be called in the current encoder state.
  * @since 9
  */
 OH_AVErrCode OH_VideoEncoder_NotifyEndOfStream(OH_AVCodec *codec);
@@ -454,12 +456,13 @@ OH_AVErrCode OH_VideoEncoder_NotifyEndOfStream(OH_AVCodec *codec);
  * @param index Index of the input buffer. The value is provided by {@link OH_AVCodecOnNeedInputData}.
  * @param attr Description of the data contained in the buffer.
  * @return {@link AV_ERR_OK}: The operation is successful.
- *     <br>{@link AV_ERR_NO_MEMORY}: An internal exception occurs in the encoder instance,
- *     for example, an unexpected nullptr.
- *     <br>{@link AV_ERR_NO_MEMORY}: The value of **codec** is nullptr or does not point to an encoder instance.
+ *     <br>{@link AV_ERR_NO_MEMORY}: An internal exception occurs in the encoder instance, for example,
+ *     an unexpected nullptr.
+ *     <br>{@link AV_ERR_INVALID_VAL}:<br>1. The value of **codec** is nullptr or does not point to an encoder instance.
+ *     <br>2. The index is invalid. This error does not affect the subsequent encoding process.
  *     <br>{@link AV_ERR_UNKNOWN}: An unknown error occurs.
- *     <br>{@link AV_ERR_OPERATE_NOT_PERMIT}: An internal execution error occurs.
- *     <br>{@link AV_ERR_INVALID_STATE}: The function is called in an incorrect state.
+ *     <br>{@link AV_ERR_OPERATE_NOT_PERMIT}: operation not permitted.
+ *     <br>{@link AV_ERR_INVALID_STATE}: This API cannot be called in the current encoder state.
  * @deprecated since 11
  * @useinstead OH_VideoEncoder_PushInputBuffer
  * @since 10
@@ -467,17 +470,17 @@ OH_AVErrCode OH_VideoEncoder_NotifyEndOfStream(OH_AVCodec *codec);
 OH_AVErrCode OH_VideoEncoder_PushInputData(OH_AVCodec *codec, uint32_t index, OH_AVCodecBufferAttr attr);
 
 /**
- * @brief Pushes the OH_AVBuffer for the given index to a video encoder in Buffer mode.
+ * @brief Pushes the OH_AVBuffer corresponding to the index to a video encoder in buffer mode.
  *
  * @param codec Pointer to an OH_AVCodec instance
  * @param index Enter the index value corresponding to the Buffer
  * @return {@link AV_ERR_OK}: The operation is successful.
  *     <br>{@link AV_ERR_NO_MEMORY}: instance has already released.
- *     <br>{@link AV_ERR_NO_MEMORY}: the encoder is nullptr or invalid.
- *     Buffer index should be given by {@link OH_AVCodecOnNeedInputBuffer}.
+ *     <br>{@link AV_ERR_INVALID_VAL}:<br>1. The value of **codec** is nullptr or does not point to an encoder instance.
+ *     <br>2. The index is invalid. This error does not affect the subsequent encoding process.
  *     <br>{@link AV_ERR_UNKNOWN}: unknown error.
- *     {@link AV_ERR_SERVICE_DIED}: avcodec service is died.
- *     <br>{@link AV_ERR_INVALID_STATE}: this interface was called in invalid state.
+ *     <br>{@link AV_ERR_OPERATE_NOT_PERMIT}: operation not permitted.
+ *     <br>{@link AV_ERR_INVALID_STATE}: This API cannot be called in the current encoder state.
  * @since 11
  */
 OH_AVErrCode OH_VideoEncoder_PushInputBuffer(OH_AVCodec *codec, uint32_t index);
@@ -488,12 +491,13 @@ OH_AVErrCode OH_VideoEncoder_PushInputBuffer(OH_AVCodec *codec, uint32_t index);
  * @param codec Pointer to a video encoder instance.
  * @param index Index of the input parameter buffer. The value is provided by {@link OH_AVCodecOnNeedInputBuffer}.
  * @return {@link AV_ERR_OK}: The operation is successful.
- *     <br>{@link AV_ERR_NO_MEMORY}: An internal exception occurs in the encoder instance,
- *     for example, an unexpected nullptr.
- *     <br>{@link AV_ERR_NO_MEMORY}: The value of **codec** is nullptr or does not point to an encoder instance.
+ *     <br>{@link AV_ERR_NO_MEMORY}: An internal exception occurs in the encoder instance, for example,
+ *     an unexpected nullptr.
+ *     <br>{@link AV_ERR_INVALID_VAL}:<br>1. The value of **codec** is nullptr or does not point to an encoder instance.
+ *     <br>2. The index is invalid. This error does not affect the subsequent encoding process.
  *     <br>{@link AV_ERR_UNKNOWN}: An unknown error occurs.
- *     <br>{@link AV_ERR_OPERATE_NOT_PERMIT}: An internal execution error occurs.
- *     <br>{@link AV_ERR_INVALID_STATE}: The function is called in an incorrect state.
+ *     <br>{@link AV_ERR_OPERATE_NOT_PERMIT}: operation not permitted.
+ *     <br>{@link AV_ERR_INVALID_STATE}: This API cannot be called in the current encoder state.
  * @since 12
  */
 OH_AVErrCode OH_VideoEncoder_PushInputParameter(OH_AVCodec *codec, uint32_t index);
@@ -508,16 +512,13 @@ OH_AVErrCode OH_VideoEncoder_PushInputParameter(OH_AVCodec *codec, uint32_t inde
  * @param codec Pointer to a video encoder instance.
  * @param index Index of the output buffer. The value is provided by {@link OH_AVCodecOnNeedInputBuffer}.
  * @return {@link AV_ERR_OK}: The operation is successful.
- *     <br>{@link AV_ERR_NO_MEMORY}: An internal exception occurs in the encoder instance,
- *     for example, an unexpected nullptr.
- *     <br>{@link AV_ERR_NO_MEMORY}:
- *     <br>1. The value of **codec** is nullptr or does not point to an encoder instance.
- *     <br>2. The format is not supported.
- *     <br>3. The index is invalid or the same index is used consecutively. This error does not affect
- *     the subsequent encoding process.
+ *     <br>{@link AV_ERR_NO_MEMORY}: An internal exception occurs in the encoder instance, for example,
+ *     an unexpected nullptr.
+ *     <br>{@link AV_ERR_INVALID_VAL}:<br>1. The value of **codec** is nullptr or does not point to an encoder instance.
+ *     <br>2. The index is invalid. This error does not affect the subsequent encoding process.
  *     <br>{@link AV_ERR_UNKNOWN}: An unknown error occurs.
- *     <br>{@link AV_ERR_OPERATE_NOT_PERMIT}: An internal execution error occurs.
- *     <br>{@link AV_ERR_INVALID_STATE}: The function is called in an incorrect state.
+ *     <br>{@link AV_ERR_OPERATE_NOT_PERMIT}: operation not permitted.
+ *     <br>{@link AV_ERR_INVALID_STATE}: This API cannot be called in the current encoder state.
  * @since 11
  */
 OH_AVErrCode OH_VideoEncoder_FreeOutputBuffer(OH_AVCodec *codec, uint32_t index);
@@ -536,9 +537,9 @@ OH_AVErrCode OH_VideoEncoder_FreeOutputBuffer(OH_AVCodec *codec, uint32_t index)
  *  to return immediately. A positive value means to wait for the specified time before exiting.
  * @return {@link AV_ERR_OK}: The operation is successful.
  *     <br>{@link AV_ERR_NO_MEMORY}: The encoder instance has been destroyed.
- *     <br>{@link AV_ERR_NO_MEMORY}: The value of **codec** is nullptr or does not point to an encoder instance.
+ *     <br>{@link AV_ERR_INVALID_VAL}: The value of **codec** is nullptr or does not point to an encoder instance.
  *     <br>{@link AV_ERR_UNKNOWN}: An unknown error occurs.
- *     <br>{@link AV_ERR_INVALID_STATE}: The function is called in an incorrect state.
+ *     <br>{@link AV_ERR_INVALID_STATE}: This API cannot be called in the current encoder state.
  *     <br>{@link AV_ERR_OPERATE_NOT_PERMIT}: This function is called in asynchronous mode.
  *     <br>{@link AV_ERR_TRY_AGAIN_LATER}: The query fails. Try again after a short interval.
  * @since 20
@@ -570,12 +571,12 @@ OH_AVBuffer *OH_VideoEncoder_GetInputBuffer(struct OH_AVCodec *codec, uint32_t i
  *     to return immediately. A positive value means to wait for the specified time before exiting.
  * @return {@link AV_ERR_OK}: The operation is successful.
  *     <br>{@link AV_ERR_NO_MEMORY}: The encoder instance has been destroyed.
- *     <br>{@link AV_ERR_NO_MEMORY}: The value of **codec** is nullptr or does not point to an encoder instance.
+ *     <br>{@link AV_ERR_INVALID_VAL}: The value of **codec** is nullptr or does not point to an encoder instance.
  *     <br>{@link AV_ERR_UNKNOWN}: An unknown error occurs.
- *     <br>{@link AV_ERR_INVALID_STATE}: The function is called in an incorrect state.
+ *     <br>{@link AV_ERR_INVALID_STATE}: This API cannot be called in the current encoder state.
  *     <br>{@link AV_ERR_OPERATE_NOT_PERMIT}: This function is called in asynchronous mode.
  *     <br>{@link AV_ERR_STREAM_CHANGED}: The stream format has changed. You can call
- *     <br>{@link OH_VideoEncoder_GetOutputDescription} to obtain the new stream information.
+ *     {@link OH_VideoEncoder_GetOutputDescription} to obtain the new stream information.
  *     <br>{@link AV_ERR_TRY_AGAIN_LATER}: The query fails. Try again after a short interval.
  * @since 20
  */
@@ -614,7 +615,7 @@ OH_AVFormat *OH_VideoEncoder_GetInputDescription(OH_AVCodec *codec);
  *     function returns {@link AV_ERR_OK}. The value **true** means that the encoder service is valid,
  *     and **false** means the opposite. It is recommended that you initialize **isValid** to **false**.
  * @return {@link AV_ERR_OK}: The operation is successful.
- *     <br>{@link AV_ERR_NO_MEMORY}: The value of **codec** is nullptr or does not point to an encoder instance.
+ *     <br>{@link AV_ERR_INVALID_VAL}: The value of **codec** is nullptr or does not point to an encoder instance.
  * @since 10
  */
 OH_AVErrCode OH_VideoEncoder_IsValid(OH_AVCodec *codec, bool *isValid);
@@ -644,11 +645,10 @@ typedef enum OH_VideoEncodeBitrateMode {
      * @useinstead BITRATE_MODE_CQ
      * @since 9
      */
-    CQ = 2,
+    CQ = 2
 } OH_VideoEncodeBitrateMode;
 #ifdef __cplusplus
 }
 #endif
-
 #endif // NATIVE_AVCODEC_VIDEOENCODER_H
 /** @} */
