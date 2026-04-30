@@ -264,7 +264,7 @@ const char *OH_GetDistributionOSName(void);
 
 /**
  * @brief Obtains the ISV distribution OS version.
- * 
+ *
  * @return Returns an ISV distribution OS version.
  *     <br>If no ISV is specified, the value of {@link OH_GetOSFullName} is returned.
  * @syscap SystemCapability.Startup.SystemInfo
@@ -274,7 +274,7 @@ const char *OH_GetDistributionOSVersion(void);
 
 /**
  * @brief Obtains the ISV distribution OS API version.
- * 
+ *
  * @return Returns an ISV distribution OS API version.
  *     <br>If no ISV is specified, the value of {@link OH_GetSdkApiVersion} is returned.
  * @syscap SystemCapability.Startup.SystemInfo
