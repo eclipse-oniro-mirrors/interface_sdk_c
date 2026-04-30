@@ -16,7 +16,7 @@
  * @addtogroup DeviceInfo
  * @{
  *
- * Provides APIs for querying terminal device information.
+ * @brief Provides APIs for querying terminal device information.
  *
  * @since 10
  */
