@@ -43,10 +43,12 @@ extern "C" {
 #endif
 
 /**
- * @brief Queries whether a device supports a specified SystemCapability.
+ * @brief Provides the API for querying whether a SystemCapability (SysCap) is supported.
+ * SysCap refers to a standalone feature in the operating system.
+ * Different devices support different SysCap sets. Each SysCap corresponds to one or more APIs.
+ * You can determine whether an API can be used by checking SysCap support.
  * @param cap SystemCapability whether supported
- * @return true - Supports the specified SystemCapability.
- *     false - The specified SystemCapability is not supported.
+ * @return Checks whether a SysCap is supported.
  * @since 8
  */
 bool canIUse(const char *cap);
@@ -54,7 +56,7 @@ bool canIUse(const char *cap);
 #ifdef __cplusplus
 #if __cplusplus
 }
-#endif
-#endif
+#endif // #if __cplusplus
+#endif // #ifdef __cplusplus
 #endif
 /** @} */
