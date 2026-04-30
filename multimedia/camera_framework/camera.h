@@ -1500,7 +1500,13 @@ typedef enum Camera_ControlCenterEffectType {
      * Applies a auto-framing effect.
      * @since 24
      */
-    CONTROL_CENTER_EFFECT_TYPE_AUTO_FRAMING = 2
+    CONTROL_CENTER_EFFECT_TYPE_AUTO_FRAMING = 2,
+
+    /**
+     * Color effect.
+     * @since 26.0.0
+     */
+    CONTROL_CENTER_EFFECT_TYPE_COLOR_EFFECT = 3
 } Camera_ControlCenterEffectType;
 
 /**
