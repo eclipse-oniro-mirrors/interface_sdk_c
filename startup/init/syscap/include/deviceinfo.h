@@ -41,7 +41,7 @@ extern "C" {
 
 /**
  * @brief Obtains the device type.
- * 
+ *
  * @return Returns one of the following values:
  *     <br>**phone** (or **default**),
  *     <br>**wearable**,
