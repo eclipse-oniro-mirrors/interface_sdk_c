@@ -2387,6 +2387,34 @@ typedef enum {
     NODE_INSPECTOR_LABEL = 126,
 
     /**
+     * @brief Defines the next accessibility focus id of current component for accessibility processing to find the next focus component. This attribute can be set, reset, and obtained as required through APIs.
+     *
+     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
+     * .string: accessibility next focus ID.
+     * \n
+     * Format of the return value {@link ArkUI_AttributeItem}:\n
+     * .string: accessibility next focus ID.
+     * \n
+     * @since 26.0.0
+     */
+    NODE_ACCESSIBILITY_NEXT_FOCUS_ID = 124,
+
+    /**
+     * @brief Sets the accessibility default focus flag for accessibility services to find the default focus component. This attribute can be set, reset, and obtained as required through APIs.
+     *
+     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
+     * .value[0].i32: Accessibility default focus. The value <b>1</b> means that the component is defined as default focus in accessibility services.\n
+     * The value is <b>1</b> or <b>0</b>.
+     * \n
+     * Format of the return value {@link ArkUI_AttributeItem}:\n
+     * .value[0].i32: Accessibility default focus. The value <b>1</b> means that the component is defined as default focus in accessibility services.\n
+     * The value is <b>1</b> or <b>0</b>.
+     * \n
+     * @since 26.0.0
+     */
+    NODE_ACCESSIBILITY_DEFAULT_FOCUS = 125,
+
+    /**
      * @brief Defines the text content attribute, which can be set, reset, and obtained as required through APIs.
      *
      * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
