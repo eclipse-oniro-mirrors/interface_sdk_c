@@ -4,7 +4,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- * http://www.apache.org/licenses/LICENSE-2.0
+ *     http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -12,6 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 /**
  * @addtogroup OH_CommonEvent
  * @{
@@ -20,6 +21,7 @@
  *
  * @since 12
  */
+
 /**
  * @file oh_commonevent.h
  *
@@ -128,7 +130,7 @@ typedef enum CommonEvent_ErrCode {
 typedef struct CommonEvent_SubscribeInfo CommonEvent_SubscribeInfo;
 
 /**
- * @brief  提供CommonEvent_Subscriber订阅者结构体声明。
+ * @brief  提供CommonEvent_Subscriber订阅者声明。
  *
  * @since 12
  */
@@ -149,7 +151,7 @@ typedef struct CommonEvent_PublishInfo CommonEvent_PublishInfo;
 typedef struct CommonEvent_RcvData CommonEvent_RcvData;
 
 /**
- * @brief  提供CommonEvent_RcvData公共事件附加信息结构体声明。
+ * @brief  提供CommonEvent_RcvData公共事件附加信息声明。
  *
  * @since 12
  */
@@ -166,7 +168,7 @@ typedef void (*CommonEvent_ReceiveCallback)(const CommonEvent_RcvData *data);
 /**
  * @brief 创建订阅者信息。
  *
- * @param events Indicates the subscribed events.
+ * @param events 订阅的公共事件，实际订阅的公共事件数量为`eventsNum`与`events`数组长度的最小值。
  * @param eventsNum 订阅的公共事件数量。
  * @return 成功则返回订阅者信息,失败则返回NULL。
  * @since 12
@@ -233,7 +235,7 @@ void OH_CommonEvent_DestroySubscriber(CommonEvent_Subscriber* subscriber);
  *     <br>返回{@link COMMONEVENT_ERR_INVALID_PARAMETER}表示参数subscriber无效。
  *     <br>返回{@link COMMONEVENT_ERR_SENDING_REQUEST_FAILED}表示IPC请求发送失败。
  *     <br>返回{@link COMMONEVENT_ERR_INIT_UNDONE}表示公共事件服务未初始化。
- *     <br>返回{@link COMMONEVENT_ERR_SUBSCRIBER_NUM_EXCEEDED}表示进程订阅者数量超过200个。
+ *     <br>返回{@link COMMONEVENT_ERR_SUBSCRIBER_NUM_EXCEEDED}表示订阅者数量超过限制。
  *     <br>返回{@link COMMONEVENT_ERR_ALLOC_MEMORY_FAILED}系统分配内存失败。
  * @since 12
  */
@@ -301,8 +303,8 @@ const CommonEvent_Parameters* OH_CommonEvent_GetParametersFromRcvData(const Comm
  * @brief 创建公共事件属性对象。
  *
  * @param ordered 是否为有序公共事件。
- *     <br>true：有序公共事件。
- *     <br>false：无序公共事件。
+ *     <br>- true：有序公共事件。
+ *     <br>- false：无序公共事件。
  * @return 创建的公共事件属性对象，创建失败时，返回null。
  * @since 18
  */
@@ -332,7 +334,7 @@ CommonEvent_ErrCode OH_CommonEvent_SetPublishInfoBundleName(CommonEvent_PublishI
  * @brief 设置公共事件订阅者权限。
  *
  * @param info 公共事件属性对象。
- * @param permissions Indicates the array of permissions.
+ * @param permissions 订阅者权限名称数组，生效数量为`num`与`permissions`数组长度的最小值。
  * @param num 权限的数量。
  * @return 返回错误码。
  *     <br>返回{@link COMMONEVENT_ERR_OK}表示成功。
@@ -403,8 +405,8 @@ void OH_CommonEvent_DestroyParameters(CommonEvent_Parameters* param);
  * @param para 公共事件附加信息。
  * @param key 数据键。
  * @return 返回数据键是否存在。
- *     <br>true：存在。
- *     <br>false：不存在。
+ *     <br>- true：存在。
+ *     <br>- false：不存在。
  * @since 12
  */
 bool OH_CommonEvent_HasKeyInParameters(const CommonEvent_Parameters* para, const char* key);

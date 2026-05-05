@@ -4,7 +4,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- * http://www.apache.org/licenses/LICENSE-2.0
+ *     http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -12,6 +12,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
+/**
+ * @addtogroup OH_CommonEvent
+ * @{
+ *
+ * @brief Provides the APIs of common event service.
+ *
+ * @since 12
+ */
+
 /**
  * @file oh_commonevent.h
  *
@@ -22,14 +32,6 @@
  * @syscap SystemCapability.Notification.CommonEvent
  * @since 12
  * @version 1.0
- */
-/**
- * @addtogroup OH_CommonEvent
- * @{
- *
- * @brief Provides the APIs of common event service.
- *
- * @since 12
  */
 
 #ifndef OH_COMMONEVENT_H
@@ -166,7 +168,8 @@ typedef void (*CommonEvent_ReceiveCallback)(const CommonEvent_RcvData *data);
 /**
  * @brief Creates the subscriber information.
  *
- * @param events Indicates the subscribed events.
+ * @param events Pointer to the common events. The valid number of subscribed common events is the smaller value
+ *     between **eventsNum** and the length of the **events[]**.
  * @param eventsNum Number of common events to subscribe.
  * @return Returns the subscriber information created if the operation is successful; returns **NULL** otherwise.
  * @since 12
@@ -179,8 +182,8 @@ CommonEvent_SubscribeInfo* OH_CommonEvent_CreateSubscribeInfo(const char* events
  * @param info Pointer to the subscriber information.
  * @param permission Pointer to the permission name.
  * @return Returns an execution result.
- *     <br>{@link COMMONEVENT_ERR_OK}: Operation is successful.
- *     <br>{@link COMMONEVENT_ERR_INVALID_PARAMETER}: The parameter is invalid.
+ *     <br>{@link COMMONEVENT_ERR_OK}: Operation successful.
+ *     <br>{@link COMMONEVENT_ERR_INVALID_PARAMETER}: Invalid parameter.
  * @since 12
  */
 CommonEvent_ErrCode OH_CommonEvent_SetPublisherPermission(CommonEvent_SubscribeInfo* info, const char* permission);
@@ -191,8 +194,8 @@ CommonEvent_ErrCode OH_CommonEvent_SetPublisherPermission(CommonEvent_SubscribeI
  * @param info Pointer to the subscriber information.
  * @param bundleName Pointer to the bundle name.
  * @return Returns an execution result.
- *     <br>{@link COMMONEVENT_ERR_OK}: Operation is successful.
- *     <br>{@link COMMONEVENT_ERR_INVALID_PARAMETER}: The parameter is invalid.
+ *     <br>{@link COMMONEVENT_ERR_OK}: Operation successful.
+ *     <br>{@link COMMONEVENT_ERR_INVALID_PARAMETER}: Invalid parameter.
  * @since 12
  */
 CommonEvent_ErrCode OH_CommonEvent_SetPublisherBundleName(CommonEvent_SubscribeInfo* info, const char* bundleName);
@@ -229,11 +232,11 @@ void OH_CommonEvent_DestroySubscriber(CommonEvent_Subscriber* subscriber);
  *
  * @param subscriber Pointer to the common event subscriber.
  * @return Returns an execution result.
- *     <br>{@link COMMONEVENT_ERR_OK}: Operation is successful.
- *     <br>{@link COMMONEVENT_ERR_INVALID_PARAMETER}: The parameter is invalid.
+ *     <br>{@link COMMONEVENT_ERR_OK}: Operation successful.
+ *     <br>{@link COMMONEVENT_ERR_INVALID_PARAMETER}: Invalid parameter.
  *     <br>{@link COMMONEVENT_ERR_SENDING_REQUEST_FAILED}: Failed to send IPC requests.
- *     <br>{@link COMMONEVENT_ERR_INIT_UNDONE}: The common event service is not initialized.
- *     <br>{@link COMMONEVENT_ERR_SUBSCRIBER_NUM_EXCEEDED}: The number of subscribers exceeds 200.
+ *     <br>{@link COMMONEVENT_ERR_INIT_UNDONE}: Services not initialized.
+ *     <br>{@link COMMONEVENT_ERR_SUBSCRIBER_NUM_EXCEEDED}: The number of subscribers exceeds the upper limit.
  *     <br>{@link COMMONEVENT_ERR_ALLOC_MEMORY_FAILED}: Failed to allocate memory.
  * @since 12
  */
@@ -244,10 +247,10 @@ CommonEvent_ErrCode OH_CommonEvent_Subscribe(const CommonEvent_Subscriber* subsc
  *
  * @param subscriber Pointer to the common event subscriber.
  * @return Returns an execution result.
- *     <br>{@link COMMONEVENT_ERR_OK}: Operation is successful.
- *     <br>{@link COMMONEVENT_ERR_INVALID_PARAMETER}: The parameter is invalid.
+ *     <br>{@link COMMONEVENT_ERR_OK}: Operation successful.
+ *     <br>{@link COMMONEVENT_ERR_INVALID_PARAMETER}: Invalid parameter.
  *     <br>{@link COMMONEVENT_ERR_SENDING_REQUEST_FAILED}: Failed to send IPC requests.
- *     <br>{@link COMMONEVENT_ERR_INIT_UNDONE}: The common event service is not initialized.
+ *     <br>{@link COMMONEVENT_ERR_INIT_UNDONE}: Services not initialized.
  * @since 12
  */
 CommonEvent_ErrCode OH_CommonEvent_UnSubscribe(const CommonEvent_Subscriber* subscriber);
@@ -301,8 +304,8 @@ const CommonEvent_Parameters* OH_CommonEvent_GetParametersFromRcvData(const Comm
  * @brief Creates a property object of a common event.
  *
  * @param ordered Whether the common event is an ordered one.
- *     <br>**true**: ordered common event.
- *     <br>**false**: unordered common event.
+ *     <br>- **true**: ordered common event.
+ *     <br>- **false**: unordered common event.
  * @return Returns the property object if the operation is successful; returns **null** otherwise.
  * @since 18
  */
@@ -322,8 +325,8 @@ void OH_CommonEvent_DestroyPublishInfo(CommonEvent_PublishInfo* info);
  * @param info Pointer to the property object of a common event.
  * @param bundleName Pointer to the bundle name to set.
  * @return Returns an execution result.
- *     <br>{@link COMMONEVENT_ERR_OK}: Operation is successful.
- *     <br>{@link COMMONEVENT_ERR_INVALID_PARAMETER}: The parameter is invalid.
+ *     <br>{@link COMMONEVENT_ERR_OK}: Operation successful.
+ *     <br>{@link COMMONEVENT_ERR_INVALID_PARAMETER}: Invalid parameter.
  * @since 18
  */
 CommonEvent_ErrCode OH_CommonEvent_SetPublishInfoBundleName(CommonEvent_PublishInfo* info, const char* bundleName);
@@ -332,11 +335,12 @@ CommonEvent_ErrCode OH_CommonEvent_SetPublishInfoBundleName(CommonEvent_PublishI
  * @brief Sets permissions for a common event.
  *
  * @param info Pointer to the property object of a common event.
- * @param permissions Indicates the array of permissions.
+ * @param permissions Pointer to the array of permission names. The valid number of permissions is the smaller value
+ *     between **num** and the length of the **permissions[]**.
  * @param num Number of permissions.
  * @return Returns an execution result.
- *     <br>{@link COMMONEVENT_ERR_OK}: Operation is successful.
- *     <br>{@link COMMONEVENT_ERR_INVALID_PARAMETER}: The parameter is invalid.
+ *     <br>{@link COMMONEVENT_ERR_OK}: Operation successful.
+ *     <br>{@link COMMONEVENT_ERR_INVALID_PARAMETER}: Invalid parameter.
  * @since 18
  */
 CommonEvent_ErrCode OH_CommonEvent_SetPublishInfoPermissions(CommonEvent_PublishInfo* info,
@@ -348,8 +352,8 @@ CommonEvent_ErrCode OH_CommonEvent_SetPublishInfoPermissions(CommonEvent_Publish
  * @param info Pointer to the property object of a common event.
  * @param code Result code to set.
  * @return Returns an execution result.
- *     <br>{@link COMMONEVENT_ERR_OK}: Operation is successful.
- *     <br>{@link COMMONEVENT_ERR_INVALID_PARAMETER}: The parameter is invalid.
+ *     <br>{@link COMMONEVENT_ERR_OK}: Operation successful.
+ *     <br>{@link COMMONEVENT_ERR_INVALID_PARAMETER}: Invalid parameter.
  * @since 18
  */
 CommonEvent_ErrCode OH_CommonEvent_SetPublishInfoCode(CommonEvent_PublishInfo* info, int32_t code);
@@ -362,8 +366,8 @@ CommonEvent_ErrCode OH_CommonEvent_SetPublishInfoCode(CommonEvent_PublishInfo* i
  *     the length of the **data** string.
  * @param length Length of the result data.
  * @return Returns an execution result.
- *     <br>{@link COMMONEVENT_ERR_OK}: Operation is successful.
- *     <br>{@link COMMONEVENT_ERR_INVALID_PARAMETER}: The parameter is invalid.
+ *     <br>{@link COMMONEVENT_ERR_OK}: Operation successful.
+ *     <br>{@link COMMONEVENT_ERR_INVALID_PARAMETER}: Invalid parameter.
  * @since 18
  */
 CommonEvent_ErrCode OH_CommonEvent_SetPublishInfoData(CommonEvent_PublishInfo* info,
@@ -375,8 +379,8 @@ CommonEvent_ErrCode OH_CommonEvent_SetPublishInfoData(CommonEvent_PublishInfo* i
  * @param info Pointer to the property object of a common event.
  * @param param Pointer to the additional information to set.
  * @return Returns an execution result.
- *     <br>{@link COMMONEVENT_ERR_OK}: Operation is successful.
- *     <br>{@link COMMONEVENT_ERR_INVALID_PARAMETER}: The parameter is invalid.
+ *     <br>{@link COMMONEVENT_ERR_OK}: Operation successful.
+ *     <br>{@link COMMONEVENT_ERR_INVALID_PARAMETER}: Invalid parameter.
  * @since 18
  */
 CommonEvent_ErrCode OH_CommonEvent_SetPublishInfoParameters(CommonEvent_PublishInfo* info,
@@ -404,8 +408,8 @@ void OH_CommonEvent_DestroyParameters(CommonEvent_Parameters* param);
  * @param para Pointer to the additional information to check.
  * @param key Pointer to the key.
  * @return Returns the check result.
- *     <br>**true**: The key exists.
- *     <br>**false**: The key does not exist.
+ *     <br>- **true**: The key exists.
+ *     <br>- **false**: The key does not exist.
  * @since 12
  */
 bool OH_CommonEvent_HasKeyInParameters(const CommonEvent_Parameters* para, const char* key);
@@ -428,8 +432,8 @@ int OH_CommonEvent_GetIntFromParameters(const CommonEvent_Parameters* para, cons
  * @param key Pointer to the key.
  * @param value The int data to set.
  * @return Returns an execution result.
- *     <br>{@link COMMONEVENT_ERR_OK}: Operation is successful.
- *     <br>{@link COMMONEVENT_ERR_INVALID_PARAMETER}: The parameter is invalid.
+ *     <br>{@link COMMONEVENT_ERR_OK}: Operation successful.
+ *     <br>{@link COMMONEVENT_ERR_INVALID_PARAMETER}: Invalid parameter.
  * @since 18
  */
 CommonEvent_ErrCode OH_CommonEvent_SetIntToParameters(CommonEvent_Parameters* param, const char* key, int value);
@@ -453,8 +457,8 @@ int32_t OH_CommonEvent_GetIntArrayFromParameters(const CommonEvent_Parameters* p
  * @param value The int array to set.
  * @param num Number of elements in the int array.
  * @return Returns an execution result.
- *     <br>{@link COMMONEVENT_ERR_OK}: Operation is successful.
- *     <br>{@link COMMONEVENT_ERR_INVALID_PARAMETER}: The parameter is invalid.
+ *     <br>{@link COMMONEVENT_ERR_OK}: Operation successful.
+ *     <br>{@link COMMONEVENT_ERR_INVALID_PARAMETER}: Invalid parameter.
  *     <br>{@link COMMONEVENT_ERR_ALLOC_MEMORY_FAILED}: Failed to allocate memory.
  * @since 18
  */
@@ -479,8 +483,8 @@ long OH_CommonEvent_GetLongFromParameters(const CommonEvent_Parameters* para, co
  * @param key Pointer to the key.
  * @param value The long data to set.
  * @return Returns an execution result.
- *     <br>{@link COMMONEVENT_ERR_OK}: Operation is successful.
- *     <br>{@link COMMONEVENT_ERR_INVALID_PARAMETER}: The parameter is invalid.
+ *     <br>{@link COMMONEVENT_ERR_OK}: Operation successful.
+ *     <br>{@link COMMONEVENT_ERR_INVALID_PARAMETER}: Invalid parameter.
  * @since 18
  */
 CommonEvent_ErrCode OH_CommonEvent_SetLongToParameters(CommonEvent_Parameters* param, const char* key, long value);
@@ -504,8 +508,8 @@ int32_t OH_CommonEvent_GetLongArrayFromParameters(const CommonEvent_Parameters* 
  * @param value Pointer to the long array to set.
  * @param num Number of elements in the long array.
  * @return Returns an execution result.
- *     <br>{@link COMMONEVENT_ERR_OK}: Operation is successful.
- *     <br>{@link COMMONEVENT_ERR_INVALID_PARAMETER}: The parameter is invalid.
+ *     <br>{@link COMMONEVENT_ERR_OK}: Operation successful.
+ *     <br>{@link COMMONEVENT_ERR_INVALID_PARAMETER}: Invalid parameter.
  *     <br>{@link COMMONEVENT_ERR_ALLOC_MEMORY_FAILED}: Failed to allocate memory.
  * @since 18
  */
@@ -530,8 +534,8 @@ bool OH_CommonEvent_GetBoolFromParameters(const CommonEvent_Parameters* para, co
  * @param key Pointer to the key.
  * @param value The Boolean data to set.
  * @return Returns an execution result.
- *     <br>{@link COMMONEVENT_ERR_OK}: Operation is successful.
- *     <br>{@link COMMONEVENT_ERR_INVALID_PARAMETER}: The parameter is invalid.
+ *     <br>{@link COMMONEVENT_ERR_OK}: Operation successful.
+ *     <br>{@link COMMONEVENT_ERR_INVALID_PARAMETER}: Invalid parameter.
  * @since 18
  */
 CommonEvent_ErrCode OH_CommonEvent_SetBoolToParameters(CommonEvent_Parameters* param, const char* key, bool value);
@@ -555,8 +559,8 @@ int32_t OH_CommonEvent_GetBoolArrayFromParameters(const CommonEvent_Parameters* 
  * @param value Pointer to the Boolean array to set.
  * @param num Number of elements in the Boolean array.
  * @return Returns an execution result.
- *     <br>{@link COMMONEVENT_ERR_OK}: Operation is successful.
- *     <br>{@link COMMONEVENT_ERR_INVALID_PARAMETER}: The parameter is invalid.
+ *     <br>{@link COMMONEVENT_ERR_OK}: Operation successful.
+ *     <br>{@link COMMONEVENT_ERR_INVALID_PARAMETER}: Invalid parameter.
  *     <br>{@link COMMONEVENT_ERR_ALLOC_MEMORY_FAILED}: Failed to allocate memory.
  * @since 18
  */
@@ -581,8 +585,8 @@ char OH_CommonEvent_GetCharFromParameters(const CommonEvent_Parameters* para, co
  * @param key Pointer to the key.
  * @param value The character data to set.
  * @return Returns an execution result.
- *     <br>{@link COMMONEVENT_ERR_OK}: Operation is successful.
- *     <br>{@link COMMONEVENT_ERR_INVALID_PARAMETER}: The parameter is invalid.
+ *     <br>{@link COMMONEVENT_ERR_OK}: Operation successful.
+ *     <br>{@link COMMONEVENT_ERR_INVALID_PARAMETER}: Invalid parameter.
  * @since 18
  */
 CommonEvent_ErrCode OH_CommonEvent_SetCharToParameters(CommonEvent_Parameters* param, const char* key, char value);
@@ -606,8 +610,8 @@ int32_t OH_CommonEvent_GetCharArrayFromParameters(const CommonEvent_Parameters* 
  * @param value Pointer to the character array to set.
  * @param num Number of elements in the character array.
  * @return Returns an execution result.
- *     <br>{@link COMMONEVENT_ERR_OK}: Operation is successful.
- *     <br>{@link COMMONEVENT_ERR_INVALID_PARAMETER}: The parameter is invalid.
+ *     <br>{@link COMMONEVENT_ERR_OK}: Operation successful.
+ *     <br>{@link COMMONEVENT_ERR_INVALID_PARAMETER}: Invalid parameter.
  * @since 18
  */
 CommonEvent_ErrCode OH_CommonEvent_SetCharArrayToParameters(CommonEvent_Parameters* param, const char* key,
@@ -632,8 +636,8 @@ double OH_CommonEvent_GetDoubleFromParameters(const CommonEvent_Parameters* para
  * @param key Pointer to the key.
  * @param value The double data to set.
  * @return Returns an execution result.
- *     <br>{@link COMMONEVENT_ERR_OK}: Operation is successful.
- *     <br>{@link COMMONEVENT_ERR_INVALID_PARAMETER}: The parameter is invalid.
+ *     <br>{@link COMMONEVENT_ERR_OK}: Operation successful.
+ *     <br>{@link COMMONEVENT_ERR_INVALID_PARAMETER}: Invalid parameter.
  * @since 18
  */
 CommonEvent_ErrCode OH_CommonEvent_SetDoubleToParameters(CommonEvent_Parameters* param, const char* key,
@@ -659,8 +663,8 @@ int32_t OH_CommonEvent_GetDoubleArrayFromParameters(const CommonEvent_Parameters
  * @param value Pointer to the double array to set.
  * @param num Number of elements in the double array.
  * @return Returns an execution result.
- *     <br>{@link COMMONEVENT_ERR_OK}: Operation is successful.
- *     <br>{@link COMMONEVENT_ERR_INVALID_PARAMETER}: The parameter is invalid.
+ *     <br>{@link COMMONEVENT_ERR_OK}: Operation successful.
+ *     <br>{@link COMMONEVENT_ERR_INVALID_PARAMETER}: Invalid parameter.
  *     <br>{@link COMMONEVENT_ERR_ALLOC_MEMORY_FAILED}: Failed to allocate memory.
  * @since 18
  */
@@ -672,11 +676,11 @@ CommonEvent_ErrCode OH_CommonEvent_SetDoubleArrayToParameters(CommonEvent_Parame
  *
  * @param event Pointer to the name of the common event.
  * @return Returns an execution result.
- *     <br>{@link COMMONEVENT_ERR_OK}: Operation is successful.
- *     <br>{@link COMMONEVENT_ERR_INVALID_PARAMETER}: The parameter is invalid.
+ *     <br>{@link COMMONEVENT_ERR_OK}: Operation successful.
+ *     <br>{@link COMMONEVENT_ERR_INVALID_PARAMETER}: Invalid parameter.
  *     <br>{@link COMMONEVENT_ERR_SENDING_LIMIT_EXCEEDED}: Event sending frequency is too high.
  *     <br>{@link COMMONEVENT_ERR_SENDING_REQUEST_FAILED}: Failed to send IPC requests.
- *     <br>{@link COMMONEVENT_ERR_INIT_UNDONE}: The common event service is not initialized.
+ *     <br>{@link COMMONEVENT_ERR_INIT_UNDONE}: Services not initialized.
  * @since 18
  */
 CommonEvent_ErrCode OH_CommonEvent_Publish(const char* event);
@@ -687,11 +691,11 @@ CommonEvent_ErrCode OH_CommonEvent_Publish(const char* event);
  * @param event Pointer to the name of the common event.
  * @param info Pointer to the property object of a common event.
  * @return Returns an execution result.
- *     <br>{@link COMMONEVENT_ERR_OK}: Operation is successful.
- *     <br>{@link COMMONEVENT_ERR_INVALID_PARAMETER}: The parameter is invalid.
+ *     <br>{@link COMMONEVENT_ERR_OK}: Operation successful.
+ *     <br>{@link COMMONEVENT_ERR_INVALID_PARAMETER}: Invalid parameter.
  *     <br>{@link COMMONEVENT_ERR_SENDING_LIMIT_EXCEEDED}: Event sending frequency is too high.
  *     <br>{@link COMMONEVENT_ERR_SENDING_REQUEST_FAILED}: Failed to send IPC requests.
- *     <br>{@link COMMONEVENT_ERR_INIT_UNDONE}: The common event service is not initialized.
+ *     <br>{@link COMMONEVENT_ERR_INIT_UNDONE}: Services not initialized.
  * @since 18
  */
 CommonEvent_ErrCode OH_CommonEvent_PublishWithInfo(const char* event, const CommonEvent_PublishInfo* info);
@@ -726,7 +730,7 @@ bool OH_CommonEvent_GetAbortCommonEvent(const CommonEvent_Subscriber* subscriber
 
 /**
  * @brief Aborts an ordered common event when used with {@link OH_CommonEvent_FinishCommonEvent}. After the abort, the
- *     common event is not sent to the next subscriber.
+ * common event is not sent to the next subscriber.
  *
  * @param subscriber Pointer to the common event subscriber.
  * @return Returns **true** if the operation is successful; returns **false** otherwise.
@@ -736,7 +740,7 @@ bool OH_CommonEvent_AbortCommonEvent(CommonEvent_Subscriber* subscriber);
 
 /**
  * @brief Clears the abort state of an ordered common event when used with {@link OH_CommonEvent_FinishCommonEvent}.
- *     After the clearance, the common event is sent to the next subscriber.
+ * After the clearance, the common event is sent to the next subscriber.
  *
  * @param subscriber Pointer to the common event subscriber.
  * @return Returns **true** if the operation is successful; returns **false** otherwise.
