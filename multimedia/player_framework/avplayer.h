@@ -68,6 +68,12 @@ typedef struct MediaKeySession MediaKeySession;
 typedef struct DRM_MediaKeySystemInfo DRM_MediaKeySystemInfo;
 
 /**
+ * @brief OH_AVPlayerVideoOutput field.
+ * @since 26.0.0
+ */
+typedef struct OH_AVPlayerVideoOutput OH_AVPlayerVideoOutput;
+
+/**
  * @brief Call back will be invoked when updating DRM information.
  * @param player Player instance.
  * @param mediaKeySystemInfo DRM information.
@@ -1106,6 +1112,27 @@ uint32_t OH_AVPlayer_GetTrackCount(OH_AVPlayer *player);
  * @since 23
  */
 OH_AVFormat *OH_AVPlayer_GetTrackFormat(OH_AVPlayer *player, uint32_t trackIndex);
+
+/**
+ * @brief Method to set video decoded frame output callback. This API can be called only
+ *     when the avplayer is in the idle or initalized state.
+ * @param player Pointer to an OH_AVPlayer instance.
+ * @param window A pointer to a OHNativeWindow instance, see {@link OHNativeWindow}
+ * @return Returns a pointer to an OH_AVPlayerVideoOutput instance, released by system when avplayer was
+ *     reset or release. nullptr means failed.
+ * @since 26.0.0
+ */
+OH_AVPlayerVideoOutput* OH_AVPlayer_SetVideoSideOutput(OH_AVPlayer *player, OHNativeWindow *window);
+
+/**
+ * @brief Method to get one video decoded frame. This API can be called only when the avplayer is
+ *     in the paused or playing state.
+ * @param videoOutput Pointer to an OH_AVPlayerVideoOutput instance returned by OH_AVPlayer_SetVideoSideOutput.
+ * @return Returns OH_VIDEO_OUTPUT_OK when got a frame.
+ *         Returns OH_VIDEO_OUTPUT_NO_IMAGE when there is no frame ready to render.
+ * @since 26.0.0
+ */
+OH_VideoOutputResult OH_AVPlayerVideoOutput_GetNewestVideoSample(OH_AVPlayerVideoOutput *videoOutput);
 
 #ifdef __cplusplus
 }

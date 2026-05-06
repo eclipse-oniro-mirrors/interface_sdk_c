@@ -120,6 +120,10 @@
     },
     { "name": "OH_Drawing_CanvasDrawTextBlob" },
     {
+        "first_introduced": "26.0.0",
+        "name": "OH_Drawing_CanvasDrawGlyphs"
+    },
+    {
         "first_introduced": "12",
         "name": "OH_Drawing_CanvasDrawRegion"
     },
@@ -455,7 +459,7 @@
         "name": "OH_Drawing_MatrixPostTranslate"
     },
     { "name": "OH_Drawing_MatrixConcat" },
-    { 
+    {
         "first_introduced": "22",
         "name": "OH_Drawing_MatrixPreConcat"
     },
@@ -2394,6 +2398,14 @@
     },
     {
         "first_introduced": "26.0.0",
+        "name": "OH_Drawing_GetTypographyAttributeBool"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_Drawing_SetTypographyAttributeBool"
+    },
+    {
+        "first_introduced": "26.0.0",
         "name": "OH_Drawing_PathGetLastPoint"
     },
     {
@@ -2406,10 +2418,6 @@
     },
     {
         "first_introduced": "26.0.0",
-        "name": "OH_Drawing_GetTypographyAttributeBool"
-    },
-    {
-        "first_introduced": "26.0.0",
-        "name": "OH_Drawing_SetTypographyAttributeBool"
+        "name": "OH_Drawing_CanvasIsOpaque"
     }
 ]

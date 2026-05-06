@@ -147,7 +147,7 @@ OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_AcquireAudioBuffer(struct OH_AVSc
  * @syscap SystemCapability.Multimedia.Media.AVScreenCapture
  * @param capture Pointer to an OH_AVScreenCapture instance
  * @param fence A processing state of display buffer
- * @param timestamp Information about the video buffer
+ * @param timestamp Information about the video buffer, in nanosecond
  * @param region Information about the video buffer
  * @return Returns a pointer to an OH_NativeBuffer instance
  * @since 10
@@ -382,8 +382,8 @@ OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_ContentFilter_AddWindowContent(
 /**
  * @brief Resize the Resolution of the Screen
  * @param {struct OH_AVScreenCapture*} capture Pointer to an OH_AVScreenCapture instance
- * @param {int32_t} width Video frame width of avscreeencapture
- * @param {int32_t} height Video frame height of avscreeencapture
+ * @param {int32_t} width Video frame width of avscreeencapture, in px.
+ * @param {int32_t} height Video frame height of avscreeencapture, in px.
  * @return Function result code.
  *         {@link AV_SCREEN_CAPTURE_ERR_OK} if the execution is successful.
  *         {@link AV_SCREEN_CAPTURE_ERR_INVALID_VAL} input capture is nullptr.
@@ -413,7 +413,7 @@ OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_SkipPrivacyMode(struct OH_AVScree
 /**
  * @brief set up the max number of video frame per second
  * @param {struct OH_AVScreenCapture*} capture Pointer to an OH_AVScreenCapture instance
- * @param {int32_t} frameRate max frame rate of video
+ * @param {int32_t} frameRate max frame rate of video, in fps.
  * @return Function result code.
  *         {@link AV_SCREEN_CAPTURE_ERR_OK} if the execution is successful.
  *         {@link AV_SCREEN_CAPTURE_ERR_INVALID_VAL} input capture is nullptr or frameRate is not support.

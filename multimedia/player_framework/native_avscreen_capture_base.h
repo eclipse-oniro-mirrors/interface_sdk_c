@@ -233,7 +233,7 @@ typedef enum OH_ScreenCaptureHighlightMode {
  * @version 1.0
  */
 typedef struct OH_AudioCaptureInfo {
-    /* Audio capture sample rate info */
+    /* Audio capture sample rate info, in Hz */
     int32_t audioSampleRate;
     /* Audio capture channel info */
     int32_t audioChannels;
@@ -249,7 +249,7 @@ typedef struct OH_AudioCaptureInfo {
  * @version 1.0
  */
 typedef struct OH_AudioEncInfo {
-    /* Audio encoder bitrate */
+    /* Audio encoder bitrate, in bit/s */
     int32_t audioBitrate;
     /* Audio codec format */
     OH_AudioCodecFormat audioCodecformat;
@@ -285,9 +285,9 @@ typedef struct OH_VideoCaptureInfo {
     int32_t *missionIDs;
     /* Mission ids length, should be set while captureMode = CAPTURE_SPECIFIED_WINDOW */
     int32_t missionIDsLen;
-    /* Video frame width of avscreeencapture */
+    /* Video frame width of avscreeencapture, in px */
     int32_t videoFrameWidth;
-    /* Video frame height of avscreeencapture */
+    /* Video frame height of avscreeencapture, in px */
     int32_t videoFrameHeight;
     /* Video source type of avscreeencapture */
     OH_VideoSourceType videoSource;
@@ -303,9 +303,9 @@ typedef struct OH_VideoCaptureInfo {
 typedef struct OH_VideoEncInfo {
     /* Video encoder format */
     OH_VideoCodecFormat videoCodec;
-    /* Video encoder bitrate */
+    /* Video encoder bitrate, in bit/s */
     int32_t videoBitrate;
-    /* Video encoder frame rate */
+    /* Video encoder frame rate, in fps */
     int32_t videoFrameRate;
 } OH_VideoEncInfo;
 
@@ -347,7 +347,7 @@ typedef struct OH_RecorderInfo {
 typedef struct OH_AVScreenCaptureHighlightConfig {
     /** define the style of the capture area frame. */
     OH_ScreenCaptureHighlightMode mode;
-    /** define the thickness of the frame line*/
+    /** define the thickness of the frame line, in vp*/
     uint32_t lineThickness;
     /** define the color of the frame line*/
     uint32_t lineColor;
@@ -468,9 +468,9 @@ typedef struct OH_Rect {
     int32_t x;
     /* y-coordinate of screen recording */
     int32_t y;
-    /* Width of screen recording */
+    /* Width of screen recording, in px */
     int32_t width;
-    /* Height of screen recording */
+    /* Height of screen recording, in px */
     int32_t height;
 } OH_Rect;
 
@@ -487,7 +487,7 @@ typedef struct OH_AudioBuffer {
     uint8_t *buf;
     /* Audio buffer memory block size */
     int32_t size;
-    /* Audio buffer timestamp info */
+    /* Audio buffer timestamp info, in nanosecond */
     int64_t timestamp;
     /* Audio capture source type */
     OH_AudioCaptureSourceType type;

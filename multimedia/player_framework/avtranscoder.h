@@ -128,7 +128,7 @@ OH_AVErrCode OH_AVTranscoderConfig_SetDstFileType(OH_AVTranscoder_Config *config
 /**
  * @brief Set destination audio bitrate.
  * @param {OH_AVTranscoder_Config*} config Pointer to an OH_AVTranscoder_Config instance
- * @param {int32_t} bitrate Destination audio bitrate.
+ * @param {int32_t} bitrate Destination audio bitrate, in bit/s.
  * @return Function result code.
  *         {@link AV_ERR_OK} if the execution is successful.
  *         {@link AV_ERR_INVALID_VAL} if input config is nullptr or bitrate value is invalid.
@@ -139,7 +139,7 @@ OH_AVErrCode OH_AVTranscoderConfig_SetDstAudioBitrate(OH_AVTranscoder_Config *co
 /**
  * @brief Set destination video bitrate.
  * @param {OH_AVTranscoder_Config*} config Pointer to an OH_AVTranscoder_Config instance
- * @param {int32_t} bitrate Destination video bitrate.
+ * @param {int32_t} bitrate Destination video bitrate, in bit/s.
  * @return Function result code.
  *         {@link AV_ERR_OK} if the execution is successful.
  *         {@link AV_ERR_INVALID_VAL} if input config is nullptr or bitrate value is invalid.
@@ -150,8 +150,8 @@ OH_AVErrCode OH_AVTranscoderConfig_SetDstVideoBitrate(OH_AVTranscoder_Config *co
 /**
  * @brief Set destination video resolution.
  * @param {OH_AVTranscoder_Config*} config Pointer to an OH_AVTranscoder_Config instance
- * @param {int32_t} width Destination for video width.
- * @param {int32_t} height Destination for video height.
+ * @param {int32_t} width Destination for video width, in px.
+ * @param {int32_t} height Destination for video height, in px.
  * @return Function result code.
  *         {@link AV_ERR_OK} if the execution is successful.
  *         {@link AV_ERR_INVALID_VAL} if input config is nullptr or width/height value is invalid.

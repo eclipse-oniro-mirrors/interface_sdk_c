@@ -290,5 +290,73 @@
     {
         "first_introduced": "26",
         "name": "OH_AbilityRuntime_GetModObjExtensionInfoByIndex"
+    },
+    {
+        "first_introduced": "26",
+        "name": "OH_AbilityRuntime_ConnectModularObjectExtensionAbility"
+    },
+    {
+        "first_introduced": "26",
+        "name": "OH_AbilityRuntime_DisconnectModularObjectExtensionAbility"
+    },
+    {
+        "first_introduced": "26",
+        "name": "OH_AbilityRuntime_CreateConnectOptions"
+    },
+    {
+        "first_introduced": "26",
+        "name": "OH_AbilityRuntime_DestroyConnectOptions"
+    },
+    {
+        "first_introduced": "26",
+        "name": "OH_AbilityRuntime_ConnectOptions_SetOnConnectCallback"
+    },
+    {
+        "first_introduced": "26",
+        "name": "OH_AbilityRuntime_ConnectOptions_SetOnDisconnectCallback"
+    },
+    {
+        "first_introduced": "26",
+        "name": "OH_AbilityRuntime_ConnectOptions_SetOnFailedCallback"
+    },
+    {
+        "first_introduced": "26",
+        "name": "OH_AbilityRuntime_ModObjExtensionAbility_RegisterOnCreateFunc"
+    },
+    {
+        "first_introduced": "26",
+        "name": "OH_AbilityRuntime_ModObjExtensionAbility_RegisterOnDestroyFunc"
+    },
+    {
+        "first_introduced": "26",
+        "name": "OH_AbilityRuntime_ModObjExtensionAbility_RegisterOnConnectFunc"
+    },
+    {
+        "first_introduced": "26",
+        "name": "OH_AbilityRuntime_ModObjExtensionAbility_RegisterOnDisconnectFunc"
+    },
+    {
+        "first_introduced": "26",
+        "name": "OH_AbilityRuntime_ModObjExtensionAbility_GetContextFromInstance"
+    },
+    {
+        "first_introduced": "26",
+        "name": "OH_AbilityRuntime_ModObjExtensionAbility_GetInstanceFromBase"
+    },
+    {
+        "first_introduced": "26",
+        "name": "OH_AbilityRuntime_ModObjExtensionContext_GetBaseContext"
+    },
+    {
+        "first_introduced": "26",
+        "name": "OH_AbilityRuntime_ModObjExtensionContext_StartSelfUIAbility"
+    },
+    {
+        "first_introduced": "26",
+        "name": "OH_AbilityRuntime_ModObjExtensionContext_StartSelfUIAbilityWithStartOptions"
+    },
+    {
+        "first_introduced": "26",
+        "name": "OH_AbilityRuntime_ModObjExtensionContext_TerminateSelf"
     }
 ]

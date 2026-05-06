@@ -26,7 +26,7 @@
 /**
  * @file usb_serial_types.h
  *
- * @brief Provides the enumerated variables, structures, and macros used in USB SERIAL DDK APIs.
+ * @brief Provides the enum variables, structures, and macros used in USB Serial DDK APIs.
  *
  * @kit DriverDevelopmentKit
  * @library libusb_serial_ndk.z.so
@@ -45,81 +45,118 @@ extern "C" {
 #endif
 
 /**
- * @brief Opaque usb serial device structure.
+ * @brief Defines the data structures (opaque) for the USB serial port device.
  *
  * @since 18
  */
 typedef struct UsbSerial_Device UsbSerial_Device;
 
 /**
- * @brief Defines Return codes for USB SERIAL DDK.
+ * @brief Defines the return codes used by the USB Serial DDK.
  *
  * @since 18
  */
 typedef enum {
-    /** @error Permission denied */
+    /**
+     * No access permission.
+     */
     USB_SERIAL_DDK_NO_PERM = 201,
-    /** @error Invalid parameter */
+    /**
+     * Invalid parameter.
+     */
     USB_SERIAL_DDK_INVALID_PARAMETER = 401,
-    /** @error Operation successful */
+    /**
+     * Operation success.
+     */
     USB_SERIAL_DDK_SUCCESS = 31600000,
-    /** @error Invalid operation */
+    /**
+     * Invalid operation.
+     */
     USB_SERIAL_DDK_INVALID_OPERATION = 31600001,
-    /** @error Init operation */
+    /**
+     * Initialization error.
+     */
     USB_SERIAL_DDK_INIT_ERROR = 31600002,
-    /** @error Service Error operation */
+    /**
+     * Service error.
+     */
     USB_SERIAL_DDK_SERVICE_ERROR = 31600003,
-    /** @error Memory-related error, for example, insufficient memory, memory data copy failure,\n
-     * or memory application failure.
+    /**
+     * Memory-related errors, such as insufficient memory, memory data replication failure,
+     * or memory application fault.
      */
     USB_SERIAL_DDK_MEMORY_ERROR = 31600004,
-    /** @error I/O Error */
+    /**
+     * I/O error.
+     */
     USB_SERIAL_DDK_IO_ERROR = 31600005,
-    /** @error Device not found */
+    /**
+     * Device not found.
+     */
     USB_SERIAL_DDK_DEVICE_NOT_FOUND = 31600006,
 } UsbSerial_DdkRetCode;
 
 /**
- * @brief Defines USB Serial Port Params for USB SERIAL DDK.
+ * @brief Defines the USB serial port parameters for the USB Serial DDK.
  *
  * @since 18
  */
 typedef struct UsbSerial_Params {
-    /** The baud rate requested by the system */
+    /**
+     * Baud rate, in bauds.
+     */
     uint32_t baudRate;
-    /** The number of data bits to transmit */
+    /**
+     * Number of data bits.
+     */
     uint8_t nDataBits;
-    /** The number of half stop bits. */
+    /**
+     * Number of stop bits.
+     */
     uint8_t nStopBits;
-    /** The parity setting to use during communication */
+    /**
+     * Parity parameter setting. **0**: no parity; **1**: odd parity; **2**: even parity.
+     */
     uint8_t parity;
 } __attribute__((aligned(8))) UsbSerial_Params;
 
 /**
- * @brief Defines flow control for USB SERIAL DDK.
+ * @brief Defines the flow control mode for the USB Serial DDK.
  *
  * @since 18
  */
 typedef enum {
-    /** No flow control */
+    /**
+     * No flow control.
+     */
     USB_SERIAL_NO_FLOW_CONTROL = 0,
-    /** Software flow control */
+    /**
+     * Software flow control.
+     */
     USB_SERIAL_SOFTWARE_FLOW_CONTROL = 1,
-    /** Hardware flow control */
+    /**
+     * Hardware flow control.
+     */
     USB_SERIAL_HARDWARE_FLOW_CONTROL = 2,
 } UsbSerial_FlowControl;
 
 /**
- * @brief Defines parity for USB SERIAL DDK.
+ * @brief Defines the enums of the parity parameter used by the USB Serial DDK.
  *
  * @since 18
  */
 typedef enum {
-    /** No parity */
+    /**
+     * No parity.
+     */
     USB_SERIAL_PARITY_NONE = 0,
-    /** Odd parity */
+    /**
+     * Odd parity.
+     */
     USB_SERIAL_PARITY_ODD = 1,
-    /** Even parity */
+    /**
+     * Even parity.
+     */
     USB_SERIAL_PARITY_EVEN = 2,
 } UsbSerial_Parity;
 

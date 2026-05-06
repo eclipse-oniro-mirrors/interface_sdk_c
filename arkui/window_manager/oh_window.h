@@ -491,7 +491,7 @@ int32_t OH_WindowManager_UnregisterFrameMetricsMeasuredCallback(int32_t windowId
  *         {@link WS_OK} the function call is successful.
  *         {@link WINDOW_MANAGER_ERRORCODE_INCORRECT_PARAM} Parameter error. Possible cause:
  *             1. Invalid parameter range.
- * @since 26.0.0
+ * @since 24
  */
 int32_t OH_WindowManager_DensityInfo_GetDefaultDensity(const OH_WindowManager_DensityInfo* info,
     float* density);
@@ -505,7 +505,7 @@ int32_t OH_WindowManager_DensityInfo_GetDefaultDensity(const OH_WindowManager_De
  *         {@link WS_OK} the function call is successful.
  *         {@link WINDOW_MANAGER_ERRORCODE_INCORRECT_PARAM} Parameter error. Possible cause:
  *             1. Invalid parameter range.
- * @since 26.0.0
+ * @since 24
  */
 int32_t OH_WindowManager_DensityInfo_GetSystemDensity(const OH_WindowManager_DensityInfo* info,
     float* density);
@@ -520,7 +520,7 @@ int32_t OH_WindowManager_DensityInfo_GetSystemDensity(const OH_WindowManager_Den
  *         {@link WS_OK} the function call is successful.
  *         {@link WINDOW_MANAGER_ERRORCODE_INCORRECT_PARAM} Parameter error. Possible cause:
  *             1. Invalid parameter range.
- * @since 26.0.0
+ * @since 24
  */
 int32_t OH_WindowManager_DensityInfo_GetCustomDensity(const OH_WindowManager_DensityInfo* info,
     float* density);
@@ -539,7 +539,7 @@ int32_t OH_WindowManager_DensityInfo_GetCustomDensity(const OH_WindowManager_Den
  *             2. This window state is abnormal.
  *         {@link WINDOW_MANAGER_ERRORCODE_INCORRECT_PARAM} Parameter error. Possible cause:
  *             1. Invalid parameter range.
- * @since 26.0.0
+ * @since 24
  */
 int32_t OH_WindowManager_GetDensityInfoCopy(int32_t windowId,
     const OH_WindowManager_DensityInfo** info);
@@ -560,7 +560,7 @@ int32_t OH_WindowManager_GetDensityInfoCopy(int32_t windowId,
  *             2. This window state is abnormal.
  *         {@link WINDOW_MANAGER_ERRORCODE_INCORRECT_PARAM} Parameter error. Possible cause:
  *             1. Invalid parameter range.
- * @since 26.0.0
+ * @since 24
  */
 int32_t OH_WindowManager_RegisterDensityInfoChangeCallback(int32_t windowId,
     OH_WindowManager_DensityInfoCallback callback);
@@ -581,7 +581,7 @@ int32_t OH_WindowManager_RegisterDensityInfoChangeCallback(int32_t windowId,
  *             2. This window state is abnormal.
  *         {@link WINDOW_MANAGER_ERRORCODE_INCORRECT_PARAM} Parameter error. Possible cause:
  *             1. Invalid parameter range.
- * @since 26.0.0
+ * @since 24
  */
 int32_t OH_WindowManager_UnregisterDensityInfoChangeCallback(int32_t windowId,
     OH_WindowManager_DensityInfoCallback callback);
@@ -594,7 +594,7 @@ int32_t OH_WindowManager_UnregisterDensityInfoChangeCallback(int32_t windowId,
  *         {@link WS_OK} the function call is successful.
  *         {@link WINDOW_MANAGER_ERRORCODE_INCORRECT_PARAM} Parameter error. Possible cause:
  *             1. Invalid parameter range.
- * @since 26.0.0
+ * @since 24
  */
 int32_t OH_WindowManager_DensityInfo_Release(const OH_WindowManager_DensityInfo* info);
 

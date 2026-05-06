@@ -151,10 +151,10 @@ typedef enum OH_Interceptor_Type {
      */
     OH_TYPE_READ_ONLY,
     /**
-     * @brief interceptor will modify the packet
-     * @since 24
+     * @brief interceptor will modify the packet from Network Kit
+     * @since 26.0.0
      */
-    OH_TYPE_MODIFY
+    OH_TYPE_MODIFY_NETWORK_KIT
 } OH_Interceptor_Type;
 
 /**

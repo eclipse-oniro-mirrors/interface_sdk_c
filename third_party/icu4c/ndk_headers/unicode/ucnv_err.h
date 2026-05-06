@@ -219,10 +219,218 @@ typedef struct {
 } UConverterToUnicodeArgs;
 
 
+/**
+ * DO NOT CALL THIS FUNCTION DIRECTLY!
+ * This From Unicode callback STOPS at the ILLEGAL_SEQUENCE,
+ * returning the error code back to the caller immediately.
+ *
+ * @param context Pointer to the callback's private data
+ * @param fromUArgs Information about the conversion in progress
+ * @param codeUnits Points to 'length' UChars of the concerned Unicode sequence
+ * @param length Size (in bytes) of the concerned codepage sequence
+ * @param codePoint Single UChar32 (UTF-32) containing the concerend Unicode codepoint.
+ * @param reason Defines the reason the callback was invoked
+ * @param err This should always be set to a failure status prior to calling.
+ * @stable ICU 2.0
+ */
+U_CAPI void U_EXPORT2 UCNV_FROM_U_CALLBACK_STOP (
+                  const void *context,
+                  UConverterFromUnicodeArgs *fromUArgs,
+                  const UChar* codeUnits,
+                  int32_t length,
+                  UChar32 codePoint,
+                  UConverterCallbackReason reason,
+                  UErrorCode * err);
 
 
 
+/**
+ * DO NOT CALL THIS FUNCTION DIRECTLY!
+ * This To Unicode callback STOPS at the ILLEGAL_SEQUENCE,
+ * returning the error code back to the caller immediately.
+ *
+ * @param context Pointer to the callback's private data
+ * @param toUArgs Information about the conversion in progress
+ * @param codeUnits Points to 'length' bytes of the concerned codepage sequence
+ * @param length Size (in bytes) of the concerned codepage sequence
+ * @param reason Defines the reason the callback was invoked
+ * @param err This should always be set to a failure status prior to calling.
+ * @stable ICU 2.0
+ */
+U_CAPI void U_EXPORT2 UCNV_TO_U_CALLBACK_STOP (
+                  const void *context,
+                  UConverterToUnicodeArgs *toUArgs,
+                  const char* codeUnits,
+                  int32_t length,
+                  UConverterCallbackReason reason,
+                  UErrorCode * err);
 
+/**
+ * DO NOT CALL THIS FUNCTION DIRECTLY!
+ * This From Unicode callback skips any ILLEGAL_SEQUENCE, or
+ * skips only UNASSIGNED_SEQUENCE depending on the context parameter
+ * simply ignoring those characters. 
+ *
+ * @param context  The function currently recognizes the callback options:
+ *                 UCNV_SKIP_STOP_ON_ILLEGAL: STOPS at the ILLEGAL_SEQUENCE,
+ *                      returning the error code back to the caller immediately.
+ *                 NULL: Skips any ILLEGAL_SEQUENCE
+ * @param fromUArgs Information about the conversion in progress
+ * @param codeUnits Points to 'length' UChars of the concerned Unicode sequence
+ * @param length Size (in bytes) of the concerned codepage sequence
+ * @param codePoint Single UChar32 (UTF-32) containing the concerend Unicode codepoint.
+ * @param reason Defines the reason the callback was invoked
+ * @param err Return value will be set to success if the callback was handled,
+ *      otherwise this value will be set to a failure status.
+ * @stable ICU 2.0
+ */
+U_CAPI void U_EXPORT2 UCNV_FROM_U_CALLBACK_SKIP (
+                  const void *context,
+                  UConverterFromUnicodeArgs *fromUArgs,
+                  const UChar* codeUnits,
+                  int32_t length,
+                  UChar32 codePoint,
+                  UConverterCallbackReason reason,
+                  UErrorCode * err);
+
+/**
+ * DO NOT CALL THIS FUNCTION DIRECTLY!
+ * This From Unicode callback will Substitute the ILLEGAL SEQUENCE, or 
+ * UNASSIGNED_SEQUENCE depending on context parameter, with the
+ * current substitution string for the converter. This is the default
+ * callback.
+ *
+ * @param context The function currently recognizes the callback options:
+ *                 UCNV_SUB_STOP_ON_ILLEGAL: STOPS at the ILLEGAL_SEQUENCE,
+ *                      returning the error code back to the caller immediately.
+ *                 NULL: Substitutes any ILLEGAL_SEQUENCE
+ * @param fromUArgs Information about the conversion in progress
+ * @param codeUnits Points to 'length' UChars of the concerned Unicode sequence
+ * @param length Size (in bytes) of the concerned codepage sequence
+ * @param codePoint Single UChar32 (UTF-32) containing the concerend Unicode codepoint.
+ * @param reason Defines the reason the callback was invoked
+ * @param err Return value will be set to success if the callback was handled,
+ *      otherwise this value will be set to a failure status.
+ * @see ucnv_setSubstChars
+ * @stable ICU 2.0
+ */
+U_CAPI void U_EXPORT2 UCNV_FROM_U_CALLBACK_SUBSTITUTE (
+                  const void *context,
+                  UConverterFromUnicodeArgs *fromUArgs,
+                  const UChar* codeUnits,
+                  int32_t length,
+                  UChar32 codePoint,
+                  UConverterCallbackReason reason,
+                  UErrorCode * err);
+
+/**
+ * DO NOT CALL THIS FUNCTION DIRECTLY!
+ * This From Unicode callback will Substitute the ILLEGAL SEQUENCE with the
+ * hexadecimal representation of the illegal codepoints
+ *
+ * @param context The function currently recognizes the callback options:
+ *        <ul>
+ *        <li>UCNV_ESCAPE_ICU: Substitutes the  ILLEGAL SEQUENCE with the hexadecimal 
+ *          representation in the format  %UXXXX, e.g. "%uFFFE%u00AC%uC8FE"). 
+ *          In the Event the converter doesn't support the characters {%,U}[A-F][0-9], 
+ *          it will  substitute  the illegal sequence with the substitution characters.
+ *          Note that  codeUnit(32bit int eg: unit of a surrogate pair) is represented as
+ *          %UD84D%UDC56</li>
+ *        <li>UCNV_ESCAPE_JAVA: Substitutes the  ILLEGAL SEQUENCE with the hexadecimal 
+ *          representation in the format  \\uXXXX, e.g. "\\uFFFE\\u00AC\\uC8FE"). 
+ *          In the Event the converter doesn't support the characters {\,u}[A-F][0-9], 
+ *          it will  substitute  the illegal sequence with the substitution characters.
+ *          Note that  codeUnit(32bit int eg: unit of a surrogate pair) is represented as
+ *          \\uD84D\\uDC56</li>
+ *        <li>UCNV_ESCAPE_C: Substitutes the  ILLEGAL SEQUENCE with the hexadecimal 
+ *          representation in the format  \\uXXXX, e.g. "\\uFFFE\\u00AC\\uC8FE"). 
+ *          In the Event the converter doesn't support the characters {\,u,U}[A-F][0-9], 
+ *          it will  substitute  the illegal sequence with the substitution characters.
+ *          Note that  codeUnit(32bit int eg: unit of a surrogate pair) is represented as
+ *          \\U00023456</li>
+ *        <li>UCNV_ESCAPE_XML_DEC: Substitutes the  ILLEGAL SEQUENCE with the decimal 
+ *          representation in the format \htmlonly&amp;#DDDDDDDD;, e.g. "&amp;#65534;&amp;#172;&amp;#51454;")\endhtmlonly. 
+ *          In the Event the converter doesn't support the characters {&amp;,#}[0-9], 
+ *          it will  substitute  the illegal sequence with the substitution characters.
+ *          Note that  codeUnit(32bit int eg: unit of a surrogate pair) is represented as
+ *          &amp;#144470; and Zero padding is ignored.</li>
+ *        <li>UCNV_ESCAPE_XML_HEX:Substitutes the  ILLEGAL SEQUENCE with the decimal 
+ *          representation in the format \htmlonly&amp;#xXXXX; e.g. "&amp;#xFFFE;&amp;#x00AC;&amp;#xC8FE;")\endhtmlonly. 
+ *          In the Event the converter doesn't support the characters {&,#,x}[0-9], 
+ *          it will  substitute  the illegal sequence with the substitution characters.
+ *          Note that  codeUnit(32bit int eg: unit of a surrogate pair) is represented as
+ *          \htmlonly&amp;#x23456;\endhtmlonly</li>
+ *        </ul>
+ * @param fromUArgs Information about the conversion in progress
+ * @param codeUnits Points to 'length' UChars of the concerned Unicode sequence
+ * @param length Size (in bytes) of the concerned codepage sequence
+ * @param codePoint Single UChar32 (UTF-32) containing the concerend Unicode codepoint.
+ * @param reason Defines the reason the callback was invoked
+ * @param err Return value will be set to success if the callback was handled,
+ *      otherwise this value will be set to a failure status.
+ * @stable ICU 2.0
+ */
+U_CAPI void U_EXPORT2 UCNV_FROM_U_CALLBACK_ESCAPE (
+                  const void *context,
+                  UConverterFromUnicodeArgs *fromUArgs,
+                  const UChar* codeUnits,
+                  int32_t length,
+                  UChar32 codePoint,
+                  UConverterCallbackReason reason,
+                  UErrorCode * err);
+
+
+/**
+ * DO NOT CALL THIS FUNCTION DIRECTLY!
+ * This To Unicode callback skips any ILLEGAL_SEQUENCE, or
+ * skips only UNASSIGNED_SEQUENCE depending on the context parameter
+ * simply ignoring those characters. 
+ *
+ * @param context  The function currently recognizes the callback options:
+ *                 UCNV_SKIP_STOP_ON_ILLEGAL: STOPS at the ILLEGAL_SEQUENCE,
+ *                      returning the error code back to the caller immediately.
+ *                 NULL: Skips any ILLEGAL_SEQUENCE
+ * @param toUArgs Information about the conversion in progress
+ * @param codeUnits Points to 'length' bytes of the concerned codepage sequence
+ * @param length Size (in bytes) of the concerned codepage sequence
+ * @param reason Defines the reason the callback was invoked
+ * @param err Return value will be set to success if the callback was handled,
+ *      otherwise this value will be set to a failure status.
+ * @stable ICU 2.0
+ */
+U_CAPI void U_EXPORT2 UCNV_TO_U_CALLBACK_SKIP (
+                  const void *context,
+                  UConverterToUnicodeArgs *toUArgs,
+                  const char* codeUnits,
+                  int32_t length,
+                  UConverterCallbackReason reason,
+                  UErrorCode * err);
+
+/**
+ * DO NOT CALL THIS FUNCTION DIRECTLY!
+ * This To Unicode callback will Substitute the ILLEGAL SEQUENCE,or 
+ * UNASSIGNED_SEQUENCE depending on context parameter,  with the
+ * Unicode substitution character, U+FFFD.
+ *
+ * @param context  The function currently recognizes the callback options:
+ *                 UCNV_SUB_STOP_ON_ILLEGAL: STOPS at the ILLEGAL_SEQUENCE,
+ *                      returning the error code back to the caller immediately.
+ *                 NULL: Substitutes any ILLEGAL_SEQUENCE
+ * @param toUArgs Information about the conversion in progress
+ * @param codeUnits Points to 'length' bytes of the concerned codepage sequence
+ * @param length Size (in bytes) of the concerned codepage sequence
+ * @param reason Defines the reason the callback was invoked
+ * @param err Return value will be set to success if the callback was handled,
+ *      otherwise this value will be set to a failure status.
+ * @stable ICU 2.0
+ */
+U_CAPI void U_EXPORT2 UCNV_TO_U_CALLBACK_SUBSTITUTE (
+                  const void *context,
+                  UConverterToUnicodeArgs *toUArgs,
+                  const char* codeUnits,
+                  int32_t length,
+                  UConverterCallbackReason reason,
+                  UErrorCode * err);
 
 /**
  * DO NOT CALL THIS FUNCTION DIRECTLY!

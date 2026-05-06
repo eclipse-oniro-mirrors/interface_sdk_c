@@ -103,7 +103,7 @@ typedef void (*OH_AVTranscoder_OnError)(OH_AVTranscoder *transcoder, int32_t err
 /**
  * @brief Progress indicator function definition, called when transcoding progress is updated
  * @param {OH_AVTranscoder*} transcoder Pointer to an OH_AVTranscoder instance.
- * @param {int32_t} progress Transcoding progress.
+ * @param {int32_t} progress Transcoding progress, in percentage.
  * @param {void*} userData Pointer to user specific data.
  * @since 20
  */

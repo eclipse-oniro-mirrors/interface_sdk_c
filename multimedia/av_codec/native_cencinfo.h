@@ -4,7 +4,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -12,7 +12,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 /**
  * @addtogroup Multimedia_Drm
  * @{
@@ -27,11 +26,10 @@
  *
  * @since 12
  */
-
-/**
+ /**
  * @file native_cencinfo.h
  *
- * @brief Provides a unified entry for the native module APIs.
+ * @brief The file declares the native APIs used to set decryption parameters.
  *
  * @kit AVCodecKit
  * @library libnative_media_avcencinfo.so
@@ -50,38 +48,45 @@ extern "C" {
 #endif
 
 /**
- * @brief AVBuffer Structure.
+ * @brief The struct describes a native object for the media memory interface.
+ *
  * @since 12
  * @version 1.0
  */
 typedef struct OH_AVBuffer OH_AVBuffer;
 /**
- * @brief AVCencInfo Structure.
+ * @brief The struct describes the audio/video Common Encryption Scheme (CENC) information.
+ *
  * @since 12
  * @version 1.0
  */
 typedef struct OH_AVCencInfo OH_AVCencInfo;
+
 /**
- * @brief Key id size.
+ * @brief The length of the key ID is 16 bytes.
+ *
  * @since 12
  * @version 1.0
  */
 #define DRM_KEY_ID_SIZE 16
 /**
- * @brief Iv size.
+ * @brief The length of the Initialization Vector (IV) is 16 bytes.
+ *
  * @since 12
  * @version 1.0
  */
 #define DRM_KEY_IV_SIZE 16
 /**
- * @brief Max subsample num.
+ * @brief The maximum number of subsamples is 64.
+ *
  * @since 12
  * @version 1.0
  */
 #define DRM_KEY_MAX_SUB_SAMPLE_NUM 64
 
 /**
- * @brief Drm cenc algorithm type.
+ * @brief Enumerates the DRM CENC algorithm types.
+ *
  * @since 12
  * @version 1.0
  */
@@ -113,7 +118,8 @@ typedef enum DrmCencAlgorithm {
 } DrmCencAlgorithm;
 
 /**
- * @brief Mode of cend info like set or not.
+ * @brief Enumerates the modes for setting the key ID, IV, and subsample in the CENC information.
+ *
  * @since 12
  * @version 1.0
  */
@@ -125,7 +131,8 @@ typedef enum DrmCencInfoMode {
 } DrmCencInfoMode;
 
 /**
- * @brief Subsample info of media.
+ * @brief The struct describes the subsample type.
+ *
  * @since 12
  * @version 1.0
  */
@@ -137,58 +144,54 @@ typedef struct DrmSubsample {
 } DrmSubsample;
 
 /**
- * @brief Creates an OH_AVCencInfo instance for setting cencinfo.
+ * @brief Creates an OH_AVCencInfo instance for setting the CENC information.
  *
- * Free the resources of the instance by calling OH_AVCencInfo_Destory.
- * @syscap SystemCapability.Multimedia.Media.Spliter
- * @return Returns the newly created OH_AVCencInfo object. If nullptr is returned, the object failed to be created.
- *         The possible failure is due to the application address space being full,
- *         or the data in the initialization object has failed.
+ * @return Pointer to the OH_AVCencInfo instance created. If the operation fails, nullptr is returned.
+ *     <br>The possible causes of an operation failure are as follows: The application address space is full,
+ *     or the data in the object fails to be initialized.
  * @since 12
  * @version 1.0
  */
 OH_AVCencInfo *OH_AVCencInfo_Create();
 
 /**
- * @brief Destroy the OH_AVCencInfo instance and free the internal resources.
+ * @brief Destroys an OH_AVCencInfo instance and clears internal resources.
  *
- * The same instance can only be destroyed once. The destroyed instance
- * should not be used before it is created again. It is recommended setting
- * the instance pointer to NULL right after the instance is destroyed successfully.
- * @syscap SystemCapability.Multimedia.Media.Spliter
+ * An instance can be destroyed only once. Do not use the instance until it is created again. You are advised to set
+ * the instance pointer to nullptr once the instance is destroyed.
+ *
  * @param cencInfo Pointer to an OH_AVCencInfo instance.
- * @return {@link AV_ERR_OK} 0 - Success
- *         {@link AV_ERR_INVALID_VAL} 3 - cencInfo is nullptr.
+ * @return {@link AV_ERR_OK}: The operation is successful.
+ *     <br>{@link AV_ERR_INVALID_VAL}: The value of **cencInfo** is null.
  * @since 12
  * @version 1.0
-*/
+ */
 OH_AVErrCode OH_AVCencInfo_Destroy(OH_AVCencInfo *cencInfo);
 
 /**
- * @brief Method to set algo of cencinfo.
+ * @brief Sets an encryption algorithm of the CENC information.
  *
- * @syscap SystemCapability.Multimedia.Media.Spliter
  * @param cencInfo Pointer to an OH_AVCencInfo instance.
- * @param algo Cenc algo.
- * @return {@link AV_ERR_OK} 0 - Success
- *         {@link AV_ERR_INVALID_VAL} 3 - cencInfo is nullptr.
+ * @param algo Encryption algorithm.
+ * @return {@link AV_ERR_OK}: The operation is successful.
+ *     <br>{@link AV_ERR_INVALID_VAL}: The value of **cencInfo** is null.
  * @since 12
  * @version 1.0
  */
 OH_AVErrCode OH_AVCencInfo_SetAlgorithm(OH_AVCencInfo *cencInfo, enum DrmCencAlgorithm algo);
 
 /**
- * @brief Method to set key id and iv of cencinfo.
+ * @brief Sets the key ID and IV in the CENC information.
  *
- * @syscap SystemCapability.Multimedia.Media.Spliter
  * @param cencInfo Pointer to an OH_AVCencInfo instance.
- * @param keyId Key id.
- * @param keyIdLen Key id len.
- * @param iv Iv.
- * @param ivLen Iv len.
- * @return {@link AV_ERR_OK} 0 - Success
- *         {@link AV_ERR_INVALID_VAL} 3 - If cencInfo is nullptr, or keyId is nullptr, or keyIdLen != DRM_KEY_ID_SIZE,
- *         or iv is nullptr, or ivLen != DRM_KEY_IV_SIZE, or keyId copy fails, or iv copy fails.
+ * @param keyId Pointer to the key ID.
+ * @param keyIdLen Length of the key ID.
+ * @param iv Pointer to the IV.
+ * @param ivLen Length of the IV.
+ * @return {@link AV_ERR_OK}: The operation is successful.
+ *     <br>{@link AV_ERR_INVALID_VAL}: The value of **cencInfo**, **keyId**, or **iv** is null,
+ *     **keyIdLen** is not equal to **DRM_KEY_ID_SIZE**, **ivLen** is not equal to **DRM_KEY_IV_SIZE**,
+ *     the key ID or IV fails to be copied.
  * @since 12
  * @version 1.0
  */
@@ -196,18 +199,17 @@ OH_AVErrCode OH_AVCencInfo_SetKeyIdAndIv(OH_AVCencInfo *cencInfo, uint8_t *keyId
     uint32_t keyIdLen, uint8_t *iv, uint32_t ivLen);
 
 /**
- * @brief Method to set subsample info of cencinfo.
+ * @brief Sets the subsample information in the CENC information.
  *
- * @syscap SystemCapability.Multimedia.Media.Spliter
  * @param cencInfo Pointer to an OH_AVCencInfo instance.
  * @param encryptedBlockCount Number of encrypted blocks.
- * @param skippedBlockCount Number of skip(clear) blocks.
- * @param firstEncryptedOffset Offset of first encrypted payload.
- * @param subsampleCount Subsample num.
- * @param subsamples Subsample info
- * @return {@link AV_ERR_OK} 0 - Success
- *         {@link AV_ERR_INVALID_VAL} 3 - If cencInfo is nullptr, or subsampleCount > DRM_KEY_MAX_SUB_SAMPLE_NUM,
- *         or subsamples is nullptr.
+ * @param skippedBlockCount Number of non-encrypted blocks.
+ * @param firstEncryptedOffset Offset of the first encrypted payload.
+ * @param subsampleCount Number of subsamples.
+ * @param subsamples Pointer to the subsamples.
+ * @return {@link AV_ERR_OK}: The operation is successful.
+ *     <br>{@link AV_ERR_INVALID_VAL}: The value of **cencInfo** is null, **subsampleCount** is greater than
+ *     **DRM_KEY_MAX_SUB_SAMPLE_NUM**, or **subsamples** is null.
  * @since 12
  * @version 1.0
  */
@@ -215,27 +217,25 @@ OH_AVErrCode OH_AVCencInfo_SetSubsampleInfo(OH_AVCencInfo *cencInfo, uint32_t en
     uint32_t skippedBlockCount, uint32_t firstEncryptedOffset, uint32_t subsampleCount, DrmSubsample *subsamples);
 
 /**
- * @brief Method to set mode of cencinfo.
+ * @brief Sets the CENC information mode.
  *
- * @syscap SystemCapability.Multimedia.Media.Spliter
  * @param cencInfo Pointer to an OH_AVCencInfo instance.
- * @param mode Cenc mode, indicate whether key/iv/subsample set or not.
- * @return {@link AV_ERR_OK} 0 - Success
- *         {@link AV_ERR_INVALID_VAL} 3 - cencInfo is nullptr.
+ * @param mode CENC information mode, indicating whether the key ID, IV, and subsample are set.
+ * @return {@link AV_ERR_OK}: The operation is successful.
+ *     <br>{@link AV_ERR_INVALID_VAL}: The value of **cencInfo** is null.
  * @since 12
  * @version 1.0
  */
 OH_AVErrCode OH_AVCencInfo_SetMode(OH_AVCencInfo *cencInfo, enum DrmCencInfoMode mode);
 
 /**
- * @brief Method to attach cencinfo to AVBuffer.
+ * @brief Sets the CENC information to an AVBuffer.
  *
- * @syscap SystemCapability.Multimedia.Media.Spliter
  * @param cencInfo Pointer to an OH_AVCencInfo instance.
- * @param buffer AVBuffer to attach cencinfo.
- * @return {@link AV_ERR_OK} 0 - Success
- *         {@link AV_ERR_INVALID_VAL} 3 - If cencInfo is nullptr, or buffer is nullptr, or buffer->buffer_ is nullptr,
- *         or buffer->buffer_->meta_ is nullptr.
+ * @param buffer Pointer to the frame buffer that carries data.
+ * @return {@link AV_ERR_OK}: The operation is successful.
+ *     <br>{@link AV_ERR_INVALID_VAL}: The value of **cencInfo**, **buffer**, **buffer->buffer_**,
+ *     or **buffer->buffer_->meta_** is null.
  * @since 12
  * @version 1.0
  */

@@ -184,25 +184,25 @@ typedef enum OH_AVRecorder_FileGenerationMode {
  * @since 18
  */
 typedef struct OH_AVRecorder_Profile {
-    /* Indicates the audio bitrate */
+    /* Indicates the audio bitrate, in bit/s*/
     int32_t audioBitrate;
     /* Indicates the number of audio channels */
     int32_t audioChannels;
     /* Indicates the audio encoding format */
     OH_AVRecorder_CodecMimeType audioCodec;
-    /* Indicates the audio sampling rate */
+    /* Indicates the audio sampling rate, in Hz */
     int32_t audioSampleRate;
     /* Indicates the output file format */
     OH_AVRecorder_ContainerFormatType fileFormat;
-    /* Indicates the video bitrate */
+    /* Indicates the video bitrate, in bit/s */
     int32_t videoBitrate;
     /* Indicates the video encoding format */
     OH_AVRecorder_CodecMimeType videoCodec;
-    /* Indicates the video width */
+    /* Indicates the video width, in px */
     int32_t videoFrameWidth;
-    /* Indicates the video height */
+    /* Indicates the video height, in px */
     int32_t videoFrameHeight;
-    /* Indicates the video frame rate */
+    /* Indicates the video frame rate, in fps */
     int32_t videoFrameRate;
     /* Whether to record HDR video */
     bool isHdr;

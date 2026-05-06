@@ -53,37 +53,37 @@ extern "C" {
  */
 typedef enum CloudDisk_SyncState {
     /**
-     * @brief The cloud disk is idle and not performing any synchronization.
+     * @brief The file is idle, and no sync operation is performed.
      *
      * @since 21
      */
     IDLE = 0,
     /**
-     * @brief The cloud disk is currently synchronizing.
+     * @brief The file is being synced.
      *
      * @since 21
      */
     SYNCING = 1,
     /**
-     * @brief The cloud disk synchronization completed successfully.
+     * @brief The file is synced successfully.
      *
      * @since 21
      */
     SYNC_SUCCEEDED = 2,
     /**
-     * @brief The cloud disk synchronization failed.
+     * @brief The file fails to be synced.
      *
      * @since 21
      */
     SYNC_FAILED = 3,
     /**
-     * @brief The cloud disk synchronization was canceled.
+     * @brief The file sync is canceled.
      *
      * @since 21
      */
     SYNC_CANCELED = 4,
     /**
-     * @brief The cloud disk synchronization encountered a conflict.
+     * @brief The file sync conflicts.
      *
      * @since 21
      */
@@ -97,37 +97,37 @@ typedef enum CloudDisk_SyncState {
  */
 typedef enum CloudDisk_OperationType {
     /**
-     * @brief Create a file or folder.
+     * @brief Create a file or directory.
      *
      * @since 21
      */
     CREATE = 0,
     /**
-     * @brief Delete a file or folder.
+     * @brief Delete a file or directory.
      *
      * @since 21
      */
     DELETE = 1,
     /**
-     * @brief Move a file or folder from a source location.
+     * @brief Move this file or directory.
      *
      * @since 21
      */
     MOVE_FROM = 2,
     /**
-     * @brief Move a file or folder to a target location.
+     * @brief Move to this file or directory.
      *
      * @since 21
      */
     MOVE_TO = 3,
     /**
-     * @brief Close a file after writing to operations.
+     * @brief Close the file after the write operation.
      *
      * @since 21
      */
     CLOSE_WRITE = 4,
     /**
-     * @brief The sync folder path is invalid.
+     * @brief Invalid sync root path.
      *
      * @since 21
      */
@@ -147,25 +147,25 @@ typedef enum CloudDisk_ErrorReason {
      */
     INVALID_ARGUMENT = 0,
     /**
-     * @brief The specified file does not exist.
+     * @brief The file or directory does not exist.
      *
      * @since 21
      */
     NO_SUCH_FILE = 1,
     /**
-     * @brief There is no space left on the device.
+     * @brief The remaining space on the device is insufficient.
      *
      * @since 21
      */
     NO_SPACE_LEFT = 2,
     /**
-     * @brief The operation is out of the valid range.
+     * @brief The file is not in the sync root path.
      *
      * @since 21
      */
     OUT_OF_RANGE = 3,
     /**
-     * @brief The sync state is not set for the cloud disk.
+     * @brief The sync state is not set.
      *
      * @since 21
      */
@@ -179,13 +179,13 @@ typedef enum CloudDisk_ErrorReason {
  */
 typedef struct CloudDisk_PathInfo {
     /**
-     * @brief The file path as a null-terminated string.
+     * @brief Pointer to the file path, which ends with '\0'.
      *
      * @since 21
      */
     char *value;
     /**
-     * @brief Length of the file path, excluding the '0' character at the end.
+     * @brief Length of the file path, excluding the '\0' character at the end.
      *
      * @since 21
      */
@@ -193,13 +193,13 @@ typedef struct CloudDisk_PathInfo {
 } CloudDisk_PathInfo;
 
 /**
- * @brief Defines the file ID information.
+ * @brief a struct that encapsulates the file ID.
  * @since 21
  */
 typedef CloudDisk_PathInfo CloudDisk_FileIdInfo;
 
 /**
- * @brief Defines the sync folder path information.
+ * @brief a struct that encapsulates the sync root path.
  * @since 21
  */
 typedef CloudDisk_PathInfo CloudDisk_SyncFolderPath;
@@ -233,9 +233,9 @@ typedef struct CloudDisk_FileSyncState {
  */
 typedef struct CloudDisk_ChangeData {
     /**
-     * @brief The update sequence number for the change event.
-     * Increases by 1 each time the file is changed, and is monotonically increasing.
-     * Used for incremental change queries.
+     * @brief Update sequence number of the change event.
+     * It is incremented by 1 monotonically each time a file is changed,
+     * and is used for incremental change query. Value range: [0, 2^64 – 1]
      *
      * @since 21
      */
@@ -265,19 +265,19 @@ typedef struct CloudDisk_ChangeData {
      */
     CloudDisk_OperationType operationType;
     /**
-     * @brief The size of the file in bytes.
+     * @brief File size, in bytes.
      *
      * @since 21
      */
     uint64_t size{0};
     /**
-     * @brief The last modified time of the file, in milliseconds.
+     * @brief File modification time, in milliseconds.
      *
      * @since 21
      */
     uint64_t mtime{0};
     /**
-     * @brief The timestamp of the change event, in milliseconds.
+     * @brief Time when a change event occurs, in milliseconds.
      *
      * @since 21
      */
@@ -292,26 +292,26 @@ typedef struct CloudDisk_ChangeData {
  */
 typedef struct CloudDisk_ChangesResult {
     /**
-     * @brief The next update sequence number for incremental queries.
+     * @brief Valid start change sequence number that can be queried next time.
      *
      * @since 21
      */
     uint64_t nextUsn{0};
     /**
-     * @brief Indicates whether the end of the change log is reached.
-     * If true, all file changes have been returned.
+     * @brief Whether the change is the last entry in the sync root path's change history.
+     * The value true means it is the last one; the value false means it is not.
      *
      * @since 21
      */
     bool isEof{false};
     /**
-     * @brief The number of change data items in the array.
+     * @brief Number of elements in the change history array.
      *
      * @since 21
      */
     size_t bufferLength{0};
     /**
-     * @brief The array of file change data items.
+     * @brief Change history array.
      *
      * @since 21
      */
@@ -353,8 +353,8 @@ typedef struct CloudDisk_ResultList {
      */
     CloudDisk_PathInfo pathInfo;
     /**
-     * @brief Indicates whether the synchronization operation was successful.
-     * If true, syncState is valid; if false, errorReason is valid.
+     * @brief Whether the operation is successful. The value true indicates the operation is successful;
+     * the value false (default) indicates the opposite.
      *
      * @since 21
      */
@@ -381,13 +381,13 @@ typedef struct CloudDisk_ResultList {
  */
 typedef enum CloudDisk_SyncFolderState {
     /**
-     * @brief Indicates that the state of sync folder is inactive.
+     * @brief The sync root path is inactive.
      *
      * @since 21
      */
     INACTIVE = 0,
     /**
-     * @brief Indicates that the state of sync folder is active.
+     * @brief The sync root path is active.
      *
      * @since 21
      */
@@ -407,8 +407,9 @@ typedef struct CloudDisk_DisplayNameInfo {
      */
     uint32_t displayNameResId;
     /**
-     * @brief Indicates the user-defined alias.
-     *
+     * @brief Pointer to the custom alias, which cannot contain the following characters: \/*?<>|:".
+     * Additionally, the full name cannot be composed solely of spaces, a single dot (.), or two consecutive dots (..).
+	 *
      * @since 21
      */
     char *customAlias;
