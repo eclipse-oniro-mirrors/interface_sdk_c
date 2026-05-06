@@ -45,7 +45,7 @@ extern "C" {
 #endif
 
 /**
- * @brief interface error code.
+ * @brief native error code.
  * @since 12
  */
 typedef enum OHNativeErrorCode {
