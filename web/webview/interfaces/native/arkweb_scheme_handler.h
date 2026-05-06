@@ -925,11 +925,10 @@ void OH_ArkWebResponse_GetCharset(const ArkWeb_Response* response, char** charse
  * @param response The ArkWeb_Response.
  * @param name The name of the header.
  * @param value The value of the header.
- * @param overwirte If true will overwrite the exsits header, if false otherwise.
+ * @param overwrite If true will overwrite the exists header, if false otherwise.
  * @return {@link ARKWEB_NET_OK} 0 - Success.
  *         {@link ARKWEB_INVALID_PARAM} 17100101 - Invalid param.
  *
- * @syscap SystemCapability.Web.Webview.Core
  * @since 12
  */
 int32_t OH_ArkWebResponse_SetHeaderByName(ArkWeb_Response* response,
