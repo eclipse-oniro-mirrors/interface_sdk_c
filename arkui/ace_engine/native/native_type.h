@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2024 Huawei Device Co., Ltd.
+ * Copyright (c) 2024-2026 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -10426,6 +10426,26 @@ ArkUI_ErrorCode OH_ArkUI_RadialGradientOptions_SetColorStop(
 ArkUI_ErrorCode OH_ArkUI_RadialGradientOptions_GetColorStop(
     const OH_ArkUI_RadialGradientOptions* options, uint32_t* colors, float* stops, int32_t colorsAndStopsSize,
     int32_t* writeLength);
+
+/**
+ * @brief Enumeration of the policy for mounting child node to the target node.
+ *
+ * @since 26.0.0
+ */
+typedef enum {
+    /**
+     * If you want to mount a RenderNode as a child node, that RenderNode must be the only child.
+     *
+     * @since 26.0.0
+     */
+    OH_ARKUI_NODE_MOUNT_POLICY_SINGLE_IF_RENDER_NODE = 0,
+    /**
+     * Multiple child nodes of type Node or RenderNode allowed.
+     *
+     * @since 26.0.0
+     */
+    OH_ARKUI_NODE_MOUNT_POLICY_MIXED = 1,
+} OH_ArkUI_NodeMountPolicy;
 #ifdef __cplusplus
 };
 #endif
