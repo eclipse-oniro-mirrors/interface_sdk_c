@@ -304,7 +304,7 @@ OH_AVErrCode OH_LowPowerVideoSink_SetTargetStartFrame(
  * @brief Set playback speed for the lowpower video sink
  * @param {OH_LowPowerVideoSink*} sink Pointer to an OH_LowPowerVideoSink instance
  * @param {const float} speed Indicates the value of the playback rate.
- * The current version is valid in the range of 0.1-4.0
+ * The current version is valid in the range of 0.25-4.0
  * @return Returns AV_ERR_OK if the execution is successful,
  * otherwise returns a specific error code, refer to {@link OH_AVErrCode}
  * {@link AV_ERR_INVALID_VAL} the sink or format is nullptr or invalid. Invalid param in format.
