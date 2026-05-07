@@ -236,11 +236,11 @@ typedef enum {
      */
     ABILITY_RUNTIME_ERROR_CODE_SEND_REQUEST_FAILED = 16000175,
     /**
-     * The distribution type of application is invalid.
+     * Caller and target are not in the same application for {@link OH_ABILITY_RUNTIME_LAUNCH_MODE_IN_PROCESS} mode.
      *
      * @since 26.0.0
      */
-    ABILITY_RUNTIME_ERROR_CODE_INVALID_DISTRIBUTION_TYPE = 16000176,
+    ABILITY_RUNTIME_ERROR_CODE_CROSS_APP_IN_PROCESS = 16000176,
 } AbilityRuntime_ErrorCode;
 
 #ifdef __cplusplus
