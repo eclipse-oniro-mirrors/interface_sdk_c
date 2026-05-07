@@ -27,7 +27,7 @@
  *
  * @brief Declares the modular object extension ability.
  *
- * @library libmodular_object_extension.so
+ * @library libability_runtime.so
  * @kit AbilityKit
  * @syscap SystemCapability.Ability.AbilityRuntime.Core
  * @since 26.0.0
