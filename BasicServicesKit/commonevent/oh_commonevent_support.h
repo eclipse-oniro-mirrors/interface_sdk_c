@@ -1,17 +1,25 @@
-
 /*
  * Copyright (c) 2024 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- * http://www.apache.org/licenses/LICENSE-2.0
+ *     http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
+ */
+
+/**
+ * @addtogroup OH_CommonEvent
+ * @{
+ *
+ * @brief Provides the APIs of common event service.
+ *
+ * @since 12
  */
 
 /**
@@ -26,17 +34,11 @@
  * @version 1.0
  */
 
-/**
- * @addtogroup OH_CommonEvent
- * @{
- *
- * @brief Provides the APIs of common event service.
- *
- * @since 12
- */
 #ifndef OH_COMMONEVENT_SUPPORT_H
 #define OH_COMMONEVENT_SUPPORT_H
+
 #include <stdint.h>
+
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -309,7 +311,7 @@ static const char* const COMMON_EVENT_WIFI_HOTSPOT_STATE = "usual.event.wifi.HOT
 static const char* const COMMON_EVENT_WIFI_AP_STA_JOIN = "usual.event.wifi.WIFI_HS_STA_JOIN";
 
 /**
- * @brief Indicates the common event that a client has leave the Wi-Fi hotspot of the current device.
+ * @brief Indicates the common event that a client has joined the Wi-Fi hotspot of the current device.
  *
  * @since 12
  */
@@ -606,5 +608,4 @@ static const char* const COMMON_EVENT_LID_STATE_CHANGED = "usual.event.LID_STATE
 }
 #endif
 #endif // OH_COMMONEVENT_SUPPORT_H
-
 /** @} */
