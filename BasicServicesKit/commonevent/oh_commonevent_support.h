@@ -311,7 +311,7 @@ static const char* const COMMON_EVENT_WIFI_HOTSPOT_STATE = "usual.event.wifi.HOT
 static const char* const COMMON_EVENT_WIFI_AP_STA_JOIN = "usual.event.wifi.WIFI_HS_STA_JOIN";
 
 /**
- * @brief Indicates the common event that a client has joined the Wi-Fi hotspot of the current device.
+ * @brief Indicates the common event that a client has disconnected from the Wi-Fi hotspot of the current device.
  *
  * @since 12
  */
@@ -497,7 +497,7 @@ static const char* const COMMON_EVENT_SIM_STATE_CHANGED = "usual.event.SIM_STATE
 /**
  * @brief Indicates the common event that the call state has been updated.
  *
- * To subscribe to this protected common event, your application must have the ohos.permission.GET_TELEPHONY_STATE
+ * To subscribe to this common event, your application must have the ohos.permission.GET_TELEPHONY_STATE
  * permission.
  *
  * @since 12
@@ -591,8 +591,8 @@ static const char* const COMMON_EVENT_VOLUME_ENCRYPTED = "usual.event.VOLUME_ENC
 /**
  * @brief This common event indicates that specific volumes on the device have had their encryption policy set.
  *
- * To subscribe to this protected common event, your application must have the
- * ohos.permission.QUERY_VOLUME_ENCRYPTION_STATUS permission.
+ * To subscribe to this common event, your application must have the ohos.permission.QUERY_VOLUME_ENCRYPTION_STATUS
+ * permission.
  *
  * @since 26.0.0
  */
