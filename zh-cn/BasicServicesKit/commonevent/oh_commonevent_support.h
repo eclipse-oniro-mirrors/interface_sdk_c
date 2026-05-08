@@ -304,7 +304,7 @@ static const char* const COMMON_EVENT_WIFI_HOTSPOT_STATE = "usual.event.wifi.HOT
 static const char* const COMMON_EVENT_WIFI_AP_STA_JOIN = "usual.event.wifi.WIFI_HS_STA_JOIN";
 
 /**
- * @brief 表示客户端加入当前设备Wi-Fi热点的公共事件。
+ * @brief 表示客户端已断开与当前设备Wi-Fi热点的连接的公共事件。
  *
  * @since 12
  */
@@ -490,7 +490,7 @@ static const char* const COMMON_EVENT_SIM_STATE_CHANGED = "usual.event.SIM_STATE
 /**
  * @brief 表示呼叫状态更新的公共事件。
  *
- * 要订阅此事件，您的应用必须具备ohos.permission.GET_TELEPHONY_STATE权限
+ * 要订阅此事件，您的应用必须具备ohos.permission.GET_TELEPHONY_STATE权限。
  *
  * @since 12
  */
