@@ -231,7 +231,7 @@ OH_NativeBundle_ModuleMetadata* OH_NativeBundle_GetModuleMetadata(size_t* size);
 /**
  * @brief Obtain a list of ability that support opening files in a certain format.
  *
- * @permisssion {@code ohos.permission.GET_ABILITY_INFO}.
+ * @permission ohos.permission.GET_ABILITY_INFO
  * @param fileType Indicates the file type.
  * @param abilityResourceInfo Indicates the ability resource array.
  * @param size Indicates the ability resource array size.
