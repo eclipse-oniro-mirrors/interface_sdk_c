@@ -28,7 +28,7 @@
 /**
  * @file drawing_register_font.h
  *
- * @brief Declares functions related to <b>FontManager</b> in the drawing module.
+ * @brief This file declares the functions related to the font manager in the drawing module.
  *
  * @kit ArkGraphics2D
  * @library libnative_drawing.so
@@ -47,28 +47,30 @@
 extern "C" {
 #endif
 /**
- * @brief Defines an <b>OH_Drawing_RegisterFont</b>, which is used to register a customized font in the FontManager.
+ * @brief Registers a custom font with the font manager. The supported font file formats are .ttf and .otf.
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @param OH_Drawing_FontCollection Indicates the pointer to an <b>OH_Drawing_FontCollection</b> object.
- * @param fontFamily Indicates the family-name of the font which need to register.
- * @param familySrc Indicates the path of the font file which need to register.
- * @return error code.
+ * @param fontFamily Pointer to the family name of the font to register.
+ * @param familySrc Pointer to the path of the font file to register.
+ * @return Returns **0** if the font is registered; returns **1** if the file does not exist; returns **2** if opening
+ *     the file fails; returns **3** if reading the file fails; returns **4** if the file is not found; returns **5**
+ *     if the file size is not obtained; returns **9** if the file is damaged.
  * @since 11
  * @version 1.0
  */
 uint32_t OH_Drawing_RegisterFont(OH_Drawing_FontCollection*, const char* fontFamily, const char* familySrc);
 
 /**
- * @brief Defines an <b>OH_Drawing_RegisterFontBuffer</b>, which is used to register a customized font in the
- *        FontManager.
+ * @brief Registers a font buffer with the font manager.
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @param OH_Drawing_FontCollection Indicates the pointer to an <b>OH_Drawing_FontCollection</b> object.
- * @param fontFamily Indicates the family-name of the font which need to register.
- * @param fontBuffer Indicates the buffer of the font file which need to register.
- * @param length Indicates the length of the font file which need to register.
- * @return error code.
+ * @param fontFamily Pointer to the family name of the font to register.
+ * @param fontBuffer Pointer to the buffer of the font file.
+ * @param length Length of the font file.
+ * @return Returns **0** if the font is registered; returns **6** if the buffer size is zero; returns **7** if the font
+ *     set is empty; returns **9** if the file is damaged.
  * @since 11
  * @version 1.0
  */
@@ -76,62 +78,63 @@ uint32_t OH_Drawing_RegisterFontBuffer(OH_Drawing_FontCollection*, const char* f
     size_t length);
 
 /**
- * @brief Defines an <b>OH_Drawing_RegisterFontByIndex</b>, which is used to register font from ttc file.
+ * @brief Registers a custom font using a TTC/OTC file.
  *
- * @param fontCollection Indicates the pointer to an <b>OH_Drawing_FontCollection</b> object.
- * @param fontFamily Indicates the family name of the font which need to register.
- * @param familySrc Indicates the path of the font file which need to register.
- * @param index Indicates the index of the font data in the ttc file.
- * @return error code.
+ * @param fontCollection Pointer to an {@link OH_Drawing_FontCollection} object.
+ * @param fontFamily Family name of the font to register.
+ * @param familySrc Path of the font file to register.
+ * @param index Index of the font in the TTC/OTC file. Set this parameter to **0** if the file is not in TTC/OTC format.
+ * @return Returns the execution result. **0**: success; **1**: file does not exist; **2**: failed to open the file; **
+ *     3**: failed to read the file; **4**: failed to find the file; **5**: failed to obtain the size; **8**: **
+ *     fontCollection** is null; **9**: file is corrupted.
  * @since 23
  */
 uint32_t OH_Drawing_RegisterFontByIndex(OH_Drawing_FontCollection* fontCollection,
     const char* fontFamily, const char* familySrc, uint32_t index);
 
 /**
- * @brief Defines an <b>OH_Drawing_RegisterFontBufferByIndex</b>, which is used to register font from ttc buffer.
+ * @brief Registers a font using the font buffer of a TTC/OTC file.
  *
- * @param fontCollection Indicates the pointer to an <b>OH_Drawing_FontCollection</b> object.
- * @param fontFamily Indicates the family name of the font which need to register.
- * @param fontBuffer Indicates the font data which need to register.
- * @param length Indicates the font data length.
- * @param index Indicates the index of the font data in the ttc file.
- * @return error code.
+ * @param fontCollection Pointer to an {@link OH_Drawing_FontCollection} object.
+ * @param fontFamily Family name of the font to register.
+ * @param fontBuffer Font buffer of the font file to register.
+ * @param length Font buffer data length.
+ * @param index Index of the font in the TTC/OTC file. Set this parameter to **0** if the file is not in TTC/OTC format.
+ * @return Returns the execution result. **0**: success; **6**: the font buffer pointer is null; **7**: the font buffer
+ *     data length is zero; **8**: **fontCollection** is null; **9**: file is corrupted.
  * @since 23
  */
 uint32_t OH_Drawing_RegisterFontBufferByIndex(OH_Drawing_FontCollection* fontCollection,
     const char* fontFamily, uint8_t* fontBuffer, size_t length, uint32_t index);
 
 /**
- * @brief Unregister a customized font by the font family.
- * Unregistering a font that is currently in use by UI components may lead to text rendering anomalies,
- * including garbled characters or missing glyphs.
- * All typography using the unregistered font family should be destroyed and re-created.
+ * @brief Unregisters a custom font by font family name.Unregistering a font that is currently in use may lead to text
+ * rendering exceptions (such as garbled characters or missing glyphs).All typography objects using the unregistered
+ * font family should be destroyed and re-created.
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @param fontCollection Indicates the pointer to an <b>OH_Drawing_FontCollection</b> object.
- * @param fontFamily Indicates the family-name of the font which need to be unregistered.
- * @return error code.
+ * @param fontCollection Pointer to an {@link OH_Drawing_FontCollection} object.
+ * @param fontFamily Name of the font family to be unregistered.
+ * @return Returns the result code. **0**: success; **8**: invalid input parameter; **1**: failure.
  * @since 20
  */
 uint32_t OH_Drawing_UnregisterFont(OH_Drawing_FontCollection* fontCollection, const char* fontFamily);
 
 /**
- * @brief Checks whether the font format specified by the path is supported.
+ * @brief Checks whether the system supports the font format of the specified path.
  *
- * @param path The absolute path to the font file.
- * @return Returns true if the font is supported; otherwise, returns false.
+ * @param path Absolute path of the font file.
+ * @return Returns **true** if the font is supported; returns **false** otherwise.
  * @since 23
  */
 bool OH_Drawing_IsFontSupportedFromPath(const char* path);
 
-
 /**
- * @brief Checks whether the font format specified by the buffer is supported.
+ * @brief Checks whether the system supports the font format specified in the buffer.
  *
- * @param data A pointer to the memory buffer containing font data.
- * @param dataLength The size of the font data in bytes.
- * @return Returns true if the font is supported; otherwise, returns false.
+ * @param data Pointer to the buffer that contains the font data.
+ * @param dataLength Size of the font data, in bytes.
+ * @return Returns **true** if the font is supported; returns **false** otherwise.
  * @since 23
  */
 bool OH_Drawing_IsFontSupportedFromBuffer(uint8_t* data, size_t dataLength);

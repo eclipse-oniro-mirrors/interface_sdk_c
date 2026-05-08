@@ -28,7 +28,8 @@
 /**
  * @file drawing_font_mgr.h
  *
- * @brief Declares functions related to the <b>fontmgr</b> object in the drawing module.
+ * @brief This file declares the functions related to font management in the drawing module. The functions can be used
+ * to load fonts and match available fonts in the system.
  *
  * @kit ArkGraphics2D
  * @library libnative_drawing.so
@@ -49,7 +50,7 @@ extern "C" {
 #endif
 
 /**
- * @brief Creates an <b>OH_Drawing_FontMgr</b> object.
+ * @brief Creates an **OH_Drawing_FontMgr** object, which can be used only to manage system fonts.
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @return Returns the pointer to the <b>OH_Drawing_FontMgr</b> object created.
@@ -59,20 +60,22 @@ extern "C" {
 OH_Drawing_FontMgr* OH_Drawing_FontMgrCreate(void);
 
 /**
- * @brief Releases the memory occupied by an <b>OH_Drawing_FontMgr</b> object.
+ * @brief Destroys an **OH_Drawing_FontMgr** object and reclaims the memory occupied by the object.
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @param drawingFontMgr Indicates the pointer to an <b>OH_Drawing_FontMgr</b> object.
+ * @param drawingFontMgr Pointer to an {@link OH_Drawing_FontMgr} object, which is obtained from
+ *     {@link OH_Drawing_FontMgrCreate}.
  * @since 12
  * @version 1.0
  */
 void OH_Drawing_FontMgrDestroy(OH_Drawing_FontMgr* drawingFontMgr);
 
 /**
- * @brief Gets the count of font families.
+ * @brief Obtains the number of font families.
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @param drawingFontMgr Indicates the pointer to an <b>OH_Drawing_FontMgr</b> object.
+ * @param drawingFontMgr Pointer to an {@link OH_Drawing_FontMgr} object, which is obtained from
+ *     {@link OH_Drawing_FontMgrCreate}.
  * @return Returns the count of font families.
  * @since 12
  * @version 1.0
@@ -80,11 +83,12 @@ void OH_Drawing_FontMgrDestroy(OH_Drawing_FontMgr* drawingFontMgr);
 int OH_Drawing_FontMgrGetFamilyCount(OH_Drawing_FontMgr* drawingFontMgr);
 
 /**
- * @brief Gets the font family name by the index.
+ * @brief Obtains the font family name based on an index.
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @param drawingFontMgr Indicates the pointer to an <b>OH_Drawing_FontMgr</b> object.
- * @param index Indicates the index to get the font family name.
+ * @param drawingFontMgr Pointer to an {@link OH_Drawing_FontMgr} object, which is obtained from
+ *     {@link OH_Drawing_FontMgrCreate}.
+ * @param index Index of the font family name.
  * @return Returns the font family name corresponding to the index value.
  * @since 12
  * @version 1.0
@@ -92,21 +96,22 @@ int OH_Drawing_FontMgrGetFamilyCount(OH_Drawing_FontMgr* drawingFontMgr);
 char* OH_Drawing_FontMgrGetFamilyName(OH_Drawing_FontMgr* drawingFontMgr, int index);
 
 /**
- * @brief Releases the memory occupied by font family name.
+ * @brief Reclaims the memory occupied by a font family name.
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @param familyName Indicates the font family name.
+ * @param familyName Pointer to a font family name.
  * @since 12
  * @version 1.0
  */
 void OH_Drawing_FontMgrDestroyFamilyName(char* familyName);
 
 /**
- * @brief Creates an <b>OH_Drawing_FontStyleSet</b> object by <b>OH_Drawing_FontMgr</b> object.
+ * @brief Creates a font style set from an **OH_Drawing_FontMgr** object.
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @param drawingFontMgr Indicates the pointer to an <b>OH_Drawing_FontMgr</b> object.
- * @param index Indicates the index used to get the font style set object from the font manager object.
+ * @param drawingFontMgr Pointer to an {@link OH_Drawing_FontMgr} object, which is obtained from
+ *     {@link OH_Drawing_FontMgrCreate}.
+ * @param index Index of the font style set.
  * @return Returns the pointer to the <b>OH_Drawing_FontStyleSet</b> object created.
  * @since 12
  * @version 1.0
@@ -114,21 +119,22 @@ void OH_Drawing_FontMgrDestroyFamilyName(char* familyName);
 OH_Drawing_FontStyleSet* OH_Drawing_FontMgrCreateFontStyleSet(OH_Drawing_FontMgr* drawingFontMgr, int index);
 
 /**
- * @brief Releases the memory occupied by an <b>OH_Drawing_FontStyleSet</b> object.
+ * @brief Reclaims the memory occupied by a font style set.
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @param drawingFontStyleSet Indicates the pointer to an <b>OH_Drawing_FontStyleSet</b> object.
+ * @param drawingFontStyleSet Pointer to an {@link OH_Drawing_FontStyleSet} object.
  * @since 12
  * @version 1.0
  */
 void OH_Drawing_FontMgrDestroyFontStyleSet(OH_Drawing_FontStyleSet* drawingFontStyleSet);
 
 /**
- * @brief Get the pointer to an <b>OH_Drawing_FontStyleSet</b> object for the given font style set family name.
+ * @brief Obtains a font style set based on a font family name.
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @param drawingFontMgr Indicates the pointer to an <b>OH_Drawing_FontMgr</b> object.
- * @param familyName Indicates the family name of a font style set to be matched.
+ * @param drawingFontMgr Pointer to an {@link OH_Drawing_FontMgr} object, which is obtained from
+ *     {@link OH_Drawing_FontMgrCreate}.
+ * @param familyName Pointer to a font family name.
  * @return Returns the pointer to the <b>OH_Drawing_FontStyleSet</b> object matched.
  * @since 12
  * @version 1.0
@@ -136,12 +142,13 @@ void OH_Drawing_FontMgrDestroyFontStyleSet(OH_Drawing_FontStyleSet* drawingFontS
 OH_Drawing_FontStyleSet* OH_Drawing_FontMgrMatchFamily(OH_Drawing_FontMgr* drawingFontMgr, const char* familyName);
 
 /**
- * @brief Get the pointer to an <b>OH_Drawing_Typeface</b> object based on the given font style and family name.
+ * @brief Obtains a typeface based on the font style information and font family name.
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @param drawingFontMgr Indicates the pointer to an <b>OH_Drawing_FontMgr</b> object.
- * @param familyName Indicates the family name of a font style set to be matched.
- * @param fontStyle Indicates an <b>OH_Drawing_FontStyleStruct</b> object.
+ * @param drawingFontMgr Pointer to an {@link OH_Drawing_FontMgr} object, which is obtained from
+ *     {@link OH_Drawing_FontMgrCreate}.
+ * @param familyName Pointer to a font family name.
+ * @param fontStyle Font style, including the font weight, width, and slant.
  * @return Returns the pointer to the <b>OH_Drawing_Typeface</b> object matched.
  * @since 12
  * @version 1.0
@@ -150,15 +157,18 @@ OH_Drawing_Typeface* OH_Drawing_FontMgrMatchFamilyStyle(OH_Drawing_FontMgr* draw
     const char* familyName, OH_Drawing_FontStyleStruct fontStyle);
 
 /**
- * @brief Get the pointer to an <b>OH_Drawing_Typeface</b> object for the given character.
+ * @brief Obtains a typeface for the specified character. A null pointer is returned only when no typeface
+ * corresponding to the input UTF-8 character is found in the **OH_Drawing_FontMgr** object.
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @param drawingFontMgr Indicates the pointer to an <b>OH_Drawing_FontMgr</b> object.
- * @param familyName Indicates the family name of a font style set to be matched.
- * @param fontStyle Indicates an <b>OH_Drawing_FontStyleStruct</b> object.
- * @param bcp47 Indicates an array of languages which indicate the language of character.
- * @param bcp47Count Indicates the array size of bcp47.
- * @param character Indicates a UTF8 value to be matched.
+ * @param drawingFontMgr Pointer to an {@link OH_Drawing_FontMgr} object, which is obtained from
+ *     {@link OH_Drawing_FontMgrCreate}.
+ * @param familyName Pointer to a font family name.
+ * @param fontStyle Font style, including the font weight, width, and slant.
+ * @param bcp47 Pointer to the character language code array, which is a combination of ISO 639, 15924, and 3166-1
+ *     language codes.
+ * @param bcp47Count Size of the character language code array.
+ * @param character UTF8 character used for matching.
  * @return Returns the pointer to the <b>OH_Drawing_Typeface</b> object matched.
  * @since 12
  * @version 1.0
@@ -168,24 +178,26 @@ OH_Drawing_Typeface* OH_Drawing_FontMgrMatchFamilyStyleCharacter(OH_Drawing_Font
     const char* bcp47[], int bcp47Count, int32_t character);
 
 /**
- * @brief Create a typeface for the given index.
+ * @brief Creates a typeface for the specified index.
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @param fontStyleSet Indicates the pointer to an <b>OH_Drawing_FontStyleSet</b> object.
- * @param index Indicates the index of the typeface in this fontStyleSet.
+ * @param fontStyleSet Pointer to an {@link OH_Drawing_FontStyleSet} object.
+ * @param index Index of the typeface.
  * @return If successful, return a pointer to <b>OH_Drawing_Typeface</b> object; if failed, return nullptr.
  * @since 12
  * @version 1.0
  */
 OH_Drawing_Typeface* OH_Drawing_FontStyleSetCreateTypeface(OH_Drawing_FontStyleSet* fontStyleSet, int index);
 
- /**
- * @brief Get font style for the specified typeface.
+/**
+ * @brief Obtains the font style. Call {@link OH_Drawing_FontStyleSetFreeStyleName} to release **styleName** when it is
+ * no longer needed, freeing up the allocated memory.
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @param fontStyleSet Indicates the pointer to an <b>OH_Drawing_FontStyleSet</b> object.
- * @param index Indicates the index of the typeface in this fontStyleSet.
- * @param styleName Indicates the style name returned.
+ * @param fontStyleSet Pointer to an {@link OH_Drawing_FontStyleSet} object.
+ * @param index Index of the font style.
+ * @param styleName String specifying the font style name. Call {@link OH_Drawing_FontStyleSetFreeStyleName} to release
+ *     it when it is no longer needed, freeing up the allocated memory.
  * @return Return the <b>OH_Drawing_FontStyleStruct<b> structure.
  * @since 12
  * @version 1.0
@@ -193,22 +205,22 @@ OH_Drawing_Typeface* OH_Drawing_FontStyleSetCreateTypeface(OH_Drawing_FontStyleS
 OH_Drawing_FontStyleStruct OH_Drawing_FontStyleSetGetStyle(OH_Drawing_FontStyleSet* fontStyleSet, int32_t index,
     char** styleName);
 
- /**
- * @brief Releases the memory  styleName string.
+/**
+ * @brief Frees the memory occupied by a font style.
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @param styleName Indicates the pointer to a string type.
+ * @param styleName Double pointer to the string that specifies the font style name.
  * @since 12
  * @version 1.0
  */
 void OH_Drawing_FontStyleSetFreeStyleName(char** styleName);
 
 /**
- * @brief Get the closest matching typeface.
+ * @brief Obtains the typeface closest to the font style.
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @param fontStyleSet Indicates the pointer to an <b>OH_Drawing_FontStyleSet</b> object.
- * @param fontStyleStruct Indicates the <b>OH_Drawing_FontStyleStruct</b> structure.
+ * @param fontStyleSet Pointer to an {@link OH_Drawing_FontStyleSet} object.
+ * @param fontStyleStruct Font style, including the font weight, width, and slant.
  * @return A pointer to matched <b>OH_Drawing_Typeface</b>.
  * @since 12
  * @version 1.0
@@ -217,16 +229,15 @@ OH_Drawing_Typeface* OH_Drawing_FontStyleSetMatchStyle(OH_Drawing_FontStyleSet* 
     OH_Drawing_FontStyleStruct fontStyleStruct);
 
 /**
- * @brief Get the count of typeface.
+ * @brief Obtains the number of fonts in the font style set.
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @param fontStyleSet Indicates the pointer to an <b>OH_Drawing_FontStyleSet</b> object.
+ * @param fontStyleSet Pointer to an {@link OH_Drawing_FontStyleSet} object.
  * @return The count of typeface in this font style set.
  * @since 12
  * @version 1.0
  */
 int OH_Drawing_FontStyleSetCount(OH_Drawing_FontStyleSet* fontStyleSet);
-
 #ifdef __cplusplus
 }
 #endif
