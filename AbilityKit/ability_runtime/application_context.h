@@ -244,7 +244,7 @@ AbilityRuntime_ErrorCode OH_AbilityRuntime_ApplicationContextGetResourceDir(cons
 /**
  * @brief Starts the UIAbility of the current application.
  *
- * @permission {@code ohos.permission.NDK_START_SELF_UI_ABILITY}
+ * @permission ohos.permission.NDK_START_SELF_UI_ABILITY
  * @param want Pointer to the Want information required for starting the UIAbility.
  * @return **ABILITY_RUNTIME_ERROR_CODE_NO_ERROR**: The operation is successful.
  *      **ABILITY_RUNTIME_ERROR_CODE_PERMISSION_DENIED**: Permission verification for the caller fails.
@@ -272,35 +272,38 @@ AbilityRuntime_ErrorCode OH_AbilityRuntime_StartSelfUIAbility(AbilityBase_Want *
 /**
  * @brief Starts the UIAbility of the current application using **StartOptions**.
  *
- * @permission {@code ohos.permission.NDK_START_SELF_UI_ABILITY}
+ * @permission ohos.permission.NDK_START_SELF_UI_ABILITY
  * @param want Pointer to the Want information required for starting the UIAbility.
  * @param options Pointer to **StartOptions** required for starting the UIAbility.
  *      If the value of {@link startVisibility}
  *      is not null, ensure that the current application has been added to the status bar.
  *      Otherwise, the {@link ABILITY_RUNTIME_ERROR_VISIBILITY_SETTING_DISABLED} error code is returned.
- * @return **ABILITY_RUNTIME_ERROR_CODE_NO_ERROR**: The operation is successful.
- *      **ABILITY_RUNTIME_ERROR_CODE_PERMISSION_DENIED**: Permission verification for the caller fails.
- *      **ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID**: Parameter verification for the caller fails.
- *      **ABILITY_RUNTIME_ERROR_CODE_NOT_SUPPORTED**: The device type is not supported.
- *      **ABILITY_RUNTIME_ERROR_CODE_NO_SUCH_ABILITY**: The specified ability name does not exist.
- *      **ABILITY_RUNTIME_ERROR_CODE_INCORRECT_ABILITY_TYPE**: The ability type is incorrect.
- *      **ABILITY_RUNTIME_ERROR_CODE_CROWDTEST_EXPIRED**: The crowdtesting application expires.
- *      **ABILITY_RUNTIME_ERROR_CODE_WUKONG_MODE**: The ability is started or stopped in Wukong mode.
- *      **ABILITY_RUNTIME_ERROR_CODE_CONTROLLED**: The application is under control.
- *      **ABILITY_RUNTIME_ERROR_CODE_EDM_CONTROLLED**: The application is under control by EDM.
- *      **ABILITY_RUNTIME_ERROR_CODE_CROSS_APP**: Redirecting to third-party applications
- *      is not allowed in API versions later than 11.
- *      **ABILITY_RUNTIME_ERROR_CODE_INTERNAL**: An internal error occurs.
- *      **ABILITY_RUNTIME_ERROR_CODE_NOT_TOP_ABILITY**: The application is not a top one.
- *      **ABILITY_RUNTIME_ERROR_VISIBILITY_SETTING_DISABLED**:
- *      Setting the window visibility during startup is not allowed.
- *      **ABILITY_RUNTIME_ERROR_CODE_MULTI_APP_NOT_SUPPORTED**:
- *      The application does not support clone or multi-instance mode.
- *      **ABILITY_RUNTIME_ERROR_CODE_INVALID_APP_INSTANCE_KEY**: The multi-instance key is invalid.
- *      **ABILITY_RUNTIME_ERROR_CODE_UPPER_LIMIT_REACHED**: The number of instances has reached the upper limit.
- *      **ABILITY_RUNTIME_ERROR_MULTI_INSTANCE_NOT_SUPPORTED**: The application does not support multi-instance mode.
- *      **ABILITY_RUNTIME_ERROR_CODE_APP_INSTANCE_KEY_NOT_SUPPORTED**: Setting **APP_INSTANCE_KEY** is not supported.
- *      For details, see **AbilityRuntime_ErrorCode**.
+ * @return <ul><li>**ABILITY_RUNTIME_ERROR_CODE_NO_ERROR**: The operation is successful.</li>
+ *      <li>**ABILITY_RUNTIME_ERROR_CODE_PERMISSION_DENIED**: Permission verification for the caller fails.</li>
+ *      <li>**ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID**: Parameter verification for the caller fails.</li>
+ *      <li>**ABILITY_RUNTIME_ERROR_CODE_NOT_SUPPORTED**: The device type is not supported.</li>
+ *      <li>**ABILITY_RUNTIME_ERROR_CODE_NO_SUCH_ABILITY**: The specified ability name does not exist.</li>
+ *      <li>**ABILITY_RUNTIME_ERROR_CODE_INCORRECT_ABILITY_TYPE**: The ability type is incorrect.</li>
+ *      <li>**ABILITY_RUNTIME_ERROR_CODE_CROWDTEST_EXPIRED**: The crowdtesting application expires.</li>
+ *      <li>**ABILITY_RUNTIME_ERROR_CODE_WUKONG_MODE**: The ability is started or stopped in Wukong mode.</li>
+ *      <li>**ABILITY_RUNTIME_ERROR_CODE_CONTROLLED**: The application is under control.</li>
+ *      <li>**ABILITY_RUNTIME_ERROR_CODE_EDM_CONTROLLED**: The application is under control by EDM.</li>
+ *      <li>**ABILITY_RUNTIME_ERROR_CODE_CROSS_APP**: Redirecting to third-party applications
+ *      is not allowed in API versions later than 11.</li>
+ *      <li>**ABILITY_RUNTIME_ERROR_CODE_INTERNAL**: An internal error occurs.</li>
+ *      <li>**ABILITY_RUNTIME_ERROR_CODE_NOT_TOP_ABILITY**: The application is not a top one.</li>
+ *      <li>**ABILITY_RUNTIME_ERROR_VISIBILITY_SETTING_DISABLED**:
+ *      Setting the window visibility during startup is not allowed.</li>
+ *      <li>**ABILITY_RUNTIME_ERROR_CODE_MULTI_APP_NOT_SUPPORTED**:
+ *      The application does not support clone or multi-instance mode.</li>
+ *      <li>**ABILITY_RUNTIME_ERROR_CODE_INVALID_APP_INSTANCE_KEY**: The multi-instance key is invalid.</li>
+ *      <li>**ABILITY_RUNTIME_ERROR_CODE_UPPER_LIMIT_REACHED**: 
+ *      The number of instances has reached the upper limit.</li>
+ *      <li>**ABILITY_RUNTIME_ERROR_MULTI_INSTANCE_NOT_SUPPORTED**: 
+ *      The application does not support multi-instance mode.</li>
+ *      <li>**ABILITY_RUNTIME_ERROR_CODE_APP_INSTANCE_KEY_NOT_SUPPORTED**: 
+ *      Setting **APP_INSTANCE_KEY** is not supported.
+ *      For details, see **AbilityRuntime_ErrorCode**.</li></ul>
  * @since 17
  */
 AbilityRuntime_ErrorCode OH_AbilityRuntime_StartSelfUIAbilityWithStartOptions(AbilityBase_Want *want,
