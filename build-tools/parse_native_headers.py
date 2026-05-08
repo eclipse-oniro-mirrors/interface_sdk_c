@@ -15,6 +15,7 @@
 
 import argparse
 import re
+import shutil
 import sys
 import os
 import subprocess
@@ -366,6 +367,58 @@ def run_capi_parser(input_path, sdk_api_version):
             print(f"清理临时文件时出错: {cleanup_error}")
 
 
+def _copy_processed_back(temp_dir, input_dir):
+    src = os.path.join(temp_dir, os.path.basename(input_dir.rstrip(os.sep)))
+    if not os.path.exists(src):
+        src = temp_dir
+    dst = input_dir
+    for item in os.listdir(src):
+        s = os.path.join(src, item)
+        d = os.path.join(dst, item)
+        if os.path.isdir(s):
+            if os.path.exists(d):
+                shutil.rmtree(d)
+            shutil.copytree(s, d)
+        else:
+            shutil.copy2(s, d)
+
+
+def run_systemapi_cleanup(input_dir):
+    """
+    调用 header_processor.py 删除带 @systemapi 标签的 API 声明。
+    采用安全策略：先复制到临时目录处理，成功后覆盖回原目录。
+
+    Args:
+        input_dir: 头文件目录（处理完后就地覆盖）
+    """
+    current_script_path = os.path.abspath(__file__)
+    script_path = os.path.join(os.path.dirname(current_script_path), "header_processor.py")
+
+    if not os.path.exists(script_path):
+        raise FileNotFoundError(f"header_processor.py not found: {script_path}")
+
+    temp_dir = tempfile.mkdtemp(prefix='header_systemapi_')
+    try:
+        result = subprocess.run([
+            sys.executable,
+            script_path,
+            '-i', str(input_dir),
+            '-o', str(temp_dir),
+        ], capture_output=True, text=True)
+
+        if result.stdout:
+            print(result.stdout)
+        if result.stderr:
+            print(result.stderr, file=sys.stderr)
+
+        if result.returncode != 0:
+            raise RuntimeError(f"systemapi cleanup failed (exit code {result.returncode})")
+
+        _copy_processed_back(temp_dir, input_dir)
+    finally:
+        shutil.rmtree(temp_dir, ignore_errors=True)
+
+
 def add_files_to_process(header_path, recursive=True):
     """遍历目录并处理符合条件的头文件"""
     abs_root_dir = os.path.abspath(header_path)
@@ -406,17 +459,26 @@ def check_api_version_method(options):
 
 
 def main():
-    parser = argparse.ArgumentParser(description="Process ndk header files to add version macros.")
-    parser.add_argument('--input', required=True, help="头文件路径")
+    parser = argparse.ArgumentParser(description="Process native header files to add version macros.")
+    parser.add_argument('--input', required=True, help="头文件目录路径（就地修改）")
     parser.add_argument('--sdk-api-version', required=True, help="当前构建API版本")
+    parser.add_argument('--sdk-build-public', default='false', help="是否公共SDK构建（true则裁剪@systemapi）")
     args = parser.parse_args()
 
     if not os.path.exists(args.input):
-        print(f"ndk header path does not exist -> {args.input}")
+        print(f"header path does not exist -> {args.input}")
         exit(1)
 
+    sdk_build_public = args.sdk_build_public.lower() == 'true'
+
+    # 第一步：如果 sdk-build-public=true，就地删除 @systemapi 声明
+    if sdk_build_public:
+        run_systemapi_cleanup(args.input)
+
+    # 第二步：校验 API 版本号
     check_api_version_method(args)
 
+    # 第三步：添加版本宏（就地修改）
     add_files_to_process(args.input)
 
 
