@@ -50,155 +50,155 @@ extern "C" {
 #define OH_DISPLAY_NAME_LENGTH 32
 
 /**
- * @brief Enumerates the clockwise rotation angles of a display.
+ * @brief 屏幕顺时针的旋转角度。
  * 
  * @since 12
  * @version 1.0
  */
 typedef enum {
     /**
-     * The display is rotated clockwise by 0 degrees.
+     * 代表屏幕顺时针旋转角度0度。
      */
     DISPLAY_MANAGER_ROTATION_0 = 0,
 
     /**
-     * The display is rotated clockwise by 90 degrees.
+     * 代表屏幕顺时针旋转角度90度。
      */
     DISPLAY_MANAGER_ROTATION_90 = 1,
 
     /**
-     * The display is rotated clockwise by 180 degrees.
+     * 代表屏幕顺时针旋转角度180度。
      */
     DISPLAY_MANAGER_ROTATION_180 = 2,
 
     /**
-     * The display is rotated clockwise by 270 degrees.
+     * 代表屏幕顺时针旋转角度270度。
      */
     DISPLAY_MANAGER_ROTATION_270 = 3
 } NativeDisplayManager_Rotation;
 
 /**
- * @brief Enumerates the orientations of a display.
+ * @brief 屏幕的旋转方向。
  * 
  * @since 12
  * @version 1.0
  */
 typedef enum {
     /**
-     * The display is in portrait mode.
+     * 表示设备当前以竖屏方式显示。
      */
     DISPLAY_MANAGER_PORTRAIT = 0,
 
     /**
-     * The display is in landscape mode.
+     * 表示设备当前以横屏方式显示。
      */
     DISPLAY_MANAGER_LANDSCAPE = 1,
 
     /**
-     * The display is in reverse portrait mode.
+     * 表示设备当前以反向竖屏方式显示。
      */
     DISPLAY_MANAGER_PORTRAIT_INVERTED = 2,
 
     /**
-     * The display is in reverse landscape mode.
+     * 表示设备当前以反向横屏方式显示。
      */
     DISPLAY_MANAGER_LANDSCAPE_INVERTED = 3,
 
     /**
-     * The screen orientation is unknown.
+     * 表示显示未识别屏幕方向。
      */
     DISPLAY_MANAGER_UNKNOWN
 } NativeDisplayManager_Orientation;
 
 /**
- * @brief Enumerates the status codes returned by the display manager interface.
+ * @brief 屏幕管理接口返回状态码枚举。
  * 
  * @since 12
  * @version 1.0
  */
 typedef enum {
     /**
-     * Success.
+     * 成功。
      */
     DISPLAY_MANAGER_OK = 0,
 
     /**
-     * Permission verification fails. The application does not have the permission to use the API.
+     * 权限校验失败，应用无权限使用该API，需要申请权限。
      */
     DISPLAY_MANAGER_ERROR_NO_PERMISSION = 201,
 
     /**
-     * Permission verification fails. A non-system application attempts to call a system API.
+     * 权限校验失败，非系统应用使用了系统API。
      */
     DISPLAY_MANAGER_ERROR_NOT_SYSTEM_APP = 202,
 
     /**
-     * Parameter check fails.
+     * 参数检查失败。
      */
     DISPLAY_MANAGER_ERROR_INVALID_PARAM = 401,
 
     /**
-     * The device does not support the API.
+     * 该设备不支持此API。
      */
     DISPLAY_MANAGER_ERROR_DEVICE_NOT_SUPPORTED = 801,
 
     /**
-     * The display is invalid.
+     * 操作的显示设备无效。
      */
     DISPLAY_MANAGER_ERROR_INVALID_SCREEN = 1400001,
 
     /**
-     * The current operation object does not have the operation permission.
+     * 当前操作对象无操作权限。
      */
     DISPLAY_MANAGER_ERROR_INVALID_CALL = 1400002,
 
     /**
-     * The system service is abnormal.
+     * 系统服务工作异常。
      */
     DISPLAY_MANAGER_ERROR_SYSTEM_ABNORMAL = 1400003,
 
     /**
-     * Invalid parameter.
+     * 非法参数。
      * @since 20
      */
     DISPLAY_MANAGER_ERROR_ILLEGAL_PARAM = 1400004
 } NativeDisplayManager_ErrorCode;
 
 /**
- * @brief Enumerates the display modes of a foldable device.
+ * @brief 可折叠设备的显示模式枚举。
  * 
  * @since 12
  * @version 1.0
  */
 typedef enum {
     /**
-     * The display mode of the device is unknown.
+     * 表示设备当前折叠显示模式未知。
      */
     DISPLAY_MANAGER_FOLD_DISPLAY_MODE_UNKNOWN = 0,
 
     /**
-     * The device is displayed in full screen.
+     * 表示设备当前全屏显示。
      */
     DISPLAY_MANAGER_FOLD_DISPLAY_MODE_FULL = 1,
 
     /**
-     * The main screen of the device is displayed.
+     * 表示设备当前主屏幕显示。
      */
     DISPLAY_MANAGER_FOLD_DISPLAY_MODE_MAIN = 2,
 
     /**
-     * The subscreen of the device is displayed.
+     * 表示设备当前子屏幕显示。
      */
     DISPLAY_MANAGER_FOLD_DISPLAY_MODE_SUB = 3,
 
     /**
-     * Both screens of the device are displayed in collaborative mode.
+     * 表示设备当前双屏协同显示。
      */
     DISPLAY_MANAGER_FOLD_DISPLAY_MODE_COORDINATION = 4
 } NativeDisplayManager_FoldDisplayMode;
 
 /**
- * @brief The struct describes a rectangle.
+ * @brief 矩形区域。
  * 
  * @since 12
  * @version 1.0
@@ -215,7 +215,7 @@ typedef struct {
 } NativeDisplayManager_Rect;
 
 /**
- * @brief The struct describes the curved area on a waterfall display.
+ * @brief 瀑布屏曲面部分显示区域。
  * 
  * @since 12
  * @version 1.0
@@ -235,8 +235,7 @@ typedef struct {
 } NativeDisplayManager_WaterfallDisplayAreaRects;
 
 /**
- * @brief The struct describes the unusable area of a display, including punch hole, notch, and curved area of a
- * waterfall display.
+ * @brief 挖孔屏、刘海屏、瀑布屏等不可用屏幕区域信息。
  * 
  * @since 12
  * @version 1.0
@@ -253,77 +252,77 @@ typedef struct {
 } NativeDisplayManager_CutoutInfo;
 
 /**
- * @brief Enumerates the states of a display.
+ * @brief 显示设备的状态枚举。
  * 
  * @since 14
  * @version 1.0
  */
 typedef enum {
     /**
-     * Unknown.
+     * 表示显示设备状态未知。
      */
     DISPLAY_MANAGER_DISPLAY_STATE_UNKNOWN = 0,
 
     /**
-     * The display is shut down.
+     * 表示显示设备状态为关闭。
      */
     DISPLAY_MANAGER_DISPLAY_STATE_OFF = 1,
 
     /**
-     * The display is powered on.
+     * 表示显示设备状态为开启。
      */
     DISPLAY_MANAGER_DISPLAY_STATE_ON = 2,
 
     /**
-     * The display is in sleep mode.
+     * 表示显示设备为低电耗模式。
      */
     DISPLAY_MANAGER_DISPLAY_STATE_DOZE = 3,
 
     /**
-     * The display is in sleep mode, and the CPU is suspended.
+     * 表示显示设备为睡眠模式，CPU为挂起状态。
      */
     DISPLAY_MANAGER_DISPLAY_STATE_DOZE_SUSPEND = 4,
 
     /**
-     * The display is in VR mode.
+     * 表示显示设备为VR模式。
      */
     DISPLAY_MANAGER_DISPLAY_STATE_VR = 5,
 
     /**
-     * The display is powered on, and the CPU is suspended.
+     * 表示显示设备为开启状态，CPU为挂起状态。
      */
     DISPLAY_MANAGER_DISPLAY_STATE_ON_SUSPEND = 6
 } NativeDisplayManager_DisplayState;
 
 /**
- * @brief Enumerates the source modes of a device.
+ * @brief 设备的显示模式枚举。
  * 
  * @since 20
  * @version 1.0
  */
 typedef enum {
     /**
-     * The device is currently not in use.
+     * 表示设备当前未使用。
      */
     DISPLAY_SOURCE_MODE_NONE = 0,
 
     /**
-     * The primary screen of the device is currently in use.
+     * 表示设备当前为主屏。
      */
     DISPLAY_SOURCE_MODE_MAIN = 1,
 
     /**
-     * The device is currently in mirror display mode.
+     * 表示设备当前为镜像显示模式。
      */
     DISPLAY_SOURCE_MODE_MIRROR = 2,
 
     /**
-     * The device is currently in extended display mode.
+     * 表示设备当前为扩展显示模式。
      */
     DISPLAY_SOURCE_MODE_EXTEND = 3,
 
     /**
-     * The device is currently in independent display mode.
+     * 表示设备当前为异源显示模式。
      */
     DISPLAY_SOURCE_MODE_ALONE = 4
 } NativeDisplayManager_SourceMode;

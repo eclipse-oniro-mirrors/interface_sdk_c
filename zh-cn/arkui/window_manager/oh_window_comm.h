@@ -50,15 +50,15 @@ extern "C" {
 typedef struct OH_PixelmapNative;
 
 /**
- * @brief Defines a frame metric data object.
+ * @brief 帧率指标数据对象。
  * 
  * @since 26.0.0
  */
 typedef struct OH_WindowManager_FrameMetrics OH_WindowManager_FrameMetrics;
 
 /**
- * @brief Frame metrics callback type.
- *
+ * @brief 帧率指标回调类型。
+ * 
  * @since 26.0.0
  */
 typedef void (*OH_WindowManager_FrameMetricsMeasuredCallback)(
@@ -73,155 +73,155 @@ typedef void (*OH_WindowManager_FrameMetricsMeasuredCallback)(
 typedef struct OH_WindowManager_DensityInfo OH_WindowManager_DensityInfo;
 
 /**
- * @brief Density info callback type.
+ * @brief density信息回调类型。
  *
  * @since 24
  */
 typedef void (*OH_WindowManager_DensityInfoCallback)(int32_t windowId, const OH_WindowManager_DensityInfo* info);
 
 /**
- * @brief Enumerates the status codes returned by the window manager interface.
+ * @brief 窗口管理接口返回状态码枚举。
  * 
  * @since 12
  */
 typedef enum {
     /**
-     * Successful.
+     * 成功。
      */
     OK = 0,
 
     /**
-     * No permission.
+     * 无权限。
      * @since 15
      */
     WINDOW_MANAGER_ERRORCODE_NO_PERMISSION = 201,
 
     /**
-     * Invalid parameter.
+     * 非法参数。
      * @since 15
      */
     WINDOW_MANAGER_ERRORCODE_INVALID_PARAM = 401,
 
     /**
-     * Not supported by the device.
+     * 设备不支持。
      * @since 15
      */
     WINDOW_MANAGER_ERRORCODE_DEVICE_NOT_SUPPORTED = 801,
 
     /**
-     * Invalid window ID.
+     * 非法窗口ID。
      */
     INVAILD_WINDOW_ID = 1000,
 
     /**
-     * Service error.
+     * 服务异常。
      */
     SERVICE_ERROR = 2000,
 
     /**
-     * Abnormal window status.
+     * 窗口状态异常。
      * @since 15
      */
     WINDOW_MANAGER_ERRORCODE_STATE_ABNORMAL = 1300002,
 
     /**
-     * Abnormal window manager service.
+     * 窗口管理器服务异常。
      * @since 15
      */
     WINDOW_MANAGER_ERRORCODE_SYSTEM_ABNORMAL = 1300003,
 
     /**
-     * Failed to destroy the PiP window.
+     * 画中画销毁失败。
      * @since 20
      */
     WINDOW_MANAGER_ERRORCODE_PIP_DESTROY_FAILED = 1300011,
 
     /**
-     * Abnormal PiP status.
+     * 画中画状态异常。
      * @since 20
      */
     WINDOW_MANAGER_ERRORCODE_PIP_STATE_ABNORMAL = 1300012,
 
     /**
-     * Failed to create the PiP window.
+     * 画中画创建失败。
      * @since 20
      */
     WINDOW_MANAGER_ERRORCODE_PIP_CREATE_FAILED = 1300013,
 
     /**
-     * An internal error occurs in PiP. Possible causes:<br>1. The window on which the PiP feature depends is abnormal. For example, the window is empty. 2. The PiP controller is abnormal.
+     * 画中画内部错误。可能原因：<br/>1.画中画依赖的窗口异常，可能窗口为空；2.画中画控制器异常。
      * @since 20
      */
     WINDOW_MANAGER_ERRORCODE_PIP_INTERNAL_ERROR = 1300014,
 
     /**
-     * Repeated PiP operation.
+     * 画中画重复操作。
      * @since 20
      */
     WINDOW_MANAGER_ERRORCODE_PIP_REPEATED_OPERATION = 1300015,
 
     /**
-     * Incorrect parameter. Possible causes:<br>1. The parameter value range is invalid. 2. The number of parameters is invalid. 3. The parameter type is invalid.
+     * 参数错误。 可能原因：<br/>1.参数取值范围非法；2.参数数量非法；3.参数类型非法。
      * @since 20
      */
     WINDOW_MANAGER_ERRORCODE_INCORRECT_PARAM = 1300016
 } WindowManager_ErrorCode;
 
 /**
- * @brief Enumerates the avoid area types.
+ * @brief 避让区域枚举类型。
  * 
  * @since 15
  */
 typedef enum {
     /**
-     * System avoid area.
+     * 系统避让区域。
      */
     WINDOW_MANAGER_AVOID_AREA_TYPE_SYSTEM = 0,
 
     /**
-     * Cutout area.
+     * 刘海屏避让。
      */
     WINDOW_MANAGER_AVOID_AREA_TYPE_CUTOUT = 1,
 
     /**
-     * System gesture area.
+     * 系统手势区域。
      */
     WINDOW_MANAGER_AVOID_AREA_TYPE_SYSTEM_GESTURE = 2,
 
     /**
-     * Keyboard area.
+     * 键盘区域。
      */
     WINDOW_MANAGER_AVOID_AREA_TYPE_KEYBOARD = 3,
 
     /**
-     * Navigation bar area.
+     * 导航条区域。
      */
     WINDOW_MANAGER_AVOID_AREA_TYPE_NAVIGATION_INDICATOR = 4
 } WindowManager_AvoidAreaType;
 
 /**
- * @brief Enumerates the window types.
+ * @brief 窗口类型。
  * 
  * @since 15
  */
 typedef enum {
     /**
-     * Child window.
+     * 子窗口。
      */
     WINDOW_MANAGER_WINDOW_TYPE_APP = 0,
 
     /**
-     * Main window.
+     * 主窗口。
      */
     WINDOW_MANAGER_WINDOW_TYPE_MAIN = 1,
 
     /**
-     * Float window.
+     * 悬浮窗口。
      */
     WINDOW_MANAGER_WINDOW_TYPE_FLOAT = 8,
 
     /**
-     * Dialog window.
+     * 模态窗口。
      */
     WINDOW_MANAGER_WINDOW_TYPE_DIALOG = 16
 } WindowManager_WindowType;
