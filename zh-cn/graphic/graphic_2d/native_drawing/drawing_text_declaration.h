@@ -1,3 +1,4 @@
+
 /*
  * Copyright (c) 2021-2022 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,18 +15,6 @@
  */
 
 /**
- * @addtogroup Drawing
- * @{
- *
- * @brief Provides the 2D drawing capability.
- *
- * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- *
- * @since 8
- * @version 1.0
- */
-
-/**
  * @file drawing_text_declaration.h
  *
  * @brief Provides declarations of data structures related to 2D text drawing.
@@ -37,15 +26,25 @@
  * @version 1.0
  */
 
+/**
+ * @addtogroup Drawing
+ * @{
+ *
+ * @brief Provides the 2D drawing capability.
+ *
+ * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
+ *
+ * @since 8
+ * @version 1.0
+ */
 #ifndef C_INCLUDE_DRAWING_TEXT_DECLARATION_H
 #define C_INCLUDE_DRAWING_TEXT_DECLARATION_H
-
 #ifdef __cplusplus
 extern "C" {
 #endif
 
 /**
- * @brief Defines a struct used to load fonts.
+ * @brief 用于加载字体。
  *
  * @since 8
  * @version 1.0
@@ -53,7 +52,7 @@ extern "C" {
 typedef struct OH_Drawing_FontCollection OH_Drawing_FontCollection;
 
 /**
- * @brief Defines a struct used to manage the typography layout and display.
+ * @brief 用于管理排版的布局和显示等。
  *
  * @since 8
  * @version 1.0
@@ -61,7 +60,7 @@ typedef struct OH_Drawing_FontCollection OH_Drawing_FontCollection;
 typedef struct OH_Drawing_Typography OH_Drawing_Typography;
 
 /**
- * @brief Defines a struct used to extract a single line of data from a piece of text for typography.
+ * @brief 用于从一段文字中提取单行数据进行排版。
  *
  * @since 18
  * @version 1.0
@@ -69,7 +68,7 @@ typedef struct OH_Drawing_Typography OH_Drawing_Typography;
 typedef struct OH_Drawing_LineTypography OH_Drawing_LineTypography;
 
 /**
- * @brief Defines a struct used to manage text colors and decorations.
+ * @brief 用于管理字体颜色、装饰等。
  *
  * @since 8
  * @version 1.0
@@ -77,7 +76,7 @@ typedef struct OH_Drawing_LineTypography OH_Drawing_LineTypography;
 typedef struct OH_Drawing_TextStyle OH_Drawing_TextStyle;
 
 /**
- * @brief Defines a struct used to manage the typography style, such as the text direction.
+ * @brief 用于管理排版风格，如文字方向等。
  *
  * @since 8
  * @version 1.0
@@ -85,7 +84,7 @@ typedef struct OH_Drawing_TextStyle OH_Drawing_TextStyle;
 typedef struct OH_Drawing_TypographyStyle OH_Drawing_TypographyStyle;
 
 /**
- * @brief Creates an {@link OH_Drawing_Typography} object.
+ * @brief 用于创建{@link OH_Drawing_Typography}。
  *
  * @since 8
  * @version 1.0
@@ -93,7 +92,7 @@ typedef struct OH_Drawing_TypographyStyle OH_Drawing_TypographyStyle;
 typedef struct OH_Drawing_TypographyCreate OH_Drawing_TypographyCreate;
 
 /**
- * @brief Defines a struct for a text box, which is used to receive the rectangle size, direction, and quantity.
+ * @brief 用于接收文本框的矩形大小、方向和数量大小。
  *
  * @since 11
  * @version 1.0
@@ -101,7 +100,7 @@ typedef struct OH_Drawing_TypographyCreate OH_Drawing_TypographyCreate;
 typedef struct OH_Drawing_TextBox OH_Drawing_TextBox;
 
 /**
- * @brief Defines a struct used to receive the position and affinity of a glyph.
+ * @brief 用于接收字体的位置和亲和性。
  *
  * @since 11
  * @version 1.0
@@ -109,7 +108,7 @@ typedef struct OH_Drawing_TextBox OH_Drawing_TextBox;
 typedef struct OH_Drawing_PositionAndAffinity OH_Drawing_PositionAndAffinity;
 
 /**
- * @brief Defines a struct used to receive the start position and end position of a glyph.
+ * @brief 用于接收字体的起始位置和结束位置。
  *
  * @since 11
  * @version 1.0
@@ -117,7 +116,7 @@ typedef struct OH_Drawing_PositionAndAffinity OH_Drawing_PositionAndAffinity;
 typedef struct OH_Drawing_Range OH_Drawing_Range;
 
 /**
- * @brief Defines a struct used to parse system font files.
+ * @brief 用来解析系统字体文件。
  *
  * @since 12
  * @version 1.0
@@ -125,7 +124,7 @@ typedef struct OH_Drawing_Range OH_Drawing_Range;
 typedef struct OH_Drawing_FontParser OH_Drawing_FontParser;
 
 /**
- * @brief Defines a struct used to manage text shadows.
+ * @brief 用于管理文本阴影。
  *
  * @since 12
  * @version 1.0
@@ -133,7 +132,7 @@ typedef struct OH_Drawing_FontParser OH_Drawing_FontParser;
 typedef struct OH_Drawing_TextShadow OH_Drawing_TextShadow;
 
 /**
- * @brief Defines a struct used to manage text tabs.
+ * @brief 用于管理文本制表符。
  *
  * @since 18
  * @version 1.0
@@ -141,7 +140,7 @@ typedef struct OH_Drawing_TextShadow OH_Drawing_TextShadow;
 typedef struct OH_Drawing_TextTab OH_Drawing_TextTab;
 
 /**
- * @brief Defines a struct used to manage text lines.
+ * @brief 用于管理文本行。
  *
  * @since 18
  * @version 1.0
@@ -149,7 +148,7 @@ typedef struct OH_Drawing_TextTab OH_Drawing_TextTab;
 typedef struct OH_Drawing_TextLine OH_Drawing_TextLine;
 
 /**
- * @brief Defines a struct used to manage runs.
+ * @brief 用于管理文本渲染单元。
  *
  * @since 18
  * @version 1.0
@@ -157,21 +156,21 @@ typedef struct OH_Drawing_TextLine OH_Drawing_TextLine;
 typedef struct OH_Drawing_Run OH_Drawing_Run;
 
 /**
- * @brief Defines a struct used to describe detailed information about a font, that is, the font descriptor.
+ * @brief 用于描述字体的详细信息，即字体描述符。
  *
  * @since 22
  */
 typedef struct OH_Drawing_FontFullDescriptor OH_Drawing_FontFullDescriptor;
 
 /**
- * @brief Describes the variable axis of the font.
+ * @brief 用于描述字体可变轴。
  *
  * @since 24
  */
 typedef struct OH_Drawing_FontVariationAxis OH_Drawing_FontVariationAxis;
 
 /**
- * @brief Describes a variable font instance and stores the preset variable font style information.
+ * @brief 用于描述字体可变实例，存放预设的可变字体样式信息。
  *
  * @since 24
  */
@@ -179,5 +178,6 @@ typedef struct OH_Drawing_FontVariationInstance OH_Drawing_FontVariationInstance
 #ifdef __cplusplus
 }
 #endif
+
 /** @} */
 #endif
