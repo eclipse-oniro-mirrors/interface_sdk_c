@@ -504,7 +504,7 @@ NativeDisplayManager_ErrorCode OH_NativeDisplayManager_RegisterDisplayRemoveList
 NativeDisplayManager_ErrorCode OH_NativeDisplayManager_UnregisterDisplayRemoveListener(uint32_t listenerIndex);
 
 /**
- * @brief Obtains the display source mode.
+ * @brief Obtains the display source mode. The default value is **DisplaySourceMode.None**.
  * 
  * @param displayId Display ID, which is a non-negative integer.
  * @param sourceMode Pointer to the source mode. For details about the available options, see
