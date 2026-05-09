@@ -1,4 +1,3 @@
-
 /*
  * Copyright (c) 2024 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -15,6 +14,17 @@
  */
 
 /**
+ * @addtogroup OH_DisplayManager
+ * @{
+ *
+ * @brief Defines the data structures for the C APIs of the display module.
+ *
+ * @syscap SystemCapability.WindowManager.WindowManager.Core
+ * @since 12
+ * @version 1.0
+ */
+
+/**
  * @file oh_display_info.h
  *
  * @brief The file declares the common enums and definitions of the display.
@@ -26,16 +36,6 @@
  * @version 1.0
  */
 
-/**
- * @addtogroup OH_DisplayManager
- * @{
- *
- * @brief Defines the data structures for the C APIs of the display module.
- *
- * @syscap SystemCapability.WindowManager.WindowManager.Core
- * @since 12
- * @version 1.0
- */
 #ifndef OH_NATIVE_DISPLAY_INFO_H
 #define OH_NATIVE_DISPLAY_INFO_H
 #include "stdint.h"

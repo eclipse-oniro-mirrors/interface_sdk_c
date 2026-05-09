@@ -1,4 +1,3 @@
-
 /*
  * Copyright (c) 2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -15,6 +14,17 @@
  */
 
 /**
+ * @addtogroup WindowManager
+ * @{
+ *
+ *
+ * @brief Provides abilities of windowManager on the native side, such as key event
+ * filtration.
+ *
+ * @since 12
+ */
+
+/**
  * @file oh_window_comm.h
  *
  * @brief The file declares the common enums and definitions of the window manager.
@@ -25,16 +35,6 @@
  * @since 12
  */
 
-/**
- * @addtogroup WindowManager
- * @{
- *
- *
- * @brief Provides abilities of windowManager on the native side, such as key event
- * filtration.
- *
- * @since 12
- */
 #ifndef OH_WINDOW_COMM_H
 #define OH_WINDOW_COMM_H
 #include "stdint.h"
@@ -50,14 +50,14 @@ extern "C" {
 typedef struct OH_PixelmapNative;
 
 /**
- * @brief ֡��ָ�����ݶ���
+ * @brief 帧率指标数据对象。
  * 
  * @since 26.0.0
  */
 typedef struct OH_WindowManager_FrameMetrics OH_WindowManager_FrameMetrics;
 
 /**
- * @brief ֡��ָ��ص����͡�
+ * @brief 帧率指标回调类型。
  * 
  * @since 26.0.0
  */
@@ -73,155 +73,155 @@ typedef void (*OH_WindowManager_FrameMetricsMeasuredCallback)(
 typedef struct OH_WindowManager_DensityInfo OH_WindowManager_DensityInfo;
 
 /**
- * @brief density��Ϣ�ص����͡�
+ * @brief density信息回调类型。
  *
  * @since 24
  */
 typedef void (*OH_WindowManager_DensityInfoCallback)(int32_t windowId, const OH_WindowManager_DensityInfo* info);
 
 /**
- * @brief ���ڹ����ӿڷ���״̬��ö�١�
+ * @brief 窗口管理接口返回状态码枚举。
  * 
  * @since 12
  */
 typedef enum {
     /**
-     * �ɹ���
+     * 成功。
      */
     OK = 0,
 
     /**
-     * ��Ȩ�ޡ�
+     * 无权限。
      * @since 15
      */
     WINDOW_MANAGER_ERRORCODE_NO_PERMISSION = 201,
 
     /**
-     * �Ƿ�������
+     * 非法参数。
      * @since 15
      */
     WINDOW_MANAGER_ERRORCODE_INVALID_PARAM = 401,
 
     /**
-     * �豸��֧�֡�
+     * 设备不支持。
      * @since 15
      */
     WINDOW_MANAGER_ERRORCODE_DEVICE_NOT_SUPPORTED = 801,
 
     /**
-     * �Ƿ�����ID��
+     * 非法窗口ID。
      */
     INVAILD_WINDOW_ID = 1000,
 
     /**
-     * �����쳣��
+     * 服务异常。
      */
     SERVICE_ERROR = 2000,
 
     /**
-     * ����״̬�쳣��
+     * 窗口状态异常。
      * @since 15
      */
     WINDOW_MANAGER_ERRORCODE_STATE_ABNORMAL = 1300002,
 
     /**
-     * ���ڹ����������쳣��
+     * 窗口管理器服务异常。
      * @since 15
      */
     WINDOW_MANAGER_ERRORCODE_SYSTEM_ABNORMAL = 1300003,
 
     /**
-     * ���л�����ʧ�ܡ�
+     * 画中画销毁失败。
      * @since 20
      */
     WINDOW_MANAGER_ERRORCODE_PIP_DESTROY_FAILED = 1300011,
 
     /**
-     * ���л�״̬�쳣��
+     * 画中画状态异常。
      * @since 20
      */
     WINDOW_MANAGER_ERRORCODE_PIP_STATE_ABNORMAL = 1300012,
 
     /**
-     * ���л�����ʧ�ܡ�
+     * 画中画创建失败。
      * @since 20
      */
     WINDOW_MANAGER_ERRORCODE_PIP_CREATE_FAILED = 1300013,
 
     /**
-     * ���л��ڲ����󡣿���ԭ��<br/>1.���л������Ĵ����쳣�����ܴ���Ϊ�գ�2.���л��������쳣��
+     * 画中画内部错误。可能原因：<br/>1.画中画依赖的窗口异常，可能窗口为空；2.画中画控制器异常。
      * @since 20
      */
     WINDOW_MANAGER_ERRORCODE_PIP_INTERNAL_ERROR = 1300014,
 
     /**
-     * ���л��ظ�������
+     * 画中画重复操作。
      * @since 20
      */
     WINDOW_MANAGER_ERRORCODE_PIP_REPEATED_OPERATION = 1300015,
 
     /**
-     * �������� ����ԭ��<br/>1.����ȡֵ��Χ�Ƿ���2.���������Ƿ���3.�������ͷǷ���
+     * 参数错误。 可能原因：<br/>1.参数取值范围非法；2.参数数量非法；3.参数类型非法。
      * @since 20
      */
     WINDOW_MANAGER_ERRORCODE_INCORRECT_PARAM = 1300016
 } WindowManager_ErrorCode;
 
 /**
- * @brief ��������ö�����͡�
+ * @brief 避让区域枚举类型。
  * 
  * @since 15
  */
 typedef enum {
     /**
-     * ϵͳ��������
+     * 系统避让区域。
      */
     WINDOW_MANAGER_AVOID_AREA_TYPE_SYSTEM = 0,
 
     /**
-     * ���������á�
+     * 刘海屏避让。
      */
     WINDOW_MANAGER_AVOID_AREA_TYPE_CUTOUT = 1,
 
     /**
-     * ϵͳ��������
+     * 系统手势区域。
      */
     WINDOW_MANAGER_AVOID_AREA_TYPE_SYSTEM_GESTURE = 2,
 
     /**
-     * ��������
+     * 键盘区域。
      */
     WINDOW_MANAGER_AVOID_AREA_TYPE_KEYBOARD = 3,
 
     /**
-     * ����������
+     * 导航条区域。
      */
     WINDOW_MANAGER_AVOID_AREA_TYPE_NAVIGATION_INDICATOR = 4
 } WindowManager_AvoidAreaType;
 
 /**
- * @brief �������͡�
+ * @brief 窗口类型。
  * 
  * @since 15
  */
 typedef enum {
     /**
-     * �Ӵ��ڡ�
+     * 子窗口。
      */
     WINDOW_MANAGER_WINDOW_TYPE_APP = 0,
 
     /**
-     * �����ڡ�
+     * 主窗口。
      */
     WINDOW_MANAGER_WINDOW_TYPE_MAIN = 1,
 
     /**
-     * �������ڡ�
+     * 悬浮窗口。
      */
     WINDOW_MANAGER_WINDOW_TYPE_FLOAT = 8,
 
     /**
-     * ģ̬���ڡ�
+     * 模态窗口。
      */
     WINDOW_MANAGER_WINDOW_TYPE_DIALOG = 16
 } WindowManager_WindowType;

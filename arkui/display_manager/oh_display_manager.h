@@ -15,6 +15,17 @@
  */
 
 /**
+ * @addtogroup OH_DisplayManager
+ * @{
+ *
+ * @brief Defines the data structures for the C APIs of the display module.
+ *
+ * @syscap SystemCapability.WindowManager.WindowManager.Core
+ * @since 12
+ * @version 1.0
+ */
+
+/**
  * @file oh_display_manager.h
  *
  * @brief The file declares the functions for basic display management. You can call the functions to obtain various
@@ -28,16 +39,6 @@
  * @version 1.0
  */
 
-/**
- * @addtogroup OH_DisplayManager
- * @{
- *
- * @brief Defines the data structures for the C APIs of the display module.
- *
- * @syscap SystemCapability.WindowManager.WindowManager.Core
- * @since 12
- * @version 1.0
- */
 #ifndef OH_NATIVE_DISPLAY_MANAGER_H
 #define OH_NATIVE_DISPLAY_MANAGER_H
 #include "oh_display_info.h"

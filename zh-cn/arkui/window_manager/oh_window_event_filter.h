@@ -1,4 +1,3 @@
-
 /*
  * Copyright (c) 2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -15,6 +14,16 @@
  */
 
 /**
+ * @addtogroup WindowManager
+ * @{
+ *
+ * @brief Provides  abilities of windowManager on the native side, such as key event
+ * filtration.
+ *
+ * @since 12
+ */
+
+/**
  * @file oh_window_event_filter.h
  *
  * @brief The file declares the APIs for a window to filter multimodal key events. When a multimodal input event passes
@@ -26,15 +35,6 @@
  * @since 12
  */
 
-/**
- * @addtogroup WindowManager
- * @{
- *
- * @brief Provides  abilities of windowManager on the native side, such as key event
- * filtration.
- *
- * @since 12
- */
 #ifndef INCLUDE_OH_WINDOW_EVENT_FILTER_H
 #define INCLUDE_OH_WINDOW_EVENT_FILTER_H
 #include "stdbool.h"
@@ -53,21 +53,21 @@ extern "C" {
 typedef bool (*OH_NativeWindowManager_KeyEventFilter)(Input_KeyEvent* keyEvent);
 
 /**
- * @brief ע�ᰴ���¼��Ĺ��˺�����
+ * @brief 注册按键事件的过滤函数。
  * 
- * @param windowId ��Ҫ���˰����¼��Ĵ���ID��
- * @param keyEventFilter ��ģ�����Ĺ��˺�����
- * @return ���ش��ڹ����ӿڵ�ͨ��״̬�룬����ɼ�{@link WindowManager_ErrorCode}��
+ * @param windowId 需要过滤按键事件的窗口ID。
+ * @param keyEventFilter 多模按键的过滤函数。
+ * @return 返回窗口管理接口的通用状态码，具体可见{@link WindowManager_ErrorCode}。
  * @since 12
  */
 WindowManager_ErrorCode OH_NativeWindowManager_RegisterKeyEventFilter(int32_t windowId,
     OH_NativeWindowManager_KeyEventFilter keyEventFilter);
 
 /**
- * @brief ȡ��ע�ᴰ�ڵİ����¼����˺�����
+ * @brief 取消注册窗口的按键事件过滤函数。
  * 
- * @param windowId ��Ҫȡ�����˰����¼��Ĵ���ID��
- * @return ���ش��ڹ����ӿڵ�ͨ��״̬�룬����ɼ�{@link WindowManager_ErrorCode}��
+ * @param windowId 需要取消过滤按键事件的窗口ID。
+ * @return 返回窗口管理接口的通用状态码，具体可见{@link WindowManager_ErrorCode}。
  * @since 12
  */
 WindowManager_ErrorCode OH_NativeWindowManager_UnregisterKeyEventFilter(int32_t windowId);
@@ -80,21 +80,21 @@ WindowManager_ErrorCode OH_NativeWindowManager_UnregisterKeyEventFilter(int32_t 
 typedef bool (*OH_NativeWindowManager_MouseEventFilter)(Input_MouseEvent* mouseEvent);
 
 /**
- * @brief ע������¼��Ĺ��˺�����
+ * @brief 注册鼠标事件的过滤函数。
  * 
- * @param windowId ��Ҫ��������¼��Ĵ���ID��
- * @param mouseEventFilter ��ģ����¼��Ĺ��˺�����
- * @return ���ش��ڹ����ӿڵ�ͨ��״̬�룬����ɼ�{@link WindowManager_ErrorCode}��
+ * @param windowId 需要过滤鼠标事件的窗口ID。
+ * @param mouseEventFilter 多模鼠标事件的过滤函数。
+ * @return 返回窗口管理接口的通用状态码，具体可见{@link WindowManager_ErrorCode}。
  * @since 15
  */
 WindowManager_ErrorCode OH_NativeWindowManager_RegisterMouseEventFilter(int32_t windowId,
     OH_NativeWindowManager_MouseEventFilter mouseEventFilter);
 
 /**
- * @brief ȡ��ע�ᴰ�ڵ�����¼����˺�����
+ * @brief 取消注册窗口的鼠标事件过滤函数。
  * 
- * @param windowId ��Ҫȡ����������¼��Ĵ���ID��
- * @return ���ش��ڹ����ӿڵ�ͨ��״̬�룬����ɼ�{@link WindowManager_ErrorCode}��
+ * @param windowId 需要取消过滤鼠标事件的窗口ID。
+ * @return 返回窗口管理接口的通用状态码，具体可见{@link WindowManager_ErrorCode}。
  * @since 15
  */
 WindowManager_ErrorCode OH_NativeWindowManager_UnregisterMouseEventFilter(int32_t windowId);
@@ -107,21 +107,21 @@ WindowManager_ErrorCode OH_NativeWindowManager_UnregisterMouseEventFilter(int32_
 typedef bool (*OH_NativeWindowManager_TouchEventFilter)(Input_TouchEvent* touchEvent);
 
 /**
- * @brief ע�ᴥ���¼��Ĺ��˺�����
+ * @brief 注册触摸事件的过滤函数。
  * 
- * @param windowId ��Ҫ���˴����¼��Ĵ���ID��
- * @param touchEventFilter ��ģ�����¼��Ĺ��˺�����
- * @return ���ش��ڹ����ӿڵ�ͨ��״̬�룬����ɼ�{@link WindowManager_ErrorCode}��
+ * @param windowId 需要过滤触摸事件的窗口ID。
+ * @param touchEventFilter 多模触摸事件的过滤函数。
+ * @return 返回窗口管理接口的通用状态码，具体可见{@link WindowManager_ErrorCode}。
  * @since 15
  */
 WindowManager_ErrorCode OH_NativeWindowManager_RegisterTouchEventFilter(int32_t windowId,
     OH_NativeWindowManager_TouchEventFilter touchEventFilter);
 
 /**
- * @brief ȡ��ע�ᴰ�ڵĴ����¼����˺�����
+ * @brief 取消注册窗口的触摸事件过滤函数。
  * 
- * @param windowId ��Ҫȡ�����˴����¼��Ĵ���ID��
- * @return ���ش��ڹ����ӿڵ�ͨ��״̬�룬����ɼ�{@link WindowManager_ErrorCode}��
+ * @param windowId 需要取消过滤触摸事件的窗口ID。
+ * @return 返回窗口管理接口的通用状态码，具体可见{@link WindowManager_ErrorCode}。
  * @since 15
  */
 WindowManager_ErrorCode OH_NativeWindowManager_UnregisterTouchEventFilter(int32_t windowId);

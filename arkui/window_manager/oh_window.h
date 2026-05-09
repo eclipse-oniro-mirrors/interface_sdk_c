@@ -15,6 +15,14 @@
  */
 
 /**
+ * @addtogroup WindowManager
+ * @{
+ *
+ * @brief Provides abilities of window on the native side.
+ * @since 15
+ */
+
+/**
  * @file oh_window.h
  *
  * @brief The file declares the window management APIs. You can use the APIs to set and obtain the properties of a
@@ -26,13 +34,6 @@
  * @since 15
  */
 
-/**
- * @addtogroup WindowManager
- * @{
- *
- * @brief Provides abilities of window on the native side.
- * @since 15
- */
 #ifndef OH_WINDOW_H
 #define OH_WINDOW_H
 #ifdef __cplusplus

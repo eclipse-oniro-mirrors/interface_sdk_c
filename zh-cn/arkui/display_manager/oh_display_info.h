@@ -1,4 +1,3 @@
-
 /*
  * Copyright (c) 2024 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -15,6 +14,17 @@
  */
 
 /**
+ * @addtogroup OH_DisplayManager
+ * @{
+ *
+ * @brief Defines the data structures for the C APIs of the display module.
+ *
+ * @syscap SystemCapability.WindowManager.WindowManager.Core
+ * @since 12
+ * @version 1.0
+ */
+
+/**
  * @file oh_display_info.h
  *
  * @brief The file declares the common enums and definitions of the display.
@@ -26,16 +36,6 @@
  * @version 1.0
  */
 
-/**
- * @addtogroup OH_DisplayManager
- * @{
- *
- * @brief Defines the data structures for the C APIs of the display module.
- *
- * @syscap SystemCapability.WindowManager.WindowManager.Core
- * @since 12
- * @version 1.0
- */
 #ifndef OH_NATIVE_DISPLAY_INFO_H
 #define OH_NATIVE_DISPLAY_INFO_H
 #include "stdint.h"
@@ -50,155 +50,155 @@ extern "C" {
 #define OH_DISPLAY_NAME_LENGTH 32
 
 /**
- * @brief ��Ļ˳ʱ�����ת�Ƕȡ�
+ * @brief 屏幕顺时针的旋转角度。
  * 
  * @since 12
  * @version 1.0
  */
 typedef enum {
     /**
-     * ������Ļ˳ʱ����ת�Ƕ�0�ȡ�
+     * 代表屏幕顺时针旋转角度0度。
      */
     DISPLAY_MANAGER_ROTATION_0 = 0,
 
     /**
-     * ������Ļ˳ʱ����ת�Ƕ�90�ȡ�
+     * 代表屏幕顺时针旋转角度90度。
      */
     DISPLAY_MANAGER_ROTATION_90 = 1,
 
     /**
-     * ������Ļ˳ʱ����ת�Ƕ�180�ȡ�
+     * 代表屏幕顺时针旋转角度180度。
      */
     DISPLAY_MANAGER_ROTATION_180 = 2,
 
     /**
-     * ������Ļ˳ʱ����ת�Ƕ�270�ȡ�
+     * 代表屏幕顺时针旋转角度270度。
      */
     DISPLAY_MANAGER_ROTATION_270 = 3
 } NativeDisplayManager_Rotation;
 
 /**
- * @brief ��Ļ����ת����
+ * @brief 屏幕的旋转方向。
  * 
  * @since 12
  * @version 1.0
  */
 typedef enum {
     /**
-     * ��ʾ�豸��ǰ��������ʽ��ʾ��
+     * 表示设备当前以竖屏方式显示。
      */
     DISPLAY_MANAGER_PORTRAIT = 0,
 
     /**
-     * ��ʾ�豸��ǰ�Ժ�����ʽ��ʾ��
+     * 表示设备当前以横屏方式显示。
      */
     DISPLAY_MANAGER_LANDSCAPE = 1,
 
     /**
-     * ��ʾ�豸��ǰ�Է���������ʽ��ʾ��
+     * 表示设备当前以反向竖屏方式显示。
      */
     DISPLAY_MANAGER_PORTRAIT_INVERTED = 2,
 
     /**
-     * ��ʾ�豸��ǰ�Է��������ʽ��ʾ��
+     * 表示设备当前以反向横屏方式显示。
      */
     DISPLAY_MANAGER_LANDSCAPE_INVERTED = 3,
 
     /**
-     * ��ʾ��ʾδʶ����Ļ����
+     * 表示显示未识别屏幕方向。
      */
     DISPLAY_MANAGER_UNKNOWN
 } NativeDisplayManager_Orientation;
 
 /**
- * @brief ��Ļ�����ӿڷ���״̬��ö�١�
+ * @brief 屏幕管理接口返回状态码枚举。
  * 
  * @since 12
  * @version 1.0
  */
 typedef enum {
     /**
-     * �ɹ���
+     * 成功。
      */
     DISPLAY_MANAGER_OK = 0,
 
     /**
-     * Ȩ��У��ʧ�ܣ�Ӧ����Ȩ��ʹ�ø�API����Ҫ����Ȩ�ޡ�
+     * 权限校验失败，应用无权限使用该API，需要申请权限。
      */
     DISPLAY_MANAGER_ERROR_NO_PERMISSION = 201,
 
     /**
-     * Ȩ��У��ʧ�ܣ���ϵͳӦ��ʹ����ϵͳAPI��
+     * 权限校验失败，非系统应用使用了系统API。
      */
     DISPLAY_MANAGER_ERROR_NOT_SYSTEM_APP = 202,
 
     /**
-     * �������ʧ�ܡ�
+     * 参数检查失败。
      */
     DISPLAY_MANAGER_ERROR_INVALID_PARAM = 401,
 
     /**
-     * ���豸��֧�ִ�API��
+     * 该设备不支持此API。
      */
     DISPLAY_MANAGER_ERROR_DEVICE_NOT_SUPPORTED = 801,
 
     /**
-     * ��������ʾ�豸��Ч��
+     * 操作的显示设备无效。
      */
     DISPLAY_MANAGER_ERROR_INVALID_SCREEN = 1400001,
 
     /**
-     * ��ǰ���������޲���Ȩ�ޡ�
+     * 当前操作对象无操作权限。
      */
     DISPLAY_MANAGER_ERROR_INVALID_CALL = 1400002,
 
     /**
-     * ϵͳ�������쳣��
+     * 系统服务工作异常。
      */
     DISPLAY_MANAGER_ERROR_SYSTEM_ABNORMAL = 1400003,
 
     /**
-     * �Ƿ�������
+     * 非法参数。
      * @since 20
      */
     DISPLAY_MANAGER_ERROR_ILLEGAL_PARAM = 1400004
 } NativeDisplayManager_ErrorCode;
 
 /**
- * @brief ���۵��豸����ʾģʽö�١�
+ * @brief 可折叠设备的显示模式枚举。
  * 
  * @since 12
  * @version 1.0
  */
 typedef enum {
     /**
-     * ��ʾ�豸��ǰ�۵���ʾģʽδ֪��
+     * 表示设备当前折叠显示模式未知。
      */
     DISPLAY_MANAGER_FOLD_DISPLAY_MODE_UNKNOWN = 0,
 
     /**
-     * ��ʾ�豸��ǰȫ����ʾ��
+     * 表示设备当前全屏显示。
      */
     DISPLAY_MANAGER_FOLD_DISPLAY_MODE_FULL = 1,
 
     /**
-     * ��ʾ�豸��ǰ����Ļ��ʾ��
+     * 表示设备当前主屏幕显示。
      */
     DISPLAY_MANAGER_FOLD_DISPLAY_MODE_MAIN = 2,
 
     /**
-     * ��ʾ�豸��ǰ����Ļ��ʾ��
+     * 表示设备当前子屏幕显示。
      */
     DISPLAY_MANAGER_FOLD_DISPLAY_MODE_SUB = 3,
 
     /**
-     * ��ʾ�豸��ǰ˫��Эͬ��ʾ��
+     * 表示设备当前双屏协同显示。
      */
     DISPLAY_MANAGER_FOLD_DISPLAY_MODE_COORDINATION = 4
 } NativeDisplayManager_FoldDisplayMode;
 
 /**
- * @brief ��������
+ * @brief 矩形区域。
  * 
  * @since 12
  * @version 1.0
@@ -215,7 +215,7 @@ typedef struct {
 } NativeDisplayManager_Rect;
 
 /**
- * @brief �ٲ������沿����ʾ����
+ * @brief 瀑布屏曲面部分显示区域。
  * 
  * @since 12
  * @version 1.0
@@ -235,7 +235,7 @@ typedef struct {
 } NativeDisplayManager_WaterfallDisplayAreaRects;
 
 /**
- * @brief �ڿ��������������ٲ����Ȳ�������Ļ������Ϣ��
+ * @brief 挖孔屏、刘海屏、瀑布屏等不可用屏幕区域信息。
  * 
  * @since 12
  * @version 1.0
@@ -252,77 +252,77 @@ typedef struct {
 } NativeDisplayManager_CutoutInfo;
 
 /**
- * @brief ��ʾ�豸��״̬ö�١�
+ * @brief 显示设备的状态枚举。
  * 
  * @since 14
  * @version 1.0
  */
 typedef enum {
     /**
-     * ��ʾ��ʾ�豸״̬δ֪��
+     * 表示显示设备状态未知。
      */
     DISPLAY_MANAGER_DISPLAY_STATE_UNKNOWN = 0,
 
     /**
-     * ��ʾ��ʾ�豸״̬Ϊ�رա�
+     * 表示显示设备状态为关闭。
      */
     DISPLAY_MANAGER_DISPLAY_STATE_OFF = 1,
 
     /**
-     * ��ʾ��ʾ�豸״̬Ϊ������
+     * 表示显示设备状态为开启。
      */
     DISPLAY_MANAGER_DISPLAY_STATE_ON = 2,
 
     /**
-     * ��ʾ��ʾ�豸Ϊ�͵��ģʽ��
+     * 表示显示设备为低电耗模式。
      */
     DISPLAY_MANAGER_DISPLAY_STATE_DOZE = 3,
 
     /**
-     * ��ʾ��ʾ�豸Ϊ˯��ģʽ��CPUΪ����״̬��
+     * 表示显示设备为睡眠模式，CPU为挂起状态。
      */
     DISPLAY_MANAGER_DISPLAY_STATE_DOZE_SUSPEND = 4,
 
     /**
-     * ��ʾ��ʾ�豸ΪVRģʽ��
+     * 表示显示设备为VR模式。
      */
     DISPLAY_MANAGER_DISPLAY_STATE_VR = 5,
 
     /**
-     * ��ʾ��ʾ�豸Ϊ����״̬��CPUΪ����״̬��
+     * 表示显示设备为开启状态，CPU为挂起状态。
      */
     DISPLAY_MANAGER_DISPLAY_STATE_ON_SUSPEND = 6
 } NativeDisplayManager_DisplayState;
 
 /**
- * @brief �豸����ʾģʽö�١�
+ * @brief 设备的显示模式枚举。
  * 
  * @since 20
  * @version 1.0
  */
 typedef enum {
     /**
-     * ��ʾ�豸��ǰδʹ�á�
+     * 表示设备当前未使用。
      */
     DISPLAY_SOURCE_MODE_NONE = 0,
 
     /**
-     * ��ʾ�豸��ǰΪ������
+     * 表示设备当前为主屏。
      */
     DISPLAY_SOURCE_MODE_MAIN = 1,
 
     /**
-     * ��ʾ�豸��ǰΪ������ʾģʽ��
+     * 表示设备当前为镜像显示模式。
      */
     DISPLAY_SOURCE_MODE_MIRROR = 2,
 
     /**
-     * ��ʾ�豸��ǰΪ��չ��ʾģʽ��
+     * 表示设备当前为扩展显示模式。
      */
     DISPLAY_SOURCE_MODE_EXTEND = 3,
 
     /**
-     * ��ʾ�豸��ǰΪ��Դ��ʾģʽ��
+     * 表示设备当前为异源显示模式。
      */
     DISPLAY_SOURCE_MODE_ALONE = 4
 } NativeDisplayManager_SourceMode;
@@ -404,99 +404,4 @@ typedef struct {
     int32_t physicalHeight;
 
     /**
-     * Refresh rate of the display, in Hz. The value must be a non-negative integer.
-     */
-    uint32_t refreshRate;
-
-    /**
-     * Width of the available area on a 2-in-1 device, in px. The value must be a non-negative integer.
-     */
-    uint32_t availableWidth;
-
-    /**
-     * Height of the available area on a 2-in-1 device, in px. The value is an integer greater than 0.
-     */
-    uint32_t availableHeight;
-
-    /**
-     * Physical pixel density of the display, that is, the number of pixels per inch. The value must be a floating-
-     * point number greater than 0. The unit is px. Generally, the value is **160.0** or **480.0**. The actual value
-     * depends on the optional values provided by the device in use.
-     */
-    float densityDPI;
-
-    /**
-     * Logical pixel density of the display, which is the scaling coefficient between physical pixels and logical
-     * pixels. The value is a floating-point number greater than 0 and is restricted by the range of **densityDPI**.
-     * The value range is [0.5, 4.0]. Generally, the value is **1.0** or **3.0**. The actual value depends on the
-     * density DPI provided by the device in use.
-     */
-    float densityPixels;
-
-    /**
-     * Scaling factor for fonts displayed on the display. The value must be a floating-point number greater than 0.
-     * Generally, the value is the same as that of **densityPixels**.
-     */
-    float scaledDensity;
-
-    /**
-     * Exact physical pixels per inch of the display in the X dimension. The value must be a floating-point number
-     * greater than 0.
-     */
-    float xDPI;
-
-    /**
-     * Exact physical pixels per inch of the display in the Y dimension. The value must be a floating-point number
-     * greater than 0.
-     */
-    float yDPI;
-
-    /**
-     * Clockwise rotation angle of the display.
-     */
-    NativeDisplayManager_Rotation rotation;
-
-    /**
-     * State of the display.
-     */
-    NativeDisplayManager_DisplayState state;
-
-    /**
-     * Orientation of the display.
-     */
-    NativeDisplayManager_Orientation orientation;
-
-    /**
-     * All the HDR formats supported by the display.
-     */
-    NativeDisplayManager_DisplayHdrFormat *hdrFormat;
-
-    /**
-     * All the color spaces supported by the display.
-     */
-    NativeDisplayManager_DisplayColorSpace *colorSpace;
-} NativeDisplayManager_DisplayInfo;
-
-/**
- * @brief The struct describes the information about displays of a device with multiple screens.
- * 
- * @since 14
- * @version 1.0
- */
-typedef struct {
-    /**
-     * Number of displays of a device with multiple screens.
-     */
-    uint32_t displaysLength;
-
-    /**
-     * An array of NativeDisplayManager_DisplayInfo structs, each containing information about a display.
-     */
-    NativeDisplayManager_DisplayInfo *displaysInfo;
-} NativeDisplayManager_DisplaysInfo;
-#ifdef __cplusplus
-}
-#endif
-
-/** @} */
-#endif // OH_NATIVE_DISPLAY_INFO_H
+     * Refresh rate of the display, in Hz. The value must be a

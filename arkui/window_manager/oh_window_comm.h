@@ -1,4 +1,3 @@
-
 /*
  * Copyright (c) 2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -15,6 +14,17 @@
  */
 
 /**
+ * @addtogroup WindowManager
+ * @{
+ *
+ *
+ * @brief Provides abilities of windowManager on the native side, such as key event
+ * filtration.
+ *
+ * @since 12
+ */
+
+/**
  * @file oh_window_comm.h
  *
  * @brief The file declares the common enums and definitions of the window manager.
@@ -25,16 +35,6 @@
  * @since 12
  */
 
-/**
- * @addtogroup WindowManager
- * @{
- *
- *
- * @brief Provides abilities of windowManager on the native side, such as key event
- * filtration.
- *
- * @since 12
- */
 #ifndef OH_WINDOW_COMM_H
 #define OH_WINDOW_COMM_H
 #include "stdint.h"

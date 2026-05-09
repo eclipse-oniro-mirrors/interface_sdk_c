@@ -1,4 +1,3 @@
-
 /*
  * Copyright (c) 2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -15,6 +14,16 @@
  */
 
 /**
+ * @addtogroup WindowManager
+ * @{
+ *
+ * @brief Provides  abilities of windowManager on the native side, such as key event
+ * filtration.
+ *
+ * @since 12
+ */
+
+/**
  * @file oh_window_event_filter.h
  *
  * @brief The file declares the APIs for a window to filter multimodal key events. When a multimodal input event passes
@@ -26,15 +35,6 @@
  * @since 12
  */
 
-/**
- * @addtogroup WindowManager
- * @{
- *
- * @brief Provides  abilities of windowManager on the native side, such as key event
- * filtration.
- *
- * @since 12
- */
 #ifndef INCLUDE_OH_WINDOW_EVENT_FILTER_H
 #define INCLUDE_OH_WINDOW_EVENT_FILTER_H
 #include "stdbool.h"
