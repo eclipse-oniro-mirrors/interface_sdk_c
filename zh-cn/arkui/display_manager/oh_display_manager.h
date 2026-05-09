@@ -414,7 +414,7 @@ NativeDisplayManager_ErrorCode OH_NativeDisplayManager_RegisterDisplayRemoveList
 NativeDisplayManager_ErrorCode OH_NativeDisplayManager_UnregisterDisplayRemoveListener(uint32_t listenerIndex);
 
 /**
- * @brief 获取屏幕的显示模式。
+ * @brief 获取屏幕的显示模式，默认值为DisplaySourceMode.None。
  * 
  * @param displayId 查询屏幕的id号，非负整数。
  * @param sourceMode 屏幕当前的显示模式，具体可见{@link NativeDisplayManager_SourceMode}，此处作为出参返回。
