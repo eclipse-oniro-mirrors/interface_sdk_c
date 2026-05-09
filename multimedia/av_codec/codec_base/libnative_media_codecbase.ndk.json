@@ -798,6 +798,18 @@
     },
     {
         "first_introduced": "26.0.0",
+        "name": "OH_MD_KEY_VIDEO_DECODER_FRAME_RETENTION_MODE"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_MD_KEY_VIDEO_DECODER_FRAME_RETENTION_RATIO"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_MD_KEY_VIDEO_DECODER_SPEED"
+    },
+    {
+        "first_introduced": "26.0.0",
         "name": "OH_MD_KEY_VIDEO_ENCODER_PREPROC_DOWNSAMPLING_WIDTH"
     },
     {
