@@ -45,13 +45,13 @@ extern "C" {
 #endif
 
 /**
- * @brief 获取屏幕全屏截图，可以通过设置不同的屏幕id号截取不同屏幕的截图。
+ * @brief 锟斤拷取锟斤拷幕全锟斤拷锟斤拷图锟斤拷锟斤拷锟斤拷通锟斤拷锟斤拷锟矫诧拷同锟斤拷锟斤拷幕id锟脚斤拷取锟斤拷同锟斤拷幕锟侥斤拷图锟斤拷
  * 
  * @permission ohos.permission.CUSTOM_SCREEN_CAPTURE or ohos.permission.CUSTOM_SCREEN_RECORDING [since 22]
  * @permission ohos.permission.CUSTOM_SCREEN_CAPTURE [since 14]
- * @param displayId 需要截屏的屏幕id号，该值为非负整数。
- * @param pixelMap 创建指定屏幕id的OH_PixelmapNative对象，此处作为出参返回。
- * @return 返回屏幕管理接口的通用状态码，具体可见{@link NativeDisplayManager_ErrorCode}。
+ * @param displayId 锟斤拷要锟斤拷锟斤拷锟斤拷锟斤拷幕id锟脚ｏ拷锟斤拷值为锟角革拷锟斤拷锟斤拷锟斤拷
+ * @param pixelMap 锟斤拷锟斤拷指锟斤拷锟斤拷幕id锟斤拷OH_PixelmapNative锟斤拷锟襟，此达拷锟斤拷为锟斤拷锟轿凤拷锟截★拷
+ * @return 锟斤拷锟斤拷锟斤拷幕锟斤拷锟斤拷锟接口碉拷通锟斤拷状态锟诫，锟斤拷锟斤拷杉锟絳@link NativeDisplayManager_ErrorCode}锟斤拷
  * @since 14
  */
 NativeDisplayManager_ErrorCode OH_NativeDisplayManager_CaptureScreenPixelmap(uint32_t displayId,
