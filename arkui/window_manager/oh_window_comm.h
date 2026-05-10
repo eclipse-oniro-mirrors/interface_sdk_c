@@ -149,7 +149,8 @@ typedef enum {
     WINDOW_MANAGER_ERRORCODE_PIP_CREATE_FAILED = 1300013,
 
     /**
-     * An internal error occurs in PiP. Possible causes:<br>1. The window on which the PiP feature depends is abnormal. For example, the window is empty. 2. The PiP controller is abnormal.
+     * An internal error occurs in PiP. Possible causes:<br>1. The window on which the PiP feature depends is abnormal.
+     * For example, the window is empty. 2. The PiP controller is abnormal.
      * @since 20
      */
     WINDOW_MANAGER_ERRORCODE_PIP_INTERNAL_ERROR = 1300014,
@@ -161,7 +162,8 @@ typedef enum {
     WINDOW_MANAGER_ERRORCODE_PIP_REPEATED_OPERATION = 1300015,
 
     /**
-     * Incorrect parameter. Possible causes:<br>1. The parameter value range is invalid. 2. The number of parameters is invalid. 3. The parameter type is invalid.
+     * Incorrect parameter. Possible causes:<br>1. The parameter value range is invalid.
+     * 2. The number of parameters is invalid. 3. The parameter type is invalid.
      * @since 20
      */
     WINDOW_MANAGER_ERRORCODE_INCORRECT_PARAM = 1300016
@@ -252,7 +254,7 @@ typedef struct {
 
 /**
  * @brief Describes the configuration of the main window screenshot.
- * 
+ *
  * @since 21
  */
 typedef struct {

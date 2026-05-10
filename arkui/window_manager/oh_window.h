@@ -54,7 +54,7 @@ extern "C" {
 
 /**
  * @brief Sets whether to display the status bar in a window.
- * 
+ *
  * @param windowId Window ID. The default value is **0**. The value is an integer.
  * @param enabled Whether to display the status bar. **true** to display, **false** otherwise.
  * @param enableAnimation Whether to enable the show/hide animation of the status bar. **true** to enable, **false**
@@ -480,7 +480,7 @@ int32_t OH_WindowManager_FrameMetrics_GetVsyncTimestamp(
  *     1. Invalid parameter range.
  * @since 26.0.0
  */
-int32_t OH_WindowManager_RegisterFrameMetricsMeasuredCallback(int32_t windowId, 
+int32_t OH_WindowManager_RegisterFrameMetricsMeasuredCallback(int32_t windowId,
     OH_WindowManager_FrameMetricsMeasuredCallback callback);
 
 /**
@@ -500,7 +500,7 @@ int32_t OH_WindowManager_RegisterFrameMetricsMeasuredCallback(int32_t windowId,
  *     1. Invalid parameter range.
  * @since 26.0.0
  */
-int32_t OH_WindowManager_UnregisterFrameMetricsMeasuredCallback(int32_t windowId, 
+int32_t OH_WindowManager_UnregisterFrameMetricsMeasuredCallback(int32_t windowId,
     OH_WindowManager_FrameMetricsMeasuredCallback callback);
 
 /**
@@ -583,7 +583,7 @@ int32_t OH_WindowManager_GetDensityInfoCopy(int32_t windowId,
  *             1. Invalid parameter range.
  * @since 24
  */
-int32_t OH_WindowManager_RegisterDensityInfoChangeCallback(int32_t windowId, 
+int32_t OH_WindowManager_RegisterDensityInfoChangeCallback(int32_t windowId,
     OH_WindowManager_DensityInfoCallback callback);
 
 /**
@@ -604,7 +604,7 @@ int32_t OH_WindowManager_RegisterDensityInfoChangeCallback(int32_t windowId,
  *             1. Invalid parameter range.
  * @since 24
  */
-int32_t OH_WindowManager_UnregisterDensityInfoChangeCallback(int32_t windowId, 
+int32_t OH_WindowManager_UnregisterDensityInfoChangeCallback(int32_t windowId,
     OH_WindowManager_DensityInfoCallback callback);
 
 /**

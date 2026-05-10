@@ -443,7 +443,7 @@ typedef void (*OH_NativeDisplayManager_DisplayAddCallback)(uint64_t displayId);
 
 /**
  * @brief Registers a listener for display addition events (for example, monitor inserted).
- * 
+ *
  * @param displayAddCallback Callback function triggered when a display is added. For details, see
  *     {@link OH_NativeDisplayManager_DisplayAddCallback}.
  * @param listenerIndex Pointer to the index of the listener registered.

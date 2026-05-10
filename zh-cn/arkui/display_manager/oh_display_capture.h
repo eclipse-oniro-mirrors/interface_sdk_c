@@ -28,7 +28,7 @@
  * @file oh_display_capture.h
  *
  * @brief The file declares the capability to take screenshots.
- * 
+ *
  * @kit ArkUI
  * @library libnative_display_manager.so
  * @syscap SystemCapability.WindowManager.WindowManager.Core
