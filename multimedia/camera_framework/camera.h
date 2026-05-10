@@ -1704,6 +1704,40 @@ typedef struct OH_Camera_ZoomPointInfo {
     uint32_t equivalentFocalLength;
 } OH_Camera_ZoomPointInfo;
 
+/**
+ * @brief Enumerates camera notification names.
+ *
+ * @since 26.0.0
+ */
+typedef enum OH_Camera_NotificationName {
+    /**
+     * Camera defocus notification caused by close proximity.
+     *
+     * The corresponding value type is {@link OH_Camera_ProximityStateForFocus}.
+     * @since 26.0.0
+     */
+    OH_CAMERA_DEFOCUS_FROM_PROXIMITY = 0,
+} OH_Camera_NotificationName;
+
+/**
+ * @brief Enumerates proximity states for focus.
+ *
+ * @since 26.0.0
+ */
+typedef enum OH_Camera_ProximityStateForFocus {
+    /**
+     * The device is within a reasonable range, and no raising action is required.
+     *
+     * @since 26.0.0
+     */
+    OH_CAMERA_PROXIMITY_STATE_IN_RANGE_RAISE_NONE = 0,
+    /**
+     * The device is out of the reasonable range, and the device needs to be raised.
+     *
+     * @since 26.0.0
+     */
+    OH_CAMERA_PROXIMITY_STATE_OUT_OF_RANGE_RAISE_REQUIRED = 1,
+} OH_Camera_ProximityStateForFocus;
 #ifdef __cplusplus
 }
 #endif
