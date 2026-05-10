@@ -404,4 +404,99 @@ typedef struct {
     int32_t physicalHeight;
 
     /**
-     * Refresh rate of the display, in Hz. The value must be a
+     * Refresh rate of the display, in Hz. The value must be a non-negative integer.
+     */
+    uint32_t refreshRate;
+
+    /**
+     * Width of the available area on a 2-in-1 device, in px. The value must be a non-negative integer.
+     */
+    uint32_t availableWidth;
+
+    /**
+     * Height of the available area on a 2-in-1 device, in px. The value is an integer greater than 0.
+     */
+    uint32_t availableHeight;
+
+    /**
+     * Physical pixel density of the display, that is, the number of pixels per inch. The value must be a floating-
+     * point number greater than 0. The unit is px. Generally, the value is **160.0** or **480.0**. The actual value
+     * depends on the optional values provided by the device in use.
+     */
+    float densityDPI;
+
+    /**
+     * Logical pixel density of the display, which is the scaling coefficient between physical pixels and logical
+     * pixels. The value is a floating-point number greater than 0 and is restricted by the range of **densityDPI**.
+     * The value range is [0.5, 4.0]. Generally, the value is **1.0** or **3.0**. The actual value depends on the
+     * density DPI provided by the device in use.
+     */
+    float densityPixels;
+
+    /**
+     * Scaling factor for fonts displayed on the display. The value must be a floating-point number greater than 0.
+     * Generally, the value is the same as that of **densityPixels**.
+     */
+    float scaledDensity;
+
+    /**
+     * Exact physical pixels per inch of the display in the X dimension. The value must be a floating-point number
+     * greater than 0.
+     */
+    float xDPI;
+
+    /**
+     * Exact physical pixels per inch of the display in the Y dimension. The value must be a floating-point number
+     * greater than 0.
+     */
+    float yDPI;
+
+    /**
+     * Clockwise rotation angle of the display.
+     */
+    NativeDisplayManager_Rotation rotation;
+
+    /**
+     * State of the display.
+     */
+    NativeDisplayManager_DisplayState state;
+
+    /**
+     * Orientation of the display.
+     */
+    NativeDisplayManager_Orientation orientation;
+
+    /**
+     * All the HDR formats supported by the display.
+     */
+    NativeDisplayManager_DisplayHdrFormat *hdrFormat;
+
+    /**
+     * All the color spaces supported by the display.
+     */
+    NativeDisplayManager_DisplayColorSpace *colorSpace;
+} NativeDisplayManager_DisplayInfo;
+
+/**
+ * @brief The struct describes the information about displays of a device with multiple screens.
+ * 
+ * @since 14
+ * @version 1.0
+ */
+typedef struct {
+    /**
+     * Number of displays of a device with multiple screens.
+     */
+    uint32_t displaysLength;
+
+    /**
+     * An array of NativeDisplayManager_DisplayInfo structs, each containing information about a display.
+     */
+    NativeDisplayManager_DisplayInfo *displaysInfo;
+} NativeDisplayManager_DisplaysInfo;
+#ifdef __cplusplus
+}
+#endif
+
+/** @} */
+#endif // OH_NATIVE_DISPLAY_INFO_H
