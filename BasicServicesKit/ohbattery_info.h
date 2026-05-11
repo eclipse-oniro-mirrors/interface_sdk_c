@@ -27,7 +27,6 @@
  *
  * @brief Declares the battery APIs that are used to obtain the current battery capacity and power supply type and
  * define common battery events.
- * 
  * @library libohbattery_info.so
  * @kit BasicServicesKit
  * @syscap SystemCapability.PowerManager.BatteryManager.Core
@@ -96,7 +95,7 @@ typedef enum {
      */
     PLUGGED_TYPE_WIRELESS,
     /**
-     * Reserved.
+     * Unknown type.
      *
      * @since 13
      */
@@ -114,11 +113,13 @@ int32_t OH_BatteryInfo_GetCapacity();
 /**
  * @brief Obtains the battery plugged type.
  *
- * @return {@link BatteryInfo_BatteryPluggedType#PLUGGED_TYPE_NONE} if there is no power supply;
- *         {@link PLUGGED_TYPE_AC} if the power supply is in AC charging mode;
- *         {@link PLUGGED_TYPE_USB} if the power supply is in USB DC charging mode;
- *         {@link PLUGGED_TYPE_WIRELESS} if the power supply is in wireless charging mode;
- *         {@link PLUGGED_TYPE_BUTT} if the battery plugged type is unknown.
+ * @return <ul>
+ *         <li>{@link PLUGGED_TYPE_NONE} if there is no power supply;</li>
+ *         <li>{@link PLUGGED_TYPE_AC} if the power supply is in AC charging mode;</li>
+ *         <li>{@link PLUGGED_TYPE_USB} if the power supply is in USB DC charging mode;</li>
+ *         <li>{@link PLUGGED_TYPE_WIRELESS} if the power supply is in wireless charging mode;</li>
+ *         <li>{@link PLUGGED_TYPE_BUTT} if the battery plugged type is unknown.</li>
+ *         </ul>
  * @since 13
  */
 BatteryInfo_BatteryPluggedType OH_BatteryInfo_GetPluggedType();

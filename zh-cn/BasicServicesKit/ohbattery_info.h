@@ -26,7 +26,6 @@
  * @file ohbattery_info.h
  *
  * @brief 声明电池API以获取当前电池容量和电源类型的信息，定义电池相应常见事件。
- *
  * @library libohbattery_info.so
  * @kit BasicServicesKit
  * @syscap SystemCapability.PowerManager.BatteryManager.Core
@@ -95,7 +94,7 @@ typedef enum {
     */
     PLUGGED_TYPE_WIRELESS,
     /**
-    * 预留枚举
+    * 未知类型。
     *
     * @since 13
     */
@@ -113,11 +112,13 @@ int32_t OH_BatteryInfo_GetCapacity();
 /**
  * @brief 返回当前插入的类型。
  *
- * @return {@link BatteryInfo_BatteryPluggedType#PLUGGED_TYPE_NONE} 如果电源被拔下。
- *         {@link BatteryInfo_BatteryPluggedType#PLUGGED_TYPE_AC} 如果电源是AC充电。
- *         {@link BatteryInfo_BatteryPluggedType#PLUGGED_TYPE_USB} 如果电源是USB DC充电。
- *         {@link BatteryInfo_BatteryPluggedType#PLUGGED_TYPE_WIRELESS} 如果电源是无线充电。
- *         {@link BatteryInfo_BatteryPluggedType#PLUGGED_TYPE_BUTT} 如果类型未知。
+ * @return <ul>
+ *         <li>{@link PLUGGED_TYPE_NONE} 如果电源被拔下。</li>
+ *         <li>{@link PLUGGED_TYPE_AC} 如果电源是AC充电。</li>
+ *         <li>{@link PLUGGED_TYPE_USB} 如果电源是USB DC充电。</li>
+ *         <li>{@link PLUGGED_TYPE_WIRELESS} 如果电源是无线充电。</li>
+ *         <li>{@link PLUGGED_TYPE_BUTT} 如果类型未知。</li>
+ *         </ul>
  * @since 13
  */
 BatteryInfo_BatteryPluggedType OH_BatteryInfo_GetPluggedType();
