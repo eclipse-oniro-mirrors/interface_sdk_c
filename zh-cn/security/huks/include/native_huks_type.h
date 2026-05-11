@@ -70,120 +70,120 @@ extern "C" {
 #define OH_HUKS_MAX_KEY_SIZE 2048
 
 /**
- * @brief Enumerates the key purposes.
+ * @brief 密钥用途类型。
  *
  * @since 9
  * @version 1.0
  */
 enum OH_Huks_KeyPurpose {
     /**
- * Used to encrypt the plaintext.
+ * 表示密钥用于对明文进行加密操作。
  */
     OH_HUKS_KEY_PURPOSE_ENCRYPT = 1,
     /**
- * Used to decrypt the cipher text.
+ * 表示密钥用于对密文进行解密操作。
  */
     OH_HUKS_KEY_PURPOSE_DECRYPT = 2,
     /**
- * Used for signing.
+ * 表示密钥用于对数据进行签名。
  */
     OH_HUKS_KEY_PURPOSE_SIGN = 4,
     /**
- * Used to verify the signature.
+ * 表示密钥用于验证签名后的数据。
  */
     OH_HUKS_KEY_PURPOSE_VERIFY = 8,
     /**
- * Used to derive a key.
+ * 表示密钥用于派生密钥。
  */
     OH_HUKS_KEY_PURPOSE_DERIVE = 16,
     /**
- * Used for exporting a key in ciphertext.
+ * 表示密钥用于加密导出。
  */
     OH_HUKS_KEY_PURPOSE_WRAP = 32,
     /**
- * Used for importing a key in ciphertext.
+ * 表示密钥加密导入。
  */
     OH_HUKS_KEY_PURPOSE_UNWRAP = 64,
     /**
- * Used to generate a message authentication code (MAC).
+ * 表示密钥用于生成mac消息验证码。
  */
     OH_HUKS_KEY_PURPOSE_MAC = 128,
     /**
- * Used for key agreement.
+ * 表示密钥用于进行密钥协商。
  */
     OH_HUKS_KEY_PURPOSE_AGREE = 256
 };
 
 /**
- * @brief Enumerates the digest algorithms.
+ * @brief 摘要算法类型。
  *
  * @since 9
  * @version 1.0
  */
 enum OH_Huks_KeyDigest {
     /**
- * No digest algorithm.
+ * 无摘要算法。
  */
     OH_HUKS_DIGEST_NONE = 0,
     /**
- * MD5.
+ * MD5摘要算法。
  */
     OH_HUKS_DIGEST_MD5 = 1,
     /**
- * SM3.
+ * SM3摘要算法。
  */
     OH_HUKS_DIGEST_SM3 = 2,
     /**
- * SHA-1.
+ * SHA1摘要算法。
  */
     OH_HUKS_DIGEST_SHA1 = 10,
     /**
- * SHA-224.
+ * SHA224摘要算法。
  */
     OH_HUKS_DIGEST_SHA224 = 11,
     /**
- * SHA-256.
+ * SHA256摘要算法。
  */
     OH_HUKS_DIGEST_SHA256 = 12,
     /**
- * SHA-384.
+ * SHA384摘要算法。
  */
     OH_HUKS_DIGEST_SHA384 = 13,
     /**
- * SHA-512.
+ * SHA512摘要算法。
  */
     OH_HUKS_DIGEST_SHA512 = 14
 };
 
 /**
- * @brief Enumerates the padding algorithm types.
+ * @brief 填充算法类型。
  *
  * @since 9
  * @version 1.0
  */
 enum OH_Huks_KeyPadding {
     /**
- * No padding algorithm.
+ * 不使用填充算法。
  */
     OH_HUKS_PADDING_NONE = 0,
     /**
- * OAEP.
+ * 使用OAEP填充算法。
  */
     OH_HUKS_PADDING_OAEP = 1,
     /**
- * PSS.
+ * 使用PSS填充算法。
  */
     OH_HUKS_PADDING_PSS = 2,
     /**
- * PKCS1_V1_5.
+ * 使用PKCS1_V1_5填充算法。
  */
     OH_HUKS_PADDING_PKCS1_V1_5 = 3,
     /**
- * PKCS #5.
+ * 使用PKCS5填充算法。
  */
     OH_HUKS_PADDING_PKCS5 = 4,
     /**
- * PKCS #7.
+ * 使用PKCS7填充算法。
  */
     OH_HUKS_PADDING_PKCS7 = 5,
     /** ISO IEC 9796-2
@@ -197,214 +197,217 @@ enum OH_Huks_KeyPadding {
 };
 
 /**
- * @brief Cipher mode.
+ * @brief 加密模式。
  *
  * @since 9
  * @version 1.0
  */
 enum OH_Huks_CipherMode {
     /**
- * ECB.
+ * 使用ECB模式。
  */
     OH_HUKS_MODE_ECB = 1,
     /**
- * CBC.
+ * 使用CBC模式。
  */
     OH_HUKS_MODE_CBC = 2,
     /**
- * CTR.
+ * 使用CTR模式。
  */
     OH_HUKS_MODE_CTR = 3,
     /**
- * OFB.
+ * 使用OFB模式。
  */
     OH_HUKS_MODE_OFB = 4,
     /**
- * Cipher Feedback (CFB) mode.
+ * 使用CFB模式。
  * @since 12
  */
     OH_HUKS_MODE_CFB = 5,
     /**
- * CCM.
+ * 使用CCM模式。
  */
     OH_HUKS_MODE_CCM = 31,
     /**
- * GCM.
+ * 使用GCM模式。
  */
     OH_HUKS_MODE_GCM = 32
 };
 
 /**
- * @brief Enumerates the key sizes of different algorithms.
+ * @brief 算法密钥长度。
  *
  * @since 9
  * @version 1.0
  */
 enum OH_Huks_KeySize {
     /**
- * RSA key of 512 bits.
+ * 使用RSA算法的密钥长度为512bit。
  */
     OH_HUKS_RSA_KEY_SIZE_512 = 512,
     /**
- * RSA key of 768 bits.
+ * 使用RSA算法的密钥长度为768bit。
  */
     OH_HUKS_RSA_KEY_SIZE_768 = 768,
     /**
- * RSA key of 1024 bits.
+ * 使用RSA算法的密钥长度为1024bit。
  */
     OH_HUKS_RSA_KEY_SIZE_1024 = 1024,
     /**
- * RSA key of 2048 bits.
+ * 使用RSA算法的密钥长度为2048bit。
  */
     OH_HUKS_RSA_KEY_SIZE_2048 = 2048,
     /**
- * RSA key of 3072 bits.
+ * 使用RSA算法的密钥长度为3072bit。
  */
     OH_HUKS_RSA_KEY_SIZE_3072 = 3072,
     /**
- * RSA key of 4096 bits.
+ * 使用RSA算法的密钥长度为4096bit。
  */
     OH_HUKS_RSA_KEY_SIZE_4096 = 4096,
 
     /**
- * ECC key of 224 bits.
+ * 使用ECC算法的密钥长度为224bit。
  */
     OH_HUKS_ECC_KEY_SIZE_224 = 224,
     /**
- * ECC key of 256 bits.
+ * 使用ECC算法的密钥长度为256bit。
  */
     OH_HUKS_ECC_KEY_SIZE_256 = 256,
     /**
- * ECC key of 384 bits.
+ * 使用ECC算法的密钥长度为384bit。
  */
     OH_HUKS_ECC_KEY_SIZE_384 = 384,
     /**
- * ECC key of 521 bits.
+ * 使用ECC算法的密钥长度为521bit。
  */
     OH_HUKS_ECC_KEY_SIZE_521 = 521,
 
     /**
- * AES key of 128 bits.
+ * 使用AES算法的密钥长度为128bit。
  */
     OH_HUKS_AES_KEY_SIZE_128 = 128,
     /**
- * AES key of 192 bits.
+ * 使用AES算法的密钥长度为192bit。
  */
     OH_HUKS_AES_KEY_SIZE_192 = 192,
     /**
- * AES key of 256 bits.
+ * 使用AES算法的密钥长度为256bit。
  */
     OH_HUKS_AES_KEY_SIZE_256 = 256,
     /**
- * AES key of 512 bits.
+ * 使用AES算法的密钥长度为512bit。
  */
     OH_HUKS_AES_KEY_SIZE_512 = 512,
 
     /**
- * Curve25519 key of 256 bits.
+ * 使用CURVE25519算法的密钥长度为256bit。
  */
     OH_HUKS_CURVE25519_KEY_SIZE_256 = 256,
 
     /**
- * DH key of 2048 bits.
+ * 使用DH算法的密钥长度为2048bit。
  */
     OH_HUKS_DH_KEY_SIZE_2048 = 2048,
     /**
- * DH key of 3072 bits.
+ * 使用DH算法的密钥长度为3072bit。
  */
     OH_HUKS_DH_KEY_SIZE_3072 = 3072,
     /**
- * DH key of 4096 bits.
+ * 使用DH算法的密钥长度为4096bit。
  */
     OH_HUKS_DH_KEY_SIZE_4096 = 4096,
 
     /**
- * SM2 key of 256 bits.
+ * 使用SM2算法的密钥长度为256bit。
  */
     OH_HUKS_SM2_KEY_SIZE_256 = 256,
     /**
- * SM4 key of 128 bits.
+ * 使用SM4算法支持的密钥长度为128bit。
  */
     OH_HUKS_SM4_KEY_SIZE_128 = 128,
 
-    /** DES key of 64 bits.
+    /**
+ * 使用DES算法的密钥长度为64bit。
  * @since 18
  */
     OH_HUKS_DES_KEY_SIZE_64 = 64,
-    /** 3DES key of 128 bits.
+    /**
+ * 使用3DES算法的密钥长度为128bit。
  * @since 18
  */
     OH_HUKS_3DES_KEY_SIZE_128 = 128,
-    /** 3DES key of 192 bits.
+    /**
+ * 使用3DES算法的密钥长度为192bit。
  * @since 18
  */
     OH_HUKS_3DES_KEY_SIZE_192 = 192
 };
 
 /**
- * @brief Enumerates the algorithms for keys.
+ * @brief 密钥使用的算法。
  *
  * @since 9
  * @version 1.0
  */
 enum OH_Huks_KeyAlg {
     /**
- * RSA.
+ * 使用RSA算法。
  */
     OH_HUKS_ALG_RSA = 1,
     /**
- * ECC.
+ * 使用ECC算法。
  */
     OH_HUKS_ALG_ECC = 2,
     /**
- * DSA.
+ * 使用DSA算法。
  */
     OH_HUKS_ALG_DSA = 3,
 
     /**
- * Advanced Encryption Standard (AES).
+ * 使用AES算法。
  */
     OH_HUKS_ALG_AES = 20,
     /**
- * HMAC algorithm.
+ * 使用HMAC算法。
  */
     OH_HUKS_ALG_HMAC = 50,
     /**
- * HKDF.
+ * 使用HKDF算法。
  */
     OH_HUKS_ALG_HKDF = 51,
     /**
- * PBKDF2.
+ * 使用PBKDF2算法。
  */
     OH_HUKS_ALG_PBKDF2 = 52,
 
     /**
- * ECDH.
+ * 使用ECDH算法。
  */
     OH_HUKS_ALG_ECDH = 100,
     /**
- * X25519.
+ * 使用X25519算法。
  */
     OH_HUKS_ALG_X25519 = 101,
     /**
- * Ed25519.
+ * 使用ED25519算法。
  */
     OH_HUKS_ALG_ED25519 = 102,
     /**
- * DH.
+ * 使用DH算法。
  */
     OH_HUKS_ALG_DH = 103,
 
     /**
- * ShangMi2 (SM2).
+ * 使用SM2算法。
  */
     OH_HUKS_ALG_SM2 = 150,
     /**
- * SM3.
+ * SM3摘要算法。
  */
     OH_HUKS_ALG_SM3 = 151,
     /**
- * SM4.
+ * 使用SM4算法。
  */
     OH_HUKS_ALG_SM4 = 152,
     /** DES.
@@ -422,13 +425,14 @@ enum OH_Huks_KeyAlg {
 };
 
 /**
- * @brief Enumerates the algorithm suites that can be used for importing of a key in ciphertext.
+ * @brief 密文导入所需的算法套件类型。
  *
  * @since 9
  * @version 1.0
  */
 enum OH_Huks_AlgSuite {
-    /** Key material format (Length-Value format), X25519 key agreement, and AES-256-GCM encryption and decryption.
+    /**
+ *  密文导入密钥材料格式（Length-Value格式）采用X25519密钥协商同时采用AES-256-GCM加解密。
  *  | x25519_plain_pubkey_length  (4 Byte) | x25519_plain_pubkey |  agreekey_aad_length (4 Byte) | agreekey_aad
  *  |   agreekey_nonce_length     (4 Byte) |   agreekey_nonce    |
  *  |   agreekey_aead_tag_len     (4 Byte) |  agreekey_aead_tag  |
@@ -438,7 +442,8 @@ enum OH_Huks_AlgSuite {
  */
     OH_HUKS_UNWRAP_SUITE_X25519_AES_256_GCM_NOPADDING = 1,
 
-    /** Key material format (Length-Value format), ECDH-p256 key agreement, and AES-256-GCM encryption and decryption.
+    /**
+ * 密文导入密钥材料格式（Length-Value格式）采用ECDH-p256密钥协商同时采用AES-256-GCM加解密。
  *  |  ECC_plain_pubkey_length    (4 Byte) |  ECC_plain_pubkey   |  agreekey_aad_length (4 Byte) | agreekey_aad
  *  |   agreekey_nonce_length     (4 Byte) |   agreekey_nonce    |
  *  |   agreekey_aead_tag_len     (4 Byte) | agreekey_aead_tag   |
@@ -456,262 +461,261 @@ enum OH_Huks_AlgSuite {
 };
 
 /**
- * @brief Enumerates the types of the key generated.
+ * @brief 生成的密钥类型。
  *
  * @since 9
  * @version 1.0
  */
 enum OH_Huks_KeyGenerateType {
     /**
- * Key generated by default.
+ * 默认生成的密钥。
  */
     OH_HUKS_KEY_GENERATE_TYPE_DEFAULT = 0,
     /**
- * Derived key.
+ * 派生生成的密钥。
  */
     OH_HUKS_KEY_GENERATE_TYPE_DERIVE = 1,
     /**
- * Key generated by key agreement.
+ * 协商生成的密钥。
  */
     OH_HUKS_KEY_GENERATE_TYPE_AGREE = 2
 };
 
 /**
- * @brief Enumerates the key generation types.
+ * @brief 密钥的产生方式。
  *
  * @since 9
  * @version 1.0
  */
 enum OH_Huks_KeyFlag {
     /**
- * Import a public key using a function.
+ * 通过导入公钥接口导入的密钥。
  */
     OH_HUKS_KEY_FLAG_IMPORT_KEY = 1,
     /**
- * Generate a key by using a function.
+ * 通过生成密钥接口生成的密钥。
  */
     OH_HUKS_KEY_FLAG_GENERATE_KEY = 2,
     /**
- * Generate a key by using a key agreement function.
+ * 通过生成密钥协商接口生成的密钥。
  */
     OH_HUKS_KEY_FLAG_AGREE_KEY = 3,
     /**
- * Derive a key by using a function.
+ * 通过生成密钥派生接口生成的密钥。
  */
     OH_HUKS_KEY_FLAG_DERIVE_KEY = 4
 };
 
 /**
- * @brief Enumerates the key storage types.
+ * @brief 密钥的存储方式。
  *
  * @since 9
  * @version 1.0
  */
 enum OH_Huks_KeyStorageType {
     /**
- * Return the key to the service via the API.
+ * 通过接口返回给业务。
  */
     OH_HUKS_STORAGE_TEMP = 0,
     /**
- * Store the key in HUKS.
+ * 密钥托管在HUKS中。
  */
     OH_HUKS_STORAGE_PERSISTENT = 1,
     /**
- * Store the key generated from key derivation or key agreement in HUKS.
+ * 在进行密钥派生或协商时，结果密钥托管在HUKS中。
  */
     OH_HUKS_STORAGE_ONLY_USED_IN_HUKS = 2,
     /**
- * Return the key generated from key derivation or key agreement to the service.
+ * 在进行密钥派生或协商时，结果密钥可以返回给业务。
  */
     OH_HUKS_STORAGE_KEY_EXPORT_ALLOWED = 3
 };
 
 /**
- * @brief Enumerates the types of the key to import. By default, a public key is imported. This field is not required
- * when a symmetric key is imported.
+ * @brief 导入密钥的类型，默认为导入公钥，导入对称密钥时不需要该字段。
  *
  * @since 9
  * @version 1.0
  */
 enum OH_Huks_ImportKeyType {
     /**
- * Public key.
+ * 导入的密钥类型为公钥。
  */
     OH_HUKS_KEY_TYPE_PUBLIC_KEY = 0,
     /**
- * Private key.
+ * 导入的密钥类型为私钥。
  */
     OH_HUKS_KEY_TYPE_PRIVATE_KEY = 1,
     /**
- * Public and private key pair.
+ * 导入的密钥类型为公私钥对。
  */
     OH_HUKS_KEY_TYPE_KEY_PAIR = 2
 };
 
 /**
- * @brief Enumerates the length types of the salt value in PSS padding mode.
+ * @brief PSS填充模式下盐值长度类型。
  *
  * @since 10
  * @version 1.0
  */
 enum OH_Huks_RsaPssSaltLenType {
     /**
- * The salt length is set to the digest length.
+ * 以摘要长度设置盐值长度。
  */
     OH_HUKS_RSA_PSS_SALT_LEN_DIGEST = 0,
     /**
- * The salt length is set to the maximum length.
+ * 以最大长度设置盐值长度。
  */
     OH_HUKS_RSA_PSS_SALT_LEN_MAX = 1
 };
 
 /**
- * @brief Enumerates error codes.
+ * @brief 错误码。
  *
  * @since 9
  * @version 1.0
  */
 enum  OH_Huks_ErrCode {
     /**
- * Success.
+ * 成功。
  */
     OH_HUKS_SUCCESS = 0,
     /**
- * Permission verification failed.
+ * 权限校验失败。
  */
     OH_HUKS_ERR_CODE_PERMISSION_FAIL = 201,
     /**
- * Invalid parameter (universal).
+ * 非法参数（通用）。
  */
     OH_HUKS_ERR_CODE_ILLEGAL_ARGUMENT = 401,
     /**
- * The API is not supported.
+ * 不支持该API。
  */
     OH_HUKS_ERR_CODE_NOT_SUPPORTED_API = 801,
 
     /**
- * The feature is not supported.
+ * 不支持该子功能（特性）。
  */
     OH_HUKS_ERR_CODE_FEATURE_NOT_SUPPORTED = 12000001,
     /**
- * Key algorithm parameters are missing.
+ * 缺少密钥算法参数。
  */
     OH_HUKS_ERR_CODE_MISSING_CRYPTO_ALG_ARGUMENT = 12000002,
     /**
- * Invalid key algorithm parameter.
+ * 无效的密钥算法参数。
  */
     OH_HUKS_ERR_CODE_INVALID_CRYPTO_ALG_ARGUMENT = 12000003,
     /**
- * File operation failed.
+ * 文件错误。
  */
     OH_HUKS_ERR_CODE_FILE_OPERATION_FAIL = 12000004,
     /**
- * The process communication failed.
+ * 进程通信错误。
  */
     OH_HUKS_ERR_CODE_COMMUNICATION_FAIL = 12000005,
     /**
- * Crypto operation failed.
+ * 算法库操作失败。
  */
     OH_HUKS_ERR_CODE_CRYPTO_FAIL = 12000006,
     /**
- * Failed to access the key because the key has expired.
+ * 密钥访问失败 - 密钥已失效。
  */
     OH_HUKS_ERR_CODE_KEY_AUTH_PERMANENTLY_INVALIDATED = 12000007,
     /**
- * Failed to access the key because the authentication has failed.
+ * 密钥访问失败 - 密钥认证失败。
  */
     OH_HUKS_ERR_CODE_KEY_AUTH_VERIFY_FAILED = 12000008,
     /**
- * Key access timed out.
+ * 密钥访问失败 - 密钥访问超时。
  */
     OH_HUKS_ERR_CODE_KEY_AUTH_TIME_OUT = 12000009,
     /**
- * The number of key operation sessions has reached the limit.
+ * 密钥操作会话数已达上限。
  */
     OH_HUKS_ERR_CODE_SESSION_LIMIT = 12000010,
     /**
- * The entity does not exist.
+ * 该项实体不存在。
  */
     OH_HUKS_ERR_CODE_ITEM_NOT_EXIST = 12000011,
     /**
- * Internal error.
+ * 内部错误。
  */
     OH_HUKS_ERR_CODE_INTERNAL_ERROR = 12000012,
     /**
- * The authentication credential does not exist.
+ * 认证凭据不存在。
  */
     OH_HUKS_ERR_CODE_CREDENTIAL_NOT_EXIST = 12000013,
     /**
- * Insufficient memory.
+ * 内存不足。
  */
     OH_HUKS_ERR_CODE_INSUFFICIENT_MEMORY = 12000014,
     /**
- * Failed to invoke the service.
+ * 调用服务失败。
  */
     OH_HUKS_ERR_CODE_CALL_SERVICE_FAILED = 12000015,
     /**
- * A device password is required but not set.
+ * 需要锁屏密码，但没有设置。
  *
  * @since 11
  */
     OH_HUKS_ERR_CODE_DEVICE_PASSWORD_UNSET = 12000016,
     /**
- * The key with same alias is already exist.
+ * 同名密钥已存在。
  *
  * @since 20
  */
     OH_HUKS_ERR_CODE_KEY_ALREADY_EXIST = 12000017,
     /**
- * The input parameter is invalid.
+ * 输入的参数无效。
  *
  * @since 20
  */
     OH_HUKS_ERR_CODE_INVALID_ARGUMENT = 12000018,
 
     /**
- * The item already exists.
+ * 该项实体已存在
  *
  * @since 22
  */
     OH_HUKS_ERR_CODE_ITEM_EXISTS = 12000019,
 
     /**
- * An error occurred in the external module.
+ * 提供者或Ukey内部执行失败。
  *
  * @since 22
  */
     OH_HUKS_ERR_CODE_EXTERNAL_MODULE = 12000020,
 
     /**
- * The Ukey PIN is locked.
+ * Pin码被锁定
  *
  * @since 22
  */
     OH_HUKS_ERR_CODE_PIN_LOCKED = 12000021,
 
     /**
- * The Ukey PIN is incorrect.
+ * Pin码错误。
  *
  * @since 22
  */
     OH_HUKS_ERR_CODE_PIN_INCORRECT = 12000022,
 
     /**
- * The Ukey PIN is not authenticated.
+ * Pin码未认证通过。
  *
  * @since 22
  */
     OH_HUKS_ERR_CODE_PIN_NO_AUTH = 12000023,
 
     /**
- * The device or resource is busy.
+ * 提供者或Ukey中的资源正在被使用。
  *
  * @since 22
  */
     OH_HUKS_ERR_CODE_BUSY = 12000024,
 
     /**
- * The resource exceeds the limit.
+ * 资源超过限制。
  *
  * @since 22
  */
@@ -745,7 +749,7 @@ struct OH_Huks_Param {
 };
 
 /**
- * @brief Enumerates the types of the parameters in a parameter set.
+ * @brief 参数集中参数的类型。
  *
  * @see OH_Huks_Param
  *
@@ -754,23 +758,23 @@ struct OH_Huks_Param {
  */
 enum OH_Huks_TagType {
     /**
- * Invalid tag type.
+ * 非法的Tag类型。
  */
     OH_HUKS_TAG_TYPE_INVALID = 0 << 28,
     /**
- * int32_t.
+ * 该Tag的数据类型为int32_t类型。
  */
     OH_HUKS_TAG_TYPE_INT = 1 << 28,
     /**
- * uin32_t.
+ * 该Tag的数据类型为uin32_t类型。
  */
     OH_HUKS_TAG_TYPE_UINT = 2 << 28,
     /**
- * uin64_t.
+ * 该Tag的数据类型为uin64_t类型。
  */
     OH_HUKS_TAG_TYPE_ULONG = 3 << 28,
     /**
- * Boolean.
+ * 该Tag的数据类型为bool类型。
  */
     OH_HUKS_TAG_TYPE_BOOL = 4 << 28,
     /**
@@ -780,26 +784,26 @@ enum OH_Huks_TagType {
 };
 
 /**
- * @brief Enumerates the user authentication types in key access control.
+ * @brief 密钥访问控制中的用户认证类型。
  *
  * @since 9
  * @version 1.0
  */
 enum OH_Huks_UserAuthType {
     /**
- * Fingerprint authentication.
+ * 用户认证类型为指纹。
  */
     OH_HUKS_USER_AUTH_TYPE_FINGERPRINT = 1 << 0,
     /**
- * Facial authentication.
+ * 用户认证类型为人脸。
  */
     OH_HUKS_USER_AUTH_TYPE_FACE = 1 << 1,
     /**
- * PIN authentication.
+ * 用户认证类型为PIN码。
  */
     OH_HUKS_USER_AUTH_TYPE_PIN = 1 << 2,
     /**
- * Enum for tui pin auth type.
+ * 用户认证类型为TUI PIN码。
  *
  * @since 20
  */
@@ -807,22 +811,22 @@ enum OH_Huks_UserAuthType {
 };
 
 /**
- * @brief Enumerates the rules for invalidating a key.
+ * @brief 安全访问控制类型，表示密钥失效的原则。
  *
  * @since 9
  * @version 1.0
  */
 enum OH_Huks_AuthAccessType {
     /**
- * The key becomes invalid after the password is cleared.
+ * 安全访问控制类型为清除密码后密钥无效。
  */
     OH_HUKS_AUTH_ACCESS_INVALID_CLEAR_PASSWORD = 1 << 0,
     /**
- * The key becomes invalid after a new biometric feature is enrolled.
+ * 安全访问控制类型为新录入生物特征后密钥无效。
  */
     OH_HUKS_AUTH_ACCESS_INVALID_NEW_BIO_ENROLL = 1 << 1,
     /**
- * The key is always valid.
+ * 安全访问控制类型为该密钥总是有效。
  *
  * @since 11
  */
@@ -830,49 +834,49 @@ enum OH_Huks_AuthAccessType {
 };
 
 /**
- * @brief Enumerates the security levels for storing the key generated or imported.
+ * @brief 表示生成或导入密钥时，指定该密钥的存储安全等级。
  *
  * @since 11
  */
 enum OH_Huks_AuthStorageLevel {
     /**
- * Key file storage security level for device encryption standard.
+ * 表示密钥仅在开机后可访问。
  * @since 11
  */
     OH_HUKS_AUTH_STORAGE_LEVEL_DE = 0,
     /**
- * Key file storage security level for credential encryption standard.
+ * 表示密钥仅在首次解锁后可访问。
  * @since 11
  */
     OH_HUKS_AUTH_STORAGE_LEVEL_CE = 1,
     /**
- * Key file storage security level for enhanced credential encryption standard.
+ * 表示密钥仅在解锁状态时可访问。
  * @since 11
  */
     OH_HUKS_AUTH_STORAGE_LEVEL_ECE = 2
 };
 
 /**
- * @brief Enumerates the user authentication modes in key access control.
+ * @brief 密钥访问控制中的用户认证模式。
  *
  * @since 12
  * @version 1.0
  */
 enum OH_Huks_UserAuthMode {
     /**
- * Auth mode for local scenarios.
+ * 本地认证模式。
  * @since 12
  */
     OH_HUKS_USER_AUTH_MODE_LOCAL = 0,
     /**
- * Auth mode for co-auth scenarios.
+ * 跨端协同认证模式。
  * @since 12
  */
     OH_HUKS_USER_AUTH_MODE_COAUTH = 1
 };
 
 /**
- * @brief Enumerates the types of the challenge generated when a key is used.
+ * @brief 密钥使用时生成challenge的类型。
  *
  * @see OH_Huks_ChallengePosition
  *
@@ -881,65 +885,61 @@ enum OH_Huks_UserAuthMode {
  */
 enum OH_Huks_ChallengeType {
     /**
- * Normal challenge, which is of 32 bytes by default.
+ * challenge为普通类型，默认32字节。
  */
     OH_HUKS_CHALLENGE_TYPE_NORMAL = 0,
-    /** Custom challenge, which supports only one authentication for multiple keys.
- *  The valid value of a custom challenge is of 8 bytes.
+    /**
+ * challenge为用户自定义类型。支持使用多个密钥仅一次认证，challenge长度8字节有效。
  */
     OH_HUKS_CHALLENGE_TYPE_CUSTOM = 1,
     /**
- * Challenge is not required.
+ * 免challenge类型。
  */
     OH_HUKS_CHALLENGE_TYPE_NONE = 2
 };
 
 /**
- * @brief Enumerates the positions of the 8-byte valid value in a custom challenge generated.
+ * @brief challenge类型为用户自定义类型时，生成的challenge有效长度仅为8字节连续的数据，且仅支持4种位置。
  *
  * @since 9
  * @version 1.0
  */
 enum OH_Huks_ChallengePosition {
     /**
- * Bytes 0 to 7.
+ * 0~7字节为当前密钥的有效challenge。
  */
     OH_HUKS_CHALLENGE_POS_0 = 0,
     /**
- * Bytes 8 to 15.
+ * 8~15字节为当前密钥的有效challenge。
  */
     OH_HUKS_CHALLENGE_POS_1,
     /**
- * Bytes 16 to 23.
+ * 16~23字节为当前密钥的有效challenge。
  */
     OH_HUKS_CHALLENGE_POS_2,
     /**
- * Bytes 24 to 31.
+ * 24~31字节为当前密钥的有效challenge。
  */
     OH_HUKS_CHALLENGE_POS_3
 };
 
 /**
- * @brief Enumerates the signature types of the key generated or imported.
+ * @brief 生成或导入密钥时，指定该密钥的安全签名类型。
  *
  * @since 9
  * @version 1.0
  */
 enum OH_Huks_SecureSignType {
     /**
- * The signature carries authentication information. This field is specified when a key
- * is generated or imported. When the key is used to sign data, the data will be added with
- * the authentication information and then be signed.
- * NOTICE:
- * The carried authentication information contains personal identification details. Developers are required
- * to clearly state the purpose of use, retention policy, and destruction method of such personal information in
- * their privacy statement.
+ * 签名类型为携带认证信息。生成或导入密钥时指定该字段，则在使用密钥进行签名时，
+ * 对待签名的数据添加认证信息后进行签名。
+ * 注意：携带的认证信息包含身份信息，开发者需在其隐私声明中对此身份信息的使用目的、存留策略和销毁方式进行说明。
  */
     OH_HUKS_SECURE_SIGN_WITH_AUTHINFO = 1
 };
 
 /**
- * @brief Key type.
+ * @brief 密钥类型。
  *
  * @since 22
  */
@@ -959,12 +959,12 @@ typedef enum OH_Huks_KeyClassType {
 } OH_Huks_KeyClassType;
 
 /**
- * Enumerates the wrap type of the key generated or imported.
+ * 生成或导入密钥时，指定该密钥的封装类型。
  * @since 20
  */
 enum OH_Huks_KeyWrapType {
     /**
- * The hardware unique key wrap type.
+ * 硬件唯一密钥的封装类型。
  *
  * @since 20
  */
@@ -972,69 +972,71 @@ enum OH_Huks_KeyWrapType {
 };
 
 /**
- * @brief Enumerates the tags contained in a parameter set.
- * <br>1 to 200: key parameter tag values.
- * <br>301 to 500: tag values related to access control and authentication of key usage.
- * <br>501 to 600: tag values related to key authentication.
- * <br>601 to 1000: reserved values for other types of tag values.
- * <br>1001 to 9999: extended tag values.
- * <br>11000 to 12000: reserved values.
- * <br>20001 to N: reserved tag values.
+ * @brief 参数集所用的TAG值枚举。
+ * <br>1-200：密钥参数标签值。
+ * <br>301-500：密钥使用访问控制和使用认证相关的标签值。
+ * <br>501-600：密钥认证相关的标签值。
+ * <br>601-1000：其他类型的标签值预留值。
+ * <br>1001-9999：扩展标签值。
+ * <br>11000-12000：预留值。
+ * <br>20001-N：其他标签预留值。
  *
  * @since 9
  * @version 1.0
  */
 enum OH_Huks_Tag {
 
-    /** Algorithm. */
+    /**
+ * 算法类型。
+ */
     OH_HUKS_TAG_ALGORITHM = OH_HUKS_TAG_TYPE_UINT | 1,
     /**
- * Key purpose.
+ * 密钥用途。
  */
     OH_HUKS_TAG_PURPOSE = OH_HUKS_TAG_TYPE_UINT | 2,
     /**
- * Key length.
+ * 密钥长度。
  */
     OH_HUKS_TAG_KEY_SIZE = OH_HUKS_TAG_TYPE_UINT | 3,
     /**
- * Digest algorithm.
+ * 摘要算法。
  */
     OH_HUKS_TAG_DIGEST = OH_HUKS_TAG_TYPE_UINT | 4,
     /**
- * Padding algorithm.
+ * 填充算法。
  */
     OH_HUKS_TAG_PADDING = OH_HUKS_TAG_TYPE_UINT | 5,
     /**
- * Cipher mode.
+ * 加密模式。
  */
     OH_HUKS_TAG_BLOCK_MODE = OH_HUKS_TAG_TYPE_UINT | 6,
     /**
- * Key type.
+ * 密钥类型。
  */
     OH_HUKS_TAG_KEY_TYPE = OH_HUKS_TAG_TYPE_UINT | 7,
     /**
- * Associated authentication data.
+ * 附加身份验证数据。
  */
     OH_HUKS_TAG_ASSOCIATED_DATA = OH_HUKS_TAG_TYPE_BYTES | 8,
     /**
- * **NONCE** field for key encryption and decryption.
+ * 密钥加解密的NONCE字段。
  */
     OH_HUKS_TAG_NONCE = OH_HUKS_TAG_TYPE_BYTES | 9,
     /**
- * Initialized vector (IV).
+ * 初始化的向量。
  */
     OH_HUKS_TAG_IV = OH_HUKS_TAG_TYPE_BYTES | 10,
 
     /**
- * Information generated during key derivation.
+ * 密钥派生时的信息。
  */
     OH_HUKS_TAG_INFO = OH_HUKS_TAG_TYPE_BYTES | 11,
     /**
- * Salt value used for key derivation.
+ * 派生盐值。
  */
     OH_HUKS_TAG_SALT = OH_HUKS_TAG_TYPE_BYTES | 12,
     /**
- * Number of iterations for key derivation.
+ * 派生迭代次数。
  */
     OH_HUKS_TAG_ITERATION = OH_HUKS_TAG_TYPE_UINT | 14,
 
@@ -1043,27 +1045,27 @@ enum OH_Huks_Tag {
  */
     OH_HUKS_TAG_KEY_GENERATE_TYPE = OH_HUKS_TAG_TYPE_UINT | 15,
     /**
- * Algorithm used in key agreement.
+ * 密钥协商时的算法类型。
  */
     OH_HUKS_TAG_AGREE_ALG = OH_HUKS_TAG_TYPE_UINT | 19,
     /**
- * Alias of the public key used for key agreement.
+ * 密钥协商时的公钥别名。
  */
     OH_HUKS_TAG_AGREE_PUBLIC_KEY_IS_KEY_ALIAS = OH_HUKS_TAG_TYPE_BOOL | 20,
     /**
- * Alias of the private key used for key agreement.
+ * 密钥协商时的私钥别名。
  */
     OH_HUKS_TAG_AGREE_PRIVATE_KEY_ALIAS = OH_HUKS_TAG_TYPE_BYTES | 21,
     /**
- * Public key used for key agreement.
+ * 用于协商的公钥。
  */
     OH_HUKS_TAG_AGREE_PUBLIC_KEY = OH_HUKS_TAG_TYPE_BYTES | 22,
     /**
- * Alias used in key attestation.
+ * 密钥认证时的别名。
  */
     OH_HUKS_TAG_KEY_ALIAS = OH_HUKS_TAG_TYPE_BYTES | 23,
     /**
- * Size of the derived key.
+ * 派生密钥大小。
  */
     OH_HUKS_TAG_DERIVE_KEY_SIZE = OH_HUKS_TAG_TYPE_UINT | 24,
     /**
@@ -1071,7 +1073,7 @@ enum OH_Huks_Tag {
  */
     OH_HUKS_TAG_IMPORT_KEY_TYPE = OH_HUKS_TAG_TYPE_UINT | 25,
     /**
- * Algorithm suite used for importing a key in ciphertext.
+ * 导入加密密钥的套件。
  */
     OH_HUKS_TAG_UNWRAP_ALGORITHM_SUITE = OH_HUKS_TAG_TYPE_UINT | 26,
     /**
@@ -1080,30 +1082,32 @@ enum OH_Huks_Tag {
  */
     OH_HUKS_TAG_DERIVED_AGREED_KEY_STORAGE_FLAG = OH_HUKS_TAG_TYPE_UINT | 29,
     /**
- * Salt length type when the PSS padding mode is used with the RSA algorithm.
+ * RSA算法，填充模式为PSS时的盐值长度类型。
  */
     OH_HUKS_TAG_RSA_PSS_SALT_LEN_TYPE = OH_HUKS_TAG_TYPE_UINT | 30,
 
-    /** All users in the multi-user scenario. */
+    /**
+ * 多用户中的所有用户。
+ */
     OH_HUKS_TAG_ALL_USERS = OH_HUKS_TAG_TYPE_BOOL | 301,
     /**
- * Multi-user ID.
+ * 表示多用户id。
  */
     OH_HUKS_TAG_USER_ID = OH_HUKS_TAG_TYPE_UINT | 302,
     /**
- * Whether key access control is required.
+ * 表示是否需要密钥访问控制。
  */
     OH_HUKS_TAG_NO_AUTH_REQUIRED = OH_HUKS_TAG_TYPE_BOOL | 303,
     /**
- * User authentication type in key access control.
+ * 表示密钥访问控制中用户认证类型。
  */
     OH_HUKS_TAG_USER_AUTH_TYPE = OH_HUKS_TAG_TYPE_UINT | 304,
     /**
- * Timeout duration for key access.
+ * 表示密钥访问控制类型中密钥访问的超时时间。
  */
     OH_HUKS_TAG_AUTH_TIMEOUT = OH_HUKS_TAG_TYPE_UINT | 305,
     /**
- * Authentication token for the key.
+ * 表示密钥访问控制中使用密钥时传入的authtoken的类型。
  */
     OH_HUKS_TAG_AUTH_TOKEN = OH_HUKS_TAG_TYPE_BYTES | 306,
     /**
@@ -1112,7 +1116,7 @@ enum OH_Huks_Tag {
  */
     OH_HUKS_TAG_KEY_AUTH_ACCESS_TYPE = OH_HUKS_TAG_TYPE_UINT | 307,
     /**
- * Signature type of the key generated or imported.
+ * 表示生成或导入密钥时，指定该密钥的签名类型。
  */
     OH_HUKS_TAG_KEY_SECURE_SIGN_TYPE = OH_HUKS_TAG_TYPE_UINT | 308,
     /**
@@ -1126,40 +1130,42 @@ enum OH_Huks_Tag {
     OH_HUKS_TAG_CHALLENGE_POS = OH_HUKS_TAG_TYPE_UINT | 310,
 
     /**
- * Type of the key authentication purpose.
+ * 表示密钥认证用途的类型。
  */
     OH_HUKS_TAG_KEY_AUTH_PURPOSE = OH_HUKS_TAG_TYPE_UINT | 311,
 
     /**
- * Security level of access control for key file storage, whose optional values are from OH_Huks_AuthStorageLevel.
+ * 密钥文件存储访问控制的类别，类型可在枚举{@link OH_Huks_AuthStorageLevel}中选择。
  *
  * @since 11
  */
     OH_HUKS_TAG_AUTH_STORAGE_LEVEL = OH_HUKS_TAG_TYPE_UINT | 316,
 
     /**
- * Authentication mode of the user authtoken，whose optional values are from enum HuksUserAuthMode.
+ * 表示密钥访问控制中用户认证模式，类型可在枚举{@link OH_Huks_UserAuthMode}中选择。
  *
  * @since 12
  */
     OH_HUKS_TAG_USER_AUTH_MODE = OH_HUKS_TAG_TYPE_UINT | 319,
 
-    /** Challenge value used in the attestation. */
+    /**
+ * 密钥认证时的挑战值。
+ */
     OH_HUKS_TAG_ATTESTATION_CHALLENGE = OH_HUKS_TAG_TYPE_BYTES | 501,
     /**
- * ID of the application, to which the key belongs, in key attestation.
+ * 密钥认证时拥有该密钥的application的Id。
  */
     OH_HUKS_TAG_ATTESTATION_APPLICATION_ID = OH_HUKS_TAG_TYPE_BYTES | 502,
     /**
- * Alias used in key attestation.
+ * 密钥认证时的别名。
  */
     OH_HUKS_TAG_ATTESTATION_ID_ALIAS = OH_HUKS_TAG_TYPE_BYTES | 511,
     /**
- * Security level used in key attestation.
+ * 密钥认证时的安全凭据。
  */
     OH_HUKS_TAG_ATTESTATION_ID_SEC_LEVEL_INFO = OH_HUKS_TAG_TYPE_BYTES | 514,
     /**
- * Version information used in key attestation.
+ * 密钥认证时的版本号。
  */
     OH_HUKS_TAG_ATTESTATION_ID_VERSION_INFO = OH_HUKS_TAG_TYPE_BYTES | 515,
     /**
@@ -1181,26 +1187,28 @@ enum OH_Huks_Tag {
  */
     OH_HUKS_TAG_KEY_CLASS = OH_HUKS_TAG_TYPE_UINT | 522,
 
-    /** Specifies whether it is a key alias. */
+    /**
+ * 是否是密钥别名。
+ */
     OH_HUKS_TAG_IS_KEY_ALIAS = OH_HUKS_TAG_TYPE_BOOL | 1001,
     /**
  * Key storage mode. For details, see {@link OH_Huks_KeyStorageType}.
  */
     OH_HUKS_TAG_KEY_STORAGE_FLAG = OH_HUKS_TAG_TYPE_UINT | 1002,
     /**
- * Whether to allow the key to be wrapped.
+ * 是否允许密钥封装。
  */
     OH_HUKS_TAG_IS_ALLOWED_WRAP = OH_HUKS_TAG_TYPE_BOOL | 1003,
     /**
- * Key wrap type.
+ * 密钥封装的类型。
  */
     OH_HUKS_TAG_KEY_WRAP_TYPE = OH_HUKS_TAG_TYPE_UINT | 1004,
     /**
- * Authentication ID.
+ * 密钥认证的ID。
  */
     OH_HUKS_TAG_KEY_AUTH_ID = OH_HUKS_TAG_TYPE_BYTES | 1005,
     /**
- * Role of the key.
+ * 密钥角色。
  */
     OH_HUKS_TAG_KEY_ROLE = OH_HUKS_TAG_TYPE_UINT | 1006,
     /**
@@ -1208,38 +1216,40 @@ enum OH_Huks_Tag {
  */
     OH_HUKS_TAG_KEY_FLAG = OH_HUKS_TAG_TYPE_UINT | 1007,
     /**
- * Whether the invocation is asynchronous.
+ * 是否异步。
  */
     OH_HUKS_TAG_IS_ASYNCHRONIZED = OH_HUKS_TAG_TYPE_UINT | 1008,
     /**
- * Key domain.
+ * 密钥域。
  */
     OH_HUKS_TAG_KEY_DOMAIN = OH_HUKS_TAG_TYPE_UINT | 1011,
     /**
- * Key access control based on device password setting status.
- * True means the key can only be generated and used when the password is set.
+ * 表示密钥锁屏密码访问控制字段，可限制密钥只有在用户设置了锁屏密码时可用。
+ * True表示只有在密码设置时才能生成和使用密钥。
  *
  * @since 11
  */
     OH_HUKS_TAG_IS_DEVICE_PASSWORD_SET = OH_HUKS_TAG_TYPE_BOOL | 1012,
 
     /**
- * AEAD in GCM mode.
+ * 用于传入GCM模式中的AEAD数据的字段。
  */
     OH_HUKS_TAG_AE_TAG = OH_HUKS_TAG_TYPE_BYTES | 10009,
 
-    /** Symmetric key data. */
+    /**
+ * 非对称密钥公钥数据。
+ */
     OH_HUKS_TAG_SYMMETRIC_KEY_DATA = OH_HUKS_TAG_TYPE_BYTES | 20001,
     /**
- * Public key data of the asymmetric key pair.
+ * 非对称密钥公钥数据。
  */
     OH_HUKS_TAG_ASYMMETRIC_PUBLIC_KEY_DATA = OH_HUKS_TAG_TYPE_BYTES | 20002,
     /**
- * Private key data of the asymmetric key pair.
+ * 非对称密钥私钥数据。
  */
     OH_HUKS_TAG_ASYMMETRIC_PRIVATE_KEY_DATA = OH_HUKS_TAG_TYPE_BYTES | 20003,
     /**
- * @brief The tag indicates a group of shared keys among applications with the same developer ID.
+ * @brief 该标签表示具有相同开发者ID的应用之间的共享密钥组。
  *
  * @since 23
  */

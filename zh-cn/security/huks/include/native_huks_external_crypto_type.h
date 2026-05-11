@@ -131,7 +131,7 @@ typedef struct OH_Huks_ExternalCryptoParamSet {
 } OH_Huks_ExternalCryptoParamSet;
 
 /**
- * @brief Enumerates the tag values used in a parameter set.
+ * @brief 列举参数集合中使用的标签值。
  *
  * @since 22
  */
@@ -180,27 +180,27 @@ typedef enum OH_Huks_ExternalCryptoTag {
 } OH_Huks_ExternalCryptoTag;
 
 /**
- * @brief Enumerates the Ukey PIN authentication states.
+ * @brief 列举Ukey PIN码认证状态。
  *
  * @since 22
  */
 typedef enum OH_Huks_ExternalPinAuthState {
     /**
-     * @brief Ukey PIN is not authenticated.
+     * @brief PIN码未认证。
      *
      * @since 22
      */
     OH_HUKS_EXT_CRYPTO_PIN_NO_AUTH = 0,
 
     /**
-     * @brief Ukey PIN is authenticated.
+     * @brief PIN码认证成功。
      *
      * @since 22
      */
     OH_HUKS_EXT_CRYPTO_PIN_AUTH_SUCCEEDED = 1,
 
     /**
-     * @brief Ukey PIN is locked.
+     * @brief PIN码被锁。
      *
      * @since 22
      */
