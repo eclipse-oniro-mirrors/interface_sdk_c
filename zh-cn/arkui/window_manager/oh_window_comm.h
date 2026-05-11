@@ -161,7 +161,7 @@ typedef enum {
     WINDOW_MANAGER_ERRORCODE_PIP_REPEATED_OPERATION = 1300015,
 
     /**
-     * 参数错误。 可能原因：<br/>1.参数取值范围非法；2.参数数量非法；3.参数类型非法。
+     * 参数错误。可能原因：<br/>1.参数取值范围非法；2.参数数量非法；3.参数类型非法。
      * @since 20
      */
     WINDOW_MANAGER_ERRORCODE_INCORRECT_PARAM = 1300016

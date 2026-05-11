@@ -44,14 +44,14 @@ extern "C" {
 #endif
 /**
  * @brief Maximum length of a display name.
- * 
+ *
  * @since 14
  */
 #define OH_DISPLAY_NAME_LENGTH 32
 
 /**
  * @brief Enumerates the clockwise rotation angles of a display.
- * 
+ *
  * @since 12
  * @version 1.0
  */
@@ -79,7 +79,7 @@ typedef enum {
 
 /**
  * @brief Enumerates the orientations of a display.
- * 
+ *
  * @since 12
  * @version 1.0
  */
@@ -112,7 +112,7 @@ typedef enum {
 
 /**
  * @brief Enumerates the status codes returned by the display manager interface.
- * 
+ *
  * @since 12
  * @version 1.0
  */
@@ -166,7 +166,7 @@ typedef enum {
 
 /**
  * @brief Enumerates the display modes of a foldable device.
- * 
+ *
  * @since 12
  * @version 1.0
  */
@@ -199,7 +199,7 @@ typedef enum {
 
 /**
  * @brief The struct describes a rectangle.
- * 
+ *
  * @since 12
  * @version 1.0
  */
@@ -216,7 +216,7 @@ typedef struct {
 
 /**
  * @brief The struct describes the curved area on a waterfall display.
- * 
+ *
  * @since 12
  * @version 1.0
  */
@@ -237,7 +237,7 @@ typedef struct {
 /**
  * @brief The struct describes the unusable area of a display, including punch hole, notch, and curved area of a
  * waterfall display.
- * 
+ *
  * @since 12
  * @version 1.0
  */
@@ -254,7 +254,7 @@ typedef struct {
 
 /**
  * @brief Enumerates the states of a display.
- * 
+ *
  * @since 14
  * @version 1.0
  */
@@ -297,7 +297,7 @@ typedef enum {
 
 /**
  * @brief Enumerates the source modes of a device.
- * 
+ *
  * @since 20
  * @version 1.0
  */
@@ -330,7 +330,7 @@ typedef enum {
 
 /**
  * @brief The struct describes all the HDR formats supported by a display.
- * 
+ *
  * @since 14
  * @version 1.0
  */
@@ -348,7 +348,7 @@ typedef struct {
 
 /**
  * @brief The struct describes all the color spaces supported by a display.
- * 
+ *
  * @since 14
  * @version 1.0
  */
@@ -366,7 +366,7 @@ typedef struct {
 
 /**
  * @brief The struct describes the information about a display.
- * 
+ *
  * @since 14
  * @version 1.0
  */
