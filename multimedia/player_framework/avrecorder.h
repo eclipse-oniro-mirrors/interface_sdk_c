@@ -100,7 +100,7 @@ OH_AVErrCode OH_AVRecorder_GetInputSurface(OH_AVRecorder *recorder, OHNativeWind
  * @brief Update the video orientation before recorder start.
  * @syscap SystemCapability.Multimedia.Media.AVRecorder
  * @param recorder Pointer to an OH_AVRecorder instance
- * @param rotation angle, should be [0, 90, 180, 270]
+ * @param rotation angle, in degrees, should be [0, 90, 180, 270]
  * @return Function result code.
  *         {@link AV_ERR_OK} if the execution is successful.
  *         {@link AV_ERR_INVALID_VAL} if input recorder is nullptr or update rotation failed.

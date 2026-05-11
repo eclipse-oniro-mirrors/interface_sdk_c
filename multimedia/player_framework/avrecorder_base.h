@@ -242,7 +242,7 @@ typedef struct OH_AVRecorder_MetadataTemplate {
 typedef struct OH_AVRecorder_Metadata {
     /* The metadata to retrieve the content type or genre of the data source */
     char *genre;
-    /* The metadata to retrieve the information about the video orientation */
+    /* The metadata to retrieve the information about the video orientation, in degrees */
     char *videoOrientation;
     /* The geographical location info of the video */
     OH_AVRecorder_Location location;

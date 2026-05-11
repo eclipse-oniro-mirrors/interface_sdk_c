@@ -488,9 +488,9 @@ typedef struct OH_AVScreenCaptureCallback {
  * @version 1.0
  */
 typedef struct OH_Rect {
-    /* X-coordinate of screen recording */
+    /* X-coordinate of screen recording, in px */
     int32_t x;
-    /* y-coordinate of screen recording */
+    /* y-coordinate of screen recording, in px */
     int32_t y;
     /* Width of screen recording, in px */
     int32_t width;
@@ -663,7 +663,7 @@ typedef void (*OH_AVScreenCapture_OnError)(OH_AVScreenCapture *capture, int32_t 
  * @param capture Pointer to an OH_AVScreenCapture instance
  * @param buffer Pointer to a buffer containing media data
  * @param bufferType Data type of the buffer, see {@link OH_AVScreenCaptureBufferType}
- * @param timestamp Timestamp of the buffer
+ * @param timestamp Timestamp of the buffer, in nanosecond
  * @param userData Pointer to user specific data
  *
  * @since 12
