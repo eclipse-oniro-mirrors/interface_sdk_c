@@ -6180,7 +6180,7 @@ struct __ani_interaction_api {
      * @param[in] value The boolean value to be boxed.
      * @param[out] result A pointer to restore the resulting boxed object.
      * @return Returns a status code of type `ani_status` indicating success or failure.
-     * @since 26.0.0
+     * @since 24
      */
     ani_status (*Primitive_Box_Boolean)(ani_env *env, ani_boolean value, ani_object *result);
 
@@ -6193,7 +6193,7 @@ struct __ani_interaction_api {
      * @param[in] obj The obj to be unboxed.
      * @param[out] result A pointer to restore the resulting unboxed boolean value.
      * @return Returns a status code of type `ani_status` indicating success or failure.
-     * @since 26.0.0
+     * @since 24
      */
     ani_status (*Primitive_Unbox_Boolean)(ani_env *env, ani_object obj, ani_boolean *result);
 
@@ -6206,7 +6206,7 @@ struct __ani_interaction_api {
      * @param[in] value The byte value to be boxed.
      * @param[out] result A pointer to restore the resulting boxed object.
      * @return Returns a status code of type `ani_status` indicating success or failure.
-     * @since 26.0.0
+     * @since 24
      */
     ani_status (*Primitive_Box_Byte)(ani_env *env, ani_byte value, ani_object *result);
 
@@ -6219,7 +6219,7 @@ struct __ani_interaction_api {
      * @param[in] obj The obj to be unboxed.
      * @param[out] result A pointer to restore the resulting unboxed byte value.
      * @return Returns a status code of type `ani_status` indicating success or failure.
-     * @since 26.0.0
+     * @since 24
      */
     ani_status (*Primitive_Unbox_Byte)(ani_env *env, ani_object obj, ani_byte *result);
 
@@ -6232,7 +6232,7 @@ struct __ani_interaction_api {
      * @param[in] value The char value to be boxed.
      * @param[out] result A pointer to restore the resulting boxed object.
      * @return Returns a status code of type `ani_status` indicating success or failure.
-     * @since 26.0.0
+     * @since 24
      */
     ani_status (*Primitive_Box_Char)(ani_env *env, ani_char value, ani_object *result);
 
@@ -6245,7 +6245,7 @@ struct __ani_interaction_api {
      * @param[in] obj The obj to be unboxed.
      * @param[out] result A pointer to restore the resulting unboxed char value.
      * @return Returns a status code of type `ani_status` indicating success or failure.
-     * @since 26.0.0
+     * @since 24
      */
     ani_status (*Primitive_Unbox_Char)(ani_env *env, ani_object obj, ani_char *result);
 
@@ -6258,7 +6258,7 @@ struct __ani_interaction_api {
      * @param[in] value The short value to be boxed.
      * @param[out] result A pointer to restore the resulting boxed object.
      * @return Returns a status code of type `ani_status` indicating success or failure.
-     * @since 26.0.0
+     * @since 24
      */
     ani_status (*Primitive_Box_Short)(ani_env *env, ani_short value, ani_object *result);
 
@@ -6271,7 +6271,7 @@ struct __ani_interaction_api {
      * @param[in] obj The obj to be unboxed.
      * @param[out] result A pointer to restore the resulting unboxed short value.
      * @return Returns a status code of type `ani_status` indicating success or failure.
-     * @since 26.0.0
+     * @since 24
      */
     ani_status (*Primitive_Unbox_Short)(ani_env *env, ani_object obj, ani_short *result);
 
@@ -6284,7 +6284,7 @@ struct __ani_interaction_api {
      * @param[in] value The int value to be boxed.
      * @param[out] result A pointer to restore the resulting boxed object.
      * @return Returns a status code of type `ani_status` indicating success or failure.
-     * @since 26.0.0
+     * @since 24
      */
     ani_status (*Primitive_Box_Int)(ani_env *env, ani_int value, ani_object *result);
 
@@ -6297,7 +6297,7 @@ struct __ani_interaction_api {
      * @param[in] obj The obj to be unboxed.
      * @param[out] result A pointer to restore the resulting unboxed int value.
      * @return Returns a status code of type `ani_status` indicating success or failure.
-     * @since 26.0.0
+     * @since 24
      */
     ani_status (*Primitive_Unbox_Int)(ani_env *env, ani_object obj, ani_int *result);
 
@@ -6310,7 +6310,7 @@ struct __ani_interaction_api {
      * @param[in] value The long value to be boxed.
      * @param[out] result A pointer to restore the resulting boxed object.
      * @return Returns a status code of type `ani_status` indicating success or failure.
-     * @since 26.0.0
+     * @since 24
      */
     ani_status (*Primitive_Box_Long)(ani_env *env, ani_long value, ani_object *result);
 
@@ -6323,7 +6323,7 @@ struct __ani_interaction_api {
      * @param[in] obj The obj to be unboxed.
      * @param[out] result A pointer to restore the resulting unboxed long value.
      * @return Returns a status code of type `ani_status` indicating success or failure.
-     * @since 26.0.0
+     * @since 24
      */
     ani_status (*Primitive_Unbox_Long)(ani_env *env, ani_object obj, ani_long *result);
 
@@ -6336,7 +6336,7 @@ struct __ani_interaction_api {
      * @param[in] value The float value to be boxed.
      * @param[out] result A pointer to restore the resulting boxed object.
      * @return Returns a status code of type `ani_status` indicating success or failure.
-     * @since 26.0.0
+     * @since 24
      */
     ani_status (*Primitive_Box_Float)(ani_env *env, ani_float value, ani_object *result);
 
@@ -6349,7 +6349,7 @@ struct __ani_interaction_api {
      * @param[in] obj The obj to be unboxed.
      * @param[out] result A pointer to restore the resulting unboxed float value.
      * @return Returns a status code of type `ani_status` indicating success or failure.
-     * @since 26.0.0
+     * @since 24
      */
     ani_status (*Primitive_Unbox_Float)(ani_env *env, ani_object obj, ani_float *result);
 
@@ -6362,7 +6362,7 @@ struct __ani_interaction_api {
      * @param[in] value The double value to be boxed.
      * @param[out] result A pointer to restore the resulting boxed object.
      * @return Returns a status code of type `ani_status` indicating success or failure.
-     * @since 26.0.0
+     * @since 24
      */
     ani_status (*Primitive_Box_Double)(ani_env *env, ani_double value, ani_object *result);
 
@@ -6375,7 +6375,7 @@ struct __ani_interaction_api {
      * @param[in] obj The obj to be unboxed.
      * @param[out] result A pointer to restore the resulting unboxed double value.
      * @return Returns a status code of type `ani_status` indicating success or failure.
-     * @since 26.0.0
+     * @since 24
      */
     ani_status (*Primitive_Unbox_Double)(ani_env *env, ani_object obj, ani_double *result);
 };
