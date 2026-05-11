@@ -25,92 +25,100 @@
 /**
  * @file ohbattery_info.h
  *
- * @brief Declares the APIs to get information about the current battery capacity and the power source type,
- *        defines strings that identify corresponding common events.
- *
+ * @brief Declares the battery APIs that are used to obtain the current battery capacity and power supply type and
+ * define common battery events.
+ * 
  * @library libohbattery_info.so
  * @kit BasicServicesKit
  * @syscap SystemCapability.PowerManager.BatteryManager.Core
  * @since 13
  * @version 1.0
  */
+
 #ifndef OHBATTERY_INFO_HEADER
 #define OHBATTERY_INFO_HEADER
-
 #include <stdint.h>
-
 #ifdef __cplusplus
 extern "C" {
 #endif /* __cplusplus */
 
 /**
- * @brief A string that identifies the common event sent after battery capacity changes.
+ * @brief Defines the common event indicating a battery capacity change.
+ *
  * @since 13
  * @version 1.0
  */
 static const char* COMMON_EVENT_KEY_CAPACITY = "soc";
 /**
- * @brief A string that identifies the common event sent after charge state changes.
+ * @brief Defines the common event indicating a charging status change.
+ *
  * @since 13
  * @version 1.0
  */
 static const char* COMMON_EVENT_KEY_CHARGE_STATE = "chargeState";
 /**
- * @brief A string that identifies the common event sent after plugged type changes.
+ * @brief Defines the common event indicating a battery plugged type change.
+ *
  * @since 13
  * @version 1.0
  */
 static const char* COMMON_EVENT_KEY_PLUGGED_TYPE = "pluggedType";
 
 /**
- * @brief Defines plugged types.
+ * @brief Enumerates the battery plugged types.
  *
  * @since 13
  * @version 1.0
  */
 typedef enum {
     /**
-     * Power source is unplugged.
+     * No power supply.
+     *
+     * @since 13
      */
     PLUGGED_TYPE_NONE,
-
     /**
-     * Power source is an AC charger.
+     * AC charging.
+     *
+     * @since 13
      */
     PLUGGED_TYPE_AC,
-
     /**
-     * Power source is a USB DC charger.
+     * USB DC charging.
+     *
+     * @since 13
      */
     PLUGGED_TYPE_USB,
-
     /**
-     * Power source is wireless charger.
+     * Wireless charging.
+     *
+     * @since 13
      */
     PLUGGED_TYPE_WIRELESS,
-
     /**
-     * The bottom of the enum.
+     * Reserved.
+     *
+     * @since 13
      */
     PLUGGED_TYPE_BUTT
 } BatteryInfo_BatteryPluggedType;
 
 /**
- * @brief This API returns the current battery capacity in percent.
+ * @brief Obtains the current battery capacity in percent.
  *
- * @return Returns number between 0 and 100.
+ * @return A number in the range from 0 to 100.
  * @since 13
  */
 int32_t OH_BatteryInfo_GetCapacity();
 
 /**
- * @brief This API returns the current plugged type.
+ * @brief Obtains the battery plugged type.
  *
- * @return {@link BatteryInfo_BatteryPluggedType#PLUGGED_TYPE_NONE} if the power source is unplugged.
- *         {@link PLUGGED_TYPE_AC} if the power source is an AC charger.
- *         {@link PLUGGED_TYPE_USB} if the power source is an USB DC charger.
- *         {@link PLUGGED_TYPE_WIRELESS} if the power source is wireless charger.
- *         {@link PLUGGED_TYPE_BUTT} if the type is unknown.
+ * @return {@link BatteryInfo_BatteryPluggedType#PLUGGED_TYPE_NONE} if there is no power supply;
+ *         {@link PLUGGED_TYPE_AC} if the power supply is in AC charging mode;
+ *         {@link PLUGGED_TYPE_USB} if the power supply is in USB DC charging mode;
+ *         {@link PLUGGED_TYPE_WIRELESS} if the power supply is in wireless charging mode;
+ *         {@link PLUGGED_TYPE_BUTT} if the battery plugged type is unknown.
  * @since 13
  */
 BatteryInfo_BatteryPluggedType OH_BatteryInfo_GetPluggedType();
@@ -118,4 +126,5 @@ BatteryInfo_BatteryPluggedType OH_BatteryInfo_GetPluggedType();
 }
 #endif /* __cplusplus */
 #endif /* OHBATTERY_INFO_HEADER */
+
 /** @} */
