@@ -46,7 +46,7 @@ extern "C" {
 
 /**
  * @brief 获取屏幕全屏截图，可以通过设置不同的屏幕id号截取不同屏幕的截图。
- * 
+ *
  * @permission ohos.permission.CUSTOM_SCREEN_CAPTURE or ohos.permission.CUSTOM_SCREEN_RECORDING [since 22]
  * @permission ohos.permission.CUSTOM_SCREEN_CAPTURE [since 14]
  * @param displayId 需要截屏的屏幕id号，该值为非负整数。

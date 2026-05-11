@@ -187,7 +187,7 @@ bool OH_NativeDisplayManager_IsFoldable();
 
 /**
  * @brief 获取可折叠设备的显示模式。
- * 
+ *
  * @param displayMode 折叠设备当前的显示模式，具体可见{@link NativeDisplayManager_FoldDisplayMode}，此处作为出参返回。
  * @return 返回屏幕管理接口的通用状态码，具体可见{@link NativeDisplayManager_ErrorCode}。
  * @since 12

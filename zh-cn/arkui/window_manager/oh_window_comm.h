@@ -252,7 +252,7 @@ typedef struct {
 
 /**
  * @brief Describes the configuration of the main window screenshot.
- * 
+ *
  * @since 21
  */
 typedef struct {

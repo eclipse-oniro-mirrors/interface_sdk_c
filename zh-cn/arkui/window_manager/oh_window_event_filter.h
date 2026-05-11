@@ -108,7 +108,7 @@ typedef bool (*OH_NativeWindowManager_TouchEventFilter)(Input_TouchEvent* touchE
 
 /**
  * @brief 注册触摸事件的过滤函数。
- * 
+ *
  * @param windowId 需要过滤触摸事件的窗口ID。
  * @param touchEventFilter 多模触摸事件的过滤函数。
  * @return 返回窗口管理接口的通用状态码，具体可见{@link WindowManager_ErrorCode}。
