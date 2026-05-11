@@ -347,7 +347,7 @@ typedef struct {
 
 /**
  * @brief The struct describes all the color spaces supported by a display.
- * 
+ *
  * @since 14
  * @version 1.0
  */
@@ -365,7 +365,7 @@ typedef struct {
 
 /**
  * @brief The struct describes the information about a display.
- * 
+ *
  * @since 14
  * @version 1.0
  */

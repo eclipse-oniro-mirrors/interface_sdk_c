@@ -314,7 +314,7 @@ typedef void (*OH_NativeDisplayManager_AvailableAreaChangeCallback)(uint64_t dis
 
 /**
  * @brief 注册屏幕可用区域变化监听。
- * 
+ *
  * @param availableAreaChangeCallback 屏幕可用区域变化后触发的回调函数，
  *     回调函数定义见{@link OH_NativeDisplayManager_AvailableAreaChangeCallback}。
  * @param listenerIndex 注册成功后返回的监听编号，

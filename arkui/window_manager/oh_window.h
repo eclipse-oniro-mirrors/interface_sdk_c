@@ -179,7 +179,7 @@ int32_t OH_WindowManager_SetWindowBackgroundColor(int32_t windowId, const char* 
 /**
  * @brief Sets the window brightness for the main window. The window brightness takes effect only when the window is in
  * the foreground and has focus.
- * 
+ *
  * @param windowId Window ID. The default value is **0**. The value is an integer.
  * @param brightness Screen brightness. The value is a floating-point number in the range [0.0, 1.0] or is set to **-1.
  *     0**. The value **1.0** means the brightest, and **-1.0** means that the window brightness resets to the original

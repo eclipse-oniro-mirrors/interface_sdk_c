@@ -44,21 +44,21 @@ extern "C" {
 
 /**
  * @brief Describes the pixel image information.
- * 
+ *
  * @since 15
  */
 typedef struct OH_PixelmapNative;
 
 /**
  * @brief 帧率指标数据对象。
- * 
+ *
  * @since 26.0.0
  */
 typedef struct OH_WindowManager_FrameMetrics OH_WindowManager_FrameMetrics;
 
 /**
  * @brief 帧率指标回调类型。
- * 
+ *
  * @since 26.0.0
  */
 typedef void (*OH_WindowManager_FrameMetricsMeasuredCallback)(
@@ -81,7 +81,7 @@ typedef void (*OH_WindowManager_DensityInfoCallback)(int32_t windowId, const OH_
 
 /**
  * @brief 窗口管理接口返回状态码枚举。
- * 
+ *
  * @since 12
  */
 typedef enum {
@@ -169,7 +169,7 @@ typedef enum {
 
 /**
  * @brief 避让区域枚举类型。
- * 
+ *
  * @since 15
  */
 typedef enum {

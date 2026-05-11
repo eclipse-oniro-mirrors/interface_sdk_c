@@ -92,7 +92,7 @@ WindowManager_ErrorCode OH_NativeWindowManager_RegisterMouseEventFilter(int32_t 
 
 /**
  * @brief 取消注册窗口的鼠标事件过滤函数。
- * 
+ *
  * @param windowId 需要取消过滤鼠标事件的窗口ID。
  * @return 返回窗口管理接口的通用状态码，具体可见{@link WindowManager_ErrorCode}。
  * @since 15
@@ -119,7 +119,7 @@ WindowManager_ErrorCode OH_NativeWindowManager_RegisterTouchEventFilter(int32_t 
 
 /**
  * @brief 取消注册窗口的触摸事件过滤函数。
- * 
+ *
  * @param windowId 需要取消过滤触摸事件的窗口ID。
  * @return 返回窗口管理接口的通用状态码，具体可见{@link WindowManager_ErrorCode}。
  * @since 15
