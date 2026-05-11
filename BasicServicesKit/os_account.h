@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2024 Huawei Device Co., Ltd.
+ * Copyright (c) 2024-2026 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -24,20 +24,18 @@
 /**
  * @file os_account.h
  *
- * @brief Declares the APIs for accessing and managing the OS account information.
+ * @brief Defines the APIs for accessing and managing OS account information.
+ *
  * @library libos_account_ndk.so
  * @kit BasicServicesKit
  * @syscap SystemCapability.Account.OsAccount
  * @since 12
  */
-
 #ifndef OS_ACCOUNT_H
 #define OS_ACCOUNT_H
-
 #include <stddef.h>
 #include <stdint.h>
 #include "os_account_common.h"
-
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -45,13 +43,15 @@ extern "C" {
 /**
  * @brief Gets the name of the OS account to which the caller process belongs.
  *
- * @param buffer The name character array which should have space for the name and the terminating character ('\0').
+ * @param buffer The name character array, which should have space for the name and the terminating character ('\0').
+ *     The maximum size of the name is LOGIN_NAME_MAX.
  * @param buffer_size The size of the name character array.
- * @return {@link OS_ACCOUNT_ERR_OK} Indicates successful;<br>
- *         {@link OS_ACCOUNT_ERR_INTERNAL_ERROR} Indicates the internal error.<br>
- *         {@link OS_ACCOUNT_ERR_INVALID_PARAMETER} Indicates the <i>buffer</i> is NULL pointer or the size of the name,
- *         including the terminating character ('\0'), is larger than <i>buffer_size</i>;
- * @syscap SystemCapability.Account.OsAccount
+ * @return <ul>
+ *         <li>{@link OS_ACCOUNT_ERR_OK} Indicates success.</li>
+ *         <li>{@link OS_ACCOUNT_ERR_INTERNAL_ERROR} Indicates the internal error.</li>
+ *         <li>{@link OS_ACCOUNT_ERR_INVALID_PARAMETER} Indicates the <i>buffer</i> is a NULL pointer or the size of
+ *         the name, including the terminating character ('\0'), is larger than <i>buffer_size</i>.</li>
+ *         </ul>
  * @since 12
  */
 OsAccount_ErrCode OH_OsAccount_GetName(char *buffer, size_t buffer_size);
@@ -62,23 +62,23 @@ OsAccount_ErrCode OH_OsAccount_GetName(char *buffer, size_t buffer_size);
  * @permission ohos.permission.GET_LOCAL_ACCOUNT_IDENTIFIERS
  * @param localId The local ID of the target OS account.
  * @param name The name character array, which should have space for the name and the terminating character ('\0').
- * The maximum size of the name is LOGIN_NAME_MAX.
+ *     The maximum size of the name is LOGIN_NAME_MAX.
  * @param name_size The size of the name character array.
- * @return {@link OS_ACCOUNT_ERR_OK} Indicates success;<br>
- *         {@link OS_ACCOUNT_ERR_PERMISSION_DENIED} Indicates that permission is denied;<br>
- *         {@link OS_ACCOUNT_ERR_INTERNAL_ERROR} Indicates the internal error.<br>
- *         {@link OS_ACCOUNT_ERR_INVALID_PARAMETER} Indicates the <i>name</i> is a NULL pointer or the size of
- *         the name, including the terminating character ('\0'), is larger than <i>name_size</i>;<br>
- *         {@link OS_ACCOUNT_ERR_ACCOUNT_NOT_FOUND} Indicates the account not found;<br>
- *         {@link OS_ACCOUNT_ERR_RESTRICTED_ACCOUNT} Indicates the account is restricted and cannot be queried;
+ * @return <ul>
+ *         <li>{@link OS_ACCOUNT_ERR_OK} Indicates success.</li>
+ *         <li>{@link OS_ACCOUNT_ERR_PERMISSION_DENIED} Indicates that permission is denied.</li>
+ *         <li>{@link OS_ACCOUNT_ERR_INTERNAL_ERROR} Indicates the internal error.</li>
+ *         <li>{@link OS_ACCOUNT_ERR_INVALID_PARAMETER} Indicates the <i>name</i> is a NULL pointer or the size of
+ *         the name, including the terminating character ('\0'), is larger than <i>name_size</i>.</li>
+ *         <li>{@link OS_ACCOUNT_ERR_ACCOUNT_NOT_FOUND} Indicates the account not found.</li>
+ *         <li>{@link OS_ACCOUNT_ERR_RESTRICTED_ACCOUNT} Indicates the account is restricted and cannot be queried.</li>
+ *         </ul>
  * @since 26.0.0
  */
 OsAccount_ErrCode OH_OsAccount_GetNameByLocalId(int32_t localId, char *name, size_t name_size);
-
 #ifdef __cplusplus
 }
 #endif
 
 /** @} */
-
 #endif // OS_ACCOUNT_H
