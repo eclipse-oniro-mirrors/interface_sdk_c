@@ -17,7 +17,7 @@
  * @addtogroup OH_BatteryInfo
  * @{
  *
- * @brief Provides the definition of the C interface for the BatteryInfo module.
+ * @brief 提供BatteryInfo模块的C接口定义。
  *
  * @since 13
  * @version 1.0
@@ -25,9 +25,8 @@
 /**
  * @file ohbattery_info.h
  *
- * @brief Declares the battery APIs that are used to obtain the current battery capacity and power supply type and
- * define common battery events.
- * 
+ * @brief 声明电池API以获取当前电池容量和电源类型的信息，定义电池相应常见事件。
+ *
  * @library libohbattery_info.so
  * @kit BasicServicesKit
  * @syscap SystemCapability.PowerManager.BatteryManager.Core
@@ -43,21 +42,21 @@ extern "C" {
 #endif /* __cplusplus */
 
 /**
- * @brief Defines the common event indicating a battery capacity change.
+ * @brief 标识电池容量变化后发送的常见事件。
  *
  * @since 13
  * @version 1.0
  */
 static const char* COMMON_EVENT_KEY_CAPACITY = "soc";
 /**
- * @brief Defines the common event indicating a charging status change.
+ * @brief 标识充电状态更改后发送的常见事件。
  *
  * @since 13
  * @version 1.0
  */
 static const char* COMMON_EVENT_KEY_CHARGE_STATE = "chargeState";
 /**
- * @brief Defines the common event indicating a battery plugged type change.
+ * @brief 标识插入类型更改后发送的常见事件。
  *
  * @since 13
  * @version 1.0
@@ -65,38 +64,38 @@ static const char* COMMON_EVENT_KEY_CHARGE_STATE = "chargeState";
 static const char* COMMON_EVENT_KEY_PLUGGED_TYPE = "pluggedType";
 
 /**
- * @brief Enumerates the battery plugged types.
+ * @brief 定义插入类型。
  *
  * @since 13
  * @version 1.0
  */
 typedef enum {
     /**
-    * No power supply.
+    * 电源已拔下。
     *
     * @since 13
     */
     PLUGGED_TYPE_NONE,
     /**
-    * AC charging.
+    * 电源是交流充电。
     *
     * @since 13
     */
     PLUGGED_TYPE_AC,
     /**
-    * USB DC charging.
+    * 电源是USB DC充电。
     *
     * @since 13
     */
     PLUGGED_TYPE_USB,
     /**
-    * Wireless charging.
+    * 电源为无线充电。
     *
     * @since 13
     */
     PLUGGED_TYPE_WIRELESS,
     /**
-    * Reserved.
+    * 预留枚举
     *
     * @since 13
     */
@@ -104,21 +103,21 @@ typedef enum {
 } BatteryInfo_BatteryPluggedType;
 
 /**
- * @brief Obtains the current battery capacity in percent.
+ * @brief 返回当前电池容量。
  *
- * @return A number in the range from 0 to 100.
+ * @return 返回介于0和100之间的数字。
  * @since 13
  */
 int32_t OH_BatteryInfo_GetCapacity();
 
 /**
- * @brief Obtains the battery plugged type.
+ * @brief 返回当前插入的类型。
  *
- * @return {@link BatteryInfo_BatteryPluggedType#PLUGGED_TYPE_NONE} if there is no power supply;
- *         {@link PLUGGED_TYPE_AC} if the power supply is in AC charging mode;
- *         {@link PLUGGED_TYPE_USB} if the power supply is in USB DC charging mode;
- *         {@link PLUGGED_TYPE_WIRELESS} if the power supply is in wireless charging mode;
- *         {@link PLUGGED_TYPE_BUTT} if the battery plugged type is unknown.
+ * @return {@link BatteryInfo_BatteryPluggedType#PLUGGED_TYPE_NONE} 如果电源被拔下。
+ *         {@link BatteryInfo_BatteryPluggedType#PLUGGED_TYPE_AC} 如果电源是AC充电。
+ *         {@link BatteryInfo_BatteryPluggedType#PLUGGED_TYPE_USB} 如果电源是USB DC充电。
+ *         {@link BatteryInfo_BatteryPluggedType#PLUGGED_TYPE_WIRELESS} 如果电源是无线充电。
+ *         {@link BatteryInfo_BatteryPluggedType#PLUGGED_TYPE_BUTT} 如果类型未知。
  * @since 13
  */
 BatteryInfo_BatteryPluggedType OH_BatteryInfo_GetPluggedType();
