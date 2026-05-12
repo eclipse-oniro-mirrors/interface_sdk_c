@@ -44,14 +44,14 @@ extern "C" {
 #endif
 /**
  * @brief Maximum length of a display name.
- * 
+ *
  * @since 14
  */
 #define OH_DISPLAY_NAME_LENGTH 32
 
 /**
  * @brief 屏幕顺时针的旋转角度。
- * 
+ *
  * @since 12
  * @version 1.0
  */
@@ -79,7 +79,7 @@ typedef enum {
 
 /**
  * @brief 屏幕的旋转方向。
- * 
+ *
  * @since 12
  * @version 1.0
  */
@@ -112,7 +112,7 @@ typedef enum {
 
 /**
  * @brief 屏幕管理接口返回状态码枚举。
- * 
+ *
  * @since 12
  * @version 1.0
  */
@@ -166,7 +166,7 @@ typedef enum {
 
 /**
  * @brief 可折叠设备的显示模式枚举。
- * 
+ *
  * @since 12
  * @version 1.0
  */
@@ -199,7 +199,7 @@ typedef enum {
 
 /**
  * @brief 矩形区域。
- * 
+ *
  * @since 12
  * @version 1.0
  */
@@ -216,7 +216,7 @@ typedef struct {
 
 /**
  * @brief 瀑布屏曲面部分显示区域。
- * 
+ *
  * @since 12
  * @version 1.0
  */
@@ -236,7 +236,7 @@ typedef struct {
 
 /**
  * @brief 挖孔屏、刘海屏、瀑布屏等不可用屏幕区域信息。
- * 
+ *
  * @since 12
  * @version 1.0
  */
@@ -253,7 +253,7 @@ typedef struct {
 
 /**
  * @brief 显示设备的状态枚举。
- * 
+ *
  * @since 14
  * @version 1.0
  */
@@ -296,7 +296,7 @@ typedef enum {
 
 /**
  * @brief 设备的显示模式枚举。
- * 
+ *
  * @since 20
  * @version 1.0
  */
@@ -329,7 +329,7 @@ typedef enum {
 
 /**
  * @brief The struct describes all the HDR formats supported by a display.
- * 
+ *
  * @since 14
  * @version 1.0
  */
@@ -479,7 +479,7 @@ typedef struct {
 
 /**
  * @brief The struct describes the information about displays of a device with multiple screens.
- * 
+ *
  * @since 14
  * @version 1.0
  */

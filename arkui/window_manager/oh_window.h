@@ -27,7 +27,7 @@
  *
  * @brief The file declares the window management APIs. You can use the APIs to set and obtain the properties of a
  * window, and set its status bar style and navigation bar style.
- * 
+ *
  * @library libnative_window_manager.so
  * @kit ArkUI
  * @syscap SystemCapability.Window.SessionManager
@@ -69,7 +69,7 @@ int32_t OH_WindowManager_SetWindowStatusBarEnabled(int32_t windowId, bool enable
 
 /**
  * @brief Sets the color of the status bar in a window.
- * 
+ *
  * @param windowId Window ID. The default value is **0**. The value is an integer.
  * @param color Color to set, in ARGB format.
  * @return Returns the result code.
@@ -82,7 +82,7 @@ int32_t OH_WindowManager_SetWindowStatusBarColor(int32_t windowId, int32_t color
 
 /**
  * @brief Sets whether to display the navigation bar in a window.
- * 
+ *
  * @param windowId Window ID. The default value is **0**. The value is an integer.
  * @param enabled Whether to display the navigation bar. **true** to display, **false** otherwise.
  * @param enableAnimation Whether to enable the show/hide animation of the navigation bar. **true** to enable, **false**
@@ -97,7 +97,7 @@ int32_t OH_WindowManager_SetWindowNavigationBarEnabled(int32_t windowId, bool en
 
 /**
  * @brief Obtains the avoid area of a window.
- * 
+ *
  * @param windowId Window ID. The default value is **0**. The value is an integer.
  * @param type Type of the avoid area.
  * @param avoidArea Pointer to the avoid area.
@@ -113,7 +113,7 @@ int32_t OH_WindowManager_GetWindowAvoidArea(
 
 /**
  * @brief Checks whether a window is displayed.
- * 
+ *
  * @param windowId Window ID. The default value is **0**. The value is an integer.
  * @param isShow Pointer to the check result for whether the window is displayed. **true** if displayed, **false**
  *     otherwise.
@@ -127,7 +127,7 @@ int32_t OH_WindowManager_IsWindowShown(int32_t windowId, bool* isShow);
 
 /**
  * @brief Shows a window.
- * 
+ *
  * @param windowId Window ID. The default value is **0**. The value is an integer.
  * @return Returns the result code.
  *     {@link OK} the function call is successful.
@@ -139,7 +139,7 @@ int32_t OH_WindowManager_ShowWindow(int32_t windowId);
 
 /**
  * @brief Sets whether a window is touchable.
- * 
+ *
  * @param windowId Window ID. The default value is **0**. The value is an integer.
  * @param isTouchable Whether the window is touchable. **true** if touchable, **false** otherwise.
  * @return Returns the result code.
@@ -152,7 +152,7 @@ int32_t OH_WindowManager_SetWindowTouchable(int32_t windowId, bool isTouchable);
 
 /**
  * @brief Sets whether a window is focusable.
- * 
+ *
  * @param windowId Window ID. The default value is **0**. The value is an integer.
  * @param isFocusable Whether the window is focusable. **true** if focusable, **false** otherwise.
  * @return Returns the result code.
@@ -165,7 +165,7 @@ int32_t OH_WindowManager_SetWindowFocusable(int32_t windowId, bool isFocusable);
 
 /**
  * @brief Sets the background color of a window.
- * 
+ *
  * @param windowId Window ID. The default value is **0**. The value is an integer.
  * @param color Pointer to the background color. The value is a string in hexadecimal RGB or ARGB color format.
  * @return Returns the result code.
@@ -195,7 +195,7 @@ int32_t OH_WindowManager_SetWindowBrightness(int32_t windowId, float brightness)
 
 /**
  * @brief Sets whether to always keep the screen on for a window.
- * 
+ *
  * @param windowId Window ID. The default value is **0**. The value is an integer.
  * @param isKeepScreenOn Whether to always keep the screen on. **true** to always keep the screen on, **false**
  *     otherwise.
@@ -209,7 +209,7 @@ int32_t OH_WindowManager_SetWindowKeepScreenOn(int32_t windowId, bool isKeepScre
 
 /**
  * @brief Sets whether to enable privacy mode for a window.
- * 
+ *
  * @permission ohos.permission.PRIVACY_WINDOW
  * @param windowId Window ID. The default value is **0**. The value is an integer.
  * @param isPrivacy Whether to enable privacy mode. **true** to enable, **false** otherwise.
@@ -224,7 +224,7 @@ int32_t OH_WindowManager_SetWindowPrivacyMode(int32_t windowId, bool isPrivacy);
 
 /**
  * @brief Obtains the properties of a window.
- * 
+ *
  * @param windowId Window ID. The default value is **0**. The value is an integer.
  * @param windowProperties Pointer to the properties.
  * @return Returns the result code.
@@ -238,7 +238,7 @@ int32_t OH_WindowManager_GetWindowProperties(
 
 /**
  * @brief Obtains the snapshot of a window.
- * 
+ *
  * @param windowId Window ID. The default value is **0**. The value is an integer.
  *     If the window ID is invalid or the window has been destroyed, you cannot obtain the window snapshot. To
  *     successfully obtain a snapshot, a valid window ID is required.
@@ -255,7 +255,7 @@ int32_t OH_WindowManager_Snapshot(int32_t windowId, OH_PixelmapNative* pixelMap)
 /**
  * @brief Obtains the layout information array of all windows visible on a display. The layout information is arranged
  * based on the current window stacking order, and the topmost window in the hierarchy is at index 0 of the array.
- * 
+ *
  * @param displayId ID of the display. You can obtain a valid display ID by calling the ArkTS API
  *     {@link getWindowProperties()} on the window object
  * @param windowLayoutInfoList Double pointer to the layout information array of all windows visible. This parameter is
@@ -274,7 +274,7 @@ int32_t OH_WindowManager_GetAllWindowLayoutInfoList(int64_t displayId,
 
 /**
  * @brief Releases the memory occupied by a window layout information array.
- * 
+ *
  * @param windowLayoutInfoList Pointer to the layout information array of all windows visible on the display. You can
  *     obtain the array pointer by calling {@link OH_WindowManager_GetAllWindowLayoutInfoList}.
  * @since 17
@@ -286,7 +286,7 @@ void OH_WindowManager_ReleaseAllWindowLayoutInfoList(WindowManager_Rect* windowL
  * windows that belong to the same process. The injection does not affect window focus or stacking order, nor does it
  * start window dragging. The event is forwarded directly to ArkUI. This function must be called after the target
  * window has completed its UI loading.
- * 
+ *
  * @param windowId Window ID. The default value is **0**. The value is an integer.
  * @param touchEvent Pointer to the multimodal touch event. For details, see {@link Input_TouchEvent}. The event is
  *     defined in **oh_input_manager.h**. Certain fields in this parameter have specific constraints. Specifically, **
@@ -306,7 +306,7 @@ int32_t OH_WindowManager_InjectTouchEvent(
 
 /**
  * @brief Obtains the information about all main windows.
- * 
+ *
  * @permission ohos.permission.CUSTOM_SCREEN_CAPTURE
  * @param infoList Double pointer to the main window information list. This parameter is used as an output parameter.
  * @param mainWindowInfoSize Pointer to the size of the main window information list. This parameter is used as an
@@ -323,7 +323,7 @@ int32_t OH_WindowManager_GetAllMainWindowInfo(
 
 /**
  * @brief Releases the memory used by the main window information list.
- * 
+ *
  * @param infoList Pointer to the main window information list.
  * @since 21
  */
@@ -331,7 +331,7 @@ void OH_WindowManager_ReleaseAllMainWindowInfo(WindowManager_MainWindowInfo* inf
 
 /**
  * @brief Defines the callback used for receiving the main window screenshot list.
- * 
+ *
  * @param snapshotPixelMapList Double pointer to the list of window screenshots.
  * @param snapshotListSize Size of the window screenshot list.
  * @since 21
@@ -341,7 +341,7 @@ typedef void (*OH_WindowManager_WindowSnapshotCallback)(const OH_PixelmapNative*
 
 /**
  * @brief Obtains the screenshots of one or more main windows specified by **windowId**.
- * 
+ *
  * @permission ohos.permission.CUSTOM_SCREEN_CAPTURE
  * @param windowIdList Pointer to the main window ID list.
  * @param windowIdListSize Size of the main window ID list.
@@ -360,7 +360,7 @@ int32_t OH_WindowManager_GetMainWindowSnapshot(int32_t* windowIdList, size_t win
 
 /**
  * @brief Releases the memory used by the main window screenshot list.
- * 
+ *
  * @param snapshotPixelMapList Pointer to the list of window screenshots.
  * @since 21
  */
@@ -370,7 +370,7 @@ void OH_WindowManager_ReleaseMainWindowSnapshot(const OH_PixelmapNative* snapsho
  * @brief Locks the mouse cursor within the specified window area and controls whether the cursor follows mouse
  * movements. It is only supported by the window that currently has focus, and the lock is automatically released when
  * the window loses focus.
- * 
+ *
  * @permission ohos.permission.LOCK_WINDOW_CURSOR
  * @param windowId Window ID. The value is an integer.
  * @param isCursorFollowMovement Behavior of the mouse cursor when locked. If it is set to **true**, the cursor moves
@@ -388,7 +388,7 @@ int32_t OH_WindowManager_LockCursor(int32_t windowId, bool isCursorFollowMovemen
 
 /**
  * @brief Clears the mouse cursor mode previously set for the window.
- * 
+ *
  * @permission ohos.permission.LOCK_WINDOW_CURSOR
  * @param windowId Window ID. The value is an integer.
  * @return Returns the status code of the execution.
@@ -468,7 +468,7 @@ int32_t OH_WindowManager_FrameMetrics_GetVsyncTimestamp(
  * The callback is triggered only when the client UI content is redrawn (for example, page switching, interaction with
  * responsive components, or background color and opacity setting).
  *  To cancel the registration, call the {@link OH_WindowManager_UnregisterFrameMetricsMeasuredCallback} API.
- * 
+ *
  * @param windowId Window ID.
  * @param callback Callback used to return the result.
  * @return Returns the status code of the execution.
@@ -488,7 +488,7 @@ int32_t OH_WindowManager_RegisterFrameMetricsMeasuredCallback(int32_t windowId,
  * This API depends on the loading of the window page content. That is, this API can be called only after the **
  * loadContent()** or **setUIContent()** API in ArkTS takes effect.
  *  To register such a callback, call the {@link OH_WindowManager_RegisterFrameMetricsMeasuredCallback} API.
- * 
+ *
  * @param windowId Window ID.
  * @param callback Callback used to return the result.
  * @return Returns the status code of the execution.

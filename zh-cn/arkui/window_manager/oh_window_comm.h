@@ -28,7 +28,7 @@
  * @file oh_window_comm.h
  *
  * @brief The file declares the common enums and definitions of the window manager.
- * 
+ *
  * @syscap SystemCapability.Window.SessionManager
  * @library libnative_window_manager.so
  * @kit ArkUI
@@ -201,7 +201,7 @@ typedef enum {
 
 /**
  * @brief 窗口类型。
- * 
+ *
  * @since 15
  */
 typedef enum {
@@ -228,7 +228,7 @@ typedef enum {
 
 /**
  * @brief The struct describes the window rectangle, including the window position, width, and height.
- * 
+ *
  * @since 15
  */
 typedef struct {
@@ -267,7 +267,7 @@ typedef struct {
 
 /**
  * @brief The struct describes the main window information.
- * 
+ *
  * @since 21
  */
 typedef struct {
@@ -292,7 +292,7 @@ typedef struct {
 
 /**
  * @brief The struct describes the window properties.
- * 
+ *
  * @since 15
 */
 typedef struct {
@@ -357,7 +357,7 @@ typedef struct {
 
 /**
  * @brief The struct describes the avoid area.
- * 
+ *
  * @since 15
  */
 typedef struct {

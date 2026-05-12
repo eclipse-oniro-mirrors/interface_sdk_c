@@ -47,7 +47,7 @@ extern "C" {
 
 /**
  * @brief Obtains the ID of the default display.
- * 
+ *
  * @param displayId Pointer to the display ID. The value is a non-negative integer.
  * @return {@link DISPLAY_MANAGER_OK } If the operation is successful
  *     <br>{@link DISPLAY_MANAGER_ERROR_INVALID_PARAM } If Parameter error.
@@ -58,7 +58,7 @@ NativeDisplayManager_ErrorCode OH_NativeDisplayManager_GetDefaultDisplayId(uint6
 
 /**
  * @brief Obtains the width of the default display.
- * 
+ *
  * @param displayWidth Pointer to the width, in px. The value is an integer.
  * @return {@link DISPLAY_MANAGER_OK } If the operation is successful
  *     <br>{@link DISPLAY_MANAGER_ERROR_INVALID_PARAM } If Parameter error.
@@ -69,7 +69,7 @@ NativeDisplayManager_ErrorCode OH_NativeDisplayManager_GetDefaultDisplayWidth(in
 
 /**
  * @brief Obtains the height of the default display.
- * 
+ *
  * @param displayHeight Pointer to the height, in px. The value is an integer.
  * @return {@link DISPLAY_MANAGER_OK } If the operation is successful
  *     <br>{@link DISPLAY_MANAGER_ERROR_INVALID_PARAM } If Parameter error.
@@ -80,7 +80,7 @@ NativeDisplayManager_ErrorCode OH_NativeDisplayManager_GetDefaultDisplayHeight(i
 
 /**
  * @brief Obtains the clockwise rotation angle of the default display.
- * 
+ *
  * @param displayRotation Pointer to the clockwise rotation angle. For details about the available options, see
  *     {@link NativeDisplayManager_Rotation}.
  * @return {@link DISPLAY_MANAGER_OK } If the operation is successful
@@ -93,7 +93,7 @@ NativeDisplayManager_ErrorCode OH_NativeDisplayManager_GetDefaultDisplayRotation
 
 /**
  * @brief Obtains the orientation of the default display.
- * 
+ *
  * @param displayOrientation Pointer to the orientation. For details about the available options, see
  *     {@link NativeDisplayManager_Orientation}.
  * @return {@link DISPLAY_MANAGER_OK } If the operation is successful
@@ -106,7 +106,7 @@ NativeDisplayManager_ErrorCode OH_NativeDisplayManager_GetDefaultDisplayOrientat
 
 /**
  * @brief Obtains the virtual pixel ratio of the default display.
- * 
+ *
  * @param virtualPixels Pointer to the virtual pixel ratio. The value is a floating-point number, and it is usually the
  *     same as that of **densityPixels**.
  * @return {@link DISPLAY_MANAGER_OK } If the operation is successful
@@ -118,7 +118,7 @@ NativeDisplayManager_ErrorCode OH_NativeDisplayManager_GetDefaultDisplayVirtualP
 
 /**
  * @brief Obtains the refresh rate of the default display.
- * 
+ *
  * @param refreshRate Pointer to the refresh rate. The value is an integer, in Hz.
  * @return {@link DISPLAY_MANAGER_OK } If the operation is successful
  *     <br>{@link DISPLAY_MANAGER_ERROR_INVALID_PARAM } If Parameter error.
@@ -129,7 +129,7 @@ NativeDisplayManager_ErrorCode OH_NativeDisplayManager_GetDefaultDisplayRefreshR
 
 /**
  * @brief Obtains the physical pixel density of the default display.
- * 
+ *
  * @param densityDpi Pointer to the physical pixel density, that is, the number of pixels per inch. The value is an
  *     integer, in px. The actual value depends on the options provided in device settings.
  * @return {@link DISPLAY_MANAGER_OK } If the operation is successful
@@ -141,7 +141,7 @@ NativeDisplayManager_ErrorCode OH_NativeDisplayManager_GetDefaultDisplayDensityD
 
 /**
  * @brief Obtains the logical pixel density of the default display.
- * 
+ *
  * @param densityPixels Pointer to the logical pixel density, which indicates the scaling coefficient of the physical
  *     pixels and logical pixels. The value is a floating-point number in the range [0.5, 4.0]. Generally, the value is
  *     **1.0** or **3.0**. The actual value depends on the density DPI provided by the device in use.
@@ -154,7 +154,7 @@ NativeDisplayManager_ErrorCode OH_NativeDisplayManager_GetDefaultDisplayDensityP
 
 /**
  * @brief Obtains the scale factor of fonts displayed on the default display.
- * 
+ *
  * @param scaledDensity Pointer to the scale factor. The value is a floating-point number, and it is usually the same
  *     as that of **densityPixels**.
  * @return {@link DISPLAY_MANAGER_OK } If the operation is successful
@@ -166,7 +166,7 @@ NativeDisplayManager_ErrorCode OH_NativeDisplayManager_GetDefaultDisplayScaledDe
 
 /**
  * @brief Obtains the number of physical pixels per inch on the default display in the X dimension.
- * 
+ *
  * @param xDpi Pointer to the number of physical pixels per inch in the X dimension. The value is a floating-point
  *     number.
  * @return {@link DISPLAY_MANAGER_OK } If the operation is successful
@@ -178,7 +178,7 @@ NativeDisplayManager_ErrorCode OH_NativeDisplayManager_GetDefaultDisplayDensityX
 
 /**
  * @brief Obtains the number of physical pixels per inch on the default display in the Y dimension.
- * 
+ *
  * @param yDpi Pointer to the number of physical pixels per inch in the Y dimension. The value is a floating-point
  *     number.
  * @return {@link DISPLAY_MANAGER_OK } If the operation is successful
@@ -191,7 +191,7 @@ NativeDisplayManager_ErrorCode OH_NativeDisplayManager_GetDefaultDisplayDensityY
 /**
  * @brief Obtains the unusable area of the default display, including punch hole, notch, and curved area of a waterfall
  * display.
- * 
+ *
  * @param cutoutInfo Double pointer to the unusable area information, which is encapsulated in
  *     {@link NativeDisplayManager_CutoutInfo}.
  * @return {@link DISPLAY_MANAGER_OK } If the operation is successful
@@ -205,7 +205,7 @@ NativeDisplayManager_ErrorCode OH_NativeDisplayManager_CreateDefaultDisplayCutou
 /**
  * @brief Destroys the unusable area of the default display, including punch hole, notch, and curved area of a
  * waterfall display.
- * 
+ *
  * @param cutoutInfo Pointer to the unusable area information object, which is obtained by calling
  *     {@link OH_NativeDisplayManager_CreateDefaultDisplayCutoutInfo}. For details, see
  *     {@link NativeDisplayManager_CutoutInfo}.
@@ -218,7 +218,7 @@ NativeDisplayManager_ErrorCode OH_NativeDisplayManager_DestroyDefaultDisplayCuto
 
 /**
  * @brief Checks whether the current device is foldable.
- * 
+ *
  * @return { bool } true means the device is foldable.
  * @since 12
  */
@@ -383,7 +383,7 @@ typedef void (*OH_NativeDisplayManager_AvailableAreaChangeCallback)(uint64_t dis
 
 /**
  * @brief Registers a listener for available area changes of the display.
- * 
+ *
  * @param availableAreaChangeCallback Callback function triggered when the available area of the display changes.
  *     For details, see {@link OH_NativeDisplayManager_AvailableAreaChangeCallback}.
  * @param listenerIndex Pointer to the index of the listener registered.
@@ -398,7 +398,7 @@ NativeDisplayManager_ErrorCode OH_NativeDisplayManager_RegisterAvailableAreaChan
 
 /**
  * @brief Unregisters a listener for available area changes of the display.
- * 
+ *
  * @param listenerIndex Index of the listener returned
  *     when {@link OH_NativeDisplayManager_RegisterAvailableAreaChangeListener} is called.
  * @return {@link DISPLAY_MANAGER_OK } If the operation is successful
@@ -410,7 +410,7 @@ NativeDisplayManager_ErrorCode OH_NativeDisplayManager_UnregisterAvailableAreaCh
 
 /**
  * @brief Obtains the available area of a display.
- * 
+ *
  * @param displayId Display ID, which is a non-negative integer.
  * @param availableArea Double pointer to the available area of the display. For details, see
  *     {@link NativeDisplayManager_Rect}.
@@ -423,7 +423,7 @@ NativeDisplayManager_ErrorCode OH_NativeDisplayManager_CreateAvailableArea(uint6
 
 /**
  * @brief Destroys the available area of a display.
- * 
+ *
  * @param availableArea Pointer to the available area, which is obtained by calling
  *     {@link OH_NativeDisplayManager_CreateAvailableArea}.
  *     For details about the available area, see {@link NativeDisplayManager_Rect}.
@@ -435,7 +435,7 @@ NativeDisplayManager_ErrorCode OH_NativeDisplayManager_DestroyAvailableArea(Nati
 
 /**
  * @brief Defines a callback function to listen for display addition events.
- * 
+ *
  * @param displayId Display ID, which is a non-negative integer.
  * @since 20
  */
@@ -458,7 +458,7 @@ NativeDisplayManager_ErrorCode OH_NativeDisplayManager_RegisterDisplayAddListene
 
 /**
  * @brief Unregisters a listener for display addition events.
- * 
+ *
  * @param listenerIndex Index of the listener returned when {@link OH_NativeDisplayManager_RegisterDisplayAddListener}
  *     is called.
  * @return {@link DISPLAY_MANAGER_OK } If the operation is successful
@@ -470,7 +470,7 @@ NativeDisplayManager_ErrorCode OH_NativeDisplayManager_UnregisterDisplayAddListe
 
 /**
  * @brief Defines a callback function to listen for display removal events.
- * 
+ *
  * @param displayId Display ID, which is a non-negative integer.
  * @since 20
  */
@@ -478,7 +478,7 @@ typedef void (*OH_NativeDisplayManager_DisplayRemoveCallback)(uint64_t displayId
 
 /**
  * @brief Registers a listener for display removal events (for example, monitor removed).
- * 
+ *
  * @param displayRemoveCallback Callback function triggered when a display is removed. For details, see
  *     {@link OH_NativeDisplayManager_DisplayRemoveCallback}.
  * @param listenerIndex Pointer to the index of the listener registered.
@@ -493,7 +493,7 @@ NativeDisplayManager_ErrorCode OH_NativeDisplayManager_RegisterDisplayRemoveList
 
 /**
  * @brief Unregisters the listener for display removal events.
- * 
+ *
  * @param listenerIndex Index of the listener returned when
  *     {@link OH_NativeDisplayManager_RegisterDisplayRemoveListener} is called.
  * @return {@link DISPLAY_MANAGER_OK } If the operation is successful
@@ -505,7 +505,7 @@ NativeDisplayManager_ErrorCode OH_NativeDisplayManager_UnregisterDisplayRemoveLi
 
 /**
  * @brief Obtains the display source mode. The default value is **DisplaySourceMode.None**.
- * 
+ *
  * @param displayId Display ID, which is a non-negative integer.
  * @param sourceMode Pointer to the source mode. For details about the available options, see
  *     {@link NativeDisplayManager_SourceMode}.
@@ -518,7 +518,7 @@ NativeDisplayManager_ErrorCode OH_NativeDisplayManager_GetDisplaySourceMode(uint
 /**
  * @brief Obtains the display position, that is, the x-coordinate and y-coordinate relative to the original point (the
  * upper left corner of the main screen).
- * 
+ *
  * @param displayId Display ID, which is a non-negative integer.
  * @param x Pointer to the x-coordinate relative to the upper left corner of the main screen, in px. The value must be
  *     an integer and is returned as an output parameter.

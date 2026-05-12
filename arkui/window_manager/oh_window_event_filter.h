@@ -54,7 +54,7 @@ typedef bool (*OH_NativeWindowManager_KeyEventFilter)(Input_KeyEvent* keyEvent);
 
 /**
  * @brief Registers a function for filtering multimodal key events.
- * 
+ *
  * @param windowId ID of the window for which the function is registered.
  * @param keyEventFilter Function to register.
  * @return Returns the status code of the execution.
@@ -65,7 +65,7 @@ WindowManager_ErrorCode OH_NativeWindowManager_RegisterKeyEventFilter(int32_t wi
 
 /**
  * @brief Unregisters a function for filtering multimodal key events.
- * 
+ *
  * @param windowId ID of the window for which the function is unregistered.
  * @return Returns the status code of the execution.
  * @since 12
@@ -81,7 +81,7 @@ typedef bool (*OH_NativeWindowManager_MouseEventFilter)(Input_MouseEvent* mouseE
 
 /**
  * @brief Registers a function for filtering multimodal mouse events.
- * 
+ *
  * @param windowId ID of the window for which the function is registered.
  * @param mouseEventFilter Function to register.
  * @return Returns the status code of the execution.
@@ -95,7 +95,7 @@ WindowManager_ErrorCode OH_NativeWindowManager_RegisterMouseEventFilter(int32_t 
 
 /**
  * @brief Unregisters a function for filtering multimodal mouse events.
- * 
+ *
  * @param windowId ID of the window for which the function is unregistered.
  * @return Returns the status code of the execution.
  *     Returns {@link OK} if the operation is successful.
@@ -114,7 +114,7 @@ typedef bool (*OH_NativeWindowManager_TouchEventFilter)(Input_TouchEvent* touchE
 
 /**
  * @brief Registers a function for filtering multimodal touch events.
- * 
+ *
  * @param windowId ID of the window for which the function is registered.
  * @param touchEventFilter Function to register.
  * @return Returns the status code of the execution.
@@ -128,7 +128,7 @@ WindowManager_ErrorCode OH_NativeWindowManager_RegisterTouchEventFilter(int32_t 
 
 /**
  * @brief Unregisters a function for filtering multimodal touch events.
- * 
+ *
  * @param windowId ID of the window for which the function is unregistered.
  * @return Returns the status code of the execution.
  *     Returns {@link OK} if the operation is successful.

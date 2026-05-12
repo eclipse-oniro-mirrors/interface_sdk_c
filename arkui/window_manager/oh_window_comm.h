@@ -44,14 +44,14 @@ extern "C" {
 
 /**
  * @brief Describes the pixel image information.
- * 
+ *
  * @since 15
  */
 typedef struct OH_PixelmapNative;
 
 /**
  * @brief Defines a frame metric data object.
- * 
+ *
  * @since 26.0.0
  */
 typedef struct OH_WindowManager_FrameMetrics OH_WindowManager_FrameMetrics;
@@ -81,7 +81,7 @@ typedef void (*OH_WindowManager_DensityInfoCallback)(int32_t windowId, const OH_
 
 /**
  * @brief Enumerates the status codes returned by the window manager interface.
- * 
+ *
  * @since 12
  */
 typedef enum {
@@ -171,7 +171,7 @@ typedef enum {
 
 /**
  * @brief Enumerates the avoid area types.
- * 
+ *
  * @since 15
  */
 typedef enum {
@@ -203,7 +203,7 @@ typedef enum {
 
 /**
  * @brief Enumerates the window types.
- * 
+ *
  * @since 15
  */
 typedef enum {
@@ -230,7 +230,7 @@ typedef enum {
 
 /**
  * @brief The struct describes the window rectangle, including the window position, width, and height.
- * 
+ *
  * @since 15
  */
 typedef struct {
@@ -269,7 +269,7 @@ typedef struct {
 
 /**
  * @brief The struct describes the main window information.
- * 
+ *
  * @since 21
  */
 typedef struct {
@@ -294,7 +294,7 @@ typedef struct {
 
 /**
  * @brief The struct describes the window properties.
- * 
+ *
  * @since 15
 */
 typedef struct {
@@ -359,7 +359,7 @@ typedef struct {
 
 /**
  * @brief The struct describes the avoid area.
- * 
+ *
  * @since 15
  */
 typedef struct {

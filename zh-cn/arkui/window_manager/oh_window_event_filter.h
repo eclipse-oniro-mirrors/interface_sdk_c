@@ -54,7 +54,7 @@ typedef bool (*OH_NativeWindowManager_KeyEventFilter)(Input_KeyEvent* keyEvent);
 
 /**
  * @brief 注册按键事件的过滤函数。
- * 
+ *
  * @param windowId 需要过滤按键事件的窗口ID。
  * @param keyEventFilter 多模按键的过滤函数。
  * @return 返回窗口管理接口的通用状态码，具体可见{@link WindowManager_ErrorCode}。
@@ -65,7 +65,7 @@ WindowManager_ErrorCode OH_NativeWindowManager_RegisterKeyEventFilter(int32_t wi
 
 /**
  * @brief 取消注册窗口的按键事件过滤函数。
- * 
+ *
  * @param windowId 需要取消过滤按键事件的窗口ID。
  * @return 返回窗口管理接口的通用状态码，具体可见{@link WindowManager_ErrorCode}。
  * @since 12
@@ -81,7 +81,7 @@ typedef bool (*OH_NativeWindowManager_MouseEventFilter)(Input_MouseEvent* mouseE
 
 /**
  * @brief 注册鼠标事件的过滤函数。
- * 
+ *
  * @param windowId 需要过滤鼠标事件的窗口ID。
  * @param mouseEventFilter 多模鼠标事件的过滤函数。
  * @return 返回窗口管理接口的通用状态码，具体可见{@link WindowManager_ErrorCode}。

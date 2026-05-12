@@ -480,7 +480,7 @@ typedef struct {
 
 /**
  * @brief The struct describes the information about displays of a device with multiple screens.
- * 
+ *
  * @since 14
  * @version 1.0
  */
