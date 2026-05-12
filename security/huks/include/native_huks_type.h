@@ -1156,7 +1156,8 @@ enum OH_Huks_Tag {
      */
     OH_HUKS_TAG_UNWRAP_ALGORITHM_SUITE = OH_HUKS_TAG_TYPE_UINT | 26,
     /**
-     * Storage type of the derived key or key produced after key agreement. For details, see {@link OH_Huks_KeyStorageType}.
+     * Storage type of the derived key or key produced after key agreement. 
+     * For details, see {@link OH_Huks_KeyStorageType}.
      */
     OH_HUKS_TAG_DERIVED_AGREED_KEY_STORAGE_FLAG = OH_HUKS_TAG_TYPE_UINT | 29,
     /**
@@ -1219,7 +1220,7 @@ enum OH_Huks_Tag {
     OH_HUKS_TAG_AUTH_STORAGE_LEVEL = OH_HUKS_TAG_TYPE_UINT | 316,
 
     /**
-     * Authentication mode of the user authtoken，whose optional values are from enum HuksUserAuthMode.
+     * Authentication mode of the user authtoken, whose optional values are from enum HuksUserAuthMode.
      *
      * @since 12
      */
