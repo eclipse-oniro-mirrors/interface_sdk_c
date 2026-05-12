@@ -42,6 +42,7 @@
 #include <stdint.h>
 
 #include "native_avformat.h"
+#include "native_avbuffer.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -614,6 +615,15 @@ typedef void (*OH_AVPlayerOnAmplitudeUpdateCallback)(OH_AVPlayer *player, double
  */
 typedef void (*OH_AVPlayerOnSeiMessageReceivedCallback)(OH_AVPlayer *player, OH_AVSeiMessageArray *message,
     int32_t playbackPosition, void *userData);
+
+/**
+ * @brief Describes the handle used to obtain the decoded audio PCM data.
+ * @param player Pointer to an OH_AVPlayer instance
+ * @param pcmBuffer Decoded PCM audio data.
+ * @param userData Pointer to user specific data
+ * @since 26.0.0
+ */
+typedef void (*OH_AVPlayerPCMOutputCallback)(OH_AVPlayer *player, OH_AVBuffer *pcmBuffer, void *userData);
 
 /**
  * @brief A collection of all callback function pointers in OH_AVPlayer. Register an instance of this
