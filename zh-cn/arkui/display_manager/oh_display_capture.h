@@ -45,18 +45,13 @@ extern "C" {
 #endif
 
 /**
- * @brief Takes a screenshot of the entire screen. This function can be used to capture a full-screen screenshot on the
- * specified display.
+ * @brief 获取屏幕全屏截图，可以通过设置不同的屏幕id号截取不同屏幕的截图。
  *
  * @permission ohos.permission.CUSTOM_SCREEN_CAPTURE or ohos.permission.CUSTOM_SCREEN_RECORDING [since 22]
  * @permission ohos.permission.CUSTOM_SCREEN_CAPTURE [since 14]
- * @param displayId ID of the display. The value must be a non-negative integer.
- * @param pixelMap Double pointer to an OH_PixelmapNative object, which is the screenshot taken.
- * @return {@link DISPLAY_MANAGER_OK } If the operation is successful.
- *     <br>{@link DISPLAY_MANAGER_ERROR_NO_PERMISSION } If no permission.
- *     <br>{@link DISPLAY_MANAGER_ERROR_INVALID_PARAM } If Parameter error.
- *     <br>{@link DISPLAY_MANAGER_ERROR_DEVICE_NOT_SUPPORTED } If device not support.
- *     <br>{@link DISPLAY_MANAGER_ERROR_SYSTEM_ABNORMAL } If display manager service works abnormally.
+ * @param displayId 需要截屏的屏幕id号，该值为非负整数。
+ * @param pixelMap 创建指定屏幕id的OH_PixelmapNative对象，此处作为出参返回。
+ * @return 返回屏幕管理接口的通用状态码，具体可见{@link NativeDisplayManager_ErrorCode}。
  * @since 14
  */
 NativeDisplayManager_ErrorCode OH_NativeDisplayManager_CaptureScreenPixelmap(uint32_t displayId,

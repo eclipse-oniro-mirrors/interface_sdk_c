@@ -53,21 +53,21 @@ extern "C" {
 typedef bool (*OH_NativeWindowManager_KeyEventFilter)(Input_KeyEvent* keyEvent);
 
 /**
- * @brief Registers a function for filtering multimodal key events.
+ * @brief 注册按键事件的过滤函数。
  *
- * @param windowId ID of the window for which the function is registered.
- * @param keyEventFilter Function to register.
- * @return Returns the status code of the execution.
+ * @param windowId 需要过滤按键事件的窗口ID。
+ * @param keyEventFilter 多模按键的过滤函数。
+ * @return 返回窗口管理接口的通用状态码，具体可见{@link WindowManager_ErrorCode}。
  * @since 12
  */
 WindowManager_ErrorCode OH_NativeWindowManager_RegisterKeyEventFilter(int32_t windowId,
     OH_NativeWindowManager_KeyEventFilter keyEventFilter);
 
 /**
- * @brief Unregisters a function for filtering multimodal key events.
+ * @brief 取消注册窗口的按键事件过滤函数。
  *
- * @param windowId ID of the window for which the function is unregistered.
- * @return Returns the status code of the execution.
+ * @param windowId 需要取消过滤按键事件的窗口ID。
+ * @return 返回窗口管理接口的通用状态码，具体可见{@link WindowManager_ErrorCode}。
  * @since 12
  */
 WindowManager_ErrorCode OH_NativeWindowManager_UnregisterKeyEventFilter(int32_t windowId);
@@ -80,27 +80,21 @@ WindowManager_ErrorCode OH_NativeWindowManager_UnregisterKeyEventFilter(int32_t 
 typedef bool (*OH_NativeWindowManager_MouseEventFilter)(Input_MouseEvent* mouseEvent);
 
 /**
- * @brief Registers a function for filtering multimodal mouse events.
+ * @brief 注册鼠标事件的过滤函数。
  *
- * @param windowId ID of the window for which the function is registered.
- * @param mouseEventFilter Function to register.
- * @return Returns the status code of the execution.
- *     Returns {@link OK} if the operation is successful.
- *     Returns {@link INVAILD_WINDOW_ID} if the window id is invalid.
- *     Returns {@link SERVICE_ERROR} if the window manager service error occurs.
+ * @param windowId 需要过滤鼠标事件的窗口ID。
+ * @param mouseEventFilter 多模鼠标事件的过滤函数。
+ * @return 返回窗口管理接口的通用状态码，具体可见{@link WindowManager_ErrorCode}。
  * @since 15
  */
 WindowManager_ErrorCode OH_NativeWindowManager_RegisterMouseEventFilter(int32_t windowId,
     OH_NativeWindowManager_MouseEventFilter mouseEventFilter);
 
 /**
- * @brief Unregisters a function for filtering multimodal mouse events.
+ * @brief 取消注册窗口的鼠标事件过滤函数。
  *
- * @param windowId ID of the window for which the function is unregistered.
- * @return Returns the status code of the execution.
- *     Returns {@link OK} if the operation is successful.
- *     Returns {@link INVAILD_WINDOW_ID} if the window id is invalid.
- *     Returns {@link SERVICE_ERROR} if the window manager service error occurs.
+ * @param windowId 需要取消过滤鼠标事件的窗口ID。
+ * @return 返回窗口管理接口的通用状态码，具体可见{@link WindowManager_ErrorCode}。
  * @since 15
  */
 WindowManager_ErrorCode OH_NativeWindowManager_UnregisterMouseEventFilter(int32_t windowId);
@@ -113,27 +107,21 @@ WindowManager_ErrorCode OH_NativeWindowManager_UnregisterMouseEventFilter(int32_
 typedef bool (*OH_NativeWindowManager_TouchEventFilter)(Input_TouchEvent* touchEvent);
 
 /**
- * @brief Registers a function for filtering multimodal touch events.
+ * @brief 注册触摸事件的过滤函数。
  *
- * @param windowId ID of the window for which the function is registered.
- * @param touchEventFilter Function to register.
- * @return Returns the status code of the execution.
- *     Returns {@link OK} if the operation is successful.
- *     Returns {@link INVAILD_WINDOW_ID} if the window id is invalid.
- *     Returns {@link SERVICE_ERROR} if the window manager service error occurs.
+ * @param windowId 需要过滤触摸事件的窗口ID。
+ * @param touchEventFilter 多模触摸事件的过滤函数。
+ * @return 返回窗口管理接口的通用状态码，具体可见{@link WindowManager_ErrorCode}。
  * @since 15
  */
 WindowManager_ErrorCode OH_NativeWindowManager_RegisterTouchEventFilter(int32_t windowId,
     OH_NativeWindowManager_TouchEventFilter touchEventFilter);
 
 /**
- * @brief Unregisters a function for filtering multimodal touch events.
+ * @brief 取消注册窗口的触摸事件过滤函数。
  *
- * @param windowId ID of the window for which the function is unregistered.
- * @return Returns the status code of the execution.
- *     Returns {@link OK} if the operation is successful.
- *     Returns {@link INVAILD_WINDOW_ID} if the window id is invalid.
- *     Returns {@link SERVICE_ERROR} if the window manager service error occurs.
+ * @param windowId 需要取消过滤触摸事件的窗口ID。
+ * @return 返回窗口管理接口的通用状态码，具体可见{@link WindowManager_ErrorCode}。
  * @since 15
  */
 WindowManager_ErrorCode OH_NativeWindowManager_UnregisterTouchEventFilter(int32_t windowId);
