@@ -24,7 +24,7 @@
 
 /**
  * @file game_pad_event.h
- * @brief Defines game pad event APIs for game app.
+ * @brief 定义游戏手柄事件的接口。
  * @kit GameControllerKit
  * @library libohgame_controller.z.so
  * @syscap SystemCapability.Game.GameController
@@ -42,155 +42,155 @@ extern "C" {
 #endif
 
 /**
- * @brief Defines an enum for the axis events sources.
+ * @brief 此枚举定义手柄轴事件来源类型。
  * @since 21
  */
 typedef enum GamePad_AxisSourceType {
     /**
-     * Indicates the axis event from directional pad.
+     * 轴事件来源于方向按键DPAD。
+     * @since 21
      */
     DPAD = 0,
 
     /**
-     * Indicates the axis event from left thumbstick.
+     * 轴事件来源于LeftThumbstick。
+     * @since 21
      */
     LEFT_THUMBSTICK = 1,
 
     /**
-     * Indicates the axis event from right thumbstick.
+     * 轴事件来源于RightThumbstick。
+     * @since 21
      */
     RIGHT_THUMBSTICK = 2,
 
     /**
-     * Indicates the axis event from left trigger.
+     * 轴事件来源于LeftTrigger。
+     * @since 21
      */
     LEFT_TRIGGER = 3,
 
     /**
-     * Indicates the axis event from right trigger..
+     * 轴事件来源于RightTrigger。
+     * @since 21
      */
     RIGHT_TRIGGER = 4,
 } GamePad_AxisSourceType;
 
 /**
- * @brief Defines an enum for the button action types.
+ * @brief 此枚举定义手柄按键动作类型。
  * @since 21
  */
 typedef enum GamePad_Button_ActionType {
     /**
-     * Pressing of a key
+     * 按键按下。
+     * @since 21
      */
     DOWN = 0,
 
     /**
-     * Release of a key
+     * 按键抬起。
+     * @since 21
      */
     UP = 1,
 } GamePad_Button_ActionType;
 
 /**
- * @brief Defines a struct for the button event of a game pad.
+ * @brief 定义手柄按键事件。
  * @since 21
  */
 typedef struct GamePad_ButtonEvent GamePad_ButtonEvent;
 
 /**
- * @brief Defines a struct for the axis events of a game pad.
+ * @brief 定义手柄轴事件。
  * @since 21
  */
 typedef struct GamePad_AxisEvent GamePad_AxisEvent;
 
 /**
- * @brief Defines a struct for the pressed button of a game pad.
+ * @brief 定义手柄按下的按键。
  * @since 21
  */
 typedef struct GamePad_PressedButton GamePad_PressedButton;
 
 /**
- * @brief Defines a callback used in the monitor for the game pad button event.
- * This function is called when a game pad button is pressed.
- * @param buttonEvent Pointer to the {@link GamePad_ButtonEvent} instance.
+ * @brief 定义在按键事件注册监听接口中使用的回调函数。当玩家按下按键时，该回调函数将被调用。
+ * @param buttonEvent 输出参数，手柄按键事件{@link GamePad_ButtonEvent}.
  * @since 21
  */
 typedef void(* GamePad_ButtonInputMonitorCallback)(const struct GamePad_ButtonEvent* buttonEvent);
 
 /**
- * @brief Defines a callback used in {@link OH_GamePad_AddAxisInputMonitor}.
- * This function is called when the game pad axis is operated.
- * @param axisEvent Pointer to the {@link GamePad_AxisEvent} instance.
+ * @brief 定义在轴事件注册监听接口中使用的回调函数。当玩家操作摇杆时，该回调函数将被调用。
+ * @param axisEvent 输出参数，手柄轴事件{@link GamePad_AxisEvent}.
  * @since 21
  */
 typedef void(* GamePad_AxisInputMonitorCallback)(const struct GamePad_AxisEvent* axisEvent);
 
 /**
- * @brief Obtains the device ID from {@link GamePad_ButtonEvent}.
- * @param buttonEvent Pointer to the {@link GamePad_ButtonEvent} instance.
- * The value cannot be null. Otherwise, an error code is returned.
- * @param deviceId Double pointer to the device ID.
- * @return Returns {@link GAME_CONTROLLER_SUCCESS} if the operation is successful.
- * Returns {@link GAME_CONTROLLER_PARAM_ERROR} if the value of buttonEvent or deviceId is null.
- * Returns {@link GAME_CONTROLLER_NO_MEMORY} if there is no sufficient memory.
+ * @brief 从按键事件中获取设备ID。
+ * @param buttonEvent 指针指向{@link GamePad_ButtonEvent}实例，不能为空，否则将返回错误码。
+ * @param deviceId 输出参数，二级指针指向设备ID。
+ * @return <ul><li>如果执行成功，返回{@link GAME_CONTROLLER_SUCCESS}。</li>
+ * <li>如果参数buttonEvent或deviceId为null，返回{@link GAME_CONTROLLER_PARAM_ERROR}。</li>
+ * <li>如果设备内存不足，返回{@link GAME_CONTROLLER_NO_MEMORY}。</li></ul>
  * @since 21
  */
 GameController_ErrorCode OH_GamePad_ButtonEvent_GetDeviceId(const struct GamePad_ButtonEvent* buttonEvent,
                                                             char** deviceId);
 
 /**
- * @brief Obtains the button action type from {@link GamePad_ButtonEvent}.
- * @param buttonEvent Pointer to the {@link GamePad_ButtonEvent} instance.
- * The value cannot be null. Otherwise, an error code is returned.
- * @param actionType Pointer to the action type.
- * @return Returns {@link GAME_CONTROLLER_SUCCESS} if the operation is successful.
- * Returns {@link GAME_CONTROLLER_PARAM_ERROR} if the value of buttonEvent is null.
+ * @brief 从按键事件中获取按键动作类型。
+ * @param buttonEvent 指针指向{@link GamePad_ButtonEvent}实例，不能为空，否则将返回错误码。
+ * @param actionType 输出参数，按键动作类型。
+ * @return <ul><li>如果执行成功，返回{@link GAME_CONTROLLER_SUCCESS}。</li>
+ * <li>如果参数buttonEvent为null，返回{@link GAME_CONTROLLER_PARAM_ERROR}。</li></ul>
  * @since 21
  */
 GameController_ErrorCode OH_GamePad_ButtonEvent_GetButtonAction(const struct GamePad_ButtonEvent* buttonEvent,
                                                                 GamePad_Button_ActionType* actionType);
+
 /**
- * @brief Obtains the button code from {@link GamePad_ButtonEvent}.
- * @param buttonEvent Pointer to the {@link GamePad_ButtonEvent} instance.
- * The value cannot be null. Otherwise, an error code is returned.
- * @param code Pointer to the button code.
- * @return Returns {@link GAME_CONTROLLER_SUCCESS} if the operation is successful.
- * Returns {@link GAME_CONTROLLER_PARAM_ERROR} if the value of buttonEvent is null.
+ * @brief 从按键事件中获取按键编码。
+ * @param buttonEvent 指针指向{@link GamePad_ButtonEvent}实例，不能为空，否则将返回错误码。
+ * @param code 输出参数，按键编码。
+ * @return <ul><li>如果执行成功，返回{@link GAME_CONTROLLER_SUCCESS}。</li>
+ * <li>如果参数buttonEvent为null，返回{@link GAME_CONTROLLER_PARAM_ERROR}。</li></ul>
  * @since 21
  */
 GameController_ErrorCode OH_GamePad_ButtonEvent_GetButtonCode(const struct GamePad_ButtonEvent* buttonEvent,
                                                               int32_t* code);
+
 /**
- * @brief Obtains the button name from {@link GamePad_ButtonEvent}.
- * @param buttonEvent Pointer to the {@link GamePad_ButtonEvent} instance.
- * The value cannot be null. Otherwise, an error code is returned.
- * @param codeName Double pointer to the button name.
- * @return Returns {@link GAME_CONTROLLER_SUCCESS} if the operation is successful.
- * Returns {@link GAME_CONTROLLER_PARAM_ERROR} if the value of buttonEvent or codeName is null.
- * Returns {@link GAME_CONTROLLER_NO_MEMORY} if there is no sufficient memory.
+ * @brief 从按键事件中获取按键名称。
+ * @param buttonEvent 指针指向{@link GamePad_ButtonEvent}实例，不能为空，否则将返回错误码。
+ * @param codeName 输出参数，二级指针指向按键名称。
+ * @return <ul><li>如果执行成功，返回{@link GAME_CONTROLLER_SUCCESS}。</li>
+ * <li>如果参数buttonEvent或codeName为null，返回{@link GAME_CONTROLLER_PARAM_ERROR}。</li>
+ * <li>如果设备内存不足，返回{@link GAME_CONTROLLER_NO_MEMORY}。</li></ul>
  * @since 21
  */
 GameController_ErrorCode OH_GamePad_ButtonEvent_GetButtonCodeName(const struct GamePad_ButtonEvent* buttonEvent,
                                                                   char** codeName);
 
 /**
- * @brief Obtains the number of pressed buttons from {@link GamePad_ButtonEvent}.
- * @param buttonEvent Pointer to the {@link GamePad_ButtonEvent} instance.
- * The value cannot be null. Otherwise, an error code is returned.
- * @param count Pointer to the number of pressed buttons.
- * @return Returns {@link GAME_CONTROLLER_SUCCESS} if the operation is successful.
- * Returns {@link GAME_CONTROLLER_PARAM_ERROR} if the value of buttonEvent is null.
+ * @brief 从按键事件中获取按下的按键数量。
+ * @param buttonEvent 指针指向{@link GamePad_ButtonEvent}实例，不能为空，否则将返回错误码。
+ * @param count 输出参数，按键数量。
+ * @return <ul><li>如果执行成功，返回{@link GAME_CONTROLLER_SUCCESS}。</li>
+ * <li>如果参数buttonEvent为null，返回{@link GAME_CONTROLLER_PARAM_ERROR}。</li></ul>
  * @since 21
  */
 GameController_ErrorCode OH_GamePad_PressedButtons_GetCount(const struct GamePad_ButtonEvent* buttonEvent,
                                                             int32_t* count);
 
 /**
- * @brief Obtains the button with a specified index from {@link GamePad_ButtonEvent}.
- * @param buttonEvent Pointer to the {@link GamePad_ButtonEvent} instance.
- * The value cannot be null. Otherwise, an error code is returned.
- * @param index Specified button index.
- * @param pressedButton Double pointer to the pressed button.
- * @return Returns {@link GAME_CONTROLLER_SUCCESS} if the operation is successful.
- * Returns {@link GAME_CONTROLLER_PARAM_ERROR} if the value of buttonEvent is null,
- * or if the value of index is less than 0 or greater than or equal to the total number of buttons.
+ * @brief 从按键事件中获取指定索引的按键信息。
+ * @param buttonEvent 指针指向{@link GamePad_ButtonEvent}实例，不能为空，否则将返回错误码。
+ * @param index 指定按键索引。
+ * @param pressedButton 输出参数，二级指针指向按下的按键。
+ * @return <ul><li>如果执行成功，返回{@link GAME_CONTROLLER_SUCCESS}。</li>
+ * <li>如果参数buttonEvent为null，或index小于0或大于等于按键总数，返回{@link GAME_CONTROLLER_PARAM_ERROR}。</li></ul>
  * @since 21
  */
 GameController_ErrorCode OH_GamePad_PressedButtons_GetButtonInfo(const struct GamePad_ButtonEvent* buttonEvent,
@@ -198,177 +198,165 @@ GameController_ErrorCode OH_GamePad_PressedButtons_GetButtonInfo(const struct Ga
                                                                  GamePad_PressedButton** pressedButton);
 
 /**
- * @brief Destroys a {@link GamePad_PressedButton} instance when it is no longer used.
- * @param pressedButton Double pointer to the {@link GamePad_PressedButton} instance.
- * The value cannot be null. Otherwise, an error code is returned.
- * @return Returns {@link GAME_CONTROLLER_SUCCESS} if the operation is successful.
- * Returns {@link GAME_CONTROLLER_PARAM_ERROR} if the value of pressedButton is null.
+ * @brief 销毁按下的按键实例。
+ * @param pressedButton 二级指针指向{@link GamePad_PressedButton}实例，不能为空，否则将返回错误码。
+ * @return <ul><li>如果执行成功，返回{@link GAME_CONTROLLER_SUCCESS}。</li>
+ * <li>如果参数pressedButton为null，返回{@link GAME_CONTROLLER_PARAM_ERROR}。</li></ul>
  * @since 21
  */
 GameController_ErrorCode OH_GamePad_DestroyPressedButton(GamePad_PressedButton** pressedButton);
 
 /**
- * @brief Obtains the button code from {@link GamePad_PressedButton}.
- * @param pressedButton Pointer to the {@link GamePad_PressedButton} instance.
- * The value cannot be null. Otherwise, an error code is returned.
- * @param code Pointer to the button code.
- * @return Returns {@link GAME_CONTROLLER_SUCCESS} if the operation is successful.
- * Returns {@link GAME_CONTROLLER_PARAM_ERROR} if the value of pressedButton is null.
+ * @brief 从按下的按键中获取按键编码。
+ * @param pressedButton 指针指向{@link GamePad_PressedButton}实例，不能为空，否则将返回错误码。
+ * @param code 输出参数，按键编码。
+ * @return <ul><li>如果执行成功，返回{@link GAME_CONTROLLER_SUCCESS}。</li>
+ * <li>如果参数pressedButton为null，返回{@link GAME_CONTROLLER_PARAM_ERROR}。</li></ul>
  * @since 21
  */
 GameController_ErrorCode OH_GamePad_PressedButton_GetButtonCode(const struct GamePad_PressedButton* pressedButton,
                                                                 int32_t* code);
 
 /**
- * @brief Obtains the button name from {@link GamePad_PressedButton}.
- * @param pressedButton Pointer to the {@link GamePad_PressedButton} instance.
- * The value cannot be null. Otherwise, an error code is returned.
- * @param codeName Double pointer to the button name.
- * @return Returns {@link GAME_CONTROLLER_SUCCESS} if the operation is successful.
- * Returns {@link GAME_CONTROLLER_PARAM_ERROR} if the value of pressedButton or codeName is null.
- * Returns {@link GAME_CONTROLLER_NO_MEMORY} if there is no sufficient memory.
+ * @brief 从按下的按键中获取按键名称。
+ * @param pressedButton 指针指向{@link GamePad_PressedButton}实例，不能为空，否则将返回错误码。
+ * @param codeName 输出参数，二级指针指向按键名称。
+ * @return <ul><li>如果执行成功，返回{@link GAME_CONTROLLER_SUCCESS}。</li>
+ * <li>如果参数pressedButton或codeName为null，返回{@link GAME_CONTROLLER_PARAM_ERROR}。</li>
+ * <li>如果设备内存不足，返回{@link GAME_CONTROLLER_NO_MEMORY}。</li></ul>
  * @since 21
  */
 GameController_ErrorCode OH_GamePad_PressedButton_GetButtonCodeName(const struct GamePad_PressedButton* pressedButton,
                                                                     char** codeName);
+
 /**
- * @brief Obtains the action time from {@link GamePad_ButtonEvent}.
- * @param buttonEvent Pointer to the {@link GamePad_ButtonEvent} instance.
- * The value cannot be null. Otherwise, an error code is returned.
- * @param actionTime Pointer to the action time.
- * @return Returns {@link GAME_CONTROLLER_SUCCESS} if the operation is successful.
- * Returns {@link GAME_CONTROLLER_PARAM_ERROR} if the value of buttonEvent is null.
+ * @brief 从按键事件中获取动作时间。
+ * @param buttonEvent 指针指向{@link GamePad_ButtonEvent}实例，不能为空，否则将返回错误码。
+ * @param actionTime 输出参数，动作时间。
+ * @return <ul><li>如果执行成功，返回{@link GAME_CONTROLLER_SUCCESS}。</li>
+ * <li>如果参数buttonEvent为null，返回{@link GAME_CONTROLLER_PARAM_ERROR}。</li></ul>
  * @since 21
  */
 GameController_ErrorCode OH_GamePad_ButtonEvent_GetActionTime(const struct GamePad_ButtonEvent* buttonEvent,
                                                               int64_t* actionTime);
 
 /**
- * @brief Obtains the device ID from {@link GamePad_AxisEvent}.
- * @param axisEvent Pointer to the {@link GamePad_AxisEvent} instance.
- * The value cannot be null. Otherwise, an error code is returned.
- * @param deviceId Double pointer to the device ID.
- * @return Returns {@link GAME_CONTROLLER_SUCCESS} if the operation is successful.
- * Returns {@link GAME_CONTROLLER_PARAM_ERROR} if the value of axisEvent or deviceId is null.
- * Returns {@link GAME_CONTROLLER_NO_MEMORY} if there is no sufficient memory.
+ * @brief 从轴事件中获取设备ID。
+ * @param axisEvent 指针指向{@link GamePad_AxisEvent}实例，不能为空，否则将返回错误码。
+ * @param deviceId 输出参数，二级指针指向设备ID。
+ * @return <ul><li>如果执行成功，返回{@link GAME_CONTROLLER_SUCCESS}。</li>
+ * <li>如果参数axisEvent或deviceId为null，返回{@link GAME_CONTROLLER_PARAM_ERROR}。</li>
+ * <li>如果设备内存不足，返回{@link GAME_CONTROLLER_NO_MEMORY}。</li></ul>
  * @since 21
  */
 GameController_ErrorCode OH_GamePad_AxisEvent_GetDeviceId(const struct GamePad_AxisEvent* axisEvent,
                                                           char** deviceId);
 
 /**
- * @brief Obtains the axis type from {@link GamePad_AxisEvent}.
- * @param axisEvent Pointer to the {@link GamePad_AxisEvent} instance.
- * The value cannot be null. Otherwise, an error code is returned.
- * @param axisSourceType Pointer to the {@link GamePad_AxisSourceType} instance.
- * @return Returns {@link GAME_CONTROLLER_SUCCESS} if the operation is successful.
- * Returns {@link GAME_CONTROLLER_PARAM_ERROR} if the value of axisEvent is null.
+ * @brief 从轴事件中获取轴类型。
+ * @param axisEvent 指针指向{@link GamePad_AxisEvent}实例，不能为空，否则将返回错误码。
+ * @param axisSourceType 输出参数，轴类型。
+ * @return <ul><li>如果执行成功，返回{@link GAME_CONTROLLER_SUCCESS}。</li>
+ * <li>如果参数axisEvent为null，返回{@link GAME_CONTROLLER_PARAM_ERROR}。</li></ul>
  * @since 21
  */
 GameController_ErrorCode OH_GamePad_AxisEvent_GetAxisSourceType(const struct GamePad_AxisEvent* axisEvent,
                                                                 GamePad_AxisSourceType* axisSourceType);
 
 /**
- * @brief Obtains the value of the X axis from {@link GamePad_AxisEvent}.
- * @param axisEvent Pointer to the {@link GamePad_AxisEvent} instance.
- * The value cannot be null. Otherwise, an error code is returned.
- * @param axisValue Pointer to the axis value.
- * @return Returns {@link GAME_CONTROLLER_SUCCESS} if the operation is successful.
- * Returns {@link GAME_CONTROLLER_PARAM_ERROR} if the value of axisEvent is null.
+ * @brief 从轴事件中获取X轴的值。
+ * @param axisEvent 指针指向{@link GamePad_AxisEvent}实例，不能为空，否则将返回错误码。
+ * @param axisValue 输出参数，轴的值。
+ * @return <ul><li>如果执行成功，返回{@link GAME_CONTROLLER_SUCCESS}。</li>
+ * <li>如果参数axisEvent为null，返回{@link GAME_CONTROLLER_PARAM_ERROR}。</li></ul>
  * @since 21
  */
 GameController_ErrorCode OH_GamePad_AxisEvent_GetXAxisValue(const struct GamePad_AxisEvent* axisEvent,
                                                             double* axisValue);
+
 /**
- * @brief Obtains the value of the Y axis from {@link GamePad_AxisEvent}.
- * @param axisEvent Pointer to the {@link GamePad_AxisEvent} instance.
- * The value cannot be null. Otherwise, an error code is returned.
- * @param axisValue Pointer to the axis value.
- * @return Returns {@link GAME_CONTROLLER_SUCCESS} if the operation is successful.
- * Returns {@link GAME_CONTROLLER_PARAM_ERROR} if the value of axisEvent is null.
+ * @brief 从轴事件中获取Y轴的值。
+ * @param axisEvent 指针指向{@link GamePad_AxisEvent}实例，不能为空，否则将返回错误码。
+ * @param axisValue 输出参数，轴的值。
+ * @return <ul><li>如果执行成功，返回{@link GAME_CONTROLLER_SUCCESS}。</li>
+ * <li>如果参数axisEvent为null，返回{@link GAME_CONTROLLER_PARAM_ERROR}。</li></ul>
  * @since 21
  */
 GameController_ErrorCode OH_GamePad_AxisEvent_GetYAxisValue(const struct GamePad_AxisEvent* axisEvent,
                                                             double* axisValue);
 
 /**
- * @brief Obtains the value of the Z axis from {@link GamePad_AxisEvent}.
- * @param axisEvent Pointer to the {@link GamePad_AxisEvent} instance.
- * The value cannot be null. Otherwise, an error code is returned.
- * @param axisValue Pointer to the axis value.
- * @return Returns {@link GAME_CONTROLLER_SUCCESS} if the operation is successful.
- * Returns {@link GAME_CONTROLLER_PARAM_ERROR} if the value of axisEvent is null.
+ * @brief 从轴事件中获取Z轴的值。
+ * @param axisEvent 指针指向{@link GamePad_AxisEvent}实例，不能为空，否则将返回错误码。
+ * @param axisValue 输出参数，轴的值。
+ * @return <ul><li>如果执行成功，返回{@link GAME_CONTROLLER_SUCCESS}。</li>
+ * <li>如果参数axisEvent为null，返回{@link GAME_CONTROLLER_PARAM_ERROR}。</li></ul>
  * @since 21
  */
 GameController_ErrorCode OH_GamePad_AxisEvent_GetZAxisValue(const struct GamePad_AxisEvent* axisEvent,
                                                             double* axisValue);
 
 /**
- * @brief Obtains the value of the RZ axis from {@link GamePad_AxisEvent}.
- * @param axisEvent Pointer to the {@link GamePad_AxisEvent} instance.
- * The value cannot be null. Otherwise, an error code is returned.
- * @param axisValue Pointer to the axis value.
- * @return Returns {@link GAME_CONTROLLER_SUCCESS} if the operation is successful.
- * Returns {@link GAME_CONTROLLER_PARAM_ERROR} if the value of axisEvent is null.
+ * @brief 从轴事件中获取RZ轴的值。
+ * @param axisEvent 指针指向{@link GamePad_AxisEvent}实例，不能为空，否则将返回错误码。
+ * @param axisValue 输出参数，轴的值。
+ * @return <ul><li>如果执行成功，返回{@link GAME_CONTROLLER_SUCCESS}。</li>
+ * <li>如果参数axisEvent为null，返回{@link GAME_CONTROLLER_PARAM_ERROR}。</li></ul>
  * @since 21
  */
 GameController_ErrorCode OH_GamePad_AxisEvent_GetRZAxisValue(const struct GamePad_AxisEvent* axisEvent,
                                                              double* axisValue);
 
 /**
- * @brief Obtains the value of the HatX axis from {@link GamePad_AxisEvent}.
- * @param axisEvent Pointer to the {@link GamePad_AxisEvent} instance.
- * The value cannot be null. Otherwise, an error code is returned.
- * @param axisValue Pointer to the axis value.
- * @return Returns {@link GAME_CONTROLLER_SUCCESS} if the operation is successful.
- * Returns {@link GAME_CONTROLLER_PARAM_ERROR} if the value of axisEvent is null.
+ * @brief 从轴事件中获取HatX轴的值。
+ * @param axisEvent 指针指向{@link GamePad_AxisEvent}实例，不能为空，否则将返回错误码。
+ * @param axisValue 输出参数，轴的值。
+ * @return <ul><li>如果执行成功，返回{@link GAME_CONTROLLER_SUCCESS}。</li>
+ * <li>如果参数axisEvent为null，返回{@link GAME_CONTROLLER_PARAM_ERROR}。</li></ul>
  * @since 21
  */
 GameController_ErrorCode OH_GamePad_AxisEvent_GetHatXAxisValue(const struct GamePad_AxisEvent* axisEvent,
                                                                double* axisValue);
 
 /**
- * @brief Obtains the value of the HatY axis from {@link GamePad_AxisEvent}.
- * @param axisEvent Pointer to the {@link GamePad_AxisEvent} instance.
- * The value cannot be null. Otherwise, an error code is returned.
- * @param axisValue Pointer to the axis value.
- * @return Returns {@link GAME_CONTROLLER_SUCCESS} if the operation is successful.
- * Returns {@link GAME_CONTROLLER_PARAM_ERROR} if the value of axisEvent is null.
+ * @brief 从轴事件中获取HatY轴的值。
+ * @param axisEvent 指针指向{@link GamePad_AxisEvent}实例，不能为空，否则将返回错误码。
+ * @param axisValue 输出参数，轴的值。
+ * @return <ul><li>如果执行成功，返回{@link GAME_CONTROLLER_SUCCESS}。</li>
+ * <li>如果参数axisEvent为null，返回{@link GAME_CONTROLLER_PARAM_ERROR}。</li></ul>
  * @since 21
  */
 GameController_ErrorCode OH_GamePad_AxisEvent_GetHatYAxisValue(const struct GamePad_AxisEvent* axisEvent,
                                                                double* axisValue);
 
 /**
- * @brief Obtains the value of the Brake axis from {@link GamePad_AxisEvent}.
- * @param axisEvent Pointer to the {@link GamePad_AxisEvent} instance.
- * The value cannot be null. Otherwise, an error code is returned.
- * @param axisValue Pointer to the axis value.
- * @return Returns {@link GAME_CONTROLLER_SUCCESS} if the operation is successful.
- * Returns {@link GAME_CONTROLLER_PARAM_ERROR} if the value of axisEvent is null.
+ * @brief 从轴事件中获取Brake轴的值。
+ * @param axisEvent 指针指向{@link GamePad_AxisEvent}实例，不能为空，否则将返回错误码。
+ * @param axisValue 输出参数，轴的值。
+ * @return <ul><li>如果执行成功，返回{@link GAME_CONTROLLER_SUCCESS}。</li>
+ * <li>如果参数axisEvent为null，返回{@link GAME_CONTROLLER_PARAM_ERROR}。</li></ul>
  * @since 21
  */
 GameController_ErrorCode OH_GamePad_AxisEvent_GetBrakeAxisValue(const struct GamePad_AxisEvent* axisEvent,
                                                                 double* axisValue);
 
 /**
- * @brief Obtains the value of the Gas axis from {@link GamePad_AxisEvent}.
- * @param axisEvent Pointer to the {@link GamePad_AxisEvent} instance.
- * The value cannot be null. Otherwise, an error code is returned.
- * @param axisValue Pointer to the axis value.
- * @return Returns {@link GAME_CONTROLLER_SUCCESS} if the operation is successful.
- * Returns {@link GAME_CONTROLLER_PARAM_ERROR} if the value of axisEvent is null.
+ * @brief 从轴事件中获取Gas轴的值。
+ * @param axisEvent 指针指向{@link GamePad_AxisEvent}实例，不能为空，否则将返回错误码。
+ * @param axisValue 输出参数，轴的值。
+ * @return <ul><li>如果执行成功，返回{@link GAME_CONTROLLER_SUCCESS}。</li>
+ * <li>如果参数axisEvent为null，返回{@link GAME_CONTROLLER_PARAM_ERROR}。</li></ul>
  * @since 21
  */
 GameController_ErrorCode OH_GamePad_AxisEvent_GetGasAxisValue(const struct GamePad_AxisEvent* axisEvent,
                                                               double* axisValue);
+
 /**
- * @brief Obtains the action time from {@link GamePad_AxisEvent}.
- * @param axisEvent Pointer to the {@link GamePad_AxisEvent} instance.
- * The value cannot be null. Otherwise, an error code is returned.
- * @param actionTime Pointer to the action time.
- * @return Returns {@link GAME_CONTROLLER_SUCCESS} if the operation is successful.
- * Returns {@link GAME_CONTROLLER_PARAM_ERROR} if the value of axisEvent is null.
+ * @brief 从轴事件中获取动作时间。
+ * @param axisEvent 指针指向{@link GamePad_AxisEvent}实例，不能为空，否则将返回错误码。
+ * @param actionTime 输出参数，动作时间。
+ * @return <ul><li>如果执行成功，返回{@link GAME_CONTROLLER_SUCCESS}。</li>
+ * <li>如果参数axisEvent为null，返回{@link GAME_CONTROLLER_PARAM_ERROR}。</li></ul>
  * @since 21
  */
 GameController_ErrorCode OH_GamePad_AxisEvent_GetActionTime(const struct GamePad_AxisEvent* axisEvent,

@@ -24,7 +24,7 @@
 
 /**
  * @file game_device_event.h
- * @brief Defines game device event APIs for game app.
+ * @brief 定义游戏设备事件的接口。
  * @kit GameControllerKit
  * @library libohgame_controller.z.so
  * @syscap SystemCapability.Game.GameController
@@ -42,64 +42,66 @@ extern "C" {
 #endif
 
 /**
- * @brief Defines an enum for the device status change types.
+ * @brief 此枚举定义设备的状态变化类型。
  * @since 21
  */
 typedef enum GameDevice_StatusChangedType {
     /**
-     * Indicates that the device is offline.
+     * 设备下线。
+     * @since 21
      */
     OFFLINE = 0,
 
     /**
-     * Indicates that the device is online.
+     * 设备上线。
+     * @since 21
      */
     ONLINE = 1,
 } GameDevice_StatusChangedType;
 
 /**
- * @brief Defines an enum for the device types.
+ * @brief 此枚举定义设备类型。
  * @since 21
  */
 typedef enum GameDevice_DeviceType {
     /**
-     * unknown
+     * 未知。
+     * @since 21
      */
     UNKNOWN = 0,
 
     /**
-     * GamePad
+     * 游戏手柄。
+     * @since 21
      */
     GAME_PAD = 1,
 } GameDevice_DeviceType;
 
 /**
- * @brief Defines a struct for the device information.
+ * @brief 定义设备信息。
  * @since 21
  */
 typedef struct GameDevice_DeviceInfo GameDevice_DeviceInfo;
 
 /**
- * @brief Defines a struct for the device event.
+ * @brief 定义设备状态变化事件。
  * @since 21
  */
 typedef struct GameDevice_DeviceEvent GameDevice_DeviceEvent;
 
 /**
- * @brief Defines a callback used in {@link OH_GameDevice_RegisterDeviceMonitor}.
- * This function is called when a device goes online or offline.
- * @param deviceEvent Pointer to the {@link GameDevice_DeviceEvent} instance.
+ * @brief 定义{@link OH_GameDevice_RegisterDeviceMonitor}中使用的回调函数。当设备上线或下线时，该回调函数将被调用。
+ * @param deviceEvent 输出参数。设备状态变化事件{@link GameDevice_DeviceEvent}。
  * @since 21
  */
 typedef void(* GameDevice_DeviceMonitorCallback)(const struct GameDevice_DeviceEvent* deviceEvent);
 
 /**
- * @brief Obtains the device event change type.
- * @param deviceEvent Pointer to the {@link GameDevice_DeviceEvent} instance.
- * The value cannot be null. Otherwise, an error code is returned.
- * @param statusChangedType Pointer to the device event change type.
- * @return Returns {@link GAME_CONTROLLER_SUCCESS} if the operation is successful.
- * Returns {@link GAME_CONTROLLER_PARAM_ERROR} of the value of deviceEvent is null.
+ * @brief 从设备状态变化事件中获取状态变化类型。
+ * @param deviceEvent 指针指向{@link GameDevice_DeviceEvent}实例，不能为空，否则将返回错误码。
+ * @param statusChangedType 输出参数，设备状态变化类型。
+ * @return <ul><li>如果执行成功，返回{@link GAME_CONTROLLER_SUCCESS}。</li>
+ * <li>如果参数deviceEvent为null，返回{@link GAME_CONTROLLER_PARAM_ERROR}。</li></ul>
  * @since 21
  */
 GameController_ErrorCode OH_GameDevice_DeviceEvent_GetChangedType(
@@ -107,12 +109,11 @@ GameController_ErrorCode OH_GameDevice_DeviceEvent_GetChangedType(
     GameDevice_StatusChangedType* statusChangedType);
 
 /**
- * @brief Obtains device information from a device event.
- * @param deviceEvent Pointer to the {@link GameDevice_DeviceEvent} instance.
- * The value cannot be null. Otherwise, an error code is returned.
- * @param deviceInfo Double pointer to the device information.
- * @return Returns {@link GAME_CONTROLLER_SUCCESS} if the operation is successful.
- * Returns {@link GAME_CONTROLLER_PARAM_ERROR} of the value of deviceEvent is null.
+ * @brief 从设备状态变化事件中获取设备信息。
+ * @param deviceEvent 指针指向{@link GameDevice_DeviceEvent}实例，不能为空，否则将返回错误码。
+ * @param deviceInfo 输出参数，二级指针指向设备信息。
+ * @return <ul><li>如果执行成功，返回{@link GAME_CONTROLLER_SUCCESS}。</li>
+ * <li>如果参数deviceEvent为null，返回{@link GAME_CONTROLLER_PARAM_ERROR}。</li></ul>
  * @since 21
  */
 GameController_ErrorCode OH_GameDevice_DeviceEvent_GetDeviceInfo(
@@ -120,83 +121,78 @@ GameController_ErrorCode OH_GameDevice_DeviceEvent_GetDeviceInfo(
     GameDevice_DeviceInfo** deviceInfo);
 
 /**
- * @brief Destroys a {@link GameDevice_DeviceInfo} instance when it is no longer used.
- * @param deviceInfo Double pointer to the {@link GameDevice_DeviceInfo} instance.
- * The value cannot be null. Otherwise, an error code is returned.
- * @return Returns {@link GAME_CONTROLLER_SUCCESS} if the operation is successful.
- * Returns {@link GAME_CONTROLLER_PARAM_ERROR} if the value of deviceInfo is null.
+ * @brief 销毁设备信息实例。
+ * @param deviceInfo 二级指针指向{@link GameDevice_DeviceInfo}实例，不能为空，否则将返回错误码。
+ * @return <ul><li>如果执行成功，返回{@link GAME_CONTROLLER_SUCCESS}。</li>
+ * <li>如果参数deviceInfo为null，返回{@link GAME_CONTROLLER_PARAM_ERROR}。</li></ul>
  * @since 21
  */
 GameController_ErrorCode OH_GameDevice_DestroyDeviceInfo(GameDevice_DeviceInfo** deviceInfo);
 
 /**
- * @brief Obtains the device ID from {@link GameDevice_DeviceInfo}.
- * @param deviceInfo Pointer to the {@link GameDevice_DeviceInfo} instance.
- * The value cannot be null. Otherwise, an error code is returned.
- * @param deviceId Double pointer to the device ID.
- * @return Returns {@link GAME_CONTROLLER_SUCCESS} if the operation is successful.
- * Returns {@link GAME_CONTROLLER_PARAM_ERROR} if the value of deviceInfo or deviceId is null.
- * Returns {@link GAME_CONTROLLER_NO_MEMORY} if there is no sufficient memory.
+ * @brief 从设备信息中获取设备ID。
+ * @param deviceInfo 指针指向{@link GameDevice_DeviceInfo}实例，不能为空，否则将返回错误码。
+ * @param deviceId 输出参数，二级指针指向设备ID。
+ * @return <ul><li>如果执行成功，返回{@link GAME_CONTROLLER_SUCCESS}。</li>
+ * <li>如果参数deviceInfo或deviceId为null，返回{@link GAME_CONTROLLER_PARAM_ERROR}。</li>
+ * <li>如果设备内存不足，返回{@link GAME_CONTROLLER_NO_MEMORY}。</li></ul>
  * @since 21
  */
 GameController_ErrorCode OH_GameDevice_DeviceInfo_GetDeviceId(const struct GameDevice_DeviceInfo* deviceInfo,
                                                               char** deviceId);
+
 /**
- * @brief Obtains the device name from {@link GameDevice_DeviceInfo}.
- * @param deviceInfo Pointer to the {@link GameDevice_DeviceInfo} instance.
- * The value cannot be null. Otherwise, an error code is returned.
- * @param name Double pointer to the device name.
- * @return Returns {@link GAME_CONTROLLER_SUCCESS} if the operation is successful.
- * Returns {@link GAME_CONTROLLER_PARAM_ERROR} if the value of deviceInfo or name is null.
- * Returns {@link GAME_CONTROLLER_NO_MEMORY} if there is no sufficient memory.
+ * @brief 从设备信息中获取设备名称。
+ * @param deviceInfo 指针指向{@link GameDevice_DeviceInfo}实例，不能为空，否则将返回错误码。
+ * @param name 输出参数，二级指针指向设备名称。
+ * @return <ul><li>如果执行成功，返回{@link GAME_CONTROLLER_SUCCESS}。</li>
+ * <li>如果参数deviceInfo或name为null，返回{@link GAME_CONTROLLER_PARAM_ERROR}。</li>
+ * <li>如果设备内存不足，返回{@link GAME_CONTROLLER_NO_MEMORY}。</li></ul>
  * @since 21
  */
 GameController_ErrorCode OH_GameDevice_DeviceInfo_GetName(const struct GameDevice_DeviceInfo* deviceInfo,
                                                           char** name);
+
 /**
- * @brief Obtains product information from {@link GameDevice_DeviceInfo}.
- * @param deviceInfo Pointer to the {@link GameDevice_DeviceInfo} instance.
- * The value cannot be null. Otherwise, an error code is returned.
- * @param product Pointer to the product information.
- * @return Returns {@link GAME_CONTROLLER_SUCCESS} if the operation is successful.
- * Returns {@link GAME_CONTROLLER_PARAM_ERROR} if the value of deviceInfo is null.
+ * @brief 从设备信息中获取产品信息。
+ * @param deviceInfo 指针指向{@link GameDevice_DeviceInfo}实例，不能为空，否则将返回错误码。
+ * @param product 输出参数，产品信息。
+ * @return <ul><li>如果执行成功，返回{@link GAME_CONTROLLER_SUCCESS}。</li>
+ * <li>如果参数deviceInfo为null，返回{@link GAME_CONTROLLER_PARAM_ERROR}。</li></ul>
  * @since 21
  */
 GameController_ErrorCode OH_GameDevice_DeviceInfo_GetProduct(const struct GameDevice_DeviceInfo* deviceInfo,
                                                              int32_t* product);
 
 /**
- * @brief Obtains the version information from {@link GameDevice_DeviceInfo}.
- * @param deviceInfo Pointer to the {@link GameDevice_DeviceInfo} instance.
- * The value cannot be null. Otherwise, an error code is returned.
- * @param version Pointer to the version information.
- * @return Returns {@link GAME_CONTROLLER_SUCCESS} if the operation is successful.
- * Returns {@link GAME_CONTROLLER_PARAM_ERROR} if the value of deviceInfo is null.
+ * @brief 从设备信息中获取版本信息。
+ * @param deviceInfo 指针指向{@link GameDevice_DeviceInfo}实例，不能为空，否则将返回错误码。
+ * @param version 输出参数，版本信息。
+ * @return <ul><li>如果执行成功，返回{@link GAME_CONTROLLER_SUCCESS}。</li>
+ * <li>如果参数deviceInfo为null，返回{@link GAME_CONTROLLER_PARAM_ERROR}。</li></ul>
  * @since 21
  */
 GameController_ErrorCode OH_GameDevice_DeviceInfo_GetVersion(const struct GameDevice_DeviceInfo* deviceInfo,
                                                              int32_t* version);
 
 /**
- * @brief Obtains the physical address from {@link GameDevice_DeviceInfo}.
- * @param deviceInfo Pointer to the {@link GameDevice_DeviceInfo} instance.
- * The value cannot be null. Otherwise, an error code is returned.
- * @param physicalAddress Double pointer to the physical address.
- * @return Returns {@link GAME_CONTROLLER_SUCCESS} if the operation is successful.
- * Returns {@link GAME_CONTROLLER_PARAM_ERROR} if the value of deviceInfo or physicalAddress is null.
- * Returns {@link GAME_CONTROLLER_NO_MEMORY} if there is no sufficient memory.
+ * @brief 从设备信息中获取物理地址。
+ * @param deviceInfo 指针指向{@link GameDevice_DeviceInfo}实例，不能为空，否则将返回错误码。
+ * @param physicalAddress 输出参数，二级指针指向物理地址。
+ * @return <ul><li>如果执行成功，返回{@link GAME_CONTROLLER_SUCCESS}。</li>
+ * <li>如果参数deviceInfo或physicalAddress为null，返回{@link GAME_CONTROLLER_PARAM_ERROR}。</li>
+ * <li>如果设备内存不足，返回{@link GAME_CONTROLLER_NO_MEMORY}。</li></ul>
  * @since 21
  */
 GameController_ErrorCode OH_GameDevice_DeviceInfo_GetPhysicalAddress(const struct GameDevice_DeviceInfo* deviceInfo,
                                                                      char** physicalAddress);
 
 /**
- * @brief Obtains the device type from {@link GameDevice_DeviceInfo}.
- * @param deviceInfo Pointer to the {@link GameDevice_DeviceInfo} instance.
- * The value cannot be null. Otherwise, an error code is returned.
- * @param deviceType Pointer to the device type.
- * @return Returns {@link GAME_CONTROLLER_SUCCESS} if the operation is successful.
- * Returns {@link GAME_CONTROLLER_PARAM_ERROR} if the value of deviceInfo is null.
+ * @brief 从设备信息中获取设备类型。
+ * @param deviceInfo 指针指向{@link GameDevice_DeviceInfo}实例，不能为空，否则将返回错误码。
+ * @param deviceType 输出参数，设备类型。
+ * @return <ul><li>如果执行成功，返回{@link GAME_CONTROLLER_SUCCESS}。</li>
+ * <li>如果参数deviceInfo为null，返回{@link GAME_CONTROLLER_PARAM_ERROR}。</li></ul>
  * @since 21
  */
 GameController_ErrorCode OH_GameDevice_DeviceInfo_GetDeviceType(const struct GameDevice_DeviceInfo* deviceInfo,
