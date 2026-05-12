@@ -98,7 +98,7 @@ extern "C" {
 /**
  * @brief Length of the rtts array in the NetConn_ProbeResultlnfo member variable.
  *
- * @since 11
+ * @since 20
  */
 #define NETCONN_MAX_RTT_NUM 4
 
