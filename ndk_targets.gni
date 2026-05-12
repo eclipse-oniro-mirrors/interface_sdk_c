@@ -323,6 +323,7 @@ if (host_os == "mac") {
     "//prebuilts/cmake/windows-x86:windows_cmake_copy",
     "//prebuilts/cmake/ohos:ohos_cmake_copy",
     "//build/ohos/ndk:copy_linux_ohos_cmake",
+    "//build/ohos/ndk:copy_linux_arm64_ohos_cmake",
     "//build/ohos/ndk:copy_windows_ohos_cmake",
     "//build/ohos/ndk:copy_ohos_ohos_cmake",
   ]
