@@ -45,6 +45,7 @@
 #include "video_output.h"
 #include "metadata_output.h"
 #include "native_buffer/native_buffer.h"
+#include "camera_notification_info.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -1750,7 +1751,6 @@ Camera_ErrorCode OH_CaptureSession_DeleteZoomPointInfos(const Camera_CaptureSess
  *
  * @param context Pointer to the user-defined context passed when the callback is registered.
  * @param notificationInfo Pointer to {@link OH_Camera_NotificationInfo} instances.
- * @param size Number of {@link OH_Camera_NotificationInfo} instances.
  * @since 26.0.0
  */
 typedef void (*OH_CaptureSession_OnNotificationReceive)(
@@ -1759,6 +1759,8 @@ typedef void (*OH_CaptureSession_OnNotificationReceive)(
 /**
  * @brief Registers a callback to listen for camera notification information received events,
  * can be unRegister by {@link OH_CaptureSession_UnregisterNotificationReceivedCallback}.
+ * Lifetime and ownership:
+ * - The caller must ensure that `context` remains valid until Unregister returns.
  *
  * @param session Pointer to a {@link Camera_CaptureSession} instance.
  * @param context Pointer to the user-defined context to be passed in the callback.

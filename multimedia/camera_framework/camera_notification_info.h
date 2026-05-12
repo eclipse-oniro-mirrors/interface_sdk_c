@@ -24,7 +24,7 @@
  * @file camera_notification_info.h
  *
  * @brief The file declares the notification info.
- * 
+ *
  * @library libohcamera.so
  * @kit CameraKit
  * @syscap SystemCapability.Multimedia.Camera.Core
@@ -87,5 +87,5 @@ void OH_CameraNotificationInfo_Destroy(OH_Camera_NotificationInfo* notificationI
 }
 #endif
 
-#endif // NATIVE_INCLUDE_METADATA_OBJECT_EXT_H
+#endif
 /** @} */
