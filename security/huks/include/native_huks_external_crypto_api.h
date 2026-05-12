@@ -101,8 +101,7 @@ struct OH_Huks_Result OH_Huks_UnregisterProvider(
  *     <br>OH_HUKS_ERR_CODE_NOT_SUPPORTED_API 801: Unsupported API.
  *     <br>OH_HUKS_ERR_CODE_COMMUNICATION_FAIL 12000005: IPC communication failed.
  *     <br>OH_HUKS_ERR_CODE_CRYPTO_FAIL 12000006: Ukey driver error.
- *     <br>OH_HUKS_ERR_CODE_ITEM_NOT_EXIST 12000011: The cached resource handle is not found. Open the resource
- *     based on the resource ID first.
+ *     <br>OH_HUKS_ERR_CODE_ITEM_NOT_EXIST 12000011: The resource ID is not found.
  *     <br>OH_HUKS_ERR_CODE_INTERNAL_ERROR 12000012: An internal system error occurs. The processing function is
  *     not found.
  *     <br>OH_HUKS_ERR_CODE_INSUFFICIENT_MEMORY 12000014: Insufficient memory.
@@ -154,8 +153,8 @@ struct OH_Huks_Result OH_Huks_CloseResource(
  *     <br>OH_HUKS_ERR_CODE_INTERNAL_ERROR 12000012: An internal system error occurs. The processing function is
  *     not found.
  *     <br>OH_HUKS_ERR_CODE_INSUFFICIENT_MEMORY 12000014: Insufficient memory.
- *     <br>OH_HUKS_ERR_CODE_ILLEGAL_ARGUMENT 12000018: Invalid **resourceId**, **propertyId**, **paramSet**, or
- *     callback.
+ *     <br>OH_HUKS_ERR_CODE_ILLEGAL_ARGUMENT 12000018: Invalid **resourceId**, **propertyId**, **paramSetIn**, or
+ *     **paramSetOut**.
  *     <br>OH_HUKS_ERR_CODE_EXTERNAL_ERROR 12000020: The provider or Ukey internal execution fails.
  *     <br>OH_HUKS_ERR_CODE_PIN_LOCKED 12000021: The PIN is locked.
  *     <br>OH_HUKS_ERR_CODE_PIN_NO_AUTH 12000023: PIN authentication fails.
@@ -173,7 +172,7 @@ struct OH_Huks_Result OH_Huks_GetProperty(const struct OH_Huks_Blob *resourceId,
  * @return {@link OH_Huks_ErrCode}:
  *     <br>OH_HUKS_SUCCESS 0: Operation successful.
  *     <br>OH_HUKS_ERR_CODE_INSUFFICIENT_MEMORY 12000014: Insufficient memory.
- *     <br>OH_HUKS_ERR_CODE_INVALID_ARGUMENT 12000018: **params** is NULL or **paramSet** is invalid.
+ *     <br>OH_HUKS_ERR_CODE_INVALID_ARGUMENT 12000018: **paramSet** is NULL.
  * @since 22
  */
 struct OH_Huks_Result OH_Huks_InitExternalCryptoParamSet(OH_Huks_ExternalCryptoParamSet **paramSet);
@@ -242,7 +241,7 @@ struct OH_Huks_Result OH_Huks_GetExternalCryptoParam(OH_Huks_ExternalCryptoParam
  *     <br>OH_HUKS_ERR_CODE_INTERNAL_ERROR 12000012: An internal system error occurs. The processing function is
  *     not found.
  *     <br>OH_HUKS_ERR_CODE_INSUFFICIENT_MEMORY 12000014: Insufficient memory.
- *     <br>OH_HUKS_ERR_CODE_ILLEGAL_ARGUMENT 12000018: Invalid **resourceId** or **paramSet**.
+ *     <br>OH_HUKS_ERR_CODE_ILLEGAL_ARGUMENT 12000018: Invalid **resourceId**, **paramSet** or **authState**.
  *     <br>OH_HUKS_ERR_CODE_EXTERNAL_ERROR 12000020: Provider execution fails.
  *     <br>OH_HUKS_ERR_CODE_BUSY 12000024: The provider or Ukey is busy.
  * @since 22

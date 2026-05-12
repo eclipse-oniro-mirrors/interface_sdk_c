@@ -1138,7 +1138,7 @@ enum OH_Huks_Tag {
     OH_HUKS_TAG_AUTH_STORAGE_LEVEL = OH_HUKS_TAG_TYPE_UINT | 316,
 
     /**
- * Authentication mode of the user authtoken£¬whose optional values are from enum HuksUserAuthMode.
+ * Authentication mode of the user authtoken, whose optional values are from enum HuksUserAuthMode.
  *
  * @since 12
  */
