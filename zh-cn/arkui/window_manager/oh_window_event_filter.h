@@ -28,7 +28,7 @@
  *
  * @brief The file declares the APIs for a window to filter multimodal key events. When a multimodal input event passes
  * through the window, the window can interrupt the event to prevent it from being further distributed.
- * 
+ *
  * @syscap SystemCapability.Window.SessionManager
  * @library libnative_window_manager.so
  * @kit ArkUI

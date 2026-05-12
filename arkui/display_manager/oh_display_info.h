@@ -28,7 +28,7 @@
  * @file oh_display_info.h
  *
  * @brief The file declares the common enums and definitions of the display.
- * 
+ *
  * @kit ArkUI
  * @library libnative_display_manager.so
  * @syscap SystemCapability.WindowManager.WindowManager.Core

@@ -47,7 +47,7 @@ extern "C" {
 /**
  * @brief Takes a screenshot of the entire screen. This function can be used to capture a full-screen screenshot on the
  * specified display.
- * 
+ *
  * @permission ohos.permission.CUSTOM_SCREEN_CAPTURE or ohos.permission.CUSTOM_SCREEN_RECORDING [since 22]
  * @permission ohos.permission.CUSTOM_SCREEN_CAPTURE [since 14]
  * @param displayId ID of the display. The value must be a non-negative integer.

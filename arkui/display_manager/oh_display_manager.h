@@ -226,7 +226,7 @@ bool OH_NativeDisplayManager_IsFoldable();
 
 /**
  * @brief Obtains the display mode of the foldable device.
- * 
+ *
  * @param displayMode Pointer to the display mode. For details about the available options, see
  *     {@link NativeDisplayManager_FoldDisplayMode}.
  * @return {@link DISPLAY_MANAGER_OK } If the operation is successful
@@ -239,7 +239,7 @@ NativeDisplayManager_ErrorCode OH_NativeDisplayManager_GetFoldDisplayMode(
 
 /**
  * @brief Defines a callback function to listen for display status changes.
- * 
+ *
  * @param displayId ID of the display.
  * @since 12
  */
@@ -247,7 +247,7 @@ typedef void (*OH_NativeDisplayManager_DisplayChangeCallback)(uint64_t displayId
 
 /**
  * @brief Registers a listener for display status changes (such as rotation, refresh rate, DPI, and resolution changes).
- * 
+ *
  * @param displayChangeCallback Callback function triggered when the display status is changed. For details, see
  *     {@link OH_NativeDisplayManager_DisplayChangeCallback}.
  * @param listenerIndex Pointer to the index of the listener registered. It can be used as an input parameter of
@@ -262,7 +262,7 @@ NativeDisplayManager_ErrorCode OH_NativeDisplayManager_RegisterDisplayChangeList
 
 /**
  * @brief Unregisters a listener for display status changes.
- * 
+ *
  * @param listenerIndex Index of the listener returned when
  *     {@link OH_NativeDisplayManager_RegisterDisplayChangeListener} is called.
  * @return {@link DISPLAY_MANAGER_OK } If the operation is successful
@@ -274,7 +274,7 @@ NativeDisplayManager_ErrorCode OH_NativeDisplayManager_UnregisterDisplayChangeLi
 
 /**
  * @brief Defines a callback function to listen for folded/unfolded state changes of the display.
- * 
+ *
  * @param displayMode Folded or unfolded state of the display. For details about the available options, see
  *     {@link NativeDisplayManager_FoldDisplayMode}.
  * @since 12
@@ -284,7 +284,7 @@ typedef void (*OH_NativeDisplayManager_FoldDisplayModeChangeCallback)(
 
 /**
  * @brief Registers a listener for folded/unfolded state changes of the display.
- * 
+ *
  * @param displayModeChangeCallback Callback function triggered when the folded/unfolded state of the display is
  *     changed. For details, see {@link OH_NativeDisplayManager_FoldDisplayModeChangeCallback}.
  * @param listenerIndex Pointer to the index of the listener registered. It can be used as an input parameter of
@@ -300,7 +300,7 @@ NativeDisplayManager_ErrorCode OH_NativeDisplayManager_RegisterFoldDisplayModeCh
 
 /**
  * @brief Unregisters a listener for folded/unfolded state changes of the display.
- * 
+ *
  * @param listenerIndex Index of the listener returned when
  *     {@link OH_NativeDisplayManager_RegisterFoldDisplayModeChangeListener} is called.
  * @return {@link DISPLAY_MANAGER_OK } If the operation is successful
@@ -313,7 +313,7 @@ NativeDisplayManager_ErrorCode OH_NativeDisplayManager_UnregisterFoldDisplayMode
 
 /**
  * @brief Obtains the object that contains the information about all displays.
- * 
+ *
  * @param allDisplays Double pointer to the display information, which is encapsulated in
  *     {@link NativeDisplayManager_DisplaysInfo}.
  * @return {@link DISPLAY_MANAGER_OK } If the operation is successful.
@@ -326,7 +326,7 @@ NativeDisplayManager_ErrorCode OH_NativeDisplayManager_CreateAllDisplays(
 
 /**
  * @brief Destroys the object that contains the information about all displays.
- * 
+ *
  * @param allDisplays Pointer to the display information object, which is obtained by calling
  *     {@link OH_NativeDisplayManager_CreateAllDisplays}. For details, see {@link NativeDisplayManager_DisplaysInfo}.
  * @since 14
@@ -335,7 +335,7 @@ void OH_NativeDisplayManager_DestroyAllDisplays(NativeDisplayManager_DisplaysInf
 
 /**
  * @brief Obtains the object that contains the information about a display.
- * 
+ *
  * @param displayId ID of the display. The value must be a non-negative integer.
  * @param displayInfo Double pointer to the display information, which is encapsulated in
  *     {@link NativeDisplayManager_DisplayInfo}.
@@ -349,7 +349,7 @@ NativeDisplayManager_ErrorCode OH_NativeDisplayManager_CreateDisplayById(uint32_
 
 /**
  * @brief Destroys the object that contains the information about a display.
- * 
+ *
  * @param displayInfo Pointer to the display information object, which is obtained by calling
  *     {@link OH_NativeDisplayManager_CreateDisplayById} or {@link OH_NativeDisplayManager_CreatePrimaryDisplay}. For
  *     details, see {@link NativeDisplayManager_DisplayInfo}.
@@ -362,7 +362,7 @@ void OH_NativeDisplayManager_DestroyDisplay(NativeDisplayManager_DisplayInfo *di
  * devices, the displayInfo object obtained contains information about the built-in screen. For 2-in-1 devices with an
  * external screen, the displayInfo object obtained contains information about the current primary screen. For 2-in-1
  * devices without an external screen, the displayInfo object obtained contains information about the built-in screen.
- * 
+ *
  * @param displayInfo Double pointer to the display information, which is encapsulated in
  *     {@link NativeDisplayManager_DisplayInfo}.
  * @return {@link DISPLAY_MANAGER_OK } If the operation is successful.
@@ -375,7 +375,7 @@ NativeDisplayManager_ErrorCode OH_NativeDisplayManager_CreatePrimaryDisplay(
 
 /**
  * @brief Defines a callback function to listen for available area changes of a display.
- * 
+ *
  * @param displayId Display ID, which is a non-negative integer.
  * @since 20
  */

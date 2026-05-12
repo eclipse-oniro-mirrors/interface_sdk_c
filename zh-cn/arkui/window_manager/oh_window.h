@@ -440,7 +440,7 @@ int32_t OH_WindowManager_FrameMetrics_GetVsyncTimestamp(
  *  该接口依赖窗口页面内容加载，即需要在ArkTS侧loadContent()接口或setUIContent()接口生效后调用。
  *  应用注册帧率指标变更监听后，仅当客户端UI内容发生重绘（例如页面切换、响应式组件交互、设置背景色和透明度等）时才会触发已注册回调。
  *  如需取消订阅，请使用{@link OH_WindowManager_UnregisterFrameMetricsMeasuredCallback}接口。
- * 
+ *
  * @param windowId 创建窗口时的窗口ID。
  * @param callback 用于返回帧率指标结果的回调函数。
  * @return 返回结果代码。
@@ -457,7 +457,7 @@ int32_t OH_WindowManager_RegisterFrameMetricsMeasuredCallback(int32_t windowId,
 
 /**
  * @brief 取消订阅窗口帧率指标变更监听事件。
- *  该接口依赖窗口页面内容加载，即需要在ArkTS侧loadContent()接口或setUIContent()接口生效后调用。 
+ *  该接口依赖窗口页面内容加载，即需要在ArkTS侧loadContent()接口或setUIContent()接口生效后调用。
  *  如需订阅，请使用{@link OH_WindowManager_RegisterFrameMetricsMeasuredCallback}接口。
  *
  * @param windowId 创建窗口时的窗口ID。
