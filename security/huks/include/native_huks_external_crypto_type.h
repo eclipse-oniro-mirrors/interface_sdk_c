@@ -46,12 +46,20 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
+
 /**
  * @brief Defines the maximum length of the provider name.
  *
  * @since 22
  */
 #define OH_HUKS_EXTERNAL_CRYPTO_MAX_PROVIDER_NAME_LEN 100
+
+/**
+ * @brief Defines the maximum length of the resource ID.
+ *
+ * @since 22
+ */
+#define OH_HUKS_EXTERNAL_CRYPTO_MAX_RESOURCE_ID_LEN   512
 
 /**
  * @brief Defines a single parameter in a parameter set.
@@ -103,7 +111,6 @@ typedef struct OH_Huks_ExternalCryptoParam {
         struct OH_Huks_Blob blob;
     };
 } OH_Huks_ExternalCryptoParam;
-
 /**
  * @brief Defines an external cryptographic parameter set.
  *
@@ -206,12 +213,6 @@ typedef enum OH_Huks_ExternalPinAuthState {
      */
     OH_HUKS_EXT_CRYPTO_PIN_LOCKED = 2
 } OH_Huks_ExternalPinAuthState;
-/**
- * @brief Defines the maximum length of the resource ID.
- *
- * @since 22
- */
-#define OH_HUKS_EXTERNAL_CRYPTO_MAX_RESOURCE_ID_LEN   512
 
 #ifdef __cplusplus
 }
