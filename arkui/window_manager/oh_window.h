@@ -172,7 +172,7 @@ int32_t OH_WindowManager_SetWindowFocusable(int32_t windowId, bool isFocusable);
  *     {@link OK} the function call is successful.
  *     {@link WINDOW_MANAGER_ERRORCODE_INVALID_PARAM} parameter error.
  *     {@link WINDOW_MANAGER_ERRORCODE_STATE_ABNORMAL} this window state is abnormal.
- * @since 18
+ * @since 15
  */
 int32_t OH_WindowManager_SetWindowBackgroundColor(int32_t windowId, const char* color);
 
@@ -189,7 +189,7 @@ int32_t OH_WindowManager_SetWindowBackgroundColor(int32_t windowId, const char* 
  *     {@link WINDOW_MANAGER_ERRORCODE_INVALID_PARAM} parameter error.
  *     {@link WINDOW_MANAGER_ERRORCODE_STATE_ABNORMAL} this window state is abnormal.
  *     {@link WINDOW_MANAGER_ERRORCODE_SYSTEM_ABNORMAL} the window manager service works abnormally.
- * @since 18
+ * @since 15
  */
 int32_t OH_WindowManager_SetWindowBrightness(int32_t windowId, float brightness);
 

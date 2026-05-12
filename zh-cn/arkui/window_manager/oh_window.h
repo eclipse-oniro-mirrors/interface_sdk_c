@@ -171,7 +171,7 @@ int32_t OH_WindowManager_SetWindowFocusable(int32_t windowId, bool isFocusable);
  *     返回OK，表示函数调用成功。
  *     返回WINDOW_MANAGER_ERRORCODE_INVALID_PARAM，表示参数错误。
  *     返回WINDOW_MANAGER_ERRORCODE_STATE_ABNORMAL，表示窗口状态异常。
- * @since 18
+ * @since 15
  */
 int32_t OH_WindowManager_SetWindowBackgroundColor(int32_t windowId, const char* color);
 
@@ -185,7 +185,7 @@ int32_t OH_WindowManager_SetWindowBackgroundColor(int32_t windowId, const char* 
  *     返回WINDOW_MANAGER_ERRORCODE_INVALID_PARAM，表示参数错误。
  *     返回WINDOW_MANAGER_ERRORCODE_STATE_ABNORMAL，表示窗口状态异常。
  *     返回WINDOW_MANAGER_ERRORCODE_SYSTEM_ABNORMAL，表示窗口管理器服务异常。
- * @since 18
+ * @since 15
  */
 int32_t OH_WindowManager_SetWindowBrightness(int32_t windowId, float brightness);
 
