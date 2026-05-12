@@ -39,9 +39,12 @@
  * @since 9
  * @version 1.0
  */
+
 #ifndef NATIVE_HUKS_PARAM_H
 #define NATIVE_HUKS_PARAM_H
+
 #include "native_huks_type.h"
+
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -52,7 +55,7 @@ extern "C" {
  * {@link OH_Huks_FreeParamSet}. To add parameters to a parameter set, you need to use {@link OH_Huks_AddParams} to add
  * parameters and use {@link OH_Huks_BuildParamSet} to construct the parameter set.
  *
- * @param paramSet {@link struct OH_Huks_ParamSet} Double pointer to the parameter set to initialize.
+ * @param paramSet {@link struct OH_Huks_ParamSet} Pointer to the parameter set to initialize.
  * @return {@link OH_Huks_ErrCode}:
  *     <br>OH_HUKS_SUCCESS = 0: Initialization successful.
  *     <br>OH_HUKS_ERR_CODE_INSUFFICIENT_MEMORY = 12000014: Insufficient memory.
@@ -195,6 +198,7 @@ struct OH_Huks_Result OH_Huks_CheckParamMatch(const struct OH_Huks_Param *basePa
  * @version 1.0
  */
 void OH_Huks_FreeKeyAliasSet(struct OH_Huks_KeyAliasSet *keyAliasSet);
+
 #ifdef __cplusplus
 }
 #endif
