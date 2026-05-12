@@ -30,7 +30,7 @@
  * @brief The file declares the functions for basic display management. You can call the functions to obtain various
  * information about the default display and listen for display status changes, such as rotation, folding, and
  * unfolding.
- * 
+ *
  * @kit ArkUI
  * @library libnative_display_manager.so
  * @syscap SystemCapability.WindowManager.WindowManager.Core
