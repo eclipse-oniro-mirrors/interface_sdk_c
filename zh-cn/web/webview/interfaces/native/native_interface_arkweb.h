@@ -106,49 +106,45 @@ typedef struct {
 } ArkWeb_BlanklessInfo;
 
 /**
- * @brief For details about the ArkWeb kernel version, see
- * [Adaptation Guide for the M114 Kernel on OpenHarmony 6.0]
- * (https://gitcode.com/openharmony-tpc/chromium_src/blob/master/web/ReleaseNote/CompatibleWithLegacyWebEngine_6.0.md),
- * [Adaptation Guide for the M114 Kernel on OpenHarmony 7.0]
- * (https://gitcode.com/openharmony-tpc/chromium_src/blob/master/web/ReleaseNote/CompatibleWithLegacyWebEngine_7.0.md).
+ * @brief ArkWeb内核版本，请参考
+ * [M114内核在OpenHarmony 6.0系统上的适配指导]
+ * (https://gitcode.com/openharmony-tpc/chromium_src/blob/master/web/ReleaseNote/CompatibleWithLegacyWebEngine_6.0.md)，
+ * [M132内核在OpenHarmony 7.0系统上的适配指导]
+ * (https://gitcode.com/openharmony-tpc/chromium_src/blob/master/web/ReleaseNote/CompatibleWithLegacyWebEngine_7.0.md)。
  *
  * @since 20
  */
 typedef enum {
     /**
-     * @brief Default system kernel. For OpenHarmony 6.0, the default kernel is M132.
+     * @brief 系统默认内核，OpenHarmony 6.0版本默认为M132，OpenHarmony 7.0版本默认为M144。
      *
      * @since 20
      */
     SYSTEM_DEFAULT = 0,
 
     /**
-     * @brief Legacy kernel of OpenHarmony 6.0. You can select this legacy kernel. If it does not exist, the setting
-     * is invalid.
+     * @brief OpenHarmony 6.0版本的遗留内核。开发者可选择此遗留内核，若系统版本上不存在此内核则设置无效。
      *
      * @since 20
      */
     ARKWEB_M114 = 1,
 
     /**
-     * @brief Evergreen kernel of OpenHarmony 6.0, which is M132 by default. If it does not exist, the setting is
-     * invalid.
+     * @brief OpenHarmony 6.0版本的常青内核（OpenHarmony 7.0版本的遗留内核），M132为OpenHarmony 6.0版本的默认内核。若系统版本上不存在此内核则设置无效。
      *
      * @since 20
      */
     ARKWEB_M132 = 2,
 
     /**
-     * @brief Evergreen kernel of OpenHarmony 7.0, which is M144 by default. If it does not exist, the setting is
-     * invalid.
+     * @brief OpenHarmony 7.0版本的[常青内核]，M144为此版本的默认内核。若系统版本上不存在此内核则设置无效。
      *
      * @since 26.0.0
      */
     ARKWEB_M144 = 3,
 
     /**
-     * @brief Evergreen kernel, which is the latest kernel of the system. You can choose to use the latest kernel for
-     * each system version. This setting takes effect for OpenHarmony 6.1 and later versions.
+     * @brief 常青内核，系统的最新内核。开发者可选择在每个系统版本上都使用最新的内核，OpenHarmony 6.1及之后所有系统版本都生效。
      *
      * @since 23
      */
@@ -391,20 +387,18 @@ ArkWeb_ErrorCode OH_ArkWebCookieManager_SaveCookieSync();
 void OH_ArkWebCookieManager_SaveCookieAsync(OH_ArkWeb_OnCookieSaveCallback callback);
 
 /**
- * Sets the ArkWeb kernel version. If the system does not support the specified version, the setting is invalid.
- * This API is a global static method and must be called before **initializeWebEngine** is called. If any **Web**
- * component has been loaded, the setting of this API is invalid.
+ * 设置ArkWeb内核版本。若系统不支持指定版本，则设置无效。
+ * 该接口为全局静态方法，须在调用initializeWebEngine前执行，若已加载任何Web组件，则该设置无效。
  *
- * @param { ArkWebEngineVersion } webEngineVersion - ArkWeb kernel version. 
- *        For details, see {@link ArkWebEngineVersion}.
+ * @param { ArkWebEngineVersion } webEngineVersion - ArkWeb内核版本 （详细说明见{@link ArkWebEngineVersion})。
  * @since 20
  */
 void OH_NativeArkWeb_SetActiveWebEngineVersion(ArkWebEngineVersion webEngineVersion);
 
 /**
- * Obtains the current ArkWeb kernel version.
+ * 获取当前使用的ArkWeb内核版本。
  *
- * @return The current ArkWeb kernel version defined by {@link ArkWebEngineVersion}.
+ * @return 返回由{@link ArkWebEngineVersion}枚举所定义的当前使用的ArkWeb内核版本。
  * @since 20
  */
 ArkWebEngineVersion OH_NativeArkWeb_GetActiveWebEngineVersion();
@@ -414,17 +408,16 @@ ArkWebEngineVersion OH_NativeArkWeb_GetActiveWebEngineVersion();
  * interface is called. By setting the 'lazy' parameter to true, the web engine will not be initialized when the
  * CookieManager interface is called. Instead, the web engine will be initialized either when the web component is
  * created or when initializeWebEngine is called.
+ *
  * @param { bool } lazy - Controls whether to delay the initialization of the web engine.
  * @since 22
  */
 void OH_NativeArkWeb_LazyInitializeWebEngineInCookieManager(bool lazy);
 
 /**
- * Checks whether the ArkWeb kernel used by the application is the evergreen kernel, that is, the latest kernel of the
- * system.
+ * 判断应用所使用ArkWeb内核是否是常青内核，即系统的最新内核。
  *
- * @return Whether the kernel used by the application is the evergreen kernel. The value **true** indicates that the
- *         kernel used by the application is the evergreen kernel, and **false** indicates the opposite.
+ * @return 表示当前应用所使用内核是否为常青内核。true表示当前应用所使用内核是常青内核，false表示当前应用所使用内核不是常青内核。
  * @since 23
  */
 bool OH_NativeArkWeb_IsActiveWebEngineEvergreen();
