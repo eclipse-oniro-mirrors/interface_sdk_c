@@ -1,3 +1,4 @@
+
 /*
  * Copyright (c) 2025 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -27,7 +28,7 @@
 /**
  * @file native_huks_external_crypto_type.h
  *
- * @brief Defines the structs and enums for external key management extensions.
+ * @brief 定义面向外部密钥管理扩展的结构体与枚举类型。
  *
  * @library libhuks_external_crypto.z.so
  * @syscap SystemCapability.Security.Huks.CryptoExtension
@@ -48,89 +49,90 @@ extern "C" {
 #endif
 
 /**
- * @brief Defines the maximum length of the provider name.
+ * @brief 定义provider名称的最大字节长度。
  *
  * @since 22
  */
 #define OH_HUKS_EXTERNAL_CRYPTO_MAX_PROVIDER_NAME_LEN 100
 
 /**
- * @brief Defines the maximum length of the resource ID.
+ * @brief 定义资源ID的最大字节长度。
  *
  * @since 22
  */
 #define OH_HUKS_EXTERNAL_CRYPTO_MAX_RESOURCE_ID_LEN   512
 
 /**
- * @brief Defines a single parameter in a parameter set.
+ * @brief 定义参数集合中单个参数的结构体。
  *
  * @since 22
  */
 typedef struct OH_Huks_ExternalCryptoParam {
     /**
-     * @brief Tag value.
+     * @brief 标签值。
      *
      * @since 22
      */
     uint32_t tag;
     /**
-     * @brief Tag Content.
+     * @brief 标签内容。
      *
      * @since 22
      */
     union {
         /**
-         * @brief Parameter of the Boolean type.
+         * @brief 布尔类型参数。
          *
          * @since 22
          */
         bool boolParam;
         /**
-         * @brief Parameter of the int32_t type.
+         * @brief int32_t类型参数。
          *
          * @since 22
          */
         int32_t int32Param;
         /**
-         * @brief Parameter of the uint32_t type.
+         * @brief uint32_t类型参数。
          *
          * @since 22
          */
         uint32_t uint32Param;
         /**
-         * @brief Parameter of the uint64_t type.
+         * @brief uint64_t类型参数。
          *
          * @since 22
          */
         uint64_t uint64Param;
         /**
-         * @brief Parameter of the struct OH_Huks_Blob type.
+         * @brief OH_Huks_Blob类型参数。
          *
          * @since 22
          */
         struct OH_Huks_Blob blob;
     };
 } OH_Huks_ExternalCryptoParam;
+
 /**
- * @brief Defines an external cryptographic parameter set.
+ * @brief 定义外部加密参数集合的结构。
  *
  * @since 22
  */
 typedef struct OH_Huks_ExternalCryptoParamSet {
     /**
-    * @brief Memory size of the parameter set.
+    * @brief 参数集合所占内存大小，单位：Byte。
     *
     * @since 22
     */
     uint32_t paramSetSize;
     /**
-    * @brief Number of parameters in the parameter set.
+    * @brief 参数集合中的参数数量。
     *
     * @since 22
     */
     uint32_t paramsCnt;
     /**
-    * @brief Parameter array.
+    * @brief 参数数组，大小由paramSetSize与paramsCnt决定。
     *
     * @since 22
     */
@@ -138,48 +140,48 @@ typedef struct OH_Huks_ExternalCryptoParamSet {
 } OH_Huks_ExternalCryptoParamSet;
 
 /**
- * @brief Enumerates the tag values used in a parameter set.
+ * @brief 列举参数集合中使用的标签值。
  *
  * @since 22
  */
 typedef enum OH_Huks_ExternalCryptoTag {
     /**
-     * @brief PIN code.
+     * @brief PIN码。
      *
      * @since 22
      */
     OH_HUKS_EXT_CRYPTO_TAG_UKEY_PIN = OH_HUKS_TAG_TYPE_BYTES | 200001,
 
     /**
-     * @brief Ability Name.
+     * @brief 能力名称。
      *
      * @since 22
      */
     OH_HUKS_EXT_CRYPTO_TAG_ABILITY_NAME = OH_HUKS_TAG_TYPE_BYTES | 200002,
 
     /**
-     * @brief Extra data.
+     * @brief 附加数据。
      *
      * @since 22
      */
     OH_HUKS_EXT_CRYPTO_TAG_EXTRA_DATA = OH_HUKS_TAG_TYPE_BYTES | 200003,
 
     /**
-     * @brief Calling uid.
+     * @brief 调用方的UID。
      *
      * @since 22
      */
     OH_HUKS_EXT_CRYPTO_TAG_UID = OH_HUKS_TAG_TYPE_INT | 200004,
 
     /**
-     * @brief Purpose of the cert chain.
+     * @brief 证书链用途。
      *
      * @since 22
      */
     OH_HUKS_EXT_CRYPTO_TAG_PURPOSE = OH_HUKS_TAG_TYPE_INT | 200005,
 
     /**
-     * @brief The timeout of get property operation.
+     * @brief 获取属性操作的超时时间，单位：s。
      *
      * @since 22
      */
@@ -187,27 +189,27 @@ typedef enum OH_Huks_ExternalCryptoTag {
 } OH_Huks_ExternalCryptoTag;
 
 /**
- * @brief Enumerates the Ukey PIN authentication states.
+ * @brief 列举Ukey PIN码认证状态。
  *
  * @since 22
  */
 typedef enum OH_Huks_ExternalPinAuthState {
     /**
-     * @brief Ukey PIN is not authenticated.
+     * @brief PIN码未认证。
      *
      * @since 22
      */
     OH_HUKS_EXT_CRYPTO_PIN_NO_AUTH = 0,
 
     /**
-     * @brief Ukey PIN is authenticated.
+     * @brief PIN码认证成功。
      *
      * @since 22
      */
     OH_HUKS_EXT_CRYPTO_PIN_AUTH_SUCCEEDED = 1,
 
     /**
-     * @brief Ukey PIN is locked.
+     * @brief PIN码被锁。
      *
      * @since 22
      */
