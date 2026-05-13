@@ -24,7 +24,7 @@
 /**
  * @file os_account_common.h
  *
- * @brief Defines common types used in **OsAccount** APIs.
+ * @brief 提供OsAccount接口的公共类型定义
  *
  * @library libos_account_ndk.so
  * @kit BasicServicesKit
@@ -38,44 +38,38 @@ extern "C" {
 #endif
 
 /**
- * @brief Enumerates the error codes.
+ * @brief 枚举错误码。
  *
  * @since 12
  */
 typedef enum OsAccount_ErrCode {
     /**
-     * Success.
-     * @since 12
+     * 成功。
      */
     OS_ACCOUNT_ERR_OK = 0,
 
     /**
-     * @error Permission denied.
-     * @since 26.0.0
+     * 没有权限。<br>**起始版本：** 26.0.0
      */
     OS_ACCOUNT_ERR_PERMISSION_DENIED = 201,
 
     /**
-     * Internal error.
-     * @since 12
+     * 内部错误。
      */
     OS_ACCOUNT_ERR_INTERNAL_ERROR = 12300001,
 
     /**
-     * Invalid parameter.
-     * @since 12
+     * 无效的参数。
      */
     OS_ACCOUNT_ERR_INVALID_PARAMETER = 12300002,
 
     /**
-     * @error Account not found.
-     * @since 26.0.0
+     * 账号不存在。<br>**起始版本：** 26.0.0
      */
     OS_ACCOUNT_ERR_ACCOUNT_NOT_FOUND = 12300003,
 
     /**
-     * @error Restricted account.
-     * @since 26.0.0
+     * 受限账号。<br>**起始版本：** 26.0.0
      */
     OS_ACCOUNT_ERR_RESTRICTED_ACCOUNT = 12300008
 } OsAccount_ErrCode;
