@@ -74,13 +74,13 @@ typedef enum {
      */
     ERR_OH_OUT_OF_MEMORY = 19100012,
     /**
-     *表示应用未授权。
+     * 表示应用未授权。
      */
     ERR_OH_APPLICATION_NOT_AUTHORIZED = 19100018,
 } DLP_ErrCode;
 
 /**
- * @brief Enumerates the permissions on a DLP file.
+ * @brief DLP文件授权类型的枚举。
  *
  * @since 14
  */
@@ -108,20 +108,20 @@ typedef enum {
  *
  * @param dlpFileAccess 表示DLP文件针对用户的授权类型，例如：只读。
  * @param flags 表示DLP文件的详细操作权限，操作权限的具体含义为：
- *     <br>**0x00000000** 表示无文件权限。
- *     <br>**0x00000001** 表示文件的查看权限。
- *     <br>**0x00000002** 表示文件的保存权限。
- *     <br>**0x00000004** 表示文件的另存为权限。
- *     <br>**0x00000008** 表示文件的编辑权限。
- *     <br>**0x00000010** 表示文件的截屏权限。
- *     <br>**0x00000020** 表示文件的共享屏幕权限。
- *     <br>**0x00000040** 表示文件的录屏权限。
- *     <br>**0x00000080** 表示文件的复制权限。
- *     <br>**0x00000100** 表示文件的打印权限。
- *     <br>**0x00000200** 表示文件的导出权限。
- *     <br>**0x00000400** 表示文件的修改文件权限。
- * @return {@link DLP_ErrCode#ERR_OH_SUCCESS} 0 - 操作成功。
- *     <br>19100001 -入参错误。
+ *     <br>0x00000000-表示无文件权限。
+ *     <br>0x00000001-表示文件的查看权限。
+ *     <br>0x00000002-表示文件的保存权限。
+ *     <br>0x00000004-表示文件的另存为权限。
+ *     <br>0x00000008-表示文件的编辑权限。
+ *     <br>0x00000010-表示文件的截屏权限。
+ *     <br>0x00000020-表示文件的共享屏幕权限。
+ *     <br>0x00000040-表示文件的录屏权限。
+ *     <br>0x00000080-表示文件的复制权限。
+ *     <br>0x00000100-表示文件的打印权限。
+ *     <br>0x00000200-表示文件的导出权限。
+ *     <br>0x00000400-表示文件的修改文件权限。
+ * @return 0 - 操作成功。
+ *     <br>19100001 - 入参错误。
  *     <br>19100006 - 非DLP沙箱应用。
  *     <br>19100011 - 系统服务工作异常。
  *     <br>19100012 - 内存申请失败。
@@ -133,9 +133,9 @@ DLP_ErrCode OH_DLP_GetDlpPermissionInfo(DLP_FileAccess *dlpFileAccess, uint32_t 
  * @brief 获取指定DLP文件名的原始文件名。
  *
  * @param fileName 指定要查询的文件名。
- * @param originalFileName  DLP文件的原始文件名。
+ * @param originalFileName DLP文件的原始文件名。
  * @return 0 - 操作成功。
- *     <br>19100001 -入参错误。
+ *     <br>19100001 - 入参错误。
  *     <br>19100012 - 内存申请失败。
  * @since 14
  */
@@ -171,8 +171,8 @@ DLP_ErrCode OH_DLP_SetSandboxAppConfig(const char *configInfo);
  * @param configInfo 沙箱应用配置信息。
  * @return 0 - 操作成功。
  *     <br>19100011 - 系统服务工作异常。
- *     <br>119100012 - 内存申请失败。
- *     <br>119100018 - 应用未授权。
+ *     <br>19100012 - 内存申请失败。
+ *     <br>19100018 - 应用未授权。
  * @since 14
  */
 DLP_ErrCode OH_DLP_GetSandboxAppConfig(char **configInfo);
