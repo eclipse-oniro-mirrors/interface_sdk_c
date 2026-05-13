@@ -27,7 +27,7 @@
 
 /**
  * @brief 输入设备特性定义。
- * 
+ *
  * @since 11
  * @version 1.0
  */
@@ -94,7 +94,7 @@ typedef enum {
 
 /**
  * @brief 事件类型。
- * 
+ *
  * @since 11
  * @version 1.0
  */
@@ -145,7 +145,7 @@ typedef enum {
 
 /**
  * @brief 同步事件编码。
- * 
+ *
  * @since 11
  * @version 1.0
  */
@@ -188,7 +188,7 @@ typedef enum {
 
 /**
  * @brief 键值编码。
- * 
+ *
  * @since 11
  * @version 1.0
  */
@@ -1079,7 +1079,7 @@ typedef enum {
 
 /**
  * @brief 绝对坐标编码。
- * 
+ *
  * @since 11
  * @version 1.0
  */
@@ -1298,7 +1298,7 @@ typedef enum {
 
 /**
  * @brief 相对坐标编码。
- * 
+ *
  * @since 11
  * @version 1.0
  */
@@ -1408,7 +1408,7 @@ typedef enum {
 
 /**
  * @brief 不适合其它类型的输入事件编码。
- * 
+ *
  * @since 11
  * @version 1.0
  */
@@ -1467,7 +1467,7 @@ typedef enum {
 
 /**
  * @brief HID DDK错误码定义。
- * 
+ *
  * @since 11
  * @version 1.0
  */
@@ -1576,21 +1576,21 @@ typedef enum {
 
 /**
  * @brief 不透明的USB HID设备结构。
- * 
+ *
  * @since 18
  */
 typedef struct Hid_DeviceHandle Hid_DeviceHandle;
 
 /**
  * @brief Defines the opaque USB HID device structure.
- * 
+ *
  * @since 18
  */
 typedef struct Hid_DeviceHandle Hid_DeviceHandle;
 
 /**
  * @brief 报告（HID设备与主机之间交换的数据包）类型定义。
- * 
+ *
  * @since 18
  */
 typedef enum {
@@ -1624,7 +1624,7 @@ typedef enum {
 
 /**
  * @brief Defines a struct for basic device information.
- * 
+ *
  * @since 11
  * @version 1.0
  */
@@ -1661,7 +1661,7 @@ typedef struct Hid_Device {
 
 /**
  * @brief Defines a struct for basic device information.
- * 
+ *
  * @since 11
  * @version 1.0
  */
@@ -1698,7 +1698,7 @@ typedef struct Hid_Device {
 
 /**
  * @brief Represents the event information.
- * 
+ *
  * @since 11
  * @version 1.0
  */
@@ -1719,7 +1719,7 @@ typedef struct Hid_EmitItem {
 
 /**
  * @brief Represents the event information.
- * 
+ *
  * @since 11
  * @version 1.0
  */
@@ -1740,7 +1740,7 @@ typedef struct Hid_EmitItem {
 
 /**
  * @brief Defines a struct for an array of event types.
- * 
+ *
  * @since 11
  * @version 1.0
  */
@@ -1757,7 +1757,7 @@ typedef struct Hid_EventTypeArray {
 
 /**
  * @brief Defines a struct for an array of event types.
- * 
+ *
  * @since 11
  * @version 1.0
  */
@@ -1774,7 +1774,7 @@ typedef struct Hid_EventTypeArray {
 
 /**
  * @brief Defines a struct for the event properties of a device.
- * 
+ *
  * @since 11
  * @version 1.0
  */
@@ -1812,7 +1812,7 @@ typedef struct Hid_EventProperties {
 
 /**
  * @brief Defines a struct for the event properties of a device.
- * 
+ *
  * @since 11
  * @version 1.0
  */
@@ -1898,7 +1898,7 @@ typedef struct Hid_RawDevInfo {
 
 /**
  * @brief Defines an array of miscellaneous events.
- * 
+ *
  * @since 11
  * @version 1.0
  */
@@ -1915,7 +1915,7 @@ typedef struct Hid_MscEventArray {
 
 /**
  * @brief Defines an array of miscellaneous events.
- * 
+ *
  * @since 11
  * @version 1.0
  */
@@ -1932,7 +1932,7 @@ typedef struct Hid_MscEventArray {
 
 /**
  * @brief Defines a struct for the key code array.
- * 
+ *
  * @since 11
  * @version 1.0
  */
@@ -1949,7 +1949,7 @@ typedef struct Hid_KeyCodeArray {
 
 /**
  * @brief Defines a struct for the key code array.
- * 
+ *
  * @since 11
  * @version 1.0
  */
@@ -1966,7 +1966,7 @@ typedef struct Hid_KeyCodeArray {
 
 /**
  * @brief Defines an array of absolute coordinates.
- * 
+ *
  * @since 11
  * @version 1.0
  */
@@ -1983,7 +1983,7 @@ typedef struct Hid_AbsAxesArray {
 
 /**
  * @brief Defines an array of absolute coordinates.
- * 
+ *
  * @since 11
  * @version 1.0
  */
@@ -2000,7 +2000,7 @@ typedef struct Hid_AbsAxesArray {
 
 /**
  * @brief Defines an array of relative coordinates.
- * 
+ *
  * @since 11
  * @version 1.0
  */
@@ -2017,7 +2017,7 @@ typedef struct Hid_RelAxesArray {
 
 /**
  * @brief Defines an array of relative coordinates.
- * 
+ *
  * @since 11
  * @version 1.0
  */
@@ -2045,7 +2045,7 @@ extern "C" {
 #define HID_MAX_REPORT_BUFFER_SIZE (16 * 1024 - 1)
 /**
  * @brief Defines the maximum size of the report buffer.
- * 
+ *
  * @since 18
  */
 #define HID_MAX_REPORT_BUFFER_SIZE (16 * 1024 - 1)

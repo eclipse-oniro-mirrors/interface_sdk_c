@@ -36,7 +36,7 @@ extern "C" {
 
 /**
  * @brief 枚举基本DDK中使用的错误代码。
- * 
+ *
  * @since 12
  */
 typedef enum {
@@ -87,7 +87,7 @@ typedef enum {
 /**
  * @brief Device memory map created by calling **OH_DDK_CreateAshmem**. A buffer using the device memory map can
  * provide better performance.
- * 
+ *
  * @since 12
  */
 typedef struct DDK_Ashmem {
@@ -122,7 +122,7 @@ typedef struct DDK_Ashmem {
 /**
  * @brief Device memory map created by calling {@link OH_DDK_CreateAshmem}. A buffer using the device memory map can
  * provide better performance.
- * 
+ *
  * @since 12
  */
 typedef struct DDK_Ashmem {

@@ -34,7 +34,7 @@
  * @file scsi_peripheral_api.h
  *
  * @brief Declares the SCSI Peripheral DDK APIs used by the host to access the SCSI device.
- * 
+ *
  * @kit DriverDevelopmentKit
  * @library libscsi.z.so
  * @syscap SystemCapability.Driver.SCSI.Extension
@@ -51,7 +51,7 @@ extern "C" {
 
 /**
  * @brief 初始化SCSI Peripheral DDK。
- * 
+ *
  * @permission ohos.permission.ACCESS_DDK_SCSI_PERIPHERAL
  * @return {@link SCSIPERIPHERAL_DDK_SUCCESS} 调用接口成功。
  *     {@link SCSIPERIPHERAL_DDK_NO_PERM} 权限校验失败。
@@ -63,7 +63,7 @@ int32_t OH_ScsiPeripheral_Init(void);
 
 /**
  * @brief 释放SCSI Peripheral DDK。
- * 
+ *
  * @permission ohos.permission.ACCESS_DDK_SCSI_PERIPHERAL
  * @return {@link SCSIPERIPHERAL_DDK_SUCCESS} 调用接口成功。
  *     {@link SCSIPERIPHERAL_DDK_NO_PERM} 权限校验失败。
@@ -76,7 +76,7 @@ int32_t OH_ScsiPeripheral_Release(void);
 /**
  * @brief 打开deviceId和interfaceIndex指定的SCSI设备。其中，deviceId可以通过USB设备的总线编号左移32位后、同其设备地址进行或运算得到，
  * interfaceIndex为需要打开的USB接口的索引值。
- * 
+ *
  * @permission ohos.permission.ACCESS_DDK_SCSI_PERIPHERAL
  * @param deviceId 设备ID，代表要操作的设备。
  * @param interfaceIndex 接口索引，对应SCSI设备的接口。
@@ -96,7 +96,7 @@ int32_t OH_ScsiPeripheral_Open(uint64_t deviceId, uint8_t interfaceIndex, ScsiPe
 
 /**
  * @brief 关闭SCSI设备。
- * 
+ *
  * @permission ohos.permission.ACCESS_DDK_SCSI_PERIPHERAL
  * @param dev 设备句柄，详情参见{@link ScsiPeripheral_Device}。
  * @return {@link SCSIPERIPHERAL_DDK_SUCCESS} 调用接口成功。
@@ -111,7 +111,7 @@ int32_t OH_ScsiPeripheral_Close(ScsiPeripheral_Device **dev);
 
 /**
  * @brief 检查逻辑单元是否已经准备好。
- * 
+ *
  * @permission ohos.permission.ACCESS_DDK_SCSI_PERIPHERAL
  * @param dev 设备句柄，详情参见{@link ScsiPeripheral_Device}。
  * @param request 逻辑单元检查命令（test unit ready）的请求信息，详情参见{@link ScsiPeripheral_TestUnitReadyRequest}。
@@ -132,7 +132,7 @@ int32_t OH_ScsiPeripheral_TestUnitReady(ScsiPeripheral_Device *dev, ScsiPeripher
 
 /**
  * @brief 查询SCSI设备的基本信息。
- * 
+ *
  * @permission ohos.permission.ACCESS_DDK_SCSI_PERIPHERAL
  * @param dev 设备句柄，详情参见{@link ScsiPeripheral_Device}。
  * @param request inquiry命令的请求信息，详情参见{@link ScsiPeripheral_InquiryRequest}。
@@ -154,7 +154,7 @@ int32_t OH_ScsiPeripheral_Inquiry(ScsiPeripheral_Device *dev, ScsiPeripheral_Inq
 
 /**
  * @brief 获取SCSI设备的容量信息。
- * 
+ *
  * @permission ohos.permission.ACCESS_DDK_SCSI_PERIPHERAL
  * @param dev 设备句柄，详情参见{@link ScsiPeripheral_Device}。
  * @param request read capacity命令的请求信息，详情参见{@link ScsiPeripheral_ReadCapacityRequest}。
@@ -176,7 +176,7 @@ int32_t OH_ScsiPeripheral_ReadCapacity10(ScsiPeripheral_Device *dev, ScsiPeriphe
 
 /**
  * @brief 获取sense data（SCSI设备返回给主机的信息，用于报告设备的状态、错误信息以及诊断信息）。
- * 
+ *
  * @permission ohos.permission.ACCESS_DDK_SCSI_PERIPHERAL
  * @param dev 设备句柄，详情参见{@link ScsiPeripheral_Device}。
  * @param request Request Sense命令的请求信息，详情参见{@link ScsiPeripheral_RequestSenseRequest}。
@@ -197,7 +197,7 @@ int32_t OH_ScsiPeripheral_RequestSense(ScsiPeripheral_Device *dev, ScsiPeriphera
 
 /**
  * @brief 从指定逻辑块读取数据。
- * 
+ *
  * @permission ohos.permission.ACCESS_DDK_SCSI_PERIPHERAL
  * @param dev 设备句柄，详情参见{@link ScsiPeripheral_Device}。
  * @param request read命令的请求信息，详情参见{@link ScsiPeripheral_IORequest}。
@@ -218,7 +218,7 @@ int32_t OH_ScsiPeripheral_Read10(ScsiPeripheral_Device *dev, ScsiPeripheral_IORe
 
 /**
  * @brief 写数据到设备的指定逻辑块。
- * 
+ *
  * @permission ohos.permission.ACCESS_DDK_SCSI_PERIPHERAL
  * @param dev 设备句柄，详情参见{@link ScsiPeripheral_Device}。
  * @param request write命令的请求信息，详情参见{@link ScsiPeripheral_IORequest}。
@@ -239,7 +239,7 @@ int32_t OH_ScsiPeripheral_Write10(ScsiPeripheral_Device *dev, ScsiPeripheral_IOR
 
 /**
  * @brief 校验指定逻辑块。
- * 
+ *
  * @permission ohos.permission.ACCESS_DDK_SCSI_PERIPHERAL
  * @param dev 设备句柄，详情参见{@link ScsiPeripheral_Device}。
  * @param request verify命令的请求信息，详情参见{@link ScsiPeripheral_VerifyRequest}。
@@ -260,7 +260,7 @@ int32_t OH_ScsiPeripheral_Verify10(ScsiPeripheral_Device *dev, ScsiPeripheral_Ve
 
 /**
  * @brief 以CDB（Command Descriptor Block）方式发送SCSI命令。
- * 
+ *
  * @permission ohos.permission.ACCESS_DDK_SCSI_PERIPHERAL
  * @param dev 设备句柄，详情参见{@link ScsiPeripheral_Device}。
  * @param request 请求，详情参见{@link ScsiPeripheral_Request}。
@@ -282,7 +282,7 @@ int32_t OH_ScsiPeripheral_SendRequestByCdb(ScsiPeripheral_Device *dev, ScsiPerip
 
 /**
  * @brief 创建缓冲区。请在缓冲区使用完后，调用{@link OH_ScsiPeripheral_DestroyDeviceMemMap}销毁缓冲区，否则会造成资源泄漏。
- * 
+ *
  * @param dev 设备句柄，详情参见{@link ScsiPeripheral_Device}。
  * @param size 缓冲区的大小。
  * @param devMmap 创建的缓冲区通过该参数返回给调用者，详情参见{@link ScsiPeripheral_DeviceMemMap}。
@@ -296,7 +296,7 @@ int32_t OH_ScsiPeripheral_CreateDeviceMemMap(ScsiPeripheral_Device *dev, size_t 
 
 /**
  * @brief 销毁缓冲区。请在缓冲区使用完后及时销毁缓冲区，否则会造成资源泄漏。
- * 
+ *
  * @param devMmap 待销毁的由{@link OH_ScsiPeripheral_CreateDeviceMemMap}创建的缓冲区，详情参见{@link ScsiPeripheral_DeviceMemMap}。
  * @return {@link SCSIPERIPHERAL_DDK_SUCCESS} 调用接口成功。
  *     {@link SCSIPERIPHERAL_DDK_INVALID_PARAMETER} devMmap为空。
@@ -307,7 +307,7 @@ int32_t OH_ScsiPeripheral_DestroyDeviceMemMap(ScsiPeripheral_DeviceMemMap *devMm
 
 /**
  * @brief 解析基本的sense data，包括Information、Command specific information、Sense key specific字段。
- * 
+ *
  * @param senseData 待解析的sense data。
  * @param senseDataLen sense data长度。
  * @param senseInfo 用于保存解析后的基本信息，详情参见{@link ScsiPeripheral_BasicSenseInfo}。

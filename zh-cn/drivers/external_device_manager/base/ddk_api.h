@@ -18,7 +18,7 @@
  * @file ddk_api.h
  *
  * @brief Declares the BASE DDK APIs used by the USB host to access USB devices.
- * 
+ *
  * @library libddk_base.z.so
  * @kit DriverDevelopmentKit
  * @syscap SystemCapability.Driver.DDK.Extension
@@ -36,7 +36,7 @@ extern "C" {
 
 /**
  * @brief 创建共享内存。为了防止资源泄漏，通过调用{@link OH_DDK_DestroyAshmem}接口来销毁不再需要的共享内存。
- * 
+ *
  * @param name 指向要创建的共享内存的指针。
  * @param size 共享内存对应的缓冲区大小。
  * @param ashmem 指向创建的共享内存的指针。
@@ -49,7 +49,7 @@ DDK_RetCode OH_DDK_CreateAshmem(const uint8_t *name, uint32_t size, DDK_Ashmem *
 
 /**
  * @brief 映射创建的共享内存到用户空间。通过调用{@link OH_DDK_UnmapAshmem}接口取消映射不需要的共享内存。
- * 
+ *
  * @param ashmem 要映射的共享内存指针。
  * @param ashmemMapType 共享内存的保护权限值。
  * @return {@link DDK_SUCCESS} 调用接口成功。
@@ -62,7 +62,7 @@ DDK_RetCode OH_DDK_MapAshmem(DDK_Ashmem *ashmem, const uint8_t ashmemMapType);
 
 /**
  * @brief 取消映射共享内存。
- * 
+ *
  * @param ashmem 要取消映射的共享内存指针。
  * @return {@link DDK_SUCCESS} 调用接口成功。
  *     {@link DDK_NULL_PTR} 入参ashmem为空指针。
@@ -73,7 +73,7 @@ DDK_RetCode OH_DDK_UnmapAshmem(DDK_Ashmem *ashmem);
 
 /**
  * @brief 销毁共享内存。
- * 
+ *
  * @param ashmem 要销毁的共享内存指针。
  * @return {@link DDK_SUCCESS} 调用接口成功。
  *     {@link DDK_NULL_PTR} 入参ashmem为空指针。

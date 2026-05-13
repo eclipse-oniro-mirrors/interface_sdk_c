@@ -35,7 +35,7 @@ extern "C" {
 
 /**
  * @brief 创建设备。
-  * 
+  *
  * @permission ohos.permission.ACCESS_DDK_HID
  * @param hidDevice 创建设备需要的基本信息，包括设备名、厂商ID、产品ID等。
  * @param hidEventProperties 创建的设备关注的事件，包括事件类型、按键事件属性、绝对坐标事件属性、相对坐标事件属性等。
@@ -54,7 +54,7 @@ int32_t OH_Hid_CreateDevice(Hid_Device *hidDevice, Hid_EventProperties *hidEvent
 
 /**
  * @brief 向指定设备发送事件列表。
- * 
+ *
  * @permission ohos.permission.ACCESS_DDK_HID
  * @param deviceId 设备ID。
  * @param items 发送的事件列表，事件包括类型（取值来源事件类型Hid_EventType）、编码（取值来源同步事件编码Hid_SynEvent、键值编码Hid_KeyCode、
@@ -87,7 +87,7 @@ int32_t OH_Hid_DestroyDevice(int32_t deviceId);
 
 /**
  * @brief 初始化HID DDK。
- * 
+ *
  * @permission ohos.permission.ACCESS_DDK_HID
  * @return {@link HID_DDK_SUCCESS} 操作成功。
  *     {@link HID_DDK_NO_PERM} 权限校验失败。
@@ -99,7 +99,7 @@ int32_t OH_Hid_Init(void);
 
 /**
  * @brief 释放HID DDK。
- * 
+ *
  * @permission ohos.permission.ACCESS_DDK_HID
  * @return {@link HID_DDK_SUCCESS} 操作成功。
  *     {@link HID_DDK_NO_PERM} 权限校验失败。
@@ -111,7 +111,7 @@ int32_t OH_Hid_Release(void);
 
 /**
  * @brief 打开deviceId和interfaceIndex指定的设备。
- * 
+ *
  * @permission ohos.permission.ACCESS_DDK_HID
  * @param deviceId 操作设备的ID。
  * @param interfaceIndex 接口索引，对应HID设备的接口。
@@ -130,7 +130,7 @@ int32_t OH_Hid_Open(uint64_t deviceId, uint8_t interfaceIndex, Hid_DeviceHandle 
 
 /**
  * @brief 关闭设备。
- * 
+ *
  * @permission ohos.permission.ACCESS_DDK_HID
  * @param dev 设备操作句柄。
  * @return {@link HID_DDK_SUCCESS} 操作成功。
@@ -145,7 +145,7 @@ int32_t OH_Hid_Close(Hid_DeviceHandle **dev);
 
 /**
  * @brief 向设备写入报告。
- * 
+ *
  * @permission ohos.permission.ACCESS_DDK_HID
  * @param dev 设备操作句柄。
  * @param data 待写入的数据。
@@ -165,7 +165,7 @@ int32_t OH_Hid_Write(Hid_DeviceHandle *dev, uint8_t *data, uint32_t length, uint
 
 /**
  * @brief 在指定的超时时间内从设备读取报告。
- * 
+ *
  * @permission ohos.permission.ACCESS_DDK_HID
  * @param dev 设备操作句柄。
  * @param data 存放读取数据的缓冲区。
@@ -188,7 +188,7 @@ int32_t OH_Hid_ReadTimeout(Hid_DeviceHandle *dev, uint8_t *data, uint32_t bufSiz
 
 /**
  * @brief 从设备读取报告，默认为阻塞模式（阻塞等待直到有数据可读取），可以调用{@link OH_Hid_SetNonBlocking}改变模式。
- * 
+ *
  * @permission ohos.permission.ACCESS_DDK_HID
  * @param dev 设备操作句柄。
  * @param data 存放读取数据的缓冲区。
@@ -210,7 +210,7 @@ int32_t OH_Hid_Read(Hid_DeviceHandle *dev, uint8_t *data, uint32_t bufSize, uint
 
 /**
  * @brief 设置设备读取模式为非阻塞。
- * 
+ *
  * @permission ohos.permission.ACCESS_DDK_HID
  * @param dev 设备操作句柄。
  * @param nonBlock 是否启用非阻塞模式读取数据。1: 启用非阻塞模式，调用{@link OH_Hid_Read}接口时，如果设备有可读的数据，读取并返回{@link HID_DDK_SUCCESS}，
@@ -227,7 +227,7 @@ int32_t OH_Hid_SetNonBlocking(Hid_DeviceHandle *dev, int nonBlock);
 
 /**
  * @brief 获取设备原始信息。
- * 
+ *
  * @permission ohos.permission.ACCESS_DDK_HID
  * @param dev 设备操作句柄。
  * @param rawDevInfo 设备原始信息，包含厂商ID、产品ID和总线类型。
@@ -245,7 +245,7 @@ int32_t OH_Hid_GetRawInfo(Hid_DeviceHandle *dev, Hid_RawDevInfo *rawDevInfo);
 
 /**
  * @brief 获取设备原始名称。
- * 
+ *
  * @permission ohos.permission.ACCESS_DDK_HID
  * @param dev 设备操作句柄。
  * @param data 存放读取数据的缓冲区。
@@ -265,7 +265,7 @@ int32_t OH_Hid_GetRawName(Hid_DeviceHandle *dev, char *data, uint32_t bufSize);
 
 /**
  * @brief 获取设备物理地址。
- * 
+ *
  * @permission ohos.permission.ACCESS_DDK_HID
  * @param dev 设备操作句柄。
  * @param data 存放读取数据的缓冲区。
@@ -285,7 +285,7 @@ int32_t OH_Hid_GetPhysicalAddress(Hid_DeviceHandle *dev, char *data, uint32_t bu
 
 /**
  * @brief 获取设备原始唯一标识符。
- * 
+ *
  * @permission ohos.permission.ACCESS_DDK_HID
  * @param dev 设备操作句柄。
  * @param data 存放读取数据的缓冲区。
@@ -305,7 +305,7 @@ int32_t OH_Hid_GetRawUniqueId(Hid_DeviceHandle *dev, uint8_t *data, uint32_t buf
 
 /**
  * @brief 向设备发送报告。
- * 
+ *
  * @permission ohos.permission.ACCESS_DDK_HID
  * @param dev 设备操作句柄。
  * @param reportType 报告类型。
@@ -325,7 +325,7 @@ int32_t OH_Hid_SendReport(Hid_DeviceHandle *dev, Hid_ReportType reportType, cons
 
 /**
  * @brief 获取设备报告。
- * 
+ *
  * @permission ohos.permission.ACCESS_DDK_HID
  * @param dev 设备操作句柄。
  * @param reportType 报告类型。
@@ -346,7 +346,7 @@ int32_t OH_Hid_GetReport(Hid_DeviceHandle *dev, Hid_ReportType reportType, uint8
 
 /**
  * @brief 获取设备报告描述符。
- * 
+ *
  * @permission ohos.permission.ACCESS_DDK_HID
  * @param dev 设备操作句柄。
  * @param buf 存放描述符的缓冲区。
