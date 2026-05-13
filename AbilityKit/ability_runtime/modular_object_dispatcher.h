@@ -115,9 +115,9 @@ typedef enum {
  * @brief Defines the parameter type descriptor for modular object dispatcher.
  *
  * Describes the type of a parameter or return value using a tagged union.
- * For map types, use u.mapType.keyType and u.mapType.pValueType;
- * for array/vector/set types, use u.pElementType;
- * for other custom types, use u.idlType.
+  * for array types, use u.arrayType.pElementType and u.arrayType.size;
+  * for vector/set types, use u.pElementType;
+  * for struct/proxy/stub/enum types, use u.idlType.
  *
  * @since 26.0.0
  */
@@ -128,6 +128,10 @@ typedef struct OH_AbilityRuntime_MoDispatcher_TypeInfo {
             OH_AbilityRuntime_MoDispatcher_ValueType keyType;
             OH_AbilityRuntime_MoDispatcher_TypeInfo *pValueType;
         } mapType;
+        struct {
+ 	        struct OH_AbilityRuntime_MoDispatcher_TypeInfo *pElementType;
+ 	        uint32_t size;
+ 	    } arrayType;
         OH_AbilityRuntime_MoDispatcher_TypeInfo *pElementType;
         char* idlType;
     } u;
