@@ -80,7 +80,7 @@ typedef enum {
 } DLP_ErrCode;
 
 /**
- * @brief Enumerates the access permissions for a DLP file.
+ * @brief Enumerates the permissions on a DLP file.
  *
  * @since 14
  */
