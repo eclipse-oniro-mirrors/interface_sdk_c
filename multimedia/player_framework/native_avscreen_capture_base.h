@@ -4,7 +4,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -12,7 +12,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 /**
  * @addtogroup AVScreenCapture
  * @{
@@ -20,18 +19,17 @@
  * @brief Provides APIs of request capability for Screen Capture.
  * @since 10
  */
-
 /**
  * @file native_avscreen_capture_base.h
  *
- * @brief Declare screen capture related struct.
- *
+ * @brief The file declares the common structs, character constants, and enums used for running screen capture.
+ * 
  * @library libnative_avscreen_capture.so
  * @syscap SystemCapability.Multimedia.Media.AVScreenCapture
  * @kit MediaKit
  * @since 10
  */
-
+ 
 #ifndef NATIVE_AVSCREEN_CAPTURE_BASE_H
 #define NATIVE_AVSCREEN_CAPTURE_BASE_H
 
@@ -44,38 +42,36 @@ extern "C" {
 #endif
 
 /**
- * @brief Nativebuffer of avscreeencapture that from graphics.
- * @syscap SystemCapability.Multimedia.Media.AVScreenCapture
+ * @brief The struct describes the native video stream class for screen capture.
+ * 
  *
  * @since 10
- * @version 1.0
  */
 typedef struct OH_NativeBuffer OH_NativeBuffer;
 
 /**
- * @brief Initialization of avscreeencapture
- * @syscap SystemCapability.Multimedia.Media.AVScreenCapture
+ * @brief Defines all the asynchronous callback function pointers of an **OH_AVScreenCapture** instance. To ensure the
+ * normal running of **OH_AVScreenCapture**, you must register the instance of this struct with the **
+ * OH_AVScreenCapture** instance to process the information reported by the callback functions.
+ * 
  *
  * @since 10
- * @version 1.0
  */
 typedef struct OH_AVScreenCapture OH_AVScreenCapture;
 
 /**
- * @brief Initialization of OH_AVScreenCapture_ContentFilter
- * @syscap SystemCapability.Multimedia.Media.AVScreenCapture
+ * @brief The OH_AVScreenCapture_ContentFilter struct describes the filter used to filter audio and video content.
+ * 
  *
  * @since 12
- * @version 1.0
  */
 typedef struct OH_AVScreenCapture_ContentFilter OH_AVScreenCapture_ContentFilter;
 
 /**
- * @brief Enumerates screen capture mode.
- * @syscap SystemCapability.Multimedia.Media.AVScreenCapture
+ * @brief Enumerates the screen capture modes.
+ * 
  *
  * @since 10
- * @version 1.0
  */
 typedef enum OH_CaptureMode {
     /* capture home screen */
@@ -88,11 +84,10 @@ typedef enum OH_CaptureMode {
 } OH_CaptureMode;
 
 /**
- * @brief Enumerates audio cap source type.
- * @syscap SystemCapability.Multimedia.Media.AVScreenCapture
+ * @brief Enumerates the audio source types during screen capture.
+ * 
  *
  * @since 10
- * @version 1.0
  */
 typedef enum OH_AudioCaptureSourceType {
     /* Invalid audio source */
@@ -108,11 +103,10 @@ typedef enum OH_AudioCaptureSourceType {
 } OH_AudioCaptureSourceType;
 
 /**
- * @brief Enumerates audio codec formats.
- * @syscap SystemCapability.Multimedia.Media.AVScreenCapture
+ * @brief Enumerates the audio encoding formats.
+ * 
  *
  * @since 10
- * @version 1.0
  */
 typedef enum OH_AudioCodecFormat {
     /* Default format */
@@ -124,11 +118,10 @@ typedef enum OH_AudioCodecFormat {
 } OH_AudioCodecFormat;
 
 /**
- * @brief Enumerates video codec formats.
- * @syscap SystemCapability.Multimedia.Media.AVScreenCapture
+ * @brief Enumerates the video encoding formats.
+ * 
  *
  * @since 10
- * @version 1.0
  */
 typedef enum OH_VideoCodecFormat {
     /* Default format */
@@ -148,11 +141,10 @@ typedef enum OH_VideoCodecFormat {
 } OH_VideoCodecFormat;
 
 /**
- * @brief Enumerates screen capture data type.
- * @syscap SystemCapability.Multimedia.Media.AVScreenCapture
+ * @brief Enumerates the data types of screen capture streams.
+ * 
  *
  * @since 10
- * @version 1.0
  */
 typedef enum OH_DataType {
     /* YUV/RGBA/PCM, etc. original stream */
@@ -165,15 +157,15 @@ typedef enum OH_DataType {
 } OH_DataType;
 
 /**
- * @brief Enumerates video source types.
- * @syscap SystemCapability.Multimedia.Media.AVScreenCapture
+ * @brief Enumerates the video source formats. Currently, only the RGBA format is supported.
+ * 
  *
  * @since 10
- * @version 1.0
  */
 typedef enum OH_VideoSourceType {
-    /* Unsupported App Usage. */
-    /* YUV video data provided through graphic */
+    /**
+     * RGBA format.
+     */
     OH_VIDEO_SOURCE_SURFACE_YUV = 0,
     /* Raw encoded data provided through graphic */
     OH_VIDEO_SOURCE_SURFACE_ES,
@@ -184,11 +176,10 @@ typedef enum OH_VideoSourceType {
 } OH_VideoSourceType;
 
 /**
- * @brief Enumerates the container format types.
- * @syscap SystemCapability.Multimedia.Media.AVScreenCapture
+ * @brief Enumerates the types of files generated during screen capture.
+ * 
  *
  * @since 10
- * @version 1.0
  */
 typedef enum OH_ContainerFormatType {
     /* Audio format type -- m4a */
@@ -198,63 +189,10 @@ typedef enum OH_ContainerFormatType {
 } OH_ContainerFormatType;
 
 /**
- * @brief Capture source selector display mode enumeration
- *
- * @since 22
- */
-typedef enum OH_CapturePickerMode {
-    /** Show application window options only */
-    OH_CAPTURE_PICKER_MODE_WINDOW_ONLY = 0,
-
-    /** Show physical screen options only */
-    OH_CAPTURE_PICKER_MODE_SCREEN_ONLY = 1,
-
-    /** Show both screen and window options (default mode) */
-    OH_CAPTURE_PICKER_MODE_SCREEN_AND_WINDOW = 2,
-
-    /**
-     * @brief Show application options only.
-     * @since 26.0.0
-     */
-    OH_CAPTURE_PICKER_MODE_APP_ONLY = 3,
-
-    /**
-     * @brief Show both window and application options.
-     * @since 26.0.0
-     */
-    OH_CAPTURE_PICKER_MODE_WINDOW_AND_APP = 4,
-
-    /**
-     * @brief Show both screen and application options.
-     * @since 26.0.0
-     */
-    OH_CAPTURE_PICKER_MODE_SCREEN_AND_APP = 5,
-
-    /**
-     * @brief Show screen, window, and application options.
-     * @since 26.0.0
-     */
-    OH_CAPTURE_PICKER_MODE_SCREEN_WINDOW_AND_APP = 6,
-} OH_CapturePickerMode;
-
-/**
- * @brief Screen recording highlight mode definition
- *
- * @since 22
- */
-typedef enum OH_ScreenCaptureHighlightMode {
-    /**Default mode, highlight recording area with closed border*/
-    OH_HIGHLIGHT_MODE_CLOSED = 0,
-    /** highlight recording area with corner wrap border */
-    OH_HIGHLIGHT_MODE_CORNER_WRAP = 1,
-} OH_ScreenCaptureHighlightMode;
-
-/**
- * @brief Audio capture info struct
- * @syscap SystemCapability.Multimedia.Media.AVScreenCapture
+ * @brief The struct describes the audio capture information.
+ * 
  *
  * @since 10
- * @version 1.0
  */
 typedef struct OH_AudioCaptureInfo {
     /* Audio capture sample rate info, in Hz */
@@ -266,11 +204,10 @@ typedef struct OH_AudioCaptureInfo {
 } OH_AudioCaptureInfo;
 
 /**
- * @brief Audio encoder info
- * @syscap SystemCapability.Multimedia.Media.AVScreenCapture
+ * @brief The struct describes the audio encoding information.
+ * 
  *
  * @since 10
- * @version 1.0
  */
 typedef struct OH_AudioEncInfo {
     /* Audio encoder bitrate, in bit/s */
@@ -280,11 +217,10 @@ typedef struct OH_AudioEncInfo {
 } OH_AudioEncInfo;
 
 /**
- * @brief The audio info of avscreeencapture
- * @syscap SystemCapability.Multimedia.Media.AVScreenCapture
+ * @brief The struct describes the audio information.
+ * 
  *
  * @since 10
- * @version 1.0
  */
 typedef struct OH_AudioInfo {
     /* Audio capture info of microphone */
@@ -296,11 +232,11 @@ typedef struct OH_AudioInfo {
 } OH_AudioInfo;
 
 /**
- * @brief Video capture info
- * @syscap SystemCapability.Multimedia.Media.AVScreenCapture
+ * @brief The struct describes the video capture information. When **videoFrameWidth** and **videoFrameHeight** are
+ * both **0**, video-related parameters are ignored and screen data is not recorded.
+ * 
  *
  * @since 10
- * @version 1.0
  */
 typedef struct OH_VideoCaptureInfo {
     /* Display id, should be set while captureMode = CAPTURE_SPECIFIED_SCREEN */
@@ -318,11 +254,10 @@ typedef struct OH_VideoCaptureInfo {
 } OH_VideoCaptureInfo;
 
 /**
- * @brief Videoc encoder info
- * @syscap SystemCapability.Multimedia.Media.AVScreenCapture
+ * @brief The struct describes the video encoding information.
+ * 
  *
  * @since 10
- * @version 1.0
  */
 typedef struct OH_VideoEncInfo {
     /* Video encoder format */
@@ -334,11 +269,10 @@ typedef struct OH_VideoEncInfo {
 } OH_VideoEncInfo;
 
 /**
- * @brief Video info
- * @syscap SystemCapability.Multimedia.Media.AVScreenCapture
+ * @brief The struct describes the video information.
+ * 
  *
  * @since 10
- * @version 1.0
  */
 typedef struct OH_VideoInfo {
     /* Video capture info */
@@ -348,11 +282,10 @@ typedef struct OH_VideoInfo {
 } OH_VideoInfo;
 
 /**
- * @brief Recorder file info
- * @syscap SystemCapability.Multimedia.Media.AVScreenCapture
+ * @brief The struct describes the recording file information.
+ * 
  *
  * @since 10
- * @version 1.0
  */
 typedef struct OH_RecorderInfo {
     /* Recorder file url */
@@ -364,40 +297,10 @@ typedef struct OH_RecorderInfo {
 } OH_RecorderInfo;
 
 /**
- * @brief Highlight configure for Capture rectangle frame  info
- *
- * @since 22
- */
-typedef struct OH_AVScreenCaptureHighlightConfig {
-    /** define the style of the capture area frame. */
-    OH_ScreenCaptureHighlightMode mode;
-    /** define the thickness of the frame line, in vp*/
-    uint32_t lineThickness;
-    /** define the color of the frame line*/
-    uint32_t lineColor;
-} OH_AVScreenCaptureHighlightConfig;
-
-/**
- * @brief Multi-display recording capability information.
- * This structure describes the capabilities of multi-display recording, including whether the device supports
- * multi-display recording and the supported resolution.
- * @since 24
- */
-typedef struct OH_MultiDisplayCapability {
-    /** Whether multi-display recording is supported */
-    bool isMultiDisplaySupport;
-    /** Supported width (in pixels) */
-    uint32_t width;
-    /** Supported height (in pixels) */
-    uint32_t height;
-} OH_MultiDisplayCapability;
-
-/**
- * @brief AV screeen capture config info
- * @syscap SystemCapability.Multimedia.Media.AVScreenCapture
+ * @brief The struct describes the screen capture configuration.
+ * 
  *
  * @since 10
- * @version 1.0
  */
 typedef struct OH_AVScreenCaptureConfig {
     OH_CaptureMode captureMode;
@@ -409,70 +312,65 @@ typedef struct OH_AVScreenCaptureConfig {
 } OH_AVScreenCaptureConfig;
 
 /**
- * @brief Privacy protect info struct
+ * @brief Defines the privacy protection information.
+ * 
  * @since 24
  */
 typedef struct OH_PrivacyProtectInfo {
     /**
-     * @brief System privacy protection status
+     * @brief 
      * @since 24
      */
     bool systemWindowProtection;
     /**
-     * @brief App privacy protection status
+     * @brief 
      * @since 24
      */
     bool sensitiveAppProtection;
 } OH_PrivacyProtectInfo;
 
 /**
- * @brief When an error occurs in the running of the OH_AVScreenCapture instance, the function pointer will be called
- * @syscap SystemCapability.Multimedia.Media.AVScreenCapture
- * @param capture Pointer to an OH_AVScreenCapture instance
- * @param errorCode specific error code
- *
+ * @brief Called when an error occurs during the running of an OH_AVScreenCapture instance.
+ * Starting from API version 12, you are advised to use {@link OH_AVScreenCapture_OnError} instead.
+ * 
+ * @param capture Pointer to the OH_AVScreenCapture instance.
+ * @param errorCode Error code.
  * @since 10
- * @version 1.0
  */
 typedef void (*OH_AVScreenCaptureOnError)(OH_AVScreenCapture *capture, int32_t errorCode);
 
 /**
- * @brief When audio buffer is available during the operation of OH_AVScreenCapture, the function pointer will
- * be called.
- * @syscap SystemCapability.Multimedia.Media.AVScreenCapture
- * @param capture Pointer to an OH_AVScreenCapture instance
- * @param isReady Information describing whether audio buffer is available
- * @param type Information describing the audio source type
- *
+ * @brief Called when an audio buffer is available during the running of an OH_AVScreenCapture instance.
+ * Starting from API version 12, you are advised to use {@link OH_AVScreenCapture_OnBufferAvailable} instead.
+ * 
+ * @param capture Pointer to the OH_AVScreenCapture instance.
+ * @param isReady Whether the audio buffer is available. The values include **true** (yes) and **false** (no).
+ * @param type Audio source type.
  * @since 10
- * @version 1.0
  */
 typedef void (*OH_AVScreenCaptureOnAudioBufferAvailable)(OH_AVScreenCapture *capture, bool isReady,
     OH_AudioCaptureSourceType type);
 
 /**
- * @brief When video buffer is available during the operation of OH_AVScreenCapture, the function pointer will
- * be called.
- * @syscap SystemCapability.Multimedia.Media.AVScreenCapture
- * @param capture Pointer to an OH_AVScreenCapture instance
- * @param isReady Information describing whether video buffer is available
- *
+ * @brief Called when a video buffer is available during the running of an OH_AVScreenCapture instance.
+ * Starting from API version 12, you are advised to use {@link OH_AVScreenCapture_OnBufferAvailable} instead.
+ * 
+ * @param capture Pointer to the OH_AVScreenCapture instance.
+ * @param isReady Whether the video buffer is available. The values include **true** (yes) and **false** (no).
  * @since 10
- * @version 1.0
  */
 typedef void (*OH_AVScreenCaptureOnVideoBufferAvailable)(OH_AVScreenCapture *capture, bool isReady);
 
 /**
- * @brief A collection of all callback function pointers in OH_AVScreenCapture. Register an instance of this
- * structure to the OH_AVScreenCapture instance, and process the information reported through the callback to ensure the
- * normal operation of OH_AVScreenCapture.
- * @syscap SystemCapability.Multimedia.Media.AVScreenCapture
+ * @brief Defines all the asynchronous callback function pointers of an **OH_AVScreenCapture** instance. To ensure the
+ * normal running of **OH_AVScreenCapture**, you must register the instance of this struct with the **
+ * OH_AVScreenCapture** instance to process the information reported by the callback functions.
+ * 
  * @param onError Monitor OH_AVScreenCapture operation errors, refer to {@link OH_AVScreenCaptureOnError}
  * @param onAudioBufferAvailable Monitor audio buffer, refer to {@link OH_AVScreenCaptureOnAudioBufferAvailable}
  * @param onVideoBufferAvailable Monitor video buffer, refer to {@link OH_AVScreenCaptureOnVideoBufferAvailable}
  *
  * @since 10
- * @version 1.0
  */
 typedef struct OH_AVScreenCaptureCallback {
     OH_AVScreenCaptureOnError onError;
@@ -481,11 +379,10 @@ typedef struct OH_AVScreenCaptureCallback {
 } OH_AVScreenCaptureCallback;
 
 /**
- * @brief avscreeencapture rect info
- * @syscap SystemCapability.Multimedia.Media.AVScreenCapture
+ * @brief The struct describes the width, height, and image information of the rectangle used for screen capture.
+ * 
  *
  * @since 10
- * @version 1.0
  */
 typedef struct OH_Rect {
     /* X-coordinate of screen recording */
@@ -500,11 +397,10 @@ typedef struct OH_Rect {
 
 
 /**
- * @brief Audiobuffer struct info
- * @syscap SystemCapability.Multimedia.Media.AVScreenCapture
+ * @brief The struct describes the configuration such as the size, type, and timestamp of audio data.
+ * 
  *
  * @since 10
- * @version 1.0
  */
 typedef struct OH_AudioBuffer {
     /* Audio buffer memory block  */
@@ -518,11 +414,10 @@ typedef struct OH_AudioBuffer {
 } OH_AudioBuffer;
 
 /**
- * @brief Enumerates screen capture state code.
- * @syscap SystemCapability.Multimedia.Media.AVScreenCapture
+ * @brief Enumerates the screen capture states.
+ * 
  *
  * @since 12
- * @version 1.0
  */
 typedef enum OH_AVScreenCaptureStateCode {
     /* Screen capture started by user */
@@ -570,11 +465,10 @@ typedef enum OH_AVScreenCaptureStateCode {
 } OH_AVScreenCaptureStateCode;
 
 /**
- * @brief Enumerates screen capture buffer type.
- * @syscap SystemCapability.Multimedia.Media.AVScreenCapture
+ * @brief Enumerates the buffer types.
+ * 
  *
  * @since 12
- * @version 1.0
  */
 typedef enum OH_AVScreenCaptureBufferType {
     /* Buffer of video data from screen */
@@ -586,11 +480,10 @@ typedef enum OH_AVScreenCaptureBufferType {
 } OH_AVScreenCaptureBufferType;
 
 /**
- * @brief Enumerates screen capture buffer type.
- * @syscap SystemCapability.Multimedia.Media.AVScreenCapture
+ * @brief Enumerates the buffer types.
+ * 
  *
  * @since 12
- * @version 1.0
  */
 typedef enum OH_AVScreenCaptureFilterableAudioContent {
     /* Audio content of notification sound */
@@ -600,81 +493,42 @@ typedef enum OH_AVScreenCaptureFilterableAudioContent {
 } OH_AVScreenCaptureFilterableAudioContent;
 
 /**
- * @brief Enumerates screen capture content state.
- * @syscap SystemCapability.Multimedia.Media.AVScreenCapture
- *
- * @since 20
- */
-typedef enum OH_AVScreenCaptureContentChangedEvent_Enum {
-    /* Content is hidden */
-    OH_SCREEN_CAPTURE_CONTENT_HIDE = 0,
-    /* Content is visible */
-    OH_SCREEN_CAPTURE_CONTENT_VISIBLE = 1,
-    /* ScreenCapture stopped by user */
-    OH_SCREEN_CAPTURE_CONTENT_UNAVAILABLE = 2,
-} OH_AVScreenCaptureContentChangedEvent;
-
-/**
- * @brief content fill mode.
- *
- * @since 20
- */
-typedef enum OH_AVScreenCapture_FillMode {
-    /**
-     * Keep the original image aspect ratio to match the target
-     * image size. If the ratio is inconsistent, there may be black edges.
-     */
-    OH_SCREENCAPTURE_FILLMODE_ASPECT_SCALE_FIT = 0,
-    /**
-     * The image is stretched to match the target output size.
-     * If the ratios are inconsistent, the image will be deformed.
-     */
-    OH_SCREENCAPTURE_FILLMODE_SCALE_TO_FILL = 1,
-} OH_AVScreenCapture_FillMode;
-
-/**
- * @brief When state of OH_AVScreenCapture is changed, the function pointer will be called.
- * @syscap SystemCapability.Multimedia.Media.AVScreenCapture
- * @param capture Pointer to an OH_AVScreenCapture instance
- * @param stateCode Information describing current state, see {@link OH_AVScreenCaptureStateCode}
- * @param userData Pointer to user specific data
- *
+ * @brief Called when the state changes during the running of an OH_AVScreenCapture instance.
+ * 
+ * @param capture Pointer to the OH_AVScreenCapture instance.
+ * @param stateCode Status code.
+ * @param userData Pointer to the user-defined data carried in the function.
  * @since 12
- * @version 1.0
  */
 typedef void (*OH_AVScreenCapture_OnStateChange)(struct OH_AVScreenCapture *capture,
     OH_AVScreenCaptureStateCode stateCode, void *userData);
 
 /**
- * @brief When an error occurs in the running of the OH_AVScreenCapture instance, the function pointer will be called
- * @syscap SystemCapability.Multimedia.Media.AVScreenCapture
- * @param capture Pointer to an OH_AVScreenCapture instance
- * @param errorCode specific error code
- * @param userData Pointer to user specific data
- *
+ * @brief Called when an error occurs during the running of an OH_AVScreenCapture instance.
+ * 
+ * @param capture Pointer to the OH_AVScreenCapture instance.
+ * @param errorCode Error code.
+ * @param userData Pointer to the user-defined data carried in the function.
  * @since 12
- * @version 1.0
  */
 typedef void (*OH_AVScreenCapture_OnError)(OH_AVScreenCapture *capture, int32_t errorCode, void *userData);
 
 /**
- * @brief When data is ready from the OH_AVScreenCapture instance, the function pointer will be called
- * @syscap SystemCapability.Multimedia.Media.AVScreenCapture
- * @param capture Pointer to an OH_AVScreenCapture instance
- * @param buffer Pointer to a buffer containing media data
- * @param bufferType Data type of the buffer, see {@link OH_AVScreenCaptureBufferType}
- * @param timestamp Timestamp of the buffer
- * @param userData Pointer to user specific data
- *
+ * @brief Called when an audio buffer or a video buffer is available during the running of an OH_AVScreenCapture
+ * instance.
+ * 
+ * @param capture Pointer to the OH_AVScreenCapture instance.
+ * @param buffer Pointer to the OH_AVBuffer instance. After the callback is triggered, the buffer is no longer valid.
+ * @param bufferType Type of the buffer.
+ * @param timestamp Timestamp, in nanoseconds.
+ * @param userData Pointer to the user-defined data carried in the function.
  * @since 12
- * @version 1.0
  */
 typedef void (*OH_AVScreenCapture_OnBufferAvailable)(OH_AVScreenCapture *capture, OH_AVBuffer *buffer,
     OH_AVScreenCaptureBufferType bufferType, int64_t timestamp, void *userData);
 
 /**
  * @brief When one of the display devices start being captured, the function pointer will be called
- * @syscap SystemCapability.Multimedia.Media.AVScreenCapture
  * @param capture Pointer to an OH_AVScreenCapture instance
  * @param displayId Id of the display device that being captured
  * @param userData Pointer to user specific data
@@ -684,56 +538,175 @@ typedef void (*OH_AVScreenCapture_OnBufferAvailable)(OH_AVScreenCapture *capture
 typedef void (*OH_AVScreenCapture_OnDisplaySelected)(OH_AVScreenCapture *capture, uint64_t displayId, void *userData);
 
 /**
- * @brief Initialization of OH_AVScreenCapture_CaptureStrategy
- * @syscap SystemCapability.Multimedia.Media.AVScreenCapture
+ * @brief Enumerates the screen capture content change events.
+ * 
+ *
+ * @since 20
+ */
+typedef enum OH_AVScreenCaptureContentChangedEvent_Enum {
+    /**
+     * The screen capture content is hidden.
+     */
+    OH_SCREEN_CAPTURE_CONTENT_HIDE = 0,
+    /**
+     * The screen capture content is visible.
+     */
+    OH_SCREEN_CAPTURE_CONTENT_VISIBLE = 1,
+    /**
+     * The screen capture content becomes unavailable. For example, the screen capture window is closed.
+     */
+    OH_SCREEN_CAPTURE_CONTENT_UNAVAILABLE = 2,
+} OH_AVScreenCaptureContentChangedEvent;
+
+/**
+ * @brief Called when the screen capture content changes during the running of an OH_AVScreenCapture instance.
+ * 
+ * @param capture Pointer to an OH_AVScreenCapture instance
+ * @param event enum for content change event
+ * @param area capture content rect position
+ * @param userData Pointer to user specific data
+ *
+ * @since 20
+ */
+typedef void (*OH_AVScreenCapture_OnCaptureContentChanged)(OH_AVScreenCapture* capture, OH_AVScreenCaptureContentChangedEvent event,
+    OH_Rect* area, void *userData);
+
+
+/**
+ * @brief Enumerates the display modes of the highlight border shown during screen capture.
+ * 
+ * @since 22
+ */
+typedef enum OH_ScreenCaptureHighlightMode {
+    /**
+     * Highlights the capture area with a full square border. This is the default mode.
+     */
+    OH_HIGHLIGHT_MODE_CLOSED = 0,
+    /**
+     * Highlights the capture area with a corner-wrapping border.
+     */
+    OH_HIGHLIGHT_MODE_CORNER_WRAP = 1,
+} OH_ScreenCaptureHighlightMode;
+
+/**
+ * @brief The struct describes the style of the highlight border shown during screen capture, including its shape,
+ * thickness, and color.
+ * 
+ * @since 22
+ */
+typedef struct OH_AVScreenCaptureHighlightConfig {
+    /**
+     * Shape of the highlight border. If this variable is not set, a full rectangle is used by default.
+     */
+    OH_ScreenCaptureHighlightMode mode;
+    /**
+     * Thickness of the border line. If this variable is not set, the border is invisible by default. The valid value
+     * range is 1 vp to 8 vp.
+     */
+    uint32_t lineThickness;
+    /**
+     * Color of the border line. The default value is black. Valid values are in RGB (0-0xffffff) or non-transparent
+     * ARGB (0xff000000-0xffffffff) format.
+     */
+    uint32_t lineColor;  
+} OH_AVScreenCaptureHighlightConfig;
+
+/**
+ * @brief Enumerates the image fill modes.
+ * 
+ * @since 20
+ */
+typedef enum OH_AVScreenCapture_FillMode {
+    /**
+     * Keeps the original aspect ratio of the image to fit the target size. Black bars may appear if the aspect ratios
+     * differ.
+     */
+    OH_SCREENCAPTURE_FILLMODE_ASPECT_SCALE_FIT = 0,
+    /**
+     * Stretches the image to fill the target size. The image may stretch and distort if the aspect ratios differ.
+     */
+    OH_SCREENCAPTURE_FILLMODE_SCALE_TO_FILL = 1,
+} OH_AVScreenCapture_FillMode;
+
+/**
+ * @brief Enumerates the display modes of the picker.
+ * 
+ * @since 22
+ */
+typedef enum OH_CapturePickerMode {
+    /**
+     * Displays only a list of windows.
+     */
+    OH_CAPTURE_PICKER_MODE_WINDOW_ONLY = 0,
+
+    /**
+     * Displays only a list of screens.
+     */
+    OH_CAPTURE_PICKER_MODE_SCREEN_ONLY = 1,
+
+    /**
+     * Displays both screens and windows. This is the default mode.
+     */
+    OH_CAPTURE_PICKER_MODE_SCREEN_AND_WINDOW = 2,
+} OH_CapturePickerMode;
+
+/**
+ * @brief The OH_AVScreenCapture_CaptureStrategy struct describes the screen capture strategy.
+ * 
  *
  * @since 20
  */
 typedef struct OH_AVScreenCapture_CaptureStrategy OH_AVScreenCapture_CaptureStrategy;
 
 /**
- * @brief When Capture Content info changes, the function will be called to notify user
- * @syscap SystemCapability.Multimedia.Media.AVScreenCapture
- * @param {OH_AVScreenCapture*} capture Pointer to an OH_AVScreenCapture instance
- * @param {OH_AVScreenCaptureContentChangedEvent} event enum for content change event
- * @param {OH_Rect*} area capture content rect position
- * @param { void*} userData Pointer to user specific data
- *
- * @since 20
- * @version 1.0
- */
-typedef void (*OH_AVScreenCapture_OnCaptureContentChanged)(OH_AVScreenCapture* capture,
-    OH_AVScreenCaptureContentChangedEvent event, OH_Rect* area, void *userData);
-
-/**
- * @brief Initialization of OH_AVScreenCapture_UserSelectionInfo
- * @syscap SystemCapability.Multimedia.Media.AVScreenCapture
+ * @brief The OH_AVScreenCapture_UserSelectionInfo struct describes the parameters selected by the user on the
+ * authorization UI (selection UI).
+ * 
  *
  * @since 20
  */
 typedef struct OH_AVScreenCapture_UserSelectionInfo OH_AVScreenCapture_UserSelectionInfo;
 
 /**
-* @brief When the user selects parameters in the authorization interface (selection interface),
-*  the function interface returns the parameters to the application.
-* @syscap SystemCapability.Multimedia.Media.AVScreenCapture
-* @param {OH_AVScreenCapture*} capture Pointer to an OH_AVScreenCapture instance
-* @param {OH_AVScreenCapture_UserSelectionInfo*} selections The recording parameter information
-*        selected by the user on the authorization interface
-* @param {void*} userData Pointer to user specific data
-*
-* @since 20
-*/
-typedef void (*OH_AVScreenCapture_OnUserSelected)(OH_AVScreenCapture* capture,
+ * @brief Called to return the parameters selected by the user on the authorization UI to the application.
+ * 
+ * @param capture Pointer to an OH_AVScreenCapture instance
+ * @param selections The recording parameter information
+ * selected by the user on the authorization interface
+ * @param userData Pointer to user specific data
+ *
+ * @since 20
+ */
+typedef void (*OH_AVScreenCapture_OnUserSelected)(OH_AVScreenCapture* capture, 
     OH_AVScreenCapture_UserSelectionInfo* selections, void *userData);
 
 /**
- * @brief When privacy protect event occurs in the running of the OH_AVScreenCapture instance,
- *  the function pointer will be called
- * @param {OH_AVScreenCapture*} capture Pointer to an OH_AVScreenCapture instance
- * @param {OH_PrivacyProtectInfo*} privacyProtect Pointer to privacy protect info
- * @param {void*} userData Pointer to user specific data
- *
+ * @brief Defines a struct for the multi-screen recording capability. It includes whether the multi-screen supports
+ * joint recording and the width and height of the screen for joint recording.
+ * 
+ * @since 24
+ */
+typedef struct OH_MultiDisplayCapability {
+    /**
+     * Whether multi-screen recording is supported. **true**: yes; **false**: no.
+     */
+    bool isMultiDisplaySupport;
+    /**
+     * Width of the screen area that can be recorded, in pixels.
+     */
+    uint32_t width;
+    /**
+     * Height of the screen area that can be recorded, in pixels.
+     */
+    uint32_t height;
+} OH_MultiDisplayCapability;
+
+/**
+ * @brief Called when a privacy protection event occurs during the running of the {@link OH_AVScreenCapture} instance.
+ * 
+ * @param capture Pointer to an OH_AVScreenCapture instance
+ * @param privacyProtect Pointer to privacy protect info
+ * @param userData Pointer to user specific data
  * @since 24
  */
 typedef void (*OH_AVScreenCapture_OnPrivacyProtect)(OH_AVScreenCapture* capture,

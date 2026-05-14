@@ -4,7 +4,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -12,22 +12,19 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 /**
- * @addtogroup AVMediaBase
+ * @addtogroup avmetakeys
  * @{
  *
  * @brief Defines the avmetakeys.
  *
- * @syscap SystemCapability.Multimedia.Media.Core
  * @since 23
  */
-
 /**
  * @file avmetakeys.h
  *
- * @brief Defines the avmetakeys.
- *
+ * @brief Defines audio and video metadata keys.
+ * 
  * @kit MediaKit
  * @library libavmedia_base.so
  * @syscap SystemCapability.Multimedia.Media.Core
@@ -42,109 +39,127 @@ extern "C" {
 #endif
 
 /**
- * @brief Key for track index, value type is int32_t.
+ * @brief Track index. The value type is int32_t.
+ * 
  * @since 23
  */
 extern const char* OH_AVMETA_KEY_TRACK_INDEX;
 
 /**
- * @brief Key for track type, value type is int32_t
+ * @brief Track type. The value type is int32_t.
+ * 
  * @since 23
  */
 extern const char* OH_AVMETA_KEY_TRACK_TYPE;
 
 /**
- * @brief Key for codec mime type, value type is string.
+ * @brief MIME type of the codec. The value type is string.
+ * 
  * @since 23
  */
 extern const char* OH_AVMETA_KEY_MIME_TYPE;
 
 /**
- * @brief Key for duration, value type is int64_t.
+ * @brief Media duration, in microseconds. The value type is int64_t.
+ * 
  * @since 23
  */
 extern const char* OH_AVMETA_KEY_DURATION;
 
 /**
- * @brief Key for bitrate, value type is int64_t.
+ * @brief Bit rate, in bit/s. The value type is int64_t.
+ * 
  * @since 23
  */
 extern const char* OH_AVMETA_KEY_BITRATE;
 
 /**
- * @brief Key for video frame rate (frame count in 100s), value type is double.
+ * @brief Video frame rate (number of frames per 100 seconds). The value type is double.
+ * 
  * @since 23
  */
 extern const char* OH_AVMETA_KEY_FRAME_RATE;
 
 /**
- * @brief Key for video width, value type is int32_t.
+ * @brief Video width. The value type is int32_t.
+ * 
  * @since 23
  */
 extern const char* OH_AVMETA_KEY_WIDTH;
 
 /**
- * @brief Key for video height, value type is int32_t.
+ * @brief Video height. The value type is int32_t.
+ * 
  * @since 23
  */
 extern const char* OH_AVMETA_KEY_HEIGHT;
 
 /**
- * @brief Key for audio channel count, value type is int32_t.
+ * @brief Number of audio channels. The value type is int32_t.
+ * 
  * @since 23
  */
 extern const char* OH_AVMETA_KEY_CHANNEL_COUNT;
 
 /**
- * @brief Key for audio sample rate (Hz), value type is int32_t.
+ * @brief Audio sampling rate (Hz). The value type is int32_t.
+ * 
  * @since 23
  */
 extern const char* OH_AVMETA_KEY_SAMPLE_RATE;
 
 /**
- * @brief Key for audio bit depth, value type is int32_t.
+ * @brief Audio sampling bit depth. The value type is int32_t.
+ * 
  * @since 23
  */
 extern const char* OH_AVMETA_KEY_SAMPLE_DEPTH;
 
 /**
- * @brief Key for language, value type is string.
+ * @brief Language ID. The value type is string.
+ * 
  * @since 23
  */
 extern const char* OH_AVMETA_KEY_LANGUAGE;
 
 /**
- * @brief Key for track name, value type is string.
+ * @brief Track name. The value type is string.
+ * 
  * @since 23
  */
 extern const char* OH_AVMETA_KEY_TRACK_NAME;
 
 /**
- * @brief Key for hdr type, value type is int32_t.
+ * @brief HDR type. The value type is int32_t.
+ * 
  * @since 23
  */
 extern const char* OH_AVMETA_KEY_HDR_TYPE;
 
 /**
- * @brief Key for original width, value type is int32_t.
+ * @brief Original video width. The value type is int32_t.
+ * 
  * @since 23
  */
 extern const char* OH_AVMETA_KEY_ORIGINAL_WIDTH;
 
 /**
- * @brief Key for original height, value type is int32_t.
+ * @brief Original video height. The value type is int32_t.
+ * 
  * @since 23
  */
 extern const char* OH_AVMETA_KEY_ORIGINAL_HEIGHT;
 
 /**
- * @brief Key to get the list of referenced track IDs. Only used by metadata extractor.
+ * @brief List of referenced track IDs, which is used only for the metadata extractor.
+ * 
  * @since 23
  */
 extern const char* OH_AVMETA_KEY_REF_TRACK_IDS;
 
 /**
- * @brief Key to get the track reference type. Only used by metadata extractor.
+ * @brief Track reference type, which is used only for the metadata extractor.
+ * 
  * @since 23
  */
 extern const char* OH_AVMETA_KEY_TRACK_REF_TYPE;
