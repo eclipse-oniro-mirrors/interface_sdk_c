@@ -242,7 +242,8 @@ typedef enum {
      */
     ABILITY_RUNTIME_ERROR_CODE_CROSS_APP_IN_PROCESS = 16000176,
      /**
- 	  * @error The type library metadata is invalid, e.g. missing or duplicate main interface.
+ 	  * The type library metadata is invalid, for example, missing or duplicate main interface.
+ 	  *
  	  * @since 26.0.0
  	  */
  	ABILITY_RUNTIME_ERROR_CODE_TLB_METADATA_INVALID = 16000178,

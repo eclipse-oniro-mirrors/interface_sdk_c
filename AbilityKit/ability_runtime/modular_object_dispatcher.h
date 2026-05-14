@@ -122,17 +122,58 @@ typedef enum {
  * @since 26.0.0
  */
 typedef struct OH_AbilityRuntime_MoDispatcher_TypeInfo {
+    /**
+     * @brief Type tag that determines which union member is valid.
+     */
     OH_AbilityRuntime_MoDispatcher_ValueType vt;
     union {
+        /**
+         * @brief Map type metadata.
+         *         Used when vt is {@link OH_ABILITY_RUNTIME_MO_DISPATCHER_VT_MAP}.
+         */
         struct {
+            /**
+             * @brief Key type of the map. Only basic types are supported, 
+             *        Container types (ARRAY, VECTOR, SET, MAP) and complex types
+             *        (STRUCT, IPC_REMOTE_PROXY, IPC_REMOTE_STUB) are not supported.
+             */
             OH_AbilityRuntime_MoDispatcher_ValueType keyType;
+            /**
+             * @brief Pointer to the value type descriptor.
+             *         Must be released by {@link OH_AbilityRuntime_MoDispatcher_TypeInfo_Clear}.
+             */
             OH_AbilityRuntime_MoDispatcher_TypeInfo *pValueType;
         } mapType;
+        /**
+         * @brief Array type metadata.
+         *         Used when vt is {@link OH_ABILITY_RUNTIME_MO_DISPATCHER_VT_ARRAY}.
+         */
         struct {
- 	        struct OH_AbilityRuntime_MoDispatcher_TypeInfo *pElementType;
- 	        uint32_t size;
- 	    } arrayType;
+            /**
+             * @brief Pointer to the element type descriptor.
+             *         Must be released by {@link OH_AbilityRuntime_MoDispatcher_TypeInfo_Clear}.
+             */
+            struct OH_AbilityRuntime_MoDispatcher_TypeInfo *pElementType;
+            /**
+             * @brief Fixed array size.
+             */
+            uint32_t size;
+        } arrayType;
+        /**
+         * @brief Pointer to the element type descriptor.
+         *         Used when vt is {@link OH_ABILITY_RUNTIME_MO_DISPATCHER_VT_VECTOR}
+         *         or {@link OH_ABILITY_RUNTIME_MO_DISPATCHER_VT_SET}.
+         *         Must be released by {@link OH_AbilityRuntime_MoDispatcher_TypeInfo_Clear}.
+         */
         OH_AbilityRuntime_MoDispatcher_TypeInfo *pElementType;
+        /**
+         * @brief IDL type name string (heap-allocated).
+         *         Used when vt is {@link OH_ABILITY_RUNTIME_MO_DISPATCHER_VT_STRUCT},
+         *         {@link OH_ABILITY_RUNTIME_MO_DISPATCHER_VT_IPC_REMOTE_PROXY},
+         *         {@link OH_ABILITY_RUNTIME_MO_DISPATCHER_VT_IPC_REMOTE_STUB},
+         *         or {@link OH_ABILITY_RUNTIME_MO_DISPATCHER_VT_ENUM}.
+         *         Must be released by {@link OH_AbilityRuntime_MoDispatcher_TypeInfo_Clear}.
+         */
         char* idlType;
     } u;
 } OH_AbilityRuntime_MoDispatcher_TypeInfo;
@@ -394,7 +435,10 @@ void OH_AbilityRuntime_MoDispatcher_Variant_Clear(
     OH_AbilityRuntime_MoDispatcher_Variant* pVariant);
 
 /**
- * @brief Create a modular object dispatcher instance for mainService interface from an IPC remote proxy.
+ * @brief Create a modular object dispatcher instance from an IPC remote proxy for the main service interface.
+ *
+ * The type library metadata will be lazily loaded from the remote service on the first call
+ * that requires it, such as HasTypeDescriptor, QueryMainServiceInterfaceMemIDsOfNames, or CallMethod.
  *
  * @param remoteProxy Indicates IPC remote proxy handle obtained from connectExtension.
  * @param ppMoDispatcher Indicates a pointer to receive modular object dispatcher handle.
@@ -438,13 +482,15 @@ AbilityRuntime_ErrorCode OH_AbilityRuntime_MoDispatcher_CreateSubInstance(
 void OH_AbilityRuntime_MoDispatcher_Release(OH_AbilityRuntime_MoDispatcherHandle* ppMoDispatcher);
 
 /**
- * @brief Check if type library is supported.
+ * @brief Check if the type library metadata is available from the remote service.
  *
  * @param pMoDispatcher Indicates modular object dispatcher handle.
  * @param pctinfo Indicates a pointer to receive support status (1 if supported, 0 if not supported).
  * @return Returns error code.
  *         {@link ABILITY_RUNTIME_ERROR_CODE_NO_ERROR} if operation is successful.
  *         {@link ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID} if pMoDispatcher or pctinfo is null.
+ *         {@link ABILITY_RUNTIME_ERROR_CODE_SEND_REQUEST_FAILED} if send request failed.
+ *         {@link ABILITY_RUNTIME_ERROR_CODE_TLB_METADATA_INVALID} if type library metadata is invalid.
  *         {@link ABILITY_RUNTIME_ERROR_CODE_INTERNAL} if internal error occurs.
  * @since 26.0.0
  */
@@ -452,7 +498,11 @@ AbilityRuntime_ErrorCode OH_AbilityRuntime_MoDispatcher_HasTypeDescriptor(
     OH_AbilityRuntime_MoDispatcherHandle pMoDispatcher, uint32_t* pctinfo);
 
 /**
- * @brief Get type descriptor.
+ * @brief Get type descriptor for querying interface metadata information.
+ *
+ * The type descriptor provides access to type library metadata including interfaces,
+ * methods, enums, and structs defined in the remote service's type library.
+ * Must call {@link OH_AbilityRuntime_TypeDescriptor_Release} to release the handle when no longer needed.
  *
  * @param pMoDispatcher Indicates modular object dispatcher handle.
  * @param ppTypeDescriptor Indicates a pointer to receive type descriptor handle.
@@ -460,6 +510,7 @@ AbilityRuntime_ErrorCode OH_AbilityRuntime_MoDispatcher_HasTypeDescriptor(
  *         {@link ABILITY_RUNTIME_ERROR_CODE_NO_ERROR} if operation is successful.
  *         {@link ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID} if pMoDispatcher or ppTypeDescriptor is null.
  *         {@link ABILITY_RUNTIME_ERROR_CODE_SEND_REQUEST_FAILED} if send request failed.
+ *         {@link ABILITY_RUNTIME_ERROR_CODE_TLB_METADATA_INVALID} if type library metadata is invalid.
  *         {@link ABILITY_RUNTIME_ERROR_CODE_INTERNAL} if internal error occurs.
  * @since 26.0.0
  */
@@ -467,15 +518,20 @@ AbilityRuntime_ErrorCode OH_AbilityRuntime_MoDispatcher_GetTypeDescriptor(
     OH_AbilityRuntime_MoDispatcherHandle pMoDispatcher, OH_AbilityRuntime_MoDispatcher_TypeDescriptorHandle* ppTypeDescriptor);
 
 /**
- * @brief Query member IDs of names.
+ * @brief Query member IDs of method names in the main service interface.
+ *
+ * The returned member IDs can be used as the memID parameter in
+ * {@link OH_AbilityRuntime_MoDispatcher_CallMethod}.
  *
  * @param pMoDispatcher Indicates modular object dispatcher handle.
- * @param rgszNames Indicates array of property or method names.
+ * @param rgszNames Indicates array of method names.
  * @param cNames Indicates number of names.
  * @param pMemID Indicates pointer to receive member IDs (MemberIDs).
  * @return Returns error code.
  *         {@link ABILITY_RUNTIME_ERROR_CODE_NO_ERROR} if operation is successful.
  *         {@link ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID} if pMoDispatcher or rgszNames or pMemID is null.
+ *         {@link ABILITY_RUNTIME_ERROR_CODE_SEND_REQUEST_FAILED} if send request failed.
+ *         {@link ABILITY_RUNTIME_ERROR_CODE_TLB_METADATA_INVALID} if type library metadata is invalid.
  *         {@link ABILITY_RUNTIME_ERROR_CODE_PROPERTY_NOT_FOUND} if name not found.
  *         {@link ABILITY_RUNTIME_ERROR_CODE_INTERNAL} if internal error occurs.
  * @since 26.0.0
@@ -494,12 +550,14 @@ AbilityRuntime_ErrorCode OH_AbilityRuntime_MoDispatcher_QueryMainServiceInterfac
  * @param pMethodErrCode Indicates a pointer to receive the error code returned by the remote method.
  *                   0 if the method executed successfully, non-zero if the method returned an error.
  *                   This is independent of the framework-level return value.
+ *                   This parameter can be NULL if the caller does not need the method-level error code.
  * @return Returns framework error code.
  *         {@link ABILITY_RUNTIME_ERROR_CODE_NO_ERROR} if IPC call is successful.
  *         {@link ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID} if pMoDispatcher or pInputParams or pResult is null.
  *         {@link ABILITY_RUNTIME_ERROR_CODE_PROPERTY_NOT_FOUND} if method not found.
  *         {@link ABILITY_RUNTIME_ERROR_CODE_TYPE_MISMATCH} if parameter type mismatches.
  *         {@link ABILITY_RUNTIME_ERROR_CODE_SEND_REQUEST_FAILED} if send request failed.
+ *         {@link ABILITY_RUNTIME_ERROR_CODE_TLB_METADATA_INVALID} if type library metadata is invalid.
  *         {@link ABILITY_RUNTIME_ERROR_CODE_INTERNAL} if internal error occurs.
  * @since 26.0.0
  */
@@ -520,11 +578,11 @@ AbilityRuntime_ErrorCode OH_AbilityRuntime_MoDispatcher_CallMethod(
 void OH_AbilityRuntime_TypeDescriptor_Release(OH_AbilityRuntime_MoDispatcher_TypeDescriptorHandle *pTypeDescriptor);
 
 /**
- * @brief Get version.
+ * @brief Get version of the type library.
  *
  * @param pTypeDescriptor Indicates TypeDescriptor handle.
- * @param pbstrVersion Indicates a buffer to receive version.
- * @param cMaxVersion Indicates size of buffer.
+ * @param pbstrVersion Indicates a buffer to receive version string.
+ * @param cMaxVersion Indicates size of buffer in bytes, including the null terminator.
  * @return Returns error code.
  *         {@link ABILITY_RUNTIME_ERROR_CODE_NO_ERROR} if operation is successful.
  *         {@link ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID} if pTypeDescriptor or pbstrVersion is null, or cMaxVersion is 0.
@@ -542,6 +600,7 @@ AbilityRuntime_ErrorCode OH_AbilityRuntime_TypeDescriptor_GetVersion(
  * @return Returns error code.
  *         {@link ABILITY_RUNTIME_ERROR_CODE_NO_ERROR} if operation is successful.
  *         {@link ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID} if pTypeDescriptor or pcInterfaces is null.
+ *         {@link ABILITY_RUNTIME_ERROR_CODE_INTERNAL} if internal error occurs.
  * @since 26.0.0
  */
 AbilityRuntime_ErrorCode OH_AbilityRuntime_TypeDescriptor_GetInterfaceCount(
@@ -551,9 +610,10 @@ AbilityRuntime_ErrorCode OH_AbilityRuntime_TypeDescriptor_GetInterfaceCount(
  * @brief Get interface name by index.
  *
  * @param pTypeDescriptor Indicates TypeDescriptor handle.
- * @param index Indicates interface index.
+ * @param index Indicates interface index, ranging from 0 to
+ *              (interface count - 1) obtained from {@link OH_AbilityRuntime_TypeDescriptor_GetInterfaceCount}.
  * @param pbstrName Indicates a buffer to receive interface name.
- * @param cMaxName Indicates size of buffer.
+ * @param cMaxName Indicates size of buffer in bytes, including the null terminator.
  * @return Returns error code.
  *         {@link ABILITY_RUNTIME_ERROR_CODE_NO_ERROR} if operation is successful.
  *         {@link ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID} if pTypeDescriptor or pbstrName is null, or cMaxName is 0, or index is out of range.
@@ -572,6 +632,7 @@ AbilityRuntime_ErrorCode OH_AbilityRuntime_TypeDescriptor_GetInterfaceName(
  * @return Returns error code.
  *         {@link ABILITY_RUNTIME_ERROR_CODE_NO_ERROR} if operation is successful.
  *         {@link ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID} if pTypeDescriptor or pbstrName or pIsCallback is null.
+ *         {@link ABILITY_RUNTIME_ERROR_CODE_INTERNAL} if internal error occurs.
  *         {@link ABILITY_RUNTIME_ERROR_CODE_PROPERTY_NOT_FOUND} if interface not found.
  * @since 26.0.0
  */
@@ -587,7 +648,6 @@ AbilityRuntime_ErrorCode OH_AbilityRuntime_TypeDescriptor_GetInterfaceIsCallback
  * @return Returns error code.
  *         {@link ABILITY_RUNTIME_ERROR_CODE_NO_ERROR} if operation is successful.
  *         {@link ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID} if pTypeDescriptor or pbstrName is null, or cMaxName is 0.
- *         {@link ABILITY_RUNTIME_ERROR_CODE_PROPERTY_NOT_FOUND} if main service interface not found.
  *         {@link ABILITY_RUNTIME_ERROR_CODE_INTERNAL} if internal error occurs.
  * @since 26.0.0
  */
@@ -603,6 +663,7 @@ AbilityRuntime_ErrorCode OH_AbilityRuntime_TypeDescriptor_GetMainServiceInterfac
  * @return Returns error code.
  *         {@link ABILITY_RUNTIME_ERROR_CODE_NO_ERROR} if operation is successful.
  *         {@link ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID} if pTypeDescriptor or pbstrInterfaceName or pcMethods is null.
+ *         {@link ABILITY_RUNTIME_ERROR_CODE_INTERNAL} if internal error occurs.
  *         {@link ABILITY_RUNTIME_ERROR_CODE_PROPERTY_NOT_FOUND} if interface not found.
  * @since 26.0.0
  */
@@ -615,9 +676,10 @@ AbilityRuntime_ErrorCode OH_AbilityRuntime_TypeDescriptor_GetMethodCount(
  *
  * @param pTypeDescriptor Indicates TypeDescriptor handle.
  * @param pbstrInterfaceName Indicates interface name.
- * @param index Indicates method index.
+ * @param index Indicates method index, ranging from 0 to (method count - 1)
+ *              obtained from {@link OH_AbilityRuntime_TypeDescriptor_GetMethodCount}.
  * @param pbstrName Indicates a buffer to receive method name.
- * @param cMaxName Indicates size of buffer.
+ * @param cMaxName Indicates size of buffer in bytes, including the null terminator.
  * @return Returns error code.
  *         {@link ABILITY_RUNTIME_ERROR_CODE_NO_ERROR} if operation is successful.
  *         {@link ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID} if pTypeDescriptor or pbstrInterfaceName or
@@ -641,6 +703,7 @@ AbilityRuntime_ErrorCode OH_AbilityRuntime_TypeDescriptor_GetMethodName(
  *         {@link ABILITY_RUNTIME_ERROR_CODE_NO_ERROR} if operation is successful.
  *         {@link ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID} if pTypeDescriptor or pbstrInterfaceName or pbstrMethodName or pMemID is null.
  *         {@link ABILITY_RUNTIME_ERROR_CODE_PROPERTY_NOT_FOUND} if interface or method not found.
+ *         {@link ABILITY_RUNTIME_ERROR_CODE_INTERNAL} if internal error occurs.
  * @since 26.0.0
  */
 AbilityRuntime_ErrorCode OH_AbilityRuntime_TypeDescriptor_GetMethodMemberId(
@@ -658,6 +721,7 @@ AbilityRuntime_ErrorCode OH_AbilityRuntime_TypeDescriptor_GetMethodMemberId(
  *         {@link ABILITY_RUNTIME_ERROR_CODE_NO_ERROR} if operation is successful.
  *         {@link ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID} if pTypeDescriptor or pbstrInterfaceName or pbstrMethodName or pReturnType is null.
  *         {@link ABILITY_RUNTIME_ERROR_CODE_PROPERTY_NOT_FOUND} if interface or method not found.
+ *         {@link ABILITY_RUNTIME_ERROR_CODE_INTERNAL} if internal error occurs.
  * @since 26.0.0
  */
 AbilityRuntime_ErrorCode OH_AbilityRuntime_TypeDescriptor_GetMethodReturnType(
@@ -676,6 +740,7 @@ AbilityRuntime_ErrorCode OH_AbilityRuntime_TypeDescriptor_GetMethodReturnType(
  *         {@link ABILITY_RUNTIME_ERROR_CODE_NO_ERROR} if operation is successful.
  *         {@link ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID} if pTypeDescriptor or pbstrInterfaceName or pbstrMethodName or pcParams is null.
  *         {@link ABILITY_RUNTIME_ERROR_CODE_PROPERTY_NOT_FOUND} if interface or method not found.
+ *         {@link ABILITY_RUNTIME_ERROR_CODE_INTERNAL} if internal error occurs.
  * @since 26.0.0
  */
 AbilityRuntime_ErrorCode OH_AbilityRuntime_TypeDescriptor_GetMethodParamCount(
@@ -694,6 +759,7 @@ AbilityRuntime_ErrorCode OH_AbilityRuntime_TypeDescriptor_GetMethodParamCount(
  *         {@link ABILITY_RUNTIME_ERROR_CODE_NO_ERROR} if operation is successful.
  *         {@link ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID} if pTypeDescriptor or pbstrInterfaceName or pbstrMethodName or pParamType is null, or iParamIndex is out of range.
  *         {@link ABILITY_RUNTIME_ERROR_CODE_PROPERTY_NOT_FOUND} if interface or method not found.
+ *         {@link ABILITY_RUNTIME_ERROR_CODE_INTERNAL} if internal error occurs.
  * @since 26.0.0
  */
 AbilityRuntime_ErrorCode OH_AbilityRuntime_TypeDescriptor_GetMethodParamType(
@@ -732,6 +798,7 @@ AbilityRuntime_ErrorCode OH_AbilityRuntime_TypeDescriptor_GetMethodParamName(
  * @return Returns error code.
  *         {@link ABILITY_RUNTIME_ERROR_CODE_NO_ERROR} if operation is successful.
  *         {@link ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID} if pTypeDescriptor or pcEnums is null.
+ *         {@link ABILITY_RUNTIME_ERROR_CODE_INTERNAL} if internal error occurs.
  * @since 26.0.0
  */
 AbilityRuntime_ErrorCode OH_AbilityRuntime_TypeDescriptor_GetEnumCount(
@@ -763,6 +830,7 @@ AbilityRuntime_ErrorCode OH_AbilityRuntime_TypeDescriptor_GetEnumName(
  *         {@link ABILITY_RUNTIME_ERROR_CODE_NO_ERROR} if operation is successful.
  *         {@link ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID} if pTypeDescriptor or pbstrEnumName or pcValues is null.
  *         {@link ABILITY_RUNTIME_ERROR_CODE_PROPERTY_NOT_FOUND} if enum not found.
+ *         {@link ABILITY_RUNTIME_ERROR_CODE_INTERNAL} if internal error occurs.
  * @since 26.0.0
  */
 AbilityRuntime_ErrorCode OH_AbilityRuntime_TypeDescriptor_GetEnumValueCount(
@@ -779,6 +847,7 @@ AbilityRuntime_ErrorCode OH_AbilityRuntime_TypeDescriptor_GetEnumValueCount(
  * @return Returns error code.
  *         {@link ABILITY_RUNTIME_ERROR_CODE_NO_ERROR} if operation is successful.
  *         {@link ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID} if pTypeDescriptor or pbstrEnumName or pbstrValueName is null, or iValueIndex is out of range.
+ *         {@link ABILITY_RUNTIME_ERROR_CODE_PROPERTY_NOT_FOUND} if enum not found.
  *         {@link ABILITY_RUNTIME_ERROR_CODE_INTERNAL} if internal error occurs.
  * @since 26.0.0
  */
@@ -797,6 +866,7 @@ AbilityRuntime_ErrorCode OH_AbilityRuntime_TypeDescriptor_GetEnumValueName(
  *         {@link ABILITY_RUNTIME_ERROR_CODE_NO_ERROR} if operation is successful.
  *         {@link ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID} if pTypeDescriptor or pbstrEnumName or pbstrValueName or pValue is null.
  *         {@link ABILITY_RUNTIME_ERROR_CODE_PROPERTY_NOT_FOUND} if enum value not found.
+ *         {@link ABILITY_RUNTIME_ERROR_CODE_INTERNAL} if internal error occurs.
  * @since 26.0.0
  */
 AbilityRuntime_ErrorCode OH_AbilityRuntime_TypeDescriptor_GetEnumValue(
@@ -811,6 +881,7 @@ AbilityRuntime_ErrorCode OH_AbilityRuntime_TypeDescriptor_GetEnumValue(
  * @return Returns error code.
  *         {@link ABILITY_RUNTIME_ERROR_CODE_NO_ERROR} if operation is successful.
  *         {@link ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID} if pTypeDescriptor or pcStructs is null.
+ *         {@link ABILITY_RUNTIME_ERROR_CODE_INTERNAL} if internal error occurs.
  * @since 26.0.0
  */
 AbilityRuntime_ErrorCode OH_AbilityRuntime_TypeDescriptor_GetStructCount(
@@ -842,6 +913,7 @@ AbilityRuntime_ErrorCode OH_AbilityRuntime_TypeDescriptor_GetStructName(
  *         {@link ABILITY_RUNTIME_ERROR_CODE_NO_ERROR} if operation is successful.
  *         {@link ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID} if pTypeDescriptor or pbstrStructName or pcFields is null.
  *         {@link ABILITY_RUNTIME_ERROR_CODE_PROPERTY_NOT_FOUND} if struct not found.
+ *         {@link ABILITY_RUNTIME_ERROR_CODE_INTERNAL} if internal error occurs.
  * @since 26.0.0
  */
 AbilityRuntime_ErrorCode OH_AbilityRuntime_TypeDescriptor_GetStructFieldCount(
@@ -858,6 +930,7 @@ AbilityRuntime_ErrorCode OH_AbilityRuntime_TypeDescriptor_GetStructFieldCount(
  * @return Returns error code.
  *         {@link ABILITY_RUNTIME_ERROR_CODE_NO_ERROR} if operation is successful.
  *         {@link ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID} if pTypeDescriptor or pbstrStructName or pbstrFieldName is null, or iFieldIndex is out of range.
+ *         {@link ABILITY_RUNTIME_ERROR_CODE_PROPERTY_NOT_FOUND} if struct not found.
  *         {@link ABILITY_RUNTIME_ERROR_CODE_INTERNAL} if internal error occurs.
  * @since 26.0.0
  */
@@ -876,6 +949,7 @@ AbilityRuntime_ErrorCode OH_AbilityRuntime_TypeDescriptor_GetStructFieldName(
  *         {@link ABILITY_RUNTIME_ERROR_CODE_NO_ERROR} if operation is successful.
  *         {@link ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID} if pTypeDescriptor or pbstrStructName or pbstrFieldName or pFieldType is null.
  *         {@link ABILITY_RUNTIME_ERROR_CODE_PROPERTY_NOT_FOUND} if field not found.
+ *         {@link ABILITY_RUNTIME_ERROR_CODE_INTERNAL} if internal error occurs.
  * @since 26.0.0
  */
 AbilityRuntime_ErrorCode OH_AbilityRuntime_TypeDescriptor_GetStructFieldType(
@@ -1176,7 +1250,13 @@ void OH_AbilityRuntime_MoDispatcher_Set_Release(OH_AbilityRuntime_MoDispatcher_S
 /**
  * @brief Create a map instance.
  *
- * @param keyType Indicates key type.
+ * @param keyType Indicates key type. Only basic types are supported, such as
+ *               {@link OH_ABILITY_RUNTIME_MO_DISPATCHER_VT_BOOL},
+ *               {@link OH_ABILITY_RUNTIME_MO_DISPATCHER_VT_I32},
+ *               {@link OH_ABILITY_RUNTIME_MO_DISPATCHER_VT_STRING},
+ *               and {@link OH_ABILITY_RUNTIME_MO_DISPATCHER_VT_ENUM}.
+ *               Container types (ARRAY, VECTOR, SET, MAP) and complex types
+ *               (STRUCT, IPC_REMOTE_PROXY, IPC_REMOTE_STUB) are not supported.
  * @param valueType Indicates value type.
  * @param ppMap Indicates a pointer to receive map handle.
  * @return Returns error code.
