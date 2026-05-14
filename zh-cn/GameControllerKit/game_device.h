@@ -51,7 +51,7 @@ typedef struct GameDevice_AllDeviceInfos GameDevice_AllDeviceInfos;
  * @brief 获取所有在线设备的信息。
  * @param allDeviceInfos 输出参数。二级指针指向{@link GameDevice_AllDeviceInfos}实例，不能为空，否则将返回错误码。
  * @return <ul><li>如果执行成功，返回{@link GAME_CONTROLLER_PARAM_ERROR}。</li>
- * <li>如果查询多模输入中所有设备信息失败，返回{@link GAME_CONTROLLER_MULTIMODAL_INPUT_ERROR}。</li></ul>
+ *     <li>如果查询多模输入中所有设备信息失败，返回{@link GAME_CONTROLLER_MULTIMODAL_INPUT_ERROR}。</li></ul>
  * @since 21
  */
 GameController_ErrorCode OH_GameDevice_GetAllDeviceInfos(GameDevice_AllDeviceInfos** allDeviceInfos);
@@ -60,7 +60,7 @@ GameController_ErrorCode OH_GameDevice_GetAllDeviceInfos(GameDevice_AllDeviceInf
  * @brief 注册设备状态变化事件的监听回调。
  * @param deviceMonitorCallback 回调函数{@link GameDevice_DeviceMonitorCallback}，不能为空，否则将返回错误码。
  * @return <ul><li>如果执行成功，返回{@link GAME_CONTROLLER_PARAM_ERROR}。</li>
- * <li>如果参数deviceMonitorCallback为null，返回{@link GAME_CONTROLLER_PARAM_ERROR}。</li></ul>
+ *     <li>如果参数deviceMonitorCallback为null，返回{@link GAME_CONTROLLER_PARAM_ERROR}。</li></ul>
  * @since 21
  */
 GameController_ErrorCode OH_GameDevice_RegisterDeviceMonitor(
@@ -77,7 +77,7 @@ GameController_ErrorCode OH_GameDevice_UnregisterDeviceMonitor(void);
  * @brief 销毁所有设备信息实例。
  * @param allDeviceInfos 二级指针指向{@link GameDevice_AllDeviceInfos}实例，不能为空，否则将返回错误码。
  * @return <ul><li>如果执行成功，返回{@link GAME_CONTROLLER_PARAM_ERROR}。</li>
- * <li>如果参数allDeviceInfos为null，返回{@link GAME_CONTROLLER_PARAM_ERROR}。</li></ul>
+ *     <li>如果参数allDeviceInfos为null，返回{@link GAME_CONTROLLER_PARAM_ERROR}。</li></ul>
  * @since 21
  */
 GameController_ErrorCode OH_GameDevice_DestroyAllDeviceInfos(GameDevice_AllDeviceInfos** allDeviceInfos);
@@ -87,7 +87,7 @@ GameController_ErrorCode OH_GameDevice_DestroyAllDeviceInfos(GameDevice_AllDevic
  * @param allDeviceInfos 指针指向{@link GameDevice_AllDeviceInfos}实例，不能为空，否则将返回错误码。
  * @param count 输出参数，设备数量。
  * @return <ul><li>如果执行成功，返回{@link GAME_CONTROLLER_PARAM_ERROR}。</li>
- * <li>如果参数allDeviceInfos为null，返回{@link GAME_CONTROLLER_PARAM_ERROR}。</li></ul>
+ *     <li>如果参数allDeviceInfos为null，返回{@link GAME_CONTROLLER_PARAM_ERROR}。</li></ul>
  * @since 21
  */
 GameController_ErrorCode OH_GameDevice_AllDeviceInfos_GetCount(
@@ -100,7 +100,7 @@ GameController_ErrorCode OH_GameDevice_AllDeviceInfos_GetCount(
  * @param index 指定设备索引。
  * @param deviceInfo 输出参数，二级指针指向设备信息。
  * @return <ul><li>如果执行成功，返回{@link GAME_CONTROLLER_PARAM_ERROR}。</li>
- * <li>如果参数allDeviceInfos为null，或index小于0或大于等于设备总数，返回{@link GAME_CONTROLLER_PARAM_ERROR}。</li></ul>
+ *     <li>如果参数allDeviceInfos为null，或index小于0或大于等于设备总数，返回{@link GAME_CONTROLLER_PARAM_ERROR}。</li></ul>
  * @since 21
  */
 GameController_ErrorCode OH_GameDevice_AllDeviceInfos_GetDeviceInfo(
