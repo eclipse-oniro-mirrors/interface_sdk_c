@@ -24,7 +24,7 @@
 
 /**
  * @file game_controller_type.h
- * @brief Defines common enumeration types for the GameController module.
+ * @brief 定义GameController模块的通用枚举类型。
  * @kit GameControllerKit
  * @library libohgame_controller.z.so
  * @syscap SystemCapability.Game.GameController
@@ -40,30 +40,30 @@
 extern "C" {
 #endif
 /**
- * @brief Defines error codes of the game controller.
+ * @brief 此枚举定义游戏控制器的错误码。
  * @since 21
  */
 typedef enum GameController_ErrorCode {
     /**
-     * Success.
+     * 成功。
 	 * @since 21
      */
     GAME_CONTROLLER_SUCCESS = 0,
 
     /**
-     * @error Invalid parameter.
+     * @error 参数非法。
 	 * @since 21
      */
     GAME_CONTROLLER_PARAM_ERROR = 401,
 
     /**
-     * @error Failed to query all game device information in multimodal input.
+     * @error 查询多模输入中所有设备信息失败。
 	 * @since 21
      */
     GAME_CONTROLLER_MULTIMODAL_INPUT_ERROR = 32200001,
 
     /**
-     * @error Insufficient game device memory.
+     * @error 设备内存不足。
 	 * @since 21
      */
     GAME_CONTROLLER_NO_MEMORY = 32200002,
