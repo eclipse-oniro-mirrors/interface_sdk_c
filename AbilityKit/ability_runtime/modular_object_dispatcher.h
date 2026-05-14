@@ -59,49 +59,115 @@ typedef struct OH_AbilityRuntime_ModularObjectDispatcher_TypeDescriptor*
   * @since 26.0.0
   */
 typedef enum {
-    /** @description Empty value. */
+    /**
+     * @brief Empty value.
+     * @since 26.0.0
+     */
     OH_ABILITY_RUNTIME_MOD_OBJ_DISPATCHER_VT_EMPTY = 0,
-    /** @description Void value. */
+    /**
+     * @brief Void value.
+     * @since 26.0.0
+     */
     OH_ABILITY_RUNTIME_MOD_OBJ_DISPATCHER_VT_VOID = 1,
-    /** @description Boolean value. */
+    /**
+     * @brief Boolean value.
+     * @since 26.0.0
+     */
     OH_ABILITY_RUNTIME_MOD_OBJ_DISPATCHER_VT_BOOL = 2,
-    /** @description 8-bit signed integer. */
+    /**
+     * @brief 8-bit signed integer.
+     * @since 26.0.0
+     */
     OH_ABILITY_RUNTIME_MOD_OBJ_DISPATCHER_VT_I8 = 3,
-    /** @description 16-bit signed integer. */
+    /**
+     * @brief 16-bit signed integer.
+     * @since 26.0.0
+     */
     OH_ABILITY_RUNTIME_MOD_OBJ_DISPATCHER_VT_I16 = 4,
-    /** @description 32-bit signed integer. */
+    /**
+     * @brief 32-bit signed integer.
+     * @since 26.0.0
+     */
     OH_ABILITY_RUNTIME_MOD_OBJ_DISPATCHER_VT_I32 = 5,
-    /** @description 64-bit signed integer. */
+    /**
+     * @brief 64-bit signed integer.
+     * @since 26.0.0
+     */
     OH_ABILITY_RUNTIME_MOD_OBJ_DISPATCHER_VT_I64 = 6,
-    /** @description 8-bit unsigned integer. */
+    /**
+     * @brief 8-bit unsigned integer.
+     * @since 26.0.0
+     */
     OH_ABILITY_RUNTIME_MOD_OBJ_DISPATCHER_VT_U8 = 7,
-    /** @description 16-bit unsigned integer. */
+    /**
+     * @brief 16-bit unsigned integer.
+     * @since 26.0.0
+     */
     OH_ABILITY_RUNTIME_MOD_OBJ_DISPATCHER_VT_U16 = 8,
-    /** @description 32-bit unsigned integer. */
+    /**
+     * @brief 32-bit unsigned integer.
+     * @since 26.0.0
+     */
     OH_ABILITY_RUNTIME_MOD_OBJ_DISPATCHER_VT_U32 = 9,
-    /** @description 64-bit unsigned integer. */
+    /**
+     * @brief 64-bit unsigned integer.
+     * @since 26.0.0
+     */
     OH_ABILITY_RUNTIME_MOD_OBJ_DISPATCHER_VT_U64 = 10,
-    /** @description 32-bit floating point. */
+    /**
+     * @brief 32-bit floating point.
+     * @since 26.0.0
+     */
     OH_ABILITY_RUNTIME_MOD_OBJ_DISPATCHER_VT_F32 = 11,
-    /** @description 64-bit floating point. */
+    /**
+     * @brief 64-bit floating point.
+     * @since 26.0.0
+     */
     OH_ABILITY_RUNTIME_MOD_OBJ_DISPATCHER_VT_F64 = 12,
-    /** @description String (UTF-8). */
+    /**
+     * @brief String (UTF-8).
+     * @since 26.0.0
+     */
     OH_ABILITY_RUNTIME_MOD_OBJ_DISPATCHER_VT_STRING = 13,
-    /** @description Array. */
+    /**
+     * @brief Array.
+     * @since 26.0.0
+     */
     OH_ABILITY_RUNTIME_MOD_OBJ_DISPATCHER_VT_ARRAY = 14,
-    /** @description Vector. */
+    /**
+     * @brief Vector.
+     * @since 26.0.0
+     */
     OH_ABILITY_RUNTIME_MOD_OBJ_DISPATCHER_VT_VECTOR = 15,
-    /** @description Set. */
+    /**
+     * @brief Set.
+     * @since 26.0.0
+     */
     OH_ABILITY_RUNTIME_MOD_OBJ_DISPATCHER_VT_SET = 16,
-    /** @description Map. */
+    /**
+     * @brief Map.
+     * @since 26.0.0
+     */
     OH_ABILITY_RUNTIME_MOD_OBJ_DISPATCHER_VT_MAP = 17,
-    /** @description Struct. */
+    /**
+     * @brief Struct.
+     * @since 26.0.0
+     */
     OH_ABILITY_RUNTIME_MOD_OBJ_DISPATCHER_VT_STRUCT = 18,
-    /** @description Ipc Remote Proxy. */
+    /**
+     * @brief Ipc Remote Proxy.
+     * @since 26.0.0
+     */
     OH_ABILITY_RUNTIME_MOD_OBJ_DISPATCHER_VT_IPC_REMOTE_PROXY = 19,
-    /** @description Ipc Remote Stub. */
+    /**
+     * @brief Ipc Remote Stub.
+     * @since 26.0.0
+     */
     OH_ABILITY_RUNTIME_MOD_OBJ_DISPATCHER_VT_IPC_REMOTE_STUB = 20,
-    /** @description Enum value. */
+    /**
+     * @brief Enum value.
+     * @since 26.0.0
+     */
     OH_ABILITY_RUNTIME_MOD_OBJ_DISPATCHER_VT_ENUM = 21,
 } OH_AbilityRuntime_ModObjDispatcher_ValueType;
 
@@ -118,38 +184,45 @@ typedef enum {
 typedef struct OH_AbilityRuntime_ModObjDispatcher_TypeInfo {
     /**
      * @brief Type tag that determines which union member is valid.
+     * @since 26.0.0
      */
     OH_AbilityRuntime_ModObjDispatcher_ValueType vt;
     union {
         /**
          * @brief Map type metadata.
          *         Used when vt is {@link OH_ABILITY_RUNTIME_MOD_OBJ_DISPATCHER_VT_MAP}.
+         * @since 26.0.0
          */
         struct {
             /**
-             * @brief Key type of the map. Only basic types are supported, 
+             * @brief Key type of the map. Only basic types are supported.
              *        Container types (ARRAY, VECTOR, SET, MAP) and complex types
              *        (STRUCT, IPC_REMOTE_PROXY, IPC_REMOTE_STUB) are not supported.
+             * @since 26.0.0
              */
             OH_AbilityRuntime_ModObjDispatcher_ValueType keyType;
             /**
              * @brief Pointer to the value type descriptor.
              *         Must be released by {@link OH_AbilityRuntime_ModObjDispatcher_TypeInfo_Clear}.
+             * @since 26.0.0
              */
             OH_AbilityRuntime_ModObjDispatcher_TypeInfo *pValueType;
         } mapType;
         /**
          * @brief Array type metadata.
          *         Used when vt is {@link OH_ABILITY_RUNTIME_MOD_OBJ_DISPATCHER_VT_ARRAY}.
+         * @since 26.0.0
          */
         struct {
             /**
              * @brief Pointer to the element type descriptor.
              *         Must be released by {@link OH_AbilityRuntime_ModObjDispatcher_TypeInfo_Clear}.
+             * @since 26.0.0
              */
             struct OH_AbilityRuntime_ModObjDispatcher_TypeInfo *pElementType;
             /**
              * @brief Fixed array size.
+             * @since 26.0.0
              */
             uint32_t size;
         } arrayType;
@@ -158,6 +231,7 @@ typedef struct OH_AbilityRuntime_ModObjDispatcher_TypeInfo {
          *         Used when vt is {@link OH_ABILITY_RUNTIME_MOD_OBJ_DISPATCHER_VT_VECTOR}
          *         or {@link OH_ABILITY_RUNTIME_MOD_OBJ_DISPATCHER_VT_SET}.
          *         Must be released by {@link OH_AbilityRuntime_ModObjDispatcher_TypeInfo_Clear}.
+         * @since 26.0.0
          */
         OH_AbilityRuntime_ModObjDispatcher_TypeInfo *pElementType;
         /**
@@ -167,6 +241,7 @@ typedef struct OH_AbilityRuntime_ModObjDispatcher_TypeInfo {
          *         {@link OH_ABILITY_RUNTIME_MOD_OBJ_DISPATCHER_VT_IPC_REMOTE_STUB},
          *         or {@link OH_ABILITY_RUNTIME_MOD_OBJ_DISPATCHER_VT_ENUM}.
          *         Must be released by {@link OH_AbilityRuntime_ModObjDispatcher_TypeInfo_Clear}.
+         * @since 26.0.0
          */
         char* idlType;
     } u;
@@ -222,106 +297,132 @@ typedef struct OH_AbilityRuntime_ModularObjectDispatcher_Struct* OH_AbilityRunti
 typedef struct {
     /**
      * @brief Variant type.
+     * @since 26.0.0
      */
     OH_AbilityRuntime_ModObjDispatcher_ValueType vt;
     /**
      * @brief Reserved field 1 for future use.
+     * @since 26.0.0
      */
     uint64_t reserved1;
     /**
      * @brief Reserved field 2 for future use.
+     * @since 26.0.0
      */
     uint64_t reserved2;
     /**
      * @brief Reserved field 3 for future use.
+     * @since 26.0.0
      */
     uint64_t reserved3;
     /**
      * @brief Variant value data.
+     * @since 26.0.0
      */
     union {
         /**
          * @brief Empty value.
+         * @since 26.0.0
          */
         void *pvoidVal;
         /**
          * @brief Boolean value.
+         * @since 26.0.0
          */
         bool boolVal;
         /**
          * @brief 8-bit signed integer.
+         * @since 26.0.0
          */
         int8_t i8Val;
         /**
          * @brief 16-bit signed integer.
+         * @since 26.0.0
          */
         int16_t i16Val;
         /**
          * @brief 32-bit signed integer.
+         * @since 26.0.0
          */
         int32_t i32Val;
         /**
          * @brief 64-bit signed integer.
+         * @since 26.0.0
          */
         int64_t i64Val;
         /**
          * @brief 8-bit unsigned integer.
+         * @since 26.0.0
          */
         uint8_t u8Val;
         /**
          * @brief 16-bit unsigned integer.
+         * @since 26.0.0
          */
         uint16_t u16Val;
         /**
          * @brief 32-bit unsigned integer.
+         * @since 26.0.0
          */
         uint32_t u32Val;
         /**
          * @brief 64-bit unsigned integer.
+         * @since 26.0.0
          */
         uint64_t u64Val;
         /**
          * @brief 32-bit floating point.
+         * @since 26.0.0
          */
         float f32Val;
         /**
          * @brief 64-bit floating point.
+         * @since 26.0.0
          */
         double f64Val;
         /**
          * @brief Enum value.
+         * @since 26.0.0
          */
         int32_t enumVal;
         /**
          * @brief String value (UTF-8) pointer.
+         * @since 26.0.0
          */
         char* bstrVal;
         /**
          * @brief Array handle.
+         * @since 26.0.0
          */
         OH_AbilityRuntime_ModObjDispatcher_ArrayHandle parrayVal;
         /**
          * @brief Vector handle.
+         * @since 26.0.0
          */
         OH_AbilityRuntime_ModObjDispatcher_VectorHandle pvectorVal;
         /**
          * @brief Set handle.
+         * @since 26.0.0
          */
         OH_AbilityRuntime_ModObjDispatcher_SetHandle psetVal;
         /**
          * @brief Map handle.
+         * @since 26.0.0
          */
         OH_AbilityRuntime_ModObjDispatcher_MapHandle pmapVal;
         /**
          * @brief Struct handle.
+         * @since 26.0.0
          */
         OH_AbilityRuntime_ModObjDispatcher_StructHandle pstructVal;
         /**
          * @brief Ipc remote proxy handle.
+         * @since 26.0.0
          */
         OHIPCRemoteProxy *premoteProxyVal;
         /**
          * @brief Ipc remote stub handle.
+         * @since 26.0.0
          */
         OHIPCRemoteStub *premoteStubVal;
     } u;
@@ -1020,7 +1121,8 @@ void OH_AbilityRuntime_ModObjDispatcher_Array_Release(OH_AbilityRuntime_ModObjDi
  * @since 26.0.0
  */
 AbilityRuntime_ErrorCode OH_AbilityRuntime_ModObjDispatcher_Vector_Create(
-    OH_AbilityRuntime_ModObjDispatcher_TypeInfo *elementType,OH_AbilityRuntime_ModObjDispatcher_VectorHandle* ppVector);
+    OH_AbilityRuntime_ModObjDispatcher_TypeInfo *elementType,
+    OH_AbilityRuntime_ModObjDispatcher_VectorHandle* ppVector);
 
 /**
  * @brief Get vector element type.
@@ -1470,6 +1572,4 @@ void OH_AbilityRuntime_ModObjDispatcher_Struct_Release(OH_AbilityRuntime_ModObjD
 #endif
 /** @} */
 #endif // OHOS_ABILITY_RUNTIME_C_MOD_OBJ_DISPATCHER_H
-
-
 
