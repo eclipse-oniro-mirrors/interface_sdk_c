@@ -13,6 +13,9 @@
  * limitations under the License.
  */
 
+#ifndef OHOS_BACKGROUOND_TASK_MANAGER_TRANSIENT_TASK_TYPE_H
+#define OHOS_BACKGROUOND_TASK_MANAGER_TRANSIENT_TASK_TYPE_H
+
 /**
  * @addtogroup TransientTask
  * @{
@@ -33,9 +36,6 @@
  * @since 11
  */
 
-#ifndef OHOS_BACKGROUOND_TASK_MANAGER_TRANSIENT_TASK_TYPE_H
-#define OHOS_BACKGROUOND_TASK_MANAGER_TRANSIENT_TASK_TYPE_H
-
 #include <stdint.h>
 
 #ifdef __cplusplus
@@ -43,87 +43,122 @@ extern "C" {
 #endif
 
 /**
- * @brief max number for transient task.
- *
+ * @brief Defines the maximum number of transient tasks at the same time.
+ * 
  * @since 20
  */
 #define TRANSIENT_TASK_MAX_NUM 3
 
 /**
- * @brief Enum for transient task error code.
+ * @brief Enumerates the error codes available for a transient task.
+ * 
  * @since 13
  */
 typedef enum TransientTask_ErrorCode {
     /**
-     * @error result is ok.
+     * Operation successful.
+     *
+     * @since 13
      */
     ERR_TRANSIENT_TASK_OK = 0,
     /**
-     * @error Parameter error. Possible causes:
-     * 1. Mandatory parameters are left unspecified;
-     * 2. Incorrect parameters types.
+     * Parameter check failed. Possible causes: 1. Mandatory parameters are not passed. 2. Incorrect parameter types.
+     *
+     * @since 13
      */
     ERR_TRANSIENT_TASK_INVALID_PARAM = 401,
     /**
-     * @error Parcel operation failed.
+     * Parcel read/write operation failed.
+     *
+     * @since 13
      */
     ERR_TRANSIENT_TASK_PARCEL_FAILED = 9800002,
     /**
-     * @error Internal transaction failed.
+     * IPC failed.
+     *
+     * @since 13
      */
     ERR_TRANSIENT_TASK_TRANSACTION_FAILED = 9800003,
     /**
-     * @error System service operation failed.
+     * System service failed.
+     *
+     * @since 13
      */
     ERR_TRANSIENT_TASK_SYS_NOT_READY = 9800004,
     /**
-     * Caller information verification failed for a transient task.
+     * Failed to verify the client information of the transient task.
+     *
+     * @since 13
      */
     ERR_TRANSIENT_TASK_CLIENT_INFO_VERIFICATION_FAILED = 9900001,
     /**
-     * Transient task verification failed.
+     * Failed to verify the server information of the transient task.
+     *
+     * @since 13
      */
     ERR_TRANSIENT_TASK_SERVICE_VERIFICATION_FAILED = 9900002,
     /**
-     * @error Failed to write data into parcel. Possible reasons:
-     * 1. Invalid parameters;
-     * 2. Failed to apply for memory.
+     * Parcel read/write operation failed for the transient task. Possible causes:
+     *     1. The parameter is invalid.
+     *     2. Memory allocation fails.
+     *
+     * @since 13
      */
     ERR_TRANSIENT_TASK_PARCELABLE_FAILED = 9900003,
     /**
-     * @error System service operation failed.
+     * System service failed.
+     *
+     * @since 13
      */
     ERR_TRANSIENT_TASK_SERVICE_NOT_READY = 9900004,
 } TransientTask_ErrorCode;
 
 /**
- * @brief Define DelaySuspendInfo for TransientTask.
- *
+ * @brief A struct that describes the returned information about a transient task. The struct returns the ID and
+ * remaining time of the transient task.
+ * 
  * @since 13
  * @version 1.0
  */
 typedef struct TransientTask_DelaySuspendInfo {
-    /** The unique identifier of the delay request */
+    /**
+     * Request ID of a transient task.
+     *
+     * @since 13
+     */
     int32_t requestId;
-    /** The actual delay duration (ms) */
+    /**
+     * Remaining time, in ms.
+     *
+     * @since 13
+     */
     int32_t actualDelayTime;
 } TransientTask_DelaySuspendInfo;
 
 /**
- * @brief Define TransientTaskInfo for an application.
- *
+ * @brief A struct that describes all transient task information. The struct returns all transient task information,
+ * including the remaining quota of the current day.
+ * 
  * @since 20
  * @version 1.0
  */
 typedef struct TransientTask_TransientTaskInfo {
-    /** The remaining quota of the delay request */
+    /**
+     * Remaining quota of the current day, in ms.
+     *
+     * @since 20
+     */
     int32_t remainingQuota;
-    /** The info of delay suspend */
+    /** The info of delay suspend
+     *
+     * @since 20
+     */
     TransientTask_DelaySuspendInfo transientTasks[TRANSIENT_TASK_MAX_NUM];
 } TransientTask_TransientTaskInfo;
 
 /**
- * @brief Define a callback function when delay time expired.
+ * @brief Defines a callback for transient task timeout.
+ * 
  * @since 13
  */
 typedef void (*TransientTask_Callback)(void);
