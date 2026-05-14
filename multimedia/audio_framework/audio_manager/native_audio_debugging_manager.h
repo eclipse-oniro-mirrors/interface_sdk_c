@@ -56,7 +56,7 @@ typedef struct OH_AudioRendererStruct OH_AudioRenderer;
 typedef struct OH_AudioCapturerStruct OH_AudioCapturer;
 typedef struct OH_AudioLoopbackStruct OH_AudioLoopback;
 typedef struct OH_AudioSessionStruct OH_AudioSession;
-typedef struct OH_AudioSuiteEngineStruct OH_AudioSuiteEngine;
+
 
 /**
  * @brief Fetch the audio debugging manager handle, which is a singleton.
@@ -159,23 +159,7 @@ OH_AudioCommon_Result OH_AudioDebuggingManager_PrintLoopbackInfo(
 OH_AudioCommon_Result OH_AudioDebuggingManager_PrintSessionInfo(
     OH_AudioDebuggingManager *debugManager, OH_AudioSession *session, int32_t fd);
 
-/**
- * @brief Print AudioSuiteEngine Runtime Snapshot
- *
- * @param debugManager {@link OH_AudioDebuggingManager} handle provided by
- *     {@link OH_AudioManager_GetAudioDebuggingManager}.
- * @param audioSuiteEngine is a pointer. Pointer to the AudioSuiteEngine whose runtime snapshot needs to be displayed.
- * @param fd is a file handle, indicates the location where the snapshot information is stored.
- *     If the fd is less than 0, the snapshot information is stored in the pipeline log.
- *     Otherwise, the snapshot is stored in the file pointed to by the fd handle.
- * @return
- *     {@link #AUDIOCOMMON_RESULT_SUCCESS} if execution succeeds
- *     {@link #AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM} invalid param
- *     {@link #AUDIOCOMMON_RESULT_ERROR_UNSUPPORTED} currently unsupported
- * @since 26.0.0
- */
-OH_AudioCommon_Result OH_AudioDebuggingManager_PrintSuiteInfo(
-    OH_AudioDebuggingManager *debugManager, OH_AudioSuiteEngine *audioSuiteEngine, int32_t fd);
+
 
 #ifdef __cplusplus
 }

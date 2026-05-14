@@ -734,9 +734,5 @@
     {
         "first_introduced": "26.0.0",
         "name": "OH_AudioDebuggingManager_PrintSessionInfo"
-    },
-    {
-        "first_introduced": "26.0.0",
-        "name": "OH_AudioDebuggingManager_PrintSuiteInfo"
     }
 ]
