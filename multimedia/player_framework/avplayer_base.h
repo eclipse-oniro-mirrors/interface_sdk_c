@@ -1,10 +1,10 @@
 /*
- * Copyright (C) 2023-2025 Huawei Device Co., Ltd.
+ * Copyright (C) 2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -12,28 +12,23 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 /**
  * @addtogroup AVPlayer
  * @{
  *
  * @brief Provides APIs of Playback capability for Media Source.
  *
- * @syscap SystemCapability.Multimedia.Media.AVPlayer
+ * @Syscap SystemCapability.Multimedia.Media.AVPlayer
  * @since 11
- * @version 1.0
  */
-
 /**
  * @file avplayer_base.h
  *
- * @brief Defines the structure and enumeration for Media AVPlayer.
- *
+ * @brief The file declares the structs and enums of the AVPlayer.
+ * 
  * @kit MediaKit
  * @library libavplayer.so
- * @syscap SystemCapability.Multimedia.Media.AVPlayer
  * @since 11
- * @version 1.0
  */
 
 #ifndef MULTIMEDIA_PLAYER_FRAMEWORK_NATIVE_AVPLAYER_BASH_H
@@ -51,22 +46,23 @@ extern "C" {
 typedef struct OH_AVPlayer OH_AVPlayer;
 
 /**
- * @brief OH_AVSeiMessageArray field.
+ * @brief Defines a struct for the SEI message array.
+ * 
  * @since 23
  */
 typedef struct OH_AVSeiMessageArray OH_AVSeiMessageArray;
 
 /**
- * @brief OH_AVPlaybackStrategy field.
+ * @brief Defines a struct for the audio and video playback strategy.
+ * 
  * @since 23
  */
 typedef struct OH_AVPlaybackStrategy OH_AVPlaybackStrategy;
 
 /**
- * @brief Player States
- * @syscap SystemCapability.Multimedia.Media.AVPlayer
+ * @brief Enumerates the AVPlayer states.
+ * 
  * @since 11
- * @version 1.0
  */
 typedef enum AVPlayerState {
     /* idle states */
@@ -90,10 +86,9 @@ typedef enum AVPlayerState {
 } AVPlayerState;
 
 /**
- * @brief Player Seek Mode
- * @syscap SystemCapability.Multimedia.Media.AVPlayer
+ * @brief Enumerates the seek modes.
+ * 
  * @since 11
- * @version 1.0
  */
 typedef enum AVPlayerSeekMode {
     /* sync to keyframes after the time point. */
@@ -101,25 +96,23 @@ typedef enum AVPlayerSeekMode {
     /* sync to keyframes before the time point. */
     AV_SEEK_PREVIOUS_SYNC,
     /**
-     * @brief Sync to frames closest to the time point.
-     * @syscap SystemCapability.Multimedia.Media.AVPlayer
+     * @brief Seeks to the frame closest to the specified position.
+     * 
      * @since 12
      */
     AV_SEEK_CLOSEST = 2,
     /**
-     * Seek in continuous mode, which can provide a smoother dragging experience, but the device needs to support
-     * the current stream to execute seek continuous. Before calling seek continuous,
-     * check whether it is supported, see {@link #OH_AVPlayer_IsSeekContinuousSupported}.
-     * @since 23
+     * Seeks in continuous drag mode. This mode provides a smoother drag experience, but the device must support
+     * continuous seeking for the current stream. Before using this mode, check whether continuous seeking is supported.
+     *  For details, see {@link OH_AVPlayer_IsSeekContinuousSupported}.<br>**Since**: 23
      */
     AV_SEEK_CONTINUOUS = 3,
 } AVPlayerSeekMode;
 
 /**
- * @brief Playback Speed
- * @syscap SystemCapability.Multimedia.Media.AVPlayer
+ * @brief Enumerates the playback speeds of the AVPlayer.
+ * 
  * @since 11
- * @version 1.0
  */
 typedef enum AVPlaybackSpeed {
     /* Video playback at 0.75x normal speed */
@@ -133,42 +126,48 @@ typedef enum AVPlaybackSpeed {
     /* Video playback at 2.0x normal speed */
     AV_SPEED_FORWARD_2_00_X,
     /**
-     * @brief Video playback at 0.5x normal speed.
-     * @syscap SystemCapability.Multimedia.Media.AVPlayer
+     * @brief Plays the video at 0.5 times the normal speed.
+     * 
      * @since 12
      */
     AV_SPEED_FORWARD_0_50_X,
     /**
-     * @brief Video playback at 1.5x normal speed.
-     * @syscap SystemCapability.Multimedia.Media.AVPlayer
+     * @brief Plays the video at 1.5 times the normal speed.
+     * 
      * @since 12
      */
     AV_SPEED_FORWARD_1_50_X,
     /**
-     * @brief Video playback at 3.0x normal speed.
-     * @syscap SystemCapability.Multimedia.Media.AVPlayer
+     * @brief Plays the video at 3.0 times the normal speed.
+     * 
      * @since 13
     */
     AV_SPEED_FORWARD_3_00_X,
     /**
-     * @brief Video playback at 0.25x normal speed.
-     * @syscap SystemCapability.Multimedia.Media.AVPlayer
+     * @brief Plays the video at 0.25 times the normal speed.
+     * 
      * @since 13
     */
     AV_SPEED_FORWARD_0_25_X,
     /**
-     * @brief Video playback at 0.125x normal speed.
-     * @syscap SystemCapability.Multimedia.Media.AVPlayer
+     * @brief Plays the video at 0.125 times the normal speed.
+     * 
      * @since 13
     */
     AV_SPEED_FORWARD_0_125_X,
 } AVPlaybackSpeed;
 
 /**
- * @brief Player OnInfo Type
- * @syscap SystemCapability.Multimedia.Media.AVPlayer
+ * @brief Enumerates the types of messages received by the AVPlayer.
+ * The enum can be used in **OH_AVPlayerOnInfoCallback** and **OH_AVPlayerOnInfo** (deprecated) to indicate the type of
+ * information received by the AVPlayer.
+ * Starting from API version 12, you are advised to use {@link OH_AVPlayerOnInfoCallback} instead. Different
+ * information (**infoBody**) can be obtained for different **OnInfo** types. **infoBody** contains the key-value pairs.
+ *  For details, see the following enumerated value table.
+ * If you are using API version 11 for development, use **OH_AVPlayerOnInfo (deprecated)**. For details about the
+ * mappings used in this deprecated API, see {@link OH_AVPlayerOnInfo}.
+ * 
  * @since 11
- * @version 1.0
  */
 typedef enum AVPlayerOnInfoType {
     /* return the message when seeking done. */
@@ -207,57 +206,73 @@ typedef enum AVPlayerOnInfoType {
     AV_INFO_TYPE_TRACK_INFO_UPDATE = 15,
     /* return the subtitle of playback. */
     AV_INFO_TYPE_SUBTITLE_UPDATE = 16,
-    /** Return the reason when the audio output device changes. When this info is reported, the extra param of
-     * {@link OH_AVPlayerOnInfo} is the same as {@OH_AudioStream_DeviceChangeReason} in audio framework.
+    /**
+     * Message returned when the audio output device changes.<br> If **key** is set to **
+     * OH_PLAYER_AUDIO_DEVICE_CHANGE_REASON**, the value type is int32_t. The system uses int32_t to transfer the value,
+     *  and the application uses int32_t to obtain the value.
      */
     AV_INFO_TYPE_AUDIO_OUTPUT_DEVICE_CHANGE = 17,
+
     /**
-     * @brief Event type indicating playback rate configuration completed.
-     *
-     * Triggered when playback rate are successfully applied,
-     * notifying the application of the actual effective value.
-     * Use defined key {@link OH_PLAYER_PLAYBACK_RATE} to retrieve value from the event data.
+     * @brief Message returned when the playback rate is applied.
+     *  If **key** is set to **OH_PLAYER_PLAYBACK_RATE**, the value type is float. The system uses float to transfer the value, and the application uses float to obtain the value.
+     * 
      * @since 20
      */
     AV_INFO_TYPE_PLAYBACK_RATE_DONE = 18,
+  
     /**
-     * @brief Super-resolution changed info type.
-     *
+     * @brief Message returned when the super resolution changes.
+     * 
      * @since 23
      */
     AV_INFO_TYPE_SUPER_RESOLUTION_CHANGED = 19,
 } AVPlayerOnInfoType;
 
 /**
- * @brief Player Buffering Type
- * @syscap SystemCapability.Multimedia.Media.AVPlayer
+ * @brief Enumerates the types of buffer messages of the AVPlayer.
+ * 
  * @since 12
- * @version 1.0
  */
 typedef enum AVPlayerBufferingType {
-    /** Indicates the buffer to start buffering. */
+    /**
+     * Buffering start message.
+     */
     AVPLAYER_BUFFERING_START = 1,
 
-    /** Indicates the buffer to end buffering and start playback. */
+    /**
+     * Buffering end message.
+     */
     AVPLAYER_BUFFERING_END,
 
-    /** Indicates the current buffering percentage of the buffer. */
+    /**
+     * Buffer execution progress, in percentage. The value is an integer in the range [0, 100].
+     */
     AVPLAYER_BUFFERING_PERCENT,
 
-    /** Indicates how long the buffer cache data can be played. */
+    /**
+     * Duration that cached data can be played, in milliseconds.
+     */
     AVPLAYER_BUFFERING_CACHED_DURATION,
 } AVPlayerBufferingType;
 
 /**
- * @brief Enumerates the track switch mode
+ * @brief Enumerates the track switching modes.
+ * 
  * @since 23
  */
 typedef enum AVPlayerTrackSwitchMode {
-    /** Switch track smoothly */
+    /**
+     * Switch tracks smoothly.
+     */
     AV_TRACK_SWITCH_MODE_SMOOTH = 0,
-    /** Switch track segment */
+    /**
+     * Switch tracks by segment.
+     */
     AV_TRACK_SWITCH_MODE_SEGMENT = 1,
-    /** Switch track closest */
+    /**
+     * Switch to the closest track.
+     */
     AV_TRACK_SWITCH_MODE_CLOSEST = 2,
 } AVPlayerTrackSwitchMode;
 
@@ -279,185 +294,160 @@ typedef enum OH_VideoOutputResult {
 } OH_VideoOutputResult;
 
 /**
- * @brief Key to get state, value type is int32_t.
- * @syscap SystemCapability.Multimedia.Media.AVPlayer
+ * @brief Pointer to the key for obtaining the AVPlayer state. The value is of the int32_t type.
+ * 
  * @since 12
- * @version 1.0
  */
 extern const char* OH_PLAYER_STATE;
 
 /**
- * @brief Key to get state change reason, value type is int32_t.
- * @syscap SystemCapability.Multimedia.Media.AVPlayer
+ * @brief Pointer to the key for obtaining the AVPlayer state change reason. The value is of the int32_t type.
+ * The value **1** means that the change is triggered by user operations, and **2** means that the change is triggered
+ * by the system.
+ * 
  * @since 12
- * @version 1.0
  */
 extern const char* OH_PLAYER_STATE_CHANGE_REASON;
 
 /**
- * @brief Key to get volume, value type is float.
- * @syscap SystemCapability.Multimedia.Media.AVPlayer
+ * @brief Pointer to the key for obtaining the volume. The value type is float.
+ * 
  * @since 12
- * @version 1.0
  */
 extern const char* OH_PLAYER_VOLUME;
 
 /**
- * @brief Key to get bitrate count, value type is uint32_t array.
- * @syscap SystemCapability.Multimedia.Media.AVPlayer
+ * @brief Pointer to the key for obtaining the bit rate array. The value is of the uint8_t byte array type. When this
+ * key is used to obtain information, you need to:
+ * Use a pointer variable of the uint8_t type to store the bit rate list and use a variable of the size_t type to store
+ * the byte array length.
+ * Then it allocates several storage spaces of the uint32_t type to receive the bit rate integer of the uint32_t type,
+ * which is converted from the uint8_t byte array.
+ * 
  * @since 12
- * @version 1.0
  */
 extern const char* OH_PLAYER_BITRATE_ARRAY;
 
 /**
- * @brief Key to get audio interrupt type, value type is int32_t.
- * @syscap SystemCapability.Multimedia.Media.AVPlayer
+ * @brief Pointer to the key for obtaining the audio interruption type. The value is of the int32_t type.
+ * 
  * @since 12
- * @version 1.0
  */
 extern const char* OH_PLAYER_AUDIO_INTERRUPT_TYPE;
 
 /**
- * @brief Key to get audio interrupt force, value type is int32_t.
- * @syscap SystemCapability.Multimedia.Media.AVPlayer
+ * @brief Pointer to the key for obtaining the FORCE type of audio interruption. The value is of the int32_t type.
+ * 
  * @since 12
- * @version 1.0
  */
 extern const char* OH_PLAYER_AUDIO_INTERRUPT_FORCE;
 
 /**
- * @brief Key to get audio interrupt hint, value type is int32_t.
- * @syscap SystemCapability.Multimedia.Media.AVPlayer
+ * @brief Pointer to the key for obtaining the HINT type of audio interruption. The value is of the int32_t type.
+ * 
  * @since 12
- * @version 1.0
  */
 extern const char* OH_PLAYER_AUDIO_INTERRUPT_HINT;
 
 /**
- * @brief Key to get audio device change reason, value type is int32_t.
- * @syscap SystemCapability.Multimedia.Media.AVPlayer
+ * @brief Pointer to the key for obtaining the audio device change reason. The value is of the int32_t type.
+ * 
  * @since 12
- * @version 1.0
  */
 extern const char* OH_PLAYER_AUDIO_DEVICE_CHANGE_REASON;
 
 /**
- * @brief Key to get buffering type, value type is AVPlayerBufferingType.
- * @syscap SystemCapability.Multimedia.Media.AVPlayer
+ * @brief Pointer to the key for obtaining the type of the buffer update message. The value type is {@link AVPlayerBufferingType}.
+ * When this key is used to obtain information, you must use a variable of the int32_t type to save the result and then
+ * convert the result to a value of AVPlayerBufferingType.
+ * 
  * @since 12
- * @version 1.0
  */
 extern const char* OH_PLAYER_BUFFERING_TYPE;
 
 /**
- * @brief Key to get buffering value, value type is int32_t.
- * @syscap SystemCapability.Multimedia.Media.AVPlayer
+ * @brief Pointer to the key for obtaining the value of the buffer update message. The value is of the int32_t type.
+ * For details, see {@link AVPlayerBufferingType}.
+ * This parameter is valid only when the buffer update message type is **AVPLAYER_BUFFERING_PERCENT** or **
+ * AVPLAYER_BUFFERING_CACHED_DURATION**.
+ * 
  * @since 12
- * @version 1.0
  */
 extern const char* OH_PLAYER_BUFFERING_VALUE;
 
 /**
- * @brief Key to get seek position, value type is int32_t.
- * @syscap SystemCapability.Multimedia.Media.AVPlayer
+ * @brief Pointer to the key for obtaining the playback progress after the seek operation. The value is of the int32_t
+ * type.
+ * 
  * @since 12
  */
 extern const char* OH_PLAYER_SEEK_POSITION;
 
 /**
- * @brief Key to get playback speed, value type is AVPlaybackSpeed.
- * @syscap SystemCapability.Multimedia.Media.AVPlayer
+ * @brief Pointer to the key for obtaining the playback speed. The value type is {@link AVPlaybackSpeed}.
+ * When this key is used to obtain information, you must use a variable of the int32_t type to save the result and then
+ * convert the result to a value of AVPlaybackSpeed.
+ * 
  * @since 12
  */
 extern const char* OH_PLAYER_PLAYBACK_SPEED;
 
 /**
- * @brief Key for retrieving effective playback rate, the value type is float.
- * @syscap SystemCapability.Multimedia.Media.AVPlayer
- * @since 20
- */
-extern const char* OH_PLAYER_PLAYBACK_RATE;
-
-/**
- * @brief Key to get bitrate, value type is uint32_t.
- * @syscap SystemCapability.Multimedia.Media.AVPlayer
+ * @brief Pointer to the key for obtaining the bit rate array. The value is of the uint8_t byte array type. When this
+ * key is used to obtain information, you need to:
+ * Use a pointer variable of the uint8_t type to store the bit rate list and use a variable of the size_t type to store
+ * the byte array length.
+ * Then it allocates several storage spaces of the uint32_t type to receive the bit rate integer of the uint32_t type,
+ * which is converted from the uint8_t byte array.
+ * 
  * @since 12
  */
 extern const char* OH_PLAYER_BITRATE;
 
 /**
- * @brief Key to get current position, value type is int32_t.
- * @syscap SystemCapability.Multimedia.Media.AVPlayer
+ * @brief Pointer to the key for obtaining the playback progress information. The value is of the int32_t type.
+ * 
  * @since 12
  */
 extern const char* OH_PLAYER_CURRENT_POSITION;
 
 /**
- * @brief Key to get duration, value type is int64_t.
- * @syscap SystemCapability.Multimedia.Media.AVPlayer
+ * @brief Pointer to the key for obtaining the media asset duration. The value type is int64_t.
+ * 
  * @since 12
  */
 extern const char* OH_PLAYER_DURATION;
 
 /**
- * @brief Key to get video width, value type is int32_t.
- * @syscap SystemCapability.Multimedia.Media.AVPlayer
+ * @brief Pointer to the key for obtaining the video width. The value is of the int32_t type.
+ * 
  * @since 12
  */
 extern const char* OH_PLAYER_VIDEO_WIDTH;
 
 /**
- * @brief Key to get video height, value type is int32_t.
- * @syscap SystemCapability.Multimedia.Media.AVPlayer
+ * @brief Pointer to the key for obtaining the video height. The value is of the int32_t type.
+ * 
  * @since 12
  */
 extern const char* OH_PLAYER_VIDEO_HEIGHT;
 
 /**
- * @brief Key to get message type, value type is int32_t.
- * @syscap SystemCapability.Multimedia.Media.AVPlayer
+ * @brief Pointer to the key for obtaining the type of message received by the AVPlayer. The value is of the int32_t
+ * type.
+ * The value **1** means that the video frame starts to be rendered.
+ * 
  * @since 12
  */
 extern const char* OH_PLAYER_MESSAGE_TYPE;
 
 /**
- * @brief Key to get is live stream, value type is int32_t.
- * @syscap SystemCapability.Multimedia.Media.AVPlayer
+ * @brief Pointer to the key for checking whether a media asset is live streaming. The value is of the int32_t type.
+ * The value **1** means live streaming.
+ * 
  * @since 12
  */
 extern const char* OH_PLAYER_IS_LIVE_STREAM;
-
-/**
- * @brief Key to get the value whether the media resource contains video content,
- *        value type is int32_t. 1 means true and 0 means false.
- *        Media description key, see {@link OH_AVPlayer_GetMediaDescription}
- * @since 22
- */
-extern const char* OH_PLAYER_MD_KEY_HAS_VIDEO;
-
-/**
- * @brief Key to get the value whether the media resource contains audio content,
- *        value type is int32_t. 1 means true and 0 means false.
- *        Media description key, see {@link OH_AVPlayer_GetMediaDescription}
- * @since 22
- */
-extern const char* OH_PLAYER_MD_KEY_HAS_AUDIO;
-
-/**
- * @brief Key to get the value whether the media resource contains subtitle content,
- *        value type is int32_t. 1 means true and 0 means false.
- *        Media description key, see {@link OH_AVPlayer_GetMediaDescription}
- * @since 22
- */
-extern const char* OH_PLAYER_MD_KEY_HAS_SUBTITLE;
-
-/**
- * @brief Key to get is track index, value type is int32_t.
- *        Track description key, see {@link OH_AVPlayer_GetTrackDescription}
- * @since 22
- */
-extern const char* OH_PLAYER_MD_KEY_TRACK_INDEX;
 
 /**
  * Sei message key for payload type.
@@ -472,42 +462,292 @@ extern const char* OH_PLAYER_SEI_PAYLOAD_TYPE;
 extern const char* OH_PLAYER_SEI_PAYLOAD_CONTENT;
 
 /**
- * @brief Key to get whether the super resolution feature is enabled,
- *        value type is int32_t. The value is 1 when enabled, otherwise 0.
- *        Used in the info callback when super resolution state changes.
+ * @brief Pointer to the key for indicating the enable state of the super resolution feature. The value type is int32_t.
+ *  The value **1** indicates that the feature is enabled, and **0** indicates the opposite. It is used for information
+ * callback when the super resolution state changes.
+ * 
  * @since 23
  */
 extern const char* OH_PLAYER_SUPER_RESOLUTION_ENABLE_STATE;
 
 /**
- * @brief Track change info key for track info, its value is int32_t type.
+ * @brief Pointer to the key for indicating the track index in the track change information. The value type is int32_t.
+ * 
  * @since 23
  */
 extern const char* OH_PLAYER_TRACH_CHANGE_INFO_TRACK_INDEX;
 
 /**
- * @brief Track change info key for track selected flag, its value is int32_t type.
+ * @brief Pointer to the key for indicating whether the track is selected in the track change information. The value
+ * type is int32_t.
+ * 
  * @since 23
  */
 extern const char* OH_PLAYER_TRACH_CHANGE_INFO_TRACK_SELECTED;
 
 /**
- * @brief Subtitle update info key for duration, its value is int32_t type.
+ * @brief Pointer to the key for indicating the duration in the subtitle update information. The value type is int32_t.
+ * 
  * @since 23
  */
 extern const char* OH_PLAYER_SUBTITLE_UPDATE_INFO_DURATION;
 
 /**
- * @brief Subtitle update info key for start time, its value is int32_t type.
+ * @brief Pointer to the key for indicating the start time in the subtitle update information. The value type is
+ * int32_t.
+ * 
  * @since 23
  */
 extern const char* OH_PLAYER_SUBTITLE_UPDATE_INFO_START_TIME;
 
 /**
- * @brief Subtitle update info key for subtitle text, its value is string type.
+ * @brief Pointer to the key for indicating the subtitle text content in the subtitle update information. The value
+ * type is string.
+ * 
  * @since 23
  */
 extern const char* OH_PLAYER_SUBTITLE_UPDATE_INFO_TEXT;
+
+/**
+ * @brief Pointer to the key for obtaining the playback rate. The value is a floating-point number.
+ * 
+ * @since 20
+ */
+extern const char* OH_PLAYER_PLAYBACK_RATE;
+ 
+/**
+ * @brief Pointer to the key for obtaining whether the media resource contains video tracks. The value is of the
+ * int32_t type.
+ * The value **1** means that the media resource contains video tracks, and the value **0** means the opposite.
+ * 
+ * @since 22
+ */
+extern const char* OH_PLAYER_MD_KEY_HAS_VIDEO;
+ 
+/**
+ * @brief Pointer to the key for obtaining whether the media resource contains audio tracks. The value is of the
+ * int32_t type.
+ * The value **1** means that the media resource contains audio tracks, and the value **0** means the opposite.
+ * 
+ * @since 22
+ */
+extern const char* OH_PLAYER_MD_KEY_HAS_AUDIO;
+ 
+/**
+ * @brief Pointer to the key for obtaining whether the media resource contains subtitle tracks. The value is of the
+ * int32_t type.
+ * The value **1** means that the media resource contains subtitle tracks, and the value **0** means the opposite.
+ * 
+ * @since 22
+ */
+extern const char* OH_PLAYER_MD_KEY_HAS_SUBTITLE;
+ 
+/**
+ * @brief Pointer to the key for obtaining the track index information of a media resource. The value is of the int32_t
+ * type.
+ * 
+ * @since 22
+ */
+extern const char* OH_PLAYER_MD_KEY_TRACK_INDEX;
+
+/**
+ * @brief Called when the AVPlayer receives a message.
+ * 
+ * @param player Pointer to an OH_AVPlayer instance.
+ * @param type Message type. For details about the available options, see {@link AVPlayerOnInfoType}. For details about
+ * the mappings between **type** and **extra** values, see the function description.
+ * @param extra Other information, such as the start time and position of the media file to play.
+ * @since 11
+ * @deprecated since 12
+ * @useinstead {@link OH_AVPlayerOnInfoCallback}
+ */
+typedef void (*OH_AVPlayerOnInfo)(OH_AVPlayer *player, AVPlayerOnInfoType type, int32_t extra);
+
+/**
+ * @brief Called when the AVPlayer receives a message. If this callback is successfully set, the **OH_AVPlayerOnInfo**
+ * function will not be invoked.
+ * 
+ * @param player Pointer to an OH_AVPlayer instance.
+ * @param type Message type. For details about the available options, see {@link AVPlayerOnInfoType}.
+ * @param infoBody Pointer to the message. The pointer is valid only in this callback.
+ * @param userData Pointer to the instance provided by the caller when setting the callback function.
+ * @since 12
+ */
+typedef void (*OH_AVPlayerOnInfoCallback)(OH_AVPlayer *player, AVPlayerOnInfoType type, OH_AVFormat* infoBody,
+    void *userData);
+
+/**
+ * @brief Called when an error occurs in the AVPlayer. This callback is available in API version 9 or later.
+ * 
+ * @param player Pointer to an OH_AVPlayer instance.
+ * @param errorCode Error code.
+ * **AV_ERR_NO_MEMORY**: No memory. The value is **1**.
+ * {@link AV_ERR_OPERATE_NOT_PERMIT}: The operation is not allowed. The value is **2**.
+ * {@link AV_ERR_INVALID_VA}: Invalid value. The value is **3**.
+ * **AV_ERR_IO**: I/O error. The value is **4**.
+ * **AV_ERR_TIMEOUT**: Timeout. The value is **5**.
+ * **AV_ERR_UNKNOWN**: Unknown error. The value is **6**.
+ * {@link AV_ERR_SERVICE_DIED}: The service is dead. The value is **7**.
+ * **AV_ERR_INVALID_STATE**: The operation is not supported in the current state. The value is **8**.
+ * {@link AV_ERR_UNSUPPORT}: The function is not supported. The value is **9**.
+ * **AV_ERR_EXTEND_START**: Initial value for extended error codes. The value is **100**.
+ * @param errorMsg Error message.
+ * @since 11
+ * @deprecated since 12
+ * @useinstead {@link OH_AVPlayerOnErrorCallback}
+ */
+typedef void (*OH_AVPlayerOnError)(OH_AVPlayer *player, int32_t errorCode, const char *errorMsg);
+
+/**
+ * @brief Called when an error occurs in the AVPlayer. If this callback is successfully set, the **OH_AVPlayerOnError**
+ * function will not be invoked.
+ * 
+ * @param player Pointer to an OH_AVPlayer instance.
+ * @param errorCode Error code.
+ * **AV_ERR_NO_MEMORY**: No memory. The value is **1**.
+ * {@link AV_ERR_OPERATE_NOT_PERMIT}: The operation is not allowed. The value is **2**.
+ * {@link AV_ERR_INVALID_VA}: Invalid value. The value is **3**.
+ * **AV_ERR_IO**: I/O error. For API versions 12 and 13, the value is **4**. Starting from API version 14, it
+ * corresponds to more specific error codes ranging from 5411001 to 5411011.
+ * **AV_ERR_TIMEOUT**: Timeout. The value is **5**.
+ * **AV_ERR_UNKNOWN**: Unknown error. The value is **6**.
+ * {@link AV_ERR_SERVICE_DIED}: The service is dead. The value is **7**.
+ * **AV_ERR_INVALID_STATE**: The operation is not supported in the current state. The value is **8**.
+ * {@link AV_ERR_UNSUPPORT}: The function is not supported. The value is **9**.
+ * **AV_ERR_EXTEND_START**: Initial value for extended error codes. The value is **100**.
+ * @param errorMsg Error message, only valid in callback function.
+ * @param userData Pointer to user specific data.
+ * @since 12
+ */
+typedef void (*OH_AVPlayerOnErrorCallback)(OH_AVPlayer *player, int32_t errorCode, const char *errorMsg,
+    void *userData);
+
+/**
+ * @brief The struct contains the set of the **OH_AVPlayerOnInfo** and **OH_AVPlayerOnError** callback function
+ * pointers. To ensure the normal running of OH_AVPlayer, you must register the instance of this struct with the
+ * OH_AVPlayer instance and process the information reported by the callback functions.
+ * 
+ * @param onInfo Monitor OH_AVPlayer operation information, refer to {@link OH_AVPlayerOnInfo}
+ * @param onError Monitor OH_AVPlayer operation errors, refer to {@link OH_AVPlayerOnError}
+ * @since 11
+ * @deprecated since 12
+ * @useinstead {@link OH_AVPlayerOnInfoCallback} {@link OH_AVPlayerOnErrorCallback}
+ */
+typedef struct AVPlayerCallback {
+    OH_AVPlayerOnInfo onInfo;
+    OH_AVPlayerOnError onError;
+} AVPlayerCallback;
+
+/**
+ * @brief Called when the maximum audio amplitude is calculated.
+ * 
+ * @param player Pointer to an OH_AVPlayer instance.
+ * @param amplitudes The pointer to the maximum audio level values array.
+ * Note: the amplitudes array will be released after callback automatically.
+ * If necessary, user need copy the data for the further use.
+ * @param size Size of the maximum audio amplitude array.
+ * @param userData Pointer to user specific data.
+ * @since 23
+ */
+typedef void (*OH_AVPlayerOnAmplitudeUpdateCallback)(OH_AVPlayer *player, double *amplitudes, uint32_t size,
+    void *userData);
+
+/**
+ * @brief Called for obtaining SEI messages. This function is used to subscribe to SEI message events and returns
+ * detailed SEI information.
+ * 
+ * @param player Pointer to an OH_AVPlayer instance
+ * @param message SEI message array.
+ * Note: the message array will be released after callback automatically.
+ * If necessary, user need copy the data for the further use.
+ * @param playbackPosition Playback position.
+ * @param userData Pointer to user specific data
+ * @since 23
+ */
+typedef void (*OH_AVPlayerOnSeiMessageReceivedCallback)(OH_AVPlayer *player, OH_AVSeiMessageArray *message,
+    int32_t playbackPosition, void *userData);
+
+/** 
+ * @brief Describes the handle used to obtain the decoded audio PCM data. 
+ * @param player Pointer to an OH_AVPlayer instance 
+ * @param pcmBuffer Decoded PCM audio data. The pcmBuffer is valid only within this callback, 
+ *     and released by the player after the callback returns. 
+ * @param userData Pointer to user specific data 
+ * @since 26.0.0 
+ */ 
+typedef void (*OH_AVPlayerPCMOutputCallback)(OH_AVPlayer *player, OH_AVBuffer *pcmBuffer, void *userData);
+
+/**
+ * @brief Pointer to the key for obtaining the preparation duration in the statistic metric information. The value type
+ * is uint32_t, and the unit is millisecond.
+ * 
+ * @since 23
+ */
+extern const char* OH_MEDIA_EVENT_INFO_PREPARE_DURATION;
+
+/**
+ * @brief Pointer to the key for obtaining the resource connection duration in the statistic metric information. The
+ * value type is uint32_t, and the unit is millisecond.
+ * 
+ * @since 23
+ */
+extern const char* OH_MEDIA_EVENT_INFO_RESOURCE_CONNECTION_DURATION;
+
+/**
+ * @brief Pointer to the key for obtaining the first-frame decapsulation duration in the statistic metric information.
+ * The value type is uint32_t, and the unit is millisecond.
+ * 
+ * @since 23
+ */
+extern const char* OH_MEDIA_EVENT_INFO_FIRST_FRAME_DECAPSULATION_DURATION;
+
+/**
+ * @brief Pointer to the key for obtaining the total playback duration in the statistic metric information. The value
+ * type is uint32_t, and the unit is millisecond.
+ * 
+ * @since 23
+ */
+extern const char* OH_MEDIA_EVENT_INFO_TOTAL_PLAYING_TIME;
+
+/**
+ * @brief Pointer to the key for obtaining the total number of media resource loading requests in the statistic metric
+ * information. The value type is uint32_t.
+ * 
+ * @since 23
+ */
+extern const char* OH_MEDIA_EVENT_INFO_DOWNLOAD_REQUEST_COUNT;
+
+/**
+ * @brief Pointer to the key for obtaining the total media resource loading duration in the statistic metric
+ * information. The value type is uint32_t, and the unit is millisecond.
+ * 
+ * @since 23
+ */
+extern const char* OH_MEDIA_EVENT_INFO_DOWNLOAD_TOTAL_TIME;
+
+/**
+ * @brief Pointer to the key for obtaining the total size of loaded media resources in the statistic metric information.
+ *  The value type is int64_t.
+ * 
+ * @since 23
+ */
+extern const char* OH_MEDIA_EVENT_INFO_DOWNLOAD_TOTAL_SIZE;
+
+/**
+ * @brief Pointer to the key for obtaining the total number of stalling times in the statistic metric information. The
+ * value type is uint32_t.
+ * 
+ * @since 23
+ */
+extern const char* OH_MEDIA_EVENT_INFO_STALLING_COUNT;
+
+/**
+ * @brief Pointer to the key for obtaining the total stalling duration in the statistic metric information. The value
+ * type is uint32_t, and the unit is millisecond.
+ * 
+ * @since 23
+ */
+extern const char* OH_MEDIA_EVENT_INFO_TOTAL_STALLING_TIME;
 
 /**
  * Playback info key for server ip address.
@@ -539,175 +779,7 @@ extern const char* OH_PLAYER_DOWNLOAD_RATE;
  */
 extern const char* OH_PLAYER_AVG_DOWNLOAD_RATE;
 
-/**
- * @brief Called when a player message or alarm is received.
- * @syscap SystemCapability.Multimedia.Media.AVPlayer
- * @param player The pointer to an OH_AVPlayer instance.
- * @param type Indicates the information type. For details, see {@link AVPlayerOnInfoType}.
- * @param extra Indicates other information, for example, the start time position of a playing file.
- * @since 11
- * @deprecated since 12
- * @useinstead {@link OH_AVPlayerOnInfoCallback}
- * @version 1.0
- */
-typedef void (*OH_AVPlayerOnInfo)(OH_AVPlayer *player, AVPlayerOnInfoType type, int32_t extra);
-
-/**
- * @brief Called when a player info event is received.
- * @syscap SystemCapability.Multimedia.Media.AVPlayer
- * @param player The pointer to an OH_AVPlayer instance.
- * @param type Indicates the information type. For details, see {@link AVPlayerOnInfoType}.
- * @param infoBody Indicates the information parameters, only valid in callback function.
- * @param userData Pointer to user specific data.
- * @since 12
- */
-typedef void (*OH_AVPlayerOnInfoCallback)(OH_AVPlayer *player, AVPlayerOnInfoType type, OH_AVFormat* infoBody,
-    void *userData);
-
-/**
- * @brief Called when an error occurred for versions above api9
- * @syscap SystemCapability.Multimedia.Media.AVPlayer
- * @param player The pointer to an OH_AVPlayer instance.
- * @param errorCode Error code.
- * @param errorMsg Error message.
- * @since 11
- * @deprecated since 12
- * @useinstead {@link OH_AVPlayerOnErrorCallback}
- * @version 1.0
- */
-typedef void (*OH_AVPlayerOnError)(OH_AVPlayer *player, int32_t errorCode, const char *errorMsg);
-
-/**
- * @brief Called when an error occurred.
- * @syscap SystemCapability.Multimedia.Media.AVPlayer
- * @param player The pointer to an OH_AVPlayer instance.
- * @param errorCode Error code.
- * @param errorMsg Error message, only valid in callback function.
- * @param userData Pointer to user specific data.
- * @since 12
- */
-typedef void (*OH_AVPlayerOnErrorCallback)(OH_AVPlayer *player, int32_t errorCode, const char *errorMsg,
-    void *userData);
-
-/**
- * @brief Called when the maximum audio level values are calculated.
- * @param player Pointer to an OH_AVPlayer instance.
- * @param amplitudes The pointer to the maximum audio level values array.
- *        Note: the amplitudes array will be released after callback automatically.
- *        If necessary, user need copy the data for the further use.
- * @param size The size of the maximum audio level values array.
- * @param userData Pointer to user specific data.
- * @since 23
- */
-typedef void (*OH_AVPlayerOnAmplitudeUpdateCallback)(OH_AVPlayer *player, double *amplitudes, uint32_t size,
-    void *userData);
-
-/**
- * @brief Describes the handle used to obtain SEI messages. This is used when in subscriptions to SEI message events.
- * and the callback returns detailed SEI information.
- * @param player Pointer to an OH_AVPlayer instance
- * @param message SEI message array.
- *        Note: the message array will be released after callback automatically.
- *        If necessary, user need copy the data for the further use.
- * @param playbackPosition playback position
- * @param userData Pointer to user specific data
- * @since 23
- */
-typedef void (*OH_AVPlayerOnSeiMessageReceivedCallback)(OH_AVPlayer *player, OH_AVSeiMessageArray *message,
-    int32_t playbackPosition, void *userData);
-
-/**
- * @brief Describes the handle used to obtain the decoded audio PCM data.
- * @param player Pointer to an OH_AVPlayer instance
- * @param pcmBuffer Decoded PCM audio data. The pcmBuffer is valid only within this callback,
- *     and released by the player after the callback returns.
- * @param userData Pointer to user specific data
- * @since 26.0.0
- */
-typedef void (*OH_AVPlayerPCMOutputCallback)(OH_AVPlayer *player, OH_AVBuffer *pcmBuffer, void *userData);
-
-/**
- * @brief A collection of all callback function pointers in OH_AVPlayer. Register an instance of this
- * structure to the OH_AVPlayer instance, and process the information reported through the callback to ensure the
- * normal operation of OH_AVPlayer.
- * @syscap SystemCapability.Multimedia.Media.AVPlayer
- * @param onInfo Monitor OH_AVPlayer operation information, refer to {@link OH_AVPlayerOnInfo}
- * @param onError Monitor OH_AVPlayer operation errors, refer to {@link OH_AVPlayerOnError}
- * @since 11
- * @deprecated since 12
- * @useinstead {@link OH_AVPlayerOnInfoCallback} {@link OH_AVPlayerOnErrorCallback}
- * @version 1.0
- */
-typedef struct AVPlayerCallback {
-    OH_AVPlayerOnInfo onInfo;
-    OH_AVPlayerOnError onError;
-} AVPlayerCallback;
-
-/**
- * @brief Key to get prepare duration value in statistic metrics info,
- *     value type is uint32_t, in milliseconds.
- * @since 23
- */
-extern const char* OH_MEDIA_EVENT_INFO_PREPARE_DURATION;
-
-/**
- * @brief Key to get resource link establishment time in statistic metrics info,
- *     value type is uint32_t, in milliseconds.
- * @since 23
- */
-extern const char* OH_MEDIA_EVENT_INFO_RESOURCE_CONNECTION_DURATION;
-
-/**
- * @brief Key to get decapsulation time of the first sample in statistic metrics info,
- *     value type is uint32_t, in milliseconds.
- * @since 23
- */
-extern const char* OH_MEDIA_EVENT_INFO_FIRST_FRAME_DECAPSULATION_DURATION;
-
-/**
- * @brief Key to get cumulative playback time in statistic metrics info,
- *     value type is uint32_t, in milliseconds.
- * @since 23
- */
-extern const char* OH_MEDIA_EVENT_INFO_TOTAL_PLAYING_TIME;
-
-/**
- * @brief Key to get cumulative times of media resource loading request in statistic metrics info,
- *     value type is uint32_t.
- * @since 23
- */
-extern const char* OH_MEDIA_EVENT_INFO_DOWNLOAD_REQUEST_COUNT;
-
-/**
- * @brief Key to get the total time spent loading the media resource in statistic metrics info,
- *     value type is uint32_t, in milliseconds.
- * @since 23
- */
-extern const char* OH_MEDIA_EVENT_INFO_DOWNLOAD_TOTAL_TIME;
-
-/**
- * @brief Key to get size of loaded media resources in statistic metrics info,
- *     value type is int64_t.
- * @since 23
- */
-extern const char* OH_MEDIA_EVENT_INFO_DOWNLOAD_TOTAL_SIZE;
-
-/**
- * @brief Key to get cumulative stalling count in statistic metrics info,
- *     value type is uint32_t.
- * @since 23
- */
-extern const char* OH_MEDIA_EVENT_INFO_STALLING_COUNT;
-
-/**
- * @brief Key to get the cumulative stalling time in statistic metrics info,
- *     value type is uint32_t,in milliseconds.
- * @since 23
- */
-extern const char* OH_MEDIA_EVENT_INFO_TOTAL_STALLING_TIME;
-
 #ifdef __cplusplus
 }
 #endif
 #endif // MULTIMEDIA_PLAYER_FRAMEWORK_NATIVE_AVPLAYER_BASH_H
-/** @} */
