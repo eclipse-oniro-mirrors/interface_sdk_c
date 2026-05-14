@@ -46,7 +46,8 @@ extern "C" {
 
 /**
  * @brief Declare the audio debugging manager.
- *     Audio debugging manager provides many functions for developer to get the information about audio system runtime info.
+ *     Audio debugging manager provides many functions for developer
+ *     to get the information about audio system runtime info.
  *
  * @since 26.0.0
  */
@@ -64,7 +65,7 @@ typedef struct OH_AudioSuiteEngineStruct OH_AudioSuiteEngine;
  * @return
  *     {@link #AUDIOCOMMON_RESULT_SUCCESS} if execution succeeds
  *     {@link #AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM}
- *                                                        1.The param of debugManager is nullptr;
+ *         1.The param of debugManager is nullptr;
  * @since 26.0.0
  */
 OH_AudioCommon_Result OH_AudioManager_GetAudioDebuggingManager(OH_AudioDebuggingManager **debugManager);
@@ -72,7 +73,8 @@ OH_AudioCommon_Result OH_AudioManager_GetAudioDebuggingManager(OH_AudioDebugging
 /**
  * @brief Print Single App Audio Runtime Snapshot
  *
- * @param debugManager {@link OH_AudioDebuggingManager} handle provided by {@link OH_AudioManager_GetAudioDebuggingManager}.
+ * @param debugManager {@link OH_AudioDebuggingManager} handle provided by
+ *     {@link OH_AudioManager_GetAudioDebuggingManager}.
  * @param fd is a file handle, indicates the location where the snapshot information is stored.
  *     If the fd is less than 0, the snapshot information is stored in the pipeline log.
  *     Otherwise, the snapshot is stored in the file pointed to by the fd handle.
@@ -86,7 +88,8 @@ OH_AudioCommon_Result OH_AudioDebuggingManager_PrintAppInfo(OH_AudioDebuggingMan
 /**
  * @brief Print AudioRenderer Runtime Snapshot
  *
- * @param debugManager {@link OH_AudioDebuggingManager} handle provided by {@link OH_AudioManager_GetAudioDebuggingManager}.
+ * @param debugManager {@link OH_AudioDebuggingManager} handle provided by
+ *     {@link OH_AudioManager_GetAudioDebuggingManager}.
  * @param renderer is a pointer. Pointer to the AudioRenderer whose runtime snapshot needs to be displayed.
  * @param fd is a file handle, indicates the location where the snapshot information is stored.
  *     If the fd is less than 0, the snapshot information is stored in the pipeline log.
@@ -104,7 +107,8 @@ OH_AudioCommon_Result OH_AudioDebuggingManager_PrintRendererInfo(
 /**
  * @brief Print AudioCapturer Runtime Snapshot
  *
- * @param debugManager {@link OH_AudioDebuggingManager} handle provided by {@link OH_AudioManager_GetAudioDebuggingManager}.
+ * @param debugManager {@link OH_AudioDebuggingManager} handle provided by
+ *     {@link OH_AudioManager_GetAudioDebuggingManager}.
  * @param capturer is a pointer. Pointer to the AudioCapturer whose runtime snapshot needs to be displayed.
  * @param fd is a file handle, indicates the location where the snapshot information is stored.
  *     If the fd is less than 0, the snapshot information is stored in the pipeline log.
@@ -122,7 +126,8 @@ OH_AudioCommon_Result OH_AudioDebuggingManager_PrintCapturerInfo(
 /**
  * @brief Print AudioLoopback Runtime Snapshot
  *
- * @param debugManager {@link OH_AudioDebuggingManager} handle provided by {@link OH_AudioManager_GetAudioDebuggingManager}.
+ * @param debugManager {@link OH_AudioDebuggingManager} handle provided by
+ *     {@link OH_AudioManager_GetAudioDebuggingManager}.
  * @param loopback is a pointer. Pointer to the AudioLoopback whose runtime snapshot needs to be displayed.
  * @param fd is a file handle, indicates the location where the snapshot information is stored.
  *     If the fd is less than 0, the snapshot information is stored in the pipeline log.
@@ -139,7 +144,8 @@ OH_AudioCommon_Result OH_AudioDebuggingManager_PrintLoopbackInfo(
 /**
  * @brief Print AudioSession Runtime Snapshot
  *
- * @param debugManager {@link OH_AudioDebuggingManager} handle provided by {@link OH_AudioManager_GetAudioDebuggingManager}.
+ * @param debugManager {@link OH_AudioDebuggingManager} handle provided by
+ *     {@link OH_AudioManager_GetAudioDebuggingManager}.
  * @param session is a pointer. Pointer to the AudioSession whose runtime snapshot needs to be displayed.
  * @param fd is a file handle, indicates the location where the snapshot information is stored.
  *     If the fd is less than 0, the snapshot information is stored in the pipeline log.
@@ -156,7 +162,8 @@ OH_AudioCommon_Result OH_AudioDebuggingManager_PrintSessionInfo(
 /**
  * @brief Print AudioSuiteEngine Runtime Snapshot
  *
- * @param debugManager {@link OH_AudioDebuggingManager} handle provided by {@link OH_AudioManager_GetAudioDebuggingManager}.
+ * @param debugManager {@link OH_AudioDebuggingManager} handle provided by
+ *     {@link OH_AudioManager_GetAudioDebuggingManager}.
  * @param audioSuiteEngine is a pointer. Pointer to the AudioSuiteEngine whose runtime snapshot needs to be displayed.
  * @param fd is a file handle, indicates the location where the snapshot information is stored.
  *     If the fd is less than 0, the snapshot information is stored in the pipeline log.
