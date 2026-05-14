@@ -667,6 +667,16 @@ typedef void (*OH_AVPlayerOnAmplitudeUpdateCallback)(OH_AVPlayer *player, double
 typedef void (*OH_AVPlayerOnSeiMessageReceivedCallback)(OH_AVPlayer *player, OH_AVSeiMessageArray *message,
     int32_t playbackPosition, void *userData);
 
+/** 
+ * @brief Describes the handle used to obtain the decoded audio PCM data. 
+ * @param player Pointer to an OH_AVPlayer instance 
+ * @param pcmBuffer Decoded PCM audio data. The pcmBuffer is valid only within this callback, 
+ *     and released by the player after the callback returns. 
+ * @param userData Pointer to user specific data 
+ * @since 26.0.0 
+ */ 
+typedef void (*OH_AVPlayerPCMOutputCallback)(OH_AVPlayer *player, OH_AVBuffer *pcmBuffer, void *userData);
+
 /**
  * @brief Pointer to the key for obtaining the preparation duration in the statistic metric information. The value type
  * is uint32_t, and the unit is millisecond.
