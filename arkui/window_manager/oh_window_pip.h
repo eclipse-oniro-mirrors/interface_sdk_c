@@ -51,7 +51,8 @@ extern "C" {
 typedef void* PictureInPicture_PipConfig;
 
 /**
- * @brief Enumerates picture in picture template type.
+ * @brief Enumerates the types of PiP templates.
+ *
  * @since 20
  */
 typedef enum {
