@@ -159,8 +159,6 @@ OH_AudioCommon_Result OH_AudioDebuggingManager_PrintLoopbackInfo(
 OH_AudioCommon_Result OH_AudioDebuggingManager_PrintSessionInfo(
     OH_AudioDebuggingManager *debugManager, OH_AudioSession *session, int32_t fd);
 
-
-
 #ifdef __cplusplus
 }
 #endif
