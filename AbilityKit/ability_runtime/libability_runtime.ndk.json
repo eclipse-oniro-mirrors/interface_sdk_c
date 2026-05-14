@@ -369,39 +369,39 @@
     },
     {
         "first_introduced": "26.0.0",
-        "name": "OH_AbilityRuntime_MoDispatcher_TypeInfo_Clear"
+        "name": "OH_AbilityRuntime_ModObjDispatcher_TypeInfo_Clear"
     },
     {
         "first_introduced": "26.0.0",
-        "name": "OH_AbilityRuntime_MoDispatcher_Variant_Clear"
+        "name": "OH_AbilityRuntime_ModObjDispatcher_Variant_Clear"
     },
     {
         "first_introduced": "26.0.0",
-        "name": "OH_AbilityRuntime_MoDispatcher_CreateMainServiceInstance"
+        "name": "OH_AbilityRuntime_ModObjDispatcher_CreateMainServiceInstance"
     },
     {
         "first_introduced": "26.0.0",
-        "name": "OH_AbilityRuntime_MoDispatcher_CreateSubInstance"
+        "name": "OH_AbilityRuntime_ModObjDispatcher_CreateSubInstance"
     },
     {
         "first_introduced": "26.0.0",
-        "name": "OH_AbilityRuntime_MoDispatcher_Release"
+        "name": "OH_AbilityRuntime_ModObjDispatcher_Release"
     },
     {
         "first_introduced": "26.0.0",
-        "name": "OH_AbilityRuntime_MoDispatcher_HasTypeDescriptor"
+        "name": "OH_AbilityRuntime_ModObjDispatcher_HasTypeDescriptor"
     },
     {
         "first_introduced": "26.0.0",
-        "name": "OH_AbilityRuntime_MoDispatcher_GetTypeDescriptor"
+        "name": "OH_AbilityRuntime_ModObjDispatcher_GetTypeDescriptor"
     },
     {
         "first_introduced": "26.0.0",
-        "name": "OH_AbilityRuntime_MoDispatcher_QueryMainServiceInterfaceMemIDsOfNames"
+        "name": "OH_AbilityRuntime_ModObjDispatcher_QueryMainServiceInterfaceMemIDsOfNames"
     },
     {
         "first_introduced": "26.0.0",
-        "name": "OH_AbilityRuntime_MoDispatcher_CallMethod"
+        "name": "OH_AbilityRuntime_ModObjDispatcher_CallMethod"
     },
     {
         "first_introduced": "26.0.0",
@@ -497,158 +497,158 @@
     },
     {
         "first_introduced": "26.0.0",
-        "name": "OH_AbilityRuntime_MoDispatcher_Array_Create"
+        "name": "OH_AbilityRuntime_ModObjDispatcher_Array_Create"
     },
     {
         "first_introduced": "26.0.0",
-        "name": "OH_AbilityRuntime_MoDispatcher_Array_GetElementType"
+        "name": "OH_AbilityRuntime_ModObjDispatcher_Array_GetElementType"
     },
     {
         "first_introduced": "26.0.0",
-        "name": "OH_AbilityRuntime_MoDispatcher_Array_Set"
+        "name": "OH_AbilityRuntime_ModObjDispatcher_Array_Set"
     },
     {
         "first_introduced": "26.0.0",
-        "name": "OH_AbilityRuntime_MoDispatcher_Array_Get"
+        "name": "OH_AbilityRuntime_ModObjDispatcher_Array_Get"
     },
     {
         "first_introduced": "26.0.0",
-        "name": "OH_AbilityRuntime_MoDispatcher_Array_GetSize"
+        "name": "OH_AbilityRuntime_ModObjDispatcher_Array_GetSize"
     },
     {
         "first_introduced": "26.0.0",
-        "name": "OH_AbilityRuntime_MoDispatcher_Array_Release"
+        "name": "OH_AbilityRuntime_ModObjDispatcher_Array_Release"
     },
     {
         "first_introduced": "26.0.0",
-        "name": "OH_AbilityRuntime_MoDispatcher_Vector_Create"
+        "name": "OH_AbilityRuntime_ModObjDispatcher_Vector_Create"
     },
     {
         "first_introduced": "26.0.0",
-        "name": "OH_AbilityRuntime_MoDispatcher_Vector_GetElementType"
+        "name": "OH_AbilityRuntime_ModObjDispatcher_Vector_GetElementType"
     },
     {
         "first_introduced": "26.0.0",
-        "name": "OH_AbilityRuntime_MoDispatcher_Vector_Add"
+        "name": "OH_AbilityRuntime_ModObjDispatcher_Vector_Add"
     },
     {
         "first_introduced": "26.0.0",
-        "name": "OH_AbilityRuntime_MoDispatcher_Vector_Get"
+        "name": "OH_AbilityRuntime_ModObjDispatcher_Vector_Get"
     },
     {
         "first_introduced": "26.0.0",
-        "name": "OH_AbilityRuntime_MoDispatcher_Vector_GetSize"
+        "name": "OH_AbilityRuntime_ModObjDispatcher_Vector_GetSize"
     },
     {
         "first_introduced": "26.0.0",
-        "name": "OH_AbilityRuntime_MoDispatcher_Vector_Clear"
+        "name": "OH_AbilityRuntime_ModObjDispatcher_Vector_Clear"
     },
     {
         "first_introduced": "26.0.0",
-        "name": "OH_AbilityRuntime_MoDispatcher_Vector_Release"
+        "name": "OH_AbilityRuntime_ModObjDispatcher_Vector_Release"
     },
     {
         "first_introduced": "26.0.0",
-        "name": "OH_AbilityRuntime_MoDispatcher_Set_Create"
+        "name": "OH_AbilityRuntime_ModObjDispatcher_Set_Create"
     },
     {
         "first_introduced": "26.0.0",
-        "name": "OH_AbilityRuntime_MoDispatcher_Set_GetElementType"
+        "name": "OH_AbilityRuntime_ModObjDispatcher_Set_GetElementType"
     },
     {
         "first_introduced": "26.0.0",
-        "name": "OH_AbilityRuntime_MoDispatcher_Set_Add"
+        "name": "OH_AbilityRuntime_ModObjDispatcher_Set_Add"
     },
     {
         "first_introduced": "26.0.0",
-        "name": "OH_AbilityRuntime_MoDispatcher_Set_Remove"
+        "name": "OH_AbilityRuntime_ModObjDispatcher_Set_Remove"
     },
     {
         "first_introduced": "26.0.0",
-        "name": "OH_AbilityRuntime_MoDispatcher_Set_Contains"
+        "name": "OH_AbilityRuntime_ModObjDispatcher_Set_Contains"
     },
     {
         "first_introduced": "26.0.0",
-        "name": "OH_AbilityRuntime_MoDispatcher_Set_GetSize"
+        "name": "OH_AbilityRuntime_ModObjDispatcher_Set_GetSize"
     },
     {
         "first_introduced": "26.0.0",
-        "name": "OH_AbilityRuntime_MoDispatcher_Set_GetAt"
+        "name": "OH_AbilityRuntime_ModObjDispatcher_Set_GetAt"
     },
     {
         "first_introduced": "26.0.0",
-        "name": "OH_AbilityRuntime_MoDispatcher_Set_Clear"
+        "name": "OH_AbilityRuntime_ModObjDispatcher_Set_Clear"
     },
     {
         "first_introduced": "26.0.0",
-        "name": "OH_AbilityRuntime_MoDispatcher_Set_Release"
+        "name": "OH_AbilityRuntime_ModObjDispatcher_Set_Release"
     },
     {
         "first_introduced": "26.0.0",
-        "name": "OH_AbilityRuntime_MoDispatcher_Map_Create"
+        "name": "OH_AbilityRuntime_ModObjDispatcher_Map_Create"
     },
     {
         "first_introduced": "26.0.0",
-        "name": "OH_AbilityRuntime_MoDispatcher_Map_GetKeyType"
+        "name": "OH_AbilityRuntime_ModObjDispatcher_Map_GetKeyType"
     },
     {
         "first_introduced": "26.0.0",
-        "name": "OH_AbilityRuntime_MoDispatcher_Map_GetValueType"
+        "name": "OH_AbilityRuntime_ModObjDispatcher_Map_GetValueType"
     },
     {
         "first_introduced": "26.0.0",
-        "name": "OH_AbilityRuntime_MoDispatcher_Map_Put"
+        "name": "OH_AbilityRuntime_ModObjDispatcher_Map_Put"
     },
     {
         "first_introduced": "26.0.0",
-        "name": "OH_AbilityRuntime_MoDispatcher_Map_Get"
+        "name": "OH_AbilityRuntime_ModObjDispatcher_Map_Get"
     },
     {
         "first_introduced": "26.0.0",
-        "name": "OH_AbilityRuntime_MoDispatcher_Map_Remove"
+        "name": "OH_AbilityRuntime_ModObjDispatcher_Map_Remove"
     },
     {
         "first_introduced": "26.0.0",
-        "name": "OH_AbilityRuntime_MoDispatcher_Map_ContainsKey"
+        "name": "OH_AbilityRuntime_ModObjDispatcher_Map_ContainsKey"
     },
     {
         "first_introduced": "26.0.0",
-        "name": "OH_AbilityRuntime_MoDispatcher_Map_GetSize"
+        "name": "OH_AbilityRuntime_ModObjDispatcher_Map_GetSize"
     },
     {
         "first_introduced": "26.0.0",
-        "name": "OH_AbilityRuntime_MoDispatcher_Map_GetKeyAt"
+        "name": "OH_AbilityRuntime_ModObjDispatcher_Map_GetKeyAt"
     },
     {
         "first_introduced": "26.0.0",
-        "name": "OH_AbilityRuntime_MoDispatcher_Map_GetValueAt"
+        "name": "OH_AbilityRuntime_ModObjDispatcher_Map_GetValueAt"
     },
     {
         "first_introduced": "26.0.0",
-        "name": "OH_AbilityRuntime_MoDispatcher_Map_Clear"
+        "name": "OH_AbilityRuntime_ModObjDispatcher_Map_Clear"
     },
     {
         "first_introduced": "26.0.0",
-        "name": "OH_AbilityRuntime_MoDispatcher_Map_Release"
+        "name": "OH_AbilityRuntime_ModObjDispatcher_Map_Release"
     },
     {
         "first_introduced": "26.0.0",
-        "name": "OH_AbilityRuntime_MoDispatcher_Struct_Create"
+        "name": "OH_AbilityRuntime_ModObjDispatcher_Struct_Create"
     },
     {
         "first_introduced": "26.0.0",
-        "name": "OH_AbilityRuntime_MoDispatcher_Struct_GetName"
+        "name": "OH_AbilityRuntime_ModObjDispatcher_Struct_GetName"
     },
     {
         "first_introduced": "26.0.0",
-        "name": "OH_AbilityRuntime_MoDispatcher_Struct_SetField"
+        "name": "OH_AbilityRuntime_ModObjDispatcher_Struct_SetField"
     },
     {
         "first_introduced": "26.0.0",
-        "name": "OH_AbilityRuntime_MoDispatcher_Struct_GetField"
+        "name": "OH_AbilityRuntime_ModObjDispatcher_Struct_GetField"
     },
     {
         "first_introduced": "26.0.0",
-        "name": "OH_AbilityRuntime_MoDispatcher_Struct_Release"
+        "name": "OH_AbilityRuntime_ModObjDispatcher_Struct_Release"
     }
 ]
