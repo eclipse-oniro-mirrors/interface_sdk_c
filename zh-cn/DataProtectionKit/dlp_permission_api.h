@@ -104,7 +104,7 @@ typedef enum {
 } DLP_FileAccess;
 
 /**
- * @brief 查询当前DLP沙箱的权限信息。
+ * @brief 查询 DLP 文件的权限信息
  *
  * @param dlpFileAccess 表示DLP文件针对用户的授权类型，例如：只读。
  * @param flags 表示DLP文件的详细操作权限，操作权限的具体含义为：
