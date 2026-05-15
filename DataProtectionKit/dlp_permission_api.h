@@ -179,7 +179,7 @@ DLP_ErrCode OH_DLP_SetSandboxAppConfig(const char *configInfo);
  *     <li> {@link DLP_ErrCode#ERR_OH_SYSTEM_SERVICE_EXCEPTION} 19100011 - If the system ability
  *     works abnormally.</li>
  *     <li> {@link DLP_ErrCode#ERR_OH_OUT_OF_MEMORY} 19100012 - If the memory error.</li>
- *     <li> {@link DLP_ErrCode#ERR_OH_APPLICATION_NOT_AUTHORIZED} 19100018 - If the application is not 
+ *     <li> {@link DLP_ErrCode#ERR_OH_APPLICATION_NOT_AUTHORIZED} 19100018 - If the application is not
  *     authorized.</li></ul>
  * @since 14
  */
@@ -193,7 +193,7 @@ DLP_ErrCode OH_DLP_GetSandboxAppConfig(char **configInfo);
  *     call this API, which is available only for non-DLP sandbox applications.</li>
  *     <li> {@link DLP_ErrCode#ERR_OH_SYSTEM_SERVICE_EXCEPTION} 19100011 - If the system ability
  *     works abnormally.</li>
- *     <li> {@link DLP_ErrCode#ERR_OH_APPLICATION_NOT_AUTHORIZED} 19100018 - If the application is not 
+ *     <li> {@link DLP_ErrCode#ERR_OH_APPLICATION_NOT_AUTHORIZED} 19100018 - If the application is not
  *     authorized.</li></ul>
  * @since 14
  */
