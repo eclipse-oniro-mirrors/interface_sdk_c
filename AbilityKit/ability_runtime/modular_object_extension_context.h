@@ -142,12 +142,13 @@ AbilityRuntime_ErrorCode OH_AbilityRuntime_ModObjExtensionContext_StartSelfUIAbi
  * @brief Destroys the modular object extension.
  *
  * @param context Represents a pointer to a modular object extension ability context.
- * @return Returns a specific error code.
- *          {@link ABILITY_RUNTIME_ERROR_CODE_NO_ERROR} if the call is successful.
- *          {@link ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID} if the arguments provided are invalid.
- *          {@link ABILITY_RUNTIME_ERROR_CODE_WUKONG_MODE} if the ability cannot be started in Wukong mode.
- *          {@link ABILITY_RUNTIME_ERROR_CODE_CONTEXT_NOT_EXIST} if the context does not exist.
- *          {@link ABILITY_RUNTIME_ERROR_CODE_INTERNAL} if an internal error occurs.
+ * @return <ul>
+ *      <li>{@link ABILITY_RUNTIME_ERROR_CODE_NO_ERROR} if the call is successful.</li>
+ *      <li>{@link ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID} if the arguments provided are invalid.</li>
+ *      <li>{@link ABILITY_RUNTIME_ERROR_CODE_WUKONG_MODE} if the ability cannot be terminated in Wukong mode.</li>
+ *      <li>{@link ABILITY_RUNTIME_ERROR_CODE_CONTEXT_NOT_EXIST} if the context does not exist.</li>
+ *      <li>{@link ABILITY_RUNTIME_ERROR_CODE_INTERNAL} if an internal error occurs.</li>
+ *      </ul>
  * @since 26.0.0
  */
 AbilityRuntime_ErrorCode OH_AbilityRuntime_ModObjExtensionContext_TerminateSelf(

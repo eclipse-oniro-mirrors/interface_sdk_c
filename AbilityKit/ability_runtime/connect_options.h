@@ -17,7 +17,8 @@
  * @addtogroup AbilityRuntime
  * @{
  *
- * @brief Provides the definition of the C interface for the modular object extension manager.
+ * @brief Declares the connection options for extension ability, including callbacks for
+ * connection success, disconnection, and connection failure.
  *
  * @since 26.0.0
  */
@@ -25,7 +26,8 @@
 /**
  * @file connect_options.h
  *
- * @brief Declares the connection options.
+ * @brief Declares the connection options for extension ability, including callbacks for
+ * connection success, disconnection, and connection failure.
  *
  * @library libability_runtime.so
  * @kit AbilityKit
@@ -57,7 +59,7 @@ typedef struct OH_AbilityRuntime_ConnectOptions OH_AbilityRuntime_ConnectOptions
  *
  * @param connectOptions Represents a pointer to an {@link
  * OH_AbilityRuntime_ConnectOptions} instance.
- * @param element Represents the element name of the modular object extension ability.
+ * @param element Represents the element name of the extension ability.
  * @param proxy Represents the remote object instance.
  *
  * @since 26.0.0
@@ -69,7 +71,7 @@ typedef void (*OH_AbilityRuntime_ConnectOptions_OnConnectCallback)(
  * @brief The callback interface is invoked when the disconnection occurs.
  *
  * @param connectOptions Represents a pointer to an {@link OH_AbilityRuntime_ConnectOptions} instance.
- * @param element Represents the element name of the modular object extension ability.
+ * @param element Represents the element name of the extension ability.
  *
  * @since 26.0.0
  */
