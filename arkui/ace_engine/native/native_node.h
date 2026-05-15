@@ -2415,6 +2415,33 @@ typedef enum {
     NODE_ACCESSIBILITY_DEFAULT_FOCUS = 125,
 
     /**
+     * @brief Defines the system material attribute, which can be set, reset, and obtained as required through APIs.
+     * Only devices that support systemMaterial can use this attribute. Otherwise, when setting this attribute,
+     * the error code {@link ARKUI_ERROR_CODE_ATTRIBUTE_OR_EVENT_NOT_SUPPORTED} will be returned.
+     * Whether a device supports materials can be determined by calling
+     * {@link OH_ArkUI_NativeModule_GetSystemMaterialSupported}.
+     * The material effect behaves differently on devices with different level of computing powers.
+     * The level is defined by {@link ArkUI_MaterialLevel}, which can be obtained by
+     * {@link OH_ArkUI_NativeModule_GetGlobalMaterialLevel}.
+     * On devices with the computing power level of ARKUI_MATERIAL_LEVEL_SMOOTH, it affects attributes such as the
+     * backgroundColor, borderWidth, borderColor, shadow.
+     * On devices with the computing power levels of ARKUI_MATERIAL_LEVEL_EXQUISITE or ARKUI_MATERIAL_LEVEL_GENTLE,
+     * it affects shadow attribute and adds a filter effect at the system material layer, which can produce an effect
+     * similar to glass.
+     *
+     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
+     * .object: system material object. The parameter type is {@link ArkUI_ImmersiveMaterialHandle}.\n
+     * \n
+     * Format of the return value {@link ArkUI_AttributeItem}:\n
+     * .object: system material object. The parameter type is {@link ArkUI_ImmersiveMaterialHandle}.\n
+     * The ArkUI_ImmersiveMaterialHandle object of the return value is a pointer to static member, so do not release
+     * the return object by calling {@link OH_ArkUI_NativeModule_ImmersiveMaterial_Destroy}.\n
+     *
+     * @since 26.0.0
+     */
+    NODE_SYSTEM_MATERIAL = 127,
+
+    /**
      * @brief Defines the text content attribute, which can be set, reset, and obtained as required through APIs.
      *
      * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
@@ -7067,6 +7094,20 @@ typedef enum {
      * @since 26.0.0
      */
     NODE_TEXT_EDITOR_HORIZONTAL_SCROLLING,
+
+    /**
+     * @brief Sets whether to enable punctuation overflow at the end of a line.
+     * This attribute can be set, reset, and obtained as required through APIs.
+     *
+     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
+     * .value[0].i32: whether to enable punctuation overflow, the default value is false.\n
+     * \n
+     * Format of the return value {@link ArkUI_AttributeItem}:\n
+     * .value[0].i32: whether to enable punctuation overflow.\n
+     *
+     * @since 26.0.0
+     */
+    NODE_TEXT_EDITOR_PUNCTUATION_OVERFLOW,
 
     /**
      * @brief Defines the alignment mode of the child components in the container. This attribute can be set, reset,

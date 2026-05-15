@@ -24,7 +24,7 @@
 
 /**
  * @file game_controller_type.h
- * @brief Defines the common types for the native module.
+ * @brief Defines common enumeration types for the GameController module.
  * @kit GameControllerKit
  * @library libohgame_controller.z.so
  * @syscap SystemCapability.Game.GameController
@@ -40,27 +40,31 @@
 extern "C" {
 #endif
 /**
- * @brief Defines an enum for the error codes of GameController.
+ * @brief Defines error codes of the game controller.
  * @since 21
  */
 typedef enum GameController_ErrorCode {
     /**
      * Success.
+	 * @since 21
      */
     GAME_CONTROLLER_SUCCESS = 0,
 
     /**
      * @error Invalid parameter.
+	 * @since 21
      */
     GAME_CONTROLLER_PARAM_ERROR = 401,
 
     /**
-     * @error The multimodal input is abnormal.
+     * @error Failed to query all game device information in multimodal input.
+	 * @since 21
      */
     GAME_CONTROLLER_MULTIMODAL_INPUT_ERROR = 32200001,
 
     /**
-     * @error There is no sufficient memory.
+     * @error Insufficient game device memory.
+	 * @since 21
      */
     GAME_CONTROLLER_NO_MEMORY = 32200002,
 } GameController_ErrorCode;

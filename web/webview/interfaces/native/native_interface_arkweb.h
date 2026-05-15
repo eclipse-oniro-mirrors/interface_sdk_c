@@ -106,44 +106,53 @@ typedef struct {
 } ArkWeb_BlanklessInfo;
 
 /**
- * @brief ArkWeb Engine Version.
- *
- * <strong>ArkWeb Dual Web Engine Versioning Convention</strong>:
- * <p>See [ArkWeb Dual Web Engine Versioning Convention] for switching between Legacy and Evergreen Web Engine.
+ * @brief For details about the ArkWeb kernel version, see
+ * [Adaptation Guide for the M114 Kernel on OpenHarmony 6.0]
+ * (https://gitcode.com/openharmony-tpc/chromium_src/blob/master/web/ReleaseNote/CompatibleWithLegacyWebEngine_6.0.md),
+ * [Adaptation Guide for the M114 Kernel on OpenHarmony 7.0]
+ * (https://gitcode.com/openharmony-tpc/chromium_src/blob/master/web/ReleaseNote/CompatibleWithLegacyWebEngine_7.0.md).
  *
  * @since 20
  */
 typedef enum {
     /**
-     * the system default ArkWeb engine.
+     * @brief Default system kernel. For OpenHarmony 6.0, the default kernel is M132.
+     *
      * @since 20
      */
     SYSTEM_DEFAULT = 0,
 
     /**
-     * ArkWeb M114 version.
+     * @brief Legacy kernel of OpenHarmony 6.0. You can select this legacy kernel. If it does not exist, the setting
+     * is invalid.
+     *
      * @since 20
      */
     ARKWEB_M114 = 1,
 
     /**
-     * ArkWeb M132 version.
+     * @brief Evergreen kernel of OpenHarmony 6.0, which is M132 by default. If it does not exist, the setting is
+     * invalid.
+     *
      * @since 20
      */
     ARKWEB_M132 = 2,
 
     /**
-     * ArkWeb M144 version.
+     * @brief Evergreen kernel of OpenHarmony 7.0, which is M144 by default. If it does not exist, the setting is
+     * invalid.
+     *
      * @since 26.0.0
      */
     ARKWEB_M144 = 3,
 
     /**
-     * ArkWeb auto use the newest ArkWeb Engine version.
-     * Evergreen Web Engine.
+     * @brief Evergreen kernel, which is the latest kernel of the system. You can choose to use the latest kernel for
+     * each system version. This setting takes effect for OpenHarmony 6.1 and later versions.
+     *
      * @since 23
      */
-    ARKWEB_EVERGREEN = 99999,
+    ARKWEB_EVERGREEN = 99999
 } ArkWebEngineVersion;
 
 /**
@@ -382,25 +391,20 @@ ArkWeb_ErrorCode OH_ArkWebCookieManager_SaveCookieSync();
 void OH_ArkWebCookieManager_SaveCookieAsync(OH_ArkWeb_OnCookieSaveCallback callback);
 
 /**
- * Set active ArkWeb engine version.
- * If the system does not support the specified version, it will not take effect.
+ * Sets the ArkWeb kernel version. If the system does not support the specified version, the setting is invalid.
+ * This API is a global static method and must be called before **initializeWebEngine** is called. If any **Web**
+ * component has been loaded, the setting of this API is invalid.
  *
- * This is a global static API that must be called before initializeWebEngine, and it will have no effect if any
- * Web components are loaded.
- *
- * <strong>Legacy Web Engine Compatibility Note</strong>:
- * <p>When using legacy ArkWeb Engine, some ArkWeb newly created API will not take effect,<br>
- * see [Compatible with Legacy Web Engine in release note] for compatibility guidelines.
- * </p>
- *
- * @param { ArkWebEngineVersion } webEngineVersion - the ArkWebEngineVersion
+ * @param { ArkWebEngineVersion } webEngineVersion - ArkWeb kernel version. 
+ *        For details, see {@link ArkWebEngineVersion}.
  * @since 20
  */
 void OH_NativeArkWeb_SetActiveWebEngineVersion(ArkWebEngineVersion webEngineVersion);
 
 /**
- * Get currently active ArkWeb engine version.
- * @return { ArkWebEngineVersion } Active ArkWeb Engine version as defined by ArkWebEngineVersion
+ * Obtains the current ArkWeb kernel version.
+ *
+ * @return The current ArkWeb kernel version defined by {@link ArkWebEngineVersion}.
  * @since 20
  */
 ArkWebEngineVersion OH_NativeArkWeb_GetActiveWebEngineVersion();
@@ -416,8 +420,11 @@ ArkWebEngineVersion OH_NativeArkWeb_GetActiveWebEngineVersion();
 void OH_NativeArkWeb_LazyInitializeWebEngineInCookieManager(bool lazy);
 
 /**
- * Check if the currently active ArkWeb engine is Evergreen.
- * @return { bool } true means the application is using the Evergreen Web Engine, false means not.
+ * Checks whether the ArkWeb kernel used by the application is the evergreen kernel, that is, the latest kernel of the
+ * system.
+ *
+ * @return Whether the kernel used by the application is the evergreen kernel. The value **true** indicates that the
+ *         kernel used by the application is the evergreen kernel, and **false** indicates the opposite.
  * @since 23
  */
 bool OH_NativeArkWeb_IsActiveWebEngineEvergreen();

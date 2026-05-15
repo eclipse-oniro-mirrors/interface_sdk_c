@@ -27,7 +27,7 @@
 /**
  * @file native_huks_type.h
  *
- * @brief Defines the structure and enumeration.
+ * @brief Defines the enums, structs, and macros used in the HUKS functions.
  *
  * @library libhuks_ndk.z.so
  * @syscap SystemCapability.Security.Huks.Core
@@ -49,7 +49,7 @@ extern "C" {
 #endif
 
 /**
- * @brief The byte length of the AEAD authentication label.
+ * @brief Length of the AEAD authentication tag, in bytes.
  *
  * @since 9
  * @version 1.0
@@ -57,7 +57,7 @@ extern "C" {
 #define OH_HUKS_AE_TAG_LEN 16
 
 /**
- * @brief The number of bits in each byte.
+ * @brief Number of bits in each byte.
  *
  * @since 9
  * @version 1.0
@@ -65,7 +65,7 @@ extern "C" {
 #define OH_HUKS_BITS_PER_BYTE 8
 
 /**
- * @brief Maximum byte length of the key.
+ * @brief Maximum key size, in bytes.
  *
  * @since 9
  * @version 1.0
@@ -73,7 +73,7 @@ extern "C" {
 #define OH_HUKS_MAX_KEY_SIZE 2048
 
 /**
- * @brief The byte length of the AEAD nonce.
+ * @brief Length of the AEAD one-time random number, in bytes.
  *
  * @since 9
  * @version 1.0
@@ -81,7 +81,7 @@ extern "C" {
 #define OH_HUKS_AE_NONCE_LEN 12
 
 /**
- * @brief Maximum byte length of the key alias.
+ * @brief Maximum length of a key alias, in bytes.
  *
  * @since 9
  * @version 1.0
@@ -89,7 +89,7 @@ extern "C" {
 #define OH_HUKS_MAX_KEY_ALIAS_LEN 64
 
 /**
- * @brief Maximum byte length of the process name.
+ * @brief Maximum length of a process name, in bytes.
  *
  * @since 9
  * @version 1.0
@@ -97,7 +97,7 @@ extern "C" {
 #define OH_HUKS_MAX_PROCESS_NAME_LEN 50
 
 /**
- * @brief The maximum byte length of random number.
+ * @brief Maximum length of a random number, in bytes.
  *
  * @since 9
  * @version 1.0
@@ -105,7 +105,7 @@ extern "C" {
 #define OH_HUKS_MAX_RANDOM_LEN 1024
 
 /**
- * @brief The minimum byte length of the signature result.
+ * @brief Minimum length of the signature result, in bytes.
  *
  * @since 9
  * @version 1.0
@@ -113,7 +113,7 @@ extern "C" {
 #define OH_HUKS_SIGNATURE_MIN_SIZE 64
 
 /**
- * @brief Maximum byte size of exported data.
+ * @brief Maximum size of the exported data, in bytes.
  *
  * @since 9
  * @version 1.0
@@ -121,7 +121,7 @@ extern "C" {
 #define OH_HUKS_MAX_OUT_BLOB_SIZE (5 * 1024 * 1024)
 
 /**
- * @brief The maximum number of bytes for the encryption key to be imported.
+ * @brief Maximum size of the key to be imported, in bytes.
  *
  * @since 9
  * @version 1.0
@@ -129,7 +129,7 @@ extern "C" {
 #define OH_HUKS_WRAPPED_FORMAT_MAX_SIZE (1024 * 1024)
 
 /**
- * @brief The maximum number of data blocks for importing the encryption key data.
+ * @brief Maximum number of data blocks of the key to be imported, in bytes.
  *
  * @since 9
  * @version 1.0
@@ -137,7 +137,7 @@ extern "C" {
 #define OH_HUKS_IMPORT_WRAPPED_KEY_TOTAL_BLOBS 10
 
 /**
- * @brief The byte length of challenge value during access control.
+ * @brief Byte length of the challenge value during access control.
  *
  * @since 9
  * @version 1.0
@@ -145,7 +145,7 @@ extern "C" {
 #define TOKEN_CHALLENGE_LEN 32
 
 /**
- * @brief The byte length of SHA256 signature.
+ * @brief Byte length of the SHA-256 signature.
  *
  * @since 9
  * @version 1.0
@@ -153,7 +153,7 @@ extern "C" {
 #define SHA256_SIGN_LEN 32
 
 /**
- * @brief The byte length of challenge value during access control.
+ * @brief Byte length of the challenge value during access control.
  *
  * @since 9
  * @version 1.0
@@ -169,7 +169,7 @@ extern "C" {
 #define MAX_AUTH_TIMEOUT_SECOND 60
 
 /**
- * @brief Version of secure signed data.
+ * @brief Version of the secure signature data.
  *
  * @since 9
  * @version 1.0
@@ -183,23 +183,41 @@ extern "C" {
  * @version 1.0
  */
 enum OH_Huks_KeyPurpose {
-    /** Used to encrypt the plaintext. */
+    /**
+     * Used to encrypt the plaintext.
+     */
     OH_HUKS_KEY_PURPOSE_ENCRYPT = 1,
-    /** Used to decrypt the cipher text. */
+    /**
+     * Used to decrypt the cipher text.
+     */
     OH_HUKS_KEY_PURPOSE_DECRYPT = 2,
-    /** Used to sign data. */
+    /**
+     * Used for signing.
+     */
     OH_HUKS_KEY_PURPOSE_SIGN = 4,
-    /** Used to verify the signature. */
+    /**
+     * Used to verify the signature.
+     */
     OH_HUKS_KEY_PURPOSE_VERIFY = 8,
-    /** Used to derive a key. */
+    /**
+     * Used to derive a key.
+     */
     OH_HUKS_KEY_PURPOSE_DERIVE = 16,
-    /** Used for an encrypted export. */
+    /**
+     * Used for exporting a key in ciphertext.
+     */
     OH_HUKS_KEY_PURPOSE_WRAP = 32,
-    /** Used for an encrypted import. */
+    /**
+     * Used for importing a key in ciphertext.
+     */
     OH_HUKS_KEY_PURPOSE_UNWRAP = 64,
-    /** Used to generate a message authentication code (MAC). */
+    /**
+     * Used to generate a message authentication code (MAC).
+     */
     OH_HUKS_KEY_PURPOSE_MAC = 128,
-    /** Used for key agreement. */
+    /**
+     * Used for key agreement.
+     */
     OH_HUKS_KEY_PURPOSE_AGREE = 256,
 };
 
@@ -210,42 +228,70 @@ enum OH_Huks_KeyPurpose {
  * @version 1.0
  */
 enum OH_Huks_KeyDigest {
-    /** No digest algorithm. */
+    /**
+     * No digest algorithm.
+     */
     OH_HUKS_DIGEST_NONE = 0,
-    /** MD5. */
+    /**
+     * MD5.
+     */
     OH_HUKS_DIGEST_MD5 = 1,
-    /** SM3. */
+    /**
+     * SM3.
+     */
     OH_HUKS_DIGEST_SM3 = 2,
-    /** SHA-1. */
+    /**
+     * SHA-1.
+     */
     OH_HUKS_DIGEST_SHA1 = 10,
-    /** SHA-224. */
+    /**
+     * SHA-224.
+     */
     OH_HUKS_DIGEST_SHA224 = 11,
-    /** SHA-256. */
+    /**
+     * SHA-256.
+     */
     OH_HUKS_DIGEST_SHA256 = 12,
-    /** SHA-384. */
+    /**
+     * SHA-384.
+     */
     OH_HUKS_DIGEST_SHA384 = 13,
-    /** SHA-512. */
+    /**
+     * SHA-512.
+     */
     OH_HUKS_DIGEST_SHA512 = 14,
 };
 
 /**
- * @brief Enumerates the padding algorithms.
+ * @brief Enumerates the padding algorithm types.
  *
  * @since 9
  * @version 1.0
  */
 enum OH_Huks_KeyPadding {
-    /** No padding algorithm. */
+    /**
+     * No padding algorithm.
+     */
     OH_HUKS_PADDING_NONE = 0,
-    /** Optimal Asymmetric Encryption Padding (OAEP). */
+    /**
+     * OAEP.
+     */
     OH_HUKS_PADDING_OAEP = 1,
-    /** Probabilistic Signature Scheme (PSS). */
+    /**
+     * PSS.
+     */
     OH_HUKS_PADDING_PSS = 2,
-    /** Public Key Cryptography Standards (PKCS) #1 v1.5. */
+    /**
+     * PKCS1_V1_5.
+     */
     OH_HUKS_PADDING_PKCS1_V1_5 = 3,
-    /** PKCS #5. */
+    /**
+     * PKCS #5.
+     */
     OH_HUKS_PADDING_PKCS5 = 4,
-    /** PKCS #7. */
+    /**
+     * PKCS #7.
+     */
     OH_HUKS_PADDING_PKCS7 = 5,
     /** ISO IEC 9796-2
      * @since 18
@@ -258,82 +304,134 @@ enum OH_Huks_KeyPadding {
 };
 
 /**
- * @brief Enumerates the cipher modes.
+ * @brief Cipher mode.
  *
  * @since 9
  * @version 1.0
  */
 enum OH_Huks_CipherMode {
-    /** Electronic Code Block (ECB) mode. */
+    /**
+     * ECB.
+     */
     OH_HUKS_MODE_ECB = 1,
-    /** Cipher Block Chaining (CBC) mode. */
+    /**
+     * CBC.
+     */
     OH_HUKS_MODE_CBC = 2,
-    /** Counter (CTR) mode. */
+    /**
+     * CTR.
+     */
     OH_HUKS_MODE_CTR = 3,
-    /** Output Feedback (OFB) mode. */
+    /**
+     * OFB.
+     */
     OH_HUKS_MODE_OFB = 4,
     /**
      * Cipher Feedback (CFB) mode.
      * @since 12
      */
     OH_HUKS_MODE_CFB = 5,
-    /** Counter with CBC-MAC (CCM) mode. */
+    /**
+     * CCM.
+     */
     OH_HUKS_MODE_CCM = 31,
-    /** Galois/Counter (GCM) mode. */
+    /**
+     * GCM.
+     */
     OH_HUKS_MODE_GCM = 32,
 };
 
 /**
- * @brief Enumerates the key sizes.
+ * @brief Enumerates the key sizes of different algorithms.
  *
  * @since 9
  * @version 1.0
  */
 enum OH_Huks_KeySize {
-    /** Rivest-Shamir-Adleman (RSA) key of 512 bits. */
+    /**
+     * RSA key of 512 bits.
+     */
     OH_HUKS_RSA_KEY_SIZE_512 = 512,
-    /** RSA key of 768 bits. */
+    /**
+     * RSA key of 768 bits.
+     */
     OH_HUKS_RSA_KEY_SIZE_768 = 768,
-    /** RSA key of 1024 bits. */
+    /**
+     * RSA key of 1024 bits.
+     */
     OH_HUKS_RSA_KEY_SIZE_1024 = 1024,
-    /** RSA key of 2048 bits. */
+    /**
+     * RSA key of 2048 bits.
+     */
     OH_HUKS_RSA_KEY_SIZE_2048 = 2048,
-    /** RSA key of 3072 bits. */
+    /**
+     * RSA key of 3072 bits.
+     */
     OH_HUKS_RSA_KEY_SIZE_3072 = 3072,
-    /** RSA key of 4096 bits. */
+    /**
+     * RSA key of 4096 bits.
+     */
     OH_HUKS_RSA_KEY_SIZE_4096 = 4096,
 
-    /** Elliptic Curve Cryptography (ECC) key of 224 bits. */
+    /**
+     * ECC key of 224 bits.
+     */
     OH_HUKS_ECC_KEY_SIZE_224 = 224,
-    /** ECC key of 256 bits. */
+    /**
+     * ECC key of 256 bits.
+     */
     OH_HUKS_ECC_KEY_SIZE_256 = 256,
-    /** ECC key of 384 bits. */
+    /**
+     * ECC key of 384 bits.
+     */
     OH_HUKS_ECC_KEY_SIZE_384 = 384,
-    /** ECC key of 521 bits. */
+    /**
+     * ECC key of 521 bits.
+     */
     OH_HUKS_ECC_KEY_SIZE_521 = 521,
 
-    /** Advanced Encryption Standard (AES) key of 128 bits. */
+    /**
+     * AES key of 128 bits.
+     */
     OH_HUKS_AES_KEY_SIZE_128 = 128,
-    /** AES key of 192 bits. */
+    /**
+     * AES key of 192 bits.
+     */
     OH_HUKS_AES_KEY_SIZE_192 = 192,
-    /** AES key of 256 bits. */
+    /**
+     * AES key of 256 bits.
+     */
     OH_HUKS_AES_KEY_SIZE_256 = 256,
-    /** AES key of 512 bits. */
+    /**
+     * AES key of 512 bits.
+     */
     OH_HUKS_AES_KEY_SIZE_512 = 512,
 
-    /** Curve25519 key of 256 bits. */
+    /**
+     * Curve25519 key of 256 bits.
+     */
     OH_HUKS_CURVE25519_KEY_SIZE_256 = 256,
 
-    /** Diffie-Hellman (DH) key of 2048 bits. */
+    /**
+     * DH key of 2048 bits.
+     */
     OH_HUKS_DH_KEY_SIZE_2048 = 2048,
-    /** DH key of 3072 bits. */
+    /**
+     * DH key of 3072 bits.
+     */
     OH_HUKS_DH_KEY_SIZE_3072 = 3072,
-    /** DH key of 4096 bits. */
+    /**
+     * DH key of 4096 bits.
+     */
     OH_HUKS_DH_KEY_SIZE_4096 = 4096,
 
-    /** ShangMi2 (SM2) key of 256 bits. */
+    /**
+     * SM2 key of 256 bits.
+     */
     OH_HUKS_SM2_KEY_SIZE_256 = 256,
-    /** ShangMi4 (SM4) key of 128 bits. */
+    /**
+     * SM4 key of 128 bits.
+     */
     OH_HUKS_SM4_KEY_SIZE_128 = 128,
 
     /** DES key of 64 bits.
@@ -351,42 +449,70 @@ enum OH_Huks_KeySize {
 };
 
 /**
- * @brief Enumerates the key algorithms.
+ * @brief Enumerates the algorithms for keys.
  *
  * @since 9
  * @version 1.0
  */
 enum OH_Huks_KeyAlg {
-    /** RSA. */
+    /**
+     * RSA.
+     */
     OH_HUKS_ALG_RSA = 1,
-    /** ECC. */
+    /**
+     * ECC.
+     */
     OH_HUKS_ALG_ECC = 2,
-    /** DSA. */
+    /**
+     * DSA.
+     */
     OH_HUKS_ALG_DSA = 3,
 
-    /** AES. */
+    /**
+     * Advanced Encryption Standard (AES).
+     */
     OH_HUKS_ALG_AES = 20,
-    /** HMAC. */
+    /**
+     * HMAC algorithm.
+     */
     OH_HUKS_ALG_HMAC = 50,
-    /** HKDF. */
+    /**
+     * HKDF.
+     */
     OH_HUKS_ALG_HKDF = 51,
-    /** PBKDF2. */
+    /**
+     * PBKDF2.
+     */
     OH_HUKS_ALG_PBKDF2 = 52,
 
-    /** ECDH. */
+    /**
+     * ECDH.
+     */
     OH_HUKS_ALG_ECDH = 100,
-    /** X25519. */
+    /**
+     * X25519.
+     */
     OH_HUKS_ALG_X25519 = 101,
-    /** Ed25519. */
+    /**
+     * Ed25519.
+     */
     OH_HUKS_ALG_ED25519 = 102,
-    /** DH. */
+    /**
+     * DH.
+     */
     OH_HUKS_ALG_DH = 103,
 
-    /** SM2. */
+    /**
+     * ShangMi2 (SM2).
+     */
     OH_HUKS_ALG_SM2 = 150,
-    /** SM3. */
+    /**
+     * SM3.
+     */
     OH_HUKS_ALG_SM3 = 151,
-    /** SM4. */
+    /**
+     * SM4.
+     */
     OH_HUKS_ALG_SM4 = 152,
 
     /** DES.
@@ -404,7 +530,7 @@ enum OH_Huks_KeyAlg {
 };
 
 /**
- * @brief Enumerates the algorithm suites required for ciphertext imports.
+ * @brief Enumerates the algorithm suites that can be used for importing of a key in ciphertext.
  *
  * @since 9
  * @version 1.0
@@ -438,129 +564,198 @@ enum OH_Huks_AlgSuite {
 };
 
 /**
- * @brief Enumerates the key generation types.
+ * @brief Enumerates the types of the key generated.
  *
  * @since 9
  * @version 1.0
  */
 enum OH_Huks_KeyGenerateType {
-    /** Key generated by default. */
+    /**
+     * Key generated by default.
+     */
     OH_HUKS_KEY_GENERATE_TYPE_DEFAULT = 0,
-    /** Derived key. */
+    /**
+     * Derived key.
+     */
     OH_HUKS_KEY_GENERATE_TYPE_DERIVE = 1,
-    /** Key obtained by key agreement. */
+    /**
+     * Key generated by key agreement.
+     */
     OH_HUKS_KEY_GENERATE_TYPE_AGREE = 2,
 };
 
 /**
- * @brief Enumerates the key generation modes.
+ * @brief Enumerates the key generation types.
  *
  * @since 9
  * @version 1.0
  */
 enum OH_Huks_KeyFlag {
-    /** Import a public key using an API. */
+    /**
+     * Import a public key using a function.
+     */
     OH_HUKS_KEY_FLAG_IMPORT_KEY = 1,
-    /** Generate a key by using an API. */
+    /**
+     * Generate a key by using a function.
+     */
     OH_HUKS_KEY_FLAG_GENERATE_KEY = 2,
-    /** Generate a key by using a key agreement API. */
+    /**
+     * Generate a key by using a key agreement function.
+     */
     OH_HUKS_KEY_FLAG_AGREE_KEY = 3,
-    /** Derive a key by using an API. */
+    /**
+     * Derive a key by using a function.
+     */
     OH_HUKS_KEY_FLAG_DERIVE_KEY = 4,
 };
 
 /**
- * @brief Enumerates the key storage modes.
+ * @brief Enumerates the key storage types.
  *
  * @since 9
  * @version 1.0
  */
 enum OH_Huks_KeyStorageType {
-    /** The key is managed locally. */
+    /**
+     * Return the key to the service via the API.
+     */
     OH_HUKS_STORAGE_TEMP = 0,
-    /** The key is managed by the HUKS service. */
+    /**
+     * Store the key in HUKS.
+     */
     OH_HUKS_STORAGE_PERSISTENT = 1,
-    /** The key is only used in huks. */
+    /**
+     * Store the key generated from key derivation or key agreement in HUKS.
+     */
     OH_HUKS_STORAGE_ONLY_USED_IN_HUKS = 2,
-    /** The key can be allowed to export. */
+    /**
+     * Return the key generated from key derivation or key agreement to the service.
+     */
     OH_HUKS_STORAGE_KEY_EXPORT_ALLOWED = 3,
 };
 
 /**
- * @brief Enumerates the types of keys to import. By default,
- *    a public key is imported. This field is not required when a symmetric key is imported.
+ * @brief Enumerates the types of the key to import. By default, a public key is imported. This field is not required
+ * when a symmetric key is imported.
  *
  * @since 9
  * @version 1.0
  */
 enum OH_Huks_ImportKeyType {
-    /** Public key. */
+    /**
+     * Public key.
+     */
     OH_HUKS_KEY_TYPE_PUBLIC_KEY = 0,
-    /** Private key. */
+    /**
+     * Private key.
+     */
     OH_HUKS_KEY_TYPE_PRIVATE_KEY = 1,
-    /** Public and private key pair. */
+    /**
+     * Public and private key pair.
+     */
     OH_HUKS_KEY_TYPE_KEY_PAIR = 2,
 };
 
 /**
- * @brief Enumerates the salt_len types to set when PSS padding is used in RSA signing or signature
- * verification.
+ * @brief Enumerates the length types of the salt value in PSS padding mode.
  * 
  * @since 10
  * @version 1.0
  */
 enum OH_Huks_RsaPssSaltLenType {
-    /** Salt length matches digest. */
+    /**
+     * The salt length is set to the digest length.
+     */
     OH_HUKS_RSA_PSS_SALT_LEN_DIGEST = 0,
-    /** Set salt length to maximum possible, default type. */
+    /**
+     * The salt length is set to the maximum length.
+     */
     OH_HUKS_RSA_PSS_SALT_LEN_MAX = 1,
 };
 
 /**
- * @brief Enumerates the error codes.
+ * @brief Enumerates error codes.
  *
  * @since 9
  * @version 1.0
  */
 enum  OH_Huks_ErrCode {
-    /** The operation is successful. */
+    /**
+     * Success.
+     */
     OH_HUKS_SUCCESS = 0,
-    /** Permission verification failed. */
+    /**
+     * Permission verification failed.
+     */
     OH_HUKS_ERR_CODE_PERMISSION_FAIL = 201,
-    /** Invalid parameters are detected. */
+    /**
+     * Invalid parameter (universal).
+     */
     OH_HUKS_ERR_CODE_ILLEGAL_ARGUMENT = 401,
-    /** The API is not supported. */
+    /**
+     * The API is not supported.
+     */
     OH_HUKS_ERR_CODE_NOT_SUPPORTED_API = 801,
 
-    /** The feature is not supported. */
+    /**
+     * The feature is not supported.
+     */
     OH_HUKS_ERR_CODE_FEATURE_NOT_SUPPORTED = 12000001,
-    /** Key algorithm parameters are missing. */
+    /**
+     * Key algorithm parameters are missing.
+     */
     OH_HUKS_ERR_CODE_MISSING_CRYPTO_ALG_ARGUMENT = 12000002,
-    /** Invalid key algorithm parameters are detected. */
+    /**
+     * Invalid key algorithm parameter.
+     */
     OH_HUKS_ERR_CODE_INVALID_CRYPTO_ALG_ARGUMENT = 12000003,
-    /** Failed to operate the file. */
+    /**
+     * File operation failed.
+     */
     OH_HUKS_ERR_CODE_FILE_OPERATION_FAIL = 12000004,
-    /** The process communication failed. */
+    /**
+     * The process communication failed.
+     */
     OH_HUKS_ERR_CODE_COMMUNICATION_FAIL = 12000005,
-    /** Failed to operate the algorithm library. */
+    /**
+     * Crypto operation failed.
+     */
     OH_HUKS_ERR_CODE_CRYPTO_FAIL = 12000006,
-    /** Failed to access the key because the key has expired. */
+    /**
+     * Failed to access the key because the key has expired.
+     */
     OH_HUKS_ERR_CODE_KEY_AUTH_PERMANENTLY_INVALIDATED = 12000007,
-    /** Failed to access the key because the authentication has failed. */
+    /**
+     * Failed to access the key because the authentication has failed.
+     */
     OH_HUKS_ERR_CODE_KEY_AUTH_VERIFY_FAILED = 12000008,
-    /** Key access timed out. */
+    /**
+     * Key access timed out.
+     */
     OH_HUKS_ERR_CODE_KEY_AUTH_TIME_OUT = 12000009,
-    /** The number of key operation sessions has reached the limit. */
+    /**
+     * The number of key operation sessions has reached the limit.
+     */
     OH_HUKS_ERR_CODE_SESSION_LIMIT = 12000010,
-    /** The entity does not exist. */
+    /**
+     * The entity does not exist.
+     */
     OH_HUKS_ERR_CODE_ITEM_NOT_EXIST = 12000011,
-    /** Internal error. */
+    /**
+     * Internal error.
+     */
     OH_HUKS_ERR_CODE_INTERNAL_ERROR = 12000012,
-    /** The authentication credential does not exist. */
+    /**
+     * The authentication credential does not exist.
+     */
     OH_HUKS_ERR_CODE_CREDENTIAL_NOT_EXIST = 12000013,
-    /** The memory is not sufficient. */
+    /**
+     * Insufficient memory.
+     */
     OH_HUKS_ERR_CODE_INSUFFICIENT_MEMORY = 12000014,
-    /** Failed to call service. */
+    /**
+     * Failed to invoke the service.
+     */
     OH_HUKS_ERR_CODE_CALL_SERVICE_FAILED = 12000015,
     /**
      * A device password is required but not set.
@@ -632,39 +827,58 @@ enum  OH_Huks_ErrCode {
 };
 
 /**
- * @brief Enumerates the tag types.
+ * @brief Enumerates the types of the parameters in a parameter set.
+ *
  * @see OH_Huks_Param
  *
  * @since 9
  * @version 1.0
  */
 enum OH_Huks_TagType {
-    /** Invalid tag type. */
+    /**
+     * Invalid tag type.
+     */
     OH_HUKS_TAG_TYPE_INVALID = 0 << 28,
-    /** int32_t. */
+    /**
+     * int32_t.
+     */
     OH_HUKS_TAG_TYPE_INT = 1 << 28,
-    /** uin32_t. */
+    /**
+     * uin32_t.
+     */
     OH_HUKS_TAG_TYPE_UINT = 2 << 28,
-    /** uin64_t. */
+    /**
+     * uin64_t.
+     */
     OH_HUKS_TAG_TYPE_ULONG = 3 << 28,
-    /** Boolean. */
+    /**
+     * Boolean.
+     */
     OH_HUKS_TAG_TYPE_BOOL = 4 << 28,
-    /** OH_Huks_Blob. */
+    /**
+     * {@link OH_Huks_Blob}.
+     */
     OH_HUKS_TAG_TYPE_BYTES = 5 << 28,
 };
 
 /**
- * @brief Enumerates the user authentication types.
+ * @brief Enumerates the user authentication types in key access control.
  *
  * @since 9
  * @version 1.0
  */
 enum OH_Huks_UserAuthType {
-    /** Fingerprint authentication. */
+    /**
+     * Fingerprint authentication.
+     */
     OH_HUKS_USER_AUTH_TYPE_FINGERPRINT = 1 << 0,
-    /** Facial authentication. */
+    /**
+     * Facial authentication.
+     */
     OH_HUKS_USER_AUTH_TYPE_FACE = 1 << 1,
-    /** PIN authentication. */
+    /**
+     * PIN authentication.
+     */
     OH_HUKS_USER_AUTH_TYPE_PIN = 1 << 2,
     /**
      * Enum for tui pin auth type.
@@ -675,15 +889,19 @@ enum OH_Huks_UserAuthType {
 };
 
 /**
- * @brief Enumerates the access control types.
+ * @brief Enumerates the rules for invalidating a key.
  *
  * @since 9
  * @version 1.0
  */
 enum OH_Huks_AuthAccessType {
-    /** The key is invalid after the password is cleared. */
+    /**
+     * The key becomes invalid after the password is cleared.
+     */
     OH_HUKS_AUTH_ACCESS_INVALID_CLEAR_PASSWORD = 1 << 0,
-    /** The key is invalid after a new biometric feature is enrolled. */
+    /**
+     * The key becomes invalid after a new biometric feature is enrolled.
+     */
     OH_HUKS_AUTH_ACCESS_INVALID_NEW_BIO_ENROLL = 1 << 1,
     /**
      * The key is always valid.
@@ -694,7 +912,7 @@ enum OH_Huks_AuthAccessType {
 };
 
 /**
- * @brief Enumerates key file storage authentication levels.
+ * @brief Enumerates the security levels for storing the key generated or imported.
  *
  * @since 11
  */
@@ -717,7 +935,7 @@ enum OH_Huks_AuthStorageLevel {
 };
 
 /**
- * @brief Enumerates the user authentication mode.
+ * @brief Enumerates the user authentication modes in key access control.
  *
  * @since 12
  * @version 1.0
@@ -736,20 +954,25 @@ enum OH_Huks_UserAuthMode {
 };
 
 /**
- * @brief Enumerates the types of the challenges generated when a key is used.
+ * @brief Enumerates the types of the challenge generated when a key is used.
+ *
  * @see OH_Huks_ChallengePosition
  *
  * @since 9
  * @version 1.0
  */
 enum OH_Huks_ChallengeType {
-    /** Normal challenge, which is of 32 bytes by default. */
+    /**
+     * Normal challenge, which is of 32 bytes by default.
+     */
     OH_HUKS_CHALLENGE_TYPE_NORMAL = 0,
     /** Custom challenge, which supports only one authentication for multiple keys.
      *  The valid value of a custom challenge is of 8 bytes.
      */
     OH_HUKS_CHALLENGE_TYPE_CUSTOM = 1,
-    /** Challenge is not required. */
+    /**
+     * Challenge is not required.
+     */
     OH_HUKS_CHALLENGE_TYPE_NONE = 2,
 };
 
@@ -760,18 +983,26 @@ enum OH_Huks_ChallengeType {
  * @version 1.0
  */
 enum OH_Huks_ChallengePosition {
-    /** Bytes 0 to 7. */
+    /**
+     * Bytes 0 to 7.
+     */
     OH_HUKS_CHALLENGE_POS_0 = 0,
-    /** Bytes 8 to 15. */
+    /**
+     * Bytes 8 to 15.
+     */
     OH_HUKS_CHALLENGE_POS_1,
-    /** Bytes 16 to 23. */
+    /**
+     * Bytes 16 to 23.
+     */
     OH_HUKS_CHALLENGE_POS_2,
-    /** Bytes 24 to 31. */
+    /**
+     * Bytes 24 to 31.
+     */
     OH_HUKS_CHALLENGE_POS_3,
 };
 
 /**
- * @brief Enumerates the signature types of the keys generated or imported.
+ * @brief Enumerates the signature types of the key generated or imported.
  *
  * @since 9
  * @version 1.0
@@ -790,7 +1021,7 @@ enum OH_Huks_SecureSignType {
 };
 
 /**
- * @brief Enumerates the types of keys.
+ * @brief Key type.
  *
  * @since 22
  */
@@ -809,8 +1040,7 @@ typedef enum OH_Huks_KeyClassType {
     OH_HUKS_KEY_CLASS_EXTENSION = 1,
 } OH_Huks_KeyClassType;
 /**
- * Enum for key wrap type.
- *
+ * Enumerates the wrap type of the key generated or imported.
  * @since 20
  */
 enum OH_Huks_KeyWrapType {
@@ -823,7 +1053,14 @@ enum OH_Huks_KeyWrapType {
 };
 
 /**
- * @brief Enumerates the tag values used in parameter sets.
+ * @brief Enumerates the tags contained in a parameter set.
+ * <br>1 to 200: key parameter tag values.
+ * <br>301 to 500: tag values related to access control and authentication of key usage.
+ * <br>501 to 600: tag values related to key authentication.
+ * <br>601 to 1000: reserved values for other types of tag values.
+ * <br>1001 to 9999: extended tag values.
+ * <br>11000 to 12000: reserved values.
+ * <br>20001 to N: reserved tag values.
  *
  * @since 9
  * @version 1.0
@@ -832,76 +1069,137 @@ enum OH_Huks_Tag {
     /** Tags for key parameters. The value range is 1 to 200. */
     /** Algorithm. */
     OH_HUKS_TAG_ALGORITHM = OH_HUKS_TAG_TYPE_UINT | 1,
-    /** Key purpose. */
+    /**
+     * Key purpose.
+     */
     OH_HUKS_TAG_PURPOSE = OH_HUKS_TAG_TYPE_UINT | 2,
-    /** Key size. */
+    /**
+     * Key length.
+     */
     OH_HUKS_TAG_KEY_SIZE = OH_HUKS_TAG_TYPE_UINT | 3,
-    /** Digest algorithm. */
+    /**
+     * Digest algorithm.
+     */
     OH_HUKS_TAG_DIGEST = OH_HUKS_TAG_TYPE_UINT | 4,
-    /** Padding algorithm. */
+    /**
+     * Padding algorithm.
+     */
     OH_HUKS_TAG_PADDING = OH_HUKS_TAG_TYPE_UINT | 5,
-    /** Cipher mode. */
+    /**
+     * Cipher mode.
+     */
     OH_HUKS_TAG_BLOCK_MODE = OH_HUKS_TAG_TYPE_UINT | 6,
-    /** Key type. */
+    /**
+     * Key type.
+     */
     OH_HUKS_TAG_KEY_TYPE = OH_HUKS_TAG_TYPE_UINT | 7,
-    /** Associated authentication data. */
+    /**
+     * Associated authentication data.
+     */
     OH_HUKS_TAG_ASSOCIATED_DATA = OH_HUKS_TAG_TYPE_BYTES | 8,
-    /** Field for key encryption and decryption. */
+    /**
+     * **NONCE** field for key encryption and decryption.
+     */
     OH_HUKS_TAG_NONCE = OH_HUKS_TAG_TYPE_BYTES | 9,
-    /** Initialized vector (IV). */
+    /**
+     * Initialized vector (IV).
+     */
     OH_HUKS_TAG_IV = OH_HUKS_TAG_TYPE_BYTES | 10,
 
-    /** Information generated during key derivation. */
+    /**
+     * Information generated during key derivation.
+     */
     OH_HUKS_TAG_INFO = OH_HUKS_TAG_TYPE_BYTES | 11,
-    /** Salt value used for key derivation. */
+    /**
+     * Salt value used for key derivation.
+     */
     OH_HUKS_TAG_SALT = OH_HUKS_TAG_TYPE_BYTES | 12,
-    /** Number of iterations for key derivation. */
+    /**
+     * Number of iterations for key derivation.
+     */
     OH_HUKS_TAG_ITERATION = OH_HUKS_TAG_TYPE_UINT | 14,
 
-    /** Type of the generated key. For details, see {@link OH_Huks_KeyGenerateType}. */
+    /**
+     * Type of the generated key. For details, see {@link OH_Huks_KeyGenerateType}.
+     */
     OH_HUKS_TAG_KEY_GENERATE_TYPE = OH_HUKS_TAG_TYPE_UINT | 15,
-    /** Algorithm used in key agreement. */
+    /**
+     * Algorithm used in key agreement.
+     */
     OH_HUKS_TAG_AGREE_ALG = OH_HUKS_TAG_TYPE_UINT | 19,
-    /** Alias of the public key used for key agreement. */
+    /**
+     * Alias of the public key used for key agreement.
+     */
     OH_HUKS_TAG_AGREE_PUBLIC_KEY_IS_KEY_ALIAS = OH_HUKS_TAG_TYPE_BOOL | 20,
-    /** Alias of the private key used for key agreement. */
+    /**
+     * Alias of the private key used for key agreement.
+     */
     OH_HUKS_TAG_AGREE_PRIVATE_KEY_ALIAS = OH_HUKS_TAG_TYPE_BYTES | 21,
-    /** Public key used for key agreement. */
+    /**
+     * Public key used for key agreement.
+     */
     OH_HUKS_TAG_AGREE_PUBLIC_KEY = OH_HUKS_TAG_TYPE_BYTES | 22,
-    /** Alias of the key. */
+    /**
+     * Alias used in key attestation.
+     */
     OH_HUKS_TAG_KEY_ALIAS = OH_HUKS_TAG_TYPE_BYTES | 23,
-    /** Size of the derived key. */
+    /**
+     * Size of the derived key.
+     */
     OH_HUKS_TAG_DERIVE_KEY_SIZE = OH_HUKS_TAG_TYPE_UINT | 24,
-    /** Type of the key to import. For details, see {@link OH_Huks_ImportKeyType}. */
+    /**
+     * Type of the imported key. For details, see {@link OH_Huks_ImportKeyType}.
+     */
     OH_HUKS_TAG_IMPORT_KEY_TYPE = OH_HUKS_TAG_TYPE_UINT | 25,
-    /** Algorithm suite required for encrypted imports. */
+    /**
+     * Algorithm suite used for importing a key in ciphertext.
+     */
     OH_HUKS_TAG_UNWRAP_ALGORITHM_SUITE = OH_HUKS_TAG_TYPE_UINT | 26,
-    /** Storage mode of derived or agree keys. For details, see {@link OH_Huks_KeyStorageType}. */
+    /**
+     * Storage type of the derived key or key produced after key agreement. 
+     * For details, see {@link OH_Huks_KeyStorageType}.
+     */
     OH_HUKS_TAG_DERIVED_AGREED_KEY_STORAGE_FLAG = OH_HUKS_TAG_TYPE_UINT | 29,
-    /** Type of rsa pss salt length. */
+    /**
+     * Salt length type when the PSS padding mode is used with the RSA algorithm.
+     */
     OH_HUKS_TAG_RSA_PSS_SALT_LEN_TYPE = OH_HUKS_TAG_TYPE_UINT | 30,
 
     /** Tags for access control and user authentication. The value range is 301 to 500. */
     /** All users in the multi-user scenario. */
     OH_HUKS_TAG_ALL_USERS = OH_HUKS_TAG_TYPE_BOOL | 301,
-    /** Multi-user ID. */
+    /**
+     * Multi-user ID.
+     */
     OH_HUKS_TAG_USER_ID = OH_HUKS_TAG_TYPE_UINT | 302,
-    /** Specifies whether key access control is required. */
+    /**
+     * Whether key access control is required.
+     */
     OH_HUKS_TAG_NO_AUTH_REQUIRED = OH_HUKS_TAG_TYPE_BOOL | 303,
-    /** User authentication type in key access control. */
+    /**
+     * User authentication type in key access control.
+     */
     OH_HUKS_TAG_USER_AUTH_TYPE = OH_HUKS_TAG_TYPE_UINT | 304,
-    /** Timeout duration for key access. */
+    /**
+     * Timeout duration for key access.
+     */
     OH_HUKS_TAG_AUTH_TIMEOUT = OH_HUKS_TAG_TYPE_UINT | 305,
-    /** Authentication token for the key. */
+    /**
+     * Authentication token for the key.
+     */
     OH_HUKS_TAG_AUTH_TOKEN = OH_HUKS_TAG_TYPE_BYTES | 306,
     /**
      *  Access control type. For details, see {@link OH_Huks_AuthAccessType}.
      *  This parameter must be set together with the user authentication type.
      */
     OH_HUKS_TAG_KEY_AUTH_ACCESS_TYPE = OH_HUKS_TAG_TYPE_UINT | 307,
-    /** Signature type for the key to be generated or imported. */
+    /**
+     * Signature type of the key generated or imported.
+     */
     OH_HUKS_TAG_KEY_SECURE_SIGN_TYPE = OH_HUKS_TAG_TYPE_UINT | 308,
-    /** Challenge type. For details, see {@link OH_Huks_ChallengeType}. */
+    /**
+     * Challenge type. For details, see {@link OH_Huks_ChallengeType}.
+     */
     OH_HUKS_TAG_CHALLENGE_TYPE = OH_HUKS_TAG_TYPE_UINT | 309,
     /**
      *  Position of the 8-byte valid value in a custom challenge.
@@ -909,7 +1207,9 @@ enum OH_Huks_Tag {
      */
     OH_HUKS_TAG_CHALLENGE_POS = OH_HUKS_TAG_TYPE_UINT | 310,
 
-    /** Purpose of key authentication */
+    /**
+     * Type of the key authentication purpose.
+     */
     OH_HUKS_TAG_KEY_AUTH_PURPOSE = OH_HUKS_TAG_TYPE_UINT | 311,
 
     /**
@@ -920,7 +1220,7 @@ enum OH_Huks_Tag {
     OH_HUKS_TAG_AUTH_STORAGE_LEVEL = OH_HUKS_TAG_TYPE_UINT | 316,
 
     /**
-     * Authentication mode of the user authtoken，whose optional values are from enum HuksUserAuthMode.
+     * Authentication mode of the user authtoken, whose optional values are from enum HuksUserAuthMode.
      *
      * @since 12
      */
@@ -929,13 +1229,21 @@ enum OH_Huks_Tag {
     /** Tags for key attestation. The value range is 501 to 600. */
     /** Challenge value used in the attestation. */
     OH_HUKS_TAG_ATTESTATION_CHALLENGE = OH_HUKS_TAG_TYPE_BYTES | 501,
-    /** Application ID used in the attestation. */
+    /**
+     * ID of the application, to which the key belongs, in key attestation.
+     */
     OH_HUKS_TAG_ATTESTATION_APPLICATION_ID = OH_HUKS_TAG_TYPE_BYTES | 502,
-    /** Alias of the key. */
+    /**
+     * Alias used in key attestation.
+     */
     OH_HUKS_TAG_ATTESTATION_ID_ALIAS = OH_HUKS_TAG_TYPE_BYTES | 511,
-    /** Security level used in the attestation. */
+    /**
+     * Security level used in key attestation.
+     */
     OH_HUKS_TAG_ATTESTATION_ID_SEC_LEVEL_INFO = OH_HUKS_TAG_TYPE_BYTES | 514,
-    /** Version information used in the attestation. */
+    /**
+     * Version information used in key attestation.
+     */
     OH_HUKS_TAG_ATTESTATION_ID_VERSION_INFO = OH_HUKS_TAG_TYPE_BYTES | 515,
     /**
      * @brief The tag indicates whether to overwrite the key with same alias
@@ -968,21 +1276,37 @@ enum OH_Huks_Tag {
      */
     /** Specifies whether it is a key alias. */
     OH_HUKS_TAG_IS_KEY_ALIAS = OH_HUKS_TAG_TYPE_BOOL | 1001,
-    /** Key storage mode. For details, see {@link OH_Huks_KeyStorageType}. */
+    /**
+     * Key storage mode. For details, see {@link OH_Huks_KeyStorageType}.
+     */
     OH_HUKS_TAG_KEY_STORAGE_FLAG = OH_HUKS_TAG_TYPE_UINT | 1002,
-    /** Specifies whether to allow the key to be wrapped. */
+    /**
+     * Whether to allow the key to be wrapped.
+     */
     OH_HUKS_TAG_IS_ALLOWED_WRAP = OH_HUKS_TAG_TYPE_BOOL | 1003,
-    /** Key wrap type. */
+    /**
+     * Key wrap type.
+     */
     OH_HUKS_TAG_KEY_WRAP_TYPE = OH_HUKS_TAG_TYPE_UINT | 1004,
-    /** Authentication ID. */
+    /**
+     * Authentication ID.
+     */
     OH_HUKS_TAG_KEY_AUTH_ID = OH_HUKS_TAG_TYPE_BYTES | 1005,
-    /** Role of the key. */
+    /**
+     * Role of the key.
+     */
     OH_HUKS_TAG_KEY_ROLE = OH_HUKS_TAG_TYPE_UINT | 1006,
-    /** Key flag. For details, see {@link OH_Huks_KeyFlag}. */
+    /**
+     * Key flag. For details, see {@link OH_Huks_KeyFlag}.
+     */
     OH_HUKS_TAG_KEY_FLAG = OH_HUKS_TAG_TYPE_UINT | 1007,
-    /** Specifies whether this API is asynchronous. */
+    /**
+     * Whether the invocation is asynchronous.
+     */
     OH_HUKS_TAG_IS_ASYNCHRONIZED = OH_HUKS_TAG_TYPE_UINT | 1008,
-    /** Key domain. */
+    /**
+     * Key domain.
+     */
     OH_HUKS_TAG_KEY_DOMAIN = OH_HUKS_TAG_TYPE_UINT | 1011,
     /**
      * Key access control based on device password setting status.
@@ -992,7 +1316,9 @@ enum OH_Huks_Tag {
      */
     OH_HUKS_TAG_IS_DEVICE_PASSWORD_SET = OH_HUKS_TAG_TYPE_BOOL | 1012,
 
-    /** Authenticated Encryption. */
+    /**
+     * AEAD in GCM mode.
+     */
     OH_HUKS_TAG_AE_TAG = OH_HUKS_TAG_TYPE_BYTES | 10009,
 
     /**
@@ -1002,48 +1328,64 @@ enum OH_Huks_Tag {
      */
     /** Symmetric key data. */
     OH_HUKS_TAG_SYMMETRIC_KEY_DATA = OH_HUKS_TAG_TYPE_BYTES | 20001,
-    /** Public key data of the asymmetric key pair. */
+    /**
+     * Public key data of the asymmetric key pair.
+     */
     OH_HUKS_TAG_ASYMMETRIC_PUBLIC_KEY_DATA = OH_HUKS_TAG_TYPE_BYTES | 20002,
-    /** Private key data of the asymmetric key pair. */
+    /**
+     * Private key data of the asymmetric key pair.
+     */
     OH_HUKS_TAG_ASYMMETRIC_PRIVATE_KEY_DATA = OH_HUKS_TAG_TYPE_BYTES | 20003,
 };
 
 /**
- * @brief Defines the return data, including the result code and message.
+ * @brief Defines the returned data, including a status code and related description.
  *
  * @since 9
  * @version 1.0
  */
 struct OH_Huks_Result {
-    /** Result code. */
+    /**
+     * Status code. For details, see {@link OH_Huks_ErrCode}.
+     */
     int32_t errorCode;
-    /** Description of the result code. */
+    /**
+     * Description of the status code.
+     */
     const char *errorMsg;
-    /** Other data returned. */
+    /**
+     * Other data.
+     */
     uint8_t *data;
 };
 
 /**
- * @brief Defines the structure for storing data.
+ * @brief Defines the struct of a binary large object (BLOB).
  *
  * @since 9
  * @version 1.0
  */
 struct OH_Huks_Blob {
-    /** Data size. */
+    /**
+     * Data size.
+     */
     uint32_t size;
-    /** Pointer to the memory in which the data is stored. */
+    /**
+     * Pointer to the memory in which the data is stored.
+     */
     uint8_t *data;
 };
 
 /**
- * @brief Defines the parameter structure in a parameter set.
+ * @brief Defines the types of the parameters in a parameter set.
  *
  * @since 9
  * @version 1.0
  */
 struct OH_Huks_Param {
-    /** Tag value. */
+    /**
+     * Tag value.
+     */
     uint32_t tag;
 
     union {
@@ -1061,174 +1403,254 @@ struct OH_Huks_Param {
 };
 
 /**
- * @brief Defines the structure of the parameter set.
+ * @brief Defines the struct of a parameter set.
  *
  * @since 9
  * @version 1.0
  */
 struct OH_Huks_ParamSet {
-    /** Memory size of the parameter set. */
+    /**
+     * Memory size of the parameter set.
+     */
     uint32_t paramSetSize;
-    /** Number of parameters in the parameter set. */
+    /**
+     * Number of parameters in the parameter set.
+     */
     uint32_t paramsCnt;
     /** Parameter array. */
     struct OH_Huks_Param params[];
 };
 
 /**
- * @brief Defines the structure of the certificate chain.
+ * @brief Defines the struct of a certificate chain.
  *
  * @since 9
  * @version 1.0
  */
 struct OH_Huks_CertChain {
-    /** Pointer to the certificate data. */
+    /**
+     * Pointer to the certificate data.
+     */
     struct OH_Huks_Blob *certs;
-    /** Number of certificates. */
+    /**
+     * Number of certificates.
+     */
     uint32_t certsCount;
 };
 
 /**
- * @brief Defines the key information structure.
+ * @brief Defines the struct of key information.
  *
  * @since 9
  * @version 1.0
  */
 struct OH_Huks_KeyInfo {
-    /** Alias of the key. */
+    /**
+     * Alias used in key attestation.
+     */
     struct OH_Huks_Blob alias;
-    /** Pointer to the key parameter set. */
+    /**
+     * Pointer to the key parameter set.
+     */
     struct OH_Huks_ParamSet *paramSet;
 };
 
 /**
- * @brief Defines the structure of a public key.
+ * @brief Defines the struct of a public key.
  *
  * @since 9
  * @version 1.0
  */
 struct OH_Huks_PubKeyInfo {
-    /** Algorithm of the public key. */
+    /**
+     * Algorithm of the public key.
+     */
     enum OH_Huks_KeyAlg keyAlg;
-    /** Length of the public key. */
+    /**
+     * Length of the public key.
+     */
     uint32_t keySize;
-    /** Length of the n or X value. */
+    /**
+     * Length of **n** or **X**.
+     */
     uint32_t nOrXSize;
-    /** Length of the e or Y value. */
+    /**
+     * Length of **e** or **Y**.
+     */
     uint32_t eOrYSize;
-    /** Placeholder size. */
+    /**
+     * Placeholder size.
+     */
     uint32_t placeHolder;
 };
 
 /**
- * @brief Defines the structure of an RSA key.
+ * @brief Defines the struct of an RSA key.
  *
  * @since 9
  * @version 1.0
  */
 struct OH_Huks_KeyMaterialRsa {
-    /** Algorithm of the key. */
+    /**
+     * Algorithm of the key.
+     */
     enum OH_Huks_KeyAlg keyAlg;
-    /** Length of the key. */
+    /**
+     * Length of the key.
+     */
     uint32_t keySize;
-    /** Length of the n value. */
+    /**
+     * Length of **n**.
+     */
     uint32_t nSize;
-    /** Length of the e value. */
+    /**
+     * Length of **e**.
+     */
     uint32_t eSize;
-    /** Length of the d value. */
+    /**
+     * Length of **d**.
+     */
     uint32_t dSize;
 };
 
 /**
- * @brief Defines the structure of an ECC key.
+ * @brief Defines the struct of an Elliptic Curve Cryptography (ECC) key.
  *
  * @since 9
  * @version 1.0
  */
 struct OH_Huks_KeyMaterialEcc {
-    /** Algorithm of the key. */
+    /**
+     * Algorithm of the key.
+     */
     enum OH_Huks_KeyAlg keyAlg;
-    /** Length of the key. */
+    /**
+     * Length of the key.
+     */
     uint32_t keySize;
-    /** Length of the x value. */
+    /**
+     * Length of **x**.
+     */
     uint32_t xSize;
-    /** Length of the y value. */
+    /**
+     * Length of **y**.
+     */
     uint32_t ySize;
-    /** Length of the z value. */
+    /**
+     * Length of **z**.
+     */
     uint32_t zSize;
 };
 
 /**
- * @brief Defines the structure of a DSA key.
+ * @brief Defines the struct for a DSA key.
  *
  * @since 9
  * @version 1.0
  */
 struct OH_Huks_KeyMaterialDsa {
-    /** Algorithm of the key. */
+    /**
+     * Algorithm of the key.
+     */
     enum OH_Huks_KeyAlg keyAlg;
-    /** Length of the key. */
+    /**
+     * Length of the key.
+     */
     uint32_t keySize;
-    /** Length of the x value. */
+    /**
+     * Length of **x**.
+     */
     uint32_t xSize;
-    /** Length of the y value. */
+    /**
+     * Length of **y**.
+     */
     uint32_t ySize;
-    /** Length of the p value. */
+    /**
+     * Length of **p**.
+     */
     uint32_t pSize;
-    /** Length of the q value. */
+    /**
+     * Length of **q**.
+     */
     uint32_t qSize;
-    /** Length of the g value. */
+    /**
+     * Length of **g**.
+     */
     uint32_t gSize;
 };
 
 /**
- * @brief Defines the structure of a DH key.
+ * @brief Defines the struct for a DH key.
  *
  * @since 9
  * @version 1.0
  */
 struct OH_Huks_KeyMaterialDh {
-    /** Algorithm of the key. */
+    /**
+     * Algorithm of the key.
+     */
     enum OH_Huks_KeyAlg keyAlg;
-    /** Length of the DH key. */
+    /**
+     * Length of the DH key.
+     */
     uint32_t keySize;
-    /** Length of the public key. */
+    /**
+     * Length of the public key.
+     */
     uint32_t pubKeySize;
-    /** Length of the private key. */
+    /**
+     * Length of the private key.
+     */
     uint32_t priKeySize;
-    /** Reserved. */
+    /**
+     * Reserved.
+     */
     uint32_t reserved;
 };
 
 /**
- * @brief Defines the structure of a 25519 key.
+ * @brief Defines a struct of a 25519 key.
  *
  * @since 9
  * @version 1.0
  */
 struct OH_Huks_KeyMaterial25519 {
-    /** Algorithm of the key. */
+    /**
+     * Algorithm of the key.
+     */
     enum OH_Huks_KeyAlg keyAlg;
-    /** Length of the 25519 key. */
+    /**
+     * Length of the 25519 key.
+     */
     uint32_t keySize;
-    /** Length of the public key. */
+    /**
+     * Length of the public key.
+     */
     uint32_t pubKeySize;
-    /** Length of the private key. */
+    /**
+     * Length of the private key.
+     */
     uint32_t priKeySize;
-    /** Reserved. */
+    /**
+     * Reserved.
+     */
     uint32_t reserved;
 };
 
 /**
- * @brief Defines the structure of the alias set.
+ * @brief Defines the struct of a key alias set.
  *
  * @since 20
  * @version 1.0
  */
 struct OH_Huks_KeyAliasSet {
-    /** Number of aliases. */
+    /**
+     * Number of key aliases.
+     */
     uint32_t aliasesCnt;
-    /** Aliases array. */
+    /**
+     * Pointer to the key alias set.
+     */
     struct OH_Huks_Blob *aliases;
 };
 

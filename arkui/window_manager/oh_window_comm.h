@@ -27,31 +27,30 @@
 /**
  * @file oh_window_comm.h
  *
- * @brief Provides the comm type definitions of windowManager on the native side.
+ * @brief The file declares the common enums and definitions of the window manager.
  *
  * @syscap SystemCapability.Window.SessionManager
  * @library libnative_window_manager.so
  * @kit ArkUI
  * @since 12
  */
+
 #ifndef OH_WINDOW_COMM_H
 #define OH_WINDOW_COMM_H
-
 #include "stdint.h"
-
 #ifdef __cplusplus
 extern "C" {
 #endif
 
 /**
- * @brief The native pixel map information defined by Image Kit.
+ * @brief Describes the pixel image information.
  *
  * @since 15
  */
 typedef struct OH_PixelmapNative;
 
 /**
- * @brief Frame metrics data object.
+ * @brief Defines a frame metric data object.
  *
  * @since 26.0.0
  */
@@ -81,82 +80,93 @@ typedef struct OH_WindowManager_DensityInfo OH_WindowManager_DensityInfo;
 typedef void (*OH_WindowManager_DensityInfoCallback)(int32_t windowId, const OH_WindowManager_DensityInfo* info);
 
 /**
- * @brief Enumerates the result types of the wm interface
+ * @brief Enumerates the status codes returned by the window manager interface.
  *
  * @since 12
  */
 typedef enum {
-    /** succ. */
-    OK = 0,
     /**
-     * @error No permission.
-     *
+     * Successful.
+     */
+    OK = 0,
+
+    /**
+     * No permission.
      * @since 15
      */
     WINDOW_MANAGER_ERRORCODE_NO_PERMISSION = 201,
+
     /**
-     * @error Param is invalid.
-     *
+     * Invalid parameter.
      * @since 15
      */
     WINDOW_MANAGER_ERRORCODE_INVALID_PARAM = 401,
+
     /**
-     * @error Device not support.
-     *
+     * Not supported by the device.
      * @since 15
      */
     WINDOW_MANAGER_ERRORCODE_DEVICE_NOT_SUPPORTED = 801,
-    /** window id is invaild. */
-    INVAILD_WINDOW_ID = 1000,
-    /** failed. */
-    SERVICE_ERROR = 2000,
+
     /**
-     * @error Window state is abnormal.
-     *
+     * Invalid window ID.
+     */
+    INVAILD_WINDOW_ID = 1000,
+
+    /**
+     * Service error.
+     */
+    SERVICE_ERROR = 2000,
+
+    /**
+     * Abnormal window status.
      * @since 15
      */
     WINDOW_MANAGER_ERRORCODE_STATE_ABNORMAL = 1300002,
+
     /**
-     * @error Window manager service works abnormally.
-     *
+     * Abnormal window manager service.
      * @since 15
      */
     WINDOW_MANAGER_ERRORCODE_SYSTEM_ABNORMAL = 1300003,
+
     /**
-     * @error Picture-In-Picture failed to destroy.
-     *
+     * Failed to destroy the PiP window.
      * @since 20
      */
     WINDOW_MANAGER_ERRORCODE_PIP_DESTROY_FAILED = 1300011,
+
     /**
-     * @error Picture-In-Picture state is abnormal.
-     *
+     * Abnormal PiP status.
      * @since 20
      */
     WINDOW_MANAGER_ERRORCODE_PIP_STATE_ABNORMAL = 1300012,
+
     /**
-     * @error Picture-In-Picture failed to create.
-     *
+     * Failed to create the PiP window.
      * @since 20
      */
     WINDOW_MANAGER_ERRORCODE_PIP_CREATE_FAILED = 1300013,
+
     /**
-     * @error Picture-In-Picture internal error.
-     *
+     * An internal error occurs in PiP. Possible causes:<br>1. The window on which the PiP feature depends is abnormal.
+     * For example, the window is empty. 2. The PiP controller is abnormal.
      * @since 20
      */
     WINDOW_MANAGER_ERRORCODE_PIP_INTERNAL_ERROR = 1300014,
+
     /**
-     * @error Picture-In-Picture repeated operation.
-     *
+     * Repeated PiP operation.
      * @since 20
      */
     WINDOW_MANAGER_ERRORCODE_PIP_REPEATED_OPERATION = 1300015,
+
     /**
-     * @error Parameter is incorrect.
+     * Incorrect parameter. Possible causes:<br>1. The parameter value range is invalid.
+     * 2. The number of parameters is invalid. 3. The parameter type is invalid.
      * @since 20
      */
-    WINDOW_MANAGER_ERRORCODE_INCORRECT_PARAM = 1300016,
+    WINDOW_MANAGER_ERRORCODE_INCORRECT_PARAM = 1300016
 } WindowManager_ErrorCode;
 
 /**
@@ -165,129 +175,214 @@ typedef enum {
  * @since 15
  */
 typedef enum {
-    /** System. */
+    /**
+     * System avoid area.
+     */
     WINDOW_MANAGER_AVOID_AREA_TYPE_SYSTEM = 0,
-    /** Cutout. */
+
+    /**
+     * Cutout area.
+     */
     WINDOW_MANAGER_AVOID_AREA_TYPE_CUTOUT = 1,
-    /** System gesture. */
+
+    /**
+     * System gesture area.
+     */
     WINDOW_MANAGER_AVOID_AREA_TYPE_SYSTEM_GESTURE = 2,
-    /** Keyboard. */
+
+    /**
+     * Keyboard area.
+     */
     WINDOW_MANAGER_AVOID_AREA_TYPE_KEYBOARD = 3,
-    /** Navigation indicator. */
-    WINDOW_MANAGER_AVOID_AREA_TYPE_NAVIGATION_INDICATOR = 4,
+
+    /**
+     * Navigation bar area.
+     */
+    WINDOW_MANAGER_AVOID_AREA_TYPE_NAVIGATION_INDICATOR = 4
 } WindowManager_AvoidAreaType;
 
 /**
- * @brief The type of a window
+ * @brief Enumerates the window types.
  *
  * @since 15
  */
 typedef enum {
-    /** Sub window. */
+    /**
+     * Child window.
+     */
     WINDOW_MANAGER_WINDOW_TYPE_APP = 0,
-    /** Main window. */
+
+    /**
+     * Main window.
+     */
     WINDOW_MANAGER_WINDOW_TYPE_MAIN = 1,
-    /** Float. */
+
+    /**
+     * Float window.
+     */
     WINDOW_MANAGER_WINDOW_TYPE_FLOAT = 8,
-    /** Dialog. */
-    WINDOW_MANAGER_WINDOW_TYPE_DIALOG = 16,
+
+    /**
+     * Dialog window.
+     */
+    WINDOW_MANAGER_WINDOW_TYPE_DIALOG = 16
 } WindowManager_WindowType;
 
 /**
- * @brief Defines the window rect data structure.
+ * @brief The struct describes the window rectangle, including the window position, width, and height.
  *
  * @since 15
  */
 typedef struct {
-    /** X-axis of the window. */
+    /**
+     * X coordinate of the window, in px. The value is an integer.
+     */
     int32_t posX;
-    /** Y-axis of the window. */
+    /**
+     * Y coordinate of the window, in px. The value is an integer.
+     */
     int32_t posY;
-    /** Width of the window. */
+    /**
+     * Window width, in px. The value is an integer.
+     */
     uint32_t width;
-    /** Height of the window. */
+    /**
+     * Window height, in px. The value is an integer.
+     */
     uint32_t height;
 } WindowManager_Rect;
 
 /**
- * @brief Properties of window
- *
- * @since 15
-*/
-typedef struct {
-    /** The position and size of the window. */
-    WindowManager_Rect windowRect;
-    /** The position relative to the window and size of drawable area. */
-    WindowManager_Rect drawableRect;
-    /** Window type. */
-    WindowManager_WindowType type;
-    /** Whether the window is displayed in full screen mode. The default value is false. */
-    bool isFullScreen;
-    /** Whether the window layout is full screen mode. The default value is false. */
-    bool isLayoutFullScreen;
-    /** Whether the window can gain focus. The default value is true. */
-    bool focusable;
-    /** Whether the window is touchable. The default value is false. */
-    bool touchable;
-    /** Brightness value of window. */
-    float brightness;
-    /** Whether keep screen on. */
-    bool isKeepScreenOn;
-    /** Whether make window in privacy mode or not. */
-    bool isPrivacyMode;
-    /** Whether is transparent or not. */
-    bool isTransparent;
-    /** Window id. */
-    uint32_t id;
-    /** Display id. */
-    uint32_t displayId;
-} WindowManager_WindowProperties;
-
-/**
- * @brief Defines the avoid area data structure.
- *
- * @since 15
- */
-typedef struct {
-    /** Top rect of the avoid area. */
-    WindowManager_Rect topRect;
-    /** Left rect of the avoid area. */
-    WindowManager_Rect leftRect;
-    /** Right rect of the avoid area. */
-    WindowManager_Rect rightRect;
-    /** Bottom rect of the avoid area. */
-    WindowManager_Rect bottomRect;
-} WindowManager_AvoidArea;
-
-/**
- * @brief Main window info
+ * @brief Describes the configuration of the main window screenshot.
  *
  * @since 21
  */
 typedef struct {
-    /** Display id of the window. */
+    /**
+     * Whether the existing screenshot of the main window should be used. The default value is **true**. When it is set
+     * to **true**, the system uses the existing screenshot of the main window, or captures the latest screenshot if no
+     * existing screenshot is saved. When it is set to **false**, the system captures the latest screenshot of the main
+     * window.
+     */
+    bool useCache;
+} WindowManager_WindowSnapshotConfig;
+
+/**
+ * @brief The struct describes the main window information.
+ *
+ * @since 21
+ */
+typedef struct {
+    /**
+     * ID of the display to which the main window belongs.
+     */
     uint64_t displayId;
-    /** Window id. */
+    /**
+     * Window ID. The default value is **0**, and the value is an integer.
+     */
     int32_t windowId;
-    /** Showing state of the window. */
+    /**
+     * Foreground/Background status of the main window. **true** if the main window is in the foreground, **false**
+     * otherwise.
+     */
     bool showing;
-    /** Label of the window. */
+    /**
+     * Pointer to the task name of the main window.
+     */
     const char* label;
 } WindowManager_MainWindowInfo;
 
 /**
- * @brief Window snapshot config info
+ * @brief The struct describes the window properties.
  *
- * @since 21
+ * @since 15
+*/
+typedef struct {
+    /**
+     * Position and size of the window.
+     */
+    WindowManager_Rect windowRect;
+    /**
+     * Size of the drawable area within the window.
+     */
+    WindowManager_Rect drawableRect;
+    /**
+     * Window type.
+     */
+    WindowManager_WindowType type;
+    /**
+     * Whether the window is in full-screen mode. The default value is **false**. **true** if in full-screen mode, **
+     * false** otherwise.
+     */
+    bool isFullScreen;
+    /**
+     * Whether the window layout is immersive. The default value is **false**. **true** if immersive, **false**
+     * otherwise.
+     */
+    bool isLayoutFullScreen;
+    /**
+     * Whether the window is focusable. The default value is **true**. **true** if focusable, **false** otherwise.
+     */
+    bool focusable;
+    /**
+     * Whether the window is touchable. The default value is **true**. **true** if touchable, **false** otherwise.
+     */
+    bool touchable;
+    /**
+     * Screen brightness of the window. The value is a floating-point number in the range [0.0, 1.0] or is set to **-1.
+     * 0**, where **1.0** indicates the brightest, and **-1.0** is the default brightness.
+     */
+    float brightness;
+    /**
+     * Whether the screen is steady on. The default value is **false**. **true** if steady on, **false** otherwise.
+     */
+    bool isKeepScreenOn;
+    /**
+     * Whether privacy mode is enabled for the window. The default value is **false**. **true** if enabled, **false**
+     * otherwise.
+     */
+    bool isPrivacyMode;
+    /**
+     * Whether the window is transparent. The default value is **false**. **true** if transparent, **false** otherwise.
+     */
+    bool isTransparent;
+    /**
+     * Window ID. The default value is **0**, and the value is an integer.
+     */
+    uint32_t id;
+    /**
+     * ID of the screen where the window is located. By default, the ID of the primary screen is returned. The value is
+     * an integer.
+     */
+    uint32_t displayId;
+} WindowManager_WindowProperties;
+
+/**
+ * @brief The struct describes the avoid area.
+ *
+ * @since 15
  */
 typedef struct {
-    /** Use cached windows' snapshot. */
-    bool useCache;
-} WindowManager_WindowSnapshotConfig;
-
+    /**
+     * Top rectangle of the avoid area.
+     */
+    WindowManager_Rect topRect;
+    /**
+     * Left rectangle of the avoid area.
+     */
+    WindowManager_Rect leftRect;
+    /**
+     * Right rectangle of the avoid area.
+     */
+    WindowManager_Rect rightRect;
+    /**
+     * Bottom rectangle of the avoid area.
+     */
+    WindowManager_Rect bottomRect;
+} WindowManager_AvoidArea;
 #ifdef __cplusplus
 }
 #endif
-
 #endif // OH_WINDOW_COMM_H
+
 /** @} */

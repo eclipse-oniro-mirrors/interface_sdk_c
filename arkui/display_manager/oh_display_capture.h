@@ -27,7 +27,7 @@
 /**
  * @file oh_display_capture.h
  *
- * @brief Defines the data structures for the C APIs of the display capture.
+ * @brief The file declares the capability to take screenshots.
  *
  * @kit ArkUI
  * @library libnative_display_manager.so
@@ -38,33 +38,32 @@
 
 #ifndef OH_NATIVE_DISPLAY_CAPTURE_H
 #define OH_NATIVE_DISPLAY_CAPTURE_H
-
 #include "multimedia/image_framework/image/pixelmap_native.h"
 #include "oh_display_info.h"
-
 #ifdef __cplusplus
 extern "C" {
 #endif
 
 /**
- * @brief Capture a screen pixelmap of the specified display.
+ * @brief Takes a screenshot of the entire screen. This function can be used to capture a full-screen screenshot on the
+ * specified display.
  *
  * @permission ohos.permission.CUSTOM_SCREEN_CAPTURE or ohos.permission.CUSTOM_SCREEN_RECORDING [since 22]
  * @permission ohos.permission.CUSTOM_SCREEN_CAPTURE [since 14]
- * @param displayId The ID of the display to be captured.
- * @param pixelMap The output pixel map of the captured display.
- * @return { @link DISPLAY_MANAGER_OK } If the operation is successful.
- *         { @link DISPLAY_MANAGER_ERROR_NO_PERMISSION } If no permission.
- *         { @link DISPLAY_MANAGER_ERROR_INVALID_PARAM } If Parameter error.
- *         { @link DISPLAY_MANAGER_ERROR_DEVICE_NOT_SUPPORTED } If device not support.
- *         { @link DISPLAY_MANAGER_ERROR_SYSTEM_ABNORMAL } If display manager service works abnormally.
+ * @param displayId ID of the display. The value must be a non-negative integer.
+ * @param pixelMap Double pointer to an OH_PixelmapNative object, which is the screenshot taken.
+ * @return {@link DISPLAY_MANAGER_OK } If the operation is successful.
+ *     <br>{@link DISPLAY_MANAGER_ERROR_NO_PERMISSION } If no permission.
+ *     <br>{@link DISPLAY_MANAGER_ERROR_INVALID_PARAM } If Parameter error.
+ *     <br>{@link DISPLAY_MANAGER_ERROR_DEVICE_NOT_SUPPORTED } If device not support.
+ *     <br>{@link DISPLAY_MANAGER_ERROR_SYSTEM_ABNORMAL } If display manager service works abnormally.
  * @since 14
  */
 NativeDisplayManager_ErrorCode OH_NativeDisplayManager_CaptureScreenPixelmap(uint32_t displayId,
     OH_PixelmapNative **pixelMap);
-
 #ifdef __cplusplus
 }
 #endif
+
 /** @} */
 #endif // OH_NATIVE_DISPLAY_CAPTURE_H

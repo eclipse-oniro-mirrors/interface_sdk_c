@@ -4,7 +4,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -12,7 +12,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 /**
  * @addtogroup LowPowerAudioSink
  * @{
@@ -22,12 +21,12 @@
  *
  * @since 20
  */
-
 /**
  * @file lowpower_audio_sink.h
  *
- * @brief Declare the Native API used for lowpower audio sink.
- *
+ * @brief The file declares the native APIs provided by the OH_LowPowerAudioSink instance. You can use the APIs to
+ * implement low-power audio playback.
+ * 
  * @library liblowpower_avsink.so
  * @kit MediaKit
  * @syscap SystemCapability.Multimedia.Media.LowPowerAVSink
@@ -49,274 +48,235 @@ extern "C" {
 #endif
 
 /**
- * @brief Creates a lowpower audio sink instance from the mime type, which is recommended in most cases.
- *
- * @param {const char*} mime mime type description string, refer to {@link AVCODEC_MIME_TYPE}
- * @return Returns a Pointer to an LowPowerAudioSink instance.
- * Return nullptr if memory ran out or the mime type is not supported.
+ * @brief Creates an OH_LowPowerAudioSink instance.
+ * 
+ * @param mime mime type description string, refer to {@link AVCODEC_MIME_TYPE}
+ * @return Pointer to the OH_LowPowerAudioSink instance created. If the operation fails, nullptr is returned.
  * @since 20
  */
 OH_LowPowerAudioSink* OH_LowPowerAudioSink_CreateByMime(const char* mime);
 
 /**
- * @brief To configure the lowpower audio sink, typically, you need to configure the description information of the
- * decoded audio track, which can be extracted from the OH_AVSource. This interface must be called before Prepare
- * is called.
- *
- * @param {OH_LowPowerAudioSink*} sink Pointer to an OH_LowPowerAudioSink instance
- * @param {OH_AVFormat*} format A pointer to an OH_AVFormat to give the description of the audio track to be decoded
- * @return Returns AV_ERR_OK if the execution is successful,
- * otherwise returns a specific error code, refer to {@link OH_AVErrCode}.
- * {@link AV_ERR_INVALID_VAL} the sink or format is nullptr or invalid. Invalid param in format.
- * {@link AV_ERR_UNSUPPORT} unsupported format.
- * {@link AV_ERR_SERVICE_DIED} media service is died.
- * {@link AV_ERR_OPERATE_NOT_PERMIT} operation not permitted.
+ * @brief Configures an OH_LowPowerAudioSink instance. This function must be called before {@link OH_LowPowerAudioSink_Prepare}.
+ * 
+ * @param sink Pointer to an OH_LowPowerAudioSink instance
+ * @param format A pointer to an OH_AVFormat to give the description of the audio track to be decoded
+ * @return {@link AV_ERR_OK}: The operation is successful.
+ * {@link AV_ERR_INVALID_VA}: An input parameter is nullptr or invalid.
+ * {@link AV_ERR_UNSUPPORT}: The format is not supported.
+ * {@link AV_ERR_SERVICE_DIED}: The media server is destroyed.
+ * {@link AV_ERR_OPERATE_NOT_PERMIT}: The operation is not supported.
  * @since 20
  */
 OH_AVErrCode OH_LowPowerAudioSink_Configure(OH_LowPowerAudioSink* sink, const OH_AVFormat* format);
 
 /**
- * @brief Set dynamic parameters to the lowpower audio sink.
- * Note: This interface can only be called after the decoder is started.
- * At the same time, incorrect parameter settings may cause audio sink failure.
- *
- * @param {OH_LowPowerAudioSink*} sink Pointer to an OH_LowPowerAudioSink instance
- * @param {OH_AVFormat*} format pointer to an OH_AVFormat instance
- * @return Returns AV_ERR_OK if the execution is successful,
- * otherwise returns a specific error code, refer to {@link OH_AVErrCode}.
- * {@link AV_ERR_INVALID_VAL} the sink or format is nullptr or invalid. Invalid param in format.
- * {@link AV_ERR_UNSUPPORT} unsupported format.
- * {@link AV_ERR_SERVICE_DIED} media service is died.
- * {@link AV_ERR_OPERATE_NOT_PERMIT} operation not permitted.
+ * @brief Sets parameters for an OH_LowPowerAudioSink instance. The parameters can be dynamically set after {@link OH_LowPowerAudioSink_Prepare}.
+ * 
+ * @param sink Pointer to an OH_LowPowerAudioSink instance
+ * @param format pointer to an OH_AVFormat instance
+ * @return {@link AV_ERR_OK}: The operation is successful.
+ * {@link AV_ERR_INVALID_VA}: An input parameter is nullptr or invalid.
+ * {@link AV_ERR_UNSUPPORT}: The format is not supported.
+ * {@link AV_ERR_SERVICE_DIED}: The media server is destroyed.
+ * {@link AV_ERR_OPERATE_NOT_PERMIT}: The operation is not supported.
  * @since 20
  */
 OH_AVErrCode OH_LowPowerAudioSink_SetParameter(OH_LowPowerAudioSink* sink, const OH_AVFormat* format);
 
 /**
- * @brief Get parameter of current lowpower audio sink.
- *
- * @param {OH_LowPowerAudioSink*} sink Pointer to an OH_LowPowerAudioSink instance
- * @param {OH_AVFormat*} format pointer to an OH_AVFormat instance
- * @return Returns AV_ERR_OK if the execution is successful,
- * otherwise returns a specific error code, refer to {@link OH_AVErrCode}.
- * {@link AV_ERR_INVALID_VAL} the sink or format is nullptr or invalid. Invalid param in format.
- * {@link AV_ERR_OPERATE_NOT_PERMIT} operation not permitted.
+ * @brief Obtains the parameters of an OH_LowPowerAudioSink instance.
+ * 
+ * @param sink Pointer to an OH_LowPowerAudioSink instance
+ * @param format pointer to an OH_AVFormat instance
+ * @return {@link AV_ERR_OK}: The operation is successful.
+ * {@link AV_ERR_INVALID_VA}: An input parameter is nullptr or invalid.
+ * {@link AV_ERR_OPERATE_NOT_PERMIT}: The operation is not supported.
  * @since 20
  */
 OH_AVErrCode OH_LowPowerAudioSink_GetParameter(OH_LowPowerAudioSink* sink, OH_AVFormat* format);
 
 /**
- * @brief To prepare the internal resources of the lowpower audio sink, the Configure interface must be called before
- * calling this interface.
- *
- * @param {OH_LowPowerAudioSink*} sink Pointer to an OH_LowPowerAudioSink instance
- * @return Returns AV_ERR_OK if the execution is successful,
- * otherwise returns a specific error code, refer to {@link OH_AVErrCode}.
- * {@link AV_ERR_INVALID_VAL} the sink or format is nullptr or invalid. Invalid param in format.
- * {@link AV_ERR_UNSUPPORT} unsupported format.
- * {@link AV_ERR_SERVICE_DIED} media service is died.
- * {@link AV_ERR_OPERATE_NOT_PERMIT} operation not permitted.
+ * @brief Prepares an OH_LowPowerAudioSink instance for decoding and rendering. This function must be called after {@link OH_LowPowerAudioSink_Configure}.
+ * 
+ * @param sink Pointer to an OH_LowPowerAudioSink instance
+ * @return {@link AV_ERR_OK}: The operation is successful.
+ * {@link AV_ERR_INVALID_VA}: An input parameter is nullptr or invalid.
+ * {@link AV_ERR_UNSUPPORT}: The format is not supported.
+ * {@link AV_ERR_SERVICE_DIED}: The media server is destroyed.
+ * {@link AV_ERR_OPERATE_NOT_PERMIT}: The operation is not supported.
  * @since 20
  */
 OH_AVErrCode OH_LowPowerAudioSink_Prepare(OH_LowPowerAudioSink* sink);
 
 /**
- * @brief Start the lowpower audio sink, this interface must be called after the Prepare is successful.
- * After being successfully started, the lowpower audio sink will start reporting DataNeeded events.
- *
- * @param {OH_LowPowerAudioSink*} sink Pointer to an OH_LowPowerAudioSink instance
- * @return Returns AV_ERR_OK if the execution is successful,
- * otherwise returns a specific error code, refer to {@link OH_AVErrCode}.
- * {@link AV_ERR_INVALID_VAL} the sink or format is nullptr or invalid. Invalid param in format.
- * {@link AV_ERR_UNSUPPORT} unsupported format.
- * {@link AV_ERR_SERVICE_DIED} media service is died.
- * {@link AV_ERR_OPERATE_NOT_PERMIT} operation not permitted.
+ * @brief Starts an OH_LowPowerAudioSink instance. This function must be called after a successful call to {@link OH_LowPowerAudioSink_Prepare}.
+ * 
+ * @param sink Pointer to an OH_LowPowerAudioSink instance
+ * @return {@link AV_ERR_OK}: The operation is successful.
+ * {@link AV_ERR_INVALID_VA}: An input parameter is nullptr or invalid.
+ * {@link AV_ERR_UNSUPPORT}: The format is not supported.
+ * {@link AV_ERR_SERVICE_DIED}: The media server is destroyed.
+ * {@link AV_ERR_OPERATE_NOT_PERMIT}: The operation is not supported.
  * @since 20
  */
 OH_AVErrCode OH_LowPowerAudioSink_Start(OH_LowPowerAudioSink* sink);
 
 /**
- * @brief Pause the lowpower audio sink, this interface must be called after the Start or Resume is successful.
- * After being successfully paused, the lowpower audio sink will pause reporting DataNeeded events..
- *
- * @param {OH_LowPowerAudioSink*} sink Pointer to an OH_LowPowerAudioSink instance
- * @return Returns AV_ERR_OK if the execution is successful,
- * otherwise returns a specific error code, refer to {@link OH_AVErrCode}.
- * {@link AV_ERR_INVALID_VAL} the sink or format is nullptr or invalid. Invalid param in format.
- * {@link AV_ERR_SERVICE_DIED} media service is died.
- * {@link AV_ERR_OPERATE_NOT_PERMIT} operation not permitted.
+ * @brief Pauses an OH_LowPowerAudioSink instance. This function must be called after {@link OH_LowPowerAudioSink_Start}
+ * or {@link OH_LowPowerAudioSink_Resume}.
+ * 
+ * @param sink Pointer to an OH_LowPowerAudioSink instance
+ * @return {@link AV_ERR_OK}: The operation is successful.
+ * {@link AV_ERR_INVALID_VA}: An input parameter is nullptr or invalid.
+ * {@link AV_ERR_SERVICE_DIED}: The media server is destroyed.
+ * {@link AV_ERR_OPERATE_NOT_PERMIT}: The operation is not supported.
  * @since 20
  */
 OH_AVErrCode OH_LowPowerAudioSink_Pause(OH_LowPowerAudioSink* sink);
 
 /**
- * @brief Resume the lowpower audio sink, this interface must be called after the Pause is successful.
- * After being successfully resumed, the lowpower audio sink will resume reporting DataNeeded events.
- *
- * @param {OH_LowPowerAudioSink*} sink Pointer to an OH_LowPowerAudioSink instance
- * @return Returns AV_ERR_OK if the execution is successful,
- * otherwise returns a specific error code, refer to {@link OH_AVErrCode}.
- * {@link AV_ERR_INVALID_VAL} the sink or format is nullptr or invalid. Invalid param in format.
- * {@link AV_ERR_SERVICE_DIED} media service is died.
- * {@link AV_ERR_OPERATE_NOT_PERMIT} operation not permitted.
+ * @brief Resumes an OH_LowPowerAudioSink instance. This function must be called after {@link OH_LowPowerAudioSink_Pause}.
+ * 
+ * @param sink Pointer to an OH_LowPowerAudioSink instance
+ * @return {@link AV_ERR_OK}: The operation is successful.
+ * {@link AV_ERR_INVALID_VA}: An input parameter is nullptr or invalid.
+ * {@link AV_ERR_SERVICE_DIED}: The media server is destroyed.
+ * {@link AV_ERR_OPERATE_NOT_PERMIT}: The operation is not supported.
  * @since 20
  */
 OH_AVErrCode OH_LowPowerAudioSink_Resume(OH_LowPowerAudioSink* sink);
 
 /**
- * @brief Clear cache data in the lowpower audio sink, this interface is suggested to not be called after the Start
- * or Resume. It should be noted that need to re-enter if the codec has been input before Codec-Specific-Data.
- *
- * @param {OH_LowPowerAudioSink*} sink Pointer to an OH_LowPowerAudioSink instance
- * @return Returns AV_ERR_OK if the execution is successful,
- * otherwise returns a specific error code, refer to {@link OH_AVErrCode}.
- * {@link AV_ERR_INVALID_VAL} the sink or format is nullptr or invalid. Invalid param in format.
- * {@link AV_ERR_SERVICE_DIED} media service is died.
- * {@link AV_ERR_OPERATE_NOT_PERMIT} operation not permitted.
+ * @brief Clears all input and output data from the decoders and render buffers of an OH_LowPowerAudioSink instance.
+ * 
+ * @param sink Pointer to an OH_LowPowerAudioSink instance
+ * @return {@link AV_ERR_OK}: The operation is successful.
+ * {@link AV_ERR_INVALID_VA}: An input parameter is nullptr or invalid.
+ * {@link AV_ERR_SERVICE_DIED}: The media server is destroyed.
+ * {@link AV_ERR_OPERATE_NOT_PERMIT}: The operation is not supported.
  * @since 20
  */
 OH_AVErrCode OH_LowPowerAudioSink_Flush(OH_LowPowerAudioSink* sink);
 
 /**
- * @brief Stop the lowpower audio sink.
- *
- * @param {OH_LowPowerAudioSink*} sink Pointer to an OH_LowPowerAudioSink instance
- * @return Returns AV_ERR_OK if the execution is successful,
- * otherwise returns a specific error code, refer to {@link OH_AVErrCode}.
- * {@link AV_ERR_INVALID_VAL} the sink or format is nullptr or invalid. Invalid param in format.
- * {@link AV_ERR_SERVICE_DIED} media service is died.
- * {@link AV_ERR_OPERATE_NOT_PERMIT} operation not permitted.
+ * @brief Stops an OH_LowPowerAudioSink instance.
+ * 
+ * @param sink Pointer to an OH_LowPowerAudioSink instance
+ * @return {@link AV_ERR_OK}: The operation is successful.
+ * {@link AV_ERR_INVALID_VA}: An input parameter is nullptr or invalid.
+ * {@link AV_ERR_SERVICE_DIED}: The media server is destroyed.
+ * {@link AV_ERR_OPERATE_NOT_PERMIT}: The operation is not supported.
  * @since 20
  */
 OH_AVErrCode OH_LowPowerAudioSink_Stop(OH_LowPowerAudioSink* sink);
 
 /**
- * @brief Reset the lowpower audio sink. To reuse this instance, you need to call the Configure.
- *
- * @param {OH_LowPowerAudioSink*} sink Pointer to an OH_LowPowerAudioSink instance
- * @return Returns AV_ERR_OK if the execution is successful,
- * otherwise returns a specific error code, refer to {@link OH_AVErrCode}
- * {@link AV_ERR_INVALID_VAL} the sink or format is nullptr or invalid. Invalid param in format.
- * {@link AV_ERR_SERVICE_DIED} media service is died.
- * {@link AV_ERR_OPERATE_NOT_PERMIT} operation not permitted.
+ * @brief Resets an OH_LowPowerAudioSink instance.
+ * 
+ * @param sink Pointer to an OH_LowPowerAudioSink instance
+ * @return {@link AV_ERR_OK}: The operation is successful.
+ * {@link AV_ERR_INVALID_VA}: An input parameter is nullptr or invalid.
+ * {@link AV_ERR_SERVICE_DIED}: The media server is destroyed.
+ * {@link AV_ERR_OPERATE_NOT_PERMIT}: The operation is not supported.
  * @since 20
  */
 OH_AVErrCode OH_LowPowerAudioSink_Reset(OH_LowPowerAudioSink* sink);
 
 /**
- * @brief Clear the internal resources of the lowpower audio sink and destroy the lowpower audio sink instance.
- *
- * @param {OH_LowPowerAudioSink*} sink Pointer to an OH_LowPowerAudioSink instance
- * @return Returns AV_ERR_OK if the execution is successful,
- * otherwise returns a specific error code, refer to {@link OH_AVErrCode}
- * {@link AV_ERR_INVALID_VAL} the sink or format is nullptr or invalid. Invalid param in format.
- * {@link AV_ERR_SERVICE_DIED} media service is died.
- * {@link AV_ERR_OPERATE_NOT_PERMIT} operation not permitted.
+ * @brief Clears internal resources of an OH_LowPowerAudioSink instance and destroys the instance. You only need to
+ * call the function once.
+ * 
+ * @param sink Pointer to an OH_LowPowerAudioSink instance
+ * @return {@link AV_ERR_OK}: The operation is successful.
+ * {@link AV_ERR_INVALID_VA}: An input parameter is nullptr or invalid.
+ * {@link AV_ERR_SERVICE_DIED}: The media server is destroyed.
+ * {@link AV_ERR_OPERATE_NOT_PERMIT}: The operation is not supported.
  * @since 20
  */
 OH_AVErrCode OH_LowPowerAudioSink_Destroy(OH_LowPowerAudioSink* sink);
 
 /**
- * @brief Set volume of current lowpower audio sink.
- *
- * @param {OH_LowPowerAudioSink*} sink Pointer to an OH_LowPowerAudioSink instance
- * @param {const float} volume Volume to set which changes from 0.0 to 1.0
- * @return Returns AV_ERR_OK if the execution is successful,
- * otherwise returns a specific error code, refer to {@link OH_AVErrCode}
- * {@link AV_ERR_INVALID_VAL} the sink or format is nullptr or invalid. Invalid param in format.
- * {@link AV_ERR_SERVICE_DIED} media service is died.
- * {@link AV_ERR_OPERATE_NOT_PERMIT} operation not permitted.
+ * @brief Sets the rendering volume for an OH_LowPowerAudioSink instance.
+ * 
+ * @param sink Pointer to an OH_LowPowerAudioSink instance
+ * @param volume Volume to set which changes from 0.0 to 1.0
+ * @return {@link AV_ERR_OK}: The operation is successful.
+ * {@link AV_ERR_INVALID_VA}: An input parameter is nullptr or invalid.
+ * {@link AV_ERR_SERVICE_DIED}: The media server is destroyed.
+ * {@link AV_ERR_OPERATE_NOT_PERMIT}: The operation is not supported.
  * @since 20
  */
 OH_AVErrCode OH_LowPowerAudioSink_SetVolume(OH_LowPowerAudioSink* sink, const float volume);
 
 /**
- * @brief Set playback speed for the lowpower audio sink.
- *
- * @param {OH_LowPowerAudioSink*} sink Pointer to an OH_LowPowerAudioSink instance
- * @param {const float} speed The playback speed value needs to be specified, the valid value is 0.25-4.0
- * @return Returns AV_ERR_OK if the execution is successful,
- * otherwise returns a specific error code, refer to {@link OH_AVErrCode}
- * {@link AV_ERR_INVALID_VAL} the sink or format is nullptr or invalid. Invalid param in format.
- * {@link AV_ERR_SERVICE_DIED} media service is died.
- * {@link AV_ERR_OPERATE_NOT_PERMIT} operation not permitted.
+ * @brief Sets the audio rendering speed for an OH_LowPowerAudioSink instance.
+ * 
+ * @param sink Pointer to an OH_LowPowerAudioSink instance
+ * @param speed The playback speed value needs to be specified, the valid value is 0.25-4.0
+ * @return {@link AV_ERR_OK}: The operation is successful.
+ * {@link AV_ERR_INVALID_VA}: An input parameter is nullptr or invalid.
+ * {@link AV_ERR_SERVICE_DIED}: The media server is destroyed.
+ * {@link AV_ERR_OPERATE_NOT_PERMIT}: The operation is not supported.
  * @since 20
  */
 OH_AVErrCode OH_LowPowerAudioSink_SetPlaybackSpeed(OH_LowPowerAudioSink* sink, const float speed);
 
 /**
- * @brief Return frame packet buffer to lowpower audio sink.
- *
- * @param {OH_LowPowerAudioSink*} sink Pointer to an OH_LowPowerAudioSink instance
- * @param {OH_AVSamplesBuffer*} samples Pointer to an OH_AVSamplesBuffer instance
- * @return Returns AV_ERR_OK if the execution is successful,
- * otherwise returns a specific error code, refer to {@link OH_AVErrCode}
- * {@link AV_ERR_INVALID_VAL} the sink or format is nullptr or invalid. Invalid param in format.
- * {@link AV_ERR_SERVICE_DIED} media service is died.
- * {@link AV_ERR_OPERATE_NOT_PERMIT} operation not permitted.
+ * @brief Provides a buffer to an OH_LowPowerAudioSink instance for procesing.
+ * 
+ * @param sink Pointer to an OH_LowPowerAudioSink instance
+ * @param samples Pointer to an OH_AVSamplesBuffer instance
+ * @return {@link AV_ERR_OK}: The operation is successful.
+ * {@link AV_ERR_INVALID_VA}: An input parameter is nullptr or invalid.
+ * {@link AV_ERR_SERVICE_DIED}: The media server is destroyed.
+ * {@link AV_ERR_OPERATE_NOT_PERMIT}: The operation is not supported.
  * @since 20
  */
 OH_AVErrCode OH_LowPowerAudioSink_ReturnSamples(OH_LowPowerAudioSink* sink, OH_AVSamplesBuffer* samples);
 
 /**
- * @brief Set the loudness gain for lowpower audio sink.
- *
- * @param {OH_LowPowerAudioSink*} sink Pointer to an OH_LowPowerAudioSink instance.
- * @param {float} loudnessGain Loudness gain to set which changes from -90.0 to 24.0, expressing in dB.
- * The default loudness gain is 0.0dB.
- * @return Returns AV_ERR_OK if the gain is set successfully;
- * otherwise, returns a specific error code as defined in {@link OH_AVErrCode}
- * {@link AV_ERR_INVALID_VAL} the sink is nullptr or loudnessGain is out of valid range.
- * {@link AV_ERR_SERVICE_DIED} media service is died.
- * @since 21
- */
-OH_AVErrCode OH_LowPowerAudioSink_SetLoudnessGain(OH_LowPowerAudioSink* sink, float loudnessGain);
-
-/**
- * @brief Register callback instance for lowpower audio sink.
- *
- * @param {OH_LowPowerAudioSink*} sink Pointer to an OH_LowPowerAudioSink instance
- * @param {OH_LowPowerAudioSinkCallback*} callback Pointer to an OH_LowPowerAudioSinkCallback instance
- * @return Returns AV_ERR_OK if the execution is successful,
- * otherwise returns a specific error code, refer to {@link OH_AVErrCode}
- * {@link AV_ERR_INVALID_VAL} the sink or format is nullptr or invalid. Invalid param in format.
- * {@link AV_ERR_SERVICE_DIED} media service is died.
- * {@link AV_ERR_OPERATE_NOT_PERMIT} operation not permitted.
+ * @brief Registers a callback for an OH_LowPowerAudioSink instance.
+ * 
+ * @param sink Pointer to an OH_LowPowerAudioSink instance
+ * @param callback Pointer to an OH_LowPowerAudioSinkCallback instance
+ * @return {@link AV_ERR_OK}: The operation is successful.
+ * {@link AV_ERR_INVALID_VA}: An input parameter is nullptr or invalid.
+ * {@link AV_ERR_SERVICE_DIED}: The media server is destroyed.
+ * {@link AV_ERR_OPERATE_NOT_PERMIT}: The operation is not supported.
  * @since 20
  */
 OH_AVErrCode OH_LowPowerAudioSink_RegisterCallback(OH_LowPowerAudioSink* sink, OH_LowPowerAudioSinkCallback* callback);
 
 /**
- * @brief Creates a lowpower audio sink callback instance.
- *
- * @return Returns a Pointer to an OH_LowPowerAudioSinkCallback instance.
- * Return nullptr if memory ran out.
+ * @brief Creates an OH_LowPowerAudioSinkCallback instance.
+ * 
+ * @return Pointer to the OH_LowPowerAudioSinkCallback instance created. If the memory is insufficient, nullptr is
+ * returned.
  * @since 20
  */
 OH_LowPowerAudioSinkCallback* OH_LowPowerAudioSinkCallback_Create(void);
 
 /**
- * @brief Destroy the lowpower audio sink callback instance.
- *
- * @param {OH_LowPowerAudioSinkCallback*} callback Pointer to an OH_LowPowerAudioSinkCallback instance
- * @return Returns AV_ERR_OK if the execution is successful,
- * otherwise returns a specific error code, refer to {@link OH_AVErrCode}
- * {@link AV_ERR_INVALID_VAL} the callback is nullptr or invalid.
+ * @brief Destroys an OH_LowPowerAudioSinkCallback instance.
+ * 
+ * @param callback Pointer to an OH_LowPowerAudioSinkCallback instance
+ * @return {@link AV_ERR_OK}: The operation is successful.
+ * {@link AV_ERR_INVALID_VA}: An input parameter is nullptr or invalid.
  * @since 20
  */
 OH_AVErrCode OH_LowPowerAudioSinkCallback_Destroy(OH_LowPowerAudioSinkCallback* callback);
 
 /**
- * @brief Add onPositionUpdated listener to the lowpower audio sink callback instance.
- *
- * @param {OH_LowPowerAudioSinkCallback*} callback Pointer to an OH_LowPowerAudioSinkCallback instance
- * @param {OH_LowPowerAudioSink_OnPositionUpdated} onPositionUpdated OH_LowPowerAudioSink_OnPositionUpdated function,
+ * @brief Sets a progress update listener for an OH_LowPowerAudioSinkCallback instance.
+ * 
+ * @param callback Pointer to an OH_LowPowerAudioSinkCallback instance
+ * @param onPositionUpdated OH_LowPowerAudioSink_OnPositionUpdated function,
  * refer to {@link OH_LowPowerAudioSink_OnPositionUpdated}
- * @param userData User specific data
- * @return Returns AV_ERR_OK if the execution is successful,
- * otherwise returns a specific error code, refer to {@link OH_AVErrCode}
- * {@link AV_ERR_INVALID_VAL} the callback is nullptr or invalid.
- * {@link AV_ERR_OPERATE_NOT_PERMIT} operation not permitted.
+ * @param userData Pointer to the data on which the caller depends when executing the callback.
+ * @return {@link AV_ERR_OK}: The operation is successful.
+ * {@link AV_ERR_INVALID_VA}: An input parameter is nullptr or invalid.
+ * {@link AV_ERR_OPERATE_NOT_PERMIT}: The operation is not supported.
  * @since 20
  */
 OH_AVErrCode OH_LowPowerAudioSinkCallback_SetPositionUpdateListener(
@@ -325,16 +285,15 @@ OH_AVErrCode OH_LowPowerAudioSinkCallback_SetPositionUpdateListener(
     void* userData);
 
 /**
- * @brief Add onDataNeeded listener to the lowpower audio sink callback instance.
- *
- * @param {OH_LowPowerAudioSinkCallback*} callback Pointer to an OH_LowPowerAudioSinkCallback instance
- * @param {OH_LowPowerAudioSink_OnDataNeeded} onDataNeeded OH_LowPowerAudioSink_OnDataNeeded function,
+ * @brief Sets a data needed listener for an OH_LowPowerAudioSinkCallback instance.
+ * 
+ * @param callback Pointer to an OH_LowPowerAudioSinkCallback instance
+ * @param onDataNeeded OH_LowPowerAudioSink_OnDataNeeded function,
  * refer to {@link OH_LowPowerAudioSink_OnDataNeeded}
- * @param {void*} userData User specific data
- * @return Returns AV_ERR_OK if the execution is successful,
- * otherwise returns a specific error code, refer to {@link OH_AVErrCode}
- * {@link AV_ERR_INVALID_VAL} the callback is nullptr or invalid.
- * {@link AV_ERR_OPERATE_NOT_PERMIT} operation not permitted.
+ * @param userData User specific data
+ * @return {@link AV_ERR_OK}: The operation is successful.
+ * {@link AV_ERR_INVALID_VA}: An input parameter is nullptr or invalid.
+ * {@link AV_ERR_OPERATE_NOT_PERMIT}: The operation is not supported.
  * @since 20
  */
 OH_AVErrCode OH_LowPowerAudioSinkCallback_SetDataNeededListener(
@@ -343,16 +302,15 @@ OH_AVErrCode OH_LowPowerAudioSinkCallback_SetDataNeededListener(
     void* userData);
 
 /**
- * @brief Add onError listener to the lowpower audio sink callback instance.
- *
- * @param {OH_LowPowerAudioSinkCallback*} callback Pointer to an OH_LowPowerAudioSinkCallback instance
- * @param {OH_LowPowerAudioSink_OnError} onError OH_LowPowerAudioSink_OnError function,
+ * @brief Sets an error listener for an OH_LowPowerAudioSinkCallback instance.
+ * 
+ * @param callback Pointer to an OH_LowPowerAudioSinkCallback instance
+ * @param onError OH_LowPowerAudioSink_OnError function,
  * refer to {@link OH_LowPowerAudioSink_OnError}
- * @param {void*} userData User specific data
- * @return Returns AV_ERR_OK if the execution is successful,
- * otherwise returns a specific error code, refer to {@link OH_AVErrCode}
- * {@link AV_ERR_INVALID_VAL} the callback is nullptr or invalid.
- * {@link AV_ERR_OPERATE_NOT_PERMIT} operation not permitted.
+ * @param userData User specific data
+ * @return {@link AV_ERR_OK}: The operation is successful.
+ * {@link AV_ERR_INVALID_VA}: An input parameter is nullptr or invalid.
+ * {@link AV_ERR_OPERATE_NOT_PERMIT}: The operation is not supported.
  * @since 20
  */
 OH_AVErrCode OH_LowPowerAudioSinkCallback_SetErrorListener(
@@ -361,16 +319,15 @@ OH_AVErrCode OH_LowPowerAudioSinkCallback_SetErrorListener(
     void* userData);
 
 /**
- * @brief Add onInterrupted listener to the lowpower audio sink callback instance.
- *
- * @param {OH_LowPowerAudioSinkCallback*} callback Pointer to an OH_LowPowerAudioSinkCallback instance
- * @param {OH_LowPowerAudioSink_OnInterrupted} onInterrupted OH_LowPowerAudioSink_OnInterrupted function,
+ * @brief Sets an audio focus interruption listener for an OH_LowPowerAudioSinkCallback instance.
+ * 
+ * @param callback Pointer to an OH_LowPowerAudioSinkCallback instance
+ * @param onInterrupted OH_LowPowerAudioSink_OnInterrupted function,
  * refer to {@link OH_LowPowerAudioSink_OnInterrupted}
- * @param {void*} userData User specific data
- * @return Returns AV_ERR_OK if the execution is successful,
- * otherwise returns a specific error code, refer to {@link OH_AVErrCode}
- * {@link AV_ERR_INVALID_VAL} the callback is nullptr or invalid.
- * {@link AV_ERR_OPERATE_NOT_PERMIT} operation not permitted.
+ * @param userData User specific data
+ * @return {@link AV_ERR_OK}: The operation is successful.
+ * {@link AV_ERR_INVALID_VA}: An input parameter is nullptr or invalid.
+ * {@link AV_ERR_OPERATE_NOT_PERMIT}: The operation is not supported.
  * @since 20
  */
 OH_AVErrCode OH_LowPowerAudioSinkCallback_SetInterruptListener(
@@ -379,16 +336,15 @@ OH_AVErrCode OH_LowPowerAudioSinkCallback_SetInterruptListener(
     void* userData);
 
 /**
- * @brief Add onDeviceChanged listener to the lowpower audio sink callback instance.
- *
- * @param {OH_LowPowerAudioSinkCallback*} callback Pointer to an OH_LowPowerAudioSink Callback instance
- * @param {OH_LowPowerAudioSink_OnDeviceChanged} onDeviceChanged OH_LowPowerAudioSink_OnDeviceChanged function,
+ * @brief Sets an audio device change listener for an OH_LowPowerAudioSinkCallback instance.
+ * 
+ * @param callback Pointer to an OH_LowPowerAudioSink Callback instance
+ * @param onDeviceChanged OH_LowPowerAudioSink_OnDeviceChanged function,
  * refer to {@link OH_LowPowerAudioSink_OnDeviceChanged}
- * @param {void*} userData User specific data
- * @return Returns AV_ERR_OK if the execution is successful,
- * otherwise returns a specific error code, refer to {@link OH_AVErrCode}
- * {@link AV_ERR_INVALID_VAL} the callback is nullptr or invalid.
- * {@link AV_ERR_OPERATE_NOT_PERMIT} operation not permitted.
+ * @param userData User specific data
+ * @return {@link AV_ERR_OK}: The operation is successful.
+ * {@link AV_ERR_INVALID_VA}: An input parameter is nullptr or invalid.
+ * {@link AV_ERR_OPERATE_NOT_PERMIT}: The operation is not supported.
  * @since 20
  */
 OH_AVErrCode OH_LowPowerAudioSinkCallback_SetDeviceChangeListener(
@@ -397,22 +353,34 @@ OH_AVErrCode OH_LowPowerAudioSinkCallback_SetDeviceChangeListener(
     void* userData);
 
 /**
- * @brief Add onEos listener to the lowpower audio sink callback instance.
- *
- * @param {OH_LowPowerAudioSinkCallback*} callback Pointer to an OH_LowPowerAudioSinkCallback instance
- * @param {OH_LowPowerAudioSink_OnEos} onEos OH_LowPowerAudioSink_OnEos function,
+ * @brief Sets an end-of-stream listener for an OH_LowPowerAudioSinkCallback instance.
+ * 
+ * @param callback Pointer to an OH_LowPowerAudioSinkCallback instance
+ * @param onEos OH_LowPowerAudioSink_OnEos function,
  * refer to {@link OH_LowPowerAudioSink_OnEos}
- * @param {void*} userData User specific data
- * @return Returns AV_ERR_OK if the execution is successful,
- * otherwise returns a specific error code, refer to {@link OH_AVErrCode}
- * {@link AV_ERR_INVALID_VAL} the callback is nullptr or invalid.
- * {@link AV_ERR_OPERATE_NOT_PERMIT} operation not permitted.
+ * @param userData User specific data
+ * @return {@link AV_ERR_OK}: The operation is successful.
+ * {@link AV_ERR_INVALID_VA}: An input parameter is nullptr or invalid.
+ * {@link AV_ERR_OPERATE_NOT_PERMIT}: The operation is not supported.
  * @since 20
  */
 OH_AVErrCode OH_LowPowerAudioSinkCallback_SetEosListener(
     OH_LowPowerAudioSinkCallback *callback,
     OH_LowPowerAudioSink_OnEos onEos,
     void* userData);
+
+/**
+ * @brief Sets the loudness gain for an OH_LowPowerAudioSink instance.
+ * 
+ * @param sink Pointer to an OH_LowPowerAudioSink instance.
+ * @param loudnessGain Loudness gain to set which changes from -90.0 to 24.0, expressing in dB.
+ * The default loudness gain is 0.0dB.
+ * @return {@link AV_ERR_OK}: The operation is successful.
+ * {@link AV_ERR_INVALID_VA}: An input parameter is nullptr or invalid.
+ * {@link AV_ERR_SERVICE_DIED}: The media server is destroyed.
+ * @since 21
+ */
+OH_AVErrCode OH_LowPowerAudioSink_SetLoudnessGain(OH_LowPowerAudioSink* sink, float loudnessGain);
 
 #ifdef __cplusplus
 }

@@ -5974,80 +5974,117 @@ int32_t OH_ArkUI_VisibleAreaEventOptions_GetExpectedUpdateInterval(ArkUI_Visible
 bool OH_ArkUI_VisibleAreaEventOptions_GetMeasureFromViewport(ArkUI_VisibleAreaEventOptions* option);
 
 /**
- *@brief Creates a TextPickerRangeContent instance.
+ * @brief Creates a TextPickerRangeContent instance.
  *
- *@param length The length of the picker array.
- *@return Returns a <b>TextPickerRangeContent</b> instance.
- *@since 19
+ * @param length The length of the picker array. Value range: [1, +∞).
+ * @return Returns a pointer to the created instance on success. Initialize each item of the array
+ *         as a null pointer;call {@link OH_ArkUI_TextPickerRangeContentArray_SetIconAtIndex} and/or
+ *         {@link OH_ArkUI_TextPickerRangeContentArray_SetTextAtIndex} for each index as needed.
+ *         Returns <b>nullptr</b> if <b>length</b> is not in <b>[1, +∞)</b>.
+ *         When the object is no longer used, release it with {@link OH_ArkUI_TextPickerRangeContentArray_Destroy}.
+ * @since 19
  */
 ArkUI_TextPickerRangeContentArray* OH_ArkUI_TextPickerRangeContentArray_Create(int32_t length);
 
 /**
- *@brief Sets the icon of items in a text picker ranges.
+ * @brief Sets the icon resource path or URI for one item in an {@link ArkUI_TextPickerRangeContentArray}.
  *
- *@param handle The TextPickerRangeContent instance for obtaining information.
- *@param icon Icon addreass.
- *@param index The index position of the value to be obtained.
- *@since 19
+ * @param handle Pointer returned by {@link OH_ArkUI_TextPickerRangeContentArray_Create}. If <b>nullptr</b>, this
+ *        function has no effect.
+ * @param icon Null-terminated C string for the icon (path or URI). The content is copied into the array; the caller
+ *        keeps ownership of <b>icon</b>. If <b>nullptr</b>, this function has no effect.
+ * @param index Index of the item to set. Valid values are greater than or equal to <b>0</b> and less than the
+ *        <b>length</b> argument passed to {@link OH_ArkUI_TextPickerRangeContentArray_Create}. Otherwise this function
+ *        does nothing.
+ * @note If an icon was already set at <b>index</b>, the previous buffer is released before assigning the new value.
+ * @since 19
  */
 void OH_ArkUI_TextPickerRangeContentArray_SetIconAtIndex(
     ArkUI_TextPickerRangeContentArray* handle, char* icon, int32_t index);
 
 /**
- *@brief Sets the text of items in a text picker ranges
+ * @brief Sets the display text for one item in an {@link ArkUI_TextPickerRangeContentArray}.
  *
- *@param handle The TextPickerRangeContent instance for obtaining information.
- *@param text Text content
- *@param index The index position of the value to be obtained.
- *@since 19
+ * @param handle Pointer returned by {@link OH_ArkUI_TextPickerRangeContentArray_Create}. If <b>nullptr</b>, this
+ *        function has no effect.
+ * @param text Null-terminated C string shown for the item. The content is copied into the array; the caller keeps
+ *        ownership of <b>text</b>. If <b>nullptr</b>, this function has no effect.
+ * @param index Index of the item to set. Valid values are greater than or equal to <b>0</b> and less than the
+ *        <b>length</b> argument passed to {@link OH_ArkUI_TextPickerRangeContentArray_Create}. Otherwise this function
+ *        does nothing.
+ * @note If text was already set at <b>index</b>, the previous buffer is released before assigning the new value.
+ * @since 19
  */
 void OH_ArkUI_TextPickerRangeContentArray_SetTextAtIndex(
     ArkUI_TextPickerRangeContentArray* handle, char* text, int32_t index);
 
 /**
- *@brief Destroy the TextPickerRangeContent instance.
+ * @brief Releases an {@link ArkUI_TextPickerRangeContentArray} created by
+ *        {@link OH_ArkUI_TextPickerRangeContentArray_Create}.
  *
- *@param handle The TextPickerRangeContent instance for obtaining information.
- *@since 19
+ * @param handle Instance to destroy. If <b>nullptr</b>, this function has no effect.
+ * @note After this call, <b>handle</b> must not be used. Do not pass pointers that were not returned by
+ *       {@link OH_ArkUI_TextPickerRangeContentArray_Create}.
+ * @since 19
  */
 void OH_ArkUI_TextPickerRangeContentArray_Destroy(ArkUI_TextPickerRangeContentArray* handle);
 
 /**
- *@brief Creates a TextCascadePickerRangeContent instance.
+ * @brief Allocates one column level of an interconnected (cascade) TextPicker range. Use with range type
+ *        {@link ARKUI_TEXTPICKER_RANGETYPE_CASCADE_RANGE_CONTENT}. The returned pointer addresses a contiguous array
+ *        of sibling nodes; each node may carry display text and an optional next-level range from
+ *        {@link OH_ArkUI_TextCascadePickerRangeContentArray_SetChildAtIndex}.
  *
- *@param length The length of the picker array.
- *@return Returns a <b>TextCascadePickerRangeContent</b> instance.
- *@since 19
+ * @param length Number of sibling entries on this column. Value range: <b>[1, +∞)</b>.
+ * @return Returns a pointer to the first sibling node when <b>length</b> is in <b>[1, +∞)</b>; returns <b>nullptr</b>
+ *         otherwise. The sibling count used for bounds checks equals <b>length</b>.
+ * @since 19
  */
 ArkUI_TextCascadePickerRangeContentArray* OH_ArkUI_TextCascadePickerRangeContentArray_Create(int32_t length);
 
 /**
- *@brief Sets the text of items in a multi text picker ranges.
+ * @brief Sets the display text for one sibling node on a cascade TextPicker level.
  *
- *@param handle The TextCascadePickerRangeContent instance for obtaining information.
- *@param text text content
- *@param index The index position of the value to be obtained.
- *@since 19
+ * @param handle Pointer returned by {@link OH_ArkUI_TextCascadePickerRangeContentArray_Create}. If <b>nullptr</b>,
+ *        this function has no effect.
+ * @param text Null-terminated C string. The content is copied; the caller keeps ownership of <b>text</b>. If
+ *        <b>nullptr</b>, this function has no effect.
+ * @param index Index of the sibling to set. Valid values are greater than or equal to <b>0</b> and less than the
+ *        <b>length</b> argument passed to {@link OH_ArkUI_TextCascadePickerRangeContentArray_Create}. Otherwise this
+ *        function does nothing.
+ * @note If text was already set at <b>index</b>, the previous buffer is released before assigning the new value.
+ * @since 19
  */
 void OH_ArkUI_TextCascadePickerRangeContentArray_SetTextAtIndex(
     ArkUI_TextCascadePickerRangeContentArray* handle, char* text, int32_t index);
 
 /**
- *@brief Sets the childs info of items in a multi text picker ranges.
+ * @brief Sets the childs info of items in a multi text picker ranges.
  *
- *@param handle The TextCascadePickerRangeContent instance for obtaining information.
- *@param child The child instance.
- *@param index The index position of the value to be obtained.
- *@since 19
+ * @param handle Pointer returned by {@link OH_ArkUI_TextCascadePickerRangeContentArray_Create}. If <b>nullptr</b>,
+ *        this function has no effect.
+ * @param child Pointer returned by {@link OH_ArkUI_TextCascadePickerRangeContentArray_Create} for the child column.
+ *        If <b>nullptr</b>, this function has no effect. If a subtree already exists at <b>index</b>, it is destroyed
+ *        with {@link OH_ArkUI_TextCascadePickerRangeContentArray_Destroy} before the new <b>child</b> is stored.
+ *        While <b>child</b> stays attached under the parent, the caller must not call
+ *        {@link OH_ArkUI_TextCascadePickerRangeContentArray_Destroy} on <b>child</b>.
+ * @param index Index of the sibling that owns the subtree. Valid values are greater than or equal to <b>0</b> and less
+ *        than the <b>length</b> argument passed to {@link OH_ArkUI_TextCascadePickerRangeContentArray_Create}.
+ *        Otherwise this function does nothing.
+ * @since 19
  */
 void OH_ArkUI_TextCascadePickerRangeContentArray_SetChildAtIndex(
     ArkUI_TextCascadePickerRangeContentArray* handle, ArkUI_TextCascadePickerRangeContentArray* child, int32_t index);
 
 /**
- *@brief Destroy the TextCascadePickerRangeContent instance.
+ * @brief Releases a cascade range level allocated with {@link OH_ArkUI_TextCascadePickerRangeContentArray_Create}.
  *
- *@param handle The TextCascadePickerRangeContent instance for obtaining information.
- *@since 19
+ * @param handle Instance to destroy. If <b>nullptr</b>, this function has no effect.
+ * @note After this call, <b>handle</b> must not be used. Do not pass pointers that were not returned by
+ *       {@link OH_ArkUI_TextCascadePickerRangeContentArray_Create}.
+ * @note Do not call {@link OH_ArkUI_TextCascadePickerRangeContentArray_Destroy} on a <b>child</b> while
+ *       it is still stored in a parent's {@code children}.
+ * @since 19
  */
 void OH_ArkUI_TextCascadePickerRangeContentArray_Destroy(ArkUI_TextCascadePickerRangeContentArray* handle);
 
