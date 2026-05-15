@@ -798,6 +798,21 @@
     },
     {
         "first_introduced": "26.0.0",
+        "name": "OH_MD_KEY_AUDIO_MAX_INPUT_BUFFER_SIZE",
+        "type": "variable"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_MD_KEY_AUDIO_ENCODER_PTS_MODE",
+        "type": "variable"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_MD_KEY_AUDIO_ENCODER_ENABLE_SAMPLE_FORMAT_CONVERT",
+        "type": "variable"
+    },
+    {
+        "first_introduced": "26.0.0",
         "name": "OH_MD_KEY_VIDEO_DECODER_FRAME_RETENTION_MODE"
     },
     {
