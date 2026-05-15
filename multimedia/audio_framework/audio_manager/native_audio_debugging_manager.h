@@ -39,6 +39,8 @@
 #define NATIVE_AUDIO_DEBUGGING_MANAGER_H
 
 #include "native_audio_common.h"
+#include "native_audiostream_base.h"
+#include "native_audio_session_manager.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -52,10 +54,6 @@ extern "C" {
  * @since 26.0.0
  */
 typedef struct OH_AudioDebuggingManager OH_AudioDebuggingManager;
-typedef struct OH_AudioRendererStruct OH_AudioRenderer;
-typedef struct OH_AudioCapturerStruct OH_AudioCapturer;
-typedef struct OH_AudioLoopbackStruct OH_AudioLoopback;
-typedef struct OH_AudioSessionManagerStruct OH_AudioSessionManager;
 
 /**
  * @brief Gets the audio debugging manager handle, which is a singleton.
@@ -126,27 +124,6 @@ OH_AudioCommon_Result OH_AudioDebuggingManager_PrintRendererInfo(
  */
 OH_AudioCommon_Result OH_AudioDebuggingManager_PrintCapturerInfo(
     OH_AudioDebuggingManager *manager, OH_AudioCapturer *capturer, int32_t fd);
-
-/**
- * @brief Prints full audio runtime snapshot for target audio loopback instance.
- * The snapshot will contain the stream, pipe, volume and device information.
- * Note that the information details and format may vary from different version, it can only be used for
- * manual debugging, user should not rely on the information for actual function realization or file
- * content extraction.
- *
- * @param manager {@link OH_AudioDebuggingManager} handle provided by
- *     {@link OH_AudioManager_GetAudioDebuggingManager}.
- * @param loopback Pointer to the target audio loopback instance to print snapshot.
- * @param fd is a file descriptor, indicates the location that the snapshot information will be written to.
- *     If the fd is less than 0 or no writable, the snapshot information will be printed into the running log,
- *     otherwise the snapshot will be written into the file.
- * @return {@link AUDIOCOMMON_RESULT_SUCCESS} if execution succeeds.
- *     {@link AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM} 1.The param of manager is nullptr;
- *                                                    2.The param of loopback is nullptr;
- * @since 26.0.0
- */
-OH_AudioCommon_Result OH_AudioDebuggingManager_PrintLoopbackInfo(
-    OH_AudioDebuggingManager *manager, OH_AudioLoopback *loopback, int32_t fd);
 
 /**
  * @brief Prints full audio runtime snapshot for target audio session manager instance.

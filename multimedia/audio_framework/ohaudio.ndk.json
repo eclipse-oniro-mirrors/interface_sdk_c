@@ -729,10 +729,6 @@
     },
     {
         "first_introduced": "26.0.0",
-        "name": "OH_AudioDebuggingManager_PrintLoopbackInfo"
-    },
-    {
-        "first_introduced": "26.0.0",
         "name": "OH_AudioDebuggingManager_PrintSessionInfo"
     }
 ]
