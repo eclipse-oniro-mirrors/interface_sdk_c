@@ -128,7 +128,7 @@ typedef struct TransientTask_DelaySuspendInfo {
      */
     int32_t requestId;
     /**
-     * Remaining time, in ms.
+     * Actual duration of the transient task requested by the application, in milliseconds.
      *
      * @since 13
      */
