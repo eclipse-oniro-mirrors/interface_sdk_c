@@ -66,19 +66,18 @@ typedef struct OH_AudioDebuggingManager OH_AudioDebuggingManager;
 OH_AudioCommon_Result OH_AudioManager_GetAudioDebuggingManager(OH_AudioDebuggingManager **manager);
 
 /**
- * @brief Prints full audio runtime snapshot for target app.
- * The snapshot will contain the stream, pipe, volume and device information.
+ * @brief Prints full audio runtime snapshot for current app process.
+ * The snapshot will contain all audio renderers, capturers, audio session information.
  * Note that the information details and format may vary from different version, it can only be used for
  * manual debugging, user should not rely on the information for actual function realization or file
  * content extraction.
  *
- * @param manager {@link OH_AudioDebuggingManager} handle provided by
- *     {@link OH_AudioManager_GetAudioDebuggingManager}.
+ * @param manager {@link OH_AudioDebuggingManager} handle provided by {@link OH_AudioManager_GetAudioDebuggingManager}.
  * @param fd is a file descriptor, indicates the location that the snapshot information will be written to.
  *     If the fd is less than 0 or no writable, the snapshot information will be printed into the running log,
  *     otherwise the snapshot will be written into the file.
  * @return {@link AUDIOCOMMON_RESULT_SUCCESS} if execution succeeds.
- *     {@link AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM} 1.The param of manager is nullptr;
+ *     {@link AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM} The param of manager is nullptr.
  * @since 26.0.0
  */
 OH_AudioCommon_Result OH_AudioDebuggingManager_PrintAppInfo(OH_AudioDebuggingManager *manager, int32_t fd);
@@ -90,8 +89,7 @@ OH_AudioCommon_Result OH_AudioDebuggingManager_PrintAppInfo(OH_AudioDebuggingMan
  * manual debugging, user should not rely on the information for actual function realization or file
  * content extraction.
  *
- * @param manager {@link OH_AudioDebuggingManager} handle provided by
- *     {@link OH_AudioManager_GetAudioDebuggingManager}.
+ * @param manager {@link OH_AudioDebuggingManager} handle provided by {@link OH_AudioManager_GetAudioDebuggingManager}.
  * @param renderer Pointer to the target audio renderer instance to print snapshot.
  * @param fd is a file descriptor, indicates the location that the snapshot information will be written to.
  *     If the fd is less than 0 or no writable, the snapshot information will be printed into the running log,
@@ -111,8 +109,7 @@ OH_AudioCommon_Result OH_AudioDebuggingManager_PrintRendererInfo(
  * manual debugging, user should not rely on the information for actual function realization or file
  * content extraction.
  *
- * @param manager {@link OH_AudioDebuggingManager} handle provided by
- *     {@link OH_AudioManager_GetAudioDebuggingManager}.
+ * @param manager {@link OH_AudioDebuggingManager} handle provided by {@link OH_AudioManager_GetAudioDebuggingManager}.
  * @param capturer Pointer to the target audio capturer instance to print snapshot.
  * @param fd is a file descriptor, indicates the location that the snapshot information will be written to.
  *     If the fd is less than 0 or no writable, the snapshot information will be printed into the running log,
@@ -132,8 +129,7 @@ OH_AudioCommon_Result OH_AudioDebuggingManager_PrintCapturerInfo(
  * manual debugging, user should not rely on the information for actual function realization or file
  * content extraction.
  *
- * @param manager {@link OH_AudioDebuggingManager} handle provided by
- *     {@link OH_AudioManager_GetAudioDebuggingManager}.
+ * @param manager {@link OH_AudioDebuggingManager} handle provided by {@link OH_AudioManager_GetAudioDebuggingManager}.
  * @param session Pointer to the target audio session manager instance to print snapshot.
  * @param fd is a file descriptor, indicates the location that the snapshot information will be written to.
  *     If the fd is less than 0 or no writable, the snapshot information will be printed into the running log,
