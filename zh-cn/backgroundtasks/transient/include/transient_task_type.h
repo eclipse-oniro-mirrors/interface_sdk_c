@@ -125,7 +125,7 @@ typedef struct TransientTask_DelaySuspendInfo {
      */
     int32_t requestId;
     /**
-     * 剩余时间。单位：ms。
+     * 应用实际申请的短时任务时间，单位：ms。
      *
      * @since 13
      */
@@ -145,7 +145,8 @@ typedef struct TransientTask_TransientTaskInfo {
      * @since 20
      */
     int32_t remainingQuota;
-    /** 已申请的所有短时任务信息。包括短时任务请求ID、剩余时间。单位：ms。
+    /*
+     * 已申请的所有短时任务信息。包括短时任务请求ID、剩余时间。单位：ms。
      *
      * @since 20
      */
