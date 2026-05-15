@@ -42,25 +42,25 @@ extern "C" {
 #endif
 
 /**
- * @brief Enumerates the error codes.
+ * @brief 枚举错误码，详细介绍请参见{@link 通用错误码}。
  *
  * @since 21
  */
 typedef enum {
     /**
-     * Operation success.
+     * 执行成功。
      * @since 21
      */
     BUNDLE_MANAGER_ERROR_CODE_NO_ERROR = 0,
 
     /**
-     * No access permission.
+     * 权限被拒绝。
      * @since 21
      */
     BUNDLE_MANAGER_ERROR_CODE_PERMISSION_DENIED = 201,
 
     /**
-     * Invalid parameter.
+     * 参数无效。
      * @since 21
      */
     BUNDLE_MANAGER_ERROR_CODE_PARAM_INVALID = 401
