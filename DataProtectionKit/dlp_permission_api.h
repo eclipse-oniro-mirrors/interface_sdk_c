@@ -165,7 +165,7 @@ DLP_ErrCode OH_DLP_IsInSandbox(bool *isInSandbox);
  *     call this API, which is available only for non-DLP sandbox applications.</li>
  *     <li> {@link DLP_ErrCode#ERR_OH_SYSTEM_SERVICE_EXCEPTION} 19100011 - If the system ability
  *     works abnormally.</li>
- *     <li> {@link DLP_ErrCode#ERR_OH_APPLICATION_NOT_AUTHORIZED} 19100018 - If the application is not 
+ *     <li> {@link DLP_ErrCode#ERR_OH_APPLICATION_NOT_AUTHORIZED} 19100018 - If the application is not
  *     authorized.</li></ul>
  * @since 14
  */
