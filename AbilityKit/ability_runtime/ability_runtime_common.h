@@ -246,7 +246,7 @@ typedef enum {
  	   *
  	   * @since 26.0.0
  	   */
-    ABILITY_RUNTIME_ERROR_CODE_TLB_METADATA_INVALID = 16000178,
+    ABILITY_RUNTIME_ERROR_CODE_METADATA_INVALID = 16000178,
 } AbilityRuntime_ErrorCode;
 
 #ifdef __cplusplus
