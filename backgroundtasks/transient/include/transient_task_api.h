@@ -106,7 +106,7 @@ int32_t OH_BackgroundTaskManager_CancelSuspendDelay(int32_t requestId);
 
 /**
  * @brief Obtains all information about a transient task, including the remaining quota of the current day.
- * 
+ *
  * @param transientTaskInfo All information about a transient task. For details, see
  *     {@link TransientTask_TransientTaskInfo}.
  * @return <ul><li>{@link ERR_TRANSIENT_TASK_OK} 0 - Success.</li>

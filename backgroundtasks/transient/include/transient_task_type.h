@@ -44,7 +44,7 @@ extern "C" {
 
 /**
  * @brief Defines the maximum number of transient tasks at the same time.
- * 
+ *
  * @since 20
  */
 #define TRANSIENT_TASK_MAX_NUM 3
