@@ -44,14 +44,14 @@ extern "C" {
 
 /**
  * @brief 同一时刻最大短时任务数量。
- * 
+ *
  * @since 20
  */
 #define TRANSIENT_TASK_MAX_NUM 3
 
 /**
  * @brief 定义短时任务错误码。
- * 
+ *
  * @since 13
  */
 typedef enum TransientTask_ErrorCode {
@@ -113,7 +113,7 @@ typedef enum TransientTask_ErrorCode {
 
 /**
  * @brief 定义短时任务返回信息结构体。用于返回当前短时任务的任务ID和剩余时间。
- * 
+ *
  * @since 13
  * @version 1.0
  */
@@ -134,7 +134,7 @@ typedef struct TransientTask_DelaySuspendInfo {
 
 /**
  * @brief 定义所有短时任务信息结构体。用于返回当日剩余总配额和已申请的所有短时任务信息。
- * 
+ *
  * @since 20
  * @version 1.0
  */
@@ -155,7 +155,7 @@ typedef struct TransientTask_TransientTaskInfo {
 
 /**
  * @brief 定义短时任务超时回调类型。
- * 
+ *
  * @since 13
  */
 typedef void (*TransientTask_Callback)(void);

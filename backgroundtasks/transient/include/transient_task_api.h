@@ -47,7 +47,7 @@ extern "C" {
 
 /**
  * @brief Requests a transient task.
- * 
+ *
  * @param reason Reason for requesting the transient task.
  * @param callback Callback used to notify the application that the transient task is about to time out. Generally, the
  *     callback is invoked 6 seconds before the timeout.
@@ -69,7 +69,7 @@ int32_t OH_BackgroundTaskManager_RequestSuspendDelay(const char* reason,
 
 /**
  * @brief Obtains the remaining time of a transient task.
- * 
+ *
  * @param requestId Request ID of the transient task.
  * @param delayTime Pointer to the remaining time of the transient task, in ms.
  * @return <ul><li>{@link ERR_TRANSIENT_TASK_OK} 0 - Success.</li>
@@ -88,7 +88,7 @@ int32_t OH_BackgroundTaskManager_GetRemainingDelayTime(int32_t requestId, int32_
 
 /**
  * @brief Cancels a transient task.
- * 
+ *
  * @param requestId Request ID of the transient task.
  * @return <ul><li>{@link ERR_TRANSIENT_TASK_OK} 0 - Success.</li>
  *     <li>{@link ERR_TRANSIENT_TASK_INVALID_PARAM} 401 - Invalid parameter.</li>

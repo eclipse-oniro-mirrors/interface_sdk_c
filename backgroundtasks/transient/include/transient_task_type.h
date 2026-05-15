@@ -51,7 +51,7 @@ extern "C" {
 
 /**
  * @brief Enumerates the error codes available for a transient task.
- * 
+ *
  * @since 13
  */
 typedef enum TransientTask_ErrorCode {
@@ -116,7 +116,7 @@ typedef enum TransientTask_ErrorCode {
 /**
  * @brief A struct that describes the returned information about a transient task. The struct returns the ID and
  * remaining time of the transient task.
- * 
+ *
  * @since 13
  * @version 1.0
  */
@@ -138,7 +138,7 @@ typedef struct TransientTask_DelaySuspendInfo {
 /**
  * @brief A struct that describes all transient task information. The struct returns all transient task information,
  * including the remaining quota of the current day.
- * 
+ *
  * @since 20
  * @version 1.0
  */
@@ -158,7 +158,7 @@ typedef struct TransientTask_TransientTaskInfo {
 
 /**
  * @brief Defines a callback for transient task timeout.
- * 
+ *
  * @since 13
  */
 typedef void (*TransientTask_Callback)(void);
