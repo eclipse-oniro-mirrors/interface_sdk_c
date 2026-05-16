@@ -40,38 +40,35 @@ extern "C" {
 #endif
 
 /**
- * @brief Enumerates the error codes.
+ * @brief 枚举错误码。
  *
  * @since 12
  */
 typedef enum TimeService_ErrCode {
     /**
-     * Operation successful.
+     * 成功。
      */
     TIMESERVICE_ERR_OK = 0,
 
     /**
-     * Failed to obtain system parameters.
+     * 获取系统参数失败。
      */
     TIMESERVICE_ERR_INTERNAL_ERROR = 13000001,
 
     /**
-     * Invalid parameter.
+     * 无效的参数。
      */
     TIMESERVICE_ERR_INVALID_PARAMETER = 13000002,
 } TimeService_ErrCode;
 
 /**
- * @brief Obtains the current system time zone.
+ * @brief 获取当前系统时区。
  *
- * @param timeZone Pointer to the buffer for one time zone ID string. If the time zone is obtained, its ID is written.
- *     Otherwise, an empty string is written. The string ends with **\0**.
- * @param len Capacity of the buffer pointed to by **timeZone**, in bytes, including the end character **\0**.
- *     There is no maximum limit. You are advised to allocate at least 31 bytes.
- * @return Returns **TIMESERVICE_ERR_OK** if the operation is successful;
- *     <br>returns **TIMESERVICE_ERR_INTERNAL_ERROR** if the system parameters fail to be obtained;
- *     <br>returns **TIMESERVICE_ERR_INVALID_PARAMETER** if **timeZone** is a null pointer or the length of the time
- *     zone name (excluding the end character **\0**) is greater than or equal to the value of **len**.
+ * @param timeZone 用于写入一个时区ID字符串的缓冲区，成功时写入当前系统时区ID字符串，失败时写入空字符串，字符串以'\0'结尾。
+ * @param len 参数timeZone所指向缓冲区的容量，单位为字节，包含结束字符'\0'。当前时区字符串没有最大长度规格，建议分配至少31字节。
+ * @return 返回`TIMESERVICE_ERR_OK`表示成功。
+ *     <br>返回`TIMESERVICE_ERR_INTERNAL_ERROR`表示获取系统参数失败。
+ *     <br>返回`TIMESERVICE_ERR_INVALID_PARAMETER`表示timeZone为NULL指针或时区名称（不包括结束字符（'\0'））的大小大于或等于len。
  * @syscap SystemCapability.MiscServices.Time
  * @since 12
  */
