@@ -87,7 +87,7 @@ typedef struct Ethernet_MacAddrInfoList  {
  * @since 26.0.0
  */
 typedef struct Ethernet_NetAddrList {
-    /** 
+    /**
      * The ethernet network address list.
      * @since 26.0.0
      */
@@ -124,13 +124,13 @@ typedef struct Ethernet_NetAddrInfo  {
  */
 typedef struct Ethernet_NetAddr {
     /**
-     * Network address family 
+     * Network address family
      * @since 26.0.0
      */
     uint8_t family;
     /**
-     * Prefix length 
-     *  @since 26.0.0
+     * Prefix length
+     * @since 26.0.0
      */
     uint8_t prefixlen;
     /**
