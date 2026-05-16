@@ -120,13 +120,13 @@ typedef enum {
  *     <br>**0x00000100** indicates the permission for printing the file.
  *     <br>**0x00000200** indicates the permission for exporting the file.
  *     <br>**0x00000400** indicates the permission for modifying the permissions on the file.
- * @return {@link DLP_ErrCode#ERR_OH_SUCCESS} 0 - If the operation is successful.
- *     {@link DLP_ErrCode#ERR_OH_INVALID_PARAMETER} 19100001 - If the parameter value is invalid.
- *     {@link DLP_ErrCode#ERR_OH_API_ONLY_FOR_SANDBOX} 19100006 - If no permission to
- *     call this API, which is available only for DLP sandbox applications.
- *     {@link DLP_ErrCode#ERR_OH_SYSTEM_SERVICE_EXCEPTION} 19100011 - If the system ability
- *     works abnormally.
- *     {@link DLP_ErrCode#ERR_OH_OUT_OF_MEMORY} 19100012 - If the memory error.
+ * @return <ul><li>{@link DLP_ErrCode#ERR_OH_SUCCESS} 0 - If the operation is successful.</li>
+ *     <li> {@link DLP_ErrCode#ERR_OH_INVALID_PARAMETER} 19100001 - If the parameter value is invalid.</li>
+ *     <li> {@link DLP_ErrCode#ERR_OH_API_ONLY_FOR_SANDBOX} 19100006 - If no permission to
+ *     call this API, which is available only for DLP sandbox applications.</li>
+ *     <li> {@link DLP_ErrCode#ERR_OH_SYSTEM_SERVICE_EXCEPTION} 19100011 - If the system ability
+ *     works abnormally.</li>
+ *     <li> {@link DLP_ErrCode#ERR_OH_OUT_OF_MEMORY} 19100012 - If the memory error.</li></ul>
  * @since 14
  */
 DLP_ErrCode OH_DLP_GetDlpPermissionInfo(DLP_FileAccess *dlpFileAccess, uint32_t *flags);
