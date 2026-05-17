@@ -404,7 +404,7 @@ def run_systemapi_cleanup(input_dir):
             script_path,
             '-i', str(input_dir),
             '-o', str(temp_dir),
-        ], capture_output=True, text=True)
+        ], capture_output=True, text=True, encoding='utf-8', errors='replace')
 
         if result.stdout:
             print(result.stdout)
