@@ -2001,7 +2001,11 @@ class SystemApiRemover:
         modified = set(self.clang_modified_files + self.regex_modified_files)
         if not modified:
             return
-        for output_file in sorted(modified):
+        for input_file in sorted(modified):
+            rel = input_file.relative_to(self.input_dir)
+            output_file = self.output_dir / rel
+            if not output_file.exists():
+                continue
             errs = self._validate_single_file_syntax(output_file)
             if errs:
                 self.validation_errors.append((output_file, errs))
