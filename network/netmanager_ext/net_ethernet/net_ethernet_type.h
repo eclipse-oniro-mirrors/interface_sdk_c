@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+ 
 /**
  * @addtogroup netmanager_ext
  * @{
@@ -21,7 +21,7 @@
  *
  * @since 26.0.0
  */
-
+ 
 /**
  * @file net_ethernet_type.h
  * @brief Defines the data structure for the C APIs of the ethernet module.
@@ -31,20 +31,20 @@
  * @syscap SystemCapability.Communication.NetManager.Ethernet
  * @since 26.0.0
  */
-
+ 
 #ifndef NET_ETHERNET_TYPE_H
 #define NET_ETHERNET_TYPE_H
-
+ 
 #ifdef __cplusplus
 extern "C" {
 #endif
-
+ 
 /**
  * @since 26.0.0
  */
 #define ETHERNET_MAX_NET_SIZE 32
 #define ETHERNET_MAX_STR_LEN 256
-
+ 
 /**
  * @brief Defines the ethernet iface mac address info.
  *
@@ -62,7 +62,7 @@ typedef struct Ethernet_MacAddressInfo  {
      */
     char macAddr[ETHERNET_MAX_STR_LEN];
 } Ethernet_MacAddrInfo;
-
+ 
 /**
  * @brief Defines the ethernet iface mac address info list.
  *
@@ -80,43 +80,7 @@ typedef struct Ethernet_MacAddrInfoList  {
      */
     int32_t macInfoListSize;
 } Ethernet_MacAddrInfoList;
-
-/**
- * @brief Defines the ethernet network address list.
- *
- * @since 26.0.0
- */
-typedef struct Ethernet_NetAddrList {
-    /**
-     * The ethernet network address list.
-     * @since 26.0.0
-     */
-    Ethernet_NetAddrInfo netAddrList[ETHERNET_MAX_NET_SIZE];
-    /**
-     * The real size of the netAddrList.
-     * @since 26.0.0
-     */
-    int32_t netAddrListSize;
-} Ethernet_NetAddrList;
-
-/**
- * @brief Defines the ethernet iface net address info.
- *
- * @since 26.0.0
- */
-typedef struct Ethernet_NetAddrInfo  {
-    /**
-     * The ethernet iface name.
-     * @since 26.0.0
-     */
-    char ifaceName[ETHERNET_MAX_STR_LEN];
-    /**
-     * The network address
-     * @since 26.0.0
-     */
-    Ethernet_NetAddr netAddrInfo;
-} Ethernet_NetAddrInfo;
-
+ 
 /**
  * @brief Defines the network address.
  *
@@ -124,7 +88,7 @@ typedef struct Ethernet_NetAddrInfo  {
  */
 typedef struct Ethernet_NetAddr {
     /**
-     * Network address family
+     * Network address family 
      * @since 26.0.0
      */
     uint8_t family;
@@ -144,10 +108,52 @@ typedef struct Ethernet_NetAddr {
      */
     char address[ETHERNET_MAX_STR_LEN];
 } Ethernet_NetAddr;
-
+ 
+/**
+ * @brief Defines the ethernet iface net address info.
+ *
+ * @since 26.0.0
+ */
+typedef struct Ethernet_NetAddrInfo  {
+    /**
+     * The ethernet iface name.
+     * @since 26.0.0
+     */
+    char ifaceName[ETHERNET_MAX_STR_LEN];
+    /**
+     * The network address
+     * @since 26.0.0
+     */
+    Ethernet_NetAddr netAddrInfo[ETHERNET_MAX_NET_SIZE];
+    /**
+     * The actual size of the network address
+     * @since 26.0.0
+     */
+    int32_t netAddrInfoSize;
+} Ethernet_NetAddrInfo;
+ 
+ 
+/**
+ * @brief Defines the ethernet network address list.
+ *
+ * @since 26.0.0
+ */
+typedef struct Ethernet_NetAddrList {
+    /**
+     * The ethernet network address list.
+     * @since 26.0.0
+     */
+    Ethernet_NetAddrInfo netAddrList[ETHERNET_MAX_NET_SIZE];
+    /**
+     * The real size of the netAddrList.
+     * @since 26.0.0
+     */
+    int32_t netAddrListSize;
+} Ethernet_NetAddrList;
+ 
 #ifdef __cplusplus
 }
 #endif
 #endif // NET_HTTP_TYPE_H
-
+ 
 /** @} */
