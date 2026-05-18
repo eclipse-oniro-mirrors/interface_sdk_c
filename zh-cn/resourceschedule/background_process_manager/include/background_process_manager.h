@@ -48,12 +48,14 @@ typedef enum BackgroundProcessManager_ProcessPriority {
     /**
      * @brief 该档位相较PROCESS_INACTIVE压制效果更显著，获取到的CPU资源更少。推荐执行处于后台的图文页面等用户无感知业务的后台子进程时设置该档位。
      * 
+     * @since 17
      */
     PROCESS_BACKGROUND = 1,
 
     /**
      * @brief 推荐正在执行播放音频、导航等用户可感知业务的后台子进程时设置该档位。
      * 
+     * @since 17
      */
     PROCESS_INACTIVE = 2,
 } BackgroundProcessManager_ProcessPriority;
@@ -66,18 +68,24 @@ typedef enum BackgroundProcessManager_ProcessPriority {
 typedef enum BackgroundProcessManager_ErrorCode {
     /**
      * @error result is OK.
+     * 
+     * @since 17
      */
     ERR_BACKGROUND_PROCESS_MANAGER_SUCCESS = 0,
 
     /**
      * @error invalid parameter. Possible causes:
      * 1. priority is out of range.
+     * 
+     * @since 17
      */
     ERR_BACKGROUND_PROCESS_MANAGER_INVALID_PARAM = 401,
 
     /**
      * @error remote error. Possible causes:
      * 1. remote is not work.
+     * 
+     * @since 17
      */
     ERR_BACKGROUND_PROCESS_MANAGER_REMOTE_ERROR = 31800001,
 } BackgroundProcessManager_ErrorCode;
