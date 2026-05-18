@@ -49,7 +49,7 @@ extern "C" {
 typedef enum BackgroundProcessManager_ProcessPriority {
     /**
      * @brief Compared with **PROCESS_INACTIVE**, this priority has a more obvious suppression effect. Child processes
-     *     can obtain less CPU resources. You are advised to set this priority when executing background child 
+     *     can obtain less CPU resources. You are advised to set this priority when executing background child
      *     processes that cannot be perceived by users, such as background image-text pages.
      * 
      * @since 17
@@ -111,8 +111,8 @@ int OH_BackgroundProcessManager_SetProcessPriority(int pid, BackgroundProcessMan
 
 /**
  * @brief Unsuppresses the child process. In this case, the child process follows the scheduling policy of the main
- *     process. If the scheduling policy of the main process changes, for example, from the background to the 
- *     foreground, the child process changes with the main process. The effect is the same as calling 
+ *     process. If the scheduling policy of the main process changes, for example, from the background to the
+ *     foreground, the child process changes with the main process. The effect is the same as calling
  *     **resetProcessPriority**.
  * 
  * @param pid ID of the child process, which is the value of the **pid** parameter of the
