@@ -3201,6 +3201,20 @@ typedef enum {
     NODE_TEXT_CONTROLLER = 1054,
 
     /**
+     * @brief Sets whether to enable punctuation overflow at line ends.
+     * <br>This attribute can be set, reset, and obtained as required through APIs.
+     *
+     * <br>Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:
+     * <br>.value[0].i32: whether to enable punctuation overflow, the default value is false.
+     *
+     * <br>Format of the return value {@link ArkUI_AttributeItem}:
+     * <br>.value[0].i32: whether to enable punctuation overflow.
+     *
+     * @since 26.0.0
+     */
+    NODE_TEXT_PUNCTUATION_OVERFLOW = 1055,
+
+    /**
      * @brief Defines the text content attribute, which can be set, reset, and obtained as required through APIs.
      *
      * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
@@ -4541,6 +4555,20 @@ typedef enum {
     NODE_TEXT_INPUT_RADIAL_GRADIENT = 7052,
 
     /**
+     * @brief Sets whether to enable punctuation overflow at line ends.
+     * <br>This attribute can be set, reset, and obtained as required through APIs.
+     *
+     * <br>Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:
+     * <br>.value[0].i32: whether to enable punctuation overflow, the default value is false.
+     *
+     * <br>Format of the return value {@link ArkUI_AttributeItem}:
+     * <br>.value[0].i32: whether to enable punctuation overflow.
+     *
+     * @since 26.0.0
+     */
+    NODE_TEXT_INPUT_PUNCTUATION_OVERFLOW = 7053,
+
+    /**
      * @brief Defines the default placeholder text for the multi-line text box.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
@@ -5234,6 +5262,20 @@ typedef enum {
      * @since 26.0.0
      */
     NODE_TEXT_AREA_RADIAL_GRADIENT = 8049,
+
+    /**
+     * @brief Sets whether to enable punctuation overflow at line ends.
+     * <br>This attribute can be set, reset, and obtained as required through APIs.
+     *
+     * <br>Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:
+     * <br>.value[0].i32: whether to enable punctuation overflow, the default value is false.
+     *
+     * <br>Format of the return value {@link ArkUI_AttributeItem}:
+     * <br>.value[0].i32: whether to enable punctuation overflow.
+     *
+     * @since 26.0.0
+     */
+    NODE_TEXT_AREA_PUNCTUATION_OVERFLOW = 8050,
 
     /**
      * @brief Defines the button text content. This attribute can be set, reset, and obtained as required through APIs.
@@ -7097,13 +7139,13 @@ typedef enum {
 
     /**
      * @brief Sets whether to enable punctuation overflow at the end of a line.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * <br>This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: whether to enable punctuation overflow, the default value is false.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: whether to enable punctuation overflow.\n
+     * <br>Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:
+     * <br>.value[0].i32: whether to enable punctuation overflow, the default value is false.
+     *
+     * <br>Format of the return value {@link ArkUI_AttributeItem}:
+     * <br>.value[0].i32: whether to enable punctuation overflow.
      *
      * @since 26.0.0
      */
