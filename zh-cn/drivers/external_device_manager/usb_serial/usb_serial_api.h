@@ -17,17 +17,7 @@
  * @addtogroup USBSerialDDK
  * @{
  *
- * @brief Provides USB SERIAL DDK types and declares the macros, enumerated variables, and\n
- * data structures required by the USB SERIAL DDK APIs.
- *
- * @since 18
- */
-
-/**
- * @addtogroup USBSerialDDK
- * @{
- *
- * @brief Provides USB SERIAL DDK types and declares the macros, enumerated variables, and\n
+ * @brief Provides USB SERIAL DDK types and declares the macros, enumerated variables, and
  * data structures required by the USB SERIAL DDK APIs.
  *
  * @since 18
@@ -36,18 +26,20 @@
 /**
  * @file usb_serial_api.h
  *
- * @brief Declares the USB Serial DDK APIs used by the host to access the serial port device through the USB port.
+ * @brief 声明用于主机侧通过USB接口访问串口设备的USB Serial DDK接口。
  *
  * @kit DriverDevelopmentKit
  * @library libusb_serial_ndk.z.so
  * @syscap SystemCapability.Driver.UsbSerial.Extension
  * @since 18
  */
+
 #ifndef DDK_USB_SERIAL_API_H
 #define DDK_USB_SERIAL_API_H
 
 #include <stdint.h>
 #include "usb_serial_types.h"
+
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -110,9 +102,6 @@ int32_t OH_UsbSerial_Open(uint64_t deviceId, uint8_t interfaceIndex, UsbSerial_D
  */
 int32_t OH_UsbSerial_Close(UsbSerial_Device **dev);
 
-*/
-int32_t OH_UsbSerial_Close(UsbSerial_Device **dev);
-
 /**
  * @brief 从USB串口设备读入数据到缓冲区。
  *
@@ -155,9 +144,6 @@ int32_t OH_UsbSerial_Read(UsbSerial_Device *dev, uint8_t *buff, uint32_t bufferS
  */
 int32_t OH_UsbSerial_Write(UsbSerial_Device *dev, uint8_t *buff, uint32_t bufferSize, uint32_t *bytesWritten);
 
-*/
-int32_t OH_UsbSerial_Write(UsbSerial_Device *dev, uint8_t *buff, uint32_t bufferSize, uint32_t *bytesWritten);
-
 /**
  * @brief 设置USB串口设备的波特率。如果USB串口设备的参数为默认值（数据位为8，停止位为1，数据传输无校验），则只需要调用该接口设置波特率。
  *
@@ -175,9 +161,6 @@ int32_t OH_UsbSerial_Write(UsbSerial_Device *dev, uint8_t *buff, uint32_t buffer
  */
 int32_t OH_UsbSerial_SetBaudRate(UsbSerial_Device *dev, uint32_t baudRate);
 
-*/
-int32_t OH_UsbSerial_SetBaudRate(UsbSerial_Device *dev, uint32_t baudRate);
-
 /**
  * @brief 设置USB串口设备的参数。如果USB串口设备的参数不为默认值（数据位默认为8，停止位默认为1，数据传输默认无校验），则需要调用该接口进行参数设置。
  *
@@ -193,10 +176,6 @@ int32_t OH_UsbSerial_SetBaudRate(UsbSerial_Device *dev, uint32_t baudRate);
  *     {@link USB_SERIAL_DDK_IO_ERROR} DDK发生I/O错误。
  *     {@link USB_SERIAL_DDK_INVALID_OPERATION} 无效操作。
  * @since 18
- */
-int32_t OH_UsbSerial_SetParams(UsbSerial_Device *dev, UsbSerial_Params *params);
-
-* @since 18
  */
 int32_t OH_UsbSerial_SetParams(UsbSerial_Device *dev, UsbSerial_Params *params);
 
@@ -219,10 +198,6 @@ int32_t OH_UsbSerial_SetParams(UsbSerial_Device *dev, UsbSerial_Params *params);
  */
 int32_t OH_UsbSerial_SetTimeout(UsbSerial_Device *dev, int timeout);
 
-* @since 18
- */
-int32_t OH_UsbSerial_SetTimeout(UsbSerial_Device *dev, int timeout);
-
 /**
  * @brief 设置流控参数。USB串口设备通信中的流控用于管理数据传输的速率，以确保发送方不会发送超过接收方处理能力的数据量。
  * 如果USB串口设备实现了流控处理，则需要调用此接口。如果不调用此接口，默认为无流控。
@@ -241,9 +216,22 @@ int32_t OH_UsbSerial_SetTimeout(UsbSerial_Device *dev, int timeout);
  */
 int32_t OH_UsbSerial_SetFlowControl(UsbSerial_Device *dev, UsbSerial_FlowControl flowControl);
 
-link USB_SERIAL_DDK_INVALID_OPERATION;
-
-invalid operation;
+/**
+ * @brief 写入完成后清空输入和输出缓冲区。在向USB串口设备发送数据时，可能会有大量数据缓冲在内核中等待发送。如果应用程序关闭文件描述符或者退出之前没有等待这些数据被实际发送出去，那么部分数据可能会丢失。
+ * 调用该接口可以确保所有的数据都被发送完毕再继续执行后续操作。
+ *
+ * @permission ohos.permission.ACCESS_DDK_USB_SERIAL
+ * @param dev 设备句柄。
+ * @return {@link USB_SERIAL_DDK_SUCCESS} 调用接口成功。
+ *     {@link USB_SERIAL_DDK_NO_PERM} 权限校验失败。
+ *     {@link USB_SERIAL_DDK_INVALID_PARAMETER} 参数检查失败。可能原因：dev为空指针。
+ *     {@link USB_SERIAL_DDK_INIT_ERROR} 未初始化DDK。
+ *     {@link USB_SERIAL_DDK_SERVICE_ERROR} DDK服务通信失败。
+ *     {@link USB_SERIAL_DDK_IO_ERROR} DDK发生I/O错误。
+ *     {@link USB_SERIAL_DDK_INVALID_OPERATION} 无效操作。
+ * @since 18
+ */
+int32_t OH_UsbSerial_Flush(UsbSerial_Device *dev);
 
 /**
  * @brief 刷新输入缓冲区，缓冲区中的数据会被立刻清空。在和USB串口设备通信过程中，特别是在调试阶段，有时会遇到乱序的数据包或者其他异常情况。
@@ -261,23 +249,6 @@ invalid operation;
  * @since 18
  */
 int32_t OH_UsbSerial_FlushInput(UsbSerial_Device *dev);
-
-/**
- * @brief 写入完成后清空输入和输出缓冲区。在向USB串口设备发送数据时，可能会有大量数据缓冲在内核中等待发送。如果应用程序关闭文件描述符或者退出之前没有等待这些数据被实际发送出去，那么部分数据可能会丢失。
- * 调用该接口可以确保所有的数据都被发送完毕再继续执行后续操作。
- *
- * @permission ohos.permission.ACCESS_DDK_USB_SERIAL
- * @param dev 设备句柄。
- * @return {@link USB_SERIAL_DDK_SUCCESS} 调用接口成功。
- *     {@link USB_SERIAL_DDK_NO_PERM} 权限校验失败。
- *     {@link USB_SERIAL_DDK_INVALID_PARAMETER} 参数检查失败。可能原因：dev为空指针。
- *     {@link USB_SERIAL_DDK_INIT_ERROR} 未初始化DDK。
- *     {@link USB_SERIAL_DDK_SERVICE_ERROR} DDK服务通信失败。
- *     {@link USB_SERIAL_DDK_IO_ERROR} DDK发生I/O错误。
- *     {@link USB_SERIAL_DDK_INVALID_OPERATION} 无效操作。
- * @since 18
- */
-int32_t OH_UsbSerial_Flush(UsbSerial_Device *dev);
 
 /**
  * @brief 刷新输出缓冲区，缓冲区中的数据会被立刻清空。在和USB串口设备通信过程中，特别是在调试阶段，有时会遇到乱序的数据包或者其他异常情况。
@@ -299,5 +270,4 @@ int32_t OH_UsbSerial_FlushOutput(UsbSerial_Device *dev);
 }
 #endif /* __cplusplus */
 #endif // DDK_USB_SERIAL_API_H
-
 /** @} */

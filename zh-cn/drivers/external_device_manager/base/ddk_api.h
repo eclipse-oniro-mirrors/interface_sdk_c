@@ -12,26 +12,36 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-#ifndef DDK_API_H
+
+/**
+ * @addtogroup Ddk
+ * @{
+ *
+ * @brief Provides Base DDK APIs, including creating the shared memory, mapping the shared memory,\n
+ * unmapping the shared memory, and destroying the shared memory.
+ *
+ * @since 12
+ */
 
 /**
  * @file ddk_api.h
  *
- * @brief Declares the BASE DDK APIs used by the USB host to access USB devices.
+ * @brief 声明主机侧访问的Base DDK接口。
  *
  * @library libddk_base.z.so
  * @kit DriverDevelopmentKit
  * @syscap SystemCapability.Driver.DDK.Extension
  * @since 12
  */
+
+#ifndef DDK_API_H
 #define DDK_API_H
+
 #include <stdint.h>
 #include "ddk_types.h"
+
 #ifdef __cplusplus
 extern "C" {
-#endif /* __cplusplus */
-#ifdef __cplusplus
-}
 #endif /* __cplusplus */
 
 /**
@@ -81,6 +91,8 @@ DDK_RetCode OH_DDK_UnmapAshmem(DDK_Ashmem *ashmem);
  * @since 12
  */
 DDK_RetCode OH_DDK_DestroyAshmem(DDK_Ashmem *ashmem);
-
+#ifdef __cplusplus
+}
 /** @} */
+#endif /* __cplusplus */
 #endif // DDK_APIS_H

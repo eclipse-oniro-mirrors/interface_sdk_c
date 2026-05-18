@@ -12,12 +12,22 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-#ifndef HID_DDK_API_H
+
+/**
+ * @addtogroup HidDdk
+ * @{
+ *
+ * @brief Provides HID DDK interfaces, including creating a device, sending an event, and destroying a device.
+ *
+ * @syscap SystemCapability.Driver.HID.Extension
+ * @since 11
+ * @version 1.0
+ */
 
 /**
  * @file hid_ddk_api.h
  *
- * @brief Declares the HID DDK functions for accessing an input device from the host.
+ * @brief 声明主机侧访问输入设备的HID DDK接口。
  *
  * @kit DriverDevelopmentKit
  * @library libhid.z.so
@@ -26,16 +36,20 @@
  * @since 11
  * @version 1.0
  */
+
+#ifndef HID_DDK_API_H
 #define HID_DDK_API_H
+
 #include <stdint.h>
 #include "hid_ddk_types.h"
+
 #ifdef __cplusplus
 extern "C" {
 #endif /* __cplusplus */
 
 /**
  * @brief 创建设备。
-  *
+ *
  * @permission ohos.permission.ACCESS_DDK_HID
  * @param hidDevice 创建设备需要的基本信息，包括设备名、厂商ID、产品ID等。
  * @param hidEventProperties 创建的设备关注的事件，包括事件类型、按键事件属性、绝对坐标事件属性、相对坐标事件属性等。
@@ -370,6 +384,4 @@ int32_t OH_Hid_GetReportDescriptor(Hid_DeviceHandle *dev, uint8_t *buf, uint32_t
 }
 #endif /* __cplusplus */
 
-/** @} */
-#endif /* __cplusplus */
 #endif // HID_DDK_API_H

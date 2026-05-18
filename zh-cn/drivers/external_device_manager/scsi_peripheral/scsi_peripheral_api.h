@@ -23,28 +23,22 @@
  */
 
 /**
- * @addtogroup ScsiPeripheralDDK
- * @{
- *
- * @brief Provide ScsiPeripheral DDK interface, including initializing DDK, releasing DDK, opening devices, reading and writing devices, etc.
- * @since 18
- */
-
-/**
  * @file scsi_peripheral_api.h
  *
- * @brief Declares the SCSI Peripheral DDK APIs used by the host to access the SCSI device.
+ * @brief 声明用于主机侧访问SCSI设备的SCSI Peripheral DDK接口。
  *
  * @kit DriverDevelopmentKit
  * @library libscsi.z.so
  * @syscap SystemCapability.Driver.SCSI.Extension
  * @since 18
  */
+
 #ifndef SCSI_PERIPHERAL_API_H
 #define SCSI_PERIPHERAL_API_H
 
 #include <stdint.h>
 #include "scsi_peripheral_types.h"
+
 #ifdef __cplusplus
 extern "C" {
 #endif /* __cplusplus */
@@ -323,5 +317,4 @@ int32_t OH_ScsiPeripheral_ParseBasicSenseInfo(uint8_t *senseData, uint8_t senseD
 }
 #endif /* __cplusplus */
 #endif // SCSI_PERIPHERAL_API_H
-
 /** @} */
