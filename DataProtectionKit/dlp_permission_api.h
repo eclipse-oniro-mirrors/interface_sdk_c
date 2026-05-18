@@ -158,7 +158,7 @@ DLP_ErrCode OH_DLP_IsInSandbox(bool *isInSandbox);
 /**
  * @brief Sets sandbox application configuration.
  *
- * @param configInfo Pointer to the sandbox application configuration obtained.
+ * @param configInfo Pointer to the sandbox application configuration to set.
  * @return <ul><li>{@link DLP_ErrCode#ERR_OH_SUCCESS} 0 - If the operation is successful.</li>
  *     <li> {@link DLP_ErrCode#ERR_OH_INVALID_PARAMETER} 19100001 - If the parameter value is invalid.</li>
  *     <li> {@link DLP_ErrCode#ERR_OH_API_NOT_FOR_SANDBOX} 19100007 - If no permission to
