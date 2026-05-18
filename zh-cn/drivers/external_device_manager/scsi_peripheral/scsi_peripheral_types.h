@@ -297,7 +297,7 @@ typedef struct ScsiPeripheral_Response {
      */
     int32_t resId;
     /**
-     * 执行命令消耗的时间 (单位: 毫秒)。
+     * 执行命令消耗的时间 (单位：毫秒)。
      */
     uint32_t duration;
 } ScsiPeripheral_Response;

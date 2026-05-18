@@ -44,7 +44,7 @@
 extern "C" {
 #endif
 
-/** 
+/**
  * @brief USB串口设备数据结构（不透明）。
  *
  * @since 18
