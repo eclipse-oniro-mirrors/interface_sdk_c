@@ -13566,6 +13566,32 @@ int32_t OH_ArkUI_NativeModule_GetPageRootNodeHandleByContext(
  */
 ArkUI_GestureCollectInterceptInfo* OH_ArkUI_NodeEvent_GetGestureCollectInterceptInfo(ArkUI_NodeEvent* nodeEvent);
 
+/**
+ * @brief Set the subnode mounting policy of the target node.
+ *
+ * @param node the target node handle.
+ * @param policy the policy to set. Valid values correspond to {@link OH_ArkUI_NodeMountPolicy}.
+ * @return Error code.
+ *     <ul><li>{@link ARKUI_ERROR_CODE_NO_ERROR} Success.
+ *     </li><li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} Function parameter exception.
+ *     </li><li>{@link ARKUI_ERROR_CODE_CAPI_INIT_ERROR} if CAPI init error.</li></ul>
+ * @since 26.0.0
+ */
+ArkUI_ErrorCode OH_ArkUI_NativeModule_SetChildMountPolicy(ArkUI_NodeHandle node, OH_ArkUI_NodeMountPolicy policy);
+
+/**
+ * @brief Get the current child mount policy of the specified node.
+ *
+ * @param node the target node handle.
+ * @param policy the pointer to receive child mounting policy of the target node.
+ * @return Error code.
+ *     <ul><li>{@link ARKUI_ERROR_CODE_NO_ERROR} Success.
+ *     </li><li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} Function parameter exception.
+ *     </li><li>{@link ARKUI_ERROR_CODE_CAPI_INIT_ERROR} if CAPI init error.</li></ul>
+ * @since 26.0.0
+ */
+ArkUI_ErrorCode OH_ArkUI_NativeModule_GetChildMountPolicy(ArkUI_NodeHandle node, OH_ArkUI_NodeMountPolicy* policy);
+
 #ifdef __cplusplus
 };
 #endif
