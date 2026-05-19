@@ -994,6 +994,32 @@ typedef enum {
     ARKUI_SCROLL_BAR_DISPLAY_MODE_ON,
 } ArkUI_ScrollBarDisplayMode;
 
+ /**
+ * @brief Enumerates the digital crown sensitivity.
+ *
+ * @since 26.0.0
+ */
+typedef enum {
+    /**
+     * Low sensitivity.
+     *
+     * @since 26.0.0
+     * */
+    ARKUI_CROWN_SENSITIVITY_LOW = 0,
+    /**
+     * Medium sensitivity.
+     *
+     * @since 26.0.0
+     * */
+    ARKUI_CROWN_SENSITIVITY_MEDIUM = 1,
+    /**
+     * High sensitivity.
+     *
+     * @since 26.0.0
+     * */
+    ARKUI_CROWN_SENSITIVITY_HIGH = 2,
+} ArkUI_CrownSensitivity;
+
 /**
  * @brief Enumerates the scroll directions for the <b><List></b> component.
  *
