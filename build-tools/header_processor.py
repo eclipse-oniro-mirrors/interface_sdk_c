@@ -139,24 +139,32 @@ class SystemApiRemover:
 
         self.stats['functions_with_systemapi'] += 1
         if self.verbose:
-            self.logger.info(f"  Found @systemapi in {node_kind} {node_name}")
+            self.logger.debug(f"  Found @systemapi in {node_kind} {node_name}")
 
         start_line, end_line = self.get_node_location(node, source_text, source_lines)
         if not start_line or not end_line:
-            self.logger.info(f"    Skipping {node_name}: no location info")
+            self.logger.debug(f"    Skipping {node_name}: no location info")
             return False
 
         comment_start_line = start_line
         line_num = start_line - 2
+        found_comment = False
         while line_num >= 0 and line_num < len(source_lines):
             line = source_lines[line_num].strip()
-            if (line.startswith('//') or line.startswith('/*') or
-                line.startswith('/**') or '*/' in line or
-                line.startswith('*') or line == ''):
+            is_comment = (line.startswith('//') or line.startswith('/*') or
+                          line.startswith('/**') or line.startswith('/*!') or
+                          '*/' in line or
+                          (line.startswith('*') and not line.startswith('*/')))
+            if is_comment:
+                found_comment = True
                 comment_start_line = line_num + 1
                 line_num -= 1
-            else:
-                break
+                continue
+            if line == '' and not found_comment:
+                comment_start_line = line_num + 1
+                line_num -= 1
+                continue
+            break
 
         to_remove.append((comment_start_line, end_line, node_name))
         return True
@@ -178,14 +186,53 @@ class SystemApiRemover:
         j = comment_end
         while j < len(lines) and lines[j].strip() == '':
             j += 1
-        if j >= len(lines) or not lines[j].strip().startswith('#define'):
+        if j >= len(lines) or not re.match(r'#\s*define', lines[j].strip()):
             return None
+        actual_start = self._find_contiguous_comment_start(lines, start)
         decl_end = j
-        for k in range(j, len(lines)):
-            decl_end = k
-            if not lines[k].rstrip().endswith('\\'):
+        for k2 in range(j, len(lines)):
+            decl_end = k2
+            if not lines[k2].rstrip().endswith('\\'):
                 break
-        return (start, decl_end)
+        return (actual_start, decl_end)
+
+    @staticmethod
+    @staticmethod
+    def _find_block_comment_open(lines: List[str], close_line: int) -> Optional[int]:
+        """从块注释结尾行向上查找对应的 /* 开头行，返回行号或 None"""
+        bk = close_line - 1
+        while bk >= 0:
+            bs = lines[bk].strip()
+            if bs.startswith('/*') or bs.startswith('/**') or bs.startswith('/*!'):
+                return bk
+            if bs.startswith('*') or bs.endswith('*/'):
+                bk -= 1
+                continue
+            return None
+        return None
+
+    @staticmethod
+    def _find_contiguous_comment_start(lines: List[str], start: int) -> int:
+        """从含 @systemapi 的注释块起始行向上回溯，找到紧贴的连续注释块的最早起始行"""
+        actual_start = start
+        k = start - 1
+        while k >= 0:
+            s = lines[k].strip()
+            if s == '':
+                break
+            if s.endswith('*/'):
+                open_line = SystemApiRemover._find_block_comment_open(lines, k)
+                if open_line is not None:
+                    actual_start = open_line
+                    k = open_line - 1
+                else:
+                    break
+            elif s.startswith('*'):
+                actual_start = k
+                k -= 1
+            else:
+                break
+        return actual_start
 
 
     @staticmethod
@@ -206,7 +253,7 @@ class SystemApiRemover:
             return 'insert', True, 'block'
         if stripped.startswith('*') and not stripped.startswith('/*') and not stripped.startswith('/**'):
             return 'insert', found_comment, comment_style
-        if stripped.startswith('/**') or stripped.startswith('/*'):
+        if stripped.startswith('/**') or stripped.startswith('/*') or stripped.startswith('/*!'):
             if comment_style == 'line':
                 return 'stop', found_comment, comment_style
             return 'insert_stop', True, 'block'
@@ -237,8 +284,10 @@ class SystemApiRemover:
     def _collect_missing_headers(self, compile_args: List[str],
                                  input_file: Path) -> Set[str]:
         """预处理头文件，收集所有 'file not found' 的缺失头文件名"""
-        preprocess_cmd = ['clang++', '-E'] + compile_args + [str(input_file)]
-        preprocess_result = subprocess.run(preprocess_cmd, capture_output=True, text=True)
+        preprocess_cmd = [self.clang_binary, '-E'] + compile_args + [str(input_file)]
+        preprocess_result = subprocess.run(preprocess_cmd, capture_output=True)
+        preprocess_result.stdout = preprocess_result.stdout.decode('utf-8', errors='replace')
+        preprocess_result.stderr = preprocess_result.stderr.decode('utf-8', errors='replace')
         missing_headers = set()
         if preprocess_result.stderr:
             matches = re.findall(r"'(.*?)' file not found", preprocess_result.stderr)
@@ -350,7 +399,7 @@ class SystemApiRemover:
             guard_macros.add(m.group(1))
 
         symbols = set()
-        for m in re.finditer(r'#define\s+(\w+)', content):
+        for m in re.finditer(r'#\s*define\s+(\w+)', content):
             macro = m.group(1)
             if not macro.startswith('_') and macro == macro.upper():
                 if macro not in guard_macros:
@@ -412,13 +461,13 @@ class SystemApiRemover:
             if not symbols:
                 lines_to_remove.add(inc_idx)
                 if self.verbose:
-                    self.logger.info(f"    [cross-file] Remove include: {inc_line} (no symbols left in {inc_name})")
+                    self.logger.debug(f"    [cross-file] Remove include: {inc_line} (no symbols left in {inc_name})")
                 continue
 
             if not self._symbols_used_in_content(symbols, body_content):
                 lines_to_remove.add(inc_idx)
                 if self.verbose:
-                    self.logger.info(f"    [cross-file] Remove include: {inc_line} (no symbols used)")
+                    self.logger.debug(f"    [cross-file] Remove include: {inc_line} (no symbols used)")
 
         return lines_to_remove
 
@@ -578,7 +627,7 @@ class SystemApiRemover:
             if not self._symbols_used_in_content(symbols, body_content):
                 lines_to_remove.add(inc_idx)
                 if self.verbose:
-                    self.logger.info(f"    Remove unused include: {inc_line}")
+                    self.logger.debug(f"    Remove unused include: {inc_line}")
 
         return lines_to_remove
 
@@ -697,6 +746,7 @@ class SystemApiRemover:
             'functions_with_systemapi': 0,
             'fake_headers_created': 0,
             'includes_removed': 0,
+            'empty_headers_removed': 0,
         }
 
         self.clang_files: List[Path] = []
@@ -704,6 +754,7 @@ class SystemApiRemover:
         self.regex_files: List[Path] = []
         self.regex_modified_files: List[Path] = []
         self.failed_files: List[Tuple[Path, str]] = []
+        self.validation_errors: List[Tuple[Path, str]] = []
         self.clang_error_files: List[Tuple[Path, str]] = []
         self.public_ref_errors: List[Tuple[Path, str, List[str]]] = []
         self.all_deleted_names: Dict[str, Set[Path]] = {}
@@ -772,7 +823,7 @@ class SystemApiRemover:
             ]
             comment_content = '\n'.join(comment_lines_only)
 
-        comment_content = re.sub(r'^\s*\*\s?', '', comment_content, flags=re.MULTILINE)
+        comment_content = re.sub(r'^\s*[*!]\s?', '', comment_content, flags=re.MULTILINE)
         comment_content = comment_content.strip()
         return comment_content if comment_content else None
 
@@ -885,7 +936,6 @@ class SystemApiRemover:
             snippet = snippet[:120] + '...'
         return snippet
 
-
     def _print_file_stats(self):
         print("?? FILE STATISTICS:")
         print("-" * 70)
@@ -903,6 +953,7 @@ class SystemApiRemover:
         print(f"  Unchanged headers:          {self.stats['header_files'] - self.stats['modified_headers']}")
         print(f"  Total APIs removed:         {self.stats['apis_removed']}")
         print(f"  Unused includes removed:    {self.stats['includes_removed']}")
+        print(f"  Empty headers removed:      {self.stats['empty_headers_removed']}")
         print()
 
 
@@ -931,14 +982,24 @@ class SystemApiRemover:
         deleted_names = []
 
         if to_remove:
-            new_source_lines, removed_count = self.remove_ranges_from_source(source_lines, to_remove)
+            new_source_lines, clang_removed = self.remove_ranges_from_source(source_lines, to_remove)
             result_content = '\n'.join(new_source_lines)
+            removed_count += clang_removed
             deleted_names = list(dict.fromkeys(name for _, _, name in to_remove))
 
         result_content, macro_removed = self.remove_macro_systemapi(result_content)
         if macro_removed > 0:
             removed_count += macro_removed
-            self.logger.info(f"    Removed {macro_removed} macro(s) with @systemapi")
+            self.logger.debug(f"    Removed {macro_removed} macro(s) with @systemapi")
+
+        regex_content, regex_removed, _, regex_names = self.regex_remove_systemapi(result_content, input_file)
+        if regex_removed > 0:
+            result_content = regex_content
+            removed_count += regex_removed
+            deleted_names.extend(regex_names)
+            self.logger.debug(f"    Removed {regex_removed} conditional-compiled API(s)")
+
+        result_content = self._cleanup_orphan_semicolons(result_content)
 
         if removed_count == 0:
             shutil.copy2(input_file, output_file)
@@ -947,7 +1008,7 @@ class SystemApiRemover:
         result_content, inc_removed = self.remove_unused_includes(result_content, input_file)
         if inc_removed > 0:
             self.stats['includes_removed'] += inc_removed
-            self.logger.info(f"    Removed {inc_removed} unused include(s)")
+            self.logger.debug(f"    Removed {inc_removed} unused include(s)")
 
         if deleted_names:
             self._collect_deleted_names(input_file, deleted_names)
@@ -959,7 +1020,7 @@ class SystemApiRemover:
         self.clang_modified_files.append(input_file)
         self.stats['apis_removed'] += removed_count
         self.stats['modified_headers'] += 1
-        self.logger.info(f"  ? Modified (clang): removed {removed_count} API(s)")
+        self.logger.debug(f"  Modified (clang+regex): removed {removed_count} API(s)")
         return True
 
 
@@ -976,6 +1037,7 @@ class SystemApiRemover:
         self.regex_files.append(input_file)
 
         new_content, removed_count, found_systemapi, deleted_names = self.regex_remove_systemapi(content, input_file)
+        new_content = self._cleanup_orphan_semicolons(new_content)
 
         output_file.parent.mkdir(parents=True, exist_ok=True)
 
@@ -983,7 +1045,7 @@ class SystemApiRemover:
             result_content, inc_removed = self.remove_unused_includes(new_content, input_file)
             if inc_removed > 0:
                 self.stats['includes_removed'] += inc_removed
-                self.logger.info(f"    Removed {inc_removed} unused include(s)")
+                self.logger.debug(f"    Removed {inc_removed} unused include(s)")
             else:
                 result_content = new_content
 
@@ -995,7 +1057,7 @@ class SystemApiRemover:
             self.regex_modified_files.append(input_file)
             self.stats['apis_removed'] += removed_count
             self.stats['modified_headers'] += 1
-            self.logger.info(f"  ? Modified (regex): removed {removed_count} API(s)")
+            self.logger.debug(f"  Modified (regex): removed {removed_count} API(s)")
             return True
         else:
             self.stats['regex_no_api'] += 1
@@ -1021,7 +1083,7 @@ class SystemApiRemover:
             new_lines = [line for idx, line in enumerate(lines) if idx not in lines_to_remove]
             with open(output_file, 'w', encoding='utf-8') as f:
                 f.write('\n'.join(new_lines))
-            self.logger.info(f"  [cross-file] {output_file.name}: removed {len(lines_to_remove)} unused include(s)")
+            self.logger.debug(f"  [cross-file] {output_file.name}: removed {len(lines_to_remove)} unused include(s)")
             return len(lines_to_remove)
         return 0
 
@@ -1046,6 +1108,13 @@ class SystemApiRemover:
                     in_aggregate = True
                     aggregate_start_line = k
                     aggregate_type = 'struct'
+                break
+            if ('union' in line_check and '{' in line_check) or ('typedef' in line_check and 'union' in line_check and '{' in line_check):
+                aggregate_end_line = self._find_brace_block_end(lines, k)
+                if aggregate_end_line >= comment_start:
+                    in_aggregate = True
+                    aggregate_start_line = k
+                    aggregate_type = 'union'
                 break
 
         return in_aggregate, aggregate_start_line, aggregate_type
@@ -1073,25 +1142,13 @@ class SystemApiRemover:
 
 
     def _regex_find_decl_end(self, lines: List[str], comment_end: int) -> Optional[int]:
-        """从注释结束位置向下查找声明的结束行号"""
-        j = comment_end
-        while j < len(lines) and lines[j].strip() == '':
-            j += 1
-
-        if j >= len(lines):
+        """从注释结束位置向下查找声明的结束行号。
+        跳过紧贴的后续注释块（无空行分隔），遇到空行后的注释则视为不关联。
+        """
+        j = self._skip_attached_comments(lines, comment_end)
+        if j is None or j >= len(lines):
             return None
-
-        decl_line = lines[j].strip()
-
-        if decl_line.startswith('#define'):
-            return self._find_define_end(lines, j)
-        if 'typedef' in decl_line and ('enum' in decl_line or 'struct' in decl_line):
-            return self._find_typedef_aggregate_end(lines, j, decl_line)
-        if decl_line.startswith('typedef'):
-            return self._find_typedef_simple_end(lines, j)
-        if re.match(r'^(struct|class|enum)\s+\w+\s*\{', decl_line):
-            return self._find_brace_block_end(lines, j)
-        return j
+        return self._resolve_decl_end(lines, j)
 
 
     def _regex_handle_systemapi_comment(self, lines: List[str], i: int,
@@ -1104,7 +1161,7 @@ class SystemApiRemover:
 
         in_aggregate, agg_start, agg_type = self._regex_check_in_aggregate(lines, i)
         if in_aggregate and agg_start >= 0:
-            if agg_type == 'struct':
+            if agg_type in ('struct', 'enum', 'union'):
                 if self._regex_should_skip_struct_field(lines, agg_start):
                     return comment_end, 0
             aggregate_end = self._regex_find_aggregate_end(lines, agg_start)
@@ -1115,7 +1172,8 @@ class SystemApiRemover:
 
         decl_end = self._regex_find_decl_end(lines, comment_end)
         if decl_end is not None:
-            for k in range(i, decl_end + 1):
+            actual_start = self._find_contiguous_comment_start(lines, i)
+            for k in range(actual_start, decl_end + 1):
                 if k < len(to_remove):
                     to_remove[k] = True
             return decl_end + 1, 1
@@ -1127,8 +1185,9 @@ class SystemApiRemover:
         agg_comment_has_systemapi = False
         for k in range(agg_start - 1, -1, -1):
             line_check = lines[k].strip()
-            if line_check.startswith('*') or line_check.startswith('/*') or line_check.startswith('/**') or line_check == '' or '*/' in line_check:
-                stripped = line_check.lstrip('*').strip()
+            if line_check.startswith('*') or line_check.startswith('/*') or line_check.startswith('/**') or line_check.startswith('/*!') or line_check == '' or '*/' in line_check:
+                stripped = line_check.lstrip('/').lstrip('*').lstrip('!').strip()
+                stripped = stripped.rstrip('/').rstrip('*').strip()
                 if stripped == '@systemapi':
                     agg_comment_has_systemapi = True
             else:
@@ -1155,10 +1214,12 @@ class SystemApiRemover:
     def _run_ast_dump(self, input_file: Path,
                       compile_args: List[str]) -> Tuple[Optional[Dict[str, Any]], List[str]]:
         """执行 clang AST dump 并解析结果，返回 AST 或错误列表"""
-        cmd = ['clang++', '-Xclang', '-ast-dump=json', '-fsyntax-only'] + compile_args + [str(input_file)]
+        cmd = [self.clang_binary, '-Xclang', '-ast-dump=json', '-fsyntax-only'] + compile_args + [str(input_file)]
         if self.verbose:
             self.logger.debug(f"Parsing: {input_file.name}")
-        result = subprocess.run(cmd, capture_output=True, text=True, timeout=30)
+        result = subprocess.run(cmd, capture_output=True, timeout=30)
+        result.stdout = result.stdout.decode('utf-8', errors='replace')
+        result.stderr = result.stderr.decode('utf-8', errors='replace')
         ast = self._parse_clang_output(result.stdout)
         if ast is not None:
             return ast, []
@@ -1198,15 +1259,32 @@ class SystemApiRemover:
         return include_paths
 
 
-    def check_clang(self):
-        """检查系统是否安装了 clang，未安装则自动切换到正则表达式模式"""
+    def _try_find_clang_binary(self, binary_path: str) -> bool:
+        """尝试检测指定路径的 clang 是否可用，成功返回 True"""
         try:
-            result = subprocess.run(['clang', '--version'], capture_output=True, text=True, check=True)
+            result = subprocess.run([binary_path, '--version'], capture_output=True,
+                                    check=True)
+            result.stdout = result.stdout.decode('utf-8', errors='replace')
             version_line = result.stdout.split('\n')[0]
             self.logger.info(f"Found clang: {version_line}")
+            self.clang_binary = binary_path
+            return True
         except (subprocess.CalledProcessError, FileNotFoundError):
-            self.logger.warning("clang not found, automatically switching to regex mode")
-            self.force_regex = True
+            return False
+
+    def check_clang(self):
+        """检查系统是否安装了 clang，未安装则自动切换到正则表达式模式"""
+        self.clang_binary = None
+        for binary in ['clang++', 'clang']:
+            if self._try_find_clang_binary(binary):
+                return
+        if sys.platform == 'win32':
+            for path in [r'C:\Program Files\LLVM\bin\clang++.exe',
+                         r'C:\Program Files (x86)\LLVM\bin\clang++.exe']:
+                if os.path.isfile(path) and self._try_find_clang_binary(path):
+                    return
+        self.logger.warning("clang not found, automatically switching to regex mode")
+        self.force_regex = True
 
 
     def collect_functions_to_remove(self, node: Dict[str, Any], source_lines: List[str],
@@ -1262,6 +1340,43 @@ class SystemApiRemover:
             total_removed += self._process_single_cross_file(output_file)
 
         return total_removed
+
+    @staticmethod
+    def _remove_empty_conditionals_pass(lines: List[str]) -> Tuple[List[str], bool]:
+        """单趟扫描移除空条件编译块，返回 (新行列表, 是否有变更)"""
+        new_lines = []
+        changed = False
+        i = 0
+        while i < len(lines):
+            stripped = lines[i].strip()
+            if re.match(r'#\s*if(?:n?def)?\b', stripped):
+                endif_line = SystemApiRemover._find_empty_conditional_range(lines, i)
+                if endif_line is not None:
+                    changed = True
+                    i = endif_line + 1
+                    continue
+            new_lines.append(lines[i])
+            i += 1
+        return new_lines, changed
+
+    def _cleanup_orphan_semicolons(self, content: str) -> str:
+        """删除由裁剪残留的孤立分号行（仅含分号和空白）。
+        典型场景：多行声明的分号独占一行，regex 路径的 _resolve_decl_end
+        默认分支只返回当前行，未向前扫描到分号，导致分号行残留。
+        同时也处理 ;; 或 ; ; 等写法。
+        """
+        lines = content.split('\n')
+        new_lines = [line for line in lines if not re.match(r'^\s*(;\s*)+$', line)]
+        return '\n'.join(new_lines)
+
+    def _cleanup_empty_conditionals(self, content: str) -> str:
+        """移除删除 @systemapi 后产生的空 #ifdef/#if/#ifndef ... #endif 块"""
+        changed = True
+        while changed:
+            lines = content.split('\n')
+            new_lines, changed = self._remove_empty_conditionals_pass(lines)
+            content = '\n'.join(new_lines)
+        return content
 
 
     def extract_comment_before_node(self, node: Dict[str, Any], source_lines: List[str],
@@ -1347,7 +1462,9 @@ class SystemApiRemover:
                 return None, None
 
         if end_line is None:
-            end_line = start_line
+            end_line = self._find_declaration_end_in_source(source_lines, start_line)
+            if end_line is None:
+                end_line = start_line
 
         return start_line, end_line
 
@@ -1369,14 +1486,18 @@ class SystemApiRemover:
 
     def _has_strict_systemapi(self, text: str) -> bool:
         for line in text.split('\n'):
-            stripped = line.strip().lstrip('*').strip()
+            stripped = line.strip()
+            stripped = stripped.lstrip('/').lstrip('*').lstrip('!').strip()
+            stripped = stripped.rstrip('/').rstrip('*').strip()
             if stripped == '@systemapi':
                 return True
         return False
 
     def has_systemapi_tag(self, comment: Optional[str]) -> bool:
         for line in (comment or '').split('\n'):
-            stripped = line.strip().lstrip('*').strip()
+            stripped = line.strip()
+            stripped = stripped.lstrip('/').lstrip('*').lstrip('!').strip()
+            stripped = stripped.rstrip('/').rstrip('*').strip()
             if stripped == '@systemapi':
                 return True
         return False
@@ -1473,15 +1594,18 @@ class SystemApiRemover:
                 rel_path = file_path.relative_to(self.input_dir)
                 output_file = self.output_dir / rel_path
                 if self.verbose:
-                    self.logger.info(f"[{idx}/{total_headers}] Processing: {rel_path}")
+                    self.logger.debug(f"[{idx}/{total_headers}] Processing: {rel_path}")
                 self.process_header_file(file_path, output_file)
 
             cross_removed = self.cross_file_include_cleanup()
             if cross_removed > 0:
                 self.stats['includes_removed'] += cross_removed
-                self.logger.info(f"Cross-file include cleanup: removed {cross_removed} include(s)")
+                self.logger.debug(f"Cross-file include cleanup: removed {cross_removed} include(s)")
+
+            self._remove_empty_output_files()
 
             self._check_public_references_across_files()
+            self._validate_output_files()
 
             return True
 
@@ -1505,7 +1629,7 @@ class SystemApiRemover:
             if not source_lines:
                 return False
 
-            self.logger.info(f"  Parsing: {input_file.name}")
+            self.logger.debug(f"  Parsing: {input_file.name}")
             clang_errors = []
             if self.force_regex:
                 ast = None
@@ -1534,8 +1658,15 @@ class SystemApiRemover:
         i = 0
         while i < len(lines):
             line = lines[i]
+            stripped = line.strip()
             if '/*' in line or '/**' in line:
                 next_i, count = self._regex_handle_systemapi_comment(lines, i, to_remove)
+                if count > 0:
+                    removed_count += count
+                    found_systemapi = True
+                i = max(next_i, i + 1)
+            elif stripped.startswith('//'):
+                next_i, count = self._regex_handle_line_comment(lines, i, to_remove)
                 if count > 0:
                     removed_count += count
                     found_systemapi = True
@@ -1655,6 +1786,265 @@ class SystemApiRemover:
 
         new_lines = [line for idx, line in enumerate(lines) if idx not in lines_to_remove]
         return '\n'.join(new_lines), len(lines_to_remove)
+
+    @staticmethod
+    def _skip_block_comment(lines: List[str], j: int, stripped: str) -> int:
+        """跳过块注释，返回注释结束后的行号"""
+        if '*/' in stripped:
+            return j + 1
+        j += 1
+        while j < len(lines) and '*/' not in lines[j]:
+            j += 1
+        if j < len(lines):
+            j += 1
+        return j
+
+    def _skip_attached_comments(self, lines: List[str], j: int) -> Optional[int]:
+        """跳过紧贴的后续注释块（无空行分隔），返回下一个待处理行号。
+        遇到空行后的注释则返回 None（表示不关联）。
+        """
+        crossed_blank = False
+        while j < len(lines):
+            stripped = lines[j].strip()
+            if stripped == '':
+                crossed_blank = True
+                j += 1
+                continue
+            if crossed_blank and (stripped.startswith('//') or stripped.startswith('/*')
+                                  or stripped.startswith('/**') or stripped.startswith('/*!')):
+                return None
+            if not crossed_blank:
+                if stripped.startswith('//'):
+                    j += 1
+                    continue
+                if stripped.startswith('/*') or stripped.startswith('/**') or stripped.startswith('/*!'):
+                    j = self._skip_block_comment(lines, j, stripped)
+                    continue
+                if stripped.startswith('*') and not stripped.startswith('*/'):
+                    j += 1
+                    continue
+            break
+        return j
+
+    def _resolve_decl_end(self, lines: List[str], j: int) -> Optional[int]:
+        """根据声明行类型，查找声明结束行号。遇到预处理指令返回 None（不删除）"""
+        decl_line = lines[j].strip()
+        if re.match(r'#\s*(if|ifdef|ifndef|endif|else|elif|include|pragma|error|warning)\b', decl_line):
+            return None
+        if re.match(r'#\s*define', decl_line):
+            return self._find_define_end(lines, j)
+        if 'typedef' in decl_line and ('enum' in decl_line or 'struct' in decl_line or 'union' in decl_line):
+            return self._find_typedef_aggregate_end(lines, j, decl_line)
+        if decl_line.startswith('typedef'):
+            return self._find_typedef_simple_end(lines, j)
+        if re.match(r'^(struct|class|enum|union)\s+\w+\s*\{', decl_line):
+            return self._find_brace_block_end(lines, j)
+        return j
+
+    def _regex_handle_line_comment(self, lines: List[str], i: int,
+                                   to_remove: List[bool]) -> Tuple[int, int]:
+        """处理 // 或 //! 行注释，若含 @systemapi 则标记删除范围。
+        连续的 // 行视为同一组注释，一起删除。
+        返回 (下一扫描位置, 删除计数)"""
+        comment_lines = []
+        comment_end = i
+        while comment_end < len(lines) and lines[comment_end].strip().startswith('//'):
+            comment_lines.append(lines[comment_end])
+            comment_end += 1
+
+        comment_text = '\n'.join(comment_lines)
+        if not self._has_strict_systemapi(comment_text):
+            return comment_end, 0
+
+        in_aggregate, agg_start, agg_type = self._regex_check_in_aggregate(lines, i)
+        if in_aggregate and agg_start >= 0:
+            if agg_type in ('struct', 'enum', 'union'):
+                if self._regex_should_skip_struct_field(lines, agg_start):
+                    return comment_end, 0
+            aggregate_end = self._regex_find_aggregate_end(lines, agg_start)
+            for k in range(agg_start, aggregate_end + 1):
+                if k < len(to_remove):
+                    to_remove[k] = True
+            return aggregate_end + 1, 1
+
+        decl_end = self._regex_find_decl_end(lines, comment_end)
+        if decl_end is not None:
+            actual_start = self._find_contiguous_comment_start(lines, i)
+            for k in range(actual_start, decl_end + 1):
+                if k < len(to_remove):
+                    to_remove[k] = True
+            return decl_end + 1, 1
+
+        return comment_end, 0
+
+    @staticmethod
+    def _find_empty_conditional_range(lines: List[str], start: int) -> Optional[int]:
+        """从 #if/#ifdef/#ifndef 行开始，查找对应的空条件块结束行。
+        如果该条件块内部无实质内容（只有预处理指令和空行），返回 #endif 行号；否则返回 None。"""
+        depth = 1
+        j = start + 1
+        inner_non_empty = False
+        while j < len(lines) and depth > 0:
+            s = lines[j].strip()
+            if re.match(r'#\s*if(?:n?def)?\b', s):
+                depth += 1
+            elif re.match(r'#\s*endif\b', s):
+                depth -= 1
+                if depth == 0:
+                    break
+            if (s != ''
+                    and not re.match(r'#\s*(?:if|ifdef|ifndef|endif|else|elif)\b', s)
+                    and not re.match(r'^(;\s*)+$', s)):
+                inner_non_empty = True
+            j += 1
+        if j < len(lines) and not inner_non_empty:
+            return j
+        return None
+
+    def _is_content_effectively_empty(self, content: str) -> bool:
+        """判断文件内容是否只剩空行、include guard、版权头注释，无任何实际代码。
+        版权头判断标准：文件开头的连续注释块（含 Copyright/License 等关键词）。
+        """
+        lines = content.split('\n')
+        past_header = False
+        for line in lines:
+            s = line.strip()
+            if s == '':
+                continue
+            if re.match(r'^#\s*(ifndef|define|endif|pragma\s+once)\b', s):
+                continue
+            if not past_header:
+                if (s.startswith('/*') or s.startswith('/**') or s.startswith('/*!') or
+                    s.startswith('//') or s.startswith('*') or s == '*/' or s.endswith('*/')):
+                    continue
+                past_header = True
+            if past_header:
+                return False
+        return True
+
+    def _remove_deleted_includes_from_file(self, output_file: Path,
+                                            deleted_names: Set[str],
+                                            deleted_basenames: Set[str]) -> bool:
+        """从单个文件中移除对已删除文件的 #include，返回是否有变更"""
+        try:
+            with open(output_file, 'r', encoding='utf-8', errors='ignore') as f:
+                content = f.read()
+        except Exception:
+            return False
+        lines = content.split('\n')
+        new_lines = []
+        changed = False
+        for line in lines:
+            stripped = line.strip()
+            m = re.match(r'#\s*include\s+"([^"]+)"', stripped)
+            if m:
+                inc_path = m.group(1)
+                if inc_path in deleted_names or Path(inc_path).name in deleted_basenames:
+                    changed = True
+                    pass
+                    continue
+            new_lines.append(line)
+        if changed:
+            with open(output_file, 'w', encoding='utf-8') as f:
+                f.write('\n'.join(new_lines))
+            self.stats['includes_removed'] += 1
+        return changed
+
+    def _clean_includes_of_deleted_files(self, deleted_names: Set[str],
+                                          deleted_basenames: Set[str]) -> None:
+        """清理其他文件中对已删除文件的 #include"""
+        for output_file in list(self.output_dir.rglob('*.h')):
+            if output_file.is_file():
+                self._remove_deleted_includes_from_file(output_file, deleted_names, deleted_basenames)
+
+    def _remove_empty_output_files(self) -> None:
+        """删除输出目录中内容为空的头文件，并清理其他文件中对它们的 #include"""
+        deleted_files = []
+        for output_file in list(self.output_dir.rglob('*.h')):
+            try:
+                with open(output_file, 'r', encoding='utf-8', errors='ignore') as f:
+                    content = f.read()
+            except Exception:
+                continue
+            if not self._is_content_effectively_empty(content):
+                continue
+            rel = output_file.relative_to(self.output_dir)
+            self.logger.debug(f"  Removing empty header: {rel}")
+            deleted_files.append(rel)
+            output_file.unlink()
+        if not deleted_files:
+            return
+
+        self.stats['empty_headers_removed'] = len(deleted_files)
+        deleted_names = {str(p) for p in deleted_files}
+        deleted_basenames = {p.name for p in deleted_files}
+        self._clean_includes_of_deleted_files(deleted_names, deleted_basenames)
+
+    def _validate_single_file_syntax(self, output_file: Path) -> Optional[str]:
+        """用 clang 校验单个文件语法，返回错误字符串或 None"""
+        cmd = [self.clang_binary, '-x', 'c-header', '-fsyntax-only', '-Wno-everything', str(output_file)]
+        try:
+            result = subprocess.run(cmd, capture_output=True, timeout=30)
+            result.stderr = result.stderr.decode('utf-8', errors='replace')
+        except (subprocess.TimeoutExpired, FileNotFoundError):
+            return None
+        if result.returncode != 0:
+            errors = [line.strip() for line in result.stderr.strip().split('\n') if ': error:' in line]
+            if errors:
+                return '\n'.join(errors)
+        return None
+
+    def _validate_output_files(self) -> None:
+        """用 clang -fsyntax-only 校验所有修改过的输出文件，语法错误则阻断构建"""
+        if self.force_regex or not self.clang_binary:
+            return
+        modified = set(self.clang_modified_files + self.regex_modified_files)
+        if not modified:
+            return
+        for output_file in sorted(modified):
+            errs = self._validate_single_file_syntax(output_file)
+            if errs:
+                self.validation_errors.append((output_file, errs))
+        if self.validation_errors:
+            print("\n? ERROR: Output file syntax validation failed (build blocked):")
+            print("-" * 70)
+            for file_path, errs in self.validation_errors:
+                print(f"  File: {file_path.name}")
+                for e in errs.split('\n'):
+                    print(f"    {e}")
+            print()
+
+    @staticmethod
+    def _find_brace_end_in_source(source_lines: List[str], idx: int) -> Optional[int]:
+        """从含 { 的行开始，查找花括号块结束行号"""
+        brace_count = 0
+        for k in range(idx, len(source_lines)):
+            brace_count += source_lines[k].count('{')
+            brace_count -= source_lines[k].count('}')
+            if brace_count == 0 and k > idx:
+                if k + 1 < len(source_lines) and ';' in source_lines[k + 1]:
+                    return k + 2
+                return k + 1
+        return None
+
+    def _find_declaration_end_in_source(self, source_lines: Optional[List[str]],
+                                        start_line: Optional[int]) -> Optional[int]:
+        """当 clang AST 未提供 end_line 时，通过扫描源码查找声明结束行"""
+        if not source_lines or start_line is None or start_line <= 0:
+            return None
+        idx = start_line - 1
+        if idx >= len(source_lines):
+            return start_line
+        line = source_lines[idx]
+        if '{' in line:
+            result = self._find_brace_end_in_source(source_lines, idx)
+            return result if result is not None else start_line
+        for k in range(idx, len(source_lines)):
+            if ';' in source_lines[k]:
+                return k + 1
+        return start_line
+
+
 def parse_arguments():
     parser = argparse.ArgumentParser(
         description='Remove APIs with @systemapi tag from C/C++ header files (Hybrid: clang + regex)'
@@ -1712,6 +2102,9 @@ def main():
     processor.print_stats()
 
     if processor.public_ref_errors:
+        sys.exit(1)
+
+    if processor.validation_errors:
         sys.exit(1)
 
 
