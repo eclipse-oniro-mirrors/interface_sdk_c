@@ -88,7 +88,7 @@ typedef enum AVPlayerState {
 /**
  * @brief Enumerates the seek modes.
  * 
- * @since 11
+ * @since 23
  */
 typedef enum AVPlayerSeekMode {
     /* sync to keyframes after the time point. */
