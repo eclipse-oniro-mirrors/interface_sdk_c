@@ -119,6 +119,24 @@ typedef enum OH_AVCapabilityFeature {
     * @since 20
     */
     VIDEO_ENCODER_B_FRAME = 7,
+    /**
+     * @brief Feature for codec supports downsampling preprocessing. It is only used in video encoder.
+     *
+     * @note This capability can only be enabled for encoders created via the
+     * {@link OH_VideoEncoder_CreatePrimaryWithPreproc} or
+     * {@link OH_VideoEncoder_CreateSecondaryFromPrimary} interface.
+     * @since 26.0.0
+     */
+    VIDEO_ENCODER_PREPROC_DOWNSAMPLING = 9,
+        /**
+     * @brief Feature for codec supports Crop preprocessing. It is only used in video encoder.
+     *
+     * @note This capability can only be enabled for encoders created via the
+     * {@link OH_VideoEncoder_CreatePrimaryWithPreproc} or
+     * {@link OH_VideoEncoder_CreateSecondaryFromPrimary} interface.
+     * @since 26.0.0
+     */
+    VIDEO_ENCODER_PREPROC_CROP = 10,
 } OH_AVCapabilityFeature;
 
 /**
