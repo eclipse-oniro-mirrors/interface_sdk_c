@@ -1014,5 +1014,25 @@
     {
         "first_introduced": "26.0.0",
         "name": "OH_CaptureSession_DeleteZoomPointInfos"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_CaptureSession_RegisterNotificationReceivedCallback"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_CaptureSession_UnregisterNotificationReceivedCallback"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_CameraNotificationInfo_GetNotificationName"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_CameraNotificationInfo_GetProximityStateForFocus"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_CameraNotificationInfo_Destroy"
     }
 ]

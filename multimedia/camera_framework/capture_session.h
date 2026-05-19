@@ -45,6 +45,7 @@
 #include "video_output.h"
 #include "metadata_output.h"
 #include "native_buffer/native_buffer.h"
+#include "camera_notification_info.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -1744,6 +1745,46 @@ Camera_ErrorCode OH_CaptureSession_GetZoomPointInfos(const Camera_CaptureSession
  */
 Camera_ErrorCode OH_CaptureSession_DeleteZoomPointInfos(const Camera_CaptureSession* session,
     OH_Camera_ZoomPointInfo* zoomPointInfo);
+
+/**
+ * @brief Called when camera notification information is received.
+ *
+ * @param context Pointer to the user-defined context passed when the callback is registered.
+ * @param notificationInfo Pointer to {@link OH_Camera_NotificationInfo} instances.
+ * @since 26.0.0
+ */
+typedef void (*OH_CaptureSession_OnNotificationReceive)(
+    void* context, OH_Camera_NotificationInfo* notificationInfo);
+
+/**
+ * @brief Registers a callback to listen for camera notification information received events,
+ * can be unRegister by {@link OH_CaptureSession_UnregisterNotificationReceivedCallback}.
+ * Lifetime and ownership:
+ * - The caller must ensure that `context` remains valid until Unregister returns.
+ *
+ * @param session Pointer to a {@link Camera_CaptureSession} instance.
+ * @param context Pointer to the user-defined context to be passed in the callback.
+ * @param callback Callback used to receive camera notification information, which is an
+ *        {@link OH_CaptureSession_OnNotificationReceive} instance.
+ * @return {@link #CAMERA_OK} : The operation is successful.
+ *         {@link #CAMERA_INVALID_ARGUMENT}: A parameter is missing or the parameter type is incorrect.
+ * @since 26.0.0
+ */
+Camera_ErrorCode OH_CaptureSession_RegisterNotificationReceivedCallback(
+    const Camera_CaptureSession* session, void* context, OH_CaptureSession_OnNotificationReceive callback);
+
+/**
+ * @brief Unregisters the callback used to listen for camera notification information received events.
+ *
+ * @param session Pointer to a {@link Camera_CaptureSession} instance.
+ * @param context Pointer to the user-defined context passed when the callback was registered.
+ * @param callback Callback to unregister, which is an {@link OH_CaptureSession_OnNotificationReceive} instance.
+ * @return {@link #CAMERA_OK} : The operation is successful.
+ *         {@link #CAMERA_INVALID_ARGUMENT}: A parameter is missing or the parameter type is incorrect.
+ * @since 26.0.0
+ */
+Camera_ErrorCode OH_CaptureSession_UnregisterNotificationReceivedCallback(
+    const Camera_CaptureSession* session, void* context, OH_CaptureSession_OnNotificationReceive callback);
 
 #ifdef __cplusplus
 }
