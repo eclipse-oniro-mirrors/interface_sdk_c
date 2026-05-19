@@ -97,7 +97,7 @@ typedef enum BackgroundProcessManager_ErrorCode {
 
 /**
  * @brief Sets the child process priority. After a child process is suppressed, the CPU resources that can be obtained
- * will be limited. If the scheduling policy of the main process changes, for example, from the background to the 
+ * will be limited. If the scheduling policy of the main process changes, for example, from the background to the
  * foreground, the child process changes with the main process. To suppress the child process, call this API again.
  *
  * @param pid ID of the child process to be suppressed, which is the value of the **pid** parameter after the child
