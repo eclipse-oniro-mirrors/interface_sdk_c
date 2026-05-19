@@ -128,7 +128,7 @@ typedef enum OH_AVCapabilityFeature {
      * @since 26.0.0
      */
     VIDEO_ENCODER_PREPROC_DOWNSAMPLING = 9,
-        /**
+    /**
      * @brief Feature for codec supports Crop preprocessing. It is only used in video encoder.
      *
      * @note This capability can only be enabled for encoders created via the
