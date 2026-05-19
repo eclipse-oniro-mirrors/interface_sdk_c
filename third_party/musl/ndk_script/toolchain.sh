@@ -45,8 +45,8 @@ if [ -n "${PYTHON_DIR+x}" ]; then
     fi
     VERSION_NAME=$(ls -1 "${PYTHON_DIR}" | head -n 1)
     cp -rfp ${PYTHON_DIR}/${VERSION_NAME} ${OUT_DIR}/python3
-    if [ -e "${OUT_DIR}/bin/libpython3.11.dll" ]; then
-        cp -rfp ${PYTHON_DIR}/3.11.4/bin/libpython3.11.dll ${OUT_DIR}/bin/libpython3.11.dll
+    if [ -e "${OUT_DIR}/bin/libpython3.12.dll" ]; then
+        cp -rfp ${PYTHON_DIR}/3.12.10/bin/libpython3.12.dll ${OUT_DIR}/bin/libpython3.12.dll
     fi
 fi
 
@@ -74,6 +74,6 @@ function remove_unnecessary_file() {
 }
 remove_unnecessary_file
 strip_dir ${OUT_DIR}/lib
-if [ -f "${OUT_DIR}/bin/python/lib/python3.11/lldb/_lldb.so" ]; then
-    ${TOOL_DIR}/llvm-strip ${OUT_DIR}/bin/python/lib/python3.11/lldb/_lldb.so
+if [ -f "${OUT_DIR}/bin/python/lib/python3.12/lldb/_lldb.so" ]; then
+    ${TOOL_DIR}/llvm-strip ${OUT_DIR}/bin/python/lib/python3.12/lldb/_lldb.so
 fi
