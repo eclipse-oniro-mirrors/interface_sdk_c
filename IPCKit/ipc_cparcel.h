@@ -307,10 +307,10 @@ int OH_IPCParcel_ReadInt64(const OHIPCParcel *parcel, int64_t *value);
  * @param parcel Pointer to the **OHIPCParcel** object. It cannot be NULL.
  * @param value Value to write.
  * @return <ul>
- *         <li>Returns {@link OH_IPC_ErrorCode#OH_IPC_SUCCESS} if the operation is successful.<li>
- *         <li>Returns {@link OH_IPC_ErrorCode#OH_IPC_CHECK_PARAM_ERROR} if invalid parameters are found.<li>
- *         <li>Returns {@link OH_IPC_ErrorCode#OH_IPC_PARCEL_WRITE_ERROR} if the write operation fails.<li>
- *         <ul>
+ *         <li>Returns {@link OH_IPC_ErrorCode#OH_IPC_SUCCESS} if the operation is successful.</li>
+ *         <li>Returns {@link OH_IPC_ErrorCode#OH_IPC_CHECK_PARAM_ERROR} if invalid parameters are found.</li>
+ *         <li>Returns {@link OH_IPC_ErrorCode#OH_IPC_PARCEL_WRITE_ERROR} if the write operation fails.</li>
+ *         </ul>
  * @since 26.0.0
  */
 int OH_IPCParcel_WriteUint8(OHIPCParcel *parcel, uint8_t value);
@@ -321,10 +321,10 @@ int OH_IPCParcel_WriteUint8(OHIPCParcel *parcel, uint8_t value);
  * @param parcel Pointer to the **OHIPCParcel** object. It cannot be NULL.
  * @param value Pointer to the buffer for holding the read data. It cannot be NULL.
  * @return <ul>
- *         <li>Returns {@link OH_IPC_ErrorCode#OH_IPC_SUCCESS} if the operation is successful.<li>
- *         <li>Returns {@link OH_IPC_ErrorCode#OH_IPC_CHECK_PARAM_ERROR} if invalid parameters are found.<li>
- *         <li>Returns {@link OH_IPC_ErrorCode#OH_IPC_PARCEL_READ_ERROR} if the read operation fails.<li>
- *         <ul>
+ *         <li>Returns {@link OH_IPC_ErrorCode#OH_IPC_SUCCESS} if the operation is successful.</li>
+ *         <li>Returns {@link OH_IPC_ErrorCode#OH_IPC_CHECK_PARAM_ERROR} if invalid parameters are found.</li>
+ *         <li>Returns {@link OH_IPC_ErrorCode#OH_IPC_PARCEL_READ_ERROR} if the read operation fails.</li>
+ *         </ul>
  * @since 26.0.0
  */
 int OH_IPCParcel_ReadUint8(const OHIPCParcel *parcel, uint8_t *value);
@@ -335,10 +335,10 @@ int OH_IPCParcel_ReadUint8(const OHIPCParcel *parcel, uint8_t *value);
  * @param parcel Pointer to the **OHIPCParcel** object. It cannot be NULL.
  * @param value Value to write.
  * @return <ul>
- *         <li>Returns {@link OH_IPC_ErrorCode#OH_IPC_SUCCESS} if the operation is successful.<li>
- *         <li>Returns {@link OH_IPC_ErrorCode#OH_IPC_CHECK_PARAM_ERROR} if invalid parameters are found.<li>
- *         <li>Returns {@link OH_IPC_ErrorCode#OH_IPC_PARCEL_WRITE_ERROR} if the write operation fails.<li>
- *         <ul>
+ *         <li>Returns {@link OH_IPC_ErrorCode#OH_IPC_SUCCESS} if the operation is successful.</li>
+ *         <li>Returns {@link OH_IPC_ErrorCode#OH_IPC_CHECK_PARAM_ERROR} if invalid parameters are found.</li>
+ *         <li>Returns {@link OH_IPC_ErrorCode#OH_IPC_PARCEL_WRITE_ERROR} if the write operation fails.</li>
+ *         </ul>
  * @since 26.0.0
  */
 int OH_IPCParcel_WriteUint16(OHIPCParcel *parcel, uint16_t value);
@@ -349,10 +349,10 @@ int OH_IPCParcel_WriteUint16(OHIPCParcel *parcel, uint16_t value);
  * @param parcel Pointer to the **OHIPCParcel** object. It cannot be NULL.
  * @param value Pointer to the buffer for holding the read data. It cannot be NULL.
  * @return <ul>
- *         <li>Returns {@link OH_IPC_ErrorCode#OH_IPC_SUCCESS} if the operation is successful.<li>
- *         <li>Returns {@link OH_IPC_ErrorCode#OH_IPC_CHECK_PARAM_ERROR} if invalid parameters are found.<li>
- *         <li>Returns {@link OH_IPC_ErrorCode#OH_IPC_PARCEL_READ_ERROR} if the read operation fails.<li>
- *         <ul>
+ *         <li>Returns {@link OH_IPC_ErrorCode#OH_IPC_SUCCESS} if the operation is successful.</li>
+ *         <li>Returns {@link OH_IPC_ErrorCode#OH_IPC_CHECK_PARAM_ERROR} if invalid parameters are found.</li>
+ *         <li>Returns {@link OH_IPC_ErrorCode#OH_IPC_PARCEL_READ_ERROR} if the read operation fails.</li>
+ *         </ul>
  * @since 26.0.0
  */
 int OH_IPCParcel_ReadUint16(const OHIPCParcel *parcel, uint16_t *value);
@@ -363,10 +363,10 @@ int OH_IPCParcel_ReadUint16(const OHIPCParcel *parcel, uint16_t *value);
  * @param parcel Pointer to the **OHIPCParcel** object. It cannot be NULL.
  * @param value Value to write.
  * @return <ul>
- *         <li>Returns {@link OH_IPC_ErrorCode#OH_IPC_SUCCESS} if the operation is successful.<li>
- *         <li>Returns {@link OH_IPC_ErrorCode#OH_IPC_CHECK_PARAM_ERROR} if invalid parameters are found.<li>
- *         <li>Returns {@link OH_IPC_ErrorCode#OH_IPC_PARCEL_WRITE_ERROR} if the write operation fails.<li>
- *         <ul>
+ *         <li>Returns {@link OH_IPC_ErrorCode#OH_IPC_SUCCESS} if the operation is successful.</li>
+ *         <li>Returns {@link OH_IPC_ErrorCode#OH_IPC_CHECK_PARAM_ERROR} if invalid parameters are found.</li>
+ *         <li>Returns {@link OH_IPC_ErrorCode#OH_IPC_PARCEL_WRITE_ERROR} if the write operation fails.</li>
+ *         </ul>
  * @since 26.0.0
  */
 int OH_IPCParcel_WriteUint32(OHIPCParcel *parcel, uint32_t value);
@@ -377,10 +377,10 @@ int OH_IPCParcel_WriteUint32(OHIPCParcel *parcel, uint32_t value);
  * @param parcel Pointer to the **OHIPCParcel** object. It cannot be NULL.
  * @param value Pointer to the buffer for holding the read data. It cannot be NULL.
  * @return <ul>
- *         <li>Returns {@link OH_IPC_ErrorCode#OH_IPC_SUCCESS} if the operation is successful.<li>
- *         <li>Returns {@link OH_IPC_ErrorCode#OH_IPC_CHECK_PARAM_ERROR} if invalid parameters are found.<li>
- *         <li>Returns {@link OH_IPC_ErrorCode#OH_IPC_PARCEL_READ_ERROR} if the read operation fails.<li>
- *         <ul>
+ *         <li>Returns {@link OH_IPC_ErrorCode#OH_IPC_SUCCESS} if the operation is successful.</li>
+ *         <li>Returns {@link OH_IPC_ErrorCode#OH_IPC_CHECK_PARAM_ERROR} if invalid parameters are found.</li>
+ *         <li>Returns {@link OH_IPC_ErrorCode#OH_IPC_PARCEL_READ_ERROR} if the read operation fails.</li>
+ *         </ul>
  * @since 26.0.0
  */
 int OH_IPCParcel_ReadUint32(const OHIPCParcel *parcel, uint32_t *value);
@@ -391,10 +391,10 @@ int OH_IPCParcel_ReadUint32(const OHIPCParcel *parcel, uint32_t *value);
  * @param parcel Pointer to the **OHIPCParcel** object. It cannot be NULL.
  * @param value Value to write.
  * @return <ul>
- *         <li>Returns {@link OH_IPC_ErrorCode#OH_IPC_SUCCESS} if the operation is successful.<li>
- *         <li>Returns {@link OH_IPC_ErrorCode#OH_IPC_CHECK_PARAM_ERROR} if invalid parameters are found.<li>
- *         <li>Returns {@link OH_IPC_ErrorCode#OH_IPC_PARCEL_WRITE_ERROR} if the write operation fails.<li>
- *         <ul>
+ *         <li>Returns {@link OH_IPC_ErrorCode#OH_IPC_SUCCESS} if the operation is successful.</li>
+ *         <li>Returns {@link OH_IPC_ErrorCode#OH_IPC_CHECK_PARAM_ERROR} if invalid parameters are found.</li>
+ *         <li>Returns {@link OH_IPC_ErrorCode#OH_IPC_PARCEL_WRITE_ERROR} if the write operation fails.</li>
+ *         </ul>
  * @since 26.0.0
  */
 int OH_IPCParcel_WriteUint64(OHIPCParcel *parcel, uint64_t value);
@@ -405,10 +405,10 @@ int OH_IPCParcel_WriteUint64(OHIPCParcel *parcel, uint64_t value);
  * @param parcel Pointer to the **OHIPCParcel** object. It cannot be NULL.
  * @param value Pointer to the buffer for holding the read data. It cannot be NULL.
  * @return <ul>
- *         <li>Returns {@link OH_IPC_ErrorCode#OH_IPC_SUCCESS} if the operation is successful.<li>
- *         <li>Returns {@link OH_IPC_ErrorCode#OH_IPC_CHECK_PARAM_ERROR} if invalid parameters are found.<li>
- *         <li>Returns {@link OH_IPC_ErrorCode#OH_IPC_PARCEL_READ_ERROR} if the read operation fails.<li>
- *         <ul>
+ *         <li>Returns {@link OH_IPC_ErrorCode#OH_IPC_SUCCESS} if the operation is successful.</li>
+ *         <li>Returns {@link OH_IPC_ErrorCode#OH_IPC_CHECK_PARAM_ERROR} if invalid parameters are found.</li>
+ *         <li>Returns {@link OH_IPC_ErrorCode#OH_IPC_PARCEL_READ_ERROR} if the read operation fails.</li>
+ *         </ul>
  * @since 26.0.0
  */
 int OH_IPCParcel_ReadUint64(const OHIPCParcel *parcel, uint64_t *value);
