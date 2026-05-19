@@ -49,8 +49,8 @@ extern "C" {
 typedef enum BackgroundProcessManager_ProcessPriority {
     /**
      * @brief Compared with **PROCESS_INACTIVE**, this priority has a more obvious suppression effect. Child processes
-     *     can obtain less CPU resources. You are advised to set this priority when executing background child
-     *     processes that cannot be perceived by users, such as background image-text pages.
+     * can obtain less CPU resources. You are advised to set this priority when executing background child processes
+     * that cannot be perceived by users, such as background image-text pages.
      *
      * @since 17
      */
@@ -58,7 +58,7 @@ typedef enum BackgroundProcessManager_ProcessPriority {
 
     /**
      * @brief You are advised to set this priority when executing background child processes that can be perceived by
-     *     users, such as audio playback and navigation.
+     * users, such as audio playback and navigation.
      *
      * @since 17
      */
@@ -97,26 +97,25 @@ typedef enum BackgroundProcessManager_ErrorCode {
 
 /**
  * @brief Sets the child process priority. After a child process is suppressed, the CPU resources that can be obtained
- *     will be limited. If the scheduling policy of the main process changes, for example, from the background to the
- *     foreground, the child process changes with the main process. To suppress the child process, call this API again.
+ * will be limited. If the scheduling policy of the main process changes, for example, from the background to the 
+ * foreground, the child process changes with the main process. To suppress the child process, call this API again.
  *
  * @param pid ID of the child process to be suppressed, which is the value of the **pid** parameter after the child
  *     process is created through the {@link OH_Ability_StartNativeChildProcess} API.
  * @param priority Suppression priority.
  * @return {@link ERR_BACKGROUND_PROCESS_MANAGER_SUCCESS} is returned if the suppression parameter is sent successfully
- * {@link ERR_BACKGROUND_PROCESS_MANAGER_INVALID_PARAM} is returned if the parameter check fails.
+ *     {@link ERR_BACKGROUND_PROCESS_MANAGER_INVALID_PARAM} is returned if the parameter check fails.
  * @since 17
  */
 int OH_BackgroundProcessManager_SetProcessPriority(int pid, BackgroundProcessManager_ProcessPriority priority);
 
 /**
  * @brief Unsuppresses the child process. In this case, the child process follows the scheduling policy of the main
- *     process. If the scheduling policy of the main process changes, for example, from the background to the
- *     foreground, the child process changes with the main process. The effect is the same as calling
- *     **resetProcessPriority**.
+ * process. If the scheduling policy of the main process changes, for example, from the background to the foreground,
+ * the child process changes with the main process. The effect is the same as calling **resetProcessPriority**.
  *
  * @param pid ID of the child process, which is the value of the **pid** parameter of the
- * {@link OH_Ability_StartNativeChildProcess} API.
+ *     {@link OH_Ability_StartNativeChildProcess} API.
  * @return {@link ERR_BACKGROUND_PROCESS_MANAGER_SUCCESS} is returned if the suppression parameter is sent successfully
  * @since 17
  */
