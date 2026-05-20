@@ -414,5 +414,13 @@
   {
     "first_introduced": "26.0.0", 
     "name": "OH_AVPlayer_SetPCMOutputCallback"
+  },
+  {
+    "first_introduced": "26.0.0", 
+    "name": "OH_AVPlayer_SetPCMProcessorCallback"
+  },
+  {
+    "first_introduced": "26.0.0", 
+    "name": "OH_AVPlayer_SetPCMProcessorMaxLen"
   }
 ]
