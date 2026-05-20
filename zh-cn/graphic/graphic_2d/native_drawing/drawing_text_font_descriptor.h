@@ -1,4 +1,3 @@
-
 /*
  * Copyright (c) 2021-2024 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -128,7 +127,7 @@ typedef enum {
     FULL_DESCRIPTOR_ATTR_I_ITALIC = 7,
 
     /**
-     * 字体是否紧凑，bool类型。true表示字体紧凑，false表示字体非紧凑。
+     * 字体是否等宽，bool类型。true表示字体紧凑，false表示字体非紧凑。
      */
     FULL_DESCRIPTOR_ATTR_B_MONO = 8,
 
@@ -284,15 +283,16 @@ typedef struct {
      */
     double value;
 } OH_Drawing_FontVariationInstanceCoordinate;
+
 /**
  * @brief 获取与指定字体描述符匹配的所有系统字体描述符，其中{@link OH_Drawing_FontDescriptor}的path字段不作为有效的匹配字段，其余字段不是默认值时生效。
- * 如果参数desc的所有字段都是默认值，则获取所有系统字体描述符。
- * 如果匹配失败，返回NULL。不再需要{@link OH_Drawing_FontDescriptor}时，请使用{@link OH_Drawing_DestroyFontDescriptors}接口释放该对象的指针。
+ * <br>如果参数desc的所有字段都是默认值，则获取所有系统字体描述符。
+ * <br>如果匹配失败，返回NULL。不再需要{@link OH_Drawing_FontDescriptor}时，请使用{@link OH_Drawing_DestroyFontDescriptors}接口释放该对象的指针。
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @param desc 指针。
- *     建议使用{@link OH_Drawing_CreateFontDescriptor}获得有效的{@link OH_Drawing_FontDescriptor}实例。
- *     如果自己创建{@link OH_Drawing_FontDescriptor}实例，请确保不用于匹配的字段是默认值。
+ *     <br>建议使用{@link OH_Drawing_CreateFontDescriptor}获得有效的{@link OH_Drawing_FontDescriptor}实例。
+ *     <br>如果自己创建{@link OH_Drawing_FontDescriptor}实例，请确保不用于匹配的字段是默认值。
  * @param num 表示返回值数组的成员个数。
  * @return {@link OH_Drawing_FontDescriptor}数组，释放时请使用{@link OH_Drawing_DestroyFontDescriptors}。
  * @since 18
@@ -311,7 +311,7 @@ void OH_Drawing_DestroyFontDescriptors(OH_Drawing_FontDescriptor* descriptors, s
 
 /**
  * @brief 根据字体名称和字体类型获取指定的字体描述符，支持系统字体、风格字体和用户已安装字体。
- * 字体描述符是描述字体特征的一种数据结构，它包含了定义字体外观和属性的详细信息。
+ * <br>字体描述符是描述字体特征的一种数据结构，它包含了定义字体外观和属性的详细信息。
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @param fullName 表示指向字体名称字符串{@link OH_Drawing_String}的指针。
@@ -361,7 +361,7 @@ void OH_Drawing_DestroySystemFontFullNames(OH_Drawing_Array* fullNameArray);
  * @param size 以字节为单位的字体数据缓冲区的大小。
  * @return 返回指向对应字体文件的字体描述符数组{@link OH_Drawing_Array}的指针，不再需要OH_Drawing_Array时，请使用
  *     {@link OH_Drawing_DestroyFontFullDescriptors}接口释放该对象的指针。
- *     如果因数据格式无效或解析错误导致操作失败，返回NULL。
+ *     <br>如果因数据格式无效或解析错误导致操作失败，返回NULL。
  * @since 22
  */
 OH_Drawing_Array* OH_Drawing_GetFontFullDescriptorsFromStream(const void* data, size_t size);
@@ -372,7 +372,7 @@ OH_Drawing_Array* OH_Drawing_GetFontFullDescriptorsFromStream(const void* data, 
  * @param path 需要查询的字体文件的路径。
  * @return 返回指向对应字体文件的字体描述符数组{@link OH_Drawing_Array}的指针，不再需要OH_Drawing_Array时，请使用
  *     {@link OH_Drawing_DestroyFontFullDescriptors}接口释放该对象的指针。
- *     如果字体文件未找到、字体文件路径无效、字体文件无权限或者文件非字体格式，返回NULL。
+ *     <br>如果字体文件未找到、字体文件路径无效、字体文件无权限或者文件非字体格式，返回NULL。
  * @since 22
  */
 OH_Drawing_Array* OH_Drawing_GetFontFullDescriptorsFromPath(const char* path);
@@ -383,7 +383,7 @@ OH_Drawing_Array* OH_Drawing_GetFontFullDescriptorsFromPath(const char* path);
  * @param descriptorArray 表示指向字体描述符数组{@link OH_Drawing_Array}的指针。
  * @param index 数组的索引，索引值从0开始。
  * @return 返回指向指定索引处字体描述符对象{@link OH_Drawing_FontFullDescriptor}的指针。
- *     如果索引超出范围或数组无效，则返回NULL。
+ *     <br>如果索引超出范围或数组无效，则返回NULL。
  * @since 22
  */
 const OH_Drawing_FontFullDescriptor* OH_Drawing_GetFontFullDescriptorByIndex(
@@ -413,8 +413,8 @@ void OH_Drawing_DestroyFontFullDescriptor(const OH_Drawing_FontFullDescriptor* d
  * @param unicodeArray 出参，用于接收unicode码数组，当不需要时，使用free()释放。
  * @param arrayLength 出参，用于接收unicode码数组的长度。
  * @return 函数执行结果。
- *     返回OH_DRAWING_SUCCESS，表示执行成功。
- *     返回OH_DRAWING_ERROR_INCORRECT_PARAMETER，表示字体路径非法或不是字体文件。
+ *     <br>返回OH_DRAWING_SUCCESS，表示执行成功。
+ *     <br>返回OH_DRAWING_ERROR_INCORRECT_PARAMETER，表示字体路径非法或不是字体文件。
  * @since 23
  */
 OH_Drawing_ErrorCode OH_Drawing_GetFontUnicodeArrayFromFile(const char* fontSrc, uint32_t index,
@@ -429,8 +429,8 @@ OH_Drawing_ErrorCode OH_Drawing_GetFontUnicodeArrayFromFile(const char* fontSrc,
  * @param unicodeArray 出参，用于接收unicode码数组，当不需要时，使用free()释放。
  * @param arrayLength 出参，用于接收unicode码数组的长度。
  * @return 函数执行结果。
- *     返回OH_DRAWING_SUCCESS，表示执行成功。
- *     返回OH_DRAWING_ERROR_INCORRECT_PARAMETER，表示缓存数据非法或缓存数据不是字体文件数据。
+ *     <br>返回OH_DRAWING_SUCCESS，表示执行成功。
+ *     <br>返回OH_DRAWING_ERROR_INCORRECT_PARAMETER，表示缓存数据非法或缓存数据不是字体文件数据。
  * @since 23
  */
 OH_Drawing_ErrorCode OH_Drawing_GetFontUnicodeArrayFromBuffer(uint8_t* fontBuffer, size_t length, uint32_t index,
@@ -443,9 +443,9 @@ OH_Drawing_ErrorCode OH_Drawing_GetFontUnicodeArrayFromBuffer(uint8_t* fontBuffe
  * @param id 字体描述符属性id。从{@link OH_Drawing_FontFullDescriptorAttributeId}中可获取字体描述符属性。
  * @param value 指向int类型属性的指针。作为出参使用。
  * @return 函数执行结果。
- *     返回OH_DRAWING_SUCCESS，表示执行成功。
- *     返回OH_DRAWING_ERROR_INCORRECT_PARAMETER，表示参数descriptor或者value为空指针。
- *     返回OH_DRAWING_ERROR_ATTRIBUTE_ID_MISMATCH，表示传入属性id与调用函数不匹配。
+ *     <br>返回OH_DRAWING_SUCCESS，表示执行成功。
+ *     <br>返回OH_DRAWING_ERROR_INCORRECT_PARAMETER，表示参数descriptor或者value为空指针。
+ *     <br>返回OH_DRAWING_ERROR_ATTRIBUTE_ID_MISMATCH，表示传入属性id与调用函数不匹配。
  * @since 22
  */
 OH_Drawing_ErrorCode OH_Drawing_GetFontFullDescriptorAttributeInt(const OH_Drawing_FontFullDescriptor* descriptor,
@@ -458,9 +458,9 @@ OH_Drawing_ErrorCode OH_Drawing_GetFontFullDescriptorAttributeInt(const OH_Drawi
  * @param id 字体描述符属性id。从{@link OH_Drawing_FontFullDescriptorAttributeId}中可获取字体描述符属性。
  * @param value 指向bool类型属性的指针。作为出参使用。
  * @return 函数执行结果。
- *     返回OH_DRAWING_SUCCESS，表示执行成功。
- *     返回OH_DRAWING_ERROR_INCORRECT_PARAMETER，表示参数descriptor或者value为空指针。
- *     返回OH_DRAWING_ERROR_ATTRIBUTE_ID_MISMATCH，表示传入属性id与调用函数不匹配。
+ *     <br>返回OH_DRAWING_SUCCESS，表示执行成功。
+ *     <br>返回OH_DRAWING_ERROR_INCORRECT_PARAMETER，表示参数descriptor或者value为空指针。
+ *     <br>返回OH_DRAWING_ERROR_ATTRIBUTE_ID_MISMATCH，表示传入属性id与调用函数不匹配。
  * @since 22
  */
 OH_Drawing_ErrorCode OH_Drawing_GetFontFullDescriptorAttributeBool(const OH_Drawing_FontFullDescriptor* descriptor,
@@ -470,15 +470,15 @@ OH_Drawing_ErrorCode OH_Drawing_GetFontFullDescriptorAttributeBool(const OH_Draw
  * @brief 获取{@link OH_Drawing_String}类型字体描述符的属性。
  *
  * @note The caller is responsible for manually releasing the internal <b>strData</b> member of the
- *       <b>OH_Drawing_String</b> structure when it is no longer needed.
+ *     <b>OH_Drawing_String</b> structure when it is no longer needed.
  *
  * @param descriptor 指向字体描述符对象{@link OH_Drawing_FontFullDescriptor}的指针。
  * @param id 字体描述符属性id。从{@link OH_Drawing_FontFullDescriptorAttributeId}中可获取字体描述符属性。
  * @param str 指向OH_Drawing_String类型属性的指针。作为出参使用。
  * @return 函数执行结果。
- *     返回OH_DRAWING_SUCCESS，表示执行成功。
- *     返回OH_DRAWING_ERROR_INCORRECT_PARAMETER，表示参数descriptor或者str为空指针。
- *     返回OH_DRAWING_ERROR_ATTRIBUTE_ID_MISMATCH，表示传入属性id与调用函数不匹配。
+ *     <br>返回OH_DRAWING_SUCCESS，表示执行成功。
+ *     <br>返回OH_DRAWING_ERROR_INCORRECT_PARAMETER，表示参数descriptor或者str为空指针。
+ *     <br>返回OH_DRAWING_ERROR_ATTRIBUTE_ID_MISMATCH，表示传入属性id与调用函数不匹配。
  * @since 22
  */
 OH_Drawing_ErrorCode OH_Drawing_GetFontFullDescriptorAttributeString(const OH_Drawing_FontFullDescriptor* descriptor,
@@ -501,7 +501,7 @@ OH_Drawing_Array* OH_Drawing_GetFontFullDescriptorAttributeArray(const OH_Drawin
  * @param array 指向字体可变轴数组{@link OH_Drawing_Array}的指针。
  * @param index 数组的索引，索引值从0开始。
  * @return 返回指向指定索引处字体可变轴对象{@link OH_Drawing_FontVariationAxis}的指针。
- *     如果索引超出范围或数组无效，则返回NULL。
+ *     <br>如果索引超出范围或数组无效，则返回NULL。
  * @since 24
  */
 OH_Drawing_FontVariationAxis* OH_Drawing_GetFontVariationAxisByIndex(OH_Drawing_Array* array, size_t index);
@@ -521,9 +521,9 @@ void OH_Drawing_DestroyFontVariationAxis(OH_Drawing_Array* fontVariaAxisArray);
  * @param id 字体可变轴属性id。从{@link OH_Drawing_FontVariationAxisAttributeId}中可获取字体可变轴的属性。
  * @param value 指向double类型属性的指针。作为出参使用。
  * @return 函数执行结果。
- *     返回OH_DRAWING_SUCCESS，表示执行成功。
- *     返回OH_DRAWING_ERROR_INCORRECT_PARAMETER，表示参数variationAxis或者value为空指针。
- *     返回OH_DRAWING_ERROR_ATTRIBUTE_ID_MISMATCH，表示传入属性id与调用函数不匹配。
+ *     <br>返回OH_DRAWING_SUCCESS，表示执行成功。
+ *     <br>返回OH_DRAWING_ERROR_INCORRECT_PARAMETER，表示参数variationAxis或者value为空指针。
+ *     <br>返回OH_DRAWING_ERROR_ATTRIBUTE_ID_MISMATCH，表示传入属性id与调用函数不匹配。
  * @since 24
  */
 OH_Drawing_ErrorCode OH_Drawing_GetFontVariationAxisAttributeDouble(OH_Drawing_FontVariationAxis* variationAxis,
@@ -536,9 +536,9 @@ OH_Drawing_ErrorCode OH_Drawing_GetFontVariationAxisAttributeDouble(OH_Drawing_F
  * @param id 字体可变轴属性id。从{@link OH_Drawing_FontVariationAxisAttributeId}中可获取字体可变轴的属性。
  * @param value 指向int类型属性的指针。作为出参使用。
  * @return 函数执行结果。
- *     返回OH_DRAWING_SUCCESS，表示执行成功。
- *     返回OH_DRAWING_ERROR_INCORRECT_PARAMETER，表示参数variationAxis或者value为空指针。
- *     返回OH_DRAWING_ERROR_ATTRIBUTE_ID_MISMATCH，表示传入属性id与调用函数不匹配。
+ *     <br>返回OH_DRAWING_SUCCESS，表示执行成功。
+ *     <br>返回OH_DRAWING_ERROR_INCORRECT_PARAMETER，表示参数variationAxis或者value为空指针。
+ *     <br>返回OH_DRAWING_ERROR_ATTRIBUTE_ID_MISMATCH，表示传入属性id与调用函数不匹配。
  * @since 24
  */
 OH_Drawing_ErrorCode OH_Drawing_GetFontVariationAxisAttributeInt(OH_Drawing_FontVariationAxis* variationAxis,
@@ -548,15 +548,15 @@ OH_Drawing_ErrorCode OH_Drawing_GetFontVariationAxisAttributeInt(OH_Drawing_Font
  * @brief 获取{@link OH_Drawing_String}类型字体可变轴的属性。
  *
  * @note The caller is responsible for manually releasing the internal <b>strData</b> member of the
- *       <b>OH_Drawing_String</b> structure when it is no longer needed.
+ *     <b>OH_Drawing_String</b> structure when it is no longer needed.
  *
  * @param variationAxis 指向字体可变轴对象{@link OH_Drawing_FontVariationAxis}的指针。
  * @param id 字体可变轴属性id。从{@link OH_Drawing_FontVariationAxisAttributeId}中可获取字体可变轴的属性。
  * @param str 指向OH_Drawing_String类型属性的指针。作为出参使用。
  * @return 函数执行结果。
- *     返回OH_DRAWING_SUCCESS，表示执行成功。
- *     返回OH_DRAWING_ERROR_INCORRECT_PARAMETER，表示参数variationAxis或者str为空指针。
- *     返回OH_DRAWING_ERROR_ATTRIBUTE_ID_MISMATCH，表示传入属性id与调用函数不匹配。
+ *     <br>返回OH_DRAWING_SUCCESS，表示执行成功。
+ *     <br>返回OH_DRAWING_ERROR_INCORRECT_PARAMETER，表示参数variationAxis或者str为空指针。
+ *     <br>返回OH_DRAWING_ERROR_ATTRIBUTE_ID_MISMATCH，表示传入属性id与调用函数不匹配。
  * @since 24
  */
 OH_Drawing_ErrorCode OH_Drawing_GetFontVariationAxisAttributeStr(OH_Drawing_FontVariationAxis* variationAxis,
@@ -568,7 +568,7 @@ OH_Drawing_ErrorCode OH_Drawing_GetFontVariationAxisAttributeStr(OH_Drawing_Font
  * @param array 指向字体可变实例数组{@link OH_Drawing_Array}的指针。
  * @param index 数组的索引，索引值从0开始。
  * @return 返回指向指定索引处字体可变实例对象{@link OH_Drawing_FontVariationInstance}的指针。
- *     如果索引超出范围或数组无效，则返回NULL。
+ *     <br>如果索引超出范围或数组无效，则返回NULL。
  * @since 24
  */
 OH_Drawing_FontVariationInstance* OH_Drawing_GetFontVariationInstanceByIndex(OH_Drawing_Array* array, size_t index);
@@ -585,15 +585,15 @@ void OH_Drawing_DestroyFontVariationInstance(OH_Drawing_Array* fontVariaAxisInst
  * @brief 获取{@link OH_Drawing_String}类型字体可变实例的属性。
  *
  * @note The caller is responsible for manually releasing the internal <b>strData</b> member of the
- *       <b>OH_Drawing_String</b> structure when it is no longer needed.
+ *     <b>OH_Drawing_String</b> structure when it is no longer needed.
  *
  * @param variationInstance 指向字体可变实例对象{@link OH_Drawing_FontVariationInstance}的指针。
  * @param id 字体可变实例属性id。从{@link OH_Drawing_FontVariationInstanceAttributeId}中可获取字体可变实例属性。
  * @param str 指向OH_Drawing_String类型属性的指针。作为出参使用。
  * @return 函数执行结果。
- *     返回OH_DRAWING_SUCCESS，表示执行成功。
- *     返回OH_DRAWING_ERROR_INCORRECT_PARAMETER，表示参数variationInstance或者str为空指针。
- *     返回OH_DRAWING_ERROR_ATTRIBUTE_ID_MISMATCH，表示传入属性id与调用函数不匹配。
+ *     <br>返回OH_DRAWING_SUCCESS，表示执行成功。
+ *     <br>返回OH_DRAWING_ERROR_INCORRECT_PARAMETER，表示参数variationInstance或者str为空指针。
+ *     <br>返回OH_DRAWING_ERROR_ATTRIBUTE_ID_MISMATCH，表示传入属性id与调用函数不匹配。
  * @since 24
  */
 OH_Drawing_ErrorCode OH_Drawing_GetFontVariationInstanceAttributeStr(

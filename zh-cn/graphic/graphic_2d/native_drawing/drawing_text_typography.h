@@ -1,4 +1,3 @@
-
 /*
  * Copyright (c) 2021-2024 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -595,6 +594,7 @@ typedef struct OH_Drawing_FontAliasInfo {
      */
     int weight;
 } OH_Drawing_FontAliasInfo;
+
 /**
  * @brief This struct describes the information about generic fonts supported by the system.
  *
@@ -960,7 +960,7 @@ typedef enum OH_Drawing_LineHeightStyle {
 
 /**
  * @brief 排版样式属性枚举。
- * 针对排版样式和文本样式中的共有属性，建议优先使用文本样式属性（可由{@link OH_Drawing_TextStyleAttributeId}获取）。
+ * <br>针对排版样式和文本样式中的共有属性，建议优先使用文本样式属性（可由{@link OH_Drawing_TextStyleAttributeId}获取）。
  *
  * @since 21
  */
@@ -999,6 +999,13 @@ typedef enum OH_Drawing_TypographyStyleAttributeId {
     TYPOGRAPHY_STYLE_ATTR_I_FONT_WIDTH = 4,
 
     /**
+     * 设置文本排版时是否使能行首标点压缩。<br>**说明：**<br>1. 需要字体文件支持{@link OH_Drawing_FontFeature}中的"ss08"特性，否则无法压缩。<br>2.
+     * 在行首标点压缩范围内的标点才在本特性作用范围内。
+     * @since 23
+     */
+    TYPOGRAPHY_STYLE_ATTR_B_COMPRESS_HEAD_PUNCTUATION = 5,
+
+    /**
      * 设置文本排版时是否使能字体内部的padding。
      * @since 23
      */
@@ -1017,23 +1024,68 @@ typedef enum OH_Drawing_TypographyStyleAttributeId {
     TYPOGRAPHY_STYLE_ATTR_I_ELLIPSIS_MODAL = 8,
 
     /**
-     * 行首缩进数组。<br>缩进数组值需全部大于等于0，数组中每个元素代表一行缩进值，当实际文本行数超过缩进数组个数时，超过行的缩进为数组最后一个值。.0
+     * 行首缩进数组。<br>缩进数组值需全部大于等于0，数组中每个元素代表一行缩进值，当实际文本行数超过缩进数组个数时，超过行的缩进为数组最后一个值。
      * @since 26.0.0
      */
     TYPOGRAPHY_STYLE_ATTR_DA_LINE_HEAD_INDENT = 9,
 
     /**
-     * 段落首行缩进。缩进值需大于等于0。.0
+     * 段落首行缩进。缩进值需大于等于0。
      * @since 26.0.0
      */
     TYPOGRAPHY_STYLE_ATTR_D_FIRST_LINE_HEAD_INDENT = 10,
 
     /**
-     * 行尾缩进数组。<br>缩进数组值需全部大于等于0，数组中每个元素代表一行缩进值，当实际文本行数超过缩进数组个数时，超过行的缩进为数组最后一个值。.0
+     * 行尾缩进数组。<br>缩进数组值需全部大于等于0，数组中每个元素代表一行缩进值，当实际文本行数超过缩进数组个数时，超过行的缩进为数组最后一个值。
      * @since 26.0.0
      */
     TYPOGRAPHY_STYLE_ATTR_DA_LINE_TAIL_INDENT = 11
 } OH_Drawing_TypographyStyleAttributeId;
+
+/**
+ * @brief 枚举排版属性。
+ *
+ * @since 26.0.0
+ */
+typedef enum OH_Drawing_TypographyAttributeId {
+    /**
+ * 是否强制复用栅格化结果。
+ * True表示强制复用光栅化结果。False表示允许更新光栅化结果。
+ * 默认值为false。
+ * @since 26.0.0
+ */
+    TYPOGRAPH_ATTR_B_FORCE_REUSE_RASTER_RESULT = 0
+} OH_Drawing_TypographyAttributeId;
+
+/**
+ * @brief 从排版中获取bool类型属性的值。
+ *
+ * @param typography 指向<b>OH_Drawing_Typography</b>对象的指针。
+ * @param id 属性id。
+ * @param value 接口的返回值。
+ * @return 返回错误码。
+ * 如果操作成功，则返回{@link OH_DRAWING_SUCCESS}。
+ * 如果类型或值为nullptr，则返回{@link OH_DRAWING_ERROR_INCORRECT_PARAMETER}。
+ * 如果无法识别或支持属性ID，则返回{@link OH_DRAWING_ERROR_ATTRIBUTE_ID_MISMATCH}。
+ * @since 26.0.0
+ */
+OH_Drawing_ErrorCode OH_Drawing_GetTypographyAttributeBool(const OH_Drawing_Typography* typography,
+    OH_Drawing_TypographyAttributeId id, bool* value);
+
+/**
+ * @brief 将bool值设置为排版属性。
+ *
+ * @param typography 指向<b>OH_Drawing_Typography</b>对象的指针。
+ * @param id 属性id。
+ * @param value 表示要设置的值。
+ * @return 返回错误码。
+ * 如果操作成功，则返回{@link OH_DRAWING_SUCCESS}。
+ * 如果排版为空，则返回{@link OH_DRAWING_ERROR_INCORRECT_PARAMETER}。
+ * 如果无法识别或支持属性ID，则返回{@link OH_DRAWING_ERROR_ATTRIBUTE_ID_MISMATCH}。
+ * @since 26.0.0
+ */
+OH_Drawing_ErrorCode OH_Drawing_SetTypographyAttributeBool(OH_Drawing_Typography* typography,
+    OH_Drawing_TypographyAttributeId id, bool value);
 
 /**
  * @brief 设置double类型文本样式的属性。
@@ -1042,9 +1094,10 @@ typedef enum OH_Drawing_TypographyStyleAttributeId {
  * @param id 文本样式属性id。
  * @param value 文本样式属性值。
  * @return 函数执行结果。
- *     返回OH_DRAWING_SUCCESS，表示执行成功。
- *     返回OH_DRAWING_ERROR_INVALID_PARAMETER，表示参数style为空指针。
- *     返回OH_DRAWING_ERROR_ATTRIBUTE_ID_MISMATCH，表示传入属性id与调用函数不匹配。
+ *     <br>返回OH_DRAWING_SUCCESS，表示执行成功。
+ *     <br>返回OH_DRAWING_ERROR_INVALID_PARAMETER，表示参数style为空指针。
+ *     <br>返回OH_DRAWING_ERROR_ATTRIBUTE_ID_MISMATCH，表示传入属性id与调用函数不匹配。
+ *     <br>返回OH_DRAWING_ERROR_PARAMETER_OUT_OF_RANGE，表示属性id对应的值超出了允许的范围。
  * @since 21
  */
 OH_Drawing_ErrorCode OH_Drawing_SetTextStyleAttributeDouble(OH_Drawing_TextStyle* style,
@@ -1057,9 +1110,9 @@ OH_Drawing_ErrorCode OH_Drawing_SetTextStyleAttributeDouble(OH_Drawing_TextStyle
  * @param id 文本样式属性id。
  * @param value 指向double类型属性的指针。作为出参使用。
  * @return 函数执行结果。
- *     返回OH_DRAWING_SUCCESS，表示执行成功。
- *     返回OH_DRAWING_ERROR_INVALID_PARAMETER，表示参数style为空指针。
- *     返回OH_DRAWING_ERROR_ATTRIBUTE_ID_MISMATCH，表示传入属性id与调用函数不匹配。
+ *     <br>返回OH_DRAWING_SUCCESS，表示执行成功。
+ *     <br>返回OH_DRAWING_ERROR_INVALID_PARAMETER，表示参数style为空指针。
+ *     <br>返回OH_DRAWING_ERROR_ATTRIBUTE_ID_MISMATCH，表示传入属性id与调用函数不匹配。
  * @since 21
  */
 OH_Drawing_ErrorCode OH_Drawing_GetTextStyleAttributeDouble(OH_Drawing_TextStyle* style,
@@ -1072,10 +1125,10 @@ OH_Drawing_ErrorCode OH_Drawing_GetTextStyleAttributeDouble(OH_Drawing_TextStyle
  * @param id 文本样式属性id。
  * @param value 待设置属性值。
  * @return 函数执行结果。
- *     返回OH_DRAWING_SUCCESS，表示执行成功。
- *     返回OH_DRAWING_ERROR_INVALID_PARAMETER，表示参数style为空指针。
- *     返回OH_DRAWING_ERROR_ATTRIBUTE_ID_MISMATCH，表示传入属性id与调用函数不匹配。
- *     返回OH_DRAWING_ERROR_PARAMETER_OUT_OF_RANGE，表示传入的value超出待设置属性取值范围。
+ *     <br>返回OH_DRAWING_SUCCESS，表示执行成功。
+ *     <br>返回OH_DRAWING_ERROR_INVALID_PARAMETER，表示参数style为空指针。
+ *     <br>返回OH_DRAWING_ERROR_ATTRIBUTE_ID_MISMATCH，表示传入属性id与调用函数不匹配。
+ *     <br>返回OH_DRAWING_ERROR_PARAMETER_OUT_OF_RANGE，表示传入的value超出待设置属性取值范围。
  * @since 21
  */
 OH_Drawing_ErrorCode OH_Drawing_SetTextStyleAttributeInt(OH_Drawing_TextStyle* style,
@@ -1088,9 +1141,9 @@ OH_Drawing_ErrorCode OH_Drawing_SetTextStyleAttributeInt(OH_Drawing_TextStyle* s
  * @param id 文本样式属性id。
  * @param value 指向int类型属性的指针。作为出参使用。
  * @return 函数执行结果。
- *     返回OH_DRAWING_SUCCESS，表示执行成功。
- *     返回OH_DRAWING_ERROR_INVALID_PARAMETER，表示参数style为空指针。
- *     返回OH_DRAWING_ERROR_ATTRIBUTE_ID_MISMATCH，表示传入属性id与调用函数不匹配。
+ *     <br>返回OH_DRAWING_SUCCESS，表示执行成功。
+ *     <br>返回OH_DRAWING_ERROR_INVALID_PARAMETER，表示参数style为空指针。
+ *     <br>返回OH_DRAWING_ERROR_ATTRIBUTE_ID_MISMATCH，表示传入属性id与调用函数不匹配。
  * @since 21
  */
 OH_Drawing_ErrorCode OH_Drawing_GetTextStyleAttributeInt(OH_Drawing_TextStyle* style,
@@ -1103,9 +1156,10 @@ OH_Drawing_ErrorCode OH_Drawing_GetTextStyleAttributeInt(OH_Drawing_TextStyle* s
  * @param id 排版样式属性id。
  * @param value 待设置属性值。
  * @return 函数执行结果。
- *     返回OH_DRAWING_SUCCESS，表示执行成功。
- *     返回OH_DRAWING_ERROR_INVALID_PARAMETER，表示参数style为空指针。
- *     返回OH_DRAWING_ERROR_ATTRIBUTE_ID_MISMATCH，表示传入属性id与调用函数不匹配。
+ *     <br>返回OH_DRAWING_SUCCESS，表示执行成功。
+ *     <br>返回OH_DRAWING_ERROR_INVALID_PARAMETER，表示参数style为空指针。
+ *     <br>返回OH_DRAWING_ERROR_ATTRIBUTE_ID_MISMATCH，表示传入属性id与调用函数不匹配。
+ *     <br>返回OH_DRAWING_ERROR_PARAMETER_OUT_OF_RANGE，表示属性id对应的值超出了允许的范围。
  * @since 21
  */
 OH_Drawing_ErrorCode OH_Drawing_SetTypographyStyleAttributeDouble(OH_Drawing_TypographyStyle* style,
@@ -1118,9 +1172,9 @@ OH_Drawing_ErrorCode OH_Drawing_SetTypographyStyleAttributeDouble(OH_Drawing_Typ
  * @param id 排版样式属性id。
  * @param value 指向double类型属性的指针。作为出参使用。
  * @return 函数执行结果。
- *     返回OH_DRAWING_SUCCESS，表示执行成功。
- *     返回OH_DRAWING_ERROR_INVALID_PARAMETER，表示参数style为空指针。
- *     返回OH_DRAWING_ERROR_ATTRIBUTE_ID_MISMATCH，表示传入属性id与调用函数不匹配。
+ *     <br>返回OH_DRAWING_SUCCESS，表示执行成功。
+ *     <br>返回OH_DRAWING_ERROR_INVALID_PARAMETER，表示参数style为空指针。
+ *     <br>返回OH_DRAWING_ERROR_ATTRIBUTE_ID_MISMATCH，表示传入属性id与调用函数不匹配。
  * @since 21
  */
 OH_Drawing_ErrorCode OH_Drawing_GetTypographyStyleAttributeDouble(OH_Drawing_TypographyStyle* style,
@@ -1133,10 +1187,10 @@ OH_Drawing_ErrorCode OH_Drawing_GetTypographyStyleAttributeDouble(OH_Drawing_Typ
  * @param id 排版样式属性id。
  * @param value 待设置属性值。
  * @return 函数执行结果。
- *     返回OH_DRAWING_SUCCESS，表示执行成功。
- *     返回OH_DRAWING_ERROR_INVALID_PARAMETER，表示参数style为空指针。
- *     返回OH_DRAWING_ERROR_ATTRIBUTE_ID_MISMATCH，表示传入属性id与调用函数不匹配。
- *     返回OH_DRAWING_ERROR_PARAMETER_OUT_OF_RANGE，表示传入的value超出待设置属性取值范围。
+ *     <br>返回OH_DRAWING_SUCCESS，表示执行成功。
+ *     <br>返回OH_DRAWING_ERROR_INVALID_PARAMETER，表示参数style为空指针。
+ *     <br>返回OH_DRAWING_ERROR_ATTRIBUTE_ID_MISMATCH，表示传入属性id与调用函数不匹配。
+ *     <br>返回OH_DRAWING_ERROR_PARAMETER_OUT_OF_RANGE，表示传入的value超出待设置属性取值范围。
  * @since 21
  */
 OH_Drawing_ErrorCode OH_Drawing_SetTypographyStyleAttributeInt(OH_Drawing_TypographyStyle* style,
@@ -1149,9 +1203,9 @@ OH_Drawing_ErrorCode OH_Drawing_SetTypographyStyleAttributeInt(OH_Drawing_Typogr
  * @param id 排版样式属性id。
  * @param value 指向int类型属性的指针。作为出参使用。
  * @return 函数执行结果。
- *     返回OH_DRAWING_SUCCESS，表示执行成功。
- *     返回OH_DRAWING_ERROR_INVALID_PARAMETER，表示参数style为空指针。
- *     返回OH_DRAWING_ERROR_ATTRIBUTE_ID_MISMATCH，表示传入属性id与调用函数不匹配。
+ *     <br>返回OH_DRAWING_SUCCESS，表示执行成功。
+ *     <br>返回OH_DRAWING_ERROR_INVALID_PARAMETER，表示参数style为空指针。
+ *     <br>返回OH_DRAWING_ERROR_ATTRIBUTE_ID_MISMATCH，表示传入属性id与调用函数不匹配。
  * @since 21
  */
 OH_Drawing_ErrorCode OH_Drawing_GetTypographyStyleAttributeInt(OH_Drawing_TypographyStyle* style,
@@ -1164,9 +1218,9 @@ OH_Drawing_ErrorCode OH_Drawing_GetTypographyStyleAttributeInt(OH_Drawing_Typogr
  * @param id 排版样式属性id。
  * @param value 待设置属性值。
  * @return 函数执行结果。
- *     返回OH_DRAWING_SUCCESS，表示执行成功。
- *     返回OH_DRAWING_ERROR_INCORRECT_PARAMETER，表示参数style为空指针。
- *     返回OH_DRAWING_ERROR_ATTRIBUTE_ID_MISMATCH，表示传入属性id与调用函数不匹配。
+ *     <br>返回OH_DRAWING_SUCCESS，表示执行成功。
+ *     <br>返回OH_DRAWING_ERROR_INCORRECT_PARAMETER，表示参数style为空指针。
+ *     <br>返回OH_DRAWING_ERROR_ATTRIBUTE_ID_MISMATCH，表示传入属性id与调用函数不匹配。
  * @since 23
  */
 OH_Drawing_ErrorCode OH_Drawing_SetTypographyStyleAttributeBool(OH_Drawing_TypographyStyle* style,
@@ -1179,9 +1233,9 @@ OH_Drawing_ErrorCode OH_Drawing_SetTypographyStyleAttributeBool(OH_Drawing_Typog
  * @param id 排版样式属性id。
  * @param value 指向bool类型属性的指针。作为出参使用。
  * @return 函数执行结果。
- *     返回OH_DRAWING_SUCCESS，表示执行成功。
- *     返回OH_DRAWING_ERROR_INCORRECT_PARAMETER，表示参数style或者value为空指针。
- *     返回OH_DRAWING_ERROR_ATTRIBUTE_ID_MISMATCH，表示传入属性id与调用函数不匹配。
+ *     <br>返回OH_DRAWING_SUCCESS，表示执行成功。
+ *     <br>返回OH_DRAWING_ERROR_INCORRECT_PARAMETER，表示参数style或者value为空指针。
+ *     <br>返回OH_DRAWING_ERROR_ATTRIBUTE_ID_MISMATCH，表示传入属性id与调用函数不匹配。
  * @since 23
  */
 OH_Drawing_ErrorCode OH_Drawing_GetTypographyStyleAttributeBool(OH_Drawing_TypographyStyle* style,
@@ -1195,9 +1249,9 @@ OH_Drawing_ErrorCode OH_Drawing_GetTypographyStyleAttributeBool(OH_Drawing_Typog
  * @param arrayValue 指向浮点数数组的指针。
  * @param arrayLength 指向浮点数数组的长度。
  * @return 函数执行结果。
- *     返回OH_DRAWING_SUCCESS，表示执行成功。
- *     返回OH_DRAWING_ERROR_INCORRECT_PARAMETER，表示参数style或者arrayValue为空指针或arrayLength为0。
- *     返回OH_DRAWING_ERROR_ATTRIBUTE_ID_MISMATCH，表示传入属性id与调用函数不匹配。
+ *     <br>返回OH_DRAWING_SUCCESS，表示执行成功。
+ *     <br>返回OH_DRAWING_ERROR_INCORRECT_PARAMETER，表示参数style或者arrayValue为空指针或arrayLength为0。
+ *     <br>返回OH_DRAWING_ERROR_ATTRIBUTE_ID_MISMATCH，表示传入属性id与调用函数不匹配。
  * @since 26.0.0
  */
 OH_Drawing_ErrorCode OH_Drawing_SetTypographyStyleAttributeDoubleArray(OH_Drawing_TypographyStyle* style,
@@ -1211,9 +1265,9 @@ OH_Drawing_ErrorCode OH_Drawing_SetTypographyStyleAttributeDoubleArray(OH_Drawin
  * @param arrayValue 指向浮点数数组的指针。作为出参使用。
  * @param arrayLength 指向浮点数数组的长度。作为出参使用。
  * @return 函数执行结果。
- *     返回OH_DRAWING_SUCCESS，表示执行成功。
- *     返回OH_DRAWING_ERROR_INCORRECT_PARAMETER，表示参数style或者arrayValue为空指针或arrayLength为空指针。
- *     返回OH_DRAWING_ERROR_ATTRIBUTE_ID_MISMATCH，表示传入属性id与调用函数不匹配。
+ *     <br>返回OH_DRAWING_SUCCESS，表示执行成功。
+ *     <br>返回OH_DRAWING_ERROR_INCORRECT_PARAMETER，表示参数style或者arrayValue为空指针或arrayLength为0。
+ *     <br>返回OH_DRAWING_ERROR_ATTRIBUTE_ID_MISMATCH，表示传入属性id与调用函数不匹配。
  * @since 26.0.0
  */
 OH_Drawing_ErrorCode OH_Drawing_GetTypographyStyleAttributeDoubleArray(const OH_Drawing_TypographyStyle* style,
@@ -1476,7 +1530,7 @@ void OH_Drawing_SetTextStyleFontSize(OH_Drawing_TextStyle* style, double fontSiz
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @param style 指向OH_Drawing_TextStyle对象的指针，由{@link OH_Drawing_CreateTextStyle}获取。
  * @param fontWeight 设置字重，设置0字重为thin，设置1字重为extra-light，设置2字重为light，设置4字重为medium，设置5字重为semi-bold，
- *     设置6字重为bold，设置7字重为extra-bold，设置8字重为black，设置3或其它字重为normal/regular，具体可见{@link OH_Drawing_FontWeight}枚举。
+ *     <br>设置6字重为bold，设置7字重为extra-bold，设置8字重为black，设置3或其它字重为normal/regular，具体可见{@link OH_Drawing_FontWeight}枚举。
  * @since 8
  * @version 1.0
  */
@@ -1510,7 +1564,7 @@ void OH_Drawing_SetTextStyleDecoration(OH_Drawing_TextStyle* style, int decorati
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @param style 指向文本样式对象{@link OH_Drawing_TextStyle}的指针，由{@link OH_Drawing_CreateTextStyle}获取。
  * @param decoration 要新增的装饰。设置1为新增下划线，设置2为新增上划线，设置4为新增删除线。可通过位或操作一次新增多种装饰线。
- *     设置非{@link OH_Drawing_TextDecoration}枚举的装饰样式则保持原有装饰。
+ *     <br>设置非{@link OH_Drawing_TextDecoration}枚举的装饰样式则保持原有装饰。
  * @since 18
  * @version 1.0
  */
@@ -1522,7 +1576,7 @@ void OH_Drawing_AddTextStyleDecoration(OH_Drawing_TextStyle* style, int decorati
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @param style 指向文本样式对象{@link OH_Drawing_TextStyle}的指针，由{@link OH_Drawing_CreateTextStyle}获取。
  * @param decoration 要删除的装饰。应该与现有的装饰相匹配，设置1为删除下划线，设置2为删除上划线，设置4为删除删除线，可通过位或操作一次删除多种装饰线。
- *     设置非{@link OH_Drawing_TextDecoration}枚举的装饰样式则保持原有装饰。
+ *     <br>设置非{@link OH_Drawing_TextDecoration}枚举的装饰样式则保持原有装饰。
  * @since 18
  * @version 1.0
  */
@@ -1798,7 +1852,7 @@ void OH_Drawing_TypographyPaintOnPath(OH_Drawing_Typography* typography, OH_Draw
  * @param typography 指向文本对象{@link OH_Drawing_Typography}的指针，由{@link OH_Drawing_CreateTypography}获取。
  * @param constraintsRect 约束布局的高度和宽度。
  * @param fitStrRangeArr 作为出参，包含实际容纳的段落文本的字符范围。指向数组对象{@link OH_Drawing_Array}的指针。
- *     通过{@link OH_Drawing_ReleaseArrayBuffer}释放内存。
+ *     <br>通过{@link OH_Drawing_ReleaseArrayBuffer}释放内存。
  * @param fitStrRangeArrayLen 作为出参，容纳的字符串数组的大小。
  * @return 返回OH_Drawing_RectSize对象，表示段落文本的实际矩形。
  * @since 24
@@ -1820,17 +1874,19 @@ OH_Drawing_Range* OH_Drawing_GetRangeByArrayIndex(OH_Drawing_Array* array, size_
  * @brief 释放{@link OH_Drawing_Array}对象占用的内存。
  *
  * @param array 指向数组对象{@link OH_Drawing_Array}的指针。
- *     支持的数组类型：
- *     字体全名数组，通过{@link OH_Drawing_GetSystemFontFullNamesByType}获取。
- *     文本行数组，通过{@link OH_Drawing_TypographyGetTextLines}获取。
- *     字符串索引数组，通过{@link OH_Drawing_GetRunStringIndices}获取。
- *     矩形数组，通过{@link OH_Drawing_RectCreateArray}获取。
- *     字体描述符数组，通过{@link OH_Drawing_GetFontFullDescriptorsFromStream}或{@link OH_Drawing_GetFontFullDescriptorsFromPath}
- *     获取。
- *     文本范围数组，通过{@link OH_Drawing_TypographyLayoutWithConstraintsWithBuffer}获取。
+ *     <br>支持的数组类型：
+ *     <br>字体全名数组，通过{@link OH_Drawing_GetSystemFontFullNamesByType}获取。
+ *     <br>文本行数组，通过{@link OH_Drawing_TypographyGetTextLines}获取。
+ *     <br>字符串索引数组，通过{@link OH_Drawing_GetRunStringIndices}获取。
+ *     <br>矩形数组，通过{@link OH_Drawing_RectCreateArray}获取。
+ *     <br>字体描述符数组，通过{@link OH_Drawing_GetFontFullDescriptorsFromStream}或
+ *     {@link OH_Drawing_GetFontFullDescriptorsFromPath}获取。
+ *     <br>文本范围数组，通过{@link OH_Drawing_TypographyLayoutWithConstraintsWithBuffer}获取。
+ * @link OH_Drawing_GetFontFullDescriptorsFromPath}.
+ *     <br>Array of text ranges, which is obtained through {@link OH_Drawing_TypographyLayoutWithConstraintsWithBuffer}.
  * @return 函数执行结果。
- *     返回OH_DRAWING_SUCCESS表示操作成功。
- *     返回OH_DRAWING_ERROR_INCORRECT_PARAMETER表示array为空指针或类型不支持。
+ *     <br>返回OH_DRAWING_SUCCESS表示操作成功。
+ *     <br>返回OH_DRAWING_ERROR_INCORRECT_PARAMETER表示array为空指针或类型不支持。
  * @since 24
  */
 OH_Drawing_ErrorCode OH_Drawing_ReleaseArrayBuffer(OH_Drawing_Array* array);
@@ -2554,7 +2610,7 @@ bool OH_Drawing_TypographyGetLineInfo(OH_Drawing_Typography* typography, int lin
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @param style 指向排版样式对象{@link OH_Drawing_TypographyStyle}的指针，由{@link OH_Drawing_CreateTypographyStyle}获取。
  * @param weight 设置字重，设置0字重为thin，设置1字重为extra-light，设置2字重为light，设置4字重为medium，设置5字重为semi-bold，
- *     设置6字重为bold，设置7字重为extra-bold，设置8字重为black，设置3或其它字重为normal/regular，具体可见{@link OH_Drawing_FontWeight}枚举。
+ *     <br>设置6字重为bold，设置7字重为extra-bold，设置8字重为black，设置3或其它字重为normal/regular，具体可见{@link OH_Drawing_FontWeight}枚举。
  * @since 12
  * @version 1.0
  */
@@ -2856,7 +2912,7 @@ OH_Drawing_TextHeightBehavior OH_Drawing_TypographyTextGetHeightBehavior(OH_Draw
  * @param style 指向OH_Drawing_TextStyle对象的指针，由{@link OH_Drawing_CreateTextStyle}获取。
  * @param rectStyleInfo 指向{@link OH_Drawing_RectStyle_Info}对象的指针。
  * @param styleId 要设置的样式id，仅当背景框为圆角矩形时有效。文本处理时会被划分为多个分段，每个分段都有自己的TextStyle，id标识着这个分段将被绘制于第几个背景矩形框中。
- *     若一行中每个分段的id全为0，表示所有分段绘制在同一个圆角矩形背景框中；若一行中的id为0, 1，则id为0的分段绘制在一个圆角矩形背景框内，id为1的分段绘制在另一个圆角矩形背景框内，以此类推。
+ *     <br>若一行中每个分段的id全为0，表示所有分段绘制在同一个圆角矩形背景框中；若一行中的id为0, 1，则id为0的分段绘制在一个圆角矩形背景框内，id为1的分段绘制在另一个圆角矩形背景框内，以此类推。
  * @since 12
  * @version 1.0
  */
@@ -3450,7 +3506,7 @@ void OH_Drawing_TypographyUpdateDecorationStyle(OH_Drawing_Typography* typograph
 
 /**
  * @brief 更新排版对象中的文本装饰线颜色。
- *  使用该接口更新文本装饰线颜色属性后，可直接使用{@link OH_Drawing_TypographyPaint}进行绘制生效。
+ * <br> 使用该接口更新文本装饰线颜色属性后，可直接使用{@link OH_Drawing_TypographyPaint}进行绘制生效。
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @param typography 表示指向排版对象{@link OH_Drawing_Typography}的指针，由{@link OH_Drawing_CreateTypography}获取。
@@ -3477,7 +3533,7 @@ bool OH_Drawing_TypographyTextGetLineStyle(OH_Drawing_TypographyStyle* style);
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @param style 表示指向{@link OH_Drawing_TypographyStyle}对象的指针，由{@link OH_Drawing_CreateTypographyStyle}获取。
  * @return 返回文本排版行样式字重。
- *     0字重为thin，1字重为extra-light，2字重为light，4字重为medium，5字重为semi-bold，6字重为bold，7字重为extra-bold，8字重为black，3或其它字重为normal/
+ *     <br> 0字重为thin，1字重为extra-light，2字重为light，4字重为medium，5字重为semi-bold，6字重为bold，7字重为extra-bold，8字重为black，3或其它字重为normal/
  *     regular，具体可见{@link OH_Drawing_FontWeight}枚举。
  * @since 12
  * @version 1.0
@@ -3769,7 +3825,7 @@ void OH_Drawing_TypographyHandlerAddEncodedText(OH_Drawing_TypographyCreate* han
 
 /**
  * @brief 设置文本排版时是否使能自动间距。
- * 默认不使能自动间距，一旦使能则会自动调整CJK（中文字符、日文字符、韩文字符）与西文（拉丁字母、西里尔字母、希腊字母）、CJK与数字、CJK与版权符号、版权符号与数字、版权符号与西文之间的间距。
+ * <br>默认不使能自动间距，一旦使能则会自动调整CJK（中文字符、日文字符、韩文字符）与西文（拉丁字母、西里尔字母、希腊字母）、CJK与数字、CJK与版权符号、版权符号与数字、版权符号与西文之间的间距。
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @param style 表示指向{@link OH_Drawing_TypographyStyle}对象的指针，由{@link OH_Drawing_CreateTypographyStyle}获取。
@@ -3829,14 +3885,14 @@ void OH_Drawing_DestroyPositionAndAffinity(OH_Drawing_PositionAndAffinity* posit
  * @param glyphRangeStart 表示字形范围的开始位置。
  * @param glyphRangeEnd 表示字形范围的结束位置。
  * @param actualGlyphRange 返回实际的字形范围，表示指向{@link OH_Drawing_Range}的二级指针，作为出参使用。
- *     当请求的字形范围只包含复杂字形序列的一部分时，该参数返回对应的完整字形范围。
- *     例如：连字、组合表情等可能由多个原子字形组成，必须作为整体处理。
- *     如果该参数为NULL，将不返回实际字形范围，表示调用者不关心实际字形范围信息。
- *     使用后需通过{@link OH_Drawing_ReleaseRangeBuffer}接口释放该对象。
+ *     <br>当请求的字形范围只包含复杂字形序列的一部分时，该参数返回对应的完整字形范围。
+ *     <br>例如：连字、组合表情等可能由多个原子字形组成，必须作为整体处理。
+ *     <br>如果该参数为NULL，将不返回实际字形范围，表示调用者不关心实际字形范围信息。
+ *     <br>使用后需通过{@link OH_Drawing_ReleaseRangeBuffer}接口释放该对象。
  * @param textEncodingType 表示文本编码类型{@link OH_Drawing_TextEncoding}。
- *     当前仅支持UTF-8和UTF-16编码类型。
- *     对于UTF-8编码，返回的字符范围表示字节范围。
- *     对于UTF-16编码，返回的字符范围表示UTF-16代码单元范围。
+ *     <br>当前仅支持UTF-8和UTF-16编码类型。
+ *     <br>对于UTF-8编码，返回的字符范围表示字节范围。
+ *     <br>对于UTF-16编码，返回的字符范围表示UTF-16代码单元范围。
  * @return 返回表示字符范围的{@link OH_Drawing_Range}对象指针，当不再需要该对象时，请使用{@link OH_Drawing_ReleaseRangeBuffer}接口释放。
  * @since 24
  */
@@ -3849,18 +3905,18 @@ OH_Drawing_Range* OH_Drawing_TypographyGetCharacterRangeForGlyphRangeWithBuffer(
  *
  * @param typography 指向OH_Drawing_Typography对象的指针，由{@link OH_Drawing_CreateTypography}获取。
  * @param dx 文本排版区域内的水平坐标，单位为物理像素（px）。
- *     相对于文本排版区域左上角的x偏移量，向右为正方向。
- *     支持浮点数，可取负值（表示在文本区域左侧）。
- *     坐标超出文本区域范围时，将返回最近的字符位置。可通过触摸事件或点击事件获取。
+ *     <br>相对于文本排版区域左上角的x偏移量，向右为正方向。
+ *     <br>支持浮点数，可取负值（表示在文本区域左侧）。
+ *     <br>坐标超出文本区域范围时，将返回最近的字符位置。可通过触摸事件或点击事件获取。
  * @param dy 文本排版区域内的垂直坐标，单位为物理像素（px）。
- *     相对于文本排版区域左上角的y偏移量，向下为正方向。
- *     支持浮点数，可取负值（表示在文本区域上方）。
- *     坐标超出文本区域范围时，将返回最近的字符位置。可通过触摸事件或点击事件获取。
+ *     <br>相对于文本排版区域左上角的y偏移量，向下为正方向。
+ *     <br>支持浮点数，可取负值（表示在文本区域上方）。
+ *     <br>坐标超出文本区域范围时，将返回最近的字符位置。可通过触摸事件或点击事件获取。
  * @param textEncodingType 表示文本编码类型{@link OH_Drawing_TextEncoding}。
- *     当前仅支持UTF-8和UTF-16编码类型。
- *     对于UTF-8编码，返回的位置表示字节偏移量；对于UTF-16编码，返回的位置表示UTF-16代码单元偏移量。
+ *     <br>当前仅支持UTF-8和UTF-16编码类型。
+ *     <br>对于UTF-8编码，返回的位置表示字节偏移量；对于UTF-16编码，返回的位置表示UTF-16代码单元偏移量。
  * @return 返回坐标处的字符索引位置和亲和性，返回类型为{@link OH_Drawing_PositionAndAffinity}结构体。
- *     当不再需要该对象时，请使用{@link OH_Drawing_DestroyPositionAndAffinity}接口释放。
+ *     <br>当不再需要该对象时，请使用{@link OH_Drawing_DestroyPositionAndAffinity}接口释放。
  * @since 24
  */
 OH_Drawing_PositionAndAffinity* OH_Drawing_TypographyGetCharacterPositionAtCoordinateWithBuffer(
@@ -3873,13 +3929,13 @@ OH_Drawing_PositionAndAffinity* OH_Drawing_TypographyGetCharacterPositionAtCoord
  * @param characterRangeStart 表示字符范围的开始位置。
  * @param characterRangeEnd 表示字符范围的结束位置。
  * @param actualCharacterRange 返回实际的字符范围，表示指向{@link OH_Drawing_Range}的二级指针，作为出参使用。
- *     当请求的字符范围只包含组合字符序列的一部分时，该参数返回对应的完整字符范围。
- *     例如：基础字符加变音符号的组合字符，必须作为整体处理。
- *     如果该参数为NULL，将不返回实际字符范围，表示调用者不关心实际字符范围信息。
- *     使用后需通过{@link OH_Drawing_ReleaseRangeBuffer}接口释放该对象。
+ *     <br>当请求的字符范围只包含组合字符序列的一部分时，该参数返回对应的完整字符范围。
+ *     <br>例如：基础字符加变音符号的组合字符，必须作为整体处理。
+ *     <br>如果该参数为NULL，将不返回实际字符范围，表示调用者不关心实际字符范围信息。
+ *     <br>使用后需通过{@link OH_Drawing_ReleaseRangeBuffer}接口释放该对象。
  * @param textEncodingType 表示文本编码类型{@link OH_Drawing_TextEncoding}。
- *     当前仅支持UTF-8和UTF-16编码类型。
- *     对于UTF-8编码，输入字符范围应解释为字节范围；对于UTF-16编码，输入字符范围应解释为UTF-16代码单元范围。
+ *     <br>当前仅支持UTF-8和UTF-16编码类型。
+ *     <br>对于UTF-8编码，输入字符范围应解释为字节范围；对于UTF-16编码，输入字符范围应解释为UTF-16代码单元范围。
  * @return 返回表示字形范围的{@link OH_Drawing_Range}对象指针，当不再需要该对象时，请使用{@link OH_Drawing_ReleaseRangeBuffer}接口释放。
  * @since 24
  */
