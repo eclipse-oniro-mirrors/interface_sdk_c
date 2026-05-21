@@ -48,7 +48,6 @@ extern "C" {
  * @brief Get the ethernet mac address list.
  * @permission ohos.permission.GET_ETHERNET_LOCAL_MAC
  * @param macAddrList - The ethernet iface mac address list.
- * @return { Promise<Array<Ethernet_MacAddrInfoList>> } the promise returned by the function.
  * @return 0 - success.
  * 201 - Permission denied.
  * 2200001 - Invalid parameter value.
