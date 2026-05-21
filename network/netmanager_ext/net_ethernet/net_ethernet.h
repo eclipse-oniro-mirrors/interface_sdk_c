@@ -60,7 +60,7 @@ int32_t OH_Ethernet_GetMacAddress(Ethernet_MacAddrInfoList *macAddrList);
  
 /**
  * @brief Get the ethernet ip address list.
- * @permission ohos.permission.INTERNET
+ * @permission ohos.permission.GET_NETWORK_INFO
  * @param netAddrList - The ethernet iface ip address list.
  * @return 0 - success.
  * 201 - Permission denied.
