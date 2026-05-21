@@ -101,7 +101,7 @@ typedef struct Ethernet_NetAddr {
      * Port number
      * @since 26.0.0
      */
-    uint8_t port;
+    uint16_t port;
     /**
      * IP Address
      * @since 26.0.0
