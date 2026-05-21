@@ -50,7 +50,7 @@ extern "C" {
  *
  * @since 26.0.0
  */
-typedef struct Ethernet_MacAddressInfo  {
+typedef struct Ethernet_MacAddressInfo {
     /**
      * The ethernet iface name.
      * @since 26.0.0
@@ -68,7 +68,7 @@ typedef struct Ethernet_MacAddressInfo  {
  *
  * @since 26.0.0
  */
-typedef struct Ethernet_MacAddrInfoList  {
+typedef struct Ethernet_MacAddrInfoList {
     /**
      * The ethernet mac address list.
      * @since 26.0.0
@@ -138,7 +138,7 @@ typedef struct Ethernet_NetAddrInfo {
  * @since 26.0.0
  */
 typedef struct Ethernet_NetAddrList {
-    /** 
+    /**
      * The ethernet network address list.
      * @since 26.0.0
      */
