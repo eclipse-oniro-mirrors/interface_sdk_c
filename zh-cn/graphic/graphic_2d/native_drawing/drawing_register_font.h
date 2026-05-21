@@ -1,4 +1,3 @@
-
 /*
  * Copyright (c) 2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -44,6 +43,35 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
+
+/**
+ * @brief 用于在字体管理器中注册自定义字体，支持的字体文件格式包含：ttf、otf。
+ *
+ * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
+ * @param fontCollection 指向{@link OH_Drawing_FontCollection}对象的指针。
+ * @param fontFamily 指需要注册的字体的字体名称。
+ * @param familySrc 指需要注册的字体文件的路径。
+ * @return 返回错误代码，0为成功，1为文件不存在，2为打开文件失败，3为读取文件失败，4为寻找文件失败，5为获取大小失败，9文件损坏。
+ * @since 11
+ * @version 1.0
+ */
+uint32_t OH_Drawing_RegisterFont(OH_Drawing_FontCollection* fontCollection, const char* fontFamily,
+    const char* familySrc);
+
+/**
+ * @brief 用于在字体管理器中注册字体缓冲区。
+ *
+ * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
+ * @param fontCollection 指向{@link OH_Drawing_FontCollection}对象的指针。
+ * @param fontFamily 指需要注册的字体的字体名称。
+ * @param fontBuffer 指需要注册的字体文件的缓冲区。
+ * @param length 指需要注册的字体文件的长度。
+ * @return 返回错误代码，0为成功，6为缓冲区大小为零，7为字体集合为空，9为文件损坏。
+ * @since 11
+ * @version 1.0
+ */
+uint32_t OH_Drawing_RegisterFontBuffer(OH_Drawing_FontCollection* fontCollection, const char* fontFamily,
+    uint8_t* fontBuffer, size_t length);
 
 /**
  * @brief 使用ttc/otc文件注册自定义字体。

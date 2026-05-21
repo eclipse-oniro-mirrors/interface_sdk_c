@@ -374,13 +374,16 @@ typedef enum {
     ELLIPSIS_MODAL_TAIL = 2,
 
     /**
-     * Head modal. It is valid for any value of maxLines in OH_Drawing_TypographyStyle.
+     * Header ellipsis mode, that is, the ellipsis appears at the beginning of a line. This enumerated value is valid
+     * when the maximum number of text lines is set to any value by calling
+     * {@link OH_Drawing_SetTypographyTextMaxLines}.
      * @since 24
      */
     ELLIPSIS_MODAL_MULTILINE_HEAD = 3,
 
     /**
-     * Middle modal. It is valid for any value of maxLines in OH_Drawing_TypographyStyle.
+     * Middle ellipsis mode, that is, the ellipsis appears in the middle of a line. This enumerated value is valid when
+     * the maximum number of text lines is set to any value by calling {@link OH_Drawing_SetTypographyTextMaxLines}.
      * @since 24
      */
     ELLIPSIS_MODAL_MULTILINE_MIDDLE = 4
@@ -432,7 +435,8 @@ typedef enum {
     WORD_BREAK_TYPE_BREAK_WORD = 2,
 
     /**
-     * Break word with hyphens
+     * Uses a hyphen (-) to break a word at the end of each line. If adding a hyphen is not possible, it will behave
+     * the same as **WORD_BREAK_TYPE_BREAK_WORD**.
      * @since 18
      */
     WORD_BREAK_TYPE_BREAK_HYPHEN = 3
@@ -600,6 +604,7 @@ typedef struct OH_Drawing_FontAliasInfo {
      */
     int weight;
 } OH_Drawing_FontAliasInfo;
+
 /**
  * @brief This struct describes the information about generic fonts supported by the system.
  *
@@ -936,7 +941,8 @@ typedef enum OH_Drawing_TextStyleAttributeId {
     TEXT_STYLE_ATTR_I_FONT_WIDTH = 3,
 
     /**
-     * Font edging
+     * Font edge processing mode. Anti-aliasing is used by default. For details about how to process font edges, see
+     * {@link OH_Drawing_FontEdging}.
      * @since 24
      */
     TEXT_STYLE_ATTR_I_FONT_EDGING = 4
@@ -965,8 +971,8 @@ typedef enum OH_Drawing_LineHeightStyle {
 
 /**
  * @brief Enumerates the typography style attributes.
- * For the common attributes of the typography styles and text styles, you are advised to use the text style attributes,
- *  which can be obtained from {@link OH_Drawing_TextStyleAttributeId}.
+ * <br>For the common attributes of the typography styles and text styles, you are advised to use the text style
+ * attributes, which can be obtained from {@link OH_Drawing_TextStyleAttributeId}.
  *
  * @since 21
  */
@@ -1005,7 +1011,10 @@ typedef enum OH_Drawing_TypographyStyleAttributeId {
     TYPOGRAPHY_STYLE_ATTR_I_FONT_WIDTH = 4,
 
     /**
-     * Compress head punctuation
+     * Sets whether to use punctuation compression at the beginning of a line in text layout.<br>**NOTE**<br>1. The
+     * font file must support the ss08 feature in {@link OH_Drawing_FontFeature}. Otherwise, compression cannot be
+     * performed.<br>2. Only the punctuations within the punctuation compression range at the beginning of a line are
+     * in the scope of this feature.
      * @since 23
      */
     TYPOGRAPHY_STYLE_ATTR_B_COMPRESS_HEAD_PUNCTUATION = 5,
@@ -1029,19 +1038,23 @@ typedef enum OH_Drawing_TypographyStyleAttributeId {
     TYPOGRAPHY_STYLE_ATTR_I_ELLIPSIS_MODAL = 8,
 
     /**
-     * Line head indent array
+     * First-line indent array.<br>All values in the indent array must be greater than or equal to 0. Each element in
+     * the array represents the indentation value of a single line. If the actual number of text lines exceeds the
+     * length of the indent array, the last value of the array is applied to the extra lines.
      * @since 26.0.0
      */
     TYPOGRAPHY_STYLE_ATTR_DA_LINE_HEAD_INDENT = 9,
 
     /**
-     * First line head indent
+     * First-line indent of a paragraph. The indent value must be greater than or equal to 0.
      * @since 26.0.0
      */
     TYPOGRAPHY_STYLE_ATTR_D_FIRST_LINE_HEAD_INDENT = 10,
 
     /**
-     * Line tail indent array
+     * Last-line indent array.<br>All values in the indent array must be greater than or equal to 0. Each element in
+     * the array represents the indentation value of a single line. If the actual number of text lines exceeds the
+     * length of the indent array, the last value of the array is applied to the extra lines.
      * @since 26.0.0
      */
     TYPOGRAPHY_STYLE_ATTR_DA_LINE_TAIL_INDENT = 11
@@ -1093,17 +1106,17 @@ OH_Drawing_ErrorCode OH_Drawing_SetTypographyAttributeBool(OH_Drawing_Typography
     OH_Drawing_TypographyAttributeId id, bool value);
 
 /**
- * @brief Sets double value to the text style attribute.
+ * @brief Sets the text style attribute of the **double** type.
  *
- * @param style Indicates the pointer to an <b>OH_Drawing_TextStyle</b> object.
- * @param id Indicates the attribute id.
- * @param value Indicates the value to set.
- * @return Returns the error code.
- *         Returns {@link OH_DRAWING_SUCCESS} if the operation is successful.
- *         Returns {@link OH_DRAWING_ERROR_INVALID_PARAMETER} if the style is nullptr.
- *         Returns {@link OH_DRAWING_ERROR_ATTRIBUTE_ID_MISMATCH} if the attribute id is not recognized or supported.
- *         Returns {@link OH_DRAWING_ERROR_PARAMETER_OUT_OF_RANGE} if the value corresponding to the attribute id
- *                  exceeds the allowable range.
+ * @param style Pointer to an {@link OH_Drawing_TextStyle} object.
+ * @param id Text style attribute ID.
+ * @param value Text style attribute value.
+ * @return Returns the execution result.
+ *     <br>**OH_DRAWING_SUCCESS** if the operation is successful.
+ *     <br>**OH_DRAWING_ERROR_INVALID_PARAMETER** if **style** is NULL.
+ *     <br>**OH_DRAWING_ERROR_ATTRIBUTE_ID_MISMATCH** if the input attribute ID does not match the called function.
+ *     <br>**OH_DRAWING_ERROR_PARAMETER_OUT_OF_RANGE** if the value corresponding to the attribute id exceeds the
+ *     allowable range.
  * @since 21
  */
 OH_Drawing_ErrorCode OH_Drawing_SetTextStyleAttributeDouble(OH_Drawing_TextStyle* style,
@@ -1116,9 +1129,9 @@ OH_Drawing_ErrorCode OH_Drawing_SetTextStyleAttributeDouble(OH_Drawing_TextStyle
  * @param id Text style attribute ID.
  * @param value Pointer to the attribute of the **double** type. It is used as an output parameter.
  * @return Returns the execution result.
- *     **OH_DRAWING_SUCCESS** if the operation is successful.
- *     **OH_DRAWING_ERROR_INVALID_PARAMETER** if **style** is NULL.
- *     **OH_DRAWING_ERROR_ATTRIBUTE_ID_MISMATCH** if the input attribute ID does not match the called function.
+ *     <br>**OH_DRAWING_SUCCESS** if the operation is successful.
+ *     <br>**OH_DRAWING_ERROR_INVALID_PARAMETER** if **style** is NULL.
+ *     <br>**OH_DRAWING_ERROR_ATTRIBUTE_ID_MISMATCH** if the input attribute ID does not match the called function.
  * @since 21
  */
 OH_Drawing_ErrorCode OH_Drawing_GetTextStyleAttributeDouble(OH_Drawing_TextStyle* style,
@@ -1131,11 +1144,11 @@ OH_Drawing_ErrorCode OH_Drawing_GetTextStyleAttributeDouble(OH_Drawing_TextStyle
  * @param id Text style attribute ID.
  * @param value Attribute value to set.
  * @return Returns the execution result.
- *     **OH_DRAWING_SUCCESS** if the operation is successful.
- *     **OH_DRAWING_ERROR_INVALID_PARAMETER** if **style** is NULL.
- *     **OH_DRAWING_ERROR_ATTRIBUTE_ID_MISMATCH** if the input attribute ID does not match the called function.
- *     **OH_DRAWING_ERROR_PARAMETER_OUT_OF_RANGE** if the input value exceeds the value range of the attribute to be
- *     set.
+ *     <br>**OH_DRAWING_SUCCESS** if the operation is successful.
+ *     <br>**OH_DRAWING_ERROR_INVALID_PARAMETER** if **style** is NULL.
+ *     <br>**OH_DRAWING_ERROR_ATTRIBUTE_ID_MISMATCH** if the input attribute ID does not match the called function.
+ *     <br>**OH_DRAWING_ERROR_PARAMETER_OUT_OF_RANGE** if the input value exceeds the value range of the attribute to
+ *     be set.
  * @since 21
  */
 OH_Drawing_ErrorCode OH_Drawing_SetTextStyleAttributeInt(OH_Drawing_TextStyle* style,
@@ -1148,26 +1161,26 @@ OH_Drawing_ErrorCode OH_Drawing_SetTextStyleAttributeInt(OH_Drawing_TextStyle* s
  * @param id Text style attribute ID.
  * @param value Pointer to the attribute of the **int** type. It is used as an output parameter.
  * @return Returns the execution result.
- *     **OH_DRAWING_SUCCESS** if the operation is successful.
- *     **OH_DRAWING_ERROR_INVALID_PARAMETER** if **style** is NULL.
- *     **OH_DRAWING_ERROR_ATTRIBUTE_ID_MISMATCH** if the input attribute ID does not match the called function.
+ *     <br>**OH_DRAWING_SUCCESS** if the operation is successful.
+ *     <br>**OH_DRAWING_ERROR_INVALID_PARAMETER** if **style** is NULL.
+ *     <br>**OH_DRAWING_ERROR_ATTRIBUTE_ID_MISMATCH** if the input attribute ID does not match the called function.
  * @since 21
  */
 OH_Drawing_ErrorCode OH_Drawing_GetTextStyleAttributeInt(OH_Drawing_TextStyle* style,
     OH_Drawing_TextStyleAttributeId id, int* value);
 
 /**
- * @brief Sets double value to the typography style attribute.
+ * @brief Sets the typography style attribute of the **double** type.
  *
- * @param style Indicates the pointer to an <b>OH_Drawing_TypographyStyle</b> object.
- * @param id Indicates the attribute id.
- * @param value Indicates the value to set.
- * @return Returns the error code.
- *         Returns {@link OH_DRAWING_SUCCESS} if the operation is successful.
- *         Returns {@link OH_DRAWING_ERROR_INVALID_PARAMETER} if the style is nullptr.
- *         Returns {@link OH_DRAWING_ERROR_ATTRIBUTE_ID_MISMATCH} if the attribute id is not recognized or supported.
- *         Returns {@link OH_DRAWING_ERROR_PARAMETER_OUT_OF_RANGE} if the value corresponding to the attribute id
- *                  exceeds the allowable range.
+ * @param style Pointer to an {@link OH_Drawing_TypographyStyle} object.
+ * @param id Attribute ID of the text style.
+ * @param value Attribute value to set.
+ * @return Returns the execution result.
+ *     <br>**OH_DRAWING_SUCCESS** if the operation is successful.
+ *     <br>**OH_DRAWING_ERROR_INVALID_PARAMETER** if **style** is NULL.
+ *     <br>**OH_DRAWING_ERROR_ATTRIBUTE_ID_MISMATCH** if the input attribute ID does not match the called function.
+ *     <br>**OH_DRAWING_ERROR_PARAMETER_OUT_OF_RANGE** if the value corresponding to the attribute id
+ *     exceeds the allowable range.
  * @since 21
  */
 OH_Drawing_ErrorCode OH_Drawing_SetTypographyStyleAttributeDouble(OH_Drawing_TypographyStyle* style,
@@ -1180,9 +1193,9 @@ OH_Drawing_ErrorCode OH_Drawing_SetTypographyStyleAttributeDouble(OH_Drawing_Typ
  * @param id Attribute ID of the text style.
  * @param value Pointer to the attribute of the **double** type. It is used as an output parameter.
  * @return Returns the execution result.
- *     **OH_DRAWING_SUCCESS** if the operation is successful.
- *     **OH_DRAWING_ERROR_INVALID_PARAMETER** if **style** is NULL.
- *     **OH_DRAWING_ERROR_ATTRIBUTE_ID_MISMATCH** if the input attribute ID does not match the called function.
+ *     <br>**OH_DRAWING_SUCCESS** if the operation is successful.
+ *     <br>**OH_DRAWING_ERROR_INVALID_PARAMETER** if **style** is NULL.
+ *     <br>**OH_DRAWING_ERROR_ATTRIBUTE_ID_MISMATCH** if the input attribute ID does not match the called function.
  * @since 21
  */
 OH_Drawing_ErrorCode OH_Drawing_GetTypographyStyleAttributeDouble(OH_Drawing_TypographyStyle* style,
@@ -1195,11 +1208,11 @@ OH_Drawing_ErrorCode OH_Drawing_GetTypographyStyleAttributeDouble(OH_Drawing_Typ
  * @param id Attribute ID of the text style.
  * @param value Attribute value to set.
  * @return Returns the execution result.
- *     **OH_DRAWING_SUCCESS** if the operation is successful.
- *     **OH_DRAWING_ERROR_INVALID_PARAMETER** if **style** is NULL.
- *     **OH_DRAWING_ERROR_ATTRIBUTE_ID_MISMATCH** if the input attribute ID does not match the called function.
- *     **OH_DRAWING_ERROR_PARAMETER_OUT_OF_RANGE** if the input value exceeds the value range of the attribute to be
- *     set.
+ *     <br>**OH_DRAWING_SUCCESS** if the operation is successful.
+ *     <br>**OH_DRAWING_ERROR_INVALID_PARAMETER** if **style** is NULL.
+ *     <br>**OH_DRAWING_ERROR_ATTRIBUTE_ID_MISMATCH** if the input attribute ID does not match the called function.
+ *     <br>**OH_DRAWING_ERROR_PARAMETER_OUT_OF_RANGE** if the input value exceeds the value range of the attribute to
+ *     be set.
  * @since 21
  */
 OH_Drawing_ErrorCode OH_Drawing_SetTypographyStyleAttributeInt(OH_Drawing_TypographyStyle* style,
@@ -1212,9 +1225,9 @@ OH_Drawing_ErrorCode OH_Drawing_SetTypographyStyleAttributeInt(OH_Drawing_Typogr
  * @param id Attribute ID of the text style.
  * @param value Pointer to the attribute of the **int** type. It is used as an output parameter.
  * @return Returns the execution result.
- *     **OH_DRAWING_SUCCESS** if the operation is successful.
- *     **OH_DRAWING_ERROR_INVALID_PARAMETER** if **style** is NULL.
- *     **OH_DRAWING_ERROR_ATTRIBUTE_ID_MISMATCH** if the input attribute ID does not match the called function.
+ *     <br>**OH_DRAWING_SUCCESS** if the operation is successful.
+ *     <br>**OH_DRAWING_ERROR_INVALID_PARAMETER** if **style** is NULL.
+ *     <br>**OH_DRAWING_ERROR_ATTRIBUTE_ID_MISMATCH** if the input attribute ID does not match the called function.
  * @since 21
  */
 OH_Drawing_ErrorCode OH_Drawing_GetTypographyStyleAttributeInt(OH_Drawing_TypographyStyle* style,
@@ -1227,9 +1240,9 @@ OH_Drawing_ErrorCode OH_Drawing_GetTypographyStyleAttributeInt(OH_Drawing_Typogr
  * @param id Attribute ID of the text style.
  * @param value Attribute value to set.
  * @return Returns the execution result.
- *     **OH_DRAWING_SUCCESS** if the operation is successful.
- *     **OH_DRAWING_ERROR_INCORRECT_PARAMETER** if **style** is NULL.
- *     **OH_DRAWING_ERROR_ATTRIBUTE_ID_MISMATCH** if the input attribute ID does not match the called function.
+ *     <br>**OH_DRAWING_SUCCESS** if the operation is successful.
+ *     <br>**OH_DRAWING_ERROR_INCORRECT_PARAMETER** if **style** is NULL.
+ *     <br>**OH_DRAWING_ERROR_ATTRIBUTE_ID_MISMATCH** if the input attribute ID does not match the called function.
  * @since 23
  */
 OH_Drawing_ErrorCode OH_Drawing_SetTypographyStyleAttributeBool(OH_Drawing_TypographyStyle* style,
@@ -1242,9 +1255,9 @@ OH_Drawing_ErrorCode OH_Drawing_SetTypographyStyleAttributeBool(OH_Drawing_Typog
  * @param id Attribute ID of the text style.
  * @param value Pointer to the bool attribute. It is used as an output parameter.
  * @return Returns the execution result.
- *     **OH_DRAWING_SUCCESS** if the operation is successful.
- *     **OH_DRAWING_ERROR_INCORRECT_PARAMETER** if **style** or **value** is NULL.
- *     **OH_DRAWING_ERROR_ATTRIBUTE_ID_MISMATCH** if the input attribute ID does not match the called function.
+ *     <br>**OH_DRAWING_SUCCESS** if the operation is successful.
+ *     <br>**OH_DRAWING_ERROR_INCORRECT_PARAMETER** if **style** or **value** is NULL.
+ *     <br>**OH_DRAWING_ERROR_ATTRIBUTE_ID_MISMATCH** if the input attribute ID does not match the called function.
  * @since 23
  */
 OH_Drawing_ErrorCode OH_Drawing_GetTypographyStyleAttributeBool(OH_Drawing_TypographyStyle* style,
@@ -1258,10 +1271,10 @@ OH_Drawing_ErrorCode OH_Drawing_GetTypographyStyleAttributeBool(OH_Drawing_Typog
  * @param arrayValue Pointer to the floating-point array.
  * @param arrayLength Length of the floating-point array.
  * @return Returns the execution result.
- *     **OH_DRAWING_SUCCESS** if the operation is successful.
- *     **OH_DRAWING_ERROR_INCORRECT_PARAMETER** if the parameter **style** or **arrayValue** is a null pointer or **
- *     arrayLength** is 0.
- *     **OH_DRAWING_ERROR_ATTRIBUTE_ID_MISMATCH** if the input attribute ID does not match the called function.
+ *     <br>**OH_DRAWING_SUCCESS** if the operation is successful.
+ *     <br>**OH_DRAWING_ERROR_INCORRECT_PARAMETER** if the parameter **style** or **arrayValue** is a null pointer or
+ *     **arrayLength** is 0.
+ *     <br>**OH_DRAWING_ERROR_ATTRIBUTE_ID_MISMATCH** if the input attribute ID does not match the called function.
  * @since 26.0.0
  */
 OH_Drawing_ErrorCode OH_Drawing_SetTypographyStyleAttributeDoubleArray(OH_Drawing_TypographyStyle* style,
@@ -1275,10 +1288,10 @@ OH_Drawing_ErrorCode OH_Drawing_SetTypographyStyleAttributeDoubleArray(OH_Drawin
  * @param arrayValue Pointer to the floating-point array. It is used as an output parameter.
  * @param arrayLength Length of the floating-point array. It is used as an output parameter.
  * @return Returns the execution result.
- *     **OH_DRAWING_SUCCESS** if the operation is successful.
- *     **OH_DRAWING_ERROR_INCORRECT_PARAMETER** if the parameter **style** or **arrayValue** is a null pointer or **
- *     arrayLength** is a null pointer.
- *     **OH_DRAWING_ERROR_ATTRIBUTE_ID_MISMATCH** if the input attribute ID does not match the called function.
+ *     <br>**OH_DRAWING_SUCCESS** if the operation is successful.
+ *     <br>**OH_DRAWING_ERROR_INCORRECT_PARAMETER** if the parameter **style** or **arrayValue** is a null pointer or
+ *      **arrayLength** is a null pointer.
+ *     <br>**OH_DRAWING_ERROR_ATTRIBUTE_ID_MISMATCH** if the input attribute ID does not match the called function.
  * @since 26.0.0
  */
 OH_Drawing_ErrorCode OH_Drawing_GetTypographyStyleAttributeDoubleArray(const OH_Drawing_TypographyStyle* style,
@@ -1551,7 +1564,7 @@ void OH_Drawing_SetTextStyleFontSize(OH_Drawing_TextStyle* style, double fontSiz
  * @param style Pointer to the **OH_Drawing_TextStyle** object, which is obtained from
  *     {@link OH_Drawing_CreateTextStyle}.
  * @param fontWeight Font weight.
- *     For details about the available options, see {@link OH_Drawing_FontWeight}.
+ *     <br>For details about the available options, see {@link OH_Drawing_FontWeight}.
  * @since 8
  * @version 1.0
  */
@@ -1590,7 +1603,7 @@ void OH_Drawing_SetTextStyleDecoration(OH_Drawing_TextStyle* style, int decorati
  *     {@link OH_Drawing_CreateTextStyle}.
  * @param decoration Decoration to add. The value **1** means to add an underline, **2** means to add an overline, and *
  *     *4** means to add a strikethrough. You can add various decoration lines at a time via bitwise OR operations.
- *     If a decoration style that is not in the {@link OH_Drawing_TextDecoration} enumeration is set, the original
+ *     <br>If a decoration style that is not in the {@link OH_Drawing_TextDecoration} enumeration is set, the original
  *     decoration is retained.
  * @since 18
  * @version 1.0
@@ -1606,7 +1619,7 @@ void OH_Drawing_AddTextStyleDecoration(OH_Drawing_TextStyle* style, int decorati
  * @param decoration Decoration to remove. The value **1** means to remove an underline, **2** means to remove an
  *     overline, and **4** means to remove a strikethrough. You can remove various text decorations at a time via
  *     bitwise OR operations.
- *     If a decoration style that is not in the {@link OH_Drawing_TextDecoration} enumeration is set, the original
+ *     <br>If a decoration style that is not in the {@link OH_Drawing_TextDecoration} enumeration is set, the original
  *     decoration is retained.
  * @since 18
  * @version 1.0
@@ -1926,7 +1939,7 @@ void OH_Drawing_TypographyPaintOnPath(OH_Drawing_Typography* typography, OH_Draw
  * @param constraintsRect Height and width of the constrained layout.
  * @param fitStrRangeArr As an output parameter, it contains the character range of the paragraph text that is actually
  *     contained. Pointer to array object {@link OH_Drawing_Array}.
- *     Releases the memory through {@link OH_Drawing_ReleaseArrayBuffer}.
+ *     <br>Releases the memory through {@link OH_Drawing_ReleaseArrayBuffer}.
  * @param fitStrRangeArrayLen As an output parameter, it indicates the size of the contained string array.
  * @return Returns the OH_Drawing_RectSize object, indicating the actual rectangle of the paragraph text.
  * @since 24
@@ -1948,17 +1961,17 @@ OH_Drawing_Range* OH_Drawing_GetRangeByArrayIndex(OH_Drawing_Array* array, size_
  * @brief Releases the memory occupied by the {@link OH_Drawing_Array} object.
  *
  * @param array Pointer to array object {@link OH_Drawing_Array}.
- *     Supported array types:
- *     Array of full font names, which is obtained through {@link OH_Drawing_GetSystemFontFullNamesByType}.
- *     Array of text lines, which is obtained through {@link OH_Drawing_TypographyGetTextLines}.
- *     Array of string indexes, which is obtained through {@link OH_Drawing_GetRunStringIndices}.
- *     Array of rectangles, which is obtained through {@link OH_Drawing_RectCreateArray}.
- *     Array of font descriptors, which is obtained through {@link OH_Drawing_GetFontFullDescriptorsFromStream} or
- *     {@link OH_Drawing_GetFontFullDescriptorsFromPath}.
- *     Array of text ranges, which is obtained through {@link OH_Drawing_TypographyLayoutWithConstraintsWithBuffer}.
+ *     <br>Supported array types:
+ *     <br>Array of full font names, which is obtained through {@link OH_Drawing_GetSystemFontFullNamesByType}.
+ *     <br>Array of text lines, which is obtained through {@link OH_Drawing_TypographyGetTextLines}.
+ *     <br>Array of string indexes, which is obtained through {@link OH_Drawing_GetRunStringIndices}.
+ *     <br>Array of rectangles, which is obtained through {@link OH_Drawing_RectCreateArray}.
+ *     <br>Array of font descriptors, which is obtained through {@link OH_Drawing_GetFontFullDescriptorsFromStream} or {
+ * @link OH_Drawing_GetFontFullDescriptorsFromPath}.
+ *     <br>Array of text ranges, which is obtained through {@link OH_Drawing_TypographyLayoutWithConstraintsWithBuffer}.
  * @return Returns the execution result.
- *     **OH_DRAWING_SUCCESS** if the operation is successful.
- *     **OH_DRAWING_ERROR_INCORRECT_PARAMETER** if array is a null pointer or the type is not supported.
+ *     <br>**OH_DRAWING_SUCCESS** if the operation is successful.
+ *     <br>**OH_DRAWING_ERROR_INCORRECT_PARAMETER** if array is a null pointer or the type is not supported.
  * @since 24
  */
 OH_Drawing_ErrorCode OH_Drawing_ReleaseArrayBuffer(OH_Drawing_Array* array);
@@ -2768,7 +2781,7 @@ bool OH_Drawing_TypographyGetLineInfo(OH_Drawing_Typography* typography, int lin
  * @param style Pointer to the {@link OH_Drawing_TypographyStyle} object, which is obtained from
  *     {@link OH_Drawing_CreateTypographyStyle}.
  * @param weight Font weight.
- *     For details about the available options, see {@link OH_Drawing_FontWeight}.
+ *     <br>For details about the available options, see {@link OH_Drawing_FontWeight}.
  * @since 12
  * @version 1.0
  */
@@ -3108,7 +3121,7 @@ OH_Drawing_TextHeightBehavior OH_Drawing_TypographyTextGetHeightBehavior(OH_Draw
  * @param styleId Style ID. The style ID is valid only when the background box is a rounded rectangle. Text processing
  *     is divided into multiple segments. Each segment has its own text style. **id** indicates the sequence number of
  *     the background box in which the segment is drawn.
- *     If the ID of each segment in a row is **0**, all segments are drawn in the same background box. If a row
+ *     <br>If the ID of each segment in a row is **0**, all segments are drawn in the same background box. If a row
  *     contains segments with IDs **0** and **1**, the segment with ID **0** is drawn in a background box, and the
  *     segment with ID **1** is drawn in another background box. Other cases can be deduced in the same way.
  * @since 12
@@ -3778,7 +3791,7 @@ void OH_Drawing_TypographyUpdateDecorationStyle(OH_Drawing_Typography* typograph
 
 /**
  * @brief Updates the decoration color of a typography object.
- *  The updated decoration color takes effect after you call {@link OH_Drawing_TypographyPaint} to draw the text.
+ * <br> The updated decoration color takes effect after you call {@link OH_Drawing_TypographyPaint} to draw the text.
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @param typography Pointer to the {@link OH_Drawing_Typography} object, which is obtained from
@@ -3808,7 +3821,7 @@ bool OH_Drawing_TypographyTextGetLineStyle(OH_Drawing_TypographyStyle* style);
  * @param style Pointer to the {@link OH_Drawing_TypographyStyle} object, which is obtained from
  *     {@link OH_Drawing_CreateTypographyStyle}.
  * @return Font weight.
- *     For details about the available options, see {@link OH_Drawing_FontWeight}.
+ *     <br> For details about the available options, see {@link OH_Drawing_FontWeight}.
  * @since 12
  * @version 1.0
  */
@@ -4126,7 +4139,7 @@ void OH_Drawing_TypographyHandlerAddEncodedText(OH_Drawing_TypographyCreate* han
 
 /**
  * @brief Sets whether to enable automatic spacing during text typography.
- * This feature is disabled by default. If enabled, automatic spacing applies between CJK (Chinese, Japanese, and
+ * <br>This feature is disabled by default. If enabled, automatic spacing applies between CJK (Chinese, Japanese, and
  * Korean) and Western characters (Latin, Cyrillic, and Greek), between CJK and digits, between CJK and copyright
  * symbols, between copyright symbols and digits, and between copyright symbols and Western characters.
  *
@@ -4195,17 +4208,17 @@ void OH_Drawing_DestroyPositionAndAffinity(OH_Drawing_PositionAndAffinity* posit
  * @param glyphRangeEnd End position of the glyph range.
  * @param actualGlyphRange Returns the actual font range, indicating the level-2 pointer to {@link OH_Drawing_Range}.
  *     It is used as an output parameter.
- *     When the requested glyph range contains only a part of a complex glyph sequence, this parameter returns the
+ *     <br>When the requested glyph range contains only a part of a complex glyph sequence, this parameter returns the
  *     corresponding complete glyph range.
- *     For example, ligatures and combined emojis may consist of multiple atomic glyphs and must be processed as a
+ *     <br>For example, ligatures and combined emojis may consist of multiple atomic glyphs and must be processed as a
  *     whole.
- *     If this parameter is NULL, the actual glyph range is not returned, indicating that the caller does not care
+ *     <br>If this parameter is NULL, the actual glyph range is not returned, indicating that the caller does not care
  *     about the actual glyph range information.
- *     After use, release the object through the {@link OH_Drawing_ReleaseRangeBuffer} API.
+ *     <br>After use, release the object through the {@link OH_Drawing_ReleaseRangeBuffer} API.
  * @param textEncodingType Text encoding type {@link OH_Drawing_TextEncoding}.
- *     Currently, only UTF-8 and UTF-16 encoding types are supported.
- *     For UTF-8 encoding, the returned character range indicates the byte range.
- *     For UTF-16 encoding, the returned character range indicates the UTF-16 code unit range.
+ *     <br>Currently, only UTF-8 and UTF-16 encoding types are supported.
+ *     <br>For UTF-8 encoding, the returned character range indicates the byte range.
+ *     <br>For UTF-16 encoding, the returned character range indicates the UTF-16 code unit range.
  * @return Returns the {@link OH_Drawing_Range} object pointer that indicates the character range. When the object is
  *     no longer needed, use the {@link OH_Drawing_ReleaseRangeBuffer} API to release it.
  * @since 24
@@ -4220,23 +4233,24 @@ OH_Drawing_Range* OH_Drawing_TypographyGetCharacterRangeForGlyphRangeWithBuffer(
  * @param typography Pointer to the **OH_Drawing_Typography** object, which is obtained from
  *     {@link OH_Drawing_CreateTypography}.
  * @param dx Horizontal coordinate in the text layout area, in physical pixels (px).
- *     X offset relative to the top-left corner of the text layout area, with the right direction as positive.
- *     Supports floating-point values and accepts negative values, which indicate positions to the left of the text
+ *     <br>X offset relative to the top-left corner of the text layout area, with the right direction as positive.
+ *     <br>Supports floating-point values and accepts negative values, which indicate positions to the left of the text
  *     layout area.
- *     If the coordinates are beyond the text layout area, the nearest character position is returned. It can be
+ *     <br>If the coordinates are beyond the text layout area, the nearest character position is returned. It can be
  *     obtained through a touch event or click event.
  * @param dy Vertical coordinate in the text layout area, in physical pixels (px).
- *     Y offset relative to the top-left corner of the text layout area, with the downward direction as positive.
- *     Supports floating-point values and accepts negative values, which indicate positions above the text layout area.
- *     If the coordinates are beyond the text layout area, the nearest character position is returned. It can be
+ *     <br>Y offset relative to the top-left corner of the text layout area, with the downward direction as positive.
+ *     <br>Supports floating-point values and accepts negative values, which indicate positions above the text layout
+ *     area.
+ *     <br>If the coordinates are beyond the text layout area, the nearest character position is returned. It can be
  *     obtained through a touch event or click event.
  * @param textEncodingType Text encoding type {@link OH_Drawing_TextEncoding}.
- *     Currently, only UTF-8 and UTF-16 encoding types are supported.
- *     For UTF-8 encoding, the returned position indicates the byte offset. For UTF-16 encoding, the returned position
- *     indicates the UTF-16 code unit offset.
+ *     <br>Currently, only UTF-8 and UTF-16 encoding types are supported.
+ *     <br>For UTF-8 encoding, the returned position indicates the byte offset. For UTF-16 encoding, the returned
+ *     position indicates the UTF-16 code unit offset.
  * @return Returns the character index position and affinity at the coordinate. The return type is the
  *     {@link OH_Drawing_PositionAndAffinity} structure.
- *     When the object is no longer needed, call {@link OH_Drawing_DestroyPositionAndAffinity} to release it.
+ *     <br>When the object is no longer needed, call {@link OH_Drawing_DestroyPositionAndAffinity} to release it.
  * @since 24
  */
 OH_Drawing_PositionAndAffinity* OH_Drawing_TypographyGetCharacterPositionAtCoordinateWithBuffer(
@@ -4251,17 +4265,17 @@ OH_Drawing_PositionAndAffinity* OH_Drawing_TypographyGetCharacterPositionAtCoord
  * @param characterRangeEnd End position of the character range.
  * @param actualCharacterRange Returns the actual character range, indicating the level-2 pointer to
  *     {@link OH_Drawing_Range}. It is used as an output parameter.
- *     When the requested character range contains only a part of the combined character sequence, this parameter
+ *     <br>When the requested character range contains only a part of the combined character sequence, this parameter
  *     returns the corresponding complete character range.
- *     For example, a combined character consisting of a base character and a diacritical mark must be processed as a
- *     whole.
- *     If this parameter is NULL, the actual character range is not returned, indicating that the caller does not care
- *     about the actual character range information.
- *     After use, release the object through the {@link OH_Drawing_ReleaseRangeBuffer} API.
+ *     <br>For example, a combined character consisting of a base character and a diacritical mark must be processed as
+ *     a whole.
+ *     <br>If this parameter is NULL, the actual character range is not returned, indicating that the caller does not
+ *     care about the actual character range information.
+ *     <br>After use, release the object through the {@link OH_Drawing_ReleaseRangeBuffer} API.
  * @param textEncodingType Text encoding type {@link OH_Drawing_TextEncoding}.
- *     Currently, only UTF-8 and UTF-16 encoding types are supported.
- *     For UTF-8 encoding, the input character range should be interpreted as a byte range. For UTF-16 encoding, the
- *     input character range should be interpreted as a UTF-16 code unit range.
+ *     <br>Currently, only UTF-8 and UTF-16 encoding types are supported.
+ *     <br>For UTF-8 encoding, the input character range should be interpreted as a byte range. For UTF-16 encoding,
+ *     the input character range should be interpreted as a UTF-16 code unit range.
  * @return Returns the {@link OH_Drawing_Range} object pointer that indicates the font range. If the object is no
  *     longer needed, use the {@link OH_Drawing_ReleaseRangeBuffer} API to release it.
  * @since 24

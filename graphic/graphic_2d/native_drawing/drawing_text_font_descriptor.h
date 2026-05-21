@@ -128,7 +128,9 @@ typedef enum {
      * Whether the font is italic, of the int type. **1** means that the font is italic; **0** otherwise.
      */
     FULL_DESCRIPTOR_ATTR_I_ITALIC = 7,
-    /** Whether the font is monospaced */
+    /**
+     * Whether the font is monospace, of the bool type. **true** means yes; **false** otherwise.
+     */
     FULL_DESCRIPTOR_ATTR_B_MONO = 8,
 
     /**
@@ -284,20 +286,21 @@ typedef struct {
      */
     double value;
 } OH_Drawing_FontVariationInstanceCoordinate;
+
 /**
  * @brief Obtains all system font descriptors that match a font descriptor. In the {@link OH_Drawing_FontDescriptor}
  * struct, the **path** field is not used for matching, and other fields are valid only when they are not set to their
  * default values.
- * If all fields in **desc** are set to their default values, all system font descriptors are returned.
- * If no matching is found, NULL is returned. Call {@link OH_Drawing_DestroyFontDescriptors} to release this pointer
- * when the object is no longer needed.
+ * <br>If all fields in **desc** are set to their default values, all system font descriptors are returned.
+ * <br>If no matching is found, NULL is returned. Call {@link OH_Drawing_DestroyFontDescriptors} to release this
+ * pointer when the object is no longer needed.
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @param desc Pointer.
- *     You are advised to use {@link OH_Drawing_CreateFontDescriptor} to obtain a valid
+ *     <br>You are advised to use {@link OH_Drawing_CreateFontDescriptor} to obtain a valid
  *     {@link OH_Drawing_FontDescriptor} instance.
- *     For an {@link OH_Drawing_FontDescriptor} instance created by yourself, ensure that the fields that are not used
- *     for matching are set to default values.
+ *     <br>For an {@link OH_Drawing_FontDescriptor} instance created by yourself, ensure that the fields that are not
+ *     used for matching are set to default values.
  * @param num Pointer to the number of elements in the array.
  * @return An array of {@link OH_Drawing_FontDescriptor} objects. Use {@link OH_Drawing_DestroyFontDescriptors} to
  *     release the array.
@@ -318,8 +321,8 @@ void OH_Drawing_DestroyFontDescriptors(OH_Drawing_FontDescriptor* descriptors, s
 /**
  * @brief Obtains a font descriptor based on the font name and type. System fonts, style fonts, and user-installed
  * fonts are supported.
- * A font descriptor is a data structure that describes font features. It contains details of the font appearance and
- * properties.
+ * <br>A font descriptor is a data structure that describes font features. It contains details of the font appearance
+ * and properties.
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @param fullName Pointer to the font name, which is {@link OH_Drawing_String}.
@@ -370,7 +373,7 @@ void OH_Drawing_DestroySystemFontFullNames(OH_Drawing_Array* fullNameArray);
  * @return Returns the pointer to the {@link OH_Drawing_Array} array of the font descriptor corresponding to the font
  *     file. Call {@link OH_Drawing_DestroyFontFullDescriptors} to release the pointer when the **OH_Drawing_Array**
  *     object is no longer needed.
- *     Returns NULL if the operation fails due to an invalid data format or parsing error.
+ *     <br>Returns NULL if the operation fails due to an invalid data format or parsing error.
  * @since 22
  */
 OH_Drawing_Array* OH_Drawing_GetFontFullDescriptorsFromStream(const void* data, size_t size);
@@ -382,7 +385,7 @@ OH_Drawing_Array* OH_Drawing_GetFontFullDescriptorsFromStream(const void* data, 
  * @return Returns the pointer to the {@link OH_Drawing_Array} array of the font descriptor corresponding to the font
  *     file. Call {@link OH_Drawing_DestroyFontFullDescriptors} to release the pointer when the **OH_Drawing_Array**
  *     object is no longer needed.
- *     Returns NULL if the font file is not found, the font file path is invalid, the font file does not have the
+ *     <br>Returns NULL if the font file is not found, the font file path is invalid, the font file does not have the
  *     required permission, or the file is not in the font format.
  * @since 22
  */
@@ -395,7 +398,7 @@ OH_Drawing_Array* OH_Drawing_GetFontFullDescriptorsFromPath(const char* path);
  * @param index Index of the array, starting from 0.
  * @return Returns the pointer to the font descriptor object {@link OH_Drawing_FontFullDescriptor} at the specified
  *     index.
- *     Returns NULL if the index is out of range or the array is invalid.
+ *     <br>Returns NULL if the index is out of range or the array is invalid.
  * @since 22
  */
 const OH_Drawing_FontFullDescriptor* OH_Drawing_GetFontFullDescriptorByIndex(
@@ -427,8 +430,8 @@ void OH_Drawing_DestroyFontFullDescriptor(const OH_Drawing_FontFullDescriptor* d
  *     Unicode array when the array is no longer needed.
  * @param arrayLength Output parameter, which is used to receive the length of the Unicode array.
  * @return Returns the execution result.
- *     **OH_DRAWING_SUCCESS** if the operation is successful.
- *     **OH_DRAWING_ERROR_INCORRECT_PARAMETER** if the font path is invalid or the file is not a font file.
+ *     <br>**OH_DRAWING_SUCCESS** if the operation is successful.
+ *     <br>**OH_DRAWING_ERROR_INCORRECT_PARAMETER** if the font path is invalid or the file is not a font file.
  * @since 23
  */
 OH_Drawing_ErrorCode OH_Drawing_GetFontUnicodeArrayFromFile(const char* fontSrc, uint32_t index,
@@ -444,8 +447,8 @@ OH_Drawing_ErrorCode OH_Drawing_GetFontUnicodeArrayFromFile(const char* fontSrc,
  *     Unicode array when the array is no longer needed.
  * @param arrayLength Output parameter, which is used to receive the length of the Unicode array.
  * @return Returns the execution result.
- *     **OH_DRAWING_SUCCESS** if the operation is successful.
- *     **OH_DRAWING_ERROR_INCORRECT_PARAMETER** if the buffer data is invalid or not font file data.
+ *     <br>**OH_DRAWING_SUCCESS** if the operation is successful.
+ *     <br>**OH_DRAWING_ERROR_INCORRECT_PARAMETER** if the buffer data is invalid or not font file data.
  * @since 23
  */
 OH_Drawing_ErrorCode OH_Drawing_GetFontUnicodeArrayFromBuffer(uint8_t* fontBuffer, size_t length, uint32_t index,
@@ -459,9 +462,9 @@ OH_Drawing_ErrorCode OH_Drawing_GetFontUnicodeArrayFromBuffer(uint8_t* fontBuffe
  *     {@link OH_Drawing_FontFullDescriptorAttributeId}.
  * @param value Pointer to the attribute of the **int** type. It is used as an output parameter.
  * @return Returns the execution result.
- *     **OH_DRAWING_SUCCESS** if the operation is successful.
- *     **OH_DRAWING_ERROR_INCORRECT_PARAMETER** if the descriptor or value parameter is null.
- *     **OH_DRAWING_ERROR_ATTRIBUTE_ID_MISMATCH** if the input attribute ID does not match the called function.
+ *     <br>**OH_DRAWING_SUCCESS** if the operation is successful.
+ *     <br>**OH_DRAWING_ERROR_INCORRECT_PARAMETER** if the descriptor or value parameter is null.
+ *     <br>**OH_DRAWING_ERROR_ATTRIBUTE_ID_MISMATCH** if the input attribute ID does not match the called function.
  * @since 22
  */
 OH_Drawing_ErrorCode OH_Drawing_GetFontFullDescriptorAttributeInt(const OH_Drawing_FontFullDescriptor* descriptor,
@@ -475,9 +478,9 @@ OH_Drawing_ErrorCode OH_Drawing_GetFontFullDescriptorAttributeInt(const OH_Drawi
  *     {@link OH_Drawing_FontFullDescriptorAttributeId}.
  * @param value Pointer to the bool attribute It is used as an output parameter.
  * @return Returns the execution result.
- *     **OH_DRAWING_SUCCESS** if the operation is successful.
- *     **OH_DRAWING_ERROR_INCORRECT_PARAMETER** if the descriptor or value parameter is null.
- *     **OH_DRAWING_ERROR_ATTRIBUTE_ID_MISMATCH** if the input attribute ID does not match the called function.
+ *     <br>**OH_DRAWING_SUCCESS** if the operation is successful.
+ *     <br>**OH_DRAWING_ERROR_INCORRECT_PARAMETER** if the descriptor or value parameter is null.
+ *     <br>**OH_DRAWING_ERROR_ATTRIBUTE_ID_MISMATCH** if the input attribute ID does not match the called function.
  * @since 22
  */
 OH_Drawing_ErrorCode OH_Drawing_GetFontFullDescriptorAttributeBool(const OH_Drawing_FontFullDescriptor* descriptor,
@@ -487,16 +490,16 @@ OH_Drawing_ErrorCode OH_Drawing_GetFontFullDescriptorAttributeBool(const OH_Draw
  * @brief Obtains the attributes of the {@link OH_Drawing_String} font descriptor.
  *
  * @note The caller is responsible for manually releasing the internal <b>strData</b> member of the
- *       <b>OH_Drawing_String</b> structure when it is no longer needed.
+ *     <b>OH_Drawing_String</b> structure when it is no longer needed.
  *
  * @param descriptor Pointer to the font descriptor object {@link OH_Drawing_FontFullDescriptor}.
  * @param id Font descriptor attribute ID. You can obtain the font descriptor attribute from
  *     {@link OH_Drawing_FontFullDescriptorAttributeId}.
  * @param str Pointer to the **OH_Drawing_String** attribute. It is used as an output parameter.
  * @return Returns the execution result.
- *     **OH_DRAWING_SUCCESS** if the operation is successful.
- *     **OH_DRAWING_ERROR_INCORRECT_PARAMETER** if **descriptor** or **str** is a null pointer.
- *     **OH_DRAWING_ERROR_ATTRIBUTE_ID_MISMATCH** if the input attribute ID does not match the called function.
+ *     <br>**OH_DRAWING_SUCCESS** if the operation is successful.
+ *     <br>**OH_DRAWING_ERROR_INCORRECT_PARAMETER** if **descriptor** or **str** is a null pointer.
+ *     <br>**OH_DRAWING_ERROR_ATTRIBUTE_ID_MISMATCH** if the input attribute ID does not match the called function.
  * @since 22
  */
 OH_Drawing_ErrorCode OH_Drawing_GetFontFullDescriptorAttributeString(const OH_Drawing_FontFullDescriptor* descriptor,
@@ -521,7 +524,7 @@ OH_Drawing_Array* OH_Drawing_GetFontFullDescriptorAttributeArray(const OH_Drawin
  * @param index Index of the array, starting from 0.
  * @return Returns the pointer to the font variable axis object {@link OH_Drawing_FontVariationAxis} at the specified
  *     index.
- *     Returns NULL if the index is out of range or the array is invalid.
+ *     <br>Returns NULL if the index is out of range or the array is invalid.
  * @since 24
  */
 OH_Drawing_FontVariationAxis* OH_Drawing_GetFontVariationAxisByIndex(OH_Drawing_Array* array, size_t index);
@@ -542,9 +545,9 @@ void OH_Drawing_DestroyFontVariationAxis(OH_Drawing_Array* fontVariaAxisArray);
  *     {@link OH_Drawing_FontVariationAxisAttributeId}.
  * @param value Pointer to the attributes of the double type. It is used as an output parameter.
  * @return Returns the execution result.
- *     **OH_DRAWING_SUCCESS** if the operation is successful.
- *     **OH_DRAWING_ERROR_INCORRECT_PARAMETER** if the parameter **variationAxis** or **value** is a null pointer.
- *     **OH_DRAWING_ERROR_ATTRIBUTE_ID_MISMATCH** if the input attribute ID does not match the called function.
+ *     <br>**OH_DRAWING_SUCCESS** if the operation is successful.
+ *     <br>**OH_DRAWING_ERROR_INCORRECT_PARAMETER** if the parameter **variationAxis** or **value** is a null pointer.
+ *     <br>**OH_DRAWING_ERROR_ATTRIBUTE_ID_MISMATCH** if the input attribute ID does not match the called function.
  * @since 24
  */
 OH_Drawing_ErrorCode OH_Drawing_GetFontVariationAxisAttributeDouble(OH_Drawing_FontVariationAxis* variationAxis,
@@ -558,9 +561,9 @@ OH_Drawing_ErrorCode OH_Drawing_GetFontVariationAxisAttributeDouble(OH_Drawing_F
  *     {@link OH_Drawing_FontVariationAxisAttributeId}.
  * @param value Pointer to the attribute of the **int** type. It is used as an output parameter.
  * @return Returns the execution result.
- *     **OH_DRAWING_SUCCESS** if the operation is successful.
- *     **OH_DRAWING_ERROR_INCORRECT_PARAMETER** if the parameter **variationAxis** or **value** is a null pointer.
- *     **OH_DRAWING_ERROR_ATTRIBUTE_ID_MISMATCH** if the input attribute ID does not match the called function.
+ *     <br>**OH_DRAWING_SUCCESS** if the operation is successful.
+ *     <br>**OH_DRAWING_ERROR_INCORRECT_PARAMETER** if the parameter **variationAxis** or **value** is a null pointer.
+ *     <br>**OH_DRAWING_ERROR_ATTRIBUTE_ID_MISMATCH** if the input attribute ID does not match the called function.
  * @since 24
  */
 OH_Drawing_ErrorCode OH_Drawing_GetFontVariationAxisAttributeInt(OH_Drawing_FontVariationAxis* variationAxis,
@@ -570,16 +573,16 @@ OH_Drawing_ErrorCode OH_Drawing_GetFontVariationAxisAttributeInt(OH_Drawing_Font
  * @brief Obtains the font variable axis attributes of the {@link OH_Drawing_String} type.
  *
  * @note The caller is responsible for manually releasing the internal <b>strData</b> member of the
- *       <b>OH_Drawing_String</b> structure when it is no longer needed.
+ *     <b>OH_Drawing_String</b> structure when it is no longer needed.
  *
  * @param variationAxis Pointer to the font variable axis object {@link OH_Drawing_FontVariationAxis}.
  * @param id Font variable axis attribute ID. You can obtain the font variable axis attribute from
  *     {@link OH_Drawing_FontVariationAxisAttributeId}.
  * @param str Pointer to the **OH_Drawing_String** attribute. It is used as an output parameter.
  * @return Returns the execution result.
- *     **OH_DRAWING_SUCCESS** if the operation is successful.
- *     **OH_DRAWING_ERROR_INCORRECT_PARAMETER** if the parameter **variationAxis** or **str** is a null pointer.
- *     **OH_DRAWING_ERROR_ATTRIBUTE_ID_MISMATCH** if the input attribute ID does not match the called function.
+ *     <br>**OH_DRAWING_SUCCESS** if the operation is successful.
+ *     <br>**OH_DRAWING_ERROR_INCORRECT_PARAMETER** if the parameter **variationAxis** or **str** is a null pointer.
+ *     <br>**OH_DRAWING_ERROR_ATTRIBUTE_ID_MISMATCH** if the input attribute ID does not match the called function.
  * @since 24
  */
 OH_Drawing_ErrorCode OH_Drawing_GetFontVariationAxisAttributeStr(OH_Drawing_FontVariationAxis* variationAxis,
@@ -592,7 +595,7 @@ OH_Drawing_ErrorCode OH_Drawing_GetFontVariationAxisAttributeStr(OH_Drawing_Font
  * @param index Index of the array, starting from 0.
  * @return Returns the pointer to the font variable instance object {@link OH_Drawing_FontVariationInstance} at the
  *     specified index.
- *     Returns NULL if the index is out of range or the array is invalid.
+ *     <br>Returns NULL if the index is out of range or the array is invalid.
  * @since 24
  */
 OH_Drawing_FontVariationInstance* OH_Drawing_GetFontVariationInstanceByIndex(OH_Drawing_Array* array, size_t index);
@@ -609,16 +612,16 @@ void OH_Drawing_DestroyFontVariationInstance(OH_Drawing_Array* fontVariaAxisInst
  * @brief Obtains the font variable instance attributes of the {@link OH_Drawing_String} type.
  *
  * @note The caller is responsible for manually releasing the internal <b>strData</b> member of the
- *       <b>OH_Drawing_String</b> structure when it is no longer needed.
+ *     <b>OH_Drawing_String</b> structure when it is no longer needed.
  *
  * @param variationInstance Pointer to the font variable instance object {@link OH_Drawing_FontVariationInstance}.
  * @param id Font variable instance attribute ID. You can obtain the font variable instance attribute from
  *     {@link OH_Drawing_FontVariationInstanceAttributeId}.
  * @param str Pointer to the **OH_Drawing_String** attribute. It is used as an output parameter.
  * @return Returns the execution result.
- *     **OH_DRAWING_SUCCESS** if the operation is successful.
- *     **OH_DRAWING_ERROR_INCORRECT_PARAMETER** if the parameter **variationInstance** or **str** is a null pointer.
- *     **OH_DRAWING_ERROR_ATTRIBUTE_ID_MISMATCH** if the input attribute ID does not match the called function.
+ *     <br>**OH_DRAWING_SUCCESS** if the operation is successful.
+ *     <br>**OH_DRAWING_ERROR_INCORRECT_PARAMETER** if the parameter **variationInstance** or **str** is a null pointer.
+ *     <br>**OH_DRAWING_ERROR_ATTRIBUTE_ID_MISMATCH** if the input attribute ID does not match the called function.
  * @since 24
  */
 OH_Drawing_ErrorCode OH_Drawing_GetFontVariationInstanceAttributeStr(
