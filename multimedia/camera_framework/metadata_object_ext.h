@@ -25,7 +25,7 @@
  * @file metadata_object_ext.h
  *
  * @brief The file declares the metadata object ext concepts.
- * 
+ *
  * @library libohcamera.so
  * @kit CameraKit
  * @syscap SystemCapability.Multimedia.Camera.Core
