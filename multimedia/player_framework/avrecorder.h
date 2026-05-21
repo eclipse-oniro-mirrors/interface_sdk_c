@@ -103,7 +103,7 @@ OH_AVErrCode OH_AVRecorder_GetInputSurface(OH_AVRecorder *recorder, OHNativeWind
  * is called.
  * 
  * @param recorder Pointer to the OH_AVRecorder instance.
- * @param rotation Video rotation angle. The value must be an integer in the range [0, 90, 180, 270].
+ * @param rotation Video rotation angle, in degrees. The value must be an integer in the range [0, 90, 180, 270].
  * @return {@link AV_ERR_OK}: The operation is successful.
  * {@link AV_ERR_INVALID_VAL}: The input parameter **recorder** is nullptr, **rotation** is invalid, or the update
  * operation fails.
