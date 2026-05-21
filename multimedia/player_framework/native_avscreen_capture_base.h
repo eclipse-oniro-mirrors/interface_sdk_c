@@ -385,9 +385,9 @@ typedef struct OH_AVScreenCaptureCallback {
  * @since 10
  */
 typedef struct OH_Rect {
-    /* X-coordinate of screen recording, in px */
+    /* X-coordinate of screen recording */
     int32_t x;
-    /* y-coordinate of screen recording, in px */
+    /* y-coordinate of screen recording */
     int32_t y;
     /* Width of screen recording, in px */
     int32_t width;
