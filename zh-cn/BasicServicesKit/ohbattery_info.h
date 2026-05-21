@@ -102,7 +102,7 @@ typedef enum {
 } BatteryInfo_BatteryPluggedType;
 
 /**
- * @brief 返回当前电池容量。
+ * @brief 返回当前电池容量百分比。
  *
  * @return 返回介于0和100之间的数字。
  * @since 13
