@@ -685,30 +685,6 @@
     },
     {
         "first_introduced": "26.0.0",
-        "name": "OH_AudioManager_GetAudioDeviceEnhanceManager"
-    },
-    {
-        "first_introduced": "26.0.0",
-        "name": "OH_AudioDeviceEnhanceManager_IsEnhancedRoutingSupported"
-    },
-    {
-        "first_introduced": "26.0.0",
-        "name": "OH_AudioDeviceEnhanceManager_SelectOutputDevice"
-    },
-    {
-        "first_introduced": "26.0.0",
-        "name": "OH_AudioDeviceEnhanceManager_SelectInputDevice"
-    },
-    {
-        "first_introduced": "26.0.0",
-        "name": "OH_AudioDeviceEnhanceManager_SelectOutputDeviceForAudioRenderer"
-    },
-    {
-        "first_introduced": "26.0.0",
-        "name": "OH_AudioDeviceEnhanceManager_SelectInputDeviceForAudioCapturer"
-    },
-    {
-        "first_introduced": "26.0.0",
         "name": "OH_AudioStreamBuilder_SetCapturerLoopbackEffectEnabled"
     }
 ]
