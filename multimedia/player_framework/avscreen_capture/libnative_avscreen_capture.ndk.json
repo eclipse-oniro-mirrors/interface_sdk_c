@@ -206,5 +206,10 @@
     {
         "first_introduced": "26",
         "name": "OH_AVScreenCapture_ResumeScreenCapture"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_MD_KEY_SCREEN_CAPTURE_CONTENT_RECT",
+        "type": "variable"
     }
 ]
