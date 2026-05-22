@@ -35,6 +35,8 @@
 #ifndef NET_ETHERNET_TYPE_H
 #define NET_ETHERNET_TYPE_H
 
+#include <stdint.h>
+
 #ifdef __cplusplus
 extern "C" {
 #endif
