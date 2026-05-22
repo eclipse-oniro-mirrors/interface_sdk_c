@@ -430,13 +430,14 @@ OH_AudioSuite_Result OH_AudioSuiteEngine_BypassEffectNode(OH_AudioNode* audioNod
  *
  * @param audioNode Reference created by OH_AudioSuiteEngine_CreateNode.
  * @param audioFormat Audio Format.
- * @return {@link #AUDIOSUITE_SUCCESS} if execution succeeds
- * or {@link #AUDIOSUITE_ERROR_INVALID_PARAM} if parameter is nullptr.
- * or {@link #AUDIOSUITE_ERROR_NODE_NOT_EXIST} if audioNode does not exist or has been destroyed.
- * or {@link #AUDIOSUITE_ERROR_UNSUPPORTED_OPERATION} if the audioNode is an effect node.
- * or {@link #AUDIOSUITE_ERROR_INVALID_STATE} if the pipeline where the node resides is not in the stop state.
- * or {@link #AUDIOSUITE_ERROR_TIMEOUT} if an operation times out before completion.
- * or {@link #AUDIOSUITE_ERROR_SYSTEM} if the system has other abnormalities.
+ * @return <ul><li>{@link #AUDIOSUITE_SUCCESS} if execution succeeds</li>
+ * <li> {@link #AUDIOSUITE_ERROR_INVALID_PARAM} if parameter is nullptr.</li>
+ * <li> {@link #AUDIOSUITE_ERROR_NODE_NOT_EXIST} if audioNode does not exist or has been destroyed.</li>
+ * <li> {@link #AUDIOSUITE_ERROR_UNSUPPORTED_OPERATION} if the audioNode is an effect node.</li>
+ * <li> {@link #AUDIOSUITE_ERROR_UNSUPPORTED_FORMAT} if an unsupported format is set in audioFormat. [since 26.0.0]</li>
+ * <li> {@link #AUDIOSUITE_ERROR_INVALID_STATE} if the pipeline where the node resides is not in the stop state.</li>
+ * <li> {@link #AUDIOSUITE_ERROR_TIMEOUT} if an operation times out before completion.</li>
+ * <li> {@link #AUDIOSUITE_ERROR_SYSTEM} if the system has other abnormalities.</li></ul>
  * @since 22
  */
 OH_AudioSuite_Result OH_AudioSuiteEngine_SetAudioFormat(OH_AudioNode* audioNode, OH_AudioFormat *audioFormat);
