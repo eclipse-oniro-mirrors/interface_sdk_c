@@ -28,7 +28,7 @@ ohos_ndk_library("libnet_ethernet") {
 ohos_ndk_headers("netethernet_header") {
   dest_dir = "$ndk_headers_out_dir/network/netmanager_ext"
   sources = [
-    "net_ethernet.h"
-    "net_ethernet_type.h"
+    "net_ethernet.h",
+    "net_ethernet_type.h",
   ]
 }
