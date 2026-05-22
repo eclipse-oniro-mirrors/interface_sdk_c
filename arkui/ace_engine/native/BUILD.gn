@@ -41,6 +41,7 @@ if (!is_arkui_x) {
       "native_node_napi.h",
       "native_render.h",
       "native_type.h",
+      "node_attributes",
       "styled_string.h",
       "ui_input_event.h",
     ]
@@ -66,6 +67,7 @@ if (!is_arkui_x) {
       "arkui/native_node_napi.h",
       "arkui/native_render.h",
       "arkui/native_type.h",
+      "arkui/node_attributes/node_attr_custom.h",
       "arkui/styled_string.h",
       "arkui/ui_input_event.h",
       "ace/xcomponent/native_interface_xcomponent.h",
