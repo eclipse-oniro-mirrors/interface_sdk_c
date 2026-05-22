@@ -209,7 +209,7 @@
     },
     {
         "first_introduced": "26.0.0",
-        "name": "OH_MD_KEY_SCREEN_CAPTURE_CONTENT_RECT",
+        "name": "OH_SCREEN_CAPTURE_CONTENT_RECT",
         "type": "variable"
     }
 ]
