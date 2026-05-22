@@ -26,7 +26,7 @@
 /**
  * @file native_node.h
  *
- * @brief Provides type definitions for **NativeNode** APIs.
+ * @brief Provides type definitions for <b>NativeNode</b> APIs.
  *
  * @library libace_ndk.z.so
  * @syscap SystemCapability.ArkUI.ArkUI.Full
@@ -112,7 +112,7 @@ typedef enum {
      */
     ARKUI_NODE_CHECKBOX_GROUP = 21,
     /**
-     * Text editor.
+     * TextEditor.
      * @since 24
      */
     ARKUI_NODE_TEXT_EDITOR = 22,
@@ -7084,14 +7084,17 @@ typedef enum {
     NODE_TEXT_EDITOR_SINGLE_LINE,
 
     /**
-     * @brief Sets whether to enable orphan character optimization for text layout in **TextEditor**. After setting,
-     * text layout is improved by more efficiently handling orphan characters (the first character of the last line of a paragraph).
+     * @brief Sets whether to enable orphan character optimization for text layout in **TextEditor**.
+     * After setting,text layout is improved by more efficiently handling orphan characters
+	 * (the first character of the last line of a paragraph).
      * When enabled, it adjusts line break points to avoid orphan characters as much as possible.
-     * The orphan character optimization feature only works when {@link ArkUI_WordBreak} is not **ARKUI_WORD_BREAK_BREAK_ALL**.
+     * The orphan character optimization feature only works when {@link ArkUI_WordBreak}
+	 * is not **ARKUI_WORD_BREAK_BREAK_ALL**.
      * <br>The format of the {@link ArkUI_AttributeItem} parameter for setting the attribute and the format of the
      * return value **ArkUI_AttributeItem** are as follows.
      * <br>**Parameters**
-     * <br>.value[0].i32: Whether to enable. The value **1** means to enable, and **0** means the opposite. The default value is **0**.
+     * <br>.value[0].i32: Whether to enable. The value **1** means to enable, and **0** means the opposite.
+	 * The default value is **0**.
      * <br>**Returns**
      * <br>.value[0].i32: Whether orphan character optimization is enabled.
      *

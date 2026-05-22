@@ -619,9 +619,11 @@ ArkUI_ErrorCode OH_ArkUI_StyledString_Descriptor_AppendStyledString(
 ArkUI_ErrorCode OH_ArkUI_StyledString_Descriptor_InvalidateCustomSpan(const ArkUI_StyledString_Descriptor* descriptor);
  
 /**
- * @brief 定义文本字体样式。 <br>        可以通过{@link OH_ArkUI_TextStyle_Create}接口创建对应的文本字体样式对象。 <br>        可以通过
- * {@link OH_ArkUI_TextStyle_Destroy}接口销毁文本字体样式对象。 <br>        对象创建后通过OH_ArkUI_TextStyle_SetXXX系列接口设置生效的具体样式，例如通过
- * {@link OH_ArkUI_TextStyle_SetFontColor}设置字体颜色。
+ * @brief 定义文本字体样式。 <br>
+ * 可以通过{@link OH_ArkUI_TextStyle_Create}接口创建对应的文本字体样式对象。
+ * 可以通过{@link OH_ArkUI_TextStyle_Destroy}接口销毁文本字体样式对象。
+ * 对象创建后通过OH_ArkUI_TextStyle_SetXXX系列接口设置生效的具体样式，
+ * 例如通过{@link OH_ArkUI_TextStyle_SetFontColor}设置字体颜色。
  *
  * @since 24
  */
@@ -1031,8 +1033,8 @@ ArkUI_ErrorCode OH_ArkUI_SpanStyle_GetParagraphStyle(
     const OH_ArkUI_SpanStyle* spanStyle, OH_ArkUI_ParagraphStyle* paragraphStyle);
  
 /**
- * @brief 定义事件手势样式。 <br>        
- * 可以通过{@link OH_ArkUI_GestureStyle_Create}接口创建对应的事件手势样式对象。 <br>        
+ * @brief 定义事件手势样式。 <br>
+ * 可以通过{@link OH_ArkUI_GestureStyle_Create}接口创建对应的事件手势样式对象。 <br>
  * 可以通过{@link OH_ArkUI_GestureStyle_Destroy}接口销毁事件手势样式对象。 <br>
  * 对象创建后通过OH_ArkUI_GestureStyle_RegisterOnXXXCallback系列接口注册具体的事件回调，例如通过
  * {@link OH_ArkUI_GestureStyle_RegisterOnClickCallback}注册点击事件回调。

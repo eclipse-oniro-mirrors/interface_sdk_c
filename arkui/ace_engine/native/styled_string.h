@@ -638,9 +638,10 @@ ArkUI_ErrorCode OH_ArkUI_StyledString_Descriptor_AppendStyledString(
 ArkUI_ErrorCode OH_ArkUI_StyledString_Descriptor_InvalidateCustomSpan(const ArkUI_StyledString_Descriptor* descriptor);
  
 /**
- * @brief Defines a text font style.<br>        {@link OH_ArkUI_TextStyle_Create} can be used to create a text font
- * style object.<br>        {@link OH_ArkUI_TextStyle_Destroy} can be used to destroy the text font style object.<br>
- *      After the object is created, the **OH_ArkUI_TextStyle_SetXXX** series APIs can be used to set the specific
+ * @brief Defines a text font style.
+ * {@link OH_ArkUI_TextStyle_Create} can be used to create a text font style object.
+ * {@link OH_ArkUI_TextStyle_Destroy} can be used to destroy the text font style object.<br>
+ * After the object is created, the **OH_ArkUI_TextStyle_SetXXX** series APIs can be used to set the specific
  * styles that take effect. For example, you can use {@link OH_ArkUI_TextStyle_SetFontColor} to set text color.
  *
  * @since 24
@@ -1060,9 +1061,10 @@ ArkUI_ErrorCode OH_ArkUI_SpanStyle_GetParagraphStyle(
     const OH_ArkUI_SpanStyle* spanStyle, OH_ArkUI_ParagraphStyle* paragraphStyle);
  
 /**
- * @brief Defines a gesture style.<br>        {@link OH_ArkUI_GestureStyle_Create} can be used to create a gesture
- * style object.<br>        {@link OH_ArkUI_GestureStyle_Destroy} can be used to destroy the gesture style object.<br>
- *       After the object is created, the **OH_ArkUI_GestureStyle_RegisterOnXXXCallback** series APIs can be used to
+ * @brief Defines a gesture style.
+ * {@link OH_ArkUI_GestureStyle_Create} can be used to create a gesture style object.
+ * {@link OH_ArkUI_GestureStyle_Destroy} can be used to destroy the gesture style object.<br>
+ * After the object is created, the **OH_ArkUI_GestureStyle_RegisterOnXXXCallback** series APIs can be used to
  * register specific event callbacks. For example, you can use {@link OH_ArkUI_GestureStyle_RegisterOnClickCallback} to
  * register a click event callback.
  *
@@ -1291,9 +1293,10 @@ ArkUI_ErrorCode OH_ArkUI_SpanStyle_GetLineHeightStyle(
     const OH_ArkUI_SpanStyle* spanStyle, OH_ArkUI_LineHeightStyle* lineHeightStyle);
  
 /**
- * @brief Defines a URL style.<br>        {@link OH_ArkUI_UrlStyle_Create} can be used to create a URL style object.<br>
- *         {@link OH_ArkUI_UrlStyle_Destroy} can be used to destroy the URL style object.<br>        After the object
- * is created, {@link OH_ArkUI_UrlStyle_SetUrl} can be used to set a URL.
+ * @brief Defines a URL style.<br>
+ * {@link OH_ArkUI_UrlStyle_Create} can be used to create a URL style object.
+ * {@link OH_ArkUI_UrlStyle_Destroy} can be used to destroy the URL style object.
+ * After the object is created, {@link OH_ArkUI_UrlStyle_SetUrl} can be used to set a URL.
  *
  * @since 24
  */
@@ -2556,7 +2559,7 @@ ArkUI_ErrorCode OH_ArkUI_SpanStyle_GetLineSpacingStyle(
  * @since 26.0.0
  */
 OH_ArkUI_LineSpacingStyle* OH_ArkUI_LineSpacingStyle_Create();
- 
+
 /**
  * @brief Releases the memory occupied by the {@link OH_ArkUI_LineSpacingStyle} object.
  *

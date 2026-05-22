@@ -26,7 +26,7 @@
 /**
  * @file native_node.h
  *
- * @brief 提供NativeNode接口的类型定义。
+ * @brief Provides type definitions for <b>NativeNode</b> APIs.
  *
  * @library libace_ndk.z.so
  * @syscap SystemCapability.ArkUI.ArkUI.Full
@@ -7824,6 +7824,55 @@ typedef enum {
     NODE_LIST_BACK_PRESS_BEHAVIOR = 1003020,
 
     /**
+     * @brief Defines whether the <b>List</b> component enables edit mode.
+     * When set to <b>1</b> (editable), checkboxes are displayed by default and
+     * single-finger sliding multi-selection is available within the edit mode.
+     * When the edit mode state changes, the {@link NODE_LIST_ON_EDIT_MODE_CHANGE}
+     * event callback is triggered. The state can be changed in two ways:
+     * 1. Directly setting this attribute.
+     * 2. Triggered via two-finger sliding gesture when
+     * {@link NODE_LIST_EDIT_MODE_OPTIONS} has two-finger sliding multi-selection enabled
+     * and the {@link NODE_LIST_ON_EDIT_MODE_CHANGE} callback is registered.
+     * This attribute can be set, reset, and obtained as required through APIs.
+     *
+     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:
+     * .value[0].i32: Whether the <b>List</b> component enables edit mode.
+     * <b>0</b>: Not editable. <b>1</b>: Editable. Default value: <b>0</b>.
+     *
+     * Format of the return value {@link ArkUI_AttributeItem}:
+     * .value[0].i32: Whether the <b>List</b> component enables edit mode.
+     * <b>0</b>: Not editable. <b>1</b>: Editable.
+     *
+     * @since 26.0.0
+     */
+    NODE_LIST_ENABLE_EDIT_MODE = 1003021,
+
+    /**
+     * @brief List component edit mode option configuration.
+     * This attribute can be set, reset, and obtained as required through APIs.
+     *
+     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
+     * .value[0].i32: Whether List component uses default multi-selection style.
+     * When using default multi-selection style, List displays checkboxes after entering edit mode.
+     * 0: Do not use default style, 1: Use default style. Default value: 1
+     * .value[1].i32: Whether List component enables two-finger swipe multi-selection.
+     * This parameter takes effect after registering {@link NODE_LIST_ON_EDIT_MODE_CHANGE} event callback.
+     * 0: Two-finger swipe gesture cannot make List enter edit mode, but after entering edit mode through other means,
+     * single-finger swipe multi-selection in edit mode is not affected.
+     * 1: Two-finger swipe gesture can make List enter edit mode from non-edit mode and perform swipe multi-selection.
+     * Default value: 1
+     *
+     * Format of the return value {@link ArkUI_AttributeItem}:\n
+     * .value[0].i32: Whether List component uses default multi-selection style.
+     * 0: Do not use default style, 1: Use default style.
+     * .value[1].i32: Whether List component enables two-finger swipe multi-selection.
+     * 0: Not enabled, 1: Enabled.
+     *
+     * @since 26.0.0
+     */
+    NODE_LIST_EDIT_MODE_OPTIONS = 1003022,
+
+    /**
      * @brief Defines whether to enable loop playback for the swiper.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
@@ -8967,7 +9016,7 @@ typedef enum {
     /**
      * @brief Specifies whether to enable mouse-based multi-selection in the <b>Grid</b> container. This attribute can
      * be set, reset, and obtained as required through APIs. When enabled, mouse-based multi-selection within the
-     * <b>Grid</b> area triggers the <b>NODE_GRID_ITEM_EVENT_ON_SELECT</b> event on <b>GridItem</b> components.
+     * <b>Grid</b> area triggers the <b>NODE_GRID_ITEM_ON_SELECT</b> event on <b>GridItem</b> components.
      *
      * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
      * .value[0].i32: whether to enable mouse-based multi-selection.
@@ -9019,6 +9068,55 @@ typedef enum {
      * @since 23
      */
     NODE_GRID_SUPPORT_EMPTY_BRANCH_IN_LAZY_LOADING = 1013015,
+
+    /**
+     * @brief Defines whether the <b>Grid</b> component enables edit mode.
+     * When set to <b>1</b> (editable), checkboxes are displayed by default and
+     * single-finger sliding multi-selection is available within the edit mode.
+     * When the edit mode state changes, the {@link NODE_GRID_ON_EDIT_MODE_CHANGE}
+     * event callback is triggered. The state can be changed in two ways:
+     * 1. Directly setting this attribute.
+     * 2. Triggered via two-finger sliding gesture when
+     * {@link NODE_GRID_EDIT_MODE_OPTIONS} has two-finger sliding multi-selection enabled
+     * and the {@link NODE_GRID_ON_EDIT_MODE_CHANGE} callback is registered.
+     * This attribute can be set, reset, and obtained as required through APIs.
+     *
+     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
+     * .value[0].i32: Whether the <b>Grid</b> component enables edit mode.
+     * <b>0</b>: Not editable. <b>1</b>: Editable. Default value: <b>0</b>.\n
+     *
+     * Format of the return value {@link ArkUI_AttributeItem}:\n
+     * .value[0].i32: Whether the <b>Grid</b> component enables edit mode.
+     * <b>0</b>: Not editable. <b>1</b>: Editable.\n
+     *
+     * @since 26.0.0
+      */
+    NODE_GRID_ENABLE_EDIT_MODE = 1013016,
+
+    /**
+     * @brief Defines the edit mode options for the <b>Grid</b> component.
+     * This attribute can be set, reset, and obtained as required through APIs.
+     *
+     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:
+     * .value[0].i32: Whether the <b>Grid</b> component uses default multi-selection style.
+     * When using default multi-selection style, <b>Grid</b> displays checkboxes after entering edit mode.
+     * <b>0</b>: Do not use the default style, <b>1</b>: Use the default style. Default value: <b>1</b>
+     * .value[1].i32: Whether the <b>Grid</b> component enables two-finger sliding multi-selection.
+     * This parameter takes effect after registering {@link NODE_GRID_ON_EDIT_MODE_CHANGE} event callback.
+     * <b>0</b>: Two-finger sliding gesture cannot make <b>Grid</b> enter edit mode, but after entering
+     * edit mode through other means, single-finger sliding multi-selection in edit mode is not affected.
+     * <b>1</b>: Two-finger sliding gesture can make <b>Grid</b> enter edit mode from non-edit mode and
+     * perform sliding multi-selection. Default value: <b>1</b>
+     *
+     * Format of the return value {@link ArkUI_AttributeItem}:
+     * .value[0].i32: Whether the <b>Grid</b> component uses the default multi-selection style.
+     * <b>0</b>: Do not use the default style. <b>1</b>: Use the default style.
+     * .value[1].i32: Whether the <b>Grid</b> component enables two-finger sliding multi-selection.
+     * <b>0</b>: Disabled. <b>1</b>: Enabled.
+     *
+     * @since 26.0.0
+     */
+    NODE_GRID_EDIT_MODE_OPTIONS = 1013017,
 
     /**
      * @brief Sets the style of the <b>GridItem</b> component.
@@ -11033,6 +11131,39 @@ typedef enum {
     NODE_LIST_ON_SCROLL_VISIBLE_CONTENT_CHANGE,
 
     /**
+     * @brief Defines the edit mode state change event of the <b>List</b> component.
+     *
+     * This event is triggered when the edit mode state changes, which occurs in the following cases:
+     * 1. The {@link NODE_LIST_ENABLE_EDIT_MODE} attribute is set to change the edit mode state.
+     * 2. When {@link NODE_LIST_EDIT_MODE_OPTIONS} has two-finger sliding multi-selection enabled,
+     * a two-finger sliding gesture triggers the change to multi-selection state.
+     * Registering this event callback is a prerequisite for entering multi-selection state via
+     * two-finger sliding. If this callback is not registered, two-finger sliding will not enter
+     * multi-selection state.
+     *
+     * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
+     * {@link ArkUI_NodeComponentEvent}.
+     * {@link ArkUI_NodeComponentEvent} contains one parameter:
+     * <b>ArkUI_NodeComponentEvent.data[0].i32</b>: edit mode state.
+     * <b>0</b>: not in edit mode. <b>1</b>: in edit mode.
+     *
+     * @since 26.0.0
+     */
+    NODE_LIST_ON_EDIT_MODE_CHANGE = 1003004,
+
+    /**
+     * @brief Defines the selected state change event of the <b>ListItem</b> component.
+     *
+     * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
+     * {@link ArkUI_NodeComponentEvent}.
+     * {@link ArkUI_NodeComponentEvent} contains one parameter:
+     * <b>ArkUI_NodeComponentEvent.data[0].i32</b>: selected state. <b>0</b>: not selected. <b>1</b>: selected.
+     *
+     * @since 26.0.0
+     */
+    NODE_LIST_ITEM_ON_SELECT = MAX_NODE_SCOPE_NUM * ARKUI_NODE_LIST_ITEM,
+
+    /**
      * @brief Defines the event triggered when the refresh state of the <b>ARKUI_NODE_REFRESH</b> object changes.
      *
      * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
@@ -11295,6 +11426,27 @@ typedef enum {
      * @since 23
      */
     NODE_GRID_ON_ITEM_DROP = 1013008,
+
+    /**
+     * @brief Defines the edit mode state change event of the <b>Grid</b> component.
+     *
+     * This event is triggered when the edit mode state changes, which occurs in the following cases:
+     * 1. The {@link NODE_GRID_ENABLE_EDIT_MODE} attribute is set to change the edit mode state.
+     * 2. When {@link NODE_GRID_EDIT_MODE_OPTIONS} has two-finger sliding multi-selection enabled,
+     * a two-finger sliding gesture triggers the change to multi-selection state.
+     * Registering this event callback is a prerequisite for entering multi-selection state via
+     * two-finger sliding. If this callback is not registered, two-finger sliding will not enter
+     * multi-selection state.
+     *
+     * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
+     * {@link ArkUI_NodeComponentEvent}.
+     * {@link ArkUI_NodeComponentEvent} contains one parameter:
+     * <b>ArkUI_NodeComponentEvent.data[0].i32</b>: edit mode state.
+     * <b>0</b>: not in edit mode. <b>1</b>: in edit mode.
+     *
+     * @since 26.0.0
+     */
+    NODE_GRID_ON_EDIT_MODE_CHANGE = 1013009,
 
     /**
      * @brief Defines the selected state change event of the <b>GridItem</b> component.
