@@ -26,7 +26,8 @@
 /**
  * @file styled_string.h
  *
- * @brief Provides ArkUI with property string capabilities on the Native side.
+ * @brief Defines the text style and layout manager for the component whose {@link type} is set to **ARKUI_NODE_TEXT**
+ * on the native side.
  *
  * @library libace_ndk.z.so
  * @syscap SystemCapability.ArkUI.ArkUI.Full
@@ -179,261 +180,265 @@ int32_t OH_ArkUI_MarshallStyledStringDescriptor(
     uint8_t* buffer, size_t bufferSize, ArkUI_StyledString_Descriptor* descriptor, size_t* resultSize);
 
 /**
- * @brief Defines span style.
+ * @brief Defines a styled string style.<br>        {@link OH_ArkUI_SpanStyle_Create} can be used to create a styled
+ * string style object.<br>        {@link OH_ArkUI_SpanStyle_Destroy} can be used to destroy the styled string style
+ * object.<br>        After the object is created, {@link OH_ArkUI_SpanStyle_SetStart} and
+ * {@link OH_ArkUI_SpanStyle_SetLength} can be used to set the usage scope of the style.<br>        After the object is
+ * created, the **OH_ArkUI_SpanStyle_SetXXXStyle** series APIs can be used to set the specific styles that take effect.
+ * For example, you can use {@link OH_ArkUI_SpanStyle_SetTextStyle} to set the font style.
+ *
  * @since 24
  */
 typedef struct OH_ArkUI_SpanStyle OH_ArkUI_SpanStyle;
  
 /**
- * @brief Defines image attachment.
+ * @brief Defines an image style object.<br>        {@link OH_ArkUI_ImageAttachment_Create} can be used to create an
+ * image style object.<br>        {@link OH_ArkUI_ImageAttachment_Destroy} can be used to destroy the image style
+ * object.<br>        After the object is created, the **OH_ArkUI_ImageAttachment_SetXXX** series APIs can be used to
+ * set the styles that take effect. For example, you can use {@link OH_ArkUI_ImageAttachment_SetPixelMap} to set an
+ * image source.
+ *
  * @since 24
  */
 typedef struct OH_ArkUI_ImageAttachment OH_ArkUI_ImageAttachment;
  
 /**
- * @brief Defines custom span.
+ * @brief Defines a custom drawing span.<br>        {@link OH_ArkUI_CustomSpan_Create} can be used to create a custom
+ * drawing span object.<br>        {@link OH_ArkUI_CustomSpan_Destroy} can be used to destroy the custom drawing span
+ * object.<br>        After the object is created, {@link OH_ArkUI_CustomSpan_RegisterOnMeasureCallback} and
+ * {@link OH_ArkUI_CustomSpan_RegisterOnDrawCallback} can be used to register drawing callback functions.
+ *
  * @since 24
  */
 typedef struct OH_ArkUI_CustomSpan OH_ArkUI_CustomSpan;
  
 /**
- * @brief Enumerates the attribute type of the styled string.
+ * @brief Enumerates the styles of a styled string.
  *
  * @since 24
  */
 typedef enum {
     /**
-     * The key of unspecified style.
-     *
+     * No style is specified.
      * @since 24
      */
     OH_ARKUI_STYLEDSTRINGKEY_UNSPECIFIED = -1,
 
     /**
-     * The key of <b>OH_ArkUI_TextStyle</b>.
-     *
+     * Text font style.
      * @since 24
      */
     OH_ARKUI_STYLEDSTRINGKEY_FONT = 0,
 
     /**
-     * The key of <b>OH_ArkUI_DecorationStyle</b>.
-     *
+     * Text decorative line style.
      * @since 24
      */
     OH_ARKUI_STYLEDSTRINGKEY_DECORATION = 1,
 
     /**
-     * The key of <b>OH_ArkUI_BaselineOffsetStyle</b>.
-     *
+     * Text baseline offset style.
      * @since 24
      */
     OH_ARKUI_STYLEDSTRINGKEY_BASELINE_OFFSET = 2,
 
     /**
-     * The key of <b>OH_ArkUI_LetterSpacingStyle</b>.
-     *
+     * Text letter spacing style.
      * @since 24
      */
     OH_ARKUI_STYLEDSTRINGKEY_LETTER_SPACING = 3,
 
     /**
-     * The key of <b>OH_ArkUI_TextShadowStyle</b>.
-     *
+     * Text shadow style.
      * @since 24
      */
     OH_ARKUI_STYLEDSTRINGKEY_TEXT_SHADOW = 4,
 
     /**
-     * The key of <b>OH_ArkUI_LineHeightStyle</b>.
-     *
+     * Text line height style.
      * @since 24
      */
     OH_ARKUI_STYLEDSTRINGKEY_LINE_HEIGHT = 5,
 
     /**
-     * The key of <b>OH_ArkUI_BackgroundColorStyle</b>.
-     *
+     * Text background color style.
      * @since 24
      */
     OH_ARKUI_STYLEDSTRINGKEY_BACKGROUND_COLOR = 6,
 
     /**
-     * The key of <b>OH_ArkUI_UrlStyle</b>.
-     *
+     * URL style.
      * @since 24
      */
     OH_ARKUI_STYLEDSTRINGKEY_URL = 7,
 
     /**
-     * The key of <b>OH_ArkUI_LineSpacingStyle</b>.
-     *
+     * Text line spacing style.
      * @since 26.0.0
      */
     OH_ARKUI_STYLEDSTRINGKEY_LINE_SPACING = 8,
 
     /**
-     * The key of <b>OH_ArkUI_GestureStyle</b>.
-     *
+     * Gesture style.
      * @since 24
      */
     OH_ARKUI_STYLEDSTRINGKEY_GESTURE = 100,
 
     /**
-     * The key of <b>OH_ArkUI_ParagraphStyle</b>.
-     *
+     * Text paragraph style.
      * @since 24
      */
     OH_ARKUI_STYLEDSTRINGKEY_PARAGRAPH_STYLE = 200,
 
     /**
-     * The key of <b>OH_ArkUI_ImageAttachment</b>.
-     *
+     * Image style.
      * @since 24
      */
     OH_ARKUI_STYLEDSTRINGKEY_IMAGE = 300,
 
     /**
-     * The key of <b>OH_ArkUI_CustomSpan</b>.
-     *
+     * Custom span style.
      * @since 24
      */
     OH_ARKUI_STYLEDSTRINGKEY_CUSTOM_SPAN = 400,
 
     /**
-     * The key of <b>OH_ArkUI_UserDataSpan</b>.
-     *
+     * User data span style.
      * @since 24
      */
     OH_ARKUI_STYLEDSTRINGKEY_USER_DATA = 500
 } OH_ArkUI_StyledStringKey;
  
 /**
- * @brief Creates an <b>ArkUI_StyledString_Descriptor</b> object about text.
+ * @brief Creates an {@link ArkUI_StyledString_Descriptor} object of the plain text content type.
  *
  * @note When the object is no longer in use, invoke <b> OH_ArkUI_StyledString_Descriptor_Destroy </b> to destroy it.
- * All input pointer parameters must be allocated, managed, and released by the caller.
- * @param value Pointer to the text content.
- * @param styles Data set about span style.
- * @param length The length of data set about span style.
+ *     All input pointer parameters must be allocated, managed, and released by the caller.
+ * @param value Pointer to text content string of the styled string.
+ * @param styles Pointer to the initialization option of the styled string, which points to an array of the
+ *     {@link OH_ArkUI_SpanStyle} object.
+ * @param length Length of the initialization option of the styled string.
  * @return The pointer to the <b>ArkUI_StyledString_Descriptor</b> object created. If the result is a null pointer,
- *         it may be params is invalid.
+ *     it may be params is invalid.
  * @since 24
  */
 ArkUI_StyledString_Descriptor* OH_ArkUI_StyledString_Descriptor_CreateWithString(const char* value,
     const OH_ArkUI_SpanStyle** styles, int32_t length);
  
 /**
- * @brief Creates an <b>ArkUI_StyledString_Descriptor</b> object about image.
+ * @brief Creates an {@link ArkUI_StyledString_Descriptor} object of the image content type.
  *
  * @note When the object is no longer in use, invoke <b> OH_ArkUI_StyledString_Descriptor_Destroy </b> to destroy it.
- * All input pointer parameters must be allocated, managed, and released by the caller.
- * @param value Pointer to the <b>OH_ArkUI_ImageAttachment</b> object.
+ *     All input pointer parameters must be allocated, managed, and released by the caller.
+ * @param value Pointer to the {@link OH_ArkUI_ImageAttachment} object.
  * @return The pointer to the <b>ArkUI_StyledString_Descriptor</b> object created. If the result is a null pointer,
- *         it may be params is invalid.
+ *     it may be params is invalid.
  * @since 24
  */
 ArkUI_StyledString_Descriptor* OH_ArkUI_StyledString_Descriptor_CreateWithImageAttachment(
     const OH_ArkUI_ImageAttachment* value);
  
 /**
- * @brief Creates an <b>ArkUI_StyledString_Descriptor</b> object about custom span.
+ * @brief Creates an {@link ArkUI_StyledString_Descriptor} object of the custom span content type.
  *
  * @note When the object is no longer in use, invoke <b> OH_ArkUI_StyledString_Descriptor_Destroy </b> to destroy it.
- * All input pointer parameters must be allocated, managed, and released by the caller.
- * @param value Pointer to the <b>OH_ArkUI_CustomSpan</b> object.
+ *     All input pointer parameters must be allocated, managed, and released by the caller.
+ * @param value Pointer to the {@link OH_ArkUI_CustomSpan} object.
  * @return The pointer to the <b>ArkUI_StyledString_Descriptor</b> object created. If the result is a null pointer,
- *         it may be params is invalid.
+ *     it may be params is invalid.
  * @since 24
  */
 ArkUI_StyledString_Descriptor* OH_ArkUI_StyledString_Descriptor_CreateWithCustomSpan(const OH_ArkUI_CustomSpan* value);
 
 /**
- * @brief Get the characters length of styled string.
+ * @brief Obtains the length of a styled string.
  *
  * @note All input pointer parameters must be allocated, managed, and released by the caller.
- * @param descriptor Pointer to an <b>ArkUI_StyledString_Descriptor</b> object.
- * @param length The characters length.
+ * @param descriptor Pointer to the {@link ArkUI_StyledString_Descriptor} object.
+ * @param length Pointer to the character length.
  * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
- *         Returns {@link ARKUI_ERROR_CODE_INVALID_STYLED_STRING} if the styled string is invalid.
+ *     Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ *     Returns {@link ARKUI_ERROR_CODE_INVALID_STYLED_STRING} if the styled string is invalid.
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_StyledString_Descriptor_GetLength(const ArkUI_StyledString_Descriptor* descriptor,
     int32_t* length);
  
 /**
- * @brief Get the literal content of the styled string.
+ * @brief Obtains the text content of a styled string.
  *
  * @note All input pointer parameters must be allocated, managed, and released by the caller.
- * @param descriptor Pointer to an <b>ArkUI_StyledString_Descriptor</b> object.
- * @param buffer The buffer to which text content writes to the memory,
- *               memory space needs to be allocated by the developer.
- * @param bufferSize The buffer size
- * @param writeLength Indicates the string length actually written to the buffer
- *                    when returning {@link ARKUI_ERROR_CODE_NO_ERROR}.
- *                    Indicates the minimum buffer size that can accommodate the target
- *                    when {@link ARKUI_ERROR_CODE_BUFFER_SIZE_ERROR} is returned.
+ * @param descriptor Pointer to the {@link ArkUI_StyledString_Descriptor} object.
+ * @param buffer Pointer to the buffer for storing the text content in the memory. You need to allocate the memory.
+ * @param bufferSize Buffer size.
+ * @param writeLength Pointer to the length of the data actually written to the buffer if
+ *     {@link ARKUI_ERROR_CODE_NO_ERROR} is returned.
+ *     <br>Pointer to the minimum length required for writing the entire string to the buffer if
+ *     {@link ARKUI_ERROR_CODE_BUFFER_SIZE_ERROR} is returned.
  * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
- *         Returns {@link ARKUI_ERROR_CODE_INVALID_STYLED_STRING} if the styled string is invalid.
- *         Returns {@link ARKUI_ERROR_CODE_BUFFER_SIZE_ERROR} If the buffer size is less than the minimum buffer size.
+ *     Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ *     Returns {@link ARKUI_ERROR_CODE_INVALID_STYLED_STRING} if the styled string is invalid.
+ *     Returns {@link ARKUI_ERROR_CODE_BUFFER_SIZE_ERROR} If the buffer size is less than the minimum buffer size.
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_StyledString_Descriptor_GetString(
     const ArkUI_StyledString_Descriptor* descriptor, char* buffer, int32_t bufferSize, int32_t* writeLength);
 
 /**
- * @brief Judge if two styled strings are equal.
+ * @brief Checks whether a styled string is the same as another styled string. The two styled strings are the same if
+ * they have the same text and style.
  *
  * @note All input pointer parameters must be allocated, managed, and released by the caller.
- * @param firstDescriptor Pointer to an <b>ArkUI_StyledString_Descriptor</b> object.
- * @param secondDescriptor Pointer to another <b>ArkUI_StyledString_Descriptor</b> object.
- * @param isEqual If two objects about the <b>ArkUI_StyledString_Descriptor</b> are equal.
+ * @param firstDescriptor Pointer to the {@link ArkUI_StyledString_Descriptor} object.
+ * @param secondDescriptor Pointer to another {@link ArkUI_StyledString_Descriptor} object.
+ * @param isEqual Pointer to the **isEqual** parameter indicating whether the two styled strings are the same. **true**
+ *     if the two are the same; returns **false** otherwise.
  * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
- *         Returns {@link ARKUI_ERROR_CODE_INVALID_STYLED_STRING} if the styled string is invalid.
+ *     Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ *     Returns {@link ARKUI_ERROR_CODE_INVALID_STYLED_STRING} if the styled string is invalid.
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_StyledString_Descriptor_IsEqual(const ArkUI_StyledString_Descriptor* firstDescriptor,
     const ArkUI_StyledString_Descriptor* secondDescriptor, bool* isEqual);
 
 /**
- * @brief Get the substring of the styled string.
+ * @brief Obtains a sub-styled string of a styled string.
  *
  * @note All input pointer parameters must be allocated, managed, and released by the caller.
- * @param descriptor Pointer to an <b>ArkUI_StyledString_Descriptor</b> object.
- * @param subDescriptor Pointer to the substring of <b>ArkUI_StyledString_Descriptor</b> object.
- * @param start The start position of the sub styled string.
- * @param length The characters length of the sub styled string.
+ * @param descriptor Pointer to the {@link ArkUI_StyledString_Descriptor} object.
+ * @param subDescriptor Pointer to the {@link ArkUI_StyledString_Descriptor} sub-styled string object.
+ * @param start Start position of the sub-styled string. The value range is [0, length of the styled string].
+ * @param length Length of the sub-styled string. The value range is [0, difference between the length of the styled
+ *     string and the value of **start**].
  * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
- *         Returns {@link ARKUI_ERROR_CODE_INVALID_STYLED_STRING} if the styled string is invalid.
+ *     Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ *     Returns {@link ARKUI_ERROR_CODE_INVALID_STYLED_STRING} if the styled string is invalid.
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_StyledString_Descriptor_SubStyledString(const ArkUI_StyledString_Descriptor* descriptor,
     ArkUI_StyledString_Descriptor* subDescriptor, uint32_t start, uint32_t length);
 
 /**
- * @brief Get span styles within a specified range of the styled string.
+ * @brief Obtains the style set within a specified range of a styled string.
  *
  * @note All input pointer parameters must be allocated, managed, and released by the caller.
- * @param descriptor Pointer to an <b>ArkUI_StyledString_Descriptor</b> object.
- * @param start The start position of the range.
- * @param length The length of the range.
- * @param styledKey The specified style type.
- * @param styles The span styles.
- * @param stylesSize Buffer size for span styles.
- * @param writeLength The actual size of span styles in styled string.
+ * @param descriptor Pointer to the {@link ArkUI_StyledString_Descriptor} object.
+ * @param start Start position of the specified range. The value range is [0, length of the styled string].
+ * @param length Length of the specified range. The value range is [0, difference between the length of the styled
+ *     string and the value of **start**].
+ * @param styledKey Style type to be obtained. The value is an enumerated value of {@link OH_ArkUI_StyledStringKey}.
+ * @param styles Pointer to the buffer of the style object array.
+ * @param stylesSize Size of the buffer for the style object array.
+ * @param writeLength Pointer to the actual size of the array of the style object obtained from the styled string.
  * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
- *         Returns {@link ARKUI_ERROR_CODE_INVALID_STYLED_STRING} if the styled string is invalid.
- *         Returns {@link ARKUI_ERROR_CODE_BUFFER_SIZE_ERROR} If the buffer size is less than the minimum buffer size.
+ *     Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ *     Returns {@link ARKUI_ERROR_CODE_INVALID_STYLED_STRING} if the styled string is invalid.
+ *     Returns {@link ARKUI_ERROR_CODE_BUFFER_SIZE_ERROR} If the buffer size is less than the minimum buffer size.
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_StyledString_Descriptor_GetStyles(const ArkUI_StyledString_Descriptor* descriptor,
@@ -441,225 +446,234 @@ ArkUI_ErrorCode OH_ArkUI_StyledString_Descriptor_GetStyles(const ArkUI_StyledStr
     uint32_t stylesSize, uint32_t* writeLength);
 
 /**
- * @brief Get styled string from the provided HTML string.
+ * @brief Converts an HTML string to a styled string.
  *
  * @note All input pointer parameters must be allocated, managed, and released by the caller.
- * @param descriptor Pointer to an <b>ArkUI_StyledString_Descriptor</b> object.
- * @param html The html text will be converted to a StyledString.
+ * @param descriptor Pointer to the {@link ArkUI_StyledString_Descriptor} object.
+ * @param html Pointer to the HTML string to be converted into a styled string.
  * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
- *         Returns {@link ARKUI_ERROR_CODE_INVALID_STYLED_STRING} if the styled string is invalid.
+ *     Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ *     Returns {@link ARKUI_ERROR_CODE_INVALID_STYLED_STRING} if the styled string is invalid.
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_StyledString_Descriptor_FromHtml(ArkUI_StyledString_Descriptor* descriptor, const char* html);
  
 /**
- * @brief Replace the string of the specified range of styled string.
+ * @brief Replaces the text within a specified range of a styled string.
  *
  * @note All input pointer parameters must be allocated, managed, and released by the caller.
- * @param descriptor Pointer to an <b>ArkUI_StyledString_Descriptor</b> object.
- * @param start The start position of the replaced string.
- * @param length The characters length of the replaced string.
- * @param string Replaced string.
+ * @param descriptor Pointer to the {@link ArkUI_StyledString_Descriptor} object.
+ * @param start Start position of the specified range. The value range is [0, length of the styled string].
+ * @param length Length of the specified range. The value range is [0, difference between the length of the styled
+ *     string and the value of **start**].
+ * @param string Pointer to the string to replace the content in the target range.
  * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
- *         Returns {@link ARKUI_ERROR_CODE_INVALID_STYLED_STRING} if the styled string is invalid.
+ *     Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ *     Returns {@link ARKUI_ERROR_CODE_INVALID_STYLED_STRING} if the styled string is invalid.
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_StyledString_Descriptor_ReplaceString(
     ArkUI_StyledString_Descriptor* descriptor, uint32_t start, uint32_t length, const char* string);
  
 /**
- * @brief Insert the string at the specified location in styled string.
+ * @brief Inserts text at a specified position of a styled string.
  *
  * @note All input pointer parameters must be allocated, managed, and released by the caller.
- * @param descriptor Pointer to an <b>ArkUI_StyledString_Descriptor</b> object.
- * @param start The start position of the inserted string.
- * @param string Inserted string.
+ * @param descriptor Pointer to the {@link ArkUI_StyledString_Descriptor} object.
+ * @param start Insertion position. The value range is [0, length of the styled string].
+ * @param string Pointer to the string to insert.
  * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
- *         Returns {@link ARKUI_ERROR_CODE_INVALID_STYLED_STRING} if the styled string is invalid.
+ *     Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ *     Returns {@link ARKUI_ERROR_CODE_INVALID_STYLED_STRING} if the styled string is invalid.
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_StyledString_Descriptor_InsertString(
     ArkUI_StyledString_Descriptor* descriptor, uint32_t start, const char* string);
  
 /**
- * @brief Remove the string of the specified range of styled string.
+ * @brief Removes the text within a specified range of a styled string.
  *
  * @note All input pointer parameters must be allocated, managed, and released by the caller.
- * @param descriptor Pointer to an <b>ArkUI_StyledString_Descriptor</b> object.
- * @param start The start position of the removed string.
- * @param length The characters length of the removed string.
+ * @param descriptor Pointer to the {@link ArkUI_StyledString_Descriptor} object.
+ * @param start Start position of the specified range. The value range is [0, length of the styled string].
+ * @param length Length of the specified range. The value range is [0, difference between the length of the styled
+ *     string and the value of **start**].
  * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
- *         Returns {@link ARKUI_ERROR_CODE_INVALID_STYLED_STRING} if the styled string is invalid.
+ *     Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ *     Returns {@link ARKUI_ERROR_CODE_INVALID_STYLED_STRING} if the styled string is invalid.
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_StyledString_Descriptor_RemoveString(
     ArkUI_StyledString_Descriptor* descriptor, uint32_t start, uint32_t length);
  
 /**
- * @brief Replace span style in the specified range of styled string.
+ * @brief Replaces the style within a specified range of a styled string.
  *
  * @note All input pointer parameters must be allocated, managed, and released by the caller.
- * @param descriptor Pointer to an <b>ArkUI_StyledString_Descriptor</b> object.
- * @param spanStyle Pointer to an <b>OH_ArkUI_SpanStyle</b> object.
+ * @param descriptor Pointer to the {@link ArkUI_StyledString_Descriptor} object.
+ * @param spanStyle Pointer to the {@link OH_ArkUI_SpanStyle} object.
+ *     <br>You need to call {@link OH_ArkUI_SpanStyle_SetStart} and {@link OH_ArkUI_SpanStyle_SetLength} to set the
+ *     target range in the object.
  * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
- *         Returns {@link ARKUI_ERROR_CODE_INVALID_STYLED_STRING} if the styled string is invalid.
+ *     Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ *     Returns {@link ARKUI_ERROR_CODE_INVALID_STYLED_STRING} if the styled string is invalid.
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_StyledString_Descriptor_ReplaceStyle(
     ArkUI_StyledString_Descriptor* descriptor, const OH_ArkUI_SpanStyle* spanStyle);
  
 /**
- * @brief Add span style to the specified range string of styled string.
+ * @brief Sets a new style for a specified range of a styled string.
  *
  * @note All input pointer parameters must be allocated, managed, and released by the caller.
- * @param descriptor Pointer to an <b>ArkUI_StyledString_Descriptor</b> object.
- * @param spanStyle Pointer to an <b>OH_ArkUI_SpanStyle</b> object.
+ * @param descriptor Pointer to the {@link ArkUI_StyledString_Descriptor} object.
+ * @param spanStyle Pointer to the {@link OH_ArkUI_SpanStyle} object. You need to call
+ *     {@link OH_ArkUI_SpanStyle_SetStart} and {@link OH_ArkUI_SpanStyle_SetLength} to set the target range in the
+ *     object.
  * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
- *         Returns {@link ARKUI_ERROR_CODE_INVALID_STYLED_STRING} if the styled string is invalid.
+ *     Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ *     Returns {@link ARKUI_ERROR_CODE_INVALID_STYLED_STRING} if the styled string is invalid.
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_StyledString_Descriptor_SetStyle(
     ArkUI_StyledString_Descriptor* descriptor, const OH_ArkUI_SpanStyle* spanStyle);
  
 /**
- * @brief Delete the specified type span style from the specified range of styled string.
+ * @brief Removes the specified style for a specified range of a styled string.
  *
  * @note All input pointer parameters must be allocated, managed, and released by the caller.
- * @param descriptor Pointer to an <b>ArkUI_StyledString_Descriptor</b> object.
- * @param start The start position in styled string.
- * @param length The length in styled string.
- * @param styledKey The key of the specified span style type.
+ * @param descriptor Pointer to the {@link ArkUI_StyledString_Descriptor} object.
+ * @param start Start position of the specified range. The value range is [0, length of the styled string].
+ * @param length Length of the specified range. The value range is [0, difference between the length of the styled
+ *     string and the value of **start**].
+ * @param styledKey Style type. The value is an enumerated value of {@link OH_ArkUI_StyledStringKey}.
  * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
- *         Returns {@link ARKUI_ERROR_CODE_INVALID_STYLED_STRING} if the styled string is invalid.
+ *     Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ *     Returns {@link ARKUI_ERROR_CODE_INVALID_STYLED_STRING} if the styled string is invalid.
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_StyledString_Descriptor_RemoveStyle(
     ArkUI_StyledString_Descriptor* descriptor, uint32_t start, uint32_t length, OH_ArkUI_StyledStringKey styledKey);
  
 /**
- * @brief Clear all span style in the styled string.
+ * @brief Clears all styles of a styled string.
  *
  * @note All input pointer parameters must be allocated, managed, and released by the caller.
- * @param descriptor Pointer to an <b>ArkUI_StyledString_Descriptor</b> object.
+ * @param descriptor Pointer to the {@link ArkUI_StyledString_Descriptor} object.
  * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
- *         Returns {@link ARKUI_ERROR_CODE_INVALID_STYLED_STRING} if the styled string is invalid.
+ *     Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ *     Returns {@link ARKUI_ERROR_CODE_INVALID_STYLED_STRING} if the styled string is invalid.
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_StyledString_Descriptor_ClearStyles(ArkUI_StyledString_Descriptor* descriptor);
  
 /**
- * @brief Replace the styled string of the specified range.
+ * @brief Replaces the styled string within a specified range.
  *
  * @note All input pointer parameters must be allocated, managed, and released by the caller.
- * @param descriptor Pointer to an <b>ArkUI_StyledString_Descriptor</b> object.
- * @param start The start position of the replaced styled string.
- * @param length The characters length of the replaced styled string.
- * @param other The other pointer to <b>ArkUI_StyledString_Descriptor</b> object.
+ * @param descriptor Pointer to the {@link ArkUI_StyledString_Descriptor} object.
+ * @param start Start position of the specified range. The value range is [0, length of the styled string].
+ * @param length Length of the specified range. The value range is [0, difference between the length of the styled
+ *     string and the value of **start**].
+ * @param other Pointer to the new {@link ArkUI_StyledString_Descriptor} object.
  * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
- *         Returns {@link ARKUI_ERROR_CODE_INVALID_STYLED_STRING} if the styled string is invalid.
+ *     Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ *     Returns {@link ARKUI_ERROR_CODE_INVALID_STYLED_STRING} if the styled string is invalid.
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_StyledString_Descriptor_ReplaceStyledString(ArkUI_StyledString_Descriptor* descriptor,
     uint32_t start, uint32_t length, const ArkUI_StyledString_Descriptor* other);
  
 /**
- * @brief Insert new styled string at the specified location of styled string.
+ * @brief Inserts a new styled string at a specified position of a styled string.
  *
  * @note All input pointer parameters must be allocated, managed, and released by the caller.
- * @param descriptor Pointer to an <b>ArkUI_StyledString_Descriptor</b> object.
- * @param start The start position of the inserted styled string.
- * @param other The other pointer to <b>ArkUI_StyledString_Descriptor</b> object.
+ * @param descriptor Pointer to the {@link ArkUI_StyledString_Descriptor} object.
+ * @param start Insertion position. The value range is [0, length of the styled string].
+ * @param other Pointer to the new {@link ArkUI_StyledString_Descriptor} object.
  * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
- *         Returns {@link ARKUI_ERROR_CODE_INVALID_STYLED_STRING} if the styled string is invalid.
+ *     Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ *     Returns {@link ARKUI_ERROR_CODE_INVALID_STYLED_STRING} if the styled string is invalid.
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_StyledString_Descriptor_InsertStyledString(
     ArkUI_StyledString_Descriptor* descriptor, uint32_t start, const ArkUI_StyledString_Descriptor* other);
  
 /**
- * @brief Append new styled string at the end.
+ * @brief Appends a new styled string to the end of a styled string.
  *
  * @note All input pointer parameters must be allocated, managed, and released by the caller.
- * @param descriptor Pointer to an <b>ArkUI_StyledString_Descriptor</b> object.
- * @param other The other pointer to <b>ArkUI_StyledString_Descriptor</b> object.
+ * @param descriptor Pointer to the {@link ArkUI_StyledString_Descriptor} object.
+ * @param other Pointer to the new {@link ArkUI_StyledString_Descriptor} object.
  * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
- *         Returns {@link ARKUI_ERROR_CODE_INVALID_STYLED_STRING} if the styled string is invalid.
+ *     Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ *     Returns {@link ARKUI_ERROR_CODE_INVALID_STYLED_STRING} if the styled string is invalid.
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_StyledString_Descriptor_AppendStyledString(
     ArkUI_StyledString_Descriptor* descriptor, const ArkUI_StyledString_Descriptor* other);
  
 /**
- * @brief Invalidate custom span drawing in the styled string.
+ * @brief Actively refreshes the custom span in a styled string.
  *
  * @note All input pointer parameters must be allocated, managed, and released by the caller.
- * @param descriptor Pointer to an <b>ArkUI_StyledString_Descriptor</b> object.
+ * @param descriptor Pointer to the {@link ArkUI_StyledString_Descriptor} object.
  * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
- *         Returns {@link ARKUI_ERROR_CODE_INVALID_STYLED_STRING} if the styled string is invalid.
+ *     Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ *     Returns {@link ARKUI_ERROR_CODE_INVALID_STYLED_STRING} if the styled string is invalid.
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_StyledString_Descriptor_InvalidateCustomSpan(const ArkUI_StyledString_Descriptor* descriptor);
  
 /**
- * @brief Defines text style.
+ * @brief Defines a text font style.<br>        {@link OH_ArkUI_TextStyle_Create} can be used to create a text font
+ * style object.<br>        {@link OH_ArkUI_TextStyle_Destroy} can be used to destroy the text font style object.<br>
+ *      After the object is created, the **OH_ArkUI_TextStyle_SetXXX** series APIs can be used to set the specific
+ * styles that take effect. For example, you can use {@link OH_ArkUI_TextStyle_SetFontColor} to set text color.
+ *
  * @since 24
  */
 typedef struct OH_ArkUI_TextStyle OH_ArkUI_TextStyle;
  
 /**
- * @brief Enumerates the superscript style type.
+ * @brief Enumerates the text superscript and subscript styles.
  *
  * @since 24
  */
 typedef enum {
     /**
-     * Normal font style.
-     *
+     * Normal text style.
      * @since 24
      */
     OH_ARKUI_SUPERSCRIPTSTYLE_NORMAL = 0,
 
     /**
-     * Superscript font style.
-     *
+     * Superscript text style.
      * @since 24
      */
     OH_ARKUI_SUPERSCRIPTSTYLE_SUPERSCRIPT,
 
     /**
-     * Subscript font style.
-     *
+     * Subscript text style.
      * @since 24
      */
     OH_ARKUI_SUPERSCRIPTSTYLE_SUBSCRIPT
 } OH_ArkUI_SuperscriptStyle;
  
 /**
- * @brief Create an <b>OH_ArkUI_TextStyle</b> object.
+ * @brief Creates an {@link OH_ArkUI_TextStyle} object.
  *
  * @note When the object is no longer in use, invoke <b> OH_ArkUI_TextStyle_Destroy </b> to destroy it.
  * @return Pointer to the <b>OH_ArkUI_TextStyle</b> object.
@@ -668,233 +682,237 @@ typedef enum {
 OH_ArkUI_TextStyle* OH_ArkUI_TextStyle_Create();
  
 /**
- * @brief Release the memory occupied by the <b>OH_ArkUI_TextStyle</b> object.
+ * @brief Releases the memory occupied by the {@link OH_ArkUI_TextStyle} object.
  *
- * @param textStyle Pointer to the <b>OH_ArkUI_TextStyle</b> object.
+ * @param textStyle Pointer to the {@link OH_ArkUI_TextStyle} object.
  * @since 24
  */
 void OH_ArkUI_TextStyle_Destroy(OH_ArkUI_TextStyle* textStyle);
  
 /**
- * @brief Set font color in the text style.
+ * @brief Sets text color for a text font style.
  *
  * @note All input pointer parameters must be allocated, managed, and released by the caller.
- * @param textStyle Pointer to the <b>OH_ArkUI_TextStyle</b> object.
- * @param fontColor Font color.
+ * @param textStyle Pointer to the {@link OH_ArkUI_TextStyle} object.
+ * @param fontColor Font color, in 0xARGB format.
  * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ *     Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_TextStyle_SetFontColor(OH_ArkUI_TextStyle* textStyle, uint32_t fontColor);
  
 /**
- * @brief Get font color in the text style.
+ * @brief Obtains the text color of a text font style.
  *
  * @note All input pointer parameters must be allocated, managed, and released by the caller.
- * @param textStyle Pointer to the <b>OH_ArkUI_TextStyle</b> object.
- * @param fontColor Font color.
+ * @param textStyle Pointer to the {@link OH_ArkUI_TextStyle} object.
+ * @param fontColor Pointer to the font color, in 0xARGB format.
  * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ *     Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_TextStyle_GetFontColor(const OH_ArkUI_TextStyle* textStyle, uint32_t* fontColor);
  
 /**
- * @brief Set font family in the text style.
+ * @brief Sets a font family for a text font style.
  *
  * @note All input pointer parameters must be allocated, managed, and released by the caller.
- * @param textStyle Pointer to the <b>OH_ArkUI_TextStyle</b> object.
- * @param fontFamily Font family.
+ * @param textStyle Pointer to the {@link OH_ArkUI_TextStyle} object.
+ * @param fontFamily Pointer to the font family, containing the font names to be set. Different font names are
+ *     separated by commas (,).
  * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ *     Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_TextStyle_SetFontFamily(OH_ArkUI_TextStyle* textStyle, const char* fontFamily);
  
 /**
- * @brief Get font family in the text style.
+ * @brief Obtains the font family of a text font style.
  *
  * @note All input pointer parameters must be allocated, managed, and released by the caller.
- * @param textStyle Pointer to the <b>OH_ArkUI_TextStyle</b> object.
- * @param buffer The buffer to which font family writes to the memory,
- *               memory space needs to be allocated by the developer.
- * @param bufferSize The buffer size
- * @param writeLength Indicates the string length actually written to the buffer
- *                    when returning {@link ARKUI_ERROR_CODE_NO_ERROR}.
- *                    Indicates the minimum buffer size that can accommodate the target
- *                    when {@link ARKUI_ERROR_CODE_BUFFER_SIZE_ERROR} is returned.
+ * @param textStyle Pointer to the {@link OH_ArkUI_TextStyle} object.
+ * @param buffer Pointer to the buffer for storing the font family in the memory. You need to allocate the memory.
+ * @param bufferSize Maximum number of characters that can be written to the buffer.
+ * @param writeLength Pointer to the length of the string actually written to the buffer if
+ *     {@link ARKUI_ERROR_CODE_NO_ERROR} is returned.
+ *     <br>Pointer to the minimum length required for writing the entire string to the buffer if
+ *     {@link ARKUI_ERROR_CODE_BUFFER_SIZE_ERROR} is returned.
  * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
- *         Returns {@link ARKUI_ERROR_CODE_BUFFER_SIZE_ERROR} If the buffer size is less than the minimum buffer size.
+ *     Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ *     Returns {@link ARKUI_ERROR_CODE_BUFFER_SIZE_ERROR} If the buffer size is less than the minimum buffer size.
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_TextStyle_GetFontFamily(const OH_ArkUI_TextStyle* textStyle,
     char* buffer, int32_t bufferSize, int32_t* writeLength);
  
 /**
- * @brief Set font size in the text style.
+ * @brief Sets font size for a text font style.
  *
  * @note All input pointer parameters must be allocated, managed, and released by the caller.
- * @param textStyle Pointer to the <b>OH_ArkUI_TextStyle</b> object.
- * @param fontSize Font size.
+ * @param textStyle Pointer to the {@link OH_ArkUI_TextStyle} object.
+ * @param fontSize Font size, in vp.
  * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ *     Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_TextStyle_SetFontSize(OH_ArkUI_TextStyle* textStyle, float fontSize);
  
 /**
- * @brief Get font size in the text style.
+ * @brief Obtains the font size of a text font style.
  *
  * @note All input pointer parameters must be allocated, managed, and released by the caller.
- * @param textStyle Pointer to the <b>OH_ArkUI_TextStyle</b> object.
- * @param fontSize Font size.
+ * @param textStyle Pointer to the {@link OH_ArkUI_TextStyle} object.
+ * @param fontSize Pointer to the font size, in vp.
  * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ *     Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_TextStyle_GetFontSize(const OH_ArkUI_TextStyle* textStyle, float* fontSize);
  
 /**
- * @brief Set Font weight in the text style.
+ * @brief Sets font weight for a text font style.
  *
  * @note All input pointer parameters must be allocated, managed, and released by the caller.
- * @param textStyle Pointer to the <b>OH_ArkUI_TextStyle</b> object.
- * @param fontWeight Font weight.
+ * @param textStyle Pointer to the {@link OH_ArkUI_TextStyle} object.
+ * @param fontWeight Font weight. The value is an integer multiple of 100 within the [100, 900] range, for example, **
+ *     100** or **900**.
  * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ *     Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_TextStyle_SetFontWeight(OH_ArkUI_TextStyle* textStyle, uint32_t fontWeight);
  
 /**
- * @brief Get font weight in the text style.
+ * @brief Obtains the font weight of a text font style.
  *
  * @note All input pointer parameters must be allocated, managed, and released by the caller.
- * @param textStyle Pointer to the <b>OH_ArkUI_TextStyle</b> object.
- * @param fontWeight Font weight.
+ * @param textStyle Pointer to the {@link OH_ArkUI_TextStyle} object.
+ * @param fontWeight Pointer to the font weight. The value is an integer multiple of 100 within the [100, 900] range,
+ *     for example, **100** or **900**.
  * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ *     Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_TextStyle_GetFontWeight(const OH_ArkUI_TextStyle* textStyle, uint32_t* fontWeight);
  
 /**
- * @brief Set font style in the text style.
+ * @brief Sets font style for a text font style.
  *
  * @note All input pointer parameters must be allocated, managed, and released by the caller.
- * @param textStyle Pointer to the <b>OH_ArkUI_TextStyle</b> object.
- * @param fontStyle Font style.
+ * @param textStyle Pointer to the {@link OH_ArkUI_TextStyle} object.
+ * @param fontStyle Font style. The value is an enumerated value of {@link ArkUI_FontStyle}.
  * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ *     Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_TextStyle_SetFontStyle(OH_ArkUI_TextStyle* textStyle, ArkUI_FontStyle fontStyle);
  
 /**
- * @brief Get font style in the text style.
+ * @brief Obtains the font style of a text font style.
  *
  * @note All input pointer parameters must be allocated, managed, and released by the caller.
- * @param textStyle Pointer to the <b>OH_ArkUI_TextStyle</b> object.
- * @param fontStyle Font style.
+ * @param textStyle Pointer to the {@link OH_ArkUI_TextStyle} object.
+ * @param fontStyle Pointer to the font style. The value is an enumerated value of {@link ArkUI_FontStyle}.
  * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ *     Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_TextStyle_GetFontStyle(const OH_ArkUI_TextStyle* textStyle, ArkUI_FontStyle* fontStyle);
  
 /**
- * @brief Set stroke width in the text style.
+ * @brief Sets stroke width for a text font style.
  *
  * @note All input pointer parameters must be allocated, managed, and released by the caller.
- * @param textStyle Pointer to the <b>OH_ArkUI_TextStyle</b> object.
- * @param strokeWidth Stroke width.
+ * @param textStyle Pointer to the {@link OH_ArkUI_TextStyle} object.
+ * @param strokeWidth Stroke width, in vp.
  * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ *     Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_TextStyle_SetStrokeWidth(OH_ArkUI_TextStyle* textStyle, float strokeWidth);
  
 /**
- * @brief Get stroke width in the text style.
+ * @brief Obtains the stroke width of a text font style.
  *
  * @note All input pointer parameters must be allocated, managed, and released by the caller.
- * @param textStyle Pointer to the <b>OH_ArkUI_TextStyle</b> object.
- * @param strokeWidth Stroke width.
+ * @param textStyle Pointer to the {@link OH_ArkUI_TextStyle} object.
+ * @param strokeWidth Pointer to the stroke width, in vp.
  * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ *     Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_TextStyle_GetStrokeWidth(const OH_ArkUI_TextStyle* textStyle, float* strokeWidth);
  
 /**
- * @brief Set stroke color in the text style.
+ * @brief Sets a stroke color for a text font style.
  *
  * @note All input pointer parameters must be allocated, managed, and released by the caller.
- * @param textStyle Pointer to the <b>OH_ArkUI_TextStyle</b> object.
- * @param strokeColor Stroke color.
+ * @param textStyle Pointer to the {@link OH_ArkUI_TextStyle} object.
+ * @param strokeColor Stroke color, in 0xARGB format.
  * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ *     Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_TextStyle_SetStrokeColor(OH_ArkUI_TextStyle* textStyle, uint32_t strokeColor);
  
 /**
- * @brief Get stroke color in the text style.
+ * @brief Obtains the stroke color of a text font style.
  *
  * @note All input pointer parameters must be allocated, managed, and released by the caller.
- * @param textStyle Pointer to the <b>OH_ArkUI_TextStyle</b> object.
- * @param strokeColor Stroke color.
+ * @param textStyle Pointer to the {@link OH_ArkUI_TextStyle} object.
+ * @param strokeColor Pointer to the stroke color, in 0xARGB format.
  * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ *     Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_TextStyle_GetStrokeColor(const OH_ArkUI_TextStyle* textStyle, uint32_t* strokeColor);
  
 /**
- * @brief Set superscript style in the text style.
+ * @brief Sets superscript and subscript styles for a text font style.
  *
  * @note All input pointer parameters must be allocated, managed, and released by the caller.
- * @param textStyle Pointer to the <b>OH_ArkUI_TextStyle</b> object.
- * @param superscript Superscript style.
+ * @param textStyle Pointer to the {@link OH_ArkUI_TextStyle} object.
+ * @param superscript Superscript and subscript styles. The value is an enumerated value of
+ *     {@link OH_ArkUI_SuperscriptStyle}.
  * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ *     Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_TextStyle_SetSuperscript(OH_ArkUI_TextStyle* textStyle,
     OH_ArkUI_SuperscriptStyle superscript);
  
 /**
- * @brief Get superscript style in the text style.
+ * @brief Obtains the superscript and subscript styles of a text font style.
  *
  * @note All input pointer parameters must be allocated, managed, and released by the caller.
- * @param textStyle Pointer to the <b>OH_ArkUI_TextStyle</b> object.
- * @param superscript Superscript style.
+ * @param textStyle Pointer to the {@link OH_ArkUI_TextStyle} object.
+ * @param superscript Pointer to the superscript and subscript styles. The value is an enumerated value of
+ *     {@link OH_ArkUI_SuperscriptStyle}.
  * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ *     Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_TextStyle_GetSuperscript(const OH_ArkUI_TextStyle* textStyle,
     OH_ArkUI_SuperscriptStyle* superscript);
  
 /**
- * @brief Create an <b>OH_ArkUI_SpanStyle</b> object.
+ * @brief Creates an {@link OH_ArkUI_SpanStyle} object.
  *
  * @note When the object is no longer in use, invoke <b> OH_ArkUI_SpanStyle_Destroy </b> to destroy it.
  * @return Pointer to the <b>OH_ArkUI_SpanStyle</b> object.
@@ -903,508 +921,558 @@ ArkUI_ErrorCode OH_ArkUI_TextStyle_GetSuperscript(const OH_ArkUI_TextStyle* text
 OH_ArkUI_SpanStyle* OH_ArkUI_SpanStyle_Create();
  
 /**
- * @brief Release the memory occupied by the <b>OH_ArkUI_SpanStyle</b> object.
+ * @brief Releases the memory occupied by the {@link OH_ArkUI_SpanStyle} object.
  *
- * @param spanStyle Pointer to the <b>OH_ArkUI_SpanStyle</b> object.
+ * @param spanStyle Pointer to the {@link OH_ArkUI_SpanStyle} object.
  * @since 24
  */
 void OH_ArkUI_SpanStyle_Destroy(OH_ArkUI_SpanStyle* spanStyle);
  
 /**
- * @brief Get styled string key of span style.
+ * @brief Obtains the style of the styled string object.
  *
  * @note All input pointer parameters must be allocated, managed, and released by the caller.
- * @param spanStyle Pointer to the <b>OH_ArkUI_SpanStyle</b> object.
- * @param styledKey The styled string key of span style.
+ * @param spanStyle Pointer to the {@link OH_ArkUI_SpanStyle} object.
+ * @param styledKey Pointer to the style type. The value is an enumerated value of {@link OH_ArkUI_StyledStringKey}.
  * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ *     Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_SpanStyle_GetStyledKey(const OH_ArkUI_SpanStyle* spanStyle,
     OH_ArkUI_StyledStringKey* styledKey);
  
 /**
- * @brief Set start position of span style.
+ * @brief Sets the start position for the styled string object.
  *
  * @note All input pointer parameters must be allocated, managed, and released by the caller.
- * @param spanStyle Pointer to the <b>OH_ArkUI_SpanStyle</b> object.
- * @param start The start position of span style.
+ * @param spanStyle Pointer to the {@link OH_ArkUI_SpanStyle} object.
+ * @param start Start position of the styled string style object.
  * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ *     Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_SpanStyle_SetStart(OH_ArkUI_SpanStyle* spanStyle, int32_t start);
  
 /**
- * @brief Get start position of span style.
+ * @brief Obtains the start position of the styled string object.
  *
  * @note All input pointer parameters must be allocated, managed, and released by the caller.
- * @param spanStyle Pointer to the <b>OH_ArkUI_SpanStyle</b> object.
- * @param start The start position of span style.
+ * @param spanStyle Pointer to the {@link OH_ArkUI_SpanStyle} object.
+ * @param start Pointer to the start position of the styled string style object.
  * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ *     Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_SpanStyle_GetStart(const OH_ArkUI_SpanStyle* spanStyle, int32_t* start);
  
 /**
- * @brief Set length of span style.
+ * @brief Sets the length for the styled string object.
  *
  * @note All input pointer parameters must be allocated, managed, and released by the caller.
- * @param spanStyle Pointer to the <b>OH_ArkUI_SpanStyle</b> object.
- * @param length The length of span style.
+ * @param spanStyle Pointer to the {@link OH_ArkUI_SpanStyle} object.
+ * @param length Length of the styled string style object.
  * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ *     Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_SpanStyle_SetLength(OH_ArkUI_SpanStyle* spanStyle, int32_t length);
  
 /**
- * @brief Get length of span style.
+ * @brief Obtains the length of the styled string object.
  *
  * @note All input pointer parameters must be allocated, managed, and released by the caller.
- * @param spanStyle Pointer to the <b>OH_ArkUI_SpanStyle</b> object.
- * @param length The length of span style.
+ * @param spanStyle Pointer to the {@link OH_ArkUI_SpanStyle} object.
+ * @param length Pointer to the length of the styled string style object.
  * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ *     Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_SpanStyle_GetLength(const OH_ArkUI_SpanStyle* spanStyle, int32_t* length);
  
 /**
- * @brief Set text style of span style.
+ * @brief Sets the text font style for the styled string object.
  *
  * @note All input pointer parameters must be allocated, managed, and released by the caller.
- * @param spanStyle Pointer to the <b>OH_ArkUI_SpanStyle</b> object.
- * @param textStyle Pointer to the <b>OH_ArkUI_TextStyle</b> object.
+ * @param spanStyle Pointer to the {@link OH_ArkUI_SpanStyle} object.
+ * @param textStyle Pointer to the {@link OH_ArkUI_TextStyle} object.
  * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ *     Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_SpanStyle_SetTextStyle(OH_ArkUI_SpanStyle* spanStyle, const OH_ArkUI_TextStyle* textStyle);
  
 /**
- * @brief Get text style of span style.
+ * @brief Obtains the text font style of the styled string object.
  *
  * @note All input pointer parameters must be allocated, managed, and released by the caller.
- * @param spanStyle Pointer to the <b>OH_ArkUI_SpanStyle</b> object.
- * @param textStyle Pointer to the <b>OH_ArkUI_TextStyle</b> object.
+ * @param spanStyle Pointer to the {@link OH_ArkUI_SpanStyle} object.
+ * @param textStyle Pointer to the {@link OH_ArkUI_TextStyle} object.
  * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ *     Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_SpanStyle_GetTextStyle(const OH_ArkUI_SpanStyle* spanStyle, OH_ArkUI_TextStyle* textStyle);
  
 /**
- * @brief Defines paragraph style.
+ * @brief Defines a paragraph style.<br>        {@link OH_ArkUI_ParagraphStyle_Create} can be used to create a
+ * paragraph style object.<br>        {@link OH_ArkUI_ParagraphStyle_Destroy} can be used to destroy the paragraph
+ * style object.<br>        After the object is created, the **OH_ArkUI_ParagraphStyle_SetXXX** series APIs can be used
+ * to set the specific styles that take effect. For example, you can use {@link OH_ArkUI_ParagraphStyle_SetTextAlign}
+ * to set a text alignment method.
+ *
  * @since 24
  */
 typedef struct OH_ArkUI_ParagraphStyle OH_ArkUI_ParagraphStyle;
  
 /**
- * @brief Set the paragraph style of span style.
+ * @brief Sets the paragraph style for the styled string object.
  *
  * @note All input pointer parameters must be allocated, managed, and released by the caller.
- * @param spanStyle Pointer to the <b>OH_ArkUI_SpanStyle</b> object.
- * @param paragraphStyle Pointer to the <b>OH_ArkUI_ParagraphStyle</b> object.
+ * @param spanStyle Pointer to the {@link OH_ArkUI_SpanStyle} object.
+ * @param paragraphStyle Pointer to the {@link OH_ArkUI_ParagraphStyle} object.
  * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ *     Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_SpanStyle_SetParagraphStyle(
     OH_ArkUI_SpanStyle* spanStyle, const OH_ArkUI_ParagraphStyle* paragraphStyle);
  
 /**
- * @brief Get paragraph style with span style.
+ * @brief Obtains the paragraph style of the styled string object.
  *
  * @note All input pointer parameters must be allocated, managed, and released by the caller.
- * @param spanStyle Pointer to the <b>OH_ArkUI_SpanStyle</b> object.
- * @param paragraphStyle Pointer to the <b>OH_ArkUI_ParagraphStyle</b> object.
+ * @param spanStyle Pointer to the {@link OH_ArkUI_SpanStyle} object.
+ * @param paragraphStyle Pointer to the {@link OH_ArkUI_ParagraphStyle} object.
  * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ *     Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_SpanStyle_GetParagraphStyle(
     const OH_ArkUI_SpanStyle* spanStyle, OH_ArkUI_ParagraphStyle* paragraphStyle);
  
 /**
- * @brief Defines gesture style.
+ * @brief Defines a gesture style.<br>        {@link OH_ArkUI_GestureStyle_Create} can be used to create a gesture
+ * style object.<br>        {@link OH_ArkUI_GestureStyle_Destroy} can be used to destroy the gesture style object.<br>
+ *       After the object is created, the **OH_ArkUI_GestureStyle_RegisterOnXXXCallback** series APIs can be used to
+ * register specific event callbacks. For example, you can use {@link OH_ArkUI_GestureStyle_RegisterOnClickCallback} to
+ * register a click event callback.
+ *
  * @since 24
  */
 typedef struct OH_ArkUI_GestureStyle OH_ArkUI_GestureStyle;
  
 /**
- * @brief Set the gesture style of span style.
+ * @brief Sets the gesture style for the styled string object.
  *
  * @note All input pointer parameters must be allocated, managed, and released by the caller.
- * @param spanStyle Pointer to an <b>OH_ArkUI_SpanStyle</b> object.
- * @param gestureStyle Pointer to the <b>OH_ArkUI_GestureStyle</b> object.
+ * @param spanStyle Pointer to the {@link OH_ArkUI_SpanStyle} object.
+ * @param gestureStyle Pointer to the {@link OH_ArkUI_GestureStyle} object.
  * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ *     Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_SpanStyle_SetGestureStyle(
     OH_ArkUI_SpanStyle* spanStyle, const OH_ArkUI_GestureStyle* gestureStyle);
  
 /**
- * @brief Get gesture style with span style.
+ * @brief Obtains the gesture style of the styled string object.
  *
  * @note All input pointer parameters must be allocated, managed, and released by the caller.
- * @param spanStyle Pointer to an <b>OH_ArkUI_SpanStyle</b> object.
- * @param gestureStyle Pointer to the <b>OH_ArkUI_GestureStyle</b> object.
+ * @param spanStyle Pointer to the {@link OH_ArkUI_SpanStyle} object.
+ * @param gestureStyle Pointer to the {@link OH_ArkUI_GestureStyle} object.
  * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ *     Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_SpanStyle_GetGestureStyle(
     const OH_ArkUI_SpanStyle* spanStyle, OH_ArkUI_GestureStyle* gestureStyle);
  
 /**
- * @brief Defines text shadow style.
+ * @brief Defines a text shadow style.<br>        {@link OH_ArkUI_TextShadowStyle_Create} can be used to create a text
+ * shadow style object.<br>        {@link OH_ArkUI_TextShadowStyle_Destroy} can be used to destroy the text shadow
+ * style object.<br>        After the object is created, {@link OH_ArkUI_TextShadowStyle_SetTextShadow} can be used to
+ * set a style.
+ *
  * @since 24
  */
 typedef struct OH_ArkUI_TextShadowStyle OH_ArkUI_TextShadowStyle;
  
 /**
- * @brief Set text shadow style of span style.
+ * @brief Sets the text shadow style for the styled string object.
  *
  * @note All input pointer parameters must be allocated, managed, and released by the caller.
- * @param spanStyle Pointer to an <b>OH_ArkUI_SpanStyle</b> object.
- * @param textShadowStyle Pointer to the <b>OH_ArkUI_TextShadowStyle</b> object.
+ * @param spanStyle Pointer to the {@link OH_ArkUI_SpanStyle} object.
+ * @param textShadowStyle Pointer to the {@link OH_ArkUI_TextShadowStyle} object.
  * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ *     Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_SpanStyle_SetTextShadowStyle(
     OH_ArkUI_SpanStyle* spanStyle, const OH_ArkUI_TextShadowStyle* textShadowStyle);
  
 /**
- * @brief Get text shadow style with span style.
+ * @brief Obtains the text shadow style of the styled string style object.
  *
  * @note All input pointer parameters must be allocated, managed, and released by the caller.
- * @param spanStyle Pointer to an <b>OH_ArkUI_SpanStyle</b> object.
- * @param textShadowStyle Pointer to the <b>OH_ArkUI_TextShadowStyle</b> object.
+ * @param spanStyle Pointer to the {@link OH_ArkUI_SpanStyle} object.
+ * @param textShadowStyle Pointer to the {@link OH_ArkUI_TextShadowStyle} object.
  * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ *     Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_SpanStyle_GetTextShadowStyle(
     const OH_ArkUI_SpanStyle* spanStyle, OH_ArkUI_TextShadowStyle* textShadowStyle);
  
 /**
- * @brief Defines decoration style.
+ * @brief Defines a text decoration style.<br>        {@link OH_ArkUI_DecorationStyle_Create} can be used to create a
+ * text decoration style object.<br>        {@link OH_ArkUI_DecorationStyle_Destroy} can be used to destroy the text
+ * decoration style object.<br>        After the object is created, the **OH_ArkUI_DecorationStyle_SetXXX** series APIs
+ * can be used to set the specific styles that take effect. For example, you can use
+ * {@link OH_ArkUI_DecorationStyle_SetTextDecorationType} to set the decoration type.
+ *
  * @since 24
  */
 typedef struct OH_ArkUI_DecorationStyle OH_ArkUI_DecorationStyle;
  
 /**
- * @brief Set decoration style of span style.
+ * @brief Sets the text decorative line style for the styled string style object.
  *
  * @note All input pointer parameters must be allocated, managed, and released by the caller.
- * @param spanStyle Pointer to an <b>OH_ArkUI_SpanStyle</b> object.
- * @param decorationStyle Pointer to the <b>OH_ArkUI_DecorationStyle</b> object.
+ * @param spanStyle Pointer to the {@link OH_ArkUI_SpanStyle} object.
+ * @param decorationStyle Pointer to the {@link OH_ArkUI_DecorationStyle} object.
  * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ *     Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_SpanStyle_SetDecorationStyle(
     OH_ArkUI_SpanStyle* spanStyle, const OH_ArkUI_DecorationStyle* decorationStyle);
  
 /**
- * @brief Get decoration style with span style.
+ * @brief Obtains the text decorative line style of the styled string style object.
  *
  * @note All input pointer parameters must be allocated, managed, and released by the caller.
- * @param spanStyle Pointer to an <b>OH_ArkUI_SpanStyle</b> object.
- * @param decorationStyle Pointer to the <b>OH_ArkUI_DecorationStyle</b> object.
+ * @param spanStyle Pointer to the {@link OH_ArkUI_SpanStyle} object.
+ * @param decorationStyle Pointer to the {@link OH_ArkUI_DecorationStyle} object.
  * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ *     Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_SpanStyle_GetDecorationStyle(
     const OH_ArkUI_SpanStyle* spanStyle, OH_ArkUI_DecorationStyle* decorationStyle);
  
 /**
- * @brief Defines baseline offset style.
+ * @brief Defines a baseline offset style.<br>        {@link OH_ArkUI_BaselineOffsetStyle_Create} can be used to create
+ * a baseline offset style object.<br>        {@link OH_ArkUI_BaselineOffsetStyle_Destroy} can be used to destroy the
+ * baseline offset style object.<br>        After the object is created,
+ * {@link OH_ArkUI_BaselineOffsetStyle_SetBaselineOffset} can be used to set a baseline offset.
+ *
  * @since 24
  */
 typedef struct OH_ArkUI_BaselineOffsetStyle OH_ArkUI_BaselineOffsetStyle;
 
 /**
- * @brief Set baseline offset style of span style.
+ * @brief Sets the baseline offset style for the styled string style object.
  *
  * @note All input pointer parameters must be allocated, managed, and released by the caller.
- * @param spanStyle Pointer to an <b>OH_ArkUI_SpanStyle</b> object.
- * @param baselineOffsetStyle Pointer to the <b>OH_ArkUI_BaselineOffsetStyle</b> object.
+ * @param spanStyle Pointer to the {@link OH_ArkUI_SpanStyle} object.
+ * @param baselineOffsetStyle Pointer to the {@link OH_ArkUI_BaselineOffsetStyle} object.
  * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ *     Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_SpanStyle_SetBaselineOffsetStyle(
     OH_ArkUI_SpanStyle* spanStyle, const OH_ArkUI_BaselineOffsetStyle* baselineOffsetStyle);
 
 /**
- * @brief Get baseline offset style with span style.
+ * @brief Obtains the baseline offset style of the styled string style object.
  *
  * @note All input pointer parameters must be allocated, managed, and released by the caller.
- * @param spanStyle Pointer to an <b>OH_ArkUI_SpanStyle</b> object.
- * @param baselineOffsetStyle Pointer to the <b>OH_ArkUI_BaselineOffsetStyle</b> object.
+ * @param spanStyle Pointer to the {@link OH_ArkUI_SpanStyle} object.
+ * @param baselineOffsetStyle Pointer to the {@link OH_ArkUI_BaselineOffsetStyle} object.
  * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ *     Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_SpanStyle_GetBaselineOffsetStyle(
     const OH_ArkUI_SpanStyle* spanStyle, OH_ArkUI_BaselineOffsetStyle* baselineOffsetStyle);
  
 /**
- * @brief Defines letter spacing style.
+ * @brief Defines a letter spacing style.<br>        {@link OH_ArkUI_LetterSpacingStyle_Create} can be used to create a
+ * letter spacing style object.<br>        {@link OH_ArkUI_LetterSpacingStyle_Destroy} can be used to destroy the
+ * letter spacing style object.<br>        After the object is created,
+ * {@link OH_ArkUI_LetterSpacingStyle_SetLetterSpacing} can be used to set letter spacing.
+ *
  * @since 24
  */
 typedef struct OH_ArkUI_LetterSpacingStyle OH_ArkUI_LetterSpacingStyle;
  
 /**
- * @brief Set letter spacing style of span style.
+ * @brief Sets the letter spacing style for the styled string style object.
  *
  * @note All input pointer parameters must be allocated, managed, and released by the caller.
- * @param spanStyle Pointer to an <b>OH_ArkUI_SpanStyle</b> object.
- * @param letterSpacingStyle Pointer to the <b>OH_ArkUI_LetterSpacingStyle</b> object.
+ * @param spanStyle Pointer to the {@link OH_ArkUI_SpanStyle} object.
+ * @param letterSpacingStyle Pointer to the {@link OH_ArkUI_LetterSpacingStyle} object.
  * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ *     Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_SpanStyle_SetLetterSpacingStyle(
     OH_ArkUI_SpanStyle* spanStyle, const OH_ArkUI_LetterSpacingStyle* letterSpacingStyle);
  
 /**
- * @brief Get letter spacing style with span style.
+ * @brief Obtains the letter spacing style of the styled string style object.
  *
  * @note All input pointer parameters must be allocated, managed, and released by the caller.
- * @param spanStyle Pointer to an <b>OH_ArkUI_SpanStyle</b> object.
- * @param letterSpacingStyle Pointer to the <b>OH_ArkUI_LetterSpacingStyle</b> object.
+ * @param spanStyle Pointer to the {@link OH_ArkUI_SpanStyle} object.
+ * @param letterSpacingStyle Pointer to the {@link OH_ArkUI_LetterSpacingStyle} object.
  * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ *     Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_SpanStyle_GetLetterSpacingStyle(
     const OH_ArkUI_SpanStyle* spanStyle, OH_ArkUI_LetterSpacingStyle* letterSpacingStyle);
  
 /**
- * @brief Defines line height style.
+ * @brief Defines a line height style.<br>        {@link OH_ArkUI_LineHeightStyle_Create} can be used to create a line
+ * height style object.<br>        {@link OH_ArkUI_LineHeightStyle_Destroy} can be used to destroy the line height
+ * style object.<br>        After the object is created, {@link OH_ArkUI_LineHeightStyle_SetLineHeight} can be used to
+ * set fixed line height.<br>        Since API version 26.0.0, {@link OH_ArkUI_LineHeightStyle_SetLineHeightMultiple}
+ * can be used to set the line height multiplier after the object is created.
+ *
  * @since 24
  */
 typedef struct OH_ArkUI_LineHeightStyle OH_ArkUI_LineHeightStyle;
  
 /**
- * @brief Set line height style of span style.
+ * @brief Sets the line height style for the styled string style object.
  *
  * @note All input pointer parameters must be allocated, managed, and released by the caller.
- * @param spanStyle Pointer to an <b>OH_ArkUI_SpanStyle</b> object.
- * @param lineHeightStyle Pointer to the <b>OH_ArkUI_LineHeightStyle</b> object.
+ * @param spanStyle Pointer to the {@link OH_ArkUI_SpanStyle} object.
+ * @param lineHeightStyle Pointer to the {@link OH_ArkUI_LineHeightStyle} object.
  * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ *     Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_SpanStyle_SetLineHeightStyle(
     OH_ArkUI_SpanStyle* spanStyle, const OH_ArkUI_LineHeightStyle* lineHeightStyle);
  
 /**
- * @brief Get line height style with span style.
+ * @brief Obtains the line height style of the styled string style object.
  *
  * @note All input pointer parameters must be allocated, managed, and released by the caller.
- * @param spanStyle Pointer to an <b>OH_ArkUI_SpanStyle</b> object.
- * @param lineHeightStyle Pointer to the <b>OH_ArkUI_LineHeightStyle</b> object.
+ * @param spanStyle Pointer to the {@link OH_ArkUI_SpanStyle} object.
+ * @param lineHeightStyle Pointer to the {@link OH_ArkUI_LineHeightStyle} object.
  * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ *     Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_SpanStyle_GetLineHeightStyle(
     const OH_ArkUI_SpanStyle* spanStyle, OH_ArkUI_LineHeightStyle* lineHeightStyle);
  
 /**
- * @brief Defines url style.
+ * @brief Defines a URL style.<br>        {@link OH_ArkUI_UrlStyle_Create} can be used to create a URL style object.<br>
+ *         {@link OH_ArkUI_UrlStyle_Destroy} can be used to destroy the URL style object.<br>        After the object
+ * is created, {@link OH_ArkUI_UrlStyle_SetUrl} can be used to set a URL.
+ *
  * @since 24
  */
 typedef struct OH_ArkUI_UrlStyle OH_ArkUI_UrlStyle;
  
 /**
- * @brief Set url style of span style.
+ * @brief Sets the URL style for the styled string style object.
  *
  * @note All input pointer parameters must be allocated, managed, and released by the caller.
- * @param spanStyle Pointer to an <b>OH_ArkUI_SpanStyle</b> object.
- * @param urlStyle Pointer to the <b>OH_ArkUI_UrlStyle</b> object.
+ * @param spanStyle Pointer to the {@link OH_ArkUI_SpanStyle} object.
+ * @param urlStyle Pointer to the {@link OH_ArkUI_UrlStyle} object.
  * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ *     Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_SpanStyle_SetUrlStyle(OH_ArkUI_SpanStyle* spanStyle, const OH_ArkUI_UrlStyle* urlStyle);
  
 /**
- * @brief Get url style with span style.
+ * @brief Obtains the URL style of the styled string style object.
  *
  * @note All input pointer parameters must be allocated, managed, and released by the caller.
- * @param spanStyle Pointer to an <b>OH_ArkUI_SpanStyle</b> object.
- * @param urlStyle Pointer to the <b>OH_ArkUI_UrlStyle</b> object.
+ * @param spanStyle Pointer to the {@link OH_ArkUI_SpanStyle} object.
+ * @param urlStyle Pointer to the {@link OH_ArkUI_UrlStyle} object.
  * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ *     Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_SpanStyle_GetUrlStyle(
     const OH_ArkUI_SpanStyle* spanStyle, OH_ArkUI_UrlStyle* urlStyle);
  
 /**
- * @brief Defines background color style.
+ * @brief Defines a background color style.<br>        {@link OH_ArkUI_BackgroundColorStyle_Create} can be used to
+ * create a background color style object.<br>        {@link OH_ArkUI_BackgroundColorStyle_Destroy} can be used to
+ * destroy the background color style object.<br>        After the object is created,
+ * {@link OH_ArkUI_BackgroundColorStyle_SetColor} and {@link OH_ArkUI_BackgroundColorStyle_SetRadius} can be used to
+ * set the background color and rounded corners.
+ *
  * @since 24
  */
 typedef struct OH_ArkUI_BackgroundColorStyle OH_ArkUI_BackgroundColorStyle;
  
 /**
- * @brief Set background color style with span style.
+ * @brief Sets the background color style for the styled string style object.
  *
  * @note All input pointer parameters must be allocated, managed, and released by the caller.
- * @param spanStyle Pointer to an <b>OH_ArkUI_SpanStyle</b> object.
- * @param backgroundColorStyle Pointer to the <b>OH_ArkUI_BackgroundColorStyle</b> object.
+ * @param spanStyle Pointer to the {@link OH_ArkUI_SpanStyle} object.
+ * @param backgroundColorStyle Pointer to the {@link OH_ArkUI_BackgroundColorStyle} object.
  * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ *     Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_SpanStyle_SetBackgroundColorStyle(
     OH_ArkUI_SpanStyle* spanStyle, const OH_ArkUI_BackgroundColorStyle* backgroundColorStyle);
  
 /**
- * @brief Get background color style with span style.
+ * @brief Obtains the background color style of the styled string style object.
  *
  * @note All input pointer parameters must be allocated, managed, and released by the caller.
- * @param spanStyle Pointer to an <b>OH_ArkUI_SpanStyle</b> object.
- * @param backgroundColorStyle Pointer to the <b>OH_ArkUI_BackgroundColorStyle</b> object.
+ * @param spanStyle Pointer to the {@link OH_ArkUI_SpanStyle} object.
+ * @param backgroundColorStyle Pointer to the {@link OH_ArkUI_BackgroundColorStyle} object.
  * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ *     Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_SpanStyle_GetBackgroundColorStyle(
     const OH_ArkUI_SpanStyle* spanStyle, OH_ArkUI_BackgroundColorStyle* backgroundColorStyle);
  
 /**
- * @brief Defines user data span.
+ * @brief Defines a user data span style.<br>        {@link OH_ArkUI_UserDataSpan_Create} can be used to create a user
+ * data span style object.<br>        {@link OH_ArkUI_UserDataSpan_Destroy} can be used to destroy the user data span
+ * style object.<br>        After the object is created, {@link OH_ArkUI_UserDataSpan_SetUserData} can be used to bind
+ * user data.
+ *
  * @since 24
  */
 typedef struct OH_ArkUI_UserDataSpan OH_ArkUI_UserDataSpan;
  
 /**
- * @brief Set user data style of span style.
+ * @brief Sets the user data span style for the styled string style object.
  *
  * @note All input pointer parameters must be allocated, managed, and released by the caller.
- * @param spanStyle Pointer to an <b>OH_ArkUI_SpanStyle</b> object.
- * @param userDataSpan Pointer to the <b>OH_ArkUI_UserDataSpan</b> object.
+ * @param spanStyle Pointer to the {@link OH_ArkUI_SpanStyle} object.
+ * @param userDataSpan Pointer to the {@link OH_ArkUI_UserDataSpan} object.
  * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ *     Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_SpanStyle_SetUserDataSpan(
     OH_ArkUI_SpanStyle* spanStyle, const OH_ArkUI_UserDataSpan* userDataSpan);
  
 /**
- * @brief Get user data style with span style.
+ * @brief Obtains the user data span style of the styled string style object.
  *
  * @note All input pointer parameters must be allocated, managed, and released by the caller.
- * @param spanStyle Pointer to an <b>OH_ArkUI_SpanStyle</b> object.
- * @param userDataSpan Pointer to the <b>OH_ArkUI_UserDataSpan</b> object.
+ * @param spanStyle Pointer to the {@link OH_ArkUI_SpanStyle} object.
+ * @param userDataSpan Pointer to the {@link OH_ArkUI_UserDataSpan} object.
  * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ *     Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_SpanStyle_GetUserDataSpan(
     const OH_ArkUI_SpanStyle* spanStyle, OH_ArkUI_UserDataSpan* userDataSpan);
  
 /**
- * @brief Set custom span with span style.
+ * @brief Sets the custom span style for the styled string style object.
  *
  * @note All input pointer parameters must be allocated, managed, and released by the caller.
- * @param spanStyle Pointer to an <b>OH_ArkUI_SpanStyle</b> object.
- * @param customSpan Pointer to the <b>OH_ArkUI_CustomSpan</b> object.
+ * @param spanStyle Pointer to the {@link OH_ArkUI_SpanStyle} object.
+ * @param customSpan Pointer to the {@link OH_ArkUI_CustomSpan} object.
  * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ *     Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_SpanStyle_SetCustomSpan(
     OH_ArkUI_SpanStyle* spanStyle, const OH_ArkUI_CustomSpan* customSpan);
  
 /**
- * @brief Get custom span with span style.
+ * @brief Obtains the custom span style of the styled string style object.
  *
  * @note All input pointer parameters must be allocated, managed, and released by the caller.
- * @param spanStyle Pointer to an <b>OH_ArkUI_SpanStyle</b> object.
- * @param customSpan Pointer to the <b>OH_ArkUI_CustomSpan</b> object.
+ * @param spanStyle Pointer to the {@link OH_ArkUI_SpanStyle} object.
+ * @param customSpan Pointer to the {@link OH_ArkUI_CustomSpan} object.
  * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ *     Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_SpanStyle_GetCustomSpan(
     const OH_ArkUI_SpanStyle* spanStyle, OH_ArkUI_CustomSpan* customSpan);
  
 /**
- * @brief Set image attachment with span style.
+ * @brief Sets the image style for the styled string style object.
  *
  * @note All input pointer parameters must be allocated, managed, and released by the caller.
- * @param spanStyle Pointer to an <b>OH_ArkUI_SpanStyle</b> object.
- * @param imageAttachment Pointer to the <b>OH_ArkUI_ImageAttachment</b> object.
+ * @param spanStyle Pointer to the {@link OH_ArkUI_SpanStyle} object.
+ * @param imageAttachment Pointer to the {@link OH_ArkUI_ImageAttachment} object.
  * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ *     Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_SpanStyle_SetImageAttachment(
     OH_ArkUI_SpanStyle* spanStyle, const OH_ArkUI_ImageAttachment* imageAttachment);
  
 /**
- * @brief Get image attachment with span style.
+ * @brief Obtains the image style of the styled string style object.
  *
  * @note All input pointer parameters must be allocated, managed, and released by the caller.
- * @param spanStyle Pointer to an <b>OH_ArkUI_SpanStyle</b> object.
- * @param imageAttachment Pointer to the <b>OH_ArkUI_ImageAttachment</b> object.
+ * @param spanStyle Pointer to the {@link OH_ArkUI_SpanStyle} object.
+ * @param imageAttachment Pointer to the {@link OH_ArkUI_ImageAttachment} object.
  * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ *     Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_SpanStyle_GetImageAttachment(
     const OH_ArkUI_SpanStyle* spanStyle, OH_ArkUI_ImageAttachment* imageAttachment);
  
 /**
- * @brief Defines drawing info about leading margin.
+ * @brief Defines the custom drawing information for paragraph indentation.<br>
+ * {@link OH_ArkUI_LeadingMarginSpanDrawInfo_Create} can be used to create a custom drawing information object for
+ * paragraph indentation.<br>        {@link OH_ArkUI_LeadingMarginSpanDrawInfo_Destroy} can be used to destroy the
+ * custom drawing information object for paragraph indentation.<br>        This object is used to provide the drawing
+ * context information of the current line in the callback function registered by
+ * {@link OH_ArkUI_ParagraphStyle_RegisterOnDrawLeadingMarginCallback}.
+ *
  * @since 24
  */
 typedef struct OH_ArkUI_LeadingMarginSpanDrawInfo OH_ArkUI_LeadingMarginSpanDrawInfo;
  
 /**
- * @brief Create an <b>OH_ArkUI_LeadingMarginSpanDrawInfo</b> object.
+ * @brief Creates an {@link OH_ArkUI_LeadingMarginSpanDrawInfo} object.
  *
  * @note When the object is no longer in use, invoke <b> OH_ArkUI_LeadingMarginSpanDrawInfo_Destroy </b> to destroy it.
  * @return Pointer to the <b>OH_ArkUI_LeadingMarginSpanDrawInfo</b> object.
@@ -1413,234 +1481,248 @@ typedef struct OH_ArkUI_LeadingMarginSpanDrawInfo OH_ArkUI_LeadingMarginSpanDraw
 OH_ArkUI_LeadingMarginSpanDrawInfo* OH_ArkUI_LeadingMarginSpanDrawInfo_Create();
  
 /**
- * @brief Release the memory occupied by the <b>OH_ArkUI_LeadingMarginSpanDrawInfo</b> object.
+ * @brief Releases the memory occupied by the {@link OH_ArkUI_LeadingMarginSpanDrawInfo} object.
  *
- * @param drawInfo Pointer to the <b>OH_ArkUI_LeadingMarginSpanDrawInfo</b> object.
+ * @param drawInfo Pointer to the {@link OH_ArkUI_LeadingMarginSpanDrawInfo} object.
  * @since 24
  */
 void OH_ArkUI_LeadingMarginSpanDrawInfo_Destroy(OH_ArkUI_LeadingMarginSpanDrawInfo* drawInfo);
  
 /**
- * @brief Set the x offset of the line with leading margin span draw info.
+ * @brief Sets the horizontal offset of the current line relative to the component in the custom drawing information
+ * object for paragraph indentation.
  *
  * @note All input pointer parameters must be allocated, managed, and released by the caller.
- * @param drawInfo Pointer to the <b>OH_ArkUI_LeadingMarginSpanDrawInfo</b> object.
- * @param x The x offset of the line.
+ * @param drawInfo Pointer to the {@link OH_ArkUI_LeadingMarginSpanDrawInfo} object.
+ * @param x Horizontal offset of the current line relative to the component, in px.
  * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ *     Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_LeadingMarginSpanDrawInfo_SetX(OH_ArkUI_LeadingMarginSpanDrawInfo* drawInfo, float x);
  
 /**
- * @brief Get the x offset of the line with leading margin span draw info.
+ * @brief Obtains the horizontal offset of the current line relative to the component in the custom drawing information
+ * object for paragraph indentation.
  *
  * @note All input pointer parameters must be allocated, managed, and released by the caller.
- * @param drawInfo Pointer to the <b>OH_ArkUI_LeadingMarginSpanDrawInfo</b> object.
- * @param x The x offset of the line.
+ * @param drawInfo Pointer to the {@link OH_ArkUI_LeadingMarginSpanDrawInfo} object.
+ * @param x Pointer to the horizontal offset of the current line relative to the component, in px.
  * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ *     Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_LeadingMarginSpanDrawInfo_GetX(const OH_ArkUI_LeadingMarginSpanDrawInfo* drawInfo, float* x);
  
 /**
- * @brief Set the top position of the line with leading margin span draw info.
+ * @brief Sets the distance between the top of a line and the top edge of the component in the custom drawing
+ * information object for paragraph indentation.
  *
  * @note All input pointer parameters must be allocated, managed, and released by the caller.
- * @param drawInfo Pointer to the <b>OH_ArkUI_LeadingMarginSpanDrawInfo</b> object.
- * @param top The top position of the line.
+ * @param drawInfo Pointer to the {@link OH_ArkUI_LeadingMarginSpanDrawInfo} object.
+ * @param top Distance between the top of a line and the top edge of the component, in px.
  * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ *     Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_LeadingMarginSpanDrawInfo_SetTop(OH_ArkUI_LeadingMarginSpanDrawInfo* drawInfo, float top);
  
 /**
- * @brief Get the top position of the line with leading margin span draw info.
+ * @brief Obtains the distance between the top of a line and the top edge of the component in the custom drawing
+ * information object for paragraph indentation.
  *
  * @note All input pointer parameters must be allocated, managed, and released by the caller.
- * @param drawInfo Pointer to the <b>OH_ArkUI_LeadingMarginSpanDrawInfo</b> object.
- * @param top The top position of the line.
+ * @param drawInfo Pointer to the {@link OH_ArkUI_LeadingMarginSpanDrawInfo} object.
+ * @param top Pointer to the distance between the top of a line and the top edge of the component, in px.
  * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ *     Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_LeadingMarginSpanDrawInfo_GetTop(const OH_ArkUI_LeadingMarginSpanDrawInfo* drawInfo,
     float* top);
  
 /**
- * @brief Set the bottom position of the line with leading margin span draw info.
+ * @brief Sets the distance between the bottom of a line and the top edge of the component in the custom drawing
+ * information object for paragraph indentation.
  *
  * @note All input pointer parameters must be allocated, managed, and released by the caller.
- * @param drawInfo Pointer to the <b>OH_ArkUI_LeadingMarginSpanDrawInfo</b> object.
- * @param bottom The bottom position of the line.
+ * @param drawInfo Pointer to the {@link OH_ArkUI_LeadingMarginSpanDrawInfo} object.
+ * @param bottom Distance between the bottom of a line and the top edge of the component, in px.
  * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ *     Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_LeadingMarginSpanDrawInfo_SetBottom(OH_ArkUI_LeadingMarginSpanDrawInfo* drawInfo,
     float bottom);
  
 /**
- * @brief Get the bottom position of the line with leading margin span draw info.
+ * @brief Obtains the distance between the bottom of a line and the top edge of the component in the custom drawing
+ * information object for paragraph indentation.
  *
  * @note All input pointer parameters must be allocated, managed, and released by the caller.
- * @param drawInfo Pointer to the <b>OH_ArkUI_LeadingMarginSpanDrawInfo</b> object.
- * @param bottom The bottom position of the line.
+ * @param drawInfo Pointer to the {@link OH_ArkUI_LeadingMarginSpanDrawInfo} object.
+ * @param bottom Pointer to the distance between the bottom of a line and the top edge of the component, in px.
  * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ *     Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_LeadingMarginSpanDrawInfo_GetBottom(const OH_ArkUI_LeadingMarginSpanDrawInfo* drawInfo,
     float* bottom);
  
 /**
- * @brief Set the baseline offset of the line with leading margin span draw info.
+ * @brief Sets the distance between the baseline of the current line and the top edge of the component in the custom
+ * drawing information object for paragraph indentation.
  *
  * @note All input pointer parameters must be allocated, managed, and released by the caller.
- * @param drawInfo Pointer to the <b>OH_ArkUI_LeadingMarginSpanDrawInfo</b> object.
- * @param baseline The baseline offset of the line.
+ * @param drawInfo Pointer to the {@link OH_ArkUI_LeadingMarginSpanDrawInfo} object.
+ * @param baseline Distance between the baseline of the current line and the top edge of the component, in px.
  * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ *     Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_LeadingMarginSpanDrawInfo_SetBaseline(OH_ArkUI_LeadingMarginSpanDrawInfo* drawInfo,
     float baseline);
  
 /**
- * @brief Get the baseline offset of the line with leading margin span draw info.
+ * @brief Obtains the distance between the baseline of the current line and the top edge of the component in the custom
+ * drawing information object for paragraph indentation.
  *
  * @note All input pointer parameters must be allocated, managed, and released by the caller.
- * @param drawInfo Pointer to the <b>OH_ArkUI_LeadingMarginSpanDrawInfo</b> object.
- * @param baseline The baseline offset of the line.
+ * @param drawInfo Pointer to the {@link OH_ArkUI_LeadingMarginSpanDrawInfo} object.
+ * @param baseline Pointer to the distance between the baseline of the current line and the top edge of the component,
+ *     in px.
  * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ *     Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_LeadingMarginSpanDrawInfo_GetBaseline(const OH_ArkUI_LeadingMarginSpanDrawInfo* drawInfo,
     float* baseline);
  
 /**
- * @brief Set the direction of text with leading margin span draw info.
+ * @brief Sets the text direction in the custom drawing information object for paragraph indentation.
  *
  * @note All input pointer parameters must be allocated, managed, and released by the caller.
- * @param drawInfo Pointer to the <b>OH_ArkUI_LeadingMarginSpanDrawInfo</b> object.
- * @param direction The direction of text.
+ * @param drawInfo Pointer to the {@link OH_ArkUI_LeadingMarginSpanDrawInfo} object.
+ * @param direction Text direction. The value is an enumerated value of {@link ArkUI_TextDirection}.
  * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ *     Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_LeadingMarginSpanDrawInfo_SetTextDirection(OH_ArkUI_LeadingMarginSpanDrawInfo* drawInfo,
     ArkUI_TextDirection direction);
  
 /**
- * @brief Get the direction of text with leading margin span draw info.
+ * @brief Obtains the text direction in the custom drawing information object for paragraph indentation.
  *
  * @note All input pointer parameters must be allocated, managed, and released by the caller.
- * @param drawInfo Pointer to the <b>OH_ArkUI_LeadingMarginSpanDrawInfo</b> object.
- * @param direction The direction of text.
+ * @param drawInfo Pointer to the {@link OH_ArkUI_LeadingMarginSpanDrawInfo} object.
+ * @param direction Pointer to the text direction. The value is an enumerated value of {@link ArkUI_TextDirection}.
  * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ *     Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_LeadingMarginSpanDrawInfo_GetTextDirection(const OH_ArkUI_LeadingMarginSpanDrawInfo* drawInfo,
     ArkUI_TextDirection* direction);
  
 /**
- * @brief Set start index of the first character in the current line relative to the component text content.
+ * @brief Sets the start index of the current line in the custom drawing information object for paragraph indentation.
  *
  * @note All input pointer parameters must be allocated, managed, and released by the caller.
- * @param drawInfo Pointer to the <b>OH_ArkUI_LeadingMarginSpanDrawInfo</b> object.
- * @param start The start index.
+ * @param drawInfo Pointer to the {@link OH_ArkUI_LeadingMarginSpanDrawInfo} object.
+ * @param start Start index of the current line.
  * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ *     Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_LeadingMarginSpanDrawInfo_SetStart(OH_ArkUI_LeadingMarginSpanDrawInfo* drawInfo,
     uint32_t start);
  
 /**
- * @brief Get start index of the first character in the current line relative to the component text content.
+ * @brief Obtains the start index of the current line in the custom drawing information object for paragraph
+ * indentation.
  *
  * @note All input pointer parameters must be allocated, managed, and released by the caller.
- * @param drawInfo Pointer to the <b>OH_ArkUI_LeadingMarginSpanDrawInfo</b> object.
- * @param start The start index.
+ * @param drawInfo Pointer to the {@link OH_ArkUI_LeadingMarginSpanDrawInfo} object.
+ * @param start Pointer to the start index of the current line.
  * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ *     Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_LeadingMarginSpanDrawInfo_GetStart(const OH_ArkUI_LeadingMarginSpanDrawInfo* drawInfo,
     uint32_t* start);
  
 /**
- * @brief Set end index of the last character in the current line relative to the component text content.
+ * @brief Sets the end index of the current line in the custom drawing information object for paragraph indentation.
  *
  * @note All input pointer parameters must be allocated, managed, and released by the caller.
- * @param drawInfo Pointer to the <b>OH_ArkUI_LeadingMarginSpanDrawInfo</b> object.
- * @param end The end index.
+ * @param drawInfo Pointer to the {@link OH_ArkUI_LeadingMarginSpanDrawInfo} object.
+ * @param end End index of the current line.
  * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ *     Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_LeadingMarginSpanDrawInfo_SetEnd(OH_ArkUI_LeadingMarginSpanDrawInfo* drawInfo, uint32_t end);
  
 /**
- * @brief Get end index of the last character in the current line relative to the component text content.
+ * @brief Obtains the end index of the current line in the custom drawing information object for paragraph indentation.
  *
  * @note All input pointer parameters must be allocated, managed, and released by the caller.
- * @param drawInfo Pointer to the <b>OH_ArkUI_LeadingMarginSpanDrawInfo</b> object.
- * @param end The end index.
+ * @param drawInfo Pointer to the {@link OH_ArkUI_LeadingMarginSpanDrawInfo} object.
+ * @param end Pointer to the end index of the current line.
  * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ *     Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_LeadingMarginSpanDrawInfo_GetEnd(const OH_ArkUI_LeadingMarginSpanDrawInfo* drawInfo,
     uint32_t* end);
  
 /**
- * @brief Set whether current line is first line of a paragraph.
+ * @brief Sets whether the current line is the first line of the paragraph in the custom drawing information object for
+ * paragraph indentation.
  *
  * @note All input pointer parameters must be allocated, managed, and released by the caller.
- * @param drawInfo Pointer to the <b>OH_ArkUI_LeadingMarginSpanDrawInfo</b> object.
- * @param first Whether current line is first line of a paragraph.
+ * @param drawInfo Pointer to the {@link OH_ArkUI_LeadingMarginSpanDrawInfo} object.
+ * @param first Whether the current line is the first line of the paragraph. **true** indicates the first line, and **
+ *     false** indicates the opposite.
  * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ *     Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_LeadingMarginSpanDrawInfo_SetFirst(OH_ArkUI_LeadingMarginSpanDrawInfo* drawInfo, bool first);
  
 /**
- * @brief Get whether current line is first line of a paragraph.
+ * @brief Obtains whether the current line is the first line of the paragraph in the custom drawing information object
+ * for paragraph indentation.
  *
  * @note All input pointer parameters must be allocated, managed, and released by the caller.
- * @param drawInfo Pointer to the <b>OH_ArkUI_LeadingMarginSpanDrawInfo</b> object.
- * @param first Whether current line is first line of a paragraph.
+ * @param drawInfo Pointer to the {@link OH_ArkUI_LeadingMarginSpanDrawInfo} object.
+ * @param first Pointer to the **first** parameter indicating whether the current line is the first line of the
+ *     paragraph. **true** indicates the first line, and **false** indicates the opposite.
  * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ *     Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_LeadingMarginSpanDrawInfo_GetFirst(const OH_ArkUI_LeadingMarginSpanDrawInfo* drawInfo,
     bool* first);
  
 /**
- * @brief Create an <b>OH_ArkUI_ParagraphStyle</b> object.
+ * @brief Creates an {@link OH_ArkUI_ParagraphStyle} object.
  *
  * @note When the object is no longer in use, invoke <b> OH_ArkUI_ParagraphStyle_Destroy </b> to destroy it.
  * @return Pointer to the <b>OH_ArkUI_ParagraphStyle</b> object.
@@ -1649,346 +1731,352 @@ ArkUI_ErrorCode OH_ArkUI_LeadingMarginSpanDrawInfo_GetFirst(const OH_ArkUI_Leadi
 OH_ArkUI_ParagraphStyle* OH_ArkUI_ParagraphStyle_Create();
  
 /**
- * @brief Release the memory occupied by the <b>OH_ArkUI_ParagraphStyle</b> object.
+ * @brief Releases the memory occupied by the {@link OH_ArkUI_ParagraphStyle} object.
  *
- * @param paragraphStyle Pointer to the <b>OH_ArkUI_ParagraphStyle</b> object.
+ * @param paragraphStyle Pointer to the {@link OH_ArkUI_ParagraphStyle} object.
  * @since 24
  */
 void OH_ArkUI_ParagraphStyle_Destroy(OH_ArkUI_ParagraphStyle* paragraphStyle);
  
 /**
- * @brief Set text align of paragraph style.
+ * @brief Sets the horizontal text alignment method in the paragraph style.
  *
  * @note All input pointer parameters must be allocated, managed, and released by the caller.
- * @param paragraphStyle Pointer to the <b>OH_ArkUI_ParagraphStyle</b> object.
- * @param align The text align of paragraph style.
+ * @param paragraphStyle Pointer to the {@link OH_ArkUI_ParagraphStyle} object.
+ * @param align Horizontal text alignment method. The value is an enumerated value of {@link ArkUI_TextAlignment}.
  * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ *     Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_ParagraphStyle_SetTextAlign(OH_ArkUI_ParagraphStyle* paragraphStyle,
     ArkUI_TextAlignment align);
  
 /**
- * @brief Get text align of paragraph style.
+ * @brief Obtains the horizontal text alignment method in the paragraph style.
  *
  * @note All input pointer parameters must be allocated, managed, and released by the caller.
- * @param paragraphStyle Pointer to the <b>OH_ArkUI_ParagraphStyle</b> object.
- * @param align The text align of paragraph style.
+ * @param paragraphStyle Pointer to the {@link OH_ArkUI_ParagraphStyle} object.
+ * @param align Pointer to the horizontal text alignment method. The value is an enumerated value of
+ *     {@link ArkUI_TextAlignment}.
  * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ *     Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_ParagraphStyle_GetTextAlign(const OH_ArkUI_ParagraphStyle* paragraphStyle,
     ArkUI_TextAlignment* align);
  
 /**
- * @brief Set text indent of paragraph style.
+ * @brief Sets the first-line text indentation in the paragraph style.
  *
  * @note All input pointer parameters must be allocated, managed, and released by the caller.
- * @param paragraphStyle Pointer to the <b>OH_ArkUI_ParagraphStyle</b> object.
- * @param textIndent The text indent of paragraph style.
+ * @param paragraphStyle Pointer to the {@link OH_ArkUI_ParagraphStyle} object.
+ * @param textIndent First-line indentation value, in vp.
  * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ *     Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_ParagraphStyle_SetTextIndent(OH_ArkUI_ParagraphStyle* paragraphStyle, float textIndent);
  
 /**
- * @brief Get text indent of paragraph style.
+ * @brief Obtains the first-line text indentation in the paragraph style.
  *
  * @note All input pointer parameters must be allocated, managed, and released by the caller.
- * @param paragraphStyle Pointer to the <b>OH_ArkUI_ParagraphStyle</b> object.
- * @param textIndent The text indent of paragraph style.
+ * @param paragraphStyle Pointer to the {@link OH_ArkUI_ParagraphStyle} object.
+ * @param textIndent Pointer to the first-line indentation value, in vp.
  * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ *     Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_ParagraphStyle_GetTextIndent(const OH_ArkUI_ParagraphStyle* paragraphStyle, float* textIndent);
  
 /**
- * @brief Set max lines of paragraph style.
+ * @brief Sets the maximum number of lines in the paragraph style.
  *
  * @note All input pointer parameters must be allocated, managed, and released by the caller.
- * @param paragraphStyle Pointer to the <b>OH_ArkUI_ParagraphStyle</b> object.
- * @param maxLines The max lines of paragraph style.
+ * @param paragraphStyle Pointer to the {@link OH_ArkUI_ParagraphStyle} object.
+ * @param maxLines Maximum number of lines.
  * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ *     Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_ParagraphStyle_SetMaxLines(OH_ArkUI_ParagraphStyle* paragraphStyle, int32_t maxLines);
  
 /**
- * @brief Get max lines of paragraph style.
+ * @brief Obtains the maximum number of lines in the paragraph style.
  *
  * @note All input pointer parameters must be allocated, managed, and released by the caller.
- * @param paragraphStyle Pointer to the <b>OH_ArkUI_ParagraphStyle</b> object.
- * @param maxLines The max lines of paragraph style.
+ * @param paragraphStyle Pointer to the {@link OH_ArkUI_ParagraphStyle} object.
+ * @param maxLines Pointer to the maximum number of lines.
  * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ *     Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_ParagraphStyle_GetMaxLines(const OH_ArkUI_ParagraphStyle* paragraphStyle, int32_t* maxLines);
  
 /**
- * @brief Set overflow of paragraph style.
+ * @brief Sets the display mode when the paragraph is too long in the paragraph style.
  *
  * @note All input pointer parameters must be allocated, managed, and released by the caller.
- * @param paragraphStyle Pointer to the <b>OH_ArkUI_ParagraphStyle</b> object.
- * @param overflow The overflow of paragraph style.
+ * @param paragraphStyle Pointer to the {@link OH_ArkUI_ParagraphStyle} object.
+ * @param overflow Display mode when the paragraph is too long. The value is an enumerated value of
+ *     {@link ArkUI_TextOverflow}.
  * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ *     Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_ParagraphStyle_SetOverflow(OH_ArkUI_ParagraphStyle* paragraphStyle,
     ArkUI_TextOverflow overflow);
  
 /**
- * @brief Get overflow of paragraph style.
+ * @brief Obtains the display mode when the paragraph is too long in the paragraph style.
  *
  * @note All input pointer parameters must be allocated, managed, and released by the caller.
- * @param paragraphStyle Pointer to the <b>OH_ArkUI_ParagraphStyle</b> object.
- * @param overflow The overflow of paragraph style.
+ * @param paragraphStyle Pointer to the {@link OH_ArkUI_ParagraphStyle} object.
+ * @param overflow Pointer to the display mode when the paragraph is too long. The value is an enumerated value of
+ *     {@link ArkUI_TextOverflow}.
  * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ *     Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_ParagraphStyle_GetOverflow(const OH_ArkUI_ParagraphStyle* paragraphStyle,
     ArkUI_TextOverflow* overflow);
  
 /**
- * @brief Set word break of paragraph style.
+ * @brief Sets the word breaking rule in the paragraph style.
  *
  * @note All input pointer parameters must be allocated, managed, and released by the caller.
- * @param paragraphStyle Pointer to the <b>OH_ArkUI_ParagraphStyle</b> object.
- * @param wordBreak The word break of paragraph style.
+ * @param paragraphStyle Pointer to the {@link OH_ArkUI_ParagraphStyle} object.
+ * @param wordBreak Word breaking rule. The value is an enumerated value of {@link ArkUI_WordBreak}.
  * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ *     Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_ParagraphStyle_SetWordBreak(OH_ArkUI_ParagraphStyle* paragraphStyle,
     ArkUI_WordBreak wordBreak);
  
 /**
- * @brief Get word break of paragraph style.
+ * @brief Obtains the word breaking rule in the paragraph style.
  *
  * @note All input pointer parameters must be allocated, managed, and released by the caller.
- * @param paragraphStyle Pointer to the <b>OH_ArkUI_ParagraphStyle</b> object.
- * @param wordBreak The word break of paragraph style.
+ * @param paragraphStyle Pointer to the {@link OH_ArkUI_ParagraphStyle} object.
+ * @param wordBreak Pointer to the word breaking rule. The value is an enumerated value of {@link ArkUI_WordBreak}.
  * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ *     Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_ParagraphStyle_GetWordBreak(const OH_ArkUI_ParagraphStyle* paragraphStyle,
     ArkUI_WordBreak* wordBreak);
  
 /**
- * @brief Set leading margin pixelmap of paragraph style.
+ * @brief Sets the PixelMap for paragraph indentation in the paragraph style.
  *
  * @note All input pointer parameters must be allocated, managed, and released by the caller.
- * @param paragraphStyle Pointer to the <b>OH_ArkUI_ParagraphStyle</b> object.
- * @param pixelmap The leading margin pixelmap of paragraph style.
+ * @param paragraphStyle Pointer to the {@link OH_ArkUI_ParagraphStyle} object.
+ * @param pixelmap Pointer to the PixelMap for paragraph indentation.
  * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ *     Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_ParagraphStyle_SetLeadingMarginPixelMap(OH_ArkUI_ParagraphStyle* paragraphStyle,
     struct OH_PixelmapNative* pixelmap);
  
 /**
- * @brief Get leading margin pixelmap of paragraph style.
+ * @brief Obtains the PixelMap for paragraph indentation in the paragraph style.
  *
  * @note All input pointer parameters must be allocated, managed, and released by the caller.
- * @param paragraphStyle Pointer to the <b>OH_ArkUI_ParagraphStyle</b> object.
- * @param pixelmap The leading margin pixelmap of paragraph style.
+ * @param paragraphStyle Pointer to the {@link OH_ArkUI_ParagraphStyle} object.
+ * @param pixelmap Double pointer to the PixelMap for paragraph indentation.
  * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ *     Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_ParagraphStyle_GetLeadingMarginPixelMap(const OH_ArkUI_ParagraphStyle* paragraphStyle,
     struct OH_PixelmapNative** pixelmap);
  
 /**
- * @brief Set leading margin width of paragraph style.
+ * @brief Sets the width for paragraph indentation in the paragraph style.
  *
  * @note All input pointer parameters must be allocated, managed, and released by the caller.
- * @param paragraphStyle Pointer to the <b>OH_ArkUI_ParagraphStyle</b> object.
- * @param width The leading margin width of paragraph style.
+ * @param paragraphStyle Pointer to the {@link OH_ArkUI_ParagraphStyle} object.
+ * @param width Width for paragraph indentation, in vp.
  * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ *     Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_ParagraphStyle_SetLeadingMarginWidth(OH_ArkUI_ParagraphStyle* paragraphStyle, uint32_t width);
  
 /**
- * @brief Get leading margin width of paragraph style.
+ * @brief Obtains the width for paragraph indentation in the paragraph style.
  *
  * @note All input pointer parameters must be allocated, managed, and released by the caller.
- * @param paragraphStyle Pointer to the <b>OH_ArkUI_ParagraphStyle</b> object.
- * @param width The leading margin width of paragraph style.
+ * @param paragraphStyle Pointer to the {@link OH_ArkUI_ParagraphStyle} object.
+ * @param width Pointer to the width for paragraph indentation, in vp.
  * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ *     Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_ParagraphStyle_GetLeadingMarginWidth(const OH_ArkUI_ParagraphStyle* paragraphStyle,
     uint32_t* width);
  
 /**
- * @brief Set leading margin height of paragraph style.
+ * @brief Sets the height for paragraph indentation in the paragraph style.
  *
  * @note All input pointer parameters must be allocated, managed, and released by the caller.
- * @param paragraphStyle Pointer to the <b>OH_ArkUI_ParagraphStyle</b> object.
- * @param height The leading margin height of paragraph style.
+ * @param paragraphStyle Pointer to the {@link OH_ArkUI_ParagraphStyle} object.
+ * @param height Height for paragraph indentation, in vp.
  * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ *     Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_ParagraphStyle_SetLeadingMarginHeight(OH_ArkUI_ParagraphStyle* paragraphStyle,
     uint32_t height);
  
 /**
- * @brief Get leading margin height of paragraph style.
+ * @brief Obtains the height for paragraph indentation in the paragraph style.
  *
  * @note All input pointer parameters must be allocated, managed, and released by the caller.
- * @param paragraphStyle Pointer to the <b>OH_ArkUI_ParagraphStyle</b> object.
- * @param height The leading margin height of paragraph style.
+ * @param paragraphStyle Pointer to the {@link OH_ArkUI_ParagraphStyle} object.
+ * @param height Pointer to the height for paragraph indentation, in vp.
  * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ *     Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_ParagraphStyle_GetLeadingMarginHeight(const OH_ArkUI_ParagraphStyle* paragraphStyle,
     uint32_t* height);
  
 /**
- * @brief Set paragraph spacing of paragraph style.
+ * @brief Sets the paragraph spacing in the paragraph style.
  *
  * @note All input pointer parameters must be allocated, managed, and released by the caller.
- * @param paragraphStyle Pointer to the <b>OH_ArkUI_ParagraphStyle</b> object.
- * @param paragraphSpacing The paragraph spacing of paragraph style.
+ * @param paragraphStyle Pointer to the {@link OH_ArkUI_ParagraphStyle} object.
+ * @param paragraphSpacing Paragraph spacing, in vp.
  * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ *     Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_ParagraphStyle_SetParagraphSpacing(OH_ArkUI_ParagraphStyle* paragraphStyle,
     uint32_t paragraphSpacing);
  
 /**
- * @brief Get paragraph spacing of paragraph style.
+ * @brief Obtains the paragraph spacing in the paragraph style.
  *
  * @note All input pointer parameters must be allocated, managed, and released by the caller.
- * @param paragraphStyle Pointer to the <b>OH_ArkUI_ParagraphStyle</b> object.
- * @param paragraphSpacing The paragraph spacing of paragraph style.
+ * @param paragraphStyle Pointer to the {@link OH_ArkUI_ParagraphStyle} object.
+ * @param paragraphSpacing Pointer to the paragraph spacing, in vp.
  * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ *     Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_ParagraphStyle_GetParagraphSpacing(const OH_ArkUI_ParagraphStyle* paragraphStyle,
     uint32_t* paragraphSpacing);
  
 /**
- * @brief Set text vertical align of paragraph style.
+ * @brief Sets the vertical text alignment method in the paragraph style.
  *
  * @note All input pointer parameters must be allocated, managed, and released by the caller.
- * @param paragraphStyle Pointer to the <b>OH_ArkUI_ParagraphStyle</b> object.
- * @param verticalAlignment The text vertical align of paragraph style.
+ * @param paragraphStyle Pointer to the {@link OH_ArkUI_ParagraphStyle} object.
+ * @param verticalAlignment Vertical text alignment method. The value is an enumerated value of
+ *     {@link ArkUI_TextVerticalAlignment}.
  * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ *     Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_ParagraphStyle_SetTextVerticalAlign(OH_ArkUI_ParagraphStyle* paragraphStyle,
     ArkUI_TextVerticalAlignment verticalAlignment);
  
 /**
- * @brief Get text vertical align of paragraph style.
+ * @brief Obtains the vertical text alignment method in the paragraph style.
  *
  * @note All input pointer parameters must be allocated, managed, and released by the caller.
- * @param paragraphStyle Pointer to the <b>OH_ArkUI_ParagraphStyle</b> object.
- * @param verticalAlignment The text vertical align of paragraph style.
+ * @param paragraphStyle Pointer to the {@link OH_ArkUI_ParagraphStyle} object.
+ * @param verticalAlignment Pointer to the vertical text alignment method. The value is an enumerated value of
+ *     {@link ArkUI_TextVerticalAlignment}.
  * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ *     Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_ParagraphStyle_GetTextVerticalAlign(const OH_ArkUI_ParagraphStyle* paragraphStyle,
     ArkUI_TextVerticalAlignment* verticalAlignment);
  
 /**
- * @brief Set a callback function for drawing leading margin.
+ * @brief Sets the callback function triggered when the paragraph indentation is drawn in the paragraph style.
  *
  * @note All input pointer parameters must be allocated, managed, and released by the caller.
- * @param paragraphStyle Pointer to the <b>OH_ArkUI_ParagraphStyle</b> object.
+ * @param paragraphStyle Pointer to the {@link OH_ArkUI_ParagraphStyle} object.
  * @param onDraw The callback function for drawing leading margin.
  * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ *     Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_ParagraphStyle_RegisterOnDrawLeadingMarginCallback(OH_ArkUI_ParagraphStyle* paragraphStyle,
     void(*onDraw)(ArkUI_DrawContext* context, OH_ArkUI_LeadingMarginSpanDrawInfo* drawInfo));
  
 /**
- * @brief Register a callback function for obtaining the indentation distance of a text paragraph.
+ * @brief Sets the callback function triggered when the paragraph indentation distance is obtained in the paragraph
+ * style.
  *
  * @note All input pointer parameters must be allocated, managed, and released by the caller.
- * @param paragraphStyle Pointer to the <b>OH_ArkUI_ParagraphStyle</b> object.
+ * @param paragraphStyle Pointer to the {@link OH_ArkUI_ParagraphStyle} object.
  * @param leadingMargin The callback function for obtaining the indentation distance of a text paragraph.
  * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ *     Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_ParagraphStyle_RegisterOnGetLeadingMarginCallback(OH_ArkUI_ParagraphStyle* paragraphStyle,
     float(*leadingMargin)());
  
 /**
- * @brief Set text direction of paragraph style.
+ * @brief Sets the text direction in the paragraph style.
  *
  * @note All input pointer parameters must be allocated, managed, and released by the caller.
- * @param paragraphStyle Pointer to the <b>OH_ArkUI_ParagraphStyle</b> object.
- * @param textDirection The text direction of paragraph style.
+ * @param paragraphStyle Pointer to the {@link OH_ArkUI_ParagraphStyle} object.
+ * @param textDirection Text direction. The value is an enumerated value of {@link ArkUI_TextDirection}.
  * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ *     Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_ParagraphStyle_SetTextDirection(OH_ArkUI_ParagraphStyle* paragraphStyle,
     ArkUI_TextDirection textDirection);
  
 /**
- * @brief Get text direction of paragraph style.
+ * @brief Obtains the text direction in the paragraph style.
  *
  * @note All input pointer parameters must be allocated, managed, and released by the caller.
- * @param paragraphStyle Pointer to the <b>OH_ArkUI_ParagraphStyle</b> object.
- * @param textDirection The text direction of paragraph style.
+ * @param paragraphStyle Pointer to the {@link OH_ArkUI_ParagraphStyle} object.
+ * @param textDirection Pointer to the text direction. The value is an enumerated value of {@link ArkUI_TextDirection}.
  * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ *     Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_ParagraphStyle_GetTextDirection(const OH_ArkUI_ParagraphStyle* paragraphStyle,
     ArkUI_TextDirection* textDirection);
 
 /**
- * @brief Create an <b>OH_ArkUI_GestureStyle</b> object.
+ * @brief Creates an {@link OH_ArkUI_GestureStyle} object.
  *
  * @note When the object is no longer in use, invoke <b> OH_ArkUI_GestureStyle_Destroy </b> to destroy it.
  * @return Pointer to the <b>OH_ArkUI_GestureStyle</b> object.
@@ -1997,57 +2085,57 @@ ArkUI_ErrorCode OH_ArkUI_ParagraphStyle_GetTextDirection(const OH_ArkUI_Paragrap
 OH_ArkUI_GestureStyle* OH_ArkUI_GestureStyle_Create();
 
 /**
- * @brief Release the memory occupied by the <b>OH_ArkUI_GestureStyle</b> object.
+ * @brief Releases the memory occupied by the {@link OH_ArkUI_GestureStyle} object.
  *
- * @param gestureStyle Pointer to the <b>OH_ArkUI_GestureStyle</b> object.
+ * @param gestureStyle Pointer to the {@link OH_ArkUI_GestureStyle} object.
  * @since 24
  */
 void OH_ArkUI_GestureStyle_Destroy(OH_ArkUI_GestureStyle* gestureStyle);
 
 /**
- * @brief Set click callback of gesture style.
+ * @brief Sets the click event callback in the event gesture style.
  *
  * @note All input pointer parameters must be allocated, managed, and released by the caller.
- * @param gestureStyle Pointer to the <b>OH_ArkUI_GestureStyle</b> object.
+ * @param gestureStyle Pointer to the {@link OH_ArkUI_GestureStyle} object.
  * @param onClick The callback of click event.
  * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ *     Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_GestureStyle_RegisterOnClickCallback(
     OH_ArkUI_GestureStyle* gestureStyle, void(*onClick)(ArkUI_NodeEvent*));
 
 /**
- * @brief Set long press callback of gesture style.
+ * @brief Sets the long-pressing event callback in the event gesture style.
  *
  * @note All input pointer parameters must be allocated, managed, and released by the caller.
- * @param gestureStyle Pointer to the <b>OH_ArkUI_GestureStyle</b> object.
+ * @param gestureStyle Pointer to the {@link OH_ArkUI_GestureStyle} object.
  * @param onLongPress The callback of long press event.
  * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ *     Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_GestureStyle_RegisterOnLongPressCallback(
     OH_ArkUI_GestureStyle* gestureStyle, void(*onLongPress)(ArkUI_GestureEvent*));
 
 /**
- * @brief Set touch callback of gesture style.
+ * @brief Sets the touch event callback in the event gesture style.
  *
  * @note All input pointer parameters must be allocated, managed, and released by the caller.
- * @param gestureStyle Pointer to the <b>OH_ArkUI_GestureStyle</b> object.
+ * @param gestureStyle Pointer to the {@link OH_ArkUI_GestureStyle} object.
  * @param onTouch The callback of touch event.
  * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ *     Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_GestureStyle_RegisterOnTouchCallback(
     OH_ArkUI_GestureStyle* gestureStyle, void(*onTouch)(ArkUI_NodeEvent*));
 
 /**
- * @brief Create an <b>OH_ArkUI_TextShadowStyle</b> object.
+ * @brief Creates an {@link OH_ArkUI_TextShadowStyle} object.
  *
  * @note When the object is no longer in use, invoke <b> OH_ArkUI_TextShadowStyle_Destroy </b> to destroy it.
  * @return Pointer to the <b>OH_ArkUI_TextShadowStyle</b> object.
@@ -2056,47 +2144,49 @@ ArkUI_ErrorCode OH_ArkUI_GestureStyle_RegisterOnTouchCallback(
 OH_ArkUI_TextShadowStyle* OH_ArkUI_TextShadowStyle_Create();
 
 /**
- * @brief Release the memory occupied by the <b>OH_ArkUI_TextShadowStyle</b> object.
+ * @brief Releases the memory occupied by the {@link OH_ArkUI_TextShadowStyle} object.
  *
- * @param textShadowStyle Pointer to the <b>OH_ArkUI_TextShadowStyle</b> object.
+ * @param textShadowStyle Pointer to the {@link OH_ArkUI_TextShadowStyle} object.
  * @since 24
  */
 void OH_ArkUI_TextShadowStyle_Destroy(OH_ArkUI_TextShadowStyle* textShadowStyle);
 
 /**
- * @brief Set text shadow options of text shadow style.
+ * @brief Sets the text shadow options for the text shadow style.
  *
  * @note All input pointer parameters must be allocated, managed, and released by the caller.
- * @param textShadowStyle Pointer to the <b>OH_ArkUI_TextShadowStyle</b> object.
- * @param options The text shadow options.
- * @param length The length of text shadow options.
+ * @param textShadowStyle Pointer to the {@link OH_ArkUI_TextShadowStyle} object.
+ * @param options Double pointer to the text shadow options, which points to an array of the
+ *     {@link OH_ArkUI_ShadowOptions} object.
+ * @param length Length of the text shadow options.
  * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ *     Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_TextShadowStyle_SetTextShadow(OH_ArkUI_TextShadowStyle* textShadowStyle,
     const OH_ArkUI_ShadowOptions** options, uint32_t length);
 
 /**
- * @brief Get text shadow options of text shadow style.
+ * @brief Obtains the text shadow options of the text shadow style.
  *
  * @note All input pointer parameters must be allocated, managed, and released by the caller.
- * @param textShadowStyle Pointer to the <b>OH_ArkUI_TextShadowStyle</b> object.
- * @param shadowOptions The text shadow options.
- * @param shadowOptionsSize The size of text shadow options.
- * @param writeLength The real size of text shadow options in text shadow style.
+ * @param textShadowStyle Pointer to the {@link OH_ArkUI_TextShadowStyle} object.
+ * @param shadowOptions Double pointer to the text shadow options, which points to an array of the
+ *     {@link OH_ArkUI_ShadowOptions} object.
+ * @param shadowOptionsSize Size of the shadow option buffer.
+ * @param writeLength Pointer to the number of actual text shadow options in the text shadow style.
  * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
- *         Returns {@link ARKUI_ERROR_CODE_BUFFER_SIZE_ERROR} If the buffer size is less than the minimum buffer size.
+ *     Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ *     Returns {@link ARKUI_ERROR_CODE_BUFFER_SIZE_ERROR} If the buffer size is less than the minimum buffer size.
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_TextShadowStyle_GetTextShadow(const OH_ArkUI_TextShadowStyle* textShadowStyle,
     OH_ArkUI_ShadowOptions** shadowOptions, uint32_t shadowOptionsSize, uint32_t* writeLength);
 
 /**
- * @brief Create an <b>OH_ArkUI_DecorationStyle</b> object.
+ * @brief Creates an {@link OH_ArkUI_DecorationStyle} object.
  *
  * @note When the object is no longer in use, invoke <b> OH_ArkUI_DecorationStyle_Destroy </b> to destroy it.
  * @return Pointer to the <b>OH_ArkUI_DecorationStyle</b> object.
@@ -2105,153 +2195,158 @@ ArkUI_ErrorCode OH_ArkUI_TextShadowStyle_GetTextShadow(const OH_ArkUI_TextShadow
 OH_ArkUI_DecorationStyle* OH_ArkUI_DecorationStyle_Create();
 
 /**
- * @brief Release the memory occupied by the <b>OH_ArkUI_DecorationStyle</b> object.
+ * @brief Releases the memory occupied by the {@link OH_ArkUI_DecorationStyle} object.
  *
- * @param decorationStyle Pointer to the <b>OH_ArkUI_DecorationStyle</b> object.
+ * @param decorationStyle Pointer to the {@link OH_ArkUI_DecorationStyle} object.
  * @since 24
  */
 void OH_ArkUI_DecorationStyle_Destroy(OH_ArkUI_DecorationStyle* decorationStyle);
  
 /**
- * @brief Set the decoration type of decoration style.
+ * @brief Sets the decoration type for the text decorative line style.
  *
  * @note All input pointer parameters must be allocated, managed, and released by the caller.
- * @param decorationStyle Pointer to the <b>OH_ArkUI_DecorationStyle</b> object.
- * @param type The decoration type {@link ArkUI_TextDecorationType}.
+ * @param decorationStyle Pointer to the {@link OH_ArkUI_DecorationStyle} object.
+ * @param type Type of the text decorative line. The value is an enumerated value of {@link ArkUI_TextDecorationType}.
  * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ *     Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_DecorationStyle_SetTextDecorationType(OH_ArkUI_DecorationStyle* decorationStyle,
     ArkUI_TextDecorationType type);
  
 /**
- * @brief Get the decoration type of decoration style.
+ * @brief Obtains the decoration type of the text decorative line style.
  *
  * @note All input pointer parameters must be allocated, managed, and released by the caller.
- * @param decorationStyle Pointer to the <b>OH_ArkUI_DecorationStyle</b> object.
- * @param type The decoration type {@link ArkUI_TextDecorationType}.
+ * @param decorationStyle Pointer to the {@link OH_ArkUI_DecorationStyle} object.
+ * @param type Pointer to the type of the text decorative line. The value is an enumerated value of
+ *     {@link ArkUI_TextDecorationType}.
  * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ *     Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_DecorationStyle_GetTextDecorationType(const OH_ArkUI_DecorationStyle* decorationStyle,
     ArkUI_TextDecorationType* type);
  
 /**
- * @brief Set the color of decoration line.
+ * @brief Sets the decoration color for the text decorative line style.
  *
  * @note All input pointer parameters must be allocated, managed, and released by the caller.
- * @param decorationStyle Pointer to the <b>OH_ArkUI_DecorationStyle</b> object.
- * @param color Color of decoration line.
+ * @param decorationStyle Pointer to the {@link OH_ArkUI_DecorationStyle} object.
+ * @param color Decoration color, in 0xARGB format.
  * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ *     Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_DecorationStyle_SetColor(OH_ArkUI_DecorationStyle* decorationStyle, uint32_t color);
  
 /**
- * @brief Get the color of decoration line.
+ * @brief Obtains the decoration color of the text decorative line style.
  *
  * @note All input pointer parameters must be allocated, managed, and released by the caller.
- * @param decorationStyle Pointer to the <b>OH_ArkUI_DecorationStyle</b> object.
- * @param color Color of decoration line.
+ * @param decorationStyle Pointer to the {@link OH_ArkUI_DecorationStyle} object.
+ * @param color Pointer to the decoration color, in 0xARGB format.
  * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ *     Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_DecorationStyle_GetColor(const OH_ArkUI_DecorationStyle* decorationStyle, uint32_t* color);
  
 /**
- * @brief Set the style of decoration line.
+ * @brief Sets the decoration style for the text decorative line style.
  *
  * @note All input pointer parameters must be allocated, managed, and released by the caller.
- * @param decorationStyle Pointer to the <b>OH_ArkUI_DecorationStyle</b> object.
- * @param style Style of decoration line.
+ * @param decorationStyle Pointer to the {@link OH_ArkUI_DecorationStyle} object.
+ * @param style Style of the text decorative line. The value is an enumerated value of
+ *     {@link ArkUI_TextDecorationStyle}.
  * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ *     Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_DecorationStyle_SetTextDecorationStyle(OH_ArkUI_DecorationStyle* decorationStyle,
     ArkUI_TextDecorationStyle style);
  
 /**
- * @brief Get the style of decoration line.
+ * @brief Obtains the decoration style of the text decorative line style.
  *
  * @note All input pointer parameters must be allocated, managed, and released by the caller.
- * @param decorationStyle Pointer to the <b>OH_ArkUI_DecorationStyle</b> object.
- * @param style Style of decoration line.
+ * @param decorationStyle Pointer to the {@link OH_ArkUI_DecorationStyle} object.
+ * @param style Pointer to the style of the text decorative line. The value is an enumerated value of
+ *     {@link ArkUI_TextDecorationStyle}.
  * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ *     Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_DecorationStyle_GetTextDecorationStyle(const OH_ArkUI_DecorationStyle* decorationStyle,
     ArkUI_TextDecorationStyle* style);
  
 /**
- * @brief Set the thickness scale of decoration line.
+ * @brief Sets the thickness scaling factor of the text decorative line style.
  *
  * @note All input pointer parameters must be allocated, managed, and released by the caller.
- * @param decorationStyle Pointer to the <b>OH_ArkUI_DecorationStyle</b> object.
- * @param thicknessScale Thickness of decoration line.
+ * @param decorationStyle Pointer to the {@link OH_ArkUI_DecorationStyle} object.
+ * @param thicknessScale Scaling factor of the decorative line thickness. The value range is [0, +∞).
  * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ *     Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_DecorationStyle_SetThicknessScale(OH_ArkUI_DecorationStyle* decorationStyle,
     float thicknessScale);
  
 /**
- * @brief Get the thickness scale of decoration line.
+ * @brief Obtains the thickness scaling factor of the text decorative line style.
  *
  * @note All input pointer parameters must be allocated, managed, and released by the caller.
- * @param decorationStyle Pointer to the <b>OH_ArkUI_DecorationStyle</b> object.
- * @param thicknessScale Thickness of decoration line.
+ * @param decorationStyle Pointer to the {@link OH_ArkUI_DecorationStyle} object.
+ * @param thicknessScale Pointer to the scaling factor of the decorative line thickness. The value range is [0, +∞).
  * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ *     Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_DecorationStyle_GetThicknessScale(const OH_ArkUI_DecorationStyle* decorationStyle,
     float* thicknessScale);
  
 /**
- * @brief Set the enable flag about multiple type in decoration line.
+ * @brief Sets whether to enable the display of multiple decorative lines in the text decorative line style.
  *
  * @note All input pointer parameters must be allocated, managed, and released by the caller.
- * @param decorationStyle Pointer to the <b>OH_ArkUI_DecorationStyle</b> object.
- * @param enableMultiType The enable flag about multiple type.
+ * @param decorationStyle Pointer to the {@link OH_ArkUI_DecorationStyle} object.
+ * @param enableMultiType Whether to enable the display of multiple decorative lines. **true** to enable; **false**
+ *     otherwise.
  * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ *     Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_DecorationStyle_SetEnableMultiType(
     OH_ArkUI_DecorationStyle* decorationStyle, bool enableMultiType);
  
 /**
- * @brief Get the enable flag about multiple type in decoration line.
+ * @brief Obtains whether the display of multiple decorative lines is enabled in the text decorative line style.
  *
  * @note All input pointer parameters must be allocated, managed, and released by the caller.
- * @param decorationStyle Pointer to the <b>OH_ArkUI_DecorationStyle</b> object.
- * @param enableMultiType The enable flag about multiple type.
+ * @param decorationStyle Pointer to the {@link OH_ArkUI_DecorationStyle} object.
+ * @param enableMultiType Pointer to the **enableMultiType** parameter indicating whether the display of multiple
+ *     decorative lines is enabled. **true** means the display is enabled; **false** otherwise.
  * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ *     Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_DecorationStyle_GetEnableMultiType(
     const OH_ArkUI_DecorationStyle* decorationStyle, bool* enableMultiType);
  
 /**
- * @brief Create an <b>OH_ArkUI_BaselineOffsetStyle</b> object.
+ * @brief Creates an {@link OH_ArkUI_BaselineOffsetStyle} object.
  *
  * @note When the object is no longer in use, invoke <b> OH_ArkUI_BaselineOffsetStyle_Destroy </b> to destroy it.
  * @return Pointer to the <b>OH_ArkUI_BaselineOffsetStyle</b> object.
@@ -2260,43 +2355,43 @@ ArkUI_ErrorCode OH_ArkUI_DecorationStyle_GetEnableMultiType(
 OH_ArkUI_BaselineOffsetStyle* OH_ArkUI_BaselineOffsetStyle_Create();
  
 /**
- * @brief Release the memory occupied by the <b>OH_ArkUI_BaselineOffsetStyle</b> object.
+ * @brief Releases the memory occupied by the {@link OH_ArkUI_BaselineOffsetStyle} object.
  *
- * @param baselineOffsetStyle Pointer to the <b>OH_ArkUI_BaselineOffsetStyle</b> object.
+ * @param baselineOffsetStyle Pointer to the {@link OH_ArkUI_BaselineOffsetStyle} object.
  * @since 24
  */
 void OH_ArkUI_BaselineOffsetStyle_Destroy(OH_ArkUI_BaselineOffsetStyle* baselineOffsetStyle);
  
 /**
- * @brief Set baseline offset of the baseline offset style.
+ * @brief Sets the baseline offset.
  *
  * @note All input pointer parameters must be allocated, managed, and released by the caller.
- * @param baselineOffsetStyle Pointer to the <b>OH_ArkUI_BaselineOffsetStyle</b> object.
- * @param baselineOffset The baseline offset.
+ * @param baselineOffsetStyle Pointer to the {@link OH_ArkUI_BaselineOffsetStyle} object.
+ * @param baselineOffset Baseline offset, in vp.
  * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ *     Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_BaselineOffsetStyle_SetBaselineOffset(
     OH_ArkUI_BaselineOffsetStyle* baselineOffsetStyle, float baselineOffset);
  
 /**
- * @brief Get baseline offset of the baseline offset style.
+ * @brief Obtains the baseline offset.
  *
  * @note All input pointer parameters must be allocated, managed, and released by the caller.
- * @param baselineOffsetStyle Pointer to the <b>OH_ArkUI_BaselineOffsetStyle</b> object.
- * @param baselineOffset The baseline offset.
+ * @param baselineOffsetStyle Pointer to the {@link OH_ArkUI_BaselineOffsetStyle} object.
+ * @param baselineOffset Pointer to the baseline offset, in vp.
  * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ *     Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_BaselineOffsetStyle_GetBaselineOffset(
     const OH_ArkUI_BaselineOffsetStyle* baselineOffsetStyle, float* baselineOffset);
  
 /**
- * @brief Create an <b>OH_ArkUI_LetterSpacingStyle</b> object.
+ * @brief Creates an {@link OH_ArkUI_LetterSpacingStyle} object.
  *
  * @note When the object is no longer in use, invoke <b> OH_ArkUI_LetterSpacingStyle_Destroy </b> to destroy it.
  * @return Pointer to the <b>OH_ArkUI_LetterSpacingStyle</b> object.
@@ -2305,43 +2400,43 @@ ArkUI_ErrorCode OH_ArkUI_BaselineOffsetStyle_GetBaselineOffset(
 OH_ArkUI_LetterSpacingStyle* OH_ArkUI_LetterSpacingStyle_Create();
  
 /**
- * @brief Release the memory occupied by the <b>OH_ArkUI_LetterSpacingStyle</b> object.
+ * @brief Releases the memory occupied by the {@link OH_ArkUI_LetterSpacingStyle} object.
  *
- * @param letterSpacingStyle Pointer to the <b>OH_ArkUI_LetterSpacingStyle</b> object.
+ * @param letterSpacingStyle Pointer to the {@link OH_ArkUI_LetterSpacingStyle} object.
  * @since 24
  */
 void OH_ArkUI_LetterSpacingStyle_Destroy(OH_ArkUI_LetterSpacingStyle* letterSpacingStyle);
  
 /**
- * @brief Set letter spacing of the letter spacing style.
+ * @brief Sets the letter spacing.
  *
  * @note All input pointer parameters must be allocated, managed, and released by the caller.
- * @param letterSpacingStyle Pointer to the <b>OH_ArkUI_LetterSpacingStyle</b> object.
- * @param letterSpacing The letter spacing.
+ * @param letterSpacingStyle Pointer to the {@link OH_ArkUI_LetterSpacingStyle} object.
+ * @param letterSpacing Letter spacing value, in vp.
  * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ *     Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_LetterSpacingStyle_SetLetterSpacing(
     OH_ArkUI_LetterSpacingStyle* letterSpacingStyle, float letterSpacing);
  
 /**
- * @brief Get letter spacing of the letter spacing style.
+ * @brief Obtains the letter spacing.
  *
  * @note All input pointer parameters must be allocated, managed, and released by the caller.
- * @param letterSpacingStyle Pointer to the <b>OH_ArkUI_LetterSpacingStyle</b> object.
- * @param letterSpacing The letter spacing.
+ * @param letterSpacingStyle Pointer to the {@link OH_ArkUI_LetterSpacingStyle} object.
+ * @param letterSpacing Pointer to the letter spacing value, in vp.
  * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ *     Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_LetterSpacingStyle_GetLetterSpacing(
     const OH_ArkUI_LetterSpacingStyle* letterSpacingStyle, float* letterSpacing);
  
 /**
- * @brief Create an <b>OH_ArkUI_LineHeightStyle</b> object.
+ * @brief Creates an {@link OH_ArkUI_LineHeightStyle} object.
  *
  * @note When the object is no longer in use, invoke <b> OH_ArkUI_LineHeightStyle_Destroy </b> to destroy it.
  * @return Pointer to the <b>OH_ArkUI_LineHeightStyle</b> object.
@@ -2350,105 +2445,111 @@ ArkUI_ErrorCode OH_ArkUI_LetterSpacingStyle_GetLetterSpacing(
 OH_ArkUI_LineHeightStyle* OH_ArkUI_LineHeightStyle_Create();
  
 /**
- * @brief Release the memory occupied by the <b>OH_ArkUI_LineHeightStyle</b> object.
+ * @brief Releases the memory occupied by the {@link OH_ArkUI_LineHeightStyle} object.
  *
- * @param lineHeightStyle Pointer to the <b>OH_ArkUI_LineHeightStyle</b> object.
+ * @param lineHeightStyle Pointer to the {@link OH_ArkUI_LineHeightStyle} object.
  * @since 24
  */
 void OH_ArkUI_LineHeightStyle_Destroy(OH_ArkUI_LineHeightStyle* lineHeightStyle);
  
 /**
- * @brief Set line height of the line height style.
+ * @brief Sets the line height.
  *
  * @note All input pointer parameters must be allocated, managed, and released by the caller.
- * @param lineHeightStyle Pointer to the <b>OH_ArkUI_LineHeightStyle</b> object.
- * @param lineHeight The line height.
+ * @param lineHeightStyle Pointer to the {@link OH_ArkUI_LineHeightStyle} object.
+ * @param lineHeight Fixed line height, in vp.
  * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ *     Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_LineHeightStyle_SetLineHeight(OH_ArkUI_LineHeightStyle* lineHeightStyle,
     float lineHeight);
  
 /**
- * @brief Get line height of the line height style.
+ * @brief Obtains the line height.
  *
  * @note All input pointer parameters must be allocated, managed, and released by the caller.
- * @param lineHeightStyle Pointer to the <b>OH_ArkUI_LineHeightStyle</b> object.
- * @param lineHeight The line height.
+ * @param lineHeightStyle Pointer to the {@link OH_ArkUI_LineHeightStyle} object.
+ * @param lineHeight Pointer to the fixed line height, in vp.
  * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ *     Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_LineHeightStyle_GetLineHeight(const OH_ArkUI_LineHeightStyle* lineHeightStyle,
     float* lineHeight);
  
 /**
- * @brief Set line height multiple of the line height style.
+ * @brief Sets a line height multiplier.
  *
  * @note All input pointer parameters must be allocated, managed, and released by the caller.
- * @param lineHeightStyle Pointer to the <b>OH_ArkUI_LineHeightStyle</b> object.
- * @param lineHeightMultiple The line height multiple.
+ * @param lineHeightStyle Pointer to the {@link OH_ArkUI_LineHeightStyle} object.
+ * @param lineHeightMultiple Line height multiplier. The value range is [0, +∞).
  * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ *     Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
  * @since 26.0.0
  */
 ArkUI_ErrorCode OH_ArkUI_LineHeightStyle_SetLineHeightMultiple(OH_ArkUI_LineHeightStyle* lineHeightStyle,
     float lineHeightMultiple);
  
 /**
- * @brief Get line height multiple of the line height style.
+ * @brief Obtains the line height multiplier.
  *
  * @note All input pointer parameters must be allocated, managed, and released by the caller.
- * @param lineHeightStyle Pointer to the <b>OH_ArkUI_LineHeightStyle</b> object.
- * @param lineHeightMultiple The line height multiple.
+ * @param lineHeightStyle Pointer to the {@link OH_ArkUI_LineHeightStyle} object.
+ * @param lineHeightMultiple Pointer to the line height multiplier. The value range is [0, +∞).
  * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ *     Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
  * @since 26.0.0
  */
 ArkUI_ErrorCode OH_ArkUI_LineHeightStyle_GetLineHeightMultiple(const OH_ArkUI_LineHeightStyle* lineHeightStyle,
     float* lineHeightMultiple);
  
 /**
- * @brief Defines line spacing style.
+ * @brief Defines a line spacing style.<br>        {@link OH_ArkUI_LineSpacingStyle_Create} can be used to create a
+ * line spacing style object.<br>        {@link OH_ArkUI_LineSpacingStyle_Destroy} can be used to destroy the line
+ * spacing style object.<br>        After the object is created, {@link OH_ArkUI_LineSpacingStyle_SetLineSpacing} can
+ * be used to set a line spacing value.<br>        After the object is created,
+ * {@link OH_ArkUI_LineSpacingStyle_SetOnlyBetweenLines} can be used to set whether the line spacing takes effect only
+ * between lines.
+ *
  * @since 26.0.0
  */
 typedef struct OH_ArkUI_LineSpacingStyle OH_ArkUI_LineSpacingStyle;
  
 /**
- * @brief Set line spacing style of span style.
+ * @brief Sets a line spacing style for the styled string style object.
  *
  * @note All input pointer parameters must be allocated, managed, and released by the caller.
- * @param spanStyle Pointer to an <b>OH_ArkUI_SpanStyle</b> object.
- * @param lineSpacingStyle Pointer to the <b>OH_ArkUI_LineSpacingStyle</b> object.
+ * @param spanStyle Pointer to the {@link OH_ArkUI_SpanStyle} object.
+ * @param lineSpacingStyle Pointer to the {@link OH_ArkUI_LineSpacingStyle} object.
  * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ *     Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
  * @since 26.0.0
  */
 ArkUI_ErrorCode OH_ArkUI_SpanStyle_SetLineSpacingStyle(
     OH_ArkUI_SpanStyle* spanStyle, const OH_ArkUI_LineSpacingStyle* lineSpacingStyle);
  
 /**
- * @brief Get line spacing style with span style.
+ * @brief Obtains the line spacing style of the styled string style object.
  *
  * @note All input pointer parameters must be allocated, managed, and released by the caller.
- * @param spanStyle Pointer to an <b>OH_ArkUI_SpanStyle</b> object.
- * @param lineSpacingStyle Pointer to the <b>OH_ArkUI_LineSpacingStyle</b> object.
+ * @param spanStyle Pointer to the {@link OH_ArkUI_SpanStyle} object.
+ * @param lineSpacingStyle Pointer to the {@link OH_ArkUI_LineSpacingStyle} object.
  * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ *     Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
  * @since 26.0.0
  */
 ArkUI_ErrorCode OH_ArkUI_SpanStyle_GetLineSpacingStyle(
     const OH_ArkUI_SpanStyle* spanStyle, OH_ArkUI_LineSpacingStyle* lineSpacingStyle);
  
 /**
- * @brief Create an <b>OH_ArkUI_LineSpacingStyle</b> object.
+ * @brief Creates an {@link OH_ArkUI_LineSpacingStyle} object.
  *
  * @note When the object is no longer in use, invoke <b> OH_ArkUI_LineSpacingStyle_Destroy </b> to destroy it.
  * @return Pointer to the <b>OH_ArkUI_LineSpacingStyle</b> object.
@@ -2457,71 +2558,77 @@ ArkUI_ErrorCode OH_ArkUI_SpanStyle_GetLineSpacingStyle(
 OH_ArkUI_LineSpacingStyle* OH_ArkUI_LineSpacingStyle_Create();
  
 /**
- * @brief Release the memory occupied by the <b>OH_ArkUI_LineSpacingStyle</b> object.
+ * @brief Releases the memory occupied by the {@link OH_ArkUI_LineSpacingStyle} object.
  *
- * @param lineSpacingStyle Pointer to the <b>OH_ArkUI_LineSpacingStyle</b> object.
+ * @param lineSpacingStyle Pointer to the {@link OH_ArkUI_LineSpacingStyle} object.
  * @since 26.0.0
  */
 void OH_ArkUI_LineSpacingStyle_Destroy(OH_ArkUI_LineSpacingStyle* lineSpacingStyle);
  
 /**
- * @brief Set line spacing of the line spacing style.
+ * @brief Sets line spacing.
  *
  * @note All input pointer parameters must be allocated, managed, and released by the caller.
- * @param lineSpacingStyle Pointer to the <b>OH_ArkUI_LineSpacingStyle</b> object.
- * @param lineSpacing The line spacing.
+ * @param lineSpacingStyle Pointer to the {@link OH_ArkUI_LineSpacingStyle} object.
+ * @param lineSpacing Line spacing value, in vp.
  * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ *     Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
  * @since 26.0.0
  */
 ArkUI_ErrorCode OH_ArkUI_LineSpacingStyle_SetLineSpacing(OH_ArkUI_LineSpacingStyle* lineSpacingStyle,
     float lineSpacing);
  
 /**
- * @brief Get line spacing of the line spacing style.
+ * @brief Queries the line spacing.
  *
  * @note All input pointer parameters must be allocated, managed, and released by the caller.
- * @param lineSpacingStyle Pointer to the <b>OH_ArkUI_LineSpacingStyle</b> object.
- * @param lineSpacing The line spacing.
+ * @param lineSpacingStyle Pointer to the {@link OH_ArkUI_LineSpacingStyle} object.
+ * @param lineSpacing Pointer to the line spacing value, in vp.
  * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ *     Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
  * @since 26.0.0
  */
 ArkUI_ErrorCode OH_ArkUI_LineSpacingStyle_GetLineSpacing(const OH_ArkUI_LineSpacingStyle* lineSpacingStyle,
     float* lineSpacing);
  
 /**
- * @brief Set the enable flag about onlyBetweenLines in line spacing style.
+ * @brief Sets whether the line spacing takes effect only between lines.
  *
  * @note All input pointer parameters must be allocated, managed, and released by the caller.
- * @param lineSpacingStyle Pointer to the <b>OH_ArkUI_LineSpacingStyle</b> object.
- * @param onlyBetweenLines The enable flag about whether line spacing only takes effect between lines.
+ * @param lineSpacingStyle Pointer to the {@link OH_ArkUI_LineSpacingStyle} object.
+ * @param onlyBetweenLines Whether the line spacing takes effect only between lines. **true** indicates that the
+ *     spacing is added only between lines, and no extra spacing is added above the first line or below the last line. *
+ *     *false** indicates that the complete line spacing is added between all lines, above the first line, and below
+ *     the last line.
  * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ *     Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
  * @since 26.0.0
  */
 ArkUI_ErrorCode OH_ArkUI_LineSpacingStyle_SetOnlyBetweenLines(
     OH_ArkUI_LineSpacingStyle* lineSpacingStyle, bool onlyBetweenLines);
  
 /**
- * @brief Get the enable flag about onlyBetweenLines in line spacing style.
+ * @brief Checks whether the line spacing takes effect only between lines.
  *
  * @note All input pointer parameters must be allocated, managed, and released by the caller.
- * @param lineSpacingStyle Pointer to the <b>OH_ArkUI_LineSpacingStyle</b> object.
- * @param onlyBetweenLines The enable flag about whether line spacing only takes effect between lines.
+ * @param lineSpacingStyle Pointer to the {@link OH_ArkUI_LineSpacingStyle} object.
+ * @param onlyBetweenLines Pointer to the **onlyBetweenLines** parameter indicating whether the line spacing takes
+ *     effect only between lines. **true** indicates that the spacing is added only between lines, and no extra spacing
+ *     is added above the first line or below the last line. **false** indicates that the complete line spacing is
+ *     added between all lines, above the first line, and below the last line.
  * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ *     Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
  * @since 26.0.0
  */
 ArkUI_ErrorCode OH_ArkUI_LineSpacingStyle_GetOnlyBetweenLines(
     const OH_ArkUI_LineSpacingStyle* lineSpacingStyle, bool* onlyBetweenLines);
  
 /**
- * @brief Create a <b>OH_ArkUI_BackgroundColorStyle</b> object.
+ * @brief Creates an {@link OH_ArkUI_BackgroundColorStyle} object.
  *
  * @note When the object is no longer in use, invoke <b> OH_ArkUI_BackgroundColorStyle_Destroy </b> to destroy it.
  * @return Pointer to the <b>OH_ArkUI_BackgroundColorStyle</b> object.
@@ -2530,75 +2637,75 @@ ArkUI_ErrorCode OH_ArkUI_LineSpacingStyle_GetOnlyBetweenLines(
 OH_ArkUI_BackgroundColorStyle* OH_ArkUI_BackgroundColorStyle_Create();
  
 /**
- * @brief Release the memory occupied by the <b>OH_ArkUI_BackgroundColorStyle</b> object.
+ * @brief Releases the memory occupied by the {@link OH_ArkUI_BackgroundColorStyle} object.
  *
- * @param style Pointer to the <b>OH_ArkUI_BackgroundColorStyle</b> object.
+ * @param style Pointer to the {@link OH_ArkUI_BackgroundColorStyle} object.
  * @since 24
  */
 void OH_ArkUI_BackgroundColorStyle_Destroy(OH_ArkUI_BackgroundColorStyle* style);
  
 /**
- * @brief Set color of the background color style.
+ * @brief Sets the background color for the background color style.
  *
  * @note All input pointer parameters must be allocated, managed, and released by the caller.
- * @param style Pointer to the <b>OH_ArkUI_BackgroundColorStyle</b> object.
- * @param color The background color.
+ * @param style Pointer to the {@link OH_ArkUI_BackgroundColorStyle} object.
+ * @param color Background color, in 0xARGB format.
  * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ *     Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_BackgroundColorStyle_SetColor(OH_ArkUI_BackgroundColorStyle* style, uint32_t color);
  
 /**
- * @brief Get color of the background color style.
+ * @brief Obtains the background color of the background color style.
  *
  * @note All input pointer parameters must be allocated, managed, and released by the caller.
- * @param style Pointer to the <b>OH_ArkUI_BackgroundColorStyle</b> object.
- * @param color The background color.
+ * @param style Pointer to the {@link OH_ArkUI_BackgroundColorStyle} object.
+ * @param color Pointer to the background color, in 0xARGB format.
  * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ *     Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_BackgroundColorStyle_GetColor(const OH_ArkUI_BackgroundColorStyle* style, uint32_t* color);
  
 /**
- * @brief Set radius of the background color style.
+ * @brief Sets the background radii for the background color style.
  *
  * @note All input pointer parameters must be allocated, managed, and released by the caller.
- * @param style Pointer to the <b>OH_ArkUI_BackgroundColorStyle</b> object.
- * @param topLeft The top left radius.
- * @param topRight The top right radius.
- * @param bottomLeft The bottom left radius.
- * @param bottomRight The bottom right radius.
+ * @param style Pointer to the {@link OH_ArkUI_BackgroundColorStyle} object.
+ * @param topLeft Radius of the upper left corner, in vp.
+ * @param topRight Radius of the upper right corner, in vp.
+ * @param bottomLeft Radius of the lower left corner, in vp.
+ * @param bottomRight Radius of the lower right corner, in vp.
  * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ *     Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_BackgroundColorStyle_SetRadius(OH_ArkUI_BackgroundColorStyle* style, float topLeft,
     float topRight, float bottomLeft, float bottomRight);
  
 /**
- * @brief Get radius of the background color style.
+ * @brief Obtains the background radii of the background color style.
  *
  * @note All input pointer parameters must be allocated, managed, and released by the caller.
- * @param style Pointer to the <b>OH_ArkUI_BackgroundColorStyle</b> object.
- * @param topLeft The top left radius.
- * @param topRight The top right radius.
- * @param bottomLeft The bottom left radius.
- * @param bottomRight The bottom right radius.
+ * @param style Pointer to the {@link OH_ArkUI_BackgroundColorStyle} object.
+ * @param topLeft Pointer to the radius of the upper left corner, in vp.
+ * @param topRight Pointer to the radius of the upper right corner, in vp.
+ * @param bottomLeft Pointer to the radius of the lower left corner, in vp.
+ * @param bottomRight Pointer to the radius of the lower right corner, in vp.
  * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ *     Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_BackgroundColorStyle_GetRadius(const OH_ArkUI_BackgroundColorStyle* style, float* topLeft,
     float* topRight, float* bottomLeft, float* bottomRight);
  
 /**
- * @brief Create an <b>OH_ArkUI_UrlStyle</b> object.
+ * @brief Creates an {@link OH_ArkUI_UrlStyle} object.
  *
  * @note When the object is no longer in use, invoke <b> OH_ArkUI_UrlStyle_Destroy </b> to destroy it.
  * @return Pointer to the <b>OH_ArkUI_UrlStyle</b> object.
@@ -2607,49 +2714,48 @@ ArkUI_ErrorCode OH_ArkUI_BackgroundColorStyle_GetRadius(const OH_ArkUI_Backgroun
 OH_ArkUI_UrlStyle* OH_ArkUI_UrlStyle_Create();
  
 /**
- * @brief Release the memory occupied by the ArkUI_UrlStyle object.
+ * @brief Releases the memory occupied by the {@link OH_ArkUI_UrlStyle} object.
  *
- * @param style Pointer to the <b>OH_ArkUI_UrlStyle</b> object.
+ * @param style Pointer to the {@link OH_ArkUI_UrlStyle} object.
  * @since 24
  */
 void OH_ArkUI_UrlStyle_Destroy(OH_ArkUI_UrlStyle* style);
  
 /**
- * @brief Set url of the url style.
+ * @brief Sets the URL content for the URL style.
  *
  * @note All input pointer parameters must be allocated, managed, and released by the caller.
- * @param style Pointer to the <b>OH_ArkUI_UrlStyle</b> object.
- * @param url The url.
+ * @param style Pointer to the {@link OH_ArkUI_UrlStyle} object.
+ * @param url Pointer to the URL content.
  * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ *     Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_UrlStyle_SetUrl(OH_ArkUI_UrlStyle* style, const char* url);
  
 /**
- * @brief Get url of the url style.
+ * @brief Obtains the URL content of the URL style.
  *
  * @note All input pointer parameters must be allocated, managed, and released by the caller.
- * @param style Pointer to the <b>OH_ArkUI_UrlStyle</b> object.
- * @param buffer The buffer to which url content writes to the memory,
- *               memory space needs to be allocated by the developer.
- * @param bufferSize The buffer size.
- * @param writeLength Indicates the string length actually written to the buffer
- *                    when returning {@link ARKUI_ERROR_CODE_NO_ERROR}.
- *                    Indicates the minimum buffer size that can accommodate the target
- *                    when {@link ARKUI_ERROR_CODE_BUFFER_SIZE_ERROR} is returned.
+ * @param style Pointer to the {@link OH_ArkUI_UrlStyle} object.
+ * @param buffer Pointer to the buffer for storing the URL content in the memory. You need to allocate the memory.
+ * @param bufferSize Maximum number of characters that can be written to the buffer.
+ * @param writeLength Pointer to the number of characters that are actually written to the buffer if
+ *     {@link ARKUI_ERROR_CODE_NO_ERROR} is returned.
+ *     <br>Pointer to the minimum length required for writing the entire string to the buffer if
+ *     {@link ARKUI_ERROR_CODE_BUFFER_SIZE_ERROR} is returned.
  * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
- *         Returns {@link ARKUI_ERROR_CODE_BUFFER_SIZE_ERROR} If the buffer size is less than the minimum buffer size.
+ *     Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ *     Returns {@link ARKUI_ERROR_CODE_BUFFER_SIZE_ERROR} If the buffer size is less than the minimum buffer size.
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_UrlStyle_GetUrl(const OH_ArkUI_UrlStyle* style, char* buffer, int32_t bufferSize,
     int32_t* writeLength);
  
 /**
- * @brief Create an <b>OH_ArkUI_UserDataSpan</b> object.
+ * @brief Creates an {@link OH_ArkUI_UserDataSpan} object.
  *
  * @note When the object is no longer in use, invoke <b> OH_ArkUI_UserDataSpan_Destroy </b> to destroy it.
  * @return Pointer to the <b>OH_ArkUI_UserDataSpan</b> object.
@@ -2658,41 +2764,41 @@ ArkUI_ErrorCode OH_ArkUI_UrlStyle_GetUrl(const OH_ArkUI_UrlStyle* style, char* b
 OH_ArkUI_UserDataSpan* OH_ArkUI_UserDataSpan_Create();
  
 /**
- * @brief Release the memory occupied by the <b>OH_ArkUI_UserDataSpan</b> object.
+ * @brief Releases the memory occupied by the {@link OH_ArkUI_UserDataSpan} object.
  *
- * @param userDataSpan Pointer to the <b>OH_ArkUI_UserDataSpan</b> object.
+ * @param userDataSpan Pointer to the {@link OH_ArkUI_UserDataSpan} object.
  * @since 24
  */
 void OH_ArkUI_UserDataSpan_Destroy(OH_ArkUI_UserDataSpan* userDataSpan);
  
 /**
- * @brief Set user data of the user data span.
+ * @brief Sets the user data in the user data span style.
  *
  * @note All input pointer parameters must be allocated, managed, and released by the caller.
- * @param userDataSpan Pointer to the <b>OH_ArkUI_UserDataSpan</b> object.
- * @param userData The user data.
+ * @param userDataSpan Pointer to the {@link OH_ArkUI_UserDataSpan} object.
+ * @param userData Pointer to the user data. You need to manage the data lifecycle.
  * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ *     Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_UserDataSpan_SetUserData(OH_ArkUI_UserDataSpan* userDataSpan, void* userData);
  
 /**
- * @brief Get user data of the user data span.
+ * @brief Obtains the user data in the user data span style.
  *
  * @note All input pointer parameters must be allocated, managed, and released by the caller.
- * @param userDataSpan Pointer to the <b>OH_ArkUI_UserDataSpan</b> object.
- * @param userData The user data.
+ * @param userDataSpan Pointer to the {@link OH_ArkUI_UserDataSpan} object.
+ * @param userData Double pointer to the user data.
  * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ *     Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_UserDataSpan_GetUserData(const OH_ArkUI_UserDataSpan* userDataSpan, void** userData);
  
 /**
- * @brief Create an <b>OH_ArkUI_CustomSpan</b> object.
+ * @brief Creates an {@link OH_ArkUI_CustomSpan} object.
  *
  * @note When the object is no longer in use, invoke <b> OH_ArkUI_CustomSpan_Destroy </b> to destroy it.
  * @return Pointer to the <b>OH_ArkUI_CustomSpan</b> object.
@@ -2701,43 +2807,43 @@ ArkUI_ErrorCode OH_ArkUI_UserDataSpan_GetUserData(const OH_ArkUI_UserDataSpan* u
 OH_ArkUI_CustomSpan* OH_ArkUI_CustomSpan_Create();
  
 /**
- * @brief Release the memory occupied by the <b>OH_ArkUI_CustomSpan</b> object.
+ * @brief Releases the memory occupied by the {@link OH_ArkUI_CustomSpan} object.
  *
- * @param customSpan Pointer to the <b>OH_ArkUI_CustomSpan</b> object.
+ * @param customSpan Pointer to the {@link OH_ArkUI_CustomSpan} object.
  * @since 24
  */
 void OH_ArkUI_CustomSpan_Destroy(OH_ArkUI_CustomSpan* customSpan);
  
 /**
- * @brief register measure callback of the custom span.
+ * @brief Sets the callback function triggered when metrics are obtained for the custom span.
  *
  * @note All input pointer parameters must be allocated, managed, and released by the caller.
- * @param customSpan Pointer to the <b>OH_ArkUI_CustomSpan</b> object.
+ * @param customSpan Pointer to the {@link OH_ArkUI_CustomSpan} object.
  * @param onMeasure The callback function for measuring the size of custom span.
  * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ *     Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_CustomSpan_RegisterOnMeasureCallback(
     OH_ArkUI_CustomSpan* customSpan, ArkUI_CustomSpanMetrics*(*onMeasure)(float));
  
 /**
- * @brief register draw callback of the custom span.
+ * @brief Registers the callback function triggered when the custom span is drawn.
  *
  * @note All input pointer parameters must be allocated, managed, and released by the caller.
- * @param customSpan Pointer to the <b>OH_ArkUI_CustomSpan</b> object.
+ * @param customSpan Pointer to the {@link OH_ArkUI_CustomSpan} object.
  * @param onDraw The callback function for drawing the custom span.
  * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ *     Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_CustomSpan_RegisterOnDrawCallback(
     OH_ArkUI_CustomSpan* customSpan, void(*onDraw)(ArkUI_DrawContext*, ArkUI_CustomSpanDrawInfo*));
  
 /**
- * @brief Create an <b>OH_ArkUI_ImageAttachment</b> object.
+ * @brief Creates an {@link OH_ArkUI_ImageAttachment} object.
  *
  * @note When the object is no longer in use, invoke <b> OH_ArkUI_ImageAttachment_Destroy </b> to destroy it.
  * @return Pointer to the <b>OH_ArkUI_ImageAttachment</b> object.
@@ -2746,422 +2852,427 @@ ArkUI_ErrorCode OH_ArkUI_CustomSpan_RegisterOnDrawCallback(
 OH_ArkUI_ImageAttachment* OH_ArkUI_ImageAttachment_Create();
  
 /**
- * @brief Release the memory occupied by the <b>OH_ArkUI_ImageAttachment</b> object.
+ * @brief Releases the memory occupied by the {@link OH_ArkUI_ImageAttachment} object.
  *
- * @param imageAttachment Pointer to the <b>OH_ArkUI_ImageAttachment</b> object.
+ * @param imageAttachment Pointer to the {@link OH_ArkUI_ImageAttachment} object.
  * @since 24
  */
 void OH_ArkUI_ImageAttachment_Destroy(OH_ArkUI_ImageAttachment* imageAttachment);
  
 /**
- * @brief Set pixelmap of the image attachment.
+ * @brief Sets the image data source in the image style.
  *
  * @note All input pointer parameters must be allocated, managed, and released by the caller.
- * @param imageAttachment Pointer to the <b>OH_ArkUI_ImageAttachment</b> object.
- * @param pixelmap The pixelmap of the image attachment.
+ * @param imageAttachment Pointer to the {@link OH_ArkUI_ImageAttachment} object.
+ * @param pixelmap Pointer to the image data source.
  * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ *     Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_ImageAttachment_SetPixelMap(OH_ArkUI_ImageAttachment* imageAttachment,
     struct OH_PixelmapNative* pixelmap);
  
 /**
- * @brief Get pixelmap of the image attachment.
+ * @brief Obtains the image data source in the image style.
  *
  * @note All input pointer parameters must be allocated, managed, and released by the caller.
- * @param imageAttachment Pointer to the <b>OH_ArkUI_ImageAttachment</b> object.
- * @param pixelmap The pixelmap of the image attachment.
+ * @param imageAttachment Pointer to the {@link OH_ArkUI_ImageAttachment} object.
+ * @param pixelmap Double pointer to the image data source.
  * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ *     Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_ImageAttachment_GetPixelMap(const OH_ArkUI_ImageAttachment* imageAttachment,
     struct OH_PixelmapNative** pixelmap);
  
 /**
- * @brief Set string about image src in the image attachment.
+ * @brief Sets the image resource address in the image style.
  *
  * @note All input pointer parameters must be allocated, managed, and released by the caller.
- * @param imageAttachment Pointer to the <b>OH_ArkUI_ImageAttachment</b> object.
- * @param resource The string about image src in the image attachment.
+ * @param imageAttachment Pointer to the {@link OH_ArkUI_ImageAttachment} object.
+ * @param resource Pointer to the image resource address.
  * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ *     Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_ImageAttachment_SetResource(OH_ArkUI_ImageAttachment* imageAttachment, const char* resource);
  
 /**
- * @brief Get string about image src in the image attachment.
+ * @brief Obtains the image resource address in the image style.
  *
  * @note All input pointer parameters must be allocated, managed, and released by the caller.
- * @param imageAttachment Pointer to the <b>OH_ArkUI_ImageAttachment</b> object.
- * @param buffer The buffer to which string about image src writes to the memory,
- *               memory space needs to be allocated by the developer.
- * @param bufferSize The buffer size
- * @param writeLength Indicates the string length actually written to the buffer
- *                    when returning {@link ARKUI_ERROR_CODE_NO_ERROR}.
- *                    Indicates the minimum buffer size that can accommodate the target
- *                    when {@link ARKUI_ERROR_CODE_BUFFER_SIZE_ERROR} is returned.
+ * @param imageAttachment Pointer to the {@link OH_ArkUI_ImageAttachment} object.
+ * @param buffer Pointer to the buffer for storing the image resource address string in the memory. You need to
+ *     allocate the memory.
+ * @param bufferSize Buffer size.
+ * @param writeLength Pointer to the length of the string actually written to the buffer if
+ *     {@link ARKUI_ERROR_CODE_NO_ERROR} is returned.
+ *     <br>Pointer to the minimum length required for writing the entire string to the buffer if
+ *     {@link ARKUI_ERROR_CODE_BUFFER_SIZE_ERROR} is returned.
  * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
- *         Returns {@link ARKUI_ERROR_CODE_BUFFER_SIZE_ERROR} If the buffer size is less than the minimum buffer size.
+ *     Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ *     Returns {@link ARKUI_ERROR_CODE_BUFFER_SIZE_ERROR} If the buffer size is less than the minimum buffer size.
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_ImageAttachment_GetResource(const OH_ArkUI_ImageAttachment* imageAttachment,
     char* buffer, int32_t bufferSize, int32_t* writeLength);
  
 /**
- * @brief Set image width of the image attachment.
+ * @brief Sets the image width in the image style.
  *
  * @note All input pointer parameters must be allocated, managed, and released by the caller.
- * @param imageAttachment Pointer to the <b>OH_ArkUI_ImageAttachment</b> object.
- * @param width The image width of the image attachment.
+ * @param imageAttachment Pointer to the {@link OH_ArkUI_ImageAttachment} object.
+ * @param width Image width, in vp.
  * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ *     Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_ImageAttachment_SetSizeWidth(OH_ArkUI_ImageAttachment* imageAttachment, float width);
  
 /**
- * @brief Get image width of the image attachment.
+ * @brief Obtains the image width in the image style.
  *
  * @note All input pointer parameters must be allocated, managed, and released by the caller.
- * @param imageAttachment Pointer to the <b>OH_ArkUI_ImageAttachment</b> object.
- * @param width The image width of the image attachment.
+ * @param imageAttachment Pointer to the {@link OH_ArkUI_ImageAttachment} object.
+ * @param width Pointer to the image width, in vp.
  * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ *     Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_ImageAttachment_GetSizeWidth(const OH_ArkUI_ImageAttachment* imageAttachment, float* width);
  
 /**
- * @brief Set image height of the image attachment.
+ * @brief Sets the image height in the image style.
  *
  * @note All input pointer parameters must be allocated, managed, and released by the caller.
- * @param imageAttachment Pointer to the <b>OH_ArkUI_ImageAttachment</b> object.
- * @param height The image height of the image attachment.
+ * @param imageAttachment Pointer to the {@link OH_ArkUI_ImageAttachment} object.
+ * @param height Image height, in vp.
  * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ *     Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_ImageAttachment_SetSizeHeight(OH_ArkUI_ImageAttachment* imageAttachment, float height);
  
 /**
- * @brief Get image height of the image attachment.
+ * @brief Obtains the image height in the image style.
  *
  * @note All input pointer parameters must be allocated, managed, and released by the caller.
- * @param imageAttachment Pointer to the <b>OH_ArkUI_ImageAttachment</b> object.
- * @param height The image height of the image attachment.
+ * @param imageAttachment Pointer to the {@link OH_ArkUI_ImageAttachment} object.
+ * @param height Pointer to the image height, in vp.
  * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ *     Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_ImageAttachment_GetSizeHeight(const OH_ArkUI_ImageAttachment* imageAttachment, float* height);
 
 /**
- * @brief Set image alignment of the image attachment.
+ * @brief Sets the image alignment method in the image style.
  *
  * @note All input pointer parameters must be allocated, managed, and released by the caller.
- * @param imageAttachment Pointer to the <b>OH_ArkUI_ImageAttachment</b> object.
- * @param verticalAlign The image alignment of the image attachment.
+ * @param imageAttachment Pointer to the {@link OH_ArkUI_ImageAttachment} object.
+ * @param verticalAlign Image alignment method. The value is an enumerated value of {@link ArkUI_ImageSpanAlignment}.
  * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ *     Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_ImageAttachment_SetVerticalAlign(
     OH_ArkUI_ImageAttachment* imageAttachment, ArkUI_ImageSpanAlignment verticalAlign);
  
 /**
- * @brief Get image alignment of the image attachment.
+ * @brief Obtains the image alignment method in the image style.
  *
  * @note All input pointer parameters must be allocated, managed, and released by the caller.
- * @param imageAttachment Pointer to the <b>OH_ArkUI_ImageAttachment</b> object.
- * @param verticalAlign The image alignment of the image attachment.
+ * @param imageAttachment Pointer to the {@link OH_ArkUI_ImageAttachment} object.
+ * @param verticalAlign Pointer to the image alignment method. The value is an enumerated value of
+ *     {@link ArkUI_ImageSpanAlignment}.
  * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ *     Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_ImageAttachment_GetVerticalAlign(const OH_ArkUI_ImageAttachment* imageAttachment,
     ArkUI_ImageSpanAlignment* verticalAlign);
  
 /**
- * @brief Set image object fit of the image attachment.
+ * @brief Sets the image scaling type in the image style.
  *
  * @note All input pointer parameters must be allocated, managed, and released by the caller.
- * @param imageAttachment Pointer to the <b>OH_ArkUI_ImageAttachment</b> object.
- * @param objectFit The image object fit of the image attachment.
+ * @param imageAttachment Pointer to the {@link OH_ArkUI_ImageAttachment} object.
+ * @param objectFit Image scaling type. The value is an enumerated value of {@link ArkUI_ObjectFit}.
  * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ *     Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_ImageAttachment_SetObjectFit(
     OH_ArkUI_ImageAttachment* imageAttachment, ArkUI_ObjectFit objectFit);
  
 /**
- * @brief Get image object fit of the image attachment.
+ * @brief Obtains the image scaling type in the image style.
  *
  * @note All input pointer parameters must be allocated, managed, and released by the caller.
- * @param imageAttachment Pointer to the <b>OH_ArkUI_ImageAttachment</b> object.
- * @param objectFit The image object fit of the image attachment.
+ * @param imageAttachment Pointer to the {@link OH_ArkUI_ImageAttachment} object.
+ * @param objectFit Pointer to the image scaling type. The value is an enumerated value of {@link ArkUI_ObjectFit}.
  * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ *     Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_ImageAttachment_GetObjectFit(
     const OH_ArkUI_ImageAttachment* imageAttachment, ArkUI_ObjectFit* objectFit);
  
 /**
- * @brief Set image margin of the image attachment.
+ * @brief Sets the image margin in the image style.
  *
  * @note All input pointer parameters must be allocated, managed, and released by the caller.
- * @param imageAttachment Pointer to the <b>OH_ArkUI_ImageAttachment</b> object.
- * @param margin The image margin of the image attachment.
+ * @param imageAttachment Pointer to the {@link OH_ArkUI_ImageAttachment} object.
+ * @param margin Image margin, in vp.
  * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ *     Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_ImageAttachment_SetMargin(OH_ArkUI_ImageAttachment* imageAttachment, ArkUI_Margin margin);
  
 /**
- * @brief Get image margin of the image attachment.
+ * @brief Obtains the image margin in the image style.
  *
  * @note All input pointer parameters must be allocated, managed, and released by the caller.
- * @param imageAttachment Pointer to the <b>OH_ArkUI_ImageAttachment</b> object.
- * @param margin The image margin of the image attachment.
+ * @param imageAttachment Pointer to the {@link OH_ArkUI_ImageAttachment} object.
+ * @param margin Pointer to the image margin, in vp.
  * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ *     Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_ImageAttachment_GetMargin(const OH_ArkUI_ImageAttachment* imageAttachment,
     ArkUI_Margin* margin);
  
 /**
- * @brief Set image padding of the image attachment.
+ * @brief Sets the image padding in the image style.
  *
  * @note All input pointer parameters must be allocated, managed, and released by the caller.
- * @param imageAttachment Pointer to the <b>OH_ArkUI_ImageAttachment</b> object.
- * @param padding The image padding of the image attachment.
+ * @param imageAttachment Pointer to the {@link OH_ArkUI_ImageAttachment} object.
+ * @param padding Image padding, in vp.
  * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ *     Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_ImageAttachment_SetPadding(OH_ArkUI_ImageAttachment* imageAttachment, ArkUI_Margin padding);
  
 /**
- * @brief Get image padding of the image attachment.
+ * @brief Obtains the image padding in the image style.
  *
  * @note All input pointer parameters must be allocated, managed, and released by the caller.
- * @param imageAttachment Pointer to the <b>OH_ArkUI_ImageAttachment</b> object.
- * @param padding The image padding of the image attachment.
+ * @param imageAttachment Pointer to the {@link OH_ArkUI_ImageAttachment} object.
+ * @param padding Pointer to the image padding, in vp.
  * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ *     Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_ImageAttachment_GetPadding(const OH_ArkUI_ImageAttachment* imageAttachment,
     ArkUI_Margin* padding);
  
 /**
- * @brief Set image border radius of the image attachment.
+ * @brief Sets the image border radii in the image style.
  *
  * @note All input pointer parameters must be allocated, managed, and released by the caller.
- * @param imageAttachment Pointer to the <b>OH_ArkUI_ImageAttachment</b> object.
- * @param topLeft The top left radius.
- * @param topRight The top right radius.
- * @param bottomLeft The bottom left radius.
- * @param bottomRight The bottom right radius.
+ * @param imageAttachment Pointer to the {@link OH_ArkUI_ImageAttachment} object.
+ * @param topLeft Radius of the upper left corner, in vp.
+ * @param topRight Radius of the upper right corner, in vp.
+ * @param bottomLeft Radius of the lower left corner, in vp.
+ * @param bottomRight Radius of the lower right corner, in vp.
  * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ *     Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_ImageAttachment_SetBorderRadiuses(OH_ArkUI_ImageAttachment* imageAttachment,
     float topLeft, float topRight, float bottomLeft, float bottomRight);
  
 /**
- * @brief Get image border radius of the image attachment.
+ * @brief Obtains the image border radii in the image style.
  *
  * @note All input pointer parameters must be allocated, managed, and released by the caller.
- * @param imageAttachment Pointer to the <b>OH_ArkUI_ImageAttachment</b> object.
- * @param topLeft The top left radius.
- * @param topRight The top right radius.
- * @param bottomLeft The bottom left radius.
- * @param bottomRight The bottom right radius.
+ * @param imageAttachment Pointer to the {@link OH_ArkUI_ImageAttachment} object.
+ * @param topLeft Pointer to the radius of the upper left corner, in vp.
+ * @param topRight Pointer to the radius of the upper right corner, in vp.
+ * @param bottomLeft Pointer to the radius of the lower left corner, in vp.
+ * @param bottomRight Pointer to the radius of the lower right corner, in vp.
  * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ *     Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_ImageAttachment_GetBorderRadiuses(const OH_ArkUI_ImageAttachment* imageAttachment,
     float* topLeft, float* topRight, float* bottomLeft, float* bottomRight);
  
 /**
- * @brief Set image colorFilter of the image attachment.
+ * @brief Sets the image color filter in the image style.
  *
  * @note All input pointer parameters must be allocated, managed, and released by the caller.
- * @param imageAttachment Pointer to the <b>OH_ArkUI_ImageAttachment</b> object.
- * @param colorFilter The image colorFilter.
- * @param size The size of colorFilter.
+ * @param imageAttachment Pointer to the {@link OH_ArkUI_ImageAttachment} object.
+ * @param colorFilter Pointer to the image color filter.
+ * @param size Size of the filter array.
  * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ *     Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_ImageAttachment_SetColorFilter(
     OH_ArkUI_ImageAttachment* imageAttachment, const float* colorFilter, uint32_t size);
  
 /**
- * @brief Get image colorFilter of the image attachment.
+ * @brief Obtains the image color filter in the image style.
  *
  * @note All input pointer parameters must be allocated, managed, and released by the caller.
- * @param imageAttachment Pointer to the <b>OH_ArkUI_ImageAttachment</b> object.
- * @param colorFilter The image colorFilter.
- * @param colorFilterSize The size of colorFilter.
- * @param writeLength the real size of colorFilter in the image attachment.
+ * @param imageAttachment Pointer to the {@link OH_ArkUI_ImageAttachment} object.
+ * @param colorFilter Double pointer to the buffer for storing the image color filter in the memory. You need to
+ *     allocate the memory.
+ * @param colorFilterSize Buffer size.
+ * @param writeLength Pointer to the actual size of the image color filter array.
  * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
- *         Returns {@link ARKUI_ERROR_CODE_BUFFER_SIZE_ERROR} If the buffer size is less than the minimum buffer size.
+ *     Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ *     Returns {@link ARKUI_ERROR_CODE_BUFFER_SIZE_ERROR} If the buffer size is less than the minimum buffer size.
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_ImageAttachment_GetColorFilter(const OH_ArkUI_ImageAttachment* imageAttachment,
     float** colorFilter, uint32_t colorFilterSize, uint32_t* writeLength);
  
 /**
- * @brief Set image colorFilter of the image attachment.
+ * @brief Sets the image drawing color filter in the image style.
  *
  * @note All input pointer parameters must be allocated, managed, and released by the caller.
- * @param imageAttachment Pointer to the <b>OH_ArkUI_ImageAttachment</b> object.
- * @param drawingColorFilter The image colorFilter.
+ * @param imageAttachment Pointer to the {@link OH_ArkUI_ImageAttachment} object.
+ * @param drawingColorFilter Pointer to the image drawing color filter.
  * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ *     Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_ImageAttachment_SetDrawingColorFilter(
     OH_ArkUI_ImageAttachment* imageAttachment, const OH_Drawing_ColorFilter* drawingColorFilter);
  
 /**
- * @brief Get image colorFilter of the image attachment.
+ * @brief Obtains the image drawing color filter in the image style.
  *
  * @note All input pointer parameters must be allocated, managed, and released by the caller.
- * @param imageAttachment Pointer to the <b>OH_ArkUI_ImageAttachment</b> object.
- * @param drawingColorFilter The image colorFilter.
+ * @param imageAttachment Pointer to the {@link OH_ArkUI_ImageAttachment} object.
+ * @param drawingColorFilter Pointer to the image drawing color filter.
  * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ *     Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_ImageAttachment_GetDrawingColorFilter(
     const OH_ArkUI_ImageAttachment* imageAttachment, OH_Drawing_ColorFilter* drawingColorFilter);
  
 /**
- * @brief Set the flag about image sync load in the image attachment.
+ * @brief Sets whether to load the image synchronously in the image style.
  *
  * @note All input pointer parameters must be allocated, managed, and released by the caller.
- * @param imageAttachment Pointer to the <b>OH_ArkUI_ImageAttachment</b> object.
- * @param syncLoad The flag about image sync load.
+ * @param imageAttachment Pointer to the {@link OH_ArkUI_ImageAttachment} object.
+ * @param syncLoad Whether to load images synchronously. **true** to load synchronously; **false** to load
+ *     asynchronously.
  * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ *     Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_ImageAttachment_SetSyncLoad(OH_ArkUI_ImageAttachment* imageAttachment, bool syncLoad);
  
 /**
- * @brief Get the flag about image sync load in the image attachment.
+ * @brief Obtains whether the image is loaded synchronously in the image style.
  *
  * @note All input pointer parameters must be allocated, managed, and released by the caller.
- * @param imageAttachment Pointer to the <b>OH_ArkUI_ImageAttachment</b> object.
- * @param syncLoad The flag about image sync load.
+ * @param imageAttachment Pointer to the {@link OH_ArkUI_ImageAttachment} object.
+ * @param syncLoad Pointer to the **syncLoad** parameter indicating whether the image is loaded synchronously. **true**
+ *     indicates that the image is loaded synchronously; **false** indicates that the image is loaded asynchronously.
  * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ *     Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_ImageAttachment_GetSyncLoad(const OH_ArkUI_ImageAttachment* imageAttachment, bool* syncLoad);
  
 /**
- * @brief Set the flag about image support svg in the image attachment.
+ * @brief Sets whether to enable the enhanced SVG tag parsing feature in the image style.
  *
  * @note All input pointer parameters must be allocated, managed, and released by the caller.
- * @param imageAttachment Pointer to the <b>OH_ArkUI_ImageAttachment</b> object.
- * @param supportSvg The flag about image support svg.
+ * @param imageAttachment Pointer to the {@link OH_ArkUI_ImageAttachment} object.
+ * @param supportSvg Whether to enable the enhanced SVG tag parsing feature. **true** to enable, **false** otherwise.
  * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ *     Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_ImageAttachment_SetSupportSvg(OH_ArkUI_ImageAttachment* imageAttachment, bool supportSvg);
  
 /**
- * @brief Get the flag about image support svg in the image attachment.
+ * @brief Obtains whether the enhanced SVG tag parsing feature is enabled in the image style.
  *
  * @note All input pointer parameters must be allocated, managed, and released by the caller.
- * @param imageAttachment Pointer to the <b>OH_ArkUI_ImageAttachment</b> object.
- * @param supportSvg The flag about image support svg.
+ * @param imageAttachment Pointer to the {@link OH_ArkUI_ImageAttachment} object.
+ * @param supportSvg Pointer to the **supportSvg** parameter indicating whether the enhanced SVG tag parsing feature is
+ *     enabled. **true** means the enhanced SVG tag parsing feature is enabled, and **false** means the opposite.
  * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ *     Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_ImageAttachment_GetSupportSvg(const OH_ArkUI_ImageAttachment* imageAttachment,
     bool* supportSvg);
 
 /**
- * @brief Obtains the range of content that will be replaced.
+ * @brief Obtains the range of the content to be replaced in the text change information.
  *
  * @note All input pointer parameters must be allocated, managed, and released by the caller.
- * @param event Pointer to an <b>OH_ArkUI_TextEditorChangeEvent</b> object.
- * @param start Range start offset.
- * @param end Range end offset.
+ * @param event Pointer to the {@link OH_ArkUI_TextEditorChangeEvent} object.
+ * @param start Pointer to the start index of the range of the content to be replaced.
+ * @param end Pointer to the end index of the range of the content to be replaced.
  * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} Function params is invalid.
+ *     Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} Function params is invalid.
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_TextEditorChangeEvent_GetRangeBefore(const OH_ArkUI_TextEditorChangeEvent* event,
     uint32_t* start, uint32_t* end);
 
 /**
- * @brief Obtains the styled string used for replacement.
+ * @brief Obtains the styled string used for replacement in the text change information.
  *
  * @note All input pointer parameters must be allocated, managed, and released by the caller.
- * @param event Pointer to an <b>OH_ArkUI_TextEditorChangeEvent</b> object.
- * @param descriptor Pointer to an <b>ArkUI_StyledString_Descriptor</b> object.
+ * @param event Pointer to the {@link OH_ArkUI_TextEditorChangeEvent} object.
+ * @param descriptor Pointer to the {@link ArkUI_StyledString_Descriptor} object.
  * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} Function params is invalid.
+ *     Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} Function params is invalid.
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_TextEditorChangeEvent_GetReplacementStyledString(
     const OH_ArkUI_TextEditorChangeEvent* event, ArkUI_StyledString_Descriptor* descriptor);
 
 /**
- * @brief Obtains the preview styled string.
+ * @brief Obtains the styled string of the previewed content in the text change information.
  *
  * @note All input pointer parameters must be allocated, managed, and released by the caller.
- * @param event Pointer to an <b>OH_ArkUI_TextEditorChangeEvent</b> object.
- * @param descriptor Pointer to an <b>ArkUI_StyledString_Descriptor</b> object.
+ * @param event Pointer to the {@link OH_ArkUI_TextEditorChangeEvent} object.
+ * @param descriptor Pointer to the {@link ArkUI_StyledString_Descriptor} object.
  * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} Function params is invalid.
+ *     Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} Function params is invalid.
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_TextEditorChangeEvent_GetPreviewStyledString(

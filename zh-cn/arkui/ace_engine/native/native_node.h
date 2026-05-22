@@ -26,7 +26,7 @@
 /**
  * @file native_node.h
  *
- * @brief Provides type definitions for **NativeNode** APIs.
+ * @brief 提供NativeNode接口的类型定义。
  *
  * @library libace_ndk.z.so
  * @syscap SystemCapability.ArkUI.ArkUI.Full
@@ -112,7 +112,7 @@ typedef enum {
      */
     ARKUI_NODE_CHECKBOX_GROUP = 21,
     /**
-     * Text editor.
+     * 文本编辑器。
      * @since 24
      */
     ARKUI_NODE_TEXT_EDITOR = 22,
@@ -6679,436 +6679,351 @@ typedef enum {
     NODE_CHECKBOX_GROUP_SHAPE,
 
     /**
-     * @brief Type of the **Enter** key of the **TextEditor** component. This attribute can be set, reset, and obtained
-     * as required through APIs.
-     * <br>The format of the {@link ArkUI_AttributeItem} parameter for setting the attribute and the format of the
-     * return value **ArkUI_AttributeItem** are as follows.
-     * <br>**Parameters**
-     * <br>.value[0].i32: Type of the **Enter** key. The parameter type is {@link ArkUI_EnterKeyType}. The default
-     * value is **ARKUI_ENTER_KEY_TYPE_NEW_LINE**.
-     * <br>**Returns**
-     * <br>.value[0].i32: Type of the **Enter** key. The parameter type is {@link ArkUI_EnterKeyType}.
+     * @brief TextEditor组件回车键类型，支持属性设置、属性重置和属性获取。
+     * <br>作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
+     * <br>**参数：**
+     * <br>.value[0].i32：回车键类型，参数类型{@link ArkUI_EnterKeyType}，默认值为ARKUI_ENTER_KEY_TYPE_NEW_LINE。
+     * <br>**返回：**
+     * <br>.value[0].i32：回车键类型，参数类型{@link ArkUI_EnterKeyType}。
      *
      * @since 24
      */
     NODE_TEXT_EDITOR_ENTER_KEY_TYPE = MAX_NODE_SCOPE_NUM * ARKUI_NODE_TEXT_EDITOR,
 
     /**
-     * @brief Caret color of the **TextEditor** component. This attribute can be set, reset, and obtained as required
-     * through APIs.
-     * <br>The format of the {@link ArkUI_AttributeItem} parameter for setting the attribute and the format of the
-     * return value **ArkUI_AttributeItem** are as follows.
-     * <br>**Parameters**
-     * <br>.value[0].u32: Caret color, in 0xARGB format. For example, **0xFFFF0000** indicates red.
-     * <br>**Returns**
-     * <br>.value[0].u32: Caret color, in 0xARGB format.
+     * @brief TextEditor组件光标颜色，支持属性设置、属性重置和属性获取。
+     * <br>作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
+     * <br>**参数：**
+     * <br>.value[0].u32：光标颜色，采用0xARGB格式，例如0xFFFF0000表示红色。
+     * <br>**返回：**
+     * <br>.value[0].u32：光标颜色，采用0xARGB格式。
      *
      * @since 24
      */
     NODE_TEXT_EDITOR_CARET_COLOR,
 
     /**
-     * @brief Scroll bar color of the **TextEditor** component. This attribute can be set, reset, and obtained as
-     * required through APIs.
-     * <br>The format of the {@link ArkUI_AttributeItem} parameter for setting the attribute and the format of the
-     * return value **ArkUI_AttributeItem** are as follows.
-     * <br>**Parameters**
-     * <br>.data[0].u32: Scroll bar color, in 0xARGB format.
-     * <br>**Returns**
-     * <br>.data[0].u32: Scroll bar color, in 0xARGB format.
+     * @brief TextEditor组件滚动条颜色，支持属性设置、属性重置和属性获取。
+     * <br>作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
+     * <br>**参数：**
+     * <br>.data[0].u32：滚动条颜色，采用0xARGB格式。
+     * <br>**返回：**
+     * <br>.data[0].u32：滚动条颜色，采用0xARGB格式。
      *
      * @since 24
      */
     NODE_TEXT_EDITOR_SCROLL_BAR_COLOR,
 
     /**
-     * @brief Scroll bar display mode of the **TextEditor** component. This attribute can be set, reset, and obtained
-     * as required through APIs.
-     * <br>The format of the {@link ArkUI_AttributeItem} parameter for setting the attribute and the format of the
-     * return value **ArkUI_AttributeItem** are as follows.
-     * <br>**Parameters**
-     * <br>.value[0].i32: Scroll bar display mode of the text area. The parameter type is {@link ArkUI_BarState}. The
-     * default value is **ARKUI_BAR_STATE_AUTO**.
-     * <br>**Returns**
-     * <br>.value[0].i32: Scroll bar display mode of the text area. The parameter type is {@link ArkUI_BarState}.
+     * @brief TextEditor组件滚动条显示模式，支持属性设置、属性重置和属性获取。
+     * <br>作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
+     * <br>**参数：**
+     * <br>.value[0].i32：文本区域的滚动条显示模式，参数类型{@link ArkUI_BarState}，默认值为ARKUI_BAR_STATE_AUTO。
+     * <br>**返回：**
+     * <br>.value[0].i32：文本区域的滚动条显示模式，参数类型{@link ArkUI_BarState}。
      *
      * @since 24
      */
     NODE_TEXT_EDITOR_BAR_STATE,
 
     /**
-     * @brief Whether to enable text entity recognition for the **TextEditor** component. This attribute can be set,
-     * reset, and obtained as required through APIs.
-     * <br>The format of the {@link ArkUI_AttributeItem} parameter for setting the attribute and the format of the
-     * return value **ArkUI_AttributeItem** are as follows.
-     * <br>**Parameters**
-     * <br>.value[0].i32: Whether to enable text entity recognition. The value **1** indicates to enable text entity
-     * recognition, and **0** indicates the opposite. The default value is **0**.
-     * <br>**Returns**
-     * <br>.value[0].i32: Whether text entity recognition is enabled.
+     * @brief TextEditor组件文本实体识别功能开关，支持属性设置、属性重置和属性获取。
+     * <br>作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
+     * <br>**参数：**
+     * <br>.value[0].i32：是否启用文本实体识别功能，0表示禁用，1表示启用，默认值为0。
+     * <br>**返回：**
+     * <br>.value[0].i32：是否启用了文本实体识别功能。
      *
      * @since 24
      */
     NODE_TEXT_EDITOR_ENABLE_DATA_DETECTOR,
 
     /**
-     * @brief Recognition configuration for the **TextEditor** component. This attribute can be set and reset as
-     * required through APIs.
-     * <br>The format of the {@link ArkUI_AttributeItem} parameter for setting the attribute is as follows.
-     * <br>**Parameters**
-     * <br>.object: Recognition configuration. The parameter type is {@link ArkUI_TextDataDetectorConfig}.
+     * @brief TextEditor组件识别配置，支持属性设置和属性重置。
+     * <br>作为属性设置方法参数{@link ArkUI_AttributeItem}格式如下。
+     * <br>**参数：**
+     * <br>.object：识别配置，参数类型{@link ArkUI_TextDataDetectorConfig}。
      * 
      * @since 24
      */
     NODE_TEXT_EDITOR_DATA_DETECTOR_CONFIG,
 
     /**
-     * @brief Extended menu options for the **TextEditor** component. This attribute can be set and reset as required
-     * through APIs.
-     * <br>The format of the {@link ArkUI_AttributeItem} parameter for setting the attribute is as follows.
-     * <br>**Parameters**
-     * <br>.object: Extended menu options. The parameter type is {@link ArkUI_TextEditMenuOptions}.
+     * @brief TextEditor组件扩展菜单选项，支持属性设置和属性重置。
+     * <br>作为属性设置方法参数{@link ArkUI_AttributeItem}格式如下。
+     * <br>**参数：**
+     * <br>.object：扩展菜单选项，参数类型{@link ArkUI_TextEditMenuOptions}。
      *
      * @since 24
      */
     NODE_TEXT_EDITOR_EDIT_MENU_OPTIONS,
 
     /**
-     * @brief Placeholder options when there is no input for the **TextEditor** component. This attribute can be set
-     * and reset as required through APIs.
-     * <br>The format of the {@link ArkUI_AttributeItem} parameter for setting the attribute is as follows.
-     * <br>**Parameters**
-     * <br>.object: Placeholder options when there is no input. The parameter type is
-     * {@link ArkUI_TextEditorPlaceholderOptions}.
+     * @brief TextEditor组件无输入时的提示文本选项，支持属性设置和属性重置。
+     * <br>作为属性设置方法参数{@link ArkUI_AttributeItem}格式如下。
+     * <br>**参数：**
+     * <br>.object：无输入时的提示文本选项，参数类型{@link ArkUI_TextEditorPlaceholderOptions}。
      *
      * @since 24
      */
     NODE_TEXT_EDITOR_PLACEHOLDER,
 
     /**
-     * @brief Styled string controller of the **TextEditor** component. This attribute can be set as required through
-     * APIs.
-     * <br>The format of the {@link ArkUI_AttributeItem} parameter for setting the attribute is as follows.
-     * <br>**Parameters**
-     * <br>.object: Styled string controller. The parameter type is {@link ArkUI_TextEditorStyledStringController}.
+     * @brief TextEditor组件属性字符串控制器，支持属性设置。
+     * <br>作为属性设置方法参数{@link ArkUI_AttributeItem}格式如下。
+     * <br>**参数：**
+     * <br>.object：属性字符串控制器，参数类型{@link ArkUI_TextEditorStyledStringController}。
      *
      * @since 24
      */
     NODE_TEXT_EDITOR_STYLED_STRING_CONTROLLER,
 
     /**
-     * @brief Whether to enable preview text for the **TextEditor** component. This attribute can be set, reset, and
-     * obtained as required through APIs.
-     * <br>The format of the {@link ArkUI_AttributeItem} parameter for setting the attribute and the format of the
-     * return value **ArkUI_AttributeItem** are as follows.
-     * <br>**Parameters**
-     * <br>.value[0].i32: Whether to enable preview text. The value **1** indicates to enable preview text, and **0**
-     * indicates the opposite. The default value is **1**.
-     * <br>**Returns**
-     * <br>.value[0].i32: Whether preview text is enabled. The value **1** indicates preview text is enabled, and **0**
-     * indicates the opposite.
+     * @brief TextEditor组件预上屏功能开关，支持属性设置、属性重置和属性获取。
+     * <br>作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
+     * <br>**参数：**
+     * <br>.value[0].i32：是否启用预上屏功能，0表示禁用，1表示启用，默认值为1。
+     * <br>**返回：**
+     * <br>.value[0].i32：是否启用预上屏功能，0表示禁用，1表示启用。
      *
      * @since 24
      */
     NODE_TEXT_EDITOR_ENABLE_PREVIEW_TEXT,
 
     /**
-     * @brief **TextLayoutManager** of the **TextEditor** component. This attribute can be obtained as required through
-     * APIs.
-     * <br>The format of the return value {@link ArkUI_AttributeItem} is as follows.
-     * <br>**Returns**
-     * <br>.object: Layout manager. The parameter type is {@link ArkUI_TextLayoutManager}.
+     * @brief TextEditor组件TextLayoutManager获取，支持属性获取。
+     * <br>作为属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
+     * <br>**返回：**
+     * <br>.object：布局管理器，参数类型{@link ArkUI_TextLayoutManager}。
      *
      * @since 24
      */
     NODE_TEXT_EDITOR_LAYOUT_MANAGER,
 
     /**
-      * @brief Whether to enable the AI menu for text selection and recognition of the **TextEditor** component. This
-      * attribute can be set, reset, and obtained as required through APIs.
-      * <br>The format of the {@link ArkUI_AttributeItem} parameter for setting the attribute and the format of the
-      * return value **ArkUI_AttributeItem** are as follows.
-      * <br>**Parameters**
-      * <br>.value[0].i32: Whether to enable the AI menu for text selection and recognition. The value **1** means to
-      * enable, and **0** means the opposite. The default value is **1**.
-      * <br>**Returns**
-      * <br>.value[0].i32: Whether the AI menu is enabled for text selection and recognition.
+      * @brief TextEditor组件文本选择识别AI菜单开关，支持属性设置、属性重置和属性获取。
+      * <br>作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
+      * <br>**参数：**
+      * <br>.value[0].i32：是否启用文本选择识别的AI菜单，0表示禁用，1表示启用，默认值为1。
+      * <br>**返回：**
+      * <br>.value[0].i32：是否启用了文本选择识别的AI菜单。
       *
       * @since 24
       */
     NODE_TEXT_EDITOR_ENABLE_SELECTED_DATA_DETECTOR,
 
     /**
-     * @brief Background color of the selected content in the **TextEditor** component. This attribute can be set,
-     * reset, and obtained as required through APIs.
-     * <br>The format of the {@link ArkUI_AttributeItem} parameter for setting the attribute and the format of the
-     * return value **ArkUI_AttributeItem** are as follows.
-     * <br>**Parameters**
-     * <br>.data[0].u32: Background color of the selected content, in 0xARGB format.
-     * <br>**Returns**
-     * <br>.data[0].u32: Background color of the selected content, in 0xARGB format.
+     * @brief TextEditor组件选中内容背景颜色，支持属性设置、属性重置和属性获取。
+     * <br>作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
+     * <br>**参数：**
+     * <br>.data[0].u32：选中内容的背景颜色，采用0xARGB格式。
+     * <br>**返回：**
+     * <br>.data[0].u32：选中内容的背景颜色，采用0xARGB格式。
      *
      * @since 24
      */
     NODE_TEXT_EDITOR_SELECTED_BACKGROUND_COLOR,
 
     /**
-     * @brief Whether to enable the input method when the focus is obtained in a way other than by clicking in the **
-     * TextEditor** component. This attribute can be set, reset, and obtained as required through APIs.
-     * <br>The format of the {@link ArkUI_AttributeItem} parameter for setting the attribute and the format of the
-     * return value **ArkUI_AttributeItem** are as follows.
-     * <br>**Parameters**
-     * <br>.value[0].i32: Whether to enable the input method when the focus is obtained in a way other than clicking.
-     * The value **1** means to enable, and **0** means the opposite. The default value is **1**.
-     * <br>**Returns**
-     * <br>.value[0].i32: Whether the input method is enabled when the focus is obtained in a way other than clicking.
-     * The value **1** indicates the input method is enabled, and **0** indicates the input method is disabled.
+     * @brief TextEditor组件非点击获焦时拉起输入法开关，支持属性设置、属性重置和属性获取。
+     * <br>作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
+     * <br>**参数：**
+     * <br>.value[0].i32：非点击获焦时是否拉起输入法，0表示不拉起，1表示拉起，默认值为1。
+     * <br>**返回：**
+     * <br>.value[0].i32：非点击获焦时是否拉起输入法，0表示不拉起，1表示拉起。
      *
      * @since 24
      */
     NODE_TEXT_EDITOR_ENABLE_KEYBOARD_ON_FOCUS,
 
     /**
-     * @brief Maximum number of characters in the **TextEditor** component. This attribute can be set, reset, and
-     * obtained as required through APIs.
-     * <br>The format of the {@link ArkUI_AttributeItem} parameter for setting the attribute and the format of the
-     * return value **ArkUI_AttributeItem** are as follows.
-     * <br>**Parameters**
-     * <br>.value[0].i32: Maximum number of characters.
-     * <br>**Returns**
-     * <br>.value[0].i32: Maximum number of characters.
+     * @brief TextEditor组件最大字符数，支持属性设置、属性重置和属性获取。
+     * <br>作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
+     * <br>**参数：**
+     * <br>.value[0].i32：最大字符数。
+     * <br>**返回：**
+     * <br>.value[0].i32：最大字符数。
      *
      * @since 24
      */
     NODE_TEXT_EDITOR_MAX_LENGTH,
 
     /**
-     * @brief Maximum number of lines in the **TextEditor** component. This attribute can be set, reset, and obtained
-     * as required through APIs.
-     * <br>The format of the {@link ArkUI_AttributeItem} parameter for setting the attribute and the format of the
-     * return value **ArkUI_AttributeItem** are as follows.
-     * <br>**Parameters**
-     * <br>.value[0].i32: Maximum number of lines in the text editor.
-     * <br>**Returns**
-     * <br>.value[0].i32: Maximum number of lines in the text editor.
+     * @brief TextEditor组件内容最大行数，支持属性设置、属性重置和属性获取。
+     * <br>作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
+     * <br>**参数：**
+     * <br>.value[0].i32：文本编辑器中内容的最大行数。
+     * <br>**返回：**
+     * <br>.value[0].i32：文本编辑器中内容的最大行数。
      *
      * @since 24
      */
     NODE_TEXT_EDITOR_MAX_LINES,
 
     /**
-     * @brief Whether to enable haptic feedback of the **TextEditor** component. This attribute can be set, reset, and
-     * obtained as required through APIs.
-     * <br>The format of the {@link ArkUI_AttributeItem} parameter for setting the attribute and the format of the
-     * return value **ArkUI_AttributeItem** are as follows.
-     * <br>**Parameters**
-     * <br>.value[0].i32: Whether to enable haptic feedback in the text editor. The value **1** means to enable, and **
-     * 0** means the opposite. The default value is **1**.
-     * <br>**Returns**
-     * <br>.value[0].i32: Whether haptic feedback is enabled. The value **1** indicates haptic feedback is enabled, and
-     * **0** indicates the opposite.
+     * @brief TextEditor组件触觉反馈开关，支持属性设置、属性重置和属性获取。
+     * <br>作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
+     * <br>**参数：**
+     * <br>.value[0].i32：是否在文本编辑器中启用触觉反馈，0表示不启用，1表示启用，默认值为1。
+     * <br>**返回：**
+     * <br>.value[0].i32：是否启用了触觉反馈，0表示不启用，1表示启用。
      *
      * @since 24
      */
     NODE_TEXT_EDITOR_ENABLE_HAPTIC_FEEDBACK,
 
     /**
-     * @brief Copy options of the **TextEditor** component, which can be set, reset, and obtained as required through
-     * APIs.
-     * <br>The format of the {@link ArkUI_AttributeItem} parameter for setting the attribute and the format of the
-     * return value **ArkUI_AttributeItem** are as follows.
-     * <br>**Parameters**
-     * <br>.value[0].i32: Copy options. The parameter type is {@link ArkUI_CopyOptions}. The default value is **
-     * ARKUI_COPY_OPTIONS_LOCAL_DEVICE**.
-     * <br>**Returns**
-     * <br>.value[0].i32: Copy options. The parameter type is {@link ArkUI_CopyOptions}.
+     * @brief TextEditor组件复制选项，支持属性设置、属性重置和属性获取。
+     * <br>作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
+     * <br>**参数：**
+     * <br>.value[0].i32：复制选项，参数类型{@link ArkUI_CopyOptions}，默认值为ARKUI_COPY_OPTIONS_LOCAL_DEVICE。
+     * <br>**返回：**
+     * <br>.value[0].i32：复制选项，参数类型{@link ArkUI_CopyOptions}。
      *
      * @since 24
      */
     NODE_TEXT_EDITOR_COPY_OPTIONS,
 
     /**
-    * @brief Keyboard appearance of the **TextEditor** component. This attribute can be set, reset, and obtained as
-    * required through APIs.
-    * <br>The format of the {@link ArkUI_AttributeItem} parameter for setting the attribute and the format of the
-    * return value **ArkUI_AttributeItem** are as follows.
-    * <br>**Parameters**
-    * <br>.value[0].i32: Appearance of the keyboard. The parameter type is {@link ArkUI_KeyboardAppearance}. The
-    * default value is **ARKUI_KEYBOARD_APPEARANCE_NONE_IMMERSIVE**.
-    * <br>**Returns**
-    * <br>.value[0].i32: Appearance of the keyboard. The parameter type is {@link ArkUI_KeyboardAppearance}.
+    * @brief TextEditor组件键盘外观，支持属性设置、属性重置和属性获取。
+    * <br>作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
+    * <br>**参数：**
+    * <br>.value[0].i32：键盘外观，参数类型{@link ArkUI_KeyboardAppearance}，默认值为ARKUI_KEYBOARD_APPEARANCE_NONE_IMMERSIVE。
+    * <br>**返回：**
+    * <br>.value[0].i32：键盘外观，参数类型{@link ArkUI_KeyboardAppearance}。
     *
     * @since 24
     */
     NODE_TEXT_EDITOR_KEYBOARD_APPEARANCE,
 
     /**
-     * @brief Whether the **TextEditor** component blocks the propagation of return events. This attribute can be set,
-     * reset, and obtained as required through APIs.
-     * <br>The format of the {@link ArkUI_AttributeItem} parameter for setting the attribute and the format of the
-     * return value **ArkUI_AttributeItem** are as follows.
-     * <br>**Parameters**
-     * <br>.value[0].i32: Whether to block the propagation of return events. The value **1** indicates to block, and **
-     * 0** indicates the opposite. The default value is **0**.
-     * <br>**Returns**
-     * <br>.value[0].i32: Whether the propagation of return events is blocked. The value **1** indicates that the
-     * propagation of return events is blocked, and **0** indicates the opposite.
+     * @brief TextEditor组件是否阻止返回事件传播，支持属性设置、属性重置和属性获取。
+     * <br>作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
+     * <br>**参数：**
+     * <br>.value[0].i32：是否阻止返回事件传播，0表示不阻止，1表示阻止，默认值为0。
+     * <br>**返回：**
+     * <br>.value[0].i32：是否阻止返回事件传播，0表示不阻止，1表示阻止。
      *
      * @since 24
      */
     NODE_TEXT_EDITOR_STOP_BACK_PRESS,
 
     /**
-     * @brief Whether to enable automatic spacing for Chinese and Western characters in the **TextEditor** component.
-     * This attribute can be set, reset, and obtained as required through APIs.
-     * <br>The format of the {@link ArkUI_AttributeItem} parameter for setting the attribute and the format of the
-     * return value **ArkUI_AttributeItem** are as follows.
-     * <br>**Parameters**
-     * <br>.value[0].i32: Whether to enable automatic spacing. The value **1** means to enable, and **0** means the
-     * opposite. The default value is **0**.
-     * <br>**Returns**
-     * <br>.value[0].i32: Whether automatic spacing is enabled. The value **1** indicates automatic spacing is enabled,
-     * and **0** indicates the opposite.
+     * @brief TextEditor组件中西文自动间距开关，支持属性设置、属性重置和属性获取。
+     * <br>作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
+     * <br>**参数：**
+     * <br>.value[0].i32：是否启用自动间距，0表示不启用，1表示启用，默认值为0。
+     * <br>**返回：**
+     * <br>.value[0].i32：是否启用自动间距，0表示不启用，1表示启用。
      *
      * @since 24
      */
     NODE_TEXT_EDITOR_ENABLE_AUTO_SPACING,
 
     /**
-     * @brief Custom keyboard of the **TextEditor** component. This attribute can be set, reset, and obtained as
-     * required through APIs.
-     * <br>The format of the {@link ArkUI_AttributeItem} parameter for setting the attribute and the format of the
-     * return value **ArkUI_AttributeItem** are as follows.
-     * <br>**Parameters**
-     * <br>.object: Custom keyboard. The parameter type is {@link ArkUI_NodeHandle}.
-     * <br>.value[0]?.i32: Whether the custom keyboard supports avoidance. The value **0** indicates no, and the value *
-     * *1** indicates yes. The default value is **0**.
-     * <br>**Returns**
-     * <br>.object: Custom keyboard. The parameter type is {@link ArkUI_NodeHandle}.
-     * <br>.value[0].i32: Whether the custom keyboard supports avoidance. The value **0** indicates no, and the value **
-     * 1** indicates yes.
+     * @brief TextEditor组件自定义键盘，支持属性设置、属性重置和属性获取。
+     * <br>作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
+     * <br>**参数：**
+     * <br>.object：自定义键盘，参数类型{@link ArkUI_NodeHandle}。
+     * <br>.value[0]?.i32：设置自定义键盘是否支持避让功能，0表示不支持，1表示支持，默认值为0。
+     * <br>**返回：**
+     * <br>.object：自定义键盘，参数类型{@link ArkUI_NodeHandle}。
+     * <br>.value[0].i32：设置自定义键盘是否支持避让功能，0表示不支持，1表示支持。
      *
      * @since 24
      */
     NODE_TEXT_EDITOR_CUSTOM_KEYBOARD,
 
     /**
-     * @brief Binds the custom text selection menu of the **TextEditor** component. This attribute can be set and reset
-     * as required through APIs.
-     * <br>The format of the {@link ArkUI_AttributeItem} parameter for setting the attribute is as follows.
-     * <br>**Parameters**
-     * <br>.object: Text selection menu. The parameter type is {@link ArkUI_TextEditorSelectionMenuOptions}.
+     * @brief TextEditor组件自定义文本选择菜单绑定，支持属性设置和属性重置。
+     * <br>作为属性设置方法参数{@link ArkUI_AttributeItem}格式如下。
+     * <br>**参数：**
+     * <br>.object：文本选择菜单，参数类型{@link ArkUI_TextEditorSelectionMenuOptions}。
      *
      * @since 24
      */
     NODE_TEXT_EDITOR_BIND_SELECTION_MENU,
 
     /**
-     * @brief Whether to add spacing to the first and last lines of the **TextEditor** component to prevent text
-     * truncation. This attribute can be set, reset, and obtained as required through APIs.
-     * <br>The format of the {@link ArkUI_AttributeItem} parameter for setting the attribute and the format of the
-     * return value **ArkUI_AttributeItem** are as follows.
-     * <br>**Parameters**
-     * <br>.value[0].i32: Whether to add spacing. The value **1** means to add spacing, and **0** means not to add
-     * spacing. The default value is **0**.
-     * <br>**Returns**
-     * <br>.value[0].i32: Whether spacing is added. The value **1** means that spacing is added, and **0** means
-     * spacing is not added.
+     * @brief TextEditor组件首行末行防截断间距开关，支持属性设置、属性重置和属性获取。
+     * <br>作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
+     * <br>**参数：**
+     * <br>.value[0].i32：是否添加间距，0表示不添加，1表示添加，默认值为0。
+     * <br>**返回：**
+     * <br>.value[0].i32：是否添加间距，0表示不添加，1表示添加。
      *
      * @since 24
      */
     NODE_TEXT_EDITOR_INCLUDE_FONT_PADDING,
 
     /**
-     * @brief Whether to enable line height adaptation of the **TextEditor** component. This attribute can be set,
-     * reset, and obtained as required through APIs.
-     * <br>The format of the {@link ArkUI_AttributeItem} parameter for setting the attribute and the format of the
-     * return value **ArkUI_AttributeItem** are as follows.
-     * <br>**Parameters**
-     * <br>.value[0].i32: Whether to enable line height adaptation. The value **1** means to enable, and **0** means
-     * the opposite. The default value is **0**.
-     * <br>**Returns**
-     * <br>.value[0].i32: Whether line height adaptation is enabled. The value **1** means line height adaptation is
-     * enabled, and **0** means the opposite.
+     * @brief TextEditor组件行高自适应开关，支持属性设置、属性重置和属性获取。
+     * <br>作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
+     * <br>**参数：**
+     * <br>.value[0].i32：行高是否自适应，0表示不自适应，1表示自适应，默认值为0。
+     * <br>**返回：**
+     * <br>.value[0].i32：行高是否自适应，0表示不自适应，1表示自适应。
      *
      * @since 24
      */
     NODE_TEXT_EDITOR_FALLBACK_LINE_SPACING,
 
     /**
-     * @brief Whether to enable punctuation compression for the beginning of a line in the **TextEditor** component.
-     * This attribute can be set, reset, and obtained as required through APIs.
-     * <br>The format of the {@link ArkUI_AttributeItem} parameter for setting the attribute and the format of the
-     * return value **ArkUI_AttributeItem** are as follows.
-     * <br>**Parameters**
-     * <br>.value[0].i32: Whether to enable punctuation compression. The value **1** means to enable, and **0** means
-     * the opposite. The default value is **0**.
-     * <br>**Returns**
-     * <br>.value[0].i32: Whether punctuation compression is enabled. The value **1** means punctuation compression is
-     * enabled, and **0** means the opposite.
+     * @brief TextEditor组件行首标点符号压缩开关，支持属性设置、属性重置和属性获取。
+     * <br>作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
+     * <br>**参数：**
+     * <br>.value[0].i32：是否启用标点符号压缩，0表示不启用，1表示启用，默认值为0。
+     * <br>**返回：**
+     * <br>.value[0].i32：是否启用标点符号压缩，0表示不启用，1表示启用。
      *
      * @since 24
      */
     NODE_TEXT_EDITOR_COMPRESS_LEADING_PUNCTUATION,
 
     /**
-     * @brief Selected drag preview style of the **TextEditor** component. This attribute can be set, reset, and
-     * obtained as required through APIs.
-     * <br>The format of the {@link ArkUI_AttributeItem} parameter for setting the attribute and the format of the
-     * return value **ArkUI_AttributeItem** are as follows.
-     * <br>**Parameters**
-     * <br>.object: Selected drag preview style configuration. The parameter type is
-     * {@link ArkUI_SelectedDragPreviewStyle}.
-     * <br>**Returns**
-     * <br>.object: Selected drag preview style configuration. The parameter type is
-     * {@link ArkUI_SelectedDragPreviewStyle}.
+     * @brief TextEditor组件选中拖拽预览样式，支持属性设置、属性重置和属性获取。
+     * <br>作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
+     * <br>**参数：**
+     * <br>.object：选中拖拽预览样式配置，参数类型{@link ArkUI_SelectedDragPreviewStyle}。
+     * <br>**返回：**
+     * <br>.object：选中拖拽预览样式配置，参数类型{@link ArkUI_SelectedDragPreviewStyle}。
      * 
      * @since 24
      */
     NODE_TEXT_EDITOR_SELECTED_DRAG_PREVIEW_STYLE,
 
     /**
-     * @brief Whether to enable single-line mode for the **TextEditor** component. This attribute can be set, reset,
-     * and obtained as required through APIs.
-     * <br>The format of the {@link ArkUI_AttributeItem} parameter for setting the attribute and the format of the
-     * return value **ArkUI_AttributeItem** are as follows.
-     * <br>**Parameters**
-     * <br>.value[0].i32: Whether to enable single-line mode. The value **1** means to enable, and **0** means the
-     * opposite. The default value is **0**.
-     * <br>**Returns**
-     * <br>.value[0].i32: Whether single-line mode is enabled. The value **1** means single-line mode is enabled, and **
-     * 0** means the opposite.
+     * @brief TextEditor组件单行模式开关，支持属性设置、属性重置和属性获取。
+     * <br>作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
+     * <br>**参数：**
+     * <br>.value[0].i32：是否启用单行模式，0表示不启用，1表示启用，默认值为0。
+     * <br>**返回：**
+     * <br>.value[0].i32：是否启用单行模式，0表示不启用，1表示启用。
      * 
      * @since 24
      */
     NODE_TEXT_EDITOR_SINGLE_LINE,
 
     /**
-     * @brief Sets whether to enable orphan character optimization for text layout in **TextEditor**. After setting,
-     * text layout is improved by more efficiently handling orphan characters (the first character of the last line of a paragraph).
-     * When enabled, it adjusts line break points to avoid orphan characters as much as possible.
-     * The orphan character optimization feature only works when {@link ArkUI_WordBreak} is not **ARKUI_WORD_BREAK_BREAK_ALL**.
-     * <br>The format of the {@link ArkUI_AttributeItem} parameter for setting the attribute and the format of the
-     * return value **ArkUI_AttributeItem** are as follows.
-     * <br>**Parameters**
-     * <br>.value[0].i32: Whether to enable. The value **1** means to enable, and **0** means the opposite. The default value is **0**.
-     * <br>**Returns**
-     * <br>.value[0].i32: Whether orphan character optimization is enabled.
+     * @brief 设置TextEditor文本排版时是否使能孤字优化，设置后，通过更高效地处理孤立字符（段落尾行首字符）来改善文本布局。使能后，它会调整换行点以尽可能避免孤立字符。
+     * 孤字优化特性需在{@link ArkUI_WordBreak}属性为非ARKUI_WORD_BREAK_BREAK_ALL时生效。
+     * <br>作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
+     * <br>**参数：**
+     * <br>.value[0].i32：是否使能，1表示使能，0表示不使能。默认值为0。
+     * <br>**返回：**
+     * <br>.value[0].i32：是否使能孤字优化。
      *
      * @since 26.0.0
      */
      NODE_TEXT_EDITOR_ORPHAN_CHAR_OPTIMIZATION,
 
     /**
-     * @brief Sets whether to enable horizontal scrolling for the **TextEditor** component when the text width exceeds
-     * the content area width. This attribute can be set, reset, and obtained as required through APIs.
-     * <br>The format of the {@link ArkUI_AttributeItem} parameter for setting the attribute and the format of the
-     * return value **ArkUI_AttributeItem** are as follows.
-     * <br>**Parameters**
-     * <br>.value[0].i32: Whether to enable horizontal scrolling. The value **1** means to enable, and **0** means the
-     * opposite. The default value is **0**.
-     * <br>**Returns**
-     * <br>.value[0].i32: Whether horizontal scrolling is enabled.
+     * @brief 设置TextEditor组件在文本宽度超过内容区宽度时是否启用水平滚动，支持属性设置，属性重置和属性获取。
+     * <br>作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
+     * <br>**参数：**
+     * <br>.value[0].i32：是否启用水平滚动。1表示启用水平滚动，0表示不启用水平滚动。默认值为0。
+     * <br>**返回：**
+     * <br>.value[0].i32：是否启用水平滚动。
      *
      * @since 26.0.0
      */
@@ -7907,55 +7822,6 @@ typedef enum {
      * @since 26.0.0
      */
     NODE_LIST_BACK_PRESS_BEHAVIOR = 1003020,
-
-    /**
-     * @brief Defines whether the <b>List</b> component enables edit mode.
-     * When set to <b>1</b> (editable), checkboxes are displayed by default and
-     * single-finger sliding multi-selection is available within the edit mode.
-     * When the edit mode state changes, the {@link NODE_LIST_ON_EDIT_MODE_CHANGE}
-     * event callback is triggered. The state can be changed in two ways:
-     * 1. Directly setting this attribute.
-     * 2. Triggered via two-finger sliding gesture when
-     * {@link NODE_LIST_EDIT_MODE_OPTIONS} has two-finger sliding multi-selection enabled
-     * and the {@link NODE_LIST_ON_EDIT_MODE_CHANGE} callback is registered.
-     * This attribute can be set, reset, and obtained as required through APIs.
-     *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:
-     * .value[0].i32: Whether the <b>List</b> component enables edit mode.
-     * <b>0</b>: Not editable. <b>1</b>: Editable. Default value: <b>0</b>.
-     *
-     * Format of the return value {@link ArkUI_AttributeItem}:
-     * .value[0].i32: Whether the <b>List</b> component enables edit mode.
-     * <b>0</b>: Not editable. <b>1</b>: Editable.
-     *
-     * @since 26.0.0
-     */
-    NODE_LIST_ENABLE_EDIT_MODE = 1003021,
-
-    /**
-     * @brief List component edit mode option configuration.
-     * This attribute can be set, reset, and obtained as required through APIs.
-     *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: Whether List component uses default multi-selection style.
-     * When using default multi-selection style, List displays checkboxes after entering edit mode.
-     * 0: Do not use default style, 1: Use default style. Default value: 1
-     * .value[1].i32: Whether List component enables two-finger swipe multi-selection.
-     * This parameter takes effect after registering {@link NODE_LIST_ON_EDIT_MODE_CHANGE} event callback.
-     * 0: Two-finger swipe gesture cannot make List enter edit mode, but after entering edit mode through other means,
-     * single-finger swipe multi-selection in edit mode is not affected.
-     * 1: Two-finger swipe gesture can make List enter edit mode from non-edit mode and perform swipe multi-selection.
-     * Default value: 1
-     *
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: Whether List component uses default multi-selection style.
-     * 0: Do not use default style, 1: Use default style.
-     * .value[1].i32: Whether List component enables two-finger swipe multi-selection.
-     * 0: Not enabled, 1: Enabled.
-     *
-     * @since 26.0.0
-     */
-    NODE_LIST_EDIT_MODE_OPTIONS = 1003022,
 
     /**
      * @brief Defines whether to enable loop playback for the swiper.
@@ -9101,7 +8967,7 @@ typedef enum {
     /**
      * @brief Specifies whether to enable mouse-based multi-selection in the <b>Grid</b> container. This attribute can
      * be set, reset, and obtained as required through APIs. When enabled, mouse-based multi-selection within the
-     * <b>Grid</b> area triggers the <b>NODE_GRID_ITEM_ON_SELECT</b> event on <b>GridItem</b> components.
+     * <b>Grid</b> area triggers the <b>NODE_GRID_ITEM_EVENT_ON_SELECT</b> event on <b>GridItem</b> components.
      *
      * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
      * .value[0].i32: whether to enable mouse-based multi-selection.
@@ -9153,55 +9019,6 @@ typedef enum {
      * @since 23
      */
     NODE_GRID_SUPPORT_EMPTY_BRANCH_IN_LAZY_LOADING = 1013015,
-
-    /**
-     * @brief Defines whether the <b>Grid</b> component enables edit mode.
-     * When set to <b>1</b> (editable), checkboxes are displayed by default and
-     * single-finger sliding multi-selection is available within the edit mode.
-     * When the edit mode state changes, the {@link NODE_GRID_ON_EDIT_MODE_CHANGE}
-     * event callback is triggered. The state can be changed in two ways:
-     * 1. Directly setting this attribute.
-     * 2. Triggered via two-finger sliding gesture when
-     * {@link NODE_GRID_EDIT_MODE_OPTIONS} has two-finger sliding multi-selection enabled
-     * and the {@link NODE_GRID_ON_EDIT_MODE_CHANGE} callback is registered.
-     * This attribute can be set, reset, and obtained as required through APIs.
-     *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: Whether the <b>Grid</b> component enables edit mode.
-     * <b>0</b>: Not editable. <b>1</b>: Editable. Default value: <b>0</b>.\n
-     *
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: Whether the <b>Grid</b> component enables edit mode.
-     * <b>0</b>: Not editable. <b>1</b>: Editable.\n
-     *
-     * @since 26.0.0
-      */
-    NODE_GRID_ENABLE_EDIT_MODE = 1013016,
-
-    /**
-     * @brief Defines the edit mode options for the <b>Grid</b> component.
-     * This attribute can be set, reset, and obtained as required through APIs.
-     *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:
-     * .value[0].i32: Whether the <b>Grid</b> component uses default multi-selection style.
-     * When using default multi-selection style, <b>Grid</b> displays checkboxes after entering edit mode.
-     * <b>0</b>: Do not use the default style, <b>1</b>: Use the default style. Default value: <b>1</b>
-     * .value[1].i32: Whether the <b>Grid</b> component enables two-finger sliding multi-selection.
-     * This parameter takes effect after registering {@link NODE_GRID_ON_EDIT_MODE_CHANGE} event callback.
-     * <b>0</b>: Two-finger sliding gesture cannot make <b>Grid</b> enter edit mode, but after entering
-     * edit mode through other means, single-finger sliding multi-selection in edit mode is not affected.
-     * <b>1</b>: Two-finger sliding gesture can make <b>Grid</b> enter edit mode from non-edit mode and
-     * perform sliding multi-selection. Default value: <b>1</b>
-     *
-     * Format of the return value {@link ArkUI_AttributeItem}:
-     * .value[0].i32: Whether the <b>Grid</b> component uses the default multi-selection style.
-     * <b>0</b>: Do not use the default style. <b>1</b>: Use the default style.
-     * .value[1].i32: Whether the <b>Grid</b> component enables two-finger sliding multi-selection.
-     * <b>0</b>: Disabled. <b>1</b>: Enabled.
-     *
-     * @since 26.0.0
-     */
-    NODE_GRID_EDIT_MODE_OPTIONS = 1013017,
 
     /**
      * @brief Sets the style of the <b>GridItem</b> component.
@@ -9448,7 +9265,7 @@ typedef struct {
 } ArkUI_TextChangeEvent;
 
 /**
- * @brief Defines a struct for the text content change event of the **TextEditor** component.
+ * @brief 定义TextEditor组件文本内容变化事件的结构体。
  *
  * @since 24
  */
@@ -10677,112 +10494,96 @@ typedef enum {
     NODE_CHECKBOX_GROUP_EVENT_ON_CHANGE = MAX_NODE_SCOPE_NUM * ARKUI_NODE_CHECKBOX_GROUP,
 
     /**
-     * @brief Event triggered when the selection or cursor position in the **TextEditor** component changes.
-     * <br>When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
-     * {@link ArkUI_NodeComponentEvent}.
-     * <br>{@link ArkUI_NodeComponentEvent} contains the following parameters:
-     * <br>**ArkUI_NodeComponentEvent.data[0].i32**: start index of the selection.
-     * <br>**ArkUI_NodeComponentEvent.data[1].i32**: end index of the selection.
+     * @brief 定义TextEditor组件中选区或光标位置发生变化时触发的事件。
+     * <br>事件回调触发时，{@link ArkUI_NodeEvent}对象中的联合体类型为{@link ArkUI_NodeComponentEvent}。
+     * <br>{@link ArkUI_NodeComponentEvent}包含两个参数：
+     * <br><b>ArkUI_NodeComponentEvent.data[0].i32</b>：选区起始索引。
+     * <br><b>ArkUI_NodeComponentEvent.data[1].i32</b>：选区结束索引。
      *
      * @since 24
      */
     NODE_TEXT_EDITOR_ON_SELECTION_CHANGE = MAX_NODE_SCOPE_NUM * ARKUI_NODE_TEXT_EDITOR,
 
     /**
-     * @brief Event triggered when the first initialization of the **TextEditor** component is complete.
-     * <br>When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
-     * {@link ArkUI_NodeComponentEvent}.
+     * @brief 定义TextEditor组件首次初始化完成时触发的事件。
+     * <br>事件回调触发时，{@link ArkUI_NodeEvent}对象中的联合体类型为{@link ArkUI_NodeComponentEvent}。
      *
      * @since 24
      */
     NODE_TEXT_EDITOR_ON_READY,
 
     /**
-     * @brief Event triggered when the **TextEditor** component pastes content.
-     * <br>The system determines whether to intercept the default behavior of the component based on the return value
-     * of the callback function.
-     * <br>You can use {@link OH_ArkUI_NodeEvent_SetReturnNumberValue} to set the return value.
-     * <br>**value.i32**: whether to intercept the default behavior of the component, with the index of **0**.
-     * <br>**0**: not intercept. **1**: intercept.
+     * @brief 定义TextEditor组件执行粘贴时触发的事件。
+     * <br>系统会根据回调函数返回值判断是否拦截组件的默认行为。
+     * <br>可通过{@link OH_ArkUI_NodeEvent_SetReturnNumberValue}设置返回值。
+     * <br>返回值中索引为0的value.i32表示是否拦截组件的默认行为。
+     * <br>0：不拦截。1：拦截。
      *
      * @since 24
      */
     NODE_TEXT_EDITOR_ON_PASTE,
 
     /**
-     * @brief Event triggered when the editing status of the **TextEditor** component changes.
-     * <br>When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
-     * {@link ArkUI_NodeComponentEvent}.
-     * <br>{@link ArkUI_NodeComponentEvent} contains the following parameter:
-     * <br>**ArkUI_NodeComponentEvent.data[0].i32**: editing status of the component.
+     * @brief 定义TextEditor组件编辑状态发生变化时触发的事件。
+     * <br>事件回调触发时，{@link ArkUI_NodeEvent}对象中的联合体类型为{@link ArkUI_NodeComponentEvent}。
+     * <br>{@link ArkUI_NodeComponentEvent}包含一个参数：
+     * <br><b>ArkUI_NodeComponentEvent.data[0].i32</b>：组件的编辑状态。
      *
      * @since 24
      */
     NODE_TEXT_EDITOR_ON_EDITING_CHANGE,
 
     /**
-     * @brief Event triggered when the **Enter** key on the keyboard is pressed for the **TextEditor** component.
-     * <br>When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
-     * {@link ArkUI_NodeComponentEvent}.
-     * <br>{@link ArkUI_NodeComponentEvent} contains the following parameter:
-     * <br>**ArkUI_NodeComponentEvent.data[0].i32**: type of the **Enter** key, specified using
-     * {@link ArkUI_EnterKeyType}.
+     * @brief 定义TextEditor组件输入法的回车键被按下时触发的事件。
+     * <br>事件回调触发时，{@link ArkUI_NodeEvent}对象中的联合体类型为{@link ArkUI_NodeComponentEvent}。
+     * <br>{@link ArkUI_NodeComponentEvent}包含一个参数：
+     * <br><b>ArkUI_NodeComponentEvent.data[0].i32</b>：输入法的回车键类型{@link ArkUI_EnterKeyType}。
      * 
      * @since 24
      */
     NODE_TEXT_EDITOR_ON_SUBMIT,
 
     /**
-     * @brief Event triggered when the **TextEditor** component cuts content.
-     * <br>The system determines whether to intercept the default behavior of the component based on the return value
-     * of the callback function.
-     * <br>You can use {@link OH_ArkUI_NodeEvent_SetReturnNumberValue} to set the return value.
-     * <br>**value.i32**: whether to intercept the default behavior of the component, with the index of **0**.
-     * <br>**0**: not intercept. **1**: intercept.
+     * @brief 定义TextEditor组件执行剪切时触发的事件。
+     * <br>系统会根据回调函数返回值判断是否拦截组件的默认行为。
+     * <br>可通过{@link OH_ArkUI_NodeEvent_SetReturnNumberValue}设置返回值。
+     * <br>返回值中索引为0的value.i32表示是否拦截组件的默认行为。
+     * <br>0：不拦截。1：拦截。
      * @since 24
      */
     NODE_TEXT_EDITOR_ON_CUT,
 
     /**
-     * @brief Event triggered when the **TextEditor** component copies content.
-     * <br>The system determines whether to intercept the default behavior of the component based on the return value
-     * of the callback function.
-     * <br>You can use {@link OH_ArkUI_NodeEvent_SetReturnNumberValue} to set the return value.
-     * <br>**value.i32**: whether to intercept the default behavior of the component, with the index of **0**.
-     * <br>**0**: not intercept. **1**: intercept.
+     * @brief 定义TextEditor组件执行复制时触发的事件。
+     * <br>系统会根据回调函数返回值判断是否拦截组件的默认行为。
+     * <br>可通过{@link OH_ArkUI_NodeEvent_SetReturnNumberValue}设置返回值。
+     * <br>返回值中索引为0的value.i32表示是否拦截组件的默认行为。
+     * <br>0：不拦截。1：拦截。
      * @since 24
      */
     NODE_TEXT_EDITOR_ON_COPY,
 
     /**
-     * @brief Event triggered when the **TextEditor** component is about to change the content.
-     * <br>This callback is triggered before any operation that causes a text content change takes effect. You can
-     * determine whether to intercept the content change based on the information in the callback event.
-     * <br>When the event callback occurs, you can obtain the {@link OH_ArkUI_TextEditorChangeEvent} object from the
-     * {@link ArkUI_NodeEvent} object by calling {@link OH_ArkUI_NodeEvent_GetTextEditorOnWillChangeEvent}.
-     * <br>Then, you can use the **OH_ArkUI_TextEditorChangeEvent_***XXX* series APIs to obtain more information from
-     * this object.
-     * <br>The system determines whether the current content can be changed based on the return value of the callback
-     * function.
-     * <br>You can use {@link OH_ArkUI_NodeEvent_SetReturnNumberValue} to set the return value.
-     * <br>**value.i32** whose **index** is set to **0** indicates whether the current content can be changed. **0**:
-     * The content cannot be changed. **1**: The content can be changed.
+     * @brief 定义TextEditor组件在内容将要改变时触发的事件。
+     * <br>在任何导致文本内容发生变化的操作生效之前会触发该回调，开发者可根据回调事件中的信息决定是否拦截本次内容变更。
+     * <br>当事件回调发生时，可以通过{@link OH_ArkUI_NodeEvent_GetTextEditorOnWillChangeEvent}从{@link ArkUI_NodeEvent}对象中获得
+     * {@link OH_ArkUI_TextEditorChangeEvent}对象。
+     * <br>使用OH_ArkUI_TextEditorChangeEvent_XXX系列接口可以从该对象中获取更多信息。
+     * <br>系统会根据回调函数返回值判断当前内容是否允许被更改。
+     * <br>可通过{@link OH_ArkUI_NodeEvent_SetReturnNumberValue}设置返回值。
+     * <br>返回值中索引为0的value.i32表示当前内容是否允许被更改。<b>0</b>：不允许更改。<b>1</b>：允许更改。
      * @since 24
      */
     NODE_TEXT_EDITOR_ON_WILL_CHANGE,
 
     /**
-     * @brief Event triggered when the **TextEditor** component changes the content.
-     * <br>When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
-     * {@link ArkUI_NodeComponentEvent}.
-     * <br>{@link ArkUI_NodeComponentEvent} contains the following parameters:
-     * <br>**ArkUI_NodeComponentEvent.data[0].i32**: start index of the text range to be replaced before the text
-     * changes.
-     * <br>**ArkUI_NodeComponentEvent.data[1].i32**: end index of the text range to be replaced before the text changes.
-     * <br>**ArkUI_NodeComponentEvent.data[2].i32**: start index of the text range of the new content after the text
-     * changes.
-     * <br>**ArkUI_NodeComponentEvent.data[3].i32**: end index of the text range of the new content after the text
-     * changes.
+     * @brief 定义TextEditor组件在内容改变时触发的事件。
+     * <br>事件回调触发时，{@link ArkUI_NodeEvent}对象中的联合体类型为{@link ArkUI_NodeComponentEvent}。
+     * <br>{@link ArkUI_NodeComponentEvent}包含四个参数：
+     * <br><b>ArkUI_NodeComponentEvent.data[0].i32</b>：文本变化前将要被替换的文本范围的起始索引。
+     * <br><b>ArkUI_NodeComponentEvent.data[1].i32</b>：文本变化前将要被替换的文本范围的结束索引。
+     * <br><b>ArkUI_NodeComponentEvent.data[2].i32</b>：文本变化后新增内容的文本范围的起始索引。
+     * <br><b>ArkUI_NodeComponentEvent.data[3].i32</b>：文本变化后新增内容的文本范围的结束索引。
      *
      * @since 24
      */
@@ -11232,39 +11033,6 @@ typedef enum {
     NODE_LIST_ON_SCROLL_VISIBLE_CONTENT_CHANGE,
 
     /**
-     * @brief Defines the edit mode state change event of the <b>List</b> component.
-     *
-     * This event is triggered when the edit mode state changes, which occurs in the following cases:
-     * 1. The {@link NODE_LIST_ENABLE_EDIT_MODE} attribute is set to change the edit mode state.
-     * 2. When {@link NODE_LIST_EDIT_MODE_OPTIONS} has two-finger sliding multi-selection enabled,
-     * a two-finger sliding gesture triggers the change to multi-selection state.
-     * Registering this event callback is a prerequisite for entering multi-selection state via
-     * two-finger sliding. If this callback is not registered, two-finger sliding will not enter
-     * multi-selection state.
-     *
-     * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
-     * {@link ArkUI_NodeComponentEvent}.
-     * {@link ArkUI_NodeComponentEvent} contains one parameter:
-     * <b>ArkUI_NodeComponentEvent.data[0].i32</b>: edit mode state.
-     * <b>0</b>: not in edit mode. <b>1</b>: in edit mode.
-     *
-     * @since 26.0.0
-     */
-    NODE_LIST_ON_EDIT_MODE_CHANGE = 1003004,
-
-    /**
-     * @brief Defines the selected state change event of the <b>ListItem</b> component.
-     *
-     * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
-     * {@link ArkUI_NodeComponentEvent}.
-     * {@link ArkUI_NodeComponentEvent} contains one parameter:
-     * <b>ArkUI_NodeComponentEvent.data[0].i32</b>: selected state. <b>0</b>: not selected. <b>1</b>: selected.
-     *
-     * @since 26.0.0
-     */
-    NODE_LIST_ITEM_ON_SELECT = MAX_NODE_SCOPE_NUM * ARKUI_NODE_LIST_ITEM,
-
-    /**
      * @brief Defines the event triggered when the refresh state of the <b>ARKUI_NODE_REFRESH</b> object changes.
      *
      * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
@@ -11529,27 +11297,6 @@ typedef enum {
     NODE_GRID_ON_ITEM_DROP = 1013008,
 
     /**
-     * @brief Defines the edit mode state change event of the <b>Grid</b> component.
-     *
-     * This event is triggered when the edit mode state changes, which occurs in the following cases:
-     * 1. The {@link NODE_GRID_ENABLE_EDIT_MODE} attribute is set to change the edit mode state.
-     * 2. When {@link NODE_GRID_EDIT_MODE_OPTIONS} has two-finger sliding multi-selection enabled,
-     * a two-finger sliding gesture triggers the change to multi-selection state.
-     * Registering this event callback is a prerequisite for entering multi-selection state via
-     * two-finger sliding. If this callback is not registered, two-finger sliding will not enter
-     * multi-selection state.
-     *
-     * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
-     * {@link ArkUI_NodeComponentEvent}.
-     * {@link ArkUI_NodeComponentEvent} contains one parameter:
-     * <b>ArkUI_NodeComponentEvent.data[0].i32</b>: edit mode state.
-     * <b>0</b>: not in edit mode. <b>1</b>: in edit mode.
-     *
-     * @since 26.0.0
-     */
-    NODE_GRID_ON_EDIT_MODE_CHANGE = 1013009,
-
-    /**
      * @brief Defines the selected state change event of the <b>GridItem</b> component.
      *
      * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
@@ -11728,11 +11475,11 @@ int32_t OH_ArkUI_NodeEvent_SetReturnNumberValue(ArkUI_NodeEvent* event, ArkUI_Nu
 ArkUI_TouchTestInfo* OH_ArkUI_NodeEvent_GetTouchTestInfo(ArkUI_NodeEvent* nodeEvent);
 
 /**
- * @brief Obtains the text content change data of the **TextEditor** component in the component event.
+ * @brief 获取组件事件中的TextEditor组件文本内容变化数据。
  *
- * @param event Pointer to the {@link ArkUI_NodeEvent} component event object.
- * @return Returns the pointer to an <b>OH_ArkUI_TextEditorChangeEvent</b> object.
- *     Returns <b>null</b> if the input parameter is invalid or does not represent a text editor change event.
+ * @param event 指向{@link ArkUI_NodeEvent}组件事件对象的指针。
+ * @return 指向{@link OH_ArkUI_TextEditorChangeEvent}数据对象的指针。
+ *     <br>若传入的参数无效或并非TextEditor组件文本内容变化事件信息，则返回<b>null</b>。
  * @since 24
  */
 OH_ArkUI_TextEditorChangeEvent* OH_ArkUI_NodeEvent_GetTextEditorOnWillChangeEvent(ArkUI_NodeEvent* event);
