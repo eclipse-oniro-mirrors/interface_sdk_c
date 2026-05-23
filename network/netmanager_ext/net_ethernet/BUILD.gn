@@ -10,9 +10,9 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
- 
+
 import("//build/ohos.gni")
- 
+
 ohos_ndk_library("libnet_ethernet") {
   output_name = "net_ethernet"
   output_extension = "so"
@@ -24,7 +24,7 @@ ohos_ndk_library("libnet_ethernet") {
     "network/netmanager_ext/net_ethernet_type.h",
   ]
 }
- 
+
 ohos_ndk_headers("netethernet_header") {
   dest_dir = "$ndk_headers_out_dir/network/netmanager_ext"
   sources = [
