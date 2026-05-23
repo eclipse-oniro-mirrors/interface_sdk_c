@@ -115,28 +115,28 @@ typedef enum {
     /**
      * Snap map
      *
-     * @since 26
+     * @since 26.0.0
      */
     AUXILIARY_PICTURE_TYPE_SNAP_MAP = 6,
 
     /**
      * Snap gainmap
      *
-     * @since 26
+     * @since 26.0.0
      */
     AUXILIARY_PICTURE_TYPE_SNAP_GAINMAP = 7,
 
     /**
      * Pan map
      *
-     * @since 26
+     * @since 26.0.0
      */
     AUXILIARY_PICTURE_TYPE_PAN_MAP = 8,
 
     /**
      * Pan gainmap
      *
-     * @since 26
+     * @since 26.0.0
      */
     AUXILIARY_PICTURE_TYPE_PAN_GAINMAP = 9
 } Image_AuxiliaryPictureType;
@@ -284,7 +284,7 @@ Image_ErrorCode OH_PictureNative_GetAuxiliaryPicture(OH_PictureNative *picture, 
  *         <li>{@link IMAGE_SUCCESS} if the execution is successful.</li>
  *         <li>{@link IMAGE_INVALID_PARAMETER} picture or count is nullptr, or fail to get the picture.</li>
  *         </ul>
- * @since 26
+ * @since 26.0.0
  */
 Image_ErrorCode OH_PictureNative_GetAuxiliaryPictureCount(OH_PictureNative *picture, uint32_t *count);
 
@@ -300,7 +300,7 @@ Image_ErrorCode OH_PictureNative_GetAuxiliaryPictureCount(OH_PictureNative *pict
  *         <li>{@link IMAGE_INVALID_PARAMETER} picture, auxiliaryPictureTypes, or count is nullptr,
  *         or fail to get the picture, or count is smaller than required.</li>
  *         </ul>
- * @since 26
+ * @since 26.0.0
  */
 Image_ErrorCode OH_PictureNative_GetAuxiliaryPictureTypes(OH_PictureNative *picture,
     Image_AuxiliaryPictureType *auxiliaryPictureTypes, uint32_t *count);
@@ -314,7 +314,7 @@ Image_ErrorCode OH_PictureNative_GetAuxiliaryPictureTypes(OH_PictureNative *pict
  *         <li>{@link IMAGE_SUCCESS} if the execution is successful.</li>
  *         <li>{@link IMAGE_INVALID_PARAMETER} picture or count is nullptr, or fail to get the picture.</li>
  *         </ul>
- * @since 26
+ * @since 26.0.0
  */
 Image_ErrorCode OH_PictureNative_GetMetadataCount(OH_PictureNative *picture, uint32_t *count);
 
@@ -330,7 +330,7 @@ Image_ErrorCode OH_PictureNative_GetMetadataCount(OH_PictureNative *picture, uin
  *         <li>{@link IMAGE_INVALID_PARAMETER} picture, metadataTypes, or count is nullptr, or fail to get the picture,
  *         or count is smaller than required.</li>
  *         </ul>
- * @since 26
+ * @since 26.0.0
  */
 Image_ErrorCode OH_PictureNative_GetMetadataTypes(OH_PictureNative *picture,
     Image_MetadataType *metadataTypes, uint32_t *count);
@@ -357,7 +357,7 @@ Image_ErrorCode OH_PictureNative_GetMetadataTypes(OH_PictureNative *picture,
  *         or counts mismatch, or count is not zero but the corresponding array is nullptr.</li>
  *         <li>{@link IMAGE_ALLOC_FAILED} memory allocation failed.</li>
  *         </ul>
- * @since 26
+ * @since 26.0.0
  */
 Image_ErrorCode OH_PictureNative_DeepCopy(OH_PictureNative *source,
     const Image_AuxiliaryPictureType* srcAuxiliaryPictures, uint32_t srcAuxiliaryPictureCount,
@@ -377,7 +377,7 @@ Image_ErrorCode OH_PictureNative_DeepCopy(OH_PictureNative *source,
  *         <li>{@link IMAGE_INVALID_PARAMETER} picture is nullptr, or fail to get the picture,
  *         or the type is invalid.</li>
  *         </ul>
- * @since 26
+ * @since 26.0.0
  */
 Image_ErrorCode OH_PictureNative_RemoveAuxiliaryPicture(OH_PictureNative *picture, Image_AuxiliaryPictureType type);
 
@@ -391,7 +391,7 @@ Image_ErrorCode OH_PictureNative_RemoveAuxiliaryPicture(OH_PictureNative *pictur
  *         <li>{@link IMAGE_INVALID_PARAMETER} picture is nullptr, or fail to get the picture.</li>
  *         <li>{@link IMAGE_UNSUPPORTED_METADATA} unsupported metadata type.</li>
  *         </ul>
- * @since 26
+ * @since 26.0.0
  */
 Image_ErrorCode OH_PictureNative_RemoveMetadata(OH_PictureNative *picture, Image_MetadataType type);
 
@@ -470,7 +470,7 @@ Image_ErrorCode OH_AuxiliaryPictureNative_Create(uint8_t *data, size_t dataLengt
  *         e.g., use share memory create a gainmap as only DMA supported hdr metadata.</li>
  *         <li>{@link IMAGE_ALLOC_FAILED} memory allocation failed.</li>
  *         </ul>
- * @since 26
+ * @since 26.0.0
  */
 Image_ErrorCode OH_AuxiliaryPictureNative_CreateUsingAllocator(uint8_t *data, size_t dataLength,
     OH_AuxiliaryPictureInfo *info, IMAGE_ALLOCATOR_MODE allocator, OH_AuxiliaryPictureNative **auxiliaryPicture);
@@ -583,7 +583,7 @@ Image_ErrorCode OH_AuxiliaryPictureNative_SetMetadata(OH_AuxiliaryPictureNative 
  *         <li>{@link IMAGE_GET_IMAGE_DATA_FAILED} fail to get the auxiliary picture or its pixelmap content.</li>
  *         <li>{@link IMAGE_ALLOC_FAILED} memory allocation failed.</li>
  *         </ul>
- * @since 26
+ * @since 26.0.0
  */
 Image_ErrorCode OH_AuxiliaryPictureNative_GetPixelmap(OH_AuxiliaryPictureNative *auxiliaryPicture,
     OH_PixelmapNative **pixelmap);

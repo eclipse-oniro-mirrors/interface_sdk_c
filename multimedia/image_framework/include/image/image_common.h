@@ -239,7 +239,7 @@ typedef enum {
     IMAGE_CREATE_PIXELMAP_FAILED = 7600305,
     /**
      * @error Data conversion failed.
-     * @since 26.0.0
+     * @since 26.0.0.0.0
      */
     IMAGE_DATA_CONVERSION_FAILED = 7600306,
     /**
@@ -327,14 +327,14 @@ typedef enum {
     /**
      * Xtstyle metadata.
      *
-     * @since 26
+     * @since 26.0.0
      */
     XTSTYLE_METADATA = 3,
 
     /**
      * RfDataB metadata.
      *
-     * @since 26
+     * @since 26.0.0
      */
     RFDATAB_METADATA = 4,
 
@@ -348,42 +348,42 @@ typedef enum {
     /**
      * XDRAW4K metadata.
      *
-     * @since 26
+     * @since 26.0.0
      */
     XDRAW4K_METADATA = 8,
 
     /**
      * Private metadata.
      *
-     * @since 26
+     * @since 26.0.0
      */
     PRIVATE_METADATA = 9,
 
     /**
      * RfDataN metadata.
      *
-     * @since 26
+     * @since 26.0.0
      */
     RFDATAN_METADATA = 10,
 
     /**
      * RfDataS metadata.
      *
-     * @since 26
+     * @since 26.0.0
      */
     RFDATAS_METADATA = 11,
 
     /**
      * HDRSnap metadata.
      *
-     * @since 26
+     * @since 26.0.0
      */
     HDRSNAP_METADATA = 12,
 
     /**
      * DfxData metadata.
      *
-     * @since 26
+     * @since 26.0.0
      */
     DFXDATA_METADATA = 13
 } Image_MetadataType;
@@ -482,7 +482,7 @@ Image_ErrorCode OH_PictureMetadata_SetProperty(OH_PictureMetadata *metadata, Ima
  *         <li>{@link IMAGE_UNSUPPORTED_METADATA} unsupported metadata type.</li>
  *         <li>{@link IMAGE_UNSUPPORTED_OPERATION} failed to set blob data.</li>
  *         </ul>
- * @since 26
+ * @since 26.0.0
  */
 Image_ErrorCode OH_PictureMetadata_SetBlob(OH_PictureMetadata *metadata, uint8_t *blob, size_t *blobSize);
 
@@ -498,7 +498,7 @@ Image_ErrorCode OH_PictureMetadata_SetBlob(OH_PictureMetadata *metadata, uint8_t
  *         <li>{@link IMAGE_UNSUPPORTED_METADATA} unsupported metadata type.</li>
  *         <li>{@link IMAGE_UNSUPPORTED_OPERATION} failed to get blob data.</li>
  *         </ul>
- * @since 26
+ * @since 26.0.0
  */
 Image_ErrorCode OH_PictureMetadata_GetBlob(OH_PictureMetadata *metadata, uint8_t *blob, size_t blobSize);
 
@@ -512,7 +512,7 @@ Image_ErrorCode OH_PictureMetadata_GetBlob(OH_PictureMetadata *metadata, uint8_t
  *         <li>{@link IMAGE_INVALID_PARAMETER} a parameter is incorrect.</li>
  *         <li>{@link IMAGE_UNSUPPORTED_METADATA} the metadata type is not supported.</li>
  *         </ul>
- * @since 26
+ * @since 26.0.0
  */
 Image_ErrorCode OH_PictureMetadata_GetBlobSize(OH_PictureMetadata *metadata, size_t *blobSize);
 
@@ -551,7 +551,7 @@ Image_ErrorCode OH_PictureMetadata_Clone(OH_PictureMetadata *oldMetadata, OH_Pic
  *         <li>{@link IMAGE_INVALID_PARAMETER} a parameter is incorrect.</li>
  *         <li>{@link IMAGE_UNSUPPORTED_METADATA} no metadata matching the specified type is found.</li>
  *         </ul>
- * @since 26
+ * @since 26.0.0
  */
 Image_ErrorCode OH_PictureMetadata_GetMetadataByType(OH_PictureMetadata **metadatas, size_t metadataCount, int32_t type,
     OH_PictureMetadata *metadata);

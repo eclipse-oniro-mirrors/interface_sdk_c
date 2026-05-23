@@ -203,7 +203,7 @@ Image_ErrorCode OH_PackingOptions_SetNeedsPackProperties(OH_PackingOptions *opti
  *         <li>{@link IMAGE_SUCCESS} if the execution is successful.</li>
  *         <li>{@link IMAGE_PACKER_INVALID_PARAMETER} options or needsPackDfxData is nullptr.</li>
  *         </ul>
- * @since 26
+ * @since 26.0.0
  */
 Image_ErrorCode OH_PackingOptions_GetNeedsPackDfxData(OH_PackingOptions *options,
     bool *needsPackDfxData);
@@ -217,7 +217,7 @@ Image_ErrorCode OH_PackingOptions_GetNeedsPackDfxData(OH_PackingOptions *options
  *         <li>{@link IMAGE_SUCCESS} if the execution is successful.</li>
  *         <li>{@link IMAGE_PACKER_INVALID_PARAMETER} options is nullptr.</li>
  *         </ul>
- * @since 26
+ * @since 26.0.0
  */
 Image_ErrorCode OH_PackingOptions_SetNeedsPackDfxData(OH_PackingOptions *options,
     bool needsPackDfxData);
