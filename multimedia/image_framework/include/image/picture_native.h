@@ -323,7 +323,7 @@ Image_ErrorCode OH_PictureNative_GetMetadataCount(OH_PictureNative *picture, uin
  * 
  * @param picture Pointer to an OH_PictureNative object.
  * @param metadataTypes Pointer to the array that receives the metadata types.
- * @param count On input, the size of the metadataTypes array. 
+ * @param count On input, the size of the metadataTypes array.
  *              On output, the actual number of metadata entries.
  * @return <ul>
  *         <li>{@link IMAGE_SUCCESS} if the execution is successful.</li>
@@ -388,7 +388,7 @@ Image_ErrorCode OH_PictureNative_RemoveAuxiliaryPicture(OH_PictureNative *pictur
  * @param type Type of the metadata to remove.
  * @return <ul>
  *         <li>{@link IMAGE_SUCCESS} if the metadata was successfully removed or did not exist.</li>
- *         <li>{@link IMAGE_INVALID_PARAMETER} picture is nullptr, or fail to get the picture,or the type is invalid.</li>
+ *         <li>{@link IMAGE_INVALID_PARAMETER} picture is nullptr, or fail to get the picture.</li>
  *         <li>{@link IMAGE_UNSUPPORTED_METADATA} unsupported metadata type.</li>
  *         </ul>
  * @since 26
