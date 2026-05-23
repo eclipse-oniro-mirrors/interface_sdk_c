@@ -23,6 +23,7 @@ ohos_ndk_headers("camera_ndk_header") {
     "./camera_manager.h",
     "./camera_notification_info.h",
     "./capture_session.h",
+    "./metadata_object_ext.h",
     "./metadata_output.h",
     "./photo_native.h",
     "./photo_output.h",
@@ -48,5 +49,6 @@ ohos_ndk_library("libohcamera") {
     "ohcamera/preview_output.h",
     "ohcamera/video_output.h",
     "ohcamera/photo_native.h",
+    "ohcamera/metadata_object_ext.h",
   ]
 }
