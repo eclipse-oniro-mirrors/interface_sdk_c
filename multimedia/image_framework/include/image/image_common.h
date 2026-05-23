@@ -329,7 +329,63 @@ typedef enum {
      * 
      * @since 20
      */
-    GIF_METADATA = 5
+    GIF_METADATA = 5,
+
+    /**
+     * Xtstyle metadata.
+     *
+     * @since 26
+     */
+    XTSTYLE_METADATA = 3,
+
+    /**
+     * RfDataB metadata.
+     *
+     * @since 26
+     */
+    RFDATAB_METADATA = 4,
+
+    /**
+     * XDRAW4K metadata.
+     *
+     * @since 26
+     */
+    XDRAW4K_METADATA = 8,
+
+    /**
+     * Private metadata.
+     *
+     * @since 26
+     */
+    PRIVATE_METADATA = 9,
+
+    /**
+     * RfDataN metadata.
+     *
+     * @since 26
+     */
+    RFDATAN_METADATA = 10,
+
+    /**
+     * RfDataS metadata.
+     *
+     * @since 26
+     */
+    RFDATAS_METADATA = 11,
+
+    /**
+     * HDRSnap metadata.
+     *
+     * @since 26
+     */
+    HDRSNAP_METADATA = 12,
+
+    /**
+     * DfxData metadata.
+     *
+     * @since 26
+     */
+    DFXDATA_METADATA = 13
 } Image_MetadataType;
 
 /**

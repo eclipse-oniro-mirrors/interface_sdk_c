@@ -111,6 +111,34 @@ typedef enum {
      * Fragment map
      */
     AUXILIARY_PICTURE_TYPE_FRAGMENT_MAP = 5,
+
+    /**
+     * Snap map
+     *
+     * @since 26
+     */
+    AUXILIARY_PICTURE_TYPE_SNAP_MAP = 6,
+
+    /**
+     * Snap gainmap
+     *
+     * @since 26
+     */
+    AUXILIARY_PICTURE_TYPE_SNAP_GAINMAP = 7,
+
+    /**
+     * Pan map
+     *
+     * @since 26
+     */
+    AUXILIARY_PICTURE_TYPE_PAN_MAP = 8,
+
+    /**
+     * Pan gainmap
+     *
+     * @since 26
+     */
+    AUXILIARY_PICTURE_TYPE_PAN_GAINMAP = 9
 } Image_AuxiliaryPictureType;
 
 /**
