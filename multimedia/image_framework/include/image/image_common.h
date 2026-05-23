@@ -478,8 +478,9 @@ Image_ErrorCode OH_PictureMetadata_SetProperty(OH_PictureMetadata *metadata, Ima
  * @param blobSize Pointer to the size of the blob data.
  * @return <ul>
  *         <li>{@link IMAGE_SUCCESS} if the execution is successful.</li>
- *         <li>{@link IMAGE_INVALID_PARAMETER} a parameter is incorrect.</li>
- *         <li>{@link IMAGE_UNSUPPORTED_METADATA} the metadata type is not supported.</li>
+ *         <li>{@link IMAGE_INVALID_PARAMETER} metadata is nullptr, or blob is nullptr, or blobSize is 0.</li>
+ *         <li>{@link IMAGE_UNSUPPORTED_METADATA} unsupported metadata type.</li>
+ *         <li>{@link IMAGE_UNSUPPORTED_OPERATION} failed to set blob data.</li>
  *         </ul>
  * @since 26
  */
@@ -493,8 +494,9 @@ Image_ErrorCode OH_PictureMetadata_SetBlob(OH_PictureMetadata *metadata, uint8_t
  * @param blobSize Size of the blob data.
  * @return <ul>
  *         <li>{@link IMAGE_SUCCESS} if the execution is successful.</li>
- *         <li>{@link IMAGE_INVALID_PARAMETER} a parameter is incorrect.</li>
- *         <li>{@link IMAGE_UNSUPPORTED_METADATA} the metadata type is not supported.</li>
+ *         <li>{@link IMAGE_INVALID_PARAMETER} metadata is nullptr, or blob is nullptr, or blobSize is 0.</li>
+ *         <li>{@link IMAGE_UNSUPPORTED_METADATA} unsupported metadata type.</li>
+ *         <li>{@link IMAGE_UNSUPPORTED_OPERATION} failed to get blob data.</li>
  *         </ul>
  * @since 26
  */

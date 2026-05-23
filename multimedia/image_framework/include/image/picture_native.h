@@ -293,11 +293,12 @@ Image_ErrorCode OH_PictureNative_GetAuxiliaryPictureCount(OH_PictureNative *pict
  * 
  * @param picture Pointer to an OH_PictureNative object.
  * @param auxiliaryPictureTypes Pointer to the array that receives the auxiliary picture types.
- * @param count On input, the size of the auxiliaryPictureTypes array. On output, the actual number of auxiliary pictures.
+ * @param count On input, the size of the auxiliaryPictureTypes array.
+ *              On output, the actual number of auxiliary pictures.
  * @return <ul>
  *         <li>{@link IMAGE_SUCCESS} if the execution is successful.</li>
- *         <li>{@link IMAGE_INVALID_PARAMETER} picture, auxiliaryPictureTypes, or count is nullptr, or fail to get the picture,
- *         or count is smaller than required.</li>
+ *         <li>{@link IMAGE_INVALID_PARAMETER} picture, auxiliaryPictureTypes, or count is nullptr,
+ *         or fail to get the picture, or count is smaller than required.</li>
  *         </ul>
  * @since 26
  */
@@ -352,7 +353,7 @@ Image_ErrorCode OH_PictureNative_GetMetadataTypes(OH_PictureNative *picture,
  * @param picture Double pointer to the newly created deep-copied OH_PictureNative object.
  * @return <ul>
  *         <li>{@link IMAGE_SUCCESS} if the execution is successful.</li>
- *         <li>{@link IMAGE_INVALID_PARAMETER} source is nullptr, or picture is nullptr, or fail to get the source picture,
+ *         <li>{@link IMAGE_INVALID_PARAMETER} source is nullptr, or picture is nullptr, or fail to get the picture,
  *         or counts mismatch, or count is not zero but the corresponding array is nullptr.</li>
  *         <li>{@link IMAGE_ALLOC_FAILED} memory allocation failed.</li>
  *         </ul>
@@ -373,7 +374,7 @@ Image_ErrorCode OH_PictureNative_DeepCopy(OH_PictureNative *source,
  * @param type Type of the auxiliary picture to remove.
  * @return <ul>
  *         <li>{@link IMAGE_SUCCESS} if the auxiliary picture was successfully removed or did not exist.</li>
- *         <li>{@link IMAGE_INVALID_PARAMETER} picture is nullptr, or fail to get the picture, or the type is invalid.</li>
+ *         <li>{@link IMAGE_INVALID_PARAMETER} picture is nullptr, or fail to get the picture.</li>
  *         </ul>
  * @since 26
  */
@@ -386,7 +387,7 @@ Image_ErrorCode OH_PictureNative_RemoveAuxiliaryPicture(OH_PictureNative *pictur
  * @param type Type of the metadata to remove.
  * @return <ul>
  *         <li>{@link IMAGE_SUCCESS} if the metadata was successfully removed or did not exist.</li>
- *         <li>{@link IMAGE_INVALID_PARAMETER} picture is nullptr, or fail to get the picture, or the type is invalid.</li>
+ *         <li>{@link IMAGE_INVALID_PARAMETER} picture is nullptr, or fail to get the picture.</li>
  *         </ul>
  * @since 26
  */
