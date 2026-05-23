@@ -239,7 +239,7 @@ typedef enum {
     IMAGE_CREATE_PIXELMAP_FAILED = 7600305,
     /**
      * @error Data conversion failed.
-     * @since 26.0.0.0.0
+     * @since 26.0.0
      */
     IMAGE_DATA_CONVERSION_FAILED = 7600306,
     /**
