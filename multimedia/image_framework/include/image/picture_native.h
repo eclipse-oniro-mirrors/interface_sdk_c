@@ -248,6 +248,108 @@ Image_ErrorCode OH_PictureNative_GetAuxiliaryPicture(OH_PictureNative *picture, 
     OH_AuxiliaryPictureNative **auxiliaryPicture);
 
 /**
+ * @brief Obtains the number of auxiliary pictures in a Picture object.
+ * 
+ * @param picture Pointer to an OH_PictureNative object.
+ * @param count Pointer to the number of auxiliary pictures.
+ * @return {@link IMAGE_SUCCESS} if the execution is successful.
+ *     <br>{@link IMAGE_BAD_PARAMETER} picture or count is nullptr, or fail to get the picture.
+ * @since 20
+ */
+Image_ErrorCode OH_PictureNative_GetAuxiliaryPictureCount(OH_PictureNative *picture, uint32_t *count);
+
+/**
+ * @brief Obtains the types of auxiliary pictures in a Picture object.
+ * 
+ * @param picture Pointer to an OH_PictureNative object.
+ * @param auxiliaryPictureTypes Pointer to the array that receives the auxiliary picture types.
+ * @param count On input, the size of the auxiliaryPictureTypes array. On output, the actual number of auxiliary pictures.
+ * @return {@link IMAGE_SUCCESS} if the execution is successful.
+ *     <br>{@link IMAGE_BAD_PARAMETER} picture, auxiliaryPictureTypes, or count is nullptr, or fail to get the picture,
+ *         or count is smaller than required.
+ * @since 20
+ */
+Image_ErrorCode OH_PictureNative_GetAuxiliaryPictureTypes(OH_PictureNative *picture,
+    Image_AuxiliaryPictureType *auxiliaryPictureTypes, uint32_t *count);
+
+/**
+ * @brief Obtains the number of metadata entries in a Picture object.
+ * 
+ * @param picture Pointer to an OH_PictureNative object.
+ * @param count Pointer to the number of metadata entries.
+ * @return {@link IMAGE_SUCCESS} if the execution is successful.
+ *     <br>{@link IMAGE_BAD_PARAMETER} picture or count is nullptr, or fail to get the picture.
+ * @since 20
+ */
+Image_ErrorCode OH_PictureNative_GetMetadataCount(OH_PictureNative *picture, uint32_t *count);
+
+/**
+ * @brief Obtains the types of metadata in a Picture object.
+ * 
+ * @param picture Pointer to an OH_PictureNative object.
+ * @param metadataTypes Pointer to the array that receives the metadata types.
+ * @param count On input, the size of the metadataTypes array. On output, the actual number of metadata entries.
+ * @return {@link IMAGE_SUCCESS} if the execution is successful.
+ *     <br>{@link IMAGE_BAD_PARAMETER} picture, metadataTypes, or count is nullptr, or fail to get the picture,
+ *         or count is smaller than required.
+ * @since 20
+ */
+Image_ErrorCode OH_PictureNative_GetMetadataTypes(OH_PictureNative *picture,
+    Image_MetadataType *metadataTypes, uint32_t *count);
+
+/**
+ * @brief Deep copies a Picture object, selectively copying auxiliary pictures and metadata from the source picture
+ * to specified positions of the destination picture.
+ * 
+ * @param source Pointer to the source OH_PictureNative object.
+ * @param srcAuxiliaryPictures Array of auxiliary picture types in the source to be copied.
+ * @param srcAuxiliaryPictureCount Number of elements in srcAuxiliaryPictures.
+ * @param srcMetadatas Array of metadata types in the source to be copied.
+ * @param srcMetadataCount Number of elements in srcMetadatas.
+ * @param dstAuxiliaryPictures Array of destination auxiliary picture types corresponding to source auxiliary pictures.
+ * @param dstAuxiliaryPictureCount Number of elements in dstAuxiliaryPictures.
+ * @param dstMetadatas Array of destination metadata types corresponding to source metadata.
+ * @param dstMetadataCount Number of elements in dstMetadatas.
+ * @param mainPixelMapKeyFromSrc Pointer to the auxiliary picture type in the source to be used as the main image in the
+ *     new picture. Pass nullptr to retain the main image from the source.
+ * @param picture Double pointer to the newly created deep-copied OH_PictureNative object.
+ * @return {@link IMAGE_SUCCESS} if the execution is successful.
+ *     <br>{@link IMAGE_BAD_PARAMETER} source is nullptr, or picture is nullptr, or fail to get the source picture,
+ *         or counts mismatch, or count is not zero but the corresponding array is nullptr.
+ *     <br>{@link IMAGE_ALLOC_FAILED} The memory allocation fails.
+ * @since 20
+ */
+Image_ErrorCode OH_PictureNative_DeepCopy(OH_PictureNative *source,
+    const Image_AuxiliaryPictureType* srcAuxiliaryPictures, uint32_t srcAuxiliaryPictureCount,
+    const Image_MetadataType* srcMetadatas, uint32_t srcMetadataCount,
+    const Image_AuxiliaryPictureType* dstAuxiliaryPictures, uint32_t dstAuxiliaryPictureCount,
+    const Image_MetadataType* dstMetadatas, uint32_t dstMetadataCount,
+    Image_AuxiliaryPictureType *mainPixelMapKeyFromSrc,
+    OH_PictureNative **picture);
+
+/**
+ * @brief Removes an auxiliary picture from a Picture object.
+ * 
+ * @param picture Pointer to an OH_PictureNative object.
+ * @param type Type of the auxiliary picture to remove.
+ * @return {@link IMAGE_SUCCESS} if the auxiliary picture was successfully removed or did not exist.
+ *     <br>{@link IMAGE_BAD_PARAMETER} picture is nullptr, or fail to get the picture, or the type is invalid.
+ * @since 20
+ */
+Image_ErrorCode OH_PictureNative_RemoveAuxiliaryPicture(OH_PictureNative *picture, Image_AuxiliaryPictureType type);
+
+/**
+ * @brief Removes metadata from a Picture object.
+ * 
+ * @param picture Pointer to an OH_PictureNative object.
+ * @param type Type of the metadata to remove.
+ * @return {@link IMAGE_SUCCESS} if the metadata was successfully removed or did not exist.
+ *     <br>{@link IMAGE_BAD_PARAMETER} picture is nullptr, or fail to get the picture, or the type is invalid.
+ * @since 20
+ */
+Image_ErrorCode OH_PictureNative_RemoveMetadata(OH_PictureNative *picture, Image_MetadataType type);
+
+/**
  * @brief Obtains the metadata of a main picture.
  * 
  * @param picture Pointer to an OH_PictureNative object.
@@ -301,6 +403,29 @@ Image_ErrorCode OH_PictureNative_Release(OH_PictureNative *picture);
  */
 Image_ErrorCode OH_AuxiliaryPictureNative_Create(uint8_t *data, size_t dataLength, Image_Size *size,
     Image_AuxiliaryPictureType type, OH_AuxiliaryPictureNative **auxiliaryPicture);
+
+/**
+ * @brief Creates an OH_AuxiliaryPictureNative object with a specified memory type. By default, the system selects
+ * the memory type based on the image type, image size, platform capability, and other factors. When processing the
+ * auxiliary picture returned by this API, always consider the impact of stride. If **data** is null or **dataLength**
+ * is less than or equal to 0, the auxiliary picture will not be initialized.
+ * 
+ * @param data Pointer to the image data.
+ * @param dataLength Length of the image data.
+ * @param info Pointer to the basic information of the auxiliary picture.
+ * @param allocator Memory type used by the auxiliary picture. For details about the available options, see
+ *     {@link IMAGE_ALLOCATOR_MODE}.
+ * @param auxiliaryPicture Double pointer to the OH_AuxiliaryPictureNative object created.
+ * @return {@link IMAGE_SUCCESS} if the execution is successful.
+ *     <br>{@link IMAGE_INVALID_PARAMETER} info or auxiliaryPicture is nullptr, or allocator is invalid,
+ *         or the size is invalid, or the type is unsupported, or dataLength is smaller than required.
+ *     <br>{@link IMAGE_SOURCE_UNSUPPORTED_ALLOCATOR_TYPE} unsupported allocator type,
+ *         e.g., use share memory create a gainmap as only DMA supported hdr metadata.
+ *     <br>{@link IMAGE_ALLOC_FAILED} The memory allocation fails.
+ * @since 24
+ */
+Image_ErrorCode OH_AuxiliaryPictureNative_CreateUsingAllocator(uint8_t *data, size_t dataLength,
+    OH_AuxiliaryPictureInfo *info, IMAGE_ALLOCATOR_MODE allocator, OH_AuxiliaryPictureNative **auxiliaryPicture);
 
 /**
  * @brief Reads pixels in the buffer and writes the result to an auxiliary picture.
@@ -398,6 +523,20 @@ Image_ErrorCode OH_AuxiliaryPictureNative_GetMetadata(OH_AuxiliaryPictureNative 
  */
 Image_ErrorCode OH_AuxiliaryPictureNative_SetMetadata(OH_AuxiliaryPictureNative *auxiliaryPicture,
     Image_MetadataType metadataType, OH_PictureMetadata *metadata);
+
+/**
+ * @brief Obtains the OH_PixelmapNative object of an auxiliary picture.
+ * 
+ * @param auxiliaryPicture Pointer to an OH_AuxiliaryPictureNative object.
+ * @param pixelmap Double pointer to the OH_PixelmapNative object obtained.
+ * @return {@link IMAGE_SUCCESS} if the execution is successful.
+ *     <br>{@link IMAGE_BAD_PARAMETER} auxiliaryPicture is nullptr, or pixelmap is nullptr, or fail to get the
+ *         auxiliary picture or its pixelmap content.
+ *     <br>{@link IMAGE_ALLOC_FAILED} The memory allocation fails.
+ * @since 13
+ */
+Image_ErrorCode OH_AuxiliaryPictureNative_GetPixelmap(OH_AuxiliaryPictureNative *auxiliaryPicture,
+    OH_PixelmapNative **pixelmap);
 
 /**
  * @brief Releases the pointer to an OH_AuxiliaryPictureNative object.
