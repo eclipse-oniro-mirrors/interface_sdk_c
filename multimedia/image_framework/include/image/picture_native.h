@@ -374,7 +374,8 @@ Image_ErrorCode OH_PictureNative_DeepCopy(OH_PictureNative *source,
  * @param type Type of the auxiliary picture to remove.
  * @return <ul>
  *         <li>{@link IMAGE_SUCCESS} if the auxiliary picture was successfully removed or did not exist.</li>
- *         <li>{@link IMAGE_INVALID_PARAMETER} picture is nullptr, or fail to get the picture.</li>
+ *         <li>{@link IMAGE_INVALID_PARAMETER} picture is nullptr, or fail to get the picture,
+ *         or the type is invalid.</li>
  *         </ul>
  * @since 26
  */
@@ -387,7 +388,8 @@ Image_ErrorCode OH_PictureNative_RemoveAuxiliaryPicture(OH_PictureNative *pictur
  * @param type Type of the metadata to remove.
  * @return <ul>
  *         <li>{@link IMAGE_SUCCESS} if the metadata was successfully removed or did not exist.</li>
- *         <li>{@link IMAGE_INVALID_PARAMETER} picture is nullptr, or fail to get the picture.</li>
+ *         <li>{@link IMAGE_INVALID_PARAMETER} picture is nullptr, or fail to get the picture,or the type is invalid.</li>
+ *         <li>{@link IMAGE_UNSUPPORTED_METADATA} unsupported metadata type.</li>
  *         </ul>
  * @since 26
  */
@@ -577,8 +579,8 @@ Image_ErrorCode OH_AuxiliaryPictureNative_SetMetadata(OH_AuxiliaryPictureNative 
  * @param pixelmap Double pointer to the OH_PixelmapNative object obtained.
  * @return <ul>
  *         <li>{@link IMAGE_SUCCESS} if the execution is successful.</li>
- *         <li>{@link IMAGE_INVALID_PARAMETER} auxiliaryPicture is nullptr, or pixelmap is nullptr, or fail to get the
- *         auxiliary picture or its pixelmap content.</li>
+ *         <li>{@link IMAGE_INVALID_PARAMETER} auxiliaryPicture is nullptr, or pixelmap is nullptr.</li>
+ *         <li>{@link IMAGE_GET_IMAGE_DATA_FAILED} fail to get the auxiliary picture or its pixelmap content.</li>
  *         <li>{@link IMAGE_ALLOC_FAILED} memory allocation failed.</li>
  *         </ul>
  * @since 26
