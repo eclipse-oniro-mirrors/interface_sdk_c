@@ -322,7 +322,8 @@ Image_ErrorCode OH_PictureNative_GetMetadataCount(OH_PictureNative *picture, uin
  * 
  * @param picture Pointer to an OH_PictureNative object.
  * @param metadataTypes Pointer to the array that receives the metadata types.
- * @param count On input, the size of the metadataTypes array. On output, the actual number of metadata entries.
+ * @param count On input, the size of the metadataTypes array. 
+ *              On output, the actual number of metadata entries.
  * @return <ul>
  *         <li>{@link IMAGE_SUCCESS} if the execution is successful.</li>
  *         <li>{@link IMAGE_INVALID_PARAMETER} picture, metadataTypes, or count is nullptr, or fail to get the picture,
