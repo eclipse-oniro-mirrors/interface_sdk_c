@@ -420,10 +420,12 @@ Image_ErrorCode OH_PictureMetadata_SetProperty(OH_PictureMetadata *metadata, Ima
  * @param metadata Pointer to an OH_PictureMetadata struct.
  * @param blob Pointer to the blob data.
  * @param blobSize Pointer to the size of the blob data.
- * @return {@link IMAGE_SUCCESS}: The operation is successful.
- *     <br>{@link IMAGE_BAD_PARAMETER}: A parameter is incorrect.
- *     <br>{@link IMAGE_UNSUPPORTED_METADATA}: The metadata type is not supported.
- * @since 16
+ * @return <ul>
+ *         <li>{@link IMAGE_SUCCESS} if the execution is successful.</li>
+ *         <li>{@link IMAGE_INVALID_PARAMETER} a parameter is incorrect.</li>
+ *         <li>{@link IMAGE_UNSUPPORTED_METADATA} the metadata type is not supported.</li>
+ *         </ul>
+ * @since 26
  */
 Image_ErrorCode OH_PictureMetadata_SetBlob(OH_PictureMetadata *metadata, uint8_t *blob, size_t *blobSize);
 
@@ -433,10 +435,12 @@ Image_ErrorCode OH_PictureMetadata_SetBlob(OH_PictureMetadata *metadata, uint8_t
  * @param metadata Pointer to an OH_PictureMetadata struct.
  * @param blob Pointer to the blob data obtained.
  * @param blobSize Size of the blob data.
- * @return {@link IMAGE_SUCCESS}: The operation is successful.
- *     <br>{@link IMAGE_BAD_PARAMETER}: A parameter is incorrect.
- *     <br>{@link IMAGE_UNSUPPORTED_METADATA}: The metadata type is not supported.
- * @since 16
+ * @return <ul>
+ *         <li>{@link IMAGE_SUCCESS} if the execution is successful.</li>
+ *         <li>{@link IMAGE_INVALID_PARAMETER} a parameter is incorrect.</li>
+ *         <li>{@link IMAGE_UNSUPPORTED_METADATA} the metadata type is not supported.</li>
+ *         </ul>
+ * @since 26
  */
 Image_ErrorCode OH_PictureMetadata_GetBlob(OH_PictureMetadata *metadata, uint8_t *blob, size_t blobSize);
 
@@ -445,10 +449,12 @@ Image_ErrorCode OH_PictureMetadata_GetBlob(OH_PictureMetadata *metadata, uint8_t
  * 
  * @param metadata Pointer to an OH_PictureMetadata struct.
  * @param blobSize Pointer to the size of the blob data.
- * @return {@link IMAGE_SUCCESS}: The operation is successful.
- *     <br>{@link IMAGE_BAD_PARAMETER}: A parameter is incorrect.
- *     <br>{@link IMAGE_UNSUPPORTED_METADATA}: The metadata type is not supported.
- * @since 16
+ * @return <ul>
+ *         <li>{@link IMAGE_SUCCESS} if the execution is successful.</li>
+ *         <li>{@link IMAGE_INVALID_PARAMETER} a parameter is incorrect.</li>
+ *         <li>{@link IMAGE_UNSUPPORTED_METADATA} the metadata type is not supported.</li>
+ *         </ul>
+ * @since 26
  */
 Image_ErrorCode OH_PictureMetadata_GetBlobSize(OH_PictureMetadata *metadata, size_t *blobSize);
 
@@ -482,10 +488,12 @@ Image_ErrorCode OH_PictureMetadata_Clone(OH_PictureMetadata *oldMetadata, OH_Pic
  * @param metadataCount Length of the OH_PictureMetadata array.
  * @param type Target metadata type to be matched.
  * @param metadata Pointer to the output OH_PictureMetadata object, which stores the matched content.
- * @return {@link IMAGE_SUCCESS}: The operation is successful.
- *     <br>{@link IMAGE_BAD_PARAMETER}: A parameter is incorrect.
- *     <br>{@link IMAGE_UNSUPPORTED_METADATA}: No metadata matching the specified type is found.
- * @since 24
+ * @return <ul>
+ *         <li>{@link IMAGE_SUCCESS} if the operation is successful.</li>
+ *         <li>{@link IMAGE_INVALID_PARAMETER} a parameter is incorrect.</li>
+ *         <li>{@link IMAGE_UNSUPPORTED_METADATA} no metadata matching the specified type is found.</li>
+ *         </ul>
+ * @since 26
  */
 Image_ErrorCode OH_PictureMetadata_GetMetadataByType(OH_PictureMetadata **metadatas, size_t metadataCount, int32_t type,
     OH_PictureMetadata *metadata);

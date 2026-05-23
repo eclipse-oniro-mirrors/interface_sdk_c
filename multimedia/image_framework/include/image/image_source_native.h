@@ -748,9 +748,11 @@ Image_ErrorCode OH_DecodingOptionsForPicture_SetDesiredAuxiliaryPictures(OH_Deco
  * 
  * @param options Pointer to an OH_DecodingOptionsForPicture object.
  * @param needsDecodeDfxData Whether to decode image DFX data. The values include **true** (yes) and **false** (no).
- * @return {@link IMAGE_SUCCESS} if the execution is successful.
- *     <br>{@link IMAGE_SOURCE_INVALID_PARAMETER} options is nullptr, or needsDecodeDfxData is nullptr.
- * @since 23
+ * @return <ul>
+ *         <li>{@link IMAGE_SUCCESS} if the execution is successful.</li>
+ *         <li>{@link IMAGE_SOURCE_INVALID_PARAMETER} options or needsDecodeDfxData is nullptr.</li>
+ *         </ul>
+ * @since 26
  */
 Image_ErrorCode OH_DecodingOptionsForPicture_GetNeedsDecodeDfxData(OH_DecodingOptionsForPicture *options,
     bool *needsDecodeDfxData);
@@ -760,9 +762,11 @@ Image_ErrorCode OH_DecodingOptionsForPicture_GetNeedsDecodeDfxData(OH_DecodingOp
  * 
  * @param options Pointer to an OH_DecodingOptionsForPicture object.
  * @param needsDecodeDfxData Whether to decode image DFX data. The values include **true** (yes) and **false** (no).
- * @return {@link IMAGE_SUCCESS} if the execution is successful.
- *     <br>{@link IMAGE_SOURCE_INVALID_PARAMETER} options is nullptr.
- * @since 23
+ * @return <ul>
+ *         <li>{@link IMAGE_SUCCESS} if the execution is successful.</li>
+ *         <li>{@link IMAGE_SOURCE_INVALID_PARAMETER} options is nullptr.</li>
+ *         </ul>
+ * @since 26
  */
 Image_ErrorCode OH_DecodingOptionsForPicture_SetNeedsDecodeDfxData(OH_DecodingOptionsForPicture *options,
     bool needsDecodeDfxData);
