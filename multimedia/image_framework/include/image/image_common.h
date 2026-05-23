@@ -325,13 +325,6 @@ typedef enum {
     FRAGMENT_METADATA = 2,
 
     /**
-     * GIF image metadata.
-     * 
-     * @since 20
-     */
-    GIF_METADATA = 5,
-
-    /**
      * Xtstyle metadata.
      *
      * @since 26
@@ -344,6 +337,13 @@ typedef enum {
      * @since 26
      */
     RFDATAB_METADATA = 4,
+
+    /**
+     * GIF image metadata.
+     * 
+     * @since 20
+     */
+    GIF_METADATA = 5,
 
     /**
      * XDRAW4K metadata.
