@@ -130,7 +130,7 @@ class SystemApiRemover:
         if node_kind not in self.SYSTEMAPI_NODE_KINDS or not self._is_from_main_file(node):
             return False
 
-        node_name = node.get('name', 'unknown') or node_kind
+        node_name = node.get('name') or node_kind
         self.stats['functions_found'] += 1
         comment = self.extract_comment_before_node(node, source_lines, node_name, source_text)
 
@@ -321,6 +321,13 @@ class SystemApiRemover:
                     output_file.parent.mkdir(parents=True, exist_ok=True)
                     shutil.copy2(file_path, output_file)
 
+    def _copy_skip_dirs(self) -> None:
+        """将跳过目录（如 third_party）原样拷贝到输出目录"""
+        for skip_name in self.SKIP_DIR_NAMES:
+            skip_src = self.input_dir / skip_name
+            if skip_src.is_dir():
+                shutil.copytree(skip_src, self.output_dir / skip_name, dirs_exist_ok=True)
+
 
     def _create_basic_fake_headers(self, fake_include_dir: Path) -> None:
         """为基础系统头文件（stddef.h 等）创建 fake header"""
@@ -332,17 +339,41 @@ class SystemApiRemover:
 
 
     @staticmethod
+    def _strip_comments_from_line(line: str, in_block_comment: bool) -> Tuple[str, bool]:
+        """去除一行中的注释内容，返回 (去除注释后的代码, 是否仍在块注释中)"""
+        scan = line
+        if in_block_comment:
+            close_pos = scan.find('*/')
+            if close_pos >= 0:
+                in_block_comment = False
+                scan = scan[close_pos + 2:]
+            else:
+                return '', True
+        cleaned = ''
+        idx = 0
+        while idx < len(scan):
+            if scan[idx:idx + 2] == '/*':
+                close_pos = scan.find('*/', idx + 2)
+                if close_pos >= 0:
+                    idx = close_pos + 2
+                else:
+                    return cleaned, True
+            elif scan[idx:idx + 2] == '//':
+                break
+            else:
+                cleaned += scan[idx]
+                idx += 1
+        return cleaned, False
 
     @staticmethod
     def _find_brace_block_end(lines: List[str], start: int) -> int:
         """查找 struct/class/enum 花括号块的结束行"""
         decl_end = start
         brace_count = 0
+        in_block_comment = False
         for k in range(start, len(lines)):
-            if '{' in lines[k]:
-                brace_count += lines[k].count('{')
-            if '}' in lines[k]:
-                brace_count -= lines[k].count('}')
+            cleaned, in_block_comment = SystemApiRemover._strip_comments_from_line(lines[k], in_block_comment)
+            brace_count += cleaned.count('{') - cleaned.count('}')
             if brace_count == 0 and k > start:
                 decl_end = k
                 if k + 1 < len(lines) and ';' in lines[k + 1]:
@@ -827,7 +858,7 @@ class SystemApiRemover:
 
         line_ending = '\r\n' if use_crlf else '\n'
         with open(output_file, 'w', encoding='utf-8', newline='') as f:
-            f.write(line_ending.join(result_content.split('\n')))
+            f.write(line_ending.join(l.rstrip('\r') for l in result_content.split('\n')))
 
         self.stats['clang_modified'] += 1
         self.clang_modified_files.append(input_file)
@@ -860,7 +891,7 @@ class SystemApiRemover:
 
             line_ending = '\r\n' if use_crlf else '\n'
             with open(output_file, 'w', encoding='utf-8', newline='') as f:
-                f.write(line_ending.join(new_content.split('\n')))
+                f.write(line_ending.join(l.rstrip('\r') for l in new_content.split('\n')))
             self.stats['regex_modified'] += 1
             self.regex_modified_files.append(input_file)
             self.stats['apis_removed'] += removed_count
@@ -873,33 +904,40 @@ class SystemApiRemover:
             return False
 
 
+    @staticmethod
+    def _is_comment_or_empty(line: str) -> bool:
+        """判断一行是否为注释行或空行"""
+        stripped = line.strip()
+        if not stripped:
+            return True
+        return stripped.startswith('//') or stripped.startswith('/*') or stripped.startswith('*') or stripped.startswith('/**')
+
+    @staticmethod
+    def _match_aggregate_keyword(line: str) -> Optional[str]:
+        """匹配代码行是否为聚合体声明行，返回 'enum'/'struct'/'union' 或 None。
+        匹配规则：行中同时包含聚合体关键字和左花括号，或 typedef + 聚合体 + 花括号。"""
+        for agg_type in ('enum', 'struct', 'union'):
+            if agg_type in line and '{' in line:
+                return agg_type
+            if 'typedef' in line and agg_type in line and '{' in line:
+                return agg_type
+        return None
+
     def _regex_check_in_aggregate(self, lines: List[str], comment_start: int) -> Tuple[bool, int, Optional[str]]:
         in_aggregate = False
         aggregate_start_line = -1
         aggregate_type = None
 
         for k in range(comment_start - 1, -1, -1):
-            line_check = lines[k]
-            if ('enum' in line_check and '{' in line_check) or ('typedef' in line_check and 'enum' in line_check and '{' in line_check):
+            if self._is_comment_or_empty(lines[k]):
+                continue
+            matched_type = self._match_aggregate_keyword(lines[k])
+            if matched_type is not None:
                 aggregate_end_line = self._find_brace_block_end(lines, k)
                 if aggregate_end_line >= comment_start:
                     in_aggregate = True
                     aggregate_start_line = k
-                    aggregate_type = 'enum'
-                break
-            if ('struct' in line_check and '{' in line_check) or ('typedef' in line_check and 'struct' in line_check and '{' in line_check):
-                aggregate_end_line = self._find_brace_block_end(lines, k)
-                if aggregate_end_line >= comment_start:
-                    in_aggregate = True
-                    aggregate_start_line = k
-                    aggregate_type = 'struct'
-                break
-            if ('union' in line_check and '{' in line_check) or ('typedef' in line_check and 'union' in line_check and '{' in line_check):
-                aggregate_end_line = self._find_brace_block_end(lines, k)
-                if aggregate_end_line >= comment_start:
-                    in_aggregate = True
-                    aggregate_start_line = k
-                    aggregate_type = 'union'
+                    aggregate_type = matched_type
                 break
 
         return in_aggregate, aggregate_start_line, aggregate_type
@@ -1079,6 +1117,9 @@ class SystemApiRemover:
             return
 
         matched = self._check_and_collect_node(node, source_lines, source_text, node_kind, to_remove)
+
+        if node_kind in ('EnumDecl', 'RecordDecl', 'CXXRecordDecl'):
+            return
 
         if not matched and 'inner' in node and isinstance(node['inner'], list):
             for child in node['inner']:
@@ -1317,6 +1358,7 @@ class SystemApiRemover:
             total_headers = len(all_header_files)
             self._log_processing_start(total_headers)
             self.output_dir.mkdir(parents=True, exist_ok=True)
+            self._copy_skip_dirs()
             self._copy_non_header_files()
 
             for idx, file_path in enumerate(all_header_files, 1):
@@ -1732,7 +1774,7 @@ class SystemApiRemover:
 
     def _validate_single_file_syntax(self, output_file: Path) -> Optional[str]:
         """用 clang 校验单个文件语法，返回错误字符串或 None"""
-        cmd = [self.clang_binary, '-x', 'c-header', '-fsyntax-only', '-Wno-everything', str(output_file)]
+        cmd = [self.clang_binary, '-x', 'c++-header', '-std=c++11', '-fsyntax-only', '-Wno-everything', str(output_file)]
         try:
             result = subprocess.run(cmd, capture_output=True, timeout=30)
             result.stderr = result.stderr.decode('utf-8', errors='replace')
