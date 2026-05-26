@@ -230,6 +230,47 @@ typedef struct OH_NativeBuffer_StaticMetadata {
 } OH_NativeBuffer_StaticMetadata;
 
 /**
+ * @brief Enumerates the semantic label types for Region of Interest (ROI).
+ *
+ * These types are used as the predefined values for the "slb" key in ROI parameters.
+ *
+ * @since 26.0.0
+ */
+typedef enum OH_NativeBuffer_RoiMetadataSemanticLabelType {
+    /** 
+     * Indicates an unspecified or unknown region.
+     * @since 26.0.0
+     */
+    OH_ROI_METADATA_SEMANTIC_LABEL_TYPE_OTHER = 0,
+    /** 
+     * Indicates that the ROI contains a human face.
+     * @since 26.0.0
+     */
+    OH_ROI_METADATA_SEMANTIC_LABEL_TYPE_FACE = 1
+} OH_NativeBuffer_RoiMetadataSemanticLabelType;
+
+/**
+ * @brief ROI metadata key for Semantic Label.
+ *
+ * Used in the Key-Value format of ROI parameters to specify the semantic label of the region.
+ * The string value is "slb". The configured value mapped to this key should be the string representation 
+ * of the {@link OH_NativeBuffer_RoiMetadataSemanticLabelType} enumeration (e.g., "1" for OH_ROI_SEMANTIC_LABEL_TYPE_FACE).
+ *
+ * @since 26.0.0
+ */
+extern const char *OH_ROI_METADATA_KEY_SEMANTIC_LABEL;
+
+/**
+ * @brief ROI metadata key for Delta QP.
+ * 
+ * Used in the Key-Value format of ROI parameters to specify the quantization parameter offset.
+ * The string value is "dqp".
+ *
+ * @since 26.0.0
+ */
+extern const char *OH_ROI_METADATA_KEY_DELTA_QP;
+
+/**
  * @brief Indicates the descriptive information of a native buffer,
  *  such as HDR metadata, ROI metadata, etc.
  *
@@ -245,12 +286,18 @@ typedef enum OH_NativeBuffer_MetadataKey {
     /** byte stream of SEI in video stream*/
     OH_HDR_DYNAMIC_METADATA,
     /**
-     * Region of interest(ROI) metadata is used to conifgure ROI feature in video encoding. Value type is string
-     * in the format "Top1,Left1-Bottom1,Right1=QpOffset1;Top2,Left2-Bottom2,Right2=QpOffset2;".
-     * Each "Top,Left-Bottom,Right=QpOffset" represents the coordinate information and quantization parameter
-     * offset of one ROI. Each "=QpOffset" in the string can be omitted,
-     * like "Top1,Left1-Bottom1,Right1;Top2,Left2-Bottom2,Right2=QpOffset2;", the encoder will use the default
-     * quantization parameter offset to perform the ROI encoding on the first ROI and use QpOffset2 on the second ROI.
+     * Region of interest(ROI) metadata is used to configure ROI feature in video encoding. Value type is string
+     * in the format "Top1,Left1-Bottom1,Right1[=Params1];Top2,Left2-Bottom2,Right2[=Params2];".
+     * Each "Top,Left-Bottom,Right" represents the coordinate information of one ROI.
+     * The "[=Params]" is optional and supports two formats for backward compatibility:
+     * 1. Legacy format: A single integer representing the quantization parameter offset (e.g., "=QpOffset").
+     * 2. Key-Value format (Recommended): Comma-separated key-value pairs (e.g., "=dqp:-6,slb:1").
+     * Supported keys:
+     * - "dqp": Quantization parameter offset.
+     * - "slb": Semantic label. The value must correspond to {@link OH_NativeBuffer_RoiMetadataSemanticLabelType}.
+     * If "=Params" is omitted entirely, like "Top1,Left1-Bottom1,Right1;Top2,Left2-Bottom2,Right2=dqp:-6;",
+     * the encoder will use the default parameters to perform the ROI encoding on the first ROI and
+     * use the specified parameters on the second ROI.
      * Note that the number of ROIs that can be applied simultaneously does not exceed six, and the total area must
      * not exceed one-fifth of the total image area.
      *
