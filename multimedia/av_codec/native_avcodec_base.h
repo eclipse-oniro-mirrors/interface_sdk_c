@@ -688,8 +688,8 @@ extern const char *OH_MD_KEY_MAX_INPUT_SIZE;
 /**
  * @brief Pointer to the key that describes the video width. The value type is int32_t.
  *
- * For video encoding, this key is used to set the target encoding resolution. For video decoding, this key serves 
- * as a resolution hint for the decoder to pre-allocate internal buffers. 
+ * For video encoding, this key is used to set the target encoding resolution. For video decoding, this key serves
+ * as a resolution hint for the decoder to pre-allocate internal buffers.
  * The actual decoded output dimensions are provided by **OH_MD_KEY_VIDEO_PIC_WIDTH**.
  * This key is mainly used to control memory allocation. You can call {@link OH_AVCapability_GetVideoWidthRange}
  * to obtain the recommended value range. This API defines the decoding width range supported by the encoder.
@@ -826,7 +826,7 @@ extern const char *OH_MD_KEY_ROTATION;
 extern const char *OH_MD_KEY_RANGE_FLAG;
 
 /**
- * @brief Pointer to the key that describes the video primary colors. The value type is int32_t. The default value is 
+ * @brief Pointer to the key that describes the video primary colors. The value type is int32_t. The default value is
  * **COLOR_PRIMARY_UNSPECIFIED**. For details, see {@link OH_ColorPrimary}. The value complies with Table 2 in H.273.
  * 
  * @since 10
@@ -1131,7 +1131,7 @@ extern const char *OH_MD_KEY_VIDEO_ENCODER_TEMPORAL_GOP_SIZE;
 extern const char *OH_MD_KEY_VIDEO_ENCODER_TEMPORAL_GOP_REFERENCE_MODE;
 
 /**
- * @brief Pointer to the key that describes the temporal layer ID in a group of pictures (GOP). 
+ * @brief Pointer to the key that describes the temporal layer ID in a group of pictures (GOP).
  * The value type is int32_t.
  *
  * Temporal layer ID **0** indicates the base layer. Temporal layer IDs **1** and above indicate enhancement layers.
@@ -1139,7 +1139,7 @@ extern const char *OH_MD_KEY_VIDEO_ENCODER_TEMPORAL_GOP_REFERENCE_MODE;
  * **OH_MD_KEY_VIDEO_ENCODER_TEMPORAL_GOP_SIZE**.
  * Currently, this key is used only to query the temporal layer ID carried in **AVBuffer** output by the encoder.
  * The process is as follows:
- * 1. Use {@link OH_AVCodecOnNewOutputBuffer} or {@link OH_VideoEncoder_GetOutputBuffer} to 
+ * 1. Use {@link OH_AVCodecOnNewOutputBuffer} or {@link OH_VideoEncoder_GetOutputBuffer} to
  * obtain the buffer instance (**AVBuffer**).
  * 2. Use {@link OH_AVBuffer_GetParameter} to obtain the parameter instance (**OH_AVFormat**),
  * which does not contain basic properties.
@@ -1394,7 +1394,7 @@ extern const char *OH_MD_KEY_VIDEO_CROP_RIGHT;
 /**
  * @brief Pointer to the key that describes the stride of the video frame. The value type is int32_t.
  *
- * Stride indicates the byte distance between the start positions of two consecutive rows in memory. 
+ * Stride indicates the byte distance between the start positions of two consecutive rows in memory.
  * Due to hardware alignment requirements, the stride is typically greater than or equal to the image's active width.
  * When the stride equals the width, there is no horizontal padding. You should always obtain the actual stride through
  * {@link OH_VideoEncoder_GetInputDescription} (for encoding),
@@ -1441,7 +1441,7 @@ extern const char *OH_MD_KEY_VIDEO_SLICE_HEIGHT;
 extern const char *OH_MD_KEY_VIDEO_PIC_WIDTH;
 
 /**
- * @brief Pointer to the key that describes the actual active height of a decoded video frame. 
+ * @brief Pointer to the key that describes the actual active height of a decoded video frame.
  * The value type is int32_t. This key is read-only and used only for video decoding.
  *
  * You can obtain the height from the returned **OH_AVFormat** instance when
@@ -1450,7 +1450,7 @@ extern const char *OH_MD_KEY_VIDEO_PIC_WIDTH;
  * which is different from **OH_MD_KEY_HEIGHT** set in the configuration phase. The latter is a configuration hint used
  * for pre-allocating buffers. When cropping is applied, this value (rather than **sliceHeight**) should be used as the
  * actual height for displaying or saving the image.
- * For details about the image layout and usage example, see step 8 
+ * For details about the image layout and usage example, see step 8
  * in [video encoding](docroot://media/avcodec/video-encoding.md#buffer-mode) in buffer mode or
  * step 11 in [video decoding](docroot://media/avcodec/video-decoding.md#buffer-mode) in buffer mode.
  * 

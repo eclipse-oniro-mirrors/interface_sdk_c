@@ -172,7 +172,7 @@ OH_AVErrCode OH_VideoDecoder_SetSurface(OH_AVCodec *codec, OHNativeWindow *windo
  *     <br>{@link AV_ERR_OPERATE_NOT_PERMIT}: The operation is not allowed.
  *     <br>{@link AV_ERR_INVALID_STATE}: The function is not called prior to {@link OH_VideoDecoder_Prepare}.
  *     <br>{@link AV_ERR_VIDEO_UNSUPPORTED_COLOR_SPACE_CONVERSION}: Color Space Conversion is not supported.
- *     <br>{@link AV_ERR_UNSUPPORT}: The pixel format is not supported. 
+ *     <br>{@link AV_ERR_UNSUPPORT}: The pixel format is not supported.
  * @since 9
  */
 OH_AVErrCode OH_VideoDecoder_Configure(OH_AVCodec *codec, OH_AVFormat *format);
@@ -259,9 +259,9 @@ OH_AVErrCode OH_VideoDecoder_Flush(OH_AVCodec *codec);
 OH_AVErrCode OH_VideoDecoder_Reset(OH_AVCodec *codec);
 
 /**
- * @brief Obtains the {@link OH_AVFormat} information about the decoder's output data. 
+ * @brief Obtains the {@link OH_AVFormat} information about the decoder's output data.
  *
- * For details, see {@link OH_AVFormat}. You must call {@link OH_AVFormat_Destroy} to 
+ * For details, see {@link OH_AVFormat}. You must call {@link OH_AVFormat_Destroy} to
  * release the {@link OH_AVFormat} instance when its lifecycle ends.
  * 
  * @param codec Pointer to a video decoder instance.
@@ -319,7 +319,7 @@ OH_AVErrCode OH_VideoDecoder_PushInputData(OH_AVCodec *codec, uint32_t index, OH
  * @brief Returns the processed output buffer to a video decoder and instructs the decoder to render the decoded data
  * in the buffer on the output surface.
  *
- * If no output surface is configured, calling this API only returns the output buffer corresponding to 
+ * If no output surface is configured, calling this API only returns the output buffer corresponding to
  * the specified index to the decoder.
  * 
  * @param codec Pointer to a video decoder instance.
@@ -406,7 +406,7 @@ OH_AVErrCode OH_VideoDecoder_RenderOutputBuffer(OH_AVCodec *codec, uint32_t inde
  * @brief Returns the output buffer corresponding to the index to a video decoder. The buffer carries the decoded data
  * and is used to instruct the decoder to finish rendering within the specified duration on the output surface.
  *
- * If no output surface is configured, calling this API only returns the output buffer corresponding to 
+ * If no output surface is configured, calling this API only returns the output buffer corresponding to
  * the specified index to the decoder.
  *
  * You can request the system to render the buffer at a specific time (after the VSYNC or buffer timestamp) based on
@@ -446,7 +446,7 @@ OH_AVErrCode OH_VideoDecoder_RenderOutputBufferAtTime(OH_AVCodec *codec, uint32_
  * @brief Frees an output buffer of a video decoder. You need to call this function to release the output buffer in a
  * timely manner. Otherwise, the decoding process is blocked.
  *
- * For details, 
+ * For details,
  * see step 12 in surface mode or step 10 in buffer mode in [Video Decoding](docroot://media/avcodec/video-decoding.md).
  *
  * @param codec Pointer to a video decoder instance.
@@ -502,7 +502,6 @@ OH_AVBuffer *OH_VideoDecoder_GetInputBuffer(struct OH_AVCodec *codec, uint32_t i
  *
  * You can perform the following operations to display or release the decoded frame of the buffer instance obtained
  * through {@link OH_VideoDecoder_GetOutputBuffer}:
- *
  * 1. Return the processed output buffer to the decoder by calling {@link OH_VideoDecoder_FreeOutputBuffer}.
  *
  * 2. Render the output surface by calling {@link OH_VideoDecoder_RenderOutputBuffer}.
@@ -543,7 +542,7 @@ OH_AVBuffer *OH_VideoDecoder_GetOutputBuffer(struct OH_AVCodec *codec, uint32_t 
  *
  * @param codec Pointer to a video decoder instance.
  * @param isValid Pointer of the Boolean type. The value indicates the validity of the decoder service only when the
- *     function returns {@link AV_ERR_OK}. The value **true** means that the decoder service is valid, 
+ *     function returns {@link AV_ERR_OK}. The value **true** means that the decoder service is valid,
  *     and **false** means the opposite. It is recommended that you initialize **isValid** to **false**.
  * @return {@link AV_ERR_OK}: The operation is successful.
  *     <br>{@link AV_ERR_INVALID_VAL}: The value of **codec** is nullptr or does not point to a decoder instance.
