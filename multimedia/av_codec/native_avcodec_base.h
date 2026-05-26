@@ -826,8 +826,8 @@ extern const char *OH_MD_KEY_ROTATION;
 extern const char *OH_MD_KEY_RANGE_FLAG;
 
 /**
- * @brief Pointer to the key that describes the video primary colors. The value type is int32_t. The default value is **
- * COLOR_PRIMARY_UNSPECIFIED**. For details, see {@link OH_ColorPrimary}. The value complies with Table 2 in H.273.
+ * @brief Pointer to the key that describes the video primary colors. The value type is int32_t. The default value is 
+ * **COLOR_PRIMARY_UNSPECIFIED**. For details, see {@link OH_ColorPrimary}. The value complies with Table 2 in H.273.
  * 
  * @since 10
  */
@@ -1464,8 +1464,10 @@ extern const char *OH_MD_KEY_VIDEO_PIC_HEIGHT;
  * value **1** is used.
  *
  * This key is optional and used only in the configuration phase.
+ *
  * If enabled, the input and output data held by the video decoder does not exceed the amount required by the decoder
  * standard.
+ *
  * You can call {@link OH_AVCapability_IsFeatureSupported} to check whether a specific decoder supports low-latency
  * decoding. If supported, the video decoder outputs frames in the decoding sequence when low-latency video codec is
  * enabled.
