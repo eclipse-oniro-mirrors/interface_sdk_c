@@ -579,7 +579,7 @@ Camera_ErrorCode OH_PhotoOutput_Capture_WithCaptureSettingExt(Camera_PhotoOutput
  *     <br>**CAMERA_SERVICE_FATAL_ERROR**: The camera service is abnormal.
  * @since 26.0.0
  */
- Camera_ErrorCode OH_PhotoOutput_CreatePhotoCaptureSettingExt(Camera_PhotoOutput* photoOutput,
+Camera_ErrorCode OH_PhotoOutput_CreatePhotoCaptureSettingExt(Camera_PhotoOutput* photoOutput,
     OH_Camera_PhotoCaptureSettingExt** setting);
  
 /**
@@ -592,7 +592,7 @@ Camera_ErrorCode OH_PhotoOutput_Capture_WithCaptureSettingExt(Camera_PhotoOutput
  *     <br>**CAMERA_OPERATION_NOT_ALLOWED**: The operation is not allowed.
  * @since 26.0.0
  */
- Camera_ErrorCode OH_PhotoCaptureSettingExt_SetCompressionQuality(
+Camera_ErrorCode OH_PhotoCaptureSettingExt_SetCompressionQuality(
     OH_Camera_PhotoCaptureSettingExt* photoCaptureSettingExt, uint8_t compressionQuality);
  
 /**
@@ -629,7 +629,7 @@ Camera_ErrorCode OH_PhotoCaptureSettingExt_SetMirror(OH_Camera_PhotoCaptureSetti
  *     <br>**CAMERA_INVALID_ARGUMENT**: A parameter is missing or the parameter type is incorrect.
  * @since 26.0.0
  */
- Camera_ErrorCode OH_PhotoOutput_DestroyPhotoCaptureSettingExt(OH_Camera_PhotoCaptureSettingExt* setting);
+Camera_ErrorCode OH_PhotoOutput_DestroyPhotoCaptureSettingExt(OH_Camera_PhotoCaptureSettingExt* setting);
  
  /**
  * @brief Sets the image location for the photo capture extension configuration.
@@ -641,7 +641,7 @@ Camera_ErrorCode OH_PhotoCaptureSettingExt_SetMirror(OH_Camera_PhotoCaptureSetti
  *     <br>**CAMERA_OPERATION_NOT_ALLOWED**: The operation is not allowed.
  * @since 26.0.0
  */
- Camera_ErrorCode OH_PhotoCaptureSettingExt_SetLocation(OH_Camera_PhotoCaptureSettingExt* photoCaptureSettingExt,
+Camera_ErrorCode OH_PhotoCaptureSettingExt_SetLocation(OH_Camera_PhotoCaptureSettingExt* photoCaptureSettingExt,
     Camera_Location location);
  
 /**
