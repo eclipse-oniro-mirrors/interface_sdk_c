@@ -1652,22 +1652,6 @@ extern const char *OH_MD_KEY_VIDEO_ENCODER_REPEAT_PREVIOUS_MAX_COUNT;
 extern const char *OH_MD_KEY_VIDEO_ENCODER_ENABLE_B_FRAME;
 
 /**
- * @brief Key for HDR type, value type is int32_t, refer to {@link OH_HDRType}.
- *
- * @since 26.0.0
- */
-extern const char *OH_MD_KEY_HDR_TYPE;
-
-/**
- * @brief Key for querying the minimum presentation timestamp of the frames currently being decoded.
- *
- * It is used in {@link OH_VideoDecoder_GetInputDescription}.
- *
- * @since 26.0.0
- */
-extern const char *OH_MD_KEY_VIDEO_DECODER_MIN_PTS_OF_FRAMES_BEING_DECODED;
-
-/**
  * @brief Pointer to the key that describes the maximum number of consecutive B-frames supported by the video encoder.
  * The value type is int32_t. Note: This key is used only to query the encoder capability.
  *
@@ -1684,15 +1668,6 @@ extern const char *OH_MD_KEY_VIDEO_DECODER_MIN_PTS_OF_FRAMES_BEING_DECODED;
  * @since 20
  */
 extern const char *OH_MD_KEY_VIDEO_ENCODER_MAX_B_FRAMES;
-
-/**
- * @brief Key for querying the number of pending frames in the video encoder.
- *
- * It is used in {@link OH_VideoEncoder_GetInputDescription}.
- *
- * @since 26.0.0
- */
-extern const char *OH_MD_KEY_VIDEO_ENCODER_NUMBER_OF_PENDING_FRAMES;
 
 /**
  * @brief Key to set the region of interest(ROI) parameters. Value type is string in the format
@@ -1720,27 +1695,6 @@ extern const char *OH_MD_KEY_VIDEO_ENCODER_NUMBER_OF_PENDING_FRAMES;
 extern const char *OH_MD_KEY_VIDEO_ENCODER_ROI_PARAMS;
 
 /**
- * @brief Key to enable the decoder to output frames in decoding order,
- * value type is int32_t (0 or 1): 1 is enabled, 0 disabled.
- *
- * This is an optional key that applies only to video decoder and is only used in configure.
- * By default, this feature is disabled (0).
- *
- * @since 26.0.0
- */
-extern const char *OH_MD_KEY_VIDEO_DECODER_OUTPUT_IN_DECODING_ORDER;
-
-/**
- * @brief Key to set the maximum number of frames that a video encoder is allowed to hold before it must output
- * a compressed frame.
- *
- * It is only used in {@link OH_VideoEncoder_Configure}.
- *
- * @since 26.0.0
- */
-extern const char *OH_MD_KEY_VIDEO_ENCODER_MAX_FRAME_DELAY_COUNT;
-
-/**
  *
  * @brief Pointer to the key that specifies whether the moov metadata should be at the front of a media file. The value
  * type is int32_t. The value **1** indicates that the moov metadata should be at the front of a media file, and **0**
@@ -1749,16 +1703,6 @@ extern const char *OH_MD_KEY_VIDEO_ENCODER_MAX_FRAME_DELAY_COUNT;
  * @since 20
  */
 extern const char *OH_MD_KEY_ENABLE_MOOV_FRONT;
-
-/**
- * @brief Key to repeat headers before sync frames, value type is int32_t (0 or 1): 1 is enabled, 0 disabled.
- *
- * This is an optional key that applies only to video encoder and is only used in configure.
- * By default, this feature is disabled (0).
- *
- * @since 26.0.0
- */
-extern const char *OH_MD_KEY_VIDEO_ENCODER_REPEAT_HEADER_BEFORE_SYNC_FRAMES;
 
 /**
  * @brief Pointer to the key that describes the quality parameter in SQR mode. The value range is [0, 51] (same as the
@@ -2013,48 +1957,6 @@ extern const char *OH_MD_KEY_VIDEO_DECODER_FRAME_RETENTION_RATIO;
 extern const char *OH_MD_KEY_VIDEO_DECODER_SPEED;
 
 /**
- * @brief HDR type.
- *
- * @since 26.0.0
- */
-typedef enum OH_HDRType {
-    /** 
-     * @brief Non-HDR
-     * 
-     * @since 26.0.0
-     */
-    OH_HDR_TYPE_NONE = -1,
-
-    /**
-     * @brief HLG
-     * 
-     * @since 26.0.0
-     */
-    OH_HDR_TYPE_HLG = 0,
-
-    /**
-     * @brief HDR10
-     * 
-     * @since 26.0.0
-     */
-    OH_HDR_TYPE_HDR10 = 1,
-
-    /**
-     * @brief HDR Vivid
-     * 
-     * @since 26.0.0
-     */
-    OH_HDR_TYPE_HDR_VIVID = 2,
-
-    /**
-     * @brief Other HDR type
-     * 
-     * @since 26.0.0
-     */
-    OH_HDR_TYPE_OTHER = 3
-} OH_HDRType;
-
-/**
  * @brief Key for setting or querying the maximum input buffer size (in bytes) for audio codec, value type is int32_t.
  *
  * This key is used to configure or retrieve the maximum size of the input buffer for audio codec.
@@ -2088,6 +1990,46 @@ extern const char *OH_MD_KEY_AUDIO_ENCODER_PTS_MODE;
  * @since 26.0.0
  */
 extern const char *OH_MD_KEY_AUDIO_ENCODER_ENABLE_SAMPLE_FORMAT_CONVERT;
+
+/**
+ * @brief Key to enable the decoder to output frames in decoding order,
+ * value type is int32_t (0 or 1): 1 is enabled, 0 disabled.
+ *
+ * This is an optional key that applies only to video decoder and is only used in configure.
+ * By default, this feature is disabled (0).
+ *
+ * @since 26.0.0
+ */
+extern const char *OH_MD_KEY_VIDEO_DECODER_OUTPUT_IN_DECODING_ORDER;
+
+/**
+ * @brief Key for querying the number of pending frames in the video encoder.
+ *
+ * It is used in {@link OH_VideoEncoder_GetInputDescription}.
+ *
+ * @since 26.0.0
+ */
+extern const char *OH_MD_KEY_VIDEO_ENCODER_NUMBER_OF_PENDING_FRAMES;
+
+/**
+ * @brief Key to set the maximum number of frames that a video encoder is allowed to hold before it must output
+ * a compressed frame.
+ *
+ * It is only used in {@link OH_VideoEncoder_Configure}.
+ *
+ * @since 26.0.0
+ */
+extern const char *OH_MD_KEY_VIDEO_ENCODER_MAX_FRAME_DELAY_COUNT;
+
+/**
+ * @brief Key to repeat headers before sync frames, value type is int32_t (0 or 1): 1 is enabled, 0 disabled.
+ *
+ * This is an optional key that applies only to video encoder and is only used in configure.
+ * By default, this feature is disabled (0).
+ *
+ * @since 26.0.0
+ */
+extern const char *OH_MD_KEY_VIDEO_ENCODER_REPEAT_HEADER_BEFORE_SYNC_FRAMES;
 
 /**
  * @brief Enumerates the media types.
