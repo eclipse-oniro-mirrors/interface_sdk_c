@@ -780,6 +780,38 @@
         "name": "OH_PhotoOutput_SetPhotoQualityPrioritization"
     },
     {
+        "first_introduced": "26",
+        "name": "OH_PhotoOutput_CreatePhotoCaptureSettingExt"
+    },
+    {
+        "first_introduced": "26",
+        "name": "OH_PhotoCaptureSettingExt_SetCompressionQuality"
+    },
+    {
+        "first_introduced": "26",
+        "name": "OH_PhotoCaptureSettingExt_SetImageRotation"
+    },
+    {
+        "first_introduced": "26",
+        "name": "OH_PhotoCaptureSettingExt_SetMirror"
+    },
+    {
+        "first_introduced": "26",
+        "name": "OH_PhotoOutput_DestroyPhotoCaptureSettingExt"
+    },
+    {
+        "first_introduced": "26",
+        "name": "OH_PhotoCaptureSettingExt_SetLocation"
+    },
+    {
+        "first_introduced": "26",
+        "name": "OH_PhotoOutput_EnableAutoExtendedGainmapDelivery"
+    },
+    {
+        "first_introduced": "26",
+        "name": "OH_PhotoOutput_IsAutoExtendedGainmapDeliverySupported"
+    },
+    {
         "first_introduced": "22",
         "name": "OH_CaptureSession_RegisterIsoChangeCallback"
     },
