@@ -6901,5 +6901,25 @@
     {
         "first_introduced": "26.0.0",
         "name": "OH_ArkUI_NativeModule_CustomDialog_SetSystemMaterial"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_ArkUI_NativeModule_SetChildMountPolicy"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_ArkUI_NativeModule_GetChildMountPolicy"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_ArkUI_RenderNodeUtils_InsertRenderNodeAt"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_ArkUI_RenderNodeUtils_GetRenderNodeChildrenCount"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_ArkUI_RenderNodeUtils_GetRenderNodeAt"
     }
 ]
