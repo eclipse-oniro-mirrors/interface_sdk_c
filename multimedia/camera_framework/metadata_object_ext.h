@@ -181,7 +181,7 @@ void OH_MetadataObjectExt_Destroy(OH_Camera_MetadataObjectExt** metadataObjectEx
  * @return **true** if locked and tracked, **false** otherwise.
  * @since 26.0.0
  */
-bool OH_MetadataObjectExt_IsLockFocusTracked(const OH_Camera_MetadataObjectExt* metadataObjectExt)
+bool OH_MetadataObjectExt_IsLockFocusTracked(const OH_Camera_MetadataObjectExt* metadataObjectExt);
 #ifdef __cplusplus
 }
 #endif
