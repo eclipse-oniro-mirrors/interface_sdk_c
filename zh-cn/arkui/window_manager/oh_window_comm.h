@@ -216,12 +216,12 @@ typedef enum {
     WINDOW_MANAGER_WINDOW_TYPE_MAIN = 1,
 
     /**
-     * 悬浮窗口。
+     * 全局悬浮窗口。
      */
     WINDOW_MANAGER_WINDOW_TYPE_FLOAT = 8,
 
     /**
-     * 模态窗口。
+     * 对话窗口。
      */
     WINDOW_MANAGER_WINDOW_TYPE_DIALOG = 16
 } WindowManager_WindowType;

@@ -218,7 +218,7 @@ typedef enum {
     WINDOW_MANAGER_WINDOW_TYPE_MAIN = 1,
 
     /**
-     * Float window.
+     * Global float window.
      */
     WINDOW_MANAGER_WINDOW_TYPE_FLOAT = 8,
 
