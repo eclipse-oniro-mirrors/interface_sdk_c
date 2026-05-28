@@ -692,7 +692,7 @@ extern const char *OH_MD_KEY_MAX_INPUT_SIZE;
  * as a resolution hint for the decoder to pre-allocate internal buffers.
  * The actual decoded output dimensions are provided by **OH_MD_KEY_VIDEO_PIC_WIDTH**.
  * This key is mainly used to control memory allocation. You can call {@link OH_AVCapability_GetVideoWidthRange}
- * to obtain the recommended value range. This API defines the decoding width range supported by the encoder.
+ * to obtain the recommended value range.
  *
  * @since 9
  */
@@ -2559,7 +2559,7 @@ typedef enum OH_AVSeekMode {
     SEEK_MODE_PREVIOUS_SYNC,
 
     /**
-     * @brief Seeks to the latest I-frame at the specified position.
+     * @brief seek to sync sample closest to time.
      * 
      * @since 10
      */
