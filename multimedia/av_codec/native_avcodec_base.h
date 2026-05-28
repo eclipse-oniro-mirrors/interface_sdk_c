@@ -2015,13 +2015,11 @@ typedef enum OH_AACProfile {
      * @since 9
      */
     AAC_PROFILE_LC = 0,
-
     /**
      * AAC profile of the high efficiency level. Audio object types AAC LC and SBR are included.
      * @since 14
      */
     AAC_PROFILE_HE = 3,
-
     /**
      * AAC profile of the high efficiency V2 level. Audio object types AAC LC, SBR, and PS are included.
      * @since 14
@@ -2084,7 +2082,6 @@ typedef enum OH_HEVCProfile {
      * @since 10
      */
     HEVC_PROFILE_MAIN_10_HDR10 = 3,
-
     /**
      * HEVC profile of the main 10 HDR10+ level.
      * @deprecated since 14
@@ -2104,85 +2101,71 @@ typedef enum OH_VVCProfile {
      * @since 15
      */
     VVC_PROFILE_MAIN_10 = 1,
-
     /**
      * VVC profile of the 12-bit main level.
      * @since 15
      */
     VVC_PROFILE_MAIN_12 = 2,
-
     /**
      * VVC profile of the 12-bit intra main level.
      * @since 15
      */
     VVC_PROFILE_MAIN_12_INTRA = 10,
-
     /**
      * VVC profile of the 10-bit main level for multi-layer encoding.
      * @since 15
      */
     VVC_PROFILE_MULTI_MAIN_10 = 17,
-
     /**
      * VVC profile of the 10-bit full-sample main level.
      * @since 15
      */
     VVC_PROFILE_MAIN_10_444 = 33,
-
     /**
      * VVC profile of the 12-bit full-sample main level.
      * @since 15
      */
     VVC_PROFILE_MAIN_12_444 = 34,
-
     /**
      * VVC profile of the 16-bit full-sample main level.
      * @since 15
      */
     VVC_PROFILE_MAIN_16_444 = 36,
-
     /**
      * VVC profile of the 12-bit full-sample intra main level.
      * @since 15
      */
     VVC_PROFILE_MAIN_12_444_INTRA = 42,
-
     /**
      * VVC profile of the 16-bit full-sample intra main level.
      * @since 15
      */
     VVC_PROFILE_MAIN_16_444_INTRA = 44,
-
     /**
      * VVC profile of the 10-bit full-sample main level for multi-layer encoding.
      * @since 15
      */
     VVC_PROFILE_MULTI_MAIN_10_444 = 49,
-
     /**
      * VVC profile of the 10-bit still picture main level.
      * @since 15
      */
     VVC_PROFILE_MAIN_10_STILL = 65,
-
     /**
      * VVC profile of the 12-bit still picture main level.
      * @since 15
      */
     VVC_PROFILE_MAIN_12_STILL = 66,
-
     /**
      * VVC profile of the 10-bit full-sample still picture main level.
      * @since 15
      */
     VVC_PROFILE_MAIN_10_444_STILL = 97,
-
     /**
      * VVC profile of the 12-bit full-sample still picture main level.
      * @since 15
      */
     VVC_PROFILE_MAIN_12_444_STILL = 98,
-
     /**
      * VVC profile of the 16-bit full-sample still picture main level.
      * @since 15
@@ -2201,31 +2184,26 @@ typedef enum OH_MPEG2Profile {
      * @since 17
      */
     MPEG2_PROFILE_SIMPLE = 0,
-
     /**
      * Main profile.
      * @since 17
      */
     MPEG2_PROFILE_MAIN = 1,
-
     /**
      * Signal-to-Noise Ratio (SNR) scalable profile.
      * @since 17
      */
     MPEG2_PROFILE_SNR_SCALABLE = 2,
-
     /**
      * Spatial scalable profile.
      * @since 17
      */
     MPEG2_PROFILE_SPATIALLY_SCALABLE = 3,
-
     /**
      * High profile.
      * @since 17
      */
     MPEG2_PROFILE_HIGH = 4,
-
     /**
      * 4:2:2 profile.
      * @since 17
@@ -2244,85 +2222,71 @@ typedef enum OH_MPEG4Profile {
      * @since 17
      */
     MPEG4_PROFILE_SIMPLE = 0,
-
     /**
      * Simple scalable profile.
      * @since 17
      */
     MPEG4_PROFILE_SIMPLE_SCALABLE = 1,
-
     /**
      * Core profile.
      * @since 17
      */
     MPEG4_PROFILE_CORE = 2,
-
     /**
      * Main profile.
      * @since 17
      */
     MPEG4_PROFILE_MAIN = 3,
-
     /**
      * N-bit profile.
      * @since 17
      */
     MPEG4_PROFILE_N_BIT = 4,
-
     /**
      * Hybrid profile.
      * @since 17
      */
     MPEG4_PROFILE_HYBRID = 5,
-
     /**
      * Basic animated texture profile.
      * @since 17
      */
     MPEG4_PROFILE_BASIC_ANIMATED_TEXTURE = 6,
-
     /**
      * Scalable texture profile.
      * @since 17
      */
     MPEG4_PROFILE_SCALABLE_TEXTURE = 7,
-
     /**
      * Simple FA profile.
      * @since 17
      */
     MPEG4_PROFILE_SIMPLE_FA = 8,
-
     /**
      * Advanced real-time simple profile.
      * @since 17
      */
     MPEG4_PROFILE_ADVANCED_REAL_TIME_SIMPLE = 9,
-
     /**
      * Core scalable profile.
      * @since 17
      */
     MPEG4_PROFILE_CORE_SCALABLE = 10,
-
     /**
      * Advanced coding efficiency profile.
      * @since 17
      */
     MPEG4_PROFILE_ADVANCED_CODING_EFFICIENCY = 11,
-
     /**
      * Advanced core profile.
      * @since 17
      */
     MPEG4_PROFILE_ADVANCED_CORE = 12,
-
     /**
      * Advanced scalable texture profile.
      * @since 17
      */
     MPEG4_PROFILE_ADVANCED_SCALABLE_TEXTURE = 13,
-
     /**
      * Advanced simple profile.
      * @since 17
@@ -2341,7 +2305,6 @@ typedef enum OH_H263Profile {
      * @since 17
      */
     H263_PROFILE_BASELINE = 0,
-
     /**
      * Version 1 backward compatibility.
      * @since 17
@@ -2360,13 +2323,11 @@ typedef enum OH_VC1Profile {
      * @since 22
      */
     VC1_PROFILE_SIMPLE = 0,
-
     /**
      * Main profile.
      * @since 22
      */
     VC1_PROFILE_MAIN = 1,
-
     /**
      * High profile.
      * @since 22
@@ -2385,13 +2346,11 @@ typedef enum OH_AV1Profile {
      * @since 23
      */
     AV1_PROFILE_MAIN = 0,
-
     /**
      * High profile.
      * @since 23
      */
     AV1_PROFILE_HIGH = 1,
-
     /**
      * Professional profile.
      * @since 23
@@ -2410,19 +2369,16 @@ typedef enum OH_VP9Profile {
      * @since 23
      */
     VP9_PROFILE_0 = 0,
-
     /**
      * Profile 1.
      * @since 23
      */
     VP9_PROFILE_1 = 1,
-
     /**
      * Profile 2.
      * @since 23
      */
     VP9_PROFILE_2 = 2,
-
     /**
      * Profile 3.
      * @since 23
@@ -2454,7 +2410,6 @@ typedef enum OH_WMV3Profile {
      * @since 22
      */
     WMV3_PROFILE_SIMPLE = 0,
-
     /**
      * Main profile.
      * @since 22
@@ -2474,63 +2429,54 @@ typedef enum OH_AVOutputFormat {
      * @since 10
      */
     AV_OUTPUT_FORMAT_DEFAULT = 0,
-
     /**
      * @brief The muxer output MP4 file format.
      * 
      * @since 10
      */
     AV_OUTPUT_FORMAT_MPEG_4 = 2,
-
     /**
      * @brief The muxer output M4A file format.
      * 
      * @since 10
      */
     AV_OUTPUT_FORMAT_M4A = 6,
-
     /**
      * @brief The muxer output amr file format.
      * 
      * @since 12
      */
     AV_OUTPUT_FORMAT_AMR = 8,
-
     /**
      * @brief The muxer output mp3 file format.
      * 
      * @since 12
      */
     AV_OUTPUT_FORMAT_MP3 = 9,
-
     /**
      * @brief The muxer output wav file format.
      * 
      * @since 12
      */
     AV_OUTPUT_FORMAT_WAV = 10,
-
     /**
      * @brief The muxer output aac file format.
      * 
      * @since 18
      */
     AV_OUTPUT_FORMAT_AAC = 11,
-
     /**
      * @brief The muxer output flac file format.
      * 
      * @since 20
      */
     AV_OUTPUT_FORMAT_FLAC = 12,
-
     /**
      * @brief The muxer output ogg file format.
      * 
      * @since 23
      */
     AV_OUTPUT_FORMAT_OGG = 13,
-
     /**
      * @brief The muxer output flv file format.
      *
@@ -2552,14 +2498,12 @@ typedef enum OH_AVSeekMode {
      * @since 10
      */
     SEEK_MODE_NEXT_SYNC = 0,
-
     /**
      * @brief Seeks to the previous I-frame at the specified position.
      * 
      * @since 10
      */
     SEEK_MODE_PREVIOUS_SYNC,
-
     /**
      * @brief seek to sync sample closest to time.
      * 
@@ -2583,7 +2527,6 @@ typedef enum OH_ScalingMode {
      * @since 10
      */
     SCALING_MODE_SCALE_TO_WINDOW = 1,
-
     /**
      * @brief Crops the image based on the window size.
      * @deprecated since 14
@@ -2604,61 +2547,51 @@ typedef enum OH_BitsPerSample {
      * @since 10
      */
     SAMPLE_U8 = 0,
-
     /**
      * 16-bit signed integer sampling.
      * @since 10
      */
     SAMPLE_S16LE = 1,
-
     /**
      * 24-bit signed integer sampling.
      * @since 10
      */
     SAMPLE_S24LE = 2,
-
     /**
      * 32-bit signed integer sampling.
      * @since 10
      */
     SAMPLE_S32LE = 3,
-
     /**
      * 32-bit floating-point sampling.
      * @since 10
      */
     SAMPLE_F32LE = 4,
-
     /**
      * 8-bit unsigned integer plane sampling.
      * @since 10
      */
     SAMPLE_U8P = 5,
-
     /**
      * 16-bit signed integer plane sampling.
      * @since 10
      */
     SAMPLE_S16P = 6,
-
     /**
      * 24-bit signed integer plane sampling.
      * @since 10
      */
     SAMPLE_S24P = 7,
-
     /**
      * 32-bit signed integer plane sampling.
      * @since 10
      */
     SAMPLE_S32P = 8,
-
     /**
      * 32-bit floating-point plane sampling.
      * @since 10
      */
     SAMPLE_F32P = 9,
-
     /**
      * Invalid sampling format.
      * @since 10
@@ -2677,61 +2610,51 @@ typedef enum OH_ColorPrimary {
      * @since 10
      */
     COLOR_PRIMARY_BT709 = 1,
-
     /**
      * Unspecified color gamut.
      * @since 10
      */
     COLOR_PRIMARY_UNSPECIFIED = 2,
-
     /**
      * BT470_M color gamut.
      * @since 10
      */
     COLOR_PRIMARY_BT470_M = 4,
-
     /**
      * BT601_625 color gamut.
      * @since 10
      */
     COLOR_PRIMARY_BT601_625 = 5,
-
     /**
      * BT601_525 color gamut.
      * @since 10
      */
     COLOR_PRIMARY_BT601_525 = 6,
-
     /**
      * SMPTE_ST240 color gamut.
      * @since 10
      */
     COLOR_PRIMARY_SMPTE_ST240 = 7,
-
     /**
      * GENERIC_FILM color gamut.
      * @since 10
      */
     COLOR_PRIMARY_GENERIC_FILM = 8,
-
     /**
      * BT2020 color gamut.
      * @since 10
      */
     COLOR_PRIMARY_BT2020 = 9,
-
     /**
      * SMPTE_ST428 color gamut.
      * @since 10
      */
     COLOR_PRIMARY_SMPTE_ST428 = 10,
-
     /**
      * P3DCI color gamut.
      * @since 10
      */
     COLOR_PRIMARY_P3DCI = 11,
-
     /**
      * P3D65 color gamut.
      * @since 10
@@ -2750,97 +2673,81 @@ typedef enum OH_TransferCharacteristic {
      * @since 10
      */
     TRANSFER_CHARACTERISTIC_BT709 = 1,
-
     /**
      * Unspecified transfer function.
      * @since 10
      */
     TRANSFER_CHARACTERISTIC_UNSPECIFIED = 2,
-
     /**
      * GAMMA_2_2 transfer function.
      * @since 10
      */
     TRANSFER_CHARACTERISTIC_GAMMA_2_2 = 4,
-
     /**
      * GAMMA_2_8 transfer function.
      * @since 10
      */
     TRANSFER_CHARACTERISTIC_GAMMA_2_8 = 5,
-
     /**
      * BT601 transfer function.
      * @since 10
      */
     TRANSFER_CHARACTERISTIC_BT601 = 6,
-
     /**
      * SMPTE_ST240 transfer function.
      * @since 10
      */
     TRANSFER_CHARACTERISTIC_SMPTE_ST240 = 7,
-
     /**
      * Linear transfer function.
      * @since 10
      */
     TRANSFER_CHARACTERISTIC_LINEAR = 8,
-
     /**
      * Log transfer function.
      * @since 10
      */
     TRANSFER_CHARACTERISTIC_LOG = 9,
-
     /**
      * LOG_SQRT transfer function.
      * @since 10
      */
     TRANSFER_CHARACTERISTIC_LOG_SQRT = 10,
-
     /**
      * IEC_61966_2_4 transfer function.
      * @since 10
      */
     TRANSFER_CHARACTERISTIC_IEC_61966_2_4 = 11,
-
     /**
      * BT1361 transfer function.
      * @since 10
      */
     TRANSFER_CHARACTERISTIC_BT1361 = 12,
-
     /**
      * IEC_61966_2_1 transfer function.
      * @since 10
      */
     TRANSFER_CHARACTERISTIC_IEC_61966_2_1 = 13,
-
     /**
      * BT2020_10BIT transfer function.
      * @since 10
      */
     TRANSFER_CHARACTERISTIC_BT2020_10BIT = 14,
-
     /**
      * BT2020_12BIT transfer function.
      * @since 10
      */
     TRANSFER_CHARACTERISTIC_BT2020_12BIT = 15,
-
     /**
      * PQ transfer function.
      * @since 10
      */
     TRANSFER_CHARACTERISTIC_PQ = 16,
-
     /**
      * SMPTE_ST428 transfer function.
      * @since 10
      */
     TRANSFER_CHARACTERISTIC_SMPTE_ST428 = 17,
-
     /**
      * HLG transfer function.
      * @since 10
@@ -2859,79 +2766,66 @@ typedef enum OH_MatrixCoefficient {
      * @since 10
      */
     MATRIX_COEFFICIENT_IDENTITY = 0,
-
     /**
      * BT709 conversion matrix.
      * @since 10
      */
     MATRIX_COEFFICIENT_BT709 = 1,
-
     /**
      * Unspecified conversion matrix.
      * @since 10
      */
     MATRIX_COEFFICIENT_UNSPECIFIED = 2,
-
     /**
      * FCC conversion matrix.
      * @since 10
      */
     MATRIX_COEFFICIENT_FCC = 4,
-
     /**
      * BT601_625 conversion matrix.
      * @since 10
      */
     MATRIX_COEFFICIENT_BT601_625 = 5,
-
     /**
      * BT601_525 conversion matrix.
      * @since 10
      */
     MATRIX_COEFFICIENT_BT601_525 = 6,
-
     /**
      * SMPTE_ST240 conversion matrix.
      * @since 10
      */
     MATRIX_COEFFICIENT_SMPTE_ST240 = 7,
-
     /**
      * YCGCO conversion matrix.
      * @since 10
      */
     MATRIX_COEFFICIENT_YCGCO = 8,
-
     /**
      * BT2020_NCL conversion matrix.
      * @since 10
      */
     MATRIX_COEFFICIENT_BT2020_NCL = 9,
-
     /**
      * BT2020_CL conversion matrix.
      * @since 10
      */
     MATRIX_COEFFICIENT_BT2020_CL = 10,
-
     /**
      * SMPTE_ST2085 conversion matrix.
      * @since 10
      */
     MATRIX_COEFFICIENT_SMPTE_ST2085 = 11,
-
     /**
      * CHROMATICITY_NCL conversion matrix.
      * @since 10
      */
     MATRIX_COEFFICIENT_CHROMATICITY_NCL = 12,
-
     /**
      * CHROMATICITY_CL conversion matrix.
      * @since 10
      */
     MATRIX_COEFFICIENT_CHROMATICITY_CL = 13,
-
     /**
      * ICTCP conversion matrix.
      * @since 10
@@ -2950,115 +2844,96 @@ typedef enum OH_AVCLevel {
      * @since 12
      */
     AVC_LEVEL_1 = 0,
-
     /**
      * Level 1b.
      * @since 12
      */
     AVC_LEVEL_1b = 1,
-
     /**
      * Level 1.1.
      * @since 12
      */
     AVC_LEVEL_11 = 2,
-
     /**
      * Level 1.2.
      * @since 12
      */
     AVC_LEVEL_12 = 3,
-
     /**
      * Level 1.3.
      * @since 12
      */
     AVC_LEVEL_13 = 4,
-
     /**
      * Level 2.
      * @since 12
      */
     AVC_LEVEL_2 = 5,
-
     /**
      * Level 2.1.
      * @since 12
      */
     AVC_LEVEL_21 = 6,
-
     /**
      * Level 2.2.
      * @since 12
      */
     AVC_LEVEL_22 = 7,
-
     /**
      * Level 3.
      * @since 12
      */
     AVC_LEVEL_3 = 8,
-
     /**
      * Level 3.1.
      * @since 12
      */
     AVC_LEVEL_31 = 9,
-
     /**
      * Level 3.2.
      * @since 12
      */
     AVC_LEVEL_32 = 10,
-
     /**
      * Level 4.
      * @since 12
      */
     AVC_LEVEL_4 = 11,
-
     /**
      * Level 4.1.
      * @since 12
      */
     AVC_LEVEL_41 = 12,
-
     /**
      * Level 4.2.
      * @since 12
      */
     AVC_LEVEL_42 = 13,
-
     /**
      * Level 5.
      * @since 12
      */
     AVC_LEVEL_5 = 14,
-
     /**
      * Level 5.1.
      * @since 12
      */
     AVC_LEVEL_51 = 15,
-
     /**
      * Level 5.2.
      * @since 12
      */
     AVC_LEVEL_52 = 16,
-
     /**
      * Level 6.
      * @since 12
      */
     AVC_LEVEL_6 = 17,
-
     /**
      * Level 6.1.
      * @since 12
      */
     AVC_LEVEL_61 = 18,
-
     /**
      * Level 6.2.
      * @since 12
@@ -3077,73 +2952,61 @@ typedef enum OH_HEVCLevel {
      * @since 12
      */
     HEVC_LEVEL_1 = 0,
-
     /**
      * Level 2.
      * @since 12
      */
     HEVC_LEVEL_2 = 1,
-
     /**
      * Level 2.1.
      * @since 12
      */
     HEVC_LEVEL_21 = 2,
-
     /**
      * Level 3.
      * @since 12
      */
     HEVC_LEVEL_3 = 3,
-
     /**
      * Level 3.1.
      * @since 12
      */
     HEVC_LEVEL_31 = 4,
-
     /**
      * Level 4.
      * @since 12
      */
     HEVC_LEVEL_4 = 5,
-
     /**
      * Level 4.1.
      * @since 12
      */
     HEVC_LEVEL_41 = 6,
-
     /**
      * Level 5.
      * @since 12
      */
     HEVC_LEVEL_5 = 7,
-
     /**
      * Level 5.1.
      * @since 12
      */
     HEVC_LEVEL_51 = 8,
-
     /**
      * Level 5.2.
      * @since 12
      */
     HEVC_LEVEL_52 = 9,
-
     /**
      * Level 6.
      * @since 12
      */
     HEVC_LEVEL_6 = 10,
-
     /**
      * Level 6.1.
      * @since 12
      */
     HEVC_LEVEL_61 = 11,
-
     /**
      * Level 6.2.
      * @since 12
@@ -3162,85 +3025,71 @@ typedef enum OH_VVCLevel {
      * @since 15
      */
     VVC_LEVEL_1 = 16,
-
     /**
      * Level 2.0.
      * @since 15
      */
     VVC_LEVEL_2 = 32,
-
     /**
      * Level 2.1.
      * @since 15
      */
     VVC_LEVEL_21 = 35,
-
     /**
      * Level 3.0.
      * @since 15
      */
     VVC_LEVEL_3 = 48,
-
     /**
      * Level 3.1.
      * @since 15
      */
     VVC_LEVEL_31 = 51,
-
     /**
      * Level 4.0.
      * @since 15
      */
     VVC_LEVEL_4 = 64,
-
     /**
      * Level 4.1.
      * @since 15
      */
     VVC_LEVEL_41 = 67,
-
     /**
      * Level 5.0.
      * @since 15
      */
     VVC_LEVEL_5 = 80,
-
     /**
      * Level 5.1.
      * @since 15
      */
     VVC_LEVEL_51 = 83,
-
     /**
      * Level 5.2.
      * @since 15
      */
     VVC_LEVEL_52 = 86,
-
     /**
      * Level 6.0.
      * @since 15
      */
     VVC_LEVEL_6 = 96,
-
     /**
      * Level 6.1.
      * @since 15
      */
     VVC_LEVEL_61 = 99,
-
     /**
      * Level 6.2.
      * @since 15
      */
     VVC_LEVEL_62 = 102,
-
     /**
      * Level 6.3.
      * @since 15
      */
     VVC_LEVEL_63 = 105,
-
     /**
      * Level 15.5.
      * @since 15
@@ -3259,19 +3108,16 @@ typedef enum OH_MPEG2Level {
      * @since 17
      */
     MPEG2_LEVEL_LOW = 0,
-
     /**
      * Main level.
      * @since 17
      */
     MPEG2_LEVEL_MAIN = 1,
-
     /**
      * High 1440 level.
      * @since 17
      */
     MPEG2_LEVEL_HIGH_1440 = 2,
-
     /**
      * High level.
      * @since 17
@@ -3290,31 +3136,26 @@ typedef enum OH_MPEG4Level {
      * @since 17
      */
     MPEG4_LEVEL_0 = 0,
-
     /**
      * Level 0B.
      * @since 17
      */
     MPEG4_LEVEL_0B = 1,
-
     /**
      * Level 1.
      * @since 17
      */
     MPEG4_LEVEL_1 = 2,
-
     /**
      * Level 2.
      * @since 17
      */
     MPEG4_LEVEL_2 = 3,
-
     /**
      * Level 3.
      * @since 17
      */
     MPEG4_LEVEL_3 = 4,
-
     /**
      * Level 3B.
      * @since 17
@@ -3326,19 +3167,16 @@ typedef enum OH_MPEG4Level {
      * @since 17
      */
     MPEG4_LEVEL_4 = 6,
-
     /**
      * Level 4A.
      * @since 17
      */
     MPEG4_LEVEL_4A = 7,
-
     /**
      * Level 5.
      * @since 17
      */
     MPEG4_LEVEL_5 = 8,
-
     /**
      * Level 6.
      * @since 17
@@ -3357,43 +3195,36 @@ typedef enum OH_H263Level {
      * @since 17
      */
     H263_LEVEL_10 = 0,
-
     /**
      * Level 20.
      * @since 17
      */
     H263_LEVEL_20 = 1,
-
     /**
      * Level 30.
      * @since 17
      */
     H263_LEVEL_30 = 2,
-
     /**
      * Level 40.
      * @since 17
      */
     H263_LEVEL_40 = 3,
-
     /**
      * Level 45.
      * @since 17
      */
     H263_LEVEL_45 = 4,
-
     /**
      * Level 50.
      * @since 17
      */
     H263_LEVEL_50 = 5,
-
     /**
      * Level 60.
      * @since 17
      */
     H263_LEVEL_60 = 6,
-
     /**
      * Level 70.
      * @since 17
@@ -3412,43 +3243,36 @@ typedef enum OH_VC1Level {
      * @since 22
      */
     VC1_LEVEL_L0 = 0,
-
     /**
      * Level L1.
      * @since 22
      */
     VC1_LEVEL_L1 = 1,
-
     /**
      * Level L2.
      * @since 22
      */
     VC1_LEVEL_L2 = 2,
-
     /**
      * Level L3.
      * @since 22
      */
     VC1_LEVEL_L3 = 3,
-
     /**
      * Level L4.
      * @since 22
      */
     VC1_LEVEL_L4 = 4,
-
     /**
      * Low level.
      * @since 22
      */
     VC1_LEVEL_LOW = 5,
-
     /**
      * Medium level.
      * @since 22
      */
     VC1_LEVEL_MEDIUM = 6,
-
     /**
      * High level.
      * @since 22
@@ -3467,139 +3291,116 @@ typedef enum OH_AV1Level {
      * @since 23
      */
     AV1_LEVEL_20 = 0,
-
     /**
      * Level 2.1.
      * @since 23
      */
     AV1_LEVEL_21 = 1,
-
     /**
      * Level 2.2.
      * @since 23
      */
     AV1_LEVEL_22 = 2,
-
     /**
      * Level 2.3.
      * @since 23
      */
     AV1_LEVEL_23 = 3,
-
     /**
      * Level 3.0.
      * @since 23
      */
     AV1_LEVEL_30 = 4,
-
     /**
      * Level 3.1.
      * @since 23
      */
     AV1_LEVEL_31 = 5,
-
     /**
      * Level 3.2.
      * @since 23
      */
     AV1_LEVEL_32 = 6,
-
     /**
      * Level 3.3.
      * @since 23
      */
     AV1_LEVEL_33 = 7,
-
     /**
      * Level 4.0.
      * @since 23
      */
     AV1_LEVEL_40 = 8,
-
     /**
      * Level 4.1.
      * @since 23
      */
     AV1_LEVEL_41 = 9,
-
     /**
      * Level 4.2.
      * @since 23
      */
     AV1_LEVEL_42 = 10,
-
     /**
      * Level 4.3.
      * @since 23
      */
     AV1_LEVEL_43 = 11,
-
     /**
      * Level 5.0.
      * @since 23
      */
     AV1_LEVEL_50 = 12,
-
     /**
      * Level 5.1.
      * @since 23
      */
     AV1_LEVEL_51 = 13,
-
     /**
      * Level 5.2.
      * @since 23
      */
     AV1_LEVEL_52 = 14,
-
     /**
      * Level 5.3.
      * @since 23
      */
     AV1_LEVEL_53 = 15,
-
     /**
      * Level 6.0.
      * @since 23
      */
     AV1_LEVEL_60 = 16,
-
     /**
      * Level 6.1.
      * @since 23
      */
     AV1_LEVEL_61 = 17,
-
     /**
      * Level 6.2.
      * @since 23
      */
     AV1_LEVEL_62 = 18,
-
     /**
      * Level 6.3.
      * @since 23
      */
     AV1_LEVEL_63 = 19,
-
     /**
      * Level 7.0.
      * @since 23
      */
     AV1_LEVEL_70 = 20,
-
     /**
      * Level 7.1.
      * @since 23
      */
     AV1_LEVEL_71 = 21,
-
     /**
      * Level 7.2.
      * @since 23
      */
     AV1_LEVEL_72 = 22,
-
     /**
      * Level 7.3.
      * @since 23
@@ -3618,79 +3419,66 @@ typedef enum OH_VP9Level {
      * @since 23
      */
     VP9_LEVEL_1 = 0,
-
     /**
      * Level 1.1.
      * @since 23
      */
     VP9_LEVEL_11 = 1,
-
     /**
      * Level 2.
      * @since 23
      */
     VP9_LEVEL_2 = 2,
-
     /**
      * Level 2.1.
      * @since 23
      */
     VP9_LEVEL_21 = 3,
-
     /**
      * Level 3.
      * @since 23
      */
     VP9_LEVEL_3 = 4,
-
     /**
      * Level 3.1.
      * @since 23
      */
     VP9_LEVEL_31 = 5,
-
     /**
      * Level 4.
      * @since 23
      */
     VP9_LEVEL_4 = 6,
-
     /**
      * Level 4.1.
      * @since 23
      */
     VP9_LEVEL_41 = 7,
-
     /**
      * Level 5.
      * @since 23
      */
     VP9_LEVEL_5 = 8,
-
     /**
      * Level 5.1.
      * @since 23
      */
     VP9_LEVEL_51 = 9,
-
     /**
      * Level 5.2.
      * @since 23
      */
     VP9_LEVEL_52 = 10,
-
     /**
      * Level 6.
      * @since 23
      */
     VP9_LEVEL_6 = 11,
-
     /**
      * Level 6.1.
      * @since 23
      */
     VP9_LEVEL_61 = 12,
-
     /**
      * Level 6.2.
      * @since 23
@@ -3709,25 +3497,21 @@ typedef enum OH_WVC1Level {
      * @since 23
      */
     WVC1_LEVEL_L0 = 0,
-
     /**
      * Level L1.
      * @since 23
      */
     WVC1_LEVEL_L1 = 1,
-
     /**
      * Level L2.
      * @since 23
      */
     WVC1_LEVEL_L2 = 2,
-
     /**
      * Level L3.
      * @since 23
      */
     WVC1_LEVEL_L3 = 3,
-
     /**
      * Level L4.
      * @since 23
@@ -3746,13 +3530,11 @@ typedef enum OH_WMV3Level {
      * @since 22
      */
     WMV3_LEVEL_LOW = 0,
-
     /**
      * Medium level.
      * @since 22
      */
     WMV3_LEVEL_MEDIUM = 1,
-
     /**
      * High level.
      * @since 22
@@ -3771,7 +3553,6 @@ typedef enum OH_TemporalGopReferenceMode {
      * @since 12
      */
     ADJACENT_REFERENCE = 0,
-
     /**
      * Refers to the latest LTR frame.
      * @since 12
@@ -3797,28 +3578,23 @@ typedef enum OH_BitrateMode {
      * @since 10
      */
     BITRATE_MODE_CBR = 0,
-
     /**
      * Variable bit rate.
      * @since 10
      */
     BITRATE_MODE_VBR = 1,
-
     /**
      * Constant quality.
      * @since 10
      */
     BITRATE_MODE_CQ = 2,
-
     /**
      * Stable Quality RateControl.
      * @since 20
      */
     BITRATE_MODE_SQR = 3,
-
     /**
      * @brief CBR for High Quality.
-     * 
      * @since 26.0.0
      */
     BITRATE_MODE_CBR_HIGH_QUALITY = 4
@@ -3839,17 +3615,14 @@ typedef enum OH_FRAME_RETENTION_MODE {
      * @since 26.0.0
      */
     OH_FRAME_RETENTION_MODE_FULL = 0,
-
     /**
      * @brief Adaptive frame retention mode. The decoder dynamically analyzes video characteristics to drop frames with
      * the least perceptual impact, preserving visual smoothness with minimal degradation to the playback experience.
      * For optimal algorithmic accuracy, it is highly recommended to explicitly configure
      * the current playback speed via {@link OH_MD_KEY_VIDEO_DECODER_SPEED}.
-     * 
      * @since 26.0.0
      */
     OH_FRAME_RETENTION_MODE_ADAPTIVE = 1,
-
     /**
      * @brief Uniform frame retention mode. Retains frames evenly according to a user-configured retention ratio
      * (configured via {@link OH_MD_KEY_VIDEO_DECODER_FRAME_RETENTION_RATIO}).
