@@ -6713,13 +6713,13 @@ typedef enum {
     ARKUI_TEXT_MENU_ITEM_ID_ASK_AI = 15,
 
     /**
-     * Autofill. For example, the account and password can be automatically filled.
+     * 自动填充。例如自动填充账号密码。
      * @since 24
      */
     ARKUI_TEXT_MENU_ITEM_ID_AUTO_FILL = 16,
 
     /**
-     * Password vault.
+     * 密码保险箱。
      * @since 24
      */
     ARKUI_TEXT_MENU_ITEM_ID_PASSWORD_VAULT = 17,
@@ -6853,183 +6853,181 @@ ArkUI_ErrorCode OH_ArkUI_TextEditMenuOptions_RegisterOnMenuItemClickCallback(
 typedef struct ArkUI_TextSelectionMenuOptions ArkUI_TextSelectionMenuOptions;
 
 /**
- * @brief Defines decoration style options.
+ * @brief 定义装饰线样式。
  *
  * @since 24
  */
 typedef struct OH_ArkUI_DecorationStyleOptions OH_ArkUI_DecorationStyleOptions;
 
 /**
- * @brief Defines the configuration of text entity recognition.
+ * @brief 定义文本实体识别的配置。
  *
  * @since 24
  */
 typedef struct OH_ArkUI_TextDataDetectorConfig OH_ArkUI_TextDataDetectorConfig;
 
 /**
- * @brief Defines the text selection menu options of the text editor.
+ * @brief 定义文本编辑器的文本选择菜单选项。
  *
  * @since 24
  */
 typedef struct OH_ArkUI_TextEditorSelectionMenuOptions OH_ArkUI_TextEditorSelectionMenuOptions;
 
 /**
- * @brief Defines the hint text options when no content is entered in the text editor.
+ * @brief 定义文本编辑器无输入时的提示文本选项。
  *
  * @since 24
  */
 typedef struct OH_ArkUI_TextEditorPlaceholderOptions OH_ArkUI_TextEditorPlaceholderOptions;
 
 /**
- * @brief Defines the attribute string controller of the text editor.
+ * @brief 定义文本编辑器的属性字符串控制器。
  *
  * @since 24
  */
 typedef struct OH_ArkUI_TextEditorStyledStringController OH_ArkUI_TextEditorStyledStringController;
 
 /**
- * @brief Defines the paragraph style of the text editor.
+ * @brief 定义文本编辑器的段落样式。
  *
  * @since 24
  */
 typedef struct OH_ArkUI_TextEditorParagraphStyle OH_ArkUI_TextEditorParagraphStyle;
 
 /**
- * @brief Defines shadow options.
+ * @brief 定义阴影选项。
  *
  * @since 24
  */
 typedef struct OH_ArkUI_ShadowOptions OH_ArkUI_ShadowOptions;
 
 /**
- * @brief Defines the text style of the text editor.
+ * @brief 定义文本编辑器的文本样式。
  *
  * @since 24
  */
 typedef struct OH_ArkUI_TextEditorTextStyle OH_ArkUI_TextEditorTextStyle;
 
 /**
- * @brief Enumerates vibration effect types.
+ * @brief 震动效果类型枚举。
  *
  * @since 24
  */
 typedef enum {
     /**
-     * No vibration.
+     * 无震动效果。
      * @since 24
      */
     OH_ARKUI_HAPTIC_FEEDBACK_MODE_DISABLED = 0,
     /**
-     * Vibration.
+     * 有震动效果。
      * @since 24
      */
     OH_ARKUI_HAPTIC_FEEDBACK_MODE_ENABLED = 1,
     /**
-     * System vibration.
+     * 跟随系统的震动效果。
      * @since 24
      */
     OH_ARKUI_HAPTIC_FEEDBACK_MODE_AUTO = 2,
 } OH_ArkUI_HapticFeedbackMode;
 
 /**
- * @brief Enumerates the span types of a custom text selection menu.
+ * @brief 自定义文本选择菜单span类型枚举。
  *
  * @since 24
  */
 typedef enum {
     /**
-     * Text span.
+     * 文本span
      * @since 24
      */
     OH_ARKUI_TEXT_EDITOR_SPAN_TYPE_TEXT = 0,
     /**
-     * Image span.
+     * 图片span。
      * @since 24
      */
     OH_ARKUI_TEXT_EDITOR_SPAN_TYPE_IMAGE = 1,
     /**
-     * Mixed span.
+     * 混合span。
      * @since 24
      */
     OH_ARKUI_TEXT_EDITOR_SPAN_TYPE_MIXED = 2,
     /**
-     * Custom layout span.
+     * 自定义布局span。
      * @since 24
      */
     OH_ARKUI_TEXT_EDITOR_SPAN_TYPE_BUILDER = 3,
     /**
-     * Default span.
+     * 默认span。
      * @since 24
      */
     OH_ARKUI_TEXT_EDITOR_SPAN_TYPE_DEFAULT = 4
 } OH_ArkUI_TextEditorSpanType;
 
 /**
- * @brief Enumerates the response types of a custom text selection menu.
+ * @brief 自定义文本选择菜单响应类型枚举。
  *
  * @since 24
  */
 typedef enum {
     /**
-     * The menu is displayed when the component is right-clicked.
+     * 通过鼠标右键触发菜单弹出。
      * @since 24
      */
     OH_ARKUI_TEXT_EDITOR_RESPONSE_TYPE_RIGHT_CLICK = 0,
     /**
-     * The menu is displayed when the component is long-pressed.
+     * 通过长按触发菜单弹出。
      * @since 24
      */
     OH_ARKUI_TEXT_EDITOR_RESPONSE_TYPE_LONG_PRESS = 1,
     /**
-     * The menu is displayed when the component is selected.
+     * 通过鼠标选中触发菜单弹出。
      * @since 24
      */
     OH_ARKUI_TEXT_EDITOR_RESPONSE_TYPE_SELECT = 2,
     /**
-     * Default response type.
+     * 默认响应类型。
      * @since 24
      */
     OH_ARKUI_TEXT_EDITOR_RESPONSE_TYPE_DEFAULT = 3,
 } OH_ArkUI_TextEditorResponseType;
 
 /**
- * @brief Enumerates text menu types.
+ * @brief 文本菜单类型枚举。
  *
  * @since 24
  */
 typedef enum {
     /**
-     * Text selection menu.
+     * 文本选择菜单。
      * @since 24
      */
     OH_ARKUI_TEXT_EDITOR_SELECTION_MENU = 0,
     /**
-     * Preview menu.
+     * 预览菜单。
      * @since 24
      */
     OH_ARKUI_TEXT_EDITOR_PREVIEW_MENU = 1,
 } OH_ArkUI_TextMenuType;
 
 /**
- * @brief Enumerates line break policies.
+ * @brief 换行策略类型枚举。
  *
  * @since 24
  */
 typedef enum {
     /**
-     * Greedy mode.<br>Places as many words on a line as possible and moves to the next line only if no more words can
-     * fit into the same line.
+     * 贪婪模式。<br>使每一行尽可能显示多的字符，直到这一行不能显示更多字符时进行折行。
      * @since 24
      */
     OH_ARKUI_LINE_BREAK_STRATEGY_GREEDY = 0,
     /**
-     * High-quality mode.<br>Fills in lines as much as possible on the basis of **BALANCED**, which may results in a
-     * large blank area on the last line.
+     * 高质量模式。<br>在平衡模式的基础上，尽可能填满行，同时最后一行的权重较低，可能出现最后一行留白较多的情形。
      * @since 24
      */
     OH_ARKUI_LINE_BREAK_STRATEGY_HIGH_QUALITY = 1,
     /**
-     * Balance mode.<br>Without splitting words, the width of each line in a paragraph is the same as much as possible.
+     * 平衡模式。<br>在不拆词的情况下，尽量使一个段落中每一行的宽度相同。
      * @since 24
      */
     OH_ARKUI_LINE_BREAK_STRATEGY_BALANCE = 2,
@@ -7678,182 +7676,178 @@ uint32_t OH_ArkUI_SelectedDragPreviewStyle_GetColor(
     ArkUI_SelectedDragPreviewStyle* config);
 
 /**
- * @brief Creates a decorative line style object. When the object is no longer used, call
- * {@link OH_ArkUI_DecorationStyleOptions_Destroy} to destroy it.
+ * @brief 创建一个装饰线样式对象。当该对象不再使用时，请调用{@link OH_ArkUI_DecorationStyleOptions_Destroy}销毁。
  *
- * @return Pointer to the {@link OH_ArkUI_DecorationStyleOptions} object.
+ * @return 指向{@link OH_ArkUI_DecorationStyleOptions}对象的指针。
  * @since 24
  */
 OH_ArkUI_DecorationStyleOptions* OH_ArkUI_DecorationStyleOptions_Create();
 
 /**
- * @brief Destroys the decorative line style object.
+ * @brief 销毁装饰线样式对象。
  *
- * @param options Pointer to the option object to be destroyed.
+ * @param options 指向待销毁的选项对象的指针。
  * @since 24
  */
 void OH_ArkUI_DecorationStyleOptions_Destroy(OH_ArkUI_DecorationStyleOptions* options);
 
 /**
- * @brief Sets the decoration type of the decorative line style.
+ * @brief 设置装饰线样式的装饰类型。
  *
- * @param options Pointer to the {@link OH_ArkUI_DecorationStyleOptions} object.
- * @param type Decoration type ({@link ArkUI_TextDecorationType}).
- * @return Result code.
- *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @param options 指向{@link OH_ArkUI_DecorationStyleOptions}对象的指针。
+ * @param type 装饰类型{@link ArkUI_TextDecorationType}。
+ * @return 返回结果码。
+ *     <br>若操作成功，返回{@link ARKUI_ERROR_CODE_NO_ERROR}。
+ *     <br>若参数异常，返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_DecorationStyleOptions_SetTextDecorationType(OH_ArkUI_DecorationStyleOptions* options,
     ArkUI_TextDecorationType type);
 
 /**
- * @brief Obtains the decoration type of the decorative line style.
+ * @brief 获取装饰线样式的装饰类型。
  *
- * @param options Pointer to the {@link OH_ArkUI_DecorationStyleOptions} object.
- * @param type Pointer to the decoration type ({@link ArkUI_TextDecorationType}).
- * @return Result code.
- *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @param options 指向{@link OH_ArkUI_DecorationStyleOptions}对象的指针。
+ * @param type 装饰类型{@link ArkUI_TextDecorationType}。
+ * @return 返回结果码。
+ *     <br>若操作成功，返回{@link ARKUI_ERROR_CODE_NO_ERROR}。
+ *     <br>若参数异常，返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_DecorationStyleOptions_GetTextDecorationType(OH_ArkUI_DecorationStyleOptions* options,
     ArkUI_TextDecorationType* type);
 
 /**
- * @brief Sets the color of the decorative line.
+ * @brief 设置装饰线的颜色。
  *
- * @param options Pointer to the {@link OH_ArkUI_DecorationStyleOptions} object.
- * @param color Color of the decorative line, in 0xARGB format.
- * @return Result code.
- *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @param options 指向{@link OH_ArkUI_DecorationStyleOptions}对象的指针。
+ * @param color 装饰线的颜色，0xARGB格式。
+ * @return 返回结果码。
+ *     <br>若操作成功，返回{@link ARKUI_ERROR_CODE_NO_ERROR}。
+ *     <br>若参数异常，返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_DecorationStyleOptions_SetColor(OH_ArkUI_DecorationStyleOptions* options, uint32_t color);
 
 /**
- * @brief Obtains the color of the decorative line.
+ * @brief 获取装饰线的颜色。
  *
- * @param options Pointer to the {@link OH_ArkUI_DecorationStyleOptions} object.
- * @param color Pointer to the color of the decorative line, in 0xARGB format.
- * @return Result code.
- *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @param options 指向{@link OH_ArkUI_DecorationStyleOptions}对象的指针。
+ * @param color 装饰线的颜色，0xARGB格式。
+ * @return 返回结果码。
+ *     <br>若操作成功，返回{@link ARKUI_ERROR_CODE_NO_ERROR}。
+ *     <br>若参数异常，返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_DecorationStyleOptions_GetColor(OH_ArkUI_DecorationStyleOptions* options, uint32_t* color);
 
 /**
- * @brief Sets the style of the decorative line.
+ * @brief 设置装饰线的样式。
  *
- * @param options Pointer to the {@link OH_ArkUI_DecorationStyleOptions} object.
- * @param style Style of the decorative line ({@link ArkUI_TextDecorationStyle}).
- * @return Result code.
- *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @param options 指向{@link OH_ArkUI_DecorationStyleOptions}对象的指针。
+ * @param style 装饰线的样式{@link ArkUI_TextDecorationStyle}。
+ * @return 返回结果码。
+ *     <br>若操作成功，返回{@link ARKUI_ERROR_CODE_NO_ERROR}。
+ *     <br>若参数异常，返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_DecorationStyleOptions_SetTextDecorationStyle(OH_ArkUI_DecorationStyleOptions* options,
     ArkUI_TextDecorationStyle style);
 
 /**
- * @brief Obtains the style of the decorative line.
+ * @brief 获取装饰线的样式。
  *
- * @param options Pointer to the {@link OH_ArkUI_DecorationStyleOptions} object.
- * @param style Pointer to the style of the decorative line ({@link ArkUI_TextDecorationStyle}).
- * @return Result code.
- *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @param options 指向{@link OH_ArkUI_DecorationStyleOptions}对象的指针。
+ * @param style 装饰线的样式{@link ArkUI_TextDecorationStyle}。
+ * @return 返回结果码。
+ *     <br>若操作成功，返回{@link ARKUI_ERROR_CODE_NO_ERROR}。
+ *     <br>若参数异常，返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_DecorationStyleOptions_GetTextDecorationStyle(OH_ArkUI_DecorationStyleOptions* options,
     ArkUI_TextDecorationStyle* style);
 
 /**
- * @brief Sets the scale factor of the decorative line thickness.
+ * @brief 设置装饰线的粗细缩放比例。
  *
- * @param options Pointer to the {@link OH_ArkUI_DecorationStyleOptions} object.
- * @param thicknessScale Scale factor of the decorative line thickness. The value range is [0, +∞).
- * @return Result code.
- *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @param options 指向{@link OH_ArkUI_DecorationStyleOptions}对象的指针。
+ * @param thicknessScale 装饰线的粗细缩放比例。取值范围为[0, +∞)。
+ * @return 返回结果码。
+ *     <br>若操作成功，返回{@link ARKUI_ERROR_CODE_NO_ERROR}。
+ *     <br>若参数异常，返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_DecorationStyleOptions_SetThicknessScale(
     OH_ArkUI_DecorationStyleOptions* options, float thicknessScale);
 
 /**
- * @brief Obtains the scale factor of the decorative line thickness.
+ * @brief 获取装饰线的粗细缩放比例。
  *
- * @param options Pointer to the {@link OH_ArkUI_DecorationStyleOptions} object.
- * @param thicknessScale Pointer to the scale factor of the decorative line thickness.
- * @return Result code.
- *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @param options 指向{@link OH_ArkUI_DecorationStyleOptions}对象的指针。
+ * @param thicknessScale 装饰线的粗细缩放比例。
+ * @return 返回结果码。
+ *     <br>若操作成功，返回{@link ARKUI_ERROR_CODE_NO_ERROR}。
+ *     <br>若参数异常，返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_DecorationStyleOptions_GetThicknessScale(OH_ArkUI_DecorationStyleOptions* options,
     float* thicknessScale);
 
 /**
- * @brief Creates a text entity recognition configuration object. When the object is no longer used, call
- * {@link OH_ArkUI_TextDataDetectorConfig_Destroy} to destroy it.
+ * @brief 创建一个文本实体识别配置对象。当该对象不再使用时，请调用{@link OH_ArkUI_TextDataDetectorConfig_Destroy}销毁。
  *
- * @return Pointer to the {@link OH_ArkUI_TextDataDetectorConfig} object.
+ * @return 指向{@link OH_ArkUI_TextDataDetectorConfig}对象的指针。
  * @since 24
  */
 OH_ArkUI_TextDataDetectorConfig* OH_ArkUI_TextDataDetectorConfig_Create();
 
 /**
- * @brief Destroys the text entity recognition configuration object.
+ * @brief 销毁文本实体识别配置对象。
  *
- * @param config Pointer to the {@link OH_ArkUI_TextDataDetectorConfig} object.
+ * @param config 指向{@link OH_ArkUI_TextDataDetectorConfig}对象的指针。
  * @since 24
  */
 void OH_ArkUI_TextDataDetectorConfig_Destroy(OH_ArkUI_TextDataDetectorConfig* config);
 
 /**
- * @brief Sets the types of the text entity recognition configuration.
+ * @brief 设置文本实体识别配置的类型。
  *
- * @param config Pointer to the {@link OH_ArkUI_TextDataDetectorConfig} object.
- * @param types Pointer to the types of the text entity recognition configuration. The value is an enumerated value of {
- * @link ArkUI_TextDataDetectorType}.
- * @param length Type quantity.
- * @return Result code.
- *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @param config 指向{@link OH_ArkUI_TextDataDetectorConfig}对象的指针。
+ * @param types 文本实体识别配置的类型，取值为{@link ArkUI_TextDataDetectorType}枚举。
+ * @param length 类型的数量。
+ * @return 返回结果码。
+ *     <br>若操作成功，返回{@link ARKUI_ERROR_CODE_NO_ERROR}。
+ *     <br>若参数异常，返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_TextDataDetectorConfig_SetTypes(
     OH_ArkUI_TextDataDetectorConfig* config, const ArkUI_TextDataDetectorType* types, int32_t length);
 
 /**
- * @brief Obtains the types of the text entity recognition configuration.
+ * @brief 获取文本实体识别配置的类型。
  *
- * @param config Pointer to the {@link OH_ArkUI_TextDataDetectorConfig} object.
- * @param buffer Pointer to the buffer of the type array.
- * @param bufferSize Maximum number of types that can be written to the buffer reserved for the types.
- * @param writeLength Pointer to the number of types that are actually written to the buffer.
- * @return Result code.
- *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
- *     <br>Returns {@link ARKUI_ERROR_CODE_BUFFER_SIZE_ERROR} if the value of **bufferSize** is less than that of **
- *     writeLength**.
+ * @param config 指向{@link OH_ArkUI_TextDataDetectorConfig}对象的指针。
+ * @param buffer 指向类型数组的缓冲区指针。
+ * @param bufferSize 开发者为类型预留的缓冲区最多可以写入的类型的数量。
+ * @param writeLength 实际写入缓冲区的类型的数量。
+ * @return 返回结果码。
+ *     <br>若操作成功，返回{@link ARKUI_ERROR_CODE_NO_ERROR}。
+ *     <br>若参数异常，返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
+ *     <br>若bufferSize小于writeLength，返回{@link ARKUI_ERROR_CODE_BUFFER_SIZE_ERROR}。
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_TextDataDetectorConfig_GetTypes(OH_ArkUI_TextDataDetectorConfig* config,
     ArkUI_TextDataDetectorType* buffer, int32_t bufferSize, int32_t* writeLength);
 
 /**
- * @brief Sets the callback for text entity recognition result updates.
+ * @brief 设置文本实体识别结果更新回调。
  *
- * @param config Pointer to the {@link OH_ArkUI_TextDataDetectorConfig} object.
- * @param userData Pointer to the user data.
+ * @param config 指向{@link OH_ArkUI_TextDataDetectorConfig}对象的指针。
+ * @param userData 用户数据。
  * @param callback detect result update callback.
- * @return Result code.
- *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @return 返回结果码。
+ *     <br>若操作成功，返回{@link ARKUI_ERROR_CODE_NO_ERROR}。
+ *     <br>若参数异常，返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_TextDataDetectorConfig_RegisterOnDetectResultUpdateCallback(
@@ -7861,81 +7855,76 @@ ArkUI_ErrorCode OH_ArkUI_TextDataDetectorConfig_RegisterOnDetectResultUpdateCall
     void (*callback)(const char* result, int32_t length, void* userData));
 
 /**
- * @brief Sets the color of the recognized content.
+ * @brief 设置识别内容的颜色。
  *
- * @param config Pointer to the {@link OH_ArkUI_TextDataDetectorConfig} object.
- * @param color Color of the recognized content, in 0xARGB format.
- * @return Result code.
- *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @param config 指向{@link OH_ArkUI_TextDataDetectorConfig}对象的指针。
+ * @param color 识别内容的颜色，0xARGB格式。
+ * @return 返回结果码。
+ *     <br>若操作成功，返回{@link ARKUI_ERROR_CODE_NO_ERROR}。
+ *     <br>若参数异常，返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_TextDataDetectorConfig_SetColor(OH_ArkUI_TextDataDetectorConfig* config, uint32_t color);
 
 /**
- * @brief Obtains the color of the recognized content.
+ * @brief 获取识别内容的颜色。
  *
- * @param config Pointer to the {@link OH_ArkUI_TextDataDetectorConfig} object.
- * @param color Pointer to the color of the recognized content, in 0xARGB format.
- * @return Result code.
- *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @param config 指向{@link OH_ArkUI_TextDataDetectorConfig}对象的指针。
+ * @param color 识别内容的颜色，0xARGB格式。
+ * @return 返回结果码。
+ *     <br>若操作成功，返回{@link ARKUI_ERROR_CODE_NO_ERROR}。
+ *     <br>若参数异常，返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_TextDataDetectorConfig_GetColor(OH_ArkUI_TextDataDetectorConfig* config, uint32_t* color);
 
 /**
- * @brief Sets the decoration style of the recognized content.
+ * @brief 设置识别内容的装饰样式。
  *
- * @param config Pointer to the {@link OH_ArkUI_TextDataDetectorConfig} object.
- * @param decoration Pointer to the decoration style of the recognized content. The value is an enumerated value of
- *     {@link OH_ArkUI_DecorationStyleOptions}.
- * @return Result code.
- *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @param config 指向{@link OH_ArkUI_TextDataDetectorConfig}对象的指针。
+ * @param decoration 识别内容的装饰样式，取值为{@link OH_ArkUI_DecorationStyleOptions}中的枚举。
+ * @return 返回结果码。
+ *     <br>若操作成功，返回{@link ARKUI_ERROR_CODE_NO_ERROR}。
+ *     <br>若参数异常，返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_TextDataDetectorConfig_SetDecorationStyleOptions(
     OH_ArkUI_TextDataDetectorConfig* config, OH_ArkUI_DecorationStyleOptions* decoration);
 
 /**
- * @brief Obtains the decoration style of the recognized content.
+ * @brief 获取识别内容的装饰样式。
  *
- * @param config Pointer to the {@link OH_ArkUI_TextDataDetectorConfig} object.
- * @param decoration Pointer to the decoration style of the recognized content. The value is an enumerated value of
- *     {@link OH_ArkUI_DecorationStyleOptions}.
- * @return Result code.
- *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @param config 指向{@link OH_ArkUI_TextDataDetectorConfig}对象的指针。
+ * @param decoration 识别内容的装饰样式，取值为{@link OH_ArkUI_DecorationStyleOptions}中的枚举。
+ * @return 返回结果码。
+ *     <br>若操作成功，返回{@link ARKUI_ERROR_CODE_NO_ERROR}。
+ *     <br>若参数异常，返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_TextDataDetectorConfig_GetDecorationStyleOptions(
     OH_ArkUI_TextDataDetectorConfig* config, OH_ArkUI_DecorationStyleOptions* decoration);
 
 /**
- * @brief Sets whether to display the preview menu when the recognized content is long-pressed.
+ * @brief 设置长按识别内容时是否显示预览菜单。
  *
- * @param config Pointer to the {@link OH_ArkUI_TextDataDetectorConfig} object.
- * @param enablePreviewMenu Whether to display the preview menu when the recognized content is long-pressed. **true**
- *     means to display the preview menu, and **false** means the opposite. The default value is **false**.
- * @return Result code.
- *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @param config 指向{@link OH_ArkUI_TextDataDetectorConfig}对象的指针。
+ * @param enablePreviewMenu 长按识别内容时是否显示预览菜单。true表示启用预览菜单，false表示不启用预览菜单。默认值为false。
+ * @return 返回结果码。
+ *     <br>若操作成功，返回{@link ARKUI_ERROR_CODE_NO_ERROR}。
+ *     <br>若参数异常，返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_TextDataDetectorConfig_SetEnablePreviewMenu(
     OH_ArkUI_TextDataDetectorConfig* config, bool enablePreviewMenu);
 
 /**
- * @brief Obtains whether the preview menu is displayed when the recognized content is long-pressed.
+ * @brief 获取长按识别内容时是否显示预览菜单。
  *
- * @param config Pointer to the {@link OH_ArkUI_TextDataDetectorConfig} object.
- * @param enablePreviewMenu Pointer to the **enablePreviewMenu** parameter indicating whether the preview menu is
- *     displayed when the recognized content is long-pressed. **true** means that the preview menu is displayed, and **
- *     false** means the opposite.
- * @return Result code.
- *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @param config 指向{@link OH_ArkUI_TextDataDetectorConfig}对象的指针。
+ * @param enablePreviewMenu 长按识别内容时是否显示预览菜单。true表示显示预览菜单，false表示不显示预览菜单。
+ * @return 返回结果码。
+ *     <br>若操作成功，返回{@link ARKUI_ERROR_CODE_NO_ERROR}。
+ *     <br>若参数异常，返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_TextDataDetectorConfig_GetEnablePreviewMenu(
@@ -7976,285 +7965,276 @@ ArkUI_ErrorCode OH_ArkUI_TextController_SetStyledString(
     OH_ArkUI_TextController* controller, ArkUI_StyledString_Descriptor* descriptor);
 
 /**
- * @brief Creates an option object for the placeholder text used when there is no input. When the object is no longer
- * used, call {@link OH_ArkUI_TextEditorPlaceholderOptions_Destroy} to destroy it.
+ * @brief 创建一个无输入时的提示文本的选项对象。当该对象不再使用时，请调用{@link OH_ArkUI_TextEditorPlaceholderOptions_Destroy}销毁。
  *
- * @return Pointer to the {@link OH_ArkUI_TextEditorPlaceholderOptions} object.
+ * @return 指向{@link OH_ArkUI_TextEditorPlaceholderOptions}对象的指针。
  * @since 24
  */
 OH_ArkUI_TextEditorPlaceholderOptions* OH_ArkUI_TextEditorPlaceholderOptions_Create();
 
 /**
- * @brief Destroys the option object for the placeholder text used when there is no input.
+ * @brief 销毁无输入时的提示文本的选项对象。
  *
- * @param options Pointer to the {@link OH_ArkUI_TextEditorPlaceholderOptions} object.
+ * @param options 指向{@link OH_ArkUI_TextEditorPlaceholderOptions}对象的指针。
  * @since 24
  */
 void OH_ArkUI_TextEditorPlaceholderOptions_Destroy(OH_ArkUI_TextEditorPlaceholderOptions* options);
 
 /**
- * @brief Sets the text for the placeholder text options used when there is no input.
+ * @brief 设置无输入时的提示文本选项的提示文字。
  *
- * @param options Pointer to the {@link OH_ArkUI_TextEditorPlaceholderOptions} object.
- * @param value Pointer to the placeholder text.
- * @return Result code.
- *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @param options 指向{@link OH_ArkUI_TextEditorPlaceholderOptions}对象的指针。
+ * @param value 提示文字。
+ * @return 返回结果码。
+ *     <br>若操作成功，返回{@link ARKUI_ERROR_CODE_NO_ERROR}。
+ *     <br>若参数异常，返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_TextEditorPlaceholderOptions_SetValue(
     OH_ArkUI_TextEditorPlaceholderOptions* options, const char* value);
 
 /**
- * @brief Obtains the text for the placeholder text options used when there is no input.
+ * @brief 获取无输入时的提示文本选项的提示文字。
  *
- * @param options Pointer to the {@link OH_ArkUI_TextEditorPlaceholderOptions} object.
- * @param buffer Pointer to the buffer for storing the placeholder text in the memory. You need to allocate the memory.
- * @param bufferSize Maximum number of characters that can be written to the buffer.
- * @param writeLength Pointer to the number of characters that are actually written to the buffer.
- * @return Result code.
- *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
- *     <br>Returns {@link ARKUI_ERROR_CODE_BUFFER_SIZE_ERROR} if the value of **bufferSize** is less than that of **
- *     writeLength**.
+ * @param options 指向{@link OH_ArkUI_TextEditorPlaceholderOptions}对象的指针。
+ * @param buffer 提示文字写入内存的缓冲区，内存空间需由开发者分配。
+ * @param bufferSize 缓冲区最多可写入的字符的数量。
+ * @param writeLength 实际表示写入缓冲区的字符的数量。
+ * @return 错误码。
+ *     <br>若操作成功，返回{@link ARKUI_ERROR_CODE_NO_ERROR}。
+ *     <br>若节点、缓冲区或writeLength为空，返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
+ *     <br>若bufferSize小于writeLength，返回{@link ARKUI_ERROR_CODE_BUFFER_SIZE_ERROR}。
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_TextEditorPlaceholderOptions_GetValue(
     OH_ArkUI_TextEditorPlaceholderOptions* options, char* buffer, int32_t bufferSize, int32_t* writeLength);
 
 /**
- * @brief Sets the font size for the placeholder text options used when there is no input.
+ * @brief 设置无输入时的提示文本选项的字体大小。
  *
- * @param options Pointer to the {@link OH_ArkUI_TextEditorPlaceholderOptions} object.
- * @param fontSize Font size, in fp.
- * @return Result code.
- *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @param options 指向{@link OH_ArkUI_TextEditorPlaceholderOptions}对象的指针。
+ * @param fontSize 字体大小，单位为fp。
+ * @return 返回结果码。
+ *     <br>若操作成功，返回{@link ARKUI_ERROR_CODE_NO_ERROR}。
+ *     <br>若参数异常，返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_TextEditorPlaceholderOptions_SetFontSize(
     OH_ArkUI_TextEditorPlaceholderOptions* options, float fontSize);
 
 /**
- * @brief Obtains the font size for the placeholder text options used when there is no input.
+ * @brief 获取无输入时的提示文本选项的字体大小。
  *
- * @param options Pointer to the {@link OH_ArkUI_TextEditorPlaceholderOptions} object.
- * @param fontSize Pointer to the font size, in fp.
- * @return Result code.
- *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @param options 指向{@link OH_ArkUI_TextEditorPlaceholderOptions}对象的指针。
+ * @param fontSize 字体大小，单位为fp。
+ * @return 返回结果码。
+ *     <br>若操作成功，返回{@link ARKUI_ERROR_CODE_NO_ERROR}。
+ *     <br>若参数异常，返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_TextEditorPlaceholderOptions_GetFontSize(
     OH_ArkUI_TextEditorPlaceholderOptions* options, float* fontSize);
 
 /**
- * @brief Sets the font weight for the placeholder text options used when there is no input.
+ * @brief 设置无输入时的提示文本选项的字体粗细。
  *
- * @param options Pointer to the {@link OH_ArkUI_TextEditorPlaceholderOptions} object.
- * @param fontWeight Font weight. The value is an integer multiple of 100 within the [100, 900] range, for example, **
- *     100** or **900**.
- * @return Result code.
- *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @param options 指向{@link OH_ArkUI_TextEditorPlaceholderOptions}对象的指针。
+ * @param fontWeight 字体粗细。取值范围为[100, 900]中的整百数值，例如100、900。
+ * @return 返回结果码。
+ *     <br>若操作成功，返回{@link ARKUI_ERROR_CODE_NO_ERROR}。
+ *     <br>若参数异常，返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_TextEditorPlaceholderOptions_SetFontWeight(
     OH_ArkUI_TextEditorPlaceholderOptions* options, uint32_t fontWeight);
 
 /**
- * @brief Obtains the font weight for the placeholder text options used when there is no input.
+ * @brief 获取无输入时的提示文本选项的字体粗细。
  *
- * @param options Pointer to the {@link OH_ArkUI_TextEditorPlaceholderOptions} object.
- * @param fontWeight Pointer to the font weight. The value is an integer multiple of 100 within the [100, 900] range,
- *     for example, **100** or **900**.
- * @return Result code.
- *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @param options 指向{@link OH_ArkUI_TextEditorPlaceholderOptions}对象的指针。
+ * @param fontWeight 字体粗细。取值范围为[100, 900]中的整百数值，例如100、900。
+ * @return 返回结果码。
+ *     <br>若操作成功，返回{@link ARKUI_ERROR_CODE_NO_ERROR}。
+ *     <br>若参数异常，返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_TextEditorPlaceholderOptions_GetFontWeight(
     OH_ArkUI_TextEditorPlaceholderOptions* options, uint32_t* fontWeight);
 
 /**
- * @brief Sets the font family for the placeholder text options used when there is no input.
+ * @brief 设置无输入时的提示文本选项的字体家族。
  *
- * @param options Pointer to the {@link OH_ArkUI_TextEditorPlaceholderOptions} object.
- * @param fontFamily Pointer to the font family, containing the font names to be set. Different font names are
- *     separated by commas (,).
- * @return Result code.
- *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @param options 指向{@link OH_ArkUI_TextEditorPlaceholderOptions}对象的指针。
+ * @param fontFamily 字体家族。存放待设置的字体名称，不同字体名称通过逗号拼接。
+ * @return 返回结果码。
+ *     <br>若操作成功，返回{@link ARKUI_ERROR_CODE_NO_ERROR}。
+ *     <br>若参数异常，返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_TextEditorPlaceholderOptions_SetFontFamily(
     OH_ArkUI_TextEditorPlaceholderOptions* options, const char* fontFamily);
 
 /**
- * @brief Obtains the font family for the placeholder text options used when there is no input.
+ * @brief 获取无输入时的提示文本选项的字体家族。
  *
- * @param options Pointer to the {@link OH_ArkUI_TextEditorPlaceholderOptions} object.
- * @param buffer Pointer to the buffer for storing the font family in the memory. You need to allocate the memory.
- * @param bufferSize Maximum number of characters that can be written to the buffer.
- * @param writeLength Pointer to the number of characters that are actually written to the buffer.
- * @return Result code.
- *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
- *     <br>Returns {@link ARKUI_ERROR_CODE_BUFFER_SIZE_ERROR} if the value of **bufferSize** is less than that of **
- *     writeLength**.
+ * @param options 指向{@link OH_ArkUI_TextEditorPlaceholderOptions}对象的指针。
+ * @param buffer 字体家族写入内存的缓冲区，内存空间需由开发者分配。
+ * @param bufferSize 缓冲区最多可写入的字符的数量。
+ * @param writeLength 实际写入缓冲区的字符的数量。
+ * @return 错误码。
+ *     <br>若操作成功，返回{@link ARKUI_ERROR_CODE_NO_ERROR}。
+ *     <br>若节点、缓冲区或writeLength为空，返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
+ *     <br>若bufferSize小于writeLength，返回{@link ARKUI_ERROR_CODE_BUFFER_SIZE_ERROR}。
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_TextEditorPlaceholderOptions_GetFontFamily(
     OH_ArkUI_TextEditorPlaceholderOptions* options, char* buffer, int32_t bufferSize, int32_t* writeLength);
 
 /**
- * @brief Sets the font style for the placeholder text options used when there is no input.
+ * @brief 设置无输入时的提示文本选项的字体样式。
  *
- * @param options Pointer to the {@link OH_ArkUI_TextEditorPlaceholderOptions} object.
- * @param fontStyle Font style. The value is an enumerated value of {@link ArkUI_FontStyle}.
- * @return Result code.
- *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @param options 指向{@link OH_ArkUI_TextEditorPlaceholderOptions}对象的指针。
+ * @param fontStyle 字体样式。取值为{@link ArkUI_FontStyle}中的枚举。
+ * @return 返回结果码。
+ *     <br>若操作成功，返回{@link ARKUI_ERROR_CODE_NO_ERROR}。
+ *     <br>若参数异常，返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_TextEditorPlaceholderOptions_SetFontStyle(
     OH_ArkUI_TextEditorPlaceholderOptions* options, ArkUI_FontStyle fontStyle);
 
 /**
- * @brief Obtains the font style for the placeholder text options used when there is no input.
+ * @brief 获取无输入时的提示文本选项的字体样式。
  *
- * @param options Pointer to the {@link OH_ArkUI_TextEditorPlaceholderOptions} object.
- * @param fontStyle Pointer to the font style. The value is an enumerated value of {@link ArkUI_FontStyle}.
- * @return Result code.
- *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @param options 指向{@link OH_ArkUI_TextEditorPlaceholderOptions}对象的指针。
+ * @param fontStyle 字体样式。取值为{@link ArkUI_FontStyle}中的枚举。
+ * @return 返回结果码。
+ *     <br>若操作成功，返回{@link ARKUI_ERROR_CODE_NO_ERROR}。
+ *     <br>若参数异常，返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_TextEditorPlaceholderOptions_GetFontStyle(
     OH_ArkUI_TextEditorPlaceholderOptions* options, ArkUI_FontStyle* fontStyle);
 
 /**
- * @brief Sets the font color for the placeholder text options used when there is no input.
+ * @brief 设置无输入时的提示文本选项的字体颜色。
  *
- * @param options Pointer to the {@link OH_ArkUI_TextEditorPlaceholderOptions} object.
- * @param fontColor Font color, in 0xARGB format.
- * @return Result code.
- *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @param options 指向{@link OH_ArkUI_TextEditorPlaceholderOptions}对象的指针。
+ * @param fontColor 字体颜色，0xARGB格式。
+ * @return 返回结果码。
+ *     <br>若操作成功，返回{@link ARKUI_ERROR_CODE_NO_ERROR}。
+ *     <br>若参数异常，返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_TextEditorPlaceholderOptions_SetFontColor(
     OH_ArkUI_TextEditorPlaceholderOptions* options, uint32_t fontColor);
 
 /**
- * @brief Obtains the font color for the placeholder text options used when there is no input.
+ * @brief 获取无输入时的提示文本选项的字体颜色。
  *
- * @param options Pointer to the {@link OH_ArkUI_TextEditorPlaceholderOptions} object.
- * @param fontColor Pointer to the font color, in 0xARGB format.
- * @return Result code.
- *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @param options 指向{@link OH_ArkUI_TextEditorPlaceholderOptions}对象的指针。
+ * @param fontColor 字体颜色，0xARGB格式。
+ * @return 返回结果码。
+ *     <br>若操作成功，返回{@link ARKUI_ERROR_CODE_NO_ERROR}。
+ *     <br>若参数异常，返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_TextEditorPlaceholderOptions_GetFontColor(OH_ArkUI_TextEditorPlaceholderOptions* options,
     uint32_t* fontColor);
 
 /**
- * @brief Creates a styled string controller object for the text editor. When the object is no longer used, call
- * {@link OH_ArkUI_TextEditorStyledStringController_Destroy} to destroy it.
+ * @brief 为文本编辑器创建一个属性字符串控制器对象。当该对象不再使用时，请调用{@link OH_ArkUI_TextEditorStyledStringController_Destroy}销毁。
  *
- * @return Pointer to the {@link OH_ArkUI_TextEditorStyledStringController} object.
+ * @return 指向{@link OH_ArkUI_TextEditorStyledStringController}对象的指针。
  * @since 24
  */
 OH_ArkUI_TextEditorStyledStringController* OH_ArkUI_TextEditorStyledStringController_Create();
 
 /**
- * @brief Destroys the styled string controller object.
+ * @brief 销毁属性字符串控制器。
  *
- * @param controller Pointer to the {@link OH_ArkUI_TextEditorStyledStringController} object.
+ * @param controller 指向{@link OH_ArkUI_TextEditorStyledStringController}对象的指针。
  * @since 24
  */
 void OH_ArkUI_TextEditorStyledStringController_Destroy(OH_ArkUI_TextEditorStyledStringController* controller);
 
 /**
- * @brief Sets the caret offset using the styled string controller.
+ * @brief 通过属性字符串控制器设置光标偏移量。
  *
- * @param controller Pointer to the {@link OH_ArkUI_TextEditorStyledStringController} object.
- * @param caretOffset Caret offset.
- * @return Result code.
- *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @param controller 指向{@link OH_ArkUI_TextEditorStyledStringController}对象的指针。
+ * @param caretOffset 索引位置。
+ * @return 返回结果码。
+ *     <br>若操作成功，返回{@link ARKUI_ERROR_CODE_NO_ERROR}。
+ *     <br>若参数异常，返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_TextEditorStyledStringController_SetCaretOffset(
     OH_ArkUI_TextEditorStyledStringController* controller, int32_t caretOffset);
 
 /**
- * @brief Obtains the caret offset using the styled string controller.
+ * @brief 通过属性字符串控制器获取光标索引位置。
  *
- * @param controller Pointer to the {@link OH_ArkUI_TextEditorStyledStringController} object.
- * @param caretOffset Pointer to the caret offset.
- * @return Result code.
- *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @param controller 指向{@link OH_ArkUI_TextEditorStyledStringController}对象的指针。
+ * @param caretOffset 索引位置。
+ * @return 返回结果码。
+ *     <br>若操作成功，返回{@link ARKUI_ERROR_CODE_NO_ERROR}。
+ *     <br>若参数异常，返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_TextEditorStyledStringController_GetCaretOffset(
     OH_ArkUI_TextEditorStyledStringController* controller, int32_t* caretOffset);
 
 /**
- * @brief Sets the selected area using the styled string controller.
+ * @brief 通过属性字符串控制器设置选中区域。
  *
- * @param controller Pointer to the {@link OH_ArkUI_TextEditorStyledStringController} object.
- * @param start Start position of the selected area.
- * @param end End position of the selected area.
- * @param menuPolicy Policy for displaying the menu in the selected area. The value is an enumerated value of
- *     {@link ArkUI_MenuPolicy}.
- * @return Result code.
- *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @param controller 指向{@link OH_ArkUI_TextEditorStyledStringController}对象的指针。
+ * @param start 选中区域的起始位置。
+ * @param end 选中区域的结束位置。
+ * @param menuPolicy 选区内菜单弹出的策略。取值为{@link ArkUI_MenuPolicy}中的枚举。
+ * @return 返回结果码。
+ *     <br>若操作成功，返回{@link ARKUI_ERROR_CODE_NO_ERROR}。
+ *     <br>若参数异常，返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_TextEditorStyledStringController_SetSelection(
     OH_ArkUI_TextEditorStyledStringController* controller, uint32_t start, uint32_t end, ArkUI_MenuPolicy menuPolicy);
 
 /**
- * @brief Obtains the editing status of the text editor using the styled string controller.
+ * @brief 通过属性字符串控制器获取文本编辑器的编辑状态。
  *
- * @param controller Pointer to the {@link OH_ArkUI_TextEditorStyledStringController} object.
- * @param isEditing Pointer to the **isEditing** parameter indicating whether the text editor is in the editing state. *
- *     *true** means that the text editor is in the editing state, and **false** means the opposite.
- * @return Result code.
- *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @param controller 指向{@link OH_ArkUI_TextEditorStyledStringController}对象的指针。
+ * @param isEditing 编辑状态。true表示是编辑态，false表示不是编辑态。
+ * @return 返回结果码。
+ *     <br>若操作成功，返回{@link ARKUI_ERROR_CODE_NO_ERROR}。
+ *     <br>若参数异常，返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_TextEditorStyledStringController_IsEditing(
     OH_ArkUI_TextEditorStyledStringController* controller, bool* isEditing);
 
 /**
- * @brief Exits the editing status of the text editor using the styled string controller.
+ * @brief 通过属性字符串控制器退出文本编辑器的编辑状态。
  *
- * @param controller Pointer to the {@link OH_ArkUI_TextEditorStyledStringController} object.
- * @return Result code.
- *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @param controller 指向{@link OH_ArkUI_TextEditorStyledStringController}对象的指针。
+ * @return 返回结果码。
+ *     <br>若操作成功，返回{@link ARKUI_ERROR_CODE_NO_ERROR}。
+ *     <br>若参数异常，返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_TextEditorStyledStringController_StopEditing(
     OH_ArkUI_TextEditorStyledStringController* controller);
 
 /**
- * @brief Obtains the preview text using the styled string controller.
+ * @brief 通过属性字符串控制器获取预上屏文本内容。
  *
- * @param controller Pointer to the {@link OH_ArkUI_TextEditorStyledStringController} object.
- * @param offset Pointer to the preview text offset.
- * @param buffer Pointer to the buffer for storing the preview text in the memory. You need to allocate the memory.
- * @param bufferSize Maximum number of characters that can be written to the buffer.
- * @param writeLength Pointer to the number of characters that are actually written to the buffer.
- * @return Result code.
- *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @param controller 指向{@link OH_ArkUI_TextEditorStyledStringController}对象的指针。
+ * @param offset 预上屏文本位置。
+ * @param buffer 预上屏文本内容写入内存的缓冲区，内存空间需由开发者分配。
+ * @param bufferSize 缓冲区最多可写入的字符的数量。
+ * @param writeLength 实际写入缓冲区的字符的数量。
+ * @return 返回结果码。
+ *     <br>若操作成功，返回{@link ARKUI_ERROR_CODE_NO_ERROR}。
+ *     <br>若参数异常，返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_TextEditorStyledStringController_GetPreviewText(
@@ -8262,991 +8242,969 @@ ArkUI_ErrorCode OH_ArkUI_TextEditorStyledStringController_GetPreviewText(
     int32_t bufferSize, int32_t* writeLength);
 
 /**
- * @brief Obtains the caret-selected rectangle using the styled string controller.
+ * @brief 通过属性字符串控制器获取光标矩形区域。
  *
- * @param controller Pointer to the {@link OH_ArkUI_TextEditorStyledStringController} object.
- * @param rect Pointer to the caret-selected rectangle information. The value is an enumerated value of
- *     {@link ArkUI_Rect}.
- * @return Result code.
- *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @param controller 指向{@link OH_ArkUI_TextEditorStyledStringController}对象的指针。
+ * @param rect 光标区域信息。取值为{@link ArkUI_Rect}中的枚举。
+ * @return 返回结果码。
+ *     <br>若操作成功，返回{@link ARKUI_ERROR_CODE_NO_ERROR}。
+ *     <br>若参数异常，返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_TextEditorStyledStringController_GetCaretRect(
     OH_ArkUI_TextEditorStyledStringController* controller, ArkUI_Rect* rect);
 
 /**
- * @brief Deletes characters using the styled string controller. If no content is selected, one character before the
- * current caret position is deleted. If content is selected, the selected content is deleted.
+ * @brief 通过属性字符串控制器删除字符。没有内容被选中时，删除当前光标位置前的1个字符。有内容被选中时，删除选中内容。
  *
- * @param controller Pointer to the {@link OH_ArkUI_TextEditorStyledStringController} object.
- * @return Result code.
- *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @param controller 指向{@link OH_ArkUI_TextEditorStyledStringController}对象的指针。
+ * @return 返回结果码。
+ *     <br>若操作成功，返回{@link ARKUI_ERROR_CODE_NO_ERROR}。
+ *     <br>若参数异常，返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_TextEditorStyledStringController_DeleteBackward(
     OH_ArkUI_TextEditorStyledStringController* controller);
 
 /**
- * @brief Creates a paragraph style object for the text editor. When the object is no longer used, call
- * {@link OH_ArkUI_TextEditorParagraphStyle_Destroy} to destroy it.
+ * @brief 为文本编辑器创建一个段落样式对象。当该对象不再使用时，请调用{@link OH_ArkUI_TextEditorParagraphStyle_Destroy}销毁。
  *
- * @return Pointer to the {@link OH_ArkUI_TextEditorParagraphStyle} object.
+ * @return 指向{@link OH_ArkUI_TextEditorParagraphStyle}对象的指针。
  * @since 24
  */
 OH_ArkUI_TextEditorParagraphStyle* OH_ArkUI_TextEditorParagraphStyle_Create();
 
 /**
- * @brief Destroys the paragraph style object.
+ * @brief 销毁段落样式对象。
  *
- * @param style Pointer to the {@link OH_ArkUI_TextEditorParagraphStyle} object.
+ * @param style 指向{@link OH_ArkUI_TextEditorParagraphStyle}对象的指针。
  * @since 24
  */
 void OH_ArkUI_TextEditorParagraphStyle_Destroy(OH_ArkUI_TextEditorParagraphStyle* style);
 
 /**
- * @brief Sets the text alignment mode in the paragraph style.
+ * @brief 设置段落样式中的文本对齐方式。
  *
- * @param style Pointer to the {@link OH_ArkUI_TextEditorParagraphStyle} object.
- * @param align Text alignment mode. The value is an enumerated value of {@link ArkUI_TextAlignment}.
- * @return Result code.
- *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @param style 指向{@link OH_ArkUI_TextEditorParagraphStyle}对象的指针。
+ * @param align 文本对齐方式。取值为{@link ArkUI_TextAlignment}中的枚举。
+ * @return 返回结果码。
+ *     <br>若操作成功，返回{@link ARKUI_ERROR_CODE_NO_ERROR}。
+ *     <br>若参数异常，返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_TextEditorParagraphStyle_SetTextAlign(
     OH_ArkUI_TextEditorParagraphStyle* style, ArkUI_TextAlignment align);
 
 /**
- * @brief Obtains the text alignment mode in the paragraph style.
+ * @brief 获取段落样式中的文本对齐方式。
  *
- * @param style Pointer to the {@link OH_ArkUI_TextEditorParagraphStyle} object.
- * @param align Pointer to the text alignment mode. The value is an enumerated value of {@link ArkUI_TextAlignment}.
- * @return Result code.
- *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @param style 指向{@link OH_ArkUI_TextEditorParagraphStyle}对象的指针。
+ * @param align 文本对齐方式。取值为{@link ArkUI_TextAlignment}中的枚举。
+ * @return 返回结果码。
+ *     <br>若操作成功，返回{@link ARKUI_ERROR_CODE_NO_ERROR}。
+ *     <br>若参数异常，返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_TextEditorParagraphStyle_GetTextAlign(
     OH_ArkUI_TextEditorParagraphStyle* style, ArkUI_TextAlignment* align);
 
 /**
- * @brief Sets the PixelMap for paragraph indentation in the paragraph style.
+ * @brief 设置段落样式中段落缩进的像素图。
  *
- * @param style Pointer to the {@link OH_ArkUI_TextEditorParagraphStyle} object.
- * @param pixelmap Pointer to the PixelMap for paragraph indentation.
- * @return Result code.
- *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @param style 指向{@link OH_ArkUI_TextEditorParagraphStyle}对象的指针。
+ * @param pixelmap 段落缩进的像素图。
+ * @return 返回结果码。
+ *     <br>若操作成功，返回{@link ARKUI_ERROR_CODE_NO_ERROR}。
+ *     <br>若参数异常，返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_TextEditorParagraphStyle_SetLeadingMarginPixelMap(
     OH_ArkUI_TextEditorParagraphStyle* style, struct OH_PixelmapNative* pixelmap);
 
 /**
- * @brief Obtains the PixelMap for paragraph indentation in the paragraph style.
+ * @brief 获取段落样式中段落缩进的像素图。
  *
- * @param style Pointer to the {@link OH_ArkUI_TextEditorParagraphStyle} object.
- * @param pixelmap Double pointer to the PixelMap for paragraph indentation.
- * @return Result code.
- *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @param style 指向{@link OH_ArkUI_TextEditorParagraphStyle}对象的指针。
+ * @param pixelmap 段落缩进的像素图。
+ * @return 返回结果码。
+ *     <br>若操作成功，返回{@link ARKUI_ERROR_CODE_NO_ERROR}。
+ *     <br>若参数异常，返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_TextEditorParagraphStyle_GetLeadingMarginPixelMap(
     OH_ArkUI_TextEditorParagraphStyle* style, struct OH_PixelmapNative** pixelmap);
 
 /**
- * @brief Sets the width for paragraph indentation in the paragraph style.
+ * @brief 设置段落样式中段落缩进的宽度。
  *
- * @param style Pointer to the {@link OH_ArkUI_TextEditorParagraphStyle} object.
- * @param width Width for paragraph indentation, in vp.
- * @return Result code.
- *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @param style 指向{@link OH_ArkUI_TextEditorParagraphStyle}对象的指针。
+ * @param width 段落缩进的宽度，单位为vp。
+ * @return 返回结果码。
+ *     <br>若操作成功，返回{@link ARKUI_ERROR_CODE_NO_ERROR}。
+ *     <br>若参数异常，返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_TextEditorParagraphStyle_SetLeadingMarginWidth(OH_ArkUI_TextEditorParagraphStyle* style,
     uint32_t width);
 
 /**
- * @brief Obtains the width for paragraph indentation in the paragraph style.
+ * @brief 获取段落样式中段落缩进的宽度。
  *
- * @param style Pointer to the {@link OH_ArkUI_TextEditorParagraphStyle} object.
- * @param width Pointer to the width for paragraph indentation, in vp.
- * @return Result code.
- *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @param style 指向{@link OH_ArkUI_TextEditorParagraphStyle}对象的指针。
+ * @param width 段落缩进的宽度，单位为vp。
+ * @return 返回结果码。
+ *     <br>若操作成功，返回{@link ARKUI_ERROR_CODE_NO_ERROR}。
+ *     <br>若参数异常，返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_TextEditorParagraphStyle_GetLeadingMarginWidth(OH_ArkUI_TextEditorParagraphStyle* style,
     uint32_t* width);
 
 /**
- * @brief Sets the height for paragraph indentation in the paragraph style.
+ * @brief 设置段落样式中段落缩进的高度。
  *
- * @param style Pointer to the {@link OH_ArkUI_TextEditorParagraphStyle} object.
- * @param height Height for paragraph indentation, in vp.
- * @return Result code.
- *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @param style 指向{@link OH_ArkUI_TextEditorParagraphStyle}对象的指针。
+ * @param height 段落缩进的高度，单位为vp。
+ * @return 返回结果码。
+ *     <br>若操作成功，返回{@link ARKUI_ERROR_CODE_NO_ERROR}。
+ *     <br>若参数异常，返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_TextEditorParagraphStyle_SetLeadingMarginHeight(OH_ArkUI_TextEditorParagraphStyle* style,
     uint32_t height);
 
 /**
- * @brief Obtains the height for paragraph indentation in the paragraph style.
+ * @brief 获取段落样式中段落缩进的高度。
  *
- * @param style Pointer to the {@link OH_ArkUI_TextEditorParagraphStyle} object.
- * @param height Pointer to the height for paragraph indentation, in vp.
- * @return Result code.
- *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @param style 指向{@link OH_ArkUI_TextEditorParagraphStyle}对象的指针。
+ * @param height 段落缩进的高度，单位为vp。
+ * @return 返回结果码。
+ *     <br>若操作成功，返回{@link ARKUI_ERROR_CODE_NO_ERROR}。
+ *     <br>若参数异常，返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_TextEditorParagraphStyle_GetLeadingMarginHeight(OH_ArkUI_TextEditorParagraphStyle* style,
     uint32_t* height);
 
 /**
- * @brief Sets the word breaking mode in the paragraph style.
+ * @brief 设置段落样式的断字方式。
  *
- * @param style Pointer to the {@link OH_ArkUI_TextEditorParagraphStyle} object.
- * @param wordBreak Word breaking mode. The value is an enumerated value of {@link ArkUI_WordBreak}.
- * @return Result code.
- *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @param style 指向{@link OH_ArkUI_TextEditorParagraphStyle}对象的指针。
+ * @param wordBreak 断字方式。取值为{@link ArkUI_WordBreak}中的枚举。
+ * @return 返回结果码。
+ *     <br>若操作成功，返回{@link ARKUI_ERROR_CODE_NO_ERROR}。
+ *     <br>若参数异常，返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_TextEditorParagraphStyle_SetWordBreak(OH_ArkUI_TextEditorParagraphStyle* style,
     ArkUI_WordBreak wordBreak);
 
 /**
- * @brief Obtains the word breaking mode in the paragraph style.
+ * @brief 获取段落样式的断字方式。
  *
- * @param style Pointer to the {@link OH_ArkUI_TextEditorParagraphStyle} object.
- * @param wordBreak Pointer to the word breaking mode. The value is an enumerated value of {@link ArkUI_WordBreak}.
- * @return Result code.
- *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @param style 指向{@link OH_ArkUI_TextEditorParagraphStyle}对象的指针。
+ * @param wordBreak 断字方式。取值为{@link ArkUI_WordBreak}中的枚举。
+ * @return 返回结果码。
+ *     <br>若操作成功，返回{@link ARKUI_ERROR_CODE_NO_ERROR}。
+ *     <br>若参数异常，返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_TextEditorParagraphStyle_GetWordBreak(OH_ArkUI_TextEditorParagraphStyle* style,
     ArkUI_WordBreak* wordBreak);
 
 /**
- * @brief Sets the line breaking strategy in the paragraph style.
+ * @brief 设置段落样式的换行策略。
  *
- * @param style Pointer to the {@link OH_ArkUI_TextEditorParagraphStyle} object.
- * @param lineBreakStrategy Line breaking strategy. The value is an enumerated value of
- *     {@link OH_ArkUI_LineBreakStrategy}.
- * @return Result code.
- *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @param style 指向{@link OH_ArkUI_TextEditorParagraphStyle}对象的指针。
+ * @param lineBreakStrategy 换行策略。取值为{@link OH_ArkUI_LineBreakStrategy}中的枚举。
+ * @return 返回结果码。
+ *     <br>若操作成功，返回{@link ARKUI_ERROR_CODE_NO_ERROR}。
+ *     <br>若参数异常，返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_TextEditorParagraphStyle_SetLineBreakStrategy(OH_ArkUI_TextEditorParagraphStyle* style,
     OH_ArkUI_LineBreakStrategy lineBreakStrategy);
 
 /**
- * @brief Obtains the line breaking strategy in the paragraph style.
+ * @brief 获取段落样式的换行策略。
  *
- * @param style Pointer to the {@link OH_ArkUI_TextEditorParagraphStyle} object.
- * @param lineBreakStrategy Pointer to the line breaking strategy. The value is an enumerated value of
- *     {@link OH_ArkUI_LineBreakStrategy}.
- * @return Result code.
- *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @param style 指向{@link OH_ArkUI_TextEditorParagraphStyle}对象的指针。
+ * @param lineBreakStrategy 换行策略。取值为{@link OH_ArkUI_LineBreakStrategy}中的枚举。
+ * @return 返回结果码。
+ *     <br>若操作成功，返回{@link ARKUI_ERROR_CODE_NO_ERROR}。
+ *     <br>若参数异常，返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_TextEditorParagraphStyle_GetLineBreakStrategy(OH_ArkUI_TextEditorParagraphStyle* style,
     OH_ArkUI_LineBreakStrategy* lineBreakStrategy);
 
 /**
- * @brief Sets the paragraph spacing in the paragraph style.
+ * @brief 设置段落样式的段落间距。
  *
- * @param style Pointer to the {@link OH_ArkUI_TextEditorParagraphStyle} object.
- * @param paragraphSpacing Paragraph spacing, in vp.
- * @return Result code.
- *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @param style 指向{@link OH_ArkUI_TextEditorParagraphStyle}对象的指针。
+ * @param paragraphSpacing 段落间距，单位为vp。
+ * @return 返回结果码。
+ *     <br>若操作成功，返回{@link ARKUI_ERROR_CODE_NO_ERROR}。
+ *     <br>若参数异常，返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_TextEditorParagraphStyle_SetParagraphSpacing(OH_ArkUI_TextEditorParagraphStyle* style,
     uint32_t paragraphSpacing);
 
 /**
- * @brief Obtains the paragraph spacing in the paragraph style.
+ * @brief 获取段落样式的段落间距。
  *
- * @param style Pointer to the {@link OH_ArkUI_TextEditorParagraphStyle} object.
- * @param paragraphSpacing Pointer to the paragraph spacing, in vp.
- * @return Result code.
- *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @param style 指向{@link OH_ArkUI_TextEditorParagraphStyle}对象的指针。
+ * @param paragraphSpacing 段落间距，单位为vp。
+ * @return 返回结果码。
+ *     <br>若操作成功，返回{@link ARKUI_ERROR_CODE_NO_ERROR}。
+ *     <br>若参数异常，返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_TextEditorParagraphStyle_GetParagraphSpacing(OH_ArkUI_TextEditorParagraphStyle* style,
     uint32_t* paragraphSpacing);
 
 /**
- * @brief Sets the text vertical alignment mode in the paragraph style.
+ * @brief 设置段落样式的文本垂直对齐方式。
  *
- * @param style Pointer to the {@link OH_ArkUI_TextEditorParagraphStyle} object.
- * @param verticalAlignment Text vertical alignment mode. The value is an enumerated value of
- *     {@link ArkUI_TextVerticalAlignment}.
- * @return Result code.
- *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @param style 指向{@link OH_ArkUI_TextEditorParagraphStyle}对象的指针。
+ * @param verticalAlignment 文本垂直对齐方式。取值为{@link ArkUI_TextVerticalAlignment}中的枚举。
+ * @return 返回结果码。
+ *     <br>若操作成功，返回{@link ARKUI_ERROR_CODE_NO_ERROR}。
+ *     <br>若参数异常，返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_TextEditorParagraphStyle_SetTextVerticalAlign(OH_ArkUI_TextEditorParagraphStyle* style,
     ArkUI_TextVerticalAlignment verticalAlignment);
 
 /**
- * @brief Obtains the text vertical alignment mode in the paragraph style.
+ * @brief 获取段落样式的文本垂直对齐方式。
  *
- * @param style Pointer to the {@link OH_ArkUI_TextEditorParagraphStyle} object.
- * @param verticalAlignment Text vertical alignment mode. The value is an enumerated value of
- *     {@link ArkUI_TextVerticalAlignment}.
- * @return Result code.
- *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @param style 指向{@link OH_ArkUI_TextEditorParagraphStyle}对象的指针。
+ * @param verticalAlignment 文本垂直对齐方式。取值为{@link ArkUI_TextVerticalAlignment}中的枚举。
+ * @return 返回结果码。
+ *     <br>若操作成功，返回{@link ARKUI_ERROR_CODE_NO_ERROR}。
+ *     <br>若参数异常，返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_TextEditorParagraphStyle_GetTextVerticalAlign(OH_ArkUI_TextEditorParagraphStyle* style,
     ArkUI_TextVerticalAlignment* verticalAlignment);
 
 /**
- * @brief Sets the text direction in the paragraph style.
+ * @brief 设置段落样式的文本方向。
  *
- * @param style Pointer to the {@link OH_ArkUI_TextEditorParagraphStyle} object.
- * @param textDirection Text direction. The value is an enumerated value of {@link ArkUI_TextDirection}.
- * @return Result code.
- *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @param style 指向{@link OH_ArkUI_TextEditorParagraphStyle}对象的指针。
+ * @param textDirection 文本方向。取值为{@link ArkUI_TextDirection}中的枚举。
+ * @return 返回结果码。
+ *     <br>若操作成功，返回{@link ARKUI_ERROR_CODE_NO_ERROR}。
+ *     <br>若参数异常，返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_TextEditorParagraphStyle_SetTextDirection(OH_ArkUI_TextEditorParagraphStyle* style,
     ArkUI_TextDirection textDirection);
 
 /**
- * @brief Obtains the text direction in the paragraph style.
+ * @brief 获取段落样式的文本方向。
  *
- * @param style Pointer to the {@link OH_ArkUI_TextEditorParagraphStyle} object.
- * @param textDirection Pointer to the text direction. The value is an enumerated value of {@link ArkUI_TextDirection}.
- * @return Result code.
- *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @param style 指向{@link OH_ArkUI_TextEditorParagraphStyle}对象的指针。
+ * @param textDirection 文本方向。取值为{@link ArkUI_TextDirection}中的枚举。
+ * @return 返回结果码。
+ *     <br>若操作成功，返回{@link ARKUI_ERROR_CODE_NO_ERROR}。
+ *     <br>若参数异常，返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_TextEditorParagraphStyle_GetTextDirection(OH_ArkUI_TextEditorParagraphStyle* style,
     ArkUI_TextDirection* textDirection);
 
 /**
- * @brief Sets the typing paragraph style using the styled string controller.
+ * @brief 通过属性字符串控制器设置预设段落样式。
  *
- * @param controller Pointer to the {@link OH_ArkUI_TextEditorStyledStringController} object.
- * @param style Pointer to the typing paragraph style.
- * @return Result code.
- *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @param controller 指向{@link OH_ArkUI_TextEditorStyledStringController}对象的指针。
+ * @param style 预设段落样式。
+ * @return 返回结果码。
+ *     <br>若操作成功，返回{@link ARKUI_ERROR_CODE_NO_ERROR}。
+ *     <br>若参数异常，返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_TextEditorStyledStringController_SetTypingParagraphStyle(
     OH_ArkUI_TextEditorStyledStringController* controller, OH_ArkUI_TextEditorParagraphStyle* style);
 
 /**
- * @brief Creates a shadow option object. When the object is no longer used, call
- * {@link OH_ArkUI_ShadowOptions_Destroy} to destroy it.
+ * @brief 创建一个阴影选项对象。当该对象不再使用时，请调用{@link OH_ArkUI_ShadowOptions_Destroy}销毁。
  *
- * @return Pointer to the {@link OH_ArkUI_ShadowOptions} object.
+ * @return 指向{@link OH_ArkUI_ShadowOptions}对象的指针。
  * @since 24
  */
 OH_ArkUI_ShadowOptions* OH_ArkUI_ShadowOptions_Create();
 
 /**
- * @brief Destroys the shadow option object.
+ * @brief 销毁阴影选项对象。
  *
- * @param options Pointer to the {@link OH_ArkUI_ShadowOptions} object.
+ * @param options 指向{@link OH_ArkUI_ShadowOptions}对象的指针。
  * @since 24
  */
 void OH_ArkUI_ShadowOptions_Destroy(OH_ArkUI_ShadowOptions* options);
 
 /**
- * @brief Sets the blur radius for the shadow options.
+ * @brief 设置阴影选项的模糊半径。
  *
- * @param options Pointer to the {@link OH_ArkUI_ShadowOptions} object.
- * @param radius Blur radius of the shadow, in vp.
- * @return Result code.
- *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @param options 指向{@link OH_ArkUI_ShadowOptions}对象的指针。
+ * @param radius 阴影的模糊半径，单位为vp。
+ * @return 返回结果码。
+ *     <br>若操作成功，返回{@link ARKUI_ERROR_CODE_NO_ERROR}。
+ *     <br>若参数异常，返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_ShadowOptions_SetRadius(OH_ArkUI_ShadowOptions* options, float radius);
 
 /**
- * @brief Obtains the blur radius for the shadow options.
+ * @brief 获取阴影选项的模糊半径。
  *
- * @param options Pointer to the {@link OH_ArkUI_ShadowOptions} object.
- * @param radius Pointer to the blur radius of the shadow, in vp.
- * @return Result code.
- *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @param options 指向{@link OH_ArkUI_ShadowOptions}对象的指针。
+ * @param radius 阴影的模糊半径，单位为vp。
+ * @return 返回结果码。
+ *     <br>若操作成功，返回{@link ARKUI_ERROR_CODE_NO_ERROR}。
+ *     <br>若参数异常，返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_ShadowOptions_GetRadius(OH_ArkUI_ShadowOptions* options, float* radius);
 
 /**
- * @brief Sets the shadow type for the shadow options.
+ * @brief 设置阴影选项的阴影类型。
  *
- * @param options Pointer to the {@link OH_ArkUI_ShadowOptions} object.
- * @param type Shadow type ({@link ArkUI_ShadowType}).
- * @return Result code.
- *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @param options 指向{@link OH_ArkUI_ShadowOptions}对象的指针。
+ * @param type 阴影类型{@link ArkUI_ShadowType}。
+ * @return 返回结果码。
+ *     <br>若操作成功，返回{@link ARKUI_ERROR_CODE_NO_ERROR}。
+ *     <br>若参数异常，返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_ShadowOptions_SetType(OH_ArkUI_ShadowOptions* options, ArkUI_ShadowType type);
 
 /**
- * @brief Obtains the shadow type for the shadow options.
+ * @brief 获取阴影选项的阴影类型。
  *
- * @param options Pointer to the {@link OH_ArkUI_ShadowOptions} object.
- * @param type Shadow type ({@link ArkUI_ShadowType}).
- * @return Result code.
- *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @param options 指向{@link OH_ArkUI_ShadowOptions}对象的指针。
+ * @param type 阴影类型{@link ArkUI_ShadowType}。
+ * @return 返回结果码。
+ *     <br>若操作成功，返回{@link ARKUI_ERROR_CODE_NO_ERROR}。
+ *     <br>若参数异常，返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_ShadowOptions_GetType(OH_ArkUI_ShadowOptions* options, ArkUI_ShadowType* type);
 
 /**
- * @brief Sets the shadow color for the shadow options.
+ * @brief 设置阴影选项的阴影颜色。
  *
- * @param options Pointer to the {@link OH_ArkUI_ShadowOptions} object.
- * @param color Shadow color, in 0xARGB format.
- * @return Result code.
- *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @param options 指向{@link OH_ArkUI_ShadowOptions}对象的指针。
+ * @param color 阴影颜色，0xARGB格式。
+ * @return 返回结果码。
+ *     <br>若操作成功，返回{@link ARKUI_ERROR_CODE_NO_ERROR}。
+ *     <br>若参数异常，返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_ShadowOptions_SetColor(OH_ArkUI_ShadowOptions* options, uint32_t color);
 
 /**
- * @brief Obtains the shadow color for the shadow options.
+ * @brief 获取阴影选项的阴影颜色。
  *
- * @param options Pointer to the {@link OH_ArkUI_ShadowOptions} object.
- * @param color Pointer to the shadow color, in 0xARGB format.
- * @return Result code.
- *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @param options 指向{@link OH_ArkUI_ShadowOptions}对象的指针。
+ * @param color 阴影颜色，0xARGB格式。
+ * @return 返回结果码。
+ *     <br>若操作成功，返回{@link ARKUI_ERROR_CODE_NO_ERROR}。
+ *     <br>若参数异常，返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_ShadowOptions_GetColor(OH_ArkUI_ShadowOptions* options, uint32_t* color);
 
 /**
- * @brief Sets the shadow offset on the x-axis.
+ * @brief 设置阴影在x轴上的偏移量。
  *
- * @param options Pointer to the {@link OH_ArkUI_ShadowOptions} object.
- * @param offsetX Shadow offset on the x-axis, in vp.
- * @return Result code.
- *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @param options 指向{@link OH_ArkUI_ShadowOptions}对象的指针。
+ * @param offsetX 阴影在x轴上的偏移量，单位为vp。
+ * @return 返回结果码。
+ *     <br>若操作成功，返回{@link ARKUI_ERROR_CODE_NO_ERROR}。
+ *     <br>若参数异常，返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_ShadowOptions_SetOffsetX(OH_ArkUI_ShadowOptions* options, float offsetX);
 
 /**
- * @brief Obtains the shadow offset on the x-axis.
+ * @brief 获取阴影在x轴上的偏移量。
  *
- * @param options Pointer to the {@link OH_ArkUI_ShadowOptions} object.
- * @param offsetX Pointer to the shadow offset on the x-axis, in vp.
- * @return Result code.
- *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @param options 指向{@link OH_ArkUI_ShadowOptions}对象的指针。
+ * @param offsetX 阴影在x轴上的偏移量，单位为vp。
+ * @return 返回结果码。
+ *     <br>若操作成功，返回{@link ARKUI_ERROR_CODE_NO_ERROR}。
+ *     <br>若参数异常，返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_ShadowOptions_GetOffsetX(OH_ArkUI_ShadowOptions* options, float* offsetX);
 
 /**
- * @brief Sets the shadow offset on the y-axis.
+ * @brief 设置阴影在y轴上的偏移量。
  *
- * @param options Pointer to the {@link OH_ArkUI_ShadowOptions} object.
- * @param offsetY Shadow offset on the y-axis, in vp.
- * @return Result code.
- *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @param options 指向{@link OH_ArkUI_ShadowOptions}对象的指针。
+ * @param offsetY 阴影在y轴上的偏移量，单位为vp。
+ * @return 返回结果码。
+ *     <br>若操作成功，返回{@link ARKUI_ERROR_CODE_NO_ERROR}。
+ *     <br>若参数异常，返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_ShadowOptions_SetOffsetY(OH_ArkUI_ShadowOptions* options, float offsetY);
 
 /**
- * @brief Obtains the shadow offset on the y-axis.
+ * @brief 获取阴影在y轴上的偏移量。
  *
- * @param options Pointer to the {@link OH_ArkUI_ShadowOptions} object.
- * @param offsetY Pointer to the shadow offset on the y-axis, in vp.
- * @return Result code.
- *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @param options 指向{@link OH_ArkUI_ShadowOptions}对象的指针。
+ * @param offsetY 阴影在y轴上的偏移量，单位为vp。
+ * @return 返回结果码。
+ *     <br>若操作成功，返回{@link ARKUI_ERROR_CODE_NO_ERROR}。
+ *     <br>若参数异常，返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_ShadowOptions_GetOffsetY(OH_ArkUI_ShadowOptions* options, float* offsetY);
 
 /**
- * @brief Sets whether to fill a component with a shadow.
+ * @brief 设置是否用阴影填充组件内部。
  *
- * @param options Pointer to the {@link OH_ArkUI_ShadowOptions} object.
- * @param isFill Whether to fill a component with a shadow. **true** means to fill a component with a shadow, and **
- *     false** means the opposite. The default value is **false**.
- * @return Result code.
- *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @param options 指向{@link OH_ArkUI_ShadowOptions}对象的指针。
+ * @param isFill 是否用阴影填充组件内部。true表示用阴影填充组件内部，false表示不用阴影填充组件内部。默认值为false。
+ * @return 返回结果码。
+ *     <br>若操作成功，返回{@link ARKUI_ERROR_CODE_NO_ERROR}。
+ *     <br>若参数异常，返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_ShadowOptions_SetFill(OH_ArkUI_ShadowOptions* options, bool isFill);
 
 /**
- * @brief Obtains whether a component is filled with a shadow.
+ * @brief 获取是否用阴影填充组件内部。
  *
- * @param options Pointer to the {@link OH_ArkUI_ShadowOptions} object.
- * @param isFill Pointer to the **isFill** parameter indicating whether a component is filled with a shadow. **true**
- *     means that a component is filled with a shadow, and **false** means the opposite.
- * @return Result code.
- *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @param options 指向{@link OH_ArkUI_ShadowOptions}对象的指针。
+ * @param isFill 是否用阴影填充组件内部。true表示用阴影填充组件内部，false表示不用阴影填充组件内部。
+ * @return 返回结果码。
+ *     <br>若操作成功，返回{@link ARKUI_ERROR_CODE_NO_ERROR}。
+ *     <br>若参数异常，返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_ShadowOptions_GetFill(OH_ArkUI_ShadowOptions* options, bool* isFill);
 
 /**
- * @brief Creates a text style object. When the object is no longer used, call
- * {@link OH_ArkUI_TextEditorTextStyle_Destroy} to destroy it.
+ * @brief 创建一个文本样式对象。当该对象不再使用时，请调用{@link OH_ArkUI_TextEditorTextStyle_Destroy}销毁。
  *
- * @return Pointer to the {@link OH_ArkUI_TextEditorTextStyle} object.
+ * @return 指向{@link OH_ArkUI_TextEditorTextStyle}对象的指针。
  * @since 24
  */
 OH_ArkUI_TextEditorTextStyle* OH_ArkUI_TextEditorTextStyle_Create();
 
 /**
- * @brief Destroys the text style object.
+ * @brief 销毁文本样式对象。
  *
- * @param style Pointer to the {@link OH_ArkUI_TextEditorTextStyle} object.
+ * @param style 指向{@link OH_ArkUI_TextEditorTextStyle}对象的指针。
  * @since 24
  */
 void OH_ArkUI_TextEditorTextStyle_Destroy(OH_ArkUI_TextEditorTextStyle* style);
 
 /**
- * @brief Sets the font color of the text style.
+ * @brief 设置文本样式的字体颜色。
  *
- * @param style Pointer to the text style of the **TextEditor** component.
- * @param color Font color, in 0xARGB format.
- * @return Result code.
- *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @param style TextEditor组件文本样式。
+ * @param color 字体颜色，0xARGB格式。
+ * @return 返回结果码。
+ *     <br>若操作成功，返回{@link ARKUI_ERROR_CODE_NO_ERROR}。
+ *     <br>若参数异常，返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_TextEditorTextStyle_SetFontColor(OH_ArkUI_TextEditorTextStyle* style, uint32_t color);
 
 /**
- * @brief Obtains the font color of the text style.
+ * @brief 获取文本样式的字体颜色。
  *
- * @param style Pointer to the text style of the **TextEditor** component.
- * @param color Pointer to the font color, in 0xARGB format.
- * @return Result code.
- *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @param style TextEditor组件文本样式。
+ * @param color 字体颜色，0xARGB格式。
+ * @return 返回结果码。
+ *     <br>若操作成功，返回{@link ARKUI_ERROR_CODE_NO_ERROR}。
+ *     <br>若参数异常，返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_TextEditorTextStyle_GetFontColor(OH_ArkUI_TextEditorTextStyle* style, uint32_t* color);
 
 /**
- * @brief Sets the font size of the text style.
+ * @brief 设置文本样式的字体大小。
  *
- * @param style Pointer to the text style of the **TextEditor** component.
- * @param size Font size, in fp.
- * @return Result code.
- *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @param style TextEditor组件文本样式。
+ * @param size 字体大小，单位为fp。
+ * @return 返回结果码。
+ *     <br>若操作成功，返回{@link ARKUI_ERROR_CODE_NO_ERROR}。
+ *     <br>若参数异常，返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_TextEditorTextStyle_SetFontSize(OH_ArkUI_TextEditorTextStyle* style, float size);
 
 /**
- * @brief Obtains the font size of the text style.
+ * @brief 获取文本样式的字体大小。
  *
- * @param style Pointer to the text style of the **TextEditor** component.
- * @param size Pointer to the font size, in fp.
- * @return Result code.
- *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @param style TextEditor组件文本样式。
+ * @param size 字体大小，单位为fp。
+ * @return 返回结果码。
+ *     <br>若操作成功，返回{@link ARKUI_ERROR_CODE_NO_ERROR}。
+ *     <br>若参数异常，返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_TextEditorTextStyle_GetFontSize(OH_ArkUI_TextEditorTextStyle* style, float* size);
 
 /**
- * @brief Sets the font style of the text style.
+ * @brief 设置文本样式的字体样式。
  *
- * @param style Pointer to the text style of the **TextEditor** component.
- * @param fontStyle Font style. The value is an enumerated value of {@link ArkUI_FontStyle}.
- * @return Result code.
- *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @param style TextEditor组件文本样式。
+ * @param fontStyle 字体样式。取值为{@link ArkUI_FontStyle}中的枚举。
+ * @return 返回结果码。
+ *     <br>若操作成功，返回{@link ARKUI_ERROR_CODE_NO_ERROR}。
+ *     <br>若参数异常，返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_TextEditorTextStyle_SetFontStyle(OH_ArkUI_TextEditorTextStyle* style,
     ArkUI_FontStyle fontStyle);
 
 /**
- * @brief Obtains the font style of the text style.
+ * @brief 获取文本样式的字体样式。
  *
- * @param style Pointer to the text style of the **TextEditor** component.
- * @param fontStyle Pointer to the font style. The value is an enumerated value of {@link ArkUI_FontStyle}.
- * @return Result code.
- *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @param style TextEditor组件文本样式。
+ * @param fontStyle 字体样式。取值为{@link ArkUI_FontStyle}中的枚举。
+ * @return 返回结果码。
+ *     <br>若操作成功，返回{@link ARKUI_ERROR_CODE_NO_ERROR}。
+ *     <br>若参数异常，返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_TextEditorTextStyle_GetFontStyle(OH_ArkUI_TextEditorTextStyle* style,
     ArkUI_FontStyle* fontStyle);
 
 /**
- * @brief Sets the font weight of the text style.
+ * @brief 设置文本样式的字体粗细。
  *
- * @param style Pointer to the text style of the **TextEditor** component.
- * @param fontWeight Font weight. The value is an integer multiple of 100 within the [100, 900] range, for example, **
- *     100** or **900**.
- * @return Result code.
- *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @param style TextEditor组件文本样式。
+ * @param fontWeight 字体粗细。取值范围为[100, 900]中的整百数值，例如100、900。
+ * @return 返回结果码。
+ *     <br>若操作成功，返回{@link ARKUI_ERROR_CODE_NO_ERROR}。
+ *     <br>若参数异常，返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_TextEditorTextStyle_SetFontWeight(OH_ArkUI_TextEditorTextStyle* style, uint32_t fontWeight);
 
 /**
- * @brief Obtains the font weight of the text style.
+ * @brief 获取文本样式的字体粗细。
  *
- * @param style Pointer to the text style of the **TextEditor** component.
- * @param fontWeight Pointer to the font weight. The value is an integer multiple of 100 within the [100, 900] range,
- *     for example, **100** or **900**.
- * @return Result code.
- *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @param style TextEditor组件文本样式。
+ * @param fontWeight 字体粗细。取值范围为[100, 900]中的整百数值，例如100、900。
+ * @return 返回结果码。
+ *     <br>若操作成功，返回{@link ARKUI_ERROR_CODE_NO_ERROR}。
+ *     <br>若参数异常，返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_TextEditorTextStyle_GetFontWeight(OH_ArkUI_TextEditorTextStyle* style, uint32_t* fontWeight);
 
 /**
- * @brief Sets the font family of the text style.
+ * @brief 设置文本样式的字体家族。
  *
- * @param style Pointer to the text style of the **TextEditor** component.
- * @param fontFamily Pointer to the font family, containing the font names to be set. Different font names are
- *     separated by commas (,).
- * @return Result code.
- *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @param style TextEditor组件文本样式。
+ * @param fontFamily 字体家族。存放待设置的字体名称，不同字体名称通过逗号拼接。
+ * @return 返回结果码。
+ *     <br>若操作成功，返回{@link ARKUI_ERROR_CODE_NO_ERROR}。
+ *     <br>若参数异常，返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_TextEditorTextStyle_SetFontFamily(OH_ArkUI_TextEditorTextStyle* style, const char* fontFamily);
 
 /**
- * @brief Obtains the font family of the text style.
+ * @brief 获取文本样式的字体家族。
  *
- * @param style Pointer to the text style of the **TextEditor** component.
- * @param buffer Pointer to the buffer for storing the font family in the memory. You need to allocate the memory.
- * @param bufferSize Maximum number of characters that can be written to the buffer.
- * @param writeLength Pointer to the number of characters that are actually written to the buffer.
- * @return Result code.
- *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @param style TextEditor组件文本样式。
+ * @param buffer 字体家族内容写入内存的缓冲区，内存空间需由开发者分配。
+ * @param bufferSize 缓冲区最多可写入的字符的数量。
+ * @param writeLength 实际写入缓冲区的字符的数量。
+ * @return 返回结果码。
+ *     <br>若操作成功，返回{@link ARKUI_ERROR_CODE_NO_ERROR}。
+ *     <br>若参数异常，返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_TextEditorTextStyle_GetFontFamily(OH_ArkUI_TextEditorTextStyle* style,
     char* buffer, int32_t bufferSize, int32_t* writeLength);
 
 /**
- * @brief Sets the text decoration options of the text style.
+ * @brief 设置文本样式的文本装饰选项。
  *
- * @param style Pointer to the text style of the **TextEditor** component.
- * @param options Pointer to the {@link OH_ArkUI_DecorationStyleOptions} object.
- * @return Result code.
- *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @param style TextEditor组件文本样式。
+ * @param options 指向{@link OH_ArkUI_DecorationStyleOptions}对象的指针。
+ * @return 返回结果码。
+ *     <br>若操作成功，返回{@link ARKUI_ERROR_CODE_NO_ERROR}。
+ *     <br>若参数异常，返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_TextEditorTextStyle_SetDecoration(OH_ArkUI_TextEditorTextStyle* style,
     OH_ArkUI_DecorationStyleOptions* options);
 
 /**
- * @brief Obtains the text decoration options of the text style.
+ * @brief 获取文本样式的文本装饰选项。
  *
- * @param style Pointer to the text style of the **TextEditor** component.
- * @param options Pointer to the {@link OH_ArkUI_DecorationStyleOptions} object.
- * @return Result code.
- *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @param style TextEditor组件文本样式。
+ * @param options 指向{@link OH_ArkUI_DecorationStyleOptions}对象的指针。
+ * @return 返回结果码。
+ *     <br>若操作成功，返回{@link ARKUI_ERROR_CODE_NO_ERROR}。
+ *     <br>若参数异常，返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_TextEditorTextStyle_GetDecoration(OH_ArkUI_TextEditorTextStyle* style,
     OH_ArkUI_DecorationStyleOptions* options);
 
 /**
- * @brief Sets the text shadow options of the text style.
+ * @brief 设置文本样式的文本阴影选项。
  *
- * @param style Pointer to the text style of the **TextEditor** component.
- * @param options Double pointer to the text shadow options.
- * @param length Length of the text shadow options.
- * @return Result code.
- *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @param style TextEditor组件文本样式。
+ * @param options 文本阴影选项。
+ * @param length 文本阴影选项的长度。
+ * @return 返回结果码。
+ *     <br>若操作成功，返回{@link ARKUI_ERROR_CODE_NO_ERROR}。
+ *     <br>若参数异常，返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_TextEditorTextStyle_SetTextShadows(OH_ArkUI_TextEditorTextStyle* style,
     const OH_ArkUI_ShadowOptions** options, int32_t length);
 
 /**
- * @brief Obtains the text shadow options of the text style.
+ * @brief 获取文本样式的文本阴影选项。
  *
- * @param style Pointer to the text style of the **TextEditor** component.
- * @param shadowOptions Double pointer to the text shadow options.
- * @param shadowOptionsSize Size of the shadow option buffer.
- * @param writeLength Pointer to the number of actual text shadow options in the text style.
- * @return Result code.
- *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @param style TextEditor组件文本样式。
+ * @param shadowOptions 文本阴影选项。
+ * @param shadowOptionsSize 阴影选项的缓冲区大小。
+ * @param writeLength 文本样式中实际的文本阴影选项数量。
+ * @return 返回结果码。
+ *     <br>若操作成功，返回{@link ARKUI_ERROR_CODE_NO_ERROR}。
+ *     <br>若参数异常，返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_TextEditorTextStyle_GetTextShadows(OH_ArkUI_TextEditorTextStyle* style,
     OH_ArkUI_ShadowOptions** shadowOptions, uint32_t shadowOptionsSize, uint32_t* writeLength);
 
 /**
- * @brief Sets the line height of the text style.
+ * @brief 设置文本样式的文本行高。
  *
- * @param style Pointer to the text style of the **TextEditor** component.
- * @param lineHeight Line height.
- * @return Result code.
- *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @param style TextEditor组件文本样式。
+ * @param lineHeight 文本行高。
+ * @return 返回结果码。
+ *     <br>若操作成功，返回{@link ARKUI_ERROR_CODE_NO_ERROR}。
+ *     <br>若参数异常，返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_TextEditorTextStyle_SetLineHeight(OH_ArkUI_TextEditorTextStyle* style, int32_t lineHeight);
 
 /**
- * @brief Obtains the line height of the text style.
+ * @brief 获取文本样式的文本行高。
  *
- * @param style Pointer to the text style of the **TextEditor** component.
- * @param lineHeight Pointer to the line height.
- * @return Result code.
- *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @param style TextEditor组件文本样式。
+ * @param lineHeight 文本行高。
+ * @return 返回结果码。
+ *     <br>若操作成功，返回{@link ARKUI_ERROR_CODE_NO_ERROR}。
+ *     <br>若参数异常，返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_TextEditorTextStyle_GetLineHeight(OH_ArkUI_TextEditorTextStyle* style, int32_t* lineHeight);
 
 /**
- * @brief Sets the letter spacing of the text style.
+ * @brief 设置文本样式的字符间距。
  *
- * @param style Pointer to the text style of the **TextEditor** component.
- * @param letterSpacing Letter spacing.
- * @return Result code.
- *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @param style TextEditor组件文本样式。
+ * @param letterSpacing 字符间距。
+ * @return 返回结果码。
+ *     <br>若操作成功，返回{@link ARKUI_ERROR_CODE_NO_ERROR}。
+ *     <br>若参数异常，返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_TextEditorTextStyle_SetLetterSpacing(OH_ArkUI_TextEditorTextStyle* style,
     int32_t letterSpacing);
 
 /**
- * @brief Obtains the letter spacing of the text style.
+ * @brief 获取文本样式的字符间距。
  *
- * @param style Pointer to the text style of the **TextEditor** component.
- * @param letterSpacing Pointer to the letter spacing.
- * @return Result code.
- *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @param style TextEditor组件文本样式。
+ * @param letterSpacing 字符间距。
+ * @return 返回结果码。
+ *     <br>若操作成功，返回{@link ARKUI_ERROR_CODE_NO_ERROR}。
+ *     <br>若参数异常，返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_TextEditorTextStyle_GetLetterSpacing(OH_ArkUI_TextEditorTextStyle* style,
     int32_t* letterSpacing);
 
 /**
- * @brief Sets the font feature of the text style, such as monospaced digits.
+ * @brief 设置文本样式的文字特性效果，比如数字等宽的特性。
  *
- * @param style Pointer to the text style of the **TextEditor** component.
- * @param fontFeature Pointer to the font features, containing font features to be set. Multiple features are separated
- *     by commas (,).
- * @return Result code.
- *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @param style TextEditor组件文本样式。
+ * @param fontFeature 字体特性。存放待设置的字体特性，多个特性通过逗号拼接。
+ * @return 返回结果码。
+ *     <br>若操作成功，返回{@link ARKUI_ERROR_CODE_NO_ERROR}。
+ *     <br>若参数异常，返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_TextEditorTextStyle_SetFontFeature(OH_ArkUI_TextEditorTextStyle* style,
     const char* fontFeature);
 
 /**
- * @brief Obtains the font feature of the text style, such as monospaced digits.
+ * @brief 获取文本样式的文字特性效果，比如数字等宽的特性。
  *
- * @param style Pointer to the text style of the **TextEditor** component.
- * @param buffer Pointer to the buffer for storing the font features in the memory. You need to allocate the memory.
- * @param bufferSize Maximum number of characters that can be written to the buffer.
- * @param writeLength Pointer to the number of characters that are actually written to the buffer.
- * @return Result code.
- *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @param style TextEditor组件文本样式。
+ * @param buffer 字体特性内容写入内存的缓冲区，内存空间需由开发者分配。
+ * @param bufferSize 缓冲区最多可写入的字符的数量。
+ * @param writeLength 实际表示写入缓冲区的字符的数量。
+ * @return 返回结果码。
+ *     <br>若操作成功，返回{@link ARKUI_ERROR_CODE_NO_ERROR}。
+ *     <br>若参数异常，返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_TextEditorTextStyle_GetFontFeature(OH_ArkUI_TextEditorTextStyle* style, char* buffer,
     int32_t bufferSize, int32_t* writeLength);
 
 /**
- * @brief Sets whether to evenly distribute the line spacing to the top and bottom of each line in the text style.
+ * @brief 设置文本样式中文本是否将行间距平分至行的顶部与底部。
  *
- * @param style Pointer to the text style of the **TextEditor** component.
- * @param halfLeading Whether to enable half leading.
- *     <br>**true** means to enable, and **false** means the opposite. The default value is **false**.
- * @return Result code.
- *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @param style TextEditor组件文本样式。
+ * @param halfLeading 文本是否将行间距平分至行的顶部与底部。
+ *     <br>true表示将行间距平分至行的顶部与底部，false表示不将行间距平分至行的顶部与底部。默认值为false。
+ * @return 返回结果码。
+ *     <br>若操作成功，返回{@link ARKUI_ERROR_CODE_NO_ERROR}。
+ *     <br>若参数异常，返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_TextEditorTextStyle_SetHalfLeading(OH_ArkUI_TextEditorTextStyle* style, bool halfLeading);
 
 /**
- * @brief Obtains whether the line spacing is evenly distributed to the top and bottom of each line in the text style.
+ * @brief 获取文本样式中文本是否将行间距平分至行的顶部与底部。
  *
- * @param style Pointer to the text style of the **TextEditor** component.
- * @param halfLeading Pointer to the **halfLeading** parameter indicating whether to enable half leading.
- *     <br>**true** means to enable, and **false** means the opposite. The default value is **false**.
- * @return Result code.
- *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @param style TextEditor组件文本样式。
+ * @param halfLeading 文本是否将行间距平分至行的顶部与底部。
+ *     <br>true表示将行间距平分至行的顶部与底部，false表示不将行间距平分至行的顶部与底部。默认值为false。
+ * @return 返回结果码。
+ *     <br>若操作成功，返回{@link ARKUI_ERROR_CODE_NO_ERROR}。
+ *     <br>若参数异常，返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_TextEditorTextStyle_GetHalfLeading(OH_ArkUI_TextEditorTextStyle* style, bool* halfLeading);
 
 /**
- * @brief Sets the text background color of the text style.
+ * @brief 设置文本样式中的文本背景颜色。
  *
- * @param style Pointer to the text style of the **TextEditor** component.
- * @param color Text background color, in 0xARGB format.
- * @return Result code.
- *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @param style TextEditor组件文本样式。
+ * @param color 文本背景颜色，0xARGB格式。
+ * @return 返回结果码。
+ *     <br>若操作成功，返回{@link ARKUI_ERROR_CODE_NO_ERROR}。
+ *     <br>若参数异常，返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_TextEditorTextStyle_SetTextBackgroundColor(OH_ArkUI_TextEditorTextStyle* style,
     uint32_t color);
 
 /**
- * @brief Obtains the text background color of the text style.
+ * @brief 获取文本样式中的文本背景颜色。
  *
- * @param style Pointer to the text style of the **TextEditor** component.
- * @param color Pointer to the text background color, in 0xARGB format.
- * @return Result code.
- *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @param style TextEditor组件文本样式。
+ * @param color 文本背景颜色，0xARGB格式。
+ * @return 返回结果码。
+ *     <br>若操作成功，返回{@link ARKUI_ERROR_CODE_NO_ERROR}。
+ *     <br>若参数异常，返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_TextEditorTextStyle_GetTextBackgroundColor(OH_ArkUI_TextEditorTextStyle* style,
     uint32_t* color);
 
 /**
- * @brief Sets the radius of the rounded corner of the text background of the text style.
+ * @brief 设置文本样式中文本背景的圆角半径。
  *
- * @param style Pointer to the text style of the **TextEditor** component.
- * @param topLeft Radius of the rounded corner in the upper left corner of the text background. The unit is vp.
- * @param topRight Radius of the rounded corner in the upper right corner of the text background. The unit is vp.
- * @param bottomLeft Radius of the rounded corner in the lower left corner of the text background. The unit is vp.
- * @param bottomRight Radius of the rounded corner in the lower right corner of the text background. The unit is vp.
- * @return Result code.
- *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @param style TextEditor组件文本样式。
+ * @param topLeft 文本背景左上角的圆角半径。单位为vp。
+ * @param topRight 文本背景右上角的圆角半径。单位为vp。
+ * @param bottomLeft 文本背景左下角的圆角半径。单位为vp。
+ * @param bottomRight 文本背景右下角的圆角半径。单位为vp。
+ * @return 返回结果码。
+ *     <br>若操作成功，返回{@link ARKUI_ERROR_CODE_NO_ERROR}。
+ *     <br>若参数异常，返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_TextEditorTextStyle_SetTextBackgroundRadius(OH_ArkUI_TextEditorTextStyle* style, float topLeft,
     float topRight, float bottomLeft, float bottomRight);
 
 /**
- * @brief Obtains the radius of the rounded corner of the text background of the text style.
+ * @brief 获取文本样式中文本背景的圆角半径。
  *
- * @param style Pointer to the text style of the **TextEditor** component.
- * @param topLeft Pointer to the radius of the rounded corner in the upper left corner of the text background. The unit
- *     is vp.
- * @param topRight Pointer to the radius of the rounded corner in the upper right corner of the text background. The
- *     unit is vp.
- * @param bottomLeft Pointer to the radius of the rounded corner in the lower left corner of the text background. The
- *     unit is vp.
- * @param bottomRight Pointer to the radius of the rounded corner in the lower right corner of the text background. The
- *     unit is vp.
- * @return Result code.
- *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @param style TextEditor组件文本样式。
+ * @param topLeft 文本背景左上角的圆角半径。单位为vp。
+ * @param topRight 文本背景右上角的圆角半径。单位为vp。
+ * @param bottomLeft 文本背景左下角的圆角半径。单位为vp。
+ * @param bottomRight 文本背景右下角的圆角半径。单位为vp。
+ * @return 返回结果码。
+ *     <br>若操作成功，返回{@link ARKUI_ERROR_CODE_NO_ERROR}。
+ *     <br>若参数异常，返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_TextEditorTextStyle_GetTextBackgroundRadius(OH_ArkUI_TextEditorTextStyle* style,
     float* topLeft, float* topRight, float* bottomLeft, float* bottomRight);
 
 /**
- * @brief Sets the typing style using the styled string controller.
+ * @brief 通过属性字符串控制器设置预设输入样式。
  *
- * @param controller Pointer to the {@link OH_ArkUI_TextEditorStyledStringController} object.
- * @param style Pointer to the typing style.
- * @return Result code.
- *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @param controller 指向{@link OH_ArkUI_TextEditorStyledStringController}对象的指针。
+ * @param style 预设输入样式。
+ * @return 返回结果码。
+ *     <br>若操作成功，返回{@link ARKUI_ERROR_CODE_NO_ERROR}。
+ *     <br>若参数异常，返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_TextEditorStyledStringController_SetTypingStyle(
     OH_ArkUI_TextEditorStyledStringController* controller, OH_ArkUI_TextEditorTextStyle* style);
 
 /**
- * @brief Obtains the typing style using the styled string controller.
+ * @brief 通过属性字符串控制器获取预设输入样式。
  *
- * @param controller Pointer to the {@link OH_ArkUI_TextEditorStyledStringController} object.
- * @param style Pointer to the typing style.
- * @return Result code.
- *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @param controller 指向{@link OH_ArkUI_TextEditorStyledStringController}对象的指针。
+ * @param style 预设输入样式。
+ * @return 返回结果码。
+ *     <br>若操作成功，返回{@link ARKUI_ERROR_CODE_NO_ERROR}。
+ *     <br>若参数异常，返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_TextEditorStyledStringController_GetTypingStyle(
     OH_ArkUI_TextEditorStyledStringController* controller, OH_ArkUI_TextEditorTextStyle* style);
 
 /**
- * @brief Creates a text selection menu option object of the text editor. When the object is no longer used, call
- * {@link OH_ArkUI_TextEditorSelectionMenuOptions_Destroy} to destroy it.
+ * @brief 创建一个文本编辑器文本选择菜单选项对象。当该对象不再使用时，请调用{@link OH_ArkUI_TextEditorSelectionMenuOptions_Destroy}销毁。
  *
- * @return Pointer to the {@link OH_ArkUI_TextEditorSelectionMenuOptions} object.
+ * @return 指向{@link OH_ArkUI_TextEditorSelectionMenuOptions}对象的指针。
  * @since 24
  */
 OH_ArkUI_TextEditorSelectionMenuOptions* OH_ArkUI_TextEditorSelectionMenuOptions_Create();
 
 /**
- * @brief Destroys the text selection menu option object of the text editor.
+ * @brief 销毁文本编辑器文本选择菜单选项对象。
  *
- * @param options Pointer to the {@link OH_ArkUI_TextEditorSelectionMenuOptions} object.
+ * @param options 指向{@link OH_ArkUI_TextEditorSelectionMenuOptions}对象的指针。
  * @since 24
  */
 void OH_ArkUI_TextEditorSelectionMenuOptions_Destroy(OH_ArkUI_TextEditorSelectionMenuOptions* options);
 
 /**
- * @brief Sets the span type of the text selection menu in the text editor.
+ * @brief 设置文本编辑器中文本选择菜单的span的类型。
  *
- * @param options Pointer to the {@link OH_ArkUI_TextEditorSelectionMenuOptions} object.
- * @param textEditorSpanType Span type. The value is an enumerated value of {@link OH_ArkUI_TextEditorSpanType}.
- * @return Result code.
- *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @param options 指向{@link OH_ArkUI_TextEditorSelectionMenuOptions}对象的指针。
+ * @param textEditorSpanType span的类型。取值为{@link OH_ArkUI_TextEditorSpanType}中的枚举。
+ * @return 返回结果码。
+ *     <br>若操作成功，返回{@link ARKUI_ERROR_CODE_NO_ERROR}。
+ *     <br>若参数异常，返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_TextEditorSelectionMenuOptions_SetSpanType(
     OH_ArkUI_TextEditorSelectionMenuOptions* options, OH_ArkUI_TextEditorSpanType textEditorSpanType);
 
 /**
- * @brief Obtains the span type of the text selection menu in the text editor.
+ * @brief 获取文本编辑器中文本选择菜单的span的类型。
  *
- * @param options Pointer to the {@link OH_ArkUI_TextEditorSelectionMenuOptions} object.
- * @param textEditorSpanType Pointer to the span type. The value is an enumerated value of
- *     {@link OH_ArkUI_TextEditorSpanType}.
- * @return Result code.
- *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @param options 指向{@link OH_ArkUI_TextEditorSelectionMenuOptions}对象的指针。
+ * @param textEditorSpanType span的类型。取值为{@link OH_ArkUI_TextEditorSpanType}中的枚举。
+ * @return 返回结果码。
+ *     <br>若操作成功，返回{@link ARKUI_ERROR_CODE_NO_ERROR}。
+ *     <br>若参数异常，返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_TextEditorSelectionMenuOptions_GetSpanType(
     OH_ArkUI_TextEditorSelectionMenuOptions* options, OH_ArkUI_TextEditorSpanType* textEditorSpanType);
 
 /**
- * @brief Sets the content node of the text selection menu in the text editor.
+ * @brief 设置文本编辑器中文本选择菜单的内容节点。
  *
- * @param options Pointer to the {@link OH_ArkUI_TextEditorSelectionMenuOptions} object.
- * @param node Content node.
- * @return Result code.
- *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @param options 指向{@link OH_ArkUI_TextEditorSelectionMenuOptions}对象的指针。
+ * @param node 内容节点。
+ * @return 返回结果码。
+ *     <br>若操作成功，返回{@link ARKUI_ERROR_CODE_NO_ERROR}。
+ *     <br>若参数异常，返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_TextEditorSelectionMenuOptions_SetContentNode(OH_ArkUI_TextEditorSelectionMenuOptions* options,
     ArkUI_NodeHandle node);
 
 /**
- * @brief Obtains the content node of the text selection menu in the text editor.
+ * @brief 获取文本编辑器中文本选择菜单的内容节点。
  *
- * @param options Pointer to the {@link OH_ArkUI_TextEditorSelectionMenuOptions} object.
- * @param node Pointer to the content node.
- * @return Result code.
- *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @param options 指向{@link OH_ArkUI_TextEditorSelectionMenuOptions}对象的指针。
+ * @param node 内容节点。
+ * @return 返回结果码。
+ *     <br>若操作成功，返回{@link ARKUI_ERROR_CODE_NO_ERROR}。
+ *     <br>若参数异常，返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_TextEditorSelectionMenuOptions_GetContentNode(OH_ArkUI_TextEditorSelectionMenuOptions* options,
     ArkUI_NodeHandle* node);
 
 /**
- * @brief Sets the response type of the text selection menu in the text editor.
+ * @brief 设置文本编辑器中文本选择菜单的响应类型。
  *
- * @param options Pointer to the {@link OH_ArkUI_TextEditorSelectionMenuOptions} object.
- * @param responseType Response type. The value is an enumerated value of {@link OH_ArkUI_TextEditorResponseType}.
- * @return Result code.
- *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @param options 指向{@link OH_ArkUI_TextEditorSelectionMenuOptions}对象的指针。
+ * @param responseType 响应类型。取值为{@link OH_ArkUI_TextEditorResponseType}中的枚举。
+ * @return 返回结果码。
+ *     <br>若操作成功，返回{@link ARKUI_ERROR_CODE_NO_ERROR}。
+ *     <br>若参数异常，返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_TextEditorSelectionMenuOptions_SetResponseType(
     OH_ArkUI_TextEditorSelectionMenuOptions* options, OH_ArkUI_TextEditorResponseType responseType);
 
 /**
- * @brief Obtains the response type of the text selection menu in the text editor.
+ * @brief 获取文本编辑器中文本选择菜单的响应类型。
  *
- * @param options Pointer to the {@link OH_ArkUI_TextEditorSelectionMenuOptions} object.
- * @param responseType Pointer to the response type. The value is an enumerated value of
- *     {@link OH_ArkUI_TextEditorResponseType}.
- * @return Result code.
- *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @param options 指向{@link OH_ArkUI_TextEditorSelectionMenuOptions}对象的指针。
+ * @param responseType 响应类型。取值为{@link OH_ArkUI_TextEditorResponseType}中的枚举。
+ * @return 返回结果码。
+ *     <br>若操作成功，返回{@link ARKUI_ERROR_CODE_NO_ERROR}。
+ *     <br>若参数异常，返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_TextEditorSelectionMenuOptions_GetResponseType(
     OH_ArkUI_TextEditorSelectionMenuOptions* options, OH_ArkUI_TextEditorResponseType* responseType);
 
 /**
- * @brief Sets the type of the text selection menu in the text editor.
+ * @brief 设置文本编辑器中文本选择菜单的类型。
  *
- * @param options Pointer to the {@link OH_ArkUI_TextEditorSelectionMenuOptions} object.
- * @param menuType Menu type. The value is an enumerated value of {@link OH_ArkUI_TextMenuType}.
- * @return Result code.
- *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @param options 指向{@link OH_ArkUI_TextEditorSelectionMenuOptions}对象的指针。
+ * @param menuType 菜单类型。取值为{@link OH_ArkUI_TextMenuType}中的枚举。
+ * @return 返回结果码。
+ *     <br>若操作成功，返回{@link ARKUI_ERROR_CODE_NO_ERROR}。
+ *     <br>若参数异常，返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_TextEditorSelectionMenuOptions_SetMenuType(OH_ArkUI_TextEditorSelectionMenuOptions* options,
     OH_ArkUI_TextMenuType menuType);
 
 /**
- * @brief Obtains the type of the text selection menu in the text editor.
+ * @brief 获取文本编辑器中文本选择菜单的类型。
  *
- * @param options Pointer to the {@link OH_ArkUI_TextEditorSelectionMenuOptions} object.
- * @param menuType Pointer to the menu type. The value is an enumerated value of {@link OH_ArkUI_TextMenuType}.
- * @return Result code.
- *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @param options 指向{@link OH_ArkUI_TextEditorSelectionMenuOptions}对象的指针。
+ * @param menuType 菜单类型。取值为{@link OH_ArkUI_TextMenuType}中的枚举。
+ * @return 返回结果码。
+ *     <br>若操作成功，返回{@link ARKUI_ERROR_CODE_NO_ERROR}。
+ *     <br>若参数异常，返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_TextEditorSelectionMenuOptions_GetMenuType(OH_ArkUI_TextEditorSelectionMenuOptions* options,
     OH_ArkUI_TextMenuType* menuType);
 
 /**
- * @brief Sets the callback triggered when the text selection menu is displayed.
+ * @brief 设置文本选择菜单显示时触发的事件。
  *
- * @param options Pointer to the {@link OH_ArkUI_TextEditorSelectionMenuOptions} object.
- * @param userData Pointer to the user data.
- * @param callback The callback function of menu show.
- *     start The start offset of the selected content.
- *     end The end offset of the selected content.
- *     callbackUserData The user data.
- * @return Result code.
- *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @param options 指向{@link OH_ArkUI_TextEditorSelectionMenuOptions}对象的指针。
+ * @param userData 用户数据。
+ * @param callback 菜单显示时的回调函数。
+ *     start 选中内容的起始偏移量。
+ *     end 选中内容的结束偏移量。
+ *     callbackUserData 用户数据。
+ * @return 返回结果码。
+ *     <br>若操作成功，返回{@link ARKUI_ERROR_CODE_NO_ERROR}。
+ *     <br>若参数异常，返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_TextEditorSelectionMenuOptions_RegisterOnMenuShowCallback(
@@ -9254,17 +9212,17 @@ ArkUI_ErrorCode OH_ArkUI_TextEditorSelectionMenuOptions_RegisterOnMenuShowCallba
     void (*callback)(int32_t start, int32_t end, void* callbackUserData));
 
 /**
- * @brief Sets the callback triggered when the text selection menu is hidden.
+ * @brief 设置文本选择菜单隐藏时触发的事件。
  *
- * @param options Pointer to the {@link OH_ArkUI_TextEditorSelectionMenuOptions} object.
- * @param userData Pointer to the user data.
- * @param callback The callback function of menu hide.
- *     start The start offset of the selected content.
- *     end The end offset of the selected content.
- *     userData The user data.
- * @return Result code.
- *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @param options 指向{@link OH_ArkUI_TextEditorSelectionMenuOptions}对象的指针。
+ * @param userData 用户数据。
+ * @param callback 菜单隐藏时的回调函数。
+ *     start 选中内容的起始偏移量。
+ *     end 选中内容的结束偏移量。
+ *     userData 用户数据。
+ * @return 返回结果码。
+ *     <br>若操作成功，返回{@link ARKUI_ERROR_CODE_NO_ERROR}。
+ *     <br>若参数异常，返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_TextEditorSelectionMenuOptions_RegisterOnMenuHideCallback(
@@ -9272,17 +9230,17 @@ ArkUI_ErrorCode OH_ArkUI_TextEditorSelectionMenuOptions_RegisterOnMenuHideCallba
     void (*callback)(int32_t start, int32_t end, void* callbackUserData));
 
 /**
- * @brief Sets the callback triggered when the text selection menu appears.
+ * @brief 设置文本选择菜单出现时触发的事件。
  *
- * @param options Pointer to the {@link OH_ArkUI_TextEditorSelectionMenuOptions} object.
- * @param userData Pointer to the user data.
- * @param callback The callback function of menu appear.
- *     start The start offset of the selected content.
- *     end The end offset of the selected content.
- *     userData The user data.
- * @return Result code.
- *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @param options 指向{@link OH_ArkUI_TextEditorSelectionMenuOptions}对象的指针。
+ * @param userData 用户数据。
+ * @param callback 菜单出现时的回调函数。
+ *     start 选中内容的起始偏移量。
+ *     end 选中内容的结束偏移量。
+ *     userData 用户数据。
+ * @return 返回结果码。
+ *     <br>若操作成功，返回{@link ARKUI_ERROR_CODE_NO_ERROR}。
+ *     <br>若参数异常，返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_TextEditorSelectionMenuOptions_RegisterOnMenuAppearCallback(
@@ -9290,129 +9248,114 @@ ArkUI_ErrorCode OH_ArkUI_TextEditorSelectionMenuOptions_RegisterOnMenuAppearCall
     void (*callback)(int32_t start, int32_t end, void* callbackUserData));
 
 /**
- * @brief Sets the callback triggered when the text selection menu disappears.
+ * @brief 设置文本选择菜单消失时触发的事件。
  *
- * @param options Pointer to the {@link OH_ArkUI_TextEditorSelectionMenuOptions} object.
- * @param userData Pointer to the user data.
- * @param callback The callback function of menu disappear.
- *     userData The user data.
- * @return Result code.
- *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @param options 指向{@link OH_ArkUI_TextEditorSelectionMenuOptions}对象的指针。
+ * @param userData 用户数据。
+ * @param callback 菜单消失时的回调函数。
+ *     userData 用户数据。
+ * @return 返回结果码。
+ *     <br>若操作成功，返回{@link ARKUI_ERROR_CODE_NO_ERROR}。
+ *     <br>若参数异常，返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_TextEditorSelectionMenuOptions_RegisterOnMenuDisappearCallback(
     OH_ArkUI_TextEditorSelectionMenuOptions* options, void* userData, void (*callback)(void* callbackUserData));
 
 /**
- * @brief Sets the haptic feedback mode of the text selection menu in the text editor.
+ * @brief 设置文本编辑器中文本选择菜单的触觉反馈模式。
  *
- * @param options Pointer to the {@link OH_ArkUI_TextEditorSelectionMenuOptions} object.
- * @param mode Haptic feedback mode. The value is an enumerated value of {@link OH_ArkUI_HapticFeedbackMode}.
- * @return Result code.
- *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @param options 指向{@link OH_ArkUI_TextEditorSelectionMenuOptions}对象的指针。
+ * @param mode 触觉反馈模式。取值为{@link OH_ArkUI_HapticFeedbackMode}中的枚举。
+ * @return 返回结果码。
+ *     <br>若操作成功，返回{@link ARKUI_ERROR_CODE_NO_ERROR}。
+ *     <br>若参数异常，返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_TextEditorSelectionMenuOptions_SetHapticFeedbackMode(
     OH_ArkUI_TextEditorSelectionMenuOptions* options, OH_ArkUI_HapticFeedbackMode mode);
 
 /**
- * @brief Obtains the haptic feedback mode of the text selection menu in the text editor.
+ * @brief 获取文本编辑器中文本选择菜单的触觉反馈模式。
  *
- * @param options Pointer to the {@link OH_ArkUI_TextEditorSelectionMenuOptions} object.
- * @param mode Pointer to the haptic feedback mode. The value is an enumerated value of
- *     {@link OH_ArkUI_HapticFeedbackMode}.
- * @return Result code.
- *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @param options 指向{@link OH_ArkUI_TextEditorSelectionMenuOptions}对象的指针。
+ * @param mode 触觉反馈模式。取值为{@link OH_ArkUI_HapticFeedbackMode}中的枚举。
+ * @return 返回结果码。
+ *     <br>若操作成功，返回{@link ARKUI_ERROR_CODE_NO_ERROR}。
+ *     <br>若参数异常，返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_TextEditorSelectionMenuOptions_GetHapticFeedbackMode(
     OH_ArkUI_TextEditorSelectionMenuOptions* options, OH_ArkUI_HapticFeedbackMode* mode);
 
 /**
- * @brief Closes the text selection menu of the styled string controller in the text editor.
+ * @brief 关闭文本编辑器属性字符串控制器的文本选择菜单。
  *
- * @param controller Pointer to the {@link OH_ArkUI_TextEditorStyledStringController} object.
- * @return Result code.
- *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @param controller 指向{@link OH_ArkUI_TextEditorStyledStringController}对象的指针。
+ * @return 返回结果码。
+ *     <br>若操作成功，返回{@link ARKUI_ERROR_CODE_NO_ERROR}。
+ *     <br>若参数异常，返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_TextEditorStyledStringController_CloseSelectionMenu(
     OH_ArkUI_TextEditorStyledStringController* controller);
 
 /**
- * @brief Obtains the selected area using the styled string controller.
+ * @brief 通过属性字符串控制器获取选中区域。
  *
- * @note All input pointer parameters must be allocated, managed, and released by the caller.
- * @param controller Pointer to the {@link OH_ArkUI_TextEditorStyledStringController} object.
- * @param start Pointer to the start position of the selected area.
- * @param end Pointer to the end position of the selected area.
- * @return Result code.
- *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @note 所有输入指针参数必须由调用者分配、管理和释放。
+ * @param controller 指向{@link OH_ArkUI_TextEditorStyledStringController}对象的指针。
+ * @param start 选中区域的起始位置。
+ * @param end 选中区域的结束位置。
+ * @return 返回结果码。
+ *     <br>若操作成功，返回{@link ARKUI_ERROR_CODE_NO_ERROR}。
+ *     <br>若参数异常，返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_TextEditorStyledStringController_GetSelection(
     const OH_ArkUI_TextEditorStyledStringController* controller, uint32_t* start, uint32_t* end);
 
 /**
- * @brief Sets the styled string displayed using the styled string controller.
+ * @brief 通过属性字符串控制器设置显示的属性字符串。
  *
- * @note All input pointer parameters must be allocated, managed, and released by the caller.
- * @param controller Pointer to the {@link OH_ArkUI_TextEditorStyledStringController} object.
- * @param descriptor Pointer to the {@link ArkUI_StyledString_Descriptor} object.
- * @return Result code.
- *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @note 所有输入指针参数必须由调用者分配、管理和释放。
+ * @param controller 指向{@link OH_ArkUI_TextEditorStyledStringController}对象的指针。
+ * @param descriptor 指向{@link ArkUI_StyledString_Descriptor}对象的指针。
+ * @return 返回结果码。
+ *     <br>若操作成功，返回{@link ARKUI_ERROR_CODE_NO_ERROR}。
+ *     <br>若参数异常，返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_TextEditorStyledStringController_SetStyledString(
     const OH_ArkUI_TextEditorStyledStringController* controller, const ArkUI_StyledString_Descriptor* descriptor);
 
 /**
- * @brief Obtains the styled string displayed using the styled string controller.
+ * @brief 通过属性字符串控制器获取显示的属性字符串。
  *
- * @note All input pointer parameters must be allocated, managed, and released by the caller.
- * @param controller Pointer to the {@link OH_ArkUI_TextEditorStyledStringController} object.
- * @param descriptor Pointer to the {@link ArkUI_StyledString_Descriptor} object.
- * @return Result code.
- *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @note 所有输入指针参数必须由调用者分配、管理和释放。
+ * @param controller 指向{@link OH_ArkUI_TextEditorStyledStringController}对象的指针。
+ * @param descriptor 指向{@link ArkUI_StyledString_Descriptor}对象的指针。
+ * @return 返回结果码。
+ *     <br>若操作成功，返回{@link ARKUI_ERROR_CODE_NO_ERROR}。
+ *     <br>若参数异常，返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_TextEditorStyledStringController_GetStyledString(
     const OH_ArkUI_TextEditorStyledStringController* controller, ArkUI_StyledString_Descriptor* descriptor);
 
 /**
- * @brief Sets the placeholder text in the styled string style using the styled string controller.
+ * @brief 通过属性字符串控制器设置属性字符串样式的提示文本。
  *
- * @note All input pointer parameters must be allocated, managed, and released by the caller.
- * @param controller Pointer to the {@link OH_ArkUI_TextEditorStyledStringController} object.
- * @param descriptor Pointer to the {@link ArkUI_StyledString_Descriptor} object.
- * @return Result code.
- *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @note 所有输入指针参数必须由调用者分配、管理和释放。
+ * @param controller 指向{@link OH_ArkUI_TextEditorStyledStringController}对象的指针。
+ * @param descriptor 指向{@link ArkUI_StyledString_Descriptor}对象的指针。
+ * @return 返回结果码。
+ *     <br>若操作成功，返回{@link ARKUI_ERROR_CODE_NO_ERROR}。
+ *     <br>若参数异常，返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_TextEditorStyledStringController_SetStyledPlaceholder(
     const OH_ArkUI_TextEditorStyledStringController* controller, const ArkUI_StyledString_Descriptor* descriptor);
-
-/**
- * @brief Scroll the text editor component to make the specified content visible.
- *
- * @param controller <b>TextEditor</b> styled string controller.
- * @param start The start offset of the content to be made visible.
- * @param end The end offset of the content to be made visible
- * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
- * @since 26.0.0
- */
-ArkUI_ErrorCode OH_ArkUI_TextEditorStyledStringController_ScrollToVisible(
- 	const OH_ArkUI_TextEditorStyledStringController* controller, int32_t start, int32_t end);
 
 /**
  * @brief Create the ArkUI_PickerIndicatorStyle instance.
