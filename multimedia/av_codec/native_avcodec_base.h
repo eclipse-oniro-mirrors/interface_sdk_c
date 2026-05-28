@@ -688,11 +688,13 @@ extern const char *OH_MD_KEY_MAX_INPUT_SIZE;
 /**
  * @brief Pointer to the key that describes the video width. The value type is int32_t.
  *
- * For video encoding, this key is used to set the target encoding resolution. For video decoding, this key serves
- * as a resolution hint for the decoder to pre-allocate internal buffers.
- * The actual decoded output dimensions are provided by **OH_MD_KEY_VIDEO_PIC_WIDTH**.
- * This key is mainly used to control memory allocation. You can call {@link OH_AVCapability_GetVideoWidthRange}
- * to obtain the recommended value range.
+ * For video encoding, this key sets the target encoding resolution.
+ * For video decoding, this key is a resolution hint used by the decoder to pre-allocate internal buffers.
+ * The actual decoded output dimensions are provided via {@link OH_MD_KEY_VIDEO_PIC_WIDTH}.
+ *
+ * While this key primarily governs memory allocation,
+ * the recommended value range can be referenced from {@link OH_AVCapability_GetVideoWidthRange},
+ * which defines the codec's supported decoding width range.
  *
  * @since 9
  */
@@ -3852,7 +3854,6 @@ typedef enum OH_FRAME_RETENTION_MODE {
      * @brief Uniform frame retention mode. Retains frames evenly according to a user-configured retention ratio
      * (configured via {@link OH_MD_KEY_VIDEO_DECODER_FRAME_RETENTION_RATIO}).
      * If the retention ratio is not explicitly configured, the decoder limits the output to a maximum of 30 fps.
-     * 
      * @since 26.0.0
      */
     OH_FRAME_RETENTION_MODE_UNIFORM = 2
