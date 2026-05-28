@@ -688,13 +688,11 @@ extern const char *OH_MD_KEY_MAX_INPUT_SIZE;
 /**
  * @brief Pointer to the key that describes the video width. The value type is int32_t.
  *
- * For video encoding, this key sets the target encoding resolution.
- * For video decoding, this key is a resolution hint used by the decoder to pre-allocate internal buffers.
- * The actual decoded output dimensions are provided via {@link OH_MD_KEY_VIDEO_PIC_WIDTH}.
- *
- * While this key primarily governs memory allocation,
- * the recommended value range can be referenced from {@link OH_AVCapability_GetVideoWidthRange},
- * which defines the codec's supported decoding width range.
+ * For video encoding, this key is used to set the target encoding resolution. For video decoding, this key serves
+ * as a resolution hint for the decoder to pre-allocate internal buffers.
+ * The actual decoded output dimensions are provided by **OH_MD_KEY_VIDEO_PIC_WIDTH**.
+ * This key is mainly used to control memory allocation. You can call {@link OH_AVCapability_GetVideoWidthRange}
+ * to obtain the recommended value range. This API defines the decoding width range supported by the codec.
  *
  * @since 9
  */
@@ -2497,7 +2495,7 @@ typedef enum OH_AVSeekMode {
      */
     SEEK_MODE_PREVIOUS_SYNC,
     /**
-     * @brief seek to sync sample closest to time.
+     * @brief Seeks to the closest I-frame at the specified position.
      * 
      * @since 10
      */
