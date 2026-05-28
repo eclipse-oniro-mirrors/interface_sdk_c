@@ -346,13 +346,5 @@
     {
         "first_introduced": "23",
         "name": "OH_InputMethodController_AttachWithUIContext"
-    },
-    {
-        "first_introduced": "26.0.0",
-        "name": "OH_TextConfig_SetConsumeKeyEvents"
-    },
-    {
-        "first_introduced": "26.0.0",
-        "name": "OH_TextConfig_GetConsumeKeyEvents"
     }
 ]
