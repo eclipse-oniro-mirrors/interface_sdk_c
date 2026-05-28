@@ -1672,20 +1672,12 @@ extern const char *OH_MD_KEY_VIDEO_ENCODER_ENABLE_B_FRAME;
 extern const char *OH_MD_KEY_VIDEO_ENCODER_MAX_B_FRAMES;
 
 /**
- * @brief Key to set the region of interest(ROI) parameters. Value type is string in the format
- * "Top1,Left1-Bottom1,Right1[=Params1];Top2,Left2-Bottom2,Right2[=Params2];".
- * Each "Top,Left-Bottom,Right" represents the coordinate information of one ROI.
- * The "[=Params]" is optional and supports two formats for backward compatibility:
- * 1. Legacy format: A single integer representing the quantization parameter offset (e.g., "=Offset").
- * 2. Key-Value format (Recommended): Comma-separated key-value pairs (e.g., "=dqp:-6,slb:1").
- * Supported keys:
- * - "dqp": Quantization parameter offset.
- * - "slb": Semantic label. The value must correspond to {@link OH_ROI_METADATA_SEMANTIC_LABEL_TYPE}.
- * If "=Params" is omitted entirely, like "Top1,Left1-Bottom1,Right1;Top2,Left2-Bottom2,Right2=dqp:-6;",
- * the encoder will use the default parameters to perform the ROI encoding on the first ROI and
- * use the specified parameters on the second ROI.
- * Note that the number of ROIs that can be applied simultaneously does not exceed six, and the total area must
- * not exceed one-fifth of the total image area.
+ * @brief Key to set the region of interest(ROI) as QpOffset-Rects, value type is string in the format
+ * "Top1,Left1-Bottom1,Right1=Offset1;Top2,Left2-Bottom2,Right2=Offset2;". Each "Top,Left-Bottom,Right=Offset"
+ * represents the coordinate information and quantization parameter of one ROI. Each "=Offset" in the string
+ * can be omitted, like "Top1,Left1-Bottom1,Right1;Top2,Left2-Bottom2,Right2=Offset2;", the encoder
+ * will use the default quantization parameter to perform the ROI encoding on the first ROI and
+ * use Offset2 on the second ROI.
  *
  * This is an optional key that applies only to video encoder.
  * It is used in running process and is set with each frame.
