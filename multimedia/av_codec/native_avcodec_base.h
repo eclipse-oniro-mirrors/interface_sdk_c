@@ -1869,6 +1869,58 @@ extern const char *OH_MD_KEY_LONGITUDE;
 extern const char *OH_MD_KEY_ALTITUDE;
 
 /**
+ * @brief Pointer to the key that describes the number of pending frames in the video encoder.
+ * The value type is int32_t.
+ *
+ * This key is read-only and used to query the current number of frames that are pending for encoding.
+ * It can be obtained through {@link OH_VideoEncoder_GetInputDescription}.
+ *
+ * @since 26.0.0
+ */
+extern const char *OH_MD_KEY_VIDEO_ENCODER_NUMBER_OF_PENDING_FRAMES;
+
+/**
+ * @brief Pointer to the key that describes the decoder output mode. The value type is int32_t (0 or 1).
+ * 1 indicates outputting frames in decoding order, and 0 indicates outputting frames in display order (default).
+ *
+ * This is an optional key that applies only to video decoder and is used only in the Configure phase.
+ * The default value is 0, which means the decoder outputs frames in display order.
+ * Before setting this key, you can use {@link OH_AVCapability_IsFeatureSupported} and the enumerated value
+ * **VIDEO_DECODER_OUTPUT_IN_DECODING_ORDER** in {@link OH_AVCapabilityFeature} to check
+ * whether this feature is supported.
+ * If the video decoder does not support this feature, setting this key through {@link OH_VideoDecoder_Configure} return
+ * {@link AV_ERR_INVALID_VAL}.
+ *
+ * @since 26.0.0
+ */
+extern const char *OH_MD_KEY_VIDEO_DECODER_OUTPUT_IN_DECODING_ORDER;
+
+/**
+ * @brief Pointer to the key that describes the maximum number of frames that the video encoder is allowed to hold
+ * before outputting a compressed frame. The value type is int32_t, and the value range is [1, 5].
+ *
+ * This is an optional key that applies only to video encoder and is used only in the Configure phase.
+ * If the value is within [1, 5], it takes effect normally.
+ * If the value is out of range (<1 or >5), {@link OH_VideoEncoder_Configure} returns {@link AV_ERR_INVALID_VAL}.
+ *
+ * @since 26.0.0
+ */
+extern const char *OH_MD_KEY_VIDEO_ENCODER_MAX_FRAME_DELAY_COUNT;
+
+/**
+ * @brief Pointer to the key that describes whether to repeat headers before sync frames. The value type is
+ * int32_t (0 or 1): 1 is enabled, 0 disabled.
+ *
+ * This is an optional key that applies only to video encoder and is used only in the Configure phase.
+ * The default value is 0, which means this feature is disabled by default.
+ * When enabled, the encoder inserts codec-specific configuration data (such as SPS/PPS for H.264/H.265) before each
+ * sync frame.
+ *
+ * @since 26.0.0
+ */
+extern const char *OH_MD_KEY_VIDEO_ENCODER_REPEAT_HEADER_BEFORE_SYNC_FRAMES;
+
+/**
  * @brief Key for setting the Audio Vivid signal input format.
  *
  * Required for Audio Vivid encoder. Specifies the signal format of input data.
