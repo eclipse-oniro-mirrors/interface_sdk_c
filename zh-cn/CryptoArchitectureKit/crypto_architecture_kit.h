@@ -16,13 +16,13 @@
 /**
  * @addtogroup CryptoArchitectureKit
  * @{
- * @brief Provides a unified entry point for crypto header files for developer convenience.
+ * @brief 为开发者提供加密头文件的统一入口。
  * @since 12
  */
 
 /**
  * @file crypto_architecture_kit.h
- * @brief Provides a unified entry point for crypto header files for developer convenience.
+ * @brief 为开发者提供加密头文件的统一入口。
  * @syscap SystemCapability.Security.CryptoFramework
  * @library libohcrypto.so
  * @kit CryptoArchitectureKit

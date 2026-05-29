@@ -16,13 +16,13 @@
 /**
  * @addtogroup CryptoCommonApi
  * @{
- * @brief Describes the common crypto interfaces provided by OpenHarmony for applications.
+ * @brief 描述OpenHarmony为应用提供的加解密通用接口。
  * @since 12
  */
 
 /**
  * @file crypto_common.h
- * @brief Defines common data structures and error codes for crypto operations.
+ * @brief 定义加解密通用的数据结构和错误码。
  * @syscap SystemCapability.Security.CryptoFramework
  * @library libohcrypto.so
  * @kit CryptoArchitectureKit
@@ -40,84 +40,84 @@ extern "C" {
 #endif
 
 /**
- * @brief Crypto data structure.
+ * @brief 加解密数据结构体。
  * @since 12
  */
 typedef struct Crypto_DataBlob {
     /**
-     * @brief Data buffer.
+     * @brief 数据缓冲区。
      * @since 12
      */
     uint8_t *data;
     /**
-     * @brief Data length.
+     * @brief 数据长度。
      * @since 12
      */
     size_t len;
 } Crypto_DataBlob;
 
 /**
- * @brief Enumerates the error codes.
+ * @brief 枚举错误码。
  * @since 12
  */
 typedef enum {
     /**
-     * @brief Operation succeeded.
+     * @brief 表示操作成功。
      * @since 12
      */
     CRYPTO_SUCCESS = 0,
     /**
-     * @brief Invalid input parameters.
+     * @brief 表示输入参数无效。
      * @since 12
      */
     CRYPTO_INVALID_PARAMS = 401,
     /**
-     * @brief Unsupported feature or algorithm.
+     * @brief 表示不支持的功能或算法。
      * @since 12
      */
     CRYPTO_NOT_SUPPORTED = 801,
     /**
-     * @brief Memory operation failed.
+     * @brief 表示内存操作失败。
      * @since 12
      */
     CRYPTO_MEMORY_ERROR = 17620001,
     /**
-     * @brief Parameter check failed.
+     * @brief 表示参数校验失败。
      * @since 20
      */
     CRYPTO_PARAMETER_CHECK_FAILED = 17620003,
     /**
-     * @brief Invalid function call.
+     * @brief 表示无效的函数调用。
      * @since 26.0.0
      */
     CRYPTO_INVALID_CALL = 17620004,
     /**
-     * @brief Crypto operation error.
+     * @brief 表示加解密操作错误。
      * @since 12
      */
     CRYPTO_OPERTION_ERROR = 17630001,
 } OH_Crypto_ErrCode;
 
 /**
- * @brief Defines the cipher mode.
+ * @brief 定义加解密模式。
  * @since 12
  */
 typedef enum {
     /**
-     * @brief Encryption operation.
+     * @brief 表示加密操作。
      * @since 12
      */
     CRYPTO_ENCRYPT_MODE = 0,
     /**
-     * @brief Decryption operation.
+     * @brief 表示解密操作。
      * @since 12
      */
     CRYPTO_DECRYPT_MODE = 1,
 } Crypto_CipherMode;
 
 /**
- * @brief Frees the memory of a data blob.
- * @param dataBlob [in] Data blob to free.
+ * @brief 释放数据Blob的内存。
+ * @param dataBlob [in] 待释放的数据Blob。
  * @since 12
  */
 void OH_Crypto_FreeDataBlob(Crypto_DataBlob *dataBlob);
