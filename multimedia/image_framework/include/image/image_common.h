@@ -350,7 +350,7 @@ typedef enum {
      *
      * @since 26.0.0
      */
-    XDRAW4K_METADATA = 8,
+    XDRAW_4K_METADATA = 8,
 
     /**
      * Private metadata.
