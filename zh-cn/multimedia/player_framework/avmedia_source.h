@@ -222,7 +222,7 @@ OH_AVErrCode OH_AVMediaSource_Destroy(OH_AVMediaSource *source);
  * @brief 设置媒体MIME类型以处理扩展媒体源。
  * 
  * @param source 指向OH_AVMediaSource的指针。
- * @param mimetype 媒体源的MIME类型{@link AV_MimeTypes}。
+ * @param mimetype 媒体源的MIME类型{@link AVMimeTypes}。
  * @return 函数执行结果。
  * AV_ERR_OK：表示执行成功。
  * AV_ERR_INVALID_VAL：表示source或mimetype为空指针。
