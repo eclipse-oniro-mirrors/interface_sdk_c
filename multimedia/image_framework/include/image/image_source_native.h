@@ -793,7 +793,7 @@ Image_ErrorCode OH_DecodingOptionsForPicture_GetDesiredSizeForMainPixelMap(OH_De
  * @systemapi
  * @param options The OH_DecodingOptionsForPicture pointer will be operated.
  * @param desiredSizeForMainPixelMap the number of main pixelMap desiredSize.
- * @return <ul> 
+ * @return <ul>
  *         <li>{@link IMAGE_SUCCESS} if the execution is successful.</li>
  *         <li>202 if a non-system application calls this system API.</li>
  *         <li>{@link IMAGE_SOURCE_INVALID_PARAMETER} options is nullptr.</li>
