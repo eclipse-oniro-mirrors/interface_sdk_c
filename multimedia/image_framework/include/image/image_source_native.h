@@ -745,11 +745,12 @@ Image_ErrorCode OH_DecodingOptionsForPicture_SetDesiredAuxiliaryPictures(OH_Deco
 
 /**
  * @brief Obtains the **needsDecodeDfxData** parameter in the decoding options.
- * 
+ * @systemapi
  * @param options Pointer to an OH_DecodingOptionsForPicture object.
  * @param needsDecodeDfxData Whether to decode image DFX data. The values include **true** (yes) and **false** (no).
  * @return <ul>
  *         <li>{@link IMAGE_SUCCESS} if the execution is successful.</li>
+ *         <li>202 if a non-system application calls this system API.</li>
  *         <li>{@link IMAGE_SOURCE_INVALID_PARAMETER} options or needsDecodeDfxData is nullptr.</li>
  *         </ul>
  * @since 26.0.0
@@ -759,17 +760,78 @@ Image_ErrorCode OH_DecodingOptionsForPicture_GetNeedsDecodeDfxData(OH_DecodingOp
 
 /**
  * @brief Sets the **needsDecodeDfxData** parameter in the decoding options.
- * 
+ * @systemapi
  * @param options Pointer to an OH_DecodingOptionsForPicture object.
  * @param needsDecodeDfxData Whether to decode image DFX data. The values include **true** (yes) and **false** (no).
  * @return <ul>
  *         <li>{@link IMAGE_SUCCESS} if the execution is successful.</li>
+ *         <li>202 if a non-system application calls this system API.</li>
  *         <li>{@link IMAGE_SOURCE_INVALID_PARAMETER} options is nullptr.</li>
  *         </ul>
  * @since 26.0.0
  */
 Image_ErrorCode OH_DecodingOptionsForPicture_SetNeedsDecodeDfxData(OH_DecodingOptionsForPicture *options,
     bool needsDecodeDfxData);
+
+/**
+ * @brief Get the desiredSizeForMainPixelMap number for DecodingOptionsForPicture struct.
+ * @systemapi
+ * @param options The OH_DecodingOptionsForPicture pointer will be operated.
+ * @param desiredSizeForMainPixelMap the number of main pixelMap desiredSize.
+ * @return <ul>
+ *         <li>{@link IMAGE_SUCCESS} if the execution is successful.</li>
+ *         <li>202 if a non-system application calls this system API.</li>
+ *         <li>{@link IMAGE_SOURCE_INVALID_PARAMETER} options is nullptr.</li>
+ *         </ul>
+ * @since 26.0.0
+ */
+Image_ErrorCode OH_DecodingOptionsForPicture_GetDesiredSizeForMainPixelMap(OH_DecodingOptionsForPicture *options,
+    Image_Size *desiredSizeForMainPixelMap);
+
+/**
+ * @brief Sets the desiredSizeForMainPixelMap number for DecodingOptionsForPicture struct.
+ * @systemapi
+ * @param options The OH_DecodingOptionsForPicture pointer will be operated.
+ * @param desiredSizeForMainPixelMap the number of main pixelMap desiredSize.
+ * @return <ul> 
+ *         <li>{@link IMAGE_SUCCESS} if the execution is successful.</li>
+ *         <li>202 if a non-system application calls this system API.</li>
+ *         <li>{@link IMAGE_SOURCE_INVALID_PARAMETER} options is nullptr.</li>
+ *         </ul>
+ * @since 26.0.0
+ */
+Image_ErrorCode OH_DecodingOptionsForPicture_SetDesiredSizeForMainPixelMap(OH_DecodingOptionsForPicture *options,
+    Image_Size *desiredSizeForMainPixelMap);
+
+/**
+ * @brief Get pixelFormat number for DecodingOptionsForPicture struct.
+ * @systemapi
+ * @param options The OH_DecodingOptionsForPicture pointer will be operated.
+ * @param desiredPixelFormat the number of image pixelFormat.
+ * @return <ul>
+ *         <li>{@link IMAGE_SUCCESS} if the execution is successful.</li>
+ *         <li>202 if a non-system application calls this system API.</li>
+ *         <li>{@link IMAGE_SOURCE_INVALID_PARAMETER} options is nullptr.</li>
+ *         </ul>
+ * @since 26.0.0
+ */
+Image_ErrorCode OH_DecodingOptionsForPicture_GetPixelFormat(OH_DecodingOptionsForPicture *options,
+    PIXEL_FORMAT *desiredPixelFormat);
+
+/**
+ * @brief Set pixelFormat number for DecodingOptionsForPicture struct.
+ * @systemapi
+ * @param options The OH_DecodingOptionsForPicture pointer will be operated.
+ * @param desiredPixelFormat Image pixel format.
+ * @return <ul>
+ *         <li>{@link IMAGE_SUCCESS} if the execution is successful.</li>
+ *         <li>202 if a non-system application calls this system API.</li>
+ *         <li>{@link IMAGE_SOURCE_INVALID_PARAMETER} options is nullptr.</li>
+ *         </ul>
+ * @since 26.0.0
+ */
+Image_ErrorCode OH_DecodingOptionsForPicture_SetPixelFormat(OH_DecodingOptionsForPicture *options,
+    PIXEL_FORMAT *desiredPixelFormat);
 
 /**
  * @brief Releases the pointer to an OH_DecodingOptionsForPicture object.

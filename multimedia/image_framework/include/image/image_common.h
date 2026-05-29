@@ -382,7 +382,7 @@ typedef enum {
 
     /**
      * DfxData metadata.
-     *
+     * @systemapi
      * @since 26.0.0
      */
     DFXDATA_METADATA = 13
@@ -472,10 +472,10 @@ Image_ErrorCode OH_PictureMetadata_SetProperty(OH_PictureMetadata *metadata, Ima
 
 /**
  * @brief Sets blob data in the metadata.
- * 
+ *
  * @param metadata Pointer to an OH_PictureMetadata struct.
  * @param blob Pointer to the blob data.
- * @param blobSize Pointer to the size of the blob data.
+ * @param blobSize Size of the blob data.
  * @return <ul>
  *         <li>{@link IMAGE_SUCCESS} if the execution is successful.</li>
  *         <li>{@link IMAGE_INVALID_PARAMETER} metadata is nullptr, or blob is nullptr, or blobSize is 0.</li>
@@ -484,27 +484,11 @@ Image_ErrorCode OH_PictureMetadata_SetProperty(OH_PictureMetadata *metadata, Ima
  *         </ul>
  * @since 26.0.0
  */
-Image_ErrorCode OH_PictureMetadata_SetBlob(OH_PictureMetadata *metadata, uint8_t *blob, size_t *blobSize);
-
-/**
- * @brief Obtains blob data from the metadata.
- * 
- * @param metadata Pointer to an OH_PictureMetadata struct.
- * @param blob Pointer to the blob data obtained.
- * @param blobSize Size of the blob data.
- * @return <ul>
- *         <li>{@link IMAGE_SUCCESS} if the execution is successful.</li>
- *         <li>{@link IMAGE_INVALID_PARAMETER} metadata is nullptr, or blob is nullptr, or blobSize is 0.</li>
- *         <li>{@link IMAGE_UNSUPPORTED_METADATA} unsupported metadata type.</li>
- *         <li>{@link IMAGE_UNSUPPORTED_OPERATION} failed to get blob data.</li>
- *         </ul>
- * @since 26.0.0
- */
-Image_ErrorCode OH_PictureMetadata_GetBlob(OH_PictureMetadata *metadata, uint8_t *blob, size_t blobSize);
+Image_ErrorCode OH_PictureMetadata_SetBlobData(OH_PictureMetadata *metadata, uint8_t *blob, size_t blobSize);
 
 /**
  * @brief Obtains the size of the blob data in the metadata.
- * 
+ *
  * @param metadata Pointer to an OH_PictureMetadata struct.
  * @param blobSize Pointer to the size of the blob data.
  * @return <ul>
@@ -514,7 +498,25 @@ Image_ErrorCode OH_PictureMetadata_GetBlob(OH_PictureMetadata *metadata, uint8_t
  *         </ul>
  * @since 26.0.0
  */
-Image_ErrorCode OH_PictureMetadata_GetBlobSize(OH_PictureMetadata *metadata, size_t *blobSize);
+Image_ErrorCode OH_PictureMetadata_GetBlobDataSize(OH_PictureMetadata *metadata, size_t *blobSize);
+ 
+/**
+ * @brief Obtains blob data from the metadata.
+ *
+ * @param metadata Pointer to an OH_PictureMetadata struct.
+ * @param blob Pointer to the blob data obtained.
+ * @param blobSize Size of the blob data. The value must be greater than or equal to the value obtained by the
+ *     OH_PictureMetadata_GetBlobSize method.
+ * @return <ul>
+ *         <li>{@link IMAGE_SUCCESS} if the execution is successful.</li>
+ *         <li>{@link IMAGE_INVALID_PARAMETER} metadata is nullptr, or blob is nullptr, or blobSize is 0, or blobSize
+ *             is less than metadata length.</li>
+ *         <li>{@link IMAGE_UNSUPPORTED_METADATA} unsupported metadata type.</li>
+ *         <li>{@link IMAGE_UNSUPPORTED_OPERATION} failed to get blob data.</li>
+ *         </ul>
+ * @since 26.0.0
+ */
+Image_ErrorCode OH_PictureMetadata_GetBlobData(OH_PictureMetadata *metadata, uint8_t *blob, size_t blobSize);
 
 /**
  * @brief Releases the pointer to an OH_PictureMetadata struct.
@@ -527,17 +529,35 @@ Image_ErrorCode OH_PictureMetadata_GetBlobSize(OH_PictureMetadata *metadata, siz
 Image_ErrorCode OH_PictureMetadata_Release(OH_PictureMetadata *metadata);
 
 /**
- * @brief Releases an array of OH_PictureMetadata objects.
- * 
- * @param metadatas Double pointer to the OH_PictureMetadata array.
- * @param metadatasCount Pointer to the length of the OH_PictureMetadata array.
+ * @brief Obtains the PictureMetadata object matching the specified type from the PictureMetadata array.
+ * @systemapi
+ * @param metadatas Pointer to the PictureMetadata array.
+ * @param metadataCount Length of the PictureMetadata array.
+ * @param type Target metadata type to be matched.
+ * @param metadata Pointer to the output PictureMetadata object, which stores the matched content.
  * @return <ul>
- *         <li>{@link IMAGE_SUCCESS} if the execution is successful.</li>
- *         <li>{@link IMAGE_INVALID_PARAMETER} metadatas is nullptr, or metadatasCount is nullptr.</li>
+ *         <li>{@link IMAGE_SUCCESS} if the operation is successful.</li>
+ *         <li>202 if a non-system application calls this system API.</li>
+ *         <li>{@link IMAGE_INVALID_PARAMETER} if metadatas/metadata is nullptr or metadataCount is 0.</li>
  *         </ul>
  * @since 26.0.0
  */
-Image_ErrorCode OH_PictureMetadatas_Release(OH_PictureMetadata **metadatas, size_t *metadatasCount);
+Image_ErrorCode OH_PictureMetadata_GetMetadataByType(OH_PictureMetadata **metadatas, size_t metadataCount, int32_t type,
+    OH_PictureMetadata *metadata);
+ 
+/**
+ * @brief Releases an array of OH_PictureMetadata objects.
+ * @systemapi
+ * @param metadatas Pointer to a OH_PictureMetadata array.
+ * @param metadatasCount The length of the OH_PictureMetadata array.
+ * @return <ul>
+ *         <li>{@link IMAGE_SUCCESS} if the execution is successful.</li>
+ *         <li>202 if a non-system application calls this system API.</li>
+ *         <li>{@link IMAGE_INVALID_PARAMETER} metadatas is nullptr, or metadatasCount is zero.</li>
+ *         </ul>
+ * @since 26.0.0
+ */
+Image_ErrorCode OH_PictureMetadatas_Release(OH_PictureMetadata **metadatas, size_t metadatasCount);
 
 /**
  * @brief Clones metadata.
@@ -551,23 +571,6 @@ Image_ErrorCode OH_PictureMetadatas_Release(OH_PictureMetadata **metadatas, size
  * @since 13
  */
 Image_ErrorCode OH_PictureMetadata_Clone(OH_PictureMetadata *oldMetadata, OH_PictureMetadata **newMetadata);
-
-/**
- * @brief Obtains the OH_PictureMetadata object matching the specified type from the OH_PictureMetadata pointer array.
- * 
- * @param metadatas Pointer to the OH_PictureMetadata array.
- * @param metadataCount Length of the OH_PictureMetadata array.
- * @param type Target metadata type to be matched.
- * @param metadata Pointer to the output OH_PictureMetadata object, which stores the matched content.
- * @return <ul>
- *         <li>{@link IMAGE_SUCCESS} if the operation is successful.</li>
- *         <li>{@link IMAGE_INVALID_PARAMETER} a parameter is incorrect.</li>
- *         <li>{@link IMAGE_UNSUPPORTED_METADATA} no metadata matching the specified type is found.</li>
- *         </ul>
- * @since 26.0.0
- */
-Image_ErrorCode OH_PictureMetadata_GetMetadataByType(OH_PictureMetadata **metadatas, size_t metadataCount, int32_t type,
-    OH_PictureMetadata *metadata);
 
 /**
  * @brief Defines the bmp mime type.
