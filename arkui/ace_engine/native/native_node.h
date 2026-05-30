@@ -7628,13 +7628,14 @@ typedef enum {
      * @brief Defines the scrollbar track height. This attribute can be set, reset, and obtained as required
      * through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].f32: height of the scrollbar track, in vp. \n
-     * Default value: adaptive to the height of the scrollable component. \n
-     * Value range: [0, +∞). If set to a value less than 0, the default value is used. If set to 0, the scrollbar is not displayed. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].f32: height of the scrollbar track, in vp. \n
+     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:
+     * .value[0].f32: height of the scrollbar track, in vp. 
+     * Default value: adaptive to the height of the scrollable component. 
+     * Value range: The value must be greater than or equal to 0. If set to a value less than 0,
+     * the default value is used. If set to 0, the scrollbar is not displayed. 
+     *
+     * Format of the return value {@link ArkUI_AttributeItem}:
+     * .value[0].f32: height of the scrollbar track, in vp. 
      *
      * @since 26.0.0
      */
