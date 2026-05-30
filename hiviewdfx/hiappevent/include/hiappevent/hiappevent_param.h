@@ -1,10 +1,10 @@
 /*
- * Copyright (c) 2021 Huawei Device Co., Ltd.
+ * Copyright (c) 2021-2026 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -26,6 +26,7 @@
  * @since 8
  * @version 1.0
  */
+#ifndef HIVIEWDFX_HIAPPEVENT_PARAM_H
 
 /**
  * @file hiappevent_param.h
@@ -48,14 +49,10 @@
  * @since 8
  * @version 1.0
  */
-
-#ifndef HIVIEWDFX_HIAPPEVENT_PARAM_H
 #define HIVIEWDFX_HIAPPEVENT_PARAM_H
-
 #ifdef __cplusplus
 extern "C" {
 #endif
-
 /**
  * @brief Preset param name, user id param.
  *
@@ -63,7 +60,6 @@ extern "C" {
  * @version 1.0
  */
 #define PARAM_USER_ID "user_id"
-
 /**
  * @brief Preset param name, distributed service name param.
  *
@@ -71,7 +67,6 @@ extern "C" {
  * @version 1.0
  */
 #define PARAM_DISTRIBUTED_SERVICE_NAME "ds_name"
-
 /**
  * @brief Preset param name, distributed service instance id param.
  *
@@ -109,8 +104,7 @@ extern "C" {
 #define MAIN_THREAD_JANK_PARAM_SAMPLE_COUNT "sample_count"
 
 /**
- * @brief Used in MAIN_THREAD_JANK_V2, Number of main thread timeout sampling reports per application PID within a
- * single lifecycle.
+ * @brief Used in MAIN_THREAD_JANK_V2, Number of main thread timeout sampling reports per application PID within a single lifecycle.
  *
  * @since 22
  */
@@ -157,9 +151,9 @@ extern "C" {
  * @since 26.0.0
  */
 #define OH_APP_CRASH_PARAM_COLLECT_MINIDUMP "collect_minidump"
-
 #ifdef __cplusplus
 }
 #endif
+
 /** @} */
 #endif // HIVIEWDFX_HIAPPEVENT_PARAM_H
