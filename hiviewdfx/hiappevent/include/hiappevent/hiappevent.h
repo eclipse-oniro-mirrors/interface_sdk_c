@@ -635,7 +635,7 @@ int OH_HiAppEvent_TakeWatcherData(HiAppEvent_Watcher* watcher, uint32_t eventNum
 
 /**
  * @brief Adds a watcher. Once a watcher is added, it starts to listen for system messages.
- * 
+ *
  * @param watcher Pointer to the watcher (that is, the pointer returned by OH_HiAppEvent_CreateWatcher).
  * @return **0** if the API is called successfully; **-5** if the pointer to an input parameter is null.
  * @since 12
@@ -891,7 +891,7 @@ void OH_HiAppEvent_DestroyConfig(HiAppEvent_Config* config);
 /**
  * @brief Sets the items in the configuration object.
  * 
- * @param config Pointer to the configuration object, that is, the pointer returned by 
+ * @param config Pointer to the configuration object, that is, the pointer returned by
  *     the **OH_HiAppEvent_CreateConfig** API.
  * @param itemName Name of the configuration item.
  * @param itemValue Value of the configuration item.
