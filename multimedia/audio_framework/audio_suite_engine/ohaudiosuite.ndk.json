@@ -222,9 +222,5 @@
     {
         "first_introduced": "26.0.0",
         "name": "OH_AudioConverter_Process"
-    },
-    {
-        "first_introduced": "26.0.0",
-        "name": "OH_AudioSuite_PrintInfo"
     }
 ]
