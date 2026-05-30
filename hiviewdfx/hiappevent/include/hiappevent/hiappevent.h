@@ -135,7 +135,7 @@ enum {
 } EventType ;
 
 /**
- * @brief Defines a struct for the information about a single event, including the domain, name, type, and 
+ * @brief Defines a struct for the information about a single event, including the domain, name, type, and
  * parameter list in JSON string format.
  * 
  * @since 12
@@ -221,7 +221,7 @@ typedef void (*OH_HiAppEvent_OnReceive)(
  * After the callback is complete, if a newly saved event meets the specified condition, the callback is invoked again.
  * 
  * @param row Number of events newly received by the watcher.
- * @param size Total size of events newly received by the watcher, in bytes. The size of a single event is the length 
+ * @param size Total size of events newly received by the watcher, in bytes. The size of a single event is the length
  *     of the JSON string converted from the event.
  * @since 12
  * @version 1.0
@@ -252,7 +252,7 @@ ParamList OH_HiAppEvent_CreateParamList(void);
 
 /**
  * @brief Destroys a pointer to a parameter list object and releases its allocated memory.
- * 
+ *
  * @param list Pointer to the parameter list object.
  * @since 8
  * @version 1.0
@@ -468,24 +468,24 @@ ParamList OH_HiAppEvent_AddStringArrayParam(ParamList list, const char* name, co
  *     (A to Z), and underscore (\_). It must start with a letter and cannot end with an underscore (\_).
  * @param name Event name. You can customize event names as required.
  *     The value is a string that contains a maximum of 48 characters, including digits (0 to 9), letters (a to z)
- *     (A to Z), underscore (\_), and dollar sign (`$`). It must start with a letter or dollar sign (`$`) and end with 
+ *     (A to Z), underscore (\_), and dollar sign (`$`). It must start with a letter or dollar sign (`$`) and end with
  *     a digit or letter.
  * @param type Event type. For details, see {@link EventType}.
  * @param list List of event parameters, each of which consists of a parameter name and a parameter value. The
  *     specifications are as follows:
- *     <br>1. The value is a string that contains a maximum of 32 characters, including digits (0 to 9), letters 
- *     (a to z)(A to Z),underscore (_), and dollar sign (`$`). It must start with a letter or dollar sign (`$`) and  
+ *     <br>1. The value is a string that contains a maximum of 32 characters, including digits (0 to 9), letters
+ *     (a to z)(A to Z),underscore (_), and dollar sign (`$`). It must start with a letter or dollar sign (`$`) and
  *     end with a digit or letter.
- *     <br>2. The parameter value can be a string, number, Boolean, or array. The length of a string must be less than 
+ *     <br>2. The parameter value can be a string, number, Boolean, or array. The length of a string must be less than
  *     8 * 1024 characters. If this limit is exceeded, excess characters will be truncated.
- *     The element type of an array parameter can only be a string, number, or Boolean, and the number of elements 
+ *     The element type of an array parameter can only be a string, number, or Boolean, and the number of elements
  *     must be less than 100. If this limit is exceeded, excess elements will be discarded.
  *     <br>3. The maximum number of parameters is 32. If this limit is exceeded, excess parameters will be discarded.
  * @return If the event parameters are successfully verified, **0** is returned and the event is written into the event
  *     file.
  *     If an event contains invalid parameters, a positive value is returned. The event is written into the event file
  *     after the invalid parameters are discarded.
- *     If the event parameter fails to be verified, a negative value is returned and the event is not written to the 
+ *     If the event parameter fails to be verified, a negative value is returned and the event is not written to the
  *     event file.
  *     <br>**0**: Parameter verification successful.
  *     <br>**-1**: Invalid event name.
@@ -508,11 +508,11 @@ int OH_HiAppEvent_Write(const char* domain, const char* name, enum EventType typ
  * @param name Configuration item name The value can be {@link DISABLE} or {@link MAX_STORAGE}.
  * @param value Configuration item value. If the configuration item name is {@link DISABLE}, the value can be **true**
  *     or **false**.
- *     If the configuration item name is {@link MAX_STORAGE}, the quota value consists of only digits and a unit 
+ *     If the configuration item name is {@link MAX_STORAGE}, the quota value consists of only digits and a unit
  *     (including b\|k\|kb\|m\|mb\|g\|gb\|t\|tb, which are case-insensitive).
- *     The quota value must start with a digit. You can determine whether to pass the unit. If the unit is left 
+ *     The quota value must start with a digit. You can determine whether to pass the unit. If the unit is left
  *     empty, **b**(that is, byte) is used by default.
- * @return Configuration result. The value **true** indicates that the configuration is successful, and the 
+ * @return Configuration result. The value **true** indicates that the configuration is successful, and the
  *     value **false** indicates the opposite.
  * @since 8
  * @version 1.0
@@ -548,17 +548,17 @@ void OH_HiAppEvent_DestroyWatcher(HiAppEvent_Watcher* watcher);
  * @param watcher Pointer to the watcher (that is, the pointer returned by OH_HiAppEvent_CreateWatcher).
  * @param row Row count. If the input value is greater than 0 and the number of newly received events is greater than
  *     or equal to the value of this parameter, the configured **onTrigger** callback is called.
- *     If the input value is less than or equal to 0, the number of received events is not used as the condition to 
+ *     If the input value is less than or equal to 0, the number of received events is not used as the condition to
  *     trigger the **onTrigger** callback.
- * @param size Size value, Unit: bytes. If the input value is greater than 0 and the size of the newly received event 
- *     is greater than or equal to the value of this parameter, the configured **onTrigger** callback is called. The 
+ * @param size Size value, Unit: bytes. If the input value is greater than 0 and the size of the newly received event
+ *     is greater than or equal to the value of this parameter, the configured **onTrigger** callback is called. The
  *     size of a single event is the length of the JSON string converted from the event.
- *     If the input value is less than or equal to 0, the size of received events is not used as the condition to 
+ *     If the input value is less than or equal to 0, the size of received events is not used as the condition to
  *     trigger the **onTrigger** callback.
  * @param timeOut Timeout value, in seconds. If the input value is greater than 0, the system checks the watcher for
  *     newly received events based on the timeout * 30 interval. If there are any newly received events, the configured
  *     onTrigger callback is triggered.
- *     After the callback is complete, the system checks the watcher for newly received events when the timeout * 30 
+ *     After the callback is complete, the system checks the watcher for newly received events when the timeout * 30
  *     value expires.
  *     If the input value is less than or equal to 0, the timeout interval is not used as the condition to trigger the
  *     onTrigger callback.
@@ -580,7 +580,7 @@ int OH_HiAppEvent_SetTriggerCondition(HiAppEvent_Watcher* watcher, int row, int 
  *     <br>If the second bit is **1** (the value is **2**), statistics events can be listened for.
  *     <br>If the third bit is **1** (the value is **4**), security events can be listened for.
  *     <br>If the fourth digit is **1**(the value is **8**), events of the listening behavior type can be listened for.
- *     <br>If four digits are **1** (the value is **15**) or 0 (the value is **0**), events of all types can be 
+ *     <br>If four digits are **1** (the value is **15**) or 0 (the value is **0**), events of all types can be
  *     <br>listened for.
  * @param names Array of the event names.
  * @param namesLen Length of the event name array.
@@ -702,8 +702,8 @@ int OH_HiAppEvent_SetReportRoute(HiAppEvent_Processor* processor, const char* ap
  * @param batchReport Threshold for reporting events. When the number of events reaches the threshold, an event is
  *     reported.
  * @param onStartReport Whether to report events during startup. **true**: yes; **false**: no.
- * @param onBackgroundReport Whether to report events after an application switches to the background. **true**: 
- *     yes; **false**: no. 
+ * @param onBackgroundReport Whether to report events after an application switches to the background. **true**:
+ *     yes; **false**: no.
  * @return <ul>
  *         <li>{@link HIAPPEVENT_SUCCESS} The operation is successful.</li>
  *         <li>{@link HIAPPEVENT_PROCESSOR_IS_NULL} The processor is nullptr.</li>
@@ -722,7 +722,7 @@ int OH_HiAppEvent_SetReportPolicy(HiAppEvent_Processor* processor, int periodRep
  * @param processor Pointer to the processor, that is, the pointer returned by **OH_HiAppEvent_CreateProcessor**.
  * @param domain Domain of the report event.
  * @param name Name of the report event.
- * @param isRealTime Whether to report events in real time. The value **true** means to report events in real time, 
+ * @param isRealTime Whether to report events in real time. The value **true** means to report events in real time,
  *     and **false** means the opposite.
  * @return <ul>
  *         <li>{@link HIAPPEVENT_SUCCESS} The operation is successful.</li>
@@ -882,7 +882,7 @@ HiAppEvent_Config* OH_HiAppEvent_CreateConfig(void);
  * @brief Destroys a configuration object. Note: If a configuration object is no longer used, destroy it to release
  * memory to prevent memory leaks. After the object is destroyed, set its pointer to null.
  * 
- * @param config Pointer to the configuration object, that is, the pointer returned by 
+ * @param config Pointer to the configuration object, that is, the pointer returned by
  *     the **OH_HiAppEvent_CreateConfig** API.
  * @since 15
  */
@@ -895,9 +895,6 @@ void OH_HiAppEvent_DestroyConfig(HiAppEvent_Config* config);
  *     the **OH_HiAppEvent_CreateConfig** API.
  * @param itemName Name of the configuration item.
  * @param itemValue Value of the configuration item.
- * @return {@link }: 
- *     {@link }: 
- *     {@link }: 
  * @return <ul>
  *         <li>{@link HIAPPEVENT_SUCCESS} The operation is successful.</li>
  *         <li>{@link HIAPPEVENT_EVENT_CONFIG_IS_NULL} The event config is null.</li>
