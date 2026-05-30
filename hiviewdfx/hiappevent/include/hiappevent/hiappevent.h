@@ -504,7 +504,7 @@ int OH_HiAppEvent_Write(const char* domain, const char* name, enum EventType typ
 /**
  * @brief Configures the application event logging function. This function is used to configure the event logging
  * function and the storage quota of the event file directory.
- * 
+ *
  * @param name Configuration item name The value can be {@link DISABLE} or {@link MAX_STORAGE}.
  * @param value Configuration item value. If the configuration item name is {@link DISABLE}, the value can be **true**
  *     or **false**.
