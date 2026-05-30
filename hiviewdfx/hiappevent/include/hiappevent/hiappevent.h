@@ -890,7 +890,7 @@ void OH_HiAppEvent_DestroyConfig(HiAppEvent_Config* config);
 
 /**
  * @brief Sets the items in the configuration object.
- * 
+ *
  * @param config Pointer to the configuration object, that is, the pointer returned by
  *     the **OH_HiAppEvent_CreateConfig** API.
  * @param itemName Name of the configuration item.
@@ -915,7 +915,7 @@ int OH_HiAppEvent_SetConfigItem(HiAppEvent_Config* config, const char* itemName,
  * is supported since API version 24.
  * 
  * @param name Name of the system event.
- * @param config Pointer to the configuration object, that is, the pointer returned by 
+ * @param config Pointer to the configuration object, that is, the pointer returned by
  *     the **OH_HiAppEvent_CreateConfig** API.
  * @return <ul>
  *         <li>{@link HIAPPEVENT_SUCCESS} The operation is successful.</li>
