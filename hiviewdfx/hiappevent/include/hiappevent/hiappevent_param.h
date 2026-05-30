@@ -104,7 +104,8 @@ extern "C" {
 #define MAIN_THREAD_JANK_PARAM_SAMPLE_COUNT "sample_count"
 
 /**
- * @brief Used in MAIN_THREAD_JANK_V2, Number of main thread timeout sampling reports per application PID within a single lifecycle.
+ * @brief Used in MAIN_THREAD_JANK_V2, Number of main thread timeout sampling reports per application PID within a
+ * single lifecycle.
  *
  * @since 22
  */
