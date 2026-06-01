@@ -2140,6 +2140,7 @@ void OH_ArkUI_RenderNodeUtils_SetRectShapeOptionValue(
  *     </li><li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} Function parameter exception.
  *     </li><li>{@link ARKUI_ERROR_CODE_CAPI_INIT_ERROR} if CAPI init error.
  *     </li><li>{@link ARKUI_ERROR_CODE_NOT_CUSTOM_NODE} The node is not a customNode.
+ *     </li><li>{@link ARKUI_ERROR_CODE_CHILD_EXISTED} The node already has a child.
  *     </li><li>{@link ARKUI_ERROR_CODE_RENDER_PARENT_EXISTED} The child already has a parent node.
  *     </li><li>{@link ARKUI_ERROR_CODE_RENDER_HAS_INVALID_FRAME_NODE} if the child is obtained from a FrameNode,
  *     and its corresponding FrameNode is no longer in the adopted state.</li></ul>
