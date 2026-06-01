@@ -207,21 +207,29 @@ typedef enum {
 typedef enum {
     /**
      * 子窗口。
+     * 
+     * @since 15
      */
     WINDOW_MANAGER_WINDOW_TYPE_APP = 0,
 
     /**
      * 主窗口。
+     * 
+     * @since 15
      */
     WINDOW_MANAGER_WINDOW_TYPE_MAIN = 1,
 
     /**
      * 全局悬浮窗口。
+     * 
+     * @since 15
      */
     WINDOW_MANAGER_WINDOW_TYPE_FLOAT = 8,
 
     /**
      * 对话窗口。
+     * 
+     * @since 15
      */
     WINDOW_MANAGER_WINDOW_TYPE_DIALOG = 16
 } WindowManager_WindowType;
