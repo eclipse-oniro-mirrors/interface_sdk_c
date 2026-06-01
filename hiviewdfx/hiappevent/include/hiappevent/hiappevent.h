@@ -597,7 +597,7 @@ int OH_HiAppEvent_SetAppEventFilter(HiAppEvent_Watcher* watcher, const char* dom
  * If **OnReceive** is not set or is set to **nullptr**, the application events received by the watcher will be saved.
  * If the saved application events meet the trigger conditions of the **onTrigger** callback, the **onTrigger**
  * callback will be called.
- * 
+ *
  * @param watcher Pointer to the watcher (that is, the pointer returned by OH_HiAppEvent_CreateWatcher).
  * @param onTrigger Callback to be set.
  * @return **0** if the API is called successfully; **-5** if the pointer to an input parameter is null.
