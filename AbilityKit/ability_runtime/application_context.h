@@ -297,11 +297,11 @@ AbilityRuntime_ErrorCode OH_AbilityRuntime_StartSelfUIAbility(AbilityBase_Want *
  *      <li>**ABILITY_RUNTIME_ERROR_CODE_MULTI_APP_NOT_SUPPORTED**:
  *      The application does not support clone or multi-instance mode.</li>
  *      <li>**ABILITY_RUNTIME_ERROR_CODE_INVALID_APP_INSTANCE_KEY**: The multi-instance key is invalid.</li>
- *      <li>**ABILITY_RUNTIME_ERROR_CODE_UPPER_LIMIT_REACHED**: 
+ *      <li>**ABILITY_RUNTIME_ERROR_CODE_UPPER_LIMIT_REACHED**:
  *      The number of instances has reached the upper limit.</li>
- *      <li>**ABILITY_RUNTIME_ERROR_MULTI_INSTANCE_NOT_SUPPORTED**: 
+ *      <li>**ABILITY_RUNTIME_ERROR_MULTI_INSTANCE_NOT_SUPPORTED**:
  *      The application does not support multi-instance mode.</li>
- *      <li>**ABILITY_RUNTIME_ERROR_CODE_APP_INSTANCE_KEY_NOT_SUPPORTED**: 
+ *      <li>**ABILITY_RUNTIME_ERROR_CODE_APP_INSTANCE_KEY_NOT_SUPPORTED**:
  *      Setting **APP_INSTANCE_KEY** is not supported.
  *      For details, see **AbilityRuntime_ErrorCode**.</li></ul>
  * @since 17
