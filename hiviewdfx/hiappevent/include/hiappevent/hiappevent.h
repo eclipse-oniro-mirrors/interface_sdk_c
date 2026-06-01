@@ -677,7 +677,7 @@ HiAppEvent_Processor* OH_HiAppEvent_CreateProcessor(const char* name);
 
 /**
  * @brief Sets the report route for the processor.
- * 
+ *
  * @param processor Pointer to the processor, that is, the pointer returned by **OH_HiAppEvent_CreateProcessor**.
  * @param appId Application ID of the processor.
  * @param routeInfo Server location information. The default value is an empty string. The string length cannot exceed
@@ -696,7 +696,7 @@ int OH_HiAppEvent_SetReportRoute(HiAppEvent_Processor* processor, const char* ap
 
 /**
  * @brief Sets the report policy for the processor.
- * 
+ *
  * @param processor Pointer to the processor, that is, the pointer returned by **OH_HiAppEvent_CreateProcessor**.
  * @param periodReport Period for reporting events, in seconds.
  * @param batchReport Threshold for reporting events. When the number of events reaches the threshold, an event is
@@ -718,7 +718,7 @@ int OH_HiAppEvent_SetReportPolicy(HiAppEvent_Processor* processor, int periodRep
 
 /**
  * @brief Sets the report event for the processor.
- * 
+ *
  * @param processor Pointer to the processor, that is, the pointer returned by **OH_HiAppEvent_CreateProcessor**.
  * @param domain Domain of the report event.
  * @param name Name of the report event.
@@ -738,7 +738,7 @@ int OH_HiAppEvent_SetReportEvent(HiAppEvent_Processor* processor, const char* do
 
 /**
  * @brief Sets the custom extension parameters of the processor.
- * 
+ *
  * @param processor Pointer to the processor, that is, the pointer returned by **OH_HiAppEvent_CreateProcessor**.
  * @param key Parameter name, which contains a maximum of 32 characters.
  * @param value Parameter value, which contains a maximum of 1024 characters.
@@ -756,7 +756,7 @@ int OH_HiAppEvent_SetCustomConfig(HiAppEvent_Processor* processor, const char* k
 
 /**
  * @brief Sets the configuration ID of the processor.
- * 
+ *
  * @param processor Pointer to the processor, that is, the pointer returned by **OH_HiAppEvent_CreateProcessor**.
  * @param configId Configuration ID of the processor, which is a natural number.
  * @return <ul>
@@ -772,7 +772,7 @@ int OH_HiAppEvent_SetConfigId(HiAppEvent_Processor* processor, int configId);
 
 /**
  * @brief Sets the configuration name of the processor.
- * 
+ *
  * @param processor Pointer to the processor, that is, the pointer returned by **OH_HiAppEvent_CreateProcessor**.
  * @param configName Configuration name of the data processor, which can contain only letters, digits,
  *     underscores (_), and dollar signs ($). It cannot start with a digit and cannot exceed 256 characters.
@@ -790,7 +790,7 @@ int OH_HiAppEvent_SetConfigName(HiAppEvent_Processor* processor, const char* con
 
 /**
  * @brief Sets the report user ID of the processor.
- * 
+ *
  * @param processor Pointer to the processor, that is, the pointer returned by **OH_HiAppEvent_CreateProcessor**.
  * @param userIdNames Name array of user IDs that can be reported by the processor.
  * @param size Length of the name array of user IDs.
@@ -808,7 +808,7 @@ int OH_HiAppEvent_SetReportUserId(HiAppEvent_Processor* processor, const char* c
 
 /**
  * @brief Sets the report user property of the processor.
- * 
+ *
  * @param processor Pointer to the processor, that is, the pointer returned by **OH_HiAppEvent_CreateProcessor**.
  * @param userPropertyNames Name array of user properties that can be reported by the processor.
  * @param size Length of the name array of user properties.
@@ -830,7 +830,7 @@ int OH_HiAppEvent_SetReportUserProperty(HiAppEvent_Processor* processor, const c
  * implementation of the processor on the device and set its properties based on its constraints. Note that the
  * configuration information of **Processor** must be provided by the data processor. Yet, as no data processor is
  * preset in the device for interaction for the moment, migrating events to the cloud is unavailable.
- * 
+ *
  * @param processor Pointer to the processor, that is, the pointer returned by **OH_HiAppEvent_CreateProcessor**.
  * @return <ul>
  *         <li>process id if set is successful.</li>
@@ -847,7 +847,7 @@ int64_t OH_HiAppEvent_AddProcessor(HiAppEvent_Processor* processor);
 /**
  * @brief Destroys a processor. Note: If a processor is no longer used, destroy it to release memory to prevent memory
  * leaks. After the processor is destroyed, set its pointer to null.
- * 
+ *
  * @param processor Pointer to the processor, that is, the pointer returned by **OH_HiAppEvent_CreateProcessor**.
  * @since 18
  */
@@ -857,7 +857,7 @@ void OH_HiAppEvent_DestroyProcessor(HiAppEvent_Processor* processor);
  * @brief Removes a processor. Once a processor is removed, it stops reporting events. Note: This API only stops the
  * processor reporting events but does not destroy the processor. You can call **OH_HiAppEvent_DestroyProcessor** to
  * destroy the processor and release the memory.
- * 
+ *
  * @param processorId Unique ID of a processor.
  * @return <ul>
  *         <li>{@link HIAPPEVENT_SUCCESS}: The operation is successful.</li>
@@ -872,7 +872,7 @@ int OH_HiAppEvent_RemoveProcessor(int64_t processorId);
 
 /**
  * @brief Creates a pointer to the configuration object that sets the conditions for triggering system events.
- * 
+ *
  * @return Pointer to the configuration object that sets the conditions for triggering system events.
  * @since 15
  */
@@ -881,7 +881,7 @@ HiAppEvent_Config* OH_HiAppEvent_CreateConfig(void);
 /**
  * @brief Destroys a configuration object. Note: If a configuration object is no longer used, destroy it to release
  * memory to prevent memory leaks. After the object is destroyed, set its pointer to null.
- * 
+ *
  * @param config Pointer to the configuration object, that is, the pointer returned by
  *     the **OH_HiAppEvent_CreateConfig** API.
  * @since 15
@@ -913,7 +913,7 @@ int OH_HiAppEvent_SetConfigItem(HiAppEvent_Config* config, const char* itemName,
  * )
  * **EVENT_APP_CRASH**. (For details about the parameter configuration, see {@link Crash Event Overview}.) This event
  * is supported since API version 24.
- * 
+ *
  * @param name Name of the system event.
  * @param config Pointer to the configuration object, that is, the pointer returned by
  *     the **OH_HiAppEvent_CreateConfig** API.
