@@ -572,7 +572,7 @@ int OH_HiAppEvent_SetTriggerCondition(HiAppEvent_Watcher* watcher, int row, int 
  * @brief Sets the type of events to listen for. This function can be called repeatedly. You can add multiple filtering
  * conditions instead of replacing them. The watcher will receive notifications of events that meet any of the
  * filtering conditions.
- * 
+ *
  * @param watcher Pointer to the watcher (that is, the pointer returned by OH_HiAppEvent_CreateWatcher).
  * @param domain Domain of events to be listened for.
  * @param eventTypes Types of events to be listened for. The bitwise AND matching mode is used. Multiple types of
