@@ -935,24 +935,24 @@ int OH_HiAppEvent_SetEventConfig(const char* name, HiAppEvent_Config* config);
  */
 typedef enum OH_HiAppEvent_FrameworkType {
     /**
- * Flutter_dart type.
- *
- * @since 26.0.0
- */
+     * Flutter_dart type.
+     *
+     * @since 26.0.0
+    */
     OH_FLUTTER_DART,
 
     /**
- * React_native_hermes type.
- *
- * @since 26.0.0
- */
+     * React_native_hermes type.
+     *
+     * @since 26.0.0
+     */
     OH_REACT_NATIVE_HERMES,
 
     /**
- * Kmp_kotlin type.
- *
- * @since 26.0.0
- */
+     * Kmp_kotlin type.
+     *
+     * @since 26.0.0
+     */
     OH_KMP_KOTLIN
 } OH_HiAppEvent_FrameworkType;
 
