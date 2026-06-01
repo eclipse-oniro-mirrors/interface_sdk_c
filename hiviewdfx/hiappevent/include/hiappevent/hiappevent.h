@@ -56,7 +56,7 @@ extern "C" {
 
 /**
  * @brief Enumerates the error codes used in the HiAppEvent module.
- * 
+ *
  * @since 15
  */
 typedef enum {
@@ -116,7 +116,7 @@ typedef enum {
 
 /**
  * @brief Enumerates the event types. You are advised to select different event types based on application scenarios.
- * 
+ *
  * @since 8
  * @version 1.0
  */
@@ -137,7 +137,7 @@ enum EventType {
 /**
  * @brief Defines a struct for the information about a single event, including the domain, name, type, and
  * parameter list in JSON string format.
- * 
+ *
  * @since 12
  * @version 1.0
  */
@@ -204,7 +204,7 @@ typedef struct HiAppEvent_Config HiAppEvent_Config;
  * @brief Passes event content to the caller. Note: The lifecycle of the object pointed by the pointer in the callback
  * is limited to the callback function. Do not use the pointer outside of the callback function. If the information
  * needs to be cached, perform a deep copy of the content pointed by the pointer.
- * 
+ *
  * @param domain Domain of the received application event.
  * @param appEventGroups Event group array.
  * @param groupLen Length of the event group array.
@@ -219,7 +219,7 @@ typedef void (*OH_HiAppEvent_OnReceive)(
  * OH_HiAppEvent_SetTriggerCondition**. When the **OH_HiAppEvent_OnReceive** callback is not set in the watcher, the
  * event received by the watcher will be saved.
  * After the callback is complete, if a newly saved event meets the specified condition, the callback is invoked again.
- * 
+ *
  * @param row Number of events newly received by the watcher.
  * @param size Total size of events newly received by the watcher, in bytes. The size of a single event is the length
  *     of the JSON string converted from the event.
@@ -233,7 +233,7 @@ typedef void (*OH_HiAppEvent_OnTrigger)(int row, int size);
  * obtain the events. Note: The lifecycle of the object pointed by the pointer in the callback is limited to the
  * callback function. Do not use the pointer outside of the callback function. If the information needs to be cached,
  * perform a deep copy of the content pointed by the pointer.
- * 
+ *
  * @param events The event json string array.
  * @param eventLen Size of the event array.
  * @since 12
@@ -243,7 +243,7 @@ typedef void (*OH_HiAppEvent_OnTake)(const char* const *events, uint32_t eventLe
 
 /**
  * @brief Creates a pointer to a parameter list object.
- * 
+ *
  * @return Pointer to the parameter list object.
  * @since 8
  * @version 1.0
@@ -261,7 +261,7 @@ void OH_HiAppEvent_DestroyParamList(ParamList list);
 
 /**
  * @brief Adds an event parameter of the Boolean type to the parameter list.
- * 
+ *
  * @param list Pointer to the parameter list to which parameters need to be added.
  * @param name Name of the parameter to be added.
  * @param boolean Value of the parameter to be added.
@@ -273,7 +273,7 @@ ParamList OH_HiAppEvent_AddBoolParam(ParamList list, const char* name, bool bool
 
 /**
  * @brief Adds an event parameter of the Boolean array type to the parameter list.
- * 
+ *
  * @param list Pointer to the parameter list to which parameters need to be added.
  * @param name Name of the parameter to be added.
  * @param booleans Value of the parameter to be added.
@@ -286,7 +286,7 @@ ParamList OH_HiAppEvent_AddBoolArrayParam(ParamList list, const char* name, cons
 
 /**
  * @brief Adds an event parameter of the int8_t type to the parameter list.
- * 
+ *
  * @param list Pointer to the parameter list to which parameters need to be added.
  * @param name Name of the parameter to be added.
  * @param num Value of the parameter to be added.
@@ -298,7 +298,7 @@ ParamList OH_HiAppEvent_AddInt8Param(ParamList list, const char* name, int8_t nu
 
 /**
  * @brief Adds an event parameter of the int8_t array type to the parameter list.
- * 
+ *
  * @param list Pointer to the parameter list to which parameters need to be added.
  * @param name Name of the parameter to be added.
  * @param nums Value of the parameter to be added.
@@ -311,7 +311,7 @@ ParamList OH_HiAppEvent_AddInt8ArrayParam(ParamList list, const char* name, cons
 
 /**
  * @brief Adds an event parameter of the int16_t type to the parameter list.
- * 
+ *
  * @param list Pointer to the parameter list to which parameters need to be added.
  * @param name Name of the parameter to be added.
  * @param num Value of the parameter to be added.
@@ -323,7 +323,7 @@ ParamList OH_HiAppEvent_AddInt16Param(ParamList list, const char* name, int16_t 
 
 /**
  * @brief Adds an event parameter of the int16_t array type to the parameter list.
- * 
+ *
  * @param list Pointer to the parameter list to which parameters need to be added.
  * @param name Name of the parameter to be added.
  * @param nums Value of the parameter to be added.
@@ -336,7 +336,7 @@ ParamList OH_HiAppEvent_AddInt16ArrayParam(ParamList list, const char* name, con
 
 /**
  * @brief Adds an event parameter of the int32_t type to the parameter list.
- * 
+ *
  * @param list Pointer to the parameter list to which parameters need to be added.
  * @param name Name of the parameter to be added.
  * @param num Value of the parameter to be added.
@@ -348,7 +348,7 @@ ParamList OH_HiAppEvent_AddInt32Param(ParamList list, const char* name, int32_t 
 
 /**
  * @brief Adds an event parameter of the int32_t array type to the parameter list.
- * 
+ *
  * @param list Pointer to the parameter list to which parameters need to be added.
  * @param name Name of the parameter to be added.
  * @param nums Value of the parameter to be added.
@@ -361,7 +361,7 @@ ParamList OH_HiAppEvent_AddInt32ArrayParam(ParamList list, const char* name, con
 
 /**
  * @brief Adds an event parameter of the int64_t type to the parameter list.
- * 
+ *
  * @param list Pointer to the parameter list to which parameters need to be added.
  * @param name Name of the parameter to be added.
  * @param num Value of the parameter to be added.
@@ -373,7 +373,7 @@ ParamList OH_HiAppEvent_AddInt64Param(ParamList list, const char* name, int64_t 
 
 /**
  * @brief Adds an event parameter of the int64_t array type to the parameter list.
- * 
+ *
  * @param list Pointer to the parameter list to which parameters need to be added.
  * @param name Name of the parameter to be added.
  * @param nums Value of the parameter to be added.
@@ -386,7 +386,7 @@ ParamList OH_HiAppEvent_AddInt64ArrayParam(ParamList list, const char* name, con
 
 /**
  * @brief Adds an event parameter of the float type to the parameter list.
- * 
+ *
  * @param list Pointer to the parameter list to which parameters need to be added.
  * @param name Name of the parameter to be added.
  * @param num Value of the parameter to be added.
@@ -398,7 +398,7 @@ ParamList OH_HiAppEvent_AddFloatParam(ParamList list, const char* name, float nu
 
 /**
  * @brief Adds an event parameter of the float array type to the parameter list.
- * 
+ *
  * @param list Pointer to the parameter list to which parameters need to be added.
  * @param name Name of the parameter to be added.
  * @param nums Value of the parameter to be added.
@@ -411,7 +411,7 @@ ParamList OH_HiAppEvent_AddFloatArrayParam(ParamList list, const char* name, con
 
 /**
  * @brief Adds an event parameter of the Double type to the parameter list.
- * 
+ *
  * @param list Pointer to the parameter list to which parameters need to be added.
  * @param name Name of the parameter to be added.
  * @param num Value of the parameter to be added.
@@ -423,7 +423,7 @@ ParamList OH_HiAppEvent_AddDoubleParam(ParamList list, const char* name, double 
 
 /**
  * @brief Adds an event parameter of the double array type to the parameter list.
- * 
+ *
  * @param list Pointer to the parameter list to which parameters need to be added.
  * @param name Name of the parameter to be added.
  * @param nums Value of the parameter to be added.
@@ -436,7 +436,7 @@ ParamList OH_HiAppEvent_AddDoubleArrayParam(ParamList list, const char* name, co
 
 /**
  * @brief Adds a parameter of the string type to the parameter list.
- * 
+ *
  * @param list Pointer to the parameter list to which parameters need to be added.
  * @param name Name of the parameter to be added.
  * @param str Value of the parameter to be added.
@@ -448,7 +448,7 @@ ParamList OH_HiAppEvent_AddStringParam(ParamList list, const char* name, const c
 
 /**
  * @brief Adds a parameter of the string array type to the parameter list.
- * 
+ *
  * @param list Pointer to the parameter list to which parameters need to be added.
  * @param name Name of the parameter to be added.
  * @param strs Value of the parameter to be added.
@@ -462,7 +462,7 @@ ParamList OH_HiAppEvent_AddStringArrayParam(ParamList list, const char* name, co
 /**
  * @brief Logs application events whose parameters are of the list type. Before application event logging, use this API
  * to verify parameters of the events. If the verification is successful, the API writes the events to the event file.
- * 
+ *
  * @param domain Event domain. You can customize event domains as required.
  *     The value is a string that contains a maximum of 32 characters, including digits (0 to 9), letters (a to z)
  *     (A to Z), and underscore (\_). It must start with a letter and cannot end with an underscore (\_).
@@ -521,7 +521,7 @@ bool OH_HiAppEvent_Configure(const char* name, const char* value);
 
 /**
  * @brief Creates a watcher for application events.
- * 
+ *
  * @param name Watcher name.
  * @return Pointer to the new watcher if the API is called successfully; **nullptr** if the **name** parameter is
  *     invalid.
@@ -533,7 +533,7 @@ HiAppEvent_Watcher* OH_HiAppEvent_CreateWatcher(const char* name);
 /**
  * @brief Destroys a created watcher. Note: If a created watcher is no longer used, destroy it to release memory to
  * prevent memory leaks. After the watcher is destroyed, set its pointer to null.
- * 
+ *
  * @param watcher Pointer to the watcher (that is, the pointer returned by OH_HiAppEvent_CreateWatcher).
  * @since 12
  * @version 1.0
@@ -544,7 +544,7 @@ void OH_HiAppEvent_DestroyWatcher(HiAppEvent_Watcher* watcher);
  * @brief Sets the trigger condition of the **OH_HiAppEvent_OnTrigger** callback.
  * You can set the trigger condition by the number and size of new events received by the watcher, and **onTrigger**
  * timeout interval. Ensure that at least one of the trigger conditions is set on the caller side.
- * 
+ *
  * @param watcher Pointer to the watcher (that is, the pointer returned by OH_HiAppEvent_CreateWatcher).
  * @param row Row count. If the input value is greater than 0 and the number of newly received events is greater than
  *     or equal to the value of this parameter, the configured **onTrigger** callback is called.
@@ -609,7 +609,7 @@ int OH_HiAppEvent_SetWatcherOnTrigger(HiAppEvent_Watcher* watcher, OH_HiAppEvent
 /**
  * @brief Sets the **onReceive** callback. When the listener detects the corresponding event, the onReceive callback is
  * called.
- * 
+ *
  * @param watcher Pointer to the watcher (that is, the pointer returned by OH_HiAppEvent_CreateWatcher).
  * @param onReceive Pointer to the callback function.
  * @return **0** if the API is called successfully; **-5** if the pointer to an input parameter is null.
@@ -620,7 +620,7 @@ int OH_HiAppEvent_SetWatcherOnReceive(HiAppEvent_Watcher* watcher, OH_HiAppEvent
 
 /**
  * @brief Obtains the event saved by the watcher.
- * 
+ *
  * @param watcher Pointer to the watcher (that is, the pointer returned by OH_HiAppEvent_CreateWatcher).
  * @param eventNum If the input value is less than or equal to **0**, all saved events are obtained. If the input value
  *     is greater than **0**, events are sorted by time in descending order and a specified number of saved events are
@@ -647,7 +647,7 @@ int OH_HiAppEvent_AddWatcher(HiAppEvent_Watcher* watcher);
  * @brief Removes a watcher. Once a watcher is removed, it stops listening for system messages. Note: This API only
  * enables the watcher to stop listening for system messages. It does not destroy the watcher. The watcher still
  * resides in the memory until the OH_HiAppEvent_DestroyWatcher API is called.
- * 
+ *
  * @param watcher Pointer to the watcher (that is, the pointer returned by OH_HiAppEvent_CreateWatcher).
  * @return **0** if the API is called successfully; **-5** if the pointer to an input parameter is null; **-6** if **
  *     OH_HiAppEvent_AddWatcher** has not been called to add a watcher.
@@ -658,7 +658,7 @@ int OH_HiAppEvent_RemoveWatcher(HiAppEvent_Watcher* watcher);
 
 /**
  * @brief Clears the events saved by all watchers.
- * 
+ *
  * @since 12
  * @version 1.0
  */
@@ -666,7 +666,7 @@ void OH_HiAppEvent_ClearData();
 
 /**
  * @brief Creates a processor for application events.
- * 
+ *
  * @param name Processor name, which can contain only letters, digits, underscores (_), and dollar signs ($). It cannot
  *     start with a digit and cannot exceed 256 characters.
  * @return Pointer to the new processor if the API is called successfully; **nullptr** if the **name** parameter is
