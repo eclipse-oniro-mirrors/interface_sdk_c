@@ -83,11 +83,11 @@ void OH_ResourceManager_ReleaseNativeResourceManager(NativeResourceManager *resM
  * @brief Traverses all files in the **rawfile** directory.
  *
  * @param mgr Pointer to {@link NativeResourceManager}, which is obtained by calling
- * {@link OH_ResourceManager_InitNativeResourceManager}.
+ *     {@link OH_ResourceManager_InitNativeResourceManager}.
  * @param dirName Pointer to the name of the directory to open. If this field is left empty, the root directory will be
- * opened.
+ *     opened.
  * @return Pointer to {@link RawDir}. After using the pointer, call {@link OH_ResourceManager_CloseRawDir} to release
- * it. If the operation fails or **mgr** is empty, a null pointer is returned.
+ *     it. If the operation fails or **mgr** is empty, a null pointer is returned.
  * @see OH_ResourceManager_InitNativeResourceManager
  * @see OH_ResourceManager_CloseRawDir
  * @since 8
@@ -99,10 +99,10 @@ RawDir *OH_ResourceManager_OpenRawDir(const NativeResourceManager *mgr, const ch
  * @brief Opens a rawfile and reads the data in it.
  *
  * @param mgr Pointer to {@link NativeResourceManager}, which is obtained by calling
- * {@link OH_ResourceManager_InitNativeResourceManager}.
+ *     {@link OH_ResourceManager_InitNativeResourceManager}.
  * @param fileName Pointer to the name of the file in the relative path of the **rawfile** root directory.
- * @return Pointer to {@link RawDir}. After using the pointer, call {@link OH_ResourceManager_CloseRawFile} to release
- * it. If the operation fails or **mgr** or **fileName** is empty, a null pointer is returned.
+ * @return Pointer to {@link RawFile}. After using the pointer, call {@link OH_ResourceManager_CloseRawFile} to release
+ *     it. If the operation fails or **mgr** or **fileName** is empty, a null pointer is returned.
  * @see OH_ResourceManager_InitNativeResourceManager
  * @see OH_ResourceManager_CloseRawFile
  * @since 8
@@ -114,10 +114,10 @@ RawFile *OH_ResourceManager_OpenRawFile(const NativeResourceManager *mgr, const 
  * @brief Opens a large rawfile and reads the data in it.
  *
  * @param mgr Pointer to {@link NativeResourceManager}, which is obtained by calling
- * {@link OH_ResourceManager_InitNativeResourceManager}.
+ *     {@link OH_ResourceManager_InitNativeResourceManager}.
  * @param fileName Pointer to the name of the file in the relative path of the **rawfile** root directory.
  * @return Pointer to {@link RawFile64}. After using this pointer, call {@link OH_ResourceManager_CloseRawFile64} to
- * release it. If the operation fails or **mgr** or **fileName** is empty, a null pointer is returned.
+ *     release it. If the operation fails or **mgr** or **fileName** is empty, a null pointer is returned.
  * @see OH_ResourceManager_InitNativeResourceManager
  * @see OH_ResourceManager_CloseRawFile64
  * @since 11
@@ -129,7 +129,7 @@ RawFile64 *OH_ResourceManager_OpenRawFile64(const NativeResourceManager *mgr, co
  * @brief Checks whether the path of a raw file is a subdirectory in the **rawfile** directory.
  *
  * @param mgr Pointer to {@link NativeResourceManager}, which is obtained by calling
- * {@link OH_ResourceManager_InitNativeResourceManager}.
+ *     {@link OH_ResourceManager_InitNativeResourceManager}.
  * @param path Path of a rawfile.
  * @return **true** if the path is a subdirectory in the **rawfile** directory; **false** otherwise.
  * @since 12
