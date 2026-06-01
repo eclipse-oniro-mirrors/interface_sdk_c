@@ -102,5 +102,9 @@
     {
         "first_introduced": "26.0.0",
         "name": "OH_NetConn_UnregisterCustomDnsResolver"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_NetConn_RefreshGlobalHttpProxyWithCallback"
     }
 ]
