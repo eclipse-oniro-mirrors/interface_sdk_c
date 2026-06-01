@@ -26,7 +26,6 @@
  * @since 8
  * @version 1.0
  */
-#ifndef HIVIEWDFX_HIAPPEVENT_EVENT_H
 
 /**
  * @file hiappevent_event.h
@@ -49,6 +48,7 @@
  * @since 8
  * @version 1.0
  */
+#ifndef HIVIEWDFX_HIAPPEVENT_EVENT_H
 #define HIVIEWDFX_HIAPPEVENT_EVENT_H
 #ifdef __cplusplus
 extern "C" {
