@@ -938,7 +938,7 @@ typedef enum OH_HiAppEvent_FrameworkType {
      * Flutter_dart type.
      *
      * @since 26.0.0
-    */
+     */
     OH_FLUTTER_DART,
 
     /**
@@ -958,7 +958,7 @@ typedef enum OH_HiAppEvent_FrameworkType {
 
 /**
  * @brief When a framework has a memory leak report event.
- * 
+ *
  * @param frameworkType Framework type.
  * @param frameworkVersion Framework version.
  * @param description Description of the framework memory leak event.
