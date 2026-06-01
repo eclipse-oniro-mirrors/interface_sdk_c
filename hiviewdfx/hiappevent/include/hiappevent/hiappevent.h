@@ -120,7 +120,7 @@ typedef enum {
  * @since 8
  * @version 1.0
  */
-enum {
+enum EventType {
     /* Fault event type */
     FAULT = 1,
 
@@ -132,7 +132,7 @@ enum {
 
     /* Behavior event type */
     BEHAVIOR = 4
-} EventType ;
+};
 
 /**
  * @brief Defines a struct for the information about a single event, including the domain, name, type, and
