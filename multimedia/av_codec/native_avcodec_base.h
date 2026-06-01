@@ -12,6 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 /**
  * @addtogroup CodecBase
  * @{
@@ -21,6 +22,7 @@
  * 
  * @since 9
  */
+
 /**
  * @file native_avcodec_base.h
  *
@@ -32,8 +34,6 @@
  * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 9
  */
-
-
 #ifndef NATIVE_AVCODEC_BASE_H
 #define NATIVE_AVCODEC_BASE_H
 #include <stdint.h>
@@ -201,7 +201,7 @@ typedef int32_t (*OH_AVDataSourceReadAt)(OH_AVBuffer *data, int32_t length, int6
 
 /**
  * @brief The struct describes a user-defined data source.
- * 
+ *
  * @since 12
  */
 typedef struct OH_AVDataSource {
@@ -216,7 +216,6 @@ typedef struct OH_AVDataSource {
      */
     OH_AVDataSourceReadAt readAt;
 } OH_AVDataSource;
-
 
 /**
  * @brief Defines a function pointer used to provide the capability of obtaining user-defined media data.
@@ -233,7 +232,7 @@ typedef int32_t (*OH_AVDataSourceReadAtExt)(OH_AVBuffer *data, int32_t length, i
 /**
  * @brief The struct describes a user-defined data source. User-defined data can be passed to its callback functions
  * through the **userData** parameter.
- * 
+ *
  * @since 20
  */
 typedef struct OH_AVDataSourceExt {
@@ -326,8 +325,7 @@ extern const char *OH_AVCODEC_MIMETYPE_IMAGE_PNG;
 extern const char *OH_AVCODEC_MIMETYPE_IMAGE_BMP;
 
 /**
- * @brief Pointer to the key that describes the MIME type of the Audio Vivid audio decoder. <!--Del-->(This
- * specification is not available yet.)<!--DelEnd-->
+ * @brief Pointer to the key that describes the MIME type of the Audio Vivid audio codec.
  * 
  * @since 11
  */
@@ -348,8 +346,7 @@ extern const char *OH_AVCODEC_MIMETYPE_AUDIO_AMR_NB;
 extern const char *OH_AVCODEC_MIMETYPE_AUDIO_AMR_WB;
 
 /**
- * @brief Pointer to the key that describes the MIME type of the Opus audio codec. <!--Del-->(This specification is not
- * available yet.)<!--DelEnd-->
+ * @brief Pointer to the key that describes the MIME type of the Opus audio codec.
  * 
  * @since 11
  */
@@ -691,14 +688,12 @@ extern const char *OH_MD_KEY_MAX_INPUT_SIZE;
 /**
  * @brief Pointer to the key that describes the video width. The value type is int32_t.
  *
- * For video encoding, this key sets the target encoding resolution.
- * For video decoding, this key is a resolution hint used by the decoder to pre-allocate internal buffers.
- * The actual decoded output dimensions are provided via {@link OH_MD_KEY_VIDEO_PIC_WIDTH}.
+ * For video encoding, this key is used to set the target encoding resolution. For video decoding, this key serves
+ * as a resolution hint for the decoder to pre-allocate internal buffers.
+ * The actual decoded output dimensions are provided by **OH_MD_KEY_VIDEO_PIC_WIDTH**.
+ * This key is mainly used to control memory allocation. You can call {@link OH_AVCapability_GetVideoWidthRange}
+ * to obtain the recommended value range. This API defines the decoding width range supported by the codec.
  *
- * While this key primarily governs memory allocation,
- * the recommended value range can be referenced from {@link OH_AVCapability_GetVideoWidthRange},
- * which defines the codec's supported decoding width range.
- * 
  * @since 9
  */
 extern const char *OH_MD_KEY_WIDTH;
@@ -706,13 +701,12 @@ extern const char *OH_MD_KEY_WIDTH;
 /**
  * @brief Pointer to the key that describes the video height. The value type is int32_t.
  *
- * For video encoding, this key sets the target encoding resolution.
- * For video decoding, this key is a resolution hint used by the decoder to pre-allocate internal buffers. 
- * The actual decoded output dimensions are provided via {@link OH_MD_KEY_VIDEO_PIC_HEIGHT}.
+ * For video encoding, this key is used to set the target encoding resolution. For video decoding,
+ * this key serves as a resolution hint for the decoder to pre-allocate internal buffers.
+ * The actual decoded output dimensions are provided by **OH_MD_KEY_VIDEO_PIC_HEIGHT**.
+ * This key is mainly used to control memory allocation. You can call {@link OH_AVCapability_GetVideoHeightRange}
+ * to obtain the recommended value range. This API defines the decoding height range supported by the codec.
  *
- * While this key primarily governs memory allocation, the recommended value range can be referenced
- * from {@link OH_AVCapability_GetVideoHeightRange}, which defines the codec's supported decoding height range.
- * 
  * @since 9
  */
 extern const char *OH_MD_KEY_HEIGHT;
@@ -784,19 +778,6 @@ extern const char *OH_MD_KEY_AUD_SAMPLE_RATE;
 extern const char *OH_MD_KEY_I_FRAME_INTERVAL;
 
 /**
- * @brief Pointer to the key that describes the rotation angle of the surface, with a clockwise direction. The value
- * type is int32_t, and the value range is {0, 90, 180, 270}. The default value is 0.
- * 
- * This key is optional and is used only for video decoding in surface mode
- * 
- * You are advised to use the **OH_MD_KEY_VIDEO_TRANSFORM_TYPE** key to set the rotation angle of the surface for video
- * decoding.
- * 
- * @since 9
- */
-extern const char *OH_MD_KEY_ROTATION;
-
-/**
  * @brief Key for video transform type, value type is int32_t, see {@link OH_NativeBuffer_TransformType}.
  *
  * This key is used to set the surface transform for video decoders (surface mode).
@@ -809,14 +790,31 @@ extern const char *OH_MD_KEY_ROTATION;
  * which are opposite to the direction of rotation defined by {@link OH_MD_KEY_ROTATION}.
  * 
  *The correspondence is:
+ *
  * - {@link NATIVEBUFFER_ROTATE_NONE}  => same as OH_MD_KEY_ROTATION = 0
+ *
  * - {@link NATIVEBUFFER_ROTATE_90}    => same as OH_MD_KEY_ROTATION = 270
+ *
  * - {@link NATIVEBUFFER_ROTATE_180}   => same as OH_MD_KEY_ROTATION = 180
+ *
  * - {@link NATIVEBUFFER_ROTATE_270}   => same as OH_MD_KEY_ROTATION = 90
  * 
  * @since 22
  */
 extern const char *OH_MD_KEY_VIDEO_TRANSFORM_TYPE;
+
+/**
+ * @brief Pointer to the key that describes the rotation angle of the surface, with a clockwise direction. The value
+ * type is int32_t, and the value range is {0, 90, 180, 270}. The default value is 0.
+ * 
+ * This key is optional and is used only for video decoding in surface mode
+ * 
+ * You are advised to use the **OH_MD_KEY_VIDEO_TRANSFORM_TYPE** key to set the rotation angle of the surface for video
+ * decoding.
+ * 
+ * @since 9
+ */
+extern const char *OH_MD_KEY_ROTATION;
 
 /**
  * @brief Pointer to the key that describes the video YUV value range flag. The value type is int32_t. The value **1**
@@ -872,22 +870,21 @@ extern const char *OH_MD_KEY_QUALITY;
 
 /**
  * @brief Pointer to the key that describes the codec-specific data. In the case of video, data carried in **SPS/PPS**
- * is transferred. In the case of audio, data carried in **extraData** is transferred. The value type is uint8_t\*. <!--
- * Del-->(This key is not supported yet for the video codec.)<!--DelEnd-->
+ * is transferred. In the case of audio, data carried in **extraData** is transferred. The value type is uint8_t\*.
  * 
  * @since 10
  */
 extern const char *OH_MD_KEY_CODEC_CONFIG;
 
 /**
- * @brief Pointer to the key that describes the title in a media file. The value type is char *.
- * 
+ * @brief Pointer to the key that describes the title of a media file . The value type is char *.
+ *
  * @since 10
  */
 extern const char *OH_MD_KEY_TITLE;
 
 /**
- * @brief Pointer to the key that describes the lyrics in a media file. The value type is char *.
+ * @brief Pointer to the key that describes the artist in a media file. The value type is char *.
  * 
  * @since 10
  */
@@ -929,20 +926,21 @@ extern const char *OH_MD_KEY_COMMENT;
 extern const char *OH_MD_KEY_GENRE;
 
 /**
- * @brief Pointer to the key that describes the copyright in a media file. The value type is char *.
+ * @brief Pointer to the key that describes the copyright of a media file. The value type is char *.
+ * 
  * @since 10
-*/
+ */
 extern const char *OH_MD_KEY_COPYRIGHT;
 
 /**
- * @brief Pointer to the key that describes the language in a media file. The value type is char *.
+ * @brief Pointer to the key that describes language of a media file. The value type is char *.
  * 
  * @since 10
  */
 extern const char *OH_MD_KEY_LANGUAGE;
 
 /**
- * @brief Pointer to the key that describes the description in a media file. The value type is char *.
+ * @brief Pointer to the key that describes the description of a media file. The value type is char *.
  * 
  * @since 10
  */
@@ -1018,7 +1016,7 @@ extern const char *OH_MD_KEY_IDENTIFICATION_HEADER;
 /**
  * @brief Pointer to the key that describes the vorbis setup header. The value type is uint8_t*. This key applies only
  * to Vorbis decoders.
- *
+ * 
  * @since 10
  */
 extern const char *OH_MD_KEY_SETUP_HEADER;
@@ -1070,15 +1068,15 @@ extern const char *OH_MD_KEY_VIDEO_IS_HDR_VIVID;
 
 /**
  * @brief Pointer to the key that describes the number of audio objects. The value type is int32_t. This key is used
- * only for Audio Vivid decoding.
+ * for Audio Vivid.
  * 
  * @since 11
  */
 extern const char *OH_MD_KEY_AUDIO_OBJECT_NUMBER;
 
 /**
- * @brief Pointer to the key that describes the Audio Vivid metadata. The value type is uint8_t*. This key is used only
- * for Audio Vivid decoding.
+ * @brief Pointer to the key that describes the Audio Vivid metadata. The value type is uint8_t*. This key is used
+ * for Audio Vivid.
  * 
  * @since 11
  */
@@ -1133,15 +1131,20 @@ extern const char *OH_MD_KEY_VIDEO_ENCODER_TEMPORAL_GOP_SIZE;
 extern const char *OH_MD_KEY_VIDEO_ENCODER_TEMPORAL_GOP_REFERENCE_MODE;
 
 /**
- * @brief Key for the temporal layer ID within a Group of Pictures (GOP), the value type is int32_t.
- * It is specific to video encoders and is available only when temporal level sacle is enabled.
- * To retrieve the value associated with this key:
- * 1. Obtain the encoded stream information (AVBuffer) via
- *  {@link OH_AVCodecOnNewOutputBuffer} or {@link OH_VideoEncoder_GetOutputBuffer}.
- * 2. Retrieve the parameter information (AVFormat) from the buffer
- *  using {@link OH_AVBuffer_GetParameter}.
- * 3. Use {@link OH_AVFormat_GetIntValue} with this key to get the corresponding value.
+ * @brief Pointer to the key that describes the temporal layer ID in a group of pictures (GOP).
+ * The value type is int32_t.
  *
+ * Temporal layer ID **0** indicates the base layer. Temporal layer IDs **1** and above indicate enhancement layers.
+ * The maximum temporal layer ID is determined by **OH_MD_KEY_VIDEO_ENCODER_TEMPORAL_GOP_REFERENCE_MODE** and
+ * **OH_MD_KEY_VIDEO_ENCODER_TEMPORAL_GOP_SIZE**.
+ * Currently, this key is used only to query the temporal layer ID carried in **AVBuffer** output by the encoder.
+ * The process is as follows:
+ * 1. Use {@link OH_AVCodecOnNewOutputBuffer} or {@link OH_VideoEncoder_GetOutputBuffer} to
+ * obtain the buffer instance (**AVBuffer**).
+ * 2. Use {@link OH_AVBuffer_GetParameter} to obtain the parameter instance (**OH_AVFormat**),
+ * which does not contain basic properties.
+ * 3. Use {@link OH_AVFormat_GetIntValue} and this key to obtain the temporal layer ID of the corresponding frame.
+ * 
  * @since 26.0.0
  */
 extern const char *OH_MD_KEY_VIDEO_ENCODER_TEMPORAL_LAYER_ID;
@@ -1285,7 +1288,6 @@ extern const char *OH_MD_KEY_VIDEO_ENCODER_PREPROC_DROP_TO_FRAME_RATE;
  *
  * Before using this key, you can use the API {@link OH_AVCapability_GetFeatureProperties} and the enumerated value
  * **VIDEO_ENCODER_LONG_TERM_REFERENCE** in {@link OH_AVCapabilityFeature} to query the number of supported LTR frames.
- *
  * This key is optional and used only in the configuration phase of video encoding.
  * 
  * @since 12
@@ -1392,15 +1394,14 @@ extern const char *OH_MD_KEY_VIDEO_CROP_RIGHT;
 /**
  * @brief Pointer to the key that describes the stride of the video frame. The value type is int32_t.
  *
- * The stride represents the actual byte distance between the start of two adjacent rows in memory.
- * Due to hardware alignment requirements, stride is typically greater than or equal to the effective image width.
- * When stride equals width, no horizontal padding is present.Always obtain the actual stride value from
- * {@link OH_VideoEncoder_GetInputDescription}, {@link OH_VideoDecoder_GetOutputDescription},
- * or the OH_AVFormat parameter in the {@link OH_AVCodecOnStreamChanged} callback, rather than assuming a fixed value.
- *
- * For usage examples, see step 8 in buffer mode in
- * [Video Encoding](docroot://media/avcodec/video-encoding.md#buffer-mode)
- * or step 11 in buffer mode in [Video Decoding](docroot://media/avcodec/video-decoding.md#buffer-mode).
+ * Stride indicates the byte distance between the start positions of two consecutive rows in memory.
+ * Due to hardware alignment requirements, the stride is typically greater than or equal to the image's active width.
+ * When the stride equals the width, there is no horizontal padding. You should always obtain the actual stride through
+ * {@link OH_VideoEncoder_GetInputDescription} (for encoding),
+ * {@link OH_VideoDecoder_GetOutputDescription} (for decoding), or **OH_AVFormat** in
+ * the {@link OH_AVCodecOnStreamChanged} callback, instead of assuming a fixed value.
+ * For details about the example, see step 8 in [video encoding](docroot://media/avcodec/video-encoding.md#buffer-mode)
+ * in buffer mode or step 11 in [video decoding](docroot://media/avcodec/video-decoding.md#buffer-mode) in buffer mode.
  * 
  * @since 12
  */
@@ -1409,52 +1410,49 @@ extern const char *OH_MD_KEY_VIDEO_STRIDE;
 /**
  * @brief Pointer to the key that describes the height of the video frame. The value type is int32_t.
  *
- * The slice height represents the total number of rows allocated in memory for a plane. Due to hardware alignment
- * requirements, sliceHeight is typically greater than or equal to the effective image height.
- * The U plane starts at offset (sliceHeight * stride) from the Y plane origin.
- * Always obtain the actual slice height value from {@link OH_VideoEncoder_GetInputDescription},
- * {@link OH_VideoDecoder_GetOutputDescription}, or the OH_AVFormat parameter in the {@link OH_AVCodecOnStreamChanged}
- * callback, rather than assuming a fixed value.
- *
- * For usage examples, see step 8 in buffer mode in
- * [Video Encoding](docroot://media/avcodec/video-encoding.md#buffer-mode)
- * or step 11 in buffer mode in [Video Decoding](docroot://media/avcodec/video-decoding.md#buffer-mode).
+ * Height indicates the total number of rows allocated in the memory for a single plane. Due to hardware alignment
+ * requirements, **sliceHeight** is typically greater than or equal to the image's active height.
+ * The offset of the start address of the U plane relative to the origin of the Y plane is **sliceHeight** x **stride**.
+ * You should always obtain the actual height through {@link OH_VideoEncoder_GetInputDescription} (for encoding),
+ * {@link OH_VideoDecoder_GetOutputDescription} (for decoding), or **OH_AVFormat** in
+ * the {@link OH_AVCodecOnStreamChanged} callback, instead of assuming a fixed value.
+ * For details about the example, see step 8 in [video encoding](docroot://media/avcodec/video-encoding.md#buffer-mode)
+ * in buffer mode or step 11 in [video decoding](docroot://media/avcodec/video-decoding.md#buffer-mode) in buffer mode.
  * 
  * @since 12
  */
 extern const char *OH_MD_KEY_VIDEO_SLICE_HEIGHT;
 
 /**
- * @brief Pointer to the key that describes the actual effective width of the decoded video frame.
- * The value type is int32_t. This key is read-only and used only for video decoding.
+ * @brief Pointer to the key that describes the actual active width of a decoded video frame. The value type is int32_t.
+ * This key is read-only and used only for video decoding.
  *
- * When {@link OH_VideoDecoder_GetOutputDescription} is called, or when the decoded output stream changes via the
- * {@link OH_AVCodecOnStreamChanged} callback, this value can be obtained from the returned OH_AVFormat instance.
- * This value represents the cropped visible width and differs from {@link OH_MD_KEY_WIDTH} set during Configure,
- * which is a configuration hint for buffer pre-allocation.
- * When cropping is present, use this value (not stride) as the actual image width for display or saving.
- * 
- * For details about the image arrangement and usage examples, see step 8 in buffer mode in
- * [Video Encoding](docroot://media/avcodec/video-encoding.md#buffer-mode)
- * or step 11 in buffer mode in [Video Decoding](docroot://media/avcodec/video-decoding.md#buffer-mode).
+ * You can obtain the width from the returned **OH_AVFormat** instance when {@link OH_VideoDecoder_GetOutputDescription}
+ * is called or decoded output stream changes are detected through the {@link OH_AVCodecOnStreamChanged}
+ * callback. This value indicates the visible width after cropping, which is different from **OH_MD_KEY_WIDTH** set in
+ * the configuration phase. The latter is a configuration hint used for pre-allocating buffers. When cropping is
+ * applied, this value (rather than the stride) should be used as the actual width for displaying or saving the image.
+ * For details about the image layout and usage example, see step 8 in
+ * [video encoding](docroot://media/avcodec/video-encoding.md#buffer-mode) in buffer mode or
+ * step 11 in [video decoding](docroot://media/avcodec/video-decoding.md#buffer-mode) in buffer mode.
  * 
  * @since 12
  */
 extern const char *OH_MD_KEY_VIDEO_PIC_WIDTH;
 
 /**
- * @brief Pointer to the key that describes the actual effective height of the decoded video frame.
+ * @brief Pointer to the key that describes the actual active height of a decoded video frame.
  * The value type is int32_t. This key is read-only and used only for video decoding.
  *
- * When {@link OH_VideoDecoder_GetOutputDescription} is called, or when the decoded output stream changes via the
- * {@link OH_AVCodecOnStreamChanged} callback, this value can be obtained from the returned OH_AVFormat instance.
- * This value represents the cropped visible height and differs from OH_MD_KEY_HEIGHT set during Configure,
- *  which is a configuration hint for buffer pre-allocation.
- * When cropping is present, use this value (not sliceHeight) as the actual image height for display or saving.
- *
- * For details about the image arrangement and usage examples, see step 8 in buffer mode in
- * [Video Encoding](docroot://media/avcodec/video-encoding.md#buffer-mode)
- * or step 11 in buffer mode in [Video Decoding](docroot://media/avcodec/video-decoding.md#buffer-mode).
+ * You can obtain the height from the returned **OH_AVFormat** instance when
+ * {@link OH_VideoDecoder_GetOutputDescription} is called or decoded output bitstream changes are detected through
+ * the {@link OH_AVCodecOnStreamChanged} callback. This value indicates the visible height after cropping,
+ * which is different from **OH_MD_KEY_HEIGHT** set in the configuration phase. The latter is a configuration hint used
+ * for pre-allocating buffers. When cropping is applied, this value (rather than **sliceHeight**) should be used as the
+ * actual height for displaying or saving the image.
+ * For details about the image layout and usage example, see step 8
+ * in [video encoding](docroot://media/avcodec/video-encoding.md#buffer-mode) in buffer mode or
+ * step 11 in [video decoding](docroot://media/avcodec/video-decoding.md#buffer-mode) in buffer mode.
  * 
  * @since 12
  */
@@ -1462,7 +1460,7 @@ extern const char *OH_MD_KEY_VIDEO_PIC_HEIGHT;
 
 /**
  * @brief Pointer to the key that describes the enabled status of low-latency video decoding. The value type is int32_t.
- *  **1** if enabled, **0** otherwise. The default value is **0**. If this parameter is set to a non-zero value, the
+ * **1** if enabled, **0** otherwise. The default value is **0**. If this parameter is set to a non-zero value, the
  * value **1** is used.
  *
  * This key is optional and used only in the configuration phase.
@@ -1528,7 +1526,7 @@ extern const char *OH_MD_KEY_DECODING_TIMESTAMP;
 /**
  * @brief Pointer to the key that describes the duration corresponding to the audio, video, or subtitle sample carried
  * in AVBuffer, in microseconds. The value type is int64_t.
- *
+ * 
  * @since 12
  */
 extern const char *OH_MD_KEY_BUFFER_DURATION;
@@ -1961,7 +1959,7 @@ extern const char *OH_MD_KEY_VIDEO_DECODER_SPEED;
  * @since 26.0.0
  */
 extern const char *OH_MD_KEY_AUDIO_MAX_INPUT_BUFFER_SIZE;
- 
+
 /**
  * @brief Key for configuring the PTS output mode of the audio encoder.
  *
@@ -1977,8 +1975,8 @@ extern const char *OH_MD_KEY_AUDIO_ENCODER_PTS_MODE;
  * Optional. The value type is int32_t (0 or 1). 1 is enabled, 0 is disabled. Defaults to 0.
  *
  * The audio encoder supports only a limited number of sample formats. After this configuration is enabled, if
- * an unsupported sampling format is used, the audio encoder will convert the sample format to an supported one for 
- * encoding. The supported sample formats before conversion are as follows: {@link SAMPLE_U8}, {@link SAMPLE_S16LE}, 
+ * an unsupported sampling format is used, the audio encoder will convert the sample format to an supported one for
+ * encoding. The supported sample formats before conversion are as follows: {@link SAMPLE_U8}, {@link SAMPLE_S16LE},
  * {@link SAMPLE_S24LE}, {@link SAMPLE_S32LE}, {@link SAMPLE_F32LE}.
  *
  * @since 26.0.0
@@ -2023,8 +2021,7 @@ typedef enum OH_MediaType {
 } OH_MediaType;
 
 /**
- * @brief Enumerates the AAC profiles.<!--Del-->
- * (**AAC_PROFILE_HE** and **AAC_PROFILE_HE_V2** are not available yet.)<!--DelEnd-->
+ * @brief Enumerates the AAC profiles.
  * 
  * @since 9
  */
@@ -2034,13 +2031,14 @@ typedef enum OH_AACProfile {
      * @since 9
      */
     AAC_PROFILE_LC = 0,
+
     /**
-     * High-Efficiency AAC profile, contain the audio object types: AAC LC, SBR
+     * AAC profile of the high efficiency level. Audio object types AAC LC and SBR are included.
      * @since 14
      */
     AAC_PROFILE_HE = 3,
     /**
-     * High-Efficiency AAC v2 profile, contain the audio object types: AAC LC, SBR, PS
+     * AAC profile of the high efficiency V2 level. Audio object types AAC LC, SBR, and PS are included.
      * @since 14
      */
     AAC_PROFILE_HE_V2 = 4
@@ -2497,7 +2495,8 @@ typedef enum OH_AVOutputFormat {
      */
     AV_OUTPUT_FORMAT_OGG = 13,
     /**
-     * The muxer output flv file format.
+     * @brief The muxer output flv file format.
+     * 
      * @since 26.0.0
      */
     AV_OUTPUT_FORMAT_FLV = 14
@@ -2510,19 +2509,20 @@ typedef enum OH_AVOutputFormat {
  */
 typedef enum OH_AVSeekMode {
     /**
-     * @brief seek to sync sample after the time.
+     * @brief Seeks to the next I-frame at the specified position. If there is no I-frame after the specified position,
+     * the seek operation may fail.
      * 
      * @since 10
      */
     SEEK_MODE_NEXT_SYNC = 0,
     /**
-     * @brief seek to sync sample before the time.
+     * @brief Seeks to the previous I-frame at the specified position.
      * 
      * @since 10
      */
     SEEK_MODE_PREVIOUS_SYNC,
     /**
-     * @brief seek to sync sample closest to time.
+     * @brief Seeks to the closest I-frame at the specified position.
      * 
      * @since 10
      */
@@ -3362,11 +3362,13 @@ typedef enum OH_AV1Level {
      * @since 23
      */
     AV1_LEVEL_43 = 11,
+
     /**
      * Level 5.0.
      * @since 23
      */
     AV1_LEVEL_50 = 12,
+
     /**
      * Level 5.1.
      * @since 23
@@ -3574,8 +3576,9 @@ typedef enum OH_TemporalGopReferenceMode {
      * @since 12
      */
     JUMP_REFERENCE = 1,
-    /** Uniformly scaled reference structure, which has even distribution of video frames after drop the highest
-     *  enhance layer. The temporal group of pictures must be power of 2.
+    /**
+     * Uniformly scaled reference structure, which has even distribution of video frames after drop the highest
+     * enhance layer. The temporal group of pictures must be power of 2.
      * @since 12
      */
     UNIFORMLY_SCALED_REFERENCE = 2
@@ -3607,7 +3610,9 @@ typedef enum OH_BitrateMode {
      * @since 20
      */
     BITRATE_MODE_SQR = 3,
-    /** CBR for High Quality.
+    /**
+     * @brief CBR for High Quality.
+     * 
      * @since 26.0.0
      */
     BITRATE_MODE_CBR_HIGH_QUALITY = 4
@@ -3670,9 +3675,8 @@ typedef enum OH_AudioEncoderPTSMode {
      * 
      * @since 26.0.0
      */
-    OH_AUDIO_ENCODER_PTS_MODE_FIRST_INPUT_START = 2,
+    OH_AUDIO_ENCODER_PTS_MODE_FIRST_INPUT_START = 2
 } OH_AudioEncoderPTSMode;
-
 #ifdef __cplusplus
 }
 #endif
