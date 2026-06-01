@@ -126,5 +126,13 @@
     {
         "first_introduced": "20",
         "name": "OH_ImagePackerNative_GetSupportedFormats"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_PackingOptions_GetNeedsPackDfxData"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_PackingOptions_SetNeedsPackDfxData"
     }
 ]

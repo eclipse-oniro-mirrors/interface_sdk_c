@@ -130,5 +130,41 @@
     {
       "first_introduced": "13",
       "name": "OH_AuxiliaryPictureInfo_Release"
+    },
+    {
+      "first_introduced": "26.0.0",
+      "name": "OH_PictureNative_GetAuxiliaryPictureCount"
+    },
+    {
+      "first_introduced": "26.0.0",
+      "name": "OH_PictureNative_GetAuxiliaryPictureTypes"
+    },
+    {
+      "first_introduced": "26.0.0",
+      "name": "OH_PictureNative_GetMetadataCount"
+    },
+    {
+      "first_introduced": "26.0.0",
+      "name": "OH_PictureNative_GetMetadataTypes"
+    },
+    {
+      "first_introduced": "26.0.0",
+      "name": "OH_PictureNative_RemoveAuxiliaryPicture"
+    },
+    {
+      "first_introduced": "26.0.0",
+      "name": "OH_PictureNative_RemoveMetadata"
+    },
+    {
+      "first_introduced": "26.0.0",
+      "name": "OH_PictureNative_DeepCopyWithItems"
+    },
+    {
+      "first_introduced": "26.0.0",
+      "name": "OH_AuxiliaryPictureNative_AcquirePixelmap"
+    },
+    {
+      "first_introduced": "26.0.0",
+      "name": "OH_AuxiliaryPictureNative_CreateUsingAllocator"
     }
   ]

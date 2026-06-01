@@ -774,10 +774,10 @@ Image_ErrorCode OH_DecodingOptionsForPicture_SetNeedsDecodeDfxData(OH_DecodingOp
     bool needsDecodeDfxData);
 
 /**
- * @brief Get the desiredSizeForMainPixelMap number for DecodingOptionsForPicture struct.
+ * @brief Gets the desiredSizeForMainPixelMap number for DecodingOptionsForPicture struct.
  * @systemapi
  * @param options The OH_DecodingOptionsForPicture pointer will be operated.
- * @param desiredSizeForMainPixelMap the number of main pixelMap desiredSize.
+ * @param desiredSizeForMainPixelmap On output, the number of main pixelMap desiredSize.
  * @return <ul>
  *         <li>{@link IMAGE_SUCCESS} if the execution is successful.</li>
  *         <li>202 if a non-system application calls this system API.</li>
@@ -785,14 +785,14 @@ Image_ErrorCode OH_DecodingOptionsForPicture_SetNeedsDecodeDfxData(OH_DecodingOp
  *         </ul>
  * @since 26.0.0
  */
-Image_ErrorCode OH_DecodingOptionsForPicture_GetDesiredSizeForMainPixelMap(OH_DecodingOptionsForPicture *options,
-    Image_Size *desiredSizeForMainPixelMap);
+Image_ErrorCode OH_DecodingOptionsForPicture_GetDesiredSizeForMainPixelmap(OH_DecodingOptionsForPicture *options,
+    Image_Size *desiredSizeForMainPixelmap);
 
 /**
  * @brief Sets the desiredSizeForMainPixelMap number for DecodingOptionsForPicture struct.
  * @systemapi
  * @param options The OH_DecodingOptionsForPicture pointer will be operated.
- * @param desiredSizeForMainPixelMap the number of main pixelMap desiredSize.
+ * @param desiredSizeForMainPixelmap the number of main pixelMap desiredSize.
  * @return <ul>
  *         <li>{@link IMAGE_SUCCESS} if the execution is successful.</li>
  *         <li>202 if a non-system application calls this system API.</li>
@@ -800,8 +800,8 @@ Image_ErrorCode OH_DecodingOptionsForPicture_GetDesiredSizeForMainPixelMap(OH_De
  *         </ul>
  * @since 26.0.0
  */
-Image_ErrorCode OH_DecodingOptionsForPicture_SetDesiredSizeForMainPixelMap(OH_DecodingOptionsForPicture *options,
-    Image_Size *desiredSizeForMainPixelMap);
+Image_ErrorCode OH_DecodingOptionsForPicture_SetDesiredSizeForMainPixelmap(OH_DecodingOptionsForPicture *options,
+    Image_Size desiredSizeForMainPixelmap);
 
 /**
  * @brief Get pixelFormat number for DecodingOptionsForPicture struct.
@@ -815,7 +815,7 @@ Image_ErrorCode OH_DecodingOptionsForPicture_SetDesiredSizeForMainPixelMap(OH_De
  *         </ul>
  * @since 26.0.0
  */
-Image_ErrorCode OH_DecodingOptionsForPicture_GetPixelFormat(OH_DecodingOptionsForPicture *options,
+Image_ErrorCode OH_DecodingOptionsForPicture_GetDesiredPixelFormat(OH_DecodingOptionsForPicture *options,
     PIXEL_FORMAT *desiredPixelFormat);
 
 /**
@@ -830,8 +830,8 @@ Image_ErrorCode OH_DecodingOptionsForPicture_GetPixelFormat(OH_DecodingOptionsFo
  *         </ul>
  * @since 26.0.0
  */
-Image_ErrorCode OH_DecodingOptionsForPicture_SetPixelFormat(OH_DecodingOptionsForPicture *options,
-    PIXEL_FORMAT *desiredPixelFormat);
+Image_ErrorCode OH_DecodingOptionsForPicture_SetDesiredPixelFormat(OH_DecodingOptionsForPicture *options,
+    PIXEL_FORMAT desiredPixelFormat);
 
 /**
  * @brief Releases the pointer to an OH_DecodingOptionsForPicture object.

@@ -317,7 +317,8 @@ Image_ErrorCode OH_PictureNative_GetAuxiliaryPictureCount(OH_PictureNative *pict
  *
  * @param picture Pointer to an OH_PictureNative object.
  * @param auxiliaryPictureTypes Pointer to the array that receives the auxiliary picture types.
- * @param count On input, the size of the auxiliaryPictureTypes array.
+ * @param count On input, the size of auxiliaryPictureTypes array.
+ *              On output, the actual number of auxiliary pictures.
  * @return <ul>
  *         <li>{@link IMAGE_SUCCESS} if the execution is successful.</li>
  *         <li>{@link IMAGE_INVALID_PARAMETER} picture, auxiliaryPictureTypes, or count is nullptr,
@@ -326,7 +327,7 @@ Image_ErrorCode OH_PictureNative_GetAuxiliaryPictureCount(OH_PictureNative *pict
  * @since 26.0.0
  */
 Image_ErrorCode OH_PictureNative_GetAuxiliaryPictureTypes(OH_PictureNative *picture,
-    Image_AuxiliaryPictureType *auxiliaryPictureTypes, uint32_t count);
+    Image_AuxiliaryPictureType *auxiliaryPictureTypes, uint32_t *count);
 
 /**
  * @brief Obtains the number of metadata entries in a Picture object.
@@ -346,16 +347,17 @@ Image_ErrorCode OH_PictureNative_GetMetadataCount(OH_PictureNative *picture, uin
  *
  * @param picture Pointer to an OH_PictureNative object.
  * @param metadataTypes Pointer to the array that receives the metadata types.
- * @param count On input, the size of the metadataTypes array.
+ * @param count On input, the size of metadataTypes array.
+ *              On output, the actual number of metadata entries.
  * @return <ul>
  *         <li>{@link IMAGE_SUCCESS} if the execution is successful.</li>
- *         <li>{@link IMAGE_INVALID_PARAMETER} picture, metadataTypes, or count is nullptr, or fail to get the picture,
- *         or count is smaller than required.</li>
+ *         <li>{@link IMAGE_INVALID_PARAMETER} picture, metadataTypes, or count is nullptr,
+ *         or fail to get the picture, or count is smaller than required.</li>
  *         </ul>
  * @since 26.0.0
  */
 Image_ErrorCode OH_PictureNative_GetMetadataTypes(OH_PictureNative *picture,
-    Image_MetadataType *metadataTypes, uint32_t count);
+    Image_MetadataType *metadataTypes, uint32_t *count);
 
 /**
  * @brief Removes an auxiliary picture from a Picture object.
@@ -517,7 +519,7 @@ Image_ErrorCode OH_AuxiliaryPictureNative_Create(uint8_t *data, size_t dataLengt
  * @release picture_native/OH_AuxiliaryPictureNative_Release {auxiliaryPicture}
  * @since 26.0.0
  */
-Image_ErrorCode OH_AuxiliaryPictureNative_CreateUsingAllocator(uint8_t *data, size_t dataLength,
+Image_ErrorCode OH_AuxiliaryPictureNative_CreateUsingAllocator(uint8_t *data, uint32_t dataLength,
     OH_AuxiliaryPictureInfo *info, IMAGE_ALLOCATOR_MODE allocator, OH_AuxiliaryPictureNative **auxiliaryPicture);
 
 /**

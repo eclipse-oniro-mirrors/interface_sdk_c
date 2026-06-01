@@ -382,7 +382,7 @@ typedef enum {
 
     /**
      * DfxData metadata.
-     * @systemapi
+     *
      * @since 26.0.0
      */
     DFXDATA_METADATA = 13
