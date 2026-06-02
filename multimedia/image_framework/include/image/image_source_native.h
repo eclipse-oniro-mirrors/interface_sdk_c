@@ -1072,6 +1072,30 @@ Image_ErrorCode OH_ImageSourceNative_ModifyImagePropertyBlob(OH_ImageSourceNativ
     void *value, size_t size);
 
 /**
+ * @brief Read metadata of the image source, use metadatatype to specify metadata of interest. If metadataType
+ * is not specified, all supported metadata will be returned.
+ * @systemapi
+ * @param source Pointer to the image source.
+ * @param index Image index.
+ * @param metadataTypes Metadata types of interest.
+ * @param typeCount Count of metadataTypes.
+ * @param outMetadataArray Output parameter used to receive a metadata array allocated by this function. The caller
+ *     is required to release this object.
+ * @param metadataCount Number of OH_PictureMetadata elements returned in outMetadataArray.
+ * @return <ul>
+ *         <li>{@link IMAGE_SUCCESS} if the execution is successful.</li>
+ *         <li>202 if a non-system application calls this system API.</li>
+ *         <li>{@link IMAGE_SOURCE_INVALID_PARAMETER} if source, outMetadataArray or metadataCount is nullptr.</li>
+ *         <li>{@link IMAGE_SOURCE_UNSUPPORTED_METADATA} if metadata doesn't exist, or types are unsupported.</li>
+ *         <li>{@link IMAGE_SOURCE_ALLOC_FAILED} memory allocation failed.</li>
+ *         </ul>
+ * @release image_common/OH_PictureMetadatas_Release {outMetadataArray}
+ * @since 26.0.0
+ */
+Image_ErrorCode OH_ImageSourceNative_ReadImageMetadataByType(OH_ImageSourceNative *source, uint32_t index,
+    Image_MetadataType *metadataTypes, size_t typeCount, OH_PictureMetadata **outMetadataArray, size_t *metadataCount);
+
+/**
  * @brief Defines raw data in an image.
  * It is used in {@link OH_ImageSourceNative_CreateImageRawData}.
  *
