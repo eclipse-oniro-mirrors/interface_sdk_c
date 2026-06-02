@@ -37,6 +37,8 @@ _ndk_library_targets = [
   "//interface/sdk_c/hiviewdfx/hitrace:libhitrace_ndk",
   "//interface/sdk_c/network/netmanager_ext/net_ethernet:libnet_ethernet",
   "//interface/sdk_c/network/netmanager_ext/net_ethernet:netethernet_header",
+  "//interface/sdk_c/network/netmanager_ext/net_trafficfilter:libnet_trafficfilter",
+  "//interface/sdk_c/network/netmanager_ext/net_trafficfilter:net_trafficfilter_header",
   "//interface/sdk_c/network/netstack/http_interceptor:http_interceptor",
   "//interface/sdk_c/network/netstack/http_interceptor:http_interceptor_header",
   "//interface/sdk_c/network/netstack/net_websocket:libnet_websocket",
