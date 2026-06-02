@@ -175,8 +175,8 @@ int32_t OH_Netstack_IsCleartextCfgByComponent(const char *component, bool *compo
  *         2305009 - Certificate is not yet valid.
  *         2305010 - Certificate has expired.
  *         2305024 - Invalid certificate authority (CA).
+ *         2305062 - Hostname verification failed.
  *         2305027 - Certificate is untrusted.
- *         2305070 - Hostname verification failed.
  * @stagemodelonly
  * @since 26.0.0
  * @note After use, you must call {@link OH_NetStack_FreeCertChain} to release the
