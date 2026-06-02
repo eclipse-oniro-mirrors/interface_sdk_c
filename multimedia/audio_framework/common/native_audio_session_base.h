@@ -58,13 +58,6 @@ typedef enum {
     DEFAULT_BEHAVIOR  = 0x00000000,
 
     /**
-     * @brief Non-privacy VoIP, allowed to be recorded.
-     *
-     * @since 26.0.0
-     */
-    VOIP_PRIVACY_TYPE_PUBLIC = 0x00000001,
-
-    /**
      * @brief When the audio stream is interrupted by the system, it will be muted.
      * The application will receive an {@link #AUDIOSTREAM_INTERRUPT_HINT_MUTE} notification when playback is muted
      * and an {@link #AUDIOSTREAM_INTERRUPT_HINT_UNMUTE} notification when playback is resumed.
