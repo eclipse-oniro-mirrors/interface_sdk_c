@@ -245,7 +245,7 @@ typedef struct OH_UdmfDataLoadInfo OH_UdmfDataLoadInfo;
 typedef OH_UdmfData* (*OH_Udmf_DataLoadHandler)(OH_UdmfDataLoadInfo* acceptableInfo);
 
 /**
- * @brief Creation a pointer to the instance of the {@link OH_UdmfData}.
+ * @brief Creates a pointer to the instance of the {@link OH_UdmfData}.
  *
  * @return If the operation is successful, a pointer to the instance of the {@link OH_UdmfData}
  * structure is returned. If the operation is failed, nullptr is returned.
@@ -369,7 +369,7 @@ int OH_UdmfRecordProvider_SetData(OH_UdmfRecordProvider* provider, void* context
     const OH_UdmfRecordProvider_GetData callback, const UdmfData_Finalize finalize);
 
 /**
- * @brief Creation a pointer to the instance of the {@link OH_UdmfRecord}, it's relate with UDS data.
+ * @brief Creates a pointer to the instance of the {@link OH_UdmfRecord}, it's relate with UDS data.
  *
  * @return If the operation is successful, a pointer to the instance of the {@link OH_UdmfRecord}
  * structure is returned. If the operation is failed, nullptr is returned.
@@ -721,7 +721,7 @@ OH_UdmfRecord* OH_UdmfData_GetRecord(OH_UdmfData* data, unsigned int index);
 bool OH_UdmfData_IsLocal(OH_UdmfData* data);
 
 /**
- * @brief Creation a pointer to the instance of the {@link OH_UdmfProperty}
+ * @brief Creates a pointer to the instance of the {@link OH_UdmfProperty}
  * from a {@link OH_UdmfData} data.
  *
  * @param unifiedData Represents a pointer to an instance of {@link OH_UdmfData}.
@@ -864,7 +864,7 @@ int OH_UdmfProperty_SetExtrasStringParam(OH_UdmfProperty* pThis,
 int OH_UdmfProperty_SetAuthPermission(OH_UdmfProperty* pThis, uint32_t authPolicy);
 
 /**
- * @brief Creation a pointer to the instance of the {@link OH_UdmfOptions}.
+ * @brief Creates a pointer to the instance of the {@link OH_UdmfOptions}.
  *
  * @return If the operation is successful, a pointer to the instance of the {@link OH_UdmfOptions}
  * structure is returned. If the operation is failed, nullptr is returned.
@@ -1110,7 +1110,7 @@ int OH_UdmfProgressInfo_GetProgress(OH_Udmf_ProgressInfo* progressInfo);
 int OH_UdmfProgressInfo_GetStatus(OH_Udmf_ProgressInfo* progressInfo);
 
 /**
- * @brief Creation a pointer to the instance of the {@link OH_UdmfGetDataParams}.
+ * @brief Creates a pointer to the instance of the {@link OH_UdmfGetDataParams}.
  *
  * @return If the operation is successful, a pointer to the instance of the {@link OH_UdmfGetDataParams}
  * structure is returned. If the operation is failed, nullptr is returned.
@@ -1181,7 +1181,7 @@ void OH_UdmfGetDataParams_SetDataProgressListener(OH_UdmfGetDataParams* params,
 void OH_UdmfGetDataParams_SetAcceptableInfo(OH_UdmfGetDataParams* params, OH_UdmfDataLoadInfo* acceptableInfo);
 
 /**
- * @brief Creation a pointer to the instance of the {@link OH_UdmfDataLoadParams}.
+ * @brief Creates a pointer to the instance of the {@link OH_UdmfDataLoadParams}.
  *
  * @return If the operation is successful, a pointer to the instance of the {@link OH_UdmfDataLoadParams}
  * structure is returned. If the operation is failed, nullptr is returned.
@@ -1220,7 +1220,7 @@ void OH_UdmfDataLoadParams_SetLoadHandler(OH_UdmfDataLoadParams* params, const O
 void OH_UdmfDataLoadParams_SetDataLoadInfo(OH_UdmfDataLoadParams* params, OH_UdmfDataLoadInfo* dataLoadInfo);
 
 /**
- * @brief Creation a pointer to the instance of the {@link OH_UdmfDataLoadInfo}.
+ * @brief Creates a pointer to the instance of the {@link OH_UdmfDataLoadInfo}.
  *
  * @return If the operation is successful, a pointer to the instance of the {@link OH_UdmfDataLoadInfo}
  * structure is returned. If the operation is failed, nullptr is returned.

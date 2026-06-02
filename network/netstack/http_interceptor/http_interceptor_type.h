@@ -178,23 +178,15 @@ typedef enum OH_Interceptor_Result {
 /**
  * @brief Defines interceptor handler
  *
+ * @param request http request packet.
+ * @param response http response packet.
+ * @param isModified whether interceptor modified the packet.
+ *
  * @since 24
  */
 typedef OH_Interceptor_Result (*OH_Http_InterceptorHandler)(
-    /**
-     * @brief http request packet
-     * @since 24
-     */
     OH_Http_Interceptor_Request *request,
-    /**
-     * @brief http response packet
-     * @since 24
-     */
     OH_Http_Interceptor_Response *response,
-    /**
-     * @brief whether interceptor modified the packet
-     * @since 24
-     */
     int32_t *isModified);
 
 /**

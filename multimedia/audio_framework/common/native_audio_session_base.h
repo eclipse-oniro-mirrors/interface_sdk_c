@@ -65,13 +65,34 @@ typedef enum {
     VOIP_PRIVACY_TYPE_PUBLIC = 0x00000001,
 
     /**
-     * @brief When the audio stream is interrupted by the system, it will be muted.
-     * The application will receive an {@link #AUDIOSTREAM_INTERRUPT_HINT_MUTE} notification when playback is muted
-     * and an {@link #AUDIOSTREAM_INTERRUPT_HINT_UNMUTE} notification when playback is resumed.
+     * @brief When the system needs to stop or pause the audio stream, it performs a forced mute instead.
+     * In the audio session scenario, the application will receive a notification
+     * {@link AUDIO_SESSION_STATE_CHANGE_HINT_MUTE} when muted
+     * and a notification {@link AUDIO_SESSION_STATE_CHANGE_HINT_UNMUTE} when resumed.
+     * In the OH_AudioRenderer and OH_AudioCapturer scenarios, the application will receive a notification
+     * {@link AUDIOSTREAM_INTERRUPT_HINT_MUTE} when muted
+     * and a notification {@link AUDIOSTREAM_INTERRUPT_HINT_UNMUTE} when resumed.
+     * This flag cannot coexist with {@link PAUSE_WHEN_INTERRUPTED}; if both flags are set,
+     * only {@link PAUSE_WHEN_INTERRUPTED} will take effect.
      *
      * @since 24
      */
     MUTE_WHEN_INTERRUPTED = 0x00000002,
+
+    /**
+     * @brief When the system needs to stop the audio stream, it performs a pause instead.
+     * In the audio session scenario, the application will receive a notification
+     * {@link AUDIO_SESSION_STATE_CHANGE_HINT_PAUSE} when paused
+     * and a notification {@link AUDIO_SESSION_STATE_CHANGE_HINT_RESUME} when resumed.
+     * In the OH_AudioRenderer and OH_AudioCapturer scenarios, the application will receive a notification
+     * {@link AUDIOSTREAM_INTERRUPT_HINT_PAUSE} when paused
+     * and a notification {@link AUDIOSTREAM_INTERRUPT_HINT_RESUME} when resumed.
+     * This flag cannot coexist with {@link MUTE_WHEN_INTERRUPTED}; if both flags are set,
+     * only this flag will take effect.
+     *
+     * @since 26.0.0
+     */
+    PAUSE_WHEN_INTERRUPTED = 0x00000004,
 } OH_AudioSession_BehaviorFlags;
 
 /**

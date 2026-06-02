@@ -17,7 +17,7 @@
  * @addtogroup USBSerialDDK
  * @{
  *
- * @brief Provides USB SERIAL DDK types and declares the macros, enumerated variables, and\n
+ * @brief Provides USB SERIAL DDK types and declares the macros, enumerated variables, and
  * data structures required by the USB SERIAL DDK APIs.
  *
  * @since 18

@@ -16,7 +16,6 @@
  * @addtogroup rawfile
  * @{
  *
- *
  * @brief Provides native functions for the resource manager to operate raw file directories and their raw files.
  *
  * You can use the resource manager to traverse, open, seek, read, and close raw files.
@@ -59,8 +58,8 @@ typedef struct RawDir RawDir;
  * @param rawDir Pointer to {@link RawDir}.
  * @param index Index of the rawfile in {@link RawDir}.
  * @return File name obtained if the rawfile exists in the directory. The file name returned can be used as the input
- * parameter of {@link OH_ResourceManager_OpenRawFile}.
- * If no file is found after all files in the directory are traversed, **NULL** is returned.
+ *     parameter of {@link OH_ResourceManager_OpenRawFile}.
+ *     <br>If no file is found after all files in the directory are traversed, **NULL** is returned.
  * @see OH_ResourceManager_OpenRawFile
  * @since 8
  * @version 1.0
@@ -72,7 +71,7 @@ const char *OH_ResourceManager_GetRawFileName(RawDir *rawDir, int index);
  * {@link OH_ResourceManager_GetRawFileName}.
  *
  * @param rawDir Pointer to {@link RawDir}.
- * @return Number of files in rawDir. If rawDir is empty, 0 is returned.
+ * @return Number of files in **rawDir**. If **rawDir** is empty, **0** is returned.
  * @see OH_ResourceManager_GetRawFileName
  * @since 8
  * @version 1.0

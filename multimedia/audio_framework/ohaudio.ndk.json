@@ -710,5 +710,25 @@
     {
         "first_introduced": "26.0.0",
         "name": "OH_AudioStreamBuilder_SetCapturerLoopbackEffectEnabled"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_AudioManager_GetAudioDebuggingManager"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_AudioDebuggingManager_PrintAppInfo"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_AudioDebuggingManager_PrintRendererInfo"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_AudioDebuggingManager_PrintCapturerInfo"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_AudioDebuggingManager_PrintSessionInfo"
     }
 ]
