@@ -32,6 +32,7 @@
     { "filePath": "arkui/ace_engine/native/native_interface.h", "kitName": "ArkUI", "subSystem": "ArkUI开发框架" },
     { "filePath": "arkui/ace_engine/native/native_material.h", "kitName": "ArkUI", "subSystem": "ArkUI开发框架" },
     { "filePath": "arkui/ace_engine/native/native_node.h", "kitName": "ArkUI", "subSystem": "ArkUI开发框架" },
+    { "filePath": "arkui/ace_engine/native/node_attributes/node_attr_custom.h", "kitName": "ArkUI", "subSystem": "ArkUI开发框架" },
     { "filePath": "arkui/ace_engine/native/native_node_napi.h", "kitName": "ArkUI", "subSystem": "ArkUI开发框架" },
     { "filePath": "arkui/ace_engine/native/native_type.h", "kitName": "ArkUI", "subSystem": "ArkUI开发框架" },
     { "filePath": "arkui/ace_engine/native/ui_input_event.h", "kitName": "ArkUI", "subSystem": "ArkUI开发框架" },
