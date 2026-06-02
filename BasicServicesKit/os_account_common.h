@@ -31,8 +31,10 @@
  * @syscap SystemCapability.Account.OsAccount
  * @since 12
  */
+
 #ifndef OS_ACCOUNT_COMMON_H
 #define OS_ACCOUNT_COMMON_H
+
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -79,9 +81,11 @@ typedef enum OsAccount_ErrCode {
      */
     OS_ACCOUNT_ERR_RESTRICTED_ACCOUNT = 12300008
 } OsAccount_ErrCode;
+
 #ifdef __cplusplus
 }
 #endif
 
 /** @} */
+
 #endif // OS_ACCOUNT_COMMON_H

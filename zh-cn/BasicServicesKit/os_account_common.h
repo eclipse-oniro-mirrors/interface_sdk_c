@@ -31,8 +31,10 @@
  * @syscap SystemCapability.Account.OsAccount
  * @since 12
  */
+
 #ifndef OS_ACCOUNT_COMMON_H
 #define OS_ACCOUNT_COMMON_H
+
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -45,37 +47,45 @@ extern "C" {
 typedef enum OsAccount_ErrCode {
     /**
      * 成功。
+     * @since 12
      */
     OS_ACCOUNT_ERR_OK = 0,
 
     /**
-     * 没有权限。<br>**起始版本：** 26.0.0
+     * @error 没有权限。
+     * @since 26.0.0
      */
     OS_ACCOUNT_ERR_PERMISSION_DENIED = 201,
 
     /**
      * 内部错误。
+     * @since 12
      */
     OS_ACCOUNT_ERR_INTERNAL_ERROR = 12300001,
 
     /**
      * 无效的参数。
+     * @since 12
      */
     OS_ACCOUNT_ERR_INVALID_PARAMETER = 12300002,
 
     /**
-     * 账号不存在。<br>**起始版本：** 26.0.0
+     * @error 账号不存在。
+     * @since 26.0.0
      */
     OS_ACCOUNT_ERR_ACCOUNT_NOT_FOUND = 12300003,
 
     /**
-     * 受限账号。<br>**起始版本：** 26.0.0
+     * @error 受限账号。
+     * @since 26.0.0
      */
     OS_ACCOUNT_ERR_RESTRICTED_ACCOUNT = 12300008
 } OsAccount_ErrCode;
+
 #ifdef __cplusplus
 }
 #endif
 
 /** @} */
+
 #endif // OS_ACCOUNT_COMMON_H
