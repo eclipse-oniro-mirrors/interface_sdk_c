@@ -120,7 +120,8 @@ OH_Drawing_ErrorCode OH_Drawing_PathIteratorHasNext(const OH_Drawing_PathIterato
  * @param pathIterator Pointer to an {@link OH_Drawing_PathIterator} object.
  * @param points Array of coordinate points.
  * @param count Size of the coordinate point array.
- * @param offset Offset of the write position relative to the start point in the array. The value range is [0, count - 4].
+ * @param offset Offset of the write position relative to the start point in the array. The value range is [0, count –
+ * 4].
  * @param verb Next operation of the current path, which serves as an output parameter.
  * @return Execution result.
  * **OH_DRAWING_SUCCESS** if the operation is successful.

@@ -120,10 +120,6 @@
     },
     { "name": "OH_Drawing_CanvasDrawTextBlob" },
     {
-        "first_introduced": "26.0.0",
-        "name": "OH_Drawing_CanvasDrawGlyphs"
-    },
-    {
         "first_introduced": "12",
         "name": "OH_Drawing_CanvasDrawRegion"
     },
@@ -2125,16 +2121,20 @@
         "name": "OH_Drawing_CanvasDrawPixelMapNine"
     },
     {
-        "first_introduced": "20",
-        "name": "OH_Drawing_SetTypographyTextTrailingSpaceOptimized"
-    },
-    {
         "first_introduced": "19",
         "name":"OH_Drawing_CanvasDrawRecordCmdNesting"
     },
     {
         "first_introduced": "20",
-        "name": "OH_Drawing_SetTextStyleBadgeType"
+        "name": "OH_Drawing_SetTypographyTextTrailingSpaceOptimized"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_Drawing_TypographyHandlerAddEncodedText"
+    },
+    {
+        "first_introduced": "20",
+        "name": "OH_Drawing_SetTextHighContrast"
     },
     {
         "first_introduced": "20",
@@ -2142,7 +2142,7 @@
     },
     {
         "first_introduced": "20",
-        "name": "OH_Drawing_SetTextHighContrast"
+        "name": "OH_Drawing_SetTextStyleBadgeType"
     },
     {
         "first_introduced": "20",
@@ -2151,10 +2151,6 @@
     {
         "first_introduced": "20",
         "name": "OH_Drawing_SetTypographyVerticalAlignment"
-    },
-    {
-        "first_introduced": "20",
-        "name": "OH_Drawing_TypographyHandlerAddEncodedText"
     },
     {
         "first_introduced": "20",
@@ -2219,6 +2215,14 @@
     {
         "first_introduced": "21",
         "name": "OH_Drawing_GetTypographyStyleAttributeInt"
+    },
+    {
+        "first_introduced": "23",
+        "name": "OH_Drawing_SetTypographyStyleAttributeBool"
+    },
+    {
+        "first_introduced": "23",
+        "name": "OH_Drawing_GetTypographyStyleAttributeBool"
     },
     {
         "first_introduced": "23",
@@ -2337,14 +2341,6 @@
         "name": "OH_Drawing_TypefaceIsItalic"
     },
     {
-        "first_introduced": "23",
-        "name": "OH_Drawing_SetTypographyStyleAttributeBool"
-    },
-    {
-        "first_introduced": "23",
-        "name": "OH_Drawing_GetTypographyStyleAttributeBool"
-    },
-    {
         "first_introduced": "26.0.0",
         "name": "OH_Drawing_SetTypographyStyleAttributeDoubleArray"
     },
@@ -2395,14 +2391,6 @@
     {
         "first_introduced": "24",
         "name": "OH_Drawing_ReleaseArrayBuffer"
-    },
-    {
-        "first_introduced": "26.0.0",
-        "name": "OH_Drawing_GetTypographyAttributeBool"
-    },
-    {
-        "first_introduced": "26.0.0",
-        "name": "OH_Drawing_SetTypographyAttributeBool"
     },
     {
         "first_introduced": "26.0.0",
