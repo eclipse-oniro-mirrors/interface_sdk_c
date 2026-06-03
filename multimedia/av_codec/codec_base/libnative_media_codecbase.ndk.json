@@ -846,4 +846,20 @@
         "first_introduced": "26.0.0",
         "name": "OH_MD_KEY_VIDEO_ENCODER_PREPROC_DROP_TO_FRAME_RATE"
     }
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_MD_KEY_VIDEO_ENCODER_NUMBER_OF_PENDING_FRAMES"
+    }
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_MD_KEY_VIDEO_DECODER_OUTPUT_IN_DECODING_ORDER"
+    }
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_MD_KEY_VIDEO_ENCODER_MAX_FRAME_DELAY_COUNT"
+    }
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_MD_KEY_VIDEO_ENCODER_REPEAT_HEADER_BEFORE_SYNC_FRAMES"
+    }
 ]
