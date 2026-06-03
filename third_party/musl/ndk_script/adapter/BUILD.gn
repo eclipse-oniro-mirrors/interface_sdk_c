@@ -25,3 +25,15 @@ ohos_ndk_library("libc_ndk") {
     "-Wno-incomplete-setjmp-declaration",
   ]
 }
+
+ohos_ndk_lite_library("libc_ndk_lite") {
+  output_name = "c"
+  output_extension = "so"
+  ndk_description_file = "./libc_lite.ndk.json"
+  cflags = [
+    "-Wno-incompatible-library-redeclaration",
+    "-Wno-builtin-requires-header",
+    "-Wno-invalid-noreturn",
+    "-Wno-incomplete-setjmp-declaration",
+  ]
+}

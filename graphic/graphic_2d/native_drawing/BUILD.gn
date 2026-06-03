@@ -14,6 +14,13 @@
 import("//build/ohos.gni")
 import("//build/ohos/ndk/ndk.gni")
 
+ohos_ndk_headers("native_drawing_lite_header") {
+  dest_dir = "$ndk_lite_headers_out_dir/native_drawing"
+  sources = [
+    "//interface/sdk_c/graphic/graphic_2d/native_drawing/lite/drawing_canvas_lite.h",
+  ]
+}
+
 ohos_ndk_headers("native_drawing_header") {
   dest_dir = "$ndk_headers_out_dir/native_drawing"
   sources = [
@@ -60,6 +67,16 @@ ohos_ndk_headers("native_drawing_header") {
     "//interface/sdk_c/graphic/graphic_2d/native_drawing/drawing_text_typography.h",
     "//interface/sdk_c/graphic/graphic_2d/native_drawing/drawing_typeface.h",
     "//interface/sdk_c/graphic/graphic_2d/native_drawing/drawing_types.h",
+  ]
+}
+
+ohos_ndk_lite_library("libnative_drawing_ndk_lite") {
+  output_name = "native_drawing_lite"
+  output_extension = "so"
+  ndk_description_file = "./lite/libnative_drawing_lite.ndk.json"
+  system_capability = "SystemCapability.Graphic.Graphic2D.NativeDrawing"
+  system_capability_headers = [
+    "native_drawing/lite/drawing_canvas_lite.h",
   ]
 }
 

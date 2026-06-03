@@ -106,6 +106,8 @@ _ndk_library_targets = [
   "//interface/sdk_c/graphic/graphic_2d/native_color_space_manager:native_color_space_manager_header",
   "//interface/sdk_c/graphic/graphic_2d/native_drawing:libnative_drawing_ndk",
   "//interface/sdk_c/graphic/graphic_2d/native_drawing:native_drawing_header",
+  "//interface/sdk_c/graphic/graphic_2d/native_drawing:native_drawing_lite_header",
+  "//interface/sdk_c/graphic/graphic_2d/native_drawing:libnative_drawing_ndk_lite",
   "//interface/sdk_c/graphic/graphic_2d/native_effect:libnative_effect_ndk",
   "//interface/sdk_c/graphic/graphic_2d/native_effect:native_effect_header",
   "//interface/sdk_c/IPCKit:libipc_capi",
@@ -296,6 +298,7 @@ _ndk_library_targets = [
 
 _ndk_base_libs = [
   "//interface/sdk_c/third_party/musl/ndk_script/adapter:libc_ndk",
+  "//interface/sdk_c/third_party/musl/ndk_script/adapter:libc_ndk_lite",
   "//interface/sdk_c/third_party/musl/ndk_script:musl_ndk_libs_arm32",
   "//interface/sdk_c/third_party/musl/ndk_script:musl_ndk_libs_aarch64",
   "//interface/sdk_c/third_party/musl/ndk_script:musl_ndk_libs_x86_64",
@@ -303,6 +306,9 @@ _ndk_base_libs = [
 ]
 _ndk_sysroot_uapi =
     [ "//interface/sdk_c/third_party/musl/ndk_script:musl_sysroot" ]
+
+_ndk_sysroot_lite_uapi =
+    [ "//interface/sdk_c/third_party/musl/ndk_script:musl_sysroot_lite" ]
 
 _ndk_cmake = [ "//build/ohos/ndk:ndk_cmake_files" ]
 _ndk_ninja = []
@@ -341,7 +347,7 @@ _ndk_tee_build_tool =
 
 all_ndk_targets_list =
     _ndk_library_targets + _ndk_base_libs + _ndk_sysroot_uapi + _ndk_cmake +
-    _ndk_ninja + _ndk_tee_build_tool
+    _ndk_ninja + _ndk_tee_build_tool + _ndk_sysroot_lite_uapi
 
 if (build_windows_ndk_target) {
   all_ndk_targets_list +=

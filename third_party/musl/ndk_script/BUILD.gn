@@ -242,6 +242,14 @@ group("musl_sysroot") {
   ]
 }
 
+group("musl_sysroot_lite") {
+  deps = [
+    ":copy_musl_sysroot_lite",
+    ":musl_bits_riscv32",
+    ":musl_bits_cortex_m",
+  ]
+}
+
 action("copy_ndk_uapi") {
   outputs = [ "${musl_target_out_dir}/${ndk_musl_include}/linux" ]
   script = "${musl_dir}/scripts/copy_uapi.sh"
@@ -279,6 +287,16 @@ action("copy_musl_sysroot") {
   deps = [ ":updated_version" ]
 }
 
+action("copy_musl_sysroot_lite") {
+  outputs = [ "${ndk_lite_headers_out_dir}" ]
+  script = "copy_musl_sysroot_lite.sh"
+  args =
+      [ "-i" ] + [ rebase_path("${musl_target_out_dir}/${ndk_musl_include}") ]
+  args += [ "-o" ] + [ rebase_path("${ndk_lite_headers_out_dir}") ]
+  args += [ "-t" ] + [ "${musl_arch}" ]
+  deps = [ ":updated_version" ]
+}
+
 musl_libs_arm32 = [
   "//third_party/musl:create_alltypes_h(//build/toolchain/ohos:ohos_clang_arm)",
   "//third_party/musl:create_syscall_h(//build/toolchain/ohos:ohos_clang_arm)",
@@ -295,6 +313,16 @@ musl_libs_x86_64 = [
   "//third_party/musl:create_alltypes_h(//build/toolchain/ohos:ohos_clang_x86_64)",
   "//third_party/musl:create_syscall_h(//build/toolchain/ohos:ohos_clang_x86_64)",
   "//third_party/musl:musl_copy_inc_bits(//build/toolchain/ohos:ohos_clang_x86_64)",
+]
+
+musl_libs_riscv32 = [
+  "//third_party/musl:create_alltypes_h(//build/toolchain/ohos:ohos_clang_riscv32)",
+  "//third_party/musl:musl_copy_inc_bits(//build/toolchain/ohos:ohos_clang_riscv32)",
+]
+
+musl_libs_cortex_m = [
+  "//third_party/musl:create_alltypes_h(//build/toolchain/ohos:ohos_clang_cortex_m)",
+  "//third_party/musl:musl_copy_inc_bits(//build/toolchain/ohos:ohos_clang_cortex_m)",
 ]
 
 musl_lib_arm32 = [
@@ -403,6 +431,54 @@ ohos_copy("musl_bits_x86_64") {
                  "/usr/include/x86_64-linux-ohos/bits/${s}" ]
   }
   outputs = [ "$ndk_os_irrelevant_out_dir/sysroot/usr/include/x86_64-linux-ohos/bits/{{source_file_part}}" ]
+}
+
+## riscv32-linux-ohos bits directory
+ohos_copy("musl_bits_riscv32") {
+  deps = musl_libs_riscv32
+  sources = []
+
+  sources_orig = [
+    "alltypes.h",
+    "posix.h",
+    "signal.h",
+    "stdint.h",
+    "fcntl.h",
+    "errno.h",
+    "limits.h",
+    "pthread_adapt.h",
+  ]
+
+  foreach(s, sources_orig) {
+    sources += [ get_label_info(deps[0], "target_out_dir") +
+                "/usr/include/riscv32-linux-ohos/bits/${s}" ]
+  }
+
+  outputs = [ "$ndk_os_irrelevant_out_dir/sysroot_lite/usr/include/riscv32-linux-ohos/bits/{{source_file_part}}" ]
+}
+
+## arm-liteos-ohos bits directory
+ohos_copy("musl_bits_cortex_m") {
+  deps = musl_libs_cortex_m
+  sources = []
+
+  sources_orig = [
+    "alltypes.h",
+    "posix.h",
+    "signal.h",
+    "stdint.h",
+    "fcntl.h",
+    "errno.h",
+    "limits.h",
+    "pthread_adapt.h",
+  ]
+
+  foreach(s, sources_orig) {
+    sources += [ get_label_info(deps[0], "target_out_dir") +
+                "/usr/include/arm-liteos-ohos/bits/${s}" ]
+  }
+
+  outputs = [ "$ndk_os_irrelevant_out_dir/sysroot_lite/usr/include/arm-liteos-ohos/bits/{{source_file_part}}" ]
 }
 
 ohos_copy("musl_ndk_libs_arm32") {
