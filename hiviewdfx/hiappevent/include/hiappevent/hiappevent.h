@@ -939,21 +939,21 @@ typedef enum OH_HiAppEvent_FrameworkType {
      *
      * @since 26.0.0
      */
-    OH_FLUTTER_DART,
+    OH_FLUTTER_DART = 0,
 
     /**
      * React_native_hermes type.
      *
      * @since 26.0.0
      */
-    OH_REACT_NATIVE_HERMES,
+    OH_REACT_NATIVE_HERMES = 1,
 
     /**
      * Kmp_kotlin type.
      *
      * @since 26.0.0
      */
-    OH_KMP_KOTLIN
+    OH_KMP_KOTLIN = 2
 } OH_HiAppEvent_FrameworkType;
 
 /**
