@@ -4,7 +4,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- * http://www.apache.org/licenses/LICENSE-2.0
+ *     http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -12,6 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 /**
  * @addtogroup Image_NativeModule
  * @{
@@ -20,11 +21,12 @@
  *
  * @since 12
  */
+
 /**
  * @file image_common.h
  *
- * @brief The file declares the common enums and structs used by the image interface.
- * 
+ * @brief Declares the common enums and structs used by the image interface.
+ *
  * @library libimage_common.so
  * @kit ImageKit
  * @syscap SystemCapability.Multimedia.Image.Core
@@ -114,47 +116,47 @@ typedef struct Image_Scale {
 
 #ifdef __cplusplus
 /**
- * @brief The struct describes an image string, which is a carrier for string data.
- * 
+ * @brief Defines the region of the image source to decode.
+ *
  * @since 12
  */
 struct Image_String {
     /** data for string type */
     char *data = nullptr;
-    /** data length for string type */
+    /** data lenth for string type */
     size_t size = 0;
 };
 #else
 /**
- * @brief The struct describes an image string, which is a carrier for string data.
- * 
+ * @brief Defines the region of the image source to decode.
+ *
  * @since 12
  */
 struct Image_String {
     /** data for string type */
     char *data;
-    /** data length for string type */
+    /** data lenth for string type */
     size_t size;
 };
 #endif
 
 /**
  * @brief Define a PictureMetadata struct type, used for picture metadata.
- * 
+ *
  * @since 13
  */
 struct OH_PictureMetadata;
 
 /**
  * @brief Define a PictureMetadata struct type, used for picture metadata.
- * 
+ *
  * @since 13
  */
 typedef struct OH_PictureMetadata OH_PictureMetadata;
 
 /**
  * @brief Defines the property string (in key-value format) of the image source.
- * 
+ *
  * @since 12
  */
 typedef struct Image_String Image_String;
@@ -204,8 +206,9 @@ typedef enum {
     IMAGE_UNSUPPORTED_CONVERSION = 7600203,
     /** invalid region */
     IMAGE_INVALID_REGION = 7600204,
-    /** @error unsupported memory format
-     *  @since 13
+    /**
+     * @error unsupported memory format
+     * @since 13
      */
     IMAGE_UNSUPPORTED_MEMORY_FORMAT = 7600205,
     /**
@@ -274,7 +277,7 @@ typedef enum {
      * @since 23
      */
     IMAGE_SOURCE_UNSUPPORTED_METADATA = 7700202,
-    /** @error unsupported options, e.g, cannot convert image into desired pixel format.
+    /* @error unsupported options, e.g, cannot convert image into desired pixel format.
      * @since 15
      */
     IMAGE_SOURCE_UNSUPPORTED_OPTIONS = 7700203,
@@ -301,32 +304,28 @@ typedef enum {
      * @error Invalid parameter for ImageReceiver.
      * @since 20
      */
-    IMAGE_RECEIVER_INVALID_PARAMETER = 7900201
+    IMAGE_RECEIVER_INVALID_PARAMETER = 7900201,
 } Image_ErrorCode;
 
 /**
- * @brief Enumerates the metadata types.
- * 
+ * @brief Define the metadata type.
+ *
  * @since 13
  */
 typedef enum {
     /**
-     * Exif metadata.
-     * 
-     * @since 13
+     * EXIF metadata.
      */
     EXIF_METADATA = 1,
 
     /**
-     * Fragment map metadata.
-     * 
-     * @since 13
+     * Fragment metadata.
      */
     FRAGMENT_METADATA = 2,
 
     /**
-     * GIF image metadata.
-     * 
+     * Metadata of a GIF image.
+     *
      * @since 20
      */
     GIF_METADATA = 5
@@ -359,80 +358,83 @@ typedef enum {
 } IMAGE_ALLOCATOR_MODE;
 
 /**
- * @brief Creates the pointer to an OH_PictureMetadata struct.
- * 
- * @param metadataType Metadata type.
- * @param metadata Double pointer to the OH_PictureMetadata struct created.
- * @return {@link IMAGE_SUCCESS}: The operation is successful.
- *     <br>{@link IMAGE_BAD_PARAMETER}: A parameter is incorrect.
+ * @brief Creates a <b>PictureMetadata</b> object.
+ *
+ * @param metadataType The type of metadata.
+ * @param metadata The PictureMetadata pointer will be operated.
+ * @return Image functions result code.
+ *         {@link IMAGE_SUCCESS} if the execution is successful.
+ *         {@link IMAGE_BAD_PARAMETER} metadata is nullptr.
  * @since 13
  */
 Image_ErrorCode OH_PictureMetadata_Create(Image_MetadataType metadataType, OH_PictureMetadata **metadata);
 
 /**
- * @brief Obtains a property of metadata based on the key. **value.data** obtained through this API lacks the string
- * terminator **\0**. Please use it with caution.
- * 
- * @param metadata Pointer to an OH_PictureMetadata struct.
- * @param key Pointer to the key of the property.
- * @param value Pointer to the value of the property.
- * @return {@link IMAGE_SUCCESS}: The operation is successful.
- *     <br>{@link IMAGE_BAD_PARAMETER}: A parameter is incorrect.
- *     <br>{@link IMAGE_UNSUPPORTED_METADATA}: The metadata type is not supported, or the metadata type and the
- *     auxiliary picture type do not match.
+ * @brief Obtains the property of picture metadata.
+ *
+ * @param metadata The PictureMetadata pointer will be operated.
+ * @param key The property's key.
+ * @param value The property's value.
+ * @return Image functions result code.
+ *         {@link IMAGE_SUCCESS} if the execution is successful.
+ *         {@link IMAGE_BAD_PARAMETER} metadata is nullptr, or key is nullptr, or value is nullptr.
+ *         {@link IMAGE_UNSUPPORTED_METADATA} unsupported metadata type, or the metadata type does not match the
+ *         auxiliary picture type.
  * @since 13
  */
 Image_ErrorCode OH_PictureMetadata_GetProperty(OH_PictureMetadata *metadata, Image_String *key, Image_String *value);
 
-
 /**
- * @brief Obtains the metadata value of an OH_PictureMetadata instance. The output **value.data** ends with the string
- * terminator **\0**.
- * 
- * @param metadata Pointer to an OH_PictureMetadata struct.
- * @param key Pointer to the key of the property.
- * @param value Pointer to the value of the property.
- * @return {@link IMAGE_SUCCESS}: The operation is successful.
- *     <br>{@link IMAGE_INVALID_PARAMETER}: The **metadata**, **key**, or **value** parameter is a null pointer.
- *     <br>{@link IMAGE_UNSUPPORTED_METADATA}: The metadata type is not supported, or the metadata type and the
- *     auxiliary picture type do not match.
- * @since 19
- */
-Image_ErrorCode OH_PictureMetadata_GetPropertyWithNull(OH_PictureMetadata *metadata, Image_String *key, Image_String *value);
-
-/**
- * @brief Sets a property of metadata based on the key.
- * 
- * @param metadata Pointer to an OH_PictureMetadata struct.
- * @param key Pointer to the key of the property.
- * @param value Pointer to the value of the property.
- * @return {@link IMAGE_SUCCESS}: The operation is successful.
- *     <br>{@link IMAGE_BAD_PARAMETER}: A parameter is incorrect.
- *     <br>{@link IMAGE_UNSUPPORTED_METADATA}: The metadata type is not supported, or the metadata type and the
- *     auxiliary picture type do not match.
+ * @brief Set picture metadata property.
+ *
+ * @param metadata The PictureMetadata pointer will be operated.
+ * @param key The property's key.
+ * @param value The property's value.
+ * @return Image functions result code.
+ *         {@link IMAGE_SUCCESS} if the execution is successful.
+ *         {@link IMAGE_BAD_PARAMETER} metadata is nullptr, or key is nullptr, or value is nullptr.
+ *         {@link IMAGE_UNSUPPORTED_METADATA} unsupported metadata type, or the metadata type does not match the
+ *         auxiliary picture type.
  * @since 13
  */
 Image_ErrorCode OH_PictureMetadata_SetProperty(OH_PictureMetadata *metadata, Image_String *key, Image_String *value);
 
 /**
- * @brief Releases the pointer to an OH_PictureMetadata struct.
- * 
- * @param metadata Pointer to an OH_PictureMetadata struct.
- * @return {@link IMAGE_SUCCESS}: The operation is successful.
- *     <br>{@link IMAGE_BAD_PARAMETER}: A parameter is incorrect.
+ * @brief Obtains the property of picture metadata. The output value.data is null-terminated.
+ *
+ * @param metadata Pointer to OH_PictureMetadata.
+ * @param key Pointer to property's key.
+ * @param value Pointer to property's value. Output parameter.
+ * @return Image functions result code.
+ *         {@link IMAGE_SUCCESS} if the execution is successful.
+ *         {@link IMAGE_INVALID_PARAMETER} metadata is nullptr, or key is nullptr, or value is nullptr.
+ *         {@link IMAGE_UNSUPPORTED_METADATA} unsupported metadata type, or the metadata type does not match the
+ *         auxiliary picture type.
+ * @since 19
+ */
+Image_ErrorCode OH_PictureMetadata_GetPropertyWithNull(OH_PictureMetadata *metadata, Image_String *key, Image_String *value);
+
+/**
+ * @brief Releases this PictureMetadata object.
+ *
+ * @param metadata The PictureMetadata pointer will be operated.
+ * @return Image functions result code.
+ *         {@link IMAGE_SUCCESS} if the execution is successful.
+ *         {@link IMAGE_BAD_PARAMETER} metadata is nullptr.
  * @since 13
  */
 Image_ErrorCode OH_PictureMetadata_Release(OH_PictureMetadata *metadata);
 
 /**
- * @brief Clones metadata.
- * 
- * @param oldMetadata Pointer to an OH_PictureMetadata struct.
- * @param newMetadata Double pointer to the OH_PictureMetadata struct obtained.
- * @return {@link IMAGE_SUCCESS}: The operation is successful.
- *     <br>{@link IMAGE_BAD_PARAMETER}: A parameter is incorrect.
- *     <br>{@link IMAGE_ALLOC_FAILED}: The memory allocation fails.
- *     <br>{@link IMAGE_COPY_FAILED}: The memory copy fails.
+ * @brief Obtains a clone of metadata.
+ *
+ * @param oldMetadata The PictureMetadata pointer will be operated.
+ * @param newMetadata The PictureMetadata pointer will be cloned.
+ * @return Image functions result code.
+ *         {@link IMAGE_SUCCESS} if the execution is successful.
+ *         {@link IMAGE_BAD_PARAMETER} metadata is nullptr.
+ *         {@link IMAGE_ALLOC_FAILED} memory alloc failed.
+ *         {@link IMAGE_COPY_FAILED} memory copy failed.
  * @since 13
  */
 Image_ErrorCode OH_PictureMetadata_Clone(OH_PictureMetadata *oldMetadata, OH_PictureMetadata **newMetadata);
@@ -1661,15 +1663,14 @@ static const char *OHOS_IMAGE_PROPERTY_FRAGMENT_WIDTH = "FragmentImageWidth";
 static const char *OHOS_IMAGE_PROPERTY_FRAGMENT_HEIGHT = "FragmentImageHeight";
 
 /**
- * @brief Delay of each frame in a GIF image, in milliseconds.
+ * @brief Delay time of each frame in a GIF image in milliseconds.
  *
  * @since 20
  */
-
 static const char *IMAGE_PROPERTY_GIF_DELAY_TIME = "GifDelayTime";
 
 /**
- * @brief Disposal type of each frame in a GIF image.
+ * @brief Disposal type of each frame in gif.
  *
  * @since 20
  */
@@ -1724,8 +1725,8 @@ static const char *OHOS_DNG_PROPERTY_CFA_PLANE_COLOR = "CFAPlaneColor";
 
 /**
  * @brief The CFA (color filter array) layout.
- * It is used in {@link OH_ImageSourceNative_GetImagePropertyShort} and
- * {@link OH_ImageSourceNative_GetImagePropertyLong}.
+ * It is used in {@link OH_ImageSourceNative_GetImagePropertyShort} and {@link
+ * OH_ImageSourceNative_GetImagePropertyLong}.
  *
  * @since 24
  */
@@ -1851,8 +1852,9 @@ static const char *OHOS_DNG_PROPERTY_CAMERA_CALIBRATION2 = "CameraCalibration2";
 
 /**
  * @brief A dimensionality reduction matrix under the first calibration
- * illuminant. It is used in {@link OH_ImageSourceNative_GetImagePropertyArraySize}
- * and {@link OH_ImageSourceNative_GetImagePropertyDoubleArray}.
+ * illuminant. It is used in {@link
+ * OH_ImageSourceNative_GetImagePropertyArraySize} and {@link
+ * OH_ImageSourceNative_GetImagePropertyDoubleArray}.
  *
  * @since 24
  */
@@ -1860,8 +1862,9 @@ static const char *OHOS_DNG_PROPERTY_REDUCTION_MATRIX1 = "ReductionMatrix1";
 
 /**
  * @brief A dimensionality reduction matrix under the second calibration
- * illuminant. It is used in {@link OH_ImageSourceNative_GetImagePropertyArraySize} and
- * {@link OH_ImageSourceNative_GetImagePropertyDoubleArray}.
+ * illuminant. It is used in {@link
+ * OH_ImageSourceNative_GetImagePropertyArraySize} and {@link
+ * OH_ImageSourceNative_GetImagePropertyDoubleArray}.
  *
  * @since 24
  */
@@ -1989,8 +1992,8 @@ static const char *OHOS_DNG_PROPERTY_DNG_PRIVATE_DATA = "DNGPrivateData";
 
 /**
  * @brief Whether the EXIF MakerNote tag is safe.
- * It is used in {@link OH_ImageSourceNative_GetImagePropertyShort} and
- * {@link OH_ImageSourceNative_GetImagePropertyLong}.
+ * It is used in {@link OH_ImageSourceNative_GetImagePropertyShort} and {@link
+ * OH_ImageSourceNative_GetImagePropertyLong}.
  *
  * @since 24
  */
@@ -1998,8 +2001,8 @@ static const char *OHOS_DNG_PROPERTY_MAKER_NOTE_SAFETY = "MakerNoteSafety";
 
 /**
  * @brief The first calibration illuminant.
- * It is used in {@link OH_ImageSourceNative_GetImagePropertyShort} and
- * {@link OH_ImageSourceNative_GetImagePropertyLong}.
+ * It is used in {@link OH_ImageSourceNative_GetImagePropertyShort} and {@link
+ * OH_ImageSourceNative_GetImagePropertyLong}.
  *
  * @since 24
  */
@@ -2008,8 +2011,8 @@ static const char *OHOS_DNG_PROPERTY_CALIBRATION_ILLUMINANT1 =
 
 /**
  * @brief The second calibration illuminant.
- * It is used in {@link OH_ImageSourceNative_GetImagePropertyShort} and
- * {@link OH_ImageSourceNative_GetImagePropertyLong}.
+ * It is used in {@link OH_ImageSourceNative_GetImagePropertyShort} and {@link
+ * OH_ImageSourceNative_GetImagePropertyLong}.
  *
  * @since 24
  */
@@ -2111,8 +2114,8 @@ static const char *OHOS_DNG_PROPERTY_CURRENT_PRE_PROFILE_MATRIX =
 
 /**
  * @brief The colorimetric reference.
- * It is used in {@link OH_ImageSourceNative_GetImagePropertyShort} and
- * {@link OH_ImageSourceNative_GetImagePropertyLong}.
+ * It is used in {@link OH_ImageSourceNative_GetImagePropertyShort} and {@link
+ * OH_ImageSourceNative_GetImagePropertyLong}.
  *
  * @since 24
  */
@@ -2338,8 +2341,8 @@ static const char *OHOS_DNG_PROPERTY_SUB_TILE_BLOCK_SIZE = "SubTileBlockSize";
 
 /**
  * @brief The row interleave factor.
- * It is used in {@link OH_ImageSourceNative_GetImagePropertyShort} and
- * {@link OH_ImageSourceNative_GetImagePropertyLong}.
+ * It is used in {@link OH_ImageSourceNative_GetImagePropertyShort} and {@link
+ * OH_ImageSourceNative_GetImagePropertyLong}.
  *
  * @since 24
  */
@@ -2493,7 +2496,6 @@ static const char *OHOS_DNG_PROPERTY_RAW_TO_PREVIEW_GAIN = "RawToPreviewGain";
  * @since 24
  */
 static const char *OHOS_DNG_PROPERTY_DEFAULT_USER_CROP = "DefaultUserCrop";
-
 #ifdef __cplusplus
 };
 #endif
