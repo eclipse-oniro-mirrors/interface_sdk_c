@@ -106,8 +106,6 @@ _ndk_library_targets = [
   "//interface/sdk_c/graphic/graphic_2d/native_color_space_manager:native_color_space_manager_header",
   "//interface/sdk_c/graphic/graphic_2d/native_drawing:libnative_drawing_ndk",
   "//interface/sdk_c/graphic/graphic_2d/native_drawing:native_drawing_header",
-  "//interface/sdk_c/graphic/graphic_2d/native_drawing:native_drawing_lite_header",
-  "//interface/sdk_c/graphic/graphic_2d/native_drawing:libnative_drawing_ndk_lite",
   "//interface/sdk_c/graphic/graphic_2d/native_effect:libnative_effect_ndk",
   "//interface/sdk_c/graphic/graphic_2d/native_effect:native_effect_header",
   "//interface/sdk_c/IPCKit:libipc_capi",

@@ -28,4 +28,29 @@ if [ ! -d "${OUT_DIR}" ];then
     mkdir -p ${OUT_DIR}
 fi
 
-cp -rp ${SOURCE_DIR}/* ${OUT_DIR}
+if [ ! -d "${OUT_DIR}/sys" ];then
+    mkdir -p ${OUT_DIR}/sys
+fi
+
+cp -rp ${SOURCE_DIR}/fortify/  ${OUT_DIR}
+cp ${SOURCE_DIR}/sys/select.h  ${OUT_DIR}/sys/
+cp ${SOURCE_DIR}/sys/stat.h    ${OUT_DIR}/sys/
+cp ${SOURCE_DIR}/sys/time.h    ${OUT_DIR}/sys/
+cp ${SOURCE_DIR}/alloca.h      ${OUT_DIR}
+cp ${SOURCE_DIR}/ctype.h       ${OUT_DIR}
+cp ${SOURCE_DIR}/fcntl.h       ${OUT_DIR}
+cp ${SOURCE_DIR}/features.h    ${OUT_DIR}
+cp ${SOURCE_DIR}/math.h        ${OUT_DIR}
+cp ${SOURCE_DIR}/pthread.h     ${OUT_DIR}
+cp ${SOURCE_DIR}/sched.h       ${OUT_DIR}
+cp ${SOURCE_DIR}/signal.h      ${OUT_DIR}
+
+cp ${SOURCE_DIR}/stdarg.h      ${OUT_DIR}
+cp ${SOURCE_DIR}/stddef.h      ${OUT_DIR}
+cp ${SOURCE_DIR}/stdint.h      ${OUT_DIR}
+cp ${SOURCE_DIR}/stdio.h       ${OUT_DIR}
+cp ${SOURCE_DIR}/stdlib.h      ${OUT_DIR}
+cp ${SOURCE_DIR}/string.h      ${OUT_DIR}
+cp ${SOURCE_DIR}/strings.h     ${OUT_DIR}
+cp ${SOURCE_DIR}/time.h        ${OUT_DIR}
+cp ${SOURCE_DIR}/unistd.h      ${OUT_DIR}
