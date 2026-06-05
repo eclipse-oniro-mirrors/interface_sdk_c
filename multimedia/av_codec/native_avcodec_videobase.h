@@ -18,7 +18,7 @@
  *
  * @brief The CodecBase module provides variables, properties, and functions
  * for audio and video muxer, demuxer, and basic encoding and decoding functions.
- * 
+ *
  * @since 9
  */
 /**
@@ -26,7 +26,7 @@
  *
  * @brief Declare the Native API used for basic video encoding and decoding functions, 
  * as well as video-specific configurations and parameters.
- * 
+ *
  * @kit AVCodecKit
  * @library libnative_media_codecbase.so
  * @syscap SystemCapability.Multimedia.Media.CodecBase
@@ -44,51 +44,51 @@ extern "C" {
 
 /**
  * @brief Key for describing the top-coordinate (y) of a single ROI rectangle, value type is int32_t.
- * 
+ *
  * The origin of the coordinate system is the top-left corner of the video.
  * The value range is [0, {@link OH_MD_KEY_VIDEO_METADATA_ROI_BOTTOM}).
  * This is a mandatory key used when configuring ROI parameters.
- * 
+ *
  * @since 26.0.0
  */
 extern const char *OH_MD_KEY_VIDEO_METADATA_ROI_TOP;
 
 /**
  * @brief Key for describing the left-coordinate (x) of a single ROI rectangle, value type is int32_t.
- * 
+ *
  * The origin of the coordinate system is the top-left corner of the video.
  * The value range is [0, {@link OH_MD_KEY_VIDEO_METADATA_ROI_RIGHT}).
  * This is a mandatory key used when configuring ROI parameters.
- * 
+ *
  * @since 26.0.0
  */
 extern const char *OH_MD_KEY_VIDEO_METADATA_ROI_LEFT;
 
 /**
  * @brief Key for describing the bottom-coordinate (y) of a single ROI rectangle, value type is int32_t.
- * 
+ *
  * The origin of the coordinate system is the top-left corner of the video.
  * The value range is ({@link OH_MD_KEY_VIDEO_METADATA_ROI_TOP}, {@link OH_MD_KEY_VIDEO_HEIGHT}].
  * This is a mandatory key used when configuring ROI parameters.
- * 
+ *
  * @since 26.0.0
  */
 extern const char *OH_MD_KEY_VIDEO_METADATA_ROI_BOTTOM;
 
 /**
  * @brief Key for describing the right-coordinate (x) of a single ROI rectangle, value type is int32_t.
- * 
+ *
  * The origin of the coordinate system is the top-left corner of the video.
  * The value range is ({@link OH_MD_KEY_VIDEO_METADATA_ROI_LEFT}, {@link OH_MD_KEY_VIDEO_WIDTH}].
  * This is a mandatory key used when configuring ROI parameters. 
- * 
+ *
  * @since 26.0.0
  */
 extern const char *OH_MD_KEY_VIDEO_METADATA_ROI_RIGHT;
 
 /**
  * @brief Key for describing the quantization parameter offset (delta-qp) of a single ROI, value type is int32_t.
- * 
+ *
  * The value range is [-51, 51].
  * This is an optional key used when configuring ROI parameters.
  *
@@ -115,39 +115,40 @@ extern const char *OH_MD_KEY_VIDEO_METADATA_ROI_SEM_LABEL;
 typedef enum OH_VideoMetadataRoiSemanticLabel {
     /**
      * Indicates an unspecified or unknown region.
+     *
      * @since 26.0.0
      */
     VIDEO_METADATA_ROI_SEM_LABEL_OTHER = 0,
-    
     /**
      * Indicates that the ROI contains a human face.
+     *
      * @since 26.0.0
      */
     VIDEO_METADATA_ROI_SEM_LABEL_FACE = 1
 } OH_VideoMetadataRoiSemanticLabel;
 
 /**
- * @brief Formats the region of interest (ROI) configuration from an OH_AVFormat handle 
+ * @brief Formats the region of interest (ROI) configuration from an OH_AVFormat handle
  * into a string and appends it to the target string.
  *
- * This function extracts ROI properties (such as coordinates, delta quantization parameter, 
- * and semantic label) from the provided format handle, constructs the standard ROI string 
+ * This function extracts ROI properties (such as coordinates, delta quantization parameter,
+ * and semantic label) from the provided format handle, constructs the standard ROI string
  * representation, and seamlessly appends it to the string pointed to by roiStrInOut.
  *
  * If *roiStrInOut is NULL, this function will allocate memory for a new string.
- * If *roiStrInOut is not NULL, this function will reallocate the memory to append 
+ * If *roiStrInOut is not NULL, this function will reallocate the memory to append
  * the new configuration safely.
  *
- * @note The caller takes ownership of the memory allocated for *roiStrInOut. 
- * To prevent memory leaks, the caller is fully responsible for freeing the 
+ * @note The caller takes ownership of the memory allocated for *roiStrInOut.
+ * To prevent memory leaks, the caller is fully responsible for freeing the
  * final string using the standard free() function when it is no longer needed.
  *
  * @param roiStrInOut A double pointer to the target string. The pointer itself must not be NULL.
  * If *roiStrInOut is NULL, a new string is allocated.
- * @param format The OH_AVFormat handle containing the ROI parameters to be appended. 
+ * @param format The OH_AVFormat handle containing the ROI parameters to be appended.
  * Must not be NULL.
  * @return Returns AV_ERR_OK if the string is successfully formatted and appended.
- * Returns AV_ERR_INVALID_VAL if the roiStrInOut pointer or format handle is NULL, 
+ * Returns AV_ERR_INVALID_VAL if the roiStrInOut pointer or format handle is NULL,
  * or if the format lacks required ROI keys.
  * Returns AV_ERR_NO_MEMORY if internal memory allocation or reallocation fails.
  * @since 26.0.0
@@ -156,7 +157,7 @@ OH_AVErrCode OH_VideoMetadata_AppendRoiString(char **roiStrInOut, OH_AVFormat *f
 
 /**
  * @brief Pre-parses the ROI string to obtain the number of valid ROI regions contained within it.
- * * This interface is decoupled from specific backend capacity limits and accurately returns 
+ * * This interface is decoupled from specific backend capacity limits and accurately returns
  * the number of valid regions identified in the string based on syntax rules.
  *
  * @param roiStr The input ROI configuration string.
@@ -169,8 +170,8 @@ OH_AVErrCode OH_VideoMetadata_GetRoiCount(const char *roiStr, uint32_t *outCount
 /**
  * @brief Parses the ROI string and populates the caller-provided OH_AVFormat array.
  *
- * The caller is responsible for providing a properly sized pointer array and explicitly 
- * destroying the successfully created OH_AVFormat handles using OH_AVFormat_Destroy() 
+ * The caller is responsible for providing a properly sized pointer array and explicitly
+ * destroying the successfully created OH_AVFormat handles using OH_AVFormat_Destroy()
  * to prevent memory leaks.
  *
  * @param roiStr The input ROI configuration string.
@@ -180,7 +181,8 @@ OH_AVErrCode OH_VideoMetadata_GetRoiCount(const char *roiStr, uint32_t *outCount
  * @return AV_ERR_OK if the operation is successful; returns a specific error code otherwise.
  * @since 26.0.0
  */
-OH_AVErrCode OH_VideoMetadata_ParseRoiString(const char *roiStr, OH_AVFormat **outFormats, uint32_t maxCapacity, uint32_t *outCount);
+OH_AVErrCode OH_VideoMetadata_ParseRoiString(const char *roiStr, OH_AVFormat **outFormats, uint32_t maxCapacity,
+                                             uint32_t *outCount);
 
 #ifdef __cplusplus
 }

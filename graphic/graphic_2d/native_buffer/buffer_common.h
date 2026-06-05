@@ -264,8 +264,8 @@ typedef enum OH_NativeBuffer_MetadataKey {
      * Note that the number of ROIs that can be applied simultaneously does not exceed six, and the total area must
      * not exceed one-fifth of the total image area.
      *
-     * @note Since version 26.0.0, it is highly recommended to use {@link OH_VideoBase_AppendRoiString} to format and append 
-     * ROI configurations safely instead of concatenating the string manually.
+     * @note Since version 26.0.0, it is highly recommended to use {@link OH_VideoBase_AppendRoiString} to format
+     * and append ROI configurations safely instead of concatenating the string manually.
      *
      * @since 22
      */
