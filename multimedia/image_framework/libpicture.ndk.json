@@ -130,5 +130,33 @@
     {
       "first_introduced": "13",
       "name": "OH_AuxiliaryPictureInfo_Release"
+    },
+    {
+      "first_introduced": "26.0.0",
+      "name": "OH_DecomposeOptions_Create"
+    },
+    {
+      "first_introduced": "26.0.0",
+      "name": "OH_DecomposeOptions_SetIsFullSizeGainmap"
+    },
+    {
+      "first_introduced": "26.0.0",
+      "name": "OH_DecomposeOptions_GetIsFullSizeGainmap"
+    },
+    {
+      "first_introduced": "26.0.0",
+      "name": "OH_DecomposeOptions_SetDesiredPixelFormat"
+    },
+    {
+      "first_introduced": "26.0.0",
+      "name": "OH_DecomposeOptions_GetDesiredPixelFormat"
+    },
+    {
+      "first_introduced": "26.0.0",
+      "name": "OH_DecomposeOptions_Release"
+    },
+    {
+      "first_introduced": "26.0.0",
+      "name": "OH_PictureNative_DecomposeToPicture"
     }
   ]

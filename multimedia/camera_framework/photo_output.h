@@ -545,6 +545,129 @@ Camera_ErrorCode OH_PhotoOutput_IsPhotoQualityPrioritizationSupported(Camera_Pho
 Camera_ErrorCode OH_PhotoOutput_SetPhotoQualityPrioritization(Camera_PhotoOutput* photoOutput,
     Camera_PhotoQualityPrioritization qualityPrioritization);
 
+/**
+ * @brief The struct describes the photo capture setting ext.
+ *
+ * @since 26.0.0
+ * @version 1.0
+ */
+typedef struct OH_Camera_PhotoCaptureSettingExt OH_Camera_PhotoCaptureSettingExt;
+ 
+/**
+ * @brief Captures a photo with photo capture setting extension.
+ *
+ * @param photoOutput Pointer to the target PhotoOutput instance.
+ * @param setting Pointer to the target OH_Camera_PhotoCaptureSettingExt instance..
+ * @return **CAMERA_OK**: The operation is successful.
+ *     <br>**CAMERA_INVALID_ARGUMENT**: A parameter is missing or the parameter type is incorrect.
+ *     <br>**CAMERA_SESSION_NOT_RUNNING**: The capture session is not running.
+ *     <br>**CAMERA_SERVICE_FATAL_ERROR**: The camera service is abnormal.
+ * @since 26.0.0
+ */
+Camera_ErrorCode OH_PhotoOutput_Capture_WithCaptureSettingExt(Camera_PhotoOutput* photoOutput,
+    OH_Camera_PhotoCaptureSettingExt* setting);
+ 
+/**
+ * @brief Creates a **OH_Camera_PhotoCaptureSettingExt** instance.
+ * Release the photo capture setting ext memory by calling {@link OH_PhotoOutput_DestroyPhotoCaptureSettingExt}.
+ *
+ * @param photoOutput Pointer to the target PhotoOutput instance.
+ * @param setting Double pointer to the **OH_Camera_PhotoCaptureSettingExt** instance created,
+ * if the function is successfully called.
+ * @return **CAMERA_OK**: The operation is successful.
+ *     <br>**CAMERA_INVALID_ARGUMENT**: A parameter is missing or the parameter type is incorrect.
+ *     <br>**CAMERA_SERVICE_FATAL_ERROR**: The camera service is abnormal.
+ * @since 26.0.0
+ */
+Camera_ErrorCode OH_PhotoOutput_CreatePhotoCaptureSettingExt(Camera_PhotoOutput* photoOutput,
+    OH_Camera_PhotoCaptureSettingExt** setting);
+ 
+/**
+ * @brief Sets the image compression quality for the photo capture extension configuration.
+ *
+ * @param photoCaptureSettingExt Pointer to the photo capture extension settings object.
+ * @param compressionQuality Image compression quality.
+ * @return **CAMERA_OK**: The operation is successful.
+ *     <br>**CAMERA_INVALID_ARGUMENT**: A parameter is missing or the parameter type is incorrect.
+ *     <br>**CAMERA_OPERATION_NOT_ALLOWED**: The operation is not allowed.
+ * @since 26.0.0
+ */
+Camera_ErrorCode OH_PhotoCaptureSettingExt_SetCompressionQuality(
+    OH_Camera_PhotoCaptureSettingExt* photoCaptureSettingExt, uint8_t compressionQuality);
+ 
+/**
+ * @brief Sets the image rotation for the photo capture extension configuration.
+ *
+ * @param photoCaptureSettingExt Pointer to the photo capture extension settings object.
+ * @param rotation Image rotation, defined in the Camera_ImageRotation enumeration.
+ * @return **CAMERA_OK**: The operation is successful.
+ *     <br>**CAMERA_INVALID_ARGUMENT**: A parameter is missing or the parameter type is incorrect.
+ *     <br>**CAMERA_OPERATION_NOT_ALLOWED**: The operation is not allowed.
+ * @since 26.0.0
+ */
+Camera_ErrorCode OH_PhotoCaptureSettingExt_SetImageRotation(OH_Camera_PhotoCaptureSettingExt* photoCaptureSettingExt,
+    Camera_ImageRotation rotation);
+ 
+/**
+ * @brief Sets the image mirror for the photo capture extension configuration.
+ *
+ * @param photoCaptureSettingExt Pointer to the photo capture extension settings object.
+ * @param mirror The switch of the mirror effect. **true** for enabled, **false** for disabled.
+ * @return **CAMERA_OK**: The operation is successful.
+ *     <br>**CAMERA_INVALID_ARGUMENT**: A parameter is missing or the parameter type is incorrect.
+ *     <br>**CAMERA_OPERATION_NOT_ALLOWED**: The operation is not allowed.
+ * @since 26.0.0
+ */
+Camera_ErrorCode OH_PhotoCaptureSettingExt_SetMirror(OH_Camera_PhotoCaptureSettingExt* photoCaptureSettingExt,
+    bool mirror);
+ 
+/**
+ * @brief Destroy the photo capture setting ext.
+ *
+ * @param setting The target {@link OH_Camera_PhotoCaptureSettingExt} list to be destoryed if the method call succeeds.
+ * @return **CAMERA_OK**: The operation is successful.
+ *     <br>**CAMERA_INVALID_ARGUMENT**: A parameter is missing or the parameter type is incorrect.
+ * @since 26.0.0
+ */
+Camera_ErrorCode OH_PhotoOutput_DestroyPhotoCaptureSettingExt(OH_Camera_PhotoCaptureSettingExt* setting);
+ 
+ /**
+ * @brief Sets the image location for the photo capture extension configuration.
+ *
+ * @param photoCaptureSettingExt Pointer to the photo capture extension settings object.
+ * @param location Image location, defined in the Camera_Location enumeration.
+ * @return **CAMERA_OK**: The operation is successful.
+ *     <br>**CAMERA_INVALID_ARGUMENT**: A parameter is missing or the parameter type is incorrect.
+ *     <br>**CAMERA_OPERATION_NOT_ALLOWED**: The operation is not allowed.
+ * @since 26.0.0
+ */
+Camera_ErrorCode OH_PhotoCaptureSettingExt_SetLocation(OH_Camera_PhotoCaptureSettingExt* photoCaptureSettingExt,
+    Camera_Location location);
+ 
+/**
+* @brief Enables auto extended gainmap delivery.
+*
+* @param photoOutput Pointer to the target PhotoOutput instance.
+* @param enabled Whether to enable or disable auto extended gainmap delivery. **true** to enable,
+* **false** otherwise.
+* @return **CAMERA_OK**: The operation is successful.
+* <br>**CAMERA_INVALID_ARGUMENT**: A parameter is missing or the parameter type is incorrect.
+* <br>**CAMERA_OPERATION_NOT_ALLOWED**: The operation is not allowed.
+* <br>**CAMERA_SESSION_NOT_CONFIG**: The capture session is not configured.
+* <br>**CAMERA_SERVICE_FATAL_ERROR**: The camera service is abnormal.
+* @since 26.0.0
+*/
+Camera_ErrorCode OH_PhotoOutput_EnableAutoExtendedGainmapDelivery(Camera_PhotoOutput* photoOutput,
+    bool enabled);
+ 
+/**
+ * @brief Checks whether the auto extended gainmap delivery is supported.
+ *
+ * @param photoOutput Pointer to the target PhotoOutput instance.
+ * @return **true** if supported, **false** otherwise.
+ * @since 26.0.0
+ */
+bool OH_PhotoOutput_IsAutoExtendedGainmapDeliverySupported(const Camera_PhotoOutput* photoOutput);
 #ifdef __cplusplus
 }
 #endif

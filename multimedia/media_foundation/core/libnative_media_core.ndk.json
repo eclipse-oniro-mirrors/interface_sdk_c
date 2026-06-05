@@ -59,5 +59,21 @@
     {
         "first_introduced": "26.0.0",
         "name": "OH_AudioVividMetaBuilder_Destroy"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_AudioVividMetaBuilder_CreateEmptyBuilder"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_AudioVividMetaBuilder_UpdateBaseMeta"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_AudioVividMetaBuilder_AddObject"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_AudioVividMetaBuilder_RemoveObject"
     }
 ]
