@@ -850,5 +850,42 @@
     {
         "first_introduced": "26.0.0",
         "name": "OH_MD_KEY_VIDEO_ENCODER_PREPROC_DROP_TO_FRAME_RATE"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_MD_KEY_VIDEO_ENCODER_ROI_TOP",
+        "type": "variable"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_MD_KEY_VIDEO_ENCODER_ROI_LEFT",
+        "type": "variable"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_MD_KEY_VIDEO_ENCODER_ROI_BOTTOM",
+        "type": "variable"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_MD_KEY_VIDEO_ENCODER_ROI_RIGHT",
+        "type": "variable"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_MD_KEY_VIDEO_ENCODER_ROI_DELTA_QP",
+        "type": "variable"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_VideoBase_AppendRoiString"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_VideoBase_GetRoiCount"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_VideoBase_ParseRoiString"
     }
 ]

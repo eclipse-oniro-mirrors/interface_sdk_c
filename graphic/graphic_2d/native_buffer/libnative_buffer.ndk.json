@@ -40,13 +40,5 @@
     {
         "first_introduced": "23",
         "name": "OH_NativeBuffer_MapAndGetConfig"
-    },
-    {
-        "first_introduced": "26.0.0",
-        "name": "OH_ROI_METADATA_KEY_SEMANTIC_LABEL"
-    },
-    {
-        "first_introduced": "26.0.0",
-        "name": "OH_ROI_METADATA_KEY_DELTA_QP"
     }
 ]
