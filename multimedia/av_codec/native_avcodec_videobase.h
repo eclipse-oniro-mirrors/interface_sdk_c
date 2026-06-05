@@ -36,9 +36,8 @@
 #ifndef NATIVE_AVCODEC_VIDEOBASE_H
 #define NATIVE_AVCODEC_VIDEOBASE_H
 #include <stdint.h>
-#include <stdio.h>
-#include "native_avbuffer.h"
-#include "native_avmemory.h"
+#include "native_avformat.h"
+#include "native_averrors.h"
 #ifdef __cplusplus
 extern "C" {
 #endif
