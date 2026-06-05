@@ -1672,15 +1672,20 @@ extern const char *OH_MD_KEY_VIDEO_ENCODER_ENABLE_B_FRAME;
 extern const char *OH_MD_KEY_VIDEO_ENCODER_MAX_B_FRAMES;
 
 /**
- * @brief Key to set the region of interest(ROI) parameters. Value type is string in the format
+* @brief Key to set the region of interest(ROI) parameters. Value type is string in the format
  * "Top1,Left1-Bottom1,Right1[=Params1];Top2,Left2-Bottom2,Right2[=Params2];".
+ *
  * Each "Top,Left-Bottom,Right" represents the coordinate information of one ROI.
- * The "[=Params]" is optional and supports two formats for backward compatibility:
- * 1. Legacy format: A single integer representing the quantization parameter offset (e.g., "=Offset").
- * 2. Key-Value format (Recommended): Comma-separated key-value pairs (e.g., "=dqp:-6,slb:1").
+ * The "[=Params]" is optional.
+ * The format of "[=Params]" varies by version:
+ * 1. Prior to version 26.0.0: Only a single integer representing the
+ * quantization parameter offset is supported (e.g., "=Offset").
+ * 2. Since version 26.0.0: A Key-Value format is additionally supported and recommended.
+ * It uses comma-separated key-value pairs (e.g., "=dqp:-6,slb:1").
  * Supported keys:
  * - "dqp": Quantization parameter offset.
- * - "slb": Semantic label. The value must correspond to {@link OH_NativeBuffer_RoiMetadataSemanticLabelType}.
+ * - "slb": Semantic label. The value must correspond to {@link OH_VideoEncoderRoiSemanticLabel}.
+ *
  * If "=Params" is omitted entirely, like "Top1,Left1-Bottom1,Right1;Top2,Left2-Bottom2,Right2=dqp:-6;",
  * the encoder will use the default parameters to perform the ROI encoding on the first ROI and
  * use the specified parameters on the second ROI.
@@ -1691,6 +1696,9 @@ extern const char *OH_MD_KEY_VIDEO_ENCODER_MAX_B_FRAMES;
  * It is used in running process and is set with each frame.
  * In surface mode, it is used in {@link OH_VideoEncoder_OnNeedInputParameter}.
  * In buffer mode, it is configured via {@link OH_AVBuffer_SetParameter}.
+ *
+ * @note Since version 26.0.0, it is highly recommended to use {@link OH_VideoBase_AppendRoiString} to format
+ * and append ROI configurations safely instead of concatenating the string manually.
  * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 20
  */
