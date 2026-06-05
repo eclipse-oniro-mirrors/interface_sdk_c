@@ -118,13 +118,13 @@ typedef enum OH_VideoMetadataRoiSemanticLabel {
      *
      * @since 26.0.0
      */
-    VIDEO_METADATA_ROI_SEM_LABEL_OTHER = 0,
+    OH_VIDEO_METADATA_ROI_SEM_LABEL_OTHER = 0,
     /**
      * Indicates that the ROI contains a human face.
      *
      * @since 26.0.0
      */
-    VIDEO_METADATA_ROI_SEM_LABEL_FACE = 1
+    OH_VIDEO_METADATA_ROI_SEM_LABEL_FACE = 1
 } OH_VideoMetadataRoiSemanticLabel;
 
 /**
