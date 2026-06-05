@@ -24,7 +24,7 @@
 /**
  * @file native_avcodec_videobase.h
  *
- * @brief Declare the Native API used for basic video encoding and decoding functions, 
+ * @brief Declare the Native API used for basic video encoding and decoding functions,
  * as well as video-specific configurations and parameters.
  *
  * @kit AVCodecKit
@@ -80,7 +80,7 @@ extern const char *OH_MD_KEY_VIDEO_METADATA_ROI_BOTTOM;
  *
  * The origin of the coordinate system is the top-left corner of the video.
  * The value range is ({@link OH_MD_KEY_VIDEO_METADATA_ROI_LEFT}, {@link OH_MD_KEY_VIDEO_WIDTH}].
- * This is a mandatory key used when configuring ROI parameters. 
+ * This is a mandatory key used when configuring ROI parameters.
  *
  * @since 26.0.0
  */
