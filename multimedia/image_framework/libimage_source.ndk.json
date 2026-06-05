@@ -262,5 +262,33 @@
     {
         "first_introduced": "24",
         "name": "OH_ImageSourceNative_DestroyImageRawData"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_DecodingOptionsForPicture_GetNeedsDecodeDfxData"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_DecodingOptionsForPicture_SetNeedsDecodeDfxData"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_DecodingOptionsForPicture_GetDesiredSizeForMainPixelmap"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_DecodingOptionsForPicture_SetDesiredSizeForMainPixelmap"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_DecodingOptionsForPicture_GetDesiredPixelFormat"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_DecodingOptionsForPicture_SetDesiredPixelFormat"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_ImageSourceNative_ReadImageMetadataByType"
     }
 ]

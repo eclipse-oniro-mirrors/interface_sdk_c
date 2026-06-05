@@ -1,0 +1,22 @@
+[
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_TrafficFilter_CreateRedirector"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_TrafficFilter_DestroyRedirector"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_TrafficFilter_AddRedirectRule"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_TrafficFilter_ClearRedirectRule"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_TrafficFilter_QueryProcess"
+    }
+]

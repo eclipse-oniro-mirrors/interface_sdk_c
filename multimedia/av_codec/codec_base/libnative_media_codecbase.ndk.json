@@ -848,39 +848,60 @@
     },
     {
         "first_introduced": "26.0.0",
-        "name": "OH_MD_KEY_VIDEO_ENCODER_ROI_TOP",
+        "name": "OH_MD_KEY_VIDEO_ENCODER_NUMBER_OF_PENDING_FRAMES"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_MD_KEY_VIDEO_DECODER_OUTPUT_IN_DECODING_ORDER"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_MD_KEY_VIDEO_ENCODER_MAX_FRAME_DELAY_COUNT"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_MD_KEY_VIDEO_ENCODER_REPEAT_HEADER_BEFORE_SYNC_FRAMES"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_MD_KEY_VIDEO_METADATA_ROI_TOP",
         "type": "variable"
     },
     {
         "first_introduced": "26.0.0",
-        "name": "OH_MD_KEY_VIDEO_ENCODER_ROI_LEFT",
+        "name": "OH_MD_KEY_VIDEO_METADATA_ROI_LEFT",
         "type": "variable"
     },
     {
         "first_introduced": "26.0.0",
-        "name": "OH_MD_KEY_VIDEO_ENCODER_ROI_BOTTOM",
+        "name": "OH_MD_KEY_VIDEO_METADATA_ROI_BOTTOM",
         "type": "variable"
     },
     {
         "first_introduced": "26.0.0",
-        "name": "OH_MD_KEY_VIDEO_ENCODER_ROI_RIGHT",
+        "name": "OH_MD_KEY_VIDEO_METADATA_ROI_RIGHT",
         "type": "variable"
     },
     {
         "first_introduced": "26.0.0",
-        "name": "OH_MD_KEY_VIDEO_ENCODER_ROI_DELTA_QP",
+        "name": "OH_MD_KEY_VIDEO_METADATA_ROI_DELTA_QP",
         "type": "variable"
     },
     {
         "first_introduced": "26.0.0",
-        "name": "OH_VideoBase_AppendRoiString"
+        "name": "OH_MD_KEY_VIDEO_METADATA_ROI_SEM_LABEL",
+        "type": "variable"
     },
     {
         "first_introduced": "26.0.0",
-        "name": "OH_VideoBase_GetRoiCount"
+        "name": "OH_VideoMetadata_AppendRoiString"
     },
     {
         "first_introduced": "26.0.0",
-        "name": "OH_VideoBase_ParseRoiString"
+        "name": "OH_VideoMetadata_GetRoiCount"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_VideoMetadata_ParseRoiString"
     }
 ]
