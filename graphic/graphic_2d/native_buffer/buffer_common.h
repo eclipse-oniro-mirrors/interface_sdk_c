@@ -230,47 +230,6 @@ typedef struct OH_NativeBuffer_StaticMetadata {
 } OH_NativeBuffer_StaticMetadata;
 
 /**
- * @brief Enumerates the semantic label types for Region of Interest (ROI).
- *
- * These types are used as the predefined values for the "slb" key in ROI parameters.
- *
- * @since 26.0.0
- */
-typedef enum OH_NativeBuffer_RoiMetadataSemanticLabelType {
-    /**
-     * Indicates an unspecified or unknown region.
-     * @since 26.0.0
-     */
-    OH_ROI_METADATA_SEMANTIC_LABEL_TYPE_OTHER = 0,
-    /**
-     * Indicates that the ROI contains a human face.
-     * @since 26.0.0
-     */
-    OH_ROI_METADATA_SEMANTIC_LABEL_TYPE_FACE = 1
-} OH_NativeBuffer_RoiMetadataSemanticLabelType;
-
-/**
- * @brief ROI metadata key for Semantic Label.
- *
- * Used in the Key-Value format of ROI parameters to specify the semantic label of the region.
- * The string value is "slb". The configured value mapped to this key should be the string representation of the
- * {@link OH_NativeBuffer_RoiMetadataSemanticLabelType} enumeration (e.g., "1" for OH_ROI_SEMANTIC_LABEL_TYPE_FACE).
- *
- * @since 26.0.0
- */
-extern const char *OH_ROI_METADATA_KEY_SEMANTIC_LABEL;
-
-/**
- * @brief ROI metadata key for Delta QP.
- *
- * Used in the Key-Value format of ROI parameters to specify the quantization parameter offset.
- * The string value is "dqp".
- *
- * @since 26.0.0
- */
-extern const char *OH_ROI_METADATA_KEY_DELTA_QP;
-
-/**
  * @brief Indicates the descriptive information of a native buffer,
  *  such as HDR metadata, ROI metadata, etc.
  *
