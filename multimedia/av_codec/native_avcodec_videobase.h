@@ -46,45 +46,45 @@ extern "C" {
  * @brief Key for describing the top-coordinate (y) of a single ROI rectangle, value type is int32_t.
  * 
  * The origin of the coordinate system is the top-left corner of the video.
- * The value range is [0, {@link OH_MD_KEY_VIDEO_ENCODER_ROI_BOTTOM}).
+ * The value range is [0, {@link OH_MD_KEY_VIDEO_METADATA_ROI_BOTTOM}).
  * This is a mandatory key used when configuring ROI parameters.
  * 
  * @since 26.0.0
  */
-extern const char *OH_MD_KEY_VIDEO_ENCODER_ROI_TOP;
+extern const char *OH_MD_KEY_VIDEO_METADATA_ROI_TOP;
 
 /**
  * @brief Key for describing the left-coordinate (x) of a single ROI rectangle, value type is int32_t.
  * 
  * The origin of the coordinate system is the top-left corner of the video.
- * The value range is [0, {@link OH_MD_KEY_VIDEO_ENCODER_ROI_RIGHT}).
+ * The value range is [0, {@link OH_MD_KEY_VIDEO_METADATA_ROI_RIGHT}).
  * This is a mandatory key used when configuring ROI parameters.
  * 
  * @since 26.0.0
  */
-extern const char *OH_MD_KEY_VIDEO_ENCODER_ROI_LEFT;
+extern const char *OH_MD_KEY_VIDEO_METADATA_ROI_LEFT;
 
 /**
  * @brief Key for describing the bottom-coordinate (y) of a single ROI rectangle, value type is int32_t.
  * 
  * The origin of the coordinate system is the top-left corner of the video.
- * The value range is ({@link OH_MD_KEY_VIDEO_ENCODER_ROI_TOP}, {@link OH_MD_KEY_VIDEO_HEIGHT}].
+ * The value range is ({@link OH_MD_KEY_VIDEO_METADATA_ROI_TOP}, {@link OH_MD_KEY_VIDEO_HEIGHT}].
  * This is a mandatory key used when configuring ROI parameters.
  * 
  * @since 26.0.0
  */
-extern const char *OH_MD_KEY_VIDEO_ENCODER_ROI_BOTTOM;
+extern const char *OH_MD_KEY_VIDEO_METADATA_ROI_BOTTOM;
 
 /**
  * @brief Key for describing the right-coordinate (x) of a single ROI rectangle, value type is int32_t.
  * 
  * The origin of the coordinate system is the top-left corner of the video.
- * The value range is ({@link OH_MD_KEY_VIDEO_ENCODER_ROI_LEFT}, {@link OH_MD_KEY_VIDEO_WIDTH}].
+ * The value range is ({@link OH_MD_KEY_VIDEO_METADATA_ROI_LEFT}, {@link OH_MD_KEY_VIDEO_WIDTH}].
  * This is a mandatory key used when configuring ROI parameters. 
  * 
  * @since 26.0.0
  */
-extern const char *OH_MD_KEY_VIDEO_ENCODER_ROI_RIGHT;
+extern const char *OH_MD_KEY_VIDEO_METADATA_ROI_RIGHT;
 
 /**
  * @brief Key for describing the quantization parameter offset (delta-qp) of a single ROI, value type is int32_t.
@@ -94,17 +94,17 @@ extern const char *OH_MD_KEY_VIDEO_ENCODER_ROI_RIGHT;
  *
  * @since 26.0.0
  */
-extern const char *OH_MD_KEY_VIDEO_ENCODER_ROI_DELTA_QP;
+extern const char *OH_MD_KEY_VIDEO_METADATA_ROI_DELTA_QP;
 
 /**
  * @brief Key for describing the semantic label (sem_label) of a single ROI, value type is int32_t.
  *
- * The value must correspond to {@link OH_VideoEncoderRoiSemanticLabel}.
+ * The value must correspond to {@link OH_VideoMetadataRoiSemanticLabel}.
  * This is an optional key used when configuring ROI parameters.
  *
  * @since 26.0.0
  */
-extern const char *OH_MD_KEY_VIDEO_ENCODER_ROI_SEM_LABEL;
+extern const char *OH_MD_KEY_VIDEO_METADATA_ROI_SEM_LABEL;
 
 /**
  * @brief The semantic labels for Region of Interest (ROI) in video encoding.
@@ -112,19 +112,19 @@ extern const char *OH_MD_KEY_VIDEO_ENCODER_ROI_SEM_LABEL;
  * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 26.0.0
  */
-typedef enum OH_VideoEncoderRoiSemanticLabel {
+typedef enum OH_VideoMetadataRoiSemanticLabel {
     /**
      * Indicates an unspecified or unknown region.
      * @since 26.0.0
      */
-    VIDEO_ENCODER_ROI_SEM_LABEL_OTHER = 0,
+    VIDEO_METADATA_ROI_SEM_LABEL_OTHER = 0,
     
     /**
      * Indicates that the ROI contains a human face.
      * @since 26.0.0
      */
-    VIDEO_ENCODER_ROI_SEM_LABEL_FACE = 1
-} OH_VideoEncoderRoiSemanticLabel;
+    VIDEO_METADATA_ROI_SEM_LABEL_FACE = 1
+} OH_VideoMetadataRoiSemanticLabel;
 
 /**
  * @brief Formats the region of interest (ROI) configuration from an OH_AVFormat handle 
@@ -152,7 +152,7 @@ typedef enum OH_VideoEncoderRoiSemanticLabel {
  * Returns AV_ERR_NO_MEMORY if internal memory allocation or reallocation fails.
  * @since 26.0.0
  */
-OH_AVErrCode OH_VideoBase_AppendRoiString(char **roiStrInOut, OH_AVFormat *format);
+OH_AVErrCode OH_VideoMetadata_AppendRoiString(char **roiStrInOut, OH_AVFormat *format);
 
 /**
  * @brief Pre-parses the ROI string to obtain the number of valid ROI regions contained within it.
@@ -164,7 +164,7 @@ OH_AVErrCode OH_VideoBase_AppendRoiString(char **roiStrInOut, OH_AVFormat *forma
  * @return AV_ERR_OK if the operation is successful; returns a specific error code otherwise.
  * @since 26.0.0
  */
-OH_AVErrCode OH_VideoBase_GetRoiCount(const char *roiStr, uint32_t *outCount);
+OH_AVErrCode OH_VideoMetadata_GetRoiCount(const char *roiStr, uint32_t *outCount);
 
 /**
  * @brief Parses the ROI string and populates the caller-provided OH_AVFormat array.
@@ -180,7 +180,7 @@ OH_AVErrCode OH_VideoBase_GetRoiCount(const char *roiStr, uint32_t *outCount);
  * @return AV_ERR_OK if the operation is successful; returns a specific error code otherwise.
  * @since 26.0.0
  */
-OH_AVErrCode OH_VideoBase_ParseRoiString(const char *roiStr, OH_AVFormat **outFormats, uint32_t maxCapacity, uint32_t *outCount);
+OH_AVErrCode OH_VideoMetadata_ParseRoiString(const char *roiStr, OH_AVFormat **outFormats, uint32_t maxCapacity, uint32_t *outCount);
 
 #ifdef __cplusplus
 }
