@@ -176,7 +176,8 @@ OH_AVErrCode OH_VideoMetadata_GetRoiCount(const char *roiStr, uint32_t *outCount
  *
  * @param roiStr The input ROI configuration string.
  * @param outFormats [OUT] A pointer array allocated by the caller to receive the parsed OH_AVFormat handles.
- * @param maxCapacity [IN] Indicates the maximum physical capacity of the outFormats array to prevent out-of-bounds writes.
+ * @param maxCapacity [IN] Indicates the maximum physical capacity of the outFormats array to prevent
+ * out-of-bounds writes.
  * @param outCount [OUT] Returns the actual number of ROIs successfully parsed and populated into the array.
  * @return AV_ERR_OK if the operation is successful; returns a specific error code otherwise.
  * @since 26.0.0
