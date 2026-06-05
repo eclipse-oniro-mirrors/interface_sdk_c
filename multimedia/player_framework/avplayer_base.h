@@ -104,7 +104,9 @@ typedef enum AVPlayerSeekMode {
     /**
      * Seeks in continuous drag mode. This mode provides a smoother drag experience, but the device must support
      * continuous seeking for the current stream. Before using this mode, check whether continuous seeking is supported.
-     *  For details, see {@link OH_AVPlayer_IsSeekContinuousSupported}.<br>**Since**: 23
+     *  For details, see {@link OH_AVPlayer_IsSeekContinuousSupported}.
+     *
+     * @since 23
      */
     AV_SEEK_CONTINUOUS = 3,
 } AVPlayerSeekMode;
