@@ -167,42 +167,43 @@ struct OhosPixelMapCreateOps {
 };
 
 /**
- * @brief Creates a <b>PixelMap</b> object.
+ * @brief Creates a PixelMap object. Currently, only BGRA input streams are supported.
  *
- * @param env Indicates the NAPI environment pointer.
- * @param info Indicates the options for setting the <b>PixelMap</b> object.
- * @param buf Indicates the pointer to the buffer of the image.
- * @param len Indicates the image size.
- * @param res Indicates the pointer to the <b>PixelMap</b> object at the application layer.
- * @return Returns {@link IRNdkErrCode} IMAGE_RESULT_SUCCESS - if the operation is successful.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_BAD_PARAMETER - if bad parameter.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_JNI_ENV_ABNORMAL - if Abnormal JNI environment.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_INVALID_PARAMETER - if invalid parameter.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_GET_DATA_ABNORMAL - if image get data error.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_DECODE_FAILED - if decode fail.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_DECODE_HEAD_ABNORMAL - if image decode head error.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_CREATE_DECODER_FAILED - if create decoder failed.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_CREATE_ENCODER_FAILED - if create encoder failed.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_CHECK_FORMAT_ERROR - if check format failed.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_THIRDPART_SKIA_ERROR - if skia error.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_DATA_ABNORMAL - if image input data error.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_ERR_SHAMEM_NOT_EXIST - if sharememory error.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_ERR_SHAMEM_DATA_ABNORMAL - if sharememory data abnormal.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_DECODE_ABNORMAL - if image decode error.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_MALLOC_ABNORMAL - if image malloc error.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_DATA_UNSUPPORT - if image init error.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_INIT_ABNORMAL - if image input data error.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_CROP - if crop error.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_UNKNOWN_FORMAT - if image unknown format.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_PLUGIN_REGISTER_FAILED - if register plugin fail.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_PLUGIN_CREATE_FAILED - if create plugin fail.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_ENCODE_FAILED - if image add pixel map fail.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_HW_DECODE_UNSUPPORT - if image hardware decode unsupported.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_HW_DECODE_FAILED - if hard decode failed.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_ERR_IPC - if ipc error.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_INDEX_INVALID - if invalid index.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_ALPHA_TYPE_ERROR - if hard decode failed.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_ALLOCATER_TYPE_ERROR - if hard decode failed.
+ * @param env Pointer to the NAPI environment.
+ * @param info Options for setting the PixelMap object.
+ * @param buf Pointer to the buffer of the image.
+ * @param len Image size.
+ * @param res Pointer to the PixelMap object at the application layer.
+ * @return Result code defined in {@link IRNdkErrCode}:
+ *     <ul><li>{@link IMAGE_RESULT_SUCCESS}: The operation is successful.</li>
+ *     <li>{@link IMAGE_RESULT_BAD_PARAMETER}: A parameter is incorrect.</li>
+ *     <li>{@link IMAGE_RESULT_JNI_ENV_ABNORMAL}: The JNI environment is abnormal.</li>
+ *     <li>{@link IMAGE_RESULT_INVALID_PARAMETER}: A parameter is invalid.</li>
+ *     <li>{@link IMAGE_RESULT_GET_DATA_ABNORMAL}: An error occurs during image data retrieval.</li>
+ *     <li>{@link IMAGE_RESULT_DECODE_FAILED}: Decoding fails.</li>
+ *     <li>{@link IMAGE_RESULT_DECODE_HEAD_ABNORMAL}: An error occurs during decoding of the image header.</li>
+ *     <li>{@link IMAGE_RESULT_CREATE_DECODER_FAILED}: The decoder fails to be created.</li>
+ *     <li>{@link IMAGE_RESULT_CREATE_ENCODER_FAILED}: The encoder fails to be created.</li>
+ *     <li>{@link IMAGE_RESULT_CHECK_FORMAT_ERROR}: The format check fails.</li>
+ *     <li>{@link IMAGE_RESULT_THIRDPART_SKIA_ERROR}: Skia decoding fails.</li>
+ *     <li>{@link IMAGE_RESULT_DATA_ABNORMAL}: The image input data is incorrect.</li>
+ *     <li>{@link IMAGE_RESULT_ERR_SHAMEM_NOT_EXIST}: Sharing the memory fails.</li>
+ *     <li>{@link IMAGE_RESULT_ERR_SHAMEM_DATA_ABNORMAL}: Data in the shared memory is incorrect.</li>
+ *     <li>{@link IMAGE_RESULT_DECODE_ABNORMAL}: Image decoding fails.</li>
+ *     <li>{@link IMAGE_RESULT_DECODE_FAILED}: Decoding fails.</li>
+ *     <li>{@link IMAGE_RESULT_MALLOC_ABNORMAL}: An error occurs during memory allocation.</li>
+ *     <li>{@link IMAGE_RESULT_DATA_UNSUPPORT}: The attribute is invalid or the image data is not supported.</li>
+ *     <li>{@link IMAGE_RESULT_INIT_ABNORMAL}: The image fails to be initialized.</li>
+ *     <li>{@link IMAGE_RESULT_CROP}: Cropping fails.</li>
+ *     <li>{@link IMAGE_RESULT_UNKNOWN_FORMAT}: The image format is unknown.</li>
+ *     <li>{@link IMAGE_RESULT_PLUGIN_REGISTER_FAILED}: The plugin fails to be registered.</li>
+ *     <li>{@link IMAGE_RESULT_PLUGIN_CREATE_FAILED}: The plugin fails to be created.</li>
+ *     <li>{@link IMAGE_RESULT_ENCODE_FAILED}: The image fails to be encoded.</li>
+ *     <li>{@link IMAGE_RESULT_HW_DECODE_UNSUPPORT}: Hardware decoding is not supported.</li>
+ *     <li>{@link IMAGE_RESULT_HW_DECODE_FAILED}: Hardware decoding fails.</li>
+ *     <li>{@link IMAGE_RESULT_INDEX_INVALID}: Index fails.</li>
+ *     <li>{@link IMAGE_RESULT_ALPHA_TYPE_ERROR}: The alpha type is incorrect.</li>
+ *     <li>{@link IMAGE_RESULT_ALLOCATER_TYPE_ERROR}: The memory allocator type is incorrect.</li></ul>
  * @see CreatePixelMap
  * @since 10
  * @version 1.0
@@ -211,23 +212,26 @@ int32_t OH_PixelMap_CreatePixelMap(napi_env env, OhosPixelMapCreateOps info,
     void* buf, size_t len, napi_value* res);
 
 /**
- * @brief Creates a <b>PixelMap</b> object with stride, whose memory is default as DMA.
+ * @brief Creates a PixelMap object.
  *
- * @param env Indicates the NAPI environment pointer.
- * @param info Indicates the options for setting the <b>PixelMap</b> object.
- * @param buf Indicates the pointer to the buffer of the image.
- * @param len Indicates the image size.
- * @param rowStride Indicates the stride of the image buffer.
- * @param res Indicates the pointer to the <b>PixelMap</b> object at the application layer.
- * @return Returns {@link IRNdkErrCode} IMAGE_RESULT_SUCCESS - if the operation is successful.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_BAD_PARAMETER - if info, len and rowStride do not match.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_JNI_ENV_ABNORMAL - if Abnormal JNI environment.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_GET_DATA_ABNORMAL - if image get data error.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_CHECK_FORMAT_ERROR - if check format failed.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_DATA_ABNORMAL - if image input data error.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_ERR_SHAMEM_DATA_ABNORMAL - if sharememory data abnormal.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_DATA_UNSUPPORT - if image init error.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_UNKNOWN_FORMAT - if image unknown format.
+ * @param env Pointer to the NAPI environment.
+ * @param info Options for setting the PixelMap object.
+ * @param buf Pointer to the buffer of the image.
+ * @param len Buffer size.
+ * @param rowStride Row stride. The stride is the actual memory size occupied by each row of the image, in bytes.
+ * Stride = Width \*Number of bytes per pixel + Padding, where padding refers to the extra space added at the end of
+ * each row for memory alignment purposes.
+ * @param res Pointer to the PixelMap object at the application layer.
+ * @return Result code defined in {@link IRNdkErrCode}:
+ *     <ul><li>{@link IMAGE_RESULT_SUCCESS}: The operation is successful.</li>
+ *     <li>{@link IMAGE_RESULT_BAD_PARAMETER}: A parameter is incorrect.</li>
+ *     <li>{@link IMAGE_RESULT_JNI_ENV_ABNORMAL}: The JNI environment is abnormal.</li>
+ *     <li>{@link IMAGE_RESULT_GET_DATA_ABNORMAL}: An error occurs during image data retrieval.</li>
+ *     <li>{@link IMAGE_RESULT_CHECK_FORMAT_ERROR}: The format check fails.</li>
+ *     <li>{@link IMAGE_RESULT_DATA_ABNORMAL}: The image input data is incorrect.</li>
+ *     <li>{@link IMAGE_RESULT_ERR_SHAMEM_DATA_ABNORMAL}: Data in the shared memory is incorrect.</li>
+ *     <li>{@link IMAGE_RESULT_DATA_UNSUPPORT}: The attribute is invalid or the image data is not supported.</li>
+ *     <li>{@link IMAGE_RESULT_UNKNOWN_FORMAT}: The image format is unknown.</li></ul>
  * @see OH_PixelMap_CreatePixelMapWithStride
  * @since 12
  * @version 1.0
@@ -236,40 +240,40 @@ int32_t OH_PixelMap_CreatePixelMapWithStride(napi_env env, OhosPixelMapCreateOps
     void* buf, size_t len, int32_t rowStride, napi_value* res);
 
 /**
- * @brief Creates a <b>PixelMap</b> object that contains only alpha channel information.
+ * @brief Creates a PixelMap object that contains only alpha channel information.
  *
- * @param env Indicates the NAPI environment pointer.
- * @param source Indicates the options for setting the <b>PixelMap</b> object.
- * @param alpha Indicates the pointer to the alpha channel.
- * @return Returns {@link IRNdkErrCode} IMAGE_RESULT_SUCCESS - if the operation is successful.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_BAD_PARAMETER - if bad parameter.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_JNI_ENV_ABNORMAL - if Abnormal JNI environment.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_INVALID_PARAMETER - if invalid parameter.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_GET_DATA_ABNORMAL - if image get data error.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_DECODE_FAILED - if decode fail.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_DECODE_HEAD_ABNORMAL - if image decode head error.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_CREATE_DECODER_FAILED - if create decoder failed.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_CREATE_ENCODER_FAILED - if create encoder failed.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_CHECK_FORMAT_ERROR - if check format failed.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_THIRDPART_SKIA_ERROR - if skia error.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_DATA_ABNORMAL - if image input data error.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_ERR_SHAMEM_NOT_EXIST - if sharememory error.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_ERR_SHAMEM_DATA_ABNORMAL - if sharememory data abnormal.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_DECODE_ABNORMAL - if image decode error.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_MALLOC_ABNORMAL - if image malloc error.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_DATA_UNSUPPORT - if image init error.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_INIT_ABNORMAL - if image input data error.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_CROP - if crop error.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_UNKNOWN_FORMAT - if image unknown format.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_PLUGIN_REGISTER_FAILED - if register plugin fail.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_PLUGIN_CREATE_FAILED - if create plugin fail.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_ENCODE_FAILED - if image add pixel map fail.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_HW_DECODE_UNSUPPORT - if image hardware decode unsupported.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_HW_DECODE_FAILED - if hard decode failed.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_ERR_IPC - if ipc error.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_INDEX_INVALID - if invalid index.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_ALPHA_TYPE_ERROR - if hard decode failed.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_ALLOCATER_TYPE_ERROR - if hard decode failed.
+ * @param env Pointer to the NAPI environment.
+ * @param source PixelMap object at the application layer.
+ * @param alpha Pointer to the alpha channel.
+ * @return Result code defined in {@link IRNdkErrCode}:
+ *     <ul><li>{@link IMAGE_RESULT_SUCCESS}: The operation is successful.</li>
+ *     <li>{@link IMAGE_RESULT_BAD_PARAMETER}: A parameter is incorrect.</li>
+ *     <li>{@link IMAGE_RESULT_JNI_ENV_ABNORMAL}: The JNI environment is abnormal.</li>
+ *     <li>{@link IMAGE_RESULT_INVALID_PARAMETER}: A parameter is invalid.</li>
+ *     <li>{@link IMAGE_RESULT_GET_DATA_ABNORMAL}: An error occurs during image data retrieval.</li>
+ *     <li>{@link IMAGE_RESULT_DECODE_FAILED}: Decoding fails.</li>
+ *     <li>{@link IMAGE_RESULT_DECODE_HEAD_ABNORMAL}: An error occurs during decoding of the image header.</li>
+ *     <li>{@link IMAGE_RESULT_CREATE_DECODER_FAILED}: The decoder fails to be created.</li>
+ *     <li>{@link IMAGE_RESULT_CREATE_ENCODER_FAILED}: The encoder fails to be created.</li>
+ *     <li>{@link IMAGE_RESULT_CHECK_FORMAT_ERROR}: The format check fails.</li>
+ *     <li>{@link IMAGE_RESULT_THIRDPART_SKIA_ERROR}: Skia decoding fails.</li>
+ *     <li>{@link IMAGE_RESULT_DATA_ABNORMAL}: The image input data is incorrect.</li>
+ *     <li>{@link IMAGE_RESULT_ERR_SHAMEM_NOT_EXIST}: Sharing the memory fails.</li>
+ *     <li>{@link IMAGE_RESULT_ERR_SHAMEM_DATA_ABNORMAL}: Data in the shared memory is incorrect.</li>
+ *     <li>{@link IMAGE_RESULT_DECODE_ABNORMAL}: Image decoding fails.</li>
+ *     <li>{@link IMAGE_RESULT_MALLOC_ABNORMAL}: An error occurs during memory allocation.</li>
+ *     <li>{@link IMAGE_RESULT_DATA_UNSUPPORT}: The attribute is invalid or the image data is not supported.</li>
+ *     <li>{@link IMAGE_RESULT_INIT_ABNORMAL}: The image fails to be initialized.</li>
+ *     <li>{@link IMAGE_RESULT_CROP}: Cropping fails.</li>
+ *     <li>{@link IMAGE_RESULT_UNKNOWN_FORMAT}: The image format is unknown.</li>
+ *     <li>{@link IMAGE_RESULT_PLUGIN_REGISTER_FAILED}: The plugin fails to be registered.</li>
+ *     <li>{@link IMAGE_RESULT_PLUGIN_CREATE_FAILED}: The plugin fails to be created.</li>
+ *     <li>{@link IMAGE_RESULT_ENCODE_FAILED}: The image fails to be encoded.</li>
+ *     <li>{@link IMAGE_RESULT_HW_DECODE_UNSUPPORT}: Hardware decoding is not supported.</li>
+ *     <li>{@link IMAGE_RESULT_HW_DECODE_FAILED}: Hardware decoding fails.</li>
+ *     <li>{@link IMAGE_RESULT_INDEX_INVALID}: Index fails.</li>
+ *     <li>{@link IMAGE_RESULT_ALPHA_TYPE_ERROR}: The alpha type is incorrect.</li>
+ *     <li>{@link IMAGE_RESULT_ALLOCATER_TYPE_ERROR}: The memory allocator type is incorrect.</li></ul>
  * @see CreateAlphaPixelMap
  * @since 10
  * @version 1.0
@@ -277,12 +281,11 @@ int32_t OH_PixelMap_CreatePixelMapWithStride(napi_env env, OhosPixelMapCreateOps
 int32_t OH_PixelMap_CreateAlphaPixelMap(napi_env env, napi_value source, napi_value* alpha);
 
 /**
- * @brief Initializes a <b>PixelMap</b> object.
+ * @brief Initializes a NativePixelMap object.
  *
- * @param env Indicates the NAPI environment pointer.
- * @param source Indicates the options for setting the <b>PixelMap</b> object.
- * @return Returns a pointer to the <b>NativePixelMap</b> object
- * if the operation is successful; returns nullptr otherwise.
+ * @param env Pointer to the NAPI environment.
+ * @param source PixelMap object at the application layer.
+ * @return Pointer to the NativePixelMap object.
  * @see InitNativePixelMap
  * @since 10
  * @version 1.0
@@ -290,16 +293,17 @@ int32_t OH_PixelMap_CreateAlphaPixelMap(napi_env env, napi_value source, napi_va
 NativePixelMap* OH_PixelMap_InitNativePixelMap(napi_env env, napi_value source);
 
 /**
- * @brief Obtains the number of bytes per row of a <b>PixelMap</b> object.
+ * @brief Obtains the number of bytes per row of a NativePixelMap object.
  *
- * @param native Indicates the pointer to a <b>NativePixelMap</b> object.
- * @param num Indicates the pointer to the number of bytes per row of the <b>PixelMap</b> object.
- * @return Returns {@link IRNdkErrCode} IMAGE_RESULT_SUCCESS - if the operation is successful.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_BAD_PARAMETER - if bad parameter.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_JNI_ENV_ABNORMAL - if Abnormal JNI environment.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_INVALID_PARAMETER - if invalid parameter.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_DATA_ABNORMAL - if image input data error.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_INDEX_INVALID - if invalid index.
+ * @param native Pointer to a NativePixelMap object.
+ * @param num Pointer to the number of bytes per row.
+ * @return Result code defined in {@link IRNdkErrCode}:
+ *     <ul><li>{@link IMAGE_RESULT_SUCCESS}: The operation is successful.</li>
+ *     <li>{@link IMAGE_RESULT_BAD_PARAMETER}: A parameter is incorrect.</li>
+ *     <li>{@link IMAGE_RESULT_JNI_ENV_ABNORMAL}: The JNI environment is abnormal.</li>
+ *     <li>{@link IMAGE_RESULT_INVALID_PARAMETER}: A parameter is invalid.</li>
+ *     <li>{@link IMAGE_RESULT_DATA_ABNORMAL}: The image input data is incorrect.</li>
+ *     <li>{@link IMAGE_RESULT_DATA_UNSUPPORT}: The attribute is invalid or the image data is not supported.</li></ul>
  * @see GetBytesNumberPerRow
  * @since 10
  * @version 1.0
@@ -307,16 +311,17 @@ NativePixelMap* OH_PixelMap_InitNativePixelMap(napi_env env, napi_value source);
 int32_t OH_PixelMap_GetBytesNumberPerRow(const NativePixelMap* native, int32_t* num);
 
 /**
- * @brief Checks whether a <b>PixelMap</b> object is editable.
+ * @brief Checks whether a NativePixelMap object is editable.
  *
- * @param native Indicates the pointer to a <b>NativePixelMap</b> object.
- * @param editable Indicates the pointer to the editing type of the <b>PixelMap</b> object.
- * @return Returns {@link IRNdkErrCode} IMAGE_RESULT_SUCCESS - if the operation is successful.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_BAD_PARAMETER - if bad parameter.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_JNI_ENV_ABNORMAL - if Abnormal JNI environment.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_INVALID_PARAMETER - if invalid parameter.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_DATA_ABNORMAL - if image input data error.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_INDEX_INVALID - if invalid index.
+ * @param native Pointer to a NativePixelMap object.
+ * @param editable Pointer to the editing type of the NativePixelMap object.
+ * @return Result code defined in {@link IRNdkErrCode}:
+ *     <ul><li>{@link IMAGE_RESULT_SUCCESS}: The operation is successful.</li>
+ *     <li>{@link IMAGE_RESULT_BAD_PARAMETER}: A parameter is incorrect.</li>
+ *     <li>{@link IMAGE_RESULT_JNI_ENV_ABNORMAL}: The JNI environment is abnormal.</li>
+ *     <li>{@link IMAGE_RESULT_INVALID_PARAMETER}: A parameter is invalid.</li>
+ *     <li>{@link IMAGE_RESULT_DATA_ABNORMAL}: The image input data is incorrect.</li>
+ *     <li>{@link IMAGE_RESULT_DATA_UNSUPPORT}: The attribute is invalid or the image data is not supported.</li></ul>
  * @see GetIsEditable
  * @since 10
  * @version 1.0
@@ -324,16 +329,17 @@ int32_t OH_PixelMap_GetBytesNumberPerRow(const NativePixelMap* native, int32_t* 
 int32_t OH_PixelMap_GetIsEditable(const NativePixelMap* native, int32_t* editable);
 
 /**
- * @brief Checks whether a <b>PixelMap</b> object supports alpha channels.
+ * @brief Checks whether a NativePixelMap object supports alpha channels.
  *
- * @param native Indicates the pointer to a <b>NativePixelMap</b> object.
- * @param alpha Indicates the pointer to the support for alpha channels.
- * @return Returns {@link IRNdkErrCode} IMAGE_RESULT_SUCCESS - if the operation is successful.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_BAD_PARAMETER - if bad parameter.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_JNI_ENV_ABNORMAL - if Abnormal JNI environment.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_INVALID_PARAMETER - if invalid parameter.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_DATA_ABNORMAL - if image input data error.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_INDEX_INVALID - if invalid index.
+ * @param native Pointer to a NativePixelMap object.
+ * @param alpha Pointer to the support for alpha channels.
+ * @return Result code defined in {@link IRNdkErrCode}:
+ *     <ul><li>{@link IMAGE_RESULT_SUCCESS}: The operation is successful.</li>
+ *     <li>{@link IMAGE_RESULT_BAD_PARAMETER}: A parameter is incorrect.</li>
+ *     <li>{@link IMAGE_RESULT_JNI_ENV_ABNORMAL}: The JNI environment is abnormal.</li>
+ *     <li>{@link IMAGE_RESULT_INVALID_PARAMETER}: A parameter is invalid.</li>
+ *     <li>{@link IMAGE_RESULT_DATA_ABNORMAL}: The image input data is incorrect.</li>
+ *     <li>{@link IMAGE_RESULT_DATA_UNSUPPORT}: The attribute is invalid or the image data is not supported.</li></ul>
  * @see IsSupportAlpha
  * @since 10
  * @version 1.0
@@ -341,16 +347,17 @@ int32_t OH_PixelMap_GetIsEditable(const NativePixelMap* native, int32_t* editabl
 int32_t OH_PixelMap_IsSupportAlpha(const NativePixelMap* native, int32_t* alpha);
 
 /**
- * @brief Sets an alpha channel for a <b>PixelMap</b> object.
+ * @brief Sets an alpha channel for a NativePixelMap object.
  *
- * @param native Indicates the pointer to a <b>NativePixelMap</b> object.
- * @param alpha Indicates the alpha channel to set.
- * @return Returns {@link IRNdkErrCode} IMAGE_RESULT_SUCCESS - if the operation is successful.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_BAD_PARAMETER - if bad parameter.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_JNI_ENV_ABNORMAL - if Abnormal JNI environment.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_INVALID_PARAMETER - if invalid parameter.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_DATA_ABNORMAL - if image input data error.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_INDEX_INVALID - if invalid index.
+ * @param native Pointer to a NativePixelMap object.
+ * @param alpha Alpha channel to set.
+ * @return Result code defined in {@link IRNdkErrCode}:
+ *     <ul><li>{@link IMAGE_RESULT_SUCCESS}: The operation is successful.</li>
+ *     <li>{@link IMAGE_RESULT_BAD_PARAMETER}: A parameter is incorrect.</li>
+ *     <li>{@link IMAGE_RESULT_JNI_ENV_ABNORMAL}: The JNI environment is abnormal.</li>
+ *     <li>{@link IMAGE_RESULT_INVALID_PARAMETER}: A parameter is invalid.</li>
+ *     <li>{@link IMAGE_RESULT_DATA_ABNORMAL}: The image input data is incorrect.</li>
+ *     <li>{@link IMAGE_RESULT_DATA_UNSUPPORT}: The attribute is invalid or the image data is not supported.</li></ul>
  * @see SetAlphaAble
  * @since 10
  * @version 1.0
@@ -358,16 +365,17 @@ int32_t OH_PixelMap_IsSupportAlpha(const NativePixelMap* native, int32_t* alpha)
 int32_t OH_PixelMap_SetAlphaAble(const NativePixelMap* native, int32_t alpha);
 
 /**
- * @brief Obtains the pixel density of a <b>PixelMap</b> object.
+ * @brief Obtains the pixel density of a NativePixelMap object.
  *
- * @param native Indicates the pointer to a <b>NativePixelMap</b> object.
- * @param density Indicates the pointer to the pixel density.
- * @return Returns {@link IRNdkErrCode} IMAGE_RESULT_SUCCESS - if the operation is successful.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_BAD_PARAMETER - if bad parameter.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_JNI_ENV_ABNORMAL - if Abnormal JNI environment.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_INVALID_PARAMETER - if invalid parameter.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_DATA_ABNORMAL - if image input data error.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_INDEX_INVALID - if invalid index.
+ * @param native Pointer to a NativePixelMap object.
+ * @param density Pointer to the pixel density.
+ * @return Result code defined in {@link IRNdkErrCode}:
+ *     <ul><li>{@link IMAGE_RESULT_SUCCESS}: The operation is successful.</li>
+ *     <li>{@link IMAGE_RESULT_BAD_PARAMETER}: A parameter is incorrect.</li>
+ *     <li>{@link IMAGE_RESULT_JNI_ENV_ABNORMAL}: The JNI environment is abnormal.</li>
+ *     <li>{@link IMAGE_RESULT_INVALID_PARAMETER}: A parameter is invalid.</li>
+ *     <li>{@link IMAGE_RESULT_DATA_ABNORMAL}: The image input data is incorrect.</li>
+ *     <li>{@link IMAGE_RESULT_DATA_UNSUPPORT}: The attribute is invalid or the image data is not supported.</li></ul>
  * @see GetDensity
  * @since 10
  * @version 1.0
@@ -375,16 +383,17 @@ int32_t OH_PixelMap_SetAlphaAble(const NativePixelMap* native, int32_t alpha);
 int32_t OH_PixelMap_GetDensity(const NativePixelMap* native, int32_t* density);
 
 /**
- * @brief Sets the pixel density for a <b>PixelMap</b> object.
+ * @brief Sets the pixel density for a NativePixelMap object.
  *
- * @param native Indicates the pointer to a <b>NativePixelMap</b> object.
- * @param density Indicates the pixel density to set.
- * @return Returns {@link IRNdkErrCode} IMAGE_RESULT_SUCCESS - if the operation is successful.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_BAD_PARAMETER - if bad parameter.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_JNI_ENV_ABNORMAL - if Abnormal JNI environment.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_INVALID_PARAMETER - if invalid parameter.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_DATA_ABNORMAL - if image input data error.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_INDEX_INVALID - if invalid index.
+ * @param native Pointer to a NativePixelMap object.
+ * @param density Pixel density to set.
+ * @return Result code defined in {@link IRNdkErrCode}:
+ *     <ul><li>{@link IMAGE_RESULT_SUCCESS}: The operation is successful.</li>
+ *     <li>{@link IMAGE_RESULT_BAD_PARAMETER}: A parameter is incorrect.</li>
+ *     <li>{@link IMAGE_RESULT_JNI_ENV_ABNORMAL}: The JNI environment is abnormal.</li>
+ *     <li>{@link IMAGE_RESULT_INVALID_PARAMETER}: A parameter is invalid.</li>
+ *     <li>{@link IMAGE_RESULT_DATA_ABNORMAL}: The image input data is incorrect.</li>
+ *     <li>{@link IMAGE_RESULT_DATA_UNSUPPORT}: The attribute is invalid or the image data is not supported.</li></ul>
  * @see GetDensity
  * @since 10
  * @version 1.0
@@ -392,16 +401,17 @@ int32_t OH_PixelMap_GetDensity(const NativePixelMap* native, int32_t* density);
 int32_t OH_PixelMap_SetDensity(const NativePixelMap* native, int32_t density);
 
 /**
- * @brief Sets the opacity for a <b>PixelMap</b> object.
+ * @brief Sets the opacity for a NativePixelMap object.
  *
- * @param native Indicates the pointer to a <b>NativePixelMap</b> object.
- * @param opacity Indicates the opacity to set.
- * @return Returns {@link IRNdkErrCode} IMAGE_RESULT_SUCCESS - if the operation is successful.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_BAD_PARAMETER - if bad parameter.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_JNI_ENV_ABNORMAL - if Abnormal JNI environment.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_INVALID_PARAMETER - if invalid parameter.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_DATA_ABNORMAL - if image input data error.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_INDEX_INVALID - if invalid index.
+ * @param native Pointer to a NativePixelMap object.
+ * @param opacity Opacity to set.
+ * @return Result code defined in {@link IRNdkErrCode}:
+ *     <ul><li>{@link IMAGE_RESULT_SUCCESS}: The operation is successful.</li>
+ *     <li>{@link IMAGE_RESULT_BAD_PARAMETER}: A parameter is incorrect.</li>
+ *     <li>{@link IMAGE_RESULT_JNI_ENV_ABNORMAL}: The JNI environment is abnormal.</li>
+ *     <li>{@link IMAGE_RESULT_INVALID_PARAMETER}: A parameter is invalid.</li>
+ *     <li>{@link IMAGE_RESULT_DATA_ABNORMAL}: The image input data is incorrect.</li>
+ *     <li>{@link IMAGE_RESULT_DATA_UNSUPPORT}: The attribute is invalid or the image data is not supported.</li></ul>
  * @see SetOpacity
  * @since 10
  * @version 1.0
@@ -409,54 +419,55 @@ int32_t OH_PixelMap_SetDensity(const NativePixelMap* native, int32_t density);
 int32_t OH_PixelMap_SetOpacity(const NativePixelMap* native, float opacity);
 
 /**
- * @brief Scales a <b>PixelMap</b> object.
+ * @brief Scales a NativePixelMap object.
  *
- * @param native Indicates the pointer to a <b>NativePixelMap</b> object.
- * @param x Indicates the scaling ratio of the width.
- * @param y Indicates the scaling ratio of the height.
- * @return Returns {@link IRNdkErrCode} IMAGE_RESULT_SUCCESS - if the operation is successful.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_BAD_PARAMETER - if bad parameter.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_JNI_ENV_ABNORMAL - if Abnormal JNI environment.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_INVALID_PARAMETER - if invalid parameter.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_GET_DATA_ABNORMAL - if image get data error.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_DECODE_FAILED - if decode fail.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_CHECK_FORMAT_ERROR - if check format failed.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_THIRDPART_SKIA_ERROR - if skia error.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_DATA_ABNORMAL - if image input data error.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_ERR_SHAMEM_NOT_EXIST - if sharememory error.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_ERR_SHAMEM_DATA_ABNORMAL - if sharememory data abnormal.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_MALLOC_ABNORMAL - if image malloc error.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_DATA_UNSUPPORT - if image init error.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_CROP - if crop error.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_UNKNOWN_FORMAT - if image unknown format.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_PLUGIN_REGISTER_FAILED - if register plugin fail.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_PLUGIN_CREATE_FAILED - if create plugin fail.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_INDEX_INVALID - if invalid index.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_ALPHA_TYPE_ERROR - if hard decode failed.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_ALLOCATER_TYPE_ERROR - if hard decode failed.
+ * @param native Pointer to a NativePixelMap object.
+ * @param x Scale ratio of the width.
+ * @param y Scale ratio of the height.
+ * @return Result code defined in {@link IRNdkErrCode}:
+ *     <ul><li>{@link IMAGE_RESULT_SUCCESS}: The operation is successful.</li>
+ *     <li>{@link IMAGE_RESULT_BAD_PARAMETER}: A parameter is incorrect.</li>
+ *     <li>{@link IMAGE_RESULT_JNI_ENV_ABNORMAL}: The JNI environment is abnormal.</li>
+ *     <li>{@link IMAGE_RESULT_INVALID_PARAMETER}: A parameter is invalid.</li>
+ *     <li>{@link IMAGE_RESULT_GET_DATA_ABNORMAL}: An error occurs during image data retrieval.</li>
+ *     <li>{@link IMAGE_RESULT_DECODE_FAILED}: Decoding fails.</li>
+ *     <li>{@link IMAGE_RESULT_CHECK_FORMAT_ERROR}: The format check fails.</li>
+ *     <li>{@link IMAGE_RESULT_THIRDPART_SKIA_ERROR}: Skia decoding fails.</li>
+ *     <li>{@link IMAGE_RESULT_DATA_ABNORMAL}: The image input data is incorrect.</li>
+ *     <li>{@link IMAGE_RESULT_ERR_SHAMEM_NOT_EXIST}: Sharing the memory fails.</li>
+ *     <li>{@link IMAGE_RESULT_ERR_SHAMEM_DATA_ABNORMAL}: Data in the shared memory is incorrect.</li>
+ *     <li>{@link IMAGE_RESULT_MALLOC_ABNORMAL}: An error occurs during memory allocation.</li>
+ *     <li>{@link IMAGE_RESULT_DATA_UNSUPPORT}: The attribute is invalid or the image data is not supported.</li>
+ *     <li>{@link IMAGE_RESULT_INIT_ABNORMAL}: The image fails to be initialized.</li>
+ *     <li>{@link IMAGE_RESULT_CROP}: Cropping fails.</li>
+ *     <li>{@link IMAGE_RESULT_UNKNOWN_FORMAT}: The image format is unknown.</li>
+ *     <li>{@link IMAGE_RESULT_PLUGIN_REGISTER_FAILED}: The plugin fails to be registered.</li>
+ *     <li>{@link IMAGE_RESULT_PLUGIN_CREATE_FAILED}: The plugin fails to be created.</li>
+ *     <li>{@link IMAGE_RESULT_ALPHA_TYPE_ERROR}: The alpha type is incorrect.</li>
+ *     <li>{@link IMAGE_RESULT_ALLOCATER_TYPE_ERROR}: The memory allocator type is incorrect.</li></ul>
  * @see Scale
  * @since 10
  * @version 1.0
  */
 int32_t OH_PixelMap_Scale(const NativePixelMap* native, float x, float y);
 
-
 /**
- * @brief Scales a <b>PixelMap</b> object with anti-aliasing.
+ * @brief Scales a NativePixelMap object based on the specified anti-aliasing level, width, and height.
  *
- * @param native Indicates the pointer to a <b>NativePixelMap</b> object.
- * @param x Indicates the scaling ratio of the width.
- * @param y Indicates the scaling ratio of the height.
- * @param level Indicates the anti-aliasing algorithm to be used.
- * @return Returns {@link IRNdkErrCode} IMAGE_RESULT_SUCCESS - if the operation is successful.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_JNI_ENV_ABNORMAL - if Abnormal JNI environment.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_INVALID_PARAMETER - if invalid parameter, x and y are incorrect.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_GET_DATA_ABNORMAL - if image get data error.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_CHECK_FORMAT_ERROR - if check format failed.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_THIRDPART_SKIA_ERROR - if skia error.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_ERR_SHAMEM_DATA_ABNORMAL - if sharememory data abnormal.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_MALLOC_ABNORMAL - if image malloc error.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_UNKNOWN_FORMAT - if image unknown format.
+ * @param native Pointer to a NativePixelMap object.
+ * @param x Scale ratio of the width.
+ * @param y Scale ratio of the height.
+ * @param level Anti-aliasing level.
+ * @return Result code defined in {@link IRNdkErrCode}:
+ *     <ul><li>{@link IMAGE_RESULT_SUCCESS}: The operation is successful.</li>
+ *     <li>{@link IMAGE_RESULT_JNI_ENV_ABNORMAL}: The JNI environment is abnormal.</li>
+ *     <li>{@link IMAGE_RESULT_INVALID_PARAMETER}: A parameter is invalid.</li>
+ *     <li>{@link IMAGE_RESULT_GET_DATA_ABNORMAL}: An error occurs during image data retrieval.</li>
+ *     <li>{@link IMAGE_RESULT_CHECK_FORMAT_ERROR}: The format check fails.</li>
+ *     <li>{@link IMAGE_RESULT_THIRDPART_SKIA_ERROR}: Skia decoding fails.</li>
+ *     <li>{@link IMAGE_RESULT_ERR_SHAMEM_DATA_ABNORMAL}: Data in the shared memory is incorrect.</li>
+ *     <li>{@link IMAGE_RESULT_MALLOC_ABNORMAL}: An error occurs during memory allocation.</li>
+ *     <li>{@link IMAGE_RESULT_UNKNOWN_FORMAT}: The image format is unknown.</li></ul>
  * @see Scale
  * @since 12
  * @version 1.0
@@ -465,31 +476,31 @@ int32_t OH_PixelMap_ScaleWithAntiAliasing(const NativePixelMap* native, float x,
     OH_PixelMap_AntiAliasingLevel level);
 
 /**
- * @brief Translates a <b>PixelMap</b> object.
+ * @brief Translates a NativePixelMap object.
  *
- * @param native Indicates the pointer to a <b>NativePixelMap</b> object.
- * @param x Indicates the horizontal distance to translate.
- * @param y Indicates the vertical distance to translate.
- * @return Returns {@link IRNdkErrCode} IMAGE_RESULT_SUCCESS - if the operation is successful.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_BAD_PARAMETER - if bad parameter.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_JNI_ENV_ABNORMAL - if Abnormal JNI environment.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_INVALID_PARAMETER - if invalid parameter.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_GET_DATA_ABNORMAL - if image get data error.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_DECODE_FAILED - if decode fail.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_CHECK_FORMAT_ERROR - if check format failed.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_THIRDPART_SKIA_ERROR - if skia error.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_DATA_ABNORMAL - if image input data error.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_ERR_SHAMEM_NOT_EXIST - if sharememory error.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_ERR_SHAMEM_DATA_ABNORMAL - if sharememory data abnormal.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_MALLOC_ABNORMAL - if image malloc error.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_DATA_UNSUPPORT - if image init error.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_CROP - if crop error.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_UNKNOWN_FORMAT - if image unknown format.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_PLUGIN_REGISTER_FAILED - if register plugin fail.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_PLUGIN_CREATE_FAILED - if create plugin fail.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_INDEX_INVALID - if invalid index.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_ALPHA_TYPE_ERROR - if hard decode failed.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_ALLOCATER_TYPE_ERROR - if hard decode failed.
+ * @param native Pointer to a NativePixelMap object.
+ * @param x Horizontal distance to translate.
+ * @param y Vertical distance to translate.
+ * @return Result code defined in {@link IRNdkErrCode}:
+ *     <ul><li>{@link IMAGE_RESULT_SUCCESS}: The operation is successful.</li>
+ *     <li>{@link IMAGE_RESULT_BAD_PARAMETER}: A parameter is incorrect.</li>
+ *     <li>{@link IMAGE_RESULT_JNI_ENV_ABNORMAL}: The JNI environment is abnormal.</li>
+ *     <li>{@link IMAGE_RESULT_INVALID_PARAMETER}: A parameter is invalid.</li>
+ *     <li>{@link IMAGE_RESULT_GET_DATA_ABNORMAL}: An error occurs during image data retrieval.</li>
+ *     <li>{@link IMAGE_RESULT_DECODE_FAILED}: Decoding fails.</li>
+ *     <li>{@link IMAGE_RESULT_CHECK_FORMAT_ERROR}: The format check fails.</li>
+ *     <li>{@link IMAGE_RESULT_THIRDPART_SKIA_ERROR}: Skia decoding fails.</li>
+ *     <li>{@link IMAGE_RESULT_DATA_ABNORMAL}: The image input data is incorrect.</li>
+ *     <li>{@link IMAGE_RESULT_ERR_SHAMEM_NOT_EXIST}: Sharing the memory fails.</li>
+ *     <li>{@link IMAGE_RESULT_ERR_SHAMEM_DATA_ABNORMAL}: Data in the shared memory is incorrect.</li>
+ *     <li>{@link IMAGE_RESULT_MALLOC_ABNORMAL}: An error occurs during memory allocation.</li>
+ *     <li>{@link IMAGE_RESULT_DATA_UNSUPPORT}: The attribute is invalid or the image data is not supported.</li>
+ *     <li>{@link IMAGE_RESULT_CROP}: Cropping fails.</li>
+ *     <li>{@link IMAGE_RESULT_UNKNOWN_FORMAT}: The image format is unknown.</li>
+ *     <li>{@link IMAGE_RESULT_PLUGIN_REGISTER_FAILED}: The plugin fails to be registered.</li>
+ *     <li>{@link IMAGE_RESULT_PLUGIN_CREATE_FAILED}: The plugin fails to be created.</li>
+ *     <li>{@link IMAGE_RESULT_ALPHA_TYPE_ERROR}: The alpha type is incorrect.</li>
+ *     <li>{@link IMAGE_RESULT_ALLOCATER_TYPE_ERROR}: The memory allocator type is incorrect.</li></ul>
  * @see Translate
  * @since 10
  * @version 1.0
@@ -497,30 +508,30 @@ int32_t OH_PixelMap_ScaleWithAntiAliasing(const NativePixelMap* native, float x,
 int32_t OH_PixelMap_Translate(const NativePixelMap* native, float x, float y);
 
 /**
- * @brief Rotates a <b>PixelMap</b> object.
+ * @brief Rotates a NativePixelMap object.
  *
- * @param native Indicates the pointer to a <b>NativePixelMap</b> object.
- * @param angle Indicates the angle to rotate.
- * @return Returns {@link IRNdkErrCode} IMAGE_RESULT_SUCCESS - if the operation is successful.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_BAD_PARAMETER - if bad parameter.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_JNI_ENV_ABNORMAL - if Abnormal JNI environment.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_INVALID_PARAMETER - if invalid parameter.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_GET_DATA_ABNORMAL - if image get data error.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_DECODE_FAILED - if decode fail.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_CHECK_FORMAT_ERROR - if check format failed.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_THIRDPART_SKIA_ERROR - if skia error.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_DATA_ABNORMAL - if image input data error.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_ERR_SHAMEM_NOT_EXIST - if sharememory error.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_ERR_SHAMEM_DATA_ABNORMAL - if sharememory data abnormal.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_MALLOC_ABNORMAL - if image malloc error.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_DATA_UNSUPPORT - if image init error.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_CROP - if crop error.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_UNKNOWN_FORMAT - if image unknown format.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_PLUGIN_REGISTER_FAILED - if register plugin fail.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_PLUGIN_CREATE_FAILED - if create plugin fail.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_INDEX_INVALID - if invalid index.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_ALPHA_TYPE_ERROR - if hard decode failed.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_ALLOCATER_TYPE_ERROR - if hard decode failed.
+ * @param native Pointer to a NativePixelMap object.
+ * @param angle Angle to rotate.
+ * @return Result code defined in {@link IRNdkErrCode}:
+ *     <ul><li>{@link IMAGE_RESULT_SUCCESS}: The operation is successful.</li>
+ *     <li>{@link IMAGE_RESULT_BAD_PARAMETER}: A parameter is incorrect.</li>
+ *     <li>{@link IMAGE_RESULT_JNI_ENV_ABNORMAL}: The JNI environment is abnormal.</li>
+ *     <li>{@link IMAGE_RESULT_INVALID_PARAMETER}: A parameter is invalid.</li>
+ *     <li>{@link IMAGE_RESULT_GET_DATA_ABNORMAL}: An error occurs during image data retrieval.</li>
+ *     <li>{@link IMAGE_RESULT_DECODE_FAILED}: Decoding fails.</li>
+ *     <li>{@link IMAGE_RESULT_CHECK_FORMAT_ERROR}: The format check fails.</li>
+ *     <li>{@link IMAGE_RESULT_THIRDPART_SKIA_ERROR}: Skia decoding fails.</li>
+ *     <li>{@link IMAGE_RESULT_DATA_ABNORMAL}: The image input data is incorrect.</li>
+ *     <li>{@link IMAGE_RESULT_ERR_SHAMEM_NOT_EXIST}: Sharing the memory fails.</li>
+ *     <li>{@link IMAGE_RESULT_ERR_SHAMEM_DATA_ABNORMAL}: Data in the shared memory is incorrect.</li>
+ *     <li>{@link IMAGE_RESULT_MALLOC_ABNORMAL}: An error occurs during memory allocation.</li>
+ *     <li>{@link IMAGE_RESULT_DATA_UNSUPPORT}: The attribute is invalid or the image data is not supported.</li>
+ *     <li>{@link IMAGE_RESULT_CROP}: Cropping fails.</li>
+ *     <li>{@link IMAGE_RESULT_UNKNOWN_FORMAT}: The image format is unknown.</li>
+ *     <li>{@link IMAGE_RESULT_PLUGIN_REGISTER_FAILED}: The plugin fails to be registered.</li>
+ *     <li>{@link IMAGE_RESULT_PLUGIN_CREATE_FAILED}: The plugin fails to be created.</li>
+ *     <li>{@link IMAGE_RESULT_ALPHA_TYPE_ERROR}: The alpha type is incorrect.</li>
+ *     <li>{@link IMAGE_RESULT_ALLOCATER_TYPE_ERROR}: The memory allocator type is incorrect.</li></ul>
  * @see Rotate
  * @since 10
  * @version 1.0
@@ -528,31 +539,31 @@ int32_t OH_PixelMap_Translate(const NativePixelMap* native, float x, float y);
 int32_t OH_PixelMap_Rotate(const NativePixelMap* native, float angle);
 
 /**
- * @brief Flips a <b>PixelMap</b> object.
+ * @brief Flips a NativePixelMap object.
  *
- * @param native Indicates the pointer to a <b>NativePixelMap</b> object.
- * @param x Specifies whether to flip around the x axis.
- * @param y Specifies whether to flip around the y axis.
- * @return Returns {@link IRNdkErrCode} IMAGE_RESULT_SUCCESS - if the operation is successful.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_BAD_PARAMETER - if bad parameter.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_JNI_ENV_ABNORMAL - if Abnormal JNI environment.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_INVALID_PARAMETER - if invalid parameter.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_GET_DATA_ABNORMAL - if image get data error.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_DECODE_FAILED - if decode fail.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_CHECK_FORMAT_ERROR - if check format failed.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_THIRDPART_SKIA_ERROR - if skia error.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_DATA_ABNORMAL - if image input data error.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_ERR_SHAMEM_NOT_EXIST - if sharememory error.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_ERR_SHAMEM_DATA_ABNORMAL - if sharememory data abnormal.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_MALLOC_ABNORMAL - if image malloc error.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_DATA_UNSUPPORT - if image init error.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_CROP - if crop error.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_UNKNOWN_FORMAT - if image unknown format.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_PLUGIN_REGISTER_FAILED - if register plugin fail.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_PLUGIN_CREATE_FAILED - if create plugin fail.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_INDEX_INVALID - if invalid index.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_ALPHA_TYPE_ERROR - if hard decode failed.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_ALLOCATER_TYPE_ERROR - if hard decode failed.
+ * @param native Pointer to a NativePixelMap object.
+ * @param x Whether to flip around the x axis.
+ * @param y Whether to flip around the y axis.
+ * @return Result code defined in {@link IRNdkErrCode}:
+ *     <ul><li>{@link IMAGE_RESULT_SUCCESS}: The operation is successful.</li>
+ *     <li>{@link IMAGE_RESULT_BAD_PARAMETER}: A parameter is incorrect.</li>
+ *     <li>{@link IMAGE_RESULT_JNI_ENV_ABNORMAL}: The JNI environment is abnormal.</li>
+ *     <li>{@link IMAGE_RESULT_INVALID_PARAMETER}: A parameter is invalid.</li>
+ *     <li>{@link IMAGE_RESULT_GET_DATA_ABNORMAL}: An error occurs during image data retrieval.</li>
+ *     <li>{@link IMAGE_RESULT_DECODE_FAILED}: Decoding fails.</li>
+ *     <li>{@link IMAGE_RESULT_CHECK_FORMAT_ERROR}: The format check fails.</li>
+ *     <li>{@link IMAGE_RESULT_THIRDPART_SKIA_ERROR}: Skia decoding fails.</li>
+ *     <li>{@link IMAGE_RESULT_DATA_ABNORMAL}: The image input data is incorrect.</li>
+ *     <li>{@link IMAGE_RESULT_ERR_SHAMEM_NOT_EXIST}: Sharing the memory fails.</li>
+ *     <li>{@link IMAGE_RESULT_ERR_SHAMEM_DATA_ABNORMAL}: Data in the shared memory is incorrect.</li>
+ *     <li>{@link IMAGE_RESULT_MALLOC_ABNORMAL}: An error occurs during memory allocation.</li>
+ *     <li>{@link IMAGE_RESULT_DATA_UNSUPPORT}: The attribute is invalid or the image data is not supported.</li>
+ *     <li>{@link IMAGE_RESULT_CROP}: Cropping fails.</li>
+ *     <li>{@link IMAGE_RESULT_UNKNOWN_FORMAT}: The image format is unknown.</li>
+ *     <li>{@link IMAGE_RESULT_PLUGIN_REGISTER_FAILED}: The plugin fails to be registered.</li>
+ *     <li>{@link IMAGE_RESULT_PLUGIN_CREATE_FAILED}: The plugin fails to be created.</li>
+ *     <li>{@link IMAGE_RESULT_ALPHA_TYPE_ERROR}: The alpha type is incorrect.</li>
+ *     <li>{@link IMAGE_RESULT_ALLOCATER_TYPE_ERROR}: The memory allocator type is incorrect.</li></ul>
  * @see Flip
  * @since 10
  * @version 1.0
@@ -560,33 +571,33 @@ int32_t OH_PixelMap_Rotate(const NativePixelMap* native, float angle);
 int32_t OH_PixelMap_Flip(const NativePixelMap* native, int32_t x, int32_t y);
 
 /**
- * @brief Crops a <b>PixelMap</b> object.
+ * @brief Crops a NativePixelMap object.
  *
- * @param native Indicates the pointer to a <b>NativePixelMap</b> object.
- * @param x Indicates the x-coordinate of the upper left corner of the target image.
- * @param y Indicates the y-coordinate of the upper left corner of the target image.
- * @param width Indicates the width of the cropped region.
- * @param height Indicates the height of the cropped region.
- * @return Returns {@link IRNdkErrCode} IMAGE_RESULT_SUCCESS - if the operation is successful.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_BAD_PARAMETER - if bad parameter.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_JNI_ENV_ABNORMAL - if Abnormal JNI environment.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_INVALID_PARAMETER - if invalid parameter.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_GET_DATA_ABNORMAL - if image get data error.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_DECODE_FAILED - if decode fail.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_CHECK_FORMAT_ERROR - if check format failed.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_THIRDPART_SKIA_ERROR - if skia error.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_DATA_ABNORMAL - if image input data error.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_ERR_SHAMEM_NOT_EXIST - if sharememory error.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_ERR_SHAMEM_DATA_ABNORMAL - if sharememory data abnormal.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_MALLOC_ABNORMAL - if image malloc error.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_DATA_UNSUPPORT - if image init error.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_CROP - if crop error.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_UNKNOWN_FORMAT - if image unknown format.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_PLUGIN_REGISTER_FAILED - if register plugin fail.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_PLUGIN_CREATE_FAILED - if create plugin fail.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_INDEX_INVALID - if invalid index.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_ALPHA_TYPE_ERROR - if hard decode failed.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_ALLOCATER_TYPE_ERROR - if hard decode failed.
+ * @param native Pointer to a NativePixelMap object.
+ * @param x X-coordinate of the upper left corner of the target image.
+ * @param y Y-coordinate of the upper left corner of the target image.
+ * @param width Width of the cropped region.
+ * @param height Height of the cropped region.
+ * @return Result code defined in {@link IRNdkErrCode}:
+ *     <ul><li>{@link IMAGE_RESULT_SUCCESS}: The operation is successful.</li>
+ *     <li>{@link IMAGE_RESULT_BAD_PARAMETER}: A parameter is incorrect.</li>
+ *     <li>{@link IMAGE_RESULT_JNI_ENV_ABNORMAL}: The JNI environment is abnormal.</li>
+ *     <li>{@link IMAGE_RESULT_INVALID_PARAMETER}: A parameter is invalid.</li>
+ *     <li>{@link IMAGE_RESULT_GET_DATA_ABNORMAL}: An error occurs during image data retrieval.</li>
+ *     <li>{@link IMAGE_RESULT_DECODE_FAILED}: Decoding fails.</li>
+ *     <li>{@link IMAGE_RESULT_CHECK_FORMAT_ERROR}: The format check fails.</li>
+ *     <li>{@link IMAGE_RESULT_THIRDPART_SKIA_ERROR}: Skia decoding fails.</li>
+ *     <li>{@link IMAGE_RESULT_DATA_ABNORMAL}: The image input data is incorrect.</li>
+ *     <li>{@link IMAGE_RESULT_ERR_SHAMEM_NOT_EXIST}: Sharing the memory fails.</li>
+ *     <li>{@link IMAGE_RESULT_ERR_SHAMEM_DATA_ABNORMAL}: Data in the shared memory is incorrect.</li>
+ *     <li>{@link IMAGE_RESULT_MALLOC_ABNORMAL}: An error occurs during memory allocation.</li>
+ *     <li>{@link IMAGE_RESULT_DATA_UNSUPPORT}: The attribute is invalid or the image data is not supported.</li>
+ *     <li>{@link IMAGE_RESULT_CROP}: Cropping fails.</li>
+ *     <li>{@link IMAGE_RESULT_UNKNOWN_FORMAT}: The image format is unknown.</li>
+ *     <li>{@link IMAGE_RESULT_PLUGIN_REGISTER_FAILED}: The plugin fails to be registered.</li>
+ *     <li>{@link IMAGE_RESULT_PLUGIN_CREATE_FAILED}: The plugin fails to be created.</li>
+ *     <li>{@link IMAGE_RESULT_ALPHA_TYPE_ERROR}: The alpha type is incorrect.</li>
+ *     <li>{@link IMAGE_RESULT_ALLOCATER_TYPE_ERROR}: The memory allocator type is incorrect.</li></ul>
  * @see Crop
  * @since 10
  * @version 1.0
@@ -594,30 +605,30 @@ int32_t OH_PixelMap_Flip(const NativePixelMap* native, int32_t x, int32_t y);
 int32_t OH_PixelMap_Crop(const NativePixelMap* native, int32_t x, int32_t y, int32_t width, int32_t height);
 
 /**
- * @brief Obtains the image information of a <b>PixelMap</b> object.
+ * @brief Obtains the image information of a NativePixelMap object.
  *
- * @param native Indicates the pointer to a <b>NativePixelMap</b> object.
- * @param info Indicates the pointer to the image information.
- * @return Returns {@link IRNdkErrCode} IMAGE_RESULT_SUCCESS - if the operation is successful.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_BAD_PARAMETER - if bad parameter.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_JNI_ENV_ABNORMAL - if Abnormal JNI environment.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_INVALID_PARAMETER - if invalid parameter.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_GET_DATA_ABNORMAL - if image get data error.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_DECODE_FAILED - if decode fail.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_CHECK_FORMAT_ERROR - if check format failed.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_THIRDPART_SKIA_ERROR - if skia error.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_DATA_ABNORMAL - if image input data error.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_ERR_SHAMEM_NOT_EXIST - if sharememory error.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_ERR_SHAMEM_DATA_ABNORMAL - if sharememory data abnormal.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_MALLOC_ABNORMAL - if image malloc error.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_DATA_UNSUPPORT - if image init error.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_CROP - if crop error.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_UNKNOWN_FORMAT - if image unknown format.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_PLUGIN_REGISTER_FAILED - if register plugin fail.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_PLUGIN_CREATE_FAILED - if create plugin fail.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_INDEX_INVALID - if invalid index.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_ALPHA_TYPE_ERROR - if hard decode failed.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_ALLOCATER_TYPE_ERROR - if hard decode failed.
+ * @param native Pointer to a NativePixelMap object.
+ * @param info Pointer to the image information.
+ * @return Result code defined in {@link IRNdkErrCode}:
+ *     <ul><li>{@link IMAGE_RESULT_SUCCESS}: The operation is successful.</li>
+ *     <li>{@link IMAGE_RESULT_BAD_PARAMETER}: A parameter is incorrect.</li>
+ *     <li>{@link IMAGE_RESULT_JNI_ENV_ABNORMAL}: The JNI environment is abnormal.</li>
+ *     <li>{@link IMAGE_RESULT_INVALID_PARAMETER}: A parameter is invalid.</li>
+ *     <li>{@link IMAGE_RESULT_GET_DATA_ABNORMAL}: An error occurs during image data retrieval.</li>
+ *     <li>{@link IMAGE_RESULT_DECODE_FAILED}: Decoding fails.</li>
+ *     <li>{@link IMAGE_RESULT_CHECK_FORMAT_ERROR}: The format check fails.</li>
+ *     <li>{@link IMAGE_RESULT_THIRDPART_SKIA_ERROR}: Skia decoding fails.</li>
+ *     <li>{@link IMAGE_RESULT_DATA_ABNORMAL}: The image input data is incorrect.</li>
+ *     <li>{@link IMAGE_RESULT_ERR_SHAMEM_NOT_EXIST}: Sharing the memory fails.</li>
+ *     <li>{@link IMAGE_RESULT_ERR_SHAMEM_DATA_ABNORMAL}: Data in the shared memory is incorrect.</li>
+ *     <li>{@link IMAGE_RESULT_MALLOC_ABNORMAL}: An error occurs during memory allocation.</li>
+ *     <li>{@link IMAGE_RESULT_DATA_UNSUPPORT}: The attribute is invalid or the image data is not supported.</li>
+ *     <li>{@link IMAGE_RESULT_CROP}: Cropping fails.</li>
+ *     <li>{@link IMAGE_RESULT_UNKNOWN_FORMAT}: The image format is unknown.</li>
+ *     <li>{@link IMAGE_RESULT_PLUGIN_REGISTER_FAILED}: The plugin fails to be registered.</li>
+ *     <li>{@link IMAGE_RESULT_PLUGIN_CREATE_FAILED}: The plugin fails to be created.</li>
+ *     <li>{@link IMAGE_RESULT_ALPHA_TYPE_ERROR}: The alpha type is incorrect.</li>
+ *     <li>{@link IMAGE_RESULT_ALLOCATER_TYPE_ERROR}: The memory allocator type is incorrect.</li></ul>
  * @see OhosPixelMapInfos
  * @since 10
  * @version 2.0
@@ -625,61 +636,61 @@ int32_t OH_PixelMap_Crop(const NativePixelMap* native, int32_t x, int32_t y, int
 int32_t OH_PixelMap_GetImageInfo(const NativePixelMap* native, OhosPixelMapInfos *info);
 
 /**
- * @brief Obtains the memory address of a <b>NativePixelMap</b> object and locks the memory.
+ * @brief Obtains the memory address of a NativePixelMap object and locks the memory.
  *
- * @param native Indicates the pointer to a <b>NativePixelMap</b> object.
- * @param addr Indicates the double pointer to the memory address.
+ * @param native Pointer to a NativePixelMap object.
+ * @param addr Double pointer to the memory address.
  * @see UnAccessPixels
- * @return Returns {@link IRNdkErrCode} IMAGE_RESULT_SUCCESS - if the operation is successful.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_BAD_PARAMETER - if bad parameter.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_JNI_ENV_ABNORMAL - if Abnormal JNI environment.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_INVALID_PARAMETER - if invalid parameter.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_GET_DATA_ABNORMAL - if image get data error.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_DECODE_FAILED - if decode fail.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_CHECK_FORMAT_ERROR - if check format failed.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_THIRDPART_SKIA_ERROR - if skia error.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_DATA_ABNORMAL - if image input data error.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_ERR_SHAMEM_NOT_EXIST - if sharememory error.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_ERR_SHAMEM_DATA_ABNORMAL - if sharememory data abnormal.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_MALLOC_ABNORMAL - if image malloc error.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_DATA_UNSUPPORT - if image init error.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_CROP - if crop error.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_UNKNOWN_FORMAT - if image unknown format.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_PLUGIN_REGISTER_FAILED - if register plugin fail.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_PLUGIN_CREATE_FAILED - if create plugin fail.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_INDEX_INVALID - if invalid index.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_ALPHA_TYPE_ERROR - if hard decode failed.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_ALLOCATER_TYPE_ERROR - if hard decode failed.
+ * @return Result code defined in {@link IRNdkErrCode}:
+ *     <ul><li>{@link IMAGE_RESULT_SUCCESS}: The operation is successful.</li>
+ *     <li>{@link IMAGE_RESULT_BAD_PARAMETER}: A parameter is incorrect.</li>
+ *     <li>{@link IMAGE_RESULT_JNI_ENV_ABNORMAL}: The JNI environment is abnormal.</li>
+ *     <li>{@link IMAGE_RESULT_INVALID_PARAMETER}: A parameter is invalid.</li>
+ *     <li>{@link IMAGE_RESULT_GET_DATA_ABNORMAL}: An error occurs during image data retrieval.</li>
+ *     <li>{@link IMAGE_RESULT_DECODE_FAILED}: Decoding fails.</li>
+ *     <li>{@link IMAGE_RESULT_CHECK_FORMAT_ERROR}: The format check fails.</li>
+ *     <li>{@link IMAGE_RESULT_THIRDPART_SKIA_ERROR}: Skia decoding fails.</li>
+ *     <li>{@link IMAGE_RESULT_DATA_ABNORMAL}: The image input data is incorrect.</li>
+ *     <li>{@link IMAGE_RESULT_ERR_SHAMEM_NOT_EXIST}: Sharing the memory fails.</li>
+ *     <li>{@link IMAGE_RESULT_ERR_SHAMEM_DATA_ABNORMAL}: Data in the shared memory is incorrect.</li>
+ *     <li>{@link IMAGE_RESULT_MALLOC_ABNORMAL}: An error occurs during memory allocation.</li>
+ *     <li>{@link IMAGE_RESULT_DATA_UNSUPPORT}: The attribute is invalid or the image data is not supported.</li>
+ *     <li>{@link IMAGE_RESULT_CROP}: Cropping fails.</li>
+ *     <li>{@link IMAGE_RESULT_UNKNOWN_FORMAT}: The image format is unknown.</li>
+ *     <li>{@link IMAGE_RESULT_PLUGIN_REGISTER_FAILED}: The plugin fails to be registered.</li>
+ *     <li>{@link IMAGE_RESULT_PLUGIN_CREATE_FAILED}: The plugin fails to be created.</li>
+ *     <li>{@link IMAGE_RESULT_ALPHA_TYPE_ERROR}: The alpha type is incorrect.</li>
+ *     <li>{@link IMAGE_RESULT_ALLOCATER_TYPE_ERROR}: The memory allocator type is incorrect.</li></ul>
  * @since 10
  * @version 2.0
  */
 int32_t OH_PixelMap_AccessPixels(const NativePixelMap* native, void** addr);
 
 /**
- * @brief Unlocks the memory of the <b>NativePixelMap</b> object data.
- * This function is used with {@link OH_PixelMap_AccessPixels} in pairs.
+ * @brief Unlocks the memory of a NativePixelMap object. This function is used with {@link OH_PixelMap_AccessPixels} in
+ * pairs.
  *
- * @param native Indicates the pointer to a <b>NativePixelMap</b> object.
- * @return Returns {@link IRNdkErrCode} IMAGE_RESULT_SUCCESS - if the operation is successful.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_BAD_PARAMETER - if bad parameter.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_JNI_ENV_ABNORMAL - if Abnormal JNI environment.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_INVALID_PARAMETER - if invalid parameter.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_GET_DATA_ABNORMAL - if image get data error.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_DECODE_FAILED - if decode fail.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_CHECK_FORMAT_ERROR - if check format failed.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_THIRDPART_SKIA_ERROR - if skia error.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_DATA_ABNORMAL - if image input data error.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_ERR_SHAMEM_NOT_EXIST - if sharememory error.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_ERR_SHAMEM_DATA_ABNORMAL - if sharememory data abnormal.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_MALLOC_ABNORMAL - if image malloc error.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_DATA_UNSUPPORT - if image init error.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_CROP - if crop error.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_UNKNOWN_FORMAT - if image unknown format.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_PLUGIN_REGISTER_FAILED - if register plugin fail.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_PLUGIN_CREATE_FAILED - if create plugin fail.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_INDEX_INVALID - if invalid index.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_ALPHA_TYPE_ERROR - if hard decode failed.
- * returns {@link IRNdkErrCode} IMAGE_RESULT_ALLOCATER_TYPE_ERROR - if hard decode failed.
+ * @param native Pointer to a NativePixelMap object.
+ * @return Result code defined in {@link IRNdkErrCode}:
+ *     <ul><li>{@link IMAGE_RESULT_SUCCESS}: The operation is successful.</li>
+ *     <li>{@link IMAGE_RESULT_BAD_PARAMETER}: A parameter is incorrect.</li>
+ *     <li>{@link IMAGE_RESULT_JNI_ENV_ABNORMAL}: The JNI environment is abnormal.</li>
+ *     <li>{@link IMAGE_RESULT_INVALID_PARAMETER}: A parameter is invalid.</li>
+ *     <li>{@link IMAGE_RESULT_GET_DATA_ABNORMAL}: An error occurs during image data retrieval.</li>
+ *     <li>{@link IMAGE_RESULT_DECODE_FAILED}: Decoding fails.</li>
+ *     <li>{@link IMAGE_RESULT_CHECK_FORMAT_ERROR}: The format check fails.</li>
+ *     <li>{@link IMAGE_RESULT_THIRDPART_SKIA_ERROR}: Skia decoding fails.</li>
+ *     <li>{@link IMAGE_RESULT_DATA_ABNORMAL}: The image input data is incorrect.</li>
+ *     <li>{@link IMAGE_RESULT_ERR_SHAMEM_NOT_EXIST}: Sharing the memory fails.</li>
+ *     <li>{@link IMAGE_RESULT_ERR_SHAMEM_DATA_ABNORMAL}: Data in the shared memory is incorrect.</li>
+ *     <li>{@link IMAGE_RESULT_MALLOC_ABNORMAL}: An error occurs during memory allocation.</li>
+ *     <li>{@link IMAGE_RESULT_DATA_UNSUPPORT}: The attribute is invalid or the image data is not supported.</li>
+ *     <li>{@link IMAGE_RESULT_CROP}: Cropping fails.</li>
+ *     <li>{@link IMAGE_RESULT_UNKNOWN_FORMAT}: The image format is unknown.</li>
+ *     <li>{@link IMAGE_RESULT_PLUGIN_REGISTER_FAILED}: The plugin fails to be registered.</li>
+ *     <li>{@link IMAGE_RESULT_PLUGIN_CREATE_FAILED}: The plugin fails to be created.</li>
+ *     <li>{@link IMAGE_RESULT_ALPHA_TYPE_ERROR}: The alpha type is incorrect.</li>
+ *     <li>{@link IMAGE_RESULT_ALLOCATER_TYPE_ERROR}: The memory allocator type is incorrect.</li></ul>
  * @see AccessPixels
  * @since 10
  * @version 2.0
