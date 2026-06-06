@@ -43,7 +43,7 @@ extern "C" {
  * @brief Archive Writer context structure.
  * @since 26.0.0
  */
-typedef struct ArchiveWriterCtx *OH_Archive_Writer_Ctx;
+typedef struct ArchiveWriteCtx *OH_Archive_Writer_Ctx;
 /**
  * @brief Archive Reader context structure.
  * @since 26.0.0
