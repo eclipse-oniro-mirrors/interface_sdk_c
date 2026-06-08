@@ -1682,7 +1682,7 @@ extern const char *OH_MD_KEY_VIDEO_ENCODER_MAX_B_FRAMES;
  * It uses comma-separated key-value pairs (e.g., "=dqp:-6,slb:1").
  * Supported keys:
  * - "dqp": Quantization parameter offset.
- * - "slb": Semantic label. The value must correspond to {@link OH_VideoEncoderRoiSemanticLabel}.
+ * - "slb": Semantic label. The value must correspond to {@link OH_VideoMetadataRoiSemanticLabel}.
  *
  * If "=Params" is omitted entirely, like "Top1,Left1-Bottom1,Right1;Top2,Left2-Bottom2,Right2=dqp:-6;",
  * the encoder will use the default parameters to perform the ROI encoding on the first ROI and
@@ -1695,7 +1695,7 @@ extern const char *OH_MD_KEY_VIDEO_ENCODER_MAX_B_FRAMES;
  * In surface mode, it is used in {@link OH_VideoEncoder_OnNeedInputParameter}.
  * In buffer mode, it is configured via {@link OH_AVBuffer_SetParameter}.
  *
- * @note Since version 26.0.0, it is highly recommended to use {@link OH_VideoBase_AppendRoiString} to format
+ * @note Since version 26.0.0, it is highly recommended to use {@link OH_VideoMetadata_AppendRoiString} to format
  * and append ROI configurations safely instead of concatenating the string manually.
  * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 20
