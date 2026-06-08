@@ -42,6 +42,7 @@ if (!is_arkui_x) {
       "native_render.h",
       "native_type.h",
       "node_attributes",
+      "node_types",
       "styled_string.h",
       "ui_input_event.h",
     ]
@@ -72,6 +73,7 @@ if (!is_arkui_x) {
       "arkui/node_attributes/swiper/node_attr_swiper.h",
       "arkui/node_attributes/swiper/node_event_swiper.h",
       "arkui/node_attributes/swiper/swiper.h",
+      "arkui/node_types/native_type_common.h",
       "arkui/styled_string.h",
       "arkui/ui_input_event.h",
       "ace/xcomponent/native_interface_xcomponent.h",

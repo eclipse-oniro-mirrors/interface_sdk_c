@@ -37,6 +37,7 @@
     { "filePath": "arkui/ace_engine/native/node_attributes/swiper/node_attr_swiper.h", "kitName": "ArkUI", "subSystem": "ArkUI开发框架" },
     { "filePath": "arkui/ace_engine/native/node_attributes/swiper/node_event_swiper.h", "kitName": "ArkUI", "subSystem": "ArkUI开发框架" },
     { "filePath": "arkui/ace_engine/native/node_attributes/swiper/swiper.h", "kitName": "ArkUI", "subSystem": "ArkUI开发框架" },
+    { "filePath": "arkui/ace_engine/native/node_types/native_type_common.h", "kitName": "ArkUI", "subSystem": "ArkUI开发框架" },
     { "filePath": "arkui/ace_engine/native/native_node_napi.h", "kitName": "ArkUI", "subSystem": "ArkUI开发框架" },
     { "filePath": "arkui/ace_engine/native/native_type.h", "kitName": "ArkUI", "subSystem": "ArkUI开发框架" },
     { "filePath": "arkui/ace_engine/native/ui_input_event.h", "kitName": "ArkUI", "subSystem": "ArkUI开发框架" },
