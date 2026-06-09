@@ -151,6 +151,7 @@ typedef enum OH_VideoMetadataRoiSemanticLabel {
  * Returns AV_ERR_INVALID_VAL if the roiStrInOut pointer or format handle is NULL,
  * or if the format lacks required ROI keys.
  * Returns AV_ERR_NO_MEMORY if internal memory allocation or reallocation fails.
+ * @release free {roiStrInOut}
  * @since 26.0.0
  */
 OH_AVErrCode OH_VideoMetadata_AppendRoiString(char **roiStrInOut, OH_AVFormat *format);
