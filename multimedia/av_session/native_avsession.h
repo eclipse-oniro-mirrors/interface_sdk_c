@@ -40,6 +40,7 @@
 #ifndef NATIVE_AVSESSION_H
 #define NATIVE_AVSESSION_H
 
+#include <stdbool.h>
 #include <stdint.h>
 #include "native_avsession_errors.h"
 #include "native_avsession_base.h"
