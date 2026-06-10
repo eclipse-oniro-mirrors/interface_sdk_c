@@ -26,12 +26,12 @@
  *
  * @brief Declares the error codes of Archive module.
  * @kit CoreFileKit
- * @library libohcompress.so
+ * @library liboharchive.so
  * @syscap SystemCapability.FileManagement.File.FileIO
  * @since 26.0.0
  */
-#ifndef FILE_MANAGEMENT_COMPRESS_OH_ARCHIVE_ERRCODE_H
-#define FILE_MANAGEMENT_COMPRESS_OH_ARCHIVE_ERRCODE_H
+#ifndef FILE_MANAGEMENT_ARCHIVE_OH_ARCHIVE_ERRCODE_H
+#define FILE_MANAGEMENT_ARCHIVE_OH_ARCHIVE_ERRCODE_H
 
 #ifdef __cplusplus
 extern "C" {
@@ -77,12 +77,12 @@ typedef enum {
      */
     OH_ARCHIVE_OPEN_ERROR = 13900104,
     /**
-     * @brief Compression operation failed.
+     * @brief Write operation failed.
      * @since 26.0.0
      */
     OH_ARCHIVE_WRITE_ERROR = 13900105,
     /**
-     * @brief Decompression operation failed.
+     * @brief Read operation failed.
      * @since 26.0.0
      */
     OH_ARCHIVE_READ_ERROR = 13900106,
@@ -122,6 +122,11 @@ typedef enum {
      */
     OH_ARCHIVE_NAME_TOO_LONG_ERROR = 13900204,
     /**
+     * @brief Full path too long.
+     * @since 26.0.0
+     */
+    OH_ARCHIVE_FULL_PATH_TOO_LONG_ERROR = 13900205,
+    /**
      * @brief Data integrity error.
      * @since 26.0.0
      */
@@ -142,4 +147,4 @@ typedef enum {
 }
 #endif /* End of #ifdef __cplusplus */
 /** @} */
-#endif /* FILE_MANAGEMENT_COMPRESS_OH_ARCHIVE_ERRCODE_H */
+#endif /* FILE_MANAGEMENT_ARCHIVE_OH_ARCHIVE_ERRCODE_H */
