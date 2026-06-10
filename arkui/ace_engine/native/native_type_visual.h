@@ -193,31 +193,57 @@ typedef enum {
  * @since 12
  */
 typedef enum {
-    /** Thin material. */
+    /**
+     * Thin material.<br>!{@link thin}
+     */
     ARKUI_BLUR_STYLE_THIN = 0,
-    /** Regular material. */
+    /**
+     * Regular material.<br>!{@link regular}
+     */
     ARKUI_BLUR_STYLE_REGULAR,
-    /** Thick material. */
+    /**
+     * Thick material.<br>!{@link thick}
+     */
     ARKUI_BLUR_STYLE_THICK,
-    /** Material that creates the minimum depth of field effect. */
+    /**
+     * Material that creates the minimum depth of field effect.<br>!{@link backgroundthin}
+     */
     ARKUI_BLUR_STYLE_BACKGROUND_THIN,
-    /** Material that creates a medium shallow depth of field effect. */
+    /**
+     * Material that creates a medium shallow depth of field effect.<br>!{@link backgroundregular}
+     */
     ARKUI_BLUR_STYLE_BACKGROUND_REGULAR,
-    /** Material that creates a high shallow depth of field effect. */
+    /**
+     * Material that creates a high shallow depth of field effect.<br>!{@link backgroundthick}
+     */
     ARKUI_BLUR_STYLE_BACKGROUND_THICK,
-    /** Material that creates the maximum depth of field effect. */
+    /**
+     * Material that creates the maximum depth of field effect.<br>!{@link backgroundultrathick}
+     */
     ARKUI_BLUR_STYLE_BACKGROUND_ULTRA_THICK,
-    /** No blur. */
+    /**
+     * No blur.<br>!{@link none}
+     */
     ARKUI_BLUR_STYLE_NONE,
-    /** Component ultra-thin material. */
+    /**
+     * Component ultra-thin material.<br>!{@link componentultrathin}
+     */
     ARKUI_BLUR_STYLE_COMPONENT_ULTRA_THIN,
-    /** Component thin material. */
+    /**
+     * Component thin material.<br>!{@link componentthin}
+     */
     ARKUI_BLUR_STYLE_COMPONENT_THIN,
-    /** Component regular material. */
+    /**
+     * Component regular material.<br>!{@link componentregular}
+     */
     ARKUI_BLUR_STYLE_COMPONENT_REGULAR,
-    /** Component thick material. */
+    /**
+     * Component thick material.<br>!{@link componentthick}
+     */
     ARKUI_BLUR_STYLE_COMPONENT_THICK,
-    /** Component ultra-thick material. */
+    /**
+     * Component ultra-thick material.<br>!{@link componentultrathick}
+     */
     ARKUI_BLUR_STYLE_COMPONENT_ULTRA_THICK,
 } ArkUI_BlurStyle;
 
@@ -227,12 +253,18 @@ typedef enum {
  * @since 19
  */
 typedef enum {
-    /** The blur effect changes according to the window's focus state;
-     *  it is inactive when the window is not in focus and active when the window is in focus. */
+    /**
+     * The blur effect changes according to the window's focus state;
+     * it is inactive when the window is not in focus and active when the window is in focus.
+     */
     ARKUI_BLUR_STYLE_ACTIVE_POLICY_FOLLOWS_WINDOW_ACTIVE_STATE = 0,
-    /** The blur effect is always active. */
+    /**
+     * The blur effect is always active.
+     */
     ARKUI_BLUR_STYLE_ACTIVE_POLICY_ALWAYS_ACTIVE,
-    /** The blur effect is always inactive. */
+    /**
+     * The blur effect is always inactive.
+     */
     ARKUI_BLUR_STYLE_ACTIVE_POLICY_ALWAYS_INACTIVE,
 } ArkUI_BlurStyleActivePolicy;
 
@@ -242,80 +274,135 @@ typedef enum {
  * @since 12
  */
 typedef enum {
-    /** The top image is superimposed on the bottom image without any blending. */
+    /**
+     * The top image is superimposed on the bottom image without any blending.
+     */
     ARKUI_BLEND_MODE_NONE = 0,
-    /** The target pixels covered by the source pixels are erased by being turned to completely transparent. */
+    /**
+     * The target pixels covered by the source pixels are erased by being turned to completely transparent.
+     */
     ARKUI_BLEND_MODE_CLEAR,
-    /** r = s: Only the source pixels are displayed. */
+    /**
+     * r = s: Only the source pixels are displayed.
+     */
     ARKUI_BLEND_MODE_SRC,
-    /** r = d: Only the target pixels are displayed. */
+    /**
+     * r = d: Only the target pixels are displayed.
+     */
     ARKUI_BLEND_MODE_DST,
-    /** r = s + (1 - sa) * d: The source pixels are blended based on opacity and cover the target pixels. */
+    /**
+     * r = s + (1 - sa) * d: The source pixels are blended based on opacity and cover the target pixels.
+     */
     ARKUI_BLEND_MODE_SRC_OVER,
-    /** r = d + (1 - da) * s: The target pixels are blended based on opacity and cover on the source pixels. */
+    /**
+     * r = d + (1 - da) * s: The target pixels are blended based on opacity and cover on the source pixels.
+     */
     ARKUI_BLEND_MODE_DST_OVER,
-    /** r = s * da: Only the part of the source pixels that overlap with the target pixels is displayed. */
+    /**
+     * r = s * da: Only the part of the source pixels that overlap with the target pixels is displayed.
+     */
     ARKUI_BLEND_MODE_SRC_IN,
-    /** r = d * sa: Only the part of the target pixels that overlap with the source pixels is displayed. */
+    /**
+     * r = d * sa: Only the part of the target pixels that overlap with the source pixels is displayed.
+     */
     ARKUI_BLEND_MODE_DST_IN,
-    /** r = s * (1 - da): Only the part of the source pixels that do not overlap with the target pixels is displayed. */
+    /**
+     * r = s * (1 - da): Only the part of the source pixels that do not overlap with the target pixels is displayed.
+     */
     ARKUI_BLEND_MODE_SRC_OUT,
-    /** r = d * (1 - sa): Only the part of the target pixels that do not overlap with the source pixels is displayed. */
+    /**
+     * r = d * (1 - sa): Only the part of the target pixels that do not overlap with the source pixels is displayed.
+     */
     ARKUI_BLEND_MODE_DST_OUT,
-    /** r = s * da + d * (1 - sa): The part of the source pixels that overlap with the target pixels is displayed and
-     *  the part of the target pixels that do not overlap with the source pixels are displayed.
+    /**
+     * r = s * da + d * (1 - sa): The part of the source pixels that overlap with the target pixels is displayed and
+     * the part of the target pixels that do not overlap with the source pixels are displayed.
      */
     ARKUI_BLEND_MODE_SRC_ATOP,
-    /** r = d * sa + s * (1 - da): The part of the target pixels that overlap with the source pixels and the part of
-     *  the source pixels that do not overlap with the target pixels are displayed.
+    /**
+     * r = d * sa + s * (1 - da): The part of the target pixels that overlap with the source pixels and the part of
+     * the source pixels that do not overlap with the target pixels are displayed.
      */
     ARKUI_BLEND_MODE_DST_ATOP,
-    /** r = s * (1 - da) + d * (1 - sa): Only the non-overlapping part between the source pixels and the target pixels
-     * is displayed. */
+    /**
+     * r = s * (1 - da) + d * (1 - sa): Only the non-overlapping part between the source pixels and the target pixels
+     * is displayed.
+     */
     ARKUI_BLEND_MODE_XOR,
-    /** r = min(s + d, 1): New pixels resulting from adding the source pixels to the target pixels are displayed. */
+    /**
+     * r = min(s + d, 1): New pixels resulting from adding the source pixels to the target pixels are displayed.
+     */
     ARKUI_BLEND_MODE_PLUS,
-    /** r = s * d: New pixels resulting from multiplying the source pixels with the target pixels are displayed. */
+    /**
+     * r = s * d: New pixels resulting from multiplying the source pixels with the target pixels are displayed.
+     */
     ARKUI_BLEND_MODE_MODULATE,
-    /** r = s + d - s * d: Pixels are blended by adding the source pixels to the target pixels and subtracting the
-     *  product of their multiplication. */
+    /**
+     * r = s + d - s * d: Pixels are blended by adding the source pixels to the target pixels and subtracting the
+     * product of their multiplication.
+     */
     ARKUI_BLEND_MODE_SCREEN,
-    /** The MULTIPLY or SCREEN mode is used based on the target pixels. */
+    /**
+     * The MULTIPLY or SCREEN mode is used based on the target pixels.
+     */
     ARKUI_BLEND_MODE_OVERLAY,
-    /** rc = s + d - max(s * da, d * sa), ra = kSrcOver: When two colors overlap, whichever is darker is used. */
+    /**
+     * rc = s + d - max(s * da, d * sa), ra = kSrcOver: When two colors overlap, whichever is darker is used.
+     */
     ARKUI_BLEND_MODE_DARKEN,
-    /** rc = s + d - min(s * da, d * sa), ra =
-       kSrcOver: The final pixels are composed of the lightest values of pixels. */
+    /**
+     * rc = s + d - min(s * da, d * sa), ra = kSrcOver: The final pixels are composed of the lightest values of pixels.
+     */
     ARKUI_BLEND_MODE_LIGHTEN,
-    /** The colors of the target pixels are lightened to reflect the source pixels. */
+    /**
+     * The colors of the target pixels are lightened to reflect the source pixels.
+     */
     ARKUI_BLEND_MODE_COLOR_DODGE,
-    /** The colors of the target pixels are darkened to reflect the source pixels. */
+    /**
+     * The colors of the target pixels are darkened to reflect the source pixels.
+     */
     ARKUI_BLEND_MODE_COLOR_BURN,
-    /** The MULTIPLY or SCREEN mode is used, depending on the source pixels. */
+    /**
+     * The MULTIPLY or SCREEN mode is used, depending on the source pixels.
+     */
     ARKUI_BLEND_MODE_HARD_LIGHT,
-    /** The LIGHTEN or DARKEN mode is used, depending on the source pixels. */
+    /**
+     * The LIGHTEN or DARKEN mode is used, depending on the source pixels.
+     */
     ARKUI_BLEND_MODE_SOFT_LIGHT,
-    /** rc = s + d - 2 * (min(s * da, d * sa)), ra =
-       kSrcOver: The final pixel is the result of subtracting the darker of the two pixels (source and target) from
-       the lighter one. */
+    /**
+     * rc = s + d - 2 * (min(s * da, d * sa)), ra = kSrcOver: The final pixel is the result of subtracting the darker of the two pixels (source and target) from
+     * the lighter one.
+     */
     ARKUI_BLEND_MODE_DIFFERENCE,
-    /** rc = s + d - two(s * d), ra = kSrcOver: The final pixel is similar to <b>DIFFERENCE</b>, but with less contrast.
+    /**
+     * rc = s + d - two(s * d), ra = kSrcOver: The final pixel is similar to <b>DIFFERENCE</b>, but with less contrast.
      */
     ARKUI_BLEND_MODE_EXCLUSION,
-    /** r = s * (1 - da) + d * (1 - sa) + s * d: The final pixel is the result of multiplying the source pixel
-     *  by the target pixel.	 */
+    /**
+     * r = s * (1 - da) + d * (1 - sa) + s * d: The final pixel is the result of multiplying the source pixel
+     * by the target pixel.
+     */
     ARKUI_BLEND_MODE_MULTIPLY,
-    /** The resultant image is created with the luminance and saturation of the source image and the hue of the target
-     *  image. */
+    /**
+     * The resultant image is created with the luminance and saturation of the source image and the hue of the target
+     * image.
+     */
     ARKUI_BLEND_MODE_HUE,
-    /** The resultant image is created with the luminance and hue of the target image and the saturation of the source
-     *  image. */
+    /**
+     * The resultant image is created with the luminance and hue of the target image and the saturation of the source
+     * image.
+     */
     ARKUI_BLEND_MODE_SATURATION,
-    /** The resultant image is created with the saturation and hue of the source image and the luminance of the target
-     *  image. */
+    /**
+     * The resultant image is created with the saturation and hue of the source image and the luminance of the target
+     * image.
+     */
     ARKUI_BLEND_MODE_COLOR,
-    /** The resultant image is created with the saturation and hue of the target image and the luminance of the source
-     *  image. */
+    /**
+     * The resultant image is created with the saturation and hue of the target image and the luminance of the source
+     * image.
+     */
     ARKUI_BLEND_MODE_LUMINOSITY,
 } ArkUI_BlendMode;
 
@@ -325,11 +412,17 @@ typedef enum {
  * @since 12
  */
 typedef enum {
-    /** The foreground colors are the inverse of the component background colors. */
+    /**
+     * The foreground colors are the inverse of the component background colors.
+     */
     ARKUI_COLOR_STRATEGY_INVERT = 0,
-    /** The shadow colors of the component are the average color obtained from the component background shadow area. */
+    /**
+     * The shadow colors of the component are the average color obtained from the component background shadow area.
+     */
     ARKUI_COLOR_STRATEGY_AVERAGE,
-    /** The shadow colors of the component are the primary color obtained from the component background shadow area. */
+    /**
+     * The shadow colors of the component are the primary color obtained from the component background shadow area.
+     */
     ARKUI_COLOR_STRATEGY_PRIMARY,
 } ArkUI_ColorStrategy;
 
@@ -339,15 +432,25 @@ typedef enum {
  * @since 12
  */
 typedef enum {
-    /** Rectangle. */
+    /**
+     * Rectangle.
+     */
     ARKUI_MASK_TYPE_RECTANGLE = 0,
-    /** Circle. */
+    /**
+     * Circle.
+     */
     ARKUI_MASK_TYPE_CIRCLE,
-    /** Ellipse. */
+    /**
+     * Ellipse.
+     */
     ARKUI_MASK_TYPE_ELLIPSE,
-    /** Path. */
+    /**
+     * Path.
+     */
     ARKUI_MASK_TYPE_PATH,
-    /** Progress indicator. */
+    /**
+     * Progress indicator.
+     */
     ARKUI_MASK_TYPE_PROGRESS,
 } ArkUI_MaskType;
 
@@ -357,13 +460,21 @@ typedef enum {
  * @since 12
  */
 typedef enum {
-    /** Rectangle. */
+    /**
+     * Rectangle.
+     */
     ARKUI_CLIP_TYPE_RECTANGLE = 0,
-    /** Circle. */
+    /**
+     * Circle.
+     */
     ARKUI_CLIP_TYPE_CIRCLE,
-    /** Ellipse. */
+    /**
+     * Ellipse.
+     */
     ARKUI_CLIP_TYPE_ELLIPSE,
-    /** Path. */
+    /**
+     * Path.
+     */
     ARKUI_CLIP_TYPE_PATH,
 } ArkUI_ClipType;
 
@@ -373,13 +484,21 @@ typedef enum {
  * @since 12
  */
 typedef enum {
-    /** Rectangle. */
+    /**
+     * Rectangle.
+     */
     ARKUI_SHAPE_TYPE_RECTANGLE = 0,
-    /** Circle. */
+    /**
+     * Circle.
+     */
     ARKUI_SHAPE_TYPE_CIRCLE,
-    /** Ellipse. */
+    /**
+     * Ellipse.
+     */
     ARKUI_SHAPE_TYPE_ELLIPSE,
-    /** Path. */
+    /**
+     * Path.
+     */
     ARKUI_SHAPE_TYPE_PATH,
 } ArkUI_ShapeType;
 
@@ -389,25 +508,45 @@ typedef enum {
  * @since 12
  */
 typedef enum {
-    /** From right to left. */
+    /**
+     * From right to left.
+     */
     ARKUI_LINEAR_GRADIENT_DIRECTION_LEFT = 0,
-    /** From bottom to top. */
+    /**
+     * From bottom to top.
+     */
     ARKUI_LINEAR_GRADIENT_DIRECTION_TOP,
-    /** From left to right. */
+    /**
+     * From left to right.
+     */
     ARKUI_LINEAR_GRADIENT_DIRECTION_RIGHT,
-    /** From top to bottom. */
+    /**
+     * From top to bottom.
+     */
     ARKUI_LINEAR_GRADIENT_DIRECTION_BOTTOM,
-    /** From lower right to upper left. */
+    /**
+     * From lower right to upper left.
+     */
     ARKUI_LINEAR_GRADIENT_DIRECTION_LEFT_TOP,
-    /** From upper right to lower left. */
+    /**
+     * From upper right to lower left.
+     */
     ARKUI_LINEAR_GRADIENT_DIRECTION_LEFT_BOTTOM,
-    /** From lower left to upper right. */
+    /**
+     * From lower left to upper right.
+     */
     ARKUI_LINEAR_GRADIENT_DIRECTION_RIGHT_TOP,
-    /** From upper left to lower right. */
+    /**
+     * From upper left to lower right.
+     */
     ARKUI_LINEAR_GRADIENT_DIRECTION_RIGHT_BOTTOM,
-    /** No gradient. */
+    /**
+     * No gradient.
+     */
     ARKUI_LINEAR_GRADIENT_DIRECTION_NONE,
-    /** Custom direction. */
+    /**
+     * Custom direction.
+     */
     ARKUI_LINEAR_GRADIENT_DIRECTION_CUSTOM,
 } ArkUI_LinearGradientDirection;
 
@@ -417,13 +556,21 @@ typedef enum {
  * @since 12
  */
 typedef enum {
-    /** Top edge of the window. */
+    /**
+     * Top edge of the window.
+     */
     ARKUI_TRANSITION_EDGE_TOP = 0,
-    /** Bottom edge of the window. */
+    /**
+     * Bottom edge of the window.
+     */
     ARKUI_TRANSITION_EDGE_BOTTOM,
-    /** Left edge of the window. */
+    /**
+     * Left edge of the window.
+     */
     ARKUI_TRANSITION_EDGE_START,
-    /** Right edge of the window. */
+    /**
+     * Right edge of the window.
+     */
     ARKUI_TRANSITION_EDGE_END,
 } ArkUI_TransitionEdge;
 
@@ -433,10 +580,14 @@ typedef enum {
  * @since 12
  */
 typedef enum {
-    /** The content of the view is blended in sequence on the target image. */
+    /**
+     * The content of the view is blended in sequence on the target image.
+     */
     BLEND_APPLY_TYPE_FAST = 0,
-    /** The content of the component and its child components are drawn on the offscreen canvas, and then blended with
-     *  the existing content on the canvas. */
+    /**
+     * The content of the component and its child components are drawn on the offscreen canvas, and then blended with
+     * the existing content on the canvas.
+     */
     BLEND_APPLY_TYPE_OFFSCREEN,
 } ArkUI_BlendApplyType;
 
@@ -446,10 +597,14 @@ typedef enum {
  * @since 12
  */
 typedef enum {
-    /** The callback is invoked when the entire animation is removed once it has finished. */
+    /**
+     * The callback is invoked when the entire animation is removed once it has finished.
+     */
     ARKUI_FINISH_CALLBACK_REMOVED = 0,
-    /** The callback is invoked when the animation logically enters the falling state, though it may still be in its
-      * long tail state. */
+    /**
+     * The callback is invoked when the animation logically enters the falling state, though it may still be in its
+     * long tail state.
+     */
     ARKUI_FINISH_CALLBACK_LOGICALLY,
 } ArkUI_FinishCallbackType;
 
@@ -459,70 +614,102 @@ typedef enum {
  * @since 12
  */
 typedef enum {
-    /** Maintains the content size of the animation's final state,
-      * and the content is always centered with the component.*/
+    /**
+     * Maintains the content size of the animation's final state,
+     * and the content is always centered with the component.
+     */
     ARKUI_RENDER_FIT_CENTER = 0,
-    /** Maintains the content size of the animation's final state,
-      * and the content is always aligned with the top center of the component. */
+    /**
+     * Maintains the content size of the animation's final state,
+     * and the content is always aligned with the top center of the component.
+     */
     ARKUI_RENDER_FIT_TOP,
-    /** Maintains the content size of the animation's final state,
-      * and the content is always aligned with the bottom center of the component. */
+    /**
+     * Maintains the content size of the animation's final state,
+     * and the content is always aligned with the bottom center of the component.
+     */
     ARKUI_RENDER_FIT_BOTTOM,
-    /** Maintains the content size of the animation's final state,
-      * and the content is always aligned to the left of the component. */
+    /**
+     * Maintains the content size of the animation's final state,
+     * and the content is always aligned to the left of the component.
+     */
     ARKUI_RENDER_FIT_LEFT,
-    /** Maintains the content size of the animation's final state,
-      * and the content is always right-aligned with the component. */
+    /**
+     * Maintains the content size of the animation's final state,
+     * and the content is always right-aligned with the component.
+     */
     ARKUI_RENDER_FIT_RIGHT,
-    /** Maintains the content size of the animation's final state,
-      * and the content is always aligned with the top left corner of the component. */
+    /**
+     * Maintains the content size of the animation's final state,
+     * and the content is always aligned with the top left corner of the component.
+     */
     ARKUI_RENDER_FIT_TOP_LEFT,
-    /** Keep the content size of the animation final state,
-      * and the content is always aligned with the upper right corner of the component. */
+    /**
+     * Keep the content size of the animation final state,
+     * and the content is always aligned with the upper right corner of the component.
+     */
     ARKUI_RENDER_FIT_TOP_RIGHT,
-    /** Keep the content size of the animation final state,
-      * and the content always aligns with the lower-left corner of the component. */
+    /**
+     * Keep the content size of the animation final state,
+     * and the content always aligns with the lower-left corner of the component.
+     */
     ARKUI_RENDER_FIT_BOTTOM_LEFT,
-    /** Keep the content size of the animation final state,
-      *and the content always aligns with the lower-right corner of the component. */
+    /**
+     * Keep the content size of the animation final state,
+     * and the content always aligns with the lower-right corner of the component.
+     */
     ARKUI_RENDER_FIT_BOTTOM_RIGHT,
-    /** The aspect ratio of the animation's final state content is not considered,
-      *and the content is always scaled to the size of the component. */
+    /**
+     * The aspect ratio of the animation's final state content is not considered,
+     * and the content is always scaled to the size of the component.
+     */
     ARKUI_RENDER_FIT_RESIZE_FILL,
-    /** Reduce or enlarge the aspect ratio of the animation final state content,
-      * so that the content is fully displayed in the component,
-      * and keep the center aligned with the component. */
+    /**
+     * Reduce or enlarge the aspect ratio of the animation final state content,
+     * so that the content is fully displayed in the component,
+     * and keep the center aligned with the component.
+     */
     ARKUI_RENDER_FIT_RESIZE_CONTAIN,
-    /** Keep the aspect ratio of the animation final state content to reduce or enlarge,
-      * so that the content is fully displayed in the component.
-      * When there is left over in the broad direction of the component,
-      * the content is aligned to the left of the component,
-      * and when there is left over in the high direction of the component,
-      * the content is aligned to the top of the component. */
+    /**
+     * Keep the aspect ratio of the animation final state content to reduce or enlarge,
+     * so that the content is fully displayed in the component.
+     * When there is left over in the broad direction of the component,
+     * the content is aligned to the left of the component,
+     * and when there is left over in the high direction of the component,
+     * the content is aligned to the top of the component.
+     */
     ARKUI_RENDER_FIT_RESIZE_CONTAIN_TOP_LEFT,
-    /** Keep the aspect ratio of the animation final state content to reduce or enlarge,
-      * so that the content is fully displayed in the component.
-      * When there is left in the wide direction of the component,
-      * the content is aligned with the component on the right.
-      * When there is left in the high direction of the component,
-      * the content is aligned with the component on the bottom. */
+    /**
+     * Keep the aspect ratio of the animation final state content to reduce or enlarge,
+     * so that the content is fully displayed in the component.
+     * When there is left in the wide direction of the component,
+     * the content is aligned with the component on the right.
+     * When there is left in the high direction of the component,
+     * the content is aligned with the component on the bottom.
+     */
     ARKUI_RENDER_FIT_RESIZE_CONTAIN_BOTTOM_RIGHT,
-    /** Keep the aspect ratio of the animation final state content reduced or enlarged,
-      * so that both sides of the content are greater than or equal to both sides of the component,
-      * and keep the center aligned with the component to display the middle part of the content. */
+    /**
+     * Keep the aspect ratio of the animation final state content reduced or enlarged,
+     * so that both sides of the content are greater than or equal to both sides of the component,
+     * and keep the center aligned with the component to display the middle part of the content.
+     */
     ARKUI_RENDER_FIT_RESIZE_COVER,
-    /** Keep the aspect ratio of the final content of the animation reduced or enlarged
-      * so that both sides of the content are exactly greater than or equal to both sides of the component.
-      * When the content width is left, the content is aligned to the left of the component,
-      * and the left portion of the content is displayed. When the content is left in the high direction,
-      * the content and the component remain top aligned, showing the top side of the content. */
+    /**
+     * Keep the aspect ratio of the final content of the animation reduced or enlarged
+     * so that both sides of the content are exactly greater than or equal to both sides of the component.
+     * When the content width is left, the content is aligned to the left of the component,
+     * and the left portion of the content is displayed. When the content is left in the high direction,
+     * the content and the component remain top aligned, showing the top side of the content.
+     */
     ARKUI_RENDER_FIT_RESIZE_COVER_TOP_LEFT,
-    /** Keep the aspect ratio of the final content of the animation reduced or enlarged so
-      * that both sides of the content are exactly greater than or equal to both sides of the component.
-      * When the content width is left, the content and the component remain right aligned,
-      * and the right part of the content is displayed. When the content is left in the high direction,
-      * the content and the component remain aligned at the bottom,
-      * and the bottom part of the content is displayed. */
+    /**
+     * Keep the aspect ratio of the final content of the animation reduced or enlarged so
+     * that both sides of the content are exactly greater than or equal to both sides of the component.
+     * When the content width is left, the content and the component remain right aligned,
+     * and the right part of the content is displayed. When the content is left in the high direction,
+     * the content and the component remain aligned at the bottom,
+     * and the bottom part of the content is displayed.
+     */
     ARKUI_RENDER_FIT_RESIZE_COVER_BOTTOM_RIGHT
 } ArkUI_RenderFit;
 
@@ -532,17 +719,25 @@ typedef enum {
  * @since 12
 */
 typedef enum {
-    /** Before execution, the animation does not apply any styles to the target component.
-     * After execution, the animation restores the target component to its default state. */
+    /**
+     * Before execution, the animation does not apply any styles to the target component.
+     * After execution, the animation restores the target component to its default state.
+     */
     ARKUI_ANIMATION_FILL_MODE_NONE,
-    /** The target component retains the state set by the last keyframe encountered
-     * during execution of the animation. */
+    /**
+     * The target component retains the state set by the last keyframe encountered
+     * during execution of the animation.
+     */
     ARKUI_ANIMATION_FILL_MODE_FORWARDS,
-    /** The animation applies the values defined in the first relevant keyframe once it is applied to
-     * the target component, and retains the values during the period set by delay. */
+    /**
+     * The animation applies the values defined in the first relevant keyframe once it is applied to
+     * the target component, and retains the values during the period set by delay.
+     */
     ARKUI_ANIMATION_FILL_MODE_BACKWARDS,
-    /** The animation follows the rules for both Forwards and Backwards,
-     * extending the animation attributes in both directions. */
+    /**
+     * The animation follows the rules for both Forwards and Backwards,
+     * extending the animation attributes in both directions.
+     */
     ARKUI_ANIMATION_FILL_MODE_BOTH,
 } ArkUI_AnimationFillMode;
 
@@ -552,17 +747,25 @@ typedef enum {
  * @since 12
  */
 typedef enum {
-    /** The animation plays in forward loop mode. */
+    /**
+     * The animation plays in forward loop mode.
+     */
     ARKUI_ANIMATION_DIRECTION_NORMAL = 0,
-    /** The animation plays in reverse loop mode. */
+    /**
+     * The animation plays in reverse loop mode.
+     */
     ARKUI_ANIMATION_DIRECTION_REVERSE,
-    /** The animation plays in alternating loop mode. When the animation is played for an odd number of times, the
-     *  playback is in forward direction. When the animation is played for an even number of times, the playback is in
-     *  reverse direction. */
+    /**
+     * The animation plays in alternating loop mode. When the animation is played for an odd number of times, the
+     * playback is in forward direction. When the animation is played for an even number of times, the playback is in
+     * reverse direction.
+     */
     ARKUI_ANIMATION_DIRECTION_ALTERNATE,
-    /** The animation plays in reverse alternating loop mode. When the animation is played for an odd number of times,
-     *  the playback is in reverse direction. When the animation is played for an even number of times, the playback is
-     *  in forward direction. */
+    /**
+     * The animation plays in reverse alternating loop mode. When the animation is played for an odd number of times,
+     * the playback is in reverse direction. When the animation is played for an even number of times, the playback is
+     * in forward direction.
+     */
     ARKUI_ANIMATION_DIRECTION_ALTERNATE_REVERSE,
 } ArkUI_AnimationDirection;
 
@@ -572,11 +775,17 @@ typedef enum {
  * @since 12
  */
 typedef struct {
-    /** Translation distance along the x-axis. */
+    /**
+     * Translation distance along the x-axis.
+     */
     float x;
-    /** Translation distance along the y-axis. */
+    /**
+     * Translation distance along the y-axis.
+     */
     float y;
-    /** Translation distance along the z-axis. */
+    /**
+     * Translation distance along the z-axis.
+     */
     float z;
 } ArkUI_TranslationOptions;
 
@@ -586,15 +795,25 @@ typedef struct {
  * @since 12
  */
 typedef struct {
-    /** Scale ratio along the x-axis. */
+    /**
+     * Scale ratio along the x-axis.
+     */
     float x;
-    /** Scale ratio along the y-axis. */
+    /**
+     * Scale ratio along the y-axis.
+     */
     float y;
-    /** Scale factor along the z-axis (not effective for the current 2D graphics). */
+    /**
+     * Scale factor along the z-axis (not effective for the current 2D graphics).
+     */
     float z;
-    /** X coordinate of the center point. */
+    /**
+     * X coordinate of the center point.
+     */
     float centerX;
-    /** Y coordinate of the center point. */
+    /**
+     * Y coordinate of the center point.
+     */
     float centerY;
 } ArkUI_ScaleOptions;
 
@@ -604,21 +823,37 @@ typedef struct {
  * @since 12
  */
 typedef struct {
-    /** X-component of the rotation vector. */
+    /**
+     * X-component of the rotation vector.
+     */
     float x;
-    /** Y-component of the rotation vector. */
+    /**
+     * Y-component of the rotation vector.
+     */
     float y;
-    /** Z-component of the rotation vector. */
+    /**
+     * Z-component of the rotation vector.
+     */
     float z;
-    /** Rotation angle. */
+    /**
+     * Rotation angle.
+     */
     float angle;
-    /** X coordinate of the center point. */
+    /**
+     * X coordinate of the center point.
+     */
     float centerX;
-    /** Y coordinate of the center point. */
+    /**
+     * Y coordinate of the center point.
+     */
     float centerY;
-    /** Z-axis anchor, that is, the z-component of the 3D rotation center point. */
+    /**
+     * Z-axis anchor, that is, the z-component of the 3D rotation center point.
+     */
     float centerZ;
-    /** Distance from the user to the z=0 plane. */
+    /**
+     * Distance from the user to the z=0 plane.
+     */
     float perspective;
 } ArkUI_RotationOptions;
 
