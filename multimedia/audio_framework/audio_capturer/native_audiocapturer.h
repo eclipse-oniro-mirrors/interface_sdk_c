@@ -449,7 +449,7 @@ OH_AudioStream_Result OH_AudioCapturer_SetIndependentAudioSessionStrategy(
  * @since 26.0.0
  */     
 typedef void (*OH_AudioCapturer_SensitiveRecordPermitCallback)(
-    OH_AudioCapturer* capturer, void* userData, bool isPermited);
+    OH_AudioCapturer* capturer, void* userData, bool isPermitted);
 #ifdef __cplusplus
 }
 #endif
