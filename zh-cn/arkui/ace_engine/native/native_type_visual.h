@@ -45,774 +45,735 @@
  
  
  /**
-  * @brief Defines a fourth-order matrix object.
+  * @brief 定义四阶矩阵对象。
   *
   * @since 24
   */
  typedef struct ArkUI_Matrix4 ArkUI_Matrix4;
  
  /**
-  * @brief Enumerates shadow types.
+  * @brief 定义阴影类型枚举值。
   *
   * @since 12
   */
  typedef enum {
      /**
-      * Color shadow.
+      * 彩色阴影。
       */
      ARKUI_SHADOW_TYPE_COLOR = 0,
      /**
-      * Blur shadow.
+      * 模糊阴影。
       */
      ARKUI_SHADOW_TYPE_BLUR
  } ArkUI_ShadowType;
  
  /**
-  * @brief Enumerates shadow styles.
+  * @brief 阴影效果枚举值。
   *
   * @since 12
   */
  typedef enum {
      /**
-      * Mini shadow.<br>!{@link defaultxs}
+      * 超小阴影。
+      * !{@link defaultxs}
       */
      ARKUI_SHADOW_STYLE_OUTER_DEFAULT_XS = 0,
      /**
-      * Small shadow.<br>!{@link defaultsm}
+      * 小阴影。
+      * !{@link defaultsm}
       */
      ARKUI_SHADOW_STYLE_OUTER_DEFAULT_SM,
      /**
-      * Medium shadow.<br>!{@link defaultmd}
+      * 中阴影。
+      * !{@link defaultmd}
       */
      ARKUI_SHADOW_STYLE_OUTER_DEFAULT_MD,
      /**
-      * Large shadow.<br>!{@link defaultlg}
+      * 大阴影。
+      * !{@link defaultlg}
       */
      ARKUI_SHADOW_STYLE_OUTER_DEFAULT_LG,
      /**
-      * Floating small shadow.<br>!{@link floatingsm}
+      * 浮动小阴影。
+      * !{@link floatingsm}
       */
      ARKUI_SHADOW_STYLE_OUTER_FLOATING_SM,
      /**
-      * Floating medium shadow.<br>!{@link floatingmd}
+      * 浮动中阴影。
+      * !{@link floatingmd}
       */
      ARKUI_SHADOW_STYLE_OUTER_FLOATING_MD,
  } ArkUI_ShadowStyle;
  
  /**
-  * @brief Enumerates the animation curves.
+  * @brief 动画曲线枚举值。
   *
   * @since 12
   */
  typedef enum {
      /**
-      * The animation speed keeps unchanged.
+      * 动画从头到尾的速度都是相同。
       */
      ARKUI_CURVE_LINEAR = 0,
      /**
-      * The animation starts slowly, accelerates, and then slows down towards the end.
+      * 动画以低速开始，然后加快，在结束前变慢。
       */
      ARKUI_CURVE_EASE,
      /**
-      * The animation starts at a low speed and then picks up speed until the end.
+      * 动画以低速开始。
       */
      ARKUI_CURVE_EASE_IN,
      /**
-      * The animation ends at a low speed.
+      * 动画以低速结束。
       */
      ARKUI_CURVE_EASE_OUT,
      /**
-      * The animation starts and ends at a low speed, providing a smooth and natural transition.
+      * 动画以低速开始和结束，提供平滑自然的动画过渡效果。
       */
      ARKUI_CURVE_EASE_IN_OUT,
      /**
-      * The animation uses the standard curve
+      * 动画标准曲线。
       */
      ARKUI_CURVE_FAST_OUT_SLOW_IN,
      /**
-      * The animation uses the deceleration curve.
+      * 动画减速曲线。
       */
      ARKUI_CURVE_LINEAR_OUT_SLOW_IN,
      /**
-      * The animation uses the acceleration curve.
+      * 动画加速曲线。
       */
      ARKUI_CURVE_FAST_OUT_LINEAR_IN,
      /**
-      * The animation uses the extreme deceleration curve.
+      * 动画急缓曲线。
       */
      ARKUI_CURVE_EXTREME_DECELERATION,
      /**
-      * The animation uses the sharp curve.
+      * 动画锐利曲线。
       */
      ARKUI_CURVE_SHARP,
      /**
-      * The animation uses the rhythm curve.
+      * 动画节奏曲线。
       */
      ARKUI_CURVE_RHYTHM,
      /**
-      * The animation uses the smooth curve.
+      * 动画平滑曲线。
       */
      ARKUI_CURVE_SMOOTH,
      /**
-      * The animation uses the friction curve
+      * 动画阻尼曲线。
       */
      ARKUI_CURVE_FRICTION,
  } ArkUI_AnimationCurve;
  
  /**
-  * @brief Enumerates the animation playback directions.
+  * @brief 定义动画播放模式。
   *
   * @since 12
   */
  typedef enum {
      /**
-      * The animation is played forwards.
+      * 动画正向播放。
       */
      ARKUI_ANIMATION_PLAY_MODE_NORMAL = 0,
      /**
-      * The animation is played backwards.
+      * 动画反向播放。
       */
      ARKUI_ANIMATION_PLAY_MODE_REVERSE,
      /**
-      * The animation plays in alternating loop mode. When the animation is played for an odd number of times, the
-      * playback is in forward direction. When the animation is played for an even number of times, the playback is in
-      * reverse direction.
+      * 动画交替循环播放，在奇数次正向播放，在偶数次反向播放。
       */
      ARKUI_ANIMATION_PLAY_MODE_ALTERNATE,
      /**
-      * The animation plays in reverse alternating loop mode. When the animation is played for an odd number of times,
-      * the playback is in reverse direction. When the animation is played for an even number of times, the playback is
-      * in forward direction.
+      * 动画反向交替循环播放，在奇数次反向播放，在偶数次正向播放。
       */
      ARKUI_ANIMATION_PLAY_MODE_ALTERNATE_REVERSE,
  } ArkUI_AnimationPlayMode;
  
  /**
-  * @brief Enumerates the blur styles.
+  * @brief 定义背景模糊样式。
   *
   * @since 12
   */
  typedef enum {
      /**
-      * Thin material.<br>!{@link thin}
+      * 轻薄材质模糊。
+      * !{@link thin}
       */
      ARKUI_BLUR_STYLE_THIN = 0,
      /**
-      * Regular material.<br>!{@link regular}
+      * 普通厚度材质模糊。
+      * !{@link regular}
       */
      ARKUI_BLUR_STYLE_REGULAR,
      /**
-      * Thick material.<br>!{@link thick}
+      * 厚材质模糊。
+      * !{@link thick}
       */
      ARKUI_BLUR_STYLE_THICK,
      /**
-      * Material that creates the minimum depth of field effect.<br>!{@link backgroundthin}
+      * 近距景深模糊。
+      * !{@link backgroundthin}
       */
      ARKUI_BLUR_STYLE_BACKGROUND_THIN,
      /**
-      * Material that creates a medium shallow depth of field effect.<br>!{@link backgroundregular}
+      * 中距景深模糊。
+      * !{@link backgroundregular}
       */
      ARKUI_BLUR_STYLE_BACKGROUND_REGULAR,
      /**
-      * Material that creates a high shallow depth of field effect.<br>!{@link backgroundthick}
+      * 远距景深模糊。
+      * !{@link backgroundthick}
       */
      ARKUI_BLUR_STYLE_BACKGROUND_THICK,
      /**
-      * Material that creates the maximum depth of field effect.<br>!{@link backgroundultrathick}
+      * 超远距景深模糊。
+      * !{@link backgroundultrathick}
       */
      ARKUI_BLUR_STYLE_BACKGROUND_ULTRA_THICK,
      /**
-      * No blur.<br>!{@link none}
+      * 关闭模糊。
+      * !{@link none}
       */
      ARKUI_BLUR_STYLE_NONE,
      /**
-      * Component ultra-thin material.<br>!{@link componentultrathin}
+      * 组件超轻薄材质模糊。
+      * !{@link componentultrathin}
       */
      ARKUI_BLUR_STYLE_COMPONENT_ULTRA_THIN,
      /**
-      * Component thin material.<br>!{@link componentthin}
+      * 组件轻薄材质模糊。
+      * !{@link componentthin}
       */
      ARKUI_BLUR_STYLE_COMPONENT_THIN,
      /**
-      * Component regular material.<br>!{@link componentregular}
+      * 组件普通材质模糊。
+      * !{@link componentregular}
       */
      ARKUI_BLUR_STYLE_COMPONENT_REGULAR,
      /**
-      * Component thick material.<br>!{@link componentthick}
+      * 组件厚材质模糊。
+      * !{@link componentthick}
       */
      ARKUI_BLUR_STYLE_COMPONENT_THICK,
      /**
-      * Component ultra-thick material.<br>!{@link componentultrathick}
+      * 组件超厚材质模糊。
+      * !{@link componentultrathick}
       */
      ARKUI_BLUR_STYLE_COMPONENT_ULTRA_THICK,
  } ArkUI_BlurStyle;
  
  /**
-  * @brief Enumerates the activation policies for the background blur effect.
+  * @brief 定义背景模糊激活策略。
   *
   * @since 19
   */
  typedef enum {
      /**
-      * The blur effect changes according to the window's focus state;
-      * it is inactive when the window is not in focus and active when the window is in focus.
+      * 跟随窗口焦点状态变化，窗口非焦点状态不激活，窗口焦点状态激活。
       */
      ARKUI_BLUR_STYLE_ACTIVE_POLICY_FOLLOWS_WINDOW_ACTIVE_STATE = 0,
      /**
-      * The blur effect is always active.
+      * 始终激活。
       */
      ARKUI_BLUR_STYLE_ACTIVE_POLICY_ALWAYS_ACTIVE,
      /**
-      * The blur effect is always inactive.
+      * 始终不激活。
       */
      ARKUI_BLUR_STYLE_ACTIVE_POLICY_ALWAYS_INACTIVE,
  } ArkUI_BlurStyleActivePolicy;
  
  /**
-  * @brief Enumerates the blend modes.
+  * @brief 混合模式枚举值。
   *
   * @since 12
   */
  typedef enum {
      /**
-      * The top image is superimposed on the bottom image without any blending.
+      * 将上层图像直接覆盖到下层图像上，不进行任何混合操作。
       */
      ARKUI_BLEND_MODE_NONE = 0,
      /**
-      * The target pixels covered by the source pixels are erased by being turned to completely transparent.
+      * 将源像素覆盖的目标像素清除为完全透明。
       */
      ARKUI_BLEND_MODE_CLEAR,
      /**
-      * r = s: Only the source pixels are displayed.
+      * r = s，只显示源像素。
       */
      ARKUI_BLEND_MODE_SRC,
      /**
-      * r = d: Only the target pixels are displayed.
+      * r = d，只显示目标像素。
       */
      ARKUI_BLEND_MODE_DST,
      /**
-      * r = s + (1 - sa) * d: The source pixels are blended based on opacity and cover the target pixels.
+      * r = s + (1 - sa) * d，将源像素按照透明度进行混合，覆盖在目标像素上。
       */
      ARKUI_BLEND_MODE_SRC_OVER,
      /**
-      * r = d + (1 - da) * s: The target pixels are blended based on opacity and cover on the source pixels.
+      * r = d + (1 - da) * s，将目标像素按照透明度进行混合，覆盖在源像素上。
       */
      ARKUI_BLEND_MODE_DST_OVER,
      /**
-      * r = s * da: Only the part of the source pixels that overlap with the target pixels is displayed.
+      * r = s * da，只显示源像素中与目标像素重叠的部分。
       */
      ARKUI_BLEND_MODE_SRC_IN,
      /**
-      * r = d * sa: Only the part of the target pixels that overlap with the source pixels is displayed.
+      * r = d * sa，只显示目标像素中与源像素重叠的部分。
       */
      ARKUI_BLEND_MODE_DST_IN,
      /**
-      * r = s * (1 - da): Only the part of the source pixels that do not overlap with the target pixels is displayed.
+      * r = s * (1 - da)，只显示源像素中与目标像素不重叠的部分。
       */
      ARKUI_BLEND_MODE_SRC_OUT,
      /**
-      * r = d * (1 - sa): Only the part of the target pixels that do not overlap with the source pixels is displayed.
+      * r = d * (1 - sa)，只显示目标像素中与源像素不重叠的部分。
       */
      ARKUI_BLEND_MODE_DST_OUT,
      /**
-      * r = s * da + d * (1 - sa): The part of the source pixels that overlap with the target pixels is displayed and
-      * the part of the target pixels that do not overlap with the source pixels are displayed.
+      * r = s * da + d * (1 - sa)，在源像素和目标像素重叠的地方绘制源像素，在源像素和目标像素不重叠的地方绘制目标像素。
       */
      ARKUI_BLEND_MODE_SRC_ATOP,
      /**
-      * r = d * sa + s * (1 - da): The part of the target pixels that overlap with the source pixels and the part of
-      * the source pixels that do not overlap with the target pixels are displayed.
+      * r = d * sa + s * (1 - da)，在源像素和目标像素重叠的地方绘制目标像素，在源像素和目标像素不重叠的地方绘制源像素。
       */
      ARKUI_BLEND_MODE_DST_ATOP,
      /**
-      * r = s * (1 - da) + d * (1 - sa): Only the non-overlapping part between the source pixels and the target pixels
-      * is displayed.
+      * r = s * (1 - da) + d * (1 - sa)，只显示源像素与目标像素不重叠的部分。
       */
      ARKUI_BLEND_MODE_XOR,
      /**
-      * r = min(s + d, 1): New pixels resulting from adding the source pixels to the target pixels are displayed.
+      * r = min(s + d, 1)，将源像素值与目标像素值相加，并将结果作为新的像素值。
       */
      ARKUI_BLEND_MODE_PLUS,
      /**
-      * r = s * d: New pixels resulting from multiplying the source pixels with the target pixels are displayed.
+      * r = s * d，将源像素与目标像素进行乘法运算，并将结果作为新的像素值。
       */
      ARKUI_BLEND_MODE_MODULATE,
      /**
-      * r = s + d - s * d: Pixels are blended by adding the source pixels to the target pixels and subtracting the
-      * product of their multiplication.
+      * r = s + d - s * d，将两个图像的像素值相加，然后减去它们的乘积来实现混合。
       */
      ARKUI_BLEND_MODE_SCREEN,
      /**
-      * The MULTIPLY or SCREEN mode is used based on the target pixels.
+      * 根据目标像素来决定使用MULTIPLY混合模式还是SCREEN混合模式。
       */
      ARKUI_BLEND_MODE_OVERLAY,
      /**
-      * rc = s + d - max(s * da, d * sa), ra = kSrcOver: When two colors overlap, whichever is darker is used.
+      * rc = s + d - max(s * da, d * sa), ra = kSrcOver，当两个颜色重叠时，较暗的颜色会覆盖较亮的颜色。
       */
      ARKUI_BLEND_MODE_DARKEN,
      /**
-      * rc = s + d - min(s * da, d * sa), ra = kSrcOver: The final pixels are composed of the lightest values of pixels.
+      * rc = s + d - min(s * da, d * sa), ra = kSrcOver，将源图像和目标图像中的像素进行比较，选取两者中较亮的像素作为最终的混合结果。
       */
      ARKUI_BLEND_MODE_LIGHTEN,
      /**
-      * The colors of the target pixels are lightened to reflect the source pixels.
+      * 使目标像素变得更亮来反映源像素。
       */
      ARKUI_BLEND_MODE_COLOR_DODGE,
      /**
-      * The colors of the target pixels are darkened to reflect the source pixels.
+      * 使目标像素变得更暗来反映源像素。
       */
      ARKUI_BLEND_MODE_COLOR_BURN,
      /**
-      * The MULTIPLY or SCREEN mode is used, depending on the source pixels.
+      * 根据源像素的值来决定目标像素变得更亮或者更暗。根据源像素来决定使用MULTIPLY混合模式还是SCREEN混合模式。
       */
      ARKUI_BLEND_MODE_HARD_LIGHT,
      /**
-      * The LIGHTEN or DARKEN mode is used, depending on the source pixels.
+      * 根据源像素来决定使用LIGHTEN混合模式还是DARKEN混合模式。
       */
      ARKUI_BLEND_MODE_SOFT_LIGHT,
      /**
-      * rc = s + d - 2 * (min(s * da, d * sa)), ra = kSrcOver: The final pixel is the result of subtracting the darker of the two pixels (source and target) from
-      * the lighter one.
+      * rc = s + d - 2 * (min(s * da, d * sa)), ra = kSrcOver，对比源像素和目标像素，亮度更高的像素减去亮度更低的像素，产生高对比度的效果。
       */
      ARKUI_BLEND_MODE_DIFFERENCE,
      /**
-      * rc = s + d - two(s * d), ra = kSrcOver: The final pixel is similar to <b>DIFFERENCE</b>, but with less contrast.
+      * rc = s + d - two(s * d), ra = kSrcOver，对比源像素和目标像素，亮度更高的像素减去亮度更低的像素，产生柔和的效果。
       */
      ARKUI_BLEND_MODE_EXCLUSION,
      /**
-      * r = s * (1 - da) + d * (1 - sa) + s * d: The final pixel is the result of multiplying the source pixel
-      * by the target pixel.
+      * r = s * (1 - da) + d * (1 - sa) + s * d，将源图像与目标图像进行乘法混合，得到一张新的图像。
       */
      ARKUI_BLEND_MODE_MULTIPLY,
      /**
-      * The resultant image is created with the luminance and saturation of the source image and the hue of the target
-      * image.
+      * 保留源图像的亮度和饱和度，但会使用目标图像的色调来替换源图像的色调。
       */
      ARKUI_BLEND_MODE_HUE,
      /**
-      * The resultant image is created with the luminance and hue of the target image and the saturation of the source
-      * image.
+      * 保留目标像素的亮度和色调，但会使用源像素的饱和度来替换目标像素的饱和度。
       */
      ARKUI_BLEND_MODE_SATURATION,
      /**
-      * The resultant image is created with the saturation and hue of the source image and the luminance of the target
-      * image.
+      * 保留源像素的饱和度和色调，但会使用目标像素的亮度来替换源像素的亮度。
       */
      ARKUI_BLEND_MODE_COLOR,
      /**
-      * The resultant image is created with the saturation and hue of the target image and the luminance of the source
-      * image.
+      * 保留目标像素的色调和饱和度，但会用源像素的亮度替换目标像素的亮度。
       */
      ARKUI_BLEND_MODE_LUMINOSITY,
  } ArkUI_BlendMode;
  
  /**
-  * @brief Enumerates the foreground colors.
+  * @brief 前景和阴影颜色的枚举值。
   *
   * @since 12
   */
  typedef enum {
      /**
-      * The foreground colors are the inverse of the component background colors.
+      * 前景色为控件背景色的反色。
       */
      ARKUI_COLOR_STRATEGY_INVERT = 0,
      /**
-      * The shadow colors of the component are the average color obtained from the component background shadow area.
+      * 控件背景阴影色为控件背景阴影区域的平均色。
       */
      ARKUI_COLOR_STRATEGY_AVERAGE,
      /**
-      * The shadow colors of the component are the primary color obtained from the component background shadow area.
+      * 控件背景阴影色为控件背景阴影区域的主色。
       */
      ARKUI_COLOR_STRATEGY_PRIMARY,
  } ArkUI_ColorStrategy;
  
  /**
-  * @brief Enumerates the mask types.
+  * @brief 遮罩类型枚举。遮罩是一种用于限制组件显示区域的手段，它利用特定的形状对组件内容进行裁剪，从而实现只有遮罩区域内的内容才可见的效果。
   *
   * @since 12
   */
  typedef enum {
      /**
-      * Rectangle.
+      * 矩形类型。
       */
      ARKUI_MASK_TYPE_RECTANGLE = 0,
      /**
-      * Circle.
+      * 圆形。
       */
      ARKUI_MASK_TYPE_CIRCLE,
      /**
-      * Ellipse.
+      * 椭圆形类型。
       */
      ARKUI_MASK_TYPE_ELLIPSE,
      /**
-      * Path.
+      * 路径类型。
       */
      ARKUI_MASK_TYPE_PATH,
      /**
-      * Progress indicator.
+      * 进度类型。
       */
      ARKUI_MASK_TYPE_PROGRESS,
  } ArkUI_MaskType;
  
  /**
-  * @brief Enumerates the clipping region types.
+  * @brief 裁剪类型枚举。
   *
   * @since 12
   */
  typedef enum {
      /**
-      * Rectangle.
+      * 矩形类型。
       */
      ARKUI_CLIP_TYPE_RECTANGLE = 0,
      /**
-      * Circle.
+      * 圆形。
       */
      ARKUI_CLIP_TYPE_CIRCLE,
      /**
-      * Ellipse.
+      * 椭圆形类型。
       */
      ARKUI_CLIP_TYPE_ELLIPSE,
      /**
-      * Path.
+      * 路径类型。
       */
      ARKUI_CLIP_TYPE_PATH,
  } ArkUI_ClipType;
  
  /**
-  * @brief Enumerates the custom shapes.
+  * @brief 自定义形状。
   *
   * @since 12
   */
  typedef enum {
      /**
-      * Rectangle.
+      * 矩形类型。
       */
      ARKUI_SHAPE_TYPE_RECTANGLE = 0,
      /**
-      * Circle.
+      * 圆形。
       */
      ARKUI_SHAPE_TYPE_CIRCLE,
      /**
-      * Ellipse.
+      * 椭圆形类型。
       */
      ARKUI_SHAPE_TYPE_ELLIPSE,
      /**
-      * Path.
+      * 路径类型。
       */
      ARKUI_SHAPE_TYPE_PATH,
  } ArkUI_ShapeType;
  
  /**
-  * @brief Enumerates the gradient directions.
+  * @brief 定义渐变方向结构。
   *
   * @since 12
   */
  typedef enum {
      /**
-      * From right to left.
+      * 向左渐变。
       */
      ARKUI_LINEAR_GRADIENT_DIRECTION_LEFT = 0,
      /**
-      * From bottom to top.
+      * 向上渐变。
       */
      ARKUI_LINEAR_GRADIENT_DIRECTION_TOP,
      /**
-      * From left to right.
+      * 向右渐变。
       */
      ARKUI_LINEAR_GRADIENT_DIRECTION_RIGHT,
      /**
-      * From top to bottom.
+      * 向下渐变。
       */
      ARKUI_LINEAR_GRADIENT_DIRECTION_BOTTOM,
      /**
-      * From lower right to upper left.
+      * 向左上渐变。
       */
      ARKUI_LINEAR_GRADIENT_DIRECTION_LEFT_TOP,
      /**
-      * From upper right to lower left.
+      * 向左下渐变。
       */
      ARKUI_LINEAR_GRADIENT_DIRECTION_LEFT_BOTTOM,
      /**
-      * From lower left to upper right.
+      * 向右上渐变。
       */
      ARKUI_LINEAR_GRADIENT_DIRECTION_RIGHT_TOP,
      /**
-      * From upper left to lower right.
+      * 向右下渐变。
       */
      ARKUI_LINEAR_GRADIENT_DIRECTION_RIGHT_BOTTOM,
      /**
-      * No gradient.
+      * 不渐变。
       */
      ARKUI_LINEAR_GRADIENT_DIRECTION_NONE,
      /**
-      * Custom direction.
+      * 自定义渐变方向.
       */
      ARKUI_LINEAR_GRADIENT_DIRECTION_CUSTOM,
  } ArkUI_LinearGradientDirection;
  
  /**
-  * @brief Enumerates the slide-in and slide-out positions of the component from the screen edge during transition.
+  * @brief 定义转场从边缘滑入和滑出的效果。
   *
   * @since 12
   */
  typedef enum {
      /**
-      * Top edge of the window.
+      * 转场从窗口的上边缘滑入和滑出。
       */
      ARKUI_TRANSITION_EDGE_TOP = 0,
      /**
-      * Bottom edge of the window.
+      * 转场从窗口的下边缘滑入和滑出。
       */
      ARKUI_TRANSITION_EDGE_BOTTOM,
      /**
-      * Left edge of the window.
+      * 转场从窗口的左边缘滑入和滑出。
       */
      ARKUI_TRANSITION_EDGE_START,
      /**
-      * Right edge of the window.
+      * 转场从窗口的右边缘滑入和滑出。
       */
      ARKUI_TRANSITION_EDGE_END,
  } ArkUI_TransitionEdge;
  
  /**
-  * @brief Defines how the specified blend mode is applied.
+  * @brief 指定的混合模式应用于视图的内容选项.
   *
   * @since 12
   */
  typedef enum {
      /**
-      * The content of the view is blended in sequence on the target image.
+      * 在目标图像上按顺序混合视图的内容.
       */
      BLEND_APPLY_TYPE_FAST = 0,
      /**
-      * The content of the component and its child components are drawn on the offscreen canvas, and then blended with
-      * the existing content on the canvas.
+      * 将此组件和子组件内容绘制到离屏画布上，然后整体进行混合.
       */
      BLEND_APPLY_TYPE_OFFSCREEN,
  } ArkUI_BlendApplyType;
  
  /**
-  * @brief Enumerates the animation onFinish callback types.
+  * @brief 在动画中定义{@link OH_ArkUI_AnimatorOption_RegisterOnFinishCallback}回调的类型。
   *
   * @since 12
   */
  typedef enum {
      /**
-      * The callback is invoked when the entire animation is removed once it has finished.
+      * 当整个动画结束并立即删除时，将触发回调。
       */
      ARKUI_FINISH_CALLBACK_REMOVED = 0,
      /**
-      * The callback is invoked when the animation logically enters the falling state, though it may still be in its
-      * long tail state.
+      * 当动画在逻辑上处于下降状态，但可能仍处于其长尾状态时，将触发回调。长尾状态是指动画即将完全停止前的残余变化过程，此时动画的数值变化已非常微小，接近目标值。
       */
      ARKUI_FINISH_CALLBACK_LOGICALLY,
  } ArkUI_FinishCallbackType;
  
  /**
-  * @brief Enumerates the render fit.
+  * @brief 定义动画终态内容大小与位置的枚举值。
   *
   * @since 12
   */
  typedef enum {
      /**
-      * Maintains the content size of the animation's final state,
-      * and the content is always centered with the component.
+      * 保持动画终态的内容大小，并且内容始终与组件保持中心对齐。
       */
      ARKUI_RENDER_FIT_CENTER = 0,
      /**
-      * Maintains the content size of the animation's final state,
-      * and the content is always aligned with the top center of the component.
+      * 保持动画终态的内容大小，并且内容始终与组件保持顶部中心对齐。
       */
      ARKUI_RENDER_FIT_TOP,
      /**
-      * Maintains the content size of the animation's final state,
-      * and the content is always aligned with the bottom center of the component.
+      * 保持动画终态的内容大小，并且内容始终与组件保持底部中心对齐。
       */
      ARKUI_RENDER_FIT_BOTTOM,
      /**
-      * Maintains the content size of the animation's final state,
-      * and the content is always aligned to the left of the component.
+      * 保持动画终态的内容大小，并且内容始终与组件保持左侧对齐。
       */
      ARKUI_RENDER_FIT_LEFT,
      /**
-      * Maintains the content size of the animation's final state,
-      * and the content is always right-aligned with the component.
+      * 保持动画终态的内容大小，并且内容始终与组件保持右侧对齐。
       */
      ARKUI_RENDER_FIT_RIGHT,
      /**
-      * Maintains the content size of the animation's final state,
-      * and the content is always aligned with the top left corner of the component.
+      * 保持动画终态的内容大小，并且内容始终与组件保持左上角对齐。
       */
      ARKUI_RENDER_FIT_TOP_LEFT,
      /**
-      * Keep the content size of the animation final state,
-      * and the content is always aligned with the upper right corner of the component.
+      * 保持动画终态的内容大小，并且内容始终与组件保持右上角对齐。
       */
      ARKUI_RENDER_FIT_TOP_RIGHT,
      /**
-      * Keep the content size of the animation final state,
-      * and the content always aligns with the lower-left corner of the component.
+      * 保持动画终态的内容大小，并且内容始终与组件保持左下角对齐。
       */
      ARKUI_RENDER_FIT_BOTTOM_LEFT,
      /**
-      * Keep the content size of the animation final state,
-      * and the content always aligns with the lower-right corner of the component.
+      * 保持动画终态的内容大小，并且内容始终与组件保持右下角对齐。
       */
      ARKUI_RENDER_FIT_BOTTOM_RIGHT,
      /**
-      * The aspect ratio of the animation's final state content is not considered,
-      * and the content is always scaled to the size of the component.
+      * 不考虑动画终态内容的宽高比，并且内容始终缩放到组件的大小。
       */
      ARKUI_RENDER_FIT_RESIZE_FILL,
      /**
-      * Reduce or enlarge the aspect ratio of the animation final state content,
-      * so that the content is fully displayed in the component,
-      * and keep the center aligned with the component.
+      * 保持动画终态内容的宽高比进行缩小或放大，使内容完整显示在组件内，且与组件保持中心对齐。
       */
      ARKUI_RENDER_FIT_RESIZE_CONTAIN,
      /**
-      * Keep the aspect ratio of the animation final state content to reduce or enlarge,
-      * so that the content is fully displayed in the component.
-      * When there is left over in the broad direction of the component,
-      * the content is aligned to the left of the component,
-      * and when there is left over in the high direction of the component,
-      * the content is aligned to the top of the component.
+      * 保持动画终态内容的宽高比进行缩小或放大，使内容完整显示在组件内。当组件宽方向有剩余时，内容与组件保持左侧对齐，当组件高方向有剩余时，内容与组件保持顶部对齐。
       */
      ARKUI_RENDER_FIT_RESIZE_CONTAIN_TOP_LEFT,
      /**
-      * Keep the aspect ratio of the animation final state content to reduce or enlarge,
-      * so that the content is fully displayed in the component.
-      * When there is left in the wide direction of the component,
-      * the content is aligned with the component on the right.
-      * When there is left in the high direction of the component,
-      * the content is aligned with the component on the bottom.
+      * 保持动画终态内容的宽高比进行缩小或放大，使内容完整显示在组件内。当组件宽方向有剩余时，内容与组件保持右侧对齐，当组件高方向有剩余时，内容与组件保持底部对齐。
       */
      ARKUI_RENDER_FIT_RESIZE_CONTAIN_BOTTOM_RIGHT,
      /**
-      * Keep the aspect ratio of the animation final state content reduced or enlarged,
-      * so that both sides of the content are greater than or equal to both sides of the component,
-      * and keep the center aligned with the component to display the middle part of the content.
+      * 保持动画终态内容的宽高比进行缩小或放大，使内容两边都大于或等于组件两边，且与组件保持中心对齐，显示内容的中间部分。
       */
      ARKUI_RENDER_FIT_RESIZE_COVER,
      /**
-      * Keep the aspect ratio of the final content of the animation reduced or enlarged
-      * so that both sides of the content are exactly greater than or equal to both sides of the component.
-      * When the content width is left, the content is aligned to the left of the component,
-      * and the left portion of the content is displayed. When the content is left in the high direction,
-      * the content and the component remain top aligned, showing the top side of the content.
+      * 保持动画终态内容的宽高比进行缩小或放大，使内容的两边都恰好大于或等于组件两边。当内容宽方向有剩余时，内容与组件保持左侧对齐，显示内容的左侧部分。当内容高方向有剩余时，内容与组件保持顶部对齐，显示内容的顶侧部分。
       */
      ARKUI_RENDER_FIT_RESIZE_COVER_TOP_LEFT,
      /**
-      * Keep the aspect ratio of the final content of the animation reduced or enlarged so
-      * that both sides of the content are exactly greater than or equal to both sides of the component.
-      * When the content width is left, the content and the component remain right aligned,
-      * and the right part of the content is displayed. When the content is left in the high direction,
-      * the content and the component remain aligned at the bottom,
-      * and the bottom part of the content is displayed.
+      * 保持动画终态内容的宽高比进行缩小或放大，使内容的两边都恰好大于或等于组件两边。当内容宽方向有剩余时，内容与组件保持右侧对齐，显示内容的右侧部分。当内容高方向有剩余时，内容与组件保持底部对齐，显示内容的底侧部分。
       */
      ARKUI_RENDER_FIT_RESIZE_COVER_BOTTOM_RIGHT
  } ArkUI_RenderFit;
  
  /**
-  * @brief Defines the status before and after execution of the animation in the current playback direction.
+  * @brief 定义帧动画组件在动画开始前和结束后的状态。
   *
   * @since 12
  */
  typedef enum {
      /**
-      * Before execution, the animation does not apply any styles to the target component.
-      * After execution, the animation restores the target component to its default state.
+      * 动画未执行时不会将任何样式应用于目标，动画播放完成之后恢复初始默认状态。
       */
      ARKUI_ANIMATION_FILL_MODE_NONE,
      /**
-      * The target component retains the state set by the last keyframe encountered
-      * during execution of the animation.
+      * 目标将保留动画执行期间最后一个关键帧的状态。
       */
      ARKUI_ANIMATION_FILL_MODE_FORWARDS,
      /**
-      * The animation applies the values defined in the first relevant keyframe once it is applied to
-      * the target component, and retains the values during the period set by delay.
+      * 动画将在应用于目标时立即应用第一个关键帧中定义的值，并在{@link delay}期间保留此值。
       */
      ARKUI_ANIMATION_FILL_MODE_BACKWARDS,
      /**
-      * The animation follows the rules for both Forwards and Backwards,
-      * extending the animation attributes in both directions.
+      * 动画将遵循{@link ARKUI_ANIMATION_FILL_MODE_FORWARDS}和{@link ARKUI_ANIMATION_FILL_MODE_BACKWARDS}的规则，从而在两个方向上扩展动画属性。
       */
      ARKUI_ANIMATION_FILL_MODE_BOTH,
  } ArkUI_AnimationFillMode;
  
  /**
-  * @brief Enumerates the animation playback modes.
+  * @brief 定义动画播放模式。
   *
   * @since 12
   */
  typedef enum {
      /**
-      * The animation plays in forward loop mode.
+      * 动画正向循环播放。
       */
      ARKUI_ANIMATION_DIRECTION_NORMAL = 0,
      /**
-      * The animation plays in reverse loop mode.
+      * 动画反向循环播放。
       */
      ARKUI_ANIMATION_DIRECTION_REVERSE,
      /**
-      * The animation plays in alternating loop mode. When the animation is played for an odd number of times, the
-      * playback is in forward direction. When the animation is played for an even number of times, the playback is in
-      * reverse direction.
+      * 动画交替循环播放，在奇数次正向播放，在偶数次反向播放。
       */
      ARKUI_ANIMATION_DIRECTION_ALTERNATE,
      /**
-      * The animation plays in reverse alternating loop mode. When the animation is played for an odd number of times,
-      * the playback is in reverse direction. When the animation is played for an even number of times, the playback is
-      * in forward direction.
+      * 动画反向交替循环播放，在奇数次反向播放，在偶数次正向播放。
       */
      ARKUI_ANIMATION_DIRECTION_ALTERNATE_REVERSE,
  } ArkUI_AnimationDirection;
  
  /**
-  * @brief Defines the translation options for component transition.
+  * @brief 定义组件转场时的平移效果对象。
   *
   * @since 12
   */
  typedef struct {
      /**
-      * Translation distance along the x-axis.
+      * 横向的平移距离，单位为vp。
       */
      float x;
      /**
-      * Translation distance along the y-axis.
+      * 纵向的平移距离，单位为vp。
       */
      float y;
      /**
-      * Translation distance along the z-axis.
+      * 深度方向的平移距离，单位为vp。
       */
      float z;
  } ArkUI_TranslationOptions;
  
  /**
-  * @brief Defines the scaling options for component transition.
+  * @brief 定义组件转场时的缩放效果对象。
   *
   * @since 12
   */
  typedef struct {
      /**
-      * Scale ratio along the x-axis.
+      * x轴的缩放倍数。x>1时以x轴方向放大，0<x<1时以x轴方向缩小，x=0时表示在x轴方向缩小成0，x=1时表示在x轴方向缩放倍数是1，x<0时沿x轴反向并缩放。
       */
      float x;
      /**
-      * Scale ratio along the y-axis.
+      * y轴的缩放倍数。y>1时以y轴方向放大，0<y<1时以y轴方向缩小，y=0时表示在y轴方向缩小成0，y=1时表示在y轴方向缩放倍数是1，y<0时沿y轴反向并缩放。
       */
      float y;
      /**
-      * Scale factor along the z-axis (not effective for the current 2D graphics).
+      * 当前为二维显示，该参数无效。
       */
      float z;
      /**
-      * X coordinate of the center point.
+      * 变换中心点x轴坐标。表示组件变换中心点（即锚点）的x方向坐标，单位为vp。
       */
      float centerX;
      /**
-      * Y coordinate of the center point.
+      * 变换中心点y轴坐标。表示组件变换中心点（即锚点）的y方向坐标，单位为vp。
       */
      float centerY;
  } ArkUI_ScaleOptions;
@@ -1009,7 +970,7 @@
  /**
   * @brief 销毁阴影选项对象。
   *
-  * @param options Pointer to the object to be destroyed.
+  * @param options 指向{@link OH_ArkUI_ShadowOptions}对象的指针。
   * @since 24
   */
  void OH_ArkUI_ShadowOptions_Destroy(OH_ArkUI_ShadowOptions* options);
@@ -1505,13 +1466,13 @@
  ArkUI_ErrorCode OH_ArkUI_Matrix4TranslationOptions_SetX(ArkUI_Matrix4TranslationOptions* options, const float x);
  
  /**
-  * @brief Get the translation value in the x-axis direction from ArkUI_Matrix4TranslationOptions.
+  * @brief 获取矩阵运算的平移对象x轴方向的平移值。
   *
-  * @param options Pointer to the ArkUI_Matrix4TranslationOptions object.
-  * @param x The translation value in the x-axis direction.
-  * @return Returns the result code.
-  *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
-  *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+  * @param options 指向矩阵运算的平移参数对象的指针。
+  * @param x x轴方向的平移值。
+  * @return 错误码。
+  *     <br>如果操作成功，返回{@link ARKUI_ERROR_CODE_NO_ERROR}。
+  *     <br>如果发生参数异常，返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
   * @since 24
   */
  ArkUI_ErrorCode OH_ArkUI_Matrix4TranslationOptions_GetX(const ArkUI_Matrix4TranslationOptions* options, float* x);
