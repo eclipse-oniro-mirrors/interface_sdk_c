@@ -407,7 +407,7 @@ typedef enum {
 } ArkUI_BlendMode;
 
 /**
- * @brief Enumerates the foreground colors.
+ * @brief Enumerates foreground and shadow colors.
  *
  * @since 12
  */
@@ -427,7 +427,8 @@ typedef enum {
 } ArkUI_ColorStrategy;
 
 /**
- * @brief Enumerates the mask types.
+ * @brief Enumerates the mask types. A mask is a means to limit the display area of a component. It uses a specific
+ * shape to crop the component content so that only the content in the mask area is visible.
  *
  * @since 12
  */
@@ -479,7 +480,7 @@ typedef enum {
 } ArkUI_ClipType;
 
 /**
- * @brief Enumerates the custom shapes.
+ * @brief Enumerates custom shape types.
  *
  * @since 12
  */
@@ -592,7 +593,7 @@ typedef enum {
 } ArkUI_BlendApplyType;
 
 /**
- * @brief Enumerates the animation onFinish callback types.
+ * @brief Enumerates the callback types for {@link OH_ArkUI_AnimatorOption_RegisterOnFinishCallback} in an animation.
  *
  * @since 12
  */
@@ -609,7 +610,7 @@ typedef enum {
 } ArkUI_FinishCallbackType;
 
 /**
- * @brief Enumerates the render fit.
+ * @brief Enumerates the sizing and positioning behaviors of animated content in its final state.
  *
  * @since 12
  */
