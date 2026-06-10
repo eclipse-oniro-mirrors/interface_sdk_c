@@ -730,5 +730,13 @@
     {
         "first_introduced": "26.0.0",
         "name": "OH_AudioDebuggingManager_PrintSessionInfo"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_AudioCapturer_CellularRecordRiskWarningCallback"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_AudioStreamBuilder_CellularCallRecordRiskWarningCallback"
     }
 ]
