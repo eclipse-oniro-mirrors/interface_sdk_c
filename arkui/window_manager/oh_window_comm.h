@@ -229,7 +229,7 @@ typedef enum {
     WINDOW_MANAGER_WINDOW_TYPE_FLOAT = 8,
 
     /**
-     * Dialog window.
+     * Modal window.
      *
      * @since 15
      */
