@@ -153,7 +153,7 @@ WindowManager_ErrorCode OH_NativeWindowManager_RegisterTouchEventFilter(int32_t 
 
 /**
  * @brief Unregisters a function for filtering multimodal touch events.
- * 
+ *
  * @param windowId ID of the window for which the function is unregistered.
  * @return Returns the status code of the execution.
  *     <ul>
