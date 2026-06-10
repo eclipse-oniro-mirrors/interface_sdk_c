@@ -616,7 +616,23 @@ OH_AudioStream_Result OH_AudioStreamBuilder_SetPlaybackCaptureMode(OH_AudioStrea
  * @since 26.0.0
  */
 OH_AudioStream_Result OH_AudioStreamBuilder_CellularCallRecordRiskWarningCallback(
-    OH_AudioStreamBuilder* builder, void* userData, OH_AudioCapturer_CellularRecordRiskWarningCallback callback)
+    OH_AudioStreamBuilder* builder, void* userData, OH_AudioCapturer_CellularRecordRiskWarningCallback callback);
+
+/** 
+ * When use cellular downlink recrod sourcetype，cellularRecordPhoneNum and cellularRecordToken need to be set,
+ * cellularRecordPhoneNum is phone number, cellularRecordToken is got from call management
+ * Permission ohos.permission.CAPTURE_PLAYBACK_DWONLINK is needed when calling createAudioCapturer with CAPTURE_PLAYBACK_DWONLINK type.
+ *
+ * @param builder Reference provided by OH_AudioStreamBuilder_Create().
+ * @param cellularRecordPhoneNum The cellular call number which used for  downlink capture.
+ * @param cellularRecordToken The token from call management which use makecall function.
+ * @return Function result code:
+ *         {@link AUDIOSTREAM_SUCCESS} If the execution is successful.
+ *         {@link AUDIOSTREAM_ERROR_INVALID_PARAM} The param of builder is nullptr.
+ * @since 26.0.0
+ */
+OH_AudioStream_Result OH_AudioStreamBuilder_SetCellularRecordSecurityParams(
+    OH_AudioStreamBuilder* builder, const char* cellularRecordPhoneNum, const char* cellularRecordToken);
 #ifdef __cplusplus
 }
 #endif
