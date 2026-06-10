@@ -439,6 +439,7 @@ OH_AudioStream_Result OH_AudioCapturer_SetMuteHint(OH_AudioCapturer* capturer, b
 OH_AudioStream_Result OH_AudioCapturer_SetIndependentAudioSessionStrategy(
     OH_AudioCapturer* capturer, const OH_AudioSession_Strategy* strategy, uint32_t behavior);
 
+    
 #ifdef __cplusplus
 }
 #endif
