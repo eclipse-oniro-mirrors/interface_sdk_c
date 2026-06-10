@@ -45,41 +45,57 @@ extern "C" {
 
 
 /**
- * @brief Defines the matrix4 object.
+ * @brief Defines a fourth-order matrix object.
  *
  * @since 24
  */
 typedef struct ArkUI_Matrix4 ArkUI_Matrix4;
 
 /**
- * @brief Enumerates the shadow types.
+ * @brief Enumerates shadow types.
  *
  * @since 12
  */
 typedef enum {
-    /** Color. */
+    /**
+     * Color shadow.
+     */
     ARKUI_SHADOW_TYPE_COLOR = 0,
-    /** Blur. */
+    /**
+     * Blur shadow.
+     */
     ARKUI_SHADOW_TYPE_BLUR
 } ArkUI_ShadowType;
 
 /**
- * @brief Enumerates the shadow styles.
+ * @brief Enumerates shadow styles.
  *
  * @since 12
  */
 typedef enum {
-    /** Mini shadow. */
+    /**
+     * Mini shadow.<br>!{@link defaultxs}
+     */
     ARKUI_SHADOW_STYLE_OUTER_DEFAULT_XS = 0,
-    /** Little shadow. */
+    /**
+     * Small shadow.<br>!{@link defaultsm}
+     */
     ARKUI_SHADOW_STYLE_OUTER_DEFAULT_SM,
-    /** Medium shadow. */
+    /**
+     * Medium shadow.<br>!{@link defaultmd}
+     */
     ARKUI_SHADOW_STYLE_OUTER_DEFAULT_MD,
-    /** Large shadow. */
+    /**
+     * Large shadow.<br>!{@link defaultlg}
+     */
     ARKUI_SHADOW_STYLE_OUTER_DEFAULT_LG,
-    /** Floating small shadow. */
+    /**
+     * Floating small shadow.<br>!{@link floatingsm}
+     */
     ARKUI_SHADOW_STYLE_OUTER_FLOATING_SM,
-    /** Floating medium shadow. */
+    /**
+     * Floating medium shadow.<br>!{@link floatingmd}
+     */
     ARKUI_SHADOW_STYLE_OUTER_FLOATING_MD,
 } ArkUI_ShadowStyle;
 
@@ -89,49 +105,85 @@ typedef enum {
  * @since 12
  */
 typedef enum {
-    /** The animation speed keeps unchanged. */
+    /**
+     * The animation speed keeps unchanged.
+     */
     ARKUI_CURVE_LINEAR = 0,
-    /** The animation starts slowly, accelerates, and then slows down towards the end. */
+    /**
+     * The animation starts slowly, accelerates, and then slows down towards the end.
+     */
     ARKUI_CURVE_EASE,
-    /** The animation starts at a low speed and then picks up speed until the end. */
+    /**
+     * The animation starts at a low speed and then picks up speed until the end.
+     */
     ARKUI_CURVE_EASE_IN,
-    /** The animation ends at a low speed. */
+    /**
+     * The animation ends at a low speed.
+     */
     ARKUI_CURVE_EASE_OUT,
-    /** The animation starts and ends at a low speed. */
+    /**
+     * The animation starts and ends at a low speed, providing a smooth and natural transition.
+     */
     ARKUI_CURVE_EASE_IN_OUT,
-    /** The animation uses the standard curve */
+    /**
+     * The animation uses the standard curve
+     */
     ARKUI_CURVE_FAST_OUT_SLOW_IN,
-    /** The animation uses the deceleration curve. */
+    /**
+     * The animation uses the deceleration curve.
+     */
     ARKUI_CURVE_LINEAR_OUT_SLOW_IN,
-    /** The animation uses the acceleration curve. */
+    /**
+     * The animation uses the acceleration curve.
+     */
     ARKUI_CURVE_FAST_OUT_LINEAR_IN,
-    /** The animation uses the extreme deceleration curve. */
+    /**
+     * The animation uses the extreme deceleration curve.
+     */
     ARKUI_CURVE_EXTREME_DECELERATION,
-    /** The animation uses the sharp curve. */
+    /**
+     * The animation uses the sharp curve.
+     */
     ARKUI_CURVE_SHARP,
-    /** The animation uses the rhythm curve. */
+    /**
+     * The animation uses the rhythm curve.
+     */
     ARKUI_CURVE_RHYTHM,
-    /** The animation uses the smooth curve. */
+    /**
+     * The animation uses the smooth curve.
+     */
     ARKUI_CURVE_SMOOTH,
-    /** The animation uses the friction curve */
+    /**
+     * The animation uses the friction curve
+     */
     ARKUI_CURVE_FRICTION,
 } ArkUI_AnimationCurve;
 
 /**
- * @brief Enumerates the animation playback modes.
+ * @brief Enumerates the animation playback directions.
  *
  * @since 12
  */
 typedef enum {
-    /** The animation is played forwards. */
+    /**
+     * The animation is played forwards.
+     */
     ARKUI_ANIMATION_PLAY_MODE_NORMAL = 0,
-    /** The animation is played reversely. */
+    /**
+     * The animation is played backwards.
+     */
     ARKUI_ANIMATION_PLAY_MODE_REVERSE,
-    /** The animation is played normally for an odd number of times (1, 3, 5...) and reversely for an even number
-     *  of times (2, 4, 6...). */
+    /**
+     * The animation plays in alternating loop mode. When the animation is played for an odd number of times, the
+     * playback is in forward direction. When the animation is played for an even number of times, the playback is in
+     * reverse direction.
+     */
     ARKUI_ANIMATION_PLAY_MODE_ALTERNATE,
-    /** The animation is played reversely for an odd number of times (1, 3, 5...) and normally for an even number
-     *  of times (2, 4, 6...). */
+    /**
+     * The animation plays in reverse alternating loop mode. When the animation is played for an odd number of times,
+     * the playback is in reverse direction. When the animation is played for an even number of times, the playback is
+     * in forward direction.
+     */
     ARKUI_ANIMATION_PLAY_MODE_ALTERNATE_REVERSE,
 } ArkUI_AnimationPlayMode;
 
