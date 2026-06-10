@@ -26,12 +26,12 @@
  *
  * @brief Provides archive APIs.
  * @kit CoreFileKit
- * @library libohcompress.so
+ * @library liboharchive.so
  * @syscap SystemCapability.FileManagement.File.FileIO
  * @since 26.0.0
  */
-#ifndef FILE_MANAGEMENT_COMPRESS_OH_ARCHIVE_H
-#define FILE_MANAGEMENT_COMPRESS_OH_ARCHIVE_H
+#ifndef FILE_MANAGEMENT_ARCHIVE_OH_ARCHIVE_H
+#define FILE_MANAGEMENT_ARCHIVE_OH_ARCHIVE_H
 
 #include <stdint.h>
 #include "oh_archive_errcode.h"
@@ -43,7 +43,7 @@ extern "C" {
  * @brief Archive Writer context structure.
  * @since 26.0.0
  */
-typedef struct ArchiveWriterCtx *OH_Archive_Writer_Ctx;
+typedef struct ArchiveWriteCtx *OH_Archive_Writer_Ctx;
 /**
  * @brief Archive Reader context structure.
  * @since 26.0.0
@@ -124,12 +124,12 @@ typedef enum {
  */
 typedef struct {
     /**
-     * @brief Total input data size before compression.
+     * @brief Total input bytes before compression.
      * @since 26.0.0
      */
     uint64_t totalInSize;
     /**
-     * @brief Total output data size after compression.
+     * @brief Total output bytes after compression.
      * @since 26.0.0
      */
     uint64_t totalOutSize;
@@ -151,11 +151,11 @@ typedef enum {
      */
     OH_ARCHIVE_NO_CHECKSUM = 0,
     /**
-     * @brief Use CRC32 calculate the hash value additionally.
+     * @brief Use CRC32 calculate the hash value.
      * @since 26.0.0
      */
     OH_ARCHIVE_CRC32 = 1
-} OH_Archive_StreamChecksum;
+} OH_Archive_StreamChecksumAlg;
 
 /**
  * @brief Stream compression configuration structure.
@@ -163,7 +163,8 @@ typedef enum {
  */
 typedef struct {
     /**
-     * @brief Size of each memory block (e.g., 32KB, 64KB), for COMPRESS_DEFLATED, block_size>=32KB
+     * @brief Size of each memory block in bytes (e.g., 32768 bytes, 65536 bytes),
+     * for COMPRESS_DEFLATED, block_size>=32768 bytes
      * @since 26.0.0
      */
     uint32_t blockSize;
@@ -176,17 +177,17 @@ typedef struct {
      * @brief Hash algorithm used for checksum.
      * @since 26.0.0
      */
-    OH_Archive_StreamChecksum checksum;
+    OH_Archive_StreamChecksumAlg checksum;
     /**
      * @brief Compression method.
      * @since 26.0.0
      */
-    OH_Archive_CompressMethod method; // Compression method
+    OH_Archive_CompressMethod method;
 } OH_Archive_Stream_Config;
 
 /**
  * @brief Defines a function pointer type OH_Archive_ProgressHandlerWithData for
- *        specifying the progress display handler.
+ * specifying the progress display handler.
  * @param progress Processing progress percentage.
  * @param userData A pointer to user-defined data, passed when calling the callback.
  * @return Returns a compression/decompression Archive_ProgressType value.
@@ -265,6 +266,8 @@ OH_Archive_Writer_Ctx OH_Archive_Writer_OpenFile(const char *outfile,
  * @param arc Handle to the archive writer context.
  * @param method Compression method.
  * @param compressLevel Compression level. The value -1 indicates the default compression level.
+ *     For OH_ARCHIVE_COMPRESS_DEFLATE, compression level is between 0 and 9. 1 gives best speed,
+ *     9 gives best compression, 0 gives no compression, and 6 is default.
  * @return Returns the error code. Returns ARCHIVE_OK if successful.
  *         {@link OH_ARCHIVE_OK} - Execution successful.
  *         {@link OH_ARCHIVE_PARAM_ERROR} - Invalid input parameters.
@@ -324,6 +327,8 @@ uint64_t OH_Archive_BufferWriteCompressBound(OH_Archive_CompressMethod method, u
  * @param srcSize Size of the source buffer data.
  * @param method Compression method type.
  * @param compressLevel Compression level. The value -1 indicates the default compression level.
+ *     For OH_ARCHIVE_COMPRESS_DEFLATE, compression level is between 0 and 9. 1 gives best speed,
+ *     9 gives best compression, 0 gives no compression, and 6 is default.
  * @return Returns error code, returns OH_ARCHIVE_OK on success.
  * @since 26.0.0
  */
@@ -359,7 +364,8 @@ OH_Archive_StreamWrite_Ctx OH_Archive_StreamWrite_Create(OH_Archive_Stream_Confi
  * @brief Starts a compression task, initializing user callback function and user data.
  * @param ctx Compression context.
  * @param outputHandler Callback function for compressed data, user-defined.
- * @param userData User-defined context that will be passed back in the callback.
+ * @param userData User-defined context that will be passed back in the callback. The userData is owned
+ *     by the caller and must remain valid until OH_Archive_StreamWrite_End is complete.
  * @return Returns the error code. Returns OH_ARCHIVE_OK if successful.
  * @since 26.0.0
  */
@@ -369,7 +375,8 @@ OH_Archive_ErrCode OH_Archive_StreamWrite_Start(OH_Archive_StreamWrite_Ctx ctx,
 /**
  * @brief Sets the compression level for StreamCompress.
  * @param ctx Compression context.
- * @param compressLevel Compression level.
+ * @param compressLevel Compression level. For OH_ARCHIVE_COMPRESS_DEFLATE, compression level is between 0 and 9.
+ *     1 gives best speed, 9 gives best compression, 0 gives no compression, and 6 is default.
  * @return Returns the error code. Returns OH_ARCHIVE_OK if successful.
  * @since 26.0.0
  */
@@ -423,7 +430,8 @@ OH_Archive_StreamRead_Ctx OH_Archive_StreamRead_Create(OH_Archive_Stream_Config 
  * @brief Start a decompression task, initialize user callback function and user data
  * @param ctx Decompression context
  * @param outputHandler User-defined callback function for handling decompressed data
- * @param userData User-defined context data that will be passed back in the callback
+ * @param userData User-defined context data that will be passed back in the callback. The userData is owned by
+ *     the caller and must remain valid until OH_Archive_StreamRead_End is complete.
  * @return Returns error code, returns OH_ARCHIVE_OK if successful
  * @since 26.0.0
  */
@@ -468,4 +476,4 @@ void OH_Archive_StreamRead_Destroy(OH_Archive_StreamRead_Ctx ctx);
 }
 #endif /* End of #ifdef __cplusplus */
 /** @} */
-#endif /* FILE_MANAGEMENT_COMPRESS_OH_ARCHIVE_H */
+#endif /* FILE_MANAGEMENT_ARCHIVE_OH_ARCHIVE_H */

@@ -14,20 +14,20 @@
 import("//build/ohos.gni")
 import("//build/ohos/ndk/ndk.gni")
 
-ohos_ndk_library("libohcompress") {
-  ndk_description_file = "./libohcompress.ndk.json"
+ohos_ndk_library("liboharchive") {
+  ndk_description_file = "./liboharchive.ndk.json"
   min_compact_version = "26.0.0"
-  output_name = "ohcompress"
+  output_name = "oharchive"
   output_extension = "so"
   system_capability = "SystemCapability.FileManagement.File.FileIO"
   system_capability_headers = [
-    "filemanagement/compress/oh_archive.h",
-    "filemanagement/compress/oh_archive_errcode.h",
+    "filemanagement/archive/oh_archive.h",
+    "filemanagement/archive/oh_archive_errcode.h",
   ]
 }
 
 ohos_ndk_headers("oh_archive_header") {
-  dest_dir = "$ndk_headers_out_dir/filemanagement/compress/"
+  dest_dir = "$ndk_headers_out_dir/filemanagement/archive/"
   sources = [
     "./include/oh_archive.h",
     "./include/oh_archive_errcode.h",

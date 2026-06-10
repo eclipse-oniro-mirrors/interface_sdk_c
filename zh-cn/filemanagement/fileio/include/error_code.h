@@ -29,6 +29,7 @@
  *
  * @library NA
  * @kit CoreFileKit
+ * @include <filemanagement/fileio/error_code.h>
  * @syscap SystemCapability.FileManagement.File.FileIO
  * @since 12
  */
