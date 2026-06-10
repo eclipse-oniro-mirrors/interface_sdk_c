@@ -898,7 +898,7 @@ void OH_ArkUI_MotionPathOptions_Dispose(ArkUI_MotionPathOptions* options);
  *
  * @param options Pointer to {@link ArkUI_MotionPathOptions}.
  * @param svgPath Motion path string for the path animation.
- * @return Returns the result code.
+ * @return Result code.
  *     <br>{@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
  *     <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
  * @since 23
@@ -914,7 +914,7 @@ ArkUI_ErrorCode OH_ArkUI_MotionPathOptions_SetPath(ArkUI_MotionPathOptions* opti
  * @param writeLength Indicates the string length actually written to the buffer when {@link ARKUI_ERROR_CODE_NO_ERROR}
  *     is returned. Indicates the minimum buffer size that can accommodate the target string when
  *     {@link ARKUI_ERROR_CODE_BUFFER_SIZE_ERROR} is returned.
- * @return Returns the result code.
+ * @return Result code.
  *     <br>{@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
  *     <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
  *     <br>{@link ARKUI_ERROR_CODE_BUFFER_SIZE_ERROR} if the buffer size is less than the minimum buffer size.
@@ -931,7 +931,7 @@ ArkUI_ErrorCode OH_ArkUI_MotionPathOptions_GetPath(const ArkUI_MotionPathOptions
  * @param from Start progress of the motion path. The value ranges from **0.0** to **1.0**. The value of **from** must
  *     be less than or equal to that of **to**; otherwise, {@link ARKUI_ERROR_CODE_PARAM_OUT_OF_RANGE} is returned.
  *     For details about the meaning of **to**, see {@link OH_ArkUI_MotionPathOptions_SetTo}.
- * @return Returns the result code.
+ * @return Result code.
  *     <br>{@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
  *     <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
  *     <br>{@link ARKUI_ERROR_CODE_PARAM_OUT_OF_RANGE} if **from** is out of the range [0.0, 1.0] or **from** is
@@ -945,7 +945,7 @@ ArkUI_ErrorCode OH_ArkUI_MotionPathOptions_SetFrom(ArkUI_MotionPathOptions* opti
  *
  * @param options Pointer to {@link ArkUI_MotionPathOptions}.
  * @param from Pointer to the variable used to receive the start progress of the motion path.
- * @return Returns the result code.
+ * @return Result code.
  *     <br>{@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
  *     <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
  * @since 23
@@ -960,7 +960,7 @@ ArkUI_ErrorCode OH_ArkUI_MotionPathOptions_GetFrom(const ArkUI_MotionPathOptions
  * @param to End progress of the motion path. The value ranges from **0.0** to **1.0**. The value of **to** must be
  *     greater than or equal to that of **from**; otherwise, {@link ARKUI_ERROR_CODE_PARAM_OUT_OF_RANGE} is returned.
  *     For details about the meaning of **from**, see {@link OH_ArkUI_MotionPathOptions_SetFrom}.
- * @return Returns the result code.
+ * @return Result code.
  *     <br>{@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
  *     <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
  *     <br>{@link ARKUI_ERROR_CODE_PARAM_OUT_OF_RANGE} if **to** is out of the range [0.0, 1.0] or **to** is less than
@@ -974,7 +974,7 @@ ArkUI_ErrorCode OH_ArkUI_MotionPathOptions_SetTo(ArkUI_MotionPathOptions* option
  *
  * @param options Pointer to {@link ArkUI_MotionPathOptions}.
  * @param to Pointer to the variable used to receive the end progress of the motion path.
- * @return Returns the result code.
+ * @return Result code.
  *     <br>{@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
  *     <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
  * @since 23
@@ -988,7 +988,7 @@ ArkUI_ErrorCode OH_ArkUI_MotionPathOptions_GetTo(const ArkUI_MotionPathOptions* 
  * @param rotatable Whether the component rotates along the path. The value **true** means that the component rotates
  *     along the path, and **false** means that the component does not rotate along the path. The default value is
  *     **false**.
- * @return Returns the result code.
+ * @return Result code.
  *     <br>{@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
  *     <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
  * @since 23
@@ -1002,7 +1002,7 @@ ArkUI_ErrorCode OH_ArkUI_MotionPathOptions_SetRotatable(ArkUI_MotionPathOptions*
  * @param rotatable Pointer to the variable used to receive the value of **rotatable**, which indicates whether the
  *     component rotates along the path. The value **true** means that the component rotates along the path, and
  *     **false** means that the component does not rotate along the path.
- * @return Returns the result code.
+ * @return Result code.
  *     <br>{@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
  *     <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
  * @since 23
@@ -1031,21 +1031,21 @@ void OH_ArkUI_ShadowOptions_Destroy(OH_ArkUI_ShadowOptions* options);
  *
  * @param options Pointer to the {@link OH_ArkUI_ShadowOptions} object.
  * @param radius Blur radius of the shadow, in vp.
- * @return Returns the result code.
- *     <br>{@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *     <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ * @return Result code.
+ *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_ShadowOptions_SetRadius(OH_ArkUI_ShadowOptions* options, float radius);
 
 /**
- * @brief Obtains the blur radius of the shadow options.
+ * @brief Obtains the blur radius for the shadow options.
  *
  * @param options Pointer to the {@link OH_ArkUI_ShadowOptions} object.
- * @param radius Pointer to the variable used to receive the blur radius of the shadow, in vp.
- * @return Returns the result code.
- *     <br>{@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *     <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ * @param radius Pointer to the blur radius of the shadow, in vp.
+ * @return Result code.
+ *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_ShadowOptions_GetRadius(OH_ArkUI_ShadowOptions* options, float* radius);
@@ -1054,22 +1054,22 @@ ArkUI_ErrorCode OH_ArkUI_ShadowOptions_GetRadius(OH_ArkUI_ShadowOptions* options
  * @brief Sets the shadow type for the shadow options.
  *
  * @param options Pointer to the {@link OH_ArkUI_ShadowOptions} object.
- * @param type Shadow type. For details, see {@link ArkUI_ShadowType}.
- * @return Returns the result code.
- *     <br>{@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *     <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ * @param type Shadow type ({@link ArkUI_ShadowType}).
+ * @return Result code.
+ *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_ShadowOptions_SetType(OH_ArkUI_ShadowOptions* options, ArkUI_ShadowType type);
 
 /**
- * @brief Obtains the shadow type of the shadow options.
+ * @brief Obtains the shadow type for the shadow options.
  *
  * @param options Pointer to the {@link OH_ArkUI_ShadowOptions} object.
- * @param type Pointer to the variable used to receive the shadow type. For details, see {@link ArkUI_ShadowType}.
- * @return Returns the result code.
- *     <br>{@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *     <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ * @param type Shadow type ({@link ArkUI_ShadowType}).
+ * @return Result code.
+ *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_ShadowOptions_GetType(OH_ArkUI_ShadowOptions* options, ArkUI_ShadowType* type);
@@ -1079,97 +1079,95 @@ ArkUI_ErrorCode OH_ArkUI_ShadowOptions_GetType(OH_ArkUI_ShadowOptions* options, 
  *
  * @param options Pointer to the {@link OH_ArkUI_ShadowOptions} object.
  * @param color Shadow color, in 0xARGB format.
- * @return Returns the result code.
- *     <br>{@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *     <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ * @return Result code.
+ *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_ShadowOptions_SetColor(OH_ArkUI_ShadowOptions* options, uint32_t color);
 
 /**
- * @brief Obtains the shadow color of the shadow options.
+ * @brief Obtains the shadow color for the shadow options.
  *
  * @param options Pointer to the {@link OH_ArkUI_ShadowOptions} object.
- * @param color Pointer to the variable used to receive the shadow color, in 0xARGB format.
- * @return Returns the result code.
- *     <br>{@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *     <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ * @param color Pointer to the shadow color, in 0xARGB format.
+ * @return Result code.
+ *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_ShadowOptions_GetColor(OH_ArkUI_ShadowOptions* options, uint32_t* color);
 
 /**
- * @brief Sets the offset of the shadow along the x-axis.
+ * @brief Sets the shadow offset on the x-axis.
  *
  * @param options Pointer to the {@link OH_ArkUI_ShadowOptions} object.
- * @param offsetX Offset of the shadow along the x-axis, in vp.
- * @return Returns the result code.
- *     <br>{@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *     <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ * @param offsetX Shadow offset on the x-axis, in vp.
+ * @return Result code.
+ *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_ShadowOptions_SetOffsetX(OH_ArkUI_ShadowOptions* options, float offsetX);
 
 /**
- * @brief Obtains the offset of the shadow along the x-axis.
+ * @brief Obtains the shadow offset on the x-axis.
  *
  * @param options Pointer to the {@link OH_ArkUI_ShadowOptions} object.
- * @param offsetX Pointer to the variable used to receive the offset of the shadow along the x-axis, in vp.
- * @return Returns the result code.
- *     <br>{@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *     <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ * @param offsetX Pointer to the shadow offset on the x-axis, in vp.
+ * @return Result code.
+ *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_ShadowOptions_GetOffsetX(OH_ArkUI_ShadowOptions* options, float* offsetX);
 
 /**
- * @brief Sets the offset of the shadow along the y-axis.
+ * @brief Sets the shadow offset on the y-axis.
  *
  * @param options Pointer to the {@link OH_ArkUI_ShadowOptions} object.
- * @param offsetY Offset of the shadow along the y-axis, in vp.
- * @return Returns the result code.
- *     <br>{@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *     <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ * @param offsetY Shadow offset on the y-axis, in vp.
+ * @return Result code.
+ *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_ShadowOptions_SetOffsetY(OH_ArkUI_ShadowOptions* options, float offsetY);
 
 /**
- * @brief Obtains the offset of the shadow along the y-axis.
+ * @brief Obtains the shadow offset on the y-axis.
  *
  * @param options Pointer to the {@link OH_ArkUI_ShadowOptions} object.
- * @param offsetY Pointer to the variable used to receive the offset of the shadow along the y-axis, in vp.
- * @return Returns the result code.
- *     <br>{@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *     <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ * @param offsetY Pointer to the shadow offset on the y-axis, in vp.
+ * @return Result code.
+ *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_ShadowOptions_GetOffsetY(OH_ArkUI_ShadowOptions* options, float* offsetY);
 
 /**
- * @brief Sets whether to fill the inside of the component with shadow.
+ * @brief Sets whether to fill a component with a shadow.
  *
  * @param options Pointer to the {@link OH_ArkUI_ShadowOptions} object.
- * @param isFill Whether to fill the inside of the component with shadow. The value **true** means to fill the inside
- *     of the component with shadow, and **false** means not to fill the inside of the component with shadow. The
- *     default value is **false**.
- * @return Returns the result code.
- *     <br>{@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *     <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ * @param isFill Whether to fill a component with a shadow. **true** means to fill a component with a shadow, and **
+ *     false** means the opposite. The default value is **false**.
+ * @return Result code.
+ *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_ShadowOptions_SetFill(OH_ArkUI_ShadowOptions* options, bool isFill);
 
 /**
- * @brief Obtains whether to fill the inside of the component with shadow.
+ * @brief Obtains whether a component is filled with a shadow.
  *
  * @param options Pointer to the {@link OH_ArkUI_ShadowOptions} object.
- * @param isFill Pointer to the variable used to receive whether to fill the inside of the component with shadow. The
- *     value **true** means to fill the inside of the component with shadow, and **false** means not to fill the inside
- *     of the component with shadow.
- * @return Returns the result code.
- *     <br>{@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *     <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ * @param isFill Pointer to the **isFill** parameter indicating whether a component is filled with a shadow. **true**
+ *     means that a component is filled with a shadow, and **false** means the opposite.
+ * @return Result code.
+ *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_ShadowOptions_GetFill(OH_ArkUI_ShadowOptions* options, bool* isFill);
