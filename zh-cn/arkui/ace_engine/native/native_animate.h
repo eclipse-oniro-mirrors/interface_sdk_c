@@ -25,8 +25,7 @@
 /**
  * @file native_animate.h
  *
- * @brief Defines a set of animation APIs of ArkUI on the native side. The APIs in **native_animate.h** must be called
- * in the main thread.
+ * @brief 提供ArkUI在Native侧的动画接口定义集合。native_animate.h中的接口需要在主线程上调用。
  *
  * @library libace_ndk.z.so
  * @syscap SystemCapability.ArkUI.ArkUI.Full
@@ -50,1286 +49,1211 @@ extern "C" {
 #endif
 
 /**
-* @brief Defines the expected frame rate range of the animation.
-*
-* @since 12
-*/
+ * @brief 设置动画的期望帧率。
+ *
+ * @since 12
+ */
 typedef struct {
     /**
-     * Expected minimum frame rate, in fps.
+     * 期望的最小帧率，单位为帧/秒（fps）。
      */
     uint32_t min;
     /**
-     * Expected maximum frame rate, in fps.
+     * 期望的最大帧率，单位为帧/秒（fps）。
      */
     uint32_t max;
     /**
-     * Expected optimal frame rate, in fps.
+     * 期望的最优帧率，单位为帧/秒（fps）。
      */
     uint32_t expected;
 } ArkUI_ExpectedFrameRateRange;
 
 /**
-* @brief Defines the callback type for when the animation playback is complete.
-*
-* @since 12
-*/
+ * @brief 动画播放结束回调类型。
+ *
+ * @since 12
+ */
 typedef struct {
     /**
-     * Callback type for when the animation playback is complete.
+     * 在动画中定义结束回调的类型。
      */
     ArkUI_FinishCallbackType type;
     /**
-     * Invoked when the animation playback is complete.
+     * 动画播放结束回调。
      */
     void (*callback)(void* userData);
     /**
-     * Custom data passed upon animation end callback.
+     * 用于动画结束回调，传递用户自定义数据。
      */
     void* userData;
 } ArkUI_AnimateCompleteCallback;
 
 /**
-* @brief Defines the animation configuration.
-*
-* @since 12
-*/
+ * @brief 设置动画效果相关参数。
+ *
+ * @since 12
+ */
 typedef struct ArkUI_AnimateOption ArkUI_AnimateOption;
 
 /**
-* @brief Defines an interpolation curve.
-*
-* @since 12
-*/
+ * @brief 提供曲线的插值对象定义。
+ *
+ * @since 12
+ */
 typedef struct ArkUI_Curve ArkUI_Curve;
 
 /**
- * @brief Defines the pointer to an interpolation curve.
+ * @brief 定义曲线的插值对象指针定义。
  *
  * @since 12
  */
 typedef struct ArkUI_Curve* ArkUI_CurveHandle;
 
 /**
- * @brief Defines the keyframe animation parameter object.
+ * @brief 定义关键帧动画参数对象。
  *
  * @since 12
  */
 typedef struct ArkUI_KeyframeAnimateOption ArkUI_KeyframeAnimateOption;
 
 /**
- * @brief Defines the animator parameter object.
+ * @brief 定义animator动画参数对象。
  *
  * @since 12
  */
 typedef struct ArkUI_AnimatorOption ArkUI_AnimatorOption;
 
 /**
- * @brief Defines the pointer to an animator object.
+ * @brief 定义animator动画对象指针。
  *
  * @since 12
  */
 typedef struct ArkUI_Animator* ArkUI_AnimatorHandle;
 
 /**
-* @brief Defines the animator callback event object.
-*
-* @since 12
-*/
+ * @brief 定义animator回调事件对象。
+ *
+ * @since 12
+ */
 typedef struct ArkUI_AnimatorEvent ArkUI_AnimatorEvent;
 
 /**
-* @brief Defines the callback object when the animator receives a frame.
-*
-* @since 12
-*/
+ * @brief 定义animator接收到帧时回调对象。
+ *
+ * @since 12
+ */
 typedef struct ArkUI_AnimatorOnFrameEvent ArkUI_AnimatorOnFrameEvent;
 
 /**
-  * @brief Defines the transition parameter object for transition property configuration.
-  *
-  * @since 12
-  */
+ * @brief 定义transition属性配置转场参数对象。
+ *
+ * @since 12
+ */
 typedef struct ArkUI_TransitionEffect ArkUI_TransitionEffect;
 
 /**
-  * @brief Declares the native animation APIs provided by ArkUI.
-  *
-  * @version 1
-  * @since 12
-  */
+ * @brief ArkUI提供的Native侧动画接口集合。
+ *
+ * @version 1
+ * @since 12
+ */
 typedef struct {
     /**
-    * @brief Defines an explicit animation.
-    *
-    * @note Make sure the component attributes to be set in the event closure have been set before.
-    *
-    * @param context **UIContext** instance.
-    * @param option Defines the animation configuration.
-    * @param update Closure function for the animation. The system automatically inserts the transition animation if
-    *     the state changes in the closure function.
-    *     <br>Note: Make sure the component attributes to be set in the closure function have been set before.
-    * @param complete Callback invoked when the animation playback is complete.
-    * @return Result code.
-    *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
-    *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
-    */
+     * @brief 显式动画接口。
+     *
+     * @note Make sure the component attributes to be set in the event closure have been set before.
+     *
+     * @param context UIContext实例。
+     * @param option 设置动画效果相关参数。
+     * @param update 指定动效的闭包函数，在闭包函数中导致的状态变化系统会自动插入过渡动画。
+     *     <br>**说明**：在闭包函数中要设置的组件属性，必须在其之前设置过。
+     * @param complete 设置动画播放完成回调参数。
+     * @return 错误码。
+     *     <br>{@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
+     *     <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
+     */
     int32_t (*animateTo)(ArkUI_ContextHandle context, ArkUI_AnimateOption* option, ArkUI_ContextCallback* update,
         ArkUI_AnimateCompleteCallback* complete);
 
     /**
-    * @brief Defines a keyframe animation.
-    *
-    * @param context **UIContext** instance.
-    * @param option Keyframe animation parameter.
-    * @return Result code.
-    *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
-    *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
-    */
+     * @brief 关键帧动画接口。
+     *
+     * @param context UIContext实例。
+     * @param option 关键帧动画参数。
+     * @return 错误码。
+     *     <br>{@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
+     *     <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
+     */
     int32_t (*keyframeAnimateTo)(ArkUI_ContextHandle context, ArkUI_KeyframeAnimateOption* option);
 
     /**
-    * @brief Creates an animator object.
-    *
-    * @param context **UIContext** instance.
-    * @param option Animator parameter.
-    * @return Returns the pointer to the animator object; returns **NULL** if a parameter error occurs.
-    */
+     * @brief 创建animator动画对象。
+     *
+     * @param context UIContext实例。
+     * @param option animator动画参数。
+     * @return animator动画对象指针。函数参数异常时返回NULL。
+     */
     ArkUI_AnimatorHandle (*createAnimator)(ArkUI_ContextHandle context, ArkUI_AnimatorOption* option);
 
     /**
-    * @brief Disposes of an animator object.
-    *
-    * @param animatorHandle Animator object.
-    */
+     * @brief 销毁animator动画对象。
+     *
+     * @param animatorHandle animator动画对象。
+     */
     void (*disposeAnimator)(ArkUI_AnimatorHandle animatorHandle);
 } ArkUI_NativeAnimateAPI_1;
 
 /**
-* @brief Creates an animation configuration.
-*
-* @return Pointer to the created animation configuration.
-* @since 12
-*/
+ * @brief 创建动画效果参数。
+ *
+ * @return 新的动画效果参数指针。
+ * @since 12
+ */
 ArkUI_AnimateOption* OH_ArkUI_AnimateOption_Create();
 
 /**
-* @brief Disposes of an animation configuration.
-*
-* @param option Pointer to an animation configuration.
-*     <br>If **option** is set to **NULL**, the operation is invalid.
-* @since 12
-*/
+ * @brief 销毁动画效果参数指针。
+ *
+ * @param option 动画效果参数。
+ *     <br>option为NULL时，操作无效。
+ * @since 12
+ */
 void OH_ArkUI_AnimateOption_Dispose(ArkUI_AnimateOption* option);
 
 /**
-* @brief Obtains the animation duration, in milliseconds.
-*
-* @param option Pointer to an animation configuration.
-*     <br>If **option** is set to **NULL**, **0** is returned.
-* @return Animation duration, in milliseconds. If **option** is invalid, **0** is returned.
-* @since 12
-*/
+ * @brief 获取动画持续时间，单位为ms（毫秒）。
+ *
+ * @param option 动画效果参数。
+ *     <br>option为NULL时，返回0。
+ * @return 动画持续时间，单位为ms（毫秒）。option异常时返回0。
+ * @since 12
+ */
 uint32_t OH_ArkUI_AnimateOption_GetDuration(ArkUI_AnimateOption* option);
 
 /**
-* @brief Obtains the playback speed of an animation.
-*
-* @param option Pointer to an animation configuration.
-*     <br>If **option** is set to **NULL**, **0.0** is returned.
-* @return Animation playback speed. Value range: [0, +∞). If **option** is invalid, **0.0** is returned.
-* @since 12
-*/
+ * @brief 获取动画播放速度。
+ *
+ * @param option 动画效果参数。
+ *     <br>option为NULL时，返回0.0。
+ * @return 动画播放速度。取值范围：[0, +∞)。option异常时返回0.0。
+ * @since 12
+ */
 float OH_ArkUI_AnimateOption_GetTempo(ArkUI_AnimateOption* option);
 
 /**
-* @brief Obtains an animation curve.
-*
-* @param option Pointer to an animation configuration.
-*     <br>If **option** is set to **NULL**, **-1** is returned.
-* @return Animation curve. If **option** is invalid,**-1** is returned.
-* @since 12
-*/
+ * @brief 获取动画曲线。
+ *
+ * @param option 动画效果参数。
+ *     <br>option为NULL时，返回-1。
+ * @return 动画曲线。option异常时返回-1。
+ * @since 12
+ */
 ArkUI_AnimationCurve OH_ArkUI_AnimateOption_GetCurve(ArkUI_AnimateOption* option);
 
 /**
-* @brief Obtains the animation delay, in milliseconds.
-*
-* @param option Pointer to an animation configuration.
-*     <br>If **option** is set to **NULL**, **0** is returned.
-* @return Delay of animation playback. If **option** is invalid, **0** is returned.
-* @since 12
-*/
+ * @brief 获取动画延迟播放时间，单位为ms（毫秒）。
+ *
+ * @param option 动画效果参数。
+ *     <br>option为NULL时，返回0。
+ * @return 动画延迟播放时间。option异常时返回0。
+ * @since 12
+ */
 int32_t OH_ArkUI_AnimateOption_GetDelay(ArkUI_AnimateOption* option);
 
 /**
-* @brief Obtains the number of times that an animation is played.
-*
-* @param option Pointer to an animation configuration.
-*     <br>If **option** is set to **NULL**, **0** is returned.
-* @return Number of times that the animation is played. If **option** is invalid, **0** is returned.
-* @since 12
-*/
+ * @brief 获取动画播放次数。
+ *
+ * @param option 动画效果参数。
+ *     <br>option为NULL时，返回0。
+ * @return 动画播放次数。option异常时返回0。
+ * @since 12
+ */
 int32_t OH_ArkUI_AnimateOption_GetIterations(ArkUI_AnimateOption* option);
 
 /**
-* @brief Obtains the playback mode of an animation.
-*
-* @param option Pointer to an animation configuration.
-*     <br>If **option** is set to **NULL**, **-1** is returned.
-* @return Animation playback mode. If **option** is invalid,**-1** is returned.
-* @since 12
-*/
+ * @brief 获取动画播放模式。
+ *
+ * @param option 动画效果参数。
+ *     <br>option为NULL时，返回-1。
+ * @return 动画播放模式。option异常时返回-1。
+ * @since 12
+ */
 ArkUI_AnimationPlayMode OH_ArkUI_AnimateOption_GetPlayMode(ArkUI_AnimateOption* option);
 
 /**
-* @brief Obtains the expected frame rate range of an animation.
-*
-* @param option Pointer to an animation configuration.
-*     <br>If **option** is set to **NULL**, **NULL** is returned.
-* @return Expected frame rate range of the animation, in fps. If **option** is invalid, **NULL** is returned.
-* @since 12
-*/
+ * @brief 获取动画的期望帧率。
+ *
+ * @param option 动画效果参数。
+ *     <br>option为NULL时，返回NULL。
+ * @return 动画的期望帧率，单位为帧/秒（fps）。option异常时返回NULL。
+ * @since 12
+ */
 ArkUI_ExpectedFrameRateRange* OH_ArkUI_AnimateOption_GetExpectedFrameRateRange(ArkUI_AnimateOption* option);
 
 /**
-* @brief Sets the animation duration, in milliseconds.
-*
-* @param option Pointer to an animation configuration.
-*     <br>If **option** is set to **NULL**, the operation is invalid.
-* @param value Animation duration, in milliseconds. Value range: [0, +∞).
-*     <br>If the value is less than 0, **0** is used.
-* @since 12
-*/
+ * @brief 设置动画持续时间，单位为ms（毫秒）。
+ *
+ * @param option 动画效果参数。
+ *     <br>option为NULL时，操作无效。
+ * @param value 动画持续时间，单位为ms（毫秒）。取值范围：[0, +∞)。
+ *     <br>value小于0时，按0处理。
+ * @since 12
+ */
 void OH_ArkUI_AnimateOption_SetDuration(ArkUI_AnimateOption* option, int32_t value);
 
 /**
-* @brief Sets the playback speed of an animation.
-*
-* @param option Pointer to an animation configuration.
-*     <br>If **option** is set to **NULL**, the operation is invalid.
-* @param value Animation playback speed. Value range: [0, +∞).
-*     <br>**NOTE**
-*     <br>If the value is less than 0, the default value **1** is used.
-* @since 12
-*/
+ * @brief 设置动画播放速度。
+ *
+ * @param option 动画效果参数。
+ *     <br>option为NULL时，操作无效。
+ * @param value 动画播放速度。取值范围：[0, +∞)。
+ *     **说明：**
+ *     传入小于0的数值，会默认设置为1。
+ * @since 12
+ */
 void OH_ArkUI_AnimateOption_SetTempo(ArkUI_AnimateOption* option, float value);
 
 /**
-* @brief Animation curve.
-*
-* @param option Pointer to an animation configuration.
-*     <br>If **option** is set to **NULL**, the operation is invalid.
-* @param value Animation curve. Default value: {@link ARKUI_CURVE_LINEAR}. You are advised to use
-*     {@link ARKUI_CURVE_EASE_IN_OUT} to obtain a smoother animation effect.
-*     <br>If the value is abnormal, the setting is invalid.
-* @since 12
-*/
+ * @brief 设置动画曲线。
+ *
+ * @param option 动画效果参数。
+ *     <br>option为NULL时，操作无效。
+ * @param value 动画曲线。默认值：{@link ARKUI_CURVE_LINEAR}，建议使用{@link ARKUI_CURVE_EASE_IN_OUT}获得更平滑的动画效果。
+ *     <br>value值异常时，设置无效。
+ * @since 12
+ */
 void OH_ArkUI_AnimateOption_SetCurve(ArkUI_AnimateOption* option, ArkUI_AnimationCurve value);
 
 /**
-* @brief Sets the animation delay, in milliseconds.
-*
-* @param option Pointer to an animation configuration.
-*     <br>If **option** is set to **NULL**, the operation is invalid.
-* @param value Animation delay, in milliseconds. Value range: (-∞, +∞). Default value: **0**, indicating no animation
-*     delay. A value greater than 0 means to begin the animation after the specified amount of time has elapsed. A
-*     value less than 0 means to begin the animation in advance. If **value** is less than **0** and the absolute value
-*     of **value** is less than the actual animation duration, the animation starts its first frame from the state at
-*     the absolute value. If the absolute value of **value** is greater than or equal to the actual animation duration,
-*     the animation starts its first frame from the end state. The actual animation duration is equal to the duration
-*     of a single animation multiplied by the number of animation playback times.
-* @since 12
-*/
+ * @brief 设置动画延迟播放时间，单位为ms（毫秒）。
+ *
+ * @param option 动画效果参数。
+ *     <br>option为NULL时，操作无效。
+ * @param value 动画延迟播放时间，单位为ms（毫秒）。取值范围：(-∞, +∞)。默认值：0，表示不延迟。value大于0时表示延迟播放，小于0表示提前播放。value小于0时，如果value的绝对值小于实际动画时长，
+ *     动画将在开始后第一帧直接运动到value绝对值的时刻的状态；如果value的绝对值大于等于实际动画时长，动画将在开始后第一帧直接运动到终点状态。其中实际动画时长等于单次动画时长乘以动画播放次数。
+ * @since 12
+ */
 void OH_ArkUI_AnimateOption_SetDelay(ArkUI_AnimateOption* option, int32_t value);
 
 /**
-* @brief Sets the number of times that an animation is played.
-*
-* @param option Pointer to an animation configuration.
-*     <br>If **option** is set to **NULL**, the operation is invalid.
-* @param value Number of times that the animation is played. Value range: [-1, +∞). If this parameter is set to **0**,
-*     the animation is not played. If this parameter is set to **-1**, the animation is played for an infinite number
-*     of times. Default value: **1** (played once).
-*     <br>If the value is less than -1, the operation is invalid.
-* @since 12
-*/
+ * @brief 设置动画播放次数。
+ *
+ * @param option 动画效果参数。
+ *     <br>option为NULL时，操作无效。
+ * @param value 动画播放次数。取值范围：[-1, +∞)，其中设置为0时不播放，-1表示无限次播放。默认值：1（播放一次）。
+ *     <br>value小于-1时，操作无效。
+ * @since 12
+ */
 void OH_ArkUI_AnimateOption_SetIterations(ArkUI_AnimateOption* option, int32_t value);
 
 /**
-* @brief Sets the playback mode for an animation.
-*
-* @param option Pointer to an animation configuration.
-*     <br>If **option** is set to **NULL**, the operation is invalid.
-* @param value Animation playback mode. Default value: {@link ARKUI_ANIMATION_PLAY_MODE_NORMAL}.
-*     <br>If the value is abnormal, the operation is invalid.
-* @since 12
-*/
+ * @brief 设置动画播放模式。
+ *
+ * @param option 动画效果参数。
+ *     <br>option为NULL时，操作无效。
+ * @param value 动画播放模式。默认值：{@link ARKUI_ANIMATION_PLAY_MODE_NORMAL}。
+ *     <br>value值异常时，操作无效。
+ * @since 12
+ */
 void OH_ArkUI_AnimateOption_SetPlayMode(ArkUI_AnimateOption* option, ArkUI_AnimationPlayMode value);
 
 /**
-* @brief Defines a struct for the expected frame rate range of the animation.
-*
-* @param option Pointer to an animation configuration.
-*     <br>If **option** is set to **NULL**, the operation is invalid.
-* @param value Expected frame rate range of the animation, in fps.
-*     <br>If **value** is set to **NULL**, the operation is invalid.
-* @since 12
-*/
+ * @brief 设置动画的期望帧率。
+ *
+ * @param option 动画效果参数。
+ *     <br>option为NULL时，操作无效。
+ * @param value 动画的期望帧率，单位为帧/秒（fps）。
+ *     <br>value为NULL时，操作无效。
+ * @since 12
+ */
 void OH_ArkUI_AnimateOption_SetExpectedFrameRateRange(ArkUI_AnimateOption* option, ArkUI_ExpectedFrameRateRange* value);
 
 /**
-* @brief Sets the animation curve for an animation.
-*
-* @note This method is better than the value set by OH_ArkUI_AnimateOption_SetCurve.
-* @param option Animator animation parameters.
-*     <br>If **option** is set to **NULL**, the operation is invalid.
-* @param value Animation curve parameters.
-*     <br>If **value** is set to **NULL**, the operation is invalid.
-* @since 12
-*/
+ * @brief 设置动画的动画曲线。
+ *
+ * @note This method is better than the value set by OH_ArkUI_AnimateOption_SetCurve.
+ * @param option 设置动画效果相关参数。
+ *     <br>option为NULL时，操作无效。
+ * @param value 动画曲线参数。
+ *     <br>value为NULL时，操作无效。
+ * @since 12
+ */
 void OH_ArkUI_AnimateOption_SetICurve(ArkUI_AnimateOption* option, ArkUI_CurveHandle value);
 
 /**
-* @brief Obtains the animation curve of an animation.
-*
-* @param option Animator animation parameters.
-*     <br>If **option** is set to **NULL**, **NULL** is returned.
-* @return Animation curve parameters. Returns **NULL** if the option parameter is invalid.
-* @since 12
-*/
+ * @brief 获取动画的动画曲线。
+ *
+ * @param option 设置动画效果相关参数。
+ *     <br>option为NULL时，返回NULL。
+ * @return 动画的动画曲线。参数option异常时返回NULL。
+ * @since 12
+ */
 ArkUI_CurveHandle OH_ArkUI_AnimateOption_GetICurve(ArkUI_AnimateOption* option);
 
 /**
-  * @brief Creates a keyframe animation parameter object.
-  *
-  * @param size Number of keyframe animation states.
-  *     <br>Returns **NULL** if the value of **size** is less than 0.
-  * @return Keyframe animation parameter object. If the value of **size** is less than 0 or if **option** is abnormal, **
-  *     NULL** is returned.
-  * @since 12
-  */
+ * @brief 创建关键帧动画参数。
+ *
+ * @param size 关键帧动画状态数。
+ *     <br>size小于0时返回NULL。
+ * @return 关键帧动画参数对象。size小于0时返回NULL，option异常时返回NULL。
+ * @since 12
+ */
 ArkUI_KeyframeAnimateOption* OH_ArkUI_KeyframeAnimateOption_Create(int32_t size);
 
 /**
-  * @brief Disposes of a keyframe animation parameter object.
-  *
-  * @param option Keyframe animation parameter object.
-  *     <br>If **option** is set to **NULL**, the operation is invalid.
-  * @since 12
-  */
+ * @brief 销毁关键帧动画参数。
+ *
+ * @param option 关键帧动画参数对象。
+ *     <br>option为NULL时，操作无效。
+ * @since 12
+ */
 void OH_ArkUI_KeyframeAnimateOption_Dispose(ArkUI_KeyframeAnimateOption* option);
 
 /**
-  * @brief Sets the overall delay of a keyframe animation, in milliseconds. By default, the keyframe animation starts
-  * without any delay.
-  *
-  * @param option Keyframe animation parameters.
-  *     <br>If **option** is set to **NULL**, the error code {@link ARKUI_ERROR_CODE_PARAM_INVALID} is returned.
-  * @param value Animation delay, in milliseconds. Value range: (-∞, +∞). Default value: **0**, indicating no animation
-  *     delay. A value greater than 0 means to begin the animation after the specified amount of time has elapsed. A
-  *     value less than 0 means to begin the animation in advance. If **value** is less than **0** and the absolute
-  *     value of **value** is less than the actual animation duration, the animation starts its first frame from the
-  *     state at the absolute value. If the absolute value of **value** is greater than or equal to the actual animation
-  *     duration, the animation starts its first frame from the end state. The actual animation duration is equal to the
-  *     duration of a single animation multiplied by the number of animation playback times.
-  * @return Result code.
-  *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
-  *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
-  * @since 12
-  */
+ * @brief 设置关键帧动画的整体延时时间，单位为ms（毫秒），默认不延时播放。
+ *
+ * @param option 关键帧动画参数。
+ *     <br>option为NULL时，返回错误码{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
+ * @param value 动画延迟播放时间，单位为ms（毫秒）。取值范围：(-∞, +∞)。默认值：0，表示不延迟。value大于0为延迟播放，value小于0表示提前播放。对于value小于0的情况：
+ *     当value的绝对值小于实际动画时长，动画将在开始后第一帧直接运动到value绝对值的时刻的状态；当value的绝对值大于等于实际动画时长，动画将在开始后第一帧直接运动到终点状态。
+ *     其中实际动画时长等于单次动画时长乘以动画播放次数。
+ * @return 错误码。
+ *     <br>{@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
+ *     <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
+ * @since 12
+ */
 int32_t OH_ArkUI_KeyframeAnimateOption_SetDelay(ArkUI_KeyframeAnimateOption* option, int32_t value);
 
 /**
-  * @brief Sets the number of times that the keyframe animation is played. By default, the animation is played once. The
-  * value **-1** indicates that the animation is played for an unlimited number of times. The value **0** indicates that
-  * no animation is played.
-  *
-  * @param option Keyframe animation parameters.
-  *     <br>If **option** is set to **NULL**, the error code {@link ARKUI_ERROR_CODE_PARAM_INVALID} is returned.
-  * @param value Number of times that the animation is played. Value range: [-1, +∞). If this parameter is set to **0**,
-  *     the animation is not played. If this parameter is set to **-1**, the animation is played for an infinite number
-  *     of times. Default value: **1**, indicating that the animation is played once.
-  *     <br>If the value is less than **-1**, the operation is invalid, and the error code
-  *     {@link ARKUI_ERROR_CODE_PARAM_INVALID} is returned.
-  * @return Result code.
-  *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
-  *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
-  * @since 12
-  */
+ * @brief 设置关键帧动画的动画播放次数。默认播放一次，设置为-1时表示无限次播放，设置为0时表示无动画效果。
+ *
+ * @param option 关键帧动画参数。
+ *     <br>option为NULL时，返回错误码{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
+ * @param value 动画播放次数。取值范围：[-1, +∞)，其中设置为0时不播放，-1表示无限次播放。默认值：1，表示播放一次。
+ *     <br>value小于-1时，操作无效，返回错误码{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
+ * @return 错误码。
+ *     <br>{@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
+ *     <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
+ * @since 12
+ */
 int32_t OH_ArkUI_KeyframeAnimateOption_SetIterations(ArkUI_KeyframeAnimateOption* option, int32_t value);
 
 /**
-  * @brief Sets the callback invoked when the keyframe animation playback is complete. This function is called after the
-  * {@link keyframe animation} has played for the specified number of times.
-  *
-  * @param option Keyframe animation parameters.
-  *     <br>If **option** is set to **NULL**, the error code {@link ARKUI_ERROR_CODE_PARAM_INVALID} is returned.
-  * @param userData Pointer to a custom object.
-  *     <br>Abnormal value processing is not involved.
-  * @param onFinish Indicates the callback.
-  * @return Result code.
-  *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
-  *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
-  * @since 12
-  */
+ * @brief 设置关键帧动画播放完成回调。当关键帧动画{@link ArkUI_KeyframeAnimateOption}所有次数播放完成后调用。
+ *
+ * @param option 关键帧动画参数。
+ *     <br>option为NULL时，返回错误码{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
+ * @param userData 用户自定义对象指针。
+ *     <br>不涉及异常值处理。
+ * @param onFinish Indicates the callback.
+ * @return 错误码。
+ *     <br>{@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
+ *     <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
+ * @since 12
+ */
 int32_t OH_ArkUI_KeyframeAnimateOption_RegisterOnFinishCallback(
     ArkUI_KeyframeAnimateOption* option, void* userData, void (*onFinish)(void* userData));
 
 /**
-  * @brief Sets the expected frame rate for a keyframe animation.
-  *
-  * @param option Keyframe animation parameters.
-  *     <br>If **option** is set to **NULL**, the error code {@link ARKUI_ERROR_CODE_PARAM_INVALID} is returned.
-  * @param frameRate Expected frame rate for the keyframe animation.
-  *     <br>If **frameRate** is set to **NULL**, the error code {@link ARKUI_ERROR_CODE_PARAM_INVALID} is returned.
-  * @return Result code.
-  *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
-  *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
-  * @since 19
-  */
+ * @brief 设置关键帧动画期望帧率。
+ *
+ * @param option 关键帧动画参数。
+ *     <br>option为NULL时，返回错误码{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
+ * @param frameRate 关键帧动画的期望帧率。
+ *     <br>frameRate为NULL时，返回错误码{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
+ * @return 错误码。
+ *     <br>{@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
+ *     <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
+ * @since 19
+ */
 int32_t OH_ArkUI_KeyframeAnimateOption_SetExpectedFrameRate(
     ArkUI_KeyframeAnimateOption* option, ArkUI_ExpectedFrameRateRange* frameRate);
 
 /**
-  * @brief Sets the duration of a keyframe animation, in milliseconds.
-  *
-  * @param option Keyframe animation parameters.
-  *     <br>If **option** is set to **NULL**, the error code {@link ARKUI_ERROR_CODE_PARAM_INVALID} is returned.
-   * @param value Keyframe animation duration, in ms. The default value is 1000 ms. Value range: [0, +∞).
-  *     <br>If the value is less than 0, **0** is used.
-  * @param index Index of the keyframe state segment.
-  *     <br>If the value of **index** is less than 0, the error code {@link ARKUI_ERROR_CODE_PARAM_INVALID} is returned.
-  * @return Result code.
-  *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
-  *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
-  * @since 12
-  */
+ * @brief 设置关键帧动画某段关键帧动画的持续时间，单位为ms（毫秒）。
+ *
+ * @param option 关键帧动画参数。
+ *     <br>option为NULL时，返回错误码{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
+ * @param value 关键帧动画的持续时间，单位为ms（毫秒），默认值1000ms。取值范围：[0, +∞)。
+ *     <br>value小于0时，按0处理。
+ * @param index 状态索引值。
+ *     <br>index小于0时，返回错误码{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
+ * @return 错误码。
+ *     <br>{@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
+ *     <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
+ * @since 12
+ */
 int32_t OH_ArkUI_KeyframeAnimateOption_SetDuration(ArkUI_KeyframeAnimateOption* option, int32_t value, int32_t index);
 
 /**
-  * @brief Sets the animation curve for a specific keyframe animation segment.
-  *
-  * @note Because the <b>springMotion</b>, <b>responsiveSpringMotion</b>, and <b>interpolatingSpring</b> curves do not
-  *     have effective duration settings, they are not supported.
-  * @param option Keyframe animation parameters.
-  *     <br>If **option** is set to **NULL**, the error code {@link ARKUI_ERROR_CODE_PARAM_INVALID} is returned.
-  * @param value Animation curve to set. Default value: {@link ARKUI_CURVE_EASE_IN_OUT}.
-  * @param index Index of the keyframe state segment. Value range: [0, size – 1], where **size** indicates the number of
-  *     keyframe animation states.
-  *     <br>If the value of **index** is less than 0 or out of range, the error code
-  *     {@link ARKUI_ERROR_CODE_PARAM_INVALID} is returned.
-  * @return Result code.
-  *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
-  *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
-  * @since 12
-  */
+ * @brief 设置关键帧动画某段关键帧使用的动画曲线。
+ *
+ * @note Because the <b>springMotion</b>, <b>responsiveSpringMotion</b>, and <b>interpolatingSpring</b> curves do not
+ *     have effective duration settings, they are not supported.
+ * @param option 关键帧动画参数。
+ *     <br>option为NULL时，返回错误码{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
+ * @param value 该关键帧使用的动画曲线。默认值：{@link ARKUI_CURVE_EASE_IN_OUT}。
+ * @param index 状态索引值。取值范围：[0, size-1]，其中size为关键帧动画状态数。
+ *     <br>index小于0或index超出范围时，返回错误码{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
+ * @return 错误码。
+ *     <br>{@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
+ *     <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
+ * @since 12
+ */
 int32_t OH_ArkUI_KeyframeAnimateOption_SetCurve(
     ArkUI_KeyframeAnimateOption* option, ArkUI_CurveHandle value, int32_t index);
 
 /**
-  * @brief Sets the closure function of the state at the time of the keyframe, that is, the state to be reached at the
-  * time of the keyframe.
-  *
-  * @param option Keyframe animation parameters.
-  *     <br>If **option** is set to **NULL**, the error code {@link ARKUI_ERROR_CODE_PARAM_INVALID} is returned.
-  * @param event Indicates a closure function.
-  * @param userData Pointer to a user-defined object.
-  *     <br>Abnormal value processing is not involved.
-  * @param index Index of the keyframe state segment. Value range: [0, size – 1], where **size** indicates the number of
-  *     keyframe animation states.
-  *     <br>If the value of **index** is less than 0 or out of range, the error code
-  *     {@link ARKUI_ERROR_CODE_PARAM_INVALID} is returned.
-  * @return Result code.
-  *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
-  *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
-  * @since 12
-  */
+ * @brief 设置关键帧时刻状态的闭包函数，即在该关键帧时刻要达到的状态。
+ *
+ * @param option 关键帧动画参数。
+ *     <br>option为NULL时，返回错误码{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
+ * @param event Indicates a closure function.
+ * @param userData 用户定义对象指针。
+ *     <br>不涉及异常值处理。
+ * @param index 状态索引值。取值范围：[0, size-1]，其中size为关键帧动画状态数。
+ *     <br>index小于0或index超出范围时，返回错误码{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
+ * @return 错误码。
+ *     <br>{@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
+ *     <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
+ * @since 12
+ */
 int32_t OH_ArkUI_KeyframeAnimateOption_RegisterOnEventCallback(
     ArkUI_KeyframeAnimateOption* option, void* userData, void (*event)(void* userData), int32_t index);
 
 /**
-  * @brief Obtains the overall delay of a keyframe animation, in milliseconds.
-  *
-  * @param option Keyframe animation parameters.
-  *     <br>If **option** is set to **NULL**, **0** is returned.
-  * @return Overall delay, in milliseconds. If **option** is invalid, **0** is returned.
-  * @since 12
-  */
+ * @brief 获取关键帧整体延时时间，单位为ms（毫秒）。
+ *
+ * @param option 关键帧动画参数。
+ *     <br>option为NULL时，返回0。
+ * @return 整体延时时间，单位为ms（毫秒）。option异常时返回0。
+ * @since 12
+ */
 int32_t OH_ArkUI_KeyframeAnimateOption_GetDelay(ArkUI_KeyframeAnimateOption* option);
 
 /**
-  * @brief Obtains the number of times that a keyframe animation is played.
-  *
-  * @param option Keyframe animation parameters.
-  *     <br>If **option** is set to **NULL**, **0** is returned.
-  * @return Number of times that the animation is played. If **option** is invalid, **0** is returned.
-  * @since 12
-  */
+ * @brief 获取关键帧动画播放次数。
+ *
+ * @param option 关键帧动画参数。
+ *     <br>option为NULL时，返回0。
+ * @return 动画播放次数。option异常时返回0。
+ * @since 12
+ */
 int32_t OH_ArkUI_KeyframeAnimateOption_GetIterations(ArkUI_KeyframeAnimateOption* option);
 
 /**
-  * @brief Obtains the expected frame rate from keyframe animation parameters.
-  *
-  * @param option Keyframe animation parameters.
-  *     <br>If **option** is set to **NULL**, **NULL** is returned.
-  * @return Returns the expected frame rate obtained. If **option** is invalid, **NULL** is returned.
-  * @since 19
-  */
+ * @brief 获取关键帧动画参数的期望帧率。
+ *
+ * @param option 关键帧动画参数。
+ *     <br>option为NULL时，返回NULL。
+ * @return 关键帧动画参数的期望帧率。option异常时返回NULL。
+ * @since 19
+ */
 ArkUI_ExpectedFrameRateRange* OH_ArkUI_KeyframeAnimateOption_GetExpectedFrameRate(ArkUI_KeyframeAnimateOption* option);
 
 /**
-  * @brief Obtains the duration of a specific state in a keyframe animation, in milliseconds.
-  *
-  * @param option Keyframe animation parameters.
-  *     <br>If **option** is set to **NULL**, **0** is returned.
-  * @param index Index of the keyframe state segment.
-  *     <br>If the value of **index** is less than 0, **0** is returned.
-  * @return Duration, in milliseconds. If **option** is invalid, **0** is returned.
-  * @since 12
-  */
+ * @brief 获取关键帧动画某段状态持续时间，单位为ms（毫秒）。
+ *
+ * @param option 关键帧动画参数。
+ *     <br>option为NULL时，返回0。
+ * @param index 状态索引值。
+ *     <br>index小于0时，返回0。
+ * @return 持续时间，单位为ms（毫秒）。option异常时返回0。
+ * @since 12
+ */
 int32_t OH_ArkUI_KeyframeAnimateOption_GetDuration(ArkUI_KeyframeAnimateOption* option, int32_t index);
 
 /**
-  * @brief Obtains the animation curve of a specific state in a keyframe animation.
-  *
-  * @param option Keyframe animation parameters.
-  *     <br>If **option** is set to **NULL**, **NULL** is returned.
-  * @param index Index of the keyframe state segment.
-  *     <br>If the value of **index** is less than 0, **NULL** is returned.
-  * @return Animation curve. If the parameter is abnormal, **NULL** is returned.
-  * @since 12
-  */
+ * @brief 获取关键帧动画某段状态动画曲线。
+ *
+ * @param option 关键帧动画参数。
+ *     <br>option为NULL时，返回NULL。
+ * @param index 状态索引值。
+ *     <br>index小于0时，返回NULL。
+ * @return 动画曲线。参数异常时返回NULL。
+ * @since 12
+ */
 ArkUI_CurveHandle OH_ArkUI_KeyframeAnimateOption_GetCurve(ArkUI_KeyframeAnimateOption* option, int32_t index);
 
 /**
-  * @brief Creates an **AnimatorOption** object.
-  *
-  * @note When <b>keyframeSize</b> is greater than 0, the animation interpolation start point is 0, and the animation
-  *     interpolation end point is 1; no setting is allowed.
-  * @param keyframeSize Number of keyframes.
-  *     <br>If the value of **keyframeSize** is less than 0, **NULL** is returned.
-  * @return Pointer to the animator parameter object. If the value of **size** is less than 0 or if **option** is
-  *     abnormal, **NULL** is returned.
-  * @since 12
-  */
+ * @brief 创建animator动画对象参数。
+ *
+ * @note When <b>keyframeSize</b> is greater than 0, the animation interpolation start point is 0, and the animation
+ *     interpolation end point is 1; no setting is allowed.
+ * @param keyframeSize 关键帧个数。
+ *     <br>keyframeSize小于0时返回NULL。
+ * @return animator动画对象参数指针。size小于0时返回NULL，option异常时返回NULL。
+ * @since 12
+ */
 ArkUI_AnimatorOption* OH_ArkUI_AnimatorOption_Create(int32_t keyframeSize);
 
 /**
-  * @brief Disposes of an **AnimatorOption** object.
-  *
-  * @param option Animator parameters.
-  *     <br>If **option** is set to **NULL**, the operation is invalid.
-  * @since 12
-  */
+ * @brief 销毁animator动画对象参数。
+ *
+ * @param option animator动画对象参数。
+ *     <br>option为NULL时，操作无效。
+ * @since 12
+ */
 void OH_ArkUI_AnimatorOption_Dispose(ArkUI_AnimatorOption* option);
 
 /**
-  * @brief Sets the duration of an animator animation, in milliseconds.
-  *
-  * @param option Animator parameters.
-  *     <br>If **option** is set to **NULL**, the error code {@link ARKUI_ERROR_CODE_PARAM_INVALID} is returned.
-  * @param value Playback duration, in ms. The default value is 0 ms. Value range: [0, +∞).
-  *     <br>If the value is less than 0, the error code {@link ARKUI_ERROR_CODE_PARAM_INVALID} is returned.
-  * @return Result code.
-  *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
-  *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
-  * @since 12
-  */
+ * @brief 设置animator动画播放的时长，单位毫秒。
+ *
+ * @param option animator动画对象参数。
+ *     <br>option为NULL时，返回错误码{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
+ * @param value 播放的时长，单位为ms（毫秒），默认值0ms。取值范围：[0, +∞)。
+ *     <br>value小于0时，返回错误码{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
+ * @return 错误码。
+ *     <br>{@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
+ *     <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
+ * @since 12
+ */
 int32_t OH_ArkUI_AnimatorOption_SetDuration(ArkUI_AnimatorOption* option, int32_t value);
 
 /**
-  * @brief Sets the delay time of the animator playback, in milliseconds.
-  *
-  * @param option Animator parameters.
-  *     <br>If **option** is set to **NULL**, the error code {@link ARKUI_ERROR_CODE_PARAM_INVALID} is returned.
-  * @param value Animation delay, in milliseconds. Value range: (-∞, +∞). Default value: **0**, indicating no animation
-  *     delay. A value greater than 0 means to begin the animation after the specified amount of time has elapsed. A
-  *     value less than 0 means to begin the animation in advance. If **value** is less than **0** and the absolute
-  *     value of **value** is less than the actual animation duration, the animation starts its first frame from the
-  *     state at the absolute value. If the absolute value of **value** is greater than or equal to the actual animation
-  *     duration, the animation starts its first frame from the end state. The actual animation duration is equal to the
-  *     duration of a single animation multiplied by the number of animation playback times.
-  * @return Result code.
-  *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
-  *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
-  * @since 12
-  */
+ * @brief 设置animator动画延时播放的时间，单位为ms（毫秒）。
+ *
+ * @param option animator动画对象参数。
+ *     <br>option为NULL时，返回错误码{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
+ * @param value 动画延迟播放时间，单位为ms（毫秒）。取值范围：(-∞, +∞)。默认值：0，表示不延迟。value大于0为延迟播放，value小于0表示提前播放。对于value小于0的情况：
+ *     当value的绝对值小于实际动画时长，动画将在开始后第一帧直接运动到value绝对值的时刻的状态；当value的绝对值大于等于实际动画时长，动画将在开始后第一帧直接运动到终点状态。
+ *     其中实际动画时长等于单次动画时长乘以动画播放次数。
+ * @return 错误码。
+ *     <br>{@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
+ *     <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
+ * @since 12
+ */
 int32_t OH_ArkUI_AnimatorOption_SetDelay(ArkUI_AnimatorOption* option, int32_t value);
 
 /**
-  * @brief Sets the number of times that an animator animation is played. By default, the animation is played once. The
-  * value **-1** indicates that the animation is played for an unlimited number of times. The value **0** indicates that
-  * no animation is played.
-  *
-  * @note If this parameter is set to a negative value other than <b>-1</b>, the value is invalid. In this case, the
-  *     animation is played once.
-  * @param option Animator parameters.
-  *     <br>If **option** is set to **NULL**, the error code {@link ARKUI_ERROR_CODE_PARAM_INVALID} is returned.
-  * @param value Value range: [-1, +∞). If this parameter is set to **0**, the animation is not played. If this
-  *     parameter is set to **-1**, the animation is played for an infinite number of times. Default value: **1** (
-  *     played once).
-  *     <br>If the value is less than -1, the operation is invalid.
-  * @return Result code.
-  *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
-  *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
-  * @since 12
-  */
+ * @brief 设置animator动画播放次数。默认播放一次，设置为-1时表示无限次播放，设置为0时表示无动画效果。
+ *
+ * @note If this parameter is set to a negative value other than <b>-1</b>, the value is invalid. In this case, the
+ *     animation is played once.
+ * @param option animator动画对象参数。
+ *     <br>option为NULL时，返回错误码{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
+ * @param value 取值范围：[-1, +∞)，其中设置为0时不播放，-1表示无限次播放。默认值：1（播放一次）。
+ *     <br>value小于-1时，操作无效。
+ * @return 错误码。
+ *     <br>{@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
+ *     <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
+ * @since 12
+ */
 int32_t OH_ArkUI_AnimatorOption_SetIterations(ArkUI_AnimatorOption* option, int32_t value);
 
 /**
-  * @brief Sets the status of the component before and after the animator animation execution.
-  *
-  * @param option Animator parameters.
-  *     <br>If **option** is set to **NULL**, the error code {@link ARKUI_ERROR_CODE_PARAM_INVALID} is returned.
-  * @param value Status of the component before and after the animator animation execution. Default value:
-  *     {@link ARKUI_ANIMATION_FILL_MODE_FORWARDS}.
-  *     <br>If the value is less than 0, the error code {@link ARKUI_ERROR_CODE_PARAM_INVALID} is returned.
-  * @return Result code.
-  *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
-  *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
-  * @since 12
-  */
+ * @brief 设置animator动画执行时组件在动画开始前和结束后的状态。
+ *
+ * @param option animator动画对象参数。
+ *     <br>option为NULL时，返回错误码{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
+ * @param value 动画执行时组件在动画开始前和结束后的状态。默认值：{@link ARKUI_ANIMATION_FILL_MODE_FORWARDS}。
+ *     <br>value小于0时，返回错误码{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
+ * @return 错误码。
+ *     <br>{@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
+ *     <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
+ * @since 12
+ */
 int32_t OH_ArkUI_AnimatorOption_SetFill(ArkUI_AnimatorOption* option, ArkUI_AnimationFillMode value);
 
 /**
-  * @brief Set the playback direction.
-  *
-  * @param option Animator parameters.
-  *     <br>If **option** is set to **NULL**, the error code {@link ARKUI_ERROR_CODE_PARAM_INVALID} is returned.
-  * @param value Animation playback direction.
-  *     <br>If the value is less than 0, the error code {@link ARKUI_ERROR_CODE_PARAM_INVALID} is returned.
-  * @return Result code.
-  *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
-  *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
-  * @since 12
-  */
+ * @brief 设置animator动画播放方向。
+ *
+ * @param option animator动画对象参数。
+ *     <br>option为NULL时，返回错误码{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
+ * @param value 动画播放方向。
+ *     <br>value小于0时，返回错误码{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
+ * @return 错误码。
+ *     <br>{@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
+ *     <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
+ * @since 12
+ */
 int32_t OH_ArkUI_AnimatorOption_SetDirection(ArkUI_AnimatorOption* option, ArkUI_AnimationDirection value);
 
 /**
-  * @brief Sets the interpolation curve for the animation of an animator.
-  *
-  * @note <b>springCurve</b>, <b>springMotion</b>, <b>responsiveSpringMotion</b>, <b>interpolatingSpring</b>,
-  *     and <b>customCurve</b> curves are not supported.
-  *
-  * @param option Animator parameters.
-  *     <br>If **option** is set to **NULL**, the error code {@link ARKUI_ERROR_CODE_PARAM_INVALID} is returned.
-  * @param value Interpolation curve. Default value: {@link ARKUI_CURVE_LINEAR}. You are advised to use
-  *     {@link ARKUI_CURVE_EASE_IN_OUT} to obtain a smoother animation effect.
-  *     <br>If **value** is set to **NULL**, the default curve {@link ARKUI_CURVE_LINEAR} is used.
-  * @return Result code.
-  *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
-  *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
-  * @since 12
-  */
+ * @brief 设置animator动画插值曲线。
+ *
+ * @note <b>springCurve</b>, <b>springMotion</b>, <b>responsiveSpringMotion</b>, <b>interpolatingSpring</b>,
+ *     and <b>customCurve</b> curves are not supported.
+ *
+ * @param option animator动画对象参数。
+ *     <br>option为NULL时，返回错误码{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
+ * @param value 动画插值曲线。默认值：{@link ARKUI_CURVE_LINEAR}，建议使用{@link ARKUI_CURVE_EASE_IN_OUT}获得更平滑的动画效果。
+ *     <br>value为NULL时，使用默认曲线{@link ARKUI_CURVE_LINEAR}。
+ * @return 错误码。
+ *     <br>{@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
+ *     <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
+ * @since 12
+ */
 int32_t OH_ArkUI_AnimatorOption_SetCurve(ArkUI_AnimatorOption* option, ArkUI_CurveHandle value);
 
 /**
-  * @brief Sets the interpolation start point of an animation.
-  *
-  * @note This API does not take effect when the animation is a keyframe animation.
-  *
-  * @param option Animator parameters.
-  *     <br>If **option** is set to **NULL**, the error code {@link ARKUI_ERROR_CODE_PARAM_INVALID} is returned.
-  * @param value Interpolation start point of the animation. Value range: (-∞, +∞).
-  * @return Result code.
-  *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
-  *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
-  * @since 12
-  */
+ * @brief 设置animator动画插值起点。
+ *
+ * @note This API does not take effect when the animation is a keyframe animation.
+ *
+ * @param option animator动画对象参数。
+ *     <br>option为NULL时，返回错误码{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
+ * @param value 动画插值起点。取值范围：(-∞, +∞)。
+ * @return 错误码。
+ *     <br>{@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
+ *     <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
+ * @since 12
+ */
 int32_t OH_ArkUI_AnimatorOption_SetBegin(ArkUI_AnimatorOption* option, float value);
 
 /**
-  * @brief Sets the interpolation end point for the animation of an animator.
-  *
-  * @note This API does not take effect when the animation is a keyframe animation.
-  *
-  * @param option Animator parameters.
-  *     <br>If **option** is set to **NULL**, the error code {@link ARKUI_ERROR_CODE_PARAM_INVALID} is returned.
-  * @param value Interpolation end point of the animation. Value range: (-∞, +∞).
-  * @return Result code.
-  *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
-  *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
-  * @since 12
-  */
+ * @brief 设置animator动画插值终点。
+ *
+ * @note This API does not take effect when the animation is a keyframe animation.
+ *
+ * @param option animator动画对象参数。
+ *     <br>option为NULL时，返回错误码{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
+ * @param value 动画插值终点。取值范围：(-∞, +∞)。
+ * @return 错误码。
+ *     <br>{@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
+ *     <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
+ * @since 12
+ */
 int32_t OH_ArkUI_AnimatorOption_SetEnd(ArkUI_AnimatorOption* option, float value);
 
 /**
-  * @brief Sets the expected frame rate range of an animation.
-  *
-  * @param option Animator parameters.
-  *     <br>If **option** is set to **NULL**, the error code {@link ARKUI_ERROR_CODE_PARAM_INVALID} is returned.
-  * @param value Expected frame rate range.
-  *     <br>If **value** is set to **NULL**, the error code {@link ARKUI_ERROR_CODE_PARAM_INVALID} is returned.
-  * @return Result code.
-  *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
-  *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
-  * @since 12
-  */
+ * @brief 设置animator动画期望的帧率范围。
+ *
+ * @param option animator动画对象参数。
+ *     <br>option为NULL时，返回错误码{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
+ * @param value 期望的帧率范围对象。
+ *     <br>value为NULL时，返回错误码{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
+ * @return 错误码。
+ *     <br>{@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
+ *     <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
+ * @since 12
+ */
 int32_t OH_ArkUI_AnimatorOption_SetExpectedFrameRateRange(
     ArkUI_AnimatorOption* option, ArkUI_ExpectedFrameRateRange* value);
 
 /**
-  * @brief Sets the keyframe parameters of an animator animation.
-  *
-  * @param option Animator parameters.
-  *     <br>If **option** is set to **NULL**, the error code {@link ARKUI_ERROR_CODE_PARAM_INVALID} is returned.
-  * @param time Keyframe time. Value range: [0, 1]. The value must be in ascending order. Default value: evenly
-  *     distributed by index (for example, **0.0** for the first frame, **0.5** for the second frame, and **1.0** for
-  *     the third frame).
-  *     <br>If the value of **time** is less than 0 or greater than 1, the error code
-  *     {@link ARKUI_ERROR_CODE_PARAM_INVALID} is returned.
-  * @param value Keyframe value. Value range: (-∞, +∞).
-  * @param index Keyframe index.
-  *     <br>If the value of **index** is less than 0, the error code {@link ARKUI_ERROR_CODE_PARAM_INVALID} is returned.
-  * @return Result code.
-  *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
-  *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
-  * @since 12
-  */
+ * @brief 设置animator动画关键帧参数。
+ *
+ * @param option animator动画对象参数。
+ *     <br>option为NULL时，返回错误码{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
+ * @param time 关键帧时间。取值范围：[0, 1], 必须是递增。默认值：按索引均匀分布（如第1帧为0.0，第2帧为0.5，第3帧为1.0）。
+ *     <br>time小于0或time大于1时，返回错误码{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
+ * @param value 关键帧数值。取值范围：(-∞, +∞)。
+ * @param index 关键帧的索引值。
+ *     <br>index小于0时，返回错误码{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
+ * @return 错误码。
+ *     <br>{@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
+ *     <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
+ * @since 12
+ */
 int32_t OH_ArkUI_AnimatorOption_SetKeyframe(
     ArkUI_AnimatorOption* option, float time, float value, int32_t index);
 
 /**
-  * @brief Sets the keyframe curve type for the animation of an animator.
-  *
-  * @note <b>springCurve</b>, <b>springMotion</b>, <b>responsiveSpringMotion</b>, <b>interpolatingSpring</b>,
-  *     and <b>customCurve</b> curves are not supported.
-  *
-  * @param option Animator parameters.
-  *     <br>If **option** is set to **NULL**, the error code {@link ARKUI_ERROR_CODE_PARAM_INVALID} is returned.
-  * @param value Interpolation curve. Default value: **NULL**, indicating linear interpolation.
-  * @param index Keyframe index.
-  *     <br>If the value of **index** is less than 0, the error code {@link ARKUI_ERROR_CODE_PARAM_INVALID} is returned.
-  * @return Result code.
-  *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
-  *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
-  * @since 12
-  */
+ * @brief 设置animator动画关键帧曲线类型。
+ *
+ * @note <b>springCurve</b>, <b>springMotion</b>, <b>responsiveSpringMotion</b>, <b>interpolatingSpring</b>,
+ *     and <b>customCurve</b> curves are not supported.
+ *
+ * @param option animator动画对象参数。
+ *     <br>option为NULL时，返回错误码{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
+ * @param value 动画插值曲线。默认值：NULL，表示线性插值。
+ * @param index 关键帧的索引值。
+ *     <br>index小于0时，返回错误码{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
+ * @return 错误码。
+ *     <br>{@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
+ *     <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
+ * @since 12
+ */
 int32_t OH_ArkUI_AnimatorOption_SetKeyframeCurve(ArkUI_AnimatorOption* option, ArkUI_CurveHandle value, int32_t index);
+
 /**
-  * @brief Obtains the duration for playing an animation.
-  *
-  * @param option Animator animation parameters.
-  *     <br>If **option** is set to **NULL**, **0** is returned.
-  * @return Duration for playing the animation, in milliseconds. If **option** is invalid, **0** is returned.
-  * @since 12
-  */
+ * @brief 获取animator动画播放的时长。
+ *
+ * @param option animator动画参数。
+ *     <br>option为NULL时，返回0。
+ * @return 动画播放的时长，单位毫秒。option异常时返回0。
+ * @since 12
+ */
 int32_t OH_ArkUI_AnimatorOption_GetDuration(ArkUI_AnimatorOption* option);
 
 /**
-  * @brief Obtains the delay for playing an animation.
-  *
-  * @param option Animator animation parameters. If **option** is set to **NULL**, **0** is returned.
-  * @return Delay for playing the animation, in milliseconds. If **option** is invalid, **0** is returned.
-  * @since 12
-  */
+ * @brief 获取animator动画延时播放时长。
+ *
+ * @param option animator动画参数。option为NULL时，返回0。
+ * @return 动画延时播放时长，单位毫秒。option异常时返回0。
+ * @since 12
+ */
 int32_t OH_ArkUI_AnimatorOption_GetDelay(ArkUI_AnimatorOption* option);
 
 /**
-  * @brief Obtains the number of times that an animator animation is played.
-  *
-  * @param option Animator parameters. If **option** is set to **NULL**, **0** is returned.
-  * @return Number of times that the animation is played. If **option** is invalid, **0** is returned.
-  * @since 12
-  */
+ * @brief 获取animator动画播放次数。
+ *
+ * @param option animator动画动画参数。option为NULL时，返回0。
+ * @return 动画播放次数。option异常时返回0。
+ * @since 12
+ */
 int32_t OH_ArkUI_AnimatorOption_GetIterations(ArkUI_AnimatorOption* option);
 
 /**
-  * @brief Obtains the status of the component before and after the animator animation execution.
-  *
-  * @param option Animator animation parameters.
-  * @return Status of the component before and after the animator animation execution. If **option** is invalid,**-1**
-  *     is returned.
-  * @since 12
-  */
+ * @brief 获取animator动画执行时组件在动画开始前和结束后的状态。
+ *
+ * @param option animator动画参数。
+ * @return 动画执行时组件在动画开始前和结束后的状态。option异常时返回-1。
+ * @since 12
+ */
 ArkUI_AnimationFillMode OH_ArkUI_AnimatorOption_GetFill(ArkUI_AnimatorOption* option);
 
 /**
-  * @brief Obtains the playback direction of an animator animation.
-  *
-  * @param option Animator animation parameters.
-  * @return Animation playback direction. If **option** is invalid,**-1** is returned.
-  * @since 12
-  */
+ * @brief 获取animator动画播放方向。
+ *
+ * @param option animator动画参数。
+ * @return 动画播放方向。option异常时返回-1。
+ * @since 12
+ */
 ArkUI_AnimationDirection OH_ArkUI_AnimatorOption_GetDirection(ArkUI_AnimatorOption* option);
 
 /**
-  * @brief Obtains the interpolation curve of the animation of an animator.
-  *
-  * @param option Animator animation parameters.
-  * @return Interpolation curve. If **option** is invalid, **NULL** is returned.
-  * @since 12
-  */
+ * @brief 获取animator动画插值曲线。
+ *
+ * @param option animator动画参数。
+ * @return 动画插值曲线。option异常时返回NULL。
+ * @since 12
+ */
 ArkUI_CurveHandle OH_ArkUI_AnimatorOption_GetCurve(ArkUI_AnimatorOption* option);
 
 /**
-  * @brief Obtains the interpolation start point of an animation.
-  *
-  * @param option Animator animation parameters.
-  * @return Interpolation start point of the animation. If **option** is invalid, **0.0** is returned.
-  * @since 12
-  */
+ * @brief 获取animator动画插值起点。
+ *
+ * @param option animator动画参数。
+ * @return 动画插值起点。option异常时返回0.0。
+ * @since 12
+ */
 float OH_ArkUI_AnimatorOption_GetBegin(ArkUI_AnimatorOption* option);
 
 /**
-  * @brief Obtains the interpolation end point of an animation.
-  *
-  * @param option Animator animation parameters.
-  * @return Interpolation end point of the animation. If **option** is invalid, **0.0** is returned.
-  * @since 12
-  */
+ * @brief 获取animator动画插值终点。
+ *
+ * @param option animator动画参数。
+ * @return 动画插值终点。option异常时返回0.0。
+ * @since 12
+ */
 float OH_ArkUI_AnimatorOption_GetEnd(ArkUI_AnimatorOption* option);
 
 /**
-  * @brief Obtains the expected frame rate range of an animator animation.
-  *
-  * @param option Animator animation parameters.
-  * @return Pointer to the expected frame rate range object. Returns **NULL** if a parameter error occurs.
-  * @since 12
-  */
+ * @brief 获取animator动画期望的帧率范围。
+ *
+ * @param option animator动画参数。
+ * @return 期望的帧率范围对象指针。函数参数异常时返回NULL。
+ * @since 12
+ */
 ArkUI_ExpectedFrameRateRange* OH_ArkUI_AnimatorOption_GetExpectedFrameRateRange(ArkUI_AnimatorOption* option);
 
 /**
-  * @brief Obtains the keyframe time of the animator playback, in milliseconds.
-  *
-  * @param option Animator parameters.
-  * @param index Keyframe index.
-  * @return Keyframe time, in milliseconds.
-  * @since 12
-  */
+ * @brief 获取animator动画关键帧时间，单位为ms（毫秒）。
+ *
+ * @param option animator动画对象参数。
+ * @param index 关键帧的索引值。
+ * @return 关键帧时间，单位为ms（毫秒）。
+ * @since 12
+ */
 float OH_ArkUI_AnimatorOption_GetKeyframeTime(ArkUI_AnimatorOption* option, int32_t index);
 
 /**
-  * @brief Obtains the keyframe value of an animation.
-  *
-  * @param option Animator parameters.
-  * @param index Keyframe index.
-  * @return Keyframe value.
-  * @since 12
-  */
+ * @brief 获取animator动画关键帧数值。
+ *
+ * @param option animator动画对象参数。
+ * @param index 关键帧的索引值。
+ * @return 关键帧数值。
+ * @since 12
+ */
 float OH_ArkUI_AnimatorOption_GetKeyframeValue(ArkUI_AnimatorOption* option, int32_t index);
 
 /**
-  * @brief Obtains the interpolation curve for a keyframe in the animation of an animator.
-  *
-  * @param option Animator parameters.
-  * @param index Keyframe index.
-  * @return Interpolation curve. Returns **NULL** if a parameter error occurs.
-  * @since 12
-  */
+ * @brief 获取animator动画关键帧动画插值曲线。
+ *
+ * @param option animator动画对象参数。
+ * @param index 关键帧的索引值。
+ * @return 动画插值曲线。函数参数异常时返回NULL。
+ * @since 12
+ */
 ArkUI_CurveHandle OH_ArkUI_AnimatorOption_GetKeyframeCurve(ArkUI_AnimatorOption* option, int32_t index);
 
 /**
-  * @brief Obtains the user-defined object in an animation event object.
-  *
-  * @param event Animation event object.
-  * @return User-defined object.
-  * @since 12
-  */
+ * @brief 获取动画事件对象中的用户自定义对象。
+ *
+ * @param event 动画事件对象。
+ * @return 用户自定义对象。
+ * @since 12
+ */
 void* OH_ArkUI_AnimatorEvent_GetUserData(ArkUI_AnimatorEvent* event);
 
 /**
-  * @brief Obtains the user-defined object in the frame event of an animation.
-  *
-  * @param event Animation event object.
-  * @return User-defined object.
-  * @since 12
-  */
+ * @brief 获取动画的帧事件中的用户自定义对象。
+ *
+ * @param event 动画事件对象。
+ * @return 用户自定义对象。
+ * @since 12
+ */
 void* OH_ArkUI_AnimatorOnFrameEvent_GetUserData(ArkUI_AnimatorOnFrameEvent* event);
 
 /**
-  * @brief Obtains the interpolation result in the animation frame callback event object.
-  *
-  * @param event Animation event object.
-  * @return Animation interpolation result.
-  *     <br>**NOTE**
-  *     <br>During the animation, the interpolation result changes between the interpolation start point
-  *     {@link OH_ArkUI_AnimatorOption_SetBegin} and the interpolation end point {@link OH_ArkUI_AnimatorOption_SetEnd}
-  *     based on the animation parameters.
-  * @since 12
-  */
+ * @brief 获取动画帧回调事件对象中的插值结果。
+ *
+ * @param event 动画事件对象。
+ * @return 动画插值结果。
+ *     **说明：**
+ *     在动画过程中，插值结果根据动画参数在插值起点{@link OH_ArkUI_AnimatorOption_SetBegin}和插值终点{@link OH_ArkUI_AnimatorOption_SetEnd}间变化。
+ * @since 12
+ */
 float OH_ArkUI_AnimatorOnFrameEvent_GetValue(ArkUI_AnimatorOnFrameEvent* event);
 
 /**
-  * @brief Sets the callback invoked when the animator receives a frame.
-  *
-  * @param option Animator animation parameters.
-  * @param userData User-defined parameter.
-  * @param callback Indicates the callback to set.
-  * @return Result code.
-  *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
-  *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
-  * @since 12
-  */
+ * @brief 设置animator动画接收到帧时回调。
+ *
+ * @param option animator动画参数。
+ * @param userData 用户自定义参数。
+ * @param callback Indicates the callback to set.
+ * @return 错误码。
+ *     <br>{@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
+ *     <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
+ * @since 12
+ */
 int32_t OH_ArkUI_AnimatorOption_RegisterOnFrameCallback(
     ArkUI_AnimatorOption* option, void* userData, void (*callback)(ArkUI_AnimatorOnFrameEvent* event));
 
 /**
-  * @brief Sets the callback invoked when the animation playback is complete.
-  *
-  * @param option Animator animation parameters.
-  * @param userData User-defined parameter.
-  * @param callback Indicates the callback to set.
-  * @return Result code.
-  *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
-  *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
-  * @since 12
-  */
+ * @brief 设置animator动画完成时回调。
+ *
+ * @param option animator动画参数。
+ * @param userData 用户自定义参数。
+ * @param callback Indicates the callback to set.
+ * @return 错误码。
+ *     <br>{@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
+ *     <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
+ * @since 12
+ */
 int32_t OH_ArkUI_AnimatorOption_RegisterOnFinishCallback(
     ArkUI_AnimatorOption* option, void* userData, void (*callback)(ArkUI_AnimatorEvent* event));
 
 /**
-  * @brief Sets the callback invoked when the animation playback is canceled.
-  *
-  * @param option Animator animation parameters.
-  * @param userData User-defined parameter.
-  * @param callback Indicates the callback to set.
-  * @return Result code.
-  *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
-  *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
-  * @since 12
-  */
+ * @brief 设置animator动画被取消时回调。
+ *
+ * @param option animator动画参数。
+ * @param userData 用户自定义参数。
+ * @param callback Indicates the callback to set.
+ * @return 错误码。
+ *     <br>{@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
+ *     <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
+ * @since 12
+ */
 int32_t OH_ArkUI_AnimatorOption_RegisterOnCancelCallback(
     ArkUI_AnimatorOption* option, void* userData, void (*callback)(ArkUI_AnimatorEvent* event));
 
 /**
-  * @brief Sets the callback invoked when the animation playback is repeated.
-  *
-  * @param option Animator animation parameters.
-  * @param userData User-defined parameter.
-  * @param callback Indicates the callback to set.
-  * @return Result code.
-  *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
-  *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
-  * @since 12
-  */
+ * @brief 设置animator动画重复时回调。
+ *
+ * @param option animator动画参数。
+ * @param userData 用户自定义参数。
+ * @param callback Indicates the callback to set.
+ * @return 错误码。
+ *     <br>{@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
+ *     <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
+ * @since 12
+ */
 int32_t OH_ArkUI_AnimatorOption_RegisterOnRepeatCallback(
     ArkUI_AnimatorOption* option, void* userData, void (*callback)(ArkUI_AnimatorEvent* event));
 
 /**
-  * @brief Resets the animation of an animator.
-  *
-  * @param animatorHandle Animator object.
-  * @param option Animator animation parameters.
-  * @return Result code.
-  *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
-  *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
-  * @since 12
-  */
+ * @brief 重置animator动画。
+ *
+ * @param animatorHandle animator动画对象。
+ * @param option animator动画参数。
+ * @return 错误码。
+ *     <br>{@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
+ *     <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
+ * @since 12
+ */
 int32_t OH_ArkUI_Animator_ResetAnimatorOption(
     ArkUI_AnimatorHandle animatorHandle, ArkUI_AnimatorOption* option);
 
 /**
-  * @brief Starts the animation of an animator.
-  *
-  * @param animatorHandle Animator object.
-  * @return Result code.
-  *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
-  *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
-  * @since 12
-  */
+ * @brief 启动animator动画。
+ *
+ * @param animatorHandle animator动画对象。
+ * @return 错误码。
+ *     <br>{@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
+ *     <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
+ * @since 12
+ */
 int32_t OH_ArkUI_Animator_Play(ArkUI_AnimatorHandle animatorHandle);
 
 /**
-  * @brief Ends the animation of an animator.
-  *
-  * @param animatorHandle Animator object.
-  * @return Result code.
-  *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
-  *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
-  * @since 12
-  */
+ * @brief 结束animator动画。
+ *
+ * @param animatorHandle animator动画对象。
+ * @return 错误码。
+ *     <br>{@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
+ *     <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
+ * @since 12
+ */
 int32_t OH_ArkUI_Animator_Finish(ArkUI_AnimatorHandle animatorHandle);
 
 /**
-  * @brief Pauses the animation of an animator.
-  *
-  * @param animatorHandle Animator object.
-  * @return Result code.
-  *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
-  *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
-  * @since 12
-  */
+ * @brief 暂停animator动画。
+ *
+ * @param animatorHandle animator动画对象。
+ * @return 错误码。
+ *     <br>{@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
+ *     <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
+ * @since 12
+ */
 int32_t OH_ArkUI_Animator_Pause(ArkUI_AnimatorHandle animatorHandle);
 
 /**
-  * @brief Cancels the animation of an animator.
-  *
-  * @param animatorHandle Animator object.
-  * @return Result code.
-  *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
-  *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
-  * @since 12
-  */
+ * @brief 取消animator动画。
+ *
+ * @param animatorHandle animator动画对象。
+ * @return 错误码。
+ *     <br>{@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
+ *     <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
+ * @since 12
+ */
 int32_t OH_ArkUI_Animator_Cancel(ArkUI_AnimatorHandle animatorHandle);
 
 /**
-  * @brief Plays this animation in reverse order.
-  *
-  * @param animatorHandle Animator object.
-  * @return Result code.
-  *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
-  *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
-  * @since 12
-  */
+ * @brief 以相反的顺序播放animator动画。
+ *
+ * @param animatorHandle animator动画对象。
+ * @return 错误码。
+ *     <br>{@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
+ *     <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
+ * @since 12
+ */
 int32_t OH_ArkUI_Animator_Reverse(ArkUI_AnimatorHandle animatorHandle);
 
 /**
-  * @brief Implements initialization for the interpolation curve, which is used to create an interpolation curve based
-  * on the input parameter.
-  *
-  * @param curve Curve type.
-  * @return Pointer to the interpolation object of the curve. Returns **NULL** if a parameter error occurs.
-  * @since 12
-  */
+ * @brief 插值曲线的初始化函数，可以根据入参创建一个插值曲线对象。
+ *
+ * @param curve 曲线类型。
+ * @return 曲线的插值对象指针。如果参数异常返回NULL。
+ * @since 12
+ */
 ArkUI_CurveHandle OH_ArkUI_Curve_CreateCurveByType(ArkUI_AnimationCurve curve);
 
 /**
-  * @brief Creates a step curve.
-  *
-  * @param count Number of steps. The value must be a positive integer. Value range: [1, +∞).
-  *     <br>If the value of **count** is abnormal, the operation is invalid.
-  * @param end Whether the step change occurs at the start or end of each interval. **true**: The step change occurs at
-  *     the end of each interval. **false**: The step change occurs at the start of each interval.
-  * @return Pointer to the interpolation object of the curve. Returns **NULL** if a parameter error occurs.
-  * @since 12
-  */
+ * @brief 构造阶梯曲线对象。
+ *
+ * @param count 阶梯的数量，需要为正整数，取值范围：[1, +∞)。
+ *     <br>count值异常时，操作无效。
+ * @param end 在每个间隔的起点或是终点发生阶跃变化。true：在终点发生阶跃变化。false：在起点发生阶跃变化。
+ * @return 曲线的插值对象指针。如果参数异常返回NULL。
+ * @since 12
+ */
 ArkUI_CurveHandle OH_ArkUI_Curve_CreateStepsCurve(int32_t count, bool end);
 
 /**
-  * @brief Creates a cubic Bezier curve.
-  *
-  * @param x1 X-coordinate of the first point on the Bezier curve. Value range: [0, 1]. A value less than 0 is treated
-  *     as **0**. A value greater than 1 is treated as **1**.
-  * @param y1 Y-coordinate of the first point on the Bezier curve.
-  * @param x2 X-coordinate of the second point on the Bezier curve. Value range: [0, 1]. A value less than 0 is treated
-  *     as **0**. A value greater than 1 is treated as **1**.
-  * @param y2 Y-coordinate of the second point on the Bezier curve.
-  * @return Pointer to the interpolation object of the curve. Returns **NULL** if a parameter error occurs.
-  * @since 12
-  */
+ * @brief 构造三阶贝塞尔曲线对象。
+ *
+ * @param x1 确定贝塞尔曲线第一点横坐标，取值范围：[0, 1]。设置的值小于0时，按0处理；设置的值大于1时，按1处理。
+ * @param y1 确定贝塞尔曲线第一点纵坐标。
+ * @param x2 确定贝塞尔曲线第二点横坐标，取值范围：[0, 1]。设置的值小于0时，按0处理；设置的值大于1时，按1处理。
+ * @param y2 确定贝塞尔曲线第二点纵坐标。
+ * @return 曲线的插值对象指针。如果参数异常返回NULL。
+ * @since 12
+ */
 ArkUI_CurveHandle OH_ArkUI_Curve_CreateCubicBezierCurve(float x1, float y1, float x2, float y2);
 
 /**
-  * @brief Creates a spring curve. The curve shape is determined by the spring parameters, and the animation duration is
-  * controlled by the **duration** parameter in {@link animation} and {@link animateTo}.
-  *
-   * @param velocity Initial velocity. It is applied by external factors to the spring animation, designed to help
-  *     ensure the smooth transition from the previous motion state. The velocity is the normalized velocity, and its
-  *     value is equal to the actual velocity at the beginning of the animation divided by the animation attribute
-  *     change value.
-  * @param mass Mass. It describes the inertia of the object in the elastic system, affecting the amplitude of
-  *     oscillation and the speed of return to equilibrium. The greater the mass, the greater the amplitude of the
-  *     oscillation, and the slower the speed of restoring to the equilibrium position. Value range: [0, +∞).
-  *     <br>If the value is less than or equal to 0, **1** is used.
-  * @param stiffness Stiffness. It is the degree to which an object deforms by resisting the force applied. In an
-  *     elastic system, the greater the stiffness, the stronger the ability to resist deformation, and the faster the
-  *     speed of restoring to the equilibrium position. Value range: [0, +∞).
-  *     <br>If the value is less than or equal to 0, **1** is used.
-  * @param damping Damping. It is used to describe the oscillation and attenuation of the system after being disturbed.
-  *     The larger the damping, the smaller the number of oscillations of elastic motion, and the smaller the
-  *     oscillation amplitude. Value range: [0, +∞).
-  *     <br>If the value is less than or equal to 0, **1** is used.
-  * @return Pointer to the interpolation object of the curve. Returns **NULL** if a parameter error occurs.
-  * @since 12
-  */
+ * @brief 构造弹簧曲线对象，曲线形状由弹簧参数决定，动画时长受{@link animation}、{@link animateTo}中的duration参数控制。
+ *
+ * @param velocity 初始速度。是由外部因素对弹性动效产生的影响参数，其目的是保证对象从之前的运动状态平滑的过渡到弹性动效。该速度是归一化速度，其值等于动画开始时的实际速度除以动画属性改变值。
+ * @param mass 质量。弹性系统的受力对象，会对弹性系统产生惯性影响。质量越大，震荡的幅度越大，恢复到平衡位置的速度越慢。取值范围：[0, +∞)。
+ *     <br>value小于等于0时，按1处理。
+ * @param stiffness 刚度。是物体抵抗施加的力而形变的程度。在弹性系统中，刚度越大，抵抗变形的能力越强，恢复到平衡位置的速度就越快。取值范围：[0, +∞)。
+ *     <br>value小于等于0时，按1处理。
+ * @param damping 阻尼。用于描述系统在受到扰动后震荡及衰减的情形。阻尼越大，弹性运动的震荡次数越少、震荡幅度越小。取值范围：[0, +∞)。
+ *     <br>value小于等于0时，按1处理。
+ * @return 曲线的插值对象指针。如果参数异常返回NULL。
+ * @since 12
+ */
 ArkUI_CurveHandle OH_ArkUI_Curve_CreateSpringCurve(float velocity, float mass, float stiffness, float damping);
 
 /**
-  * @brief Creates a spring animation curve. If multiple spring animations are applied to the same attribute of an
-  * object, each animation replaces their predecessor and inherits the velocity.
-  *
-  * @note The animation duration is subject to the curve parameters, rather than the <b>duration</b> parameter in
-  *     <b>animation</b> or <b>animateTo</b>.
-  *
-  * @param response Duration of one complete oscillation. Value range: (0, +∞).
-  *     <br>If the value is less than or equal to 0, **0.55** is used.
-  * @param dampingFraction Damping coefficient. > 0 and < 1: underdamped. In this case, the spring overshoots the
-  *     equilibrium position. **1**: critically damped. > 1: overdamped. In this case, the spring approaches equilibrium
-  *     gradually. Value range: (0, +∞).
-  *     <br>If the value is less than or equal to 0, **0.825** is used.
-  * @param overlapDuration Duration for animations to overlap, in seconds. When animations overlap, the **response**
-  *     values of these animations will transit smoothly over this duration if they are different. Value range: [0, +∞).
-  *     <br>If the value is less than 0, **0** is used.
-  * @return Pointer to the interpolation object of the curve. Returns **NULL** if a parameter error occurs.
-  * @since 12
-  */
+ * @brief 构造弹性动画曲线对象。如果对同一对象的同一属性进行多个弹性动画，每个动画会替换掉前一个动画，并继承之前的速度。
+ *
+ * @note The animation duration is subject to the curve parameters, rather than the <b>duration</b> parameter in
+ *     <b>animation</b> or <b>animateTo</b>.
+ *
+ * @param response 弹簧自然振动周期，决定弹簧复位的速度。取值范围：(0, +∞)。
+ *     <br>参数小于等于0时，按0.55处理。
+ * @param dampingFraction 阻尼系数。大于0小于1的值为欠阻尼，运动过程中会超出目标值；等于1为临界阻尼；大于1为过阻尼，运动过程中逐渐趋于目标值。取值范围：(0, +∞)。
+ *     <br>参数小于等于0时，按0.825处理。
+ * @param overlapDuration 弹性动画衔接时长。发生动画继承时，如果前后两个弹性动画response不一致，response参数会在overlapDuration时间内平滑过渡。取值范围：[0, +∞)。
+ *     <br>参数小于0时，按0处理。
+ * @return 曲线的插值对象指针。如果参数异常返回NULL。
+ * @since 12
+ */
 ArkUI_CurveHandle OH_ArkUI_Curve_CreateSpringMotion(float response, float dampingFraction, float overlapDuration);
 
 /**
-  * @brief Creates a responsive spring animation curve. It is a special case of **springMotion**, with the only
-  * difference in the default values. It can be used together with **springMotion**.
-  *
-  * @note The animation duration is subject to the curve parameters, rather than the <b>duration</b> parameter in
-  *     <b>animation</b> or <b>animateTo</b>.
-  *
-  * @param response Duration of one complete oscillation. Value range: (0, +∞).
-  *     <br>If the value is less than or equal to 0, **0.15** is used.
-  * @param dampingFraction Damping coefficient. > 0 and < 1: underdamped. In this case, the spring overshoots the
-  *     equilibrium position. **1**: critically damped. > 1: overdamped. In this case, the spring approaches equilibrium
-  *     gradually. Value range: [0, +∞).
-  *     <br>If the value is less than 0, **0.86** is used.
-  * @param overlapDuration Duration for animations to overlap, in seconds. When animations overlap, the **response**
-  *     values of these animations will transit smoothly over this duration if they are different. Value range: [0, +∞).
-  *     <br>If the value is less than 0, **0.25** is used.
-  * @return Pointer to the interpolation object of the curve. Returns **NULL** if a parameter error occurs.
-  * @since 12
-  */
+ * @brief 构造弹性跟手动画曲线对象，是springMotion的一种特例，仅默认参数不同，可与springMotion混合使用。
+ *
+ * @note The animation duration is subject to the curve parameters, rather than the <b>duration</b> parameter in
+ *     <b>animation</b> or <b>animateTo</b>.
+ *
+ * @param response 弹簧自然振动周期，决定弹簧复位的速度。取值范围：(0, +∞)。
+ *     <br>参数小于等于0时，按0.15处理。
+ * @param dampingFraction 阻尼系数。大于0小于1的值为欠阻尼，运动过程中会超出目标值；等于1为临界阻尼；大于1为过阻尼，运动过程中逐渐趋于目标值。取值范围：[0, +∞)。
+ *     <br>参数小于0时，按0.86处理。
+ * @param overlapDuration 弹性动画衔接时长。发生动画继承时，如果前后两个弹性动画response不一致，response参数会在overlapDuration时间内平滑过渡。取值范围：[0, +∞)。
+ *     <br>参数小于0时，按0.25处理。
+ * @return 曲线的插值对象指针。如果参数异常返回NULL。
+ * @since 12
+ */
 ArkUI_CurveHandle OH_ArkUI_Curve_CreateResponsiveSpringMotion(
     float response, float dampingFraction, float overlapDuration);
 
 /**
-  * @brief Creates an interpolating spring curve animated from 0 to 1. The actual animation value is calculated based on
-  * the curve.
-  *
-  * @note The animation duration is subject to the curve parameters, rather than the <b>duration</b> parameter in
-  *     <b>animation</b> or <b>animateTo</b>.
-  *
-  *
-   * @param velocity Initial velocity. It is applied by external factors to the spring animation, designed to help
-  *     ensure the smooth transition from the previous motion state. The velocity is the normalized velocity, and its
-  *     value is equal to the actual velocity at the beginning of the animation divided by the animation attribute
-  *     change value.
-  * @param mass Mass. It describes the inertia of the object in the elastic system, affecting the amplitude of
-  *     oscillation and the speed of return to equilibrium. The greater the mass, the greater the amplitude of the
-  *     oscillation, and the slower the speed of restoring to the equilibrium position. Value range: [0, +∞).
-  *     <br>If the value is less than or equal to 0, **1** is used.
-  * @param stiffness Stiffness. It is the degree to which an object deforms by resisting the force applied. The greater
-  *     the stiffness, the stronger the ability to resist deformation, and the faster the speed of restoring to the
-  *     equilibrium position. Value range: [0, +∞).
-  *     <br>If the value is less than or equal to 0, **1** is used.
-  * @param damping Damping. It is used to describe the oscillation and attenuation of the system after being disturbed.
-  *     The larger the damping, the smaller the number of oscillations of elastic motion, and the smaller the
-  *     oscillation amplitude. Value range: [0, +∞).
-  *     <br>If the value is less than or equal to 0, **1** is used.
-  * @return Pointer to the interpolation object of the curve. Returns **NULL** if a parameter error occurs.
-  * @since 12
-  */
+ * @brief 构造插值器弹簧曲线对象，生成一条从0到1的动画曲线，实际动画值根据曲线进行插值计算。
+ *
+ * @note The animation duration is subject to the curve parameters, rather than the <b>duration</b> parameter in
+ *     <b>animation</b> or <b>animateTo</b>.
+ *
+ *
+ * @param velocity 初始速度。外部因素对弹性动效产生的影响参数，目的是保证对象从之前的运动状态平滑地过渡到弹性动效。该速度是归一化速度，其值等于动画开始时的实际速度除以动画属性改变值。
+ * @param mass 质量。弹性系统的受力对象，会对弹性系统产生惯性影响。质量越大，震荡的幅度越大，恢复到平衡位置的速度越慢。取值范围：[0, +∞)。
+ *     <br>value小于等于0时，按1处理。
+ * @param stiffness 刚度。表示物体抵抗施加的力而形变的程度。刚度越大，抵抗变形的能力越强，恢复到平衡位置的速度越快。取值范围：[0, +∞)。
+ *     <br>value小于等于0时，按1处理。
+ * @param damping 阻尼。用于描述系统在受到扰动后震荡及衰减的情形。阻尼越大，弹性运动的震荡次数越少、震荡幅度越小。取值范围：[0, +∞)。
+ *     <br>value小于等于0时，按1处理。
+ * @return 曲线的插值对象指针。如果参数异常返回NULL。
+ * @since 12
+ */
 ArkUI_CurveHandle OH_ArkUI_Curve_CreateInterpolatingSpring(float velocity, float mass, float stiffness, float damping);
 
 /**
-  * @brief Creates a custom curve.
-  *
-  * @param userData Pointer to user-defined data.
-  * @param interpolate Indicates the custom interpolation callback. <b>fraction</b> indicates the input x value for
-  *     interpolation when the animation starts; value range: [0,1].
-  *     The return value is the y value of the curve; value range: [0,1].
-  *     If <b>fraction</b> is <b>0</b>, the return value <b>0</b> corresponds to the animation start point; any other
-  *     return
-  *     value means that the animation jumps at the start point.
-  *     If <b>fraction</b> is <b>1</b>, the return value <b>1</b> corresponds to the animation end point; any other
-  *     return
-  *     value means that the end value of the animation is not the value of the state variable,
-  *     which will result in an effect of transition from that end value to the value of the state variable.
-  * @return Pointer to the interpolation object of the curve. Returns **NULL** if a parameter error occurs.
-  * @since 12
-  */
+ * @brief 构造自定义曲线对象。
+ *
+ * @param userData 用户自定义数据。
+ * @param interpolate Indicates the custom interpolation callback. <b>fraction</b> indicates the input x value for
+ *     interpolation when the animation starts; value range: [0,1].
+ *     The return value is the y value of the curve; value range: [0,1].
+ *     If <b>fraction</b> is <b>0</b>, the return value <b>0</b> corresponds to the animation start point; any other
+ *     return
+ *     value means that the animation jumps at the start point.
+ *     If <b>fraction</b> is <b>1</b>, the return value <b>1</b> corresponds to the animation end point; any other
+ *     return
+ *     value means that the end value of the animation is not the value of the state variable,
+ *     which will result in an effect of transition from that end value to the value of the state variable.
+ * @return 曲线的插值对象指针。如果参数异常返回NULL。
+ * @since 12
+ */
 ArkUI_CurveHandle OH_ArkUI_Curve_CreateCustomCurve(
     void* userData, float (*interpolate)(float fraction, void* userdata));
 
 /**
-  * @brief Disposes of a custom curve.
-  *
-  * @param curveHandle Pointer to the interpolation object of the curve.
-  * @since 12
-  */
+ * @brief 销毁自定义曲线对象。
+ *
+ * @param curveHandle 曲线的插值对象指针。
+ * @since 12
+ */
 void OH_ArkUI_Curve_DisposeCurve(ArkUI_CurveHandle curveHandle);
 
 /**
-  * @brief Creates an opacity effect object for component transitions.
-  *
-  * @note If the value specified is less than 0, the value <b>0</b> is used. If the value specified is greater than 1,
-  *     the value <b>1</b> is used.
-  * @param opacity Opacity. Value range: [0, 1]. The default value is **1**. A value less than 0 is treated as 0. A
-  *     value greater than 1 is treated as 1. The value **1** means fully opaque, and **0** means fully transparent.
-  * @return Opacity effect object for component transitions.
-  * @since 12
-  */
+ * @brief 创建组件转场时的透明度效果对象。
+ *
+ * @note If the value specified is less than 0, the value <b>0</b> is used. If the value specified is greater than 1,
+ *     the value <b>1</b> is used.
+ * @param opacity 透明度，取值范围为[0, 1]。默认值为1。设置小于0的非法值按0处理，大于1的非法值按1处理，1表示不透明，0表示完全透明。
+ * @return 组件转场时的透明度效果对象。
+ * @since 12
+ */
 ArkUI_TransitionEffect* OH_ArkUI_CreateOpacityTransitionEffect(float opacity);
 
 /**
-  * @brief Creates a translation effect object for component transitions.
-  *
-  * @param translate Translation parameter object for component transitions.
-  * @return Translation effect object for component transitions. Returns **NULL** if a parameter error occurs.
-  * @since 12
-  */
+ * @brief 创建组件转场时的平移效果对象。
+ *
+ * @param translate 组件转场时的平移参数对象。
+ * @return 组件转场时的平移效果对象。如果参数异常返回NULL。
+ * @since 12
+ */
 ArkUI_TransitionEffect* OH_ArkUI_CreateTranslationTransitionEffect(ArkUI_TranslationOptions* translate);
 
 /**
-  * @brief Creates a scaling effect object for component transitions.
-  *
-  * @param scale Scaling parameter object for component transitions.
-  * @return Scaling effect object for component transitions. Returns **NULL** if a parameter error occurs.
-  * @since 12
-  */
+ * @brief 创建组件转场时的缩放效果对象。
+ *
+ * @param scale 组件转场时的缩放参数对象。
+ * @return 组件转场时的缩放效果对象。如果参数异常返回NULL。
+ * @since 12
+ */
 ArkUI_TransitionEffect* OH_ArkUI_CreateScaleTransitionEffect(ArkUI_ScaleOptions* scale);
 
 /**
-  * @brief Creates a rotation effect object for component transition.
-  *
-  * @param rotate Rotation parameter object for component transitions.
-  * @return Rotation effect object for component transitions. Returns **NULL** if a parameter error occurs.
-  * @since 12
-  */
+ * @brief 创建组件转场时的旋转效果对象。
+ *
+ * @param rotate 组件转场时的旋转参数对象。
+ * @return 组件转场时的旋转效果对象。如果参数异常返回NULL。
+ * @since 12
+ */
 ArkUI_TransitionEffect* OH_ArkUI_CreateRotationTransitionEffect(ArkUI_RotationOptions* rotate);
 
 /**
-  * @brief Creates a movement transition effect object for the component.
-  *
-  * @param edge Movement transition type.
-  * @return Translation effect object for component transitions. Returns **NULL** if a parameter error occurs.
-  * @since 12
-  */
+ * @brief 创建组件平移效果对象。
+ *
+ * @param edge 平移类型。
+ * @return 组件转场时的平移效果对象。如果参数异常返回NULL。
+ * @since 12
+ */
 ArkUI_TransitionEffect* OH_ArkUI_CreateMovementTransitionEffect(ArkUI_TransitionEdge edge);
 
 /**
-  * @brief Creates an asymmetric transition effect.
-  *
-  * @note If the <b>asymmetric</b> function is not used for <b>TransitionEffect</b>, the transition effect takes effect
-  *     for both appearance and disappearance of the component.
-  * @param appear Transition effect for appearance.
-  * @param disappear Transition effect for disappearance.
-  * @return Asymmetric transition effect. Returns **NULL** if a parameter error occurs.
-  * @since 12
-  */
+ * @brief 创建非对称的转场效果对象。
+ *
+ * @note If the <b>asymmetric</b> function is not used for <b>TransitionEffect</b>, the transition effect takes effect
+ *     for both appearance and disappearance of the component.
+ * @param appear 出现的转场效果。
+ * @param disappear 消失的转场效果。
+ * @return 非对称的转场效果对象。如果参数异常返回NULL。
+ * @since 12
+ */
 ArkUI_TransitionEffect* OH_ArkUI_CreateAsymmetricTransitionEffect(
     ArkUI_TransitionEffect* appear, ArkUI_TransitionEffect* disappear);
 
 /**
-  * @brief Disposes of a transition effect.
-  *
-  * @param effect Pointer to the transition effect to be disposed.
-  * @since 12
-  */
+ * @brief 销毁转场效果对象。
+ *
+ * @param effect 转场效果对象。
+ * @since 12
+ */
 void OH_ArkUI_TransitionEffect_Dispose(ArkUI_TransitionEffect* effect);
 
 /**
-  * @brief Sets a combination of transition effects.
-  *
-  * @param firstEffect Transition effect.
-  * @param secondEffect Combination of transition effects.
-  * @return Result code.
-  *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
-  *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
-  * @since 12
-  */
+ * @brief 设置转场效果链式组合，以形成包含多种转场效果的TransitionEffect。
+ *
+ * @param firstEffect 转场效果。
+ * @param secondEffect 需要链式转场效果。
+ * @return 错误码。
+ *     <br>{@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
+ *     <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
+ * @since 12
+ */
 int32_t OH_ArkUI_TransitionEffect_Combine(
     ArkUI_TransitionEffect* firstEffect, ArkUI_TransitionEffect* secondEffect);
 
 /**
-  * @brief Sets transition effect animation settings.
-  *
-  * @note If <b>combine</b> is used for combining transition effects, the animation settings of a transition effect are
-  *     applicable to the one following it.
-  * @param effect Transition effect.
-  * @param animation Animation settings.
-  * @return Result code.
-  *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
-  *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
-  * @since 12
-  */
+ * @brief 设置转场效果动画参数。
+ *
+ * @note If <b>combine</b> is used for combining transition effects, the animation settings of a transition effect are
+ *     applicable to the one following it.
+ * @param effect 转场效果。
+ * @param animation 属性显示动画效果相关参数。
+ * @return 错误码。
+ *     <br>{@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
+ *     <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
+ * @since 12
+ */
 int32_t OH_ArkUI_TransitionEffect_SetAnimation(
     ArkUI_TransitionEffect* effect, ArkUI_AnimateOption* animation);
 #ifdef __cplusplus
