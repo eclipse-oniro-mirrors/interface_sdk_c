@@ -603,6 +603,20 @@ OH_AudioStream_Result OH_AudioStreamBuilder_SetCapturerLoopbackEffectEnabled(
 OH_AudioStream_Result OH_AudioStreamBuilder_SetPlaybackCaptureMode(OH_AudioStreamBuilder* builder,
     uint32_t mode);
 
+/**
+ * Set the callbacks when cellular call recording risk warning is finished
+ *
+ * @param builder Reference provided by OH_AudioStreamBuilder_Create()
+ * @param userData Pointer to an application data structure that will be passed to the callback functions.
+ * @param callbacks Callbacks to the functions that will process capturer stream.
+ * @return Function result code:
+ *     {@link AUDIOSTREAM_SUCCESS} If the execution is successful.
+ *     {@link AUDIOSTREAM_ERROR_INVALID_PARAM}: 1.The param of builder is nullptr;
+ *                                              2.StreamType invalid.
+ * @since 26.0.0
+ */
+OH_AudioStream_Result OH_AudioStreamBuilder_CellularCallRecordRiskWarningCallback(
+    OH_AudioStreamBuilder* builder, void* userData, OH_AudioCapturer_CellularRecordRiskWarningCallback callback)
 #ifdef __cplusplus
 }
 #endif
