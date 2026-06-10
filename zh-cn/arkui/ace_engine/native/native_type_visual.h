@@ -818,205 +818,196 @@
  } ArkUI_ScaleOptions;
  
  /**
-  * @brief Defines the rotation options for component transition.
+  * @brief 定义组件转场时的旋转效果对象。
   *
   * @since 12
   */
  typedef struct {
      /**
-      * X-component of the rotation vector.
+      * 横向的旋转向量分量。
       */
      float x;
      /**
-      * Y-component of the rotation vector.
+      * 纵向的旋转向量分量。
       */
      float y;
      /**
-      * Z-component of the rotation vector.
+      * 竖向的旋转向量分量。
       */
      float z;
      /**
-      * Rotation angle.
+      * 旋转角度。取值范围：(-∞, +∞)。取值为正时相对于旋转轴方向顺时针转动，取值为负时相对于旋转轴方向逆时针转动。
       */
      float angle;
      /**
-      * X coordinate of the center point.
+      * 变换中心点x轴坐标。表示组件变换中心点（即锚点）的x方向坐标，单位为vp。
       */
      float centerX;
      /**
-      * Y coordinate of the center point.
+      * 变换中心点y轴坐标。表示组件变换中心点（即锚点）的y方向坐标，单位为vp。
       */
      float centerY;
      /**
-      * Z-axis anchor, that is, the z-component of the 3D rotation center point.
+      * z轴锚点，即3D旋转中心点的z轴分量，单位为px。
       */
      float centerZ;
      /**
-      * Distance from the user to the z=0 plane.
+      * 视距，即视点到z=0平面的距离，单位为px。
       */
      float perspective;
  } ArkUI_RotationOptions;
  
  /**
-  * @brief Defines shadow options.
+  * @brief 定义阴影选项对象。
   *
   * @since 24
   */
  typedef struct OH_ArkUI_ShadowOptions OH_ArkUI_ShadowOptions;
  
  /**
-  * @brief Defines the motion path options for path animation.
+  * @brief 定义路径动画的运动路径配置项。
   *
   * @since 23
   */
  typedef struct ArkUI_MotionPathOptions ArkUI_MotionPathOptions;
  
  /**
-  * @brief Create an object of the motion path options for path animation.
-  *        In the newly created ArkUI_MotionPathOptions, the "path" value is an empty string, the "from" value is 0,
-  *        the "to" value is 1, and the "rotatable" value is false.
+  * @brief 创建路径动画的运动路径配置项。
   *
-  * @return A pointer to the ArkUI_MotionPathOptions.
+  * @return 指向路径动画的运动路径配置项{@link ArkUI_MotionPathOptions}的指针。
+  *     <br>新建的{@link ArkUI_MotionPathOptions}对象中，路径动画的运动路径path值为空字符串，路径动画起点进度from值为0，路径动画终点进度to值为1，
+  *     组件是否沿路径旋转rotatable值为false。
   * @since 23
   */
  ArkUI_MotionPathOptions* OH_ArkUI_MotionPathOptions_Create();
  
  /**
-  * @brief Dispose the ArkUI_MotionPathOptions object.
+  * @brief 销毁路径动画的运动路径配置项。
   *
-  * @param options Pointer to the ArkUI_MotionPathOptions object to be disposed.
+  * @param options 指向路径动画的运动路径配置项{@link ArkUI_MotionPathOptions}的指针。
   * @since 23
   */
  void OH_ArkUI_MotionPathOptions_Dispose(ArkUI_MotionPathOptions* options);
  
  /**
-  * @brief Sets the the motion path for the animation using an SVG path string. The path supports using "start" and
-  *        "end" as placeholders for the starting and ending points, for example:
-  *        "Mstart.x start.y L50 50 Lend.x end.y Z". Refer to the SVG path format for the path string.
-  *        When set to an empty string, it is equivalent to not setting a path animation.
+  * @brief 设置路径动画的运动路径。
   *
-  * @param options Pointer to the ArkUI_MotionPathOptions object.
-  * @param svgPath The motion path for the path animation.
-  * @return Returns the result code.
-  *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
-  *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+  * @param options 指向路径动画的运动路径配置项{@link ArkUI_MotionPathOptions}的指针。
+  * @param svgPath 路径动画的运动路径字符串。
+  *     <br>该路径支持使用"start"和"end"作为起点和终点的占位符，例如："Mstart.x start.y L50 50 Lend.x end.y Z"。路径字符串格式请参考{@link 绘制路径}。若设置为空字符串，
+  *     等效于未设置路径动画。
+  * @return 错误码。
+  *     <br>{@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
+  *     <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
   * @since 23
   */
  ArkUI_ErrorCode OH_ArkUI_MotionPathOptions_SetPath(ArkUI_MotionPathOptions* options, const char* svgPath);
  
  /**
-  * @brief Gets the motion path string in the ArkUI_MotionPathOptions object.
+  * @brief 获取路径动画的运动路径配置项中存储的运动路径字符串。
   *
-  * @param options Pointer to the ArkUI_MotionPathOptions object.
-  * @param svgPathBuffer Buffer pointer to the motion path string.
-  * @param bufferSize The buffer size of the svgPathBuffer parameter.
-  * @param writeLength Indicates the string length actually written to the buffer
-  *                    when returning {@link ARKUI_ERROR_CODE_NO_ERROR}.
-  *                    Indicates the minimum buffer size that can accommodate the target
-  *                    when {@link ARKUI_ERROR_CODE_BUFFER_SIZE_ERROR} is returned.
-  * @return Returns the result code.
-  *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
-  *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
-  *         Returns {@link ARKUI_ERROR_CODE_BUFFER_SIZE_ERROR} if the buffer size is less than the minimum buffer size.
+  * @param options 指向路径动画的运动路径配置项{@link ArkUI_MotionPathOptions}的指针。
+  * @param svgPathBuffer 存储运动路径字符串的缓冲区指针。
+  * @param bufferSize svgPathBuffer参数的缓冲区大小。
+  * @param writeLength 返回{@link ARKUI_ERROR_CODE_NO_ERROR}时，表示实际写入缓冲区的字符串长度。
+  *     <br>返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}时，表示如果为入参异常，writeLength不会被赋值，如果为拷贝异常，writeLength为可容纳目标字符串的最小缓冲区大小。
+  *     <br>返回{@link ARKUI_ERROR_CODE_BUFFER_SIZE_ERROR}时，表示可容纳目标字符串的最小缓冲区大小。
+  * @return 错误码。
+  *     <br>{@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
+  *     <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
+  *     <br>{@link ARKUI_ERROR_CODE_BUFFER_SIZE_ERROR} 缓冲区大小不足。
   * @since 23
   */
  ArkUI_ErrorCode OH_ArkUI_MotionPathOptions_GetPath(const ArkUI_MotionPathOptions* options, char* svgPathBuffer,
      const int32_t bufferSize, int32_t* writeLength);
  
  /**
-  * @brief Sets the starting progress in the ArkUI_MotionPathOptions. Progress refers to the ratio of the length of the
-  *        path that has been traveled to the total length of the entire path. The value range is [0.0, 1.0], and the
-  *        "from" value should be less than or equal to the "to" value; otherwise, an ARKUI_ERROR_CODE_PARAM_OUT_OF_RANGE
-  *        error code will be returned.
+  * @brief 设置路径动画起点进度。进度指已移动路径长度与总路径长度的比值。
   *
-  * @param options Pointer to the ArkUI_MotionPathOptions object.
-  * @param from The starting progress in the ArkUI_MotionPathOptions.
-  * @return Returns the result code.
-  *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
-  *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
-  *         Returns {@link ARKUI_ERROR_CODE_PARAM_OUT_OF_RANGE} if the "from" value is out of range or the "from" value
-  *                 is greater than the "to" value.
+  * @param options 指向路径动画的运动路径配置项{@link ArkUI_MotionPathOptions}的指针。
+  * @param from 路径动画的起点进度，取值范围为[0.0, 1.0]，且需满足from小于或等于终点进度to，否则将返回{@link ARKUI_ERROR_CODE_PARAM_OUT_OF_RANGE}错误码。
+  *     <br>to的含义参考{@link OH_ArkUI_MotionPathOptions_SetTo}。
+  * @return 错误码。
+  *     <br>{@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
+  *     <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
+  *     <br>{@link ARKUI_ERROR_CODE_PARAM_OUT_OF_RANGE} from超出[0.0, 1.0]范围，或from大于终点进度to。
   * @since 23
   */
  ArkUI_ErrorCode OH_ArkUI_MotionPathOptions_SetFrom(ArkUI_MotionPathOptions* options, const float from);
  
  /**
-  * @brief Gets the starting progress in the ArkUI_MotionPathOptions object.
+  * @brief 获取路径动画的运动路径配置项中的路径动画起点进度。
   *
-  * @param options Pointer to the ArkUI_MotionPathOptions object.
-  * @param from The starting progress in the ArkUI_MotionPathOptions.
-  * @return Returns the result code.
-  *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
-  *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+  * @param options 指向路径动画的运动路径配置项{@link ArkUI_MotionPathOptions}的指针。
+  * @param from 用于接收路径动画的运动路径配置项{@link ArkUI_MotionPathOptions}中起点进度值的指针。
+  * @return 错误码。
+  *     <br>{@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
+  *     <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
   * @since 23
   */
  ArkUI_ErrorCode OH_ArkUI_MotionPathOptions_GetFrom(const ArkUI_MotionPathOptions* options, float* from);
  
  /**
-  * @brief Sets the endpoint progress in the ArkUI_MotionPathOptions. Progress refers to the ratio of the length of the
-  *        path that has been traveled to the total length of the entire path. The value range is [0.0, 1.0], and the
-  *        "from" value should be less than or equal to the "to" value; otherwise, an ARKUI_ERROR_CODE_PARAM_OUT_OF_RANGE
-  *        error code will be returned.
+  * @brief 设置路径动画终点进度。进度指已移动路径长度与总路径长度的比值。
   *
-  * @param options Pointer to the ArkUI_MotionPathOptions object.
-  * @param to The endpoint progress in the ArkUI_MotionPathOptions.
-  * @return Returns the result code.
-  *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
-  *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
-  *         Returns {@link ARKUI_ERROR_CODE_PARAM_OUT_OF_RANGE} if the "to" value is out of range or the "to" value
-  *                 is less than the "from" value.
+  * @param options 指向路径动画的运动路径配置项{@link ArkUI_MotionPathOptions}的指针。
+  * @param to 路径动画的终点进度，取值范围为[0.0, 1.0]，且需满足to大或等于起点进度from；否则将返回{@link ARKUI_ERROR_CODE_PARAM_OUT_OF_RANGE}错误码。
+  *     <br>from的含义参考{@link OH_ArkUI_MotionPathOptions_SetFrom}。
+  * @return 错误码。
+  *     <br>{@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
+  *     <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
+  *     <br>{@link ARKUI_ERROR_CODE_PARAM_OUT_OF_RANGE} to超出[0.0, 1.0]范围，或to小于起点进度from。
   * @since 23
   */
  ArkUI_ErrorCode OH_ArkUI_MotionPathOptions_SetTo(ArkUI_MotionPathOptions* options, const float to);
  
  /**
-  * @brief Gets the endpoint progress in the ArkUI_MotionPathOptions object.
+  * @brief 获取路径动画的运动路径配置项中的路径动画终点进度。
   *
-  * @param options Pointer to the ArkUI_MotionPathOptions object.
-  * @param to The endpoint progress in the ArkUI_MotionPathOptions.
-  * @return Returns the result code.
-  *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
-  *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+  * @param options 指向路径动画的运动路径配置项{@link ArkUI_MotionPathOptions}的指针。
+  * @param to 用于接收路径动画的运动路径配置项{@link ArkUI_MotionPathOptions}中终点进度值的指针。
+  * @return 错误码。
+  *     <br>{@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
+  *     <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
   * @since 23
   */
  ArkUI_ErrorCode OH_ArkUI_MotionPathOptions_GetTo(const ArkUI_MotionPathOptions* options, float* to);
  
  /**
-  * @brief Sets the rotatable parameter in the ArkUI_MotionPathOptions. It indicates whether to rotate along the path.
-  *        True means rotating along the path, while false means not rotating along the path.
+  * @brief 设置组件是否沿运动路径旋转。
   *
-  * @param options Pointer to the ArkUI_MotionPathOptions object.
-  * @param rotatable The rotatable parameter in the ArkUI_MotionPathOptions.
-  * @return Returns the result code.
-  *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
-  *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+  * @param options 指向路径动画的运动路径配置项{@link ArkUI_MotionPathOptions}的指针。
+  * @param rotatable 组件是否沿路径旋转。true表示组件沿路径旋转；false表示组件不沿路径旋转。默认值：false。
+  * @return 错误码。
+  *     <br>{@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
+  *     <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
   * @since 23
   */
  ArkUI_ErrorCode OH_ArkUI_MotionPathOptions_SetRotatable(ArkUI_MotionPathOptions* options, const bool rotatable);
  
  /**
-  * @brief Gets the rotatable parameter in the ArkUI_MotionPathOptions.
+  * @brief 获取组件是否沿运动路径旋转。
   *
-  * @param options Pointer to the ArkUI_MotionPathOptions object.
-  * @param rotatable The rotatable parameter in the ArkUI_MotionPathOptions.
-  * @return Returns the result code.
-  *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
-  *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+  * @param options 指向路径动画的运动路径配置项{@link ArkUI_MotionPathOptions}的指针。
+  * @param rotatable 用于接收路径动画的运动路径配置项{@link ArkUI_MotionPathOptions}中rotatable参数值的指针，表示组件是否沿路径旋转。
+  *     <br>true表示组件沿路径旋转；false表示组件不沿路径旋转。
+  * @return 错误码。
+  *     <br>{@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
+  *     <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
   * @since 23
   */
  ArkUI_ErrorCode OH_ArkUI_MotionPathOptions_GetRotatable(const ArkUI_MotionPathOptions* options, bool* rotatable);
  
  /**
-  * @brief Create a shadow options object.
-  * When the object is no longer in use, invoke {@link OH_ArkUI_ShadowOptions_Destroy} to destroy it.
+  * @brief 创建一个阴影选项对象。当该对象不再使用时，请调用{@link OH_ArkUI_ShadowOptions_Destroy}销毁。
   *
-  * @return A pointer to the shadow options object.
+  * @return 指向{@link OH_ArkUI_ShadowOptions}对象的指针。
   * @since 24
   */
  OH_ArkUI_ShadowOptions* OH_ArkUI_ShadowOptions_Create();
  
  /**
-  * @brief Destroys the shadow options object.
+  * @brief 销毁阴影选项对象。
   *
   * @param options Pointer to the object to be destroyed.
   * @since 24
@@ -1024,516 +1015,491 @@
  void OH_ArkUI_ShadowOptions_Destroy(OH_ArkUI_ShadowOptions* options);
  
  /**
-  * @brief Sets blur radius of the shadow options.
+  * @brief 设置阴影选项的模糊半径。
   *
-  * @param options shadow options.
-  * @param radius blur radius of the shadow.
-  * @return Returns the result code.
-  *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
-  *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+  * @param options 指向{@link OH_ArkUI_ShadowOptions}对象的指针。
+  * @param radius 阴影的模糊半径，单位为vp。
+  * @return 返回结果码。
+  *     <br>若操作成功，返回{@link ARKUI_ERROR_CODE_NO_ERROR}。
+  *     <br>若参数异常，返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
   * @since 24
   */
  ArkUI_ErrorCode OH_ArkUI_ShadowOptions_SetRadius(OH_ArkUI_ShadowOptions* options, float radius);
  
  /**
-  * @brief Gets blur radius of the shadow options.
+  * @brief 获取阴影选项的模糊半径。
   *
-  * @param options shadow options.
-  * @param radius blur radius of the shadow.
-  * @return Returns the result code.
-  *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
-  *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+  * @param options 指向{@link OH_ArkUI_ShadowOptions}对象的指针。
+  * @param radius 阴影的模糊半径，单位为vp。
+  * @return 返回结果码。
+  *     <br>若操作成功，返回{@link ARKUI_ERROR_CODE_NO_ERROR}。
+  *     <br>若参数异常，返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
   * @since 24
   */
  ArkUI_ErrorCode OH_ArkUI_ShadowOptions_GetRadius(OH_ArkUI_ShadowOptions* options, float* radius);
  
  /**
-  * @brief Set shadow type of the shadow options.
+  * @brief 设置阴影选项的阴影类型。
   *
-  * @param options shadow options.
-  * @param type shadow type.
-  * @return Returns the result code.
-  *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
-  *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+  * @param options 指向{@link OH_ArkUI_ShadowOptions}对象的指针。
+  * @param type 阴影类型{@link ArkUI_ShadowType}。
+  * @return 返回结果码。
+  *     <br>若操作成功，返回{@link ARKUI_ERROR_CODE_NO_ERROR}。
+  *     <br>若参数异常，返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
   * @since 24
   */
  ArkUI_ErrorCode OH_ArkUI_ShadowOptions_SetType(OH_ArkUI_ShadowOptions* options, ArkUI_ShadowType type);
  
  /**
-  * @brief Get shadow type of the shadow options.
+  * @brief 获取阴影选项的阴影类型。
   *
-  * @param options shadow options.
-  * @param type shadow type.
-  * @return Returns the result code.
-  *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
-  *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+  * @param options 指向{@link OH_ArkUI_ShadowOptions}对象的指针。
+  * @param type 阴影类型{@link ArkUI_ShadowType}。
+  * @return 返回结果码。
+  *     <br>若操作成功，返回{@link ARKUI_ERROR_CODE_NO_ERROR}。
+  *     <br>若参数异常，返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
   * @since 24
   */
  ArkUI_ErrorCode OH_ArkUI_ShadowOptions_GetType(OH_ArkUI_ShadowOptions* options, ArkUI_ShadowType* type);
  
  /**
-  * @brief Set shadow color of the shadow options.
+  * @brief 设置阴影选项的阴影颜色。
   *
-  * @param options shadow options.
-  * @param color shadow color.
-  * @return Returns the result code.
-  *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
-  *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+  * @param options 指向{@link OH_ArkUI_ShadowOptions}对象的指针。
+  * @param color 阴影颜色，0xARGB格式。
+  * @return 返回结果码。
+  *     <br>若操作成功，返回{@link ARKUI_ERROR_CODE_NO_ERROR}。
+  *     <br>若参数异常，返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
   * @since 24
   */
  ArkUI_ErrorCode OH_ArkUI_ShadowOptions_SetColor(OH_ArkUI_ShadowOptions* options, uint32_t color);
  
  /**
-  * @brief Get shadow color of the shadow options.
+  * @brief 获取阴影选项的阴影颜色。
   *
-  * @param options shadow options.
-  * @param color shadow color.
-  * @return Returns the result code.
-  *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
-  *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+  * @param options 指向{@link OH_ArkUI_ShadowOptions}对象的指针。
+  * @param color 阴影颜色，0xARGB格式。
+  * @return 返回结果码。
+  *     <br>若操作成功，返回{@link ARKUI_ERROR_CODE_NO_ERROR}。
+  *     <br>若参数异常，返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
   * @since 24
   */
  ArkUI_ErrorCode OH_ArkUI_ShadowOptions_GetColor(OH_ArkUI_ShadowOptions* options, uint32_t* color);
  
  /**
-  * @brief Set offset of the shadow along the x-axis.
+  * @brief 设置阴影在x轴上的偏移量。
   *
-  * @param options shadow options.
-  * @param offsetX offset of the shadow along the x-axis.
-  * @return Returns the result code.
-  *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
-  *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+  * @param options 指向{@link OH_ArkUI_ShadowOptions}对象的指针。
+  * @param offsetX 阴影在x轴上的偏移量，单位为vp。
+  * @return 返回结果码。
+  *     <br>若操作成功，返回{@link ARKUI_ERROR_CODE_NO_ERROR}。
+  *     <br>若参数异常，返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
   * @since 24
   */
  ArkUI_ErrorCode OH_ArkUI_ShadowOptions_SetOffsetX(OH_ArkUI_ShadowOptions* options, float offsetX);
  
  /**
-  * @brief Get offset of the shadow along the x-axis.
+  * @brief 获取阴影在x轴上的偏移量。
   *
-  * @param options shadow options.
-  * @param offsetX offset of the shadow along the x-axis.
-  * @return Returns the result code.
-  *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
-  *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+  * @param options 指向{@link OH_ArkUI_ShadowOptions}对象的指针。
+  * @param offsetX 阴影在x轴上的偏移量，单位为vp。
+  * @return 返回结果码。
+  *     <br>若操作成功，返回{@link ARKUI_ERROR_CODE_NO_ERROR}。
+  *     <br>若参数异常，返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
   * @since 24
   */
  ArkUI_ErrorCode OH_ArkUI_ShadowOptions_GetOffsetX(OH_ArkUI_ShadowOptions* options, float* offsetX);
  
  /**
-  * @brief Set offset of the shadow along the y-axis.
+  * @brief 设置阴影在y轴上的偏移量。
   *
-  * @param options shadow options.
-  * @param offsetY offset of the shadow along the y-axis.
-  * @return Returns the result code.
-  *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
-  *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+  * @param options 指向{@link OH_ArkUI_ShadowOptions}对象的指针。
+  * @param offsetY 阴影在y轴上的偏移量，单位为vp。
+  * @return 返回结果码。
+  *     <br>若操作成功，返回{@link ARKUI_ERROR_CODE_NO_ERROR}。
+  *     <br>若参数异常，返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
   * @since 24
   */
  ArkUI_ErrorCode OH_ArkUI_ShadowOptions_SetOffsetY(OH_ArkUI_ShadowOptions* options, float offsetY);
  
  /**
-  * @brief Get offset of the shadow along the y-axis.
+  * @brief 获取阴影在y轴上的偏移量。
   *
-  * @param options shadow options.
-  * @param offsetY offset of the shadow along the y-axis.
-  * @return Returns the result code.
-  *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
-  *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+  * @param options 指向{@link OH_ArkUI_ShadowOptions}对象的指针。
+  * @param offsetY 阴影在y轴上的偏移量，单位为vp。
+  * @return 返回结果码。
+  *     <br>若操作成功，返回{@link ARKUI_ERROR_CODE_NO_ERROR}。
+  *     <br>若参数异常，返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
   * @since 24
   */
  ArkUI_ErrorCode OH_ArkUI_ShadowOptions_GetOffsetY(OH_ArkUI_ShadowOptions* options, float* offsetY);
  
  /**
-  * @brief Set whether to fill the inside of the component with shadow.
+  * @brief 设置是否用阴影填充组件内部。
   *
-  * @param options shadow options.
-  * @param isFill whether to fill the inside of the component with shadow.
-  * @return Returns the result code.
-  *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
-  *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+  * @param options 指向{@link OH_ArkUI_ShadowOptions}对象的指针。
+  * @param isFill 是否用阴影填充组件内部。true表示用阴影填充组件内部，false表示不用阴影填充组件内部。默认值为false。
+  * @return 返回结果码。
+  *     <br>若操作成功，返回{@link ARKUI_ERROR_CODE_NO_ERROR}。
+  *     <br>若参数异常，返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
   * @since 24
   */
  ArkUI_ErrorCode OH_ArkUI_ShadowOptions_SetFill(OH_ArkUI_ShadowOptions* options, bool isFill);
  
  /**
-  * @brief Get whether to fill the inside of the component with shadow.
+  * @brief 获取是否用阴影填充组件内部。
   *
-  * @param options shadow options.
-  * @param isFill whether to fill the inside of the component with shadow.
-  * @return Returns the result code.
-  *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
-  *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+  * @param options 指向{@link OH_ArkUI_ShadowOptions}对象的指针。
+  * @param isFill 是否用阴影填充组件内部。true表示用阴影填充组件内部，false表示不用阴影填充组件内部。
+  * @return 返回结果码。
+  *     <br>若操作成功，返回{@link ARKUI_ERROR_CODE_NO_ERROR}。
+  *     <br>若参数异常，返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
   * @since 24
   */
  ArkUI_ErrorCode OH_ArkUI_ShadowOptions_GetFill(OH_ArkUI_ShadowOptions* options, bool* isFill);
  
  /**
-  * @brief Defines the scale options for matrix scaling.
+  * @brief 定义矩阵缩放的缩放对象。
   *
   * @since 24
   */
  typedef struct ArkUI_Matrix4ScaleOptions ArkUI_Matrix4ScaleOptions;
  
  /**
-  * @brief Create an object of ArkUI_Matrix4ScaleOptions.
-  *        In the newly created options, the default values for the scaling coefficients in the x, y and z directions
-  *        are 1, and the default values for centerX, centerY are 0.
+  * @brief 创建指向矩阵运算的缩放参数对象的指针。在新创建的对象中，x、y和z轴方向的缩放系数默认值，为1。变换中心点的x轴坐标centerX、变换中心点的y轴坐标centerY取默认值，为0。
   *
-  * @return Returns a pointer to the newly created ArkUI_Matrix4ScaleOptions.
+  * @return 返回指向新创建的{@link ArkUI_Matrix4ScaleOptions}的指针。
   * @since 24
   */
  ArkUI_Matrix4ScaleOptions* OH_ArkUI_Matrix4ScaleOptions_Create();
  
  /**
-  * @brief Disposes the ArkUI_Matrix4ScaleOptions object.
+  * @brief 销毁指向矩阵运算的缩放参数对象的指针。
   *
-  * @param options Pointer to the ArkUI_Matrix4ScaleOptions instance to be destroyed.
+  * @param options 指向要销毁的{@link ArkUI_Matrix4ScaleOptions}对象的指针。
   * @since 24
   */
  void OH_ArkUI_Matrix4ScaleOptions_Dispose(ArkUI_Matrix4ScaleOptions* options);
  
  /**
-  * @brief Set the scaling factor in the x direction in ArkUI_Matrix4ScaleOptions.
+  * @brief 设置矩阵运算的缩放参数对象x方向的缩放因子。
   *
-  * @param options Pointer to the ArkUI_Matrix4ScaleOptions object.
-  * @param scaleX The scaling factor in the x direction. Value range: (-∞, +∞).
-  * @return Returns the result code.
-  *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
-  *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+  * @param options 指向矩阵运算的缩放参数对象的指针。
+  * @param scaleX x方向的缩放因子。取值范围：(-∞, +∞)。
+  * @return 错误码。
+  *     <br>如果操作成功，返回{@link ARKUI_ERROR_CODE_NO_ERROR}。
+  *     <br>如果发生参数异常，返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
   * @since 24
   */
  ArkUI_ErrorCode OH_ArkUI_Matrix4ScaleOptions_SetX(ArkUI_Matrix4ScaleOptions* options, const float scaleX);
  
  /**
-  * @brief Get the scaling factor in the x direction in ArkUI_Matrix4ScaleOptions.
-  *        If the value of x is never set, its default value is 1.
+  * @brief 获取矩阵运算的缩放参数对象x方向的缩放因子。如果从未设置x的值，则x方向的缩放因子默认值为1。
   *
-  * @param options Pointer to the ArkUI_Matrix4ScaleOptions object.
-  * @param scaleX The scaling factor in the x direction.
-  * @return Returns the result code.
-  *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
-  *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+  * @param options 指向矩阵运算的缩放参数对象的指针。
+  * @param scaleX x方向的缩放因子。
+  * @return 错误码。
+  *     <br>如果操作成功，返回{@link ARKUI_ERROR_CODE_NO_ERROR}。
+  *     <br>如果发生参数异常，返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
   * @since 24
   */
  ArkUI_ErrorCode OH_ArkUI_Matrix4ScaleOptions_GetX(const ArkUI_Matrix4ScaleOptions* options, float* scaleX);
  
  /**
-  * @brief Set the scaling factor in the y direction in ArkUI_Matrix4ScaleOptions.
+  * @brief 设置矩阵运算的缩放参数对象y方向的缩放因子。
   *
-  * @param options Pointer to the ArkUI_Matrix4ScaleOptions object.
-  * @param scaleY The scaling factor in the y direction. Value range: (-∞, +∞).
-  * @return Returns the result code.
-  *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
-  *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+  * @param options 指向矩阵运算的缩放参数对象的指针。
+  * @param scaleY y方向的缩放因子。取值范围：(-∞, +∞)。
+  * @return 错误码。
+  *     <br>如果操作成功，返回{@link ARKUI_ERROR_CODE_NO_ERROR}。
+  *     <br>如果发生参数异常，返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
   * @since 24
   */
  ArkUI_ErrorCode OH_ArkUI_Matrix4ScaleOptions_SetY(ArkUI_Matrix4ScaleOptions* options, const float scaleY);
  
  /**
-  * @brief Get the scaling factor in the y direction in ArkUI_Matrix4ScaleOptions.
-  *        If the value of y is never set, its default value is 1.
+  * @brief 获取矩阵运算的缩放参数对象y方向的缩放因子。如果从未设置y的值，则y方向的缩放因子默认值为1。
   *
-  * @param options Pointer to the ArkUI_Matrix4ScaleOptions object.
-  * @param scaleY The scaling factor in the y direction.
-  * @return Returns the result code.
-  *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
-  *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+  * @param options 指向矩阵运算的缩放参数对象的指针。
+  * @param scaleY y方向的缩放因子。
+  * @return 错误码。
+  *     <br>如果操作成功，返回{@link ARKUI_ERROR_CODE_NO_ERROR}。
+  *     <br>如果发生参数异常，返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
   * @since 24
   */
  ArkUI_ErrorCode OH_ArkUI_Matrix4ScaleOptions_GetY(const ArkUI_Matrix4ScaleOptions* options, float* scaleY);
  
  /**
-  * @brief Set the scaling factor in the z direction in ArkUI_Matrix4ScaleOptions.
+  * @brief 设置矩阵运算的缩放参数对象z方向的缩放因子。
   *
-  * @param options Pointer to the ArkUI_Matrix4ScaleOptions object.
-  * @param scaleZ The scaling factor in the z direction. Value range: (-∞, +∞).
-  * @return Returns the result code.
-  *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
-  *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+  * @param options 指向矩阵运算的缩放参数对象的指针。
+  * @param scaleZ z方向的缩放因子。取值范围：(-∞, +∞)。
+  * @return 错误码。
+  *     <br>如果操作成功，返回{@link ARKUI_ERROR_CODE_NO_ERROR}。
+  *     <br>如果发生参数异常，返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
   * @since 24
   */
  ArkUI_ErrorCode OH_ArkUI_Matrix4ScaleOptions_SetZ(ArkUI_Matrix4ScaleOptions* options, const float scaleZ);
  
  /**
-  * @brief Get the scaling factor in the z direction in ArkUI_Matrix4ScaleOptions.
-  *        If the value of z is never set, its default value is 1.
+  * @brief 获取矩阵运算的缩放参数对象z方向的缩放因子。如果从未设置z的值，则z方向的缩放因子默认值为1。
   *
-  * @param options Pointer to the ArkUI_Matrix4ScaleOptions object.
-  * @param scaleZ The scaling factor in the z direction.
-  * @return Returns the result code.
-  *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
-  *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+  * @param options 指向矩阵运算的缩放参数对象的指针。
+  * @param scaleZ z方向的缩放因子。
+  * @return 错误码。
+  *     <br>如果操作成功，返回{@link ARKUI_ERROR_CODE_NO_ERROR}。
+  *     <br>如果发生参数异常，返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
   * @since 24
   */
  ArkUI_ErrorCode OH_ArkUI_Matrix4ScaleOptions_GetZ(const ArkUI_Matrix4ScaleOptions* options, float* scaleZ);
  
  /**
-  * @brief Set x offset relative to the transformation center. 0 means no additional x-direction offset from the
-  *        transformation center. The unit is px.
+  * @brief 设置矩阵运算的缩放参数对象变换中心点的x轴坐标。
   *
-  * @param options Pointer to the ArkUI_Matrix4ScaleOptions object.
-  * @param centerX The x offset relative to the transformation center. Value range: (-∞, +∞).
-  * @return Returns the result code.
-  *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
-  *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+  * @param options 指向矩阵运算的缩放参数对象的指针。
+  * @param centerX 变换中心点的x轴坐标。取值范围：(-∞, +∞)。0表示在变换中心基础上没有x方向偏移。单位为px。
+  * @return 错误码。
+  *     <br>如果操作成功，返回{@link ARKUI_ERROR_CODE_NO_ERROR}。
+  *     <br>如果发生参数异常，返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
   * @since 24
   */
  ArkUI_ErrorCode OH_ArkUI_Matrix4ScaleOptions_SetCenterX(ArkUI_Matrix4ScaleOptions* options, const float centerX);
  
  /**
-  * @brief Get the value of centerX from the options, which represents the x-direction offset relative to the
-  *        transformation center. The unit is px. If the value of centerX is never set, its default value is 0.
+  * @brief 获取矩阵运算的缩放参数对象变换中心点的x轴坐标。
   *
-  * @param options Pointer to the ArkUI_Matrix4ScaleOptions object.
-  * @param centerX The x-direction offset relative to the transformation center.
-  * @return Returns the result code.
-  *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
-  *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+  * @param options 指向矩阵运算的缩放参数对象的指针。
+  * @param centerX 变换中心点的x轴坐标。单位为px。默认值为0。
+  * @return 错误码。
+  *     <br>如果操作成功，返回{@link ARKUI_ERROR_CODE_NO_ERROR}。
+  *     <br>如果发生参数异常，返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
   * @since 24
   */
  ArkUI_ErrorCode OH_ArkUI_Matrix4ScaleOptions_GetCenterX(const ArkUI_Matrix4ScaleOptions* options, float* centerX);
  
  /**
-  * @brief Set y offset relative to the transformation center. 0 means no additional y-direction offset from the
-  *        transformation center. The unit is px.
+  * @brief 设置矩阵运算的缩放参数对象变换中心点的y轴坐标。
   *
-  * @param options Pointer to the ArkUI_Matrix4ScaleOptions object.
-  * @param centerY The y offset relative to the transformation center. Value range: (-∞, +∞).
-  * @return Returns the result code.
-  *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
-  *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+  * @param options 指向矩阵运算的缩放参数对象的指针。
+  * @param centerY 变换中心点的y轴坐标。取值范围：(-∞, +∞)。0表示在变换中心基础上没有y方向偏移。单位为px。
+  * @return 错误码。
+  *     <br>如果操作成功，返回{@link ARKUI_ERROR_CODE_NO_ERROR}。
+  *     <br>如果发生参数异常，返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
   * @since 24
   */
  ArkUI_ErrorCode OH_ArkUI_Matrix4ScaleOptions_SetCenterY(ArkUI_Matrix4ScaleOptions* options, const float centerY);
  
  /**
-  * @brief Get the value of centerY from the options, which represents the y-direction offset relative to the
-  *        transformation center. The unit is px. If the value of centerY is never set, its default value is 0.
+  * @brief 获取矩阵运算的缩放参数对象变换中心点的y轴坐标。
   *
-  * @param options Pointer to the ArkUI_Matrix4ScaleOptions object.
-  * @param centerY The y-direction offset relative to the transformation center.
-  * @return Returns the result code.
-  *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
-  *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+  * @param options 指向矩阵运算的缩放参数对象的指针。
+  * @param centerY 变换中心点的y轴坐标。单位为px。默认值为0。
+  * @return 错误码。
+  *     <br>如果操作成功，返回{@link ARKUI_ERROR_CODE_NO_ERROR}。
+  *     <br>如果发生参数异常，返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
   * @since 24
   */
  ArkUI_ErrorCode OH_ArkUI_Matrix4ScaleOptions_GetCenterY(const ArkUI_Matrix4ScaleOptions* options, float* centerY);
  
  /**
-  * @brief Defines the rotation options for matrix rotating.
+  * @brief 定义矩阵旋转的旋转对象。
   *
   * @since 24
   */
  typedef struct ArkUI_Matrix4RotationOptions ArkUI_Matrix4RotationOptions;
  
  /**
-  * @brief Create an object of ArkUI_Matrix4RotationOptions.
-  *        In the newly created options, the x, y, and z values in the direction vector specifying the rotation axis
-  *        are undetermined; The default values for centerX, centerY are 0; The default value for angle is 0.
-  *        If none of x, y, z are specified, it is equivalent to x=0, y=0, z=1, which means rotation around the z-axis.
-  *        Once any one of x, y, z is specified, the remaining unspecified values are equivalent to 0.
+  * @brief 创建矩阵运算的旋转参数对象的指针。在新创建的对象中，单次矩阵变换中心点相对于组件变换中心点的x轴偏移值centerX、单次矩阵变换中心点相对于组件变换中心点的y轴偏移值centerY、旋转角度angle的默认值，为0。
+  * 如果未指定x、y、z方向的方向向量中的任何一个，则等同于x=0、y=0、z=1，表示绕z轴旋转。一旦指定了x、y、z方向的方向向量中的任意一个，其余未指定的值等同于0。
   *
-  * @return Returns a pointer to the newly created ArkUI_Matrix4RotationOptions.
+  * @return 返回指向新创建的{@link ArkUI_Matrix4RotationOptions}的指针
   * @since 24
   */
  ArkUI_Matrix4RotationOptions* OH_ArkUI_Matrix4RotationOptions_Create();
  
  /**
-  * @brief Disposes the ArkUI_Matrix4RotationOptions object.
+  * @brief 销毁指向矩阵运算的旋转参数对象的指针。
   *
-  * @param options Pointer to the ArkUI_Matrix4RotationOptions instance to be destroyed.
+  * @param options 指向矩阵运算的旋转参数对象的指针。
   * @since 24
   */
  void OH_ArkUI_Matrix4RotationOptions_Dispose(ArkUI_Matrix4RotationOptions* options);
  
  /**
-  * @brief Set the value of the direction vector for the x-axis direction in ArkUI_Matrix4RotationOptions.
+  * @brief 设置矩阵运算的旋转参数对象x方向的方向向量。
   *
-  * @param options Pointer to the ArkUI_Matrix4RotationOptions object.
-  * @param x The value of the direction vector for the x-axis direction. Value range: (-∞, +∞).
-  * @return Returns the result code.
-  *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
-  *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+  * @param options 指向矩阵运算的旋转参数对象的指针。
+  * @param x x轴方向的方向向量的值。取值范围：(-∞, +∞)。
+  * @return 错误码。
+  *     <br>如果操作成功，返回{@link ARKUI_ERROR_CODE_NO_ERROR}。
+  *     <br>如果发生参数异常，返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
   * @since 24
   */
  ArkUI_ErrorCode OH_ArkUI_Matrix4RotationOptions_SetX(ArkUI_Matrix4RotationOptions* options, const float x);
  
  /**
-  * @brief Get the value of the direction vector for the x-axis direction in ArkUI_Matrix4RotationOptions.
-  *        If the value of x is never set, its value will be undefined, so the function will return
-  *        ARKUI_ERROR_CODE_PARAM_INVALID.
+  * @brief 获取矩阵运算的旋转参数对象x方向的方向向量。如果从未设置过x值，其值将处于未定义状态，此时函数将返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
   *
-  * @param options Pointer to the ArkUI_Matrix4RotationOptions object.
-  * @param x The value of the direction vector for the x-axis direction.
-  * @return Returns the result code.
-  *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
-  *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+  * @param options 指向矩阵运算的旋转参数对象的指针。
+  * @param x x轴方向的方向向量的值。如果从未设置x的值，其值将未定义。
+  * @return 错误码。
+  *     <br>如果操作成功，返回{@link ARKUI_ERROR_CODE_NO_ERROR}。
+  *     <br>如果发生参数异常，返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
   * @since 24
   */
  ArkUI_ErrorCode OH_ArkUI_Matrix4RotationOptions_GetX(const ArkUI_Matrix4RotationOptions* options, float* x);
  
  /**
-  * @brief Set the value of the direction vector for the y-axis direction in ArkUI_Matrix4RotationOptions.
+  * @brief 设置矩阵运算的旋转参数对象y方向的方向向量。
   *
-  * @param options Pointer to the ArkUI_Matrix4RotationOptions object.
-  * @param y The value of the direction vector for the y-axis direction. Value range: (-∞, +∞).
-  * @return Returns the result code.
-  *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
-  *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+  * @param options 指向矩阵运算的旋转参数对象的指针。
+  * @param y y轴方向的方向向量的值。取值范围：(-∞, +∞)。
+  * @return 错误码。
+  *     <br>如果操作成功，返回{@link ARKUI_ERROR_CODE_NO_ERROR}。
+  *     <br>如果发生参数异常，返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
   * @since 24
   */
  ArkUI_ErrorCode OH_ArkUI_Matrix4RotationOptions_SetY(ArkUI_Matrix4RotationOptions* options, const float y);
  
  /**
-  * @brief Get the value of the direction vector for the y-axis direction in ArkUI_Matrix4RotationOptions.
-  *        If the value of y is never set, its value will be undefined, so the function will return
-  *        ARKUI_ERROR_CODE_PARAM_INVALID.
+  * @brief 获取矩阵运算的旋转参数对象y方向的方向向量。如果从未设置过y值，其值将处于未定义状态，此时函数将返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
   *
-  * @param options Pointer to the ArkUI_Matrix4RotationOptions object.
-  * @param y The value of the direction vector for the y-axis direction.
-  * @return Returns the result code.
-  *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
-  *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+  * @param options 指向矩阵运算的旋转参数对象的指针。
+  * @param y y轴方向的方向向量的值。如果从未设置y的值，其值将未定义。
+  * @return 错误码。
+  *     <br>如果操作成功，返回{@link ARKUI_ERROR_CODE_NO_ERROR}。
+  *     <br>如果发生参数异常，返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
   * @since 24
   */
  ArkUI_ErrorCode OH_ArkUI_Matrix4RotationOptions_GetY(const ArkUI_Matrix4RotationOptions* options, float* y);
  
  /**
-  * @brief Set the value of the direction vector for the z-axis direction in ArkUI_Matrix4RotationOptions.
+  * @brief 设置矩阵运算的旋转参数对象z方向的方向向量。
   *
-  * @param options Pointer to the ArkUI_Matrix4RotationOptions object.
-  * @param z The value of the direction vector for the z-axis direction. Value range: (-∞, +∞).
-  * @return Returns the result code.
-  *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
-  *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+  * @param options 指向矩阵运算的旋转参数对象的指针。
+  * @param z z轴方向的方向向量的值。取值范围：(-∞, +∞)。
+  * @return 错误码。
+  *     <br>如果操作成功，返回{@link ARKUI_ERROR_CODE_NO_ERROR}。
+  *     <br>如果发生参数异常，返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
   * @since 24
   */
  ArkUI_ErrorCode OH_ArkUI_Matrix4RotationOptions_SetZ(ArkUI_Matrix4RotationOptions* options, const float z);
  
  /**
-  * @brief Get the value of the direction vector for the z-axis direction in ArkUI_Matrix4RotationOptions.
-  *        If the value of z is never set, its value will be undefined, so the function will return
-  *        ARKUI_ERROR_CODE_PARAM_INVALID.
+  * @brief 获取矩阵运算的旋转参数对象z方向的方向向量。如果从未设置过z值，其值将处于未定义状态，此时函数将返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
   *
-  * @param options Pointer to the ArkUI_Matrix4RotationOptions object.
-  * @param z The value of the direction vector for the z-axis direction.
-  * @return Returns the result code.
-  *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
-  *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+  * @param options 指向矩阵运算的旋转参数对象的指针。
+  * @param z z轴方向的方向向量的值。如果从未设置z的值，其值将未定义。
+  * @return 错误码。
+  *     <br>如果操作成功，返回{@link ARKUI_ERROR_CODE_NO_ERROR}。
+  *     <br>如果发生参数异常，返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
   * @since 24
   */
  ArkUI_ErrorCode OH_ArkUI_Matrix4RotationOptions_GetZ(const ArkUI_Matrix4RotationOptions* options, float* z);
  
  /**
-  * @brief Set the value of the rotation angle in ArkUI_Matrix4RotationOptions. The unit is degree.
+  * @brief 设置矩阵运算的旋转参数对象中旋转角度的值。
   *
-  * @param options Pointer to the ArkUI_Matrix4RotationOptions object.
-  * @param angle The value of the rotation angle in ArkUI_Matrix4RotationOptions. Value range: (-∞, +∞).
-  * @return Returns the result code.
-  *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
-  *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+  * @param options 指向矩阵运算的旋转参数对象的指针。
+  * @param angle 旋转角度的值。取值范围：(-∞, +∞)。单位为度。
+  * @return 错误码。
+  *     <br>如果操作成功，返回{@link ARKUI_ERROR_CODE_NO_ERROR}。
+  *     <br>如果发生参数异常，返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
   * @since 24
   */
  ArkUI_ErrorCode OH_ArkUI_Matrix4RotationOptions_SetAngle(ArkUI_Matrix4RotationOptions* options, const float angle);
  
  /**
-  * @brief Get the value of the rotation angle in ArkUI_Matrix4RotationOptions. The unit is degree.
-  *        If the value of angle is never set, its default value is 0.
+  * @brief 获取矩阵运算的旋转参数对象中旋转角度的值。
   *
-  * @param options Pointer to the ArkUI_Matrix4RotationOptions object.
-  * @param angle The value of the rotation angle in ArkUI_Matrix4RotationOptions.
-  * @return Returns the result code.
-  *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
-  *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+  * @param options 指向矩阵运算的旋转参数对象的指针。
+  * @param angle 旋转角度的值。单位为度。如果从未设置angle的值，其默认值为0。
+  * @return 错误码。
+  *     <br>如果操作成功，返回{@link ARKUI_ERROR_CODE_NO_ERROR}。
+  *     <br>如果发生参数异常，返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
   * @since 24
   */
  ArkUI_ErrorCode OH_ArkUI_Matrix4RotationOptions_GetAngle(const ArkUI_Matrix4RotationOptions* options, float* angle);
  
  /**
-  * @brief Set x offset relative to the transformation center. 0 means no additional x-direction offset from the
-  *        transformation center. The unit is px.
+  * @brief 设置单次矩阵变换中心点相对于组件变换中心点的x轴偏移值。
   *
-  * @param options Pointer to the ArkUI_Matrix4RotationOptions object.
-  * @param centerX The x offset relative to the transformation center. Value range: (-∞, +∞).
-  * @return Returns the result code.
-  *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
-  *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+  * @param options 指向矩阵运算的旋转参数对象的指针。
+  * @param centerX 单次矩阵变换中心点相对于组件变换中心点的x轴偏移值。取值范围：(-∞, +∞)。0表示在变换中心基础上没有x方向偏移。单位为px。
+  * @return 错误码。
+  *     <br>如果操作成功，返回{@link ARKUI_ERROR_CODE_NO_ERROR}。
+  *     <br>如果发生参数异常，返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
   * @since 24
   */
  ArkUI_ErrorCode OH_ArkUI_Matrix4RotationOptions_SetCenterX(ArkUI_Matrix4RotationOptions* options, const float centerX);
  
  /**
-  * @brief Get the value of centerX from the options, which represents the x-direction offset relative to the
-  *        transformation center. The unit is px. If the value of centerX is never set, its default value is 0.
+  * @brief 获取单次矩阵变换中心点相对于组件变换中心点的x轴偏移值。
   *
-  * @param options Pointer to the ArkUI_Matrix4RotationOptions object.
-  * @param centerX The x-direction offset relative to the transformation center.
-  * @return Returns the result code.
-  *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
-  *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+  * @param options 指向矩阵运算的旋转参数对象的指针。
+  * @param centerX 单次矩阵变换中心点相对于组件变换中心点的x轴偏移值。单位为px。如果从未设置centerX的值，其默认值为0。
+  * @return 错误码。
+  *     <br>如果操作成功，返回{@link ARKUI_ERROR_CODE_NO_ERROR}。
+  *     <br>如果发生参数异常，返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
   * @since 24
   */
  ArkUI_ErrorCode OH_ArkUI_Matrix4RotationOptions_GetCenterX(const ArkUI_Matrix4RotationOptions* options, float* centerX);
  
  /**
-  * @brief Set y offset relative to the transformation center. 0 means no additional y-direction offset from the
-  *        transformation center. The unit is px.
+  * @brief 设置单次矩阵变换中心点相对于组件变换中心点的y轴偏移值。
   *
-  * @param options Pointer to the ArkUI_Matrix4RotationOptions object.
-  * @param centerY The y offset relative to the transformation center. Value range: (-∞, +∞).
-  * @return Returns the result code.
-  *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
-  *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+  * @param options 指向矩阵运算的旋转参数对象的指针。
+  * @param centerY 单次矩阵变换中心点相对于组件变换中心点的y轴偏移值。取值范围：(-∞, +∞)。0表示在变换中心基础上没有y方向偏移。单位为px。
+  * @return 错误码。
+  *     <br>如果操作成功，返回{@link ARKUI_ERROR_CODE_NO_ERROR}。
+  *     <br>如果发生参数异常，返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
   * @since 24
   */
  ArkUI_ErrorCode OH_ArkUI_Matrix4RotationOptions_SetCenterY(ArkUI_Matrix4RotationOptions* options, const float centerY);
  
  /**
-  * @brief Get the value of centerY from the options, which represents the y-direction offset relative to the
-  *        transformation center. The unit is px. If the value of centerY is never set, its default value is 0.
+  * @brief 获取单次矩阵变换中心点相对于组件变换中心点的y轴偏移值。
   *
-  * @param options Pointer to the ArkUI_Matrix4RotationOptions object.
-  * @param centerY The y-direction offset relative to the transformation center.
-  * @return Returns the result code.
-  *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
-  *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+  * @param options 指向矩阵运算的旋转参数对象的指针。
+  * @param centerY 单次矩阵变换中心点相对于组件变换中心点的y轴偏移值。单位为px。如果从未设置centerY的值，其默认值为0。
+  * @return 错误码。
+  *     <br>如果操作成功，返回{@link ARKUI_ERROR_CODE_NO_ERROR}。
+  *     <br>如果发生参数异常，返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
   * @since 24
   */
  ArkUI_ErrorCode OH_ArkUI_Matrix4RotationOptions_GetCenterY(const ArkUI_Matrix4RotationOptions* options, float* centerY);
  
  /**
-  * @brief Defines the translation options for matrix translating.
+  * @brief 定义矩阵平移的平移对象。
   *
   * @since 24
   */
  typedef struct ArkUI_Matrix4TranslationOptions ArkUI_Matrix4TranslationOptions;
  
  /**
-  * @brief Create an object of ArkUI_Matrix4TranslationOptions.
-  *        In the newly created options, the default values for x, y and z are 0.
+  * @brief 创建指向矩阵运算的平移对象的指针。在新创建的对象中，x轴的平移距离x、y轴的平移距离y和z轴的平移距离z的默认值为0。
   *
-  * @return Returns a pointer to the newly created ArkUI_Matrix4TranslationOptions.
+  * @return 返回指向新创建的{@link ArkUI_Matrix4TranslationOptions}的指针。
   * @since 24
   */
  ArkUI_Matrix4TranslationOptions* OH_ArkUI_Matrix4TranslationOptions_Create();
  
  /**
-  * @brief Disposes the ArkUI_Matrix4TranslationOptions object.
+  * @brief 销毁指向矩阵运算的平移对象的指针。
   *
-  * @param options Pointer to the ArkUI_Matrix4TranslationOptions instance to be destroyed.
+  * @param options 指向要销毁的{@link ArkUI_Matrix4TranslationOptions}对象的指针。
   * @since 24
   */
  void OH_ArkUI_Matrix4TranslationOptions_Dispose(ArkUI_Matrix4TranslationOptions* options);
  
  /**
-  * @brief Set the translation value in the x-axis direction. The unit is px.
-  *        If the value of x is never set, its default value is 0.
+  * @brief 设置矩阵运算的平移对象x轴方向的平移值。
   *
-  * @param options Pointer to the ArkUI_Matrix4TranslationOptions object.
-  * @param x The translation value in the x-axis direction. Value range: (-∞, +∞).
-  * @return Returns the result code.
-  *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
-  *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+  * @param options 指向矩阵运算的平移参数对象的指针。
+  * @param x x轴方向的平移值。取值范围：(-∞, +∞)。单位为px。如果从未设置x的值，其默认值为0。
+  * @return 错误码。
+  *     <br>如果操作成功，返回{@link ARKUI_ERROR_CODE_NO_ERROR}。
+  *     <br>如果发生参数异常，返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
   * @since 24
   */
  ArkUI_ErrorCode OH_ArkUI_Matrix4TranslationOptions_SetX(ArkUI_Matrix4TranslationOptions* options, const float x);
@@ -1551,211 +1517,194 @@
  ArkUI_ErrorCode OH_ArkUI_Matrix4TranslationOptions_GetX(const ArkUI_Matrix4TranslationOptions* options, float* x);
  
  /**
-  * @brief Set the translation value in the y-axis direction. The unit is px.
-  *        If the value of y is never set, its default value is 0.
+  * @brief 设置矩阵运算的平移对象y轴方向的平移值。
   *
-  * @param options Pointer to the ArkUI_Matrix4TranslationOptions object.
-  * @param y The translation value in the y-axis direction. Value range: (-∞, +∞).
-  * @return Returns the result code.
-  *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
-  *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+  * @param options 指向矩阵运算的平移参数对象的指针。
+  * @param y y轴方向的平移值。取值范围：(-∞, +∞)。单位为px。如果从未设置y的值，其默认值为0。
+  * @return 错误码。
+  *     <br>如果操作成功，返回{@link ARKUI_ERROR_CODE_NO_ERROR}。
+  *     <br>如果发生参数异常，返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
   * @since 24
   */
  ArkUI_ErrorCode OH_ArkUI_Matrix4TranslationOptions_SetY(ArkUI_Matrix4TranslationOptions* options, const float y);
  
  /**
-  * @brief Get the translation value in the y-axis direction from ArkUI_Matrix4TranslationOptions.
+  * @brief 获取矩阵运算的平移对象y轴方向的平移值。
   *
-  * @param options Pointer to the ArkUI_Matrix4TranslationOptions object.
-  * @param y The translation value in the y-axis direction.
-  * @return Returns the result code.
-  *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
-  *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+  * @param options 指向矩阵运算的平移参数对象的指针。
+  * @param y y轴方向的平移值。
+  * @return 错误码。
+  *     <br>如果操作成功，返回{@link ARKUI_ERROR_CODE_NO_ERROR}。
+  *     <br>如果发生参数异常，返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
   * @since 24
   */
  ArkUI_ErrorCode OH_ArkUI_Matrix4TranslationOptions_GetY(const ArkUI_Matrix4TranslationOptions* options, float* y);
  
  /**
-  * @brief Set the translation value in the z-axis direction. The unit is px.
-  *        If the value of z is never set, its default value is 0.
+  * @brief 设置矩阵运算的平移对象z轴方向的平移值。
   *
-  * @param options Pointer to the ArkUI_Matrix4TranslationOptions object.
-  * @param z The translation value in the z-axis direction. Value range: (-∞, +∞).
-  * @return Returns the result code.
-  *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
-  *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+  * @param options 指向矩阵运算的平移参数对象的指针。
+  * @param z z轴方向的平移值。取值范围：(-∞, +∞)。单位为px。如果从未设置z的值，其默认值为0。
+  * @return 错误码。
+  *     <br>如果操作成功，返回{@link ARKUI_ERROR_CODE_NO_ERROR}。
+  *     <br>如果发生参数异常，返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
   * @since 24
   */
  ArkUI_ErrorCode OH_ArkUI_Matrix4TranslationOptions_SetZ(ArkUI_Matrix4TranslationOptions* options, const float z);
  
  /**
-  * @brief Get the translation value in the z-axis direction from ArkUI_Matrix4TranslationOptions.
+  * @brief 获取矩阵运算的平移对象z轴方向的平移值。
   *
-  * @param options Pointer to the ArkUI_Matrix4TranslationOptions object.
-  * @param z The translation value in the z-axis direction.
-  * @return Returns the result code.
-  *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
-  *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+  * @param options 指向矩阵运算的平移参数对象的指针。
+  * @param z z轴方向的平移值。
+  * @return 错误码。
+  *     <br>如果操作成功，返回{@link ARKUI_ERROR_CODE_NO_ERROR}。
+  *     <br>如果发生参数异常，返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
   * @since 24
   */
  ArkUI_ErrorCode OH_ArkUI_Matrix4TranslationOptions_GetZ(const ArkUI_Matrix4TranslationOptions* options, float* z);
  
  /**
-  * @brief Create an identity matrix4 object.
+  * @brief 创建一个单位四阶矩阵对象。
   *
-  * @return Returns the created identity matrix4 object.
+  * @return 返回指向创建的单位四阶矩阵对象的指针。
   * @since 24
   */
  ArkUI_Matrix4* OH_ArkUI_Matrix4_CreateIdentity();
  
  /**
-  * @brief Specify each element of the matrix to create a matrix4 object.
+  * @brief 通过指定矩阵的每个元素来创建一个四阶矩阵对象。
   *
-  * @param elements Pointer to the array of expected matrix element data. The length of array should be greater than
-  *                 or equal to 16. The parameter must not be null.
-  * @return Returns the newly created matrix4 object.
-  *         If the pointer of elements is null, the function will return null.
+  * @param elements 指向预期矩阵元素数据的数组指针。数组长度应大于或等于16。该参数不可为空指针。
+  * @return 返回新创建的四阶矩阵对象。如果elements指针为空，函数将返回空值。
   * @since 24
   */
  ArkUI_Matrix4* OH_ArkUI_Matrix4_CreateByElements(const float* elements);
  
  /**
-  * @brief Disposes a matrix4 object.
+  * @brief 销毁矩阵对象的指针。
   *
-  * @param matrix Pointer to the matrix4 object to be disposed.
+  * @param matrix 指向要销毁的四阶矩阵对象的指针。
   * @since 24
   */
  void OH_ArkUI_Matrix4_Dispose(ArkUI_Matrix4* matrix);
  
  /**
-  * @brief Create a copy of the matrix4 object.
+  * @brief 创建四阶矩阵对象的副本。用于对同一个矩阵进行操作以此获取不同矩阵对象。
   *
-  * @param matrix Pointer to the original matrix4 object.
-  * @return Returns the newly created matrix4 object.
+  * @param matrix 指向原始四阶矩阵对象的指针。
+  * @return 返回新创建的四阶矩阵对象。
   * @since 24
   */
  ArkUI_Matrix4* OH_ArkUI_Matrix4_Copy(const ArkUI_Matrix4* matrix);
  
  /**
-  * @brief Perform an inverse matrix transformation on the input matrix.
-  *        If the matrix is invertible, this function will modify the input matrix; otherwise, the matrix will remain
-  *        unchanged and an error code will be returned.
+  * @brief 对输入矩阵执行逆矩阵变换。
   *
-  * @param matrix Pointer to the matrix4 object to be inverted.
-  * @return Returns the result code.
-  *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
-  *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if the matrix is not invertible.
+  * @param matrix 指向要逆矩阵变换的四阶矩阵对象的指针。
+  * @return 错误码。
+  *     <br>如果操作成功，返回{@link ARKUI_ERROR_CODE_NO_ERROR}。
+  *     <br>如果发生参数异常，返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
   * @since 24
   */
  ArkUI_ErrorCode OH_ArkUI_Matrix4_Invert(ArkUI_Matrix4* matrix);
  
  /**
-  * @brief Combine another matrix with the original matrix, and storing the resulting matrix in oriMatrix.
-  *        The resulting matrix is equivalent to first applying the transformation of oriMatrix and then applying
-  *        the transformation of anotherMatrix. This function will alter the oriMatrix object.
+  * @brief 将另一个矩阵与原始矩阵合并，并将结果矩阵存储在oriMatrix中。结果矩阵相当于先应用oriMatrix的变换，然后再应用anotherMatrix的变换。此函数将修改oriMatrix对象。
   *
-  * @param oriMatrix Pointer to the original matrix4 object.
-  * @param anotherMatrix Pointer to another matrix object to be combined.
-  * @return Returns the result code.
-  *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
-  *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+  * @param oriMatrix 指向原始四阶矩阵对象的指针。
+  * @param anotherMatrix 指向要合并的另一个矩阵对象的指针。
+  * @return 错误码。
+  *     <br>如果操作成功，返回{@link ARKUI_ERROR_CODE_NO_ERROR}。
+  *     <br>如果发生参数异常，返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
   * @since 24
   */
  ArkUI_ErrorCode OH_ArkUI_Matrix4_Combine(ArkUI_Matrix4* oriMatrix, const ArkUI_Matrix4* anotherMatrix);
  
  /**
-  * @brief Apply a tranlation transformation to the original matrix to obtain the translated matrix. Each translation
-  *        transformation is applied cumulatively. This function will alter the input matrix object.
+  * @brief 对原始矩阵应用平移变换以获取平移后的矩阵。每次平移变换都是在先前的矩阵上累积的。变换后将修改输入的矩阵对象。
   *
-  * @param matrix Pointer to the matrix4 object to be translated.
-  * @param translate Pointer to the translation options.
-  * @return Returns the result code.
-  *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
-  *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+  * @param matrix 指向待平移四阶矩阵对象的指针。
+  * @param translate 指向平移对象的指针。
+  * @return 错误码。
+  *     <br>如果操作成功，返回{@link ARKUI_ERROR_CODE_NO_ERROR}。
+  *     <br>如果发生参数异常，返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
   * @since 24
   */
  ArkUI_ErrorCode OH_ArkUI_Matrix4_Translate(ArkUI_Matrix4* matrix, const ArkUI_Matrix4TranslationOptions* translate);
  
  /**
-  * @brief Apply a scale transformation to the original matrix to obtain the scaled matrix. Each scale
-  *        transformation is applied cumulatively. This function will alter the input matrix object.
+  * @brief 对原始矩阵应用缩放变换以获取缩放后的矩阵。每次缩放变换都是在先前的矩阵上累积的。此函数将修改输入的矩阵对象。
   *
-  * @param matrix Pointer to the matrix4 object to be scaled.
-  * @param scale Pointer to the scale options.
-  * @return Returns the result code.
-  *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
-  *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+  * @param matrix 指向待缩放四阶矩阵对象的指针。
+  * @param scale 指向缩放对象的指针。
+  * @return 错误码。
+  *     <br>如果操作成功，返回{@link ARKUI_ERROR_CODE_NO_ERROR}。
+  *     <br>如果发生参数异常，返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
   * @since 24
   */
  ArkUI_ErrorCode OH_ArkUI_Matrix4_Scale(ArkUI_Matrix4* matrix, const ArkUI_Matrix4ScaleOptions* scale);
  
  /**
-  * @brief Apply a rotation transformation to the original matrix to obtain the rotated matrix. Each rotation
-  *        transformation is applied cumulatively. This function will alter the input matrix object.
+  * @brief 对原始矩阵应用旋转变换以获取旋转后的矩阵。每次旋转变换都是在先前的矩阵上累积的。此函数将修改输入的矩阵对象。
   *
-  * @param matrix Pointer to the matrix4 object to be rotated.
-  * @param rotate Pointer to the rotation options.
-  * @return Returns the result code.
-  *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
-  *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+  * @param matrix 指向待旋转四阶矩阵对象的指针。
+  * @param rotate 指向旋转对象的指针。
+  * @return 错误码。
+  *     <br>如果操作成功，返回{@link ARKUI_ERROR_CODE_NO_ERROR}。
+  *     <br>如果发生参数异常，返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
   * @since 24
   */
  ArkUI_ErrorCode OH_ArkUI_Matrix4_Rotate(ArkUI_Matrix4* matrix, const ArkUI_Matrix4RotationOptions* rotate);
  
  /**
-  * @brief Apply a skew transformation to the original matrix to obtain the skewed matrix. Each skew
-  *        transformation is applied cumulatively. This function will alter the input matrix object.
+  * @brief 对原始矩阵应用倾斜变换以获取倾斜后的矩阵。每次倾斜变换都是在先前的矩阵上累积的。变换后将修改输入的矩阵对象。
   *
-  * @param matrix Pointer to the matrix4 object to be skewed. It must not be null.
-  * @param skewX Skew coefficient in the x direction.
-  * @param skewY Skew coefficient in the y direction.
-  * @return Returns the result code.
-  *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
-  *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+  * @param matrix 指向待倾斜四阶矩阵对象的指针。
+  * @param skewX x方向的倾斜系数。
+  * @param skewY y方向的倾斜系数。
+  * @return 错误码。
+  *     <br>如果操作成功，返回{@link ARKUI_ERROR_CODE_NO_ERROR}。
+  *     <br>如果发生参数异常，返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
   * @since 24
   */
  ArkUI_ErrorCode OH_ArkUI_Matrix4_Skew(ArkUI_Matrix4* matrix, const float skewX, const float skewY);
  
  /**
-  * @brief Calculate the new coordinate position of a point after it has been transformed by a matrix.
-  *        The calculated transformed coordinate point will be filled into the ArkUI_PointF structure
-  *        pointed to by result.
+  * @brief 计算一个点经过矩阵变换后的新坐标位置。
   *
-  * @param matrix Pointer to the matrix4 object.
-  * @param oriPoint Pointer to the original coordinate point.
-  * @param result Pointer to the result point. It must not be null.
-  * @return Returns the result code.
-  *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
-  *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+  * @param matrix 指向四阶矩阵对象的指针。
+  * @param oriPoint 指向原始坐标点的指针。
+  * @param result 指向结果点的指针。不能为空。
+  * @return 错误码。
+  *     <br>如果操作成功，返回{@link ARKUI_ERROR_CODE_NO_ERROR}。
+  *     <br>如果发生参数异常，返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
   * @since 24
   */
  ArkUI_ErrorCode OH_ArkUI_Matrix4_TransformPoint(const ArkUI_Matrix4* matrix, const ArkUI_PointF* oriPoint, ArkUI_PointF* result);
  
  /**
-  * @brief Map the vertex coordinates of one polygon to the vertex coordinates of another polygon, and calculate the required
-  *        matrix. The resulting matrix will be filled into the object pointed to by matrix.
+  * @brief 将一个多边形的顶点坐标映射到另一个多边形的顶点坐标，并计算所需的矩阵。
   * 
-  * @param matrix Pointer to the original matrix4 object. The result matrix will be filled into the object pointed to by it.
-  *               It must not be null.
-  * @param src Pointer to the array of original polygon coordinate points. The array should be at least as long as pointCount.
-  * @param dst Pointer to the array of polygon coordinate points after mapping. The array should be at least as long as pointCount.
-  * @param pointCount The number of polygon points, which must be one of the values 0, 1, 2, 3, or 4.
-  * @return Returns the result code.
-  *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
-  *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+  * @param matrix 指向四阶矩阵对象的指针，用于存放结果矩阵。
+  * @param src 指向原始多边形坐标点数组的指针。数组长度应至少为pointCount。
+  * @param dst 指向映射后多边形坐标点数组的指针。数组长度应至少为pointCount。
+  * @param pointCount 多边形点的数量，必须是0、1、2、3或4中的一个值。
+  * @return 错误码。
+  *     <br>如果操作成功，返回{@link ARKUI_ERROR_CODE_NO_ERROR}。
+  *     <br>如果发生参数异常，返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
   * @since 24
   */
  ArkUI_ErrorCode OH_ArkUI_Matrix4_SetPolyToPoly(ArkUI_Matrix4* matrix, const ArkUI_PointF* src, const ArkUI_PointF* dst, const uint32_t pointCount);
  
  /**
-  * @brief Obtain the 16 elements of the matrix and fill them into the array pointed to by result.
-  *        The array pointed to by result must have space for 16 float elements.
+  * @brief 获取四阶矩阵的16个元素。
   *
-  * @param matrix Pointer to the original matrix4 object.
-  * @param result Pointer to an array that can hold 16 floating-point numbers. It must not be null.
-  * @return Returns the result code.
-  *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
-  *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+  * @param matrix 指向四阶矩阵对象的指针。
+  * @param result 指向可容纳16个浮点数的数组的指针。不能为空。
+  * @return 错误码。
+  *     <br>如果操作成功，返回{@link ARKUI_ERROR_CODE_NO_ERROR}。
+  *     <br>如果发生参数异常，返回{@link ARKUI_ERROR_CODE_PARAM_INVALID}。
   * @since 24
   */
  ArkUI_ErrorCode OH_ArkUI_Matrix4_GetElements(const ArkUI_Matrix4* matrix, float* result);
