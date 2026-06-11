@@ -559,7 +559,6 @@ typedef enum {
      * it is necessary to verify the ohos.permission.CAPTURE_PLAYBACK_DWONLINK permission,
      * when the permission is not available, it will return {@link AUDIOSTREAM_ERROR_INVALID_PARAM}.
      *
-     * 
      * @since 26.0.0
      */
     AUDIOSTREAM_SOURCE_TYPE_VOICE_DOWNLINK = 22
