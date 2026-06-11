@@ -556,7 +556,7 @@ typedef enum {
     /**
      * Voice call downlink source type.
      *
-     * @since 26
+     * @since 26.0.0
      */
     AUDIOSTREAM_SOURCE_TYPE_VOICE_DOWNLINK = 22
 } OH_AudioStream_SourceType;
