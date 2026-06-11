@@ -556,7 +556,7 @@ typedef enum {
     /**
      * Voice call downlink source type.
      * When using OH_AudioStreamBuilder_GenerateCapturer to create the stream,
-     * it is necessary to verify the ohos.permission.CAPTURE_PLAYBACK_DWONLINK permission,
+     * it is necessary to verify the ohos.permission.CAPTURE_PLAYBACK_DOWNLINK permission,
      * when the permission is not available, it will return {@link AUDIOSTREAM_ERROR_INVALID_PARAM}.
      *
      * @since 26.0.0
