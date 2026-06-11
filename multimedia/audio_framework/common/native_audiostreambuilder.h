@@ -604,15 +604,15 @@ OH_AudioStream_Result OH_AudioStreamBuilder_SetPlaybackCaptureMode(OH_AudioStrea
     uint32_t mode);
 
 /**
- * Set the callbacks when cellular call recording risk warning  is finished.
- *
+ * Set the callback when cellular call recording risk warning is finished.
+ * This parameter is required only when the downlink is created.
  * @param builder Reference provided by OH_AudioStreamBuilder_Create().
- * @param userData Pointer to an application data structure that will be passed to the callback functions.
- * @param callbacks Callbacks to the functions that will process capturer stream.
+ * @param userData Pointer to an application data structure that will be passed to the callback functions,
+ * Notify callback once.
+ * @param callback Callback to the functions that will process capturer stream, callback cannot be nullptr.
  * @return Function result code:
  *         {@link AUDIOSTREAM_SUCCESS} If the execution is successful.
- *         {@link AUDIOSTREAM_ERROR_INVALID_PARAM}:
- *                                                 1.The param of builder is nullptr;
+ *         {@link AUDIOSTREAM_ERROR_INVALID_PARAM} The param of builder is nullptr;
  * @since 26.0.0
  */
 OH_AudioStream_Result OH_AudioStreamBuilder_SetSensitiveRecordPermitCallback(
@@ -621,11 +621,12 @@ OH_AudioStream_Result OH_AudioStreamBuilder_SetSensitiveRecordPermitCallback(
 /** 
  * When use cellular downlink recrod sourcetype，cellularRecordPhoneNum and cellularRecordToken need to be set,
  * cellularRecordPhoneNum is phone number, cellularRecordToken is got from call management.
+ * This parameter is required only when the downlink is created.
  * Permission ohos.permission.CAPTURE_PLAYBACK_DWONLINK is needed when calling createAudioCapturer with CAPTURE_PLAYBACK_DWONLINK type.
  *
  * @param builder Reference provided by OH_AudioStreamBuilder_Create().
- * @param cellularRecordPhoneNum The cellular call number which used for  downlink capture.
- * @param cellularRecordToken The token from call management which use makecall function.
+ * @param cellularRecordPhoneNum The cellular call number which used for  downlink capture, cellularRecordPhoneNum cannot be null.
+ * @param cellularRecordToken The token from call management which use makecall function, cellularRecordToken cannot be null.
  * @return Function result code:
  *         {@link AUDIOSTREAM_SUCCESS} If the execution is successful.
  *         {@link AUDIOSTREAM_ERROR_INVALID_PARAM} The param of builder is nullptr.
