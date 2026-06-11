@@ -63,7 +63,7 @@ def process_target_version():
         args = parser.parse_args()
         # 获取文件路径和版本
         input_file = args.path
-        api_version = int(args.version.split('.')[0])
+        api_version = int(args.version)
         # 写入新版宏内容
         updated_version(input_file, api_version)
     except Exception as e:
