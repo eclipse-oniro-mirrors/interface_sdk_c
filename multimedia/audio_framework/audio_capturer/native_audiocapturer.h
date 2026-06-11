@@ -445,7 +445,7 @@ OH_AudioStream_Result OH_AudioCapturer_SetIndependentAudioSessionStrategy(
  *
  * @param capturer AudioCapturer where this event occurs.
  * @param userData User data which is passed by user.
- * @param riskWarningFinished Indicates that whether cellular call recording risk warning is finished.
+ * @param isPermitted Indicates that whether cellular call recording risk warning is finished.
  * If completed, recording is permitted; otherwise, recording is not permitted.
  * @since 26.0.0
  */     
