@@ -37,9 +37,15 @@
 #ifndef ARKUI_NATIVE_TYPE_H
 #define ARKUI_NATIVE_TYPE_H
 
+#ifdef __cplusplus
+#include <cstdint>
+#else
 #include <stdint.h>
+#endif
 
 #include "drawable_descriptor.h"
+#include "node_attributes/embedded_component.h"
+#include "node_attributes/xcomponent.h"
 
 #include "node_attributes/navigation_router/navigation_router.h"
 #include "node_attributes/layout.h"
@@ -299,20 +305,6 @@ typedef struct ArkUI_ProgressLinearStyleOption ArkUI_ProgressLinearStyleOption;
  * @since 15
  */
 typedef struct ArkUI_CrossLanguageOption ArkUI_CrossLanguageOption;
-
-/**
- * @brief Declares the Ability base want.
- *
- * @since 20
- */
-typedef struct AbilityBase_Want AbilityBase_Want;
-
-/**
- * @brief Define the EmbeddedComponentOption for the EmbeddedComponent.
- *
- * @since 20
- */
-typedef struct ArkUI_EmbeddedComponentOption ArkUI_EmbeddedComponentOption;
 
 /**
  * @brief Defines the textField's counter configuration.
@@ -584,20 +576,6 @@ typedef enum {
     /** The Cancel button is displayed when there is text input. */
     ARKUI_CANCELBUTTON_STYLE_INPUT,
 } ArkUI_CancelButtonStyle;
-
-/**
- * @brief Enumerates the types of the <b><XComponent></b> component.
- *
- * @since 12
- */
-typedef enum {
-    /** The custom content of EGL/OpenGL ES and media data is displayed individually on the screen. */
-    ARKUI_XCOMPONENT_TYPE_SURFACE = 0,
-    /** The custom content of EGL/OpenGL ES and media data is grouped and displayed together with content
-      * of the component.
-      */
-    ARKUI_XCOMPONENT_TYPE_TEXTURE = 2,
-} ArkUI_XComponentType;
 
 /**
  * @brief Enumerates the styles of the progress indicator.
@@ -3777,45 +3755,6 @@ void OH_ArkUI_TextCascadePickerRangeContentArray_SetChildAtIndex(
  * @since 19
  */
 void OH_ArkUI_TextCascadePickerRangeContentArray_Destroy(ArkUI_TextCascadePickerRangeContentArray* handle);
-
-/**
- * @brief Create an object for the EmbeddedComponent option.
- *
- * @return A pointer to the object of the EmbeddedComponent option.
- * @since 20
- */
-ArkUI_EmbeddedComponentOption* OH_ArkUI_EmbeddedComponentOption_Create();
-
-/**
- * @brief Destroy the object by EmbeddedComponent option.
- *
- * @param option Pointer to the object by the EmbeddeComponent to be destroyed.
- * @since 20
- */
-void OH_ArkUI_EmbeddedComponentOption_Dispose(ArkUI_EmbeddedComponentOption* option);
-
-/**
- * @brief Set the onError of EmbeddedComponent.
- *
- * @param option Pointer to the object option by the EmbeddedComponent.
- * @param code Common error information about the API invoking failure.
- * @param name Common error name information about the API invoking failure.
- * @param message Common error message information about the API invoking failure.
- * @since 20
- */
-void OH_ArkUI_EmbeddedComponentOption_SetOnError(
-    ArkUI_EmbeddedComponentOption* option, void (*callback)(int32_t code, const char* name, const char* message));
-
-/**
- * @brief Set the onTerminated of EmbeddedComponent.
- *
- * @param option Pointer to the object option by the EmbeddedComponent.
- * @param code Result code returned when the EmbeddedUIExtensionAbility exits.
- * @param want Data returned when the EmbeddedUIExtensionAbility exits.
- * @since 20
- */
-void OH_ArkUI_EmbeddedComponentOption_SetOnTerminated(
-    ArkUI_EmbeddedComponentOption* option, void (*callback)(int32_t code, AbilityBase_Want* want));
 
 /**
  * @brief Expand the swipe action.

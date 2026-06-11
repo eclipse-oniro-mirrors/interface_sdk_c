@@ -76,6 +76,8 @@ if (!is_arkui_x) {
       "arkui/node_attributes/swiper/node_event_swiper.h",
       "arkui/node_attributes/swiper/swiper.h",
       "arkui/node_types/native_type_common.h",
+      "arkui/node_attributes/embedded_component.h",
+      "arkui/node_attributes/xcomponent.h",
       "arkui/styled_string.h",
       "arkui/ui_input_event.h",
       "ace/xcomponent/native_interface_xcomponent.h",
