@@ -112,6 +112,12 @@ typedef enum {
      * 非法窗口ID。
      */
     INVAILD_WINDOW_ID = 1000,
+    /**
+     * 非法窗口ID。
+     *
+     * @since 26.0.0
+     */
+    INVALID_WINDOW_ID = INVAILD_WINDOW_ID,
 
     /**
      * 服务异常。
