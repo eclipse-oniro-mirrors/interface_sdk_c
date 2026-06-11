@@ -613,9 +613,9 @@ OH_AudioStream_Result OH_AudioStreamBuilder_SetPlaybackCaptureMode(OH_AudioStrea
  * Notify callback once.
  * @param callback Callback to the functions that will process capturer stream, callback cannot be nullptr.
  * @return <ul>
- *         <li>{@link AUDIOSTREAM_SUCCESS} If the execution is successful.<li>
- *         <li>{@link AUDIOSTREAM_ERROR_INVALID_PARAM} the param of builder or callback is nullptr.<li>
- *         <ul>
+ *         <li>{@link AUDIOSTREAM_SUCCESS} If the execution is successful.</li>
+ *         <li>{@link AUDIOSTREAM_ERROR_INVALID_PARAM} the param of builder or callback is nullptr.</li>
+ *         </ul>
  * @since 26.0.0
  */
 OH_AudioStream_Result OH_AudioStreamBuilder_SetSensitiveRecordPermitCallback(
@@ -633,10 +633,10 @@ OH_AudioStream_Result OH_AudioStreamBuilder_SetSensitiveRecordPermitCallback(
  * @param cellularRecordToken Is got from call management,
  * the token from call management which use makecall function, cannot be nullptr.
  * @return <ul>
- *         <li>{@link AUDIOSTREAM_SUCCESS} If the execution is successful.<li>
- *         <li>{@link AUDIOSTREAM_ERROR_INVALID_PARAM} The param of builder, cellularRecordPhoneNum,<li>
- *                                                <li> or cellularRecordToken is nullptr.<li>
- *         <ul>
+ *         <li>{@link AUDIOSTREAM_SUCCESS} If the execution is successful.</li>
+ *         <li>{@link AUDIOSTREAM_ERROR_INVALID_PARAM} The param of builder, cellularRecordPhoneNum,</li>
+ *                                                <li> or cellularRecordToken is nullptr.</li>
+ *         </ul>
  * @since 26.0.0
  */
 OH_AudioStream_Result OH_AudioStreamBuilder_SetCellularRecordSecurityParams(
