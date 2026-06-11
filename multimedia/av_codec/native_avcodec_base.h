@@ -1670,13 +1670,13 @@ extern const char *OH_MD_KEY_VIDEO_ENCODER_ENABLE_B_FRAME;
 extern const char *OH_MD_KEY_VIDEO_ENCODER_MAX_B_FRAMES;
 
 /**
-* @brief Key to set the region of interest(ROI) parameters. Value type is string in the format
+ * @brief Key to set the region of interest(ROI) parameters. Value type is string in the format
  * "Top1,Left1-Bottom1,Right1[=Params1];Top2,Left2-Bottom2,Right2[=Params2];".
  *
  * Each "Top,Left-Bottom,Right" represents the coordinate information of one ROI.
  * The "[=Params]" is optional.
  * The format of "[=Params]" varies by version:
- * 1. Prior to version 26.0.0: Only a single integer representing the
+ * 1. Prior to version 26.0.0: Only a single int32_t value representing the
  * quantization parameter offset is supported (e.g., "=Offset").
  * 2. Since version 26.0.0: A Key-Value format is additionally supported and recommended.
  * It uses comma-separated key-value pairs (e.g., "=dqp:-6,slb:1").
@@ -1696,8 +1696,7 @@ extern const char *OH_MD_KEY_VIDEO_ENCODER_MAX_B_FRAMES;
  * In buffer mode, it is configured via {@link OH_AVBuffer_SetParameter}.
  *
  * @note Since version 26.0.0, it is highly recommended to use {@link OH_VideoMetadata_AppendRoiString} to format
- * and append ROI configurations safely instead of concatenating the string manually.
- * @syscap SystemCapability.Multimedia.Media.CodecBase
+ *     and append ROI configurations safely instead of concatenating the string manually.
  * @since 20
  */
 extern const char *OH_MD_KEY_VIDEO_ENCODER_ROI_PARAMS;

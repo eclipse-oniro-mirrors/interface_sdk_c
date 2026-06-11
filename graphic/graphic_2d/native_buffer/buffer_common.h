@@ -250,7 +250,7 @@ typedef enum OH_NativeBuffer_MetadataKey {
      * Each "Top,Left-Bottom,Right" represents the coordinate information of one ROI.
      * The "[=Params]" is optional.
      * The format of "[=Params]" varies by version:
-     * 1. Prior to version 26.0.0: Only a single integer representing the
+     * 1. Prior to version 26.0.0: Only a single int32_t value representing the
      * quantization parameter offset is supported (e.g., "=QpOffset").
      * 2. Since version 26.0.0: A Key-Value format is additionally supported and recommended.
      * It uses comma-separated key-value pairs (e.g., "=dqp:-6,slb:1").
@@ -265,7 +265,7 @@ typedef enum OH_NativeBuffer_MetadataKey {
      * not exceed one-fifth of the total image area.
      *
      * @note Since version 26.0.0, it is highly recommended to use {@link OH_VideoMetadata_AppendRoiString} to format
-     * and append ROI configurations safely instead of concatenating the string manually.
+     *     and append ROI configurations safely instead of concatenating the string manually.
      *
      * @since 22
      */
