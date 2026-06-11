@@ -74,27 +74,27 @@ typedef enum {
  */
 typedef enum {
     /**
-     * Mini shadow.<br>!{@link defaultxs}
+     * Mini shadow.<br>
      */
     ARKUI_SHADOW_STYLE_OUTER_DEFAULT_XS = 0,
     /**
-     * Small shadow.<br>!{@link defaultsm}
+     * Small shadow.<br>
      */
     ARKUI_SHADOW_STYLE_OUTER_DEFAULT_SM,
     /**
-     * Medium shadow.<br>!{@link defaultmd}
+     * Medium shadow.<br>
      */
     ARKUI_SHADOW_STYLE_OUTER_DEFAULT_MD,
     /**
-     * Large shadow.<br>!{@link defaultlg}
+     * Large shadow.<br>
      */
     ARKUI_SHADOW_STYLE_OUTER_DEFAULT_LG,
     /**
-     * Floating small shadow.<br>!{@link floatingsm}
+     * Floating small shadow.<br>
      */
     ARKUI_SHADOW_STYLE_OUTER_FLOATING_SM,
     /**
-     * Floating medium shadow.<br>!{@link floatingmd}
+     * Floating medium shadow.<br>
      */
     ARKUI_SHADOW_STYLE_OUTER_FLOATING_MD,
 } ArkUI_ShadowStyle;
@@ -194,55 +194,55 @@ typedef enum {
  */
 typedef enum {
     /**
-     * Thin material.<br>!{@link thin}
+     * Thin material.<br>
      */
     ARKUI_BLUR_STYLE_THIN = 0,
     /**
-     * Regular material.<br>!{@link regular}
+     * Regular material.<br>
      */
     ARKUI_BLUR_STYLE_REGULAR,
     /**
-     * Thick material.<br>!{@link thick}
+     * Thick material.<br>
      */
     ARKUI_BLUR_STYLE_THICK,
     /**
-     * Material that creates the minimum depth of field effect.<br>!{@link backgroundthin}
+     * Material that creates the minimum depth of field effect.<br>
      */
     ARKUI_BLUR_STYLE_BACKGROUND_THIN,
     /**
-     * Material that creates a medium shallow depth of field effect.<br>!{@link backgroundregular}
+     * Material that creates a medium shallow depth of field effect.<br>
      */
     ARKUI_BLUR_STYLE_BACKGROUND_REGULAR,
     /**
-     * Material that creates a high shallow depth of field effect.<br>!{@link backgroundthick}
+     * Material that creates a high shallow depth of field effect.<br>
      */
     ARKUI_BLUR_STYLE_BACKGROUND_THICK,
     /**
-     * Material that creates the maximum depth of field effect.<br>!{@link backgroundultrathick}
+     * Material that creates the maximum depth of field effect.<br>
      */
     ARKUI_BLUR_STYLE_BACKGROUND_ULTRA_THICK,
     /**
-     * No blur.<br>!{@link none}
+     * No blur.<br>
      */
     ARKUI_BLUR_STYLE_NONE,
     /**
-     * Component ultra-thin material.<br>!{@link componentultrathin}
+     * Component ultra-thin material.<br>
      */
     ARKUI_BLUR_STYLE_COMPONENT_ULTRA_THIN,
     /**
-     * Component thin material.<br>!{@link componentthin}
+     * Component thin material.<br>
      */
     ARKUI_BLUR_STYLE_COMPONENT_THIN,
     /**
-     * Component regular material.<br>!{@link componentregular}
+     * Component regular material.<br>
      */
     ARKUI_BLUR_STYLE_COMPONENT_REGULAR,
     /**
-     * Component thick material.<br>!{@link componentthick}
+     * Component thick material.<br>
      */
     ARKUI_BLUR_STYLE_COMPONENT_THICK,
     /**
-     * Component ultra-thick material.<br>!{@link componentultrathick}
+     * Component ultra-thick material.<br>
      */
     ARKUI_BLUR_STYLE_COMPONENT_ULTRA_THICK,
 } ArkUI_BlurStyle;

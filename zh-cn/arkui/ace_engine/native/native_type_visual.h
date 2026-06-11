@@ -75,32 +75,26 @@
  typedef enum {
      /**
       * 超小阴影。
-      * !{@link defaultxs}
       */
      ARKUI_SHADOW_STYLE_OUTER_DEFAULT_XS = 0,
      /**
       * 小阴影。
-      * !{@link defaultsm}
       */
      ARKUI_SHADOW_STYLE_OUTER_DEFAULT_SM,
      /**
       * 中阴影。
-      * !{@link defaultmd}
       */
      ARKUI_SHADOW_STYLE_OUTER_DEFAULT_MD,
      /**
       * 大阴影。
-      * !{@link defaultlg}
       */
      ARKUI_SHADOW_STYLE_OUTER_DEFAULT_LG,
      /**
       * 浮动小阴影。
-      * !{@link floatingsm}
       */
      ARKUI_SHADOW_STYLE_OUTER_FLOATING_SM,
      /**
       * 浮动中阴影。
-      * !{@link floatingmd}
       */
      ARKUI_SHADOW_STYLE_OUTER_FLOATING_MD,
  } ArkUI_ShadowStyle;
@@ -197,67 +191,54 @@
  typedef enum {
      /**
       * 轻薄材质模糊。
-      * !{@link thin}
       */
      ARKUI_BLUR_STYLE_THIN = 0,
      /**
       * 普通厚度材质模糊。
-      * !{@link regular}
       */
      ARKUI_BLUR_STYLE_REGULAR,
      /**
       * 厚材质模糊。
-      * !{@link thick}
       */
      ARKUI_BLUR_STYLE_THICK,
      /**
       * 近距景深模糊。
-      * !{@link backgroundthin}
       */
      ARKUI_BLUR_STYLE_BACKGROUND_THIN,
      /**
       * 中距景深模糊。
-      * !{@link backgroundregular}
       */
      ARKUI_BLUR_STYLE_BACKGROUND_REGULAR,
      /**
       * 远距景深模糊。
-      * !{@link backgroundthick}
       */
      ARKUI_BLUR_STYLE_BACKGROUND_THICK,
      /**
       * 超远距景深模糊。
-      * !{@link backgroundultrathick}
       */
      ARKUI_BLUR_STYLE_BACKGROUND_ULTRA_THICK,
      /**
       * 关闭模糊。
-      * !{@link none}
       */
      ARKUI_BLUR_STYLE_NONE,
      /**
       * 组件超轻薄材质模糊。
-      * !{@link componentultrathin}
       */
      ARKUI_BLUR_STYLE_COMPONENT_ULTRA_THIN,
      /**
       * 组件轻薄材质模糊。
-      * !{@link componentthin}
       */
      ARKUI_BLUR_STYLE_COMPONENT_THIN,
      /**
       * 组件普通材质模糊。
-      * !{@link componentregular}
       */
      ARKUI_BLUR_STYLE_COMPONENT_REGULAR,
      /**
       * 组件厚材质模糊。
-      * !{@link componentthick}
       */
      ARKUI_BLUR_STYLE_COMPONENT_THICK,
      /**
       * 组件超厚材质模糊。
-      * !{@link componentultrathick}
       */
      ARKUI_BLUR_STYLE_COMPONENT_ULTRA_THICK,
  } ArkUI_BlurStyle;
