@@ -70,6 +70,7 @@ if (!is_arkui_x) {
       "arkui/native_render.h",
       "arkui/native_type.h",
       "arkui/native_type_visual.h",
+      "arkui/node_attributes/layout.h",
       "arkui/node_attributes/navigation_router/navigation_router.h",
       "arkui/node_attributes/node_attr_custom.h",
       "arkui/node_attributes/swiper/node_attr_swiper.h",
