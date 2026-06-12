@@ -40,6 +40,7 @@
 #ifndef UDS_H
 #define UDS_H
 
+#include <stdbool.h>
 #include "multimedia/image_framework/image/pixelmap_native.h"
 
 #ifdef __cplusplus
