@@ -3344,22 +3344,6 @@ typedef struct ArkUI_TextPickerRangeContentArray ArkUI_TextPickerRangeContentArr
    */
 typedef struct ArkUI_TextCascadePickerRangeContentArray ArkUI_TextCascadePickerRangeContentArray;
 
-/**
- * @brief Defines a two-dimensional point struct, with coordinates stored as float type.
- *
- * @since 24
- */
-typedef struct {
-    /**
-     * x-axis coordinate.
-     */
-    float x;
-    /**
-     * y-axis coordinate.
-     */
-    float y;
-} ArkUI_PointF;
-
  /**
    * @brief Defines the options for selection operation.
    *
