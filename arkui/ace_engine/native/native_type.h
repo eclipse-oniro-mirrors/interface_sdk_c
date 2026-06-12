@@ -47,9 +47,9 @@
 #include "node_attributes/embedded_component.h"
 #include "node_attributes/xcomponent.h"
 
+#include "node_attributes/common_attributes.h"
 #include "node_attributes/navigation_router/navigation_router.h"
 #include "node_attributes/swiper/swiper.h"
-#include "node_types/native_type_common.h"
 #include "node_attributes/image_animator.h"
 #include "node_attributes/image.h"
 #include "node_attributes/picker.h"

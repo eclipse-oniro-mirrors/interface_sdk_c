@@ -24,7 +24,7 @@
  */
 
 /**
- * @file native_type_common.h
+ * @file common_attributes.h
  *
  * @brief Defines the common property and method types for the native module.
  *
@@ -34,8 +34,8 @@
  * @since 12
  */
 
-#ifndef ARKUI_NATIVE_TYPE_COMMON_H
-#define ARKUI_NATIVE_TYPE_COMMON_H
+#ifndef ARKUI_COMMON_ATTRIBUTES_H
+#define ARKUI_COMMON_ATTRIBUTES_H
 
 #include <stdint.h>
 #include <stdbool.h>
@@ -397,5 +397,5 @@ bool OH_ArkUI_VisibleAreaEventOptions_GetMeasureFromViewport(ArkUI_VisibleAreaEv
 };
 #endif
 
-#endif // ARKUI_NATIVE_TYPE_COMMON_H
+#endif // ARKUI_COMMON_ATTRIBUTES_H
 /** @} */
