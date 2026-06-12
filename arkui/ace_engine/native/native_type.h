@@ -1599,22 +1599,6 @@ typedef enum {
  */
 typedef struct ArkUI_SystemFontStyleEvent ArkUI_SystemFontStyleEvent;
 
-/**
- * @brief Defines a two-dimensional point struct, with coordinates stored as float type.
- *
- * @since 24
- */
-typedef struct {
-    /**
-     * x-axis coordinate.
-     */
-    float x;
-    /**
-     * y-axis coordinate.
-     */
-    float y;
-} ArkUI_PointF;
-
 #include "native_type_visual.h"
 
 /**

@@ -45,6 +45,22 @@ extern "C" {
 
 
 /**
+ * @brief Defines a two-dimensional point struct, with coordinates stored as float type.
+ *
+ * @since 24
+ */
+typedef struct {
+    /**
+     * x-axis coordinate.
+     */
+    float x;
+    /**
+     * y-axis coordinate.
+     */
+    float y;
+} ArkUI_PointF;
+
+/**
  * @brief 定义四阶矩阵对象。
  *
  * @since 24
