@@ -45,22 +45,6 @@ extern "C" {
 
 
 /**
- * @brief Defines a two-dimensional point struct, with coordinates stored as float type.
- *
- * @since 24
- */
-typedef struct {
-    /**
-     * x-axis coordinate.
-     */
-    float x;
-    /**
-     * y-axis coordinate.
-     */
-    float y;
-} ArkUI_PointF;
-
-/**
  * @brief 定义四阶矩阵对象。
  *
  * @since 24
@@ -814,6 +798,23 @@ typedef struct {
      */
     float perspective;
 } ArkUI_RotationOptions;
+
+
+/**
+ * @brief 定义一个二维坐标点结构体，坐标以浮点类型存储。
+ *
+ * @since 24
+ */
+typedef struct {
+    /**
+     * x轴坐标。取值范围：(-∞, +∞)。
+     */
+    float x;
+    /**
+     * y轴坐标。取值范围：(-∞, +∞)。
+     */
+    float y;
+} ArkUI_PointF;
 
 /**
  * @brief 定义阴影选项对象。
