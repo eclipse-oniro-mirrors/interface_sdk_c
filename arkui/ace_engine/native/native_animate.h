@@ -170,9 +170,10 @@ typedef struct {
      *     the state changes in the closure function.
      *     <br>Note: Make sure the component attributes to be set in the closure function have been set before.
      * @param complete Callback invoked when the animation playback is complete.
-     * @return Result code.
-     *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
-     *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+     * @return <ul> 
+     *         <li>{@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
+     *         <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.</li>
+     *         </ul>
      */
     int32_t (*animateTo)(ArkUI_ContextHandle context, ArkUI_AnimateOption* option, ArkUI_ContextCallback* update,
         ArkUI_AnimateCompleteCallback* complete);
@@ -182,9 +183,10 @@ typedef struct {
      *
      * @param context **UIContext** instance.
      * @param option Keyframe animation parameter.
-     * @return Result code.
-     *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
-     *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+     * @return <ul> 
+     *         <li>{@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
+     *         <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.</li>
+     *         </ul>
      */
     int32_t (*keyframeAnimateTo)(ArkUI_ContextHandle context, ArkUI_KeyframeAnimateOption* option);
 
@@ -433,9 +435,10 @@ void OH_ArkUI_KeyframeAnimateOption_Dispose(ArkUI_KeyframeAnimateOption* option)
  *     state at the absolute value. If the absolute value of **value** is greater than or equal to the actual animation
  *     duration, the animation starts its first frame from the end state. The actual animation duration is equal to the
  *     duration of a single animation multiplied by the number of animation playback times.
- * @return Result code.
- *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @return <ul> 
+ *         <li>{@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
+ *         <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.</li>
+ *         </ul>
  * @since 12
  */
 int32_t OH_ArkUI_KeyframeAnimateOption_SetDelay(ArkUI_KeyframeAnimateOption* option, int32_t value);
@@ -452,9 +455,10 @@ int32_t OH_ArkUI_KeyframeAnimateOption_SetDelay(ArkUI_KeyframeAnimateOption* opt
  *     of times. Default value: **1**, indicating that the animation is played once.
  *     <br>If the value is less than **-1**, the operation is invalid, and the error code
  *     {@link ARKUI_ERROR_CODE_PARAM_INVALID} is returned.
- * @return Result code.
- *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @return <ul> 
+ *         <li>{@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
+ *         <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.</li>
+ *         </ul>
  * @since 12
  */
 int32_t OH_ArkUI_KeyframeAnimateOption_SetIterations(ArkUI_KeyframeAnimateOption* option, int32_t value);
@@ -468,9 +472,10 @@ int32_t OH_ArkUI_KeyframeAnimateOption_SetIterations(ArkUI_KeyframeAnimateOption
  * @param userData Pointer to a custom object.
  *     <br>Abnormal value processing is not involved.
  * @param onFinish Indicates the callback.
- * @return Result code.
- *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @return <ul> 
+ *         <li>{@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
+ *         <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.</li>
+ *         </ul>
  * @since 12
  */
 int32_t OH_ArkUI_KeyframeAnimateOption_RegisterOnFinishCallback(
@@ -483,9 +488,10 @@ int32_t OH_ArkUI_KeyframeAnimateOption_RegisterOnFinishCallback(
  *     <br>If **option** is set to **NULL**, the error code {@link ARKUI_ERROR_CODE_PARAM_INVALID} is returned.
  * @param frameRate Expected frame rate for the keyframe animation.
  *     <br>If **frameRate** is set to **NULL**, the error code {@link ARKUI_ERROR_CODE_PARAM_INVALID} is returned.
- * @return Result code.
- *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @return <ul> 
+ *         <li>{@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
+ *         <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.</li>
+ *         </ul>
  * @since 19
  */
 int32_t OH_ArkUI_KeyframeAnimateOption_SetExpectedFrameRate(
@@ -500,9 +506,10 @@ int32_t OH_ArkUI_KeyframeAnimateOption_SetExpectedFrameRate(
  *     <br>If the value is less than 0, **0** is used.
  * @param index Index of the keyframe state segment.
  *     <br>If the value of **index** is less than 0, the error code {@link ARKUI_ERROR_CODE_PARAM_INVALID} is returned.
- * @return Result code.
- *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @return <ul> 
+ *         <li>{@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
+ *         <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.</li>
+ *         </ul>
  * @since 12
  */
 int32_t OH_ArkUI_KeyframeAnimateOption_SetDuration(ArkUI_KeyframeAnimateOption* option, int32_t value, int32_t index);
@@ -519,9 +526,10 @@ int32_t OH_ArkUI_KeyframeAnimateOption_SetDuration(ArkUI_KeyframeAnimateOption* 
  *     keyframe animation states.
  *     <br>If the value of **index** is less than 0 or out of range, the error code
  *     {@link ARKUI_ERROR_CODE_PARAM_INVALID} is returned.
- * @return Result code.
- *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @return <ul> 
+ *         <li>{@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
+ *         <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.</li>
+ *         </ul>
  * @since 12
  */
 int32_t OH_ArkUI_KeyframeAnimateOption_SetCurve(
@@ -540,9 +548,10 @@ int32_t OH_ArkUI_KeyframeAnimateOption_SetCurve(
  *     keyframe animation states.
  *     <br>If the value of **index** is less than 0 or out of range, the error code
  *     {@link ARKUI_ERROR_CODE_PARAM_INVALID} is returned.
- * @return Result code.
- *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @return <ul> 
+ *         <li>{@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
+ *         <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.</li>
+ *         </ul>
  * @since 12
  */
 int32_t OH_ArkUI_KeyframeAnimateOption_RegisterOnEventCallback(
@@ -631,9 +640,10 @@ void OH_ArkUI_AnimatorOption_Dispose(ArkUI_AnimatorOption* option);
  *     <br>If **option** is set to **NULL**, the error code {@link ARKUI_ERROR_CODE_PARAM_INVALID} is returned.
  * @param value Playback duration, in ms. The default value is 0 ms. Value range: [0, +∞).
  *     <br>If the value is less than 0, the error code {@link ARKUI_ERROR_CODE_PARAM_INVALID} is returned.
- * @return Result code.
- *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @return <ul> 
+ *         <li>{@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
+ *         <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.</li>
+ *         </ul>
  * @since 12
  */
 int32_t OH_ArkUI_AnimatorOption_SetDuration(ArkUI_AnimatorOption* option, int32_t value);
@@ -650,9 +660,10 @@ int32_t OH_ArkUI_AnimatorOption_SetDuration(ArkUI_AnimatorOption* option, int32_
  *     state at the absolute value. If the absolute value of **value** is greater than or equal to the actual animation
  *     duration, the animation starts its first frame from the end state. The actual animation duration is equal to the
  *     duration of a single animation multiplied by the number of animation playback times.
- * @return Result code.
- *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @return <ul> 
+ *         <li>{@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
+ *         <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.</li>
+ *         </ul>
  * @since 12
  */
 int32_t OH_ArkUI_AnimatorOption_SetDelay(ArkUI_AnimatorOption* option, int32_t value);
@@ -670,9 +681,10 @@ int32_t OH_ArkUI_AnimatorOption_SetDelay(ArkUI_AnimatorOption* option, int32_t v
  *     parameter is set to **-1**, the animation is played for an infinite number of times. Default value: **1** (
  *     played once).
  *     <br>If the value is less than -1, the operation is invalid.
- * @return Result code.
- *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @return <ul> 
+ *         <li>{@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
+ *         <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.</li>
+ *         </ul>
  * @since 12
  */
 int32_t OH_ArkUI_AnimatorOption_SetIterations(ArkUI_AnimatorOption* option, int32_t value);
@@ -685,9 +697,10 @@ int32_t OH_ArkUI_AnimatorOption_SetIterations(ArkUI_AnimatorOption* option, int3
  * @param value Status of the component before and after the animator animation execution. Default value:
  *     {@link ARKUI_ANIMATION_FILL_MODE_FORWARDS}.
  *     <br>If the value is less than 0, the error code {@link ARKUI_ERROR_CODE_PARAM_INVALID} is returned.
- * @return Result code.
- *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @return <ul> 
+ *         <li>{@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
+ *         <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.</li>
+ *         </ul>
  * @since 12
  */
 int32_t OH_ArkUI_AnimatorOption_SetFill(ArkUI_AnimatorOption* option, ArkUI_AnimationFillMode value);
@@ -699,9 +712,10 @@ int32_t OH_ArkUI_AnimatorOption_SetFill(ArkUI_AnimatorOption* option, ArkUI_Anim
  *     <br>If **option** is set to **NULL**, the error code {@link ARKUI_ERROR_CODE_PARAM_INVALID} is returned.
  * @param value Animation playback direction.
  *     <br>If the value is less than 0, the error code {@link ARKUI_ERROR_CODE_PARAM_INVALID} is returned.
- * @return Result code.
- *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @return <ul> 
+ *         <li>{@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
+ *         <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.</li>
+ *         </ul>
  * @since 12
  */
 int32_t OH_ArkUI_AnimatorOption_SetDirection(ArkUI_AnimatorOption* option, ArkUI_AnimationDirection value);
@@ -717,9 +731,10 @@ int32_t OH_ArkUI_AnimatorOption_SetDirection(ArkUI_AnimatorOption* option, ArkUI
  * @param value Interpolation curve. Default value: {@link ARKUI_CURVE_LINEAR}. You are advised to use
  *     {@link ARKUI_CURVE_EASE_IN_OUT} to obtain a smoother animation effect.
  *     <br>If **value** is set to **NULL**, the default curve {@link ARKUI_CURVE_LINEAR} is used.
- * @return Result code.
- *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @return <ul> 
+ *         <li>{@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
+ *         <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.</li>
+ *         </ul>
  * @since 12
  */
 int32_t OH_ArkUI_AnimatorOption_SetCurve(ArkUI_AnimatorOption* option, ArkUI_CurveHandle value);
@@ -732,9 +747,10 @@ int32_t OH_ArkUI_AnimatorOption_SetCurve(ArkUI_AnimatorOption* option, ArkUI_Cur
  * @param option Animator parameters.
  *     <br>If **option** is set to **NULL**, the error code {@link ARKUI_ERROR_CODE_PARAM_INVALID} is returned.
  * @param value Interpolation start point of the animation. Value range: (-∞, +∞).
- * @return Result code.
- *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @return <ul> 
+ *         <li>{@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
+ *         <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.</li>
+ *         </ul>
  * @since 12
  */
 int32_t OH_ArkUI_AnimatorOption_SetBegin(ArkUI_AnimatorOption* option, float value);
@@ -747,9 +763,10 @@ int32_t OH_ArkUI_AnimatorOption_SetBegin(ArkUI_AnimatorOption* option, float val
  * @param option Animator parameters.
  *     <br>If **option** is set to **NULL**, the error code {@link ARKUI_ERROR_CODE_PARAM_INVALID} is returned.
  * @param value Interpolation end point of the animation. Value range: (-∞, +∞).
- * @return Result code.
- *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @return <ul> 
+ *         <li>{@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
+ *         <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.</li>
+ *         </ul>
  * @since 12
  */
 int32_t OH_ArkUI_AnimatorOption_SetEnd(ArkUI_AnimatorOption* option, float value);
@@ -761,9 +778,10 @@ int32_t OH_ArkUI_AnimatorOption_SetEnd(ArkUI_AnimatorOption* option, float value
  *     <br>If **option** is set to **NULL**, the error code {@link ARKUI_ERROR_CODE_PARAM_INVALID} is returned.
  * @param value Expected frame rate range.
  *     <br>If **value** is set to **NULL**, the error code {@link ARKUI_ERROR_CODE_PARAM_INVALID} is returned.
- * @return Result code.
- *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @return <ul> 
+ *         <li>{@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
+ *         <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.</li>
+ *         </ul>
  * @since 12
  */
 int32_t OH_ArkUI_AnimatorOption_SetExpectedFrameRateRange(
@@ -782,9 +800,10 @@ int32_t OH_ArkUI_AnimatorOption_SetExpectedFrameRateRange(
  * @param value Keyframe value. Value range: (-∞, +∞).
  * @param index Keyframe index.
  *     <br>If the value of **index** is less than 0, the error code {@link ARKUI_ERROR_CODE_PARAM_INVALID} is returned.
- * @return Result code.
- *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @return <ul> 
+ *         <li>{@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
+ *         <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.</li>
+ *         </ul>
  * @since 12
  */
 int32_t OH_ArkUI_AnimatorOption_SetKeyframe(
@@ -801,9 +820,10 @@ int32_t OH_ArkUI_AnimatorOption_SetKeyframe(
  * @param value Interpolation curve. Default value: **NULL**, indicating linear interpolation.
  * @param index Keyframe index.
  *     <br>If the value of **index** is less than 0, the error code {@link ARKUI_ERROR_CODE_PARAM_INVALID} is returned.
- * @return Result code.
- *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @return <ul> 
+ *         <li>{@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
+ *         <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.</li>
+ *         </ul>
  * @since 12
  */
 int32_t OH_ArkUI_AnimatorOption_SetKeyframeCurve(ArkUI_AnimatorOption* option, ArkUI_CurveHandle value, int32_t index);
@@ -957,9 +977,10 @@ float OH_ArkUI_AnimatorOnFrameEvent_GetValue(ArkUI_AnimatorOnFrameEvent* event);
  * @param option Animator animation parameters.
  * @param userData User-defined parameter.
  * @param callback Indicates the callback to set.
- * @return Result code.
- *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @return <ul> 
+ *         <li>{@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
+ *         <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.</li>
+ *         </ul>
  * @since 12
  */
 int32_t OH_ArkUI_AnimatorOption_RegisterOnFrameCallback(
@@ -971,9 +992,10 @@ int32_t OH_ArkUI_AnimatorOption_RegisterOnFrameCallback(
  * @param option Animator animation parameters.
  * @param userData User-defined parameter.
  * @param callback Indicates the callback to set.
- * @return Result code.
- *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @return <ul> 
+ *         <li>{@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
+ *         <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.</li>
+ *         </ul>
  * @since 12
  */
 int32_t OH_ArkUI_AnimatorOption_RegisterOnFinishCallback(
@@ -985,9 +1007,10 @@ int32_t OH_ArkUI_AnimatorOption_RegisterOnFinishCallback(
  * @param option Animator animation parameters.
  * @param userData User-defined parameter.
  * @param callback Indicates the callback to set.
- * @return Result code.
- *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @return <ul> 
+ *         <li>{@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
+ *         <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.</li>
+ *         </ul>
  * @since 12
  */
 int32_t OH_ArkUI_AnimatorOption_RegisterOnCancelCallback(
@@ -999,9 +1022,10 @@ int32_t OH_ArkUI_AnimatorOption_RegisterOnCancelCallback(
  * @param option Animator animation parameters.
  * @param userData User-defined parameter.
  * @param callback Indicates the callback to set.
- * @return Result code.
- *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @return <ul> 
+ *         <li>{@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
+ *         <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.</li>
+ *         </ul>
  * @since 12
  */
 int32_t OH_ArkUI_AnimatorOption_RegisterOnRepeatCallback(
@@ -1012,9 +1036,10 @@ int32_t OH_ArkUI_AnimatorOption_RegisterOnRepeatCallback(
  *
  * @param animatorHandle Animator object.
  * @param option Animator animation parameters.
- * @return Result code.
- *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @return <ul> 
+ *         <li>{@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
+ *         <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.</li>
+ *         </ul>
  * @since 12
  */
 int32_t OH_ArkUI_Animator_ResetAnimatorOption(
@@ -1024,9 +1049,10 @@ int32_t OH_ArkUI_Animator_ResetAnimatorOption(
  * @brief Starts the animation of an animator.
  *
  * @param animatorHandle Animator object.
- * @return Result code.
- *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @return <ul> 
+ *         <li>{@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
+ *         <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.</li>
+ *         </ul>
  * @since 12
  */
 int32_t OH_ArkUI_Animator_Play(ArkUI_AnimatorHandle animatorHandle);
@@ -1035,9 +1061,10 @@ int32_t OH_ArkUI_Animator_Play(ArkUI_AnimatorHandle animatorHandle);
  * @brief Ends the animation of an animator.
  *
  * @param animatorHandle Animator object.
- * @return Result code.
- *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @return <ul> 
+ *         <li>{@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
+ *         <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.</li>
+ *         </ul>
  * @since 12
  */
 int32_t OH_ArkUI_Animator_Finish(ArkUI_AnimatorHandle animatorHandle);
@@ -1046,9 +1073,10 @@ int32_t OH_ArkUI_Animator_Finish(ArkUI_AnimatorHandle animatorHandle);
  * @brief Pauses the animation of an animator.
  *
  * @param animatorHandle Animator object.
- * @return Result code.
- *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @return <ul> 
+ *         <li>{@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
+ *         <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.</li>
+ *         </ul>
  * @since 12
  */
 int32_t OH_ArkUI_Animator_Pause(ArkUI_AnimatorHandle animatorHandle);
@@ -1057,9 +1085,10 @@ int32_t OH_ArkUI_Animator_Pause(ArkUI_AnimatorHandle animatorHandle);
  * @brief Cancels the animation of an animator.
  *
  * @param animatorHandle Animator object.
- * @return Result code.
- *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @return <ul> 
+ *         <li>{@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
+ *         <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.</li>
+ *         </ul>
  * @since 12
  */
 int32_t OH_ArkUI_Animator_Cancel(ArkUI_AnimatorHandle animatorHandle);
@@ -1068,9 +1097,10 @@ int32_t OH_ArkUI_Animator_Cancel(ArkUI_AnimatorHandle animatorHandle);
  * @brief Plays this animation in reverse order.
  *
  * @param animatorHandle Animator object.
- * @return Result code.
- *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @return <ul> 
+ *         <li>{@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
+ *         <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.</li>
+ *         </ul>
  * @since 12
  */
 int32_t OH_ArkUI_Animator_Reverse(ArkUI_AnimatorHandle animatorHandle);
@@ -1310,9 +1340,10 @@ void OH_ArkUI_TransitionEffect_Dispose(ArkUI_TransitionEffect* effect);
  *
  * @param firstEffect Transition effect.
  * @param secondEffect Combination of transition effects.
- * @return Result code.
- *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @return <ul> 
+ *         <li>{@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
+ *         <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.</li>
+ *         </ul>
  * @since 12
  */
 int32_t OH_ArkUI_TransitionEffect_Combine(
@@ -1325,9 +1356,10 @@ int32_t OH_ArkUI_TransitionEffect_Combine(
  *     applicable to the one following it.
  * @param effect Transition effect.
  * @param animation Animation settings.
- * @return Result code.
- *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @return <ul> 
+ *         <li>{@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
+ *         <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.</li>
+ *         </ul>
  * @since 12
  */
 int32_t OH_ArkUI_TransitionEffect_SetAnimation(
