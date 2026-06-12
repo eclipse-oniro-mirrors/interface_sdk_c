@@ -50,6 +50,9 @@
 #include "node_attributes/navigation_router/navigation_router.h"
 #include "node_attributes/swiper/swiper.h"
 #include "node_types/native_type_common.h"
+#include "node_attributes/image_animator.h"
+#include "node_attributes/image.h"
+#include "node_attributes/picker.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -141,59 +144,6 @@ typedef struct {
 } ArkUI_GridItemRect;
 
 /**
- * @brief Enumerates the selected indicator type of picker.
- *
- * @since 23
- */
-typedef enum {
-    /** background. */
-    ARKUI_PICKER_INDICATOR_BACKGROUND = 0,
-    /** divider. */
-    ARKUI_PICKER_INDICATOR_DIVIDER = 1,
-} ArkUI_PickerIndicatorType;
-
-/**
- * @brief Style parameters of background indicator.
- *
- * @since 23
- */
-typedef struct {
-    /**  background color, 0xARGB format for example <b>0xFF1122FF</b> */
-    uint32_t backgroundColor;
-    /** radius of the top left corner. */
-    float topLeftRadius;
-    /** radius of the top right corner */
-    float topRightRadius;
-    /** radius of the bottom left corner */
-    float bottomLeftRadius;
-    /** radius of the bottom right corner. */
-    float bottomRightRadius;
-} ArkUI_PickerIndicatorBackground;
-
-/**
- * @brief Style parameters of divider indicator.
- *
- * @since 23
- */
-typedef struct {
-    /** stroke width */
-    float strokeWidth;
-    /** divider color, 0xARGB format for example <b>0xFF1122FF</b> */
-    uint32_t dividerColor;
-    /** the distance between the divider and the beginning of the side of the picker (unit: vp). */
-    float startMargin;
-    /** the distance between the divider and the end of the side of the picker (unit: vp). */
-    float endMargin;
-} ArkUI_PickerIndicatorDivider;
-
-/**
- * @brief Definition of indicator style.
- *
- * @since 23
- */
-typedef struct ArkUI_PickerIndicatorStyle ArkUI_PickerIndicatorStyle;
-
-/**
  * @brief Defines the <b>Grid</b> layout options.
  *
  * @since 22
@@ -270,13 +220,6 @@ typedef struct ArkUI_BarrierOption ArkUI_BarrierOption;
  * @since 12
 */
 typedef struct ArkUI_ListChildrenMainSize ArkUI_ListChildrenMainSize;
-
-/**
- * @brief Defines the image frame.
- *
- * @since 12
-*/
-typedef struct ArkUI_ImageAnimatorFrameInfo ArkUI_ImageAnimatorFrameInfo;
 
 /**
  * @brief Defines the accessibility state for the component.
@@ -411,22 +354,6 @@ typedef enum {
     /** Bottom end. */
     ARKUI_ALIGNMENT_BOTTOM_END,
 } ArkUI_Alignment;
-
-/**
- * @brief Enumerates the image repeat patterns.
- *
- * @since 12
- */
-typedef enum {
-    /** The image is not repeatedly drawn. */
-    ARKUI_IMAGE_REPEAT_NONE = 0,
-    /** The image is repeatedly drawn only along the x-axis. */
-    ARKUI_IMAGE_REPEAT_X,
-    /** The image is repeatedly drawn only along the y-axis. */
-    ARKUI_IMAGE_REPEAT_Y,
-    /** The image is repeatedly drawn along both axes. */
-    ARKUI_IMAGE_REPEAT_XY,
-} ArkUI_ImageRepeat;
 
 /**
  * @brief Enumerates the font styles.
@@ -719,63 +646,6 @@ typedef enum {
     /** Cross-device copy is allowed. */
     ARKUI_COPY_OPTIONS_CROSS_DEVICE,
 } ArkUI_CopyOptions;
-
-
-/**
- * @brief Enumerates the modes of the date picker.
- *
- * @since 18
- */
-typedef enum {
-    /** A mode that displays the date in months, days of month, and years. */
-    ARKUI_DATEPICKER_MODE_DATE = 0,
-    /** A mode that displays the date in months and years. */
-    ARKUI_DATEPICKER_YEAR_AND_MONTH = 1,
-    /** A mode that displays the date in months and days of the month. */
-    ARKUI_DATEPICKER_MONTH_AND_DAY = 2,
-} ArkUI_DatePickerMode;
-
-/**
- * @brief Enumerates the types of the text picker.
- *
- * @since 12
- */
-typedef enum {
-    /** Single-column text picker. */
-    ARKUI_TEXTPICKER_RANGETYPE_SINGLE = 0,
-    /** Multi-column text picker. */
-    ARKUI_TEXTPICKER_RANGETYPE_MULTI,
-    /** Single-column text picker with image resources. */
-    ARKUI_TEXTPICKER_RANGETYPE_RANGE_CONTENT,
-    /** Interconnected multi-column text picker. */
-    ARKUI_TEXTPICKER_RANGETYPE_CASCADE_RANGE_CONTENT,
-} ArkUI_TextPickerRangeType;
-
-/**
- * @brief Defines the input structure of the single-column text picker with image resources.
- *
- * @since 12
- */
-typedef struct {
-    /** Image resource. */
-    const char* icon;
-    /** Text information. */
-    const char* text;
-} ARKUI_TextPickerRangeContent;
-
-/**
- * @brief Defines the input structure of the interconnected multi-column text picker.
- *
- * @since 12
- */
-typedef struct {
-    /** Text information. */
-    const char* text;
-    /** Interconnected data. */
-    const ARKUI_TextPickerRangeContent* children;
-    /** Size of the interconnected data array. */
-    int32_t size;
-} ARKUI_TextPickerCascadeRangeContent;
 
 /**
  * @brief Enumerates the effects used at the edges of the component when the boundary of the scrollable content is
@@ -1176,23 +1046,6 @@ typedef enum {
     ArkUI_CHECKBOX_SHAPE_ROUNDED_SQUARE,
 } ArkUI_CheckboxShape;
 
-
-/**
- * @brief Defines the image size.
- *
- * @since 12
- */
-typedef enum {
-    /** The original image aspect ratio is retained. */
-    ARKUI_IMAGE_SIZE_AUTO = 0,
-    /** The image is scaled with its aspect ratio retained for both sides to be greater than or equal
-     *  to the display boundaries. */
-    ARKUI_IMAGE_SIZE_COVER,
-    /** The image is scaled with its aspect ratio retained for the content to be completely displayed within the display
-     *  boundaries. */
-    ARKUI_IMAGE_SIZE_CONTAIN,
-} ArkUI_ImageSize;
-
 /**
  * @brief Enumerates the adaptive color modes.
  *
@@ -1300,110 +1153,6 @@ typedef enum {
 } ArkUI_ImageSpanAlignment;
 
 /**
- * @brief Defines how the image is resized to fit its container.
- *ImageSpanAlignment
- * @since 12
- */
-typedef enum {
-    /** The image is scaled with its aspect ratio retained for the content to be completely displayed within the
-     *  display boundaries. */
-    ARKUI_OBJECT_FIT_CONTAIN = 0,
-    /** The image is scaled with its aspect ratio retained for both sides to be greater than or equal to the
-     *  display boundaries. */
-    ARKUI_OBJECT_FIT_COVER,
-    /** The image is scaled automatically to fit the display area. */
-    ARKUI_OBJECT_FIT_AUTO,
-    /** The image is scaled to fill the display area, and its aspect ratio is not retained. */
-    ARKUI_OBJECT_FIT_FILL,
-    /** The image content is displayed with its aspect ratio retained. The size is smaller than or equal to the
-     *  original size. */
-    ARKUI_OBJECT_FIT_SCALE_DOWN,
-    /** The original size is retained. */
-    ARKUI_OBJECT_FIT_NONE,
-    /** Not resized, the image is aligned with the start edge of the top of the container. */
-    ARKUI_OBJECT_FIT_NONE_AND_ALIGN_TOP_START,
-    /** Not resized, the image is horizontally centered at the top of the container. */
-    ARKUI_OBJECT_FIT_NONE_AND_ALIGN_TOP,
-    /** Not resized, the image is aligned with the end edge at the top of the container. */
-    ARKUI_OBJECT_FIT_NONE_AND_ALIGN_TOP_END,
-    /** Not resized, the image is vertically centered on the start edge of the container. */
-    ARKUI_OBJECT_FIT_NONE_AND_ALIGN_START,
-    /** Not resized, the image is horizontally and vertically centered in the container. */
-    ARKUI_OBJECT_FIT_NONE_AND_ALIGN_CENTER,
-    /** Not resized, the image is vertically centered on the end edge of the container. */
-    ARKUI_OBJECT_FIT_NONE_AND_ALIGN_END,
-    /** Not resized, the image is aligned with the start edge at the bottom of the container. */
-    ARKUI_OBJECT_FIT_NONE_AND_ALIGN_BOTTOM_START,
-    /** Not resized, the image is horizontally centered at the bottom of the container. */
-    ARKUI_OBJECT_FIT_NONE_AND_ALIGN_BOTTOM,
-    /** Not resized, the image is aligned with the end edge at the bottom of the container. */
-    ARKUI_OBJECT_FIT_NONE_AND_ALIGN_BOTTOM_END,
-    /**
-     * Not resized, and is used in conjunction with NODE_IMAGE_IMAGE_MATRIX.
-     *
-     * @since 21
-     */
-    ARKUI_OBJECT_FIT_NONE_MATRIX,
-} ArkUI_ObjectFit;
-
-/**
- * @brief Enumerates the image interpolation effect.
- *
- * @since 12
- */
-typedef enum {
-    /** No image interpolation. */
-    ARKUI_IMAGE_INTERPOLATION_NONE = 0,
-    /** Low quality interpolation. */
-    ARKUI_IMAGE_INTERPOLATION_LOW,
-    /** Medium quality interpolation. */
-    ARKUI_IMAGE_INTERPOLATION_MEDIUM,
-    /** High quality interpolation. This mode produces scaled images of the highest possible quality. */
-    ARKUI_IMAGE_INTERPOLATION_HIGH,
-} ArkUI_ImageInterpolation;
-
-/**
- * @brief Enumerates the image dynamic range mode.
- *
- * @since 21
- */
-typedef enum {
-    /** high dynamic range mode. */
-    ARKUI_DYNAMIC_RANGE_MODE_HIGH = 0,
-    /** constraint dynamic range mode. */
-    ARKUI_DYNAMIC_RANGE_MODE_CONSTRAINT,
-    /** standard dynamic range mode. */
-    ARKUI_DYNAMIC_RANGE_MODE_STANDARD,
-} ArkUI_DynamicRangeMode;
-
-/**
- * @brief Enumerates the image rotate orientation.
- *
- * @since 21
- */
-typedef enum {
-    /** Use EXIF metadata for display orientation, with support for rotation and mirroring. */
-    ARKUI_ORIENTATION_AUTO = 0,
-    /** Display original pixel data without transformation. */
-    ARKUI_ORIENTATION_UP,
-    /** Display the image after rotating it 90 degrees clockwise. */
-    ARKUI_ORIENTATION_RIGHT,
-    /** Display the image after rotating it 180 degrees clockwise. */
-    ARKUI_ORIENTATION_DOWN,
-    /** Display the image after rotating it 270 degrees clockwise. */
-    ARKUI_ORIENTATION_LEFT,
-    /** Display the image after flipping it horizontally. */
-    ARKUI_ORIENTATION_UP_MIRRORED,
-    /** Display the image after flipping it horizontally and then rotating it 90 degrees clockwise. */
-    ARKUI_ORIENTATION_RIGHT_MIRRORED,
-    /** Display the image after flipping it vertically. */
-    ARKUI_ORIENTATION_DOWN_MIRRORED,
-    /** Display the image after flipping it horizontally and then rotating it 270 degrees clockwise. */
-    ARKUI_ORIENTATION_LEFT_MIRRORED,
-} ArkUI_ImageRotateOrientation;
-
-
-/**
  * @brief Enumerates the modes in which components are laid out along the main axis of the container.
  *
  * @since 12
@@ -1496,22 +1245,6 @@ typedef enum {
 } ArkUI_FlexWrap;
 
 /**
- * @brief Enumerates the alignment modes between the calendar picker and the entry component.
- *
- * @since 12
- */
-typedef enum {
-    /** Left aligned. */
-    ARKUI_CALENDAR_ALIGNMENT_START = 0,
-    /** Center aligned. */
-    ARKUI_CALENDAR_ALIGNMENT_CENTER,
-    /** Right aligned. */
-    ARKUI_CALENDAR_ALIGNMENT_END,
-} ArkUI_CalendarAlignment;
-
-
-
-/**
  * @brief Defines the gradient color stop structure.
  *
  * @since 12
@@ -1574,18 +1307,6 @@ typedef enum {
      */
     ARKUI_ELLIPSIS_MODE_MULTILINE_CENTER,
 } ArkUI_EllipsisMode;
-
-/**
- * @brief Enumerates the image rendering modes.
- *
- * @since 12
- */
-typedef enum {
-    /** Render image pixels as they are in the original source image. */
-    ARKUI_IMAGE_RENDER_MODE_ORIGINAL = 0,
-    /** Render image pixels to create a monochrome template image. */
-    ARKUI_IMAGE_RENDER_MODE_TEMPLATE,
-} ArkUI_ImageRenderMode;
 
 /**
  * @brief Defines a mask area.
@@ -2166,22 +1887,6 @@ typedef enum {
 } ArkUI_ErrorCode;
 
 /**
- * @brief Defines the playback status for the image animator.
- *
- * @since 12
-*/
-typedef enum {
-    /** The animation is in the initial state. */
-    ARKUI_ANIMATION_STATUS_INITIAL,
-    /** The animation is being played. */
-    ARKUI_ANIMATION_STATUS_RUNNING,
-    /** The animation is paused. */
-    ARKUI_ANIMATION_STATUS_PAUSED,
-    /** The animation is stopped. */
-    ARKUI_ANIMATION_STATUS_STOPPED,
-} ArkUI_AnimationStatus;
-
-/**
  * @brief Defines the state type for the accessibility checkbox.
  *
  * @since 12
@@ -2520,20 +2225,6 @@ typedef enum {
 typedef struct ArkUI_SystemFontStyleEvent ArkUI_SystemFontStyleEvent;
 
 /**
-  * @brief TextPicker single column selector, supports mixing text and images.
-  *
-  * @since 19
-  */
-typedef struct ArkUI_TextPickerRangeContentArray ArkUI_TextPickerRangeContentArray;
-
- /**
-   * @brief TextPicker multi column selector, supports mixing text and images.
-   *
-   * @since 19
-   */
-typedef struct ArkUI_TextCascadePickerRangeContentArray ArkUI_TextCascadePickerRangeContentArray;
-
-/**
  * @brief Defines a two-dimensional point struct, with coordinates stored as float type.
  *
  * @since 24
@@ -2551,11 +2242,11 @@ typedef struct {
 
 #include "native_type_visual.h"
 
- /**
-   * @brief Defines the options for selection operation.
-   *
-   * @since 23
-   */
+/**
+ * @brief Defines the options for selection operation.
+ *
+ * @since 23
+ */
 typedef struct ArkUI_SelectionOptions ArkUI_SelectionOptions;
 
 /**
@@ -3844,131 +3535,6 @@ float OH_ArkUI_CustomSpanDrawInfo_GetLineBottom(ArkUI_CustomSpanDrawInfo* info);
 float OH_ArkUI_CustomSpanDrawInfo_GetBaseline(ArkUI_CustomSpanDrawInfo* info);
 
 /**
- * @brief Create a image frame from the image path.
- * @param src Indicates the image path.
- * @return Returns the pointer to the image frame object.
- * If a null pointer is returned, the object fails to be created. The possible cause is that
- * the src parameter is abnormal, for example, the pointer is null.
- * @since 12
-*/
-ArkUI_ImageAnimatorFrameInfo* OH_ArkUI_ImageAnimatorFrameInfo_CreateFromString(char* src);
-
-/**
- * @brief Create a image frame from the drawable descriptor.
- *
- * @param drawable Indicates the pointer to the drawable descriptor.
- * @return Returns the pointer to the image frame object.
- * If a null pointer is returned, the object fails to be created. The possible cause is that
- * the drawable parameter is abnormal, for example, the pointer is null.
- * @since 12
-*/
-ArkUI_ImageAnimatorFrameInfo* OH_ArkUI_ImageAnimatorFrameInfo_CreateFromDrawableDescriptor(
-    ArkUI_DrawableDescriptor* drawable);
-
-/**
- * @brief Destroy the pointer to the image frame.
- *
- * @param imageInfo Indicates the pointer to the image frame.
- * @since 12
-*/
-void OH_ArkUI_ImageAnimatorFrameInfo_Dispose(ArkUI_ImageAnimatorFrameInfo* imageInfo);
-
-/**
- * @brief Set the width of the image frame.
- *
- * @param imageInfo Indicates the pointer to the image frame.
- * @param width Indicates the width of the image frame, and the unit is PX.
- * @since 12
-*/
-void OH_ArkUI_ImageAnimatorFrameInfo_SetWidth(ArkUI_ImageAnimatorFrameInfo* imageInfo, int32_t width);
-
-/**
- * @brief Get the width of the image frame.
- *
- * @param imageInfo Indicates the pointer to the image frame.
- * @return Return the width of the image frame, and the unit is PX. Return 0 when the imageInfo is null.
- * @since 12
-*/
-int32_t OH_ArkUI_ImageAnimatorFrameInfo_GetWidth(ArkUI_ImageAnimatorFrameInfo* imageInfo);
-
-/**
- * @brief Set the height of the image frame.
- *
- * @param imageInfo Indicates the pointer to the image frame.
- * @param height Indicates the height of the image frame, and the unit is PX.
- * @since 12
-*/
-void OH_ArkUI_ImageAnimatorFrameInfo_SetHeight(ArkUI_ImageAnimatorFrameInfo* imageInfo, int32_t height);
-
-/**
- * @brief Get the height of the image frame.
- *
- * @param imageInfo Indicates the pointer to the image frame.
- * @return Return the height of the image frame, and the unit is PX. Return 0 when the imageInfo is null.
- * @since 12
-*/
-int32_t OH_ArkUI_ImageAnimatorFrameInfo_GetHeight(ArkUI_ImageAnimatorFrameInfo* imageInfo);
-
-/**
- * @brief Set the vertical coordinate of the image relative to the upper left corner of the widget.
- *
- * @param imageInfo Indicates the pointer to the image frame.
- * @param top Indicates the vertical coordinate of the image relative to the upper left corner of the widget,
- * and the unit is PX.
- * @since 12
-*/
-void OH_ArkUI_ImageAnimatorFrameInfo_SetTop(ArkUI_ImageAnimatorFrameInfo* imageInfo, int32_t top);
-
-/**
- * @brief Get the vertical coordinate of the image relative to the upper left corner of the widget.
- *
- * @param imageInfo Indicates the pointer to the image frame.
- * @return Returns the vertical coordinate of the image relative to the upper left corner of the widget,
- * and the unit is PX. Return 0 when the imageInfo is null.
- * @since 12
-*/
-int32_t OH_ArkUI_ImageAnimatorFrameInfo_GetTop(ArkUI_ImageAnimatorFrameInfo* imageInfo);
-
-/**
- * @brief Set the horizontal coordinate of the image relative to the upper left corner of the widget.
- *
- * @param imageInfo Indicates the pointer to the image frame.
- * @param left Indicates the horizontal coordinate of the image relative to the upper left corner of the widget,
- * and the unit is PX.
- * @since 12
-*/
-void OH_ArkUI_ImageAnimatorFrameInfo_SetLeft(ArkUI_ImageAnimatorFrameInfo* imageInfo, int32_t left);
-
-/**
- * @brief Get the horizontal coordinate of the image relative to the upper left corner of the widget.
- *
- * @param imageInfo Indicates the pointer to the image frame.
- * @return Returns the horizontal coordinate of the image relative to the upper left corner of the widget,
- * and the unit is PX. Return 0 when the imageInfo is null.
- * @since 12
-*/
-int32_t OH_ArkUI_ImageAnimatorFrameInfo_GetLeft(ArkUI_ImageAnimatorFrameInfo* imageInfo);
-
-/**
- * @brief Set the playback duration of the image frame.
- *
- * @param imageInfo Indicates the pointer to the image frame.
- * @param duration Indicates the playback duration of each image frame, and the unit is milliseconds.
- * @since 12
-*/
-void OH_ArkUI_ImageAnimatorFrameInfo_SetDuration(ArkUI_ImageAnimatorFrameInfo* imageInfo, int32_t duration);
-
-/**
- * @brief Get the playback duration of the image frame.
- *
- * @param imageInfo Indicates the pointer to the image frame.
- * @return Returns the playback duration of the image frame, and the unit is milliseconds.
- * Return 0 when the imageInfo is null.
- * @since 12
-*/
-int32_t OH_ArkUI_ImageAnimatorFrameInfo_GetDuration(ArkUI_ImageAnimatorFrameInfo* imageInfo);
-
-/**
  * @brief Create accessibility state.
  *
  * @return Returns the pointer to the accessibility state object.
@@ -4384,120 +3950,6 @@ void OH_ArkUI_CrossLanguageOption_SetAttributeSettingStatus(ArkUI_CrossLanguageO
  */
 bool OH_ArkUI_CrossLanguageOption_GetAttributeSettingStatus(ArkUI_CrossLanguageOption* option);
 
-/**
- * @brief Creates a TextPickerRangeContent instance.
- *
- * @param length The length of the picker array. Value range: [1, +∞).
- * @return Returns a pointer to the created instance on success. Initialize each item of the array
- *         as a null pointer;call {@link OH_ArkUI_TextPickerRangeContentArray_SetIconAtIndex} and/or
- *         {@link OH_ArkUI_TextPickerRangeContentArray_SetTextAtIndex} for each index as needed.
- *         Returns <b>nullptr</b> if <b>length</b> is not in <b>[1, +∞)</b>.
- *         When the object is no longer used, release it with {@link OH_ArkUI_TextPickerRangeContentArray_Destroy}.
- * @since 19
- */
-ArkUI_TextPickerRangeContentArray* OH_ArkUI_TextPickerRangeContentArray_Create(int32_t length);
-
-/**
- * @brief Sets the icon resource path or URI for one item in an {@link ArkUI_TextPickerRangeContentArray}.
- *
- * @param handle Pointer returned by {@link OH_ArkUI_TextPickerRangeContentArray_Create}. If <b>nullptr</b>, this
- *        function has no effect.
- * @param icon Null-terminated C string for the icon (path or URI). The content is copied into the array; the caller
- *        keeps ownership of <b>icon</b>. If <b>nullptr</b>, this function has no effect.
- * @param index Index of the item to set. Valid values are greater than or equal to <b>0</b> and less than the
- *        <b>length</b> argument passed to {@link OH_ArkUI_TextPickerRangeContentArray_Create}. Otherwise this function
- *        does nothing.
- * @note If an icon was already set at <b>index</b>, the previous buffer is released before assigning the new value.
- * @since 19
- */
-void OH_ArkUI_TextPickerRangeContentArray_SetIconAtIndex(
-    ArkUI_TextPickerRangeContentArray* handle, char* icon, int32_t index);
-
-/**
- * @brief Sets the display text for one item in an {@link ArkUI_TextPickerRangeContentArray}.
- *
- * @param handle Pointer returned by {@link OH_ArkUI_TextPickerRangeContentArray_Create}. If <b>nullptr</b>, this
- *        function has no effect.
- * @param text Null-terminated C string shown for the item. The content is copied into the array; the caller keeps
- *        ownership of <b>text</b>. If <b>nullptr</b>, this function has no effect.
- * @param index Index of the item to set. Valid values are greater than or equal to <b>0</b> and less than the
- *        <b>length</b> argument passed to {@link OH_ArkUI_TextPickerRangeContentArray_Create}. Otherwise this function
- *        does nothing.
- * @note If text was already set at <b>index</b>, the previous buffer is released before assigning the new value.
- * @since 19
- */
-void OH_ArkUI_TextPickerRangeContentArray_SetTextAtIndex(
-    ArkUI_TextPickerRangeContentArray* handle, char* text, int32_t index);
-
-/**
- * @brief Releases an {@link ArkUI_TextPickerRangeContentArray} created by
- *        {@link OH_ArkUI_TextPickerRangeContentArray_Create}.
- *
- * @param handle Instance to destroy. If <b>nullptr</b>, this function has no effect.
- * @note After this call, <b>handle</b> must not be used. Do not pass pointers that were not returned by
- *       {@link OH_ArkUI_TextPickerRangeContentArray_Create}.
- * @since 19
- */
-void OH_ArkUI_TextPickerRangeContentArray_Destroy(ArkUI_TextPickerRangeContentArray* handle);
-
-/**
- * @brief Allocates one column level of an interconnected (cascade) TextPicker range. Use with range type
- *        {@link ARKUI_TEXTPICKER_RANGETYPE_CASCADE_RANGE_CONTENT}. The returned pointer addresses a contiguous array
- *        of sibling nodes; each node may carry display text and an optional next-level range from
- *        {@link OH_ArkUI_TextCascadePickerRangeContentArray_SetChildAtIndex}.
- *
- * @param length Number of sibling entries on this column. Value range: <b>[1, +∞)</b>.
- * @return Returns a pointer to the first sibling node when <b>length</b> is in <b>[1, +∞)</b>; returns <b>nullptr</b>
- *         otherwise. The sibling count used for bounds checks equals <b>length</b>.
- * @since 19
- */
-ArkUI_TextCascadePickerRangeContentArray* OH_ArkUI_TextCascadePickerRangeContentArray_Create(int32_t length);
-
-/**
- * @brief Sets the display text for one sibling node on a cascade TextPicker level.
- *
- * @param handle Pointer returned by {@link OH_ArkUI_TextCascadePickerRangeContentArray_Create}. If <b>nullptr</b>,
- *        this function has no effect.
- * @param text Null-terminated C string. The content is copied; the caller keeps ownership of <b>text</b>. If
- *        <b>nullptr</b>, this function has no effect.
- * @param index Index of the sibling to set. Valid values are greater than or equal to <b>0</b> and less than the
- *        <b>length</b> argument passed to {@link OH_ArkUI_TextCascadePickerRangeContentArray_Create}. Otherwise this
- *        function does nothing.
- * @note If text was already set at <b>index</b>, the previous buffer is released before assigning the new value.
- * @since 19
- */
-void OH_ArkUI_TextCascadePickerRangeContentArray_SetTextAtIndex(
-    ArkUI_TextCascadePickerRangeContentArray* handle, char* text, int32_t index);
-
-/**
- * @brief Sets the childs info of items in a multi text picker ranges.
- *
- * @param handle Pointer returned by {@link OH_ArkUI_TextCascadePickerRangeContentArray_Create}. If <b>nullptr</b>,
- *        this function has no effect.
- * @param child Pointer returned by {@link OH_ArkUI_TextCascadePickerRangeContentArray_Create} for the child column.
- *        If <b>nullptr</b>, this function has no effect. If a subtree already exists at <b>index</b>, it is destroyed
- *        with {@link OH_ArkUI_TextCascadePickerRangeContentArray_Destroy} before the new <b>child</b> is stored.
- *        While <b>child</b> stays attached under the parent, the caller must not call
- *        {@link OH_ArkUI_TextCascadePickerRangeContentArray_Destroy} on <b>child</b>.
- * @param index Index of the sibling that owns the subtree. Valid values are greater than or equal to <b>0</b> and less
- *        than the <b>length</b> argument passed to {@link OH_ArkUI_TextCascadePickerRangeContentArray_Create}.
- *        Otherwise this function does nothing.
- * @since 19
- */
-void OH_ArkUI_TextCascadePickerRangeContentArray_SetChildAtIndex(
-    ArkUI_TextCascadePickerRangeContentArray* handle, ArkUI_TextCascadePickerRangeContentArray* child, int32_t index);
-
-/**
- * @brief Releases a cascade range level allocated with {@link OH_ArkUI_TextCascadePickerRangeContentArray_Create}.
- *
- * @param handle Instance to destroy. If <b>nullptr</b>, this function has no effect.
- * @note After this call, <b>handle</b> must not be used. Do not pass pointers that were not returned by
- *       {@link OH_ArkUI_TextCascadePickerRangeContentArray_Create}.
- * @note Do not call {@link OH_ArkUI_TextCascadePickerRangeContentArray_Destroy} on a <b>child</b> while
- *       it is still stored in a parent's {@code children}.
- * @since 19
- */
-void OH_ArkUI_TextCascadePickerRangeContentArray_Destroy(ArkUI_TextCascadePickerRangeContentArray* handle);
 
 /**
  * @brief Expand the swipe action.
@@ -7474,25 +6926,6 @@ ArkUI_ErrorCode OH_ArkUI_TextEditorStyledStringController_SetStyledPlaceholder(
  */
 ArkUI_ErrorCode OH_ArkUI_TextEditorStyledStringController_ScrollToVisible(
     const OH_ArkUI_TextEditorStyledStringController* controller, int32_t start, int32_t end);
-
-/**
- * @brief Create the ArkUI_PickerIndicatorStyle instance.
- *
- * @param type The picker selection indicator enumeration type.
- * @return  ArkUI_PickerIndicatorStyle instance. If the instance returns a null pointer,
- *         it indicates creation failure, and the reason for the failure may be that the address space is full or
- *         the type not supported.
- * @since 23
-*/
-ArkUI_PickerIndicatorStyle* OH_ArkUI_PickerIndicatorStyle_Create(ArkUI_PickerIndicatorType type);
-
-/**
-* @brief Destroy the ArkUI_PickerIndicatorStyle instance.
-*
-* @param style The ArkUI_PickerIndicatorStyle instance to be destroyed.
-* @since 23
-*/
-void OH_ArkUI_PickerIndicatorStyle_Dispose(ArkUI_PickerIndicatorStyle* style);
 
 /**
 * @brief Set the parameters of background style.
