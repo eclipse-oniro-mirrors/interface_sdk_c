@@ -3173,11 +3173,25 @@ NAPI_EXTERN napi_status napi_get_property_with_callsite_info(napi_env env,
  * @since 24
  */
 NAPI_EXTERN napi_status napi_set_property_with_callsite_info(napi_env env,
-                                                             napi_value object,
-                                                             napi_value key,
-                                                             napi_value value,
-                                                             napi_callsite_info info,
-                                                             bool* hit);
+                                                              napi_value object,
+                                                              napi_value key,
+                                                              napi_value value,
+                                                              napi_callsite_info info,
+                                                              bool* hit);
+
+/**
+ * @brief Obtains the count of global handles after the last GC in the current virtual machine context.
+ *        Note that this count is not real-time and may be stale.
+ * @param env Current running virtual machine context.
+ * @param count The count of global handles.
+ *
+ * @return Returns the function execution status.
+ *         {@link napi_ok } If the function executed successfully.\n
+ *         {@link napi_invalid_arg } If env or count is nullptr.\n
+ *         {@link napi_pending_exception } If a pending exception existed before the call.\n
+ * @since 25
+ */
+NAPI_EXTERN napi_status napi_get_global_handle_count(napi_env env, size_t* count);
 #ifdef __cplusplus
 }
 #endif
