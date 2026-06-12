@@ -23,7 +23,7 @@
  */
 
 /**
- * @file node_attr_custom.h
+ * @file custom_attributes.h
  *
  * @brief Provides custom node event definitions for <b>NativeNode</b> APIs.
  *
