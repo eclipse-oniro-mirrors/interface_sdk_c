@@ -859,6 +859,22 @@ typedef struct {
 } ArkUI_RotationOptions;
 
 /**
+ * @brief Defines a two-dimensional point struct, with coordinates stored as float type.
+ *
+ * @since 24
+ */
+typedef struct {
+    /**
+     * x-axis coordinate.
+     */
+    float x;
+    /**
+     * y-axis coordinate.
+     */
+    float y;
+} ArkUI_PointF;
+
+/**
  * @brief Defines shadow options.
  *
  * @since 24
@@ -899,9 +915,10 @@ void OH_ArkUI_MotionPathOptions_Dispose(ArkUI_MotionPathOptions* options);
  *
  * @param options Pointer to {@link ArkUI_MotionPathOptions}.
  * @param svgPath Motion path string for the path animation.
- * @return Result code.
- *     <br>{@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *     <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ * @return <ul> 
+ *         <li>{@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
+ *         <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.</li>
+ *         </ul>
  * @since 23
  */
 ArkUI_ErrorCode OH_ArkUI_MotionPathOptions_SetPath(ArkUI_MotionPathOptions* options, const char* svgPath);
@@ -915,10 +932,11 @@ ArkUI_ErrorCode OH_ArkUI_MotionPathOptions_SetPath(ArkUI_MotionPathOptions* opti
  * @param writeLength Indicates the string length actually written to the buffer when {@link ARKUI_ERROR_CODE_NO_ERROR}
  *     is returned. Indicates the minimum buffer size that can accommodate the target string when
  *     {@link ARKUI_ERROR_CODE_BUFFER_SIZE_ERROR} is returned.
- * @return Result code.
- *     <br>{@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *     <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
- *     <br>{@link ARKUI_ERROR_CODE_BUFFER_SIZE_ERROR} if the buffer size is less than the minimum buffer size.
+ * @return <ul> .
+ *         <li>{@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
+ *         <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.</li>
+ *         <li>{@link ARKUI_ERROR_CODE_BUFFER_SIZE_ERROR} if the buffer size is less than the minimum buffer size.</li>
+ *         </ul>
  * @since 23
  */
 ArkUI_ErrorCode OH_ArkUI_MotionPathOptions_GetPath(const ArkUI_MotionPathOptions* options, char* svgPathBuffer,
@@ -932,11 +950,12 @@ ArkUI_ErrorCode OH_ArkUI_MotionPathOptions_GetPath(const ArkUI_MotionPathOptions
  * @param from Start progress of the motion path. The value ranges from **0.0** to **1.0**. The value of **from** must
  *     be less than or equal to that of **to**; otherwise, {@link ARKUI_ERROR_CODE_PARAM_OUT_OF_RANGE} is returned.
  *     For details about the meaning of **to**, see {@link OH_ArkUI_MotionPathOptions_SetTo}.
- * @return Result code.
- *     <br>{@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *     <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
- *     <br>{@link ARKUI_ERROR_CODE_PARAM_OUT_OF_RANGE} if **from** is out of the range [0.0, 1.0] or **from** is
- *     greater than **to**.
+ * @return <ul> 
+ *         <li>{@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
+ *         <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.</li>
+ *         <li>{@link ARKUI_ERROR_CODE_PARAM_OUT_OF_RANGE} if **from** is out of the range [0.0, 1.0] or **from** is
+ *              greater than **to**.</li>
+ *         </ul>
  * @since 23
  */
 ArkUI_ErrorCode OH_ArkUI_MotionPathOptions_SetFrom(ArkUI_MotionPathOptions* options, const float from);
@@ -946,9 +965,10 @@ ArkUI_ErrorCode OH_ArkUI_MotionPathOptions_SetFrom(ArkUI_MotionPathOptions* opti
  *
  * @param options Pointer to {@link ArkUI_MotionPathOptions}.
  * @param from Pointer to the variable used to receive the start progress of the motion path.
- * @return Result code.
- *     <br>{@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *     <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ * @return <ul> 
+ *         <li>{@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
+ *         <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.</li>
+ *         </ul>
  * @since 23
  */
 ArkUI_ErrorCode OH_ArkUI_MotionPathOptions_GetFrom(const ArkUI_MotionPathOptions* options, float* from);
@@ -961,11 +981,12 @@ ArkUI_ErrorCode OH_ArkUI_MotionPathOptions_GetFrom(const ArkUI_MotionPathOptions
  * @param to End progress of the motion path. The value ranges from **0.0** to **1.0**. The value of **to** must be
  *     greater than or equal to that of **from**; otherwise, {@link ARKUI_ERROR_CODE_PARAM_OUT_OF_RANGE} is returned.
  *     For details about the meaning of **from**, see {@link OH_ArkUI_MotionPathOptions_SetFrom}.
- * @return Result code.
- *     <br>{@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *     <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
- *     <br>{@link ARKUI_ERROR_CODE_PARAM_OUT_OF_RANGE} if **to** is out of the range [0.0, 1.0] or **to** is less than
- *     **from**.
+ * @return <ul>.
+ *         <li>{@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
+ *         <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.</li>
+ *         <li>{@link ARKUI_ERROR_CODE_PARAM_OUT_OF_RANGE} if **to** is out of the range [0.0, 1.0] or **to** is less than
+ *          **from**.</li>
+ *         </ul>
  * @since 23
  */
 ArkUI_ErrorCode OH_ArkUI_MotionPathOptions_SetTo(ArkUI_MotionPathOptions* options, const float to);
@@ -975,9 +996,10 @@ ArkUI_ErrorCode OH_ArkUI_MotionPathOptions_SetTo(ArkUI_MotionPathOptions* option
  *
  * @param options Pointer to {@link ArkUI_MotionPathOptions}.
  * @param to Pointer to the variable used to receive the end progress of the motion path.
- * @return Result code.
- *     <br>{@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *     <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ * @return <ul> 
+ *         <li>{@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
+ *         <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.</li>
+ *         </ul>
  * @since 23
  */
 ArkUI_ErrorCode OH_ArkUI_MotionPathOptions_GetTo(const ArkUI_MotionPathOptions* options, float* to);
@@ -989,9 +1011,10 @@ ArkUI_ErrorCode OH_ArkUI_MotionPathOptions_GetTo(const ArkUI_MotionPathOptions* 
  * @param rotatable Whether the component rotates along the path. The value **true** means that the component rotates
  *     along the path, and **false** means that the component does not rotate along the path. The default value is
  *     **false**.
- * @return Result code.
- *     <br>{@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *     <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ * @return <ul> 
+ *         <li>{@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
+ *         <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.</li>
+ *         </ul>
  * @since 23
  */
 ArkUI_ErrorCode OH_ArkUI_MotionPathOptions_SetRotatable(ArkUI_MotionPathOptions* options, const bool rotatable);
@@ -1003,9 +1026,10 @@ ArkUI_ErrorCode OH_ArkUI_MotionPathOptions_SetRotatable(ArkUI_MotionPathOptions*
  * @param rotatable Pointer to the variable used to receive the value of **rotatable**, which indicates whether the
  *     component rotates along the path. The value **true** means that the component rotates along the path, and
  *     **false** means that the component does not rotate along the path.
- * @return Result code.
- *     <br>{@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *     <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ * @return <ul> 
+ *         <li>{@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
+ *         <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.</li>
+ *         </ul>
  * @since 23
  */
 ArkUI_ErrorCode OH_ArkUI_MotionPathOptions_GetRotatable(const ArkUI_MotionPathOptions* options, bool* rotatable);
@@ -1032,9 +1056,10 @@ void OH_ArkUI_ShadowOptions_Destroy(OH_ArkUI_ShadowOptions* options);
  *
  * @param options Pointer to the {@link OH_ArkUI_ShadowOptions} object.
  * @param radius Blur radius of the shadow, in vp.
- * @return Result code.
- *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @return <ul> 
+ *         <li>{@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
+ *         <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.</li>
+ *         </ul>
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_ShadowOptions_SetRadius(OH_ArkUI_ShadowOptions* options, float radius);
@@ -1044,9 +1069,10 @@ ArkUI_ErrorCode OH_ArkUI_ShadowOptions_SetRadius(OH_ArkUI_ShadowOptions* options
  *
  * @param options Pointer to the {@link OH_ArkUI_ShadowOptions} object.
  * @param radius Pointer to the blur radius of the shadow, in vp.
- * @return Result code.
- *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @return <ul> 
+ *         <li>{@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
+ *         <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.</li>
+ *         </ul>
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_ShadowOptions_GetRadius(OH_ArkUI_ShadowOptions* options, float* radius);
@@ -1056,9 +1082,10 @@ ArkUI_ErrorCode OH_ArkUI_ShadowOptions_GetRadius(OH_ArkUI_ShadowOptions* options
  *
  * @param options Pointer to the {@link OH_ArkUI_ShadowOptions} object.
  * @param type Shadow type ({@link ArkUI_ShadowType}).
- * @return Result code.
- *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @return <ul> 
+ *         <li>{@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
+ *         <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.</li>
+ *         </ul>
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_ShadowOptions_SetType(OH_ArkUI_ShadowOptions* options, ArkUI_ShadowType type);
@@ -1068,9 +1095,10 @@ ArkUI_ErrorCode OH_ArkUI_ShadowOptions_SetType(OH_ArkUI_ShadowOptions* options, 
  *
  * @param options Pointer to the {@link OH_ArkUI_ShadowOptions} object.
  * @param type Shadow type ({@link ArkUI_ShadowType}).
- * @return Result code.
- *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @return <ul> 
+ *         <li>{@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
+ *         <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.</li>
+ *         </ul>
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_ShadowOptions_GetType(OH_ArkUI_ShadowOptions* options, ArkUI_ShadowType* type);
@@ -1080,9 +1108,10 @@ ArkUI_ErrorCode OH_ArkUI_ShadowOptions_GetType(OH_ArkUI_ShadowOptions* options, 
  *
  * @param options Pointer to the {@link OH_ArkUI_ShadowOptions} object.
  * @param color Shadow color, in 0xARGB format.
- * @return Result code.
- *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @return <ul> 
+ *         <li>{@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
+ *         <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.</li>
+ *         </ul>
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_ShadowOptions_SetColor(OH_ArkUI_ShadowOptions* options, uint32_t color);
@@ -1092,9 +1121,10 @@ ArkUI_ErrorCode OH_ArkUI_ShadowOptions_SetColor(OH_ArkUI_ShadowOptions* options,
  *
  * @param options Pointer to the {@link OH_ArkUI_ShadowOptions} object.
  * @param color Pointer to the shadow color, in 0xARGB format.
- * @return Result code.
- *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @return <ul> 
+ *         <li>{@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
+ *         <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.</li>
+ *         </ul>
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_ShadowOptions_GetColor(OH_ArkUI_ShadowOptions* options, uint32_t* color);
@@ -1104,9 +1134,10 @@ ArkUI_ErrorCode OH_ArkUI_ShadowOptions_GetColor(OH_ArkUI_ShadowOptions* options,
  *
  * @param options Pointer to the {@link OH_ArkUI_ShadowOptions} object.
  * @param offsetX Shadow offset on the x-axis, in vp.
- * @return Result code.
- *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @return <ul> 
+ *         <li>{@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
+ *         <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.</li>
+ *         </ul>
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_ShadowOptions_SetOffsetX(OH_ArkUI_ShadowOptions* options, float offsetX);
@@ -1116,9 +1147,10 @@ ArkUI_ErrorCode OH_ArkUI_ShadowOptions_SetOffsetX(OH_ArkUI_ShadowOptions* option
  *
  * @param options Pointer to the {@link OH_ArkUI_ShadowOptions} object.
  * @param offsetX Pointer to the shadow offset on the x-axis, in vp.
- * @return Result code.
- *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @return <ul> 
+ *         <li>{@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
+ *         <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.</li>
+ *         </ul>
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_ShadowOptions_GetOffsetX(OH_ArkUI_ShadowOptions* options, float* offsetX);
@@ -1128,9 +1160,10 @@ ArkUI_ErrorCode OH_ArkUI_ShadowOptions_GetOffsetX(OH_ArkUI_ShadowOptions* option
  *
  * @param options Pointer to the {@link OH_ArkUI_ShadowOptions} object.
  * @param offsetY Shadow offset on the y-axis, in vp.
- * @return Result code.
- *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @return <ul> 
+ *         <li>{@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
+ *         <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.</li>
+ *         </ul>
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_ShadowOptions_SetOffsetY(OH_ArkUI_ShadowOptions* options, float offsetY);
@@ -1140,9 +1173,10 @@ ArkUI_ErrorCode OH_ArkUI_ShadowOptions_SetOffsetY(OH_ArkUI_ShadowOptions* option
  *
  * @param options Pointer to the {@link OH_ArkUI_ShadowOptions} object.
  * @param offsetY Pointer to the shadow offset on the y-axis, in vp.
- * @return Result code.
- *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @return <ul> 
+ *         <li>{@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
+ *         <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.</li>
+ *         </ul>
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_ShadowOptions_GetOffsetY(OH_ArkUI_ShadowOptions* options, float* offsetY);
@@ -1153,9 +1187,10 @@ ArkUI_ErrorCode OH_ArkUI_ShadowOptions_GetOffsetY(OH_ArkUI_ShadowOptions* option
  * @param options Pointer to the {@link OH_ArkUI_ShadowOptions} object.
  * @param isFill Whether to fill a component with a shadow. **true** means to fill a component with a shadow, and **
  *     false** means the opposite. The default value is **false**.
- * @return Result code.
- *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @return <ul> 
+ *         <li>{@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
+ *         <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.</li>
+ *         </ul>
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_ShadowOptions_SetFill(OH_ArkUI_ShadowOptions* options, bool isFill);
@@ -1166,9 +1201,10 @@ ArkUI_ErrorCode OH_ArkUI_ShadowOptions_SetFill(OH_ArkUI_ShadowOptions* options, 
  * @param options Pointer to the {@link OH_ArkUI_ShadowOptions} object.
  * @param isFill Pointer to the **isFill** parameter indicating whether a component is filled with a shadow. **true**
  *     means that a component is filled with a shadow, and **false** means the opposite.
- * @return Result code.
- *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @return <ul> 
+ *         <li>{@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
+ *         <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.</li>
+ *         </ul>
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_ShadowOptions_GetFill(OH_ArkUI_ShadowOptions* options, bool* isFill);
@@ -1203,9 +1239,10 @@ void OH_ArkUI_Matrix4ScaleOptions_Dispose(ArkUI_Matrix4ScaleOptions* options);
  *
  * @param options Pointer to the scaling parameter object for matrix operations.
  * @param scaleX Scaling factor in the x direction. The value range is (-∞, +∞).
- * @return Result code.
- *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @return <ul> 
+ *         <li>{@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
+ *         <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.</li>
+ *         </ul>
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_Matrix4ScaleOptions_SetX(ArkUI_Matrix4ScaleOptions* options, const float scaleX);
@@ -1216,9 +1253,10 @@ ArkUI_ErrorCode OH_ArkUI_Matrix4ScaleOptions_SetX(ArkUI_Matrix4ScaleOptions* opt
  *
  * @param options Pointer to the scaling parameter object for matrix operations.
  * @param scaleX Pointer to the scaling factor in the x direction.
- * @return Result code.
- *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @return <ul> 
+ *         <li>{@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
+ *         <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.</li>
+ *         </ul>
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_Matrix4ScaleOptions_GetX(const ArkUI_Matrix4ScaleOptions* options, float* scaleX);
@@ -1228,9 +1266,10 @@ ArkUI_ErrorCode OH_ArkUI_Matrix4ScaleOptions_GetX(const ArkUI_Matrix4ScaleOption
  *
  * @param options Pointer to the scaling parameter object for matrix operations.
  * @param scaleY Scaling factor in the y direction. The value range is (-∞, +∞).
- * @return Result code.
- *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @return <ul> 
+ *         <li>{@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
+ *         <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.</li>
+ *         </ul>
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_Matrix4ScaleOptions_SetY(ArkUI_Matrix4ScaleOptions* options, const float scaleY);
@@ -1241,9 +1280,10 @@ ArkUI_ErrorCode OH_ArkUI_Matrix4ScaleOptions_SetY(ArkUI_Matrix4ScaleOptions* opt
  *
  * @param options Pointer to the scaling parameter object for matrix operations.
  * @param scaleY Pointer to the scaling factor in the y direction.
- * @return Result code.
- *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @return <ul> 
+ *         <li>{@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
+ *         <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.</li>
+ *         </ul>
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_Matrix4ScaleOptions_GetY(const ArkUI_Matrix4ScaleOptions* options, float* scaleY);
@@ -1253,9 +1293,10 @@ ArkUI_ErrorCode OH_ArkUI_Matrix4ScaleOptions_GetY(const ArkUI_Matrix4ScaleOption
  *
  * @param options Pointer to the scaling parameter object for matrix operations.
  * @param scaleZ Scaling factor in the z direction. The value range is (-∞, +∞).
- * @return Result code.
- *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @return <ul> 
+ *         <li>{@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
+ *         <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.</li>
+ *         </ul>
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_Matrix4ScaleOptions_SetZ(ArkUI_Matrix4ScaleOptions* options, const float scaleZ);
@@ -1266,9 +1307,10 @@ ArkUI_ErrorCode OH_ArkUI_Matrix4ScaleOptions_SetZ(ArkUI_Matrix4ScaleOptions* opt
  *
  * @param options Pointer to the scaling parameter object for matrix operations.
  * @param scaleZ Pointer to the scaling factor in the z direction.
- * @return Result code.
- *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @return <ul> 
+ *         <li>{@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
+ *         <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.</li>
+ *         </ul>
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_Matrix4ScaleOptions_GetZ(const ArkUI_Matrix4ScaleOptions* options, float* scaleZ);
@@ -1280,9 +1322,10 @@ ArkUI_ErrorCode OH_ArkUI_Matrix4ScaleOptions_GetZ(const ArkUI_Matrix4ScaleOption
  * @param options Pointer to the scaling parameter object for matrix operations.
  * @param centerX X-coordinate of the transformation center point. The value range is (-∞, +∞). **0** indicates that
  *     there is no x-axis offset based on the transformation center. The unit is px.
- * @return Result code.
- *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @return <ul> 
+ *         <li>{@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
+ *         <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.</li>
+ *         </ul>
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_Matrix4ScaleOptions_SetCenterX(ArkUI_Matrix4ScaleOptions* options, const float centerX);
@@ -1294,9 +1337,10 @@ ArkUI_ErrorCode OH_ArkUI_Matrix4ScaleOptions_SetCenterX(ArkUI_Matrix4ScaleOption
  * @param options Pointer to the scaling parameter object for matrix operations.
  * @param centerX Pointer to the X-coordinate of the transformation center point. The unit is px. The default value is *
  *     **0**.
- * @return Result code.
- *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @return <ul> 
+ *         <li>{@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
+ *         <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.</li>
+ *         </ul>
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_Matrix4ScaleOptions_GetCenterX(const ArkUI_Matrix4ScaleOptions* options, float* centerX);
@@ -1308,9 +1352,10 @@ ArkUI_ErrorCode OH_ArkUI_Matrix4ScaleOptions_GetCenterX(const ArkUI_Matrix4Scale
  * @param options Pointer to the scaling parameter object for matrix operations.
  * @param centerY Y-coordinate of the transformation center point. The value range is (-∞, +∞). **0** indicates that
  *     there is no y-axis offset based on the transformation center. The unit is px.
- * @return Result code.
- *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @return <ul> 
+ *         <li>{@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
+ *         <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.</li>
+ *         </ul>
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_Matrix4ScaleOptions_SetCenterY(ArkUI_Matrix4ScaleOptions* options, const float centerY);
@@ -1322,9 +1367,10 @@ ArkUI_ErrorCode OH_ArkUI_Matrix4ScaleOptions_SetCenterY(ArkUI_Matrix4ScaleOption
  * @param options Pointer to the scaling parameter object for matrix operations.
  * @param centerY Pointer to the Y-coordinate of the transformation center point. The unit is px. The default value is *
  *     **0**.
- * @return Result code.
- *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @return <ul> 
+ *         <li>{@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
+ *         <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.</li>
+ *         </ul>
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_Matrix4ScaleOptions_GetCenterY(const ArkUI_Matrix4ScaleOptions* options, float* centerY);
@@ -1363,9 +1409,10 @@ void OH_ArkUI_Matrix4RotationOptions_Dispose(ArkUI_Matrix4RotationOptions* optio
  *
  * @param options Pointer to the rotation parameter object for matrix operations.
  * @param x Value of the direction vector in the x direction. The value range is (-∞, +∞).
- * @return Result code.
- *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @return <ul> 
+ *         <li>{@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
+ *         <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.</li>
+ *         </ul>
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_Matrix4RotationOptions_SetX(ArkUI_Matrix4RotationOptions* options, const float x);
@@ -1378,9 +1425,10 @@ ArkUI_ErrorCode OH_ArkUI_Matrix4RotationOptions_SetX(ArkUI_Matrix4RotationOption
  * @param options Pointer to the rotation parameter object for matrix operations.
  * @param x Pointer to the value of the direction vector in the x direction. If the value of x has never been set, the
  *     value is undefined.
- * @return Result code.
- *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @return <ul> 
+ *         <li>{@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
+ *         <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.</li>
+ *         </ul>
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_Matrix4RotationOptions_GetX(const ArkUI_Matrix4RotationOptions* options, float* x);
@@ -1390,9 +1438,10 @@ ArkUI_ErrorCode OH_ArkUI_Matrix4RotationOptions_GetX(const ArkUI_Matrix4Rotation
  *
  * @param options Pointer to the rotation parameter object for matrix operations.
  * @param y Value of the direction vector in the y direction. The value range is (-∞, +∞).
- * @return Result code.
- *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @return <ul> 
+ *         <li>{@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
+ *         <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.</li>
+ *         </ul>
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_Matrix4RotationOptions_SetY(ArkUI_Matrix4RotationOptions* options, const float y);
@@ -1405,9 +1454,10 @@ ArkUI_ErrorCode OH_ArkUI_Matrix4RotationOptions_SetY(ArkUI_Matrix4RotationOption
  * @param options Pointer to the rotation parameter object for matrix operations.
  * @param y Pointer to the value of the direction vector in the y direction. If the value of y has never been set, the
  *     value is undefined.
- * @return Result code.
- *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @return <ul> 
+ *         <li>{@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
+ *         <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.</li>
+ *         </ul>
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_Matrix4RotationOptions_GetY(const ArkUI_Matrix4RotationOptions* options, float* y);
@@ -1417,9 +1467,10 @@ ArkUI_ErrorCode OH_ArkUI_Matrix4RotationOptions_GetY(const ArkUI_Matrix4Rotation
  *
  * @param options Pointer to the rotation parameter object for matrix operations.
  * @param z Value of the direction vector in the z direction. The value range is (-∞, +∞).
- * @return Result code.
- *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @return <ul> 
+ *         <li>{@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
+ *         <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.</li>
+ *         </ul>
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_Matrix4RotationOptions_SetZ(ArkUI_Matrix4RotationOptions* options, const float z);
@@ -1432,9 +1483,10 @@ ArkUI_ErrorCode OH_ArkUI_Matrix4RotationOptions_SetZ(ArkUI_Matrix4RotationOption
  * @param options Pointer to the rotation parameter object for matrix operations.
  * @param z Pointer to the value of the direction vector in the z direction. If the value of z has never been set, the
  *     value is undefined.
- * @return Result code.
- *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @return <ul> 
+ *         <li>{@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
+ *         <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.</li>
+ *         </ul>
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_Matrix4RotationOptions_GetZ(const ArkUI_Matrix4RotationOptions* options, float* z);
@@ -1444,9 +1496,10 @@ ArkUI_ErrorCode OH_ArkUI_Matrix4RotationOptions_GetZ(const ArkUI_Matrix4Rotation
  *
  * @param options Pointer to the rotation parameter object for matrix operations.
  * @param angle Value of the rotation angle. The value range is (-∞, +∞). The unit is degree.
- * @return Result code.
- *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @return <ul> 
+ *         <li>{@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
+ *         <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.</li>
+ *         </ul>
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_Matrix4RotationOptions_SetAngle(ArkUI_Matrix4RotationOptions* options, const float angle);
@@ -1457,9 +1510,10 @@ ArkUI_ErrorCode OH_ArkUI_Matrix4RotationOptions_SetAngle(ArkUI_Matrix4RotationOp
  * @param options Pointer to the rotation parameter object for matrix operations.
  * @param angle Pointer to the value of the rotation angle. The unit is degree. If the angle has never been set, the
  *     default value is **0**.
- * @return Result code.
- *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @return <ul> 
+ *         <li>{@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
+ *         <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.</li>
+ *         </ul>
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_Matrix4RotationOptions_GetAngle(const ArkUI_Matrix4RotationOptions* options, float* angle);
@@ -1472,9 +1526,10 @@ ArkUI_ErrorCode OH_ArkUI_Matrix4RotationOptions_GetAngle(const ArkUI_Matrix4Rota
  * @param centerX X-axis offset of a single matrix transformation center point relative to a component transformation
  *     center point. The value range is (-∞, +∞). **0** indicates that there is no x-axis offset based on the
  *     transformation center. The unit is px.
- * @return Result code.
- *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @return <ul> 
+ *         <li>{@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
+ *         <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.</li>
+ *         </ul>
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_Matrix4RotationOptions_SetCenterX(ArkUI_Matrix4RotationOptions* options, const float centerX);
@@ -1486,9 +1541,10 @@ ArkUI_ErrorCode OH_ArkUI_Matrix4RotationOptions_SetCenterX(ArkUI_Matrix4Rotation
  * @param options Pointer to the rotation parameter object for matrix operations.
  * @param centerX Pointer to the x-axis offset of a single matrix transformation center point relative to a component
  *     transformation center point. The unit is px. If **centerX** has never been set, the default value is **0**.
- * @return Result code.
- *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @return <ul> 
+ *         <li>{@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
+ *         <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.</li>
+ *         </ul>
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_Matrix4RotationOptions_GetCenterX(const ArkUI_Matrix4RotationOptions* options, float* centerX);
@@ -1501,9 +1557,10 @@ ArkUI_ErrorCode OH_ArkUI_Matrix4RotationOptions_GetCenterX(const ArkUI_Matrix4Ro
  * @param centerY Y-axis offset of a single matrix transformation center point relative to a component transformation
  *     center point. The value range is (-∞, +∞). **0** indicates that there is no y-axis offset based on the
  *     transformation center. The unit is px.
- * @return Result code.
- *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @return <ul> 
+ *         <li>{@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
+ *         <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.</li>
+ *         </ul>
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_Matrix4RotationOptions_SetCenterY(ArkUI_Matrix4RotationOptions* options, const float centerY);
@@ -1515,9 +1572,10 @@ ArkUI_ErrorCode OH_ArkUI_Matrix4RotationOptions_SetCenterY(ArkUI_Matrix4Rotation
  * @param options Pointer to the rotation parameter object for matrix operations.
  * @param centerY Pointer to the y-axis offset of a single matrix transformation center point relative to a component
  *     transformation center point. The unit is px. If **centerY** has never been set, the default value is **0**.
- * @return Result code.
- *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @return <ul> 
+ *         <li>{@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
+ *         <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.</li>
+ *         </ul>curs.
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_Matrix4RotationOptions_GetCenterY(const ArkUI_Matrix4RotationOptions* options, float* centerY);
@@ -1552,9 +1610,10 @@ void OH_ArkUI_Matrix4TranslationOptions_Dispose(ArkUI_Matrix4TranslationOptions*
  * @param options Pointer to the translation parameter object for matrix operations.
  * @param x Translation value on the x-axis. The value range is (-∞, +∞). The unit is px. If the value of x has never
  *     been set, the default value is **0**.
- * @return Result code.
- *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @return <ul> 
+ *         <li>{@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
+ *         <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.</li>
+ *         </ul>
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_Matrix4TranslationOptions_SetX(ArkUI_Matrix4TranslationOptions* options, const float x);
@@ -1564,9 +1623,10 @@ ArkUI_ErrorCode OH_ArkUI_Matrix4TranslationOptions_SetX(ArkUI_Matrix4Translation
  *
  * @param options Pointer to the translation parameter object for matrix operations.
  * @param x Pointer to the translation value on the x-axis.
- * @return Result code.
- *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @return <ul> 
+ *         <li>{@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
+ *         <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.</li>
+ *         </ul>
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_Matrix4TranslationOptions_GetX(const ArkUI_Matrix4TranslationOptions* options, float* x);
@@ -1577,9 +1637,10 @@ ArkUI_ErrorCode OH_ArkUI_Matrix4TranslationOptions_GetX(const ArkUI_Matrix4Trans
  * @param options Pointer to the translation parameter object for matrix operations.
  * @param y Translation value on the y-axis. The value range is (-∞, +∞). The unit is px. If the value of y has never
  *     been set, the default value is **0**.
- * @return Result code.
- *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @return <ul> 
+ *         <li>{@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
+ *         <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.</li>
+ *         </ul>
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_Matrix4TranslationOptions_SetY(ArkUI_Matrix4TranslationOptions* options, const float y);
@@ -1589,9 +1650,10 @@ ArkUI_ErrorCode OH_ArkUI_Matrix4TranslationOptions_SetY(ArkUI_Matrix4Translation
  *
  * @param options Pointer to the translation parameter object for matrix operations.
  * @param y Pointer to the translation value on the y-axis.
- * @return Result code.
- *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @return <ul> 
+ *         <li>{@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
+ *         <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.</li>
+ *         </ul>
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_Matrix4TranslationOptions_GetY(const ArkUI_Matrix4TranslationOptions* options, float* y);
@@ -1602,9 +1664,10 @@ ArkUI_ErrorCode OH_ArkUI_Matrix4TranslationOptions_GetY(const ArkUI_Matrix4Trans
  * @param options Pointer to the translation parameter object for matrix operations.
  * @param z Translation value on the z-axis. The value range is (-∞, +∞). The unit is px. If the value of z has never
  *     been set, the default value is **0**.
- * @return Result code.
- *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @return <ul> 
+ *         <li>{@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
+ *         <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.</li>
+ *         </ul>.
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_Matrix4TranslationOptions_SetZ(ArkUI_Matrix4TranslationOptions* options, const float z);
@@ -1614,9 +1677,10 @@ ArkUI_ErrorCode OH_ArkUI_Matrix4TranslationOptions_SetZ(ArkUI_Matrix4Translation
  *
  * @param options Pointer to the translation parameter object for matrix operations.
  * @param z Pointer to the translation value on the z-axis.
- * @return Result code.
- *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @return <ul> 
+ *         <li>{@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
+ *         <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.</li>
+ *         </ul>
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_Matrix4TranslationOptions_GetZ(const ArkUI_Matrix4TranslationOptions* options, float* z);
@@ -1662,9 +1726,10 @@ ArkUI_Matrix4* OH_ArkUI_Matrix4_Copy(const ArkUI_Matrix4* matrix);
  * @brief Performs an inverse matrix transformation on the input matrix.
  *
  * @param matrix Pointer to the fourth-order matrix object to be inverted.
- * @return Result code.
- *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if the matrix is not invertible.
+ * @return <ul> 
+ *         <li>{@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
+ *         <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.</li>
+ *         </ul>
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_Matrix4_Invert(ArkUI_Matrix4* matrix);
@@ -1676,9 +1741,10 @@ ArkUI_ErrorCode OH_ArkUI_Matrix4_Invert(ArkUI_Matrix4* matrix);
  *
  * @param oriMatrix Pointer to the original fourth-order matrix object.
  * @param anotherMatrix Pointer to another matrix object to be combined.
- * @return Result code.
- *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @return <ul> 
+ *         <li>{@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
+ *         <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.</li>
+ *         </ul>
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_Matrix4_Combine(ArkUI_Matrix4* oriMatrix, const ArkUI_Matrix4* anotherMatrix);
@@ -1690,9 +1756,10 @@ ArkUI_ErrorCode OH_ArkUI_Matrix4_Combine(ArkUI_Matrix4* oriMatrix, const ArkUI_M
  *
  * @param matrix Pointer to the fourth-order matrix object to be translated.
  * @param translate Pointer to the translation object.
- * @return Result code.
- *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @return <ul> 
+ *         <li>{@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
+ *         <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.</li>
+ *         </ul>
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_Matrix4_Translate(ArkUI_Matrix4* matrix, const ArkUI_Matrix4TranslationOptions* translate);
@@ -1703,9 +1770,10 @@ ArkUI_ErrorCode OH_ArkUI_Matrix4_Translate(ArkUI_Matrix4* matrix, const ArkUI_Ma
  *
  * @param matrix Pointer to the fourth-order matrix object to be scaled.
  * @param scale Pointer to the scaling object.
- * @return Result code.
- *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @return <ul> 
+ *         <li>{@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
+ *         <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.</li>
+ *         </ul>
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_Matrix4_Scale(ArkUI_Matrix4* matrix, const ArkUI_Matrix4ScaleOptions* scale);
@@ -1716,9 +1784,10 @@ ArkUI_ErrorCode OH_ArkUI_Matrix4_Scale(ArkUI_Matrix4* matrix, const ArkUI_Matrix
  *
  * @param matrix Pointer to the fourth-order matrix object to be rotated.
  * @param rotate Pointer to the rotation object.
- * @return Result code.
- *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @return <ul> 
+ *         <li>{@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
+ *         <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.</li>
+ *         </ul>
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_Matrix4_Rotate(ArkUI_Matrix4* matrix, const ArkUI_Matrix4RotationOptions* rotate);
@@ -1730,9 +1799,10 @@ ArkUI_ErrorCode OH_ArkUI_Matrix4_Rotate(ArkUI_Matrix4* matrix, const ArkUI_Matri
  * @param matrix Pointer to the fourth-order matrix object to be skewed.
  * @param skewX Skew coefficient in the x direction.
  * @param skewY Skew coefficient in the y direction.
- * @return Result code.
- *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @return <ul> 
+ *         <li>{@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
+ *         <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.</li>
+ *         </ul>
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_Matrix4_Skew(ArkUI_Matrix4* matrix, const float skewX, const float skewY);
@@ -1743,9 +1813,10 @@ ArkUI_ErrorCode OH_ArkUI_Matrix4_Skew(ArkUI_Matrix4* matrix, const float skewX, 
  * @param matrix Pointer to the fourth-order matrix object.
  * @param oriPoint Pointer to the original coordinate point.
  * @param result Pointer to the result point. This parameter cannot be set to a null pointer.
- * @return Result code.
- *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @return <ul> 
+ *         <li>{@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
+ *         <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.</li>
+ *         </ul>
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_Matrix4_TransformPoint(const ArkUI_Matrix4* matrix, const ArkUI_PointF* oriPoint, ArkUI_PointF* result);
@@ -1759,9 +1830,10 @@ ArkUI_ErrorCode OH_ArkUI_Matrix4_TransformPoint(const ArkUI_Matrix4* matrix, con
  *     **pointCount**.
  * @param dst Pointer to the array of mapped polygon coordinate points. The array length must be at least **pointCount**.
  * @param pointCount Number of polygon points, which must be one of the values 0, 1, 2, 3, or 4.
- * @return Result code.
- *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @return <ul> 
+ *         <li>{@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
+ *         <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.</li>
+ *         </ul>
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_Matrix4_SetPolyToPoly(ArkUI_Matrix4* matrix, const ArkUI_PointF* src, const ArkUI_PointF* dst, const uint32_t pointCount);
@@ -1772,9 +1844,10 @@ ArkUI_ErrorCode OH_ArkUI_Matrix4_SetPolyToPoly(ArkUI_Matrix4* matrix, const ArkU
  * @param matrix Pointer to the fourth-order matrix object.
  * @param result Pointer to an array that can hold 16 floating-point numbers. This parameter cannot be set to a null
  *     pointer.
- * @return Result code.
- *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @return <ul> 
+ *         <li>{@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
+ *         <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.</li>
+ *         </ul>
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_Matrix4_GetElements(const ArkUI_Matrix4* matrix, float* result);
