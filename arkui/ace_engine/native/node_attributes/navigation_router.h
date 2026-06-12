@@ -33,8 +33,8 @@
  * @since 12
  */
 
-#ifndef ARKUI_NATIVE_NODE_ATTRIBUTES_NAVIGATION_ROUTER_NAVIGATION_ROUTER_H
-#define ARKUI_NATIVE_NODE_ATTRIBUTES_NAVIGATION_ROUTER_NAVIGATION_ROUTER_H
+#ifndef ARKUI_NATIVE_NODE_ATTRIBUTES_NAVIGATION_ROUTER_H
+#define ARKUI_NATIVE_NODE_ATTRIBUTES_NAVIGATION_ROUTER_H
 
 #ifdef __cplusplus
 extern "C" {
@@ -90,7 +90,7 @@ typedef enum {
      * The NavDestination returns from the component.
      * @since 12
      */
-    ARKUI_NAV_DESTINATION_STATE_ON_BACK_PRESS = 100
+    ARKUI_NAV_DESTINATION_STATE_ON_BACK_PRESS = 100,
 } ArkUI_NavDestinationState;
 
 /**
@@ -123,12 +123,12 @@ typedef enum {
      * The Router Page returns.
      * @since 12
      */
-    ARKUI_ROUTER_PAGE_STATE_ON_BACK_PRESS = 4
+    ARKUI_ROUTER_PAGE_STATE_ON_BACK_PRESS = 4,
 } ArkUI_RouterPageState;
 
 #ifdef __cplusplus
 }
 #endif
 
-#endif // ARKUI_NATIVE_NODE_ATTRIBUTES_NAVIGATION_ROUTER_NAVIGATION_ROUTER_H
+#endif // ARKUI_NATIVE_NODE_ATTRIBUTES_NAVIGATION_ROUTER_H
 /** @} */
