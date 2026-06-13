@@ -40,6 +40,8 @@
 #include "native_type.h"
 #include "ui_input_event.h"
 
+#include "node_attributes/custom_attributes.h"
+
 #ifdef __cplusplus
 #include <cstdint>
 #else
@@ -11310,8 +11312,6 @@ typedef enum {
     /** Re-rendering. */
     NODE_NEED_RENDER,
 } ArkUI_NodeDirtyFlag;
-
-#include "node_attributes/node_attr_custom.h"
 
 /**
  * @brief Defines the general structure of a custom component event.

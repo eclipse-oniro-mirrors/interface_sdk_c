@@ -207,6 +207,103 @@ typedef enum Camera_Position {
 } Camera_Position;
 
 /**
+ * @brief Enum for automotive camera position.
+ *
+ * @since 26.0.0
+ */
+typedef enum OH_Camera_AutomotiveCameraPosition {
+    /**
+     * Exterior other position.
+     * @since 26.0.0
+     */
+    OH_CAMERA_AUTOMOTIVE_CAMERA_POSITION_EXTERIOR_OTHER = 0,
+
+    /**
+     * Exterior front position.
+     * @since 26.0.0
+     */
+    OH_CAMERA_AUTOMOTIVE_CAMERA_POSITION_EXTERIOR_FRONT = 1,
+
+    /**
+     * Exterior rear position.
+     * @since 26.0.0
+     */
+    OH_CAMERA_AUTOMOTIVE_CAMERA_POSITION_EXTERIOR_REAR = 2,
+
+    /**
+     * Exterior left position.
+     * @since 26.0.0
+     */
+    OH_CAMERA_AUTOMOTIVE_CAMERA_POSITION_EXTERIOR_LEFT = 3,
+
+    /**
+     * Exterior right position.
+     * @since 26.0.0
+     */
+    OH_CAMERA_AUTOMOTIVE_CAMERA_POSITION_EXTERIOR_RIGHT = 4,
+
+    /**
+     * Interior other position.
+     * @since 26.0.0
+     */
+    OH_CAMERA_AUTOMOTIVE_CAMERA_POSITION_INTERIOR_OTHER = 5,
+
+    /**
+     * Interior left side position of the first row.
+     * @since 26.0.0
+     */
+    OH_CAMERA_AUTOMOTIVE_CAMERA_POSITION_INTERIOR_ROW_1_LEFT = 6,
+
+    /**
+     * Interior center side position of the first row.
+     * @since 26.0.0
+     */
+    OH_CAMERA_AUTOMOTIVE_CAMERA_POSITION_INTERIOR_ROW_1_CENTER = 7,
+
+    /**
+     * Interior right side position of the first row.
+     * @since 26.0.0
+     */
+    OH_CAMERA_AUTOMOTIVE_CAMERA_POSITION_INTERIOR_ROW_1_RIGHT = 8,
+
+    /**
+     * Interior left side position of the second row.
+     * @since 26.0.0
+     */
+    OH_CAMERA_AUTOMOTIVE_CAMERA_POSITION_INTERIOR_ROW_2_LEFT = 9,
+
+    /**
+     * Interior center side position of the second row.
+     * @since 26.0.0
+     */
+    OH_CAMERA_AUTOMOTIVE_CAMERA_POSITION_INTERIOR_ROW_2_CENTER = 10,
+
+    /**
+     * Interior right side position of the second row.
+     * @since 26.0.0
+     */
+    OH_CAMERA_AUTOMOTIVE_CAMERA_POSITION_INTERIOR_ROW_2_RIGHT = 11,
+
+    /**
+     * Interior left side position of the third row.
+     * @since 26.0.0
+     */
+    OH_CAMERA_AUTOMOTIVE_CAMERA_POSITION_INTERIOR_ROW_3_LEFT = 12,
+
+    /**
+     * Interior center side position of the third row.
+     * @since 26.0.0
+     */
+    OH_CAMERA_AUTOMOTIVE_CAMERA_POSITION_INTERIOR_ROW_3_CENTER = 13,
+
+    /**
+     * Interior right side position of the third row.
+     * @since 26.0.0
+     */
+    OH_CAMERA_AUTOMOTIVE_CAMERA_POSITION_INTERIOR_ROW_3_RIGHT = 14
+} OH_Camera_AutomotiveCameraPosition;
+
+/**
  * @brief Enumerates the camera types.
  * 
  * @since 11

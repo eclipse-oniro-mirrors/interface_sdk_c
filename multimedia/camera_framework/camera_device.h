@@ -217,6 +217,17 @@ Camera_ErrorCode OH_CameraDevice_GetSensorPixelArraySize(const Camera_Device* ca
  */
 Camera_ErrorCode OH_CameraDevice_GetSensorColorFilterArrangement(const Camera_Device* camera, OH_Camera_SensorColorFilterArrangement* sensorCFA);
 
+/**
+ * @brief Gets the automotive position of a camera sensor.
+ *
+ * @param camera Pointer to the Camera_Device used to retrieve attributes.
+ * @param automotiveCameraPosition Output parameter, returns the automotive camera position enum value.
+ * @return {@link CAMERA_OK} if the operation succeeds
+ *         {@link CAMERA_INVALID_ARGUMENT} if parameter is missing or invalid
+ *         {@link CAMERA_SERVICE_FATAL_ERROR} if camera service fails
+ * @since 26.0.0
+ */
+Camera_ErrorCode OH_CameraDevice_GetAutomotiveCameraPosition(const Camera_Device* camera, OH_Camera_AutomotiveCameraPosition* automotiveCameraPosition);
 #ifdef __cplusplus
 }
 #endif
