@@ -41,6 +41,8 @@
 
 #include "drawable_descriptor.h"
 
+#include "node_attributes/common_attributes.h"
+
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -1063,39 +1065,6 @@ typedef enum {
 } ArkUI_BorderStyle;
 
 /**
- * @brief Enumerates the hit test modes.
- *
- * @since 12
- */
-typedef enum {
-    /** Both the node and its child node respond to the hit test of a touch event, but its sibling node is blocked from
-     *  the hit test. */
-    ARKUI_HIT_TEST_MODE_DEFAULT = 0,
-    /** The node responds to the hit test of a touch event, but its child node and sibling node are blocked from the
-     *  hit test. */
-    ARKUI_HIT_TEST_MODE_BLOCK,
-    /** Both the node and its child node respond to the hit test of a touch event, and its sibling node is also
-     * considered during the hit test. */
-    ARKUI_HIT_TEST_MODE_TRANSPARENT,
-    /** The node does not respond to the hit test of a touch event. */
-    ARKUI_HIT_TEST_MODE_NONE,
-    /**
-     * The node and its child nodes participate in hit tests, while blocking hit tests for all sibling nodes and
-     * parent nodes with lower priority.
-     *
-     * @since 20
-     */
-    ARKUI_HIT_TEST_MODE_BLOCK_HIERARCHY,
-    /**
-     * The node does not respond to hit tests, and none of its descendants (including children and grandchildren)
-     * participate in hit tests either.
-     *
-     * @since 20
-     */
-    ARKUI_HIT_TEST_MODE_BLOCK_DESCENDANTS,
-} ArkUI_HitTestMode;
-
-/**
  * @brief Enumerates the shadow styles.
  *
  * @since 12
@@ -1852,20 +1821,6 @@ typedef enum {
     /** The child components in the flex container are reversely arranged in multiple lines, and they may overflow. */
     ARKUI_FLEX_WRAP_WRAP_REVERSE,
 } ArkUI_FlexWrap;
-
-/**
- * @brief Enumerates the visibility values.
- *
- * @since 12
- */
-typedef enum {
-    /** The component is visible. */
-    ARKUI_VISIBILITY_VISIBLE = 0,
-    /** The component is hidden, and a placeholder is used for it in the layout. */
-    ARKUI_VISIBILITY_HIDDEN,
-    /** The component is hidden. It is not involved in the layout, and no placeholder is used for it. */
-    ARKUI_VISIBILITY_NONE,
-} ArkUI_Visibility;
 
 /**
  * @brief Enumerates the alignment modes between the calendar picker and the entry component.
@@ -2805,37 +2760,6 @@ typedef enum {
 } ArkUI_AnimationDirection;
 
 /**
- * @brief Enumerates the hover effects when a component is hovered over.
- *
- * @since 23
- */
-typedef enum {
-    /** Default effect. */
-    ARKUI_HOVER_EFFECT_AUTO = 0,
-    /** Scale effect. */
-    ARKUI_HOVER_EFFECT_SCALE,
-    /** Highlight effect. */
-    ARKUI_HOVER_EFFECT_HIGHLIGHT,
-    /** No effect. */
-    ARKUI_HOVER_EFFECT_NONE,
-} ArkUI_HoverEffect;
-
-/**
- * @brief Enumerates the priority levels for focus management within the application.
- * These levels determine the sequence in which UI components receive focus during user interaction.
- *
- * @since 23
- */
-typedef enum {
-    /** Default priority. */
-    ARKUI_FOCUS_PRIORITY_AUTO = 0,
-    /** Higher priority. */
-    ARKUI_FOCUS_PRIORITY_PRIOR = 2000,
-    /** Previous focus priority. */
-    ARKUI_FOCUS_PRIORITY_PREVIOUS = 3000,
-} ArkUI_FocusPriority;
-
-/**
  * @brief Define the rolling source enumeration value.
  *
  * @since 12
@@ -3047,26 +2971,6 @@ typedef enum {
 } ArkUI_SafeAreaEdge;
 
 /**
- * @brief Define an enum for the focus movement directions.
- *
- * @since 18
-*/
-typedef enum {
-    /** Move focus forward. */
-    ARKUI_FOCUS_MOVE_FORWARD = 0,
-    /** Move focus backward. */
-    ARKUI_FOCUS_MOVE_BACKWARD,
-    /** Move focus up. */
-    ARKUI_FOCUS_MOVE_UP,
-    /** Move focus down. */
-    ARKUI_FOCUS_MOVE_DOWN,
-    /** Move focus left. */
-    ARKUI_FOCUS_MOVE_LEFT,
-    /** Move focus right. */
-    ARKUI_FOCUS_MOVE_RIGHT,
-} ArkUI_FocusMove;
-
-/**
  * @brief defines the enumerated value of the customDialog's keyboard avoid mode.
  *
  * @since 15
@@ -3103,33 +3007,6 @@ typedef enum {
     /** Lazy expand. Expand the children of node if needed. */
     ARKUI_LAZY_EXPAND = 2,
 } ArkUI_ExpandMode;
-
-/**
- * @brief Defines the navigation point indicator style of the <b><Swiper></b> component.
- * @brief Enumerates the UI states of a component, used for handling state-specific styles.
- *
- * @since 20
- */
-typedef enum {
-    /** Normal state. */
-    UI_STATE_NORMAL = 0,
-    /** Pressed state. */
-    UI_STATE_PRESSED = 1 << 0,
-    /** Focused state. */
-    UI_STATE_FOCUSED = 1 << 1,
-    /** Disabled state. */
-    UI_STATE_DISABLED = 1 << 2,
-    /**
-     * Selected state. This state is supported only by specific component types:
-     * <b>Checkbox</b>, <b>Radio</b>, <b>Toggle</b>, <b>List</b>, <b>Grid</b>, and <b>MenuItem</b>.
-     */
-    UI_STATE_SELECTED = 1 << 3,
-    /**
-     * The hovered state.
-     * @since 26.0.0
-     */
-    UI_STATE_HOVERED = 1 << 4,
-} ArkUI_UIState;
 
 /**
  * @brief Enumerates the edge direction.
@@ -3213,21 +3090,6 @@ typedef enum {
     ARKUI_LIST_ITEM_SWIPE_ACTION_DIRECTION_END = 1,
 } ArkUI_ListItemSwipeActionDirection;
 
-/**
- * @brief Enumerates the input tool types supported for response region configuration.
- *
- * @since 23
- */
-typedef enum {
-    /** All input tool types. */
-    ARKUI_RESPONSE_REGIN_SUPPORTED_TOOL_ALL = 0,
-    /** Finger input. */
-    ARKUI_RESPONSE_REGIN_SUPPORTED_TOOL_FINGER = 1,
-    /** Stylus input. */
-    ARKUI_RESPONSE_REGIN_SUPPORTED_TOOL_PEN = 2,
-    /** Mouse input. */
-    ARKUI_RESPONSE_REGIN_SUPPORTED_TOOL_MOUSE = 3,
-} ArkUI_ResponseRegionSupportedTool;
 /**
  * @brief Define the types for expanding the safe area in layout.
  *
@@ -3322,13 +3184,6 @@ typedef enum {
  * @since 12
  */
 typedef struct ArkUI_SystemFontStyleEvent ArkUI_SystemFontStyleEvent;
-
-/**
- * @brief Defines the options for taking snapshot.
- *
- * @since 15
- */
-typedef struct ArkUI_SnapshotOptions ArkUI_SnapshotOptions;
 
 /**
   * @brief TextPicker single column selector, supports mixing text and images.
@@ -5767,195 +5622,6 @@ void OH_ArkUI_CrossLanguageOption_SetAttributeSettingStatus(ArkUI_CrossLanguageO
  * @since 15
  */
 bool OH_ArkUI_CrossLanguageOption_GetAttributeSettingStatus(ArkUI_CrossLanguageOption* option);
-
-/**
- * @brief Creates an option for taking snapshot, the returned value must be released through
- *        {@link OH_ArkUI_DestroySnapshotOptions} when it's not used anymore.
- *
- * @return Returns the pointer to the created snapshot options object.If the object returns a null pointer,
- *         it indicates a creation failure, and the reason for the failure may be that the address space is full.
- * @since 15
- */
-ArkUI_SnapshotOptions* OH_ArkUI_CreateSnapshotOptions();
-
-/**
- * @brief Dispose a snapshot option object.
- *
- * @param snapshotOptions Indicates the pointer to the snapshot option.
- * @since 15
- */
-void OH_ArkUI_DestroySnapshotOptions(ArkUI_SnapshotOptions* snapshotOptions);
-
-/**
- * @brief Config the snapshot option with scale.
- *
- * @param snapshotOptions Indicates the pointer to the snapshot option.
- * @param scale Indicates the scale property to take the snapshot.
- * @return Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
- * @since 15
- */
-int32_t OH_ArkUI_SnapshotOptions_SetScale(ArkUI_SnapshotOptions* snapshotOptions, float scale);
-
-/**
- * @brief Sets the color mode for snapshot capture.
- * By default, snapshots are captured in SRGB mode, which may lose visual effects for components using wide color
- * gamut display modes.
- * If the target component's color space is known, specify it through <b>colorSpace</b> and set <b>isAuto</b> to
- * <b>false</b> to achieve optimal snapshot quality.
- * Since determining the exact color space used by a component is often difficult, set <b>isAuto</b> to <b>true</b>
- * to let the system automatically select the appropriate color space.
- * If <b>isAuto</b> is set to <b>true</b>, the <b>colorSpace</b> parameter value is ignored.
- *
- * @param snapshotOptions Pointer to the target snapshot configuration options.
- * @param colorSpace Target color space. Supported values: <b>3</b> (DISPLAY_P3), <b>4</b> (SRGB), <b>27</b>
- *                   (DISPLAY_BT2020_SRGB).
- * @param isAuto Whether to auto-detect the color space.
- *               <b>true</b>: ignores the <b>colorSpace</b> parameter value and auto-detects the color space.
- *               <b>false</b>: uses the color space specified by <b>colorSpace</b>.
- * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
- * @since 23
- */
-int32_t OH_ArkUI_SnapshotOptions_SetColorMode(ArkUI_SnapshotOptions* snapshotOptions, int32_t colorSpace, bool isAuto);
-
-/**
- * @brief Sets the dynamic range mode for snapshot capture.
- * By default, the system captures snapshots in {@link ARKUI_DYNAMIC_RANGE_MODE_STANDARD} mode.
- * To use a specific mode, specify it via the <b>dynamicRangeMode</b> parameter and set <b>isAuto</b> to <b>false</b>.
- * Alternatively, set <b>isAuto</b> to <b>true</b> to let the system auto-detect the appropriate dynamic range mode.
- * If <b>isAuto</b> is set to <b>true</b>, the <b>dynamicRangeMode</b> parameter value is ignored.
- *
- * @param snapshotOptions Pointer to the target snapshot configuration options.
- * @param dynamicRangeMode Target dynamic range mode, specified using {@link ArkUI_DynamicRangeMode}.
- * @param isAuto Whether to auto-detect the dynamic range mode.
- *               <b>true</b>: ignores the <b>dynamicRangeMode</b> parameter value and auto-detects the dynamic range
- *                            mode.
- *               <b>false</b>: uses the dynamic range mode specified by <b>dynamicRangeMode</b>.
- * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
- * @since 23
- */
-int32_t OH_ArkUI_SnapshotOptions_SetDynamicRangeMode(
-    ArkUI_SnapshotOptions* snapshotOptions, int32_t dynamicRangeMode, bool isAuto);
-
-/**
- * @brief Defines the parameters for visible area change events.
- *
- * @since 17
- */
-typedef struct ArkUI_VisibleAreaEventOptions ArkUI_VisibleAreaEventOptions;
-
-/**
-* @brief Creates an instance of visible area change event parameters
-*
-* @return Returns the created instance of visible area change event parameters.
-* @since 17
-*/
-ArkUI_VisibleAreaEventOptions* OH_ArkUI_VisibleAreaEventOptions_Create();
-
-/**
-* @brief Disposes of an instance of visible area change event parameters.
-*
-* @param option Instance to be destroyed.
-* @since 17
-*/
-void OH_ArkUI_VisibleAreaEventOptions_Dispose(ArkUI_VisibleAreaEventOptions* option);
-
-/**
-* @brief Sets the threshold ratios for visible area changes.
-*
-* @param option Instance of visible area change event parameters.
-* @param value Array of threshold ratios. Each element represents the ratio of the visible area of a component to
-* its total area. The visible area is calculated within the parent component's bounds; any area outside the parent
-* component is not considered. Each value must be within the [0.0, 1.0] range.
-* Values outside this range will be handled as 0.0 or 1.0.
-* @param size Size of the threshold array.
-* @return Returns the result code.
-*         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
-*         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
-*         If an error code is returned, it may be due to a failure in parameter validation;
-*         the parameter must not be null.
-* @since 17
-*/
-int32_t OH_ArkUI_VisibleAreaEventOptions_SetRatios(ArkUI_VisibleAreaEventOptions* option, float* value, int32_t size);
-
-/**
-* @brief Sets the expected update interval for visible area changes.
-*
-* @param option Instance of visible area change event parameters.
-* @param value Expected update interval, in ms.  Default value: <b>1000</b>.
-* @return Returns the result code.
-*         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
-*         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
-*         If an error code is returned, it may be due to a failure in parameter validation;
-*         the parameter must not be null.
-* @since 17
-*/
-int32_t OH_ArkUI_VisibleAreaEventOptions_SetExpectedUpdateInterval(
-    ArkUI_VisibleAreaEventOptions *option, int32_t value);
-
-/**
-* @brief Sets the flag for controlling if the child components can exceed the parent's bounds.
-* if set to false, the part that exceeds the parent's bounds will be considered as invisible area,
-* set to true to allow the exceeding, the part that exceeds will be considered as visible area.
-*
-* Please note that if the parent component set clip(true), the measureFromViewport configuration
-* will be ignored.
-*
-* @param option Instance of visible area change event parameters.
-* @param measureFromViewport When this parameter is set to true, the parts of the component
-*    that exceed the parent component's area will also be included in the visible area calculation. However, this
-*    only applies if the parent component does not explicitly set the clip property to true. If the parent component
-*    sets clip to true, regardless of the value of this parameter, the parts that exceed the parent component's area
-*    will still be treated as invisible in the visible area calculation.
-* Default measureFromViewport: <b>false</b>.
-* @return Returns the result code.
-*         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
-*         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
-*         If an error code is returned, it may be due to a failure in parameter validation;
-*         the parameter must not be null.
-* @since 22
-*/
-int32_t OH_ArkUI_VisibleAreaEventOptions_SetMeasureFromViewport(
-    ArkUI_VisibleAreaEventOptions* option, bool measureFromViewport);
-
-/**
- * @brief Obtains the threshold ratios for visible area changes.
- *
- * @param option Instance of visible area change event parameters.
- * @param value Array of threshold ratios.
- * @param size Size of the threshold array.
- * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
- *         Returns {@link ARKUI_ERROR_CODE_BUFFER_SIZE_ERROR} if the provided buffer size is insufficient.
- *         If an error code is returned, it may be due to a failure in parameter validation;
- *         the parameter must not be null.
- * @since 17
- */
-int32_t OH_ArkUI_VisibleAreaEventOptions_GetRatios(ArkUI_VisibleAreaEventOptions* option, float* value, int32_t* size);
-
-/**
- * @brief Obtains the expected update interval for visible area changes.
- *
- * @param option Instance of visible area change event parameters.
- * @return Returns the expected update interval, in ms.  Default value: <b>1000</b>.
- * @since 17
- */
-int32_t OH_ArkUI_VisibleAreaEventOptions_GetExpectedUpdateInterval(ArkUI_VisibleAreaEventOptions* option);
-
-/**
- * @brief Obtains the value set through {@link OH_ArkUI_VisibleAreaEventOptions_SetMeasureFromViewport} .
- *
- * @param option Instance of visible area change event parameters.
- * @return Returns the flag for controlling of the visible area calculation. Default value: <b>false</b>.
- *
- * @since 22
- */
-bool OH_ArkUI_VisibleAreaEventOptions_GetMeasureFromViewport(ArkUI_VisibleAreaEventOptions* option);
 
 /**
  * @brief Creates a TextPickerRangeContent instance.
