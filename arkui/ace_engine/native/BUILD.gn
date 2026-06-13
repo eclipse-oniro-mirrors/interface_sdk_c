@@ -72,7 +72,7 @@ if (!is_arkui_x) {
       "arkui/node_attributes/navigation_router/navigation_router.h",
       "arkui/node_attributes/image.h",
       "arkui/node_attributes/image_animator.h",
-      "arkui/node_attributes/node_attr_custom.h",
+      "arkui/node_attributes/custom_attributes.h",
       "arkui/node_attributes/picker.h",
       "arkui/node_attributes/swiper/node_attr_swiper.h",
       "arkui/node_attributes/swiper/node_event_swiper.h",
