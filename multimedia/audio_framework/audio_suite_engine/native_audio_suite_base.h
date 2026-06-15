@@ -201,7 +201,6 @@ typedef enum {
     AUDIOSUITE_PIPELINE_EDIT_MODE = 1,
     /**
      * If you need to play audio after effect processing, you should select this mode.
-     * In real-time rendering mode, the pipeline only supports EQ effect processing.
      *
      * @since 22
      */

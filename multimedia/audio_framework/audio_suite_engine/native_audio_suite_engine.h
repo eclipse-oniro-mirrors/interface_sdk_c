@@ -74,7 +74,6 @@ OH_AudioSuite_Result OH_AudioSuiteEngine_Destroy(OH_AudioSuiteEngine* audioSuite
  * the engine can create multiple pipelines, and one pipeline must include at least one input node and one output node.
  * When the pipeline operates in {@link #AUDIOSUITE_PIPELINE_EDIT_MODE}, it supports all effect nodes.
  * When the pipeline operates in {@link #AUDIOSUITE_PIPELINE_REALTIME_MODE},
- * it only supports the {@link EFFECT_NODE_TYPE_EQUALIZER} effect node.
  *
  * @param audioSuiteEngine Reference created by OH_AudioSuiteEngine_Create.
  * @param audioSuitePipeline Pointer to a variable to receive the pipeline.
@@ -206,7 +205,7 @@ OH_AudioSuite_Result OH_AudioSuiteEngine_RenderFrame(OH_AudioSuitePipeline* audi
  * @param audioDataArray Audio data array pointer, where user should read,
  * The size of each one-dimensional array should be consistent.
  * @param responseSize Size of audio data the system really write,
- *     The system ensures that the data size filled for each one-dimensional array is consistent, unit is byte.
+ * The system ensures that the data size filled for each one-dimensional array is consistent, unit is byte.
  * @param finishedFlag This flag is used to indicate user whether all data processing has been completed.
  * @return {@link #AUDIOSUITE_SUCCESS} if execution succeeds
  * or {@link #AUDIOSUITE_ERROR_INVALID_PARAM} if parameter is nullptr or not valid value.
@@ -488,7 +487,7 @@ OH_AudioSuite_Result OH_AudioSuiteEngine_DisconnectNodes(OH_AudioNode* sourceAud
  * @brief Request to check whether the current system supports a specific node type.
  *
  * @param nodeType Audio node type. {@link OH_AudioNode_Type}
- * @param isSupported True means this node type is supported. False means this node type is not supported.
+ * @param isSupported True means this node type is supported, False means this node type is not supported.
  * @return {@link #AUDIOSUITE_SUCCESS} if execution succeeds,
  * or {@link #AUDIOSUITE_ERROR_INVALID_PARAM} if param nullptr or not valid value.
  * or {@link #AUDIOSUITE_ERROR_SYSTEM} if the system has other abnormalities.
