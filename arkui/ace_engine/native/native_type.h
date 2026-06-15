@@ -48,8 +48,6 @@
 #include "node_attributes/xcomponent.h"
 
 #include "node_attributes/common_attributes.h"
-#include "node_attributes/navigation_router/navigation_router.h"
-#include "node_attributes/swiper/swiper.h"
 #include "node_attributes/image_animator.h"
 #include "node_attributes/image.h"
 #include "node_attributes/picker.h"
@@ -61,6 +59,9 @@
 #include "node_attributes/image_span.h"
 #include "node_attributes/custom_span.h"
 #include "node_attributes/progress.h"
+
+#include "node_attributes/navigation_router.h"
+#include "node_attributes/swiper.h"
 
 #ifdef __cplusplus
 extern "C" {

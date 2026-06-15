@@ -33,8 +33,10 @@
  * @since 12
  */
 
-#ifndef ARKUI_NATIVE_NODE_ATTRIBUTES_SWIPER_SWIPER_H
-#define ARKUI_NATIVE_NODE_ATTRIBUTES_SWIPER_SWIPER_H
+#ifndef ARKUI_NATIVE_NODE_ATTRIBUTES_SWIPER_H
+#define ARKUI_NATIVE_NODE_ATTRIBUTES_SWIPER_H
+
+#include <stdint.h>
 
 #ifdef __cplusplus
 extern "C" {
@@ -81,7 +83,7 @@ typedef enum {
      * The arrow is displayed only when the mouse pointer hovers over the navigation point indicator.
      * @since 12
      */
-    ARKUI_SWIPER_ARROW_SHOW_ON_HOVER
+    ARKUI_SWIPER_ARROW_SHOW_ON_HOVER,
 } ArkUI_SwiperArrow;
 
 /**
@@ -101,7 +103,7 @@ typedef enum {
      * the edge effect; otherwise, the Swiper triggers the edge effect.
      * @since 12
      */
-    ARKUI_SWIPER_NESTED_SRCOLL_SELF_FIRST
+    ARKUI_SWIPER_NESTED_SRCOLL_SELF_FIRST,
 } ArkUI_SwiperNestedScrollMode;
 
 /**
@@ -120,7 +122,7 @@ typedef enum {
      * The system does not respond to other mouse wheel events until the page flipping animation ends.
      * @since 15
      */
-    ARKUI_PAGE_FLIP_MODE_SINGLE
+    ARKUI_PAGE_FLIP_MODE_SINGLE,
 } ArkUI_PageFlipMode;
 
 /**
@@ -143,7 +145,7 @@ typedef enum {
      * Jump to some index near the target index without animation, then scroll to target index with animation.
      * @since 15
      */
-    ARKUI_SWIPER_FAST_ANIMATION = 2
+    ARKUI_SWIPER_FAST_ANIMATION = 2,
 } ArkUI_SwiperAnimationMode;
 
 /**
@@ -161,7 +163,7 @@ typedef enum {
      * digit type.
      * @since 12
      */
-    ARKUI_SWIPER_INDICATOR_TYPE_DIGIT
+    ARKUI_SWIPER_INDICATOR_TYPE_DIGIT,
 } ArkUI_SwiperIndicatorType;
 
 /**
@@ -760,5 +762,5 @@ uint32_t OH_ArkUI_SwiperArrowStyle_GetArrowColor(ArkUI_SwiperArrowStyle* arrowSt
 }
 #endif
 
-#endif // ARKUI_NATIVE_NODE_ATTRIBUTES_SWIPER_SWIPER_H
+#endif // ARKUI_NATIVE_NODE_ATTRIBUTES_SWIPER_H
 /** @} */
