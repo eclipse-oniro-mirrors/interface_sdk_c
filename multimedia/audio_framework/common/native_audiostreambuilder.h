@@ -621,7 +621,7 @@ OH_AudioStream_Result OH_AudioStreamBuilder_SetPlaybackCaptureMode(OH_AudioStrea
  * @param userData The pointer to user data, which will be passed back to the application in the callback.
  *     If application does not need to pass any data, NULL value is also allowed. But if data is not NULL, the
  *        caller should check whether the data is still valid when receive the callback.
- * @return <ul> 
+ * @return <ul>
  *         <li>{@link AUDIOSTREAM_SUCCESS} If the execution is successful.</li>
  *         <li>{@link AUDIOSTREAM_ERROR_INVALID_PARAM} The param of builder or callback is nullptr.</li>
  *         </ul>
@@ -644,7 +644,7 @@ OH_AudioStream_Result OH_AudioStreamBuilder_SetSensitiveRecordPermitCallback(
  *     NULL value is not allowed.
  * @param cellularRecordToken The token for the target cellular call, which can be obtained by makeCallWithToken()
  *     function from call management, NULL value is not allowed.
- * @return <ul> 
+ * @return <ul>
  *         <li>{@link AUDIOSTREAM_SUCCESS} If the execution is successful.</li>
  *         <li>{@link AUDIOSTREAM_ERROR_INVALID_PARAM} The param of builder,
  *              cellularRecordPhoneNum or cellularRecordToken is nullptr.</li>
