@@ -491,7 +491,7 @@ typedef struct OH_AudioFormat {
  */
 typedef struct OH_AudioDataArray {
     /**
-     * @brief Audio audioDataArray mail.
+     * @brief Audio audioDataArray main.
      *
      * @since 22
      */
@@ -535,7 +535,7 @@ typedef enum {
      */
     SOUND_FIELD_NEAR = 3,
     /**
-     * Near sound field type.
+     * Wide sound field type.
      *
      * @since 22
      */
@@ -739,18 +739,21 @@ typedef struct OH_AudioNodeBuilderStruct OH_AudioNodeBuilder;
 typedef struct OH_AudioSuite_SpaceRenderPositionParams {
     /**
      * X coordinate in space, value range: [-5.0, 5.0], unit: meters.
+     * If the value is out of range, the setting will fail and return {@link AUDIOSUITE_ERROR_INVALID_PARAM}.
      *
      * @since 23
      */
     float x;
     /**
      * Y coordinate in space, value range: [-5.0, 5.0], unit: meters.
+     * If the value is out of range, the setting will fail and return {@link AUDIOSUITE_ERROR_INVALID_PARAM}.
      *
      * @since 23
      */
     float y;
     /**
      * Z coordinate in space, value range: [-5.0, 5.0], unit: meters.
+     * If the value is out of range, the setting will fail and return {@link AUDIOSUITE_ERROR_INVALID_PARAM}.
      *
      * @since 23
      */
@@ -785,30 +788,34 @@ typedef enum {
 typedef struct OH_AudioSuite_SpaceRenderRotationParams {
     /**
      * X coordinate in space, value range: [-5.0, 5.0], unit: meters.
+     * If the value is out of range, the setting will fail and return {@link AUDIOSUITE_ERROR_INVALID_PARAM}.
      *
      * @since 23
      */
     float x;
     /**
      * Y coordinate in space, value range: [-5.0, 5.0], unit: meters.
+     * If the value is out of range, the setting will fail and return {@link AUDIOSUITE_ERROR_INVALID_PARAM}.
      *
      * @since 23
      */
     float y;
     /**
      * Z coordinate in space, value range: [-5.0, 5.0], unit: meters.
+     * If the value is out of range, the setting will fail and return {@link AUDIOSUITE_ERROR_INVALID_PARAM}.
      *
      * @since 23
      */
     float z;
     /**
      * Single-week circumnavigation time, value range: [2, 40], unit: seconds.
+     * If the value is out of range, the setting will fail and return {@link AUDIOSUITE_ERROR_INVALID_PARAM}.
      *
      * @since 23
      */
     int32_t surroundTime;
     /**
-     * Single-week circumnavigation direction, value range: [0, 1].
+     * Single-week circumnavigation direction.
      *
      * @since 23
      */
@@ -823,12 +830,14 @@ typedef struct OH_AudioSuite_SpaceRenderRotationParams {
 typedef struct OH_AudioSuite_SpaceRenderExtensionParams {
     /**
      * Expansion radius, value range: [1.0, 5.0], unit: meters.
+     * If the value is out of range, the setting will fail and return {@link AUDIOSUITE_ERROR_INVALID_PARAM}.
      *
      * @since 23
      */
     float extRadius;
     /**
      * Expansion angle, value range: (0, 360), unit: degrees.
+     * If the value is out of range, the setting will fail and return {@link AUDIOSUITE_ERROR_INVALID_PARAM}.
      *
      * @since 23
      */
@@ -935,6 +944,8 @@ typedef struct OH_AudioSuite_PureVoiceChangeOption {
      * Define voice pitch.
      * If using default pitch in system for best effect, set to {@link OH_PURE_VOICE_DEFAULT_PITCH}.
      * For custom pitch setting, specify a value with the valid range: [0.3f, 3.0f].
+     * If the value is out of range, the setting will fail and return {@link AUDIOSUITE_ERROR_INVALID_PARAM}.
+     *
      * @since 23
      */
     float pitch;
