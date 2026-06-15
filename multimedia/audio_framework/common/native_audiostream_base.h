@@ -553,6 +553,7 @@ typedef enum {
      * @since 20
      */
     AUDIOSTREAM_SOURCE_TYPE_LIVE = 17,
+
     /**
      * Voice call downlink source type.
      * The audio capturer using this source type should be created after the voice call started.
