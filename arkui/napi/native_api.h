@@ -3173,23 +3173,22 @@ NAPI_EXTERN napi_status napi_get_property_with_callsite_info(napi_env env,
  * @since 24
  */
 NAPI_EXTERN napi_status napi_set_property_with_callsite_info(napi_env env,
-                                                              napi_value object,
-                                                              napi_value key,
-                                                              napi_value value,
-                                                              napi_callsite_info info,
-                                                              bool* hit);
+                                                             napi_value object,
+                                                             napi_value key,
+                                                             napi_value value,
+                                                             napi_callsite_info info,
+                                                             bool* hit);
 
 /**
- * @brief Obtains the count of global handles after the last GC in the current virtual machine context.
- *        Note that this count is not real-time and may be stale.
+ * @brief To obtain the count of global object in current ArkTS runtime thread.
  * @param env Current running virtual machine context.
- * @param count The count of global handles.
+ * @param count The count number of global object.
  *
  * @return Returns the function execution status.
- *         {@link napi_ok } If the function executed successfully.\n
- *         {@link napi_invalid_arg } If env or count is nullptr.\n
- *         {@link napi_pending_exception } If a pending exception existed before the call.\n
- * @since 25
+ *         <ul><li>{@link napi_ok } If the function executed successfully.</li>
+ *         <li>{@link napi_invalid_arg } If env or count is nullptr.</li>
+ *         <li>{@link napi_pending_exception } There is an uncaught exception occurred before execution.</li></ul>
+ * @since 26.1.0
  */
 NAPI_EXTERN napi_status napi_get_global_handle_count(napi_env env, size_t* count);
 #ifdef __cplusplus
