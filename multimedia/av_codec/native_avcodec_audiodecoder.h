@@ -74,7 +74,7 @@ OH_AVCodec *OH_AudioDecoder_CreateByName(const char *name);
  * @brief Clears the internal resources of an audio decoder and destroys the decoder instance.
  *
  * @param codec Pointer to an OH_AVCodec instance.
- * @return **AV_ERR_OK** if the operation is successful; a specific error code otherwise.
+ * @return {@link AV_ERR_OK} if the operation is successful; a specific error code otherwise.
  * @deprecated since 11
  * @useinstead OH_AudioCodec_Destroy
  * @since 9
@@ -88,7 +88,7 @@ OH_AVErrCode OH_AudioDecoder_Destroy(OH_AVCodec *codec);
  * @param codec Pointer to an OH_AVCodec instance.
  * @param callback Callback function.
  * @param userData User-specific data.
- * @return **AV_ERR_OK** if the operation is successful; a specific error code otherwise.
+ * @return {@link AV_ERR_OK} if the operation is successful; a specific error code otherwise.
  * @deprecated since 11
  * @useinstead OH_AudioCodec_RegisterCallback
  * @since 9
@@ -102,7 +102,7 @@ OH_AVErrCode OH_AudioDecoder_SetCallback(OH_AVCodec *codec, OH_AVCodecAsyncCallb
  * @param codec Pointer to an OH_AVCodec instance.
  * @param format Pointer to the OH_AVFormat instance, which provides the description information about the audio track
  *     to be decoded.
- * @return **AV_ERR_OK** if the operation is successful; a specific error code otherwise.
+ * @return {@link AV_ERR_OK} if the operation is successful; a specific error code otherwise.
  * @deprecated since 11
  * @useinstead OH_AudioCodec_Configure
  * @since 9
@@ -113,7 +113,7 @@ OH_AVErrCode OH_AudioDecoder_Configure(OH_AVCodec *codec, OH_AVFormat *format);
  * @brief Prepares internal resources for an audio decoder. This function must be called after **Configure**.
  *
  * @param codec Pointer to an OH_AVCodec instance.
- * @return **AV_ERR_OK** if the operation is successful; a specific error code otherwise.
+ * @return {@link AV_ERR_OK} if the operation is successful; a specific error code otherwise.
  * @deprecated since 11
  * @useinstead OH_AudioCodec_Prepare
  * @since 9
@@ -125,7 +125,7 @@ OH_AVErrCode OH_AudioDecoder_Prepare(OH_AVCodec *codec);
  * the **OH_AVCodecOnNeedInputData** event.
  *
  * @param codec Pointer to an OH_AVCodec instance.
- * @return **AV_ERR_OK** if the operation is successful; a specific error code otherwise.
+ * @return {@link AV_ERR_OK} if the operation is successful; a specific error code otherwise.
  * @deprecated since 11
  * @useinstead OH_AudioCodec_Start
  * @since 9
@@ -135,8 +135,11 @@ OH_AVErrCode OH_AudioDecoder_Start(OH_AVCodec *codec);
 /**
  * @brief Stops an audio decoder.
  *
+ * After the decoder is stopped, you can call **Start** to start it again. If you have passed specific data in the
+ * previous **Start** for the decoder, you must pass it again.
+ *
  * @param codec Pointer to an OH_AVCodec instance.
- * @return **AV_ERR_OK** if the operation is successful; a specific error code otherwise.
+ * @return {@link AV_ERR_OK} if the operation is successful; a specific error code otherwise.
  * @deprecated since 11
  * @useinstead OH_AudioCodec_Stop
  * @since 9
@@ -146,8 +149,11 @@ OH_AVErrCode OH_AudioDecoder_Stop(OH_AVCodec *codec);
 /**
  * @brief Clears the input and output data in the internal buffer of an audio decoder.
  *
+ * This function invalidates the indexes of all buffers previously reported through the asynchronous callback.
+ * Therefore, before calling this function, ensure that the buffers with the specified indexes are no longer required.
+ *
  * @param codec Pointer to an OH_AVCodec instance.
- * @return **AV_ERR_OK** if the operation is successful; a specific error code otherwise.
+ * @return {@link AV_ERR_OK} if the operation is successful; a specific error code otherwise.
  * @deprecated since 11
  * @useinstead OH_AudioCodec_Flush
  * @since 9
@@ -158,15 +164,16 @@ OH_AVErrCode OH_AudioDecoder_Flush(OH_AVCodec *codec);
  * @brief Resets an audio decoder. To continue decoding, you must call **Configure** to configure the decoder again.
  *
  * @param codec Pointer to an OH_AVCodec instance.
- * @return **AV_ERR_OK** if the operation is successful; a specific error code otherwise.
+ * @return {@link AV_ERR_OK} if the operation is successful; a specific error code otherwise.
  * @deprecated since 11
  * @useinstead OH_AudioCodec_Reset
  * @since 9
  */
 OH_AVErrCode OH_AudioDecoder_Reset(OH_AVCodec *codec);
-
 /**
  * @brief Obtains the description information about the output data of an audio decoder.
+ *
+ * The caller must manually release the OH_AVFormat instance in the return value.
  *
  * @param codec Pointer to an OH_AVCodec instance.
  * @return Handle to an OH_AVFormat instance. The lifecycle of this instance is refreshed when **GetOutputDescription**
@@ -180,9 +187,12 @@ OH_AVFormat *OH_AudioDecoder_GetOutputDescription(OH_AVCodec *codec);
 /**
  * @brief Sets dynamic parameters for an audio decoder.
  *
+ * This function can be called only after the decoder is started. Incorrect parameter settings may cause decoding
+ * failure.
+ *
  * @param codec Pointer to an OH_AVCodec instance.
  * @param format Handle to an OH_AVFormat instance.
- * @return **AV_ERR_OK** if the operation is successful; a specific error code otherwise.
+ * @return {@link AV_ERR_OK} if the operation is successful; a specific error code otherwise.
  * @deprecated since 11
  * @useinstead OH_AudioCodec_SetParameter
  * @since 9
@@ -192,10 +202,16 @@ OH_AVErrCode OH_AudioDecoder_SetParameter(OH_AVCodec *codec, OH_AVFormat *format
 /**
  * @brief Notifies the audio decoder that the input data has been written to the buffer identified by **index**.
  *
+ * The {@link OH_AVCodecOnNeedInputData} callback reports the available input buffer and the index. After being
+ * pushed to the decoder, a buffer is not accessible until the buffer with the same index is reported again through the
+ * {@link OH_AVCodecOnNeedInputData} callback.
+ *
+ * In addition, some decoders require the input of specific data to initialize the decoding process.
+ *
  * @param codec Pointer to an OH_AVCodec instance.
  * @param index Index of the input buffer.
  * @param attr Description information about the data in the buffer.
- * @return **AV_ERR_OK** if the operation is successful; a specific error code otherwise.
+ * @return {@link AV_ERR_OK} if the operation is successful; a specific error code otherwise.
  * @deprecated since 11
  * @useinstead OH_AudioCodec_PushInputBuffer
  * @since 9
@@ -207,7 +223,7 @@ OH_AVErrCode OH_AudioDecoder_PushInputData(OH_AVCodec *codec, uint32_t index, OH
  *
  * @param codec Pointer to an OH_AVCodec instance.
  * @param index Index of the output buffer.
- * @return **AV_ERR_OK** if the operation is successful; a specific error code otherwise.
+ * @return {@link AV_ERR_OK} if the operation is successful; a specific error code otherwise.
  * @deprecated since 11
  * @useinstead OH_AudioCodec_FreeOutputBuffer
  * @since 9
@@ -221,7 +237,7 @@ OH_AVErrCode OH_AudioDecoder_FreeOutputData(OH_AVCodec *codec, uint32_t index);
  * @param codec Pointer to an OH_AVCodec instance.
  * @param isValid Pointer to an instance of the Boolean type. The value **true** means that the decoder instance is
  *     valid and **false** means the opposite.
- * @return **AV_ERR_OK** if the operation is successful; a specific error code otherwise.
+ * @return {@link AV_ERR_OK} if the operation is successful; a specific error code otherwise.
  * @deprecated since 11
  * @useinstead OH_AudioCodec_IsValid
  * @since 10
