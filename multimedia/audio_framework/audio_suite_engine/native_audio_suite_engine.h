@@ -72,8 +72,6 @@ OH_AudioSuite_Result OH_AudioSuiteEngine_Destroy(OH_AudioSuiteEngine* audioSuite
  *
  * The pipeline is the unit within the engine responsible for executing audio editing,
  * the engine can create multiple pipelines, and one pipeline must include at least one input node and one output node.
- * When the pipeline operates in {@link #AUDIOSUITE_PIPELINE_EDIT_MODE}, it supports all effect nodes.
- * When the pipeline operates in {@link #AUDIOSUITE_PIPELINE_REALTIME_MODE},
  *
  * @param audioSuiteEngine Reference created by OH_AudioSuiteEngine_Create.
  * @param audioSuitePipeline Pointer to a variable to receive the pipeline.
