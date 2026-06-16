@@ -39,6 +39,8 @@
 #include <stdint.h>
 #include <stdbool.h>
 
+#include "error_code.h"
+
 #ifdef __cplusplus
 extern "C" {
 #endif
