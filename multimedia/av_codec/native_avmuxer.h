@@ -71,7 +71,7 @@ OH_AVMuxer *OH_AVMuxer_Create(int32_t fd, OH_AVOutputFormat format);
  * @param muxer Pointer to an OH_AVMuxer instance.
  * @param rotation Angle to set. The value must be 0, 90, 180, or 270.
  * @return {@link AV_ERR_OK}: The operation is successful.
- *     <br>{@link AV_ERR_INVALID_VAL}: The muxer pointer is null or the value of **rotation** is invalid.
+ *     <br>{@link AV_ERR_INVALID_VAL}: The muxer pointer is null or the value of **rotation** is invalid.
  *     <br>{@link AV_ERR_OPERATE_NOT_PERMIT}: The function is called out of sequence.
  * @since 10
  */
@@ -100,7 +100,7 @@ OH_AVErrCode OH_AVMuxer_SetFormat(OH_AVMuxer *muxer, OH_AVFormat *format);
  *     to 0; otherwise, the value is less than 0.
  * @param trackFormat Pointer to an OH_AVFormat instance.
  * @return {@link AV_ERR_OK}: The operation is successful.
- *     <br>{@link AV_ERR_INVALID_VAL}: The muxer pointer is null, or the track index or track format is invalid.
+ *     <br>{@link AV_ERR_INVALID_VAL}: The muxer pointer is null, or the track index or track format is invalid.
  *     <br>{@link AV_ERR_OPERATE_NOT_PERMIT}: The function is called out of sequence.
  *     <br>{@link AV_ERR_UNSUPPORT}: The MIME type is not supported.
  *     <br>{@link AV_ERR_NO_MEMORY}: Memory allocation fails.
@@ -115,7 +115,7 @@ OH_AVErrCode OH_AVMuxer_AddTrack(OH_AVMuxer *muxer, int32_t *trackIndex, OH_AVFo
  *
  * @param muxer Pointer to an OH_AVMuxer instance.
  * @return {@link AV_ERR_OK}: The operation is successful.
- *     <br>{@link AV_ERR_INVALID_VAL}: The muxer pointer is null.
+ *     <br>{@link AV_ERR_INVALID_VAL}: The muxer pointer is null.
  *     <br>{@link AV_ERR_OPERATE_NOT_PERMIT}: The function is called out of sequence.
  *     <br>{@link AV_ERR_UNKNOWN}: An unknown error occurs.
  * @since 10
@@ -132,7 +132,7 @@ OH_AVErrCode OH_AVMuxer_Start(OH_AVMuxer *muxer);
  * @param sample Pointer to the data obtained after encoding or demultiplexing.
  * @param info Sample description.
  * @return {@link AV_ERR_OK}: The operation is successful.
- *     <br>{@link AV_ERR_INVALID_VAL}: The muxer pointer is null, or the track index, sample, or info is invalid.
+ *     <br>{@link AV_ERR_INVALID_VAL}: The muxer pointer is null, or the track index, sample, or info is invalid.
  *     <br>{@link AV_ERR_OPERATE_NOT_PERMIT}: The function is called out of sequence.
  *     <br>{@link AV_ERR_NO_MEMORY}: Memory allocation fails.
  *     <br>{@link AV_ERR_UNKNOWN}: An unknown error occurs.
@@ -152,7 +152,7 @@ OH_AVErrCode OH_AVMuxer_WriteSample(OH_AVMuxer *muxer, uint32_t trackIndex,
  * @param trackIndex Index of the audio or video track corresponding to the data.
  * @param sample Pointer to the data and properties obtained after encoding or demultiplexing.
  * @return {@link AV_ERR_OK}: The operation is successful.
- *     <br>{@link AV_ERR_INVALID_VAL}: The muxer pointer is null, or the track index or sample is invalid.
+ *     <br>{@link AV_ERR_INVALID_VAL}: The muxer pointer is null, or the track index or sample is invalid.
  *     <br>{@link AV_ERR_OPERATE_NOT_PERMIT}: The function is called out of sequence.
  *     <br>{@link AV_ERR_NO_MEMORY}: Memory allocation fails.
  *     <br>{@link AV_ERR_UNKNOWN}: An unknown error occurs.
@@ -166,11 +166,12 @@ OH_AVErrCode OH_AVMuxer_WriteSampleBuffer(OH_AVMuxer *muxer, uint32_t trackIndex
  *
  * @param muxer Pointer to an OH_AVMuxer instance.
  * @return {@link AV_ERR_OK}: The operation is successful.
- *     <br>{@link AV_ERR_INVALID_VAL}: The muxer pointer is null.
+ *     <br>{@link AV_ERR_INVALID_VAL}: The muxer pointer is null.
  *     <br>{@link AV_ERR_OPERATE_NOT_PERMIT}: The function is called out of sequence.
  * @since 10
  */
 OH_AVErrCode OH_AVMuxer_Stop(OH_AVMuxer *muxer);
+
 /**
  * @brief Clears internal resources and destroys an OH_AVMuxer instance.
  *
@@ -178,7 +179,7 @@ OH_AVErrCode OH_AVMuxer_Stop(OH_AVMuxer *muxer);
  *
  * @param muxer Pointer to an OH_AVMuxer instance.
  * @return {@link AV_ERR_OK}: The operation is successful.
- *     <br>{@link AV_ERR_INVALID_VAL}: The muxer pointer is null.
+ *     <br>{@link AV_ERR_INVALID_VAL}: The muxer pointer is null.
  * @since 10
  */
 OH_AVErrCode OH_AVMuxer_Destroy(OH_AVMuxer *muxer);

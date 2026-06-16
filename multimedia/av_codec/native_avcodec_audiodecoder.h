@@ -170,6 +170,7 @@ OH_AVErrCode OH_AudioDecoder_Flush(OH_AVCodec *codec);
  * @since 9
  */
 OH_AVErrCode OH_AudioDecoder_Reset(OH_AVCodec *codec);
+
 /**
  * @brief Obtains the description information about the output data of an audio decoder.
  *

@@ -78,7 +78,7 @@ OH_AVCodec *OH_AudioCodec_CreateByName(const char *name);
  *
  * @param codec Pointer to an OH_AVCodec instance.
  * @return {@link AV_ERR_OK}: The operation is successful.
- *     <br>{@link AV_ERR_INVALID_VAL}: The OH_AVCodec instance is nullptr or invalid.
+ *     <br>{@link AV_ERR_INVALID_VAL}: The OH_AVCodec instance is nullptr or invalid.
  *     <br>{@link AV_ERR_INVALID_STATE}: The codec service is unavailable.
  *     <br>{@link AV_ERR_NO_MEMORY}: Internal resources have been released.
  *     <br>{@link AV_ERR_UNKNOWN}: An internal error occurs. You are advised to check logs.
@@ -94,7 +94,7 @@ OH_AVErrCode OH_AudioCodec_Destroy(OH_AVCodec *codec);
  * @param callback Set of all callback functions.
  * @param userData User-specific data.
  * @return {@link AV_ERR_OK}: The operation is successful.
- *     <br>{@link AV_ERR_INVALID_VAL}: An input parameter is nullptr or invalid.
+ *     <br>{@link AV_ERR_INVALID_VAL}: An input parameter is nullptr or invalid.
  *     <br>{@link AV_ERR_INVALID_STATE}: The codec service is unavailable.
  * @since 11
  */
@@ -108,7 +108,7 @@ OH_AVErrCode OH_AudioCodec_RegisterCallback(OH_AVCodec *codec, OH_AVCodecCallbac
  * @param format Pointer to an OH_AVFormat instance, which provides the description information about the audio track
  *     to be encoded or decoded.
  * @return {@link AV_ERR_OK}: The operation is successful.
- *     <br>{@link AV_ERR_INVALID_VAL}: An input parameter is nullptr or invalid.
+ *     <br>{@link AV_ERR_INVALID_VAL}: An input parameter is nullptr or invalid.
  *     <br>{@link AV_ERR_INVALID_STATE}: The codec service is unavailable.
  *     <br>{@link AV_ERR_OPERATE_NOT_PERMIT}: The operation is not allowed. This may be because of incorrect state or
  *     unsupported operation.
@@ -122,7 +122,7 @@ OH_AVErrCode OH_AudioCodec_Configure(OH_AVCodec *codec, const OH_AVFormat *forma
  *
  * @param codec Pointer to an OH_AVCodec instance.
  * @return {@link AV_ERR_OK}: The operation is successful.
- *     <br>{@link AV_ERR_INVALID_VAL}: The OH_AVCodec instance is nullptr or invalid.
+ *     <br>{@link AV_ERR_INVALID_VAL}: The OH_AVCodec instance is nullptr or invalid.
  *     <br>{@link AV_ERR_INVALID_STATE}: The codec service is unavailable.
  *     <br>{@link AV_ERR_OPERATE_NOT_PERMIT}: The operation is not allowed. This may be because of incorrect state or
  *     unsupported operation.
@@ -137,7 +137,7 @@ OH_AVErrCode OH_AudioCodec_Prepare(OH_AVCodec *codec);
  *
  * @param codec Pointer to an OH_AVCodec instance.
  * @return {@link AV_ERR_OK}: The operation is successful.
- *     <br>{@link AV_ERR_INVALID_VAL}: The OH_AVCodec instance is nullptr or invalid.
+ *     <br>{@link AV_ERR_INVALID_VAL}: The OH_AVCodec instance is nullptr or invalid.
  *     <br>{@link AV_ERR_INVALID_STATE}: The codec service is unavailable.
  *     <br>{@link AV_ERR_OPERATE_NOT_PERMIT}: The operation is not allowed. This may be because of incorrect state or
  *     unsupported operation.
@@ -152,7 +152,7 @@ OH_AVErrCode OH_AudioCodec_Start(OH_AVCodec *codec);
  *
  * @param codec Pointer to an OH_AVCodec instance.
  * @return {@link AV_ERR_OK}: The operation is successful.
- *     <br>{@link AV_ERR_INVALID_VAL}: The OH_AVCodec instance is nullptr or invalid.
+ *     <br>{@link AV_ERR_INVALID_VAL}: The OH_AVCodec instance is nullptr or invalid.
  *     <br>{@link AV_ERR_INVALID_STATE}: The codec service is unavailable.
  *     <br>{@link AV_ERR_OPERATE_NOT_PERMIT}: The operation is not allowed. This may be because of incorrect state or
  *     unsupported operation.
@@ -168,7 +168,7 @@ OH_AVErrCode OH_AudioCodec_Stop(OH_AVCodec *codec);
  *
  * @param codec Pointer to an OH_AVCodec instance.
  * @return {@link AV_ERR_OK}: The operation is successful.
- *     <br>{@link AV_ERR_INVALID_VAL}: The OH_AVCodec instance is nullptr or invalid.
+ *     <br>{@link AV_ERR_INVALID_VAL}: The OH_AVCodec instance is nullptr or invalid.
  *     <br>{@link AV_ERR_INVALID_STATE}: The codec service is unavailable.
  *     <br>{@link AV_ERR_OPERATE_NOT_PERMIT}: The operation is not allowed. This may be because of incorrect state or
  *     unsupported operation.
@@ -184,7 +184,7 @@ OH_AVErrCode OH_AudioCodec_Flush(OH_AVCodec *codec);
  *
  * @param codec Pointer to an OH_AVCodec instance.
  * @return {@link AV_ERR_OK}: The operation is successful.
- *     <br>{@link AV_ERR_INVALID_VAL}: The OH_AVCodec instance is nullptr or invalid.
+ *     <br>{@link AV_ERR_INVALID_VAL}: The OH_AVCodec instance is nullptr or invalid.
  *     <br>{@link AV_ERR_INVALID_STATE}: The codec service is unavailable.
  * @since 11
  */
@@ -212,7 +212,7 @@ OH_AVFormat *OH_AudioCodec_GetOutputDescription(OH_AVCodec *codec);
  * @param codec Pointer to an OH_AVCodec instance.
  * @param format Handle to an OH_AVFormat instance.
  * @return {@link AV_ERR_OK}: The operation is successful.
- *     <br>{@link AV_ERR_INVALID_VAL}: An input parameter is nullptr or invalid.
+ *     <br>{@link AV_ERR_INVALID_VAL}: An input parameter is nullptr or invalid.
  *     <br>{@link AV_ERR_INVALID_STATE}: The codec service is unavailable.
  *     <br>{@link AV_ERR_OPERATE_NOT_PERMIT}: The operation is not allowed. This may be because of incorrect state or
  *     unsupported operation.
@@ -238,7 +238,7 @@ OH_AVErrCode OH_AudioCodec_SetParameter(OH_AVCodec *codec, const OH_AVFormat *fo
  * @param codec Pointer to an OH_AVCodec instance.
  * @param index Index of the {@link OH_AVCodecOnNeedInputBuffer} callback.
  * @return {@link AV_ERR_OK}: The operation is successful.
- *     <br>{@link AV_ERR_INVALID_VAL}: The input index is used or invalid. Use the index returned by the
+ *     <br>{@link AV_ERR_INVALID_VAL}: The input index is used or invalid. Use the index returned by the
  *     {@link OH_AVCodecOnNeedInputBuffer} callback.
  *     <br>{@link AV_ERR_INVALID_STATE}: The codec state is incorrect.
  *     Before calling **OH_AudioCodec_PushInputBuffer**, ensure that {@link OH_AudioCodec_Configure},
@@ -256,7 +256,7 @@ OH_AVErrCode OH_AudioCodec_PushInputBuffer(OH_AVCodec *codec, uint32_t index);
  * @param codec Pointer to an OH_AVCodec instance.
  * @param index Index of the {@link OH_AVCodecOnNewOutputBuffer} callback.
  * @return {@link AV_ERR_OK}: The operation is successful.
- *     <br>{@link AV_ERR_INVALID_VAL}: An input parameter is nullptr or invalid. The buffer index is obtained from
+ *     <br>{@link AV_ERR_INVALID_VAL}: An input parameter is nullptr or invalid. The buffer index is obtained from
  *     {@link OH_AVCodecOnNewOutputBuffer}.
  *     <br>{@link AV_ERR_INVALID_STATE}: The codec service is unavailable.
  *     <br>{@link AV_ERR_OPERATE_NOT_PERMIT}: The operation is not allowed. This may be because of incorrect state or
@@ -276,7 +276,7 @@ OH_AVErrCode OH_AudioCodec_FreeOutputBuffer(OH_AVCodec *codec, uint32_t index);
  * @param isValid Pointer to an instance of the Boolean type. The value **true** means that the codec instance is
  *     valid, and **false** means the opposite.
  * @return {@link AV_ERR_OK}: The operation is successful.
- *     <br>{@link AV_ERR_INVALID_VAL}: An input parameter is nullptr or invalid.
+ *     <br>{@link AV_ERR_INVALID_VAL}: An input parameter is nullptr or invalid.
  * @since 11
  */
 OH_AVErrCode OH_AudioCodec_IsValid(OH_AVCodec *codec, bool *isValid);
@@ -289,7 +289,7 @@ OH_AVErrCode OH_AudioCodec_IsValid(OH_AVCodec *codec, bool *isValid);
  * @param secureAudio Whether a secure decoder is used. **true** if used, **false** otherwise.
  *     <br>Currently, the secure decoder is not supported for audio decryption.
  * @return {@link AV_ERR_OK}: The operation is successful.
- *     <br>{@link AV_ERR_INVALID_VAL}: The OH_AVCodec instance is nullptr or invalid, or the mediaKeySystemInfo
+ *     <br>{@link AV_ERR_INVALID_VAL}: The OH_AVCodec instance is nullptr or invalid, or the mediaKeySystemInfo
  *     instance is nullptr or invalid.
  *     <br>{@link AV_ERR_INVALID_STATE}: The codec service is unavailable.
  *     <br>{@link AV_ERR_NO_MEMORY}: Memory allocation fails.
@@ -314,7 +314,7 @@ OH_AVErrCode OH_AudioCodec_SetDecryptionConfig(OH_AVCodec *codec, MediaKeySessio
  * @param index Pointer to the index of the input buffer obtained.
  * @param timeoutUs Timeout period, in microseconds. A negative value means to wait infinitely.
  * @return {@link AV_ERR_OK}: The operation is successful.
- *     <br>{@link AV_ERR_INVALID_VAL}: The operation fails due to incorrect input parameters.
+ *     <br>{@link AV_ERR_INVALID_VAL}: The operation fails due to incorrect input parameters.
  *     <br>{@link AV_ERR_INVALID_STATE}: The operation fails due to an invalid state, for example, the codec not being
  *     started.
  *     <br>{@link AV_ERR_OPERATE_NOT_PERMIT}: The operation fails because the call is not allowed in asynchronous mode.
@@ -347,7 +347,7 @@ OH_AVBuffer *OH_AudioCodec_GetInputBuffer(struct OH_AVCodec *codec, uint32_t ind
  * @param index Pointer to the index of the output buffer obtained.
  * @param timeoutUs Timeout period, in microseconds. A negative value means to wait infinitely.
  * @return {@link AV_ERR_OK}: The operation is successful.
- *     <br>{@link AV_ERR_INVALID_VAL}: The operation fails due to incorrect input parameters.
+ *     <br>{@link AV_ERR_INVALID_VAL}: The operation fails due to incorrect input parameters.
  *     <br>{@link AV_ERR_INVALID_STATE}: The operation fails due to an invalid state, for example, the codec not being
  *     started.
  *     <br>{@link AV_ERR_OPERATE_NOT_PERMIT}: The operation fails because the call is not allowed in asynchronous mode.

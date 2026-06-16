@@ -102,7 +102,7 @@ typedef struct OH_CartesianPosition {
     float y;
     /**
      * Normalized Z coordinate of an object's upper/lower dimension when object is in the Cartesian coordinate system.
-     * Value range is [-1.0 1.0].
+     * Value range is [-1.0, 1.0].
      * @since 26.0.0
      */
     float z;
@@ -231,6 +231,7 @@ OH_AVErrCode OH_AudioVividMetaBuilder_UpdateObjectPos(OH_AudioVividMetaBuilder *
  */
 OH_AVErrCode OH_AudioVividMetaBuilder_UpdateObjectGain(OH_AudioVividMetaBuilder *builder,
     int32_t objectIndex, float gain);
+
 /**
  * @brief Obtains the length of metadata.
  *
