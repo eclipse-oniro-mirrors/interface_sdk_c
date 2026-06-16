@@ -628,9 +628,9 @@ OH_AudioStream_Result OH_AudioStreamBuilder_SetPlaybackCaptureMode(OH_AudioStrea
  * @since 26.0.0
  */
 OH_AudioStream_Result OH_AudioStreamBuilder_SetSensitiveRecordPermitCallback(
-    const OH_AudioStreamBuilder* builder,
+    OH_AudioStreamBuilder* builder,
     OH_AudioCapturer_SensitiveRecordPermitCallback callback,
-    const void* userData);
+    void* userData);
 
 /**
  * @brief Sets phone number and token for voice downlink capturer stream.
@@ -651,8 +651,8 @@ OH_AudioStream_Result OH_AudioStreamBuilder_SetSensitiveRecordPermitCallback(
  *         </ul>
  * @since 26.0.0
  */
-OH_AudioStream_Result OH_AudioStreamBuilder_SetCellularRecordSecurityParams( 
-    const OH_AudioStreamBuilder* builder, const char* cellularRecordPhoneNum, const char* cellularRecordToken);
+OH_AudioStream_Result OH_AudioStreamBuilder_SetCellularRecordSecurityParams(
+    OH_AudioStreamBuilder* builder, const char* cellularRecordPhoneNum, const char* cellularRecordToken);
 
 #ifdef __cplusplus
 }
