@@ -40,6 +40,9 @@
 #include <stdint.h>
 
 #include "drawable_descriptor.h"
+#include "node_attributes/slider.h"
+#include "node_attributes/checkbox.h"
+#include "node_attributes/button.h"
 
 #include "node_attributes/common_attributes.h"
 
@@ -1293,58 +1296,6 @@ typedef enum {
 } ArkUI_ScrollState;
 
 /**
- * @brief Enumerates the types of the slider in the block direction.
- *
- * @since 12
- */
-typedef enum {
-    /** Round slider. */
-    ARKUI_SLIDER_BLOCK_STYLE_DEFAULT = 0,
-    /** Slider with an image background. */
-    ARKUI_SLIDER_BLOCK_STYLE_IMAGE,
-    /** Slider in a custom shape. */
-    ARKUI_SLIDER_BLOCK_STYLE_SHAPE,
-} ArkUI_SliderBlockStyle;
-
-/**
- * @brief Enumerates the scroll directions of the slider.
- *
- * @since 12
- */
-typedef enum {
-    /** Vertical direction. */
-    ARKUI_SLIDER_DIRECTION_VERTICAL = 0,
-    /** Horizontal direction. */
-    ARKUI_SLIDER_DIRECTION_HORIZONTAL,
-} ArkUI_SliderDirection;
-
-/**
- * @brief Enumerates the slider styles.
- *
- * @since 12
- */
-typedef enum {
-    /** The slider is on the slider track. */
-    ARKUI_SLIDER_STYLE_OUT_SET = 0,
-    /** The slider is in the slider track. */
-    ARKUI_SLIDER_STYLE_IN_SET,
-    /** No slider. */
-    ARKUI_SLIDER_STYLE_NONE,
-} ArkUI_SliderStyle;
-
-/**
- * @brief Enumerates the shapes of the check box
- *
- * @since 12
- */
-typedef enum {
-    /** Circle. */
-    ArkUI_CHECKBOX_SHAPE_CIRCLE = 0,
-    /** Rounded square. */
-    ArkUI_CHECKBOX_SHAPE_ROUNDED_SQUARE,
-} ArkUI_CheckboxShape;
-
-/**
  * @brief Enumerates the animation playback modes.
  *
  * @since 12
@@ -2219,25 +2170,6 @@ typedef enum {
       * and the bottom part of the content is displayed. */
     ARKUI_RENDER_FIT_RESIZE_COVER_BOTTOM_RIGHT
 } ArkUI_RenderFit;
-
-/**
- * @brief Enumerates the button types.
- *
- * @since 12
- */
-typedef enum {
-    /** Normal button (without rounded corners by default). */
-    ARKUI_BUTTON_TYPE_NORMAL = 0,
-    /** Capsule-type button (the round corner is half of the height by default). */
-    ARKUI_BUTTON_TYPE_CAPSULE,
-    /** Circle button. */
-    ARKUI_BUTTON_TYPE_CIRCLE,
-    /**
-     * Rounded rectangle button.
-     * @since 19
-     */
-    ARKUI_BUTTON_ROUNDED_RECTANGLE = 8
-} ArkUI_ButtonType;
 
 /**
  * @brief Enumerates the autofill types.
