@@ -490,7 +490,7 @@ typedef struct OH_AudioFormat {
  */
 typedef struct OH_AudioDataArray {
     /**
-     * @brief Audio audioDataArray main.
+     * @brief Pointer to the array of audio data pointers.
      *
      * @since 22
      */
