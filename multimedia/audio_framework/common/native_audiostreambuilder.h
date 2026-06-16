@@ -651,7 +651,7 @@ OH_AudioStream_Result OH_AudioStreamBuilder_SetSensitiveRecordPermitCallback(
  *         </ul>
  * @since 26.0.0
  */
-OH_AudioStream_Result OH_AudioStreamBuilder_SetCellularRecordSecurityParams(
+OH_AudioStream_Result OH_AudioStreamBuilder_SetCellularRecordSecurityParams( 
     const OH_AudioStreamBuilder* builder, const char* cellularRecordPhoneNum, const char* cellularRecordToken);
 
 #ifdef __cplusplus
