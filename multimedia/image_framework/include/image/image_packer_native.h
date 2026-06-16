@@ -195,6 +195,36 @@ Image_ErrorCode OH_PackingOptions_SetNeedsPackProperties(OH_PackingOptions *opti
     bool needsPackProperties);
 
 /**
+ * @brief Obtains the **needsPackDfxData** parameter in the OH_PackingOptions struct.
+ * @systemapi
+ * @param options Pointer to an OH_PackingOptions struct.
+ * @param needsPackDfxData Whether to encode image DFX data. The values include **true** (yes) and **false** (no).
+ * @return <ul>
+ *         <li>{@link IMAGE_SUCCESS} if the execution is successful.</li>
+ *         <li>202 if a non-system application calls this system API.</li>
+ *         <li>{@link IMAGE_PACKER_INVALID_PARAMETER} options or needsPackDfxData is nullptr.</li>
+ *         </ul>
+ * @since 26.0.0
+ */
+Image_ErrorCode OH_PackingOptions_GetNeedsPackDfxData(OH_PackingOptions *options,
+    bool *needsPackDfxData);
+
+/**
+ * @brief Sets the **needsPackDfxData** parameter in the OH_PackingOptions struct.
+ * @systemapi
+ * @param options Pointer to an OH_PackingOptions struct.
+ * @param needsPackDfxData Whether to encode image DFX data. The values include **true** (yes) and **false** (no).
+ * @return <ul>
+ *         <li>{@link IMAGE_SUCCESS} if the execution is successful.</li>
+ *         <li>202 if a non-system application calls this system API.</li>
+ *         <li>{@link IMAGE_PACKER_INVALID_PARAMETER} options is nullptr.</li>
+ *         </ul>
+ * @since 26.0.0
+ */
+Image_ErrorCode OH_PackingOptions_SetNeedsPackDfxData(OH_PackingOptions *options,
+    bool needsPackDfxData);
+
+/**
  * @brief Obtains the desired dynamic range during encoding.
  * 
  * @param options Pointer to an OH_PackingOptions struct.

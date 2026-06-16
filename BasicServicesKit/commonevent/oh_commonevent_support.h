@@ -599,6 +599,15 @@ static const char* const COMMON_EVENT_VOLUME_ENCRYPTED = "usual.event.VOLUME_ENC
 static const char* const COMMON_EVENT_VOLUME_ENCRYPTION_POLICY_SET = "usual.event.VOLUME_ENCRYPTION_POLICY_SET";
 
 /**
+ * @brief This common event indicates that the skill information of an application has been changed.
+ *
+ * To receive this common event, your application must have the ohos.permission.MANAGE_SKILL_PRIVILEGE permission.
+ *
+ * @since 26.0.0
+ */
+static const char* const COMMON_EVENT_SKILL_CHANGED = "usual.event.SKILL_CHANGED";
+
+/**
  * @brief Indicates the common event that the lid state of a device has been changed.
  *
  * @since 23

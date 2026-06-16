@@ -27,7 +27,7 @@
 /**
  * @file avcodec_audio_channel_layout.h
  *
- * @brief Declare the enumeration used for audio encoding and decoding channel layout.
+ * @brief Audio AudioChannel Layout
  *
  * @kit AVCodecKit
  * @library libnative_media_codecbase.so
@@ -45,9 +45,8 @@ extern "C" {
 #endif
 
 /**
- * @brief Audio Channel Set
- * A 64-bit integer with bits set for each channel.
- * @syscap SystemCapability.Multimedia.Media.CodecBase
+ * @brief Enumerates the audio channels. Each channel is mapped to a variable of int64.
+ *
  * @deprecated since 11
  * @useinstead OH_AudioChannelSet
  * @since 10
@@ -113,10 +112,9 @@ enum AudioChannelSet : uint64_t {
 };
 
 /**
- * @brief Audio AudioChannel Layout
- * Indicates that the channel order in which the user requests decoder output
- * is the native codec channel order.
- * @syscap SystemCapability.Multimedia.Media.CodecBase
+ * @brief Enumerates the layouts of audio channels. The output format of the decoder is described using the channel
+ * layout of the codec.
+ *
  * @deprecated since 11
  * @useinstead OH_AudioChannelLayout
  * @since 10

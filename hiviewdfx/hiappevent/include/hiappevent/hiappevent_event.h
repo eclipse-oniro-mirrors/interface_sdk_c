@@ -1,10 +1,10 @@
 /*
- * Copyright (c) 2021-2024 Huawei Device Co., Ltd.
+ * Copyright (c) 2021-2026 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -48,14 +48,11 @@
  * @since 8
  * @version 1.0
  */
-
 #ifndef HIVIEWDFX_HIAPPEVENT_EVENT_H
 #define HIVIEWDFX_HIAPPEVENT_EVENT_H
-
 #ifdef __cplusplus
 extern "C" {
 #endif
-
 /**
  * @brief user login event.
  *
@@ -63,7 +60,6 @@ extern "C" {
  * @version 1.0
  */
 #define EVENT_USER_LOGIN "hiappevent.user_login"
-
 /**
  * @brief user logout event.
  *
@@ -71,7 +67,6 @@ extern "C" {
  * @version 1.0
  */
 #define EVENT_USER_LOGOUT "hiappevent.user_logout"
-
 /**
  * @brief distributed service event.
  *
@@ -79,7 +74,6 @@ extern "C" {
  * @version 1.0
  */
 #define EVENT_DISTRIBUTED_SERVICE_START "hiappevent.distributed_service_start"
-
 /**
  * @brief app crash event.
  *
@@ -87,7 +81,6 @@ extern "C" {
  * @version 1.0
  */
 #define EVENT_APP_CRASH "APP_CRASH"
-
 /**
  * @brief app freeze event.
  *
@@ -95,7 +88,6 @@ extern "C" {
  * @version 1.0
  */
 #define EVENT_APP_FREEZE "APP_FREEZE"
-
 /**
  * @brief app launch event.
  *
@@ -103,7 +95,6 @@ extern "C" {
  * @version 1.0
  */
 #define EVENT_APP_LAUNCH "APP_LAUNCH"
-
 /**
  * @brief app scroll jank event.
  *
@@ -111,7 +102,6 @@ extern "C" {
  * @version 1.0
  */
 #define EVENT_SCROLL_JANK "SCROLL_JANK"
-
 /**
  * @brief app cpu usage high event.
  *
@@ -119,7 +109,6 @@ extern "C" {
  * @version 1.0
  */
 #define EVENT_CPU_USAGE_HIGH "CPU_USAGE_HIGH"
-
 /**
  * @brief app battery usage event.
  *
@@ -127,7 +116,6 @@ extern "C" {
  * @version 1.0
  */
 #define EVENT_BATTERY_USAGE "BATTERY_USAGE"
-
 /**
  * @brief app resource overlimit event.
  *
@@ -135,7 +123,6 @@ extern "C" {
  * @version 1.0
  */
 #define EVENT_RESOURCE_OVERLIMIT "RESOURCE_OVERLIMIT"
-
 /**
  * @brief app address sanitizer event.
  *
@@ -143,7 +130,6 @@ extern "C" {
  * @version 1.0
  */
 #define EVENT_ADDRESS_SANITIZER "ADDRESS_SANITIZER"
-
 /**
  * @brief app main thread jank event.
  *
@@ -158,7 +144,6 @@ extern "C" {
  * @since 22
  */
 #define EVENT_MAIN_THREAD_JANK_V2 "MAIN_THREAD_JANK_V2"
-
 /**
  * @brief app hicollie event.
  *
@@ -166,7 +151,13 @@ extern "C" {
  * @version 1.0
  */
 #define EVENT_APP_HICOLLIE "APP_HICOLLIE"
-
+/**
+ * @brief OS domain.
+ *
+ * @since 12
+ * @version 1.0
+ */
+#define DOMAIN_OS "OS"
 /**
  * @brief app killed event.
  *
@@ -174,7 +165,6 @@ extern "C" {
  * @version 1.0
  */
 #define EVENT_APP_KILLED "APP_KILLED"
-
 /**
  * @brief audio jank frame event.
  *
@@ -184,22 +174,14 @@ extern "C" {
 #define EVENT_AUDIO_JANK_FRAME "AUDIO_JANK_FRAME"
 
 /**
- * @brief OS domain.
- *
- * @since 12
- * @version 1.0
- */
-#define DOMAIN_OS "OS"
-
-/**
  * @brief appfreeze warning event.
  *
  * @since 26.0.0
  */
 #define OH_EVENT_APP_FREEZE_WARNING "APPFREEZE_WARNING"
-
 #ifdef __cplusplus
 }
 #endif
+
 /** @} */
 #endif // HIVIEWDFX_HIAPPEVENT_EVENT_H

@@ -97,9 +97,9 @@ typedef struct {
 } RawFileDescriptor;
 
 /**
- * @brief Defines the file descriptor of a rawfile. **RawFileDescriptor** is an output parameter of
- * {@link OH_ResourceManager_GetRawFileDescriptor}. It contains the file descriptor of a rawfile and the start position
- * and length of the rawfile in the HAP.
+ * @brief Defines the file descriptor of a large rawfile. **RawFileDescriptor64** is an output parameter of
+ * {@link OH_ResourceManager_GetRawFileDescriptor64}. It contains the file descriptor of a rawfile and the start
+ * position and length of the rawfile in the HAP.
  *
  * @since 11
  * @version 1.0
@@ -111,12 +111,12 @@ typedef struct {
     int fd;
 
     /**
-     * Start position of the rawfile in the HAP, in long.
+     * Start position of the rawfile in the HAP, in int64_t.
      */
     int64_t start;
 
     /**
-     * Length of the rawfile in the HAP, in long.
+     * Length of the rawfile in the HAP, in int64_t.
      */
     int64_t length;
 } RawFileDescriptor64;
@@ -128,7 +128,7 @@ typedef struct {
  * @param buf Pointer to the buffer for receiving the read data.
  * @param length Length of the data to read.
  * @return Number of read bytes. If the read length exceeds the length of the file end or rawfile is empty, **0** is
- * returned.
+ *     returned.
  * @since 8
  * @version 1.0
  */
@@ -140,9 +140,9 @@ int OH_ResourceManager_ReadRawFile(const RawFile *rawFile, void *buf, size_t len
  * @param rawFile Pointer to {@link RawFile}.
  * @param offset Specified offset.
  * @param whence Read/Write position. The options are as follows:
- * **0**: The read/write position is the start position of the file plus the offset.
- * **1**: The read/write position is the current position plus the offset.
- * **2**: The read/write position is the end position of the file plus the offset.
+ *     <br>**0**: The read/write position is the start position of the file plus the offset.
+ *     <br>**1**: The read/write position is the current position plus the offset.
+ *     <br>**2**: The read/write position is the end position of the file plus the offset.
  * @return **0** if the search is successful; **-1** otherwise.
  * @since 8
  * @version 1.0
@@ -180,7 +180,7 @@ long OH_ResourceManager_GetRawFileRemainingLength(const RawFile *rawFile);
 void OH_ResourceManager_CloseRawFile(RawFile *rawFile);
 
 /**
- * @brief Obtains the current offset of a rawfile, in long. Current offset of the rawfile.
+ * @brief Obtains the current offset of a rawfile, in long.
  *
  * @param rawFile Pointer to {@link RawFile}.
  * @return Current offset of the rawfile. If the rawfile is empty, **0** is returned.
@@ -209,7 +209,7 @@ bool OH_ResourceManager_GetRawFileDescriptor(const RawFile *rawFile, RawFileDesc
  *
  * @param rawFile Pointer to {@link RawFile}.
  * @param descriptor File descriptor of the rawfile, start position of the rawfile in the HAP, and length of the
- * rawfile.
+ *     rawfile.
  * @return <b>true</b> if the file is opened; returns <b>false</b> if the access to the file is rejected.
  * @since 12
  * @version 1.0
@@ -234,7 +234,7 @@ bool OH_ResourceManager_ReleaseRawFileDescriptor(const RawFileDescriptor &descri
  * rawfile descriptor immediately after use.
  *
  * @param descriptor File descriptor of the rawfile. It contains the file descriptor, start position in the HAP, and
- * file length.
+ *     file length.
  * @return Returns <b>true</b> if the file descriptor is released; returns <b>false</b> otherwise.
  * @since 12
  * @version 1.0
@@ -248,7 +248,7 @@ bool OH_ResourceManager_ReleaseRawFileDescriptorData(const RawFileDescriptor *de
  * @param buf Pointer to the buffer for receiving the read data.
  * @param length Length of the data to read.
  * @return Number of read bytes. If the read length exceeds the length of the file end or rawfile is empty, **0** is
- * returned.
+ *     returned.
  * @since 11
  * @version 1.0
  */
@@ -260,9 +260,9 @@ int64_t OH_ResourceManager_ReadRawFile64(const RawFile64 *rawFile, void *buf, in
  * @param rawFile Pointer to {@link RawFile64}.
  * @param offset Specified offset.
  * @param whence Read/Write position. The options are as follows:
- * **0**: The read/write position is the start position of the file plus the offset.
- * **1**: The read/write position is the current position plus the offset.
- * **2**: The read/write position is the end position of the file plus the offset.
+ *     <br>**0**: The read/write position is the start position of the file plus the offset.
+ *     <br>**1**: The read/write position is the current position plus the offset.
+ *     <br>**2**: The read/write position is the end position of the file plus the offset.
  * @return **0** if the search is successful; **-1** otherwise.
  * @since 11
  * @version 1.0
@@ -315,7 +315,7 @@ int64_t OH_ResourceManager_GetRawFileOffset64(const RawFile64 *rawFile);
  *
  * @param rawFile Pointer to {@link RawFile64}.
  * @param descriptor File descriptor of the rawfile, start position of the rawfile in the HAP, and length of the
- * rawfile.
+ *     rawfile.
  * @return <b>true</b> if the file is opened; returns <b>false</b> if the access to the file is rejected.
  * @since 11
  * @version 1.0
@@ -327,7 +327,7 @@ bool OH_ResourceManager_GetRawFileDescriptor64(const RawFile64 *rawFile, RawFile
  * rawfile descriptor immediately after use.
  *
  * @param descriptor File descriptor of the rawfile. It contains the file descriptor, start position in the HAP, and
- * file length.
+ *     file length.
  * @return Returns <b>true</b> if the file descriptor is released; returns <b>false</b> otherwise.
  * @since 11
  * @version 1.0

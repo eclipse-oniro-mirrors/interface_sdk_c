@@ -40,6 +40,7 @@
 #ifndef UDS_H
 #define UDS_H
 
+#include <stdbool.h>
 #include "multimedia/image_framework/image/pixelmap_native.h"
 
 #ifdef __cplusplus
@@ -143,7 +144,7 @@ typedef struct OH_UdsArrayBuffer OH_UdsArrayBuffer;
 typedef struct OH_UdsDetails OH_UdsDetails;
 
 /**
- * @brief Creation a pointer to the instance of the {@link OH_UdsPlainText}.
+ * @brief Creates a pointer to the instance of the {@link OH_UdsPlainText}.
  *
  * @return If the operation is successful, a pointer to the instance of the {@link OH_UdsPlainText}
  * structure is returned. If the operation is failed, nullptr is returned.
@@ -244,7 +245,7 @@ int OH_UdsPlainText_SetAbstract(OH_UdsPlainText* pThis, const char* abstract);
 int OH_UdsPlainText_SetDetails(OH_UdsPlainText* pThis, const OH_UdsDetails* details);
 
 /**
- * @brief Creation a pointer to the instance of the {@link OH_UdsHyperlink}.
+ * @brief Creates a pointer to the instance of the {@link OH_UdsHyperlink}.
  *
  * @return If the operation is successful, a pointer to the instance of {@link OH_UdsHyperlink}
  * structure is returned. If the operation is failed, nullptr is returned.
@@ -345,7 +346,7 @@ int OH_UdsHyperlink_SetDescription(OH_UdsHyperlink* pThis, const char* descripti
 int OH_UdsHyperlink_SetDetails(OH_UdsHyperlink* pThis, const OH_UdsDetails* details);
 
 /**
- * @brief Creation a pointer to the instance of the {@link OH_UdsHtml}.
+ * @brief Creates a pointer to the instance of the {@link OH_UdsHtml}.
  *
  * @return If the operation is successful, a pointer to the instance of the {@link OH_UdsHtml}
  * structure is returned. If the operation is failed, nullptr is returned.
@@ -458,7 +459,7 @@ int OH_UdsHtml_SetDetails(OH_UdsHtml* pThis, const OH_UdsDetails* details);
 int OH_UdsHtml_SetAuthPolicy(OH_UdsHtml* pThis, uint32_t authPolicy);
 
 /**
- * @brief Creation a pointer to the instance of the {@link OH_UdsAppItem}.
+ * @brief Creates a pointer to the instance of the {@link OH_UdsAppItem}.
  *
  * @return If the operation is successful, a pointer to the instance of the {@link OH_UdsAppItem}
  * structure is returned. sIf the operation is failed, nullptr is returned.
@@ -651,7 +652,7 @@ int OH_UdsAppItem_SetAbilityName(OH_UdsAppItem* pThis, const char* abilityName);
 int OH_UdsAppItem_SetDetails(OH_UdsAppItem* pThis, const OH_UdsDetails* details);
 
 /**
- * @brief Creation a pointer to the instance of the {@link OH_UdsFileUri}.
+ * @brief Creates a pointer to the instance of the {@link OH_UdsFileUri}.
  *
  * @return If the operation is successful, a pointer to the instance of the {@link OH_UdsFileUri}
  * structure is returned. If the memory is not enough, nullptr is returned.
@@ -764,7 +765,7 @@ int OH_UdsFileUri_SetDetails(OH_UdsFileUri* pThis, const OH_UdsDetails* details)
 int OH_UdsFileUri_SetAuthPolicy(OH_UdsFileUri* pThis, uint32_t authPolicy);
 
 /**
- * @brief Creation a pointer to the instance of the {@link OH_UdsPixelMap}.
+ * @brief Creates a pointer to the instance of the {@link OH_UdsPixelMap}.
  *
  * @return If the operation is successful, a pointer to the instance of the {@link OH_UdsPixelMap}
  * structure is returned. If the memory is not enough, nullptr is returned.
@@ -842,7 +843,7 @@ int OH_UdsPixelMap_SetPixelMap(OH_UdsPixelMap* pThis, OH_PixelmapNative* pixelma
 int OH_UdsPixelMap_SetDetails(OH_UdsPixelMap* pThis, const OH_UdsDetails* details);
 
 /**
- * @brief Creation a pointer to the instance of the {@link OH_UdsArrayBuffer}.
+ * @brief Creates a pointer to the instance of the {@link OH_UdsArrayBuffer}.
  *
  * @return If the operation is successful, a pointer to the instance of the {@link OH_UdsArrayBuffer}
  * structure is returned. If the memory is not enough, nullptr is returned.
@@ -892,7 +893,7 @@ int OH_UdsArrayBuffer_SetData(OH_UdsArrayBuffer* buffer, unsigned char* data, un
 int OH_UdsArrayBuffer_GetData(OH_UdsArrayBuffer* buffer, unsigned char** data, unsigned int* len);
 
 /**
- * @brief Creation a pointer to the instance of the {@link OH_UdsContentForm}.
+ * @brief Creates a pointer to the instance of the {@link OH_UdsContentForm}.
  *
  * @return If the operation is successful, a pointer to the instance of the {@link OH_UdsContentForm}
  * structure is returned. If the operation is failed, nullptr is returned.
@@ -1071,7 +1072,7 @@ int OH_UdsContentForm_SetAppName(OH_UdsContentForm* pThis, const char* appName);
 int OH_UdsContentForm_SetLinkUri(OH_UdsContentForm* pThis, const char* linkUri);
 
 /**
- * @brief Creation a pointer to the instance of the {@link OH_UdsDetails}.
+ * @brief Creates a pointer to the instance of the {@link OH_UdsDetails}.
  *
  * @return If the operation is successful, a pointer to the instance of the {@link OH_UdsDetails}
  * structure is returned. If the operation is failed, nullptr is returned.
