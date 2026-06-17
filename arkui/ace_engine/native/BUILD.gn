@@ -28,6 +28,7 @@ if (!is_arkui_x) {
     sources = [
       "drag_and_drop.h",
       "drawable_descriptor.h",
+      "error_code.h",
       "native_animate.h",
       "native_dialog.h",
       "native_gesture.h",
@@ -56,6 +57,7 @@ if (!is_arkui_x) {
     system_capability_headers = [
       "arkui/drag_and_drop.h",
       "arkui/drawable_descriptor.h",
+      "arkui/error_code.h",
       "arkui/native_animate.h",
       "arkui/native_dialog.h",
       "arkui/native_gesture.h",
