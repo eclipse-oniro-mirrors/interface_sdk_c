@@ -282,7 +282,31 @@ typedef enum {
     ARKUI_ITEMFILLPOLICY_SM2MD3LG5 = 2,
 } ArkUI_ItemFillPolicy;
 
-
+ /**
+ * @brief Enumerates the digital crown sensitivity.
+ *
+ * @since 26.0.0
+ */
+typedef enum {
+    /**
+     * Low sensitivity.
+     *
+     * @since 26.0.0
+     * */
+    ARKUI_CROWN_SENSITIVITY_LOW = 0,
+    /**
+     * Medium sensitivity.
+     *
+     * @since 26.0.0
+     * */
+    ARKUI_CROWN_SENSITIVITY_MEDIUM = 1,
+    /**
+     * High sensitivity.
+     *
+     * @since 26.0.0
+     * */
+    ARKUI_CROWN_SENSITIVITY_HIGH = 2,
+} ArkUI_CrownSensitivity;
 
 /**
  * @brief Enumerates the border styles.
