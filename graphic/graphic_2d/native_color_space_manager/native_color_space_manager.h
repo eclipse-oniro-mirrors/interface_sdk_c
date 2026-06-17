@@ -185,6 +185,18 @@ typedef enum {
      */
     DISPLAY_P3_PQ = P3_PQ,
     /**
+     * Color space with the color primaries of BT.2020, the transfer characteristics of private log,
+     * and the color range of FULL.
+     * @since 26.0.0
+     */
+    BT2020_LOG_FULL = 27,
+    /**
+     * Color space with the color primaries of BT.2020, the transfer characteristics of private log,
+     * and the color range of LIMIT.
+     * @since 26.0.0
+     */
+    BT2020_LOG_LIMIT = 28,
+    /**
      * Custom color space.
      */
     CUSTOM = 5,
