@@ -150,6 +150,57 @@ int32_t OH_Netstack_IsCleartextPermittedByHostName(const char *hostname, bool *i
  */
 int32_t OH_Netstack_IsCleartextCfgByComponent(const char *component, bool *componentCfg);
 
+/**
+ * @brief Creates and verifies a sorted certificate chain.
+ *
+ * @detail This function verifies the provided certificate chain and constructs
+ *         a sorted chain output. It allocates memory for the output chain,
+ *         which must be explicitly freed by the caller to avoid memory leaks.
+ *
+ * @param cert Certificate chain to be verified. Cannot be NULL or empty.
+ * @param certCount Certificate number of param cert.
+ * @param caCert CA certificate specified by the user. If NULL, the preset certificate is used.
+ * @param hostname The expected server hostname.
+ * @param outSortedChain Pointer to receive the sorted certificate chain.
+ *                     Can be NULL if the caller does not need the chain data.
+ *                     Valid only if return value is 0.
+ *                     Allocated memory must be freed using OH_NetStack_FreeCertChain.
+ * @param outSortedCount Pointer to receive the count of sorted certificates.
+ * @return 0 - success.
+ *         2305001 - Unspecified error.
+ *         2305002 - Unable to get issuer certificate.
+ *         2305004 - Unable to decrypt certificate signature.
+ *         2305006 - Unable to decode issuer public key.
+ *         2305007 - Certificate signature failure.
+ *         2305009 - Certificate is not yet valid.
+ *         2305010 - Certificate has expired.
+ *         2305024 - Invalid certificate authority (CA).
+ *         2305062 - Hostname verification failed.
+ *         2305027 - Certificate is untrusted.
+ * @stagemodelonly
+ * @since 26.0.0
+ * @note After use, you must call {@link OH_NetStack_FreeCertChain} to release the
+ *       allocated memory pointed by outSortedChain. Failure to do so will cause memory leaks.
+ */
+uint32_t OH_NetStack_CreateAndVerifySortedCertChain(const struct NetStack_CertBlob *cert, size_t certCount,
+    const struct NetStack_CertBlob *caCert, const char *hostname,
+    struct NetStack_CertBlob **outSortedChain, size_t *outSortedCount);
+
+/**
+ * @brief Frees the certificate chain allocated by OH_NetStack_CreateAndVerifySortedCertChain.
+ *
+ * @detail This function must be used to free the memory pointed to by outSortedChain
+ *         from OH_NetStack_CreateAndVerifySortedCertChain.
+ *         Do NOT use free() or malloc() directly on this memory.
+ *
+ * @param certChain The certificate chain pointer received from outSortedChain.
+ *                  If NULL, this function does nothing.
+ * @param certCount The number of certificates in the chain.
+ * @stagemodelonly
+ * @since 26.0.0
+ */
+void OH_NetStack_FreeCertChain(struct NetStack_CertBlob *certChain, size_t certCount);
+
 #ifdef __cplusplus
 }
 #endif

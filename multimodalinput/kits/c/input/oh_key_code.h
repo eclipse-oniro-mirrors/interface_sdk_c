@@ -1083,12 +1083,12 @@ typedef enum {
     KEYCODE_KBDINPUTASSIST_CANCEL = 2731,
     /**
      * Mouse Assistant key
-     * @since 24
+     * @since 26.0.0
      */
     KEYCODE_MOUSE_ASSISTANT = 2732,
     /**
      * Mouse Intelligence Selection key
-     * @since 24
+     * @since 26.0.0
      */
     KEYCODE_MOUSE_INTELLIGENCE_SELECTION = 2733,
     /**
@@ -1400,7 +1400,22 @@ typedef enum {
      * Smart watch's left button
      * @since 22
      */
-    KEYCODE_DIV = 3220
+    KEYCODE_DIV = 3220,
+    /**
+     * XKEY
+     * @since 26.0.0
+     */
+    KEYCODE_XKEY = 3232,
+    /**
+     * FINGERPRINT_SLIDE_UP
+     * @since 26.0.0
+     */
+    KEYCODE_FINGERPRINT_SLIDE_UP = 3233,
+    /**
+     * FINGERPRINT_SLIDE_DOWN
+     * @since 26.0.0
+     */
+    KEYCODE_FINGERPRINT_SLIDE_DOWN = 3234,
 } Input_KeyCode;
 
 #ifdef __cplusplus

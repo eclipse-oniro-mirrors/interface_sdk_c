@@ -28,9 +28,8 @@
 /**
  * @file hid_ddk_types.h
  *
- * @brief Provides definitions of enum variables and structs in the HID DDK.
+ * @brief Defines the enum variables and structs used in the HID DDK.
  *
- * File to include: <hid/hid_ddk_types.h>
  * @library libhid.z.so
  * @syscap SystemCapability.Driver.HID.Extension
  * @since 11
@@ -47,63 +46,97 @@ extern "C" {
 #endif /* __cplusplus */
 
 /**
- * @brief Defines event information.
+ * @brief Represents the event information.
  *
  * @since 11
  * @version 1.0
  */
 typedef struct Hid_EmitItem {
-    /** Event type */
+    /**
+     * Event type.
+     */
     uint16_t type;
-    /** Event code */
+    /**
+     * Event code.
+     */
     uint16_t code;
-    /** Event value */
+    /**
+     * Event value.
+     */
     uint32_t value;
 } Hid_EmitItem;
 
 /**
- * @brief Enumerates the input devices.
+ * @brief Enumerates the properties of input devices.
  *
  * @since 11
  * @version 1.0
  */
 typedef enum {
-    /** Pointer device */
+    /**
+     * Pointer device.
+     */
     HID_PROP_POINTER = 0x00,
-    /** Direct input device */
+    /**
+     * Direct input device.
+     */
     HID_PROP_DIRECT = 0x01,
-    /** Touch device with bottom keys */
+    /**
+     * Touch device with bottom keys.
+     */
     HID_PROP_BUTTON_PAD = 0x02,
-    /** Full multi-touch device */
+    /**
+     * Full multi-touch device.
+     */
     HID_PROP_SEMI_MT = 0x03,
-    /** Touch device with top soft keys */
+    /**
+     * Touch device with top soft keys.
+     */
     HID_PROP_TOP_BUTTON_PAD = 0x04,
-    /** Pointing stick */
+    /**
+     * Pointing stick.
+     */
     HID_PROP_POINTING_STICK = 0x05,
-    /** Accelerometer */
+    /**
+     * Accelerometer.
+     */
     HID_PROP_ACCELEROMETER = 0x06
 } Hid_DeviceProp;
 
 /**
- * @brief Defines the basic device information.
+ * @brief Defines a struct for basic device information.
  *
  * @since 11
  * @version 1.0
  */
 typedef struct Hid_Device {
-    /** Device name */
+    /**
+     * Device name.
+     */
     const char *deviceName;
-    /** Vendor ID */
+    /**
+     * Vendor ID.
+     */
     uint16_t vendorId;
-    /** Product ID */
+    /**
+     * Product ID.
+     */
     uint16_t productId;
-    /** Version */
+    /**
+     * Version number.
+     */
     uint16_t version;
-    /** Bus type */
+    /**
+     * Bus type.
+     */
     uint16_t bustype;
-    /** Device properties */
+    /**
+     * Device properties indicated by {@link Hid_DeviceProp}.
+     */
     Hid_DeviceProp *properties;
-    /** Number of device properties */
+    /**
+     * Number of device properties.
+     */
     uint16_t propLength;
 } Hid_Device;
 
@@ -114,556 +147,951 @@ typedef struct Hid_Device {
  * @version 1.0
  */
 typedef enum {
-    /** Synchronization event */
+    /**
+     * Sync event.
+     */
     HID_EV_SYN = 0x00,
-    /** Key event */
+    /**
+     * Key event.
+     */
     HID_EV_KEY = 0x01,
-    /** Relative coordinate event */
+    /**
+     * Relative coordinate event.
+     */
     HID_EV_REL = 0x02,
-    /** Absolute coordinate event */
+    /**
+     * Absolute coordinate event.
+     */
     HID_EV_ABS = 0x03,
-    /** Other special event */
+    /**
+     * Miscellaneous event.
+     */
     HID_EV_MSC = 0x04
 } Hid_EventType;
 
 /**
- * @brief Enumerates the synchronization event codes.
+ * @brief Enumerates sync events.
  *
  * @since 11
  * @version 1.0
  */
 typedef enum {
-    /** Indicates the end of an event. */
+    /**
+     * End of an event.
+     */
     HID_SYN_REPORT = 0,
-    /** Indicates configuration synchronization. */
+    /**
+     * Configuration synchronization.
+     */
     HID_SYN_CONFIG = 1,
-    /** Indicates the end of a multi-touch ABS data packet. */
+    /**
+     * End of a multi-touch ABS data packet.
+     */
     HID_SYN_MT_REPORT = 2,
-    /** Indicates that the event is discarded. */
+    /**
+     * Event discarded.
+     */
     HID_SYN_DROPPED = 3
 } Hid_SynEvent;
 
 /**
- * @brief Enumerates the key value codes.
+ * @brief Enumerates the key codes.
  *
  * @since 11
  * @version 1.0
  */
 typedef enum {
-    /** Key A */
+    /**
+     * Key A
+     */
     HID_KEY_A = 30,
-    /** Key B */
+    /**
+     * Key B
+     */
     HID_KEY_B = 48,
-    /** Key C */
+    /**
+     * Key C
+     */
     HID_KEY_C = 46,
-    /** Key D */
+    /**
+     * Key D
+     */
     HID_KEY_D = 32,
-    /** Key E */
+    /**
+     * Key E
+     */
     HID_KEY_E = 18,
-    /** Key F */
+    /**
+     * Key F
+     */
     HID_KEY_F = 33,
-    /** Key G */
+    /**
+     * Key G
+     */
     HID_KEY_G = 34,
-    /** Key H */
+    /**
+     * Key H
+     */
     HID_KEY_H = 35,
-    /** Key I */
+    /**
+     * Key I
+     */
     HID_KEY_I = 23,
-    /** Key J */
+    /**
+     * Key J
+     */
     HID_KEY_J = 36,
-    /** Key K */
+    /**
+     * Key K
+     */
     HID_KEY_K = 37,
-    /** Key L */
+    /**
+     * Key L
+     */
     HID_KEY_L = 38,
-    /** Key M */
+    /**
+     * Key M
+     */
     HID_KEY_M = 50,
-    /** Key N */
+    /**
+     * Key N
+     */
     HID_KEY_N = 49,
-    /** Key O */
+    /**
+     * Key O
+     */
     HID_KEY_O = 24,
-    /** Key P */
+    /**
+     * Key P
+     */
     HID_KEY_P = 25,
-    /** Key Q */
+    /**
+     * Key Q
+     */
     HID_KEY_Q = 16,
-    /** Key R */
+    /**
+     * Key R
+     */
     HID_KEY_R = 19,
-    /** Key S */
+    /**
+     * Key S
+     */
     HID_KEY_S = 31,
-    /** Key T */
+    /**
+     * Key T
+     */
     HID_KEY_T = 20,
-    /** Key U */
+    /**
+     * Key U
+     */
     HID_KEY_U = 22,
-    /** Key V */
+    /**
+     * Key V
+     */
     HID_KEY_V = 47,
-    /** Key W */
+    /**
+     * Key W
+     */
     HID_KEY_W = 17,
-    /** Key X */
+    /**
+     * Key X
+     */
     HID_KEY_X = 45,
-    /** Key Y */
+    /**
+     * Key Y
+     */
     HID_KEY_Y = 21,
-    /** Key Z */
+    /**
+     * Key Z
+     */
     HID_KEY_Z = 44,
-    /** Key Esc */
+    /**
+     * Key Esc
+     */
     HID_KEY_ESC = 1,
-    /** Key 0 */
+    /**
+     * Key 0
+     */
     HID_KEY_0 = 11,
-    /** Key 1 */
+    /**
+     * Key 1
+     */
     HID_KEY_1 = 2,
-    /** Key 2 */
+    /**
+     * Key 2
+     */
     HID_KEY_2 = 3,
-    /** Key 3 */
+    /**
+     * Key 3
+     */
     HID_KEY_3 = 4,
-    /** Key 4 */
+    /**
+     * Key 4
+     */
     HID_KEY_4 = 5,
-    /** Key 5 */
+    /**
+     * Key 5
+     */
     HID_KEY_5 = 6,
-    /** Key 6 */
+    /**
+     * Key 6
+     */
     HID_KEY_6 = 7,
-    /** Key 7 */
+    /**
+     * Key 7
+     */
     HID_KEY_7 = 8,
-    /** Key 8 */
+    /**
+     * Key 8
+     */
     HID_KEY_8 = 9,
-    /** Key 9 */
+    /**
+     * Key 9
+     */
     HID_KEY_9 = 10,
-    /** Key grave (`) */
+    /**
+     * Key grave (`)
+     */
     HID_KEY_GRAVE = 41,
-    /** Key minum (-) */
+    /**
+     * Key -
+     */
     HID_KEY_MINUS = 12,
-    /** Key equals (=) */
+    /**
+     * Key =
+     */
     HID_KEY_EQUALS = 13,
-    /** Key backspace */
+    /**
+     * Key Backspace
+     */
     HID_KEY_BACKSPACE = 14,
-    /** Key left bracket ([) */
+    /**
+     * Key [
+     */
     HID_KEY_LEFT_BRACKET = 26,
-    /** Key right bracket (]) */
+    /**
+     * Key ]
+     */
     HID_KEY_RIGHT_BRACKET = 27,
-    /** Key Enter */
+    /**
+     * Key Enter
+     */
     HID_KEY_ENTER = 28,
-    /** Key left Shift */
+    /**
+     * Left Shift
+     */
     HID_KEY_LEFT_SHIFT = 42,
-    /** Key backslash (\) */
+    /**
+     * Key \
+     */
     HID_KEY_BACKSLASH = 43,
-    /** Key semicolon (;) */
+    /**
+     * Key ;
+     */
     HID_KEY_SEMICOLON = 39,
-    /** Key apostrophe (') */
+    /**
+     * Key '
+     */
     HID_KEY_APOSTROPHE = 40,
-    /** Key space */
+    /**
+     * Key Space
+     */
     HID_KEY_SPACE = 57,
-    /** Key slash (/) */
+    /**
+     * Key /
+     */
     HID_KEY_SLASH = 53,
-    /** Key comma (,) */
+    /**
+     * Key comma (,)
+     */
     HID_KEY_COMMA = 51,
-    /** Key period (.) */
+    /**
+     * Key period (.)
+     */
     HID_KEY_PERIOD = 52,
-    /** Key right Shift */
+    /**
+     * Right Shift
+     */
     HID_KEY_RIGHT_SHIFT = 54,
-    /** Numeral 0 on the numeric keypad */
+    /**
+     * Numeral 0 on the numeric keypad
+     */
     HID_KEY_NUMPAD_0 = 82,
-    /** Numeral 1 on the numeric keypad */
+    /**
+     * Numeral 1 on the numeric keypad
+     */
     HID_KEY_NUMPAD_1 = 79,
-    /** Numeral 2 on the numeric keypad */
+    /**
+     * Numeral 2 on the numeric keypad
+     */
     HID_KEY_NUMPAD_2 = 80,
-    /** Numeral 3 on the numeric keypad */
+    /**
+     * Numeral 3 on the numeric keypad
+     */
     HID_KEY_NUMPAD_3 = 81,
-    /** Numeral 4 on the numeric keypad */
+    /**
+     * Numeral 4 on the numeric keypad
+     */
     HID_KEY_NUMPAD_4 = 75,
-    /** Numeral 5 on the numeric keypad */
+    /**
+     * Numeral 5 on the numeric keypad
+     */
     HID_KEY_NUMPAD_5 = 76,
-    /** Numeral 6 on the numeric keypad*/
+    /**
+     * Numeral 6 on the numeric keypad
+     */
     HID_KEY_NUMPAD_6 = 77,
-    /** Numeral 7 on the numeric keypad */
+    /**
+     * Numeral 7 on the numeric keypad
+     */
     HID_KEY_NUMPAD_7 = 71,
-    /** Numeral 8 on the numeric keypad */
+    /**
+     * Numeral 8 on the numeric keypad
+     */
     HID_KEY_NUMPAD_8 = 72,
-    /** Numeral 9 on the numeric keypad */
+    /**
+     * Numeral 9 on the numeric keypad
+     */
     HID_KEY_NUMPAD_9 = 73,
-    /** Arithmetic operator / (division) on the numeric keypad */
+    /**
+     * Slash key (/) on the numeric keypad
+     */
     HID_KEY_NUMPAD_DIVIDE = 70,
-    /** Arithmetic operator * (multiplication) on the numeric keypad */
+    /**
+     * Asterisk key (*) on the numeric keypad
+     */
     HID_KEY_NUMPAD_MULTIPLY = 55,
-    /** Arithmetic operator - (subtraction) on the numeric keypad */
+    /**
+     * Minus key (-) on the numeric keypad
+     */
     HID_KEY_NUMPAD_SUBTRACT = 74,
-    /** Arithmetic operator + (addition) on the numeric keypad */
+    /**
+     * Plus key (+) on the numeric keypad
+     */
     HID_KEY_NUMPAD_ADD = 78,
-    /** Decimal point (.) on the numeric keypad */
+    /**
+     * Decimal point (.) on the numeric keypad
+     */
     HID_KEY_NUMPAD_DOT = 83,
-    /** Key Print Screen */
+    /**
+     * Key Print Screen
+     */
     HID_KEY_SYSRQ = 99,
-    /** Key Delete */
+    /**
+     * Delete key
+     */
     HID_KEY_DELETE = 111,
-    /** Key Mute */
+    /**
+     * Mute key
+     */
     HID_KEY_MUTE = 113,
-    /** Key for volume down */
+    /**
+     * Volume Down key
+     */
     HID_KEY_VOLUME_DOWN = 114,
-    /** Key for volume up */
+    /**
+     * Volume Up key
+     */
     HID_KEY_VOLUME_UP = 115,
-    /** Key for decreasing brightness */
+    /**
+     * Brightness Down key
+     */
     HID_KEY_BRIGHTNESS_DOWN = 224,
-    /** Key for increasing brightness */
+    /**
+     * Brightness Up key
+     */
     HID_KEY_BRIGHTNESS_UP = 225,
-    /** Button 0 */
+    /**
+     * Button 0
+     */
     HID_BTN_0 = 0x100,
-    /** Button 1 */
+    /**
+     * Button 1
+     */
     HID_BTN_1 = 0x101,
-    /** Button 2 */
+    /**
+     * Button 2
+     */
     HID_BTN_2 = 0x102,
-    /** Button 3 */
+    /**
+     * Button 3
+     */
     HID_BTN_3 = 0x103,
-    /** Button 4 */
+    /**
+     * Button 4
+     */
     HID_BTN_4 = 0x104,
-    /** Button 5 */
+    /**
+     * Button 5
+     */
     HID_BTN_5 = 0x105,
-    /** Button 6 */
+    /**
+     * Button 6
+     */
     HID_BTN_6 = 0x106,
-    /** Button 7 */
+    /**
+     * Button 7
+     */
     HID_BTN_7 = 0x107,
-    /** Button 8 */
+    /**
+     * Button 8
+     */
     HID_BTN_8 = 0x108,
-    /** Button 9 */
+    /**
+     * Button 9
+     */
     HID_BTN_9 = 0x109,
-    /** Left mouse button */
+    /**
+     * Left mouse button
+     */
     HID_BTN_LEFT = 0x110,
-    /** Right mouse button */
+    /**
+     * Right mouse button
+     */
     HID_BTN_RIGHT = 0x111,
-    /** Middle mouse button */
+    /**
+     * Middle mouse button
+     */
     HID_BTN_MIDDLE = 0x112,
-    /** Side mouse button */
+    /**
+     * Side mouse button
+     */
     HID_BTN_SIDE = 0x113,
-    /** Extra mouse button */
+    /**
+     * Extra mouse button
+     */
     HID_BTN_EXTRA = 0x114,
-    /** Mouse forward button */
+    /**
+     * Mouse forward button
+     */
     HID_BTN_FORWARD = 0x115,
-    /** Mouse backward button */
+    /**
+     * Mouse backward button
+     */
     HID_BTN_BACKWARD = 0x116,
-    /** Mouse task button */
+    /**
+     * Mouse task button
+     */
     HID_BTN_TASK = 0x117,
-    /** Pen */
+    /**
+     * Pen
+     */
     HID_BTN_TOOL_PEN = 0x140,
-    /** Rubber */
+    /**
+     * Eraser
+     */
     HID_BTN_TOOL_RUBBER = 0x141,
-    /** Brush */
+    /**
+     * Brush
+     */
     HID_BTN_TOOL_BRUSH = 0x142,
-    /** Pencil */
+    /**
+     * Pencil
+     */
     HID_BTN_TOOL_PENCIL = 0x143,
-    /** Air brush */
+    /**
+     * Air brush
+     */
     HID_BTN_TOOL_AIRBRUSH = 0x144,
-    /** Finger */
+    /**
+     * Finger
+     */
     HID_BTN_TOOL_FINGER = 0x145,
-    /** Mouse */
+    /**
+     * Mouse
+     */
     HID_BTN_TOOL_MOUSE = 0x146,
-    /** Lens */
+    /**
+     * Lens
+     */
     HID_BTN_TOOL_LENS = 0x147,
-    /** Five-finger touch */
+    /**
+     * Five-finger touch
+     */
     HID_BTN_TOOL_QUINT_TAP = 0x148,
-    /** Stylus 3 */
+    /**
+     * Stylus 3
+     */
     HID_BTN_STYLUS3 = 0x149,
-    /** Touch */
+    /**
+     * Touch
+     */
     HID_BTN_TOUCH = 0x14a,
-    /** Stylus */
+    /**
+     * Stylus
+     */
     HID_BTN_STYLUS = 0x14b,
-    /** Stylus 2 */
+    /**
+     * Stylus 2
+     */
     HID_BTN_STYLUS2 = 0x14c,
-    /** Two-finger touch */
+    /**
+     * Two-finger touch
+     */
     HID_BTN_TOOL_DOUBLE_TAP = 0x14d,
-    /** Three-finger touch */
+    /**
+     * Three-finger touch
+     */
     HID_BTN_TOOL_TRIPLE_TAP = 0x14e,
-    /** Four-finger touch */
+    /**
+     * Four-finger touch
+     */
     HID_BTN_TOOL_QUAD_TAP = 0x14f,
-    /** Scroll wheel */
+    /**
+     * Scroll wheel
+     */
     HID_BTN_WHEEL = 0x150
 } Hid_KeyCode;
 
 /**
- * @brief Enumerates the absolute coordinate codes.
+ * @brief Enumerates the absolute coordinates.
  *
  * @since 11
  * @version 1.0
  */
 typedef enum {
-    /** X axis */
+    /**
+     * X axis
+     */
     HID_ABS_X = 0x00,
-    /** Y axis */
+    /**
+     * Y axis
+     */
     HID_ABS_Y = 0x01,
-    /** Z axis */
+    /**
+     * Z axis
+     */
     HID_ABS_Z = 0x02,
-    /** X axis of the right analog stick */
+    /**
+     * X axis of the right analog stick
+     */
     HID_ABS_RX = 0x03,
-    /** Y axis of the right analog stick */
+    /**
+     * Y axis of the right analog stick
+     */
     HID_ABS_RY = 0x04,
-    /** Z axis of the right analog stick */
+    /**
+     * Z axis of the right analog stick
+     */
     HID_ABS_RZ = 0x05,
-    /** Throttle */
+    /**
+     * Throttle
+     */
     HID_ABS_THROTTLE = 0x06,
-    /** Rudder */
+    /**
+     * Rudder
+     */
     HID_ABS_RUDDER = 0x07,
-    /** Scroll wheel */
+    /**
+     * Scroll wheel
+     */
     HID_ABS_WHEEL = 0x08,
-    /** Gas */
+    /**
+     * Gas
+     */
     HID_ABS_GAS = 0x09,
-    /** Brake */
+    /**
+     * Brake
+     */
     HID_ABS_BRAKE = 0x0a,
-    /** HAT0X */
+    /**
+     * HAT0X
+     */
     HID_ABS_HAT0X = 0x10,
-    /** HAT0Y */
+    /**
+     * HAT0Y
+     */
     HID_ABS_HAT0Y = 0x11,
-    /** HAT1X */
+    /**
+     * HAT1X
+     */
     HID_ABS_HAT1X = 0x12,
-    /** HAT1Y */
+    /**
+     * HAT1Y
+     */
     HID_ABS_HAT1Y = 0x13,
-    /** HAT2X */
+    /**
+     * HAT2X
+     */
     HID_ABS_HAT2X = 0x14,
-    /** HAT2Y */
+    /**
+     * HAT2Y
+     */
     HID_ABS_HAT2Y = 0x15,
-    /** HAT3X */
+    /**
+     * HAT3X
+     */
     HID_ABS_HAT3X = 0x16,
-    /** HAT3Y */
+    /**
+     * HAT3Y
+     */
     HID_ABS_HAT3Y = 0x17,
-    /** Pressure */
+    /**
+     * Pressure
+     */
     HID_ABS_PRESSURE = 0x18,
-    /** Distance */
+    /**
+     * Distance
+     */
     HID_ABS_DISTANCE = 0x19,
-    /** Inclination of X axis */
+    /**
+     * Tilt of X axis
+     */
     HID_ABS_TILT_X = 0x1a,
-    /** Inclination of Y axis */
+    /**
+     * Tilt of Y axis
+     */
     HID_ABS_TILT_Y = 0x1b,
-    /** Width of the touch tool */
+    /**
+     * Width of the touch tool
+     */
     HID_ABS_TOOL_WIDTH = 0x1c,
-    /** Volume */
+    /**
+     * Volume
+     */
     HID_ABS_VOLUME = 0x20,
-    /** Others */
+    /**
+     * Others
+     */
     HID_ABS_MISC = 0x28
 } Hid_AbsAxes;
 
 /**
- * @brief Enumerates the relative coordinate codes.
+ * @brief Enumerates the relative coordinates.
  *
  * @since 11
  * @version 1.0
  */
 typedef enum {
-    /** X axis */
+    /**
+     * X axis
+     */
     HID_REL_X = 0x00,
-    /** Y axis */
+    /**
+     * Y axis
+     */
     HID_REL_Y = 0x01,
-    /** Z axis */
+    /**
+     * Z axis
+     */
     HID_REL_Z = 0x02,
-    /** X axis of the right analog stick */
+    /**
+     * X axis of the right analog stick
+     */
     HID_REL_RX = 0x03,
-    /** Y axis of the right analog stick */
+    /**
+     * Y axis of the right analog stick
+     */
     HID_REL_RY = 0x04,
-    /** Z axis of the right analog stick */
+    /**
+     * Z axis of the right analog stick
+     */
     HID_REL_RZ = 0x05,
-    /** Horizontal scroll wheel */
+    /**
+     * Horizontal scroll wheel
+     */
     HID_REL_HWHEEL = 0x06,
-    /** Scale */
+    /**
+     * Scale
+     */
     HID_REL_DIAL = 0x07,
-    /** Scroll wheel */
+    /**
+     * Scroll wheel
+     */
     HID_REL_WHEEL = 0x08,
-    /** Others */
+    /**
+     * Others
+     */
     HID_REL_MISC = 0x09,
     /* Reserved */
     HID_REL_RESERVED = 0x0a,
-    /** High-resolution scroll wheel */
+    /**
+     * High-resolution scroll wheel
+     */
     HID_REL_WHEEL_HI_RES = 0x0b,
-    /** High-resolution horizontal scroll wheel */
+    /**
+     * High-resolution horizontal scroll wheel
+     */
     HID_REL_HWHEEL_HI_RES = 0x0c
 } Hid_RelAxes;
 
 /**
- * @brief Enumerates the codes of other input events.
+ * @brief Enumerates miscellaneous input events.
  *
  * @since 11
  * @version 1.0
  */
 typedef enum {
-    /** Serial number */
+    /**
+     * Serial number
+     */
     HID_MSC_SERIAL = 0x00,
-    /** Pulse */
+    /**
+     * Pulse
+     */
     HID_MSC_PULSE_LED = 0x01,
-    /** Gesture */
+    /**
+     * Gesture
+     */
     HID_MSC_GESTURE = 0x02,
-    /** Start event */
+    /**
+     * Start event
+     */
     HID_MSC_RAW = 0x03,
-    /** Scan */
+    /**
+     * Scan
+     */
     HID_MSC_SCAN = 0x04,
-    /** Timestamp */
+    /**
+     * Timestamp
+     */
     HID_MSC_TIMESTAMP = 0x05
 } Hid_MscEvent;
 
 /**
- * @brief Defines an array of the event type codes.
+ * @brief Defines a struct for an array of event types.
  *
  * @since 11
  * @version 1.0
  */
 typedef struct Hid_EventTypeArray {
-    /** Event type code */
+    /**
+     * Array of event types.
+     */
     Hid_EventType *hidEventType;
-    /** Length of the array */
+    /**
+     * Valid length of an array.
+     */
     uint16_t length;
 } Hid_EventTypeArray;
 
 /**
- * @brief Defines an array of key value properties.
+ * @brief Defines a struct for the key code array.
  *
  * @since 11
  * @version 1.0
  */
 typedef struct Hid_KeyCodeArray {
-    /** Key value code */
+    /**
+     * Key code array.
+     */
     Hid_KeyCode *hidKeyCode;
-    /** Length of the array */
+    /**
+     * Valid length of an array.
+     */
     uint16_t length;
 } Hid_KeyCodeArray;
 
 /**
- * @brief Defines an array of absolute coordinate properties.
+ * @brief Defines an array of absolute coordinates.
  *
  * @since 11
  * @version 1.0
  */
 typedef struct Hid_AbsAxesArray {
-    /** Absolute coordinate property code */
+    /**
+     * Array of absolute coordinates.
+     */
     Hid_AbsAxes *hidAbsAxes;
-    /** Length of the array */
+    /**
+     * Valid length of an array.
+     */
     uint16_t length;
 } Hid_AbsAxesArray;
 
 /**
- * @brief Defines an array of relative coordinate properties.
+ * @brief Defines an array of relative coordinates.
  *
  * @since 11
  * @version 1.0
  */
 typedef struct Hid_RelAxesArray {
-    /** Relative coordinate property code */
+    /**
+     * Array of relative coordinates.
+     */
     Hid_RelAxes *hidRelAxes;
-    /** Length of the array */
+    /**
+     * Valid length of an array.
+     */
     uint16_t length;
 } Hid_RelAxesArray;
 
 /**
- * @brief Defines an array of other special event properties.
+ * @brief Defines an array of miscellaneous events.
  *
  * @since 11
  * @version 1.0
  */
 typedef struct Hid_MscEventArray {
-    /** Code of the event property */
+    /**
+     * Miscellaneous events.
+     */
     Hid_MscEvent *hidMscEvent;
-    /** Length of the array */
+    /**
+     * Valid length of an array.
+     */
     uint16_t length;
 } Hid_MscEventArray;
 
 /**
- * @brief Defines the event properties of a device to be observed.
+ * @brief Defines a struct for the event properties of a device.
  *
  * @since 11
  * @version 1.0
  */
 typedef struct Hid_EventProperties {
-    /** Array of event type codes */
+    /**
+     * Array of event types.
+     */
     struct Hid_EventTypeArray hidEventTypes;
-    /** Array of key value codes */
+    /**
+     * Array of key codes.
+     */
     struct Hid_KeyCodeArray hidKeys;
-    /** Array of absolute coordinate property codes */
+    /**
+     * Array of absolute coordinate properties.
+     */
     struct Hid_AbsAxesArray hidAbs;
-    /** Array of relative coordinate property codes */
+    /**
+     * Array of relative coordinate properties.
+     */
     struct Hid_RelAxesArray hidRelBits;
-    /** Array of other event property codes */
+    /**
+     * Array of miscellaneous events.
+     */
     struct Hid_MscEventArray hidMiscellaneous;
 
-    /** Maximum values of the absolute coordinates */
+    /**
+     * Maximum values of the absolute coordinates.
+     */
     int32_t hidAbsMax[64];
-    /** Minimum values of the absolute coordinates */
+    /**
+     * Minimum values of the absolute coordinates.
+     */
     int32_t hidAbsMin[64];
-    /** Fuzzy values of the absolute coordinates */
+    /**
+     * Fuzzy values of the absolute coordinates.
+     */
     int32_t hidAbsFuzz[64];
-    /** Fixed values of the absolute coordinates */
+    /**
+     * Fixed values of the absolute coordinates.
+     */
     int32_t hidAbsFlat[64];
 } Hid_EventProperties;
 
 /**
- * @brief Defines the error codes used in the HID DDK.
+ * @brief Enumerates the HID DDK error codes.
  *
  * @since 11
  * @version 1.0
  */
 typedef enum {
-    /** @error Operation successful */
+    /**
+     * Operation success.
+     */
     HID_DDK_SUCCESS = 0,
-    /** @error Permission denied */
+    /**
+     * No permission. The value is changed from **-6** to **201** since API version 16.
+     */
     HID_DDK_NO_PERM = 201,
-    /** @error Invalid parameter */
+    /**
+     * Invalid parameter. The value is changed from **-2** to **401** since API version 16.
+     */
     HID_DDK_INVALID_PARAMETER = 401,
-    /** @error Operation failed */
+    /**
+     * Operation failed. The value is changed from **-1** to **27300001** since API version 16.
+     */
     HID_DDK_FAILURE = 27300001,
-    /** @error Null pointer exception */
+    /**
+     * Null pointer. The value is changed from **-4** to **27300002** since API version 16.
+     */
     HID_DDK_NULL_PTR = 27300002,
-    /** @error Invalid operation */
+    /**
+     * Invalid operation. The value is changed from **-3** to **27300003** since API version 16.
+     */
     HID_DDK_INVALID_OPERATION = 27300003,
-    /** @error Timeout */
+    /**
+     * Timeout. The value is changed from **-5** to **27300004** since API version 16.
+     */
     HID_DDK_TIMEOUT = 27300004,
-    /** @error Init operation
-     *  @since 18
+    /**
+     * DDK initialization error.
+     * @since 18
      */
     HID_DDK_INIT_ERROR = 27300005,
-    /** @error Service error operation
-     *  @since 18
+    /**
+     * Service communication error.
+     * @since 18
      */
     HID_DDK_SERVICE_ERROR = 27300006,
-    /** @error Buff is outside accessible address space
-     *  @since 18
+    /**
+     * Memory errors, such as memory data copy failure and memory allocation failure.
+     * @since 18
      */
     HID_DDK_MEMORY_ERROR  = 27300007,
-    /** @error Physical I/O error has occurred.
-     *  @since 18
+    /**
+     * I/O operation error.
+     * @since 18
      */
     HID_DDK_IO_ERROR = 27300008,
-    /** @error Device not found.
-     *  @since 18
+    /**
+     * Device not found.
+     * @since 18
      */
     HID_DDK_DEVICE_NOT_FOUND = 27300009
 } Hid_DdkErrCode;
 
 /**
- * @brief max report buffer size.
+ * @brief Defines the maximum size of the report buffer.
  *
  * @since 18
  */
 #define HID_MAX_REPORT_BUFFER_SIZE (16 * 1024 - 1)
 
 /**
- * @brief Opaque usb HID device structure.
+ * @brief Defines the opaque USB HID device structure.
  *
  * @since 18
  */
 typedef struct Hid_DeviceHandle Hid_DeviceHandle;
 
 /**
- * @brief Defines the report type.
+ * @brief Defines the report (data packets exchanged between the HID device and the host) type.
  *
  * @since 18
  */
 typedef enum {
-    /** Input report */
+    /**
+     * Input report.
+     */
     HID_INPUT_REPORT = 0,
-    /** Output report */
+    /**
+     * Output report.
+     */
     HID_OUTPUT_REPORT = 1,
-    /** Feature report */
+    /**
+     * Feature report.
+     */
     HID_FEATURE_REPORT = 2
 } Hid_ReportType;
 
 /**
- * @brief Defines the raw dev info.
+ * @brief Defines the raw device information.
  *
  * @since 18
  */
 typedef struct Hid_RawDevInfo {
-    /** Bus type */
+    /**
+     * Bus type.
+     */
     uint32_t busType;
-    /** Vendor ID */
+    /**
+     * Vendor ID.
+     */
     uint16_t vendor;
-    /** Product ID */
+    /**
+     * Product ID.
+     */
     uint16_t product;
 } Hid_RawDevInfo;
 #ifdef __cplusplus

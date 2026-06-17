@@ -248,6 +248,22 @@
         "name": "OH_AudioRoutingManager_ReleaseDevices"
     },
     {
+        "first_introduced": "26.0.0",
+        "name": "OH_AudioRoutingManager_RegisterPreferredOutputDevicesChangeCallback"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_AudioRoutingManager_UnregisterPreferredOutputDevicesChangeCallback"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_AudioRoutingManager_RegisterPreferredInputDevicesChangeCallback"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_AudioRoutingManager_UnregisterPreferredInputDevicesChangeCallback"
+    },
+    {
         "first_introduced": "12",
         "name": "OH_AudioDeviceDescriptor_GetDeviceRole"
     },
@@ -666,5 +682,61 @@
     {
         "first_introduced": "26.0.0",
         "name": "OH_AudioStreamManager_IsOffloadPlaybackSupported"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_AudioManager_GetAudioDeviceEnhanceManager"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_AudioDeviceEnhanceManager_IsEnhancedRoutingSupported"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_AudioDeviceEnhanceManager_SelectOutputDevice"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_AudioDeviceEnhanceManager_SelectInputDevice"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_AudioDeviceEnhanceManager_SelectOutputDeviceForAudioRenderer"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_AudioDeviceEnhanceManager_SelectInputDeviceForAudioCapturer"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_AudioStreamBuilder_SetCapturerLoopbackEffectEnabled"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_AudioManager_GetAudioDebuggingManager"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_AudioDebuggingManager_PrintAppInfo"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_AudioDebuggingManager_PrintRendererInfo"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_AudioDebuggingManager_PrintCapturerInfo"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_AudioDebuggingManager_PrintSessionInfo"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_AudioStreamBuilder_SetSensitiveRecordPermitCallback"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_AudioStreamBuilder_SetCellularRecordSecurityParams"
     }
 ]

@@ -26,7 +26,7 @@
 /**
  * @file bundle_manager_common.h
  *
- * @brief Declare the common types for the native BundleManager.
+ * @brief The file declares the error codes defined by BundleManager.
  *
  * @library libbundle_ndk.z.so
  * @kit AbilityKit
@@ -48,20 +48,22 @@ extern "C" {
  */
 typedef enum {
     /**
-     * @error No error.
+     * Operation success.
      * @since 21
      */
     BUNDLE_MANAGER_ERROR_CODE_NO_ERROR = 0,
+
     /**
-     * @error permission denied.
+     * No access permission.
      * @since 21
      */
     BUNDLE_MANAGER_ERROR_CODE_PERMISSION_DENIED = 201,
+
     /**
-     * @error param invalid.
+     * Invalid parameter.
      * @since 21
      */
-    BUNDLE_MANAGER_ERROR_CODE_PARAM_INVALID = 401,
+    BUNDLE_MANAGER_ERROR_CODE_PARAM_INVALID = 401
 } BundleManager_ErrorCode;
 
 #ifdef __cplusplus

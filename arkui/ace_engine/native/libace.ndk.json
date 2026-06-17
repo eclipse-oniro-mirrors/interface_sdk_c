@@ -1592,6 +1592,14 @@
         "name": "OH_ArkUI_CrossLanguageOption_GetAttributeSettingStatus"
     },
     {
+        "first_introduced": "26.0.0",
+        "name": "OH_ArkUI_CrossLanguageOption_SetTreeOperatingStatus"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_ArkUI_CrossLanguageOption_GetTreeOperatingStatus"
+    },
+    {
         "first_introduced": "15",
         "name": "OH_ArkUI_NodeUtils_GetFirstChildIndexWithoutExpand"
     },
@@ -3222,6 +3230,10 @@
     {
         "first_introduced": "19",
         "name": "OH_ArkUI_CustomDialog_SetSubwindowMode"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_ArkUI_CustomDialog_SetDisplayModeInSubWindow"
     },
     {
         "first_introduced": "19",
@@ -6435,6 +6447,10 @@
         "name": "OH_ArkUI_TextEditorStyledStringController_SetStyledPlaceholder"
     },
     {
+        "first_introduced": "26.0.0",
+        "name": "OH_ArkUI_TextEditorStyledStringController_ScrollToVisible"
+    },
+    {
         "first_introduced": "23",
         "name": "OH_ArkUI_PickerIndicatorStyle_Create"
     },
@@ -6620,10 +6636,298 @@
     },
     {
         "first_introduced": "26.0.0",
+        "name": "OH_ArkUI_NativeModule_GetErrorMessage"
+    },
+    {
+        "first_introduced": "26.0.0",
         "name": "OH_ArkUI_RenderNodeUtils_SetRoundRectShapeOptionValue"
     },
     {
         "first_introduced": "26.0.0",
         "name": "OH_ArkUI_RenderNodeUtils_SetRectShapeOptionValue"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_ArkUI_RenderNodeUtils_CreateBlurStyleOption"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_ArkUI_RenderNodeUtils_DisposeBlurStyleOption"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_ArkUI_RenderNodeUtils_SetBlurStyleOptionRadius"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_ArkUI_RenderNodeUtils_SetBackgroundBlurOption"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_ArkUI_RenderNodeUtils_ResetBackgroundBlurOption"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_ArkUI_RenderNodeUtils_SetForegroundBlurOption"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_ArkUI_RenderNodeUtils_ResetForegroundBlurOption"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_ArkUI_RenderNodeUtils_SetContentBlurOption"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_ArkUI_RenderNodeUtils_ResetContentBlurOption"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_ArkUI_LineHeightStyle_SetLineHeightMultiple"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_ArkUI_LineHeightStyle_GetLineHeightMultiple"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_ArkUI_LineSpacingStyle_Create"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_ArkUI_LineSpacingStyle_Destroy"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_ArkUI_SpanStyle_SetLineSpacingStyle"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_ArkUI_SpanStyle_GetLineSpacingStyle"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_ArkUI_LineSpacingStyle_SetLineSpacing"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_ArkUI_LineSpacingStyle_GetLineSpacing"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_ArkUI_LineSpacingStyle_SetOnlyBetweenLines"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_ArkUI_LineSpacingStyle_GetOnlyBetweenLines"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_ArkUI_LinearGradientOptions_Create"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_ArkUI_LinearGradientOptions_Destroy"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_ArkUI_LinearGradientOptions_SetAngle"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_ArkUI_LinearGradientOptions_GetAngle"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_ArkUI_LinearGradientOptions_SetDirection"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_ArkUI_LinearGradientOptions_GetDirection"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_ArkUI_LinearGradientOptions_SetRepeating"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_ArkUI_LinearGradientOptions_GetRepeating"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_ArkUI_LinearGradientOptions_SetColorStop"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_ArkUI_LinearGradientOptions_GetColorStop"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_ArkUI_RadialGradientOptions_Create"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_ArkUI_RadialGradientOptions_Destroy"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_ArkUI_RadialGradientOptions_SetCenterX"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_ArkUI_RadialGradientOptions_GetCenterX"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_ArkUI_RadialGradientOptions_SetCenterY"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_ArkUI_RadialGradientOptions_GetCenterY"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_ArkUI_RadialGradientOptions_SetRadius"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_ArkUI_RadialGradientOptions_GetRadius"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_ArkUI_RadialGradientOptions_SetRepeating"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_ArkUI_RadialGradientOptions_GetRepeating"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_ArkUI_RadialGradientOptions_SetColorStop"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_ArkUI_RadialGradientOptions_GetColorStop"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_ArkUI_ParagraphStyle_SetLinearGradient"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_ArkUI_ParagraphStyle_GetLinearGradient"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_ArkUI_ParagraphStyle_SetRadialGradient"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_ArkUI_ParagraphStyle_GetRadialGradient"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_ArkUI_ParagraphStyle_SetTailIndents"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_ArkUI_ParagraphStyle_GetTailIndents"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_ArkUI_NativeModule_GetSystemMaterialSupported"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_ArkUI_NativeModule_GetGlobalMaterialLevel"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_ArkUI_NativeModule_ImmersiveMaterial_Create"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_ArkUI_NativeModule_ImmersiveMaterial_Destroy"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_ArkUI_NativeModule_ImmersiveMaterial_SetStyle"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_ArkUI_NativeModule_ImmersiveMaterial_GetStyle"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_ArkUI_NativeModule_ImmersiveMaterial_SetMaterialColor"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_ArkUI_NativeModule_ImmersiveMaterial_GetMaterialColor"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_ArkUI_NativeModule_ImmersiveMaterial_SetApplyShadow"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_ArkUI_NativeModule_ImmersiveMaterial_GetApplyShadow"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_ArkUI_NativeModule_ImmersiveMaterial_SetInteractive"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_ArkUI_NativeModule_ImmersiveMaterial_GetInteractive"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_ArkUI_NativeModule_LightEffectOptions_Create"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_ArkUI_NativeModule_LightEffectOptions_Destroy"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_ArkUI_NativeModule_LightEffectOptions_SetColor"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_ArkUI_NativeModule_ImmersiveMaterial_SetLightEffect"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_ArkUI_NativeModule_ImmersiveMaterial_GetLightEffectColor"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_ArkUI_NativeModule_CustomDialog_SetSystemMaterialInOptions"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_ArkUI_NativeModule_CustomDialog_SetSystemMaterial"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_ArkUI_NativeModule_SetChildMountPolicy"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_ArkUI_NativeModule_GetChildMountPolicy"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_ArkUI_RenderNodeUtils_InsertRenderNodeAt"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_ArkUI_RenderNodeUtils_GetRenderNodeChildrenCount"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_ArkUI_RenderNodeUtils_GetRenderNodeAt"
     }
 ]

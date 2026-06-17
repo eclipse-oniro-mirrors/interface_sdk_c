@@ -166,7 +166,7 @@ OH_AudioStream_Result OH_AudioCapturer_GetStreamId(OH_AudioCapturer* capturer, u
  * @since 10
  *
  * @param capturer Reference created by OH_AudioStreamBuilder_GenerateCapturer()
- * @param rate The state value to be updated
+ * @param rate Pointer to a variable that will be set for the sampling rate.
  * @return Function result code:
  *         {@link AUDIOSTREAM_SUCCESS} If the execution is successful.
  *         {@link AUDIOSTREAM_ERROR_INVALID_PARAM} The param of capturer is nullptr.
@@ -249,8 +249,8 @@ OH_AudioStream_Result OH_AudioCapturer_GetFrameSizeInCallback(OH_AudioCapturer* 
  *
  * @param capturer Reference created by OH_AudioStreamBuilder_GenerateCapturer()
  * @param clockId {@link #CLOCK_MONOTONIC}
- * @param framePosition Pointer to a variable to receive the position
- * @param timestamp Pointer to a variable to receive the timestamp
+ * @param framePosition Pointer to a variable to receive the position.
+ * @param timestamp Pointer to a variable to receive the timestamp, unit is nanosecond.
  * @return Function result code:
  *         {@link AUDIOSTREAM_SUCCESS} If the execution is successful.
  *         {@link AUDIOSTREAM_ERROR_INVALID_PARAM}:
@@ -295,7 +295,7 @@ OH_AudioStream_Result OH_AudioCapturer_GetOverflowCount(OH_AudioCapturer* captur
  * @param userData Pointer to the user data passed when setting the callback via
  * OH_AudioStreamBuilder_SetCapturerReadDataCallback.
  * @param audioData Pointer to the available audio data.
- * @param audioDataSize Size of the available audio data.
+ * @param audioDataSize Size of the available audio data, unit is byte.
  * @see OH_AudioCapturer_Callbacks_Struct.OH_AudioCapturer_OnReadData
  * @since 20
  */
@@ -438,6 +438,24 @@ OH_AudioStream_Result OH_AudioCapturer_SetMuteHint(OH_AudioCapturer* capturer, b
  */
 OH_AudioStream_Result OH_AudioCapturer_SetIndependentAudioSessionStrategy(
     OH_AudioCapturer* capturer, const OH_AudioSession_Strategy* strategy, uint32_t behavior);
+
+/**
+ * @brief Callback used to receive when the sensitive warning message playback for cellular call
+ * recording is finished.
+ * The application must wait for the permitted result before starting cellular call recording.
+ *
+ * @param capturer The pointer to the {@link OH_AudioCapturer} object created
+ *     by {@link OH_AudioStreamBuilder_GenerateCapturer}.
+ * @param userData The pointer to user data which is set in
+ *     {@link OH_AudioStreamBuilder_SetSensitiveRecordPermitCallback}.
+ * @param isPermitted Indicates whether the sensitive warning message playback is finished.
+ *     If the result is true, the recording can start, otherwise the recording is not permitted.
+ * @since 26.0.0
+ */
+typedef void (*OH_AudioCapturer_SensitiveRecordPermitCallback)(
+    OH_AudioCapturer* capturer,
+    void* userData,
+    bool isPermitted);
 
 #ifdef __cplusplus
 }

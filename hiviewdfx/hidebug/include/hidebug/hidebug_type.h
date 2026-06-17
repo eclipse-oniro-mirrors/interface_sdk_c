@@ -607,6 +607,55 @@ typedef enum OH_HiDebug_ResourceType {
     OH_RES_TYPE_GLOBAL_HANDLE
 } OH_HiDebug_ResourceType;
 
+/**
+ * @brief Encapsulates result of a single profiling request operation.
+ *        It represents data delivered via OH_HiDebug_ProfilingCallback.
+ *
+ * @since 24
+ */
+typedef struct OH_HiDebug_ProfilingResult {
+    /**
+     * Profiled resource type.
+     * @since 24
+    */
+    OH_HiDebug_ResourceType resourceType;
+    /**
+     * File path of the profiling result data. Null if the profiling fails.
+     * @since 24
+    */
+    const char* filePath;
+} OH_HiDebug_ProfilingResult;
+
+/**
+ * @brief Callback signature for the resource profiling result.
+ *
+ * @param result Pointer to the OH_HiDebug_ProfilingResult structure.
+ * @since 24
+ */
+typedef void (*OH_HiDebug_ProfilingCallback)(OH_HiDebug_ProfilingResult* result);
+
+/**
+ * @brief Defines an enum for memory listener callbacks.
+ * @since 26.0.0
+ */
+typedef enum OH_HiDebug_MemListenerType {
+    /**
+     * Default value. No processing is required.
+     * @since 26.0.0
+     */
+    OH_HIDEBUG_DO_NOTHING = 0,
+    /**
+     * Performs GC operations.
+     * @since 26.0.0
+     */
+    OH_HIDEBUG_RUNNING_GC = 1,
+    /**
+     * Dumps memory snapshots.
+     * @since 26.0.0
+     */
+    OH_HIDEBUG_DUMP_SNAPSHOT = 2
+} OH_HiDebug_MemListenerType;
+
 #ifdef __cplusplus
 }
 #endif // __cplusplus

@@ -4,7 +4,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -19,16 +19,13 @@
  *
  * @brief Provides functions such as 2D graphics rendering, text drawing, and image display.
  *
- * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- *
  * @since 8
  * @version 1.0
  */
-
 /**
  * @file drawing_types.h
  *
- * @brief Declares the data types for drawing 2D graphics, including the canvas, brush, pen, bitmap, and path.
+ * @brief This file declares the data types of the canvas, brush, pen, bitmap, and path used to draw 2D graphics.
  *
  * @kit ArkGraphics2D
  * @library libnative_drawing.so
@@ -49,8 +46,8 @@ extern "C" {
 #endif
 
 /**
- * @brief Defines a rectangular canvas on which various shapes, images,
- * and texts can be drawn by using the brush and pen.
+ * @brief Defines a struct for a rectangular canvas, on which various shapes, images, and texts can be drawn by using
+ * the brush and pen.
  *
  * @since 8
  * @version 1.0
@@ -58,7 +55,7 @@ extern "C" {
 typedef struct OH_Drawing_Canvas OH_Drawing_Canvas;
 
 /**
- * @brief Defines a pen, which is used to describe the style and color to outline a shape.
+ * @brief Defines a struct for a pen, which is used to describe the style and color to outline a shape.
  *
  * @since 8
  * @version 1.0
@@ -66,7 +63,7 @@ typedef struct OH_Drawing_Canvas OH_Drawing_Canvas;
 typedef struct OH_Drawing_Pen OH_Drawing_Pen;
 
 /**
- * @brief Defines a region, which is used to represent an enclosed area on the canvas layer.
+ * @brief Defines a struct for a region, which represents a closed area on the canvas for more accurate graphic control.
  *
  * @since 12
  * @version 1.0
@@ -74,7 +71,7 @@ typedef struct OH_Drawing_Pen OH_Drawing_Pen;
 typedef struct OH_Drawing_Region OH_Drawing_Region;
 
 /**
- * @brief Defines a brush, which is used to describe the style and color to fill in a shape.
+ * @brief Defines a struct for a brush, which is used to describe the style and color to fill in a shape.
  *
  * @since 8
  * @version 1.0
@@ -82,7 +79,7 @@ typedef struct OH_Drawing_Region OH_Drawing_Region;
 typedef struct OH_Drawing_Brush OH_Drawing_Brush;
 
 /**
- * @brief Defines a path, which is used to customize various shapes.
+ * @brief Defines a struct for a path, which is used to customize various shapes.
  *
  * @since 8
  * @version 1.0
@@ -90,8 +87,8 @@ typedef struct OH_Drawing_Brush OH_Drawing_Brush;
 typedef struct OH_Drawing_Path OH_Drawing_Path;
 
 /**
- * @brief Defines a pathIterator, which is used to describe a path operation iterator.
- * You can read path operation instructions by traversing the iterator.
+ * @brief This struct defines a path operation iterator that enables path operation instructions to be read via
+ * iterator traversal.
  *
  * @since 23
  * @version 1.0
@@ -99,14 +96,14 @@ typedef struct OH_Drawing_Path OH_Drawing_Path;
 typedef struct OH_Drawing_PathIterator OH_Drawing_PathIterator;
 
 /**
- * @brief Defines a lattice, which divides an image into a rectangular grid.
+ * @brief This struct defines a rectangle grid, which is used to divide an image by rectangle grid.
  *
  * @since 23
  */
 typedef struct OH_Drawing_Lattice OH_Drawing_Lattice;
 
 /**
- * @brief Defines a bitmap, which is a memory that contains the pixel data of a shape.
+ * @brief Defines a struct for a bitmap, which is a memory area that contains the pixel data of a shape.
  *
  * @since 8
  * @version 1.0
@@ -114,7 +111,7 @@ typedef struct OH_Drawing_Lattice OH_Drawing_Lattice;
 typedef struct OH_Drawing_Bitmap OH_Drawing_Bitmap;
 
 /**
- * @brief Defines a point, which is used to describe the coordinate point.
+ * @brief Defines a struct for a coordinate point.
  *
  * @since 11
  * @version 1.0
@@ -122,7 +119,7 @@ typedef struct OH_Drawing_Bitmap OH_Drawing_Bitmap;
 typedef struct OH_Drawing_Point OH_Drawing_Point;
 
 /**
- * @brief Defines a pixelmap, which is used to wrap real pixelmap supported by image framework.
+ * @brief Defines a struct for a pixel map, which is used to wrap the real pixel map supported by the image framework.
  *
  * @since 12
  * @version 1.0
@@ -130,7 +127,7 @@ typedef struct OH_Drawing_Point OH_Drawing_Point;
 typedef struct OH_Drawing_PixelMap OH_Drawing_PixelMap;
 
 /**
- * @brief Defines a color space to determine color information.
+ * @brief Defines a struct for a color space, which is used to describe the color information.
  *
  * @since 12
  * @version 1.0
@@ -138,7 +135,8 @@ typedef struct OH_Drawing_PixelMap OH_Drawing_PixelMap;
 typedef struct OH_Drawing_ColorSpace OH_Drawing_ColorSpace;
 
 /**
- * @brief Defines a point of 2d.
+ * @brief **OH_Drawing_Point2D** defines a two-dimensional coordinate point.<br>**OH_Drawing_Corner_Radii** defines
+ * rounded corner radii, consisting of an x-axis radius and a y-axis radius.
  *
  * @since 12
  * @version 1.0
@@ -157,7 +155,7 @@ typedef struct {
 typedef OH_Drawing_Point2D OH_Drawing_Corner_Radii;
 
 /**
- * @brief Defines a point of 3d, which is used to describe the coordinate point.
+ * @brief This struct describes a three-dimensional coordinate point.
  *
  * @since 12
  * @version 1.0
@@ -169,7 +167,7 @@ typedef struct {
 } OH_Drawing_Point3D;
 
 /**
- * @brief Defines a pathEffect, which is used to affect stroked paths.
+ * @brief Defines a struct for a path effect that affects the stroke.
  *
  * @since 12
  * @version 1.0
@@ -177,7 +175,7 @@ typedef struct {
 typedef struct OH_Drawing_PathEffect OH_Drawing_PathEffect;
 
 /**
- * @brief Defines a rect, which is used to describe the rectangle.
+ * @brief Defines a struct for a rectangle.
  *
  * @since 11
  * @version 1.0
@@ -185,7 +183,7 @@ typedef struct OH_Drawing_PathEffect OH_Drawing_PathEffect;
 typedef struct OH_Drawing_Rect OH_Drawing_Rect;
 
 /**
- * @brief Defines a roundRect, which is used to describe the round rectangle.
+ * @brief Defines a struct for a rounded rectangle.
  *
  * @since 11
  * @version 1.0
@@ -193,7 +191,7 @@ typedef struct OH_Drawing_Rect OH_Drawing_Rect;
 typedef struct OH_Drawing_RoundRect OH_Drawing_RoundRect;
 
 /**
- * @brief Defines a matrix, which is used to describe the transforming coordinates.
+ * @brief Defines a struct for a matrix, which is used to describe coordinate transformation.
  *
  * @since 11
  * @version 1.0
@@ -201,7 +199,7 @@ typedef struct OH_Drawing_RoundRect OH_Drawing_RoundRect;
 typedef struct OH_Drawing_Matrix OH_Drawing_Matrix;
 
 /**
- * @brief Defines a shaderEffect, which is used to describe the source color(s) for what is being drawn.
+ * @brief Defines a struct for a shader effect, which is used to describe the source color of the drawn content.
  *
  * @since 11
  * @version 1.0
@@ -209,7 +207,7 @@ typedef struct OH_Drawing_Matrix OH_Drawing_Matrix;
 typedef struct OH_Drawing_ShaderEffect OH_Drawing_ShaderEffect;
 
 /**
- * @brief Defines a shadowLayer, which is used to draw shaded parts.
+ * @brief Defines a struct for a shadow, which is used to describe the shadow layer of the drawn content.
  *
  * @since 12
  * @version 1.0
@@ -217,7 +215,7 @@ typedef struct OH_Drawing_ShaderEffect OH_Drawing_ShaderEffect;
 typedef struct OH_Drawing_ShadowLayer OH_Drawing_ShadowLayer;
 
 /**
- * @brief Defines a filter, which is used to store maskFilter, colorFilter and imageFilter.
+ * @brief Defines a struct for a filter, which consists of a color filter, mask filter, and image filter.
  *
  * @since 11
  * @version 1.0
@@ -225,7 +223,7 @@ typedef struct OH_Drawing_ShadowLayer OH_Drawing_ShadowLayer;
 typedef struct OH_Drawing_Filter OH_Drawing_Filter;
 
 /**
- * @brief Defines a maskFilter, which is used to perform transformations on the mask before drawing it.
+ * @brief Defines a struct for a mask filter.
  *
  * @since 11
  * @version 1.0
@@ -233,7 +231,7 @@ typedef struct OH_Drawing_Filter OH_Drawing_Filter;
 typedef struct OH_Drawing_MaskFilter OH_Drawing_MaskFilter;
 
 /**
- * @brief Defines a colorFilter, which is called a color and returns a new color.
+ * @brief Defines a struct for a color filter, which is used to convert a color into a new one.
  *
  * @since 11
  * @version 1.0
@@ -241,7 +239,7 @@ typedef struct OH_Drawing_MaskFilter OH_Drawing_MaskFilter;
 typedef struct OH_Drawing_ColorFilter OH_Drawing_ColorFilter;
 
 /**
- * @brief Defines a font, which is used to describe the font.
+ * @brief Defines a struct for a font.
  *
  * @since 11
  * @version 1.0
@@ -249,7 +247,8 @@ typedef struct OH_Drawing_ColorFilter OH_Drawing_ColorFilter;
 typedef struct OH_Drawing_Font OH_Drawing_Font;
 
 /**
- * @brief Defines fontFeatures, which is used to describe the features for a font.
+ * @brief Defines a struct for font features, which are typesetting rules within a font that determine how glyphs look,
+ * such as ligatures, alternates, and superscripts/subscripts.
  *
  * @since 20
  * @version 1.0
@@ -257,7 +256,7 @@ typedef struct OH_Drawing_Font OH_Drawing_Font;
 typedef struct OH_Drawing_FontFeatures OH_Drawing_FontFeatures;
 
 /**
- * @brief Defines a memoryStream, which is used to describe the memory stream.
+ * @brief Defines a struct for a memory stream.
  *
  * @since 12
  * @version 1.0
@@ -265,7 +264,7 @@ typedef struct OH_Drawing_FontFeatures OH_Drawing_FontFeatures;
 typedef struct OH_Drawing_MemoryStream OH_Drawing_MemoryStream;
 
 /**
- * @brief Defines fontArguments, which is used to describe the arguments for a font.
+ * @brief Defines a struct for font arguments.
  *
  * @since 13
  * @version 1.0
@@ -273,7 +272,7 @@ typedef struct OH_Drawing_MemoryStream OH_Drawing_MemoryStream;
 typedef struct OH_Drawing_FontArguments OH_Drawing_FontArguments;
 
 /**
- * @brief Defines a typeface, which is used to describe the typeface.
+ * @brief Defines a struct for a typeface.
  *
  * @since 11
  * @version 1.0
@@ -281,8 +280,8 @@ typedef struct OH_Drawing_FontArguments OH_Drawing_FontArguments;
 typedef struct OH_Drawing_Typeface OH_Drawing_Typeface;
 
 /**
- * @brief Defines a textBlob, which combines multiple text runs into an immutable container.
- * Each text run consists of glyphs and positions.
+ * @brief Defines a struct for a text blob, an immutable container that holds multiple texts. Each text blob consists
+ * of glyphs and position.
  *
  * @since 11
  * @version 1.0
@@ -290,7 +289,7 @@ typedef struct OH_Drawing_Typeface OH_Drawing_Typeface;
 typedef struct OH_Drawing_TextBlob OH_Drawing_TextBlob;
 
 /**
- * @brief Defines a image, which is used to describe a two dimensional array of pixels to draw.
+ * @brief Defines a struct for an image that describes a two-dimensional pixel array.
  *
  * @since 12
  * @version 1.0
@@ -298,7 +297,7 @@ typedef struct OH_Drawing_TextBlob OH_Drawing_TextBlob;
 typedef struct OH_Drawing_Image OH_Drawing_Image;
 
 /**
- * @brief Defines a image filter, which is used to operate on all the color bits of pixels that make up an image.
+ * @brief Defines a struct for an image filter, which is used to operate all color bits that make up image pixels.
  *
  * @since 12
  * @version 1.0
@@ -306,7 +305,7 @@ typedef struct OH_Drawing_Image OH_Drawing_Image;
 typedef struct OH_Drawing_ImageFilter OH_Drawing_ImageFilter;
 
 /**
- * @brief Defines a sampling options, which is used to describe the sampling mode.
+ * @brief Defines a struct for sampling options, which describe the sampling methods for images and bitmaps.
  *
  * @since 12
  * @version 1.0
@@ -314,7 +313,7 @@ typedef struct OH_Drawing_ImageFilter OH_Drawing_ImageFilter;
 typedef struct OH_Drawing_SamplingOptions OH_Drawing_SamplingOptions;
 
 /**
- * @brief Defines a textBlobBuilder, which is used to build the textBlob.
+ * @brief Defines a struct for a text blob builder, which is used to build a text blob.
  *
  * @since 11
  * @version 1.0
@@ -322,7 +321,7 @@ typedef struct OH_Drawing_SamplingOptions OH_Drawing_SamplingOptions;
 typedef struct OH_Drawing_TextBlobBuilder OH_Drawing_TextBlobBuilder;
 
 /**
- * @brief Defines a GPU context, which is used to describe the GPU backend context.
+ * @brief Defines a struct for the GPU context, which is used to describe the GPU backend context.
  *
  * @since 12
  * @version 1.0
@@ -330,7 +329,7 @@ typedef struct OH_Drawing_TextBlobBuilder OH_Drawing_TextBlobBuilder;
 typedef struct OH_Drawing_GpuContext OH_Drawing_GpuContext;
 
 /**
- * @brief Defines a surface, which is used to manage the pixels that a canvas draws into.
+ * @brief Defines a struct for a surface, which is used to manage the content drawn on the canvas.
  *
  * @since 12
  * @version 1.0
@@ -338,202 +337,320 @@ typedef struct OH_Drawing_GpuContext OH_Drawing_GpuContext;
 typedef struct OH_Drawing_Surface OH_Drawing_Surface;
 
 /**
- * @brief Enumerates storage formats of bitmap pixels.
+ * @brief Defines an enum for the storage formats of bitmap pixels.
  *
  * @since 8
  * @version 1.0
  */
 typedef enum {
-    /** Unknown format. */
+    /**
+     * Unknown format.
+     *
+     * @since 8
+     */
     COLOR_FORMAT_UNKNOWN,
-    /** Each pixel is represented by 8 bits, which together indicate alpha. */
+    /**
+     * Each pixel is represented by 8 bits, which together indicate alpha.
+     *
+     * @since 8
+     */
     COLOR_FORMAT_ALPHA_8,
     /**
-     * Each pixel is represented by 16 bits. From the most significant bit to the least significant bit,
-     * the first 5 bits indicate red, the subsequent 6 bits indicate green, and the last 5 bits indicate blue.
+     * Each pixel is represented by 16 bits. From the most significant bit to the least significant bit, the first 5
+     * bits indicate red, the subsequent 6 bits indicate green, and the last 5 bits indicate blue.
+     *
+     * @since 8
      */
     COLOR_FORMAT_RGB_565,
     /**
-     * Each pixel is represented by 16 bits. From the most significant bit to the least significant bit,
-     * every 4 bits indicate alpha, red, green, and blue, respectively.
+     * Each pixel is represented by 16 bits. From the most significant bit to the least significant bit, every 4 bits
+     * indicate alpha, red, green, and blue, respectively.
+     *
+     * @since 8
      */
     COLOR_FORMAT_ARGB_4444,
     /**
-     * Each pixel is represented by 32 bits. From the most significant bit to the least significant bit,
-     * every 8 bits indicate alpha, red, green, and blue, respectively.
+     * Each pixel is represented by 32 bits. From the most significant bit to the least significant bit, every 8 bits
+     * indicate alpha, red, green, and blue, respectively.
+     *
+     * @since 8
      */
     COLOR_FORMAT_RGBA_8888,
     /**
-     * Each pixel is represented by 32 bits. From the most significant bit to the least significant bit,
-     * every 8 bits indicate blue, green, red, and alpha, respectively.
+     * Each pixel is represented by 32 bits. From the most significant bit to the least significant bit, every 8 bits
+     * indicate blue, green, red, and alpha, respectively.
+     *
+     * @since 8
      */
     COLOR_FORMAT_BGRA_8888
 } OH_Drawing_ColorFormat;
 
 /**
- * @brief Enumerates alpha formats of bitmap pixels.
+ * @brief Defines an enum for the alpha formats of bitmap pixels.
  *
  * @since 8
  * @version 1.0
  */
 typedef enum {
-    /** Unknown format. */
+    /**
+     * Unknown format.
+     *
+     * @since 8
+     */
     ALPHA_FORMAT_UNKNOWN,
-    /** The bitmap does not have the alpha component. */
+    /**
+     * The bitmap does not have the alpha component.
+     *
+     * @since 8
+     */
     ALPHA_FORMAT_OPAQUE,
-    /** The color component of each pixel is premultiplied by the alpha component. */
+    /**
+     * The color component of each pixel is premultiplied by the alpha component.
+     *
+     * @since 8
+     */
     ALPHA_FORMAT_PREMUL,
-    /** The color component of each pixel is not premultiplied by the alpha component. */
+    /**
+     * The color component of each pixel is not premultiplied by the alpha component.
+     *
+     * @since 8
+     */
     ALPHA_FORMAT_UNPREMUL
 } OH_Drawing_AlphaFormat;
 
 /**
- * @brief The blending operation generates a new color for the two colors (source, destination).
- * These operations are the same on the 4 color channels: red, green, blue, alpha.
- * For these, we use alpha channel as an example, rather than naming each channel individually.
- *
- * For brevity, we use the following abbreviations.
- * s  : source
- * d  : destination
- * sa : source alpha
- * da : destination alpha
- *
- * Results are abbreviated
- * r  : if all 4 channels are computed in the same manner
- * ra : result alpha channel
- * rc : result "color": red, green, blue channels
+ * @brief Defines an enum for blend modes. In blend mode, each operation generates a new color from two colors (source
+ * color and destination color).
+ * These operations are the same for the red, green, and blue color channels (the alpha channel follows a different
+ * rule).
+ * For simplicity, the following description uses the alpha channel as an example rather than naming each channel
+ * individually. For brevity, the following abbreviations are used:
+ * **s**: source.
+ * **d**: destination.
+ * **sa**: source alpha.
+ * **da**: destination alpha.
+ * The following abbreviations are used in the calculation result:
+ * **r**: The calculation methods of the four channels are the same.
+ * **ra**: used when only the alpha channel is manipulated.
+ * **rc**: used when the other three color channels are manipulated.
  *
  * @since 11
  * @version 1.0
  */
 typedef enum {
-    /** r = 0. */
+    /**
+     * Clear mode. r = 0.
+     *
+     * @since 11
+     */
     BLEND_MODE_CLEAR,
-    /** r = s. */
+    /**
+     * r = s (The four channels of **result** are equal to the four channels of **source**, that is, the result is
+     * equal to the source.)
+     *
+     * @since 11
+     */
     BLEND_MODE_SRC,
-    /** r = d. */
+    /**
+     * r = d (The four channels of **result** are equal to the four channels of **destination**, that is, the result is
+     * equal to the destination.)
+     *
+     * @since 11
+     */
     BLEND_MODE_DST,
-    /** r = s + (1-sa)*d. */
+    /**
+     * r = s + (1 - sa) * d.
+     *
+     * @since 11
+     */
     BLEND_MODE_SRC_OVER,
-    /** r = d + (1-da)*s. */
+    /**
+     * r = d + (1 - da) * s.
+     *
+     * @since 11
+     */
     BLEND_MODE_DST_OVER,
-    /** r = s * da. */
+    /**
+     * r = s * da.
+     *
+     * @since 11
+     */
     BLEND_MODE_SRC_IN,
-    /** r = d * sa. */
+    /**
+     * r = d * sa.
+     *
+     * @since 11
+     */
     BLEND_MODE_DST_IN,
-    /** r = s * (1-da). */
+    /**
+     * r = s * (1 - da).
+     *
+     * @since 11
+     */
     BLEND_MODE_SRC_OUT,
-    /** r = d * (1-sa). */
+    /**
+     * r = d * (1 - sa).
+     *
+     * @since 11
+     */
     BLEND_MODE_DST_OUT,
-    /** r = s*da + d*(1-sa). */
+    /**
+     * r = s * da + d * (1 - sa).
+     *
+     * @since 11
+     */
     BLEND_MODE_SRC_ATOP,
-    /** r = d*sa + s*(1-da). */
+    /**
+     * r = d * sa + s * (1 - da).
+     *
+     * @since 11
+     */
     BLEND_MODE_DST_ATOP,
-    /** r = s*(1-da) + d*(1-sa). */
+    /**
+     * r = s * (1 - da) + d * (1 - sa).
+     *
+     * @since 11
+     */
     BLEND_MODE_XOR,
-    /** r = min(s + d, 1). */
+    /**
+     * r = min(s + d, 1).
+     *
+     * @since 11
+     */
     BLEND_MODE_PLUS,
-    /** r = s*d. */
+    /**
+     * r = s * d.
+     *
+     * @since 11
+     */
     BLEND_MODE_MODULATE,
-    /** r = s + d - s*d. */
+    /**
+     * Screen mode. r = s + d - s * d.
+     *
+     * @since 11
+     */
     BLEND_MODE_SCREEN,
-    /** multiply or screen, depending on destination. */
+    /**
+     * Overlay mode.
+     *
+     * @since 11
+     */
     BLEND_MODE_OVERLAY,
-    /** rc = s + d - max(s*da, d*sa), ra = s + (1-sa)*d. */
+    /**
+     * Darken mode. rc = s + d - max(s * da, d * sa), ra = s + (1 - sa) * d.
+     *
+     * @since 11
+     */
     BLEND_MODE_DARKEN,
-    /** rc = s + d - min(s*da, d*sa), ra = s + (1-sa)*d. */
+    /**
+     * Lighten mode. rc = rc = s + d - min(s * da, d * sa), ra = s + (1 - sa) * d.
+     *
+     * @since 11
+     */
     BLEND_MODE_LIGHTEN,
-    /** brighten destination to reflect source. */
+    /**
+     * Color dodge mode.
+     *
+     * @since 11
+     */
     BLEND_MODE_COLOR_DODGE,
-    /** darken destination to reflect source. */
+    /**
+     * Color burn mode.
+     *
+     * @since 11
+     */
     BLEND_MODE_COLOR_BURN,
-    /** multiply or screen, depending on source. */
+    /**
+     * Hard light mode.
+     *
+     * @since 11
+     */
     BLEND_MODE_HARD_LIGHT,
-    /** lighten or darken, depending on source. */
+    /**
+     * Soft light mode.
+     *
+     * @since 11
+     */
     BLEND_MODE_SOFT_LIGHT,
-    /** rc = s + d - 2*(min(s*da, d*sa)), ra = s + (1-sa)*d. */
+    /**
+     * Difference mode. rc = s + d - 2 * (min(s * da, d * sa)), ra = s + (1 - sa) * d.
+     *
+     * @since 11
+     */
     BLEND_MODE_DIFFERENCE,
-    /** rc = s + d - two(s*d), ra = s + (1-sa)*d. */
+    /**
+     * Exclusion mode. rc = s + d - two(s * d), ra = s + (1 - sa) * d.
+     *
+     * @since 11
+     */
     BLEND_MODE_EXCLUSION,
-    /** r = s*(1-da) + d*(1-sa) + s*d. */
+    /**
+     * Multiply mode. r = s * (1 - da) + d * (1 - sa) + s * d.
+     *
+     * @since 11
+     */
     BLEND_MODE_MULTIPLY,
-    /** hue of source with saturation and luminosity of destination. */
+    /**
+     * Hue mode.
+     *
+     * @since 11
+     */
     BLEND_MODE_HUE,
-    /** saturation of source with hue and luminosity of destination. */
+    /**
+     * Saturation mode.
+     *
+     * @since 11
+     */
     BLEND_MODE_SATURATION,
-    /** hue and saturation of source with luminosity of destination. */
+    /**
+     * Color mode.
+     *
+     * @since 11
+     */
     BLEND_MODE_COLOR,
-    /** luminosity of source with hue and saturation of destination. */
+    /**
+     * Luminosity mode.
+     *
+     * @since 11
+     */
     BLEND_MODE_LUMINOSITY,
 } OH_Drawing_BlendMode;
 
 /**
- * @brief Defines image info struct.
+ * @brief Defines an enum for the text encoding types.
  *
- * @since 12
- * @version 1.0
- */
-typedef struct {
-    /** storage for width of image */
-    int32_t width;
-    /** storage for height of image */
-    int32_t height;
-    /** storage for color formats */
-    OH_Drawing_ColorFormat colorType;
-    /** storage for alpha formats */
-    OH_Drawing_AlphaFormat alphaType;
-} OH_Drawing_Image_Info;
-
-/**
- * @brief Defines rectstyle info struct.
- *
- * @since 12
- * @version 1.0
- */
-typedef struct {
-    /** color of rectstyle */
-    uint32_t color;
-    /** radius in left top of rectstyle */
-    double leftTopRadius;
-    /** radius in right top of rectstyle */
-    double rightTopRadius;
-    /** radius in right bottom of rectstyle */
-    double rightBottomRadius;
-    /** radius in left bottom of rectstyle */
-    double leftBottomRadius;
-} OH_Drawing_RectStyle_Info;
-
-/**
- * @brief Defines the string information struct.
- *
- * @since 14
- * @version 1.0
- */
-typedef struct {
-    /** A pointer to a byte string containing UTF-16 encoded entities */
-    uint8_t* strData;
-    /** The length of `strData` in bytes */
-    uint32_t strLen;
-} OH_Drawing_String;
-
-/**
- * @brief Enumerates text encoding types.
  * @since 12
  * @version 1.0
  */
 typedef enum {
-    /** uses bytes to represent UTF-8 or ASCII */
+    /**
+     * One byte used to indicate UTF-8 or ASCII characters.
+     *
+     * @since 12
+     */
     TEXT_ENCODING_UTF8,
-    /** uses two byte words to represent most of Unicode */
+    /**
+     * Two bytes used to indicate most Unicode characters.
+     *
+     * @since 12
+     */
     TEXT_ENCODING_UTF16,
-    /** uses four byte words to represent all of Unicode */
+    /**
+     * Four bytes used to indicate all Unicode characters.
+     *
+     * @since 12
+     */
     TEXT_ENCODING_UTF32,
-    /** uses two byte words to represent glyph indices */
+    /**
+     * Two bytes used to indicate the glyph index.
+     *
+     * @since 12
+     */
     TEXT_ENCODING_GLYPH_ID,
 } OH_Drawing_TextEncoding;
 
 /**
- * @brief Defines a OH_Drawing_FontMgr, which is used to manage font family.
+ * @brief Defines a struct for the font manager, which is used for font management.
  *
  * @since 12
  * @version 1.0
@@ -541,7 +658,7 @@ typedef enum {
 typedef struct OH_Drawing_FontMgr OH_Drawing_FontMgr;
 
 /**
- * @brief Defines a OH_Drawing_FontStyleSet, which is used to manage font style.
+ * @brief Defines a struct for a font style set, which is used for font style family matching.
  *
  * @since 12
  * @version 1.0
@@ -549,7 +666,7 @@ typedef struct OH_Drawing_FontMgr OH_Drawing_FontMgr;
 typedef struct OH_Drawing_FontStyleSet OH_Drawing_FontStyleSet;
 
 /**
- * @brief Defines OH_Drawing_RecordCmdUtils, which is used to generate drawing commands tool.
+ * @brief Defines the recording command tool, which is used to generate recording commands.
  *
  * @since 13
  * @version 1.0
@@ -557,7 +674,7 @@ typedef struct OH_Drawing_FontStyleSet OH_Drawing_FontStyleSet;
 typedef struct OH_Drawing_RecordCmdUtils OH_Drawing_RecordCmdUtils;
 
 /**
- * @brief Defines OH_Drawing_RecordCmd, which is used to replay drawing commands.
+ * @brief Defines the recording command class, which is used to store the set of recording commands.
  *
  * @since 13
  * @version 1.0
@@ -565,12 +682,104 @@ typedef struct OH_Drawing_RecordCmdUtils OH_Drawing_RecordCmdUtils;
 typedef struct OH_Drawing_RecordCmd OH_Drawing_RecordCmd;
 
 /**
- * @brief Defines an array object, which is used to store multiple NDK object.
+ * @brief Defines a struct for an array object, which is used to store multiple objects of the same type.
  *
  * @since 14
  * @version 1.0
  */
 typedef struct OH_Drawing_Array OH_Drawing_Array;
+
+/**
+ * @brief This struct describes the style of a rectangle.
+ *
+ * @since 12
+ * @version 1.0
+ */
+typedef struct {
+    /**
+     * Color of the rectangle.
+     *
+     * @since 12
+     */
+    uint32_t color;
+    /**
+     * Left top radius of the rectangle.
+     *
+     * @since 12
+     */
+    double leftTopRadius;
+    /**
+     * Right top radius of the rectangle.
+     *
+     * @since 12
+     */
+    double rightTopRadius;
+    /**
+     * Right bottom radius of the rectangle.
+     *
+     * @since 12
+     */
+    double rightBottomRadius;
+    /**
+     * Left bottom radius of the rectangle.
+     *
+     * @since 12
+     */
+    double leftBottomRadius;
+} OH_Drawing_RectStyle_Info;
+/**
+ * @brief This struct describes the image information.
+ *
+ * @since 12
+ * @version 1.0
+ */
+typedef struct {
+    /**
+     * Width, in pixels.
+     *
+     * @since 12
+     */
+    int32_t width;
+    /**
+     * Height, in pixels.
+     *
+     * @since 12
+     */
+    int32_t height;
+    /**
+     * Color type.
+     *
+     * @since 12
+     */
+    OH_Drawing_ColorFormat colorType;
+    /**
+     * Alpha type.
+     *
+     * @since 12
+     */
+    OH_Drawing_AlphaFormat alphaType;
+} OH_Drawing_Image_Info;
+
+/**
+ * @brief This struct describes a string of characters encoded in UTF-16.
+ *
+ * @since 14
+ * @version 1.0
+ */
+typedef struct {
+    /**
+     * Pointer to a byte array that stores characters in the UTF-16 encoding format.
+     *
+     * @since 14
+     */
+    uint8_t* strData;
+    /**
+     * Actual length of the string that **strData** points to, in bytes.
+     *
+     * @since 14
+     */
+    uint32_t strLen;
+} OH_Drawing_String;
 #ifdef __cplusplus
 }
 #endif

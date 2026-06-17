@@ -641,6 +641,26 @@
         "type": "variable"
     },
     {
+        "first_introduced": "26.0.0",
+        "name": "OH_MD_KEY_AUDIO_VIVID_SIGNAL_FORMAT",
+        "type": "variable"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_MD_KEY_AUDIO_SOUNDBED_LAYOUT",
+        "type": "variable"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_MD_KEY_AUDIO_SOUNDBED_BITRATE",
+        "type": "variable"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_MD_KEY_AUDIO_OBJECT_BITRATE",
+        "type": "variable"
+    },
+    {
         "first_introduced": "10",
         "name": "OH_AVCodec_GetCapability"
     },
@@ -649,12 +669,28 @@
         "name": "OH_AVCodec_GetCapabilityByCategory"
     },
     {
+        "first_introduced": "24",
+        "name": "OH_AVCodec_GetCapabilityList"
+    },
+    {
         "first_introduced": "10",
         "name": "OH_AVCapability_IsHardware"
     },
     {
+        "first_introduced": "24",
+        "name": "OH_AVCapability_IsSecure"
+    },
+    {
         "first_introduced": "10",
         "name": "OH_AVCapability_GetName"
+    },
+    {
+        "first_introduced": "24",
+        "name": "OH_AVCapability_GetMimeType"
+    },
+    {
+        "first_introduced": "24",
+        "name": "OH_AVCapability_CheckMimeType"
     },
     {
         "first_introduced": "10",
@@ -754,5 +790,118 @@
     {
         "first_introduced": "12",
         "name": "OH_AVCapability_GetFeatureProperties"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_MD_KEY_AUDIO_MAX_INPUT_BUFFER_SIZE",
+        "type": "variable"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_MD_KEY_AUDIO_ENCODER_PTS_MODE",
+        "type": "variable"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_MD_KEY_AUDIO_ENCODER_ENABLE_SAMPLE_FORMAT_CONVERT",
+        "type": "variable"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_MD_KEY_VIDEO_DECODER_FRAME_RETENTION_MODE"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_MD_KEY_VIDEO_DECODER_FRAME_RETENTION_RATIO"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_MD_KEY_VIDEO_DECODER_SPEED"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_MD_KEY_VIDEO_ENCODER_PREPROC_DOWNSAMPLING_WIDTH"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_MD_KEY_VIDEO_ENCODER_PREPROC_DOWNSAMPLING_HEIGHT"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_MD_KEY_VIDEO_ENCODER_PREPROC_CROP_TOP"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_MD_KEY_VIDEO_ENCODER_PREPROC_CROP_BOTTOM"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_MD_KEY_VIDEO_ENCODER_PREPROC_CROP_LEFT"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_MD_KEY_VIDEO_ENCODER_PREPROC_CROP_RIGHT"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_MD_KEY_VIDEO_ENCODER_PREPROC_DROP_TO_FRAME_RATE"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_MD_KEY_VIDEO_ENCODER_NUMBER_OF_PENDING_FRAMES"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_MD_KEY_VIDEO_DECODER_OUTPUT_IN_DECODING_ORDER"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_MD_KEY_VIDEO_ENCODER_MAX_FRAME_DELAY_COUNT"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_MD_KEY_VIDEO_ENCODER_REPEAT_HEADER_BEFORE_SYNC_FRAMES"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_MD_KEY_VIDEO_METADATA_ROI_TOP",
+        "type": "variable"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_MD_KEY_VIDEO_METADATA_ROI_LEFT",
+        "type": "variable"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_MD_KEY_VIDEO_METADATA_ROI_BOTTOM",
+        "type": "variable"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_MD_KEY_VIDEO_METADATA_ROI_RIGHT",
+        "type": "variable"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_MD_KEY_VIDEO_METADATA_ROI_DELTA_QP",
+        "type": "variable"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_MD_KEY_VIDEO_METADATA_ROI_SEM_LABEL",
+        "type": "variable"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_VideoMetadata_AppendRoiString"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_VideoMetadata_GetRoiCount"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_VideoMetadata_ParseRoiString"
     }
 ]

@@ -19,7 +19,6 @@
  *
  * @brief Provides the definition of the C interface for the scan module.
  *
- * @syscap SystemCapability.Print.PrintFramework
  *
  * @since 12
  * @version 1.0
@@ -28,8 +27,8 @@
 /**
  * @file ohscan.h
  *
- * @brief Declares the APIs to discover and connect scanners, scan images from the scanner,
- *        obtain the page scanning progress and set scanned image parameters, and so on.
+ * @brief Declares APIs for discovering and connecting to scanners, scanning pictures, querying the scan progress, and
+ * setting parameters for scanning.
  *
  * @library libohscan.so
  * @kit BasicServicesKit
@@ -40,281 +39,332 @@
 
 #ifndef OH_SCAN_H
 #define OH_SCAN_H
-
 #include <stdint.h>
 #include <stdbool.h>
-
 #ifdef __cplusplus
 extern "C" {
 #endif
 
 /**
- * @brief Defines error codes.
+ * @brief Enumerates the error codes.
  *
  * @since 12
  * @version 1.0
  */
 typedef enum {
-    /** @error The operation is successful. */
+    /**
+     * Operation successful.
+     */
     SCAN_ERROR_NONE = 0,
-    /** @error Permission verification failed. */
+
+    /**
+     * Permission verification failed.
+     */
     SCAN_ERROR_NO_PERMISSION = 201,
-    /** @error The parameter is invalid. For example, the pointer is null or the character string is null. */
+
+    /**
+     * Invalid parameter. For example, the pointer or string is null.
+     */
     SCAN_ERROR_INVALID_PARAMETER = 401,
-    /** @error General internal error. */
+
+    /**
+     * Internal error.
+     */
     SCAN_ERROR_GENERIC_FAILURE = 24300101,
-    /** @error RPC communication error. */
+
+    /**
+     * RPC communication error.
+     */
     SCAN_ERROR_RPC_FAILURE = 24300102,
-    /** @error Server error. */
+
+    /**
+     * Server error.
+     */
     SCAN_ERROR_SERVER_FAILURE = 24300103,
-    /** @error Operation is not supported. **/
+
+    /**
+     * Unsupported operation.
+     */
     SCAN_ERROR_UNSUPPORTED = 24300104,
-    /** @error Operation was cancelled. **/
+
+    /**
+     * Operation canceled.
+     */
     SCAN_ERROR_CANCELED = 24300105,
-    /** @error Device is busy, try again later. **/
+
+    /**
+     * Device busy.
+     */
     SCAN_ERROR_DEVICE_BUSY = 24300106,
-    /** @error Data is invalid (includes no dev at open). **/
+
+    /**
+     * Invalid data (for example, no device is available when the scanner is started).
+     */
     SCAN_ERROR_INVALID = 24300107,
-    /** @error Document feeder jammed. **/
+
+    /**
+     * Paper jam in feeder.
+     */
     SCAN_ERROR_JAMMED = 24300108,
-    /** @error Document feeder out of documents. **/
+
+    /**
+     * Out of paper.
+     */
     SCAN_ERROR_NO_DOCS = 24300109,
-    /** @error Scanner cover is open. **/
+
+    /**
+     * Scanner cover open.
+     */
     SCAN_ERROR_COVER_OPEN = 24300110,
-    /** @error Error during device I/O. **/
+
+    /**
+     * Scanner I/O error.
+     */
     SCAN_ERROR_IO_ERROR = 24300111,
-    /** @error Out of memory. **/
-    SCAN_ERROR_NO_MEMORY = 24300112,
+
+    /**
+     * Insufficient memory.
+     */
+    SCAN_ERROR_NO_MEMORY = 24300112
 } Scan_ErrorCode;
 
 /**
- * @brief Indicates scanner device information.
+ * @brief Defines scanner information.
  *
  * @since 12
  */
 typedef struct {
-    /** Scanner id. */
-    const char* scannerId;
-    /** Scanner manufacturer. */
-    const char* manufacturer;
-    /** Scanner model. */
-    const char* model;
-    /** Scanner discoverMode. */
-    const char* discoverMode;
-    /** Scanner serialNumber. */
-    const char* serialNumber;
+    /**
+     * Scanner ID.
+     */
+    const char *scannerId;
+    /**
+     * Scanner manufacturer.
+     */
+    const char *manufacturer;
+    /**
+     * Scanner model.
+     */
+    const char *model;
+    /**
+     * Discovery mode of the scanner.
+     */
+    const char *discoverMode;
+    /**
+     * Scanner serial number.
+     */
+    const char *serialNumber;
 } Scan_ScannerDevice;
 
 /**
- * @brief Indicates the progress of scanning a picture by the scanner.
+ * @brief Defines the progress of scanning a picture by the scanner.
  *
  * @since 12
  */
 typedef struct {
-    /** Picture progress from 0 to 100. */
+    /**
+     * Picture scanning progress, in percentage. The value ranges from 0 to 100.
+     */
     int32_t progress;
-    /** scanner file handle. */
+    /**
+     * Scanner file handle.
+     */
     int32_t fd;
-    /** Indicates whether the image is the last scanned image. */
+    /**
+     * Whether the picture is the last one to be scanned. The value **true** indicates that the picture is the last one
+     * to be scanned, and **false** indicates the opposite.
+     */
     bool isFinal;
 } Scan_PictureScanProgress;
 
 /**
- * @brief Indicates all parameter options for one scanner.
+ * @brief Defines all parameter options of a scanner.
  *
  * @since 12
  */
 typedef struct {
-    /** Title of an option. */
-    char** titles;
-    /** Description of an option. */
-    char** descriptions;
-    /** The range that an option can be set to. */
-    char** ranges;
-    /** Number of parameter options that can be set. */
+    /**
+     * Option titles.
+     */
+    char **titles;
+    /**
+     * Option descriptions.
+     */
+    char **descriptions;
+    /**
+     * Ranges of options.
+     */
+    char **ranges;
+    /**
+     * Number of configurable parameter options.
+     */
     int32_t optionCount;
 } Scan_ScannerOptions;
 
 /**
- * @brief Scanner devices discovery callback, register by {@link OH_Scan_StartScannerDiscovery}.
- * The memory to which the pointer points will be released when the callback function ends.
+ * @brief Discovers scanners. The memory pointed to by the pointer registered via {@link OH_Scan_StartScannerDiscovery}
+ * will be released when the callback function ends.
  *
- * @param devices List of all discovered scanner devices.
- * @param deviceCount Number of Scanners Found.
+ * @param devices Double pointer to the list of all discovered scanners.
+ * @param deviceCount Number of scanners discovered.
  * @since 12
  */
 typedef void (*Scan_ScannerDiscoveryCallback)(Scan_ScannerDevice** devices, int32_t deviceCount);
 
 /**
- * @brief This API checks and pulls up the scan service, initializes the scan client,
- *        and establishes a connection to the scan service.
+ * @brief Initiates the scan service, initializes the scan client, and connects the client to the scan service.
  *
  * @permission {@code ohos.permission.PRINT}
- * @return {@link Scan_ERROR_NONE} Indicates the scanning service is successfully started.
- *         {@link SCAN_ERROR_NO_PERMISSION} Indicates have no permission to use this interface.
- *         {@link SCAN_ERROR_RPC_FAILURE} Indicates an RPC communication error.
- *         {@link SCAN_ERROR_SERVER_FAILURE} Indicates An error occurs in the scan process.
- * @syscap SystemCapability.Print.PrintFramework
+ * @return {@link SCAN_ERROR_NONE}: operation successful.
+ *     <br>{@link SCAN_ERROR_NO_PERMISSION}: permission denied.
+ *     <br>{@link SCAN_ERROR_RPC_FAILURE}: RPC communication error.
+ *     <br>{@link SCAN_ERROR_SERVER_FAILURE}: server error.
  * @since 12
  */
 int32_t OH_Scan_Init();
 
 /**
- * @brief This API starts discovering scanners, Register a callback to handle discovered scanner devices.
+ * @brief Starts scanner discovery and registers a callback used to process the discovered scanners.
  *
  * @permission {@code ohos.permission.PRINT}
- * @param callback The {@link Scan_ScannerDiscoveryCallback} of scanner discovery event.
- * @return {@link Scan_ERROR_NONE} Indicates successful start of scanner search.
- *         {@link SCAN_ERROR_NO_PERMISSION} Indicates have no permission to use this interface.
- *         {@link SCAN_ERROR_RPC_FAILURE} Indicates an RPC communication error.
- *         {@link SCAN_ERROR_SERVER_FAILURE} Indicates An error occurs in the scan process.
- * @syscap SystemCapability.Print.PrintFramework
+ * @param callback {@link Scan_ScannerDiscoveryCallback} used to discover scanners.
+ * @return {@link SCAN_ERROR_NONE}: operation successful.
+ *     <br>{@link SCAN_ERROR_NO_PERMISSION}: permission denied.
+ *     <br>{@link SCAN_ERROR_RPC_FAILURE}: RPC communication error.
+ *     <br>{@link SCAN_ERROR_SERVER_FAILURE}: server error.
  * @since 12
  */
 int32_t OH_Scan_StartScannerDiscovery(Scan_ScannerDiscoveryCallback callback);
 
 /**
- * @brief This API connects to scanner devices.
+ * @brief Opens a scanner.
  *
  * @permission {@code ohos.permission.PRINT}
- * @param scannerId The id used to connect to the scanner.
- * @return {@link Scan_ERROR_NONE} Indicates that the scanner was successfully connected.
- *         {@link SCAN_ERROR_NO_PERMISSION} Indicates have no permission to use this interface.
- *         {@link SCAN_ERROR_RPC_FAILURE} Indicates an RPC communication error.
- *         {@link SCAN_ERROR_SERVER_FAILURE} Indicates An error occurs in the scan process.
- *         {@link SCAN_ERROR_DEVICE_BUSY} Indicates that the scanner is busy.
- *         {@link SCAN_ERROR_INVALID_PARAMETER} Indicates that the input parameter is invalid.
- *         {@link SCAN_ERROR_IO_ERROR} Indicates an error occured while communicating with the device.
- *         {@link SCAN_ERROR_NO_MEMORY} Indicates an insufficent amount of memory is available.
- * @syscap SystemCapability.Print.PrintFramework
+ * @param scannerId Pointer to the scanner ID.
+ * @return {@link SCAN_ERROR_NONE}: operation successful.
+ *     <br>{@link SCAN_ERROR_NO_PERMISSION}: permission denied.
+ *     <br>{@link SCAN_ERROR_RPC_FAILURE}: RPC communication error.
+ *     <br>{@link SCAN_ERROR_SERVER_FAILURE}: server error.
+ *     <br>{@link SCAN_ERROR_DEVICE_BUSY}: device busy.
+ *     <br>{@link SCAN_ERROR_INVALID_PARAMETER}: invalid parameter.
+ *     <br>{@link SCAN_ERROR_IO_ERROR}: scanner I/O error.
+ *     <br>{@link SCAN_ERROR_NO_MEMORY}: insufficient memory.
  * @since 12
  */
 int32_t OH_Scan_OpenScanner(const char* scannerId);
 
 /**
- * @brief This API is used to close the connected scanner device.
+ * @brief Closes a connected scanner.
  *
  * @permission {@code ohos.permission.PRINT}
- * @param scannerId The id to disconnect the scanner.
- * @return {@link Scan_ERROR_NONE} Indicates that the scanner connection was successfully closed.
- *         {@link SCAN_ERROR_NO_PERMISSION} Indicates have no permission to use this interface.
- *         {@link SCAN_ERROR_RPC_FAILURE} Indicates an RPC communication error.
- *         {@link SCAN_ERROR_SERVER_FAILURE} Indicates An error occurs in the scan process.
- *         {@link SCAN_ERROR_INVALID_PARAMETER} Indicates that the input parameter is invalid.
- * @syscap SystemCapability.Print.PrintFramework
+ * @param scannerId Pointer to the scanner ID.
+ * @return {@link SCAN_ERROR_NONE}: operation successful.
+ *     <br>{@link SCAN_ERROR_NO_PERMISSION}: permission denied.
+ *     <br>{@link SCAN_ERROR_RPC_FAILURE}: RPC communication error.
+ *     <br>{@link SCAN_ERROR_SERVER_FAILURE}: server error.
+ *     <br>{@link SCAN_ERROR_INVALID_PARAMETER}: invalid parameter.
  * @since 12
  */
 int32_t OH_Scan_CloseScanner(const char* scannerId);
 
 /**
- * @brief This API can be used to get a list of options that can be set by the scanner.
- * The returned struct pointer points to memory that is automatically freed when {@link OH_Scan_Exit},
- * and only one copy will be stored in memory for each model.
+ * @brief Obtains the scanner setting options. The memory to which the returned struct pointer points is automatically
+ * released when {@link OH_Scan_Exit} is called. Only one copy of each scanner model is stored in the memory.
  *
  * @permission {@code ohos.permission.PRINT}
- * @param scannerId The id used to obtain the scanner parameters.
- * @param errorCode The errorCode returns {@link Scan_ErrorCode#Scan_ERROR_NONE} if the execution is successful,
- *         otherwise returns a specific error code, refer to {@link Print_ErrorCode}.
- * @return {@link Scan_ERROR_NONE} Indicates that the scanner parameter options are successfully obtained.
- *         {@link SCAN_ERROR_NO_PERMISSION} Indicates have no permission to use this interface.
- *         {@link SCAN_ERROR_RPC_FAILURE} Indicates an RPC communication error.
- *         {@link SCAN_ERROR_SERVER_FAILURE} Indicates An error occurs in the scan process.
- *         {@link SCAN_ERROR_INVALID_PARAMETER} Indicates invalid parameter.
- * @syscap SystemCapability.Print.PrintFramework
+ * @param scannerId Pointer to the scanner ID.
+ * @param errorCode Pointer to the error code. If the operation is successful, {@link SCAN_ERROR_NONE} is returned;
+ *     otherwise, a specific error code is returned. For details, see {@link Scan_ErrorCode}.
+ * @return Pointer to an {@link Scan_ScannerOptions} instance, or NULL if it fails to create.
  * @since 12
  */
 Scan_ScannerOptions* OH_Scan_GetScannerParameter(const char* scannerId, int32_t* errorCode);
 
 /**
- * @brief This API can be used to set one of the scanner's option parameters.
- * The option and value passed in are obtained from {@link OH_Scan_GetScannerParameter}.
+ * @brief Sets the option parameters of a scanner. The option values are obtained through the
+ * {@link OH_Scan_GetScannerParameter} API.
  *
  * @permission {@code ohos.permission.PRINT}
- * @param scannerId This id is used to set the options for a specific scanner.
- * @param option Options number to be set.The value ranges from 0 to {@link optionCount} - 1,
- * be obtained from the {@link Scan_ScannerOptions}.
- * @param value Option value to be set, valid value is obtained from the {@link ranges},
- * be obtained from the {@link Scan_ScannerOptions}.
- * @return {@link Scan_ERROR_NONE} Indicates that the scanner parameters were successfully set.
- *         {@link SCAN_ERROR_NO_PERMISSION} Indicates have no permission to use this interface.
- *         {@link SCAN_ERROR_RPC_FAILURE} Indicates an RPC communication error.
- *         {@link SCAN_ERROR_SERVER_FAILURE} Indicates an error occurs in the scan process.
- *         {@link SCAN_ERROR_INVALID_PARAMETER} Indicates invalid parameter.
- * @syscap SystemCapability.Print.PrintFramework
+ * @param scannerId Pointer to the scanner ID.
+ * @param option ID of the option to be set. The value, obtained from {@link Scan_ScannerOptions}, ranges from 0 to
+ *     *optionCount* – 1.
+ * @param value Pointer to the option value to be set. The valid value is obtained from **ranges** of
+ *     {@link Scan_ScannerOptions}.
+ * @return {@link SCAN_ERROR_NONE}: operation successful.
+ *     <br>{@link SCAN_ERROR_NO_PERMISSION}: permission denied.
+ *     <br>{@link SCAN_ERROR_RPC_FAILURE}: RPC communication error.
+ *     <br>{@link SCAN_ERROR_SERVER_FAILURE}: server error.
+ *     <br>{@link SCAN_ERROR_INVALID_PARAMETER}: invalid parameter.
  * @since 12
  */
 int32_t OH_Scan_SetScannerParameter(const char* scannerId, const int32_t option, const char* value);
 
 /**
- * @brief This API allows the scanner to start scanning.
+ * @brief Starts scanning.
  *
  * @permission {@code ohos.permission.PRINT}
- * @param scannerId This id is used to start the scan job for the specified scanner.
- * @param batchMode Whether to start the scanner in batch mode.
- * @return {@link Scan_ERROR_NONE} Indicates that the scanner has successfully canceled the scan job.
- *         {@link SCAN_ERROR_NO_PERMISSION} Indicates have no permission to use this interface.
- *         {@link SCAN_ERROR_RPC_FAILURE} Indicates an RPC communication error.
- *         {@link SCAN_ERROR_SERVER_FAILURE} Indicates An error occurs in the scan process.
- *         {@link SCAN_ERROR_JAMMED} Indicates the document feeder is jammed.
- *         {@link SCAN_ERROR_NO_DOCS} Indicates the document feeder is out of documents.
- *         {@link SCAN_ERROR_COVER_OPEN} Indicates the scanner cover is open.
- *         {@link SCAN_ERROR_IO_ERROR} Indicates an error occurred while communicating with the device.
- *         {@link SCAN_ERROR_NO_MEMORY} Indicates an insufficent amount of memory is available.
- *         {@link SCAN_ERROR_INVALID_PARAMETER} Indicates that the input parameter is invalid.
- *         {@link SCAN_ERROR_DEVICE_BUSY} Indicates the device is busy, the operation should be retried later.
- * @syscap SystemCapability.Print.PrintFramework
+ * @param scannerId Pointer to the scanner ID.
+ * @param batchMode Whether to start the scanner in batch processing mode.
+ * @return {@link SCAN_ERROR_NONE}: operation successful.
+ *     <br>{@link SCAN_ERROR_NO_PERMISSION}: permission denied.
+ *     <br>{@link SCAN_ERROR_RPC_FAILURE}: RPC communication error.
+ *     <br>{@link SCAN_ERROR_SERVER_FAILURE}: server error.
+ *     <br>{@link SCAN_ERROR_JAMMED}: paper jam in feeder.
+ *     <br>{@link SCAN_ERROR_NO_DOCS}: out of paper.
+ *     <br>{@link SCAN_ERROR_COVER_OPEN}: scanner cover open.
+ *     <br>{@link SCAN_ERROR_IO_ERROR}: scanner I/O error.
+ *     <br>{@link SCAN_ERROR_NO_MEMORY}: insufficient memory.
+ *     <br>{@link SCAN_ERROR_INVALID_PARAMETER}: invalid parameter.
+ *     <br>{@link SCAN_ERROR_DEVICE_BUSY}: device busy.
  * @since 12
  */
 int32_t OH_Scan_StartScan(const char* scannerId, bool batchMode);
 
 /**
- * @brief This API allows the scanner to cancel the scan.
+ * @brief Cancels scanning.
  *
  * @permission {@code ohos.permission.PRINT}
- * @param scannerId This id is used to cancel the scan job for the specified scanner.
- * @return {@link Scan_ERROR_NONE} Indicates that the scanner has successfully canceled the scan job.
- *         {@link SCAN_ERROR_NO_PERMISSION} Indicates have no permission to use this interface.
- *         {@link SCAN_ERROR_INVALID_PARAMETER} Indicates if the pointer is null or the character string is null.
- *         {@link SCAN_ERROR_RPC_FAILURE} Indicates an RPC communication error.
- *         {@link SCAN_ERROR_SERVER_FAILURE} Indicates An error occurs in the scan process.
- * @syscap SystemCapability.Print.PrintFramework
+ * @param scannerId Pointer to the scanner ID.
+ * @return {@link SCAN_ERROR_NONE}: operation successful.
+ *     <br>{@link SCAN_ERROR_NO_PERMISSION}: permission denied.
+ *     <br>{@link SCAN_ERROR_INVALID_PARAMETER}: invalid parameter.
+ *     <br>{@link SCAN_ERROR_RPC_FAILURE}: RPC communication error.
+ *     <br>{@link SCAN_ERROR_SERVER_FAILURE}: server error.
  * @since 12
  */
 int32_t OH_Scan_CancelScan(const char* scannerId);
 
 /**
- * @brief This API can get the progress of the scanner scanning the picture.A non-null value must be passed in,
- * and the scan progress will be written to the structure to which the pointer points.
+ * @brief Obtains the progress of scanning a picture by the scanner. A non-null value must be passed. The scan progress
+ * will be written into the struct pointed to by the pointer.
  *
  * @permission {@code ohos.permission.PRINT}
- * @param scannerId The id for querying the image scanning progress of the scanner.
- * @param prog The {@link Scan_PictureScanProgress} of scanning pictures, must be a non-null value.
- * @return {@link Scan_ERROR_NONE} Indicates the scanner has successfully queried the progress of the scanned image.
- *         {@link SCAN_ERROR_NO_PERMISSION} Indicates have no permission to use this interface.
- *         {@link SCAN_ERROR_INVALID_PARAMETER} Indicates if the pointer is null or the character string is null.
- *         {@link SCAN_ERROR_RPC_FAILURE} Indicates an RPC communication error.
- *         {@link SCAN_ERROR_SERVER_FAILURE} Indicates An error occurs in the scan process.
- *         {@link SCAN_ERROR_JAMMED} Indicates the document feeder is jammed.
- *         {@link SCAN_ERROR_NO_DOCS} Indicates the document feeder is out of documents.
- *         {@link SCAN_ERROR_COVER_OPEN} Indicates the scanner cover is open.
- *         {@link SCAN_ERROR_IO_ERROR} Indicates an error occurred while communicating with the scanner.
- *         {@link SCAN_ERROR_NO_MEMORY} Indicates an insufficent amount of memory is available.
- *         {@link SCAN_ERROR_DEVICE_BUSY} Indicates the device is busy, the operation should be retried later.
- * @syscap SystemCapability.Print.PrintFramework
+ * @param scannerId Pointer to the scanner ID.
+ * @param prog Pointer to {@link Scan_PictureScanProgress}. The value cannot be empty.
+ * @return {@link SCAN_ERROR_NONE}: operation successful.
+ *     <br>{@link SCAN_ERROR_NO_PERMISSION}: permission denied.
+ *     <br>{@link SCAN_ERROR_INVALID_PARAMETER}: invalid parameter.
+ *     <br>{@link SCAN_ERROR_RPC_FAILURE}: RPC communication error.
+ *     <br>{@link SCAN_ERROR_SERVER_FAILURE}: server error.
+ *     <br>{@link SCAN_ERROR_JAMMED}: paper jam in feeder.
+ *     <br>{@link SCAN_ERROR_NO_DOCS}: out of paper.
+ *     <br>{@link SCAN_ERROR_COVER_OPEN}: scanner cover open.
+ *     <br>{@link SCAN_ERROR_IO_ERROR}: scanner I/O error.
+ *     <br>{@link SCAN_ERROR_NO_MEMORY}: insufficient memory.
+ *     <br>{@link SCAN_ERROR_DEVICE_BUSY}: device busy.
  * @since 12
  */
 int32_t OH_Scan_GetPictureScanProgress(const char* scannerId, Scan_PictureScanProgress* prog);
 
 /**
- * @brief This API can be used to exit the scanning service, free the Scan Framework Memory,
- *        and unregister the callback for scanner discover.
+ * @brief Exits the scan service, releases the memory of the scan framework, and deregisters the scanner discovery
+ * callback.
  *
  * @permission {@code ohos.permission.PRINT}
- * @return {@link Scan_ERROR_NONE} Indicates the scan service exit successfully.
- *         {@link SCAN_ERROR_NO_PERMISSION} Indicates have no permission to use this interface.
- *         {@link SCAN_ERROR_RPC_FAILURE} Indicates an RPC communication error.
- *         {@link SCAN_ERROR_SERVER_FAILURE} Indicates An error occurs in the scan process.
- * @syscap SystemCapability.Print.PrintFramework
+ * @return {@link SCAN_ERROR_NONE}: operation successful.
+ *     <br>{@link SCAN_ERROR_NO_PERMISSION}: permission denied.
+ *     <br>{@link SCAN_ERROR_RPC_FAILURE}: RPC communication error.
+ *     <br>{@link SCAN_ERROR_SERVER_FAILURE}: server error.
  * @since 12
  */
 int32_t OH_Scan_Exit();
@@ -322,6 +372,6 @@ int32_t OH_Scan_Exit();
 #ifdef __cplusplus
 }
 #endif
-
 #endif  // OH_SCAN_H
+
 /** @} */

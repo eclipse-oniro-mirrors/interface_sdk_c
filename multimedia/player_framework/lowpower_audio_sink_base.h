@@ -4,7 +4,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -12,8 +12,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
-
 /**
  * @addtogroup LowPowerAudioSink
  * @{
@@ -23,12 +21,11 @@
  *
  * @since 20
  */
-
 /**
  * @file lowpower_audio_sink_base.h
  *
- * @brief Declare the Native API used for lowpower audio sink.
- *
+ * @brief The file declares the structs and enums of the LowPowerAudioSink.
+ * 
  * @library liblowpower_avsink.so
  * @kit MediaKit
  * @syscap SystemCapability.Multimedia.Media.LowPowerAVSink
@@ -47,27 +44,26 @@ extern "C" {
 #endif
 
 /**
- * @brief Forward declaration of OH_LowPowerAudioSink.
- *
+ * @brief The struct describes the declaration for the LowPowerAudioSink.
+ * 
  * @since 20
  */
 typedef struct OH_LowPowerAudioSink OH_LowPowerAudioSink;
 
 /**
- * @brief Forward declaration of OH_LowPowerAudioSinkCallback.
- *
+ * @brief The struct contains a set of callback function pointers for the LowPowerAudioSink.
+ * 
  * @since 20
  */
 typedef struct OH_LowPowerAudioSinkCallback OH_LowPowerAudioSinkCallback;
 
 /**
- * @brief When an error occurs in the running of the OH_LowPowerAudioSink instance, the function pointer will be called
- * to report specific error information.
- *
- * @param {OH_LowPowerAudioSink*} sink OH_LowPowerAudioSink instance
- * @param {OH_AVErrCode} errorCode Error code when an error occurs
- * @param {const char*} errorMsg Error description information
- * @param {void*} userData User specific data
+ * @brief Called when an error occurs in the LowPowerAudioSink.
+ * 
+ * @param sink OH_LowPowerAudioSink instance
+ * @param errorCode Error code when an error occurs
+ * @param errorMsg Error description information
+ * @param userData User specific data
  * @since 20
  */
 typedef void (*OH_LowPowerAudioSink_OnError)(
@@ -77,12 +73,11 @@ typedef void (*OH_LowPowerAudioSink_OnError)(
     void* userData);
 
 /**
- * @brief When the OH_LowPowerAudioSink instance report current play position, the function pointer will be called
- * to report position information.
- *
- * @param {OH_LowPowerAudioSink*} sink OH_LowPowerAudioSink instance
- * @param {int64_t} currentPosition Returns the current playback progress value of the service
- * @param {void*} userData User specific data
+ * @brief Called when the playback position is updated in the LowPowerAudioSink.
+ * 
+ * @param sink OH_LowPowerAudioSink instance
+ * @param currentPosition Returns the current playback progress value of the service, in milliseconds
+ * @param userData User specific data
  * @since 20
  */
 typedef void (*OH_LowPowerAudioSink_OnPositionUpdated)(
@@ -91,12 +86,11 @@ typedef void (*OH_LowPowerAudioSink_OnPositionUpdated)(
     void* userData);
 
 /**
- * @brief When the OH_LowPowerAudioSink instance report to need data, the function pointer will be called
- * to request data.
- *
- * @param {OH_LowPowerAudioSink*} sink OH_LowPowerAudioSink instance
- * @param {OH_AVSamplesBuffer*} samples OH_AVSamplesBuffer instance that will be written in
- * @param {void*} userData User specific data
+ * @brief Called when the LowPowerAudioSink needs more data.
+ * 
+ * @param sink OH_LowPowerAudioSink instance
+ * @param samples OH_AVSamplesBuffer instance that will be written in
+ * @param userData User specific data
  * @since 20
  */
 typedef void (*OH_LowPowerAudioSink_OnDataNeeded)(
@@ -105,14 +99,13 @@ typedef void (*OH_LowPowerAudioSink_OnDataNeeded)(
     void* userData);
 
 /**
- * @brief This function pointer will point to the callback function that
- * is used to handle audio interrupt events.
- *
- * @param {OH_LowPowerAudioSink*} sink OH_LowPowerAudioSink instance
- * @param {OH_AudioInterrupt_ForceType} type The audio interrupt type,
+ * @brief Called when the audio focus is interrupted in the LowPowerAudioSink.
+ * 
+ * @param sink OH_LowPowerAudioSink instance
+ * @param type The audio interrupt type,
  * please refer to {@link OH_AudioInterrupt_ForceType}
- * @param {OH_AudioInterrupt_Hint} hint The audio interrupt hint type, please refer to {@link OH_AudioInterrupt_Hint}
- * @param {void*} userData User specific data
+ * @param hint The audio interrupt hint type, please refer to {@link OH_AudioInterrupt_Hint}
+ * @param userData User specific data
  * @since 20
  */
 typedef void (*OH_LowPowerAudioSink_OnInterrupted)(
@@ -122,13 +115,12 @@ typedef void (*OH_LowPowerAudioSink_OnInterrupted)(
     void* userData);
 
 /**
- * @brief When the output device of an audio renderer changed, the function pointer will be called
- * to report device change reason.
- *
- * @param {OH_LowPowerAudioSink*} sink OH_LowPowerAudioSink instance
- * @param {OH_AudioStream_DeviceChangeReason} reason Indicates that why does the output device changes,
+ * @brief Called when the audio device changes in the LowPowerAudioSink.
+ * 
+ * @param sink OH_LowPowerAudioSink instance
+ * @param reason Indicates that why does the output device changes,
  * please refer to {@link OH_AudioStream_DeviceChangeReason}
- * @param {void*} userData User specific data
+ * @param userData User specific data
  * @since 20
  */
 typedef void (*OH_LowPowerAudioSink_OnDeviceChanged)(
@@ -137,11 +129,10 @@ typedef void (*OH_LowPowerAudioSink_OnDeviceChanged)(
     void* userData);
 
 /**
- * @brief When the lowpower audio sink play to end of stream, the function pointer will be called
- * to report play completed event.
- *
- * @param {OH_LowPowerAudioSink*} sink OH_LowPowerAudioSink instance
- * @param {void*} userData User specific data
+ * @brief Called when the playback is complete in the LowPowerAudioSink. This callback is included in {@link OH_LowPowerAudioSinkCallback}.
+ * 
+ * @param sink OH_LowPowerAudioSink instance
+ * @param userData User specific data
  * @since 20
  */
 typedef void (*OH_LowPowerAudioSink_OnEos)(OH_LowPowerAudioSink* sink, void* userData);

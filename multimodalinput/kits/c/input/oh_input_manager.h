@@ -598,14 +598,15 @@ int32_t OH_Input_GetKeySwitch(const struct Input_KeyState* keyState);
  * since API 20, it is recommended to use OH_Input_RequestInjection
  * to request authorization before using the interface,
  * and then use OH_Input_QueryAuthorizedStatus to query the authorization status.
- * When the authorization status is AUTHORIZED, use the interface.
+ * When the authorization status is AUTHORIZED, use the interface. Starting from API version 26.0.0,
+ * callers that hold the ohos.permission.CONTROL_DEVICE permission can also use this interface directly.
  *
+ * @permission ohos.permission.CONTROL_DEVICE
  * @param keyEvent - the key event to be injected.
  * @return OH_Input_InjectKeyEvent function result code.
  *         {@link INPUT_SUCCESS} inject keyEvent success.\n
  *         {@link INPUT_PERMISSION_DENIED} Permission verification failed.\n
  *         {@link INPUT_PARAMETER_ERROR} keyCode is less 0, can not process.\n
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
 int32_t OH_Input_InjectKeyEvent(const struct Input_KeyEvent* keyEvent);
@@ -803,14 +804,15 @@ Input_Result OH_Input_DispatchToNextHandler(int32_t eventId);
  * since API 20, it is recommended to use OH_Input_RequestInjection
  * to request authorization before using the interface,
  * and then use OH_Input_QueryAuthorizedStatus to query the authorization status.
- * When the authorization status is AUTHORIZED, use the interface.
+ * When the authorization status is AUTHORIZED, use the interface. Starting from API version 26.0.0,
+ * callers that hold the ohos.permission.CONTROL_DEVICE permission can also use this interface directly.
  *
+ * @permission ohos.permission.CONTROL_DEVICE
  * @param mouseEvent - the mouse event to be injected.
  * @return OH_Input_InjectMouseEvent function result code.
  *         {@link INPUT_SUCCESS} inject mouseEvent success.\n
  *         {@link INPUT_PERMISSION_DENIED} Permission verification failed.\n
  *         {@link INPUT_PARAMETER_ERROR} Parameter check failed.\n
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
 int32_t OH_Input_InjectMouseEvent(const struct Input_MouseEvent* mouseEvent);
@@ -820,8 +822,10 @@ int32_t OH_Input_InjectMouseEvent(const struct Input_MouseEvent* mouseEvent);
  * since API 20, it is recommended to use OH_Input_RequestInjection
  * to request authorization before using the interface,
  * and then use OH_Input_QueryAuthorizedStatus to query the authorization status.
- * When the authorization status is AUTHORIZED, use the interface.
+ * When the authorization status is AUTHORIZED, use the interface. Starting from API version 26.0.0,
+ * callers that hold the ohos.permission.CONTROL_DEVICE permission can also use this interface directly.
  *
+ * @permission ohos.permission.CONTROL_DEVICE
  * @param mouseEvent - the mouse event to be injected, set up effective globalX globalY.
  * @return OH_Input_InjectMouseEventGlobal function result code.
  *         {@link INPUT_SUCCESS} inject mouseEvent success.\n
@@ -1072,13 +1076,14 @@ int32_t OH_Input_GetMouseEventGlobalY(const struct Input_MouseEvent* mouseEvent)
  * since API 20, it is recommended to use OH_Input_RequestInjection
  * to request authorization before using the interface,
  * and then use OH_Input_QueryAuthorizedStatus to query the authorization status.
- * When the authorization status is AUTHORIZED, use the interface.
+ * When the authorization status is AUTHORIZED, use the interface. Starting from API version 26.0.0,
+ * callers that hold the ohos.permission.CONTROL_DEVICE permission can also use this interface directly.
  *
+ * @permission ohos.permission.CONTROL_DEVICE
  * @param touchEvent - the touch event to be injected.
  * @return OH_Input_InjectTouchEvent function result code.
  *         {@link INPUT_SUCCESS} inject touchEvent success.\n
  *         {@link INPUT_PARAMETER_ERROR} Parameter check failed.\n
- * @syscap SystemCapability.MultimodalInput.Input.Core
  * @since 12
  */
 int32_t OH_Input_InjectTouchEvent(const struct Input_TouchEvent* touchEvent);
@@ -1088,8 +1093,10 @@ int32_t OH_Input_InjectTouchEvent(const struct Input_TouchEvent* touchEvent);
  * since API 20, it is recommended to use OH_Input_RequestInjection
  * to request authorization before using the interface,
  * and then use OH_Input_QueryAuthorizedStatus to query the authorization status.
- * When the authorization status is AUTHORIZED, use the interface.
+ * When the authorization status is AUTHORIZED, use the interface. Starting from API version 26.0.0,
+ * callers that hold the ohos.permission.CONTROL_DEVICE permission can also use this interface directly.
  *
+ * @permission ohos.permission.CONTROL_DEVICE
  * @param touchEvent - the touch event to be injected, set up effective globalX globalY.
  * @return OH_Input_InjectTouchEventGlobal function result code.
  *         {@link INPUT_SUCCESS} inject touchEvent success.\n
@@ -1399,7 +1406,9 @@ Input_TouchEventToolType OH_Input_GetTouchEventToolType(const struct Input_Touch
 void OH_Input_CancelInjection();
 
 /**
- * @brief Requests for injection authorization.
+ * @brief Requests for injection authorization. Starting from API version 26.0.0, once the
+ * ohos.permission.CONTROL_DEVICE permission is granted, injection authorization is no longer required.
+ * The behavior of this interface is independent of the ohos.permission.CONTROL_DEVICE permission.
  *
  * @param callback - callback used to return the result.
  * @return OH_Input_RequestInjection function result code.
@@ -1417,7 +1426,9 @@ void OH_Input_CancelInjection();
 Input_Result OH_Input_RequestInjection(Input_InjectAuthorizeCallback callback);
 
 /**
- * @brief Queries the injection authorization status.
+ * @brief Queries the injection authorization status. Starting from API version 26.0.0, this interface returns only the
+ * dialog authorization status. It does not indicate whether the caller has injection capability due to holding the
+ * ohos.permission.CONTROL_DEVICE permission.
  *
  * @param status Injection authorization status. For details, see {@Link Input_InjectionStatus}.
  * @return OH_Input_QueryAuthorizedStatus function result code.
@@ -2471,6 +2482,7 @@ Input_Result OH_Input_SetPointerVisible(bool visible);
 
 /**
  * @brief Obtains the mouse pointer style.
+ * This API only supports getting the mouse pointer style of window within the current application process.
  *
  * @param windowId Window ID. The value is an integer greater than or equal to -1.
  * @param pointerStyle Pointer to the pointerStyle.
@@ -2484,6 +2496,7 @@ Input_Result OH_Input_GetPointerStyle(int32_t windowId, int32_t *pointerStyle);
 
 /**
  * @brief Sets the mouse pointer style.
+ * This API only supports setting the mouse pointer style of window within the current application process.
  *
  * @param windowId Window ID. The value is an integer greater than or equal to 0.
  * @param pointerStyle Pointer style.The value should be a member of the {@link Input_PointerStyle} enumeration.
@@ -2572,6 +2585,7 @@ Input_Result OH_Input_CursorConfig_IsFollowSystem(Input_CursorConfig *cursorConf
 
 /**
  * @brief Sets the custom cursor style.
+ * This API only supports setting the custom cursor style of window within the current application process.
  *
  * @param windowId Window ID. The value is an integer greater than or equal to 0.
  * @param customCursor Pointer to an {@link Input_CustomCursor} object.
@@ -2599,7 +2613,7 @@ Input_Result OH_Input_SetCustomCursor(int32_t windowId, Input_CustomCursor* cust
  *         {@link INPUT_PARAMETER_ERROR} The input device does not exist or
  *         the display does not exist or the input device is not a stylus.
  *         {@link INPUT_SERVICE_EXCEPTION} if the service is exception.
- * @since 24
+ * @since 26.0.0
  */
 Input_Result OH_Input_BindInputDeviceToDisplay(int32_t inputDeviceId, int32_t displayId);
 #ifdef __cplusplus

@@ -42,13 +42,10 @@
  * @syscap SystemCapability.HiviewDFX.HiTrace
  * @since 10
  */
-
 #ifndef HIVIEWDFX_HITRACE_H
 #define HIVIEWDFX_HITRACE_H
-
 #include <stdint.h>
 #include <stdbool.h>
-
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -77,7 +74,7 @@ typedef enum HiTraceId_Valid {
      *
      * @since 12
      */
-    HITRACE_ID_VALID = 1,
+    HITRACE_ID_VALID = 1
 } HiTraceId_Valid;
 
 /**
@@ -95,7 +92,7 @@ typedef enum HiTrace_Version {
      *
      * @since 12
      */
-    HITRACE_VER_1 = 0,
+    HITRACE_VER_1 = 0
 } HiTrace_Version;
 
 /**
@@ -178,7 +175,7 @@ typedef enum HiTrace_Flag {
      *
      * @since 12
      */
-    HITRACE_FLAG_D2D_TP_INFO = 1 << 6,
+    HITRACE_FLAG_D2D_TP_INFO = 1 << 6
 } HiTrace_Flag;
 
 /**
@@ -197,6 +194,7 @@ typedef enum HiTrace_Tracepoint_Type {
      * @since 12
      */
     HITRACE_TP_CS = 0,
+
     /**
      * @brief CR trace point.
      *
@@ -205,6 +203,7 @@ typedef enum HiTrace_Tracepoint_Type {
      * @since 12
      */
     HITRACE_TP_CR = 1,
+
     /**
      * @brief SS trace point.
      *
@@ -213,6 +212,7 @@ typedef enum HiTrace_Tracepoint_Type {
      * @since 12
      */
     HITRACE_TP_SS = 2,
+
     /**
      * @brief SR trace point.
      *
@@ -221,6 +221,7 @@ typedef enum HiTrace_Tracepoint_Type {
      * @since 12
      */
     HITRACE_TP_SR = 3,
+
     /**
      * @brief General trace point.
      *
@@ -228,7 +229,7 @@ typedef enum HiTrace_Tracepoint_Type {
      *
      * @since 12
      */
-    HITRACE_TP_GENERAL = 4,
+    HITRACE_TP_GENERAL = 4
 } HiTrace_Tracepoint_Type;
 
 /**
@@ -247,6 +248,7 @@ typedef enum HiTrace_Communication_Mode {
      * @since 12
      */
     HITRACE_CM_DEFAULT = 0,
+
     /**
      * @brief Inter-thread communication.
      *
@@ -255,6 +257,7 @@ typedef enum HiTrace_Communication_Mode {
      * @since 12
      */
     HITRACE_CM_THREAD = 1,
+
     /**
      * @brief Inter-process communication.
      *
@@ -263,6 +266,7 @@ typedef enum HiTrace_Communication_Mode {
      * @since 12
      */
     HITRACE_CM_PROCESS = 2,
+
     /**
      * @brief Inter-device communication.
      *
@@ -270,7 +274,7 @@ typedef enum HiTrace_Communication_Mode {
      *
      * @since 12
      */
-    HITRACE_CM_DEVICE = 3,
+    HITRACE_CM_DEVICE = 3
 } HiTrace_Communication_Mode;
 
 /**
@@ -309,7 +313,7 @@ typedef enum HiTrace_Output_Level {
      *
      * @since 19
      */
-    HITRACE_LEVEL_MAX = HITRACE_LEVEL_COMMERCIAL,
+    HITRACE_LEVEL_MAX = HITRACE_LEVEL_COMMERCIAL
 } HiTrace_Output_Level;
 
 /**
@@ -828,10 +832,9 @@ int32_t OH_HiTrace_RegisterTraceListener(OH_HiTrace_TraceEventListener callback)
  * @since 22
  */
 int32_t OH_HiTrace_UnregisterTraceListener(int32_t index);
-
 #ifdef __cplusplus
 }
 #endif
-/** @} */
 
+/** @} */
 #endif // HIVIEWDFX_HITRACE_H

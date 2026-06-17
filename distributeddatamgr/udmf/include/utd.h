@@ -53,12 +53,12 @@ extern "C" {
 typedef struct OH_Utd OH_Utd;
 
 /**
- * @brief Prouct a pointer to the instance of the {@link OH_Utd}.
+ * @brief Creates a pointer to the instance of the {@link OH_Utd}.
  *
  * @param typeId Represents type of UTD, reference udmf_meta.h.
  * @return If the operation is successful, a pointer to the instance of the {@link OH_Utd}
  * structure is returned.If the operation is failed, nullptr is returned.
- * Must be destroyed with {@link OH_Utd_DestroyTypeDescriptor} when not needed.
+ * Must be destroyed with {@link OH_Utd_Destroy} when not needed.
  * @see OH_Utd.
  * @since 12
  */

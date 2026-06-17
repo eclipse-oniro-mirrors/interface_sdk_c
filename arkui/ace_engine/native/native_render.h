@@ -176,6 +176,124 @@ typedef struct ArkUI_RenderNodeMaskOption ArkUI_RenderNodeMaskOption;
 typedef struct ArkUI_RenderNodeClipOption ArkUI_RenderNodeClipOption;
 
 /**
+ * @brief Handle to ArkUI render blur style option.
+ *
+ * @since 26.0.0
+ */
+typedef struct ArkUI_RenderBlurStyleOption ArkUI_RenderBlurStyleOption;
+
+/**
+ * @brief Create a BlurStyleOption handle. The initial blur radius value is 0.0.
+ *
+ * @return The BlurStyleOption handle
+ * @since 26.0.0
+ */
+ArkUI_RenderBlurStyleOption* OH_ArkUI_RenderNodeUtils_CreateBlurStyleOption();
+
+/**
+ * @brief Dispose a blur style option handle.
+ *
+ * @param option Handle option to be dispose.
+ * @since 26.0.0
+ */
+void OH_ArkUI_RenderNodeUtils_DisposeBlurStyleOption(ArkUI_RenderBlurStyleOption* option);
+
+/**
+ * @brief Set blur radius to the target blur style option.
+ *
+ * @param option {@link ArkUI_RenderBlurStyleOption} target blur style option.
+ * @param radius the blur radius. the value should be in [0.0, +∞)
+ * @return Error code.
+ *         {@link ARKUI_ERROR_CODE_NO_ERROR} Success.
+ *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} Function parameter exception.
+ * @since 26.0.0
+ */
+int32_t OH_ArkUI_RenderNodeUtils_SetBlurStyleOptionRadius(ArkUI_RenderBlurStyleOption* option, float radius);
+
+/**
+ * @brief set a background blur style option to the render node.
+ *
+ * @param node the target render node.
+ * @param option the handle of background blur style option.
+ * @return Error code.
+ *         {@link ARKUI_ERROR_CODE_NO_ERROR} Success.
+ *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} Function parameter exception.
+ *         {@link ARKUI_ERROR_CODE_RENDER_IS_FROM_FRAME_NODE} if the node is obtained from a FrameNode.
+ *         {@link ARKUI_ERROR_CODE_CAPI_INIT_ERROR} if CAPI init error.
+ * @since 26.0.0
+ */
+int32_t OH_ArkUI_RenderNodeUtils_SetBackgroundBlurOption(
+    ArkUI_RenderNodeHandle node, ArkUI_RenderBlurStyleOption* option);
+
+/**
+ * @brief reset the background blur option of render node.
+ *
+ * @param node the target render node.
+ * @return Error code.
+ *         {@link ARKUI_ERROR_CODE_NO_ERROR} Success.
+ *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} Function parameter exception.
+ *         {@link ARKUI_ERROR_CODE_RENDER_IS_FROM_FRAME_NODE} if the node is obtained from a FrameNode.
+ *         {@link ARKUI_ERROR_CODE_CAPI_INIT_ERROR} if CAPI init error.
+ * @since 26.0.0
+ */
+int32_t OH_ArkUI_RenderNodeUtils_ResetBackgroundBlurOption(ArkUI_RenderNodeHandle node);
+
+/**
+ * @brief set a foreground blur style option to the render node.
+ *
+ * @param node the target render node.
+ * @param option the handle of foreground blur style option.
+ * @return Error code.
+ *         {@link ARKUI_ERROR_CODE_NO_ERROR} Success.
+ *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} Function parameter exception.
+ *         {@link ARKUI_ERROR_CODE_RENDER_IS_FROM_FRAME_NODE} if the node is obtained from a FrameNode.
+ *         {@link ARKUI_ERROR_CODE_CAPI_INIT_ERROR} if CAPI init error.
+ * @since 26.0.0
+ */
+int32_t OH_ArkUI_RenderNodeUtils_SetForegroundBlurOption(
+    ArkUI_RenderNodeHandle node, ArkUI_RenderBlurStyleOption* option);
+
+/**
+ * @brief reset the foreground blur option of render node.
+ *
+ * @param node the target render node.
+ * @return Error code.
+ *         {@link ARKUI_ERROR_CODE_NO_ERROR} Success.
+ *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} Function parameter exception.
+ *         {@link ARKUI_ERROR_CODE_RENDER_IS_FROM_FRAME_NODE} if the node is obtained from a FrameNode.
+ *         {@link ARKUI_ERROR_CODE_CAPI_INIT_ERROR} if CAPI init error.
+ * @since 26.0.0
+ */
+int32_t OH_ArkUI_RenderNodeUtils_ResetForegroundBlurOption(ArkUI_RenderNodeHandle node);
+
+/**
+ * @brief set a content blur style option to the render node.
+ *
+ * @param node the target render node.
+ * @param option the handle of content blur style option.
+ * @return Error code.
+ *         {@link ARKUI_ERROR_CODE_NO_ERROR} Success.
+ *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} Function parameter exception.
+ *         {@link ARKUI_ERROR_CODE_RENDER_IS_FROM_FRAME_NODE} if the node is obtained from a FrameNode.
+ *         {@link ARKUI_ERROR_CODE_CAPI_INIT_ERROR} if CAPI init error.
+ * @since 26.0.0
+ */
+int32_t OH_ArkUI_RenderNodeUtils_SetContentBlurOption(ArkUI_RenderNodeHandle node, ArkUI_RenderBlurStyleOption* option);
+
+/**
+ * @brief reset the content blur option of render node.
+ *
+ * @param node the target render node.
+ * @return Error code.
+ *         {@link ARKUI_ERROR_CODE_NO_ERROR} Success.
+ *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} Function parameter exception.
+ *         {@link ARKUI_ERROR_CODE_RENDER_IS_FROM_FRAME_NODE} if the node is obtained from a FrameNode.
+ *         {@link ARKUI_ERROR_CODE_CAPI_INIT_ERROR} if CAPI init error.
+ * @since 26.0.0
+ */
+int32_t OH_ArkUI_RenderNodeUtils_ResetContentBlurOption(ArkUI_RenderNodeHandle node);
+
+/**
  * @brief Adds a child render node to a parent node.
  *
  * @param node the target parent node.
@@ -2009,6 +2127,55 @@ void OH_ArkUI_RenderNodeUtils_SetRoundRectShapeOptionValue(
 void OH_ArkUI_RenderNodeUtils_SetRectShapeOptionValue(
     ArkUI_RectShapeOption* option, float x, float y, float width, float height);
 
+/**
+ * @brief Insert a child render node at the specified position in the parent node.
+ *
+ * @param node the target parent node. Only customNode type parent nodes are supported.
+ * @param child the child RenderNode to insert.
+ * @param position the index at which to insert the child node.
+ *         The position must be within the range [0, currentChildCount].
+ *         If the position equals currentChildCount, it is equivalent to an add operation.
+ * @return Error code.
+ *     <ul><li>{@link ARKUI_ERROR_CODE_NO_ERROR} Success.
+ *     </li><li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} Function parameter exception.
+ *     </li><li>{@link ARKUI_ERROR_CODE_CAPI_INIT_ERROR} if CAPI init error.
+ *     </li><li>{@link ARKUI_ERROR_CODE_NOT_CUSTOM_NODE} The node is not a customNode.
+ *     </li><li>{@link ARKUI_ERROR_CODE_CHILD_EXISTED} The node already has a child.
+ *     </li><li>{@link ARKUI_ERROR_CODE_RENDER_PARENT_EXISTED} The child already has a parent node.
+ *     </li><li>{@link ARKUI_ERROR_CODE_RENDER_HAS_INVALID_FRAME_NODE} if the child is obtained from a FrameNode,
+ *     and its corresponding FrameNode is no longer in the adopted state.</li></ul>
+ * @since 26.0.0
+ */
+ArkUI_ErrorCode OH_ArkUI_RenderNodeUtils_InsertRenderNodeAt(
+    ArkUI_NodeHandle node, ArkUI_RenderNodeHandle child, int32_t position);
+
+/**
+ * @brief Get the number of child render nodes of the specified parent node.
+ *
+ * @param node the parent node to query.
+ * @param count the count of the child render node.
+ * @return Error code.
+ *     <ul><li>{@link ARKUI_ERROR_CODE_NO_ERROR} Success.
+ *     </li><li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} Function parameter exception.
+ *     </li><li>{@link ARKUI_ERROR_CODE_CAPI_INIT_ERROR} if CAPI init error.</li></ul>
+ * @since 26.0.0
+ */
+ArkUI_ErrorCode OH_ArkUI_RenderNodeUtils_GetRenderNodeChildrenCount(ArkUI_NodeHandle node, int32_t* count);
+
+/**
+ * @brief Get the child render node at the specified position from the parent node.
+ *
+ * @param node Indicates the target parent node.
+ * @param position Index location. The position must be in the range [0, childCount-1].
+ * @param child the output parameter that will receive the child render node handle. Cannot be null.
+ * @return Error code.
+ *     <ul><li>{@link ARKUI_ERROR_CODE_NO_ERROR} Success.
+ *     </li><li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} Function parameter exception.
+ *     </li><li>{@link ARKUI_ERROR_CODE_CAPI_INIT_ERROR} if CAPI init error.</li></ul>
+ * @since 26.0.0
+ */
+ArkUI_ErrorCode OH_ArkUI_RenderNodeUtils_GetRenderNodeAt(
+    ArkUI_NodeHandle node, int32_t position, ArkUI_RenderNodeHandle* child);
 #ifdef __cplusplus
 };
 #endif

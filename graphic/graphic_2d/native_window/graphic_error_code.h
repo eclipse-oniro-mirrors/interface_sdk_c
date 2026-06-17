@@ -45,23 +45,28 @@ extern "C" {
 #endif
 
 /**
- * @brief interface error code.
+ * @brief native error code.
  * @since 12
  */
 typedef enum OHNativeErrorCode {
-    /** @error succeed */
+    /** @error success */
     NATIVE_ERROR_OK = 0,
     /**
      * @error memory operation error
      * @since 15
      */
     NATIVE_ERROR_MEM_OPERATION_ERROR = 30001000,
-    /** @error input invalid parameter */
+    /** @error invalid input parameter */
     NATIVE_ERROR_INVALID_ARGUMENTS = 40001000,
     /** @error unauthorized operation */
     NATIVE_ERROR_NO_PERMISSION = 40301000,
     /** @error no idle buffer is available */
     NATIVE_ERROR_NO_BUFFER = 40601000,
+    /**
+     * @error invalid operation
+     * @since 26.0.0
+     */
+    NATIVE_ERROR_INVALID_OPERATION = 41201000,
     /** @error the consumer side doesn't exist */
     NATIVE_ERROR_NO_CONSUMER = 41202000,
     /** @error uninitialized */
@@ -78,7 +83,7 @@ typedef enum OHNativeErrorCode {
     NATIVE_ERROR_BUFFER_NOT_IN_CACHE = 41210000,
     /** @error the consumer is disconnected */
     NATIVE_ERROR_CONSUMER_DISCONNECTED = 41211000,
-    /** @error the consumer not register listener */
+    /** @error no listener registered on consumer */
     NATIVE_ERROR_CONSUMER_NO_LISTENER_REGISTERED = 41212000,
     /** @error the current device or platform does not support it */
     NATIVE_ERROR_UNSUPPORTED = 50102000,

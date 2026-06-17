@@ -14,12 +14,11 @@
  */
 
 /**
- * @addtogroup OH_Print
+ * @addtogroup Print
  * @{
  *
  * @brief Provides the definition of the C interface for the print module.
  *
- * @syscap SystemCapability.Print.PrintFramework
  * @since 12
  * @version 1.0
  */
@@ -27,8 +26,8 @@
 /**
  * @file ohprint.h
  *
- * @brief Declares the APIs to discover and connect printers, print files from a printer,
- *        query the list of the added printers and the printer information within it, and so on.
+ * @brief Declares APIs for discovering and connecting to printers, printing
+ * files, and querying the list of added printers and printer information.
  *
  * @library libohprint.so
  * @kit BasicServicesKit
@@ -48,120 +47,176 @@ extern "C" {
 #endif
 
 /**
- * @brief Defines error codes.
+ * @brief Enumerates the error codes.
  *
  * @since 12
  * @version 1.0
  */
 typedef enum {
-    /** @error The operation is successful. */
+    /**
+     * Operation successful.
+     */
     PRINT_ERROR_NONE = 0,
-    /** @error Permission verification failed. */
+    /**
+     * Permission verification failed.
+     */
     PRINT_ERROR_NO_PERMISSION = 201,
-    /** @error Invalid parameter. */
+    /**
+     * Invalid parameter.
+     */
     PRINT_ERROR_INVALID_PARAMETER = 401,
-    /** @error General internal error. */
+    /**
+     * Internal error.
+     */
     PRINT_ERROR_GENERIC_FAILURE = 24300001,
-    /** @error RPC communication error. */
+    /**
+     * RPC communication error.
+     */
     PRINT_ERROR_RPC_FAILURE = 24300002,
-    /** @error Server error. */
+    /**
+     * Server error.
+     */
     PRINT_ERROR_SERVER_FAILURE = 24300003,
-    /** @error Invalid extension. */
+    /**
+     * Invalid extension.
+     */
     PRINT_ERROR_INVALID_EXTENSION = 24300004,
-    /** @error Invalid printer. */
+    /**
+     * Invalid printer.
+     */
     PRINT_ERROR_INVALID_PRINTER = 24300005,
-    /** @error Invalid print job. */
+    /**
+     * Invalid print job.
+     */
     PRINT_ERROR_INVALID_PRINT_JOB = 24300006,
-    /** @error Failed to read or write files. */
+    /**
+     * File I/O error.
+     */
     PRINT_ERROR_FILE_IO = 24300007,
-    /** @error Unknown error. */
+    /**
+     * Unknown error.
+     */
     PRINT_ERROR_UNKNOWN = 24300255,
 } Print_ErrorCode;
 
 /**
- * @brief Indicates printer states.
+ * @brief Enumerates the printer states.
  *
  * @since 12
  */
 typedef enum {
-    /** Printer idle. */
+    /**
+     * The printer is idle.
+     */
     PRINTER_IDLE,
-    /** Printer busy. */
+    /**
+     * The printer is busy.
+     */
     PRINTER_BUSY,
-    /** Printer not available. */
+    /**
+     * The printer is unavailable.
+     */
     PRINTER_UNAVAILABLE,
 } Print_PrinterState;
 
 /**
- * @brief Indicate printer discovery events.
+ * @brief Enumerates the printer discovery events.
  *
  * @since 12
  */
 typedef enum {
-    /** Printer discovered. */
+    /**
+     * Printer discovered.
+     */
     PRINTER_DISCOVERED = 0,
-    /** Printer lost. */
+    /**
+     * Printer lost.
+     */
     PRINTER_LOST = 1,
-    /** Printer connecting. */
+    /**
+     * Printer connecting.
+     */
     PRINTER_CONNECTING = 2,
-    /** Printer connected. */
+    /**
+     * Printer connected.
+     */
     PRINTER_CONNECTED = 3,
 } Print_DiscoveryEvent;
 
 /**
- * @brief Indicate printer change events.
+ * @brief Enumerates the printer change events.
  *
  * @since 12
  */
 typedef enum {
-    /** Printer added. */
+    /**
+     * Printer added.
+     */
     PRINTER_ADDED = 0,
-    /** Printer deleted. */
+    /**
+     * Printer deleted.
+     */
     PRINTER_DELETED = 1,
-    /** Printer state changed. */
+    /**
+     * Printer changed.
+     */
     PRINTER_STATE_CHANGED = 2,
-    /** Printer info changed. */
+    /**
+     * Printer information changed.
+     */
     PRINTER_INFO_CHANGED = 3,
 } Print_PrinterEvent;
 
 /**
- * @brief Indicates string list.
+ * @brief Defines a struct for the string list.
  *
  * @since 12
  */
 typedef struct {
-    /** Number of string. */
+    /**
+     * Number of strings.
+     */
     uint32_t count;
-    /** String pointer array. */
+    /**
+     * Double pointer to the string array.
+     */
     char **list;
 } Print_StringList;
 
 /**
- * @brief Indicates printer property.
+ * @brief Defines a struct for the printer property.
  *
  * @since 12
  */
 typedef struct {
-    /** Property keyword. */
+    /**
+     * Property key.
+     */
     char *key;
-    /** Property value. */
+    /**
+     * Property value.
+     */
     char *value;
 } Print_Property;
 
 /**
- * @brief List of printer properties.
+ * @brief Defines a struct for the printer property list.
  *
  * @since 12
  */
 typedef struct {
-    /** Number of properties. */
+    /**
+     * Number of properties.
+     */
     uint32_t count;
-    /** Property pointer array. */
+    /**
+     * Pointer to the property array.
+     */
     Print_Property *list;
 } Print_PropertyList;
 
 /**
- * @brief Indicates print resolution in dpi unit.
+ * @brief Defines a struct for the printing resolution in dpi.
  *
  * @since 12
  */
@@ -171,340 +226,558 @@ typedef struct {
 } Print_Resolution;
 
 /**
- * @brief Indicates printing margin
+ * @brief Defines a struct for the page margin to print.
  *
  * @since 12
  */
 typedef struct {
-    /** Left margin. */
+    /**
+     * Left margin, in millimeters.
+     */
     uint32_t leftMargin;
-    /** Top margin. */
+    /**
+     * Top margin, in millimeters.
+     */
     uint32_t topMargin;
-    /** Right margin. */
+    /**
+     * Right margin, in millimeters.
+     */
     uint32_t rightMargin;
-    /** Bottom margin. */
+    /**
+     * Bottom margin, in millimeters.
+     */
     uint32_t bottomMargin;
 } Print_Margin;
 
 /**
- * @brief Indicates paper size info.
+ * @brief Defines a struct for the page size.
  *
  * @since 12
  */
 typedef struct {
-    /** Paper id. */
+    /**
+     * Page ID.
+     */
     char *id;
-    /** Paper name. */
+    /**
+     * Page name.
+     */
     char *name;
-    /** Paper width. */
+    /**
+     * Page width, in millimeters.
+     */
     uint32_t width;
-    /** Paper height. */
+    /**
+     * Page height, in millimeters.
+     */
     uint32_t height;
 } Print_PageSize;
 
 /**
- * @brief Indicates DuplexMode
+ * @brief Enumerates the duplex modes.
  *
  * @since 12
  */
 typedef enum {
-    /** One sided duplex mode. */
+    /**
+     * Single-sided mode.
+     */
     DUPLEX_MODE_ONE_SIDED = 0,
-    /** Long edge two sided duplex mode. */
+    /**
+     * Duplex mode with flipping on long edge.
+     */
     DUPLEX_MODE_TWO_SIDED_LONG_EDGE = 1,
-    /** Short edge two sided duplex mode. */
+    /**
+     * Duplex mode with flipping on short edge.
+     */
     DUPLEX_MODE_TWO_SIDED_SHORT_EDGE = 2,
 } Print_DuplexMode;
 
 /**
- * @brief Indicates ColorMode
+ * @brief Enumerates the color modes.
  *
  * @since 12
  */
 typedef enum {
-    /** Monochrome mode. */
+    /**
+     * B/W mode.
+     */
     COLOR_MODE_MONOCHROME = 0,
-    /** Color mode. */
+    /**
+     * Color mode.
+     */
     COLOR_MODE_COLOR = 1,
-    /** Auto mode. */
+    /**
+     * Auto mode.
+     */
     COLOR_MODE_AUTO = 2,
 } Print_ColorMode;
 
 /**
- * @brief Indicates OrientationMode
+ * @brief Enumerates the orientation modes.
  *
  * @since 12
  */
 typedef enum {
-    /** Portrait mode. */
+    /**
+     * Portrait mode.
+     */
     ORIENTATION_MODE_PORTRAIT = 0,
-    /** Landscape mode. */
+    /**
+     * Landscape mode.
+     */
     ORIENTATION_MODE_LANDSCAPE = 1,
-    /** Reverse landscape mode. */
+    /**
+     * Reverse landscape mode.
+     */
     ORIENTATION_MODE_REVERSE_LANDSCAPE = 2,
-    /** Reverse portrait mode. */
+    /**
+     * Reverse portrait mode.
+     */
     ORIENTATION_MODE_REVERSE_PORTRAIT = 3,
-    /** Not specified. */
+    /**
+     * Not specified.
+     */
     ORIENTATION_MODE_NONE = 4,
 } Print_OrientationMode;
 
 /**
- * @brief Indicates printing qulity
+ * @brief Enumerates the print qualities.
  *
  * @since 12
  */
 typedef enum {
-    /** Draft quality mode */
+    /**
+     * Draft.
+     */
     PRINT_QUALITY_DRAFT = 3,
-    /** Normal quality mode */
+    /**
+     * Normal quality.
+     */
     PRINT_QUALITY_NORMAL = 4,
-    /** High quality mode */
+    /**
+     * High quality.
+     */
     PRINT_QUALITY_HIGH = 5
 } Print_Quality;
 
 /**
- * @brief Indicates the MIME media type of the document.
+ * @brief Enumerates the MIME types.
  *
  * @since 12
  */
 typedef enum {
-    /** MIME: application/octet-stream. */
+    /**
+     * application/octet-stream.
+     */
     DOCUMENT_FORMAT_AUTO,
-    /** MIME: image/jpeg. */
+    /**
+     * image/jpeg.
+     */
     DOCUMENT_FORMAT_JPEG,
-    /** MIME: application/pdf. */
+    /**
+     * application/pdf.
+     */
     DOCUMENT_FORMAT_PDF,
-    /** MIME: application/postscript. */
+    /**
+     * application/postscript.
+     */
     DOCUMENT_FORMAT_POSTSCRIPT,
-    /** MIME: text/plain. */
+    /**
+     * text/plain.
+     */
     DOCUMENT_FORMAT_TEXT,
 } Print_DocumentFormat;
 
 /**
- * @brief Indicates the print job doc adapter state.
+ * @brief Enumerates the print job adapter states.
  *
  * @since 13
  */
 typedef enum {
-    /** Print job preview ability destroy. */
+    /**
+     * Print job preview destroyed.
+     */
     PRINT_DOC_ADAPTER_PREVIEW_ABILITY_DESTROY = 0,
-    /** Print job task succeed. */
+    /**
+     * Successful print job.
+     */
     PRINT_DOC_ADAPTER_PRINT_TASK_SUCCEED = 1,
-    /** Print job task failed. */
+    /**
+     * Print job failed.
+     */
     PRINT_DOC_ADAPTER_PRINT_TASK_FAIL = 2,
-    /** Print job task cancel. */
+    /**
+     * Print job canceled.
+     */
     PRINT_DOC_ADAPTER_PRINT_TASK_CANCEL = 3,
-    /** Print job task block. */
+    /**
+     * Print job blocked.
+     */
     PRINT_DOC_ADAPTER_PRINT_TASK_BLOCK = 4,
-    /** Print job task preview ability destroy for cancel. */
+    /**
+     * Print job preview destroyed due to cancellation.
+     */
     PRINT_DOC_ADAPTER_PREVIEW_ABILITY_DESTROY_FOR_CANCELED = 5,
-    /** Print job task preview ability destroy for started. */
+    /**
+     * Print job preview destroyed due to startup.
+     */
     PRINT_DOC_ADAPTER_PREVIEW_ABILITY_DESTROY_FOR_STARTED = 6,
 } Print_JobDocAdapterState;
 
 /**
- * @brief Indicates printer capabilities.
+ * @brief Defines a struct for the printer capabilities.
  *
  * @since 12
  */
 typedef struct {
-    /** Array of supported color mode. */
+    /**
+     * Array of supported color modes.
+     */
     Print_ColorMode *supportedColorModes;
-    /** Number of supported color mode. */
+    /**
+     * Number of supported color modes.
+     */
     uint32_t supportedColorModesCount;
-    /** Array of supported duplex printing modes. */
+    /**
+     * Array of supported duplex modes.
+     */
     Print_DuplexMode *supportedDuplexModes;
-    /** Number of supported duplex printing mode. */
+    /**
+     * Number of supported duplex modes.
+     */
     uint32_t supportedDuplexModesCount;
-    /** Array of supported print paper sizes. */
+    /**
+     * Array of supported page sizes.
+     */
     Print_PageSize *supportedPageSizes;
-    /** Number of supported print paper sizes. */
+    /**
+     * Number of supported page sizes.
+     */
     uint32_t supportedPageSizesCount;
-    /** Supported print media types in json string array format. */
+    /**
+     * Array of supported print media types in JSON string format.
+     */
     char *supportedMediaTypes;
-    /** Array of supported print qulities. */
+    /**
+     * Array of supported print qualities.
+     */
     Print_Quality *supportedQualities;
-    /** Number of supported print qulities. */
+    /**
+     * Number of supported print qualities.
+     */
     uint32_t supportedQualitiesCount;
-    /** Supported paper sources in json string array format. */
+    /**
+     * Array of supported paper sources in JSON string format.
+     */
     char *supportedPaperSources;
-    /** Supported copies. */
+    /**
+     * Supported number of copies.
+     */
     uint32_t supportedCopies;
-    /** Array of supported printer resolutions. */
+    /**
+     * Array of supported printer resolutions.
+     */
     Print_Resolution *supportedResolutions;
-    /** Number of supported printer resolutions. */
+    /**
+     * Supported number of printer resolutions.
+     */
     uint32_t supportedResolutionsCount;
-    /** Array of supported orientation. */
+    /**
+     * Array of supported orientations.
+     */
     Print_OrientationMode *supportedOrientations;
-    /** Number of supported orientation. */
+    /**
+     * Supported number of orientations.
+     */
     uint32_t supportedOrientationsCount;
-    /** Advanced capability in json format. */
+    /**
+     * Advanced capabilities in JSON format.
+     */
     char *advancedCapability;
 } Print_PrinterCapability;
 
 /**
- * @brief Indicates current properties
+ * @brief Defines a struct for the default property value.
  *
  * @since 12
  */
 typedef struct {
-    /** Default color mode. */
+    /**
+     * Default color mode.
+     */
     Print_ColorMode defaultColorMode;
-    /** Default duplex mode. */
+    /**
+     * Default duplex mode.
+     */
     Print_DuplexMode defaultDuplexMode;
-    /** Default media type. */
+    /**
+     * Default media type.
+     */
     char *defaultMediaType;
-    /** Default page size id. */
+    /**
+     * Default page size ID.
+     */
     char *defaultPageSizeId;
-    /** Default margin. */
+    /**
+     * Default margin.
+     */
     Print_Margin defaultMargin;
-    /** Default paper source. */
+    /**
+     * Default paper source.
+     */
     char *defaultPaperSource;
-    /** Default print quality */
+    /**
+     * Default print quality.
+     */
     Print_Quality defaultPrintQuality;
-    /** Default copies. */
+    /**
+     * Default number of copies.
+     */
     uint32_t defaultCopies;
-    /** Default printer resolution. */
+    /**
+     * Default printer resolution.
+     */
     Print_Resolution defaultResolution;
-    /** Default orientation. */
+    /**
+     * Default orientation.
+     */
     Print_OrientationMode defaultOrientation;
-    /** Other default values in json format. */
+    /**
+     * Other default values in JSON format.
+     */
     char *otherDefaultValues;
 } Print_DefaultValue;
 
 /**
- * @brief Indicates printer information.
+ * @brief Defines a struct for the printer information.
  *
  * @since 12
  */
 typedef struct {
-    /** Printer state. */
+    /**
+     * Printer state.
+     */
     Print_PrinterState printerState;
-    /** Printer capabilities. */
+    /**
+     * Printer capability.
+     */
     Print_PrinterCapability capability;
-    /** Printer current properties. */
+    /**
+     * Default property value of the printer.
+     */
     Print_DefaultValue defaultValue;
-    /** Default printer. */
+    /**
+     * Default printer.
+     */
     bool isDefaultPrinter;
-    /** Printer id. */
+    /**
+     * Printer ID.
+     */
     char *printerId;
-    /** Printer name. */
+    /**
+     * Printer name.
+     */
     char *printerName;
-    /** Printer description. */
+    /**
+     * Printer description.
+     */
     char *description;
-    /** Printer location. */
+    /**
+     * Printer location.
+     */
     char *location;
-    /** Printer make and model information. */
+    /**
+     * Brand and model of the printer.
+     */
     char *makeAndModel;
-    /** Printer Uri. */
+    /**
+     * Printer URI.
+     */
     char *printerUri;
-    /** Detail information in json format. */
+    /**
+     * Details in JSON format.
+     * <br>The supported keys are as follows:
+     * <br>- **printerAlias**: string type, indicating the printer alias. **Since**: 24
+     * <br>- **vendorId**: int type, indicating the USB vendor ID of the printer. **Since**: 12
+     * <br>- **productId**: int type, indicating the USB product ID of the printer. **Since**: 12
+     * <br>- **protocol**: string array, indicating the list of protocols detected for the printer. **Since**: 24
+     * <br>- **ipp**: string type, indicating the printer URI for the detected IPP protocol. **Since**: 24
+     * <br>- **ipps**: string type, indicating the printer URI for the detected IPPS protocol. **Since**: 24
+     * <br>- **lpd**: string type, indicating the printer URI for the detected LPD protocol. **Since**: 24
+     * <br>- **socket**: string type, indicating the printer URI for the detected Socket protocol. **Since**: 24
+     */
     char *detailInfo;
 } Print_PrinterInfo;
 
 /**
- * @brief Indicates PrintJob Structure.
+ * @brief Defines a struct for the print job.
  *
  * @since 12
  */
 typedef struct {
-    /** Job name. */
+    /**
+     * Job name.
+     */
     char *jobName;
-    /** Array of file descriptors to print. */
+    /**
+     * Array of file descriptors to be printed.
+     */
     uint32_t *fdList;
-    /** Number of file descriptors to print. */
+    /**
+     * Number of file descriptors to be printed.
+     */
     uint32_t fdListCount;
-    /** Printer id. */
+    /**
+     * Printer ID.
+     */
     char *printerId;
-    /** Number of copies printed. */
+    /**
+     * Number of copies to print.
+     */
     uint32_t copyNumber;
-    /** Paper source. */
+    /**
+     * Paper source.
+     */
     char *paperSource;
-    /** Media type. */
+    /**
+     * Media type.
+     */
     char *mediaType;
-    /** Paper size id. */
+    /**
+     * Page size ID.
+     */
     char *pageSizeId;
-    /** Color mode. */
+    /**
+     * Color mode.
+     */
     Print_ColorMode colorMode;
-    /** Duplex source. */
+    /**
+     * Duplex mode.
+     */
     Print_DuplexMode duplexMode;
-    /** Print resolution in dpi. */
+    /**
+     * Print resolution, in dpi.
+     */
     Print_Resolution resolution;
-    /** Print margin. */
+    /**
+     * Page margin.
+     */
     Print_Margin printMargin;
-    /** Borderless. */
+    /**
+     * Whether to print without margins.
+     */
     bool borderless;
-    /** Orientation mode. */
+    /**
+     * Orientation mode.
+     */
     Print_OrientationMode orientationMode;
-    /** Print quality. */
+    /**
+     * Print quality.
+     */
     Print_Quality printQuality;
-    /** Document format. */
+    /**
+     * Document format.
+     */
     Print_DocumentFormat documentFormat;
-    /** Advanced options in json format. */
+    /**
+     * Advanced options in JSON format.<br>The supported keys are as follows:<br>- **isReverse**: Boolean type,
+     * indicating whether to print in reverse order.<br>- **isCollate**: Boolean type, indicating whether to print
+     * copies one by one.
+     */
     char *advancedOptions;
 } Print_PrintJob;
 
 /**
- * @brief Indicates print range structure.
+ * @brief Defines a struct for the page range to print.
  *
  * @since 13
  */
 typedef struct {
-    /** Print start page. */
+    /**
+     * Start page.
+     */
     uint32_t startPage;
-    /** Print end page. */
+    /**
+     * End page.
+     */
     uint32_t endPage;
-    /** Print page array length. */
+    /**
+     * Length of the page array.
+     */
     uint32_t pagesArrayLen;
-    /** Print page array. */
-    uint32_t* pagesArray;
+    /**
+     * Page array.
+     */
+    uint32_t *pagesArray;
 } Print_Range;
 
 /**
- * @brief Indicates print attributes structure.
+ * @brief Defines a struct for the print attributes.
  *
  * @since 13
  */
 typedef struct {
-    /** Print ranges. */
+    /**
+     * Page range.
+     */
     Print_Range pageRange;
-    /** Print page size. */
+    /**
+     * Page size.
+     */
     Print_PageSize pageSize;
-    /** Print margin. */
+    /**
+     * Page margin.
+     */
     Print_Margin pageMargin;
-    /** Copy numbers. */
+    /**
+     * Number of copies to print.
+     */
     uint32_t copyNumber;
-    /** Duplex mode. */
+    /**
+     * Duplex mode.
+     */
     uint32_t duplexMode;
-    /** color mode. */
+    /**
+     * Color mode.
+     */
     uint32_t colorMode;
-    /** Print sequential. */
+    /**
+     * Whether pages are printed in sequential order.<br>The value **true** indicates that pages are printed in
+     * sequential order, and **false** indicates the opposite.
+     */
     bool isSequential;
-    /** Print orient. */
+    /**
+     * Whether pages are printed in landscape mode.<br>The value **true** indicates that pages are printed in landscape
+     * mode, and **false** indicates that pages are printed in portrait mode.
+     */
     bool isLandscape;
-    /** Print option flag. */
+    /**
+     * Whether the printing has an option flag.<br>The value **true** indicates that the printing has an option flag,
+     * and **false** indicates the opposite.
+     */
     bool hasOption;
     /** Print options. */
     char options[256];
 } Print_PrintAttributes;
 
 /**
- * @brief Write files result callback.
+ * @brief Defines a callback used to return the file write-back result.
  *
- * @param jobId The print job id of one print task.
- * @param code The result of write files.
+ * @param jobId Pointer to the print job ID.
+ * @param code File write-back result.
  * @since 13
  */
 typedef void(*Print_WriteResultCallback)(const char *jobId, uint32_t code);
 
 /**
- * @brief Print start layout callback.
+ * @brief Defines a callback to be invoked when the file write-back starts.
  *
- * @param jobId The print job id of one print task.
- * @param fd The file descriptor to be written.
- * @param oldAttrs The attribute of last.
- * @param newAttrs The attribute of current.
- * @param writeCallback The Write files result callback.
+ * @param jobId Pointer to the print job ID.
+ * @param fd File descriptor to write.
+ * @param oldAttrs Pointer to the old attribute.
+ * @param newAttrs Pointer to the new attribute.
+ * @param writeCallback Defines a callback used to return the file write-back result.
  * @since 13
  */
 typedef void(*Print_OnStartLayoutWrite)(const char *jobId,
@@ -514,274 +787,258 @@ typedef void(*Print_OnStartLayoutWrite)(const char *jobId,
                                         Print_WriteResultCallback writeCallback);
 
 /**
- * @brief Print job state callback.
+ * @brief Defines a callback to be invoked when the print job state changes.
  *
- * @param jobId The print job id of one print task.
- * @param state The state of current print job.
+ * @param jobId Pointer to the print job ID.
+ * @param state Print job state.
  * @since 13
  */
 typedef void(*Print_OnJobStateChanged)(const char *jobId, uint32_t state);
 
 /**
- * @brief Indicates print doc state callback structure.
+ * @brief Defines a struct for the print job state callback.
  *
  * @since 13
  */
 typedef struct {
-    /** Print start layout callback. */
+    /**
+     * Callback to be invoked when the file write-back starts.
+     */
     Print_OnStartLayoutWrite startLayoutWriteCb;
-    /** Print job state callback. */
+    /**
+     * Callback to be invoked when the print job state changes.
+     */
     Print_OnJobStateChanged jobStateChangedCb;
 } Print_PrintDocCallback;
 
 /**
- * @brief Printer discovery callback.
+ * @brief Defines a callback used to return the discovered printers.
  *
- * @param event The printer discovery event during printer discovery.
- * @param printerInfo The printer infomation at the time of the discovery event.
+ * @param event Printer discovery event.
+ * @param printerInfo Printer information when the discovery event occurs.
  * @since 12
  */
 typedef void (*Print_PrinterDiscoveryCallback)(Print_DiscoveryEvent event, const Print_PrinterInfo *printerInfo);
 
 /**
- * @brief Printer change callback.
+ * @brief Defines a callback to be invoked when a printer is changed.
  *
- * @param event The printer change event while the printer service is running.
- * @param printerInfo The printer infomation at the time of the change event.
+ * @param event Printer change event during the running of the print service.
+ * @param printerInfo Printer information when the change event occurs.
  * @since 12
  */
 typedef void (*Print_PrinterChangeCallback)(Print_PrinterEvent event, const Print_PrinterInfo *printerInfo);
 
 /**
- * @brief This API checks and pulls up the print service, initializes the print client,
- *        and establishes a connection to the print service.
+ * @brief Checks and starts the print service, initializes the print client, and connects it with the print service.
  *
  * @permission {@code ohos.permission.PRINT}
- * @return Returns {@link Print_ErrorCode#PRINT_ERROR_NONE} if the execution is successful.
- *         {@link PRINT_ERROR_NO_PERMISSION} The permission {@code ohos.permission.PRINT} is needed.
- *         {@link PRINT_ERROR_RPC_FAILURE} Unable to connect to the print service.
- *         {@link PRINT_ERROR_SERVER_FAILURE} The cups service cannot be started.
- * @syscap SystemCapability.Print.PrintFramework
+ * @return {@link PRINT_ERROR_NONE}: Operation is successful.
+ *     <br>{@link PRINT_ERROR_NO_PERMISSION}: The ohos.permission.PRINT permission is required.
+ *     <br>{@link PRINT_ERROR_RPC_FAILURE}: Failed to connect to the print service.
+ *     <br>{@link PRINT_ERROR_SERVER_FAILURE}: Failed to start the CUPS service.
  * @since 12
  */
 Print_ErrorCode OH_Print_Init();
 
 /**
- * @brief This API closes the connection from the print service, dissolves the previous callback,
- *        and releases the print client resources.
+ * @brief Disconnects from the print service, dismisses the previous callback, and releases the print client resources.
  *
- * @return Returns {@link Print_ErrorCode#PRINT_ERROR_NONE} if the execution is successful.
- *         Currently no other error codes will be returned.
- * @syscap SystemCapability.Print.PrintFramework
+ * @return {@link PRINT_ERROR_NONE}: Operation is successful.
+ *     <br>Currently, no other error codes will be returned.
  * @since 12
  */
 Print_ErrorCode OH_Print_Release();
 
 /**
- * @brief This API starts discovering printers.
+ * @brief Starts printer discovery.
  *
  * @permission {@code ohos.permission.PRINT}
- * @param callback The {@link Print_PrinterDiscoveryCallback} of printer discovery event.
- * @return Returns {@link Print_ErrorCode#PRINT_ERROR_NONE} if the execution is successful.
- *         {@link PRINT_ERROR_NO_PERMISSION} The permission {@code ohos.permission.PRINT} is needed.
- *         {@link PRINT_ERROR_RPC_FAILURE} Unable to connect to the print service ability.
- *         {@link PRINT_ERROR_SERVER_FAILURE} Failed to query print extension list from BMS.
- *         {@link PRINT_ERROR_INVALID_EXTENSION} No available print extensions found.
- * @syscap SystemCapability.Print.PrintFramework
+ * @param callback {@link Print_PrinterDiscoveryCallback} to be invoked when a printer is discovered.
+ * @return {@link PRINT_ERROR_NONE}: Operation is successful.
+ *     <br>{@link PRINT_ERROR_NO_PERMISSION}: The ohos.permission.PRINT permission is required.
+ *     <br>{@link PRINT_ERROR_RPC_FAILURE}: Failed to connect to the print service.
+ *     <br>{@link PRINT_ERROR_SERVER_FAILURE}: Failed to query the print extension list from the BMS.
+ *     <br>{@link PRINT_ERROR_INVALID_EXTENSION}: No available print extension is found.
  * @since 12
  */
 Print_ErrorCode OH_Print_StartPrinterDiscovery(Print_PrinterDiscoveryCallback callback);
 
 /**
- * @brief This API stops discovering printers.
+ * @brief Stops printer discovery.
  *
  * @permission {@code ohos.permission.PRINT}
- * @return Returns {@link Print_ErrorCode#PRINT_ERROR_NONE} if the execution is successful.
- *         {@link PRINT_ERROR_NO_PERMISSION} The permission {@code ohos.permission.PRINT} is needed.
- *         {@link PRINT_ERROR_RPC_FAILURE} Unable to connect to the print service.
- * @syscap SystemCapability.Print.PrintFramework
+ * @return {@link PRINT_ERROR_NONE}: Operation is successful.
+ *     <br>{@link PRINT_ERROR_NO_PERMISSION}: The ohos.permission.PRINT permission is required.
+ *     <br>{@link PRINT_ERROR_RPC_FAILURE}: Failed to connect to the print service.
  * @since 12
  */
 Print_ErrorCode OH_Print_StopPrinterDiscovery();
 
 /**
- * @brief This API connects to the printer using the printer id.
+ * @brief Connects to a printer by the printer ID.
  *
  * @permission {@code ohos.permission.PRINT}
- * @param printerId The id of the printer to be connected.
- * @return Returns {@link Print_ErrorCode#PRINT_ERROR_NONE} if the execution is successful.
- *         {@link PRINT_ERROR_NO_PERMISSION} The permission {@code ohos.permission.PRINT} is needed.
- *         {@link PRINT_ERROR_RPC_FAILURE} Unable to connect to the print service.
- *         {@link PRINT_ERROR_INVALID_PRINTER} The printer should be in the list of discovered printers.
- *         {@link PRINT_ERROR_SERVER_FAILURE} Unable to find an extension responsible for the printer.
- * @syscap SystemCapability.Print.PrintFramework
+ * @param printerId Pointer to the ID of the printer to be connected.
+ * @return {@link PRINT_ERROR_NONE}: Operation is successful.
+ *     <br>{@link PRINT_ERROR_NO_PERMISSION}: The ohos.permission.PRINT permission is required.
+ *     <br>{@link PRINT_ERROR_RPC_FAILURE}: Failed to connect to the print service.
+ *     <br>{@link PRINT_ERROR_INVALID_PRINTER}: Printer does not exist in the list of discovered printers.
+ *     <br>{@link PRINT_ERROR_SERVER_FAILURE}: Failed to find the printer extension.
  * @since 12
  */
 Print_ErrorCode OH_Print_ConnectPrinter(const char *printerId);
 
 /**
- * @brief This API starts initiating a print job.
+ * @brief Starts a print job.
  *
  * @permission {@code ohos.permission.PRINT}
- * @param printJob A pointer to a {@link Print_PrintJob} instance that specifies the information for the print job.
- * @return Returns {@link Print_ErrorCode#PRINT_ERROR_NONE} if the execution is successful.
- *         {@link PRINT_ERROR_NO_PERMISSION} The permission {@code ohos.permission.PRINT} is needed.
- *         {@link PRINT_ERROR_RPC_FAILURE} Unable to connect to the print service.
- *         {@link PRINT_ERROR_INVALID_PRINTER} The printer should be in the list of connected printers.
- *         {@link PRINT_ERROR_SERVER_FAILURE} Unable to create print job in the print service.
- *         {@link PRINT_ERROR_INVALID_PRINT_JOB} Unable to find the job int the job queue.
- * @syscap SystemCapability.Print.PrintFramework
+ * @param printJob Pointer to the {@link Print_PrintJob} instance of the specified print job information.
+ * @return {@link PRINT_ERROR_NONE}: Operation is successful.
+ *     <br>{@link PRINT_ERROR_NO_PERMISSION}: The ohos.permission.PRINT permission is required.
+ *     <br>{@link PRINT_ERROR_RPC_FAILURE}: Failed to connect to the print service.
+ *     <br>{@link PRINT_ERROR_INVALID_PRINTER}: Printer does not exist in the list of connected printers.
+ *     <br>{@link PRINT_ERROR_SERVER_FAILURE}: Failed to create a print job in the print service.
+ *     <br>{@link PRINT_ERROR_INVALID_PRINT_JOB}: Failed to find the specified task in the task queue.
  * @since 12
  */
 Print_ErrorCode OH_Print_StartPrintJob(const Print_PrintJob *printJob);
 
 /**
- * @brief This API registers the callback for printer changes.
+ * @brief Registers a listener for printer changes.
  *
  * @permission {@code ohos.permission.PRINT}
- * @param callback The {@link Print_PrinterChangeCallback} to be registered.
- * @return Returns {@link Print_ErrorCode#PRINT_ERROR_NONE} if the execution is successful.
- *         {@link PRINT_ERROR_NO_PERMISSION} The permission {@code ohos.permission.PRINT} is needed.
- *         {@link PRINT_ERROR_RPC_FAILURE} Unable to connect to the print service ability.
- * @syscap SystemCapability.Print.PrintFramework
+ * @param callback {@link Print_PrinterChangeCallback} to be registered.
+ * @return {@link PRINT_ERROR_NONE}: Operation is successful.
+ *     <br>{@link PRINT_ERROR_NO_PERMISSION}: The ohos.permission.PRINT permission is required.
+ *     <br>{@link PRINT_ERROR_RPC_FAILURE}: Failed to connect to the print service.
  * @since 12
  */
 Print_ErrorCode OH_Print_RegisterPrinterChangeListener(Print_PrinterChangeCallback callback);
 
 /**
- * @brief This API unregisters the callback for printer changes.
+ * @brief Unregisters this listener for printer changes.
  *
  * @permission {@code ohos.permission.PRINT}
- * @syscap SystemCapability.Print.PrintFramework
  * @since 12
  */
 void OH_Print_UnregisterPrinterChangeListener();
 
 /**
- * @brief This API queries for a list of added printers.
+ * @brief Queries the list of added printers.
  *
  * @permission {@code ohos.permission.PRINT}
- * @param printerIdList A pointer to a {@link Print_StringList} instance to store the queried printer id list.
- * @return Returns {@link Print_ErrorCode#PRINT_ERROR_NONE} if the execution is successful.
- *         {@link PRINT_ERROR_NO_PERMISSION} The permission {@code ohos.permission.PRINT} is needed.
- *         {@link PRINT_ERROR_INVALID_PARAMETER} printerIdList is NULL.
- *         {@link PRINT_ERROR_INVALID_PRINTER} Unable to query any connected printers.
- *         {@link PRINT_ERROR_GENERIC_FAILURE} Unable to copy the printer id list.
- * @syscap SystemCapability.Print.PrintFramework
+ * @param printerIdList Pointer to the {@link Print_StringList} instance that stores the queried printer ID list.
+ * @return {@link PRINT_ERROR_NONE}: Operation is successful.
+ *     <br>{@link PRINT_ERROR_NO_PERMISSION}: The ohos.permission.PRINT permission is required.
+ *     <br>{@link PRINT_ERROR_INVALID_PARAMETER}: printerIdList is null.
+ *     <br>{@link PRINT_ERROR_INVALID_PRINTER}: Failed to query any connected printers.
+ *     <br>{@link PRINT_ERROR_GENERIC_FAILURE}: Failed to copy printer ID list.
  * @since 12
  */
 Print_ErrorCode OH_Print_QueryPrinterList(Print_StringList *printerIdList);
 
 /**
- * @brief This API frees up the printer list memory for the query.
+ * @brief Releases the memory used to query the printer list.
  *
- * @param printerIdList The queried printer id list to be released.
- * @syscap SystemCapability.Print.PrintFramework
+ * @param printerIdList Pointer to the queried printer ID list.
  * @since 12
  */
 void OH_Print_ReleasePrinterList(Print_StringList *printerIdList);
 
 /**
- * @brief This API queries printer information based on the printer id.
+ * @brief Queries printer information by printer ID.
  *
  * @permission {@code ohos.permission.PRINT}
- * @param printerId The id of the printer to be queried.
- * @param printerInfo A pointer to a {@link Print_PrinterInfo} pointer to store the printer infomation.
- * @return Returns {@link Print_ErrorCode#PRINT_ERROR_NONE} if the execution is successful.
- *         {@link PRINT_ERROR_NO_PERMISSION} The permission {@code ohos.permission.PRINT} is needed.
- *         {@link PRINT_ERROR_RPC_FAILURE} Unable to connect to the print service.
- *         {@link PRINT_ERROR_INVALID_PARAMETER} printerId is NULL or printerInfo is NULL.
- *         {@link PRINT_ERROR_INVALID_PRINTER} Unable to find the printer in the connected printer list.
- * @syscap SystemCapability.Print.PrintFramework
+ * @param printerId Pointer to the printer ID to be queried.
+ * @param printerInfo Double pointer to the {@link Print_PrinterInfo}.
+ * @return {@link PRINT_ERROR_NONE}: Operation is successful.
+ *     <br>{@link PRINT_ERROR_NO_PERMISSION}: The ohos.permission.PRINT permission is required.
+ *     <br>{@link PRINT_ERROR_RPC_FAILURE}: Failed to connect to the print service.
+ *     <br>{@link PRINT_ERROR_INVALID_PARAMETER}: The printerId or printerInfo is null.
+ *     <br>{@link PRINT_ERROR_INVALID_PRINTER}: Failed to find the specified printer in the list of connected printers.
  * @since 12
  */
 Print_ErrorCode OH_Print_QueryPrinterInfo(const char *printerId, Print_PrinterInfo **printerInfo);
 
 /**
- * @brief This API frees up the printer infomation memory for the query.
+ * @brief Releases the memory used to query the printer information.
  *
- * @param printerInfo The pointer of the queried printer infomation to be released.
- * @syscap SystemCapability.Print.PrintFramework
+ * @param printerInfo Pointer to the queried printer information.
  * @since 12
  */
 void OH_Print_ReleasePrinterInfo(Print_PrinterInfo *printerInfo);
 
 /**
- * @brief This API launches the system's printer management window.
+ * @brief Starts the printer management window of the system.
  *
- * @return Returns {@link Print_ErrorCode#PRINT_ERROR_NONE} if the execution is successful.
- *         {@link PRINT_ERROR_GENERIC_FAILURE} Unable to launch the printer manager window.
- * @syscap SystemCapability.Print.PrintFramework
+ * @return {@link PRINT_ERROR_NONE}: Operation is successful.
+ *     <br>{@link PRINT_ERROR_GENERIC_FAILURE}: Failed to start the printer management window.
  * @since 12
  */
 Print_ErrorCode OH_Print_LaunchPrinterManager();
 
 /**
- * @brief This API queries the corresponding printer property values based on the list of property keywords.
+ * @brief Queries the printer properties based on the list of property keys.
  *
  * @permission {@code ohos.permission.PRINT}
- * @param printerId The id of the printer to be queried.
- * @param propertyKeyList The list of property keywords to be queried
- * @param propertyList The list of printer property values queried.
- * @return Returns {@link Print_ErrorCode#PRINT_ERROR_NONE} if the execution is successful.
- *         {@link PRINT_ERROR_NO_PERMISSION} The permission {@code ohos.permission.PRINT} is needed.
- *         {@link PRINT_ERROR_INVALID_PARAMETER} One of the params is NULL or the keyword list is empty.
- *         {@link PRINT_ERROR_INVALID_PRINTER} The printer properties for the specified printer could not be found.
- *         {@link PRINT_ERROR_GENERIC_FAILURE} Unable to copy the printer properties.
- * @syscap SystemCapability.Print.PrintFramework
+ * @param printerId Pointer to the printer ID to be queried.
+ * @param propertyKeyList Pointer to the list of property keys.
+ * @param propertyList Pointer to the queried printer properties.
+ * @return {@link PRINT_ERROR_NONE}: Operation is successful.
+ *     <br>{@link PRINT_ERROR_NO_PERMISSION}: The ohos.permission.PRINT permission is required.
+ *     <br>{@link PRINT_ERROR_INVALID_PARAMETER}: One of the parameters is null or the key list is empty.
+ *     <br>{@link PRINT_ERROR_INVALID_PRINTER}: Failed to find properties of the specified printer.
+ *     <br>{@link PRINT_ERROR_GENERIC_FAILURE}: Failed to copy printer properties.
  * @since 12
  */
 Print_ErrorCode OH_Print_QueryPrinterProperties(const char *printerId, const Print_StringList *propertyKeyList,
     Print_PropertyList *propertyList);
 
 /**
- * @brief This API frees up the property list memory for the query.
+ * @brief Releases the memory used to query the printer properties.
  *
- * @param propertyList The pointer of the queried printer property values to be released.
- * @syscap SystemCapability.Print.PrintFramework
+ * @param propertyList Pointer to the queried printer properties.
  * @since 12
  */
 void OH_Print_ReleasePrinterProperties(Print_PropertyList *propertyList);
 
 /**
- * @brief This API sets printer properties based on a list of property key-value pairs.
+ * @brief Updates the printer properties based on the KV pairs.
  *
  * @permission {@code ohos.permission.PRINT}
- * @param printerId The id of the printer to be set.
- * @param propertyList The list of printer property values to be set.
- * @return Returns {@link Print_ErrorCode#PRINT_ERROR_NONE} if the execution is successful.
- *         {@link PRINT_ERROR_NO_PERMISSION} The permission {@code ohos.permission.PRINT} is needed.
- *         {@link PRINT_ERROR_RPC_FAILURE} Unable to connect to the print service.
- * @syscap SystemCapability.Print.PrintFramework
+ * @param printerId Pointer to the printer ID.
+ * @param propertyList Pointer to the list of printer properties to be updated.
+ * @return {@link PRINT_ERROR_NONE}: Operation is successful.
+ *     <br>{@link PRINT_ERROR_NO_PERMISSION}: The ohos.permission.PRINT permission is required.
+ *     <br>{@link PRINT_ERROR_RPC_FAILURE}: Failed to connect to the print service.
  * @since 12
  */
 Print_ErrorCode OH_Print_UpdatePrinterProperties(const char *printerId, const Print_PropertyList *propertyList);
 
 /**
- * @brief This API restores printer properties to default settings based on the list of property keywords.
+ * @brief Restores printer properties to the default settings based on the property key list.
  *
  * @permission {@code ohos.permission.PRINT}
- * @param printerId The id of the printer to be restored.
- * @param propertyKeyList The list of property keywords to be restored.
- * @return Returns {@link Print_ErrorCode#PRINT_ERROR_NONE} if the execution is successful.
- *         {@link PRINT_ERROR_NO_PERMISSION} The permission {@code ohos.permission.PRINT} is needed.
- *         {@link PRINT_ERROR_RPC_FAILURE} Unable to connect to the print service.
- * @syscap SystemCapability.Print.PrintFramework
+ * @param printerId Pointer to the printer ID.
+ * @param propertyKeyList Pointer to the property key list.
+ * @return {@link PRINT_ERROR_NONE}: Operation is successful.
+ *     <br>{@link PRINT_ERROR_NO_PERMISSION}: The ohos.permission.PRINT permission is required.
+ *     <br>{@link PRINT_ERROR_RPC_FAILURE}: Failed to connect to the print service.
  * @since 12
  */
 Print_ErrorCode OH_Print_RestorePrinterProperties(const char *printerId, const Print_StringList *propertyKeyList);
 
 /**
- * @brief This API provide capacity to start print dialog.
+ * @brief Starts the printing dialog box.
  *
  * @permission {@code ohos.permission.PRINT}
- * @param printJobName The name of this print job.
- * @param printDocCallback The print doc state callback.
- * @param context The context of caller app.
- * @return Returns {@link Print_ErrorCode#PRINT_ERROR_NONE} if the execution is successful.
- *         {@link PRINT_ERROR_NO_PERMISSION} The permission {@code ohos.permission.PRINT} is needed.
- *         {@link PRINT_ERROR_RPC_FAILURE} Unable to connect to the print service.
- * @syscap SystemCapability.Print.PrintFramework
+ * @param printJobName Pointer to the name of the print job.
+ * @param printDocCallback Callback used to return the file state.
+ * @param context Pointer to the context of the caller.
+ * @return {@link PRINT_ERROR_NONE}: Operation is successful.
+ *     <br>{@link PRINT_ERROR_NO_PERMISSION}: The ohos.permission.PRINT permission is required.
+ *     <br>{@link PRINT_ERROR_RPC_FAILURE}: Failed to connect to the print service.
  * @since 13
  */
 Print_ErrorCode OH_Print_StartPrintByNative(const char *printJobName,
@@ -789,45 +1046,52 @@ Print_ErrorCode OH_Print_StartPrintByNative(const char *printJobName,
                                             void *context);
 
 /**
- * @brief Indicates the print job state.
+ * @brief Enumerates the print job states.
  *
  * @since 24
  */
 typedef enum {
-    /** Print job succeed. */
+    /**
+     * Successful print job.
+     */
     OH_PRINT_JOB_SUCCEED = 0,
-    /** Print job failed. */
+    /**
+     * Print job failed.
+     */
     OH_PRINT_JOB_FAIL = 1,
-    /** Print job cancel. */
+    /**
+     * Print job canceled.
+     */
     OH_PRINT_JOB_CANCEL = 2,
-    /** Print job block. */
+    /**
+     * Print job blocked.
+     */
     OH_PRINT_JOB_BLOCK = 3,
 } OH_Print_JobState;
 
 /**
- * @brief Print job state callback.
+ * @brief Defines a callback to be invoked when the print job state changes.
  *
- * @param jobId The print job id of one print task.
- * @param state The state of current print job.
+ * @param jobId Pointer to the print job ID.
+ * @param state Print job state.
  * @since 24
  */
 typedef void(*OH_Print_OnJobStateChanged)(const char *jobId, OH_Print_JobState state);
 
 /**
- * @brief This API starts initiating a print job with job state change callback.
+ * @brief Starts a print job with the callback to be invoked when the print job state changes.
  *
  * @permission ohos.permission.PRINT
- * @param printJob A pointer to a {@link Print_PrintJob} instance that specifies the information for the print job.
- * @param jobStateChangedCb The {@link OH_Print_OnJobStateChanged} to be registered.
- * @return Returns {@link Print_ErrorCode#PRINT_ERROR_NONE} if the execution is successful.
- *         {@link PRINT_ERROR_NO_PERMISSION} The permission {@code ohos.permission.PRINT} is needed.
- *         {@link PRINT_ERROR_RPC_FAILURE} Unable to connect to the print service.
- *         {@link PRINT_ERROR_INVALID_PRINTER} The printer should be in the list of connected printers.
- *         {@link PRINT_ERROR_SERVER_FAILURE} Unable to create print job in the print service.
- *         {@link PRINT_ERROR_INVALID_PRINT_JOB} Unable to find the job int the job queue.
- *         {@link PRINT_ERROR_GENERIC_FAILURE} Unable to copy the callback.
- *         {@link PRINT_ERROR_INVALID_PARAMETER} callback is NULL.
- *
+ * @param printJob Pointer to the print job struct.
+ * @param jobStateChangedCb Callback to be invoked when the print job state changes.
+ * @return {@link PRINT_ERROR_NONE}: Operation is successful.
+ *     <br>{@link PRINT_ERROR_NO_PERMISSION}: The {@link ohos.permission.PRINT} permission is required.
+ *     <br>{@link PRINT_ERROR_INVALID_PARAMETER}: The jobStateChangedCb is null.
+ *     <br>{@link PRINT_ERROR_GENERIC_FAILURE}: The callback function cannot be copied.
+ *     <br>{@link PRINT_ERROR_RPC_FAILURE}: Failed to connect to the print service.
+ *     <br>{@link PRINT_ERROR_SERVER_FAILURE}: The print job struct cannot be created in the print service.
+ *     <br>{@link PRINT_ERROR_INVALID_PRINTER}: Failed to find the specified printer in the list of connected printers.
+ *     <br>{@link PRINT_ERROR_INVALID_PRINT_JOB}: Print job cannot be found in the job queue.
  * @since 24
  */
 Print_ErrorCode OH_Print_StartPrintWithJobStateCallback(const Print_PrintJob *printJob,

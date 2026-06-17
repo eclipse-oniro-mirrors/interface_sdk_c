@@ -98,7 +98,7 @@ extern "C" {
 /**
  * @brief Length of the rtts array in the NetConn_ProbeResultlnfo member variable.
  *
- * @since 11
+ * @since 20
  */
 #define NETCONN_MAX_RTT_NUM 4
 
@@ -342,6 +342,28 @@ typedef int (*OH_NetConn_CustomDnsResolver)(const char *host, const char *serv,
  * @version 1.0
  */
 typedef void (*OH_NetConn_AppHttpProxyChange)(NetConn_HttpProxy *proxy);
+
+/**
+ * @brief Defines the one-shot callback used to receive the global HTTP proxy re-authentication result.
+ *
+ * This callback is invoked at most once for each successful call to
+ * OH_NetConn_RefreshGlobalHttpProxyWithCallback.
+ *
+ * @param result The re-authentication result. 0 indicates success. Other values indicate failure.
+ * @param proxy The refreshed global HTTP proxy information when result is 0. If re-authentication
+ *     fails, proxy is NULL.<br>
+ *     The proxy object is owned by the system and is valid only during this callback
+ *     invocation. The caller must not free or modify it. If the caller needs to use the
+ *     proxy information after the callback returns, the caller must make a deep copy.
+ * @param userContext The user-defined data passed to OH_NetConn_RefreshGlobalHttpProxyWithCallback. The system
+ *     does not access, copy, or release it.
+ *
+ * @since 26.0.0
+ */
+typedef void (*OH_NetConn_GlobalHttpProxyRefreshCallback)(
+    int32_t result,
+    const NetConn_HttpProxy *proxy,
+    void *userContext);
 
 /**
  * @brief Definition of network specifier.

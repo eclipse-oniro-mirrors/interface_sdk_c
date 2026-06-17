@@ -173,8 +173,8 @@ OH_AudioSuite_Result OH_AudioSuiteEngine_GetPipelineState(
  * When finishedFlag is true, the application should no longer call this interface.
  *
  * @param audioSuitePipeline Reference created by OH_AudioSuiteEngine_CreatePipeline
- * @param audioData Audio data pointer, where user should read.
- * @param requestFrameSize Size of audio data user specified.
+ * @param audioData Audio data pointer, where user should read, unit is byte.
+ * @param requestFrameSize Size of audio data user specified, unit is byte.
  * @param responseSize Size of audio data the system really write.
  * @param finishedFlag This flag is used to indicate user whether all data processing has been completed.
  * @return {@link #AUDIOSUITE_SUCCESS} if execution succeeds
@@ -206,7 +206,7 @@ OH_AudioSuite_Result OH_AudioSuiteEngine_RenderFrame(OH_AudioSuitePipeline* audi
  * @param audioDataArray Audio data array pointer, where user should read,
  * The size of each one-dimensional array should be consistent.
  * @param responseSize Size of audio data the system really write,
- * The system ensures that the data size filled for each one-dimensional array is consistent.
+ *     The system ensures that the data size filled for each one-dimensional array is consistent, unit is byte.
  * @param finishedFlag This flag is used to indicate user whether all data processing has been completed.
  * @return {@link #AUDIOSUITE_SUCCESS} if execution succeeds
  * or {@link #AUDIOSUITE_ERROR_INVALID_PARAM} if parameter is nullptr or not valid value.
@@ -311,7 +311,7 @@ OH_AudioSuite_Result OH_AudioSuiteNodeBuilder_SetFormat(OH_AudioNodeBuilder* bui
  * @param audioNode AudioNode where this callback occurs.
  * @param userData User data which is passed by user.
  * @param audioData Audio data pointer, where user should fill in audio data.
- * @param audioDataSize Size of audio data that user should fill in.
+ * @param audioDataSize Size of audio data that user should fill in, unit is byte.
  * @param finished This boolean value indicates that all data
  * of the application has been consumed since last execute {@link OH_AudioSuiteEngine_StartPipeline}.
  * @return Length of the valid data that has written into audioData buffer.
@@ -430,13 +430,14 @@ OH_AudioSuite_Result OH_AudioSuiteEngine_BypassEffectNode(OH_AudioNode* audioNod
  *
  * @param audioNode Reference created by OH_AudioSuiteEngine_CreateNode.
  * @param audioFormat Audio Format.
- * @return {@link #AUDIOSUITE_SUCCESS} if execution succeeds
- * or {@link #AUDIOSUITE_ERROR_INVALID_PARAM} if parameter is nullptr.
- * or {@link #AUDIOSUITE_ERROR_NODE_NOT_EXIST} if audioNode does not exist or has been destroyed.
- * or {@link #AUDIOSUITE_ERROR_UNSUPPORTED_OPERATION} if the audioNode is an effect node.
- * or {@link #AUDIOSUITE_ERROR_INVALID_STATE} if the pipeline where the node resides is not in the stop state.
- * or {@link #AUDIOSUITE_ERROR_TIMEOUT} if an operation times out before completion.
- * or {@link #AUDIOSUITE_ERROR_SYSTEM} if the system has other abnormalities.
+ * @return <ul><li>{@link #AUDIOSUITE_SUCCESS} if execution succeeds</li>
+ * <li> {@link #AUDIOSUITE_ERROR_INVALID_PARAM} if parameter is nullptr.</li>
+ * <li> {@link #AUDIOSUITE_ERROR_NODE_NOT_EXIST} if audioNode does not exist or has been destroyed.</li>
+ * <li> {@link #AUDIOSUITE_ERROR_UNSUPPORTED_OPERATION} if the audioNode is an effect node.</li>
+ * <li> {@link #AUDIOSUITE_ERROR_UNSUPPORTED_FORMAT} if an unsupported format is set in audioFormat. [since 26.0.0]</li>
+ * <li> {@link #AUDIOSUITE_ERROR_INVALID_STATE} if the pipeline where the node resides is not in the stop state.</li>
+ * <li> {@link #AUDIOSUITE_ERROR_TIMEOUT} if an operation times out before completion.</li>
+ * <li> {@link #AUDIOSUITE_ERROR_SYSTEM} if the system has other abnormalities.</li></ul>
  * @since 22
  */
 OH_AudioSuite_Result OH_AudioSuiteEngine_SetAudioFormat(OH_AudioNode* audioNode, OH_AudioFormat *audioFormat);
@@ -815,6 +816,24 @@ OH_AudioSuite_Result OH_AudioSuiteEngine_SetGeneralVoiceChangeType(
  */
 OH_AudioSuite_Result OH_AudioSuiteEngine_GetGeneralVoiceChangeType(
     OH_AudioNode* audioNode, OH_AudioSuite_GeneralVoiceChangeType* type);
+
+/**
+ * @brief Print AudioSuite runtime snapshot.
+ *
+ * @param audioSuiteEngine Pointer to the AudioSuiteEngine whose runtime snapshot needs to be displayed.
+ * @param audioSuitePipeline Pointer to the AudioSuitePipeline whose runtime snapshot needs to be displayed.
+ * If audioSuitePipeline is NULL: output all pipelines (all pipelines/nodes under the engine).
+ * Otherwise, output only the snapshot of this pipeline and nodes.
+ * @param fd is a file handle, indicates the location where the snapshot information is stored.
+ * If the fd is less than 0, the snapshot information is stored in the log.
+ * Otherwise, the snapshot is stored in the file pointed to by the fd handle in append mode.
+ * @return {@link #AUDIOSUITE_SUCCESS} if execution succeeds,
+ * or {@link #AUDIOSUITE_ERROR_INVALID_PARAM} if parameter is nullptr or not valid value.
+ * or {@link #AUDIOSUITE_ERROR_SYSTEM} if the system has other abnormalities.
+ * @since 26.0.0
+ */
+OH_AudioSuite_Result OH_AudioSuite_PrintInfo(
+    OH_AudioSuiteEngine* audioSuiteEngine, OH_AudioSuitePipeline* audioSuitePipeline, int fd);
 
 #ifdef __cplusplus
 }

@@ -2518,6 +2518,86 @@ JSVM_EXTERN JSVM_Status OH_JSVM_TakeHeapSnapshot(JSVM_VM vm,
                                                  void* streamData);
 
 /**
+ * @brief This function takes the current heap snapshot and outputs it to the
+ * stream in raw heap format (binary format). The raw heap format is VM-specific
+ * and its layout is not guaranteed to be stable across different versions.
+ * This operation may pause the application temporarily, and frequent invocation
+ * may generate large snapshot files and increase disk usage, so callers should
+ * manage generated files appropriately if files are written to disk.
+ * The stream callback is invoked synchronously on the thread where the VM is
+ * running. The callback should avoid long blocking operations. If the callback
+ * returns false, the output stream is aborted, snapshot generation stops.
+ *
+ * @param vm The VM whose heap snapshot is taken.
+ * @param stream The output stream callback for receiving the binary data.
+ * @param streamData Optional data to be passed to the stream callback.
+ * @return Returns JSVM functions result code.
+ *         Returns JSVM_INVALID_ARG if vm or stream is NULL.
+ *         Returns JSVM_OK in all other cases.
+ * @since 26.0.0
+ */
+JSVM_EXTERN JSVM_Status OH_JSVM_TakeRawHeapSnapshot(JSVM_VM vm,
+    JSVM_OutputStream stream,
+    void *streamData);
+
+/**
+ * @brief Set a heap threshold callback for vm and the vm can only have one heap
+ * threshold callback. The registered callback should be cleared by
+ * OH_JSVM_ClearHeapThresholdCallback when it is no longer needed.
+ * This API is not thread-safe and must be called on the thread where the vm is
+ * running. The threshold is checked around GC, and the callback is invoked when
+ * the observed heap usage is greater than or equal to threshold. The callback
+ * will be called synchronously on the same thread, and threshold checks are
+ * skipped while the callback is running. After the callback returns, if the
+ * heap usage is still greater than or equal to threshold, the callback will be
+ * invoked again around the next GC. The callback does not need to be registered
+ * again after it returns. The registered callback is identified (threshold,
+ * callback, data).
+ *
+ * @param vm The VM whose heap usage will be monitored.
+ * @param threshold The heap usage threshold in bytes. The value must be greater
+ * than 0 and must not exceed heapSizeLimit, where heapSizeLimit is a field in
+ * JSVM_HeapStatistics.
+ * @param callback The callback function to be invoked when a threshold check
+ * observes heap usage greater than or equal to threshold.
+ * @param data Optional user-provided data passed to the callback.The caller is
+ * responsible for managing the lifetime of this data.
+ * @return Returns JSVM functions result code.
+ *         Returns JSVM_OK if the function executed successfully.
+ *         Returns JSVM_INVALID_ARG if vm or callback is NULL, or if threshold
+ *         is zero or exceeds heapSizeLimit, or if a heap threshold callback
+ *         has already been registered for the VM.
+ * @since 26.0.0
+ */
+JSVM_EXTERN JSVM_Status OH_JSVM_SetHeapThresholdCallback(
+    JSVM_VM vm,
+    uint64_t threshold,
+    JSVM_HandlerForHeapThreshold callback,
+    void *data);
+
+/**
+ * @brief Clear the heap threshold callback previously registered for vm.
+ * This API is not thread-safe and must be called on the thread where the vm
+ * is running. The registered callback is identified (threshold, callback, data).
+ *
+ * @param vm The VM whose heap threshold callback is to be cleared.
+ * @param threshold The heap usage threshold in bytes which is previously registered.
+ * @param callback The callback function previously registered by
+ *        OH_JSVM_SetHeapThresholdCallback.
+ * @param data The user-provided data used during registration.
+ * @return Returns JSVM functions result code.
+ *         Returns JSVM_OK if the function executed successfully.
+ *         Returns JSVM_INVALID_ARG if vm or callback is NULL, or if the
+ *         (threshold, callback, data) does not match registered callback.
+ * @since 26.0.0
+ */
+JSVM_EXTERN JSVM_Status OH_JSVM_ClearHeapThresholdCallback(
+    JSVM_VM vm,
+    uint64_t threshold,
+    JSVM_HandlerForHeapThreshold callback,
+    void *data);
+
+/**
  * @brief This functiong activates insepctor on host and port.
  *
  * @param env The environment that the API is invoked under.
@@ -3736,7 +3816,55 @@ JSVM_EXTERN JSVM_Status OH_JSVM_BackgroundDeserialize(
  */
 JSVM_EXTERN JSVM_Status OH_JSVM_ReleaseDeserializeResult(JSVM_DeserializeResult result);
 
+#ifdef JSVM_EXPERIMENTAL
+/**
+ * @brief Creates a JavaScript ArrayBuffer whose content is initialized from user-provided
+ * external memory. The implementation may either directly reference the external memory
+ * (zero-copy) or copy the data into an internally managed buffer, depending on engine
+ * implementation.
+ *
+ * When zero-copy is used, the ArrayBuffer directly references the external memory. The
+ * caller must NOT free it before the finalize callback is invoked.
+ *
+ * When a copy occurs, the data is copied into engine-managed memory. The copied output
+ * parameter is set to true so the caller knows their memory is no longer
+ * referenced. The resulting ArrayBuffer's data pointer (from OH_JSVM_GetArraybufferInfo)
+ * will differ from externalData.
+ *
+ * @param env The environment that the API is invoked under.
+ * @param externalData Pointer to the source memory block. Must be 8-byte aligned.
+ *                     Can be nullptr only if byteLength is 0.
+ * @param byteLength The length in bytes of the source memory block. Must not exceed the
+ *                   engine's maximum ArrayBuffer size.
+ * @param finalizeCb Optional callback invoked when the ArrayBuffer object created by this
+ *                   API is garbage collected. The callback receives the original externalData
+ *                   pointer, finalizeHint, and a boolean indicating whether the data was copied.
+ *                   When copied is true, the engine does not reference externalData and the
+ *                   caller may free it immediately after this API returns. When copied is
+ *                   false (zero-copy), externalData is still in use and should only be freed
+ *                   in this callback. Can be NULL if no cleanup is needed.
+ * @param finalizeHint Optional hint passed to finalizeCb. Can be NULL.
+ * @param copied Optional output parameter. If non-NULL, set to true when data was copied
+ *               into an internal buffer, or false when zero-copy was used. Pass NULL if
+ *               the caller does not need this information.
+ * @param result A JSVM_Value representing the created JavaScript ArrayBuffer.
+ * @return Returns JSVM funtions result code.
+ *         Returns {@link JSVM_OK } if creation succeeded.\n
+ *         Returns {@link JSVM_INVALID_ARG } if result is null, externalData is null when
+ *         byteLength > 0, externalData is not 8-byte aligned, or byteLength exceeds the
+ *         engine's maximum ArrayBuffer size.\n
+ *
+ * @since 26.0.0
+ */
+JSVM_EXTERN JSVM_Status OH_JSVM_CreateArrayBufferFromExternalMemory(JSVM_Env env,
+                                                                    void* externalData,
+                                                                    size_t byteLength,
+                                                                    JSVM_FinalizeArrayBuffer finalizeCb,
+                                                                    void* finalizeHint,
+                                                                    bool* copied,
+                                                                    JSVM_Value* result);
+#endif // JSVM_EXPERIMENTAL
+
 EXTERN_C_END
 /** @} */
 #endif /* ARK_RUNTIME_JSVM_JSVM_H */
-

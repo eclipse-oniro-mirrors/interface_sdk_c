@@ -34,6 +34,7 @@
  */
 #ifndef OHOS_INPUTMETHOD_ATTACH_OPTIONS_CAPI_H
 #define OHOS_INPUTMETHOD_ATTACH_OPTIONS_CAPI_H
+#include <stdbool.h>
 #include "inputmethod_types_capi.h"
 #ifdef __cplusplus
 extern "C" {

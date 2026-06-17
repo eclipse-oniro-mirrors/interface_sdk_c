@@ -4,7 +4,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -12,7 +12,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 /**
  * @addtogroup AVImageGenerator
  * @{
@@ -22,14 +21,12 @@
  * @syscap SystemCapability.Multimedia.Media.AVImageGenerator
  * @since 18
  */
-
 /**
  * @file avimage_generator.h
  *
- * @brief Defines the avimage generator APIs. Uses the Native APIs provided by Media AVImageGenerator
- *        to get an image at a specific time from a video resource.
- *
- * @syscap SystemCapability.Multimedia.Media.AVImageGenerator
+ * @brief The file declares the AVImageGenerator APIs. You can use the APIs to extract video frames at given time
+ * points from videos.
+ * 
  * @kit MediaKit
  * @library libavimage_generator.so
  * @since 18
@@ -50,71 +47,63 @@ extern "C" {
 #endif
 
 /**
- * @brief Define OH_AVImageGenerator field.
- *
- * @syscap SystemCapability.Multimedia.Media.AVImageGenerator
+ * @brief The OH_AVImageGenerator struct describes the type used for generating video frames at specified timestamps.
+ * 
  * @since 18
  */
 typedef struct OH_AVImageGenerator OH_AVImageGenerator;
 
 /**
- * @brief Create an image generator.
- *
- * @syscap SystemCapability.Multimedia.Media.AVImageGenerator
+ * @brief Creates an OH_AVImageGenerator instance, which is used to generate video frames at given time points.
+ * 
  * @return Returns a pointer to an OH_AVImageGenerator instance for success, nullptr for failure.
- *         Possible failure causes: HstEngineFactory failed to CreateAVMetadataHelperEngine.
+ * Possible failure causes: HstEngineFactory failed to CreateAVMetadataHelperEngine.
  * @since 18
  */
 OH_AVImageGenerator* OH_AVImageGenerator_Create(void);
 
 /**
- * @brief Sets the media file descriptor source for the image generator.
- *
- * @syscap SystemCapability.Multimedia.Media.AVImageGenerator
- * @param generator Pointer to an OH_AVImageGenerator instance.
- * @param fd Indicates the file descriptor of media source.
- * @param offset Indicates the offset of media source in file descriptor.
- * @param size Indicates the size of media source.
+ * @brief Sets a data source based on the media file descriptor.
+ * 
+ * @param generator Pointer to the OH_AVImageGenerator instance.
+ * @param fd File descriptor of the media source.
+ * @param offset Offset of the media source in the file descriptor.
+ * @param size Size of the media source.
  * @return Function result code.
- *         {@link AV_ERR_OK} if the execution is successful.
- *         {@link AV_ERR_INVALID_VAL} if input generator is nullptr or input param is invalid.
- *         {@link AV_ERR_OPERATE_NOT_PERMIT} if operation not allowed.
- *         {@link AV_ERR_NO_MEMORY} if internal memory allocation failed.
+ * {@link AV_ERR_OK}: the execution is successful.
+ * {@link AV_ERR_INVALID_VAL}: input generator is nullptr or input param is invalid.
+ * {@link AV_ERR_OPERATE_NOT_PERMIT}: operation not allowed.
+ * {@link AV_ERR_NO_MEMORY}: internal memory allocation failed.
  * @since 18
  */
 OH_AVErrCode OH_AVImageGenerator_SetFDSource(OH_AVImageGenerator* generator,
     int32_t fd, int64_t offset, int64_t size);
 
 /**
- * @brief Fetch an image at a specific time from a video resource.
- *
- * This function must be called after {@link SetFDSource}.
- *
- * @syscap SystemCapability.Multimedia.Media.AVImageGenerator
- * @param generator Pointer to an OH_AVImageGenerator instance.
- * @param timeUs The time expected to fetch picture from the video resource. The unit is microsecond(us).
- * @param options The time options about the relationship between the given timeUs and a key frame,
- *                see {@link OH_AVImageGenerator_QueryOptions}.
- * @param pixelMap The fetched output image from the video source. For details, see {@link OH_PixelmapNative}.
+ * @brief Extracts a video frame at a given time from a video.
+ * 
+ * @param generator Pointer to the OH_AVImageGenerator instance.
+ * @param timeUs Time point of the video frame to be extracted in the video, in μs.
+ * @param options Mappings between the given time points and video frames.
+ * @param pixelMap Double pointer to the video frame object obtained.
  * @return Function result code.
- *         {@link AV_ERR_OK} if the execution is successful.
- *         {@link AV_ERR_INVALID_VAL} if input generator is nullptr or input param is invalid.
- *         {@link AV_ERR_OPERATE_NOT_PERMIT} if operation not allowed.
- *         {@link AV_ERR_UNSUPPORTED_FORMAT} if format is unsupported.
- *         {@link AV_ERR_NO_MEMORY} if internal memory allocation failed.
+ * {@link AV_ERR_OK}: the execution is successful.
+ * {@link AV_ERR_INVALID_VAL}: input generator is nullptr or input param is invalid.
+ * {@link AV_ERR_OPERATE_NOT_PERMIT}: operation not allowed.
+ * {@link AV_ERR_UNSUPPORTED_FORMAT}: format is unsupported.
+ * {@link AV_ERR_NO_MEMORY}: internal memory allocation failed.
  * @since 18
  */
 OH_AVErrCode OH_AVImageGenerator_FetchFrameByTime(OH_AVImageGenerator* generator,
     int64_t timeUs, OH_AVImageGenerator_QueryOptions options, OH_PixelmapNative** pixelMap);
 
 /**
- * @brief Release the resource used for AVImageGenerator.
- *
- * @syscap SystemCapability.Multimedia.Media.AVImageGenerator
- * @param generator Pointer to an OH_AVImageGenerator instance.
+ * @brief Releases the resources used by the OH_AVImageGenerator instance and destroys the instance.
+ * 
+ * @param generator Pointer to the OH_AVImageGenerator instance.
  * @return Function result code.
- *         {@link AV_ERR_OK} if the execution is successful.
- *         {@link AV_ERR_INVALID_VAL} if input generator is nullptr or input param is invalid.
+ * {@link AV_ERR_OK}: the execution is successful.
+ * {@link AV_ERR_INVALID_VAL}: input generator is nullptr or input param is invalid.
  * @since 18
  */
 OH_AVErrCode OH_AVImageGenerator_Release(OH_AVImageGenerator* generator);

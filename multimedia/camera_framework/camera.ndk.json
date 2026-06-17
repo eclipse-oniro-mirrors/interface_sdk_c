@@ -780,6 +780,42 @@
         "name": "OH_PhotoOutput_SetPhotoQualityPrioritization"
     },
     {
+        "first_introduced": "26.0.0",
+        "name": "OH_PhotoOutput_CreatePhotoCaptureSettingExt"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_PhotoOutput_Capture_WithCaptureSettingExt"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_PhotoCaptureSettingExt_SetCompressionQuality"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_PhotoCaptureSettingExt_SetImageRotation"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_PhotoCaptureSettingExt_SetMirror"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_PhotoOutput_DestroyPhotoCaptureSettingExt"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_PhotoCaptureSettingExt_SetLocation"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_PhotoOutput_EnableAutoExtendedGainmapDelivery"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_PhotoOutput_IsAutoExtendedGainmapDeliverySupported"
+    },
+    {
         "first_introduced": "22",
         "name": "OH_CaptureSession_RegisterIsoChangeCallback"
     },
@@ -841,7 +877,7 @@
     },
     {
         "first_introduced": "24",
-        "name": "OH_CameraDevice_GetConstituentCamerasSize"
+        "name": "OH_CameraDevice_DeleteConstituentCameraDevices"
     },
     {
         "first_introduced": "24",
@@ -905,7 +941,7 @@
     },
     {
         "first_introduced": "24",
-        "name": "OH_CaptureSession_GetPhysicalAperturesSize"
+        "name": "OH_CaptureSession_DeletePhysicalApertures"
     },
     {
         "first_introduced": "24",
@@ -973,14 +1009,138 @@
     },
     {
         "first_introduced": "24",
+        "name": "OH_CameraDevice_GetSensorColorFilterArrangement"
+    },
+    {
+        "first_introduced": "24",
         "name": "OH_CaptureSession_SetOISModeCustom"
     },
     {
-        "first_introduced": "26",
+        "first_introduced": "26.0.0",
+        "name": "OH_CaptureSession_RegisterExposureStateChangeCallback"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_CaptureSession_UnregisterExposureStateChangeCallback"
+    },
+    {
+        "first_introduced": "26.0.0",
         "name": "OH_CameraManager_IsTorchLevelControlSupported"
     },
     {
-        "first_introduced": "26",
+        "first_introduced": "26.0.0",
         "name": "OH_CameraManager_SetTorchModeOnWithLevel"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_CaptureSession_GetColorTintRange"  
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_CaptureSession_GetColorTint"  
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_CaptureSession_SetColorTint"  
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_CaptureSession_GetZoomPointInfos"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_CaptureSession_DeleteZoomPointInfos"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_CaptureSession_RegisterNotificationReceivedCallback"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_CaptureSession_UnregisterNotificationReceivedCallback"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_CameraNotificationInfo_GetNotificationName"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_CameraNotificationInfo_GetProximityStateForFocus"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_CameraNotificationInfo_Destroy"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_MetadataOutput_RegisterMetadataObjectExtAvailableCallback"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_MetadataOutput_UnregisterMetadataObjectExtAvailableCallback"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_MetadataOutput_RegisterErrorExtCallback"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_MetadataOutput_UnregisterErrorExtCallback"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_MetadataOutput_IsLockMetadataObjectTrackingSupported"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_MetadataOutput_LockMetadataObjectTracking"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_MetadataOutput_UnlockMetadataObjectTracking"
+    },
+    {
+       "first_introduced": "26.0.0",
+        "name": "OH_MetadataObjectExt_GetMetadataObjectType"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_MetadataObjectExt_GetTimestamp"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_MetadataObjectExt_GetBoundingBox"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_MetadataObjectExt_GetPitchAngle"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_MetadataObjectExt_GetYawAngle"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_MetadataObjectExt_GetRollAngle"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_MetadataObjectExt_GetLeftEyeBoundingBox"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_MetadataObjectExt_GetRightEyeBoundingBox"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_MetadataObjectExt_GetEmotion"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_MetadataObjectExt_Destroy"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_CameraDevice_GetAutomotiveCameraPosition"
     }
 ]

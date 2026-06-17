@@ -171,8 +171,27 @@ typedef void(JSVM_CDECL* JSVM_Finalize)(JSVM_Env env,
                                         void* finalizeData,
                                         void* finalizeHint);
 
+#ifdef JSVM_EXPERIMENTAL
 /**
- * @brief Function pointer type for callback of ASCII output stream. The first parameter data is the data pointer.
+ * @brief Finalize callback for ArrayBuffers created from external memory.
+ *
+ * Similar to JSVM_Finalize, but includes a copied parameter indicating whether the
+ * engine copied the external data into an internal buffer (true) or used zero-copy (false).
+ * When copied is true, the engine does not hold a reference to the original external data,
+ * so the caller may free it immediately after the API call returns. When copied is false,
+ * finalizeData points to the original external memory that the engine is releasing — the
+ * callback should free it.
+ *
+ * @since 26.0.0
+ */
+typedef void(JSVM_CDECL* JSVM_FinalizeArrayBuffer)(JSVM_Env env,
+                                                   void* finalizeData,
+                                                   void* finalizeHint,
+                                                   bool copied);
+#endif // JSVM_EXPERIMENTAL
+
+/**
+ * @brief Function pointer type for callback of output stream. The first parameter data is the data pointer.
  * And the second parameter size is the data size to output. A null data pointer indicates the end of the stream.
  * The third parameter streamData is the pointer passed in together with the callback to the API functions that
  * generate data to the output stream. The callback returns true to indicate the stream can continue to accept
@@ -1039,6 +1058,16 @@ typedef enum {
     /** Scope check. */
     JSVM_SCOPE_CHECK,
 } JSVM_DebugOption;
+
+/**
+ * @brief Function pointer type for heap threshold callback.
+ *
+ * @param vm The VM instance whose heap usage is observed at or above the threshold.
+ * @param threshold The heap usage threshold in bytes.
+ * @param data The native pointer data.
+ * @since 26.0.0
+ */
+typedef void(JSVM_CDECL* JSVM_HandlerForHeapThreshold)(JSVM_VM vm, uint64_t threshold, void* data);
 
 /**
  * @brief To represent a JavaScript background deserialize result.

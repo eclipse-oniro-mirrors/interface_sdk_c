@@ -55,7 +55,7 @@ typedef struct {
 } ArkWeb_JavaScriptBridgeData;
 
 /**
- * @brief Defines the data type carried in a ArkWeb_WebMessage.
+ * @brief Defines the data type carried in an ArkWeb_WebMessage.
  *
  * @since 12
  */
@@ -69,7 +69,7 @@ typedef enum ArkWeb_WebMessageType {
 } ArkWeb_WebMessageType;
 
 /**
- * @brief Defines the data type carried in a ArkWeb_JavaScriptValue.
+ * @brief Defines the data type carried in an ArkWeb_JavaScriptValue.
  *
  * @since 18
  */
@@ -133,13 +133,12 @@ typedef ArkWeb_JavaScriptValuePtr (*ArkWeb_OnJavaScriptProxyCallbackWithResult)(
 typedef void (*ArkWeb_OnComponentCallback)(const char* webTag, void* userData);
 
 /**
- * @brief Defines the scroll callback of the native ArkWeb.
+ * @brief Called when the **Web** component is scrolled.
  *
- * @param webTag The name of the web component.
- * @param userData The data set by user.
- * @param x X-axis scrolling offset.
- * @param y Y-axis scrolling offset.
- *
+ * @param webTag Name of the **Web** component.
+ * @param userData Pointer to user-defined data.
+ * @param x Scrolling offset of the X axis. Unit: vp.
+ * @param y Scrolling offset of the Y axis. Unit: vp.
  * @since 18
  */
 typedef void (*ArkWeb_OnScrollCallback)(const char* webTag, void* userData, double x, double y);
@@ -252,7 +251,7 @@ typedef struct {
     void (*runJavaScript)(const char* webTag, const ArkWeb_JavaScriptObject* javascriptObject);
     /** Register the JavaScript object and method list. */
     void (*registerJavaScriptProxy)(const char* webTag, const ArkWeb_ProxyObject* proxyObject);
-    /** Deletes the registered object which th given name. */
+    /** Deletes the registered object which the given name. */
     void (*deleteJavaScriptRegister)(const char* webTag, const char* objName);
     /** Refresh the current web page. */
     void (*refresh)(const char* webTag);
@@ -292,7 +291,7 @@ typedef struct {
 
     /**
      * @brief Get the url of the last frame that calls the JavaScriptProxy.
-     *        This should be call on the thread which JavaScriptProxy called.
+     *        This should be called on the thread which JavaScriptProxy called.
      *
      * @return The url of the last frame that calls the JavaScriptProxy.
      * @since 14

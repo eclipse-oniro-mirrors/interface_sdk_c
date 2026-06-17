@@ -87,12 +87,10 @@ ArkWeb_AnyNativeAPI* OH_ArkWeb_GetNativeAPI(ArkWeb_NativeAPIVariantKind type);
 
 /**
  * @brief Register a scrolling event callback.
- * @param webTag The name of the web component.
- * @param callback The ArkWeb scrolling callback.
- * @param userData The data set by user.
- * @return Returns whether the registration was successful, false indicates failure.
- *
- * @syscap SystemCapability.Web.Webview.Core
+ * @param webTag Name of the **Web** component.
+ * @param callback Callback used when a page is scrolled.
+ * @param userData Pointer to user-defined data.
+ * @return **true** is returned if the operation is successful; otherwise, **false** is returned.
  * @since 18
  */
 bool OH_ArkWeb_RegisterScrollCallback(

@@ -13,6 +13,9 @@
  * limitations under the License.
  */
 
+#ifndef TIME_SERVICE_H
+#define TIME_SERVICE_H
+
 /**
  * @addtogroup TimeService
  * @{
@@ -30,9 +33,6 @@
  * @since 12
  */
 
-#ifndef TIME_SERVICE_H
-#define TIME_SERVICE_H
-
 #include <stdint.h>
 
 #ifdef __cplusplus
@@ -45,27 +45,33 @@ extern "C" {
  * @since 12
  */
 typedef enum TimeService_ErrCode {
-    /** @error Success.*/
+    /**
+     * Operation successful.
+     */
     TIMESERVICE_ERR_OK = 0,
 
-    /** @error Failed to obtain system parameters.*/
+    /**
+     * Failed to obtain system parameters.
+     */
     TIMESERVICE_ERR_INTERNAL_ERROR = 13000001,
 
-    /** @error Invalid parameter.*/
+    /**
+     * Invalid parameter.
+     */
     TIMESERVICE_ERR_INVALID_PARAMETER = 13000002,
 } TimeService_ErrCode;
 
 /**
  * @brief Obtains the current system time zone.
  *
- * @param timeZone Pointer to an array of characters indicating the time zone ID. On success, the string indicates the
- *        current system time zone ID. On failure, the string is empty. The string is terminated using '\0'.
- * @param len Size of the memory allocated for the time zone ID character array. There is no upper limit for the length
- *        of the time zone ID. It is recommended to allocate sufficient memory, at least not less than 31 bytes.
- * @return Returns {@link TIMESERVICE_ERR_OK} if the operation is successful.
- *         Returns {@link TIMESERVICE_ERR_INTERNAL_ERROR} if obtaining the system parameters fails.
- *         Returns {@link TIMESERVICE_ERR_INVALID_PARAMETER} if <b>timeZone</b> is a null pointer or the length of the
- *         time zone ID (excluding the terminating character ('\0')) is greater than or equal to <b>len</b>.
+ * @param timeZone Pointer to the buffer for one time zone ID string. If the time zone is obtained, its ID is written.
+ *     Otherwise, an empty string is written. The string ends with **\0**.
+ * @param len Capacity of the buffer pointed to by **timeZone**, in bytes, including the end character **\0**.
+ *     There is no maximum limit. You are advised to allocate at least 31 bytes.
+ * @return Returns **TIMESERVICE_ERR_OK** if the operation is successful;
+ *     <br>returns **TIMESERVICE_ERR_INTERNAL_ERROR** if the system parameters fail to be obtained;
+ *     <br>returns **TIMESERVICE_ERR_INVALID_PARAMETER** if **timeZone** is a null pointer or the length of the time
+ *     zone name (excluding the end character **\0**) is greater than or equal to the value of **len**.
  * @syscap SystemCapability.MiscServices.Time
  * @since 12
  */

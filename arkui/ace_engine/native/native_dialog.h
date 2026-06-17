@@ -40,6 +40,7 @@
 #include <stdbool.h>
 #include "native_type.h"
 #include "native_node.h"
+#include "native_material.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -130,6 +131,26 @@ typedef enum {
     /** Mask extend safe area includes status bar and navigation bar. */
     ARKUI_IMMERSIVE_MODE_EXTEND,
 } ArkUI_ImmersiveMode;
+
+/**
+ * @brief Enumerates the dialog display mode in subwindow.
+ *
+ * @since 26.0.0
+ */
+typedef enum {
+    /**
+     * The dialog box is displayed based on the screen.
+     *
+     * @since 26.0.0
+     */
+    OH_ARKUI_DIALOG_DISPLAY_MODE_SCREEN_BASED = 0,
+    /**
+     * The dialog box is displayed based on the window.
+     *
+     * @since 26.0.0
+     */
+    OH_ARKUI_DIALOG_DISPLAY_MODE_WINDOW_BASED,
+} OH_ArkUI_DialogDisplayModeInSubWindow;
 
 /**
 * @brief Invoked when the dialog box is closed.
@@ -409,7 +430,7 @@ typedef struct {
     *
     * @note This method must be called before the <b>setLevelMode</b> method.
     * @param handle Indicates the pointer to the custom dialog box controller.
-    * @param uniqueId Indicates the uniquedId of any nodes in router or navigation pages.
+    * @param uniqueId Indicates the uniqueId of any nodes in router or navigation pages.
     * @return Returns the error code.
     *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
     *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
@@ -760,7 +781,7 @@ void OH_ArkUI_DialogDismissEvent_SetShouldBlockDismiss(ArkUI_DialogDismissEvent*
 void* OH_ArkUI_DialogDismissEvent_GetUserData(ArkUI_DialogDismissEvent* event);
 
 /**
- * @brief Obtains the c from a dialog box dismiss event object.
+ * @brief Obtains the dismiss reason from a dialog box dismiss event object.
  *
  * @param event Indicates the pointer to a dialog box dismiss event object.
  *
@@ -1061,6 +1082,22 @@ int32_t OH_ArkUI_CustomDialog_SetAutoCancel(ArkUI_CustomDialogOptions* options, 
 int32_t OH_ArkUI_CustomDialog_SetSubwindowMode(ArkUI_CustomDialogOptions* options, bool showInSubwindow);
 
 /**
+ * @brief Sets the display mode of the custom dialog box in a subwindow.
+ *
+ * @note This method takes effect only when the dialog box is displayed in a subwindow.
+ * @param options Dialog box parameters.
+ * @param displayModeInSubWindow Display mode of the dialog box in the subwindow.
+ * The parameter type is {@link OH_ArkUI_DialogDisplayModeInSubWindow}.
+ * The default value is <b>OH_ARKUI_DIALOG_DISPLAY_MODE_SCREEN_BASED</b>.
+ * @return Returns the error code.
+ *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @since 26.0.0
+ */
+int32_t OH_ArkUI_CustomDialog_SetDisplayModeInSubWindow(
+    ArkUI_CustomDialogOptions* options, OH_ArkUI_DialogDisplayModeInSubWindow displayModeInSubWindow);
+
+/**
  * @brief Sets the mask for a custom dialog box.
  *
  * @param options Dialog box parameters.
@@ -1240,6 +1277,34 @@ int32_t OH_ArkUI_CustomDialog_SetBackgroundBlurStyleOptions(
  */
 int32_t OH_ArkUI_CustomDialog_SetBackgroundEffect(
     ArkUI_CustomDialogOptions* options, const ArkUI_AttributeItem* backgroundEffect);
+
+/**
+ * @brief Sets the system material of the dialog box.
+ *
+ * @param options Dialog box parameters.
+ * @param material Pointer to material object. The type is {@link ArkUI_ImmersiveMaterialHandle}.
+ * @return <ul>
+ *         <li>{@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
+ *         <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.</li>
+ *         </ul>
+ * @since 26.0.0
+ */
+int32_t OH_ArkUI_NativeModule_CustomDialog_SetSystemMaterialInOptions(
+    ArkUI_CustomDialogOptions* options, ArkUI_ImmersiveMaterialHandle material);
+
+ /**
+  * @brief Sets the system material of the dialog box.
+  *
+  * @param handle Indicates the pointer to the custom dialog box controller.
+  * @param material Pointer to material object. The type is {@link ArkUI_ImmersiveMaterialHandle}.
+  * @return <ul>
+  *         <li>{@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
+  *         <li>{@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.</li>
+  *         </ul>
+  * @since 26.0.0
+  */
+int32_t OH_ArkUI_NativeModule_CustomDialog_SetSystemMaterial(
+    ArkUI_NativeDialogHandle handle, ArkUI_ImmersiveMaterialHandle material);
 
 #ifdef __cplusplus
 };

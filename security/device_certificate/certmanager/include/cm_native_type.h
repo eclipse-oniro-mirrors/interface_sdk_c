@@ -4,7 +4,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -12,25 +12,23 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
-/**
- * @file cm_native_type.h
- *
- * @brief Defines the structure and enumeration.
- *
- * @library libohcert_manager.so
- * @kit DeviceCertificateKit
- * @syscap SystemCapability.Security.CertificateManager
- * @since 22
- */
-
 /**
  * @addtogroup CertManagerType
  * @{
  *
  * @brief Defines the macros, enumerated values, data structures,
- *    and error codes used by OpenHarmony Certificate Manager APIs.
+ * and error codes used by OpenHarmony Certificate Manager APIs.
  *
+ * @since 22
+ */
+/**
+ * @file cm_native_type.h
+ *
+ * @brief Provides the enums, structs, macros, and error codes used by **CertManager** APIs.
+ *
+ * @library libohcert_manager.so
+ * @kit DeviceCertificateKit
+ * @syscap SystemCapability.Security.CertificateManager
  * @since 22
  */
 
@@ -51,89 +49,87 @@ extern "C" {
 #define OH_CM_MAX_LEN_TYPE_NAME       1025
 
 /**
- * @brief Enumerates the error codes.
+ * @brief Enumerates error codes.
  *
  * @since 22
  */
 typedef enum {
     /**
-     * The operation is successful.
+     * Operation succeeded.
      */
     OH_CM_SUCCESS = 0,
     /**
-     *  Indicates that the application has no permission to call the API.
+     * Permission verification failed.
      */
     OH_CM_HAS_NO_PERMISSION = 201,
     /**
-     * Capability not supported.
+     * Not supported by the device.
      */
     OH_CM_CAPABILITY_NOT_SUPPORTED = 801,
     /**
-     * Indicates that internal error. Possible causes: 1. IPC communication failed;
-     * 2. Memory operation error; 3. File operation error.
+     * Internal error. Possible causes: 1. IPC failure. 2. Memory operation error. 3. File operation error.
      */
     OH_CM_INNER_FAILURE = 17500001,
     /**
-     * Indicates that the certificate does not exist.
+     * The certificate does not exist.
      */
     OH_CM_NOT_FOUND = 17500002,
     /**
-     * Indicates that the keystore is in an invalid format or the keystore password is incorrect.
+     * The keystore format is invalid or the keystore password is incorrect.
      */
     OH_CM_INVALID_CERT_FORMAT = 17500003,
     /**
-     * Indicates that the number of certificates or credentials reaches the maximum allowed.
+     * The number of certificates or credentials reaches the upper limit.
      */
     OH_CM_MAX_CERT_COUNT_REACHED = 17500004,
     /**
-     *  Indicates that the application is not authorized by the user.
+     * The application is not authorized.
      */
     OH_CM_NO_AUTHORIZATION = 17500005,
     /**
-     * Indicates that the device enters advanced security mode.
+     * The device enters the advanced security mode.
      */
     OH_CM_DEVICE_ENTER_ADVSECMODE = 17500007,
     /**
-     * Indicates that the device does not support the specified certificate store path.
+     * The device does not support the specified certificate storage path.
      */
     OH_CM_STORE_PATH_NOT_SUPPORTED = 17500009,
     /**
-     * Indicates that access USB key service failed.
+     * Failed to access the USB certificate credential.
      */
     OH_CM_ACCESS_UKEY_SERVICE_FAILED = 17500010,
     /**
-     * Indicates that the input parameters validation failed.
-     * for example, the parameter format is incorrect or the value range is invalid.
+     * Parameter verification fails. For example, the parameter format or range is invalid.
      */
-    OH_CM_PARAMETER_VALIDATION_FAILED = 17500011
+    OH_CM_PARAMETER_VALIDATION_FAILED = 17500011,
 } OH_CM_ErrorCode;
 
 /**
- * @brief Enumerates the certificate purpose.
+ * @brief Enumerates the certificate credential purposes.
  *
  * @since 22
  */
 typedef enum {
     /**
-     * Indicates the default purpose.
+     * Default purpose, which is used for credential signing.
      */
     OH_CM_CERT_PURPOSE_DEFAULT = 0,
     /**
-     * Indicates all certificate purpose, used for query certificates function.
+     * All purposes, which are used to query credential functionalities.
      */
     OH_CM_CERT_PURPOSE_ALL = 1,
     /**
-     * Indicates certificate for signature.
+     * Signing purpose.
      */
     OH_CM_CERT_PURPOSE_SIGN = 2,
     /**
-     *  Indicates certificate for encrypt.
+     * Encryption purpose.
      */
-    OH_CM_CERT_PURPOSE_ENCRYPT = 3
+    OH_CM_CERT_PURPOSE_ENCRYPT = 3,
 } OH_CM_CertificatePurpose;
 
 /**
- * @brief Defines the structure for storing data.
+ * @brief Defines a struct for a binary large object (BLOB).
  *
  * @since 22
  */
@@ -149,13 +145,13 @@ typedef struct {
 } OH_CM_Blob;
 
 /**
- * @brief Defines the structure for certificate detail of credential .
+ * @brief Defines a struct for the certificate credential details.
  *
  * @since 22
  */
 typedef struct {
     /**
-     * Indicates whether the credential contains certificate data.
+     * Whether a certificate data exists.
      */
     uint32_t isExist;
     /**
@@ -171,31 +167,31 @@ typedef struct {
      */
     char keyUri[OH_CM_MAX_LEN_URI];
     /**
-     * Indicates the number of certificates included in the credential.
+     * Number of certificates contained in the credential.
      */
     uint32_t certNum;
     /**
-     * Indicates the number of key included in the credential.
+     * Number of keys contained in the credential.
      */
     uint32_t keyNum;
     /**
-     * Indicates the certificate binary data which max length is defined by OH_CM_MAX_LEN_CERTIFICATE_CHAIN.
+     * Binary data of a credential. The value contains up to 20480 bytes.
      */
     OH_CM_Blob credData;
     /**
-     * Indicates the certificate purpose.
+     * Purpose of a certificate credential.
      */
     OH_CM_CertificatePurpose certPurpose;
 } OH_CM_Credential;
 
 /**
- * @brief Defines credential detail list .
+ * @brief Defines a struct for the certificate credential detail list.
  *
  * @since 22
  */
 typedef struct {
     /**
-     * Indicates the credential count.
+     * Number of certificate credential details.
      */
     uint32_t credentialCount;
     /**
@@ -205,13 +201,13 @@ typedef struct {
 } OH_CM_CredentialDetailList;
 
 /**
- * @brief Defines the USB key certificate attribute information.
+ * @brief Defines a struct for the USB certificate credential information.
  *
  * @since 22
  */
 typedef struct {
     /**
-     * Indicates the purpose of certificate.
+     * Purpose of a certificate credential.
      */
     OH_CM_CertificatePurpose certPurpose;
 } OH_CM_UkeyInfo;
