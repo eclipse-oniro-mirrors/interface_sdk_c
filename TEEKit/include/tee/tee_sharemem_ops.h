@@ -39,7 +39,7 @@
 #define TEE_SHAREMEM_OPS_H
 
 #include <stdint.h>
-#include <tee_defines.h>
+#include "tee_defines.h"
 
 #ifdef __cplusplus
 extern "C" {

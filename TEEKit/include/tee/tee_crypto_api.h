@@ -41,8 +41,8 @@
 #define TEE_CRYPTO_API_H
 
 #include <pthread.h>
-#include <tee_defines.h>
-#include <tee_mem_mgmt_api.h>
+#include "tee_defines.h"
+#include "tee_mem_mgmt_api.h"
 
 #ifdef __cplusplus
 extern "C" {
