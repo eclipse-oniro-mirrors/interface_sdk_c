@@ -894,8 +894,6 @@ void OH_ArkUI_PositionEdges_SetRight(ArkUI_PositionEdges* edges, float value);
  */
 int32_t OH_ArkUI_PositionEdges_GetRight(ArkUI_PositionEdges* edges, float* value);
 
-
-
 /**
  * @brief Create a policy object for PixelRound attribute.
  *
