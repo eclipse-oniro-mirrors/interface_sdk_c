@@ -1142,5 +1142,13 @@
     {
         "first_introduced": "26.0.0",
         "name": "OH_CameraDevice_GetAutomotiveCameraPosition"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_PreviewOutput_IsLogViewAssistSupported"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_PreviewOutput_SetLogViewAssistEnable"
     }
 ]
