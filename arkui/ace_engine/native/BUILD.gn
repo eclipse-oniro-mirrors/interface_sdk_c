@@ -71,6 +71,7 @@ if (!is_arkui_x) {
       "arkui/native_render.h",
       "arkui/native_type.h",
       "arkui/native_type_visual.h",
+      "arkui/node_attributes/layout.h",
       "arkui/node_attributes/button.h",
       "arkui/node_attributes/checkbox.h",
       "arkui/node_attributes/slider.h",

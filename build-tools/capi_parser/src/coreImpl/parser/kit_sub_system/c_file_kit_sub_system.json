@@ -33,6 +33,7 @@
     { "filePath": "arkui/ace_engine/native/native_material.h", "kitName": "ArkUI", "subSystem": "ArkUI开发框架" },
     { "filePath": "arkui/ace_engine/native/native_node.h", "kitName": "ArkUI", "subSystem": "ArkUI开发框架" },
     { "filePath": "arkui/ace_engine/native/error_code.h", "kitName": "ArkUI", "subSystem": "ArkUI开发框架" },
+    { "filePath": "arkui/ace_engine/native/node_attributes/layout.h", "kitName": "ArkUI", "subSystem": "ArkUI开发框架" },
     { "filePath": "arkui/ace_engine/native/node_attributes/navigation_router.h", "kitName": "ArkUI", "subSystem": "ArkUI开发框架" },
     { "filePath": "arkui/ace_engine/native/node_attributes/image.h", "kitName": "ArkUI", "subSystem": "ArkUI开发框架" },
     { "filePath": "arkui/ace_engine/native/node_attributes/image_animator.h", "kitName": "ArkUI", "subSystem": "ArkUI开发框架" },
