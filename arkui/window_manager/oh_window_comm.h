@@ -214,21 +214,29 @@ typedef enum {
 typedef enum {
     /**
      * Child window.
+     *
+     * @since 15
      */
     WINDOW_MANAGER_WINDOW_TYPE_APP = 0,
 
     /**
      * Main window.
+     *
+     * @since 15
      */
     WINDOW_MANAGER_WINDOW_TYPE_MAIN = 1,
 
     /**
-     * Float window.
+     * Global float window.
+     *
+     * @since 15
      */
     WINDOW_MANAGER_WINDOW_TYPE_FLOAT = 8,
 
     /**
-     * Dialog window.
+     * Modal window.
+     *
+     * @since 15
      */
     WINDOW_MANAGER_WINDOW_TYPE_DIALOG = 16
 } WindowManager_WindowType;
