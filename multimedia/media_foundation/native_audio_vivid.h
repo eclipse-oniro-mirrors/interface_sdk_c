@@ -25,7 +25,7 @@
 /**
  * @file native_audio_vivid.h
  *
- * @brief Declared functions and enumerations related to Audio Vivid.
+ * @brief The file declares the functions and enums related to Audio Vivid.
  *
  * @kit AVCodecKit
  * @library libnative_media_core.so
@@ -44,34 +44,37 @@ extern "C" {
 #endif
 
 /**
- * @brief Enumerates the signal format for Audio Vivid encoder.
+ * @brief Enumerates the signal formats of the Audio Vivid encoder.
  *
  * @since 26.0.0
  */
 typedef enum OH_AudioVividSignalFormat {
     /**
-     * Audio Vivid signal format is mono, encoder accept 1 channel data and mark channel layout {@link CH_LAYOUT_MONO}.
+     * Mono. The encoder accepts mono data and internally sets the channel layout to {@link OH_AudioChannelLayout}.
+     * CH_LAYOUT_MONO.
      * @since 26.0.0
      */
     OH_AUDIO_VIVID_SIGNAL_FORMAT_MONO = 0,
     /**
-     * Audio Vivid signal format is stereo, encoder accept 2 channels data and mark channel
-     * layout {@link CH_LAYOUT_STEREO}.
+     * Stereo. The encoder accepts stereo data and internally sets the channel layout to {@link OH_AudioChannelLayout}.
+     * CH_LAYOUT_STEREO.
      * @since 26.0.0
      */
     OH_AUDIO_VIVID_SIGNAL_FORMAT_STEREO = 1,
     /**
-     * Audio Vivid signal format is multiple channels, encoder supports {@link CH_LAYOUT_5POINT1},
-     * {@link CH_LAYOUT_5POINT1POINT2}, {@link CH_LAYOUT_5POINT1POINT4}, {@link CH_LAYOUT_7POINT1},
-     * {@link CH_LAYOUT_7POINT1POINT2}, {@link CH_LAYOUT_7POINT1POINT4}.
+     * Multi-channel audio. The encoder supports the following channel layouts: {@link OH_AudioChannelLayout}.
+     * CH_LAYOUT_5POINT1, {@link OH_AudioChannelLayout}.CH_LAYOUT_5POINT1POINT2, {@link OH_AudioChannelLayout}.
+     * CH_LAYOUT_5POINT1POINT4, {@link OH_AudioChannelLayout}.CH_LAYOUT_7POINT1, {@link OH_AudioChannelLayout}.
+     * CH_LAYOUT_7POINT1POINT2, and {@link OH_AudioChannelLayout}.CH_LAYOUT_7POINT1POINT4.
      * @since 26.0.0
      */
     OH_AUDIO_VIVID_SIGNAL_FORMAT_MC = 2,
     /**
-     * Audio Vivid signal format is mix, contain soundbed and object sounds. Soundbed supports
-     * {@link CH_LAYOUT_STEREO}, {@link CH_LAYOUT_5POINT1}, {@link CH_LAYOUT_5POINT1POINT2},
-     * {@link CH_LAYOUT_5POINT1POINT4}, {@link CH_LAYOUT_7POINT1},
-     * {@link CH_LAYOUT_7POINT1POINT2}, {@link CH_LAYOUT_7POINT1POINT4}.
+     * Hybrid mode, including a bed and an object. The bed supports the following channel layouts:
+     * {@link OH_AudioChannelLayout}.CH_LAYOUT_STEREO, {@link OH_AudioChannelLayout}.CH_LAYOUT_5POINT1,
+     * {@link OH_AudioChannelLayout}.CH_LAYOUT_5POINT1POINT2, {@link OH_AudioChannelLayout}.CH_LAYOUT_5POINT1POINT4,
+     * {@link OH_AudioChannelLayout}.CH_LAYOUT_7POINT1, {@link OH_AudioChannelLayout}.CH_LAYOUT_7POINT1POINT2, and
+     * {@link OH_AudioChannelLayout}.CH_LAYOUT_7POINT1POINT4.
      * @since 26.0.0
      */
     OH_AUDIO_VIVID_SIGNAL_FORMAT_MIX = 4,
@@ -175,86 +178,99 @@ typedef struct OH_AudioVividMetaBuilderStruct OH_AudioVividMetaBuilder;
 /**
  * @brief Creates an Audio Vivid metadata builder.
  *
- * @param builder Output parameter. Pointer to retrieve an OH_AudioVividMetaBuilder instance pointer.
- * @param format Pointer to the OH_AVFormat containing audio format information.
- * @return Returns AV_ERR_OK if successful, otherwise returns a specific error code, refer to {@link OH_AVErrCode}.
- * {@link AV_ERR_INVALID_VAL}, builder or format is nullptr or invalid.
- * {@link AV_ERR_UNSUPPORT}, current device not support this function.
- * {@link AV_ERR_UNKNOWN}, create builder fail with unknown error. For details, check logs.
+ * @param builder Output parameter, which is used to obtain the double pointer to the **OH_AudioVividMetaBuilder**
+ *     instance.
+ * @param format Pointer to **OH_AVFormat** that contains the audio format information.
+ * @return {@link AV_ERR_OK}: The operation is successful.
+ *     <br>{@link AV_ERR_INVALID_VAL}: The **builder** or **format** parameter is a null pointer or invalid.
+ *     <br>{@link AV_ERR_UNSUPPORT}: This function is not supported on the device.
+ *     <br>{@link AV_ERR_UNKNOWN}: Failed to create the builder. This is an unknown error. Check the log for details.
  * @note **Lifecycle Management:**
- *      The instance created by this function must be manually released by calling
- *      {@link OH_AudioVividMetaBuilder_Destroy} when it is no longer needed to
- *      prevent memory leaks.
+ *     The instance created by this function must be manually released by calling
+ *     {@link OH_AudioVividMetaBuilder_Destroy} when it is no longer needed to
+ *     prevent memory leaks.
  * @since 26.0.0
  */
 OH_AVErrCode OH_AudioVividMetaBuilder_Create(OH_AudioVividMetaBuilder **builder, const OH_AVFormat *format);
 
 /**
- * @brief Updates the position of an audio object with Audio Vivid signal format
- * is {@link OH_AUDIO_VIVID_SIGNAL_FORMAT_MIX}.
+ * @brief Updates the position of the audio object when the Audio Vivid signal format is
+ * {@link OH_AudioVividSignalFormat}.OH_AUDIO_VIVID_SIGNAL_FORMAT_MIX. In this signal format, the channel arrangement
+ * in the input encoded Pulse Code Modulation (PCM) data is as follows: bed channels come first, followed by object
+ * channels.
  *
- * In this signal format, the PCM channels are arranged as: soundbed channels followed by object channels in order.
- * The object channels are matched with objectIndex starting from 0.
+ * The object channels correspond to **objectIndex** in sequence, starting from 0.
  *
- * @param builder Pointer to the OH_AudioVividMetaBuilder.
- * @param objectIndex Index of the audio object to update, starting from 0.
- * @param pos The new position for the audio object.
- * @return Returns AV_ERR_OK if successful, otherwise returns a specific error code, refer to {@link OH_AVErrCode}.
- * {@link AV_ERR_INVALID_VAL}, builder is nullptr or invalid, objectIndex or pos is invalid.
+ * @param builder Pointer to **OH_AudioVividMetaBuilder**.
+ * @param objectIndex Index of the audio object to be updated, starting from 0. The value cannot be greater than
+ *     {@link OH_MD_KEY_AUDIO_OBJECT_NUMBER} set in the **format** parameter passed to
+ *     {@link OH_AudioVividMetaBuilder_Create} for creating the builder.
+ * @param pos New position of the audio object source.
+ * @return {@link AV_ERR_OK}: The operation is successful.
+ *     <br>{@link AV_ERR_INVALID_VAL}: The **builder** parameter is a null pointer or invalid, or the **objectIndex**
+ *     or **pos** parameter is invalid.
  * @since 26.0.0
  */
 OH_AVErrCode OH_AudioVividMetaBuilder_UpdateObjectPos(OH_AudioVividMetaBuilder *builder,
     int32_t objectIndex, OH_AudioObjectPosition pos);
 
 /**
- * @brief Updates the rendering gain of an audio object with Audio Vivid signal format
- * is {@link OH_AUDIO_VIVID_SIGNAL_FORMAT_MIX}.
+ * @brief Updates the linear gain of audio object rendering when the Audio Vivid signal format is
+ * {@link OH_AudioVividSignalFormat}.OH_AUDIO_VIVID_SIGNAL_FORMAT_MIX.
  *
- * @param builder Pointer to the OH_AudioVividMetaBuilder.
- * @param objectIndex Index of the audio object to update, starting from 0.
- * @param gain The object rendering gain value, range is [0.0, 6.0]. This is optional; if not set, no gain is applied.
- * @return Returns AV_ERR_OK if successful, otherwise returns a specific error code, refer to {@link OH_AVErrCode}.
- * {@link AV_ERR_INVALID_VAL}, builder is nullptr or invalid, objectIndex or gain is invalid.
+ * @param builder Pointer to **OH_AudioVividMetaBuilder**.
+ * @param objectIndex Index of the audio object to be updated, starting from 0. The value cannot be greater than
+ *     {@link OH_MD_KEY_AUDIO_OBJECT_NUMBER} set in the **format** parameter passed to
+ *     {@link OH_AudioVividMetaBuilder_Create} for creating the builder.
+ * @param gain Linear gain applied during object rendering. The value range is [0.0, 6.0], where **0.0** indicates
+ *     silence, and **1.0** indicates no change. This parameter is optional. If it is not set, no gain is applied.
+ * @return {@link AV_ERR_OK}: The operation is successful.
+ *     <br>{@link AV_ERR_INVALID_VAL}: The **builder** parameter is a null pointer or invalid, or the **objectIndex**
+ *     or **gain** parameter is invalid.
  * @since 26.0.0
  */
 OH_AVErrCode OH_AudioVividMetaBuilder_UpdateObjectGain(OH_AudioVividMetaBuilder *builder,
     int32_t objectIndex, float gain);
 
 /**
- * @brief Gets the length of the metadata.
+ * @brief Obtains the length of metadata.
  *
- * @param builder Pointer to the OH_AudioVividMetaBuilder.
- * @param withStaticMeta If set to true, the output len will include static metadata;
- * if false, only include dynamic metadata.
- * @param len Pointer to receive the metadata length in bytes.
- * @return Returns AV_ERR_OK if successful, otherwise returns a specific error code, refer to {@link OH_AVErrCode}.
- * {@link AV_ERR_INVALID_VAL}, builder is nullptr or invalid, len is nullptr.
+ * @param builder Pointer to **OH_AudioVividMetaBuilder**.
+ * @param withStaticMeta Whether the output length includes static metadata. The value **true** indicates that the
+ *     output length includes static metadata, and the value **false** indicates that the output length includes only
+ *     dynamic metadata.
+ * @param len Pointer used to receive the metadata length. The unit is bytes.
+ * @return {@link AV_ERR_OK}: The operation is successful.
+ *     <br>{@link AV_ERR_INVALID_VAL}: The **builder** parameter is a null pointer or invalid, or the **len** parameter
+ *     is a null pointer.
  * @since 26.0.0
  */
 OH_AVErrCode OH_AudioVividMetaBuilder_GetMetaLen(const OH_AudioVividMetaBuilder *builder, bool withStaticMeta,
     int32_t *len);
 
 /**
- * @brief Gets the metadata data.
+ * @brief Obtains the metadata buffer.
  *
- * @param builder Pointer to the OH_AudioVividMetaBuilder.
- * @param withStaticMeta If set to true, the output buffer will include static metadata;
- * if false, only include dynamic metadata.
- * @param buffer Pointer to the buffer to receive the metadata data.
- * @param len Length of the buffer in bytes.
- * @return Returns AV_ERR_OK if successful, otherwise returns a specific error code, refer to {@link OH_AVErrCode}.
- * {@link AV_ERR_INVALID_VAL}, builder is nullptr or invalid, buffer is nullptr or len is insufficient.
+ * @param builder Pointer to **OH_AudioVividMetaBuilder**.
+ * @param withStaticMeta Whether the output buffer includes static metadata. The value **true** indicates that the
+ *     output buffer includes static metadata, and the value **false** indicates that the output buffer includes only
+ *     dynamic metadata.
+ * @param buffer Pointer to the buffer for receiving the metadata.
+ * @param len Buffer length, in bytes.
+ * @return {@link AV_ERR_OK}: The operation is successful.
+ *     <br>{@link AV_ERR_INVALID_VAL}: The **builder** parameter is a null pointer or invalid, the **buffer** parameter
+ *     is a null pointer, or the **len** parameter value is insufficient.
  * @since 26.0.0
  */
 OH_AVErrCode OH_AudioVividMetaBuilder_GetMeta(const OH_AudioVividMetaBuilder *builder, bool withStaticMeta,
     uint8_t *buffer, int32_t len);
 
 /**
- * @brief Destroys the Audio Vivid metadata builder and releases resources.
+ * @brief Destroys an Audio Vivid metadata builder and releases resources.
  *
- * @param builder Pointer to the OH_AudioVividMetaBuilder to be destroyed.
- * @return Returns AV_ERR_OK if successful, otherwise returns a specific error code, refer to {@link OH_AVErrCode}.
- * {@link AV_ERR_INVALID_VAL}, builder is nullptr.
+ * @param builder Pointer to **OH_AudioVividMetaBuilder** to be destroyed.
+ * @return {@link AV_ERR_OK}: The operation is successful.
+ *     <br>{@link AV_ERR_INVALID_VAL}: The **builder** parameter is a null pointer.
  * @since 26.0.0
  */
 OH_AVErrCode OH_AudioVividMetaBuilder_Destroy(OH_AudioVividMetaBuilder *builder);
