@@ -38,7 +38,8 @@
 #ifndef TEE_ARITH_API_H
 #define TEE_ARITH_API_H
 
-#include <tee_defines.h>
+#include <stdbool.h>
+#include "tee_defines.h"
 
 #ifdef __cplusplus
 extern "C" {

@@ -39,7 +39,7 @@
 #define TEE_AGENT_H
 
 #include <stdint.h>
-#include <tee_defines.h>
+#include "tee_defines.h"
 
 #ifdef __cplusplus
 extern "C" {
