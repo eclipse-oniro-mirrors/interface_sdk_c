@@ -37,6 +37,8 @@
 #ifndef NET_WEBSOCKET_TYPE_H
 #define NET_WEBSOCKET_TYPE_H
 
+#include <stdint.h>
+
 #ifdef __cplusplus
 extern "C" {
 #endif
