@@ -742,10 +742,8 @@ OH_AudioSuite_Result OH_AudioSuiteEngine_SetTempoAndPitch(OH_AudioNode* audioNod
  * @brief Get the tempo and pitch adjustment parameters.
  *
  * @param audioNode Reference created by OH_AudioSuiteEngine_CreateNode.
- * @param speed value range: [0.5, 10.0] for Tempo, where 1.0 means normal tempo speed.
- * If the value is outside the valid range, {@link #AUDIOSUITE_ERROR_INVALID_PARAM} will be returned.
- * @param pitch value range: [0.1, 5.0] for Pitch, where 1.0 means normal pitch.
- * If the value is outside the valid range, {@link #AUDIOSUITE_ERROR_INVALID_PARAM} will be returned.
+ * @param speed value range: [0.5, 10.0] for Tempo.
+ * @param pitch value range: [0.1, 5.0] for Pitch.
  * @return {@link #AUDIOSUITE_SUCCESS} if execution succeeds
  * or {@link #AUDIOSUITE_ERROR_NODE_NOT_EXIST} if audioNode does not exist or has been destroyed.
  * or {@link #AUDIOSUITE_ERROR_UNSUPPORTED_OPERATION} if audioNode is not a tempo and pitch node.

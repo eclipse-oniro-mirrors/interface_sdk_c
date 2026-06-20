@@ -173,6 +173,7 @@ typedef enum {
  * or {@link #AUDIOCONVERTER_ERROR_UNSUPPORTED_FORMAT} if the specified input/output format combination is unsupported.
  * or {@link #AUDIOCONVERTER_ERROR_MEMORY_ALLOC_FAILED} if memory allocation failed.
  * or {@link #AUDIOCONVERTER_ERROR_SYSTEM} if the system has other abnormalities.
+ * @release OH_AudioConverter_Destroy {converter}
  * @since 26.0.0
  */
 OH_AudioConverter_Result OH_AudioConverter_Create(
