@@ -181,6 +181,7 @@ typedef enum OH_Interceptor_Result {
  * @param request http request packet.
  * @param response http response packet.
  * @param isModified whether interceptor modified the packet.
+ * @return {@link OH_Interceptor_Result} interceptor process result.
  *
  * @since 24
  */
