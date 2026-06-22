@@ -1298,33 +1298,38 @@ typedef struct Camera_CaptureEndInfo {
 /**
  * @brief The struct describes a rectangle. The coordinate system for the returned detection points is based on the
  * landscape device orientation, with the charging port on the right. In this coordinate system, the top-left corner is
- * (0, 0), and the bottom-right corner is (1, 1). Here, **topLeftX** and **topLeftY** represent the coordinates of the
- * top-left corner of the rectangle, whereas **width** and **height** represent the width and height of the rectangle,
- * respectively. When cropping or selecting a face region based on specific requirements, the x and y coordinates of
- * the rectangle must be multiplied by the width and height of the actual camera preview output stream to obtain the
- * cropped face region.
+ * (0, 0), and the bottom-right corner corresponds to the pixel dimensions of the camera preview output stream. All 
+ * member values are integer pixel values. Here, **topLeftX** and **topLeftY** represent the coordinates of the top-left
+ * corner of the rectangle, whereas **width** and **height** represent the width and height of the rectangle,
+ * respectively.
  * 
  * @since 11
  * @version 1.0
  */
 typedef struct Camera_Rect {
     /**
-     * X coordinate of the top-left corner of the rectangle, in the range of [0, 1].
+     * X coordinate of the top-left corner of the rectangle.
+     * Value range: [0, preview stream width], e.g. 0 to 1920 for a 1920*1440 preview stream.
+     * @since 11
      */
     int32_t topLeftX;
 
     /**
-     * Y coordinate of the top-left corner of the rectangle, in the range of [0, 1].
+     * Y coordinate of the top-left corner of the rectangle.
+     * Value range: [0, preview stream height], e.g. 0 to 1440 for a 1920*1440 preview stream.
+     * @since 11
      */
     int32_t topLeftY;
 
     /**
-     * Width of the rectangle, in the range of [0, 1].
+     * Width of the rectangle. Value does not exceed the X-axis upper limit of the coordinate system.
+     * @since 11
      */
     int32_t width;
 
     /**
-     * Height of the rectangle, in the range of [0, 1].
+     * Height of the rectangle. Value does not exceed the Y-axis upper limit of the coordinate system.
+     * @since 11
      */
     int32_t height;
 } Camera_Rect;
