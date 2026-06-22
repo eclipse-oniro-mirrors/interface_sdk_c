@@ -612,8 +612,8 @@ OH_AudioStream_Result OH_AudioStreamBuilder_SetPlaybackCaptureMode(OH_AudioStrea
  * end of the call right after the audio capturer is created.
  * The application should wait for the callback result before starting the capturer, otherwise an
  * error will be returned by {@link OH_AudioCapturer_Start}.
- * Make sure the audio capturer is created after the voice call started, otherwise the message will
- * be played in local.
+ * Make sure the audio capturer is created after the voice call started, otherwise an
+ * error will be returned by {@link OH_AudioStreamBuilder_GenerateCapturer}.
  *
  * @param builder The pointer to the {@link OH_AudioStreamBuilder} object created
  *     by {@link OH_AudioStreamBuilder_Create}.
