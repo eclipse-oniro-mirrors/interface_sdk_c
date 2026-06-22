@@ -215,8 +215,8 @@ OH_AI_API bool OH_AI_DeviceInfoGetEnableFP16(const OH_AI_DeviceInfoHandle device
 /**
  * @brief Set the NPU frequency, Only valid for NPU.
  * @param device_info Device info object handle.
- * @param frequency Can be set to 1 (low power consumption), 2 (balanced), 3 (high performance), 4 (extreme
- *        performance), default as 3.
+ * @param frequency Can be set to 0 (automatic adjustment), 1 (low power consumption), 2 (balanced), 3 (high
+ *        performance), 4 (extreme performance), default as 3.
  * @since 9
  */
 OH_AI_API void OH_AI_DeviceInfoSetFrequency(OH_AI_DeviceInfoHandle device_info, int frequency);
