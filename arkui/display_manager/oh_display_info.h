@@ -410,12 +410,12 @@ typedef struct {
     uint32_t refreshRate;
 
     /**
-     * Width of the available area on a 2-in-1 device, in px. The value must be a non-negative integer.
+     * Width of the available area, in px. The value must be a non-negative integer.
      */
     uint32_t availableWidth;
 
     /**
-     * Height of the available area on a 2-in-1 device, in px. The value is an integer greater than 0.
+     * Height of the available area, in px. The value must be a non-negative integer.
      */
     uint32_t availableHeight;
 

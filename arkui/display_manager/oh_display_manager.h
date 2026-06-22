@@ -49,9 +49,9 @@ extern "C" {
  * @brief Obtains the ID of the default display.
  *
  * @param displayId Pointer to the display ID. The value is a non-negative integer.
- * @return {@link DISPLAY_MANAGER_OK } If the operation is successful
- *     <br>{@link DISPLAY_MANAGER_ERROR_INVALID_PARAM } If Parameter error.
- *     <br>{@link DISPLAY_MANAGER_ERROR_SYSTEM_ABNORMAL } If display manager service works abnormally.
+ * @return <ul><li>{@link DISPLAY_MANAGER_OK} If the operation is successful.</li>
+ *     <li>{@link DISPLAY_MANAGER_ERROR_INVALID_PARAM} If parameter error.</li>
+ *     <li>{@link DISPLAY_MANAGER_ERROR_SYSTEM_ABNORMAL} If display manager service works abnormally.</li></ul>
  * @since 12
  */
 NativeDisplayManager_ErrorCode OH_NativeDisplayManager_GetDefaultDisplayId(uint64_t *displayId);
@@ -60,9 +60,9 @@ NativeDisplayManager_ErrorCode OH_NativeDisplayManager_GetDefaultDisplayId(uint6
  * @brief Obtains the width of the default display.
  *
  * @param displayWidth Pointer to the width, in px. The value is an integer.
- * @return {@link DISPLAY_MANAGER_OK } If the operation is successful
- *     <br>{@link DISPLAY_MANAGER_ERROR_INVALID_PARAM } If Parameter error.
- *     <br>{@link DISPLAY_MANAGER_ERROR_SYSTEM_ABNORMAL } If display manager service works abnormally.
+ * @return <ul><li>{@link DISPLAY_MANAGER_OK} If the operation is successful.</li>
+ *     <li>{@link DISPLAY_MANAGER_ERROR_INVALID_PARAM} If parameter error.</li>
+ *     <li>{@link DISPLAY_MANAGER_ERROR_SYSTEM_ABNORMAL} If display manager service works abnormally.</li></ul>
  * @since 12
  */
 NativeDisplayManager_ErrorCode OH_NativeDisplayManager_GetDefaultDisplayWidth(int32_t *displayWidth);
@@ -71,9 +71,9 @@ NativeDisplayManager_ErrorCode OH_NativeDisplayManager_GetDefaultDisplayWidth(in
  * @brief Obtains the height of the default display.
  *
  * @param displayHeight Pointer to the height, in px. The value is an integer.
- * @return {@link DISPLAY_MANAGER_OK } If the operation is successful
- *     <br>{@link DISPLAY_MANAGER_ERROR_INVALID_PARAM } If Parameter error.
- *     <br>{@link DISPLAY_MANAGER_ERROR_SYSTEM_ABNORMAL } If display manager service works abnormally.
+ * @return <ul><li>{@link DISPLAY_MANAGER_OK} If the operation is successful.</li>
+ *     <li>{@link DISPLAY_MANAGER_ERROR_INVALID_PARAM} If parameter error.</li>
+ *     <li>{@link DISPLAY_MANAGER_ERROR_SYSTEM_ABNORMAL} If display manager service works abnormally.</li></ul>
  * @since 12
  */
 NativeDisplayManager_ErrorCode OH_NativeDisplayManager_GetDefaultDisplayHeight(int32_t *displayHeight);
@@ -83,9 +83,9 @@ NativeDisplayManager_ErrorCode OH_NativeDisplayManager_GetDefaultDisplayHeight(i
  *
  * @param displayRotation Pointer to the clockwise rotation angle. For details about the available options, see
  *     {@link NativeDisplayManager_Rotation}.
- * @return {@link DISPLAY_MANAGER_OK } If the operation is successful
- *     <br>{@link DISPLAY_MANAGER_ERROR_INVALID_PARAM } If Parameter error.
- *     <br>{@link DISPLAY_MANAGER_ERROR_SYSTEM_ABNORMAL } If display manager service works abnormally.
+ * @return <ul><li>{@link DISPLAY_MANAGER_OK} If the operation is successful.</li>
+ *     <li>{@link DISPLAY_MANAGER_ERROR_INVALID_PARAM} If parameter error.</li>
+ *     <li>{@link DISPLAY_MANAGER_ERROR_SYSTEM_ABNORMAL} If display manager service works abnormally.</li></ul>
  * @since 12
  */
 NativeDisplayManager_ErrorCode OH_NativeDisplayManager_GetDefaultDisplayRotation(
@@ -96,9 +96,9 @@ NativeDisplayManager_ErrorCode OH_NativeDisplayManager_GetDefaultDisplayRotation
  *
  * @param displayOrientation Pointer to the orientation. For details about the available options, see
  *     {@link NativeDisplayManager_Orientation}.
- * @return {@link DISPLAY_MANAGER_OK } If the operation is successful
- *     <br>{@link DISPLAY_MANAGER_ERROR_INVALID_PARAM } If Parameter error.
- *     <br>{@link DISPLAY_MANAGER_ERROR_SYSTEM_ABNORMAL } If display manager service works abnormally.
+ * @return <ul><li>{@link DISPLAY_MANAGER_OK} If the operation is successful.</li>
+ *     <li>{@link DISPLAY_MANAGER_ERROR_INVALID_PARAM} If parameter error.</li>
+ *     <li>{@link DISPLAY_MANAGER_ERROR_SYSTEM_ABNORMAL} If display manager service works abnormally.</li></ul>
  * @since 12
  */
 NativeDisplayManager_ErrorCode OH_NativeDisplayManager_GetDefaultDisplayOrientation(
@@ -109,9 +109,9 @@ NativeDisplayManager_ErrorCode OH_NativeDisplayManager_GetDefaultDisplayOrientat
  *
  * @param virtualPixels Pointer to the virtual pixel ratio. The value is a floating-point number, and it is usually the
  *     same as that of **densityPixels**.
- * @return {@link DISPLAY_MANAGER_OK } If the operation is successful
- *     <br>{@link DISPLAY_MANAGER_ERROR_INVALID_PARAM } If Parameter error.
- *     <br>{@link DISPLAY_MANAGER_ERROR_SYSTEM_ABNORMAL } If display manager service works abnormally.
+ * @return <ul><li>{@link DISPLAY_MANAGER_OK} If the operation is successful.</li>
+ *     <li>{@link DISPLAY_MANAGER_ERROR_INVALID_PARAM} If parameter error.</li>
+ *     <li>{@link DISPLAY_MANAGER_ERROR_SYSTEM_ABNORMAL} If display manager service works abnormally.</li></ul>
  * @since 12
  */
 NativeDisplayManager_ErrorCode OH_NativeDisplayManager_GetDefaultDisplayVirtualPixelRatio(float *virtualPixels);
@@ -120,9 +120,9 @@ NativeDisplayManager_ErrorCode OH_NativeDisplayManager_GetDefaultDisplayVirtualP
  * @brief Obtains the refresh rate of the default display.
  *
  * @param refreshRate Pointer to the refresh rate. The value is an integer, in Hz.
- * @return {@link DISPLAY_MANAGER_OK } If the operation is successful
- *     <br>{@link DISPLAY_MANAGER_ERROR_INVALID_PARAM } If Parameter error.
- *     <br>{@link DISPLAY_MANAGER_ERROR_SYSTEM_ABNORMAL } If display manager service works abnormally.
+ * @return <ul><li>{@link DISPLAY_MANAGER_OK} If the operation is successful.</li>
+ *     <li>{@link DISPLAY_MANAGER_ERROR_INVALID_PARAM} If parameter error.</li>
+ *     <li>{@link DISPLAY_MANAGER_ERROR_SYSTEM_ABNORMAL} If display manager service works abnormally.</li></ul>
  * @since 12
  */
 NativeDisplayManager_ErrorCode OH_NativeDisplayManager_GetDefaultDisplayRefreshRate(uint32_t *refreshRate);
@@ -132,9 +132,9 @@ NativeDisplayManager_ErrorCode OH_NativeDisplayManager_GetDefaultDisplayRefreshR
  *
  * @param densityDpi Pointer to the physical pixel density, that is, the number of pixels per inch. The value is an
  *     integer, in px. The actual value depends on the options provided in device settings.
- * @return {@link DISPLAY_MANAGER_OK } If the operation is successful
- *     <br>{@link DISPLAY_MANAGER_ERROR_INVALID_PARAM } If Parameter error.
- *     <br>{@link DISPLAY_MANAGER_ERROR_SYSTEM_ABNORMAL } If display manager service works abnormally.
+ * @return <ul><li>{@link DISPLAY_MANAGER_OK} If the operation is successful.</li>
+ *     <li>{@link DISPLAY_MANAGER_ERROR_INVALID_PARAM} If parameter error.</li>
+ *     <li>{@link DISPLAY_MANAGER_ERROR_SYSTEM_ABNORMAL} If display manager service works abnormally.</li></ul>
  * @since 12
  */
 NativeDisplayManager_ErrorCode OH_NativeDisplayManager_GetDefaultDisplayDensityDpi(int32_t *densityDpi);
@@ -145,9 +145,9 @@ NativeDisplayManager_ErrorCode OH_NativeDisplayManager_GetDefaultDisplayDensityD
  * @param densityPixels Pointer to the logical pixel density, which indicates the scaling coefficient of the physical
  *     pixels and logical pixels. The value is a floating-point number in the range [0.5, 4.0]. Generally, the value is
  *     **1.0** or **3.0**. The actual value depends on the density DPI provided by the device in use.
- * @return {@link DISPLAY_MANAGER_OK } If the operation is successful
- *     <br>{@link DISPLAY_MANAGER_ERROR_INVALID_PARAM } If Parameter error.
- *     <br>{@link DISPLAY_MANAGER_ERROR_SYSTEM_ABNORMAL } If display manager service works abnormally.
+ * @return <ul><li>{@link DISPLAY_MANAGER_OK} If the operation is successful.</li>
+ *     <li>{@link DISPLAY_MANAGER_ERROR_INVALID_PARAM} If parameter error.</li>
+ *     <li>{@link DISPLAY_MANAGER_ERROR_SYSTEM_ABNORMAL} If display manager service works abnormally.</li></ul>
  * @since 12
  */
 NativeDisplayManager_ErrorCode OH_NativeDisplayManager_GetDefaultDisplayDensityPixels(float *densityPixels);
@@ -157,9 +157,9 @@ NativeDisplayManager_ErrorCode OH_NativeDisplayManager_GetDefaultDisplayDensityP
  *
  * @param scaledDensity Pointer to the scale factor. The value is a floating-point number, and it is usually the same
  *     as that of **densityPixels**.
- * @return {@link DISPLAY_MANAGER_OK } If the operation is successful
- *     <br>{@link DISPLAY_MANAGER_ERROR_INVALID_PARAM } If Parameter error.
- *     <br>{@link DISPLAY_MANAGER_ERROR_SYSTEM_ABNORMAL } If display manager service works abnormally.
+ * @return <ul><li>{@link DISPLAY_MANAGER_OK} If the operation is successful.</li>
+ *     <li>{@link DISPLAY_MANAGER_ERROR_INVALID_PARAM} If parameter error.</li>
+ *     <li>{@link DISPLAY_MANAGER_ERROR_SYSTEM_ABNORMAL} If display manager service works abnormally.</li></ul>
  * @since 12
  */
 NativeDisplayManager_ErrorCode OH_NativeDisplayManager_GetDefaultDisplayScaledDensity(float *scaledDensity);
@@ -169,9 +169,9 @@ NativeDisplayManager_ErrorCode OH_NativeDisplayManager_GetDefaultDisplayScaledDe
  *
  * @param xDpi Pointer to the number of physical pixels per inch in the X dimension. The value is a floating-point
  *     number.
- * @return {@link DISPLAY_MANAGER_OK } If the operation is successful
- *     <br>{@link DISPLAY_MANAGER_ERROR_INVALID_PARAM } If Parameter error.
- *     <br>{@link DISPLAY_MANAGER_ERROR_SYSTEM_ABNORMAL } If display manager service works abnormally.
+ * @return <ul><li>{@link DISPLAY_MANAGER_OK} If the operation is successful.</li>
+ *     <li>{@link DISPLAY_MANAGER_ERROR_INVALID_PARAM} If parameter error.</li>
+ *     <li>{@link DISPLAY_MANAGER_ERROR_SYSTEM_ABNORMAL} If display manager service works abnormally.</li></ul>
  * @since 12
  */
 NativeDisplayManager_ErrorCode OH_NativeDisplayManager_GetDefaultDisplayDensityXdpi(float *xDpi);
@@ -181,9 +181,9 @@ NativeDisplayManager_ErrorCode OH_NativeDisplayManager_GetDefaultDisplayDensityX
  *
  * @param yDpi Pointer to the number of physical pixels per inch in the Y dimension. The value is a floating-point
  *     number.
- * @return {@link DISPLAY_MANAGER_OK } If the operation is successful
- *     <br>{@link DISPLAY_MANAGER_ERROR_INVALID_PARAM } If Parameter error.
- *     <br>{@link DISPLAY_MANAGER_ERROR_SYSTEM_ABNORMAL } If display manager service works abnormally.
+ * @return <ul><li>{@link DISPLAY_MANAGER_OK} If the operation is successful.</li>
+ *     <li>{@link DISPLAY_MANAGER_ERROR_INVALID_PARAM} If parameter error.</li>
+ *     <li>{@link DISPLAY_MANAGER_ERROR_SYSTEM_ABNORMAL} If display manager service works abnormally.</li></ul>
  * @since 12
  */
 NativeDisplayManager_ErrorCode OH_NativeDisplayManager_GetDefaultDisplayDensityYdpi(float *yDpi);
@@ -194,9 +194,9 @@ NativeDisplayManager_ErrorCode OH_NativeDisplayManager_GetDefaultDisplayDensityY
  *
  * @param cutoutInfo Double pointer to the unusable area information, which is encapsulated in
  *     {@link NativeDisplayManager_CutoutInfo}.
- * @return {@link DISPLAY_MANAGER_OK } If the operation is successful
- *     <br>{@link DISPLAY_MANAGER_ERROR_INVALID_PARAM } If Parameter error.
- *     <br>{@link DISPLAY_MANAGER_ERROR_SYSTEM_ABNORMAL } If display manager service works abnormally.
+ * @return <ul><li>{@link DISPLAY_MANAGER_OK} If the operation is successful.</li>
+ *     <li>{@link DISPLAY_MANAGER_ERROR_INVALID_PARAM} If parameter error.</li>
+ *     <li>{@link DISPLAY_MANAGER_ERROR_SYSTEM_ABNORMAL} If display manager service works abnormally.</li></ul>
  * @since 12
  */
 NativeDisplayManager_ErrorCode OH_NativeDisplayManager_CreateDefaultDisplayCutoutInfo(
@@ -209,8 +209,8 @@ NativeDisplayManager_ErrorCode OH_NativeDisplayManager_CreateDefaultDisplayCutou
  * @param cutoutInfo Pointer to the unusable area information object, which is obtained by calling
  *     {@link OH_NativeDisplayManager_CreateDefaultDisplayCutoutInfo}. For details, see
  *     {@link NativeDisplayManager_CutoutInfo}.
- * @return {@link DISPLAY_MANAGER_OK } If the operation is successful
- *     <br>{@link DISPLAY_MANAGER_ERROR_INVALID_PARAM } If Parameter error.
+ * @return <ul><li>{@link DISPLAY_MANAGER_OK} If the operation is successful.</li>
+ *     <li>{@link DISPLAY_MANAGER_ERROR_INVALID_PARAM} If parameter error.</li></ul>
  * @since 12
  */
 NativeDisplayManager_ErrorCode OH_NativeDisplayManager_DestroyDefaultDisplayCutoutInfo(
@@ -229,9 +229,9 @@ bool OH_NativeDisplayManager_IsFoldable();
  *
  * @param displayMode Pointer to the display mode. For details about the available options, see
  *     {@link NativeDisplayManager_FoldDisplayMode}.
- * @return {@link DISPLAY_MANAGER_OK } If the operation is successful
- *     <br>{@link DISPLAY_MANAGER_ERROR_INVALID_PARAM } If Parameter error.
- *     <br>{@link DISPLAY_MANAGER_ERROR_DEVICE_NOT_SUPPORTED } device not support.
+ * @return <ul><li>{@link DISPLAY_MANAGER_OK} If the operation is successful.</li>
+ *     <li>{@link DISPLAY_MANAGER_ERROR_INVALID_PARAM} If parameter error.</li>
+ *     <li>{@link DISPLAY_MANAGER_ERROR_DEVICE_NOT_SUPPORTED} If device not support.</li></ul>
  * @since 12
  */
 NativeDisplayManager_ErrorCode OH_NativeDisplayManager_GetFoldDisplayMode(
@@ -252,9 +252,9 @@ typedef void (*OH_NativeDisplayManager_DisplayChangeCallback)(uint64_t displayId
  *     {@link OH_NativeDisplayManager_DisplayChangeCallback}.
  * @param listenerIndex Pointer to the index of the listener registered. It can be used as an input parameter of
  *     {@link OH_NativeDisplayManager_UnregisterDisplayChangeListener}.
- * @return {@link DISPLAY_MANAGER_OK } If the operation is successful
- *     <br>{@link DISPLAY_MANAGER_ERROR_INVALID_PARAM } If Parameter error.
- *     <br>{@link DISPLAY_MANAGER_ERROR_SYSTEM_ABNORMAL } If display manager service works abnormally.
+ * @return <ul><li>{@link DISPLAY_MANAGER_OK} If the operation is successful.</li>
+ *     <li>{@link DISPLAY_MANAGER_ERROR_INVALID_PARAM} If parameter error.</li>
+ *     <li>{@link DISPLAY_MANAGER_ERROR_SYSTEM_ABNORMAL} If display manager service works abnormally.</li></ul>
  * @since 12
  */
 NativeDisplayManager_ErrorCode OH_NativeDisplayManager_RegisterDisplayChangeListener(
@@ -265,9 +265,9 @@ NativeDisplayManager_ErrorCode OH_NativeDisplayManager_RegisterDisplayChangeList
  *
  * @param listenerIndex Index of the listener returned when
  *     {@link OH_NativeDisplayManager_RegisterDisplayChangeListener} is called.
- * @return {@link DISPLAY_MANAGER_OK } If the operation is successful
- *     <br>{@link DISPLAY_MANAGER_ERROR_INVALID_PARAM } If Parameter error.
- *     <br>{@link DISPLAY_MANAGER_ERROR_SYSTEM_ABNORMAL } If display manager service works abnormally.
+ * @return <ul><li>{@link DISPLAY_MANAGER_OK} If the operation is successful.</li>
+ *     <li>{@link DISPLAY_MANAGER_ERROR_INVALID_PARAM} If parameter error.</li>
+ *     <li>{@link DISPLAY_MANAGER_ERROR_SYSTEM_ABNORMAL} If display manager service works abnormally.</li></ul>
  * @since 12
  */
 NativeDisplayManager_ErrorCode OH_NativeDisplayManager_UnregisterDisplayChangeListener(uint32_t listenerIndex);
@@ -289,10 +289,10 @@ typedef void (*OH_NativeDisplayManager_FoldDisplayModeChangeCallback)(
  *     changed. For details, see {@link OH_NativeDisplayManager_FoldDisplayModeChangeCallback}.
  * @param listenerIndex Pointer to the index of the listener registered. It can be used as an input parameter of
  *     {@link OH_NativeDisplayManager_UnregisterFoldDisplayModeChangeListener}.
- * @return {@link DISPLAY_MANAGER_OK } If the operation is successful
- *     <br>{@link DISPLAY_MANAGER_ERROR_INVALID_PARAM } If Parameter error.
- *     <br>{@link DISPLAY_MANAGER_ERROR_DEVICE_NOT_SUPPORTED } device not support.
- *     <br>{@link DISPLAY_MANAGER_ERROR_SYSTEM_ABNORMAL } If display manager service works abnormally.
+ * @return <ul><li>{@link DISPLAY_MANAGER_OK} If the operation is successful.</li>
+ *     <li>{@link DISPLAY_MANAGER_ERROR_INVALID_PARAM} If parameter error.</li>
+ *     <li>{@link DISPLAY_MANAGER_ERROR_DEVICE_NOT_SUPPORTED} If device not support.</li>
+ *     <li>{@link DISPLAY_MANAGER_ERROR_SYSTEM_ABNORMAL} If display manager service works abnormally.</li></ul>
  * @since 12
  */
 NativeDisplayManager_ErrorCode OH_NativeDisplayManager_RegisterFoldDisplayModeChangeListener(
@@ -303,10 +303,10 @@ NativeDisplayManager_ErrorCode OH_NativeDisplayManager_RegisterFoldDisplayModeCh
  *
  * @param listenerIndex Index of the listener returned when
  *     {@link OH_NativeDisplayManager_RegisterFoldDisplayModeChangeListener} is called.
- * @return {@link DISPLAY_MANAGER_OK } If the operation is successful
- *     <br>{@link DISPLAY_MANAGER_ERROR_INVALID_PARAM } If Parameter error.
- *     <br>{@link DISPLAY_MANAGER_ERROR_DEVICE_NOT_SUPPORTED } device not support.
- *     <br>{@link DISPLAY_MANAGER_ERROR_SYSTEM_ABNORMAL } If display manager service works abnormally.
+ * @return <ul><li>{@link DISPLAY_MANAGER_OK} If the operation is successful.</li>
+ *     <li>{@link DISPLAY_MANAGER_ERROR_INVALID_PARAM} If parameter error.</li>
+ *     <li>{@link DISPLAY_MANAGER_ERROR_DEVICE_NOT_SUPPORTED} If device not support.</li>
+ *     <li>{@link DISPLAY_MANAGER_ERROR_SYSTEM_ABNORMAL} If display manager service works abnormally.</li></ul>
  * @since 12
  */
 NativeDisplayManager_ErrorCode OH_NativeDisplayManager_UnregisterFoldDisplayModeChangeListener(uint32_t listenerIndex);
@@ -316,9 +316,9 @@ NativeDisplayManager_ErrorCode OH_NativeDisplayManager_UnregisterFoldDisplayMode
  *
  * @param allDisplays Double pointer to the display information, which is encapsulated in
  *     {@link NativeDisplayManager_DisplaysInfo}.
- * @return {@link DISPLAY_MANAGER_OK } If the operation is successful.
- *     <br>{@link DISPLAY_MANAGER_ERROR_INVALID_PARAM } If Parameter error.
- *     <br>{@link DISPLAY_MANAGER_ERROR_SYSTEM_ABNORMAL } If display manager service works abnormally.
+ * @return <ul><li>{@link DISPLAY_MANAGER_OK} If the operation is successful.</li>
+ *     <li>{@link DISPLAY_MANAGER_ERROR_INVALID_PARAM} If parameter error.</li>
+ *     <li>{@link DISPLAY_MANAGER_ERROR_SYSTEM_ABNORMAL} If display manager service works abnormally.</li></ul>
  * @since 14
  */
 NativeDisplayManager_ErrorCode OH_NativeDisplayManager_CreateAllDisplays(
@@ -339,9 +339,9 @@ void OH_NativeDisplayManager_DestroyAllDisplays(NativeDisplayManager_DisplaysInf
  * @param displayId ID of the display. The value must be a non-negative integer.
  * @param displayInfo Double pointer to the display information, which is encapsulated in
  *     {@link NativeDisplayManager_DisplayInfo}.
- * @return {@link DISPLAY_MANAGER_OK } If the operation is successful.
- *     <br>{@link DISPLAY_MANAGER_ERROR_INVALID_PARAM } If Parameter error.
- *     <br>{@link DISPLAY_MANAGER_ERROR_SYSTEM_ABNORMAL } If display manager service works abnormally.
+ * @return <ul><li>{@link DISPLAY_MANAGER_OK} If the operation is successful.</li>
+ *     <li>{@link DISPLAY_MANAGER_ERROR_INVALID_PARAM} If parameter error.</li>
+ *     <li>{@link DISPLAY_MANAGER_ERROR_SYSTEM_ABNORMAL} If display manager service works abnormally.</li></ul>
  * @since 14
  */
 NativeDisplayManager_ErrorCode OH_NativeDisplayManager_CreateDisplayById(uint32_t displayId,
@@ -365,9 +365,9 @@ void OH_NativeDisplayManager_DestroyDisplay(NativeDisplayManager_DisplayInfo *di
  *
  * @param displayInfo Double pointer to the display information, which is encapsulated in
  *     {@link NativeDisplayManager_DisplayInfo}.
- * @return {@link DISPLAY_MANAGER_OK } If the operation is successful.
- *     <br>{@link DISPLAY_MANAGER_ERROR_INVALID_PARAM } If Parameter error.
- *     <br>{@link DISPLAY_MANAGER_ERROR_SYSTEM_ABNORMAL } If display manager service works abnormally.
+ * @return <ul><li>{@link DISPLAY_MANAGER_OK} If the operation is successful.</li>
+ *     <li>{@link DISPLAY_MANAGER_ERROR_INVALID_PARAM} If parameter error.</li>
+ *     <li>{@link DISPLAY_MANAGER_ERROR_SYSTEM_ABNORMAL} If display manager service works abnormally.</li></ul>
  * @since 14
  */
 NativeDisplayManager_ErrorCode OH_NativeDisplayManager_CreatePrimaryDisplay(
@@ -388,9 +388,9 @@ typedef void (*OH_NativeDisplayManager_AvailableAreaChangeCallback)(uint64_t dis
  *     For details, see {@link OH_NativeDisplayManager_AvailableAreaChangeCallback}.
  * @param listenerIndex Pointer to the index of the listener registered.
  *     It can be used as an input parameter of {@link OH_NativeDisplayManager_UnregisterAvailableAreaChangeListener}.
- * @return {@link DISPLAY_MANAGER_OK } If the operation is successful
- *     <br>{@link DISPLAY_MANAGER_ERROR_ILLEGAL_PARAM } If Parameter illegal.
- *     <br>{@link DISPLAY_MANAGER_ERROR_SYSTEM_ABNORMAL } If display manager service works abnormally.
+ * @return <ul><li>{@link DISPLAY_MANAGER_OK} If the operation is successful.</li>
+ *     <li>{@link DISPLAY_MANAGER_ERROR_ILLEGAL_PARAM} If parameter illegal.</li>
+ *     <li>{@link DISPLAY_MANAGER_ERROR_SYSTEM_ABNORMAL} If display manager service works abnormally.</li></ul>
  * @since 20
  */
 NativeDisplayManager_ErrorCode OH_NativeDisplayManager_RegisterAvailableAreaChangeListener(
@@ -401,9 +401,9 @@ NativeDisplayManager_ErrorCode OH_NativeDisplayManager_RegisterAvailableAreaChan
  *
  * @param listenerIndex Index of the listener returned
  *     when {@link OH_NativeDisplayManager_RegisterAvailableAreaChangeListener} is called.
- * @return {@link DISPLAY_MANAGER_OK } If the operation is successful
- *     <br>{@link DISPLAY_MANAGER_ERROR_ILLEGAL_PARAM } If Parameter illegal.
- *     <br>{@link DISPLAY_MANAGER_ERROR_SYSTEM_ABNORMAL } If display manager service works abnormally.
+ * @return <ul><li>{@link DISPLAY_MANAGER_OK} If the operation is successful.</li>
+ *     <li>{@link DISPLAY_MANAGER_ERROR_ILLEGAL_PARAM} If parameter illegal.</li>
+ *     <li>{@link DISPLAY_MANAGER_ERROR_SYSTEM_ABNORMAL} If display manager service works abnormally.</li></ul>
  * @since 20
  */
 NativeDisplayManager_ErrorCode OH_NativeDisplayManager_UnregisterAvailableAreaChangeListener(uint32_t listenerIndex);
@@ -414,9 +414,9 @@ NativeDisplayManager_ErrorCode OH_NativeDisplayManager_UnregisterAvailableAreaCh
  * @param displayId Display ID, which is a non-negative integer.
  * @param availableArea Double pointer to the available area of the display. For details, see
  *     {@link NativeDisplayManager_Rect}.
- * @return {@link DISPLAY_MANAGER_OK } If the operation is successful
- *     <br>{@link DISPLAY_MANAGER_ERROR_DEVICE_NOT_SUPPORTED } device not support.
- *     <br>{@link DISPLAY_MANAGER_ERROR_SYSTEM_ABNORMAL } If display manager service works abnormally.
+ * @return <ul><li>{@link DISPLAY_MANAGER_OK} If the operation is successful.</li>
+ *     <li>{@link DISPLAY_MANAGER_ERROR_ILLEGAL_PARAM} If parameter illegal.</li>
+ *     <li>{@link DISPLAY_MANAGER_ERROR_SYSTEM_ABNORMAL} If display manager service works abnormally.</li></ul>
  * @since 20
  */
 NativeDisplayManager_ErrorCode OH_NativeDisplayManager_CreateAvailableArea(uint64_t displayId, NativeDisplayManager_Rect **availableArea);
@@ -427,8 +427,8 @@ NativeDisplayManager_ErrorCode OH_NativeDisplayManager_CreateAvailableArea(uint6
  * @param availableArea Pointer to the available area, which is obtained by calling
  *     {@link OH_NativeDisplayManager_CreateAvailableArea}.
  *     For details about the available area, see {@link NativeDisplayManager_Rect}.
- * @return {@link DISPLAY_MANAGER_OK } If the operation is successful
- *     <br>{@link DISPLAY_MANAGER_ERROR_ILLEGAL_PARAM } If Parameter illegal.
+ * @return <ul><li>{@link DISPLAY_MANAGER_OK} If the operation is successful.</li>
+ *     <li>{@link DISPLAY_MANAGER_ERROR_ILLEGAL_PARAM} If parameter illegal.</li></ul>
  * @since 20
  */
 NativeDisplayManager_ErrorCode OH_NativeDisplayManager_DestroyAvailableArea(NativeDisplayManager_Rect *availableArea);
@@ -448,9 +448,9 @@ typedef void (*OH_NativeDisplayManager_DisplayAddCallback)(uint64_t displayId);
  *     {@link OH_NativeDisplayManager_DisplayAddCallback}.
  * @param listenerIndex Pointer to the index of the listener registered.
  *     It can be used as an input parameter of {@link OH_NativeDisplayManager_UnregisterDisplayAddListener}.
- * @return {@link DISPLAY_MANAGER_OK } If the operation is successful
- *     <br>{@link DISPLAY_MANAGER_ERROR_ILLEGAL_PARAM } If Parameter illegal.
- *     <br>{@link DISPLAY_MANAGER_ERROR_SYSTEM_ABNORMAL } If display manager service works abnormally.
+ * @return <ul><li>{@link DISPLAY_MANAGER_OK} If the operation is successful.</li>
+ *     <li>{@link DISPLAY_MANAGER_ERROR_ILLEGAL_PARAM} If parameter illegal.</li>
+ *     <li>{@link DISPLAY_MANAGER_ERROR_SYSTEM_ABNORMAL} If display manager service works abnormally.</li></ul>
  * @since 20
  */
 NativeDisplayManager_ErrorCode OH_NativeDisplayManager_RegisterDisplayAddListener(
@@ -461,9 +461,9 @@ NativeDisplayManager_ErrorCode OH_NativeDisplayManager_RegisterDisplayAddListene
  *
  * @param listenerIndex Index of the listener returned when {@link OH_NativeDisplayManager_RegisterDisplayAddListener}
  *     is called.
- * @return {@link DISPLAY_MANAGER_OK } If the operation is successful
- *     <br>{@link DISPLAY_MANAGER_ERROR_ILLEGAL_PARAM } If Parameter illegal.
- *     <br>{@link DISPLAY_MANAGER_ERROR_SYSTEM_ABNORMAL } If display manager service works abnormally.
+ * @return <ul><li>{@link DISPLAY_MANAGER_OK} If the operation is successful.</li>
+ *     <li>{@link DISPLAY_MANAGER_ERROR_ILLEGAL_PARAM} If parameter illegal.</li>
+ *     <li>{@link DISPLAY_MANAGER_ERROR_SYSTEM_ABNORMAL} If display manager service works abnormally.</li></ul>
  * @since 20
  */
 NativeDisplayManager_ErrorCode OH_NativeDisplayManager_UnregisterDisplayAddListener(uint32_t listenerIndex);
@@ -483,9 +483,9 @@ typedef void (*OH_NativeDisplayManager_DisplayRemoveCallback)(uint64_t displayId
  *     {@link OH_NativeDisplayManager_DisplayRemoveCallback}.
  * @param listenerIndex Pointer to the index of the listener registered.
  *     It can be used as an input parameter of {@link OH_NativeDisplayManager_UnregisterDisplayRemoveListener}.
- * @return {@link DISPLAY_MANAGER_OK } If the operation is successful
- *     <br>{@link DISPLAY_MANAGER_ERROR_ILLEGAL_PARAM } If Parameter illegal.
- *     <br>{@link DISPLAY_MANAGER_ERROR_SYSTEM_ABNORMAL } If display manager service works abnormally.
+ * @return <ul><li>{@link DISPLAY_MANAGER_OK} If the operation is successful.</li>
+ *     <li>{@link DISPLAY_MANAGER_ERROR_ILLEGAL_PARAM} If parameter illegal.</li>
+ *     <li>{@link DISPLAY_MANAGER_ERROR_SYSTEM_ABNORMAL} If display manager service works abnormally.</li></ul>
  * @since 20
  */
 NativeDisplayManager_ErrorCode OH_NativeDisplayManager_RegisterDisplayRemoveListener(
@@ -496,9 +496,9 @@ NativeDisplayManager_ErrorCode OH_NativeDisplayManager_RegisterDisplayRemoveList
  *
  * @param listenerIndex Index of the listener returned when
  *     {@link OH_NativeDisplayManager_RegisterDisplayRemoveListener} is called.
- * @return {@link DISPLAY_MANAGER_OK } If the operation is successful
- *     <br>{@link DISPLAY_MANAGER_ERROR_ILLEGAL_PARAM } If Parameter illegal.
- *     <br>{@link DISPLAY_MANAGER_ERROR_SYSTEM_ABNORMAL } If display manager service works abnormally.
+ * @return <ul><li>{@link DISPLAY_MANAGER_OK} If the operation is successful.</li>
+ *     <li>{@link DISPLAY_MANAGER_ERROR_ILLEGAL_PARAM} If parameter illegal.</li>
+ *     <li>{@link DISPLAY_MANAGER_ERROR_SYSTEM_ABNORMAL} If display manager service works abnormally.</li></ul>
  * @since 20
  */
 NativeDisplayManager_ErrorCode OH_NativeDisplayManager_UnregisterDisplayRemoveListener(uint32_t listenerIndex);
@@ -509,8 +509,8 @@ NativeDisplayManager_ErrorCode OH_NativeDisplayManager_UnregisterDisplayRemoveLi
  * @param displayId Display ID, which is a non-negative integer.
  * @param sourceMode Pointer to the source mode. For details about the available options, see
  *     {@link NativeDisplayManager_SourceMode}.
- * @return {@link DISPLAY_MANAGER_OK } If the operation is successful
- *     <br>{@link DISPLAY_MANAGER_ERROR_SYSTEM_ABNORMAL } If display manager service works abnormally.
+ * @return <ul><li>{@link DISPLAY_MANAGER_OK} If the operation is successful.</li>
+ *     <li>{@link DISPLAY_MANAGER_ERROR_SYSTEM_ABNORMAL} If display manager service works abnormally.</li></ul>
  * @since 20
  */
 NativeDisplayManager_ErrorCode OH_NativeDisplayManager_GetDisplaySourceMode(uint64_t displayId, NativeDisplayManager_SourceMode *sourceMode);
@@ -524,8 +524,8 @@ NativeDisplayManager_ErrorCode OH_NativeDisplayManager_GetDisplaySourceMode(uint
  *     an integer and is returned as an output parameter.
  * @param y Pointer to the y-coordinate relative to the upper left corner of the main screen, in px. The value must be
  *     an integer and is returned as an output parameter.
- * @return {@link DISPLAY_MANAGER_OK } If the operation is successful
- *     <br>{@link DISPLAY_MANAGER_ERROR_SYSTEM_ABNORMAL } If display manager service works abnormally.
+ * @return <ul><li>{@link DISPLAY_MANAGER_OK} If the operation is successful.</li>
+ *     <li>{@link DISPLAY_MANAGER_ERROR_SYSTEM_ABNORMAL} If display manager service works abnormally.</li></ul>
  * @since 20
  */
 NativeDisplayManager_ErrorCode OH_NativeDisplayManager_GetDisplayPosition(uint64_t displayId, int32_t *x, int32_t *y);
