@@ -74,7 +74,7 @@ OH_AudioSuite_Result OH_AudioSuiteEngine_Destroy(OH_AudioSuiteEngine* audioSuite
  * the engine can create multiple pipelines, and one pipeline must include at least one input node and one output node.
  * When the pipeline operates in {@link #AUDIOSUITE_PIPELINE_EDIT_MODE}, it supports all effect nodes.
  * When the pipeline operates in {@link #AUDIOSUITE_PIPELINE_REALTIME_MODE},
- * before API version 23, it only supports the {@link EFFECT_NODE_TYPE_EQUALIZER} effect node.
+ * before API version 23, it only supports the {@link EFFECT_NODE_TYPE_EQUALIZER} effect node,
  * in API version 23 and later, it supports all effect node.
  *
  * @param audioSuiteEngine Reference created by OH_AudioSuiteEngine_Create.
