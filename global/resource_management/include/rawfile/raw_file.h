@@ -189,6 +189,7 @@ void OH_ResourceManager_CloseRawFile(RawFile *rawFile);
  */
 long OH_ResourceManager_GetRawFileOffset(const RawFile *rawFile);
 
+#ifdef __cplusplus
 /**
  * @brief Opens a rawfile based on the specified offset (in long) and file length (in long) and obtains the file
  * descriptor. The file descriptor obtained can be used to read the file.
@@ -202,6 +203,7 @@ long OH_ResourceManager_GetRawFileOffset(const RawFile *rawFile);
  * @useinstead OH_ResourceManager_GetRawFileDescriptorData
  */
 bool OH_ResourceManager_GetRawFileDescriptor(const RawFile *rawFile, RawFileDescriptor &descriptor);
+#endif
 
 /**
  * @brief Opens a rawfile based on the specified offset (in long) and file length (in long) and obtains the file
@@ -216,6 +218,7 @@ bool OH_ResourceManager_GetRawFileDescriptor(const RawFile *rawFile, RawFileDesc
  */
 bool OH_ResourceManager_GetRawFileDescriptorData(const RawFile *rawFile, RawFileDescriptor *descriptor);
 
+#ifdef __cplusplus
 /**
  * @brief Releases the file descriptor of a rawfile. To prevent file descriptor leakage, you are advised to release a
  * rawfile descriptor immediately after use.
@@ -228,6 +231,7 @@ bool OH_ResourceManager_GetRawFileDescriptorData(const RawFile *rawFile, RawFile
  * @useinstead OH_ResourceManager_ReleaseRawFileDescriptorData
  */
 bool OH_ResourceManager_ReleaseRawFileDescriptor(const RawFileDescriptor &descriptor);
+#endif
 
 /**
  * @brief Releases the file descriptor of a rawfile. To prevent file descriptor leakage, you are advised to release a
