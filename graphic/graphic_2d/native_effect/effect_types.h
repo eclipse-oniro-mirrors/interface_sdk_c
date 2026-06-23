@@ -66,7 +66,7 @@ typedef struct OH_PixelmapNative OH_PixelmapNative;
 typedef struct OH_Filter_ColorMatrix {
     /** Custom color matrix. The value is a 5 x 4 array. */
     float val[20];
-};
+} OH_Filter_ColorMatrix;
 
 /**
  * @brief Enumerates the status codes that may be used by the effect filter.
@@ -75,24 +75,13 @@ typedef struct OH_Filter_ColorMatrix {
  * @version 1.0
  */
 typedef enum {
-    /**
- * Operation successful.
- */
+    /** Operation successful. */
     EFFECT_SUCCESS = 0,
-
-    /**
- * Invalid parameter.
- */
+    /** Invalid parameter. */
     EFFECT_BAD_PARAMETER = 401,
-
-    /**
- * Unsupported operation.
- */
+    /** Unsupported operation. */
     EFFECT_UNSUPPORTED_OPERATION = 7600201,
-
-    /**
- * Unknown error.
- */
+    /** Unknown error. */
     EFFECT_UNKNOWN_ERROR = 7600901
 } EffectErrorCode;
 
@@ -102,23 +91,13 @@ typedef enum {
  * @since 14
  */
 typedef enum {
-    /**
- * Replicates the edge color if the shader effect draws outside of its original boundary.
- */
+    /** Replicates the edge color if the shader effect draws outside of its original boundary. */
     CLAMP = 0,
-
-    /**
- * Repeats the shader effect in both horizontal and vertical directions.
- */
+    /** Repeats the shader effect in both horizontal and vertical directions. */
     REPEAT,
-    /**
- * Repeats the shader effect in both horizontal and vertical directions, alternating mirror images.
- */
+    /** Repeats the shader effect in both horizontal and vertical directions, alternating mirror images. */
     MIRROR,
-
-    /**
- * Renders the shader effect only within the original boundary.
- */
+    /** Renders the shader effect only within the original boundary. */
     DECAL
 } EffectTileMode;
 

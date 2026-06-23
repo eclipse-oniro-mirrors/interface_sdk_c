@@ -67,7 +67,7 @@ typedef struct OH_PixelmapNative OH_PixelmapNative;
 typedef struct OH_Filter_ColorMatrix {
     /** 自定义颜色矩阵，值为 5 x 4 的数组 */
     float val[20];
-};
+} OH_Filter_ColorMatrix;
 
 /**
  * @brief 定义滤镜效果的状态码。
@@ -76,24 +76,13 @@ typedef struct OH_Filter_ColorMatrix {
  * @version 1.0
  */
 typedef enum {
-    /**
- * 成功。
- */
+    /** 成功。 */
     EFFECT_SUCCESS = 0,
-
-    /**
- * 无效的参数。
- */
+    /** 无效的参数。 */
     EFFECT_BAD_PARAMETER = 401,
-
-    /**
- * 不支持的操作。
- */
+    /** 不支持的操作。 */
     EFFECT_UNSUPPORTED_OPERATION = 7600201,
-
-    /**
- * 未知错误。
- */
+    /** 未知错误。 */
     EFFECT_UNKNOWN_ERROR = 7600901
 } EffectErrorCode;
 
@@ -103,23 +92,13 @@ typedef enum {
  * @since 14
  */
 typedef enum {
-    /**
- * 如果着色器效果超出其原始边界，剩余区域使用着色器的边缘颜色填充。
- */
+    /** 如果着色器效果超出其原始边界，剩余区域使用着色器的边缘颜色填充。 */
     CLAMP = 0,
-
-    /**
- * 在水平和垂直方向上重复着色器效果。
- */
+    /** 在水平和垂直方向上重复着色器效果。 */
     REPEAT,
-    /**
- * 在水平和垂直方向上重复着色器效果，交替镜像图像，以便相邻图像始终接合。
- */
+    /** 在水平和垂直方向上重复着色器效果，交替镜像图像，以便相邻图像始终接合。 */
     MIRROR,
-
-    /**
- * 仅在其原始边界内渲染着色器效果。
- */
+    /** 仅在其原始边界内渲染着色器效果。 */
     DECAL
 } EffectTileMode;
 
