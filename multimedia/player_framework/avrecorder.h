@@ -35,7 +35,6 @@
 #ifndef MULTIMEDIA_PLAYER_FRAMEWORK_NATIVE_AVRECORDER_H
 #define MULTIMEDIA_PLAYER_FRAMEWORK_NATIVE_AVRECORDER_H
 
-#include <memory>
 #include <stdint.h>
 #include <stdio.h>
 #include "avrecorder_base.h"
