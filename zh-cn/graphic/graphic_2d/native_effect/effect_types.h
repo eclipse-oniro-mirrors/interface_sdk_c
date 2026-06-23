@@ -19,7 +19,7 @@
  * @{
  *
  * @brief Provides APIs for obtaining effect filter and information.
- * @syscap SystemCapability.Multimedia.Image.Core
+ *
  * @since 12
  */
 
@@ -32,6 +32,7 @@
  * @syscap SystemCapability.Multimedia.Image.Core
  * @since 12
  */
+
 #ifndef C_INCLUDE_EFFECT_TYPES_H
 #define C_INCLUDE_EFFECT_TYPES_H
 
@@ -64,7 +65,7 @@ typedef struct OH_PixelmapNative OH_PixelmapNative;
  * @since 12
  * @version 1.0
  */
-typedef struct OH_Filter_ColorMatrix {
+typedef struct {
     /** 自定义颜色矩阵，值为 5 x 4 的数组 */
     float val[20];
 } OH_Filter_ColorMatrix;

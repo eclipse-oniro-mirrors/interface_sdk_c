@@ -19,7 +19,6 @@
  *
  * @brief Provides APIs for obtaining effect filter and information.
  *
- * @syscap SystemCapability.Multimedia.Image.Core
  * @since 12
  */
 
@@ -33,6 +32,7 @@
  * @syscap SystemCapability.Multimedia.Image.Core
  * @since 12
  */
+
 #ifndef C_INCLUDE_EFFECT_FILTER_H
 #define C_INCLUDE_EFFECT_FILTER_H
 
