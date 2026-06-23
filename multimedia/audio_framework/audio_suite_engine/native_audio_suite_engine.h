@@ -38,7 +38,10 @@
  */
 #ifndef NATIVE_AUDIO_SUITE_ENGINE_H
 #define NATIVE_AUDIO_SUITE_ENGINE_H
+
+#include <stdbool.h>
 #include "native_audio_suite_base.h"
+
 #ifdef __cplusplus
 extern "C" {
 #endif

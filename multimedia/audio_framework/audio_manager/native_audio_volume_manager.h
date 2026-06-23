@@ -40,6 +40,7 @@
 #ifndef NATIVE_AUDIO_VOLUME_MANAGER_H
 #define NATIVE_AUDIO_VOLUME_MANAGER_H
 
+#include <stdbool.h>
 #include "native_audio_common.h"
 #include "native_audiostream_base.h"
 
