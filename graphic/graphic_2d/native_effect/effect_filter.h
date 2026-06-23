@@ -18,7 +18,6 @@
  * @{
  *
  * @brief Provides APIs for obtaining effect filter and information.
- *
  * @syscap SystemCapability.Multimedia.Image.Core
  * @since 12
  */
@@ -26,14 +25,12 @@
 /**
  * @file effect_filter.h
  *
- * @brief Declares the APIs that can access a effect filter.
- *
+ * @brief This file declares the APIs of an image effect filter.
  * @kit ArkGraphics2D
  * @library libnative_effect.so
  * @syscap SystemCapability.Multimedia.Image.Core
  * @since 12
  */
-
 #ifndef C_INCLUDE_EFFECT_FILTER_H
 #define C_INCLUDE_EFFECT_FILTER_H
 
@@ -43,107 +40,99 @@ extern "C" {
 #endif
 
 /**
- * @brief Creates an <b>OH_Filter</b> object.
+ * @brief Creates an **OH_Filter** object.
  *
- * @syscap SystemCapability.Multimedia.Image.Core
- * @param pixelmap The pixelmap pointer to create filter.
- * @param filter The OH_Filter pointer will be operated.
- * @return Returns {@link EffectErrorCode}.
+ * @param pixelmap Pointer to the PixelMap.
+ * @param filter Double pointer to the filter created.
+ * @return Returns a status code. For details, see {@link EffectErrorCode}.
  * @since 12
  * @version 1.0
  */
 EffectErrorCode OH_Filter_CreateEffect(OH_PixelmapNative* pixelmap, OH_Filter** filter);
 
 /**
- * @brief Release an <b>OH_Filter</b> object.
+ * @brief Releases an **OH_Filter** object.
  *
- * @syscap SystemCapability.Multimedia.Image.Core
- * @param filter The OH_Filter pointer will be operated.
- * @return Returns {@link EffectErrorCode}
+ * @param filter Pointer to the filter.
+ * @return Returns a status code. For details, see {@link EffectErrorCode}.
  * @since 12
  * @version 1.0
  */
 EffectErrorCode OH_Filter_Release(OH_Filter* filter);
 
 /**
- * @brief Creates a blur effect and then add to the filter.
+ * @brief Creates the frosted glass effect and adds it to a filter.
  *
- * @syscap SystemCapability.Multimedia.Image.Core
- * @param filter The OH_Filter pointer will be operated.
- * @param radius The radius of the blur effect.
- * @return Returns {@link EffectErrorCode}.
+ * @param filter Pointer to the filter.
+ * @param radius Blur radius of the frosted glass effect, in px.
+ * @return Returns a status code. For details, see {@link EffectErrorCode}.
  * @since 12
  * @version 1.0
  */
 EffectErrorCode OH_Filter_Blur(OH_Filter* filter, float radius);
 
 /**
- * @brief Creates a blur effect and then add to the filter.
+ * @brief Creates the frosted glass effect and adds it to a filter. It supports the tiling mode of the shader effect.
  *
- * @syscap SystemCapability.Multimedia.Image.Core
- * @param filter The OH_Filter pointer will be operated.
- * @param radius The radius of the blur effect.
- * @param tileMode The tileMode of the blur effect.
- * @return BlurWithTileMode result code.
- *        {@link EFFECT_SUCCESS} if the operation is successful.
- *        {@link EFFECT_BAD_PARAMETER} if parameter is invalid.
+ * @param filter Pointer to the filter.
+ * @param radius Blur radius of the frosted glass effect, in px.
+ * @param tileMode Tile mode of the shader effect. For details about the available options, see {@link EffectTileMode}.
+ * @return Returns a status code. For details, see {@link EffectErrorCode}.
+ * If the operation is successful, **EFFECT_SUCCESS** is returned.
+ * If a parameter is invalid, **EFFECT_BAD_PARAMETER** is returned.
  * @since 14
  */
 EffectErrorCode OH_Filter_BlurWithTileMode(OH_Filter* filter, float radius, EffectTileMode tileMode);
 
 /**
- * @brief Creates a brighten effect and then add to the filter.
+ * @brief Creates the brightening effect and adds it to a filter.
  *
- * @syscap SystemCapability.Multimedia.Image.Core
- * @param filter The OH_Filter pointer will be operated.
- * @param brightness The brightness of the brighten effect.
- * @return Returns {@link EffectErrorCode}.
+ * @param filter Pointer to the filter.
+ * @param brightness Brightness value of the brightening effect, ranging from 0 to 1. When the value is 0, the image
+ * brightness remains unchanged. When the value is 1, the image becomes fully brightened.
+ * @return Returns a status code. For details, see {@link EffectErrorCode}.
  * @since 12
  * @version 1.0
  */
 EffectErrorCode OH_Filter_Brighten(OH_Filter* filter, float brightness);
 
 /**
- * @brief Creates a gray scale effect and then add to the filter.
+ * @brief Creates the grayscale effect and adds it to a filter.
  *
- * @syscap SystemCapability.Multimedia.Image.Core
- * @param filter The OH_Filter pointer will be operated.
- * @return Returns {@link EffectErrorCode}.
+ * @param filter Pointer to the filter.
+ * @return Returns a status code. For details, see {@link EffectErrorCode}.
  * @since 12
  * @version 1.0
  */
 EffectErrorCode OH_Filter_GrayScale(OH_Filter* filter);
 
 /**
- * @brief Creates a invert effect and then add to the filter.
+ * @brief Creates the inverted color effect and adds it to a filter.
  *
- * @syscap SystemCapability.Multimedia.Image.Core
- * @param filter The OH_Filter pointer will be operated.
- * @return Returns {@link EffectErrorCode}.
+ * @param filter Pointer to the filter.
+ * @return Returns a status code. For details, see {@link EffectErrorCode}.
  * @since 12
  * @version 1.0
  */
 EffectErrorCode OH_Filter_Invert(OH_Filter* filter);
 
 /**
- * @brief Creates a effect with a matrix and then add to the filter.
+ * @brief Creates a custom effect through a matrix and adds it to a filter.
  *
- * @syscap SystemCapability.Multimedia.Image.Core
- * @param filter The OH_Filter pointer will be operated.
- * @param matrix The {@link OH_Filter_ColorMatrix} pointer to create a custom effect.
- * @return Returns {@link EffectErrorCode}.
+ * @param filter Pointer to the filter.
+ * @param matrix Custom {@link OH_Filter_ColorMatrix} used to create the filter.
+ * @return Returns a status code. For details, see {@link EffectErrorCode}.
  * @since 12
  * @version 1.0
  */
 EffectErrorCode OH_Filter_SetColorMatrix(OH_Filter* filter, OH_Filter_ColorMatrix* matrix);
 
 /**
- * @brief Get a pixelmap with the filter effect.
+ * @brief Obtains the PixelMap with the filter effect.
  *
- * @syscap SystemCapability.Multimedia.Image.Core
- * @param filter The OH_Filter pointer will be operated.
- * @param pixelmap The pixelmap pointer wiil be operated.
- * @return Returns {@link EffectErrorCode}.
+ * @param filter Pointer to the filter.
+ * @param pixelmap Double pointer to the PixelMap obtained.
+ * @return Returns a status code. For details, see {@link EffectErrorCode}.
  * @since 12
  * @version 1.0
  */

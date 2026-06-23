@@ -15,6 +15,7 @@
 
 /**
  * @addtogroup effectKit
+ *
  * @{
  *
  * @brief Provides APIs for obtaining effect filter and information.
@@ -42,7 +43,7 @@ extern "C" {
 #endif
 
 /**
- * @brief Defines a struct for a filter used to generate a filter PixelMap.
+ * @brief 滤镜结构体，用来生成滤镜位图。
  *
  * @since 12
  * @version 1.0
@@ -50,7 +51,7 @@ extern "C" {
 typedef struct OH_Filter OH_Filter;
 
 /**
- * @brief Defines a pixel map defined by the image framework.
+ * @brief 声明由图像框架定义的像素图对象。
  *
  * @since 12
  * @version 1.0
@@ -58,66 +59,66 @@ typedef struct OH_Filter OH_Filter;
 typedef struct OH_PixelmapNative OH_PixelmapNative;
 
 /**
- * @brief Describes a matrix used to create an effect filter.
+ * @brief 定义一个用来创建滤镜效果的矩阵。
  *
  * @since 12
  * @version 1.0
  */
 typedef struct OH_Filter_ColorMatrix {
-    /** Custom color matrix. The value is a 5 x 4 array. */
+    /** 自定义颜色矩阵，值为 5 x 4 的数组 */
     float val[20];
 };
 
 /**
- * @brief Enumerates the status codes that may be used by the effect filter.
+ * @brief 定义滤镜效果的状态码。
  *
  * @since 12
  * @version 1.0
  */
 typedef enum {
     /**
- * Operation successful.
+ * 成功。
  */
     EFFECT_SUCCESS = 0,
 
     /**
- * Invalid parameter.
+ * 无效的参数。
  */
     EFFECT_BAD_PARAMETER = 401,
 
     /**
- * Unsupported operation.
+ * 不支持的操作。
  */
     EFFECT_UNSUPPORTED_OPERATION = 7600201,
 
     /**
- * Unknown error.
+ * 未知错误。
  */
     EFFECT_UNKNOWN_ERROR = 7600901
 } EffectErrorCode;
 
 /**
- * @brief Enumerates the tile modes of the shader effect.
+ * @brief 定义着色器效果平铺模式的枚举。
  *
  * @since 14
  */
 typedef enum {
     /**
- * Replicates the edge color if the shader effect draws outside of its original boundary.
+ * 如果着色器效果超出其原始边界，剩余区域使用着色器的边缘颜色填充。
  */
     CLAMP = 0,
 
     /**
- * Repeats the shader effect in both horizontal and vertical directions.
+ * 在水平和垂直方向上重复着色器效果。
  */
     REPEAT,
     /**
- * Repeats the shader effect in both horizontal and vertical directions, alternating mirror images.
+ * 在水平和垂直方向上重复着色器效果，交替镜像图像，以便相邻图像始终接合。
  */
     MIRROR,
 
     /**
- * Renders the shader effect only within the original boundary.
+ * 仅在其原始边界内渲染着色器效果。
  */
     DECAL
 } EffectTileMode;
