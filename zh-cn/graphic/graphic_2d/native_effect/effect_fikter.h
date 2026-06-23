@@ -46,7 +46,10 @@ extern "C" {
  *
  * @param pixelmap [in] 创建滤镜的位图。
  * @param filter [out] 用来接收滤镜的二级指针。
- * @return 返回结果参见状态码{@link EffectErrorCode}。
+ * @return <ul>
+ *         <li>{@link EffectErrorCode#EFFECT_SUCCESS} 操作成功。</li>
+ *         <li>{@link EffectErrorCode#EFFECT_BAD_PARAMETER} pixelmap或filter为NULL。</li>
+ *         </ul>
  * @release effect_filter/OH_Filter_Release {filter}
  * @since 12
  * @version 1.0
@@ -57,7 +60,10 @@ EffectErrorCode OH_Filter_CreateEffect(OH_PixelmapNative* pixelmap, OH_Filter** 
  * @brief 释放OH_Filter对象。
  *
  * @param filter [in] 被释放的对象指针。
- * @return 返回结果参见状态码{@link EffectErrorCode}。
+ * @return <ul>
+ *         <li>{@link EffectErrorCode#EFFECT_SUCCESS} 操作成功。</li>
+ *         <li>{@link EffectErrorCode#EFFECT_BAD_PARAMETER} filter为NULL。</li>
+ *         </ul>
  * @since 12
  * @version 1.0
  */
@@ -68,7 +74,10 @@ EffectErrorCode OH_Filter_Release(OH_Filter* filter);
  *
  * @param filter [in] 滤镜指针。
  * @param radius [in] 毛玻璃效果的模糊半径，单位为像素。
- * @return 返回结果参见状态码{@link EffectErrorCode}。
+ * @return <ul>
+ *         <li>{@link EffectErrorCode#EFFECT_SUCCESS} 操作成功。</li>
+ *         <li>{@link EffectErrorCode#EFFECT_BAD_PARAMETER} filter为NULL。</li>
+ *         </ul>
  * @since 12
  * @version 1.0
  */
@@ -80,9 +89,10 @@ EffectErrorCode OH_Filter_Blur(OH_Filter* filter, float radius);
  * @param filter [in] 滤镜指针。
  * @param radius [in] 毛玻璃效果的模糊半径，单位为像素。
  * @param tileMode [in] 着色器效果平铺模式，支持可选的具体模式可见{@link EffectTileMode}枚举。
- * @return 返回结果参见状态码{@link EffectErrorCode}。
- * 操作成功则返回EFFECT_SUCCESS。
- * 无效参数则返回EFFECT_BAD_PARAMETER。
+ * @return <ul>
+ *         <li>{@link EffectErrorCode#EFFECT_SUCCESS} 操作成功。</li>
+ *         <li>{@link EffectErrorCode#EFFECT_BAD_PARAMETER} filter为NULL。</li>
+ *         </ul>
  * @since 14
  */
 EffectErrorCode OH_Filter_BlurWithTileMode(OH_Filter* filter, float radius, EffectTileMode tileMode);
@@ -92,7 +102,10 @@ EffectErrorCode OH_Filter_BlurWithTileMode(OH_Filter* filter, float radius, Effe
  *
  * @param filter [in] 滤镜指针。
  * @param brightness [in] 提亮效果的亮度值，取值范围在0-1之间，取值为0时图像保持不变，取值为1时图像全白。
- * @return 返回结果参见状态码{@link EffectErrorCode}。
+ * @return <ul>
+ *         <li>{@link EffectErrorCode#EFFECT_SUCCESS} 操作成功。</li>
+ *         <li>{@link EffectErrorCode#EFFECT_BAD_PARAMETER} filter为NULL。</li>
+ *         </ul>
  * @since 12
  * @version 1.0
  */
@@ -102,7 +115,10 @@ EffectErrorCode OH_Filter_Brighten(OH_Filter* filter, float brightness);
  * @brief 创建一个灰度效果并且添加到滤镜中。
  *
  * @param filter [in] 滤镜指针。
- * @return 返回结果参见状态码{@link EffectErrorCode}。
+ * @return <ul>
+ *         <li>{@link EffectErrorCode#EFFECT_SUCCESS} 操作成功。</li>
+ *         <li>{@link EffectErrorCode#EFFECT_BAD_PARAMETER} filter为NULL。</li>
+ *         </ul>
  * @since 12
  * @version 1.0
  */
@@ -112,7 +128,10 @@ EffectErrorCode OH_Filter_GrayScale(OH_Filter* filter);
  * @brief 创建一个反色效果并且添加到滤镜中。
  *
  * @param filter [in] 滤镜指针。
- * @return 返回结果参见状态码{@link EffectErrorCode}。
+ * @return <ul>
+ *         <li>{@link EffectErrorCode#EFFECT_SUCCESS} 操作成功。</li>
+ *         <li>{@link EffectErrorCode#EFFECT_BAD_PARAMETER} filter为NULL。</li>
+ *         </ul>
  * @since 12
  * @version 1.0
  */
@@ -123,7 +142,10 @@ EffectErrorCode OH_Filter_Invert(OH_Filter* filter);
  *
  * @param filter [in] 滤镜指针。
  * @param matrix [in] 用来创建滤镜的自定义矩阵{@link OH_Filter_ColorMatrix}。
- * @return 返回结果参见状态码{@link EffectErrorCode}。
+ * @return <ul>
+ *         <li>{@link EffectErrorCode#EFFECT_SUCCESS} 操作成功。</li>
+ *         <li>{@link EffectErrorCode#EFFECT_BAD_PARAMETER} filter或matrix为NULL。</li>
+ *         </ul>
  * @since 12
  * @version 1.0
  */
@@ -134,7 +156,10 @@ EffectErrorCode OH_Filter_SetColorMatrix(OH_Filter* filter, OH_Filter_ColorMatri
  *
  * @param filter [in] 用来创建位图的滤镜指针。
  * @param pixelmap [out] 用来接收位图的二级指针。
- * @return 返回结果参见状态码{@link EffectErrorCode}。
+ * @return <ul>
+ *         <li>{@link EffectErrorCode#EFFECT_SUCCESS} 操作成功。</li>
+ *         <li>{@link EffectErrorCode#EFFECT_BAD_PARAMETER} filter或pixelmap为NULL。</li>
+ *         </ul>
  * @release pixelmap_native/OH_PixelmapNative_Release {pixelmap}
  * @since 12
  * @version 1.0

@@ -44,7 +44,10 @@ extern "C" {
  *
  * @param pixelmap [in] Pointer to the PixelMap.
  * @param filter [out] Double pointer to the filter created.
- * @return Returns a status code. For details, see {@link EffectErrorCode}.
+ * @return <ul>
+ *         <li>{@link EffectErrorCode#EFFECT_SUCCESS} if the operation is successful.</li>
+ *         <li>{@link EffectErrorCode#EFFECT_BAD_PARAMETER} if pixelmap or filter is NULL.</li>
+ *         </ul>
  * @release effect_filter/OH_Filter_Release {filter}
  * @since 12
  * @version 1.0
@@ -55,7 +58,10 @@ EffectErrorCode OH_Filter_CreateEffect(OH_PixelmapNative* pixelmap, OH_Filter** 
  * @brief Releases an **OH_Filter** object.
  *
  * @param filter [in] Pointer to the filter.
- * @return Returns a status code. For details, see {@link EffectErrorCode}.
+ * @return <ul>
+ *         <li>{@link EffectErrorCode#EFFECT_SUCCESS} if the operation is successful.</li>
+ *         <li>{@link EffectErrorCode#EFFECT_BAD_PARAMETER} if filter is NULL.</li>
+ *         </ul>
  * @since 12
  * @version 1.0
  */
@@ -66,7 +72,10 @@ EffectErrorCode OH_Filter_Release(OH_Filter* filter);
  *
  * @param filter [in] Pointer to the filter.
  * @param radius [in] Blur radius of the frosted glass effect, in px.
- * @return Returns a status code. For details, see {@link EffectErrorCode}.
+ * @return <ul>
+ *         <li>{@link EffectErrorCode#EFFECT_SUCCESS} if the operation is successful.</li>
+ *         <li>{@link EffectErrorCode#EFFECT_BAD_PARAMETER} if filter is NULL.</li>
+ *         </ul>
  * @since 12
  * @version 1.0
  */
@@ -79,9 +88,10 @@ EffectErrorCode OH_Filter_Blur(OH_Filter* filter, float radius);
  * @param radius [in] Blur radius of the frosted glass effect, in px.
  * @param tileMode [in] Tile mode of the shader effect. For details about the available options,
  *     see {@link EffectTileMode}.
- * @return Returns a status code. For details, see {@link EffectErrorCode}.
- * If the operation is successful, **EFFECT_SUCCESS** is returned.
- * If a parameter is invalid, **EFFECT_BAD_PARAMETER** is returned.
+ * @return <ul>
+ *         <li>{@link EffectErrorCode#EFFECT_SUCCESS} if the operation is successful.</li>
+ *         <li>{@link EffectErrorCode#EFFECT_BAD_PARAMETER} if filter is NULL.</li>
+ *         </ul>
  * @since 14
  */
 EffectErrorCode OH_Filter_BlurWithTileMode(OH_Filter* filter, float radius, EffectTileMode tileMode);
@@ -93,7 +103,10 @@ EffectErrorCode OH_Filter_BlurWithTileMode(OH_Filter* filter, float radius, Effe
  * @param brightness [in] Brightness value of the brightening effect, ranging from 0 to 1.
  *     When the value is 0, the image brightness remains unchanged.
  *     When the value is 1, the image becomes fully brightened.
- * @return Returns a status code. For details, see {@link EffectErrorCode}.
+ * @return <ul>
+ *         <li>{@link EffectErrorCode#EFFECT_SUCCESS} if the operation is successful.</li>
+ *         <li>{@link EffectErrorCode#EFFECT_BAD_PARAMETER} if filter is NULL.</li>
+ *         </ul>
  * @since 12
  * @version 1.0
  */
@@ -103,7 +116,10 @@ EffectErrorCode OH_Filter_Brighten(OH_Filter* filter, float brightness);
  * @brief Creates the grayscale effect and adds it to a filter.
  *
  * @param filter [in] Pointer to the filter.
- * @return Returns a status code. For details, see {@link EffectErrorCode}.
+ * @return <ul>
+ *         <li>{@link EffectErrorCode#EFFECT_SUCCESS} if the operation is successful.</li>
+ *         <li>{@link EffectErrorCode#EFFECT_BAD_PARAMETER} if filter is NULL.</li>
+ *         </ul>
  * @since 12
  * @version 1.0
  */
@@ -113,7 +129,10 @@ EffectErrorCode OH_Filter_GrayScale(OH_Filter* filter);
  * @brief Creates the inverted color effect and adds it to a filter.
  *
  * @param filter [in] Pointer to the filter.
- * @return Returns a status code. For details, see {@link EffectErrorCode}.
+ * @return <ul>
+ *         <li>{@link EffectErrorCode#EFFECT_SUCCESS} if the operation is successful.</li>
+ *         <li>{@link EffectErrorCode#EFFECT_BAD_PARAMETER} if filter is NULL.</li>
+ *         </ul>
  * @since 12
  * @version 1.0
  */
@@ -124,7 +143,10 @@ EffectErrorCode OH_Filter_Invert(OH_Filter* filter);
  *
  * @param filter [in] Pointer to the filter.
  * @param matrix [in] Custom {@link OH_Filter_ColorMatrix} used to create the filter.
- * @return Returns a status code. For details, see {@link EffectErrorCode}.
+ * @return <ul>
+ *         <li>{@link EffectErrorCode#EFFECT_SUCCESS} if the operation is successful.</li>
+ *         <li>{@link EffectErrorCode#EFFECT_BAD_PARAMETER} if filter or matrix is NULL.</li>
+ *         </ul>
  * @since 12
  * @version 1.0
  */
@@ -135,7 +157,10 @@ EffectErrorCode OH_Filter_SetColorMatrix(OH_Filter* filter, OH_Filter_ColorMatri
  *
  * @param filter [in] Pointer to the filter.
  * @param pixelmap [out] Double pointer to the PixelMap obtained.
- * @return Returns a status code. For details, see {@link EffectErrorCode}.
+ * @return <ul>
+ *         <li>{@link EffectErrorCode#EFFECT_SUCCESS} if the operation is successful.</li>
+ *         <li>{@link EffectErrorCode#EFFECT_BAD_PARAMETER} if filter or pixelmap is NULL.</li>
+ *         </ul>
  * @release pixelmap_native/OH_PixelmapNative_Release {pixelmap}
  * @since 12
  * @version 1.0
