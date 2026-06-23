@@ -42,9 +42,10 @@ extern "C" {
 /**
  * @brief Creates an **OH_Filter** object.
  *
- * @param pixelmap Pointer to the PixelMap.
- * @param filter Double pointer to the filter created.
+ * @param pixelmap [in] Pointer to the PixelMap.
+ * @param filter [out] Double pointer to the filter created.
  * @return Returns a status code. For details, see {@link EffectErrorCode}.
+ * @release effect_filter/OH_Filter_Release {filter}
  * @since 12
  * @version 1.0
  */
@@ -53,7 +54,7 @@ EffectErrorCode OH_Filter_CreateEffect(OH_PixelmapNative* pixelmap, OH_Filter** 
 /**
  * @brief Releases an **OH_Filter** object.
  *
- * @param filter Pointer to the filter.
+ * @param filter [in] Pointer to the filter.
  * @return Returns a status code. For details, see {@link EffectErrorCode}.
  * @since 12
  * @version 1.0
@@ -63,8 +64,8 @@ EffectErrorCode OH_Filter_Release(OH_Filter* filter);
 /**
  * @brief Creates the frosted glass effect and adds it to a filter.
  *
- * @param filter Pointer to the filter.
- * @param radius Blur radius of the frosted glass effect, in px.
+ * @param filter [in] Pointer to the filter.
+ * @param radius [in] Blur radius of the frosted glass effect, in px.
  * @return Returns a status code. For details, see {@link EffectErrorCode}.
  * @since 12
  * @version 1.0
@@ -74,9 +75,10 @@ EffectErrorCode OH_Filter_Blur(OH_Filter* filter, float radius);
 /**
  * @brief Creates the frosted glass effect and adds it to a filter. It supports the tiling mode of the shader effect.
  *
- * @param filter Pointer to the filter.
- * @param radius Blur radius of the frosted glass effect, in px.
- * @param tileMode Tile mode of the shader effect. For details about the available options, see {@link EffectTileMode}.
+ * @param filter [in] Pointer to the filter.
+ * @param radius [in] Blur radius of the frosted glass effect, in px.
+ * @param tileMode [in] Tile mode of the shader effect. For details about the available options,
+ *     see {@link EffectTileMode}.
  * @return Returns a status code. For details, see {@link EffectErrorCode}.
  * If the operation is successful, **EFFECT_SUCCESS** is returned.
  * If a parameter is invalid, **EFFECT_BAD_PARAMETER** is returned.
@@ -87,9 +89,10 @@ EffectErrorCode OH_Filter_BlurWithTileMode(OH_Filter* filter, float radius, Effe
 /**
  * @brief Creates the brightening effect and adds it to a filter.
  *
- * @param filter Pointer to the filter.
- * @param brightness Brightness value of the brightening effect, ranging from 0 to 1. When the value is 0, the image
- * brightness remains unchanged. When the value is 1, the image becomes fully brightened.
+ * @param filter [in] Pointer to the filter.
+ * @param brightness [in] Brightness value of the brightening effect, ranging from 0 to 1.
+ *     When the value is 0, the image brightness remains unchanged.
+ *     When the value is 1, the image becomes fully brightened.
  * @return Returns a status code. For details, see {@link EffectErrorCode}.
  * @since 12
  * @version 1.0
@@ -99,7 +102,7 @@ EffectErrorCode OH_Filter_Brighten(OH_Filter* filter, float brightness);
 /**
  * @brief Creates the grayscale effect and adds it to a filter.
  *
- * @param filter Pointer to the filter.
+ * @param filter [in] Pointer to the filter.
  * @return Returns a status code. For details, see {@link EffectErrorCode}.
  * @since 12
  * @version 1.0
@@ -109,7 +112,7 @@ EffectErrorCode OH_Filter_GrayScale(OH_Filter* filter);
 /**
  * @brief Creates the inverted color effect and adds it to a filter.
  *
- * @param filter Pointer to the filter.
+ * @param filter [in] Pointer to the filter.
  * @return Returns a status code. For details, see {@link EffectErrorCode}.
  * @since 12
  * @version 1.0
@@ -119,8 +122,8 @@ EffectErrorCode OH_Filter_Invert(OH_Filter* filter);
 /**
  * @brief Creates a custom effect through a matrix and adds it to a filter.
  *
- * @param filter Pointer to the filter.
- * @param matrix Custom {@link OH_Filter_ColorMatrix} used to create the filter.
+ * @param filter [in] Pointer to the filter.
+ * @param matrix [in] Custom {@link OH_Filter_ColorMatrix} used to create the filter.
  * @return Returns a status code. For details, see {@link EffectErrorCode}.
  * @since 12
  * @version 1.0
@@ -130,9 +133,10 @@ EffectErrorCode OH_Filter_SetColorMatrix(OH_Filter* filter, OH_Filter_ColorMatri
 /**
  * @brief Obtains the PixelMap with the filter effect.
  *
- * @param filter Pointer to the filter.
- * @param pixelmap Double pointer to the PixelMap obtained.
+ * @param filter [in] Pointer to the filter.
+ * @param pixelmap [out] Double pointer to the PixelMap obtained.
  * @return Returns a status code. For details, see {@link EffectErrorCode}.
+ * @release pixelmap_native/OH_PixelmapNative_Release {pixelmap}
  * @since 12
  * @version 1.0
  */
