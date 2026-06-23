@@ -44,7 +44,9 @@
 #ifndef NATIVE_AUDIO_ROUTING_MANAGER_H
 #define NATIVE_AUDIO_ROUTING_MANAGER_H
 
+#include <stdbool.h>
 #include "native_audio_device_base.h"
+
 #ifdef __cplusplus
 extern "C" {
 #endif
