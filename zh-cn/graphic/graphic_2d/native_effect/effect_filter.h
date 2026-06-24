@@ -160,7 +160,6 @@ EffectErrorCode OH_Filter_SetColorMatrix(OH_Filter* filter, OH_Filter_ColorMatri
  *         <li>{@link EffectErrorCode#EFFECT_SUCCESS} 操作成功。</li>
  *         <li>{@link EffectErrorCode#EFFECT_BAD_PARAMETER} filter或pixelmap为NULL。</li>
  *         </ul>
- * @release pixelmap_native/OH_PixelmapNative_Release {pixelmap}
  * @since 12
  * @version 1.0
  */
