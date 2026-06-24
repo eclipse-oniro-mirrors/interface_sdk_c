@@ -42,6 +42,7 @@
 #define DRAWING_TEXT_LINETYPOGRAPHY_H
 
 #include "drawing_text_declaration.h"
+#include "drawing_types.h"
 
 #ifdef __cplusplus
 extern "C" {
