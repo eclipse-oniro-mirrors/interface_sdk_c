@@ -756,13 +756,14 @@ typedef enum {
 typedef enum {
     /** The component fills its parent, which means its size is as large as its parent */
     ARKUI_LAYOUTPOLICY_MATCHPARENT = 0,
-    /** The component fills its content, which means its size is as large as its children but it is constrained
-        by its parent. */
+    /**
+     * The component fills its content, which means its size is as large as its children but it is constrained
+     * by its parent.
+     */
     ARKUI_LAYOUTPOLICY_WRAPCONTENT,
     /** The component fills its content which means its size is as large as its children. */
     ARKUI_LAYOUTPOLICY_FIXATIDEALSIZE,
 } ArkUI_LayoutPolicy;
-
 
 /**
  * @brief Enumerates the PixelRoundPolicy.
