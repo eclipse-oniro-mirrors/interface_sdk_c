@@ -42,31 +42,48 @@ extern "C" {
 
 /**
  * @brief Enumerates the effects used at the edges of the component when the boundary of the scrollable content is
- * reached.
+ * reached. The default value is **ARKUI_EDGE_EFFECT_NONE** for the **Grid**, **Scroll**, and **WaterFlow** components,
+ * and **ARKUI_EDGE_EFFECT_SPRING** for the **List** component.
  *
  * @since 12
  */
 typedef enum {
-    /** Spring effect. When at one of the edges, the component can move beyond the bounds based on the initial
-     *  speed or through touches, and produces a bounce effect when the user releases their finger. */
+    /**
+     * Spring effect. When at one of the edges, the component can move beyond the bounds based on the initial speed or
+     * through touches, and produces a bounce effect when the user releases their finger.
+     */
     ARKUI_EDGE_EFFECT_SPRING = 0,
-    /** Fade effect. When at one of the edges, the component produces a fade effect. */
+
+    /**
+     * Fade effect. When at one of the edges, the component produces a fade effect.
+     */
     ARKUI_EDGE_EFFECT_FADE,
-    /** No effect after the scrollbar is moved to the edge. */
+
+    /**
+     * No effect when the component is at one of the edges.
+     */
     ARKUI_EDGE_EFFECT_NONE,
 } ArkUI_EdgeEffect;
 
 /**
- * @brief Enumerates the status of the scroll bar.
+ * @brief Enumerates the text control scrollbar states.
  *
  * @since 22
  */
 typedef enum {
-    /** Not displayed. */
+    /**
+     * Not displayed.
+     */
     ARKUI_BAR_STATE_OFF = 0,
-    /** On-demand display. */
+
+    /**
+     * Displayed on demand (The scrollbar is displayed when being touched and disappears 2 seconds later.)
+     */
     ARKUI_BAR_STATE_AUTO = 1,
-    /** Resident display. */
+
+    /**
+     * Always displayed.
+     */
     ARKUI_BAR_STATE_ON = 2,
 } ArkUI_BarState;
 
@@ -76,24 +93,38 @@ typedef enum {
  * @since 18
  */
 typedef enum {
-    /** Start edge. */
+    /**
+     * Start edge.
+     */
     ARKUI_EFFECT_EDGE_START = 1,
-    /** End edge. */
+
+    /**
+     * End edge.
+     */
     ARKUI_EFFECT_EDGE_END = 2,
 } ArkUI_EffectEdge;
 
 /**
- * @brief Enumerates the scroll directions for the <b><Scroll></b> component.
+ * @brief Enumerates the scrolling directions of the {@link Scroll} component.
  *
  * @since 12
  */
 typedef enum {
-    /** Only vertical scrolling is supported. */
+    /**
+     * Vertical scrolling only.
+     */
     ARKUI_SCROLL_DIRECTION_VERTICAL = 0,
-    /** Only horizontal scrolling is supported. */
+
+    /**
+     * Horizontal scrolling only.
+     */
     ARKUI_SCROLL_DIRECTION_HORIZONTAL,
-    /** Scrolling is not allowed. */
+
+    /**
+     * Scrolling disabled.
+     */
     ARKUI_SCROLL_DIRECTION_NONE = 3,
+
     /**
      * Free scrolling in both directions.
      *
@@ -108,25 +139,41 @@ typedef enum {
  * @since 12
  */
 typedef enum {
-    /** No alignment. This is the default value. */
+    /**
+     * No alignment mode.
+     */
     ARKUI_SCROLL_SNAP_ALIGN_NONE = 0,
-    /** The first item in the view is aligned at the start of the list. */
+
+    /**
+     * The first item in the view is aligned at the start of the list.
+     */
     ARKUI_SCROLL_SNAP_ALIGN_START,
-    /** The middle items in the view are aligned in the center of the list. */
+
+    /**
+     * The middle items in the view are aligned in the center of the list.
+     */
     ARKUI_SCROLL_SNAP_ALIGN_CENTER,
-    /** The last item in the view is aligned at the end of the list. */
+
+    /**
+     * The last item in the view is aligned at the end of the list.
+     */
     ARKUI_SCROLL_SNAP_ALIGN_END,
 } ArkUI_ScrollSnapAlign;
 
 /**
- * @brief Enumerates the scroll snap animation speeds for lists.
+ * @brief Enumerates scroll snap animation speeds for list components.
  *
  * @since 22
  */
 typedef enum {
-    /** Normal scroll snap animation speed. */
+    /**
+     * Normal scroll snap animation speed.
+     */
     ARKUI_SCROLL_SNAP_ANIMATION_NORMAL = 0,
-    /** Slow scroll snap animation speed. */
+
+    /**
+     * Slow scroll snap animation speed.
+     */
     ARKUI_SCROLL_SNAP_ANIMATION_SLOW = 1,
 } ArkUI_ScrollSnapAnimationSpeed;
 
@@ -136,11 +183,19 @@ typedef enum {
  * @since 12
  */
 typedef enum {
-    /** Hide. */
+    /**
+     * Not displayed.
+     */
     ARKUI_SCROLL_BAR_DISPLAY_MODE_OFF = 0,
-    /** Display on demand (displays when the screen is touched and disappears after 2s). */
+
+    /**
+     * Displayed when the screen is touched and hidden after 2s.
+     */
     ARKUI_SCROLL_BAR_DISPLAY_MODE_AUTO,
-    /** Always display. */
+
+    /**
+     * Always displayed.
+     */
     ARKUI_SCROLL_BAR_DISPLAY_MODE_ON,
 } ArkUI_ScrollBarDisplayMode;
 
@@ -150,16 +205,24 @@ typedef enum {
  * @since 18
  */
 typedef enum {
-    /** clip by content */
+    /**
+     * Clip to the content area only.
+     */
     ARKUI_CONTENT_CLIP_MODE_CONTENT_ONLY = 0,
-    /** clip by boundary */
+
+    /**
+     * Clip to the component's boundary area.
+     */
     ARKUI_CONTENT_CLIP_MODE_BOUNDARY,
-    /** clip by safe area padding */
+
+    /**
+     * Clip to the {@link safe area} configured for the component.
+     */
     ARKUI_CONTENT_CLIP_MODE_SAFE_AREA,
 } ArkUI_ContentClipMode;
 
 /**
- * @brief Defines nested scrolling options.
+ * @brief Enumerates nested scrolling modes.
  *
  * @since 12
  */
@@ -167,13 +230,19 @@ typedef enum {
     /** The scrolling is contained within the component, and no scroll chaining occurs, that is, the parent component
      * does not scroll when the component scrolling reaches the boundary. */
     ARKUI_SCROLL_NESTED_MODE_SELF_ONLY = 0,
-    /** The component scrolls first, and when it hits the boundary, the parent component scrolls.
-     *  When the parent component hits the boundary, its edge effect is displayed. If no edge
-     *  effect is specified for the parent component, the edge effect of the child component is displayed instead. */
+
+    /**
+     * The component scrolls first, and when it hits the boundary, the parent component scrolls. When the parent
+     * component hits the boundary, its edge effect is displayed. If no edge effect is specified for the parent
+     * component, the edge effect of the child component is displayed instead.
+     */
     ARKUI_SCROLL_NESTED_MODE_SELF_FIRST,
-    /** The parent component scrolls first, and when it hits the boundary, the component scrolls.
-     *  When the component hits the boundary, its edge effect is displayed. If no edge effect is specified for the
-     *  component, the edge effect of the parent component is displayed instead. */
+
+    /**
+     * The parent component scrolls first, and when it hits the boundary, the component scrolls. When the component
+     * hits the boundary, its edge effect is displayed. If no edge effect is specified for the component, the edge
+     * effect of the parent component is displayed instead.
+     */
     ARKUI_SCROLL_NESTED_MODE_PARENT_FIRST,
     /** The component and its parent component scroll at the same time. When both the component and its parent component
      *  hit the boundary, the edge effect of the component is displayed. If no edge effect is specified for the
@@ -182,76 +251,129 @@ typedef enum {
 } ArkUI_ScrollNestedMode;
 
 /**
- * @brief Defines the edge to which the component scrolls.
+ * @brief Enumerates the edges to which the component scrolls.
  *
  * @since 12
  */
 typedef enum {
-    /** Top edge in the vertical direction. */
+    /**
+     * Top edge in the vertical direction.
+     */
     ARKUI_SCROLL_EDGE_TOP = 0,
-    /** Bottom edge in the vertical direction. */
+
+    /**
+     * Bottom edge in the vertical direction.
+     */
     ARKUI_SCROLL_EDGE_BOTTOM,
-    /** Start position in the horizontal direction. */
+
+    /**
+     * Start position in the horizontal direction.
+     */
     ARKUI_SCROLL_EDGE_START,
-    /** End position in the horizontal direction. */
+
+    /**
+     * End position in the horizontal direction.
+     */
     ARKUI_SCROLL_EDGE_END,
 } ArkUI_ScrollEdge;
 
 /**
- * @brief Alignment when scrolling to specific items.
+ * @brief Defines how the list item to scroll to is aligned with the container.
  *
  * @since 12
  */
 typedef enum {
-    /** Align the head. Align the head of the specified item with the head of the container.*/
+    /**
+     * The start edge of the list item is flush with the start edge of the container.
+     */
     ARKUI_SCROLL_ALIGNMENT_START = 0,
-    /** Center alignment. Align the axis direction of the specified item to the center of the container.*/
+
+    /**
+     * The list item is centered along the main axis of the container.
+     */
     ARKUI_SCROLL_ALIGNMENT_CENTER,
-    /** Tail alignment. Align the tail of the specified item with the tail of the container.*/
+
+    /**
+     * The end edge of the list item is flush with the end edge of the container.
+     */
     ARKUI_SCROLL_ALIGNMENT_END,
-    /** Automatic alignment. If the specified item is completely in the display area, no adjustments will be made.
-     * Otherwise, according to the principle of the shortest sliding distance, align the head or tail of the specified
-     * item with the container, so that the specified item is completely in the display area.*/
+
+    /**
+     * The list item is automatically aligned. If the item is fully contained within the display area, no adjustment is
+     * performed. Otherwise, the item is aligned so that its start or end edge is flush with the start or end edge of
+     * the container, whichever requires a shorter scrolling distance.
+     */
     ARKUI_SCROLL_ALIGNMENT_AUTO,
 } ArkUI_ScrollAlignment;
 
 /**
- * @brief Define the current scrolling state.
+ * @brief Enumerates the scrolling states.
  *
  * @since 12
  */
 typedef enum {
-    /** Idle state. Trigger when using the method provided by the controller to control scrolling, and trigger when
-     * dragging the scroll bar to scroll.*/
+    /**
+     * Idle. The container enters this state when an API in the controller is used to scroll the container or when the
+     * scrollbar is dragged.
+     */
     ARKUI_SCROLL_STATE_IDLE = 0,
-    /** Scroll state. Triggered when dragging the container with fingers to scroll.*/
+
+    /**
+     * Scrolling. The container enters this state when the user drags the container to scroll.
+     */
     ARKUI_SCROLL_STATE_SCROLL,
-    /** Inertial rolling state. Triggered when inertia rolling and bouncing back to the edge are performed after
-     * releasing the hand quickly.*/
+
+    /**
+     * Inertial scrolling. The container enters this state when inertial scrolling occurs or when the container bounces
+     * back after being released from a fling.
+     */
     ARKUI_SCROLL_STATE_FLING,
 } ArkUI_ScrollState;
 
 /**
- * @brief Define the rolling source enumeration value.
+ * @brief Enumerates scroll sources.
  *
  * @since 12
  */
 typedef enum {
-    /** Finger drag. */
+    /**
+     * Finger dragging.
+     */
     ARKUI_SCROLL_SOURCE_DRAG = 0,
-    /** Inertial roll after finger drag. */
+
+    /**
+     * Inertia scrolling after finger dragging.
+     */
     ARKUI_SCROLL_SOURCE_FLING,
-    /** Execute the EdgeEffect.Spring edge effect when crossing the boundary.*/
+
+    /**
+     * {@link EdgeEffect.Spring} for boundary crossing.
+     */
     ARKUI_SCROLL_SOURCE_EDGE_EFFECT,
-    /** Other user input other than dragging, such as mouse wheel, keyboard events, etc.*/
+
+    /**
+     * User input other than dragging, such as mouse wheel and keyboard events.
+     */
     ARKUI_SCROLL_SOURCE_OTHER_USER_INPUT,
-    /** Drag the scroll bar.*/
+
+    /**
+     * Scrollbar dragging.
+     */
     ARKUI_SCROLL_SOURCE_SCROLL_BAR,
-    /** Inertia scrolling after dragging the scroll bar.*/
+
+    /**
+     * Inertial scrolling after scrollbar dragging.
+     */
     ARKUI_SCROLL_SOURCE_SCROLL_BAR_FLING,
-    /** The scroll controller causes unanimated scrolling.*/
+
+    /**
+     * Scrolling by the scroll controller (without animation).
+     */
     ARKUI_SCROLL_SOURCE_SCROLLER,
-    /** The scroll controller causes the scroll to drive the painting.*/
+
+    /**
+     * Scrolling by the scroll controller (with animation).
+     */
     ARKUI_SCROLL_SOURCE_ANIMATION,
 } ArkUI_ScrollSource;
 

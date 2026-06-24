@@ -87,120 +87,103 @@ typedef struct {
 } ArkUI_GridItemRect;
 
 /**
- * @brief Defines the **Grid** layout options.
+ * @brief 定义Grid布局选项。
  *
  * @since 22
  */
 typedef struct ArkUI_GridLayoutOptions ArkUI_GridLayoutOptions;
 
 /**
- * @brief Enumerates the alignment modes of the {@link GridItem} component.
+ * @brief GridItem对齐方式枚举。
  *
  * @since 22
  */
 typedef enum {
-    /**
-     * Use the default alignment mode of the grid.
-     */
+    /** Grid的默认对齐方式。*/
     GRID_ITEM_ALIGNMENT_DEFAULT = 0,
 
-    /**
-     * Use the height of the tallest grid item in a row as the height for all other grid items in that row.
-     */
-    GRID_ITEM_ALIGNMENT_STRETCH = 1,
+    /** 以一行中的最高的GridItem作为其他GridItem的高度。*/
+    GRID_ITEM_ALIGNMENT_STRETCH = 1
 } ArkUI_GridItemAlignment;
 
 /**
- * @brief Enumerates styles of grid items.
+ * @brief GridItem样式枚举。
  *
  * @since 22
  */
 typedef enum {
-    /**
-     * No style.
-     */
+    /** 无样式。*/
     GRID_ITEM_STYLE_NONE = 0,
 
-    /**
-     * Hover or press style.
-     */
-    GRID_ITEM_STYLE_PLAIN = 1,
+    /** 显示Hover、Press态样式。*/
+    GRID_ITEM_STYLE_PLAIN = 1
 } ArkUI_GridItemStyle;
 
 /**
- * @brief Creates **Grid** layout options.
+ * @brief 创建Grid布局选项。
  *
- * @return Pointer to the **Grid** layout option.
+ * @return Grid布局选项。
  * @since 22
  */
 ArkUI_GridLayoutOptions* OH_ArkUI_GridLayoutOptions_Create();
 
 /**
- * @brief Disposes of the **Grid** layout option.
+ * @brief 销毁Grid布局选项。
  *
- * @param option Pointer to the **Grid** layout option.
+ * @param option Grid布局选项。
  * @since 22
  */
 void OH_ArkUI_GridLayoutOptions_Dispose(ArkUI_GridLayoutOptions* option);
 /**
- * @brief Sets the irregular grid item index array for the grid layout.
+ * @brief 设置Grid中不规则GridItem的索引数组。
  *
- * @param option Pointer to the **Grid** layout option.
- * @param irregularIndexes Pointer to the **GridItem** index array.
- * @param size Size of the **GridItem** index array.
- * @return Result code.
- *     <ul>
- *     <li><br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
- *     <li><br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.</li>
- *     <li><br>A possible cause is that mandatory parameters are left unspecified.</li>
- *     </ul>
+ * @param option Grid布局选项。
+ * @param irregularIndexes GridItem索引数组。
+ * @param size GridItem索引数组大小。
+ * @return 错误码。
+ *         {@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
+ *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
+ *         异常原因：传入参数验证失败，参数不能为空。
  * @since 22
  */
 int32_t OH_ArkUI_GridLayoutOptions_SetIrregularIndexes(
     ArkUI_GridLayoutOptions* option, uint32_t* irregularIndexes, int32_t size);
 /**
- * @brief Obtains the irregular grid item index array for the grid layout. When **
- * OH_ArkUI_GridLayoutOptions_RegisterGetIrregularSizeByIndexCallback** is not set, the grid item specified in this
- * parameter occupies an entire row of the grid that scrolls vertically or an entire column of the grid that scrolls
- * horizontally.
+ * @brief 获取Grid中不规则GridIte的索引数组。当不设置OH_ArkUI_GridLayoutOptions_RegisterGetIrregularSizeByIndexCallback时，
+ * irregularIndexes中GridItem的默认大小为垂直滚动Grid的一整行或水平滚动Grid的一整列。
  *
- * @param option Pointer to the **Grid** layout option.
- * @param irregularIndexes Pointer to the **GridItem** index array.
- * @param size Size of the **GridItem** index array.
- * @return Result code.
- *     <ul>
- *     <li><br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
- *     <li><br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.</li>
- *     <li><br>Returns {@link ARKUI_ERROR_CODE_BUFFER_SIZE_ERROR} if the buffer size is insufficient.</li>
- *     <li><br>A possible cause is that mandatory parameters are left unspecified.</li>
- *     </ul>
+ * @param option Grid布局选项。
+ * @param irregularIndexes GridItem索引数组。
+ * @param size GridItem索引数组大小。
+ * @return 错误码。
+ *         {@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
+ *         {@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
+ *         {@link ARKUI_ERROR_CODE_BUFFER_SIZE_ERROR} 数组大小不够。
+ *         异常原因：传入参数验证失败，参数不能为空。
  * @since 22
  */
 int32_t OH_ArkUI_GridLayoutOptions_GetIrregularIndexes(
     ArkUI_GridLayoutOptions* option, uint32_t* irregularIndexes, int32_t* size);
 
 /**
- * @brief Registers a callback to obtain the row and column span for the grid item at the specified index.
+ * @brief Grid布局选项通过GridItem索引获取指定Item占用的行列数。
  *
- * @param option Pointer to the **Grid** layout option.
- * @param userData Pointer to the user-defined data.
- * @param callback Callback that returns the row and column span for the grid item at the specified index.
- *     itemIndex: grid item index, which must be within the range set by
- *     {@link OH_ArkUI_GridLayoutOptions_SetIrregularIndexes}.
+ * @param option Grid布局选项。
+ * @param userData 用户自定义数据。
+ * @param callback 根据index获取指定Item占用的行列数。
+ *        itemIndex：GridItem索引值，取值范围来自{@link OH_ArkUI_GridLayoutOptions_SetIrregularIndexes}。
  * @since 22
  */
 void OH_ArkUI_GridLayoutOptions_RegisterGetIrregularSizeByIndexCallback(
     ArkUI_GridLayoutOptions* option, void* userData, ArkUI_GridItemSize (*callback)(int32_t itemIndex, void* userData));
 
 /**
- * @brief Registers a callback to obtain the starting row, starting column, row span, and column span for the grid item
- * at the specified index.
+ * @brief Grid布局选项通过GridItem索引获取指定Item的起始行列和占用的行列数。
  *
- * @param option Pointer to the **Grid** layout option.
- * @param userData Pointer to the user-defined data.
- * @param callback Callback that returns the starting row, starting column, row span,
- *     and column span for the grid item at the specified index.
- *     itemIndex: grid item index.
+ * @param option Grid布局选项。
+ * @param userData 用户自定义数据。
+ * @param callback 根据index获取指定Item的起始行列和占用的行列数。
+ *        itemIndex：GridItem索引值。
  * @since 22
  */
 void OH_ArkUI_GridLayoutOptions_RegisterGetRectByIndexCallback(
@@ -211,4 +194,5 @@ void OH_ArkUI_GridLayoutOptions_RegisterGetRectByIndexCallback(
 #endif
 
 #endif // ARKUI_NATIVE_NODE_ATTRIBUTES_GRID_GRID_H
+
 /** @} */
