@@ -7753,7 +7753,7 @@ typedef enum {
      * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
      * .value[0].i32：The index value of the target element to be slid to in the current container.\n
      * .value[1]?.i32：Set whether there is an action when sliding to the index value of a list item in the list, where
-     * 1 indicates an action and 0 indicates no action. Default value: 0。\n
+     * 1 indicates an action and 0 indicates no action. Default value: 0.\n
      * .value[2]?.i32：Specify the alignment of the sliding element with the current container,The parameter type is
      * {@link ArkUI_ScrollAlignment}, default value is ARKUI_SCROLL_ALIGNMENT_START. \n
      * .value[3]?.f32: extra offset, in vp. The default value is <b>0</b>.
@@ -9301,7 +9301,7 @@ typedef enum {
      * <b>0</b>: Not editable. <b>1</b>: Editable.\n
      *
      * @since 26.0.0
-      */
+     */
     NODE_GRID_ENABLE_EDIT_MODE = 1013016,
 
     /**
@@ -11331,301 +11331,299 @@ typedef enum {
     NODE_SWIPER_EVENT_ON_SCROLL_STATE_CHANGED = 1001008,
 
     /**
-     * @brief Defines the event triggered when the <b>ARKUI_NODE_SCROLL</b> component scrolls.
+     * @brief Event triggered when scrolling occurs. This event is triggered under the following scenarios:
+     * <br>1. Scrolling is started by the scrollable component (supports keyboard, mouse, and other input methods that
+     * trigger scrolling).
+     * <br>2. Scrolling is initiated by calling the controller API.
+     * <br>3. The out-of-bounds bounce effect is active.
+     * <br>When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
+     * {@link ArkUI_NodeComponentEvent}.
+     * <br>{@link ArkUI_NodeComponentEvent} contains the following parameters:
+     * <br>**ArkUI_NodeComponentEvent.data[0].f32**: horizontal scrolling offset.
+     * <br>**ArkUI_NodeComponentEvent.data[1].f32**: vertical scrolling offset.
      *
-     * Notes for triggering the event:\n
-     * 1. This event is triggered when scrolling is started by the <b>ARKUI_NODE_SCROLL</b> component or other input
-     * settings, such as keyboard and mouse operations. \n
-     * 2. Scrolling can be initiated by calling the controller API. \n
-     * 3. The out-of-bounds bounce effect is supported. \n
-     * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
-     * {@link ArkUI_NodeComponentEvent}. \n
-     * {@link ArkUI_NodeComponentEvent} contains two parameters:\n
-     * <b>ArkUI_NodeComponentEvent.data[0].f32</b>: horizontal scrolling offset. \n
-     * <b>ArkUI_NodeComponentEvent.data[1].f32</b>: vertical scrolling offset. \n
      */
     NODE_SCROLL_EVENT_ON_SCROLL = MAX_NODE_SCOPE_NUM * ARKUI_NODE_SCROLL,
+
     /**
-     * @brief Defines the event triggered when each frame scrolling starts in the <b>ARKUI_NODE_SCROLL</b> component.
+     * @brief Event triggered when the scrollable container starts scrolling in each frame. The **List**, **Scroll**,
+     * and **WaterFlow** components support this event since API version 12, and the **Grid** component supports this
+     * event since API version 22.
+     * <br>This event is triggered under the following scenarios:
+     * <br>1. This event is triggered when scrolling is started by the scrollable component (supports keyboard, mouse,
+     * and other input methods that trigger scrolling).
+     * <br>2. This event is not triggered when the controller API is called.
+     * <br>3. This event is not triggered when the component bounces back out of bounds.
+     * <br>When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
+     * {@link ArkUI_NodeComponentEvent}.
+     * <br>{@link ArkUI_NodeComponentEvent} contains the following parameters:
+     * <br>**ArkUI_NodeComponentEvent.data[0].f32**: amount to scroll by.
+     * <br>**ArkUI_NodeComponentEvent.data[1].i32**: current scroll state.
+     * <br>**::ArkUI_NodeComponentEvent** contains one return value:
+     * <br>**ArkUI_NodeComponentEvent.data[0].f32**: The event handler can work out the amount by which the component
+     * needs to scroll based on the real-world situation and return the result in this parameter.
      *
-     * Notes for triggering the event:\n
-     * 1. This event is triggered when scrolling is started by the <b>ARKUI_NODE_SCROLL</b> component or other input
-     * settings, such as keyboard and mouse operations. \n
-     * 2. This event is not triggered when the controller API is called. \n
-     * 3. This event does not support the out-of-bounds bounce effect. \n
-     * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
-     * {@link ArkUI_NodeComponentEvent}. \n
-     * {@link ArkUI_NodeComponentEvent} contains two parameters:\n
-     * <b>ArkUI_NodeComponentEvent.data[0].f32</b>: amount to scroll by. \n
-     * <b>ArkUI_NodeComponentEvent.data[1].i32</b>: current scrolling state. \n
-     * <b>::ArkUI_NodeComponentEvent</b> contains one return value:\n
-     * <b>ArkUI_NodeComponentEvent.data[0].f32</b>: The event handler can work out the amount by which the component
-     * needs to scroll based on the real-world situation and return the result in this parameter. \n
      */
     NODE_SCROLL_EVENT_ON_SCROLL_FRAME_BEGIN,
 
     /**
-     * @brief Define the enumeration value of the pre sliding trigger event for the scrolling container component.
+     * @brief Event triggered when the scrollable container is about to scroll. This event is triggered under the
+     * following scenarios:
+     * <br>1. Scrolling is started by the scrollable component (supports keyboard, mouse, and other input methods that
+     * trigger scrolling).
+     * <br>2. Scrolling is initiated by calling the controller API.
+     * <br>3. The out-of-bounds bounce effect is active.
+     * <br>When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
+     * {@link ArkUI_NodeComponentEvent}.
+     * <br>{@link ArkUI_NodeComponentEvent} contains the following parameters:
+     * <br>**ArkUI_NodeComponentEvent.data[0].f32**: scroll offset of each frame, in vp. The offset is positive when
+     * the content is scrolled left and negative when the content is scrolled right.
+     * <br>**ArkUI_NodeComponentEvent.data[1].f32**: scroll offset of each frame, in vp. The offset is positive when
+     * the content is scrolled up and negative when the content is scrolled down.
+     * <br>**ArkUI_NodeComponentEvent.data[2].i32**: current scroll state. The parameter type is
+     * {@link ArkUI_ScrollState}.
+     * <br>**ArkUI_NodeComponentEvent.data[3].i32**: current scroll source. The parameter type is
+     * {@link ArkUI_ScrollSource}.
      *
-     * The conditions that trigger this event: \n
-     * 1. When the scrolling component triggers scrolling, it supports input settings such as keyboard and mouse
-     * operations that trigger scrolling.\n
-     * 2. Called through the rolling controller API interface.\n
-     * 3. Cross boundary rebound.\n
-     * When an event callback occurs, the union type in the event parameter {@ link ArkUI_NodeEvent} object is
-     * {@link ArkUI_NodeComponentEvent}. \n
-     * {@link ArkUI_NodeComponentEvent} contains four parameters: \n
-     * <b>ArkUI_NodeComponentEvent.data[0].f32</b>: The offset for each frame of scrolling is positive when scrolling to
-     * the left and negative when scrolling to the right, measured in vp. \n
-     * <b>ArkUI_NodeComponentEvent.data[1].f32</b>: The offset of each frame scrolling, with a positive offset when
-     * scrolling up and a negative offset when scrolling down, measured in vp. \n
-     * <b>ArkUI_NodeComponentEvent.data[2].i32</b>: Current sliding state, \n
-     * parameter type is {@link ArkUI_ScrollState}. \n
-     * <b>ArkUI_NodeComponentEvent.data[3].i32</b>: Current scroll source, \n
-     * parameter type is {@link ArkUI_ScrollSource}. \n
      * @return Does not return or returns a number that sets the actual scroll distance of the scroll component.
      */
     NODE_SCROLL_EVENT_ON_WILL_SCROLL,
     /**
-     * @brief Define the event enumeration value triggered when sliding a scrolling container component.
+     * @brief Event triggered when the scrollable container scrolls. This event is triggered under the following
+     * scenarios:
+     * <br>1. Scrolling is started by the scrollable component (supports keyboard, mouse, and other input methods that
+     * trigger scrolling).
+     * <br>2. Scrolling is initiated by calling the controller API.
+     * <br>3. The out-of-bounds bounce effect is active.
+     * <br>When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
+     * {@link ArkUI_NodeComponentEvent}.
+     * <br>{@link ArkUI_NodeComponentEvent} contains the following parameters:
+     * <br>**ArkUI_NodeComponentEvent.data[0].f32**: scroll offset of each frame, in vp. The offset is positive when
+     * the content is scrolled left and negative when the content is scrolled right.
+     * <br>**ArkUI_NodeComponentEvent.data[1].f32**: scroll offset of each frame, in vp. The offset is positive when
+     * the content is scrolled up and negative when the content is scrolled down.
+     * <br>**ArkUI_NodeComponentEvent.data[2].i32**: current scroll state. The parameter type is
+     * {@link ArkUI_ScrollState}.
      *
-     * The conditions that trigger this event: \n
-     * 1. When the scrolling component triggers scrolling, it supports input settings such as keyboard and mouse
-     * operations that trigger scrolling.\n
-     * 2. Called through the rolling controller API interface.\n
-     * 3. Cross boundary rebound.\n
-     * When an event callback occurs, the union type in the event parameter {@ link ArkUI_NodeEvent} object is
-     * {@link ArkUI_NodeComponentEvent}. \n
-     * {@link ArkUI_NodeComponentEvent} contains three parameters: \n
-     * <b>ArkUI_NodeComponentEvent.data[0].f32</b>: The offset for each frame of scrolling is positive when scrolling to
-     * the left and negative when scrolling to the right, measured in vp. \n
-     * <b>ArkUI_NodeComponentEvent.data[1].f32</b>: The offset of each frame scrolling, with a positive offset when
-     * scrolling up and a negative offset when scrolling down, measured in vp. \n
-     * <b>ArkUI_NodeComponentEvent.data[2].i32</b>: Current sliding state, \n
-     parameter type is {@link ArkUI_ScrollState}. \n
      */
     NODE_SCROLL_EVENT_ON_DID_SCROLL,
-
     /**
-     * @brief Defines the event triggered when scrolling starts in the <b>ARKUI_NODE_SCROLL</b> component.
+     * @brief Event triggered when the scrollable container starts scrolling. The **List**, **Scroll**, and **WaterFlow*
+     * * components support this event since API version 12, and the **Grid** component supports this event since API
+     * version 22.
+     * <br>This event is triggered under the following scenarios:
+     * <br>1. Scrolling is started by the scrollable component (supports keyboard, mouse, and other input methods that
+     * trigger scrolling).
+     * <br>2. The controller API is called to start the scrolling, accompanied by a transition animation.
+     * <br>When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
+     * {@link ArkUI_NodeComponentEvent}.
+     * <br>{@link ArkUI_NodeComponentEvent} does not contain parameters.
      *
-     * Notes for triggering the event:\n
-     * 1. This event is triggered when scrolling is started, with support for other input settings, such as keyboard
-     * and mouse operations. \n
-     * 2. This event is triggered when the controller API is called, accompanied by a transition animation. \n
-     * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
-     * {@link ArkUI_NodeComponentEvent}. \n
-     * {@link ArkUI_NodeComponentEvent} does not contain parameters. \n
      */
     NODE_SCROLL_EVENT_ON_SCROLL_START,
+
     /**
-     * @brief Defines the event triggered when scrolling of the <b>ARKUI_NODE_SCROLL</b> component stops.
+     * @brief Event triggered when the scrollable container stops scrolling. The **List**, **Scroll**, and **WaterFlow**
+     * components support this event since API version 12, and the **Grid** component supports this event since API
+     * version 22.
+     * <br>This event is triggered under the following scenarios:
+     * <br>1. Scrolling is stopped by the scrollable component (supports keyboard, mouse, and other input methods that
+     * trigger scrolling).
+     * <br>2. The controller API is called to stop the scrolling, accompanied by a transition animation.
+     * <br>When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
+     * {@link ArkUI_NodeComponentEvent}.
+     * <br>{@link ArkUI_NodeComponentEvent} does not contain parameters.
      *
-     * Notes for triggering the event:\n
-     * 1. This event is triggered when scrolling is stopped by the <b>ARKUI_NODE_SCROLL</b> component or other input
-     * settings, such as keyboard and mouse operations. \n
-     * 2. This event is triggered when the controller API is called, accompanied by a transition animation. \n
-     * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
-     * {@link ArkUI_NodeComponentEvent}. \n
-     * {@link ArkUI_NodeComponentEvent} does not contain parameters. \n
      */
     NODE_SCROLL_EVENT_ON_SCROLL_STOP,
+
     /**
-     * @brief Defines the event triggered when scrolling of the <b>ARKUI_NODE_SCROLL</b> component reaches
-     * one of the edges.
+     * @brief Event triggered when the scrollable container reaches the scroll boundary. This event is triggered under
+     * the following scenarios:
+     * <br>1. Scrolling reaches the edge after being started by the scrollable component (supports keyboard, mouse, and
+     * other input methods that trigger scrolling).
+     * <br>2. Scrolling is initiated by calling the controller API.
+     * <br>3. The out-of-bounds bounce effect is active.
+     * <br>When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
+     * {@link ArkUI_NodeComponentEvent}.
+     * <br>{@link ArkUI_NodeComponentEvent} contains the following parameter:
+     * <br>**ArkUI_NodeComponentEvent.data[0].i32**: edge (top, bottom, left, or right) that the scrolling reaches.
      *
-     * Notes for triggering the event:\n
-     * 1. This event is triggered when scrolling reaches the edge after being started by the <b>ARKUI_NODE_SCROLL</b>
-     * component or other input settings, such as keyboard and mouse operations. \n
-     * 2. Scrolling can be initiated by calling the controller API. \n
-     * 3. The out-of-bounds bounce effect is supported. \n
-     * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
-     * {@link ArkUI_NodeComponentEvent}. \n
-     * {@link ArkUI_NodeComponentEvent} contains one parameter. \n
-     * <b>ArkUI_NodeComponentEvent.data[0].i32</b>: edge (top, bottom, left, or right) that the scrolling reaches. \n
      */
     NODE_SCROLL_EVENT_ON_SCROLL_EDGE,
+
     /**
-     * @brief Define that a callback is triggered when the scrolling container component reaches the start position.
-     * Condition for triggering the event: \n
-     * Triggered when the component reaches the start position. \n
-     * When the event callback occurs, the union type in the {@Link ArkUI_NodeEvent} object is
-     * {@Link ArkUI_NodeComponentEvent}. \n
-     * {@Link ArkUI_NodeComponentEvent} contains no parameters. \n
+     * @brief Event triggered when the scrollable component reaches the start edge.
+     * <br>When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
+     * {@link ArkUI_NodeComponentEvent}.
+     * <br>{@link ArkUI_NodeComponentEvent} does not contain parameters.
+     *
      */
     NODE_SCROLL_EVENT_ON_REACH_START,
+
     /**
-     * @brief Define that a callback is triggered when the scrolling container component ends. \n
-     * Condition for triggering the event: \n
-     * Triggered when the component reaches the end. \n
-     * When the event callback occurs, the union type in the {@Link ArkUI_NodeEvent} object is
-     * {@Link ArkUI_NodeComponentEvent}. \n
-     * {@Link ArkUI_NodeComponentEvent} contains no parameters. \n
+     * @brief Event triggered when the scrollable component reaches the end edge.
+     * <br>When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
+     * {@link ArkUI_NodeComponentEvent}.
+     * <br>{@link ArkUI_NodeComponentEvent} does not contain parameters.
+     *
      */
     NODE_SCROLL_EVENT_ON_REACH_END,
+
     /**
-     * @brief Defines the callback for when the user is about to release the drag on the scrollable container component.
-     *
-     * This event is triggered when the user is about to release the drag on the scrollable container component. \n
-     * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
-     * {@link ArkUI_NodeComponentEvent}. \n
-     * {@link ArkUI_NodeComponentEvent} contains one parameter: \n
-     * <b>ArkUI_NodeComponentEvent.data[0].f32</b>: speed at which the user releases the drag, in vp. \n
+     * @brief Event triggered when the user is about to release the drag on the scrollable component.
+     * <br>When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
+     * {@link ArkUI_NodeComponentEvent}.
+     * <br>{@link ArkUI_NodeComponentEvent} contains the following parameter:
+     * <br>**ArkUI_NodeComponentEvent.data[0].f32**: speed at which the user releases the drag, in vp/s.
      *
      * @since 20
      */
     NODE_SCROLL_EVENT_ON_WILL_STOP_DRAGGING,
+
     /**
-     * @brief Defines the callback for the <b>Scroll</b> component's zoom event,
-     * triggered at the end of each frame during zooming. \n
-     * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object
-     * is {@link ArkUI_NodeComponentEvent}. \n
-     * {@link ArkUI_NodeComponentEvent} contains one parameter:\n
-     * <b>ArkUI_NodeComponentEvent.data[0].f32</b>: current zoom scale. \n
+     * @brief **Scroll** component zoom event, triggered at the end of each frame during zooming.
+     * <br>When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
+     * {@link ArkUI_NodeComponentEvent}.
+     * <br>{@link ArkUI_NodeComponentEvent} contains the following parameter:
+     * <br>**ArkUI_NodeComponentEvent.data[0].f32**: current zoom scale.
      *
      * @since 20
      */
     NODE_SCROLL_EVENT_ON_DID_ZOOM,
+
     /**
-     * @brief Defines the callback for the <b>Scroll</b> component's zoom start event,
-     * triggered when zooming begins. \n
-     * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object
-     * is {@link ArkUI_NodeComponentEvent}. \n
-     * {@link ArkUI_NodeComponentEvent} does not contain parameters. \n
+     * @brief **Scroll** component's zoom start event, triggered when zooming begins.
+     * <br>When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
+     * {@link ArkUI_NodeComponentEvent}.
+     * <br>{@link ArkUI_NodeComponentEvent} does not contain parameters.
      *
      * @since 20
      */
     NODE_SCROLL_EVENT_ON_ZOOM_START,
+
     /**
-     * @brief Defines the callback for the <b>Scroll</b> component's zoom end event,
-     * triggered when zooming ends. \n
-     * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object
-     * is {@link ArkUI_NodeComponentEvent}. \n
-     * {@link ArkUI_NodeComponentEvent} does not contain parameters. \n
+     * @brief {@link Scroll} component's zoom end event, triggered when zooming ends.
+     * <br>When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
+     * {@link ArkUI_NodeComponentEvent}.
+     * <br>{@link ArkUI_NodeComponentEvent} does not contain parameters.
      *
      * @since 20
      */
     NODE_SCROLL_EVENT_ON_ZOOM_STOP,
+
     /**
-     * @brief Defines the callback for when the scrollable will start dragging.
+     * @brief Event triggered when the user is about to drag the scrollable component.
+     * <br>When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
+     * {@link ArkUI_NodeComponentEvent}.
+     * <br>{@link ArkUI_NodeComponentEvent} does not contain parameters.
      *
-     * This event is triggered when the scrollable will start dragging. \n
-     * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
-     * {@link ArkUI_NodeComponentEvent}. \n
-     * {@link ArkUI_NodeComponentEvent} contains no parameters: \n
      * @since 21
      */
     NODE_SCROLL_EVENT_ON_WILL_START_DRAGGING = 1002013,
+
     /**
-     * @brief Defines the callback for when the scrollable did end dragging.
-     *
-     * This event is triggered when the scrollable did end dragging. \n
-     * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
-     * {@link ArkUI_NodeComponentEvent}. \n
-     * {@link ArkUI_NodeComponentEvent} contains one parameter: \n
-     * <b>ArkUI_NodeComponentEvent.data[0].i32</b>: whether start fling animation. \n
+     * @brief Event triggered when the user ends dragging the scrollable component.
+     * <br>When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
+     * {@link ArkUI_NodeComponentEvent}.
+     * <br>{@link ArkUI_NodeComponentEvent} contains the following parameter:
+     * <br>**ArkUI_NodeComponentEvent.data[0].i32**: whether to trigger the sliding animation after the drag ends.
      *
      * @since 21
      */
     NODE_SCROLL_EVENT_ON_DID_STOP_DRAGGING = 1002014,
+
     /**
-     * @brief Defines the callback for when the scrollable will start fling.
+     * @brief Event triggered when the scrollable component's flinging animation is about to start.
+     * <br>When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
+     * {@link ArkUI_NodeComponentEvent}.
+     * <br>{@link ArkUI_NodeComponentEvent} does not contain parameters.
      *
-     * This event is triggered when the scrollable will start fling. \n
-     * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
-     * {@link ArkUI_NodeComponentEvent}. \n
-     * {@link ArkUI_NodeComponentEvent} contains no parameters: \n
      * @since 21
      */
     NODE_SCROLL_EVENT_ON_WILL_START_FLING = 1002015,
+
     /**
-     * @brief Defines the callback for when the scrollable did end fling.
+     * @brief Event triggered when the scrollable component's flinging animation ends.
+     * <br>When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
+     * {@link ArkUI_NodeComponentEvent}.
+     * <br>{@link ArkUI_NodeComponentEvent} does not contain parameters.
      *
-     * This event is triggered when the scrollable did end fling. \n
-     * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
-     * {@link ArkUI_NodeComponentEvent}. \n
-     * {@link ArkUI_NodeComponentEvent} contains no parameters: \n
      * @since 21
      */
     NODE_SCROLL_EVENT_ON_DID_STOP_FLING = 1002016,
+
     /**
-     * @brief Defines the enumerated values of the event triggered, \n
-     * when a subcomponent of ARKUI_NODE_LIST is moved into or out of the list display area. \n
-     * Condition for triggering the event: \n
-     * This method is triggered once during list initialization. \n
-     * It is triggered when the index value of the first or last subcomponent in the list display area changes. \n
-     * When the event callback occurs, the union type in the {@Link ArkUI_NodeEvent} object is
-     * {@Link ArkUI_NodeComponentEvent}. \n
-     * {@Link ArkUI_NodeComponentEvent} contains three parameters: \n
-     * ArkUI_NodeComponentEvent.data[0].i32: List Displays the index value of \n
-     * the first child component in the region. \n
-     * ArkUI_NodeComponentEvent.data[1].i32: List Displays the index value of \n
-     * the last child component in the region. \n
-     * ArkUI_NodeComponentEvent.data[2].i32: List Displays the index value of \n
-     * the subcomponent in the middle of the area. \n
+     * @brief Event triggered when a child component of {@link ARKUI_NODE_LIST} enters or leaves the list display area.
+     * This event is triggered in the following scenarios:
+     * <br>This event is triggered once when the list is initialized and when the index of the first child component or
+     * the last child component in the list display area changes.
+     * <br>When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
+     * {@link ArkUI_NodeComponentEvent}.
+     * <br>{@link ArkUI_NodeComponentEvent} contains the following parameters:
+     * <br>**ArkUI_NodeComponentEvent.data[0].i32**: index of the first child component in the list display area.
+     * <br>**ArkUI_NodeComponentEvent.data[1].i32**: index of the last child component in the list display area.
+     * <br>**ArkUI_NodeComponentEvent.data[2].i32**: index of the center child component in the list display area.
+     *
      */
     NODE_LIST_ON_SCROLL_INDEX = MAX_NODE_SCOPE_NUM * ARKUI_NODE_LIST,
+
     /**
-     * @brief Defines the enumerated values of the event triggered
-     * before the sliding of the ARKUI_NODE_LIST component. \n
-     * Condition for triggering the event: \n
-     * This event is triggered when the scrolling component triggers scrolling. \n
-     * Other inputs that trigger scrolling, such as keyboard and mouse operations, can be set. \n
-     * Called through the scroll controller API. \n
-     * Out-of-bounds rebound. \n
-     * When the event callback occurs, the union type in the {@Link ArkUI_NodeEvent} object is \n
-     * {@Link ArkUI_NodeComponentEvent}. \n
-     * {@Link ArkUI_NodeComponentEvent} contains three parameters: \n
-     * ArkUI_NodeComponentEvent.data[0].f32: offset of each frame scrolling. \n
-     * The offset is positive when the list content is scrolled up and \n
-     * is negative when the list content is scrolled down. \n
-     * ArkUI_NodeComponentEvent.data[1].i32: Current sliding state. \n
-     * parameter type is {@link ArkUI_ScrollState}. \n
-     * <b>ArkUI_NodeComponentEvent.data[2].i32</b>: Current scroll source, \n
-     * parameter type is {@link ArkUI_ScrollSource}. \n
+     * @brief Event triggered when the {@link ARKUI_NODE_LIST} component is about to scroll. This event is triggered in
+     * the following scenarios:
+     * <br>1. Scrolling is started by the scrollable component (supports keyboard, mouse, and other input methods that
+     * trigger scrolling).
+     * <br>2. Scrolling is initiated by calling the controller API.
+     * <br>3. The out-of-bounds bounce effect is active.
+     * <br>When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
+     * {@link ArkUI_NodeComponentEvent}.
+     * <br>{@link ArkUI_NodeComponentEvent} contains the following parameters:
+     * <br>**ArkUI_NodeComponentEvent.data[0].f32**: scroll offset of each frame. The offset is positive when the list
+     * is scrolled up and negative when the list is scrolled down.
+     * <br>**ArkUI_NodeComponentEvent.data[1].i32**: current scroll state. The parameter type is
+     * {@link ArkUI_ScrollState}.
+     * <br>**ArkUI_NodeComponentEvent.data[2].i32**: current scroll source. The parameter type is
+     * {@link ArkUI_ScrollSource}.
+     *
      * @return Does not return or returns a number that sets the actual scroll distance of the scroll component. \n
      */
     NODE_LIST_ON_WILL_SCROLL,
     /**
-     * @brief Define the enumerated values of the event triggered when the ARKUI_NODE_LIST component is flicked.
-     * Condition for triggering the event: \n
-     * This event is triggered when the scrolling component triggers scrolling. \n
-     * Other inputs that trigger scrolling, such as keyboard and mouse operations, can be set. \n
-     * Called through the scroll controller API. \n
-     * Out-of-bounds rebound. \n
-     * When the event callback occurs, the union type in the {@Link ArkUI_NodeEvent} object is \n
-     * {@Link ArkUI_NodeComponentEvent}. \n
-     * {@Link ArkUI_NodeComponentEvent} contains two parameters:\n
-     * ArkUI_NodeComponentEvent.data[0].f32: offset of each frame scrolling. \n
-     * The offset is positive when the list content is scrolled up and \n
-     * is negative when the list content is scrolled down. \n
-     * ArkUI_NodeComponentEvent.data[1].i32: Current sliding state. \n
+     * @brief Event triggered when the {@link ARKUI_NODE_LIST} component scrolls. This event is triggered under the
+     * following scenarios:
+     * <br>1. Scrolling is started by the scrollable component (supports keyboard, mouse, and other input methods that
+     * trigger scrolling).
+     * <br>2. Scrolling is initiated by calling the controller API.
+     * <br>3. The out-of-bounds bounce effect is active.
+     * <br>When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
+     * {@link ArkUI_NodeComponentEvent}.
+     * <br>{@link ArkUI_NodeComponentEvent} contains the following parameters:
+     * <br>**ArkUI_NodeComponentEvent.data[0].f32**: scroll offset of each frame. The offset is positive when the list
+     * is scrolled up and negative when the list is scrolled down.
+     * <br>**ArkUI_NodeComponentEvent.data[1].i32**: current scroll state.
+     *
      */
     NODE_LIST_ON_DID_SCROLL,
 
     /**
-     * @brief Defines the event triggered when the currently displayed content of the <b>ARKUI_NODE_LIST</b> changes.
-     *
-     * Notes for triggering the event:\n
-     * This event is triggered once when the list is initialized and when the index of the first child component or the
-     * next child component in the list display area changes.
-     * During index calculation, the list item, header of the list item group, and footer of the list item group each
-     * are counted as a child component. \n
-     * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
-     * {@link ArkUI_NodeComponentEvent}. \n
-     * {@link ArkUI_NodeComponentEvent} contains six parameters: \n
-     * <b>ArkUI_NodeComponentEvent.data[0].i32</b>: index of the first child component in the list display area. \n
-     * <b>ArkUI_NodeComponentEvent.data[1].i32</b>: area in the list item group where the list display area starts.
-     * The type is {@link ArkUI_ListItemGroupArea}. \n
-     * <b>ArkUI_NodeComponentEvent.data[2].i32</b>: index of the list item at the start of the list display area
-     * in the list item group.
-     * If the start of the list display area is not on a list item, the value is <b>-1</b>. \n
-     * <b>ArkUI_NodeComponentEvent.data[3].i32</b>: index of the last child component in the list display area. \n
-     * <b>ArkUI_NodeComponentEvent.data[4].i32</b>: area in the list item group where the list display area ends.
-     * The type is {@link ArkUI_ListItemGroupArea}. \n
-     * <b>ArkUI_NodeComponentEvent.data[5].i32</b>: index of the list item at the end of the list display area in the
-     * list item group.
-     * If the end of the list display area is not on a list item, the value is <b>-1</b>. \n
+     * @brief Event triggered when the currently displayed content of the **ARKUI_NODE_LIST** component changes. This
+     * event is triggered under the following scenarios:
+     * <br>This event is triggered once when the list is initialized and when the index of the first child component or
+     * the last child component in the list display area changes. During trigger condition calculation, {@link header}
+     * or {@link footer} in each {@link ListItem} and {@link ListItemGroup} is considered as a child component.
+     * <br>When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
+     * {@link ArkUI_NodeComponentEvent}.
+     * <br>{@link ArkUI_NodeComponentEvent} contains the following parameters:
+     * <br>**ArkUI_NodeComponentEvent.data[0].i32**: index of the first child component in the list display area.
+     * <br>**ArkUI_NodeComponentEvent.data[1].i32**: area in the list item group where the list display area starts.
+     * The type is {@link ArkUI_ListItemGroupArea}.
+     * <br>**ArkUI_NodeComponentEvent.data[2].i32**: index of the list item at the start of the list display area in
+     * the list item group. If the start of the list display area is not on a list item, the value is **-1**.
+     * <br>**ArkUI_NodeComponentEvent.data[3].i32**: index of the last child component in the list display area.
+     * <br>**ArkUI_NodeComponentEvent.data[4].i32**: area in the list item group where the list display area ends. The
+     * type is {@link ArkUI_ListItemGroupArea}.
+     * <br>**ArkUI_NodeComponentEvent.data[5].i32**: index of the list item at the end of the list display area in the
+     * list item group. If the end of the list display area is not on a list item, the value is **-1**.
      *
      * @since 15
      */
@@ -11664,7 +11662,7 @@ typedef enum {
      */
     NODE_LIST_ITEM_ON_SELECT = MAX_NODE_SCOPE_NUM * ARKUI_NODE_LIST_ITEM,
 
-        /**
+    /**
      * @brief Defines the event triggered when a child component enters or leaves the ArcList display area.
      *
      * Conditions for triggering the event:\n
@@ -11773,67 +11771,76 @@ typedef enum {
     NODE_ARC_LIST_ON_DID_SCROLL = 1019006,
 
     /**
-     * @brief Defines the event triggered when the refresh state of the <b>ARKUI_NODE_REFRESH</b> object changes.
+     * @brief Event triggered when the refresh state of the **ARKUI_NODE_REFRESH** object changes. When the event
+     * callback occurs, the union type in the {@link ArkUI_NodeEvent} object is {@link ArkUI_NodeComponentEvent}.
+     * <br>{@link ArkUI_NodeComponentEvent} contains the following parameter:
+     * <br>**ArkUI_NodeComponentEvent.data[0].i32**: refresh state.
+     * <br>**0** (Inactive): This is the default status, indicating that the user has not pulled down the list.
+     * <br>**1** (Drag): The user is pulling down the list, and the distance between the current position and the top
+     * of the list is less than the refresh distance. If the user releases the list at this time, the component enters
+     * the **Inactive** state. If the user continues to pull down the list and the distance between the current
+     * position and the top of the list exceeds the refresh distance, the component enters the **OverDrag** state.
+     * <br>**2** (OverDrag): The user is pulling down the list, and the distance between the current position and the
+     * top of the list exceeds the refresh distance. If the user releases the list at this time, the component enters
+     * the **Refresh** state. If the user swipes upward and the pull-down distance is less than the refresh distance,
+     * the component enters the **Drag** state.
+     * <br>**3** (Refresh): The user has pulled down the list to the refresh distance, and the component enters the **
+     * Refresh** state.
+     * <br>**4** (Done): The refresh is complete, and the component returns to the initial state (the top of the list).
      *
-     * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
-     * {@link ArkUI_NodeComponentEvent}. \n
-     * {@link ArkUI_NodeComponentEvent} contains one parameter:\n
-     * <b>ArkUI_NodeComponentEvent.data[0].i32</b>: refresh state. \n
      */
     NODE_REFRESH_STATE_CHANGE = MAX_NODE_SCOPE_NUM * ARKUI_NODE_REFRESH,
     /**
-     * @brief Defines the event triggered when the <b>ARKUI_NODE_REFRESH</b> object enters the refresh state.
+     * @brief Event triggered when the **ARKUI_NODE_REFRESH** object enters the refresh state. When the event callback
+     * occurs, the union type in the {@link ArkUI_NodeEvent} object is {@link ArkUI_NodeComponentEvent}.
+     * <br>{@link ArkUI_NodeComponentEvent} does not contain parameters.
      *
-     * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
-     * {@link ArkUI_NodeComponentEvent}. \n
-     * {@link ArkUI_NodeComponentEvent} does not contain parameters:\n
      */
     NODE_REFRESH_ON_REFRESH,
 
     /**
-     * @brief Defines the event that is triggered when the <b>ARKUI_NODE_REFRESH</b> drop-down distance changes.
+     * @brief Event triggered when the pull-down distance of the **ARKUI_NODE_REFRESH** object changes. When the event
+     * callback occurs, the union type in the {@link ArkUI_NodeEvent} object is {@link ArkUI_NodeComponentEvent}.
+     * <br>{@link ArkUI_NodeComponentEvent} contains the following parameter:
+     * <br>**ArkUI_NodeComponentEvent.data[0].f32**: drop-down distance.
      *
-     * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
-     * {@link ArkUI_NodeComponentEvent}. \n
-     * {@link ArkUI_NodeComponentEvent} contains one parameter:\n
-     * <b>ArkUI_NodeComponentEvent.data[0].f32</b>: Pull-down distance. \n
      */
     NODE_REFRESH_ON_OFFSET_CHANGE,
 
     /**
-     * @brief Defines the event triggered when the <b>ARKUI_NODE_SCROLL</b> component is about to scroll.
+     * @brief Event triggered when the **ARKUI_NODE_WATER_FLOW** component is about to scroll. This event is triggered
+     * under the following scenarios:
+     * <br>1. Scrolling is started by the scrollable component (supports keyboard, mouse, and other input methods that
+     * trigger scrolling).
+     * <br>2. Scrolling is initiated by calling the controller API.
+     * <br>3. The out-of-bounds bounce effect is active.
+     * <br>When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
+     * {@link ArkUI_NodeComponentEvent}.
+     * <br>{@link ArkUI_NodeComponentEvent} contains the following parameters:
+     * <br>**ArkUI_NodeComponentEvent.data[0].f32**: scroll offset of each frame. The offset is positive when the
+     * content is scrolled up and negative when the content is scrolled down.
+     * <br>**ArkUI_NodeComponentEvent.data[1].i32**: current scroll state. The parameter type is
+     * {@link ArkUI_ScrollState}.
+     * <br>**ArkUI_NodeComponentEvent.data[2].i32**: current scroll source. The parameter type is
+     * {@link ArkUI_ScrollSource}.
      *
-     * Notes for triggering the event:\n
-     * 1. This event is triggered when scrolling is started by the <b>ARKUI_NODE_SCROLL</b> component or other
-     * input settings, such as keyboard and mouse operations. \n
-     * 2. Scrolling can be initiated by calling the controller API. \n
-     * 3. The out-of-bounds bounce effect is supported. \n
-     * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
-     * {@link ArkUI_NodeComponentEvent}. \n
-     * {@Link ArkUI_NodeComponentEvent} contains three parameters: \n
-     * ArkUI_NodeComponentEvent.data[0].f32: offset of each frame scrolling. \n
-     * The offset is positive when the list content is scrolled up and \n
-     * is negative when the list content is scrolled down. \n
-     * ArkUI_NodeComponentEvent.data[1].i32: Current sliding state. \n
-     * parameter type is {@link ArkUI_ScrollState}. \n
-     * <b>ArkUI_NodeComponentEvent.data[2].i32</b>: Current scroll source, \n
-     * parameter type is {@link ArkUI_ScrollSource}. \n
      * @return Does not return or returns a number that sets the actual scroll distance of the scroll component. \n
      */
     NODE_ON_WILL_SCROLL = MAX_NODE_SCOPE_NUM * ARKUI_NODE_WATER_FLOW,
     /**
-     * @brief Define the enumerated values of the event triggered when the ARKUI_NODE_WATER_FLOW component slides.
-     * Condition for triggering the event: \n
-     * This event is triggered when the scrolling component triggers scrolling.
-     * Other inputs that trigger scrolling, such as keyboard and mouse operations, can be set. \n
-     * Called through the scroll controller API. \n
-     * Out-of-bounds rebound. \n
-     * When the event callback occurs, the union type in the {@Link ArkUI_NodeEvent} object is \n
-     * {@Link ArkUI_NodeComponentEvent}. \n
-     * {@Link ArkUI_NodeComponentEvent} contains two parameters:\n
-     * ArkUI_NodeComponentEvent.data[0].f32: offset of each frame scrolling. \n
-     * The offset is positive when the content is scrolled up and is negative when the content is scrolled down. \n
-     * ArkUI_NodeComponentEvent.data[1].i32: Current sliding state. \n
+     * @brief Event triggered when the **ARKUI_NODE_WATER_FLOW** component scrolls. This event is triggered under the
+     * following scenarios:
+     * <br>1. Scrolling is started by the scrollable component (supports keyboard, mouse, and other input methods that
+     * trigger scrolling).
+     * <br>2. Scrolling is initiated by calling the controller API.
+     * <br>3. The out-of-bounds bounce effect is active.
+     * <br>When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
+     * {@link ArkUI_NodeComponentEvent}.
+     * <br>{@link ArkUI_NodeComponentEvent} contains the following parameters:
+     * <br>**ArkUI_NodeComponentEvent.data[0].f32**: scroll offset of each frame. The offset is positive when the
+     * content is scrolled up and negative when the content is scrolled down.
+     * <br>**ArkUI_NodeComponentEvent.data[1].i32**: current scroll state.
+     *
      */
     NODE_WATER_FLOW_ON_DID_SCROLL,
     /**
@@ -11853,38 +11860,37 @@ typedef enum {
     NODE_WATER_FLOW_ON_SCROLL_INDEX,
 
     /**
-     * @brief Defines the event triggered when a child component enters or leaves the grid display area.
-     *
-     * Notes for triggering the event:\n
-     * This event is triggered once when the grid is initialized and when the index of the first or \n
-     * last child component in the grid display area changes. \n
-     * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is \n
-     * {@link ArkUI_NodeComponentEvent}. \n
-     * {@link ArkUI_NodeComponentEvent} contains two parameters:\n
-     * <b>ArkUI_NodeComponentEvent.data[0].i32</b>: index of the first child component in the grid display area. \n
-     * <b>ArkUI_NodeComponentEvent.data[1].i32</b>: index of the last child component in the grid display area. \n
+     * @brief Event triggered when a child component of **ARKUI_NODE_GRID** enters or leaves the grid display area.
+     * This event is triggered under the following scenarios:
+     * <br>This event is triggered once when the grid is initialized and when the index of the first child component or
+     * the last child component in the grid display area changes.
+     * <br>When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
+     * {@link ArkUI_NodeComponentEvent}.
+     * <br>{@link ArkUI_NodeComponentEvent} contains the following parameters:
+     * <br>**ArkUI_NodeComponentEvent.data[0].i32**: index of the first child component in the grid display area.
+     * <br>**ArkUI_NodeComponentEvent.data[1].i32**: index of the last child component in the grid display area.
      *
      * @since 22
      */
     NODE_GRID_ON_SCROLL_INDEX = MAX_NODE_SCOPE_NUM * ARKUI_NODE_GRID,
 
     /**
-     * @brief Defines the event triggered when the grid is about to scroll.
+     * @brief Event triggered when the **ARKUI_NODE_GRID** component is about to scroll. This event is triggered under
+     * the following scenarios:
+     * <br>1. Scrolling is started by the scrollable component (supports keyboard, mouse, and other input methods that
+     * trigger scrolling).
+     * <br>2. Scrolling is initiated by calling the controller API.
+     * <br>3. The out-of-bounds bounce effect is active.
+     * <br>When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
+     * {@link ArkUI_NodeComponentEvent}.
+     * <br>{@link ArkUI_NodeComponentEvent} contains the following parameters:
+     * <br>**ArkUI_NodeComponentEvent.data[0].f32**: scroll offset of each frame. The offset is positive when the
+     * content is scrolled up in the grid and negative when the content is scrolled down.
+     * <br>**ArkUI_NodeComponentEvent.data[1].i32**: current scroll state. The parameter type is
+     * {@link ArkUI_ScrollState}.
+     * <br>**ArkUI_NodeComponentEvent.data[2].i32**: current scroll source. The parameter type is
+     * {@link ArkUI_ScrollSource}.
      *
-     * Notes for triggering the event:\n
-     * 1. This event is triggered when scrolling is started by the scrollable component or other input settings,
-     * such as keyboard and mouse operations. \n
-     * 2. Scrolling can be initiated by calling the controller API. \n
-     * 3. The out-of-bounds bounce effect is supported. \n
-     * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
-     * {@link ArkUI_NodeComponentEvent}. \n
-     * {@link ArkUI_NodeComponentEvent} contains three parameters:\n
-     * <b>ArkUI_NodeComponentEvent.data[0].f32</b>:
-     * Scroll offset of each frame. A positive offset indicates content scrolling upward, \n
-     * and a negative offset indicates content scrolling downward. \n
-     * <b>ArkUI_NodeComponentEvent.data[1].i32</b>: current scroll state. The parameter type is
-     * {@link ArkUI_ScrollState}. \n
-     * <b>ArkUI_NodeComponentEvent.data[2].i32</b>: scroll source. The parameter type is {@link ArkUI_ScrollSource}. \n
      * @return Returns one or no number to indicate the actual amount by which the scroll component scrolls.
      *
      * @since 22
@@ -11892,145 +11898,139 @@ typedef enum {
     NODE_GRID_ON_WILL_SCROLL = 1013001,
 
     /**
-     * @brief Defines the event triggered when the grid scrolls.
-     *
-     * Notes for triggering the event:\n
-     * 1. This event is triggered when scrolling is started by the scrollable component or other input settings,
-     * such as keyboard and mouse operations. \n
-     * 2. Scrolling can be initiated by calling the controller API. \n
-     * 3. The out-of-bounds bounce effect is supported. \n
-     * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
-     * {@link ArkUI_NodeComponentEvent}. \n
-     * {@link ArkUI_NodeComponentEvent} contains two parameters:\n
-     * <b>ArkUI_NodeComponentEvent.data[0].f32</b>:
-     * Scroll offset of each frame. A positive offset indicates content scrolling upward, \n
-     * and a negative offset indicates content scrolling downward. \n
-     * <b>ArkUI_NodeComponentEvent.data[1].i32</b>: current scroll state. \n
+     * @brief Event triggered when the **ARKUI_NODE_GRID** component scrolls. This event is triggered under the
+     * following scenarios:
+     * <br>1. Scrolling is started by the scrollable component (supports keyboard, mouse, and other input methods that
+     * trigger scrolling).
+     * <br>2. Scrolling is initiated by calling the controller API.
+     * <br>3. The out-of-bounds bounce effect is active.
+     * <br>When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
+     * {@link ArkUI_NodeComponentEvent}.
+     * <br>{@link ArkUI_NodeComponentEvent} contains the following parameters:
+     * <br>**ArkUI_NodeComponentEvent.data[0].f32**: scroll offset of each frame. The offset is positive when the
+     * content is scrolled up in the grid and negative when the content is scrolled down.
+     * <br>**ArkUI_NodeComponentEvent.data[1].i32**: current scroll state. The parameter type is
+     * {@link ArkUI_ScrollState}.
      *
      * @since 22
      */
     NODE_GRID_ON_DID_SCROLL = 1013002,
 
     /**
-     * @brief Defines the event triggered at the end of each frame layout of the <b>ARKUI_NODE_GRID</b> component,
-     * which is used to set the position and length of the scrollbar.
+     * @brief Event triggered at the end of each frame layout of the **ARKUI_NODE_GRID** component, which is used to
+     * set the position and length of the scrollbar.
+     * <br>When the event callback occurs, the event parameter is {@link ArkUI_NodeEvent}. value.i32 at index 0: index
+     * of the first item in the currently displayed grid; obtained using **OH_ArkUI_NodeEvent_GetNumberValue**.
+     * <br>value.f32 at index 1: offset of the item at the starting position of the currently displayed grid relative
+     * to the starting position of the grid display, in vp; obtained using **OH_ArkUI_NodeEvent_GetNumberValue**.
      *
-     * The event parameter is {@link ArkUI_NodeEvent}. \n
-     * value.i32 at index 0:offset of the first visible grid item,
-     * obtained using <b>OH_ArkUI_NodeEvent_GetNumberValue</b>. \n
-     * value.f32 at index 1: offset of the first visible item relative to the grid's display starting position, in vp,
-     * obtained using <b>OH_ArkUI_NodeEvent_GetNumberValue</b>. \n
      * @return Information about the scrollbar position and length. \n
-     * You can set the return value using <b>OH_ArkUI_NodeEvent_SetReturnNumberValue</b>. \n
-     * value.f32 at index 0: total offset of the grid content relative to the display area, in px. \n
-     * value.f32 at index 1: total length of the grid content, in px. \n
+     *     You can set the return value using <b>OH_ArkUI_NodeEvent_SetReturnNumberValue</b>. \n
+     *     value.f32 at index 0: total offset of the grid content relative to the display area, in px. \n
+     *     value.f32 at index 1: total length of the grid content, in px. \n
      *
      * @since 22
      */
     NODE_GRID_ON_SCROLL_BAR_UPDATE = 1013003,
-
     /**
-     * @brief Defines the <b>Grid</b> component's child drag start event.
-     *
-     * This event is triggered under the following scenarios: \n
-     * 1. <b>NODE_GRID_EDIT_MODE</b> is set to <b>1</b>. \n
-     * 2. The user long-presses and drags a <b>Grid</b> child component with sufficient displacement. \n
-     * The event parameter is {@link ArkUI_NodeEvent}. \n
-     * value.f32 at index 0: x-coordinate of the current drag point relative to the <b>Grid</b> component, in vp,
-     * obtained using <b>OH_ArkUI_NodeEvent_GetNumberValue</b>. \n
-     * value.f32 at index 1: y-coordinate of the current drag point relative to the <b>Grid</b> component, in vp,
-     * obtained using <b>OH_ArkUI_NodeEvent_GetNumberValue</b>. \n
-     * value.i32 at index 2: index of the dragged child component in the <b>Grid</b> component,
-     * obtained using <b>OH_ArkUI_NodeEvent_GetNumberValue</b>. \n
+     * @brief **ARKUI_NODE_GRID** component's child drag start event.
+     * <br>This event is triggered in the following scenarios:
+     * <br>1. **NODE_GRID_EDIT_MODE** is set to **1**.
+     * <br>2. A user long-presses and drags a **Grid** child component with sufficient displacement.
+     * <br>When the event callback occurs, the event parameter is {@link ArkUI_NodeEvent}.
+     * <br>value.f32 at index 0: x-coordinate of the current drag point relative to the **Grid** component, in vp;
+     * obtained by calling **OH_ArkUI_NodeEvent_GetNumberValue**.
+     * <br>value.f32 at index 1: y-coordinate of the current drag point relative to the **Grid** component, in vp;
+     * obtained by calling **OH_ArkUI_NodeEvent_GetNumberValue**.
+     * <br>value.i32 at index 2: index of the dragged child component in the **Grid** component; obtained by calling **
+     * OH_ArkUI_NodeEvent_GetNumberValue**.
+     * <br>You can set the return value using **OH_ArkUI_NodeEvent_SetReturnNumberValue**.
+     * <br>value.i32 at index 0 in the return value indicates whether dragging is allowed. **0**: not allowed. **1**:
+     * allowed.
      *
      * @return Whether the drag operation is allowed. \n
-     * You can set the return value using <b>OH_ArkUI_NodeEvent_SetReturnNumberValue</b>. \n
-     * value.i32 at index 0 in the return value indicates whether dragging is allowed.
-     * <b>0</b>: not allowed. <b>1</b>: allowed. \n
+     *     You can set the return value using <b>OH_ArkUI_NodeEvent_SetReturnNumberValue</b>. \n
+     *     value.i32 at index 0 in the return value indicates whether dragging is allowed.
+     *     <b>0</b>: not allowed. <b>1</b>: allowed. \n
      *
      * @since 23
      */
     NODE_GRID_ON_ITEM_DRAG_START = 1013004,
 
     /**
-     * @brief Defines the event triggered when a dragged child component enters this <b>Grid</b> component's area.
-     *
-     * This event is triggered under the following scenarios:\n
-     * A child component successfully dragged using <b>NODE_GRID_ON_ITEM_DRAG_START</b> enters the current <b>Grid</b>
-     * component's area. \n
-     * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
-     * {@link ArkUI_NodeComponentEvent}. \n
-     * {@link ArkUI_NodeComponentEvent} contains two parameters:\n
-     * <b>ArkUI_NodeComponentEvent.data[0].f32</b>: x-coordinate of the current drag point relative to the <b>Grid</b>
-     * component, in vp. \n
-     * <b>ArkUI_NodeComponentEvent.data[1].f32</b>: y-coordinate of the current drag point relative to the <b>Grid</b>
-     * component, in vp. \n
+     * @brief Event triggered when a dragged child component enters this **Grid** component's area.
+     * <br>This event is triggered in the following scenario:
+     * <br>This event is triggered when a child component is successfully dragged by **NODE_GRID_ON_ITEM_DRAG_START**
+     * into this **Grid** component's area.
+     * <br>When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
+     * {@link ArkUI_NodeComponentEvent}.
+     * <br>{@link ArkUI_NodeComponentEvent} contains the following parameters:
+     * <br>**ArkUI_NodeComponentEvent.data[0].f32**: x-coordinate of the current drag point relative to the **Grid**
+     * component, in vp.
+     * <br>**ArkUI_NodeComponentEvent.data[1].f32**: y-coordinate of the current drag point relative to the **Grid**
+     * component, in vp.
      *
      * @since 23
      */
     NODE_GRID_ON_ITEM_DRAG_ENTER = 1013005,
 
     /**
-     * @brief Defines the event triggered when a dragged child component moves within this <b>Grid</b> component's area.
-     *
-     * This event is triggered under the following scenarios:\n
-     * A child component successfully dragged using <b>NODE_GRID_ON_ITEM_DRAG_START</b> moves within the current
-     * <b>Grid</b> component's area. \n
-     * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
-     * {@link ArkUI_NodeComponentEvent}. \n
-     * {@link ArkUI_NodeComponentEvent} contains four parameters: \n
-     * <b>ArkUI_NodeComponentEvent.data[0].f32</b>: x-coordinate of the current drag point relative to the <b>Grid</b>
-     * component, in vp. \n
-     * <b>ArkUI_NodeComponentEvent.data[1].f32</b>: y-coordinate of the current drag point relative to the <b>Grid</b>
-     * component, in vp. \n
-     * <b>ArkUI_NodeComponentEvent.data[2].i32</b>: index of the dragged child component in the source <b>Grid</b>
-     * component. \n
-     * <b>ArkUI_NodeComponentEvent.data[3].i32</b>: index of the dragged child component in the current <b>Grid</b>
-     * component. \n
+     * @brief Event triggered when a dragged child component moves within this **Grid** component's area.
+     * <br>This event is triggered in the following scenario:
+     * <br>This event is triggered when a child component is successfully dragged by **NODE_GRID_ON_ITEM_DRAG_START**
+     * into this **Grid** component's area.
+     * <br>When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
+     * {@link ArkUI_NodeComponentEvent}.
+     * <br>{@link ArkUI_NodeComponentEvent} contains the following parameters:
+     * <br>**ArkUI_NodeComponentEvent.data[0].f32**: x-coordinate of the current drag point relative to the **Grid**
+     * component, in vp.
+     * <br>**ArkUI_NodeComponentEvent.data[1].f32**: y-coordinate of the current drag point relative to the **Grid**
+     * component, in vp.
+     * <br>**ArkUI_NodeComponentEvent.data[2].i32**: index of the dragged child component in the source **Grid**
+     * component.
+     * <br>**ArkUI_NodeComponentEvent.data[3].i32**: index of the dragged child component in this **Grid** component.
      *
      * @since 23
      */
     NODE_GRID_ON_ITEM_DRAG_MOVE = 1013006,
 
     /**
-     * @brief Defines the event triggered when a dragged child component leaves this <b>Grid</b> component's area.
-     *
-     * This event is triggered under the following scenarios:\n
-     * A child component successfully dragged using <b>NODE_GRID_ON_ITEM_DRAG_START</b> leaves the current <b>Grid</b>
-     * component's area. \n
-     * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
-     * {@link ArkUI_NodeComponentEvent}. \n
-     * {@link ArkUI_NodeComponentEvent} contains three parameters:\n
-     * <b>ArkUI_NodeComponentEvent.data[0].f32</b>: x-coordinate of the current drag point relative to the <b>Grid</b>
-     * component, in vp. \n
-     * <b>ArkUI_NodeComponentEvent.data[1].f32</b>: y-coordinate of the current drag point relative to the <b>Grid</b>
-     * component, in vp. \n
-     * <b>ArkUI_NodeComponentEvent.data[2].i32</b>: index of the dragged child component in the source <b>Grid</b>
-     * component. \n
+     * @brief Event triggered when a dragged child component leaves this **Grid** component's area.
+     * <br>This event is triggered in the following scenario:
+     * <br>This event is triggered when a child component successfully dragged using **NODE_GRID_ON_ITEM_DRAG_START**
+     * leaves this **Grid** component's area.
+     * <br>When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
+     * {@link ArkUI_NodeComponentEvent}.
+     * <br>{@link ArkUI_NodeComponentEvent} contains the following parameters:
+     * <br>**ArkUI_NodeComponentEvent.data[0].f32**: x-coordinate of the current drag point relative to the **Grid**
+     * component, in vp.
+     * <br>**ArkUI_NodeComponentEvent.data[1].f32**: y-coordinate of the current drag point relative to the **Grid**
+     * component, in vp.
+     * <br>**ArkUI_NodeComponentEvent.data[2].i32**: index of the dragged child component in the source **Grid**
+     * component.
      *
      * @since 23
      */
     NODE_GRID_ON_ITEM_DRAG_LEAVE = 1013007,
 
     /**
-     * @brief Defines the event triggered when a dragged child component is released.
-     *
-     * This event is triggered under the following scenarios:\n
-     * A child component successfully dragged using <b>NODE_GRID_ON_ITEM_DRAG_START</b> is released. \n
-     * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
-     * {@link ArkUI_NodeComponentEvent}. \n
-     * {@link ArkUI_NodeComponentEvent} contains five parameters: \n
-     * <b>ArkUI_NodeComponentEvent.data[0].f32</b>: x-coordinate of the current drag point relative to the <b>Grid</b>
-     * component, in vp. \n
-     * <b>ArkUI_NodeComponentEvent.data[1].f32</b>: y-coordinate of the current drag point relative to the <b>Grid</b>
-     * component, in vp. \n
-     * <b>ArkUI_NodeComponentEvent.data[2].i32</b>: index of the dragged child component in the source <b>Grid</b>
-     * component. \n
-     * <b>ArkUI_NodeComponentEvent.data[3].i32</b>: index of the dragged child component in the current <b>Grid</b>
-     * component. \n
-     * <b>ArkUI_NodeComponentEvent.data[4].i32</b>: whether the dragged child component is successfully released. \n
-     * <b>1</b>: The component is released within the <b>Grid</b> component's area.
-     * <b>0</b>: The component is released outside the <b>Grid</b> component's area. \n
+     * @brief Event triggered when a dragged child component is released.
+     * <br>This event is triggered in the following scenario:
+     * <br>This event is triggered when a child component successfully dragged using **NODE_GRID_ON_ITEM_DRAG_START**
+     * is released.
+     * <br>When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
+     * {@link ArkUI_NodeComponentEvent}.
+     * <br>{@link ArkUI_NodeComponentEvent} contains the following parameters:
+     * <br>**ArkUI_NodeComponentEvent.data[0].f32**: x-coordinate of the current drag point relative to the **Grid**
+     * component, in vp.
+     * <br>**ArkUI_NodeComponentEvent.data[1].f32**: y-coordinate of the current drag point relative to the **Grid**
+     * component, in vp.
+     * <br>**ArkUI_NodeComponentEvent.data[2].i32**: index of the dragged child component in the source **Grid**
+     * component.
+     * <br>**ArkUI_NodeComponentEvent.data[3].i32**: index of the dragged child component in this **Grid** component.
+     * <br>**ArkUI_NodeComponentEvent.data[4].i32**: whether the dragged child component is successfully released
+     * within the **Grid** component's area. **1**: within the **Grid** component's area. **0**: outside the **Grid**
+     * component's area.
      *
      * @since 23
      */
@@ -12058,12 +12058,11 @@ typedef enum {
     NODE_GRID_ON_EDIT_MODE_CHANGE = 1013009,
 
     /**
-     * @brief Defines the selected state change event of the <b>GridItem</b> component.
-     *
-     * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
-     * {@link ArkUI_NodeComponentEvent}. \n
-     * {@link ArkUI_NodeComponentEvent} contains one parameter:\n
-     * <b>ArkUI_NodeComponentEvent.data[0].i32</b>: selected state. <b>0</b>: not selected. <b>1</b>: selected. \n
+     * @brief Selected state change event of the **ARKUI_NODE_GRID_ITEM** component.
+     * <br>When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
+     * {@link ArkUI_NodeComponentEvent}.
+     * <br>{@link ArkUI_NodeComponentEvent} contains the following parameter:
+     * <br>**ArkUI_NodeComponentEvent.data[0].i32**: **0** (not selected) or **1** (selected).
      *
      * @since 23
      */
