@@ -230,7 +230,7 @@ typedef enum {
  * The memory pointed to by outInputData must remain valid until {@link OH_AudioConverter_Process} returns.
  * @param userData User-defined data passed to the callback.
  * @param outInputData Pointer to a pointer that the callback sets to point to the input audio data buffer.
- * @param outStatus Set by the callback to inform the converter of data availability.
+ * @param outStatus Set by the callback to inform the converter about the current state of input data availability.
  * @return Size of valid input data pointed to by outInputData.
  * @since 26.0.0
  */

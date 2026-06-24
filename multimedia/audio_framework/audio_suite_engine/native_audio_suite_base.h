@@ -504,7 +504,8 @@ typedef struct OH_AudioDataArray {
      */
     int32_t arraySize;
     /**
-     * @brief Audio requestFrameSize count.
+     * @brief The memory size pointed to by each address in the audioDataArray array, in bytes.
+     * It should be ensured that the memory size pointed to by each address is requestFrameSize bytes.
      *
      * @since 22
      */
