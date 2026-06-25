@@ -25,6 +25,7 @@
 /**
  * @file game_pad_event.h
  * @brief 定义游戏手柄事件的接口。
+ *
  * @kit GameControllerKit
  * @library libohgame_controller.z.so
  * @syscap SystemCapability.Game.GameController
@@ -43,6 +44,7 @@ extern "C" {
 
 /**
  * @brief 此枚举定义手柄轴事件来源类型。
+ *
  * @since 21
  */
 typedef enum GamePad_AxisSourceType {
@@ -79,57 +81,64 @@ typedef enum GamePad_AxisSourceType {
 
 /**
  * @brief 此枚举定义手柄按键动作类型。
+ *
  * @since 21
  */
 typedef enum GamePad_Button_ActionType {
     /**
      * 按键按下。
-     * @since 21
+	 * @since 21
      */
     DOWN = 0,
 
     /**
      * 按键抬起。
-     * @since 21
+	 * @since 21
      */
     UP = 1,
 } GamePad_Button_ActionType;
 
 /**
  * @brief 定义手柄按键事件。
+ *
  * @since 21
  */
 typedef struct GamePad_ButtonEvent GamePad_ButtonEvent;
 
 /**
  * @brief 定义手柄轴事件。
+ *
  * @since 21
  */
 typedef struct GamePad_AxisEvent GamePad_AxisEvent;
 
 /**
  * @brief 定义手柄按下的按键。
+ *
  * @since 21
  */
 typedef struct GamePad_PressedButton GamePad_PressedButton;
 
 /**
  * @brief 定义在按键事件注册监听接口中使用的回调函数。当玩家按下按键时，该回调函数将被调用。
- * @param buttonEvent 输出参数，手柄按键事件{@link GamePad_ButtonEvent}.
+ *
+ * @param buttonEvent 输出参数，手柄按键事件{@link GamePad_ButtonEvent}。
  * @since 21
  */
 typedef void(* GamePad_ButtonInputMonitorCallback)(const struct GamePad_ButtonEvent* buttonEvent);
 
 /**
  * @brief 定义在轴事件注册监听接口中使用的回调函数。当玩家操作摇杆时，该回调函数将被调用。
- * @param axisEvent 输出参数，手柄轴事件{@link GamePad_AxisEvent}.
+ *
+ * @param axisEvent 输出参数，手柄轴事件{@link GamePad_AxisEvent}。
  * @since 21
  */
 typedef void(* GamePad_AxisInputMonitorCallback)(const struct GamePad_AxisEvent* axisEvent);
 
 /**
  * @brief 从按键事件中获取设备ID。
- * @param buttonEvent 指针指向{@link GamePad_ButtonEvent}实例，不能为空，否则将返回错误码。
+ *
+ * @param buttonEvent 指针指向{@link GamePad_ButtonEvent}实例，不能为空。
  * @param deviceId 输出参数，二级指针指向设备ID。
  * @return <ul><li>如果执行成功，返回{@link GAME_CONTROLLER_SUCCESS}。</li>
  *     <li>如果参数buttonEvent或deviceId为null，返回{@link GAME_CONTROLLER_PARAM_ERROR}。</li>
@@ -141,7 +150,8 @@ GameController_ErrorCode OH_GamePad_ButtonEvent_GetDeviceId(const struct GamePad
 
 /**
  * @brief 从按键事件中获取按键动作类型。
- * @param buttonEvent 指针指向{@link GamePad_ButtonEvent}实例，不能为空，否则将返回错误码。
+ *
+ * @param buttonEvent 指针指向{@link GamePad_ButtonEvent}实例，不能为空。
  * @param actionType 输出参数，按键动作类型。
  * @return <ul><li>如果执行成功，返回{@link GAME_CONTROLLER_SUCCESS}。</li>
  *     <li>如果参数buttonEvent为null，返回{@link GAME_CONTROLLER_PARAM_ERROR}。</li></ul>
@@ -152,7 +162,8 @@ GameController_ErrorCode OH_GamePad_ButtonEvent_GetButtonAction(const struct Gam
 
 /**
  * @brief 从按键事件中获取按键编码。
- * @param buttonEvent 指针指向{@link GamePad_ButtonEvent}实例，不能为空，否则将返回错误码。
+ *
+ * @param buttonEvent 指针指向{@link GamePad_ButtonEvent}实例，不能为空。
  * @param code 输出参数，按键编码。
  * @return <ul><li>如果执行成功，返回{@link GAME_CONTROLLER_SUCCESS}。</li>
  *     <li>如果参数buttonEvent为null，返回{@link GAME_CONTROLLER_PARAM_ERROR}。</li></ul>
@@ -163,7 +174,8 @@ GameController_ErrorCode OH_GamePad_ButtonEvent_GetButtonCode(const struct GameP
 
 /**
  * @brief 从按键事件中获取按键名称。
- * @param buttonEvent 指针指向{@link GamePad_ButtonEvent}实例，不能为空，否则将返回错误码。
+ *
+ * @param buttonEvent 指针指向{@link GamePad_ButtonEvent}实例，不能为空。
  * @param codeName 输出参数，二级指针指向按键名称。
  * @return <ul><li>如果执行成功，返回{@link GAME_CONTROLLER_SUCCESS}。</li>
  *     <li>如果参数buttonEvent或codeName为null，返回{@link GAME_CONTROLLER_PARAM_ERROR}。</li>
@@ -175,7 +187,8 @@ GameController_ErrorCode OH_GamePad_ButtonEvent_GetButtonCodeName(const struct G
 
 /**
  * @brief 从按键事件中获取按下的按键数量。
- * @param buttonEvent 指针指向{@link GamePad_ButtonEvent}实例，不能为空，否则将返回错误码。
+ *
+ * @param buttonEvent 指针指向{@link GamePad_ButtonEvent}实例，不能为空。
  * @param count 输出参数，按键数量。
  * @return <ul><li>如果执行成功，返回{@link GAME_CONTROLLER_SUCCESS}。</li>
  *     <li>如果参数buttonEvent为null，返回{@link GAME_CONTROLLER_PARAM_ERROR}。</li></ul>
@@ -186,7 +199,8 @@ GameController_ErrorCode OH_GamePad_PressedButtons_GetCount(const struct GamePad
 
 /**
  * @brief 从按键事件中获取指定索引的按键信息。
- * @param buttonEvent 指针指向{@link GamePad_ButtonEvent}实例，不能为空，否则将返回错误码。
+ *
+ * @param buttonEvent 指针指向{@link GamePad_ButtonEvent}实例，不能为空。
  * @param index 指定按键索引。
  * @param pressedButton 输出参数，二级指针指向按下的按键。
  * @return <ul><li>如果执行成功，返回{@link GAME_CONTROLLER_SUCCESS}。</li>
@@ -199,7 +213,8 @@ GameController_ErrorCode OH_GamePad_PressedButtons_GetButtonInfo(const struct Ga
 
 /**
  * @brief 销毁按下的按键实例。
- * @param pressedButton 二级指针指向{@link GamePad_PressedButton}实例，不能为空，否则将返回错误码。
+ *
+ * @param pressedButton 二级指针指向{@link GamePad_PressedButton}实例，不能为空。
  * @return <ul><li>如果执行成功，返回{@link GAME_CONTROLLER_SUCCESS}。</li>
  *     <li>如果参数pressedButton为null，返回{@link GAME_CONTROLLER_PARAM_ERROR}。</li></ul>
  * @since 21
@@ -208,7 +223,8 @@ GameController_ErrorCode OH_GamePad_DestroyPressedButton(GamePad_PressedButton**
 
 /**
  * @brief 从按下的按键中获取按键编码。
- * @param pressedButton 指针指向{@link GamePad_PressedButton}实例，不能为空，否则将返回错误码。
+ *
+ * @param pressedButton 指针指向{@link GamePad_PressedButton}实例，不能为空。
  * @param code 输出参数，按键编码。
  * @return <ul><li>如果执行成功，返回{@link GAME_CONTROLLER_SUCCESS}。</li>
  *     <li>如果参数pressedButton为null，返回{@link GAME_CONTROLLER_PARAM_ERROR}。</li></ul>
@@ -219,7 +235,8 @@ GameController_ErrorCode OH_GamePad_PressedButton_GetButtonCode(const struct Gam
 
 /**
  * @brief 从按下的按键中获取按键名称。
- * @param pressedButton 指针指向{@link GamePad_PressedButton}实例，不能为空，否则将返回错误码。
+ *
+ * @param pressedButton 指针指向{@link GamePad_PressedButton}实例，不能为空。
  * @param codeName 输出参数，二级指针指向按键名称。
  * @return <ul><li>如果执行成功，返回{@link GAME_CONTROLLER_SUCCESS}。</li>
  *     <li>如果参数pressedButton或codeName为null，返回{@link GAME_CONTROLLER_PARAM_ERROR}。</li>
@@ -231,8 +248,9 @@ GameController_ErrorCode OH_GamePad_PressedButton_GetButtonCodeName(const struct
 
 /**
  * @brief 从按键事件中获取动作时间。
- * @param buttonEvent 指针指向{@link GamePad_ButtonEvent}实例，不能为空，否则将返回错误码。
- * @param actionTime 输出参数，动作时间。
+ *
+ * @param buttonEvent 指针指向{@link GamePad_ButtonEvent}实例，不能为空。
+ * @param actionTime 输出参数，动作时间。Unix时间戳，单位：ms。
  * @return <ul><li>如果执行成功，返回{@link GAME_CONTROLLER_SUCCESS}。</li>
  *     <li>如果参数buttonEvent为null，返回{@link GAME_CONTROLLER_PARAM_ERROR}。</li></ul>
  * @since 21
@@ -242,7 +260,8 @@ GameController_ErrorCode OH_GamePad_ButtonEvent_GetActionTime(const struct GameP
 
 /**
  * @brief 从轴事件中获取设备ID。
- * @param axisEvent 指针指向{@link GamePad_AxisEvent}实例，不能为空，否则将返回错误码。
+ *
+ * @param axisEvent 指针指向{@link GamePad_AxisEvent}实例，不能为空。
  * @param deviceId 输出参数，二级指针指向设备ID。
  * @return <ul><li>如果执行成功，返回{@link GAME_CONTROLLER_SUCCESS}。</li>
  *     <li>如果参数axisEvent或deviceId为null，返回{@link GAME_CONTROLLER_PARAM_ERROR}。</li>
@@ -253,9 +272,10 @@ GameController_ErrorCode OH_GamePad_AxisEvent_GetDeviceId(const struct GamePad_A
                                                           char** deviceId);
 
 /**
- * @brief 从轴事件中获取轴类型。
- * @param axisEvent 指针指向{@link GamePad_AxisEvent}实例，不能为空，否则将返回错误码。
- * @param axisSourceType 输出参数，轴类型。
+ * @brief 从轴事件中获取轴事件来源类型。
+ *
+ * @param axisEvent 指针指向{@link GamePad_AxisEvent}实例，不能为空。
+ * @param axisSourceType 输出参数，轴事件来源类型。
  * @return <ul><li>如果执行成功，返回{@link GAME_CONTROLLER_SUCCESS}。</li>
  *     <li>如果参数axisEvent为null，返回{@link GAME_CONTROLLER_PARAM_ERROR}。</li></ul>
  * @since 21
@@ -265,8 +285,9 @@ GameController_ErrorCode OH_GamePad_AxisEvent_GetAxisSourceType(const struct Gam
 
 /**
  * @brief 从轴事件中获取X轴的值。
- * @param axisEvent 指针指向{@link GamePad_AxisEvent}实例，不能为空，否则将返回错误码。
- * @param axisValue 输出参数，轴的值。
+ *
+ * @param axisEvent 指针指向{@link GamePad_AxisEvent}实例，不能为空。
+ * @param axisValue 输出参数，轴值。取值范围为[-1.0到1.0]。
  * @return <ul><li>如果执行成功，返回{@link GAME_CONTROLLER_SUCCESS}。</li>
  *     <li>如果参数axisEvent为null，返回{@link GAME_CONTROLLER_PARAM_ERROR}。</li></ul>
  * @since 21
@@ -276,8 +297,9 @@ GameController_ErrorCode OH_GamePad_AxisEvent_GetXAxisValue(const struct GamePad
 
 /**
  * @brief 从轴事件中获取Y轴的值。
- * @param axisEvent 指针指向{@link GamePad_AxisEvent}实例，不能为空，否则将返回错误码。
- * @param axisValue 输出参数，轴的值。
+ *
+ * @param axisEvent 指针指向{@link GamePad_AxisEvent}实例，不能为空。
+ * @param axisValue 输出参数，轴值。取值范围为[-1.0到1.0]。
  * @return <ul><li>如果执行成功，返回{@link GAME_CONTROLLER_SUCCESS}。</li>
  *     <li>如果参数axisEvent为null，返回{@link GAME_CONTROLLER_PARAM_ERROR}。</li></ul>
  * @since 21
@@ -287,8 +309,9 @@ GameController_ErrorCode OH_GamePad_AxisEvent_GetYAxisValue(const struct GamePad
 
 /**
  * @brief 从轴事件中获取Z轴的值。
- * @param axisEvent 指针指向{@link GamePad_AxisEvent}实例，不能为空，否则将返回错误码。
- * @param axisValue 输出参数，轴的值。
+ *
+ * @param axisEvent 指针指向{@link GamePad_AxisEvent}实例，不能为空。
+ * @param axisValue 输出参数，轴值。取值范围为[-1.0到1.0]。
  * @return <ul><li>如果执行成功，返回{@link GAME_CONTROLLER_SUCCESS}。</li>
  *     <li>如果参数axisEvent为null，返回{@link GAME_CONTROLLER_PARAM_ERROR}。</li></ul>
  * @since 21
@@ -298,8 +321,9 @@ GameController_ErrorCode OH_GamePad_AxisEvent_GetZAxisValue(const struct GamePad
 
 /**
  * @brief 从轴事件中获取RZ轴的值。
- * @param axisEvent 指针指向{@link GamePad_AxisEvent}实例，不能为空，否则将返回错误码。
- * @param axisValue 输出参数，轴的值。
+ *
+ * @param axisEvent 指针指向{@link GamePad_AxisEvent}实例，不能为空。
+ * @param axisValue 输出参数，轴值。取值范围为[-1.0到1.0]。
  * @return <ul><li>如果执行成功，返回{@link GAME_CONTROLLER_SUCCESS}。</li>
  *     <li>如果参数axisEvent为null，返回{@link GAME_CONTROLLER_PARAM_ERROR}。</li></ul>
  * @since 21
@@ -309,8 +333,9 @@ GameController_ErrorCode OH_GamePad_AxisEvent_GetRZAxisValue(const struct GamePa
 
 /**
  * @brief 从轴事件中获取HatX轴的值。
- * @param axisEvent 指针指向{@link GamePad_AxisEvent}实例，不能为空，否则将返回错误码。
- * @param axisValue 输出参数，轴的值。
+ *
+ * @param axisEvent 指针指向{@link GamePad_AxisEvent}实例，不能为空。
+ * @param axisValue 输出参数，轴值。取值范围为[-1.0到1.0]。
  * @return <ul><li>如果执行成功，返回{@link GAME_CONTROLLER_SUCCESS}。</li>
  *     <li>如果参数axisEvent为null，返回{@link GAME_CONTROLLER_PARAM_ERROR}。</li></ul>
  * @since 21
@@ -320,8 +345,9 @@ GameController_ErrorCode OH_GamePad_AxisEvent_GetHatXAxisValue(const struct Game
 
 /**
  * @brief 从轴事件中获取HatY轴的值。
- * @param axisEvent 指针指向{@link GamePad_AxisEvent}实例，不能为空，否则将返回错误码。
- * @param axisValue 输出参数，轴的值。
+ *
+ * @param axisEvent 指针指向{@link GamePad_AxisEvent}实例，不能为空。
+ * @param axisValue 输出参数，轴值。取值范围为[-1.0到1.0]。
  * @return <ul><li>如果执行成功，返回{@link GAME_CONTROLLER_SUCCESS}。</li>
  *     <li>如果参数axisEvent为null，返回{@link GAME_CONTROLLER_PARAM_ERROR}。</li></ul>
  * @since 21
@@ -331,8 +357,9 @@ GameController_ErrorCode OH_GamePad_AxisEvent_GetHatYAxisValue(const struct Game
 
 /**
  * @brief 从轴事件中获取Brake轴的值。
- * @param axisEvent 指针指向{@link GamePad_AxisEvent}实例，不能为空，否则将返回错误码。
- * @param axisValue 输出参数，轴的值。
+ *
+ * @param axisEvent 指针指向{@link GamePad_AxisEvent}实例，不能为空。
+ * @param axisValue 输出参数，轴值。取值范围为[-1.0到1.0]。
  * @return <ul><li>如果执行成功，返回{@link GAME_CONTROLLER_SUCCESS}。</li>
  *     <li>如果参数axisEvent为null，返回{@link GAME_CONTROLLER_PARAM_ERROR}。</li></ul>
  * @since 21
@@ -342,8 +369,9 @@ GameController_ErrorCode OH_GamePad_AxisEvent_GetBrakeAxisValue(const struct Gam
 
 /**
  * @brief 从轴事件中获取Gas轴的值。
- * @param axisEvent 指针指向{@link GamePad_AxisEvent}实例，不能为空，否则将返回错误码。
- * @param axisValue 输出参数，轴的值。
+ *
+ * @param axisEvent 指针指向{@link GamePad_AxisEvent}实例，不能为空。
+ * @param axisValue 输出参数，轴值。取值范围为[-1.0到1.0]。
  * @return <ul><li>如果执行成功，返回{@link GAME_CONTROLLER_SUCCESS}。</li>
  *     <li>如果参数axisEvent为null，返回{@link GAME_CONTROLLER_PARAM_ERROR}。</li></ul>
  * @since 21
@@ -353,8 +381,9 @@ GameController_ErrorCode OH_GamePad_AxisEvent_GetGasAxisValue(const struct GameP
 
 /**
  * @brief 从轴事件中获取动作时间。
- * @param axisEvent 指针指向{@link GamePad_AxisEvent}实例，不能为空，否则将返回错误码。
- * @param actionTime 输出参数，动作时间。
+ *
+ * @param axisEvent 指针指向{@link GamePad_AxisEvent}实例，不能为空。
+ * @param actionTime 输出参数，动作时间。Unix时间戳，单位：ms。
  * @return <ul><li>如果执行成功，返回{@link GAME_CONTROLLER_SUCCESS}。</li>
  *     <li>如果参数axisEvent为null，返回{@link GAME_CONTROLLER_PARAM_ERROR}。</li></ul>
  * @since 21

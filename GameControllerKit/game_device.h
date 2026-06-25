@@ -25,6 +25,7 @@
 /**
  * @file game_device.h
  * @brief Defines APIs for game devices.
+ *
  * @kit GameControllerKit
  * @library libohgame_controller.z.so
  * @syscap SystemCapability.Game.GameController
@@ -42,15 +43,17 @@ extern "C" {
 #endif
 
 /**
- * @brief Defines the calling result of {@link OH_GameDevice_GetAllDeviceInfos}.
+ * @brief Defines the result returned by {@link OH_GameDevice_GetAllDeviceInfos}.
+ *
  * @since 21
  */
 typedef struct GameDevice_AllDeviceInfos GameDevice_AllDeviceInfos;
 
 /**
- * @brief Obtains information about all online game devices.
- * @param allDeviceInfos Output parameter. Level-2 pointer to the {@link GameDevice_AllDeviceInfos}
- *     instance. The pointer cannot be null. Otherwise, an error code is returned.
+ * @brief Obtains information about all online devices.
+ *
+ * @param allDeviceInfos Output parameter. Double pointer to the {@link GameDevice_AllDeviceInfos} instance. The
+ *     pointer cannot be null.
  * @return <ul><li>Returns {@link GAME_CONTROLLER_SUCCESS} if the execution is successful.</li>
  *     <li>Returns {@link GAME_CONTROLLER_MULTIMODAL_INPUT_ERROR} if the multimodal input is abnormal.</li></ul>
  * @since 21
@@ -58,9 +61,9 @@ typedef struct GameDevice_AllDeviceInfos GameDevice_AllDeviceInfos;
 GameController_ErrorCode OH_GameDevice_GetAllDeviceInfos(GameDevice_AllDeviceInfos** allDeviceInfos);
 
 /**
- * @brief Registers the listening callback for game device status change events.
- * @param deviceMonitorCallback Callback function {@link GameDevice_DeviceMonitorCallback}.
- *     The callback function cannot be null. Otherwise, an error code is returned.
+ * @brief Registers a callback for device status change events.
+ *
+ * @param deviceMonitorCallback Callback function {@link GameDevice_DeviceMonitorCallback}, which cannot be null.
  * @return <ul><li>Returns {@link GAME_CONTROLLER_SUCCESS} if the execution is successful.</li>
  *     <li>Returns {@link GAME_CONTROLLER_PARAM_ERROR} if deviceMonitorCallback is null.</li></ul>
  * @since 21
@@ -69,16 +72,17 @@ GameController_ErrorCode OH_GameDevice_RegisterDeviceMonitor(
     GameDevice_DeviceMonitorCallback deviceMonitorCallback);
 
 /**
- * @brief Unregisters the listening callback for game device status change events.
+ * @brief Unregisters the callback for device status change events.
+ *
  * @return Returns {@link GAME_CONTROLLER_SUCCESS} if the execution is successful.
  * @since 21
  */
 GameController_ErrorCode OH_GameDevice_UnregisterDeviceMonitor(void);
 
 /**
- * @brief Destroys the {@link GameDevice_AllDeviceInfos} instance when it is no longer in use.
- * @param allDeviceInfos Level-2 pointer to the {@link GameDevice_AllDeviceInfos} instance.
- *     The pointer cannot be null. Otherwise, an error code is returned.
+ * @brief Destroys all device information instances.
+ *
+ * @param allDeviceInfos Double pointer to the {@link GameDevice_AllDeviceInfos} instance. The pointer cannot be null.
  * @return <ul><li>Returns {@link GAME_CONTROLLER_SUCCESS} if the execution is successful.</li>
  *     <li>Returns {@link GAME_CONTROLLER_PARAM_ERROR} if allDeviceInfos is null.</li></ul>
  * @since 21
@@ -86,10 +90,10 @@ GameController_ErrorCode OH_GameDevice_UnregisterDeviceMonitor(void);
 GameController_ErrorCode OH_GameDevice_DestroyAllDeviceInfos(GameDevice_AllDeviceInfos** allDeviceInfos);
 
 /**
- * @brief Obtains the number of game devices.
- * @param allDeviceInfos Pointer to the {@link GameDevice_AllDeviceInfos} instance.
- *     The pointer cannot be null. Otherwise, an error code is returned.
- * @param count Output parameter. Number of game devices.
+ * @brief Obtains the number of devices.
+ *
+ * @param allDeviceInfos Pointer to the {@link GameDevice_AllDeviceInfos} instance. The pointer cannot be null.
+ * @param count Output parameter. Number of devices.
  * @return <ul><li>Returns {@link GAME_CONTROLLER_SUCCESS} if the execution is successful.</li>
  *     <li>Returns {@link GAME_CONTROLLER_PARAM_ERROR} if allDeviceInfos is null.</li></ul>
  * @since 21
@@ -99,11 +103,11 @@ GameController_ErrorCode OH_GameDevice_AllDeviceInfos_GetCount(
     int32_t* count);
 
 /**
- * @brief Obtains information about a game device with a specified index.
- * @param allDeviceInfos Pointer to the {@link GameDevice_AllDeviceInfos} instance.
- *     The pointer cannot be null. Otherwise, an error code is returned.
- * @param index Index of the game device to be queried.
- * @param deviceInfo Output parameter. The level-2 pointer points to the {@link GameDevice_DeviceInfo} instance.
+ * @brief Obtains the device information at the specified index.
+ *
+ * @param allDeviceInfos Pointer to the {@link GameDevice_AllDeviceInfos} instance. The pointer cannot be null.
+ * @param index Index of the device.
+ * @param deviceInfo Output parameter. Double pointer to the device information.
  * @return <ul><li>Returns {@link GAME_CONTROLLER_SUCCESS} if the execution is successful.</li>
  *     <li>Returns {@link GAME_CONTROLLER_PARAM_ERROR} if allDeviceInfos is null, or the index is less than 0
  *     or greater than or equal to the total number of game devices.</li></ul>
