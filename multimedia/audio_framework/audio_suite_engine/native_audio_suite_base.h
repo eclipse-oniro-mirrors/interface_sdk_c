@@ -46,13 +46,13 @@ extern "C" {
  */
 typedef enum {
     /**
-     * default input node type, this input node type support get audio data from application.
+     * default input node type, this input node type supports getting audio data from application.
      *
      * @since 22
      */
     INPUT_NODE_TYPE_DEFAULT = 1,
     /**
-     * default output node type, this output node type support provide audio data to application .
+     * default output node type, this output node type supports providing audio data to the application.
      *
      * @since 22
      */
@@ -92,13 +92,13 @@ typedef enum {
      * The audio format output by the audio separation node is as follows:
      * Sample rate: 48000 Hz.
      * Sample format: {@link AUDIO_SAMPLE_F32LE}.
-     * Channels: 4(First 2 channels for vocals; last 2 channels for accompaniment).
+     * Channels: 4 (First 2 channels for vocals; last 2 channels for accompaniment).
      *
      * @since 22
      */
     EFFECT_MULTII_OUTPUT_NODE_TYPE_AUDIO_SEPARATION = 204,
     /**
-     * Voice beautifier node type. Support beautifier type{@link OH_VoiceBeautifierType}.
+     * Voice beautifier node type. Supports beautifier type {@link OH_VoiceBeautifierType}.
      * The audio format output by the voice beautifier node is as follows:
      * Sample rate: 48000 Hz.
      * Sample format: {@link AUDIO_SAMPLE_S16LE}.
@@ -202,7 +202,7 @@ typedef enum {
     /**
      * If you need to play audio after effect processing, you should select this mode.
      * Before API version 23, in real-time rendering mode, the pipeline only supports EQ effect processing.
-     * In API version 23 and later, in real-time rendering mode, the pipeline only supports all effect processing.
+     * In API version 23 and later, in real-time rendering mode, the pipeline supports all effect processing.
      *
      * @since 22
      */
@@ -252,7 +252,7 @@ typedef enum {
      */
     AUDIOSUITE_ERROR_INVALID_STATE = 2,
     /**
-     * @error An system error has occurred.
+     * @error A system error has occurred.
      *
      * @since 22
      */
@@ -264,19 +264,19 @@ typedef enum {
      */
     AUDIOSUITE_ERROR_UNSUPPORTED_FORMAT = 4,
     /**
-     * @error audio engine not exist.
+     * @error audio engine does not exist.
      *
      * @since 22
      */
     AUDIOSUITE_ERROR_ENGINE_NOT_EXIST = 5,
     /**
-     * @error audio pipeline not exist.
+     * @error audio pipeline does not exist.
      *
      * @since 22
      */
     AUDIOSUITE_ERROR_PIPELINE_NOT_EXIST = 6,
     /**
-     * @error audio node not exist.
+     * @error audio node does not exist.
      *
      * @since 22
      */
@@ -486,7 +486,7 @@ typedef struct OH_AudioFormat {
 } OH_AudioFormat;
 
 /**
- * @brief Define the audio data array structure,
+ * @brief Define the audio data array structure.
  * This structure is used to get the processed audio data after acquisition processing during multi-channel rendering.
  * @since 22
  */
@@ -707,8 +707,8 @@ extern const OH_EqualizerFrequencyBandGains OH_EQUALIZER_PARAM_ROCK;
 typedef struct OH_AudioSuiteEngineStruct OH_AudioSuiteEngine;
 
 /**
- * @brief Declare the audio pipe line.
- * The handle of audio suite pipe line is used for audio pipe line related functions.
+ * @brief Declare the audio pipeline.
+ * The handle of audio suite pipeline is used for audio pipeline related functions.
  *
  * @since 22
  */
@@ -732,7 +732,7 @@ typedef struct OH_AudioNodeBuilderStruct OH_AudioNodeBuilder;
 
 /**
  * @brief Definition of the parameter structure for fixed position mode in 3D spatial rendering.
- * Left-hand coordinate system: Extend your left hand, forming an "L" shapewith your thumb and index finger.
+ * Left-hand coordinate system: Extend your left hand, forming an "L" shape with your thumb and index finger.
  * Point the thumb to the right, the index finger upward, and the remaining fingers forward.
  * This establishes a left-hand coordinate system. In this system, the thumb, index finger,
  * and other fingers represent the positive directions of the x, y, and z axes, respectively.
@@ -774,11 +774,11 @@ typedef enum {
      * @since 23
      */
     SPACE_RENDER_CCW = 0,
-     /**
-      * Rotate clockwise
-      *
-      * @since 23
-      */
+    /**
+     * Rotate clockwise
+     *
+     * @since 23
+     */
     SPACE_RENDER_CW = 1,
 } OH_AudioSuite_SurroundDirection;
 
@@ -918,7 +918,7 @@ typedef enum {
 
 /**
  * Use system recommended pitch.
- * Use in {@Link OH_AudioSuite_PureVoiceChangeOption}.
+ * Use in {@link OH_AudioSuite_PureVoiceChangeOption}.
  *
  * @since 23
  */
@@ -954,7 +954,7 @@ typedef struct OH_AudioSuite_PureVoiceChangeOption {
 } OH_AudioSuite_PureVoiceChangeOption;
 
 /**
- * @brief Define voice type in change general voice.
+ * @brief Define voice type in general voice change.
  *
  * @since 23
  */

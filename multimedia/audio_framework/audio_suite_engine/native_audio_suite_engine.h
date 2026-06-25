@@ -26,9 +26,7 @@
  *
  * @brief Declare audio suite engine related interfaces.
  *
- * This file interfaces are used for the creation of audioSuiteEngine
- * as well as creation of audioSuitePipeLine
- * as well as creation of audioSuiteNode
+ * This file provides interfaces for creating audioSuiteEngine, audioSuitePipeline, and audioSuiteNode.
  *
  * @library libohaudiosuite.so
  * @syscap SystemCapability.Multimedia.Audio.SuiteEngine
@@ -56,7 +54,7 @@ extern "C" {
 OH_AudioSuite_Result OH_AudioSuiteEngine_Create(OH_AudioSuiteEngine** audioSuiteEngine);
 
 /**
- * @brief Request to release the engine.
+ * @brief Request to destroy the engine.
  *
  * @param audioSuiteEngine Reference created by OH_AudioSuiteEngine_Create.
  * @return {@link #AUDIOSUITE_SUCCESS} if execution succeeds,
@@ -75,7 +73,7 @@ OH_AudioSuite_Result OH_AudioSuiteEngine_Destroy(OH_AudioSuiteEngine* audioSuite
  * When the pipeline operates in {@link #AUDIOSUITE_PIPELINE_EDIT_MODE}, it supports all effect nodes.
  * When the pipeline operates in {@link #AUDIOSUITE_PIPELINE_REALTIME_MODE},
  * before API version 23, it only supports the {@link EFFECT_NODE_TYPE_EQUALIZER} effect node,
- * in API version 23 and later, it supports all effect node.
+ * in API version 23 and later, it supports all effect nodes.
  *
  * @param audioSuiteEngine Reference created by OH_AudioSuiteEngine_Create.
  * @param audioSuitePipeline Pointer to a variable to receive the pipeline.
@@ -94,11 +92,11 @@ OH_AudioSuite_Result OH_AudioSuiteEngine_CreatePipeline(
     OH_AudioSuitePipeline** audioSuitePipeline, OH_AudioSuite_PipelineWorkMode workMode);
 
 /**
- * @brief Request to release the pipeline.
+ * @brief Request to destroy the pipeline.
  *
  * @param audioSuitePipeline Reference created by OH_AudioSuiteEngine_CreatePipeline.
  * @return {@link #AUDIOSUITE_SUCCESS} if execution succeeds,
- * or {@link #AUDIOSUITE_ERROR_INVALID_PARAM} if parameter is invalid, e.g. audioSuiteEngine is nullptr, e.t.c.
+ * or {@link #AUDIOSUITE_ERROR_INVALID_PARAM} if parameter is invalid, e.g. audioSuitePipeline is nullptr, e.t.c.
  * or {@link #AUDIOSUITE_ERROR_PIPELINE_NOT_EXIST} if pipeline does not exist or has already been destroyed.
  * or {@link #AUDIOSUITE_ERROR_TIMEOUT} if an operation times out before completion.
  * or {@link #AUDIOSUITE_ERROR_SYSTEM} if the system has other abnormalities.
@@ -256,7 +254,7 @@ OH_AudioSuite_Result OH_AudioSuiteNodeBuilder_Destroy(OH_AudioNodeBuilder* build
  *
  * If the application intends to reuse the builder to add new nodes
  * and the properties of the new nodes differ from those of the previously created nodes,
- * the application must call this interface to clear all properties, such as audio node type, e.t.c
+ * the application must call this interface to clear all properties, such as audio node type, e.t.c.
  *
  * @param builder Reference created by OH_AudioSuiteNodeBuilder_Create.
  * @return {@link #AUDIOSUITE_SUCCESS} if execution succeeds
@@ -357,7 +355,7 @@ OH_AudioSuite_Result OH_AudioSuiteNodeBuilder_SetRequestDataCallback(
  * or {@link #AUDIOSUITE_ERROR_CREATED_EXCEED_SYSTEM_LIMITS} the number of nodes
  * of the current type exceeds the pipeline limit.
  * or {@link #AUDIOSUITE_ERROR_REQUIRED_PARAMETERS_MISSING} if The input type is inputNode,
- * but no callback function is set,e.t.c.
+ * but no callback function is set, e.t.c.
  * or {@link #AUDIOSUITE_ERROR_UNSUPPORTED_OPERATION} if the current constructor node type is output node but the
  * Callback function was set, or the constructor node type is an effect node but the audio format or callback
  * function was set.
@@ -443,7 +441,7 @@ OH_AudioSuite_Result OH_AudioSuiteEngine_BypassEffectNode(OH_AudioNode* audioNod
  * <li> {@link #AUDIOSUITE_ERROR_SYSTEM} if the system has other abnormalities.</li></ul>
  * @since 22
  */
-OH_AudioSuite_Result OH_AudioSuiteEngine_SetAudioFormat(OH_AudioNode* audioNode, OH_AudioFormat *audioFormat);
+OH_AudioSuite_Result OH_AudioSuiteEngine_SetAudioFormat(OH_AudioNode* audioNode, OH_AudioFormat* audioFormat);
 
 /**
  * @brief Executing the connect command will link two nodes in sequence.
