@@ -40,334 +40,324 @@ extern "C" {
 #endif
 
 /**
- * @brief Enumerates the pointer styles.
+ * @brief 鼠标光标样式。
  *
  * @since 22
  */
 typedef enum Input_PointerStyle {
     /**
-    * Default
+    * 默认
     * @since 22
     */
     DEFAULT = 0,
 
     /**
-    * East arrow
+    * 向东箭头
     * @since 22
     */
     EAST = 1,
 
     /**
-    * West arrow
+    * 向西箭头
     * @since 22
     */
     WEST = 2,
 
     /**
-    * South arrow
+    * 向南箭头
     * @since 22
     */
     SOUTH = 3,
 
     /**
-    * North arrow
+    * 向北箭头
     * @since 22
     */
     NORTH = 4,
 
     /**
-    * West-east arrow
+    * 向西东箭头
     * @since 22
     */
     WEST_EAST = 5,
 
     /**
-    * North-south arrow
+    * 向北南箭头
     * @since 22
     */
     NORTH_SOUTH = 6,
 
     /**
-    * North-east arrow
+    * 向东北箭头
     * @since 22
     */
     NORTH_EAST = 7,
 
     /**
-    * North-west arrow
+    * 向西北箭头
     * @since 22
     */
     NORTH_WEST = 8,
 
     /**
-    * South-east arrow
+    * 向东南箭头
     * @since 22
     */
     SOUTH_EAST = 9,
 
     /**
-    *South-west arrow
+    *向西南箭头
     * @since 22
     */
     SOUTH_WEST = 10,
 
     /**
-    * North-east and south-west adjustment
+    * 东北西南调整
     * @since 22
     */
     NORTH_EAST_SOUTH_WEST = 11,
 
     /**
-    * North-west and south-east adjustment
+    * 西北东南调整
     * @since 22
     */
     NORTH_WEST_SOUTH_EAST = 12,
 
     /**
-    * Cross (accurate selection)
+    * 准确选择
     * @since 22
     */
     CROSS = 13,
 
     /**
-    * Copy.
+    * 复制
     * @since 22
     */
     CURSOR_COPY = 14,
 
     /**
-    * Forbid
+    * 不可用
     * @since 22
     */
     CURSOR_FORBID = 15,
 
     /**
-    * Color picker
+    * 取色器
     * @since 22
     */
     COLOR_SUCKER = 16,
 
     /**
-    * Grabbing hand
+    * 并拢的手
     * @since 22
     */
     HAND_GRABBING = 17,
 
     /**
-    * Opening hand
+    * 张开的手
     * @since 22
     */
     HAND_OPEN = 18,
 
     /**
-    * Hand-shaped pointer
+    * 手形指针
     * @since 22
     */
     HAND_POINTING = 19,
 
     /**
-    * Help
+    * 帮助选择
     * @since 22
     */
     HELP = 20,
 
     /**
-    * Move
+    * 移动
     * @since 22
     */
     MOVE = 21,
 
     /**
-    * Left and right resizing
+    * 内部左右调整
     * @since 22
     */
     RESIZE_LEFT_RIGHT = 22,
 
     /**
-    * Up and down resizing
+    * 内部上下调整
     * @since 22
     */
     RESIZE_UP_DOWN = 23,
 
     /**
-    * Screenshot crosshair
+    * 截图十字准星
     * @since 22
     */
     SCREENSHOT_CHOOSE = 24,
 
     /**
-    * Screenshot
+    * 截图
     * @since 22
     */
     SCREENSHOT_CURSOR = 25,
 
     /**
-    * Text selection
+    * 文本选择
     * @since 22
     */
     TEXT_CURSOR = 26,
 
     /**
-    * Zoom in
+    * 放大
     * @since 22
     */
     ZOOM_IN = 27,
 
     /**
-    * Zoom out
+    * 缩小
     * @since 22
     */
     ZOOM_OUT = 28,
 
     /**
-    * Scrolling east
+    * 向东滚动
     * @since 22
     */
     MIDDLE_BTN_EAST = 29,
 
     /**
-    * Scrolling west
+    * 向西滚动
     * @since 22
     */
     MIDDLE_BTN_WEST = 30,
 
     /**
-    * Scrolling south
+    * 向南滚动
     * @since 22
     */
     MIDDLE_BTN_SOUTH = 31,
 
     /**
-    * Scrolling north
+    * 向北滚动
     * @since 22
     */
     MIDDLE_BTN_NORTH = 32,
 
     /**
-    * Scrolling north-south
+    * 向南北滚动
     * @since 22
     */
     MIDDLE_BTN_NORTH_SOUTH = 33,
 
     /**
-    * Scrolling north-east
+    * 向东北滚动
     * @since 22
     */
     MIDDLE_BTN_NORTH_EAST = 34,
 
     /**
-    * Scrolling north-west
+    * 向西北滚动
     * @since 22
     */
     MIDDLE_BTN_NORTH_WEST = 35,
 
     /**
-    * Scrolling south-east
+    * 向东南滚动
     * @since 22
     */
     MIDDLE_BTN_SOUTH_EAST = 36,
 
     /**
-    * Scrolling south-west
+    * 向西南滚动
     * @since 22
     */
     MIDDLE_BTN_SOUTH_WEST = 37,
 
     /**
-    * Moving as a cone in four directions
+    * 四向锥形移动
     * @since 22
     */
     MIDDLE_BTN_NORTH_SOUTH_WEST_EAST = 38,
 
     /**
-    * Horizontal text selection
+    * 垂直文本选择
     * @since 22
     */
     HORIZONTAL_TEXT_CURSOR = 39,
 
     /**
-    * Cross
+    * 十字光标
     * @since 22
     */
     CURSOR_CROSS = 40,
 
     /**
-    * Circle
+    * 圆形光标
     * @since 22
     */
     CURSOR_CIRCLE = 41,
 
     /**
-    * Loading
+    * 正在载入动画光标
     * @since 22
     */
     LOADING = 42,
 
     /**
-    * Running in the background
+    * 后台运行中动画光标
     * @since 22
     */
     RUNNING = 43,
 
     /**
-    * Scrolling east-west
+    * 向东西滚动
     * @since 22
     */
     MIDDLE_BTN_EAST_WEST = 44,
 
     /**
-    * Running in the background (extension 1)
+    * 后台运行中动画光标(拓展1)
     * @since 22
     */
     RUNNING_LEFT = 45,
 
     /**
-    * Running in the background (extension 2)
+    * 后台运行中动画光标(拓展2)
     * @since 22
     */
     RUNNING_RIGHT = 46,
 
     /**
-    * Custom circular pointer
+    * 圆形自定义光标
     * @since 22
     */
     AECH_DEVELOPER_DEFINED_ICON = 47,
 
     /**
-    * Screen recording
+    * 录屏光标
     * @since 22
     */
     SCREENRECORDER_CURSOR = 48,
 
     /**
-    * Floating This pointer can be used only when the stylus enters the air mouse mode and cannot be directly set.<br>
-    * In air mouse mode, you can rotate the stylus in the air to control the movement of the virtual pointer on the
-    * screen and press the button on the stylus to turn pages up or down. This mode is used PPT presentation and air
-    * gesture control.
+    * 悬浮光标。手写笔进入空鼠模式时使用该光标，无法直接设置 。<br>空鼠模式支持通过手写笔在空中转动来控制屏幕上虚拟光标的移动，并借助笔身按键实现上下翻页功能，用于演示PPT、隔空操作等场景。
     * @since 22
     */
     LASER_CURSOR = 49,
 
     /**
-    * Click This pointer can be used only when the stylus enters the air mouse mode and cannot be directly set.<br>In
-    * air mouse mode, you can rotate the stylus in the air to control the movement of the virtual pointer on the screen
-    * and press the button on the stylus to turn pages up or down. This mode is used PPT presentation and air gesture
-    * control.
+    * 点击光标。手写笔进入空鼠模式时使用该光标，无法直接设置 。<br>空鼠模式支持通过手写笔在空中转动来控制屏幕上虚拟光标的移动，并借助笔身按键实现上下翻页功能，用于演示PPT、隔空操作等场景。
     * @since 22
     */
     LASER_CURSOR_DOT = 50,
 
     /**
-    * Laser pointer This pointer can be used only when the stylus enters the air mouse mode and cannot be directly set.<
-    * br>In air mouse mode, you can rotate the stylus in the air to control the movement of the virtual pointer on the
-    * screen and press the button on the stylus to turn pages up or down. This mode is used PPT presentation and air
-    * gesture control.
+    * 激光笔光标。手写笔进入空鼠模式时使用该光标，无法直接设置 。<br>空鼠模式支持通过手写笔在空中转动来控制屏幕上虚拟光标的移动，并借助笔身按键实现上下翻页功能，用于演示PPT、隔空操作等场景。
     * @since 22
     */
     LASER_CURSOR_DOT_RED = 51,
     /**
-     * Custom pointer. You can use the {@link OH_Input_SetCustomCursor} to set a custom pointer, but not the
-     * {@link OH_Input_SetPointerStyle}.
+     * 自定义光标，开发者可使用{@link OH_Input_SetCustomCursor}设置自定义光标，不支持使用{@link OH_Input_SetPointerStyle}直接设置。
      * @since 22
      */
     DEVELOPER_DEFINED_ICON = -100
