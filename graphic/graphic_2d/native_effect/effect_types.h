@@ -64,7 +64,7 @@ typedef struct OH_PixelmapNative OH_PixelmapNative;
  * @since 12
  * @version 1.0
  */
-typedef struct {
+typedef struct OH_Filter_ColorMatrix {
     /** Custom color matrix. The value is a 5 x 4 array. */
     float val[20];
 } OH_Filter_ColorMatrix;
@@ -83,7 +83,7 @@ typedef enum {
     /** Unsupported operation. */
     EFFECT_UNSUPPORTED_OPERATION = 7600201,
     /** Unknown error. */
-    EFFECT_UNKNOWN_ERROR = 7600901
+    EFFECT_UNKNOWN_ERROR = 7600901,
 } EffectErrorCode;
 
 /**
@@ -99,7 +99,7 @@ typedef enum {
     /** Repeats the shader effect in both horizontal and vertical directions, alternating mirror images. */
     MIRROR,
     /** Renders the shader effect only within the original boundary. */
-    DECAL
+    DECAL,
 } EffectTileMode;
 
 #ifdef __cplusplus

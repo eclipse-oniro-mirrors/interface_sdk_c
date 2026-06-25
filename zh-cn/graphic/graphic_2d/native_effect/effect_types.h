@@ -18,7 +18,7 @@
  *
  * @{
  *
- * @brief Provides APIs for obtaining effect filter and information.
+ * @brief 提供处理图像的一些基础能力，包括对当前图像的亮度调节、模糊化、灰度调节等。
  *
  * @since 12
  */
@@ -26,7 +26,7 @@
 /**
  * @file effect_types.h
  *
- * @brief This file declares the data types of the image effect filter.
+ * @brief 声明滤镜效果的数据类型。
  * @kit ArkGraphics2D
  * @library libnative_effect.so
  * @syscap SystemCapability.Multimedia.Image.Core
@@ -65,7 +65,7 @@ typedef struct OH_PixelmapNative OH_PixelmapNative;
  * @since 12
  * @version 1.0
  */
-typedef struct {
+typedef struct OH_Filter_ColorMatrix {
     /** 自定义颜色矩阵，值为 5 x 4 的数组 */
     float val[20];
 } OH_Filter_ColorMatrix;
@@ -84,7 +84,7 @@ typedef enum {
     /** 不支持的操作。 */
     EFFECT_UNSUPPORTED_OPERATION = 7600201,
     /** 未知错误。 */
-    EFFECT_UNKNOWN_ERROR = 7600901
+    EFFECT_UNKNOWN_ERROR = 7600901,
 } EffectErrorCode;
 
 /**
@@ -100,7 +100,7 @@ typedef enum {
     /** 在水平和垂直方向上重复着色器效果，交替镜像图像，以便相邻图像始终接合。 */
     MIRROR,
     /** 仅在其原始边界内渲染着色器效果。 */
-    DECAL
+    DECAL,
 } EffectTileMode;
 
 #ifdef __cplusplus
