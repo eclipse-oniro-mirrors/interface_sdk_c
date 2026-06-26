@@ -195,7 +195,7 @@ void OH_AudioConverter_Destroy(OH_AudioConverter* converter);
  * The converter uses this status to determine how to handle subsequent conversion logic (e.g., continue pulling data,
  * pause, or flush cached data).
  * Note for callers: Even if the callback returns {@link AUDIOCONVERTER_INPUT_DATA_FINISHED},
- * {@link OH_AudioConverter_Process} must be called repeatedly.
+ * {@link OH_AudioConverter_Process} must be called repeatedly
  * until it returns {@link AUDIOCONVERTER_SUCCESS} with outputSize
  * being 0 (indicating all cached data has been flushed).
  *

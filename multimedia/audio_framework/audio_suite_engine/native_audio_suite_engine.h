@@ -174,8 +174,8 @@ OH_AudioSuite_Result OH_AudioSuiteEngine_GetPipelineState(
  * @param audioSuitePipeline Reference created by OH_AudioSuiteEngine_CreatePipeline
  * @param audioData Audio data pointer, where user should read, unit is byte.
  * @param requestFrameSize Size of audio data user specified, unit is byte.
- * @param responseSize Size of audio data the system really write.
- * @param finishedFlag This flag is used to indicate user whether all data processing has been completed.
+ * @param responseSize Size of audio data the system really writes.
+ * @param finishedFlag This flag is used to indicate to the user whether all data processing has been completed.
  * @return {@link #AUDIOSUITE_SUCCESS} if execution succeeds
  * or {@link #AUDIOSUITE_ERROR_INVALID_PARAM} if parameter is nullptr or not valid value.
  * or {@link #AUDIOSUITE_ERROR_PIPELINE_NOT_EXIST} if pipeline does not exist or has already been destroyed.
@@ -204,9 +204,9 @@ OH_AudioSuite_Result OH_AudioSuiteEngine_RenderFrame(OH_AudioSuitePipeline* audi
  * @param audioSuitePipeline Reference created by OH_AudioSuiteEngine_CreatePipeline.
  * @param audioDataArray Audio data array pointer, where user should read,
  * The size of each one-dimensional array should be consistent.
- * @param responseSize Size of audio data the system really write,
+ * @param responseSize Size of audio data the system really writes,
  * The system ensures that the data size filled for each one-dimensional array is consistent, unit is byte.
- * @param finishedFlag This flag is used to indicate user whether all data processing has been completed.
+ * @param finishedFlag This flag is used to indicate to the user whether all data processing has been completed.
  * @return {@link #AUDIOSUITE_SUCCESS} if execution succeeds
  * or {@link #AUDIOSUITE_ERROR_INVALID_PARAM} if parameter is nullptr or not valid value.
  * or {@link #AUDIOSUITE_ERROR_PIPELINE_NOT_EXIST} if pipeline does not exist or has already been destroyed.
@@ -410,7 +410,7 @@ OH_AudioSuite_Result OH_AudioSuiteEngine_GetNodeBypassStatus(
 /**
  * @brief Request to set the effect node bypass.
  *
- * This command can only be set to effect node. when bypass is set true,
+ * This command can only be set on an effect node. when bypass is set true,
  * the effect node only passes data to the next node without performing any effect processing.
  *
  * @param audioNode Reference created by OH_AudioSuiteEngine_CreateNode.
