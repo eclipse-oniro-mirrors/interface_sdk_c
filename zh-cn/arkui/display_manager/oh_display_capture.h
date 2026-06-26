@@ -51,7 +51,11 @@ extern "C" {
  * @permission ohos.permission.CUSTOM_SCREEN_CAPTURE [since 14]
  * @param displayId 需要截屏的屏幕id号，该值为非负整数。
  * @param pixelMap 创建指定屏幕id的OH_PixelmapNative对象，此处作为出参返回。
- * @return 返回屏幕管理接口的通用状态码，具体可见{@link NativeDisplayManager_ErrorCode}。
+ * @return 返回DISPLAY_MANAGER_OK，表示操作成功。
+ *     返回DISPLAY_MANAGER_ERROR_NO_PERMISSION，表示权限校验失败，应用无权限使用该API，需要申请权限。
+ *     返回DISPLAY_MANAGER_ERROR_INVALID_PARAM，表示参数检查失败。
+ *     返回DISPLAY_MANAGER_ERROR_DEVICE_NOT_SUPPORTED，表示该设备不支持此API。
+ *     返回DISPLAY_MANAGER_ERROR_SYSTEM_ABNORMAL，表示系统服务工作异常。
  * @since 14
  */
 NativeDisplayManager_ErrorCode OH_NativeDisplayManager_CaptureScreenPixelmap(uint32_t displayId,

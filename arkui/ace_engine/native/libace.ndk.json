@@ -6931,7 +6931,7 @@
         "name": "OH_ArkUI_RenderNodeUtils_GetRenderNodeAt"
     },
     {
-        "first_introduced": "26.0.0",
-        "name": "OH_ArkUI_CreateIdentityTransitionEffect"
+        "first_introduced": "26.1.0",
+        "name": "OH_ArkUI_CustomDialog_OpenDialogWithCallback"
     }
 ]

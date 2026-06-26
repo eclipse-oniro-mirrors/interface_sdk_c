@@ -40,13 +40,16 @@
 #ifndef NATIVE_AUDIOCAPTURER_H
 #define NATIVE_AUDIOCAPTURER_H
 
+#include <stdbool.h>
 #include <time.h>
 #include "native_audiostream_base.h"
 #include "native_audio_device_base.h"
 #include "native_audio_session_base.h"
+
 #ifdef __cplusplus
 extern "C" {
 #endif
+
 /**
  * Request to release the capturer stream.
  *

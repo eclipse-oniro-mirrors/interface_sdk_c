@@ -174,15 +174,18 @@ typedef struct OH_Rdb_ConfigV2 OH_Rdb_ConfigV2;
  */
 typedef enum Rdb_DBType {
     /**
-     * @brief Means using SQLITE as the db kernal
+     * @brief Means using SQLITE as the db kernel
+     * @since 14
      */
     RDB_SQLITE = 1,
     /**
-     * @brief Means using CARLEY_DB as the db kernal
+     * @brief Means using CAYLEY_DB as the db kernel
+     * @since 14
      */
     RDB_CAYLEY = 2,
     /**
      * @brief Means largest value for Rdb_DBType
+     * @since 14
      */
     DBTYPE_BUTT = 64,
 } Rdb_DBType;
@@ -426,7 +429,7 @@ int OH_Rdb_SetSemanticIndex(OH_Rdb_ConfigV2 *config, bool enableSemanticIndex);
 /**
  * @brief Check if a tokenizer is supported or not.
  *
- * @param tokenizer the tokenizer type of {@Link Rdb_Tokenizer}.
+ * @param tokenizer the tokenizer type of {@link Rdb_Tokenizer}.
  * @param isSupported Pointer to the Boolean value obtained.
  * @return Returns the status code of the execution.
  *         {@link RDB_OK} indicates the operation is successful.
@@ -636,7 +639,7 @@ int OH_Rdb_BatchInsert(OH_Rdb_Store *store, const char *table,
  * @brief Updates data in the database based on specified conditions.
  *
  * @param store Represents a pointer to an {@link OH_Rdb_Store} instance.
- * @param valuesBucket Indicates the row of data {@link OH__VBucket} to be updated in the database
+ * @param valuesBucket Indicates the row of data {@link OH_VBucket} to be updated in the database
  * @param predicates Represents a pointer to an {@link OH_Predicates} instance.
  * Indicates the specified update condition.
  * @return Returns the number of rows changed if success, otherwise, returns a specific error code.
@@ -1470,7 +1473,7 @@ int OH_Rdb_CloudSync(OH_Rdb_Store *store, Rdb_SyncMode mode, const char *tables[
  * @brief Subscribes to the automatic synchronization progress of an RDB store.
  * A callback will be invoked when there is a notification of the automatic synchronization progress.
  *
- * @param store Indicates the pointer to the target {@Link OH_Rdb_Store} instance.
+ * @param store Indicates the pointer to the target {@link OH_Rdb_Store} instance.
  * @param observer The {@link Rdb_ProgressObserver} for the automatic synchronization progress.
  * Indicates the callback invoked to return the automatic synchronization progress.
  * @return Returns the status code of the execution. See {@link OH_Rdb_ErrCode}.
@@ -1485,7 +1488,7 @@ int OH_Rdb_SubscribeAutoSyncProgress(OH_Rdb_Store *store, const Rdb_ProgressObse
 /**
  * @brief Unsubscribes from the automatic synchronization progress of an RDB store.
  *
- * @param store Indicates the pointer to the target {@Link OH_Rdb_Store} instance.
+ * @param store Indicates the pointer to the target {@link OH_Rdb_Store} instance.
  * @param observer Indicates the {@link Rdb_ProgressObserver} callback for the automatic synchronization progress.
  * If it is a null pointer, all callbacks for the automatic synchronization progress will be unregistered.
  * @return Returns the status code of the execution. See {@link OH_Rdb_ErrCode}.

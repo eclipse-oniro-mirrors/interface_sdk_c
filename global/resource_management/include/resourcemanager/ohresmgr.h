@@ -41,6 +41,7 @@
 extern "C" {
 #endif
 
+#ifdef __cplusplus
 /**
  * @brief Obtains the Base64 code of the media resource with the specified screen density based on the specified
  * resource ID.
@@ -63,6 +64,7 @@ extern "C" {
  */
 ResourceManager_ErrorCode OH_ResourceManager_GetMediaBase64(const NativeResourceManager *mgr, uint32_t resId,
     char **resultValue, uint64_t *resultLen, uint32_t density = 0);
+#endif
 
 /**
  * @brief Obtains the Base64 code of the media resource with the specified screen density based on the specified
@@ -87,6 +89,7 @@ ResourceManager_ErrorCode OH_ResourceManager_GetMediaBase64(const NativeResource
 ResourceManager_ErrorCode OH_ResourceManager_GetMediaBase64Data(const NativeResourceManager *mgr, uint32_t resId,
     char **resultValue, uint64_t *resultLen, uint32_t density);
 
+#ifdef __cplusplus
 /**
  * @brief Obtains the Base64 code of the media resource with the specified screen density based on the specified
  * resource name.
@@ -109,6 +112,7 @@ ResourceManager_ErrorCode OH_ResourceManager_GetMediaBase64Data(const NativeReso
  */
 ResourceManager_ErrorCode OH_ResourceManager_GetMediaBase64ByName(const NativeResourceManager *mgr,
     const char *resName, char **resultValue, uint64_t *resultLen, uint32_t density = 0);
+#endif
 
 /**
  * @brief Obtains the Base64 code of the media resource with the specified screen density based on the specified
@@ -133,6 +137,7 @@ ResourceManager_ErrorCode OH_ResourceManager_GetMediaBase64ByName(const NativeRe
 ResourceManager_ErrorCode OH_ResourceManager_GetMediaBase64DataByName(const NativeResourceManager *mgr,
     const char *resName, char **resultValue, uint64_t *resultLen, uint32_t density);
 
+#ifdef __cplusplus
 /**
  * @brief Obtains the content of the media resource with the specified screen density based on the specified resource
  * ID.
@@ -155,6 +160,7 @@ ResourceManager_ErrorCode OH_ResourceManager_GetMediaBase64DataByName(const Nati
  */
 ResourceManager_ErrorCode OH_ResourceManager_GetMedia(const NativeResourceManager *mgr, uint32_t resId,
     uint8_t **resultValue, uint64_t *resultLen, uint32_t density = 0);
+#endif
 
 /**
  * @brief Obtains the content of the media resource with the specified screen density based on the specified resource
@@ -179,6 +185,7 @@ ResourceManager_ErrorCode OH_ResourceManager_GetMedia(const NativeResourceManage
 ResourceManager_ErrorCode OH_ResourceManager_GetMediaData(const NativeResourceManager *mgr, uint32_t resId,
     uint8_t **resultValue, uint64_t *resultLen, uint32_t density);
 
+#ifdef __cplusplus
 /**
  * @brief Obtains the content of the media resource with the specified screen density based on the specified resource
  * name.
@@ -201,6 +208,7 @@ ResourceManager_ErrorCode OH_ResourceManager_GetMediaData(const NativeResourceMa
  */
 ResourceManager_ErrorCode OH_ResourceManager_GetMediaByName(const NativeResourceManager *mgr, const char *resName,
     uint8_t **resultValue, uint64_t *resultLen, uint32_t density = 0);
+#endif
 
 /**
  * @brief Obtains the content of the media resource with the specified screen density based on the specified resource
@@ -225,6 +233,7 @@ ResourceManager_ErrorCode OH_ResourceManager_GetMediaByName(const NativeResource
 ResourceManager_ErrorCode OH_ResourceManager_GetMediaDataByName(const NativeResourceManager *mgr, const char *resName,
     uint8_t **resultValue, uint64_t *resultLen, uint32_t density);
 
+#ifdef __cplusplus
 /**
  * @brief Obtains the **DrawableDescriptor** object of the icon resource with the specified screen density based on the
  * specified resource ID.
@@ -246,6 +255,7 @@ ResourceManager_ErrorCode OH_ResourceManager_GetMediaDataByName(const NativeReso
  */
 ResourceManager_ErrorCode OH_ResourceManager_GetDrawableDescriptor(const NativeResourceManager *mgr,
     uint32_t resId, ArkUI_DrawableDescriptor **drawableDescriptor, uint32_t density = 0, uint32_t type = 0);
+#endif
 
 /**
  * @brief Obtains the **DrawableDescriptor** object of the icon resource with the specified screen density based on the
@@ -270,6 +280,7 @@ ResourceManager_ErrorCode OH_ResourceManager_GetDrawableDescriptor(const NativeR
 ResourceManager_ErrorCode OH_ResourceManager_GetDrawableDescriptorData(const NativeResourceManager *mgr,
     uint32_t resId, ArkUI_DrawableDescriptor **drawableDescriptor, uint32_t density, uint32_t type);
 
+#ifdef __cplusplus
 /**
  * @brief Obtains the **DrawableDescriptor** object of the icon resource with the specified screen density based on the
  * specified resource name.
@@ -292,6 +303,7 @@ ResourceManager_ErrorCode OH_ResourceManager_GetDrawableDescriptorData(const Nat
  */
 ResourceManager_ErrorCode OH_ResourceManager_GetDrawableDescriptorByName(const NativeResourceManager *mgr,
     const char *resName, ArkUI_DrawableDescriptor **drawableDescriptor, uint32_t density = 0, uint32_t type = 0);
+#endif
 
 /**
  * @brief Obtains the **DrawableDescriptor** object of the icon resource with the specified screen density based on the
@@ -352,6 +364,7 @@ ResourceManager_ErrorCode OH_ResourceManager_GetSymbol(const NativeResourceManag
 ResourceManager_ErrorCode OH_ResourceManager_GetSymbolByName(const NativeResourceManager *mgr, const char *resName,
     uint32_t *resultValue);
 
+#ifdef __cplusplus
 /**
  * @brief Obtains the language list. After using this API, you need to call **OH_ResourceManager_ReleaseStringArray()**
  * to release the memory of **locales**.
@@ -370,6 +383,7 @@ ResourceManager_ErrorCode OH_ResourceManager_GetSymbolByName(const NativeResourc
  */
 ResourceManager_ErrorCode OH_ResourceManager_GetLocales(const NativeResourceManager *mgr, char ***resultValue,
     uint32_t *resultLen, bool includeSystem = false);
+#endif
 
 /**
  * @brief Obtains the language list. After using this API, you need to call **OH_ResourceManager_ReleaseStringArray()**

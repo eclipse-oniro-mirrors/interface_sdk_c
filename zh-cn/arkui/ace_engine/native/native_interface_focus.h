@@ -35,9 +35,11 @@
  */
 
 #ifndef ARKUI_NATIVE_INTERFACE_FOCUS_H
+
 #define ARKUI_NATIVE_INTERFACE_FOCUS_H
 
 #include "napi/native_api.h"
+
 #include "native_type.h"
 
 #ifdef __cplusplus
@@ -45,77 +47,75 @@ extern "C" {
 #endif
 
 /**
- * @brief Enumerates the key event processing priority modes.
+ * @brief 按键事件处理的优先级。
  *
  * @since 15
  */
 typedef enum {
     /**
-     * Key events are used for focus navigation.
+     * 按键事件用于移动焦点。
      */
     ARKUI_KEY_PROCESSING_MODE_FOCUS_NAVIGATION = 0,
+
     /**
-     * Key events are passed up to ancestor components.
+     * 按键事件向上传递给祖先组件。
      */
-    ARKUI_KEY_PROCESSING_MODE_FOCUS_ANCESTOR_EVENT,
+    ARKUI_KEY_PROCESSING_MODE_FOCUS_ANCESTOR_EVENT
 } ArkUI_KeyProcessingMode;
 
 /**
- * @brief Requests focus for a specific node.
+ * @brief 为特定节点请求焦点。
  *
- * @param node Node.
- * @return Result code.
- *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *     <br>Returns {@link ARKUI_ERROR_CODE_FOCUS_NON_FOCUSABLE} if the node cannot receive focus.
- *     <br>Returns {@link ARKUI_ERROR_CODE_FOCUS_NON_FOCUSABLE_ANCESTOR} if the ancestor node cannot receive focus.
- *     <br>Returns {@link ARKUI_ERROR_CODE_FOCUS_NON_EXISTENT} if the node does not exist.
+ * @param node 节点。
+ * @return 错误码。
+ *     <br>{@link ARKUI_ERROR_CODE_NO_ERROR} 请求成功。
+ *     <br>{@link ARKUI_ERROR_CODE_FOCUS_NON_FOCUSABLE} 节点无法获得焦点。
+ *     <br>{@link ARKUI_ERROR_CODE_FOCUS_NON_FOCUSABLE_ANCESTOR} 祖先节点无法获得焦点。
+ *     <br>{@link ARKUI_ERROR_CODE_FOCUS_NON_EXISTENT} 节点不存在。
  * @since 15
  */
 ArkUI_ErrorCode OH_ArkUI_FocusRequest(ArkUI_NodeHandle node);
 
 /**
- * @brief Clears the focus to the root container node.
+ * @brief 将当前焦点清除到根容器节点。
  *
- * @param uiContext UI instance object pointer.
+ * @param uiContext UI实例对象指针。
  * @since 15
  */
 void OH_ArkUI_FocusClear(ArkUI_ContextHandle uiContext);
 
 /**
- * @brief Sets the focus activation state for the current page. When activated, the focused node displays a focus box.
+ * @brief 设置当前界面的焦点激活态，获焦节点显示焦点框。
  *
- * @param uiContext UI instance object pointer.
- * @param isActive Whether to enter or exit the focus activation state. The value **true** means to enter the focus
- *     activation state, and **false** means to exit the focus activation state.
- * @param isAutoInactive Whether to automatically exit the focus active state on touch or mouse down events. **true**:
- *     Automatically exit the focus active state. **false**: Maintain the current state until the corresponding setting
- *     API is called.
+ * @param uiContext UI实例对象指针。
+ * @param isActive 设置是否进入/退出焦点激活态。true表示进入焦点激活态，false表示退出焦点激活态。
+ * @param isAutoInactive 当触摸事件或鼠标按下事件触发时，"true" 表示将状态设置为退出焦点激活态,"false" 表示在调用对应设置API前，保持当前状态。
  * @since 15
  */
 void OH_ArkUI_FocusActivate(ArkUI_ContextHandle uiContext, bool isActive, bool isAutoInactive);
 
 /**
- * @brief Configures the focus transfer behavior when pages are switched.
+ * @brief 设置页面切换时，焦点转移行为。
  *
- * @param uiContext UI instance object pointer.
- * @param autoTransfer Whether to automatically transfer focus when pages are switched. The value **true** means to
- *     automatically transfer focus when pages are switched, and **false** means the opposite.
+ * @param uiContext UI实例对象指针。
+ * @param autoTransfer 页面切换时，是否转移焦点。true表示页面切换时转移焦点，false表示页面切换时焦点不转移。
  * @since 15
  */
 void OH_ArkUI_FocusSetAutoTransfer(ArkUI_ContextHandle uiContext, bool autoTransfer);
 
-
 /**
- * @brief Sets the mode for processing key events.
+ * @brief 设置按键事件处理的优先级。
  *
- * @param uiContext UI instance object pointer.
- * @param mode Key event processing priority mode.
+ * @param uiContext UI实例对象指针。
+ * @param mode 按键事件处理的优先级。
  * @since 15
 */
 void OH_ArkUI_FocusSetKeyProcessingMode(ArkUI_ContextHandle uiContext, ArkUI_KeyProcessingMode mode);
+
 #ifdef __cplusplus
 };
 #endif
 
 #endif // ARKUI_NATIVE_INTERFACE_FOCUS_H
+
 /** @} */

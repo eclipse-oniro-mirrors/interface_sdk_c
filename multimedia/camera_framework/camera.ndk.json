@@ -1053,6 +1053,10 @@
     },
     {
         "first_introduced": "26.0.0",
+        "name": "OH_MetadataObjectExt_IsLockFocusTracked"
+    },
+    {
+        "first_introduced": "26.0.0",
         "name": "OH_CaptureSession_RegisterNotificationReceivedCallback"
     },
     {

@@ -183,7 +183,7 @@ typedef struct {
 } ArkUI_AttributeItem;
 
 /**
- * @brief Defines the ArkUI style attributes that can be set on the native side.
+ * @brief 定义ArkUI在Native侧可以设置的属性样式集合。
  *
  * @since 12
  */
@@ -211,29 +211,28 @@ typedef enum {
      */
     NODE_HEIGHT,
     /**
-     * @brief Defines the background color attribute, which can be set, reset, and obtained as required through APIs.
-     *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].u32: background color. The value is in 0xARGB format. For example, 0xFFFF0000 indicates red.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].u32: background color. The value is in 0xARGB format. For example, 0xFFFF0000 indicates red.\n
+     * @brief 背景色属性，支持属性设置，属性重置和属性获取接口。
+     * <br>作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
+     * <br>**参数：**
+     * <br><b>.value[0].u32</b>：背景色数值，0xargb格式，形如 `0xFFFF0000` 表示红色。
+     * <br>**返回：**
+     * <br><b>.value[0].u32</b>：背景色数值，0xargb格式，形如 `0xFFFF0000` 表示红色。
      *
      */
     NODE_BACKGROUND_COLOR,
     /**
-     * @brief Defines the background image attribute, which can be set, reset, and obtained as required through APIs.
-     *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .string: image address;\n
-     * .value[0]?.i32: whether to repeat the image. Optional. The parameter type is {@link ArkUI_ImageRepeat}.
-     * .object: The parameter type is {@link ArkUI_DrawableDescriptor}. Either .string or .object must be set.\n
-     * The default value is <b>ARKUI_IMAGE_REPEAT_NONE</b>.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .string: image address;\n
-     * .value[0].i32: whether to repeat the image. The parameter type is {@link ArkUI_ImageRepeat}.\n
-     * .object: The parameter type is {@link ArkUI_DrawableDescriptor}.\n
+     * @brief 背景色图片属性，支持属性设置，属性重置和属性获取接口。
+     * <br>作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
+     * <br>**参数：**
+     * <br><b>.string</b>：图片地址。API version 22及之前版本，支持网络图片资源地址、本地图片资源地址、Base64和{@link PixelMap}资源，不支持{@link svg}图片、
+     * gif和webp等类型的动图。从API version 23开始，新增支持webp和gif类型的动图，显示动图第一帧，不支持其他类型的动图。
+     * <br><b>.value[0]?.i32</b>：可选值，repeat参数，参数类型{@link ArkUI_ImageRepeat}，默认值为ARKUI_IMAGE_REPEAT_NONE。
+     * <br><b>.object</b>：PixelMap图片数据，参数类型为{@link ArkUI_DrawableDescriptor}。`.object`参数和`.string`参数二选一，不可同时设置。
+     * <br>**返回：**
+     * <br><b>.string</b>：图片地址。API version 22及之前版本，支持网络图片资源地址、本地图片资源地址、Base64和PixelMap资源，不支持svg图片、gif和webp等类型的动图。从API
+     * version 23开始，新增支持webp和gif类型的动图，显示动图第一帧，不支持其他类型的动图。
+     * <br><b>.value[0].i32</b>：repeat参数，参数类型{@link ArkUI_ImageRepeat}。
+     * <br><b>.object</b>：PixelMap图片数据，参数类型为{@link ArkUI_DrawableDescriptor}。
      *
      */
     NODE_BACKGROUND_IMAGE,
@@ -269,13 +268,12 @@ typedef enum {
      */
     NODE_ID,
     /**
-     * @brief Defines the interactivity attribute, which can be set, reset, and obtained as required through APIs.
-     *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: The value <b>true</b> means that the component can interact with users, and <b>false</b> means the opposite.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: The value <b>1</b> means that the component can interact with users, and <b>0</b> means the opposite. \n
+     * @brief 设置组件是否可交互，支持属性设置，属性重置和属性获取。
+     * <br>作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
+     * <br>**参数：**
+     * <br><b>.value[0].i32</b>：false表示不可交互，true表示可交互。
+     * <br>**返回：**
+     * <br><b>.value[0].i32</b>：0表示不可交互，1表示可交互。
      *
      */
     NODE_ENABLED,
@@ -511,27 +509,22 @@ typedef enum {
      */
     NODE_BORDER_STYLE,
     /**
-     * @brief Defines the z-index attribute for the stack sequence.
-     * This attribute can be set, reset, and obtained as required through APIs.
-     *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: z-index value. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: z-index value. \n
+     * @brief 组件的堆叠顺序属性，支持属性设置，属性重置和属性获取接口。
+     * <br>作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
+     * <br>**参数：**
+     * <br><b>.value[0].i32</b>：堆叠顺序数值。
+     * <br>**返回：**
+     * <br><b>.value[0].i32</b>：堆叠顺序数值。
      *
      */
     NODE_Z_INDEX,
     /**
-     * @brief Defines the visibility attribute, which can be set, reset, and obtained as required through APIs.
-     *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: whether to show or hide the component. The parameter type is {@link ArkUI_Visibility}.
-     * The default value is <b>ARKUI_VISIBILITY_VISIBLE</b>. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: whether to show or hide the component. The parameter type is {@link ArkUI_Visibility}.
-     * The default value is <b>ARKUI_VISIBILITY_VISIBLE</b>. \n
+     * @brief 组件是否可见属性，支持属性设置，属性重置和属性获取接口。
+     * <br>作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
+     * <br>**参数：**
+     * <br><b>.value[0].i32</b>：控制当前组件显示或隐藏，参数类型{@link ArkUI_Visibility}，默认值为ARKUI_VISIBILITY_VISIBLE。
+     * <br>**返回：**
+     * <br><b>.value[0].i32</b>：控制当前组件显示或隐藏，参数类型{@link ArkUI_Visibility}，默认值为ARKUI_VISIBILITY_VISIBLE。
      *
      */
     NODE_VISIBILITY,
@@ -640,15 +633,12 @@ typedef enum {
      */
     NODE_TRANSFORM,
     /**
-     * @brief Defines the hit test behavior attribute, which can be set, reset, and obtained as required through APIs.
-     *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: hit test mode. The parameter type is {@link ArkUI_HitTestMode}.
-     * The default value is <b>ARKUI_HIT_TEST_MODE_DEFAULT</b>. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: hit test mode. The parameter type is {@link ArkUI_HitTestMode}.
-     * The default value is <b>ARKUI_HIT_TEST_MODE_DEFAULT</b>. \n
+     * @brief 触摸测试类型，支持属性设置，属性重置和属性获取接口。
+     * <br>作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
+     * <br>**参数：**
+     * <br><b>.value[0].i32</b>：控制当前组件的触摸测试类型，参数类型{@link ArkUI_HitTestMode}，默认值为ARKUI_HIT_TEST_MODE_DEFAULT。
+     * <br>**返回：**
+     * <br><b>.value[0].i32</b>：控制当前组件的触摸测试类型，参数类型{@link ArkUI_HitTestMode}，默认值为ARKUI_HIT_TEST_MODE_DEFAULT。
      *
      */
     NODE_HIT_TEST_BEHAVIOR,
@@ -705,28 +695,24 @@ typedef enum {
      */
     NODE_CUSTOM_SHADOW,
     /**
-     * @brief Defines the background image width and height.
-     * This attribute can be set, reset, and obtained as required through APIs.
-     *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].f32: width of the image. The value range is [0, +∞), and the unit is vp. \n
-     * .value[1].f32: height of the image. The value range is [0, +∞), and the unit is vp. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].f32: width of the image, in vp. \n
-     * .value[1].f32: height of the image, in vp. \n
+     * @brief 背景图片的宽高属性，支持属性设置，属性重置和属性获取接口。
+     * <br>作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
+     * <br>**参数：**
+     * <br><b>.value[0].f32</b>：图片的宽度值，取值范围`[0,+∞)`，单位为vp。
+     * <br><b>.value[1].f32</b>：图片的高度值，取值范围`[0,+∞)`，单位为vp。
+     * <br>**返回：**
+     * <br><b>.value[0].f32</b>：图片的宽度值，单位为vp。
+     * <br><b>.value[1].f32</b>：图片的高度值，单位为vp。
      *
      */
     NODE_BACKGROUND_IMAGE_SIZE,
     /**
-     * @brief Defines the background image size.
-     * This attribute can be set, reset, and obtained as required through APIs.
-     *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: size of the background image. The value is an enum of {@link ArkUI_ImageSize}. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: size of the background image. The value is an enum of {@link ArkUI_ImageSize}. \n
+     * @brief 背景图片的宽高样式属性，支持属性设置，属性重置和属性获取接口。
+     * <br>作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
+     * <br>**参数：**
+     * <br><b>.value[0].i32</b>：背景图片的宽高样式，取{@link ArkUI_ImageSize}枚举值。
+     * <br>**返回：**
+     * <br><b>.value[0].i32</b>：背景图片的宽高样式，取{@link ArkUI_ImageSize}枚举值。
      *
      */
     NODE_BACKGROUND_IMAGE_SIZE_WITH_STYLE,
@@ -909,84 +895,68 @@ typedef enum {
     NODE_MOVE_TRANSITION,
 
     /**
-     * @brief Defines the focus attribute, which can be set, reset, and obtained as required through APIs.
-     *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: The parameter type is 1 or 0.
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: The parameter type is 1 or 0.
+     * @brief 获焦属性，支持属性设置，属性重置和属性获取。
+     * <br>作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
+     * <br>**参数：**
+     * <br><b>.value[0].i32</b>：参数类型为1表示可获焦，为0表示不可获焦。默认为不可获焦。
+     * <br>**返回：**
+     * <br><b>.value[0].i32</b>：参数类型为1表示可获焦，为0表示不可获焦。
      *
      */
     NODE_FOCUSABLE,
 
     /**
-     * @brief Defines the default focus attribute, which can be set, reset, and obtained as required through APIs.
-     *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * value[0].i32: The parameter type is 1 or 0.
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * value[0].i32: The parameter type is 1 or 0.
+     * @brief 默认焦点属性，支持属性设置，属性重置和属性获取。
+     * <br>作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
+     * <br>**参数：**
+     * <br><b>.value[0].i32</b>：参数值为1表示是默认焦点，为0表示不是默认焦点。
+     * <br>**返回：**
+     * <br><b>.value[0].i32</b>：参数值为1表示是默认焦点，为0表示不是默认焦点。
      *
      */
     NODE_DEFAULT_FOCUS,
 
     /**
-     * @brief Defines the touch target attribute, which can be set, reset, and obtained as required through APIs.
-     *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .data[0].f32: X coordinate of the touch point relative to the upper left corner of the component, in vp. \n
-     * .data[1].f32: Y coordinate of the touch point relative to the upper left corner of the component, in vp. \n
-     * .data[2].f32: width of the touch target, in %. \n
-     * .data[3].f32: height of the touch target, in %. \n
-     * .data[4...].f32: Multiple touch targets can be set. The sequence of the parameters is the same as the preceding.
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .data[0].f32: X coordinate of the touch point relative to the upper left corner of the component, in vp. \n
-     * .data[1].f32: Y coordinate of the touch point relative to the upper left corner of the component, in vp. \n
-     * .data[2].f32: width of the touch target, in %. \n
-     * .data[3].f32: height of the touch target, in %. \n
-     * .data[4...].f32: Multiple touch targets can be set. The sequence of the parameters is the same as the preceding.
+     * @brief 触摸热区属性，支持属性设置，属性重置和属性获取。
+     * <br>作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
+     * <br>**说明：**
+     * <br>设置时data数据大小无数量限制，均可以设置成功，但仅支持获取到前20个。
+     * <br>**参数：**
+     * <br><b>.data[0].f32</b>：触摸点相对于组件左上角的x轴坐标，单位为vp。
+     * <br><b>.data[1].f32</b>：触摸点相对于组件左上角的y轴坐标，单位为vp。
+     * <br><b>.data[2].f32</b>：触摸热区的宽度，单位为百分比。
+     * <br><b>.data[3].f32</b>：触摸热区的高度，单位为百分比。
+     * <br><b>.data[4...].f32</b>：可以设置多个手势响应区域，顺序和上述一致。
+     * <br>**返回：**
+     * <br><b>.data[0].f32</b>：触摸点相对于组件左上角的x轴坐标，单位为vp。
+     * <br><b>.data[1].f32</b>：触摸点相对于组件左上角的y轴坐标，单位为vp。
+     * <br><b>.data[2].f32</b>：触摸热区的宽度，单位为百分比。
+     * <br><b>.data[3].f32</b>：触摸热区的高度，单位为百分比。
+     * <br><b>.data[4...].f32</b>：可以设置多个手势响应区域，顺序和上述一致。
      *
      */
     NODE_RESPONSE_REGION,
 
     /**
-     * @brief Defines the overlay attribute, which can be set, reset, and obtained as required through APIs.
+     * @brief 定义遮罩属性，支持属性设置，属性重置和属性获取。开发者可以通过如下.string或.object设置浮层内容，.string有更高的优先级。
+     * <br>作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
+     * <br>**参数：**
+     * <br><b>.string</b>：遮罩文本。
+     * <br><b>.value[0]?.i32</b>：可选值，浮层相对于组件的位置，参数类型{@link ArkUI_Alignment}，默认值为ARKUI_ALIGNMENT_TOP_START。
+     * <br><b>.value[1]?.f32</b>：可选值，浮层基于自身左上角的偏移量X，单位为vp，默认值为0vp。
+     * <br><b>.value[2]?.f32</b>：可选值，浮层基于自身左上角的偏移量Y，单位为vp，默认值为0vp。
+     * <br><b>.value[3]?.i32</b>：可选值，浮层的布局方向，参数类型{@link ArkUI_Direction}，默认值为ARKUI_DIRECTION_LTR。
+     * <br>在大部分场景下，这个参数都应该被设置成Auto，这个模式允许系统自动处理布局方向，如果在某些场景下需要保持特定的方向，设置这个属性为LTR（Left-to-Right）或者RTL（Right-to-Left）。
+     * 从API version 21开始支持。
+     * <br><b>.object</b>：用于overlay的节点树，参数类型为{@link ArkUI_NodeHandle}，默认值为nullptr。从API version 21开始支持。
+     * <br>**返回：**
+     * <br><b>.string</b>：遮罩文本。
+     * <br><b>.value[0].i32</b>：浮层相对于组件的位置，参数类型{@link ArkUI_Alignment}，默认值为ARKUI_ALIGNMENT_TOP_START。
+     * <br><b>.value[1].f32</b>：浮层基于自身左上角的偏移量X，单位为vp。
+     * <br><b>.value[2].f32</b>：浮层基于自身左上角的偏移量Y，单位为vp。
+     * <br><b>.value[3].i32</b>：浮层的布局方向，参数类型{@link ArkUI_Direction}，默认值为ARKUI_DIRECTION_LTR。从API version 21开始支持。
+     * <br><b>.object</b>：用于overlay的节点树，参数类型为{@link ArkUI_NodeHandle}。从API version 21开始支持。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * You can set the overlay content through .string or .object as follow, and .string has higher priority.
-     * .string: mask text.\n
-     * .value[0]?.i32: position of the overlay relative to the component. Optional.
-     * The parameter type is {@link ArkUI_Alignment}.
-     * The default value is <b>ARKUI_ALIGNMENT_TOP_START.</b> \n
-     * .value[1]?.f32: offset of the overlay relative to the upper left corner of itself on the x-axis, in vp. Optional. \n
-     * .value[2]?.f32: offset of the overlay relative to the upper left corner of itself on the y-axis, in vp. Optional.
-     * \n
-     * .value[3]?.i32: the layout direction.
-     * The parameter type is {@link ArkUI_Direction}, supported since API 21.
-     * The default value is <b>ARKUI_DIRECTION_LTR.</b> \n
-     * In most cases, this parameter should be set to Auto, this allowing the system to handle
-     * the layout direction automatically. If you need to keep a specific direction in any situation, set it to
-     * either LTR (Left-to-Right) or RTL (Right-to-Left). Optional.
-     * \n
-     * .object: the node tree used as the overlay.
-     * The parameter type is {@link ArkUI_NodeHandle}.
-     * The default value is <b>nullptr.</b> \n
-     * this parameter is conflict with .string, and it has lower priority than .string.
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .string: mask text.\n
-     * .value[0].i32: position of the overlay relative to the component.
-     * The parameter type is {@link ArkUI_Alignment}.
-     * The default value is <b>ARKUI_ALIGNMENT_TOP_START.</b> \n
-     * .value[1].f32: offset of the overlay relative to the upper left corner of itself on the x-axis, in vp. \n
-     * .value[2].f32: offset of the overlay relative to the upper left corner of itself on the y-axis, in vp.
-     * .value[3].i32: the layout direction.
-     * The parameter type is {@link ArkUI_Direction}, supported since API 21.
-     * The default value is <b>ARKUI_DIRECTION_LTR.</b> \n
-     * .object: the overlay node handle. \n
      */
     NODE_OVERLAY,
     /**
@@ -1293,26 +1263,21 @@ typedef enum {
     NODE_MARK_ANCHOR,
 
     /**
-     * @brief Defines the position of the background image in the component, that is, the coordinates relative to
-     * the upper left corner of the component. This attribute can be set, reset, and obtained as required through APIs.
+     * @brief 背景图在组件中显示位置，即相对于组件左上角的坐标，支持属性设置，属性重置和属性获取接口。
+     * <br>作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
+     * <br>**参数：**
+     * <br><b>.value[0].f32</b>：x轴位置，单位为px。
+     * <br><b>.value[1].f32</b>：y轴位置，单位为px。
+     * <br><b>.value[2]?.i32</b>：可选值，对齐方式，参数类型{@link ArkUI_Alignment}，默认值为ARKUI_ALIGNMENT_TOP_START。该参数从API version
+     * 21开始支持。
+     * <br><b>.value[3]?.i32</b>：可选值，布局方向，参数类型{@link ArkUI_Direction}，默认值为ARKUI_DIRECTION_AUTO。多数场景下建议设置为AUTO，
+     * 由系统自动处理布局方向；若需要固定方向，可设置为LTR或RTL。该参数从API version 21开始支持。
+     * <br>**返回：**
+     * <br><b>.value[0].f32</b>：x轴位置，单位为px。
+     * <br><b>.value[1].f32</b>：y轴位置，单位为px。
+     * <br><b>.value[2].i32</b>：对齐方式，参数类型{@link ArkUI_Alignment}。该返回值从API version 21开始支持。
+     * <br><b>.value[3].i32</b>：布局方向，参数类型{@link ArkUI_Direction}。该返回值从API version 21开始支持。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].f32: position along the x-axis, in px. \n
-     * .value[1].f32: position along the y-axis, in px. \n
-     * .value[2].?i32: the alignment mode. The data type is {@link ArkUI_Alignment}, and supported since API 21.
-     * The default value is <b>ARKUI_ALIGNMENT_TOP_START</b>. \n
-     * .value[3].?i32: the direction. The type is {@link ArkUI_Direction}, and supported since API 21.
-     * The default value is <b>ARKUI_DIRECTION_AUTO</b>. \n
-     * In most cases, this parameter should be set to Auto, this allowing the system to handle
-     * the layout direction automatically. If you need to keep a specific direction in any situation, set it to
-     * either LTR (Left-to-Right) or RTL (Right-to-Left). Optional.
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].f32: position along the x-axis, in px. \n
-     * .value[1].f32: position along the y-axis, in px. \n
-     * .value[2].i32: the alignment mode. The data type is {@link ArkUI_Alignment}, and supported since API 21.
-     * The default value is <b>ARKUI_ALIGNMENT_TOP_START</b>. \n
-     * .value[3].i32: the direction. The type is {@link ArkUI_Direction}, and supported since API 21.
-     * The default value is <b>ARKUI_DIRECTION_AUTO</b>. \n
      */
     NODE_BACKGROUND_IMAGE_POSITION,
     /**
@@ -1433,15 +1398,14 @@ typedef enum {
     NODE_ACCESSIBILITY_DESCRIPTION,
 
     /**
-     * @brief Defines the focused state. This attribute can be set and obtained as required through APIs.
-     * @note Setting the parameter to <b>0</b> shifts focus from the currently focused component on the current level
-     * of the page to the root container.
-     * 
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: The parameter type is 1 or 0.
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: The parameter type is 1 or 0.
+     * @brief 组件获取焦点属性，支持属性设置，属性获取。
+     * <br>作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
+     * <br>**说明：**
+     * <br>设置参数为0时，当前层级页面获焦组件失焦，焦点转移到根容器上。
+     * <br>**参数：**
+     * <br><b>.value[0].i32</b>：参数值为1表示组件获焦，为0表示组件失焦。
+     * <br>**返回：**
+     * <br><b>.value[0].i32</b>：参数值为1表示组件获焦，为0表示组件失焦。
      *
      */
     NODE_FOCUS_STATUS,
@@ -1724,14 +1688,12 @@ typedef enum {
     NODE_LAYOUT_RECT,
 
     /**
-     * @brief Whether the current component supports click-to-focus capability,
-     * which can be set, reset, and obtained as required through APIs.
-     *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: The parameter type is 1 or 0.
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: The parameter type is 1 or 0.
+     * @brief 设置当前组件是否支持点击获焦能力，支持属性设置，属性重置和属性获取。
+     * <br>作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
+     * <br>**参数：**
+     * <br><b>.value[0].i32</b>：参数值为1表示支持点击获焦，为0表示不支持点击获焦。
+     * <br>**返回：**
+     * <br><b>.value[0].i32</b>：参数值为1表示支持点击获焦，为0表示不支持点击获焦。
      *
      */
     NODE_FOCUS_ON_TOUCH,
@@ -1848,31 +1810,15 @@ typedef enum {
 
     /**
      * @brief Defines the visible area ratio (visible area/total area of the component) threshold for invoking the
-     * visible area change event of the component.
-     *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[...].f32: threshold array. The value range is 0 to 1.
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[...].f32: threshold array. \n
+     * visible area change event of the component. Format of the {@link ArkUI_AttributeItem} parameter for setting the
+     * attribute:
+     * <br>.value[...].f32: threshold array. The value ranges from 0 to 1.
+     * <br>.object: The parameter type is {@link ArkUI_VisibleAreaEventOptions}.
+     * <br>Format of the return value {@link ArkUI_AttributeItem}:
+     * <br>.value[...].f32: threshold array.
+     * <br>.object: The return type is {@link ArkUI_VisibleAreaEventOptions}.
      *
      * @since 12
-     */
-    /**
-     * @brief Defines the visible area ratio (visible area/total area of the component) threshold for invoking the
-     * visible area change event of the component, this enum extends the configuration capbility.
-     *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[...].f32: threshold array. The value range is 0 to 1.
-     * .?object: pass in one {@link ArkUI_VisibleAreaEventOptions} objcet for configging the ratio or other options.
-     * Please note, when use this param, the ratios set through .value[...].f32 will be ignored, and the update
-     * interval from it is always ignored too.
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[...].f32: threshold array. \n
-     * .object: the {@link ArkUI_VisibleAreaEventOptions} objcet.
-     *
-     * @since 22
      */
     NODE_VISIBLE_AREA_CHANGE_RATIO = 93,
 
@@ -1902,38 +1848,32 @@ typedef enum {
     NODE_UNIQUE_ID = 95,
 
     /**
-     * @brief Set the current component system focus box style.
-     *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute: \n
-     * .value[0].f32: The distance between the focus box and the edge of the component. \n
-     * Positive numbers represent the outer side, negative numbers represent the inner side. \n
-     * Percentage is not supported. \n
-     * .value[1].f32: Focus box width. Negative numbers and percentages are not supported. \n
-     * .value[2].u32: Focus box color. \n
-     * \n
+     * @brief 设置当前组件系统焦点框样式。
+     * <br>作为属性设置方法参数{@link ArkUI_AttributeItem}格式如下。
+     * <br>**参数：**
+     * <br><b>.value[0].f32</b>：焦点框相对组件边缘的距离。正数代表外侧，负数代表内侧。不支持百分比。
+     * <br><b>.value[1].f32</b>：焦点框宽度。不支持负数和百分比。
+     * <br><b>.value[2].u32</b>：焦点框颜色。
      *
      */
     NODE_FOCUS_BOX = 96,
 
     /**
-     * @brief Defines the moving distance limit for the component-bound tap gesture.
-     * This attribute can be set as required through APIs.
-     *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].f32: allowed moving distance of a finger, in vp. \n
+     * @brief 组件所绑定的点击手势移动距离限制，支持属性设置。
+     * <br>作为属性设置方法参数{@link ArkUI_AttributeItem}格式如下。
+     * <br>**参数：**
+     * <br><b>.value[0].f32</b>：表示识别点击手势时允许手指在该范围内移动，单位为vp。
      *
      */
     NODE_CLICK_DISTANCE = 97,
 
     /**
-     * @brief Sets whether the focus can be placed on this component.
-     * This attribute can be set, reset, and obtained as required through APIs.
-     *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: whether the focus can be placed on the current component. The parameter type is 1 or 0.
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: whether the focus can be placed on the current component. The parameter type is 1 or 0.
+     * @brief 控制焦点是否能停在当前组件，支持属性设置，属性重置和属性获取。
+     * <br>作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
+     * <br>**参数：**
+     * <br><b>.value[0].i32</b>：参数值为1表示焦点能停在当前组件，为0表示焦点不能停在当前组件。默认值为0。
+     * <br>**返回：**
+     * <br><b>.value[0].i32</b>：参数值为1表示焦点停在当前组件，为0表示焦点未停在当前组件。
      *
      * @since 14
      */
@@ -1981,34 +1921,26 @@ typedef enum {
     NODE_BACKGROUND_IMAGE_RESIZABLE_WITH_SLICE = 100,
 
     /**
-     * @brief Sets the next focus node.
-     *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute: \n
-     * .value[0].i32: focus movement direction, as defined in {@link ArkUI_FocusMove}.
-     * .object: next focus node. The parameter type is {@link ArkUI_NodeHandle}.\n
-     * \n
+     * @brief 设置下一个走焦节点。
+     * <br>作为属性设置方法参数{@link ArkUI_AttributeItem}格式如下。
+     * <br>**参数：**
+     * <br><b>.value[0].i32</b>：走焦类型，定义在{@link ArkUI_FocusMove}。
+     * <br><b>.object</b>：下一个焦点。参数类型为{@link ArkUI_NodeHandle}。
      *
      * @since 18
      */
     NODE_NEXT_FOCUS = 101,
 
     /**
-     * @brief Sets the parameters for visible area change events.
-     *
-     * @note The visible area change callback is not a real-time callback. The actual callback interval may differ from
-     * the expected interval due to system load and other factors.
-     * The interval between two visible area change callbacks will not be less than the expected update interval. If the
-     * provided expected interval is too short, the actual callback interval will be determined by the system load.
-     * By default, the interval threshold of the visible area change callback includes 0. This means that,
-     * if the provided threshold is [0.5], the effective threshold will be [0.0, 0.5].
-     *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .object: parameters for visible area change events.
-     * The parameter type is {@link ArkUI_VisibleAreaEventOptions}. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .object: parameters for visible area change events.
-     * The parameter type is {@link ArkUI_VisibleAreaEventOptions}. \n
+     * @brief 设置可见区域变化监听的参数。
+     * <br>作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
+     * <br>**说明：**
+     * <br>非实时回调，实际回调与预期间隔可能存在差别。两次可见区域回调的时间间隔不小于预期更新间隔。当开发者设置的预期间隔过小时，由系统负载决定实际回调间隔时间。当前接口的可见区域回调阈值默认包含0。例如，开发者设置回调阈值为[
+     * 0.5]，实际生效的阈值为[0.0, 0.5]。
+     * <br>**参数：**
+     * <br><b>.object</b>：参数类型为{@link ArkUI_VisibleAreaEventOptions}。
+     * <br>**返回：**
+     * <br><b>.object</b>：参数类型为{@link ArkUI_VisibleAreaEventOptions}。
      *
      * @since 17
      */
@@ -2140,18 +2072,12 @@ typedef enum {
     NODE_PIXEL_ROUND = 109,
 
     /**
-     * @brief Set whether to enable the default click sound effect for this component.
-     * It only takes effect on supported devices, such as TV. Whether it can produce sound depends on the device's
-     * sound-related settings. For example, sound effects will not be played in silent mode.
-     *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: The parameter value is either 1 or 0. 1 indicates the default click sound effect is enabled,
-     * while 0 indicates it is disabled. The default value is 1.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: Indicates whether the default click sound effect is enabled for this node.\n
-     * The parameter value is either 1 or 0. 1 indicates the default click sound effect is enabled,
-     * while 0 indicates it is disabled.\n
+     * @brief 设置组件是否启用默认点击音效。此功能仅在TV上生效，在其他设备上启用默认点击音效也不会播放音效。是否能够发音依赖设备声音相关的设置，如静音模式下不会播放音效。
+     * <br>作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
+     * <br>**参数：**
+     * <br><b>.value[0].i32</b>：参数取值为1或0，1表示启用默认点击音效，0表示禁用默认点击音效，默认值为1。
+     * <br>**返回：**
+     * <br><b>.value[0].i32</b>：表示此节点是否启用了默认的点击音效。参数取值为1或0，1表示启用默认点击音效，0表示禁用默认点击音效。
      *
      * @since 24
      */
@@ -2173,101 +2099,94 @@ typedef enum {
     NODE_MOTION_PATH = 111,
 
     /**
-     * @brief Defines the hover effect applied when the component is hovered over. This attribute can be set, reset, and obtained as required through APIs.
-     *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute: \n
-     * .value[0].i32: Hover effect applied when the component is hovered over.
-     * The parameter type is {@link ArkUI_HoverEffect}. The default value is <b>ARKUI_HOVER_EFFECT_AUTO</b>. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}: \n
-     * .value[0].i32: Hover effect applied when the component is hovered over.
-     * The parameter type is {@link ArkUI_HoverEffect}. \n
+     * @brief 定义组件被悬停时的效果。该属性可根据需要通过API进行设置、重置和获取。
+     * <br>作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
+     * <br>**参数：**
+     * <br><b>.value[0].i32</b>：组件在悬停状态下的悬停效果。参数类型为{@link ArkUI_HoverEffect}。默认值为ARKUI_HOVER_EFFECT_AUTO。
+     * <br>**返回：**
+     * <br><b>.value[0].i32</b>：组件在悬停状态下的悬停效果。参数类型为{@link ArkUI_HoverEffect}。
      *
      * @since 23
      */
     NODE_HOVER_EFFECT = 112,
 
     /**
-     * @brief Configures the container as a focus group with the specified identifier. This attribute can be set, reset, and obtained as required through APIs.
-     *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute: \n
-     * .string: focus scope identifier. \n
-     * .value[0]?.i32: whether the scope is a focus group. The default value is <b>0</b>. The value is <b>1</b> or <b>0</b>. \n
-     * .value[1]?.i32: whether arrow keys can move focus outside the focus group. This setting only takes effect when <b>isGroup</b> is <b>true</b>. The default value is <b>1</b>.
-     * The value is <b>1</b> or <b>0</b>. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .string: focus scope identifier. \n
-     * .value[0]?.i32: whether the scope is a focus group. The default value is <b>0</b>. The value is <b>1</b> or <b>0</b>. \n
-     * .value[1]?.i32: whether arrow keys can move focus outside the focus group. This setting only takes effect when <b>isGroup</b> is <b>true</b>. The default value is <b>1</b>.
-     * The value is <b>1</b> or <b>0</b>. \n
+     * @brief 将容器设置为具有特定标识符的焦点组，支持属性设置、属性重置和属性获取接口。
+     * <br>作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
+     * <br>**参数：**
+     * <br><b>.string</b>：焦点作用域标识符。
+     * <br><b>.value[0].i32</b>：该作用域是否为焦点组，默认值为0。取值范围为1或0。1表示设置为焦点组，0表示组件未被设置为焦点组。
+     * <br><b>.value[1].i32</b>：箭头键是否可以将焦点从焦点组内部移至外部，仅当isGroup为true时有效，默认值为1。取值范围为1或0。1表示箭头键可以将焦点从焦点组内部移至外部，
+     * 0表示箭头键无法将焦点从焦点组内部移至外部。
+     * <br>**返回：**
+     * <br><b>.string</b>：焦点作用域标识符。
+     * <br><b>.value[0].i32</b>：该作用域是否为焦点组，默认值为0。取值范围为1或0。1表示设置为焦点组，0表示组件未被设置为焦点组。
+     * <br><b>.value[1].i32</b>：箭头键是否可以将焦点从焦点组内部移至外部，仅当isGroup为true时有效，默认值为1。取值范围为1或0。1表示箭头键可以将焦点从焦点组内部移至外部，
+     * 0表示箭头键无法将焦点从焦点组内部移至外部。
      *
      * @since 23
      */
     NODE_FOCUS_SCOPE_ID = 113,
 
     /**
-     * @brief Sets the component focus priority within a specific focus scope. This attribute can be set, reset, and obtained as required through APIs.
-     *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute: \n
-     * .string: focus scope identifier. \n
-     * .value[0]?.i32: focus priority within the focus scope. The parameter type is {@link ArkUI_FocusPriority}.
-     * The default value is <b>ARKUI_FOCUS_PRIORITY_AUTO</b>. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .string: focus scope identifier. \n
-     * .value[0]?.i32: focus priority within the focus scope. The parameter type is {@link ArkUI_FocusPriority}. \n
+     * @brief 设置组件在特定焦点作用域内的焦点优先级，支持属性设置、属性重置和属性获取接口。
+     * <br>作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
+     * <br>**参数：**
+     * <br><b>.string</b>：焦点作用域标识符。
+     * <br><b>.value[0].i32</b>：焦点作用域内获焦优先级。参数类型为{@link ArkUI_FocusPriority}。默认值为ARKUI_FOCUS_PRIORITY_AUTO。
+     * <br>**返回：**
+     * <br><b>.string</b>：焦点作用域标识符。
+     * <br><b>.value[0].i32</b>：焦点作用域优先级。参数类型为{@link ArkUI_FocusPriority}。
      *
      * @since 23
      */
     NODE_FOCUS_SCOPE_PRIORITY = 114,
 
     /**
-     * @brief Sets the distance threshold for click events. This attribute can be set, reset, and obtained as required through APIs.
-     *
-     * @note If finger movement exceeds the preset distance limit, click event recognition will fail.
-     *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute: \n
-     * .value[0].f32: distance threshold for click events.
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}: \n
-     * .value[0].f32: distance threshold for click events. \n
+     * @brief 设置点击事件的距离阈值，支持属性设置、属性重置和属性获取接口。
+     * <br>作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
+     * <br>**参数：**
+     * <br><b>.value[0].f32</b>：点击事件移动阈值。取值范围(0, +∞)。默认值为+∞，单位vp。
+     * <br>**返回：**
+     * <br><b>.value[0].f32</b>：点击事件移动阈值。
      *
      * @since 23
      */
     NODE_ON_CLICK_EVENT_DISTANCE_THRESHOLD = 115,
 
     /**
-     * @brief Defines the component event response region. This attribute can be set, reset, and obtained as required through APIs.
-     *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .data[0].i32: input tool type for the response region, specified using the {@link ArkUI_ResponseRegionSupportedTool} enum. Default value: <b>ARKUI_RESPONSE_REGIN_SUPPORTED_TOOL_ALL</b>.
-     * .data[1].f32: x-coordinate of the pointer position relative to the upper left corner of the component, in vp. \n
-     * .data[2].f32: y-coordinate of the pointer position relative to the upper left corner of the component, in vp. \n
-     * .data[3].f32: width of the response region. The value is a percentage. \n
-     * .data[4].f32: height of the response region. The value is a percentage. \n
-     * .data[5...].f32: additional response regions in the same parameter order. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .data[0].i32: input tool type for the response region, specified using the {@link ArkUI_ResponseRegionSupportedTool} enum. Default value: <b>ARKUI_RESPONSE_REGIN_SUPPORTED_TOOL_ALL</b>.
-     * .data[1].f32: x-coordinate of the pointer position relative to the upper left corner of the component, in vp. \n
-     * .data[2].f32: y-coordinate of the pointer position relative to the upper left corner of the component, in vp. \n
-     * .data[3].f32: width of the response region. The value is a percentage. \n
-     * .data[4].f32: height of the response region. The value is a percentage. \n
-     * .data[5...].f32: additional response regions in the same parameter order.
+     * @brief 设置组件事件的响应区域，支持属性设置，属性重置和属性获取接口。
+     * <br>作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
+     * <br>**说明：**
+     * <br>设置时data数据大小无数量限制，均可以设置成功，但仅支持获取到20个。获取到的data数组顺序与设置顺序可能存在差异。
+     * <br>**参数：**
+     * <br><b>.data[0].i32</b>：适用于此响应区域的事件工具类型。参数类型为{@link ArkUI_ResponseRegionSupportedTool}。默认值：
+     * ARKUI_RESPONSE_REGIN_SUPPORTED_TOOL_ALL。
+     * <br><b>.data[1].f32</b>：触摸点相对于组件左上角的x轴坐标，默认值：0.0，单位为vp。
+     * <br><b>.data[2].f32</b>：触摸点相对于组件左上角的y轴坐标，默认值：0.0，单位为vp。
+     * <br><b>.data[3].f32</b>：触摸热区的宽度，默认值：100.0，单位为百分比。
+     * <br><b>.data[4].f32</b>：触摸热区的高度，默认值：100.0，单位为百分比。
+     * <br><b>.data[5...].f32</b>：可以设置多个手势响应区域，顺序和上述一致。
+     * <br>**返回：**
+     * <br><b>.data[0].i32</b>：适用于此响应区域的事件工具类型。参数类型为{@link ArkUI_ResponseRegionSupportedTool}。默认值：
+     * ARKUI_RESPONSE_REGIN_SUPPORTED_TOOL_ALL。
+     * <br><b>.data[1].f32</b>：触摸点相对于组件左上角的x轴坐标，默认值：0.0，单位为vp。
+     * <br><b>.data[2].f32</b>：触摸点相对于组件左上角的y轴坐标，默认值：0.0，单位为vp。
+     * <br><b>.data[3].f32</b>：触摸热区的宽度，默认值：100.0，单位为百分比。
+     * <br><b>.data[4].f32</b>：触摸热区的高度，默认值：100.0，单位为百分比。
+     * <br><b>.data[5...].f32</b>：可以设置多个手势响应区域，顺序和上述一致。
      *
      * @since 23
      */
     NODE_RESPONSE_REGION_LIST = 116,
 
     /**
-     * @brief Defines the event monopolization attribute. This attribute can be set, reset, and obtained as required through APIs.
-     *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute: \n
-     * .value[0].i32: Boolean value (1 or 0).
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}: \n
-     * .value[0].i32: Boolean value (1 or 0).
+     * @brief 定义独占事件属性，该属性可根据需要通过API进行设置、重置和获取。
+     * <br>作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
+     * <br>**参数：**
+     * <br><b>.value[0].i32</b>：取值范围为1或0。1表示设置组件独占，0表示组件未设置独占属性。
+     * <br>**返回：**
+     * <br><b>.value[0].i32</b>：取值范围为1或0。1表示设置组件独占，0表示组件未设置独占属性。
      *
      * @since 23
      */
@@ -7544,20 +7463,17 @@ typedef enum {
     NODE_LIST_NODE_ADAPTER,
 
     /**
-     * @brief Sets the number of cached items in the list adapter.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief list组件Adapter缓存数量，支持属性设置，属性重置和属性获取接口。 
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: number of cached items in the list adapter. \n
-     * .value[1]?.i32: whether to show cached items. The value <b>0</b> means to hide cached items, and <b>1</b> means
-     * to show cached items. The default value is <b>0</b>. This parameter is supported since API version 15. \n
-     * .value[2]?.i32: maximum cache count. This parameter is supported since API version 22.
+     * 属性设置方法参数{@link ArkUI_AttributeItem}格式：\n
+     * .value[0].i32：配合List组件Adapter使用，设置adapter中的缓存数量\n
+     * .value[1]?.i32：是否显示缓存节点，0：不显示，1：显示，默认值：0。该参数从API version 15开始支持。 \n
+     * .value[2]?.i32：设置List最大缓存数量，默认值与第一个参数相同。该参数从API version 22开始支持。 \n
      * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: number of cached items in the list adapter. \n
-     * .value[1].i32: whether to show cached items. The value <b>0</b> means to hide cached items, and <b>1</b> means
-     * to show cached items. This parameter is supported since API version 15. \n
-     * .value[2].i32: maximum cache count. This parameter is supported since API version 22.
+     * 属性获取方法返回值{@link ArkUI_AttributeItem}格式：\n
+     * .value[0].f32：adapter中的缓存数量。\n
+     *  .value[1].i32：是否显示缓存节点，0：不显示，1：显示。该参数从API version 15开始支持。 \n
+     * .value[2].i32：List最大缓存数量。该参数从API version 22开始支持。 \n
      *
      */
     NODE_LIST_CACHED_COUNT,
@@ -7571,7 +7487,7 @@ typedef enum {
      * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
      * .value[0].i32：The index value of the target element to be slid to in the current container.\n
      * .value[1]?.i32：Set whether there is an action when sliding to the index value of a list item in the list, where
-     * 1 indicates an action and 0 indicates no action. Default value: 0。\n
+     * 1 indicates an action and 0 indicates no action. Default value: 0.\n
      * .value[2]?.i32：Specify the alignment of the sliding element with the current container,The parameter type is
      * {@link ArkUI_ScrollAlignment}, default value is ARKUI_SCROLL_ALIGNMENT_START. \n
      * .value[3]?.f32: extra offset, in vp. The default value is <b>0</b>.
@@ -7774,99 +7690,91 @@ typedef enum {
     NODE_LIST_SCROLL_SNAP_ANIMATION_SPEED = 1003017,
 
     /**
-     * @brief Specifies the responsive column layout policy for the <b>List</b> component.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief List组件的响应式列数布局策略，支持属性设置，属性重置和属性获取接口。 
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: number of columns at different breakpoint specifications.
-     * The data type is {@link ArkUI_ItemFillPolicy}. \n
-     * .value[1]?.f32: column spacing. unit: vp. Default value: <b>0</b>. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: number of columns at different breakpoint specifications.
-     * The data type is {@link ArkUI_ItemFillPolicy}. \n
-     * .value[1].f32: column spacing. unit: vp. \n
+     * 属性设置方法参数{@link ArkUI_AttributeItem}格式：
+
+     * .value[0].i32：在不同断点规格下的列数，数据类型{@link ArkUI_ItemFillPolicy}；
+
+     * .value[1]?.f32：列间距，单位vp，默认值：0
+
+     * 
+
+     * 属性获取方法返回值{@link ArkUI_AttributeItem}格式：
+
+     * .value[0].i32：在不同断点规格下的列数，数据类型{@link ArkUI_ItemFillPolicy}；
+
+     * .value[1].f32：列间距，单位vp。
+
      *
      * @since 22
      */
     NODE_LIST_LANES_ITEMFILLPOLICY = 1003018,
 
     /**
-     * @brief Specifies whether to support empty branch rendering in lazy loading mode for the <b>List</b> container. 
-     * This attribute can be set, reset, and obtained as required through APIs. When enabled in lazy loading mode, 
-     * empty branches (items without content) in the <b>List</b> will be rendered and set to width 0 and height 0, 
-     * which may affect the overall layout and scrolling behavior. This is typically used in scenarios where the
-     * data source may have gaps or when maintaining specific layout positions is required.
-     *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: whether to support empty branch rendering in lazy loading mode.
-     * <b>0</b>: Disable empty branch support. Empty branches will not be rendered. <b>1</b>: Enable empty branch support. 
-     * Empty branches will be rendered as placeholder items. Default value: <b>0</b>.\n
+     * @brief <b>List</b>容器是否支持懒加载空分支渲染。
+     * 该属性可以通过API根据需要设置、重置和获取。在懒加载模式下启用时，
+     * <b>List</b>中的空分支（没有内容的项）将被渲染并设置为宽度0和高度0。
+     * 这可能会影响整体布局和滚动行为。这通常用于数据源可能存在间隙或需要维护特定布局位置的场景。
+     * 设置属性{@link ArkUI_AttributeItem}格式：\n
+     * .value[0].i32：懒加载模式下是否支持空分支渲染。
+     * <b>0</b>：禁用空分支支持。空分支不会被渲染。<b>1</b>：启用空分支支持。
+     * 空分支将被渲染为占位符项。默认值：<b>0</b>.\n
      * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: whether empty branch rendering is enabled. <b>0</b>: Disabled. <b>1</b>: Enabled.\n
+     * 属性获取{@link ArkUI_AttributeItem}的格式为：\n
+     * .value[0].i32：是否启用空分支渲染。<b>0</b>：关闭。<b>1</b>：启用。\n
      *
      * @since 23
      */
     NODE_LIST_SUPPORT_EMPTY_BRANCH_IN_LAZY_LOADING = 1003019,
 
     /**
-     * @brief Sets the back button behavior for the List component. Attribute setting, resetting, and obtaining APIs are supported.
+     * @brief 设置List组件的返回键行为。支持属性设置、重置、获取接口。
      *
-     * The parameter format for setting properties using {@link ArkUI_AttributeItem} is as follows:
-     * .value[0].i32: Whether to collapse the scroll menu when the back button is clicked. 0: no; 1: yes. Default value: 1.
-     * 
-     * The parameter format for obtaining properties using {@link ArkUI_AttributeItem} is as follows:
-     * .value[0].i32: Whether to collapse the scroll menu when the back button is clicked. 0: no; 1: yes.
+     * {@link ArkUI_AttributeItem}设置属性的参数格式如下：
+     * .value[0].i32：单击后退按钮时是否折叠滚动菜单。0：不支持，1：支持。默认值：1。
+     *
+     * {@link ArkUI_AttributeItem}获取属性的参数格式如下：
+     * .value[0].i32：单击返回按钮时是否收起划出菜单。0：不支持，1：支持。
      *
      * @since 26.0.0
      */
     NODE_LIST_BACK_PRESS_BEHAVIOR = 1003020,
 
     /**
-     * @brief Defines whether the <b>List</b> component enables edit mode.
-     * When set to <b>1</b> (editable), checkboxes are displayed by default and
-     * single-finger sliding multi-selection is available within the edit mode.
-     * When the edit mode state changes, the {@link NODE_LIST_ON_EDIT_MODE_CHANGE}
-     * event callback is triggered. The state can be changed in two ways:
-     * 1. Directly setting this attribute.
-     * 2. Triggered via two-finger sliding gesture when
-     * {@link NODE_LIST_EDIT_MODE_OPTIONS} has two-finger sliding multi-selection enabled
-     * and the {@link NODE_LIST_ON_EDIT_MODE_CHANGE} callback is registered.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief List组件是否使能编辑模式。设置为1（可编辑）时，默认显示复选框，
+     * 且在编辑模式内支持单指滑动多选。
+     * 编辑模式状态变更时，会触发{@link NODE_LIST_ON_EDIT_MODE_CHANGE}事件回调。
+     * 状态变更途径有两种：
+     * 1. 直接设置本属性。
+     * 2. 在{@link NODE_LIST_EDIT_MODE_OPTIONS}启用双指滑动多选且注册了
+     * {@link NODE_LIST_ON_EDIT_MODE_CHANGE}回调时，通过双指滑动手势触发。
+     * 支持属性设置，属性重置和属性获取接口。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:
-     * .value[0].i32: Whether the <b>List</b> component enables edit mode.
-     * <b>0</b>: Not editable. <b>1</b>: Editable. Default value: <b>0</b>.
+     * 属性设置方法参数{@link ArkUI_AttributeItem}格式：
+     * .value[0].i32：List组件是否使能编辑模式。0：不可编辑，1：可以编辑。默认值：0
      *
-     * Format of the return value {@link ArkUI_AttributeItem}:
-     * .value[0].i32: Whether the <b>List</b> component enables edit mode.
-     * <b>0</b>: Not editable. <b>1</b>: Editable.
+     * 属性获取方法返回值{@link ArkUI_AttributeItem}格式：
+     * .value[0].i32：List组件是否使能编辑模式。0：不可编辑，1：可以编辑。
      *
      * @since 26.0.0
      */
     NODE_LIST_ENABLE_EDIT_MODE = 1003021,
 
     /**
-     * @brief List component edit mode option configuration.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief List组件编辑模式选项配置。
+     * 支持属性设置，属性重置和属性获取接口。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: Whether List component uses default multi-selection style.
-     * When using default multi-selection style, List displays checkboxes after entering edit mode.
-     * 0: Do not use default style, 1: Use default style. Default value: 1
-     * .value[1].i32: Whether List component enables two-finger swipe multi-selection.
-     * This parameter takes effect after registering {@link NODE_LIST_ON_EDIT_MODE_CHANGE} event callback.
-     * 0: Two-finger swipe gesture cannot make List enter edit mode, but after entering edit mode through other means,
-     * single-finger swipe multi-selection in edit mode is not affected.
-     * 1: Two-finger swipe gesture can make List enter edit mode from non-edit mode and perform swipe multi-selection.
-     * Default value: 1
+     * 属性设置方法参数{@link ArkUI_AttributeItem}格式：
+     * .value[0].i32：List组件是否使用默认多选样式， 使用默认多选样式时，List进入编辑模式后会显示复选框。
+     * 0：不使用默认样式，1：使用默认样式。默认值：1
+     * .value[1].i32：List组件是否启用双指滑动多选，该参数在注册{@link NODE_LIST_ON_EDIT_MODE_CHANGE}事件回调后生效。
+     * 0：使用双指划动手势不能让List组件进入编辑模式，但通过其他方式进入编辑模式后，编辑模式内的单指滑动多选不受影响。
+     * 1：使用双指划动手势能让List组件从非编辑模式进入编辑模式并执行划动多选。默认值：1
      *
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: Whether List component uses default multi-selection style.
-     * 0: Do not use default style, 1: Use default style.
-     * .value[1].i32: Whether List component enables two-finger swipe multi-selection.
-     * 0: Not enabled, 1: Enabled.
+     * 属性获取方法返回值{@link ArkUI_AttributeItem}格式：
+     * .value[0].i32：List组件是否使用默认多选样式。0：不使用默认样式，1：使用默认样式。
+     * .value[1].i32：List组件是否启用双指滑动多选。0：不启用，1：启用。
      *
      * @since 26.0.0
      */
@@ -8543,16 +8451,13 @@ typedef enum {
      */
     NODE_REFRESH_MAX_PULL_DOWN_DISTANCE = 1009005,
     /**
-     * @brief Sets whether the pull-up gesture cancels refresh.
-     * This attribute can be set, reset, and obtained through the API as required.
+     * @brief  设置上划是否取消刷新。支持属性设置，属性重置和属性获取。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: whether the pull-up gesture cancels refresh. The value <b>1</b> means that the pull-up gesture
-     * cancels refresh, and <b>0</b> means the opposite. Default value: <b>1</b>.
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: whether the pull-up gesture cancels refresh. The value <b>1</b> means that the pull-up gesture
-     * cancels refresh, and <b>0</b> means the opposite.
+     *  属性设置方法{@link ArkUI_AttributeItem}的参数格式：\n
+     *  .value[0].i32：上划是否取消刷新。0为上划不取消刷新，1为上划取消刷新。默认值：1。
+     *  \n
+     *  属性获取方法返回值{@link ArkUI_AttributeItem}的格式：\n
+     *  .value[0].i32：上划是否取消刷新。0为上划不取消刷新，1为上划取消刷新。
      *
      * @since 23
      */
@@ -8884,34 +8789,35 @@ typedef enum {
     NODE_GRID_NODE_ADAPTER,
 
     /**
-    * @brief Sets the number of cached items in the grid adapter.
-    * This attribute can be set, reset, and obtained as required through APIs.
-    *
-    * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-    * .value[0].i32: number of cached items in the grid adapter. \n
-    * .value[1].i32: whether to display cached nodes. 0 means not display, 1 means display.
-    * This parameter is optional, default value is 0. [since 26.0.0]\n
-    * \n
-    * Format of the return value {@link ArkUI_AttributeItem}:\n
-    * .value[0].i32: number of cached items in the grid adapter. \n
-    * .value[1].i32: whether to display cached nodes. 0 means not display, 1 means display. [since 26.0.0]
-    */
+     * @brief 设置网格适配器中缓存项的数量。
+     * 该属性可以通过API根据需要设置、重置和获取。
+     *
+     * 设置属性{@link ArkUI_AttributeItem}格式：\n
+     * .value[0].i32：网格适配器中缓存的项数。\n
+     * .value[1].i32：是否显示缓存节点。0表示不显示，1表示显示。
+     * 可选参数，默认值为0。此参数从API版本26.0.0开始支持。\n
+     * \n
+     * 返回值{@link ArkUI_AttributeItem}的格式为：\n
+     * .value[0].i32：网格适配器中缓存的项数。\n
+     * .value[1].i32：是否显示缓存节点。0表示不显示，1表示显示。
+     * 此参数从API版本26.0.0开始支持。\n
+     */
     NODE_GRID_CACHED_COUNT,
 
     /**
-    * @brief Defines the focus wrap mode for the <b>Grid</b> component.
-    * This attribute can be set, reset, and obtained as required through APIs.
-    *
-    * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-    * .value[0].i32: focus wrap mode of the <b>Grid</b> component.
-    *                The parameter type is {@link ArkUI_FocusWrapMode}. \n
-    * \n
-    * Format of the return value {@link ArkUI_AttributeItem}:\n
-    * .value[0].i32: focus wrap mode of the <b>Grid</b> component.
-    *                The parameter type is {@link ArkUI_FocusWrapMode}. \n
-    *
-    * @since 20
-    */
+     * @brief Defines the focus wrap mode for the <b>Grid</b> component.
+     * This attribute can be set, reset, and obtained as required through APIs.
+     *
+     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
+     * .value[0].i32: focus wrap mode of the <b>Grid</b> component.
+     *                The parameter type is {@link ArkUI_FocusWrapMode}. \n
+     * \n
+     * Format of the return value {@link ArkUI_AttributeItem}:\n
+     * .value[0].i32: focus wrap mode of the <b>Grid</b> component.
+     *                The parameter type is {@link ArkUI_FocusWrapMode}. \n
+     *
+     * @since 20
+     */
     NODE_GRID_FOCUS_WRAP_MODE = 1013006,
 
     /**
@@ -8931,188 +8837,157 @@ typedef enum {
     NODE_GRID_SYNC_LOAD = 1013007,
 
     /**
-     * @brief Specifies the alignment of <b>GridItem</b> components in the parent <b>Grid</b> container. 
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief 设置Grid中GridItem的对齐方式，支持属性设置，属性重置和属性获取接口。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: alignment of <b>GridItem</b> components in the parent <b>Grid</b> container, \n
-     * specified using the {@link ArkUI_GridItemAlignment} enum. \n
-     * The default value is <b>GRID_ITEM_ALIGNMENT_DEFAULT</b>. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: alignment of <b>GridItem</b> components in the parent <b>Grid</b> container, \n
-     * specified using the {@link ArkUI_GridItemAlignment} enum. \n
+     * 属性设置方法参数{@link ArkUI_AttributeItem}格式：
+     * .value[0].i32：Grid中GridItem的对齐方式，参数类型{@link ArkUI_GridItemAlignment}。默认值：GRID_ITEM_ALIGNMENT_DEFAULT。
+
+     * 属性获取方法返回值{@link ArkUI_AttributeItem}格式：
+     * .value[0].i32：Grid中GridItem的对齐方式，参数类型{@link ArkUI_GridItemAlignment}。
+
      *
      * @since 22
      */
     NODE_GRID_ALIGN_ITEMS = 1013008,
 
     /**
-     * @brief Specifies the layout options of the <b>Grid</b> component.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief 设置Grid布局选项，支持属性设置，属性重置和属性获取接口。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute: \n
-     * .object: layout options, with the parameter format of {@link ArkUI_GridLayoutOptions}. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .object: current {@link ArkUI_GridLayoutOptions} object. \n
+     * 属性设置方法{@link ArkUI_AttributeItem}参数格式：
+     * .object：参数格式为{@link ArkUI_GridLayoutOptions}。
+     *
+     * 属性获取方法返回值{@link ArkUI_AttributeItem}格式：
+     * .object：返回值格式为{@link ArkUI_GridLayoutOptions}。
      *
      * @since 22
      */
     NODE_GRID_LAYOUT_OPTIONS = 1013009,
 
     /**
-     * @brief Specifies the responsive column layout policy for the <b>Grid</b> component.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief Grid组件的响应式列数布局策略，支持属性设置，属性重置和属性获取接口。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: number of columns at different breakpoint specifications.
-     * The data type is {@link ArkUI_ItemFillPolicy}. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: number of columns at different breakpoint specifications.
-     * The data type is {@link ArkUI_ItemFillPolicy}. \n
+     *  属性设置方法参数{@link ArkUI_AttributeItem}格式：
+     * .value[0].i32：在不同断点规格下的列数，数据类型{@link ArkUI_ItemFillPolicy}；
+     *
+     *  属性获取方法返回值{@link ArkUI_AttributeItem}格式：
+     * .value[0].i32：在不同断点规格下的列数，数据类型{@link ArkUI_ItemFillPolicy}；
      *
      * @since 22
      */
     NODE_GRID_COLUMN_TEMPLATE_ITEMFILLPOLICY = 1013010,
 
     /**
-     * @brief Specifies whether to enable edit mode for the <b>Grid</b> component.
-     * In edit mode, <b>GridItem</b> components can be dragged through the <b>NODE_GRID_ON_ITEM_DRAG_START</b> event.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief Grid组件是否进入编辑模式，进入编辑模式可以通过NODE_GRID_ON_ITEM_DRAG_START事件拖拽GridItem。支持属性设置，属性重置和属性获取接口。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: whether to enable edit mode for the <b>Grid</b> component.
-     * <b>0</b>: Disable edit mode. <b>1</b>: Enable edit mode. Default value: <b>0</b>.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: whether to enable edit mode for the <b>Grid</b> component.
-     * <b>0</b>: Disable edit mode. <b>1</b>: Enable edit mode. \n
+     * 属性设置方法参数{@link ArkUI_AttributeItem}格式：
+     * .value[0].i32：Grid组件是否进入编辑模式。0：不可编辑，1：可以编辑。默认值：0
+     *
+     * 属性获取方法返回值{@link ArkUI_AttributeItem}格式：
+     * .value[0].i32：Grid组件是否进入编辑模式。0：不可编辑，1：可以编辑。
      *
      * @since 23
      */
     NODE_GRID_EDIT_MODE = 1013011,
 
     /**
-     * @brief Specifies whether to enable the drag animation for <b>GridItem</b> components in the <b>Grid</b>
-     * container. This attribute can be set, reset, and obtained as required through APIs.
-     * Animations are supported only in scrolling mode (when either <b>NODE_GRID_ROW_TEMPLATE</b> or
-     * <b>NODE_GRID_COLUMN_TEMPLATE</b> is set, but not both). Drag animations are only supported in regularly sized
-     * grid layouts; scenarios involving spanning across rows or columns are not supported.
+     * @brief Grid组件是否启用GridItem拖拽动画。支持属性设置，属性重置和属性获取接口。
+     * 仅在滚动模式下（只设置rowsTemplate、columnsTemplate其中一个）支持动画。
+     * 仅在大小规则的Grid中支持拖拽动画，跨行或跨列场景不支持。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: whether to enable the drag animation for <b>GridItem</b> components in the <b>Grid</b> container.
-     * <b>0</b>: Disable the drag animation. <b>1</b>: Enable the drag animation. Default value: <b>0</b>.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: whether to enable the drag animation for <b>GridItem</b> components in the <b>Grid</b> container.
-     * <b>0</b>: Disable the drag animation. <b>1</b>: Enable the drag animation. \n
+     * 属性设置方法参数{@link ArkUI_AttributeItem}格式：
+     * .value[0].i32：Grid组件是否启用GridItem拖拽动画。0：不启用，1：启用。默认值：0
+     *
+     * 属性获取方法返回值{@link ArkUI_AttributeItem}格式：
+     * .value[0].i32：Grid组件是否启用GridItem拖拽动画。0：不启用，1：启用。
      *
      * @since 23
      */
     NODE_GRID_DRAG_ANIMATION = 1013012,
 
     /**
-     * @brief Specifies whether to enable mouse-based multi-selection in the <b>Grid</b> container. This attribute can
-     * be set, reset, and obtained as required through APIs. When enabled, mouse-based multi-selection within the
-     * <b>Grid</b> area triggers the <b>NODE_GRID_ITEM_ON_SELECT</b> event on <b>GridItem</b> components.
+     * @brief 指定是否在<b>Grid</b>容器中启用基于鼠标的多选。这个属性可以通过API根据需要设置、重置和获取。
+     * 启用后在Grid范围内鼠标框选会触发GridItem的NODE_GRID_ITEM_EVENT_ON_SELECT事件。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: whether to enable mouse-based multi-selection.
-     * <b>0</b>: Disable mouse-based multi-selection. <b>1</b>: Enable mouse-based multi-selection. Default value:
-     * <b>0</b>.\n \n Format of the return value {@link ArkUI_AttributeItem}:\n .value[0].i32: whether to enable
-     * mouse-based multi-selection. <b>0</b>: Disable mouse-based multi-selection. <b>1</b>: Enable mouse-based
-     * multi-selection. \n
+     * 设置属性{@link ArkUI_AttributeItem}格式：\n
+     * .value[0].i32：是否启用鼠标多选。
+     * <b>0</b>：关闭鼠标多选功能。<b>1</b>：启用基于鼠标的多选。默认值：
+     * <b>0</b>.\n \n返回值{@link ArkUI_AttributeItem}格式：\n .value[0].i32是否启用
+     * 基于鼠标的多选。<b>0</b>：关闭鼠标多选功能。<b>1</b>：启用基于鼠标的
+     * 多选.\n
      *
      * @since 23
      */
     NODE_GRID_MULTI_SELECTABLE = 1013013,
-  
+
     /**
-     * @brief Scroll to the specified index.
+     * @brief 滑动到指定index。
      *
-     * When activating the smooth animation, all items passed through will be loaded and layout calculated, which can
-     * lead to performance issues when loading a large number of items.\n
+     * 开启动效时，会对经过的所有子组件进行加载和布局计算，当大量加载子组件时会导致性能问题。\n
      * \n
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: The index value of the target element to be slid to in the current container.\n
-     * .value[1].i32: Set whether there is an animation when sliding to the target element, where
-     * 1 indicates an animation and 0 indicates no animation. This parameter is optional. default value is 0. \n
-     * .value[2].i32: Specify the alignment of the target element with the current container. The parameter type is
-     * {@link ArkUI_ScrollAlignment}. This parameter is optional, default value is </b>ARKUI_SCROLL_ALIGNMENT_AUTO</b>. \n
-     * .value[3].f32: Extra offset after scrolling to a specified index, in vp. This parameter is optional, the default
-     * value is <b>0</b>. 
-     * If value[3] is positive, it will offset further towards the bottom.
-     * If value[3] is negative, it will offset further towards the top. \n
+     * 属性设置方法参数{@link ArkUI_AttributeItem}格式：\n
+     * .value[0].i32：要滑动到的目标元素在当前容器中的索引值。\n
+     * .value[1].i32：设置滑动到目标元素时是否有动效，1表示有动效，0表示没有动效。该参数是可选的，默认值：0。\n
+     * .value[2].i32：指定滑动到的目标元素与当前容器的对齐方式，参数类型{@link ArkUI_ScrollAlignment}, 该参数是可选的，默认值：ARKUI_SCROLL_ALIGNMENT_AUTO。\n
+     * .value[3].f32：滑动到目标元素后的额外偏移量，该参数是可选的，默认值：0，单位：vp。如果值为正数，则向底部额外偏移；如果值为负数，则向顶部额外偏移。\n
      *
      * @since 23
      */
     NODE_GRID_SCROLL_TO_INDEX = 1013014,
 
     /**
-     * @brief Specifies whether to support empty branch rendering in lazy loading mode for the <b>Grid</b> container. 
-     * This attribute can be set, reset, and obtained as required through APIs. When enabled in lazy loading mode, 
-     * empty branches (items without content) in the <b>Grid</b> will be rendered and set to width 0 and height 0, 
-     * which may affect the overall layout and scrolling behavior. This is typically used in scenarios where the
-     * data source may have gaps or when maintaining specific layout positions is required.
+     * @brief <b>Grid</b>容器是否支持懒加载空分支渲染。
+     * 该属性可以通过API根据需要设置、重置和获取。在懒加载模式下启用时，
+     * <b>Grid</b>中的空分支（没有内容的项）将被渲染并设置为宽度0和高度0。
+     * 这可能会影响整体布局和滚动行为。这通常用于数据源可能存在间隙或需要维护特定布局位置的场景。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: whether to support empty branch rendering in lazy loading mode.
-     * <b>0</b>: Disable empty branch support. Empty branches will not be rendered. <b>1</b>: Enable empty branch support. 
-     * Empty branches will be rendered as placeholder items. Default value: <b>0</b>.\n
+     * 设置属性{@link ArkUI_AttributeItem}格式：\n
+     * .value[0].i32：懒加载模式下是否支持空分支渲染。
+     * <b>0</b>：禁用空分支支持。空分支不会被渲染。<b>1</b>：启用空分支支持。
+     * 空分支将被渲染为占位符项。默认值：<b>0</b>.\n
      * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: whether empty branch rendering is enabled. <b>0</b>: Disabled. <b>1</b>: Enabled.\n
+     * 返回值{@link ArkUI_AttributeItem}的格式为：\n
+     * .value[0].i32：是否启用空分支渲染。<b>0</b>：关闭。<b>1</b>：启用。\n
      *
      * @since 23
      */
     NODE_GRID_SUPPORT_EMPTY_BRANCH_IN_LAZY_LOADING = 1013015,
 
     /**
-     * @brief Defines whether the <b>Grid</b> component enables edit mode.
-     * When set to <b>1</b> (editable), checkboxes are displayed by default and
-     * single-finger sliding multi-selection is available within the edit mode.
-     * When the edit mode state changes, the {@link NODE_GRID_ON_EDIT_MODE_CHANGE}
-     * event callback is triggered. The state can be changed in two ways:
-     * 1. Directly setting this attribute.
-     * 2. Triggered via two-finger sliding gesture when
-     * {@link NODE_GRID_EDIT_MODE_OPTIONS} has two-finger sliding multi-selection enabled
-     * and the {@link NODE_GRID_ON_EDIT_MODE_CHANGE} callback is registered.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief Grid组件是否使能编辑模式。设置为1（可编辑）时，默认显示复选框，
+     * 且在编辑模式内支持单指滑动多选。
+     * 该属性为编辑模式的主开关，其他编辑相关属性（如{@link NODE_GRID_EDIT_MODE_OPTIONS}）
+     * 仅在本属性为1时生效。
+     * 编辑模式状态变更时，会触发{@link NODE_GRID_ON_EDIT_MODE_CHANGE}事件回调。
+     * 状态变更途径有两种：
+     * 1. 直接设置本属性。
+     * 2. 在{@link NODE_GRID_EDIT_MODE_OPTIONS}启用双指滑动多选且注册了
+     * {@link NODE_GRID_ON_EDIT_MODE_CHANGE}回调时，通过双指滑动手势触发。
+     * 支持属性设置，属性重置和属性获取接口。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: Whether the <b>Grid</b> component enables edit mode.
-     * <b>0</b>: Not editable. <b>1</b>: Editable. Default value: <b>0</b>.\n
+     * 属性设置方法参数{@link ArkUI_AttributeItem}格式：
+     * .value[0].i32：Grid组件是否使能编辑模式。0：不可编辑，1：可以编辑。默认值：0
      *
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: Whether the <b>Grid</b> component enables edit mode.
-     * <b>0</b>: Not editable. <b>1</b>: Editable.\n
+     * 属性获取方法返回值{@link ArkUI_AttributeItem}格式：
+     * .value[0].i32：Grid组件是否使能编辑模式。0：不可编辑，1：可以编辑。
      *
      * @since 26.0.0
-      */
+     */
     NODE_GRID_ENABLE_EDIT_MODE = 1013016,
 
     /**
-     * @brief Defines the edit mode options for the <b>Grid</b> component.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief Grid组件编辑模式选项配置。
+     * 支持属性设置，属性重置和属性获取接口。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:
-     * .value[0].i32: Whether the <b>Grid</b> component uses default multi-selection style.
-     * When using default multi-selection style, <b>Grid</b> displays checkboxes after entering edit mode.
-     * <b>0</b>: Do not use the default style, <b>1</b>: Use the default style. Default value: <b>1</b>
-     * .value[1].i32: Whether the <b>Grid</b> component enables two-finger sliding multi-selection.
-     * This parameter takes effect after registering {@link NODE_GRID_ON_EDIT_MODE_CHANGE} event callback.
-     * <b>0</b>: Two-finger sliding gesture cannot make <b>Grid</b> enter edit mode, but after entering
-     * edit mode through other means, single-finger sliding multi-selection in edit mode is not affected.
-     * <b>1</b>: Two-finger sliding gesture can make <b>Grid</b> enter edit mode from non-edit mode and
-     * perform sliding multi-selection. Default value: <b>1</b>
+     * 属性设置方法参数{@link ArkUI_AttributeItem}格式：
+     * .value[0].i32：Grid组件是否使用默认多选样式， 使用默认多选样式时，Grid进入编辑模式后会显示复选框。
+     * 0：不使用默认样式，1：使用默认样式。默认值：1
+     * .value[1].i32：Grid组件是否启用双指滑动多选，该参数在注册{@link NODE_GRID_ON_EDIT_MODE_CHANGE}事件回调后生效。
+     * 0：使用双指划动手势不能让Grid组件进入编辑模式，但通过其他方式进入编辑模式后，编辑模式内的单指滑动多选不受影响。
+     * 1：使用双指划动手势能让Grid组件从非编辑模式进入编辑模式并执行划动多选。默认值：1
      *
-     * Format of the return value {@link ArkUI_AttributeItem}:
-     * .value[0].i32: Whether the <b>Grid</b> component uses the default multi-selection style.
-     * <b>0</b>: Do not use the default style. <b>1</b>: Use the default style.
-     * .value[1].i32: Whether the <b>Grid</b> component enables two-finger sliding multi-selection.
-     * <b>0</b>: Disabled. <b>1</b>: Enabled.
+     * 属性获取方法返回值{@link ArkUI_AttributeItem}格式：
+     * .value[0].i32：Grid组件是否使用默认多选样式。0：不使用默认样式，1：使用默认样式。
+     * .value[1].i32：Grid组件是否启用双指滑动多选。0：不启用，1：启用。
      *
      * @since 26.0.0
      */
@@ -9134,31 +9009,32 @@ typedef enum {
     NODE_GRID_ITEM_STYLE = MAX_NODE_SCOPE_NUM * ARKUI_NODE_GRID_ITEM,
 
     /**
-     * @brief Specifies whether the <b>GridItem</b> component can be selected using mouse-based multi-selection.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief 设置GridItem是否可以被鼠标框选。支持属性设置，属性重置和属性获取接口。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: whether the <b>GridItem</b> component can be selected using mouse-based multi-selection.
-     * <b>0</b>: not selectable. <b>1</b>: selectable. Default value: <b>1</b>.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: whether the <b>GridItem</b> component can be selected using mouse-based multi-selection.
-     * <b>0</b>: not selectable. <b>1</b>: selectable. \n
+     * 属性设置方法参数{@link ArkUI_AttributeItem}格式：
+     * .value[0].i32：GridItem是否可以被鼠标框选。0：不可以，1：可以。默认值：1
+     *
+     * 属性获取方法返回值{@link ArkUI_AttributeItem}格式：
+     * .value[0].i32：GridItem是否可以被鼠标框选。0：不可以，1：可以。
+
      *
      * @since 23
      */
     NODE_GRID_ITEM_SELECTABLE = 1014001,
 
     /**
-     * @brief Sets the selected state of the <b>GridItem</b> component. 
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief 设置GridItem选中状态。支持属性设置，属性重置和属性获取接口。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: selected state of the <b>GridItem</b> component.
-     * <b>0</b>: not selected. <b>1</b>: selected. Default value: <b>0</b>.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n 
-     * .value[0].i32: selected state of the <b>GridItem</b> component. <b>0</b>: not selected. <b>1</b>: selected. \n
+     * 属性设置方法参数{@link ArkUI_AttributeItem}格式：
+
+     * .value[0].i32：GridItem选中状态。0：未选中，1：已选中。默认值：0
+
+     * 
+
+     * 属性获取方法返回值{@link ArkUI_AttributeItem}格式：
+
+     * .value[0].i32：GridItem选中状态。0：未选中，1：已选中。
+
      *
      * @since 23
      */
@@ -10830,93 +10706,97 @@ typedef enum {
     NODE_SWIPER_EVENT_ON_SCROLL_STATE_CHANGED = 1001008,
 
     /**
-     * @brief Defines the event triggered when the <b>ARKUI_NODE_SCROLL</b> component scrolls.
+     * @brief Event triggered when scrolling occurs. This event is triggered under the following scenarios:
+     * <br>1. Scrolling is started by the scrollable component (supports keyboard, mouse, and other input methods that
+     * trigger scrolling).
+     * <br>2. Scrolling is initiated by calling the controller API.
+     * <br>3. The out-of-bounds bounce effect is active.
+     * <br>When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
+     * {@link ArkUI_NodeComponentEvent}.
+     * <br>{@link ArkUI_NodeComponentEvent} contains the following parameters:
+     * <br>**ArkUI_NodeComponentEvent.data[0].f32**: horizontal scrolling offset.
+     * <br>**ArkUI_NodeComponentEvent.data[1].f32**: vertical scrolling offset.
      *
-     * Notes for triggering the event:\n
-     * 1. This event is triggered when scrolling is started by the <b>ARKUI_NODE_SCROLL</b> component or other input
-     * settings, such as keyboard and mouse operations. \n
-     * 2. Scrolling can be initiated by calling the controller API. \n
-     * 3. The out-of-bounds bounce effect is supported. \n
-     * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
-     * {@link ArkUI_NodeComponentEvent}. \n
-     * {@link ArkUI_NodeComponentEvent} contains two parameters:\n
-     * <b>ArkUI_NodeComponentEvent.data[0].f32</b>: horizontal scrolling offset. \n
-     * <b>ArkUI_NodeComponentEvent.data[1].f32</b>: vertical scrolling offset. \n
      */
     NODE_SCROLL_EVENT_ON_SCROLL = MAX_NODE_SCOPE_NUM * ARKUI_NODE_SCROLL,
+
     /**
-     * @brief Defines the event triggered when each frame scrolling starts in the <b>ARKUI_NODE_SCROLL</b> component.
+     * @brief Event triggered when the scrollable container starts scrolling in each frame. The **List**, **Scroll**,
+     * and **WaterFlow** components support this event since API version 12, and the **Grid** component supports this
+     * event since API version 22.
+     * <br>This event is triggered under the following scenarios:
+     * <br>1. This event is triggered when scrolling is started by the scrollable component (supports keyboard, mouse,
+     * and other input methods that trigger scrolling).
+     * <br>2. This event is not triggered when the controller API is called.
+     * <br>3. This event is not triggered when the component bounces back out of bounds.
+     * <br>When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
+     * {@link ArkUI_NodeComponentEvent}.
+     * <br>{@link ArkUI_NodeComponentEvent} contains the following parameters:
+     * <br>**ArkUI_NodeComponentEvent.data[0].f32**: amount to scroll by.
+     * <br>**ArkUI_NodeComponentEvent.data[1].i32**: current scroll state.
+     * <br>**::ArkUI_NodeComponentEvent** contains one return value:
+     * <br>**ArkUI_NodeComponentEvent.data[0].f32**: The event handler can work out the amount by which the component
+     * needs to scroll based on the real-world situation and return the result in this parameter.
      *
-     * Notes for triggering the event:\n
-     * 1. This event is triggered when scrolling is started by the <b>ARKUI_NODE_SCROLL</b> component or other input
-     * settings, such as keyboard and mouse operations. \n
-     * 2. This event is not triggered when the controller API is called. \n
-     * 3. This event does not support the out-of-bounds bounce effect. \n
-     * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
-     * {@link ArkUI_NodeComponentEvent}. \n
-     * {@link ArkUI_NodeComponentEvent} contains two parameters:\n
-     * <b>ArkUI_NodeComponentEvent.data[0].f32</b>: amount to scroll by. \n
-     * <b>ArkUI_NodeComponentEvent.data[1].i32</b>: current scrolling state. \n
-     * <b>::ArkUI_NodeComponentEvent</b> contains one return value:\n
-     * <b>ArkUI_NodeComponentEvent.data[0].f32</b>: The event handler can work out the amount by which the component
-     * needs to scroll based on the real-world situation and return the result in this parameter. \n
      */
     NODE_SCROLL_EVENT_ON_SCROLL_FRAME_BEGIN,
 
     /**
-     * @brief Define the enumeration value of the pre sliding trigger event for the scrolling container component.
+     * @brief Event triggered when the scrollable container is about to scroll. This event is triggered under the
+     * following scenarios:
+     * <br>1. Scrolling is started by the scrollable component (supports keyboard, mouse, and other input methods that
+     * trigger scrolling).
+     * <br>2. Scrolling is initiated by calling the controller API.
+     * <br>3. The out-of-bounds bounce effect is active.
+     * <br>When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
+     * {@link ArkUI_NodeComponentEvent}.
+     * <br>{@link ArkUI_NodeComponentEvent} contains the following parameters:
+     * <br>**ArkUI_NodeComponentEvent.data[0].f32**: scroll offset of each frame, in vp. The offset is positive when
+     * the content is scrolled left and negative when the content is scrolled right.
+     * <br>**ArkUI_NodeComponentEvent.data[1].f32**: scroll offset of each frame, in vp. The offset is positive when
+     * the content is scrolled up and negative when the content is scrolled down.
+     * <br>**ArkUI_NodeComponentEvent.data[2].i32**: current scroll state. The parameter type is
+     * {@link ArkUI_ScrollState}.
+     * <br>**ArkUI_NodeComponentEvent.data[3].i32**: current scroll source. The parameter type is
+     * {@link ArkUI_ScrollSource}.
      *
-     * The conditions that trigger this event: \n
-     * 1. When the scrolling component triggers scrolling, it supports input settings such as keyboard and mouse
-     * operations that trigger scrolling.\n
-     * 2. Called through the rolling controller API interface.\n
-     * 3. Cross boundary rebound.\n
-     * When an event callback occurs, the union type in the event parameter {@ link ArkUI_NodeEvent} object is
-     * {@link ArkUI_NodeComponentEvent}. \n
-     * {@link ArkUI_NodeComponentEvent} contains four parameters: \n
-     * <b>ArkUI_NodeComponentEvent.data[0].f32</b>: The offset for each frame of scrolling is positive when scrolling to
-     * the left and negative when scrolling to the right, measured in vp. \n
-     * <b>ArkUI_NodeComponentEvent.data[1].f32</b>: The offset of each frame scrolling, with a positive offset when
-     * scrolling up and a negative offset when scrolling down, measured in vp. \n
-     * <b>ArkUI_NodeComponentEvent.data[2].i32</b>: Current sliding state, \n
-     * parameter type is {@link ArkUI_ScrollState}. \n
-     * <b>ArkUI_NodeComponentEvent.data[3].i32</b>: Current scroll source, \n
-     * parameter type is {@link ArkUI_ScrollSource}. \n
      * @return Does not return or returns a number that sets the actual scroll distance of the scroll component.
      */
     NODE_SCROLL_EVENT_ON_WILL_SCROLL,
     /**
-     * @brief Define the event enumeration value triggered when sliding a scrolling container component.
+     * @brief Event triggered when the scrollable container scrolls. This event is triggered under the following
+     * scenarios:
+     * <br>1. Scrolling is started by the scrollable component (supports keyboard, mouse, and other input methods that
+     * trigger scrolling).
+     * <br>2. Scrolling is initiated by calling the controller API.
+     * <br>3. The out-of-bounds bounce effect is active.
+     * <br>When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
+     * {@link ArkUI_NodeComponentEvent}.
+     * <br>{@link ArkUI_NodeComponentEvent} contains the following parameters:
+     * <br>**ArkUI_NodeComponentEvent.data[0].f32**: scroll offset of each frame, in vp. The offset is positive when
+     * the content is scrolled left and negative when the content is scrolled right.
+     * <br>**ArkUI_NodeComponentEvent.data[1].f32**: scroll offset of each frame, in vp. The offset is positive when
+     * the content is scrolled up and negative when the content is scrolled down.
+     * <br>**ArkUI_NodeComponentEvent.data[2].i32**: current scroll state. The parameter type is
+     * {@link ArkUI_ScrollState}.
      *
-     * The conditions that trigger this event: \n
-     * 1. When the scrolling component triggers scrolling, it supports input settings such as keyboard and mouse
-     * operations that trigger scrolling.\n
-     * 2. Called through the rolling controller API interface.\n
-     * 3. Cross boundary rebound.\n
-     * When an event callback occurs, the union type in the event parameter {@ link ArkUI_NodeEvent} object is
-     * {@link ArkUI_NodeComponentEvent}. \n
-     * {@link ArkUI_NodeComponentEvent} contains three parameters: \n
-     * <b>ArkUI_NodeComponentEvent.data[0].f32</b>: The offset for each frame of scrolling is positive when scrolling to
-     * the left and negative when scrolling to the right, measured in vp. \n
-     * <b>ArkUI_NodeComponentEvent.data[1].f32</b>: The offset of each frame scrolling, with a positive offset when
-     * scrolling up and a negative offset when scrolling down, measured in vp. \n
-     * <b>ArkUI_NodeComponentEvent.data[2].i32</b>: Current sliding state, \n
-     parameter type is {@link ArkUI_ScrollState}. \n
      */
     NODE_SCROLL_EVENT_ON_DID_SCROLL,
-
     /**
-     * @brief Defines the event triggered when scrolling starts in the <b>ARKUI_NODE_SCROLL</b> component.
+     * @brief Event triggered when the scrollable container starts scrolling. The **List**, **Scroll**, and **WaterFlow**
+     * components support this event since API version 12, and the **Grid** component supports this event since API
+     * version 22.
+     * <br>This event is triggered under the following scenarios:
+     * <br>1. Scrolling is started by the scrollable component (supports keyboard, mouse, and other input methods that
+     * trigger scrolling).
+     * <br>2. The controller API is called to start the scrolling, accompanied by a transition animation.
+     * <br>When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
+     * {@link ArkUI_NodeComponentEvent}.
+     * <br>{@link ArkUI_NodeComponentEvent} does not contain parameters.
      *
-     * Notes for triggering the event:\n
-     * 1. This event is triggered when scrolling is started, with support for other input settings, such as keyboard
-     * and mouse operations. \n
-     * 2. This event is triggered when the controller API is called, accompanied by a transition animation. \n
-     * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
-     * {@link ArkUI_NodeComponentEvent}. \n
-     * {@link ArkUI_NodeComponentEvent} does not contain parameters. \n
      */
     NODE_SCROLL_EVENT_ON_SCROLL_START,
+
     /**
      * @brief Defines the event triggered when scrolling of the <b>ARKUI_NODE_SCROLL</b> component stops.
      *
@@ -10929,82 +10809,84 @@ typedef enum {
      * {@link ArkUI_NodeComponentEvent} does not contain parameters. \n
      */
     NODE_SCROLL_EVENT_ON_SCROLL_STOP,
+
     /**
-     * @brief Defines the event triggered when scrolling of the <b>ARKUI_NODE_SCROLL</b> component reaches
-     * one of the edges.
+     * @brief Event triggered when the scrollable container reaches the scroll boundary. This event is triggered under
+     * the following scenarios:
+     * <br>1. Scrolling reaches the edge after being started by the scrollable component (supports keyboard, mouse, and
+     * other input methods that trigger scrolling).
+     * <br>2. Scrolling is initiated by calling the controller API.
+     * <br>3. The out-of-bounds bounce effect is active.
+     * <br>When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
+     * {@link ArkUI_NodeComponentEvent}.
+     * <br>{@link ArkUI_NodeComponentEvent} contains the following parameter:
+     * <br>**ArkUI_NodeComponentEvent.data[0].i32**: edge (top, bottom, left, or right) that the scrolling reaches.
      *
-     * Notes for triggering the event:\n
-     * 1. This event is triggered when scrolling reaches the edge after being started by the <b>ARKUI_NODE_SCROLL</b>
-     * component or other input settings, such as keyboard and mouse operations. \n
-     * 2. Scrolling can be initiated by calling the controller API. \n
-     * 3. The out-of-bounds bounce effect is supported. \n
-     * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
-     * {@link ArkUI_NodeComponentEvent}. \n
-     * {@link ArkUI_NodeComponentEvent} contains one parameter. \n
-     * <b>ArkUI_NodeComponentEvent.data[0].i32</b>: edge (top, bottom, left, or right) that the scrolling reaches. \n
      */
     NODE_SCROLL_EVENT_ON_SCROLL_EDGE,
+
     /**
-     * @brief Define that a callback is triggered when the scrolling container component reaches the start position.
-     * Condition for triggering the event: \n
-     * Triggered when the component reaches the start position. \n
-     * When the event callback occurs, the union type in the {@Link ArkUI_NodeEvent} object is
-     * {@Link ArkUI_NodeComponentEvent}. \n
-     * {@Link ArkUI_NodeComponentEvent} contains no parameters. \n
+     * @brief Event triggered when the scrollable component reaches the start edge.
+     * <br>When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
+     * {@link ArkUI_NodeComponentEvent}.
+     * <br>{@link ArkUI_NodeComponentEvent} does not contain parameters.
+     *
      */
     NODE_SCROLL_EVENT_ON_REACH_START,
+
     /**
-     * @brief Define that a callback is triggered when the scrolling container component ends. \n
-     * Condition for triggering the event: \n
-     * Triggered when the component reaches the end. \n
-     * When the event callback occurs, the union type in the {@Link ArkUI_NodeEvent} object is
-     * {@Link ArkUI_NodeComponentEvent}. \n
-     * {@Link ArkUI_NodeComponentEvent} contains no parameters. \n
+     * @brief Event triggered when the scrollable component reaches the end edge.
+     * <br>When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
+     * {@link ArkUI_NodeComponentEvent}.
+     * <br>{@link ArkUI_NodeComponentEvent} does not contain parameters.
+     *
      */
     NODE_SCROLL_EVENT_ON_REACH_END,
+
     /**
-     * @brief Defines the callback for when the user is about to release the drag on the scrollable container component.
-     *
-     * This event is triggered when the user is about to release the drag on the scrollable container component. \n
-     * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
-     * {@link ArkUI_NodeComponentEvent}. \n
-     * {@link ArkUI_NodeComponentEvent} contains one parameter: \n
-     * <b>ArkUI_NodeComponentEvent.data[0].f32</b>: speed at which the user releases the drag, in vp. \n
+     * @brief 定义当用户即将释放可滚动容器组件上的拖动时的回调
      *
      * @since 20
      */
     NODE_SCROLL_EVENT_ON_WILL_STOP_DRAGGING,
+
     /**
-     * @brief Defines the callback for the <b>Scroll</b> component's zoom event,
-     * triggered at the end of each frame during zooming. \n
-     * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object
-     * is {@link ArkUI_NodeComponentEvent}. \n
-     * {@link ArkUI_NodeComponentEvent} contains one parameter:\n
-     * <b>ArkUI_NodeComponentEvent.data[0].f32</b>: current zoom scale. \n
+     * @brief 定义Scroll组件缩放开始回调。
+     * 触发该事件的条件：Scroll组件缩放开始时触发。
+     * 定义Scroll组件缩放回调。
+     * 触发该事件的条件：Scroll组件缩放每帧完成时触发。
+     * 事件回调发生时，事件参数{@link ArkUI_NodeEvent}对象中的联合体类型为{@link ArkUI_NodeComponentEvent}。
+     * {@link ArkUI_NodeComponentEvent}中包含1个参数: 
+     * <b>ArkUI_NodeComponentEvent.data[0].f32</b>: 当前缩放比例。
      *
      * @since 20
      */
     NODE_SCROLL_EVENT_ON_DID_ZOOM,
+
     /**
-     * @brief Defines the callback for the <b>Scroll</b> component's zoom start event,
-     * triggered when zooming begins. \n
-     * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object
-     * is {@link ArkUI_NodeComponentEvent}. \n
-     * {@link ArkUI_NodeComponentEvent} does not contain parameters. \n
+     * @brief 定义Scroll组件缩放开始回调。
+     * 触发该事件的条件：Scroll组件缩放开始时触发。 
+
+     * 事件回调发生时，事件参数{@link ArkUI_NodeEvent}对象中的联合体类型为{@link ArkUI_NodeComponentEvent}。 
+
+     * {@link ArkUI_NodeComponentEvent}中不包含参数。
+
      *
      * @since 20
      */
     NODE_SCROLL_EVENT_ON_ZOOM_START,
+
     /**
-     * @brief Defines the callback for the <b>Scroll</b> component's zoom end event,
-     * triggered when zooming ends. \n
-     * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object
-     * is {@link ArkUI_NodeComponentEvent}. \n
-     * {@link ArkUI_NodeComponentEvent} does not contain parameters. \n
+     * @brief 定义Scroll组件缩放停止回调。
+     *
+     * 触发该事件的条件：Scroll组件缩放停止时触发。
+     * 事件回调发生时，事件参数{@link ArkUI_NodeEvent}对象中的联合体类型为{@link ArkUI_NodeComponentEvent}。
+     * {@link ArkUI_NodeComponentEvent}中不包含参数。
      *
      * @since 20
      */
     NODE_SCROLL_EVENT_ON_ZOOM_STOP,
+
     /**
      * @brief Defines the callback for when the scrollable will start dragging.
      *
@@ -11015,6 +10897,7 @@ typedef enum {
      * @since 21
      */
     NODE_SCROLL_EVENT_ON_WILL_START_DRAGGING = 1002013,
+
     /**
      * @brief Defines the callback for when the scrollable did end dragging.
      *
@@ -11027,6 +10910,7 @@ typedef enum {
      * @since 21
      */
     NODE_SCROLL_EVENT_ON_DID_STOP_DRAGGING = 1002014,
+
     /**
      * @brief Defines the callback for when the scrollable will start fling.
      *
@@ -11037,6 +10921,7 @@ typedef enum {
      * @since 21
      */
     NODE_SCROLL_EVENT_ON_WILL_START_FLING = 1002015,
+
     /**
      * @brief Defines the callback for when the scrollable did end fling.
      *
@@ -11047,105 +10932,91 @@ typedef enum {
      * @since 21
      */
     NODE_SCROLL_EVENT_ON_DID_STOP_FLING = 1002016,
+
     /**
-     * @brief Defines the enumerated values of the event triggered, \n
-     * when a subcomponent of ARKUI_NODE_LIST is moved into or out of the list display area. \n
-     * Condition for triggering the event: \n
-     * This method is triggered once during list initialization. \n
-     * It is triggered when the index value of the first or last subcomponent in the list display area changes. \n
-     * When the event callback occurs, the union type in the {@Link ArkUI_NodeEvent} object is
-     * {@Link ArkUI_NodeComponentEvent}. \n
-     * {@Link ArkUI_NodeComponentEvent} contains three parameters: \n
-     * ArkUI_NodeComponentEvent.data[0].i32: List Displays the index value of \n
-     * the first child component in the region. \n
-     * ArkUI_NodeComponentEvent.data[1].i32: List Displays the index value of \n
-     * the last child component in the region. \n
-     * ArkUI_NodeComponentEvent.data[2].i32: List Displays the index value of \n
-     * the subcomponent in the middle of the area. \n
+     * @brief Event triggered when a child component of {@link ARKUI_NODE_LIST} enters or leaves the list display area.
+     * This event is triggered in the following scenarios:
+     * <br>This event is triggered once when the list is initialized and when the index of the first child component or
+     * the last child component in the list display area changes.
+     * <br>When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
+     * {@link ArkUI_NodeComponentEvent}.
+     * <br>{@link ArkUI_NodeComponentEvent} contains the following parameters:
+     * <br>**ArkUI_NodeComponentEvent.data[0].i32**: index of the first child component in the list display area.
+     * <br>**ArkUI_NodeComponentEvent.data[1].i32**: index of the last child component in the list display area.
+     * <br>**ArkUI_NodeComponentEvent.data[2].i32**: index of the center child component in the list display area.
+     *
      */
     NODE_LIST_ON_SCROLL_INDEX = MAX_NODE_SCOPE_NUM * ARKUI_NODE_LIST,
+
     /**
-     * @brief Defines the enumerated values of the event triggered
-     * before the sliding of the ARKUI_NODE_LIST component. \n
-     * Condition for triggering the event: \n
-     * This event is triggered when the scrolling component triggers scrolling. \n
-     * Other inputs that trigger scrolling, such as keyboard and mouse operations, can be set. \n
-     * Called through the scroll controller API. \n
-     * Out-of-bounds rebound. \n
-     * When the event callback occurs, the union type in the {@Link ArkUI_NodeEvent} object is \n
-     * {@Link ArkUI_NodeComponentEvent}. \n
-     * {@Link ArkUI_NodeComponentEvent} contains three parameters: \n
-     * ArkUI_NodeComponentEvent.data[0].f32: offset of each frame scrolling. \n
-     * The offset is positive when the list content is scrolled up and \n
-     * is negative when the list content is scrolled down. \n
-     * ArkUI_NodeComponentEvent.data[1].i32: Current sliding state. \n
-     * parameter type is {@link ArkUI_ScrollState}. \n
-     * <b>ArkUI_NodeComponentEvent.data[2].i32</b>: Current scroll source, \n
-     * parameter type is {@link ArkUI_ScrollSource}. \n
+     * @brief Event triggered when the {@link ARKUI_NODE_LIST} component is about to scroll. This event is triggered in
+     * the following scenarios:
+     * <br>1. Scrolling is started by the scrollable component (supports keyboard, mouse, and other input methods that
+     * trigger scrolling).
+     * <br>2. Scrolling is initiated by calling the controller API.
+     * <br>3. The out-of-bounds bounce effect is active.
+     * <br>When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
+     * {@link ArkUI_NodeComponentEvent}.
+     * <br>{@link ArkUI_NodeComponentEvent} contains the following parameters:
+     * <br>**ArkUI_NodeComponentEvent.data[0].f32**: scroll offset of each frame. The offset is positive when the list
+     * is scrolled up and negative when the list is scrolled down.
+     * <br>**ArkUI_NodeComponentEvent.data[1].i32**: current scroll state. The parameter type is
+     * {@link ArkUI_ScrollState}.
+     * <br>**ArkUI_NodeComponentEvent.data[2].i32**: current scroll source. The parameter type is
+     * {@link ArkUI_ScrollSource}.
+     *
      * @return Does not return or returns a number that sets the actual scroll distance of the scroll component. \n
      */
     NODE_LIST_ON_WILL_SCROLL,
     /**
-     * @brief Define the enumerated values of the event triggered when the ARKUI_NODE_LIST component is flicked.
-     * Condition for triggering the event: \n
-     * This event is triggered when the scrolling component triggers scrolling. \n
-     * Other inputs that trigger scrolling, such as keyboard and mouse operations, can be set. \n
-     * Called through the scroll controller API. \n
-     * Out-of-bounds rebound. \n
-     * When the event callback occurs, the union type in the {@Link ArkUI_NodeEvent} object is \n
-     * {@Link ArkUI_NodeComponentEvent}. \n
-     * {@Link ArkUI_NodeComponentEvent} contains two parameters:\n
-     * ArkUI_NodeComponentEvent.data[0].f32: offset of each frame scrolling. \n
-     * The offset is positive when the list content is scrolled up and \n
-     * is negative when the list content is scrolled down. \n
-     * ArkUI_NodeComponentEvent.data[1].i32: Current sliding state. \n
+     * @brief Event triggered when the {@link ARKUI_NODE_LIST} component scrolls. This event is triggered under the
+     * following scenarios:
+     * <br>1. Scrolling is started by the scrollable component (supports keyboard, mouse, and other input methods that
+     * trigger scrolling).
+     * <br>2. Scrolling is initiated by calling the controller API.
+     * <br>3. The out-of-bounds bounce effect is active.
+     * <br>When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
+     * {@link ArkUI_NodeComponentEvent}.
+     * <br>{@link ArkUI_NodeComponentEvent} contains the following parameters:
+     * <br>**ArkUI_NodeComponentEvent.data[0].f32**: scroll offset of each frame. The offset is positive when the list
+     * is scrolled up and negative when the list is scrolled down.
+     * <br>**ArkUI_NodeComponentEvent.data[1].i32**: current scroll state.
+     *
      */
     NODE_LIST_ON_DID_SCROLL,
 
     /**
-     * @brief Defines the event triggered when the currently displayed content of the <b>ARKUI_NODE_LIST</b> changes.
+     * @brief 定义ARKUI_NODE_LIST当前显示内容发生改变的时候触发事件枚举值。
      *
-     * Notes for triggering the event:\n
-     * This event is triggered once when the list is initialized and when the index of the first child component or the
-     * next child component in the list display area changes.
-     * During index calculation, the list item, header of the list item group, and footer of the list item group each
-     * are counted as a child component. \n
-     * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
-     * {@link ArkUI_NodeComponentEvent}. \n
-     * {@link ArkUI_NodeComponentEvent} contains six parameters: \n
-     * <b>ArkUI_NodeComponentEvent.data[0].i32</b>: index of the first child component in the list display area. \n
-     * <b>ArkUI_NodeComponentEvent.data[1].i32</b>: area in the list item group where the list display area starts.
-     * The type is {@link ArkUI_ListItemGroupArea}. \n
-     * <b>ArkUI_NodeComponentEvent.data[2].i32</b>: index of the list item at the start of the list display area
-     * in the list item group.
-     * If the start of the list display area is not on a list item, the value is <b>-1</b>. \n
-     * <b>ArkUI_NodeComponentEvent.data[3].i32</b>: index of the last child component in the list display area. \n
-     * <b>ArkUI_NodeComponentEvent.data[4].i32</b>: area in the list item group where the list display area ends.
-     * The type is {@link ArkUI_ListItemGroupArea}. \n
-     * <b>ArkUI_NodeComponentEvent.data[5].i32</b>: index of the list item at the end of the list display area in the
-     * list item group.
-     * If the end of the list display area is not on a list item, the value is <b>-1</b>. \n
+     * 触发该事件的条件 ：
+     * 列表初始化时会触发一次，List显示区域内第一个子组件的索引值或最后一个子组件的索引值有变化时会触发。
+     * 计算触发条件时，每一个ListItem、ListItemGroup中的header或footer都算一个子组件。
+     * 事件回调发生时，事件参数{@link ArkUI_NodeEvent}对象中的联合体类型为{@link ArkUI_NodeComponentEvent}。
+     * {@link ArkUI_NodeComponentEvent}中包含6个参数：
+     * <b>ArkUI_NodeComponentEvent.data[0].i32</b>：List显示区域内第一个子组件的索引值。
+     * <b>ArkUI_NodeComponentEvent.data[1].i32</b>：List显示区域起始端在ListItemGroup中的区域。类型为{@link ArkUI_ListItemGroupArea}。
+     * <b>ArkUI_NodeComponentEvent.data[2].i32</b>：List显示区域起始端在ListItemGroup中的ListItem索引号，
+     *   如果List显示区域起始端不在ListItem上，该值为-1。
+     * <b>ArkUI_NodeComponentEvent.data[3].i32</b>：List显示区域内最后一个子组件的索引值。
+     * <b>ArkUI_NodeComponentEvent.data[4].i32</b>：List显示区域末尾端在ListItemGroup中的区域。类型为{@link ArkUI_ListItemGroupArea}。
+     * <b>ArkUI_NodeComponentEvent.data[5].i32</b>：List显示区域末尾端在ListItemGroup中的ListItem索引号，
+     *   如果List显示区域末尾端不在ListItem上，该值为-1。
      *
      * @since 15
      */
     NODE_LIST_ON_SCROLL_VISIBLE_CONTENT_CHANGE,
 
     /**
-     * @brief Defines the edit mode state change event of the <b>List</b> component.
+     * @brief 定义List组件编辑模式状态变更事件枚举值。
      *
-     * This event is triggered when the edit mode state changes, which occurs in the following cases:
-     * 1. The {@link NODE_LIST_ENABLE_EDIT_MODE} attribute is set to change the edit mode state.
-     * 2. When {@link NODE_LIST_EDIT_MODE_OPTIONS} has two-finger sliding multi-selection enabled,
-     * a two-finger sliding gesture triggers the change to multi-selection state.
-     * Registering this event callback is a prerequisite for entering multi-selection state via
-     * two-finger sliding. If this callback is not registered, two-finger sliding will not enter
-     * multi-selection state.
+     * 触发该事件的条件 ：
+     * 1. 设置NODE_LIST_ENABLE_EDIT_MODE属性改变编辑模式状态。
+     * 2. 当NODE_LIST_EDIT_MODE_OPTIONS开启双指滑动多选时，双指滑动触发多选状态变更。
+     * 注册该事件回调是双指滑动进入多选状态的必要条件。如未注册该回调，双指滑动将不会进入多选状态。
      *
-     * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
-     * {@link ArkUI_NodeComponentEvent}.
-     * {@link ArkUI_NodeComponentEvent} contains one parameter:
-     * <b>ArkUI_NodeComponentEvent.data[0].i32</b>: edit mode state.
-     * <b>0</b>: not in edit mode. <b>1</b>: in edit mode.
+     * 事件回调发生时，事件参数{@link ArkUI_NodeEvent}对象中的联合体类型为{@link ArkUI_NodeComponentEvent}。
+     * {@link ArkUI_NodeComponentEvent}中包含1个参数：
+     * <b>ArkUI_NodeComponentEvent.data[0].i32</b>：编辑模式状态。0：非编辑模式。1：编辑模式。
      *
      * @since 26.0.0
      */
@@ -11173,58 +11044,53 @@ typedef enum {
      */
     NODE_REFRESH_STATE_CHANGE = MAX_NODE_SCOPE_NUM * ARKUI_NODE_REFRESH,
     /**
-     * @brief Defines the event triggered when the <b>ARKUI_NODE_REFRESH</b> object enters the refresh state.
+     * @brief 定义ARKUI_NODE_REFRESH进入刷新状态时触发该事件。
      *
-     * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
-     * {@link ArkUI_NodeComponentEvent}. \n
-     * {@link ArkUI_NodeComponentEvent} does not contain parameters:\n
+     * 事件回调发生时，事件参数{@link ArkUI_NodeEvent}对象中的联合体类型为{@link ArkUI_NodeComponentEvent}。
+     * {@link ArkUI_NodeComponentEvent}中不包含参数：
      */
     NODE_REFRESH_ON_REFRESH,
 
     /**
-     * @brief Defines the event that is triggered when the <b>ARKUI_NODE_REFRESH</b> drop-down distance changes.
+     * @brief 定义ARKUI_NODE_REFRESH下拉距离发生变化时触发该事件。
      *
-     * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
-     * {@link ArkUI_NodeComponentEvent}. \n
-     * {@link ArkUI_NodeComponentEvent} contains one parameter:\n
-     * <b>ArkUI_NodeComponentEvent.data[0].f32</b>: Pull-down distance. \n
+     * 事件回调发生时，事件参数{@link ArkUI_NodeEvent}对象中的联合体类型为{@link ArkUI_NodeComponentEvent}。
+     * {@link ArkUI_NodeComponentEvent}中包含1个参数：
+     * <b>ArkUI_NodeComponentEvent.data[0].f32</b>：下拉距离。
      */
     NODE_REFRESH_ON_OFFSET_CHANGE,
 
     /**
-     * @brief Defines the event triggered when the <b>ARKUI_NODE_SCROLL</b> component is about to scroll.
+     * @brief Event triggered when the **ARKUI_NODE_WATER_FLOW** component is about to scroll. This event is triggered
+     * under the following scenarios:
+     * <br>1. Scrolling is started by the scrollable component (supports keyboard, mouse, and other input methods that
+     * trigger scrolling).
+     * <br>2. Scrolling is initiated by calling the controller API.
+     * <br>3. The out-of-bounds bounce effect is active.
+     * <br>When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
+     * {@link ArkUI_NodeComponentEvent}.
+     * <br>{@link ArkUI_NodeComponentEvent} contains the following parameters:
+     * <br>**ArkUI_NodeComponentEvent.data[0].f32**: scroll offset of each frame. The offset is positive when the
+     * content is scrolled up and negative when the content is scrolled down.
+     * <br>**ArkUI_NodeComponentEvent.data[1].i32**: current scroll state. The parameter type is
+     * {@link ArkUI_ScrollState}.
+     * <br>**ArkUI_NodeComponentEvent.data[2].i32**: current scroll source. The parameter type is
+     * {@link ArkUI_ScrollSource}.
      *
-     * Notes for triggering the event:\n
-     * 1. This event is triggered when scrolling is started by the <b>ARKUI_NODE_SCROLL</b> component or other
-     * input settings, such as keyboard and mouse operations. \n
-     * 2. Scrolling can be initiated by calling the controller API. \n
-     * 3. The out-of-bounds bounce effect is supported. \n
-     * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
-     * {@link ArkUI_NodeComponentEvent}. \n
-     * {@Link ArkUI_NodeComponentEvent} contains three parameters: \n
-     * ArkUI_NodeComponentEvent.data[0].f32: offset of each frame scrolling. \n
-     * The offset is positive when the list content is scrolled up and \n
-     * is negative when the list content is scrolled down. \n
-     * ArkUI_NodeComponentEvent.data[1].i32: Current sliding state. \n
-     * parameter type is {@link ArkUI_ScrollState}. \n
-     * <b>ArkUI_NodeComponentEvent.data[2].i32</b>: Current scroll source, \n
-     * parameter type is {@link ArkUI_ScrollSource}. \n
      * @return Does not return or returns a number that sets the actual scroll distance of the scroll component. \n
      */
     NODE_ON_WILL_SCROLL = MAX_NODE_SCOPE_NUM * ARKUI_NODE_WATER_FLOW,
     /**
-     * @brief Define the enumerated values of the event triggered when the ARKUI_NODE_WATER_FLOW component slides.
-     * Condition for triggering the event: \n
-     * This event is triggered when the scrolling component triggers scrolling.
-     * Other inputs that trigger scrolling, such as keyboard and mouse operations, can be set. \n
-     * Called through the scroll controller API. \n
-     * Out-of-bounds rebound. \n
-     * When the event callback occurs, the union type in the {@Link ArkUI_NodeEvent} object is \n
-     * {@Link ArkUI_NodeComponentEvent}. \n
-     * {@Link ArkUI_NodeComponentEvent} contains two parameters:\n
-     * ArkUI_NodeComponentEvent.data[0].f32: offset of each frame scrolling. \n
-     * The offset is positive when the content is scrolled up and is negative when the content is scrolled down. \n
-     * ArkUI_NodeComponentEvent.data[1].i32: Current sliding state. \n
+     * @brief 定义ARKUI_NODE_WATER_FLOW组件的滑动时触发事件枚举值。
+     *
+     * 触发该事件的条件 ：
+     * 1. 滚动组件触发滚动时触发，支持键鼠操作等其他触发滚动的输入设置。
+     * 2. 通过滚动控制器API接口调用。
+     * 3. 越界回弹。
+     * 事件回调发生时，事件参数{@link ArkUI_NodeEvent}对象中的联合体类型为{@link ArkUI_NodeComponentEvent}。
+     * {@link ArkUI_NodeComponentEvent}中包含2个参数：
+     * <b>ArkUI_NodeComponentEvent.data[0].f32</b>：每帧滚动的偏移量，内容向上滚动时偏移量为正，向下滚动时偏移量为负。
+     * <b>ArkUI_NodeComponentEvent.data[1].i32</b>：当前滑动状态。
      */
     NODE_WATER_FLOW_ON_DID_SCROLL,
     /**
@@ -11244,217 +11110,173 @@ typedef enum {
     NODE_WATER_FLOW_ON_SCROLL_INDEX,
 
     /**
-     * @brief Defines the event triggered when a child component enters or leaves the grid display area.
-     *
-     * Notes for triggering the event:\n
-     * This event is triggered once when the grid is initialized and when the index of the first or \n
-     * last child component in the grid display area changes. \n
-     * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is \n
-     * {@link ArkUI_NodeComponentEvent}. \n
-     * {@link ArkUI_NodeComponentEvent} contains two parameters:\n
-     * <b>ArkUI_NodeComponentEvent.data[0].i32</b>: index of the first child component in the grid display area. \n
-     * <b>ArkUI_NodeComponentEvent.data[1].i32</b>: index of the last child component in the grid display area. \n
+     * @brief Event triggered when a child component of **ARKUI_NODE_GRID** enters or leaves the grid display area.
+     * This event is triggered under the following scenarios:
+     * <br>This event is triggered once when the grid is initialized and when the index of the first child component or
+     * the last child component in the grid display area changes.
+     * <br>When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
+     * {@link ArkUI_NodeComponentEvent}.
+     * <br>{@link ArkUI_NodeComponentEvent} contains the following parameters:
+     * <br>**ArkUI_NodeComponentEvent.data[0].i32**: index of the first child component in the grid display area.
+     * <br>**ArkUI_NodeComponentEvent.data[1].i32**: index of the last child component in the grid display area.
      *
      * @since 22
      */
     NODE_GRID_ON_SCROLL_INDEX = MAX_NODE_SCOPE_NUM * ARKUI_NODE_GRID,
 
     /**
-     * @brief Defines the event triggered when the grid is about to scroll.
+     * @brief 定义ARKUI_NODE_GRID组件的滑动前触发事件枚举值。
      *
-     * Notes for triggering the event:\n
-     * 1. This event is triggered when scrolling is started by the scrollable component or other input settings,
-     * such as keyboard and mouse operations. \n
-     * 2. Scrolling can be initiated by calling the controller API. \n
-     * 3. The out-of-bounds bounce effect is supported. \n
-     * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
-     * {@link ArkUI_NodeComponentEvent}. \n
-     * {@link ArkUI_NodeComponentEvent} contains three parameters:\n
-     * <b>ArkUI_NodeComponentEvent.data[0].f32</b>:
-     * Scroll offset of each frame. A positive offset indicates content scrolling upward, \n
-     * and a negative offset indicates content scrolling downward. \n
-     * <b>ArkUI_NodeComponentEvent.data[1].i32</b>: current scroll state. The parameter type is
-     * {@link ArkUI_ScrollState}. \n
-     * <b>ArkUI_NodeComponentEvent.data[2].i32</b>: scroll source. The parameter type is {@link ArkUI_ScrollSource}. \n
-     * @return Returns one or no number to indicate the actual amount by which the scroll component scrolls.
+     * 触发该事件的条件 ：
+     * 1. 滚动组件触发滚动时触发，支持键鼠操作等其他触发滚动的输入设置。
+     * 2. 通过滚动控制器API接口调用。
+     * 3. 越界回弹。
+     * 事件回调发生时，事件参数{@link ArkUI_NodeEvent}对象中的联合体类型为{@link ArkUI_NodeComponentEvent}。
+     * {@link ArkUI_NodeComponentEvent}中包含3个参数：
+     * <b>ArkUI_NodeComponentEvent.data[0].f32</b>：
+     * 每帧滚动的偏移量，Grid内容向上滚动时偏移量为正，向下滚动时偏移量为负。
+     * <b>ArkUI_NodeComponentEvent.data[1].i32</b>：当前滑动状态，参数类型{@link ArkUI_ScrollState}。
+     * <b>ArkUI_NodeComponentEvent.data[2].i32</b>：当前滚动的来源，参数类型{@link ArkUI_ScrollSource}。
+     * @return 不返回或返回一个number，用于设置滚动组件实际的滚动距离。
      *
      * @since 22
      */
     NODE_GRID_ON_WILL_SCROLL = 1013001,
 
     /**
-     * @brief Defines the event triggered when the grid scrolls.
+     * @brief 定义ARKUI_NODE_GRID组件的滑动时触发事件枚举值。
      *
-     * Notes for triggering the event:\n
-     * 1. This event is triggered when scrolling is started by the scrollable component or other input settings,
-     * such as keyboard and mouse operations. \n
-     * 2. Scrolling can be initiated by calling the controller API. \n
-     * 3. The out-of-bounds bounce effect is supported. \n
-     * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
-     * {@link ArkUI_NodeComponentEvent}. \n
-     * {@link ArkUI_NodeComponentEvent} contains two parameters:\n
-     * <b>ArkUI_NodeComponentEvent.data[0].f32</b>:
-     * Scroll offset of each frame. A positive offset indicates content scrolling upward, \n
-     * and a negative offset indicates content scrolling downward. \n
-     * <b>ArkUI_NodeComponentEvent.data[1].i32</b>: current scroll state. \n
+     * 触发该事件的条件 ：
+     * 1. 滚动组件触发滚动时触发，支持键鼠操作等其他触发滚动的输入设置。
+     * 2. 通过滚动控制器API接口调用。
+     * 3. 越界回弹。
+     * 事件回调发生时，事件参数{@link ArkUI_NodeEvent}对象中的联合体类型为{@link ArkUI_NodeComponentEvent}。
+     * {@link ArkUI_NodeComponentEvent}中包含2个参数：
+     * <b>ArkUI_NodeComponentEvent.data[0].f32</b>：
+     * 每帧滚动的偏移量，Grid内容向上滚动时偏移量为正，向下滚动时偏移量为负。
+     * <b>ArkUI_NodeComponentEvent.data[1].i32</b>：当前滑动状态。
      *
      * @since 22
      */
     NODE_GRID_ON_DID_SCROLL = 1013002,
 
     /**
-     * @brief Defines the event triggered at the end of each frame layout of the <b>ARKUI_NODE_GRID</b> component,
-     * which is used to set the position and length of the scrollbar.
+     * @brief 定义ARKUI_NODE_GRID组件每帧布局结束时触发用于设置滚动条的位置及长度的事件枚举值。
      *
-     * The event parameter is {@link ArkUI_NodeEvent}. \n
-     * value.i32 at index 0:offset of the first visible grid item,
-     * obtained using <b>OH_ArkUI_NodeEvent_GetNumberValue</b>. \n
-     * value.f32 at index 1: offset of the first visible item relative to the grid's display starting position, in vp,
-     * obtained using <b>OH_ArkUI_NodeEvent_GetNumberValue</b>. \n
-     * @return Information about the scrollbar position and length. \n
-     * You can set the return value using <b>OH_ArkUI_NodeEvent_SetReturnNumberValue</b>. \n
-     * value.f32 at index 0: total offset of the grid content relative to the display area, in px. \n
-     * value.f32 at index 1: total length of the grid content, in px. \n
+     * 事件回调发生时，事件参数{@link ArkUI_NodeEvent}。
+     * 通过OH_ArkUI_NodeEvent_GetNumberValue获取到index为0的value.i32：当前显示的网格起始位置的索引值。
+     * 通过OH_ArkUI_NodeEvent_GetNumberValue获取到index为1的value.f32：当前显示的网格起始位置元素相对网格显示起始位置的偏移，单位vp。
+     * @return 滚动条位置和长度。
+     * 可通过OH_ArkUI_NodeEvent_SetReturnNumberValue设置返回值。
+     * 返回值中index为0的value.f32表示Grid内容相对显示区域的总偏移，单位px。
+     * 返回值中index为1的value.f32表示Grid内容总长度，单位px。
      *
      * @since 22
      */
     NODE_GRID_ON_SCROLL_BAR_UPDATE = 1013003,
-
     /**
-     * @brief Defines the <b>Grid</b> component's child drag start event.
+     * @brief 定义ARKUI_NODE_GRID组件拖拽子组件开始事件枚举值。
      *
-     * This event is triggered under the following scenarios: \n
-     * 1. <b>NODE_GRID_EDIT_MODE</b> is set to <b>1</b>. \n
-     * 2. The user long-presses and drags a <b>Grid</b> child component with sufficient displacement. \n
-     * The event parameter is {@link ArkUI_NodeEvent}. \n
-     * value.f32 at index 0: x-coordinate of the current drag point relative to the <b>Grid</b> component, in vp,
-     * obtained using <b>OH_ArkUI_NodeEvent_GetNumberValue</b>. \n
-     * value.f32 at index 1: y-coordinate of the current drag point relative to the <b>Grid</b> component, in vp,
-     * obtained using <b>OH_ArkUI_NodeEvent_GetNumberValue</b>. \n
-     * value.i32 at index 2: index of the dragged child component in the <b>Grid</b> component,
-     * obtained using <b>OH_ArkUI_NodeEvent_GetNumberValue</b>. \n
+     * 触发该事件的条件：
+     * 1. 设置NODE_GRID_EDIT_MODE为1。
+     * 2. 在Grid子组件上长按并拖动产生足够位移距离时触发。
+     * 事件回调发生时，事件参数{@link ArkUI_NodeEvent}。
+     * 通过OH_ArkUI_NodeEvent_GetNumberValue获取到index为0的value.f32：当前拖拽点相对Grid组件的x坐标，单位vp。
+     * 通过OH_ArkUI_NodeEvent_GetNumberValue获取到index为1的value.f32：当前拖拽点相对Grid组件的y坐标，单位vp。
+     * 通过OH_ArkUI_NodeEvent_GetNumberValue获取到index为2的value.i32：被拖拽子组件在Grid组件中的索引值。
      *
-     * @return Whether the drag operation is allowed. \n
-     * You can set the return value using <b>OH_ArkUI_NodeEvent_SetReturnNumberValue</b>. \n
-     * value.i32 at index 0 in the return value indicates whether dragging is allowed.
-     * <b>0</b>: not allowed. <b>1</b>: allowed. \n
+     * @return 是否发起拖拽。
+     * 可通过OH_ArkUI_NodeEvent_SetReturnNumberValue设置返回值。
+     * 返回值中index为0的value.i32表示是否可以拖拽，0表示不可以拖拽，1表示可以拖拽。
      *
      * @since 23
      */
     NODE_GRID_ON_ITEM_DRAG_START = 1013004,
 
     /**
-     * @brief Defines the event triggered when a dragged child component enters this <b>Grid</b> component's area.
+     * @brief 定义拖拽子组件进入当前Grid组件范围事件枚举值。
      *
-     * This event is triggered under the following scenarios:\n
-     * A child component successfully dragged using <b>NODE_GRID_ON_ITEM_DRAG_START</b> enters the current <b>Grid</b>
-     * component's area. \n
-     * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
-     * {@link ArkUI_NodeComponentEvent}. \n
-     * {@link ArkUI_NodeComponentEvent} contains two parameters:\n
-     * <b>ArkUI_NodeComponentEvent.data[0].f32</b>: x-coordinate of the current drag point relative to the <b>Grid</b>
-     * component, in vp. \n
-     * <b>ArkUI_NodeComponentEvent.data[1].f32</b>: y-coordinate of the current drag point relative to the <b>Grid</b>
-     * component, in vp. \n
+     * 触发该事件的条件：
+     * 通过NODE_GRID_ON_ITEM_DRAG_START事件成功拖拽的子组件进入当前Grid组件范围。
+     * 事件回调发生时，事件参数{@link ArkUI_NodeEvent}对象中的联合体类型为{@link ArkUI_NodeComponentEvent}。
+     * {@link ArkUI_NodeComponentEvent}中包含2个参数：
+     * <b>ArkUI_NodeComponentEvent.data[0].f32</b>：当前拖拽点相对Grid组件的x坐标，单位vp。
+     * <b>ArkUI_NodeComponentEvent.data[1].f32</b>：当前拖拽点相对Grid组件的y坐标，单位vp。
      *
      * @since 23
      */
     NODE_GRID_ON_ITEM_DRAG_ENTER = 1013005,
 
     /**
-     * @brief Defines the event triggered when a dragged child component moves within this <b>Grid</b> component's area.
+     * @brief 定义拖拽子组件在当前Grid组件范围内移动事件枚举值。
      *
-     * This event is triggered under the following scenarios:\n
-     * A child component successfully dragged using <b>NODE_GRID_ON_ITEM_DRAG_START</b> moves within the current
-     * <b>Grid</b> component's area. \n
-     * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
-     * {@link ArkUI_NodeComponentEvent}. \n
-     * {@link ArkUI_NodeComponentEvent} contains four parameters: \n
-     * <b>ArkUI_NodeComponentEvent.data[0].f32</b>: x-coordinate of the current drag point relative to the <b>Grid</b>
-     * component, in vp. \n
-     * <b>ArkUI_NodeComponentEvent.data[1].f32</b>: y-coordinate of the current drag point relative to the <b>Grid</b>
-     * component, in vp. \n
-     * <b>ArkUI_NodeComponentEvent.data[2].i32</b>: index of the dragged child component in the source <b>Grid</b>
-     * component. \n
-     * <b>ArkUI_NodeComponentEvent.data[3].i32</b>: index of the dragged child component in the current <b>Grid</b>
-     * component. \n
+     * 触发该事件的条件：
+     * 通过NODE_GRID_ON_ITEM_DRAG_START事件成功拖拽的子组件在当前Grid组件范围内移动。
+     * 事件回调发生时，事件参数{@link ArkUI_NodeEvent}对象中的联合体类型为{@link ArkUI_NodeComponentEvent}。
+     * {@link ArkUI_NodeComponentEvent}中包含4个参数：
+     * <b>ArkUI_NodeComponentEvent.data[0].f32</b>：当前拖拽点相对Grid组件的x坐标，单位vp。
+     * <b>ArkUI_NodeComponentEvent.data[1].f32</b>：当前拖拽点相对Grid组件的y坐标，单位vp。
+     * <b>ArkUI_NodeComponentEvent.data[2].i32</b>：被拖拽子组件在被拖拽Grid组件中的索引值。
+     * <b>ArkUI_NodeComponentEvent.data[3].i32</b>：被拖拽子组件当前位置在当前Grid组件中的索引值。
      *
      * @since 23
      */
     NODE_GRID_ON_ITEM_DRAG_MOVE = 1013006,
 
     /**
-     * @brief Defines the event triggered when a dragged child component leaves this <b>Grid</b> component's area.
+     * @brief 定义拖拽子组件离开当前Grid组件范围事件枚举值。
      *
-     * This event is triggered under the following scenarios:\n
-     * A child component successfully dragged using <b>NODE_GRID_ON_ITEM_DRAG_START</b> leaves the current <b>Grid</b>
-     * component's area. \n
-     * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
-     * {@link ArkUI_NodeComponentEvent}. \n
-     * {@link ArkUI_NodeComponentEvent} contains three parameters:\n
-     * <b>ArkUI_NodeComponentEvent.data[0].f32</b>: x-coordinate of the current drag point relative to the <b>Grid</b>
-     * component, in vp. \n
-     * <b>ArkUI_NodeComponentEvent.data[1].f32</b>: y-coordinate of the current drag point relative to the <b>Grid</b>
-     * component, in vp. \n
-     * <b>ArkUI_NodeComponentEvent.data[2].i32</b>: index of the dragged child component in the source <b>Grid</b>
-     * component. \n
+     * 触发该事件的条件：
+     * 通过NODE_GRID_ON_ITEM_DRAG_START事件成功拖拽的子组件离开当前Grid组件范围。
+     * 事件回调发生时，事件参数{@link ArkUI_NodeEvent}对象中的联合体类型为{@link ArkUI_NodeComponentEvent}。
+     * {@link ArkUI_NodeComponentEvent}中包含3个参数：
+     * <b>ArkUI_NodeComponentEvent.data[0].f32</b>：当前拖拽点相对Grid组件的x坐标，单位vp。
+     * <b>ArkUI_NodeComponentEvent.data[1].f32</b>：当前拖拽点相对Grid组件的y坐标，单位vp。
+     * <b>ArkUI_NodeComponentEvent.data[2].i32</b>：被拖拽子组件在被拖拽Grid组件中的索引值。
      *
      * @since 23
      */
     NODE_GRID_ON_ITEM_DRAG_LEAVE = 1013007,
 
     /**
-     * @brief Defines the event triggered when a dragged child component is released.
+     * @brief 定义松手释放拖拽子组件事件枚举值。
      *
-     * This event is triggered under the following scenarios:\n
-     * A child component successfully dragged using <b>NODE_GRID_ON_ITEM_DRAG_START</b> is released. \n
-     * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
-     * {@link ArkUI_NodeComponentEvent}. \n
-     * {@link ArkUI_NodeComponentEvent} contains five parameters: \n
-     * <b>ArkUI_NodeComponentEvent.data[0].f32</b>: x-coordinate of the current drag point relative to the <b>Grid</b>
-     * component, in vp. \n
-     * <b>ArkUI_NodeComponentEvent.data[1].f32</b>: y-coordinate of the current drag point relative to the <b>Grid</b>
-     * component, in vp. \n
-     * <b>ArkUI_NodeComponentEvent.data[2].i32</b>: index of the dragged child component in the source <b>Grid</b>
-     * component. \n
-     * <b>ArkUI_NodeComponentEvent.data[3].i32</b>: index of the dragged child component in the current <b>Grid</b>
-     * component. \n
-     * <b>ArkUI_NodeComponentEvent.data[4].i32</b>: whether the dragged child component is successfully released. \n
-     * <b>1</b>: The component is released within the <b>Grid</b> component's area.
-     * <b>0</b>: The component is released outside the <b>Grid</b> component's area. \n
+     * 触发该事件的条件：
+     * 松手释放通过NODE_GRID_ON_ITEM_DRAG_START事件成功拖拽的子组件。
+     * 事件回调发生时，事件参数{@link ArkUI_NodeEvent}对象中的联合体类型为{@link ArkUI_NodeComponentEvent}。
+     * {@link ArkUI_NodeComponentEvent}中包含5个参数：
+     * <b>ArkUI_NodeComponentEvent.data[0].f32</b>：当前拖拽点相对Grid组件的x坐标，单位vp。
+     * <b>ArkUI_NodeComponentEvent.data[1].f32</b>：当前拖拽点相对Grid组件的y坐标，单位vp。
+     * <b>ArkUI_NodeComponentEvent.data[2].i32</b>：被拖拽子组件在被拖拽Grid中的索引值。
+     * <b>ArkUI_NodeComponentEvent.data[3].i32</b>：被拖拽子组件当前位置在当前Grid组件中的索引值。
+     * <b>ArkUI_NodeComponentEvent.data[4].i32</b>：被拖拽子组件是否成功释放，1表示释放位置在Grid组件范围内，0表示释放位置在Grid组件范围外。
      *
      * @since 23
      */
     NODE_GRID_ON_ITEM_DROP = 1013008,
 
     /**
-     * @brief Defines the edit mode state change event of the <b>Grid</b> component.
+     * @brief 定义Grid组件编辑模式状态变更事件枚举值。
      *
-     * This event is triggered when the edit mode state changes, which occurs in the following cases:
-     * 1. The {@link NODE_GRID_ENABLE_EDIT_MODE} attribute is set to change the edit mode state.
-     * 2. When {@link NODE_GRID_EDIT_MODE_OPTIONS} has two-finger sliding multi-selection enabled,
-     * a two-finger sliding gesture triggers the change to multi-selection state.
-     * Registering this event callback is a prerequisite for entering multi-selection state via
-     * two-finger sliding. If this callback is not registered, two-finger sliding will not enter
-     * multi-selection state.
+     * 触发该事件的条件 ：
+     * 1. 设置NODE_GRID_ENABLE_EDIT_MODE属性改变编辑模式状态。
+     * 2. 当NODE_GRID_EDIT_MODE_OPTIONS开启双指滑动多选时，双指滑动触发多选状态变更。
+     * 注册该事件回调是双指滑动进入多选状态的必要条件。如未注册该回调，双指滑动将不会进入多选状态。
      *
-     * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
-     * {@link ArkUI_NodeComponentEvent}.
-     * {@link ArkUI_NodeComponentEvent} contains one parameter:
-     * <b>ArkUI_NodeComponentEvent.data[0].i32</b>: edit mode state.
-     * <b>0</b>: not in edit mode. <b>1</b>: in edit mode.
+     * 事件回调发生时，事件参数{@link ArkUI_NodeEvent}对象中的联合体类型为{@link ArkUI_NodeComponentEvent}。
+     * {@link ArkUI_NodeComponentEvent}中包含1个参数：
+     * <b>ArkUI_NodeComponentEvent.data[0].i32</b>：编辑模式状态。0：非编辑模式。1：编辑模式。
      *
      * @since 26.0.0
      */
     NODE_GRID_ON_EDIT_MODE_CHANGE = 1013009,
 
     /**
-     * @brief Defines the selected state change event of the <b>GridItem</b> component.
-     *
-     * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
-     * {@link ArkUI_NodeComponentEvent}. \n
-     * {@link ArkUI_NodeComponentEvent} contains one parameter:\n
-     * <b>ArkUI_NodeComponentEvent.data[0].i32</b>: selected state. <b>0</b>: not selected. <b>1</b>: selected. \n
+     * @brief Selected state change event of the **ARKUI_NODE_GRID_ITEM** component.
+     * <br>When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
+     * {@link ArkUI_NodeComponentEvent}.
+     * <br>{@link ArkUI_NodeComponentEvent} contains the following parameter:
+     * <br>**ArkUI_NodeComponentEvent.data[0].i32**: **0** (not selected) or **1** (selected).
      *
      * @since 23
      */
@@ -11523,10 +11345,10 @@ int32_t OH_ArkUI_NodeEvent_GetTargetId(ArkUI_NodeEvent* event);
 ArkUI_NodeHandle OH_ArkUI_NodeEvent_GetNodeHandle(ArkUI_NodeEvent* event);
 
 /**
- * @brief Obtains input event (for example, touch event) data for a component event.
+ * @brief 获取组件事件中的输入事件（如触碰事件）数据。
  *
- * @param event Indicates the pointer to the component event.
- * @return Returns the pointer to the input event data.
+ * @param event 组件事件指针。
+ * @return ArkUI_UIInputEvent 输入事件数据指针。
  * @since 12
  */
 ArkUI_UIInputEvent* OH_ArkUI_NodeEvent_GetInputEvent(ArkUI_NodeEvent* event);
@@ -11617,11 +11439,10 @@ int32_t OH_ArkUI_NodeEvent_GetStringValue(ArkUI_NodeEvent* event, int32_t index,
 int32_t OH_ArkUI_NodeEvent_SetReturnNumberValue(ArkUI_NodeEvent* event, ArkUI_NumberValue* value, int32_t size);
 
 /**
- * @brief Obtains a <b>ArkUI_TouchTestInfo</b> object from the specified <b>ArkUI_NodeEvent</b> object.
+ * @brief 获取组件事件中的触摸测试信息。
  *
  * @param {pointer} nodeEvent Indicates the pointer to an <b>ArkUI_NodeEvent</b> object.
- * @return Returns the pointer to an <b>ArkUI_TouchTestInfo</b> object.
- *         Returns <b>null</b> if the parameter passed in is invalid or is not a touch test info.
+ * @return 返回指向{@link ArkUI_TouchTestInfo}对象的指针。若传入的参数无效或并非触摸测试信息，则返回null。
  * @since 22
  */
 ArkUI_TouchTestInfo* OH_ArkUI_NodeEvent_GetTouchTestInfo(ArkUI_NodeEvent* nodeEvent);
@@ -13188,48 +13009,38 @@ int32_t OH_ArkUI_GetNodeSnapshotSizeLimitation(int32_t* maxWidth, int32_t* maxHe
 int32_t OH_ArkUI_NodeUtils_GetPositionToParent(ArkUI_NodeHandle node, ArkUI_IntOffset* globalOffset);
 
 /**
- * @brief Adds the UI state style supported by the component. To handle states change efficiently, need to specify the
- * states of interest and the corresponding handler. When a state of interest occurs, the handler will be executed.
- *  - You can adjust the UI style based on the current state within the callback. If this API is called multiple
- * times on the same node, the last set of states and handler will take precedence.
- *  - Some component types have default system handling for certain states. For example, the <b>Button</b>
- * component has a default style effect for the PRESSED state. When custom state handling is implemented on such
- * components, the default style effect will be applied first, followed by the custom style changes, resulting in
- * a combined effect. To disable the default style effects, set <b>excludeInner</b> to <b>true</b>, if this is allowed
- * by the system implementation.
- *  - And when this API is called, the provided handler function will be executed immediately.
- *  - There is no need to explicitly register a listener for the NORMAL state. Once a non-NORMAL state is registered,
- * the system will automatically notify your application when the state changes back to NORMAL.
+ * @brief 设置组件支持的{@link 多态样式}状态。为了更高效地处理，需传入所关注的状态值及对应的状态处理函数，当关注的状态发生时，处理函数会被执行。可在回调中根据当前状态调整UI样式。当在同一个节点上多次调用该方法时，
+ * 将以最后一次传入的状态及处理函数为准。有些类型的组件节点，系统内部已有对某些状态的默认处理。例如，Button组件默认具备对PRESSED状态的样式变化，当在此类组件上使用此方法自定义状态处理时，会先应用系统默认样式变化，
+ * 再执行自定义的样式处理，最终效果为两者叠加。可以通过指定excludeInner为true来禁用系统内部的默认样式效果，但这通常取决于系统内部实现规范是否允许。当调用该函数时，
+ * 传入的statesChangeHandler函数会立即执行一次，且无需特意注册对NORMAL状态的监听，只要注册了非NORMAL状态，当状态从任意状态变化回NORMAL时，系统都会进行回调，以便应用进行样式复原。
  *
- * @param node Target node.
- * @param uiStates Target UI states to be handled on the node.
- *        The combined result of all target UI states can be calculated using the <b>|</b> operator.
- *        Example: <b>targetUIStates = ArkUI_UIState::PRESSED | ArkUI_UIState::FOCUSED</b>.
+ * @param node 目标节点。
+ * @param uiStates 目标节点需要处理的目标UI状态。所有目标UI状态的组合结果可以通过“\|”操作来计算。例如：targetUIStates = ArkUI_UIState::PRESSED \|
+ *     ArkUI_UIState::FOCUSED。
  * @param statesChangeHandler Handler for UI state changes.
- *        It rturns the current UI status. The value is the result of combining all current state enum values using the
- *        <b>|</b> operator. You can determine the state using the <b>&</b> operator.
- *        Example: <b>if (currentStates & ArkUI_UIState::PRESSED == ArkUI_UIState::PRESSED)</b>.
- *        However, for checking the normal state, use the equality operator directly.
- *        Example: <b>if (currentStates == ArkUI_UIState::NORMAL)</b>.
- * @param excludeInner Whether to disable the default state styles.
- * @param userData Custom data used in the <b>statesChangeHandler</b> callback.
- * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ *     It rturns the current UI status. The value is the result of combining all current state enum values using the
+ *     <b>|</b> operator. You can determine the state using the <b>&</b> operator.
+ *     Example: <b>if (currentStates & ArkUI_UIState::PRESSED == ArkUI_UIState::PRESSED)</b>.
+ *     However, for checking the normal state, use the equality operator directly.
+ *     Example: <b>if (currentStates == ArkUI_UIState::NORMAL)</b>.
+ * @param excludeInner 禁止内部默认状态样式的标志。​​true​​表示禁用系统内部的默认样式，false表示不禁用。
+ * @param userData statesChangeHandler回调函数中使用的自定义数据。
+ * @return 错误码。
+ *     <br>{@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
+ *     <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
  * @since 20
  */
 ArkUI_ErrorCode OH_ArkUI_AddSupportedUIStates(ArkUI_NodeHandle node, int32_t uiStates,
     void (statesChangeHandler)(int32_t currentStates, void* userData), bool excludeInner, void* userData);
 
 /**
- * @brief Removes registered UI states. When all states registered using <b>OH_ArkUI_AddSupportedUIStates</b>
- * are removed, the registered <b>stateChangeHandler</b> will no longer be executed.
- * 
- * @param node Target node.
- * @param uiStates Target UI states to be removed.
- * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @brief 删除注册的状态处理。当通过OH_ArkUI_AddSupportedUIStates注册的状态都被删除时，所注册的stateChangeHandler也不会再被执行。
+ *
+ * @param node 目标节点。
+ * @param uiStates 节点需要删除的目标UI状态。
+ * @return 错误码。
+ *     <br>{@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
+ *     <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
  * @since 20
  */
 ArkUI_ErrorCode OH_ArkUI_RemoveSupportedUIStates(ArkUI_NodeHandle node, int32_t uiStates);
@@ -13338,58 +13149,63 @@ int32_t OH_ArkUI_SetForceDarkConfig(ArkUI_ContextHandle uiContext, bool forceDar
     uint32_t (*colorInvertFunc)(uint32_t color));
 
 /**
- * @brief Register common event callback of target node.
+ * @brief 注册目标节点的基础事件回调。
  *
- * @param node The ArkUI-NodeHandle pointer.
- * @param eventType Indicates the type of event to set.
- * @param userData Indicates the pointer to the custom data.
- * @param callback Indicates the event callback function.
- * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} Function params is invalid.
- *         Returns {@link ARKUI_ERROR_CODE_NODE_UNSUPPORTED_EVENT_TYPE} Function parameter eventType is not supported.
+ * 当前支持的事件类型如下: 参考{@link ArkUI_NodeEventType}中的NODE_ON_CLICK_EVENT、NODE_TOUCH_EVENT、NODE_EVENT_ON_APPEAR、
+ * NODE_EVENT_ON_DISAPPEAR、NODE_ON_KEY_EVENT、NODE_ON_FOCUS、NODE_ON_BLUR、NODE_ON_HOVER、NODE_ON_MOUSE、NODE_ON_SIZE_CHANGE。
+ *
+ * @param node 目标节点。
+ * @param eventType 事件类型。
+ * @param userData 开发者自定义的数据指针，以便在回调函数中处理自定义数据，需确保自定义函数执行时数据有效。
+ * @param callback 开发者自定义的回调函数。
+ * @return 错误码。
+ *     <br>{@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
+ *     <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
+ *     <br>{@link ARKUI_ERROR_CODE_NODE_UNSUPPORTED_EVENT_TYPE} 暂不支持该事件类型。
  * @since 21
  */
 int32_t OH_ArkUI_NativeModule_RegisterCommonEvent(ArkUI_NodeHandle node, ArkUI_NodeEventType eventType,
     void* userData, void (*callback)(ArkUI_NodeEvent* event));
 
 /**
- * @brief Unregister common event callback of target node.
+ * @brief 注销目标节点的基础事件回调。
  *
- * @param node The ArkUI-NodeHandle pointer.
- * @param eventType Indicates the type of event to set.
- * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} Function params is invalid.
- *         Returns {@link ARKUI_ERROR_CODE_NODE_UNSUPPORTED_EVENT_TYPE} Function parameter eventType is not supported.
+ * 当前支持的事件类型请参考{@link OH_ArkUI_NativeModule_RegisterCommonEvent}。
+ *
+ * @param node 目标节点。
+ * @param eventType 事件类型。
+ * @return 错误码。
+ *     <br>{@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
+ *     <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
+ *     <br>{@link ARKUI_ERROR_CODE_NODE_UNSUPPORTED_EVENT_TYPE} 暂不支持该事件类型。
  * @since 21
  */
 int32_t OH_ArkUI_NativeModule_UnregisterCommonEvent(ArkUI_NodeHandle node, ArkUI_NodeEventType eventType);
 
 /**
- * @brief Register common visible area approximate change event callback of target node.
+ * @brief 注册限制回调间隔的可见区域变化的基础事件回调。
  *
- * @param node The ArkUI-NodeHandle pointer.
- * @param ratios Threshold array representing the visible area of the component.
- * @param size The size of the ratios.
- * @param expectedUpdateInterval The expected calculation interval for developers.
- * @param userData Indicates the pointer to the custom data.
- * @param callback Indicates the event callback function.
- * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} Function params is invalid.
+ * @param node 目标节点。
+ * @param ratios 阈值数组，表示组件的可见区域。
+ * @param size 阈值数组的大小。
+ * @param expectedUpdateInterval 开发人员预期的计算间隔。
+ * @param userData 开发者自定义的数据指针，以便在回调函数中处理自定义数据，需确保自定义函数执行时数据有效。
+ * @param callback 开发者自定义的回调函数。
+ * @return 错误码。
+ *     <br>{@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
+ *     <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
  * @since 21
  */
 int32_t OH_ArkUI_NativeModule_RegisterCommonVisibleAreaApproximateChangeEvent(ArkUI_NodeHandle node, float* ratios,
     int32_t size, float expectedUpdateInterval, void* userData, void (*callback)(ArkUI_NodeEvent* event));
 
 /**
- * @brief Unregister common visible area approximate change event callback of target node.
+ * @brief 注销限制回调间隔的可见区域变化的基础事件回调。
  *
- * @param node The ArkUI-NodeHandle pointer.
- * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} Function params is invalid.
+ * @param node 目标节点。
+ * @return 错误码。
+ *     <br>{@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
+ *     <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
  * @since 21
  */
 int32_t OH_ArkUI_NativeModule_UnregisterCommonVisibleAreaApproximateChangeEvent(ArkUI_NodeHandle node);

@@ -703,6 +703,22 @@ int32_t OH_PictureInPicture_UnregisterResizeListener(uint32_t controllerId, WebP
  */
 int32_t OH_PictureInPicture_UnregisterAllResizeListeners(uint32_t controllerId);
 
+/**
+ * @brief 设置是否在返回桌面时自动启动画中画，默认不自动拉起。
+ *
+ * @param controllerId 画中画控制器ID。取值为非负整数。
+ * @param enabled 如返回桌面时需自动启动画中画，则该参数配置为true，否则为false。若设置-系统-智慧多窗-自动启动画中画开关为关闭状态，就算该参数配置为true，应用返回桌面时也不会自动启动画中画窗口。
+ * @return 返回结果码。 <ul>
+ *         <li>{@link OK}函数调用成功。</li>
+ *         <li>{@link WINDOW_MANAGER_ERRORCODE_INCORRECT_PARAM}参数错误。可能原因：
+ *             找不到controllerId ID对应的画中画控制器。</li>
+ *         <li>{@link WINDOW_MANAGER_ERRORCODE_PIP_INTERNAL_ERROR}pip内部错误。可能原因：
+ *             画中画控制器已被销毁。</li>
+ *         </ul>
+ * @since 26.0.0
+ */
+int32_t OH_PictureInPicture_SetAutoStartEnabled(uint32_t controllerId, bool enabled);
+
 #ifdef __cplusplus
 }
 #endif

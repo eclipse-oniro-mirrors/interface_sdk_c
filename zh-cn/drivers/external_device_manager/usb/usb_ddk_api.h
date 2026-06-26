@@ -17,7 +17,7 @@
  * @addtogroup UsbDdk
  * @{
  *
- * @brief Provides USB DDK APIs to open and close USB interfaces, perform non-isochronous and isochronous\n
+ * @brief Provides USB DDK APIs to open and close USB interfaces, perform non-isochronous and isochronous
  * data transfer over USB pipes, and implement control transfer and interrupt transfer, etc.
  *
  * @syscap SystemCapability.Driver.USB.Extension

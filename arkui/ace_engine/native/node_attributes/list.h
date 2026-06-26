@@ -43,23 +43,31 @@ extern "C" {
 #endif
 
 /**
- * @brief Define the ChildrenMainSize class information for a List.
+ * @brief Defines the **ChildrenMainSize** information of the **List** component.
  *
  * @since 12
  */
 typedef struct ArkUI_ListChildrenMainSize ArkUI_ListChildrenMainSize;
-
 /**
- * @brief Enumerates the alignment modes of items along the cross axis.
+ * @brief Enumerates the alignment modes of items along the cross axis. The default value is **
+ * ARKUI_LIST_ITEM_ALIGNMENT_START**.
  *
  * @since 12
  */
 typedef enum {
-    /** The list items are packed toward the start edge of the list container along the cross axis. */
+    /**
+     * The {@link list items} are packed toward the start edge of the **List** component along the cross axis.
+     */
     ARKUI_LIST_ITEM_ALIGNMENT_START = 0,
-    /** The list items are centered in the list container along the cross axis. */
+
+    /**
+     * The list items are centered in the **List** component along the cross axis.
+     */
     ARKUI_LIST_ITEM_ALIGNMENT_CENTER,
-    /** The list items are packed toward the end edge of the list container along the cross axis. */
+
+    /**
+     * The list items are packed toward the end edge of the **List** component along the cross axis.
+     */
     ARKUI_LIST_ITEM_ALIGNMENT_END,
 } ArkUI_ListItemAlignment;
 
@@ -69,112 +77,151 @@ typedef enum {
  * @since 12
  */
 typedef enum {
-    /** In the list item group, the header is not pinned to the top, and the footer is not pinned to the bottom. */
+    /**
+     * {@link header} and {@link footer} of {@link ListItemGroup} are not pinned to the top and bottom, respectively.
+     */
     ARKUI_STICKY_STYLE_NONE = 0,
-    /** In the list item group, the header is pinned to the top, and the footer is not pinned to the bottom. */
+
+    /**
+     * {@link header} of {@link ListItemGroup} is pinned to the top, and {@link footer} is not pinned to the bottom.
+     */
     ARKUI_STICKY_STYLE_HEADER = 1,
-    /** In the list item group, the footer is pinned to the bottom, and the header is not pinned to the top. */
+
+    /**
+     * {@link header} of {@link ListItemGroup} is not pinned to the top, and {@link footer} is pinned to the bottom.
+     */
     ARKUI_STICKY_STYLE_FOOTER = 2,
-    /** In the list item group, the footer is pinned to the bottom, and the header is pinned to the top. */
+
+    /**
+     * {@link header} of {@link ListItemGroup} is pinned to the top, and {@link footer} is pinned to the bottom.
+     */
     ARKUI_STICKY_STYLE_BOTH = 3,
 } ArkUI_StickyStyle;
 
 /**
- * @brief Define an enum for the areas of the <b>ListItemGroup</b> component.
+ * @brief Enumerates the areas in the {@link ListItemGroup} component. The default value is **
+ * ARKUI_LIST_ITEM_GROUP_AREA_OUTSIDE**.
  *
  * @since 15
  */
 typedef enum {
-    /** Outside the area of the <b>ListItemGroup</b> component. */
+    /**
+     * Outside the area of the **ListItemGroup** component.
+     */
     ARKUI_LIST_ITEM_GROUP_AREA_OUTSIDE = 0,
-    /** Area when the <b>ListItemGroup</b> component does not have the header, footer, or list item. */
+
+    /**
+     * Area without the {@link header}, {@link footer}, and {@link ListItem} in the **ListItemGroup** component.
+     */
     ARKUI_LIST_ITEM_SWIPE_AREA_NONE,
-    /** List item area of the <b>ListItemGroup</b> component. */
+
+    /**
+     * List item area of the **ListItemGroup** component.
+     */
     ARKUI_LIST_ITEM_SWIPE_AREA_ITEM,
-    /** Header area of the <b>ListItemGroup</b> component. */
+
+    /**
+     * Header area of the **ListItemGroup** component.
+     */
     ARKUI_LIST_ITEM_SWIPE_AREA_HEADER,
-    /** Footer area of the <b>ListItemGroup</b> component. */
+
+    /**
+     * Footer area of the **ListItemGroup** component.
+     */
     ARKUI_LIST_ITEM_SWIPE_AREA_FOOTER,
 } ArkUI_ListItemGroupArea;
 
 /**
- * @brief Create configuration items for the ListChildrenMainSize interface settings.
+ * @brief Creates a **ListChildrenMainSize** instance.
  *
- * @return ListChildrenMainSize configuration item instance.If the object returns a null pointer,
- *         it indicates a creation failure, and the reason for the failure may be that the address space is full.
+ * @return Pointer to the created **ListChildrenMainSize** instance.
  * @since 12
  */
 ArkUI_ListChildrenMainSize* OH_ArkUI_ListChildrenMainSizeOption_Create();
 
 /**
- * @brief Destroy the ListChildrenMainSize instance.
+ * @brief Disposes of a **ListChildrenMainSize** instance.
  *
- * @param option The ListChildrenMainSize instance to be destroyed.
+ * @param option Pointer to the **ListChildrenMainSize** instance to dispose of.
  * @since 12
  */
 void OH_ArkUI_ListChildrenMainSizeOption_Dispose(ArkUI_ListChildrenMainSize* option);
 
 /**
- * @brief Set the default size of ChildrenMainSizeOption for the List component.
+ * @brief Sets the default size of the list item in the {@link List} component along the main axis. The vertical axis
+ * indicates the height, and the horizontal axis indicates the width.
  *
- * @param option ListChildrenMainSize instance.
- * @param defaultMainSize The default size of the ListItem under the List, measured in vp.
- * @return 0 represents success. If defaultMainSize is less than 0 or option is a null pointer, return 401.
+ * @param option Pointer to the **ListChildrenMainSize** instance.
+ * @param defaultMainSize Default size of the list item along the main axis, in vp.
+ * @return Result code.
+ *     <ul>
+ *     <li><br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
+ *     <li><br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.</li>
+ *     </ul>
  * @since 12
  */
 int32_t OH_ArkUI_ListChildrenMainSizeOption_SetDefaultMainSize(
     ArkUI_ListChildrenMainSize* option, float defaultMainSize);
-
 /**
- * @brief Get the default size of ChildrenMainSizeOption for the List component.
+ * @brief Obtains the default size of the list item in the {@link List} component along the main axis. The vertical
+ * axis indicates the height, and the horizontal axis indicates the width.
  *
- * @param option ListChildrenMainSize instance.
- * @return The default size of the ListItem under the List is 0, measured in vp.
- *         When the option is a null pointer, it returns -1.
+ * @param option Pointer to the **ListChildrenMainSize** instance.
+ * @return Default size of the list item along the main axis. The default value is **0**. The unit is {@link vp}. If **
+ *     option** is a null pointer, **-1** is returned.
  * @since 12
  */
 float OH_ArkUI_ListChildrenMainSizeOption_GetDefaultMainSize(ArkUI_ListChildrenMainSize* option);
 
 /**
- * @brief Reset the array size of ChildrenMainSizeOption for the List component.
+ * @brief Adjusts the capacity of the children item size array in the {@link List} component along the main axis.
  *
- * @param option ListChildrenMainSize instance.
- * @param totalSize Array size.
+ * @param option Pointer to the **ListChildrenMainSize** instance.
+ * @param totalSize Capacity of the target array.
  * @since 12
  */
 void OH_ArkUI_ListChildrenMainSizeOption_Resize(ArkUI_ListChildrenMainSize* option, int32_t totalSize);
 
 /**
- * @brief Resize the ChildrenMainSizeOption array operation on the List component.
+ * @brief Adjusts the children item size array in the {@link List} component along the main axis.
  *
- * @param option ListChildrenMainSize instance.
- * @param index To modify the starting position of the MainSize array.
- * @param deleteCount The number of MainSize arrays to be deleted starting from index.
- * @param addCount The number of MainSize arrays to be added starting from index.
- * @return 0 represents success. If the function parameter is abnormal, return 401.
+ * @param option Pointer to the **ListChildrenMainSize** instance.
+ * @param index Start index.
+ * @param deleteCount Number of elements to be deleted from the start position.
+ * @param addCount Number of elements to be added from the start position.
+ * @return Result code.
+ *     <ul>
+ *     <li><br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
+ *     <li><br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.</li>
+ *     </ul>
  * @since 12
  */
 int32_t OH_ArkUI_ListChildrenMainSizeOption_Splice(
     ArkUI_ListChildrenMainSize* option, int32_t index, int32_t deleteCount, int32_t addCount);
 
 /**
- * @brief Update the value of the ChildrenMainSizeOption array in the List component.
+ * @brief Updates the size at the specified index in the children item size array of the {@link List} component along
+ * the main axis. The vertical axis indicates the height, and the horizontal axis indicates the width.
  *
- * @param option ListChildrenMainSize instance.
- * @param index To modify the starting position of the MainSize array.
- * @param mainSize The actual modified value.
- * @return 0 represents success. If the function parameter is abnormal, return 401.
+ * @param option Pointer to the **ListChildrenMainSize** instance.
+ * @param index Array index of the target element.
+ * @param mainSize Size of the main axis, in vp.
+ * @return Result code.
+ *     <ul>
+ *     <li><br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
+ *     <li><br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.</li>
+ *     </ul>
  * @since 12
  */
 int32_t OH_ArkUI_ListChildrenMainSizeOption_UpdateSize(
     ArkUI_ListChildrenMainSize* option, int32_t index, float mainSize);
-
 /**
- * @brief Get the value of the ChildrenMainSizeOption array for the List component.
+ * @brief Obtains the size at the specified index in the children item size array of the {@link List} component along
+ * the main axis. The vertical axis indicates the height, and the horizontal axis indicates the width.
  *
- * @param option ListChildrenMainSize instance.
- * @param index The index position of the value to be obtained.
- * @return The value of the specific position of the array. If the function parameter is abnormal, return -1.
+ * @param option Pointer to the **ListChildrenMainSize** instance.
+ * @param index Array index of the target element.
+ * @return Value at the specified index. If a parameter error occurs, **-1** is returned.
  * @since 12
  */
 float OH_ArkUI_ListChildrenMainSizeOption_GetMainSize(ArkUI_ListChildrenMainSize* option, int32_t index);

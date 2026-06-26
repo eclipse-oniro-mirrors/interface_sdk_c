@@ -1329,7 +1329,7 @@ ArkUI_TransitionEffect* OH_ArkUI_CreateAsymmetricTransitionEffect(
 
 /**
  * @brief Create an identity transition effect.
- * Identity transition effect performs no visual transition animation.It can be used as the appear or disappear 
+ * Identity transition effect performs no visual transition animation. It can be used as the appear or disappear 
  * parameter of OH_ArkUI_CreateAsymmetricTransitionEffect to indicate no animation on one side.
  *
  * @return Returns a pointer to the created transition effect object.

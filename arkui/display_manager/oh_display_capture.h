@@ -52,11 +52,11 @@ extern "C" {
  * @permission ohos.permission.CUSTOM_SCREEN_CAPTURE [since 14]
  * @param displayId ID of the display. The value must be a non-negative integer.
  * @param pixelMap Double pointer to an OH_PixelmapNative object, which is the screenshot taken.
- * @return {@link DISPLAY_MANAGER_OK } If the operation is successful.
- *     <br>{@link DISPLAY_MANAGER_ERROR_NO_PERMISSION } If no permission.
- *     <br>{@link DISPLAY_MANAGER_ERROR_INVALID_PARAM } If Parameter error.
- *     <br>{@link DISPLAY_MANAGER_ERROR_DEVICE_NOT_SUPPORTED } If device not support.
- *     <br>{@link DISPLAY_MANAGER_ERROR_SYSTEM_ABNORMAL } If display manager service works abnormally.
+ * @return <ul><li>{@link DISPLAY_MANAGER_OK} If the operation is successful.</li>
+ *     <li>{@link DISPLAY_MANAGER_ERROR_NO_PERMISSION} If no permission.</li>
+ *     <li>{@link DISPLAY_MANAGER_ERROR_INVALID_PARAM} If parameter error.</li>
+ *     <li>{@link DISPLAY_MANAGER_ERROR_DEVICE_NOT_SUPPORTED} If device not support.</li>
+ *     <li>{@link DISPLAY_MANAGER_ERROR_SYSTEM_ABNORMAL} If display manager service works abnormally.</li></ul>
  * @since 14
  */
 NativeDisplayManager_ErrorCode OH_NativeDisplayManager_CaptureScreenPixelmap(uint32_t displayId,

@@ -51,11 +51,20 @@ extern "C" {
 typedef struct {
     /** Top margin, in vp. */
     float top;
-    /** Right margin, in vp. */
+
+    /**
+     * Right margin, in vp.
+     */
     float right;
-    /** Bottom margin, in vp. */
+
+    /**
+     * Bottom margin, in vp.
+     */
     float bottom;
-    /** Left margin, in vp. */
+
+    /**
+     * Left margin, in vp.
+     */
     float left;
 } ArkUI_Margin;
 
@@ -67,94 +76,105 @@ typedef struct {
 typedef struct ArkUI_WaterFlowSectionOption ArkUI_WaterFlowSectionOption;
 
 /**
- * @brief Enumerates the layout modes of the WaterFlow component.
+ * @brief Enumerates the layout modes of the {@link WaterFlow} component.
  *
  * @since 18
  */
 typedef enum {
-    /** Layout items from top to viewport. */
+    /**
+     * Layout from top to bottom. In scenarios where column switching occurs, the layout starts from the first
+     * {@link water flow item} to the currently displayed {@link water flow item}.
+     */
     ARKUI_WATER_FLOW_LAYOUT_MODE_ALWAYS_TOP_DOWN = 0,
-    /** Layout items in viewport. */
-    ARKUI_WATER_FLOW_LAYOUT_MODE_SLIDING_WINDOW,
+
+    /**
+     * Sliding window layout. In scenarios where column switching occurs, only the range of {@link water flow items}
+     * currently on display is re-laid out. As the user scrolls down with their finger, {@link water flow items} that
+     * enter the display range from above are subsequently laid out.
+     */
+    ARKUI_WATER_FLOW_LAYOUT_MODE_SLIDING_WINDOW
 } ArkUI_WaterFlowLayoutMode;
 
 /**
- * @brief Creates water flow section configuration.
+ * @brief Creates the {@link FlowItem} section configuration.
  *
- * @return Returns the water flow section configuration.
+ * @return Pointer to the {@link FlowItem} section configuration.
  * @since 12
  */
 ArkUI_WaterFlowSectionOption* OH_ArkUI_WaterFlowSectionOption_Create();
 
 /**
- * @brief Destroys the pointer to a water flow section configuration.
+ * @brief Disposes of the pointer to the {@link FlowItem} section configuration.
  *
- * @param option Indicates the pointer to a water flow section configuration.
+ * @param option Pointer to the {@link FlowItem} section configuration.
  * @since 12
  */
 void OH_ArkUI_WaterFlowSectionOption_Dispose(ArkUI_WaterFlowSectionOption* option);
 
 /**
- * @brief Sets the FlowItem block configuration information array length.
+ * @brief Sets the array length for a water flow section configuration.
  *
- * @param option FlowItem Indicates the packet configuration.
- * @param size Array Length.
+ * @param option Pointer to a water flow section configuration.
+ * @param size Size of the array.
  * @since 12
  */
 void OH_ArkUI_WaterFlowSectionOption_SetSize(ArkUI_WaterFlowSectionOption* option, int32_t size);
 
 /**
- * @brief Gets the FlowItem grouping configuration information array length.
+ * @brief Obtains the length of the {@link FlowItem} section configuration array.
  *
- * @param option FlowItem Indicates the packet configuration.
- * @return Array size. If -1 is returned, the return fails.
- *         The possible cause of the failure is that the option parameter is abnormal, such as a null pointer.
+ * @param option Pointer to a water flow section configuration.
+ * @return Size of the array. If **-1** is returned, an error code indicating failure is returned. The possible cause
+ *     is that the **option** parameter is abnormal, for example, a null pointer.
  * @since 12
  */
 int32_t OH_ArkUI_WaterFlowSectionOption_GetSize(ArkUI_WaterFlowSectionOption* option);
 
 /**
- * @brief Sets the number of items in a water flow section.
+ * @brief Sets the number of {@link water flow items} in the section.
  *
- * @param option Indicates the pointer to a water flow section configuration.
- * @param index Indicates the index of the target water flow section.
- * @param itemCount Indicates the number of items in the water flow section.
+ * @param option Pointer to the {@link FlowItem} section configuration.
+ * @param index Index of the target water flow section.
+ * @param itemCount Number of {@link water flow items} in the section.
  * @since 12
  */
 void OH_ArkUI_WaterFlowSectionOption_SetItemCount(
     ArkUI_WaterFlowSectionOption* option, int32_t index, int32_t itemCount);
 
 /**
- * @brief Obtains the number of items in the water flow section that matches the
- * specified index.
+ * @brief Obtains the number of {@link water flow items} at the corresponding index based on the {@link FlowItem}
+ * section configuration.
  *
- * @param option Indicates the pointer to a water flow section configuration.
- * @param index Indicates the index of the target water flow section.
- * @return Returns the number of items in the water flow section.
+ * @param option Pointer to the {@link FlowItem} section configuration.
+ * @param index Index of the target water flow section.
+ * @return Number of items in the water flow section.
  * @since 12
  */
 int32_t OH_ArkUI_WaterFlowSectionOption_GetItemCount(ArkUI_WaterFlowSectionOption* option, int32_t index);
-
 /**
- * @brief The FlowItem grouping configuration information getsthe spindle size
- * of the specified Item based on flowItemIndex.
+ * @brief Obtains the main axis size of a specified water flow item based on **itemIndex** in the {@link FlowItem}
+ * section configuration. To use custom data in the callback, call
+ * {@link OH_ArkUI_WaterFlowSectionOption_RegisterGetItemMainSizeCallbackByIndexWithUserData}.
  *
- * @param option Indicates the pointer to a water flow section configuration.
- * @param index Indicates the index of the target water flow section.
- * @param callback Gets the spindle size of the specified Item based on index.
+ * @param option Pointer to the {@link FlowItem} section configuration.
+ * @param index Index of the target water flow section.
+ * @param callback Callback used to return the result. **itemIndex** indicates the index of {@link FlowItem}.
  * @since 12
  */
 void OH_ArkUI_WaterFlowSectionOption_RegisterGetItemMainSizeCallbackByIndex(
     ArkUI_WaterFlowSectionOption* option, int32_t index, float (*callback)(int32_t itemIndex));
 
 /**
- * @brief The FlowItem grouping configuration information getsthe spindle size
- * of the specified Item based on flowItemIndex.
+ * @brief Obtains the main axis size of a specified water flow item based on **itemIndex** in the {@link FlowItem}
+ * section configuration. The difference between this API and
+ * {@link OH_ArkUI_WaterFlowSectionOption_RegisterGetItemMainSizeCallbackByIndex} is that this API allows you to pass
+ * custom data (**userData**) and receive the data in the callback function.
  *
- * @param option Indicates the pointer to a water flow section configuration.
- * @param index Indicates the index of the target water flow section.
- * @param userData FlowItem Custom data.
- * @param callback Gets the spindle size of the specified Item based on index.
+ * @param option Pointer to the {@link FlowItem} section configuration.
+ * @param index Index of the target water flow section.
+ * @param userData Pointer to user-defined data, which will be passed back to the user in the callback.
+ * @param callback Callback used to return the result. **itemIndex**: index of the {@link water flow item}; **userData**
+ *     : user-defined data.
  * @since 12
  */
 void OH_ArkUI_WaterFlowSectionOption_RegisterGetItemMainSizeCallbackByIndexWithUserData(
@@ -162,26 +182,23 @@ void OH_ArkUI_WaterFlowSectionOption_RegisterGetItemMainSizeCallbackByIndexWithU
     float (*callback)(int32_t itemIndex, void* userData));
 
 /**
- * @brief Sets the number of columns (in a vertical layout) or rows (in a
- * horizontal layout) of a water flow.
+ * @brief Sets the number of columns (in a vertical layout) or rows (in a horizontal layout) of a water flow.
  *
- * @param option Indicates the pointer to a water flow section configuration.
- * @param index Indicates the index of the target water flow section.
- * @param crossCount Indicates the number of columns or rows, depending on the
- * layout direction.
+ * @param option Pointer to a water flow section configuration.
+ * @param index Index of the target water flow section.
+ * @param crossCount Number of columns or rows, depending on the layout direction.
  * @since 12
  */
 void OH_ArkUI_WaterFlowSectionOption_SetCrossCount(
     ArkUI_WaterFlowSectionOption* option, int32_t index, int32_t crossCount);
 
 /**
- * @brief Obtains the number of columns (in a vertical layout) or rows (in a
- * horizontal layout) in the water flow section that matches the specified
- * index.
+ * @brief Obtains the number of layout grids at the corresponding index based on the {@link FlowItem} section
+ * configuration.
  *
- * @param option Indicates the pointer to a water flow section configuration.
- * @param index Indicates the index of the target water flow section.
- * @return Returns the number of columns or rows.
+ * @param option Pointer to a water flow section configuration.
+ * @param index Index of the target water flow section.
+ * @return Number of columns or rows, depending on the layout direction.
  * @since 12
  */
 int32_t OH_ArkUI_WaterFlowSectionOption_GetCrossCount(ArkUI_WaterFlowSectionOption* option, int32_t index);
@@ -189,41 +206,40 @@ int32_t OH_ArkUI_WaterFlowSectionOption_GetCrossCount(ArkUI_WaterFlowSectionOpti
 /**
  * @brief Sets the gap between columns in the specified water flow section.
  *
- * @param option Indicates the pointer to a water flow section configuration.
- * @param index Indicates the index of the target water flow section.
- * @param columnGap Indicates the gap between columns to set.
+ * @param option Pointer to a water flow section configuration.
+ * @param index Index of the target water flow section.
+ * @param columnGap Gap between columns. Unit: vp.
  * @since 12
  */
 void OH_ArkUI_WaterFlowSectionOption_SetColumnGap(ArkUI_WaterFlowSectionOption* option, int32_t index, float columnGap);
 
 /**
- * @brief Obtains the gap between columns in the water flow section that matches
- * the specified index.
+ * @brief Obtains the gap between columns in the water flow section that matches the specified index.
  *
- * @param option Indicates the pointer to a water flow section configuration.
- * @param index Indicates the index of the target water flow section.
- * @return Returns the gap between columns.
+ * @param option Pointer to a water flow section configuration.
+ * @param index Index of the target water flow section.
+ * @return Gap between columns. Unit: vp.
  * @since 12
  */
 float OH_ArkUI_WaterFlowSectionOption_GetColumnGap(ArkUI_WaterFlowSectionOption* option, int32_t index);
 
 /**
- * @brief Sets the gap between rows in the specified water flow section.
+ * @brief Sets the gap between rows in the **FlowItem** section.
  *
- * @param option Indicates the pointer to a water flow section configuration.
- * @param index Indicates the index of the target water flow section.
- * @param rowGap Indicates the gap between rows to set.
+ * @param option Pointer to a water flow section configuration.
+ * @param index Index of the **FlowItem** section configuration array.
+ * @param rowGap Gap between rows. Unit: vp.
  * @since 12
  */
 void OH_ArkUI_WaterFlowSectionOption_SetRowGap(ArkUI_WaterFlowSectionOption* option, int32_t index, float rowGap);
 
 /**
- * @brief Obtains the gap between rows in the water flow section that matches
- * the specified index.
+ * @brief Obtains the gap between rows in the section at the corresponding index based on the {@link FlowItem} section
+ * configuration.
  *
- * @param option Indicates the pointer to a water flow section configuration.
- * @param index Indicates the index of the target water flow section.
- * @return Returns the gap between rows.
+ * @param option Pointer to the {@link FlowItem} section configuration.
+ * @param index Index of the target water flow section.
+ * @return Gap between rows. Unit: vp.
  * @since 12
  */
 float OH_ArkUI_WaterFlowSectionOption_GetRowGap(ArkUI_WaterFlowSectionOption* option, int32_t index);
@@ -231,24 +247,24 @@ float OH_ArkUI_WaterFlowSectionOption_GetRowGap(ArkUI_WaterFlowSectionOption* op
 /**
  * @brief Sets the margins for the specified water flow section.
  *
- * @param option Indicates the pointer to a water flow section configuration.
- * @param index Indicates the index of the target water flow section.
- * @param marginTop Indicates the top margin of the water flow section.
- * @param marginRight Indicates the right margin of the water flow section.
- * @param marginBottom Indicates the bottom margin of the water flow section.
- * @param marginLeft Indicates the left margin of the water flow section.
+ * @param option Pointer to the {@link FlowItem} section configuration.
+ * @param index Index of the target water flow section.
+ * @param marginTop Top margin of {@link FlowItem}.
+ * @param marginRight Right margin of {@link FlowItem}.
+ * @param marginBottom Bottom margin of {@link FlowItem}.
+ * @param marginLeft Left margin of {@link FlowItem}.
  * @since 12
  */
 void OH_ArkUI_WaterFlowSectionOption_SetMargin(ArkUI_WaterFlowSectionOption* option, int32_t index, float marginTop,
     float marginRight, float marginBottom, float marginLeft);
 
 /**
- * @brief Obtains the margins of the water flow section that matches the
- * specified index.
+ * @brief Obtains the top margin of the section at the corresponding index based on the {@link FlowItem} section
+ * configuration.
  *
- * @param option Indicates the pointer to a water flow section configuration.
- * @param index Indicates the index of the target water flow section.
- * @return Returns the margins.
+ * @param option Pointer to the {@link FlowItem} section configuration.
+ * @param index Index of the target water flow section.
+ * @return Margins. Unit: vp.
  * @since 12
  */
 ArkUI_Margin OH_ArkUI_WaterFlowSectionOption_GetMargin(ArkUI_WaterFlowSectionOption* option, int32_t index);
