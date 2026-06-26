@@ -1857,21 +1857,12 @@ typedef enum {
      * visible area change event of the component. Format of the {@link ArkUI_AttributeItem} parameter for setting the
      * attribute:
      * <br>.value[...].f32: threshold array. The value ranges from 0 to 1.
-     * <br>Format of the return value {@link ArkUI_AttributeItem}:
-     * <br>.value[...].f32: threshold array.
-     *
-     * @since 12
-     */
-    /**
-     * visible area change event of the component. Format of the {@link ArkUI_AttributeItem} parameter for setting the
-     * attribute:
-     * <br>.value[...].f32: threshold array. The value ranges from 0 to 1.
      * <br>.object: The parameter type is {@link ArkUI_VisibleAreaEventOptions}.
      * <br>Format of the return value {@link ArkUI_AttributeItem}:
      * <br>.value[...].f32: threshold array.
      * <br>.object: The return type is {@link ArkUI_VisibleAreaEventOptions}.
      *
-     * @since 22
+     * @since 12
      */
     NODE_VISIBLE_AREA_CHANGE_RATIO = 93,
 
