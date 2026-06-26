@@ -43,61 +43,57 @@ extern "C" {
 #endif
 
 /**
- * @brief Defines the axis type of an input device.
+ * @brief 输入设备的轴类型。
  *
  * @since 12
  */
 typedef enum InputEvent_AxisType {
     /**
-     * Unknown axis type, which is usually used as the initial value.
+     * 未知轴类型，通常作为初始值。
      * @since 12
      */
     AXIS_TYPE_UNKNOWN,
 
     /**
-     * Vertical scroll axis. When you scroll the mouse wheel or slide with one or two fingers on the touchpad, the
-     * status of the vertical scroll axis changes.
+     * 垂直滚动轴，当您滚动鼠标滚轮或在触控板上进行单指或双指滑动时，垂直滚动轴的状态改变。
      * @since 12
      */
     AXIS_TYPE_SCROLL_VERTICAL,
 
     /**
-     * Horizontal scroll axis. When you scroll the mouse wheel or slide with two fingers on the touchpad, the status of
-     * the horizontal scroll axis changes.
+     * 水平滚动轴，当您滚动鼠标滚轮或在触控板上进行双指滑动时，水平滚动轴的状态发生变化。
      * @since 12
      */
     AXIS_TYPE_SCROLL_HORIZONTAL,
 
     /**
-     * Pinch axis, which is used to describe a two-finger pinch gesture on the touchpad.
+     * 捏合轴，用于描述触控板上的双指捏合手势。
      * @since 12
      */
     AXIS_TYPE_PINCH,
 
     /**
-     * Rotation axis, which is used to describe a two-finger rotation gesture on the touchpad.
+     * 旋转轴，用于描述触控板上的双指旋转手势。
      * @since 12
      */
     AXIS_TYPE_ROTATE
 } InputEvent_AxisType;
 
 /**
- * @brief Event type of the input device.
+ * @brief 输入设备的轴事件类型。
  *
  * @since 12
  */
 typedef enum InputEvent_AxisEventType {
     /**
-     * @brief Two-finger pinch event. The value can be **AXIS_TYPE_PINCH** or **AXIS_TYPE_ROTATE**, both of which are
-     * of the {@link InputEvent_AxisType} type.
+     * @brief 双指捏合事件，包含AXIS_TYPE_PINCH和AXIS_TYPE_ROTATE两种{@link InputEvent_AxisType}。
      *
      * @since 12
      */
     AXIS_EVENT_TYPE_PINCH = 1,
     /**
-     * @brief Scroll event. The value can be **AXIS_TYPE_SCROLL_VERTICAL** or **AXIS_TYPE_SCROLL_HORIZONTAL**, both of
-     * which are of the {@link InputEvent_AxisType} type. For a mouse wheel event, only **AXIS_TYPE_SCROLL_VERTICAL**
-     * is supported.
+     * @brief 滚轴事件，包含AXIS_TYPE_SCROLL_VERTICAL和AXIS_TYPE_SCROLL_HORIZONTAL两种{@link InputEvent_AxisType}，
+     * 其中鼠标滚轮事件仅包含AXIS_TYPE_SCROLL_VERTICAL一种{@link InputEvent_AxisType}。
      *
      * @since 12
      */
@@ -105,31 +101,31 @@ typedef enum InputEvent_AxisEventType {
 } InputEvent_AxisEventType;
 
 /**
- * @brief Action of the input device.
+ * @brief 轴事件动作。
  *
  * @since 12
  */
 typedef enum InputEvent_AxisAction {
     /**
-     * The axis event is canceled.
+     * 轴事件取消。
      * @since 12
      */
     AXIS_ACTION_CANCEL = 0,
 
     /**
-     * The axis event begins.
+     * 轴事件开始。
      * @since 12
      */
     AXIS_ACTION_BEGIN,
 
     /**
-     * The axis event is updated.
+     * 轴事件更新。
      * @since 12
      */
     AXIS_ACTION_UPDATE,
 
     /**
-     * The axis event ends.
+     * 轴事件结束。
      * @since 12
      */
     AXIS_ACTION_END
