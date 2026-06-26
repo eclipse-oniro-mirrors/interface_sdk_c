@@ -83,7 +83,7 @@ typedef enum OH_AudioVividSignalFormat {
 /**
  * @brief Represents a position in Cartesian coordinates.
  *
- * Cartesian coordinates use x, y, and z axes to define a postion in three-dimensional space.
+ * Cartesian coordinates use x, y, and z axes to define a position in three-dimensional space.
  *
  * @since 26.0.0
  */
