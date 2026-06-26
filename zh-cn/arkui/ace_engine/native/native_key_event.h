@@ -1071,7 +1071,7 @@ void OH_ArkUI_KeyEvent_SetConsumed(const ArkUI_UIInputEvent* event, bool isConsu
  *
  * @param node 指定的节点。
  * @param event ArkUI_UIInputEvent事件指针。
- * @since 16
+ * @since 15
  */
 void OH_ArkUI_KeyEvent_Dispatch(ArkUI_NodeHandle node, const ArkUI_UIInputEvent* event);
 

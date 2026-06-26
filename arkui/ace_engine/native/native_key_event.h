@@ -889,7 +889,7 @@ void OH_ArkUI_KeyEvent_SetConsumed(const ArkUI_UIInputEvent* event, bool isConsu
  *
  * @param node Target node.
  * @param event Pointer to the target **ArkUI_UIInputEvent** object.
- * @since 16
+ * @since 15
  */
 void OH_ArkUI_KeyEvent_Dispatch(ArkUI_NodeHandle node, const ArkUI_UIInputEvent* event);
 
