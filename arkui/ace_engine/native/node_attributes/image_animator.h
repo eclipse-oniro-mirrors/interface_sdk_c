@@ -36,7 +36,7 @@
 #ifndef ARKUI_NATIVE_NODE_ATTRIBUTES_IMAGE_ANIMATOR_H
 #define ARKUI_NATIVE_NODE_ATTRIBUTES_IMAGE_ANIMATOR_H
 
-#include <cstdint>
+#include <stdint.h>
 
 #include "../drawable_descriptor.h"
 
