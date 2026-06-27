@@ -26,7 +26,7 @@
  * @file cm_native_api.h
  *
  * @brief Declares the APIs used to obtain details of specific certificates.
- * 
+ *
  * @library libohcert_manager.z.so
  * @kit DeviceCertificateKit
  * @syscap SystemCapability.Security.CertificateManager

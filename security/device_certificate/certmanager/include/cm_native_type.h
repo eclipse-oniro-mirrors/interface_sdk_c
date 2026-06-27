@@ -26,7 +26,7 @@
  * @file cm_native_type.h
  *
  * @brief Provides the enums, structs, macros, and error codes used by **CertManager** APIs.
- * 
+ *
  * @library libohcert_manager.z.so
  * @kit DeviceCertificateKit
  * @syscap SystemCapability.Security.CertificateManager

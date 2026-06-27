@@ -26,7 +26,7 @@
  * @file cm_native_api.h
  *
  * @brief Declares the APIs used to obtain details of specific certificates.
- * 
+ *
  * @library libohcert_manager.z.so
  * @kit DeviceCertificateKit
  * @syscap SystemCapability.Security.CertificateManager
@@ -72,17 +72,19 @@ int32_t OH_CertManager_GetUkeyCertificate(const OH_CM_Blob *keyUri,
  * 
  * @param keyUri 存放应用私有证书凭据的唯一标识符（字符串格式）。
  * @param certificate 获取到的应用私有凭据的详情。
- * @return {@link OH_CM_ErrorCode}：
- * OH_CM_SUCCESS = 0 ：操作成功。
- * OH_CM_HAS_NO_PERMISSION = 201 ：权限校验失败。
- * OH_CM_PARAMETER_VALIDATION_FAILED = 17500011 ：入参校验失败。可能原因：
+ * @return <ul>
+ * <li>{@link OH_CM_ErrorCode}：</li>
+ * <li>OH_CM_SUCCESS = 0 ：操作成功。</li>
+ * <li>OH_CM_HAS_NO_PERMISSION = 201 ：权限校验失败。</li>
+ * <li>OH_CM_PARAMETER_VALIDATION_FAILED = 17500011 ：入参校验失败。可能原因：</li>
  * 1.参数格式错误。
- * 2.参数范围无效。
- * OH_CM_INNER_FAILURE = 17500001 ：内部错误。可能原因：
+ * 2.参数范围无效。</li>
+ * <li>OH_CM_INNER_FAILURE = 17500001 ：内部错误。可能原因：
  * 1.IPC通讯失败。
  * 2.内存操作错误。
- * 3.文件操作错误。
- * OH_CM_NOT_FOUND = 17500002 ：证书不存在。
+ * 3.文件操作错误。</li>
+ * <li>OH_CM_NOT_FOUND = 17500002 ：证书不存在。</li>
+ * </ul>
  * @permission ohos.permission.ACCESS_CERT_MANAGER
  * @since 22
  */
