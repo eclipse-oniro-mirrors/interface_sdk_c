@@ -44,8 +44,8 @@ extern "C" {
 /**
  * @brief 创建一个OH_Filter对象。
  *
- * @param[in] pixelmap 创建滤镜的位图。不能为NULL。
- * @param[out] filter 用来接收滤镜的二级指针。不能为NULL。
+ * @param pixelmap [in] 创建滤镜的位图。不能为NULL。
+ * @param filter [out] 用来接收滤镜的二级指针。不能为NULL。
  * @return <ul>
  *         <li>{@link EffectErrorCode#EFFECT_SUCCESS} 操作成功。</li>
  *         <li>{@link EffectErrorCode#EFFECT_BAD_PARAMETER} pixelmap或filter为NULL。</li>
@@ -59,7 +59,7 @@ EffectErrorCode OH_Filter_CreateEffect(OH_PixelmapNative* pixelmap, OH_Filter** 
 /**
  * @brief 释放OH_Filter对象。
  *
- * @param[in] filter 被释放的对象指针。不能为NULL。
+ * @param filter [in] 被释放的对象指针。不能为NULL。
  * @return <ul>
  *         <li>{@link EffectErrorCode#EFFECT_SUCCESS} 操作成功。</li>
  *         <li>{@link EffectErrorCode#EFFECT_BAD_PARAMETER} filter为NULL。</li>
@@ -72,8 +72,8 @@ EffectErrorCode OH_Filter_Release(OH_Filter* filter);
 /**
  * @brief 创建一个毛玻璃滤镜效果，然后添加到滤镜里面。
  *
- * @param[in] filter 滤镜指针。不能为NULL。
- * @param[in] radius 毛玻璃效果的模糊半径，单位为像素。
+ * @param filter [in] 滤镜指针。不能为NULL。
+ * @param radius [in] 毛玻璃效果的模糊半径，单位为像素。
  * @return <ul>
  *         <li>{@link EffectErrorCode#EFFECT_SUCCESS} 操作成功。</li>
  *         <li>{@link EffectErrorCode#EFFECT_BAD_PARAMETER} filter为NULL。</li>
@@ -86,9 +86,9 @@ EffectErrorCode OH_Filter_Blur(OH_Filter* filter, float radius);
 /**
  * @brief 创建一个毛玻璃滤镜效果，然后添加到滤镜里面，支持着色器效果平铺模式选择。
  *
- * @param[in] filter 滤镜指针。不能为NULL。
- * @param[in] radius 毛玻璃效果的模糊半径，单位为像素。
- * @param[in] tileMode 着色器效果平铺模式，支持可选的具体模式可见{@link EffectTileMode}枚举。
+ * @param filter [in] 滤镜指针。不能为NULL。
+ * @param radius [in] 毛玻璃效果的模糊半径，单位为像素。
+ * @param tileMode [in] 着色器效果平铺模式，支持可选的具体模式可见{@link EffectTileMode}枚举。
  * @return <ul>
  *         <li>{@link EffectErrorCode#EFFECT_SUCCESS} 操作成功。</li>
  *         <li>{@link EffectErrorCode#EFFECT_BAD_PARAMETER} filter为NULL。</li>
@@ -100,8 +100,8 @@ EffectErrorCode OH_Filter_BlurWithTileMode(OH_Filter* filter, float radius, Effe
 /**
  * @brief 创建一个提亮效果并且添加到滤镜中。
  *
- * @param[in] filter 滤镜指针。不能为NULL。
- * @param[in] brightness 提亮效果的亮度值，取值范围在0-1之间，取值为0时图像保持不变，取值为1时图像全白。
+ * @param filter [in] 滤镜指针。不能为NULL。
+ * @param brightness [in] 提亮效果的亮度值，取值范围在0-1之间，取值为0时图像保持不变，取值为1时图像全白。
  * @return <ul>
  *         <li>{@link EffectErrorCode#EFFECT_SUCCESS} 操作成功。</li>
  *         <li>{@link EffectErrorCode#EFFECT_BAD_PARAMETER} filter为NULL。</li>
@@ -114,7 +114,7 @@ EffectErrorCode OH_Filter_Brighten(OH_Filter* filter, float brightness);
 /**
  * @brief 创建一个灰度效果并且添加到滤镜中。
  *
- * @param[in] filter 滤镜指针。不能为NULL。
+ * @param filter [in] 滤镜指针。不能为NULL。
  * @return <ul>
  *         <li>{@link EffectErrorCode#EFFECT_SUCCESS} 操作成功。</li>
  *         <li>{@link EffectErrorCode#EFFECT_BAD_PARAMETER} filter为NULL。</li>
@@ -127,7 +127,7 @@ EffectErrorCode OH_Filter_GrayScale(OH_Filter* filter);
 /**
  * @brief 创建一个反色效果并且添加到滤镜中。
  *
- * @param[in] filter 滤镜指针。不能为NULL。
+ * @param filter [in] 滤镜指针。不能为NULL。
  * @return <ul>
  *         <li>{@link EffectErrorCode#EFFECT_SUCCESS} 操作成功。</li>
  *         <li>{@link EffectErrorCode#EFFECT_BAD_PARAMETER} filter为NULL。</li>
@@ -140,8 +140,8 @@ EffectErrorCode OH_Filter_Invert(OH_Filter* filter);
 /**
  * @brief 通过矩阵创建一个自定义的效果并且添加到滤镜中。
  *
- * @param[in] filter 滤镜指针。不能为NULL。
- * @param[in] matrix 用来创建滤镜的自定义矩阵{@link OH_Filter_ColorMatrix}。不能为NULL。
+ * @param filter [in] 滤镜指针。不能为NULL。
+ * @param matrix [in] 用来创建滤镜的自定义矩阵{@link OH_Filter_ColorMatrix}。不能为NULL。
  * @return <ul>
  *         <li>{@link EffectErrorCode#EFFECT_SUCCESS} 操作成功。</li>
  *         <li>{@link EffectErrorCode#EFFECT_BAD_PARAMETER} filter或matrix为NULL。</li>
@@ -154,8 +154,8 @@ EffectErrorCode OH_Filter_SetColorMatrix(OH_Filter* filter, OH_Filter_ColorMatri
 /**
  * @brief 获取滤镜生成的位图。
  *
- * @param[in] filter 用来创建位图的滤镜指针。不能为NULL。
- * @param[out] pixelmap 用来接收位图的二级指针。不能为NULL。
+ * @param filter [in] 用来创建位图的滤镜指针。不能为NULL。
+ * @param pixelmap [out] 用来接收位图的二级指针。不能为NULL。
  * @return <ul>
  *         <li>{@link EffectErrorCode#EFFECT_SUCCESS} 操作成功。</li>
  *         <li>{@link EffectErrorCode#EFFECT_BAD_PARAMETER} filter或pixelmap为NULL。</li>
