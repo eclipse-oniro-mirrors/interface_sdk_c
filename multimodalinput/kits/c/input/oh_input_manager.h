@@ -1030,7 +1030,7 @@ void OH_Input_SetMouseEventAction(struct Input_MouseEvent* mouseEvent, int32_t a
 * @param mouseEvent Mouse event object. You can call {@link OH_Input_CreateMouseEvent()} to create a mouse event
 *     object.
 *     <br>If the mouse event object is no longer needed, destroy it by calling {@link OH_Input_DestroyMouseEvent()}.
-* @return Mouse action. For details, see {@link Input_MouseEventAction}.
+* @return Mouse action.  Returns -1 if mouseEvent is NULL. For details, see {@link Input_MouseEventAction}.
 * @syscap SystemCapability.MultimodalInput.Input.Core
 * @since 12
 */
@@ -1058,7 +1058,7 @@ void OH_Input_SetMouseEventDisplayX(struct Input_MouseEvent* mouseEvent, int32_t
 *     object.
 *     <br>If the mouse event object is no longer needed, destroy it by calling {@link OH_Input_DestroyMouseEvent()}.
 * @return The X coordinate of the mouse event in the relative coordinate system with the upper left corner of the
-*     specified screen as the origin, in pixels (px).
+*     specified screen as the origin, in pixels (px). Returns -1 if mouseEvent is NULL.
 * @syscap SystemCapability.MultimodalInput.Input.Core
 * @since 12
 */
@@ -1086,7 +1086,7 @@ void OH_Input_SetMouseEventDisplayY(struct Input_MouseEvent* mouseEvent, int32_t
 *     object.
 *     <br>If the mouse event object is no longer needed, destroy it by calling {@link OH_Input_DestroyMouseEvent()}.
 * @return Y-coordinate of the mouse event in the relative coordinate system with the upper left corner of the
-*     specified screen as the origin, in pixels (px).
+*     specified screen as the origin, in pixels (px). Returns -1 if mouseEvent is NULL.
 * @syscap SystemCapability.MultimodalInput.Input.Core
 * @since 12
 */
@@ -1108,7 +1108,8 @@ void OH_Input_SetMouseEventButton(struct Input_MouseEvent* mouseEvent, int32_t b
 * @param mouseEvent Mouse event object. You can call {@link OH_Input_CreateMouseEvent()} to create a mouse event
 *     object.
 *     <br>If the mouse event object is no longer needed, destroy it by calling {@link OH_Input_DestroyMouseEvent()}.
-* @return Mouse button. For details, see {@link Input_MouseEventButton}.
+* @return Mouse button. Returns -1 if mouseEvent is NULL.
+*     For details, see {@link Input_MouseEventButton}.
 * @syscap SystemCapability.MultimodalInput.Input.Core
 * @since 12
 */
@@ -1132,7 +1133,8 @@ void OH_Input_SetMouseEventAxisType(struct Input_MouseEvent* mouseEvent, int32_t
 * @param mouseEvent Mouse event object. You can call {@link OH_Input_CreateMouseEvent()} to create a mouse event
 *     object.
 *     <br>If the mouse event object is no longer needed, destroy it by calling {@link OH_Input_DestroyMouseEvent()}.
-* @return Enumerates mouse axis types. For details, see {@link InputEvent_MouseAxis}.
+* @return Enumerates mouse axis types. Returns -1 if mouseEvent is NULL.
+*     For details, see {@link InputEvent_MouseAxis}.
 * @syscap SystemCapability.MultimodalInput.Input.Core
 * @since 12
 */
@@ -1155,7 +1157,7 @@ void OH_Input_SetMouseEventAxisValue(struct Input_MouseEvent* mouseEvent, float 
 * @param mouseEvent Mouse event object. You can call {@link OH_Input_CreateMouseEvent()} to create a mouse event
 *     object.
 *     <br>If the mouse event object is no longer needed, destroy it by calling {@link OH_Input_DestroyMouseEvent()}.
-* @return Axis event value.
+* @return Axis event value. Returns -1 if mouseEvent is NULL.
 * @syscap SystemCapability.MultimodalInput.Input.Core
 * @since 12
 */
@@ -1569,7 +1571,7 @@ Input_Result OH_Input_SetTouchEventPressure(struct Input_TouchEvent* touchEvent,
 *
 * @param touchEvent **TouchEvent** object, which can be created through {@link OH_Input_CreateTouchEvent()}.
 *     <br>If the **TouchEvent** object is no longer needed, destroy it by calling {@link OH_Input_DestroyTouchEvent()}.
-* @return Pressure value, without a unit.
+* @return Pressure value, without a unit. When touchEvent is NULL, return the default pressure 0.0.
 * @since 24
 */
 double OH_Input_GetTouchEventPressure(const struct Input_TouchEvent* touchEvent);
@@ -1593,7 +1595,7 @@ void OH_Input_SetTouchEventWindowX(struct Input_TouchEvent* touchEvent, int32_t 
 * @param touchEvent **TouchEvent** object, which can be created through {@link OH_Input_CreateTouchEvent()}.
 *     <br>If the **TouchEvent** object is no longer needed, destroy it by calling {@link OH_Input_DestroyTouchEvent()}.
 * @return X coordinate in the relative coordinate system with the upper left corner of the specified window as the
-*     origin, in pixels (px).
+*     origin, in pixels (px). When touchEvent is NULL, return the default value 0.
 * @since 24
 */
 int32_t OH_Input_GetTouchEventWindowX(const struct Input_TouchEvent* touchEvent);
@@ -1617,7 +1619,7 @@ void OH_Input_SetTouchEventWindowY(struct Input_TouchEvent* touchEvent, int32_t 
 * @param touchEvent **TouchEvent** object, which can be created through {@link OH_Input_CreateTouchEvent()}.
 *     <br>If the **TouchEvent** object is no longer needed, destroy it by calling {@link OH_Input_DestroyTouchEvent()}.
 * @return Y-coordinate in the relative coordinate system with the origin at the upper left corner of the window, in
-*     pixels (px).
+*     pixels (px). When touchEvent is NULL, return the default value 0.
 * @since 24
 */
 int32_t OH_Input_GetTouchEventWindowY(const struct Input_TouchEvent* touchEvent);
@@ -1643,7 +1645,7 @@ void OH_Input_SetTouchEventDownTime(struct Input_TouchEvent* touchEvent, int64_t
 *     <br>If the **TouchEvent** object is no longer needed, destroy it by calling {@link OH_Input_DestroyTouchEvent()}.
 * @return The time when the most recent press event of the finger or other touch peripherals corresponding to the
 *     current touch screen input occurred, representing the number of microseconds elapsed since system startup, in
-*     microseconds (μs).
+*     microseconds (μs). When touchEvent is NULL, return 0.
 * @since 24
 */
 int64_t OH_Input_GetTouchEventDownTime(const struct Input_TouchEvent* touchEvent);
@@ -1666,7 +1668,7 @@ Input_Result OH_Input_SetTouchEventToolType(struct Input_TouchEvent* touchEvent,
 *
 * @param touchEvent **TouchEvent** object, which can be created through {@link OH_Input_CreateTouchEvent()}.
 *     <br>If the **TouchEvent** object is no longer needed, destroy it by calling {@link OH_Input_DestroyTouchEvent()}.
-* @return Tool type.
+* @return Tool type.{@link TOOL_TYPE_FINGER} When touchEvent is NULL, return the default toolType.
 * @since 24
 */
 Input_TouchEventToolType OH_Input_GetTouchEventToolType(const struct Input_TouchEvent* touchEvent);
@@ -2565,7 +2567,8 @@ Input_Result OH_Input_GetDeviceAddress(Input_DeviceInfo *deviceInfo, char **addr
 * @param listener Pointer to the {@link Input_DeviceListener} object.
 * @return Return value of the **OH_Input_RegisterDeviceListener** function.
 *     <br>{@link INPUT_SUCCESS} if the operation is successful;
-*     <br>{@link INPUT_PARAMETER_ERROR} if the listener is null.
+*     <br>{@link INPUT_PARAMETER_ERROR} if the listener is null;
+*     <br>{@link INPUT_SERVICE_EXCEPTION} if the service is abnormal.
 * @syscap SystemCapability.MultimodalInput.Input.Core
 * @since 13
 */
