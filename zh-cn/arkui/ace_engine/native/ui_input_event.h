@@ -468,7 +468,7 @@ enum {
 /**
  * @brief Enumerates the axis types for axis events.
  *
- * @since 21
+ * @since 22
  */
 enum {
     /** Vertical scroll axis. */
