@@ -21,12 +21,13 @@
  *
  * @since 22
  */
+
 /**
  * @file cm_native_type.h
  *
  * @brief Provides the enums, structs, macros, and error codes used by **CertManager** APIs.
- *
- * @library libohcert_manager.so
+ * 
+ * @library libohcert_manager.z.so
  * @kit DeviceCertificateKit
  * @syscap SystemCapability.Security.CertificateManager
  * @since 22
@@ -43,14 +44,30 @@
 extern "C" {
 #endif
 
+/**
+ * @brief Maximum size of a certificate chain, in bytes.
+ * @since 22
+ */
 #define OH_CM_MAX_LEN_CERTIFICATE_CHAIN   24588
+/**
+ * @brief Maximum URI length, in bytes.
+ * @since 22
+ */
 #define OH_CM_MAX_LEN_URI              256
+/**
+ * @brief Maximum length of a certificate alias, in bytes.
+ * @since 22
+ */
 #define OH_CM_MAX_LEN_CERT_ALIAS       129
+/**
+ * @brief Maximum length of a certificate type, in bytes.
+ * @since 22
+ */
 #define OH_CM_MAX_LEN_TYPE_NAME       1025
 
 /**
  * @brief Enumerates error codes.
- *
+ * 
  * @since 22
  */
 typedef enum {
@@ -87,7 +104,7 @@ typedef enum {
      */
     OH_CM_NO_AUTHORIZATION = 17500005,
     /**
-     * The device enters the advanced security mode.
+     * The device enters the advanced security mode.In this mode, CA certificate installation is restricted.
      */
     OH_CM_DEVICE_ENTER_ADVSECMODE = 17500007,
     /**
