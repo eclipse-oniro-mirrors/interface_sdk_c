@@ -23,7 +23,7 @@
  */
 
 /**
- * @file swiper.h
+ * @file navigation_router.h
  *
  * @brief Defines a set of navigation or router enum and interface.
  *
