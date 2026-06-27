@@ -21,12 +21,13 @@
  *
  * @since 22
  */
+
 /**
  * @file cm_native_api.h
  *
  * @brief Declares the APIs used to obtain details of specific certificates.
- *
- * @library libohcert_manager.so
+ * 
+ * @library libohcert_manager.z.so
  * @kit DeviceCertificateKit
  * @syscap SystemCapability.Security.CertificateManager
  * @since 22
@@ -40,71 +41,76 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-
-
 /**
- * @brief Obtains the detail list of USB certificate credentials.
+ * @brief Obtains the detail list of USB certificate credentials. After the call is complete,
+ * call OH_CertManager_FreeUkeyCertificate to release the certificateList memory.
  *
  * @param keyUri Pointer to the URI that stores the USB certificate credentials, in string format.
  * @param ukeyInfo Pointer to the property information of the USB certificate credential.
  * @param certificateList Pointer to the USB certificate credential detail list obtained.
- * @return {@link OH_CM_ErrorCode}:
- *     **OH_CM_SUCCESS = 0**: Operation successful.
- *     **OH_CM_HAS_NO_PERMISSION = 201**: Permission verification failed.
- *     **OH_CM_CAPABILITY_NOT_SUPPORTED = 801**: The device is not supported.
- *     **OH_CM_PARAMETER_VALIDATION_FAILED = 17500011**: Input parameter verification failed. Possible causes:
- *         1. Incorrect parameter format.
- *         2. Invalid parameter value range.
- *     **OH_CM_INNER_FAILURE = 17500001**: Internal error. Possible causes:
- *         1. IPC failure.
- *         2. Memory operation error.
- *         3. File operation error.
- *     **OH_CM_NOT_FOUND = 17500002**: The certificate does not exist.
- *     **OH_CM_ACCESS_UKEY_SERVICE_FAILED = 17500010**: Failed to access the USB certificate credential.
+ * @return <ul>
+ * <li>{@link OH_CM_ErrorCode} : </li>
+ * <li>**OH_CM_SUCCESS = 0**: Operation successful.</li>
+ * <li>**OH_CM_HAS_NO_PERMISSION = 201**: Permission verification failed.</li>
+ * <li>**OH_CM_CAPABILITY_NOT_SUPPORTED = 801**: The device is not supported.</li>
+ * <li>**OH_CM_PARAMETER_VALIDATION_FAILED = 17500011**: Input parameter verification failed. Possible causes:
+ * 1. Incorrect parameter format.
+ * 2. Invalid parameter value range.</li>
+ * <li>**OH_CM_INNER_FAILURE = 17500001**: Internal error. Possible causes:
+ * 1. IPC failure.
+ * 2. Memory operation error.
+ * 3. File operation error.</li>
+ * <li>**OH_CM_NOT_FOUND = 17500002**: The certificate does not exist.</li>
+ * <li>**OH_CM_ACCESS_UKEY_SERVICE_FAILED = 17500010**: Failed to access the USB certificate credential.</li>
+ * </ul>
  * @permission ohos.permission.ACCESS_CERT_MANAGER
  * @since 22
  */
 int32_t OH_CertManager_GetUkeyCertificate(const OH_CM_Blob *keyUri,
     const OH_CM_UkeyInfo *ukeyInfo, OH_CM_CredentialDetailList *certificateList);
-
 /**
  * @brief Obtains the details of a private certificate credential of a specific application.
+ * After the call is complete, call OH_CertManager_FreeCredential to release the certificate memory.
  *
  * @param keyUri Pointer to the URI that stores the application's private certificate credentials, in string format.
  * @param certificate Pointer to the details of the application's private credentials obtained.
- * @return {@link OH_CM_ErrorCode}:
- *     **OH_CM_SUCCESS = 0**: Operation successful.
- *     **OH_CM_HAS_NO_PERMISSION = 201**: Permission verification failed.
- *     **OH_CM_PARAMETER_VALIDATION_FAILED = 17500011**: Input parameter verification failed. Possible causes:
- *         1. Incorrect parameter format.
- *         2. Invalid parameter value range.
- *     **OH_CM_INNER_FAILURE = 17500001**: Internal error. Possible causes:
- *         1. IPC failure.
- *         2. Memory operation error.
- *         3. File operation error.
- *     **OH_CM_NOT_FOUND = 17500002**: The certificate does not exist.
+ * @return <ul>
+ * <li>{@link OH_CM_ErrorCode} : </li>
+ * <li>**OH_CM_SUCCESS = 0**: Operation successful.</li>
+ * <li>**OH_CM_HAS_NO_PERMISSION = 201**: Permission verification failed.</li>
+ * <li>**OH_CM_PARAMETER_VALIDATION_FAILED = 17500011**: Input parameter verification failed. Possible causes:
+ * 1. Incorrect parameter format.
+ * 2. Invalid parameter value range.</li>
+ * <li>**OH_CM_INNER_FAILURE = 17500001**: Internal error. Possible causes:
+ * 1. IPC failure.
+ * 2. Memory operation error.
+ * 3. File operation error.</li>
+ * <li>**OH_CM_NOT_FOUND = 17500002**: The certificate does not exist.</li>
+ * </ul>
  * @permission ohos.permission.ACCESS_CERT_MANAGER
  * @since 22
  */
 int32_t OH_CertManager_GetPrivateCertificate(const OH_CM_Blob *keyUri, OH_CM_Credential *certificate);
-
 /**
  * @brief Obtains the details of a public certificate credential of a specific user.
+ * After the call is complete, call OH_CertManager_FreeCredential to release the certificate memory.
  *
  * @param keyUri Pointer to the URI that stores the user's public certificate credentials, in string format.
  * @param certificate Pointer to the details of the user's public certificate credential obtained.
- * @return {@link OH_CM_ErrorCode}:
- *     **OH_CM_SUCCESS = 0**: Operation successful.
- *     **OH_CM_HAS_NO_PERMISSION = 201**: Permission verification failed.
- *     **OH_CM_PARAMETER_VALIDATION_FAILED = 17500011**: Input parameter verification failed. Possible causes:
- *         1. Incorrect parameter format.
- *         2. Invalid parameter value range.
- *     **OH_CM_INNER_FAILURE = 17500001**: Internal error. Possible causes:
- *         1. IPC failure.
- *         2. Memory operation error.
- *         3. File operation error.
- *     **OH_CM_NOT_FOUND = 17500002**: The certificate does not exist.
- *     **OH_CM_NO_AUTHORIZATION = 17500005**: The application is not authorized.
+ * @return <ul>
+ * <li>{@link OH_CM_ErrorCode} : </li>
+ * <li>**OH_CM_SUCCESS = 0**: Operation successful.</li>
+ * <li>**OH_CM_HAS_NO_PERMISSION = 201**: Permission verification failed.</li>
+ * <li>**OH_CM_PARAMETER_VALIDATION_FAILED = 17500011**: Input parameter verification failed. Possible causes:
+ * 1. Incorrect parameter format.
+ * 2. Invalid parameter value range.</li>
+ * <li>**OH_CM_INNER_FAILURE = 17500001**: Internal error. Possible causes:
+ * 1. IPC failure.
+ * 2. Memory operation error.
+ * 3. File operation error.</li>
+ * <li>**OH_CM_NOT_FOUND = 17500002**: The certificate does not exist.</li>
+ * <li>**OH_CM_NO_AUTHORIZATION = 17500005**: The application is not authorized.</li>
+ * </ul>
  * @permission ohos.permission.ACCESS_CERT_MANAGER
  * @since 22
  */
