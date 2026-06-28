@@ -36,7 +36,7 @@
 #ifndef ARKUI_NATIVE_NODE_ATTRIBUTES_PICKER_H
 #define ARKUI_NATIVE_NODE_ATTRIBUTES_PICKER_H
 
-#include <cstdint>
+#include <stdint.h>
 
 #ifdef __cplusplus
 extern "C" {
