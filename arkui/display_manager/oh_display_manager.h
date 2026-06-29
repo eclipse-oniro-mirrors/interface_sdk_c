@@ -510,6 +510,7 @@ NativeDisplayManager_ErrorCode OH_NativeDisplayManager_UnregisterDisplayRemoveLi
  * @param sourceMode Pointer to the source mode. For details about the available options, see
  *     {@link NativeDisplayManager_SourceMode}.
  * @return <ul><li>{@link DISPLAY_MANAGER_OK} If the operation is successful.</li>
+ *     <li>{@link DISPLAY_MANAGER_ERROR_ILLEGAL_PARAM} If Parameter illegal.</li>
  *     <li>{@link DISPLAY_MANAGER_ERROR_SYSTEM_ABNORMAL} If display manager service works abnormally.</li></ul>
  * @since 20
  */
@@ -525,6 +526,7 @@ NativeDisplayManager_ErrorCode OH_NativeDisplayManager_GetDisplaySourceMode(uint
  * @param y Pointer to the y-coordinate relative to the upper left corner of the main screen, in px. The value must be
  *     an integer and is returned as an output parameter.
  * @return <ul><li>{@link DISPLAY_MANAGER_OK} If the operation is successful.</li>
+ *     <li>{@link DISPLAY_MANAGER_ERROR_ILLEGAL_PARAM} If Parameter illegal.</li>
  *     <li>{@link DISPLAY_MANAGER_ERROR_SYSTEM_ABNORMAL} If display manager service works abnormally.</li></ul>
  * @since 20
  */
