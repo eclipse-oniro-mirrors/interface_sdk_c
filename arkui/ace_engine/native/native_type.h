@@ -1646,26 +1646,6 @@ ArkUI_ErrorCode OH_ArkUI_TextEditMenuOptions_RegisterOnMenuItemClickCallback(
     ArkUI_TextEditMenuOptions* editMenuOptions, void* userData, ArkUI_TextMenuItemClickCallback cb);
 
 /**
-* @brief Enumerates raw input event types.
-*
-* @since 26.0.0
-*/
-typedef enum {
-    /**
-     * Touch event.
-     *
-     * @since 26.0.0
-     */
-    ARKUI_RAW_INPUT_EVENT_TYPE_TOUCH = 0,
-    /**
-     * Mouse event.
-     *
-     * @since 26.0.0
-     */
-    ARKUI_RAW_INPUT_EVENT_TYPE_MOUSE = 1,
-} ArkUI_RawInputEventType;
-
-/**
  * @brief Sets the recognition types of a configuration object for selected text recognition.
  *
  * @param selectionMenuOptions Pointer to the ArkUI_TextSelectionMenuOptions object.
