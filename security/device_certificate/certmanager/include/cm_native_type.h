@@ -67,7 +67,7 @@ extern "C" {
 
 /**
  * @brief Enumerates error codes.
- * 
+ *
  * @since 22
  */
 typedef enum {

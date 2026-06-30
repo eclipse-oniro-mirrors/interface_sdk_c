@@ -67,7 +67,7 @@ extern "C" {
 
 /**
  * @brief Enumerates error codes.
- * 
+ *
  * @since 22
  */
 typedef enum {
@@ -123,7 +123,7 @@ typedef enum {
 
 /**
  * @brief 证书凭据用途类型。
- * 
+ *
  * @since 22
  */
 typedef enum {
