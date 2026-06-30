@@ -168,11 +168,14 @@ typedef enum {
  * @param inputFormat Pointer to the input audio format configuration.
  * @param outputFormat Pointer to the output audio format configuration.
  * @param converter Pointer to a variable that receives the created audio converter instance.
- * @return {@link #AUDIOCONVERTER_SUCCESS} if execution succeeds,
- * or {@link #AUDIOCONVERTER_ERROR_INVALID_PARAM} if the input parameters are invalid.
- * or {@link #AUDIOCONVERTER_ERROR_UNSUPPORTED_FORMAT} if the specified input/output format combination is unsupported.
- * or {@link #AUDIOCONVERTER_ERROR_MEMORY_ALLOC_FAILED} if memory allocation failed.
- * or {@link #AUDIOCONVERTER_ERROR_SYSTEM} if the system has other abnormalities.
+ * @return <ul>
+ *         <li>{@link #AUDIOCONVERTER_SUCCESS} if execution succeeds.</li>
+ *         <li>{@link #AUDIOCONVERTER_ERROR_INVALID_PARAM} if the input parameters are invalid</li>
+ *         <li>{@link #AUDIOCONVERTER_ERROR_UNSUPPORTED_FORMAT}
+ *             if the specified input/output format combination is unsupported</li>
+ *         <li>{@link #AUDIOCONVERTER_ERROR_MEMORY_ALLOC_FAILED} if memory allocation failed</li>
+ *         <li>{@link #AUDIOCONVERTER_ERROR_SYSTEM} if the system has other abnormalities</li>
+ *         </ul>
  * @release OH_AudioConverter_Destroy {converter}
  * @since 26.0.0
  */
@@ -251,11 +254,15 @@ typedef int32_t (*OH_AudioConverter_RequestDataCallback)(
  * @param callback Callback function that will be invoked during {@link OH_AudioConverter_Process}
  * to actively request input audio data.
  * @param userData Pointer to an application data structure that will be passed to the callback functions.
- * @return {@link #AUDIOCONVERTER_SUCCESS} if execution succeeds
- * or {@link #AUDIOCONVERTER_ERROR_INVALID_PARAM} if parameter is invalid, e.g. converter is nullptr, e.t.c.
- * or {@link #AUDIOCONVERTER_ERROR_NOT_INITIALIZED} if the converter instance is not initialized.
- * or {@link #AUDIOCONVERTER_ERROR_CALLBACK_INVALID} if callback is invalid, e.g. invalid callback return, e.t.c.
- * or {@link #AUDIOCONVERTER_ERROR_SYSTEM} if the system has other abnormalities.
+ * @return <ul>
+ *         <li>{@link #AUDIOCONVERTER_SUCCESS} if execution succeeds.</li>
+ *         <li>{@link #AUDIOCONVERTER_ERROR_INVALID_PARAM} if parameter is invalid,
+ *             e.g. converter is nullptr, e.t.c.</li>
+ *         <li>{@link #AUDIOCONVERTER_ERROR_NOT_INITIALIZED} if the converter instance is not initialized</li>
+ *         <li>{@link #AUDIOCONVERTER_ERROR_CALLBACK_INVALID} if callback is invalid,
+ *             e.g. invalid callback return, e.t.c.</li>
+ *         <li>{@link #AUDIOCONVERTER_ERROR_SYSTEM} if the system has other abnormalities</li>
+ *         </ul>
  * @since 26.0.0
  */
 OH_AudioConverter_Result OH_AudioConverter_SetInputCallback(
@@ -278,14 +285,17 @@ OH_AudioConverter_Result OH_AudioConverter_SetInputCallback(
  * Returns the number of bytes actually written on success.
  * When {@link AUDIOCONVERTER_SUCCESS} is returned but outputSize is 0,
  * it indicates that all buffered data has been fully flushed.
- * @return {@link #AUDIOCONVERTER_SUCCESS} if execution succeeds
- * or {@link #AUDIOCONVERTER_ERROR_INVALID_PARAM} if parameter is invalid, e.g. converter is nullptr, e.t.c.
- * or {@link #AUDIOCONVERTER_ERROR_NOT_INITIALIZED} if the converter instance is not initialized.
- * or {@link #AUDIOCONVERTER_ERROR_CALLBACK_INVALID} if callback is invalid,
- * e.g. callback returned an invalid value, e.t.c.
- * or {@link #AUDIOCONVERTER_ERROR_CALLBACK_NOT_SET} if no input callback is bound to the converter.
- * or {@link #AUDIOCONVERTER_ERROR_BUFFER_TOO_SMALL} if output buffer capacity is insufficient.
- * or {@link #AUDIOCONVERTER_ERROR_SYSTEM} if the system has other abnormalities.
+ * @return <ul>
+ *         <li>{@link #AUDIOCONVERTER_SUCCESS} if execution succeeds.</li>
+ *         <li>{@link #AUDIOCONVERTER_ERROR_INVALID_PARAM} if parameter is invalid,
+ *             e.g. converter is nullptr, e.t.c.</li>
+ *         <li>{@link #AUDIOCONVERTER_ERROR_NOT_INITIALIZED} if the converter instance is not initialized</li>
+ *         <li>{@link #AUDIOCONVERTER_ERROR_CALLBACK_INVALID} if callback is invalid,
+ *             e.g. callback returned an invalid value, e.t.c.</li>
+ *         <li>{@link #AUDIOCONVERTER_ERROR_CALLBACK_NOT_SET} if no input callback is bound to the converter</li>
+ *         <li>{@link #AUDIOCONVERTER_ERROR_BUFFER_TOO_SMALL} if output buffer capacity is insufficient</li>
+ *         <li>{@link #AUDIOCONVERTER_ERROR_SYSTEM} if the system has other abnormalities</li>
+ *         </ul>
  * @since 26.0.0
  */
 OH_AudioConverter_Result OH_AudioConverter_Process(

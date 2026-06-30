@@ -95,11 +95,15 @@ OH_AudioSuite_Result OH_AudioSuiteEngine_CreatePipeline(
  * @brief Request to destroy the pipeline.
  *
  * @param audioSuitePipeline Reference created by OH_AudioSuiteEngine_CreatePipeline.
- * @return {@link #AUDIOSUITE_SUCCESS} if execution succeeds,
- * or {@link #AUDIOSUITE_ERROR_INVALID_PARAM} if parameter is invalid, e.g. audioSuitePipeline is nullptr, e.t.c.
- * or {@link #AUDIOSUITE_ERROR_PIPELINE_NOT_EXIST} if pipeline does not exist or has already been destroyed.
- * or {@link #AUDIOSUITE_ERROR_TIMEOUT} if an operation times out before completion.
- * or {@link #AUDIOSUITE_ERROR_SYSTEM} if the system has other abnormalities.
+ * @return <ul>
+ *         <li>{@link #AUDIOSUITE_SUCCESS} if execution succeeds.</li>
+ *         <li>{@link #AUDIOSUITE_ERROR_INVALID_PARAM} if parameter is invalid,
+ *             e.g. audioSuitePipeline is nullptr, e.t.c.</li>
+ *         <li>{@link #AUDIOSUITE_ERROR_PIPELINE_NOT_EXIST}
+ *             if pipeline does not exist or has already been destroyed.</li>
+ *         <li>{@link #AUDIOSUITE_ERROR_TIMEOUT} if an operation times out before completion.</li>
+ *         <li>{@link #AUDIOSUITE_ERROR_SYSTEM} if the system has other abnormalities.</li>
+ *         </ul>
  * @since 22
  */
 OH_AudioSuite_Result OH_AudioSuiteEngine_DestroyPipeline(OH_AudioSuitePipeline* audioSuitePipeline);
@@ -350,18 +354,20 @@ OH_AudioSuite_Result OH_AudioSuiteNodeBuilder_SetRequestDataCallback(
  * @param audioSuitePipeline Reference created by OH_AudioSuiteEngine_CreatePipeline.
  * @param builder Audio node builder created by OH_AudioSuiteNodeBuilder_Create.
  * @param audioNode Pointer to a variable to receive the audio node.
- * @return {@link #AUDIOSUITE_SUCCESS} if execution succeeds,
- * or {@link #AUDIOSUITE_ERROR_INVALID_PARAM} if parameter is nullptr or not valid value.
- * or {@link #AUDIOSUITE_ERROR_CREATED_EXCEED_SYSTEM_LIMITS} the number of nodes
- * of the current type exceeds the pipeline limit.
- * or {@link #AUDIOSUITE_ERROR_REQUIRED_PARAMETERS_MISSING} if the input type is inputNode,
- * but no callback function is set, e.t.c.
- * or {@link #AUDIOSUITE_ERROR_UNSUPPORTED_OPERATION} if the current constructor node type is output node but the
- * Callback function was set, or the constructor node type is an effect node but the audio format or callback
- * function was set.
- * or {@link #AUDIOSUITE_ERROR_TIMEOUT} if an operation times out before completion.
- * or {@link #AUDIOSUITE_ERROR_MEMORY_ALLOC_FAILED} if memory allocation failed.
- * or {@link #AUDIOSUITE_ERROR_SYSTEM} if the system has other abnormalities.
+ * @return <ul>
+ *         <li>{@link #AUDIOSUITE_SUCCESS} if execution succeeds.</li>
+ *         <li>{@link #AUDIOSUITE_ERROR_INVALID_PARAM} if parameter is nullptr or not valid value.</li>
+ *         <li>{@link #AUDIOSUITE_ERROR_CREATED_EXCEED_SYSTEM_LIMITS} the number of nodes
+ *             of the current type exceeds the pipeline limit.</li>
+ *         <li>{@link #AUDIOSUITE_ERROR_REQUIRED_PARAMETERS_MISSING} if the input type is inputNode,
+ *             but no callback function is set, e.t.c.</li>
+ *         <li>{@link #AUDIOSUITE_ERROR_UNSUPPORTED_OPERATION}
+ *             if the current constructor node type is output node but the Callback function was set,
+ *             or the constructor node type is an effect node but the audio format or callback function was set.</li>
+ *         <li>{@link #AUDIOSUITE_ERROR_TIMEOUT} if an operation times out before completion.</li>
+ *         <li>{@link #AUDIOSUITE_ERROR_MEMORY_ALLOC_FAILED} if memory allocation failed.</li>
+ *         <li>{@link #AUDIOSUITE_ERROR_SYSTEM} if the system has other abnormalities.</li>
+ *         </ul>
  * @since 22
  */
 OH_AudioSuite_Result OH_AudioSuiteEngine_CreateNode(
@@ -431,14 +437,18 @@ OH_AudioSuite_Result OH_AudioSuiteEngine_BypassEffectNode(OH_AudioNode* audioNod
  *
  * @param audioNode Reference created by OH_AudioSuiteEngine_CreateNode.
  * @param audioFormat Audio Format.
- * @return <ul><li>{@link #AUDIOSUITE_SUCCESS} if execution succeeds</li>
- * <li> {@link #AUDIOSUITE_ERROR_INVALID_PARAM} if parameter is nullptr.</li>
- * <li> {@link #AUDIOSUITE_ERROR_NODE_NOT_EXIST} if audioNode does not exist or has been destroyed.</li>
- * <li> {@link #AUDIOSUITE_ERROR_UNSUPPORTED_OPERATION} if the audioNode is an effect node.</li>
- * <li> {@link #AUDIOSUITE_ERROR_UNSUPPORTED_FORMAT} if an unsupported format is set in audioFormat. [since 26.0.0]</li>
- * <li> {@link #AUDIOSUITE_ERROR_INVALID_STATE} if the pipeline where the node resides is not in the stop state.</li>
- * <li> {@link #AUDIOSUITE_ERROR_TIMEOUT} if an operation times out before completion.</li>
- * <li> {@link #AUDIOSUITE_ERROR_SYSTEM} if the system has other abnormalities.</li></ul>
+ * @return <ul>
+ *         <li>{@link #AUDIOSUITE_SUCCESS} if execution succeeds</li>
+ *         <li>{@link #AUDIOSUITE_ERROR_INVALID_PARAM} if parameter is nullptr.</li>
+ *         <li>{@link #AUDIOSUITE_ERROR_NODE_NOT_EXIST} if audioNode does not exist or has been destroyed.</li>
+ *         <li>{@link #AUDIOSUITE_ERROR_UNSUPPORTED_OPERATION} if the audioNode is an effect node.</li>
+ *         <li>{@link #AUDIOSUITE_ERROR_UNSUPPORTED_FORMAT}
+ *             if an unsupported format is set in audioFormat. [since 26.0.0]</li>
+ *         <li>{@link #AUDIOSUITE_ERROR_INVALID_STATE}
+ *             if the pipeline where the node resides is not in the stop state.</li>
+ *         <li>{@link #AUDIOSUITE_ERROR_TIMEOUT} if an operation times out before completion.</li>
+ *         <li>{@link #AUDIOSUITE_ERROR_SYSTEM} if the system has other abnormalities.</li>
+ *         </ul>
  * @since 22
  */
 OH_AudioSuite_Result OH_AudioSuiteEngine_SetAudioFormat(OH_AudioNode* audioNode, OH_AudioFormat* audioFormat);
@@ -453,13 +463,18 @@ OH_AudioSuite_Result OH_AudioSuiteEngine_SetAudioFormat(OH_AudioNode* audioNode,
  *
  * @param sourceAudioNode source node Reference created by OH_AudioSuiteEngine_CreateNode.
  * @param destAudioNode dest node Reference created by OH_AudioSuiteEngine_CreateNode.
- * @return {@link #AUDIOSUITE_SUCCESS} if execution succeeds
- * or {@link #AUDIOSUITE_ERROR_INVALID_PARAM} if parameter is invalid, e.g. sourceAudioNode is nullptr, e.t.c.
- * or {@link #AUDIOSUITE_ERROR_INVALID_STATE} if pipeline state is invalid, e.g. can not find output node, e.t.c.
- * or {@link #AUDIOSUITE_ERROR_NODE_NOT_EXIST} if audioNode does not exist or has been destroyed.
- * or {@link #AUDIOSUITE_ERROR_UNSUPPORTED_CONNECT} if connections between two node types are not supported.
- * or {@link #AUDIOSUITE_ERROR_TIMEOUT} if an operation times out before completion.
- * or {@link #AUDIOSUITE_ERROR_SYSTEM} if the system has other abnormalities.
+ * @return <ul>
+ *         <li>{@link #AUDIOSUITE_SUCCESS} if execution succeeds.</li>
+ *         <li>{@link #AUDIOSUITE_ERROR_INVALID_PARAM} if parameter is invalid,
+ *             e.g. sourceAudioNode is nullptr, e.t.c.</li>
+ *         <li>{@link #AUDIOSUITE_ERROR_INVALID_STATE} if pipeline state is invalid,
+ *             e.g. can not find output node, e.t.c.</li>
+ *         <li>{@link #AUDIOSUITE_ERROR_NODE_NOT_EXIST} if audioNode does not exist or has been destroyed.</li>
+ *         <li>{@link #AUDIOSUITE_ERROR_UNSUPPORTED_CONNECT}
+ *             if connections between two node types are not supported.</li>
+ *         <li>{@link #AUDIOSUITE_ERROR_TIMEOUT} if an operation times out before completion.</li>
+ *         <li>{@link #AUDIOSUITE_ERROR_SYSTEM} if the system has other abnormalities.</li>
+ *         </ul>
  * @since 22
  */
 OH_AudioSuite_Result OH_AudioSuiteEngine_ConnectNodes(
@@ -472,13 +487,18 @@ OH_AudioSuite_Result OH_AudioSuiteEngine_ConnectNodes(
  *
  * @param sourceAudioNode Preceding audio node Reference created by OH_AudioSuiteEngine_CreateNode.
  * @param destAudioNode Subsequent audio node Reference created by OH_AudioSuiteEngine_CreateNode.
- * @return {@link #AUDIOSUITE_SUCCESS} if execution succeeds
- * or {@link #AUDIOSUITE_ERROR_INVALID_PARAM} if parameter is invalid, e.g. sourceAudioNode is nullptr, e.t.c.
- * or {@link #AUDIOSUITE_ERROR_INVALID_STATE} if pipeline state is invalid, e.g. can not find output node, e.t.c.
- * or {@link #AUDIOSUITE_ERROR_NODE_NOT_EXIST} if audioNode does not exist or has been destroyed.
- * or {@link #AUDIOSUITE_ERROR_UNSUPPORTED_OPERATION} if sourceAudioNode and destAudioNode are the same node, e.t.c.
- * or {@link #AUDIOSUITE_ERROR_TIMEOUT} if an operation times out before completion.
- * or {@link #AUDIOSUITE_ERROR_SYSTEM} if the system has other abnormalities.
+ * @return <ul>
+ *         <li>{@link #AUDIOSUITE_SUCCESS} if execution succeeds.</li>
+ *         <li>{@link #AUDIOSUITE_ERROR_INVALID_PARAM} if parameter is invalid,
+ *             e.g. sourceAudioNode is nullptr, e.t.c.</li>
+ *         <li>{@link #AUDIOSUITE_ERROR_INVALID_STATE} if pipeline state is invalid,
+ *             e.g. can not find output node, e.t.c.</li>
+ *         <li>{@link #AUDIOSUITE_ERROR_NODE_NOT_EXIST} if audioNode does not exist or has been destroyed.</li>
+ *         <li>{@link #AUDIOSUITE_ERROR_UNSUPPORTED_OPERATION} if sourceAudioNode and destAudioNode are the same node,
+ *             e.t.c.</li>
+ *         <li>{@link #AUDIOSUITE_ERROR_TIMEOUT} if an operation times out before completion.</li>
+ *         <li>{@link #AUDIOSUITE_ERROR_SYSTEM} if the system has other abnormalities.</li>
+ *         </ul>
  * @since 22
  */
 OH_AudioSuite_Result OH_AudioSuiteEngine_DisconnectNodes(OH_AudioNode* sourceAudioNode, OH_AudioNode* destAudioNode);
@@ -533,12 +553,14 @@ OH_AudioSuite_Result OH_AudioSuiteEngine_GetEqualizerFrequencyBandGains(
  *
  * @param audioNode Reference created by OH_AudioSuiteEngine_CreateNode.
  * @param soundFieldType The sound field type.
- * @return {@link #AUDIOSUITE_SUCCESS} if execution succeeds
- * or {@link #AUDIOSUITE_ERROR_NODE_NOT_EXIST} if audioNode does not exist or has been destroyed.
- * or {@link #AUDIOSUITE_ERROR_UNSUPPORTED_OPERATION} if audioNode is not a soundfield node.
- * or {@link #AUDIOSUITE_ERROR_INVALID_PARAM} if parameter is invalid, e.g. audioNode is nullptr, e.t.c.
- * or {@link #AUDIOSUITE_ERROR_TIMEOUT} if an operation times out before completion.
- * or {@link #AUDIOSUITE_ERROR_SYSTEM} if the system has other abnormalities.
+ * @return <ul>
+           <li>{@link #AUDIOSUITE_SUCCESS} if execution succeeds.</li>
+ *         <li>{@link #AUDIOSUITE_ERROR_NODE_NOT_EXIST} if audioNode does not exist or has been destroyed.</li>
+ *         <li>{@link #AUDIOSUITE_ERROR_UNSUPPORTED_OPERATION} if audioNode is not a soundfield node.</li>
+ *         <li>{@link #AUDIOSUITE_ERROR_INVALID_PARAM} if parameter is invalid, e.g. audioNode is nullptr, e.t.c.</li>
+ *         <li>{@link #AUDIOSUITE_ERROR_TIMEOUT} if an operation times out before completion.</li>
+ *         <li>{@link #AUDIOSUITE_ERROR_SYSTEM} if the system has other abnormalities.</li>
+ *         </ul>
  * @since 22
  */
 OH_AudioSuite_Result OH_AudioSuiteEngine_SetSoundFieldType(OH_AudioNode* audioNode, OH_SoundFieldType soundFieldType);
@@ -548,13 +570,15 @@ OH_AudioSuite_Result OH_AudioSuiteEngine_SetSoundFieldType(OH_AudioNode* audioNo
  *
  * @param audioNode Reference created by OH_AudioSuiteEngine_CreateNode.
  * @param soundFieldType Current sound field type of audioNode.
- * @return {@link #AUDIOSUITE_SUCCESS} if execution succeeds
- * or {@link #AUDIOSUITE_ERROR_NODE_NOT_EXIST} if audioNode does not exist or has been destroyed.
- * or {@link #AUDIOSUITE_ERROR_UNSUPPORTED_OPERATION} if audioNode is not a soundfield node.
- * or {@link #AUDIOSUITE_ERROR_INVALID_PARAM} if parameter is invalid, e.g. audioNode or
- * soundFieldType is nullptr, e.t.c.
- * or {@link #AUDIOSUITE_ERROR_TIMEOUT} if an operation times out before completion.
- * or {@link #AUDIOSUITE_ERROR_SYSTEM} if the system has other abnormalities.
+ * @return <ul>
+ *         <li>{@link #AUDIOSUITE_SUCCESS} if execution succeeds.</li>
+ *         <li>{@link #AUDIOSUITE_ERROR_NODE_NOT_EXIST} if audioNode does not exist or has been destroyed.</li>
+ *         <li>{@link #AUDIOSUITE_ERROR_UNSUPPORTED_OPERATION} if audioNode is not a soundfield node.</li>
+ *         <li>{@link #AUDIOSUITE_ERROR_INVALID_PARAM} if parameter is invalid, e.g. audioNode or
+ *             soundFieldType is nullptr, e.t.c.</li>
+ *         <li>{@link #AUDIOSUITE_ERROR_TIMEOUT} if an operation times out before completion.</li>
+ *         <li>{@link #AUDIOSUITE_ERROR_SYSTEM} if the system has other abnormalities.</li>
+ *         </ul>
  * @since 22
  */
 OH_AudioSuite_Result OH_AudioSuiteEngine_GetSoundFieldType(
@@ -598,12 +622,14 @@ OH_AudioSuite_Result OH_AudioSuiteEngine_GetEnvironmentType(
  *
  * @param audioNode Reference created by OH_AudioSuiteEngine_CreateNode.
  * @param voiceBeautifierType the voice beautifier type.
- * @return {@link #AUDIOSUITE_SUCCESS} if execution succeeds
- * or {@link #AUDIOSUITE_ERROR_NODE_NOT_EXIST} if audioNode does not exist or has been destroyed.
- * or {@link #AUDIOSUITE_ERROR_UNSUPPORTED_OPERATION} if audioNode is not a voiceBeautifier node.
- * or {@link #AUDIOSUITE_ERROR_INVALID_PARAM} if parameter is invalid, e.g. audioNode is nullptr, e.t.c.
- * or {@link #AUDIOSUITE_ERROR_TIMEOUT} if an operation times out before completion.
- * or {@link #AUDIOSUITE_ERROR_SYSTEM} if the system has other abnormalities.
+ * @return <ul>
+ *         <li>{@link #AUDIOSUITE_SUCCESS} if execution succeeds.</li>
+ *         <li>{@link #AUDIOSUITE_ERROR_NODE_NOT_EXIST} if audioNode does not exist or has been destroyed.</li>
+ *         <li>{@link #AUDIOSUITE_ERROR_UNSUPPORTED_OPERATION} if audioNode is not a voiceBeautifier node.</li>
+ *         <li>{@link #AUDIOSUITE_ERROR_INVALID_PARAM} if parameter is invalid, e.g. audioNode is nullptr, e.t.c.</li>
+ *         <li>{@link #AUDIOSUITE_ERROR_TIMEOUT} if an operation times out before completion.</li>
+ *         <li>{@link #AUDIOSUITE_ERROR_SYSTEM} if the system has other abnormalities.</li>
+ *         </ul>
  * @since 22
  */
 OH_AudioSuite_Result OH_AudioSuiteEngine_SetVoiceBeautifierType(
@@ -614,13 +640,14 @@ OH_AudioSuite_Result OH_AudioSuiteEngine_SetVoiceBeautifierType(
  *
  * @param audioNode Reference created by OH_AudioSuiteEngine_CreateNode.
  * @param voiceBeautifierType Current voice beautifier type of audioNode.
- * @return {@link #AUDIOSUITE_SUCCESS} if execution succeeds
- * or {@link #AUDIOSUITE_ERROR_NODE_NOT_EXIST} if audioNode does not exist or has been destroyed.
- * or {@link #AUDIOSUITE_ERROR_UNSUPPORTED_OPERATION} if audioNode is not a voiceBeautifier node.
- * or {@link #AUDIOSUITE_ERROR_INVALID_PARAM} if parameter is invalid, e.g. audioNode or
- * voiceBeautifierType is nullptr, e.t.c.
- * or {@link #AUDIOSUITE_ERROR_TIMEOUT} if an operation times out before completion.
- * or {@link #AUDIOSUITE_ERROR_SYSTEM} if the system has other abnormalities.
+ * @return <ul>
+*          <li>{@link #AUDIOSUITE_SUCCESS} if execution succeeds.</li>
+ *         <li>{@link #AUDIOSUITE_ERROR_NODE_NOT_EXIST} if audioNode does not exist or has been destroyed.</li>
+ *         <li>{@link #AUDIOSUITE_ERROR_UNSUPPORTED_OPERATION} if audioNode is not a voiceBeautifier node.</li>
+ *         <li>{@link #AUDIOSUITE_ERROR_INVALID_PARAM} if parameter is invalid, e.g. audioNode or
+ *             voiceBeautifierType is nullptr, e.t.c.</li>
+ *         <li>{@link #AUDIOSUITE_ERROR_TIMEOUT} if an operation times out before completion.</li>
+ *         <li>{@link #AUDIOSUITE_ERROR_SYSTEM} if the system has other abnormalities.</li></ul>
  * @since 22
  */
 OH_AudioSuite_Result OH_AudioSuiteEngine_GetVoiceBeautifierType(
