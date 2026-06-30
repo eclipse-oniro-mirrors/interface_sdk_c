@@ -554,7 +554,7 @@ Camera_ErrorCode OH_CameraManager_IsTorchLevelControlSupported(const Camera_Mana
  *     <br>**CAMERA_SERVICE_FATAL_ERROR**: The camera service is abnormal.
  * @since 26.0.0
  */
-Camera_ErrorCode OH_CameraManager_SetTorchModeOnWithLevel(const Camera_Manager* cameraManager,
+Camera_ErrorCode OH_CameraManager_SetTorchModeOnWithLevel(Camera_Manager* cameraManager,
     double torchLevel);
 
 /**
