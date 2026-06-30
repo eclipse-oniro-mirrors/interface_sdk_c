@@ -669,7 +669,7 @@ Camera_ErrorCode OH_CaptureSession_GetColorTint(const Camera_CaptureSession* ses
  *         {@link CAMERA_SESSION_NOT_CONFIG} is returned if the session is not configured when the function is called.
  * @since 26.0.0
  */
-Camera_ErrorCode OH_CaptureSession_SetColorTint(const Camera_CaptureSession* session, int32_t colorTint);
+Camera_ErrorCode OH_CaptureSession_SetColorTint(Camera_CaptureSession* session, int32_t colorTint);
 
 /**
  * @brief Sets an exposure mode for the device.
