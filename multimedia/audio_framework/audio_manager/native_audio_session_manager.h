@@ -346,9 +346,9 @@ OH_AudioCommon_Result OH_AudioManager_GetAudioSessionManager(
  * returned by the {@link #OH_AudioManager_GetAudioSessionManager}
  * @param strategy pointer of {@link #OH_AudioSession_Strategy}
  * which is used for setting audio session strategy
- * @return {@link #AUDIOCOMMON_RESULT_SUCCESS} if execution succeeds
- * or {@link #AUDIOCOMMON_REULT_INVALID_PARAM} if parameter validation fails
- * or {@link #AUDIOCOMMON_RESULT_ERROR_ILLEGAL_STATE} if system illegal state
+ * @return <ul><li>{@link #AUDIOCOMMON_RESULT_SUCCESS} if execution succeeds</li><li>
+ *    {@link #AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM} if parameter validation fails</li><li>
+ *    {@link #AUDIOCOMMON_RESULT_ERROR_ILLEGAL_STATE} if system illegal state</li><li>
  * @since 12
  */
 OH_AudioCommon_Result OH_AudioSessionManager_ActivateAudioSession(
@@ -359,9 +359,9 @@ OH_AudioCommon_Result OH_AudioSessionManager_ActivateAudioSession(
  *
  * @param audioSessionManager the {@link #OH_AudioSessionManager}
  * returned by the {@link #OH_AudioManager_GetAudioSessionManager}
- * @return {@link #AUDIOCOMMON_RESULT_SUCCESS} if execution succeeds
- * or {@link #AUDIOCOMMON_REULT_INVALID_PARAM} if parameter validation fails
- * or {@link #AUDIOCOMMON_RESULT_ERROR_ILLEGAL_STATE} if system illegal state
+ * @return <ul><li>{@link #AUDIOCOMMON_RESULT_SUCCESS} if execution succeeds</li><li>
+ *    {@link #AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM} if parameter validation fails</li><li>
+ *    {@link #AUDIOCOMMON_RESULT_ERROR_ILLEGAL_STATE} if system illegal state</li><li>
  * @since 12
  */
 OH_AudioCommon_Result OH_AudioSessionManager_DeactivateAudioSession(
