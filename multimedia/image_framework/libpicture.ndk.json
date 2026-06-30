@@ -133,31 +133,38 @@
     },
     {
       "first_introduced": "26.0.0",
-      "name": "OH_DecomposeOptions_Create"
+      "name": "OH_DecomposeOptions_Create",
+      "api_type": "system"
     },
     {
       "first_introduced": "26.0.0",
-      "name": "OH_DecomposeOptions_SetIsFullSizeGainmap"
+      "name": "OH_DecomposeOptions_SetIsFullSizeGainmap",
+      "api_type": "system"
     },
     {
       "first_introduced": "26.0.0",
-      "name": "OH_DecomposeOptions_GetIsFullSizeGainmap"
+      "name": "OH_DecomposeOptions_GetIsFullSizeGainmap",
+      "api_type": "system"
     },
     {
       "first_introduced": "26.0.0",
-      "name": "OH_DecomposeOptions_SetDesiredPixelFormat"
+      "name": "OH_DecomposeOptions_SetDesiredPixelFormat",
+      "api_type": "system"
     },
     {
       "first_introduced": "26.0.0",
-      "name": "OH_DecomposeOptions_GetDesiredPixelFormat"
+      "name": "OH_DecomposeOptions_GetDesiredPixelFormat",
+      "api_type": "system"
     },
     {
       "first_introduced": "26.0.0",
-      "name": "OH_DecomposeOptions_Release"
+      "name": "OH_DecomposeOptions_Release",
+      "api_type": "system"
     },
     {
       "first_introduced": "26.0.0",
-      "name": "OH_PictureNative_DecomposeToPicture"
+      "name": "OH_PictureNative_DecomposeToPicture",
+      "api_type": "system"
     },
     {
       "first_introduced": "26.0.0",
@@ -193,6 +200,7 @@
     },
     {
       "first_introduced": "26.0.0",
-      "name": "OH_AuxiliaryPictureNative_CreateUsingAllocator"
+      "name": "OH_AuxiliaryPictureNative_CreateUsingAllocator",
+      "api_type": "system"
     }
   ]

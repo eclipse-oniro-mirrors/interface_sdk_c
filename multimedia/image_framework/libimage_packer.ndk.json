@@ -129,10 +129,12 @@
     },
     {
         "first_introduced": "26.0.0",
-        "name": "OH_PackingOptions_GetNeedsPackDfxData"
+        "name": "OH_PackingOptions_GetNeedsPackDfxData",
+        "api_type": "system"
     },
     {
         "first_introduced": "26.0.0",
-        "name": "OH_PackingOptions_SetNeedsPackDfxData"
+        "name": "OH_PackingOptions_SetNeedsPackDfxData",
+        "api_type": "system"
     }
 ]

@@ -37,10 +37,12 @@
     },
     {
         "first_introduced": "26.0.0",
-        "name": "OH_PictureMetadata_GetMetadataByType"
+        "name": "OH_PictureMetadata_GetMetadataByType",
+        "api_type": "system"
     },
     {
         "first_introduced": "26.0.0",
-        "name": "OH_PictureMetadatas_Release"
+        "name": "OH_PictureMetadatas_Release",
+        "api_type": "system"
     }
 ]
