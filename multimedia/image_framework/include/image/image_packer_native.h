@@ -97,7 +97,11 @@ typedef enum {
  * @brief Creates the pointer to an OH_PackingOptions struct.
  * 
  * @param options Double pointer to the OH_PackingOptions struct created.
- * @return Returns {@link Image_ErrorCode}
+ * @return <ul>
+ *         <li>{@link IMAGE_SUCCESS} if the execution is successful.</li>
+ *         <li>{@link IMAGE_BAD_PARAMETER} options is nullptr.</li>
+ *         </ul>
+ * @release image_packer_native/OH_PackingOptions_Release {options}
  * @since 12
  */
 Image_ErrorCode OH_PackingOptions_Create(OH_PackingOptions **options);
@@ -385,7 +389,11 @@ Image_ErrorCode OH_PackingOptionsForSequence_Release(OH_PackingOptionsForSequenc
  * @brief Creates the pointer to an OH_ImagePackerNative struct.
  * 
  * @param imagePacker Double pointer to OH_ImagePackerNative.
- * @return Returns {@link Image_ErrorCode}
+ * @return <ul>
+ *         <li>{@link IMAGE_SUCCESS} if the execution is successful.</li>
+ *         <li>{@link IMAGE_BAD_PARAMETER} imagePacker is nullptr.</li>
+ *         </ul>
+ * @release image_packer_native/OH_ImagePackerNative_Release {imagePacker}
  * @since 12
  */
 Image_ErrorCode OH_ImagePackerNative_Create(OH_ImagePackerNative **imagePacker);
