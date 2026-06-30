@@ -42,7 +42,8 @@
 extern "C" {
 #endif
 /**
- * @brief Obtains the detail list of USB certificate credentials.
+ * @brief Obtains the detail list of USB certificate credentials. After the call is complete,
+ * call OH_CertManager_FreeUkeyCertificate to release the certificateList memory.
  *
  * @param keyUri Pointer to the URI that stores the USB certificate credentials, in string format.
  * @param ukeyInfo Pointer to the property information of the USB certificate credential.
@@ -63,13 +64,13 @@ extern "C" {
  * <li>**OH_CM_ACCESS_UKEY_SERVICE_FAILED = 17500010**: Failed to access the USB certificate credential.</li>
  * </ul>
  * @permission ohos.permission.ACCESS_CERT_MANAGER
- * @release OH_CertManager_FreeUkeyCertificate {certificateList}
  * @since 22
  */
 int32_t OH_CertManager_GetUkeyCertificate(const OH_CM_Blob *keyUri,
     const OH_CM_UkeyInfo *ukeyInfo, OH_CM_CredentialDetailList *certificateList);
 /**
  * @brief Obtains the details of a private certificate credential of a specific application.
+ * After the call is complete, call OH_CertManager_FreeCredential to release the certificate memory.
  *
  * @param keyUri Pointer to the URI that stores the application's private certificate credentials, in string format.
  * @param certificate Pointer to the details of the application's private credentials obtained.
@@ -87,12 +88,12 @@ int32_t OH_CertManager_GetUkeyCertificate(const OH_CM_Blob *keyUri,
  * <li>**OH_CM_NOT_FOUND = 17500002**: The certificate does not exist.</li>
  * </ul>
  * @permission ohos.permission.ACCESS_CERT_MANAGER
- * @release OH_CertManager_FreeCredential {certificate}
  * @since 22
  */
 int32_t OH_CertManager_GetPrivateCertificate(const OH_CM_Blob *keyUri, OH_CM_Credential *certificate);
 /**
  * @brief Obtains the details of a public certificate credential of a specific user.
+ * After the call is complete, call OH_CertManager_FreeCredential to release the certificate memory.
  *
  * @param keyUri Pointer to the URI that stores the user's public certificate credentials, in string format.
  * @param certificate Pointer to the details of the user's public certificate credential obtained.
@@ -111,7 +112,6 @@ int32_t OH_CertManager_GetPrivateCertificate(const OH_CM_Blob *keyUri, OH_CM_Cre
  * <li>**OH_CM_NO_AUTHORIZATION = 17500005**: The application is not authorized.</li>
  * </ul>
  * @permission ohos.permission.ACCESS_CERT_MANAGER
- * @release OH_CertManager_FreeCredential {certificate}
  * @since 22
  */
 int32_t OH_CertManager_GetPublicCertificate(const OH_CM_Blob *keyUri, OH_CM_Credential *certificate);

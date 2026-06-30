@@ -42,7 +42,8 @@
 extern "C" {
 #endif
 /**
- * @brief 获取USB证书凭据的详情信息列表。
+ * @brief 获取USB证书凭据的详情信息列表。调用完成后，需要调用OH_CertManager_FreeUkeyCertificate释放certificateList内存。
+ *
  * @param keyUri 存放USB证书凭据的唯一标识符（字符串格式）。
  * @param ukeyInfo USB证书凭据属性信息。
  * @param certificateList 获取到的USB证书凭据详情列表。
@@ -62,7 +63,6 @@ extern "C" {
  * <li>**OH_CM_ACCESS_UKEY_SERVICE_FAILED = 17500010**: USB证书凭据访问失败。</li>
  * </ul>
  * @permission ohos.permission.ACCESS_CERT_MANAGER
- * @release OH_CertManager_FreeUkeyCertificate {certificateList}
  * @since 22
  */
 int32_t OH_CertManager_GetUkeyCertificate(const OH_CM_Blob *keyUri,
@@ -86,12 +86,11 @@ int32_t OH_CertManager_GetUkeyCertificate(const OH_CM_Blob *keyUri,
  * <li>OH_CM_NOT_FOUND = 17500002 ：证书不存在。</li>
  * </ul>
  * @permission ohos.permission.ACCESS_CERT_MANAGER
- * @release OH_CertManager_FreeCredential {certificate}
  * @since 22
  */
 int32_t OH_CertManager_GetPrivateCertificate(const OH_CM_Blob *keyUri, OH_CM_Credential *certificate);
 /**
- * @brief 获取特定用户公共证书凭据详细信息。
+ * @brief 获取特定用户公共证书凭据详细信息。调用完成后，需要调用OH_CertManager_FreeCredential释放certificate内存。
  *
  * @param keyUri 存放用户公共证书凭据的唯一标识符（字符串格式）。
  * @param certificate 获取到的用户公共证书凭据的详情。
@@ -110,7 +109,6 @@ int32_t OH_CertManager_GetPrivateCertificate(const OH_CM_Blob *keyUri, OH_CM_Cre
  * <li>OH_CM_NO_AUTHORIZATION =  17500005 ：应用未经用户授权。</li>
  * </ul>
  * @permission ohos.permission.ACCESS_CERT_MANAGER
- * @release OH_CertManager_FreeCredential {certificate}
  * @since 22
  */
 int32_t OH_CertManager_GetPublicCertificate(const OH_CM_Blob *keyUri, OH_CM_Credential *certificate);
