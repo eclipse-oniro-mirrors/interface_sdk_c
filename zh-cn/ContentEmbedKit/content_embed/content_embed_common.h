@@ -17,19 +17,18 @@
  * @addtogroup ContentEmbed
  * @{
  *
- * @brief The ContentEmbed module provides the Object Editor (OE) framework and technologies to support document
- * embedding and collaborative editing between applications.
- * An embedded document (OE document for short) implemented by using the OE technology may be presented as a thumbnail
- * or a snapshot on a client UI, or may be serialized into a segment of binary data in a standard format and stored in
- * a memory or a file (referred to as an OE format file).
+ * @brief 内容嵌入（ContentEmbed）模块提供对象编辑（Object Editor，简称OE）功能框架与技术，支持应用间文档的嵌入与协同编辑。
+ * 通过OE技术实现的被嵌入文档（简称OE文档），在客户端界面中可能呈现为缩略图或者快照（Snapshot），
+ * 也可能以标准格式序列化为一段二进制数据保存在内存或者某个文件（称为OE格式文件）中。
+ *
+ * @syscap SystemCapability.ContentEmbed.ObjectEditor
  * @since 24
  */
 
 /**
  * @file content_embed_common.h
  *
- * @brief Provides the error code definitions for the ContentEmbed module and the type enumeration descriptions for the
- * capabilities supported by embedded documents.
+ * @brief 提供内容嵌入模块的错误码定义和嵌入文档支持能力的类型枚举描述。
  *
  * @library libcontent_embed_ndk.so
  * @kit ContentEmbedKit
@@ -48,137 +47,134 @@ extern "C" {
 #endif /* __cplusplus */
 
 /**
- * @brief Indicates the maximum string length of the OEID of an embedded document.
+ * @brief 表示被嵌入文档的标识符OEID的最大字符串长度。
  *
  * @since 24
  */
 #define MAX_OEID_LENGTH (1 * 40)
 
 /**
- * @brief Defines the error codes of the Content Embed Kit.
+ * @brief 提供内容嵌入模块的错误码定义。
  *
  * @since 24
  */
 typedef enum ContentEmbed_ErrorCode {
     /**
-     * @brief The operation is successful.
+     * @brief 操作成功。
      *
      * @since 24
      */
     CE_ERR_OK = 0,
     /**
-     * @brief Permission verification failed.
+     * @brief 权限校验失败。
      *
      * @since 24
      */
     CE_PERMISSION_DENIED = 201,
     /**
-     * @brief Invalid parameter.
+     * @brief 参数不合法。
      *
      * @since 24
      */
     CE_ERR_PARAM_INVALID = 401,
     /**
-     * @brief This feature isn\'t supported on your device.
+     * @brief 当前设备不支持此功能。
      *
      * @since 24
      */
     CE_ERR_DEVICE_NOT_SUPPORTED = 801,
     /**
-     * @brief A null pointer is returned, which may be caused by memory allocation failure or internal error.
+     * @brief 返回空指针，可能是内存分配失败或内部错误。
      *
      * @since 24
      */
     CE_ERR_NULL_POINTER = 35300001,
     /**
-     * @brief The client has not registered the corresponding callback function.
+     * @brief 客户端未注册对应的回调函数。
      *
      * @since 24
      */
     CE_ERR_CLIENT_CALLBACK_NOT_REGISTERED = 35300002,
     /**
-     * @brief An unknown error occurs in the OE Extension.
+     * @brief OE Extension发生未知错误。
      *
      * @since 24
      */
     CE_ERR_EXTENSION_ERROR = 35300003,
     /**
-     * @brief The system service is abnormal, possibly because the service is not started, the connection is
-     * interrupted, or the permission is insufficient.
+     * @brief 系统服务出现异常，可能是服务未启动、连接中断或权限不足。
      *
      * @since 24
      */
     CE_ERR_SYSTEM_ABNORMAL = 35300004,
     /**
-     * @brief Operations on the Storage object of the OE document failed.
+     * @brief OE文档Storage对象相关操作失败。
      *
      * @since 24
      */
     CE_ERR_STORAGE_OPERATION_FAILED = 35300005,
     /**
-     * @brief Operations on the Stream object of the OE document failed.
+     * @brief OE文档Stream对象相关操作失败。
      *
      * @since 24
      */
     CE_ERR_STREAM_OPERATION_FAILED = 35300006,
     /**
-     * @brief The file operation failed, possibly because the file does not exist, the permission is insufficient, the
-     * path is incorrect, or the disk space is insufficient.
+     * @brief 文件操作失败，可能是文件不存在、权限不足、路径错误或磁盘空间不足。
      *
      * @since 24
      */
     CE_ERR_FILE_OPERATION_FAILED = 35300007,
     /**
-     * @brief The current application is running in the DLP sandbox environment and cannot call related functions.
+     * @brief 当前应用正在DLP沙箱环境中运行，暂不支持调用相关功能。
      *
      * @since 24
      */
     CE_ERR_IN_DLP_SANDBOX = 35300008,
     /**
-     * @brief The ImagePacker operation failed.
+     * @brief ImagePacker操作失败。
      *
      * @since 24
      */
     CE_ERR_IMAGE_PACKER_OPERATION_FAILED = 35300009,
     /**
-     * @brief An exception occurred during the execution of the callback function registered by the client.
+     * @brief 客户端注册的回调函数在执行过程中发生异常。
      *
      * @since 24
      */
     CE_ERR_CLIENT_CALLBACK_FAILED = 35300010,
     /**
-     * @brief The OE Extension exits unexpectedly.
+     * @brief OE Extension意外退出。
      *
      * @since 24
      */
     CE_ERR_EXTENSION_ABNORMAL_EXIT = 35300011,
     /**
-     * @brief A file that is linked to a directory that cannot be linked to, such as a file in the app sandbox
-     * directory.
+     * @brief 链接到不允许被链接目录中的文件，如应用沙箱目录内的文件。
      *
      * @since 24
      */
     CE_ERR_INVALID_LINKING_PATH = 35300012,
     /**
-     * @brief The number of connected OE Extensions exceeds the upper limit.
+     * @brief 当前OE Extension连接超出限制。
      *
      * @since 24
      */
     CE_ERR_CONNECT_LIMIT_EXCEED = 35300013,
     /**
-     * @brief The current file is not authorized.
+     * @brief 当前文件未授权。
      *
      * @since 24
      */
     CE_ERR_FILE_NOT_GRANT = 35300014,
     /**
-     * @brief The current disk space is insufficient.
+     * @brief 当前磁盘空间不足。
      *
      * @since 24
      */
     CE_ERR_DISK_FULL = 35300015,
     /**
-     * @brief The current OE Extension does not support this capability.
+     * @brief 当前OE Extension不支持该能力。
      *
      * @since 24
      */
@@ -186,20 +182,19 @@ typedef enum ContentEmbed_ErrorCode {
 } ContentEmbed_ErrorCode;
 
 /**
- * @brief Enumerates the functions supported by embedded document objects. Multiple capability values can be combined
- * using bit masks.
+ * @brief 嵌入文档对象支持的功能枚举，并支持通过位掩码组合多个能力值。
  *
  * @since 24
  */
 typedef enum ContentEmbed_CapabilityCode {
     /**
-     * @brief Indicates that the snapshot image of an OE document can be obtained.
+     * @brief 表示支持获取OE文档的快照图像。
      *
      * @since 24
      */
     CE_CAPABILITY_SUPPORT_SNAPSHOT = 1 << 0,
     /**
-     * @brief Indicates that the OE document can be edited.
+     * @brief 表示支持对OE文档进行编辑操作。
      *
      * @since 24
      */
