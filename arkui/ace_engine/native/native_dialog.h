@@ -813,7 +813,8 @@ int32_t OH_ArkUI_CustomDialog_OpenDialog(ArkUI_CustomDialogOptions* options, voi
  * @param errorCode the error code.
  * {@link ARKUI_ERROR_CODE_NO_ERROR} The operation is successful.
  * {@link ARKUI_ERROR_CODE_PARAM_INVALID} A parameter error occurs.
- * {@link ARKUI_ERROR_CODE_DIALOG_CANNOT_BE_OPENED_BY_MODAL_UEC_WINDOW} The dialog cannot be opened by the modal UEC window.
+ * {@link ARKUI_ERROR_CODE_DIALOG_NODE_MOUNT_FAILURE} The dialog cannot be opened due to node mount failure.
+ * {@link ARKUI_ERROR_CODE_DIALOG_SUBWINDOW_CREATE_FAILURE} The dialog cannot be opened due to subwindow create failure.
  * @param dialogId Dialog id. Returns -1 when the dialog cannot be displayed.
  * @param userData Indicates the pointer to the custom data.
  * @since 26.1.0

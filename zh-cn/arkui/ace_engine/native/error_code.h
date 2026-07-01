@@ -357,6 +357,16 @@ typedef enum {
      * @since 19
      */
     ARKUI_ERROR_CODE_DRAG_DROP_OPERATION_NOT_ALLOWED = 190004,
+    /**
+     * 节点挂载失败导致无法打开对话框。 错误码的详细介绍请参见{@link 弹窗错误码}.
+     * @since 26.1.0
+     */
+    ARKUI_ERROR_CODE_DIALOG_NODE_MOUNT_FAILURE = 103306,
+    /**
+     * 子窗口创建失败导致无法打开对话框. 错误码的详细介绍请参见{@link 弹窗错误码}.
+     * @since 26.1.0
+     */
+    ARKUI_ERROR_CODE_DIALOG_SUBWINDOW_CREATE_FAILURE = 103308,
 } ArkUI_ErrorCode;
 
 #ifdef __cplusplus
