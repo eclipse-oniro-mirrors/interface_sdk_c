@@ -17,7 +17,7 @@
  * @addtogroup NativeDisplaySoloist
  * @{
  *
- * @brief Provides the native displaySoloist capability.
+ * @brief 主要是用于UI线程以外的线程中进行帧率控制的Native侧业务。
  *
  * @since 12
  * @version 1.0
@@ -26,7 +26,7 @@
 /**
  * @file native_display_soloist.h
  *
- * @brief Defines the functions for obtaining and using a native displaySoloist.
+ * @brief 定义获取和使用NativeDisplaySoloist的相关函数。
  *
  * @kit ArkGraphics2D
  * @library libnative_display_soloist.so
@@ -45,7 +45,7 @@ extern "C" {
 #endif
 
 /**
- * @brief Provides the declaration of an **OH_DisplaySoloist** struct.
+ * @brief 提供OH_DisplaySoloist结构体声明。
  *
  * @since 12
  * @version 1.0
@@ -53,67 +53,64 @@ extern "C" {
 typedef struct OH_DisplaySoloist OH_DisplaySoloist;
 
 /**
- * @brief Defines the pointer to an OH_DisplaySoloist callback function.
+ * @brief OH_DisplaySoloist回调函数类型。
  *
- * @param timestamp Current frame VSync timestamp.
- * @param targetTimestamp Expected VSync timestamp of the next frame.
- * @param data Pointer to user-defined data.
+ * @param timestamp 当前帧VSync时间戳。
+ * @param targetTimestamp 预期的下一帧VSync时间戳。
+ * @param data 用户自定义数据。
  * @since 12
  * @version 1.0
  */
 typedef void (*OH_DisplaySoloist_FrameCallback)(long long timestamp, long long targetTimestamp, void* data);
 
 /**
- * @brief This struct describes the expected frame rate range.
+ * @brief 提供期望帧率范围结构体。
  *
  * @since 12
  * @version 1.0
  */
 typedef struct {
     /**
-     * Minimum value of the expected frame rate range. The value range is [0,120].
+     * 期望帧率范围最小值，取值范围为[0,120]。
      */
     int32_t min;
     /**
-     * Maximum value of the expected frame rate range. The value range is [0,120].
+     * 期望帧率范围最大值，取值范围为[0,120]。
      */
     int32_t max;
     /**
-     * Expected frame rate. The value range is [0,120].
+     * 期望帧率，取值范围为[0,120]。
      */
     int32_t expected;
 } DisplaySoloist_ExpectedRateRange;
 
 /**
- * @brief Creates an **OH_DisplaySoloist** instance. A new **OH_DisplaySoloist** instance is created each time this API
- * is called.
+ * @brief 创建一个OH_DisplaySoloist实例，每次调用都会产生一个新的实例。
  *
- * @param useExclusiveThread Whether the **OH_DisplaySoloist** instance is an exclusive thread. **true** means yes; **
- * false** otherwise.
- * @return Returns the pointer to the {@link OH_DisplaySoloist} instance created if the operation is successful;
- * returns a null pointer otherwise. The failure cause may be out of memory.
+ * @param useExclusiveThread 表示此OH_DisplaySoloist实例是否是独占线程。true表示独占一个线程，false表示共享线程。
+ * @return 返回一个指向OH_DisplaySoloist实例的指针，如果返回空表示执行失败，可能的原因是内存不足。
  * @since 12
  * @version 1.0
  */
 OH_DisplaySoloist* OH_DisplaySoloist_Create(bool useExclusiveThread);
 
 /**
- * @brief Destroys an **OH_DisplaySoloist** object and reclaims the memory occupied.
+ * @brief 销毁OH_DisplaySoloist实例并回收对象占用的内存。
  *
- * @param displaySoloist Pointer to the {@link OH_DisplaySoloist} instance.
- * @return Returns **0** if the operation is successful; returns **-1** otherwise.
+ * @param displaySoloist 一个指向OH_DisplaySoloist实例的指针。
+ * @return 返回值为0表示执行成功，-1表示执行失败。
  * @since 12
  * @version 1.0
  */
 int32_t OH_DisplaySoloist_Destroy(OH_DisplaySoloist* displaySoloist);
 
 /**
- * @brief Sets a callback function for each frame. The callback function is triggered each time a VSync signal arrives.
+ * @brief 设置每帧回调函数，每次VSync信号到来时启动每帧回调。
  *
- * @param displaySoloist Pointer to the {@link OH_DisplaySoloist} instance.
- * @param callback Callback function to be triggered when the next VSync signal arrives.
- * @param data Pointer to the user-defined data struct. The type is void.
- * @return Returns **0** if the operation is successful; returns **-1** otherwise.
+ * @param displaySoloist 一个指向OH_DisplaySoloist实例的指针。
+ * @param callback 表示下一次VSync信号到来时执行的回调函数类型。
+ * @param data 一个指向用户自定义数据结构的指针，类型是void。
+ * @return 返回值为0表示执行成功，-1表示执行失败。
  * @since 12
  * @version 1.0
  */
@@ -121,21 +118,21 @@ int32_t OH_DisplaySoloist_Start(
     OH_DisplaySoloist* displaySoloist, OH_DisplaySoloist_FrameCallback callback, void* data);
 
 /**
- * @brief Stops requesting the next VSync signal and triggering the callback function.
+ * @brief 停止请求下一次VSync信号，并停止调用回调函数callback。
  *
- * @param displaySoloist Pointer to the {@link OH_DisplaySoloist} instance.
- * @return Returns **0** if the operation is successful; returns **-1** otherwise.
+ * @param displaySoloist 一个指向OH_DisplaySoloist实例的指针。
+ * @return 返回值为0表示执行成功，-1表示执行失败。
  * @since 12
  * @version 1.0
  */
 int32_t OH_DisplaySoloist_Stop(OH_DisplaySoloist* displaySoloist);
 
 /**
- * @brief Sets the expected frame rate range.
+ * @brief 设置VSync期望帧率范围。
  *
- * @param displaySoloist Pointer to the {@link OH_DisplaySoloist} instance.
- * @param range Pointer to the {@link DisplaySoloist_ExpectedRateRange} instance.
- * @return Returns **0** if the operation is successful; returns **-1** otherwise.
+ * @param displaySoloist 一个指向OH_DisplaySoloist实例的指针。
+ * @param range 一个指向期望帧率范围DisplaySoloist_ExpectedRateRange实例的指针。
+ * @return 返回值为0表示执行成功，-1表示执行失败。
  * @since 12
  * @version 1.0
  */
