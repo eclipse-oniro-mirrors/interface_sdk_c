@@ -342,7 +342,7 @@ OH_AudioCommon_Result OH_AudioManager_GetAudioSessionManager(
  * @brief Activate the audio session for the current pid application.
  * If {@link #OH_AudioSessionManager_SetScene} is called, it will take focus when calling this method.
  * If you want to take focus again after {@link #OH_AudioSessionManager_DeactivateAudioSession} is called,
- * you must call {@link #OH_AudioSessionManager_SetScenc} again.
+ * you must call {@link #OH_AudioSessionManager_SetScene} again.
  *
  * @param audioSessionManager the {@link #OH_AudioSessionManager}
  * returned by the {@link #OH_AudioManager_GetAudioSessionManager}
