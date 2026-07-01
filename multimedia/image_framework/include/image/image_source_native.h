@@ -164,11 +164,7 @@ typedef enum {
  * @brief Creates the pointer to an OH_ImageSource_Info object.
  * 
  * @param info Double pointer to the OH_ImageSource_Info object created.
- * @return <ul>
- *         <li>{@link IMAGE_SUCCESS} if the execution is successful.</li>
- *         <li>{@link IMAGE_BAD_PARAMETER} info is nullptr.</li>
- *         </ul>
- * @release image_source_native/OH_ImageSourceInfo_Release {info}
+ * @return Returns {@link Image_ErrorCode}
  * @since 12
  */
 Image_ErrorCode OH_ImageSourceInfo_Create(OH_ImageSource_Info **info);
@@ -241,11 +237,7 @@ typedef struct OH_DecodingOptions OH_DecodingOptions;
  * @brief Creates the pointer to an OH_DecodingOptions object.
  * 
  * @param  options Double pointer to the OH_DecodingOptions object created.
- * @return <ul>
- *         <li>{@link IMAGE_SUCCESS} if the execution is successful.</li>
- *         <li>{@link IMAGE_BAD_PARAMETER} options is nullptr.</li>
- *         </ul>
- * @release image_source_native/OH_DecodingOptions_Release {options}
+ * @return Returns {@link Image_ErrorCode}
  * @since 12
  */
 Image_ErrorCode OH_DecodingOptions_Create(OH_DecodingOptions **options);
