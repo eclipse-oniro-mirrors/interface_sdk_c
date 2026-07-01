@@ -318,5 +318,9 @@
     {
         "first_introduced": "24",
         "name": "napi_set_property_with_callsite_info"
+    },
+    {
+        "first_introduced": "26.1.0",
+        "name": "napi_get_global_handle_count"
     }
 ]
