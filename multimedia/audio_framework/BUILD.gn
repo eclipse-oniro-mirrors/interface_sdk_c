@@ -19,6 +19,8 @@ ohos_ndk_headers("ohaudio_header") {
   sources = [
     "audio_capturer/native_audiocapturer.h",
     "audio_manager/native_audio_debugging_manager.h",
+    "audio_manager/native_audio_accessory_manager.h",
+    "audio_manager/native_audio_accessory_input_stream_manager.h",
     "audio_manager/native_audio_device_enhance_manager.h",
     "audio_manager/native_audio_manager.h",
     "audio_manager/native_audio_resource_manager.h",
@@ -27,6 +29,7 @@ ohos_ndk_headers("ohaudio_header") {
     "audio_manager/native_audio_stream_manager.h",
     "audio_manager/native_audio_volume_manager.h",
     "audio_renderer/native_audiorenderer.h",
+    "common/native_audio_accessory_common.h",
     "common/native_audio_common.h",
     "common/native_audio_device_base.h",
     "common/native_audio_session_base.h",
@@ -41,6 +44,9 @@ ohos_ndk_library("libohaudio_ndk") {
   ndk_description_file = "./ohaudio.ndk.json"
   system_capability = "SystemCapability.Multimedia.Audio.Core"
   system_capability_headers = [
+    "ohaudio/native_audio_accessory_common.h",
+    "ohaudio/native_audio_accessory_manager.h",
+    "ohaudio/native_audio_accessory_input_stream_manager.h",
     "ohaudio/native_audiostream_base.h",
     "ohaudio/native_audiostreambuilder.h",
     "ohaudio/native_audiorenderer.h",

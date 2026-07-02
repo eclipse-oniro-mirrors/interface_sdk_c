@@ -738,5 +738,65 @@
     {
         "first_introduced": "26.0.0",
         "name": "OH_AudioStreamBuilder_SetCellularRecordSecurityParams"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_AudioManager_GetAccessoryManager"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_AudioAccessoryManager_CreateInput"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_AudioAccessoryManager_SetAssociatedMacAddresses"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_AudioAccessoryManager_RegisterNoiseReductionCapability"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_AudioAccessoryManager_SetNoiseReductionMode"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_AudioAccessoryManager_Connected"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_AudioAccessoryManager_Disconnected"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_AudioAccessoryManager_Destroy"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_AudioAccessoryInputStreamManager_RegisterStartCallback"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_AudioAccessoryInputStreamManager_RegisterStopCallback"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_AudioAccessoryInputStreamManager_RegisterReleaseCallback"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_AudioAccessoryInputStreamManager_RegisterLatencyCallback"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_AudioAccessoryInputStreamManager_RegisterFramePositionCallback"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_AudioAccessoryInputStreamManager_Write"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_AudioAccessoryInputStreamManager_GetWritableSize"
     }
 ]
