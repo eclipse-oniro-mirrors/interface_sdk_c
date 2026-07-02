@@ -218,7 +218,8 @@ typedef enum {
      */
     ABILITY_RUNTIME_ERROR_CODE_UPPER_CONNECTION_NUMBER_LIMIT = 16000172,
     /**
-     * The requested property, method, enum, or struct member is not found.
+     * The requested property, method, interface, enum, struct type, struct field,
+     * set element, or map key is not found.
      *
      * @since 26.0.0
      */

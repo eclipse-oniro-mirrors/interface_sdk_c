@@ -208,7 +208,7 @@ typedef struct OH_AbilityRuntime_ModObjDispatcher_TypeInfo {
             OH_AbilityRuntime_ModObjDispatcher_ValueType keyType;
             /**
              * @brief Pointer to the value type descriptor.
-             *         Must be released by {@link OH_AbilityRuntime_ModObjDispatcher_TypeInfo_Clear}.
+             *         Must be released by {@link OH_AbilityRuntime_ModObjDispatcher_TypeInfoClear}.
              *
              * @since 26.0.0
              */
@@ -223,7 +223,7 @@ typedef struct OH_AbilityRuntime_ModObjDispatcher_TypeInfo {
         struct {
             /**
              * @brief Pointer to the element type descriptor.
-             *         Must be released by {@link OH_AbilityRuntime_ModObjDispatcher_TypeInfo_Clear}.
+             *         Must be released by {@link OH_AbilityRuntime_ModObjDispatcher_TypeInfoClear}.
              *
              * @since 26.0.0
              */
@@ -238,7 +238,7 @@ typedef struct OH_AbilityRuntime_ModObjDispatcher_TypeInfo {
          * @brief Pointer to the element type descriptor.
          *         Used when vt is {@link OH_ABILITY_RUNTIME_MOD_OBJ_DISPATCHER_VT_VECTOR}
          *         or {@link OH_ABILITY_RUNTIME_MOD_OBJ_DISPATCHER_VT_SET}.
-         *         Must be released by {@link OH_AbilityRuntime_ModObjDispatcher_TypeInfo_Clear}.
+         *         Must be released by {@link OH_AbilityRuntime_ModObjDispatcher_TypeInfoClear}.
          *
          * @since 26.0.0
          */
@@ -249,7 +249,7 @@ typedef struct OH_AbilityRuntime_ModObjDispatcher_TypeInfo {
          *         {@link OH_ABILITY_RUNTIME_MOD_OBJ_DISPATCHER_VT_IPC_REMOTE_PROXY},
          *         {@link OH_ABILITY_RUNTIME_MOD_OBJ_DISPATCHER_VT_IPC_REMOTE_STUB},
          *         or {@link OH_ABILITY_RUNTIME_MOD_OBJ_DISPATCHER_VT_ENUM}.
-         *         Must be released by {@link OH_AbilityRuntime_ModObjDispatcher_TypeInfo_Clear}.
+         *         Must be released by {@link OH_AbilityRuntime_ModObjDispatcher_TypeInfoClear}.
          *
          * @since 26.0.0
          */
@@ -464,7 +464,7 @@ typedef struct {
  * After clearing, all pointers are set to NULL but the TypeInfo struct itself is not freed
  * (it is typically stack-allocated by the caller).
  *
- * TypeInfo_Clear must NOT be called on a shallow copy of another TypeInfo.
+ * TypeInfoClear must NOT be called on a shallow copy of another TypeInfo.
  * If TypeInfo t2 = t1 is performed, only clear one of them.
  *
  * @param pTypeInfo Indicates a pointer to TypeInfo to clear.
@@ -486,10 +486,10 @@ void OH_AbilityRuntime_ModObjDispatcher_TypeInfoClear(
  *   Release for container handles).
  * - When a Variant is returned from a function (e.g. Array_Get, Map_Get, CallMethod),
  *   the function performs a deep copy and the caller owns the returned Variant.
- *   The caller must call Variant_Clear exactly once to release the resources.
+ *   The caller must call VariantClear exactly once to release the resources.
  * - Simple types (bool, i32, f64, etc.) do not hold heap resources and do not
- *   require Variant_Clear, though calling it is harmless.
- * - Variant_Clear must NOT be called on a shallow copy of another Variant.
+ *   require VariantClear, though calling it is harmless.
+ * - VariantClear must NOT be called on a shallow copy of another Variant.
  *   If Variant v2 = v1 is performed, only clear one of them.
  *
  * @param pVariant Indicates a pointer to variant to clear.
@@ -509,7 +509,7 @@ void OH_AbilityRuntime_ModObjDispatcher_VariantClear(
  * @return <ul>
  *      <li>{@link ABILITY_RUNTIME_ERROR_CODE_NO_ERROR} if operation is successful.</li>
  *      <li>{@link ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID} if remoteProxy or ppModObjDispatcher is null.</li>
- *      <li>{@link ABILITY_RUNTIME_ERROR_CODE_INTERNAL} if internal error occurs.</li>
+ *      <li>{@link ABILITY_RUNTIME_ERROR_CODE_INTERNAL} if memory allocation failed.</li>
  *      </ul>
  * @since 26.0.0
  */
@@ -530,7 +530,7 @@ AbilityRuntime_ErrorCode OH_AbilityRuntime_ModObjDispatcher_CreateMainServiceIns
  *      <li>{@link ABILITY_RUNTIME_ERROR_CODE_NO_ERROR} if operation is successful.</li>
  *      <li>{@link ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID} if mainServiceDispatcher or subProxy
  *      or ppModObjDispatcher is null.</li>
- *      <li>{@link ABILITY_RUNTIME_ERROR_CODE_INTERNAL} if internal error occurs.</li>
+ *      <li>{@link ABILITY_RUNTIME_ERROR_CODE_INTERNAL} if memory allocation failed.</li>
  *      </ul>
  * @since 26.0.0
  */
@@ -557,7 +557,7 @@ void OH_AbilityRuntime_ModObjDispatcher_Release(OH_AbilityRuntime_ModObjDispatch
  *      <li>{@link ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID} if pModObjDispatcher or pctinfo is null.</li>
  *      <li>{@link ABILITY_RUNTIME_ERROR_CODE_SEND_REQUEST_FAILED} if send request failed.</li>
  *      <li>{@link ABILITY_RUNTIME_ERROR_CODE_METADATA_INVALID} if type library metadata is invalid.</li>
- *      <li>{@link ABILITY_RUNTIME_ERROR_CODE_INTERNAL} if internal error occurs.</li>
+ *      <li>{@link ABILITY_RUNTIME_ERROR_CODE_INTERNAL} if metadata is not loaded from the remote service.</li>
  *      </ul>
  * @since 26.0.0
  */
@@ -578,7 +578,7 @@ AbilityRuntime_ErrorCode OH_AbilityRuntime_ModObjDispatcher_HasTypeDescriptor(
  *      <li>{@link ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID} if pModObjDispatcher or ppTypeDescriptor is null.</li>
  *      <li>{@link ABILITY_RUNTIME_ERROR_CODE_SEND_REQUEST_FAILED} if send request failed.</li>
  *      <li>{@link ABILITY_RUNTIME_ERROR_CODE_METADATA_INVALID} if type library metadata is invalid.</li>
- *      <li>{@link ABILITY_RUNTIME_ERROR_CODE_INTERNAL} if internal error occurs.</li>
+ *      <li>{@link ABILITY_RUNTIME_ERROR_CODE_INTERNAL} if metadata is not loaded, or memory allocation failed.</li>
  *      </ul>
  * @since 26.0.0
  */
@@ -602,7 +602,7 @@ AbilityRuntime_ErrorCode OH_AbilityRuntime_ModObjDispatcher_GetTypeDescriptor(
  *      <li>{@link ABILITY_RUNTIME_ERROR_CODE_SEND_REQUEST_FAILED} if send request failed.</li>
  *      <li>{@link ABILITY_RUNTIME_ERROR_CODE_METADATA_INVALID} if type library metadata is invalid.</li>
  *      <li>{@link ABILITY_RUNTIME_ERROR_CODE_PROPERTY_NOT_FOUND} if name not found.</li>
- *      <li>{@link ABILITY_RUNTIME_ERROR_CODE_INTERNAL} if internal error occurs.</li>
+ *      <li>{@link ABILITY_RUNTIME_ERROR_CODE_INTERNAL} if metadata is not loaded from the remote service.</li>
  *      </ul>
  * @since 26.0.0
  */
@@ -629,7 +629,8 @@ AbilityRuntime_ErrorCode OH_AbilityRuntime_ModObjDispatcher_QueryMainServiceInte
  *      <li>{@link ABILITY_RUNTIME_ERROR_CODE_TYPE_MISMATCH} if parameter type mismatches.</li>
  *      <li>{@link ABILITY_RUNTIME_ERROR_CODE_SEND_REQUEST_FAILED} if send request failed.</li>
  *      <li>{@link ABILITY_RUNTIME_ERROR_CODE_METADATA_INVALID} if type library metadata is invalid.</li>
- *      <li>{@link ABILITY_RUNTIME_ERROR_CODE_INTERNAL} if internal error occurs.</li>
+ *      <li>{@link ABILITY_RUNTIME_ERROR_CODE_INTERNAL} if metadata is not loaded, or memory allocation failed
+ *      when copying parameter or result.</li>
  *      </ul>
  * @since 26.0.0
  */
@@ -659,7 +660,7 @@ void OH_AbilityRuntime_TypeDescriptor_Release(OH_AbilityRuntime_ModObjDispatcher
  *      <li>{@link ABILITY_RUNTIME_ERROR_CODE_NO_ERROR} if operation is successful.</li>
  *      <li>{@link ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID} if pTypeDescriptor or
  *      pbstrVersion is null, or cMaxVersion is 0.</li>
- *      <li>{@link ABILITY_RUNTIME_ERROR_CODE_INTERNAL} if internal error occurs.</li>
+ *      <li>{@link ABILITY_RUNTIME_ERROR_CODE_INTERNAL} if metadata is not loaded, or memory allocation failed.</li>
  *      </ul>
  * @since 26.0.0
  */
@@ -674,7 +675,7 @@ AbilityRuntime_ErrorCode OH_AbilityRuntime_TypeDescriptor_GetVersion(
  * @return <ul>
  *      <li>{@link ABILITY_RUNTIME_ERROR_CODE_NO_ERROR} if operation is successful.</li>
  *      <li>{@link ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID} if pTypeDescriptor or pcInterfaces is null.</li>
- *      <li>{@link ABILITY_RUNTIME_ERROR_CODE_INTERNAL} if internal error occurs.</li>
+ *      <li>{@link ABILITY_RUNTIME_ERROR_CODE_INTERNAL} if metadata is not loaded.</li>
  *      </ul>
  * @since 26.0.0
  */
@@ -693,7 +694,7 @@ AbilityRuntime_ErrorCode OH_AbilityRuntime_TypeDescriptor_GetInterfaceCount(
  *      <li>{@link ABILITY_RUNTIME_ERROR_CODE_NO_ERROR} if operation is successful.</li>
  *      <li>{@link ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID} if pTypeDescriptor or pbstrName is null,
  *      or cMaxName is 0, or index is out of range.</li>
- *      <li>{@link ABILITY_RUNTIME_ERROR_CODE_INTERNAL} if internal error occurs.</li>
+ *      <li>{@link ABILITY_RUNTIME_ERROR_CODE_INTERNAL} if metadata is not loaded, or memory allocation failed.</li>
  *      </ul>
  * @since 26.0.0
  */
@@ -711,7 +712,7 @@ AbilityRuntime_ErrorCode OH_AbilityRuntime_TypeDescriptor_GetInterfaceName(
  *      <li>{@link ABILITY_RUNTIME_ERROR_CODE_NO_ERROR} if operation is successful.</li>
  *      <li>{@link ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID} if pTypeDescriptor or pbstrName or
  *      pIsCallback is null.</li>
- *      <li>{@link ABILITY_RUNTIME_ERROR_CODE_INTERNAL} if internal error occurs.</li>
+ *      <li>{@link ABILITY_RUNTIME_ERROR_CODE_INTERNAL} if metadata is not loaded.</li>
  *      <li>{@link ABILITY_RUNTIME_ERROR_CODE_PROPERTY_NOT_FOUND} if interface not found.</li>
  *      </ul>
  * @since 26.0.0
@@ -729,7 +730,7 @@ AbilityRuntime_ErrorCode OH_AbilityRuntime_TypeDescriptor_GetInterfaceIsCallback
  *      <li>{@link ABILITY_RUNTIME_ERROR_CODE_NO_ERROR} if operation is successful.</li>
  *      <li>{@link ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID} if pTypeDescriptor or pbstrName is null,
  *      or cMaxName is 0.</li>
- *      <li>{@link ABILITY_RUNTIME_ERROR_CODE_INTERNAL} if internal error occurs.</li>
+ *      <li>{@link ABILITY_RUNTIME_ERROR_CODE_INTERNAL} if metadata is not loaded, or memory allocation failed.</li>
  *      </ul>
  * @since 26.0.0
  */
@@ -746,7 +747,7 @@ AbilityRuntime_ErrorCode OH_AbilityRuntime_TypeDescriptor_GetMainServiceInterfac
  *      <li>{@link ABILITY_RUNTIME_ERROR_CODE_NO_ERROR} if operation is successful.</li>
  *      <li>{@link ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID} if pTypeDescriptor or
  *      pbstrInterfaceName or pcMethods is null.</li>
- *      <li>{@link ABILITY_RUNTIME_ERROR_CODE_INTERNAL} if internal error occurs.</li>
+ *      <li>{@link ABILITY_RUNTIME_ERROR_CODE_INTERNAL} if metadata is not loaded.</li>
  *      <li>{@link ABILITY_RUNTIME_ERROR_CODE_PROPERTY_NOT_FOUND} if interface not found.</li>
  *      </ul>
  * @since 26.0.0
@@ -769,7 +770,7 @@ AbilityRuntime_ErrorCode OH_AbilityRuntime_TypeDescriptor_GetMethodCount(
  *      <li>{@link ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID} if pTypeDescriptor or pbstrInterfaceName or
  *      pbstrName is null, or cMaxName is 0, or index is out of range.</li>
  *      <li>{@link ABILITY_RUNTIME_ERROR_CODE_PROPERTY_NOT_FOUND} if interface not found.</li>
- *      <li>{@link ABILITY_RUNTIME_ERROR_CODE_INTERNAL} if internal error occurs.</li>
+ *      <li>{@link ABILITY_RUNTIME_ERROR_CODE_INTERNAL} if metadata is not loaded, or memory allocation failed.</li>
  *      </ul>
  * @since 26.0.0
  */
@@ -789,7 +790,7 @@ AbilityRuntime_ErrorCode OH_AbilityRuntime_TypeDescriptor_GetMethodName(
  *      <li>{@link ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID} if pTypeDescriptor or pbstrInterfaceName or
  *      pbstrMethodName or pMemID is null.</li>
  *      <li>{@link ABILITY_RUNTIME_ERROR_CODE_PROPERTY_NOT_FOUND} if interface or method not found.</li>
- *      <li>{@link ABILITY_RUNTIME_ERROR_CODE_INTERNAL} if internal error occurs.</li>
+ *      <li>{@link ABILITY_RUNTIME_ERROR_CODE_INTERNAL} if metadata is not loaded.</li>
  *      </ul>
  * @since 26.0.0
  */
@@ -809,7 +810,7 @@ AbilityRuntime_ErrorCode OH_AbilityRuntime_TypeDescriptor_GetMethodMemberId(
  *      <li>{@link ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID} if pTypeDescriptor or pbstrInterfaceName or
  *      pbstrMethodName or pReturnType is null.</li>
  *      <li>{@link ABILITY_RUNTIME_ERROR_CODE_PROPERTY_NOT_FOUND} if interface or method not found.</li>
- *      <li>{@link ABILITY_RUNTIME_ERROR_CODE_INTERNAL} if internal error occurs.</li>
+ *      <li>{@link ABILITY_RUNTIME_ERROR_CODE_INTERNAL} if metadata is not loaded.</li>
  *      </ul>
  * @since 26.0.0
  */
@@ -830,7 +831,7 @@ AbilityRuntime_ErrorCode OH_AbilityRuntime_TypeDescriptor_GetMethodReturnType(
  *      <li>{@link ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID} if pTypeDescriptor or pbstrInterfaceName or
  *      pbstrMethodName or pcParams is null.</li>
  *      <li>{@link ABILITY_RUNTIME_ERROR_CODE_PROPERTY_NOT_FOUND} if interface or method not found.</li>
- *      <li>{@link ABILITY_RUNTIME_ERROR_CODE_INTERNAL} if internal error occurs.</li>
+ *      <li>{@link ABILITY_RUNTIME_ERROR_CODE_INTERNAL} if metadata is not loaded.</li>
  *      </ul>
  * @since 26.0.0
  */
@@ -851,7 +852,7 @@ AbilityRuntime_ErrorCode OH_AbilityRuntime_TypeDescriptor_GetMethodParamCount(
  *      <li>{@link ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID} if pTypeDescriptor or pbstrInterfaceName or
  *      pbstrMethodName or pParamType is null, or iParamIndex is out of range.</li>
  *      <li>{@link ABILITY_RUNTIME_ERROR_CODE_PROPERTY_NOT_FOUND} if interface or method not found.</li>
- *      <li>{@link ABILITY_RUNTIME_ERROR_CODE_INTERNAL} if internal error occurs.</li>
+ *      <li>{@link ABILITY_RUNTIME_ERROR_CODE_INTERNAL} if metadata is not loaded.</li>
  *      </ul>
  * @since 26.0.0
  */
@@ -874,7 +875,7 @@ AbilityRuntime_ErrorCode OH_AbilityRuntime_TypeDescriptor_GetMethodParamType(
  *      <li>{@link ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID} if pTypeDescriptor or pbstrInterfaceName or
  *      pbstrMethodName or pbstrName is null, or iParamIndex is out of range.</li>
  *      <li>{@link ABILITY_RUNTIME_ERROR_CODE_PROPERTY_NOT_FOUND} if interface or method not found.</li>
- *      <li>{@link ABILITY_RUNTIME_ERROR_CODE_INTERNAL} if internal error occurs.</li>
+ *      <li>{@link ABILITY_RUNTIME_ERROR_CODE_INTERNAL} if metadata is not loaded, or memory allocation failed.</li>
  *      </ul>
  * @since 26.0.0
  */
@@ -893,7 +894,7 @@ AbilityRuntime_ErrorCode OH_AbilityRuntime_TypeDescriptor_GetMethodParamName(
  * @return <ul>
  *      <li>{@link ABILITY_RUNTIME_ERROR_CODE_NO_ERROR} if operation is successful.</li>
  *      <li>{@link ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID} if pTypeDescriptor or pcEnums is null.</li>
- *      <li>{@link ABILITY_RUNTIME_ERROR_CODE_INTERNAL} if internal error occurs.</li>
+ *      <li>{@link ABILITY_RUNTIME_ERROR_CODE_INTERNAL} if metadata is not loaded.</li>
  *      </ul>
  * @since 26.0.0
  */
@@ -911,7 +912,7 @@ AbilityRuntime_ErrorCode OH_AbilityRuntime_TypeDescriptor_GetEnumCount(
  *      <li>{@link ABILITY_RUNTIME_ERROR_CODE_NO_ERROR} if operation is successful.</li>
  *      <li>{@link ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID} if pTypeDescriptor or pbstrName is null,
  *      or cMaxName is 0, or index is out of range.</li>
- *      <li>{@link ABILITY_RUNTIME_ERROR_CODE_INTERNAL} if internal error occurs.</li>
+ *      <li>{@link ABILITY_RUNTIME_ERROR_CODE_INTERNAL} if metadata is not loaded, or memory allocation failed.</li>
  *      </ul>
  * @since 26.0.0
  */
@@ -930,7 +931,7 @@ AbilityRuntime_ErrorCode OH_AbilityRuntime_TypeDescriptor_GetEnumName(
  *      <li>{@link ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID} if pTypeDescriptor or pbstrEnumName or
  *      pcValues is null.</li>
  *      <li>{@link ABILITY_RUNTIME_ERROR_CODE_PROPERTY_NOT_FOUND} if enum not found.</li>
- *      <li>{@link ABILITY_RUNTIME_ERROR_CODE_INTERNAL} if internal error occurs.</li>
+ *      <li>{@link ABILITY_RUNTIME_ERROR_CODE_INTERNAL} if metadata is not loaded.</li>
  *      </ul>
  * @since 26.0.0
  */
@@ -951,7 +952,7 @@ AbilityRuntime_ErrorCode OH_AbilityRuntime_TypeDescriptor_GetEnumValueCount(
  *      <li>{@link ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID} if pTypeDescriptor or pbstrEnumName or pbstrValueName
  *      is null, or iValueIndex is out of range.</li>
  *      <li>{@link ABILITY_RUNTIME_ERROR_CODE_PROPERTY_NOT_FOUND} if enum not found.</li>
- *      <li>{@link ABILITY_RUNTIME_ERROR_CODE_INTERNAL} if internal error occurs.</li>
+ *      <li>{@link ABILITY_RUNTIME_ERROR_CODE_INTERNAL} if metadata is not loaded, or memory allocation failed.</li>
  *      </ul>
  * @since 26.0.0
  */
@@ -971,7 +972,7 @@ AbilityRuntime_ErrorCode OH_AbilityRuntime_TypeDescriptor_GetEnumValueName(
  *      <li>{@link ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID} if pTypeDescriptor or pbstrEnumName or
  *      pbstrValueName or pValue is null.</li>
  *      <li>{@link ABILITY_RUNTIME_ERROR_CODE_PROPERTY_NOT_FOUND} if enum value not found.</li>
- *      <li>{@link ABILITY_RUNTIME_ERROR_CODE_INTERNAL} if internal error occurs.</li>
+ *      <li>{@link ABILITY_RUNTIME_ERROR_CODE_INTERNAL} if metadata is not loaded.</li>
  *      </ul>
  * @since 26.0.0
  */
@@ -987,7 +988,7 @@ AbilityRuntime_ErrorCode OH_AbilityRuntime_TypeDescriptor_GetEnumValue(
  * @return <ul>
  *      <li>{@link ABILITY_RUNTIME_ERROR_CODE_NO_ERROR} if operation is successful.</li>
  *      <li>{@link ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID} if pTypeDescriptor or pcStructs is null.</li>
- *      <li>{@link ABILITY_RUNTIME_ERROR_CODE_INTERNAL} if internal error occurs.</li>
+ *      <li>{@link ABILITY_RUNTIME_ERROR_CODE_INTERNAL} if metadata is not loaded.</li>
  *      </ul>
  * @since 26.0.0
  */
@@ -1005,7 +1006,7 @@ AbilityRuntime_ErrorCode OH_AbilityRuntime_TypeDescriptor_GetStructCount(
  *      <li>{@link ABILITY_RUNTIME_ERROR_CODE_NO_ERROR} if operation is successful.</li>
  *      <li>{@link ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID} if pTypeDescriptor or pbstrName is null, or cMaxName is 0,
  *      or index is out of range.</li>
- *      <li>{@link ABILITY_RUNTIME_ERROR_CODE_INTERNAL} if internal error occurs.</li>
+ *      <li>{@link ABILITY_RUNTIME_ERROR_CODE_INTERNAL} if metadata is not loaded, or memory allocation failed.</li>
  *      </ul>
  * @since 26.0.0
  */
@@ -1024,7 +1025,7 @@ AbilityRuntime_ErrorCode OH_AbilityRuntime_TypeDescriptor_GetStructName(
  *      <li>{@link ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID} if pTypeDescriptor or pbstrStructName or
  *      pcFields is null.</li>
  *      <li>{@link ABILITY_RUNTIME_ERROR_CODE_PROPERTY_NOT_FOUND} if struct not found.</li>
- *      <li>{@link ABILITY_RUNTIME_ERROR_CODE_INTERNAL} if internal error occurs.</li>
+ *      <li>{@link ABILITY_RUNTIME_ERROR_CODE_INTERNAL} if metadata is not loaded.</li>
  *      </ul>
  * @since 26.0.0
  */
@@ -1045,7 +1046,7 @@ AbilityRuntime_ErrorCode OH_AbilityRuntime_TypeDescriptor_GetStructFieldCount(
  *      <li>{@link ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID} if pTypeDescriptor or pbstrStructName or
  *      pbstrFieldName is null, or iFieldIndex is out of range.</li>
  *      <li>{@link ABILITY_RUNTIME_ERROR_CODE_PROPERTY_NOT_FOUND} if struct not found.</li>
- *      <li>{@link ABILITY_RUNTIME_ERROR_CODE_INTERNAL} if internal error occurs.</li>
+ *      <li>{@link ABILITY_RUNTIME_ERROR_CODE_INTERNAL} if metadata is not loaded, or memory allocation failed.</li>
  *      </ul>
  * @since 26.0.0
  */
@@ -1065,7 +1066,7 @@ AbilityRuntime_ErrorCode OH_AbilityRuntime_TypeDescriptor_GetStructFieldName(
  *      <li>{@link ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID} if pTypeDescriptor or pbstrStructName or
  *      pbstrFieldName or pFieldType is null.</li>
  *      <li>{@link ABILITY_RUNTIME_ERROR_CODE_PROPERTY_NOT_FOUND} if field not found.</li>
- *      <li>{@link ABILITY_RUNTIME_ERROR_CODE_INTERNAL} if internal error occurs.</li>
+ *      <li>{@link ABILITY_RUNTIME_ERROR_CODE_INTERNAL} if metadata is not loaded.</li>
  *      </ul>
  * @since 26.0.0
  */
@@ -1082,7 +1083,7 @@ AbilityRuntime_ErrorCode OH_AbilityRuntime_TypeDescriptor_GetStructFieldType(
  * @return <ul>
  *      <li>{@link ABILITY_RUNTIME_ERROR_CODE_NO_ERROR} if operation is successful.</li>
  *      <li>{@link ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID} if elementType or ppArray is null.</li>
- *      <li>{@link ABILITY_RUNTIME_ERROR_CODE_INTERNAL} if internal error occurs.</li>
+ *      <li>{@link ABILITY_RUNTIME_ERROR_CODE_INTERNAL} if memory allocation failed.</li>
  *      </ul>
  * @since 26.0.0
  */
@@ -1098,6 +1099,7 @@ AbilityRuntime_ErrorCode OH_AbilityRuntime_ModObjDispatcher_ArrayCreate(
  * @return <ul>
  *      <li>{@link ABILITY_RUNTIME_ERROR_CODE_NO_ERROR} if operation is successful.</li>
  *      <li>{@link ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID} if pArray or pElementType is null.</li>
+ *      <li>{@link ABILITY_RUNTIME_ERROR_CODE_INTERNAL} if internal element type info is not available.</li>
  *      </ul>
  * @since 26.0.0
  */
@@ -1115,6 +1117,7 @@ AbilityRuntime_ErrorCode OH_AbilityRuntime_ModObjDispatcher_ArrayGetElementType(
  *      <li>{@link ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID} if pArray or pValue is null,
  *      or index is out of bounds.</li>
  *      <li>{@link ABILITY_RUNTIME_ERROR_CODE_TYPE_MISMATCH} if element type mismatches.</li>
+ *      <li>{@link ABILITY_RUNTIME_ERROR_CODE_INTERNAL} if memory allocation failed when copying variant value.</li>
  *      </ul>
  * @since 26.0.0
  */
@@ -1132,6 +1135,7 @@ AbilityRuntime_ErrorCode OH_AbilityRuntime_ModObjDispatcher_ArraySet(
  *      <li>{@link ABILITY_RUNTIME_ERROR_CODE_NO_ERROR} if operation is successful.</li>
  *      <li>{@link ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID} if pArray or pValue is null,
  *      or index is out of bounds.</li>
+ *      <li>{@link ABILITY_RUNTIME_ERROR_CODE_INTERNAL} if memory allocation failed when copying variant value.</li>
  *      </ul>
  * @since 26.0.0
  */
@@ -1169,7 +1173,7 @@ void OH_AbilityRuntime_ModObjDispatcher_ArrayRelease(OH_AbilityRuntime_ModObjDis
  * @return <ul>
  *      <li>{@link ABILITY_RUNTIME_ERROR_CODE_NO_ERROR} if operation is successful.</li>
  *      <li>{@link ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID} if elementType or ppVector is null.</li>
- *      <li>{@link ABILITY_RUNTIME_ERROR_CODE_INTERNAL} if internal error occurs.</li>
+ *      <li>{@link ABILITY_RUNTIME_ERROR_CODE_INTERNAL} if memory allocation failed.</li>
  *      </ul>
  * @since 26.0.0
  */
@@ -1185,6 +1189,7 @@ AbilityRuntime_ErrorCode OH_AbilityRuntime_ModObjDispatcher_VectorCreate(
  * @return <ul>
  *      <li>{@link ABILITY_RUNTIME_ERROR_CODE_NO_ERROR} if operation is successful.</li>
  *      <li>{@link ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID} if pVector or pElementType is null.</li>
+ *      <li>{@link ABILITY_RUNTIME_ERROR_CODE_INTERNAL} if internal element type info is not available.</li>
  *      </ul>
  * @since 26.0.0
  */
@@ -1200,7 +1205,7 @@ AbilityRuntime_ErrorCode OH_AbilityRuntime_ModObjDispatcher_VectorGetElementType
  *      <li>{@link ABILITY_RUNTIME_ERROR_CODE_NO_ERROR} if operation is successful.</li>
  *      <li>{@link ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID} if pVector or pValue is null.</li>
  *      <li>{@link ABILITY_RUNTIME_ERROR_CODE_TYPE_MISMATCH} if element type mismatches.</li>
- *      <li>{@link ABILITY_RUNTIME_ERROR_CODE_INTERNAL} if internal error occurs.</li>
+ *      <li>{@link ABILITY_RUNTIME_ERROR_CODE_INTERNAL} if memory allocation failed when copying variant value.</li>
  *      </ul>
  * @since 26.0.0
  */
@@ -1217,6 +1222,7 @@ AbilityRuntime_ErrorCode OH_AbilityRuntime_ModObjDispatcher_VectorAdd(
  *      <li>{@link ABILITY_RUNTIME_ERROR_CODE_NO_ERROR} if operation is successful.</li>
  *      <li>{@link ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID} if pVector or pValue is null,
  *      or index is out of bounds.</li>
+ *      <li>{@link ABILITY_RUNTIME_ERROR_CODE_INTERNAL} if memory allocation failed when copying variant value.</li>
  *      </ul>
  * @since 26.0.0
  */
@@ -1267,7 +1273,7 @@ void OH_AbilityRuntime_ModObjDispatcher_VectorRelease(OH_AbilityRuntime_ModObjDi
  * @return <ul>
  *      <li>{@link ABILITY_RUNTIME_ERROR_CODE_NO_ERROR} if operation is successful.</li>
  *      <li>{@link ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID} if elementType or ppSet is null.</li>
- *      <li>{@link ABILITY_RUNTIME_ERROR_CODE_INTERNAL} if internal error occurs.</li>
+ *      <li>{@link ABILITY_RUNTIME_ERROR_CODE_INTERNAL} if memory allocation failed.</li>
  *      </ul>
  * @since 26.0.0
  */
@@ -1282,6 +1288,7 @@ AbilityRuntime_ErrorCode OH_AbilityRuntime_ModObjDispatcher_SetCreate(
  * @return <ul>
  *      <li>{@link ABILITY_RUNTIME_ERROR_CODE_NO_ERROR} if operation is successful.</li>
  *      <li>{@link ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID} if pSet or pElementType is null.</li>
+ *      <li>{@link ABILITY_RUNTIME_ERROR_CODE_INTERNAL} if internal element type info is not available.</li>
  *      </ul>
  * @since 26.0.0
  */
@@ -1297,7 +1304,7 @@ AbilityRuntime_ErrorCode OH_AbilityRuntime_ModObjDispatcher_SetGetElementType(
  *      <li>{@link ABILITY_RUNTIME_ERROR_CODE_NO_ERROR} if operation is successful.</li>
  *      <li>{@link ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID} if pSet or pValue is null.</li>
  *      <li>{@link ABILITY_RUNTIME_ERROR_CODE_TYPE_MISMATCH} if element type mismatches.</li>
- *      <li>{@link ABILITY_RUNTIME_ERROR_CODE_INTERNAL} if internal error occurs.</li>
+ *      <li>{@link ABILITY_RUNTIME_ERROR_CODE_INTERNAL} if memory allocation failed when copying variant value.</li>
  *      </ul>
  * @since 26.0.0
  */
@@ -1312,6 +1319,8 @@ AbilityRuntime_ErrorCode OH_AbilityRuntime_ModObjDispatcher_SetAdd(
  * @return <ul>
  *      <li>{@link ABILITY_RUNTIME_ERROR_CODE_NO_ERROR} if operation is successful.</li>
  *      <li>{@link ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID} if pSet or pValue is null.</li>
+ *      <li>{@link ABILITY_RUNTIME_ERROR_CODE_TYPE_MISMATCH} if element type mismatches.</li>
+ *      <li>{@link ABILITY_RUNTIME_ERROR_CODE_PROPERTY_NOT_FOUND} if element is not found in set.</li>
  *      </ul>
  * @since 26.0.0
  */
@@ -1327,6 +1336,7 @@ AbilityRuntime_ErrorCode OH_AbilityRuntime_ModObjDispatcher_SetRemove(
  * @return <ul>
  *      <li>{@link ABILITY_RUNTIME_ERROR_CODE_NO_ERROR} if operation is successful.</li>
  *      <li>{@link ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID} if pSet or pValue or pExists is null.</li>
+ *      <li>{@link ABILITY_RUNTIME_ERROR_CODE_TYPE_MISMATCH} if element type mismatches.</li>
  *      </ul>
  * @since 26.0.0
  */
@@ -1352,7 +1362,7 @@ AbilityRuntime_ErrorCode OH_AbilityRuntime_ModObjDispatcher_SetGetSize(
  * @brief Get a set element value by index.
  *
  * The returned variant is a deep copy owned by the caller.
- * Caller must call {@link OH_AbilityRuntime_ModObjDispatcher_Variant_Clear} to release it.
+ * Caller must call {@link OH_AbilityRuntime_ModObjDispatcher_VariantClear} to release it.
  *
  * @param pSet Indicates set handle.
  * @param index Indicates element index.
@@ -1360,6 +1370,7 @@ AbilityRuntime_ErrorCode OH_AbilityRuntime_ModObjDispatcher_SetGetSize(
  * @return <ul>
  *      <li>{@link ABILITY_RUNTIME_ERROR_CODE_NO_ERROR} if operation is successful.</li>
  *      <li>{@link ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID} if pSet or pValue is null, or index is out of bounds.</li>
+ *      <li>{@link ABILITY_RUNTIME_ERROR_CODE_INTERNAL} if memory allocation failed when copying variant value.</li>
  *      </ul>
  * @since 26.0.0
  */
@@ -1403,7 +1414,7 @@ void OH_AbilityRuntime_ModObjDispatcher_SetRelease(OH_AbilityRuntime_ModObjDispa
  * @return <ul>
  *      <li>{@link ABILITY_RUNTIME_ERROR_CODE_NO_ERROR} if operation is successful.</li>
  *      <li>{@link ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID} if valueType or ppMap is null.</li>
- *      <li>{@link ABILITY_RUNTIME_ERROR_CODE_INTERNAL} if internal error occurs.</li>
+ *      <li>{@link ABILITY_RUNTIME_ERROR_CODE_INTERNAL} if memory allocation failed.</li>
  *      </ul>
  * @since 26.0.0
  */
@@ -1433,6 +1444,7 @@ AbilityRuntime_ErrorCode OH_AbilityRuntime_ModObjDispatcher_MapGetKeyType(
  * @return <ul>
  *      <li>{@link ABILITY_RUNTIME_ERROR_CODE_NO_ERROR} if operation is successful.</li>
  *      <li>{@link ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID} if pMap or pValueType is null.</li>
+ *      <li>{@link ABILITY_RUNTIME_ERROR_CODE_INTERNAL} if internal value type info is not available.</li>
  *      </ul>
  * @since 26.0.0
  */
@@ -1449,7 +1461,7 @@ AbilityRuntime_ErrorCode OH_AbilityRuntime_ModObjDispatcher_MapGetValueType(
  *      <li>{@link ABILITY_RUNTIME_ERROR_CODE_NO_ERROR} if operation is successful.</li>
  *      <li>{@link ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID} if pMap or pKey or pValue is null.</li>
  *      <li>{@link ABILITY_RUNTIME_ERROR_CODE_TYPE_MISMATCH} if key or value type mismatches.</li>
- *      <li>{@link ABILITY_RUNTIME_ERROR_CODE_INTERNAL} if internal error occurs.</li>
+ *      <li>{@link ABILITY_RUNTIME_ERROR_CODE_INTERNAL} if memory allocation failed when copying variant value.</li>
  *      </ul>
  * @since 26.0.0
  */
@@ -1465,8 +1477,10 @@ AbilityRuntime_ErrorCode OH_AbilityRuntime_ModObjDispatcher_MapPut(
  * @param pValue Indicates a pointer to receive value variant.
  * @return <ul>
  *      <li>{@link ABILITY_RUNTIME_ERROR_CODE_NO_ERROR} if operation is successful.</li>
- *      <li>{@link ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID} if pMap or pKey or pValue is null,
- *      or key is not found in map.</li>
+ *      <li>{@link ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID} if pMap or pKey or pValue is null.</li>
+ *      <li>{@link ABILITY_RUNTIME_ERROR_CODE_TYPE_MISMATCH} if key type mismatches.</li>
+ *      <li>{@link ABILITY_RUNTIME_ERROR_CODE_PROPERTY_NOT_FOUND} if key is not found in map.</li>
+ *      <li>{@link ABILITY_RUNTIME_ERROR_CODE_INTERNAL} if memory allocation failed when copying variant value.</li>
  *      </ul>
  * @since 26.0.0
  */
@@ -1482,6 +1496,8 @@ AbilityRuntime_ErrorCode OH_AbilityRuntime_ModObjDispatcher_MapGet(
  * @return <ul>
  *      <li>{@link ABILITY_RUNTIME_ERROR_CODE_NO_ERROR} if operation is successful.</li>
  *      <li>{@link ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID} if pMap or pKey is null.</li>
+ *      <li>{@link ABILITY_RUNTIME_ERROR_CODE_TYPE_MISMATCH} if key type mismatches.</li>
+ *      <li>{@link ABILITY_RUNTIME_ERROR_CODE_PROPERTY_NOT_FOUND} if key is not found in map.</li>
  *      </ul>
  * @since 26.0.0
  */
@@ -1497,6 +1513,7 @@ AbilityRuntime_ErrorCode OH_AbilityRuntime_ModObjDispatcher_MapRemove(
  * @return <ul>
  *      <li>{@link ABILITY_RUNTIME_ERROR_CODE_NO_ERROR} if operation is successful.</li>
  *      <li>{@link ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID} if pMap or pKey or pExists is null.</li>
+ *      <li>{@link ABILITY_RUNTIME_ERROR_CODE_TYPE_MISMATCH} if key type mismatches.</li>
  *      </ul>
  * @since 26.0.0
  */
@@ -1522,7 +1539,7 @@ AbilityRuntime_ErrorCode OH_AbilityRuntime_ModObjDispatcher_MapGetSize(
  * @brief Get a map key by index.
  *
  * The returned variant is a deep copy owned by the caller.
- * Caller must call {@link OH_AbilityRuntime_ModObjDispatcher_Variant_Clear} to release it.
+ * Caller must call {@link OH_AbilityRuntime_ModObjDispatcher_VariantClear} to release it.
  *
  * @param pMap Indicates map handle.
  * @param index Indicates entry index.
@@ -1530,6 +1547,7 @@ AbilityRuntime_ErrorCode OH_AbilityRuntime_ModObjDispatcher_MapGetSize(
  * @return <ul>
  *      <li>{@link ABILITY_RUNTIME_ERROR_CODE_NO_ERROR} if operation is successful.</li>
  *      <li>{@link ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID} if pMap or pKey is null, or index is out of bounds.</li>
+ *      <li>{@link ABILITY_RUNTIME_ERROR_CODE_INTERNAL} if memory allocation failed when copying variant value.</li>
  *      </ul>
  * @since 26.0.0
  */
@@ -1541,7 +1559,7 @@ AbilityRuntime_ErrorCode OH_AbilityRuntime_ModObjDispatcher_MapGetKeyAt(
  * @brief Get a map value by index.
  *
  * The returned variant is a deep copy owned by the caller.
- * Caller must call {@link OH_AbilityRuntime_ModObjDispatcher_Variant_Clear} to release it.
+ * Caller must call {@link OH_AbilityRuntime_ModObjDispatcher_VariantClear} to release it.
  *
  * @param pMap Indicates map handle.
  * @param index Indicates entry index.
@@ -1549,6 +1567,7 @@ AbilityRuntime_ErrorCode OH_AbilityRuntime_ModObjDispatcher_MapGetKeyAt(
  * @return <ul>
  *      <li>{@link ABILITY_RUNTIME_ERROR_CODE_NO_ERROR} if operation is successful.</li>
  *      <li>{@link ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID} if pMap or pValue is null, or index is out of bounds.</li>
+ *      <li>{@link ABILITY_RUNTIME_ERROR_CODE_INTERNAL} if memory allocation failed when copying variant value.</li>
  *      </ul>
  * @since 26.0.0
  */
@@ -1585,7 +1604,9 @@ void OH_AbilityRuntime_ModObjDispatcher_MapRelease(OH_AbilityRuntime_ModObjDispa
  * @return <ul>
  *      <li>{@link ABILITY_RUNTIME_ERROR_CODE_NO_ERROR} if operation is successful.</li>
  *      <li>{@link ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID} if structName or ppStruct is null.</li>
- *      <li>{@link ABILITY_RUNTIME_ERROR_CODE_INTERNAL} if internal error occurs.</li>
+ *      <li>{@link ABILITY_RUNTIME_ERROR_CODE_PROPERTY_NOT_FOUND} if struct name is not found
+ *      in type metadata.</li>
+ *      <li>{@link ABILITY_RUNTIME_ERROR_CODE_INTERNAL} if memory allocation failed.</li>
  *      </ul>
  * @since 26.0.0
  */
@@ -1600,7 +1621,9 @@ AbilityRuntime_ErrorCode OH_AbilityRuntime_ModObjDispatcher_StructCreate(
  * @param cMaxName Indicates size of buffer.
  * @return <ul>
  *      <li>{@link ABILITY_RUNTIME_ERROR_CODE_NO_ERROR} if operation is successful.</li>
- *      <li>{@link ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID} if pStruct or pbstrName is null, or cMaxName is 0.</li>
+ *      <li>{@link ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID} if pStruct or pbstrName is null,
+ *      or cMaxName is 0 or too small for struct name.</li>
+ *      <li>{@link ABILITY_RUNTIME_ERROR_CODE_INTERNAL} if memory allocation failed or string copy failed.</li>
  *      </ul>
  * @since 26.0.0
  */
@@ -1618,6 +1641,7 @@ AbilityRuntime_ErrorCode OH_AbilityRuntime_ModObjDispatcher_StructGetName(
  *      <li>{@link ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID} if pStruct or szName or pValue is null.</li>
  *      <li>{@link ABILITY_RUNTIME_ERROR_CODE_PROPERTY_NOT_FOUND} if field is not found in struct.</li>
  *      <li>{@link ABILITY_RUNTIME_ERROR_CODE_TYPE_MISMATCH} if field type mismatches.</li>
+ *      <li>{@link ABILITY_RUNTIME_ERROR_CODE_INTERNAL} if memory allocation failed when copying variant value.</li>
  *      </ul>
  * @since 26.0.0
  */
@@ -1635,6 +1659,7 @@ AbilityRuntime_ErrorCode OH_AbilityRuntime_ModObjDispatcher_StructSetField(
  *      <li>{@link ABILITY_RUNTIME_ERROR_CODE_NO_ERROR} if operation is successful.</li>
  *      <li>{@link ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID} if pStruct or szName or pValue is null.</li>
  *      <li>{@link ABILITY_RUNTIME_ERROR_CODE_PROPERTY_NOT_FOUND} if field is not found in struct.</li>
+ *      <li>{@link ABILITY_RUNTIME_ERROR_CODE_INTERNAL} if memory allocation failed when copying variant value.</li>
  *      </ul>
  * @since 26.0.0
  */
