@@ -138,7 +138,7 @@ typedef struct {
     OH_AudioAccessoryType type;
 
     /**
-     * @brief Indicates Whether the accessory is a unidirectional audio device.
+     * @brief Indicates whether the accessory is a unidirectional audio device.
      * true: unidirectional device; false: bidirectional device.
      *
      * @since 26.0.0
