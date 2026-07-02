@@ -38,6 +38,7 @@
 
 #include <stdint.h>
 #include <stdio.h>
+#include <stdbool.h>
 #include "camera.h"
 #include "photo_native.h"
 #include "multimedia/media_library/media_asset_base_capi.h"
