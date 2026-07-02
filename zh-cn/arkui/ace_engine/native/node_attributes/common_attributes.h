@@ -174,6 +174,26 @@ typedef enum {
 } ArkUI_ResponseRegionSupportedTool;
 
 /**
+* @brief 原始输入事件类型枚举。
+*
+* @since 26.0.0
+*/
+typedef enum {
+    /**
+     * 触摸事件类型。
+     *
+     * @since 26.0.0
+     */
+    ARKUI_RAW_INPUT_EVENT_TYPE_TOUCH = 0,
+    /**
+     * 鼠标事件类型。
+     *
+     * @since 26.0.0
+     */
+    ARKUI_RAW_INPUT_EVENT_TYPE_MOUSE = 1,
+} ArkUI_RawInputEventType;
+
+/**
 * @brief 定义截图的可选项。
 *
 * @since 15
