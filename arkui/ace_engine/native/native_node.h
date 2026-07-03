@@ -3221,13 +3221,13 @@ typedef enum {
      * <br>This attribute can be set, reset, and obtained as required through APIs.
      *
      * <br>Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:
-     * <br>.value[0].f32: tail indent value, in vp. When size is 1, all lines share the same tail indent.
+     * <br>.value[0].f32: tail indent value, in fp. When size is 1, all lines share the same tail indent.
      * <br>.size: number of tail indent values. When size > 1, the i-th value specifies the tail indent
      * for the i-th line. If the number of text lines exceeds size, the last value is used
      * for the remaining lines.
      *
      * <br>Format of the return value {@link ArkUI_AttributeItem}:
-     * <br>.value[0].f32: first tail indent value, in vp.
+     * <br>.value[0].f32: first tail indent value, in fp.
      * <br>.size: number of tail indent values.
      *
      * @since 26.0.0
