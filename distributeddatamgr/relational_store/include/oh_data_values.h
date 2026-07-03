@@ -39,6 +39,7 @@
 #ifndef OH_DATA_VALUES_H
 #define OH_DATA_VALUES_H
 #include <inttypes.h>
+#include <stdbool.h>
 
 #include "database/data/data_asset.h"
 #include "database/data/oh_data_value.h"
