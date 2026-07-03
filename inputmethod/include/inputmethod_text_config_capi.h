@@ -34,6 +34,7 @@
  */
 #ifndef OHOS_INPUTMETHOD_TEXT_CONFIG_CAPI_H
 #define OHOS_INPUTMETHOD_TEXT_CONFIG_CAPI_H
+#include <stdbool.h>
 #include <stdint.h>
 #include <stddef.h>
 
