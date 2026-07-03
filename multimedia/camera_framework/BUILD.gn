@@ -41,7 +41,6 @@ ohos_ndk_library("libohcamera") {
     "ohcamera/camera.h",
     "ohcamera/camera_device.h",
     "ohcamera/camera_manager.h",
-    "ohcamera/camera_notification_info.h",
     "ohcamera/camera_input.h",
     "ohcamera/capture_session.h",
     "ohcamera/metadata_output.h",
