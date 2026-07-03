@@ -39,6 +39,7 @@
 #ifndef OHOS_CONTENT_EMBED_DOCUMENT_H
 #define OHOS_CONTENT_EMBED_DOCUMENT_H
 
+#include <stdbool.h>
 #include <stdint.h>
 #include <stdlib.h>
 #include <cstdio>

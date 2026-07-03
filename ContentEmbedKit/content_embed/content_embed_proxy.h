@@ -41,6 +41,7 @@
 #ifndef OHOS_CONTENT_EMBED_PROXY_H
 #define OHOS_CONTENT_EMBED_PROXY_H
 
+#include <stdbool.h>
 #include <stdint.h>
 #include <stdlib.h>
 #include <multimedia/image_framework/image/pixelmap_native.h>
