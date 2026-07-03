@@ -208,8 +208,8 @@ OH_AVErrCode OH_VideoEncoder_RegisterParameterCallback(OH_AVCodec *codec,
  * | OH_MD_KEY_HEIGHT | AV_ERR_OK | AV_ERR_INVALID_VAL | AV_ERR_INVALID_VAL |
  * | OH_MD_KEY_PIXEL_FORMAT 请参阅[OH_AVPixelFormat](_core.md#oh_avpixelformat-1) | AV_ERR_OK | AV_ERR_UNSUPPORT | AV_ERR_OK    |
  * | OH_MD_KEY_FRAME_RATE | AV_ERR_OK | AV_ERR_INVALID_VAL | AV_ERR_OK |
- * | OH_MD_KEY_PROFILE 请参阅[OH_MD_KEY_PROFILE](_codec_base.md#oh_md_key_profile)    | AV_ERR_OK | AV_ERR_INVALID_VAL | AV_ERR_OK | 
- * | OH_MD_KEY_I_FRAME_INTERVAL | AV_ERR_OK |  \\       | AV_ERR_OK | 
+ * | OH_MD_KEY_PROFILE 请参阅[OH_MD_KEY_PROFILE](_codec_base.md#oh_md_key_profile)    | AV_ERR_OK | AV_ERR_INVALID_VAL | AV_ERR_OK |
+ * | OH_MD_KEY_I_FRAME_INTERVAL | AV_ERR_OK |  \\       | AV_ERR_OK |
  * @tableEnd
  * 
  * @table
@@ -244,7 +244,7 @@ OH_AVErrCode OH_VideoEncoder_Configure(OH_AVCodec *codec, OH_AVFormat *format);
 
 /**
  * @brief 准备编码器的内部资源，在OH_VideoEncoder_Configure接口后调用。
- * 
+ *
  * @syscap SystemCapability.Multimedia.Media.VideoEncoder
  * @param codec 指向视频编码实例的指针。
  * @return AV_ERR_OK：执行成功。\n
@@ -505,7 +505,7 @@ OH_AVErrCode OH_VideoEncoder_IsValid(OH_AVCodec *codec, bool *isValid);
  * @since 9
  */
 typedef enum OH_VideoEncodeBitrateMode {
-    /** 
+    /**
      * @brief 恒定码率模式。
      * @deprecated since 14
      * @useinstead {@link BITRATE_MODE_CBR}

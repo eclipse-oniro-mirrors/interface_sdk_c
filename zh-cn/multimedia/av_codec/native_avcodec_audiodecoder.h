@@ -188,7 +188,7 @@ OH_AVFormat *OH_AudioDecoder_GetOutputDescription(OH_AVCodec *codec);
 
 /**
  * @brief 配置解码器的动态参数。注意：该接口必须在解码器启动后才能调用。另外，参数配置错误可能会导致解码失败。
- * 
+ *
  * @syscap SystemCapability.Multimedia.Media.AudioDecoder
  * @param codec 指向OH_AVCodec实例的指针
  * @param format OH_AVFormat句柄指针

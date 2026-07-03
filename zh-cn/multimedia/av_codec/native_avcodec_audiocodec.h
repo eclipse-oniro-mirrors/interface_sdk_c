@@ -91,7 +91,7 @@ OH_AVErrCode OH_AudioCodec_Destroy(OH_AVCodec *codec);
 
 /**
  * @brief 设置异步回调函数，使应用可以响应音频编解码器生成的事件。在调用Prepare之前，必须调用此接口。
- * 
+ *
  * @syscap SystemCapability.Multimedia.Media.AudioCodec
  * @param codec 指向OH_AVCodec实例的指针。
  * @param callback 所有回调函数的集合。

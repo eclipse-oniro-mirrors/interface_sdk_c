@@ -27,7 +27,7 @@
  * @file native_averrors.h
  *
  * @brief 媒体框架错误码。
- * 
+ *
  * @kit AVCodecKit
  * @include <multimedia/player_framework/native_averrors.h>
  * @library libnative_media_core.so
@@ -108,7 +108,7 @@ typedef enum OH_AVErrCode {
      * @since 12
      */
     AV_ERR_DRM_BASE = 200,
-    /** 
+    /**
      * @error DRM解密失败。
      * @since 12
      */

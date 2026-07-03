@@ -53,7 +53,7 @@ extern "C" {
  * @useinstead {@link OH_AudioChannelSet}
  * @since 10
  */
-enum AudioChannelSet : uint64_t {
+typedef enum AudioChannelSet : uint64_t {
     /** 左前声道 */
     FRONT_LEFT = 1ULL << 0U,
     /** 右前声道 */
@@ -175,7 +175,7 @@ enum AudioChannelSet : uint64_t {
  * @useinstead {@link OH_AudioChannelLayout}
  * @since 10
  */
-enum AudioChannelLayout : uint64_t {
+typedef enum AudioChannelLayout : uint64_t {
     /** 未知通道布局 */
     UNKNOWN_CHANNEL_LAYOUT = 0,
     /** 单通道布局 */

@@ -122,12 +122,12 @@ OH_AVErrCode OH_AVMuxer_AddTrack(OH_AVMuxer *muxer, int32_t *trackIndex, OH_AVFo
 OH_AVErrCode OH_AVMuxer_Start(OH_AVMuxer *muxer);
 
 /**
- * @brief 将sample写入封装器。 
+ * @brief 将sample写入封装器。
  * 该接口必须在{@link OH_AVMuxer_Start}后，{@link OH_AVMuxer_Stop}前调用。
  * 调用者需要按info中的时间顺序将sample写入正确的音视频轨。
  * @syscap SystemCapability.Multimedia.Media.Muxer
  * @param muxer 指向OH_AVMuxer实例的指针。
- * @param trackIndex 数据对应的音视频轨的索引。 
+ * @param trackIndex 数据对应的音视频轨的索引。
  * @param sample 编码或解封装得到的数据。
  * @param info sample对应的描述信息。
  * @return AV_ERR_OK：执行成功。\n
@@ -139,7 +139,8 @@ OH_AVErrCode OH_AVMuxer_Start(OH_AVMuxer *muxer);
  * @useinstead {@link OH_AVMuxer_WriteSampleBuffer}
  * @since 10
  */
-OH_AVErrCode OH_AVMuxer_WriteSample(OH_AVMuxer *muxer, uint32_t trackIndex, OH_AVMemory *sample, OH_AVCodecBufferAttr info);
+OH_AVErrCode OH_AVMuxer_WriteSample(OH_AVMuxer *muxer, uint32_t trackIndex,
+    OH_AVMemory *sample, OH_AVCodecBufferAttr info);
 
 /**
  * @brief 将sample写入封装器。

@@ -48,7 +48,7 @@ extern "C" {
 #endif
 /**
  * @brief 枚举OH_AVCodec缓冲区标记的类别。
- * 
+ *
  * @syscap SystemCapability.Multimedia.Media.Core
  * @since 9
  */
@@ -63,15 +63,15 @@ typedef enum OH_AVCodecBufferFlags {
     AVCODEC_BUFFER_FLAGS_INCOMPLETE_FRAME = 1 << 2,
     /** 表示缓冲区包含编解码特定数据。 */
     AVCODEC_BUFFER_FLAGS_CODEC_DATA = 1 << 3,
-	/** 
+    /**
      * @brief 表示缓冲区被解码依赖，解码之后的数据可丢弃。
-	 * @since 12
-	 */
-	AVCODEC_BUFFER_FLAGS_DISCARD = 1 << 4,
+     * @since 12
+     */
+    AVCODEC_BUFFER_FLAGS_DISCARD = 1 << 4,
     /**
      * @brief 表示缓冲区不被参考可直接丢弃。
-	 * @since 12
-	 */
+     * @since 12
+     */
     AVCODEC_BUFFER_FLAGS_DISPOSABLE = 1 << 5,
 } OH_AVCodecBufferFlags;
 

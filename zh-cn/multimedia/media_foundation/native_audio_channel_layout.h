@@ -31,7 +31,6 @@
  *
  * @kit AVCodecKit
  * @include <multimedia/native_audio_channel_layout.h>
- * @library 无
  * @syscap SystemCapability.Multimedia.Media.Core
  * @since 11
  */
@@ -54,7 +53,7 @@ extern "C" {
  */
 typedef enum OH_AudioChannelSet {
     /** 左前声道 */
-    CH_SET_FRONT_LEFT = 1ULL << 0U,   
+    CH_SET_FRONT_LEFT = 1ULL << 0U,
 
     /** 右前声道 */
     CH_SET_FRONT_RIGHT = 1ULL << 1U,

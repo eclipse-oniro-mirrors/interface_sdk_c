@@ -29,7 +29,7 @@
  *
  * @brief 声明了媒体数据结构AVBuffer的函数接口。
  * @sample [AVCodec](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Media/AVCodec)
- * 
+ *
  * @kit AVCodecKit
  * @include <multimedia/player_framework/native_avbuffer.h>
  * @library libnative_media_core.so

@@ -459,7 +459,7 @@ OH_AVErrCode OH_AVCapability_GetVideoSupportedPixelFormats(OH_AVCapability *capa
                                                            uint32_t *pixelFormatNum);
 
 /**
- * 
+ *
  * @brief 获取视频编解码器支持的OH_NativeBuffer格式。
  * 
  * 该函数提供了视频编解码器能够处理的OH_NativeBuffer格式信息，具体取值可见OH_NativeBuffer_Format。
@@ -549,3 +549,4 @@ OH_AVFormat *OH_AVCapability_GetFeatureProperties(OH_AVCapability *capability, O
 }
 #endif
 #endif // NATIVE_AVCAPABILITY_H
+/** @} */

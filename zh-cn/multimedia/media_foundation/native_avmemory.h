@@ -28,7 +28,7 @@
  * @file native_avmemory.h
  *
  * @brief 声明了媒体数据结构AVMemory的定义。
- * 
+ *
  * @kit AVCodecKit
  * @include <multimedia/player_framework/native_avmemory.h>
  * @library libnative_media_core.so

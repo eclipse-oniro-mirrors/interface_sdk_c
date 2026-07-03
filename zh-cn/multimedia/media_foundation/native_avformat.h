@@ -28,7 +28,7 @@
  *
  * @brief 声明了OH_AVFormat相关的函数和枚举。
  * @sample [AVCodec](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Media/AVCodec)
- * 
+ *
  * @kit AVCodecKit
  * @include <multimedia/player_framework/native_avformat.h>
  * @library libnative_media_core.so

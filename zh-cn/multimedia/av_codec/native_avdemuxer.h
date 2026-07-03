@@ -18,7 +18,7 @@
  * @{
  *
  * @brief AVDemuxer模块提供从媒体文件码流中提取sample的接口。
- * 
+ *
  * @syscap SystemCapability.Multimedia.Media.Spliter
  * @since 10
  */

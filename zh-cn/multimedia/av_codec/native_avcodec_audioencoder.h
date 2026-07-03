@@ -156,7 +156,7 @@ OH_AVErrCode OH_AudioEncoder_Stop(OH_AVCodec *codec);
 /**
  * @brief 清除编码器中缓存的输入和输出数据。调用此接口后，以前通过异步回调上报的所有缓冲区
  * 索引都将失效，请确保不要访问这些索引对应的缓冲区
- * 
+ *
  * @syscap SystemCapability.Multimedia.Media.AudioEncoder
  * @param codec 指向OH_AVCodec实例的指针
  * @return 如果执行成功，则返回AV_ERR_OK，否则返回特定错误代码，请参阅 {@link OH_AVErrCode}

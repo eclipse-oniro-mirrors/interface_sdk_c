@@ -1939,14 +1939,14 @@ typedef enum OH_AV1Profile {
 * @since 23
 */
 typedef enum OH_VP9Profile {
-   /** 0档次。 */
-   VP9_PROFILE_0 = 0,
-   /** 1档次。 */
-   VP9_PROFILE_1 = 1,
-   /** 2档次。 */
-   VP9_PROFILE_2 = 2,
-   /** 3档次。 */
-   VP9_PROFILE_3 = 3,
+    /** 0档次。 */
+    VP9_PROFILE_0 = 0,
+    /** 1档次。 */
+    VP9_PROFILE_1 = 1,
+    /** 2档次。 */
+    VP9_PROFILE_2 = 2,
+    /** 3档次。 */
+    VP9_PROFILE_3 = 3,
 } OH_VP9Profile;
 
 /**
@@ -2043,7 +2043,7 @@ typedef enum OH_AVSeekMode {
  * @since 10
  */
 typedef enum OH_ScalingMode {
-    /** 
+    /**
      * @brief 根据窗口尺寸自适应调整图像大小。
      * @deprecated since 14
      * @useinstead {@link OH_SCALING_MODE_SCALE_TO_WINDOW_V2}
