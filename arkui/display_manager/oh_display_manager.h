@@ -384,6 +384,11 @@ typedef void (*OH_NativeDisplayManager_AvailableAreaChangeCallback)(uint64_t dis
 /**
  * @brief Registers a listener for available area changes of the display.
  *
+ * This API can be properly called on devices running OpenHarmony 7.0.0 or later.
+ * For devices running versions earlier than OpenHarmony 7.0.0,
+ * this API can be properly called on PCs/2-in-1 devices and tablets.
+ * If being called on other device types, it does not take effect and no error is reported.
+ *
  * @param availableAreaChangeCallback Callback function triggered when the available area of the display changes.
  *     For details, see {@link OH_NativeDisplayManager_AvailableAreaChangeCallback}.
  * @param listenerIndex Pointer to the index of the listener registered.
@@ -399,6 +404,11 @@ NativeDisplayManager_ErrorCode OH_NativeDisplayManager_RegisterAvailableAreaChan
 /**
  * @brief Unregisters a listener for available area changes of the display.
  *
+ * This API can be properly called on devices running OpenHarmony 7.0.0 or later.
+ * For devices running versions earlier than OpenHarmony 7.0.0,
+ * this API can be properly called on PCs/2-in-1 devices and tablets.
+ * If being called on other device types, it does not take effect and no error is reported.
+ *
  * @param listenerIndex Index of the listener returned
  *     when {@link OH_NativeDisplayManager_RegisterAvailableAreaChangeListener} is called.
  * @return <ul><li>{@link DISPLAY_MANAGER_OK} If the operation is successful.</li>
@@ -410,6 +420,12 @@ NativeDisplayManager_ErrorCode OH_NativeDisplayManager_UnregisterAvailableAreaCh
 
 /**
  * @brief Obtains the available area of a display.
+ *
+ * This API can be properly called on devices running OpenHarmony 7.0.0 or later.
+ * For devices running versions earlier than OpenHarmony 7.0.0,
+ * this API can be properly called on PCs/2-in-1 devices and tablets, but does not work for other device types.
+ * To obtain the available screen area on the current device, call
+ * {@link OH_NativeDisplayManager_GetDefaultDisplayWidth} and {@link OH_NativeDisplayManager_GetDefaultDisplayHeight}.
  *
  * @param displayId Display ID, which is a non-negative integer.
  * @param availableArea Double pointer to the available area of the display. For details, see
