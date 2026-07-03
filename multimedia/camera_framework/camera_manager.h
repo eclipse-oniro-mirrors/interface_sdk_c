@@ -38,6 +38,7 @@
 
 #include <stdint.h>
 #include <stdio.h>
+#include <stdbool.h>
 #include "camera.h"
 #include "camera_input.h"
 #include "capture_session.h"
