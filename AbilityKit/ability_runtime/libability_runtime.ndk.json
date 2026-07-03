@@ -175,6 +175,62 @@
         "first_introduced": "17",
         "name": "OH_AbilityRuntime_GetStartOptionsMaxWindowHeight"
     },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_AbilityRuntime_GetStartOptionsWindowModeValue"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_AbilityRuntime_GetStartOptionsDisplayIdValue"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_AbilityRuntime_GetStartOptionsWithAnimationValue"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_AbilityRuntime_GetStartOptionsWindowLeftValue"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_AbilityRuntime_GetStartOptionsWindowTopValue"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_AbilityRuntime_GetStartOptionsWindowHeightValue"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_AbilityRuntime_GetStartOptionsWindowWidthValue"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_AbilityRuntime_GetStartOptionsStartVisibilityValue"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_AbilityRuntime_GetStartOptionsStartWindowBackgroundColorValue"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_AbilityRuntime_GetStartOptionsSupportedWindowModesValue"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_AbilityRuntime_GetStartOptionsMinWindowWidthValue"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_AbilityRuntime_GetStartOptionsMaxWindowWidthValue"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_AbilityRuntime_GetStartOptionsMinWindowHeightValue"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_AbilityRuntime_GetStartOptionsMaxWindowHeightValue"
+    },
 	{
         "first_introduced": "20",
         "name": "OH_AbilityRuntime_ApplicationContextGetResourceDir"
