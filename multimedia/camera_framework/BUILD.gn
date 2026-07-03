@@ -21,7 +21,6 @@ ohos_ndk_headers("camera_ndk_header") {
     "./camera_device.h",
     "./camera_input.h",
     "./camera_manager.h",
-    "./camera_notification_info.h",
     "./capture_session.h",
     "./metadata_object_ext.h",
     "./metadata_output.h",
