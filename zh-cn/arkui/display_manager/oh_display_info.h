@@ -410,11 +410,25 @@ typedef struct {
 
     /**
      * Width of the available area, in px. The value must be a non-negative integer.
+     *
+     * This API can be properly called on devices running OpenHarmony 7.0.0 or later.
+     * For devices running versions earlier than OpenHarmony 7.0.0,
+     * this API can be properly called on PCs/2-in-1 devices and tablets,
+     * but does not work for other device types.
+     * To obtain the width of the available area on the current device screen, you can use the width attribute.
+     *
      */
     uint32_t availableWidth;
 
     /**
      * Height of the available area, in px. The value must be a non-negative integer.
+     *
+     * This API can be properly called on devices running OpenHarmony 7.0.0 or later.
+     * For devices running versions earlier than OpenHarmony 7.0.0,
+     * this API can be properly called on PCs/2-in-1 devices and tablets,
+     * but does not work for other device types.
+     * To obtain the height of the available area on the current device screen, you can use the height attribute.
+     *
      */
     uint32_t availableHeight;
 

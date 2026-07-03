@@ -372,7 +372,7 @@ typedef struct {
  */
 typedef struct {
     /**
-     * ID of the display. The value must be a non-negative integer.
+     * ID of the display. The value is a non-negative integer.
      */
     uint32_t id;
 
@@ -385,37 +385,49 @@ typedef struct {
     bool isAlive;
 
     /**
-     * Width of the display, in px. The value must be a non-negative integer.
+     * Width of the display, in px. The value is a non-negative integer.
      */
     int32_t width;
 
     /**
-     * Height of the display, in px. The value must be a non-negative integer.
+     * Height of the display, in px. The value is a non-negative integer.
      */
     int32_t height;
 
     /**
-     * Physical width of the display, in px. The value must be a non-negative integer.
+     * Physical width of the display, in px. The value is a non-negative integer.
      */
     int32_t physicalWidth;
 
     /**
-     * Physical height of the display, in px. The value must be a non-negative integer.
+     * Physical height of the display, in px. The value is a non-negative integer.
      */
     int32_t physicalHeight;
 
     /**
-     * Refresh rate of the display, in Hz. The value must be a non-negative integer.
+     * Refresh rate of the display, in Hz. The value is a non-negative integer.
      */
     uint32_t refreshRate;
 
     /**
-     * Width of the available area, in px. The value must be a non-negative integer.
+     * Width of the available area on the screen of the display, in px. The value is a non-negative integer.
+     *
+     * This API can be properly called on devices running OpenHarmony 7.0.0 or later.
+     * For devices running versions earlier than OpenHarmony 7.0.0,
+     * this API can be properly called on PCs/2-in-1 devices and tablets,
+     * but does not work for other device types.
+     * To obtain the width of the available area on the current device screen, you can use the width attribute.
      */
     uint32_t availableWidth;
 
     /**
-     * Height of the available area, in px. The value must be a non-negative integer.
+     * Height of the available area on the screen of the display, in px. The value is a non-negative integer.
+     *
+     * This API can be properly called on devices running OpenHarmony 7.0.0 or later.
+     * For devices running versions earlier than OpenHarmony 7.0.0,
+     * this API can be properly called on PCs/2-in-1 devices and tablets,
+     * but does not work for other device types.
+     * To obtain the height of the available area on the current device screen, you can use the height attribute.
      */
     uint32_t availableHeight;
 
