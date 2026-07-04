@@ -46,6 +46,7 @@
 #include "error_code.h"
 
 #include "drawable_descriptor.h"
+#include "native_type_visual.h"
 #include "node_attributes/slider.h"
 #include "node_attributes/checkbox.h"
 #include "node_attributes/button.h"
@@ -646,8 +647,6 @@ typedef enum {
  * @since 12
  */
 typedef struct ArkUI_SystemFontStyleEvent ArkUI_SystemFontStyleEvent;
-
-#include "native_type_visual.h"
 
 /**
  * @brief Defines the options for selection operation.
