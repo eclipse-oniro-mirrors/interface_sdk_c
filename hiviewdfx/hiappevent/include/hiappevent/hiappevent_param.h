@@ -84,13 +84,14 @@ extern "C" {
 
 /**
  * @brief Used in MAIN_THREAD_JANK_V2, The timeout detection interval and sampling interval for the main thread.
+ * Unit: ms.
  *
  * @since 22
  */
 #define MAIN_THREAD_JANK_PARAM_SAMPLE_INTERVAL "sample_interval"
 
 /**
- * @brief Used in MAIN_THREAD_JANK_V2, Ignore main thread timeout detection during startup.
+ * @brief Used in MAIN_THREAD_JANK_V2, Ignore main thread timeout detection during startup. Unit: s.
  *
  * @since 22
  */
