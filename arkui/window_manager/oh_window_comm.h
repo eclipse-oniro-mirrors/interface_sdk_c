@@ -37,6 +37,7 @@
 
 #ifndef OH_WINDOW_COMM_H
 #define OH_WINDOW_COMM_H
+#include <stdbool.h>
 #include "stdint.h"
 #ifdef __cplusplus
 extern "C" {
