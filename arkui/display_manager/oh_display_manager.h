@@ -40,6 +40,7 @@
 
 #ifndef OH_NATIVE_DISPLAY_MANAGER_H
 #define OH_NATIVE_DISPLAY_MANAGER_H
+#include <stdbool.h>
 #include "oh_display_info.h"
 #ifdef __cplusplus
 extern "C" {
