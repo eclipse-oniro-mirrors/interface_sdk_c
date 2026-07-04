@@ -41,7 +41,7 @@
 #include <stddef.h>
 #endif
 
-#include "stdbool.h"
+#include <stdbool.h>
 #include "stdint.h"
 
 #include "oh_window_comm.h"
