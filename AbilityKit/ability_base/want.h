@@ -37,6 +37,7 @@
 #ifndef ABILITY_BASE_WANT_H
 #define ABILITY_BASE_WANT_H
 
+#include <stdbool.h>
 #include <stddef.h>
 #include <stdint.h>
 #include "ability_base_common.h"
