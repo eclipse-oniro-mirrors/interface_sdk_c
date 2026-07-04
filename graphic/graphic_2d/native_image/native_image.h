@@ -40,6 +40,7 @@
 #define NDK_INCLUDE_NATIVE_IMAGE_H_
 
 #include <stdint.h>
+#include <stdbool.h>
 #include "native_buffer/buffer_common.h"
 
 #ifdef __cplusplus
