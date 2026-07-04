@@ -39,6 +39,7 @@
 #ifndef OH_NATIVE_DISPLAY_INFO_H
 #define OH_NATIVE_DISPLAY_INFO_H
 #include "stdint.h"
+#include <stdbool.h>
 #ifdef __cplusplus
 extern "C" {
 #endif
