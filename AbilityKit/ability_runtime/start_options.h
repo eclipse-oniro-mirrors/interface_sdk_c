@@ -37,6 +37,7 @@
 #ifndef ABILITY_RUNTIME_START_OPTIONS_H
 #define ABILITY_RUNTIME_START_OPTIONS_H
 
+#include <stdbool.h>
 #include <stdint.h>
 #include <stddef.h>
 #include "ability_runtime_common.h"
