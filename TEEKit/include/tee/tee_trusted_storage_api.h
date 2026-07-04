@@ -151,7 +151,7 @@ enum Data_Flag_Constants {
     /** If the bit26 is set to 1, it means deriving TA root key by using huk2 */
     TEE_DATA_FLAG_HUK2 = 0x04000000,
     /**
-     * If the bit27 os set to 1, it means deriving the 32-bytes TA root key at one time,
+     * If the bit27 is set to 1, it means deriving the 32-bytes TA root key at one time,
      *     if it is 0, it means deriving TA root keys and combined them together.
      */
     TEE_DATA_FLAG_DERIVE_32BYTES_KEY_ONCE =  0x08000000,
