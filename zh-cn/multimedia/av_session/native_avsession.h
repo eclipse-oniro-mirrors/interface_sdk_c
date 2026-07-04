@@ -65,9 +65,7 @@ extern "C" {
 typedef struct OH_AVSession OH_AVSession;
 
 /**
- * @brief OH_AVCastController object
- *
- * A pointer can be created using the {@link OH_AVSession_CreateAVCastController} method.
+ * @brief OH_AVSession_GetAVCastController对象定义
  *
  * @since 23
  * @version 1.0
@@ -147,13 +145,11 @@ typedef AVSessionCallback_Result (*OH_AVSessionCallback_OnToggleFavorite)(OH_AVS
     const char* assetId, void* userData);
 
 /**
- * @brief Declaring the callback struct for output device change
+ * @brief 设备回调函数定义
  *
- * @param session the OH_AVSession instance pointer.
- * @param state the {@link AVSession_ConnectionState} of output device.
- * @param outputDeviceInfothe {@link AVSession_OutputDeviceInfo} pointer variable which will be set
- * current output device info. Do not release the outputDeviceInfo pointer separately,
- * instead call {@link OH_AVSession_ReleaseOutputDevice} to release the outputDeviceInfo when it is not used anymore.
+ * @param session 传入的OH_AVSession对象
+ * @param state 设备连接状态
+ * @param outputDeviceInfothe 返回的 AVSession_OutputDeviceInfo 对象指针
  * @since 23
  * @version 1.0
  */
@@ -161,22 +157,14 @@ typedef AVSessionCallback_Result (*OH_AVSessionCallback_OutputDeviceChange)(OH_A
     AVSession_ConnectionState state, AVSession_OutputDeviceInfo* outputDeviceInfo);
 
 /**
- * @brief Request to create the avsession.
+ * @brief 创建OH_AVSession对象
  *
- * @param sessionType The session type to set
- * @param sessionTag The session tag set by the application
- * @param bundleName The bundle name to set
- * @param abilityName The abilityName to set
- * @param avsession Pointer to a variable to receive the OH_AVSession
- * @return Function result code：
- *         {@link AV_SESSION_ERR_SUCCESS} If the execution is successful.
- *         {@link AV_SESSION_ERR_SERVICE_EXCEPTION} If session already existed or internal server error.
- *         {@link AV_SESSION_ERR_INVALID_PARAMETER}:
- *                                                 1. The param of sessionType is invalid.
- *                                                 2. The param of sessionTag is nullptr.
- *                                                 3. The param of bundleName is nullptr.
- *                                                 4. The param of abilityName is nullptr.
- *                                                 5. The param of avsession is nullptr.
+ * @param sessionType 会话类型
+ * @param sessionTag 会话TAG
+ * @param bundleName 应用包名
+ * @param abilityName 应用abilityname
+ * @param avsession 返回的OH_AVSession指针对象
+ * @return 返回创建结果
  * @since 13
  */
 AVSession_ErrCode OH_AVSession_Create(AVSession_Type sessionType, const char* sessionTag,
@@ -322,16 +310,11 @@ AVSession_ErrCode OH_AVSession_SetFavorite(OH_AVSession* avsession, bool favorit
 AVSession_ErrCode OH_AVSession_SetLoopMode(OH_AVSession* avsession, AVSession_LoopMode loopMode);
 
 /**
- * @brief Request to enable remote cast.
+ * @brief 使能投播
  *
- * @param avsession The avsession instance pointer
- * @param enabled enable or disable remote cast
- * @return Function result code:
- *         {@link AV_SESSION_ERR_SUCCESS} If the execution is successful.
- *         {@link AV_SESSION_ERR_SERVICE_EXCEPTION} Internal server error.
- *         {@link AV_SESSION_ERR_CODE_SESSION_NOT_EXIST} session does not exist.
- *         {@link AV_SESSION_ERR_INVALID_PARAMETER}
- *                                                 1. The param of avsession is nullptr.
+ * @param avsession OH_AVSession对象指针
+ * @param enabled 是否使能投播
+ * @return 返回调用执行结果
  * @since 23
  */
 AVSession_ErrCode OH_AVSession_SetRemoteCastEnabled(OH_AVSession* avsession, bool enabled);
@@ -539,118 +522,77 @@ AVSession_ErrCode OH_AVSession_UnregisterToggleFavoriteCallback(OH_AVSession* av
     OH_AVSessionCallback_OnToggleFavorite callback);
 
 /**
- * @brief Request to register output device change callback.
+ * @brief 注册设备回调
  *
- * @param avsession The avsession instance pointer
- * @param callback the {@link OH_AVSessionCallback_OutputDeviceChange} to be registered.
- * @return Function result code:
- *         {@link AV_SESSION_ERR_SUCCESS} If the execution is successful.
- *         {@link AV_SESSION_ERR_SERVICE_EXCEPTION} Internal server error.
- *         {@link AV_SESSION_ERR_INVALID_PARAMETER}
- *                                                 1. The param of avsession is nullptr.
- *                                                 2. The param of callback is nullptr.
+ * @param avsession OH_AVSession对象指针
+ * @param callback 设备回调
+ * @return 返回调用执行结果
  * @since 23
  */
 AVSession_ErrCode OH_AVSession_RegisterOutputDeviceChangeCallback(OH_AVSession* avsession,
     OH_AVSessionCallback_OutputDeviceChange callback);
 
 /**
- * @brief Request to unregister output device change callback.
+ * @brief 去注册设备回调
  *
- * @param avsession The avsession instance pointer
- * @param callback the {@link OH_AVSessionCallback_OutputDeviceChange} to be unregistered.
- * @return Function result code:
- *         {@link AV_SESSION_ERR_SUCCESS} If the execution is successful.
- *         {@link AV_SESSION_ERR_SERVICE_EXCEPTION} Internal server error.
- *         {@link AV_SESSION_ERR_INVALID_PARAMETER}
- *                                                 1. The param of avsession is nullptr.
- *                                                 2. The param of callback is nullptr.
+ * @param avsession OH_AVSession对象指针
+ * @param callback 设备回调
+ * @return 返回调用执行结果
  * @since 23
  */
 AVSession_ErrCode OH_AVSession_UnregisterOutputDeviceChangeCallback(OH_AVSession* avsession,
     OH_AVSessionCallback_OutputDeviceChange callback);
 
 /**
- * @brief Request to acquire an AVSession instance if already created.
- * Call {@link OH_AVSession_Destroy} to release the OH_AVSession when it is not used anymore.
+ * @brief 获取当前已经存在的OH_AVSession对象
  *
- * @param sessionTag The session tag set by the application
- * @param bundleName The bundle name to set
- * @param abilityName The abilityName name to set
- * @param avsession Pointer to a variable to receive the OH_AVSession
- * @return Function result code:
- *         {@link AV_SESSION_ERR_SUCCESS} If the execution is successful.
- *         {@link AV_SESSION_ERR_CODE_SESSION_NOT_EXIST} If session is not existed.
- *         {@link AV_SESSION_ERR_INVALID_PARAMETER}:
- *                                                 1. The param of sessionTag is invalid.
- *                                                 2. The param of bundleName is nullptr.
- *                                                 3. The param of abilityName is nullptr.
- *                                                 4. The param of avsession is nullptr.
+ * @param sessionTag 会话tag
+ * @param bundleName 创建会话的应用包名
+ * @param abilityName 创建会话的ability名称
+ * @param avsession 返回的指向OH_AVSession的指针
+ * @return 返回执行结果
  * @since 23
  */
 AVSession_ErrCode OH_AVSession_AcquireSession(const char* sessionTag, const char* bundleName, const char* abilityName,
     OH_AVSession** avsession);
 
 /**
- * @brief Create an AVCastController object.
- * Call {@link OH_AVCastController_Destroy} to release the OH_AVCastController when it is not used anymore.
+ * @brief 创建AVCastController 对象用于投播
  *
- * @param avsession The avsession instance pointer
- * @param avcastcontroller {@link OH_AVCastController} Pointer to a variable to receive the avcastcontroller
- * @return Function result code:
- *         {@link AV_SESSION_ERR_SUCCESS} If the execution is successful.
- *         {@link AV_SESSION_ERR_SERVICE_EXCEPTION} Internal server error.
- *         {@link AV_SESSION_ERR_CODE_SESSION_NOT_EXIST} The session does not exist.
- *         {@link AV_SESSION_ERR_INVALID_PARAMETER}
- *                                                 1. The param of avsession is nullptr.
- *                                                 2. The param of avcastcontroller is nullptr.
+ * @param avsession OHAVSession对象指针
+ * @param avcastcontroller 接收返回的OH_AVCastController对象指针
+ * @return 返回执行结果
  * @since 23
  */
 AVSession_ErrCode OH_AVSession_CreateAVCastController(OH_AVSession* avsession, OH_AVCastController** avcastcontroller);
 
 /**
- * @brief Request to stop current cast and disconnect device connection.
+ * @brief 结束投播
  *
- * @param avsession The avsession instance pointer
- * @return Function result code:
- *         {@link AV_SESSION_ERR_SUCCESS} If the execution is successful.
- *         {@link AV_SESSION_ERR_SERVICE_EXCEPTION} Internal server error.
- *         {@link AV_SESSION_ERR_CODE_SESSION_NOT_EXIST} The session does not exist.
- *         {@link AV_SESSION_ERR_INVALID_PARAMETER}
- *                                                 1. The param of avsession is nullptr.
+ * @param avsession OH_AVSession对象指针
+ * @return 返回调用执行结果
+ *
  * @since 23
  */
 AVSession_ErrCode OH_AVSession_StopCasting(OH_AVSession* avsession);
 
 /**
- * @brief Acquire current output device.
+ * @brief 获取当前输出设备对象
  *
- * @param avsession The avsession instance pointer
- * @param outputDeviceInfo Pointer {@link AVSession_OutputDeviceInfo} to a variable to receive the OutputDeviceInfo
- *     Do not release the outputDeviceInfo pointer separately, instead call {@link OH_AVSession_ReleaseOutputDevice}
- *     to release the outputDeviceInfo when it is not used anymore.
- * @return Function result code:
- *         {@link AV_SESSION_ERR_SUCCESS} If the execution is successful.
- *         {@link AV_SESSION_ERR_SERVICE_EXCEPTION} Internal server error.
- *         {@link AV_SESSION_ERR_CODE_SESSION_NOT_EXIST} The session does not exist.
- *         {@link AV_SESSION_ERR_INVALID_PARAMETER}
- *                                                 1. The param of avsession is nullptr.
- *                                                 2. The param of outputDeviceInfo is nullptr.
+ * @param avsession OHAVSession对象指针
+ * @param outputDeviceInfo 返回的接收AVSession_OutputDeviceInfo对象的指针
+ * @return 返回执行结果
  * @since 23
  */
 AVSession_ErrCode OH_AVSession_AcquireOutputDevice(OH_AVSession* avsession,
     AVSession_OutputDeviceInfo** outputDeviceInfo);
 
 /**
- * @brief Release outputDeviceInfo object.
+ * @brief 释放当前投播的对象
  *
- * @param avsession The avsession instance pointer
- * @param outputDeviceInfo outputdeivce should be released.
- * @return Function result code:
- *         {@link AV_SESSION_ERR_SUCCESS} If the execution is successful.
- *         {@link AV_SESSION_ERR_INVALID_PARAMETER}
- *                                                 1.The param of avsession is nullptr;
- *                                                 2.The param of outputDeviceInfo is nullptr.
+ * @param avsession OH_AVSession对象指针
+ * @param outputDeviceInfo 要释放的OutputDeviceInfo对象指针
+ * @return 返回调用执行结果
  * @since 23
  */
 AVSession_ErrCode OH_AVSession_ReleaseOutputDevice(OH_AVSession* avsession,

@@ -283,15 +283,11 @@ AVMetadata_Result OH_AVMetadataBuilder_SetSkipIntervals(OH_AVMetadataBuilder* bu
 AVMetadata_Result OH_AVMetadataBuilder_SetDisplayTags(OH_AVMetadataBuilder* builder, int32_t tags);
 
 /**
- * @brief Set the protocols supported
+ * @brief 设置支持的协议范围
  *
- * @param builder The metadata builder instance pointer
- * @param filter The protocols supported by this session,if not set, the default is {@link TYPE_CAST_PLUS_STREAM}
- * @return Function result code:
- *         {@link AVMETADATA_SUCCESS} If the execution is successful.
- *         {@link AVMETADATA_ERROR_INVALID_PARAM}:
- *                                                 1.The param of builder is nullptr;
- *                                                 2.The param of filter is invalid.
+ * @param builder OH_AVMetadataBuilder 对象指针
+ * @param filter 支持的协议范围
+ * @return 返回调用执行结果
  * @since 23
  */
 AVMetadata_Result OH_AVMetadataBuilder_SetFilter(OH_AVMetadataBuilder* builder, uint32_t filter);
@@ -315,7 +311,7 @@ AVMetadata_Result OH_AVMetadataBuilder_GenerateAVMetadata(OH_AVMetadataBuilder* 
 /**
  * @brief Request to release the avmetadata.
  *
- * @param avMetadata Pointer to a variable to receive the avMetadata object.
+ * @param avMetadata  * @return
  * @return Function result code:
  *         {@link AVMETADATA_SUCCESS} If the execution is successful.
  *         {@link AVMETADATA_ERROR_INVALID_PARAM} The param of avMetadata is nullptr.
