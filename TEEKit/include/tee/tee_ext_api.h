@@ -66,7 +66,7 @@ extern "C" {
 #define TEE_SMC_FROM_KERNEL 1
 
 /**
- * @brief Defines the szie of reserved buffer.
+ * @brief Defines the size of reserved buffer.
  *
  * @since 20
  */
