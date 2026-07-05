@@ -942,7 +942,7 @@ static const char *OHOS_IMAGE_PROPERTY_SUBJECT_DISTANCE = "SubjectDistance";
 static const char *OHOS_IMAGE_PROPERTY_SUBJECT_AREA = "SubjectArea";
 
 /**
- * @brief A tag for manufacturers of Exif/DCF writers to record any desired infomation.
+ * @brief A tag for manufacturers of Exif/DCF writers to record any desired information.
  * It is used in {@link OH_ImageSource_GetImageProperty} and {@link OH_ImageSource_ModifyImageProperty}.
  *
  * @since 12
