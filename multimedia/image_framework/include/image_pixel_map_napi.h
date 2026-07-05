@@ -19,7 +19,6 @@
  *
  * @brief Provides APIs for obtaining pixel map data and information.
  *
- * @syscap SystemCapability.Multimedia.Image.Core
  * @since 8
  * @version 1.0
  */
