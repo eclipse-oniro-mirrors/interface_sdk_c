@@ -23,7 +23,7 @@
  */
 
 /**
- * @file node_grid.h
+ * @file grid.h
  *
  * @brief Provides Grid-related type and function definitions for <b>NativeNode</b> APIs.
  *
