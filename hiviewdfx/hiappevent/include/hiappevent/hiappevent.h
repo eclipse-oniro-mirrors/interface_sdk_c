@@ -148,7 +148,7 @@ typedef struct HiAppEvent_AppEventInfo {
     const char* name;
     /* The type of the event. */
     enum EventType type;
-    /* The json string of the parameter. */
+    /* The JSON string of the parameter. */
     const char* params;
 } HiAppEvent_AppEventInfo;
 
@@ -234,7 +234,7 @@ typedef void (*OH_HiAppEvent_OnTrigger)(int row, int size);
  * callback function. Do not use the pointer outside of the callback function. If the information needs to be cached,
  * perform a deep copy of the content pointed by the pointer.
  *
- * @param events The event json string array.
+ * @param events The event JSON string array.
  * @param eventLen Size of the event array.
  * @since 12
  * @version 1.0
