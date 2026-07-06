@@ -23,7 +23,7 @@
  */
 
 /**
- * @file node_water_flow.h
+ * @file water_flow.h
  *
  * @brief Provides WaterFlow-related type and function definitions for
  * <b>NativeNode</b> APIs.
