@@ -546,7 +546,7 @@ Image_ErrorCode OH_ImagePackerNative_Release(OH_ImagePackerNative *imagePacker);
  * @param supportedFormats Double pointer to the supported image formats.
  * @param length Pointer to the size of the array.
  * @return {@link IMAGE_SUCCESS} if the execution is successful.
- *     <br>{@link IMAGE_BAD_PARAMETER} if <b>supportedFormats</b> or <b>length</b> is empty.
+ *     <br>{@link IMAGE_PACKER_INVALID_PARAMETER} if <b>supportedFormats</b> or <b>length</b> is empty.
  * @since 20
  */
 Image_ErrorCode OH_ImagePackerNative_GetSupportedFormats(Image_MimeType** supportedFormats, size_t* length);

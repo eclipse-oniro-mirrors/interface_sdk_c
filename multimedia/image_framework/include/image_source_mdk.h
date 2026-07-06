@@ -544,7 +544,7 @@ int32_t OH_ImageSource_CreateFromRawFile(napi_env env, RawFileDescriptor rawFile
  * The image source data will be updated through {@link OH_ImageSource_UpdateData}.
  *
  * @param env Indicates a pointer to the JNI environment.
- * @param src Indicates a pointer to the input resource of the image source. Only the buffer type is accepted.
+ * @param source Indicates a pointer to the input resource of the image source. Only the buffer type is accepted.
  * For details, see {@link OhosImageSource}.
  * @param ops Indicates a pointer to the options for creating the image source.
  * For details, see {@link OhosImageSourceOps}.

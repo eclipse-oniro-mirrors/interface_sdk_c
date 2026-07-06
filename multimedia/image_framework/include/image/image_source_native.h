@@ -695,7 +695,7 @@ Image_ErrorCode OH_ImageSourceNative_ModifyImageProperty(OH_ImageSourceNative *s
  * @brief Obtains the number of image frames.
  * 
  * @param source Pointer to an OH_ImageSourceNative object.
- * @param res Indicates a pointer to the number of frames obtained.
+ * @param frameCount Indicates a pointer to the number of frames obtained.
  * @return {@link IMAGE_SUCCESS} if the execution is successful.
  *     <br>{@link IMAGE_BAD_PARAMETER} source is nullptr, or frameCount is nullptr.
  * @since 12
