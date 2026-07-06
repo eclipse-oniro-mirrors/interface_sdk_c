@@ -355,7 +355,7 @@ OH_QoS_GewuErrorCode OH_QoS_GewuAbortRequest(OH_QoS_GewuSession session, OH_QoS_
  *      "messages": [
  *          {
  *              "role": "developer",
- *              "content": "Your are a helpful assistant."
+ *              "content": "You are a helpful assistant."
  *          },
  *          {
  *              "role": "user",

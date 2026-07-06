@@ -206,8 +206,8 @@ typedef enum {
      */
     OH_QOS_GEWU_NOENT  = 502,
     /**
-     * @brief Symbol not found. Possible cause: The dependent library or module is not correctly loaded. Solution:
-     * Ensure that the dependent library is correctly installed.
+     * @brief Subsystem not found. Possible cause: The system does not support the subsystem. Solution: Check whether
+     * the subsystem is available.
      *
      * @since 20
      */
@@ -230,14 +230,14 @@ typedef enum {
  * @since 20
  */
 typedef struct {
-    /** 
+    /**
      * @brief Session handle returned after a session is successfully created. This parameter is valid only when `error`
      *  is `OH_QOS_GEWU_OK`.
-     * 
+     *
      * @since 20
      */
     OH_QoS_GewuSession session;
-    /** 
+    /**
      * @brief Error code.
      *     <br>- `OH_QOS_GEWU_OK`: The session is successfully created.
      *     <br>- `OH_QOS_GEWU_NOMEM`: Insufficient memory. There is not enough memory to create the session. You are
@@ -248,12 +248,12 @@ typedef struct {
      *     Verify the application permission configuration.
      *     <br>- `OH_QOS_GEWU_EXIST`: The session already exists. An attempt was made to create a session that already
      *     exists. Verify the session creation process.
-     *     <br>- `OH_QOS_GEWU_NOSYS`: Symbol not found. The system does not support the related function or the
-     *     dependent symbols are unavailable. Check system version and the status of dependent libraries.
+     *     <br>- `OH_QOS_GEWU_NOSYS`: Subsystem not found. The system does not support the function. Check system
+     *     version and the status of dependent libraries.
      *     <br>The mapping between the above enumerated values and
      * their numeric codes is as follows: `OH_QOS_GEWU_OK` = **0**, `OH_QOS_GEWU_NOPERM` = **201**, `OH_QOS_GEWU_NOMEM`
      * = **203**, `OH_QOS_GEWU_INVAL` = **401**, `OH_QOS_GEWU_EXIST` = **501**, and `OH_QOS_GEWU_NOSYS` = **801**.
-     * 
+     *
      * @since 20
      */
     OH_QoS_GewuErrorCode error;
@@ -270,7 +270,7 @@ typedef struct {
  * @since 20
  */
 typedef struct {
-    /** 
+    /**
      * @brief Request handle created after the request is successfully submitted. It can be used to cancel the request
      * later. This parameter is valid only when `error` is `OH_QOS_GEWU_OK`. If the operation fails, this parameter is
      * invalid.
@@ -289,8 +289,8 @@ typedef struct {
      *     Verify that the session has been successfully created and is still valid.
      *     <br>- `OH_QOS_GEWU_NOPERM`: Insufficient permission. The caller lacks the required permission for the API.
      *     Verify the application permission configuration.
-     *     <br>- `OH_QOS_GEWU_NOSYS`: Symbol not found. The system does not support the related function or the
-     *     dependent symbols are unavailable. Check system version and the status of dependent libraries.
+     *     <br>- `OH_QOS_GEWU_NOSYS`: Subsystem not found. The system does not support the function. Check system
+     *     version and the status of dependent libraries.
      *     <br>The mapping between the above enumerated values
      * and their numeric codes is as follows: OH_QOS_GEWU_OK = **0**, OH_QOS_GEWU_NOPERM = **201**, OH_QOS_GEWU_NOMEM =
      * **203**, OH_QOS_GEWU_INVAL = **401**, `OH_QOS_GEWU_NOENT` = **502**, and OH_QOS_GEWU_NOSYS = **801**.
@@ -325,9 +325,8 @@ typedef struct {
 typedef void (*OH_QoS_GewuOnResponse)(void* context, const char* response);
 
 /**
- * @brief Creates a Gewu session. Before calling this API, ensure that the system supports the Gewu service and the
- * required permissions have been obtained. This function loads the specified AI model based on the session attributes
- * and initializes the inference environment to prepare for subsequent inference requests. The lifecycle of the session
+ * @brief Creates a Gewu session. This function loads the specified AI model based on the session attributes and
+ * initializes the inference environment to prepare for subsequent inference requests. The lifecycle of the session
  * object begins when the **OH_QoS_GewuCreateSession** function returns and ends when **OH_QoS_GewuDestroySession** is
  * called. Within the lifecycle, multiple requests can be created. You are advised to wait for all requests to complete
  * or abort them before destroying the session. Otherwise, they will be automatically aborted and no replies will be
@@ -356,7 +355,7 @@ typedef void (*OH_QoS_GewuOnResponse)(void* context, const char* response);
  *     the error cause. The value `OH_QOS_GEWU_NOMEM` indicates that the memory is insufficient for creating a session,
  *     the value `OH_QOS_GEWU_INVAL` indicates a parameter error, the value `OH_QOS_GEWU_NOPERM` indicates insufficient
  *     permission, the value `OH_QOS_GEWU_EXIST` indicates that the session already exists, and the value `
- *     OH_QOS_GEWU_NOSYS` indicates that the symbol cannot be found.
+ *     OH_QOS_GEWU_NOSYS` indicates that the subsystem cannot be found.
  * @since 20
  */
 OH_QoS_GewuCreateSessionResult OH_QoS_GewuCreateSession(const char* attributes);
@@ -372,7 +371,7 @@ OH_QoS_GewuCreateSessionResult OH_QoS_GewuCreateSession(const char* attributes);
  *     <br>- If the session is destroyed successfully, `OH_QOS_GEWU_OK` is returned.
  *     <br>- If the session is not found, `OH_QOS_GEWU_NOENT` is returned.
  *     <br>- If the parameter is invalid, `OH_QOS_GEWU_INVAL` is returned.
- *     <br>- If the symbol is not found, `OH_QOS_GEWU_NOSYS` is returned.
+ *     <br>- If the subsystem is not found, `OH_QOS_GEWU_NOSYS` is returned.
  *     <br>- If another internal error occurs, `OH_QOS_GEWU_FAULT` is returned.
  * @since 20
  */
@@ -393,7 +392,7 @@ OH_QoS_GewuErrorCode OH_QoS_GewuDestroySession(OH_QoS_GewuSession session);
  *     <br>- If the request is successfully stopped, `OH_QOS_GEWU_OK` is returned.
  *     <br>- If the request is not found, `OH_QOS_GEWU_NOENT` is returned.
  *     <br>- If the parameter is invalid, `OH_QOS_GEWU_INVAL` is returned.
- *     <br>- If the symbol is not found, `OH_QOS_GEWU_NOSYS` is returned.
+ *     <br>- If the subsystem is not found, `OH_QOS_GEWU_NOSYS` is returned.
  * @since 20
  */
 OH_QoS_GewuErrorCode OH_QoS_GewuAbortRequest(OH_QoS_GewuSession session, OH_QoS_GewuRequest request);
@@ -434,7 +433,7 @@ OH_QoS_GewuErrorCode OH_QoS_GewuAbortRequest(OH_QoS_GewuSession session, OH_QoS_
  *      "messages": [
  *          {
  *              "role": "developer",
- *              "content": "Your are a helpful assistant."
+ *              "content": "You are a helpful assistant."
  *          },
  *          {
  *              "role": "user",
@@ -461,8 +460,8 @@ OH_QoS_GewuErrorCode OH_QoS_GewuAbortRequest(OH_QoS_GewuSession session, OH_QoS_
  *     indicates the error cause. The value `OH_QOS_GEWU_NOMEM` (**203**) indicates that there is no sufficient memory
  *     to process this request, the value `OH_QOS_GEWU_INVAL` (**401**) indicates a parameter error, the value `
  *     OH_QOS_GEWU_NOENT` (**502**) indicates that the session is not found, the value `OH_QOS_GEWU_NOPERM` (**201**)
- *     indicates insufficient permission, and the value `OH_QOS_GEWU_NOSYS` (**801**) indicates that the symbol is not
- *     found.
+ *     indicates insufficient permission, and the value `OH_QOS_GEWU_NOSYS` (**801**) indicates that the subsystem is
+ *     not found.
  * @since 20
  */
 OH_QoS_GewuSubmitRequestResult OH_QoS_GewuSubmitRequest(OH_QoS_GewuSession session,
