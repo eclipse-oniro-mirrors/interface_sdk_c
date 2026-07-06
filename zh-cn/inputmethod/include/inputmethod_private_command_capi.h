@@ -17,7 +17,7 @@
  * @addtogroup InputMethod
  * @{
  *
- * @brief InputMethod provides functions to use input methods and develop input methods.
+ * @brief InputMethod模块提供方法来使用输入法和开发输入法。
  *
  * @since 12
  */
