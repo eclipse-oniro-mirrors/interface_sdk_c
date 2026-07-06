@@ -12,6 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 /**
  * @addtogroup InputMethod
  * @{
@@ -24,7 +25,8 @@
 /**
  * @file inputmethod_private_command_capi.h
  *
- * @brief Provides functions to manage private commands.
+ * @brief 提供私有数据对象的创建、销毁与读写方法。InputMethod_PrivateCommand采用key-value机制，支持输入法应用与编辑框客户端之间传递自定义私有数据，用于扩展输入法功能、
+ * 传递特定场景指令或交换自定义配置信息。
  *
  * @library libohinputmethod.so
  * @kit IMEKit
@@ -34,7 +36,6 @@
  */
 #ifndef OHOS_INPUTMETHOD_PRIVATE_COMMAND_CAPI_H
 #define OHOS_INPUTMETHOD_PRIVATE_COMMAND_CAPI_H
-#include <stdbool.h>
 #include <stddef.h>
 #include <stdint.h>
 
@@ -43,148 +44,158 @@
 extern "C" {
 #endif /* __cplusplus */
 /**
- * @brief Define the InputMethod_PrivateCommand structure type.
- *
- * The private command between text editor and input method.
+ * @brief 私有命令结构体，采用key-value机制，作为输入框与输入法应用之间传递私有数据的载体。可用于传递自定义指令、扩展能力参数和特定场景数据，提升输入法功能的扩展性和兼容性。
+ * 每个PrivateCommand实例包含一个key（标识符字符串）和一个value（布尔值、整数或字符串，三种类型只能选择一种），value的数据类型由InputMethod_CommandValueType标识。
  *
  * @since 12
  */
 typedef struct InputMethod_PrivateCommand InputMethod_PrivateCommand;
 
 /**
- * @brief Create a new {@link InputMethod_PrivateCommand} instance.
+ * @brief 创建一个新的{@link InputMethod_PrivateCommand}实例。创建时需指定key值，key为私有命令的标识符，用于区分不同的私有数据项。
+ * 创建后的实例value类型默认为IME_COMMAND_VALUE_TYPE_NONE，需后续通过SetBoolValue/SetIntValue/SetStrValue设置value值及其类型。
  *
  * @param key The key of the private command.
- * @param keyLength The length of the key.
- * @return If the creation succeeds, a pointer to the newly created {@link InputMethod_PrivateCommand}
- * instance is returned. If the creation fails, NULL is returned, possible cause is insufficient memory.
+ * @param keyLength key值的字节长度，不包括结尾空字符。必须大于0。单次所有私有数据与key值的大小限制32KB。若keyLength为0，创建行为未定义。
+ * @return 如果创建成功，返回一个指向新创建的{@link InputMethod_PrivateCommand}实例的指针。调用方必须负责该实例的生命周期管理，使用完毕后调用
+ *     {@link OH_PrivateCommand_Destroy}销毁实例以释放内存。
+ *     <br>如果创建失败，返回NULL。可能的失败原因：内存分配不足（应用地址空间满）。对NULL指针的后续操作（如Set/Get函数）将返回IME_ERR_NULL_POINTER。
  * @since 12
  */
 InputMethod_PrivateCommand *OH_PrivateCommand_Create(char key[], size_t keyLength);
 /**
- * @brief Destroy a {@link InputMethod_PrivateCommand} instance.
+ * @brief 销毁一个{@link InputMethod_PrivateCommand}实例，释放其占用的内存资源，包括key值和value值（字符串类型value）所占用的内部内存。
  *
- * @param command Represents a pointer to an {@link InputMethod_PrivateCommand} instance which will be destroyed.
+ * @param command 指向即将被销毁的{@link InputMethod_PrivateCommand}实例的指针。若传入NULL，函数不执行任何操作，安全返回。建议销毁后将指针置为NULL以避免误用悬空指针。
  * @since 12
  */
 void OH_PrivateCommand_Destroy(InputMethod_PrivateCommand *command);
 /**
- * @brief Set key value into {@link InputMethod_PrivateCommand}.
+ * @brief 设置{@link InputMethod_PrivateCommand}的key值。key值为私有命令的标识符，用于接收方区分不同含义的私有数据。
  *
- * @param command Represents a pointer to an {@link InputMethod_PrivateCommand} instance which will be set value.
+ * @param command 指向即将被设置的{@link InputMethod_PrivateCommand}实例的指针。不允许传入NULL指针，否则返回IME_ERR_NULL_POINTER。
  * @param key Represents key value.
- * @param keyLength Represents key length.
- * @return Returns a specific error code.
- *     {@link IME_ERR_OK} - success.
- *     {@link IME_ERR_NULL_POINTER} - unexpected null pointer.
- * Specific error codes can be referenced {@link InputMethod_ErrorCode}.
+ * @param keyLength key值的字节长度，不包括结尾空字符。必须大于0。单次所有私有数据与key值的大小限制32KB。
+ * @return 返回一个特定的错误码。
+ *     <br>{@link IME_ERR_OK} - 表示成功。
+ *     <br>{@link IME_ERR_NULL_POINTER} - 传入的command参数或key参数为空指针。
+ *     <br>具体错误码可以参考 {@link InputMethod_ErrorCode}。
  * @since 12
  */
 InputMethod_ErrorCode OH_PrivateCommand_SetKey(InputMethod_PrivateCommand *command, char key[], size_t keyLength);
 /**
- * @brief Set bool data value into {@link InputMethod_PrivateCommand}.
+ * @brief 设置{@link InputMethod_PrivateCommand}的布尔类型value值。调用此函数后，
+ * 该PrivateCommand实例的value类型将变为IME_COMMAND_VALUE_TYPE_BOOL，之前已设置的其他类型value值（int32_t或string）将被覆盖。
  *
- * @param command Represents a pointer to an {@link InputMethod_PrivateCommand} instance which will be set value.
- * @param value Represents bool data value.
- * @return Returns a specific error code.
- *     {@link IME_ERR_OK} - success.
- *     {@link IME_ERR_NULL_POINTER} - unexpected null pointer.
- * Specific error codes can be referenced {@link InputMethod_ErrorCode}.
+ * @param command 指向即将被设置的{@link InputMethod_PrivateCommand}实例的指针。不允许传入NULL指针，否则返回IME_ERR_NULL_POINTER。
+ * @param value 布尔类型value值，true或false。
+ * @return 返回一个特定的错误码。
+ *     <br>{@link IME_ERR_OK} - 表示成功，value类型已设置为IME_COMMAND_VALUE_TYPE_BOOL。
+ *     <br>{@link IME_ERR_NULL_POINTER} - 非预期的空指针，command参数为NULL。
+ *     <br>具体错误码可以参考 {@link InputMethod_ErrorCode}。
  * @since 12
  */
 InputMethod_ErrorCode OH_PrivateCommand_SetBoolValue(InputMethod_PrivateCommand *command, bool value);
 /**
- * @brief Set integer data value into {@link InputMethod_PrivateCommand}.
+ * @brief 设置{@link InputMethod_PrivateCommand}的整数类型value值。调用此函数后，
+ * 该PrivateCommand实例的value类型将变为IME_COMMAND_VALUE_TYPE_INT32，之前已设置的其他类型value值（bool或string）将被覆盖。
  *
- * @param command Represents a pointer to an {@link InputMethod_PrivateCommand} instance which will be set value.
- * @param value Represents integer data value.
- * @return Returns a specific error code.
- *     {@link IME_ERR_OK} - success.
- *     {@link IME_ERR_NULL_POINTER} - unexpected null pointer.
- * Specific error codes can be referenced {@link InputMethod_ErrorCode}.
+ * @param command 指向即将被设置的{@link InputMethod_PrivateCommand}实例的指针。不允许传入NULL指针，否则返回IME_ERR_NULL_POINTER。
+ * @param value 整数类型的value值，32位带符号整数。
+ * @return 返回一个特定的错误码。
+ *     <br>{@link IME_ERR_OK} - 表示成功，value类型已设置为IME_COMMAND_VALUE_TYPE_INT32。
+ *     <br>{@link IME_ERR_NULL_POINTER} - 非预期的空指针，command参数为NULL。
+ *     <br>具体错误码可以参考 {@link InputMethod_ErrorCode}。
  * @since 12
  */
 InputMethod_ErrorCode OH_PrivateCommand_SetIntValue(InputMethod_PrivateCommand *command, int32_t value);
 /**
- * @brief Set string data value into {@link InputMethod_PrivateCommand}.
+ * @brief 设置{@link InputMethod_PrivateCommand}的字符串类型value值。调用此函数后，
+ * 该PrivateCommand实例的value类型将变为IME_COMMAND_VALUE_TYPE_STRING，之前已设置的其他类型value值（bool或int32_t）将被覆盖。
  *
- * @param command Represents a pointer to an {@link InputMethod_PrivateCommand} instance which will be set value.
+ * @param command 指向即将被设置的{@link InputMethod_PrivateCommand}实例的指针。不允许传入NULL指针，否则返回IME_ERR_NULL_POINTER。
  * @param value Represents string data value.
- * @param valueLength Represents the length of string data value.
- * @return Returns a specific error code.
- *     {@link IME_ERR_OK} - success.
- *     {@link IME_ERR_NULL_POINTER} - unexpected null pointer.
- * Specific error codes can be referenced {@link InputMethod_ErrorCode}.
+ * @param valueLength 表示字符串数据值的字节长度，不包括结尾空字符。必须大于0。单次所有私有数据与key值的大小限制32KB。
+ * @return 返回一个特定的错误码。
+ *     <br>{@link IME_ERR_OK} - 表示成功，value类型已设置为IME_COMMAND_VALUE_TYPE_STRING。
+ *     <br>{@link IME_ERR_NULL_POINTER} - 非预期的空指针，command参数或value参数为NULL。
+ *     <br>具体错误码可以参考 {@link InputMethod_ErrorCode}。
  * @since 12
  */
 InputMethod_ErrorCode OH_PrivateCommand_SetStrValue(
     InputMethod_PrivateCommand *command, char value[], size_t valueLength);
 
 /**
- * @brief Get key value from {@link InputMethod_PrivateCommand}.
+ * @brief 从{@link InputMethod_PrivateCommand}获取key值。key值为私有命令的标识符。
  *
- * @param command Represents a pointer to an {@link InputMethod_PrivateCommand} instance which will be get value from.
- * @param key Represents key value.
- * @param keyLength Represents key length.
- * @return Returns a specific error code.
- *     {@link IME_ERR_OK} - success.
- *     {@link IME_ERR_NULL_POINTER} - unexpected null pointer.
- * Specific error codes can be referenced {@link InputMethod_ErrorCode}.
+ * @param command 指向即将被获取key值的{@link InputMethod_PrivateCommand}实例的指针。不允许传入NULL指针，否则返回IME_ERR_NULL_POINTER。
+ * @param key 输出参数，用于接收key值的字符串指针。key的生命周期和command一致，请勿直接保存key地址，也不应直接操作key内容；推荐先拷贝后再使用。command实例销毁后，key指针失效，不应再访问。
+ *     不允许传入NULL指针，否则返回IME_ERR_NULL_POINTER。
+ * @param keyLength 输出参数，用于接收key值的字节长度。不允许传入NULL指针，否则返回IME_ERR_NULL_POINTER。
+ * @return 返回一个特定的错误码。
+ *     <br>{@link IME_ERR_OK} - 表示成功，key和keyLength已被写入值。
+ *     <br>{@link IME_ERR_NULL_POINTER} - 非预期的空指针，command、key或keyLength参数为NULL。
+ *     <br>具体错误码可以参考 {@link InputMethod_ErrorCode}。
  * @since 12
  */
 InputMethod_ErrorCode OH_PrivateCommand_GetKey(
     InputMethod_PrivateCommand *command, const char **key, size_t *keyLength);
 /**
- * @brief Get value type from {@link InputMethod_PrivateCommand}.
+ * @brief 从{@link InputMethod_PrivateCommand}获取value的数据类型。返回的类型指示了该实例当前存储的value值的类型，用于指导后续应调用哪个GetValue函数来获取实际的value值。
  *
- * @param command Represents a pointer to an {@link InputMethod_PrivateCommand} instance which will be get value from.
- * @param type Represents a pointer to a {@link InputMethod_CommandValueType} instance. Indicates the data type of the
- * value.
- * @return Returns a specific error code.
- *     {@link IME_ERR_OK} - success.
- *     {@link IME_ERR_NULL_POINTER} - unexpected null pointer.
- * Specific error codes can be referenced {@link InputMethod_ErrorCode}.
+ * @param command 指向即将被获取value类型的{@link InputMethod_PrivateCommand}实例的指针。不允许传入NULL指针，否则返回IME_ERR_NULL_POINTER。
+ * @param type 输出参数，用于获取value值的数据类型。返回值为{@link InputMethod_CommandValueType}枚举值：IME_COMMAND_VALUE_TYPE_NONE表示未设置value；
+ *     IME_COMMAND_VALUE_TYPE_STRING表示字符串类型；IME_COMMAND_VALUE_TYPE_BOOL表示布尔类型；IME_COMMAND_VALUE_TYPE_INT32表示32位带符号整数类型。
+ *     不允许传入NULL指针，否则返回IME_ERR_NULL_POINTER。
+ * @return 返回一个特定的错误码。
+ *     <br>{@link IME_ERR_OK} - 表示成功，type已被写入当前value的数据类型。
+ *     <br>{@link IME_ERR_NULL_POINTER} - 非预期的空指针，command或type参数为NULL。
+ *     <br>具体错误码可以参考 {@link InputMethod_ErrorCode}。
  * @since 12
  */
 InputMethod_ErrorCode OH_PrivateCommand_GetValueType(
     InputMethod_PrivateCommand *command, InputMethod_CommandValueType *type);
 /**
- * @brief Get bool data value from {@link InputMethod_PrivateCommand}.
+ * @brief 从{@link InputMethod_PrivateCommand}获取布尔类型的value的值。
  *
- * @param command Represents a pointer to an {@link InputMethod_PrivateCommand} instance which will be get value from.
- * @param value Represents bool data value.
- * @return Returns a specific error code.
- *     {@link IME_ERR_OK} - success.
- *     {@link IME_ERR_NULL_POINTER} - unexpected null pointer.
- *     {@link IME_ERR_QUERY_FAILED} - query failed, no bool value in command.
- * Specific error codes can be referenced {@link InputMethod_ErrorCode}.
+ * @param command 指向即将被获取value值的{@link InputMethod_PrivateCommand}实例的指针。不允许传入NULL指针，否则返回IME_ERR_NULL_POINTER。
+ * @param value 输出参数，用于接收布尔类型的value值。此参数为输出指针，调用方需分配bool类型变量的内存并将其地址传入。不允许传入NULL指针，否则返回IME_ERR_NULL_POINTER。
+ * @return 返回一个特定的错误码。
+ *     <br>{@link IME_ERR_OK} - 表示成功，value指针指向的内存已被写入布尔值。
+ *     <br>{@link IME_ERR_NULL_POINTER} - 非预期的空指针，command或value参数为NULL。
+ *     <br>{@link IME_ERR_QUERY_FAILED} - 查询失败，命令中没有布尔值，即当前value类型不是IME_COMMAND_VALUE_TYPE_BOOL（类型不匹配）。
+ *     建议先调用OH_PrivateCommand_GetValueType确认类型。
+ *     <br>具体错误码可以参考 {@link InputMethod_ErrorCode}。
  * @since 12
  */
 InputMethod_ErrorCode OH_PrivateCommand_GetBoolValue(InputMethod_PrivateCommand *command, bool *value);
 /**
- * @brief Get integer data value from {@link InputMethod_PrivateCommand}.
+ * @brief 从{@link InputMethod_PrivateCommand}获取整数类型的value的值。
  *
- * @param command Represents a pointer to an {@link InputMethod_PrivateCommand} instance which will be get value from.
- * @param value Represents integer data value.
- * @return Returns a specific error code.
- *     {@link IME_ERR_OK} - success.
- *     {@link IME_ERR_NULL_POINTER} - unexpected null pointer.
- *     {@link IME_ERR_QUERY_FAILED} - query failed, no integer value in command.
- * Specific error codes can be referenced {@link InputMethod_ErrorCode}.
+ * @param command 指向即将被获取value值的{@link InputMethod_PrivateCommand}实例的指针。不允许传入NULL指针，否则返回IME_ERR_NULL_POINTER。
+ * @param value 输出参数，用于接收整数类型的value值。此参数为输出指针，调用方需分配int32_t类型变量的内存并将其地址传入。不允许传入NULL指针，否则返回IME_ERR_NULL_POINTER。
+ * @return 返回一个特定的错误码。
+ *     <br>{@link IME_ERR_OK} - 表示成功，value指针指向的内存已被写入整数值。
+ *     <br>{@link IME_ERR_NULL_POINTER} - 非预期的空指针，command或value参数为NULL。
+ *     <br>{@link IME_ERR_QUERY_FAILED} - 查询失败，命令中没有整数值，即当前value类型不是IME_COMMAND_VALUE_TYPE_INT32（类型不匹配）。
+ *     建议先调用OH_PrivateCommand_GetValueType确认类型。
+ *     <br>具体错误码可以参考 {@link InputMethod_ErrorCode}。
  * @since 12
  */
 InputMethod_ErrorCode OH_PrivateCommand_GetIntValue(InputMethod_PrivateCommand *command, int32_t *value);
 /**
- * @brief Get string data value from {@link InputMethod_PrivateCommand}.
+ * @brief 从{@link InputMethod_PrivateCommand}获取字符串类型的value的值。
  *
- * @param command Represents a pointer to an {@link InputMethod_PrivateCommand} instance which will be get value from.
- * @param value Represents string data value.
- * @param valueLength Represents the length of string data value.
- * @return Returns a specific error code.
- *     {@link IME_ERR_OK} - success.
- *     {@link IME_ERR_NULL_POINTER} - unexpected null pointer.
- *     {@link IME_ERR_QUERY_FAILED} - query failed, no string value in command.
- * Specific error codes can be referenced {@link InputMethod_ErrorCode}.
+ * @param command 指向即将被获取value值的{@link InputMethod_PrivateCommand}实例的指针。不允许传入NULL指针，否则返回IME_ERR_NULL_POINTER。
+ * @param value 输出参数，用于接收字符串类型value值的指针。value的生命周期和command一致，请勿直接保存value地址，也不应直接修改value内容；推荐先拷贝后再使用。command实例销毁后，
+ *     value指针失效，不应再访问。不允许传入NULL指针，否则返回IME_ERR_NULL_POINTER。
+ * @param valueLength 输出参数，用于返回字符串类型value值的字节长度。不允许传入NULL指针，否则返回IME_ERR_NULL_POINTER。
+ * @return 返回一个特定的错误码。
+ *     <br>{@link IME_ERR_OK} - 表示成功，value和valueLength已被写入值。
+ *     <br>{@link IME_ERR_NULL_POINTER} - 非预期的空指针，command、value或valueLength参数为NULL。
+ *     <br>{@link IME_ERR_QUERY_FAILED} - 查询失败，命令中没有字符串值，即当前value类型不是IME_COMMAND_VALUE_TYPE_STRING（类型不匹配）。
+ *     建议先调用OH_PrivateCommand_GetValueType确认类型。
+ *     <br>具体错误码可以参考 {@link InputMethod_ErrorCode}。
  * @since 12
  */
 InputMethod_ErrorCode OH_PrivateCommand_GetStrValue(
