@@ -4,7 +4,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -27,7 +27,7 @@
 /**
  * @file oh_display_info.h
  *
- * @brief Defines the data structures for the C APIs of the display module.
+ * @brief The file declares the common enums and definitions of the display.
  *
  * @kit ArkUI
  * @library libnative_display_manager.so
@@ -36,130 +36,170 @@
  * @version 1.0
  */
 
-
 #ifndef OH_NATIVE_DISPLAY_INFO_H
 #define OH_NATIVE_DISPLAY_INFO_H
-
-
 #include "stdint.h"
-
+#include <stdbool.h>
 #ifdef __cplusplus
 extern "C" {
 #endif
-
 /**
- * @brief display name length
+ * @brief Maximum length of a display name.
+ *
  * @since 14
  */
 #define OH_DISPLAY_NAME_LENGTH 32
 
 /**
- * @brief Enumerates rotations.
+ * @brief Enumerates the clockwise rotation angles of a display.
  *
  * @since 12
  * @version 1.0
  */
 typedef enum {
-    /** device rotation 0 degree */
+    /**
+     * The display is rotated clockwise by 0 degrees.
+     */
     DISPLAY_MANAGER_ROTATION_0 = 0,
 
-    /** device rotation 90 degrees */
+    /**
+     * The display is rotated clockwise by 90 degrees.
+     */
     DISPLAY_MANAGER_ROTATION_90 = 1,
 
-    /** device rotation 180 degrees */
+    /**
+     * The display is rotated clockwise by 180 degrees.
+     */
     DISPLAY_MANAGER_ROTATION_180 = 2,
 
-    /** device rotation 270 degree */
-    DISPLAY_MANAGER_ROTATION_270 = 3,
+    /**
+     * The display is rotated clockwise by 270 degrees.
+     */
+    DISPLAY_MANAGER_ROTATION_270 = 3
 } NativeDisplayManager_Rotation;
 
 /**
- * @brief Enumerates orientations.
+ * @brief Enumerates the orientations of a display.
  *
  * @since 12
  * @version 1.0
  */
 typedef enum {
-    /** device portrait show */
+    /**
+     * The display is in portrait mode.
+     */
     DISPLAY_MANAGER_PORTRAIT = 0,
 
-    /** device landscape show */
+    /**
+     * The display is in landscape mode.
+     */
     DISPLAY_MANAGER_LANDSCAPE = 1,
 
-    /** device portrait inverted show */
+    /**
+     * The display is in reverse portrait mode.
+     */
     DISPLAY_MANAGER_PORTRAIT_INVERTED = 2,
 
-    /** device landscape inverted show */
+    /**
+     * The display is in reverse landscape mode.
+     */
     DISPLAY_MANAGER_LANDSCAPE_INVERTED = 3,
 
-    /** device unknow show */
-    DISPLAY_MANAGER_UNKNOWN,
+    /**
+     * The screen orientation is unknown.
+     */
+    DISPLAY_MANAGER_UNKNOWN
 } NativeDisplayManager_Orientation;
 
 /**
- * @brief Enumerates the result types of the display manager interface.
+ * @brief Enumerates the status codes returned by the display manager interface.
  *
  * @since 12
  * @version 1.0
  */
 typedef enum {
-    /** @error Operation is successful */
+    /**
+     * Success.
+     */
     DISPLAY_MANAGER_OK = 0,
 
-    /** @error Operation no permission */
+    /**
+     * Permission verification fails. The application does not have the permission to use the API.
+     */
     DISPLAY_MANAGER_ERROR_NO_PERMISSION = 201,
 
-    /** @error Operation not system app */
+    /**
+     * Permission verification fails. A non-system application attempts to call a system API.
+     */
     DISPLAY_MANAGER_ERROR_NOT_SYSTEM_APP = 202,
 
-    /** @error Operation invalid param */
+    /**
+     * Parameter check fails.
+     */
     DISPLAY_MANAGER_ERROR_INVALID_PARAM = 401,
 
-    /** @error Operation device not supported */
+    /**
+     * The device does not support the API.
+     */
     DISPLAY_MANAGER_ERROR_DEVICE_NOT_SUPPORTED = 801,
 
-    /** @error Operation screen invalid */
+    /**
+     * The display is invalid.
+     */
     DISPLAY_MANAGER_ERROR_INVALID_SCREEN = 1400001,
 
-    /** @error Operation invalid call */
+    /**
+     * The current operation object does not have the operation permission.
+     */
     DISPLAY_MANAGER_ERROR_INVALID_CALL = 1400002,
 
-    /** @error Operation system abnormal */
+    /**
+     * The system service is abnormal.
+     */
     DISPLAY_MANAGER_ERROR_SYSTEM_ABNORMAL = 1400003,
 
     /**
-     * @error Operation illegal param.
-     *
+     * Invalid parameter.
      * @since 20
      */
-    DISPLAY_MANAGER_ERROR_ILLEGAL_PARAM = 1400004,
+    DISPLAY_MANAGER_ERROR_ILLEGAL_PARAM = 1400004
 } NativeDisplayManager_ErrorCode;
 
 /**
- * @brief Enumerates the fold display mode.
+ * @brief Enumerates the display modes of a foldable device.
  *
  * @since 12
  * @version 1.0
  */
 typedef enum {
-    /** display mode unknown */
+    /**
+     * The display mode of the device is unknown.
+     */
     DISPLAY_MANAGER_FOLD_DISPLAY_MODE_UNKNOWN = 0,
 
-    /** display mode full */
+    /**
+     * The device is displayed in full screen.
+     */
     DISPLAY_MANAGER_FOLD_DISPLAY_MODE_FULL = 1,
 
-    /** display mode main */
+    /**
+     * The main screen of the device is displayed.
+     */
     DISPLAY_MANAGER_FOLD_DISPLAY_MODE_MAIN = 2,
 
-    /** display mode sub */
+    /**
+     * The subscreen of the device is displayed.
+     */
     DISPLAY_MANAGER_FOLD_DISPLAY_MODE_SUB = 3,
 
-    /** display mode coordination */
-    DISPLAY_MANAGER_FOLD_DISPLAY_MODE_COORDINATION = 4,
+    /**
+     * Both screens of the device are displayed in collaborative mode.
+     */
+    DISPLAY_MANAGER_FOLD_DISPLAY_MODE_COORDINATION = 4
 } NativeDisplayManager_FoldDisplayMode;
 
 /**
- * @brief Defines the display rect data structure.
+ * @brief The struct describes a rectangle.
  *
  * @since 12
  * @version 1.0
@@ -176,7 +216,7 @@ typedef struct {
 } NativeDisplayManager_Rect;
 
 /**
- * @brief Defines the display waterfallDisplayAreaRects data structure.
+ * @brief The struct describes the curved area on a waterfall display.
  *
  * @since 12
  * @version 1.0
@@ -196,7 +236,8 @@ typedef struct {
 } NativeDisplayManager_WaterfallDisplayAreaRects;
 
 /**
- * @brief Defines the display cutout info data structure.
+ * @brief The struct describes the unusable area of a display, including punch hole, notch, and curved area of a
+ * waterfall display.
  *
  * @since 12
  * @version 1.0
@@ -213,169 +254,263 @@ typedef struct {
 } NativeDisplayManager_CutoutInfo;
 
 /**
- * @brief Enumerates of the display state.
+ * @brief Enumerates the states of a display.
  *
  * @since 14
  * @version 1.0
  */
 typedef enum {
-    /** display state unknown */
+    /**
+     * Unknown.
+     */
     DISPLAY_MANAGER_DISPLAY_STATE_UNKNOWN = 0,
 
-    /** display state off */
+    /**
+     * The display is shut down.
+     */
     DISPLAY_MANAGER_DISPLAY_STATE_OFF = 1,
 
-    /** display state on */
+    /**
+     * The display is powered on.
+     */
     DISPLAY_MANAGER_DISPLAY_STATE_ON = 2,
 
-    /** display state doze */
+    /**
+     * The display is in sleep mode.
+     */
     DISPLAY_MANAGER_DISPLAY_STATE_DOZE = 3,
 
-    /** display state doze suspend */
+    /**
+     * The display is in sleep mode, and the CPU is suspended.
+     */
     DISPLAY_MANAGER_DISPLAY_STATE_DOZE_SUSPEND = 4,
 
-    /** display state vr */
+    /**
+     * The display is in VR mode.
+     */
     DISPLAY_MANAGER_DISPLAY_STATE_VR = 5,
 
-    /** display state on suspend */
-    DISPLAY_MANAGER_DISPLAY_STATE_ON_SUSPEND = 6,
+    /**
+     * The display is powered on, and the CPU is suspended.
+     */
+    DISPLAY_MANAGER_DISPLAY_STATE_ON_SUSPEND = 6
 } NativeDisplayManager_DisplayState;
 
 /**
- * @brief Enumerates of the display source mode.
+ * @brief Enumerates the source modes of a device.
  *
  * @since 20
  * @version 1.0
  */
 typedef enum {
-    /** display is not in use */
+    /**
+     * The device is currently not in use.
+     */
     DISPLAY_SOURCE_MODE_NONE = 0,
 
-    /** display is in main mode */
+    /**
+     * The primary screen of the device is currently in use.
+     */
     DISPLAY_SOURCE_MODE_MAIN = 1,
 
-    /** display is in mirror mode */
+    /**
+     * The device is currently in mirror display mode.
+     */
     DISPLAY_SOURCE_MODE_MIRROR = 2,
 
-    /** display is in extend mode */
+    /**
+     * The device is currently in extended display mode.
+     */
     DISPLAY_SOURCE_MODE_EXTEND = 3,
 
-    /** display stands alone */
-    DISPLAY_SOURCE_MODE_ALONE = 4,
+    /**
+     * The device is currently in independent display mode.
+     */
+    DISPLAY_SOURCE_MODE_ALONE = 4
 } NativeDisplayManager_SourceMode;
 
 /**
- * @brief Defines the display hdr structure.
+ * @brief The struct describes all the HDR formats supported by a display.
  *
  * @since 14
  * @version 1.0
  */
 typedef struct {
-    /** hdrFormat length */
+    /**
+     * Number of HDR formats supported by the display.
+     */
     uint32_t hdrFormatLength;
 
-    /** hdrFormat pointer */
+    /**
+     * Data of the HDR formats supported by the display.
+     */
     uint32_t *hdrFormats;
 } NativeDisplayManager_DisplayHdrFormat;
 
 /**
- * @brief Defines the display color space structure.
+ * @brief The struct describes all the color spaces supported by a display.
  *
  * @since 14
  * @version 1.0
  */
 typedef struct {
-    /** color space length */
+    /**
+     * Number of color spaces supported by the display.
+     */
     uint32_t colorSpaceLength;
 
-    /** color space pointer */
+    /**
+     * Data of the color spaces supported by the display.
+     */
     uint32_t *colorSpaces;
 } NativeDisplayManager_DisplayColorSpace;
 
 /**
- * @brief Defines the display structure.
+ * @brief The struct describes the information about a display.
  *
  * @since 14
  * @version 1.0
  */
 typedef struct {
-    /** display id */
+    /**
+     * ID of the display. The value is a non-negative integer.
+     */
     uint32_t id;
 
     /** display name */
     char name[OH_DISPLAY_NAME_LENGTH + 1];
 
-    /** display is alive */
+    /**
+     * Whether the display is active. **true** if active, **false** otherwise.
+     */
     bool isAlive;
 
-    /** display width */
+    /**
+     * Width of the display, in px. The value is a non-negative integer.
+     */
     int32_t width;
 
-    /** display height */
+    /**
+     * Height of the display, in px. The value is a non-negative integer.
+     */
     int32_t height;
 
-    /** display physical width */
+    /**
+     * Physical width of the display, in px. The value is a non-negative integer.
+     */
     int32_t physicalWidth;
 
-    /** display physical height */
+    /**
+     * Physical height of the display, in px. The value is a non-negative integer.
+     */
     int32_t physicalHeight;
 
-    /** display refresh rate */
+    /**
+     * Refresh rate of the display, in Hz. The value is a non-negative integer.
+     */
     uint32_t refreshRate;
 
-    /** display available width */
+    /**
+     * Width of the available area on the screen of the display, in px. The value is a non-negative integer.
+     *
+     * This API can be properly called on devices running OpenHarmony 7.0.0 or later.
+     * For devices running versions earlier than OpenHarmony 7.0.0,
+     * this API can be properly called on PCs/2-in-1 devices and tablets,
+     * but does not work for other device types.
+     * To obtain the width of the available area on the current device screen, you can use the width attribute.
+     */
     uint32_t availableWidth;
 
-    /** display available height */
+    /**
+     * Height of the available area on the screen of the display, in px. The value is a non-negative integer.
+     *
+     * This API can be properly called on devices running OpenHarmony 7.0.0 or later.
+     * For devices running versions earlier than OpenHarmony 7.0.0,
+     * this API can be properly called on PCs/2-in-1 devices and tablets,
+     * but does not work for other device types.
+     * To obtain the height of the available area on the current device screen, you can use the height attribute.
+     */
     uint32_t availableHeight;
 
-    /** display density dpi */
+    /**
+     * Physical pixel density of the display, that is, the number of pixels per inch. The value must be a floating-
+     * point number greater than 0. The unit is px. Generally, the value is **160.0** or **480.0**. The actual value
+     * depends on the optional values provided by the device in use.
+     */
     float densityDPI;
 
-    /** display density pixels */
+    /**
+     * Logical pixel density of the display, which is the scaling coefficient between physical pixels and logical
+     * pixels. The value is a floating-point number greater than 0 and is restricted by the range of **densityDPI**.
+     * The value range is [0.5, 4.0]. Generally, the value is **1.0** or **3.0**. The actual value depends on the
+     * density DPI provided by the device in use.
+     */
     float densityPixels;
 
-    /** display scale density */
+    /**
+     * Scaling factor for fonts displayed on the display. The value must be a floating-point number greater than 0.
+     * Generally, the value is the same as that of **densityPixels**.
+     */
     float scaledDensity;
 
-    /** display xdpi*/
+    /**
+     * Exact physical pixels per inch of the display in the X dimension. The value must be a floating-point number
+     * greater than 0.
+     */
     float xDPI;
 
-    /** display ydpi */
+    /**
+     * Exact physical pixels per inch of the display in the Y dimension. The value must be a floating-point number
+     * greater than 0.
+     */
     float yDPI;
 
-    /** display rotation */
+    /**
+     * Clockwise rotation angle of the display.
+     */
     NativeDisplayManager_Rotation rotation;
 
-    /** display state */
+    /**
+     * State of the display.
+     */
     NativeDisplayManager_DisplayState state;
 
-    /** display orientation */
+    /**
+     * Orientation of the display.
+     */
     NativeDisplayManager_Orientation orientation;
 
-    /** display hdr format */
+    /**
+     * All the HDR formats supported by the display.
+     */
     NativeDisplayManager_DisplayHdrFormat *hdrFormat;
 
-    /** display color space */
+    /**
+     * All the color spaces supported by the display.
+     */
     NativeDisplayManager_DisplayColorSpace *colorSpace;
 } NativeDisplayManager_DisplayInfo;
 
 /**
- * @brief Defines the displays structure.
+ * @brief The struct describes the information about displays of a device with multiple screens.
  *
  * @since 14
  * @version 1.0
  */
 typedef struct {
-    /** displays length */
+    /**
+     * Number of displays of a device with multiple screens.
+     */
     uint32_t displaysLength;
 
-    /** displays pointer */
+    /**
+     * An array of NativeDisplayManager_DisplayInfo structs, each containing information about a display.
+     */
     NativeDisplayManager_DisplayInfo *displaysInfo;
 } NativeDisplayManager_DisplaysInfo;
-
 #ifdef __cplusplus
 }
 #endif
+
 /** @} */
 #endif // OH_NATIVE_DISPLAY_INFO_H

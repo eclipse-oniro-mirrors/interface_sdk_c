@@ -38,6 +38,7 @@
 #ifndef OHOS_ABILITY_RUNTIME_C_NATIVE_CHILD_PROCESS_H
 #define OHOS_ABILITY_RUNTIME_C_NATIVE_CHILD_PROCESS_H
 
+#include <stdbool.h>
 #include "IPCKit/ipc_cparcel.h"
 
 #ifdef __cplusplus
@@ -463,6 +464,7 @@ typedef void (*OH_Ability_OnNativeChildProcessExit)(int32_t pid, int32_t signal)
  * @param onProcessExit Pointer to the callback function to handle the exit of a native child process.
  * For details, see {@link OH_Ability_OnNativeChildProcessExit}.
  * @return Returns {@link NCP_NO_ERROR} if the call is successful.
+ *         Returns {@link NCP_ERR_INVALID_PARAM} if the param is invalid.
  *         Returns {@link NCP_ERR_INTERNAL} if internal error occurs.
  *         For details, see {@link Ability_NativeChildProcess_ErrCode}.
  * @since 20
@@ -502,6 +504,14 @@ Ability_NativeChildProcess_ErrCode OH_Ability_UnregisterNativeChildProcessExitCa
  * @since 22
  */
 Ability_NativeChildProcess_ErrCode OH_Ability_KillChildProcess(int32_t pid);
+
+/**
+ * @brief Check whether the caller is allowed to use native process capabilities.
+ *
+ * @return true if the caller is allowed to create native child processes, false otherwise.
+ * @since 26.0.0
+ */
+bool OH_Ability_IsNativeChildProcessSupported();
 
 #ifdef __cplusplus
 } // extern "C"

@@ -29,6 +29,7 @@ extern "C" {
   * and runtime conditional checks.
   * Whenever using APIs that are newer than the distribution target version,
   * it is essential to protect them with the APIAVAILABLE method and provide a reasonable fallback solution.
+  * see [Capi Compatibility Protection Usage Guide](https://developer.huawei.com/consumer/cn/doc/harmonyos-releases/c-api-compatibility-warning-elim)
   *
   * @param maj, int value 0 - 99.
   * @param min, int value 0 - 99.

@@ -29,36 +29,22 @@ ohos_ndk_library("libteec") {
 ohos_ndk_headers("libtee_header") {
   dest_dir = "$ndk_headers_out_dir/TEEKit/tee"
   sources = [
-    "./include/tee/dstb_api.h",
     "./include/tee/pthread_attr.h",
-    "./include/tee/rpmb_driver_rw_api.h",
-    "./include/tee/rpmb_fcntl.h",
     "./include/tee/tee_agent.h",
-    "./include/tee/tee_apm_api.h",
     "./include/tee/tee_arith_api.h",
     "./include/tee/tee_core_api.h",
     "./include/tee/tee_crypto_api.h",
     "./include/tee/tee_crypto_hal.h",
     "./include/tee/tee_defines.h",
     "./include/tee/tee_drv_client.h",
-    "./include/tee/tee_dynamic_srv.h",
     "./include/tee/tee_ext_api.h",
-    "./include/tee/tee_get_recoverymode.h",
-    "./include/tee/tee_hw_ext_api.h",
-    "./include/tee/tee_hw_ext_api_legacy.h",
-    "./include/tee/tee_internal_se_api.h",
     "./include/tee/tee_log.h",
     "./include/tee/tee_mem_mgmt_api.h",
-    "./include/tee/tee_notify_set_priority.h",
     "./include/tee/tee_object_api.h",
     "./include/tee/tee_property_api.h",
-    "./include/tee/tee_rtc_time_api.h",
-    "./include/tee/tee_service_public.h",
-    "./include/tee/tee_sharemem.h",
     "./include/tee/tee_sharemem_ops.h",
     "./include/tee/tee_time_api.h",
     "./include/tee/tee_trusted_storage_api.h",
-    "./include/tee/tee_tui_gp_api.h",
   ]
 }
 

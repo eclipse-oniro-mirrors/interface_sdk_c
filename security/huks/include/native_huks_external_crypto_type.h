@@ -1,4 +1,3 @@
-
 /*
  * Copyright (c) 2025 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -28,12 +27,12 @@
 /**
  * @file native_huks_external_crypto_type.h
  *
- * @brief Defines the structure and enumeration. special for external crypto extension.
+ * @brief Defines the structs and enums for external key management extensions.
  *
  * @library libhuks_external_crypto.z.so
  * @syscap SystemCapability.Security.Huks.CryptoExtension
  *
- * include "huks/include/native_huks_type.h"
+ *     include "huks/include/native_huks_type.h"
  * @kit UniversalKeystoreKit
  * @since 22
  * @version 1.0
@@ -49,21 +48,21 @@ extern "C" {
 #endif
 
 /**
- * @brief Defines the maximum byte length of the provider name.
+ * @brief Defines the maximum length of the provider name.
  *
  * @since 22
  */
 #define OH_HUKS_EXTERNAL_CRYPTO_MAX_PROVIDER_NAME_LEN 100
 
 /**
- * @brief Defines the maximum byte length of the resource ID.
+ * @brief Defines the maximum length of the resource ID.
  *
  * @since 22
  */
 #define OH_HUKS_EXTERNAL_CRYPTO_MAX_RESOURCE_ID_LEN   512
 
 /**
- * @brief Defines the parameter structure in the parameter set.
+ * @brief Defines a single parameter in a parameter set.
  *
  * @since 22
  */
@@ -113,7 +112,7 @@ typedef struct OH_Huks_ExternalCryptoParam {
     };
 } OH_Huks_ExternalCryptoParam;
 /**
- * @brief Defines the structure of the external crypto parameter set.
+ * @brief Defines an external cryptographic parameter set.
  *
  * @since 22
  */
@@ -139,7 +138,7 @@ typedef struct OH_Huks_ExternalCryptoParamSet {
 } OH_Huks_ExternalCryptoParamSet;
 
 /**
- * @brief Enumerates the tag values used in parameter sets.
+ * @brief Enumerates the tag values used in a parameter set.
  *
  * @since 22
  */
@@ -180,7 +179,7 @@ typedef enum OH_Huks_ExternalCryptoTag {
     OH_HUKS_EXT_CRYPTO_TAG_PURPOSE = OH_HUKS_TAG_TYPE_INT | 200005,
 
     /**
-     * @brief The timeout of get properity operation.
+     * @brief The timeout of get property operation.
      *
      * @since 22
      */
@@ -188,7 +187,7 @@ typedef enum OH_Huks_ExternalCryptoTag {
 } OH_Huks_ExternalCryptoTag;
 
 /**
- * @brief Enumerates the PIN auth states.
+ * @brief Enumerates the Ukey PIN authentication states.
  *
  * @since 22
  */

@@ -40,13 +40,16 @@
 #ifndef NATIVE_AUDIOCAPTURER_H
 #define NATIVE_AUDIOCAPTURER_H
 
+#include <stdbool.h>
 #include <time.h>
 #include "native_audiostream_base.h"
 #include "native_audio_device_base.h"
 #include "native_audio_session_base.h"
+
 #ifdef __cplusplus
 extern "C" {
 #endif
+
 /**
  * Request to release the capturer stream.
  *
@@ -166,7 +169,7 @@ OH_AudioStream_Result OH_AudioCapturer_GetStreamId(OH_AudioCapturer* capturer, u
  * @since 10
  *
  * @param capturer Reference created by OH_AudioStreamBuilder_GenerateCapturer()
- * @param rate The state value to be updated
+ * @param rate Pointer to a variable that will be set for the sampling rate.
  * @return Function result code:
  *         {@link AUDIOSTREAM_SUCCESS} If the execution is successful.
  *         {@link AUDIOSTREAM_ERROR_INVALID_PARAM} The param of capturer is nullptr.
@@ -249,8 +252,8 @@ OH_AudioStream_Result OH_AudioCapturer_GetFrameSizeInCallback(OH_AudioCapturer* 
  *
  * @param capturer Reference created by OH_AudioStreamBuilder_GenerateCapturer()
  * @param clockId {@link #CLOCK_MONOTONIC}
- * @param framePosition Pointer to a variable to receive the position
- * @param timestamp Pointer to a variable to receive the timestamp
+ * @param framePosition Pointer to a variable to receive the position.
+ * @param timestamp Pointer to a variable to receive the timestamp, unit is nanosecond.
  * @return Function result code:
  *         {@link AUDIOSTREAM_SUCCESS} If the execution is successful.
  *         {@link AUDIOSTREAM_ERROR_INVALID_PARAM}:
@@ -295,7 +298,7 @@ OH_AudioStream_Result OH_AudioCapturer_GetOverflowCount(OH_AudioCapturer* captur
  * @param userData Pointer to the user data passed when setting the callback via
  * OH_AudioStreamBuilder_SetCapturerReadDataCallback.
  * @param audioData Pointer to the available audio data.
- * @param audioDataSize Size of the available audio data.
+ * @param audioDataSize Size of the available audio data, unit is byte.
  * @see OH_AudioCapturer_Callbacks_Struct.OH_AudioCapturer_OnReadData
  * @since 20
  */
@@ -438,6 +441,90 @@ OH_AudioStream_Result OH_AudioCapturer_SetMuteHint(OH_AudioCapturer* capturer, b
  */
 OH_AudioStream_Result OH_AudioCapturer_SetIndependentAudioSessionStrategy(
     OH_AudioCapturer* capturer, const OH_AudioSession_Strategy* strategy, uint32_t behavior);
+
+/**
+ * @brief Callback used to receive when the sensitive warning message playback for cellular call
+ * recording is finished.
+ * The application must wait for the permitted result before starting cellular call recording.
+ *
+ * @param capturer The pointer to the {@link OH_AudioCapturer} object created
+ *     by {@link OH_AudioStreamBuilder_GenerateCapturer}.
+ * @param userData The pointer to user data which is set in
+ *     {@link OH_AudioStreamBuilder_SetSensitiveRecordPermitCallback}.
+ * @param isPermitted Indicates whether the sensitive warning message playback is finished.
+ *     If the result is true, the recording can start, otherwise the recording is not permitted.
+ * @since 26.0.0
+ */
+typedef void (*OH_AudioCapturer_SensitiveRecordPermitCallback)(
+    OH_AudioCapturer* capturer,
+    void* userData,
+    bool isPermitted);
+
+/**
+ * @brief Sets noise reduction mode for current audio capturer.
+ * The supported mode should be obtained by {@link #getSupportedNoiseReductionModes}.
+ * The actual effect may vary from different audio devices, and will be invalid when there are multiple direct
+ * streams running simultaneously.
+ * The mode can only be changed in created and stopped state.
+ *
+ * @param capturer [in] Pointer to the audio capturer created by {@link OH_AudioStreamBuilder_GenerateCapturer}.
+ * @param noiseReductionMode [in] The noise reduction mode to set.
+ * @return <ul>
+ *         <li>{@link AUDIOSTREAM_SUCCESS} If the execution is successful.</li>
+ *         <li>{@link AUDIOSTREAM_ERROR_INVALID_PARAM} The param of capturer is nullptr.
+ *                                                     The param of noiseReductionMode is invalid.</li>
+ *         <li>{@link AUDIOSTREAM_ERROR_ILLEGAL_STATE} Illegal state, audio capturer is in running state.</li>
+ *         <li>{@link AUDIOSTREAM_ERROR_UNSUPPORTED_ABILITY} The setted mode is not supported.</li>
+ *         <li>{@link AUDIOSTREAM_ERROR_SERVICE_DIED} Audio server process died.</li>
+ *         </ul>
+ * @since 26.0.0
+ */
+OH_AudioStream_Result OH_AudioCapturer_SetNoiseReductionMode(OH_AudioCapturer* capturer,
+    OH_AudioNoiseReductionMode noiseReductionMode);
+
+/**
+ * @brief Gets the noise reduction mode for current audio capturer.
+ * The mode will only consider the default and setted status, audio input device and stream concurrency will
+ * not be considered.
+ *
+ * @param capturer [in] Pointer to the audio capturer created by {@link OH_AudioStreamBuilder_GenerateCapturer}.
+ * @param noiseReductionMode [out] Pointer to get the input noise reduction mode, the default value is
+ *     {@link AUDIO_NOISE_REDUCTION_MODE_FIDELITY}.
+ * @return <ul>
+ *         <li>{@link AUDIOSTREAM_SUCCESS} If the execution is successful.</li>
+ *         <li>{@link AUDIOSTREAM_ERROR_INVALID_PARAM} The param of capturer is nullptr.
+ *                                                     The param of noiseReductionMode is nullptr.</li>
+ *         </ul>
+ * @since 26.0.0
+ */
+OH_AudioStream_Result OH_AudioCapturer_GetNoiseReductionMode(OH_AudioCapturer* capturer,
+    OH_AudioNoiseReductionMode* noiseReductionMode);
+
+/**
+ * @brief Gets all the supported noise reduction modes for current device platform.
+ * Currently the noise reduction effect is only supported when using
+ * {@link AUDIOSTREAM_SOURCE_TYPE_VOICE_MESSAGE}, other supported usage may be extened later.
+ * The supported modes will only consider the audio format and device platform,
+ * audio input device and stream concurrency will not be considered.
+ * @param capturer [in] Pointer to the audio capturer created by {@link OH_AudioStreamBuilder_GenerateCapturer}.
+ * @param noiseReductionModeArray [out] Pointer to a user-allocated array to get the supported noise reduction
+ *     modes, at least {@link AUDIO_NOISE_REDUCTION_MODE_FIDELITY} is supported.
+ * @param inModeArraySize [in] The allocated size of the 'noiseReductionModeArray' input parameter, it is
+ *     recommanded to allocate a larger size, such as 20, to adapt the new modes in the future.
+ * @param outModeArraySize [out] Pointer to get the actual modes size. When the supported modes size is larger
+ *     than 'inModeArraySize', only part of the modes will be filled into 'noiseReductionModeArray', and
+ *     the 'outModeArraySize' will be equal to 'inModeArraySize'.
+ * @return <ul>
+ *         <li>{@link AUDIOSTREAM_SUCCESS} If the execution is successful.</li>
+ *         <li>{@link AUDIOSTREAM_ERROR_INVALID_PARAM} The param of capturer is nullptr.
+ *                                                     The param of noiseReductionModeArray is nullptr.
+ *                                                     The param of outModeArraySize is nullptr.</li>
+ *         <li>{@link AUDIOSTREAM_ERROR_SERVICE_DIED} Audio server process died.</li>
+ *         </ul>
+ * @since 26.0.0
+ */
+OH_AudioStream_Result OH_AudioCapturer_GetSupportedNoiseReductionModes(OH_AudioCapturer* capturer,
+    OH_AudioNoiseReductionMode* noiseReductionModeArray, uint32_t inModeArraySize, uint32_t *outModeArraySize);
 
 #ifdef __cplusplus
 }

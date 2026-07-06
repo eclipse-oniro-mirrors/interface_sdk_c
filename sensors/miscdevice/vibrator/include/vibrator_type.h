@@ -4,7 +4,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -12,7 +12,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 /**
  * @addtogroup Vibrator
  * @{
@@ -20,11 +19,11 @@
  * @brief Provides the enums, structs, and error codes used in the vibrator APIs.
  * @since 11
  */
-
 /**
  * @file vibrator_type.h
+ * @brief Declares the APIs for starting or stopping vibration.
+ *
  * @kit SensorServiceKit
- * @brief Declares the common vibrator attributes.
  * @library libohvibrator.z.so
  * @syscap SystemCapability.Sensors.MiscDevice
  * @since 11
@@ -45,7 +44,7 @@ extern "C" {
 #endif
 
 /**
-* @brief Defines an enum that enumerates the error codes.
+* @brief Enumerates the vibrator error codes.
 *
 * @since 11
 */
@@ -63,20 +62,47 @@ typedef enum Vibrator_ErrorCode : int32_t {
 } Vibrator_ErrorCode;
 
 /**
- * @brief Enumerates vibration usages scenarios.
+ * @brief Enumerates the vibration scenarios.
  *
  * @since 11
  */
 typedef enum Vibrator_Usage {
-    VIBRATOR_USAGE_UNKNOWN = 0,            /**< Vibration is used for unknown, lowest priority */
-    VIBRATOR_USAGE_ALARM = 1,              /**< Vibration is used for alarm */
-    VIBRATOR_USAGE_RING = 2,               /**< Vibration is used for ring */
-    VIBRATOR_USAGE_NOTIFICATION = 3,       /**< Vibration is used for notification */
-    VIBRATOR_USAGE_COMMUNICATION = 4,      /**< Vibration is used for communication */
-    VIBRATOR_USAGE_TOUCH = 5,              /**< Vibration is used for touch */
-    VIBRATOR_USAGE_MEDIA = 6,              /**< Vibration is used for media */
-    VIBRATOR_USAGE_PHYSICAL_FEEDBACK = 7,  /**< Vibration is used for physical feedback */
-    VIBRATOR_USAGE_SIMULATED_REALITY = 8,   /**< Vibration is used for simulate reality */
+    /**
+     * Unknown scenario
+     */
+    VIBRATOR_USAGE_UNKNOWN = 0,
+    /**
+     * Alarming
+     */
+    VIBRATOR_USAGE_ALARM = 1,
+    /**
+     * Ringing
+     */
+    VIBRATOR_USAGE_RING = 2,
+    /**
+     * Notification
+     */
+    VIBRATOR_USAGE_NOTIFICATION = 3,
+    /**
+     * Telecommunications
+     */
+    VIBRATOR_USAGE_COMMUNICATION = 4,
+    /**
+     * Touch
+     */
+    VIBRATOR_USAGE_TOUCH = 5,
+    /**
+     * Multimedia
+     */
+    VIBRATOR_USAGE_MEDIA = 6,
+    /**
+     * Physical feedback
+     */
+    VIBRATOR_USAGE_PHYSICAL_FEEDBACK = 7,
+    /**
+     * Simulated reality
+     */
+    VIBRATOR_USAGE_SIMULATED_REALITY = 8,
     VIBRATOR_USAGE_MAX
 } Vibrator_Usage;
 

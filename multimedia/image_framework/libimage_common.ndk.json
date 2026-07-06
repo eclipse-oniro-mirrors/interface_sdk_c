@@ -22,5 +22,27 @@
     {
         "first_introduced": "13",
         "name": "OH_PictureMetadata_Clone"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_PictureMetadata_SetBlobData"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_PictureMetadata_GetBlobDataSize"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_PictureMetadata_GetBlobData"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_PictureMetadata_GetMetadataByType",
+        "api_type": "system"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_PictureMetadatas_Release",
+        "api_type": "system"
     }
 ]

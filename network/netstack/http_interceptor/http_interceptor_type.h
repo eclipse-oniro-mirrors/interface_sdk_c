@@ -151,10 +151,10 @@ typedef enum OH_Interceptor_Type {
      */
     OH_TYPE_READ_ONLY,
     /**
-     * @brief interceptor will modify the packet
-     * @since 24
+     * @brief interceptor will modify the packet from Network Kit
+     * @since 26.0.0
      */
-    OH_TYPE_MODIFY
+    OH_TYPE_MODIFY_NETWORK_KIT
 } OH_Interceptor_Type;
 
 /**
@@ -178,23 +178,16 @@ typedef enum OH_Interceptor_Result {
 /**
  * @brief Defines interceptor handler
  *
+ * @param request http request packet.
+ * @param response http response packet.
+ * @param isModified whether interceptor modified the packet.
+ * @return {@link OH_Interceptor_Result} interceptor process result.
+ *
  * @since 24
  */
 typedef OH_Interceptor_Result (*OH_Http_InterceptorHandler)(
-    /**
-     * @brief http request packet
-     * @since 24
-     */
     OH_Http_Interceptor_Request *request,
-    /**
-     * @brief http response packet
-     * @since 24
-     */
     OH_Http_Interceptor_Response *response,
-    /**
-     * @brief whether interceptor modified the packet
-     * @since 24
-     */
     int32_t *isModified);
 
 /**

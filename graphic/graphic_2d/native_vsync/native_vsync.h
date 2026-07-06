@@ -40,6 +40,7 @@
 #define NDK_INCLUDE_NATIVE_VSYNC_H_
 
 #include <stdint.h>
+#include <stdbool.h>
 
 #ifdef __cplusplus
 extern "C" {

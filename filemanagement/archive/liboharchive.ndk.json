@@ -1,0 +1,102 @@
+[
+    {
+        "first_introduced": "26.0.0",
+        "name":"OH_Archive_Reader_OpenFile"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name":"OH_Archive_Reader_SetProgressHandlerWithData"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name":"OH_Archive_Reader_ExtractAllFile"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name":"OH_Archive_Reader_Close"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name":"OH_Archive_Writer_OpenFile"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name":"OH_Archive_Writer_SetCompressMethod"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name":"OH_Archive_Writer_SetProgressHandlerWithData"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name":"OH_Archive_Writer_Add"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name":"OH_Archive_Writer_Close"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name":"OH_Archive_BufferWriteCompressBound"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name":"OH_Archive_BufferWrite"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name":"OH_Archive_BufferRead"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name":"OH_Archive_StreamWrite_Create"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name":"OH_Archive_StreamWrite_Start"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name":"OH_Archive_StreamWrite_SetCompressLevel"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name":"OH_Archive_StreamWrite_Cancel"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name":"OH_Archive_StreamWrite_Update"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name":"OH_Archive_StreamWrite_End"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name":"OH_Archive_StreamWrite_Destroy"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name":"OH_Archive_StreamRead_Create"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name":"OH_Archive_StreamRead_Start"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name":"OH_Archive_StreamRead_Cancel"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name":"OH_Archive_StreamRead_Update"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name":"OH_Archive_StreamRead_End"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name":"OH_Archive_StreamRead_Destroy"
+    }
+]

@@ -41,6 +41,7 @@
 #define OH_DATA_VALUE_H
 
 #include <inttypes.h>
+#include <stdbool.h>
 #include "database/data/data_asset.h"
 
 #ifdef __cplusplus

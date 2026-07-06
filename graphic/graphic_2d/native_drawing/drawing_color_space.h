@@ -4,7 +4,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -19,16 +19,13 @@
  *
  * @brief Provides functions such as 2D graphics rendering, text drawing, and image display.
  *
- * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- *
  * @since 8
  * @version 1.0
  */
-
 /**
  * @file drawing_color_space.h
  *
- * @brief Declares functions related to the <b>colorSpace</b> object in the drawing module.
+ * @brief This file declares the functions related to the color space in the drawing module.
  *
  * @kit ArkGraphics2D
  * @library libnative_drawing.so
@@ -47,30 +44,27 @@ extern "C" {
 #endif
 
 /**
- * @brief Creates an <b>OH_Drawing_ColorSpace</b> object that represents the SRGB color space.
+ * @brief Creates an sRGB color space.
  *
- * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @return Returns the pointer to the <b>OH_Drawing_ColorSpace</b> object created.
+ * @return Returns a pointer to the {@link OH_Drawing_ColorSpace} object created.
  * @since 12
  * @version 1.0
  */
 OH_Drawing_ColorSpace* OH_Drawing_ColorSpaceCreateSrgb(void);
 
 /**
- * @brief Creates an <b>OH_Drawing_ColorSpace</b> object with the SRGB primaries, but a linear (1.0) gamma.
+ * @brief Creates an sRGB linear (Gamma 1.0) color space.
  *
- * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @return Returns the pointer to the <b>OH_Drawing_ColorSpace</b> object created.
+ * @return Returns a pointer to the {@link OH_Drawing_ColorSpace} object created.
  * @since 12
  * @version 1.0
  */
 OH_Drawing_ColorSpace* OH_Drawing_ColorSpaceCreateSrgbLinear(void);
 
 /**
- * @brief Destroy an <b>OH_Drawing_ColorSpace</b> object.
+ * @brief Destroys an **OH_Drawing_ColorSpace** object and reclaims the memory occupied by the object.
  *
- * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @param colorSpace Indicates the pointer to an <b>OH_Drawing_ColorSpace</b> object.
+ * @param colorSpace Pointer to an {@link OH_Drawing_ColorSpace} object.
  * @since 12
  * @version 1.0
  */

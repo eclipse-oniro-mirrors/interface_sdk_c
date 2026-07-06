@@ -25,7 +25,7 @@
 /**
  * @file native_key_event.h
  *
- * @brief Declares the APIs related to native key events.
+ * @brief Declares the APIs of **NativeKeyEvent**.
  *
  * @library libace_ndk.z.so
  * @syscap SystemCapability.ArkUI.ArkUI.Full
@@ -46,376 +46,656 @@ extern "C" {
 #endif
 
 /**
- * @brief Defines an enum for the key codes in key events.
+ * @brief Enumerates the key codes for key events.
  *
  * @since 14
  */
 typedef enum {
-    /** Unknown (or unrecognized) key **/
+    /**
+     * Unknown key
+     */
     ARKUI_KEYCODE_UNKNOWN = -1,
-    /** Function (Fn) key **/
+    /**
+     * Function (Fn) key
+     */
     ARKUI_KEYCODE_FN = 0,
-    /** Volume Up key **/
+    /**
+     * Volume Up key
+     */
     ARKUI_KEYCODE_VOLUME_UP = 16,
-    /** Volume Down key **/
+    /**
+     * Volume Down key
+     */
     ARKUI_KEYCODE_VOLUME_DOWN = 17,
-    /** Power key **/
+    /**
+     * Power key
+     */
     ARKUI_KEYCODE_POWER = 18,
-    /** Shutter key **/
+    /**
+     * Camera key
+     */
     ARKUI_KEYCODE_CAMERA = 19,
-    /** Speaker Mute key **/
+    /**
+     * Speaker Mute key
+     */
     ARKUI_KEYCODE_VOLUME_MUTE = 22,
-    /** Mute key **/
+    /**
+     * Mute key
+     */
     ARKUI_KEYCODE_MUTE = 23,
-    /** Brightness Up key **/
+    /**
+     * Brightness Up key.
+     */
     ARKUI_KEYCODE_BRIGHTNESS_UP = 40,
-    /** Brightness Down key **/
+    /**
+     * Brightness Down key.
+     */
     ARKUI_KEYCODE_BRIGHTNESS_DOWN = 41,
-    /** Key 0 **/
+    /**
+     * Key 0
+     */
     ARKUI_KEYCODE_0 = 2000,
-    /** Key 1 **/
+    /**
+     * Key 1
+     */
     ARKUI_KEYCODE_1 = 2001,
-    /** Key 2 **/
+    /**
+     * Key 2
+     */
     ARKUI_KEYCODE_2 = 2002,
-    /** Key 3 **/
+    /**
+     * Key 3
+     */
     ARKUI_KEYCODE_3 = 2003,
-    /** Key 4 **/
+    /**
+     * Key 4
+     */
     ARKUI_KEYCODE_4 = 2004,
-    /** Key 5 **/
+    /**
+     * Key 5
+     */
     ARKUI_KEYCODE_5 = 2005,
-    /** Key 6 **/
+    /**
+     * Key 6
+     */
     ARKUI_KEYCODE_6 = 2006,
-    /** Key 7 **/
+    /**
+     * Key 7
+     */
     ARKUI_KEYCODE_7 = 2007,
-    /** Key 8 **/
+    /**
+     * Key 8
+     */
     ARKUI_KEYCODE_8 = 2008,
-    /** Key 9 **/
+    /**
+     * Key 9
+     */
     ARKUI_KEYCODE_9 = 2009,
-    /** Key + **/
+    /**
+     * Key +
+     */
     ARKUI_KEYCODE_STAR = 2010,
-    /** Key # **/
+    /**
+     * Key #
+     */
     ARKUI_KEYCODE_POUND = 2011,
-     /** Up key on D-pad **/
+     /**
+     * Up key on D-pad.
+     */
     ARKUI_KEYCODE_DPAD_UP = 2012,
-    /** Down key on D-pad **/
+    /**
+     * Down key on D-pad.
+     */
     ARKUI_KEYCODE_DPAD_DOWN = 2013,
-    /** Left key on D-pad **/
+    /**
+     * Left key on D-pad.
+     */
     ARKUI_KEYCODE_DPAD_LEFT = 2014,
-    /** Right key on D-pad **/
+    /**
+     * Right key on D-pad.
+     */
     ARKUI_KEYCODE_DPAD_RIGHT = 2015,
-    /** OK key on D-pad **/
+    /**
+     * Center key on D-pad.
+     */
     ARKUI_KEYCODE_DPAD_CENTER = 2016,
-    /** Key A **/
+    /**
+     * Key A
+     */
     ARKUI_KEYCODE_A = 2017,
-    /** Key B **/
+    /**
+     * Key B
+     */
     ARKUI_KEYCODE_B = 2018,
-    /** Key C **/
+    /**
+     * Key C
+     */
     ARKUI_KEYCODE_C = 2019,
-    /** Key D **/
+    /**
+     * Key D
+     */
     ARKUI_KEYCODE_D = 2020,
-    /** Key E **/
+    /**
+     * Key E
+     */
     ARKUI_KEYCODE_E = 2021,
-    /** Key F **/
+    /**
+     * Key F
+     */
     ARKUI_KEYCODE_F = 2022,
-    /** Key G **/
+    /**
+     * Key G
+     */
     ARKUI_KEYCODE_G = 2023,
-    /** Key H **/
+    /**
+     * Key H
+     */
     ARKUI_KEYCODE_H = 2024,
-    /** Key I **/
+    /**
+     * Key I
+     */
     ARKUI_KEYCODE_I = 2025,
-    /** Key J **/
+    /**
+     * Key J
+     */
     ARKUI_KEYCODE_J = 2026,
-    /** Key K **/
+    /**
+     * Key K
+     */
     ARKUI_KEYCODE_K = 2027,
-    /** Key L **/
+    /**
+     * Key L
+     */
     ARKUI_KEYCODE_L = 2028,
-    /** Key M **/
+    /**
+     * Key M
+     */
     ARKUI_KEYCODE_M = 2029,
-    /** Key N **/
+    /**
+     * Key N
+     */
     ARKUI_KEYCODE_N = 2030,
-    /** Key O **/
+    /**
+     * Key O
+     */
     ARKUI_KEYCODE_O = 2031,
-    /** Key P **/
+    /**
+     * Key P
+     */
     ARKUI_KEYCODE_P = 2032,
-    /** Key R **/
+    /**
+     * Key Q
+     */
     ARKUI_KEYCODE_Q = 2033,
     /** Key R **/
     ARKUI_KEYCODE_R = 2034,
-    /** Key S **/
+    /**
+     * Key S
+     */
     ARKUI_KEYCODE_S = 2035,
-    /** Key T **/
+    /**
+     * Key T
+     */
     ARKUI_KEYCODE_T = 2036,
-    /** Key U **/
+    /**
+     * Key U
+     */
     ARKUI_KEYCODE_U = 2037,
-    /** Key V **/
+    /**
+     * Key V
+     */
     ARKUI_KEYCODE_V = 2038,
-    /** Key W **/
+    /**
+     * Key W
+     */
     ARKUI_KEYCODE_W = 2039,
-    /** Key X **/
+    /**
+     * Key X
+     */
     ARKUI_KEYCODE_X = 2040,
-    /** Key Y **/
+    /**
+     * Key Y
+     */
     ARKUI_KEYCODE_Y = 2041,
-    /** Key Z **/
+    /**
+     * Key Z
+     */
     ARKUI_KEYCODE_Z = 2042,
-    /** Key # **/
+    /**
+     * Key ,
+     */
     ARKUI_KEYCODE_COMMA = 2043,
-    /** Key # **/
+    /**
+     * Key .
+     */
     ARKUI_KEYCODE_PERIOD = 2044,
-    /** Left Alt key **/
+    /**
+     * Left Alt key
+     */
     ARKUI_KEYCODE_ALT_LEFT = 2045,
-    /** Right Alt key **/
+    /**
+     * Right Alt key
+     */
     ARKUI_KEYCODE_ALT_RIGHT = 2046,
-    /** Left Shift key **/
+    /**
+     * Left Shift key
+     */
     ARKUI_KEYCODE_SHIFT_LEFT = 2047,
-    /** Right Shift key **/
+    /**
+     * Right Shift key
+     */
     ARKUI_KEYCODE_SHIFT_RIGHT = 2048,
-    /** Tab key **/
+    /**
+     * Tab key
+     */
     ARKUI_KEYCODE_TAB = 2049,
-    /** Space key **/
+    /**
+     * Space key
+     */
     ARKUI_KEYCODE_SPACE = 2050,
-    /** Symbol key **/
+    /**
+     * Symbol key
+     */
     ARKUI_KEYCODE_SYM = 2051,
-    /** Explorer key, used to start the explorer application **/
+    /**
+     * Explorer key, which is used to start the explorer application
+     */
     ARKUI_KEYCODE_EXPLORER = 2052,
-    /** Email key, used to start the email application **/
+    /**
+     * Email key, which is used to start the email application
+     */
     ARKUI_KEYCODE_ENVELOPE = 2053,
-    /** Enter key **/
+    /**
+     * Enter key
+     */
     ARKUI_KEYCODE_ENTER = 2054,
-    /** Backspace key **/
+    /**
+     * Delete key
+     */
     ARKUI_KEYCODE_DEL = 2055,
-    /** Key ` **/
+    /**
+     * Key `
+     */
     ARKUI_KEYCODE_GRAVE = 2056,
-    /** Key - **/
+    /**
+     * Key -
+     */
     ARKUI_KEYCODE_MINUS = 2057,
-    /** Key = **/
+    /**
+     * Key =
+     */
     ARKUI_KEYCODE_EQUALS = 2058,
-    /** Key [ **/
+    /**
+     * Key [
+     */
     ARKUI_KEYCODE_LEFT_BRACKET = 2059,
-    /** Key ]**/
+    /**
+     * Key ]
+     */
     ARKUI_KEYCODE_RIGHT_BRACKET = 2060,
-    /** Key \\ **/
+    /**
+     * Key \
+     */
     ARKUI_KEYCODE_BACKSLASH = 2061,
-    /** Key ; **/
+    /**
+     * Key ;
+     */
     ARKUI_KEYCODE_SEMICOLON = 2062,
-    /** Key ' **/
+    /**
+     * Key '
+     */
     ARKUI_KEYCODE_APOSTROPHE = 2063,
-    /** Key / **/
+    /**
+     * Key /
+     */
     ARKUI_KEYCODE_SLASH = 2064,
-    /** Key @ **/
+    /**
+     * Key @
+     */
     ARKUI_KEYCODE_AT = 2065,
-    /** Key + **/
+    /**
+     * Key +
+     */
     ARKUI_KEYCODE_PLUS = 2066,
-    /** Menu key **/
+    /**
+     * Menu key
+     */
     ARKUI_KEYCODE_MENU = 2067,
-    /** Page Up key **/
+    /**
+     * Page Up key
+     */
     ARKUI_KEYCODE_PAGE_UP = 2068,
-    /** Page Down key **/
+    /**
+     * Page Down key
+     */
     ARKUI_KEYCODE_PAGE_DOWN = 2069,
-    /** ESC key **/
+    /**
+     * ESC key.
+     */
     ARKUI_KEYCODE_ESCAPE = 2070,
-    /** Delete key **/
+    /**
+     * Forward Delete key
+     */
     ARKUI_KEYCODE_FORWARD_DEL = 2071,
-    /** Left Ctrl key **/
+    /**
+     * Left Ctrl key
+     */
     ARKUI_KEYCODE_CTRL_LEFT = 2072,
-    /** Right Ctrl key **/
+    /**
+     * Right Ctrl key
+     */
     ARKUI_KEYCODE_CTRL_RIGHT = 2073,
-    /** Caps Lock key **/
+    /**
+     * Caps Lock key
+     */
     ARKUI_KEYCODE_CAPS_LOCK = 2074,
-    /** Scroll Lock key **/
+    /**
+     * Scroll Lock key
+     */
     ARKUI_KEYCODE_SCROLL_LOCK = 2075,
-    /** Left Meta key **/
+    /**
+     * Left Meta key
+     */
     ARKUI_KEYCODE_META_LEFT = 2076,
-    /** Right Meta key **/
+    /**
+     * Right Meta key
+     */
     ARKUI_KEYCODE_META_RIGHT = 2077,
-    /** Function key **/
+    /**
+     * Function key
+     */
     ARKUI_KEYCODE_FUNCTION = 2078,
-    /** System Request/Print Screen key **/
+    /**
+     * System Request/Print Screen key
+     */
     ARKUI_KEYCODE_SYSRQ = 2079,
-    /** Break/Pause key **/
+    /**
+     * Break/Pause key
+     */
     ARKUI_KEYCODE_BREAK = 2080,
-    /** Move to Home key **/
+    /**
+     * Move to Home key
+     */
     ARKUI_KEYCODE_MOVE_HOME = 2081,
-    /** Move to End key **/
+    /**
+     * Move to End key
+     */
     ARKUI_KEYCODE_MOVE_END = 2082,
-    /** Insert key **/
+    /**
+     * Insert key
+     */
     ARKUI_KEYCODE_INSERT = 2083,
-    /** Forward key **/
+    /**
+     * Forward key
+     */
     ARKUI_KEYCODE_FORWARD = 2084,
-    /** Play key **/
+    /**
+     * Play key
+     */
     ARKUI_KEYCODE_MEDIA_PLAY = 2085,
-    /** Pause key **/
+    /**
+     * Pause key
+     */
     ARKUI_KEYCODE_MEDIA_PAUSE = 2086,
-    /** Close key **/
+    /**
+     * Close key
+     */
     ARKUI_KEYCODE_MEDIA_CLOSE = 2087,
-    /** Eject key **/
+    /**
+     * Eject key
+     */
     ARKUI_KEYCODE_MEDIA_EJECT = 2088,
-    /** Record key **/
+    /**
+     * Record key
+     */
     ARKUI_KEYCODE_MEDIA_RECORD = 2089,
-    /** F1 key **/
+    /**
+     * F1 key
+     */
     ARKUI_KEYCODE_F1 = 2090,
-    /** F2 key **/
+    /**
+     * F2 key
+     */
     ARKUI_KEYCODE_F2 = 2091,
-    /** F3 key **/
+    /**
+     * F3 key
+     */
     ARKUI_KEYCODE_F3 = 2092,
-    /** F4 key **/
+    /**
+     * F4 key
+     */
     ARKUI_KEYCODE_F4 = 2093,
-    /** F5 key **/
+    /**
+     * F5 key
+     */
     ARKUI_KEYCODE_F5 = 2094,
-    /** F6 key **/
+    /**
+     * F6 key
+     */
     ARKUI_KEYCODE_F6 = 2095,
-    /** F7 key **/
+    /**
+     * F7 key
+     */
     ARKUI_KEYCODE_F7 = 2096,
-    /** F8 key **/
+    /**
+     * F8 key
+     */
     ARKUI_KEYCODE_F8 = 2097,
-    /** F9 key **/
+    /**
+     * F9 key
+     */
     ARKUI_KEYCODE_F9 = 2098,
-    /** F10 key **/
+    /**
+     * F10 key
+     */
     ARKUI_KEYCODE_F10 = 2099,
-    /** F11 key **/
+    /**
+     * F11 key
+     */
     ARKUI_KEYCODE_F11 = 2100,
-    /** F12 key **/
+    /**
+     * F12 key
+     */
     ARKUI_KEYCODE_F12 = 2101,
-    /** Number Lock key on numeric keypad **/
+    /**
+     * Number Lock key on numeric keypad
+     */
     ARKUI_KEYCODE_NUM_LOCK = 2102,
-    /** Key 0 on numeric keypad **/
+    /**
+     * Key 0 on numeric keypad
+     */
     ARKUI_KEYCODE_NUMPAD_0 = 2103,
-    /** Key 1 on numeric keypad **/
+    /**
+     * Key 1 on numeric keypad
+     */
     ARKUI_KEYCODE_NUMPAD_1 = 2104,
-    /** Key 2 on numeric keypad **/
+    /**
+     * Key 2 on numeric keypad
+     */
     ARKUI_KEYCODE_NUMPAD_2 = 2105,
-    /** Key 3 on numeric keypad **/
+    /**
+     * Key 3 on numeric keypad
+     */
     ARKUI_KEYCODE_NUMPAD_3 = 2106,
-    /** Key 4 on numeric keypad **/
+    /**
+     * Key 4 on numeric keypad
+     */
     ARKUI_KEYCODE_NUMPAD_4 = 2107,
-    /** Key 5 on numeric keypad **/
+    /**
+     * Key 5 on numeric keypad
+     */
     ARKUI_KEYCODE_NUMPAD_5 = 2108,
-    /** Key 6 on numeric keypad **/
+    /**
+     * Key 6 on numeric keypad
+     */
     ARKUI_KEYCODE_NUMPAD_6 = 2109,
-    /** Key 7 on numeric keypad **/
+    /**
+     * Key 7 on numeric keypad
+     */
     ARKUI_KEYCODE_NUMPAD_7 = 2110,
-    /** Key 8 on numeric keypad **/
+    /**
+     * Key 8 on numeric keypad
+     */
     ARKUI_KEYCODE_NUMPAD_8 = 2111,
-    /** Key 9 on numeric keypad **/
+    /**
+     * Key 9 on numeric keypad
+     */
     ARKUI_KEYCODE_NUMPAD_9 = 2112,
-    /** Key / on numeric keypad **/
+    /**
+     * Key / on numeric keypad
+     */
     ARKUI_KEYCODE_NUMPAD_DIVIDE = 2113,
-    /** Key ) on numeric keypad **/
+    /**
+     * Key * on numeric keypad
+     */
     ARKUI_KEYCODE_NUMPAD_MULTIPLY = 2114,
-    /** Key - on numeric keypad **/
+    /**
+     * Key - on numeric keypad
+     */
     ARKUI_KEYCODE_NUMPAD_SUBTRACT = 2115,
-    /** Key + on numeric keypad **/
+    /**
+     * Key + on numeric keypad
+     */
     ARKUI_KEYCODE_NUMPAD_ADD = 2116,
-    /** Key . on numeric keypad **/
+    /**
+     * Key . on numeric keypad
+     */
     ARKUI_KEYCODE_NUMPAD_DOT = 2117,
-    /** Key , on numeric keypad **/
+    /**
+     * Key , on numeric keypad
+     */
     ARKUI_KEYCODE_NUMPAD_COMMA = 2118,
-    /** Enter key on numeric keypad **/
+    /**
+     * Enter key on numeric keypad
+     */
     ARKUI_KEYCODE_NUMPAD_ENTER = 2119,
-    /** Key = on numeric keypad **/
+    /**
+     * Key = on numeric keypad
+     */
     ARKUI_KEYCODE_NUMPAD_EQUALS = 2120,
-    /** Key ( on numeric keypad **/
+    /**
+     * Key ( on numeric keypad
+     */
     ARKUI_KEYCODE_NUMPAD_LEFT_PAREN = 2121,
-    /** Key ) on numeric keypad **/
+    /**
+     * Key ) on numeric keypad
+     */
     ARKUI_KEYCODE_NUMPAD_RIGHT_PAREN = 2122,
     /**
      * Joystick key A
      * @since 15
-    */
+     */
     ARKUI_KEYCODE_BUTTON_A = 2301,
     /**
      * Joystick key B
      * @since 15
-    */
+     */
     ARKUI_KEYCODE_BUTTON_B = 2302,
     /**
      * Joystick key X
      * @since 15
-    */
+     */
     ARKUI_KEYCODE_BUTTON_X = 2304,
     /**
      * Joystick key Y
      * @since 15
-    */
+     */
     ARKUI_KEYCODE_BUTTON_Y = 2305,
     /**
      * Joystick key L1
      * @since 15
-    */
+     */
     ARKUI_KEYCODE_BUTTON_L1 = 2307,
     /**
      * Joystick key R1
      * @since 15
-    */
+     */
     ARKUI_KEYCODE_BUTTON_R1 = 2308,
     /**
      * Joystick key L2
      * @since 15
-    */
+     */
     ARKUI_KEYCODE_BUTTON_L2 = 2309,
     /**
      * Joystick key R2
      * @since 15
-    */
+     */
     ARKUI_KEYCODE_BUTTON_R2 = 2310,
     /**
      * Joystick key Select
      * @since 15
-    */
+     */
     ARKUI_KEYCODE_BUTTON_SELECT = 2311,
     /**
      * Joystick key Start
      * @since 15
-    */
+     */
     ARKUI_KEYCODE_BUTTON_START = 2312,
     /**
      * Joystick key Mode
      * @since 15
-    */
+     */
     ARKUI_KEYCODE_BUTTON_MODE = 2313,
     /**
      * Joystick key THUMBL
      * @since 15
-    */
+     */
     ARKUI_KEYCODE_BUTTON_THUMBL = 2314,
     /**
      * Joystick key THUMBR
      * @since 15
-    */
+     */
     ARKUI_KEYCODE_BUTTON_THUMBR = 2315,
 } ArkUI_KeyCode;
 
 /**
- * @brief Defines an enum for the key event types.
+ * @brief Enumerates the types of key events.
  *
  * @since 14
  */
 typedef enum {
-    /** Unknown type **/
+    /**
+     * Unknown type.
+     */
     ARKUI_KEY_EVENT_UNKNOWN = -1,
-    /** Pressing of a key **/
+    /**
+     * Key press.
+     */
     ARKUI_KEY_EVENT_DOWN = 0,
-    /** Release of a key **/
+    /**
+     * Release of a key.
+     */
     ARKUI_KEY_EVENT_UP = 1,
-    /** Long press of a key **/
+    /**
+     * Long press of a key.
+     */
     ARKUI_KEY_EVENT_LONG_PRESS = 2,
-    /** Click of a key **/
+    /**
+     * Click of a key.
+     */
     ARKUI_KEY_EVENT_CLICK = 3,
 } ArkUI_KeyEventType;
 
 /**
- * @brief Defines an enum for the types of devices that trigger a key event.
+ * @brief Enumerates the types of input devices that trigger key events.
  *
  * @since 14
  */
 typedef enum {
-    /** Unknown type **/
+    /**
+     * Unknown type.
+     */
     ARKUI_KEY_SOURCE_UNKNOWN = 0,
-    /** Mouse **/
+    /**
+     * Mouse.
+     */
     ARKUI_KEY_SOURCE_TYPE_MOUSE = 1,
-    /** Keyboard **/
+    /**
+     * Keyboard.
+     */
     ARKUI_KEY_SOURCE_TYPE_KEYBOARD = 4,
     /**
-    * @brief Joystick.
+    * @brief Game controller.
     *
     * @since 15
     */
@@ -423,186 +703,237 @@ typedef enum {
 } ArkUI_KeySourceType;
 
 /**
- * @brief Defines an enum for key intentions.
+ * @brief Enumerates the intentions corresponding to key events.
  *
  * @since 14
  */
 typedef enum {
-    /** Unknown intention **/
+    /**
+     * Unknown intention.
+     */
     ARKUI_KEY_INTENSION_UNKNOWN = -1,
-    /**Upward**/
+    /**
+     * Upward.
+     */
     ARKUI_KEY_INTENSION_UP = 1,
-    /** Downward **/
+    /**
+     * Downward.
+     */
     ARKUI_KEY_INTENSION_DOWN = 2,
-    /** Leftward **/
+    /**
+     * Leftward.
+     */
     ARKUI_KEY_INTENSION_LEFT = 3,
-    /** Rightward **/
+    /**
+     * Rightward.
+     */
     ARKUI_KEY_INTENSION_RIGHT = 4,
-    /** Select **/
+    /**
+     * Select.
+     */
     ARKUI_KEY_INTENSION_SELECT = 5,
     /** Escape **/
     ARKUI_KEY_INTENSION_ESCAPE = 6,
-    /** Back**/
+    /**
+     * Back.
+     */
     ARKUI_KEY_INTENSION_BACK = 7,
-    /** Forward **/
+    /**
+     * Forward.
+     */
     ARKUI_KEY_INTENSION_FORWARD = 8,
-    /** Menu **/
+    /**
+     * Menu.
+     */
     ARKUI_KEY_INTENSION_MENU = 9,
-    /** Home **/
+    /**
+     * Home page.
+     */
     ARKUI_KEY_INTENSION_HOME = 10,
-    /** Page up **/
+    /**
+     * Previous.
+     */
     ARKUI_KEY_INTENSION_PAGE_UP = 11,
-    /** Page down **/
+    /**
+     * Next.
+     */
     ARKUI_KEY_INTENSION_PAGE_DOWN = 12,
-    /** Zoom out **/
+    /**
+     * Zoom out.
+     */
     ARKUI_KEY_INTENSION_ZOOM_OUT = 13,
-    /** Zoom in **/
+    /**
+     * Zoom in.
+     */
     ARKUI_KEY_INTENSION_ZOOM_IN = 14,
 
     /** Play or pause **/
     ARKUI_KEY_INTENTION_MEDIA_PLAY_PAUSE = 100,
-    /** Fast-forward **/
+    /**
+     * Fast-forward.
+     */
     ARKUI_KEY_INTENTION_MEDIA_FAST_FORWARD = 101,
-    /** Fast playback **/
+    /**
+     * Fast playback.
+     */
     ARKUI_KEY_INTENTION_MEDIA_FAST_PLAYBACK = 103,
-    /** Play next **/
+    /**
+     * Play the next media asset.
+     */
     ARKUI_KEY_INTENTION_MEDIA_NEXT = 104,
-    /** Play previous **/
+    /**
+     * Play the previous media asset.
+     */
     ARKUI_KEY_INTENTION_MEDIA_PREVIOUS = 105,
-    /** Mute **/
+    /**
+     * Mute.
+     */
     ARKUI_KEY_INTENTION_MEDIA_MUTE = 106,
-    /** Volume up **/
+    /**
+     * Volume up.
+     */
     ARKUI_KEY_INTENTION_VOLUME_UP = 107,
-    /** Volume down **/
+    /**
+     * Volume down.
+     */
     ARKUI_KEY_INTENTION_VOLUME_DOWN = 108,
 
-    /** Answer a call **/
+    /**
+     * Answer a call.
+     */
     ARKUI_KEY_INTENTION_CALL = 200,
-    /** Camera **/
+    /**
+     * Take a photo.
+     */
     ARKUI_KEY_INTENTION_CAMERA = 300,
 } ArkUI_KeyIntension;
 
 /**
- * @brief Obtains the type of a key event.
+ * @brief Obtains the type of the specified key event.
  *
- * @param event Pointer to an <b>ArkUI_UIInputEvent</b> object.
- * @return Returns the key event type.
+ * @param event Pointer to the target **ArkUI_UIInputEvent** object.
+ * @return Key event type.
  * @since 14
  */
 ArkUI_KeyEventType OH_ArkUI_KeyEvent_GetType(const ArkUI_UIInputEvent* event);
 
 /**
- * @brief Obtains the key code from a key event.
+ * @brief Obtains the key code from the specified key event.
  *
- * @param event Pointer to an <b>ArkUI_UIInputEvent</b> object.
- * @return Returns the key code.
+ * @param event Pointer to the target **ArkUI_UIInputEvent** object.
+ * @return Key code.
  * @since 14
  */
 int32_t OH_ArkUI_KeyEvent_GetKeyCode(const ArkUI_UIInputEvent* event);
 
 /**
- * @brief Obtains the key value from a key event.
+ * @brief Obtains the key value from the specified key event.
  *
- * @param event Pointer to an <b>ArkUI_UIInputEvent</b> object.
- * @return Returns the key value.
+ * @param event Pointer to the target **ArkUI_UIInputEvent** object.
+ * @return Key value.
  * @since 14
  */
 const char *OH_ArkUI_KeyEvent_GetKeyText(const ArkUI_UIInputEvent* event);
 
 /**
- * @brief Obtains the type of device that triggers a key event.
+ * @brief Obtains the type of input device that triggers the specified key event.
  *
- * @param event Pointer to an <b>ArkUI_UIInputEvent</b> object.
- * @return Returns the device type.
+ * @param event Pointer to the target **ArkUI_UIInputEvent** object.
+ * @return Input device type.
  * @since 14
  */
 ArkUI_KeySourceType OH_ArkUI_KeyEvent_GetKeySource(const ArkUI_UIInputEvent* event);
 
 /**
- * @brief Prevents a key event from bubbling up.
+ * @brief Stops the specified key event from bubbling upwards or downwards.
  *
- * @param event Pointer to an <b>ArkUI_UIInputEvent</b> object.
- * @param stopPropagation Whether to stop event propagation.
+ * @param event Pointer to the target **ArkUI_UIInputEvent** object.
+ * @param stopPropagation Whether to stop event propagation. The value **true** means to stop event propagation, and **
+ *     false** means the opposite.
  * @since 14
  */
 void OH_ArkUI_KeyEvent_StopPropagation(const ArkUI_UIInputEvent* event, bool stopPropagation);
 
 /**
- * @brief Obtains the intention code associated with a key event.
+ * @brief Obtains the intention code associated with the specified key event.
  *
- * @param event Pointer to an <b>ArkUI_UIInputEvent</b> object.
- * @return Returns the intention code associated with the key event.
+ * @param event Pointer to the target **ArkUI_UIInputEvent** object.
+ * @return Intention code associated with the key event.
  * @since 14
  */
 ArkUI_KeyIntension OH_ArkUI_KeyEvent_GetKeyIntensionCode(const ArkUI_UIInputEvent* event);
 
 /**
- * @brief Obtains the Unicode value associated with a key event.
- * Non-space basic Latin characters in the 0x0021-0x007E range are supported. Characters with a value of 0 are not
- * supported. In the case of key combination, this API returns the Unicode value of the key corresponding to the key
- * event.
+ * @brief Obtains the Unicode value of the specified key event. Non-space basic Latin characters in the 0x0021-0x007E
+ * range are supported. Characters with a value of 0 are not supported. In the case of key combination, this API
+ * returns the Unicode value of the key corresponding to the key event.
  *
- * @param event Pointer to an <b>ArkUI_UIInputEvent</b> object.
- * @return Returns the Unicode value.
+ * @param event Pointer to the target **ArkUI_UIInputEvent** object.
+ * @return Unicode value.
  * @since 14
  */
 uint32_t OH_ArkUI_KeyEvent_GetUnicode(const ArkUI_UIInputEvent* event);
 
 /**
- * @brief Sets whether a key event is consumed in the key event callback.
+ * @brief Sets whether the specified key event is consumed in the key event callback.
  *
- * @param event Pointer to an <b>ArkUI_UIInputEvent</b> object.
- * @param isConsumed Whether the event is consumed.
+ * @param event Pointer to the target **ArkUI_UIInputEvent** object.
+ * @param isConsumed Whether the key event is consumed by the callback. The value **true** means that the key event is
+ *     consumed, and **false** the opposite.
  * @since 14
  */
 void OH_ArkUI_KeyEvent_SetConsumed(const ArkUI_UIInputEvent* event, bool isConsumed);
 
 /**
- * @brief Dispatch key event to a specific component node.
+ * @brief Dispatches the specified key event to a specific node.
  *
- * @param node Indicates the pointer to a component node.
- * @param event Pointer to an <b>ArkUI_UIInputEvent</b> object.
+ * @param node Target node.
+ * @param event Pointer to the target **ArkUI_UIInputEvent** object.
  * @since 15
  */
 void OH_ArkUI_KeyEvent_Dispatch(ArkUI_NodeHandle node, const ArkUI_UIInputEvent* event);
 
 /**
- * @brief Get the Num Lock state of the key event.
+ * @brief Obtains the state of the NumLock key when the specified key event occurs.
  *
- * @param event Pointer to an <b>ArkUI_UIInputEvent</b> object.
- * @param state Return whether the Num Lock is on.
- * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @param event Pointer to the target **ArkUI_UIInputEvent** object.
+ * @param state Output parameter that returns the state of the NumLock key. The value **true** indicates an activated
+ *     state, and **false** indicates an inactivated state.
+ * @return Result code.
+ *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
  * @since 19
  */
 ArkUI_ErrorCode OH_ArkUI_KeyEvent_IsNumLockOn(const ArkUI_UIInputEvent* event, bool* state);
 
 /**
- * @brief Get the Caps Lock state of the key event.
+ * @brief Obtains the state of the CapsLock key when the specified key event occurs.
  *
- * @param event Pointer to an <b>ArkUI_UIInputEvent</b> object.
- * @param state Return whether the Caps Lock is on.
- * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @param event Pointer to the target **ArkUI_UIInputEvent** object.
+ * @param state Output parameter that returns the state of the CapsLock key. The value **true** indicates an activated
+ *     state, and **false** indicates an inactivated state.
+ * @return Result code.
+ *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
  * @since 19
  */
 ArkUI_ErrorCode OH_ArkUI_KeyEvent_IsCapsLockOn(const ArkUI_UIInputEvent* event, bool* state);
 
 /**
- * @brief Get the Scroll Lock state of the key event.
+ * @brief Obtains the state of the ScrollLock key when the specified key event occurs.
  *
- * @param event Pointer to an <b>ArkUI_UIInputEvent</b> object.
- * @param state Return whether the Scroll Lock is on.
- * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @param event Pointer to the target **ArkUI_UIInputEvent** object.
+ * @param state Output parameter that returns the state of the ScrollLock key. The value **true** indicates an
+ *     activated state, and **false** indicates an inactivated state.
+ * @return Result code.
+ *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     <br>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
  * @since 19
  */
 ArkUI_ErrorCode OH_ArkUI_KeyEvent_IsScrollLockOn(const ArkUI_UIInputEvent* event, bool* state);
+
 #ifdef __cplusplus
-};
+}
 #endif
 
 #endif // ARKUI_NATIVE_KEY_EVENT_H

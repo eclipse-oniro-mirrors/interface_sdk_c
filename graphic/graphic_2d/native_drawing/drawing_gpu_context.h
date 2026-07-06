@@ -4,7 +4,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -19,16 +19,13 @@
  *
  * @brief Provides functions such as 2D graphics rendering, text drawing, and image display.
  *
- * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- *
  * @since 8
  * @version 1.0
  */
-
 /**
  * @file drawing_gpu_context.h
  *
- * @brief Declares functions related to the <b>OH_Drawing_GpuContext</b> object in the drawing module.
+ * @brief This file declares the functions related to the GPU context in the drawing module.
  *
  * @kit ArkGraphics2D
  * @library libnative_drawing.so
@@ -47,23 +44,25 @@ extern "C" {
 #endif
 
 /**
- * @brief Defines the options about GPU context.
- * 
+ * @brief This struct describes the options about the GPU context.
+ *
  * @since 12
  * @version 1.0
  * @deprecated since 18
  */
 typedef struct {
-    /** If true this allows path mask textures to be cached */
+    /**
+     * Whether to allow path mask textures to be cached. The value **true** means to allow the path mask textures to be
+     * cached, and **false** means the opposite.
+     */
     bool allowPathMaskCaching;
 } OH_Drawing_GpuContextOptions;
 
 /**
- * @brief Creates an <b>OH_Drawing_GpuContext</b> object, whose GPU backend context is GL.
+ * @brief Creates an **OH_Drawing_GpuContext** object that uses OpenGL as the backend interface.
  *
- * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @param gpuContextOptions Indicates the GPU context options.
- * @return Returns the pointer to the <b>OH_Drawing_GpuContext</b> object created.
+ * @param gpuContextOptions GPU context options, which is {@link OH_Drawing_GpuContextOptions}.
+ * @return Returns the pointer to the {@link OH_Drawing_GpuContext} object created.
  * @since 12
  * @version 1.0
  * @deprecated since 18
@@ -72,20 +71,18 @@ typedef struct {
 OH_Drawing_GpuContext* OH_Drawing_GpuContextCreateFromGL(OH_Drawing_GpuContextOptions gpuContextOptions);
 
 /**
- * @brief Creates an <b>OH_Drawing_GpuContext</b> object, whose GPU backend context depends on device.
+ * @brief Creates an **OH_Drawing_GpuContext** object, for which the backend type depends on the device.
  *
- * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @return Returns the pointer to the <b>OH_Drawing_GpuContext</b> object created.
+ * @return Returns the pointer to the {@link OH_Drawing_GpuContext} object created.
  * @since 16
  * @version 1.0
  */
 OH_Drawing_GpuContext* OH_Drawing_GpuContextCreate(void);
 
 /**
- * @brief Destroys an <b>OH_Drawing_GpuContext</b> object and reclaims the memory occupied by the object.
+ * @brief Destroys an **OH_Drawing_GpuContext** object and reclaims the memory occupied by the object.
  *
- * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @param gpuContext Indicates the pointer to an <b>OH_Drawing_GpuContext</b> object.
+ * @param gpuContext Pointer to an {@link OH_Drawing_GpuContext} object.
  * @since 12
  * @version 1.0
  */

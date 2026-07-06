@@ -639,7 +639,7 @@ int32_t OH_NativeWindow_NativeWindowSetScalingMode(OHNativeWindow *window, uint3
  * @param window Indicates the pointer to a <b>OHNativeWindow</b> instance.
  * @param sequence Indicates the sequence to a produce buffer.
  * @param size Indicates the size of a <b>OHHDRMetaData</b> vector.
- * @param metaDate Indicates the pointer to a <b>OHHDRMetaData</b> vector.
+ * @param metaData Indicates the pointer to a <b>OHHDRMetaData</b> vector.
  * @return Returns an error code, 0 is success, otherwise, failed.
  * @since 9
  * @version 1.0

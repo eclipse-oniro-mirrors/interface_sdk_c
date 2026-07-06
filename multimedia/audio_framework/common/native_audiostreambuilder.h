@@ -40,15 +40,17 @@
 #ifndef NATIVE_AUDIOSTREAM_BUILDER_H
 #define NATIVE_AUDIOSTREAM_BUILDER_H
 
+#include <stdbool.h>
 #include "native_audiostream_base.h"
 #include "native_audiorenderer.h"
 #include "native_audiocapturer.h"
+
 #ifdef __cplusplus
 extern "C" {
 #endif
 
 /**
- * Create a stremBuilder can be used to open a renderer or capturer client.
+ * Create an audio stream builder that can be used to open a renderer or capturer client.
  *
  * OH_AudioStreamBuilder_Destroy() must be called when you are done using the builder.
  *
@@ -62,7 +64,7 @@ extern "C" {
 OH_AudioStream_Result OH_AudioStreamBuilder_Create(OH_AudioStreamBuilder** builder, OH_AudioStream_Type type);
 
 /**
- * Destroy a streamBulder.
+ * Destroy an audio stream builder.
  *
  * This function must be called when you are done using the builder.
  *
@@ -77,12 +79,12 @@ OH_AudioStream_Result OH_AudioStreamBuilder_Create(OH_AudioStreamBuilder** build
 OH_AudioStream_Result OH_AudioStreamBuilder_Destroy(OH_AudioStreamBuilder* builder);
 
 /**
- * Set the channel count of the capturer client
+ * @brief Set the sampling rate of the stream client.
  *
  * @since 10
  *
- * @param builder Reference created by OH_AudioStreamBuilder
- * @param rate Pointer to a variable that will be set for the channel count.
+ * @param builder Reference created by OH_AudioStreamBuilder_Create().
+ * @param rate The target sampling rate.
  * @return Function result code:
  *         {@link AUDIOSTREAM_SUCCESS} If the execution is successful.
  *         {@link AUDIOSTREAM_ERROR_INVALID_PARAM}:
@@ -307,13 +309,13 @@ OH_AudioStream_Result OH_AudioStreamBuilder_GenerateRenderer(OH_AudioStreamBuild
  * @since 10
  *
  * @param builder Reference provided by OH_AudioStreamBuilder_Create()
- * @param audioCapturer Pointer to a viriable to receive the stream client.
+ * @param audioCapturer Pointer to a variable to receive the stream client.
  * @return Function result code:
  *         {@link AUDIOSTREAM_SUCCESS} If the execution is successful.
  *         {@link AUDIOSTREAM_ERROR_INVALID_PARAM}:
  *                                                 1.The param of builder is nullptr;
  *                                                 2.StreamType invalid;
- *                                                 3.Create OHAudioCapturer failed.
+ *                                                 3.Create OHAudioRenderer failed.
  */
 OH_AudioStream_Result OH_AudioStreamBuilder_GenerateCapturer(OH_AudioStreamBuilder* builder,
     OH_AudioCapturer** audioCapturer);
@@ -567,6 +569,22 @@ OH_AudioStream_Result OH_AudioStreamBuilder_SetCapturerFastStatusChangeCallback(
     OH_AudioCapturer_OnFastStatusChange callback, void* userData);
 
 /**
+ * @brief Sets if the audio capturer can capture the audio data affected by loopback effect.
+ * When the same process enables reverb effect for audio loopback in hardware mode, and the
+ * target audio capturer is in {@link AUDIOSTREAM_LATENCY_MODE_FAST} mode, this function
+ * will take effect.
+ *
+ * @param builder reference provided by OH_AudioStreamBuilder_Create().
+ * @param enabled Whether application want to get audio data affected by loopback effect.
+ * @return function result code:
+ *     {@link AUDIOSTREAM_SUCCESS} if the execution is successful.
+ *     {@link AUDIOSTREAM_ERROR_INVALID_PARAM} the param of builder is nullptr.
+ * @since 26.0.0
+ */
+OH_AudioStream_Result OH_AudioStreamBuilder_SetCapturerLoopbackEffectEnabled(
+    OH_AudioStreamBuilder* builder, bool enabled);
+
+/**
  * Sets target mode when using playback capture. Mode will decide what kind of streams to capture.
  * This function is only available for {@link #AUDIOSTREAM_TYPE_CAPTURER} type.
  * After setting playback capture mode, the {@link #OH_AudioStream_SourceType} will be ignored, so
@@ -586,6 +604,57 @@ OH_AudioStream_Result OH_AudioStreamBuilder_SetCapturerFastStatusChangeCallback(
  */
 OH_AudioStream_Result OH_AudioStreamBuilder_SetPlaybackCaptureMode(OH_AudioStreamBuilder* builder,
     uint32_t mode);
+
+/**
+ * @brief Sets the callback to receive when the sensitive warning message playback is finished for
+ * voice downlink capturer stream.
+ * This function is only needed when using {@link AUDIOSTREAM_SOURCE_TYPE_VOICE_DOWNLINK} to record.
+ * This callback must be successfully set, otherwise the capturer can not be created.
+ * The sensitive warning message will be automatically added to the voice data sent to the other
+ * end of the call right after the audio capturer is created.
+ * The application should wait for the callback result before starting the capturer, otherwise an
+ * error will be returned by {@link OH_AudioCapturer_Start}.
+ * Make sure the audio capturer is created after the voice call started, otherwise an
+ * error will be returned by {@link OH_AudioStreamBuilder_GenerateCapturer}.
+ *
+ * @param builder The pointer to the {@link OH_AudioStreamBuilder} object created
+ *     by {@link OH_AudioStreamBuilder_Create}.
+ * @param callback Callback to the functions that will process capturer stream, NULL value is not allowed.
+ * @param userData The pointer to user data, which will be passed back to the application in the callback.
+ *     If application does not need to pass any data, NULL value is also allowed. But if data is not NULL, the
+ *        caller should check whether the data is still valid when receive the callback.
+ * @return <ul>
+ *         <li>{@link AUDIOSTREAM_SUCCESS} If the execution is successful.</li>
+ *         <li>{@link AUDIOSTREAM_ERROR_INVALID_PARAM} The param of builder or callback is nullptr.</li>
+ *         </ul>
+ * @since 26.0.0
+ */
+OH_AudioStream_Result OH_AudioStreamBuilder_SetSensitiveRecordPermitCallback(
+    OH_AudioStreamBuilder* builder,
+    OH_AudioCapturer_SensitiveRecordPermitCallback callback,
+    void* userData);
+
+/**
+ * @brief Sets phone number and token for voice downlink capturer stream.
+ * This function is only needed when using {@link AUDIOSTREAM_SOURCE_TYPE_VOICE_DOWNLINK} to record.
+ * The phone number and token must be successfully set, otherwise the capturer can not be created. They
+ * will be used to check whether the voice downlink capturer matches the cellular call.
+ *
+ * @param builder The pointer to the {@link OH_AudioStreamBuilder} object created
+ *     by {@link OH_AudioStreamBuilder_Create}.
+ * @param cellularRecordPhoneNum The phone number for the target cellular call, which is used in makeCallWithToken(),
+ *     NULL value is not allowed.
+ * @param cellularRecordToken The token for the target cellular call, which can be obtained by makeCallWithToken()
+ *     function from call management, NULL value is not allowed.
+ * @return <ul>
+ *         <li>{@link AUDIOSTREAM_SUCCESS} If the execution is successful.</li>
+ *         <li>{@link AUDIOSTREAM_ERROR_INVALID_PARAM} The param of builder,
+ *              cellularRecordPhoneNum or cellularRecordToken is nullptr.</li>
+ *         </ul>
+ * @since 26.0.0
+ */
+OH_AudioStream_Result OH_AudioStreamBuilder_SetCellularRecordSecurityParams(
+    OH_AudioStreamBuilder* builder, const char* cellularRecordPhoneNum, const char* cellularRecordToken);
 
 #ifdef __cplusplus
 }

@@ -4,7 +4,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -12,7 +12,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 /**
  * @addtogroup Hitrace
  * @{
@@ -25,16 +24,19 @@
  * @brief hitraceChain provides APIs for cross-thread and cross-process distributed tracing.
  * hiTraceChain generates a unique chain ID for a service process and passes it to various information (including
  * application events, system events, and logs) specific to the service process.
- * During debugging and fault locating, you can use the unique chain ID to quickly correlate various information related
- * to the service process.
+ * During debugging and fault locating, you can use the unique chain ID to quickly correlate various information
+ * related to the service process.
  *
  * @since 10
  */
-
 /**
  * @file trace.h
  *
- * @brief Defines APIs of the HiTraceMeter module for performance trace.
+ * @brief Defines APIs of the **HiTraceMeter** and **HiTraceChain** modules for performance tracing and distributed
+ * tracing.
+ * The vertical bar (\|) is used as the separator in user-mode trace format. Therefore, the string parameters passed by
+ * the HiTraceMeter APIs must exclude this character to avoid trace parsing exceptions.
+ * The maximum length of a user-mode trace is 512 characters. Excess characters will be truncated.
  *
  * @kit PerformanceAnalysisKit
  * @include <hitrace/trace.h>
@@ -54,26 +56,20 @@ extern "C" {
 #endif
 
 /**
- * @brief Defines whether a <b>HiTraceId</b> instance is valid.
- *
- * @syscap SystemCapability.HiviewDFX.HiTrace
+ * @brief Enumerates whether a **HiTraceId** instance is valid.
  *
  * @since 12
  */
 typedef enum HiTraceId_Valid {
     /**
-     * @brief Invalid <b>HiTraceId</b> instance.
-     *
-     * @syscap SystemCapability.HiviewDFX.HiTrace
+     * @brief Invalid **HiTraceId**.
      *
      * @since 12
      */
     HITRACE_ID_INVALID = 0,
 
     /**
-     * @brief Valid <b>HiTraceId</b> instance.
-     *
-     * @syscap SystemCapability.HiviewDFX.HiTrace
+     * @brief Valid **HiTraceId**.
      *
      * @since 12
      */
@@ -81,17 +77,13 @@ typedef enum HiTraceId_Valid {
 } HiTraceId_Valid;
 
 /**
- * @brief Enumerates the HiTrace version numbers.
- *
- * @syscap SystemCapability.HiviewDFX.HiTrace
+ * @brief Enumerates the HiTrace versions.
  *
  * @since 12
  */
 typedef enum HiTrace_Version {
     /**
      * @brief Version 1.
-     *
-     * @syscap SystemCapability.HiviewDFX.HiTrace
      *
      * @since 12
      */
@@ -101,80 +93,70 @@ typedef enum HiTrace_Version {
 /**
  * @brief Enumerates the HiTrace flags.
  *
- * @syscap SystemCapability.HiviewDFX.HiTrace
- *
  * @since 12
  */
 typedef enum HiTrace_Flag {
     /**
      * @brief Default flag.
      *
-     * @syscap SystemCapability.HiviewDFX.HiTrace
-     *
      * @since 12
      */
     HITRACE_FLAG_DEFAULT = 0,
 
     /**
-     * @brief Both synchronous and asynchronous calls are traced. By default, only synchronous calls are traced.
-     *
-     * @syscap SystemCapability.HiviewDFX.HiTrace
+     * @brief Asynchronous call flag.When this flag is set, both synchronous and asynchronous calls are traced.By
+     * default, only synchronous calls are traced.
      *
      * @since 12
      */
     HITRACE_FLAG_INCLUDE_ASYNC = 1 << 0,
 
     /**
-     * @brief No spans are created. By default, spans are created.
-     *
-     * @syscap SystemCapability.HiviewDFX.HiTrace
+     * @brief No span flag.When this flag is set, no span information is created. By default, span information is
+     * created.
      *
      * @since 12
      */
     HITRACE_FLAG_DONOT_CREATE_SPAN = 1 << 1,
 
     /**
-     * @brief Trace points are automatically added to spans. By default, no trace point is added.
-     *
-     * @syscap SystemCapability.HiviewDFX.HiTrace
+     * @brief Trace point flag.When this flag is set in the debugging scenario, the HiLog logs of the trace point are
+     * printed upon calling the **OH_HiTrace_Tracepoint()** API. By default, the HiLog logs are not printed.
      *
      * @since 12
      */
     HITRACE_FLAG_TP_INFO = 1 << 2,
 
     /**
-     * @brief Information about the start and end of the trace task is not printed. By default, information about the
-     * start and end of the trace task is printed.
-     *
-     * @syscap SystemCapability.HiviewDFX.HiTrace
+     * @brief No begin and end flag.When this flag is set in the debugging scenario, the HiLog logs about the begin and
+     * end of tracing are printed when the **OH_HiTrace_BeginChain()** and **OH_HiTrace_EndChain()** APIs are called.
+     * By default,the HiLog logs about the begin and end of tracing are not printed.
      *
      * @since 12
      */
     HITRACE_FLAG_NO_BE_INFO = 1 << 3,
 
     /**
-     * @brief The ID is not added to the log. By default, the ID is added to the log.
-     *
-     * @syscap SystemCapability.HiviewDFX.HiTrace
+     * @brief Log association flag.When this flag is set, the **HiTraceId** information is not added to the HiLog logs.
+     * By default, the **HiTraceId** information is added to the HiLog logs.
      *
      * @since 12
      */
     HITRACE_FLAG_DONOT_ENABLE_LOG = 1 << 4,
 
     /**
-     * @brief Tracing is triggered by faults.
-     *
-     * @syscap SystemCapability.HiviewDFX.HiTrace
+     * @brief Failure trigger flag. This is a reserved flag.
      *
      * @since 12
      */
     HITRACE_FLAG_FAULT_TRIGGER = 1 << 5,
 
     /**
-     * @brief Trace points are added only for call chain trace between devices.
-     * By default, device-to-device trace points are not added.
-     *
-     * @syscap SystemCapability.HiviewDFX.HiTrace
+     * @brief Device-to-device trace point flag. It is a subset of **HITRACE_FLAG_TP_INFO** and is used in debugging
+     * scenarios.When the **HITRACE_FLAG_TP_INFO** flag is set, the **HITRACE_FLAG_D2D_TP_INFO** flag does not take
+     * effect.When **HITRACE_FLAG_TP_INFO** is not set and **HITRACE_FLAG_D2D_TP_INFO** is set, the HiLog logs of the
+     * trace point are printed only when the **mode** parameter is set to **HITRACE_CM_DEVICE** upon calling
+     * **OH_HiTrace_Tracepoint()**.
      *
      * @since 12
      */
@@ -182,9 +164,7 @@ typedef enum HiTrace_Flag {
 } HiTrace_Flag;
 
 /**
- * @brief Enumerates the HiTrace trace point types.
- *
- * @syscap SystemCapability.HiviewDFX.HiTrace
+ * @brief Enumerates the trace point types.
  *
  * @since 12
  */
@@ -192,39 +172,34 @@ typedef enum HiTrace_Tracepoint_Type {
     /**
      * @brief CS trace point.
      *
-     * @syscap SystemCapability.HiviewDFX.HiTrace
-     *
      * @since 12
      */
     HITRACE_TP_CS = 0,
+
     /**
      * @brief CR trace point.
-     *
-     * @syscap SystemCapability.HiviewDFX.HiTrace
      *
      * @since 12
      */
     HITRACE_TP_CR = 1,
+
     /**
      * @brief SS trace point.
-     *
-     * @syscap SystemCapability.HiviewDFX.HiTrace
      *
      * @since 12
      */
     HITRACE_TP_SS = 2,
+
     /**
      * @brief SR trace point.
-     *
-     * @syscap SystemCapability.HiviewDFX.HiTrace
      *
      * @since 12
      */
     HITRACE_TP_SR = 3,
+
     /**
-     * @brief General trace point.
-     *
-     * @syscap SystemCapability.HiviewDFX.HiTrace
+     * @brief General type, which identifies the trace points except **HITRACE_TP_CS**, **HITRACE_TP_CR**,
+     * **HITRACE_TP_SS**, and **HITRACE_TP_SR**.
      *
      * @since 12
      */
@@ -232,41 +207,34 @@ typedef enum HiTrace_Tracepoint_Type {
 } HiTrace_Tracepoint_Type;
 
 /**
- * @brief Enumerates the HiTrace communication modes.
- *
- * @syscap SystemCapability.HiviewDFX.HiTrace
+ * @brief Enumerates the trace communication types.
  *
  * @since 12
  */
 typedef enum HiTrace_Communication_Mode {
     /**
-     * @brief Default communication mode.
-     *
-     * @syscap SystemCapability.HiviewDFX.HiTrace
+     * @brief Default communication.
      *
      * @since 12
      */
     HITRACE_CM_DEFAULT = 0,
+
     /**
      * @brief Inter-thread communication.
-     *
-     * @syscap SystemCapability.HiviewDFX.HiTrace
      *
      * @since 12
      */
     HITRACE_CM_THREAD = 1,
+
     /**
-     * @brief Inter-process communication.
-     *
-     * @syscap SystemCapability.HiviewDFX.HiTrace
+     * @brief Inter-process communication (IPC).
      *
      * @since 12
      */
     HITRACE_CM_PROCESS = 2,
+
     /**
      * @brief Inter-device communication.
-     *
-     * @syscap SystemCapability.HiviewDFX.HiTrace
      *
      * @since 12
      */
@@ -274,38 +242,42 @@ typedef enum HiTrace_Communication_Mode {
 } HiTrace_Communication_Mode;
 
 /**
- * @brief Enumerates the HiTrace output levels. The output level threshold system parameter determines
- * the minimum output trace.
+ * @brief Enumerates the HiTrace output levels. The trace output level lower than the threshold does not take effect.
+ * The log version threshold is **HITRACE_LEVEL_INFO**, and the nolog version threshold is **HITRACE_LEVEL_COMMERCIAL**.
  *
  * @since 19
  */
 typedef enum HiTrace_Output_Level {
     /**
-     * @brief Output level only for debug usage.
+     * @brief Level used only for debugging, which has the lowest priority.
      *
      * @since 19
      */
     HITRACE_LEVEL_DEBUG = 0,
+
     /**
-     * @brief Output level for log version usage.
+     * @brief Level for the log version.
      *
      * @since 19
      */
     HITRACE_LEVEL_INFO = 1,
+
     /**
-     * @brief Output level for log version usage, with higher priority than HITRACE_LEVEL_INFO.
+     * @brief Level for the log version, which has a higher priority than **INFO**.
      *
      * @since 19
      */
     HITRACE_LEVEL_CRITICAL = 2,
+
     /**
-     * @brief Output level for nolog version usage.
+     * @brief Level for the nolog version, which has the highest priority.
      *
      * @since 19
      */
     HITRACE_LEVEL_COMMERCIAL = 3,
+
     /**
-     * @brief Output level for range limit.
+     * @brief The maximum output level.
      *
      * @since 19
      */
@@ -313,40 +285,85 @@ typedef enum HiTrace_Output_Level {
 } HiTrace_Output_Level;
 
 /**
- * @brief Defines a <b>HiTraceId</b> instance.
+ * @brief Defines a **HiTraceId** instance.
  *
  * @struct HiTraceId
- *
- * @syscap SystemCapability.HiviewDFX.HiTrace
- *
  * @since 12
  */
 typedef struct HiTraceId {
 #if __BYTE_ORDER == __LITTLE_ENDIAN
-    /** Whether the <b>HiTraceId</b> instance is valid. */
+    /**
+     * Whether a **HiTraceId** instance is valid.
+     *
+     * @since 12
+     */
     uint64_t valid : 1;
-    /** Version number of the <b>HiTraceId</b> instance. */
+    /**
+     * Version number of **HiTraceId**.
+     *
+     * @since 12
+     */
     uint64_t ver : 3;
-    /** Chain ID of the <b>HiTraceId</b> instance. */
+    /**
+     * Trace chain ID of **HiTraceId**.
+     *
+     * @since 12
+     */
     uint64_t chainId : 60;
-    /** Flag of the <b>HiTraceId</b> instance. */
+    /**
+     * Trace flag of **HiTraceId**.
+     *
+     * @since 12
+     */
     uint64_t flags : 12;
-    /** Span ID of the <b>HiTraceId</b> instance. */
+    /**
+     * Span ID of **HiTraceId**.
+     *
+     * @since 12
+     */
     uint64_t spanId : 26;
-    /** Parent span ID of the <b>HiTraceId</b> instance. */
+    /**
+     * Parent span ID of **HiTraceId**.
+     *
+     * @since 12
+     */
     uint64_t parentSpanId : 26;
 #elif __BYTE_ORDER == __BIG_ENDIAN
-    /** Chain ID of the <b>HiTraceId</b> instance. */
+    /**
+     * Trace chain ID of **HiTraceId**.
+     *
+     * @since 12
+     */
     uint64_t chainId : 60;
-    /** Version number of the <b>HiTraceId</b> instance. */
+    /**
+     * Version number of **HiTraceId**.
+     *
+     * @since 12
+     */
     uint64_t ver : 3;
-    /** Whether the <b>HiTraceId</b> instance is valid. */
+    /**
+     * Whether a **HiTraceId** instance is valid.
+     *
+     * @since 12
+     */
     uint64_t valid : 1;
-    /** Parent span ID of the <b>HiTraceId</b> instance. */
+    /**
+     * Parent span ID of **HiTraceId**.
+     *
+     * @since 12
+     */
     uint64_t parentSpanId : 26;
-    /** Span ID of the <b>HiTraceId</b> instance. */
+    /**
+     * Span ID of **HiTraceId**.
+     *
+     * @since 12
+     */
     uint64_t spanId : 26;
-    /** Flag of the <b>HiTraceId</b> instance. */
+    /**
+     * Trace flag of **HiTraceId**.
+     *
+     * @since 12
+     */
     uint64_t flags : 12;
 #else
 #error "ERROR: No BIG_LITTLE_ENDIAN defines."
@@ -354,477 +371,390 @@ typedef struct HiTraceId {
 } HiTraceId;
 
 /**
- * @brief Defines the callback type used in trace status switch event.
- *     The value of traceStatus indicates the current trace status.
+ * @brief Defines a callback to listen for whether the trace capture is enabled.
  *
- * @param traceStatus The current trace status, true for open, false for close.
+ * @param traceStatus Whether the trace capture is enabled for the current application.
+ *     The value **true** indicates that the trace capture is enabled, and **false** indicates the opposite.
  * @since 22
  */
 typedef void (*OH_HiTrace_TraceEventListener)(bool traceStatus);
 
 /**
- * @brief Starts tracing of a process.
+ * @brief Starts tracing.
+ * If the current thread's TLS does not contain a valid HiTrace ID, this function generates one, stores it in TLS, and
+ * returns it.
+ * If the current thread's TLS already contains a valid HiTrace ID, this function does not start tracing and returns an
+ * invalid HiTrace ID with all property values being 0.
  *
- * This API starts tracing, creates a <b>HiTraceId</b> instance, and sets it to the TLS of the calling thread.
- * This API works only when it is called for the first time.
- *
- * @param name Pointer to a process name.
- * @param flags Trace flag.
- * @return Returns the created <b>HiTraceId</b> instance.
- *
- * @syscap SystemCapability.HiviewDFX.HiTrace
- *
+ * @param name Name of the traced service.
+ * @param flags Trace flags. For details, see {@link HiTrace_Flag}.
+ * @return The {@link HiTraceId} struct.
  * @since 12
  */
 HiTraceId OH_HiTrace_BeginChain(const char *name, int flags);
 
 /**
- * @brief Ends tracing and clears the <b>HiTraceId</b> instance of the calling thread from the TLS.
- *
- *
- * @syscap SystemCapability.HiviewDFX.HiTrace
+ * @brief Stops tracing.Stops tracing and sets the HiTrace ID in the TLS of the current thread to invalid.
  *
  * @since 12
  */
 void OH_HiTrace_EndChain();
 
 /**
- * @brief Obtains the trace ID of the calling thread from the TLS.
+ * @brief Obtains the HiTrace ID in the TLS of the current thread.
  *
- *
- * @return Returns the trace ID of the calling thread. If the calling thread does not have a trace ID,
- * an invalid trace ID is returned.
- *
- * @syscap SystemCapability.HiviewDFX.HiTrace
- *
+ * @return The {@link HiTraceId} struct.
  * @since 12
  */
 HiTraceId OH_HiTrace_GetId();
 
 /**
- * @brief Sets the trace ID of the calling thread. If the ID is invalid, no operation is performed.
+ * @brief Sets the given HiTrace ID to the TLS of the current thread. If the given HiTrace ID is invalid, no operation
+ * is performed.
  *
- * This API sets a <b>HiTraceId</b> instance to the TLS of the calling thread.
- *
- * @param id Trace ID to set.
- *
- * @syscap SystemCapability.HiviewDFX.HiTrace
- *
+ * @param id {@link HiTraceId} to set.
  * @since 12
  */
 void OH_HiTrace_SetId(const HiTraceId *id);
 
 /**
- * @brief Clears the trace ID of the calling thread and invalidates it.
- *
- * This API clears the <b>HiTraceId</b> instance in the TLS of the calling thread.
- *
- * @syscap SystemCapability.HiviewDFX.HiTrace
+ * @brief Clears the HiTrace ID in the current thread's TLS.
  *
  * @since 12
  */
 void OH_HiTrace_ClearId(void);
 
 /**
- * @brief Creates a span ID based on the trace ID of the calling thread.
+ * @brief Creates a trace span.
+ * Specifically, create a **HiTraceId**, use the **chainId** and **spanId** in the TLS of the current thread to
+ * initialize the **chainId** and **parentSpanId** of the **HiTraceId**, generate a new **spanId** for the **HiTraceId**
+ * , and return the **HiTraceId**.
  *
- * This API generates a new span and corresponding <b>HiTraceId</b> instance based on the <b>HiTraceId</b>
- * instance in the TLS of the calling thread.
- *
- * @return Returns a valid span ID. If span creation is not allowed, the ID of the calling thread is traced.
- *
- * @syscap SystemCapability.HiviewDFX.HiTrace
- *
+ * @return The {@link HiTraceId} struct.
  * @since 12
  */
 HiTraceId OH_HiTrace_CreateSpan(void);
 
 /**
- * @brief Prints HiTrace information, including the trace ID.
+ * @brief Adds a trace point for the HiTraceMeter logging.
+ * When **type** is set to **HITRACE_TP_CS** and **HITRACE_TP_SR**, the HiTraceMeter tracing starts. When **type** is
+ * set to **HITRACE_TP_CR** and **HITRACE_TP_SS**, the HiTraceMeter tracing ends. When **type** is set to **
+ * HITRACE_TP_GENERAL**, the HiTraceMeter tracing does not start.
+ * The tracing points of **HITRACE_TP_CS** and **HITRACE_TP_CR** must be used in pairs; the tracing points of **
+ * HITRACE_TP_SR** and **HITRACE_TP_SS** must be used in pairs. Otherwise, the start and end trace points of
+ * HiTraceMeter cannot match each other.
  *
- * This API prints trace point information, including the communication mode, trace point type, timestamp, and span.
- *
- * @param mode Communication mode for the trace point.
- * @param type Trace point type.
- * @param id Trace ID.
- * @param fmt Custom information to print.
- *
- * @syscap SystemCapability.HiviewDFX.HiTrace
- *
+ * @param mode Trace communication mode. For details, see {@link HiTrace_Communication_Mode}.
+ * @param type Trace information type. For details, see {@link HiTrace_Tracepoint_Type}.
+ * @param id {@link HiTraceId} for implementing trace points.
+ * @param fmt Formatted string of the trace description information passed by the HiTraceMeter logging.
  * @since 12
  */
 void OH_HiTrace_Tracepoint(
     HiTrace_Communication_Mode mode, HiTrace_Tracepoint_Type type, const HiTraceId *id, const char *fmt, ...);
 
 /**
- * @brief Initializes a <b>HiTraceId</b> structure.
+ * @brief Initializes a **HiTraceId**.
  *
- * @param id ID of the <b>HiTraceId</b> structure to be initialized.
- *
- * @syscap SystemCapability.HiviewDFX.HiTrace
- *
+ * @param id {@link HiTraceId} to initialize.
  * @since 12
  */
 void OH_HiTrace_InitId(HiTraceId *id);
 
 /**
- * @brief Creates a <b>HiTraceId</b> structure based on a byte array.
+ * @brief Creates a **HiTraceId** based on a byte array.
  *
- * @param id ID of the <b>HiTraceId</b> structure to be created.
+ * @param id {@link HiTraceId} to create.
  * @param pIdArray Byte array.
  * @param len Length of the byte array.
- *
- * @syscap SystemCapability.HiviewDFX.HiTrace
- *
  * @since 12
  */
 void OH_HiTrace_IdFromBytes(HiTraceId *id, const uint8_t *pIdArray, int len);
 
 /**
- * @brief Checks whether a <b>HiTraceId</b> instance is valid.
+ * @brief Checks whether the **HiTraceId** is valid.
  *
- *
- * @param id <b>HiTraceId</b> instance to check.
- * @return Returns <b>true</b> if the <b>HiTraceId</b> instance is valid; returns <b>false</b> otherwise.
- *
- * @syscap SystemCapability.HiviewDFX.HiTrace
- *
+ * @param id {@link HiTraceId} to check.
+ * @return The value **true** indicates that {@link HiTraceId} is valid, and **false** indicates the opposite.
  * @since 12
  */
 bool OH_HiTrace_IsIdValid(const HiTraceId *id);
 
 /**
- * @brief Checks whether the specified trace flag in a <b>HiTraceId</b> instance is enabled.
+ * @brief Checks whether the trace flag is enabled for the **HiTraceId**.
  *
- *
- * @param id <b>HiTraceId</b> instance to check.
- * @param flag Specified trace flag.
- * @return Returns <b>true</b> if the specified trace flag is enabled; returns <b>false</b> otherwise.
- *
- * @syscap SystemCapability.HiviewDFX.HiTrace
- *
+ * @param id {@link HiTraceId} to check.
+ * @param flag Trace flag. For details, see {@link HiTrace_Flag}.
+ * @return The value **true** indicates that the flag is enabled for the {@link HiTraceId}, and **false** indicates the
+ *     opposite.
  * @since 12
  */
 bool OH_HiTrace_IsFlagEnabled(const HiTraceId *id, HiTrace_Flag flag);
 
 /**
- * @brief Enables the specified trace flag in a <b>HiTraceId</b> instance.
+ * @brief Enables the trace flag specified in **HiTraceId**.
  *
- *
- * @param id <b>HiTraceId</b> instance for which you want to enable the specified trace flag.
- * @param flag Specified trace flag.
- *
- * @syscap SystemCapability.HiviewDFX.HiTrace
- *
+ * @param id {@link HiTraceId} for which the trace flag is enabled.
+ * @param flag Trace flag. For details, see {@link HiTrace_Flag}.
  * @since 12
  */
 void OH_HiTrace_EnableFlag(const HiTraceId *id, HiTrace_Flag flag);
 
 /**
- * @brief Obtains the trace flag set in a <b>HiTraceId</b> instance.
+ * @brief Obtains the trace flag set in **HiTraceId**.
  *
- * @param id <b>HiTraceId</b> instance.
- *
- * @return Returns the trace flag set in the specified <b>HiTraceId</b> instance.
- *
- * @syscap SystemCapability.HiviewDFX.HiTrace
- *
+ * @param id {@link HiTraceId} for which the trace flag is obtained.
+ * @return Trace flag set in {@link HiTraceId}.
  * @since 12
  */
 int OH_HiTrace_GetFlags(const HiTraceId *id);
 
 /**
- * @brief Sets the trace flag for a <b>HiTraceId</b> instance.
+ * @brief Sets the trace flag to {@link HiTraceId}.
  *
- * @param id <b>HiTraceId</b> instance.
- * @param flags Trace flag to set.
- *
- * @syscap SystemCapability.HiviewDFX.HiTrace
- *
+ * @param id {@link HiTraceId} to which the trace flag is set.
+ * @param flags Trace flag. For details, see {@link HiTrace_Flag}.
  * @since 12
  */
 void OH_HiTrace_SetFlags(HiTraceId *id, int flags);
 
 /**
- * @brief Obtains the trace chain ID.
+ * @brief Obtains the trace chain ID in **HiTraceId**.
  *
- * @param id <b>HiTraceId</b> instance for which you want to obtain the trace chain ID.
- *
- * @return Returns the trace chain ID of the specified <b>HiTraceId</b> instance.
- *
- * @syscap SystemCapability.HiviewDFX.HiTrace
- *
+ * @param id {@link HiTraceId} for which the trace chain ID is obtained.
+ * @return Trace chain ID.
  * @since 12
  */
 uint64_t OH_HiTrace_GetChainId(const HiTraceId *id);
 
 /**
- * @brief Sets the trace chain ID to a <b>HiTraceId</b> instance
+ * @brief Sets the trace chain ID in **HiTraceId**.
  *
- * @param id <b>HiTraceId</b> instance.
+ * @param id {@link HiTraceId} to which the trace chain ID is to be set.
  * @param chainId Trace chain ID to set.
- *
- * @syscap SystemCapability.HiviewDFX.HiTrace
- *
  * @since 12
  */
 void OH_HiTrace_SetChainId(HiTraceId *id, uint64_t chainId);
 
 /**
- * @brief Obtains the span ID in a <b>HiTraceId</b> instance.
+ * @brief Obtains the span ID in **HiTraceId**.
  *
- * @param id <b>HiTraceId</b> instance for which you want to obtain the span ID.
- *
- * @return Returns the span ID in the specified <b>HiTraceId</b> instance.
- *
- * @syscap SystemCapability.HiviewDFX.HiTrace
- *
+ * @param id {@link HiTraceId} for which span ID is obtained.
+ * @return Span ID set in {@link HiTraceId}.
  * @since 12
  */
 uint64_t OH_HiTrace_GetSpanId(const HiTraceId *id);
 
 /**
- * @brief Sets the span ID in a <b>HiTraceId</b> instance.
+ * @brief Sets the span ID in **HiTraceId**.
  *
- * @param id <b>HiTraceId</b> instance for which you want to set the span ID.
+ * @param id {@link HiTraceId} to which the span ID is set.
  * @param spanId Span ID to set.
- *
- * @syscap SystemCapability.HiviewDFX.HiTrace
- *
  * @since 12
  */
 void OH_HiTrace_SetSpanId(HiTraceId *id, uint64_t spanId);
 
 /**
- * @brief Obtains the parent span ID in a <b>HiTraceId</b> instance.
+ * @brief Obtains the parent span ID in **HiTraceId**.
  *
- * @param id <b>HiTraceId</b> instance for which you want to obtain the parent span ID.
- *
- * @return Returns the parent span ID in the specified <b>HiTraceId</b> instance.
- *
- * @syscap SystemCapability.HiviewDFX.HiTrace
- *
+ * @param id {@link HiTraceId} for which the parent span ID is obtained.
+ * @return Parent span ID set in {@link HiTraceId}.
  * @since 12
  */
 uint64_t OH_HiTrace_GetParentSpanId(const HiTraceId *id);
 
 /**
- * @brief Sets the parent span ID in a <b>HiTraceId</b> instance.
+ * @brief Sets the **ParentSpanId** in a **HiTraceId** instance.
  *
- * @param id <b>HiTraceId</b> instance for which you want to set the parent span ID.
+ * @param id {@link HiTraceId} to which the parent span ID is set.
  * @param parentSpanId Parent span ID to set.
- *
- * @syscap SystemCapability.HiviewDFX.HiTrace
- *
  * @since 12
  */
 void OH_HiTrace_SetParentSpanId(HiTraceId *id, uint64_t parentSpanId);
 
 /**
- * @brief Converts a <b>HiTraceId</b> instance into a byte array for caching or communication.
+ * @brief Converts **HiTraceId** into a byte array for cache or communication.
  *
- * @param id <b>HiTraceId</b> instance to be converted.
+ * @param id {@link HiTraceId} to convert.
  * @param pIdArray Byte array.
  * @param len Length of the byte array.
- *
  * @return Returns the length of the byte array after conversion.
- *
- * @syscap SystemCapability.HiviewDFX.HiTrace
- *
  * @since 12
  */
 int OH_HiTrace_IdToBytes(const HiTraceId* id, uint8_t* pIdArray, int len);
 
 /**
- * @brief Marks the start of a synchronous trace task.
+ * @brief Marks the start of a synchronous trace.
+ * This API is used with **OH_HiTrace_FinishTrace()** in pairs.
+ * The two APIs can be nested. The stack data structure is used for matching during trace parsing.
+ * Since API version 19, you are advised to use the **OH_HiTrace_StartTraceEx()** API to specify the trace output level.
  *
- * The <b>OH_HiTrace_StartTrace</b> and <b>OH_HiTrace_FinishTrace</b> APIs must be used in pairs.
- * The two APIs can be used in nested mode. The stack data structure is used for matching during trace data parsing.
- *
- * @param name Name of a trace task.
- *
- * @syscap SystemCapability.HiviewDFX.HiTrace
+ * @param name Name of a synchronous trace.
  * @since 10
  */
 void OH_HiTrace_StartTrace(const char *name);
 
 /**
- * @brief Marks the end of a synchronous trace task.
- *
- * This API must be used with <b>OH_HiTrace_StartTrace</b> in pairs. During trace data parsing, the system matches
- * it with the <b>OH_HiTrace_StartTrace</b> API recently invoked in the service process.
- *
- * @syscap SystemCapability.HiviewDFX.HiTrace
+ * @brief Marks the end of a synchronous trace.
+ * This API must be used with **OH_HiTrace_StartTrace()** in pairs. During trace parsing, the system matches it with
+ * the latest **OH_HiTrace_StartTrace()** API in the service process.
+ * Since API version 19, you are advised to use the **OH_HiTrace_FinishTraceEx()** API to specify the trace output
+ * level.
  * @since 10
  */
 void OH_HiTrace_FinishTrace(void);
 
 /**
- * @brief Marks the start of an asynchronous trace task.
- *
- * This API is called to implement performance trace in asynchronous manner. The start and end of an asynchronous
- * trace task do not occur in sequence. Therefore, a unique <b>taskId</b> is required to ensure proper data parsing.
- * It is passed as an input parameter for the asynchronous API.
- * This API is used with <b>OH_HiTrace_FinishAsyncTrace</b> in pairs. The two APIs that have the same name and
- * task ID together form an asynchronous timeslice trace task.
+ * @brief Marks the start of an asynchronous trace.
+ * This API is used to start tracing before an asynchronous operation. The start and end of an asynchronous trace do
+ * not occur in sequence. Therefore, a unique task ID is required to identify them.
+ * It must be used with **OH_HiTrace_FinishAsyncTrace()** in pairs. The start and end identified by the same name and
+ * task ID constitute an asynchronous trace task.
  * If multiple trace tasks with the same name need to be performed at the same time or a trace task needs to be
- * performed multiple times concurrently, different task IDs must be specified in <b>OH_HiTrace_StartTrace</b>.
- * If the trace tasks with the same name are not performed at the same time, the same taskId can be used.
+ * performed multiple times concurrently, different task IDs must be specified.
+ * If the trace tasks with the same name are not performed at the same time, the same **taskId** can be used.
+ * Since API version 19, you are advised to use the **OH_HiTrace_StartAsyncTraceEx()** API to specify the trace output
+ * level and category.
  *
- * @param name Name of the asynchronous trace task.
- * @param taskId ID of the asynchronous trace task. The start and end of an asynchronous trace task do not occur in
- * sequence. Therefore, the start and end of an asynchronous trace need to be matched based on the task name and the
- * unique task ID together.
- *
- * @syscap SystemCapability.HiviewDFX.HiTrace
+ * @param name Name of the asynchronous trace.
+ * @param taskId ID of the asynchronous trace. The start and end of an asynchronous trace do not occur in sequence.
+ * Therefore, the start and end of an asynchronous trace need to be matched based on the task name and the unique task
+ * ID together.
  * @since 10
  */
 void OH_HiTrace_StartAsyncTrace(const char *name, int32_t taskId);
 
 /**
- * @brief Marks the end of an asynchronous trace task.
- *
+ * @brief Marks the end of an asynchronous trace.
  * This API is called in the callback function after an asynchronous trace is complete.
- * It is used with <b>OH_HiTrace_StartAsyncTrace</b> in pairs. Its name and task ID must be the same as those of
- * <b>OH_HiTrace_StartAsyncTrace</b>.
+ * It is used with **OH_HiTrace_StartAsyncTrace()** in pairs. Its name and task ID must be the same as those of **
+ * OH_HiTrace_StartAsyncTrace()**.
+ * Since API version 19, you are advised to use the **OH_HiTrace_FinishAsyncTraceEx()** API to specify the trace output
+ * level.
  *
- * @param name Name of the asynchronous trace task.
- * @param taskId ID of the asynchronous trace task. The start and end of an asynchronous trace task do not occur in
- * sequence. Therefore, the start and end of an asynchronous trace need to be matched based on the task name and the
- * unique task ID together.
- *
- * @syscap SystemCapability.HiviewDFX.HiTrace
+ * @param name Name of the asynchronous trace.
+ * @param taskId ID of the asynchronous trace. The start and end of an asynchronous trace do not occur in sequence.
+ * Therefore, the start and end of an asynchronous trace need to be matched based on the task name and the unique task
+ * ID together.
  * @since 10
  */
 void OH_HiTrace_FinishAsyncTrace(const char *name, int32_t taskId);
 
 /**
  * @brief Traces the value change of an integer variable based on its name.
- *
- * This API can be executed for multiple times to trace the value change of a given integer variable at different
- * time points.
+ * This API can be executed for multiple times to trace the value change of a given integer variable at different time
+ * points.
+ * Since API version 19, you are advised to use the **OH_HiTrace_CountTraceEx()** API to specify the trace output level.
  *
  * @param name Name of the integer variable. It does not need to be the same as the real variable name.
- * @param count Integer value. Generally, an integer variable can be passed.
- *
- * @syscap SystemCapability.HiviewDFX.HiTrace
+ * @param count Integer value.
  * @since 10
  */
 void OH_HiTrace_CountTrace(const char *name, int64_t count);
 
 /**
- * @brief Marks the start of a synchronous trace task with output level control.
+ * @brief Marks the start of a synchronous trace task with the trace output level specified.
+ * This API is used with **OH_HiTrace_FinishTraceEx()** in pairs.
+ * The two APIs can be nested. The stack data structure is used for matching during trace parsing.
  *
- * The <b>OH_HiTrace_StartTraceEx</b> and <b>OH_HiTrace_FinishTraceEx</b> APIs must be used in pairs.
- * The two APIs can be used in nested mode. The stack data structure is used for matching during trace data parsing.
- *
- * @param level Trace output priority level.
- * @param name Name of the synchronous trace task.
- * @param customArgs key=value pair, multiple pairs use comma as separator.
+ * @param level Trace output level.
+ * @param name Name of a synchronous trace.
+ * @param customArgs Key-value pair. Use commas (,) to separate multiple key-value pairs, for example, **"key1=value1,
+ *     key2=value2"**.
  * @since 19
  */
 void OH_HiTrace_StartTraceEx(HiTrace_Output_Level level, const char* name, const char* customArgs);
 
 /**
- * @brief Marks the end of a synchronous trace task with output level control.
- *
- * This API must be used with <b>OH_HiTrace_StartTraceEx</b> in pairs. The two APIs, which have the same level,
- * form an synchronous timeslice trace task.
- * During trace data parsing, the system matches it with the most recent <b>OH_HiTrace_StartTraceEx</b> API
- * invocation in the service process.
- *
- * @param level Trace output priority level.
+ * @brief Marks the end of a synchronous trace task with the trace output level specified.
+ * It must be used with **OH_HiTrace_StartTraceEx()** in pairs. Its level must be the same as those of **
+ * OH_HiTrace_StartTraceEx()**.
+ * During trace data parsing, the system matches it with the **OH_HiTrace_StartTraceEx()** API recently invoked in the
+ * service process.
+ * @param level Trace output level.
  * @since 19
  */
 void OH_HiTrace_FinishTraceEx(HiTrace_Output_Level level);
 
 /**
- * @brief Marks the start of an asynchronous trace task with output level control.
- *
- * This API is called to implement performance trace in asynchronous manner. The start and end of an asynchronous
- * trace task do not occur in sequence. Therefore, a unique <b>taskId</b> is required to ensure proper data parsing.
- * It is passed as an input parameter for the asynchronous API.
- * This API is used with <b>OH_HiTrace_FinishAsyncTraceEx</b> in pairs. The two APIs, which have the same level,
- * name, and task ID, form an asynchronous timeslice trace task.
- * If customCategory is specified, the trace slice will be grouped and displayed together with other trace slices
- * with the same customCategory.
+ * @brief Marks the start of an asynchronous trace task with the trace output level specified.
+ * This API is used to start tracing before an asynchronous operation. The start and end of an asynchronous trace do
+ * not occur in sequence. Therefore, a unique task ID is required to identify them.
+ * It is used with **OH_HiTrace_FinishAsyncTraceEx()** in pairs. The start and end identified by the same name and task
+ * ID constitute an asynchronous trace task.
  * If multiple trace tasks with the same name need to be performed at the same time or a trace task needs to be
- * performed multiple times concurrently, different task IDs must be specified in <b>OH_HiTrace_StartAsyncTraceEx</b>.
- * If the trace tasks with the same name are not performed at the same time, the same taskId can be used.
- * Different processes's taskId do not interfere.
+ * performed multiple times concurrently, different task IDs must be specified.
+ * If the trace tasks with the same name are not performed at the same time, the same **taskId** can be used.
+ * Task IDs of different processes does not interfere with each other.
  *
- * @param level Trace output priority level.
- * @param name Name of the asynchronous trace task.
- * @param taskId ID of the asynchronous trace task.
- * @param customCategory Label used to aggregate the asynchronous trace.
- * @param customArgs key=value pair, multiple pairs use comma as separator.
+ * @param level Trace output level.
+ * @param name Name of the asynchronous trace.
+ * @param taskId ID of the asynchronous trace.
+ * @param customCategory Custom category name, which is used to collect asynchronous trace data of the same type.
+ * @param customArgs Key-value pair. Use commas (,) to separate multiple key-value pairs, for example, **"key1=value1,
+ *     key2=value2"**.
  * @since 19
  */
 void OH_HiTrace_StartAsyncTraceEx(HiTrace_Output_Level level, const char* name, int32_t taskId,
-    const char* customCategory, const char* customArgs);
+                                  const char* customCategory, const char* customArgs);
 
 /**
- * @brief Marks the end of an asynchronous trace task with output level control.
+ * @brief Marks the end of an asynchronous trace task with the trace output level specified.
+ * This API is used to stop tracing after an asynchronous operation is complete, for example, in a callback function.
+ * It is used with **OH_HiTrace_StartAsyncTraceEx()** in pairs. Its level, name and task ID must be the same as those
+ * of **OH_HiTrace_StartAsyncTraceEx()**.
  *
- * This API is called in the callback function after an asynchronous trace is complete.
- * It is used with <b>OH_HiTrace_StartAsyncTraceEx</b> in pairs. Its level, name, and task ID must be
- * the same as those of <b>OH_HiTrace_StartAsyncTraceEx</b>.
- *
- * @param level Trace output priority level.
- * @param name Name of the asynchronous trace task.
- * @param taskId ID of the asynchronous trace task.
+ * @param level Trace output level.
+ * @param name Name of the asynchronous trace.
+ * @param taskId ID of the asynchronous trace.
  * @since 19
  */
 void OH_HiTrace_FinishAsyncTraceEx(HiTrace_Output_Level level, const char* name, int32_t taskId);
 
 /**
- * @brief Traces the value change of an integer variable based on its name with output level control.
+ * @brief Marks an integer variable trace task with the trace output level specified.
  *
- * This API can be executed for multiple times to trace the value change of a given integer variable at different
- * time points.
- *
- * @param level Trace output priority level.
- * @param name Name of the integer variable. It does not need to be the same as the real variable name.
- * @param count Integer value. Generally, an integer variable can be passed.
+ * @param level Trace output level.
+ * @param name Name of the integer variable. It does not need to be the same as the actual variable name.
+ * @param count Integer value.
  * @since 19
  */
 void OH_HiTrace_CountTraceEx(HiTrace_Output_Level level, const char* name, int64_t count);
 
 /**
- * @brief Get the trace output status of the calling process.
+ * @brief Checks whether trace capture is enabled for an application.
  *
- * @return Returns whether the calling process is allowed to output trace.
+ * @return When it is enabled, **true** is returned;
+ *     when it is disabled or stopped, **false** is returned. In this case,
+ *     calling the HiTraceMeter API does not take effect.
  * @since 19
  */
 bool OH_HiTrace_IsTraceEnabled(void);
 
 /**
- * @brief Register trace switch notification callback.
+ * @brief Registers a callback to notify whether the application trace capture is enabled. This API uses a synchronous
+ * callback to return the result.
  *
- * Register a callback function to execute specific trace-related behavior when trace
- * status is changed. The current status will be passed as 0 for off or 1 for on as callback function
- * paramter representing current trace status. The maximum number of registered callback functions is 10.
- *
- * @param callback The callback function to be invoked when trace status is changed.
- * @return The callback registeration status.
- *     >= 0: Successfully registered and callback index used for unregister.
- *    -1: Reaches max number of callback functions.
- *    -2: Invalid parameter.
+ * @param callback Registered callback.
+ * @return Callback registration status.
+ * >= **0**: The registration is successful. The callback index for unregistration is returned. The index ranges from 0
+ * to 9.
+ * **-1**: The maximum number of callbacks has been reached.
+ * **-2**: Invalid parameter. The parameter is not of the **TraceEventListener** type.
  * @since 22
  */
 int32_t OH_HiTrace_RegisterTraceListener(OH_HiTrace_TraceEventListener callback);
 
 /**
- * @brief Unregister trace switch notification callback.
+ * @brief Unregisters the callback used to notify whether the application trace capture is enabled.
+ * You can use this function to unregister the callback function associated with the callback index returned by
+ * {@link OH_HiTrace_RegisterTraceListener}.
  *
- * Unregister the callback function registeration for trace switch
- * notification with provided registered callback function index.
- *
- * @param index The callback function index to be unregistered.
- * @return The callback unregisteration status.
- *     0: Success.
- *    -1: Callback function with target index has not been registered.
- *    -2: Invalid index range.
+ * @param index Index of the registered callback.
+ * @return Callback unregistration status.
+ * **0**: Unregistration succeeded.
+ * **-1**: The callback corresponding to the index is not registered.
+ * **-2**: Invalid index. The index value is not within the range of 0 to 9.
  * @since 22
  */
 int32_t OH_HiTrace_UnregisterTraceListener(int32_t index);

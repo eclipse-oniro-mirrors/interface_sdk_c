@@ -17,13 +17,13 @@
  * @addtogroup Web
  * @{
  *
- * @brief Provides APIs to use javascript proxy and run javascirpt code.
+ * @brief Provides APIs to use javascript proxy and run javascript code.
  * @since 11
  */
 /**
  * @file native_interface_arkweb.h
  *
- * @brief Declares the APIs to use javascript proxy and run javascirpt code.
+ * @brief Declares the APIs to use javascript proxy and run javascript code.
  * @kit ArkWeb
  * @library libohweb.so
  * @syscap SystemCapability.Web.Webview.Core
@@ -80,52 +80,79 @@ typedef void (*NativeArkWeb_OnDestroyCallback)(const char*);
 typedef void (*OH_ArkWeb_OnCookieSaveCallback)(ArkWeb_ErrorCode errorCode);
 
 /**
- * @brief Defines the blankless information.
+ * @brief Describes prediction information about blankless loading, including the first screen similarity, first screen
+ * loading duration, and error codes. The application determines whether to enable the blankless loading solution based
+ * on the prediction information.
  *
  * @since 20
  */
 typedef struct {
-    /** The errCode of the blankless. */
+    /**
+     * Error codes of blankless loading. For details, see {@link ArkWeb_BlanklessErrorCode}.
+     */
     ArkWeb_BlanklessErrorCode errCode;
-    /** The estimated similarity of the history snapshots. */
+    /**
+     * First screen similarity, which is calculated based on the historical first screen content. The value ranges from
+     * 0 to 1.0. 1.0 indicates that the content is the same. A value closer to 1 indicates a higher similarity. This
+     * value is lagging, and the similarity of the local loading is displayed in the next loading. You are advised not
+     * to enable the blankless loading frame insertion solution when the similarity is low.
+     */
     double similarity;
-    /** The loadingTime of the history loading. */
+    /**
+     * Loading duration estimated based on the historical first screen loading durations, in milliseconds. The value
+     * must be greater than 0.
+     */
     int32_t loadingTime;
 } ArkWeb_BlanklessInfo;
 
 /**
- * @brief ArkWeb Engine Version.
- *
- * <strong>ArkWeb Dual Web Engine Versioning Convention</strong>:
- * <p>See [ArkWeb Dual Web Engine Versioning Convention] for switching between Legacy and Evergreen Web Engine.
+ * @brief For details about the ArkWeb kernel version, see
+ * [Adaptation Guide for the M114 Kernel on OpenHarmony 6.0]
+ * (https://gitcode.com/openharmony-tpc/chromium_src/blob/master/web/ReleaseNote/CompatibleWithLegacyWebEngine_6.0.md),
+ * [Adaptation Guide for the M114 Kernel on OpenHarmony 7.0]
+ * (https://gitcode.com/openharmony-tpc/chromium_src/blob/master/web/ReleaseNote/CompatibleWithLegacyWebEngine_7.0.md).
  *
  * @since 20
  */
 typedef enum {
     /**
-     * the system default ArkWeb engine.
+     * @brief Default system kernel. For OpenHarmony 6.0, the default kernel is M132.
+     *
      * @since 20
      */
     SYSTEM_DEFAULT = 0,
 
     /**
-     * ArkWeb M114 version.
+     * @brief Legacy kernel of OpenHarmony 6.0. You can select this legacy kernel. If it does not exist, the setting
+     * is invalid.
+     *
      * @since 20
      */
     ARKWEB_M114 = 1,
 
     /**
-     * ArkWeb M132 version.
+     * @brief Evergreen kernel of OpenHarmony 6.0, which is M132 by default. If it does not exist, the setting is
+     * invalid.
+     *
      * @since 20
      */
     ARKWEB_M132 = 2,
 
     /**
-     * ArkWeb auto use the newest ArkWeb Engine version.
-     * Evergreen Web Engine.
+     * @brief Evergreen kernel of OpenHarmony 7.0, which is M144 by default. If it does not exist, the setting is
+     * invalid.
+     *
+     * @since 26.0.0
+     */
+    ARKWEB_M144 = 3,
+
+    /**
+     * @brief Evergreen kernel, which is the latest kernel of the system. You can choose to use the latest kernel for
+     * each system version. This setting takes effect for OpenHarmony 6.1 and later versions.
+     *
      * @since 23
      */
-    ARKWEB_EVERGREEN = 99999,
+    ARKWEB_EVERGREEN = 99999
 } ArkWebEngineVersion;
 
 /**
@@ -262,19 +289,20 @@ void OH_NativeArkWeb_RegisterAsyncThreadJavaScriptProxy(const char* webTag,
     const ArkWeb_ProxyObjectWithResult* proxyObject, const char* permission);
 
 /**
- * @brief Sets whether to enable blankless page loading. This API must be used in pair with the
- * OH_NativeArkWeb_GetBlanklessInfoWithKey API.
+ * @brief Sets whether to enable blankless loading. This API must be used together with the {@link OH_NativeArkWeb_GetBlanklessInfoWithKey}
+ * API.
  *
  * @permission ohos.permission.INTERNET and ohos.permission.GET_NETWORK_INFO
- * @param webTag webTag used when the webviewController is created.
- * @param key Key value that uniquely identifies the current page. It must be the same as the key value of the
- * OH_NativeArkWeb_GetBlanklessInfoWithKey API.
- * @param isStarted Whether to enable frame interpolation. The value true indicates to enable frame
- * interpolation, and the value false indicates the opposite.
- * The default value is false.
- * The value can be true or false.
- * Action for setting an invalid value: N/A.
- * @return Whether the API is successfully called. For details, see ArkWeb_BlanklessErrorCode.
+ * @param webTag Name of the **Web** component.
+ * @param key Key value that uniquely identifies the page. The value must be the same as the key value of the {@link OH_NativeArkWeb_GetBlanklessInfoWithKey}
+ * API.
+ * The value cannot be empty and can contain a maximum of 2048 characters.
+ * When an invalid value is set, the error code {@link ArkWeb_BlanklessErrorCode} is returned and the frame insertion
+ * does not take effect.
+ * @param isStarted Whether to enable frame insertion. The value **true** indicates to enable frame insertion, and **
+ * false** indicates the opposite.
+ * The default value is **false**.
+ * @return Whether the API is successfully called. For details, see {@link ArkWeb_BlanklessErrorCode}.
  * @since 20
  */
 ArkWeb_BlanklessErrorCode OH_NativeArkWeb_SetBlanklessLoadingWithKey(const char* webTag,
@@ -286,44 +314,54 @@ ArkWeb_BlanklessErrorCode OH_NativeArkWeb_SetBlanklessLoadingWithKey(const char*
  *
  * @param key The list of key values of pages cached in the blankless loading solution. These key values are
  * specified in OH_NativeArkWeb_GetBlanklessInfoWithKey.
+ *
  * The default value is the list of key values of all pages cached in the blankless loading solution.
+ *
  * The key length cannot exceed 2048 characters, and the number of keys must be less than or equal to 100. The
  * URL is the same as that input to the Web component during page loading.
+ *
  * When the key length exceeds 2048 characters, the key does not take effect. When the number of keys exceeds
  * 100, the first 100 keys are used. If this parameter is set to NULL, the default value is used.
- * @param size Size of the key list.
+ *
+ * @param size Size of the key array.
+ * The default value is **0**.
+ * The value ranges from 0 to 100. If the size exceeds 100, the first 100 keys are used.
+ * When an invalid value is set, the value **0** is used.
  * @since 20
  */
 void OH_NativeArkWeb_ClearBlanklessLoadingCache(const char* key[], uint32_t size);
 
 /**
- * @brief Obtains the prediction information about the blankless loading solution and enables the generation
- * of the transition frame for the current loading. The application determines whether to enable the blankless
- * loading solution based on the information.
- * This API applies to pages in an applet or web application whose URLs are not fixed or cannot be uniquely
- * identified.
+ * @brief Obtains the first screen loading prediction information, and starts to generate the loading transition frame.
+ * The application determines whether to enable blankless loading based on the information. For details, see {@link ArkWeb_BlanklessInfo}
+ * . This API must be used together with the {@link OH_NativeArkWeb_SetBlanklessLoadingWithKey} API and must be called
+ * before the page loading API is triggered and after **WebViewController** is bound to the **Web** component.
  *
  * @permission ohos.permission.INTERNET and ohos.permission.GET_NETWORK_INFO
- * @param webTag webTag used when the webviewController is created.
- * Default value: N/A.
- * The value cannot be empty.
- * When an invalid value is set, the error code is returned, and the API does not take effect.
- * @param key Key value that uniquely identifies the current page.
- * @return Return value of the ArkWeb_BlanklessInfo type.
+ * @param webTag Name of the **Web** component.
+ * @param key Key value that uniquely identifies the page.
+ * The value cannot be empty and can contain a maximum of 2048 characters.
+ * Invalid values do not take effect.
+ * @return Prediction information about blankless loading, including the first screen similarity and first screen
+ * loading duration. The application determines whether to enable blankless loading based on the prediction information.
  * @since 20
  */
 ArkWeb_BlanklessInfo OH_NativeArkWeb_GetBlanklessInfoWithKey(const char* webTag, const char* key);
 
 /**
- * @brief Sets the cache capacity of the blankless loading solution and returns the value that takes effect.
+ * @brief Sets the persistent cache capacity of the blankless loading solution and returns the value that takes effect.
+ * The default cache capacity is 30 MB, and the maximum cache capacity is 100 MB. When this limit is exceeded,
+ * transition frames that are not frequently used are eliminated.
  *
- * @param capacity Cache capacity, in MB. The maximum value is 100 MB.
+ * @param capacity Persistent cache capacity, in MB. The maximum value is 100 MB.
  * The default value is 30 MB.
- * The value ranges from 0 to 100. If this parameter is set to 0, no cache capacity is available and the
+ * The value ranges from 0 to 100. If this parameter is set to **0**, no cache capacity is available and the
  * functionality is disabled globally.
- * When the value is set to a number smaller than 0, the value 0 takes effect. When the value is set to a
- * number greater than 100, the value 100 takes effect.
+ * When a value less than 0 is set, the value **0** takes effect. When a value greater than 100 is set, the value **100*
+ * * takes effect.
  * @return The effective value that ranges from 0 MB to 100 MB.
+ * When a value less than 0 is set, the value **0** takes effect. When a value greater than 100 is set, the value **100*
+ * * takes effect.
  * @since 20
  */
 uint32_t OH_NativeArkWeb_SetBlanklessLoadingCacheCapacity(uint32_t capacity);
@@ -353,25 +391,20 @@ ArkWeb_ErrorCode OH_ArkWebCookieManager_SaveCookieSync();
 void OH_ArkWebCookieManager_SaveCookieAsync(OH_ArkWeb_OnCookieSaveCallback callback);
 
 /**
- * Set active ArkWeb engine version.
- * If the system does not support the specified version, it will not take effect.
+ * Sets the ArkWeb kernel version. If the system does not support the specified version, the setting is invalid.
+ * This API is a global static method and must be called before **initializeWebEngine** is called. If any **Web**
+ * component has been loaded, the setting of this API is invalid.
  *
- * This is a global static API that must be called before initializeWebEngine, and it will have no effect if any
- * Web components are loaded.
- *
- * <strong>Legacy Web Engine Compatibility Note</strong>:
- * <p>When using legacy ArkWeb Engine, some ArkWeb newly created API will not take effect,<br>
- * see [Compatible with Legacy Web Engine in release note] for compatibility guidelines.
- * </p>
- *
- * @param { ArkWebEngineVersion } webEngineVersion - the ArkWebEngineVersion
+ * @param { ArkWebEngineVersion } webEngineVersion - ArkWeb kernel version. 
+ *        For details, see {@link ArkWebEngineVersion}.
  * @since 20
  */
 void OH_NativeArkWeb_SetActiveWebEngineVersion(ArkWebEngineVersion webEngineVersion);
 
 /**
- * Get currently active ArkWeb engine version.
- * @return { ArkWebEngineVersion } Active ArkWeb Engine version as defined by ArkWebEngineVersion
+ * Obtains the current ArkWeb kernel version.
+ *
+ * @return The current ArkWeb kernel version defined by {@link ArkWebEngineVersion}.
  * @since 20
  */
 ArkWebEngineVersion OH_NativeArkWeb_GetActiveWebEngineVersion();
@@ -387,8 +420,11 @@ ArkWebEngineVersion OH_NativeArkWeb_GetActiveWebEngineVersion();
 void OH_NativeArkWeb_LazyInitializeWebEngineInCookieManager(bool lazy);
 
 /**
- * Check if the currently active ArkWeb engine is Evergreen.
- * @return { bool } true means the application is using the Evergreen Web Engine, false means not.
+ * Checks whether the ArkWeb kernel used by the application is the evergreen kernel, that is, the latest kernel of the
+ * system.
+ *
+ * @return Whether the kernel used by the application is the evergreen kernel. The value **true** indicates that the
+ *         kernel used by the application is the evergreen kernel, and **false** indicates the opposite.
  * @since 23
  */
 bool OH_NativeArkWeb_IsActiveWebEngineEvergreen();

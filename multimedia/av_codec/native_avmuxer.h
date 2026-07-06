@@ -26,7 +26,7 @@
 /**
  * @file native_avmuxer.h
  *
- * @brief Declare the Native API used for audio and video muxer.
+ * @brief The file declares the native APIs used for audio and video multiplexing.
  *
  * @kit AVCodecKit
  * @library libnative_media_avmuxer.so
@@ -46,32 +46,33 @@ extern "C" {
 #endif
 
 /**
- * @brief Forward declaration of OH_AVMuxer.
+ * @brief The struct describes a native object for the muxer interface.
  *
  * @since 10
  */
 typedef struct OH_AVMuxer OH_AVMuxer;
 
 /**
- * @brief Create an OH_AVMuxer instance by output file description and format.
- * @syscap SystemCapability.Multimedia.Media.Muxer
- * @param fd Must be opened with read and write permission. Caller is responsible for closing fd.
- * @param format The output format is {@link OH_AVOutputFormat} .
- * @return Returns a pointer to an OH_AVMuxer instance, needs to be freed by OH_AVMuxer_Destroy.
+ * @brief Creates an OH_AVMuxer instance by using the file descriptor and container format.
+ *
+ * @param fd File descriptor (FD). You must open the file in read/write mode (O_RDWR) and close the file after
+ *     using it.
+ * @param format Format of the multiplexed output file.
+ * @return Pointer to the **OH_AVMuxer** instance created. You must call {@link OH_AVMuxer_Destroy} to destroy the
+ *     instance when it is no longer needed.
  * @since 10
  */
 OH_AVMuxer *OH_AVMuxer_Create(int32_t fd, OH_AVOutputFormat format);
 
 /**
- * @brief Set the rotation for output video playback.
- * Note: This interface can only be called before OH_AVMuxer_Start.
- * @syscap SystemCapability.Multimedia.Media.Muxer
+ * @brief Sets the rotation angle (clockwise), which must be 0, 90, 180, or 270, of an output video. This function must
+ * be called before {@link OH_AVMuxer_Start}.
+ *
  * @param muxer Pointer to an OH_AVMuxer instance.
- * @param rotation The supported angles are 0, 90, 180, and 270 degrees.
- * @return Returns AV_ERR_OK if the execution is successful,
- * otherwise returns a specific error code, refer to {@link OH_AVErrCode}
- * {@link AV_ERR_INVALID_VAL}, the muxer or rotation invalid.
- * {@link AV_ERR_OPERATE_NOT_PERMIT}, not permit to call the interface, it was called in invalid state.
+ * @param rotation Angle to set. The value must be 0, 90, 180, or 270.
+ * @return {@link AV_ERR_OK}: The operation is successful.
+ *     <br>{@link AV_ERR_INVALID_VAL}: The muxer pointer is null or the value of **rotation** is invalid.
+ *     <br>{@link AV_ERR_OPERATE_NOT_PERMIT}: The function is called out of sequence.
  * @since 10
  */
 OH_AVErrCode OH_AVMuxer_SetRotation(OH_AVMuxer *muxer, int32_t rotation);
@@ -90,55 +91,51 @@ OH_AVErrCode OH_AVMuxer_SetRotation(OH_AVMuxer *muxer, int32_t rotation);
 OH_AVErrCode OH_AVMuxer_SetFormat(OH_AVMuxer *muxer, OH_AVFormat *format);
 
 /**
- * @brief Add track format to the muxer.
- * Note: This interface can only be called before OH_AVMuxer_Start.
- * @syscap SystemCapability.Multimedia.Media.Muxer
- * @param muxer Pointer to an OH_AVMuxer instance
- * @param trackIndex The int32_t handle pointer used to get the track index for this newly added track,
- * and it should be used in the OH_AVMuxer_WriteSample. The track index is greater than or equal to 0,
- * others is error index.
- * @param trackFormat OH_AVFormat handle pointer contain track format
- * @return Returns AV_ERR_OK if the execution is successful,
- * otherwise returns a specific error code, refer to {@link OH_AVErrCode}
- * {@link AV_ERR_INVALID_VAL}, the muxer or trackIndex or trackFormat invalid.
- * {@link AV_ERR_OPERATE_NOT_PERMIT}, not permit to call the interface, it was called in invalid state.
- * {@link AV_ERR_UNSUPPORT}, the mime type is not supported.
- * {@link AV_ERR_NO_MEMORY}, failed to malloc memory.
- * {@link AV_ERR_UNKNOWN}, unknown error.
+ * @brief Adds an audio or video track to a muxer. Each time this function is called, an audio or video track is added
+ * to the muxer. This function must be called before {@link OH_AVMuxer_Start}.
+ *
+ * @param muxer Pointer to an OH_AVMuxer instance.
+ * @param trackIndex Pointer to the index of the media track. The index will be used in the
+ *     {@link OH_AVMuxer_WriteSample} function. If the media track is added, the index value is greater than or equal
+ *     to 0; otherwise, the value is less than 0.
+ * @param trackFormat Pointer to an OH_AVFormat instance.
+ * @return {@link AV_ERR_OK}: The operation is successful.
+ *     <br>{@link AV_ERR_INVALID_VAL}: The muxer pointer is null, or the track index or track format is invalid.
+ *     <br>{@link AV_ERR_OPERATE_NOT_PERMIT}: The function is called out of sequence.
+ *     <br>{@link AV_ERR_UNSUPPORT}: The MIME type is not supported.
+ *     <br>{@link AV_ERR_NO_MEMORY}: Memory allocation fails.
+ *     <br>{@link AV_ERR_UNKNOWN}: An unknown error occurs.
  * @since 10
  */
 OH_AVErrCode OH_AVMuxer_AddTrack(OH_AVMuxer *muxer, int32_t *trackIndex, OH_AVFormat *trackFormat);
 
 /**
- * @brief Start the muxer.
- * Note: This interface is called after OH_AVMuxer_AddTrack and before OH_AVMuxer_WriteSample.
- * @syscap SystemCapability.Multimedia.Media.Muxer
- * @param muxer Pointer to an OH_AVMuxer instance
- * @return Returns AV_ERR_OK if the execution is successful,
- * otherwise returns a specific error code, refer to {@link OH_AVErrCode}
- * {@link AV_ERR_INVALID_VAL}, the muxer invalid.
- * {@link AV_ERR_OPERATE_NOT_PERMIT}, not permit to call the interface, it was called in invalid state.
- * {@link AV_ERR_UNKNOWN}, unknown error.
+ * @brief Starts a muxer. This function must be called after {@link OH_AVMuxer_AddTrack} and before
+ * {@link OH_AVMuxer_WriteSample}.
+ *
+ * @param muxer Pointer to an OH_AVMuxer instance.
+ * @return {@link AV_ERR_OK}: The operation is successful.
+ *     <br>{@link AV_ERR_INVALID_VAL}: The muxer pointer is null.
+ *     <br>{@link AV_ERR_OPERATE_NOT_PERMIT}: The function is called out of sequence.
+ *     <br>{@link AV_ERR_UNKNOWN}: An unknown error occurs.
  * @since 10
  */
 OH_AVErrCode OH_AVMuxer_Start(OH_AVMuxer *muxer);
 
 /**
- * @brief Write an encoded sample to the muxer.
- * Note: This interface can only be called after OH_AVMuxer_Start and before OH_AVMuxer_Stop. The application needs to
- * make sure that the samples are written to the right tacks. Also, it needs to make sure the samples for each track are
- * written in chronological order.
- * @syscap SystemCapability.Multimedia.Media.Muxer
- * @param muxer Pointer to an OH_AVMuxer instance
- * @param trackIndex The track index for this sample
- * @param sample The encoded or demuxer sample
- * @param info The buffer information related to this sample {@link OH_AVCodecBufferAttr}
- * @return Returns AV_ERR_OK if the execution is successful,
- * otherwise returns a specific error code, refer to {@link OH_AVErrCode}
- * {@link AV_ERR_INVALID_VAL}, the muxer or trackIndex or sample or info invalid.
- * {@link AV_ERR_OPERATE_NOT_PERMIT}, not permit to call the interface, it was called in invalid state.
- * {@link AV_ERR_NO_MEMORY}, failed to request memory.
- * {@link AV_ERR_UNKNOWN}, unknown error.
+ * @brief Writes a sample to a muxer. This function must be called after {@link OH_AVMuxer_Start} and before
+ * {@link OH_AVMuxer_Stop}. The caller must write the sample to the correct audio or video track based on the timing in
+ * **info**.
+ *
+ * @param muxer Pointer to an OH_AVMuxer instance.
+ * @param trackIndex Index of the audio or video track corresponding to the data.
+ * @param sample Pointer to the data obtained after encoding or demultiplexing.
+ * @param info Sample description.
+ * @return {@link AV_ERR_OK}: The operation is successful.
+ *     <br>{@link AV_ERR_INVALID_VAL}: The muxer pointer is null, or the track index, sample, or info is invalid.
+ *     <br>{@link AV_ERR_OPERATE_NOT_PERMIT}: The function is called out of sequence.
+ *     <br>{@link AV_ERR_NO_MEMORY}: Memory allocation fails.
+ *     <br>{@link AV_ERR_UNKNOWN}: An unknown error occurs.
  * @deprecated since 11
  * @useinstead OH_AVMuxer_WriteSampleBuffer
  * @since 10
@@ -147,45 +144,42 @@ OH_AVErrCode OH_AVMuxer_WriteSample(OH_AVMuxer *muxer, uint32_t trackIndex,
     OH_AVMemory *sample, OH_AVCodecBufferAttr info);
 
 /**
- * @brief Write an encoded sample to the muxer.
- * Note: This interface can only be called after OH_AVMuxer_Start and before OH_AVMuxer_Stop. The application needs to
- * make sure that the samples are written to the right tracks. Also, it needs to make sure the samples for each track
- * are written in chronological order.
- * @syscap SystemCapability.Multimedia.Media.Muxer
- * @param muxer Pointer to an OH_AVMuxer instance
- * @param trackIndex The track index for this sample
- * @param sample The encoded or demuxer sample, which including data and buffer information
- * @return Returns AV_ERR_OK if the execution is successful,
- * otherwise returns a specific error code, refer to {@link OH_AVErrCode}
- * {@link AV_ERR_INVALID_VAL}, the muxer or trackIndex or sample invalid.
- * {@link AV_ERR_OPERATE_NOT_PERMIT}, not permit to call the interface, it was called in invalid state.
- * {@link AV_ERR_NO_MEMORY}, failed to request memory.
- * {@link AV_ERR_UNKNOWN}, unknown error.
+ * @brief Writes a sample to a muxer. This function must be called after {@link OH_AVMuxer_Start} and before
+ * {@link OH_AVMuxer_Stop}. The caller must write the sample to the correct audio or video track based on the timing in
+ * **sample**.
+ *
+ * @param muxer Pointer to an OH_AVMuxer instance.
+ * @param trackIndex Index of the audio or video track corresponding to the data.
+ * @param sample Pointer to the data and properties obtained after encoding or demultiplexing.
+ * @return {@link AV_ERR_OK}: The operation is successful.
+ *     <br>{@link AV_ERR_INVALID_VAL}: The muxer pointer is null, or the track index or sample is invalid.
+ *     <br>{@link AV_ERR_OPERATE_NOT_PERMIT}: The function is called out of sequence.
+ *     <br>{@link AV_ERR_NO_MEMORY}: Memory allocation fails.
+ *     <br>{@link AV_ERR_UNKNOWN}: An unknown error occurs.
  * @since 11
  */
 OH_AVErrCode OH_AVMuxer_WriteSampleBuffer(OH_AVMuxer *muxer, uint32_t trackIndex,
     const OH_AVBuffer *sample);
 
 /**
- * @brief Stop the muxer.
- * Note: Once the muxer stops, it can not be restarted.
- * @syscap SystemCapability.Multimedia.Media.Muxer
- * @param muxer Pointer to an OH_AVMuxer instance
- * @return Returns AV_ERR_OK if the execution is successful,
- * otherwise returns a specific error code, refer to {@link OH_AVErrCode}
- * {@link AV_ERR_INVALID_VAL}, the muxer invalid.
- * {@link AV_ERR_OPERATE_NOT_PERMIT}, not permit to call the interface, it was called in invalid state.
+ * @brief Stops a muxer. Once the muxer is stopped, it cannot be restarted.
+ *
+ * @param muxer Pointer to an OH_AVMuxer instance.
+ * @return {@link AV_ERR_OK}: The operation is successful.
+ *     <br>{@link AV_ERR_INVALID_VAL}: The muxer pointer is null.
+ *     <br>{@link AV_ERR_OPERATE_NOT_PERMIT}: The function is called out of sequence.
  * @since 10
  */
 OH_AVErrCode OH_AVMuxer_Stop(OH_AVMuxer *muxer);
 
 /**
- * @brief Clear the internal resources of the muxer and destroy the muxer instance
- * @syscap SystemCapability.Multimedia.Media.Muxer
- * @param muxer Pointer to an OH_AVMuxer instance
- * @return Returns AV_ERR_OK if the execution is successful,
- * otherwise returns a specific error code, refer to {@link OH_AVErrCode}
- * {@link AV_ERR_INVALID_VAL}, the muxer invalid.
+ * @brief Clears internal resources and destroys an OH_AVMuxer instance.
+ *
+ * Do not repeatedly destroy the instance. Otherwise, the program may crash.
+ *
+ * @param muxer Pointer to an OH_AVMuxer instance.
+ * @return {@link AV_ERR_OK}: The operation is successful.
+ *     <br>{@link AV_ERR_INVALID_VAL}: The muxer pointer is null.
  * @since 10
  */
 OH_AVErrCode OH_AVMuxer_Destroy(OH_AVMuxer *muxer);

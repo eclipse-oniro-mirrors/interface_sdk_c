@@ -4,7 +4,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -19,16 +19,13 @@
  *
  * @brief Provides functions such as 2D graphics rendering, text drawing, and image display.
  *
- * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- *
  * @since 11
  * @version 1.0
  */
-
 /**
  * @file drawing_point.h
  *
- * @brief Declares functions related to the <b>point</b> object in the drawing module.
+ * @brief This file declares the functions related to the coordinate point in the drawing module.
  *
  * @kit ArkGraphics2D
  * @library libnative_drawing.so
@@ -48,65 +45,84 @@ extern "C" {
 #endif
 
 /**
- * @brief Creates an <b>OH_Drawing_Point</b> object.
+ * @brief Creates an **OH_Drawing_Point** object.
  *
- * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @param x Indicates the x-axis coordinates of the point.
- * @param y Indicates the y-axis coordinates of the point.
- * @return Returns the pointer to the <b>OH_Drawing_Point</b> object created.
+ * @param x X coordinate of the point.
+ * @param y Y coordinate of the point.
+ * @return Returns the pointer to the **OH_Drawing_Point** object created.
  * @since 11
  * @version 1.0
  */
 OH_Drawing_Point* OH_Drawing_PointCreate(float x, float y);
 
 /**
- * @brief Gets the x-axis coordinate of the point.
+ * @brief Obtains the X coordinate of a point.
  *
- * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @param point Indicates the pointer to an <b>OH_Drawing_Point</b> object.
- * @param x Indicates the x-axis coordinate of the point.
- * @return Returns the error code.
- *         Returns {@link OH_DRAWING_SUCCESS} if the operation is successful.
- *         Returns {@link OH_DRAWING_ERROR_INVALID_PARAMETER} if point or x is nullptr.
+ * @param point Pointer to an {@link OH_Drawing_Point} object.
+ * @param x Pointer to the X coordinate.
+ * @return Returns one of the following result codes:
+ * **OH_DRAWING_SUCCESS** if the operation is successful.
+ * **OH_DRAWING_ERROR_INVALID_PARAMETER** if either **point** or **x** is NULL.
  * @since 12
  * @version 1.0
  */
 OH_Drawing_ErrorCode OH_Drawing_PointGetX(const OH_Drawing_Point* point, float* x);
 
 /**
- * @brief Gets the y-axis coordinate of the point.
+ * @brief Obtains the Y coordinate of a point.
  *
- * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @param point Indicates the pointer to an <b>OH_Drawing_Point</b> object.
- * @param y Indicates the y-axis coordinate of the point.
- * @return Returns the error code.
- *         Returns {@link OH_DRAWING_SUCCESS} if the operation is successful.
- *         Returns {@link OH_DRAWING_ERROR_INVALID_PARAMETER} if point or y is nullptr.
+ * @param point Pointer to an {@link OH_Drawing_Point} object.
+ * @param y Pointer to the Y coordinate.
+ * @return Returns one of the following result codes:
+ * **OH_DRAWING_SUCCESS** if the operation is successful.
+ * **OH_DRAWING_ERROR_INVALID_PARAMETER** if either **point** or **y** is NULL.
  * @since 12
  * @version 1.0
  */
 OH_Drawing_ErrorCode OH_Drawing_PointGetY(const OH_Drawing_Point* point, float* y);
 
 /**
- * @brief Sets the x-axis and y-axis coordinates of the point.
+ * @brief Sets the X and Y coordinates of a point.
  *
- * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @param point Indicates the pointer to an <b>OH_Drawing_Point</b> object.
- * @param x Indicates the x-axis coordinate of the point.
- * @param y Indicates the y-axis coordinate of the point.
- * @return Returns the error code.
- *         Returns {@link OH_DRAWING_SUCCESS} if the operation is successful.
- *         Returns {@link OH_DRAWING_ERROR_INVALID_PARAMETER} if point is nullptr.
+ * @param point Pointer to an {@link OH_Drawing_Point} object.
+ * @param x Pointer to the X coordinate.
+ * @param y Pointer to the Y coordinate.
+ * @return Returns one of the following result codes:
+ * **OH_DRAWING_SUCCESS** if the operation is successful.
+ * **OH_DRAWING_ERROR_INVALID_PARAMETER** if **point** is NULL.
  * @since 12
  * @version 1.0
  */
 OH_Drawing_ErrorCode OH_Drawing_PointSet(OH_Drawing_Point* point, float x, float y);
 
 /**
- * @brief Destroys an <b>OH_Drawing_Point</b> object and reclaims the memory occupied by the object.
+ * @brief Negates the point's coordinates.
  *
- * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @param point Indicates the pointer to an <b>OH_Drawing_Point</b> object.
+ * @return Returns the error code.
+ *         Returns {@link OH_DRAWING_SUCCESS} if the operation is successful.
+ *         Returns {@link OH_DRAWING_ERROR_INCORRECT_PARAMETER} if point is nullptr.
+ * @since 26.0.0
+ */
+OH_Drawing_ErrorCode OH_Drawing_PointNegate(OH_Drawing_Point* point);
+
+/**
+ * @brief Offsets the point's coordinates by dx, dy.
+ *
+ * @param point Indicates the pointer to an <b>OH_Drawing_Point</b> object.
+ * @param dx Indicates the distance to offset on the x-axis in pixels.
+ * @param dy Indicates the distance to offset on the y-axis in pixels.
+ * @return Returns the error code.
+ *         Returns {@link OH_DRAWING_SUCCESS} if the operation is successful.
+ *         Returns {@link OH_DRAWING_ERROR_INCORRECT_PARAMETER} if point is nullptr.
+ * @since 26.0.0
+ */
+OH_Drawing_ErrorCode OH_Drawing_PointOffset(OH_Drawing_Point* point, float dx, float dy);
+
+/**
+ * @brief Destroys an **OH_Drawing_Point** object and reclaims the memory occupied by the object.
+ *
+ * @param point Pointer to an **OH_Drawing_Point** object.
  * @since 11
  * @version 1.0
  */

@@ -25,7 +25,8 @@
 /**
  * @file native_interface_focus.h
  *
- * @brief Declares the APIs used to control the focus system.
+ * @brief Declares APIs for focus management, mainly used for actively transferring focus, managing the default focus
+ * transfer behavior, and controlling the focus activation state.
  *
  * @library libace_ndk.z.so
  * @syscap SystemCapability.ArkUI.ArkUI.Full
@@ -44,65 +45,71 @@ extern "C" {
 #endif
 
 /**
- * @brief Determines the priority of key event processing when component cannot handle the key event.
+ * @brief Enumerates the key event processing priority modes.
  *
  * @since 15
  */
 typedef enum {
-    /** Key events are used to move focus. */
+    /**
+     * Key events are used for focus navigation.
+     */
     ARKUI_KEY_PROCESSING_MODE_FOCUS_NAVIGATION = 0,
-    /** Key events bubble up to ancestors. */
+    /**
+     * Key events are passed up to ancestor components.
+     */
     ARKUI_KEY_PROCESSING_MODE_FOCUS_ANCESTOR_EVENT,
 } ArkUI_KeyProcessingMode;
 
 /**
- * @brief Apply focus for a specific node.
+ * @brief Requests focus for a specific node.
  *
- * @param node The node.
- * @return The error code.
- *         {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         {@link ARKUI_ERROR_CODE_FOCUS_NON_FOCUSABLE} if the node is not focusable.
- *         {@link ARKUI_ERROR_CODE_FOCUS_NON_FOCUSABLE_ANCESTOR} if the node has unfocusable ancestor.
- *         {@link ARKUI_ERROR_CODE_FOCUS_NON_EXISTENT} if the node is not exists.
+ * @param node Node.
+ * @return Result code.
+ *     <br>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
+ *     <br>Returns {@link ARKUI_ERROR_CODE_FOCUS_NON_FOCUSABLE} if the node cannot receive focus.
+ *     <br>Returns {@link ARKUI_ERROR_CODE_FOCUS_NON_FOCUSABLE_ANCESTOR} if the ancestor node cannot receive focus.
+ *     <br>Returns {@link ARKUI_ERROR_CODE_FOCUS_NON_EXISTENT} if the node does not exist.
  * @since 15
  */
 ArkUI_ErrorCode OH_ArkUI_FocusRequest(ArkUI_NodeHandle node);
 
 /**
- * @brief Clear current focus to root scope.
+ * @brief Clears the focus to the root container node.
  *
- * @param uiContext Indicates the pointer to a UI instance.
+ * @param uiContext UI instance object pointer.
  * @since 15
  */
 void OH_ArkUI_FocusClear(ArkUI_ContextHandle uiContext);
 
 /**
- * @brief Set the focus active state in current window, the focus node would show its focus box.
+ * @brief Sets the focus activation state for the current page. When activated, the focused node displays a focus box.
  *
- * @param uiContext Indicates the pointer to a UI instance.
- * @param isActive Set the state to be active or inactive.
- * @param isAutoInactive When touch event or mouse-pressed event triggerd,
- *                    "true" indicates to set state to inactive,
- *                    "false" indicates to maintain the state until relative API is called.
+ * @param uiContext UI instance object pointer.
+ * @param isActive Whether to enter or exit the focus activation state. The value **true** means to enter the focus
+ *     activation state, and **false** means to exit the focus activation state.
+ * @param isAutoInactive Whether to automatically exit the focus active state on touch or mouse down events. **true**:
+ *     Automatically exit the focus active state. **false**: Maintain the current state until the corresponding setting
+ *     API is called.
  * @since 15
  */
 void OH_ArkUI_FocusActivate(ArkUI_ContextHandle uiContext, bool isActive, bool isAutoInactive);
 
 /**
- * @brief Set the focus transfer behaviour when current focus view changes.
+ * @brief Configures the focus transfer behavior when pages are switched.
  *
- * @param uiContext Indicates the pointer to a UI instance.
- * @param autoTransfer Indicates whether to transfer focus when focus view show.
+ * @param uiContext UI instance object pointer.
+ * @param autoTransfer Whether to automatically transfer focus when pages are switched. The value **true** means to
+ *     automatically transfer focus when pages are switched, and **false** means the opposite.
  * @since 15
  */
 void OH_ArkUI_FocusSetAutoTransfer(ArkUI_ContextHandle uiContext, bool autoTransfer);
 
 
 /**
- * @brief Set the priority of key event processing when component cannot handle the key event.
+ * @brief Sets the mode for processing key events.
  *
- * @param uiContext Indicates the pointer to a UI instance.
- * @param mode Indicates the key processing mode.
+ * @param uiContext UI instance object pointer.
+ * @param mode Key event processing priority mode.
  * @since 15
 */
 void OH_ArkUI_FocusSetKeyProcessingMode(ArkUI_ContextHandle uiContext, ArkUI_KeyProcessingMode mode);

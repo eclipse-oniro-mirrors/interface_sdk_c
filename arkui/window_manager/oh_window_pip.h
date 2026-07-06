@@ -25,7 +25,9 @@
 /**
  * @file oh_window_pip.h
  *
- * @brief Declares C APIs for picture in picture window
+ * @brief The file declares the APIs related to the Picture in Picture (PiP) feature, including creating and deleting a
+ * PiP controller, and starting and stopping PiP. PiP is mainly used in video playback, live streaming, video calls, or
+ * video meetings.
  *
  * @kit ArkUI
  * @library libnative_window_manager.so
@@ -37,6 +39,7 @@
 #define OH_WINDOW_PIP_H
 
 #include "stdint.h"
+#include <stdbool.h>
 
 #ifdef __cplusplus
 extern "C" {
@@ -49,151 +52,275 @@ extern "C" {
 typedef void* PictureInPicture_PipConfig;
 
 /**
- * @brief Enumerates picture in picture template type.
+ * @brief Enumerates the types of PiP templates.
+ *
  * @since 20
  */
 typedef enum {
-    /** Video play. */
+    /**
+     * Video playback template. A PiP window will be started during video playback, and the video playback template is
+     * loaded.
+     * @since 20
+     */
     VIDEO_PLAY = 0,
-    /** Video call. */
+    /**
+     * Video call template. A PiP window will be started during a video call, and the video call template will be
+     * loaded.
+     * @since 20
+     */
     VIDEO_CALL = 1,
-    /** Video meeting. */
+    /**
+     * Video meeting template. A PiP window will be started during a video meeting, and the video meeting template will
+     * be loaded.
+     * @since 20
+     */
     VIDEO_MEETING = 2,
-    /** Video live. */
+
+    /**
+     * Live template. A PiP window will be started during a live, and the live template is loaded.
+     * @since 20
+     */
     VIDEO_LIVE = 3,
 } PictureInPicture_PipTemplateType;
 
 /**
- * @brief Enumerates picture in picture control group.
+ * @brief Enumerates the types of component groups displayed on the PiP controller.
+ *
  * @since 20
  */
 typedef enum {
-    /** Previous/next control group for video play. */
+    /**
+     * Previous/Next component group for video playback. This component group is mutually exclusive with the fast-
+     * forward/rewind component group. It cannot be added if the fast-forward/rewind component group is added.
+     * @since 20
+     */
     VIDEO_PLAY_VIDEO_PREVIOUS_NEXT = 101,
-    /** Fast forward/backward control group for video play. */
+    /**
+     * Fast-forward/Rewind component group for video playback. This component group is mutually exclusive with the
+     * previous/next component group. It cannot be added if the previous/next component group is added.
+     * @since 20
+     */
     VIDEO_PLAY_FAST_FORWARD_BACKWARD = 102,
-    /** Switch on/off the microphone control group for video call. */
+    /**
+     * Microphone on/off component group for video calls.
+     * @since 20
+     */
     VIDEO_CALL_MICROPHONE_SWITCH = 201,
-    /** Hang up control group for video call. */
+    /**
+     * Hang-up component group for video calls.
+     * @since 20
+     */
     VIDEO_CALL_HANG_UP_BUTTON = 202,
-    /** Switch on/off the camera control group for video call. */
+    /**
+     * Camera on/off component group for video calls.
+     * @since 20
+     */
     VIDEO_CALL_CAMERA_SWITCH = 203,
-    /** Mute control group for video call. */
+    /**
+     * Mute component group for video calls.
+     * @since 20
+     */
     VIDEO_CALL_MUTE_SWITCH = 204,
-    /** Hang up control group for video meeting. */
+    /**
+     * Hang-up component group for video meetings.
+     * @since 20
+     */
     VIDEO_MEETING_HANG_UP_BUTTON = 301,
-    /** Switch on/off the camera control group for video meeting. */
+    /**
+     * Camera on/off component group for video meetings.
+     * @since 20
+     */
     VIDEO_MEETING_CAMERA_SWITCH = 302,
-    /** Mute control group for video meeting. */
+    /**
+     * Mute component group for video meetings.
+     * @since 20
+     */
     VIDEO_MEETING_MUTE_SWITCH = 303,
-    /** Switch on/off the microphone control group for video meeting. */
+    /**
+     * Microphone on/off component group for video meetings.
+     * @since 20
+     */
     VIDEO_MEETING_MICROPHONE_SWITCH = 304,
-    /** Video play/pause control group for video live. */
+    /**
+     * Play/Pause component group for live streaming.
+     * @since 20
+     */
     VIDEO_LIVE_VIDEO_PLAY_PAUSE = 401,
-    /** Mute control group for video live. */
+    /**
+     * Mute component group for live streaming.
+     * @since 20
+     */
     VIDEO_LIVE_MUTE_SWITCH = 402,
 } PictureInPicture_PipControlGroup;
 
 /**
- * @brief Enumerates picture in picture control type.
+ * @brief Enumerates the types of components displayed on the PiP controller.
+ *
  * @since 20
  */
 typedef enum {
-    /** Video play/pause. */
+    /**
+     * Play/Pause component.
+     * @since 20
+     */
     VIDEO_PLAY_PAUSE = 0,
-    /** Video previous. */
+    /**
+     * Previous component in video scenarios.
+     * @since 20
+     */
     VIDEO_PREVIOUS = 1,
-    /** Video next. */
+    /**
+     * Next component in video scenarios.
+     * @since 20
+     */
     VIDEO_NEXT = 2,
-    /** Video fast forward. */
+    /**
+     * Fast-forward component in video scenarios.
+     * @since 20
+     */
     FAST_FORWARD = 3,
-    /** Video back forward. */
+    /**
+     * Rewind component in video scenarios.
+     * @since 20
+     */
     FAST_BACKWARD = 4,
-    /** Hang up. */
+    /**
+     * Hang-up component.
+     * @since 20
+     */
     HANG_UP_BUTTON = 5,
-    /** Microphone switch. */
+    /**
+     * Microphone on/off component.
+     * @since 20
+     */
     MICROPHONE_SWITCH = 6,
-    /** camera switch. */
+    /**
+     * Camera on/off component.
+     * @since 20
+     */
     CAMERA_SWITCH = 7,
-    /** mute switch. */
+    /**
+     * Mute/Unmute component.
+     * @since 20
+     */
     MUTE_SWITCH = 8,
 } PictureInPicture_PipControlType;
 
 /**
- * @brief Enumerates picture in picture control status.
+ * @brief Enumerates the statuses of components displayed on the PiP controller.
+ *
  * @since 20
  */
 typedef enum {
-    /** Play. */
+    /**
+     * A video is playing.
+     * @since 20
+     */
     PLAY = 1,
-    /** Pause. */
+    /**
+     * A video is paused.
+     * @since 20
+     */
     PAUSE = 0,
-    /** Open. */
+    /**
+     * The camera, microphone, and mute components are enabled.
+     * @since 20
+     */
     OPEN = 1,
-    /** Close. */
+    /**
+     * The camera, microphone, and mute components are disabled.
+     * @since 20
+     */
     CLOSE = 0,
 } PictureInPicture_PipControlStatus;
 
 /**
- * @brief Enumerates picture in picture state.
+ * @brief Enumerates the PiP lifecycle states.
+ *
  * @since 20
  */
 typedef enum {
-    /** About to start. */
+    /**
+     * PiP is about to start.
+     * @since 20
+     */
     ABOUT_TO_START = 1,
-    /** started. */
+    /**
+     * PiP is started.
+     * @since 20
+     */
     STARTED = 2,
-    /** About to stop. */
+    /**
+     * PiP is about to stop.
+     * @since 20
+     */
     ABOUT_TO_STOP = 3,
-    /** stopped. */
+    /**
+     * PiP is stopped.
+     * @since 20
+     */
     STOPPED = 4,
-    /** About to restore. */
+    /**
+     * The original page is about to restore.
+     * @since 20
+     */
     ABOUT_TO_RESTORE = 5,
-    /** Error. */
+    /**
+     * An error occurs during the execution of the PiP lifecycle.
+     * @since 20
+     */
     ERROR = 6,
 } PictureInPicture_PipState;
 
 /**
- * @brief Start the picture-in-picture callback
- * @param controllerId The picture-in-picture controller ID
- * @param requestId The picture-in-picture requestId
- * @param surfaceId The picture-in-picture surfaceId
+ * @brief Defines a callback function for PiP window creation.
+ *
+ * @param controllerId ID of the PiP controller. The value is a non-negative integer.
+ * @param requestId Request ID, which indicates the number of times the PiP window has been requested to be pulled up.
+ * @param surfaceId Surface ID of the **XComponent** in PiP. It is used for application rendering.
  * @since 20
  */
 typedef void (*WebPipStartPipCallback)(uint32_t controllerId, uint8_t requestId, uint64_t surfaceId);
 
 /**
- * @brief The picture-in-picture lifecycle callback
- * @param controllerId The picture-in-picture controller ID
- * @param state The picture-in-picture state
- * @param errcode The picture-in-picture error code
+ * @brief Defines a callback function for PiP window lifecycle changes.
+ *
+ * @param controllerId ID of the PiP controller. The value is a non-negative integer.
+ * @param state PiP lifecycle state.
+ * @param errcode Common status codes of PiP APIs. For details, see {@link WindowManager_ErrorCode}.
  * @since 20
  */
 typedef void (*WebPipLifecycleCallback)(uint32_t controllerId, PictureInPicture_PipState state, int32_t errcode);
 
 /**
- * @brief The picture-in-picture control event callback
- * @param controllerId The picture-in-picture controller ID
- * @param controlType The picture-in-picture control type
- * @param status The picture-in-picture control status
+ * @brief Defines a callback function for the component click event of the PiP window.
+ *
+ * @param controllerId ID of the PiP controller. The value is a non-negative integer.
+ * @param controlType Type of component displayed on the PiP controller.
+ * @param status Status of the component displayed on the PiP controller.
  * @since 20
  */
 typedef void (*WebPipControlEventCallback)(uint32_t controllerId, PictureInPicture_PipControlType controlType,
     PictureInPicture_PipControlStatus status);
 
 /**
- * @brief The picture-in-picture size change callback
- * @param controllerId The picture-in-picture controller ID
- * @param width The picture-in-picture window width
- * @param height The picture-in-picture window height
- * @param scale The picture-in-picture window scale
+ * @brief Defines a callback function for PiP window size changes.
+ *
+ * @param controllerId ID of the PiP controller. The value is a non-negative integer.
+ * @param width PiP window width, in px. The value is a positive integer and cannot be greater than the screen width.
+ * @param height PiP window height, in px. The value is a positive integer and cannot be greater than the screen
+ *               height.
+ * @param scale Scale factor of the PiP window, representing the display size relative to the width and height. The
+ *              value is a floating-point number in the range (0.0, 1.0]. The value **1** means that the PiP window
+ *              matches specified width and height.
  * @since 20
  */
 typedef void (*WebPipResizeCallback)(uint32_t controllerId, uint32_t width, uint32_t height, double scale);
 
 /**
- * @brief Create picture-in-picture config.
- * @param pipConfig The picture-in-picture config
+ * @brief Creates a PiP configuration.
+ *
+ * @param pipConfig Pointer to the PiP parameter configuration.
  * @return Return the result code.
  *         {@link OK} the function call is successful.
  *         {@link WINDOW_MANAGER_ERRORCODE_INCORRECT_PARAM} parameter error.
@@ -202,8 +329,9 @@ typedef void (*WebPipResizeCallback)(uint32_t controllerId, uint32_t width, uint
 int32_t OH_PictureInPicture_CreatePipConfig(PictureInPicture_PipConfig* pipConfig);
 
 /**
- * @brief Destroy picture-in-picture config.
- * @param pipConfig The picture-in-picture config
+ * @brief Destroys a PiP configuration.
+ *
+ * @param pipConfig Pointer to the PiP configuration.
  * @return Return the result code.
  *         {@link OK} the function call is successful.
  *         {@link WINDOW_MANAGER_ERRORCODE_INCORRECT_PARAM} parameter error.
@@ -212,10 +340,10 @@ int32_t OH_PictureInPicture_CreatePipConfig(PictureInPicture_PipConfig* pipConfi
 int32_t OH_PictureInPicture_DestroyPipConfig(PictureInPicture_PipConfig* pipConfig);
 
 /**
- * @brief Set picture-in-picture mainWindowId.
+ * @brief Sets the ID of the main window that launches PiP.
  *
- * @param pipConfig The picture-in-picture config
- * @param mainWindowId WindowId of corresponding mainWindow
+ * @param pipConfig PiP configuration.
+ * @param mainWindowId ID of the main window that launches PiP.
  * @return Return the result code.
  *         {@link OK} the function call is successful.
  *         {@link WINDOW_MANAGER_ERRORCODE_INCORRECT_PARAM} parameter error.
@@ -225,10 +353,10 @@ int32_t OH_PictureInPicture_DestroyPipConfig(PictureInPicture_PipConfig* pipConf
 int32_t OH_PictureInPicture_SetPipMainWindowId(PictureInPicture_PipConfig pipConfig, uint32_t mainWindowId);
 
 /**
- * @brief Set picture-in-picture templateType.
+ * @brief Sets the PiP template type. The default value is video playback.
  *
- * @param pipConfig The picture-in-picture config
- * @param pipTemplateType The picture-in-picture template type
+ * @param pipConfig PiP configuration.
+ * @param pipTemplateType Type of the PiP template.
  * @return Return the result code.
  *         {@link OK} the function call is successful.
  *         {@link WINDOW_MANAGER_ERRORCODE_INCORRECT_PARAM} parameter error.
@@ -239,11 +367,13 @@ int32_t OH_PictureInPicture_SetPipTemplateType(PictureInPicture_PipConfig pipCon
     PictureInPicture_PipTemplateType pipTemplateType);
 
 /**
- * @brief Set picture-in-picture rect.
+ * @brief Sets the size of the PiP window for calculating the aspect ratio.
  *
- * @param pipConfig The picture-in-picture config
- * @param width The picture-in-picture window width
- * @param height The picture-in-picture window height
+ * @param pipConfig PiP configuration.
+ * @param width Width of the original content, in px. The value must be a positive integer. It is used to determine the
+ *              aspect ratio of the PiP window.
+ * @param height Height of the original content, in px. The value must be a positive integer. It is used to determine
+ *               the aspect ratio of the PiP window.
  * @return Return the result code.
  *         {@link OK} the function call is successful.
  *         {@link WINDOW_MANAGER_ERRORCODE_INCORRECT_PARAM} parameter error.
@@ -253,11 +383,14 @@ int32_t OH_PictureInPicture_SetPipTemplateType(PictureInPicture_PipConfig pipCon
 int32_t OH_PictureInPicture_SetPipRect(PictureInPicture_PipConfig pipConfig, uint32_t width, uint32_t height);
 
 /**
- * @brief Set picture-in-picture control group.
+ * @brief Sets a PiP component group, which must match the template type.
  *
- * @param pipConfig The picture-in-picture config
- * @param controlGroup The picture-in-picture control group
- * @param controlGroupLength The length of picture-in-picture control group
+ * @param pipConfig PiP configuration.
+ * @param controlGroup Pointer to an optional component group of the PiP controller. An application can configure
+ *                     whether to display these optional components. If this parameter is not set for an application,
+ *                     the basic components (for example, play/pause of the video playback component group) are
+ *                     displayed. A maximum of three components can be configured.
+ * @param controlGroupLength Number of components in the PiP component group. The value ranges from 0 to 3.
  * @return Return the result code.
  *         {@link OK} the function call is successful.
  *         {@link WINDOW_MANAGER_ERRORCODE_INCORRECT_PARAM} parameter error.
@@ -268,10 +401,10 @@ int32_t OH_PictureInPicture_SetPipControlGroup(PictureInPicture_PipConfig pipCon
     PictureInPicture_PipControlGroup* controlGroup, uint8_t controlGroupLength);
 
 /**
- * @brief Set picture-in-picture napi env.
+ * @brief Sets the runtime environment for launching PiP.
  *
- * @param pipConfig The picture-in-picture config
- * @param env The picture-in-picture napi env
+ * @param pipConfig PiP configuration.
+ * @param env Pointer to the NAPI environment.
  * @return Return the result code.
  *         {@link OK} the function call is successful.
  *         {@link WINDOW_MANAGER_ERRORCODE_INCORRECT_PARAM} parameter error.
@@ -281,9 +414,10 @@ int32_t OH_PictureInPicture_SetPipControlGroup(PictureInPicture_PipConfig pipCon
 int32_t OH_PictureInPicture_SetPipNapiEnv(PictureInPicture_PipConfig pipConfig, void* env);
 
 /**
- * @brief Create picture-in-picture controller.
- * @param pipConfig The picture-in-picture config
- * @param controllerId The picture-in-picture controller ID
+ * @brief Creates a PiP controller.
+ *
+ * @param pipConfig PiP configuration.
+ * @param controllerId Pointer to the ID of the PiP controller created.
  * @return Return the result code.
  *         {@link OK} the function call is successful.
  *         {@link WINDOW_MANAGER_ERRORCODE_INCORRECT_PARAM} parameter error.
@@ -294,9 +428,9 @@ int32_t OH_PictureInPicture_SetPipNapiEnv(PictureInPicture_PipConfig pipConfig, 
 int32_t OH_PictureInPicture_CreatePip(PictureInPicture_PipConfig pipConfig, uint32_t* controllerId);
 
 /**
- * @brief Delete picture-in-picture controller.
+ * @brief Deletes a PiP controller.
  *
- * @param controllerId The picture-in-picture controller ID
+ * @param controllerId ID of the PiP controller. The value is a non-negative integer.
  * @return Return the result code.
  *         {@link OK} The function call is successful.
  *         {@link WINDOW_MANAGER_ERRORCODE_INCORRECT_PARAM} parameter error.
@@ -305,9 +439,9 @@ int32_t OH_PictureInPicture_CreatePip(PictureInPicture_PipConfig pipConfig, uint
 int32_t OH_PictureInPicture_DeletePip(uint32_t controllerId);
 
 /**
- * @brief Start picture-in-picture.
+ * @brief Starts PiP.
  *
- * @param controllerId The picture-in-picture controller ID
+ * @param controllerId ID of the PiP controller. The value is a non-negative integer.
  * @return Return the result code.
  *         {@link OK} the function call is successful.
  *         {@link WINDOW_MANAGER_ERRORCODE_PIP_STATE_ABNORMAL} the PiP window state is abnormal.
@@ -319,10 +453,10 @@ int32_t OH_PictureInPicture_DeletePip(uint32_t controllerId);
  */
 int32_t OH_PictureInPicture_StartPip(uint32_t controllerId);
 
-/**
- * @brief Stop picture-in-picture.
+ /**
+ * @brief Stops PiP.
  *
- * @param controllerId The picture-in-picture controller ID
+ * @param controllerId ID of the PiP controller. The value is a non-negative integer.
  * @return Return the result code.
  *         {@link OK} the function call is successful.
  *         {@link WINDOW_MANAGER_ERRORCODE_PIP_DESTROY_FAILED} failed to destroy the PiP window.
@@ -335,11 +469,13 @@ int32_t OH_PictureInPicture_StartPip(uint32_t controllerId);
 int32_t OH_PictureInPicture_StopPip(uint32_t controllerId);
 
 /**
- * @brief Update picture-in-picture content size.
+ * @brief Updates the media content size when the media content changes.
  *
- * @param controllerId The picture-in-picture controller ID
- * @param width The picture-in-picture content width
- * @param height The picture-in-picture content height
+ * @param controllerId ID of the PiP controller. The value is a non-negative integer.
+ * @param width Width of the media content, in px. The value must be a positive integer. It is used to update the
+ *              aspect ratio of the PiP window.
+ * @param height Height of the media content, in px. The value must be a positive integer. It is used to update the
+ *               aspect ratio of the PiP window.
  * @return Return the result code.
  *         {@link OK} the function call is successful.
  *         {@link WINDOW_MANAGER_ERRORCODE_INCORRECT_PARAM} parameter error.
@@ -349,11 +485,12 @@ int32_t OH_PictureInPicture_StopPip(uint32_t controllerId);
 int32_t OH_PictureInPicture_UpdatePipContentSize(uint32_t controllerId, uint32_t width, uint32_t height);
 
 /**
- * @brief Update picture-in-picture control status.
+ * @brief Updates the PiP component status.
  *
- * @param controllerId The picture-in-picture controller ID
- * @param controlType The picture-in-picture control type.
- * @param status The picture-in-picture control status.
+ * @param controllerId ID of the PiP controller. The value is a non-negative integer.
+ * @param controlType Type of the component displayed on the PiP controller. Currently, only **VIDEO_PLAY_PAUSE**, **
+ *                    MICROPHONE_SWITCH**, **CAMERA_SWITCH**, and **MUTE_SWITCH** are supported.
+ * @param status Status of the component displayed on the PiP controller.
  * @return Return the result code.
  *         {@link OK} the function call is successful.
  *         {@link WINDOW_MANAGER_ERRORCODE_INCORRECT_PARAM} parameter error.
@@ -364,11 +501,12 @@ int32_t OH_PictureInPicture_UpdatePipControlStatus(uint32_t controllerId, Pictur
     PictureInPicture_PipControlStatus status);
 
 /**
- * @brief Set picture-in-picture control enable status.
+ * @brief Sets the PiP component enabled status.
  *
- * @param controllerId The picture-in-picture controller ID
- * @param controlType The picture-in-picture control type.
- * @param enabled Indicate the picture-in-picture control is enabled.
+ * @param controllerId ID of the PiP controller. The value is a non-negative integer.
+ * @param controlType Type of the component displayed on the PiP controller.
+ * @param enabled Enabled status of the component displayed on the PiP controller. **true** if enabled, **false**
+ *                otherwise.
  * @return Return the result code.
  *         {@link OK} the function call is successful.
  *         {@link WINDOW_MANAGER_ERRORCODE_INCORRECT_PARAM} parameter error.
@@ -379,10 +517,10 @@ int32_t OH_PictureInPicture_SetPipControlEnabled(uint32_t controllerId, PictureI
     bool enabled);
 
 /**
- * @brief Set the picture-in-picture parent window ID.
+ * @brief Sets the main window ID for PiP.
  *
- * @param controllerId The picture-in-picture controller ID.
- * @param windowId The picture-in-picture parent window ID.
+ * @param controllerId ID of the PiP controller. The value is a non-negative integer.
+ * @param windowId ID of the main window. The value is a non-negative integer.
  * @return Return the result code.
  *         {@link OK} the function call is successful.
  *         {@link WINDOW_MANAGER_ERRORCODE_INCORRECT_PARAM} parameter error.
@@ -393,13 +531,16 @@ int32_t OH_PictureInPicture_SetPipControlEnabled(uint32_t controllerId, PictureI
 int32_t OH_PictureInPicture_SetParentWindowId(uint32_t controllerId, uint32_t windowId);
 
 /**
- * @brief Set picture-in-picture initial surface rect.
+ * @brief Sets the initial position and size of the PiP surface when the PiP launch animation starts. It can be used to
+ * achieve a seamless transition effect.
  *
- * @param controllerId The picture-in-picture controller ID
- * @param positionX The X position of the first frame when start the picture-in-picture.
- * @param positionY The Y position of the first frame when start the picture-in-picture.
- * @param width The width of the first frame when start the picture-in-picture.
- * @param height The height of the first frame when start the picture-in-picture.
+ * @param controllerId ID of the PiP controller. The value is a non-negative integer.
+ * @param positionX X coordinate of the PiP window relative to the top-left corner of the screen when the PiP window is
+ *                  started, in px.
+ * @param positionY Y coordinate of the PiP window relative to the top-left corner of the screen when the PiP window is
+ *                  started, in px.
+ * @param width Width of the PiP window when the PiP window is started. The value is greater than 0, measured in px.
+ * @param height Height of the PiP window when the PiP window is started. The value is greater than 0, measured in px.
  * @return Return the result code.
  *         {@link OK} the function call is successful.
  *         {@link WINDOW_MANAGER_ERRORCODE_INCORRECT_PARAM} parameter error.
@@ -410,9 +551,9 @@ int32_t OH_PictureInPicture_SetPipInitialSurfaceRect(uint32_t controllerId, int3
     uint32_t width, uint32_t height);
 
 /**
- * @brief Unset picture-in-picture initial surface rect.
+ * @brief Cancels the previously set initial position and size for the PiP surface.
  *
- * @param controllerId The picture-in-picture controller ID
+ * @param controllerId ID of the PiP controller. The value is a non-negative integer.
  * @return Return the result code.
  *         {@link OK} the function call is successful.
  *         {@link WINDOW_MANAGER_ERRORCODE_INCORRECT_PARAM} parameter error.
@@ -422,10 +563,10 @@ int32_t OH_PictureInPicture_SetPipInitialSurfaceRect(uint32_t controllerId, int3
 int32_t OH_PictureInPicture_UnsetPipInitialSurfaceRect(uint32_t controllerId);
 
 /**
- * @brief Register picture-in-picture controller start callback.
+ * @brief Registers a callback to listen for the completion of PiP surface creation.
  *
- * @param controllerId The picture-in-picture controller ID
- * @param callback Start the picture-in-picture callback
+ * @param controllerId ID of the PiP controller. The value is a non-negative integer.
+ * @param callback Callback function for PiP window creation.
  * @return Return the result code.
  *         {@link OK} the function call is successful.
  *         {@link WINDOW_MANAGER_ERRORCODE_INCORRECT_PARAM} parameter error.
@@ -436,10 +577,10 @@ int32_t OH_PictureInPicture_UnsetPipInitialSurfaceRect(uint32_t controllerId);
 int32_t OH_PictureInPicture_RegisterStartPipCallback(uint32_t controllerId, WebPipStartPipCallback callback);
 
 /**
- * @brief Unregister picture-in-picture controller start callback.
+ * @brief Unregisters the callback used to listen for the completion of PiP surface creation.
  *
- * @param controllerId The picture-in-picture controller ID
- * @param callback Start the picture-in-picture callback
+ * @param controllerId ID of the PiP controller. The value is a non-negative integer.
+ * @param callback Callback function for PiP window creation.
  * @return Return the result code.
  *         {@link OK} the function call is successful.
  *         {@link WINDOW_MANAGER_ERRORCODE_INCORRECT_PARAM} parameter error.
@@ -450,9 +591,9 @@ int32_t OH_PictureInPicture_RegisterStartPipCallback(uint32_t controllerId, WebP
 int32_t OH_PictureInPicture_UnregisterStartPipCallback(uint32_t controllerId, WebPipStartPipCallback callback);
 
 /**
- * @brief Unregister all picture-in-picture controller start callbacks.
+ * @brief Unregisters all the callbacks used to listen for the completion of PiP surface creation.
  *
- * @param controllerId The picture-in-picture controller ID
+ * @param controllerId ID of the PiP controller. The value is a non-negative integer.
  * @return Return the result code.
  *         {@link OK} the function call is successful.
  *         {@link WINDOW_MANAGER_ERRORCODE_INCORRECT_PARAM} parameter error.
@@ -463,10 +604,10 @@ int32_t OH_PictureInPicture_UnregisterStartPipCallback(uint32_t controllerId, We
 int32_t OH_PictureInPicture_UnregisterAllStartPipCallbacks(uint32_t controllerId);
 
 /**
- * @brief Register picture-in-picture lifecycle listener callback.
+ * @brief Registers a callback to listen for PiP lifecycle state changes.
  *
- * @param controllerId The picture-in-picture controller ID
- * @param callback The picture-in-picture lifecycle callback.
+ * @param controllerId ID of the PiP controller. The value is a non-negative integer.
+ * @param callback Callback function for PiP window lifecycle changes.
  * @return Return the result code.
  *         {@link OK} the function call is successful.
  *         {@link WINDOW_MANAGER_ERRORCODE_INCORRECT_PARAM} parameter error.
@@ -477,10 +618,10 @@ int32_t OH_PictureInPicture_UnregisterAllStartPipCallbacks(uint32_t controllerId
 int32_t OH_PictureInPicture_RegisterLifecycleListener(uint32_t controllerId, WebPipLifecycleCallback callback);
 
 /**
- * @brief Unregister picture-in-picture lifecycle listener callback.
+ * @brief Unregisters the callback used to listen for PiP lifecycle state changes.
  *
- * @param controllerId The picture-in-picture controller ID
- * @param callback The picture-in-picture lifecycle callback.
+ * @param controllerId ID of the PiP controller. The value is a non-negative integer.
+ * @param callback Callback function for PiP window lifecycle changes.
  * @return Return the result code.
  *         {@link OK} the function call is successful.
  *         {@link WINDOW_MANAGER_ERRORCODE_INCORRECT_PARAM} parameter error.
@@ -491,9 +632,9 @@ int32_t OH_PictureInPicture_RegisterLifecycleListener(uint32_t controllerId, Web
 int32_t OH_PictureInPicture_UnregisterLifecycleListener(uint32_t controllerId, WebPipLifecycleCallback callback);
 
 /**
- * @brief Unregister all picture-in-picture lifecycle listener callbacks.
+ * @brief Unregisters all the callbacks used to listen for PiP lifecycle state changes.
  *
- * @param controllerId The picture-in-picture controller ID
+ * @param controllerId ID of the PiP controller. The value is a non-negative integer.
  * @return Return the result code.
  *         {@link OK} the function call is successful.
  *         {@link WINDOW_MANAGER_ERRORCODE_INCORRECT_PARAM} parameter error.
@@ -504,10 +645,10 @@ int32_t OH_PictureInPicture_UnregisterLifecycleListener(uint32_t controllerId, W
 int32_t OH_PictureInPicture_UnregisterAllLifecycleListeners(uint32_t controllerId);
 
 /**
- * @brief Register picture-in-picture control event listener callback.
+ * @brief Registers a callback to listen for control panel action events in PiP mode.
  *
- * @param controllerId The picture-in-picture controller ID
- * @param callback The picture-in-picture control event callback.
+ * @param controllerId ID of the PiP controller. The value is a non-negative integer.
+ * @param callback Callback function for the component click event of the PiP window.
  * @return Return the result code.
  *         {@link OK} the function call is successful.
  *         {@link WINDOW_MANAGER_ERRORCODE_INCORRECT_PARAM} parameter error.
@@ -518,10 +659,10 @@ int32_t OH_PictureInPicture_UnregisterAllLifecycleListeners(uint32_t controllerI
 int32_t OH_PictureInPicture_RegisterControlEventListener(uint32_t controllerId, WebPipControlEventCallback callback);
 
 /**
- * @brief Unregister picture-in-picture control event listener callback.
+ * @brief Unregisters the callback used to listen for control panel action events in PiP mode.
  *
- * @param controllerId The picture-in-picture controller ID
- * @param callback The picture-in-picture control event callback.
+ * @param controllerId ID of the PiP controller. The value is a non-negative integer.
+ * @param callback Callback function for the component click event of the PiP window.
  * @return Return the result code.
  *         {@link OK} the function call is successful.
  *         {@link WINDOW_MANAGER_ERRORCODE_INCORRECT_PARAM} parameter error.
@@ -532,9 +673,9 @@ int32_t OH_PictureInPicture_RegisterControlEventListener(uint32_t controllerId, 
 int32_t OH_PictureInPicture_UnregisterControlEventListener(uint32_t controllerId, WebPipControlEventCallback callback);
 
 /**
- * @brief Unregister all picture-in-picture control event listener callbacks.
+ * @brief Unregisters all the callbacks used to listen for control panel action events in PiP mode.
  *
- * @param controllerId The picture-in-picture controller ID
+ * @param controllerId ID of the PiP controller. The value is a non-negative integer.
  * @return Return the result code.
  *         {@link OK} the function call is successful.
  *         {@link WINDOW_MANAGER_ERRORCODE_INCORRECT_PARAM} parameter error.
@@ -545,10 +686,10 @@ int32_t OH_PictureInPicture_UnregisterControlEventListener(uint32_t controllerId
 int32_t OH_PictureInPicture_UnregisterAllControlEventListeners(uint32_t controllerId);
 
 /**
- * @brief Register picture-in-picture resize listener callback.
+ * @brief Registers a callback to listen for PiP window size changes.
  *
- * @param controllerId The picture-in-picture controller ID
- * @param callback The picture-in-picture size change callback.
+ * @param controllerId ID of the PiP controller. The value is a non-negative integer.
+ * @param callback Callback function for PiP window size changes.
  * @return Return the result code.
  *         {@link OK} the function call is successful.
  *         {@link WINDOW_MANAGER_ERRORCODE_INCORRECT_PARAM} parameter error.
@@ -559,10 +700,10 @@ int32_t OH_PictureInPicture_UnregisterAllControlEventListeners(uint32_t controll
 int32_t OH_PictureInPicture_RegisterResizeListener(uint32_t controllerId, WebPipResizeCallback callback);
 
 /**
- * @brief Unregister picture-in-picture resize listener callback.
+ * @brief Unregisters the callback used to listen for PiP window size changes.
  *
- * @param controllerId The picture-in-picture controller ID
- * @param callback The picture-in-picture size change callback.
+ * @param controllerId ID of the PiP controller. The value is a non-negative integer.
+ * @param callback Callback function for PiP window size changes.
  * @return Return the result code.
  *         {@link OK} the function call is successful.
  *         {@link WINDOW_MANAGER_ERRORCODE_INCORRECT_PARAM} parameter error.
@@ -573,9 +714,9 @@ int32_t OH_PictureInPicture_RegisterResizeListener(uint32_t controllerId, WebPip
 int32_t OH_PictureInPicture_UnregisterResizeListener(uint32_t controllerId, WebPipResizeCallback callback);
 
 /**
- * @brief Unregister all picture-in-picture resize listener callbacks.
+ * @brief Unregisters all the callbacks used to listen for PiP window size changes.
  *
- * @param controllerId The picture-in-picture controller ID
+ * @param controllerId ID of the PiP controller. The value is a non-negative integer.
  * @return Return the result code.
  *         {@link OK} the function call is successful.
  *         {@link WINDOW_MANAGER_ERRORCODE_INCORRECT_PARAM} parameter error.
@@ -584,6 +725,26 @@ int32_t OH_PictureInPicture_UnregisterResizeListener(uint32_t controllerId, WebP
  * @since 20
  */
 int32_t OH_PictureInPicture_UnregisterAllResizeListeners(uint32_t controllerId);
+
+/**
+ * @brief Sets whether to automatically start a PiP window when the user returns to the home screen.
+ * By default, no PiP window is started.
+ *
+ * @param controllerId ID of the PiP controller. The value is a non-negative integer.
+ * @param enabled Whether to automatically start a PiP window when the user returns to the home screen.
+ *     **true** to start, **false** otherwise. If the PiP feature under **Settings** > **System** > **Multi-window**
+ *     is disabled, the PiP window will not be automatically started when the user returns to the home screen even
+ *     if this parameter is set to **true**.
+ * @return Return the result code. <ul>
+ *         <li>{@link OK} the function call is successful. </li>
+ *         <li>{@link WINDOW_MANAGER_ERRORCODE_INCORRECT_PARAM} parameter error. Possible cause:
+ *             Can not find the PiP controller corresponding to the controllerId ID.</li>
+ *         <li>{@link WINDOW_MANAGER_ERRORCODE_PIP_INTERNAL_ERROR} pip internal error. Possible cause:
+ *             The PiP controller has been destroyed.</li>
+ *         </ul>
+ * @since 26.0.0
+ */
+int32_t OH_PictureInPicture_SetAutoStartEnabled(uint32_t controllerId, bool enabled);
 
 #ifdef __cplusplus
 }

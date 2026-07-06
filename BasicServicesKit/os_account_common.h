@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2024 Huawei Device Co., Ltd.
+ * Copyright (C) 2024-2026 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -24,7 +24,8 @@
 /**
  * @file os_account_common.h
  *
- * @brief Declare the common types for the native OsAccount.
+ * @brief Defines common types used in **OsAccount** APIs.
+ *
  * @library libos_account_ndk.so
  * @kit BasicServicesKit
  * @syscap SystemCapability.Account.OsAccount
@@ -44,14 +45,41 @@ extern "C" {
  * @since 12
  */
 typedef enum OsAccount_ErrCode {
-    /** @error Operation is successful.*/
+    /**
+     * Success.
+     * @since 12
+     */
     OS_ACCOUNT_ERR_OK = 0,
 
-    /** @error Internal error.*/
+    /**
+     * @error Permission denied.
+     * @since 26.0.0
+     */
+    OS_ACCOUNT_ERR_PERMISSION_DENIED = 201,
+
+    /**
+     * Internal error.
+     * @since 12
+     */
     OS_ACCOUNT_ERR_INTERNAL_ERROR = 12300001,
 
-    /** @error Invalid parameter.*/
-    OS_ACCOUNT_ERR_INVALID_PARAMETER = 12300002
+    /**
+     * Invalid parameter.
+     * @since 12
+     */
+    OS_ACCOUNT_ERR_INVALID_PARAMETER = 12300002,
+
+    /**
+     * @error Account not found.
+     * @since 26.0.0
+     */
+    OS_ACCOUNT_ERR_ACCOUNT_NOT_FOUND = 12300003,
+
+    /**
+     * @error Restricted account.
+     * @since 26.0.0
+     */
+    OS_ACCOUNT_ERR_RESTRICTED_ACCOUNT = 12300008
 } OsAccount_ErrCode;
 
 #ifdef __cplusplus

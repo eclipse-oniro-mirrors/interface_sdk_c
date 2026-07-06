@@ -40,12 +40,45 @@
 #ifndef UDS_H
 #define UDS_H
 
+#include <stdbool.h>
 #include "multimedia/image_framework/image/pixelmap_native.h"
 
 #ifdef __cplusplus
 
 extern "C" {
 #endif
+
+/**
+ * @brief Describes authorization permission values.
+ *
+ * @since 26.0.0
+ */
+typedef enum Udmf_AuthPermission {
+    /**
+     * @brief No permission.
+     *
+     * @since 26.0.0
+     */
+    UDMF_PERM_NONE = 0,
+    /**
+     * @brief Read permission.
+     *
+     * @since 26.0.0
+     */
+    UDMF_PERM_READ = 1u << 0,
+    /**
+     * @brief Write permission.
+     *
+     * @since 26.0.0
+     */
+    UDMF_PERM_WRITE = 1u << 1,
+    /**
+     * @brief Persist permission.
+     *
+     * @since 26.0.0
+     */
+    UDMF_PERM_PERSIST = 1u << 2,
+} Udmf_AuthPermission;
 
 /**
  * @brief Describes the unified data struct of plaintext.
@@ -111,7 +144,7 @@ typedef struct OH_UdsArrayBuffer OH_UdsArrayBuffer;
 typedef struct OH_UdsDetails OH_UdsDetails;
 
 /**
- * @brief Creation a pointer to the instance of the {@link OH_UdsPlainText}.
+ * @brief Creates a pointer to the instance of the {@link OH_UdsPlainText}.
  *
  * @return If the operation is successful, a pointer to the instance of the {@link OH_UdsPlainText}
  * structure is returned. If the operation is failed, nullptr is returned.
@@ -212,7 +245,7 @@ int OH_UdsPlainText_SetAbstract(OH_UdsPlainText* pThis, const char* abstract);
 int OH_UdsPlainText_SetDetails(OH_UdsPlainText* pThis, const OH_UdsDetails* details);
 
 /**
- * @brief Creation a pointer to the instance of the {@link OH_UdsHyperlink}.
+ * @brief Creates a pointer to the instance of the {@link OH_UdsHyperlink}.
  *
  * @return If the operation is successful, a pointer to the instance of {@link OH_UdsHyperlink}
  * structure is returned. If the operation is failed, nullptr is returned.
@@ -313,7 +346,7 @@ int OH_UdsHyperlink_SetDescription(OH_UdsHyperlink* pThis, const char* descripti
 int OH_UdsHyperlink_SetDetails(OH_UdsHyperlink* pThis, const OH_UdsDetails* details);
 
 /**
- * @brief Creation a pointer to the instance of the {@link OH_UdsHtml}.
+ * @brief Creates a pointer to the instance of the {@link OH_UdsHtml}.
  *
  * @return If the operation is successful, a pointer to the instance of the {@link OH_UdsHtml}
  * structure is returned. If the operation is failed, nullptr is returned.
@@ -414,7 +447,19 @@ int OH_UdsHtml_SetPlainContent(OH_UdsHtml* pThis, const char* plainContent);
 int OH_UdsHtml_SetDetails(OH_UdsHtml* pThis, const OH_UdsDetails* details);
 
 /**
- * @brief Creation a pointer to the instance of the {@link OH_UdsAppItem}.
+ * @brief Set the authorization policy to {@link OH_UdsHtml}.
+ * @param pThis Represents a pointer to an instance of {@link OH_UdsHtml}.
+ * @param authPolicy Represents auth policy.
+ * @return Returns the status code of the execution. See {@link Udmf_ErrCode}.
+ *         {@link UDMF_E_OK} success.
+ *         {@link UDMF_E_INVALID_PARAM} The error code for common invalid args.
+ * @since 26.0.0
+ * @see OH_UdsHtml Udmf_ErrCode
+ */
+int OH_UdsHtml_SetAuthPolicy(OH_UdsHtml* pThis, uint32_t authPolicy);
+
+/**
+ * @brief Creates a pointer to the instance of the {@link OH_UdsAppItem}.
  *
  * @return If the operation is successful, a pointer to the instance of the {@link OH_UdsAppItem}
  * structure is returned. sIf the operation is failed, nullptr is returned.
@@ -607,7 +652,7 @@ int OH_UdsAppItem_SetAbilityName(OH_UdsAppItem* pThis, const char* abilityName);
 int OH_UdsAppItem_SetDetails(OH_UdsAppItem* pThis, const OH_UdsDetails* details);
 
 /**
- * @brief Creation a pointer to the instance of the {@link OH_UdsFileUri}.
+ * @brief Creates a pointer to the instance of the {@link OH_UdsFileUri}.
  *
  * @return If the operation is successful, a pointer to the instance of the {@link OH_UdsFileUri}
  * structure is returned. If the memory is not enough, nullptr is returned.
@@ -708,7 +753,19 @@ int OH_UdsFileUri_SetFileType(OH_UdsFileUri* pThis, const char* fileType);
 int OH_UdsFileUri_SetDetails(OH_UdsFileUri* pThis, const OH_UdsDetails* details);
 
 /**
- * @brief Creation a pointer to the instance of the {@link OH_UdsPixelMap}.
+ * @brief Set the authorization policy to {@link OH_UdsFileUri}.
+ * @param pThis Represents a pointer to an instance of {@link OH_UdsFileUri}.
+ * @param authPolicy Indicates the identity authorization policy.
+ * @return Returns the status code of the execution. See {@link Udmf_ErrCode}.
+ *         {@link UDMF_E_OK} success.
+ *         {@link UDMF_E_INVALID_PARAM} The error code for common invalid args.
+ * @see OH_UdsFileUri Udmf_ErrCode
+ * @since 26.0.0
+ */
+int OH_UdsFileUri_SetAuthPolicy(OH_UdsFileUri* pThis, uint32_t authPolicy);
+
+/**
+ * @brief Creates a pointer to the instance of the {@link OH_UdsPixelMap}.
  *
  * @return If the operation is successful, a pointer to the instance of the {@link OH_UdsPixelMap}
  * structure is returned. If the memory is not enough, nullptr is returned.
@@ -786,7 +843,7 @@ int OH_UdsPixelMap_SetPixelMap(OH_UdsPixelMap* pThis, OH_PixelmapNative* pixelma
 int OH_UdsPixelMap_SetDetails(OH_UdsPixelMap* pThis, const OH_UdsDetails* details);
 
 /**
- * @brief Creation a pointer to the instance of the {@link OH_UdsArrayBuffer}.
+ * @brief Creates a pointer to the instance of the {@link OH_UdsArrayBuffer}.
  *
  * @return If the operation is successful, a pointer to the instance of the {@link OH_UdsArrayBuffer}
  * structure is returned. If the memory is not enough, nullptr is returned.
@@ -836,7 +893,7 @@ int OH_UdsArrayBuffer_SetData(OH_UdsArrayBuffer* buffer, unsigned char* data, un
 int OH_UdsArrayBuffer_GetData(OH_UdsArrayBuffer* buffer, unsigned char** data, unsigned int* len);
 
 /**
- * @brief Creation a pointer to the instance of the {@link OH_UdsContentForm}.
+ * @brief Creates a pointer to the instance of the {@link OH_UdsContentForm}.
  *
  * @return If the operation is successful, a pointer to the instance of the {@link OH_UdsContentForm}
  * structure is returned. If the operation is failed, nullptr is returned.
@@ -1015,7 +1072,7 @@ int OH_UdsContentForm_SetAppName(OH_UdsContentForm* pThis, const char* appName);
 int OH_UdsContentForm_SetLinkUri(OH_UdsContentForm* pThis, const char* linkUri);
 
 /**
- * @brief Creation a pointer to the instance of the {@link OH_UdsDetails}.
+ * @brief Creates a pointer to the instance of the {@link OH_UdsDetails}.
  *
  * @return If the operation is successful, a pointer to the instance of the {@link OH_UdsDetails}
  * structure is returned. If the operation is failed, nullptr is returned.

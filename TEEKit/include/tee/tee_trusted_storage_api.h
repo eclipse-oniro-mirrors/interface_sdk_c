@@ -151,7 +151,7 @@ enum Data_Flag_Constants {
     /** If the bit26 is set to 1, it means deriving TA root key by using huk2 */
     TEE_DATA_FLAG_HUK2 = 0x04000000,
     /**
-     * If the bit27 os set to 1, it means deriving the 32-bytes TA root key at one time,
+     * If the bit27 is set to 1, it means deriving the 32-bytes TA root key at one time,
      *     if it is 0, it means deriving TA root keys and combined them together.
      */
     TEE_DATA_FLAG_DERIVE_32BYTES_KEY_ONCE =  0x08000000,
@@ -316,77 +316,6 @@ TEE_Result TEE_SyncPersistentObject(TEE_ObjectHandle object);
  * @since 20
  */
 TEE_Result TEE_RenamePersistentObject(TEE_ObjectHandle object, void *newObjectID, size_t newObjectIDLen);
-
-/**
- * @brief Allocates a handle on an uninitialized object enumerator.
- *
- * @param obj_enumerator Indicates the pointer to the handle of the newly created object enumerator.
- *
- * @return Returns <b>TEE_SUCCESS</b> if the operation is successful.
- *         Returns <b>TEE_ERROR_OUT_OF_MEMORY</b> if the memory is not sufficient to complete the operation.
- *
- * @since 20
- */
-TEE_Result TEE_AllocatePersistentObjectEnumerator(TEE_ObjectEnumHandle *obj_enumerator);
-
-/**
- * @brief Releases all resources associated with an object enumerator handle.
- *
- * After this function is called, the object handle is no longer valid and all resources associated with
- * the object enumerator handle will be reclaimed.
- * <b>TEE_FreePersistentObjectEnumerator</b> and <b>TEE_AllocatePersistentObjectEnumerator</b>are used in pairs.
- *
- * @param obj_enumerator Indicates the <b>TEE_ObjectEnumHandle</b> to release.
- *
- * @since 20
- */
-void TEE_FreePersistentObjectEnumerator(TEE_ObjectEnumHandle obj_enumerator);
-
-/**
- * @brief Resets an object enumerator handle to its initial state after allocation.
- *
- * @param obj_enumerator Indicates the <b>TEE_ObjectEnumHandle</b> of the object enumerator to reset.
- *
- * @since 20
- */
-void TEE_ResetPersistentObjectEnumerator(TEE_ObjectEnumHandle obj_enumerator);
-
-/**
- * @brief Starts the enumeration of all the objects in the given trusted storage.
- *
- * The object information can be obtained by using <b>TEE_GetNextPersistentObject</b>.
- *
- * @param obj_enumerator Indicates the <b>TEE_ObjectEnumHandle</b> of the object enumerator.
- * @param storage_id Indicates the storage, in which the objects are enumerated.
- * The value is specified by <b>Object_Storage_Constants</b>.
- * Currently, only <b>TEE_STORAGE_PRIVATE</b> is supported.
- *
- * @return Returns <b>TEE_SUCCESS</b> if the operation is successful.
- *         Returns <b>TEE_ITEM_NOT_FOUND</b> if <b>storageID</b> is not <b>TEE_STORAGE_PRIVATE</b>
- * or there is no object in the specified storage.
- *
- * @since 20
- */
-TEE_Result TEE_StartPersistentObjectEnumerator(TEE_ObjectEnumHandle obj_enumerator, uint32_t storage_id);
-
-/**
- * @brief Obtains the next object in the object enumerator.
- *
- * Information such as <b>TEE_ObjectInfo</b>, <b>objectID</b>, and <b>objectIDLen</b> will be obtained.
- *
- * @param obj_enumerator Indicates the <b>TEE_ObjectEnumHandle</b> of the object enumerator.
- * @param object_info Indicates the pointer to the obtained<b>TEE_ObjectInfo</b>.
- * @param object_id Indicates the pointer to the buffer used to store the obtained <b>objectID</b>.
- * @param object_id_len Indicates the pointer to the <b>objectIDLen</b>.
- *
- * @return Returns <b>TEE_SUCCESS</b> if the operation is successful.
- *         Returns <b>TEE_ITEM_NOT_FOUND</b> if the object enumerator has no element
- * or the enumerator has not been initialized.
- *
- * @since 20
- */
-TEE_Result TEE_GetNextPersistentObject(TEE_ObjectEnumHandle obj_enumerator,
-    TEE_ObjectInfo *object_info, void *object_id, size_t *object_id_len);
 
 /**
  * @brief Closes a <b>TEE_ObjectHandle</b> and deletes the object.

@@ -12,7 +12,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 /**
  * @addtogroup QoS
  * @{
@@ -21,7 +20,6 @@
  *
  * @since 12
  */
- 
 /**
  * @file qos.h
  *
@@ -37,8 +35,8 @@
  * @syscap SystemCapability.Resourceschedule.QoS.Core
  * @since 12
  */
-
 #ifndef QOS_H
+
 #define QOS_H
 
 #ifdef __cplusplus
@@ -46,7 +44,7 @@ extern "C" {
 #endif
 
 /**
- * @brief Describes the level of QoS.
+ * @brief Enumerates the QoS levels.
  *
  * @since 12
  */
@@ -79,37 +77,37 @@ typedef enum QoS_Level {
     /**
      * @brief Means the QoS level is user-interactive.
      */
-    QOS_USER_INTERACTIVE,
+    QOS_USER_INTERACTIVE
 } QoS_Level;
 
 /**
- * @brief Set the QoS level of the current thread.
+ * @brief Sets the QoS level for the calling thread.
  *
- * @param level Indicates the level to set. Specific level can be referenced {@link QoS_Level}.
- * @return Returns 0 if the operation is successful; returns -1 if level is out of range or
- *         internal error failed.
+ * @param level Sets the QoS level. For details, see {@link QoS_Level}.
+ * @return **0** is returned if the operation is successful; **-1** is returned if level is out of range or internal
+ *     error failed.
  * @see QoS_Level
  * @since 12
  */
 int OH_QoS_SetThreadQoS(QoS_Level level);
 
 /**
- * @brief Cancel the QoS level of the current thread.
+ * @brief Cancels the QoS level of the calling thread.
  *
- * @return Returns 0 if the operation is successful; returns -1 if not set QoS for current thread
- *        or internal error failed.
+ * @return **0** is returned if the operation is successful; **-1** is returned if level is out of range or internal
+ *     error failed.
  * @see QoS_Level
  * @since 12
  */
 int OH_QoS_ResetThreadQoS();
 
 /**
- * @brief Obtains the QoS level of the current thread.
+ * @brief Obtains the QoS level of the calling thread.
  *
- * @param level This parameter is the output parameter,
- * and the QoS level of the thread as a {@link QoS_Level} is written to this variable.
- * @return Returns 0 if the operation is successful; returns -1 if level is null, not
- *         set QoS for current thread or internal error failed.
+ * @param level QoS level of the calling thread. The parameter is an output parameter and is written to this variable
+ *     in {@link QoS_Level} format.
+ * @return **0** is returned if the operation is successful; **-1** is returned if level is out of range or internal
+ *     error failed.
  * @see QoS_Level
  * @since 12
  */
@@ -122,12 +120,7 @@ int OH_QoS_GetThreadQoS(QoS_Level *level);
  */
 typedef unsigned int OH_QoS_GewuSession;
 
-/**
- * @brief Invalid session id for return.
- *
- * @since 20
- */
-#define OH_QOS_GEWU_INVALID_SESSION_ID (static_cast<OH_QoS_GewuSession>(0xffffffffU))
+#define OH_QOS_GEWU_INVALID_SESSION_ID (0xffffffffU)
 /**
  * @brief Request id
  *
@@ -135,31 +128,67 @@ typedef unsigned int OH_QoS_GewuSession;
  */
 typedef unsigned int OH_QoS_GewuRequest;
 
+#define OH_QOS_GEWU_INVALID_REQUEST_ID (0xffffffffU)
 /**
- * @brief Invalid request id for return.
- *
- * @since 20
- */
-#define OH_QOS_GEWU_INVALID_REQUEST_ID (static_cast<OH_QoS_GewuRequest>(0xffffffffU))
-
-
-/**
- * @brief Gewu error codes.
+ * @brief Enumerates the Gewu error codes.
  *
  * @since 20
  */
 typedef enum {
+    /**
+     * @brief Means the result is OK
+     *
+     * @since 20
+     */
     OH_QOS_GEWU_OK     = 0,
+    /**
+     * @brief No permission
+     *
+     * @since 20
+     */
     OH_QOS_GEWU_NOPERM = 201,
+    /**
+     * @brief No memory
+     *
+     * @since 20
+     */
     OH_QOS_GEWU_NOMEM  = 203,
+    /**
+     * @brief Invalid input
+     *
+     * @since 20
+     */
     OH_QOS_GEWU_INVAL  = 401,
+    /**
+     * @brief Already exists
+     *
+     * @since 20
+     */
     OH_QOS_GEWU_EXIST  = 501,
+    /**
+     * @brief No entity
+     *
+     * @since 20
+     */
     OH_QOS_GEWU_NOENT  = 502,
+    /**
+     * @brief Subsystem does not exist
+     *
+     * @since 20
+     */
     OH_QOS_GEWU_NOSYS  = 801,
-    OH_QOS_GEWU_FAULT  = 901,
+    /**
+     * @brief All other faults
+     *
+     * @since 20
+     */
+    OH_QOS_GEWU_FAULT  = 901
 } OH_QoS_GewuErrorCode;
 
 /**
+ * @brief Defines a struct for the return results of the **OH_QoS_GewuCreateSession()** API.
+ * If the operation is successful,
+ * the created session is returned. If the operation fails, the corresponding error code is returned.
  * @param session The created session id
  * @param error Error code of CreateSession
  *              - OH_QOS_GEWU_OK will be returned if the session is created successfully.
@@ -169,11 +198,24 @@ typedef enum {
  * @since 20
  */
 typedef struct {
+    /** 
+     * @brief Handle of the session
+     * 
+     * @since 20
+     */
     OH_QoS_GewuSession session;
+    /** 
+     * @brief Error code of creating a session
+     * 
+     * @since 20
+     */
     OH_QoS_GewuErrorCode error;
 } OH_QoS_GewuCreateSessionResult;
 
 /**
+ * @brief Defines a struct for the return result of the **OH_QoS_GewuSubmitRequest()** API.
+ * If the operation is successful, a handle of the request is returned.
+ * If the operation fails, the corresponding error code is returned.
  * @param request The created request id
  * @param error Error code of request submission.
  *              - OH_QOS_GEWU_OK will be returned if the request is submitted successfully.
@@ -183,22 +225,29 @@ typedef struct {
  * @since 20
  */
 typedef struct {
+    /** 
+     * @brief Handle of the request
+     * @since 20
+     */
     OH_QoS_GewuRequest request;
+    /**
+     * @brief Error code of submitting a Gewu request
+     * @since 20
+     */
     OH_QoS_GewuErrorCode error;
 } OH_QoS_GewuSubmitRequestResult;
-
 
 /**
  * @brief Callback to receive response of the request.
  *
- * @param context The user context specified when submitting the request.
- * @param reponse The json string of the response, including the following parameters:
+ * @param context User context handle specified when the request is submitted.
+ * @param response The json string of the response, including the following parameters:
  *        - message: A message that contains the following fields.
  *            - role: string. Must be "assistant".
  *            - content: string. The message generated by the model in response to user messages.
  *        - finish_reason: string or null. The reason the inference stopped. Possible values:
  *            - null: Not finished yet, only present in streaming mode.
- *            - "stop": The model stopped natually.
+ *            - "stop": The model stopped naturally.
  *            - "abort": The inference request was aborted.
  *            - "length": The generated tokens reached the limit.
  *
@@ -207,14 +256,12 @@ typedef struct {
 typedef void (*OH_QoS_GewuOnResponse)(void* context, const char* response);
 
 /**
- * @brief Create a gewu session for inference.
- * The lifecycle of the returned session object spans from the return of CreateSession
- * to the call to DestroySession.
+ * @brief Creates a Gewu session. The lifecycle of the session object starts when the **CreateSession** function
+ * returns and ends when **DestroySession** is called.
  *
- * json string of session attributes.
- *
- * The json string of session attributes include the following parameters
- *     - model: string. The directory of the model of the session.
+ * `const char* attributes`: JSON string of the session attributes, which
+ * supports the following fields:
+ *     - **model**: String. Path to model directory for the session.
  *
  * An example of json string of session attributes:
  * @code{.json}
@@ -223,28 +270,26 @@ typedef void (*OH_QoS_GewuOnResponse)(void* context, const char* response);
  * }
  * @endcode
  *
- * @param attributes The json string of session attributes.
- *
- * @return Result of CreateSession.
- *
+ * @param attributes JSON string of session attributes.
+ * @return Result of creating a session.
  * @since 20
  */
 OH_QoS_GewuCreateSessionResult OH_QoS_GewuCreateSession(const char* attributes);
 
 /**
- * @brief Destroy the specified session.
- * It is recommended that the client shall wait until all ongoing requests are done before calling
- * this interface to destroy the session. If there are remaining requests in the session when this
- * interface is called, those requests will be aborted and no further responses for those requests
- * will be sent to the client.
- * Note that after calling this function successfully, the session cannot be used by the user code
- * any more.
+ * @brief Destroys a Gewu session.
+ * You are advised to wait until all requests are completed or aborted before calling
+ * this API. If there are ongoing requests when this API is called, the requests will be aborted,
+ * and no further response will be recevied.
+ * Note that after this API is called, the session object can no longer be used.
  *
- * @param session The session that will be destroyed.
+ * @param session Handle of the session to destroy.
  *
  * @return Error code.
- *         - OH_QOS_GEWU_OK will be returned if the session is destroyed successfully.
- *         - OH_QOS_GEWU_NOENT will be returned if the session is not found.
+ *     <ul>
+ *         <li>{@link OH_QOS_GEWU_OK} The session is destroyed successfully.</li>
+ *         <li>{@link OH_QOS_GEWU_NOENT} The session is not found. </li>
+ *     </ul>
  *
  * @since 20
  */
@@ -252,37 +297,24 @@ OH_QoS_GewuErrorCode OH_QoS_GewuDestroySession(OH_QoS_GewuSession session);
 
 /**
  * @brief Abort the specified request.
- * Note that after calling this function successfully, the client will not receive further responses
- * for this request, and the request object cannot be used by the user code any more.
+ * After this function is successfully called, the client will not receive any
+ * response to the request, and the request handle cannot be used.
  *
- * @param session The session that the request was submitted through.
- * @param request The request object.
- *
+ * @param session Handle of the session to which the request is submitted.
+ * @param request Handle of the request.
  * @return Error code.
- *         - OH_QOS_GEWU_OK will be returned if the request is aborted successfully.
- *         - OH_QOS_GEWU_NOENT will be returned if the request is not found.
+ *     <ul>
+ *         <li>{@link OH_QOS_GEWU_OK} The request is aborted successfully.</li>
+ *         <li>{@link OH_QOS_GEWU_NOENT} The request is not found. </li>
+ *     </ul>
  *
  * @since 20
  */
 OH_QoS_GewuErrorCode OH_QoS_GewuAbortRequest(OH_QoS_GewuSession session, OH_QoS_GewuRequest request);
 
 /**
- * @brief Submit a request.
- *
- * json string of completion request.
- * Completion request is a json string that specifies the following parameters:
- *     - messages: array. A list of messages. Each message contains the following fields:
- *         - role: string. The message type, which could be one of the following:
- *             - "developer": Developer-provided instructions.
- *             - "user": User-provided instructions.
- *             - "assistant": Message generated by the model in response to user messages.
- *         - content: string. The message content.
- *     - stream: boolean or null; optional. Enable streaming mode or not. If set to true, partial
- *       responses will be sent. If null or not set, defaults to nonstreaming mode.
- *
- * An example of completion request:
- * @code{.json}
- * {
+ * @brief Submits a request.
+ * @code{.json} {
  *      "messages": [
  *          {
  *              "role": "developer",
@@ -296,24 +328,21 @@ OH_QoS_GewuErrorCode OH_QoS_GewuAbortRequest(OH_QoS_GewuSession session, OH_QoS_
  *      "stream": true
  * }
  * @endcode
- *
- * @param session The session object that the request should be submitted through.
- * @param request The json string of request.
- * @param callback The callback to receive response.
- * @param context The user context that should be passed to the response callback.
- *
- * @return Gewu request submission result.
- *         - OH_QOS_GEWU_OK will be returned if the request is accepted.
- *         - OH_QOS_GEWU_NOMEM will be returned if the system does not have sufficient memory
- *           to accept the request.
+ * @param session Session to which the request is submitted.
+ * @param request JSON string of the request.
+ * @param callback Callback for receiving the response.
+ * @param context Pointer to the user context to be passed to the callback.
+ * @return Result code.
+ * - OH_QOS_GEWU_OK: The request is successfully submitted.
+ * - OH_QOS_GEWU_NOMEM: The request fails to be submitted due to insufficient memory.
  *
  * @since 20
  */
-OH_QoS_GewuSubmitRequestResult OH_QoS_GewuSubmitRequest(OH_QoS_GewuSession session, const char* request,
-    OH_QoS_GewuOnResponse callback, void* context);
-
+OH_QoS_GewuSubmitRequestResult OH_QoS_GewuSubmitRequest(OH_QoS_GewuSession session,
+    const char* request, OH_QoS_GewuOnResponse callback, void* context);
 #ifdef __cplusplus
 };
 #endif
 #endif // QOS_H
+
 /** @} */

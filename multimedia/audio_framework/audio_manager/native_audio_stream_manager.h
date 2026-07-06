@@ -41,6 +41,7 @@
 #ifndef NATIVE_AUDIO_STREAM_MANAGER_H
 #define NATIVE_AUDIO_STREAM_MANAGER_H
 
+#include <stdbool.h>
 #include "native_audio_common.h"
 #include "native_audiostream_base.h"
 #ifdef __cplusplus
@@ -152,42 +153,42 @@ bool OH_AudioStreamManager_IsIntelligentNoiseReductionEnabledForCurrentDevice(
     OH_AudioStreamManager *streamManager, OH_AudioStream_SourceType source);
 
 /**
- * @brief Return if multichannel playback is supported for the specific audio stream info and usage type
+ * @brief Returns if multichannel playback is supported for the specific audio stream info and usage type
  *     in current device situation.
  *
  * @param streamManager {@link OH_AudioStreamManager} handle
  *     provided by {@link OH_AudioManager_GetAudioStreamManager}.
  * @param streamInfo reference of stream info structure to describe basic audio format.
  * @param usage stream usage type used to decide the audio device and pipe type selection result.
- * @return true if multichannel playback is supported in this situation.
+ * @return True if multichannel playback is supported in this situation.
  * @since 26.0.0
  */
 bool OH_AudioStreamManager_IsMultichannelPlaybackSupported(
     OH_AudioStreamManager *streamManager, OH_AudioStreamInfo *streamInfo, OH_AudioStream_Usage usage);
 
 /**
- * @brief Return if direct playback is supported for the specific audio stream info and usage type
+ * @brief Returns if direct playback is supported for the specific audio stream info and usage type
  *     in current device situation.
  *
  * @param streamManager {@link OH_AudioStreamManager} handle
  *     provided by {@link OH_AudioManager_GetAudioStreamManager}.
  * @param streamInfo reference of stream info structure to describe basic audio format.
  * @param usage stream usage type used to decide the audio device and pipe type selection result.
- * @return true if direct playback is supported in this situation.
+ * @return True if direct playback is supported in this situation.
  * @since 26.0.0
  */
 bool OH_AudioStreamManager_IsDirectPlaybackSupported(
     OH_AudioStreamManager *streamManager, OH_AudioStreamInfo *streamInfo, OH_AudioStream_Usage usage);
 
 /**
- * @brief Return if offload playback is supported for the specific audio stream info and usage type
+ * @brief Returns if offload playback is supported for the specific audio stream info and usage type
  *     in current device situation.
  *
  * @param streamManager {@link OH_AudioStreamManager} handle
  *     provided by {@link OH_AudioManager_GetAudioStreamManager}.
  * @param streamInfo reference of stream info structure to describe basic audio format.
  * @param usage stream usage type used to decide the audio device and pipe type selection result.
- * @return true if offload playback is supported in this situation.
+ * @return True if offload playback is supported in this situation.
  * @since 26.0.0
  */
 bool OH_AudioStreamManager_IsOffloadPlaybackSupported(

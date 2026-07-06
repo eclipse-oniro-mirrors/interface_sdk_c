@@ -28,7 +28,7 @@
 /**
  * @file drawing_font_collection.h
  *
- * @brief Declares functions related to <b>FontCollection</b> in the drawing module.
+ * @brief This file declares the functions related to the font collection in the drawing module.
  *
  * @kit ArkGraphics2D
  * @library libnative_drawing.so
@@ -46,7 +46,7 @@
 extern "C" {
 #endif
 /**
- * @brief Creates an <b>OH_Drawing_FontCollection</b> object.
+ * @brief Creates an {@link OH_Drawing_FontCollection} object.
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @return Returns the pointer to the <b>OH_Drawing_FontCollection</b> object created.
@@ -56,20 +56,20 @@ extern "C" {
 OH_Drawing_FontCollection* OH_Drawing_CreateFontCollection(void);
 
 /**
- * @brief Releases the memory occupied by an <b>OH_Drawing_FontCollection</b> object.
+ * @brief Destroys an **OH_Drawing_FontCollection** object and reclaims the memory occupied by the object.
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @param fontCollection Indicates the pointer to an <b>OH_Drawing_FontCollection</b> object.
+ * @param fontCollection Pointer to an **OH_Drawing_FontCollection** object.
  * @since 8
  * @version 1.0
  */
 void OH_Drawing_DestroyFontCollection(OH_Drawing_FontCollection* fontCollection);
 
 /**
- * @brief Disable the font collection fallback.
+ * @brief Disables the system fonts.
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @param fontCollection Indicates the pointer to an <b>OH_Drawing_FontCollection</b> object.
+ * @param fontCollection Pointer to an {@link OH_Drawing_FontCollection} object.
  * @since 12
  * @version 1.0
  * @deprecated since 18
@@ -78,18 +78,17 @@ void OH_Drawing_DestroyFontCollection(OH_Drawing_FontCollection* fontCollection)
 void OH_Drawing_DisableFontCollectionFallback(OH_Drawing_FontCollection* fontCollection);
 
 /**
- * @brief Disable the font collection systemfont.
+ * @brief Disables the system fonts.
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @param fontCollection Indicates the pointer to an <b>OH_Drawing_FontCollection</b> object.
+ * @param fontCollection Pointer to an {@link OH_Drawing_FontCollection} object.
  * @since 12
  * @version 1.0
  */
 void OH_Drawing_DisableFontCollectionSystemFont(OH_Drawing_FontCollection* fontCollection);
 
 /**
- * @brief Creates an <b>OH_Drawing_FontCollection</b> object with shared usage between
- * <b>OH_Drawing_TypographyCreate</b>.
+ * @brief Creates a shareable {@link OH_Drawing_FontCollection} object.
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @return Returns the pointer to the <b>OH_Drawing_FontCollection</b> object created.
@@ -99,17 +98,19 @@ void OH_Drawing_DisableFontCollectionSystemFont(OH_Drawing_FontCollection* fontC
 OH_Drawing_FontCollection* OH_Drawing_CreateSharedFontCollection(void);
 
 /**
- * @brief Clear font caches.
+ * @brief Clears the font cache. (The font cache has a memory limit and a clearing mechanism. It occupies limited
+ * memory. You are not advised to clear it unless otherwise required.)
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @param fontCollection Indicates the pointer to an <b>OH_Drawing_FontCollection</b> object.
+ * @param fontCollection Pointer to an {@link OH_Drawing_FontCollection} object.
  * @since 12
  * @version 1.0
  */
 void OH_Drawing_ClearFontCaches(OH_Drawing_FontCollection* fontCollection);
 
 /**
- * @brief Get the <b>OH_Drawing_FontCollection</b> global instance.
+ * @brief Obtains the global {@link OH_Drawing_FontCollection} object, which can be used to sense the theme font
+ * information. Do not release the object.
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
  * @return Return the pointer to the <b>OH_Drawing_FontCollection</b> global instance.

@@ -232,6 +232,31 @@ int32_t OH_NetConn_RegisterDnsResolver(OH_NetConn_CustomDnsResolver resolver);
 int32_t OH_NetConn_UnregisterDnsResolver(void);
 
 /**
+ * @brief Registers a custom DNS resolver to intercept and override DNS queries.
+ *        Falls back to system DNS if no result is specified.
+ *        Only a single resolver is allowed. You must unregister the existing one before registering a new one.
+ *
+ * @param resolver Pointer to the custom DNS resolver.
+ *        If the resolver returns 0, skip system DNS; otherwise, fallback to system DNS.
+ * @return 0 - Success.
+ *         401 - Parameter error. Please enter a correct parameter.
+ *         2101008 - Resolver already exists. use OH_NetConn_UnregisterCustomDnsResolver before registering a new one.
+ * @stagemodelonly
+ * @since 26.0.0
+ */
+int32_t OH_NetConn_RegisterCustomDnsResolver(OH_NetConn_CustomDnsResolver resolver);
+
+/**
+ * @brief Unregisters the custom DNS resolver.
+ *
+ * @return 0 - Success.
+ *         2100003 - Internal error.
+ * @stagemodelonly
+ * @since 26.0.0
+ */
+int32_t OH_NetConn_UnregisterCustomDnsResolver(void);
+
+/**
  * @brief Binds a socket to the specific network.
  *
  * @param socketFd Socket constructed by user.
@@ -280,6 +305,37 @@ int32_t OH_NetConn_RegisterAppHttpProxyCallback(OH_NetConn_AppHttpProxyChange ap
  * @version 1.0
  */
 void OH_NetConn_UnregisterAppHttpProxyCallback(uint32_t callbackId);
+
+/**
+ * @brief Requests global HTTP proxy re-authentication and reports the result through a one-shot callback.
+ *
+ * This function submits an asynchronous re-authentication request. A return value of 0 indicates
+ * that the request has been accepted. It does not indicate that re-authentication has succeeded.
+ * The final result is reported through the callback.<br>
+ *
+ * If this function returns 0, the callback will be invoked at most once. After the callback is
+ * invoked, it is automatically released by the system.<br>
+ *
+ * If this function returns a non-zero value, the callback will not be invoked.<br>
+ *
+ * The callback may be invoked on a system worker thread. The caller must ensure that the callback
+ * implementation is thread-safe and returns quickly.<br>
+ *
+ * The caller must ensure that the callback function and userData remain valid until the callback
+ * is invoked.
+ *
+ * @permission ohos.permission.INTERNET
+ * @param callback The one-shot callback used to receive the re-authentication result. It must not be NULL.
+ * @param userContext The user-defined data passed to the callback. It can be NULL. The system does
+ *     not access, copy, or release it.
+ * @return <ul><li>0 - Success.</li>
+ *     <li>201 - Permission denied.</li>
+ *     <li>401 - Parameter error.</li></ul>
+ * @since 26.0.0
+ */
+int32_t OH_NetConn_RefreshGlobalHttpProxyWithCallback(
+    OH_NetConn_GlobalHttpProxyRefreshCallback callback,
+    void *userContext);
 
 /**
  * @brief Registers callback, used to monitor specific network status.

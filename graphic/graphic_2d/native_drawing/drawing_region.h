@@ -4,7 +4,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -19,16 +19,14 @@
  *
  * @brief Provides functions such as 2D graphics rendering, text drawing, and image display.
  *
- * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- *
  * @since 8
  * @version 1.0
  */
-
 /**
  * @file drawing_region.h
  *
- * @brief Declares functions related to the <b>region</b> object in the drawing module.
+ * @brief This file declares the functions related to the region in the drawing module, including creating a region,
+ * setting the boundary, and destroying a region.
  *
  * @kit ArkGraphics2D
  * @library libnative_drawing.so
@@ -48,7 +46,7 @@ extern "C" {
 #endif
 
 /**
- * @brief Operations when two regions are combined.
+ * @brief Enumerates the operation modes available for a region.
  *
  * @since 12
  * @version 1.0
@@ -59,7 +57,7 @@ typedef enum {
      */
     REGION_OP_MODE_DIFFERENCE,
     /**
-     * Intersect operation.
+     * Intersection operation.
      */
     REGION_OP_MODE_INTERSECT,
     /**
@@ -67,7 +65,7 @@ typedef enum {
      */
     REGION_OP_MODE_UNION,
     /**
-     * Xor operation.
+     * XOR operation.
      */
     REGION_OP_MODE_XOR,
     /**
@@ -75,210 +73,219 @@ typedef enum {
      */
     REGION_OP_MODE_REVERSE_DIFFERENCE,
     /**
-     * Replace operation.
+     * Replacement operation.
      */
     REGION_OP_MODE_REPLACE,
 } OH_Drawing_RegionOpMode;
 
 /**
- * @brief Creates an <b>OH_Drawing_Region</b> object.
+ * @brief Creates an **OH_Drawing_Region** object for more accurate graphical control.
  *
- * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @return Returns the pointer to the <b>OH_Drawing_Region</b> object created.
+ * @return Returns the pointer to the {@link OH_Drawing_Region} object created.
  * @since 12
  * @version 1.0
  */
 OH_Drawing_Region* OH_Drawing_RegionCreate(void);
 
 /**
- * @brief Creates an <b>OH_Drawing_Region</b> copy object.
+ * @brief Creates a copy of a region object.
  *
- * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @param region Indicates the pointer to an <b>OH_Drawing_Region</b> object to copy.
- * @return Returns the pointer to the <b>OH_Drawing_Region</b> object created.
+ * @param region Pointer to the {@link OH_Drawing_Region} object to be copied.
+ * @return Returns the pointer to the **OH_Drawing_Region** object created.
  * @since 20
  * @version 1.0
  */
 OH_Drawing_Region* OH_Drawing_RegionCopy(const OH_Drawing_Region* region);
 
 /**
- * @brief Determines whether the region contains the specified coordinates.
+ * @brief Checks whether a region contains the specified point.
+ * This API may return an error code. For details, call {@link OH_Drawing_ErrorCodeGet}.
+ * If **region** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
  *
- * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @param region Indicates the pointer to an <b>OH_Drawing_Region</b> object.
- * @param x x-coordinate.
- * @param y y-coordinate.
- * @return Returns <b>true</b> if (x, y) is inside region; returns <b>false</b> otherwise.
+ * @param region Pointer to the {@link OH_Drawing_Region} object.
+ * @param x X coordinate of the point.
+ * @param y Y coordinate of the point.
+ * @return Returns **true** if the region contains the specified point; returns **false** otherwise.
  * @since 12
  * @version 1.0
  */
 bool OH_Drawing_RegionContains(OH_Drawing_Region* region, int32_t x, int32_t y);
 
 /**
- * @brief Combines two regions.
+ * @brief Combines two regions based on the specified operation mode.
+ * This API may return an error code. For details, call {@link OH_Drawing_ErrorCodeGet}.
+ * If either **region** or **dst** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
+ * If **op** is not set to one of the enumerated values, **OH_DRAWING_ERROR_PARAMETER_OUT_OF_RANGE** is returned.
  *
- * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @param region Indicates the pointer to an <b>OH_Drawing_Region</b> object.
- * @param other Indicates the pointer to an <b>OH_Drawing_Region</b> object.
- * @param op Indicates the operation to apply to combine.
- * @return Returns <b>true</b> if constructed Region is not empty; returns <b>false</b> otherwise.
+ * @param region Pointer to an {@link OH_Drawing_Region} object, in which the resulting region is saved.
+ * @param other Pointer to the {@link OH_Drawing_Region} object.
+ * @param op Operation mode of the region. For details about the available options, see {@link OH_Drawing_RegionOpMode}.
+ * @return Returns **true** if the resulting region is not empty; returns false otherwise.
  * @since 12
  * @version 1.0
  */
 bool OH_Drawing_RegionOp(OH_Drawing_Region* region, const OH_Drawing_Region* other, OH_Drawing_RegionOpMode op);
 
 /**
- * @brief Sets the region to the specified rect.
+ * @brief Sets the boundary for an **OH_Drawing_Region** object.
+ * This API may return an error code. For details, call {@link OH_Drawing_ErrorCodeGet}.
+ * If either **region** or **rect** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
  *
- * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @param region Indicates the pointer to an <b>OH_Drawing_Region</b> object.
- * @param rect Indicates the pointer to an <b>OH_Drawing_Rect</b> object.
- * @return Return true if constructed Region is not empty.
+ * @param region Pointer to the {@link OH_Drawing_Region} object.
+ * @param rect Pointer to an **OH_Drawing_Rect** object.
+ * @return Returns **true** if the setting is successful; returns **false** otherwise.
  * @since 12
  * @version 1.0
  */
 bool OH_Drawing_RegionSetRect(OH_Drawing_Region* region, const OH_Drawing_Rect* rect);
 
 /**
- * @brief Constructs region that matchs outline of path within clip.
+ * @brief Sets a region to the area described by the path.
+ * This API may return an error code. For details, call {@link OH_Drawing_ErrorCodeGet}.
+ * If **region**, **path**, or **clip** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
  *
- * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @param region Indicates the pointer to an <b>OH_Drawing_Region</b> object.
- * @param path Indicates the pointer to an <b>OH_Drawing_Path</b> object.
- * @param clip Indicates the pointer to an <b>OH_Drawing_Region</b> object.
- * @return Returns <b>true</b> if constructed Region is not empty; returns <b>false</b> otherwise.
+ * @param region Pointer to the {@link OH_Drawing_Region} object.
+ * @param path Pointer to the {@link OH_Drawing_Path} object.
+ * @param clip Pointer to the {@link OH_Drawing_Region} object.
+ * @return Returns **true** if the resulting region is not empty; returns false otherwise.
  * @since 12
  * @version 1.0
  */
 bool OH_Drawing_RegionSetPath(OH_Drawing_Region* region, const OH_Drawing_Path* path, const OH_Drawing_Region* clip);
 
 /**
- * @brief Destroys an <b>OH_Drawing_Region</b> object and reclaims the memory occupied by the object.
+ * @brief Destroys an **OH_Drawing_Region** object and reclaims the memory occupied by the object.
  *
- * @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
- * @param region Indicates the pointer to an <b>OH_Drawing_Region</b> object.
+ * @param region Pointer to the {@link OH_Drawing_Region} object.
  * @since 12
  * @version 1.0
  */
 void OH_Drawing_RegionDestroy(OH_Drawing_Region* region);
 
 /**
- * @brief Set an <b>OH_Drawing_Region</b> empty.
+ * @brief Sets the existing region to empty.
  *
- * @param region Indicates the pointer to an <b>OH_Drawing_Region</b> object.
- * @return Returns the error code.
- *         Returns {@link OH_DRAWING_SUCCESS} if the operation is successful.
- *         Returns {@link OH_DRAWING_ERROR_INCORRECT_PARAMETER} if region is nullptr.
+ * @param region Pointer to the {@link OH_Drawing_Region} object.
+ * @return Returns one of the following result codes:
+ * **OH_DRAWING_SUCCESS** if the operation is successful.
+ * **OH_DRAWING_ERROR_INCORRECT_PARAMETER** if the **region** parameter is empty.
  * @since 22
  * @version 1.0
  */
 OH_Drawing_ErrorCode OH_Drawing_RegionEmpty(OH_Drawing_Region* region);
 
 /**
- * @brief Set the path to the boundary of the region. If the region is empty, the path will also be empty.
+ * @brief Sets the path as the boundary of the region. If the region is empty, the path is also empty.
  *
- * @param region Indicates the pointer to an <b>OH_Drawing_Region</b> object.
- * @param path Indicates the pointer to an <b>OH_Drawing_Path</b> object.
- * @return Returns the error code.
- *         Returns {@link OH_DRAWING_SUCCESS} if the operation is successful.
- *         Returns {@link OH_DRAWING_ERROR_INCORRECT_PARAMETER} if region or path is nullptr.
+ * @param region Pointer to the {@link OH_Drawing_Region} object.
+ * @param path Pointer to the {@link OH_Drawing_Path} object. It is used as an output parameter.
+ * @return Execution result.
+ * **OH_DRAWING_SUCCESS** if the operation is successful.
+ * **OH_DRAWING_ERROR_INCORRECT_PARAMETER** if **region** or **path** is a null pointer.
  * @since 23
  */
 OH_Drawing_ErrorCode OH_Drawing_RegionGetBoundaryPath(const OH_Drawing_Region* region, OH_Drawing_Path* path);
 
 /**
- * @brief Obtains the minimum bounding rectangle that encloses this path.
+ * @brief Obtains the smallest bounding rectangle that contains the region.
  *
- * @param region Indicates the pointer to an <b>OH_Drawing_Region</b> object.
- * @param rect Indicates the pointer to an <b>OH_Drawing_Rect</b> object.
- * @return Returns the error code.
- *         Returns {@link OH_DRAWING_SUCCESS} if the operation is successful.
- *         Returns {@link OH_DRAWING_ERROR_INCORRECT_PARAMETER} if region or rect is nullptr.
+ * @param region Pointer to the {@link OH_Drawing_Region} object.
+ * @param rect Pointer to the {@link OH_Drawing_Rect} object. It is used as an output parameter.
+ * @return Execution result.
+ * **OH_DRAWING_SUCCESS** if the operation is successful.
+ * **OH_DRAWING_ERROR_INCORRECT_PARAMETER** if **region** or **rect** is a null pointer.
  * @since 23
  */
 OH_Drawing_ErrorCode OH_Drawing_RegionGetBounds(const OH_Drawing_Region* region, OH_Drawing_Rect* rect);
 
 /**
- * @brief Checks if the region contains more than one rectangle.
+ * @brief Checks whether the region contains two or more rectangles.
  *
- * @param region Indicates the pointer to an <b>OH_Drawing_Region</b> object.
- * @param isComplex Indicates if the region is complex.
- * @return Returns the error code.
- *         Returns {@link OH_DRAWING_SUCCESS} if the operation is successful.
- *         Returns {@link OH_DRAWING_ERROR_INCORRECT_PARAMETER} if region or isComplex is nullptr.
+ * @param region Pointer to the {@link OH_Drawing_Region} object.
+ * @param isComplex Whether this region contains multiple rectangles. It is used as an output parameter. **true** means
+ * yes; **false** otherwise.
+ * @return Execution result.
+ * **OH_DRAWING_SUCCESS** if the operation is successful.
+ * **OH_DRAWING_ERROR_INCORRECT_PARAMETER** if **region** or **isComplex** is a null pointer.
  * @since 23
  */
 OH_Drawing_ErrorCode OH_Drawing_RegionIsComplex(const OH_Drawing_Region* region, bool* isComplex);
 
 /**
- * @brief Checks if the region is empty.
+ * @brief Checks whether the region is empty.
  *
- * @param region Indicates the pointer to an <b>OH_Drawing_Region</b> object.
- * @param isEmpty Indicates if the region is empty.
- * @return Returns the error code.
- *         Returns {@link OH_DRAWING_SUCCESS} if the operation is successful.
- *         Returns {@link OH_DRAWING_ERROR_INCORRECT_PARAMETER} if region or isEmpty is nullptr.
+ * @param region Pointer to the {@link OH_Drawing_Region} object.
+ * @param isEmpty Whether the region is empty. It is used as an output parameter. **true** means yes; **false**
+ * otherwise.
+ * @return Execution result.
+ * **OH_DRAWING_SUCCESS** if the operation is successful.
+ * **OH_DRAWING_ERROR_INCORRECT_PARAMETER** if **region** or **isEmpty** is a null pointer.
  * @since 23
  */
 OH_Drawing_ErrorCode OH_Drawing_RegionIsEmpty(const OH_Drawing_Region* region, bool* isEmpty);
 
 /**
- * @brief Checks if the region is equivalent to a single rectangle.
+ * @brief Checks whether the region the same as a rectangle.
  *
- * @param region Indicates the pointer to an <b>OH_Drawing_Region</b> object.
- * @param isRect Indicates if the region contains a single rectangle.
- * @return Returns the error code.
- *         Returns {@link OH_DRAWING_SUCCESS} if the operation is successful.
- *         Returns {@link OH_DRAWING_ERROR_INCORRECT_PARAMETER} if region or isRect is nullptr.
+ * @param region Pointer to the {@link OH_Drawing_Region} object.
+ * @param isRect Whether the region the same as a rectangle. It is used as an output parameter. **true** means yes; **
+ * false** otherwise.
+ * @return Execution result.
+ * **OH_DRAWING_SUCCESS** if the operation is successful.
+ * **OH_DRAWING_ERROR_INCORRECT_PARAMETER** if **region** or **isRect** is a null pointer.
  * @since 23
  */
 OH_Drawing_ErrorCode OH_Drawing_RegionIsRect(const OH_Drawing_Region* region, bool* isRect);
 
 /**
- * @brief Checks if the region is equivalent to a single rectangle and it contains the specified rectangle.
- * A false indicates that the region is not equivalent to a single rectangle or the rectangle is not contained by
- * this region. A true is a guarantee that the rectangle is contained by this region.
+ * @brief Checks whether the region is the same as a single rectangle and contains the specified rectangle.
  *
- * @param region Indicates the pointer to an <b>OH_Drawing_Region</b> object.
- * @param left Indicates the left position of the rect.
- * @param top Indicates the top position of the rect.
- * @param right Indicates the right position of the rect.
- * @param bottom Indicates the bottom position of the rect.
- * @param isContained Indicates if the specified rectangle is contained in the region.
- * @return Returns the error code.
- *         Returns {@link OH_DRAWING_SUCCESS} if the operation is successful.
- *         Returns {@link OH_DRAWING_ERROR_INCORRECT_PARAMETER} if region or isContained is nullptr.
+ * @param region Pointer to the {@link OH_Drawing_Region} object.
+ * @param left X coordinate of the upper left corner of the specified rectangle.
+ * @param top Y coordinate of the upper left corner of the specified rectangle.
+ * @param right X coordinate of the lower right corner of the specified rectangle.
+ * @param bottom Y coordinate of the lower right corner of the specified rectangle.
+ * @param isContained Whether the region is the same as a single rectangle and contains the specified rectangle. It is
+ * used as an output parameter.
+ * **true** if the current region is the same as a single rectangle and contains the specified rectangle; **false**
+ * otherwise.
+ * @return Execution result.
+ * **OH_DRAWING_SUCCESS** if the operation is successful.
+ * **OH_DRAWING_ERROR_INCORRECT_PARAMETER** if **region** or **isContained** is a null pointer.
  * @since 23
  */
 OH_Drawing_ErrorCode OH_Drawing_RegionQuickContains(const OH_Drawing_Region* region,
     int32_t left, int32_t top, int32_t right, int32_t bottom, bool* isContained);
 
 /**
- * @brief Checks if the region is empty, or if the specified rectangle does not intersect the region.
+ * @brief Checks whether the region is empty or does not intersect the specified rectangle.
  *
- * @param region Indicates the pointer to an <b>OH_Drawing_Region</b> object.
- * @param left Indicates the left position of the rect.
- * @param top Indicates the top position of the rect.
- * @param right Indicates the right position of the rect.
- * @param bottom Indicates the bottom position of the rect.
- * @param isReject Indicates if the specified rectangle does not intersect the region.
- * @return Returns the error code.
- *         Returns {@link OH_DRAWING_SUCCESS} if the operation is successful.
- *         Returns {@link OH_DRAWING_ERROR_INCORRECT_PARAMETER} if region or isReject is nullptr.
+ * @param region Pointer to the {@link OH_Drawing_Region} object.
+ * @param left X coordinate of the upper left corner of the specified rectangle.
+ * @param top Y coordinate of the upper left corner of the specified rectangle.
+ * @param right X coordinate of the lower right corner of the specified rectangle.
+ * @param bottom Y coordinate of the lower right corner of the specified rectangle.
+ * @param isReject Whether the region is empty or whether the specified rectangle does not intersect with the region.
+ * It is used as an output parameter.
+ * **true** means yes; **false** otherwise.
+ * @return Execution result.
+ * **OH_DRAWING_SUCCESS** if the operation is successful.
+ * **OH_DRAWING_ERROR_INCORRECT_PARAMETER** if **region** or **isReject** is a null pointer.
  * @since 23
  */
 OH_Drawing_ErrorCode OH_Drawing_RegionQuickReject(const OH_Drawing_Region* region,
     int32_t left, int32_t top, int32_t right, int32_t bottom, bool* isReject);
 
 /**
- * @brief Translates the region by dx, dy. If the region is empty, do nothing.
+ * @brief Translates the region by a specified distance on the X and Y axes. If the region is empty, no operation is
+ * performed.
  *
- * @param region Indicates the pointer to an <b>OH_Drawing_Region</b> object.
- * @param dx Indicates the distance to translate on x-axis in pixels.
- * @param dy Indicates the distance to translate on y-axis in pixels.
- * @return Returns the error code.
- *         Returns {@link OH_DRAWING_SUCCESS} if the operation is successful.
- *         Returns {@link OH_DRAWING_ERROR_INCORRECT_PARAMETER} if region is nullptr.
+ * @param region Pointer to the {@link OH_Drawing_Region} object.
+ * @param dx Distance to be translated on the X axis, in pixels.
+ * @param dy Distance to be translated on the Y axis, in pixels.
+ * @return Execution result.
+ * **OH_DRAWING_SUCCESS** if the operation is successful.
+ * **OH_DRAWING_ERROR_INCORRECT_PARAMETER** if **region** is a null pointer.
  * @since 23
  */
 OH_Drawing_ErrorCode OH_Drawing_RegionTranslate(OH_Drawing_Region* region, int32_t dx, int32_t dy);

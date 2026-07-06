@@ -161,6 +161,11 @@ typedef enum OH_AI_QuantizationType {
     OH_AI_UNKNOWN_QUANT_TYPE = 0xFFFFFFFF
 } OH_AI_QuantizationType;
 
+/**
+ * @brief Defines the device descriptor of NNRT.
+ *
+ * @since 10
+ */
 typedef struct NNRTDeviceDesc NNRTDeviceDesc;
 #ifdef __cplusplus
 }

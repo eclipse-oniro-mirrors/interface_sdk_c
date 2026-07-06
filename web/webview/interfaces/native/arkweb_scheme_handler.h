@@ -237,13 +237,12 @@ typedef void (*ArkWeb_OnRequestStart)(const ArkWeb_SchemeHandler* schemeHandler,
  * @brief Callback when the request is completed.
  *
  * This will be called on the IO thread.\n
- * Should destory the resourceRequest by ArkWeb_ResourceRequest_Destroy and use ArkWeb_ResourceHandler_Destroy\n
+ * Should destroy the resourceRequest by ArkWeb_ResourceRequest_Destroy and use ArkWeb_ResourceHandler_Destroy\n
  * destroy the ArkWeb_ResourceHandler received in ArkWeb_OnRequestStart.\n
  *
  * @param schemeHandler The ArkWeb_SchemeHandler.
  * @param resourceRequest The ArkWeb_ResourceRequest.
  *
- * @syscap SystemCapability.Web.Webview.Core
  * @since 12
  */
 typedef void (*ArkWeb_OnRequestStop)(const ArkWeb_SchemeHandler* schemeHandler,
@@ -623,11 +622,10 @@ bool OH_ArkWebResourceRequest_IsRedirect(const ArkWeb_ResourceRequest* resourceR
 bool OH_ArkWebResourceRequest_IsMainFrame(const ArkWeb_ResourceRequest* resourceRequest);
 
 /**
- * @brief Get if this is a request is triggered by user gesutre.
+ * @brief Get if this is a request is triggered by user gesture.
  * @param resourceRequest The ArkWeb_ResourceRequest.
  * @return True if this is triggered by user gesture; false otherwise.
  *
- * @syscap SystemCapability.Web.Webview.Core
  * @since 12
  */
 bool OH_ArkWebResourceRequest_HasGesture(const ArkWeb_ResourceRequest* resourceRequest);
@@ -706,10 +704,9 @@ int32_t OH_ArkWeb_ClearSchemeHandlers(const char* webTag);
 
 /**
  * @brief Create a SchemeHandler.
- * @param schemeHandler Return the created SchemeHandler. Use OH_ArkWeb_DestroySchemeHandler destroy it when donn't
+ * @param schemeHandler Return the created SchemeHandler. Use OH_ArkWeb_DestroySchemeHandler destroy it when don't
  *                      need it.
  *
- * @syscap SystemCapability.Web.Webview.Core
  * @since 12
  */
 void OH_ArkWeb_CreateSchemeHandler(ArkWeb_SchemeHandler** schemeHandler);
@@ -773,9 +770,8 @@ int32_t OH_ArkWebSchemeHandler_SetOnRequestStop(ArkWeb_SchemeHandler* schemeHand
 
 /**
  * @brief Create a Response for a request.
- * @param response The created Response. Use OH_ArkWeb_DestroyResponse to destroy when donn't need it.
+ * @param response The created Response. Use OH_ArkWeb_DestroyResponse to destroy when don't need it.
  *
- * @syscap SystemCapability.Web.Webview.Core
  * @since 12
  */
 void OH_ArkWeb_CreateResponse(ArkWeb_Response** response);
@@ -929,11 +925,10 @@ void OH_ArkWebResponse_GetCharset(const ArkWeb_Response* response, char** charse
  * @param response The ArkWeb_Response.
  * @param name The name of the header.
  * @param value The value of the header.
- * @param overwirte If true will overwrite the exsits header, if false otherwise.
+ * @param overwrite If true will overwrite the exists header, if false otherwise.
  * @return {@link ARKWEB_NET_OK} 0 - Success.
  *         {@link ARKWEB_INVALID_PARAM} 17100101 - Invalid param.
  *
- * @syscap SystemCapability.Web.Webview.Core
  * @since 12
  */
 int32_t OH_ArkWebResponse_SetHeaderByName(ArkWeb_Response* response,

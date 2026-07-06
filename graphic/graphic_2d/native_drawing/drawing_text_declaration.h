@@ -28,7 +28,7 @@
 /**
  * @file drawing_text_declaration.h
  *
- * @brief Declares the data structure related to text in 2D drawing.
+ * @brief Provides declarations of data structures related to 2D text drawing.
  *
  * @kit ArkGraphics2D
  * @library libnative_drawing.so
@@ -45,7 +45,7 @@ extern "C" {
 #endif
 
 /**
- * @brief Defines an <b>OH_Drawing_FontCollection</b>, which is used to load fonts.
+ * @brief Defines a struct used to load fonts.
  *
  * @since 8
  * @version 1.0
@@ -53,7 +53,7 @@ extern "C" {
 typedef struct OH_Drawing_FontCollection OH_Drawing_FontCollection;
 
 /**
- * @brief Defines an <b>OH_Drawing_Typography</b>, which is used to manage the typography layout and display.
+ * @brief Defines a struct used to manage the typography layout and display.
  *
  * @since 8
  * @version 1.0
@@ -61,7 +61,7 @@ typedef struct OH_Drawing_FontCollection OH_Drawing_FontCollection;
 typedef struct OH_Drawing_Typography OH_Drawing_Typography;
 
 /**
- * @brief Defines an <b>OH_Drawing_LineTypography</b>, which is used to perform line layout.
+ * @brief Defines a struct used to extract a single line of data from a piece of text for typography.
  *
  * @since 18
  * @version 1.0
@@ -69,7 +69,7 @@ typedef struct OH_Drawing_Typography OH_Drawing_Typography;
 typedef struct OH_Drawing_LineTypography OH_Drawing_LineTypography;
 
 /**
- * @brief Defines an <b>OH_Drawing_TextStyle</b>, which is used to manage text colors and decorations.
+ * @brief Defines a struct used to manage text colors and decorations.
  *
  * @since 8
  * @version 1.0
@@ -77,8 +77,7 @@ typedef struct OH_Drawing_LineTypography OH_Drawing_LineTypography;
 typedef struct OH_Drawing_TextStyle OH_Drawing_TextStyle;
 
 /**
- * @brief Defines an <b>OH_Drawing_TypographyStyle</b>, which is used to manage the typography style,
- * such as the text direction.
+ * @brief Defines a struct used to manage the typography style, such as the text direction.
  *
  * @since 8
  * @version 1.0
@@ -86,7 +85,7 @@ typedef struct OH_Drawing_TextStyle OH_Drawing_TextStyle;
 typedef struct OH_Drawing_TypographyStyle OH_Drawing_TypographyStyle;
 
 /**
- * @brief Defines an <b>OH_Drawing_TypographyCreate</b>, which is used to create an <b>OH_Drawing_Typography</b> object.
+ * @brief Creates an {@link OH_Drawing_Typography} object.
  *
  * @since 8
  * @version 1.0
@@ -94,7 +93,7 @@ typedef struct OH_Drawing_TypographyStyle OH_Drawing_TypographyStyle;
 typedef struct OH_Drawing_TypographyCreate OH_Drawing_TypographyCreate;
 
 /**
- * @brief Defines an <b>OH_Drawing_TextBox</b>, which is used to create an <b>OH_Drawing_TextBox</b> object.
+ * @brief Defines a struct for a text box, which is used to receive the rectangle size, direction, and quantity.
  *
  * @since 11
  * @version 1.0
@@ -102,15 +101,15 @@ typedef struct OH_Drawing_TypographyCreate OH_Drawing_TypographyCreate;
 typedef struct OH_Drawing_TextBox OH_Drawing_TextBox;
 
 /**
- * @brief Defines an <b>OH_Drawing_PositionAndAffinity</b>,
- * which is used to create an <b>OH_Drawing_PositionAndAffinity</b> object.
+ * @brief Defines a struct used to receive the position and affinity of a glyph.
+ *
  * @since 11
  * @version 1.0
  */
 typedef struct OH_Drawing_PositionAndAffinity OH_Drawing_PositionAndAffinity;
 
 /**
- * @brief Defines an <b>OH_Drawing_Range</b>, which is used to create an <b>OH_Drawing_Range</b> object.
+ * @brief Defines a struct used to receive the start position and end position of a glyph.
  *
  * @since 11
  * @version 1.0
@@ -118,7 +117,7 @@ typedef struct OH_Drawing_PositionAndAffinity OH_Drawing_PositionAndAffinity;
 typedef struct OH_Drawing_Range OH_Drawing_Range;
 
 /**
- * @brief Defines an <b>OH_Drawing_FontParser</b>, which is used to parse system font files.
+ * @brief Defines a struct used to parse system font files.
  *
  * @since 12
  * @version 1.0
@@ -126,7 +125,7 @@ typedef struct OH_Drawing_Range OH_Drawing_Range;
 typedef struct OH_Drawing_FontParser OH_Drawing_FontParser;
 
 /**
- * @brief Defines an <b>OH_Drawing_TextShadow</b>, which is used to manage text shadow.
+ * @brief Defines a struct used to manage text shadows.
  *
  * @since 12
  * @version 1.0
@@ -134,7 +133,7 @@ typedef struct OH_Drawing_FontParser OH_Drawing_FontParser;
 typedef struct OH_Drawing_TextShadow OH_Drawing_TextShadow;
 
 /**
- * @brief Defines an <b>OH_Drawing_TextTab</b>, which is used to to store the tab alignment type and position.
+ * @brief Defines a struct used to manage text tabs.
  *
  * @since 18
  * @version 1.0
@@ -142,7 +141,7 @@ typedef struct OH_Drawing_TextShadow OH_Drawing_TextShadow;
 typedef struct OH_Drawing_TextTab OH_Drawing_TextTab;
 
 /**
- * @brief Defines an <b>OH_Drawing_TextLine</b>, which is used to manage text line.
+ * @brief Defines a struct used to manage text lines.
  *
  * @since 18
  * @version 1.0
@@ -150,7 +149,7 @@ typedef struct OH_Drawing_TextTab OH_Drawing_TextTab;
 typedef struct OH_Drawing_TextLine OH_Drawing_TextLine;
 
 /**
- * @brief Defines an <b>OH_Drawing_Run</b>, which is used to manage run.
+ * @brief Defines a struct used to manage runs.
  *
  * @since 18
  * @version 1.0
@@ -158,21 +157,21 @@ typedef struct OH_Drawing_TextLine OH_Drawing_TextLine;
 typedef struct OH_Drawing_Run OH_Drawing_Run;
 
 /**
- * @brief Defines an <b>OH_Drawing_FontFullDescriptor</b>, which describes the font information.
+ * @brief Defines a struct used to describe detailed information about a font, that is, the font descriptor.
  *
  * @since 22
  */
 typedef struct OH_Drawing_FontFullDescriptor OH_Drawing_FontFullDescriptor;
 
 /**
- * @brief Defines an <b>OH_Drawing_FontVariationAxis</b>, which describes the font variation axis.
+ * @brief Describes the variable axis of the font.
  *
  * @since 24
  */
 typedef struct OH_Drawing_FontVariationAxis OH_Drawing_FontVariationAxis;
 
 /**
- * @brief Defines an <b>OH_Drawing_FontVariationInstance</b>, which describes the font variation instance.
+ * @brief Describes a variable font instance and stores the preset variable font style information.
  *
  * @since 24
  */
