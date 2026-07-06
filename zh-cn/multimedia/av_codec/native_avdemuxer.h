@@ -29,7 +29,7 @@
  *
  * @brief 声明用于音视频媒体数据解析的接口。
  * @sample [AVCodec](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Media/AVCodec)
- * 
+ *
  * @kit AVCodecKit
  * @include <multimedia/player_framework/native_avdemuxer.h>
  * @library libnative_media_avdemuxer.so

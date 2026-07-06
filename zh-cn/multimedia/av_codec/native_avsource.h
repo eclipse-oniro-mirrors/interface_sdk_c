@@ -18,7 +18,7 @@
  * @{
  *
  * @brief AVSource模块提供用于构造媒体资源对象功能的函数。
- * 
+ *
  * @syscap SystemCapability.Multimedia.Media.Spliter
  * @since 10
  */
@@ -91,7 +91,7 @@ OH_AVSource *OH_AVSource_CreateWithDataSourceExt(OH_AVDataSourceExt *dataSource,
 
 /**
  * @brief 为统一资源标识符对应的资源对象创建OH_AVSource实例，可以通过调用{@link OH_AVSource_Destroy}接口释放实例。
- * 
+ *
  * 该接口仅支持HTTP渐进式流媒体，不支持HLS/DASH的流媒体；对于HLS/DASH的流媒体播放，推荐使用AVPlayer组件进行开发。
  * @syscap SystemCapability.Multimedia.Media.Spliter
  * @param uri 远程媒体资源的统一资源标识符。

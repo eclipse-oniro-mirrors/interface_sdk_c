@@ -409,7 +409,7 @@ bool OH_AVFormat_GetBuffer(struct OH_AVFormat *format, const char *key, uint8_t 
 
 /**
  * @brief 从OH_AVFormat中读取一个int32_t数据的数组。\n
- * 
+ *
  * 需要注意的是，获取的buffer生命周期与OH_AVFormat对象绑定，当format销毁时自动失效。\n
  * 如果开发者需要长时间保持绑定，应用程序必须将数据显式复制到新分配的内存。
  * @syscap SystemCapability.Multimedia.Media.Core

@@ -29,7 +29,7 @@
  *
  * @brief 声明了媒体数据结构AVBuffer属性的定义。
  * @sample [AVCodec](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Media/AVCodec)
- * 
+ *
  * @kit AVCodecKit
  * @include <multimedia/player_framework/native_avbuffer_info.h>
  * @library libnative_media_core.so
@@ -77,7 +77,7 @@ typedef enum OH_AVCodecBufferFlags {
 
 /**
  * @brief 定义OH_AVCodec的缓冲区描述信息。
- * 
+ *
  * @syscap SystemCapability.Multimedia.Media.Core
  * @since 9
  */

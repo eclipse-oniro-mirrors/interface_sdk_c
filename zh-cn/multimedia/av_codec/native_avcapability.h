@@ -18,7 +18,7 @@
  * @{
  *
  * @brief AVCapability模块提供用于编解码能力查询的函数。
- * 
+ *
  * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 10
  */
@@ -461,9 +461,9 @@ OH_AVErrCode OH_AVCapability_GetVideoSupportedPixelFormats(OH_AVCapability *capa
 /**
  *
  * @brief 获取视频编解码器支持的OH_NativeBuffer格式。
- * 
+ *
  * 该函数提供了视频编解码器能够处理的OH_NativeBuffer格式信息，具体取值可见OH_NativeBuffer_Format。
- * 
+ *
  * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @param capability 视频编解码能力指针。
  * @param nativeBufferFormats 输出参数。指向OH_NativeBuffer_Format数组的指针。

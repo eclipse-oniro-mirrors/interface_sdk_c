@@ -103,7 +103,7 @@ typedef enum OH_AVErrCode {
      * 扩展错误码初始值。
      */
     AV_ERR_EXTEND_START = 100,
-	/** 
+    /**
      * @error DRM起始错误码。
      * @since 12
      */
