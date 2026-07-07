@@ -183,13 +183,9 @@ struct WebSocket_Header {
 struct WebSocket_RequestOptions {
     struct WebSocket_Header *headers;
 };
+
 /**
  * @brief Defines the parameters for the connection closure received by the WebSocket client.
- *
- * @since 11
- * @version 1.0
- */
- * @brief Defines the WebSocket client structure.
  *
  * @since 11
  * @version 1.0
