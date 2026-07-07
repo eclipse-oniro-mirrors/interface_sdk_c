@@ -23,15 +23,6 @@
  */
 
 /**
- * @addtogroup netstack
- * @{
- *
- * @brief Defines the APIs for http global interceptor.
- *
- * @since 24
- */
-
-/**
  * @file http_interceptor_type.h
  * @brief Defines the data structures for the C APIs of the global HTTP interceptor module, including the interceptor
  * request/response header information, HTTP request/response data packet structure, interceptor configuration
