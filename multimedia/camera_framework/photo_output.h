@@ -559,10 +559,10 @@ typedef struct OH_Camera_PhotoCaptureSettingExt OH_Camera_PhotoCaptureSettingExt
  *
  * @param photoOutput Pointer to the target PhotoOutput instance.
  * @param setting Pointer to the target OH_Camera_PhotoCaptureSettingExt instance..
- * @return <ul>
- *         <li>**CAMERA_OK**: The operation is successful.</li>
- *         <li>**CAMERA_INVALID_ARGUMENT**: A parameter is missing or the parameter type is incorrect.</li>
- *         </ul>
+ * @return **CAMERA_OK**: The operation is successful.
+ *     <br>**CAMERA_INVALID_ARGUMENT**: A parameter is missing or the parameter type is incorrect.
+ *     <br>**CAMERA_SESSION_NOT_RUNNING**: The capture session is not running.
+ *     <br>**CAMERA_SERVICE_FATAL_ERROR**: The camera service is abnormal.
  * @since 26.0.0
  */
 Camera_ErrorCode OH_PhotoOutput_Capture_WithCaptureSettingExt(Camera_PhotoOutput* photoOutput,
@@ -642,7 +642,7 @@ Camera_ErrorCode OH_PhotoOutput_DestroyPhotoCaptureSettingExt(OH_Camera_PhotoCap
  * @param location Image location, defined in the Camera_Location enumeration.
  * @return **CAMERA_OK**: The operation is successful.
  *     <br>**CAMERA_INVALID_ARGUMENT**: A parameter is missing or the parameter type is incorrect.
- *     <br>**CAMERA_OPERATION_NOT_ALLOWED**: The operation is not allowed.
+ *     <br>**CAMERA_SERVICE_FATAL_ERROR**: The camera service is abnormal.
  * @since 26.0.0
  */
 Camera_ErrorCode OH_PhotoCaptureSettingExt_SetLocation(OH_Camera_PhotoCaptureSettingExt* photoCaptureSettingExt,
