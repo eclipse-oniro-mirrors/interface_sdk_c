@@ -24,17 +24,7 @@
  * @addtogroup netstack
  * @{
  *
- * @brief Provides C APIs for the websocket client module.
-
- * @since 11
- * @version 1.0
- */
-
-/**
- * @addtogroup netstack
- * @{
- *
- * @brief Provides C APIs for the websocket client module.
+ * @brief 提供WebSocket客户端模块的接口。
 
  * @since 11
  * @version 1.0
