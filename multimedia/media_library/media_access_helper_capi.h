@@ -12,7 +12,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 /**
  * @addtogroup MediaAssetManager
  * @{
@@ -21,14 +20,11 @@
  *
  * @since 12
  */
-
 /**
  * @file media_access_helper_capi.h
  *
- * @brief Defines APIs related to media access helper.
- *
- * Provides the ability to create photo albums, as well as access and modify media data information in the albums.
- *
+ * @brief The file declares the APIs for album management.
+ * 
  * @kit MediaLibraryKit
  * @syscap SystemCapability.FileManagement.PhotoAccessHelper.Core
  * @library libmedia_asset_manager.so
@@ -45,17 +41,17 @@ extern "C" {
 #endif
 
 /**
- * @brief Apply the change request of asset or album.
- *
+ * @brief Applies changes to an asset or album.
+ * 
  * @permission ohos.permission.WRITE_IMAGEVIDEO
- * @param changeRequest the {@link OH_MediaAssetChangeRequest} instance to be applied.
- * @return {@link #MEDIA_LIBRARY_OK} if the method call succeeds.
- *         {@link #MEDIA_LIBRARY_PARAMETER_ERROR} Parameter error. Possible causes:
- *                                                1. Mandatory parameters are left unspecified.
- *                                                2. Incorrect parameter types.
- *                                                3. Parameter verification failed.
- *         {@link #MEDIA_LIBRARY_PERMISSION_DENIED} Permission is denied.
- *         {@link #MEDIA_LIBRARY_INTERNAL_SYSTEM_ERROR} if internal system error.
+ * @param changeRequest Change request.
+ * @return MEDIA_LIBRARY_OK if the method call succeeds.
+ *     <br>MEDIA_LIBRARY_PARAMETER_ERROR Parameter error. Possible causes:
+ *     <br>1. Mandatory parameters are left unspecified.
+ *     <br>2. Incorrect parameter types.
+ *     <br>3. Parameter verification failed.
+ *     <br>MEDIA_LIBRARY_PERMISSION_DENIED Permission is denied.
+ *     <br>MEDIA_LIBRARY_INTERNAL_SYSTEM_ERROR if internal system error.
  * @since 12
 */
 MediaLibrary_ErrorCode OH_MediaAccessHelper_ApplyChanges(OH_MediaAssetChangeRequest* changeRequest);

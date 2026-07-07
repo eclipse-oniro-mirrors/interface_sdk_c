@@ -12,7 +12,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 /**
  * @addtogroup MediaAssetManager
  * @{
@@ -21,15 +20,12 @@
  *
  * @since 12
  */
-
 /**
  * @file media_asset_manager_capi.h
  *
- * @brief Defines the media asset manager APIs.
- *
- * Uses the Native APIs provided by Media Asset Manager
- * to request media source.
- *
+ * @brief The file declares the APIs of the media asset manager. You can use the functions to request media assets in
+ * the media library.
+ * 
  * @kit MediaLibraryKit
  * @syscap SystemCapability.FileManagement.PhotoAccessHelper.Core
  * @library libmedia_asset_manager.so
@@ -48,22 +44,22 @@ extern "C" {
 #endif
 
 /**
- * @brief Create a media asset manager.
- *
+ * @brief Creates an **OH_MediaAssetManager** instance.
+ * 
  * @return Returns a pointer to an OH_MediaAssetManager instance.
  * @since 12
 */
 OH_MediaAssetManager* OH_MediaAssetManager_Create(void);
 
 /**
- * @brief Request image source with dest path.
- *
+ * @brief Requests an image in the specified directory.
+ * 
  * @permission ohos.permission.READ_IMAGEVIDEO
- * @param manager Pointer to an OH_MediaAssetManager instance.
- * @param uri The uri of the requested image resource.
- * @param requestOptions Options model for requesting resource.
- * @param destPath Destination address of the requested resource.
- * @param callback Called when a requested source is prepared.
+ * @param manager Pointer to an **OH_MediaAssetManager** instance.
+ * @param uri Pointer to the URI of the requested image.
+ * @param requestOptions Options related to the media asset quality and delivery mode.
+ * @param destPath Pointer to the destination directory of the requested image.
+ * @param callback Callback to be invoked when the requested image is ready.
  * @return Return Request id.
  * @since 12
 */
@@ -71,14 +67,14 @@ MediaLibrary_RequestId OH_MediaAssetManager_RequestImageForPath(OH_MediaAssetMan
     MediaLibrary_RequestOptions requestOptions, const char* destPath, OH_MediaLibrary_OnDataPrepared callback);
 
 /**
- * @brief Request video source with dest path.
- *
+ * @brief Requests a video in the specified directory.
+ * 
  * @permission ohos.permission.READ_IMAGEVIDEO
- * @param manager Pointer to an OH_MediaAssetManager instance.
- * @param uri The uri of the requested video resource.
- * @param requestOptions Options model for requesting resource.
- * @param destPath Destination address of the requested resource.
- * @param callback Called when a requested source is prepared.
+ * @param manager Pointer to an **OH_MediaAssetManager** instance.
+ * @param uri Pointer to the URI of the requested video.
+ * @param requestOptions Options related to the media asset quality and delivery mode.
+ * @param destPath Pointer to the destination directory of the requested video.
+ * @param callback Callback to be invoked when the requested video is ready.
  * @return Return Request id.
  * @since 12
 */
@@ -86,34 +82,35 @@ MediaLibrary_RequestId OH_MediaAssetManager_RequestVideoForPath(OH_MediaAssetMan
     MediaLibrary_RequestOptions requestOptions, const char* destPath, OH_MediaLibrary_OnDataPrepared callback);
 
 /**
- * @brief Cancel request by request id.
- *
+ * @brief Cancels a request based on the request ID.
+ * 
  * @permission ohos.permission.READ_IMAGEVIDEO
- * @param manager Pointer to an OH_MediaAssetManager instance.
- * @param requestId The request id to be canceled.
+ * @param manager Pointer to an **OH_MediaAssetManager** instance.
+ * @param requestId ID of the request to cancel.
  * @return Returns true if the request is canceled successfully; returns false otherwise.
  * @since 12
 */
 bool OH_MediaAssetManager_CancelRequest(OH_MediaAssetManager* manager, const MediaLibrary_RequestId requestId);
 
 /**
- * @brief Request moving photo object.
- *
+ * @brief Requests a moving photo based on different policies.
+ * 
  * @permission ohos.permission.READ_IMAGEVIDEO
- * @param manager the pointer to {@link OH_MediaAssetManager} instance.
- * @param mediaAsset the {@link OH_MediaAsset} instance of media file object to be requested.
- * @param requestOptions the {@link MediaLibrary_RequestOptions} for image request strategy mode.
- * @param requestId indicates the {@link MediaLibrary_RequestId} of the request, which is an output parameter.
- * @param callback the {@link OH_MediaLibrary_OnMovingPhotoDataPrepared} that will be called
- *                 when the requested source is prepared.
- * @return {@link #MEDIA_LIBRARY_OK} if the method call succeeds.
- *         {@link #MEDIA_LIBRARY_PARAMETER_ERROR} Parameter error. Possible causes:
- *                                                1. Mandatory parameters are left unspecified.
- *                                                2. Incorrect parameter types.
- *                                                3. Parameter verification failed.
- *         {@link #MEDIA_LIBRARY_OPERATION_NOT_SUPPORTED} if operation is not supported.
- *         {@link #MEDIA_LIBRARY_PERMISSION_DENIED} if permission is denied.
- *         {@link #MEDIA_LIBRARY_INTERNAL_SYSTEM_ERROR} if internal system error.
+ * @param manager Pointer to an {@link OH_MediaAssetManager} instance.
+ * @param mediaAsset Pointer to the {@link OH_MediaAsset} instance to be requested.
+ * @param requestOptions Options related to the media asset quality and delivery mode. 
+ *     The options are specified by {@link MediaLibrary_RequestOptions}.
+ * @param requestId Pointer to the request ID, which is specified by {@link MediaLibrary_RequestId}.
+ * @param callback Callback to be invoked when the requested moving photo is ready. 
+ *     The callback is specified by {@link OH_MediaLibrary_OnMovingPhotoDataPrepared}.
+ * @return MEDIA_LIBRARY_OK if the method call succeeds.
+ *     <br>MEDIA_LIBRARY_PARAMETER_ERROR Parameter error. Possible causes:
+ *     <br>1. Mandatory parameters are left unspecified.
+ *     <br>2. Incorrect parameter types.
+ *     <br>3. Parameter verification failed.
+ *     <br>MEDIA_LIBRARY_OPERATION_NOT_SUPPORTED if operation is not supported.
+ *     <br>MEDIA_LIBRARY_PERMISSION_DENIED if permission is denied.
+ *     <br>MEDIA_LIBRARY_INTERNAL_SYSTEM_ERROR if internal system error.
  * @since 13
 */
 MediaLibrary_ErrorCode OH_MediaAssetManager_RequestMovingPhoto(OH_MediaAssetManager* manager,
@@ -121,23 +118,24 @@ MediaLibrary_ErrorCode OH_MediaAssetManager_RequestMovingPhoto(OH_MediaAssetMana
     OH_MediaLibrary_OnMovingPhotoDataPrepared callback);
 
 /**
- * @brief Request image resources based on different strategy modes.
- *
+ * @brief Requests an image based on different policies.
+ * 
  * @permission ohos.permission.READ_IMAGEVIDEO
- * @param manager the pointer to {@link OH_MediaAssetManager} instance.
- * @param mediaAsset the {@link OH_MediaAsset} instance of media file object to be requested.
- * @param requestOptions the {@link MediaLibrary_RequestOptions} for image request strategy mode.
- * @param requestId indicates the {@link MediaLibrary_RequestId} of the request, which is an output parameter.
- * @param callback the {@link OH_MediaLibrary_OnImageDataPrepared} that will be called
- *                 when the requested source is prepared.
- * @return {@link #MEDIA_LIBRARY_OK} if the method call succeeds.
- *         {@link #MEDIA_LIBRARY_PARAMETER_ERROR} Parameter error. Possible causes:
- *                                                1. Mandatory parameters are left unspecified.
- *                                                2. Incorrect parameter types.
- *                                                3. Parameter verification failed.
- *         {@link #MEDIA_LIBRARY_OPERATION_NOT_SUPPORTED} if operation is not supported.
- *         {@link #MEDIA_LIBRARY_PERMISSION_DENIED} if permission is denied.
- *         {@link #MEDIA_LIBRARY_INTERNAL_SYSTEM_ERROR} if internal system error.
+ * @param manager Pointer to an {@link OH_MediaAssetManager} instance.
+ * @param mediaAsset Pointer to the {@link OH_MediaAsset} instance to be requested.
+ * @param requestOptions Options related to the media asset quality and delivery mode. The options are specified 
+ *     by {@link MediaLibrary_RequestOptions}.
+ * @param requestId Pointer to the request ID, which is specified by {@link MediaLibrary_RequestId}.
+ * @param callback Callback to be invoked when the requested image is ready. The callback is specified 
+ *     by {@link OH_MediaLibrary_OnImageDataPrepared}.
+ * @return MEDIA_LIBRARY_OK if the method call succeeds.
+ *     <br>MEDIA_LIBRARY_PARAMETER_ERROR Parameter error. Possible causes:
+ *     <br>1. Mandatory parameters are left unspecified.
+ *     <br>2. Incorrect parameter types.
+ *     <br>3. Parameter verification failed.
+ *     <br>MEDIA_LIBRARY_OPERATION_NOT_SUPPORTED if operation is not supported.
+ *     <br>MEDIA_LIBRARY_PERMISSION_DENIED if permission is denied.
+ *     <br>MEDIA_LIBRARY_INTERNAL_SYSTEM_ERROR if internal system error.
  * @since 12
 */
 MediaLibrary_ErrorCode OH_MediaAssetManager_RequestImage(OH_MediaAssetManager* manager, OH_MediaAsset* mediaAsset,
@@ -145,34 +143,35 @@ MediaLibrary_ErrorCode OH_MediaAssetManager_RequestImage(OH_MediaAssetManager* m
     OH_MediaLibrary_OnImageDataPrepared callback);
 
 /**
- * @brief Release the {@link OH_MediaAssetManager} instance.
- *
- * @param manager the {@link OH_MediaAssetManager} instance.
- * @return {@link #MEDIA_LIBRARY_OK} if the method call succeeds.
- *         {@link #MEDIA_LIBRARY_PARAMETER_ERROR} Parameter error. Possible causes:
- *                                                1. Mandatory parameters are left unspecified.
- *                                                2. Incorrect parameter types.
- *                                                3. Parameter verification failed.
+ * @brief Releases an {@link OH_MediaAssetManager} instance.
+ * 
+ * @param manager Pointer to an {@link OH_MediaAssetManager} instance.
+ * @return MEDIA_LIBRARY_OK if the method call succeeds.
+ *     <br>MEDIA_LIBRARY_PARAMETER_ERROR Parameter error. Possible causes:
+ *     <br>1. Mandatory parameters are left unspecified.
+ *     <br>2. Incorrect parameter types.
+ *     <br>3. Parameter verification failed.
  * @since 13
 */
 MediaLibrary_ErrorCode OH_MediaAssetManager_Release(OH_MediaAssetManager* manager);
 
 /**
- * @brief Request image quickly resources based on different strategy modes.
- *
+ * @brief Requests an image based on different policies.
+ * 
  * @permission ohos.permission.READ_IMAGEVIDEO
- * @param manager the pointer to {@link OH_MediaAssetManager} instance.
- * @param mediaAsset the {@link OH_MediaAsset} instance of media file object to be requested.
- * @param requestOptions the {@link MediaLibrary_RequestOptions} for image request strategy mode.
- * @param requestId indicates the {@link MediaLibrary_RequestId} of the request, which is an output parameter.
- * @param callback the {@link OH_MediaLibrary_OnQuickImageDataPrepared} that will be called
- *                 when the requested source is prepared.
- * @return {@link #MEDIA_LIBRARY_OK} if the method call succeeds.
- *         {@link #MEDIA_LIBRARY_OPERATION_NOT_SUPPORTED} if operation is not supported.
- *         {@link #MEDIA_LIBRARY_PERMISSION_DENIED} if permission is denied.
- *         {@link #MEDIA_LIBRARY_INTERNAL_SYSTEM_ERROR} if internal system error.
+ * @param manager Pointer to an **OH_MediaAssetManager** instance.
+ * @param mediaAsset Pointer to the **OH_MediaAsset** instance to be requested.
+ * @param requestOptions **MediaLibrary_RequestOptions** used for the image request policy mode.
+ * @param requestId Pointer to the **MediaLibrary_RequestId** instance of the request. This parameter is an output
+ *     parameter.
+ * @param callback The **OH_MediaLibrary_OnQuickImageDataPrepared** method called when the requested source data is
+ *     ready.
+ * @return MEDIA_LIBRARY_OK if the method call succeeds.
+ *     <br>MEDIA_LIBRARY_OPERATION_NOT_SUPPORTED if operation is not supported.
+ *     <br>MEDIA_LIBRARY_PERMISSION_DENIED if permission is denied.
+ *     <br>MEDIA_LIBRARY_INTERNAL_SYSTEM_ERROR if internal system error.
  * @since 23
-*/
+ */
 MediaLibrary_ErrorCode OH_MediaAssetManager_QuickRequestImage(OH_MediaAssetManager* manager, OH_MediaAsset* mediaAsset,
     MediaLibrary_RequestOptions requestOptions, MediaLibrary_RequestId* requestId,
     OH_MediaLibrary_OnQuickImageDataPrepared callback);
