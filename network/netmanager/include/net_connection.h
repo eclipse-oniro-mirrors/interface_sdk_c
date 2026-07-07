@@ -27,16 +27,6 @@
  */
 
 /**
- * @addtogroup NetConnection
- * @{
- *
- * @brief Provide C interface for the data network connection module of network management.
- *
- * @since 11
- * @version 1.0
- */
-
-/**
  * @file net_connection.h
  *
  * @brief Provide C interface for the data network connection module of network management.
