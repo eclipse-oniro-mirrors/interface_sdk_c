@@ -36,11 +36,11 @@
 #define NET_HTTP_TYPE_H
 
 #include <stdint.h>
+#include <stddef.h>
 
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include <stddef.h>
 
 /**
  * @brief Defines the maximum path length of an HTTP request.
