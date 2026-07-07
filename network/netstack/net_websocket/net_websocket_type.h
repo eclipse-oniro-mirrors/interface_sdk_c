@@ -16,18 +16,6 @@
 #ifndef NET_WEBSOCKET_TYPE_H
 #define NET_WEBSOCKET_TYPE_H
 
-#include <stdint.h>
-
-/**
- * @addtogroup netstack
- * @{
- *
- * @brief Provides C APIs for the WebSocket client module.
- *
- * @since 11
- * @version 1.0
- */
-
 /**
  * @addtogroup netstack
  * @{
@@ -48,6 +36,8 @@
  * @since 11
  * @version 1.0
  */
+
+#include <stdint.h>
 
 #ifdef __cplusplus
 extern "C" {
