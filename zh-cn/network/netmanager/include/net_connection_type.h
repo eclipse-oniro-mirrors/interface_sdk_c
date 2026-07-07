@@ -16,23 +16,11 @@
 #ifndef NATIVE_NET_CONN_TYPE_H
 #define NATIVE_NET_CONN_TYPE_H
 
-#include <stdbool.h>
-
 /**
  * @addtogroup NetConnection
  * @{
  *
- * @brief Provides the data structures for the C APIs of the network connection module for network management.
- *
- * @since 11
- * @version 1.0
- */
-
-/**
- * @addtogroup NetConnection
- * @{
- *
- * @brief Provides the data structures for the C APIs of the network connection module for network management.
+ * @brief 为网络管理数据网络连接模块提供C接口数据结构。
  *
  * @since 11
  * @version 1.0
@@ -50,6 +38,7 @@
  *
  */
 
+#include <stdbool.h>
 #include <stdint.h>
 #include <netdb.h>
 
