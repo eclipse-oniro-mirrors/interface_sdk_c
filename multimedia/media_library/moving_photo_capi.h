@@ -12,7 +12,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 /**
  * @addtogroup MediaAssetManager
  * @{
@@ -21,14 +20,11 @@
  *
  * @since 13
  */
-
 /**
  * @file moving_photo_capi.h
  *
- * @brief Defines APIs related to moving photo.
- *
- * Provides the ability to obtain moving photo information.
- *
+ * @brief The file declares the APIs related to moving photos. You can use the APIs to obtain moving photo information.
+ * 
  * @kit MediaLibraryKit
  * @syscap SystemCapability.FileManagement.PhotoAccessHelper.Core
  * @library libmedia_asset_manager.so
@@ -45,87 +41,87 @@ extern "C" {
 #endif
 
 /**
- * @brief Get uri of the moving photo.
- *
- * @param movingPhoto the {@link OH_MovingPhoto} instance.
- * @param uri the uri of the moving photo.
- * @return {@link #MEDIA_LIBRARY_OK} if the method call succeeds.
- *         {@link #MEDIA_LIBRARY_PARAMETER_ERROR} Parameter error. Possible causes:
- *                                                1. Mandatory parameters are left unspecified.
- *                                                2. Incorrect parameter types.
- *                                                3. Parameter verification failed.
- *         {@link #MEDIA_LIBRARY_INTERNAL_SYSTEM_ERROR} if internal system error.
+ * @brief Obtains the URI of a moving photo.
+ * 
+ * @param movingPhoto Pointer to an {@link OH_MovingPhoto} instance.
+ * @param uri Double pointer to the URI of the moving photo obtained.
+ * @return MEDIA_LIBRARY_OK if the method call succeeds.
+ *     <br>MEDIA_LIBRARY_PARAMETER_ERROR Parameter error. Possible causes:
+ *     <br>1. Mandatory parameters are left unspecified.
+ *     <br>2. Incorrect parameter types.
+ *     <br>3. Parameter verification failed.
+ *     <br>MEDIA_LIBRARY_INTERNAL_SYSTEM_ERROR if internal system error.
  * @since 13
 */
 MediaLibrary_ErrorCode OH_MovingPhoto_GetUri(OH_MovingPhoto* movingPhoto, const char** uri);
 
 /**
- * @brief Request the image and video content of the moving photo and write to destination uri.
- *
+ * @brief Requests the image data and video data of a moving photo and writes them to the specified URIs, respectively.
+ * 
  * @permission ohos.permission.READ_IMAGEVIDEO
- * @param movingPhoto the {@link OH_MovingPhoto} instance.
- * @param imageUri the destination file uri to save the image data.
- * @param videoUri the destination file uri to save the video data.
- * @return {@link #MEDIA_LIBRARY_OK} if the method call succeeds.
- *         {@link #MEDIA_LIBRARY_PARAMETER_ERROR} Parameter error. Possible causes:
- *                                                1. Mandatory parameters are left unspecified.
- *                                                2. Incorrect parameter types.
- *                                                3. Parameter verification failed.
- *         {@link #MEDIA_LIBRARY_PERMISSION_DENIED} if permission is denied.
- *         {@link #MEDIA_LIBRARY_INTERNAL_SYSTEM_ERROR} if internal system error.
+ * @param movingPhoto Pointer to an {@link OH_MovingPhoto} instance.
+ * @param imageUri Pointer to the URI of the file, to which the image data is written.
+ * @param videoUri Pointer to the URI of the file, to which the video data is written.
+ * @return MEDIA_LIBRARY_OK if the method call succeeds.
+ *     <br>MEDIA_LIBRARY_PARAMETER_ERROR Parameter error. Possible causes:
+ *     <br>1. Mandatory parameters are left unspecified.
+ *     <br>2. Incorrect parameter types.
+ *     <br>3. Parameter verification failed.
+ *     <br>MEDIA_LIBRARY_PERMISSION_DENIED if permission is denied.
+ *     <br>MEDIA_LIBRARY_INTERNAL_SYSTEM_ERROR if internal system error.
  * @since 13
 */
 MediaLibrary_ErrorCode OH_MovingPhoto_RequestContentWithUris(OH_MovingPhoto* movingPhoto, char* imageUri,
     char* videoUri);
 
 /**
- * @brief Request the image or video content of the moving photo and write to destination uri.
- *
+ * @brief Requests the moving photo content of the specified resource type and writes it to the specified URI.
+ * 
  * @permission ohos.permission.READ_IMAGEVIDEO
- * @param movingPhoto the {@link OH_MovingPhoto} instance.
- * @param resourceType the {@link MediaLibrary_ResourceType} of the moving photo content to request.
- * @param uri the destination file uri to save the data.
- * @return {@link #MEDIA_LIBRARY_OK} if the method call succeeds.
- *         {@link #MEDIA_LIBRARY_PARAMETER_ERROR} Parameter error. Possible causes:
- *                                                1. Mandatory parameters are left unspecified.
- *                                                2. Incorrect parameter types.
- *                                                3. Parameter verification failed.
- *         {@link #MEDIA_LIBRARY_PERMISSION_DENIED} if permission is denied.
- *         {@link #MEDIA_LIBRARY_INTERNAL_SYSTEM_ERROR} if internal system error.
+ * @param movingPhoto Pointer to an {@link OH_MovingPhoto} instance.
+ * @param resourceType Resource type, which is specified by {@link MediaLibrary_ResourceType}.
+ * @param uri Pointer to the URI of the file, to which the data is written.
+ * @return MEDIA_LIBRARY_OK if the method call succeeds.
+ *     <br>MEDIA_LIBRARY_PARAMETER_ERROR Parameter error. Possible causes:
+ *     <br>1. Mandatory parameters are left unspecified.
+ *     <br>2. Incorrect parameter types.
+ *     <br>3. Parameter verification failed.
+ *     <br>MEDIA_LIBRARY_PERMISSION_DENIED if permission is denied.
+ *     <br>MEDIA_LIBRARY_INTERNAL_SYSTEM_ERROR if internal system error.
  * @since 13
 */
 MediaLibrary_ErrorCode OH_MovingPhoto_RequestContentWithUri(OH_MovingPhoto* movingPhoto,
     MediaLibrary_ResourceType resourceType, char* uri);
 
 /**
- * @brief Request data of the moving photo.
- *
+ * @brief Requests the moving photo content of the specified resource type and returns it in ArrayBuffer format.
+ * 
  * @permission ohos.permission.READ_IMAGEVIDEO
- * @param movingPhoto the {@link OH_MovingPhoto} instance.
- * @param resourceType the {@link MediaLibrary_ResourceType} of the moving photo content to request.
- * @param buffer the buffer of the content.
- * @param size the size of the buffer.
- * @return {@link #MEDIA_LIBRARY_OK} if the method call succeeds.
- *         {@link #MEDIA_LIBRARY_PARAMETER_ERROR} Parameter error. Possible causes:
- *                                                1. Mandatory parameters are left unspecified.
- *                                                2. Incorrect parameter types.
- *                                                3. Parameter verification failed.
- *         {@link #MEDIA_LIBRARY_PERMISSION_DENIED} if permission is denied.
- *         {@link #MEDIA_LIBRARY_INTERNAL_SYSTEM_ERROR} if internal system error.
+ * @param movingPhoto Pointer to an {@link OH_MovingPhoto} instance.
+ * @param resourceType Resource type, which is specified by {@link MediaLibrary_ResourceType}.
+ * @param buffer Double pointer to the buffer for storing the target file data.
+ * @param size Pointer to the buffer size.
+ * @return MEDIA_LIBRARY_OK if the method call succeeds.
+ *     <br>MEDIA_LIBRARY_PARAMETER_ERROR Parameter error. Possible causes:
+ *     <br>1. Mandatory parameters are left unspecified.
+ *     <br>2. Incorrect parameter types.
+ *     <br>3. Parameter verification failed.
+ *     <br>MEDIA_LIBRARY_PERMISSION_DENIED if permission is denied.
+ *     <br>MEDIA_LIBRARY_INTERNAL_SYSTEM_ERROR if internal system error.
  * @since 13
 */
 MediaLibrary_ErrorCode OH_MovingPhoto_RequestContentWithBuffer(OH_MovingPhoto* movingPhoto,
     MediaLibrary_ResourceType resourceType, const uint8_t** buffer, uint32_t* size);
 
 /**
- * @brief Release the {@link OH_MovingPhoto} instance.
- *
- * @param movingPhoto the {@link OH_MovingPhoto} instance.
- * @return {@link #MEDIA_LIBRARY_OK} if the method call succeeds.
- *         {@link #MEDIA_LIBRARY_PARAMETER_ERROR} Parameter error. Possible causes:
- *                                                1. Mandatory parameters are left unspecified.
- *                                                2. Incorrect parameter types.
- *                                                3. Parameter verification failed.
+ * @brief Releases an {@link OH_MovingPhoto} instance.
+ * 
+ * @param movingPhoto Pointer to an {@link OH_MovingPhoto} instance.
+ * @return MEDIA_LIBRARY_OK if the method call succeeds.
+ *     <br>MEDIA_LIBRARY_PARAMETER_ERROR Parameter error. Possible causes:
+ *     <br>1. Mandatory parameters are left unspecified.
+ *     <br>2. Incorrect parameter types.
+ *     <br>3. Parameter verification failed.
  * @since 13
 */
 MediaLibrary_ErrorCode OH_MovingPhoto_Release(OH_MovingPhoto* movingPhoto);
