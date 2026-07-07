@@ -14,17 +14,6 @@
  */
 
 /**
- * @file hidebug_type.h
- *
- * @brief Defines the code of the HiDebug module.
- *
- * @kit PerformanceAnalysisKit
- * @library libohhidebug.so
- * @syscap SystemCapability.HiviewDFX.HiProfiler.HiDebug
- * @since 12
- */
-
-/**
  * @addtogroup HiDebug
  * @{
  *
@@ -35,197 +24,207 @@
  * @since 12
  */
 
+/**
+ * @file hidebug_type.h
+ *
+ * @brief Defines the code of the HiDebug module.
+ *
+ * @kit PerformanceAnalysisKit
+ * @library libohhidebug.so
+ * @syscap SystemCapability.HiviewDFX.HiProfiler.HiDebug
+ * @since 12
+ */
+
 #ifndef HIVIEWDFX_HIDEBUG_TYPE_H
 #define HIVIEWDFX_HIDEBUG_TYPE_H
 
 #include <stdint.h>
 #include <stddef.h>
 #include <unistd.h>
-#include <stdbool.h>
 
 #ifdef __cplusplus
 extern "C" {
 #endif // __cplusplus
 
 /**
- * @brief Enumerates the error codes used in the HiDebug module.
+ * @brief 错误码定义。
  *
  * @since 12
  */
 typedef enum HiDebug_ErrorCode {
     /**
-     * Operation successful.
+     * 成功。
      */
     HIDEBUG_SUCCESS = 0,
 
     /**
-     * Invalid parameter. Possible causes: 1. The parameter value is incorrect. 2. The parameter type is incorrect.
+     * 无效参数，可能的原因： 1.参数传值问题；2.参数类型问题。
      */
     HIDEBUG_INVALID_ARGUMENT = 401,
 
     /**
-     * Repeated collection.
+     * 重复采集。
      */
     HIDEBUG_TRACE_CAPTURED_ALREADY = 11400102,
 
     /**
-     * No file write permission.
+     * 没有写文件的权限。
      */
     HIDEBUG_NO_PERMISSION = 11400103,
 
     /**
-     * Internal system error.
+     * 系统内部错误。
      */
     HIDEBUG_TRACE_ABNORMAL = 11400104,
 
     /**
-     * No trace task is running.
+     * 当前没有trace正在运行。
      */
     HIDEBUG_NO_TRACE_RUNNING = 11400105,
 
     /**
-     * Trace storage limit reached
+     * trace文件存储达到限制。。
      * @since 24
      */
     OH_HIDEBUG_TRACE_STORAGE_LIMIT = 11400120,
 
     /**
-     * PC address passed to the symbol parsing function is invalid.
+     * 传入符号解析函数的pc地址是无效的。。
      * @since 20
      */
     HIDEBUG_INVALID_SYMBOLIC_PC_ADDRESS = 11400200,
 
     /**
- * Current device is not supported.
+ * 当前设备不支持。
  * @since 22
  */
     HIDEBUG_NOT_SUPPORTED = 11400300,
 
     /**
- * Current process is being sampled.
+ * 当前进程正在采样。
  * @since 22
  */
     HIDEBUG_UNDER_SAMPLING = 11400301,
 
     /**
-     * Sampling resources are unavailable.
+     * 采样资源不可用。
      * @since 22
      */
     HIDEBUG_RESOURCE_UNAVAILABLE = 11400302,
 
     /**
-     * Resource profiler started/stopped successfully.
+     * 资源采集启动/停止成功。
      * @since 24
      */
     HIDEBUG_RES_PROF_SUCCESS = 11400400,
 
     /**
-     * Invalid resource profiler argument.
+     * 资源采集参数无效。
      * @since 24
      */
     HIDEBUG_RES_PROF_INVALID_ARG = 11400410,
 
     /**
-     * Invalid maximum duration.
+     * 资源采集最大持续时间参数无效。
      * @since 24
      */
     HIDEBUG_RES_PROF_INVALID_MAX_DURATION = 11400411,
 
     /**
-     * Invalid filter size.
+     * 资源采集过滤大小参数无效。
      * @since 24
      */
     HIDEBUG_RES_PROF_INVALID_FILTER_SIZE = 11400412,
 
     /**
-     * Invalid maximum stack depth.
+     * 资源采集最大回栈深度参数无效。
      * @since 24
      */
     HIDEBUG_RES_PROF_INVALID_MAX_STACK_DEPTH = 11400413,
 
     /**
-     * Invalid statistics interval.
+     * 资源采集统计间隔参数无效。
      * @since 24
      */
     HIDEBUG_RES_PROF_INVALID_STATISTICS_INTERVAL = 11400414,
 
     /**
-     * Invalid sample interval.
+     * 资源采集采样大小参数无效。
      * @since 24
      */
     HIDEBUG_RES_PROF_INVALID_SAMPLE_INTERVAL = 11400415,
 
     /**
-     * Invalid resource type.
+     * 资源采集资源类型参数无效。
      * @since 24
      */
     HIDEBUG_RES_PROF_INVALID_RESOURCE_TYPE = 11400416,
 
     /**
-     * Resource profiler permission denied.
+     * 资源采集权限不足，采集资源的目标进程仅支持调用接口进程本身。
      * @since 24
      */
     HIDEBUG_RES_PROF_PERMISSION_DENIED = 11400420,
 
     /**
-     * Resource profiler already started.
+     * 资源采集重复启动。
      * @since 24
      */
     HIDEBUG_RES_PROF_ALREADY_STARTED = 11400421,
 
     /**
-     * Resource profiler not started.
+     * 资源采集未启动，停止失败。
      * @since 24
      */
     HIDEBUG_RES_PROF_NOT_STARTED = 11400422,
 
     /**
-     * Resource profiler process count exceeds the limit.
+     * 资源采集进程数超出 4 个限制。
      * @since 24
      */
     HIDEBUG_RES_PROF_PROCESS_OVERLIMIT = 11400423,
 
     /**
-     * Resource profiler conflicts with CLI tools or system profiling tasks.
+     * 资源采集与命令行工具或系统采集任务冲突。
      * @since 24
      */
     HIDEBUG_RES_PROF_CONFLICT = 11400424,
 
     /**
-     * Resource profiler automatically stopped due to the duration limit.
+     * 资源采集到达指定最大持续时间限制自动停止。
      * @since 24
      */
     HIDEBUG_RES_PROF_AUTO_STOPPED_BY_DURATION = 11400425,
 
     /**
-     * Daily quota exceeded during resource profiling.
+     * 资源采集每日配额超出 10 次限制。
      * @since 24
      */
     HIDEBUG_RES_PROF_DAILY_QUOTA_EXCEEDED = 11400426,
 
     /**
-     * System is experiencing high CPU utilization.
+     * 系统 CPU 处于高负载状态，CPU 占用率超过 70%。
      * @since 24
      */
     HIDEBUG_RES_PROF_CPU_OVERLOADED = 11400427,
 
     /**
-     * Insufficient available memory.
+     * 内存可用空间紧张，可用空间少于 15%。
      * @since 24
      */
     HIDEBUG_RES_PROF_MEM_PRESSURE_CRITICAL = 11400428,
 
     /**
-     * Insufficient available storage space.
+     * 存储可用空间紧张，可用空间少于 15%。
      * @since 24
      */
     HIDEBUG_RES_PROF_STORAGE_PRESSURE_CRITICAL = 11400429,
 
     /**
- * Failed to start/stop the resource profiler.
+ * 资源采集启动/停止失败。
  * @since 24
  */
-    HIDEBUG_RES_PROF_FAILURE = 11400430
+    HIDEBUG_RES_PROF_FAILURE = 11400430,
 } HiDebug_ErrorCode;
 
 /**
@@ -331,24 +330,24 @@ typedef struct HiDebug_MemoryLimit {
 } HiDebug_MemoryLimit;
 
 /**
- * @brief Enumerates the thread types for trace collection.
+ * @brief 采集trace线程的类型。
  *
  * @since 12
  */
 typedef enum HiDebug_TraceFlag {
     /**
-     * Only the main thread of the current application.
+     * 只采集当前应用主线程。
      */
     HIDEBUG_TRACE_FLAG_MAIN_THREAD = 1,
 
     /**
-     * All threads of the application.
+     * 采集当前应用下所有线程。
      */
     HIDEBUG_TRACE_FLAG_ALL_THREADS = 2
 } HiDebug_TraceFlag;
 
 /**
- * @brief Defines trace request configuration.
+ * @brief 定义trace请求配置。
  *
  * @since 24
  */
@@ -376,17 +375,16 @@ typedef struct OH_HiDebug_RequestTraceConfig {
 } OH_HiDebug_RequestTraceConfig;
 
 /**
- * @brief Defines callback type for trace request.
+ * @brief 请求trace采集的回调类型定义。
  *
- * @param errorCode Result code, see {@link HiDebug_ErrorCode}.
- * @param filePath Path of the generated trace file, may be NULL on failure.
+ * @param errorCode 返回结果码，参考{@link HiDebug_ErrorCode}。
+ * @param filePath 返回采集的trace文件，失败时可能是空指针。
  * @since 24
  */
 typedef void (*OH_HiDebug_RequestTraceCallback)(HiDebug_ErrorCode errorCode, const char* filePath);
 
 /**
- * @brief Defines the struct types of the replaceable/restorable **HiDebug_MallocDispatch** table of the application
- * process.
+ * @brief 应用程序进程可替换/恢复的HiDebug_MallocDispatch表结构类型定义。
  *
  * @since 20
  */
@@ -394,9 +392,9 @@ typedef struct HiDebug_MallocDispatch {
     void* (*malloc)(size_t);
     void* (*calloc)(size_t, size_t);
     void* (*realloc)(void*, size_t);
-    void  (*free)(void*);
-    void* (*mmap)(void*, size_t, int, int, int, off_t);
-    int   (*munmap)(void*, size_t);
+    void (*free)(void*);
+    void* (*mmap) (void*, size_t, int, int, int, off_t);
+    int (*munmap) (void*, size_t);
 } HiDebug_MallocDispatch;
 
 /**
@@ -485,20 +483,20 @@ typedef struct HiDebug_NativeStackFrame {
 } HiDebug_NativeStackFrame;
 
 /**
- * @brief Enumerates the stack frame types.
+ * @brief 栈帧类型的枚举值定义。
  *
  * @since 20
  */
 typedef enum HiDebug_StackFrameType {
     /**
-     * JS stack frame.
+     * js类型栈帧。
      */
     HIDEBUG_STACK_FRAME_TYPE_JS = 1,
 
     /**
-     * Native stack frame.
+     * native类型栈帧。
      */
-    HIDEBUG_STACK_FRAME_TYPE_NATIVE = 2
+    HIDEBUG_STACK_FRAME_TYPE_NATIVE = 2,
 } HiDebug_StackFrameType;
 
 /**
@@ -522,7 +520,7 @@ typedef struct HiDebug_StackFrame {
 } HiDebug_StackFrame;
 
 /**
- * @brief Defines an object used for stack backtracing and stack parsing.
+ * @brief 用于栈回溯及栈解析的对象。
  *
  * @since 20
  */
@@ -583,44 +581,44 @@ typedef struct HiDebug_ProcessSamplerConfig {
 } HiDebug_ProcessSamplerConfig;
 
 /**
- * @brief Enumerates the data types of debugging information.
+ * @brief 维测信息数据类型的枚举。
  *
  * @since 23
  */
 typedef enum HiDebug_CrashObjType {
     /**
-      * String.
+      * 字符串
       */
     HIDEBUG_CRASHOBJ_STRING = 0,
 
     /**
-      * 64-byte memory block.
+      * 64字节内存块
       */
     HIDEBUG_CRASHOBJ_MEMORY_64B = 1,
 
     /**
-      * 256-byte memory block.
+      * 256字节内存块
       */
     HIDEBUG_CRASHOBJ_MEMORY_256B = 2,
 
     /**
-     * 1024-byte memory block.
+     * 1024字节内存块
      */
     HIDEBUG_CRASHOBJ_MEMORY_1024B = 3,
 
     /**
-      * 2048-byte memory block.
+      * 2048字节内存块
       */
     HIDEBUG_CRASHOBJ_MEMORY_2048B = 4,
 
     /**
-     * 4096-byte memory block.
+     * 4096字节内存块
      */
     HIDEBUG_CRASHOBJ_MEMORY_4096B = 5
 } HiDebug_CrashObjType;
 
 /**
- * @brief Defines a struct for the resource profiler configuration.
+ * @brief 定义资源采集配置结构体类型。
  *
  * @since 24
  */
@@ -655,45 +653,44 @@ typedef struct OH_HiDebug_ResProfilerConfig {
 } OH_HiDebug_ResProfilerConfig;
 
 /**
- * @brief Defines an enum for the resource profiler types.
+ * @brief 定义资源采集类型的枚举。
  *
  * @since 24
  */
 typedef enum OH_HiDebug_ResourceType {
     /**
-     * File descriptor
+     * 文件描述符
      * @since 24
      */
     OH_RES_TYPE_FD,
 
     /**
-     * Thread
+     * 线程
      * @since 24
      */
     OH_RES_TYPE_THREAD,
 
     /**
-     * Native memory
+     * Native内存
      * @since 24
      */
     OH_RES_TYPE_NATIVE,
 
     /**
-     * GPU memory
+     * GPU内存
      * @since 24
      */
     OH_RES_TYPE_GPU,
 
     /**
-     * Global handle
+     * 全局句柄
      * @since 24
      */
     OH_RES_TYPE_GLOBAL_HANDLE
 } OH_HiDebug_ResourceType;
 
 /**
- * @brief Encapsulates result of a single profiling request operation.
- *        It represents data delivered via OH_HiDebug_ProfilingCallback.
+ * @brief 封装单次资源采集的结果。
  *
  * @since 24
  */
@@ -711,32 +708,33 @@ typedef struct OH_HiDebug_ProfilingResult {
 } OH_HiDebug_ProfilingResult;
 
 /**
- * @brief Callback signature for the resource profiling result.
+ * @brief 定义资源采集回调函数。
  *
- * @param result Pointer to the OH_HiDebug_ProfilingResult structure.
+ * @param result 资源采集回调函数的参数。
  * @since 24
  */
 typedef void (*OH_HiDebug_ProfilingCallback)(OH_HiDebug_ProfilingResult* result);
 
 /**
- * @brief Defines an enum for memory listener callbacks.
+ * @brief 内存监听回调的类型。开发者根据回调类型处理相关逻辑。
+ *
  * @since 26.0.0
  */
 typedef enum OH_HiDebug_MemListenerType {
     /**
-     * Default value. No processing is required.
+     * 无特定操作，仅通知回调。
      * @since 26.0.0
      */
     OH_HIDEBUG_DO_NOTHING = 0,
 
     /**
-     * GC operation
+     * 垃圾回收（GC）操作。
      * @since 26.0.0
      */
     OH_HIDEBUG_RUNNING_GC = 1,
 
     /**
-     * Dump memory snapshot
+     * 导出内存快照。
      * @since 26.0.0
      */
     OH_HIDEBUG_DUMP_SNAPSHOT = 2
