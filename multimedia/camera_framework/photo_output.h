@@ -640,9 +640,10 @@ Camera_ErrorCode OH_PhotoOutput_DestroyPhotoCaptureSettingExt(OH_Camera_PhotoCap
  *
  * @param photoCaptureSettingExt Pointer to the photo capture extension settings object.
  * @param location Image location, defined in the Camera_Location enumeration.
- * @return **CAMERA_OK**: The operation is successful.
- *     <br>**CAMERA_INVALID_ARGUMENT**: A parameter is missing or the parameter type is incorrect.
- *     <br>**CAMERA_SERVICE_FATAL_ERROR**: The camera service is abnormal.
+ * @return <ul>
+ *         <li>**CAMERA_OK**: The operation is successful.</li>
+ *         <li>**CAMERA_INVALID_ARGUMENT**: A parameter is missing or the parameter type is incorrect.</li>
+ *         </ul>
  * @since 26.0.0
  */
 Camera_ErrorCode OH_PhotoCaptureSettingExt_SetLocation(OH_Camera_PhotoCaptureSettingExt* photoCaptureSettingExt,
