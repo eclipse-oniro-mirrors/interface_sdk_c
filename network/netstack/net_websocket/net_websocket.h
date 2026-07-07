@@ -31,16 +31,6 @@
  */
 
 /**
- * @addtogroup netstack
- * @{
- *
- * @brief Provides C APIs for the websocket client module.
-
- * @since 11
- * @version 1.0
- */
-
-/**
  * @file net_websocket.h
  *
  * @brief Defines the APIs for the websocket client module.
