@@ -154,7 +154,7 @@ EffectErrorCode OH_Filter_Invert(OH_Filter* filter);
 EffectErrorCode OH_Filter_SetColorMatrix(OH_Filter* filter, OH_Filter_ColorMatrix* matrix);
 
 /**
- * @brief Obtains the PixelMap with the filter effect.
+ * @brief Obtains the PixelMap used to create a filter.
  *
  * @param[in] filter Pointer to the filter. Cannot be NULL.
  * @param[out] pixelmap Double pointer to the PixelMap obtained. Cannot be NULL.
