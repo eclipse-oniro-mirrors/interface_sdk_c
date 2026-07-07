@@ -337,13 +337,6 @@ typedef void (*OH_QoS_GewuOnResponse)(void* context, const char* response);
  * <br>{
  * <br>&nbsp;&nbsp;&nbsp;&nbsp;"model": "/data/storage/el2/base/files/qwen2/"
  * <br>&nbsp;}
- *
- * @code{.json}
- * {
- *     "model": "/data/storage/el2/base/files/qwen2/"
- * }
- * @endcode
- *
  * @param attributes Input parameter, which is a JSON string of session attributes. It is used to specify the model
  *     path used by the session. Supported field: **model**. (The field is mandatory and of the string type, indicating
  *     the model path used by the session. Paths that can be accessed by the application sandbox are supported.) For
@@ -428,21 +421,6 @@ OH_QoS_GewuErrorCode OH_QoS_GewuAbortRequest(OH_QoS_GewuSession session, OH_QoS_
  * <br>&nbsp;&nbsp;&nbsp;&nbsp;],
  * <br>&nbsp;&nbsp;&nbsp;&nbsp;"stream": true
  * <br>}
- *
- * @code{.json} {
- *      "messages": [
- *          {
- *              "role": "developer",
- *              "content": "You are a helpful assistant."
- *          },
- *          {
- *              "role": "user",
- *              "content": "What is OpenHarmony"
- *          }
- *      ],
- *      "stream": true
- * }
- * @endcode
  * @param session Handle to the session, specifying the target session for request submission.
  * @param request JSON string of the request. The supported fields include: **messages** (message array, where each
  *     element contains the **role** and **content** fields, with **role** options being **developer**, **user**, and **
