@@ -20,17 +20,7 @@
  * @addtogroup NetConnection
  * @{
  *
- * @brief Provide C interface for the data network connection module of network management.
- *
- * @since 11
- * @version 1.0
- */
-
-/**
- * @addtogroup NetConnection
- * @{
- *
- * @brief Provide C interface for the data network connection module of network management.
+ * @brief 为网络管理数据网络连接模块提供C接口。
  *
  * @since 11
  * @version 1.0
