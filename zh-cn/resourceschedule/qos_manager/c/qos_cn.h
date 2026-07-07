@@ -184,7 +184,7 @@ typedef enum {
      */
     OH_QOS_GEWU_NOENT  = 502,
     /**
-     * @brief 找不到符号。可能原因：依赖的库或模块未正确加载。解决措施：请检查依赖库是否正确安装。
+     * @brief 找不到子系统。可能原因：目标设备不支持该功能。解决措施：更换为支持该功能的设备。
      *
      * @since 20
      */
@@ -217,7 +217,7 @@ typedef struct {
      *     <br>- `OH_QOS_GEWU_INVAL`：参数错误，表示输入参数不符合接口要求，请检查`attributes`中的字段类型、格式和取值。
      *     <br>- `OH_QOS_GEWU_NOPERM`：权限不足，表示调用者缺少接口所需权限，请检查应用权限配置。
      *     <br>- `OH_QOS_GEWU_EXIST`：会话已存在，表示重复创建已存在的会话，请确认会话创建流程。
-     *     <br>- `OH_QOS_GEWU_NOSYS`：找不到符号，表示系统不支持相关功能或依赖符号不可用，请确认系统版本和依赖库状态。
+     *     <br>- `OH_QOS_GEWU_NOSYS`：找不到子系统，表示系统不支持相关功能或依赖子系统不可用，请确认系统版本和依赖库状态。
      *     <br>上述枚举值与数字的对应关系：`OH_QOS_GEWU_OK`=0、`OH_QOS_GEWU_NOPERM`=201、`
      * OH_QOS_GEWU_NOMEM`=203、`OH_QOS_GEWU_INVAL`=401、`OH_QOS_GEWU_EXIST`=501、`OH_QOS_GEWU_NOSYS`=801。
      *
@@ -246,7 +246,7 @@ typedef struct {
      *     <br>- `OH_QOS_GEWU_INVAL`：参数错误，表示传入的会话句柄、请求内容或回调等参数无效，请检查参数类型、格式和取值。
      *     <br>- `OH_QOS_GEWU_NOENT`：找不到会话，表示指定的会话不存在或已被销毁，请确认会话是否已成功创建且仍然有效。
      *     <br>- `OH_QOS_GEWU_NOPERM`：权限不足，表示调用者缺少接口所需权限，请检查应用权限配置。
-     *     <br>- `OH_QOS_GEWU_NOSYS`：找不到符号，表示系统不支持相关功能或依赖符号不可用，请确认系统版本和依赖库状态。
+     *     <br>- `OH_QOS_GEWU_NOSYS`：找不到子系统，表示系统不支持相关功能或依赖子系统不可用，请确认系统版本和依赖库状态。
      *     <br>上述枚举值与数字的对应关系：`OH_QOS_GEWU_OK`=0、`OH_QOS_GEWU_NOPERM`=201、`
      * OH_QOS_GEWU_NOMEM`=203、`OH_QOS_GEWU_INVAL`=401、`OH_QOS_GEWU_NOENT`=502、`OH_QOS_GEWU_NOSYS`=801。
      *
@@ -284,7 +284,7 @@ typedef void (*OH_QoS_GewuOnResponse)(void* context, const char* response);
  * @return 格物创建会话结果。
  *     <br>- 表示创建会话成功，返回值`OH_QoS_GewuCreateSessionResult`里的`error`为`OH_QOS_GEWU_OK`，`session`为会话句柄。
  *     <br>- 表示创建会话失败，返回值`OH_QoS_GewuCreateSessionResult`里的`error`为错误原因，其中`OH_QOS_GEWU_NOMEM`表示没有足够的内存创建会话，`
- *     OH_QOS_GEWU_INVAL`表示参数错误，`OH_QOS_GEWU_NOPERM`表示权限不足，`OH_QOS_GEWU_EXIST`表示会话已存在，`OH_QOS_GEWU_NOSYS`表示找不到符号。
+ *     OH_QOS_GEWU_INVAL`表示参数错误，`OH_QOS_GEWU_NOPERM`表示权限不足，`OH_QOS_GEWU_EXIST`表示会话已存在，`OH_QOS_GEWU_NOSYS`表示找不到子系统。
  * @since 20
  */
 OH_QoS_GewuCreateSessionResult OH_QoS_GewuCreateSession(const char* attributes);
@@ -298,7 +298,7 @@ OH_QoS_GewuCreateSessionResult OH_QoS_GewuCreateSession(const char* attributes);
  *     <br>- 表示会话销毁成功，返回值为`OH_QOS_GEWU_OK`。
  *     <br>- 表示找不到会话，返回`OH_QOS_GEWU_NOENT`。
  *     <br>- 表示参数无效，返回`OH_QOS_GEWU_INVAL`。
- *     <br>- 表示找不到符号，返回`OH_QOS_GEWU_NOSYS`。
+ *     <br>- 表示找不到子系统，返回`OH_QOS_GEWU_NOSYS`。
  *     <br>- 表示其他内部错误，返回`OH_QOS_GEWU_FAULT`。
  * @since 20
  */
@@ -314,7 +314,7 @@ OH_QoS_GewuErrorCode OH_QoS_GewuDestroySession(OH_QoS_GewuSession session);
  *     <br>- 表示成功停止请求，返回`OH_QOS_GEWU_OK`。
  *     <br>- 表示找不到请求，返回`OH_QOS_GEWU_NOENT`。
  *     <br>- 表示参数无效，返回`OH_QOS_GEWU_INVAL`。
- *     <br>- 表示找不到符号，返回`OH_QOS_GEWU_NOSYS`。
+ *     <br>- 表示找不到子系统，返回`OH_QOS_GEWU_NOSYS`。
  * @since 20
  */
 OH_QoS_GewuErrorCode OH_QoS_GewuAbortRequest(OH_QoS_GewuSession session, OH_QoS_GewuRequest request);
@@ -352,7 +352,7 @@ OH_QoS_GewuErrorCode OH_QoS_GewuAbortRequest(OH_QoS_GewuSession session, OH_QoS_
  *     <br>- 表示提交请求成功，返回值`OH_QoS_GewuSubmitRequestResult`里的`error`为`OH_QOS_GEWU_OK`（数值0），`request`为请求句柄。
  *     <br>- 表示提交请求失败，返回值`OH_QoS_GewuSubmitRequestResult`里的`error`为错误原因，其中`OH_QOS_GEWU_NOMEM`（数值203）表示没有足够的内存处理该请求，`
  *     OH_QOS_GEWU_INVAL`（数值401）表示参数错误，`OH_QOS_GEWU_NOENT`（数值502）表示找不到会话，`OH_QOS_GEWU_NOPERM`（数值201）表示权限不足，`
- *     OH_QOS_GEWU_NOSYS`（数值801）表示找不到符号。
+ *     OH_QOS_GEWU_NOSYS`（数值801）表示找不到子系统。
  * @since 20
  */
 OH_QoS_GewuSubmitRequestResult OH_QoS_GewuSubmitRequest(OH_QoS_GewuSession session,
