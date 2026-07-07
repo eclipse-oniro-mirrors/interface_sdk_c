@@ -47,10 +47,10 @@ typedef enum I18n_ErrorCode {
     /** @error 成功*/
     SUCCESS = 0,
 
-    /** @error 无效的参数 */
+    /** @error 当接口传入非法的参数值时，系统会产生此错误码。 */
     ERROR_INVALID_PARAMETER = 8900001,
 
-    /** @error 意外错误，例如内存错误 */
+    /** @error 预期之外的错误，例如内存错误 */
     UNEXPECTED_ERROR = 8900050,
 } I18n_ErrorCode;
 
