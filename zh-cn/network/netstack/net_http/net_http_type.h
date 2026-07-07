@@ -17,16 +17,7 @@
  * @addtogroup netstack
  * @{
  *
- * @brief Provides C APIs for the Http client module.
- *
- * @since 20
- */
-
-/**
- * @addtogroup netstack
- * @{
- *
- * @brief Provides C APIs for the Http client module.
+ * @brief 提供HTTP客户端模块的C接口。
  *
  * @since 20
  */
