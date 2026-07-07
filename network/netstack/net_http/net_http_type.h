@@ -23,15 +23,6 @@
  */
 
 /**
- * @addtogroup netstack
- * @{
- *
- * @brief Provides C APIs for the Http client module.
- *
- * @since 20
- */
-
-/**
  * @file net_http_type.h
  * @brief Defines the data structures for the C APIs of the HTTP request module.
  *
