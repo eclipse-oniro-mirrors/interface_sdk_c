@@ -280,13 +280,6 @@ typedef void (*OH_QoS_GewuOnResponse)(void* context, const char* response);
  * <br>{
  * <br>&nbsp;&nbsp;&nbsp;&nbsp;"model": "/data/storage/el2/base/files/qwen2/"
  * <br>&nbsp;}
- *
- * @code{.json}
- * {
- *     "model": "/data/storage/el2/base/files/qwen2/"
- * }
- * @endcode
- *
  * @param attributes 输入参数，会话属性的JSON字符串，用于指定会话使用的模型路径。支持的字段包括：model（string，必选，表示会话使用的模型路径，支持应用沙箱可访问的路径）。详见函数说明中的JSON示例。
  * @return 格物创建会话结果。
  *     <br>- 表示创建会话成功，返回值`OH_QoS_GewuCreateSessionResult`里的`error`为`OH_QOS_GEWU_OK`，`session`为会话句柄。
@@ -350,21 +343,6 @@ OH_QoS_GewuErrorCode OH_QoS_GewuAbortRequest(OH_QoS_GewuSession session, OH_QoS_
  * <br>&nbsp;&nbsp;&nbsp;&nbsp;],
  * <br>&nbsp;&nbsp;&nbsp;&nbsp;"stream": true
  * <br>}
- *
- * @code{.json} {
- *      "messages": [
- *          {
- *              "role": "developer",
- *              "content": "You are a helpful assistant."
- *          },
- *          {
- *              "role": "user",
- *              "content": "What is OpenHarmony"
- *          }
- *      ],
- *      "stream": true
- * }
- * @endcode
  * @param session 会话句柄，请求要提交的会话。
  * @param request 请求的JSON字符串，支持的字段包括：messages（array，消息数组，每个元素包含role和content字段，其中role可选值为developer、user、assistant）、
  *     stream（boolean或null，可选，是否启用流式推理，不传时默认为非流式）。详见函数说明中的JSON示例。
