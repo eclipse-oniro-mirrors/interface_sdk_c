@@ -33,7 +33,7 @@
 
 /**
  * @file net_http_type.h
- * @brief Defines the data structures for the C APIs of the HTTP request module.
+ * @brief 定义HTTP请求模块的C接口需要的数据结构。
  *
  * @library libnet_http.so
  * @kit NetworkKit
@@ -52,339 +52,428 @@ extern "C" {
 #include <stddef.h>
 
 /**
- * @brief Defines the maximum path length of an HTTP request.
+ * @brief HTTP请求最长目录路径长度。
  *
  * @since 20
  */
 #define OHOS_HTTP_MAX_PATH_LEN 128
 
 /**
- * @brief Defines the maximum string length of an HTTP request.
+ * @brief HTTP请求最长字符串长度。
  *
  * @since 20
  */
 #define OHOS_HTTP_MAX_STR_LEN 256
 
 /**
- * @brief Defines the maximum number of DNS servers for an HTTP request.
+ * @brief HTTP请求最多DNS服务器数量。
  *
  * @since 20
  */
 #define OHOS_HTTP_DNS_SERVER_NUM_MAX 3
 
 /**
- * @brief Defines http error code.
+ * @brief 定义HTTP请求的错误码。
  *
  * @since 20
  */
 typedef enum Http_ErrCode {
-    /** Operation success. */
+    /**
+     * 请求成功。
+     */
     OH_HTTP_RESULT_OK = 0,
-    /** @brief Parameter error. */
+    /** @brief 参数错误。
+* */
     OH_HTTP_PARAMETER_ERROR = 401,
-    /** @brief Permission denied. */
+    /** @brief 权限校验失败。
+* */
     OH_HTTP_PERMISSION_DENIED = 201,
-    /** @brief Error code base. */
+    /** @brief 基础错误码偏移。
+* */
     OH_HTTP_NETSTACK_E_BASE = 2300000,
-    /** @brief Unsupported protocol. */
+    /** @brief 不支持的协议。
+* */
     OH_HTTP_UNSUPPORTED_PROTOCOL = (OH_HTTP_NETSTACK_E_BASE + 1),
-    /** @brief Invalid URL format or missing URL. */
+    /** @brief URL格式错误。
+* */
     OH_HTTP_INVALID_URL = (OH_HTTP_NETSTACK_E_BASE + 3),
-    /** @brief Failed to resolve the proxy name. */
+    /** @brief 代理服务器域名解析失败。
+* */
     OH_HTTP_RESOLVE_PROXY_FAILED = (OH_HTTP_NETSTACK_E_BASE + 5),
-    /** @brief Failed to resolve the host name. */
+    /** @brief 域名解析失败。
+* */
     OH_HTTP_RESOLVE_HOST_FAILED = (OH_HTTP_NETSTACK_E_BASE + 6),
-    /** @brief Failed to connect to the server. */
+    /** @brief 无法连接到服务器。
+* */
     OH_HTTP_CONNECT_SERVER_FAILED = (OH_HTTP_NETSTACK_E_BASE + 7),
-    /** @brief Invalid server response. */
+    /** @brief 服务器返回非法数据。
+* */
     OH_HTTP_INVALID_SERVER_RESPONSE = (OH_HTTP_NETSTACK_E_BASE + 8),
-    /** @brief Access to the remote resource denied. */
+    /** @brief 拒绝访问远程资源。
+* */
     OH_HTTP_ACCESS_REMOTE_DENIED = (OH_HTTP_NETSTACK_E_BASE + 9),
-    /** @brief Error in the HTTP2 framing layer. */
+    /** @brief HTTP2框架层出现错误。
+* */
     OH_HTTP_HTTP2_FRAMING_ERROR = (OH_HTTP_NETSTACK_E_BASE + 16),
-    /** @brief Transferred a partial file. */
+    /** @brief 传输了部分文件。
+* */
     OH_HTTP_TRANSFER_PARTIAL_FILE = (OH_HTTP_NETSTACK_E_BASE + 18),
-    /** @brief Failed to write the received data to the disk or application. */
+    /** @brief 无法将接收到的数据写入磁盘或应用程序。
+* */
     OH_HTTP_WRITE_DATA_FAILED = (OH_HTTP_NETSTACK_E_BASE + 23),
-    /** @brief Upload failed. */
+    /** @brief 上传失败。
+* */
     OH_HTTP_UPLOAD_FAILED = (OH_HTTP_NETSTACK_E_BASE + 25),
-    /** @brief Failed to open or read local data from the file or application. */
+    /** @brief 无法打开或读取文件或应用程序中的本地数据。
+* */
     OH_HTTP_OPEN_LOCAL_DATA_FAILED = (OH_HTTP_NETSTACK_E_BASE + 26),
-    /** @brief Out of memory. */
+    /** @brief 内存不足。
+* */
     OH_HTTP_OUT_OF_MEMORY = (OH_HTTP_NETSTACK_E_BASE + 27),
-    /** @brief Operation timeout. */
+    /** @brief 操作超时。
+* */
     OH_HTTP_OPERATION_TIMEOUT = (OH_HTTP_NETSTACK_E_BASE + 28),
-    /** @brief The number of redirections reaches the maximum allowed. */
+    /** @brief 重定向次数已达到允许的最大值。
+* */
     OH_HTTP_TOO_MANY_REDIRECTIONS = (OH_HTTP_NETSTACK_E_BASE + 47),
-    /** @brief The server returned nothing (no header or data). */
+    /** @brief 服务器没有返回任何内容（没有标头或数据）。
+* */
     OH_HTTP_SERVER_RETURNED_NOTHING = (OH_HTTP_NETSTACK_E_BASE + 52),
-    /** @brief Failed to send data to the peer. */
+    /** @brief 发送数据失败。
+* */
     OH_HTTP_SEND_DATA_FAILED = (OH_HTTP_NETSTACK_E_BASE + 55),
-    /** @brief Failed to receive data from the peer. */
+    /** @brief 接收数据失败。
+* */
     OH_HTTP_RECEIVE_DATA_FAILED = (OH_HTTP_NETSTACK_E_BASE + 56),
-    /** @brief Local SSL certificate error. */
+    /** @brief 本地SSL证书错误。
+* */
     OH_HTTP_SSL_CERTIFICATE_ERROR = (OH_HTTP_NETSTACK_E_BASE + 58),
-    /** @brief The specified SSL cipher cannot be used. */
+    /** @brief 指定的加密套件不可用。
+* */
     OH_HTTP_SSL_CIPHER_USED_ERROR = (OH_HTTP_NETSTACK_E_BASE + 59),
-    /** @brief Invalid SSL peer certificate or SSH remote key. */
+    /** @brief SSL对等证书或SSH远程密钥无效。
+* */
     OH_HTTP_INVALID_SSL_PEER_CERT = (OH_HTTP_NETSTACK_E_BASE + 60),
-    /** @brief Invalid HTTP encoding format. */
+    /** @brief HTTP编码格式无效。
+* */
     OH_HTTP_INVALID_ENCODING_FORMAT = (OH_HTTP_NETSTACK_E_BASE + 61),
-    /** @brief Maximum file size exceeded. */
+    /** @brief 超出最大文件大小。
+* */
     OH_HTTP_FILE_TOO_LARGE = (OH_HTTP_NETSTACK_E_BASE + 63),
-    /** @brief Remote disk full. */
+    /** @brief 远端磁盘满。
+* */
     OH_HTTP_REMOTE_DISK_FULL = (OH_HTTP_NETSTACK_E_BASE + 70),
-    /** @brief Remote file already exists. */
+    /** @brief 远端文件已存在。
+* */
     OH_HTTP_REMOTE_FILE_EXISTS = (OH_HTTP_NETSTACK_E_BASE + 73),
-    /** @brief The SSL CA certificate does not exist or is inaccessible. */
+    /** @brief SSL CA证书不存在或无法访问。
+* */
     OH_HTTP_SSL_CA_NOT_EXIST = (OH_HTTP_NETSTACK_E_BASE + 77),
-    /** @brief Remote file not found. */
+    /** @brief 远端文件未找到。
+* */
     OH_HTTP_REMOTE_FILE_NOT_FOUND = (OH_HTTP_NETSTACK_E_BASE + 78),
     /**
-     * @brief The request was intercepted by the HTTP global interceptor.
+     * @brief 请求已被 HTTP 全局拦截器拦截。
      * @since 26.0.0
      */
     OH_HTTP_REQUEST_INTERCEPTED = (OH_HTTP_NETSTACK_E_BASE + 996),
-    /** @brief Authentication error. */
+    /** @brief 身份验证错误。
+* */
     OH_HTTP_AUTHENTICATION_ERROR = (OH_HTTP_NETSTACK_E_BASE + 94),
-    /** @brief It is not allowed to access this domain. */
+    /** @brief 不允许访问该域。
+* */
     OH_HTTP_ACCESS_DOMAIN_NOT_ALLOWED = (OH_HTTP_NETSTACK_E_BASE + 998),
-    /** @brief Unknown error. */
+    /** @brief 未知错误。
+* */
     OH_HTTP_UNKNOWN_ERROR = (OH_HTTP_NETSTACK_E_BASE + 999)
 } Http_ErrCode;
 
 /**
- * @brief Defines http response code.
+ * @brief 定义HTTP响应码。
  *
  * @since 20
  */
 typedef enum Http_ResponseCode {
-    /** @brief The request was successful. */
+    /** @brief 请求成功。
+* */
     OH_HTTP_OK = 200,
-    /** @brief Successfully requested and created a new resource. */
+    /** @brief 成功请求并创建新资源。
+* */
     OH_HTTP_CREATED = 201,
-    /** @brief The request has been accepted but has not been processed completely. */
+    /** @brief 请求已被接受但尚未完全处理。
+* */
     OH_HTTP_ACCEPTED = 202,
-    /** @brief Unauthorized information. The request was successful. */
+    /** @brief 请求成功。但是有未授权信息。
+* */
     OH_HTTP_NON_AUTHORITATIVE_INFO = 203,
-    /** @brief No content. The server successfully processed, but did not return content. */
+    /** @brief 服务器处理成功，但未返回内容。
+* */
     OH_HTTP_NO_CONTENT = 204,
-    /** @brief Reset the content. */
+    /** @brief 重置内容。
+* */
     OH_HTTP_RESET = 205,
-    /** @brief Partial content. The server successfully processed some GET requests. */
+    /** @brief 服务器成功处理了部分GET请求。
+* */
     OH_HTTP_PARTIAL = 206,
-    /** @brief Multiple options. */
+    /** @brief 多种选择。
+* */
     OH_HTTP_MULTI_CHOICE = 300,
     /**
-     * @brief Permanently move. The requested resource has been permanently moved to a new URI,
-     * and the returned information will include the new URI. The browser will automatically redirect to the new URI.
+     * @brief 请求的资源已永久移动到新的URI，返回信息将包含新的URI。浏览器将自动重定向到新的URI。
+     *
      */
     OH_HTTP_MOVED_PERM = 301,
-    /** @brief Temporary movement. */
+    /** @brief 临时重定向。
+* */
     OH_HTTP_MOVED_TEMP = 302,
-    /** @brief View other addresses. */
+    /** @brief 查看其他地址。请求的资源已移动到新的URL，客户端应使用GET方法访问该URL。
+* */
     OH_HTTP_SEE_OTHER = 303,
-    /** @brief Not modified. */
+    /** @brief 请求的资源没有修改。
+* */
     OH_HTTP_NOT_MODIFIED = 304,
-    /** @brief Using proxies. */
+    /** @brief 请求资源需要使用代理访问。
+* */
     OH_HTTP_USE_PROXY = 305,
-    /** @brief The server cannot understand the syntax error error requested by the client. */
+    /** @brief 服务器无法理解客户端请求的语法错误。
+* */
     OH_HTTP_BAD_REQUEST = 400,
-    /** @brief Request for user authentication. */
+    /** @brief 请求用户身份验证。
+* */
     OH_HTTP_UNAUTHORIZED = 401,
-    /** @brief Reserved for future use. */
+    /** @brief 保留以供将来使用。
+* */
     OH_HTTP_PAYMENT_REQUIRED = 402,
-    /** @brief The server understands the request from the requesting client, but refuses to execute it. */
+    /** @brief 服务器理解来自请求客户端的请求，但拒绝执行。
+* */
     OH_HTTP_FORBIDDEN = 403,
-    /** @brief The server was unable to find resources (web pages) based on the client's request. */
+    /** @brief 服务器无法根据客户端的请求找到资源。
+* */
     OH_HTTP_NOT_FOUND = 404,
-    /** @brief The method in the client request is prohibited. */
+    /** @brief 客户端请求中的方法被禁止。
+* */
     OH_HTTP_BAD_METHOD = 405,
-    /** @brief The server unabled to complete request based on the content characteristics requested by the client. */
+    /** @brief 服务器无法根据客户端请求的内容特征完成请求。
+* */
     OH_HTTP_NOT_ACCEPTABLE = 406,
-    /** @brief Request authentication of the proxy's identity. */
+    /** @brief 请求验证代理人的身份。
+* */
     OH_HTTP_PROXY_AUTH = 407,
-    /** @brief The request took too long and timed out. */
+    /** @brief 请求耗时太长，超时。
+* */
     OH_HTTP_CLIENT_TIMEOUT = 408,
     /**
-     * @brief The server may have returned this code when completing the client's PUT request,
-     * as there was a conflict when the server was processing the request.
+     * @brief 服务器在完成客户端的PUT请求时可能返回此代码，因为服务器在处理请求时发生冲突。
+     *
      */
     OH_HTTP_CONFLICT = 409,
-    /** @brief The resource requested by the client no longer exists. */
+    /** @brief 客户端请求的资源不再存在。
+* */
     OH_HTTP_GONE = 410,
-    /** @brief The server is unable to process request information sent by the client without Content Length. */
+    /** @brief 服务器无法处理客户端发送的不带Content Length的请求信息。
+* */
     OH_HTTP_LENGTH_REQUIRED = 411,
-    /** @brief The prerequisite for requesting information from the client is incorrect. */
+    /** @brief 向客户端请求信息的前提条件不正确。
+* */
     OH_HTTP_PRECON_FAILED = 412,
-    /** @brief The request was rejected because the requested entity was too large for the server to process. */
+    /** @brief 请求被拒绝，因为请求的实体太大，服务器无法处理。
+* */
     OH_HTTP_ENTITY_TOO_LARGE = 413,
-    /** @brief The requested URI is too long (usually a URL) and the server cannot process it. */
+    /** @brief 请求的URI超过了服务器能够解析的长度，服务器无法处理。
+* */
     OH_HTTP_REQUEST_TOO_LONG = 414,
-    /** @brief The server is unable to process the requested format. */
+    /** @brief 服务器无法处理请求的格式。
+* */
     OH_HTTP_UNSUPPORTED_TYPE = 415,
-    /** @brief Requested Range not satisfiable. */
+    /** @brief 请求的范围无法满足。
+* */
     OH_HTTP_RANGE_NOT_MET = 416,
-    /** @brief Internal server error, unable to complete the request. */
+    /** @brief 内部服务器错误，无法完成请求。
+* */
     OH_HTTP_INTERNAL_ERROR = 500,
-    /** @brief The server does not support the requested functionality and cannot complete the request. */
+    /** @brief 服务器不支持请求的功能，无法完成请求。
+* */
     OH_HTTP_NOT_IMPLEMENTED = 501,
-    /** @brief The server acting as a gateway or proxy received an invalid request from the remote server. */
+    /** @brief 充当网关或代理的服务器从远程服务器收到无效请求。
+* */
     OH_HTTP_BAD_GATEWAY = 502,
-    /** @brief Due to overload or system maintenance, the server is temporarily unable to process client requests. */
+    /** @brief 由于超载或系统维护，服务器暂时无法处理客户端请求。
+* */
     OH_HTTP_UNAVAILABLE = 503,
-    /** @brief The server acting as gateway did not obtain requests from the remote server in a timely manner. */
+    /** @brief 作为网关的服务器没有及时从远程服务器获取请求。
+* */
     OH_HTTP_GATEWAY_TIMEOUT = 504,
-    /** @brief The version of the HTTP protocol requested by the server. */
+    /** @brief 服务器请求的HTTP协议版本。
+* */
     OH_HTTP_VERSION = 505
 } Http_ResponseCode;
 
 /**
- * @brief Defines the HTTP buffer structure.
+ * @brief HTTP缓存结构体。
  *
  * @since 20
  */
 typedef struct Http_Buffer {
     /**
-     * Buffer data.
+     * 缓存区数据。
      */
     const char *buffer;
     /**
-     * Buffer length.
+     * 缓存区长度。
      */
     uint32_t length;
 } Http_Buffer;
 
 /**
- * @brief Defines the address Family.
+ * @brief 定义解析目标域名时限定的地址类型。
  *
  * @since 20
  */
 typedef enum Http_AddressFamilyType {
-    /** Default, The system automatically selects the IPv4 or IPv6 address of the domain name. */
+    /**
+     * 默认值，系统将自行选择目标域名的IPv4地址或IPv6地址。
+     */
     HTTP_ADDRESS_FAMILY_DEFAULT = 0,
-    /** IPv4, Selects the IPv4 address of the domain name. */
+    /**
+     * 系统仅解析目标域名的IPv4地址，忽略IPv6地址。
+     */
     HTTP_ADDRESS_FAMILY_ONLY_V4 = 1,
-    /** IPv6, Selects the IPv4 address of the domain name. */
+    /**
+     * 系统仅解析目标域名的IPv6地址，忽略IPv4地址。
+     */
     HTTP_ADDRESS_FAMILY_ONLY_V6 = 2
 } Http_AddressFamilyType;
 
 /**
- * @brief Sets the HTTP request method to GET.
+ * @brief HTTP请求GET方法。
  * 
  * @since 20
  */
 #define NET_HTTP_METHOD_GET "GET"
 
 /**
- * @brief Sets the HTTP request method to HEAD.
+ * @brief HTTP请求HEAD方法。
  * 
  * @since 20
  */
 #define NET_HTTPMETHOD_HEAD "HEAD"
 
 /**
- * @brief Sets the HTTP request method to OPTIONS.
+ * @brief HTTP请求OPTIONS方法。
  * 
  * @since 20
  */
 #define NET_HTTPMETHOD_OPTIONS "OPTIONS"
 
 /**
- * @brief Sets the HTTP request method to TRACE.
+ * @brief HTTP请求TRACE方法。
  * 
  * @since 20
  */
 #define NET_HTTPMETHOD_TRACE "TRACE"
 /**
- * @brief Sets the HTTP request method to DELETE.
+ * @brief HTTP请求DELETE方法。
  *
  * @since 20
  */
 #define NET_HTTPMETHOD_DELETE "DELETE"
 
 /**
- * @brief Sets the HTTP request method to POST.
+ * @brief HTTP请求POST方法。
  * 
  * @since 20
  */
 #define NET_HTTP_METHOD_POST "POST"
 
 /**
- * @brief Sets the HTTP request method to PUT.
+ * @brief HTTP请求PUT方法。
  * 
  * @since 20
  */
 #define NET_HTTP_METHOD_PUT "PUT"
 
 /**
- * @brief Sets the HTTP request method to CONNECT.
+ * @brief HTTP请求CONNECT方法。
  * 
  * @since 20
  */
 #define NET_HTTP_METHOD_PATCH "CONNECT"
 
 /**
- * @brief Defines the HTTP version.
+ * @brief HTTP协议版本号枚举定义。
  *
  * @since 20
  */
 typedef enum Http_HttpProtocol {
-    /** Default choose by curl. */
+    /**
+     * 遵循curl的协议版本选择。
+     */
     OH_HTTP_NONE = 0,
-    /** HTTP 1.1 version. */
+    /**
+     * HTTP1.1版本。
+     */
     OH_HTTP1_1,
-    /** HTTP 2 version. */
+    /**
+     * HTTP2版本。
+     */
     OH_HTTP2,
-    /** HTTP 3 version. */
+    /**
+     * HTTP3版本。
+     */
     OH_HTTP3
 } Http_HttpProtocol;
 
 /**
- * @brief Defines the Cert Type.
+ * @brief 证书类型枚举。
  *
  * @since 20
  */
 typedef enum Http_CertType {
-    /** PEM Cert Type. */
+    /**
+     * PEM证书类型。
+     */
     OH_HTTP_PEM = 0,
-    /** DER Cert Type. */
+    /**
+     * DER证书类型。
+     */
     OH_HTTP_DER = 1,
-    /** P12 Cert Type. */
+    /**
+     * P12证书类型。
+     */
     OH_HTTP_P12 = 2
 } Http_CertType;
 
 /**
- * @brief Defines the header of an HTTP request or response.
+ * @brief HTTP请求或者是响应中的标头。
  *
  * @since 20
  */
 typedef struct Http_Headers Http_Headers;
 
 /**
- * @brief Defines the type of a mapped value in a request or response header.
+ * @brief 请求或者响应的标头映射的值类型。
  *
  * @since 20
  */
 typedef struct Http_HeaderValue {
     /**
-     * Value of a key-value pair in the header.
+     * 标头键值对的值。
      */
     char *value;
     /**
-     * Pointer to Pointer to the next **Http_HeaderValue**.
+     * 链式存储。指向下一个Http_HeaderValue。
      */
     struct Http_HeaderValue *next;
 } Http_HeaderValue;
 
 /**
- * @brief Defines all key-value pairs in the request or response header.
+ * @brief 请求或者响应的标头的所有键值对。
  *
  * @since 20
  */
 typedef struct Http_HeaderEntry {
     /**
-     * Key in the request or response header.
+     * 请求或者响应的标头中的键。
      */
     char *key;
     /**
@@ -392,20 +481,19 @@ typedef struct Http_HeaderEntry {
      */
     Http_HeaderValue *value;
     /**
-     * Pointer to Pointer to the next **Http_HeaderEntry**.
+     * 链式存储。指向下一个Http_HeaderEntry。
      */
     struct Http_HeaderEntry *next;
 } Http_HeaderEntry;
 
 /**
- * @brief Defines the client certificate sent to a remote server, which will be used by the server to verify the
- * identity of the client.
+ * @brief 发送到服务端的客户端证书配置，服务端将通过客户端证书校验客户端身份。
  *
  * @since 20
  */
 typedef struct Http_ClientCert {
     /**
-     * Path of the certificate file.
+     * 证书路径。
      */
     char *certPath;
     /**
@@ -413,37 +501,43 @@ typedef struct Http_ClientCert {
      */
     Http_CertType type;
     /**
-     * Path of the certificate key file.
+     * 证书密钥的路径。
      */
     char *keyPath;
     /**
-     * Password of the certificate key file.
+     * 证书密钥的密码。
      */
     char *keyPassword;
 } Http_ClientCert;
 
 /**
- * @brief Proxy type. Used to distinguish different proxy configurations.
+ * @brief 代理配置类型枚举定义。
  *
  * @since 20
  */
 typedef enum Http_ProxyType {
-    /** No proxy */
+    /**
+     * 不使用代理。
+     */
     HTTP_PROXY_NOT_USE,
-    /** System proxy */
+    /**
+     * 使用系统代理。
+     */
     HTTP_PROXY_SYSTEM,
-    /** Use custom proxy */
+    /**
+     * 使用用户自定义代理。
+     */
     HTTP_PROXY_CUSTOM
 } Http_ProxyType;
 
 /**
- * @brief Defines the custom proxy configuration.
+ * @brief 用户自定义代理配置。
  *
  * @since 20
  */
 typedef struct Http_CustomProxy {
     /**
-     * Host name of the proxy server. If no port is explicitly set, the port number is defaulted to **1080**.
+     * 代理服务器主机名， 如果没有显式设置端口，端口将默认为1080。
      */
     const char *host;
     int32_t port;
@@ -451,7 +545,7 @@ typedef struct Http_CustomProxy {
 } Http_CustomProxy;
 
 /**
- * @brief Defines the proxy configuration structure.
+ * @brief 代理配置结构体。
  *
  * @since 20
  */
@@ -467,53 +561,53 @@ typedef struct Http_Proxy {
 } Http_Proxy;
 
 /**
- * @brief Defines the HTTP response timing information, which will be collected via {@link Http_Response}.
+ * @brief HTTP响应时间信息，会在{@link Http_Response}中收集。
  *
  * @since 20
  */
 typedef struct Http_PerformanceTiming {
     /**
-     * Duration from the time when the request is initiated to the time when the DNS resolution is complete.
+     * 从request请求到DNS解析完成的耗时，包含域名解析，TCP连接等流程耗时。
      */
     double dnsTiming;
     /**
-     * Duration from the time when the request is initiated to the time when the TCP connection is complete.
+     * 从request请求到TCP连接完成的耗时。
      */
     double tcpTiming;
     /**
-     * Duration from the time when the request is initiated to the time when the TLS connection is complete.
+     * 从request请求到TLS连接完成的耗时。
      */
     double tlsTiming;
     /**
-     * Duration from the time when the request is initiated to the time when the first byte is sent.
+     * 从request请求到开始发送第一个字节的耗时。
      */
     double firstSendTiming;
     /**
-     * Duration from the time when the request is initiated to the time when the first byte is received.
+     * 从request请求到接收到第一个字节的耗时。
      */
     double firstReceiveTiming;
     /**
-     * Duration from the time when the request is initiated to the time when the request is complete.
+     * 从request请求到完成请求的耗时。
      */
     double totalFinishTiming;
     /**
-     * Duration from the time when the request is initiated to the time when all redirection steps are complete.
+     * 从request请求到完成所有重定向步骤的耗时。
      */
     double redirectTiming;
 } Http_PerformanceTiming;
 
 /**
- * @brief Defines the structure of HTTP requests.
+ * @brief 定义HTTP请求配置的结构体。
  *
  * @since 20
  */
 typedef struct Http_RequestOptions {
     /**
-     * HTTP request method.
+     * HTTP请求方法。
      */
     const char *method;
     /**
-     * HTTP request priority.
+     * HTTP请求优先级。
      */
     uint32_t priority;
     /**
@@ -521,11 +615,11 @@ typedef struct Http_RequestOptions {
      */
     Http_Headers *headers;
     /**
-     * Read timeout duration.
+     * 读取超时时间。
      */
     uint32_t readTimeout;
     /**
-     * Connection timeout duration.
+     * 连接超时时间。
      */
     uint32_t connectTimeout;
     /**
@@ -538,16 +632,15 @@ typedef struct Http_RequestOptions {
      */
     Http_Proxy *httpProxy;
     /**
-     * Certificate path. If the CA certificate path is set, the system uses the CA certificate in the specified path.
-     * Otherwise, the system uses the preset CA certificate.
+     * 证书路径，如果设置了此参数，系统将使用用户指定路径的CA证书（开发者需保证该路径下CA证书的可访问性），否则将使用系统预设CA证书。
      */
     const char *caPath;
     /**
-     * Download start position. This field can be used only for the GET method.
+     * 用于设置下载起始位置，该参数只能用于GET方法，不要用于其他。
      */
     int64_t resumeFrom;
     /**
-     * Download end position. This field can be used only for the GET method.
+     * 用于设置下载结束位置，该参数只能用于GET方法，不要用于其他。
      */
     int64_t resumeTo;
     /**
@@ -555,7 +648,7 @@ typedef struct Http_RequestOptions {
      */
     Http_ClientCert *clientCert;
     /**
-     * HTTPS server for DNS resolution.
+     * 设置使用HTTPS协议的服务器进行DNS解析。
      */
     const char *dnsOverHttps;
     /**
@@ -565,7 +658,7 @@ typedef struct Http_RequestOptions {
 } Http_RequestOptions;
 
 /**
- * @brief Defines the structure of HTTP responses.
+ * @brief 定义HTTP响应的结构体。
  *
  * @since 20
  */
@@ -583,7 +676,7 @@ typedef struct Http_Response {
      */
     Http_Headers *headers;
     /**
-     * Pointer to the HTTP response cookies.
+     * HTTP响应Cookies。
      */
     char *cookies;
     /**
@@ -591,26 +684,26 @@ typedef struct Http_Response {
      */
     Http_PerformanceTiming *performanceTiming;
     /**
-     * @brief Callback function for destroying an HTTP response.
+     * @brief 销毁HTTP响应的回调函数
      *
-     * @param response Pointer to the HTTP response to be destroyed. For details, see {@link Http_Response}.
+     * @param response 要销毁的HTTP响应，指向Http_Response的指针。
      * @since 20
      */
     void (*destroyResponse)(struct Http_Response **response);
 } Http_Response;
 
 /**
- * @brief Defines an HTTP request.
+ * @brief HTTP请求结构体。
  *
  * @since 20
  */
 typedef struct Http_Request {
     /**
-     * ID of an HTTP request.
+     * HTTP请求的ID。
      */
     uint32_t requestId;
     /**
-     * Pointer to the HTTP request URL.
+     * HTTP请求的URL。
      */
     char *url;
     /**
@@ -620,49 +713,49 @@ typedef struct Http_Request {
 } Http_Request;
 
 /**
- * @brief Callback function that is invoked when response is received.
+ * @brief 接收到HTTP响应的回调函数。
  *
- * @param response Http response struct, see {@link Http_Response}.
- * @param errCode Response error code.
+ * @param response HTTP响应结构体，指向Http_Response的指针，参考{@link Http_Response}。
+ * @param errCode 响应码。
  * @since 20
  */
 typedef void (*Http_ResponseCallback)(struct Http_Response *response, uint32_t errCode);
 
 /**
- * @brief Callback function that is invoked when a response body is received.
+ * @brief 接收到数据的回调。
  *
- * @param data Response body.
- * @param length Length of response body.
+ * @param data 响应体。
+ * @param length 响应体的长度。
  * @since 20
  */
 typedef void (*Http_OnDataReceiveCallback)(const char *data, size_t length);
 
 /**
- * @brief Callback function invoked during request/response data transmission.
+ * @brief 请求/响应数据传输过程中调用的回调函数。
  *
- * @param totalSize total size.
- * @param transferredSize transferred size.
+ * @param totalSize 数据总大小。
+ * @param transferredSize 已传输的数据大小。
  * @since 20
  */
 typedef void (*Http_OnProgressCallback)(uint64_t totalSize, uint64_t transferredSize);
 
 /**
- * @brief Callback called when header are received.
+ * @brief 收到HTTP响应头的回调函数。
  *
- * @param headers Headers of the received requests, which points to the pointer of {@link Http_Headers}.
+ * @param headers 接收到的请求头，指向Http_Headers的指针，参考{@link Http_Headers}。
  * @since 20
  */
 typedef void (*Http_OnHeaderReceiveCallback)(Http_Headers *headers);
 
 /**
- * @brief Empty callback function for requested DataEnd or Canceled event callback.
+ * @brief 请求的DataEnd或Cancel事件回调的回调函数。
  *
  * @since 20
  */
 typedef void (*Http_OnVoidCallback)(void);
 
 /**
- * @brief Defines the callback for various HTTP events.
+ * @brief 监听不同HTTP事件的回调函数。
  *
  * @since 20
  */

@@ -40,7 +40,7 @@
 
 /**
  * @file net_connection_type.h
- * @brief Defines the data structures for the C APIs of the network connection module.
+ * @brief 定义网络管理数据网络连接模块的C接口数据结构。
  *
  * @library libnet_connection.so
  * @kit NetworkKit
@@ -66,7 +66,7 @@ extern "C" {
 #define NETCONN_MAX_RTT_NUM 4
 
 /**
- * @brief Enumerates the network capabilities.
+ * @brief 网络能力集。
  *
  * @since 11
  * @version 1.0
@@ -77,7 +77,7 @@ typedef enum NetConn_NetCap {
      */
     NETCONN_NET_CAPABILITY_MMS = 0,
     /**
-     * Non-metered network.
+     * 非计量网络
      */
     NETCONN_NET_CAPABILITY_NOT_METERED = 11,
     /**
@@ -85,11 +85,11 @@ typedef enum NetConn_NetCap {
      */
     NETCONN_NET_CAPABILITY_INTERNET = 12,
     /**
-     * Non-VPN.
+     * 非VPN
      */
     NETCONN_NET_CAPABILITY_NOT_VPN = 15,
     /**
-     * Verified.
+     * 已验证
      */
     NETCONN_NET_CAPABILITY_VALIDATED = 16,
     /**
@@ -98,21 +98,21 @@ typedef enum NetConn_NetCap {
      */
     NETCONN_NET_CAPABILITY_PORTAL = 17,
     /**
-     * Connectivity check.
+     * 检测连通性中。
      * @since 12
      */
     NETCONN_NET_CAPABILITY_CHECKING_CONNECTIVITY = 31
 } NetConn_NetCap;
 
 /**
- * @brief Enumerates the network carrier types.
+ * @brief 网络载体类型。
  *
  * @since 11
  * @version 1.0
  */
 typedef enum NetConn_NetBearerType {
     /**
-     * Cellular network.
+     * 蜂窝网络
      */
     NETCONN_BEARER_CELLULAR = 0,
     /**
@@ -120,7 +120,7 @@ typedef enum NetConn_NetBearerType {
      */
     NETCONN_BEARER_WIFI = 1,
     /**
-     * Bluetooth.
+     * 蓝牙
      * @since 12
      */
     NETCONN_BEARER_BLUETOOTH = 2,
@@ -136,144 +136,151 @@ typedef enum NetConn_NetBearerType {
 } NetConn_NetBearerType;
 
 /**
- * @brief Enumerates network connection error codes.
+ * @brief 网络连接返回值错误码。
  *
  * @since 15
  */
 typedef enum NetConn_ErrorCode {
     /**
-     * Success.
+     * 成功
      */
     NETCONN_SUCCESS = 0,
     /**
-     * Missing permissions.
+     * 缺少权限
      */
     NETCONN_PERMISSION_DENIED = 201,
     /**
-     * Invalid parameter.
+     * 参数错误
      */
     NETCONN_PARAMETER_ERROR = 401,
     /**
-     * Service connection failure.
+     * 无法连接到服务
      */
     NETCONN_OPERATION_FAILED = 2100002,
     /**
-     * Internal error.1. Memory-related error, for example, insufficient memory, memory data copy failure, or memory
-     * request failure.2. Null pointer, for example, access to a released memory pointer.
+     * 内部错误。1. 内存异常, 比如内存不足或内存拷贝失败。2. 空指针, 比如访问已释放内存的指针。
      */
     NETCONN_INTERNAL_ERROR = 2100003
 } NetConn_ErrorCode;
 
 /**
- * @brief Enumerates trace route packet types.
+ * @brief 枚举跟踪路由的数据包类型。
  *
  * @since 20
  */
 typedef enum NetConn_PacketsType {
     /**
-     * Internet Control Message Protocol.
+     * 互联网控制消息协议。
      */
     NETCONN_PACKETS_ICMP = 0,
     /**
-     * User Datagram Protocol.
+     * 用户数据报协议。
      */
     NETCONN_PACKETS_UDP = 1
 } NetConn_PacketsType;
 
 /**
- * @brief Defines network handles for network IDs.
+ * @brief 存放网络ID。
  *
  * @since 11
  * @version 1.0
  */
 typedef struct NetConn_NetHandle {
     /**
-     * Network ID.
+     * 网络标识符。
      */
     int32_t netId;
 } NetConn_NetHandle;
 
 /**
- * @brief Defines network capability sets.
+ * @brief 网络能力集。
  *
  * @since 11
  * @version 1.0
  */
 typedef struct NetConn_NetCapabilities {
     /**
-     * Uplink bandwidth.
+     * 上行带宽。
      */
     uint32_t linkUpBandwidthKbps;
     /**
-     * Downlink bandwidth.
+     * 下行带宽。
      */
     uint32_t linkDownBandwidthKbps;
-    /** Network capability list */
+    /**
+     * 网络能力列表。
+     */
     NetConn_NetCap netCaps[NETCONN_MAX_CAP_SIZE];
     /**
-     * Actual size of the network capability list.
+     * 网络能力列表的实际size。
      */
     int32_t netCapsSize;
-    /** Bearer type list */
+    /**
+     * 承载类型列表。
+     */
     NetConn_NetBearerType bearerTypes[NETCONN_MAX_BEARER_TYPE_SIZE];
     /**
-     * Actual size of the bearer type list.
+     * 承载类型列表的实际size
      */
     int32_t bearerTypesSize;
 } NetConn_NetCapabilities;
 
 /**
- * @brief Defines network addresses.
+ * @brief 网络地址。
  *
  * @since 11
  * @version 1.0
  */
 typedef struct NetConn_NetAddr {
     /**
-     * Network address family.
+     * 网络地址族。
      */
     uint8_t family;
     /**
-     * Prefix length.
+     * 前缀长度。
      */
     uint8_t prefixlen;
     /**
-     * Port number.
+     * 端口号。
      */
     uint8_t port;
-    /** Address */
+    /**
+     * 地址。
+     */
     char address[NETCONN_MAX_STR_LEN];
 } NetConn_NetAddr;
 
 /**
- * @brief Defines the route configuration.
+ * @brief 路由配置信息。
  *
  * @since 11
  * @version 1.0
  */
 typedef struct NetConn_Route {
-    /** Network interface */
+    /**
+     * 网络接口。
+     */
     char iface[NETCONN_MAX_STR_LEN];
     /**
-     * Destination address.
+     * 目标地址
      */
     NetConn_NetAddr destination;
     /**
-     * Gateway IP address.
+     * 网关地址
      */
     NetConn_NetAddr gateway;
     /**
-     * Whether a gateway exists.
+     * 是否存在网关
      */
     int32_t hasGateway;
     /**
-     * Whether the default route is used.
+     * 是否是默认路由
      */
     int32_t isDefaultRoute;
 } NetConn_Route;
 
 /**
- * @brief Defines the proxy configuration.
+ * @brief 代理配置信息。
  *
  * @since 11
  * @version 1.0
@@ -284,77 +291,89 @@ typedef struct NetConn_HttpProxy {
     /** Exclusion list of proxy servers */
     char exclusionList[NETCONN_MAX_EXCLUSION_SIZE][NETCONN_MAX_STR_LEN];
     /**
-     * Actual size of the exclusion list.
+     * 排除列表的实际大小。
      */
     int32_t exclusionListSize;
     /**
-     * Port number.
+     * 端口号。
      */
     uint16_t port;
 } NetConn_HttpProxy;
 
 /**
- * @brief Defines the network connection properties.
+ * @brief 网络连接信息。
  *
  * @since 11
  * @version 1.0
  */
 typedef struct NetConn_ConnectionProperties {
-    /** Network interface name */
-    char ifaceName[NETCONN_MAX_STR_LEN];
-    /** Domain name of the network connection */
-    char domain[NETCONN_MAX_STR_LEN];
-    /** TCP buffer size */
-    char tcpBufferSizes[NETCONN_MAX_STR_LEN];
     /**
-     * Maximum transmission unit.
+     * 网络接口名称。
      */
+    char ifaceName[NETCONN_MAX_STR_LEN];
+    /**
+     * 网络连接的域名。
+     */
+    char domain[NETCONN_MAX_STR_LEN];
+    /**
+     * TCP缓冲区大小。
+     */
+    char tcpBufferSizes[NETCONN_MAX_STR_LEN];
+    /** MTU */
     uint16_t mtu;
-    /** Address list */
+    /**
+     * 地址列表。
+     */
     NetConn_NetAddr netAddrList[NETCONN_MAX_ADDR_SIZE];
     /**
-     * Actual size of the address list.
+     * 地址列表的实际size。
      */
     int32_t netAddrListSize;
-    /** DNS list */
+    /**
+     * DNS列表。
+     */
     NetConn_NetAddr dnsList[NETCONN_MAX_ADDR_SIZE];
     /**
-     * Actual size of the DNS list.
+     * DNS列表的实际size。
      */
     int32_t dnsListSize;
-    /** Route list */
+    /**
+     * 路由列表。
+     */
     NetConn_Route routeList[NETCONN_MAX_ROUTE_SIZE];
     /**
-     * Actual size of the route list.
+     * 路由列表的实际大小。
      */
     int32_t routeListSize;
     /**
-     * HTTP proxy information.
+     * HTTP代理信息。
      */
     NetConn_HttpProxy httpProxy;
 } NetConn_ConnectionProperties;
 
 /**
- * @brief Defines the network list.
+ * @brief 网络列表。
  *
  * @since 11
  * @version 1.0
  */
 typedef struct NetConn_NetHandleList {
-    /** Network handle list */
+    /**
+     * 网络句柄列表。
+     */
     NetConn_NetHandle netHandles[NETCONN_MAX_NET_SIZE];
     /**
-     * Actual size of the network handle list.
+     * netHandleList的实际大小。
      */
     int32_t netHandleListSize;
 } NetConn_NetHandleList;
 /**
- * @brief Defines the pointer to the custom DNS resolver.
+ * @brief 指向自定义DNS解析器的指针。
  *
- * @param host Host name.
- * @param serv Service name.
- * @param hint Pointer to the addrinfo structure.
- * @param res DNS query result, which is in the format of linked lists.
+ * @param host 要查询的主机名。
+ * @param serv 服务名称。
+ * @param hint 指向addrinfo结构的指针。
+ * @param res 存储DNS查询结果并以链表形式返回。
  * @since 11
  * @version 1.0
  */
@@ -362,9 +381,9 @@ typedef int (*OH_NetConn_CustomDnsResolver)(const char *host, const char *serv,
     const struct addrinfo *hint, struct addrinfo **res);
 
 /**
- * @brief Callback for application http proxy information changed.
+ * @brief 应用的http代理信息变化回调。
  *
- * @param proxy Changed proxy information, which can be a null pointer.
+ * @param proxy 变化的代理配置信息，可能是空指针。
  *
  * @since 12
  * @version 1.0
@@ -372,19 +391,15 @@ typedef int (*OH_NetConn_CustomDnsResolver)(const char *host, const char *serv,
 typedef void (*OH_NetConn_AppHttpProxyChange)(NetConn_HttpProxy *proxy);
 
 /**
- * @brief Defines the one-shot callback used to receive the global HTTP proxy re-authentication result.
+ * @brief 定义用于接收全局HTTP代理重新认证结果的一次性回调。
  *
- * This callback is invoked at most once for each successful call to
- * OH_NetConn_RefreshGlobalHttpProxyWithCallback.
+ * 每次成功调用OH_NetConn_RefreshGlobalHttpProxyWithCallback时，该回调最多会被调用一次。
  *
- * @param result The re-authentication result. 0 indicates success. Other values indicate failure.
- * @param proxy The refreshed global HTTP proxy information when result is 0. If re-authentication
- *     fails, proxy is NULL.<br>
- *     The proxy object is owned by the system and is valid only during this callback
- *     invocation. The caller must not free or modify it. If the caller needs to use the
- *     proxy information after the callback returns, the caller must make a deep copy.
- * @param userContext The user-defined data passed to OH_NetConn_RefreshGlobalHttpProxyWithCallback. The system
- *     does not access, copy, or release it.
+ * @param result 重新认证结果。0表示成功，其他值表示失败。
+ * @param proxy 当result为0时的全局HTTP代理信息。如果重新认证失败，proxy为NULL。<br>
+ *     proxy对象由系统所有，仅在此次回调调用期间有效。调用者不能释放或修改它。
+ *     如果调用者需要在回调返回后使用代理信息，必须进行深拷贝。
+ * @param userContext 传递给OH_NetConn_RefreshGlobalHttpProxyWithCallback的用户定义数据。系统不会访问、复制或释放它。
  *
  * @since 26.0.0
  */
@@ -394,61 +409,59 @@ typedef void (*OH_NetConn_GlobalHttpProxyRefreshCallback)(
     void *userContext);
 
 /**
- * @brief Defines network feature sets.
+ * @brief 网络的特征集。
  *
  * @since 12
  * @version 1.0
  */
 typedef struct NetConn_NetSpecifier {
     /**
-     * Network capability set.
+     * 网络能力集。
      */
     NetConn_NetCapabilities caps;
     /**
-     * Network ID.
+     * 网络标识符。
      */
     char *bearerPrivateIdentifier;
 } NetConn_NetSpecifier;
 /**
- * @brief Defines the callback invoked when the network is available.
+ * @brief 网络可用回调。
  *
- * @param netHandle Network handle.
+ * @param netHandle 网络句柄。
  * @since 12
  * @version 1.0
  */
 typedef void (*OH_NetConn_NetworkAvailable)(NetConn_NetHandle *netHandle);
 /**
- * @brief Defines the callback invoked when the network capabilities change.
+ * @brief 网络能力集变更回调。
  *
- * @param netHandle Network handle.
- * @param netCapabilities Network capability set.
+ * @param netHandle 网络句柄。
+ * @param netCapabilities 网络能力集。
  * @since 12
  * @version 1.0
  */
 typedef void (*OH_NetConn_NetCapabilitiesChange)(NetConn_NetHandle *netHandle,
                                                  NetConn_NetCapabilities *netCapabilities);
 /**
- * @brief Defines the callback invoked when network connection properties change.
+ * @brief 网络连接属性变更回调。
  *
- * @param netHandle Network handle.
- * @param connConnetionProperties Network connection properties.
+ * @param netHandle 网络句柄。
+ * @param connConnetionProperties 网络连接属性。
  * @since 12
  * @version 1.0
  */
 typedef void (*OH_NetConn_NetConnectionPropertiesChange)(NetConn_NetHandle *netHandle,
                                                          NetConn_ConnectionProperties *connConnetionProperties);
 /**
- * @brief Defines the callback invoked when the network is disconnected.
+ * @brief 网络断开回调。
  *
- * @param netHandle Network handle.
+ * @param netHandle 网络句柄。
  * @since 12
  * @version 1.0
  */
 typedef void (*OH_NetConn_NetLost)(NetConn_NetHandle *netHandle);
 /**
- * @brief Defines the callback invoked when the network is unavailable. This callback is triggered when the network is
- * not activated within the specified timeout interval. If the timeout interval is not set, this callback is not
- * triggered.
+ * @brief 网络不可用回调，在指定的超时时间内网络未激活时触发该回调，如果未设置超时时间则不会触发该回调。
  *
  * @since 12
  * @version 1.0
@@ -456,60 +469,56 @@ typedef void (*OH_NetConn_NetLost)(NetConn_NetHandle *netHandle);
 typedef void (*OH_NetConn_NetUnavailable)(void);
 
 /**
- * @brief Defines the callback invoked when the network blocking status changes.
+ * @brief 网络阻塞状态变更回调。
  *
- * @param netHandle Network handle.
- * @param blocked Whether the network is blocked. The value true indicates that the network is blocked, and the value
- *     false indicates the opposite.
+ * @param netHandle 网络句柄。
+ * @param blocked 指示网络是否将被阻塞的标志。true表示网络被阻塞，false表示网络未被阻塞。
  * @since 12
  * @version 1.0
  */
 typedef void (*OH_NetConn_NetBlockStatusChange)(NetConn_NetHandle *netHandle, bool blocked);
 /**
- * @brief Defines a struct for the network status listener callback collection. All callback events must be registered;
- * those not requiring attention can be set to empty.
+ * @brief 网络状态监听回调集合，所有回调事件需全部注册，无需关注的回调可以设为空实现。
  *
  * @since 12
  * @version 1.0
  */
 typedef struct NetConn_NetConnCallback {
     /**
-     * Callback invoked when the network is available.
+     * 网络可用回调。
      */
     OH_NetConn_NetworkAvailable onNetworkAvailable;
     /**
-     * Callback invoked when the network capabilities change.
+     * 网络能力集变更回调。
      */
     OH_NetConn_NetCapabilitiesChange onNetCapabilitiesChange;
     /**
-     * Callback invoked when network connection properties change.
+     * 网络连接属性变更回调。
      */
     OH_NetConn_NetConnectionPropertiesChange onConnetionProperties;
     /**
-     * Callback invoked when the network is disconnected.
+     * 网络断开回调。
      */
     OH_NetConn_NetLost onNetLost;
     /**
-     * Callback invoked when the network is unavailable. This callback is triggered when the network is not activated
-     * within the specified timeout interval. If the timeout interval is not set, this callback is not triggered.
+     * 网络不可用回调, 在指定的超时时间内网络未激活时触发该回调，如果未设置超时时间则不会触发该回调。
      */
     OH_NetConn_NetUnavailable onNetUnavailable;
     /**
-     * Callback invoked when the network blocking status changes.
+     * 网络阻塞状态变更回调。
      */
     OH_NetConn_NetBlockStatusChange onNetBlockStatusChange;
 } NetConn_NetConnCallback;
 
 /**
- * @brief Defines the probe result.
+ * @brief 定义探测结果信息。
  *
  * @since 20
  */
 typedef struct NetConn_ProbeResultInfo {
     /**
-     * Packet loss rate, in percentage. The value **100** indicates 100% packet loss, and the value **50** indicates 50%
-     * packet loss.
-     */
+    * 丢包率，百分制，值100表示100%丢包；50表示50%丢包。
+    */
     uint8_t lossRate;
     /**
      * Round-trip time in ms, including the maximum, minimum, average, and standard deviations.
@@ -518,35 +527,34 @@ typedef struct NetConn_ProbeResultInfo {
 } NetConn_ProbeResultInfo;
 
 /**
- * @brief Defines the network trace route options.
+ * @brief 定义网络跟踪路由选项。
  *
  * @since 20
  */
 typedef struct NetConn_TraceRouteOption {
     /**
-     * Maximum number of hops in the probe result. The value must be the same as that of **TraceRouteInfo**. The
-     * maximum number of hops is 30, which is also the default value.
+     * 探测结果最大跳数，需要和TraceRouteInfo设置一致，最大可设置30跳，默认为30跳。
      */
     uint8_t maxJumpNumber;
     /**
-     * Protocol type of the probe packet. The default value is **NETCONN_PACKETS_ICMP**.
+     * 探测包协议类型，默认为NETCONN_PACKETS_ICMP。
      */
     NetConn_PacketsType packetsType;
 } NetConn_TraceRouteOption;
 
 /**
- * @brief Defines the trace route information.
+ * @brief 定义跟踪路由信息。
  *
  * @since 20
  */
 typedef struct NetConn_TraceRouteInfo {
     /**
-     * Number of hops.
-     */
+    * 丢包率，百分制，值100表示100%丢包；50表示50%丢包。
+    */
     uint8_t jumpNo;
     /**
-     * Host name or address.
-     */
+    * 主机名或地址。
+    */
     char address[NETCONN_MAX_STR_LEN];
     /**
      * Round-trip time in ms, including the maximum, minimum, average, and standard deviations.

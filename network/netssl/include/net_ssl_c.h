@@ -13,6 +13,21 @@
  * limitations under the License.
  */
 
+#ifndef NET_SSL_C_H
+#define NET_SSL_C_H
+
+#include <stdbool.h>
+
+/**
+ * @addtogroup netstack
+ * @{
+ *
+ * @brief Provides C APIs for the SSL/TLS certificate chain verification module.
+ *
+ * @since 11
+ * @version 1.0
+ */
+
 /**
  * @addtogroup netstack
  * @{
@@ -35,38 +50,33 @@
  * @version 1.0
  */
 
-#ifndef NET_SSL_C_H
-#define NET_SSL_C_H
-
-#include <stdbool.h>
-
 #include "net_ssl_c_type.h"
 
 #ifdef __cplusplus
 extern "C" {
 #endif
-
 /**
  * @brief Provides certificate chain verification APIs for external systems.
  *
  * @param cert Certificate to be verified.
- * @param caCert CA certificate specified by the user. If this parameter is left blank, the preset certificate is used.
- * @return 0 - success.
- * 2305001 - Unspecified error.
- * 2305002 - Unable to get issuer certificate.
- * 2305003 - Unable to get certificate revocation list (CRL).
- * 2305004 - Unable to decrypt certificate signature.
- * 2305005 - Unable to decrypt CRL signature.
- * 2305006 - Unable to decode issuer public key.
- * 2305007 - Certificate signature failure.
- * 2305008 - CRL signature failure.
- * 2305009 - Certificate is not yet valid.
- * 2305010 - Certificate has expired.
- * 2305011 - CRL is not yet valid.
- * 2305012 - CRL has expired.
- * 2305023 - Certificate has been revoked.
- * 2305024 - Invalid certificate authority (CA).
- * 2305027 - Certificate is untrusted.
+ * @param caCert Certificate specified by the user. If this parameter is left blank, the preset certificate is used for
+ *     verification.
+ * @return **0**: Success.
+ *     <br>**2305001**: Unknown error.
+ *     <br>**2305002**: Failed to obtain the issuer certificate.
+ *     <br>**2305003**: Failed to obtain the certificate revocation list (CRL).
+ *     <br>**2305004**: Failed to decrypt the certificate signature.
+ *     <br>**2305005**: Failed to decrypt the CRL signature.
+ *     <br>**2305006**: Failed to decode the issuer public key.
+ *     <br>**2305007**: Failed to sign the certificate.
+ *     <br>**2305008**: Failed to sign the CRL.
+ *     <br>**2305009**: Certificate not activated.
+ *     <br>**2305010**: Certificate expired.
+ *     <br>**2305011**: CRL not activated.
+ *     <br>**2305012**: CRL expired.
+ *     <br>**2305023**: Certificate revoked.
+ *     <br>**2305024**: Invalid certificate authority (CA).
+ *     <br>**2305027**: Untrusted certificate.
  * @syscap SystemCapability.Communication.NetStack
  * @since 11
  * @version 1.0
@@ -74,13 +84,13 @@ extern "C" {
 uint32_t OH_NetStack_CertVerification(const struct NetStack_CertBlob *cert, const struct NetStack_CertBlob *caCert);
 
 /**
- * @brief Gets pin set for hostname.
+ * @brief Obtains the certificate lock information.
  *
- * @param hostname Hostname.
- * @param pin Certificate lock information.
- * @return 0 - Success.
- *         401 - Parameter error.
- *         2305999 - Out of memory.
+ * @param hostname Host name.
+ * @param pin Defines the certificate lock information structure.
+ * @return **0**: Success.
+ *     <br>**401**: Parameter error.
+ *     <br>**2305999**: Memory error.
  * @syscap SystemCapability.Communication.NetStack
  * @since 12
  * @version 1.0
@@ -88,13 +98,13 @@ uint32_t OH_NetStack_CertVerification(const struct NetStack_CertBlob *cert, cons
 int32_t OH_NetStack_GetPinSetForHostName(const char *hostname, NetStack_CertificatePinning *pin);
 
 /**
- * @brief Gets certificates for hostname.
+ * @brief Obtains the certificate information.
  *
- * @param hostname Hostname.
- * @param certs Certificate Information.
- * @return 0 - Success.
- *         401 - Parameter error.
- *         2305999 - Out of memory.
+ * @param hostname Host name.
+ * @param certs Defines the certificate information structure.
+ * @return **0**: Success.
+ *     <br>**401**: Parameter error.
+ *     <br>**2305999**: Memory error.
  * @syscap SystemCapability.Communication.NetStack
  * @since 12
  * @version 1.0
@@ -102,9 +112,9 @@ int32_t OH_NetStack_GetPinSetForHostName(const char *hostname, NetStack_Certific
 int32_t OH_NetStack_GetCertificatesForHostName(const char *hostname, NetStack_Certificates *certs);
 
 /**
- * @brief Frees content of the certificates.
+ * @brief Releases the certificate content.
  *
- * @param certs Certificate.
+ * @param certs Represents the certificate information.
  * @syscap SystemCapability.Communication.NetStack
  * @since 12
  * @version 1.0
@@ -112,42 +122,40 @@ int32_t OH_NetStack_GetCertificatesForHostName(const char *hostname, NetStack_Ce
 void OH_Netstack_DestroyCertificatesContent(NetStack_Certificates *certs);
 
 /**
- * @brief Checks whether the Cleartext traffic is permitted.
+ * @brief Boolean value indicating whether plaintext HTTP is allowed.
  *
  * @permission ohos.permission.INTERNET
- * @return 0 - Success.
- *         201 - Permission denied.
- *         401 - Parameter error.
- * @param isCleartextPermitted Indicates output parameter,
- *        {@code true} if the Cleartext traffic is permitted, {@code false} otherwise.
+ * @return **0**: Success.
+ *     <br>**201**: Permission denied.
+ *     <br>**401**: Parameter error.
+ * @param isCleartextPermitted Boolean value indicating whether plaintext HTTP is allowed. The value **true** means
+ *     that plaintext HTTP is allowed, and the value **false** means the opposite.
  * @since 18
  */
 int32_t OH_Netstack_IsCleartextPermitted(bool *isCleartextPermitted);
- 
- 
+
 /**
- * @brief Checks whether the Cleartext traffic for a specified hostname is permitted.
+ * @brief Boolean value indicating whether host name–based plaintext HTTP is allowed.
  *
  * @permission ohos.permission.INTERNET
- * @return 0 - Success.
- *         201 - Permission denied.
- *         401 - Parameter error.
- * @param hostname Indicates the host name.
- * @param isCleartextPermitted Indicates output parameter,
- *        {@code true} if the Cleartext traffic for a specified hostname is permitted, {@code false} otherwise.
+ * @return **0**: Success.
+ *     <br>**201**: Permission denied.
+ *     <br>**401**: Parameter error.
+ * @param hostname Host name.
+ * @param isCleartextPermitted Boolean value indicating whether host name–based plaintext HTTP is allowed. The value **
+ *     true** means that host name–based plaintext HTTP is allowed, and the value **false** means the opposite.
  * @since 18
  */
 int32_t OH_Netstack_IsCleartextPermittedByHostName(const char *hostname, bool *isCleartextPermitted);
 
-
 /**
- * @brief Checks whether the component is configured for Cleartext traffic interception.
+ * @brief Checks whether plaintext HTTP interception is enabled.
  *
- * @return 0 - Success.
- *         2100001 - Invalid parameter value.
- * @param component Indicates the component name.
- * @param componentCfg Indicates output parameter,
- *        {@code true} if the component is configured for Cleartext traffic interception, {@code false} otherwise.
+ * @return **0**: Success.
+ *     <br>**2100001**: Invalid parameter value.
+ * @param component Component name. The following components are supported: Network Kit and ArkWeb.
+ * @param componentCfg Output parameter, which indicates whether plaintext HTTP interception is enabled. The value **
+ *     true** indicates that plaintext HTTP interception is enabled, and the value **false** indicates the opposite.
  * @since 20
  */
 int32_t OH_Netstack_IsCleartextCfgByComponent(const char *component, bool *componentCfg);
@@ -208,4 +216,5 @@ void OH_NetStack_FreeCertChain(struct NetStack_CertBlob *certChain, size_t certC
 #endif
 
 /** @} */
+
 #endif // NET_SSL_C_H
