@@ -206,8 +206,8 @@ typedef enum {
      */
     OH_QOS_GEWU_NOENT  = 502,
     /**
-     * @brief Subsystem not found. Possible cause: The system does not support the subsystem. Solution: Check whether
-     * the subsystem is available.
+     * @brief Subsystem not found. Possible cause: The target device does not support this feature. Solution: Use a
+     * device that supports this feature.
      *
      * @since 20
      */
@@ -248,8 +248,8 @@ typedef struct {
      *     Verify the application permission configuration.
      *     <br>- `OH_QOS_GEWU_EXIST`: The session already exists. An attempt was made to create a session that already
      *     exists. Verify the session creation process.
-     *     <br>- `OH_QOS_GEWU_NOSYS`: Subsystem not found. The system does not support the function. Check system
-     *     version and the status of dependent libraries.
+     *     <br>- `OH_QOS_GEWU_NOSYS`: Subsystem not found. The system does not support the related function or the
+     *     dependent subsystems are unavailable. Check system version and the status of dependent libraries.
      *     <br>The mapping between the above enumerated values and
      * their numeric codes is as follows: `OH_QOS_GEWU_OK` = **0**, `OH_QOS_GEWU_NOPERM` = **201**, `OH_QOS_GEWU_NOMEM`
      * = **203**, `OH_QOS_GEWU_INVAL` = **401**, `OH_QOS_GEWU_EXIST` = **501**, and `OH_QOS_GEWU_NOSYS` = **801**.
@@ -289,8 +289,8 @@ typedef struct {
      *     Verify that the session has been successfully created and is still valid.
      *     <br>- `OH_QOS_GEWU_NOPERM`: Insufficient permission. The caller lacks the required permission for the API.
      *     Verify the application permission configuration.
-     *     <br>- `OH_QOS_GEWU_NOSYS`: Subsystem not found. The system does not support the function. Check system
-     *     version and the status of dependent libraries.
+     *     <br>- `OH_QOS_GEWU_NOSYS`: Subsystem not found. The system does not support the related function or the
+     *     dependent subsystems are unavailable. Check system version and the status of dependent libraries.
      *     <br>The mapping between the above enumerated values
      * and their numeric codes is as follows: OH_QOS_GEWU_OK = **0**, OH_QOS_GEWU_NOPERM = **201**, OH_QOS_GEWU_NOMEM =
      * **203**, OH_QOS_GEWU_INVAL = **401**, `OH_QOS_GEWU_NOENT` = **502**, and OH_QOS_GEWU_NOSYS = **801**.
