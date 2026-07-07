@@ -94,97 +94,97 @@ typedef enum TimeRuleType {
 } TimeRuleType;
 
 /**
- * @brief 定义用于指定具体日期和时间的规则。
+ * @brief 时间日期规则。
  *
  * @since 22
  */
 typedef struct DateTimeRule {
     /**
-     * @brief 表示月份。
+     * @brief 月份。月份从0开始计数，0表示一月。
      */
     int32_t month;
 
     /**
-     * @brief 表示月份中的第几天。
+     * @brief 当月的第几天。
      */
     int32_t dayOfMonth;
 
     /**
-     * @brief 表示星期几。
+     * @brief 当周的第几天。
      */
     int32_t dayOfWeek;
     
     /**
-     * @brief 表示月份中的第几周。
+     * @brief 当月的第几周。
      */
     int32_t weekInMonth;
 
     /**
-     * @brief 表示一天中的毫秒数（从午夜开始计算）。
+     * @brief 从当天凌晨0点开始到当前时间的毫秒值。
      */
     int32_t millisInDay;
 
     /**
-     * @brief 表示日期规则类型。
+     * @brief 日期规则类型。
      */
     DateRuleType dateRuleType;
 
     /**
-     * @brief 表示时间规则类型。
+     * @brief 时间规则类型。
      */
     TimeRuleType timeRuleType;
 } DateTimeRule;
 
 /**
- * @brief 定义没有明确起始时间的时区初始规则。
+ * @brief 起始时区规则。
  *
  * @since 22
  */
 typedef struct InitialTimeZoneRule {
     /**
-     * @brief 表示时区的原始偏移量（相对于UTC）。
+     * @brief 时区的原始偏移量，单位为毫秒（ms）。
      */
     int32_t rawOffset;
 
     /**
-     * @brief 表示时区的夏令时节省偏移量。
+     * @brief 夏令时的偏移量，单位为毫秒（ms）。
      */
     int32_t dstSavings;
 } InitialTimeZoneRule;
 
 /**
- * @brief 通过规则生效时间数组定义一组时区规则。
+ * @brief 起始时间戳数组定义的时区规则。
  *
  * @since 22
  */
 typedef struct TimeArrayTimeZoneRule {
     /**
-     * @brief 表示时区名称。
+     * @brief 时区规则的名称。
      */
     char* name;
 
     /**
-     * @brief 表示时区的原始偏移量。
+     * @brief 时区的原始偏移量，单位为毫秒（ms）。
      */
     int32_t rawOffset;
 
     /**
-     * @brief 表示时区的夏令时节省偏移量。
+     * @brief 夏令时的偏移量，单位为毫秒（ms）。
      */
     int32_t dstSavings;
 
     /**
-     * @brief 表示规则生效的起始时间数组。调用者负责释放该数组。
+     * @brief 规则生效的起始时间戳数组，起始时间戳单位为毫秒（ms）。
      */
     double* startTimes;
 
     /**
-     * @brief 表示规则生效起始时间的数量。
+     * @brief 规则生效的起始时间戳数组的大小。
      */
     int32_t numStartTimes;
 
     /**
-     * @brief 表示用于指定时间的规则时间类型。
+     * @brief 时间规则类型。
      */
     TimeRuleType timeRuleType;
 } TimeArrayTimeZoneRule;
@@ -197,70 +197,70 @@ typedef struct TimeArrayTimeZoneRule {
 #define MAX_YEAR_IN_ANNUAL_TIMEZONE_RULE 0x7fffffff
 
 /**
- * @brief 通过指定规则生效的起始年份和结束年份来定义一组时区规则。
+ * @brief 每年生效的时区规则。
  *
  * @since 22
  */
 typedef struct AnnualTimeZoneRule {
     /**
-     * @brief 表示时区名称。
+     * @brief 时区规则的名称。
      */
     char* name;
     
     /**
-     * @brief 表示规则生效的起始年份。
+     * @brief 时区规则生效的起始年份。
      */
     int32_t startYear;
 
     /**
-     * @brief 表示规则生效的结束年份。
+     * @brief 时区规则生效的终止年份。
      */
     int32_t endYear;
 
     /**
-     * @brief 表示时区的原始偏移量。
+     * @brief 时区的原始偏移量，单位为毫秒（ms）。
      */
     int32_t rawOffset;
 
     /**
-     * @brief 表示时区的夏令时节省偏移量。
+     * @brief 夏令时的偏移量，单位为毫秒（ms）。
      */
     int32_t dstSavings;
 
     /**
-     * @brief 表示用于指定日期和时间的 DateTimeRule 规则。
+     * @brief 时间日期规则。
      */
     DateTimeRule dateTimeRule;
 } AnnualTimeZoneRule;
 
 /**
- * @brief 定义某个时区的一组时区规则。
+ * @brief 完整的时区规则，包括起始时区规则、起始时间戳数组定义的时区规则和每年生效的时区规则，能够全面描述时区的历史和未来规则。
  *
  * @since 22
  */
 typedef struct TimeZoneRules {
     /**
-     * @brief 表示时区的初始时区规则。
+     * @brief 起始时区规则。
      */
     InitialTimeZoneRule initial;
 
     /**
-     * @brief 表示时区的 TimeArrayTimeZoneRule 数组。调用者负责释放该数组。
+     * @brief 起始时间戳数组定义的时区规则数组。
      */
     TimeArrayTimeZoneRule* timeArrayRules;
 
     /**
-     * @brief 表示时区的 AnnualTimeZoneRule 数组。调用者负责释放该数组。
+     * @brief 每年生效的时区规则数组。
      */
     AnnualTimeZoneRule* annualRules;
 
     /**
-     * @brief 表示 TimeArrayTimeZoneRule 的数量。
+     * @brief 起始时间戳数组定义的时区规则数组的大小。
      */
     size_t numTimeArrayRules;
 
     /**
-     * @brief 表示 AnnualTimeZoneRule 的数量。
+     * @brief 表示 每年生效的时区规则数组的大小。
      */
     size_t numAnnualRules;
 } TimeZoneRules;
@@ -278,33 +278,33 @@ typedef struct TimeZoneRules {
 I18n_ErrorCode OH_i18n_GetTimeZoneRules(const char* timeZoneID, TimeZoneRules* rules);
 
 /**
- * @brief 定义查询信息和查询结果。
+ * @brief 用于传入查询的信息，并接收查询的结果。
  *
  * @since 22
  */
 typedef struct TimeZoneRuleQuery {
     /**
-     * @brief 表示查询下一次或上一次起始时间时的基准时间。
+     * @brief 查询的基准时间，单位为毫秒（ms），采用Unix时间戳格式。
      */
     double base;
 
     /**
-     * @brief 表示上一次的原始偏移量。
+     * @brief 上一次的时区原始偏移量，单位为毫秒（ms）。
      */
     int32_t prevRawOffset;
 
     /**
-     * @brief 表示上一次的夏令时节省偏移量。
+     * @brief 上一次的夏令时偏移量，单位为毫秒（ms）。
      */
     int32_t prevDSTSavings;
 
     /**
-     * @brief 表示基准时间是否包含在查询范围内。
+     * @brief 查询结果是否包含基准时间。true：查询结果包含基准时间；false：查询结果不包含基准时间。
      */
     bool inclusive;
 
     /**
-     * @brief 表示查询结果。
+     * @brief 查询结果，单位为毫秒（ms），采用Unix时间戳格式。
      */
     double result;
 } TimeZoneRuleQuery;
