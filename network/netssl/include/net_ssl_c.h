@@ -38,6 +38,8 @@
 #ifndef NET_SSL_C_H
 #define NET_SSL_C_H
 
+#include <stdbool.h>
+
 #include "net_ssl_c_type.h"
 
 #ifdef __cplusplus
