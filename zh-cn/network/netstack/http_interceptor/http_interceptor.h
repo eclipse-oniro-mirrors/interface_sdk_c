@@ -17,16 +17,7 @@
  * @addtogroup netstack
  * @{
  *
- * @brief Defines the APIs for http global interceptor.
- *
- * @since 24
- */
-
-/**
- * @addtogroup netstack
- * @{
- *
- * @brief Defines the APIs for http global interceptor.
+ * @brief 定义HTTP全局拦截器模块的接口。
  *
  * @since 24
  */
