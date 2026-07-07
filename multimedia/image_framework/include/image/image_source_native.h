@@ -33,6 +33,7 @@
 
 #ifndef INTERFACES_KITS_NATIVE_INCLUDE_IMAGE_IMAGE_SOURCE_NATIVE_H_
 #define INTERFACES_KITS_NATIVE_INCLUDE_IMAGE_IMAGE_SOURCE_NATIVE_H_
+#include <stdbool.h>
 #include "image_common.h"
 
 #include "pixelmap_native.h"
