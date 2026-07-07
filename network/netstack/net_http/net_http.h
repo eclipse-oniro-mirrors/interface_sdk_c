@@ -24,16 +24,6 @@
  */
 
 /**
- * @addtogroup netstack
- * @{
- *
- * @brief Defines the APIs for http.
- *
- * @syscap SystemCapability.Communication.NetStack
- * @since 20
- */
-
-/**
  * @file net_http.h
  * @brief Defines the APIs of the HTTP request module.
  *
