@@ -42,6 +42,7 @@
 #ifndef NEURAL_NETWORK_RUNTIME_H
 #define NEURAL_NETWORK_RUNTIME_H
 
+#include <stdbool.h>
 #include "neural_network_runtime_type.h"
 #include "neural_network_core.h"
 
