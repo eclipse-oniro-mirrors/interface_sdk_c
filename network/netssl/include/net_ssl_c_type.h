@@ -47,7 +47,6 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include <stddef.h>
 
 /**
  * @brief Certificate type enums.
