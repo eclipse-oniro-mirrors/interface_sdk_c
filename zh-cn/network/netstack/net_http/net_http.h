@@ -17,17 +17,7 @@
  * @addtogroup netstack
  * @{
  *
- * @brief Defines the APIs for http.
- *
- * @syscap SystemCapability.Communication.NetStack
- * @since 20
- */
-
-/**
- * @addtogroup netstack
- * @{
- *
- * @brief Defines the APIs for http.
+ * @brief 定义HTTP请求模块的接口。
  *
  * @syscap SystemCapability.Communication.NetStack
  * @since 20
