@@ -213,6 +213,13 @@ typedef struct ArkWeb_RequestHeaderList_ ArkWeb_RequestHeaderList;
  */
 typedef struct ArkWeb_HttpBodyStream_ ArkWeb_HttpBodyStream;
 
+/**
+ * @brief The error info for setting response error details.
+ *
+ * @since 26.1.0
+ */
+typedef struct ArkWeb_ErrorInfo_ ArkWeb_ErrorInfo;
+
 
 /**
  * @brief Callback for handling the request.
@@ -1030,6 +1037,123 @@ int32_t OH_ArkWebResourceHandler_DidFailWithError(const ArkWeb_ResourceHandler* 
 int32_t OH_ArkWebResourceHandler_DidFailWithErrorV2(const ArkWeb_ResourceHandler* resourceHandler,
                                                     ArkWeb_NetError errorCode,
                                                     bool completeIfNoResponse);
+
+/**
+ * @brief Creates an ArkWeb_ErrorInfo object.
+ * @param errorInfo The created ArkWeb_ErrorInfo object. If errorInfo is nullptr, this function does nothing.
+ *                  If the creation succeeds, *errorInfo points to the newly created object, which must be destroyed
+ *                  using {@link OH_ArkWeb_DestroyErrorInfo} when no longer needed.
+ *                  If the creation fails, *errorInfo is set to NULL.
+ * @since 26.1.0
+ */
+void OH_ArkWeb_CreateErrorInfo(ArkWeb_ErrorInfo** errorInfo);
+
+/**
+ * @brief Destroys the ArkWeb_ErrorInfo.
+ * @param errorInfo The ArkWeb_ErrorInfo to be destroyed.
+ *
+ * @since 26.1.0
+ */
+void OH_ArkWeb_DestroyErrorInfo(ArkWeb_ErrorInfo* errorInfo);
+
+/**
+ * @brief Sets whether to automatically generate a response if no response has been received.
+ * @param errorInfo The ArkWeb_ErrorInfo.
+ * @param completeIfNoResponse If true, a response will be automatically constructed when no response has been
+ *                             received.
+ * @return {@link ARKWEB_NET_OK} 0 - Success.
+ *         {@link ARKWEB_INVALID_PARAM} 17100101 - Invalid param, errorInfo is nullptr.
+ *
+ * @since 26.1.0
+ */
+int32_t OH_ArkWebErrorInfo_SetCompleteIfNoResponse(ArkWeb_ErrorInfo* errorInfo, bool completeIfNoResponse);
+
+/**
+ * @brief Gets whether to automatically generate a response if no response has been received.
+ * @param errorInfo The ArkWeb_ErrorInfo.
+ * @return Returns true if automatically generating a response when no response has been received is enabled,
+ *         returns false otherwise.
+ *
+ * @since 26.1.0
+ */
+bool OH_ArkWebErrorInfo_GetCompleteIfNoResponse(const ArkWeb_ErrorInfo* errorInfo);
+
+/**
+ * @brief Sets the custom error code for ArkWeb_ErrorInfo.
+ * @param errorInfo The ArkWeb_ErrorInfo.
+ * @param errorCode The custom error code, the web engine will pass the custom error code directly to the application
+ *                  through onErrorReceive.
+ * @return {@link ARKWEB_NET_OK} 0 - Success.
+ *         {@link ARKWEB_INVALID_PARAM} 17100101 - Invalid param, errorInfo is nullptr.
+ *
+ * @since 26.1.0
+ */
+int32_t OH_ArkWebErrorInfo_SetCustomErrorCode(ArkWeb_ErrorInfo* errorInfo, int32_t errorCode);
+
+/**
+ * @brief Gets the custom error code from the ArkWeb_ErrorInfo.
+ * @param errorInfo The ArkWeb_ErrorInfo.
+ * @return The custom error code.
+ *
+ * @since 26.1.0
+ */
+int32_t OH_ArkWebErrorInfo_GetCustomErrorCode(const ArkWeb_ErrorInfo* errorInfo);
+
+/**
+ * @brief Sets the error code for ArkWeb_ErrorInfo.
+ * @param errorInfo The ArkWeb_ErrorInfo.
+ * @param errorCode The error code for this request. Refer to arkweb_net_error_list.h.
+ * @return {@link ARKWEB_NET_OK} 0 - Success.
+ *         {@link ARKWEB_INVALID_PARAM} 17100101 - Invalid param, errorInfo is nullptr.
+ *
+ * @since 26.1.0
+ */
+int32_t OH_ArkWebErrorInfo_SetErrorCode(ArkWeb_ErrorInfo* errorInfo, ArkWeb_NetError errorCode);
+
+/**
+ * @brief Gets the error code from the ArkWeb_ErrorInfo. Refer to arkweb_net_error_list.h.
+ * @param errorInfo The ArkWeb_ErrorInfo.
+ * @return The error code.
+ *
+ * @since 26.1.0
+ */
+ArkWeb_NetError OH_ArkWebErrorInfo_GetErrorCode(const ArkWeb_ErrorInfo* errorInfo);
+
+/**
+ * @brief Sets the error info for the ArkWeb_Response.
+ *
+ * @param response The ArkWeb_Response.
+ * @param errorInfo The ArkWeb_ErrorInfo to set. Ownership is not transferred; the caller must keep errorInfo
+ *                  valid until {@link ArkWeb_OnRequestStop} is triggered.
+ * @return {@link ARKWEB_NET_OK} 0 - Success.
+ *         {@link ARKWEB_INVALID_PARAM} 17100101 - Invalid param, response or errorInfo is nullptr.
+ *
+ * @since 26.1.0
+ */
+int32_t OH_ArkWebResponse_SetErrorInfo(ArkWeb_Response* response, ArkWeb_ErrorInfo* errorInfo);
+
+/**
+ * @brief Gets the error info from the ArkWeb_Response.
+ *
+ * @param response The ArkWeb_Response.
+ * @return The pointer to the ArkWeb_ErrorInfo if set; NULL otherwise.
+ *
+ * @since 26.1.0
+ */
+ArkWeb_ErrorInfo* OH_ArkWebResponse_GetErrorInfo(const ArkWeb_Response* response);
+
+/**
+ * @brief Notify the web engine that this request should fail with error info.
+ * @param resourceHandler The ArkWeb_ResourceHandler for the request.
+ * @param errorInfo The error info for this request.
+ * @return {@link ARKWEB_NET_OK} 0 - Success.
+ *         {@link ARKWEB_INVALID_PARAM} 17100101 - Invalid param, resourceHandler or errorInfo is nullptr.
+ *
+ * @since 26.1.0
+ */
+int32_t OH_ArkWebResourceHandler_DidFailWithErrorInfo(
+    const ArkWeb_ResourceHandler* resourceHandler,
+    const ArkWeb_ErrorInfo* errorInfo);
 
 /**
  * @brief Release the string acquired by native function.
