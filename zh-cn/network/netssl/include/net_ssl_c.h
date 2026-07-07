@@ -16,23 +16,11 @@
 #ifndef NET_SSL_C_H
 #define NET_SSL_C_H
 
-#include <stdbool.h>
-
 /**
  * @addtogroup netstack
  * @{
  *
- * @brief Provides C APIs for the SSL/TLS certificate chain verification module.
- *
- * @since 11
- * @version 1.0
- */
-
-/**
- * @addtogroup netstack
- * @{
- *
- * @brief Provides C APIs for the SSL/TLS certificate chain verification module.
+ * @brief 定义SSL/TLS证书链校验模块的C接口。
  *
  * @since 11
  * @version 1.0
@@ -49,6 +37,8 @@
  * @since 11
  * @version 1.0
  */
+
+#include <stdbool.h>
 
 #include "net_ssl_c_type.h"
 
