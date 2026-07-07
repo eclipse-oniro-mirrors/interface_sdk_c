@@ -37,17 +37,16 @@
  * @version 1.0
  */
 
-#include <stdint.h>
-#include <cstddef>
-#include <cstddef>
-#else
-
-#ifdef __cplusplus
+#include <stdint.h>	 
+#ifdef __cplusplus 
+#include <cstddef> 
+#else 
+#include <stddef.h>	 
+#endif
 
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include <stddef.h>
 
 /**
  * @brief Certificate type enums.
