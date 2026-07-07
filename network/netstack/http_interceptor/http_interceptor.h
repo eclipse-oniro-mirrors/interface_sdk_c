@@ -23,15 +23,6 @@
  */
 
 /**
- * @addtogroup netstack
- * @{
- *
- * @brief Defines the APIs for http global interceptor.
- *
- * @since 24
- */
-
-/**
  * @file http_interceptor.h
  * @brief Defines the APIs of the HTTP global interceptor module. With interceptors, you can monitor HTTP mobile data
  * and implement the logging feature.
