@@ -40,9 +40,6 @@
 #include <stdbool.h>
 #include <stdint.h>
 #include <stddef.h>
-#ifndef __cplusplus
-#include <stdbool.h>
-#endif
 #include "ability_runtime_common.h"
 #include "context_constant.h"
 #include "multimedia/image_framework/image/pixelmap_native.h"
