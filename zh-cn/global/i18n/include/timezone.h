@@ -312,7 +312,7 @@ typedef struct TimeZoneRuleQuery {
 /**
  * @brief 根据TimeArrayTimeZoneRule，获取时区规则的首次生效时间。
  *
- * @param rule 起始时间戳数组定义的时区规则[TimeArrayTimeZoneRule](reference/apis-localization-kit/capi-i18n-timearraytimezonerule.md)。
+ * @param rule 起始时间戳数组定义的时区规则[TimeArrayTimeZoneRule](docroot://reference/apis-localization-kit/capi-i18n-timearraytimezonerule.md)。
  * @param query 用于传入查询的信息，并接收查询的结果。
  * @return {@link SUCCESS} 0 - 成功。
  *         {@link ERROR_INVALID_PARAMETER} 8900001 - 传入参数无效。
@@ -324,7 +324,7 @@ I18n_ErrorCode OH_i18n_GetFirstStartFromTimeArrayTimeZoneRule(TimeArrayTimeZoneR
 /**
  * @brief 根据AnnualTimeZoneRule，获取时区规则的首次生效时间。
  *
- * @param rule 每年生效的时区规则[AnnualTimeZoneRule](reference/apis-localization-kit/capi-i18n-annualtimezonerule.md)。
+ * @param rule 每年生效的时区规则[AnnualTimeZoneRule](docroot://reference/apis-localization-kit/capi-i18n-annualtimezonerule.md)。
  * @param query 用于传入查询的信息，并接收查询的结果。
  * @return {@link SUCCESS} 0 - 成功。
  *         {@link ERROR_INVALID_PARAMETER} 8900001 - 传入参数无效。
@@ -336,7 +336,7 @@ I18n_ErrorCode OH_i18n_GetFirstStartFromAnnualTimeZoneRule(AnnualTimeZoneRule* r
 /**
  * @brief 根据TimeArrayTimeZoneRule，获取时区规则的最后一次生效时间。
  *
- * @param rule 起始时间戳数组定义的时区规则[TimeArrayTimeZoneRule](reference/apis-localization-kit/capi-i18n-timearraytimezonerule.md)。
+ * @param rule 起始时间戳数组定义的时区规则[TimeArrayTimeZoneRule](docroot://reference/apis-localization-kit/capi-i18n-timearraytimezonerule.md)。
  * @param query 用于传入查询的信息，并接收查询的结果。
  * @return {@link SUCCESS} 0 - 成功。
  *         {@link ERROR_INVALID_PARAMETER} 8900001 - 传入参数无效。
@@ -348,7 +348,7 @@ I18n_ErrorCode OH_i18n_GetFinalStartFromTimeArrayTimeZoneRule(TimeArrayTimeZoneR
 /**
  * @brief 根据AnnualTimeZoneRule，获取时区规则的最后一次生效时间。
  *
- * @param rule 每年生效的时区规则[AnnualTimeZoneRule](reference/apis-localization-kit/capi-i18n-annualtimezonerule.md)。
+ * @param rule 每年生效的时区规则[AnnualTimeZoneRule](docroot://reference/apis-localization-kit/capi-i18n-annualtimezonerule.md)。
  * @param query 用于传入查询的信息，并接收查询的结果。
  * @return {@link SUCCESS} 0 - 成功。
  *         {@link ERROR_INVALID_PARAMETER} 8900001 - 传入参数无效。
@@ -360,7 +360,7 @@ I18n_ErrorCode OH_i18n_GetFinalStartFromAnnualTimeZoneRule(AnnualTimeZoneRule* r
 /**
  * @brief 根据TimeArrayTimeZoneRule，获取时区规则在基准时间之后的下一次生效时间。
  *
- * @param rule 起始时间戳数组定义的时区规则[TimeArrayTimeZoneRule](reference/apis-localization-kit/capi-i18n-timearraytimezonerule.md)。
+ * @param rule 起始时间戳数组定义的时区规则[TimeArrayTimeZoneRule](docroot://reference/apis-localization-kit/capi-i18n-timearraytimezonerule.md)。
  * @param query 用于传入查询的信息，并接收查询的结果。
  * @return {@link SUCCESS} 0 - 成功。
  *         {@link ERROR_INVALID_PARAMETER} 8900001 - 传入参数无效。
@@ -372,7 +372,7 @@ I18n_ErrorCode OH_i18n_GetNextStartFromTimeArrayTimeZoneRule(TimeArrayTimeZoneRu
 /**
  * @brief 根据AnnualTimeZoneRule，获取时区规则在基准时间之后的下一次生效时间。
  *
- * @param rule 每年生效的时区规则[AnnualTimeZoneRule](reference/apis-localization-kit/capi-i18n-annualtimezonerule.md)。
+ * @param rule 每年生效的时区规则[AnnualTimeZoneRule](docroot://reference/apis-localization-kit/capi-i18n-annualtimezonerule.md)。
  * @param query 用于传入查询的信息，并接收查询的结果。
  * @return {@link SUCCESS} 0 - 成功。
  *         {@link ERROR_INVALID_PARAMETER} 8900001 - 传入参数无效。
@@ -384,7 +384,7 @@ I18n_ErrorCode OH_i18n_GetNextStartFromAnnualTimeZoneRule(AnnualTimeZoneRule* ru
 /**
  * @brief 根据TimeArrayTimeZoneRule，获取时区规则在基准时间之前的上一次生效时间。
  *
- * @param rule 起始时间戳数组定义的时区规则[TimeArrayTimeZoneRule](reference/apis-localization-kit/capi-i18n-timearraytimezonerule.md)。
+ * @param rule 起始时间戳数组定义的时区规则[TimeArrayTimeZoneRule](docroot://reference/apis-localization-kit/capi-i18n-timearraytimezonerule.md)。
  * @param query 用于传入查询的信息，并接收查询的结果。
  * @return {@link SUCCESS} 0 - 成功。
  *         {@link ERROR_INVALID_PARAMETER} 8900001 - 传入参数无效。
@@ -396,7 +396,7 @@ I18n_ErrorCode OH_i18n_GetPrevStartFromTimeArrayTimeZoneRule(TimeArrayTimeZoneRu
 /**
  * @brief 根据AnnualTimeZoneRule，获取时区规则在基准时间之前的上一次生效时间。
  *
- * @param rule 每年生效的时区规则[AnnualTimeZoneRule](reference/apis-localization-kit/capi-i18n-annualtimezonerule.md)。
+ * @param rule 每年生效的时区规则[AnnualTimeZoneRule](docroot://reference/apis-localization-kit/capi-i18n-annualtimezonerule.md)。
  * @param query 用于传入查询的信息，并接收查询的结果。
  * @return {@link SUCCESS} 0 - 成功。
  *         {@link ERROR_INVALID_PARAMETER} 8900001 - 传入参数无效。
@@ -408,7 +408,7 @@ I18n_ErrorCode OH_i18n_GetPrevStartFromAnnualTimeZoneRule(AnnualTimeZoneRule* ru
 /**
  * @brief 根据TimeArrayTimeZoneRule，获取时区规则指定索引的起始时间。
  *
- * @param rule 起始时间戳数组定义的时区规则[TimeArrayTimeZoneRule](reference/apis-localization-kit/capi-i18n-timearraytimezonerule.md)。
+ * @param rule 起始时间戳数组定义的时区规则[TimeArrayTimeZoneRule](docroot://reference/apis-localization-kit/capi-i18n-timearraytimezonerule.md)。
  * @param index 起始时间的索引。取值范围：[0, rule.numStartTimes - 1]。
  * @param result 规则生效的起始时间，单位为毫秒（ms），采用Unix时间戳格式。
  * @return {@link SUCCESS} 0 - 成功。
@@ -421,7 +421,7 @@ I18n_ErrorCode OH_i18n_GetStartTimeAt(TimeArrayTimeZoneRule* rule, int32_t index
 /**
  * @brief 根据AnnualTimeZoneRule，获取时区规则在指定年份的生效时间。
  *
- * @param rule 每年生效的时区规则[AnnualTimeZoneRule](reference/apis-localization-kit/capi-i18n-annualtimezonerule.md)。
+ * @param rule 每年生效的时区规则[AnnualTimeZoneRule](docroot://reference/apis-localization-kit/capi-i18n-annualtimezonerule.md)。
  * @param year 查询的年份。
  * @param query 用于传入查询的信息，并接收查询的结果。
  * @return {@link SUCCESS} 0 - 成功。
