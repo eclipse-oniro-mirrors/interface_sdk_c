@@ -20,17 +20,7 @@
  * @addtogroup netstack
  * @{
  *
- * @brief Provides C APIs for the SSL/TLS certificate chain verification module.
- *
- * @since 11
- * @version 1.0
- */
-
-/**
- * @addtogroup netstack
- * @{
- *
- * @brief Provides C APIs for the SSL/TLS certificate chain verification module.
+ * @brief 提供SSL/TLS证书链校验模块的C接口。
  *
  * @since 11
  * @version 1.0
