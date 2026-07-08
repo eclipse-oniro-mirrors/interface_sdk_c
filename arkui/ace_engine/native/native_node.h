@@ -344,6 +344,7 @@ typedef enum {
      * .value[1].f32: distance to translate along the y-axis, in vp.\n
      * .value[2].f32: distance to translate along the z-axis, in vp. \n
      *
+     * @ingroup Visual
      */
     NODE_TRANSLATE,
     /**
@@ -357,6 +358,7 @@ typedef enum {
      * .value[0].f32: scale factor along the x-axis.\n
      * .value[1].f32: scale factor along the y-axis. \n
      *
+     * @ingroup Visual
      */
     NODE_SCALE,
     /**
@@ -377,6 +379,7 @@ typedef enum {
      * .value[3].f32: rotation angle.\n
      * .value[4].f32: line of sight, that is, the distance from the viewpoint to the z=0 plane, in vp. \n
      *
+     * @ingroup Visual
      */
     NODE_ROTATE,
     /**
@@ -388,6 +391,7 @@ typedef enum {
      * Format of the return value {@link ArkUI_AttributeItem}:\n
      * .value[0].f32: brightness value. \n
      *
+     * @ingroup Visual
      */
     NODE_BRIGHTNESS,
     /**
@@ -399,6 +403,7 @@ typedef enum {
      * Format of the return value {@link ArkUI_AttributeItem}: \n
      * .value[0].f32: saturation value. \n
      *
+     * @ingroup Visual
      */
     NODE_SATURATION,
     /**
@@ -412,6 +417,7 @@ typedef enum {
      * .value[0].f32: blur radius. The larger the fuzzy radius, the more blurred the image. If the value is <b>0</b>,
      * the image is not blurred. The unit is vp. \n
      *
+     * @ingroup Visual
      */
     NODE_BLUR,
     /**
@@ -440,6 +446,7 @@ typedef enum {
      * stops: stop positions of the color stops. \n
      * size: number of colors. \n
      *
+     * @ingroup Visual
      */
     NODE_LINEAR_GRADIENT,
     /**
@@ -463,6 +470,7 @@ typedef enum {
      * Format of the return value {@link ArkUI_AttributeItem}:\n
      * .value[0].f32: opacity value. The value ranges from 0 to 1. \n
      *
+     * @ingroup Visual
      */
     NODE_OPACITY,
     /**
@@ -575,6 +583,7 @@ typedef enum {
      * .value[0].i32: whether to clip the component based on the parent container bounds.
      * The value <b>1</b> means to clip the component, and <b>0</b> means the opposite. \n
      *
+     * @ingroup Visual
      */
     NODE_CLIP,
     /**
@@ -617,7 +626,7 @@ typedef enum {
      * .value[2].f32: height of the path.\n
      * .string: command for drawing the path.\n
      * ?.object: clipOption of the path. The parameter type is {@link ArkUI_RenderNodeClipOption} type.
-     * It takes effect when only the .object parameter is passed, ArkUI_RenderNodeClipOption type is path, and .size must be equal to 1.
+     * It takes effect when only the .object parameter is passed, ArkUI_RenderNodeClipOption type is path, and .size must be equal to 1.\n
      * Format of the return value {@link ArkUI_AttributeItem}, which supports four types of shapes: \n
      * 1. Rectangle:\n
      * .value[0].i32: type of shape. The parameter type is {@link ArkUI_ClipType}.
@@ -653,6 +662,7 @@ typedef enum {
      * .value[2].f32: height of the path.\n
      * .string: command for drawing the path.\n
      *
+     * @ingroup Visual
      */
     NODE_CLIP_SHAPE,
     /**
@@ -701,6 +711,7 @@ typedef enum {
      * Format of the return value {@link ArkUI_AttributeItem}:\n
      * .value[0].i32: shadow effect. The parameter type is {@link ArkUI_ShadowStyle}. \n
      *
+     * @ingroup Visual
      */
     NODE_SHADOW,
     /**
@@ -728,6 +739,7 @@ typedef enum {
      * .value[6].u32: whether to fill the shadow. The value <b>1</b> means to fill the shadow, and <b>0</b>
      * means the opposite.\n
      *
+     * @ingroup Visual
      */
     NODE_CUSTOM_SHADOW,
     /**
@@ -771,6 +783,7 @@ typedef enum {
      * .value[4].f32: start boundary of grayscale blur. \n
      * .value[5].f32: end boundary of grayscale blur. \n
      *
+     * @ingroup Visual
      */
     NODE_BACKGROUND_BLUR_STYLE,
     /**
@@ -794,6 +807,7 @@ typedef enum {
      * Note: If the coordinate is expressed in a number that represents a percentage, the attribute obtaining API
      * returns the calculated value in vp.
      *
+     * @ingroup Visual
      */
     NODE_TRANSFORM_CENTER,
     /**
@@ -817,6 +831,7 @@ typedef enum {
      * .value[5].i32: animation playback mode. The value is an enum of {@link ArkUI_AnimationPlayMode}. \n
      * .value[6].f32: animation playback speed. \n
      *
+     * @ingroup Animate
      */
     NODE_OPACITY_TRANSITION,
     /**
@@ -848,6 +863,7 @@ typedef enum {
      * .value[9].i32: animation playback mode. The value is an enum of {@link ArkUI_AnimationPlayMode}. \n
      * .value[10].f32: animation playback speed. \n
      *
+     * @ingroup Animate
      */
     NODE_ROTATE_TRANSITION,
     /**
@@ -875,6 +891,7 @@ typedef enum {
      * .value[7].i32: animation playback mode. The value is an enum of {@link ArkUI_AnimationPlayMode}. \n
      * .value[8].f32: animation playback speed. \n
      *
+     * @ingroup Animate
      */
     NODE_SCALE_TRANSITION,
     /**
@@ -903,6 +920,7 @@ typedef enum {
      * value[7].i32: animation playback mode. The value is an enum of {@link ArkUI_AnimationPlayMode}. \n
      * value[8].f32: animation playback speed. \n
      *
+     * @ingroup Animate
      */
     NODE_TRANSLATE_TRANSITION,
     /**
@@ -927,6 +945,7 @@ typedef enum {
      * .value[5].i32: animation playback mode. The value is an enum of {@link ArkUI_AnimationPlayMode}. \n
      * .value[6].f32: animation playback speed. \n
      *
+     * @ingroup Animate
      */
     NODE_MOVE_TRANSITION,
 
@@ -1038,6 +1057,7 @@ typedef enum {
      * stops: stop positions of the color stops. \n
      * size: number of colors. \n
      *
+     * @ingroup Visual
      */
     NODE_SWEEP_GRADIENT,
     /**
@@ -1068,6 +1088,7 @@ typedef enum {
      * stops: stop positions of the color stops. \n
      * size: number of colors. \n
      *
+     * @ingroup Visual
      */
     NODE_RADIAL_GRADIENT,
     /**
@@ -1164,6 +1185,7 @@ typedef enum {
      * .value[2].f32: maximum value of the progress indicator.\n
      * .value[3].u32: color of the progress indicator.\n
      *
+     * @ingroup Visual
      */
     NODE_MASK,
     /**
@@ -1182,6 +1204,7 @@ typedef enum {
      * .value[1].i32: how the specified blend mode is applied. The parameter type is {@link ArkUI_BlendApplyType}.
      * The default value is <b>BLEND_APPLY_TYPE_FAST</b>. \n
      *
+     * @ingroup Visual
      */
     NODE_BLEND_MODE,
     /**
@@ -1227,6 +1250,7 @@ typedef enum {
      * Format of the return value {@link ArkUI_AttributeItem}:\n
      * .value[0].f32: grayscale conversion ratio. The value ranges from 0 to 1.\n
      *
+     * @ingroup Visual
      */
     NODE_GRAY_SCALE,
     /**
@@ -1240,6 +1264,7 @@ typedef enum {
      * Format of the return value {@link ArkUI_AttributeItem}:\n
      * .value[0].f32: image inversion ratio. The value ranges from 0 to 1.\n
      *
+     * @ingroup Visual
      */
     NODE_INVERT,
     /**
@@ -1253,6 +1278,7 @@ typedef enum {
      * Format of the return value {@link ArkUI_AttributeItem}:\n
      * .value[0].f32: sepia conversion ratio. The value ranges from 0 to 1.\n
      *
+     * @ingroup Visual
      */
     NODE_SEPIA,
     /**
@@ -1265,6 +1291,7 @@ typedef enum {
      * Format of the return value {@link ArkUI_AttributeItem}:\n
      * .value[0].f32: contrast. Value range: [0, 10).\n
      *
+     * @ingroup Visual
      */
     NODE_CONTRAST,
     /**
@@ -1277,6 +1304,7 @@ typedef enum {
      * Format of the return value {@link ArkUI_AttributeItem}:\n
      * .value[0].u32: color value, in 0xARGB format.\n
      *
+     * @ingroup Visual
      */
     NODE_FOREGROUND_COLOR,
 
@@ -1513,6 +1541,7 @@ typedef enum {
      * .value[2].f32: thickness of the right outline. \n
      * .value[3].f32: thickness of the bottom outline. \n
      *
+     * @ingroup Visual
      */
     NODE_OUTLINE_WIDTH,
     /**
@@ -1601,6 +1630,8 @@ typedef enum {
       * The id can be changed and the binding relationship re-established.
       * The same ID can only be bound to two components and they are in/out roles of different types.
       * Multiple components cannot be bound to the same id. \n
+      *
+      * @ingroup Animate
       */
     NODE_GEOMETRY_TRANSITION,
 
@@ -1629,6 +1660,7 @@ typedef enum {
      * Format of the return value {@link ArkUI_AttributeItem}:\n
      * .value[0].i32 Content filling mode {@link ArkUI_RenderFit}.\n
      *
+     * @ingroup Visual
      */
     NODE_RENDER_FIT,
 
@@ -1649,6 +1681,7 @@ typedef enum {
      * .value[2].u32: Set the lower side box color, denoted by 0xargb, such as 0xFFFF11FF. \n
      * .value[3].u32: Set the left border color, denoted by 0xargb, such as 0xFFFF11FF. \n
      *
+     * @ingroup Visual
      */
     NODE_OUTLINE_COLOR,
 
@@ -1678,6 +1711,7 @@ typedef enum {
      * Format of the return value {@link ArkUI_AttributeItem}:\n
      * .value[0].i32: The parameter type is 1 or 0.
      *
+     * @ingroup Visual
      */
     NODE_RENDER_GROUP,
 
@@ -1691,6 +1725,7 @@ typedef enum {
      * Format of the return value {@link ArkUI_AttributeItem}:\n
      * .value[0].u32: The color of the overlay is represented by 0xargb, such as 0xFFFF11FF. \n
      *
+     * @ingroup Visual
      */
     NODE_COLOR_BLEND,
 
@@ -1718,6 +1753,7 @@ typedef enum {
      * .value[4].f32 It is a gray-level fuzzy parameter. The value range is [0,127].\n
      * .value[5].f32 It is a gray-level fuzzy parameter. The value range is [0,127].\n
      *
+     * @ingroup Visual
      */
     NODE_FOREGROUND_BLUR_STYLE,
 
@@ -1886,6 +1922,7 @@ typedef enum {
      * Format of the return value {@link ArkUI_AttributeItem}:\n
      * .object: transition effect. The parameter type is {@link ArkUI_TransitionEffect}. \n
      *
+     * @ingroup Animate
      */
     NODE_TRANSITION = 94,
 
@@ -1952,6 +1989,7 @@ typedef enum {
      * .value[2].f32：grayscale blur settings that control the darkness of the white color.\n
      * The value range is [0, 127].\n
      *
+     * @ingroup Visual
      * @since 15
      */
     NODE_BACKDROP_BLUR = 99,
@@ -2034,6 +2072,7 @@ typedef enum {
      *  the unit of the Y-axis translation distance is vp; when value[4].i32 is 1, the unit of the Y-axis translation
      *  distance is percentage;\n
      *
+     * @ingroup Visual
      * @since 20
      */
     NODE_TRANSLATE_WITH_PERCENT = 103,
@@ -2158,6 +2197,7 @@ typedef enum {
      * .object indicates a pointer to the ArkUI_MotionPathOptions. The parameter type is
      * {@link ArkUI_MotionPathOptions}. \n
      *
+     * @ingroup Animate
      * @since 23
      */
     NODE_MOTION_PATH = 111,
@@ -2439,6 +2479,7 @@ typedef enum {
      * The ArkUI_ImmersiveMaterialHandle object of the return value is a pointer to static member, so do not release
      * the return object by calling {@link OH_ArkUI_NativeModule_ImmersiveMaterial_Destroy}.\n
      *
+     * @ingroup Visual
      * @since 26.0.0
      */
     NODE_SYSTEM_MATERIAL = 127,
