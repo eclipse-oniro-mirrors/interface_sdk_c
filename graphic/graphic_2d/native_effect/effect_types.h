@@ -64,10 +64,10 @@ typedef struct OH_PixelmapNative OH_PixelmapNative;
  * @since 12
  * @version 1.0
  */
-typedef struct OH_Filter_ColorMatrix {
+struct OH_Filter_ColorMatrix {
     /** Custom color matrix. The value is a 5 x 4 array. */
     float val[20];
-} OH_Filter_ColorMatrix;
+};
 
 /**
  * @brief Enumerates the status codes that may be used by the effect filter.
