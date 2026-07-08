@@ -4,7 +4,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- * http://www.apache.org/licenses/LICENSE-2.0
+ *     http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -16,9 +16,8 @@
  * @addtogroup UDMF
  * @{
  *
- * @brief The Unified Data Management Framework(UDMF) aims to define various standards
- * for data across applications, devices, and platforms, providing a unified OpenHarmony
- * data language and standardized data access and reading paths.
+ * @brief 统一数据管理框架旨在定义数据跨应用、跨设备以及跨平台过程中的各项标准，
+ * 提供统一的OpenHarmony数据语言和标准化的数据接入与读取通路。
  *
  * @syscap SystemCapability.DistributedDataManager.UDMF.Core
  *
@@ -311,7 +310,7 @@ extern "C" {
 
 /**
  * @brief 所有表示物理存储类型的基类型，用于描述类型的物理属性，无归属类型。
- * 
+ *
  * @since 12
  */
 #define UDMF_META_AI_IMAGE "com.adobe.illustrator.ai-image"

@@ -4,7 +4,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- * http://www.apache.org/licenses/LICENSE-2.0
+ *     http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -16,9 +16,8 @@
  * @addtogroup UDMF
  * @{
  *
- * @brief The Unified Data Management Framework(UDMF) aims to define various standards
- * for data across applications, devices, and platforms, providing a unified OpenHarmony
- * data language and standardized data access and reading paths.
+ * @brief 统一数据管理框架旨在定义数据跨应用、跨设备以及跨平台过程中的各项标准，
+ * 提供统一的OpenHarmony数据语言和标准化的数据接入与读取通路。
  *
  * @syscap SystemCapability.DistributedDataManager.UDMF.Core
  *
@@ -28,14 +27,13 @@
  * @file udmf_err_code.h
  *
  * @brief 声明统一数据管理框架错误码信息。
- * 
+ *
  * @kit ArkData
  * @library libudmf.so
  * @syscap SystemCapability.DistributedDataManager.UDMF.Core
  *
  * @since 12
  */
-
 
 #ifndef UDMF_ERR_CODE_H
 #define UDMF_ERR_CODE_H
@@ -51,7 +49,7 @@ extern "C" {
  */
 typedef enum Udmf_ErrCode {
     /**
-     * The error code in the correct case.
+     * 执行成功。
      */
     UDMF_E_OK = 0,
     /**
@@ -73,7 +71,7 @@ typedef enum Udmf_ErrCode {
  */
 typedef enum Udmf_ListenerStatus {
     /**
-     * brief Indicates the finished status.
+     * 表示获取数据成功。
      */
     UDMF_FINISHED = 0,
     /**
