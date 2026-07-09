@@ -45,7 +45,7 @@ extern "C" {
 
 /**
  * @brief Creates an **OH_MediaAssetManager** instance.
- * 
+ *
  * @return Returns a pointer to an OH_MediaAssetManager instance.
  * @since 12
 */
@@ -53,7 +53,7 @@ OH_MediaAssetManager* OH_MediaAssetManager_Create(void);
 
 /**
  * @brief Requests an image in the specified directory.
- * 
+ *
  * @permission ohos.permission.READ_IMAGEVIDEO
  * @param manager Pointer to an **OH_MediaAssetManager** instance.
  * @param uri Pointer to the URI of the requested image.
@@ -68,7 +68,7 @@ MediaLibrary_RequestId OH_MediaAssetManager_RequestImageForPath(OH_MediaAssetMan
 
 /**
  * @brief Requests a video in the specified directory.
- * 
+ *
  * @permission ohos.permission.READ_IMAGEVIDEO
  * @param manager Pointer to an **OH_MediaAssetManager** instance.
  * @param uri Pointer to the URI of the requested video.
@@ -83,7 +83,7 @@ MediaLibrary_RequestId OH_MediaAssetManager_RequestVideoForPath(OH_MediaAssetMan
 
 /**
  * @brief Cancels a request based on the request ID.
- * 
+ *
  * @permission ohos.permission.READ_IMAGEVIDEO
  * @param manager Pointer to an **OH_MediaAssetManager** instance.
  * @param requestId ID of the request to cancel.
@@ -94,7 +94,7 @@ bool OH_MediaAssetManager_CancelRequest(OH_MediaAssetManager* manager, const Med
 
 /**
  * @brief Requests a moving photo based on different policies.
- * 
+ *
  * @permission ohos.permission.READ_IMAGEVIDEO
  * @param manager Pointer to an {@link OH_MediaAssetManager} instance.
  * @param mediaAsset Pointer to the {@link OH_MediaAsset} instance to be requested.
@@ -119,7 +119,7 @@ MediaLibrary_ErrorCode OH_MediaAssetManager_RequestMovingPhoto(OH_MediaAssetMana
 
 /**
  * @brief Requests an image based on different policies.
- * 
+ *
  * @permission ohos.permission.READ_IMAGEVIDEO
  * @param manager Pointer to an {@link OH_MediaAssetManager} instance.
  * @param mediaAsset Pointer to the {@link OH_MediaAsset} instance to be requested.
@@ -144,7 +144,7 @@ MediaLibrary_ErrorCode OH_MediaAssetManager_RequestImage(OH_MediaAssetManager* m
 
 /**
  * @brief Releases an {@link OH_MediaAssetManager} instance.
- * 
+ *
  * @param manager Pointer to an {@link OH_MediaAssetManager} instance.
  * @return MEDIA_LIBRARY_OK if the method call succeeds.
  *     <br>MEDIA_LIBRARY_PARAMETER_ERROR Parameter error. Possible causes:
@@ -157,7 +157,7 @@ MediaLibrary_ErrorCode OH_MediaAssetManager_Release(OH_MediaAssetManager* manage
 
 /**
  * @brief Requests an image based on different policies.
- * 
+ *
  * @permission ohos.permission.READ_IMAGEVIDEO
  * @param manager Pointer to an **OH_MediaAssetManager** instance.
  * @param mediaAsset Pointer to the **OH_MediaAsset** instance to be requested.

@@ -24,7 +24,7 @@
  * @file media_access_helper_capi.h
  *
  * @brief The file declares the APIs for album management.
- * 
+ *
  * @kit MediaLibraryKit
  * @syscap SystemCapability.FileManagement.PhotoAccessHelper.Core
  * @library libmedia_asset_manager.so
