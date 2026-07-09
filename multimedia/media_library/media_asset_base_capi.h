@@ -27,7 +27,7 @@
  * @file media_asset_base_capi.h
  *
  * @brief The file declares the structs and enums for the media asset manager.
- * 
+ *
  * @kit MediaLibraryKit
  * @syscap SystemCapability.FileManagement.PhotoAccessHelper.Core
  * @library libmedia_asset_manager.so
@@ -284,7 +284,7 @@ typedef void (*OH_MediaLibrary_OnImageDataPrepared)(MediaLibrary_ErrorCode resul
  * @param result Request processing result, which is specified by {@link MediaLibrary_ErrorCode}.
  * @param requestId Request ID, which is specified by {@link MediaLibrary_RequestId}.
  * @param mediaQuality Quality of the requested resource, which is specified by {@link MediaLibrary_MediaQuality}.
- * @param type Media content type of the requested resource, which is specified 
+ * @param type Media content type of the requested resource, which is specified
  *     by {@link MediaLibrary_MediaContentType}.
  * @param movingPhoto Pointer to the {@link OH_MovingPhoto} instance obtained when the requested moving photo is ready.
  * @since 13

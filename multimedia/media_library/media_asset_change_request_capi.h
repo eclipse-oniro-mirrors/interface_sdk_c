@@ -76,7 +76,7 @@ MediaLibrary_ErrorCode OH_MediaAssetChangeRequest_AddResourceWithUri(OH_MediaAss
 
 /**
  * @brief Adds a resource using ArrayBuffer data.
- * 
+ *
  * @param changeRequest Pointer to an {@link OH_MediaAssetChangeRequest} instance.
  * @param resourceType Type of the resource to add.
  * @param buffer Pointer to the data buffer.

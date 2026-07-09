@@ -25,7 +25,7 @@
  *
  * @brief The file declares the APIs of the media asset manager. You can use the functions to request media assets in
  * the media library.
- * 
+ *
  * @kit MediaLibraryKit
  * @syscap SystemCapability.FileManagement.PhotoAccessHelper.Core
  * @library libmedia_asset_manager.so
@@ -98,10 +98,10 @@ bool OH_MediaAssetManager_CancelRequest(OH_MediaAssetManager* manager, const Med
  * @permission ohos.permission.READ_IMAGEVIDEO
  * @param manager Pointer to an {@link OH_MediaAssetManager} instance.
  * @param mediaAsset Pointer to the {@link OH_MediaAsset} instance to be requested.
- * @param requestOptions Options related to the media asset quality and delivery mode. 
+ * @param requestOptions Options related to the media asset quality and delivery mode.
  *     The options are specified by {@link MediaLibrary_RequestOptions}.
  * @param requestId Pointer to the request ID, which is specified by {@link MediaLibrary_RequestId}.
- * @param callback Callback to be invoked when the requested moving photo is ready. 
+ * @param callback Callback to be invoked when the requested moving photo is ready.
  *     The callback is specified by {@link OH_MediaLibrary_OnMovingPhotoDataPrepared}.
  * @return MEDIA_LIBRARY_OK if the method call succeeds.
  *     <br>MEDIA_LIBRARY_PARAMETER_ERROR Parameter error. Possible causes:
@@ -123,10 +123,10 @@ MediaLibrary_ErrorCode OH_MediaAssetManager_RequestMovingPhoto(OH_MediaAssetMana
  * @permission ohos.permission.READ_IMAGEVIDEO
  * @param manager Pointer to an {@link OH_MediaAssetManager} instance.
  * @param mediaAsset Pointer to the {@link OH_MediaAsset} instance to be requested.
- * @param requestOptions Options related to the media asset quality and delivery mode. The options are specified 
+ * @param requestOptions Options related to the media asset quality and delivery mode. The options are specified
  *     by {@link MediaLibrary_RequestOptions}.
  * @param requestId Pointer to the request ID, which is specified by {@link MediaLibrary_RequestId}.
- * @param callback Callback to be invoked when the requested image is ready. The callback is specified 
+ * @param callback Callback to be invoked when the requested image is ready. The callback is specified
  *     by {@link OH_MediaLibrary_OnImageDataPrepared}.
  * @return MEDIA_LIBRARY_OK if the method call succeeds.
  *     <br>MEDIA_LIBRARY_PARAMETER_ERROR Parameter error. Possible causes:
