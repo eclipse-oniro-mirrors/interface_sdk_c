@@ -37,10 +37,10 @@
  * @version 1.0
  */
 
-#include <stdint.h>	 
-#ifdef __cplusplus	 
-#include <cstddef> 
-#else 
+#include <stdint.h>
+#ifdef __cplusplus
+#include <cstddef>
+#else
 #include <stddef.h>
 #endif
 
