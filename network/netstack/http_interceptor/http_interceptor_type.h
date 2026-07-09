@@ -57,13 +57,13 @@ extern "C" {
 typedef struct OH_Http_Interceptor_Headers {
     /**
      * @brief Pointer to the request/response header information of the interceptor.
-     * 
+     *
      * @since 24
      */
     char *data;
     /** 
      * @brief Pointer to the next header information.
-     *     
+     *
      * @since 24
      */
     struct OH_Http_Interceptor_Headers *next;
@@ -77,7 +77,7 @@ typedef struct OH_Http_Interceptor_Headers {
 typedef struct OH_Http_Interceptor_Request {
     /** 
      * @brief Request URL. For details, see {@link Http_Buffer}.
-     * 
+     *
      * @since 24
      */
     Http_Buffer url;
@@ -95,7 +95,7 @@ typedef struct OH_Http_Interceptor_Request {
     OH_Http_Interceptor_Headers *headers;
     /** 
      * @brief Request body. For details, see {@link Http_Buffer}.
-     * 
+     *
      * @since 24
      */
     Http_Buffer body;
@@ -115,7 +115,7 @@ typedef struct OH_Http_Interceptor_Response {
     Http_Buffer body;
     /**
      * @brief Response status code. For details, see {@link Http_ResponseCode}.
-     * 
+     *
      * @since 24
      */
     Http_ResponseCode responseCode;
@@ -141,13 +141,13 @@ typedef struct OH_Http_Interceptor_Response {
 typedef enum OH_Interceptor_Stage {
     /**
      * @brief The interceptor processes the request.
-     * 
+     *
      * @since 24
      */
     OH_STAGE_REQUEST,
     /**
      * @brief The interceptor processes the response.
-     * 
+     *
      * @since 24
      */
     OH_STAGE_RESPONSE
@@ -215,32 +215,32 @@ typedef OH_Interceptor_Result (*OH_Http_InterceptorHandler)(
 typedef struct OH_Http_Interceptor {
     /**
      * @brief Interceptor group ID.
-     * 
+     *
      * @since 24
      */
     int32_t groupId;
     /**
      * @brief Execution stage of the interceptor. For details, see {@link OH_Interceptor_Stage}.
-     * 
+     *
      * @since 24
      */
     OH_Interceptor_Stage stage;
     /**
      * @brief Interceptor type. For details, see {@link OH_Interceptor_Type}.
-     * 
+     *
      * @since 24
      */
     OH_Interceptor_Type type;
     /**
      * @brief Interceptor handler. For details, see {@link OH_Http_InterceptorHandler}.
-     * 
+     *
      * @since 24
      */
     OH_Http_InterceptorHandler handler;
     /**
      * @brief Enabling status of the interceptor. The value **0** indicates that the interceptor is disabled, and a non-
      * zero value indicates the opposite.
-     * 
+     *
      * @since 24
      */
     int32_t enabled;
