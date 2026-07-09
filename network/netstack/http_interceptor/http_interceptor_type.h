@@ -180,13 +180,13 @@ typedef enum OH_Interceptor_Type {
 typedef enum OH_Interceptor_Result {
     /**
      * @brief The processing continues.
-     * 
+     *
      * @since 24
      */
     OH_CONTINUE,
     /**
      * @brief The processing is aborted.
-     * 
+     *
      * @since 24
      */
     OH_ABORT
