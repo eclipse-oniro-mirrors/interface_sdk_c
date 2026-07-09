@@ -61,7 +61,7 @@ typedef struct OH_Http_Interceptor_Headers {
      * @since 24
      */
     char *data;
-    /** 
+    /**
      * @brief Pointer to the next header information.
      *
      * @since 24
@@ -75,25 +75,25 @@ typedef struct OH_Http_Interceptor_Headers {
  * @since 24
  */
 typedef struct OH_Http_Interceptor_Request {
-    /** 
+    /**
      * @brief Request URL. For details, see {@link Http_Buffer}.
      *
      * @since 24
      */
     Http_Buffer url;
-    /** 
+    /**
      * @brief Request method. For details, see {@link Http_Buffer}.
      *
      * @since 24
      */
     Http_Buffer method;
-    /** 
+    /**
      * @brief HTTP request header. For details, see {@link OH_Http_Interceptor_Headers}.
      *
      * @since 24
      */
     OH_Http_Interceptor_Headers *headers;
-    /** 
+    /**
      * @brief Request body. For details, see {@link Http_Buffer}.
      *
      * @since 24
