@@ -12,7 +12,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 /**
  * @addtogroup MediaAssetManager
  * @{
@@ -21,13 +20,10 @@
  *
  * @since 12
  */
-
 /**
  * @file media_asset_capi.h
  *
- * @brief Defines APIs related to media asset.
- *
- * Provides the ability to obtain image or video information.
+ * @brief The file declares the APIs related to media assets. You can use the APIs to obtain image or video information.
  *
  * @kit MediaLibraryKit
  * @syscap SystemCapability.FileManagement.PhotoAccessHelper.Core
@@ -45,258 +41,259 @@ extern "C" {
 #endif
 
 /**
- * @brief Get the uri of the media asset.
+ * @brief Obtains the URI of a media asset.
  *
- * @param mediaAsset the {@link OH_MediaAsset} instance.
- * @param uri the uri of the media asset.
- * @return {@link #MEDIA_LIBRARY_OK} if the method call succeeds.
- *         {@link #MEDIA_LIBRARY_PARAMETER_ERROR} Parameter error. Possible causes:
- *                                                1. Mandatory parameters are left unspecified.
- *                                                2. Incorrect parameter types.
- *                                                3. Parameter verification failed.
- *         {@link #MEDIA_LIBRARY_INTERNAL_SYSTEM_ERROR} if internal system error.
+ * @param mediaAsset Pointer to an {@link OH_MediaAsset} instance.
+ * @param uri Double pointer to the URI obtained.
+ * @return MEDIA_LIBRARY_OK if the method call succeeds.
+ *     <br>MEDIA_LIBRARY_PARAMETER_ERROR Parameter error. Possible causes:
+ *     <br>1. Mandatory parameters are left unspecified.
+ *     <br>2. Incorrect parameter types.
+ *     <br>3. Parameter verification failed.
+ *     <br>MEDIA_LIBRARY_INTERNAL_SYSTEM_ERROR if internal system error.
  * @since 12
 */
 MediaLibrary_ErrorCode OH_MediaAsset_GetUri(OH_MediaAsset* mediaAsset, const char** uri);
 
 /**
- * @brief Get the media file type of the media asset.
+ * @brief Obtains the type of a media asset.
  *
- * @param mediaAsset the {@link OH_MediaAsset} instance.
- * @param mediaType the media file type of the media asset.
- * @return {@link #MEDIA_LIBRARY_OK} if the method call succeeds.
- *         {@link #MEDIA_LIBRARY_PARAMETER_ERROR} Parameter error. Possible causes:
- *                                                1. Mandatory parameters are left unspecified.
- *                                                2. Incorrect parameter types.
- *                                                3. Parameter verification failed.
- *         {@link #MEDIA_LIBRARY_INTERNAL_SYSTEM_ERROR} if internal system error.
+ * @param mediaAsset Pointer to an {@link OH_MediaAsset} instance.
+ * @param mediaType Pointer to the media asset type obtained.
+ * @return MEDIA_LIBRARY_OK if the method call succeeds.
+ *     <br>MEDIA_LIBRARY_PARAMETER_ERROR Parameter error. Possible causes:
+ *     <br>1. Mandatory parameters are left unspecified.
+ *     <br>2. Incorrect parameter types.
+ *     <br>3. Parameter verification failed.
+ *     <br>MEDIA_LIBRARY_INTERNAL_SYSTEM_ERROR if internal system error.
  * @since 13
 */
 MediaLibrary_ErrorCode OH_MediaAsset_GetMediaType(OH_MediaAsset* mediaAsset, MediaLibrary_MediaType* mediaType);
 
 /**
- * @brief Get the subtype of the media asset.
+ * @brief Obtains the subtype of a media asset.
  *
- * @param mediaAsset the {@link OH_MediaAsset} instance.
- * @param mediaSubType the subtype of the media asset.
- * @return {@link #MEDIA_LIBRARY_OK} if the method call succeeds.
- *         {@link #MEDIA_LIBRARY_PARAMETER_ERROR} Parameter error. Possible causes:
- *                                                1. Mandatory parameters are left unspecified.
- *                                                2. Incorrect parameter types.
- *                                                3. Parameter verification failed.
- *         {@link #MEDIA_LIBRARY_INTERNAL_SYSTEM_ERROR} if internal system error.
+ * @param mediaAsset Pointer to an {@link OH_MediaAsset} instance.
+ * @param mediaSubType Pointer to the media asset subtype obtained.
+ * @return MEDIA_LIBRARY_OK if the method call succeeds.
+ *     <br>MEDIA_LIBRARY_PARAMETER_ERROR Parameter error. Possible causes:
+ *     <br>1. Mandatory parameters are left unspecified.
+ *     <br>2. Incorrect parameter types.
+ *     <br>3. Parameter verification failed.
+ *     <br>MEDIA_LIBRARY_INTERNAL_SYSTEM_ERROR if internal system error.
  * @since 13
 */
 MediaLibrary_ErrorCode OH_MediaAsset_GetMediaSubType(OH_MediaAsset* mediaAsset,
     MediaLibrary_MediaSubType* mediaSubType);
 
 /**
- * @brief Get the display name of the media asset.
+ * @brief Obtains the display name of a media asset.
  *
- * @param mediaAsset the {@link OH_MediaAsset} instance.
- * @param displayName the display name of the media asset.
- * @return {@link #MEDIA_LIBRARY_OK} if the method call succeeds.
- *         {@link #MEDIA_LIBRARY_PARAMETER_ERROR} Parameter error. Possible causes:
- *                                                1. Mandatory parameters are left unspecified.
- *                                                2. Incorrect parameter types.
- *                                                3. Parameter verification failed.
- *         {@link #MEDIA_LIBRARY_INTERNAL_SYSTEM_ERROR} if internal system error.
+ * @param mediaAsset Pointer to an {@link OH_MediaAsset} instance.
+ * @param displayName Double pointer to the display name obtained.
+ * @return MEDIA_LIBRARY_OK if the method call succeeds.
+ *     <br>MEDIA_LIBRARY_PARAMETER_ERROR Parameter error. Possible causes:
+ *     <br>1. Mandatory parameters are left unspecified.
+ *     <br>2. Incorrect parameter types.
+ *     <br>3. Parameter verification failed.
+ *     <br>MEDIA_LIBRARY_INTERNAL_SYSTEM_ERROR if internal system error.
  * @since 12
 */
 MediaLibrary_ErrorCode OH_MediaAsset_GetDisplayName(OH_MediaAsset* mediaAsset, const char** displayName);
 
 /**
- * @brief Get the file size of the media asset
+ * @brief Obtains the size of a media asset file.
  *
- * @param mediaAsset the {@link OH_MediaAsset} instance.
- * @param size the file size(in bytes) of the media asset.
- * @return {@link #MEDIA_LIBRARY_OK} if the method call succeeds.
- *         {@link #MEDIA_LIBRARY_PARAMETER_ERROR} Parameter error. Possible causes:
- *                                                1. Mandatory parameters are left unspecified.
- *                                                2. Incorrect parameter types.
- *                                                3. Parameter verification failed.
- *         {@link #MEDIA_LIBRARY_INTERNAL_SYSTEM_ERROR} if internal system error.
+ * @param mediaAsset Pointer to an {@link OH_MediaAsset} instance.
+ * @param size Pointer to the file size obtained, in bytes.
+ * @return MEDIA_LIBRARY_OK if the method call succeeds.
+ *     <br>MEDIA_LIBRARY_PARAMETER_ERROR Parameter error. Possible causes:
+ *     <br>1. Mandatory parameters are left unspecified.
+ *     <br>2. Incorrect parameter types.
+ *     <br>3. Parameter verification failed.
+ *     <br>MEDIA_LIBRARY_INTERNAL_SYSTEM_ERROR if internal system error.
  * @since 12
 */
 MediaLibrary_ErrorCode OH_MediaAsset_GetSize(OH_MediaAsset* mediaAsset, uint32_t* size);
 
 /**
- * @brief Get the date of asset creation.
+ * @brief Obtains the date when a media asset was added.
  *
- * @param mediaAsset the {@link OH_MediaAsset} instance.
- * @param dateAdded the creation date of the asset.
- *        The value is the number of seconds elapsed since the Epoch time (00:00:00 UTC on January 1, 1970).
- * @return {@link #MEDIA_LIBRARY_OK} if the method call succeeds.
- *         {@link #MEDIA_LIBRARY_PARAMETER_ERROR} Parameter error. Possible causes:
- *                                                1. Mandatory parameters are left unspecified.
- *                                                2. Incorrect parameter types.
- *                                                3. Parameter verification failed.
- *         {@link #MEDIA_LIBRARY_INTERNAL_SYSTEM_ERROR} if internal system error.
+ * @param mediaAsset Pointer to an {@link OH_MediaAsset} instance.
+ * @param dateAdded Pointer to the date obtained. The value is the number of seconds elapsed since the Unix Epoch time (
+ * 00:00:00 UTC on January 1, 1970).
+ * @return MEDIA_LIBRARY_OK if the method call succeeds.
+ *     <br>MEDIA_LIBRARY_PARAMETER_ERROR Parameter error. Possible causes:
+ *     <br>1. Mandatory parameters are left unspecified.
+ *     <br>2. Incorrect parameter types.
+ *     <br>3. Parameter verification failed.
+ *     <br>MEDIA_LIBRARY_INTERNAL_SYSTEM_ERROR if internal system error.
  * @since 13
 */
 MediaLibrary_ErrorCode OH_MediaAsset_GetDateAdded(OH_MediaAsset* mediaAsset, uint32_t* dateAdded);
 
 /**
- * @brief Get the modified date of the asset.
+ * @brief Obtains the date when a media asset (content not the media asset name) was last modified.
  *
- * @param mediaAsset the {@link OH_MediaAsset} instance.
- * @param dateModified the modified date of the asset.
- *        The value is the number of seconds elapsed since the Epoch time.
- * @return {@link #MEDIA_LIBRARY_OK} if the method call succeeds.
- *         {@link #MEDIA_LIBRARY_PARAMETER_ERROR} Parameter error. Possible causes:
- *                                                1. Mandatory parameters are left unspecified.
- *                                                2. Incorrect parameter types.
- *                                                3. Parameter verification failed.
- *         {@link #MEDIA_LIBRARY_INTERNAL_SYSTEM_ERROR} if internal system error.
+ * @param mediaAsset Pointer to an {@link OH_MediaAsset} instance.
+ * @param dateModified Pointer to the date obtained. The value is the number of milliseconds elapsed since the Unix
+ * Epoch time.
+ * @return MEDIA_LIBRARY_OK if the method call succeeds.
+ *     <br>MEDIA_LIBRARY_PARAMETER_ERROR Parameter error. Possible causes:
+ *     <br>1. Mandatory parameters are left unspecified.
+ *     <br>2. Incorrect parameter types.
+ *     <br>3. Parameter verification failed.
+ *     <br>MEDIA_LIBRARY_INTERNAL_SYSTEM_ERROR if internal system error.
  * @since 13
 */
 MediaLibrary_ErrorCode OH_MediaAsset_GetDateModified(OH_MediaAsset* mediaAsset, uint32_t* dateModified);
 
 /**
- * @brief Get the date taken of the asset.
+ * @brief Obtains the date when a media asset was taken.
  *
- * @param mediaAsset the {@link OH_MediaAsset} instance.
- * @param dateTaken the date taken of the asset.
- *        The value is the number of seconds elapsed since the Epoch time.
- * @return {@link #MEDIA_LIBRARY_OK} if the method call succeeds.
- *         {@link #MEDIA_LIBRARY_PARAMETER_ERROR} Parameter error. Possible causes:
- *                                                1. Mandatory parameters are left unspecified.
- *                                                2. Incorrect parameter types.
- *                                                3. Parameter verification failed.
- *         {@link #MEDIA_LIBRARY_INTERNAL_SYSTEM_ERROR} if internal system error.
+ * @param mediaAsset Pointer to an {@link OH_MediaAsset} instance.
+ * @param dateTaken Pointer to the date obtained. The value is the number of seconds elapsed since the Unix Epoch time.
+ * @return MEDIA_LIBRARY_OK if the method call succeeds.
+ *     <br>MEDIA_LIBRARY_PARAMETER_ERROR Parameter error. Possible causes:
+ *     <br>1. Mandatory parameters are left unspecified.
+ *     <br>2. Incorrect parameter types.
+ *     <br>3. Parameter verification failed.
+ *     <br>MEDIA_LIBRARY_INTERNAL_SYSTEM_ERROR if internal system error.
  * @since 13
 */
 MediaLibrary_ErrorCode OH_MediaAsset_GetDateTaken(OH_MediaAsset* mediaAsset, uint32_t* dateTaken);
 
 /**
- * @brief Get the creation time of the asset in milliseconds.
+ * @brief Obtains the date when a media asset was added, in ms.
  *
- * @param mediaAsset the {@link OH_MediaAsset} instance.
- * @param dateAddedMs the creation time of the asset in milliseconds.
- * @return {@link #MEDIA_LIBRARY_OK} if the method call succeeds.
- *         {@link #MEDIA_LIBRARY_PARAMETER_ERROR} Parameter error. Possible causes:
- *                                                1. Mandatory parameters are left unspecified.
- *                                                2. Incorrect parameter types.
- *                                                3. Parameter verification failed.
- *         {@link #MEDIA_LIBRARY_INTERNAL_SYSTEM_ERROR} if internal system error.
+ * @param mediaAsset Pointer to an {@link OH_MediaAsset} instance.
+ * @param dateAddedMs Pointer to the date obtained, in ms. The value is the number of milliseconds elapsed since the
+ * Unix Epoch time.
+ * @return MEDIA_LIBRARY_OK if the method call succeeds.
+ *     <br>MEDIA_LIBRARY_PARAMETER_ERROR Parameter error. Possible causes:
+ *     <br>1. Mandatory parameters are left unspecified.
+ *     <br>2. Incorrect parameter types.
+ *     <br>3. Parameter verification failed.
+ *     <br>MEDIA_LIBRARY_INTERNAL_SYSTEM_ERROR if internal system error.
  * @since 13
 */
 MediaLibrary_ErrorCode OH_MediaAsset_GetDateAddedMs(OH_MediaAsset* mediaAsset, uint32_t* dateAddedMs);
 
 /**
- * @brief Get the modified time of the asset in milliseconds.
+ * @brief Obtains the date when a media asset (content not the media asset name) was last modified, in ms.
  *
- * @param mediaAsset the {@link OH_MediaAsset} instance.
- * @param dateModifiedMs the modified time of the asset in milliseconds.
- * @return {@link #MEDIA_LIBRARY_OK} if the method call succeeds.
- *         {@link #MEDIA_LIBRARY_PARAMETER_ERROR} Parameter error. Possible causes:
- *                                                1. Mandatory parameters are left unspecified.
- *                                                2. Incorrect parameter types.
- *                                                3. Parameter verification failed.
- *         {@link #MEDIA_LIBRARY_INTERNAL_SYSTEM_ERROR} if internal system error.
+ * @param mediaAsset Pointer to an {@link OH_MediaAsset} instance.
+ * @param dateModifiedMs Pointer to the date obtained, in ms. The value is the number of milliseconds elapsed since the
+ * Unix Epoch time.
+ * @return MEDIA_LIBRARY_OK if the method call succeeds.
+ *     <br>MEDIA_LIBRARY_PARAMETER_ERROR Parameter error. Possible causes:
+ *     <br>1. Mandatory parameters are left unspecified.
+ *     <br>2. Incorrect parameter types.
+ *     <br>3. Parameter verification failed.
+ *     <br>MEDIA_LIBRARY_INTERNAL_SYSTEM_ERROR if internal system error.
  * @since 12
 */
 MediaLibrary_ErrorCode OH_MediaAsset_GetDateModifiedMs(OH_MediaAsset* mediaAsset, uint32_t* dateModifiedMs);
 
 /**
- * @brief Get the duration of the media asset in milliseconds.
+ * @brief Obtains the duration of a media asset, in ms.
  *
- * @param mediaAsset the {@link OH_MediaAsset} instance.
- * @param duration the duration of the media asset in milliseconds.
- * @return {@link #MEDIA_LIBRARY_OK} if the method call succeeds.
- *         {@link #MEDIA_LIBRARY_PARAMETER_ERROR} Parameter error. Possible causes:
- *                                                1. Mandatory parameters are left unspecified.
- *                                                2. Incorrect parameter types.
- *                                                3. Parameter verification failed.
- *         {@link #MEDIA_LIBRARY_INTERNAL_SYSTEM_ERROR} if internal system error.
+ * @param mediaAsset Pointer to an {@link OH_MediaAsset} instance.
+ * @param duration Pointer to the duration obtained, in ms.
+ * @return MEDIA_LIBRARY_OK if the method call succeeds.
+ *     <br>MEDIA_LIBRARY_PARAMETER_ERROR Parameter error. Possible causes:
+ *     <br>1. Mandatory parameters are left unspecified.
+ *     <br>2. Incorrect parameter types.
+ *     <br>3. Parameter verification failed.
+ *     <br>MEDIA_LIBRARY_INTERNAL_SYSTEM_ERROR if internal system error.
  * @since 13
 */
 MediaLibrary_ErrorCode OH_MediaAsset_GetDuration(OH_MediaAsset* mediaAsset, uint32_t* duration);
 
 /**
- * @brief Get the image width(in pixels) of the media asset.
+ * @brief Obtains the image width (in pixels) of a media asset.
  *
- * @param mediaAsset the {@link OH_MediaAsset} instance.
- * @param width the image width(in pixels) of the media asset.
- * @return {@link #MEDIA_LIBRARY_OK} if the method call succeeds.
- *         {@link #MEDIA_LIBRARY_PARAMETER_ERROR} Parameter error. Possible causes:
- *                                                1. Mandatory parameters are left unspecified.
- *                                                2. Incorrect parameter types.
- *                                                3. Parameter verification failed.
- *         {@link #MEDIA_LIBRARY_INTERNAL_SYSTEM_ERROR} if internal system error.
+ * @param mediaAsset Pointer to an {@link OH_MediaAsset} instance.
+ * @param width Pointer to the image width obtained, in pixels.
+ * @return MEDIA_LIBRARY_OK if the method call succeeds.
+ *     <br>MEDIA_LIBRARY_PARAMETER_ERROR Parameter error. Possible causes:
+ *     <br>1. Mandatory parameters are left unspecified.
+ *     <br>2. Incorrect parameter types.
+ *     <br>3. Parameter verification failed.
+ *     <br>MEDIA_LIBRARY_INTERNAL_SYSTEM_ERROR if internal system error.
  * @since 12
 */
 MediaLibrary_ErrorCode OH_MediaAsset_GetWidth(OH_MediaAsset* mediaAsset, uint32_t* width);
 
 /**
- * @brief Get the image height(in pixels) of the media asset.
+ * @brief Obtains the image height (in pixels) of a media asset.
  *
- * @param mediaAsset the {@link OH_MediaAsset} instance.
- * @param height the image height(in pixels) of the media asset.
- * @return {@link #MEDIA_LIBRARY_OK} if the method call succeeds.
- *         {@link #MEDIA_LIBRARY_PARAMETER_ERROR} Parameter error. Possible causes:
- *                                                1. Mandatory parameters are left unspecified.
- *                                                2. Incorrect parameter types.
- *                                                3. Parameter verification failed.
- *         {@link #MEDIA_LIBRARY_INTERNAL_SYSTEM_ERROR} if internal system error.
+ * @param mediaAsset Pointer to an {@link OH_MediaAsset} instance.
+ * @param height Pointer to the image height obtained, in pixels.
+ * @return MEDIA_LIBRARY_OK if the method call succeeds.
+ *     <br>MEDIA_LIBRARY_PARAMETER_ERROR Parameter error. Possible causes:
+ *     <br>1. Mandatory parameters are left unspecified.
+ *     <br>2. Incorrect parameter types.
+ *     <br>3. Parameter verification failed.
+ *     <br>MEDIA_LIBRARY_INTERNAL_SYSTEM_ERROR if internal system error.
  * @since 12
 */
 MediaLibrary_ErrorCode OH_MediaAsset_GetHeight(OH_MediaAsset* mediaAsset, uint32_t* height);
 
 /**
- * @brief Get the orientation of the image.
+ * @brief Obtains the orientation of a media asset, in degrees.
  *
- * @param mediaAsset the {@link OH_MediaAsset} instance.
- * @param orientation the orientation of the image.
- * @return {@link #MEDIA_LIBRARY_OK} if the method call succeeds.
- *         {@link #MEDIA_LIBRARY_PARAMETER_ERROR} Parameter error. Possible causes:
- *                                                1. Mandatory parameters are left unspecified.
- *                                                2. Incorrect parameter types.
- *                                                3. Parameter verification failed.
- *         {@link #MEDIA_LIBRARY_INTERNAL_SYSTEM_ERROR} if internal system error.
+ * @param mediaAsset Pointer to an {@link OH_MediaAsset} instance.
+ * @param orientation Pointer to the orientation of the image obtained, in degrees.
+ * @return MEDIA_LIBRARY_OK if the method call succeeds.
+ *     <br>MEDIA_LIBRARY_PARAMETER_ERROR Parameter error. Possible causes:
+ *     <br>1. Mandatory parameters are left unspecified.
+ *     <br>2. Incorrect parameter types.
+ *     <br>3. Parameter verification failed.
+ *     <br>MEDIA_LIBRARY_INTERNAL_SYSTEM_ERROR if internal system error.
  * @since 12
 */
 MediaLibrary_ErrorCode OH_MediaAsset_GetOrientation(OH_MediaAsset* mediaAsset, uint32_t* orientation);
 
 /**
- * @brief Get the favorite state of the asset.
+ * @brief Checks whether a media asset is favorited.
  *
- * @param mediaAsset the {@link OH_MediaAsset} instance.
- * @param favorite the favorite state of the media asset.
- * @return {@link #MEDIA_LIBRARY_OK} if the method call succeeds.
- *         {@link #MEDIA_LIBRARY_PARAMETER_ERROR} Parameter error. Possible causes:
- *                                                1. Mandatory parameters are left unspecified.
- *                                                2. Incorrect parameter types.
- *                                                3. Parameter verification failed.
- *         {@link #MEDIA_LIBRARY_INTERNAL_SYSTEM_ERROR} if internal system error.
+ * @param mediaAsset Pointer to an {@link OH_MediaAsset} instance.
+ * @param favorite Pointer to the favorite status obtained.
+ * @return MEDIA_LIBRARY_OK if the method call succeeds.
+ *     <br>MEDIA_LIBRARY_PARAMETER_ERROR Parameter error. Possible causes:
+ *     <br>1. Mandatory parameters are left unspecified.
+ *     <br>2. Incorrect parameter types.
+ *     <br>3. Parameter verification failed.
+ *     <br>MEDIA_LIBRARY_INTERNAL_SYSTEM_ERROR if internal system error.
  * @since 13
 */
 MediaLibrary_ErrorCode OH_MediaAsset_IsFavorite(OH_MediaAsset* mediaAsset, uint32_t* favorite);
 
 /**
- * @brief Get the title of the media asset.
+ * @brief Obtains the title of a media asset.
  *
- * @param mediaAsset the {@link OH_MediaAsset} instance.
- * @param title the title of the media asset.
- * @return {@link #MEDIA_LIBRARY_OK} if the method call succeeds.
- *         {@link #MEDIA_LIBRARY_PARAMETER_ERROR} Parameter error. Possible causes:
- *                                                1. Mandatory parameters are left unspecified.
- *                                                2. Incorrect parameter types.
- *                                                3. Parameter verification failed.
- *         {@link #MEDIA_LIBRARY_INTERNAL_SYSTEM_ERROR} if internal system error.
+ * @param mediaAsset Pointer to an {@link OH_MediaAsset} instance.
+ * @param title Pointer to the media asset title obtained.
+ * @return MEDIA_LIBRARY_OK if the method call succeeds.
+ *     <br>MEDIA_LIBRARY_PARAMETER_ERROR Parameter error. Possible causes:
+ *     <br>1. Mandatory parameters are left unspecified.
+ *     <br>2. Incorrect parameter types.
+ *     <br>3. Parameter verification failed.
+ *     <br>MEDIA_LIBRARY_INTERNAL_SYSTEM_ERROR if internal system error.
  * @since 13
 */
 MediaLibrary_ErrorCode OH_MediaAsset_GetTitle(OH_MediaAsset* mediaAsset, const char** title);
 
 /**
- * @brief Release the media asset
+ * @brief Releases a media asset.
  *
- * @param mediaAsset the {@link OH_MediaAsset} instance.
- * @return {@link #MEDIA_LIBRARY_OK} if the method call succeeds.
- *         {@link #MEDIA_LIBRARY_PARAMETER_ERROR} Parameter error. Possible causes:
- *                                                1. Mandatory parameters are left unspecified.
- *                                                2. Incorrect parameter types.
- *                                                3. Parameter verification failed.
+ * @param mediaAsset Pointer to an {@link OH_MediaAsset} instance.
+ * @return MEDIA_LIBRARY_OK if the method call succeeds.
+ *     <br>MEDIA_LIBRARY_PARAMETER_ERROR Parameter error. Possible causes:
+ *     <br>1. Mandatory parameters are left unspecified.
+ *     <br>2. Incorrect parameter types.
+ *     <br>3. Parameter verification failed.
  * @since 12
 */
 MediaLibrary_ErrorCode OH_MediaAsset_Release(OH_MediaAsset* mediaAsset);
