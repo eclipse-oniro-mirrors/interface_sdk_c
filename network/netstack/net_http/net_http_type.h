@@ -296,7 +296,7 @@ typedef enum Http_AddressFamilyType {
 
 /**
  * @brief Sets the HTTP request method to POST.
- * 
+ *
  * @since 20
  */
 #define NET_HTTP_METHOD_POST "POST"
