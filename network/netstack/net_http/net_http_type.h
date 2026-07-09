@@ -690,5 +690,3 @@ typedef struct Http_EventsHandler {
 #endif // NET_HTTP_TYPE_H
 
 /** @} */
-
-/** @} */
