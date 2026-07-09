@@ -229,7 +229,7 @@ int32_t OH_NetConn_RegisterDnsResolver(OH_NetConn_CustomDnsResolver resolver);
  */
 int32_t OH_NetConn_UnregisterDnsResolver(void);
 /**
- * @brief Registers a custom DNS resolver to intercept and override DNS queries. 
+ * @brief Registers a custom DNS resolver to intercept and override DNS queries.
  *        Falls back to system DNS if no result is specified.
  *        Only a single resolver is allowed. You must unregister the existing one before registering a new one.
  *
