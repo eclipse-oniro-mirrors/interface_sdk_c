@@ -53,13 +53,13 @@ extern "C" {
  * @since 24
  */
 typedef struct OH_Http_Interceptor_Headers {
-    /** 
+    /**
      * @brief 拦截器请求/响应头信息。
      * 
      * @since 24
      */
     char *data;
-    /** 
+    /**
      * @brief 指向下一个头信息的指针。
      *     
      * @since 24
@@ -73,25 +73,25 @@ typedef struct OH_Http_Interceptor_Headers {
  * @since 24
  */
 typedef struct OH_Http_Interceptor_Request {
-    /** 
+    /**
      * @brief 请求URL，详情请参考{@link Http_Buffer}定义。
      * 
      * @since 24
      */
     Http_Buffer url;
-    /** 
+    /**
      * @brief 请求方法，详情请参考{@link Http_Buffer}定义。
      *
      * @since 24
      */
     Http_Buffer method;
-    /** 
+    /**
      * @brief HTTP请求头信息，详情请参考{@link OH_Http_Interceptor_Headers}定义。
      *
      * @since 24
      */
     OH_Http_Interceptor_Headers *headers;
-    /** 
+    /**
      * @brief 请求体内容，详情请参考{@link Http_Buffer}定义。
      * 
      * @since 24
@@ -105,25 +105,25 @@ typedef struct OH_Http_Interceptor_Request {
  * @since 24
  */
 typedef struct OH_Http_Interceptor_Response {
-    /** 
+    /**
      * @brief 响应体内容，详情请参考{@link Http_Buffer}定义。
      *
      * @since 24
      */
     Http_Buffer body;
-    /** 
+    /**
      * @brief 响应状态码，详情请参考{@link Http_ResponseCode} 枚举定义。
      * 
      * @since 24
      */
     Http_ResponseCode responseCode;
-    /** 
+    /**
      * @brief HTTP响应头信息，详情请参考{@link OH_Http_Interceptor_Headers}定义。
      *
      * @since 24
      */
     OH_Http_Interceptor_Headers *headers;
-    /** 
+    /**
      * @brief 响应性能信息，详情请参考{@link Http_PerformanceTiming}定义。
      *
      * @since 24
@@ -212,31 +212,31 @@ typedef OH_Interceptor_Result (*OH_Http_InterceptorHandler)(
  * @since 24
  */
 typedef struct OH_Http_Interceptor {
-    /** 
+    /**
      * @brief 拦截器组ID。
      * 
      * @since 24
      */
     int32_t groupId;
-    /** 
+    /**
      * @brief 拦截器的执行阶段，详情请参考{@link OH_Interceptor_Stage} 枚举定义。
      * 
      * @since 24
      */
     OH_Interceptor_Stage stage;
-    /** 
+    /**
      * @brief 拦截器的类型，详情请参考{@link OH_Interceptor_Type} 枚举定义。
      * 
      * @since 24
      */
     OH_Interceptor_Type type;
-    /** 
+    /**
      * @brief 拦截器处理函数，详情请参考{@link OH_Http_InterceptorHandler} 函数指针定义。
      * 
      * @since 24
      */
     OH_Http_InterceptorHandler handler;
-    /** 
+    /**
      * @brief 拦截器的启用状态。0代表未启用，非0代表启用。
      * 
      * @since 24
