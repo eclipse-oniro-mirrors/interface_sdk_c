@@ -144,5 +144,3 @@ void OH_Http_Destroy(struct Http_Request **request);
 #endif // NET_HTTP_H
 
 /** @} */
-
-/** @} */
