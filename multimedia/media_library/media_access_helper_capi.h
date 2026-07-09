@@ -42,7 +42,7 @@ extern "C" {
 
 /**
  * @brief Applies changes to an asset or album.
- * 
+ *
  * @permission ohos.permission.WRITE_IMAGEVIDEO
  * @param changeRequest Change request.
  * @return MEDIA_LIBRARY_OK if the method call succeeds.

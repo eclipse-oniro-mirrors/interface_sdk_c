@@ -76,7 +76,7 @@ MediaLibrary_ErrorCode OH_MovingPhoto_RequestContentWithUris(OH_MovingPhoto* mov
 
 /**
  * @brief Requests the moving photo content of the specified resource type and writes it to the specified URI.
- * 
+ *
  * @permission ohos.permission.READ_IMAGEVIDEO
  * @param movingPhoto Pointer to an {@link OH_MovingPhoto} instance.
  * @param resourceType Resource type, which is specified by {@link MediaLibrary_ResourceType}.

@@ -57,7 +57,7 @@ MediaLibrary_ErrorCode OH_MediaAsset_GetUri(OH_MediaAsset* mediaAsset, const cha
 
 /**
  * @brief Obtains the type of a media asset.
- * 
+ *
  * @param mediaAsset Pointer to an {@link OH_MediaAsset} instance.
  * @param mediaType Pointer to the media asset type obtained.
  * @return MEDIA_LIBRARY_OK if the method call succeeds.
