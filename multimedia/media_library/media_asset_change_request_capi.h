@@ -25,7 +25,7 @@
  *
  * @brief The file declares the APIs related to media asset change requests. You can use the APIs to change media
  * assets.
- * 
+ *
  * @kit MediaLibraryKit
  * @syscap SystemCapability.FileManagement.PhotoAccessHelper.Core
  * @library libmedia_asset_manager.so
