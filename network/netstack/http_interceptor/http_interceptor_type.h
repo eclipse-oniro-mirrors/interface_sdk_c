@@ -119,7 +119,7 @@ typedef struct OH_Http_Interceptor_Response {
      * @since 24
      */
     Http_ResponseCode responseCode;
-    /** 
+    /**
      * @brief HTTP response header. For details, see {@link OH_Http_Interceptor_Headers}.
      *
      * @since 24
