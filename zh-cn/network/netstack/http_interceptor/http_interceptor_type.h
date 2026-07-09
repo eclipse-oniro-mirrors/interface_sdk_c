@@ -177,13 +177,13 @@ typedef enum OH_Interceptor_Type {
 typedef enum OH_Interceptor_Result {
     /**
      * @brief 继续处理。
-     * 
+     *
      * @since 24
      */
     OH_CONTINUE,
     /**
      * @brief 拦截处理。
-     * 
+     *
      * @since 24
      */
     OH_ABORT
