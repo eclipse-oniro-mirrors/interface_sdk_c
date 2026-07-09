@@ -129,15 +129,8 @@ typedef struct NetStack_CertificatePinning {
     NetStack_HashAlgorithm hashAlgorithm;
     /** Hash value */
     union {
-    /**
-     * Certificate lock type.
-     */
-    NetStack_CertificatePinningKind kind;
-    /**
-     * Hash algorithm.
-     */
-    NetStack_HashAlgorithm hashAlgorithm;
-    char *publicKeyHash;
+        char *publicKeyHash;
+    };
 } NetStack_CertificatePinning;
 
 /**
