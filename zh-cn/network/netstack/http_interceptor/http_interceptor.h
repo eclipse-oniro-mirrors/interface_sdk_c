@@ -121,5 +121,3 @@ int32_t OH_Http_StopAllInterceptors(int32_t groupId);
 #endif // HTTP_INTERCEPTOR_H
 
 /** @} */
-
-/** @} */
