@@ -153,7 +153,6 @@ typedef struct NetStack_Certificates {
 #ifdef __cplusplus
 }
 #endif
-#endif
 
 /** @} */
 #endif // NET_SSL_C_TYPE_H
