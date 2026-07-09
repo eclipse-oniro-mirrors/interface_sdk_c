@@ -107,13 +107,13 @@ typedef struct OH_Http_Interceptor_Request {
  * @since 24
  */
 typedef struct OH_Http_Interceptor_Response {
-    /** 
+    /**
      * @brief Response body. For details, see {@link Http_Buffer}.
      *
      * @since 24
      */
     Http_Buffer body;
-    /** 
+    /**
      * @brief Response status code. For details, see {@link Http_ResponseCode}.
      * 
      * @since 24
@@ -125,7 +125,7 @@ typedef struct OH_Http_Interceptor_Response {
      * @since 24
      */
     OH_Http_Interceptor_Headers *headers;
-    /** 
+    /**
      * @brief Response performance information. For details, see {@link Http_PerformanceTiming}.
      *
      * @since 24
@@ -213,31 +213,31 @@ typedef OH_Interceptor_Result (*OH_Http_InterceptorHandler)(
  * @since 24
  */
 typedef struct OH_Http_Interceptor {
-    /** 
+    /**
      * @brief Interceptor group ID.
      * 
      * @since 24
      */
     int32_t groupId;
-    /** 
+    /**
      * @brief Execution stage of the interceptor. For details, see {@link OH_Interceptor_Stage}.
      * 
      * @since 24
      */
     OH_Interceptor_Stage stage;
-    /** 
+    /**
      * @brief Interceptor type. For details, see {@link OH_Interceptor_Type}.
      * 
      * @since 24
      */
     OH_Interceptor_Type type;
-    /** 
+    /**
      * @brief Interceptor handler. For details, see {@link OH_Http_InterceptorHandler}.
      * 
      * @since 24
      */
     OH_Http_InterceptorHandler handler;
-    /** 
+    /**
      * @brief Enabling status of the interceptor. The value **0** indicates that the interceptor is disabled, and a non-
      * zero value indicates the opposite.
      * 
