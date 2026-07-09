@@ -250,5 +250,3 @@ typedef struct OH_Http_Interceptor {
 #endif // HTTP_INTERCEPTOR_TYPE_H
 
 /** @} */
-
-/** @} */
