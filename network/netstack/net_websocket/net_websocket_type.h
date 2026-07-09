@@ -305,5 +305,4 @@ typedef enum WebSocket_ErrCode {
 #endif
 
 /** @} */
-
 #endif // NET_WEBSOCKET_TYPE_H
