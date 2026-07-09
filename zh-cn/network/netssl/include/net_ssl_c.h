@@ -202,5 +202,4 @@ void OH_NetStack_FreeCertChain(struct NetStack_CertBlob *certChain, size_t certC
 #endif
 
 /** @} */
-
 #endif // NET_SSL_C_H
