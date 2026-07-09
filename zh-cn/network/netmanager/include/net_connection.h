@@ -449,6 +449,4 @@ int32_t OH_NetConn_QueryTraceRoute(char *destination, NetConn_TraceRouteOption *
 #endif
 
 /** @} */
-
-/** @} */
 #endif /* NATIVE_NET_CONN_API_H */
