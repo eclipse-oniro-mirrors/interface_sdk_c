@@ -55,13 +55,13 @@ extern "C" {
 typedef struct OH_Http_Interceptor_Headers {
     /**
      * @brief 拦截器请求/响应头信息。
-     * 
+     *
      * @since 24
      */
     char *data;
     /**
      * @brief 指向下一个头信息的指针。
-     *     
+     *
      * @since 24
      */
     struct OH_Http_Interceptor_Headers *next;
@@ -75,7 +75,7 @@ typedef struct OH_Http_Interceptor_Headers {
 typedef struct OH_Http_Interceptor_Request {
     /**
      * @brief 请求URL，详情请参考{@link Http_Buffer}定义。
-     * 
+     *
      * @since 24
      */
     Http_Buffer url;
@@ -93,7 +93,7 @@ typedef struct OH_Http_Interceptor_Request {
     OH_Http_Interceptor_Headers *headers;
     /**
      * @brief 请求体内容，详情请参考{@link Http_Buffer}定义。
-     * 
+     *
      * @since 24
      */
     Http_Buffer body;
@@ -113,7 +113,7 @@ typedef struct OH_Http_Interceptor_Response {
     Http_Buffer body;
     /**
      * @brief 响应状态码，详情请参考{@link Http_ResponseCode} 枚举定义。
-     * 
+     *
      * @since 24
      */
     Http_ResponseCode responseCode;
@@ -139,13 +139,13 @@ typedef struct OH_Http_Interceptor_Response {
 typedef enum OH_Interceptor_Stage {
     /**
      * @brief 拦截器处理请求。
-     * 
+     *
      * @since 24
      */
     OH_STAGE_REQUEST,
     /**
      * @brief 拦截器处理响应。
-     * 
+     *
      * @since 24
      */
     OH_STAGE_RESPONSE
@@ -214,31 +214,31 @@ typedef OH_Interceptor_Result (*OH_Http_InterceptorHandler)(
 typedef struct OH_Http_Interceptor {
     /**
      * @brief 拦截器组ID。
-     * 
+     *
      * @since 24
      */
     int32_t groupId;
     /**
      * @brief 拦截器的执行阶段，详情请参考{@link OH_Interceptor_Stage} 枚举定义。
-     * 
+     *
      * @since 24
      */
     OH_Interceptor_Stage stage;
     /**
      * @brief 拦截器的类型，详情请参考{@link OH_Interceptor_Type} 枚举定义。
-     * 
+     *
      * @since 24
      */
     OH_Interceptor_Type type;
     /**
      * @brief 拦截器处理函数，详情请参考{@link OH_Http_InterceptorHandler} 函数指针定义。
-     * 
+     *
      * @since 24
      */
     OH_Http_InterceptorHandler handler;
     /**
      * @brief 拦截器的启用状态。0代表未启用，非0代表启用。
-     * 
+     *
      * @since 24
      */
     int32_t enabled;
