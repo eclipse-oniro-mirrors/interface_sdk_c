@@ -262,14 +262,14 @@ typedef enum Http_AddressFamilyType {
 
 /**
  * @brief Sets the HTTP request method to GET.
- * 
+ *
  * @since 20
  */
 #define NET_HTTP_METHOD_GET "GET"
 
 /**
  * @brief Sets the HTTP request method to HEAD.
- * 
+ *
  * @since 20
  */
 #define NET_HTTPMETHOD_HEAD "HEAD"
@@ -303,14 +303,14 @@ typedef enum Http_AddressFamilyType {
 
 /**
  * @brief Sets the HTTP request method to PUT.
- * 
+ *
  * @since 20
  */
 #define NET_HTTP_METHOD_PUT "PUT"
 
 /**
  * @brief Sets the HTTP request method to CONNECT.
- * 
+ *
  * @since 20
  */
 #define NET_HTTP_METHOD_PATCH "CONNECT"
