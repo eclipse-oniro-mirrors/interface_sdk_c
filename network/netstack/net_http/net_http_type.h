@@ -276,14 +276,14 @@ typedef enum Http_AddressFamilyType {
 
 /**
  * @brief Sets the HTTP request method to OPTIONS.
- * 
+ *
  * @since 20
  */
 #define NET_HTTPMETHOD_OPTIONS "OPTIONS"
 
 /**
  * @brief Sets the HTTP request method to TRACE.
- * 
+ *
  * @since 20
  */
 #define NET_HTTPMETHOD_TRACE "TRACE"
