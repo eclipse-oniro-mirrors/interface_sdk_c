@@ -24,7 +24,7 @@
  * @file moving_photo_capi.h
  *
  * @brief The file declares the APIs related to moving photos. You can use the APIs to obtain moving photo information.
- * 
+ *
  * @kit MediaLibraryKit
  * @syscap SystemCapability.FileManagement.PhotoAccessHelper.Core
  * @library libmedia_asset_manager.so
@@ -42,7 +42,7 @@ extern "C" {
 
 /**
  * @brief Obtains the URI of a moving photo.
- * 
+ *
  * @param movingPhoto Pointer to an {@link OH_MovingPhoto} instance.
  * @param uri Double pointer to the URI of the moving photo obtained.
  * @return MEDIA_LIBRARY_OK if the method call succeeds.
@@ -57,7 +57,7 @@ MediaLibrary_ErrorCode OH_MovingPhoto_GetUri(OH_MovingPhoto* movingPhoto, const 
 
 /**
  * @brief Requests the image data and video data of a moving photo and writes them to the specified URIs, respectively.
- * 
+ *
  * @permission ohos.permission.READ_IMAGEVIDEO
  * @param movingPhoto Pointer to an {@link OH_MovingPhoto} instance.
  * @param imageUri Pointer to the URI of the file, to which the image data is written.
@@ -95,7 +95,7 @@ MediaLibrary_ErrorCode OH_MovingPhoto_RequestContentWithUri(OH_MovingPhoto* movi
 
 /**
  * @brief Requests the moving photo content of the specified resource type and returns it in ArrayBuffer format.
- * 
+ *
  * @permission ohos.permission.READ_IMAGEVIDEO
  * @param movingPhoto Pointer to an {@link OH_MovingPhoto} instance.
  * @param resourceType Resource type, which is specified by {@link MediaLibrary_ResourceType}.
@@ -115,7 +115,7 @@ MediaLibrary_ErrorCode OH_MovingPhoto_RequestContentWithBuffer(OH_MovingPhoto* m
 
 /**
  * @brief Releases an {@link OH_MovingPhoto} instance.
- * 
+ *
  * @param movingPhoto Pointer to an {@link OH_MovingPhoto} instance.
  * @return MEDIA_LIBRARY_OK if the method call succeeds.
  *     <br>MEDIA_LIBRARY_PARAMETER_ERROR Parameter error. Possible causes:

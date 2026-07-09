@@ -43,7 +43,7 @@ extern "C" {
 
 /**
  * @brief Creates an {@link OH_MediaAssetChangeRequest} instance.
- * 
+ *
  * @param mediaAsset Pointer to an {@link OH_MediaAsset} instance.
  * @return MEDIA_LIBRARY_OK if the method call succeeds.
  *     <br>MEDIA_LIBRARY_PARAMETER_ERROR Parameter error. Possible causes:
@@ -57,7 +57,7 @@ OH_MediaAssetChangeRequest* OH_MediaAssetChangeRequest_Create(OH_MediaAsset* med
 
 /**
  * @brief Adds a resource of the given URI.
- * 
+ *
  * @param changeRequest Pointer to an {@link OH_MediaAssetChangeRequest} instance.
  * @param resourceType Type of the resource to add, which is specified by {@link MediaLibrary_ResourceType}.
  * @param fileUri Pointer to the URI of the file.
@@ -95,7 +95,7 @@ MediaLibrary_ErrorCode OH_MediaAssetChangeRequest_AddResourceWithBuffer(OH_Media
 
 /**
  * @brief Obtains the handler used for writing a file to cache.
- * 
+ *
  * @permission ohos.permission.WRITE_IMAGEVIDEO
  * @param changeRequest Pointer to an {@link OH_MediaAssetChangeRequest} instance.
  * @param fd Pointer to the file descriptor (FD) obtained.
@@ -114,7 +114,7 @@ MediaLibrary_ErrorCode OH_MediaAssetChangeRequest_GetWriteCacheHandler(OH_MediaA
 
 /**
  * @brief Saves the photo taken by the camera.
- * 
+ *
  * @param changeRequest Pointer to an {@link OH_MediaAssetChangeRequest} instance.
  * @param imageFileType Type of the image file of the photo.
  * @return MEDIA_LIBRARY_OK if the method call succeeds.
@@ -131,7 +131,7 @@ MediaLibrary_ErrorCode OH_MediaAssetChangeRequest_SaveCameraPhoto(OH_MediaAssetC
 
 /**
  * @brief Discards the photo taken by the camera.
- * 
+ *
  * @param changeRequest Pointer to an {@link OH_MediaAssetChangeRequest} instance.
  * @return MEDIA_LIBRARY_OK if the method call succeeds.
  *     <br>MEDIA_LIBRARY_PARAMETER_ERROR Parameter error. Possible causes:
@@ -146,7 +146,7 @@ MediaLibrary_ErrorCode OH_MediaAssetChangeRequest_DiscardCameraPhoto(OH_MediaAss
 
 /**
  * @brief Releases an {@link OH_MediaAssetChangeRequest} instance.
- * 
+ *
  * @param changeRequest Pointer to an {@link OH_MediaAssetChangeRequest} instance.
  * @return MEDIA_LIBRARY_OK if the method call succeeds.
  *     <br>MEDIA_LIBRARY_PARAMETER_ERROR Parameter error. Possible causes:

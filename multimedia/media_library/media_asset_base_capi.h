@@ -48,42 +48,42 @@ extern "C" {
 
 /**
  * @brief Maximum length of a request ID.
- * 
+ *
  * @since 12
  */
 static const int32_t UUID_STR_MAX_LENGTH = 37;
 
 /**
  * @brief The struct describes the media asset manager.
- * 
+ *
  * @since 12
  */
 typedef struct OH_MediaAssetManager OH_MediaAssetManager;
 
 /**
  * @brief The struct describes a media asset change request.
- * 
+ *
  * @since 12
  */
 typedef struct OH_MediaAssetChangeRequest OH_MediaAssetChangeRequest;
 
 /**
  * @brief The struct describes a moving photo.
- * 
+ *
  * @since 13
  */
 typedef struct OH_MovingPhoto OH_MovingPhoto;
 
 /**
  * @brief The struct describes a media asset.
- * 
+ *
  * @since 12
  */
 typedef struct OH_MediaAsset OH_MediaAsset;
 
 /**
  * @brief Defines a struct for the request ID.
- * 
+ *
  * @since 12
  */
 typedef struct MediaLibrary_RequestId {
@@ -93,7 +93,7 @@ typedef struct MediaLibrary_RequestId {
 
 /**
  * @brief Enumerates the error codes of the media library.
- * 
+ *
  * @since 12
  */
 typedef enum MediaLibrary_ErrorCode {
@@ -148,7 +148,7 @@ typedef enum MediaLibrary_ErrorCode {
 
 /**
  * @brief Enumerates the delivery modes of the requested media asset.
- * 
+ *
  * @since 12
  */
 typedef enum MediaLibrary_DeliveryMode {
@@ -162,7 +162,7 @@ typedef enum MediaLibrary_DeliveryMode {
 
 /**
  * @brief The struct defines how media assets are requested and processed.
- * 
+ *
  * @since 12
  */
 typedef struct MediaLibrary_RequestOptions {
@@ -172,7 +172,7 @@ typedef struct MediaLibrary_RequestOptions {
 
 /**
  * @brief Enumerates the media asset types.
- * 
+ *
  * @since 12
  */
 typedef enum MediaLibrary_MediaType {
@@ -184,7 +184,7 @@ typedef enum MediaLibrary_MediaType {
 
 /**
  * @brief Enumerates the media asset subtypes.
- * 
+ *
  * @since 12
  */
 typedef enum MediaLibrary_MediaSubType {
@@ -198,7 +198,7 @@ typedef enum MediaLibrary_MediaSubType {
 
 /**
  * @brief Enumerates the media library resource types.
- * 
+ *
  * @since 12
  */
 typedef enum MediaLibrary_ResourceType {
@@ -210,7 +210,7 @@ typedef enum MediaLibrary_ResourceType {
 
 /**
  * @brief Enumerates the image file types.
- * 
+ *
  * @since 12
  */
 typedef enum MediaLibrary_ImageFileType {
@@ -218,13 +218,13 @@ typedef enum MediaLibrary_ImageFileType {
     MEDIA_LIBRARY_IMAGE_JPEG = 1,
     /**
      * @brief HEIF.
-     * 
+     *
      * @since 23
      */
     MEDIA_LIBRARY_IMAGE_HEIF = 2,
     /**
      * @brief MPEG.
-     * 
+     *
      * @since 19
      */
     MEDIA_LIBRARY_FILE_VIDEO = 3,
@@ -232,7 +232,7 @@ typedef enum MediaLibrary_ImageFileType {
 
 /**
  * @brief Enumerates the media resource quality,
- * 
+ *
  * @since 12
  */
 typedef enum MediaLibrary_MediaQuality {
@@ -244,7 +244,7 @@ typedef enum MediaLibrary_MediaQuality {
 
 /**
  * @brief Enumerates the media content types.
- * 
+ *
  * @since 12
  */
 typedef enum MediaLibrary_MediaContentType {
@@ -256,7 +256,7 @@ typedef enum MediaLibrary_MediaContentType {
 
 /**
  * @brief Called when the requested media asset is ready.
- * 
+ *
  * @param result Request processing result.
  * @param requestId Request ID.
  * @since 12
@@ -265,7 +265,7 @@ typedef void (*OH_MediaLibrary_OnDataPrepared)(int32_t result, MediaLibrary_Requ
 
 /**
  * @brief Called when the requested image is ready.
- * 
+ *
  * @param result Request processing result, which is specified by {@link MediaLibrary_ErrorCode}.
  * @param requestId Request ID, which is specified by {@link MediaLibrary_RequestId}.
  * @param mediaQuality Quality of the requested source, which is specified by {@link MediaLibrary_MediaQuality}.
@@ -280,7 +280,7 @@ typedef void (*OH_MediaLibrary_OnImageDataPrepared)(MediaLibrary_ErrorCode resul
 
 /**
  * @brief Called when the requested moving photo is ready.
- * 
+ *
  * @param result Request processing result, which is specified by {@link MediaLibrary_ErrorCode}.
  * @param requestId Request ID, which is specified by {@link MediaLibrary_RequestId}.
  * @param mediaQuality Quality of the requested resource, which is specified by {@link MediaLibrary_MediaQuality}.
@@ -296,7 +296,7 @@ typedef void (*OH_MediaLibrary_OnMovingPhotoDataPrepared)(MediaLibrary_ErrorCode
 /**
  * @brief This callback is called when the requested image source is ready. If an image buffer exists in the system, an
  * image object is returned, reducing the encoding time.
- * 
+ *
  * @param result Result of processing the requested resource.
  * @param requestId **MediaLibrary_RequestId** of the requested resource.
  * @param mediaQuality **MediaLibrary_MediaQuality** of the requested resource.
@@ -310,7 +310,6 @@ typedef void (*OH_MediaLibrary_OnMovingPhotoDataPrepared)(MediaLibrary_ErrorCode
 typedef void (*OH_MediaLibrary_OnQuickImageDataPrepared)(MediaLibrary_ErrorCode result,
     MediaLibrary_RequestId requestId, MediaLibrary_MediaQuality mediaQuality, MediaLibrary_MediaContentType type,
     OH_ImageSourceNative* imageSourceNative, OH_PictureNative* pictureNative);
-
 #ifdef __cplusplus
 }
 #endif

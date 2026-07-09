@@ -24,7 +24,7 @@
  * @file media_asset_capi.h
  *
  * @brief The file declares the APIs related to media assets. You can use the APIs to obtain image or video information.
- * 
+ *
  * @kit MediaLibraryKit
  * @syscap SystemCapability.FileManagement.PhotoAccessHelper.Core
  * @library libmedia_asset_manager.so
@@ -42,7 +42,7 @@ extern "C" {
 
 /**
  * @brief Obtains the URI of a media asset.
- * 
+ *
  * @param mediaAsset Pointer to an {@link OH_MediaAsset} instance.
  * @param uri Double pointer to the URI obtained.
  * @return MEDIA_LIBRARY_OK if the method call succeeds.
@@ -72,7 +72,7 @@ MediaLibrary_ErrorCode OH_MediaAsset_GetMediaType(OH_MediaAsset* mediaAsset, Med
 
 /**
  * @brief Obtains the subtype of a media asset.
- * 
+ *
  * @param mediaAsset Pointer to an {@link OH_MediaAsset} instance.
  * @param mediaSubType Pointer to the media asset subtype obtained.
  * @return MEDIA_LIBRARY_OK if the method call succeeds.
@@ -88,7 +88,7 @@ MediaLibrary_ErrorCode OH_MediaAsset_GetMediaSubType(OH_MediaAsset* mediaAsset,
 
 /**
  * @brief Obtains the display name of a media asset.
- * 
+ *
  * @param mediaAsset Pointer to an {@link OH_MediaAsset} instance.
  * @param displayName Double pointer to the display name obtained.
  * @return MEDIA_LIBRARY_OK if the method call succeeds.
@@ -103,7 +103,7 @@ MediaLibrary_ErrorCode OH_MediaAsset_GetDisplayName(OH_MediaAsset* mediaAsset, c
 
 /**
  * @brief Obtains the size of a media asset file.
- * 
+ *
  * @param mediaAsset Pointer to an {@link OH_MediaAsset} instance.
  * @param size Pointer to the file size obtained, in bytes.
  * @return MEDIA_LIBRARY_OK if the method call succeeds.
@@ -118,7 +118,7 @@ MediaLibrary_ErrorCode OH_MediaAsset_GetSize(OH_MediaAsset* mediaAsset, uint32_t
 
 /**
  * @brief Obtains the date when a media asset was added.
- * 
+ *
  * @param mediaAsset Pointer to an {@link OH_MediaAsset} instance.
  * @param dateAdded Pointer to the date obtained. The value is the number of seconds elapsed since the Unix Epoch time (
  * 00:00:00 UTC on January 1, 1970).
@@ -134,7 +134,7 @@ MediaLibrary_ErrorCode OH_MediaAsset_GetDateAdded(OH_MediaAsset* mediaAsset, uin
 
 /**
  * @brief Obtains the date when a media asset (content not the media asset name) was last modified.
- * 
+ *
  * @param mediaAsset Pointer to an {@link OH_MediaAsset} instance.
  * @param dateModified Pointer to the date obtained. The value is the number of milliseconds elapsed since the Unix
  * Epoch time.
@@ -150,7 +150,7 @@ MediaLibrary_ErrorCode OH_MediaAsset_GetDateModified(OH_MediaAsset* mediaAsset, 
 
 /**
  * @brief Obtains the date when a media asset was taken.
- * 
+ *
  * @param mediaAsset Pointer to an {@link OH_MediaAsset} instance.
  * @param dateTaken Pointer to the date obtained. The value is the number of seconds elapsed since the Unix Epoch time.
  * @return MEDIA_LIBRARY_OK if the method call succeeds.
@@ -165,7 +165,7 @@ MediaLibrary_ErrorCode OH_MediaAsset_GetDateTaken(OH_MediaAsset* mediaAsset, uin
 
 /**
  * @brief Obtains the date when a media asset was added, in ms.
- * 
+ *
  * @param mediaAsset Pointer to an {@link OH_MediaAsset} instance.
  * @param dateAddedMs Pointer to the date obtained, in ms. The value is the number of milliseconds elapsed since the
  * Unix Epoch time.
@@ -181,7 +181,7 @@ MediaLibrary_ErrorCode OH_MediaAsset_GetDateAddedMs(OH_MediaAsset* mediaAsset, u
 
 /**
  * @brief Obtains the date when a media asset (content not the media asset name) was last modified, in ms.
- * 
+ *
  * @param mediaAsset Pointer to an {@link OH_MediaAsset} instance.
  * @param dateModifiedMs Pointer to the date obtained, in ms. The value is the number of milliseconds elapsed since the
  * Unix Epoch time.
@@ -197,7 +197,7 @@ MediaLibrary_ErrorCode OH_MediaAsset_GetDateModifiedMs(OH_MediaAsset* mediaAsset
 
 /**
  * @brief Obtains the duration of a media asset, in ms.
- * 
+ *
  * @param mediaAsset Pointer to an {@link OH_MediaAsset} instance.
  * @param duration Pointer to the duration obtained, in ms.
  * @return MEDIA_LIBRARY_OK if the method call succeeds.
@@ -212,7 +212,7 @@ MediaLibrary_ErrorCode OH_MediaAsset_GetDuration(OH_MediaAsset* mediaAsset, uint
 
 /**
  * @brief Obtains the image width (in pixels) of a media asset.
- * 
+ *
  * @param mediaAsset Pointer to an {@link OH_MediaAsset} instance.
  * @param width Pointer to the image width obtained, in pixels.
  * @return MEDIA_LIBRARY_OK if the method call succeeds.
@@ -227,7 +227,7 @@ MediaLibrary_ErrorCode OH_MediaAsset_GetWidth(OH_MediaAsset* mediaAsset, uint32_
 
 /**
  * @brief Obtains the image height (in pixels) of a media asset.
- * 
+ *
  * @param mediaAsset Pointer to an {@link OH_MediaAsset} instance.
  * @param height Pointer to the image height obtained, in pixels.
  * @return MEDIA_LIBRARY_OK if the method call succeeds.
@@ -242,7 +242,7 @@ MediaLibrary_ErrorCode OH_MediaAsset_GetHeight(OH_MediaAsset* mediaAsset, uint32
 
 /**
  * @brief Obtains the orientation of a media asset, in degrees.
- * 
+ *
  * @param mediaAsset Pointer to an {@link OH_MediaAsset} instance.
  * @param orientation Pointer to the orientation of the image obtained, in degrees.
  * @return MEDIA_LIBRARY_OK if the method call succeeds.
@@ -257,7 +257,7 @@ MediaLibrary_ErrorCode OH_MediaAsset_GetOrientation(OH_MediaAsset* mediaAsset, u
 
 /**
  * @brief Checks whether a media asset is favorited.
- * 
+ *
  * @param mediaAsset Pointer to an {@link OH_MediaAsset} instance.
  * @param favorite Pointer to the favorite status obtained.
  * @return MEDIA_LIBRARY_OK if the method call succeeds.
@@ -272,7 +272,7 @@ MediaLibrary_ErrorCode OH_MediaAsset_IsFavorite(OH_MediaAsset* mediaAsset, uint3
 
 /**
  * @brief Obtains the title of a media asset.
- * 
+ *
  * @param mediaAsset Pointer to an {@link OH_MediaAsset} instance.
  * @param title Pointer to the media asset title obtained.
  * @return MEDIA_LIBRARY_OK if the method call succeeds.
@@ -287,7 +287,7 @@ MediaLibrary_ErrorCode OH_MediaAsset_GetTitle(OH_MediaAsset* mediaAsset, const c
 
 /**
  * @brief Releases a media asset.
- * 
+ *
  * @param mediaAsset Pointer to an {@link OH_MediaAsset} instance.
  * @return MEDIA_LIBRARY_OK if the method call succeeds.
  *     <br>MEDIA_LIBRARY_PARAMETER_ERROR Parameter error. Possible causes:
