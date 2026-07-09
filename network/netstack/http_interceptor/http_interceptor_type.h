@@ -55,7 +55,7 @@ extern "C" {
  * @since 24
  */
 typedef struct OH_Http_Interceptor_Headers {
-    /** 
+    /**
      * @brief Pointer to the request/response header information of the interceptor.
      * 
      * @since 24
