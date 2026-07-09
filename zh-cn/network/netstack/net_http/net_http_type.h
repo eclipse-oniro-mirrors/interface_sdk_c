@@ -337,28 +337,28 @@ typedef enum Http_AddressFamilyType {
 
 /**
  * @brief HTTP请求GET方法。
- * 
+ *
  * @since 20
  */
 #define NET_HTTP_METHOD_GET "GET"
 
 /**
  * @brief HTTP请求HEAD方法。
- * 
+ *
  * @since 20
  */
 #define NET_HTTPMETHOD_HEAD "HEAD"
 
 /**
  * @brief HTTP请求OPTIONS方法。
- * 
+ *
  * @since 20
  */
 #define NET_HTTPMETHOD_OPTIONS "OPTIONS"
 
 /**
  * @brief HTTP请求TRACE方法。
- * 
+ *
  * @since 20
  */
 #define NET_HTTPMETHOD_TRACE "TRACE"
@@ -371,21 +371,21 @@ typedef enum Http_AddressFamilyType {
 
 /**
  * @brief HTTP请求POST方法。
- * 
+ *
  * @since 20
  */
 #define NET_HTTP_METHOD_POST "POST"
 
 /**
  * @brief HTTP请求PUT方法。
- * 
+ *
  * @since 20
  */
 #define NET_HTTP_METHOD_PUT "PUT"
 
 /**
  * @brief HTTP请求CONNECT方法。
- * 
+ *
  * @since 20
  */
 #define NET_HTTP_METHOD_PATCH "CONNECT"
