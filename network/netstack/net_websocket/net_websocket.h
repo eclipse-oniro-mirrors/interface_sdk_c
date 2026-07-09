@@ -132,5 +132,4 @@ int OH_WebSocketClient_Destroy(struct WebSocket *client);
 #endif
 
 /** @} */
-
 #endif // NET_WEBSOCKET_H
