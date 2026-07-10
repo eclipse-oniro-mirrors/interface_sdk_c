@@ -19,7 +19,6 @@
  *
  * @brief Provides APIs for access to the image interface.
  *
- * @syscap SystemCapability.Multimedia.Image.Core
  * @since 10
  * @version 2.0
  */

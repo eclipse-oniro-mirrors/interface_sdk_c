@@ -42,6 +42,7 @@
 #ifndef NEURAL_NETWORK_CORE_H
 #define NEURAL_NETWORK_CORE_H
 
+#include <stdbool.h>
 #include "neural_network_runtime_type.h"
 
 #ifdef __cplusplus

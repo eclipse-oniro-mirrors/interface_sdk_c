@@ -35,6 +35,7 @@
 #ifndef MINDSPORE_INCLUDE_C_API_MODEL_C_H
 #define MINDSPORE_INCLUDE_C_API_MODEL_C_H
 
+#include <stdbool.h>
 #include "mindspore/tensor.h"
 #include "mindspore/context.h"
 #include "mindspore/status.h"

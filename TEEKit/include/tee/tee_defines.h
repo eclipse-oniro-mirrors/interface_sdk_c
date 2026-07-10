@@ -821,7 +821,7 @@ enum TEE_Result_Value {
     TEE_ERROR_TA_CTRL_FILE_LOAD_FAIL        = 0xFFFF920F,
     /** TA control file verify fail. */
     TEE_ERROR_TA_CTRL_FILE_VERIFY_FAIL      = 0xFFFF9210,
-    /** TA version is below the verison in control file. */
+    /** TA version is below the version in control file. */
     TEE_ERROR_TA_VER_BELOW_CONTROL_VER      = 0xFFFF9211,
     /** Local dstb cert chain validity check failed. */
     TEE_DSTB_LOCAL_CERT_VALIDITY_ERROR      = 0xFFFF9212,

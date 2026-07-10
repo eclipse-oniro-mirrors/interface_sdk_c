@@ -36,6 +36,7 @@
 #ifndef SCSI_PERIPHERAL_TYPES_H
 #define SCSI_PERIPHERAL_TYPES_H
 
+#include <stdbool.h>
 #include <stddef.h>
 #include <stdint.h>
 

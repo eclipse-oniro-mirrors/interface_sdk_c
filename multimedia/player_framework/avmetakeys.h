@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 /**
- * @addtogroup avmetakeys
+ * @addtogroup AVMediaBase
  * @{
  *
  * @brief Defines the avmetakeys.

@@ -20,7 +20,7 @@
  * @brief Provides native APIs for encoding image data
  *
  * The encoding image data module part of image module.
- * It used to pack pixel data infomation into a target like data or file.
+ * It used to pack pixel data information into a target like data or file.
  *
  * @since 11
  * @version 4.1
@@ -42,7 +42,7 @@
  *
  * @library libimage_packer_ndk.z.so
  * @kit ImageKit
- * @syscap SystemCapability.Multimedia.Image.Core
+ * @syscap SystemCapability.Multimedia.Image.ImagePacker
  * @since 11
  * @version 4.1
  */
@@ -95,7 +95,6 @@ typedef struct ImagePacker_Opts_ ImagePacker_Opts;
  * @return Returns {@link IRNdkErrCode} IMAGE_RESULT_SUCCESS - if the operation is successful.
  * returns {@link IRNdkErrCode} IMAGE_RESULT_INVALID_PARAMETER - if invalid parameter.
  *
- * @syscap SystemCapability.Multimedia.Image
  * @since 11
  * @version 4.1
  */
