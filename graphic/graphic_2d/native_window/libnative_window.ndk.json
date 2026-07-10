@@ -66,6 +66,13 @@
     {
         "first_introduced": "23",
         "name": "OH_NativeWindow_UnlockAndFlushBuffer"
+    },
+    {
+        "first_introduced": "26",
+        "name": "OH_NativeWindow_Set3DMetadataValue"
+    },
+    {
+        "first_introduced": "26",
+        "name": "OH_NativeWindow_Get3DMetadataValue"
     }
-
 ]
