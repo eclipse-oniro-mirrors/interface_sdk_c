@@ -17,54 +17,51 @@
  * @addtogroup HiAppEvent
  * @{
  *
- * @brief Provides application event logging functions.
+ * @brief 提供应用事件打点功能。
  *
- * Provides the event logging function for applications to log the fault, statistical, security, and user behavior
- * events reported during running. Based on event information, you will be able to analyze the running status of
- * applications.
+ * 为应用提供事件打点功能，记录故障、统计、安全、用户行为等
+ * 运行过程中上报的事件。通过事件信息，可以分析应用程序
+ * 的运行状态。
  *
  * @since 8
- * @version 1.0
  */
 
 /**
  * @file hiappevent_cfg.h
  *
- * @brief Defines the names of all the configuration items of the event logging configuration function.
+ * @brief 定义事件打点配置函数的所有配置项名称。
  *
- * If you want to configure the event logging function, you can directly use the configuration item constants.
+ * 如果开发者想要配置事件打点功能，可以直接使用配置项常量。
  *
- * Sample code:
+ * 示例代码:
  * <pre>
  *     bool res = OH_HiAppEvent_Configure(MAX_STORAGE, "100M");
  * </pre>
  *
- * @kit PerformanceAnalysisKit
- * @library libhiappevent_ndk.z.so
  * @syscap SystemCapability.HiviewDFX.HiAppEvent
+ * @library libhiappevent_ndk.z.so
+ * @kit PerformanceAnalysisKit
  * @since 8
- * @version 1.0
  */
+
 #ifndef HIVIEWDFX_HIAPPEVENT_CONFIG_H
 #define HIVIEWDFX_HIAPPEVENT_CONFIG_H
+
 #ifdef __cplusplus
 extern "C" {
 #endif
 
 /**
- * @brief Whether to disable event logging. The default value is false. The value true means to disable the event
- * logging function, and the value false means the opposite.
+ * @brief 事件打点开关。默认值为false。true：关闭打点功能，false：不关闭打点功能。
  *
  * @since 8
- * @version 1.0
  */
 #define DISABLE "disable"
 
 /**
- * @brief Event file directory storage quota size. The default value is 10MB.
+ * @brief 事件文件目录存储配额大小。默认值为“10MB”。
  *
  * @since 8
- * @version 1.0
  */
 #define MAX_STORAGE "max_storage"
 
