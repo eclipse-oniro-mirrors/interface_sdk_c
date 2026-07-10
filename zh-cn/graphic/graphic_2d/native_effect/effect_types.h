@@ -68,13 +68,13 @@ typedef struct OH_PixelmapNative OH_PixelmapNative;
  * @since 12
  * @version 1.0
  */
-typedef struct OH_Filter_ColorMatrix {
+struct OH_Filter_ColorMatrix {
     /**
      * 自定义颜色矩阵，用于实现图像颜色变换效果。数组包含20个float类型元素，按行优先顺序存储，组成4行5列矩阵。
      * 前4列对应R、G、B、A通道的变换系数，第5列为常量偏移值。建议元素取值为[-1, 1]，超出此范围可能导致颜色值溢出或产生非预期效果。
      */
     float val[20];
-} OH_Filter_ColorMatrix;
+};
 
 /**
  * @brief 定义滤镜效果的状态码。这些状态码在使用滤镜效果相关接口时返回，

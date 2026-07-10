@@ -109,7 +109,7 @@ EffectErrorCode OH_Filter_BlurWithTileMode(OH_Filter* filter, float radius, Effe
  * @param[in] brightness 提亮效果的亮度值，取值范围为[0, 1]。取值为0时图像保持不变，取值为1时图像全白。
  * @return <ul>
  *         <li>{@link EffectErrorCode#EFFECT_SUCCESS} 操作成功则返回EFFECT_SUCCESS。</li>
- *         <li>{@link EffectErrorCode#EFFECT_BAD_PARAMETER} 当filter为空指针或brightness超出取值范围[0, 1]时，返回EFFECT_BAD_PARAMETER。</li>
+ *         <li>{@link EffectErrorCode#EFFECT_BAD_PARAMETER} 当filter为空指针或brightness超出[0,1]时，返回EFFECT_BAD_PARAMETER。</li>
  *         </ul>
  * @since 12
  * @version 1.0
