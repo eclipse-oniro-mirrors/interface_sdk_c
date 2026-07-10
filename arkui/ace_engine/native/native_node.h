@@ -75,7 +75,10 @@ typedef enum {
     ARKUI_NODE_IMAGE_SPAN = 3,
     /** Image. */
     ARKUI_NODE_IMAGE = 4,
-    /** Toggle. */
+    /** 
+     * @group {ArkUI_NodeAttributeType (Toggle Attributes)}[{capi-native-node-h-nodeattributetype-toggle}]  
+     * Toggle. 
+     */
     ARKUI_NODE_TOGGLE = 5,
     /** Loading icon. */
     ARKUI_NODE_LOADING_PROGRESS = 6,
@@ -83,11 +86,17 @@ typedef enum {
     ARKUI_NODE_TEXT_INPUT = 7,
     /** Multi-line text input. */
     ARKUI_NODE_TEXT_AREA = 8,
-    /** Button. */
+    /**
+     * @group {ArkUI_NodeAttributeType (Button Attributes)}[{capi-native-node-h-nodeattributetype-button}] 
+     * Button. 
+     */
     ARKUI_NODE_BUTTON = 9,
     /** Progress indicator. */
     ARKUI_NODE_PROGRESS = 10,
-    /** Check box. */
+    /** 
+     * @group {ArkUI_NodeAttributeType (Checkbox Attributes)}[{capi-native-node-h-nodeattributetype-checkbox}]
+     * Check box. 
+     */
     ARKUI_NODE_CHECKBOX = 11,
     /** XComponent. */
     ARKUI_NODE_XCOMPONENT = 12,
@@ -101,7 +110,10 @@ typedef enum {
     ARKUI_NODE_CALENDAR_PICKER = 16,
     /** Slider. */
     ARKUI_NODE_SLIDER = 17,
-    /** Radio */
+    /** 
+     * @group {ArkUI_NodeAttributeType (Radio Attributes)}[{capi-native-node-h-nodeattributetype-radio}]
+     * Radio 
+     */
     ARKUI_NODE_RADIO = 18,
     /** Image animator. */
     ARKUI_NODE_IMAGE_ANIMATOR = 19,
@@ -109,7 +121,9 @@ typedef enum {
      *  @since 18
      */
     ARKUI_NODE_XCOMPONENT_TEXTURE,
-    /** Check box group.
+    /**
+     * @group {ArkUI_NodeAttributeType (CheckboxGroup Attributes)}[{capi-native-node-h-nodeattributetype-checkboxgroup}]  
+     * Check box group.
      *  @since 15
      */
     ARKUI_NODE_CHECKBOX_GROUP = 21,
@@ -3754,6 +3768,7 @@ typedef enum {
      */
     NODE_IMAGE_ANTIALIASED = 4025,
     /**
+     * @group {ArkUI_NodeAttributeType (Toggle Attributes)}[{capi-native-node-h-nodeattributetype-toggle}]  
      * @brief Defines the color of the component when it is selected.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
@@ -3766,6 +3781,7 @@ typedef enum {
      */
     NODE_TOGGLE_SELECTED_COLOR = MAX_NODE_SCOPE_NUM * ARKUI_NODE_TOGGLE,
     /**
+     * @group {ArkUI_NodeAttributeType (Toggle Attributes)}[{capi-native-node-h-nodeattributetype-toggle}]  
      * @brief Defines the color of the circular slider for the component of the switch type.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
@@ -3778,6 +3794,7 @@ typedef enum {
      */
     NODE_TOGGLE_SWITCH_POINT_COLOR,
     /**
+     * @group {ArkUI_NodeAttributeType (Toggle Attributes)}[{capi-native-node-h-nodeattributetype-toggle}]  
      * @brief Defines the toggle switch value. This attribute can be set, reset, and obtained as required through APIs.
      *
      * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
@@ -3790,6 +3807,7 @@ typedef enum {
     NODE_TOGGLE_VALUE,
 
     /**
+     * @group {ArkUI_NodeAttributeType (Toggle Attributes)}[{capi-native-node-h-nodeattributetype-toggle}]  
      * @brief Defines the color of the component when it is deselected.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
@@ -5298,6 +5316,7 @@ typedef enum {
     NODE_TEXT_AREA_PUNCTUATION_OVERFLOW = 8050,
 
     /**
+     * @group {ArkUI_NodeAttributeType (Button Attributes)}[{capi-native-node-h-nodeattributetype-button}] 
      * @brief Defines the button text content. This attribute can be set, reset, and obtained as required through APIs.
      *
      * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
@@ -5310,6 +5329,7 @@ typedef enum {
     NODE_BUTTON_LABEL = MAX_NODE_SCOPE_NUM * ARKUI_NODE_BUTTON,
 
     /**
+     * @group {ArkUI_NodeAttributeType (Button Attributes)}[{capi-native-node-h-nodeattributetype-button}] 
      * @brief Sets the button type. This attribute can be set, reset, and obtained as required through APIs.
      *
      * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
@@ -5324,6 +5344,7 @@ typedef enum {
     NODE_BUTTON_TYPE,
 
     /**
+     * @group {ArkUI_NodeAttributeType (Button Attributes)}[{capi-native-node-h-nodeattributetype-button}] 
     * @brief Defines the minimum font scale attribute, which can be set, reset, and obtained as required through APIs.
     *
     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
@@ -5337,6 +5358,7 @@ typedef enum {
     NODE_BUTTON_MIN_FONT_SCALE,
 
     /**
+     * @group {ArkUI_NodeAttributeType (Button Attributes)}[{capi-native-node-h-nodeattributetype-button}] 
     * @brief Defines the maximum font scale attribute, which can be set, reset, and obtained as required through APIs.
     *
     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
@@ -5414,6 +5436,7 @@ typedef enum {
     NODE_PROGRESS_LINEAR_STYLE,
 
     /**
+     * @group {ArkUI_NodeAttributeType (Checkbox Attributes)}[{capi-native-node-h-nodeattributetype-checkbox}]
      * @brief Defines whether the check box is selected.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
@@ -5428,6 +5451,7 @@ typedef enum {
     NODE_CHECKBOX_SELECT = MAX_NODE_SCOPE_NUM * ARKUI_NODE_CHECKBOX,
 
     /**
+     * @group {ArkUI_NodeAttributeType (Checkbox Attributes)}[{capi-native-node-h-nodeattributetype-checkbox}]
      * @brief Defines the color of the check box when it is selected.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
@@ -5441,6 +5465,7 @@ typedef enum {
     NODE_CHECKBOX_SELECT_COLOR,
 
     /**
+     * @group {ArkUI_NodeAttributeType (Checkbox Attributes)}[{capi-native-node-h-nodeattributetype-checkbox}]
      * @brief Defines the border color of the check box when it is not selected.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
@@ -5454,6 +5479,7 @@ typedef enum {
     NODE_CHECKBOX_UNSELECT_COLOR,
 
     /**
+     * @group {ArkUI_NodeAttributeType (Checkbox Attributes)}[{capi-native-node-h-nodeattributetype-checkbox}]
      * @brief Defines the internal icon style of the check box.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
@@ -5471,6 +5497,7 @@ typedef enum {
     NODE_CHECKBOX_MARK,
 
     /**
+     * @group {ArkUI_NodeAttributeType (Checkbox Attributes)}[{capi-native-node-h-nodeattributetype-checkbox}]
      * @brief Defines the shape of the check box.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
@@ -5484,6 +5511,7 @@ typedef enum {
     NODE_CHECKBOX_SHAPE,
 
     /**
+     * @group {ArkUI_NodeAttributeType (Checkbox Attributes)}[{capi-native-node-h-nodeattributetype-checkbox}]
      * @brief Defines the name of the checkbox.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
@@ -5498,6 +5526,7 @@ typedef enum {
     NODE_CHECKBOX_NAME,
 
     /**
+     * @group {ArkUI_NodeAttributeType (Checkbox Attributes)}[{capi-native-node-h-nodeattributetype-checkbox}]
      * @brief Defines the name of the checkbox.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
@@ -6499,6 +6528,7 @@ typedef enum {
     NODE_SLIDER_SELECTED_LINEAR_GRADIENT_COLOR,
 
     /**
+     * @group {ArkUI_NodeAttributeType (Radio Attributes)}[{capi-native-node-h-nodeattributetype-radio}]
      * @brief Set the selection status of an option button. Attribute setting,
      * attribute resetting, and attribute obtaining are supported.
      * Attribute setting method {@Link ArkUI_AttributeItem} Parameter format:\n
@@ -6508,6 +6538,7 @@ typedef enum {
      */
     NODE_RADIO_CHECKED = MAX_NODE_SCOPE_NUM * ARKUI_NODE_RADIO,
     /**
+     * @group {ArkUI_NodeAttributeType (Radio Attributes)}[{capi-native-node-h-nodeattributetype-radio}]
      * @brief Set the styles of the selected and deselected states of the option button.
      * The attribute setting, attribute resetting, and attribute obtaining are supported.
      * Attribute setting method {@Link ArkUI_AttributeItem} Parameter format:\n
@@ -6527,6 +6558,7 @@ typedef enum {
      */
     NODE_RADIO_STYLE,
     /**
+     * @group {ArkUI_NodeAttributeType (Radio Attributes)}[{capi-native-node-h-nodeattributetype-radio}]
      * @brief Sets the value of the current radio.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
@@ -6539,6 +6571,7 @@ typedef enum {
      */
     NODE_RADIO_VALUE,
     /**
+     * @group {ArkUI_NodeAttributeType (Radio Attributes)}[{capi-native-node-h-nodeattributetype-radio}]
      * @brief Set the group name of the current Radio group, only one radio of the same group can be selected.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
@@ -6652,6 +6685,7 @@ typedef enum {
     NODE_IMAGE_ANIMATOR_ITERATION = 19006,
 
     /**
+     * @group {ArkUI_NodeAttributeType (CheckboxGroup Attributes)}[{capi-native-node-h-nodeattributetype-checkboxgroup}]  
      * @brief Defines the name of the checkboxgroup.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
@@ -6666,6 +6700,7 @@ typedef enum {
     NODE_CHECKBOX_GROUP_NAME  = MAX_NODE_SCOPE_NUM * ARKUI_NODE_CHECKBOX_GROUP,
 
     /**
+     * @group {ArkUI_NodeAttributeType (CheckboxGroup Attributes)}[{capi-native-node-h-nodeattributetype-checkboxgroup}]  
      * @brief Defines whether the checkboxgroup is selected.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
@@ -6681,6 +6716,7 @@ typedef enum {
     NODE_CHECKBOX_GROUP_SELECT_ALL,
 
     /**
+     * @group {ArkUI_NodeAttributeType (CheckboxGroup Attributes)}[{capi-native-node-h-nodeattributetype-checkboxgroup}]  
      * @brief Defines the color of the checkboxgroup when it is selected.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
@@ -6695,6 +6731,7 @@ typedef enum {
      */
     NODE_CHECKBOX_GROUP_SELECTED_COLOR,
     /**
+     * @group {ArkUI_NodeAttributeType (CheckboxGroup Attributes)}[{capi-native-node-h-nodeattributetype-checkboxgroup}]  
      * @brief Defines the border color of the checkboxgroup when it is not selected.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
@@ -6709,6 +6746,7 @@ typedef enum {
     NODE_CHECKBOX_GROUP_UNSELECTED_COLOR,
 
     /**
+     * @group {ArkUI_NodeAttributeType (CheckboxGroup Attributes)}[{capi-native-node-h-nodeattributetype-checkboxgroup}]  
      * @brief Defines the internal icon style of the checkboxgroup.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
@@ -6727,6 +6765,7 @@ typedef enum {
     NODE_CHECKBOX_GROUP_MARK,
 
     /**
+     * @group {ArkUI_NodeAttributeType (CheckboxGroup Attributes)}[{capi-native-node-h-nodeattributetype-checkboxgroup}]  
      * @brief Defines the shape of the checkboxgroup.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
@@ -10749,6 +10788,7 @@ typedef enum {
      */
     NODE_IMAGE_ON_DOWNLOAD_PROGRESS,
     /**
+     * @group {ArkUI_NodeEventType (Toggle Attributes)}[{capi-native-node-h-nodeeventtype-toggle}]
      * @brief Defines the event triggered when the toggle status changes.
      *
       \n
@@ -11246,6 +11286,7 @@ typedef enum {
     NODE_TEXT_AREA_ON_WILL_CUT = 8017,
 
     /**
+     * @group {ArkUI_NodeEventType (Checkbox Attributes)}[{capi-native-node-h-nodeeventtype-checkbox}]
      * @brief Defines the event triggered when the selected status of the <b>ARKUI_NODE_CHECKBOX</b> component changes.
      *
      * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
@@ -11315,6 +11356,7 @@ typedef enum {
     NODE_CALENDAR_PICKER_EVENT_ON_CHANGE = MAX_NODE_SCOPE_NUM * ARKUI_NODE_CALENDAR_PICKER,
 
     /**
+     * @group {ArkUI_NodeEventType (Slider Attributes)}[{capi-native-node-h-nodeeventtype-slider}]
      * @brief Defines the event triggered when the <b>ARKUI_NODE_SLIDER</b> component is dragged or clicked.
      *
      * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
@@ -11326,6 +11368,7 @@ typedef enum {
     NODE_SLIDER_EVENT_ON_CHANGE = MAX_NODE_SCOPE_NUM * ARKUI_NODE_SLIDER,
 
     /**
+     * @group {ArkUI_NodeEventType (Radio Attributes)}[{capi-native-node-h-nodeeventtype-radio}]
      * @brief Defines the event callback function triggered when an object is dragged or clicked by ARKUI_NODE_RADIO.
      * When the event callback occurs, the union type in the {@Link ArkUI_NodeEvent} object is \n
      * {@Link ArkUI_NodeComponentEvent}. \n
@@ -11381,6 +11424,7 @@ typedef enum {
     NODE_IMAGE_ANIMATOR_EVENT_ON_FINISH = 19004,
     
     /**
+     * @group {ArkUI_NodeEventType (CheckboxGroup Attributes)}[{capi-native-node-h-nodeeventtype-checkboxgroup}]
      * @brief Defines the callback triggered when the selected status of the <b>ARKUI_NODE_CHECKBOX_GROOUP</b>
      * or checkbox changes.
      *
