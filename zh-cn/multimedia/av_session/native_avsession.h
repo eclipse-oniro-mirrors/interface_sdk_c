@@ -17,7 +17,7 @@
  * @addtogroup OHAVSession
  * @{
  *
- * @brief Provide the definition of the C interface for the avsession module.
+ * @brief 提供媒体会话模块C接口定义。
  *
  * @syscap SystemCapability.Multimedia.AVSession.Core
  *
@@ -28,7 +28,7 @@
 /**
  * @file native_avsession.h
  *
- * @brief Declare avsession interface.
+ * @brief 提供媒体会话定义，可用于设置元数据、播放状态信息等操作。
  *
  * @library libohavsession.so
  * @syscap SystemCapability.Multimedia.AVSession.Core
@@ -39,8 +39,6 @@
 
 #ifndef NATIVE_AVSESSION_H
 #define NATIVE_AVSESSION_H
-
-#include <stdbool.h>
 
 #include <stdbool.h>
 #include <stdint.h>
@@ -55,9 +53,9 @@ extern "C" {
 #endif
 
 /**
- * @brief AVSession object
+ * @brief 播控会话结构体定义。
  *
- * A pointer can be created using {@link OH_AVSession_Create} method.
+ * 可通过{@link OH_AVSession_Create}创建一个会话对象。
  *
  * @since 13
  * @version 1.0
@@ -65,7 +63,9 @@ extern "C" {
 typedef struct OH_AVSession OH_AVSession;
 
 /**
- * @brief OH_AVSession_GetAVCastController对象定义
+ * @brief 声明投播控制器对象。
+ *
+ * 该对象可以使用{@link OH_AVSession_CreateAVCastController}函数创建。
  *
  * @since 23
  * @version 1.0
@@ -73,7 +73,7 @@ typedef struct OH_AVSession OH_AVSession;
 typedef struct OH_AVCastController OH_AVCastController;
 
 /**
- * @brief Declaring the callback struct for playback command
+ * @brief 通用的执行播控命令的回调。
  *
  * @param session the OH_AVSession instance pointer.
  * @param command playback command
@@ -85,7 +85,7 @@ typedef AVSessionCallback_Result (*OH_AVSessionCallback_OnCommand)(OH_AVSession*
     AVSession_ControlCommand command, void* userData);
 
 /**
- * @brief Declaring the callback struct for forward command
+ * @brief 快进的回调。
  *
  * @param session the OH_AVSession instance pointer.
  * @param seekTime forward time, described by milliseconds.
@@ -97,7 +97,7 @@ typedef AVSessionCallback_Result (*OH_AVSessionCallback_OnFastForward)(OH_AVSess
     uint32_t seekTime, void* userData);
 
 /**
- * @brief Declaring the callback struct for rewind command
+ * @brief 快退的回调。
  *
  * @param session the OH_AVSession instance pointer.
  * @param seekTime rewind time, described by milliseconds.
@@ -109,7 +109,7 @@ typedef AVSessionCallback_Result (*OH_AVSessionCallback_OnRewind)(OH_AVSession* 
     uint32_t seekTime, void* userData);
 
 /**
- * @brief Declaring the callback struct for seek command
+ * @brief 进度调节的回调。
  *
  * @param session the OH_AVSession instance pointer.
  * @param seekTime position after seek, described by milliseconds.
@@ -121,7 +121,7 @@ typedef AVSessionCallback_Result (*OH_AVSessionCallback_OnSeek)(OH_AVSession* se
     uint64_t seekTime, void* userData);
 
 /**
- * @brief Declaring the callback struct for set loop mode command
+ * @brief 设置循环模式的回调。
  *
  * @param session the OH_AVSession instance pointer.
  * @param curLoopMode current loop mode.
@@ -133,7 +133,7 @@ typedef AVSessionCallback_Result (*OH_AVSessionCallback_OnSetLoopMode)(OH_AVSess
     AVSession_LoopMode curLoopMode, void* userData);
 
 /**
- * @brief Declaring the callback struct for toggle favorite command
+ * @brief 收藏的回调。
  *
  * @param session the OH_AVSession instance pointer.
  * @param assetId the assetId for which the favorite status needs to be switched.
@@ -145,11 +145,13 @@ typedef AVSessionCallback_Result (*OH_AVSessionCallback_OnToggleFavorite)(OH_AVS
     const char* assetId, void* userData);
 
 /**
- * @brief 设备回调函数定义
+ * @brief 设备变化的回调。
  *
- * @param session 传入的OH_AVSession对象
- * @param state 设备连接状态
- * @param outputDeviceInfothe 返回的 AVSession_OutputDeviceInfo 对象指针
+ * @param session the OH_AVSession instance pointer.
+ * @param state the {@link AVSession_ConnectionState} of output device.
+ * @param outputDeviceInfo the {@link AVSession_OutputDeviceInfo} pointer variable which will be set
+ * current output device info. Do not release the outputDeviceInfo pointer separately,
+ * instead call {@link OH_AVSession_ReleaseOutputDevice} to release the outputDeviceInfo when it is not used anymore.
  * @since 23
  * @version 1.0
  */
@@ -157,442 +159,463 @@ typedef AVSessionCallback_Result (*OH_AVSessionCallback_OutputDeviceChange)(OH_A
     AVSession_ConnectionState state, AVSession_OutputDeviceInfo* outputDeviceInfo);
 
 /**
- * @brief 创建OH_AVSession对象
+ * @brief 创建会话对象。
  *
- * @param sessionType 会话类型
- * @param sessionTag 会话TAG
- * @param bundleName 应用包名
- * @param abilityName 应用abilityname
- * @param avsession 返回的OH_AVSession指针对象
- * @return 返回创建结果
+ * @param sessionType 会话类型{@link AVSession_Type}。
+ * @param sessionTag 会话标签。
+ * @param bundleName 创建会话的包名。
+ * @param abilityName 创建会话的Ability组件名。
+ * @param avsession 返回的媒体会话对象。
+ * @return AV_SESSION_ERR_SUCCESS：函数执行成功。\n
+ *         AV_SESSION_ERR_SERVICE_EXCEPTION：服务器内部错误。\n
+ *         AV_SESSION_ERR_INVALID_PARAMETER：\n
+ *                                         1. 参数sessionType无效。\n
+ *                                         2. 参数sessionTag为nullptr。\n
+ *                                         3. 参数bundleName为nullptr。\n
+ *                                         4. 参数abilityName为nullptr。\n
+ *                                         5. 参数avsession为nullptr。
  * @since 13
  */
 AVSession_ErrCode OH_AVSession_Create(AVSession_Type sessionType, const char* sessionTag,
     const char* bundleName, const char* abilityName, OH_AVSession** avsession);
 
 /**
- * @brief Request to destroy the avsession.
+ * @brief 销毁会话对象。
  *
- * @param avsession The avsession instance pointer
- * @return Function result code：
- *         {@link AV_SESSION_ERR_SUCCESS} If the execution is successful.
- *         {@link AV_SESSION_ERR_INVALID_PARAMETER} The param of avsession is nullptr.
+ * @param avsession 媒体会话对象。
+ * @return AV_SESSION_ERR_SUCCESS：函数执行成功。\n
+ *         AV_SESSION_ERR_INVALID_PARAMETER：参数avsession为nullptr。
  * @since 13
  */
 AVSession_ErrCode OH_AVSession_Destroy(OH_AVSession* avsession);
 
 /**
- * @brief Activate the avsession.
+ * @brief 激活会话。
  *
- * @param avsession The avsession instance pointer
- * @return Function result code：
- *         {@link AV_SESSION_ERR_SUCCESS} If the execution is successful.
- *         {@link AV_SESSION_ERR_SERVICE_EXCEPTION} Internal server error.
- *         {@link AV_SESSION_ERR_INVALID_PARAMETER} The param of avsession is nullptr.
+ * @param avsession 媒体会话对象。
+ * @return AV_SESSION_ERR_SUCCESS：函数执行成功。\n
+ *         AV_SESSION_ERR_SERVICE_EXCEPTION：会话服务异常。\n
+ *         AV_SESSION_ERR_INVALID_PARAMETER：参数avsession为nullptr。
  * @since 13
  */
 AVSession_ErrCode OH_AVSession_Activate(OH_AVSession* avsession);
 
 /**
- * @brief Deactivate the avsession.
+ * @brief 取消激活媒体会话。
  *
- * @param avsession The avsession instance pointer
- * @return Function result code：
- *         {@link AV_SESSION_ERR_SUCCESS} If the execution is successful.
- *         {@link AV_SESSION_ERR_SERVICE_EXCEPTION} Internal server error.
- *         {@link AV_SESSION_ERR_INVALID_PARAMETER} The param of avsession is nullptr.
+ * @param avsession 媒体会话对象。
+ * @return AV_SESSION_ERR_SUCCESS：函数执行成功。\n
+ *         AV_SESSION_ERR_SERVICE_EXCEPTION：会话服务异常。\n
+ *         AV_SESSION_ERR_INVALID_PARAMETER：参数avsession为nullptr。
  * @since 13
  */
 AVSession_ErrCode OH_AVSession_Deactivate(OH_AVSession* avsession);
 
 /**
- * @brief Get session type.
+ * @brief 获取会话类型。
  *
- * @param avsession The avsession instance pointer
- * @param sessionType The returned session type
- * @return Function result code：
- *         {@link AV_SESSION_ERR_SUCCESS} If the execution is successful.
- *         {@link AV_SESSION_ERR_SERVICE_EXCEPTION} Internal server error.
- *         {@link AV_SESSION_ERR_INVALID_PARAMETER}
- *                                                 1. The param of avsession is invalid.
- *                                                 2. The param of sessionType is nullptr.
+ * @param avsession 媒体会话对象。
+ * @param sessionType 返回的会话类型。
+ * @return AV_SESSION_ERR_SUCCESS：函数执行成功。\n
+ *         AV_SESSION_ERR_SERVICE_EXCEPTION：会话服务异常。\n
+ *         AV_SESSION_ERR_INVALID_PARAMETER：\n
+ *                                         1. 参数avsession为nullptr。\n
+ *                                         2. 参数sessionType为nullptr。
  * @since 13
  */
 AVSession_ErrCode OH_AVSession_GetSessionType(OH_AVSession* avsession, AVSession_Type* sessionType);
 
 /**
- * @brief Get session id.
+ * @brief 获取会话ID。
  *
- * @param avsession The avsession instance pointer
- * @param sessionId The returned session id
- * @return Function result code：
- *         {@link AV_SESSION_ERR_SUCCESS} If the execution is successful.
- *         {@link AV_SESSION_ERR_INVALID_PARAMETER}
- *                                                 1. The param of avsession is nullptr.
- *                                                 2. The param of sessionId is nullptr.
+ * @param avsession 媒体会话对象。
+ * @param sessionId 返回的会话ID。
+ * @return AV_SESSION_ERR_SUCCESS：函数执行成功。\n
+ *         AV_SESSION_ERR_INVALID_PARAMETER：\n
+ *                                         1. 参数avsession为nullptr。\n
+ *                                         2. 参数sessionId为nullptr。
  * @since 13
  */
 AVSession_ErrCode OH_AVSession_GetSessionId(OH_AVSession* avsession, const char** sessionId);
 
 /**
- * @brief Request to set av metadata.
+ * @brief 设置媒体元数据。
  *
- * @param avsession The avsession instance pointer
- * @param avmetadata The metadata to set
- * @return Function result code：
- *         {@link AV_SESSION_ERR_SUCCESS} If the execution is successful.
- *         {@link AV_SESSION_ERR_SERVICE_EXCEPTION} Internal server error.
- *         {@link AV_SESSION_ERR_INVALID_PARAMETER}
- *                                                 1. The param of avsession is nullptr.
- *                                                 2. The param of avmetadata is nullptr.
+ * @param avsession 媒体会话对象。
+ * @param avmetadata 设置媒体元数据信息。
+ * @return AV_SESSION_ERR_SUCCESS：函数执行成功。\n
+ *         AV_SESSION_ERR_SERVICE_EXCEPTION：会话服务异常。\n
+ *         AV_SESSION_ERR_INVALID_PARAMETER：\n
+ *                                         1. 参数avsession为nullptr。\n
+ *                                         2. 参数avmetadata为nullptr。
  * @since 13
  */
 AVSession_ErrCode OH_AVSession_SetAVMetadata(OH_AVSession* avsession, OH_AVMetadata* avmetadata);
 
 /**
- * @brief Request to set av playbackstate.
+ * @brief 设置播放状态。
  *
- * @param avsession The avsession instance pointer
- * @param playbackState The playbackState to set
- * @return Function result code：
- *         {@link AV_SESSION_ERR_SUCCESS} If the execution is successful.
- *         {@link AV_SESSION_ERR_SERVICE_EXCEPTION} Internal server error.
- *         {@link AV_SESSION_ERR_INVALID_PARAMETER}
- *                                                 1. The param of avsession is nullptr.
- *                                                 2. The param of playbackState is invalid.
+ * @param avsession 媒体会话对象。
+ * @param playbackState 播放状态。
+ * @return AV_SESSION_ERR_SUCCESS：函数执行成功。\n
+ *         AV_SESSION_ERR_SERVICE_EXCEPTION：会话服务异常。\n
+ *         AV_SESSION_ERR_INVALID_PARAMETER：\n
+ *                                         1. 参数avsession为nullptr。\n
+ *                                         2. 参数playbackState是无效的。
  * @since 13
  */
 AVSession_ErrCode OH_AVSession_SetPlaybackState(OH_AVSession* avsession,
     AVSession_PlaybackState playbackState);
 
 /**
- * @brief Request to set playback position.
+ * @brief 设置播放位置。
  *
- * @param avsession The avsession instance pointer
- * @param playbackPosition The playbackPosition to set
- * @return Function result code：
- *         {@link AV_SESSION_ERR_SUCCESS} If the execution is successful.
- *         {@link AV_SESSION_ERR_SERVICE_EXCEPTION} Internal server error.
- *         {@link AV_SESSION_ERR_INVALID_PARAMETER}
- *                                                 1. The param of avsession is nullptr.
- *                                                 2. The param of playbackPosition is nullptr.
+ * @param avsession 媒体会话对象。
+ * @param playbackPosition 播放位置对象。
+ * @return AV_SESSION_ERR_SUCCESS：函数执行成功。\n
+ *         AV_SESSION_ERR_SERVICE_EXCEPTION：会话服务异常。\n
+ *         AV_SESSION_ERR_INVALID_PARAMETER：\n
+ *                                         1. 参数avsession为nullptr。\n
+ *                                         2. 参数playbackPosition为nullptr。
  * @since 13
  */
 AVSession_ErrCode OH_AVSession_SetPlaybackPosition(OH_AVSession* avsession,
     AVSession_PlaybackPosition* playbackPosition);
 
 /**
- * @brief Request to set favorite state.
+ * @brief 设置收藏状态。
  *
- * @param avsession The avsession instance pointer
- * @param favorite true means making the resource to be liked, false means dislike.
- * @return Function result code：
- *         {@link AV_SESSION_ERR_SUCCESS} If the execution is successful.
- *         {@link AV_SESSION_ERR_SERVICE_EXCEPTION} Internal server error.
- *         {@link AV_SESSION_ERR_INVALID_PARAMETER} The param of avsession is nullptr.
+ * @param avsession 媒体会话对象。
+ * @param favorite 收藏状态，true表示收藏，false表示取消收藏。
+ * @return AV_SESSION_ERR_SUCCESS：函数执行成功。\n
+ *         AV_SESSION_ERR_SERVICE_EXCEPTION：会话服务异常。\n
+ *         AV_SESSION_ERR_INVALID_PARAMETER：参数avsession为nullptr。
  * @since 13
  */
 AVSession_ErrCode OH_AVSession_SetFavorite(OH_AVSession* avsession, bool favorite);
 
 /**
- * @brief Request to set loop mode.
+ * @brief 设置循环模式。
  *
- * @param avsession The avsession instance pointer
- * @param loopMode The loopmode to be set for playback.
- * @return Function result code：
- *         {@link AV_SESSION_ERR_SUCCESS} If the execution is successful.
- *         {@link AV_SESSION_ERR_SERVICE_EXCEPTION} Internal server error.
- *         {@link AV_SESSION_ERR_INVALID_PARAMETER}
- *                                                 1. The param of avsession is nullptr.
- *                                                 2. The param of loopMode is invalid.
+ * @param avsession 媒体会话对象。
+ * @param loopMode 循环模式。
+ * @return AV_SESSION_ERR_SUCCESS：函数执行成功。\n
+ *         AV_SESSION_ERR_SERVICE_EXCEPTION：会话服务异常。\n
+ *         AV_SESSION_ERR_INVALID_PARAMETER：\n
+ *                                         1. 参数avsession为nullptr。\n
+ *                                         2. 参数loopMode是无效的。
  * @since 13
  */
 AVSession_ErrCode OH_AVSession_SetLoopMode(OH_AVSession* avsession, AVSession_LoopMode loopMode);
 
 /**
- * @brief 使能投播
+ * @brief 请求使能远程投播。
  *
- * @param avsession OH_AVSession对象指针
- * @param enabled 是否使能投播
- * @return 返回调用执行结果
+ * @param avsession 媒体会话对象。
+ * @param enabled 是否使能远程投播。true表示使能，false表示不使能。
+ * @return AV_SESSION_ERR_SUCCESS：函数执行成功。\n
+ *         AV_SESSION_ERR_SERVICE_EXCEPTION：会话服务异常。\n
+ *         AV_SESSION_ERR_CODE_SESSION_NOT_EXIST：会话不存在。\n
+ *         AV_SESSION_ERR_INVALID_PARAMETER：参数avsession为nullptr。\n
  * @since 23
  */
 AVSession_ErrCode OH_AVSession_SetRemoteCastEnabled(OH_AVSession* avsession, bool enabled);
 
 /**
- * @brief Request to register command callback.
+ * @brief 注册通用播控的回调。
  *
- * @param avsession The avsession instance pointer
- * @param command The control command type to be registered.
- * @param callback the {@link OH_AVSessionCallback_OnCommand} to be registered.
- * @param userData User data which is passed by user.
- * @return Function result code：
- *         {@link AV_SESSION_ERR_SUCCESS} If the execution is successful.
- *         {@link AV_SESSION_ERR_CODE_COMMAND_INVALID} The command is invalid.
- *         {@link AV_SESSION_ERR_SERVICE_EXCEPTION} Internal server error.
- *         {@link AV_SESSION_ERR_INVALID_PARAMETER}
- *                                                 1. The param of avsession is nullptr.
- *                                                 2. The param of callback is nullptr.
+ * @param avsession 媒体会话对象。
+ * @param command 播控的控制命令。
+ * @param callback 控制命令的回调。
+ * @param userData 指向通过回调函数传递的应用数据指针。
+ * @return AV_SESSION_ERR_SUCCESS：函数执行成功。\n
+ *         AV_SESSION_ERR_CODE_COMMAND_INVALID：控制命令无效。\n
+ *         AV_SESSION_ERR_SERVICE_EXCEPTION：会话服务异常。\n
+ *         AV_SESSION_ERR_INVALID_PARAMETER：\n
+ *                                         1. 参数avsession为nullptr。\n
+ *                                         2. 参数callback为nullptr。
  * @since 13
  */
 AVSession_ErrCode OH_AVSession_RegisterCommandCallback(OH_AVSession* avsession,
     AVSession_ControlCommand command, OH_AVSessionCallback_OnCommand callback, void* userData);
 
 /**
- * @brief Request to unregister command callback.
+ * @brief 取消注册通用播控的回调。
  *
- * @param avsession The avsession instance pointer
- * @param command The control command type to be unregistered.
- * @param callback the {@link OH_AVSessionCallback_OnCommand} to be unregistered.
- * @return Function result code：
- *         {@link AV_SESSION_ERR_SUCCESS} If the execution is successful.
- *         {@link AV_SESSION_ERR_CODE_COMMAND_INVALID} The command is invalid.
- *         {@link AV_SESSION_ERR_SERVICE_EXCEPTION} Internal server error.
- *         {@link AV_SESSION_ERR_INVALID_PARAMETER}
- *                                                 1. The param of avsession is nullptr.
- *                                                 2. The param of callback is nullptr.
+ * @param avsession 媒体会话对象。
+ * @param command 播控的控制命令。
+ * @param callback 控制命令的回调。
+ * @return AV_SESSION_ERR_SUCCESS：函数执行成功。\n
+ *         AV_SESSION_ERR_CODE_COMMAND_INVALID：控制命令无效。\n
+ *         AV_SESSION_ERR_SERVICE_EXCEPTION：会话服务异常。\n
+ *         AV_SESSION_ERR_INVALID_PARAMETER：\n
+ *                                         1. 参数avsession为nullptr。\n
+ *                                         2. 参数callback为nullptr。
  * @since 13
  */
 AVSession_ErrCode OH_AVSession_UnregisterCommandCallback(OH_AVSession* avsession,
     AVSession_ControlCommand command, OH_AVSessionCallback_OnCommand callback);
 
 /**
- * @brief Request to register fastforward callback.
+ * @brief 注册快进的回调。
  *
- * @param avsession The avsession instance pointer
- * @param callback the {@link OH_AVSessionCallback_OnFastForward} to be registered.
- * @param userData User data which is passed by user.
- * @return Function result code：
- *         {@link AV_SESSION_ERR_SUCCESS} If the execution is successful.
- *         {@link AV_SESSION_ERR_SERVICE_EXCEPTION} Internal server error.
- *         {@link AV_SESSION_ERR_INVALID_PARAMETER}
- *                                                 1. The param of avsession is nullptr.
- *                                                 2. The param of callback is nullptr.
+ * @param avsession 媒体会话对象。
+ * @param callback 快进命令的回调。
+ * @param userData 指向通过回调函数传递的应用数据指针。
+ * @return AV_SESSION_ERR_SUCCESS：函数执行成功。\n
+ *         AV_SESSION_ERR_SERVICE_EXCEPTION：会话服务异常。\n
+ *         AV_SESSION_ERR_INVALID_PARAMETER：\n
+ *                                         1. 参数avsession为nullptr。\n
+ *                                         2. 参数callback为nullptr。
  * @since 13
  */
 AVSession_ErrCode OH_AVSession_RegisterForwardCallback(OH_AVSession* avsession,
     OH_AVSessionCallback_OnFastForward callback, void* userData);
 
 /**
- * @brief Request to unregister fastforward callback.
+ * @brief 取消注册快进的回调。
  *
- * @param avsession The avsession instance pointer
- * @param callback the {@link OH_AVSessionCallback_OnFastForward} to be unregistered.
- * @return Function result code：
- *         {@link AV_SESSION_ERR_SUCCESS} If the execution is successful.
- *         {@link AV_SESSION_ERR_SERVICE_EXCEPTION} Internal server error.
- *         {@link AV_SESSION_ERR_INVALID_PARAMETER}
- *                                                 1. The param of avsession is nullptr.
- *                                                 2. The param of callback is nullptr.
+ * @param avsession 媒体会话对象。
+ * @param callback 快进命令的回调。
+ * @return AV_SESSION_ERR_SUCCESS：函数执行成功。\n
+ *         AV_SESSION_ERR_SERVICE_EXCEPTION：会话服务异常。\n
+ *         AV_SESSION_ERR_INVALID_PARAMETER：\n
+ *                                         1. 参数avsession为nullptr。\n
+ *                                         2. 参数callback为nullptr。
  * @since 13
  */
 AVSession_ErrCode OH_AVSession_UnregisterForwardCallback(OH_AVSession* avsession,
     OH_AVSessionCallback_OnFastForward callback);
 
 /**
- * @brief Request to register rewind callback.
+ * @brief 注册快退的回调。
  *
- * @param avsession The avsession instance pointer
- * @param callback the {@link OH_AVSessionCallback_OnRewind} to be registered.
- * @param userData User data which is passed by user.
- * @return Function result code：
- *         {@link AV_SESSION_ERR_SUCCESS} If the execution is successful.
- *         {@link AV_SESSION_ERR_SERVICE_EXCEPTION} Internal server error.
- *         {@link AV_SESSION_ERR_INVALID_PARAMETER}
- *                                                 1. The param of avsession is nullptr.
- *                                                 2. The param of callback is nullptr.
+ * @param avsession 媒体会话对象。
+ * @param callback 快退命令的回调。
+ * @param userData 指向通过回调函数传递的应用数据指针。
+ * @return AV_SESSION_ERR_SUCCESS：函数执行成功。\n
+ *         AV_SESSION_ERR_SERVICE_EXCEPTION：会话服务异常。\n
+ *         AV_SESSION_ERR_INVALID_PARAMETER：\n
+ *                                         1. 参数avsession为nullptr。\n
+ *                                         2. 参数callback为nullptr。
  * @since 13
  */
 AVSession_ErrCode OH_AVSession_RegisterRewindCallback(OH_AVSession* avsession,
     OH_AVSessionCallback_OnRewind callback, void* userData);
 
 /**
- * @brief Request to unregister rewind callback.
+ * @brief 取消注册快退的回调。
  *
- * @param avsession The avsession instance pointer
- * @param callback the {@link OH_AVSessionCallback_OnRewind} to be unregistered.
- * @return Function result code：
- *         {@link AV_SESSION_ERR_SUCCESS} If the execution is successful.
- *         {@link AV_SESSION_ERR_SERVICE_EXCEPTION} Internal server error.
- *         {@link AV_SESSION_ERR_INVALID_PARAMETER}
- *                                                 1. The param of avsession is nullptr.
- *                                                 2. The param of callback is nullptr.
+ * @param avsession 媒体会话对象。
+ * @param callback 快退命令的回调。
+ * @return AV_SESSION_ERR_SUCCESS：函数执行成功。\n
+ *         AV_SESSION_ERR_SERVICE_EXCEPTION：会话服务异常。\n
+ *         AV_SESSION_ERR_INVALID_PARAMETER：\n
+ *                                         1. 参数avsession为nullptr。\n
+ *                                         2. 参数callback为nullptr。
  * @since 13
  */
 AVSession_ErrCode OH_AVSession_UnregisterRewindCallback(OH_AVSession* avsession,
     OH_AVSessionCallback_OnRewind callback);
 
 /**
- * @brief Request to register seek callback.
+ * @brief 注册跳转的回调。
  *
- * @param avsession The avsession instance pointer
- * @param callback the {@link OH_AVSessionCallback_OnSeek} to be registered.
- * @param userData User data which is passed by user.
- * @return Function result code：
- *         {@link AV_SESSION_ERR_SUCCESS} If the execution is successful.
- *         {@link AV_SESSION_ERR_SERVICE_EXCEPTION} Internal server error.
- *         {@link AV_SESSION_ERR_INVALID_PARAMETER}
- *                                                 1. The param of avsession is nullptr.
- *                                                 2. The param of callback is nullptr.
+ * @param avsession 媒体会话对象。
+ * @param callback 跳转命令的回调。
+ * @param userData 指向通过回调函数传递的应用数据指针。
+ * @return AV_SESSION_ERR_SUCCESS：函数执行成功。\n
+ *         AV_SESSION_ERR_SERVICE_EXCEPTION：会话服务异常。\n
+ *         AV_SESSION_ERR_INVALID_PARAMETER：\n
+ *                                         1. 参数avsession为nullptr。\n
+ *                                         2. 参数callback为nullptr。
  * @since 13
  */
 AVSession_ErrCode OH_AVSession_RegisterSeekCallback(OH_AVSession* avsession,
     OH_AVSessionCallback_OnSeek callback, void* userData);
 
 /**
- * @brief Request to unregister seek callback.
+ * @brief 取消注册跳转的回调。
  *
- * @param avsession The avsession instance pointer
- * @param callback the {@link OH_AVSessionCallback_OnSeek} to be unregistered.
- * @return Function result code：
- *         {@link AV_SESSION_ERR_SUCCESS} If the execution is successful.
- *         {@link AV_SESSION_ERR_SERVICE_EXCEPTION} Internal server error.
- *         {@link AV_SESSION_ERR_INVALID_PARAMETER}
- *                                                 1. The param of avsession is nullptr.
- *                                                 2. The param of callback is nullptr.
+ * @param avsession 媒体会话对象。
+ * @param callback 跳转命令的回调。
+ * @return AV_SESSION_ERR_SUCCESS：函数执行成功。\n
+ *         AV_SESSION_ERR_SERVICE_EXCEPTION：会话服务异常。\n
+ *         AV_SESSION_ERR_INVALID_PARAMETER：\n
+ *                                         1. 参数avsession为nullptr。\n
+ *                                         2. 参数callback为nullptr。
  * @since 13
  */
 AVSession_ErrCode OH_AVSession_UnregisterSeekCallback(OH_AVSession* avsession,
     OH_AVSessionCallback_OnSeek callback);
 
 /**
- * @brief Request to register set loopmode callback.
+ * @brief 注册设置循环模式的回调。
  *
- * @param avsession The avsession instance pointer
- * @param callback the {@link OH_AVSessionCallback_OnSetLoopMode} to be registered.
- * @param userData User data which is passed by user.
- * @return Function result code：
- *         {@link AV_SESSION_ERR_SUCCESS} If the execution is successful.
- *         {@link AV_SESSION_ERR_SERVICE_EXCEPTION} Internal server error.
- *         {@link AV_SESSION_ERR_INVALID_PARAMETER}
- *                                                 1. The param of avsession is nullptr.
- *                                                 2. The param of callback is nullptr.
+ * @param avsession 媒体会话对象。
+ * @param callback 设置循环模式命令的回调。
+ * @param userData 指向通过回调函数传递的应用数据指针。
+ * @return AV_SESSION_ERR_SUCCESS：函数执行成功。\n
+ *         AV_SESSION_ERR_SERVICE_EXCEPTION：会话服务异常。\n
+ *         AV_SESSION_ERR_INVALID_PARAMETER：\n
+ *                                         1. 参数avsession为nullptr。\n
+ *                                         2. 参数callback为nullptr。
  * @since 13
  */
 AVSession_ErrCode OH_AVSession_RegisterSetLoopModeCallback(OH_AVSession* avsession,
     OH_AVSessionCallback_OnSetLoopMode callback, void* userData);
 
 /**
- * @brief Request to unregister set loopmode callback.
+ * @brief 取消注册设置循环模式的回调。
  *
- * @param avsession The avsession instance pointer
- * @param callback the {@link OH_AVSessionCallback_OnSetLoopMode} to be unregistered.
- * @return Function result code：
- *         {@link AV_SESSION_ERR_SUCCESS} If the execution is successful.
- *         {@link AV_SESSION_ERR_SERVICE_EXCEPTION} Internal server error.
- *         {@link AV_SESSION_ERR_INVALID_PARAMETER}
- *                                                 1. The param of avsession is nullptr.
- *                                                 2. The param of callback is nullptr.
+ * @param avsession 媒体会话对象。
+ * @param callback 设置循环模式命令的回调。
+ * @return AV_SESSION_ERR_SUCCESS：函数执行成功。\n
+ *         AV_SESSION_ERR_SERVICE_EXCEPTION：会话服务异常。\n
+ *         AV_SESSION_ERR_INVALID_PARAMETER：\n
+ *                                         1. 参数avsession为nullptr。\n
+ *                                         2. 参数callback为nullptr。
  * @since 13
  */
 AVSession_ErrCode OH_AVSession_UnregisterSetLoopModeCallback(OH_AVSession* avsession,
     OH_AVSessionCallback_OnSetLoopMode callback);
 
 /**
- * @brief Request to register toggle favorite callback.
+ * @brief 设置收藏的回调。
  *
- * @param avsession The avsession instance pointer
- * @param callback the {@link OH_AVSessionCallback_OnToggleFavorite} to be registered.
- * @param userData User data which is passed by user.
- * @return Function result code：
- *         {@link AV_SESSION_ERR_SUCCESS} If the execution is successful.
- *         {@link AV_SESSION_ERR_SERVICE_EXCEPTION} Internal server error.
- *         {@link AV_SESSION_ERR_INVALID_PARAMETER}
- *                                                 1. The param of avsession is nullptr.
- *                                                 2. The param of callback is nullptr.
+ * @param avsession 媒体会话对象。
+ * @param callback 设置收藏命令的回调。
+ * @param userData 指向通过回调函数传递的应用数据指针。
+ * @return AV_SESSION_ERR_SUCCESS：函数执行成功。\n
+ *         AV_SESSION_ERR_SERVICE_EXCEPTION：会话服务异常。\n
+ *         AV_SESSION_ERR_INVALID_PARAMETER：\n
+ *                                         1. 参数avsession为nullptr。\n
+ *                                         2. 参数callback为nullptr。
  * @since 13
  */
 AVSession_ErrCode OH_AVSession_RegisterToggleFavoriteCallback(OH_AVSession* avsession,
     OH_AVSessionCallback_OnToggleFavorite callback, void* userData);
 
 /**
- * @brief Request to unregister toggle favorite callback.
+ * @brief 取消设置收藏的回调。
  *
- * @param avsession The avsession instance pointer
- * @param callback the {@link OH_AVSessionCallback_OnToggleFavorite} to be unregistered.
- * @return Function result code：
- *         {@link AV_SESSION_ERR_SUCCESS} If the execution is successful.
- *         {@link AV_SESSION_ERR_SERVICE_EXCEPTION} Internal server error.
- *         {@link AV_SESSION_ERR_INVALID_PARAMETER}
- *                                                 1. The param of avsession is nullptr.
- *                                                 2. The param of callback is nullptr.
+ * @param avsession 媒体会话对象。
+ * @param callback 设置收藏命令的回调。
+ * @return AV_SESSION_ERR_SUCCESS：函数执行成功。\n
+ *         AV_SESSION_ERR_SERVICE_EXCEPTION：会话服务异常。\n
+ *         AV_SESSION_ERR_INVALID_PARAMETER：\n
+ *                                         1. 参数avsession为nullptr。\n
+ *                                         2. 参数callback为nullptr。
  * @since 13
  */
 AVSession_ErrCode OH_AVSession_UnregisterToggleFavoriteCallback(OH_AVSession* avsession,
     OH_AVSessionCallback_OnToggleFavorite callback);
 
 /**
- * @brief 注册设备回调
+ * @brief 注册设备变化的回调。
  *
- * @param avsession OH_AVSession对象指针
- * @param callback 设备回调
- * @return 返回调用执行结果
+ * @param avsession 媒体会话对象。
+ * @param callback 设置设备变化的回调。
+ * @return AV_SESSION_ERR_SUCCESS：函数执行成功。\n
+ *         AV_SESSION_ERR_SERVICE_EXCEPTION：会话服务异常。\n
+ *         AV_SESSION_ERR_INVALID_PARAMETER：\n
+ *                                         1. 参数avsession为nullptr。\n
+ *                                         2. 参数callback为nullptr。
  * @since 23
  */
 AVSession_ErrCode OH_AVSession_RegisterOutputDeviceChangeCallback(OH_AVSession* avsession,
     OH_AVSessionCallback_OutputDeviceChange callback);
 
 /**
- * @brief 去注册设备回调
+ * @brief 取消注册设备变化的回调。
  *
- * @param avsession OH_AVSession对象指针
- * @param callback 设备回调
- * @return 返回调用执行结果
+ * @param avsession 媒体会话对象。
+ * @param callback 设置设备变化的回调。
+ * @return AV_SESSION_ERR_SUCCESS：函数执行成功。\n
+ *         AV_SESSION_ERR_SERVICE_EXCEPTION：会话服务异常。\n
+ *         AV_SESSION_ERR_INVALID_PARAMETER：\n
+ *                                         1. 参数avsession为nullptr。\n
+ *                                         2. 参数callback为nullptr。
  * @since 23
  */
 AVSession_ErrCode OH_AVSession_UnregisterOutputDeviceChangeCallback(OH_AVSession* avsession,
     OH_AVSessionCallback_OutputDeviceChange callback);
 
 /**
- * @brief 获取当前已经存在的OH_AVSession对象
+ * @brief 获取已经存在的媒体会话对象。
+ * 当不再使用媒体会话对象时，调用{@link OH_AVSession_Destroy}进行释放。
  *
- * @param sessionTag 会话tag
- * @param bundleName 创建会话的应用包名
- * @param abilityName 创建会话的ability名称
- * @param avsession 返回的指向OH_AVSession的指针
- * @return 返回执行结果
+ * @param sessionTag 应用设置的会话自定义标签。
+ * @param bundleName 应用包名。
+ * @param abilityName 应用的Ability组件名。
+ * @param avsession 用于接收OH_AVSession的变量指针。
+ * @return AV_SESSION_ERR_SUCCESS：函数执行成功。\n
+ *         AV_SESSION_ERR_CODE_SESSION_NOT_EXIST：会话不存在。\n
+ *         AV_SESSION_ERR_INVALID_PARAMETER：\n
+ *                                         1. 参数sessionTag无效。\n
+ *                                         2. 参数bundleName无效。\n
+ *                                         3. 参数abilityName无效。\n
+ *                                         4. 参数avsession为nullptr。
  * @since 23
  */
 AVSession_ErrCode OH_AVSession_AcquireSession(const char* sessionTag, const char* bundleName, const char* abilityName,
     OH_AVSession** avsession);
 
 /**
- * @brief 创建AVCastController 对象用于投播
+ * @brief 创建投播控制器对象。
+ * 当投播控制器对象不再使用时，调用{@link OH_AVCastController_Destroy}进行释放。
  *
- * @param avsession OHAVSession对象指针
- * @param avcastcontroller 接收返回的OH_AVCastController对象指针
- * @return 返回执行结果
+ * @param avsession 媒体会话对象。
+ * @param avcastcontroller 指向用于接收投播控制器OH_AVCastController的变量的指针。
+ * @return AV_SESSION_ERR_SUCCESS：函数执行成功。\n
+ *         AV_SESSION_ERR_SERVICE_EXCEPTION：会话服务异常。\n
+ *         AV_SESSION_ERR_CODE_SESSION_NOT_EXIST：会话不存在。\n
+ *         AV_SESSION_ERR_INVALID_PARAMETER：\n
+ *                                         1. 参数avsession为nullptr。\n
+ *                                         2. 参数avcastcontroller为nullptr。
  * @since 23
  */
 AVSession_ErrCode OH_AVSession_CreateAVCastController(OH_AVSession* avsession, OH_AVCastController** avcastcontroller);
 
 /**
- * @brief 结束投播
+ * @brief 停止当前投播并断开设备连接。
  *
- * @param avsession OH_AVSession对象指针
- * @return 返回调用执行结果
- *
+ * @param avsession 媒体会话对象。
+ * @return AV_SESSION_ERR_SUCCESS：函数执行成功。\n
+ *         AV_SESSION_ERR_SERVICE_EXCEPTION：会话服务异常。\n
+ *         AV_SESSION_ERR_CODE_SESSION_NOT_EXIST：会话不存在。\n
+ *         AV_SESSION_ERR_INVALID_PARAMETER：参数avsession为nullptr。
  * @since 23
  */
 AVSession_ErrCode OH_AVSession_StopCasting(OH_AVSession* avsession);
 
 /**
- * @brief 获取当前输出设备对象
+ * @brief 获取当前输出设备。
  *
- * @param avsession OHAVSession对象指针
- * @param outputDeviceInfo 返回的接收AVSession_OutputDeviceInfo对象的指针
- * @return 返回执行结果
+ * @param avsession 媒体会话对象。
+ * @param outputDeviceInfo 指向用于接收输出设备信息AVSession_OutputDeviceInfo的变量的指针。
+ * 不可以单独释放outputDeviceInfo指针。
+ * 当不再使用outputDeviceInfo时，调用{@link OH_AVSession_ReleaseOutputDevice}进行释放。
+ * @return AV_SESSION_ERR_SUCCESS：函数执行成功。\n
+ *         AV_SESSION_ERR_SERVICE_EXCEPTION：会话服务异常。\n
+ *         AV_SESSION_ERR_CODE_SESSION_NOT_EXIST：会话不存在。\n
+ *         AV_SESSION_ERR_INVALID_PARAMETER：\n
+ *                                         1. 参数avsession为nullptr。\n
+ *                                         2. 参数outputDeviceInfo为nullptr。
  * @since 23
  */
 AVSession_ErrCode OH_AVSession_AcquireOutputDevice(OH_AVSession* avsession,
     AVSession_OutputDeviceInfo** outputDeviceInfo);
 
 /**
- * @brief 释放当前投播的对象
+ * @brief 释放输出设备对象。
  *
- * @param avsession OH_AVSession对象指针
- * @param outputDeviceInfo 要释放的OutputDeviceInfo对象指针
- * @return 返回调用执行结果
+ * @param avsession 媒体会话对象。
+ * @param outputDeviceInfo 应当释放的输出设备。
+ * @return AV_SESSION_ERR_SUCCESS：函数执行成功。\n
+ *         AV_SESSION_ERR_INVALID_PARAMETER：\n
+ *                                         1. 参数avsession为nullptr。\n
+ *                                         2. 参数outputDeviceInfo为nullptr。
  * @since 23
  */
 AVSession_ErrCode OH_AVSession_ReleaseOutputDevice(OH_AVSession* avsession,

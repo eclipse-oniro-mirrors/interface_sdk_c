@@ -356,7 +356,7 @@ typedef enum {
      * The audio renderer fails to write data.
      * @since 23
      */
-    AV_SESSION_ERR_CODE_CAST_CONTROL_AUDIO_RENDERER_WRITE_FAILED = 6615002
+    AV_SESSION_ERR_CODE_CAST_CONTROL_AUDIO_RENDERER_WRITE_FAILED = 6615002,
 } AVSession_ErrCode;
 
 /**
@@ -373,7 +373,7 @@ typedef enum {
     /**
      * @brief Result of avsession callback failed.
      */
-    AVSESSION_CALLBACK_RESULT_FAILURE = -1
+    AVSESSION_CALLBACK_RESULT_FAILURE = -1,
 } AVSessionCallback_Result;
 
 /**
@@ -396,7 +396,7 @@ typedef enum {
     /**
      * @error This means there is no memory left.
      */
-    AVMETADATA_ERROR_NO_MEMORY = 2
+    AVMETADATA_ERROR_NO_MEMORY = 2,
 } AVMetadata_Result;
 
 /**
@@ -422,7 +422,7 @@ typedef enum {
      * @error This means there is no memory left.
      * @since 23
      */
-    AVQUEUEITEM_ERROR_NO_MEMORY = 2
+    AVQUEUEITEM_ERROR_NO_MEMORY = 2,
 } AVQueueItem_Result;
 
 #ifdef __cplusplus
