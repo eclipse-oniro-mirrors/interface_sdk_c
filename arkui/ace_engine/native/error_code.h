@@ -377,6 +377,16 @@ typedef enum {
      * @since 19
      */
     ARKUI_ERROR_CODE_DRAG_DROP_OPERATION_NOT_ALLOWED = 190004,
+    /**
+     * The dialog cannot be opened due to node mount failure. For details, see {@link promptAction Error Codes}.
+     * @since 26.1.0
+     */
+    ARKUI_ERROR_CODE_DIALOG_NODE_MOUNT_FAILURE = 103306,
+    /**
+     * The dialog cannot be opened due to subwindow create failure. For details, see {@link promptAction Error Codes}.
+     * @since 26.1.0
+     */
+    ARKUI_ERROR_CODE_DIALOG_SUBWINDOW_CREATE_FAILURE = 103308,
 } ArkUI_ErrorCode;
 
 #ifdef __cplusplus
