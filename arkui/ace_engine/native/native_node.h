@@ -3772,12 +3772,15 @@ typedef enum {
      * @brief Defines the color of the component when it is selected.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].u32: background color, in 0xARGB format. For example, 0xFFFF0000 indicates red. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**\n
+     * <ul>
+     * <li>.value[0].u32: background color, in 0xARGB format. For example, 0xFFFF0000 indicates red.</li> \n
+     * </ul>
      * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].u32: background color, in 0xARGB format. \n
-     *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**\n
+     * <ul>
+     * <li>.value[0].u32: background color, in 0xARGB format.</li> \n
+     * </ul>
      */
     NODE_TOGGLE_SELECTED_COLOR = MAX_NODE_SCOPE_NUM * ARKUI_NODE_TOGGLE,
     /**
@@ -3785,24 +3788,30 @@ typedef enum {
      * @brief Defines the color of the circular slider for the component of the switch type.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].u32: color of the circular slider, in 0xARGB format. For example, 0xFFFF0000 indicates red. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**\n
+     * <ul>
+     * <li>.value[0].u32: color of the circular slider, in 0xARGB format. For example, 0xFFFF0000 indicates red.</li> \n
+     * </ul>
      * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].u32: color of the circular slider, in 0xARGB format. \n
-     *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**\n
+     * <ul>
+     * <li>.value[0].u32: color of the circular slider, in 0xARGB format.</li> \n
+     * </ul>
      */
     NODE_TOGGLE_SWITCH_POINT_COLOR,
     /**
      * @group {ArkUI_NodeAttributeType (Toggle Attributes)}[{capi-native-node-h-nodeattributetype-toggle}]  
      * @brief Defines the toggle switch value. This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: whether to enable the toggle. The value <b>true</b> means to enable the toggle. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**\n
+     * <ul>
+     * <li>.value[0].i32: whether to enable the toggle. The value <b>true</b> means to enable the toggle.</li> \n
+     * </ul>
      * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: whether to enable the toggle. \n
-     *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**\n
+     * <ul>
+     * <li>.value[0].i32: whether to enable the toggle.</li> \n
+     * </ul>
      */
     NODE_TOGGLE_VALUE,
 
@@ -3811,12 +3820,15 @@ typedef enum {
      * @brief Defines the color of the component when it is deselected.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     *.value[0].u32: background color, in 0xARGB format. For example, 0xFFFF0000 indicates red. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**\n
+     * <ul>
+     *<li>.value[0].u32: background color, in 0xARGB format. For example, 0xFFFF0000 indicates red.</li> \n
+     * </ul>
      * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].u32: background color, in 0xARGB format. \n
-     *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**\n
+     * <ul>
+     * <li>.value[0].u32: background color, in 0xARGB format.</li> \n
+     * </ul>
      */
     NODE_TOGGLE_UNSELECTED_COLOR,
 
@@ -5319,12 +5331,15 @@ typedef enum {
      * @group {ArkUI_NodeAttributeType (Button Attributes)}[{capi-native-node-h-nodeattributetype-button}] 
      * @brief Defines the button text content. This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .string: default text content. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**\n
+     * <ul>
+     * <li>.string: default text content.</li> \n
+     * </ul>
      * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .string: default text content. \n
-     *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**\n
+     * <ul>
+     * <li>.string: default text content.</li> \n
+     * </ul>
      */
     NODE_BUTTON_LABEL = MAX_NODE_SCOPE_NUM * ARKUI_NODE_BUTTON,
 
@@ -5332,14 +5347,17 @@ typedef enum {
      * @group {ArkUI_NodeAttributeType (Button Attributes)}[{capi-native-node-h-nodeattributetype-button}] 
      * @brief Sets the button type. This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: button type. The parameter type is {@link ArkUI_ButtonType}.
-     * The default value is <b>ARKUI_BUTTON_TYPE_CAPSULE</b>. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**\n
+     * <ul>
+     * <li>.value[0].i32: button type. The parameter type is {@link ArkUI_ButtonType}.
+     * The default value is <b>ARKUI_BUTTON_TYPE_CAPSULE</b>.</li> \n
+     * </ul>
      * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: button type. The parameter type is {@link ArkUI_ButtonType}.
-     * The default value is <b>ARKUI_BUTTON_TYPE_CAPSULE</b>. \n
-     *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**\n
+     * <ul>
+     * <li>.value[0].i32: button type. The parameter type is {@link ArkUI_ButtonType}.
+     * The default value is <b>ARKUI_BUTTON_TYPE_CAPSULE</b>.</li> \n
+     * </ul>
      */
     NODE_BUTTON_TYPE,
 
@@ -5347,12 +5365,15 @@ typedef enum {
      * @group {ArkUI_NodeAttributeType (Button Attributes)}[{capi-native-node-h-nodeattributetype-button}] 
     * @brief Defines the minimum font scale attribute, which can be set, reset, and obtained as required through APIs.
     *
-    * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-    * .value[0].f32: minimum font scale, in fp.
+    * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**\n
+    * <ul>
+    * <li>.value[0].f32: minimum font scale, in fp.</li>
+    * </ul>
     * \n
-    * Format of the return value {@link ArkUI_AttributeItem}:\n
-    * .value[0].f32: minimum font scale, in fp.
-    *
+    * **Format of the return value {@link ArkUI_AttributeItem}:**\n
+    * <ul>
+    * <li>.value[0].f32: minimum font scale, in fp.</li>
+    * </ul>
     * @since 18
     */
     NODE_BUTTON_MIN_FONT_SCALE,
@@ -5361,12 +5382,15 @@ typedef enum {
      * @group {ArkUI_NodeAttributeType (Button Attributes)}[{capi-native-node-h-nodeattributetype-button}] 
     * @brief Defines the maximum font scale attribute, which can be set, reset, and obtained as required through APIs.
     *
-    * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-    * .value[0].f32: maximum font scale, in fp.
+    * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**\n
+    * <ul>
+    * <li>.value[0].f32: maximum font scale, in fp.</li>
+    * </ul>
     * \n
-    * Format of the return value {@link ArkUI_AttributeItem}:\n
-    * .value[0].f32: maximum font scale, in fp.
-    *
+    * **Format of the return value {@link ArkUI_AttributeItem}:**\n
+    * <ul>
+    * <li>.value[0].f32: maximum font scale, in fp.</li>
+    * </ul>
     * @since 18
     */
     NODE_BUTTON_MAX_FONT_SCALE,
@@ -5440,13 +5464,16 @@ typedef enum {
      * @brief Defines whether the check box is selected.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: whether the check box is selected.
-     * The value <b>1</b> means that the check box is selected, and <b>0</b> means the opposite. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**\n
+     * <ul>
+     * <li>.value[0].i32: whether the check box is selected.
+     * The value <b>1</b> means that the check box is selected, and <b>0</b> means the opposite.</li> \n
+     * </ul>
      * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: The value <b>1</b> means that the check box is selected, and <b>0</b> means the opposite. \n
-     * 
+     * **Format of the return value {@link ArkUI_AttributeItem}:**\n
+     * <ul>
+     * <li>.value[0].i32: The value <b>1</b> means that the check box is selected, and <b>0</b> means the opposite.</li> \n
+     * </ul>
      */
     NODE_CHECKBOX_SELECT = MAX_NODE_SCOPE_NUM * ARKUI_NODE_CHECKBOX,
 
@@ -5455,12 +5482,15 @@ typedef enum {
      * @brief Defines the color of the check box when it is selected.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].u32: color of the check box when it is selected, in 0xARGB format, for example, <b>0xFF1122FF</b>. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**\n
+     * <ul>
+     * <li>.value[0].u32: color of the check box when it is selected, in 0xARGB format, for example, <b>0xFF1122FF</b>.</li> \n
+     * </ul>
      * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].u32: color of the check box when it is selected, in 0xARGB format, for example, <b>0xFF1122FF</b>.
-     *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**\n
+     * <ul>
+     * <li>.value[0].u32: color of the check box when it is selected, in 0xARGB format, for example, <b>0xFF1122FF</b>.</li>
+     * </ul>
      */
     NODE_CHECKBOX_SELECT_COLOR,
 
@@ -5469,12 +5499,15 @@ typedef enum {
      * @brief Defines the border color of the check box when it is not selected.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].u32: border color, in 0xARGB format, for example, <b>0xFF1122FF</b>. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**\n
+     * <ul>
+     * <li>.value[0].u32: border color, in 0xARGB format, for example, <b>0xFF1122FF</b>.</li> \n
+     * </ul>
      * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].u32: border color, in 0xARGB format, for example, <b>0xFF1122FF</b>.
-     * 
+     * **Format of the return value {@link ArkUI_AttributeItem}:**\n
+     * <ul>
+     * <li>.value[0].u32: border color, in 0xARGB format, for example, <b>0xFF1122FF</b>.</li>
+     * </ul>
      */
     NODE_CHECKBOX_UNSELECT_COLOR,
 
@@ -5483,16 +5516,19 @@ typedef enum {
      * @brief Defines the internal icon style of the check box.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].u32: border color, in 0xARGB format, for example, <b>0xFF1122FF</b>.\n
-     * .value[1]?.f32: size of the internal mark, in vp. Optional.\n
-     * .value[2]?.f32: stroke width of the internal mark, in vp. Optional. The default value is <b>2</b>. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**\n
+     * <ul>
+     * <li>.value[0].u32: border color, in 0xARGB format, for example, <b>0xFF1122FF</b>.</li>\n
+     * <li>.value[1]?.f32: size of the internal mark, in vp. Optional.</li>\n
+     * <li>.value[2]?.f32: stroke width of the internal mark, in vp. Optional. The default value is <b>2</b>.</li> \n
+     * </ul>
      * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].u32: border color, in 0xARGB format, for example, <b>0xFF1122FF</b>.\n
-     * .value[1].f32: size of the internal mark, in vp. \n
-     * .value[2].f32: stroke width of the internal mark, in vp. The default value is <b>2</b>. \n
-     *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**\n
+     * <ul>
+     * <li>.value[0].u32: border color, in 0xARGB format, for example, <b>0xFF1122FF</b>.</li>\n
+     * <li>.value[1].f32: size of the internal mark, in vp.</li> \n
+     * <li>.value[2].f32: stroke width of the internal mark, in vp. The default value is <b>2</b>.</li> \n
+     * </ul>
      */
     NODE_CHECKBOX_MARK,
 
@@ -5501,12 +5537,15 @@ typedef enum {
      * @brief Defines the shape of the check box.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: component shape. The parameter type is {@link ArkUI_CheckboxShape}. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**\n
+     * <ul>
+     * <li>.value[0].i32: component shape. The parameter type is {@link ArkUI_CheckboxShape}.</li> \n
+     * </ul>
      * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: component shape. The parameter type is {@link ArkUI_CheckboxShape}.
-     *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**\n
+     * <ul>
+     * <li>.value[0].i32: component shape. The parameter type is {@link ArkUI_CheckboxShape}.</li>
+     * </ul>
      */
     NODE_CHECKBOX_SHAPE,
 
@@ -5515,12 +5554,15 @@ typedef enum {
      * @brief Defines the name of the checkbox.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .string: component name. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**\n
+     * <ul>
+     * <li>.string: component name.</li> \n
+     * </ul>
      * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .string: component name. \n
-     *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**\n
+     * <ul>
+     * <li>.string: component name.</li> \n
+     * </ul>
      * @since 15
      */
     NODE_CHECKBOX_NAME,
@@ -5530,11 +5572,15 @@ typedef enum {
      * @brief Defines the name of the checkbox.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .string: component name. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**\n
+     * <ul>
+     * <li>.string: component name.</li> \n
+     * </ul>
      * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .string: component name. \n
+     * **Format of the return value {@link ArkUI_AttributeItem}:**\n
+     * <ul>
+     * <li>.string: component name.</li> \n
+     * </ul>
      *
      * @since 15
      */
@@ -6195,12 +6241,15 @@ typedef enum {
     /**
      * @brief Defines the color of the slider. This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].u32: color of the slider, in 0xARGB format, for example, <b>0xFF1122FF</b>.
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**\n
+     * <ul>
+     * <li>.value[0].u32: color of the slider, in 0xARGB format, for example, <b>0xFF1122FF</b>.</li>
+     * </ul>
      * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].u32: color of the slider, in 0xARGB format, for example, <b>0xFF1122FF</b>.
-     *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**\n
+     * <ul>
+     * <li>.value[0].u32: color of the slider, in 0xARGB format, for example, <b>0xFF1122FF</b>.</li>
+     * </ul>
      */
     NODE_SLIDER_BLOCK_COLOR = MAX_NODE_SCOPE_NUM * ARKUI_NODE_SLIDER,
 
@@ -6208,12 +6257,15 @@ typedef enum {
      * @brief Defines the background color of the slider. This attribute can be set, reset, and obtained as required
      * through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].u32: background color, in 0xARGB format, for example, <b>0xFF1122FF</b>. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**\n
+     * <ul>
+     * <li>.value[0].u32: background color, in 0xARGB format, for example, <b>0xFF1122FF</b>.</li> \n
+     * </ul>
      * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].u32: background color, in 0xARGB format, for example, <b>0xFF1122FF</b>.
-     *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**\n
+     * <ul>
+     * <li>.value[0].u32: background color, in 0xARGB format, for example, <b>0xFF1122FF</b>.</li>
+     * </ul>
      */
     NODE_SLIDER_TRACK_COLOR,
 
@@ -6221,12 +6273,15 @@ typedef enum {
      * @brief Defines the color of the selected part of the slider track. This attribute can be set, reset, and obtained
      * as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].u32: color of the selected part of the slider track, in 0xARGB format, for example, <b>0xFF1122FF</b>. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**\n
+     * <ul>
+     * <li>.value[0].u32: color of the selected part of the slider track, in 0xARGB format, for example, <b>0xFF1122FF</b>.</li> \n
+     * </ul>
      * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].u32: color of the selected part of the slider track, in 0xARGB format, for example, <b>0xFF1122FF</b>.
-     *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**\n
+     * <ul>
+     * <li>.value[0].u32: color of the selected part of the slider track, in 0xARGB format, for example, <b>0xFF1122FF</b>.</li>
+     * </ul>
      */
     NODE_SLIDER_SELECTED_COLOR,
 
@@ -6234,21 +6289,24 @@ typedef enum {
      * @brief Sets whether to display the stepping value. This attribute can be set, reset, and obtained as required
      * through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: whether to display the stepping value. The value <b>1</b> means to display the stepping value,
-     * and <b>0</b> (default value) means the opposite. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**\n
+     * <ul>
+     * <li>.value[0].i32: whether to display the stepping value. The value <b>1</b> means to display the stepping value,
+     * and <b>0</b> (default value) means the opposite.</li> \n
+     * </ul>
      * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: whether to display the stepping value. The value <b>1</b> means to display the stepping value,
-     * and <b>0</b> (default value) means the opposite. \n
-     *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**\n
+     * <ul>
+     * <li>.value[0].i32: whether to display the stepping value. The value <b>1</b> means to display the stepping value,
+     * and <b>0</b> (default value) means the opposite.</li> \n
+     * </ul>
      */
     NODE_SLIDER_SHOW_STEPS,
 
     /**
      * @brief Defines the slider shape, which can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**\n
      * .value[0].i32: shape. The parameter type is {@link ArkUI_SliderBlockStyle}. \n
      * .string?: depending on the shape. Optional. \n
      * ARKUI_SLIDER_BLOCK_STYLE_IMAGE: image resource of the slider. Example: /pages/common/icon.png. \n
@@ -6278,7 +6336,7 @@ typedef enum {
      * .value[3].f32: height of the path.\n
      * .string: command for drawing the path.\n
      * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
+     * **Format of the return value {@link ArkUI_AttributeItem}:**\n
      * .value[0].i32: shape. The parameter type is {@link ArkUI_SliderBlockStyle}. \n
      * .string?: depending on the shape. Optional. \n
      * ARKUI_SLIDER_BLOCK_STYLE_IMAGE: image resource of the slider. Example: /pages/common/icon.png. \n
@@ -6315,12 +6373,15 @@ typedef enum {
      * @brief Defines the current value of the slider. This attribute can be set, reset, and obtained as required
      * through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].f32: current value. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**\n
+     * <ul>
+     * <li>.value[0].f32: current value.</li> \n
+     * </ul>
      * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].f32: current value.
-     *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**\n
+     * <ul>
+     * <li>.value[0].f32: current value.</li>
+     * </ul>
      */
     NODE_SLIDER_VALUE,
 
@@ -6328,12 +6389,15 @@ typedef enum {
      * @brief Defines the minimum value of the slider. This attribute can be set, reset, and obtained as required
      * through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].f32: minimum value. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**\n
+     * <ul>
+     * <li>.value[0].f32: minimum value.</li> \n
+     * </ul>
      * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].f32: minimum value.
-     *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**\n
+     * <ul>
+     * <li>.value[0].f32: minimum value.</li>
+     * </ul>
      */
     NODE_SLIDER_MIN_VALUE,
 
@@ -6341,24 +6405,30 @@ typedef enum {
      * @brief Defines the maximum value of the slider. This attribute can be set, reset, and obtained as required
      * through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].f32: maximum value. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**\n
+     * <ul>
+     * <li>.value[0].f32: maximum value.</li> \n
+     * </ul>
      * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].f32: maximum value.
-     *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**\n
+     * <ul>
+     * <li>.value[0].f32: maximum value.</li>
+     * </ul>
      */
     NODE_SLIDER_MAX_VALUE,
 
     /**
      * @brief Defines the step of the slider. This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].f32: step. The value range is [0.01, 100]. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**\n
+     * <ul>
+     * <li>.value[0].f32: step. The value range is [0.01, 100].</li> \n
+     * </ul>
      * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].f32: step. The value range is [0.01, 100].
-     *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**\n
+     * <ul>
+     * <li>.value[0].f32: step. The value range is [0.01, 100].</li>
+     * </ul>
      */
     NODE_SLIDER_STEP,
 
@@ -6366,13 +6436,16 @@ typedef enum {
      * @brief Defines whether the slider moves horizontally or vertically. This attribute can be set, reset, and
      * obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: whether the slider moves horizontally or vertically.
-     * The parameter type is {@link ArkUI_SliderDirection}. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**\n
+     * <ul>
+     * <li>.value[0].i32: whether the slider moves horizontally or vertically.
+     * The parameter type is {@link ArkUI_SliderDirection}.</li> \n
+     * </ul>
      * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: whether the slider moves horizontally or vertically.
-     *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**\n
+     * <ul>
+     * <li>.value[0].i32: whether the slider moves horizontally or vertically.</li>
+     * </ul>
      */
     NODE_SLIDER_DIRECTION,
 
@@ -6380,14 +6453,17 @@ typedef enum {
      * @brief Defines whether the slider values are reversed. This attribute can be set, reset, and obtained as required
      * through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: whether the slider values are reversed. The value <b>1</b> means that the slider values are
-     * reversed, and <b>0</b> means the opposite. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**\n
+     * <ul>
+     * <li>.value[0].i32: whether the slider values are reversed. The value <b>1</b> means that the slider values are
+     * reversed, and <b>0</b> means the opposite.</li> \n
+     * </ul>
      * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: whether the slider values are reversed. The value <b>1</b> means that the slider values are
-     * reversed, and <b>0</b> means the opposite.
-     *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**\n
+     * <ul>
+     * <li>.value[0].i32: whether the slider values are reversed. The value <b>1</b> means that the slider values are
+     * reversed, and <b>0</b> means the opposite.</li>
+     * </ul>
      */
     NODE_SLIDER_REVERSE,
 
@@ -6395,12 +6471,15 @@ typedef enum {
      * @brief Defines the style of the slider thumb and track. This attribute can be set, reset, and obtained
      * as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: style of the slider thumb and track. The parameter type is {@link ArkUI_SliderStyle}. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**\n
+     * <ul>
+     * <li>.value[0].i32: style of the slider thumb and track. The parameter type is {@link ArkUI_SliderStyle}.</li> \n
+     * </ul>
      * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: style of the slider thumb and track. The parameter type is {@link ArkUI_SliderStyle}.
-     *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**\n
+     * <ul>
+     * <li>.value[0].i32: style of the slider thumb and track. The parameter type is {@link ArkUI_SliderStyle}.</li>
+     * </ul>
      */
     NODE_SLIDER_STYLE,
 
@@ -6408,13 +6487,17 @@ typedef enum {
      * @brief Sets the track thickness of the slider.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].f32: track thickness of the slider, in vp. The default value is 4.0 vp when <b>NODE_SLIDER_STYLE</b>
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**\n
+     * <ul>
+     * <li>.value[0].f32: track thickness of the slider, in vp. The default value is 4.0 vp when <b>NODE_SLIDER_STYLE</b>
      * is set to <b>ARKUI_SLIDER_STYLE_OUT_SET</b> and 20.0 vp when <b>NODE_SLIDER_STYLE</b> is set to
-     * <b>ARKUI_SLIDER_STYLE_IN_SET</b>. \n
+     * <b>ARKUI_SLIDER_STYLE_IN_SET</b>.</li> \n
+     * </ul>
      * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].f32: track thickness of the slider, in vp. \n
+     * **Format of the return value {@link ArkUI_AttributeItem}:**\n
+     * <ul>
+     * <li>.value[0].f32: track thickness of the slider, in vp.</li> \n
+     * </ul>
      *
      */
     NODE_SLIDER_TRACK_THICKNESS,
@@ -6423,15 +6506,18 @@ typedef enum {
      * @brief Defines whether haptic feedback.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: whether to feedback. The value <b>true</b> means to feedback, and
-     * <b>false</b> means the opposite.\n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**\n
+     * <ul>
+     * <li>.value[0].i32: whether to feedback. The value <b>true</b> means to feedback, and
+     * <b>false</b> means the opposite.</li>\n
+     * </ul>
      * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * value[0].i32: whether to feedback.\n
+     * **Format of the return value {@link ArkUI_AttributeItem}:**\n
+     * <ul>
+     * <li>value[0].i32: whether to feedback.\n
      * When enabling haptic feedback, you need to add "ohos.permission.VIBRATE" in the
-     * requestPermissions field of the module.json5 file to enable vibration permission.\n
-     *
+     * requestPermissions field of the module.json5 file to enable vibration permission.</li>\n
+     * </ul>
      * @since 18
      */
     NODE_SLIDER_ENABLE_HAPTIC_FEEDBACK = 17013,
@@ -6439,9 +6525,10 @@ typedef enum {
     /**
      * @brief Sets a custom component on the leading side of the Slider component.
      *
-     * Attribute setting method {@link ArkUI_AttributeItem} parameter format:\n
-     * .object: Parameter type {@link ArkUI_NodeHandle}.
-     *
+     * **Attribute setting method {@link ArkUI_AttributeItem} parameter format:**\n
+     * <ul>
+     * <li>.object: Parameter type {@link ArkUI_NodeHandle}.</li>
+     * </ul>
      * The prefix component will be placed at the start position of the Slider，
      * typically on the left side in LTR layouts.
 	 *
@@ -6452,9 +6539,10 @@ typedef enum {
     /**
      * @brief Sets a custom component on the trailing side of the Slider component.
      *
-     * Attribute setting method {@link link ArkUI_AttributeItem} parameter format:\n
-     * .object: Parameter type {@link ArkUI_NodeHandle}.
-     *
+     * **Attribute setting method {@link link ArkUI_AttributeItem} parameter format:**\n
+     * <ul>
+     * <li>.object: Parameter type {@link ArkUI_NodeHandle}.</li>
+     * </ul>
      * The suffix component will be placed at the end position of the Slider,
      * typically on the right side in LTR layouts.
 	 *
@@ -6465,20 +6553,23 @@ typedef enum {
     /**
      * @brief Defines the color of the slider block. This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .object: array of color stops, each of which consists of a color and its stop position.
-     * The parameter type is {@link ArkUI_ColorStop}. Invalid colors are automatically skipped. \n \n
-     * colors: colors of the color stops. \n
-     * stops: stop positions of the color stops. \n
-     * size: number of colors. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**\n
+     * <ul>
+     * <li>.object: array of color stops, each of which consists of a color and its stop position.
+     * The parameter type is {@link ArkUI_ColorStop}. Invalid colors are automatically skipped.</li> \n \n
+     * <li>colors: colors of the color stops.</li> \n
+     * <li>stops: stop positions of the color stops.</li> \n
+     * <li>size: number of colors.</li> \n
+     * </ul>
      * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .object: array of color stops, each of which consists of a color and its stop position.
-     * The parameter type is {@link ArkUI_ColorStop}. Invalid colors are automatically skipped. \n \n
-     * colors: colors of the color stops. \n
-     * stops: stop positions of the color stops. \n
-     * size: number of colors. \n
-     *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**\n
+     * <ul>
+     * <li>.object: array of color stops, each of which consists of a color and its stop position.
+     * The parameter type is {@link ArkUI_ColorStop}. Invalid colors are automatically skipped.</li> \n \n
+     * <li>colors: colors of the color stops.</li> \n
+     * <li>stops: stop positions of the color stops.</li> \n
+     * <li>size: number of colors.</li> \n
+     * </ul>
      * @since 21
      */
     NODE_SLIDER_BLOCK_LINEAR_GRADIENT_COLOR,
@@ -6487,20 +6578,23 @@ typedef enum {
      * @brief Defines the background color of the slider. This attribute can be set, reset, and obtained as required
      * through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .object: array of color stops, each of which consists of a color and its stop position.
-     * The parameter type is {@link ArkUI_ColorStop}. Invalid colors are automatically skipped. \n \n
-     * colors: colors of the color stops. \n
-     * stops: stop positions of the color stops. \n
-     * size: number of colors. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**\n
+     * <ul>
+     * <li>.object: array of color stops, each of which consists of a color and its stop position.
+     * The parameter type is {@link ArkUI_ColorStop}. Invalid colors are automatically skipped.</li> \n \n
+     * <li>colors: colors of the color stops.</li> \n
+     * <li>stops: stop positions of the color stops.</li> \n
+     * <li>size: number of colors.</li> \n
+     * </ul>
      * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .object: array of color stops, each of which consists of a color and its stop position.
-     * The parameter type is {@link ArkUI_ColorStop}. Invalid colors are automatically skipped. \n \n
-     * colors: colors of the color stops. \n
-     * stops: stop positions of the color stops. \n
-     * size: number of colors. \n
-     *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**\n
+     * <ul>
+     * <li>.object: array of color stops, each of which consists of a color and its stop position.
+     * The parameter type is {@link ArkUI_ColorStop}. Invalid colors are automatically skipped.</li> \n \n
+     * <li>colors: colors of the color stops.</li> \n
+     * <li>stops: stop positions of the color stops.</li> \n
+     * <li>size: number of colors.</li> \n
+     * </ul>
      * @since 21
      */
     NODE_SLIDER_TRACK_LINEAR_GRADIENT_COLOR,
@@ -6509,20 +6603,23 @@ typedef enum {
      * @brief Defines the color of the selected part of the slider track. This attribute can be set, reset, and obtained
      * as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .object: array of color stops, each of which consists of a color and its stop position.
-     * The parameter type is {@link ArkUI_ColorStop}. Invalid colors are automatically skipped. \n \n
-     * colors: colors of the color stops. \n
-     * stops: stop positions of the color stops. \n
-     * size: number of colors. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**\n
+     * <ul>
+     * <li>.object: array of color stops, each of which consists of a color and its stop position.
+     * The parameter type is {@link ArkUI_ColorStop}. Invalid colors are automatically skipped.</li> \n \n
+     * <li>colors: colors of the color stops.</li> \n
+     * <li>stops: stop positions of the color stops.</li> \n
+     * <li>size: number of colors.</li> \n
+     * </ul>
      * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .object: array of color stops, each of which consists of a color and its stop position.
-     * The parameter type is {@link ArkUI_ColorStop}. Invalid colors are automatically skipped. \n \n
-     * colors: colors of the color stops. \n
-     * stops: stop positions of the color stops. \n
-     * size: number of colors. \n
-     *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**\n
+     * <ul>
+     * <li>.object: array of color stops, each of which consists of a color and its stop position.
+     * The parameter type is {@link ArkUI_ColorStop}. Invalid colors are automatically skipped.</li> \n \n
+     * <li>colors: colors of the color stops.</li> \n
+     * <li>stops: stop positions of the color stops.</li> \n
+     * <li>size: number of colors.</li> \n
+     * </ul>
      * @since 21
      */
     NODE_SLIDER_SELECTED_LINEAR_GRADIENT_COLOR,
@@ -6531,30 +6628,38 @@ typedef enum {
      * @group {ArkUI_NodeAttributeType (Radio Attributes)}[{capi-native-node-h-nodeattributetype-radio}]
      * @brief Set the selection status of an option button. Attribute setting,
      * attribute resetting, and attribute obtaining are supported.
-     * Attribute setting method {@Link ArkUI_AttributeItem} Parameter format:\n
-     * .value[0].i32: check status of an option button. The default value is false.
-     * Attribute obtaining method return value {@Link ArkUI_AttributeItem} format:\n
-     * .value[0].i32: selection status of an option button.
+     * **Attribute setting method {@Link ArkUI_AttributeItem} Parameter format:**\n
+     * <ul>
+     * <li>.value[0].i32: check status of an option button. The default value is false.</li>
+     * </ul>
+     * **Attribute obtaining method return value {@Link ArkUI_AttributeItem} format:**\n
+     * <ul>
+     * <li>.value[0].i32: selection status of an option button.</li>
+     * </ul>
      */
     NODE_RADIO_CHECKED = MAX_NODE_SCOPE_NUM * ARKUI_NODE_RADIO,
     /**
      * @group {ArkUI_NodeAttributeType (Radio Attributes)}[{capi-native-node-h-nodeattributetype-radio}]
      * @brief Set the styles of the selected and deselected states of the option button.
      * The attribute setting, attribute resetting, and attribute obtaining are supported.
-     * Attribute setting method {@Link ArkUI_AttributeItem} Parameter format:\n
-     * .value[0]?. u32: color of the mother board in enabled state. \n
-     * The type is 0xARGB, and the default value is 0xFF007DFF. \n
-     * .value[1]?. u32: stroke color in the close state. The type is 0xARGB, \n
-     * and the default value is 0xFF182431. \n
-     * .value[2]?. u32: color of the internal round pie in the enabled state. \n
-     * The type is 0xARGB, and the default value is 0xFFFFFFFF. \n
-     * Attribute obtaining method return value {@Link ArkUI_AttributeItem} format:\n
-     * .value[0]. u32: color of the mother board in enabled state. \n
-     * The type is 0xARGB, and the default value is 0xFF007DFF. \n
-     * .value[1]. u32: stroke color in the close state. The type is 0xARGB, \n
-     * and the default value is 0xFF182431. \n
-     * .value[2]. u32: color of the internal round pie in the enabled state. \n
-     * The type is 0xARGB, and the default value is 0xFFFFFFF. \n
+     * **Attribute setting method {@Link ArkUI_AttributeItem} Parameter format:**\n
+     * <ul>
+     * <li>.value[0]?. u32: color of the mother board in enabled state. \n
+     * The type is 0xARGB, and the default value is 0xFF007DFF.</li> \n
+     * <li>.value[1]?. u32: stroke color in the close state. The type is 0xARGB, \n
+     * and the default value is 0xFF182431.</li> \n
+     * <li>.value[2]?. u32: color of the internal round pie in the enabled state. \n
+     * The type is 0xARGB, and the default value is 0xFFFFFFFF.</li> \n
+     * </ul>
+     * **Attribute obtaining method return value {@Link ArkUI_AttributeItem} format:**\n
+     * <ul>
+     * <li>.value[0]. u32: color of the mother board in enabled state. \n
+     * The type is 0xARGB, and the default value is 0xFF007DFF.</li> \n
+     * <li>.value[1]. u32: stroke color in the close state. The type is 0xARGB, \n
+     * and the default value is 0xFF182431.</li> \n
+     * <li>.value[2]. u32: color of the internal round pie in the enabled state. \n
+     * The type is 0xARGB, and the default value is 0xFFFFFFF.</li> \n
+     * </ul>
      */
     NODE_RADIO_STYLE,
     /**
@@ -6562,12 +6667,15 @@ typedef enum {
      * @brief Sets the value of the current radio.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Attribute setting method {@Link ArkUI_AttributeItem} Parameter format:\n
-     * .string: radio value.\n
+     * **Attribute setting method {@Link ArkUI_AttributeItem} Parameter format:**\n
+     * <ul>
+     * <li>.string: radio value.</li>\n
+     * </ul>
      * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .string: radio value.\n
-     *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**\n
+     * <ul>
+     * <li>.string: radio value.</li>\n
+     * </ul>
      */
     NODE_RADIO_VALUE,
     /**
@@ -6575,12 +6683,15 @@ typedef enum {
      * @brief Set the group name of the current Radio group, only one radio of the same group can be selected.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Attribute setting method {@Link ArkUI_AttributeItem} Parameter format:\n
-     * .string: name of the group to which the current option box belongs.\n
+     * **Attribute setting method {@Link ArkUI_AttributeItem} Parameter format:**\n
+     * <ul>
+     * <li>.string: name of the group to which the current option box belongs.</li>\n
+     * </ul>
      * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .string: name of the group to which the current option box belongs.\n
-     *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**\n
+     * <ul>
+     * <li>.string: name of the group to which the current option box belongs.</li>\n
+     * </ul>
      */
     NODE_RADIO_GROUP,
 
@@ -6689,12 +6800,15 @@ typedef enum {
      * @brief Defines the name of the checkboxgroup.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .string: component name. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**\n
+     * <ul>
+     * <li>.string: component name.</li> \n
+     * </ul>
      * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .string: component name. \n
-     * 
+     * **Format of the return value {@link ArkUI_AttributeItem}:**\n
+     * <ul>
+     * <li>.string: component name.</li> \n
+     * </ul>
      * @since 15
      */
     NODE_CHECKBOX_GROUP_NAME  = MAX_NODE_SCOPE_NUM * ARKUI_NODE_CHECKBOX_GROUP,
@@ -6704,13 +6818,16 @@ typedef enum {
      * @brief Defines whether the checkboxgroup is selected.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: whether the checkboxgroup is selected.
-     * The value <b>1</b> means that the checkboxgroup is selected, and <b>0</b> means the opposite. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**\n
+     * <ul>
+     * <li>.value[0].i32: whether the checkboxgroup is selected.
+     * The value <b>1</b> means that the checkboxgroup is selected, and <b>0</b> means the opposite.</li> \n
+     * </ul>
      * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: The value <b>1</b> means that the checkboxgroup is selected, and <b>0</b> means the opposite. \n
-     * 
+     * **Format of the return value {@link ArkUI_AttributeItem}:**\n
+     * <ul>
+     * <li>.value[0].i32: The value <b>1</b> means that the checkboxgroup is selected, and <b>0</b> means the opposite.</li> \n
+     * </ul>
      * @since 15
      */
     NODE_CHECKBOX_GROUP_SELECT_ALL,
@@ -6720,13 +6837,16 @@ typedef enum {
      * @brief Defines the color of the checkboxgroup when it is selected.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].u32: color of the checkboxgroup when it is selected, in 0xARGB format,
-     * for example, <b>0xFF1122FF</b>. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**\n
+     * <ul>
+     * <li>.value[0].u32: color of the checkboxgroup when it is selected, in 0xARGB format,
+     * for example, <b>0xFF1122FF</b>.</li> \n
+     * </ul>
      * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].u32: color of the checkboxgroup when it is selected, in 0xARGB format, for example, <b>0xFF1122FF</b>.
-     *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**\n
+     * <ul>
+     * <li>.value[0].u32: color of the checkboxgroup when it is selected, in 0xARGB format, for example, <b>0xFF1122FF</b>.</li>
+     * </ul>
      * @since 15
      */
     NODE_CHECKBOX_GROUP_SELECTED_COLOR,
@@ -6735,12 +6855,15 @@ typedef enum {
      * @brief Defines the border color of the checkboxgroup when it is not selected.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].u32: border color, in 0xARGB format, for example, <b>0xFF1122FF</b>. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**\n
+     * <ul>
+     * <li>.value[0].u32: border color, in 0xARGB format, for example, <b>0xFF1122FF</b>.</li> \n
+     * </ul>
      * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].u32: border color, in 0xARGB format, for example, <b>0xFF1122FF</b>.
-     * 
+     * **Format of the return value {@link ArkUI_AttributeItem}:**\n
+     * <ul>
+     * <li>.value[0].u32: border color, in 0xARGB format, for example, <b>0xFF1122FF</b>.</li>
+     * </ul>
      * @since 15
      */
     NODE_CHECKBOX_GROUP_UNSELECTED_COLOR,
@@ -6750,16 +6873,19 @@ typedef enum {
      * @brief Defines the internal icon style of the checkboxgroup.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].u32: border color, in 0xARGB format, for example, <b>0xFF1122FF</b>.\n
-     * .value[1]?.f32: size of the internal mark, in vp. Optional.\n
-     * .value[2]?.f32: stroke width of the internal mark, in vp. Optional. The default value is <b>2</b>. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**\n
+     * <ul>
+     * <li>.value[0].u32: border color, in 0xARGB format, for example, <b>0xFF1122FF</b>.</li>\n
+     * <li>.value[1]?.f32: size of the internal mark, in vp. Optional.</li>\n
+     * <li>.value[2]?.f32: stroke width of the internal mark, in vp. Optional. The default value is <b>2</b>.</li> \n
+     * </ul>
      * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].u32: border color, in 0xARGB format, for example, <b>0xFF1122FF</b>.\n
-     * .value[1].f32: size of the internal mark, in vp. \n
-     * .value[2].f32: stroke width of the internal mark, in vp. The default value is <b>2</b>. \n
-     *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**\n
+     * <ul>
+     * <li>.value[0].u32: border color, in 0xARGB format, for example, <b>0xFF1122FF</b>.</li>\n
+     * <li>.value[1].f32: size of the internal mark, in vp.</li> \n
+     * <li>.value[2].f32: stroke width of the internal mark, in vp. The default value is <b>2</b>.</li> \n
+     * </ul>
      * @since 15
      */
     NODE_CHECKBOX_GROUP_MARK,
@@ -6769,12 +6895,15 @@ typedef enum {
      * @brief Defines the shape of the checkboxgroup.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: component shape. The parameter type is {@link ArkUI_CheckboxShape}. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**\n
+     * <ul>
+     * <li>.value[0].i32: component shape. The parameter type is {@link ArkUI_CheckboxShape}.</li> \n
+     * </ul>
      * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: component shape. The parameter type is {@link ArkUI_CheckboxShape}.
-     *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**\n
+     * <ul>
+     * <li>.value[0].i32: component shape. The parameter type is {@link ArkUI_CheckboxShape}.</li>
+     * </ul>
      * @since 15
      */
     NODE_CHECKBOX_GROUP_SHAPE,
@@ -10794,9 +10923,10 @@ typedef enum {
       \n
      * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
      * {@link ArkUI_NodeComponentEvent}. \n
-     * {@link ArkUI_NodeComponentEvent} contains one parameter: \n
-     * <b>ArkUI_NodeComponentEvent.data[0].i32</b>: toggle status. <b>1</b>: on; <b>0</b>: off.
-     *
+     * **{@link ArkUI_NodeComponentEvent} contains one parameter:** \n
+     * <ul>
+     * <li><b>ArkUI_NodeComponentEvent.data[0].i32</b>: toggle status. <b>1</b>: on; <b>0</b>: off.</li>
+     * </ul>
      */
     NODE_TOGGLE_ON_CHANGE = MAX_NODE_SCOPE_NUM * ARKUI_NODE_TOGGLE,
     /**
@@ -11361,9 +11491,11 @@ typedef enum {
      *
      * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
      * {@link ArkUI_NodeComponentEvent}. \n
-     * {@link ArkUI_NodeComponentEvent} contains two parameters:\n
-     * <b>ArkUI_NodeComponentEvent.data[0].f32</b>: current slider value. \n
-     * <b>ArkUI_NodeComponentEvent.data[1].i32</b>: state triggered by the event.\n
+     * **{@link ArkUI_NodeComponentEvent} contains two parameters:**\n
+     * <ul>
+     * <li><b>ArkUI_NodeComponentEvent.data[0].f32</b>: current slider value.</li> \n
+     * <li><b>ArkUI_NodeComponentEvent.data[1].i32</b>: state triggered by the event.</li>\n
+     * </ul>
      */
     NODE_SLIDER_EVENT_ON_CHANGE = MAX_NODE_SCOPE_NUM * ARKUI_NODE_SLIDER,
 
@@ -11372,8 +11504,10 @@ typedef enum {
      * @brief Defines the event callback function triggered when an object is dragged or clicked by ARKUI_NODE_RADIO.
      * When the event callback occurs, the union type in the {@Link ArkUI_NodeEvent} object is \n
      * {@Link ArkUI_NodeComponentEvent}. \n
-     * {@Link ArkUI_NodeComponentEvent} contains one parameter:\n
-     * ArkUI_NodeComponentEvent.data[0].i32: option button status. \n
+     * **{@Link ArkUI_NodeComponentEvent} contains one parameter:**\n
+     * <ul>
+     * <li>ArkUI_NodeComponentEvent.data[0].i32: option button status.</li> \n
+     * </ul>
      */
     NODE_RADIO_EVENT_ON_CHANGE = MAX_NODE_SCOPE_NUM * ARKUI_NODE_RADIO,
 
@@ -11432,10 +11566,12 @@ typedef enum {
      * {@link ArkUI_StringAsyncEvent}. \n
      * <b>ArkUI_StringAsyncEvent.pStr</b>
      * Name: The names of the selected checkboxes;
-     * Status:
-     * 0: All checkboxes are selected.
-     * 1: Some checkboxes are selected.
-     * 2: No checkboxes are selected. \n
+     * **Status:**
+     * <ul>
+     * <li>0: All checkboxes are selected.</li>
+     * <li>1: Some checkboxes are selected.</li>
+     * <li>2: No checkboxes are selected.</li> \n
+     * </ul>
      *
      * @since 15
      */
