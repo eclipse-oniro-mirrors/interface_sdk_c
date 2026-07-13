@@ -2900,7 +2900,6 @@ typedef enum {
      * .value[0].i32: minimum number of lines in the text.\n
      *
      * @since 22
-     *
      */
     NODE_TEXT_MIN_LINES = 1037,
 
@@ -3931,134 +3930,134 @@ typedef enum {
      */
     NODE_TEXT_INPUT_TEXT_SELECTION,
     /**
-    * @brief Sets the color of the text underline when it is enabled.
-    *
-    * The default underline color configured for the theme is <b>'0x33182431'</b>.
-    *
-    * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-    * .value[0].u32: color of the underline applied to the text being typed in.
-    * The value is in 0xARGB format. \n
-    * .value[1].u32: color of the underline applied to the text in the normal state.
-    * The value is in 0xARGB format. \n
-    * .value[2].u32: color of the underline applied to the text when an error is detected.
-    * The value is in 0xARGB format. \n
-    * .value[3].u32: color of the underline applied to the text when it is disabled.
-    * The value is in 0xARGB format. \n
-    * \n
-    * Format of the return value {@link ArkUI_AttributeItem}:\n
-    * .value[0].u32: color of the underline applied to the text being typed in. The value is in 0xARGB format. \n
-    * .value[1].u32: color of the underline applied to the text in the normal state. The value is in 0xARGB format. \n
-    * .value[2].u32: color of the underline applied to the text when an error is detected.
-    * The value is in 0xARGB format. \n
-    * .value[3].u32: color of the underline applied to the text when it is disabled. The value is in 0xARGB format. \n
-    *
-    */
+     * @brief Sets the color of the text underline when it is enabled.
+     *
+     * The default underline color configured for the theme is <b>'0x33182431'</b>.
+     *
+     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
+     * .value[0].u32: color of the underline applied to the text being typed in.
+     * The value is in 0xARGB format. \n
+     * .value[1].u32: color of the underline applied to the text in the normal state.
+     * The value is in 0xARGB format. \n
+     * .value[2].u32: color of the underline applied to the text when an error is detected.
+     * The value is in 0xARGB format. \n
+     * .value[3].u32: color of the underline applied to the text when it is disabled.
+     * The value is in 0xARGB format. \n
+     * \n
+     * Format of the return value {@link ArkUI_AttributeItem}:\n
+     * .value[0].u32: color of the underline applied to the text being typed in. The value is in 0xARGB format. \n
+     * .value[1].u32: color of the underline applied to the text in the normal state. The value is in 0xARGB format. \n
+     * .value[2].u32: color of the underline applied to the text when an error is detected.
+     * The value is in 0xARGB format. \n
+     * .value[3].u32: color of the underline applied to the text when it is disabled. The value is in 0xARGB format. \n
+     *
+     */
     NODE_TEXT_INPUT_UNDERLINE_COLOR,
     /**
-    * @brief Sets whether to enable autofill.
-    *
-    * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-    * .value[0].i32: whether to enable autofill. The default value is <b>true</b>. \n
-    * \n
-    * Format of the return value {@link ArkUI_AttributeItem}:\n
-    * .value[0].i32: whether to enable autofill. \n
-    *
-    */
+     * @brief Sets whether to enable autofill.
+     *
+     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
+     * .value[0].i32: whether to enable autofill. The default value is <b>true</b>. \n
+     * \n
+     * Format of the return value {@link ArkUI_AttributeItem}:\n
+     * .value[0].i32: whether to enable autofill. \n
+     *
+     */
     NODE_TEXT_INPUT_ENABLE_AUTO_FILL,
     /**
-    * @brief Sets the autofill type.
-    *
-    * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-    * .value[0].i32: autofill type. The parameter type is {@link ArkUI_TextInputContentType}. \n
-    * \n
-    * Format of the return value {@link ArkUI_AttributeItem}:\n
-    * .value[0].i32: autofill type. The parameter type is {@link ArkUI_TextInputContentType}. \n
-    *
-    */
+     * @brief Sets the autofill type.
+     *
+     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
+     * .value[0].i32: autofill type. The parameter type is {@link ArkUI_TextInputContentType}. \n
+     * \n
+     * Format of the return value {@link ArkUI_AttributeItem}:\n
+     * .value[0].i32: autofill type. The parameter type is {@link ArkUI_TextInputContentType}. \n
+     *
+     */
     NODE_TEXT_INPUT_CONTENT_TYPE,
     /**
-    * @brief Defines the rules for generating passwords. When autofill is used, these rules are transparently
-    * transmitted to Password Vault for generating a new password.
-    *
-    * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-    * .string: rules for generating passwords. \n
-    * \n
-    * Format of the return value {@link ArkUI_AttributeItem}:\n
-    * .string: rules for generating passwords. \n
-    *
-    */
+     * @brief Defines the rules for generating passwords. When autofill is used, these rules are transparently
+     * transmitted to Password Vault for generating a new password.
+     *
+     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
+     * .string: rules for generating passwords. \n
+     * \n
+     * Format of the return value {@link ArkUI_AttributeItem}:\n
+     * .string: rules for generating passwords. \n
+     *
+     */
     NODE_TEXT_INPUT_PASSWORD_RULES,
     /**
-    * @brief Sets whether to select all text in the initial state. The inline mode is not supported.
-    *
-    * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-    * .value[0].i32: whether to select all text in the initial state. The default value is b>false</b>. \n
-    * \n
-    * Format of the return value {@link ArkUI_AttributeItem}:\n
-    * .value[0].i32: whether to select all text in the initial state. \n
-    *
-    */
+     * @brief Sets whether to select all text in the initial state. The inline mode is not supported.
+     *
+     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
+     * .value[0].i32: whether to select all text in the initial state. The default value is b>false</b>. \n
+     * \n
+     * Format of the return value {@link ArkUI_AttributeItem}:\n
+     * .value[0].i32: whether to select all text in the initial state. \n
+     *
+     */
     NODE_TEXT_INPUT_SELECT_ALL,
     /**
-    * @brief Sets the regular expression for input filtering.
-    * Only inputs that comply with the regular expression can be displayed.
-    * Other inputs are filtered out. The specified regular expression can match single characters,
-    * but not strings.
-    *
-    * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-    * .string: regular expression. \n
-    * \n
-    * Format of the return value {@link ArkUI_AttributeItem}:\n
-    * .string: regular expression. \n
-    *
-    */
+     * @brief Sets the regular expression for input filtering.
+     * Only inputs that comply with the regular expression can be displayed.
+     * Other inputs are filtered out. The specified regular expression can match single characters,
+     * but not strings.
+     *
+     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
+     * .string: regular expression. \n
+     * \n
+     * Format of the return value {@link ArkUI_AttributeItem}:\n
+     * .string: regular expression. \n
+     *
+     */
     NODE_TEXT_INPUT_INPUT_FILTER,
     /**
-    * @brief Sets the text box to the default style or inline input style.
-    *
-    * For the inline input style, only <b>InputType.Normal</b> is supported.
-    *
-    * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-    * .value[0].i32: text input style. The parameter type is {@link ArkUI_TextInputStyle}. \n
-    * \n
-    * Format of the return value {@link ArkUI_AttributeItem}:\n
-    * .value[0].i32: text input style. The parameter type is {@link ArkUI_TextInputStyle}. \n
-    *
-    */
+     * @brief Sets the text box to the default style or inline input style.
+     *
+     * For the inline input style, only <b>InputType.Normal</b> is supported.
+     *
+     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
+     * .value[0].i32: text input style. The parameter type is {@link ArkUI_TextInputStyle}. \n
+     * \n
+     * Format of the return value {@link ArkUI_AttributeItem}:\n
+     * .value[0].i32: text input style. The parameter type is {@link ArkUI_TextInputStyle}. \n
+     *
+     */
     NODE_TEXT_INPUT_STYLE,
     /**
-    * @brief Sets or obtains the caret position.
-    *
-    * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-    * In the case of setting the caret position:
-    * .value[0].i32: character count from the beginning of a string to the caret position. \n
-    * 
-    * Format of the return value {@link ArkUI_AttributeItem}:\n
-    * In the case of obtaining the caret position: If this API is called when the caret position is updated in the
-    * current frame, it will not take effect.
-    * .value[0].i32: index of the caret position. \n
-    * .value[1].f32: X coordinate of the caret relative to the text box. \n
-    * .value[2].f32: Y coordinate of the caret relative to the text box. \n
-    */
+     * @brief Sets or obtains the caret position.
+     *
+     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
+     * In the case of setting the caret position:
+     * .value[0].i32: character count from the beginning of a string to the caret position. \n
+     * 
+     * Format of the return value {@link ArkUI_AttributeItem}:\n
+     * In the case of obtaining the caret position: If this API is called when the caret position is updated in the
+     * current frame, it will not take effect.
+     * .value[0].i32: index of the caret position. \n
+     * .value[1].f32: X coordinate of the caret relative to the text box. \n
+     * .value[2].f32: Y coordinate of the caret relative to the text box. \n
+     */
     NODE_TEXT_INPUT_CARET_OFFSET,
     /**
-    * @brief Obtains the position of the edited text area relative to the component and its size.
-    * 
-    * Format of the return value {@link ArkUI_AttributeItem}:\n
-    * .value[0].f32: horizontal coordinate. \n
-    * .value[1].f32: vertical coordinate. \n
-    * .value[2].f32: content width. \n
-    * .value[3].f32: content height. \n
-    *
-    */
+     * @brief Obtains the position of the edited text area relative to the component and its size.
+     * 
+     * Format of the return value {@link ArkUI_AttributeItem}:\n
+     * .value[0].f32: horizontal coordinate. \n
+     * .value[1].f32: vertical coordinate. \n
+     * .value[2].f32: content width. \n
+     * .value[3].f32: content height. \n
+     *
+     */
     NODE_TEXT_INPUT_CONTENT_RECT,
     /**
-    * @brief Obtains the number of lines of the edited text.
-    * 
-    * Format of the return value {@link ArkUI_AttributeItem}:\n
-    * .value[0].i32: number of lines of the edited text. \n
-    *
-    */
+     * @brief Obtains the number of lines of the edited text.
+     * 
+     * Format of the return value {@link ArkUI_AttributeItem}:\n
+     * .value[0].i32: number of lines of the edited text. \n
+     *
+     */
     NODE_TEXT_INPUT_CONTENT_LINE_COUNT,
     /**
      * @brief Sets whether to hide the text selection menu when the text box is long-pressed, double-click, or
@@ -4177,16 +4176,16 @@ typedef enum {
     NODE_TEXT_INPUT_HALF_LEADING = 7034,
 
     /**
-    * @brief Set the keyboard style of textInput
-    *
-    * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-    * .value[0].i32：keyboard style，the parameter type is {@link ArkUI_KeyboardAppearanceType}。\n
-    * \n
-    * Format of the return value {@link ArkUI_AttributeItem}：\n
-    * .value[0].i32：keyboard style，the parameter type is {@link ArkUI_KeyboardAppearanceType}。\n
-    *
-    * @since 15
-    */
+     * @brief Set the keyboard style of textInput
+     *
+     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
+     * .value[0].i32：keyboard style，the parameter type is {@link ArkUI_KeyboardAppearanceType}。\n
+     * \n
+     * Format of the return value {@link ArkUI_AttributeItem}：\n
+     * .value[0].i32：keyboard style，the parameter type is {@link ArkUI_KeyboardAppearanceType}。\n
+     *
+     * @since 15
+     */
     NODE_TEXT_INPUT_KEYBOARD_APPEARANCE = 7035,
 
     /**
@@ -4276,8 +4275,8 @@ typedef enum {
      * \n
      * Format of the return value {@link ArkUI_AttributeItem}:\n
      * .value[0].i32: The parameter type is {@link ArkUI_EllipsisMode}. \n
-     * 
-     *  @since 24
+     *
+     * @since 24
      */
     NODE_TEXT_INPUT_ELLIPSIS_MODE = 7042,
 
@@ -4375,8 +4374,8 @@ typedef enum {
      * \n
      * Format of the return value {@link ArkUI_AttributeItem}:\n
      * .value[0].i32: display mode when the text is too long {@link ArkUI_TextOverflow}. \n
-     * 
-     *  @since 24
+     *
+     * @since 24  
      */
     NODE_TEXT_INPUT_TEXT_OVERFLOW = 7049,
 
@@ -4798,16 +4797,16 @@ typedef enum {
     NODE_TEXT_AREA_HALF_LEADING = 8025,
 
     /**
-    * @brief Set the keyboard style of textArea
-    *
-    * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-    * .value[0].i32：keyboard style，the parameter type is {@link ArkUI_KeyboardAppearanceType}。\n
-    * \n
-    * Format of the return value {@link ArkUI_AttributeItem}：\n
-    * .value[0].i32：keyboard style，the parameter type is {@link ArkUI_KeyboardAppearanceType}。\n
-    *
-    * @since 15
-    */
+     * @brief Set the keyboard style of textArea
+     *
+     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
+     * .value[0].i32：keyboard style，the parameter type is {@link ArkUI_KeyboardAppearanceType}。\n
+     * \n
+     * Format of the return value {@link ArkUI_AttributeItem}：\n
+     * .value[0].i32：keyboard style，the parameter type is {@link ArkUI_KeyboardAppearanceType}。\n
+     *
+     * @since 15
+     */
     NODE_TEXT_AREA_KEYBOARD_APPEARANCE = 8026,
 
     /**
@@ -4919,7 +4918,7 @@ typedef enum {
      */
      NODE_TEXT_AREA_SCROLL_BAR_COLOR = 8035,
 
-     /**
+    /**
      * @brief Sets up a custom keyboard.
      *
      * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
@@ -4942,7 +4941,7 @@ typedef enum {
      * \n
      * Format of the return value {@link ArkUI_AttributeItem}:\n
      * .object: the text content base controller. The parameter type is {@link ArkUI_TextContentBaseController}.\n
-     * 
+     *
      * @since 23
      */
     NODE_TEXT_AREA_TEXT_CONTENT_CONTROLLER_BASE = 8037,
@@ -4950,15 +4949,15 @@ typedef enum {
     /**
      * @brief Defines the ellipsis position.
      * This attribute can be set, reset, and obtained as required through APIs.
-     * 
+     *
      * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
      * .value[0].i32: The parameter type is {@link ArkUI_EllipsisMode}, the default value
      * is ARKUI_ELLIPSIS_MODE_END. \n
      * \n
      * Format of the return value {@link ArkUI_AttributeItem}:\n
      * .value[0].i32: The parameter type is {@link ArkUI_EllipsisMode}. \n
-     * 
-     *  @since 24
+     *
+     * @since 24
      */
     NODE_TEXT_AREA_ELLIPSIS_MODE = 8038,
 
@@ -5048,7 +5047,7 @@ typedef enum {
 
     /**
      * @brief Used to set the selected drag preview style.
-     * 
+     *
      * Format of the {@link Arkui_AttributeItem} parameter for setting the attribute:\n
      * .object: selected drag preview style configuration. 
      * The parameter type is {@link Arkui_SelectedDragPreviewStyle}.\n
@@ -5056,7 +5055,7 @@ typedef enum {
      * Format of the return value {@link Arkui_AttributeItem}:\n
      * .object: selected drag preview style configuration. 
      * The parameter type is {@link Arkui_SelectedDragPreviewStyle}.\n
-     * 
+     *
      * @since 23
      */
     NODE_TEXT_AREA_SELECTED_DRAG_PREVIEW_STYLE = 8045,
@@ -5071,10 +5070,9 @@ typedef enum {
      * Format of the return value {@link ArkUI_AttributeItem}:\n
      * .value[0].i32: display mode when the text is too long {@link ArkUI_TextOverflow}. \n
      * 
-     *  @since 24
+     * @since 24
      */
     NODE_TEXT_AREA_TEXT_OVERFLOW = 8046,
-
     /**
      * @brief Defines the text decoration style and color for multi-line text box.
      * This attribute can be set, reset, and obtained as required through APIs.
@@ -5150,6 +5148,8 @@ typedef enum {
      * stops: stop positions of the color stops. \n
      * size: number of colors. \n
      *
+     * @since 26.0.0
+     */
      * @since 26.0.0
      */
     NODE_TEXT_AREA_RADIAL_GRADIENT = 8049,
@@ -9722,15 +9722,14 @@ typedef enum {
      * @since 20
      */
     NODE_TEXT_SPAN_ON_LONG_PRESS = 1001,
-
     /**
-     * @brief Defines the event triggered when the text selection position changes.
+     * @brief 定义文本选择位置改变时触发的事件。
      * \n
-     * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
-     * {@link ArkUI_NodeComponentEvent}. \n
-     * {@link ArkUI_NodeComponentEvent} contains two parameters:\n
-     * <b>ArkUI_NodeComponentEvent.data[0].i32</b>: start position of the text selection area. \n
-     * <b>ArkUI_NodeComponentEvent.data[1].i32</b>: end position of the text selection area. \n
+     * 当事件回调发生时，{@link ArkUI_NodeEvent}对象中的联合体类型为
+     * {@link ArkUI_NodeComponentEvent}。\n
+     * {@link ArkUI_NodeComponentEvent}包含两个参数：\n
+     * <b>ArkUI_NodeComponentEvent.data[0].i32</b>：文本选择区域的起始位置。\n
+     * <b>ArkUI_NodeComponentEvent.data[1].i32</b>：文本选择区域的结束位置。
      *
      * @since 26.0.0
      */
@@ -10258,13 +10257,12 @@ typedef enum {
     NODE_TEXT_AREA_ON_WILL_CHANGE = 8013,
 
     /**
-     * @brief Defines the event triggered when the copy button on the pasteboard, which displays when the text box
-     * is long pressed, is clicked.
+     * @brief 定义长按输入框文本弹出菜单后点击复制按钮触发的事件。
      * \n
-     * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
-     * {@link ArkUI_StringAsyncEvent}. \n
-     * {@link ArkUI_StringAsyncEvent} contains one parameter:\n
-     * <b>ArkUI_StringAsyncEvent.pStr</b>: text that is copied.
+     * 当事件回调发生时，{@link ArkUI_NodeEvent}对象中的联合类型为
+     * {@link ArkUI_StringAsyncEvent}。\n
+     * {@link ArkUI_StringAsyncEvent}包含一个参数：\n
+     * <b>ArkUI_StringAsyncEvent.pStr</b>：复制的文本。
      *
      * @since 26.0.0
      */
@@ -10287,13 +10285,12 @@ typedef enum {
     NODE_TEXT_AREA_ON_WILL_COPY = 8015,
 
     /**
-     * @brief Defines the event triggered when the cut button on the pasteboard, which displays when the text box
-     * is long pressed, is clicked.
+     * @brief 定义长按输入框文本弹出菜单后点击剪切按钮触发的事件。
      * \n
-     * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
-     * {@link ArkUI_StringAsyncEvent}. \n
-     * {@link ArkUI_StringAsyncEvent} contains one parameter:\n
-     * <b>ArkUI_StringAsyncEvent.pStr</b>: text that is cut.
+     * 当事件回调发生时，{@link ArkUI_NodeEvent}对象中的联合类型为
+     * {@link ArkUI_StringAsyncEvent}。\n
+     * {@link ArkUI_StringAsyncEvent}包含一个参数：\n
+     * <b>ArkUI_StringAsyncEvent.pStr</b>：剪切后的文本。
      *
      * @since 26.0.0
      */
