@@ -25,7 +25,7 @@
 /**
  * @file picker.h
  *
- * @brief Defines **Picker** node types for **NativeNode** APIs.
+ * @brief 为NativeNode API提供Picker节点类型定义。
  *
  * @library libace_ndk.z.so
  * @syscap SystemCapability.ArkUI.ArkUI.Full
@@ -43,143 +43,133 @@ extern "C" {
 #endif
 
 /**
- * @brief Enumerates the column display modes of the date picker.
+ * @brief 定义日期选择器列显示模式的枚举值。
  *
  * @since 18
  */
 typedef enum {
     /**
-     * A mode that displays the date in months, days of month, and years.
-     *
+     * 默认值。日期列显示年、月、日三列。
      * @since 18
      */
     ARKUI_DATEPICKER_MODE_DATE = 0,
     /**
-     * A mode that displays the date in months and years.
-     *
+     * 日期列显示年、月二列。
      * @since 18
      */
     ARKUI_DATEPICKER_YEAR_AND_MONTH = 1,
     /**
-     * A mode that displays the date in months and days of the month.
-     *
+     * 日期列显示月、日二列。
      * @since 18
      */
     ARKUI_DATEPICKER_MONTH_AND_DAY = 2
 } ArkUI_DatePickerMode;
 
 /**
- * @brief Enumerates the types of the text picker.
+ * @brief 定义滑动选择文本选择器输入类型。
  *
  * @since 12
  */
 typedef enum {
     /**
-     * Single-column text picker.
-     *
+     * 单列数据选择器。
      * @since 12
      */
     ARKUI_TEXTPICKER_RANGETYPE_SINGLE = 0,
     /**
-     * Multi-column text picker.
-     *
+     * 多列数据选择器。
      * @since 12
      */
     ARKUI_TEXTPICKER_RANGETYPE_MULTI = 1,
     /**
-     * Single-column text picker with image resources.
-     *
+     * 支持图片资源的单列数据选择器。
      * @since 12
      */
     ARKUI_TEXTPICKER_RANGETYPE_RANGE_CONTENT = 2,
     /**
-     * Interconnected multi-column text picker.
-     *
+     * 支持联动的多列数据选择器。
      * @since 12
      */
     ARKUI_TEXTPICKER_RANGETYPE_CASCADE_RANGE_CONTENT = 3
 } ArkUI_TextPickerRangeType;
 /**
- * @brief Defines the option content supported by the single-column text picker, including text and image resources.
+ * @brief 定义单列滑动数据选择器支持的选项内容结构体，包含文本和图片资源。
  *
  * @since 12
  */
 typedef struct {
     /**
-     * Pointer to the image resource.
+     * 图片资源。
      * @since 12
      */
     const char* icon;
     /**
-     * Pointer to the text information.
+     * 文本信息。
      * @since 12
      */
     const char* text;
 } ARKUI_TextPickerRangeContent;
 
 /**
- * @brief Defines a multi-column cascade picker.
+ * @brief 定义多列联动滑动数据选择器的结构体。
  *
  * @since 12
  */
 typedef struct {
     /**
-     * Pointer to the text information.
+     * 文本信息。
      * @since 12
      */
     const char* text;
     /**
-     * Cascade data.
+     * 联动数据。
      * @since 12
      */
     const ARKUI_TextPickerRangeContent* children;
     /**
-     * Size of the cascade data array.
+     * 联动数据数组大小。
      * @since 12
      */
     int32_t size;
 } ARKUI_TextPickerCascadeRangeContent;
 
 /**
- * @brief Enumerates the alignment modes between the calendar picker and the entry component.
+ * @brief 日历选择器与入口组件之间的对齐模式类型。
  *
  * @since 12
  */
 typedef enum {
     /**
-     * Left aligned.
-     *
+     * 选择器和入口组件左对齐方式。
      * @since 12
      */
     ARKUI_CALENDAR_ALIGNMENT_START = 0,
     /**
-     * Center aligned.
-     *
+     * 选择器和入口组件居中对齐方式。
      * @since 12
      */
     ARKUI_CALENDAR_ALIGNMENT_CENTER = 1,
     /**
-     * Right aligned.
-     *
+     * 选择器和入口组件右对齐方式。
      * @since 12
      */
     ARKUI_CALENDAR_ALIGNMENT_END = 2
 } ArkUI_CalendarAlignment;
 
 /**
- * @brief Enumerates the indicator types of the selected item.
+ * @brief 选择器的选中指示器类型。
  *
  * @since 23
  */
 typedef enum {
     /**
-     * background.
+     * 背景样式。
      *
      * @since 23
      */
     ARKUI_PICKER_INDICATOR_BACKGROUND = 0,
     /**
-     * divider.
+     * 分割线样式。
      *
      * @since 23
      */
@@ -270,97 +260,97 @@ typedef struct {
 } ArkUI_PickerIndicatorDivider;
 
 /**
- * @brief Defines the style of the selected item indicator.
+ * @brief 选中项指示器的样式。
  *
  * @since 23
  */
 typedef struct ArkUI_PickerIndicatorStyle ArkUI_PickerIndicatorStyle;
 
 /**
- * @brief Defines the data list for the text picker.
+ * @brief 定义文本选择器的数据选择列表。
  *
  * @since 19
  */
 typedef struct ArkUI_TextPickerRangeContentArray ArkUI_TextPickerRangeContentArray;
 
 /**
- * @brief Defines an array of multi-column cascade pickers.
+ * @brief 定义多列联动数据选择器的数组。
  *
  * @since 19
  */
 typedef struct ArkUI_TextCascadePickerRangeContentArray ArkUI_TextCascadePickerRangeContentArray;
 /**
- * @brief Creates an object of the {@link TextPickerRangeContent} array.
+ * @brief 创建{@link TextPickerRangeContent}数组的对象。
  *
- * @param length Length of the **TextPickerRangeContent** array.
- * @return Pointer to an empty **TextPickerRangeContent** array.
+ * @param length 指定TextPickerRangeContent数组的长度。
+ * @return 返回指向TextPickerRangeContent空数组的指针。
  * @since 19
  */
 ArkUI_TextPickerRangeContentArray* OH_ArkUI_TextPickerRangeContentArray_Create(int32_t length);
 /**
- * @brief Configures the icon data at a specified position in the **TextPickerRangeContent** array.
+ * @brief 设置TextPickerRangeContent数组指定位置的icon数据。
  *
- * @param handle Pointer to the **TextPickerRangeContent** array.
- * @param icon Pointer to the icon path.
- * @param index Array index, starting from 0.
+ * @param handle 指向TextPickerRangeContent数组的指针。
+ * @param icon 图标路径。
+ * @param index 数组索引，从0开始。
  * @note If an icon was already set at <b>index</b>, the previous buffer is released before assigning the new value.
  * @since 19
  */
 void OH_ArkUI_TextPickerRangeContentArray_SetIconAtIndex(
     ArkUI_TextPickerRangeContentArray* handle, char* icon, int32_t index);
 /**
- * @brief Configures the text data at a specified position in the **TextPickerRangeContent** array.
+ * @brief 设置TextPickerRangeContent数组指定位置的text数据。
  *
- * @param handle Pointer to the **TextPickerRangeContent** array.
- * @param text Pointer to the text content.
- * @param index Position in the array, starting from 0.
+ * @param handle 指向TextPickerRangeContent数组的指针。
+ * @param text 文本内容。
+ * @param index 数组位置，从0开始。
  * @note If text was already set at <b>index</b>, the previous buffer is released before assigning the new value.
  * @since 19
  */
 void OH_ArkUI_TextPickerRangeContentArray_SetTextAtIndex(
     ArkUI_TextPickerRangeContentArray* handle, char* text, int32_t index);
 /**
- * @brief Destroys a **TextPickerRangeContent** array object.
+ * @brief 删除TextPickerRangeContent数组对象。
  *
- * @param handle Pointer to the **TextPickerRangeContent** array.
+ * @param handle 指向TextPickerRangeContent数组的指针。
  * @note After this call, <b>handle</b> must not be used. Do not pass pointers that were not returned by
  *     {@link OH_ArkUI_TextPickerRangeContentArray_Create}.
  * @since 19
  */
 void OH_ArkUI_TextPickerRangeContentArray_Destroy(ArkUI_TextPickerRangeContentArray* handle);
 /**
- * @brief Creates an object of the {@link TextCascadePickerRangeContent} array.
+ * @brief 创建{@link TextCascadePickerRangeContent}数组对象。
  *
- * @param length Length of the **TextPickerRangeContent** array.
- * @return Pointer to an empty **TextCascadePickerRangeContent** array.
+ * @param length 指向TextPickerRangeContent数组的长度。
+ * @return 返回指向TextCascadePickerRangeContent空数组的指针。
  * @since 19
  */
 ArkUI_TextCascadePickerRangeContentArray* OH_ArkUI_TextCascadePickerRangeContentArray_Create(int32_t length);
 /**
- * @brief Configures the text data at a specified position in the **TextCascadePickerRangeContent** array.
+ * @brief 设置TextCascadePickerRangeContent数组指定位置的text数据。
  *
- * @param handle Pointer to the **TextCascadePickerRangeContentHandle** instance.
- * @param text Pointer to the text content.
- * @param index Position in the array, starting from 0.
+ * @param handle 指向TextCascadePickerRangeContentHandle的指针。
+ * @param text 文本内容。
+ * @param index 数组位置，从0开始。
  * @note If text was already set at <b>index</b>, the previous buffer is released before assigning the new value.
  * @since 19
  */
 void OH_ArkUI_TextCascadePickerRangeContentArray_SetTextAtIndex(
     ArkUI_TextCascadePickerRangeContentArray* handle, char* text, int32_t index);
 /**
- * @brief Configures the child data at a specified position in the **TextCascadePickerRangeContent** array.
+ * @brief 设置TextCascadePickerRangeContent数组指定位置的child数据。
  *
- * @param handle Pointer to the **TextCascadePickerRangeContentHandle** instance.
- * @param child Pointer to the child node array.
- * @param index Position in the array, starting from 0.
+ * @param handle 指向TextCascadePickerRangeContentHandle的指针。
+ * @param child 子节点数组指针。
+ * @param index 数组位置，从0开始。
  * @since 19
  */
 void OH_ArkUI_TextCascadePickerRangeContentArray_SetChildAtIndex(
     ArkUI_TextCascadePickerRangeContentArray* handle, ArkUI_TextCascadePickerRangeContentArray* child, int32_t index);
 /**
- * @brief Destroys a **TextCascadePickerRangeContent** array object.
+ * @brief 删除TextCascadePickerRangeContent数组对象。
  *
- * @param handle Pointer to the **TextCascadePickerRangeContentHandle** instance.
+ * @param handle 指向TextCascadePickerRangeContentHandle的指针。
  * @note After this call, <b>handle</b> must not be used. Do not pass pointers that were not returned by
  *     {@link OH_ArkUI_TextCascadePickerRangeContentArray_Create}.
  * @note Do not call {@link OH_ArkUI_TextCascadePickerRangeContentArray_Destroy} on a <b>child</b> while
@@ -370,11 +360,10 @@ void OH_ArkUI_TextCascadePickerRangeContentArray_SetChildAtIndex(
 void OH_ArkUI_TextCascadePickerRangeContentArray_Destroy(ArkUI_TextCascadePickerRangeContentArray* handle);
 
 /**
- * @brief Creates a style instance of the selected item indicator.
+ * @brief 创建选中项指示器的样式实例。
  *
- * @param type Type of the selected item indicator.
- * @return Pointer to the {@link ArkUI_PickerIndicatorStyle} instance. If a null pointer is returned, the creation
- *     fails. The possible cause is that the address space is full or the type is not supported.
+ * @param type 选择器选中项样式枚举类型。
+ * @return {@link ArkUI_PickerIndicatorStyle}实例。如果返回空指针，表示创建失败，失败原因可能是地址空间已满或类型不支持。
  * @since 23
  */
 ArkUI_PickerIndicatorStyle* OH_ArkUI_PickerIndicatorStyle_Create(ArkUI_PickerIndicatorType type);
