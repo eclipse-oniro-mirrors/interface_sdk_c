@@ -25,7 +25,7 @@
 /**
  * @file image.h
  *
- * @brief Defines **Image** node types for **NativeNode** APIs.
+ * @brief 为NativeNode API提供Image节点类型定义。
  *
  * @library libace_ndk.z.so
  * @syscap SystemCapability.ArkUI.ArkUI.Full
@@ -41,307 +41,260 @@ extern "C" {
 #endif
 
 /**
- * @brief Enumerates the image repeat patterns.
+ * @brief 定义图片重复铺设枚举值。
  *
  * @since 12
  */
 typedef enum {
     /**
-     * The image is not repeatedly drawn.
-     *
+     * 不重复。
      * @since 12
      */
     ARKUI_IMAGE_REPEAT_NONE = 0,
     /**
-     * The image is repeatedly drawn only along the x-axis.
-     *
+     * 在X轴方向重复。
      * @since 12
      */
     ARKUI_IMAGE_REPEAT_X = 1,
     /**
-     * The image is repeatedly drawn only along the y-axis.
-     *
+     * 在Y轴方向重复。
      * @since 12
      */
     ARKUI_IMAGE_REPEAT_Y = 2,
     /**
-     * The image is repeatedly drawn along both axes.
-     *
+     * 在X轴和Y轴方向重复。
      * @since 12
      */
     ARKUI_IMAGE_REPEAT_XY = 3
 } ArkUI_ImageRepeat;
 
 /**
- * @brief Enumerates the image sizes.
+ * @brief 定义图片宽高样式。
  *
  * @since 12
  */
 typedef enum {
     /**
-     * The original image aspect ratio is retained.
-     *
+     * 保持原图的比例不变。
      * @since 12
      */
     ARKUI_IMAGE_SIZE_AUTO = 0,
     /**
-     * The image is scaled with its aspect ratio retained for both sides to be greater than or equal
-     *     to the display boundaries.
-     *
+     * 保持宽高比进行缩小或者放大，使得图片两边都大于或等于显示边界。
      * @since 12
      */
     ARKUI_IMAGE_SIZE_COVER = 1,
     /**
-     * The image is scaled with its aspect ratio retained for the content to be completely displayed
-     *     within the display boundaries.
-     *
+     * 保持宽高比进行缩小或者放大，使得图片完全显示在显示边界内。
      * @since 12
      */
     ARKUI_IMAGE_SIZE_CONTAIN = 2
 } ArkUI_ImageSize;
 
 /**
- * @brief Enumerates the image filling effects of the {@link Image} component.
+ * @brief 定义{@link Image}组件的图片填充效果。
  *
  * @since 12
  */
 typedef enum {
     /**
-     * The image is scaled with its aspect ratio retained for the content to be completely displayed
-     *     within the display boundaries.
-     *
+     * 保持宽高比进行缩小或者放大，使得图片完全显示在显示边界内。
      * @since 12
      */
     ARKUI_OBJECT_FIT_CONTAIN = 0,
     /**
-     * The image is scaled with its aspect ratio retained for both sides to be greater than or
-     *     equal to the display boundaries.
-     *
+     * 保持宽高比进行缩小或者放大，使得图片两边都大于或等于显示边界。
      * @since 12
      */
     ARKUI_OBJECT_FIT_COVER = 1,
     /**
-     * The image is scaled automatically to fit the display area.
-     *
+     * 自适应显示。
      * @since 12
      */
     ARKUI_OBJECT_FIT_AUTO = 2,
     /**
-     * The image is scaled to fill the display area, and its aspect ratio is not retained.
-     *
+     * 不保持宽高比进行放大缩小，使得图片充满显示边界。
      * @since 12
      */
     ARKUI_OBJECT_FIT_FILL = 3,
     /**
-     * The image content is displayed with its aspect ratio retained. The size is smaller than or
-     * equal to the original size.
-     *
+     * 保持宽高比显示，图片缩小或者保持不变。
      * @since 12
      */
     ARKUI_OBJECT_FIT_SCALE_DOWN = 4,
     /**
-     * The original size is retained.
-     *
+     * 保持原有尺寸显示。
      * @since 12
      */
     ARKUI_OBJECT_FIT_NONE = 5,
     /**
-     * Not resized, the image is aligned with the start edge of the top of the container.
-     *
+     * 图片大小不变，在image组件中顶部起始端对齐。
      * @since 12
      */
     ARKUI_OBJECT_FIT_NONE_AND_ALIGN_TOP_START = 6,
     /**
-     * Not resized, the image is horizontally centered at the top of the container.
-     *
+     * 图片大小不变，在image组件中顶部横向居中对齐。
      * @since 12
      */
     ARKUI_OBJECT_FIT_NONE_AND_ALIGN_TOP = 7,
     /**
-     * Not resized, the image is aligned with the end edge at the top of the container.
-     *
+     * 图片大小不变，在image组件中顶部尾端对齐。
      * @since 12
      */
     ARKUI_OBJECT_FIT_NONE_AND_ALIGN_TOP_END = 8,
     /**
-     * Not resized, the image is vertically centered on the start edge of the container.
-     *
+     * 图片大小不变，在image组件中起始端纵向居中对齐。
      * @since 12
      */
     ARKUI_OBJECT_FIT_NONE_AND_ALIGN_START = 9,
     /**
-     * Not resized, the image is horizontally and vertically centered in the container.
-     *
+     * 图片大小不变，在image组件中横向和纵向居中对齐。
      * @since 12
      */
     ARKUI_OBJECT_FIT_NONE_AND_ALIGN_CENTER = 10,
     /**
-     * Not resized, the image is vertically centered on the end edge of the container.
-     *
+     * 图片大小不变，在image组件中尾端纵向居中对齐。
      * @since 12
      */
     ARKUI_OBJECT_FIT_NONE_AND_ALIGN_END = 11,
     /**
-     * Not resized, the image is aligned with the start edge at the bottom of the container.
-     *
+     * 图片大小不变，在image组件中底部起始端对齐。
      * @since 12
      */
     ARKUI_OBJECT_FIT_NONE_AND_ALIGN_BOTTOM_START = 12,
     /**
-     * Not resized, the image is horizontally centered at the bottom of the container.
-     *
+     * 图片大小不变，在image组件中底部横向居中对齐。
      * @since 12
      */
     ARKUI_OBJECT_FIT_NONE_AND_ALIGN_BOTTOM = 13,
     /**
-     * Not resized, the image is aligned with the end edge at the bottom of the container.
-     *
+     * 图片大小不变，在image组件中底部尾端对齐。
      * @since 12
      */
     ARKUI_OBJECT_FIT_NONE_AND_ALIGN_BOTTOM_END = 14,
     /**
-     * Not resized, and is used in conjunction with NODE_IMAGE_IMAGE_MATRIX.
-     *
+     * 不改变图像原始大小，需要配合{@link ArkUI_NodeAttributeType}中的NODE_IMAGE_IMAGE_MATRIX使用。
      * @since 21
      */
     ARKUI_OBJECT_FIT_NONE_MATRIX = 15
 } ArkUI_ObjectFit;
 /**
- * @brief Enumerates the image interpolation effects. This attribute mitigates aliasing during image scaling. This
- * attribute is not applicable to SVG images.
+ * @brief 定义图片插值效果。用于优化图片缩放时的锯齿问题。SVG类型图源不支持该属性。
  *
  * @since 12
  */
 typedef enum {
     /**
-     * No image interpolation.
-     *
+     * 不使用图片插值。
      * @since 12
      */
     ARKUI_IMAGE_INTERPOLATION_NONE = 0,
     /**
-     * Low quality interpolation.
-     *
+     * 低图片插值。
      * @since 12
      */
     ARKUI_IMAGE_INTERPOLATION_LOW = 1,
     /**
-     * Medium quality interpolation.
-     *
+     * 中图片插值。
      * @since 12
      */
     ARKUI_IMAGE_INTERPOLATION_MEDIUM = 2,
     /**
-     * High quality interpolation. This mode produces scaled images of the highest possible quality.
-     *
+     * 高图片插值，插值质量最高。
      * @since 12
      */
     ARKUI_IMAGE_INTERPOLATION_HIGH = 3
 } ArkUI_ImageInterpolation;
 /**
- * @brief Enumerates the dynamic range modes (for example, SDR/HDR) for images, controlling the display range of image
- * brightness and color gamut.
+ * @brief 定义图像动态范围模式（例如：SDR/HDR），用于控制图像的明暗与色彩显示范围。
  *
  * @since 21
  */
 typedef enum {
     /**
-     * high dynamic range mode.
-     *
+     * 高动态范围（High Dynamic Range，简称HDR），表示图片中显示亮度（brightness）的最小值和最大值的范围，范围越大图像的亮度表达更逼近真实环境，在太亮的环境下不会产生过曝（一片白），
+     * 太暗的环境下不会产生过暗的效果（一片黑）。
      * @since 21
      */
     ARKUI_DYNAMIC_RANGE_MODE_HIGH = 0,
     /**
-     * constraint dynamic range mode.
-     *
+     * 受限的高动态范围，包含比SDR更丰富的亮度和色彩，但不是完整的HDR，一般用于需要兼容SDR的情况。
      * @since 21
      */
     ARKUI_DYNAMIC_RANGE_MODE_CONSTRAINT = 1,
     /**
-     * standard dynamic range mode.
-     *
+     * 标准动态范围（Standard Dynamic Range，简称SDR），表示亮度范围有限，一般在0~100尼特（亮度单位）左右，明暗对比度较小，暗部容易糊成黑，亮部容易过曝。
      * @since 21
      */
     ARKUI_DYNAMIC_RANGE_MODE_STANDARD = 2
 } ArkUI_DynamicRangeMode;
 
 /**
- * @brief Enumerates image rotation directions.
+ * @brief 定义图像旋转方向。
  *
  * @since 21
  */
 typedef enum {
     /**
-     * Use EXIF metadata for display orientation, with support for rotation and mirroring.
-     *
+     * 读取图片携带的EXIF元数据作为显示方向，支持旋转和镜像。EXIF（Exchangeable image file format）是专门为数码相机的照片设定的文件格式，可以记录数码照片的属性信息和拍摄数据。
      * @since 21
      */
     ARKUI_ORIENTATION_AUTO = 0,
     /**
-     * Display original pixel data without transformation.
-     *
+     * 默认按照当前图片的像素数据进行显示，不做任何处理。
      * @since 21
      */
     ARKUI_ORIENTATION_UP = 1,
     /**
-     * Display the image after rotating it 90 degrees clockwise.
-     *
+     * 将当前图片顺时针旋转90度后显示。
      * @since 21
      */
     ARKUI_ORIENTATION_RIGHT = 2,
     /**
-     * Display the image after rotating it 180 degrees clockwise.
-     *
+     * 将当前图片顺时针旋转180度后显示。
      * @since 21
      */
     ARKUI_ORIENTATION_DOWN = 3,
     /**
-     * Display the image after rotating it 270 degrees clockwise.
-     *
+     * 将当前图片顺时针旋转270度后显示。
      * @since 21
      */
     ARKUI_ORIENTATION_LEFT = 4,
     /**
-     * Display the image after flipping it horizontally.
-     *
+     * 将当前图片水平翻转后显示。
      * @since 21
      */
     ARKUI_ORIENTATION_UP_MIRRORED = 5,
     /**
-     * Display the image after flipping it horizontally and then rotating it 90 degrees clockwise.
-     *
+     * 将当前图片水平翻转再顺时针旋转90度后显示。
      * @since 21
      */
     ARKUI_ORIENTATION_RIGHT_MIRRORED = 6,
     /**
-     * Display the image after flipping it vertically.
-     *
+     * 将当前图片垂直翻转后显示。
      * @since 21
      */
     ARKUI_ORIENTATION_DOWN_MIRRORED = 7,
     /**
-     * Display the image after flipping it horizontally and then rotating it 270 degrees clockwise.
-     *
+     * 将当前图片水平翻转再顺时针旋转270度后显示。
      * @since 21
      */
     ARKUI_ORIENTATION_LEFT_MIRRORED = 8
 } ArkUI_ImageRotateOrientation;
 
 /**
- * @brief Enumerates the image rendering modes.
+ * @brief 定义图片渲染模式。
  *
  * @since 12
  */
 typedef enum {
     /**
-     * Render image pixels as they are in the original source image.
-     *
+     * 原色渲染模式。
      * @since 12
      */
     ARKUI_IMAGE_RENDER_MODE_ORIGINAL = 0,
     /**
-     * Render image pixels to create a monochrome template image.
-     *
+     * 黑白渲染模式。
      * @since 12
      */
     ARKUI_IMAGE_RENDER_MODE_TEMPLATE = 1
