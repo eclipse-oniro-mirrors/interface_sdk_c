@@ -65,10 +65,10 @@ typedef struct OH_PixelmapNative OH_PixelmapNative;
  * @since 12
  * @version 1.0
  */
-typedef struct OH_Filter_ColorMatrix {
+struct OH_Filter_ColorMatrix {
     /** 自定义颜色矩阵，值为 5 x 4 的数组 */
     float val[20];
-} OH_Filter_ColorMatrix;
+};
 
 /**
  * @brief 定义滤镜效果的状态码。

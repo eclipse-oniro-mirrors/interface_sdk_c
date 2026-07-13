@@ -226,5 +226,85 @@
     {
         "first_introduced": "26.0.0",
         "name": "OH_AudioSuite_PrintInfo"
+    },
+    {
+        "api_type":"system",
+        "first_introduced": "26.0.0",
+        "name": "OH_AudioSuiteEngine_MetaRenderFrame"
+    },
+    {
+        "api_type":"system",
+        "first_introduced": "26.0.0",
+        "name": "OH_AudioSuiteNodeBuilderSystem_SetNodeType"
+    },
+    {
+        "api_type":"system",
+        "first_introduced": "26.0.0",
+        "name": "OH_AudioSuiteNodeBuilderSystem_SetFormat"
+    },
+    {
+        "api_type":"system",
+        "first_introduced": "26.0.0",
+        "name": "OH_AudioSuiteNodeBuilder_SetRequestMetaDataCallback"
+    },
+    {
+        "api_type":"system",
+        "first_introduced": "26.0.0",
+        "name": "OH_AudioSuiteEngineSystem_SetAudioFormat"
+    },
+    {
+        "api_type":"system",
+        "first_introduced": "26.0.0",
+        "name": "OH_AudioSuiteEngineSystem_SetNodeParam"
+    },
+    {
+        "api_type":"system",
+        "first_introduced": "26.0.0",
+        "name": "OH_AudioSuiteEngineSystem_GetNodeParam"
+    },
+    {
+        "api_type":"system",
+        "first_introduced": "26.0.0",
+        "name": "OH_AudioSuiteEngineSystem_GetNodeInOutSize"
+    },
+    {
+        "api_type":"system",
+        "first_introduced": "26.0.0",
+        "name": "OH_AudioSuite_GetDownloadManager"
+    },
+    {
+        "api_type":"system",
+        "first_introduced": "26.0.0",
+        "name": "OH_AudioSuite_RegisterDownloadCallback"
+    },
+    {
+        "api_type":"system",
+        "first_introduced": "26.0.0",
+        "name": "OH_AudioSuite_UnregisterDownloadCallback"
+    },
+    {
+        "api_type":"system",
+        "first_introduced": "26.0.0",
+        "name": "OH_AudioSuite_StartDownload"
+    },
+    {
+        "api_type":"system",
+        "first_introduced": "26.0.0",
+        "name": "OH_AudioSuite_CancelDownload"
+    },
+    {
+        "api_type":"system",
+        "first_introduced": "26.0.0",
+        "name": "OH_AudioSuite_StartBackgroundDownload"
+    },
+    {
+        "api_type":"system",
+        "first_introduced": "26.0.0",
+        "name": "OH_AudioSuite_GetDownloadStatus"
+    },
+    {
+        "api_type":"system",
+        "first_introduced": "26.0.0",
+        "name": "OH_AudioSuite_UninstallCloudRom"
     }
 ]

@@ -187,6 +187,27 @@ typedef enum {
      */
     EFFECT_NODE_TYPE_HOA_SPACE_RENDER = 212,
 } OH_AudioNode_Type;
+
+/**
+ * @brief Define audio node system type.
+ * @systemapi
+ * @since 26.0.0
+ */
+typedef enum OH_AudioSuite_SystemNodeType {
+    /**
+     * Dialogue Algo System Effect Node.
+     *
+     * @since 26.0.0
+     */
+    OH_AUDIOSUITE_EFFECT_NODE_SYSTEM_TYPE_DIALOGUE_ENHANCE = 301,
+    /**
+     * Voice Beautifier System Effect Node.
+     *
+     * @since 26.0.0
+     */
+    OH_AUDIOSUITE_EFFECT_NODE_SYSTEM_TYPE_VOICE_BEAUTIFIER = 302,
+} OH_AudioSuite_SystemNodeType;
+
 /**
  * @brief Define pipeline work mode
  *
@@ -486,6 +507,44 @@ typedef struct OH_AudioFormat {
 } OH_AudioFormat;
 
 /**
+ * @brief Define the audio format info structure, used to describe basic audio format for system node.
+ * @systemapi
+ * @since 26.0.0
+ */
+typedef struct OH_AudioSuite_SystemNodeFormat {
+    /**
+     * @brief Audio sampling rate.
+     *
+     * @since 26.0.0
+     */
+    OH_Audio_SampleRate samplingRate;
+    /**
+     * @brief Audio channel layout.
+     *
+     * @since 26.0.0
+     */
+    OH_AudioChannelLayout channelLayout;
+    /**
+     * @brief Audio channel count.
+     *
+     * @since 26.0.0
+     */
+    uint32_t channelCount;
+    /**
+     * @brief Audio encoding format.
+     *
+     * @since 26.0.0
+     */
+    int32_t encoding;
+    /**
+     * @brief Audio sample format.
+     *
+     * @since 26.0.0
+     */
+    OH_Audio_SampleFormat sampleFormat;
+} OH_AudioSuite_SystemNodeFormat;
+
+/**
  * @brief Define the audio data array structure.
  * This structure is used to get the processed audio data after acquisition processing during multi-channel rendering.
  * @since 22
@@ -511,6 +570,39 @@ typedef struct OH_AudioDataArray {
      */
     int32_t requestFrameSize;
 } OH_AudioDataArray;
+
+/**
+ * @brief Define the audio meta data frame structure.
+ * This structure is used to pass audio data and meta data together.
+ * @systemapi
+ * @since 26.0.0
+ */
+typedef struct OH_AudioSuite_MetaFrame {
+    /**
+     * @brief Audio data pointer.
+     *
+     * @since 26.0.0
+     */
+    void* audioData;
+    /**
+     * @brief Audio data size.
+     *
+     * @since 26.0.0
+     */
+    int32_t audioDataSize;
+    /**
+     * @brief Meta data pointer.
+     *
+     * @since 26.0.0
+     */
+    void* metaData;
+    /**
+     * @brief Meta data size.
+     *
+     * @since 26.0.0
+     */
+    int32_t metaDataSize;
+} OH_AudioSuite_MetaFrame;
 
 /**
  * @brief Define the sound field type.
