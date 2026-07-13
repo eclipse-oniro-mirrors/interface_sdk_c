@@ -17,15 +17,15 @@
  * @addtogroup netstack
  * @{
  *
- * @brief Defines the APIs for http global interceptor.
+ * @brief 定义HTTP全局拦截器模块的接口。
  *
  * @since 24
  */
 
 /**
  * @file http_interceptor.h
- * @brief Defines the APIs of the HTTP global interceptor module. With interceptors, you can monitor HTTP mobile data
- * and implement the logging feature.
+ * @brief 定义HTTP全局拦截器模块的接口，分为只读拦截器与可修改拦截器两类。通过全局只读拦截器，开发者可以监控应用内部通过所支持的系统网络组件发起的所有HTTP请求，实现日志记录功能，也可以在全局可修改拦截器中添加自定义逻辑，
+ * 修改应用内部通过所支持的系统网络组件发起的HTTP请求的请求头、响应头、响应体。
  *
  * @library libhttp_interceptor.so
  * @kit NetworkKit
@@ -43,11 +43,10 @@ extern "C" {
 #endif
 
 /**
- * @brief Adds a global read-only HTTP interceptor.
+ * @brief 添加一个HTTP全局只读拦截器。
  *
- * @param interceptor Http global interceptor configuration, Pointer to {@link OH_Http_Interceptor}.
- * @return {@link OH_HTTP_RESULT_OK} 0 -if the operation is successful.
- *     {@link OH_HTTP_PERMISSION_DENIED} 201 -if permission is denied.
+ * @param interceptor 待添加的拦截器，指向OH_Http_Interceptor结构体的指针。
+ * @return 返回值为0表示执行成功；返回值为201表示权限被拒绝；返回值为401表示参数错误。
  * @permission ohos.permission.INTERNET
  * @note The interceptor remains active until it is explicitly removed by the developer.
  *     you must call {@link OH_Http_RemoveInterceptor} to release a specific interceptor
@@ -57,11 +56,10 @@ extern "C" {
 int32_t OH_Http_AddReadOnlyInterceptor(struct OH_Http_Interceptor *interceptor);
 
 /**
- * @brief add a writable http global interceptor for HTTP requests.
+ * @brief 添加一个HTTP全局可修改拦截器。
  *
- * @param interceptor Http global interceptor configuration, Pointer to {@link OH_Http_Interceptor}.
- * @return {@link OH_HTTP_RESULT_OK} 0 -if the operation is successful.
- *         {@link OH_HTTP_PERMISSION_DENIED} 201 -if permission is denied.
+ * @param interceptor 待添加的拦截器，指向OH_Http_Interceptor结构体的指针。
+ * @return 返回值为0表示执行成功；返回值为201表示权限被拒绝；返回值为401表示参数错误。
  * @permission ohos.permission.INTERNET
  * @note The interceptor remains active until it is explicitly removed by the developer.
  *     you must call {@link OH_Http_RemoveInterceptor} to release a specific interceptor
@@ -71,22 +69,20 @@ int32_t OH_Http_AddReadOnlyInterceptor(struct OH_Http_Interceptor *interceptor);
 int32_t OH_Http_AddWritableInterceptor(struct OH_Http_Interceptor *interceptor);
 
 /**
- * @brief Removes a specified global HTTP interceptor.
+ * @brief 删除指定的HTTP全局拦截器。
  *
- * @param interceptor Http global interceptor configuration, Pointer to {@link OH_Http_Interceptor}.
- * @return {@link OH_HTTP_RESULT_OK} 0 -if the operation is successful.
- *     {@link OH_HTTP_PERMISSION_DENIED} 201 -if permission is denied.
+ * @param interceptor 待删除的拦截器，指向OH_Http_Interceptor结构体的指针。
+ * @return 返回值为0表示执行成功；返回值为201表示权限被拒绝；返回值为401表示参数错误。
  * @permission ohos.permission.INTERNET
  * @since 24
  */
 int32_t OH_Http_RemoveInterceptor(struct OH_Http_Interceptor *interceptor);
 
 /**
- * @brief Removes all HTTP interceptors of a specified group ID.
+ * @brief 删除指定组ID的所有HTTP拦截器。
  *
- * @param groupId http global interceptor group id
- * @return {@link OH_HTTP_RESULT_OK} 0 -if the operation is successful.
- *     {@link OH_HTTP_PERMISSION_DENIED} 201 -if permission is denied.
+ * @param groupId 拦截器组ID。
+ * @return 返回值为0表示执行成功；返回值为201表示权限被拒绝；返回值为401表示参数错误。
  * @permission ohos.permission.INTERNET
  * @note The groupId is allocated and managed by the application itself when creating
  *     interceptors. If multiple modules within the application need to use interceptors,
@@ -98,7 +94,7 @@ int32_t OH_Http_RemoveInterceptor(struct OH_Http_Interceptor *interceptor);
 int32_t OH_Http_RemoveAllInterceptors(int32_t groupId);
 
 /**
- * @brief Enables all HTTP interceptors of a specified group ID.
+ * @brief 启用指定组ID的所有HTTP拦截器。
  *
  * @param groupId http global interceptor group id
  * @return {@link OH_HTTP_RESULT_OK} 0 -if the operation is successful.
@@ -109,7 +105,7 @@ int32_t OH_Http_RemoveAllInterceptors(int32_t groupId);
 int32_t OH_Http_StartAllInterceptors(int32_t groupId);
 
 /**
- * @brief Disables all HTTP interceptors of a specified group ID.
+ * @brief 停用指定组ID的所有HTTP拦截器。
  *
  * @param groupId http global interceptor group id
  * @return {@link OH_HTTP_RESULT_OK} 0 -if the operation is successful.

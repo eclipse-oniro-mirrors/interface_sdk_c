@@ -17,16 +17,14 @@
  * @addtogroup netstack
  * @{
  *
- * @brief Defines the APIs for http global interceptor.
+ * @brief 定义HTTP全局拦截器模块的接口。
  *
  * @since 24
  */
 
 /**
  * @file http_interceptor_type.h
- * @brief Defines the data structures for the C APIs of the global HTTP interceptor module, including the interceptor
- * request/response header information, HTTP request/response data packet structure, interceptor configuration
- * information, and related enum types and function pointers.
+ * @brief 为HTTP全局拦截器模块提供C接口的数据结构定义，包含拦截器的请求/响应头信息、HTTP请求/响应数据包结构、拦截器配置信息以及相关的枚举类型和函数指针。
  *
  * @library libhttp_interceptor.so
  * @kit NetworkKit
@@ -50,19 +48,19 @@ extern "C" {
 #endif
 
 /**
- * @brief Defines a struct for the request/response header information of the interceptor.
+ * @brief 定义拦截器的请求/响应头信息。
  *
  * @since 24
  */
 typedef struct OH_Http_Interceptor_Headers {
     /**
-     * @brief Pointer to the request/response header information of the interceptor.
+     * @brief 拦截器请求/响应头信息。
      *
      * @since 24
      */
     char *data;
     /**
-     * @brief Pointer to the next header information.
+     * @brief 指向下一个头信息的指针。
      *
      * @since 24
      */
@@ -70,31 +68,31 @@ typedef struct OH_Http_Interceptor_Headers {
 } OH_Http_Interceptor_Headers;
 
 /**
- * @brief Defines a struct for the HTTP request data packet of the interceptor.
+ * @brief 定义拦截器的HTTP请求数据包结构。
  *
  * @since 24
  */
 typedef struct OH_Http_Interceptor_Request {
     /**
-     * @brief Request URL. For details, see {@link Http_Buffer}.
+     * @brief 请求URL，详情请参考{@link Http_Buffer}定义。
      *
      * @since 24
      */
     Http_Buffer url;
     /**
-     * @brief Request method. For details, see {@link Http_Buffer}.
+     * @brief 请求方法，详情请参考{@link Http_Buffer}定义。
      *
      * @since 24
      */
     Http_Buffer method;
     /**
-     * @brief HTTP request header. For details, see {@link OH_Http_Interceptor_Headers}.
+     * @brief HTTP请求头信息，详情请参考{@link OH_Http_Interceptor_Headers}定义。
      *
      * @since 24
      */
     OH_Http_Interceptor_Headers *headers;
     /**
-     * @brief Request body. For details, see {@link Http_Buffer}.
+     * @brief 请求体内容，详情请参考{@link Http_Buffer}定义。
      *
      * @since 24
      */
@@ -102,31 +100,31 @@ typedef struct OH_Http_Interceptor_Request {
 } OH_Http_Interceptor_Request;
 
 /**
- * @brief Defines a struct for the HTTP response data packet of the interceptor.
+ * @brief 定义拦截器的HTTP响应数据包结构。
  *
  * @since 24
  */
 typedef struct OH_Http_Interceptor_Response {
     /**
-     * @brief Response body. For details, see {@link Http_Buffer}.
+     * @brief 响应体内容，详情请参考{@link Http_Buffer}定义。
      *
      * @since 24
      */
     Http_Buffer body;
     /**
-     * @brief Response status code. For details, see {@link Http_ResponseCode}.
+     * @brief 响应状态码，详情请参考{@link Http_ResponseCode} 枚举定义。
      *
      * @since 24
      */
     Http_ResponseCode responseCode;
     /**
-     * @brief HTTP response header. For details, see {@link OH_Http_Interceptor_Headers}.
+     * @brief HTTP响应头信息，详情请参考{@link OH_Http_Interceptor_Headers}定义。
      *
      * @since 24
      */
     OH_Http_Interceptor_Headers *headers;
     /**
-     * @brief Response performance information. For details, see {@link Http_PerformanceTiming}.
+     * @brief 响应性能信息，详情请参考{@link Http_PerformanceTiming}定义。
      *
      * @since 24
      */
@@ -134,19 +132,19 @@ typedef struct OH_Http_Interceptor_Response {
 } OH_Http_Interceptor_Response;
 
 /**
- * @brief Defines an enum for the interceptor stages.
+ * @brief 定义拦截器的执行阶段。
  *
  * @since 24
  */
 typedef enum OH_Interceptor_Stage {
     /**
-     * @brief The interceptor processes the request.
+     * @brief 拦截器处理请求。
      *
      * @since 24
      */
     OH_STAGE_REQUEST,
     /**
-     * @brief The interceptor processes the response.
+     * @brief 拦截器处理响应。
      *
      * @since 24
      */
@@ -154,52 +152,53 @@ typedef enum OH_Interceptor_Stage {
 } OH_Interceptor_Stage;
 
 /**
- * @brief Defines an enum for the interceptor types.
+ * @brief 定义拦截器的类型。
  *
  * @since 24
  */
 typedef enum OH_Interceptor_Type {
     /**
-     * @brief Read-only interceptor.
-     *
+     * @brief 只读拦截器。
      * @since 24
      */
     OH_TYPE_READ_ONLY,
     /**
-     * @brief interceptor will modify the packet from Network Kit
+     * @brief 可修改拦截器。仅针对Network Kit HTTP请求生效。
      * @since 26.0.0
      */
     OH_TYPE_MODIFY_NETWORK_KIT
 } OH_Interceptor_Type;
 
 /**
- * @brief Defines an enum for the interceptor results.
+ * @brief 定义拦截器的处理结果。
  *
  * @since 24
  */
 typedef enum OH_Interceptor_Result {
     /**
-     * @brief The processing continues.
+     * @brief 继续处理。
      *
      * @since 24
      */
     OH_CONTINUE,
     /**
-     * @brief The processing is aborted.
+     * @brief 拦截处理。
      *
      * @since 24
      */
     OH_ABORT
 } OH_Interceptor_Result;
 /**
- * @brief Defines the HTTP interceptor handler function.
+ * @brief 定义HTTP拦截器处理函数。
  *
- * @param request Pointer to the HTTP request data packet (valid only in the request stage).
- * @param response Pointer to the HTTP response data packet (valid only in the response stage).
- * @param isModified Output parameter, which indicates whether the interceptor has modified the data packet. This
- *     parameter is invalid for the interceptor of the **OH_TYPE_READ_ONLY** type.
- * @return Interceptor processing result. - **OH_CONTINUE**: The processing continues. - **OH_ABORT**: The processing
- *     is aborted.
+ * @param request HTTP请求数据包指针（仅在请求阶段有效）。
+ * @param response HTTP响应数据包指针（仅在响应阶段有效）。
+ * @param isModified 标识拦截器是否修改了数据包。对OH_TYPE_READ_ONLY类型拦截器无效，可配置为nullptr。
+ *     <br>- 0表示未对数据执行修改操作。
+ *     <br>- 非0表示已对数据执行修改操作。
+ * @return 拦截器处理结果。
+ *     <br>- OH_CONTINUE：继续处理
+ *     <br>- OH_ABORT：拦截处理
  * @since 24
  */
 typedef OH_Interceptor_Result (*OH_Http_InterceptorHandler)(
@@ -208,38 +207,37 @@ typedef OH_Interceptor_Result (*OH_Http_InterceptorHandler)(
     int32_t *isModified);
 
 /**
- * @brief Defines a struct for the configuration information of the global HTTP interceptor.
+ * @brief 定义HTTP全局拦截器的配置信息。
  *
  * @since 24
  */
 typedef struct OH_Http_Interceptor {
     /**
-     * @brief Interceptor group ID.
+     * @brief 拦截器组ID。
      *
      * @since 24
      */
     int32_t groupId;
     /**
-     * @brief Execution stage of the interceptor. For details, see {@link OH_Interceptor_Stage}.
+     * @brief 拦截器的执行阶段，详情请参考{@link OH_Interceptor_Stage} 枚举定义。
      *
      * @since 24
      */
     OH_Interceptor_Stage stage;
     /**
-     * @brief Interceptor type. For details, see {@link OH_Interceptor_Type}.
+     * @brief 拦截器的类型，详情请参考{@link OH_Interceptor_Type} 枚举定义。
      *
      * @since 24
      */
     OH_Interceptor_Type type;
     /**
-     * @brief Interceptor handler. For details, see {@link OH_Http_InterceptorHandler}.
+     * @brief 拦截器处理函数，详情请参考{@link OH_Http_InterceptorHandler} 函数指针定义。
      *
      * @since 24
      */
     OH_Http_InterceptorHandler handler;
     /**
-     * @brief Enabling status of the interceptor. The value **0** indicates that the interceptor is disabled, and a non-
-     * zero value indicates the opposite.
+     * @brief 拦截器的启用状态。0代表未启用，非0代表启用。
      *
      * @since 24
      */
