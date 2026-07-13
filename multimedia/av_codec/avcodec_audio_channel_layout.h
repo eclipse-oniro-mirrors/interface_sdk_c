@@ -19,7 +19,6 @@
  *
  * @brief The CodecBase module provides variables, properties, and functions
  * for audio and video muxer, demuxer, and basic encoding and decoding functions.
- *
  * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 9
  */
@@ -31,7 +30,6 @@
  *
  * @kit AVCodecKit
  * @library libnative_media_codecbase.so
- * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @deprecated since 11
  * @since 10
  */
