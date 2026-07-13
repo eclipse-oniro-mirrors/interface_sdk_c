@@ -163,14 +163,14 @@ typedef enum Http_ErrCode {
     /** @brief 远端文件未找到。
 * */
     OH_HTTP_REMOTE_FILE_NOT_FOUND = (OH_HTTP_NETSTACK_E_BASE + 78),
+    /** @brief 身份验证错误。
+* */
+    OH_HTTP_AUTHENTICATION_ERROR = (OH_HTTP_NETSTACK_E_BASE + 94),
     /**
      * @brief 请求已被 HTTP 全局拦截器拦截。
      * @since 26.0.0
      */
     OH_HTTP_REQUEST_INTERCEPTED = (OH_HTTP_NETSTACK_E_BASE + 996),
-    /** @brief 身份验证错误。
-* */
-    OH_HTTP_AUTHENTICATION_ERROR = (OH_HTTP_NETSTACK_E_BASE + 94),
     /** @brief 不允许访问该域。
 * */
     OH_HTTP_ACCESS_DOMAIN_NOT_ALLOWED = (OH_HTTP_NETSTACK_E_BASE + 998),
