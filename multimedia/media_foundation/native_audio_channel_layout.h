@@ -18,7 +18,6 @@
  * @{
  *
  * @brief Provides APIs for Core.
- * @syscap SystemCapability.Multimedia.Media.Core
  * @since 11
  */
 
@@ -28,7 +27,9 @@
  * @brief The file declares the functions related to the speaker layout during recording and playback.
  *
  * @kit AVCodecKit
+ * @include <multimedia/native_audio_channel_layout.h>
  * @library NA
+ * @syscap SystemCapability.Multimedia.Media.Core
  * @since 11
  */
 
@@ -44,7 +45,7 @@ extern "C" {
 /**
  * @brief Enumerates the audio channels.
  *
- * Each channel is mapped to a variable of int64_t.
+ * Each channel is mapped to a variable of uint64_t.
  *
  * @since 11
  */

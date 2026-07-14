@@ -19,7 +19,7 @@
  *
  * @brief The CodecBase module provides variables, properties, and functions
  * for audio and video muxer, demuxer, and basic encoding and decoding functions.
- * @syscap SystemCapability.Multimedia.Media.CodecBase
+ * 
  * @since 9
  */
 
@@ -31,17 +31,15 @@
  * 
  * @kit AVCodecKit
  * @library libnative_media_codecbase.so
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 9
  */
-
 #ifndef NATIVE_AVCODEC_BASE_H
 #define NATIVE_AVCODEC_BASE_H
-
 #include <stdint.h>
 #include <stdio.h>
 #include "native_avbuffer.h"
 #include "native_avmemory.h"
-
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -203,7 +201,7 @@ typedef int32_t (*OH_AVDataSourceReadAt)(OH_AVBuffer *data, int32_t length, int6
 
 /**
  * @brief The struct describes a user-defined data source.
- * 
+ *
  * @since 12
  */
 typedef struct OH_AVDataSource {
@@ -586,13 +584,6 @@ extern const char *OH_AVCODEC_MIMETYPE_VIDEO_RV40;
 extern const char *OH_AVCODEC_MIMETYPE_VIDEO_WVC1;
 
 /**
- * @brief MIME type of the Cinepak video codec.
- *
- * @since 24
- */
-extern const char *OH_AVCODEC_MIMETYPE_VIDEO_CINEPAK;
-
-/**
  * @brief MIME type of the DVVIDEO (Digital Video) video codec. Supports DV NTSC, DV PAL, and DVCPRO HD.
  * 
  * @since 23
@@ -697,8 +688,8 @@ extern const char *OH_MD_KEY_MAX_INPUT_SIZE;
 /**
  * @brief Pointer to the key that describes the video width. The value type is int32_t.
  *
- * For video encoding, this key is used to set the target encoding resolution. For video decoding, this key serves 
- * as a resolution hint for the decoder to pre-allocate internal buffers. 
+ * For video encoding, this key is used to set the target encoding resolution. For video decoding, this key serves
+ * as a resolution hint for the decoder to pre-allocate internal buffers.
  * The actual decoded output dimensions are provided by **OH_MD_KEY_VIDEO_PIC_WIDTH**.
  * This key is mainly used to control memory allocation. You can call {@link OH_AVCapability_GetVideoWidthRange}
  * to obtain the recommended value range. This API defines the decoding width range supported by the codec.
@@ -785,19 +776,6 @@ extern const char *OH_MD_KEY_AUD_SAMPLE_RATE;
  * @since 9
  */
 extern const char *OH_MD_KEY_I_FRAME_INTERVAL;
-
-/**
- * @brief Pointer to the key that describes the rotation angle of the surface, with a clockwise direction. The value
- * type is int32_t, and the value range is {0, 90, 180, 270}. The default value is 0.
- * 
- * This key is optional and is used only for video decoding in surface mode
- * 
- * You are advised to use the **OH_MD_KEY_VIDEO_TRANSFORM_TYPE** key to set the rotation angle of the surface for video
- * decoding.
- * 
- * @since 9
- */
-extern const char *OH_MD_KEY_ROTATION;
 
 /**
  * @brief Key for video transform type, value type is int32_t, see {@link OH_NativeBuffer_TransformType}.
@@ -2106,7 +2084,7 @@ typedef enum OH_MediaType {
      * Auxiliary track.
      * @since 20
      */
-    MEDIA_TYPE_AUXILIARY = 6,
+    MEDIA_TYPE_AUXILIARY = 6
 } OH_MediaType;
 
 /**
@@ -2130,7 +2108,7 @@ typedef enum OH_AACProfile {
      * AAC profile of the high efficiency V2 level. Audio object types AAC LC, SBR, and PS are included.
      * @since 14
      */
-    AAC_PROFILE_HE_V2 = 4,
+    AAC_PROFILE_HE_V2 = 4
 } OH_AACProfile;
 
 /**
@@ -2144,16 +2122,18 @@ typedef enum OH_AVCProfile {
      * @since 9
      */
     AVC_PROFILE_BASELINE = 0,
+
     /**
      * AVC high profile.
      * @since 9
      */
     AVC_PROFILE_HIGH = 4,
+
     /**
      * AVC main profile.
      * @since 9
      */
-    AVC_PROFILE_MAIN = 8,
+    AVC_PROFILE_MAIN = 8
 } OH_AVCProfile;
 
 /**
@@ -2167,16 +2147,19 @@ typedef enum OH_HEVCProfile {
      * @since 10
      */
     HEVC_PROFILE_MAIN = 0,
+
     /**
      * HEVC profile of the 10-bit main level.
      * @since 10
      */
     HEVC_PROFILE_MAIN_10 = 1,
+
     /**
      * HEVC profile of the main still picture level.
      * @since 10
      */
     HEVC_PROFILE_MAIN_STILL = 2,
+
     /**
      * HEVC profile of the main 10 HDR10 level.
      * @deprecated since 14
@@ -2188,7 +2171,7 @@ typedef enum OH_HEVCProfile {
      * @deprecated since 14
      * @since 10
      */
-    HEVC_PROFILE_MAIN_10_HDR10_PLUS = 4,
+    HEVC_PROFILE_MAIN_10_HDR10_PLUS = 4
 } OH_HEVCProfile;
 
 /**
@@ -2271,7 +2254,7 @@ typedef enum OH_VVCProfile {
      * VVC profile of the 16-bit full-sample still picture main level.
      * @since 15
      */
-    VVC_PROFILE_MAIN_16_444_STILL = 100,
+    VVC_PROFILE_MAIN_16_444_STILL = 100
 } OH_VVCProfile;
 
 /**
@@ -2309,7 +2292,7 @@ typedef enum OH_MPEG2Profile {
      * 4:2:2 profile.
      * @since 17
      */
-    MPEG2_PROFILE_422 = 5,
+    MPEG2_PROFILE_422 = 5
 } OH_MPEG2Profile;
 
 /**
@@ -2392,7 +2375,7 @@ typedef enum OH_MPEG4Profile {
      * Advanced simple profile.
      * @since 17
      */
-    MPEG4_PROFILE_ADVANCED_SIMPLE = 17,
+    MPEG4_PROFILE_ADVANCED_SIMPLE = 17
 } OH_MPEG4Profile;
 
 /**
@@ -2410,7 +2393,7 @@ typedef enum OH_H263Profile {
      * Version 1 backward compatibility.
      * @since 17
      */
-    H263_PROFILE_VERSION_1_BACKWARD_COMPATIBILITY = 2,
+    H263_PROFILE_VERSION_1_BACKWARD_COMPATIBILITY = 2
 } OH_H263Profile;
 
 /**
@@ -2433,7 +2416,7 @@ typedef enum OH_VC1Profile {
      * High profile.
      * @since 22
      */
-    VC1_PROFILE_ADVANCED = 2,
+    VC1_PROFILE_ADVANCED = 2
 } OH_VC1Profile;
 
 /**
@@ -2456,7 +2439,7 @@ typedef enum OH_AV1Profile {
      * Professional profile.
      * @since 23
      */
-    AV1_PROFILE_PROFESSIONAL = 2,
+    AV1_PROFILE_PROFESSIONAL = 2
 } OH_AV1Profile;
 
 /**
@@ -2484,7 +2467,7 @@ typedef enum OH_VP9Profile {
      * Profile 3.
      * @since 23
      */
-    VP9_PROFILE_3 = 3,
+    VP9_PROFILE_3 = 3
 } OH_VP9Profile;
 
 /**
@@ -2497,8 +2480,8 @@ typedef enum OH_WVC1Profile {
      * High profile.
      * @since 23
      */
-    WVC1_PROFILE_ADVANCED = 0,
- } OH_WVC1Profile;
+    WVC1_PROFILE_ADVANCED = 0
+} OH_WVC1Profile;
 
 /**
  * @brief Enumerates the WMV3 profiles.
@@ -2515,7 +2498,7 @@ typedef enum OH_WMV3Profile {
      * Main profile.
      * @since 22
      */
-    WMV3_PROFILE_MAIN = 1,
+    WMV3_PROFILE_MAIN = 1
 } OH_WMV3Profile;
 
 /**
@@ -2583,7 +2566,7 @@ typedef enum OH_AVOutputFormat {
      * 
      * @since 26.0.0
      */
-    AV_OUTPUT_FORMAT_FLV = 14,
+    AV_OUTPUT_FORMAT_FLV = 14
 } OH_AVOutputFormat;
 
 /**
@@ -2610,7 +2593,7 @@ typedef enum OH_AVSeekMode {
      * 
      * @since 10
      */
-    SEEK_MODE_CLOSEST_SYNC,
+    SEEK_MODE_CLOSEST_SYNC
 } OH_AVSeekMode;
 
 /**
@@ -2634,7 +2617,7 @@ typedef enum OH_ScalingMode {
      * @useinstead OH_SCALING_MODE_SCALE_CROP_V2
      * @since 10
      */
-    SCALING_MODE_SCALE_CROP = 2,
+    SCALING_MODE_SCALE_CROP = 2
 } OH_ScalingMode;
 
 /**
@@ -2760,7 +2743,7 @@ typedef enum OH_ColorPrimary {
      * P3D65 color gamut.
      * @since 10
      */
-    COLOR_PRIMARY_P3D65 = 12,
+    COLOR_PRIMARY_P3D65 = 12
 } OH_ColorPrimary;
 
 /**
@@ -2853,7 +2836,7 @@ typedef enum OH_TransferCharacteristic {
      * HLG transfer function.
      * @since 10
      */
-    TRANSFER_CHARACTERISTIC_HLG = 18,
+    TRANSFER_CHARACTERISTIC_HLG = 18
 } OH_TransferCharacteristic;
 
 /**
@@ -2931,7 +2914,7 @@ typedef enum OH_MatrixCoefficient {
      * ICTCP conversion matrix.
      * @since 10
      */
-    MATRIX_COEFFICIENT_ICTCP = 14,
+    MATRIX_COEFFICIENT_ICTCP = 14
 } OH_MatrixCoefficient;
 
 /**
@@ -3039,7 +3022,7 @@ typedef enum OH_AVCLevel {
      * Level 6.2.
      * @since 12
      */
-    AVC_LEVEL_62 = 19,
+    AVC_LEVEL_62 = 19
 } OH_AVCLevel;
 
 /**
@@ -3112,7 +3095,7 @@ typedef enum OH_HEVCLevel {
      * Level 6.2.
      * @since 12
      */
-    HEVC_LEVEL_62 = 12,
+    HEVC_LEVEL_62 = 12
 } OH_HEVCLevel;
 
 /**
@@ -3195,7 +3178,7 @@ typedef enum OH_VVCLevel {
      * Level 15.5.
      * @since 15
      */
-    VVC_LEVEL_155 = 255,
+    VVC_LEVEL_155 = 255
 } OH_VVCLevel;
 
 /**
@@ -3223,7 +3206,7 @@ typedef enum OH_MPEG2Level {
      * High level.
      * @since 17
      */
-    MPEG2_LEVEL_HIGH = 3,
+    MPEG2_LEVEL_HIGH = 3
 } OH_MPEG2Level;
 
 /**
@@ -3281,7 +3264,7 @@ typedef enum OH_MPEG4Level {
      * Level 6.
      * @since 17
      */
-    MPEG4_LEVEL_6 = 9,
+    MPEG4_LEVEL_6 = 9
 } OH_MPEG4Level;
 
 /**
@@ -3329,7 +3312,7 @@ typedef enum OH_H263Level {
      * Level 70.
      * @since 17
      */
-    H263_LEVEL_70 = 7,
+    H263_LEVEL_70 = 7
 } OH_H263Level;
 
 /**
@@ -3377,7 +3360,7 @@ typedef enum OH_VC1Level {
      * High level.
      * @since 22
      */
-    VC1_LEVEL_HIGH = 7,
+    VC1_LEVEL_HIGH = 7
 } OH_VC1Level;
 
 /**
@@ -3446,11 +3429,13 @@ typedef enum OH_AV1Level {
      * @since 23
      */
     AV1_LEVEL_43 = 11,
+
     /**
      * Level 5.0.
      * @since 23
      */
     AV1_LEVEL_50 = 12,
+
     /**
      * Level 5.1.
      * @since 23
@@ -3505,7 +3490,7 @@ typedef enum OH_AV1Level {
      * Level 7.3.
      * @since 23
      */
-    AV1_LEVEL_73 = 23,
+    AV1_LEVEL_73 = 23
 } OH_AV1Level;
 
 /**
@@ -3583,7 +3568,7 @@ typedef enum OH_VP9Level {
      * Level 6.2.
      * @since 23
      */
-    VP9_LEVEL_62 = 13,
+    VP9_LEVEL_62 = 13
 } OH_VP9Level;
 
 /**
@@ -3616,7 +3601,7 @@ typedef enum OH_WVC1Level {
      * Level L4.
      * @since 23
      */
-    WVC1_LEVEL_L4 = 4,
+    WVC1_LEVEL_L4 = 4
 } OH_WVC1Level;
 
 /**
@@ -3639,9 +3624,9 @@ typedef enum OH_WMV3Level {
      * High level.
      * @since 22
      */
-    WMV3_LEVEL_HIGH = 2,
+    WMV3_LEVEL_HIGH = 2
 } OH_WMV3Level;
- 
+
 /**
  * @brief Enumerates the reference modes of temporal image groups.
  * 
@@ -3663,7 +3648,7 @@ typedef enum OH_TemporalGopReferenceMode {
      * enhance layer. The temporal group of pictures must be power of 2.
      * @since 12
      */
-    UNIFORMLY_SCALED_REFERENCE = 2,
+    UNIFORMLY_SCALED_REFERENCE = 2
 } OH_TemporalGopReferenceMode;
 
 /**
@@ -3731,7 +3716,7 @@ typedef enum OH_FrameRetentionMode {
      *
      * @since 26.0.0
      */
-    OH_FRAME_RETENTION_MODE_UNIFORM = 2,
+    OH_FRAME_RETENTION_MODE_UNIFORM = 2
 } OH_FrameRetentionMode;
 
 /**
@@ -3757,9 +3742,8 @@ typedef enum OH_AudioEncoderPTSMode {
      * 
      * @since 26.0.0
      */
-    OH_AUDIO_ENCODER_PTS_MODE_FIRST_INPUT_START = 2,
+    OH_AUDIO_ENCODER_PTS_MODE_FIRST_INPUT_START = 2
 } OH_AudioEncoderPTSMode;
-
 #ifdef __cplusplus
 }
 #endif

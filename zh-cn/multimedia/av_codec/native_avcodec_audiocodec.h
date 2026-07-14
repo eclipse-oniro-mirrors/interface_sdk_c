@@ -19,7 +19,6 @@
  *
  * @brief AudioCodec模块提供用于音频编解码功能的函数。
  *
- * @syscap SystemCapability.Multimedia.Media.AudioCodec
  * @since 11
  */
 
@@ -30,7 +29,9 @@
  * @brief 音频编解码Native API的声明。
  *
  * @kit AVCodecKit
+ * @include <multimedia/player_framework/native_avcodec_audiocodec.h>
  * @library libnative_media_acodec.so
+ * @syscap SystemCapability.Multimedia.Media.AudioCodec
  * @since 11
  */
 
@@ -75,11 +76,11 @@ OH_AVCodec *OH_AudioCodec_CreateByName(const char *name);
  * @brief 清理编解码器内部资源，销毁编解码器实例。注意不能进行重复销毁，否则将会导致程序崩溃。
  *
  * @param codec 指向OH_AVCodec实例的指针。
- * @return AV_ERR_OK：执行成功。
- *     <br>AV_ERR_INVALID_VAL：OH_AVCodec实例为nullptr或无效。
- *     <br>AV_ERR_INVALID_STATE：编解码器服务不可用。
- *     <br>AV_ERR_NO_MEMORY：内部资源已经释放。
- *     <br>AV_ERR_UNKNOWN：发生内部错误，建议检查日志。
+ * @return {@link AV_ERR_OK}：执行成功。
+ *     <br>{@link AV_ERR_INVALID_VAL}：OH_AVCodec实例为nullptr或无效。
+ *     <br>{@link AV_ERR_INVALID_STATE}：编解码器服务不可用。
+ *     <br>{@link AV_ERR_NO_MEMORY}：内部资源已经释放。
+ *     <br>{@link AV_ERR_UNKNOWN}：发生内部错误，建议检查日志。
  * @since 11
  */
 OH_AVErrCode OH_AudioCodec_Destroy(OH_AVCodec *codec);
@@ -90,9 +91,9 @@ OH_AVErrCode OH_AudioCodec_Destroy(OH_AVCodec *codec);
  * @param codec 指向OH_AVCodec实例的指针。
  * @param callback 所有回调函数的集合。
  * @param userData 用户特定数据。
- * @return AV_ERR_OK：执行成功。
- *     <br>AV_ERR_INVALID_VAL：输入参数为nullptr或无效。
- *     <br>AV_ERR_INVALID_STATE：编解码器服务不可用。
+ * @return {@link AV_ERR_OK}：执行成功。
+ *     <br>{@link AV_ERR_INVALID_VAL}：输入参数为nullptr或无效。
+ *     <br>{@link AV_ERR_INVALID_STATE}：编解码器服务不可用。
  * @since 11
  */
 OH_AVErrCode OH_AudioCodec_RegisterCallback(OH_AVCodec *codec, OH_AVCodecCallback callback, void *userData);
@@ -102,11 +103,11 @@ OH_AVErrCode OH_AudioCodec_RegisterCallback(OH_AVCodec *codec, OH_AVCodecCallbac
  *
  * @param codec 指向OH_AVCodec实例的指针。
  * @param format 指向OH_AVFormat的指针，给出要编解码的音频轨道的描述。
- * @return AV_ERR_OK：执行成功。
- *     <br>AV_ERR_INVALID_VAL：输入参数为nullptr或无效。
- *     <br>AV_ERR_INVALID_STATE：编解码器服务不可用。
- *     <br>AV_ERR_OPERATE_NOT_PERMIT：不允许操作，这可能是由于状态不正确或不支持的操作。
- *     <br>AV_ERR_UNKNOWN：发生内部错误，建议检查日志。
+ * @return {@link AV_ERR_OK}：执行成功。
+ *     <br>{@link AV_ERR_INVALID_VAL}：输入参数为nullptr或无效。
+ *     <br>{@link AV_ERR_INVALID_STATE}：编解码器服务不可用。
+ *     <br>{@link AV_ERR_OPERATE_NOT_PERMIT}：不允许操作，这可能是由于状态不正确或不支持的操作。
+ *     <br>{@link AV_ERR_UNKNOWN}：发生内部错误，建议检查日志。
  * @since 11
  */
 OH_AVErrCode OH_AudioCodec_Configure(OH_AVCodec *codec, const OH_AVFormat *format);
@@ -115,11 +116,11 @@ OH_AVErrCode OH_AudioCodec_Configure(OH_AVCodec *codec, const OH_AVFormat *forma
  * @brief 准备编解码器的内部资源，在调用此接口之前必须调用Configure接口。
  *
  * @param codec 指向OH_AVCodec实例的指针。
- * @return AV_ERR_OK：执行成功。
- *     <br>AV_ERR_INVALID_VAL：OH_AVCodec实例为nullptr或无效。
- *     <br>AV_ERR_INVALID_STATE：编解码器服务不可用。
- *     <br>AV_ERR_OPERATE_NOT_PERMIT：不允许操作，这可能是由于状态不正确或不支持的操作。
- *     <br>AV_ERR_UNKNOWN：发生内部错误，建议检查日志。
+ * @return {@link AV_ERR_OK}：执行成功。
+ *     <br>{@link AV_ERR_INVALID_VAL}：OH_AVCodec实例为nullptr或无效。
+ *     <br>{@link AV_ERR_INVALID_STATE}：编解码器服务不可用。
+ *     <br>{@link AV_ERR_OPERATE_NOT_PERMIT}：不允许操作，这可能是由于状态不正确或不支持的操作。
+ *     <br>{@link AV_ERR_UNKNOWN}：发生内部错误，建议检查日志。
  * @since 11
  */
 OH_AVErrCode OH_AudioCodec_Prepare(OH_AVCodec *codec);
@@ -128,11 +129,11 @@ OH_AVErrCode OH_AudioCodec_Prepare(OH_AVCodec *codec);
  * @brief 调用此接口启动编解码器，在Prepare成功后执行。启动后，编解码器将开始上报OH_AVCodecOnNeedInputBuffer事件。
  *
  * @param codec 指向OH_AVCodec实例的指针。
- * @return AV_ERR_OK：执行成功。
- *     <br>AV_ERR_INVALID_VAL：OH_AVCodec实例为nullptr或无效。
- *     <br>AV_ERR_INVALID_STATE：编解码器服务不可用。
- *     <br>AV_ERR_OPERATE_NOT_PERMIT：不允许操作，这可能是由于状态不正确或不支持的操作。
- *     <br>AV_ERR_UNKNOWN：发生内部错误，建议检查日志。
+ * @return {@link AV_ERR_OK}：执行成功。
+ *     <br>{@link AV_ERR_INVALID_VAL}：OH_AVCodec实例为nullptr或无效。
+ *     <br>{@link AV_ERR_INVALID_STATE}：编解码器服务不可用。
+ *     <br>{@link AV_ERR_OPERATE_NOT_PERMIT}：不允许操作，这可能是由于状态不正确或不支持的操作。
+ *     <br>{@link AV_ERR_UNKNOWN}：发生内部错误，建议检查日志。
  * @since 11
  */
 OH_AVErrCode OH_AudioCodec_Start(OH_AVCodec *codec);
@@ -142,11 +143,11 @@ OH_AVErrCode OH_AudioCodec_Start(OH_AVCodec *codec);
  * 如果编解码器之前已输入数据，则需要重新输入编解码器数据。
  *
  * @param codec 指向OH_AVCodec实例的指针。
- * @return AV_ERR_OK：执行成功。
- *     <br>AV_ERR_INVALID_VAL：OH_AVCodec实例为nullptr或无效。
- *     <br>AV_ERR_INVALID_STATE：编解码器服务不可用。
- *     <br>AV_ERR_OPERATE_NOT_PERMIT：不允许操作，这可能是由于状态不正确或不支持的操作。
- *     <br>AV_ERR_UNKNOWN：发生内部错误，建议检查日志。
+ * @return {@link AV_ERR_OK}：执行成功。
+ *     <br>{@link AV_ERR_INVALID_VAL}：OH_AVCodec实例为nullptr或无效。
+ *     <br>{@link AV_ERR_INVALID_STATE}：编解码器服务不可用。
+ *     <br>{@link AV_ERR_OPERATE_NOT_PERMIT}：不允许操作，这可能是由于状态不正确或不支持的操作。
+ *     <br>{@link AV_ERR_UNKNOWN}：发生内部错误，建议检查日志。
  * @since 11
  */
 OH_AVErrCode OH_AudioCodec_Stop(OH_AVCodec *codec);
@@ -156,11 +157,11 @@ OH_AVErrCode OH_AudioCodec_Stop(OH_AVCodec *codec);
  * 索引都将失效，请确保不要访问这些索引对应的缓冲区。
  *
  * @param codec 指向OH_AVCodec实例的指针。
- * @return AV_ERR_OK：执行成功。
- *     <br>AV_ERR_INVALID_VAL：OH_AVCodec实例为nullptr或无效。
- *     <br>AV_ERR_INVALID_STATE：编解码器服务不可用。
- *     <br>AV_ERR_OPERATE_NOT_PERMIT：不允许操作，这可能是由于状态不正确或不支持的操作。
- *     <br>AV_ERR_UNKNOWN：发生内部错误，建议检查日志。
+ * @return {@link AV_ERR_OK}：执行成功。
+ *     <br>{@link AV_ERR_INVALID_VAL}：OH_AVCodec实例为nullptr或无效。
+ *     <br>{@link AV_ERR_INVALID_STATE}：编解码器服务不可用。
+ *     <br>{@link AV_ERR_OPERATE_NOT_PERMIT}：不允许操作，这可能是由于状态不正确或不支持的操作。
+ *     <br>{@link AV_ERR_UNKNOWN}：发生内部错误，建议检查日志。
  * @since 11
  */
 OH_AVErrCode OH_AudioCodec_Flush(OH_AVCodec *codec);
@@ -171,9 +172,9 @@ OH_AVErrCode OH_AudioCodec_Flush(OH_AVCodec *codec);
  * 如果要继续编解码，需要再次调用Configure接口配置编解码器实例。
  *
  * @param codec 指向OH_AVCodec实例的指针。
- * @return AV_ERR_OK：执行成功。
- *     <br>AV_ERR_INVALID_VAL：OH_AVCodec实例为nullptr或无效。
- *     <br>AV_ERR_INVALID_STATE：编解码器服务不可用。
+ * @return {@link AV_ERR_OK}：执行成功。
+ *     <br>{@link AV_ERR_INVALID_VAL}：OH_AVCodec实例为nullptr或无效。
+ *     <br>{@link AV_ERR_INVALID_STATE}：编解码器服务不可用。
  * @since 11
  */
 
@@ -197,11 +198,11 @@ OH_AVFormat *OH_AudioCodec_GetOutputDescription(OH_AVCodec *codec);
  *
  * @param codec 指向OH_AVCodec实例的指针。
  * @param format OH_AVFormat句柄指针。
- * @return AV_ERR_OK：执行成功。
- *     <br>AV_ERR_INVALID_VAL：输入参数为nullptr或无效。
- *     <br>AV_ERR_INVALID_STATE：编解码器服务不可用。
- *     <br>AV_ERR_OPERATE_NOT_PERMIT：不允许操作，这可能是由于状态不正确或不支持的操作。
- *     <br>AV_ERR_UNKNOWN：发生内部错误，建议检查日志。
+ * @return {@link AV_ERR_OK}：执行成功。
+ *     <br>{@link AV_ERR_INVALID_VAL}：输入参数为nullptr或无效。
+ *     <br>{@link AV_ERR_INVALID_STATE}：编解码器服务不可用。
+ *     <br>{@link AV_ERR_OPERATE_NOT_PERMIT}：不允许操作，这可能是由于状态不正确或不支持的操作。
+ *     <br>{@link AV_ERR_UNKNOWN}：发生内部错误，建议检查日志。
  * @since 11
  */
 OH_AVErrCode OH_AudioCodec_SetParameter(OH_AVCodec *codec, const OH_AVFormat *format);
@@ -219,11 +220,11 @@ OH_AVErrCode OH_AudioCodec_SetParameter(OH_AVCodec *codec, const OH_AVFormat *fo
  *
  * @param codec 指向OH_AVCodec实例的指针。
  * @param index 输入回调{@link OH_AVCodecOnNeedInputBuffer}给出的索引值。
- * @return AV_ERR_OK：执行成功。
- *     <br>AV_ERR_INVALID_VAL：输入的index已使用或无效，需使用其他{@link OH_AVCodecOnNeedInputBuffer}回调返回的index。
- *     <br>AV_ERR_INVALID_STATE：编解码器状态错误，调用OH_AudioCodec_PushInputBuffer前需确保按顺序成功调用{@link OH_AudioCodec_Configure}、
+ * @return {@link AV_ERR_OK}：执行成功。
+ *     <br>{@link AV_ERR_INVALID_VAL}：输入的index已使用或无效，需使用其他{@link OH_AVCodecOnNeedInputBuffer}回调返回的index。
+ *     <br>{@link AV_ERR_INVALID_STATE}：编解码器状态错误，调用OH_AudioCodec_PushInputBuffer前需确保按顺序成功调用{@link OH_AudioCodec_Configure}、
  *     {@link OH_AudioCodec_Prepare}、{@link OH_AudioCodec_Start}。
- *     <br>AV_ERR_UNKNOWN：输入buffer size无效，需确保buffer设置了正确的buffer size和flags。
+ *     <br>{@link AV_ERR_UNKNOWN}：输入buffer size无效，需确保buffer设置了正确的buffer size和flags。
  * @since 11
  */
 OH_AVErrCode OH_AudioCodec_PushInputBuffer(OH_AVCodec *codec, uint32_t index);
@@ -233,11 +234,11 @@ OH_AVErrCode OH_AudioCodec_PushInputBuffer(OH_AVCodec *codec, uint32_t index);
  *
  * @param codec 指向OH_AVCodec实例的指针。
  * @param index 输出{@link OH_AVCodecOnNewOutputBuffer}给出的索引值。
- * @return AV_ERR_OK：执行成功。
- *     <br>AV_ERR_INVALID_VAL：输入参数为nullptr或无效。缓冲区索引应该由{@link OH_AVCodecOnNewOutputBuffer}给出。
- *     <br>AV_ERR_INVALID_STATE：编解码器服务不可用。
- *     <br>AV_ERR_OPERATE_NOT_PERMIT：不允许操作，这可能是由于状态不正确或不支持的操作。
- *     <br>AV_ERR_UNKNOWN：发生内部错误，建议检查日志。
+ * @return {@link AV_ERR_OK}：执行成功。
+ *     <br>{@link AV_ERR_INVALID_VAL}：输入参数为nullptr或无效。缓冲区索引应该由{@link OH_AVCodecOnNewOutputBuffer}给出。
+ *     <br>{@link AV_ERR_INVALID_STATE}：编解码器服务不可用。
+ *     <br>{@link AV_ERR_OPERATE_NOT_PERMIT}：不允许操作，这可能是由于状态不正确或不支持的操作。
+ *     <br>{@link AV_ERR_UNKNOWN}：发生内部错误，建议检查日志。
  * @since 11
  */
 OH_AVErrCode OH_AudioCodec_FreeOutputBuffer(OH_AVCodec *codec, uint32_t index);
@@ -249,8 +250,8 @@ OH_AVErrCode OH_AudioCodec_FreeOutputBuffer(OH_AVCodec *codec, uint32_t index);
  *
  * @param codec 指向OH_AVCodec实例的指针。
  * @param isValid 输出参数。指向布尔类型的指针，true：编解码器实例有效，false：编解码器实例无效。
- * @return AV_ERR_OK：执行成功。
- *     <br>AV_ERR_INVALID_VAL：输入参数为nullptr或无效。
+ * @return {@link AV_ERR_OK}：执行成功。
+ *     <br>{@link AV_ERR_INVALID_VAL}：输入参数为nullptr或无效。
  * @since 11
  */
 OH_AVErrCode OH_AudioCodec_IsValid(OH_AVCodec *codec, bool *isValid);
@@ -262,10 +263,10 @@ OH_AVErrCode OH_AudioCodec_IsValid(OH_AVCodec *codec, bool *isValid);
  * @param mediaKeySession 带有解密功能的媒体秘钥会话实例。
  * @param secureAudio 是否使用安全解码器。使用安全解码器为true,否则为false。
  *     <br>注意：当前音频解密尚不支持使用安全解码器。
- * @return AV_ERR_OK：执行成功。
- *     <br>AV_ERR_INVALID_VAL：OH_AVCodec实例为nullptr或无效，mediaKeySystemInfo实例为nullptr或无效。
- *     <br>AV_ERR_INVALID_STATE：编解码器服务不可用。
- *     <br>AV_ERR_NO_MEMORY：请求内存失败。
+ * @return {@link AV_ERR_OK}：执行成功。
+ *     <br>{@link AV_ERR_INVALID_VAL}：OH_AVCodec实例为nullptr或无效，mediaKeySystemInfo实例为nullptr或无效。
+ *     <br>{@link AV_ERR_INVALID_STATE}：编解码器服务不可用。
+ *     <br>{@link AV_ERR_NO_MEMORY}：请求内存失败。
  * @since 12
  * @version 1.0
 */
@@ -284,11 +285,11 @@ OH_AVErrCode OH_AudioCodec_SetDecryptionConfig(OH_AVCodec *codec, MediaKeySessio
  * @param codec 指向OH_AVCodec实例的指针。
  * @param index 输出参数，获取到的输入缓冲区的索引值。
  * @param timeoutUs 超时时间，单位：微秒。设置为负值时表示无限等待。
- * @return AV_ERR_OK：执行成功。
- *     <br>AV_ERR_INVALID_VAL：执行失败，输入参数错误。
- *     <br>AV_ERR_INVALID_STATE：执行失败，状态非法，没有启动编解码器等。
- *     <br>AV_ERR_OPERATE_NOT_PERMIT：执行失败，不允许非同步模式下调用。
- *     <br>AV_ERR_TRY_AGAIN_LATER：执行失败，超时时间内获取不到可用的缓冲区。
+ * @return {@link AV_ERR_OK}：执行成功。
+ *     <br>{@link AV_ERR_INVALID_VAL}：执行失败，输入参数错误。
+ *     <br>{@link AV_ERR_INVALID_STATE}：执行失败，状态非法，没有启动编解码器等。
+ *     <br>{@link AV_ERR_OPERATE_NOT_PERMIT}：执行失败，不允许非同步模式下调用。
+ *     <br>{@link AV_ERR_TRY_AGAIN_LATER}：执行失败，超时时间内获取不到可用的缓冲区。
  * @since 20
  */
 OH_AVErrCode OH_AudioCodec_QueryInputBuffer(struct OH_AVCodec *codec, uint32_t *index, int64_t timeoutUs);
@@ -313,12 +314,12 @@ OH_AVBuffer *OH_AudioCodec_GetInputBuffer(struct OH_AVCodec *codec, uint32_t ind
  * @param codec 指向OH_AVCodec实例的指针。
  * @param index 输出参数，获取到的输出缓冲区的索引值。
  * @param timeoutUs 超时时间，单位：微秒。设置为负值时表示无限等待。
- * @return AV_ERR_OK：执行成功。
- *     <br>AV_ERR_INVALID_VAL：执行失败，输入参数错误。
- *     <br>AV_ERR_INVALID_STATE：执行失败，状态非法，没有启动编解码器等。
- *     <br>AV_ERR_OPERATE_NOT_PERMIT：执行失败，不允许非同步模式下调用。
- *     <br>AV_ERR_STREAM_CHANGED：解码输出流格式发生变化, 可以通过调用{@link OH_AudioCodec_GetOutputDescription}接口获取新的流信息。
- *     <br>AV_ERR_TRY_AGAIN_LATER：执行失败，超时时间内获取不到可用的缓冲区。
+ * @return {@link AV_ERR_OK}：执行成功。
+ *     <br>{@link AV_ERR_INVALID_VAL}：执行失败，输入参数错误。
+ *     <br>{@link AV_ERR_INVALID_STATE}：执行失败，状态非法，没有启动编解码器等。
+ *     <br>{@link AV_ERR_OPERATE_NOT_PERMIT}：执行失败，不允许非同步模式下调用。
+ *     <br>{@link AV_ERR_STREAM_CHANGED}：解码输出流格式发生变化, 可以通过调用{@link OH_AudioCodec_GetOutputDescription}接口获取新的流信息。
+ *     <br>{@link AV_ERR_TRY_AGAIN_LATER}：执行失败，超时时间内获取不到可用的缓冲区。
  * @since 20
  */
 OH_AVErrCode OH_AudioCodec_QueryOutputBuffer(struct OH_AVCodec *codec, uint32_t *index, int64_t timeoutUs);

@@ -19,7 +19,7 @@
  *
  * @brief AudioDecoder模块提供用于音频解码功能的函数。
  *
- * @syscap SystemCapability.Multimedia.Media.AudioDecoder
+ * @deprecated since 11
  * @since 9
  */
 
@@ -30,7 +30,10 @@
  * @brief 音频解码Native API的声明。
  *
  * @kit AVCodecKit
+ * @include <multimedia/player_framework/native_avcodec_audiodecoder.h>
  * @library libnative_media_adec.so
+ * @syscap SystemCapability.Multimedia.Media.AudioDecoder
+ * @deprecated since 11
  * @since 9
  */
 

@@ -27,9 +27,11 @@
  * @file native_avcodec_base.h
  *
  * @brief 声明用于音视频封装、解封装、编解码基础功能的Native API。
- * 
+ * @sample [AVCodec](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Media/AVCodec)
  * @kit AVCodecKit
+ * @include <multimedia/player_framework/native_avcodec_base.h>
  * @library libnative_media_codecbase.so
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 9
  */
 
@@ -44,75 +46,77 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-
 /**
  * @brief 为图形接口定义native层对象。
- * 
  * @since 9
  */
 typedef struct NativeWindow OHNativeWindow;
 
 /**
  * @brief 为音视频编解码接口定义native层对象。
- * 
  * @since 9
  */
 typedef struct OH_AVCodec OH_AVCodec;
 
 /**
  * @brief 当OH_AVCodec实例运行出错时，会调用来上报具体的错误信息的函数指针。
- * 
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @param codec OH_AVCodec实例。
  * @param errorCode 特定错误代码。
  * @param userData 开发者执行回调所依赖的数据。
  * @since 9
+ * @version 1.0
  */
 typedef void (*OH_AVCodecOnError)(OH_AVCodec *codec, int32_t errorCode, void *userData);
 
 /**
- * @brief 当视频解码输入码流分辨率或者视频编码输出码流的分辨率发生变化时，调用此函数指针报告新的流描述信息。
- * <br>从API version 15开始，支持音频解码时，码流采样率、声道数或者音频采样格式发生变化时，将调用此函数指针报告新的流描述信息，支持检测此变化的解码格式有：<!--RP3--><!--RP3End-->AAC，FLAC，
- * MP3，VORBIS。
- * <br>需要注意的是，OH_AVFormat指针的生命周期只有在函数指针被调用时才有效，调用结束后禁止继续访问。
- * 
+ * @brief 当视频解码输入码流分辨率或者视频编码输出码流的分辨率发生变化时，调用此函数指针报告新的流描述信息。\n
+ * 从API 15开始，支持音频解码时，码流采样率、声道数或者音频采样格式发生变化时，将调用此函数指针报告新的流描述信息，
+ * 支持检测此变化的解码格式有：<!--RP3--><!--RP3End-->AAC，FLAC，MP3，VORBIS。\n
+ * 需要注意的是，OH_AVFormat指针的生命周期只有在函数指针被调用时才有效，调用结束后禁止继续访问。
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @param codec OH_AVCodec实例。
  * @param format 新输出流描述信息。
  * @param userData 开发者执行回调所依赖的数据。
  * @since 9
+ * @version 1.0
  */
 typedef void (*OH_AVCodecOnStreamChanged)(OH_AVCodec *codec, OH_AVFormat *format, void *userData);
 
 /**
  * @brief 当OH_AVCodec在运行过程中需要新的输入数据时，将调用此函数指针，并携带可用的缓冲区来填充新的输入数据。
- * 
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @param codec OH_AVCodec实例。
  * @param index 与新可用的输入缓冲区相对应的索引。
  * @param data 新的可用输入缓冲区。
  * @param userData 开发者执行回调所依赖的数据。
  * @deprecated since 11
- * @useinstead OH_AVCodecOnNeedInputBuffer
+ * @useinstead {@link OH_AVCodecOnNeedInputBuffer}
  * @since 9
+ * @version 1.0
  */
 typedef void (*OH_AVCodecOnNeedInputData)(OH_AVCodec *codec, uint32_t index, OH_AVMemory *data, void *userData);
 
 /**
- * @brief 当OH_AVCodec运行过程中生成新的输出数据时，将调用此函数指针，并携带包含新输出数据的缓冲区。需要注意的是，OH_AVCodecBufferAttr指针的生命周期仅在调用函数指针时有效，这将禁止调用结束后继续访问。
- * 
+ * @brief 当OH_AVCodec运行过程中生成新的输出数据时，将调用此函数指针，并携带包含新输出数据的缓冲区。
+ * 需要注意的是，OH_AVCodecBufferAttr指针的生命周期仅在调用函数指针时有效，这将禁止调用结束后继续访问。
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @param codec OH_AVCodec实例。
  * @param index 与新输出缓冲区对应的索引。
  * @param data 包含新输出数据的缓冲区。
  * @param attr 新输出缓冲区的说明。
  * @param userData 开发者执行回调所依赖的数据。
  * @deprecated since 11
- * @useinstead OH_AVCodecOnNewOutputBuffer
+ * @useinstead {@link OH_AVCodecOnNewOutputBuffer}
  * @since 9
+ * @version 1.0
  */
 typedef void (*OH_AVCodecOnNewOutputData)(OH_AVCodec *codec, uint32_t index, OH_AVMemory *data,
                                           OH_AVCodecBufferAttr *attr, void *userData);
 
 /**
  * @brief 当OH_AVCodec在运行过程中需要新的输入数据时，将调用此函数指针，并携带可用的缓冲区来填充新的输入数据。
- * 
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @param codec OH_AVCodec实例。
  * @param index 与新可用的输入缓冲区相对应的索引。
  * @param buffer 新的可用输入缓冲区。
@@ -123,7 +127,7 @@ typedef void (*OH_AVCodecOnNeedInputBuffer)(OH_AVCodec *codec, uint32_t index, O
 
 /**
  * @brief 当OH_AVCodec运行过程中生成新的输出数据时，将调用此函数指针，并携带包含新输出数据的缓冲区。
- * 
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @param codec OH_AVCodec实例。
  * @param index 与新输出缓冲区对应的索引。
  * @param buffer 包含新输出数据的缓冲区。
@@ -133,15 +137,13 @@ typedef void (*OH_AVCodecOnNeedInputBuffer)(OH_AVCodec *codec, uint32_t index, O
 typedef void (*OH_AVCodecOnNewOutputBuffer)(OH_AVCodec *codec, uint32_t index, OH_AVBuffer *buffer, void *userData);
 
 /**
- * @brief OH_AVCodec中所有异步回调函数指针的集合。将该结构体的实例注册到OH_AVCodec实例中，并处理回调上报的信息，以保证OH_AVCodec的正常运行。
- * 
- * @param onError Monitor OH_AVCodec operation errors, refer to {@link OH_AVCodecOnError}
- * @param onStreamChanged Monitor codec stream information, refer to {@link OH_AVCodecOnStreamChanged}
- * @param onNeedInputData Monitoring codec requires input data, refer to {@link OH_AVCodecOnNeedInputData}
- * @param onNeedOutputData Monitor codec to generate output data, refer to {@link OH_AVCodecOnNewOutputData}
+ * @brief OH_AVCodec中所有异步回调函数指针的集合。将该结构体的实例注册到OH_AVCodec实例中，
+ * 并处理回调上报的信息，以保证OH_AVCodec的正常运行。
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @deprecated since 11
- * @useinstead OH_AVCodecCallback
+ * @useinstead {@link OH_AVCodecCallback}
  * @since 9
+ * @version 1.0
  */
 typedef struct OH_AVCodecAsyncCallback {
     /** 监控编解码器操作错误。 */
@@ -157,6 +159,7 @@ typedef struct OH_AVCodecAsyncCallback {
 /**
  * @brief OH_AVCodec中所有异步回调函数指针的集合。将该结构体的实例注册到OH_AVCodec实例中，
  * 并处理回调上报的信息，以保证OH_AVCodec的正常运行。
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 11
  */
 typedef struct OH_AVCodecCallback {
@@ -172,136 +175,137 @@ typedef struct OH_AVCodecCallback {
 
 /**
  * @brief 函数指针定义，用于提供获取用户自定义媒体数据的能力。
- * 
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @param data 要填充的缓冲区。
  * @param length 要读取的数据长度。
  * @param pos 从偏移量位置读取。
  * @return 读取到缓冲区的数据的实际长度。
  * @since 12
- */
+*/
 typedef int32_t (*OH_AVDataSourceReadAt)(OH_AVBuffer *data, int32_t length, int64_t pos);
 
 /**
  * @brief 用户自定义数据源。
- * 
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 12
- */
+*/
 typedef struct OH_AVDataSource {
     /**
-     * 数据源的总大小。
-     * @since 12
+     * @brief 数据源的总大小。
      */
     int64_t size;
     /**
-     * 数据源的数据回调。
-     * @since 12
+     * @brief 数据源的数据回调。
      */
     OH_AVDataSourceReadAt readAt;
 } OH_AVDataSource;
 
 /**
  * @brief 函数指针定义，用于提供获取用户自定义媒体数据的能力。
- * 
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @param data 要填充的缓冲区。
  * @param length 要读取的数据长度。
  * @param pos 从偏移量位置读取。
  * @param userData 用户自定义数据。
  * @return 读取到缓冲区的数据的实际长度。
  * @since 20
- */
+*/
 typedef int32_t (*OH_AVDataSourceReadAtExt)(OH_AVBuffer *data, int32_t length, int64_t pos, void *userData);
 
 /**
  * @brief 用户自定义数据源，回调支持通过userData传递用户自定义数据。
- * 
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 20
- */
+*/
 typedef struct OH_AVDataSourceExt {
     /**
-     * 数据源的总大小。
-     * @since 20
+     * @brief 数据源的总大小。
      */
     int64_t size;
     /**
-     * 数据源的数据回调。
-     * @since 20
+     * @brief 数据源的数据回调。
      */
     OH_AVDataSourceReadAtExt readAt;
 } OH_AVDataSourceExt;
 
-/**
+/* 枚举音频和视频编解码器的MIME类型。 */
+
+/** 
  * @brief AVC(H.264)视频编解码器的MIME类型。
- * 
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 9
+ * @version 1.0
  */
 extern const char *OH_AVCODEC_MIMETYPE_VIDEO_AVC;
 /**
  * @brief AAC音频编解码器的MIME类型。
- * 
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 9
- */
+*/
 extern const char *OH_AVCODEC_MIMETYPE_AUDIO_AAC;
+
+/* 枚举音频和视频编解码器的MIME类型。 */
 
 /**
  * @brief FLAC音频编解码器的MIME类型。
- * 
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 10
  */
 extern const char *OH_AVCODEC_MIMETYPE_AUDIO_FLAC;
 /**
  * @brief VORBIS音频解码器的MIME类型。
- * 
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 10
- */
+*/
 extern const char *OH_AVCODEC_MIMETYPE_AUDIO_VORBIS;
 /**
  * @brief MP3音频编解码器的MIME类型。
- * 
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 10
- */
+*/
 extern const char *OH_AVCODEC_MIMETYPE_AUDIO_MPEG;
 /**
  * @brief HEVC(H.265)视频编解码器的MIME类型。
- * 
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 10
- */
+*/
 extern const char *OH_AVCODEC_MIMETYPE_VIDEO_HEVC;
+
+/* 枚举封装的视频类型。*/
 
 /**
  * @brief MPEG4视频编码的MIME类型，仅用于封装MPEG4视频码流使用。
- * <br>**废弃版本：** 11
- * <br>**替代接口：** OH_AVCODEC_MIMETYPE_VIDEO_MPEG4_PART2
- * 
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @deprecated since 11
- * @useinstead OH_AVCODEC_MIMETYPE_VIDEO_MPEG4_PART2
+ * @useinstead {@link OH_AVCODEC_MIMETYPE_VIDEO_MPEG4_PART2}
  * @since 10
  */
 extern const char *OH_AVCODEC_MIMETYPE_VIDEO_MPEG4;
 
 /**
  * @brief 视频MPEG4 Part2编解码器的MIME类型。
- * 
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 17
  */
 extern const char *OH_AVCODEC_MIMETYPE_VIDEO_MPEG4_PART2;
 
 /**
  * @brief 视频MPEG2编解码器的MIME类型。
- * 
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 17
  */
 extern const char *OH_AVCODEC_MIMETYPE_VIDEO_MPEG2;
 
 /**
  * @brief H.263视频编解码器的MIME类型。
- * 
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 17
  */
 extern const char *OH_AVCODEC_MIMETYPE_VIDEO_H263;
 
 /**
  * @brief VC-1视频编解码器的MIME类型。
- * 
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 22
  */
 extern const char *OH_AVCODEC_MIMETYPE_VIDEO_VC1;
@@ -401,164 +405,121 @@ extern const char *OH_AVCODEC_MIMETYPE_VIDEO_MJPEG;
 
 /**
  * @brief JPG图片编码的MIME类型，仅用于封装JPG封面时使用。
- * 
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 10
  */
 extern const char *OH_AVCODEC_MIMETYPE_IMAGE_JPG;
 /**
  * @brief PNG图片编码的MIME类型，仅用于封装PNG封面时使用。
- * 
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 10
  */
 extern const char *OH_AVCODEC_MIMETYPE_IMAGE_PNG;
 /**
  * @brief BMP图片编码的MIME类型，仅用于封装BMP封面时使用。
- * 
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 10
  */
 extern const char *OH_AVCODEC_MIMETYPE_IMAGE_BMP;
 
+/* 枚举音频编解码器的MIME类型。 */
 /**
  * @brief Audio Vivid音频解码器的MIME类型。
- * 
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 11
  */
 extern const char *OH_AVCODEC_MIMETYPE_AUDIO_VIVID;
 /**
- * @brief AMR_NB音频<!--RP4--><!--RP4End-->解码器的MIME类型。
- * 
+ * @brief AMR_NB音频解码器的MIME类型。
+ *
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 11
  */
 extern const char *OH_AVCODEC_MIMETYPE_AUDIO_AMR_NB;
 /**
- * @brief AMR_WB音频<!--RP4--><!--RP4End-->解码器的MIME类型。
- * 
+ * @brief AMR_WB音频解码器的MIME类型。
+ *
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 11
  */
 extern const char *OH_AVCODEC_MIMETYPE_AUDIO_AMR_WB;
 /**
  * @brief OPUS音频编解码器的MIME类型。
- * 
+ *
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 11
  */
 extern const char *OH_AVCODEC_MIMETYPE_AUDIO_OPUS;
 /**
  * @brief G711MU音频编解码器的MIME类型。
- * 
+ *
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 11
  */
 extern const char *OH_AVCODEC_MIMETYPE_AUDIO_G711MU;
 
 /**
- * @brief APE音频解码器的MIME类型。
- * 
- * @since 12
- */
-extern const char *OH_AVCODEC_MIMETYPE_AUDIO_APE;
-
-/**
- * @brief VVC(H.266)视频编解码器的MIME类型。
- * 
- * @since 12
- */
-extern const char *OH_AVCODEC_MIMETYPE_VIDEO_VVC;
-
-/**
- * @brief SRT字幕解封装器的MIME类型。
- * 
- * @since 12
- */
-extern const char *OH_AVCODEC_MIMETYPE_SUBTITLE_SRT;
-
-/**
- * @brief WEBVTT字幕解封装器的MIME类型。
- * 
- * @since 12
- */
-extern const char *OH_AVCODEC_MIMETYPE_SUBTITLE_WEBVTT;
-
-/**
- * @brief RAW音频码流的MIME类型。
- * 
- * @since 18
- */
-extern const char *OH_AVCODEC_MIMETYPE_AUDIO_RAW;
-
-/**
- * @brief G711A音频解码器的MIME类型。
- * 
- * @since 20
- */
-extern const char *OH_AVCODEC_MIMETYPE_AUDIO_G711A;
-
-/**
  * @brief ALAC（Apple Lossless Audio Codec）音频解码器的MIME类型。
- * 
+ *
  * @since 22
  */
 extern const char *OH_AVCODEC_MIMETYPE_AUDIO_ALAC;
-
 /**
  * @brief AC3（Dolby Audio Coding 3）音频解码器的MIME类型。
- * 
+ *
  * @since 22
  */
 extern const char *OH_AVCODEC_MIMETYPE_AUDIO_AC3;
-
 /**
  * @brief EAC3（Enhanced AC-3）音频解码器的MIME类型。
- * 
+ *
  * @since 22
  */
 extern const char *OH_AVCODEC_MIMETYPE_AUDIO_EAC3;
-
-
 /**
  * @brief WMA（Windows Media Audio）V1音频解码器的MIME类型。
- * 
+ *
  * @since 22
  */
 extern const char *OH_AVCODEC_MIMETYPE_AUDIO_WMAV1;
-
 /**
  * @brief WMA（Windows Media Audio）V2音频解码器的MIME类型。
- * 
+ *
  * @since 22
  */
 extern const char *OH_AVCODEC_MIMETYPE_AUDIO_WMAV2;
-
 /**
  * @brief WMA（Windows Media Audio）Pro音频解码器的MIME类型。
- * 
+ *
  * @since 22
  */
 extern const char *OH_AVCODEC_MIMETYPE_AUDIO_WMAPRO;
-
 /**
- * @brief 划分音频数据块大小的键，单位为字节，值类型为int32_t。该键仅用于WMA（V1、V2、PRO）解码器。
- * <br>允许的MIME类型包括OH_AVCODEC_MIMETYPE_AUDIO_WMAV1，OH_AVCODEC_MIMETYPE_AUDIO_WMAV2和OH_AVCODEC_MIMETYPE_AUDIO_WMAPRO。
- * 
+ * @brief 划分音频数据块大小的键，单位为字节，值类型为int32_t。
+ *
+ * 该键仅用于WMA（V1、V2、PRO）解码器。\n
+ * 允许的MIME类型包括{@link OH_AVCODEC_MIMETYPE_AUDIO_WMAV1}，{@link OH_AVCODEC_MIMETYPE_AUDIO_WMAV2}
+ * 和{@link OH_AVCODEC_MIMETYPE_AUDIO_WMAPRO}。
+ *
  * @since 22
- */
+*/
 extern const char *OH_MD_KEY_BLOCK_ALIGN;
-
 /**
  * @brief GSM（Global System for Mobile Communications）音频解码器的MIME类型。
- * 
+ *
  * @since 22
  */
 extern const char *OH_AVCODEC_MIMETYPE_AUDIO_GSM;
-
 /**
  * @brief GSM MS（Microsoft variant）音频解码器的MIME类型。
- * 
+ *
  * @since 22
  */
 extern const char *OH_AVCODEC_MIMETYPE_AUDIO_GSM_MS;
 
 /**
  * @brief TWINVQ（Transform-domain Weighted Interleave Vector Quantization）音频解码器的MIME类型。
- * 
+ *
  * @since 23
  */
 extern const char *OH_AVCODEC_MIMETYPE_AUDIO_TWINVQ;
@@ -572,71 +533,111 @@ extern const char *OH_AVCODEC_MIMETYPE_AUDIO_ILBC;
 
 /**
  * @brief TRUEHD（True High Definition）音频解码器的MIME类型。
- * 
+ *
  * @since 23
  */
 extern const char *OH_AVCODEC_MIMETYPE_AUDIO_TRUEHD;
 
 /**
  * @brief DVAUDIO（Digital Video Audio）音频解码器的MIME类型。
- * 
+ *
  * @since 23
  */
 extern const char *OH_AVCODEC_MIMETYPE_AUDIO_DVAUDIO;
 
 /**
  * @brief DTS（Digital Theater Systems）音频解码器的MIME类型。
- * 
+ *
  * @since 23
  */
 extern const char *OH_AVCODEC_MIMETYPE_AUDIO_DTS;
 
 /**
  * @brief COOK（RealAudio Cook）音频解码器的MIME类型。
- * 
+ *
  * @since 23
  */
 extern const char *OH_AVCODEC_MIMETYPE_AUDIO_COOK;
 
 /**
  * @brief VVC(H.266)视频编解码器的MIME类型。
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 12
  */
 extern const char *OH_AVCODEC_MIMETYPE_VIDEO_VVC;
+/**
+ * @brief APE音频解码器的MIME类型。
+ *
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
+ * @since 12
+ */
+extern const char *OH_AVCODEC_MIMETYPE_AUDIO_APE;
+/**
+ * @brief SRT字幕解封装器的MIME类型。
+ *
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
+ * @since 12
+ */
+extern const char *OH_AVCODEC_MIMETYPE_SUBTITLE_SRT;
+/**
+ * @brief WEBVTT字幕解封装器的MIME类型。
+ *
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
+ * @since 12
+ */
+extern const char *OH_AVCODEC_MIMETYPE_SUBTITLE_WEBVTT;
 
+/**
+ * @brief RAW音频码流的MIME类型。
+ *
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
+ * @since 18
+ */
+extern const char *OH_AVCODEC_MIMETYPE_AUDIO_RAW;
+
+/**
+ * @brief G711A音频解码器的MIME类型。
+ *
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
+ * @since 20
+ */
+extern const char *OH_AVCODEC_MIMETYPE_AUDIO_G711A;
 
 /**
  * @brief 表示surfacebuffer时间戳的键，值类型为int64_t。
- * <br>**废弃版本：** 14
- * 
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @deprecated since 14
  * @since 9
+ * @version 1.0
  */
 extern const char *OH_ED_KEY_TIME_STAMP;
-/**
- * @brief 表示surfacebuffer流结束符的键，值类型为int32_t。
- * <br>**废弃版本：** 14
- * 
+/** 
+* @brief 表示surfacebuffer流结束符的键，值类型为int32_t。
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @deprecated since 14
  * @since 9
- */
+*/
 extern const char *OH_ED_KEY_EOS;
 
+/* 提供统一的键，用于存储媒体描述。 */
 /**
  * @brief 轨道媒体类型的键，值类型为int32_t，请参见{@link OH_MediaType}。
- * 
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 9
+ * @version 1.0
  */
 extern const char *OH_MD_KEY_TRACK_TYPE;
 /**
  * @brief 编解码器MIME类型的键，值类型为char *。
- * 
+ *
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 9
- */
+*/
 extern const char *OH_MD_KEY_CODEC_MIME;
 /**
  * @brief 媒体文件持续时间的键，单位为微秒，值类型为int64_t。
- * 
+ *
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 9
 */
 extern const char *OH_MD_KEY_DURATION;
@@ -644,14 +645,16 @@ extern const char *OH_MD_KEY_DURATION;
  * @brief 比特率的键，值类型为int64_t。
  * 可以通过能力查询接口{@link OH_AVCapability_GetEncoderBitrateRange}接口来获取取值范围。
  *
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 9
- */
+*/
 extern const char *OH_MD_KEY_BITRATE;
 /**
  * @brief 设置解码输入码流大小最大值的键，值类型为int32_t。
- * 
+ *
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 9
- */
+*/
 extern const char *OH_MD_KEY_MAX_INPUT_SIZE;
 /**
  * @brief 视频宽度的键，值类型为int32_t。\n
@@ -681,6 +684,7 @@ extern const char *OH_MD_KEY_PIXEL_FORMAT;
 /**
  * @brief 音频原始格式的键，值类型为int32_t，请参见{@link OH_BitsPerSample}。
  *
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 9
 */
 extern const char *OH_MD_KEY_AUDIO_SAMPLE_FORMAT;
@@ -700,23 +704,26 @@ extern const char *OH_MD_KEY_FRAME_RATE;
 */
 extern const char *OH_MD_KEY_VIDEO_ENCODE_BITRATE_MODE;
 /**
- * @brief 编码档次，值类型为int32_t，请参见{@link OH_AVCProfile}、{@link OH_HEVCProfile}、{@link OH_AACProfile}。可以通过能力查询接口
- * {@link OH_AVCapability_GetSupportedProfiles}来获取支持的档次。
- * 
+ * @brief 编码档次，值类型为int32_t，请参见{@link OH_AVCProfile}、{@link OH_HEVCProfile}、{@link OH_AACProfile}。
+ * 可以通过能力查询接口{@link OH_AVCapability_GetSupportedProfiles}来获取支持的档次。
+ *
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 9
- */
+*/
 extern const char *OH_MD_KEY_PROFILE;
 /**
  * @brief 音频通道计数键，值类型为int32_t。
- * 
+ *
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 9
- */
+*/
 extern const char *OH_MD_KEY_AUD_CHANNEL_COUNT;
 /**
  * @brief 音频采样率键，值类型为int32_t。
- * 
+ *
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 9
- */
+*/
 extern const char *OH_MD_KEY_AUD_SAMPLE_RATE;
 /**
  * @brief 关键帧间隔的键，值类型为int32_t，单位为ms。该键是可选的且只用于视频编码。\n
@@ -783,58 +790,69 @@ extern const char *OH_MD_KEY_TRANSFER_CHARACTERISTICS;
 extern const char *OH_MD_KEY_MATRIX_COEFFICIENTS;
 /**
  * @brief 请求立即编码I帧的键。值类型为int32_t。在调用{@link OH_VideoEncoder_SetParameter}阶段使用，或随帧立即生效。
- * 
+ *
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 10
 */
 extern const char *OH_MD_KEY_REQUEST_I_FRAME;
 /**
- * @brief 所需编码质量的键。值类型为int32_t，默认值为50。在H.264、H.265编码场景值范围可以通过能力查询接口{@link OH_AVCapability_GetEncoderQualityRange}
- * 来获取取值范围，此键仅适用于配置在恒定质量模式下的编码器。
- * 
+ * @brief 所需编码质量的键。
+ *
+ * 值类型为int32_t，默认值为50。在H.264、H.265编码场景值范围可以通过能力查询接口{@link OH_AVCapability_GetEncoderQualityRange}来获取取值范围，
+ * 此键仅适用于配置在恒定质量模式下的编码器。
+ *
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 10
- */
+*/
 extern const char *OH_MD_KEY_QUALITY;
 /**
  * @brief 编解码器特定数据的键，视频中表示传递SPS/PPS，音频中表示传递extraData，值类型为uint8_t\*。 <!--Del-->（视频编解码此功能暂未支持）<!--DelEnd-->
- * 
+ *
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 10
- */
+*/
 extern const char *OH_MD_KEY_CODEC_CONFIG;
 /**
  * @brief 媒体文件标题的键，值类型为char *。
  *
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 10
- */
+*/
 extern const char *OH_MD_KEY_TITLE;
 /**
  * @brief 媒体文件艺术家的键，值类型为char *。
- * 
+ *
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 10
- */
+*/
 extern const char *OH_MD_KEY_ARTIST;
 /**
  * @brief 专辑的媒体文件的键，值类型为char *。
- * 
+ *
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 10
- */
+*/
 extern const char *OH_MD_KEY_ALBUM;
 /**
  * @brief 专辑艺术家的键，值类型为char *。
- * 
+ *
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 10
- */
+*/
 extern const char *OH_MD_KEY_ALBUM_ARTIST;
 /**
  * @brief 媒体文件日期的键，值类型为char *，例如2024年。
- * 
+ *
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 10
- */
+*/
 extern const char *OH_MD_KEY_DATE;
 /**
  * @brief 媒体文件注释的键，值类型为char *。
- * 
+ *
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 10
- */
+*/
 extern const char *OH_MD_KEY_COMMENT;
 /**
  * @brief 媒体文件moov元数据是否前置标志，值类型为int32_t, 1表示前置， 0表示不前置, 默认为0。
@@ -845,84 +863,96 @@ extern const char *OH_MD_KEY_COMMENT;
 extern const char *OH_MD_KEY_ENABLE_MOOV_FRONT;
 /**
  * @brief 媒体文件流派的键，值类型为char *。
- * 
+ *
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 10
- */
+*/
 extern const char *OH_MD_KEY_GENRE;
 /**
  * @brief 媒体文件版权的键，值类型为char *。
- * 
+ *
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 10
- */
+*/
 extern const char *OH_MD_KEY_COPYRIGHT;
 /**
  * @brief 媒体文件语言的键，值类型为char *。
- * 
+ *
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 10
- */
+*/
 extern const char *OH_MD_KEY_LANGUAGE;
 /**
  * @brief 媒体文件描述的键，值类型为char *。
- * 
+ *
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 10
- */
+*/
 extern const char *OH_MD_KEY_DESCRIPTION;
 /**
  * @brief 媒体文件歌词的键，值类型为char *。
- * 
+ *
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 10
- */
+*/
 extern const char *OH_MD_KEY_LYRICS;
 /**
  * @brief 媒体文件轨道数量的键，值类型为int32_t。
- * 
+ *
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 10
- */
+*/
 extern const char *OH_MD_KEY_TRACK_COUNT;
 /**
  * @brief 所需编码通道布局的键。值类型为int64_t，此键仅适用于编码器。请参见{@link OH_AudioChannelLayout}。
- * 
+ *
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 10
- */
+*/
 extern const char *OH_MD_KEY_CHANNEL_LAYOUT;
 /**
- * @brief 每个编码样本位数的键，值类型为int32_t。
- * <br>API version 20前，FLAC编码必须设置此参数，设置为1即可；未设置此参数配置FLAC编码器时，调用OH_AudioCodec_Configure会返回错误码AV_ERR_INVALID_VAL。该值无实际作用，
- * 不会影响编码结果。
- * <br>从API version 20开始，无需设置此参数。
- * 
+ * @brief 每个编码样本位数的键，值类型为int32_t。\n
+ * API 20前，FLAC编码必须设置此参数，设置为1即可；未设置此参数配置FLAC编码器时，调用OH_AudioCodec_Configure会返回错误码AV_ERR_INVALID_VAL。该值无实际作用，不会影响编码结果。\n
+ * 从API 20开始，无需设置此参数。
+ *
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 10
- */
+*/
 extern const char *OH_MD_KEY_BITS_PER_CODED_SAMPLE;
 /**
  * @brief aac格式的键，aac格式分为ADTS格式和LATM格式。值类型为int32_t，0表示LATM格式，1表示ADTS格式。aac解码器支持。
- * 
+ *
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 10
- */
+*/
 extern const char *OH_MD_KEY_AAC_IS_ADTS;
 /**
  * @brief aac sbr模式的键，值类型为int32_t，aac编码器支持。
- * 
+ *
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 10
- */
+*/
 extern const char *OH_MD_KEY_SBR;
 /**
  * @brief flac兼容性等级的键，值类型为int32_t，仅在音频编码使用。
- * 
+ *
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 10
- */
+*/
 extern const char *OH_MD_KEY_COMPLIANCE_LEVEL;
 /**
  * @brief vorbis标识头的键，值类型为uint8_t*，仅vorbis解码器支持。
- * 
+ *
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 10
- */
+*/
 extern const char *OH_MD_KEY_IDENTIFICATION_HEADER;
 /**
  * @brief vorbis设置头的键，值类型为uint8_t*，仅vorbis解码器支持。
- * 
+ *
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 10
- */
+*/
 extern const char *OH_MD_KEY_SETUP_HEADER;
 /**
  * @brief 视频缩放模式，值类型为int32_t，请参见{@link OH_ScalingMode}。\n
@@ -936,20 +966,22 @@ extern const char *OH_MD_KEY_SETUP_HEADER;
 extern const char *OH_MD_KEY_SCALING_MODE;
 /**
  * @brief 最大输入缓冲区个数的键，值类型为int32_t。
- * 
+ *
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 10
- */
+*/
 extern const char *OH_MD_MAX_INPUT_BUFFER_COUNT;
 /**
  * @brief 最大输出缓冲区个数的键，值类型int32_t。
- * 
+ *
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 10
- */
+*/
 extern const char *OH_MD_MAX_OUTPUT_BUFFER_COUNT;
 
 /**
  * @brief 音频编解码压缩水平的键，只在音频编码使用，值类型为int32_t。
- * 
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 11
  */
 extern const char *OH_MD_KEY_AUDIO_COMPRESSION_LEVEL;
@@ -961,14 +993,14 @@ extern const char *OH_MD_KEY_AUDIO_COMPRESSION_LEVEL;
  */
 extern const char *OH_MD_KEY_VIDEO_IS_HDR_VIVID;
 /**
- * @brief 音频对象数目的键。值类型为int32_t，该键是可选的且仅用于Audio Vivid编解码器。
- * 
+ * @brief 音频对象数目的键. 值类型为int32_t，该键是可选的且仅用于Audio Vivid编解码器。
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 11
  */
 extern const char *OH_MD_KEY_AUDIO_OBJECT_NUMBER;
 /**
  * @brief Audio Vivid元数据的键，值类型为uint8_t*，该键是可选的且仅用于Audio Vivid编解码器。
- * 
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 11
  */
 extern const char *OH_MD_KEY_AUDIO_VIVID_METADATA;
@@ -1206,31 +1238,36 @@ extern const char *OH_MD_KEY_VIDEO_ENCODER_QP_AVERAGE;
 extern const char *OH_MD_KEY_VIDEO_ENCODER_MSE;
 /**
  * @brief AVBuffer中携带的音视频或字幕的sample对应的解码时间戳的键，以微秒为单位，值类型为int64_t。
- * 
+ *
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 12
  */
 extern const char *OH_MD_KEY_DECODING_TIMESTAMP;
 /**
  * @brief AVBuffer中携带的音视频或字幕的sample对应的持续时间的键，以微秒为单位，值类型为int64_t。
- * 
+ *
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 12
  */
 extern const char *OH_MD_KEY_BUFFER_DURATION;
 /**
  * @brief 样本长宽比的键，值类型为double。
- * 
+ *
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 12
  */
 extern const char *OH_MD_KEY_VIDEO_SAR;
 /**
  * @brief 媒体文件中第一帧起始位置开始时间的键，以微秒为单位，值类型为int64_t。
- * 
+ *
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 12
  */
 extern const char *OH_MD_KEY_START_TIME;
 /**
  * @brief 轨道开始时间的键，以微秒为单位，值类型为int64_t。
- * 
+ *
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 12
  */
 extern const char *OH_MD_KEY_TRACK_START_TIME;
@@ -1376,19 +1413,22 @@ extern const char *OH_MD_KEY_MAX_BITRATE;
 extern const char *OH_MD_KEY_VIDEO_ENCODER_ENABLE_PTS_BASED_RATECONTROL;
 /**
  * @brief 媒体文件轨道间参考、被参考关系，值类型为int32_t*。
- * 
+ *
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 20
- */
+*/
 extern const char *OH_MD_KEY_REFERENCE_TRACK_IDS;
 /**
  * @brief 媒体文件辅助轨类型，值类型为char *。
- * 
+ *
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 20
- */
+*/
 extern const char *OH_MD_KEY_TRACK_REFERENCE_TYPE;
 /**
  * @brief 媒体文件辅助轨描述信息，值类型为char *。
- * 
+ *
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 20
 */
 extern const char *OH_MD_KEY_TRACK_DESCRIPTION;
@@ -1430,46 +1470,48 @@ extern const char *OH_MD_KEY_VIDEO_DECODER_BLANK_FRAME_ON_SHUTDOWN;
 extern const char *OH_MD_KEY_VIDEO_NATIVE_BUFFER_FORMAT;
 
 /**
- * @brief OH_AVBuffer中携带的键，用于跳过音频解码输出的数据。以采样点为单位，值类型为uint8_t*，当使用mp3、vorbis、opus解码器解码时，可设置该键。
- * <br>仅音频的起始、末尾帧携带该键，该键是可选的。使用方法一：解封装时获取该信息并设置到解码输入的OH_AVBuffer。
- * <br>1. 从{@link OH_AVCodecCallback}的回调函数{@link OH_AVCodecOnNeedInputBuffer}里获取解码用的OH_AVBuffer。
- * <br>2. 调用{@link OH_AVDemuxer_ReadSampleBuffer}接口读取音频数据，该接口会自行设置OH_MD_KEY_BUFFER_SKIP_SAMPLES_INFO。
- * <br>3. 调用{@link OH_AudioCodec_PushInputBuffer}输入OH_AVBuffer进行解码。
- * <br>使用方法二：构造该键需要的数据并设置到解码输入的OH_AVBuffer。
- * <br>开发者需要先创建一个10字节uint8_t[]类型的数组，具体结构如下：
- * <br>1. 数组0~3，这4个字节表示从当前帧第一个采样点开始往后跳过的采样点数，以小端序存储uint32_t值。
- * <br>2. 数组4~7，这4个字节表示从当前帧最后一个采样点开始往前跳过的采样点数（不大于1帧采样点数），以小端序存储uint32_t值。
- * <br>3. 数组8~9，这2个字节填0即可。
+ * @brief OH_AVBuffer中携带的键，仅解封装支持。在解封装输出音频的起始、末尾帧可能携带此键。\n
+ * 此键对应一个10字节的uint8_t[]类型的数组，记录的是音频文件元数据中解码后需跳过的音频采样点数。\n
  *
+ * 具体结构如下：\n
+ * 1. 数组0~3，这4个字节表示从当前帧第一个采样点开始往后跳过的采样点数，以小端序存储uint32_t值。\n
+ * 2. 数组4~7，这4个字节表示从当前帧最后一个采样点开始往前跳过的采样点数（不大于1帧采样点数），以小端序存储uint32_t值。\n
+ * 3. 数组8~9，这2个字节表示保留位，默认输出为0。
+ *
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 23
  */
 extern const char *OH_MD_KEY_BUFFER_SKIP_SAMPLES_INFO;
 
 /**
- * @brief 在音频解码器中使能OH_MD_KEY_BUFFER_SKIP_SAMPLES_INFO的键，值类型为int32_t。1表示使能，0表示不使能，默认值为0。配置非1值将按照配置0处理，表示不使能。
- * <br>该键是可选的。仅用于音频解码器。
+ * @brief 在音频解码器中使能OH_MD_KEY_BUFFER_SKIP_SAMPLES_INFO功能的键，值类型为int32_t。
+ * 1表示使能，0表示不使能，默认值为0。配置非1值将按照配置0处理，表示不使能。\n
+ * 该键是可选的。仅用于音频解码器。
  *
  * @since 24
  */
 extern const char *OH_MD_KEY_ENABLE_BUFFER_SKIP_SAMPLES;
 
 /**
- * @brief 纬度的键，值类型为float，范围为[-90.0, 90.0]。表示地理位置信息中的纬度。
- * 
+ * @brief 纬度的键，值类型为float，范围为[-90.0, 90.0]。
+ * 表示地理位置信息中的纬度。
+ *
  * @since 24
  */
 extern const char *OH_MD_KEY_LATITUDE;
 
 /**
- * @brief 经度的键，值类型为float，范围为[-180.0, 180.0]。表示地理位置信息中的经度。
- * 
+ * @brief 经度的键, 值类型为float，范围为[-180.0, 180.0]。
+ * 表示地理位置信息中的经度。
+ *
  * @since 24
  */
 extern const char *OH_MD_KEY_LONGITUDE;
 
 /**
- * @brief 海拔的键，值类型为float，该键是可选的。表示地理位置信息中的海拔。
- * 
+ * @brief 海拔的键, 值类型为float。
+ * 该键是可选的。表示地理位置信息中的海拔。
+ *
  * @since 24
  */
 extern const char *OH_MD_KEY_ALTITUDE;
@@ -1666,8 +1708,9 @@ extern const char *OH_MD_KEY_VIDEO_ENCODER_PREPROC_DROP_TO_FRAME_RATE;
 
 /**
  * @brief 媒体类型。
- * 
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 9
+ * @version 1.0
  */
 typedef enum OH_MediaType {
     /** 音频轨。*/
@@ -1675,17 +1718,17 @@ typedef enum OH_MediaType {
     /** 视频轨。 */
     MEDIA_TYPE_VID = 1,
     /**
-     * 字幕轨。
+     * @brief 字幕轨。
      * @since 12
      */
     MEDIA_TYPE_SUBTITLE = 2,
-    /**
-     * timed metadata轨。
+     /** 
+     * @brief timed metadata轨。
      * @since 20
      */
     MEDIA_TYPE_TIMED_METADATA = 5,
-    /**
-     * 辅助轨。
+    /** 
+     * @brief 辅助轨。
      * @since 20
      */
     MEDIA_TYPE_AUXILIARY = 6,
@@ -1693,22 +1736,20 @@ typedef enum OH_MediaType {
 
 /**
  * @brief AAC档次。
- * 
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 9
+ * @version 1.0
  */
 typedef enum OH_AACProfile {
-    /**
-     * AAC编码档次为Low Complexity级别。
-     * @since 9
-     */
+    /** AAC编码档次为Low Complexity级别。*/
     AAC_PROFILE_LC = 0,
     /**
-     * AAC编码档次为High Efficiency级别。包含音频对象类型：AAC LC和SBR。
+     * @brief AAC编码档次为High Efficiency级别。包含音频对象类型：AAC LC和SBR。
      * @since 14
      */
     AAC_PROFILE_HE = 3,
     /**
-     * AAC编码档次为High Efficiency v2级别。包含音频对象类型：AAC LC、SBR和PS。
+     * @brief AAC编码档次为High Efficiency v2级别。包含音频对象类型：AAC LC、SBR和PS。
      * @since 14
      */
     AAC_PROFILE_HE_V2 = 4,
@@ -1716,65 +1757,46 @@ typedef enum OH_AACProfile {
 
 /**
  * @brief AVC档次。
- * 
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 9
+ * @version 1.0
  */
 typedef enum OH_AVCProfile {
-    /**
-     * AVC编码档次为基本档次。
-     * @since 9
-     */
+    /** AVC编码档次为基本档次。*/
     AVC_PROFILE_BASELINE = 0,
-    /**
-     * AVC编码档次为高档次。
-     * @since 9
-     */
+    /** AVC编码档次为高档次。*/
     AVC_PROFILE_HIGH = 4,
-    /**
-     * AVC编码档次为主档次。
-     * @since 9
-     */
+    /** AVC编码档次为主档次。*/
     AVC_PROFILE_MAIN = 8,
 } OH_AVCProfile;
 
 /**
  * @brief HEVC档次。
- * 
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 10
  */
 typedef enum OH_HEVCProfile {
-    /**
-     * HEVC编码档次为主档次。
-     * @since 10
-     */
+    /** HEVC编码档次为主档次。*/
     HEVC_PROFILE_MAIN = 0,
-    /**
-     * HEVC编码档次为10bit主档次。
-     * @since 10
-     */
+    /** HEVC编码档次为10bit主档次。*/
     HEVC_PROFILE_MAIN_10 = 1,
-    /**
-     * HEVC编码档次为静止图像主档次。
-     * @since 10
-     */
+    /** HEVC编码档次为静止图像主档次。*/
     HEVC_PROFILE_MAIN_STILL = 2,
     /**
-     * HEVC编码档次为HDR10主档次。<br>**废弃版本：** 14
+     * @brief HEVC编码档次为HDR10主档次。
      * @deprecated since 14
-     * @since 10
      */
     HEVC_PROFILE_MAIN_10_HDR10 = 3,
     /**
-     * HEVC编码档次为HDR10+主档次。<br>**废弃版本：** 14
+     * @brief HEVC编码档次为HDR10+主档次。
      * @deprecated since 14
-     * @since 10
      */
     HEVC_PROFILE_MAIN_10_HDR10_PLUS = 4,
 } OH_HEVCProfile;
 
 /**
  * @brief VVC档次。
- * 
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 15
  */
 typedef enum OH_VVCProfile {
@@ -1812,7 +1834,7 @@ typedef enum OH_VVCProfile {
 
 /**
  * @brief MPEG2档次。
- * 
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 17
  */
 typedef enum OH_MPEG2Profile {
@@ -1832,7 +1854,8 @@ typedef enum OH_MPEG2Profile {
 
 /**
  * @brief MPEG4档次。
- * 
+ *
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 17
  */
 typedef enum OH_MPEG4Profile {
@@ -1870,7 +1893,8 @@ typedef enum OH_MPEG4Profile {
 
 /**
  * @brief H.263档次。
- * 
+ *
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 17
  */
 typedef enum OH_H263Profile {
@@ -1882,7 +1906,8 @@ typedef enum OH_H263Profile {
 
 /**
  * @brief VC-1档次。
- * 
+ *
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 22
  */
 typedef enum OH_VC1Profile {
@@ -1896,7 +1921,7 @@ typedef enum OH_VC1Profile {
 
 /**
  * @brief AV1档次。
- * 
+ *
  * @since 23
  */
 typedef enum OH_AV1Profile {
@@ -1910,7 +1935,7 @@ typedef enum OH_AV1Profile {
 
 /**
 * @brief VP9档次。
-* 
+*
 * @since 23
 */
 typedef enum OH_VP9Profile {
@@ -1926,7 +1951,7 @@ typedef enum OH_VP9Profile {
 
 /**
 * @brief WVC1档次。
-* 
+*
 * @since 23
 */
 typedef enum OH_WVC1Profile {
@@ -1936,7 +1961,8 @@ typedef enum OH_WVC1Profile {
 
 /**
  * @brief WMV3档次。
- * 
+ *
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 22
  */
 typedef enum OH_WMV3Profile {
@@ -1948,66 +1974,48 @@ typedef enum OH_WMV3Profile {
 
 /**
  * @brief 封装器支持的输出文件格式。
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 10
  */
 typedef enum OH_AVOutputFormat {
-    /**
-     * @brief 输出文件格式默认值，默认为MP4格式。
-     * 
-     * @since 10
-     */
+    /** 输出文件格式默认值，默认为MP4格式。*/
     AV_OUTPUT_FORMAT_DEFAULT = 0,
-    /**
-     * @brief 输出文件格式为MP4格式。
-     * 
-     * @since 10
-     */
+    /** 输出文件格式为MP4格式。*/
     AV_OUTPUT_FORMAT_MPEG_4 = 2,
-    /**
-     * @brief 输出文件格式为M4A格式。
-     * 
-     * @since 10
-     */
+    /** 输出文件格式为M4A格式。*/
     AV_OUTPUT_FORMAT_M4A = 6,
-    /**
+	/**
      * @brief 输出文件格式为AMR格式。
-     * 
      * @since 12
      */
     AV_OUTPUT_FORMAT_AMR = 8,
-    /**
+	/**
      * @brief 输出文件格式为MP3格式。
-     * 
      * @since 12
      */
     AV_OUTPUT_FORMAT_MP3 = 9,
     /**
      * @brief 输出文件格式为WAV格式。
-     * 
      * @since 12
      */
     AV_OUTPUT_FORMAT_WAV = 10,
     /**
      * @brief 输出文件格式为AAC格式。
-     * 
      * @since 18
      */
     AV_OUTPUT_FORMAT_AAC = 11,
     /**
      * @brief 输出文件格式为FLAC格式。
-     * 
      * @since 20
      */
     AV_OUTPUT_FORMAT_FLAC = 12,
     /**
      * @brief 输出文件格式为OGG格式。
-     * 
      * @since 23
      */
     AV_OUTPUT_FORMAT_OGG = 13,
     /**
      * @brief 输出文件格式为FLV格式。
-     * 
      * @since 26.0.0
      */
     AV_OUTPUT_FORMAT_FLV = 14,
@@ -2015,7 +2023,7 @@ typedef enum OH_AVOutputFormat {
 
 /**
  * @brief 跳转模式。
- * 
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 10
  */
 typedef enum OH_AVSeekMode {
@@ -2029,9 +2037,9 @@ typedef enum OH_AVSeekMode {
 
 /**
  * @brief 缩放模式，只在Surface模式下使用。
- * 
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @deprecated since 14
- * @useinstead OHScalingModeV2
+ * @useinstead {@link OHScalingModeV2}
  * @since 10
  */
 typedef enum OH_ScalingMode {
@@ -2051,7 +2059,7 @@ typedef enum OH_ScalingMode {
 
 /**
  * @brief 每个编码样本的音频位数。
- * 
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 10
  */
 typedef enum OH_BitsPerSample {
@@ -2081,7 +2089,7 @@ typedef enum OH_BitsPerSample {
 
 /**
  * @brief 色域。编解码都支持。
- * 
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 10
  */
 typedef enum OH_ColorPrimary {
@@ -2111,7 +2119,7 @@ typedef enum OH_ColorPrimary {
 
 /**
  * @brief 转移特性。编解码都支持。
- * 
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 10
  */
 typedef enum OH_TransferCharacteristic {
@@ -2153,7 +2161,7 @@ typedef enum OH_TransferCharacteristic {
 
 /**
  * @brief 矩阵系数。编解码都支持。
- * 
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 10
  */
 typedef enum OH_MatrixCoefficient {
@@ -2189,7 +2197,8 @@ typedef enum OH_MatrixCoefficient {
 
 /**
  * @brief AVC级别。
- * 
+ *
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 12
  */
 typedef enum OH_AVCLevel {
@@ -2237,7 +2246,8 @@ typedef enum OH_AVCLevel {
 
 /**
  * @brief HEVC级别。
- * 
+ *
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 12
  */
 typedef enum OH_HEVCLevel {
@@ -2271,7 +2281,8 @@ typedef enum OH_HEVCLevel {
 
 /**
  * @brief VVC级别。
- * 
+ *
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 15
  */
 typedef enum OH_VVCLevel {
@@ -2309,7 +2320,8 @@ typedef enum OH_VVCLevel {
 
 /**
  * @brief MPEG2级别。
- * 
+ *
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 17
  */
 typedef enum OH_MPEG2Level {
@@ -2325,7 +2337,8 @@ typedef enum OH_MPEG2Level {
 
 /**
  * @brief MPEG4级别。
- * 
+ *
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 17
  */
 typedef enum OH_MPEG4Level {
@@ -2354,6 +2367,7 @@ typedef enum OH_MPEG4Level {
 /**
  * @brief H.263级别。
  *
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 17
  */
 typedef enum OH_H263Level {
@@ -2377,7 +2391,8 @@ typedef enum OH_H263Level {
 
 /**
  * @brief VC-1级别。
- * 
+ *
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 22
  */
 typedef enum OH_VC1Level {
@@ -2401,7 +2416,7 @@ typedef enum OH_VC1Level {
 
 /**
  * @brief AV1级别。
- * 
+ *
  * @since 23
  */
 typedef enum OH_AV1Level {
@@ -2457,7 +2472,7 @@ typedef enum OH_AV1Level {
 
 /**
  * @brief VP9级别。
- * 
+ *
  * @since 23
  */
 typedef enum OH_VP9Level {
@@ -2493,7 +2508,7 @@ typedef enum OH_VP9Level {
 
 /**
  * @brief WVC1级别。
- * 
+ *
  * @since 23
  */
 typedef enum OH_WVC1Level {
@@ -2512,6 +2527,7 @@ typedef enum OH_WVC1Level {
 /**
  * @brief WMV3级别。
  *
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 22
  */
 typedef enum OH_WMV3Level {
@@ -2526,6 +2542,7 @@ typedef enum OH_WMV3Level {
 /**
  * @brief 时域图片组参考模式。
  *
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 12
  */
 typedef enum OH_TemporalGopReferenceMode {
@@ -2539,6 +2556,7 @@ typedef enum OH_TemporalGopReferenceMode {
 
 /**
  * @brief 编码器的比特率模式。
+ * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @since 10
  */
 typedef enum OH_BitrateMode {
