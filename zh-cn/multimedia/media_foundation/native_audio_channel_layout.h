@@ -19,7 +19,6 @@
  *
  * @brief Core模块提供用于媒体系统的基础骨干能力，包含内存、错误码、媒体数据结构等相关函数。
  *
- * @syscap SystemCapability.Multimedia.Media.Core
  * @since 11
  */
 
@@ -29,7 +28,9 @@
  * @brief 在录制和播放时的扬声器布局。
  *
  * @kit AVCodecKit
+ * @include <multimedia/native_audio_channel_layout.h>
  * @library NA
+ * @syscap SystemCapability.Multimedia.Media.Core
  * @since 11
  */
 

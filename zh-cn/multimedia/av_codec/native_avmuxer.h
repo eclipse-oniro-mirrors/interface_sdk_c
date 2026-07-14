@@ -19,7 +19,6 @@
  *
  * @brief AVMuxer模块提供用于音视频封装功能的函数。
  *
- * @syscap SystemCapability.Multimedia.Media.Muxer
  * @since 10
  */
 
@@ -30,10 +29,12 @@
  * @brief 声明用于音视频封装的Native API。
  *
  * @kit AVCodecKit
+ * @include <multimedia/player_framework/native_avmuxer.h>
  * @library libnative_media_avmuxer.so
+ * @syscap SystemCapability.Multimedia.Media.Muxer
  * @since 10
  */
- 
+
 #ifndef NATIVE_AVMUXER_H
 #define NATIVE_AVMUXER_H
 
@@ -47,6 +48,7 @@ extern "C" {
 
 /**
  * @brief 定义封装接口native层对象类型。
+ *
  * @since 10
  */
 typedef struct OH_AVMuxer OH_AVMuxer;
@@ -66,24 +68,24 @@ OH_AVMuxer *OH_AVMuxer_Create(int32_t fd, OH_AVOutputFormat format);
  *
  * @param muxer 指向OH_AVMuxer实例的指针。
  * @param rotation 角度，必须为0、90、180 或 270。
- * @return AV_ERR_OK：执行成功。
- *     <br>AV_ERR_INVALID_VAL：muxer为空指针，或rotation无效。
- *     <br>AV_ERR_OPERATE_NOT_PERMIT：不允许调用该接口，请检查接口调用顺序。
+ * @return {@link AV_ERR_OK}：执行成功。
+ *     <br>{@link AV_ERR_INVALID_VAL}：muxer为空指针，或rotation无效。
+ *     <br>{@link AV_ERR_OPERATE_NOT_PERMIT}：不允许调用该接口，请检查接口调用顺序。
  * @since 10
  */
 OH_AVErrCode OH_AVMuxer_SetRotation(OH_AVMuxer *muxer, int32_t rotation);
 
 /**
  * @brief 设置format数据到封装器。
- * API 14起，支持设置创建时间OH_MD_KEY_CREATION_TIME。若创建时间未写入成功，请排查OH_MD_KEY_CREATION_TIME字符串设置是否符合ISO 8601标准的时间格式且为UTC时间。
- * API 20起，支持：
+ * API版本14起，支持设置创建时间OH_MD_KEY_CREATION_TIME。若创建时间未写入成功，请排查OH_MD_KEY_CREATION_TIME字符串设置是否符合ISO 8601标准的时间格式且为UTC时间。
+ * API版本20起，支持：
  * - 设置文件的描述性文本信息OH_MD_KEY_COMMENT。若文件描述信息未写入成功，请排查OH_MD_KEY_COMMENT是否为字符串类型或字符长度大于等于1且小于等于256。
  * - 设置MP4 moov的位置OH_MD_KEY_ENABLE_MOOV_FRONT。OH_MD_KEY_ENABLE_MOOV_FRONT为0时moov后置，为1时前置，默认后置。
  * @param muxer 指向OH_AVMuxer实例的指针。
  * @param format 指向OH_AVFormat实例的指针。文件级元数据集。
- * @return AV_ERR_OK：设置format参数正确。
- *     <br>AV_ERR_INVALID_VAL：muxer为空指针，或format无效。
- *     <br>AV_ERR_OPERATE_NOT_PERMIT：不允许调用该接口，请检查接口调用顺序。
+ * @return {@link AV_ERR_OK}：设置format参数正确。
+ *     <br>{@link AV_ERR_INVALID_VAL}：muxer为空指针，或format无效。
+ *     <br>{@link AV_ERR_OPERATE_NOT_PERMIT}：不允许调用该接口，请检查接口调用顺序。
  * @since 14
  */
 OH_AVErrCode OH_AVMuxer_SetFormat(OH_AVMuxer *muxer, OH_AVFormat *format);
@@ -94,12 +96,12 @@ OH_AVErrCode OH_AVMuxer_SetFormat(OH_AVMuxer *muxer, OH_AVFormat *format);
  * @param muxer 指向OH_AVMuxer实例的指针。
  * @param trackIndex 用于获取该轨的索引，该值在{@link OH_AVMuxer_WriteSample}接口中使用。如果媒体轨添加成功，该值大于或等于0，否则小于0。
  * @param trackFormat 指向OH_AVFormat实例的指针。
- * @return AV_ERR_OK：执行成功。
- *     <br>AV_ERR_INVALID_VAL：muxer为空指针，或trackIndex无效，或trackFormat无效。
- *     <br>AV_ERR_OPERATE_NOT_PERMIT：不允许调用该接口，请检查接口调用顺序。
- *     <br>AV_ERR_UNSUPPORT：不支持的mime类型。
- *     <br>AV_ERR_NO_MEMORY：申请内存失败。
- *     <br>AV_ERR_UNKNOWN：未知错误。
+ * @return {@link AV_ERR_OK：执行成功}。
+ *     <br>{@link AV_ERR_INVALID_VAL}：muxer为空指针，或trackIndex无效，或trackFormat无效。
+ *     <br>{@link AV_ERR_OPERATE_NOT_PERMIT}：不允许调用该接口，请检查接口调用顺序。
+ *     <br>{@link AV_ERR_UNSUPPORT}：不支持的mime类型。
+ *     <br>{@link AV_ERR_NO_MEMORY}：申请内存失败。
+ *     <br>{@link AV_ERR_UNKNOWN}：未知错误。
  * @since 10
  */
 OH_AVErrCode OH_AVMuxer_AddTrack(OH_AVMuxer *muxer, int32_t *trackIndex, OH_AVFormat *trackFormat);
@@ -108,10 +110,10 @@ OH_AVErrCode OH_AVMuxer_AddTrack(OH_AVMuxer *muxer, int32_t *trackIndex, OH_AVFo
  * @brief 开始封装。该接口必须在{@link OH_AVMuxer_AddTrack}后，{@link OH_AVMuxer_WriteSample}前调用。
  *
  * @param muxer 指向OH_AVMuxer实例的指针。
- * @return AV_ERR_OK：执行成功。
- *     <br>AV_ERR_INVALID_VAL：muxer为空指针。
- *     <br>AV_ERR_OPERATE_NOT_PERMIT：不允许调用该接口，请检查接口调用顺序。
- *     <br>AV_ERR_UNKNOWN：未知错误。
+ * @return {@link AV_ERR_OK：执行成功}。
+ *     <br>{@link AV_ERR_INVALID_VAL}：muxer为空指针。
+ *     <br>{@link AV_ERR_OPERATE_NOT_PERMIT}：不允许调用该接口，请检查接口调用顺序。
+ *     <br>{@link AV_ERR_UNKNOWN}：未知错误。
  * @since 10
  */
 OH_AVErrCode OH_AVMuxer_Start(OH_AVMuxer *muxer);
@@ -123,11 +125,11 @@ OH_AVErrCode OH_AVMuxer_Start(OH_AVMuxer *muxer);
  * @param trackIndex 数据对应的音视频轨的索引。
  * @param sample 编码或解封装得到的数据。
  * @param info sample对应的描述信息。
- * @return AV_ERR_OK：执行成功。
- *     <br>AV_ERR_INVALID_VAL：muxer为空指针，或trackIndex无效，或sample无效，或info无效。
- *     <br>AV_ERR_OPERATE_NOT_PERMIT：不允许调用该接口，请检查接口调用顺序。
- *     <br>AV_ERR_NO_MEMORY：申请内存失败。
- *     <br>AV_ERR_UNKNOWN：未知错误。
+ * @return {@link AV_ERR_OK：执行成功}。
+ *     <br>{@link AV_ERR_INVALID_VAL}：muxer为空指针，或trackIndex无效，或sample无效，或info无效。
+ *     <br>{@link AV_ERR_OPERATE_NOT_PERMIT}：不允许调用该接口，请检查接口调用顺序。
+ *     <br>{@link AV_ERR_NO_MEMORY}：申请内存失败。
+ *     <br>{@link AV_ERR_UNKNOWN}：未知错误。
  * @deprecated since 11
  * @useinstead OH_AVMuxer_WriteSampleBuffer
  * @since 10
@@ -141,11 +143,11 @@ OH_AVErrCode OH_AVMuxer_WriteSample(OH_AVMuxer *muxer, uint32_t trackIndex,
  * @param muxer 指向OH_AVMuxer实例的指针。
  * @param trackIndex 数据对应的音视频轨的索引。
  * @param sample 编码或解封装得到的数据及属性。
- * @return AV_ERR_OK：执行成功。
- *     <br>AV_ERR_INVALID_VAL：muxer为空指针，或trackIndex无效，或sample无效。
- *     <br>AV_ERR_OPERATE_NOT_PERMIT：不允许调用该接口，请检查接口调用顺序。
- *     <br>AV_ERR_NO_MEMORY：申请内存失败。
- *     <br>AV_ERR_UNKNOWN：未知错误。
+ * @return {@link AV_ERR_OK：执行成功}。
+ *     <br>{@link AV_ERR_INVALID_VAL}：muxer为空指针，或trackIndex无效，或sample无效。
+ *     <br>{@link AV_ERR_OPERATE_NOT_PERMIT}：不允许调用该接口，请检查接口调用顺序。
+ *     <br>{@link AV_ERR_NO_MEMORY}：申请内存失败。
+ *     <br>{@link AV_ERR_UNKNOWN}：未知错误。
  * @since 11
  */
 OH_AVErrCode OH_AVMuxer_WriteSampleBuffer(OH_AVMuxer *muxer, uint32_t trackIndex,
@@ -155,9 +157,9 @@ OH_AVErrCode OH_AVMuxer_WriteSampleBuffer(OH_AVMuxer *muxer, uint32_t trackIndex
  * @brief 停止封装。封装器停止后不支持重新开始。
  *
  * @param muxer 指向OH_AVMuxer实例的指针。
- * @return AV_ERR_OK：执行成功。
- *     <br>AV_ERR_INVALID_VAL：muxer为空指针。
- *     <br>AV_ERR_OPERATE_NOT_PERMIT：不允许调用该接口，请检查接口调用顺序。
+ * @return {@link AV_ERR_OK：执行成功}。
+ *     <br>{@link AV_ERR_INVALID_VAL}：muxer为空指针。
+ *     <br>{@link AV_ERR_OPERATE_NOT_PERMIT}：不允许调用该接口，请检查接口调用顺序。
  * @since 10
  */
 OH_AVErrCode OH_AVMuxer_Stop(OH_AVMuxer *muxer);
@@ -168,8 +170,8 @@ OH_AVErrCode OH_AVMuxer_Stop(OH_AVMuxer *muxer);
  * 注意不能重复销毁，否则会导致程序崩溃。
  *
  * @param muxer 指向OH_AVMuxer实例的指针。
- * @return AV_ERR_OK：执行成功。
- *     <br>AV_ERR_INVALID_VAL：muxer为空指针。
+ * @return {@link AV_ERR_OK：执行成功}。
+ *     <br>{@link AV_ERR_INVALID_VAL}：muxer为空指针。
  * @since 10
  */
 OH_AVErrCode OH_AVMuxer_Destroy(OH_AVMuxer *muxer);

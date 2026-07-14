@@ -18,7 +18,7 @@
  * @{
  *
  * @brief The AudioVivid module provides builder for audio vivid meta data.
- * @syscap SystemCapability.Multimedia.Media.Core
+ *
  * @since 26.0.0
  */
 
@@ -28,7 +28,9 @@
  * @brief The file declares the functions and enums related to Audio Vivid.
  *
  * @kit AVCodecKit
+ * @include <multimedia/player_framework/native_audio_vivid.h>
  * @library libnative_media_core.so
+ * @syscap SystemCapability.Multimedia.Media.Core
  * @since 26.0.0
  */
 
@@ -49,31 +51,35 @@ extern "C" {
  */
 typedef enum OH_AudioVividSignalFormat {
     /**
-     * Mono. The encoder accepts mono data and internally sets the channel layout to {@link OH_AudioChannelLayout}.
-     * CH_LAYOUT_MONO.
+     * @brief Mono. The encoder accepts mono data and internally sets the channel layout to
+     * {@link OH_AudioChannelLayout}.CH_LAYOUT_MONO.
+     *
      * @since 26.0.0
      */
     OH_AUDIO_VIVID_SIGNAL_FORMAT_MONO = 0,
     /**
-     * Stereo. The encoder accepts stereo data and internally sets the channel layout to {@link OH_AudioChannelLayout}.
-     * CH_LAYOUT_STEREO.
+     * @brief Stereo. The encoder accepts stereo data and internally sets the channel layout to
+     * {@link OH_AudioChannelLayout}.CH_LAYOUT_STEREO.
+     *
      * @since 26.0.0
      */
     OH_AUDIO_VIVID_SIGNAL_FORMAT_STEREO = 1,
     /**
-     * Multi-channel audio. The encoder supports the following channel layouts: {@link OH_AudioChannelLayout}.
-     * CH_LAYOUT_5POINT1, {@link OH_AudioChannelLayout}.CH_LAYOUT_5POINT1POINT2, {@link OH_AudioChannelLayout}.
-     * CH_LAYOUT_5POINT1POINT4, {@link OH_AudioChannelLayout}.CH_LAYOUT_7POINT1, {@link OH_AudioChannelLayout}.
-     * CH_LAYOUT_7POINT1POINT2, and {@link OH_AudioChannelLayout}.CH_LAYOUT_7POINT1POINT4.
+     * @brief Multi-channel audio. The encoder supports the following channel layouts:
+     * {@link OH_AudioChannelLayout}.CH_LAYOUT_5POINT1, {@link OH_AudioChannelLayout}.CH_LAYOUT_5POINT1POINT2, 
+     * {@link OH_AudioChannelLayout}.CH_LAYOUT_5POINT1POINT4, {@link OH_AudioChannelLayout}.CH_LAYOUT_7POINT1, 
+     * {@link OH_AudioChannelLayout}.CH_LAYOUT_7POINT1POINT2 and {@link OH_AudioChannelLayout}.CH_LAYOUT_7POINT1POINT4.
+     *
      * @since 26.0.0
      */
     OH_AUDIO_VIVID_SIGNAL_FORMAT_MC = 2,
     /**
-     * Hybrid mode, including a bed and an object. The bed supports the following channel layouts:
+     * @brief Hybrid mode, including a bed and an object. The bed supports the following channel layouts:
      * {@link OH_AudioChannelLayout}.CH_LAYOUT_STEREO, {@link OH_AudioChannelLayout}.CH_LAYOUT_5POINT1,
      * {@link OH_AudioChannelLayout}.CH_LAYOUT_5POINT1POINT2, {@link OH_AudioChannelLayout}.CH_LAYOUT_5POINT1POINT4,
-     * {@link OH_AudioChannelLayout}.CH_LAYOUT_7POINT1, {@link OH_AudioChannelLayout}.CH_LAYOUT_7POINT1POINT2, and
+     * {@link OH_AudioChannelLayout}.CH_LAYOUT_7POINT1, {@link OH_AudioChannelLayout}.CH_LAYOUT_7POINT1POINT2 and
      * {@link OH_AudioChannelLayout}.CH_LAYOUT_7POINT1POINT4.
+     *
      * @since 26.0.0
      */
     OH_AUDIO_VIVID_SIGNAL_FORMAT_MIX = 4,
@@ -88,20 +94,26 @@ typedef enum OH_AudioVividSignalFormat {
  */
 typedef struct OH_CartesianPosition {
     /**
-     * Normalized X coordinate of an object's left/right dimension when object is in the Cartesian coordinate system.
+     * @brief Normalized X coordinate of an object's left/right dimension when object is in the
+     * Cartesian coordinate system.<br>
      * Value range is [-1.0, 1.0].
+     *
      * @since 26.0.0
      */
     float x;
     /**
-     * Normalized Y coordinate of an object's front/back dimension when object is in the Cartesian coordinate system.
+     * @brief Normalized Y coordinate of an object's front/back dimension when object is in the
+     * Cartesian coordinate system.<br>
      * Value range is [-1.0, 1.0].
+     *
      * @since 26.0.0
      */
     float y;
     /**
-     * Normalized Z coordinate of an object's upper/lower dimension when object is in the Cartesian coordinate system.
+     * @brief Normalized Z coordinate of an object's upper/lower dimension when object is in the
+     * Cartesian coordinate system.<br>
      * Value range is [-1.0, 1.0].
+     *
      * @since 26.0.0
      */
     float z;
@@ -111,24 +123,28 @@ typedef struct OH_CartesianPosition {
  * @brief Represents a position in polar (spherical) coordinates.
  *
  * Polar coordinates use azimuth, elevation, and distance to define a position in three-dimensional space.
+ *
  * @since 26.0.0
  */
 typedef struct OH_PolarPosition {
     /**
-     * Indicates the azimuth angle of the object's location when the polar coordinate system is used.
+     * @brief Indicates the azimuth angle of the object's location when the polar coordinate system is used.<br>
      * Value range is [-180.0, 180.0], where 0.0 is front, 90.0 is left, -90.0 is right, -180.0 or 180.0 is back.
+     *
      * @since 26.0.0
      */
     float azimuth;
     /**
-     * Indicates the elevation angle of the object's location when the polar coordinate system is used.
+     * @brief Indicates the elevation angle of the object's location when the polar coordinate system is used.<br>
      * Value range is [-90.0, 90.0], where 0.0 is horizontal, 90.0 is up, -90.0 is down.
+     *
      * @since 26.0.0
      */
     float elevation;
     /**
-     * Normalized distance of an object's location when an object is placed in the polar coordinate system.
+     * @brief Normalized distance of an object's location when an object is placed in the polar coordinate system.<br>
      * Value range is [0.0, 1.0].
+     *
      * @since 26.0.0
      */
     float distance;
@@ -143,8 +159,9 @@ typedef struct OH_PolarPosition {
  */
 typedef struct OH_AudioObjectPosition {
     /**
-     * Indicates whether the position is in Cartesian coordinates.
+     * @brief Indicates whether the position is in Cartesian coordinates.<br>
      * true: use pos.cartesian, false: use pos.polar.
+     *
      * @since 26.0.0
      */
     bool isCartesian;
@@ -155,12 +172,14 @@ typedef struct OH_AudioObjectPosition {
      */
     union {
         /**
-         * Represents position by Cartesian coordinates.
+         * @brief Represents position by Cartesian coordinates.
+         *
          * @since 26.0.0
          */
         OH_CartesianPosition cartesian;
         /**
-         * Represents position by polar coordinates.
+         * @brief Represents position by polar coordinates.
+         *
          * @since 26.0.0
          */
         OH_PolarPosition polar;
@@ -177,6 +196,10 @@ typedef struct OH_AudioVividMetaBuilderStruct OH_AudioVividMetaBuilder;
 /**
  * @brief Creates an Audio Vivid metadata builder.
  *
+ * @note **Lifecycle Management:**
+ *     The instance created by this function must be manually released by calling
+ *     {@link OH_AudioVividMetaBuilder_Destroy} when it is no longer needed to
+ *     prevent memory leaks.
  * @param builder Output parameter, which is used to obtain the double pointer to the **OH_AudioVividMetaBuilder**
  *     instance.
  * @param format Pointer to **OH_AVFormat** that contains the audio format information.
@@ -184,10 +207,6 @@ typedef struct OH_AudioVividMetaBuilderStruct OH_AudioVividMetaBuilder;
  *     <br>{@link AV_ERR_INVALID_VAL}: The **builder** or **format** parameter is a null pointer or invalid.
  *     <br>{@link AV_ERR_UNSUPPORT}: This function is not supported on the device.
  *     <br>{@link AV_ERR_UNKNOWN}: Failed to create the builder. This is an unknown error. Check the log for details.
- * @note **Lifecycle Management:**
- *     The instance created by this function must be manually released by calling
- *     {@link OH_AudioVividMetaBuilder_Destroy} when it is no longer needed to
- *     prevent memory leaks.
  * @since 26.0.0
  */
 OH_AVErrCode OH_AudioVividMetaBuilder_Create(OH_AudioVividMetaBuilder **builder, const OH_AVFormat *format);
@@ -281,15 +300,15 @@ OH_AVErrCode OH_AudioVividMetaBuilder_Destroy(OH_AudioVividMetaBuilder *builder)
  * you can update base metadata by calling {@link OH_AudioVividMetaBuilder_UpdateBaseMeta},
  * then add, modify, or remove objects.
  *
- * @param builder Output Parameter. Pointer to retrieve the OH_AudioVividMetaBuilder instance pointer.
- * @return Returns AV_ERR_OK if successful, otherwise returns a specific error code, refer to {@link OH_AVErrCode}.
- * {@link AV_ERR_INVALID_VAL}, builder is nullptr.
- * {@link AV_ERR_UNSUPPORT}, current device not support this function.
- * {@link AV_ERR_UNKNOWN}, create builder fail with unknown error. For details, check logs.
  * @note **Lifecycle Management:**
  *      The instance created by this function must be manually released by calling
  *      {@link OH_AudioVividMetaBuilder_Destroy} when it is no longer needed to
  *      prevent memory leaks.
+ * @param builder Output Parameter. Pointer to retrieve the OH_AudioVividMetaBuilder instance pointer.
+ * @return {@link AV_ERR_OK}: The operation is successful.
+ *     <br>{@link AV_ERR_INVALID_VAL}: builder is nullptr.
+ *     <br>{@link AV_ERR_UNSUPPORT}: current device not support this function.
+ *     <br>{@link AV_ERR_UNKNOWN}: create builder fail with unknown error. For details, check logs.
  * @since 26.0.0
  */
 OH_AVErrCode OH_AudioVividMetaBuilder_CreateEmptyBuilder(OH_AudioVividMetaBuilder **builder);
@@ -301,13 +320,13 @@ OH_AVErrCode OH_AudioVividMetaBuilder_CreateEmptyBuilder(OH_AudioVividMetaBuilde
  * and/or dynamic metadata. The builder will retain the soundbed and object information
  * from the base metadata.
  *
+ * @note **Constraint:**
+ *      The total number of soundbed channels plus base objects plus added objects must not exceed 16.
  * @param builder Pointer to the OH_AudioVividMetaBuilder.
  * @param buffer Pointer to the buffer containing the base metadata data.
  * @param len Length of the buffer in bytes.
- * @return Returns AV_ERR_OK if successful, otherwise returns a specific error code, refer to {@link OH_AVErrCode}.
- * {@link AV_ERR_INVALID_VAL}, builder is nullptr or invalid, buffer is nullptr or len is invalid.
- * @note **Constraint:** 
- *      The total number of soundbed channels plus base objects plus added objects must not exceed 16.
+ * @return {@link AV_ERR_OK}: The operation is successful.
+ *     <br>{@link AV_ERR_INVALID_VAL}, builder is nullptr or invalid, buffer is nullptr or len is invalid.
  * @since 26.0.0
  */
 OH_AVErrCode OH_AudioVividMetaBuilder_UpdateBaseMeta(OH_AudioVividMetaBuilder *builder, const uint8_t *buffer,
@@ -319,13 +338,13 @@ OH_AVErrCode OH_AudioVividMetaBuilder_UpdateBaseMeta(OH_AudioVividMetaBuilder *b
  * After adding an object, you can update its position and gain using
  * {@link OH_AudioVividMetaBuilder_UpdateObjectPos} and {@link OH_AudioVividMetaBuilder_UpdateObjectGain}.
  *
+ * @note **Constraint:**
+ *      The total number of soundbed channels plus base objects plus added objects must not exceed 16.
  * @param builder Pointer to the OH_AudioVividMetaBuilder.
  * @param objectIndex Output parameter. Pointer to receive the index of the newly added object.
- * @return Returns AV_ERR_OK if successful, otherwise returns a specific error code, refer to {@link OH_AVErrCode}.
- * {@link AV_ERR_INVALID_VAL}, builder is nullptr or invalid, objectIndex is nullptr.
- * {@link AV_ERR_UNKNOWN}, add object fail with unknown error. For details, check logs.
- * @note **Constraint:** 
- *      The total number of soundbed channels plus base objects plus added objects must not exceed 16.
+ * @return {@link AV_ERR_OK}: The operation is successful.
+ *     <br>{@link AV_ERR_INVALID_VAL}, builder is nullptr or invalid, objectIndex is nullptr.
+ *     <br>{@link AV_ERR_UNKNOWN}, add object fail with unknown error. For details, check logs.
  * @since 26.0.0
  */
 OH_AVErrCode OH_AudioVividMetaBuilder_AddObject(OH_AudioVividMetaBuilder *builder, int32_t *objectIndex);
@@ -339,8 +358,8 @@ OH_AVErrCode OH_AudioVividMetaBuilder_AddObject(OH_AudioVividMetaBuilder *builde
  *
  * @param builder Pointer to the OH_AudioVividMetaBuilder.
  * @param objectIndex Index of the audio object to remove.
- * @return Returns AV_ERR_OK if successful, otherwise returns a specific error code, refer to {@link OH_AVErrCode}.
- * {@link AV_ERR_INVALID_VAL}, builder is nullptr or invalid, objectIndex is invalid.
+ * @return {@link AV_ERR_OK}: The operation is successful.
+ *     <br>{@link AV_ERR_INVALID_VAL}, builder is nullptr or invalid, objectIndex is invalid.
  * @since 26.0.0
  */
 OH_AVErrCode OH_AudioVividMetaBuilder_RemoveObject(OH_AudioVividMetaBuilder *builder, int32_t objectIndex);
