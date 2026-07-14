@@ -32,7 +32,6 @@
  * @kit AVCodecKit
  * @include <multimedia/player_framework/avcodec_audio_channel_layout.h>
  * @library libnative_media_codecbase.so
- * @syscap SystemCapability.Multimedia.Media.CodecBase
  * @deprecated since 11
  * @since 10
  */
@@ -46,15 +45,13 @@ extern "C" {
 #endif
 
 /**
- * @brief 音频声道数集合，
- * 将每一个声道数映射为int64的变量。
- * @syscap SystemCapability.Multimedia.Media.CodecBase
+ * @brief 音频声道数集合，将每一个声道数映射为int64的变量。
+ *
  * @deprecated since 11
- * @useinstead {@link OH_AudioChannelSet}
+ * @useinstead OH_AudioChannelSet
  * @since 10
  */
-typedef enum AudioChannelSet : uint64_t {
-    /** 左前声道 */
+enum AudioChannelSet : uint64_t {
     FRONT_LEFT = 1ULL << 0U,
     /** 右前声道 */
     FRONT_RIGHT = 1ULL << 1U,
@@ -168,15 +165,13 @@ typedef enum AudioChannelSet : uint64_t {
 };
 
 /**
- * @brief 音频声道数类型，
- * 将用户申请的解码器输出格式表示为编解码器的声道类型。
- * @syscap SystemCapability.Multimedia.Media.CodecBase
+ * @brief 音频声道数类型，将用户申请的解码器输出格式表示为编解码器的声道类型。
+ *
  * @deprecated since 11
- * @useinstead {@link OH_AudioChannelLayout}
+ * @useinstead OH_AudioChannelLayout
  * @since 10
  */
-typedef enum AudioChannelLayout : uint64_t {
-    /** 未知通道布局 */
+enum AudioChannelLayout : uint64_t {
     UNKNOWN_CHANNEL_LAYOUT = 0,
     /** 单通道布局 */
     MONO = (AudioChannelSet::FRONT_CENTER),

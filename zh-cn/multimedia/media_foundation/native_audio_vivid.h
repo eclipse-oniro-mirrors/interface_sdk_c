@@ -18,6 +18,7 @@
  * @{
  *
  * @brief Core模块提供的Audio Vivid元数据构建器。
+ * @syscap SystemCapability.Multimedia.Media.Core
  *
  * @since 26.0.0
  */
@@ -29,8 +30,6 @@
  *
  * @kit AVCodecKit
  * @library libnative_media_core.so
- * @include <multimedia/player_framework/native_audio_vivid.h>
- * @syscap SystemCapability.Multimedia.Media.Core
  * @since 26.0.0
  */
 
@@ -51,25 +50,29 @@ extern "C" {
  */
 typedef enum OH_AudioVividSignalFormat {
     /**
-     * @brief Audio Vivid信号格式为单声道，编码器接收单声道数据，内部标记声道布局为{@link OH_AudioChannelLayout}.CH_LAYOUT_MONO。
+     * Audio Vivid信号格式为单声道，编码器接收单声道数据，内部标记声道布局为{@link OH_AudioChannelLayout}.CH_LAYOUT_MONO。
+     * @since 26.0.0
      */
     OH_AUDIO_VIVID_SIGNAL_FORMAT_MONO = 0,
     /**
-     * @brief Audio Vivid信号格式为立体声，编码器接收双声道数据，内部标记声道布局为{@link OH_AudioChannelLayout}.CH_LAYOUT_STEREO。
+     * Audio Vivid信号格式为立体声，编码器接收双声道数据，内部标记声道布局为{@link OH_AudioChannelLayout}.CH_LAYOUT_STEREO。
+     * @since 26.0.0
      */
     OH_AUDIO_VIVID_SIGNAL_FORMAT_STEREO = 1,
     /**
-     * @brief Audio Vivid信号格式为多声道，编码器支持声道布局{@link OH_AudioChannelLayout}.CH_LAYOUT_5POINT1、
-     * {@link OH_AudioChannelLayout}.CH_LAYOUT_5POINT1POINT2、{@link OH_AudioChannelLayout}.CH_LAYOUT_5POINT1POINT4、
-     * {@link OH_AudioChannelLayout}.CH_LAYOUT_7POINT1、{@link OH_AudioChannelLayout}.CH_LAYOUT_7POINT1POINT2、
-     * {@link OH_AudioChannelLayout}.CH_LAYOUT_7POINT1POINT4。
+     * Audio Vivid信号格式为多声道，编码器支持声道布局{@link OH_AudioChannelLayout}.CH_LAYOUT_5POINT1、{@link OH_AudioChannelLayout}.
+     * CH_LAYOUT_5POINT1POINT2、{@link OH_AudioChannelLayout}.CH_LAYOUT_5POINT1POINT4、{@link OH_AudioChannelLayout}.
+     * CH_LAYOUT_7POINT1、{@link OH_AudioChannelLayout}.CH_LAYOUT_7POINT1POINT2、{@link OH_AudioChannelLayout}.
+     * CH_LAYOUT_7POINT1POINT4。
+     * @since 26.0.0
      */
     OH_AUDIO_VIVID_SIGNAL_FORMAT_MC = 2,
     /**
-     * @brief Audio Vivid信号格式为混合模式，包含声床（Bed）和对象（object）。声床的声道布局支持{@link OH_AudioChannelLayout}.CH_LAYOUT_STEREO、
+     * Audio Vivid信号格式为混合模式，包含声床（Bed）和对象（object）。声床的声道布局支持{@link OH_AudioChannelLayout}.CH_LAYOUT_STEREO、
      * {@link OH_AudioChannelLayout}.CH_LAYOUT_5POINT1、{@link OH_AudioChannelLayout}.CH_LAYOUT_5POINT1POINT2、
      * {@link OH_AudioChannelLayout}.CH_LAYOUT_5POINT1POINT4、{@link OH_AudioChannelLayout}.CH_LAYOUT_7POINT1、
      * {@link OH_AudioChannelLayout}.CH_LAYOUT_7POINT1POINT2、{@link OH_AudioChannelLayout}.CH_LAYOUT_7POINT1POINT4。
+     * @since 26.0.0
      */
     OH_AUDIO_VIVID_SIGNAL_FORMAT_MIX = 4,
 } OH_AudioVividSignalFormat;
@@ -83,18 +86,21 @@ typedef enum OH_AudioVividSignalFormat {
  */
 typedef struct OH_CartesianPosition {
     /**
-     * @brief 对象声源在笛卡尔坐标系中的归一化（Normalization，将数值按比例转换到指定范围内）X坐标，表示左/右维度。\n
+	 * 对象声源在笛卡尔坐标系中的归一化（Normalization，将数值按比例转换到指定范围内）X坐标，表示左/右维度。
      * 取值范围为[-1.0, 1.0]。
+     * @since 26.0.0
      */
     float x;
     /**
-     * @brief 对象声源在笛卡尔坐标系中的归一化Y坐标，表示前/后维度。\n
+     * 对象声源在笛卡尔坐标系中的归一化Y坐标，表示前/后维度。
      * 取值范围为[-1.0, 1.0]。
+     * @since 26.0.0
      */
     float y;
     /**
-     * @brief 对象声源在笛卡尔坐标系中的归一化Z坐标，表示上/下维度。\n
+     * 对象声源在笛卡尔坐标系中的归一化Z坐标，表示上/下维度。
      * 取值范围为[-1.0, 1.0]。
+     * @since 26.0.0
      */
     float z;
 } OH_CartesianPosition;
@@ -107,18 +113,21 @@ typedef struct OH_CartesianPosition {
  */
 typedef struct OH_PolarPosition {
     /**
-     * @brief 极坐标系下对象声源所在位置的方位角。\n
+     * 极坐标系下对象声源所在位置的方位角。
      * 取值范围为[-180.0, 180.0]，其中0.0表示正前方，90.0表示左侧，-90.0表示右侧，-180.0或180.0表示正后方。
+     * @since 26.0.0
      */
     float azimuth;
     /**
-     * @brief 极坐标系下对象声源所在位置的俯仰角。\n
+     *  极坐标系下对象声源所在位置的俯仰角。
      * 取值范围为[-90.0, 90.0]，其中0.0表示水平，90.0表示正上方，-90.0表示正下方。
+     * @since 26.0.0
      */
     float elevation;
     /**
-     * @brief 极坐标系下对象声源所在位置的归一化距离。\n
+     *  极坐标系下对象声源所在位置的归一化距离。
      * 取值范围为[0.0, 1.0]。
+     * @since 26.0.0
      */
     float distance;
 } OH_PolarPosition;
@@ -132,20 +141,24 @@ typedef struct OH_PolarPosition {
  */
 typedef struct OH_AudioObjectPosition {
     /**
-     * @brief 对象声源是否使用笛卡尔坐标表示。\n
+     * 对象声源是否使用笛卡尔坐标表示。
      * true表示使用笛卡尔坐标，false表示不使用笛卡尔坐标系，使用极坐标系。
+     * @since 26.0.0
      */
     bool isCartesian;
     /**
      * @brief 包含笛卡尔坐标或极坐标位置数据的联合体。
+     * @since 26.0.0
      */
     union {
         /**
-         * @brief 笛卡尔坐标表示的位置。
+         * 笛卡尔坐标表示的位置。
+         * @since 26.0.0
          */
         OH_CartesianPosition cartesian;
         /**
-         * @brief 极坐标表示的位置。
+         * 极坐标表示的位置。
+         * @since 26.0.0
          */
         OH_PolarPosition polar;
     } pos;
@@ -161,14 +174,14 @@ typedef struct OH_AudioVividMetaBuilderStruct OH_AudioVividMetaBuilder;
 /**
  * @brief 创建Audio Vivid元数据构建器。
  *
- * @note **生命周期管理：**\n
- * 通过本函数创建的实例不再使用时，必须调用{@link OH_AudioVividMetaBuilder_Destroy}手动释放，以避免内存泄漏。
  * @param builder 输出参数，用于获取OH_AudioVividMetaBuilder实例指针的指针。
  * @param format 指向包含音频格式信息的OH_AVFormat指针。
  * @return AV_ERR_OK：执行成功。\n
  *         AV_ERR_INVALID_VAL：参数builder或format为空指针或无效。\n
  *         AV_ERR_UNSUPPORT：当前设备不支持此功能。\n
  *         AV_ERR_UNKNOWN：创建构建器失败，属于未知错误，请查看日志获取详细信息。
+ * @note **生命周期管理：**
+ * 	   通过本函数创建的实例不再使用时，必须调用{@link OH_AudioVividMetaBuilder_Destroy}手动释放，以避免内存泄漏。
  * @since 26.0.0
  */
 OH_AVErrCode OH_AudioVividMetaBuilder_Create(OH_AudioVividMetaBuilder **builder, const OH_AVFormat *format);
@@ -240,10 +253,6 @@ OH_AVErrCode OH_AudioVividMetaBuilder_GetMeta(const OH_AudioVividMetaBuilder *bu
  * @since 26.0.0
  */
 OH_AVErrCode OH_AudioVividMetaBuilder_Destroy(OH_AudioVividMetaBuilder *builder);
-
-#ifdef __cplusplus
-}
-#endif
 
 /**
  * @brief 创建一个空的Audio Vivid元数据构建器。
@@ -321,6 +330,9 @@ OH_AVErrCode OH_AudioVividMetaBuilder_AddObject(OH_AudioVividMetaBuilder *builde
  * @since 26.0.0
  */
 OH_AVErrCode OH_AudioVividMetaBuilder_RemoveObject(OH_AudioVividMetaBuilder *builder, int32_t objectIndex);
+#ifdef __cplusplus
+}
+#endif
 
 #endif // NATIVE_AUDIO_VIVID_H
 
