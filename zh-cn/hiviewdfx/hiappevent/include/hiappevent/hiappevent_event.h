@@ -17,9 +17,9 @@
  * @addtogroup HiAppEvent
  * @{
  *
- * @brief 提供应用事件日志记录功能。
+ * @brief 提供应用事件打点功能。
  *
- * 为应用提供事件日志功能，记录故障、统计、安全、用户行为等
+ * 为应用提供事件打点功能，记录故障、统计、安全、用户行为等
  * 运行过程中上报的事件。通过事件信息，可以分析应用程序的
  * 运行情况。
  *
@@ -30,7 +30,7 @@
  *
  * @brief 定义所有预定义事件的事件名称。
  *
- * 除了与特定应用关联的自定义事件之外，您还可以使用预定义事件进行日志记录。
+ * 除了与特定应用关联的自定义事件之外，您还可以使用预定义事件进行打点。
  *
  * 示例代码：
  * <pre>
@@ -145,7 +145,7 @@ extern "C" {
 #define EVENT_MAIN_THREAD_JANK_V2 "MAIN_THREAD_JANK_V2"
 
 /**
- * @brief app hicollie event.
+ * @brief 任务执行超时事件。
  *
  * @since 18
  */
@@ -159,14 +159,14 @@ extern "C" {
 #define DOMAIN_OS "OS"
 
 /**
- * @brief app killed event.
+ * @brief 应用终止事件。
  *
  * @since 20
  */
 #define EVENT_APP_KILLED "APP_KILLED"
 
 /**
- * @brief audio jank frame event.
+ * @brief 音频卡顿事件。
  *
  * @since 21
  */
