@@ -30,7 +30,6 @@
  *
  * @kit AVCodecKit
  * @library libnative_media_acodec.so
- * @syscap SystemCapability.Multimedia.Media.AudioCodec
  * @since 11
  */
 

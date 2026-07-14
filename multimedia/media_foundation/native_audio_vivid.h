@@ -18,7 +18,7 @@
  * @{
  *
  * @brief The AudioVivid module provides builder for audio vivid meta data.
- *
+ * @syscap SystemCapability.Multimedia.Media.Core
  * @since 26.0.0
  */
 
@@ -29,7 +29,6 @@
  *
  * @kit AVCodecKit
  * @library libnative_media_core.so
- * @syscap SystemCapability.Multimedia.Media.Core
  * @since 26.0.0
  */
 
@@ -307,7 +306,7 @@ OH_AVErrCode OH_AudioVividMetaBuilder_CreateEmptyBuilder(OH_AudioVividMetaBuilde
  * @param len Length of the buffer in bytes.
  * @return Returns AV_ERR_OK if successful, otherwise returns a specific error code, refer to {@link OH_AVErrCode}.
  * {@link AV_ERR_INVALID_VAL}, builder is nullptr or invalid, buffer is nullptr or len is invalid.
- * @note **Constraint:**
+ * @note **Constraint:** 
  *      The total number of soundbed channels plus base objects plus added objects must not exceed 16.
  * @since 26.0.0
  */
@@ -325,7 +324,7 @@ OH_AVErrCode OH_AudioVividMetaBuilder_UpdateBaseMeta(OH_AudioVividMetaBuilder *b
  * @return Returns AV_ERR_OK if successful, otherwise returns a specific error code, refer to {@link OH_AVErrCode}.
  * {@link AV_ERR_INVALID_VAL}, builder is nullptr or invalid, objectIndex is nullptr.
  * {@link AV_ERR_UNKNOWN}, add object fail with unknown error. For details, check logs.
- * @note **Constraint:**
+ * @note **Constraint:** 
  *      The total number of soundbed channels plus base objects plus added objects must not exceed 16.
  * @since 26.0.0
  */

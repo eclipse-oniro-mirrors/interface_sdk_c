@@ -30,7 +30,6 @@
  *
  * @kit AVCodecKit
  * @library libnative_media_avmuxer.so
- * @syscap SystemCapability.Multimedia.Media.Muxer
  * @since 10
  */
 
