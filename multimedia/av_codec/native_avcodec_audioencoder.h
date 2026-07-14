@@ -31,8 +31,6 @@
  *
  * @kit AVCodecKit
  * @library libnative_media_aenc.so
- * @syscap SystemCapability.Multimedia.Media.AudioEncoder
- * @deprecated since 11
  * @since 9
  */
 
