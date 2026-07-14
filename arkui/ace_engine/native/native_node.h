@@ -6239,6 +6239,7 @@ typedef enum {
      */
     NODE_CALENDAR_PICKER_END = 16005,
     /**
+     * @group {ArkUI_NodeAttributeType (Slider Attributes)}[{capi-native-node-h-nodeattributetype-slider}]
      * @brief Defines the color of the slider. This attribute can be set, reset, and obtained as required through APIs.
      *
      * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**\n
@@ -6254,6 +6255,7 @@ typedef enum {
     NODE_SLIDER_BLOCK_COLOR = MAX_NODE_SCOPE_NUM * ARKUI_NODE_SLIDER,
 
     /**
+     * @group {ArkUI_NodeAttributeType (Slider Attributes)}[{capi-native-node-h-nodeattributetype-slider}]
      * @brief Defines the background color of the slider. This attribute can be set, reset, and obtained as required
      * through APIs.
      *
@@ -6270,6 +6272,7 @@ typedef enum {
     NODE_SLIDER_TRACK_COLOR,
 
     /**
+     * @group {ArkUI_NodeAttributeType (Slider Attributes)}[{capi-native-node-h-nodeattributetype-slider}]
      * @brief Defines the color of the selected part of the slider track. This attribute can be set, reset, and obtained
      * as required through APIs.
      *
@@ -6286,6 +6289,7 @@ typedef enum {
     NODE_SLIDER_SELECTED_COLOR,
 
     /**
+     * @group {ArkUI_NodeAttributeType (Slider Attributes)}[{capi-native-node-h-nodeattributetype-slider}]
      * @brief Sets whether to display the stepping value. This attribute can be set, reset, and obtained as required
      * through APIs.
      *
@@ -6304,6 +6308,7 @@ typedef enum {
     NODE_SLIDER_SHOW_STEPS,
 
     /**
+     * @group {ArkUI_NodeAttributeType (Slider Attributes)}[{capi-native-node-h-nodeattributetype-slider}]
      * @brief Defines the slider shape, which can be set, reset, and obtained as required through APIs.
      *
      * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**\n
@@ -6370,6 +6375,7 @@ typedef enum {
     NODE_SLIDER_BLOCK_STYLE,
 
     /**
+     * @group {ArkUI_NodeAttributeType (Slider Attributes)}[{capi-native-node-h-nodeattributetype-slider}]
      * @brief Defines the current value of the slider. This attribute can be set, reset, and obtained as required
      * through APIs.
      *
@@ -6386,6 +6392,7 @@ typedef enum {
     NODE_SLIDER_VALUE,
 
     /**
+     * @group {ArkUI_NodeAttributeType (Slider Attributes)}[{capi-native-node-h-nodeattributetype-slider}]
      * @brief Defines the minimum value of the slider. This attribute can be set, reset, and obtained as required
      * through APIs.
      *
@@ -6402,6 +6409,7 @@ typedef enum {
     NODE_SLIDER_MIN_VALUE,
 
     /**
+     * @group {ArkUI_NodeAttributeType (Slider Attributes)}[{capi-native-node-h-nodeattributetype-slider}]
      * @brief Defines the maximum value of the slider. This attribute can be set, reset, and obtained as required
      * through APIs.
      *
@@ -6418,6 +6426,7 @@ typedef enum {
     NODE_SLIDER_MAX_VALUE,
 
     /**
+     * @group {ArkUI_NodeAttributeType (Slider Attributes)}[{capi-native-node-h-nodeattributetype-slider}]
      * @brief Defines the step of the slider. This attribute can be set, reset, and obtained as required through APIs.
      *
      * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**\n
@@ -6433,6 +6442,7 @@ typedef enum {
     NODE_SLIDER_STEP,
 
     /**
+     * @group {ArkUI_NodeAttributeType (Slider Attributes)}[{capi-native-node-h-nodeattributetype-slider}]
      * @brief Defines whether the slider moves horizontally or vertically. This attribute can be set, reset, and
      * obtained as required through APIs.
      *
@@ -6450,6 +6460,7 @@ typedef enum {
     NODE_SLIDER_DIRECTION,
 
     /**
+     * @group {ArkUI_NodeAttributeType (Slider Attributes)}[{capi-native-node-h-nodeattributetype-slider}]
      * @brief Defines whether the slider values are reversed. This attribute can be set, reset, and obtained as required
      * through APIs.
      *
@@ -6468,6 +6479,7 @@ typedef enum {
     NODE_SLIDER_REVERSE,
 
     /**
+     * @group {ArkUI_NodeAttributeType (Slider Attributes)}[{capi-native-node-h-nodeattributetype-slider}]
      * @brief Defines the style of the slider thumb and track. This attribute can be set, reset, and obtained
      * as required through APIs.
      *
@@ -6484,6 +6496,7 @@ typedef enum {
     NODE_SLIDER_STYLE,
 
     /**
+     * @group {ArkUI_NodeAttributeType (Slider Attributes)}[{capi-native-node-h-nodeattributetype-slider}]
      * @brief Sets the track thickness of the slider.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
@@ -6503,6 +6516,7 @@ typedef enum {
     NODE_SLIDER_TRACK_THICKNESS,
 
     /**
+     * @group {ArkUI_NodeAttributeType (Slider Attributes)}[{capi-native-node-h-nodeattributetype-slider}]
      * @brief Defines whether haptic feedback.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
@@ -6523,6 +6537,7 @@ typedef enum {
     NODE_SLIDER_ENABLE_HAPTIC_FEEDBACK = 17013,
 
     /**
+     * @group {ArkUI_NodeAttributeType (Slider Attributes)}[{capi-native-node-h-nodeattributetype-slider}]
      * @brief Sets a custom component on the leading side of the Slider component.
      *
      * **Attribute setting method {@link ArkUI_AttributeItem} parameter format:**\n
@@ -6537,6 +6552,7 @@ typedef enum {
     NODE_SLIDER_PREFIX,
 
     /**
+     * @group {ArkUI_NodeAttributeType (Slider Attributes)}[{capi-native-node-h-nodeattributetype-slider}]
      * @brief Sets a custom component on the trailing side of the Slider component.
      *
      * **Attribute setting method {@link link ArkUI_AttributeItem} parameter format:**\n
@@ -6551,6 +6567,7 @@ typedef enum {
     NODE_SLIDER_SUFFIX,
 
     /**
+     * @group {ArkUI_NodeAttributeType (Slider Attributes)}[{capi-native-node-h-nodeattributetype-slider}]
      * @brief Defines the color of the slider block. This attribute can be set, reset, and obtained as required through APIs.
      *
      * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**\n
@@ -6575,6 +6592,7 @@ typedef enum {
     NODE_SLIDER_BLOCK_LINEAR_GRADIENT_COLOR,
 
     /**
+     * @group {ArkUI_NodeAttributeType (Slider Attributes)}[{capi-native-node-h-nodeattributetype-slider}]
      * @brief Defines the background color of the slider. This attribute can be set, reset, and obtained as required
      * through APIs.
      *
@@ -6600,6 +6618,7 @@ typedef enum {
     NODE_SLIDER_TRACK_LINEAR_GRADIENT_COLOR,
 
     /**
+     * @group {ArkUI_NodeAttributeType (Slider Attributes)}[{capi-native-node-h-nodeattributetype-slider}]
      * @brief Defines the color of the selected part of the slider track. This attribute can be set, reset, and obtained
      * as required through APIs.
      *
@@ -10917,7 +10936,7 @@ typedef enum {
      */
     NODE_IMAGE_ON_DOWNLOAD_PROGRESS,
     /**
-     * @group {ArkUI_NodeEventType (Toggle Attributes)}[{capi-native-node-h-nodeeventtype-toggle}]
+     * @group {ArkUI_NodeEventType (Toggle Events)}[{capi-native-node-h-nodeeventtype-toggle}]
      * @brief Defines the event triggered when the toggle status changes.
      *
       \n
@@ -11416,7 +11435,7 @@ typedef enum {
     NODE_TEXT_AREA_ON_WILL_CUT = 8017,
 
     /**
-     * @group {ArkUI_NodeEventType (Checkbox Attributes)}[{capi-native-node-h-nodeeventtype-checkbox}]
+     * @group {ArkUI_NodeEventType (Checkbox Events)}[{capi-native-node-h-nodeeventtype-checkbox}]
      * @brief Defines the event triggered when the selected status of the <b>ARKUI_NODE_CHECKBOX</b> component changes.
      *
      * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
@@ -11486,7 +11505,7 @@ typedef enum {
     NODE_CALENDAR_PICKER_EVENT_ON_CHANGE = MAX_NODE_SCOPE_NUM * ARKUI_NODE_CALENDAR_PICKER,
 
     /**
-     * @group {ArkUI_NodeEventType (Slider Attributes)}[{capi-native-node-h-nodeeventtype-slider}]
+     * @group {ArkUI_NodeEventType (Slider Events)}[{capi-native-node-h-nodeeventtype-slider}]
      * @brief Defines the event triggered when the <b>ARKUI_NODE_SLIDER</b> component is dragged or clicked.
      *
      * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
@@ -11500,7 +11519,7 @@ typedef enum {
     NODE_SLIDER_EVENT_ON_CHANGE = MAX_NODE_SCOPE_NUM * ARKUI_NODE_SLIDER,
 
     /**
-     * @group {ArkUI_NodeEventType (Radio Attributes)}[{capi-native-node-h-nodeeventtype-radio}]
+     * @group {ArkUI_NodeEventType (Radio Events)}[{capi-native-node-h-nodeeventtype-radio}]
      * @brief Defines the event callback function triggered when an object is dragged or clicked by ARKUI_NODE_RADIO.
      * When the event callback occurs, the union type in the {@Link ArkUI_NodeEvent} object is \n
      * {@Link ArkUI_NodeComponentEvent}. \n
@@ -11558,7 +11577,7 @@ typedef enum {
     NODE_IMAGE_ANIMATOR_EVENT_ON_FINISH = 19004,
     
     /**
-     * @group {ArkUI_NodeEventType (CheckboxGroup Attributes)}[{capi-native-node-h-nodeeventtype-checkboxgroup}]
+     * @group {ArkUI_NodeEventType (CheckboxGroup Events)}[{capi-native-node-h-nodeeventtype-checkboxgroup}]
      * @brief Defines the callback triggered when the selected status of the <b>ARKUI_NODE_CHECKBOX_GROOUP</b>
      * or checkbox changes.
      *

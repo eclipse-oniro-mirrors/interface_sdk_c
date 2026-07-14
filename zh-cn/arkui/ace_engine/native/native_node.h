@@ -10009,7 +10009,7 @@ typedef enum {
      */
     NODE_IMAGE_ON_DOWNLOAD_PROGRESS,
     /**
-     * @group {ArkUI_NodeEventType (Toggle组件相关属性)}[{capi-native-node-h-nodeeventtype-toggle}]
+     * @group {ArkUI_NodeEventType (Toggle组件相关事件)}[{capi-native-node-h-nodeeventtype-toggle}]
      * @brief Defines the event triggered when the toggle status changes.
      *
       \n
@@ -10508,7 +10508,7 @@ typedef enum {
     NODE_TEXT_AREA_ON_WILL_CUT = 8017,
 
     /**
-     * @group {ArkUI_NodeEventType (Checkbox组件相关属性)}[{capi-native-node-h-nodeeventtype-checkbox}]
+     * @group {ArkUI_NodeEventType (Checkbox组件相关事件)}[{capi-native-node-h-nodeeventtype-checkbox}]
      * @brief Defines the event triggered when the selected status of the <b>ARKUI_NODE_CHECKBOX</b> component changes.
      *
      * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
@@ -10578,7 +10578,7 @@ typedef enum {
     NODE_CALENDAR_PICKER_EVENT_ON_CHANGE = MAX_NODE_SCOPE_NUM * ARKUI_NODE_CALENDAR_PICKER,
 
     /**
-     * @group {ArkUI_NodeEventType (Slider组件相关属性)}[{capi-native-node-h-nodeeventtype-slider}]
+     * @group {ArkUI_NodeEventType (Slider组件相关事件)}[{capi-native-node-h-nodeeventtype-slider}]
      * @brief Defines the event triggered when the <b>ARKUI_NODE_SLIDER</b> component is dragged or clicked.
      *
      * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
@@ -10592,7 +10592,7 @@ typedef enum {
     NODE_SLIDER_EVENT_ON_CHANGE = MAX_NODE_SCOPE_NUM * ARKUI_NODE_SLIDER,
 
     /**
-     * @group {ArkUI_NodeEventType (Radio组件相关属性)}[{capi-native-node-h-nodeeventtype-radio}]
+     * @group {ArkUI_NodeEventType (Radio组件相关事件)}[{capi-native-node-h-nodeeventtype-radio}]
      * @brief Defines the event callback function triggered when an object is dragged or clicked by ARKUI_NODE_RADIO.
      * When the event callback occurs, the union type in the {@Link ArkUI_NodeEvent} object is \n
      * {@Link ArkUI_NodeComponentEvent}. \n
@@ -10650,7 +10650,7 @@ typedef enum {
     NODE_IMAGE_ANIMATOR_EVENT_ON_FINISH = 19004,
     
     /**
-     * @group {ArkUI_NodeEventType (CheckboxGroup组件相关属性)}[{capi-native-node-h-nodeeventtype-checkboxgroup}]
+     * @group {ArkUI_NodeEventType (CheckboxGroup组件相关事件)}[{capi-native-node-h-nodeeventtype-checkboxgroup}]
      * @brief Defines the callback triggered when the selected status of the <b>ARKUI_NODE_CHECKBOX_GROOUP</b>
      * or checkbox changes.
      *
