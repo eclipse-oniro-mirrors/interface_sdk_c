@@ -776,7 +776,7 @@ Camera_ErrorCode OH_CaptureSession_GetSupportedISORange(const Camera_CaptureSess
 Camera_ErrorCode OH_CaptureSession_GetIso(const Camera_CaptureSession* session, int32_t* isoValue);
 
 /**
- * @brief Sets ISO sensitivity value, within the range of getSupportedIsoRange. This control is only effective if
+ * @brief Sets ISO sensitivity value, within the range of getSupportedIsoRange. This control can not effective if
  * ExposureMode is set to EXPOSURE_MODE_LOCKED.
  * @param session Pointer to the {@link Camera_CaptureSession} instance.
  * @param isoValue Indicates target iso value to set.
@@ -931,7 +931,8 @@ Camera_ErrorCode OH_CaptureSession_GetSupportedExposureDurationRange(const Camer
     int32_t* maxExposureDuration);
 
 /**
- * @brief Set exposure duration. Units: Microseconds.
+ * @brief Set exposure duration. Units: Microseconds.This control is only effective if
+ * ExposureMode is set to EXPOSURE_MODE_MANUAL.
  * If the sensor can't expose this duration exactly, it will shorten the duration to the nearest supported value, which is
  * reporeted by Callback {@link OH_CaptureSession_OnExposureDurationChange}.
  *
