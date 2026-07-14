@@ -2446,67 +2446,97 @@ typedef enum {
     /**
      * @brief Defines the text content attribute, which can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .string: text content.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .string: text content.\n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.string: text content.</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.string: text content.</li>
+     * </ul>
+     *
+     * @group {ArkUI_NodeAttributeType(Text Display Component Attribute)}[capi-native-node-h-node-attributetype-text]
      */
     NODE_TEXT_CONTENT = MAX_NODE_SCOPE_NUM * ARKUI_NODE_TEXT,
     /**
      * @brief Defines the font color attribute, which can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].u32: font color, in 0xARGB format. For example, 0xFFFF0000 indicates red.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-      * .value[0].u32: font color value, in 0xARGB format.\n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].u32: font color, in 0xARGB format. For example, 0xFFFF0000 indicates red.</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].u32: font color value, in 0xARGB format.</li>
+     * </ul>
+     *
+     * @group {ArkUI_NodeAttributeType(Text Display Component Attribute)}[capi-native-node-h-node-attributetype-text]
      */
     NODE_FONT_COLOR,
     /**
      * @brief Defines the font size attribute, which can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].f32: font size, in fp.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].f32: font size, in fp.\n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].f32: font size, in fp.</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].f32: font size, in fp.</li>
+     * </ul>
+     *
+     * @group {ArkUI_NodeAttributeType(Text Display Component Attribute)}[capi-native-node-h-node-attributetype-text]
      */
     NODE_FONT_SIZE,
     /**
      * @brief Defines the font style attribute, which can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: font style {@link ArkUI_FontStyle}. The default value is <b>ARKUI_FONT_STYLE_NORMAL</b>.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: font style {@link ArkUI_FontStyle}.\n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32: font style {@link ArkUI_FontStyle}. The default value is <b>ARKUI_FONT_STYLE_NORMAL</b>.</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].i32: font style {@link ArkUI_FontStyle}.</li>
+     * </ul>
+     *
+     * @group {ArkUI_NodeAttributeType(Text Display Component Attribute)}[capi-native-node-h-node-attributetype-text]
      */
     NODE_FONT_STYLE,
     /**
      * @brief Defines the font weight attribute, which can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: font weight {@link ArkUI_FontWeight}. The default value is <b>ARKUI_FONT_WEIGHT_NORMAL</b>.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: font weight {@link ArkUI_FontWeight}.\n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32: font weight {@link ArkUI_FontWeight}. The default value is <b>ARKUI_FONT_WEIGHT_NORMAL</b>.</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].i32: font weight {@link ArkUI_FontWeight}.</li>
+     * </ul>
+     *
+     * @group {ArkUI_NodeAttributeType(Text Display Component Attribute)}[capi-native-node-h-node-attributetype-text]
      */
     NODE_FONT_WEIGHT,
     /**
      * @brief Defines the text line height attribute, which can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].f32: line height, in fp.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].f32: line height, in fp.\n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].f32: line height, in fp.</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].f32: line height, in fp.</li>
+     * </ul>
+     *
+     * @group {ArkUI_NodeAttributeType(Text Display Component Attribute)}[capi-native-node-h-node-attributetype-text]
      */
     NODE_TEXT_LINE_HEIGHT,
     /**
@@ -2548,156 +2578,212 @@ typedef enum {
     /**
      * @brief Defines the text case attribute, which can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: text case.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: text case.\n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32: text case.</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].i32: text case.</li>
+     * </ul>
+     *
+     * @group {ArkUI_NodeAttributeType(Text Display Component Attribute)}[capi-native-node-h-node-attributetype-text]
      */
     NODE_TEXT_CASE,
     /**
      * @brief Defines the letter spacing attribute, which can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].f32: letter spacing, in fp.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].f32: letter spacing, in fp.\n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].f32: letter spacing, in fp.</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].f32: letter spacing, in fp.</li>
+     * </ul>
+     *
+     * @group {ArkUI_NodeAttributeType(Text Display Component Attribute)}[capi-native-node-h-node-attributetype-text]
      */
     NODE_TEXT_LETTER_SPACING,
     /**
      * @brief Sets the maximum number of lines in the text.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: maximum number of lines in the text.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: maximum number of lines in the text.\n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32: maximum number of lines in the text.</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].i32: maximum number of lines in the text.</li>
+     * </ul>
+     *
+     * @group {ArkUI_NodeAttributeType(Text Display Component Attribute)}[capi-native-node-h-node-attributetype-text]
      */
     NODE_TEXT_MAX_LINES,
     /**
      * @brief Horizontal alignment mode of the text.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: horizontal alignment mode of the text. The value is an enum of {@link ArkUI_TextAlignment}. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: horizontal alignment mode of the text. The value is an enum of {@link ArkUI_TextAlignment}. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32: horizontal alignment mode of the text. The value is an enum of {@link ArkUI_TextAlignment}.</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].i32: horizontal alignment mode of the text. The value is an enum of {@link ArkUI_TextAlignment}.</li>
+     * </ul>
+     *
+     * @group {ArkUI_NodeAttributeType(Text Display Component Attribute)}[capi-native-node-h-node-attributetype-text]
      */
     NODE_TEXT_ALIGN,
     /**
      * @brief Defines the text overflow attribute, which can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: display mode when the text is too long. {@ArkUI_TextOverflow}\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: display mode when the text is too long. {@ArkUI_TextOverflow}\n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32: display mode when the text is too long. {@link ArkUI_TextOverflow}.</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].i32: display mode when the text is too long. {@link ArkUI_TextOverflow}.</li>
+     * </ul>
+     *
+     * @group {ArkUI_NodeAttributeType(Text Display Component Attribute)}[capi-native-node-h-node-attributetype-text]
      */
     NODE_TEXT_OVERFLOW,
     /**
      * @brief Defines the font family attribute, which can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .string: fonts, separated by commas (,).
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .string: fonts, separated by commas (,).
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.string: fonts, separated by commas (,).</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.string: fonts, separated by commas (,).</li>
+     * </ul>
+     *
+     * @group {ArkUI_NodeAttributeType(Text Display Component Attribute)}[capi-native-node-h-node-attributetype-text]
      */
     NODE_FONT_FAMILY,
     /**
      * @brief Defines the copy option attribute, which can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: copy option {@link ArkUI_CopyOptions}. The default value is <b>ARKUI_COPY_OPTIONS_NONE</b>.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: copy option {@link ArkUI_CopyOptions. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32: copy option {@link ArkUI_CopyOptions}. The default value is <b>ARKUI_COPY_OPTIONS_NONE</b>.</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].i32: copy option {@link ArkUI_CopyOptions}.</li>
+     * </ul>
+     *
+     * @group {ArkUI_NodeAttributeType(Text Display Component Attribute)}[capi-native-node-h-node-attributetype-text]
      */
     NODE_TEXT_COPY_OPTION,
     /**
      * @brief Defines the text baseline offset attribute
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].f32: baseline offset, in fp.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].f32: baseline offset, in fp. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].f32: baseline offset, in fp.</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].f32: baseline offset, in fp.</li>
+     * </ul>
+     *
+     * @group {ArkUI_NodeAttributeType(Text Display Component Attribute)}[capi-native-node-h-node-attributetype-text]
      */
     NODE_TEXT_BASELINE_OFFSET,
     /**
      * @brief Defines the text shadow attribute, which can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].f32: blur radius of the shadow, in vp.\n
-     * .value[1].i32: shadow type {@link ArkUI_ShadowType}. The default value is <b>ARKUI_SHADOW_TYPE_COLOR</b>.\n
-     * .value[2].u32: shadow color, in 0xARGB format. For example, 0xFFFF0000 indicates red.\n
-     * .value[3].f32: offset of the shadow along the x-axis, in vp.\n
-     * .value[4].f32: offset of the shadow along the y-axis, in vp.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].f32: blur radius of the shadow, in vp.\n
-     * .value[1].i32: shadow type {@link ArkUI_ShadowType}.\n
-     * .value[2].u32: shadow color, in 0xARGB format.\n
-     * .value[3].f32: offset of the shadow along the x-axis, in vp.\n
-     * .value[4].f32: offset of the shadow along the y-axis, in vp.\n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].f32: blur radius of the shadow, in vp.</li>
+     * <li>.value[1].i32: shadow type {@link ArkUI_ShadowType}. The default value is <b>ARKUI_SHADOW_TYPE_COLOR</b>.</li>
+     * <li>.value[2].u32: shadow color, in 0xARGB format. For example, 0xFFFF0000 indicates red.</li>
+     * <li>.value[3].f32: offset of the shadow along the x-axis, in vp.</li>
+     * <li>.value[4].f32: offset of the shadow along the y-axis, in vp.</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].f32: blur radius of the shadow, in vp.</li>
+     * <li>.value[1].i32: shadow type {@link ArkUI_ShadowType}.</li>
+     * <li>.value[2].u32: shadow color, in 0xARGB format.</li>
+     * <li>.value[3].f32: offset of the shadow along the x-axis, in vp.</li>
+     * <li>.value[4].f32: offset of the shadow along the y-axis, in vp.</li>
+     * </ul>
+     *
+     * @group {ArkUI_NodeAttributeType(Text Display Component Attribute)}[capi-native-node-h-node-attributetype-text]
      */
     NODE_TEXT_TEXT_SHADOW,
     /**
      * @brief Defines the minimum font size attribute, which can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].f32: minimum font size, in fp.
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].f32: minimum font size, in fp.
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].f32: minimum font size, in fp.</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].f32: minimum font size, in fp.</li>
+     * </ul>
+     *
+     * @group {ArkUI_NodeAttributeType(Text Display Component Attribute)}[capi-native-node-h-node-attributetype-text]
      */
     NODE_TEXT_MIN_FONT_SIZE,
 
     /**
      * @brief Defines the maximum font size attribute, which can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].f32: maximum font size, in fp.
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].f32: maximum font size, in fp.
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].f32: maximum font size, in fp.</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].f32: maximum font size, in fp.</li>
+     * </ul>
+     *
+     * @group {ArkUI_NodeAttributeType(Text Display Component Attribute)}[capi-native-node-h-node-attributetype-text]
      */
     NODE_TEXT_MAX_FONT_SIZE,
 
     /**
      * @brief Defines the text style attribute, which can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .string?: font family. Optional. Use commas (,) to separate multiple fonts. \n
-     * .value[0].f32: font size, in fp. \n
-     * .value[1]?.i32: font weight. Optional. The parameter type is {@link ArkUI_FontWeight}.
-     * The default value is <b>ARKUI_FONT_WEIGHT_NORMAL</b>. \n
-     * .value[2]?.i32: font style. Optional. The parameter type is {@link ArkUI_FontStyle}.
-     * The default value is <b>ARKUI_FONT_STYLE_NORMAL</b>.
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .string: font family. Use commas (,) to separate multiple fonts. \n
-     * .value[0].f32: font size, in fp. \n
-     * .value[1].i32: font weight. The parameter type is {@link ArkUI_FontWeight}.
-     * The default value is <b>ARKUI_FONT_WEIGHT_NORMAL</b>. \n
-     * .value[2].i32: font style. The parameter type is {@link ArkUI_FontStyle}.
-     * The default value is <b>ARKUI_FONT_STYLE_NORMAL</b>.
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.string?: font family. Optional. Use commas (,) to separate multiple fonts.</li>
+     * <li>.value[0].f32: font size, in fp.</li>
+     * <li>.value[1]?.i32: font weight. Optional. The parameter type is {@link ArkUI_FontWeight}. The default value is <b>ARKUI_FONT_WEIGHT_NORMAL</b>.</li>
+     * <li>.value[2]?.i32: font style. Optional. The parameter type is {@link ArkUI_FontStyle}. The default value is <b>ARKUI_FONT_STYLE_NORMAL</b>.</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.string: font family. Use commas (,) to separate multiple fonts.</li>
+     * <li>.value[0].f32: font size, in fp.</li>
+     * <li>.value[1].i32: font weight. The parameter type is {@link ArkUI_FontWeight}. The default value is <b>ARKUI_FONT_WEIGHT_NORMAL</b>.</li>
+     * <li>.value[2].i32: font style. The parameter type is {@link ArkUI_FontStyle}. The default value is <b>ARKUI_FONT_STYLE_NORMAL</b>.</li>
+     * </ul>
+     *
+     * @group {ArkUI_NodeAttributeType(Text Display Component Attribute)}[capi-native-node-h-node-attributetype-text]
      */
     NODE_TEXT_FONT,
 
@@ -2705,59 +2791,82 @@ typedef enum {
      * @brief Defines how the adaptive height is determined for the text.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: how the adaptive height is determined for the text.
-     * The parameter type is {@link ArkUI_TextHeightAdaptivePolicy}.
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: how the adaptive height is determined for the text.
-     * The parameter type is {@link ArkUI_TextHeightAdaptivePolicy}
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32: how the adaptive height is determined for the text. The parameter type is {@link ArkUI_TextHeightAdaptivePolicy}.</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].i32: how the adaptive height is determined for the text. The parameter type is {@link ArkUI_TextHeightAdaptivePolicy}.</li>
+     * </ul>
+     *
+     * @group {ArkUI_NodeAttributeType(Text Display Component Attribute)}[capi-native-node-h-node-attributetype-text]
      */
     NODE_TEXT_HEIGHT_ADAPTIVE_POLICY,
     /**
      * @brief Defines the indentation of the first line.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].f32: indentation of the first line. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].f32: indentation of the first line. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].f32: indentation of the first line.</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].f32: indentation of the first line.</li>
+     * </ul>
+     *
+     * @group {ArkUI_NodeAttributeType(Text Display Component Attribute)}[capi-native-node-h-node-attributetype-text]
      */
     NODE_TEXT_INDENT,
     /**
      * @brief Defines the line break rule. This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: The parameter type is {@link ArkUI_WordBreak}. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: The parameter type is {@link ArkUI_WordBreak}. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32: The parameter type is {@link ArkUI_WordBreak}.</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].i32: The parameter type is {@link ArkUI_WordBreak}.</li>
+     * </ul>
+     *
+     * @group {ArkUI_NodeAttributeType(Text Display Component Attribute)}[capi-native-node-h-node-attributetype-text]
      */
     NODE_TEXT_WORD_BREAK,
     /**
      * @brief Defines the ellipsis position. This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: The parameter type is {@link ArkUI_EllipsisMode}. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: The parameter type is {@link ArkUI_EllipsisMode}. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32: The parameter type is {@link ArkUI_EllipsisMode}.</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].i32: The parameter type is {@link ArkUI_EllipsisMode}.</li>
+     * </ul>
+     *
+     * @group {ArkUI_NodeAttributeType(Text Display Component Attribute)}[capi-native-node-h-node-attributetype-text]
      */
     NODE_TEXT_ELLIPSIS_MODE,
     /**
      * @brief Defines the text line spacing attribute, which can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].f32: line spacing, in fp.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].f32: line spacing, in fp.\n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].f32: line spacing, in fp.</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].f32: line spacing, in fp.</li>
+     * </ul>
+     *
+     * @group {ArkUI_NodeAttributeType(Text Display Component Attribute)}[capi-native-node-h-node-attributetype-text]
      */
     NODE_TEXT_LINE_SPACING,
     /**
@@ -2766,48 +2875,66 @@ typedef enum {
      * Features such as ligatures and equal-width digits are generally used in customized fonts. \n
      * The capabilities need to be supported by the fonts, \n
      * Interfaces for setting, resetting, and obtaining attributes are supported. \n
-     * Attribute setting method parameter {@Link ArkUI_AttributeItem} format: \n
-     * .string: complies with the text feature format. The format is normal | \n
-     * is in the format of [ | on | off],\n.
-     * There can be multiple values separated by commas (,). \n
-     * For example, the input format of a number with the same width is ss01 on. \n
-     * \n
-     * Attribute obtaining method return value {@Link ArkUI_AttributeItem} format:\n
-     * .string indicates the content of the text feature. Multiple text features are separated by commas (,). \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.string: complies with the text feature format. The format is normal | is in the format of [ | on | off]. There can be multiple values separated by commas (,). For example, the input format of a number with the same width is ss01 on.</li>
+     * </ul>
+     *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.string indicates the content of the text feature. Multiple text features are separated by commas (,).</li>
+     * </ul>
+     *
+     * @group {ArkUI_NodeAttributeType(Text Display Component Attribute)}[capi-native-node-h-node-attributetype-text]
      */
     NODE_FONT_FEATURE,
     /**
      * @brief Setting Enable Text Recognition.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32:Enable text recognition, default value false.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32：Enable Text Recognition\n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32:Enable text recognition, default value false.</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].i32: Enable Text Recognition.</li>
+     * </ul>
+     *
+     * @group {ArkUI_NodeAttributeType(Text Display Component Attribute)}[capi-native-node-h-node-attributetype-text]
      */
     NODE_TEXT_ENABLE_DATA_DETECTOR,
     /**
      * @brief Set the text recognition configuration.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0...].i32: Array of entity types, parameter types{@link ArkUI_TextDataDetectorType}。\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0...].i32：Array of entity types, parameter types{@link ArkUI_TextDataDetectorType}。\n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0...].i32: Array of entity types, parameter types {@link ArkUI_TextDataDetectorType}.</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0...].i32: Array of entity types, parameter types {@link ArkUI_TextDataDetectorType}.</li>
+     * </ul>
+     *
+     * @group {ArkUI_NodeAttributeType(Text Display Component Attribute)}[capi-native-node-h-node-attributetype-text]
      */
     NODE_TEXT_ENABLE_DATA_DETECTOR_CONFIG,
     /**
      * @brief Defines the background color of the selected text.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].u32: color value, in 0xARGB format. For example, 0xFFFF0000 indicates red. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].u32: color value, in 0xARGB format. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].u32: color value, in 0xARGB format. For example, 0xFFFF0000 indicates red.</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].u32: color value, in 0xARGB format.</li>
+     * </ul>
+     *
+     * @group {ArkUI_NodeAttributeType(Text Display Component Attribute)}[capi-native-node-h-node-attributetype-text]
      */
     NODE_TEXT_SELECTED_BACKGROUND_COLOR,
 
@@ -2815,23 +2942,34 @@ typedef enum {
      * @brief The text component uses a formatted string object to set text content properties,
      * and supports property setting, property reset, and property acquisition interfaces.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .object indicates ArkUI_StyledString formatted string data. The parameter type is {@link ArkUI_StyledString}. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .object indicates ArkUI_StyledString formatted string data. The parameter type is {@link ArkUI_StyledString}. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.object indicates ArkUI_StyledString formatted string data. The parameter type is {@link ArkUI_StyledString}.</li>
+     * </ul>
+     *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.object indicates ArkUI_StyledString formatted string data. The parameter type is {@link ArkUI_StyledString}.</li>
+     * </ul>
+     *
+     * @group {ArkUI_NodeAttributeType(Text Display Component Attribute)}[capi-native-node-h-node-attributetype-text]
      */
     NODE_TEXT_CONTENT_WITH_STYLED_STRING,
 
     /**
      * @brief Sets whether to center text vertically in the text component.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: whether to center text vertically. The default value is <b>false</b>. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: whether to center text vertically. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32: whether to center text vertically. The default value is <b>false</b>.</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].i32: whether to center text vertically.</li>
+     * </ul>
+     *
+     * @group {ArkUI_NodeAttributeType(Text Display Component Attribute)}[capi-native-node-h-node-attributetype-text]
      */
     NODE_TEXT_HALF_LEADING = 1029,
 
@@ -2839,23 +2977,31 @@ typedef enum {
      * @brief Defines the font weight attribute, which can be set, reset, and obtained as required through APIs.
      * The font weight specified by this API is not affected by any changes in the system font weight settings.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: font weight {@link ArkUI_FontWeight}. The default value is <b>ARKUI_FONT_WEIGHT_NORMAL</b>.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: font weight {@link ArkUI_FontWeight}.\n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32: font weight {@link ArkUI_FontWeight}. The default value is <b>ARKUI_FONT_WEIGHT_NORMAL</b>.</li>
+     * </ul>
+     *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].i32: font weight {@link ArkUI_FontWeight}.</li>
+     * </ul>
      *
      * @since 15
+     * @group {ArkUI_NodeAttributeType(Text Display Component Attribute)}[capi-native-node-h-node-attributetype-text]
      */
     NODE_IMMUTABLE_FONT_WEIGHT = 1030,
 
     /**
      * @brief Defines the text line count attribute, which can only be obtained as required through APIs.
      *
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: line count of the node.
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].i32: line count of the node.</li>
+     * </ul>
      *
      * @since 20
+     * @group {ArkUI_NodeAttributeType(Text Display Component Attribute)}[capi-native-node-h-node-attributetype-text]
      */
     NODE_TEXT_LINE_COUNT = 1031,
  
@@ -2863,14 +3009,18 @@ typedef enum {
      * @brief Sets whether to optimize the trailing spaces at the end of each line during text layout.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * value[0].i32: whether to optimize trailing spaces at the end of each line during text layout.
-     *               The default value is <b>false</b>. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * value[0].i32: whether to optimize trailing spaces at the end of each line during text layout. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32: whether to optimize trailing spaces at the end of each line during text layout. The default value is <b>false</b>.</li>
+     * </ul>
+     *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].i32: whether to optimize trailing spaces at the end of each line during text layout.</li>
+     * </ul>
      *
      * @since 20
+     * @group {ArkUI_NodeAttributeType(Text Display Component Attribute)}[capi-native-node-h-node-attributetype-text]
      */
     NODE_TEXT_OPTIMIZE_TRAILING_SPACE = 1032,
 
@@ -2878,33 +3028,24 @@ typedef enum {
      * @brief Sets a linear gradient effect for text.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].f32: start angle of the linear gradient.
-     * The setting takes effect only when <b>direction</b> is set to <b>ARKUI_LINEAR_GRADIENT_DIRECTION_CUSTOM</b>.
-     * A positive value indicates a clockwise rotation from the origin, (0, 0). The default value is <b>180</b>. \n
-     * .value[1].i32: direction of the linear gradient. When a direction other than
-     * <b>ARKUI_LINEAR_GRADIENT_DIRECTION_CUSTOM</b> is set, the <b>angle</b> property is ignored.
-     * The parameter type is {@link ArkUI_LinearGradientDirection}. \n
-     * .value[2].i32: whether the colors are repeated. The default value is <b>false</b>.
-     * .object: array of color stops, each of which consists of a color and its stop position.
-     * The parameter type is {@link ArkUI_ColorStop}. Invalid colors are automatically skipped. \n \n
-     * colors: colors of the color stops. \n
-     * stops: stop positions of the color stops. \n
-     * size: number of colors. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].f32: start angle of the linear gradient.
-     * When <b>direction</b> is set to <b>ARKUI_LINEAR_GRADIENT_DIRECTION_CUSTOM</b>, <b>angle</b> at the set value;
-     * otherwise, it is at default value. \n
-     * .value[1].i32: direction of the linear gradient. \n
-     * .value[2].i32: whether the colors are repeated. \n
-     * .object: array of color stops, each of which consists of a color and its stop position.
-     * The parameter type is {@link ArkUI_ColorStop}. Invalid colors are automatically skipped. \n \n
-     * colors: colors of the color stops. \n
-     * stops: stop positions of the color stops. \n
-     * size: number of colors. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].f32: start angle of the linear gradient. The setting takes effect only when <b>direction</b> is set to <b>ARKUI_LINEAR_GRADIENT_DIRECTION_CUSTOM</b>. A positive value indicates a clockwise rotation from the origin, (0, 0). The default value is <b>180</b>.</li>
+     * <li>.value[1].i32: direction of the linear gradient. When a direction other than <b>ARKUI_LINEAR_GRADIENT_DIRECTION_CUSTOM</b> is set, the <b>angle</b> property is ignored. The parameter type is {@link ArkUI_LinearGradientDirection}.</li>
+     * <li>.value[2].i32: whether the colors are repeated. The default value is <b>false</b>.</li>
+     * <li>.object: array of color stops, each of which consists of a color and its stop position. The parameter type is {@link ArkUI_ColorStop}. Invalid colors are automatically skipped. colors: colors of the color stops. stops: stop positions of the color stops. size: number of colors.</li>
+     * </ul>
+     *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].f32: start angle of the linear gradient. When <b>direction</b> is set to <b>ARKUI_LINEAR_GRADIENT_DIRECTION_CUSTOM</b>, <b>angle</b> at the set value; otherwise, it is at default value.</li>
+     * <li>.value[1].i32: direction of the linear gradient.</li>
+     * <li>.value[2].i32: whether the colors are repeated.</li>
+     * <li>.object: array of color stops, each of which consists of a color and its stop position. The parameter type is {@link ArkUI_ColorStop}. Invalid colors are automatically skipped. colors: colors of the color stops. stops: stop positions of the color stops. size: number of colors.</li>
+     * </ul>
      *
      * @since 20
+     * @group {ArkUI_NodeAttributeType(Text Display Component Attribute)}[capi-native-node-h-node-attributetype-text]
      */
     NODE_TEXT_LINEAR_GRADIENT = 1033,
 
@@ -2912,31 +3053,26 @@ typedef enum {
      * @brief Sets a radial gradient effect for text.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0]?.f32: X-coordinate of the radial gradient center relative to the upper left corner of the text. \n
-     * .value[1]?.f32: Y-coordinate of the radial gradient center relative to the upper left corner of the text. \n
-     * .value[2]?.f32: radius of the radial gradient. The default value is <b>0</b>. \n
-     * .value[3]?.i32: whether the colors are repeated.
-     * The value <b>1</b> means that the colors are repeated, and <b>0</b> means the opposite.\n \n
-     * .object: array of color stops, each of which consists of a color and its stop position.
-     * The parameter type is {@link ArkUI_ColorStop}. Invalid colors are automatically skipped. \n
-     * colors: colors of the color stops. \n
-     * stops: stop positions of the color stops. \n
-     * size: number of colors. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].f32: X-coordinate of the radial gradient center relative to the upper left corner of the text. \n
-     * .value[1].f32: Y-coordinate of the radial gradient center relative to the upper left corner of the text. \n
-     * .value[2].f32: radius of the radial gradient. The default value is <b>0</b>. \n
-     * .value[3].i32: whether the colors are repeated.
-     * The value <b>1</b> means that the colors are repeated, and <b>0</b> means the opposite.  \n
-     * .object: array of color stops, each of which consists of a color and its stop position.
-     * The parameter type is {@link ArkUI_ColorStop}. Invalid colors are automatically skipped. \n
-     * colors: colors of the color stops. \n
-     * stops: stop positions of the color stops. \n
-     * size: number of colors. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0]?.f32: X-coordinate of the radial gradient center relative to the upper left corner of the text.</li>
+     * <li>.value[1]?.f32: Y-coordinate of the radial gradient center relative to the upper left corner of the text.</li>
+     * <li>.value[2]?.f32: radius of the radial gradient. The default value is <b>0</b>.</li>
+     * <li>.value[3]?.i32: whether the colors are repeated. The value <b>1</b> means that the colors are repeated, and <b>0</b> means the opposite.</li>
+     * <li>.object: array of color stops, each of which consists of a color and its stop position. The parameter type is {@link ArkUI_ColorStop}. Invalid colors are automatically skipped. colors: colors of the color stops. stops: stop positions of the color stops. size: number of colors.</li>
+     * </ul>
+     *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].f32: X-coordinate of the radial gradient center relative to the upper left corner of the text.</li>
+     * <li>.value[1].f32: Y-coordinate of the radial gradient center relative to the upper left corner of the text.</li>
+     * <li>.value[2].f32: radius of the radial gradient. The default value is <b>0</b>.</li>
+     * <li>.value[3].i32: whether the colors are repeated. The value <b>1</b> means that the colors are repeated, and <b>0</b> means the opposite.</li>
+     * <li>.object: array of color stops, each of which consists of a color and its stop position. The parameter type is {@link ArkUI_ColorStop}. Invalid colors are automatically skipped. colors: colors of the color stops. stops: stop positions of the color stops. size: number of colors.</li>
+     * </ul>
      *
      * @since 20
+     * @group {ArkUI_NodeAttributeType(Text Display Component Attribute)}[capi-native-node-h-node-attributetype-text]
      */
     NODE_TEXT_RADIAL_GRADIENT = 1034,
 
@@ -2944,15 +3080,18 @@ typedef enum {
      * @brief Sets the vertical alignment of the text content.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: vertical alignment of the text content, specified using the {@link ArkUI_TextVerticalAlignment}
-     * enum. The default value is <b>ARKUI_TEXT_VERTICAL_ALIGNMENT_BASELINE</b>. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: vertical alignment of the text content, specified using the {@link ArkUI_TextVerticalAlignment}
-     * enum. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32: vertical alignment of the text content, specified using the {@link ArkUI_TextVerticalAlignment} enum. The default value is <b>ARKUI_TEXT_VERTICAL_ALIGNMENT_BASELINE</b>.</li>
+     * </ul>
+     *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].i32: vertical alignment of the text content, specified using the {@link ArkUI_TextVerticalAlignment} enum.</li>
+     * </ul>
      *
      * @since 20
+     * @group {ArkUI_NodeAttributeType(Text Display Component Attribute)}[capi-native-node-h-node-attributetype-text]
      */
     NODE_TEXT_VERTICAL_ALIGN = 1035,
 
@@ -2960,15 +3099,18 @@ typedef enum {
      * @brief Sets the content align of the text.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: content align of the text, specified using the {@link ArkUI_TextContentAlign}
-     * enum. The default value is <b>ARKUI_TEXT_CONTENT_ALIGN_CENTER</b>. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: content align of the text, specified using the {@link ArkUI_TextContentAlign}
-     * enum. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32: content align of the text, specified using the {@link ArkUI_TextContentAlign} enum. The default value is <b>ARKUI_TEXT_CONTENT_ALIGN_CENTER</b>.</li>
+     * </ul>
+     *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].i32: content align of the text, specified using the {@link ArkUI_TextContentAlign} enum.</li>
+     * </ul>
      *
      * @since 21
+     * @group {ArkUI_NodeAttributeType(Text Display Component Attribute)}[capi-native-node-h-node-attributetype-text]
      */
     NODE_TEXT_CONTENT_ALIGN = 1036,
 
@@ -2976,100 +3118,133 @@ typedef enum {
      * @brief Sets the minimum number of lines in the text.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: minimum number of lines in the text.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: minimum number of lines in the text.\n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32: minimum number of lines in the text.</li>
+     * </ul>
+     *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].i32: minimum number of lines in the text.</li>
+     * </ul>
      *
      * @since 22
      *
+     * @group {ArkUI_NodeAttributeType(Text Display Component Attribute)}[capi-native-node-h-node-attributetype-text]
      */
     NODE_TEXT_MIN_LINES = 1037,
 
     /**
      * @brief Enables the selected data detector.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: Enable selected text recognition, default value true.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: Whether selected text recognition is enabled.\n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32: Enable selected text recognition, default value true.</li>
+     * </ul>
+     *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].i32: Whether selected text recognition is enabled.</li>
+     * </ul>
      *
      * @since 22
+     * @group {ArkUI_NodeAttributeType(Text Display Component Attribute)}[capi-native-node-h-node-attributetype-text]
      */
     NODE_TEXT_ENABLE_SELECTED_DATA_DETECTOR = 1038,
 
     /**
      * @brief Defines the minimum text line height attribute, which can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].f32: minimum line height.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].f32: minimum line height.\n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].f32: minimum line height.</li>
+     * </ul>
+     *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].f32: minimum line height.</li>
+     * </ul>
      *
      * @since 22
      *
+     * @group {ArkUI_NodeAttributeType(Text Display Component Attribute)}[capi-native-node-h-node-attributetype-text]
      */
     NODE_TEXT_MIN_LINE_HEIGHT = 1040,
 
     /**
      * @brief Defines the maximum text line height attribute, which can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].f32: maximum line height.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].f32: maximum line height.\n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].f32: maximum line height.</li>
+     * </ul>
+     *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].f32: maximum line height.</li>
+     * </ul>
      *
      * @since 22
      *
+     * @group {ArkUI_NodeAttributeType(Text Display Component Attribute)}[capi-native-node-h-node-attributetype-text]
      */
     NODE_TEXT_MAX_LINE_HEIGHT = 1041,
 
     /**
      * @brief Defines line height multiple value of text, which can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].f32: line height multiple value of text.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].f32: line height multiple value of text.\n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].f32: line height multiple value of text.</li>
+     * </ul>
+     *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].f32: line height multiple value of text.</li>
+     * </ul>
      *
      * @since 22
      *
+     * @group {ArkUI_NodeAttributeType(Text Display Component Attribute)}[capi-native-node-h-node-attributetype-text]
      */
     NODE_TEXT_LINE_HEIGHT_MULTIPLE = 1042,
 
     /**
      * @brief Get the text layout manager of the text.
      *
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .object: the layout manager of text. The parameter type is {@link ArkUI_TextLayoutManager}.\n
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.object: the layout manager of text. The parameter type is {@link ArkUI_TextLayoutManager}.</li>
+     * </ul>
      *
      * @since 22
+     * @group {ArkUI_NodeAttributeType(Text Display Component Attribute)}[capi-native-node-h-node-attributetype-text]
      */
     NODE_TEXT_LAYOUT_MANAGER = 1043,
 
     /**
      * @brief Set the edit menu options of the text.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .object: the edit menu options of text. The parameter type is {@link ArkUI_TextEditMenuOptions}.\n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.object: the edit menu options of text. The parameter type is {@link ArkUI_TextEditMenuOptions}.</li>
+     * </ul>
      *
      * @since 22
+     * @group {ArkUI_NodeAttributeType(Text Display Component Attribute)}[capi-native-node-h-node-attributetype-text]
      */
     NODE_TEXT_EDIT_MENU_OPTIONS = 1044,
 
     /**
      * @brief Bind the selection menu for text.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .object: the custom selection menu of text.
-     *     The parameter type is {@link ArkUI_SelectionMenuOptions}.\n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.object: the custom selection menu of text.     The parameter type is {@link ArkUI_SelectionMenuOptions}.</li>
+     * </ul>
      *
      * @since 22
+     * @group {ArkUI_NodeAttributeType(Text Display Component Attribute)}[capi-native-node-h-node-attributetype-text]
      */
     NODE_TEXT_BIND_SELECTION_MENU = 1045,
 
@@ -3077,88 +3252,112 @@ typedef enum {
      * @brief Sets the text selection area, which will be highlighted.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: start position of the text selection. \n
-     * .value[1].i32: end position of the text selection. \n
-     * .object: selection options including the menu popup policy.
-     *     The parameter type is {@link ArkUI_SelectionOptions}. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: start position of the text selection. \n
-     * .value[1].i32: end position of the text selection. \n
-     * .object: selection options including the menu popup policy.
-     *     The parameter type is {@link ArkUI_SelectionOptions}. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32: start position of the text selection.</li>
+     * <li>.value[1].i32: end position of the text selection.</li>
+     * <li>.object: selection options including the menu popup policy.     The parameter type is {@link ArkUI_SelectionOptions}.</li>
+     * </ul>
+     *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].i32: start position of the text selection.</li>
+     * <li>.value[1].i32: end position of the text selection.</li>
+     * <li>.object: selection options including the menu popup policy.     The parameter type is {@link ArkUI_SelectionOptions}.</li>
+     * </ul>
      *
      * @since 23
+     * @group {ArkUI_NodeAttributeType(Text Display Component Attribute)}[capi-native-node-h-node-attributetype-text]
      */
     NODE_TEXT_TEXT_SELECTION = 1046,
 
     /**
      * @brief Whether to avoid an orphan word on the last line of the paragraph.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32:  Whether enable the feature, true means enable this feature, false means disable.
-     * The default value is false.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: The current state of this feature.\n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32:  Whether enable the feature, true means enable this feature, false means disable. The default value is false.</li>
+     * </ul>
+     *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].i32: The current state of this feature.</li>
+     * </ul>
      *
      * @since 26.0.0
+     * @group {ArkUI_NodeAttributeType(Text Display Component Attribute)}[capi-native-node-h-node-attributetype-text]
      */
  	  NODE_TEXT_ORPHAN_CHAR_OPTIMIZATION = 1047,
 
     /**
      * @brief Whether to compress punctuation at the beginning of line.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32:  Whether enable the feature, true means enable this feature, false means disable.
-     * The default value is false.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: Whether compress punctuation at the beginning of line.\n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32:  Whether enable the feature, true means enable this feature, false means disable. The default value is false.</li>
+     * </ul>
+     *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].i32: Whether compress punctuation at the beginning of line.</li>
+     * </ul>
      *
      * @since 23
+     * @group {ArkUI_NodeAttributeType(Text Display Component Attribute)}[capi-native-node-h-node-attributetype-text]
      */
     NODE_TEXT_COMPRESS_LEADING_PUNCTUATION = 1048,
 
     /**
      * @brief Determines whether the layout adds extra padding at the top and bottom to make space for characters.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: Enable include the font padding, true means enable this feature, false means disable.
-     * The default value is false.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: Whether include the font padding.\n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32: Enable include the font padding, true means enable this feature, false means disable. The default value is false.</li>
+     * </ul>
+     *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].i32: Whether include the font padding.</li>
+     * </ul>
      *
      * @since 23
+     * @group {ArkUI_NodeAttributeType(Text Display Component Attribute)}[capi-native-node-h-node-attributetype-text]
      */
     NODE_TEXT_INCLUDE_FONT_PADDING = 1049,
 
     /**
      * @brief Whether to include ascent/descent from fallback fonts to prevent overlapping lines.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32:  Whether enable the feature, true means enable this feature, false means disable.
-     * The default value is false.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: Whether fallback line spacing.\n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32:  Whether enable the feature, true means enable this feature, false means disable. The default value is false.</li>
+     * </ul>
+     *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].i32: Whether fallback line spacing.</li>
+     * </ul>
      *
      * @since 23
+     * @group {ArkUI_NodeAttributeType(Text Display Component Attribute)}[capi-native-node-h-node-attributetype-text]
      */
     NODE_TEXT_FALLBACK_LINE_SPACING = 1050,
 
     /**
      * @brief Set the marquee options of text.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .object: the marquee options of text. The parameter type is {@link ArkUI_TextMarqueeOptions}.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .object: the marquee options of text. The parameter type is {@link ArkUI_TextMarqueeOptions}.\n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.object: the marquee options of text. The parameter type is {@link ArkUI_TextMarqueeOptions}.</li>
+     * </ul>
+     *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.object: the marquee options of text. The parameter type is {@link ArkUI_TextMarqueeOptions}.</li>
+     * </ul>
      *
      * @since 23
+     * @group {ArkUI_NodeAttributeType(Text Display Component Attribute)}[capi-native-node-h-node-attributetype-text]
      */
     NODE_TEXT_MARQUEE_OPTIONS = 1051,
 
@@ -3166,39 +3365,49 @@ typedef enum {
      * @brief Writing direction of the text.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: writing direction of the text. The value is an enum of {@link ArkUI_TextDirection}. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: writing direction the text. The value is an enum of {@link ArkUI_TextDirection}. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32: writing direction of the text. The value is an enum of {@link ArkUI_TextDirection}.</li>
+     * </ul>
+     *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].i32: writing direction the text. The value is an enum of {@link ArkUI_TextDirection}.</li>
+     * </ul>
      *
      * @since 23
+     * @group {ArkUI_NodeAttributeType(Text Display Component Attribute)}[capi-native-node-h-node-attributetype-text]
      */
     NODE_TEXT_DIRECTION = 1052,
 
     /**
      * @brief Used to set the selected drag preview style.
      * 
-     * Format of the {@link Arkui_AttributeItem} parameter for setting the attribute:\n
-     * .object: selected drag preview style configuration.\n
-     * The parameter type is {@link Arkui_SelectedDragPreviewStyle}.\n
-     * \n
-     * Format of the return value {@link Arkui_AttributeItem}:\n
-     * .object: selected drag preview style configuration.\n
-     * The parameter type is {@link Arkui_SelectedDragPreviewStyle}.\n
-     * 
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.object: selected drag preview style configuration. The parameter type is {@link ArkUI_SelectedDragPreviewStyle}.</li>
+     * </ul>
+     *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.object: selected drag preview style configuration. The parameter type is {@link ArkUI_SelectedDragPreviewStyle}.</li>
+     * </ul>
+     *
      * @since 23
+     * @group {ArkUI_NodeAttributeType(Text Display Component Attribute)}[capi-native-node-h-node-attributetype-text]
      */
     NODE_TEXT_SELECTED_DRAG_PREVIEW_STYLE = 1053,
 
     /**
      * @brief Sets the controller of the text.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .object: the controller of the text. The parameter type is
-     * {@link OH_ArkUI_TextController }.\n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.object: the controller of the text. The parameter type is {@link OH_ArkUI_TextController}.</li>
+     * </ul>
      *
      * @since 26.0.0
+     * @group {ArkUI_NodeAttributeType(Text Display Component Attribute)}[capi-native-node-h-node-attributetype-text]
      */
     NODE_TEXT_CONTROLLER = 1054,
 
@@ -3206,13 +3415,18 @@ typedef enum {
      * @brief Sets whether to enable punctuation overflow at line ends.
      * <br>This attribute can be set, reset, and obtained as required through APIs.
      *
-     * <br>Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:
-     * <br>.value[0].i32: whether to enable punctuation overflow, the default value is false.
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32: whether to enable punctuation overflow, the default value is false.</li>
+     * </ul>
      *
-     * <br>Format of the return value {@link ArkUI_AttributeItem}:
-     * <br>.value[0].i32: whether to enable punctuation overflow.
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].i32: whether to enable punctuation overflow.</li>
+     * </ul>
      *
      * @since 26.0.0
+     * @group {ArkUI_NodeAttributeType(Text Display Component Attribute)}[capi-native-node-h-node-attributetype-text]
      */
     NODE_TEXT_PUNCTUATION_OVERFLOW = 1055,
 
@@ -3220,142 +3434,178 @@ typedef enum {
      * @brief Defines the tail indentation for each line in a text block.
      * <br>This attribute can be set, reset, and obtained as required through APIs.
      *
-     * <br>Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:
-     * <br>.value[0].f32: tail indent value, in fp. When size is 1, all lines share the same tail indent.
-     * <br>.size: number of tail indent values. When size > 1, the i-th value specifies the tail indent
-     * for the i-th line. If the number of text lines exceeds size, the last value is used
-     * for the remaining lines.
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].f32: tail indent value, in fp. When size is 1, all lines share the same tail indent.</li>
+     * <li>.size: number of tail indent values. When size > 1, the i-th value specifies the tail indent for the i-th line. If the number of text lines exceeds size, the last value is used for the remaining lines.</li>
+     * </ul>
      *
-     * <br>Format of the return value {@link ArkUI_AttributeItem}:
-     * <br>.value[0].f32: first tail indent value, in fp.
-     * <br>.size: number of tail indent values.
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].f32: first tail indent value, in fp.</li>
+     * <li>.size: number of tail indent values.</li>
+     * </ul>
      *
      * @since 26.0.0
+     * @group {ArkUI_NodeAttributeType(Text Display Component Attribute)}[capi-native-node-h-node-attributetype-text]
      */
     NODE_TEXT_TAIL_INDENTS = 1056,
 
     /**
      * @brief Defines the text content attribute, which can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .string: content of the text span. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .string: content of the text span. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.string: content of the text span.</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.string: content of the text span.</li>
+     * </ul>
+     *
+     * @group {ArkUI_NodeAttributeType(Text Display Component Attribute)}[capi-native-node-h-node-attributetype-text]
      */
     NODE_SPAN_CONTENT = MAX_NODE_SCOPE_NUM * ARKUI_NODE_SPAN,
     /**
      * @brief Defines the text background style.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].u32: color of the text background, in 0xARGB format, for example, <b>0xFFFF0000</b> indicating red. \n
-     * The second parameter indicates the rounded corners of the text background. Two setting modes are available: \n
-     * 1: .value[1].f32: radius of the four corners, in vp. \n
-     * 2: .value[1].f32: radius of the upper left corner, in vp. \n
-     * .value[2].f32: radius of the upper right corner, in vp. \n
-     * .value[3].f32: radius of the lower left corner, in vp. \n
-     * .value[4].f32: radius of the lower right corner, in vp. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].u32: color of the text background, in 0xARGB format. \n
-     * .value[1].f32: radius of the upper left corner, in vp. \n
-     * .value[2].f32: radius of the upper right corner, in vp. \n
-     * .value[3].f32: radius of the lower left corner, in vp. \n
-     * .value[4].f32: radius of the lower right corner, in vp. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].u32: color of the text background, in 0xARGB format, for example, <b>0xFFFF0000</b> indicating red. The second parameter indicates the rounded corners of the text background. Two setting modes are available: 1: .value[1].f32: radius of the four corners, in vp. 2: .value[1].f32: radius of the upper left corner, in vp.</li>
+     * <li>.value[2].f32: radius of the upper right corner, in vp.</li>
+     * <li>.value[3].f32: radius of the lower left corner, in vp.</li>
+     * <li>.value[4].f32: radius of the lower right corner, in vp.</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].u32: color of the text background, in 0xARGB format.</li>
+     * <li>.value[1].f32: radius of the upper left corner, in vp.</li>
+     * <li>.value[2].f32: radius of the upper right corner, in vp.</li>
+     * <li>.value[3].f32: radius of the lower left corner, in vp.</li>
+     * <li>.value[4].f32: radius of the lower right corner, in vp.</li>
+     * </ul>
+     *
+     * @group {ArkUI_NodeAttributeType(Text Display Component Attribute)}[capi-native-node-h-node-attributetype-text]
      */
     NODE_SPAN_TEXT_BACKGROUND_STYLE,
     /**
      * @brief Defines the text baseline offset attribute
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].f32: baseline offset, in fp.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].f32: baseline offset, in fp. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].f32: baseline offset, in fp.</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].f32: baseline offset, in fp.</li>
+     * </ul>
+     *
+     * @group {ArkUI_NodeAttributeType(Text Display Component Attribute)}[capi-native-node-h-node-attributetype-text]
      */
     NODE_SPAN_BASELINE_OFFSET,
     /**
      * @brief Defines the text style attribute, which can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * ?.string: font family. Optional. Use commas (,) to separate multiple fonts. \n
-     * .value[0].f32: font size, in fp. \n
-     * .value[1]?.i32: font weight. Optional.
-     * .value[2]?.i32: font style. Optional. The parameter type is {@link ArkUI_FontStyle}.
-     * The default value is <b>ARKUI_FONT_STYLE_NORMAL</b>.
-     * ?.object: Optional. The font configurations. The parameter type is {@link OH_ArkUI_FontConfigs}.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .string: font family. Use commas (,) to separate multiple fonts. \n
-     * .value[0].f32: font size, in fp. \n
-     * .value[1].i32: font weight. \n
-     * .value[2].i32: font style. The parameter type is {@link ArkUI_FontStyle}.
-     * The default value is <b>ARKUI_FONT_STYLE_NORMAL</b>.
-     * .object: the font configurations. The parameter type is {@link OH_ArkUI_FontConfigs}.\n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>?.string: font family. Optional. Use commas (,) to separate multiple fonts.</li>
+     * <li>.value[0].f32: font size, in fp.</li>
+     * <li>.value[1]?.i32: font weight. Optional.</li>
+     * <li>.value[2]?.i32: font style. Optional. The parameter type is {@link ArkUI_FontStyle}. The default value is <b>ARKUI_FONT_STYLE_NORMAL</b>.</li>
+     * <li>?.object: Optional. The font configurations. The parameter type is {@link OH_ArkUI_FontConfigs}.</li>
+     * </ul>
+     *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.string: font family. Use commas (,) to separate multiple fonts.</li>
+     * <li>.value[0].f32: font size, in fp.</li>
+     * <li>.value[1].i32: font weight.</li>
+     * <li>.value[2].i32: font style. The parameter type is {@link ArkUI_FontStyle}. The default value is <b>ARKUI_FONT_STYLE_NORMAL</b>.</li>
+     * <li>.object: the font configurations. The parameter type is {@link OH_ArkUI_FontConfigs}.</li>
+     * </ul>
      *
      * @since 24
+     * @group {ArkUI_NodeAttributeType(Text Display Component Attribute)}[capi-native-node-h-node-attributetype-text]
      */
     NODE_SPAN_FONT = 2003,
 
     /**
      * @brief Defines the font weight attribute, which can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: font weight. The default value is 400.\n
-     * ?.object: Optional. The font weight configurations. The parameter type is {@link OH_ArkUI_FontWeightConfigs}.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: font weight.\n
-     * .object: the font weight configurations. The parameter type is {@link OH_ArkUI_FontWeightConfigs}.\n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32: font weight. The default value is 400.</li>
+     * <li>?.object: Optional. The font weight configurations. The parameter type is {@link OH_ArkUI_FontWeightConfigs}.</li>
+     * </ul>
+     *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].i32: font weight.</li>
+     * <li>.object: the font weight configurations. The parameter type is {@link OH_ArkUI_FontWeightConfigs}.</li>
+     * </ul>
      *
      * @since 24
+     * @group {ArkUI_NodeAttributeType(Text Display Component Attribute)}[capi-native-node-h-node-attributetype-text]
      */
     NODE_SPAN_FONT_WEIGHT = 2004,
     /**
      * @brief Defines the image source of the image span.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .string: image address of the image span.\n
-     * .object: The parameter type is {@link ArkUI_DrawableDescriptor}. Either .string or .object must be set.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .string: image address of the image span.\n
-     * .object: The parameter type is {@link ArkUI_DrawableDescriptor}.\n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.string: image address of the image span.</li>
+     * <li>.object: The parameter type is {@link ArkUI_DrawableDescriptor}. Either .string or .object must be set.</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.string: image address of the image span.</li>
+     * <li>.object: The parameter type is {@link ArkUI_DrawableDescriptor}.</li>
+     * </ul>
+     *
+     * @group {ArkUI_NodeAttributeType(Text Display Component Attribute)}[capi-native-node-h-node-attributetype-text]
      */
     NODE_IMAGE_SPAN_SRC = MAX_NODE_SCOPE_NUM * ARKUI_NODE_IMAGE_SPAN,
     /**
      * @brief Defines the alignment mode of the image with the text.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: alignment mode of the image with the text.
-     * The value is an enum of {@link ArkUI_ImageSpanAlignment}. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: alignment mode of the image with the text.
-     * The value is an enum of {@link ArkUI_ImageSpanAlignment}. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32: alignment mode of the image with the text. The value is an enum of {@link ArkUI_ImageSpanAlignment}.</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].i32: alignment mode of the image with the text. The value is an enum of {@link ArkUI_ImageSpanAlignment}.</li>
+     * </ul>
+     *
+     * @group {ArkUI_NodeAttributeType(Text Display Component Attribute)}[capi-native-node-h-node-attributetype-text]
      */
     NODE_IMAGE_SPAN_VERTICAL_ALIGNMENT,
     /**
      * @brief Defines the placeholder image source.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .string: placeholder image source. \n
-     * .object: The parameter type is {@link ArkUI_DrawableDescriptor}. Either .string or .object must be set.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .string: placeholder image source. \n
-     * .object: The parameter type is {@link ArkUI_DrawableDescriptor}.\n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.string: placeholder image source.</li>
+     * <li>.object: The parameter type is {@link ArkUI_DrawableDescriptor}. Either .string or .object must be set.</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.string: placeholder image source.</li>
+     * <li>.object: The parameter type is {@link ArkUI_DrawableDescriptor}.</li>
+     * </ul>
+     *
+     * @group {ArkUI_NodeAttributeType(Text Display Component Attribute)}[capi-native-node-h-node-attributetype-text]
      */
     NODE_IMAGE_SPAN_ALT,
     /**
@@ -3364,13 +3614,18 @@ typedef enum {
      * A positive value means an upward offset, while a negative value means a downward offset.
      * The default value is <b>0</b>, and the unit is fp. \n
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].f32: baseline offset, in fp.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].f32: baseline offset, in fp. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].f32: baseline offset, in fp.</li>
+     * </ul>
+     *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].f32: baseline offset, in fp.</li>
+     * </ul>
      *
      * @since 13
+     * @group {ArkUI_NodeAttributeType(Text Display Component Attribute)}[capi-native-node-h-node-attributetype-text]
      */
     NODE_IMAGE_SPAN_BASELINE_OFFSET = 3003,
 
@@ -3378,30 +3633,40 @@ typedef enum {
      * @brief Defines the color filter of the image span.
      * This attribute can be set, reset, and obtained as required through APIs.
      * 
-     * Format of the {@link ArkUI_AttributeItem } parameter for setting the attribute:\n 
-     * .value [0].f32 to . value [19].f32: filter matrix array. \n 
-     * .size :5 x 4 filter array size. \n 
-     * .object : the pointer to OH_Drawing_ColorFilter. Either . value or . object is set. \n 
-     * \n 
-     * Format of the return value {@ link ArkUI_AttributeItem ):\n 
-     * .value [0].f32 to .value [19].f32: filter matrix array. \n 
-     * .size: 5 x 4 filter array size. \n 
-     * .object: the pointer to OH_Drawing_ColorFilter. \n 
-     * 
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].f32 to .value[19].f32: filter matrix array.</li>
+     * <li>.size: 5 x 4 filter array size.</li>
+     * <li>.object: the pointer to OH_Drawing_ColorFilter. Either .value or .object is set.</li>
+     * </ul>
+     *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].f32 to .value [19].f32: filter matrix array.</li>
+     * <li>.size: 5 x 4 filter array size.</li>
+     * <li>.object: the pointer to OH_Drawing_ColorFilter.</li>
+     * </ul>
+     *
      * @since 22
+     * @group {ArkUI_NodeAttributeType(Text Display Component Attribute)}[capi-native-node-h-node-attributetype-text]
      */
     NODE_IMAGE_SPAN_COLOR_FILTER = 3004,
     /**
      * @brief Set the range of SVG parsing capabilities supported through enable switch.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: whether color fliter support svg. The default value is <b>false</b>. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: enable switch.\n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32: whether color fliter support svg. The default value is <b>false</b>.</li>
+     * </ul>
+     *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].i32: enable switch.</li>
+     * </ul>
      *
      * @since 22
+     * @group {ArkUI_NodeAttributeType(Text Display Component Attribute)}[capi-native-node-h-node-attributetype-text]
      */
     NODE_IMAGE_SPAN_SUPPORT_SVG2 = 3005,
     /**
@@ -3806,25 +4071,34 @@ typedef enum {
      * @brief Defines the foreground color of the loading progress bar.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].u32: foreground color, in 0xARGB format. For example, 0xFFFF0000 indicates red. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].u32: foreground color, in 0xARGB format. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].u32: foreground color, in 0xARGB format. For example, 0xFFFF0000 indicates red.</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].u32: foreground color, in 0xARGB format.</li>
+     * </ul>
+     *
+     * @group {ArkUI_NodeAttributeType(Information Display Component Attribute)}[capi-native-node-h-node-attributetype-informationdisplay]
      */
     NODE_LOADING_PROGRESS_COLOR = MAX_NODE_SCOPE_NUM * ARKUI_NODE_LOADING_PROGRESS,
     /**
      * @brief Defines whether to show the loading animation for the <LoadingProgress> component.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: whether to show the loading animation.
-     * The value <b>true</b> means to show the loading animation, and <b>false</b> means the opposite.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: The value <b>1</b> means to show the loading animation, and <b>0</b> means the opposite. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32: whether to show the loading animation. The value <b>true</b> means to show the loading animation, and <b>false</b> means the opposite.</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].i32: The value <b>1</b> means to show the loading animation, and <b>0</b> means the opposite.</li>
+     * </ul>
+     *
+     * @group {ArkUI_NodeAttributeType(Information Display Component Attribute)}[capi-native-node-h-node-attributetype-informationdisplay]
      */
     NODE_LOADING_PROGRESS_ENABLE_LOADING,
 
@@ -3832,396 +4106,521 @@ typedef enum {
      * @brief Defines the default placeholder text of the single-line text box.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .string: default placeholder text. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .string: default placeholder text. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.string: default placeholder text.</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.string: default placeholder text.</li>
+     * </ul>
+     *
+     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
      */
     NODE_TEXT_INPUT_PLACEHOLDER = MAX_NODE_SCOPE_NUM * ARKUI_NODE_TEXT_INPUT,
     /**
      * @brief Defines the default text content of the single-line text box.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .string: default text content. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .string: default text content. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.string: default text content.</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.string: default text content.</li>
+     * </ul>
+     *
+     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
      */
     NODE_TEXT_INPUT_TEXT,
     /**
      * @brief Defines the caret color attribute.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].u32: caret color, in 0xARGB format. For example, 0xFFFF0000 indicates red.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].u32: caret color, in 0xARGB format. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].u32: caret color, in 0xARGB format. For example, 0xFFFF0000 indicates red.</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].u32: caret color, in 0xARGB format.</li>
+     * </ul>
+     *
+     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
      */
     NODE_TEXT_INPUT_CARET_COLOR,
     /**
      * @brief Defines the caret style attribute.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].f32: caret width, in vp.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].f32: caret width, in vp. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].f32: caret width, in vp.</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].f32: caret width, in vp.</li>
+     * </ul>
+     *
+     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
      */
     NODE_TEXT_INPUT_CARET_STYLE,
     /**
      * @brief Defines the underline attribute of the single-line text box.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: whether to show an underline.
-     * The value <b>true</b> means to show an underline, and <b>false</b> means the opposite.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: The value <b>1</b> means to show an underline, and <b>0</b> means the opposite. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32: whether to show an underline. The value <b>true</b> means to show an underline, and <b>false</b> means the opposite.</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].i32: The value <b>1</b> means to show an underline, and <b>0</b> means the opposite.</li>
+     * </ul>
+     *
+     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
      */
     NODE_TEXT_INPUT_SHOW_UNDERLINE,
     /**
      * @brief Defines the maximum number of characters in the text input.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: maximum number of characters in the text input, without a unit. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: maximum number of characters in the text input. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32: maximum number of characters in the text input, without a unit.</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].i32: maximum number of characters in the text input.</li>
+     * </ul>
+     *
+     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
      */
     NODE_TEXT_INPUT_MAX_LENGTH,
     /**
      * @brief Defines the type of the Enter key.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: type of the Enter key{@link ArkUI_EnterKeyType}. The default value is <b>ARKUI_ENTER_KEY_TYPE_DONE</b>. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: type of the Enter key{@link ArkUI_EnterKeyType}. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32: type of the Enter key{@link ArkUI_EnterKeyType}. The default value is <b>ARKUI_ENTER_KEY_TYPE_DONE</b>.</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].i32: type of the Enter key{@link ArkUI_EnterKeyType}.</li>
+     * </ul>
+     *
+     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
      */
     NODE_TEXT_INPUT_ENTER_KEY_TYPE,
     /**
      * @brief Defines the placeholder text color.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].u32: color value, in 0xARGB format. For example, 0xFFFF0000 indicates red. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].u32: color value, in 0xARGB format. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].u32: color value, in 0xARGB format. For example, 0xFFFF0000 indicates red.</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].u32: color value, in 0xARGB format.</li>
+     * </ul>
+     *
+     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
      */
     NODE_TEXT_INPUT_PLACEHOLDER_COLOR,
     /**
      * @brief Defines the placeholder text font.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0]?.f32: font size, in fp. Optional. The default value is <b>16.0</b>.\n
-     * .value[1]?.i32: font style {@link ArkUI_FontStyle}. Optional.
-     * The default value is <b>ARKUI_FONT_STYLE_NORMAL</b>. \n
-     * .value[2]?.i32: font weight {@link ArkUI_FontWeight}. Optional.
-     * The default value is <b>ARKUI_FONT_WEIGHT_NORMAL</b>. \n
-     * ?.string: font family. Multiple font families are separated by commas (,).
-     * Example: "font weight; font family 1, font family 2". \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].f32: font size, in fp.\n
-     * .value[1].i32: font style {@link ArkUI_FontStyle}.\n
-     * .value[2].i32: font weight {@link ArkUI_FontWeight}.\n
-     * .string: font family. Multiple font families are separated by commas (,). \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0]?.f32: font size, in fp. Optional. The default value is <b>16.0</b>.</li>
+     * <li>.value[1]?.i32: font style {@link ArkUI_FontStyle}. Optional. The default value is <b>ARKUI_FONT_STYLE_NORMAL</b>.</li>
+     * <li>.value[2]?.i32: font weight {@link ArkUI_FontWeight}. Optional. The default value is <b>ARKUI_FONT_WEIGHT_NORMAL</b>.</li>
+     * <li>?.string: font family. Multiple font families are separated by commas (,). Example: "font weight; font family 1, font family 2".</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].f32: font size, in fp.</li>
+     * <li>.value[1].i32: font style {@link ArkUI_FontStyle}.</li>
+     * <li>.value[2].i32: font weight {@link ArkUI_FontWeight}.</li>
+     * <li>.string: font family. Multiple font families are separated by commas (,).</li>
+     * </ul>
+     *
+     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
      */
     NODE_TEXT_INPUT_PLACEHOLDER_FONT,
     /**
      * @brief Defines whether to enable the input method when the component obtains focus.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: whether to enable the input method when the component obtains focus.
-     * The value <b>true</b> means to enable the input method, and <b>false</b> means the opposite.\n \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-      * .value[0].i32: The value <b>1</b> means to enable the input method when the component obtains focus,
-      * and <b>0</b> means the opposite. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32: whether to enable the input method when the component obtains focus. The value <b>true</b> means to enable the input method, and <b>false</b> means the opposite.</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].i32: The value <b>1</b> means to enable the input method when the component obtains focus, and <b>0</b> means the opposite.</li>
+     * </ul>
+     *
+     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
      */
     NODE_TEXT_INPUT_ENABLE_KEYBOARD_ON_FOCUS,
     /**
      * @brief Defines the text box type. This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: text box type {@link ArkUI_TextInputType}.
-     * The default value is <b>ARKUI_TEXTINPUT_TYPE_NORMAL</b>. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: text box type {@link ArkUI_TextInputType}. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32: text box type {@link ArkUI_TextInputType}. The default value is <b>ARKUI_TEXTINPUT_TYPE_NORMAL</b>.</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].i32: text box type {@link ArkUI_TextInputType}.</li>
+     * </ul>
+     *
+     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
      */
     NODE_TEXT_INPUT_TYPE,
     /**
      * @brief Defines the background color of the selected text.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].u32: color value, in 0xARGB format. For example, 0xFFFF0000 indicates red. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].u32: color value, in 0xARGB format. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].u32: color value, in 0xARGB format. For example, 0xFFFF0000 indicates red.</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].u32: color value, in 0xARGB format.</li>
+     * </ul>
+     *
+     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
      */
     NODE_TEXT_INPUT_SELECTED_BACKGROUND_COLOR,
     /**
      * @brief Defines whether to display the password icon at the end of the password text box.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: whether to display the password icon at the end of the password text box.
-     * The value <b>true</b> means to display the password icon, and <b>false</b> means the opposite.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: The value <b>1</b> means to display the password icon at the end of the password text box,
-     * and <b>0</b> means the opposite. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32: whether to display the password icon at the end of the password text box. The value <b>true</b> means to display the password icon, and <b>false</b> means the opposite.</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].i32: The value <b>1</b> means to display the password icon at the end of the password text box, and <b>0</b> means the opposite.</li>
+     * </ul>
+     *
+     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
      */
     NODE_TEXT_INPUT_SHOW_PASSWORD_ICON,
     /**
      * @brief Defines the editable state for the single-line text box.
      * This attribute can be set as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute: \n
-     * .value[0].i32: whether to remain in the editable state. The value
-     * <b>true</b> means to remain in the editable state, and <b>false</b> means to exit the editable state. \n
-     * \n
-     * Format of the {@link ArkUI_AttributeItem} parameter for obtaining the attribute:
-     * .value[0].i32: whether to remain in the editable state. The value <b>true</b> means to remain in the editable
-     * state, and <b>false</b> means to exit the editable state. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32: whether to remain in the editable state. The value <b>true</b> means to remain in the editable state, and <b>false</b> means to exit the editable state.</li>
+     * </ul>
      *
+     * **Format of the {@link ArkUI_AttributeItem} for obtaining the attribute:**
+     * <ul>
+     * <li>.value[0].i32: whether to remain in the editable state. The value <b>true</b> means to remain in the editable state, and <b>false</b> means to exit the editable state.</li>
+     * </ul>
+     *
+     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
      */
     NODE_TEXT_INPUT_EDITING,
     /**
      * @brief Defines the style of the cancel button on the right of the single-line text box.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute: \n
-     * .value[0].i32: button style {@link ArkUI_CancelButtonStyle}.
-     * The default value is <b>ARKUI_CANCELBUTTON_STYLE_INPUT</b>.\n
-     * .value[1]?.f32: button icon size, in vp.\n
-     * .value[2]?.u32: button icon color, in 0xARGB format. For example, 0xFFFF0000 indicates red. \n
-     * ?.string: button icon image source. The value is the local address of the image, for example, /pages/icon.png. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: button style {@link ArkUI_CancelButtonStyle}.\n
-     * .value[1].f32: icon size, in vp.\n
-     * .value[2].u32: button icon color, in 0xARGB format.\n
-     * .string: button icon image source. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32: button style {@link ArkUI_CancelButtonStyle}. The default value is <b>ARKUI_CANCELBUTTON_STYLE_INPUT</b>.</li>
+     * <li>.value[1]?.f32: button icon size, in vp.</li>
+     * <li>.value[2]?.u32: button icon color, in 0xARGB format. For example, 0xFFFF0000 indicates red.</li>
+     * <li>?.string: button icon image source. The value is the local address of the image, for example, /pages/icon.png.</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].i32: button style {@link ArkUI_CancelButtonStyle}.</li>
+     * <li>.value[1].f32: icon size, in vp.</li>
+     * <li>.value[2].u32: button icon color, in 0xARGB format.</li>
+     * <li>.string: button icon image source.</li>
+     * </ul>
+     *
+     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
      */
     NODE_TEXT_INPUT_CANCEL_BUTTON,
     /**
      * @brief Sets the text selection area, which will be highlighted.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: start position of the text selection. \n
-     * .value[1].i32: end position of the text selection. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: start position of the text selection. \n
-     * .value[1].i32: end position of the text selection. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32: start position of the text selection.</li>
+     * <li>.value[1].i32: end position of the text selection.</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].i32: start position of the text selection.</li>
+     * <li>.value[1].i32: end position of the text selection.</li>
+     * </ul>
+     *
+     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
      */
     NODE_TEXT_INPUT_TEXT_SELECTION,
     /**
-    * @brief Sets the color of the text underline when it is enabled.
-    *
-    * The default underline color configured for the theme is <b>'0x33182431'</b>.
-    *
-    * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-    * .value[0].u32: color of the underline applied to the text being typed in.
-    * The value is in 0xARGB format. \n
-    * .value[1].u32: color of the underline applied to the text in the normal state.
-    * The value is in 0xARGB format. \n
-    * .value[2].u32: color of the underline applied to the text when an error is detected.
-    * The value is in 0xARGB format. \n
-    * .value[3].u32: color of the underline applied to the text when it is disabled.
-    * The value is in 0xARGB format. \n
-    * \n
-    * Format of the return value {@link ArkUI_AttributeItem}:\n
-    * .value[0].u32: color of the underline applied to the text being typed in. The value is in 0xARGB format. \n
-    * .value[1].u32: color of the underline applied to the text in the normal state. The value is in 0xARGB format. \n
-    * .value[2].u32: color of the underline applied to the text when an error is detected.
-    * The value is in 0xARGB format. \n
-    * .value[3].u32: color of the underline applied to the text when it is disabled. The value is in 0xARGB format. \n
-    *
-    */
+     * @brief Sets the color of the text underline when it is enabled.
+     *
+     * The default underline color configured for the theme is <b>'0x33182431'</b>.
+     *
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].u32: color of the underline applied to the text being typed in. The value is in 0xARGB format.</li>
+     * <li>.value[1].u32: color of the underline applied to the text in the normal state. The value is in 0xARGB format.</li>
+     * <li>.value[2].u32: color of the underline applied to the text when an error is detected. The value is in 0xARGB format.</li>
+     * <li>.value[3].u32: color of the underline applied to the text when it is disabled. The value is in 0xARGB format.</li>
+     * </ul>
+     *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].u32: color of the underline applied to the text being typed in. The value is in 0xARGB format.</li>
+     * <li>.value[1].u32: color of the underline applied to the text in the normal state. The value is in 0xARGB format.</li>
+     * <li>.value[2].u32: color of the underline applied to the text when an error is detected. The value is in 0xARGB format.</li>
+     * <li>.value[3].u32: color of the underline applied to the text when it is disabled. The value is in 0xARGB format.</li>
+     * </ul>
+     *
+     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
+     */
     NODE_TEXT_INPUT_UNDERLINE_COLOR,
     /**
-    * @brief Sets whether to enable autofill.
-    *
-    * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-    * .value[0].i32: whether to enable autofill. The default value is <b>true</b>. \n
-    * \n
-    * Format of the return value {@link ArkUI_AttributeItem}:\n
-    * .value[0].i32: whether to enable autofill. \n
-    *
-    */
+     * @brief Sets whether to enable autofill.
+     *
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32: whether to enable autofill. The default value is <b>true</b>.</li>
+     * </ul>
+     *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].i32: whether to enable autofill.</li>
+     * </ul>
+     *
+     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
+     */
     NODE_TEXT_INPUT_ENABLE_AUTO_FILL,
     /**
-    * @brief Sets the autofill type.
-    *
-    * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-    * .value[0].i32: autofill type. The parameter type is {@link ArkUI_TextInputContentType}. \n
-    * \n
-    * Format of the return value {@link ArkUI_AttributeItem}:\n
-    * .value[0].i32: autofill type. The parameter type is {@link ArkUI_TextInputContentType}. \n
-    *
-    */
+     * @brief Sets the autofill type.
+     *
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32: autofill type. The parameter type is {@link ArkUI_TextInputContentType}.</li>
+     * </ul>
+     *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].i32: autofill type. The parameter type is {@link ArkUI_TextInputContentType}.</li>
+     * </ul>
+     *
+     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
+     */
     NODE_TEXT_INPUT_CONTENT_TYPE,
     /**
-    * @brief Defines the rules for generating passwords. When autofill is used, these rules are transparently
-    * transmitted to Password Vault for generating a new password.
-    *
-    * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-    * .string: rules for generating passwords. \n
-    * \n
-    * Format of the return value {@link ArkUI_AttributeItem}:\n
-    * .string: rules for generating passwords. \n
-    *
-    */
+     * @brief Defines the rules for generating passwords. When autofill is used, these rules are transparently
+     * transmitted to Password Vault for generating a new password.
+     *
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.string: rules for generating passwords.</li>
+     * </ul>
+     *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.string: rules for generating passwords.</li>
+     * </ul>
+     *
+     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
+     */
     NODE_TEXT_INPUT_PASSWORD_RULES,
     /**
-    * @brief Sets whether to select all text in the initial state. The inline mode is not supported.
-    *
-    * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-    * .value[0].i32: whether to select all text in the initial state. The default value is b>false</b>. \n
-    * \n
-    * Format of the return value {@link ArkUI_AttributeItem}:\n
-    * .value[0].i32: whether to select all text in the initial state. \n
-    *
-    */
+     * @brief Sets whether to select all text in the initial state. The inline mode is not supported.
+     *
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32: whether to select all text in the initial state. The default value is b>false</b>.</li>
+     * </ul>
+     *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].i32: whether to select all text in the initial state.</li>
+     * </ul>
+     *
+     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
+     */
     NODE_TEXT_INPUT_SELECT_ALL,
     /**
-    * @brief Sets the regular expression for input filtering.
-    * Only inputs that comply with the regular expression can be displayed.
-    * Other inputs are filtered out. The specified regular expression can match single characters,
-    * but not strings.
-    *
-    * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-    * .string: regular expression. \n
-    * \n
-    * Format of the return value {@link ArkUI_AttributeItem}:\n
-    * .string: regular expression. \n
-    *
-    */
+     * @brief Sets the regular expression for input filtering.
+     * Only inputs that comply with the regular expression can be displayed.
+     * Other inputs are filtered out. The specified regular expression can match single characters,
+     * but not strings.
+     *
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.string: regular expression.</li>
+     * </ul>
+     *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.string: regular expression.</li>
+     * </ul>
+     *
+     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
+     */
     NODE_TEXT_INPUT_INPUT_FILTER,
     /**
-    * @brief Sets the text box to the default style or inline input style.
-    *
-    * For the inline input style, only <b>InputType.Normal</b> is supported.
-    *
-    * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-    * .value[0].i32: text input style. The parameter type is {@link ArkUI_TextInputStyle}. \n
-    * \n
-    * Format of the return value {@link ArkUI_AttributeItem}:\n
-    * .value[0].i32: text input style. The parameter type is {@link ArkUI_TextInputStyle}. \n
-    *
-    */
+     * @brief Sets the text box to the default style or inline input style.
+     *
+     * For the inline input style, only <b>InputType.Normal</b> is supported.
+     *
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32: text input style. The parameter type is {@link ArkUI_TextInputStyle}.</li>
+     * </ul>
+     *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].i32: text input style. The parameter type is {@link ArkUI_TextInputStyle}.</li>
+     * </ul>
+     *
+     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
+     */
     NODE_TEXT_INPUT_STYLE,
     /**
-    * @brief Sets or obtains the caret position.
-    *
-    * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-    * In the case of setting the caret position:
-    * .value[0].i32: character count from the beginning of a string to the caret position. \n
-    * 
-    * Format of the return value {@link ArkUI_AttributeItem}:\n
-    * In the case of obtaining the caret position: If this API is called when the caret position is updated in the
-    * current frame, it will not take effect.
-    * .value[0].i32: index of the caret position. \n
-    * .value[1].f32: X coordinate of the caret relative to the text box. \n
-    * .value[2].f32: Y coordinate of the caret relative to the text box. \n
-    */
+     * @brief Sets or obtains the caret position.
+     *
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32: character count from the beginning of a string to the caret position.</li>
+     * </ul>
+     *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].i32: index of the caret position.</li>
+     * <li>.value[1].f32: X coordinate of the caret relative to the text box.</li>
+     * <li>.value[2].f32: Y coordinate of the caret relative to the text box.</li>
+     * </ul>
+     *
+     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
+     */
     NODE_TEXT_INPUT_CARET_OFFSET,
     /**
-    * @brief Obtains the position of the edited text area relative to the component and its size.
-    * 
-    * Format of the return value {@link ArkUI_AttributeItem}:\n
-    * .value[0].f32: horizontal coordinate. \n
-    * .value[1].f32: vertical coordinate. \n
-    * .value[2].f32: content width. \n
-    * .value[3].f32: content height. \n
-    *
-    */
+     * @brief Obtains the position of the edited text area relative to the component and its size.
+     * 
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].f32: horizontal coordinate.</li>
+     * <li>.value[1].f32: vertical coordinate.</li>
+     * <li>.value[2].f32: content width.</li>
+     * <li>.value[3].f32: content height.</li>
+     * </ul>
+     *
+     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
+     */
     NODE_TEXT_INPUT_CONTENT_RECT,
     /**
-    * @brief Obtains the number of lines of the edited text.
-    * 
-    * Format of the return value {@link ArkUI_AttributeItem}:\n
-    * .value[0].i32: number of lines of the edited text. \n
-    *
-    */
+     * @brief Obtains the number of lines of the edited text.
+     * 
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].i32: number of lines of the edited text.</li>
+     * </ul>
+     *
+     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
+     */
     NODE_TEXT_INPUT_CONTENT_LINE_COUNT,
     /**
      * @brief Sets whether to hide the text selection menu when the text box is long-pressed, double-click, or
      * right-clicked. This attribute can be set, reset, and obtained as required through APIs.
      * 
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: whether to hide the text selection menu when the text box is long-pressed, double-click, or
-     * right-clicked. The default value is <b>false</b>. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: whether to hide the text selection menu when the text box is long-pressed, double-click, or
-     * right-clicked. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32: whether to hide the text selection menu when the text box is long-pressed, double-click, or right-clicked. The default value is <b>false</b>.</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].i32: whether to hide the text selection menu when the text box is long-pressed, double-click, or right-clicked.</li>
+     * </ul>
+     *
+     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
      */
     NODE_TEXT_INPUT_SELECTION_MENU_HIDDEN,
     /**
      * @brief Sets whether the text box loses focus after the Enter key is pressed to submit information.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: whether the text box loses focus. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: whether the text box loses focus. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32: whether the text box loses focus.</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].i32: whether the text box loses focus.</li>
+     * </ul>
+     *
+     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
      */
     NODE_TEXT_INPUT_BLUR_ON_SUBMIT,
     /**
      * @brief Set up a custom keyboard.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .object：custom keyboard,The parameter type is{@Link ArkUI_NodeHandle}。\n
-     * .value[0]?.i32：Sets whether the custom keyboard supports the avoidance feature, default value false.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .object:custom keyboard,The parameter type is{@Link ArkUI_NodeHandle}。\n
-     * .value[0].i32：Set whether the custom keyboard supports the avoidance function.\n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.object: custom keyboard, The parameter type is {@link ArkUI_NodeHandle}.</li>
+     * <li>.value[0]?.i32: Sets whether the custom keyboard supports the avoidance feature, default value false.</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.object: custom keyboard, The parameter type is {@link ArkUI_NodeHandle}.</li>
+     * <li>.value[0].i32: Set whether the custom keyboard supports the avoidance function.</li>
+     * </ul>
+     *
+     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
      */
     NODE_TEXT_INPUT_CUSTOM_KEYBOARD,
     /**
      * @brief Defines the line break rule. This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: The parameter type is {@link ArkUI_WordBreak}. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: The parameter type is {@link ArkUI_WordBreak}. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32: The parameter type is {@link ArkUI_WordBreak}.</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].i32: The parameter type is {@link ArkUI_WordBreak}.</li>
+     * </ul>
+     *
+     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
      */
     NODE_TEXT_INPUT_WORD_BREAK,
 
@@ -4229,24 +4628,34 @@ typedef enum {
      * @brief Sets whether the keyboard pops up when the input box gains focus.
      * It supports property setting, property reset and property acquisition interfaces.
      *
-     * Attribute setting method parameter {@link ArkUI_AttributeItem} format:\n
-     * .value[0].i32: Whether to pop up the keyboard. \n
-     * \n
-     * Attribute acquisition method return value {@link ArkUI_AttributeItem} format: \n
-     * .value[0].i32: Whether to pop up the keyboard. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32: Whether to pop up the keyboard.</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].i32: Whether to pop up the keyboard.</li>
+     * </ul>
+     *
+     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
      */
     NODE_TEXT_INPUT_SHOW_KEYBOARD_ON_FOCUS,
 
     /**
      * @brief When this property is set, the height of the textInput component is calculated using this property.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: set the value of numberOfLines.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: the value of numberOfLines.\n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32: set the value of numberOfLines.</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].i32: the value of numberOfLines.</li>
+     * </ul>
+     *
+     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
      */
     NODE_TEXT_INPUT_NUMBER_OF_LINES,
 
@@ -4254,13 +4663,18 @@ typedef enum {
      * @brief Sets the letter spacing of the <b>TextInput</b> component.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].f32: letter spacing. The default unit is fp. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].f32: letter spacing. The default unit is fp. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].f32: letter spacing. The default unit is fp.</li>
+     * </ul>
+     *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].f32: letter spacing. The default unit is fp.</li>
+     * </ul>
      *
      * @since 15
+     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
      */
     NODE_TEXT_INPUT_LETTER_SPACING = 7032,
 
@@ -4268,52 +4682,72 @@ typedef enum {
      * @brief Sets whether to enable preview text for the <b>TextInput</b> component.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: whether to enable preview tex. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: whether to enable preview tex. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32: whether to enable preview tex.</li>
+     * </ul>
+     *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].i32: whether to enable preview tex.</li>
+     * </ul>
      *
      * @since 15
+     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
      */
     NODE_TEXT_INPUT_ENABLE_PREVIEW_TEXT = 7033,
 
     /**
      * @brief Sets whether to center text vertically in the textInput component.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: whether to center text vertically. The default value is <b>false</b>. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: whether to center text vertically. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32: whether to center text vertically. The default value is <b>false</b>.</li>
+     * </ul>
+     *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].i32: whether to center text vertically.</li>
+     * </ul>
      *
      * @since 18
+     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
      */
     NODE_TEXT_INPUT_HALF_LEADING = 7034,
 
     /**
-    * @brief Set the keyboard style of textInput
-    *
-    * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-    * .value[0].i32：keyboard style，the parameter type is {@link ArkUI_KeyboardAppearanceType}。\n
-    * \n
-    * Format of the return value {@link ArkUI_AttributeItem}：\n
-    * .value[0].i32：keyboard style，the parameter type is {@link ArkUI_KeyboardAppearanceType}。\n
-    *
-    * @since 15
-    */
+     * @brief Set the keyboard style of textInput
+     *
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32: keyboard style, the parameter type is {@link ArkUI_KeyboardAppearanceType}.</li>
+     * </ul>
+     *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].i32: keyboard style, the parameter type is {@link ArkUI_KeyboardAppearanceType}.</li>
+     * </ul>
+     *
+     * @since 15
+     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
+     */
     NODE_TEXT_INPUT_KEYBOARD_APPEARANCE = 7035,
 
     /**
      * @brief Set whether to enable the auto fill animation or not.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: Whether to enable the auto fill animation.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}: \n
-     * .value[0].i32: Get the flag of whether the auto fill animation is enabled.\n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32: Whether to enable the auto fill animation.</li>
+     * </ul>
+     *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].i32: Get the flag of whether the auto fill animation is enabled.</li>
+     * </ul>
      *
      * @since 20
+     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
      */
     NODE_TEXT_INPUT_ENABLE_FILL_ANIMATION = 7036,
 
@@ -4321,63 +4755,78 @@ typedef enum {
      * @brief Set the line height of the input node.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: line height value.
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}: \n
-     * .value[0].i32: line height value
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32: line height value.</li>
+     * </ul>
+     *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].i32: line height value.</li>
+     * </ul>
      *
      * @since 20
+     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
      */
     NODE_TEXT_INPUT_LINE_HEIGHT = 7037,
 
     /**
      * @brief Enables selected data detector.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: Enable selected text recognition, default value true.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: Whether selected text recognition is enabled.\n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32: Enable selected text recognition, default value true.</li>
+     * </ul>
+     *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].i32: Whether selected text recognition is enabled.</li>
+     * </ul>
      *
      * @since 22
+     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
      */
     NODE_TEXT_INPUT_ENABLE_SELECTED_DATA_DETECTOR = 7038,
 
     /**
      * @brief Defines the counter settings. This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: whether to show a character counter. The value <b>true</b> means to show a character counter. \n
-     * .value[1]?.f32: threshold percentage for displaying the character counter. The character counter is displayed
-     * when the number of characters that have been entered is greater than the maximum number of characters multiplied
-     * by the threshold percentage value. The value range is 1 to 100. If the value is a decimal, it is rounded down. \n
-     * .value[2]?.i32: whether to highlight the border when the number of entered characters reaches the maximum. \n
-     * .object: counter configuration. The parameter type is {@link ArkUI_ShowCounterConfig}.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: whether to show a character counter. \n
-     * .value[1].f32: threshold percentage for displaying the character counter. The character counter is displayed
-     * when the number of characters that have been entered is greater than the maximum number of characters multiplied
-     * by the threshold percentage value. The value range is 1 to 100. \n
-     * .value[2].i32: whether to highlight the border when the number of entered characters reaches the maximum.
-     * The default value is <b>true</b>. \n
-     * .object: counter configuration. The parameter type is {@link ArkUI_ShowCounterConfig}.\n
-     * 
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32: whether to show a character counter. The value <b>true</b> means to show a character counter.</li>
+     * <li>.value[1]?.f32: threshold percentage for displaying the character counter. The character counter is displayed when the number of characters that have been entered is greater than the maximum number of characters multiplied by the threshold percentage value. The value range is 1 to 100. If the value is a decimal, it is rounded down.</li>
+     * <li>.value[2]?.i32: whether to highlight the border when the number of entered characters reaches the maximum.</li>
+     * <li>.object: counter configuration. The parameter type is {@link ArkUI_ShowCounterConfig}.</li>
+     * </ul>
+     *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].i32: whether to show a character counter.</li>
+     * <li>.value[1].f32: threshold percentage for displaying the character counter. The character counter is displayed when the number of characters that have been entered is greater than the maximum number of characters multiplied by the threshold percentage value. The value range is 1 to 100.</li>
+     * <li>.value[2].i32: whether to highlight the border when the number of entered characters reaches the maximum. The default value is <b>true</b>.</li>
+     * <li>.object: counter configuration. The parameter type is {@link ArkUI_ShowCounterConfig}.</li>
+     * </ul>
+     *
      * @since 22
+     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
      */
     NODE_TEXT_INPUT_SHOW_COUNTER = 7040,
 
     /**
      * @brief Used to set or get the text content base controller.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n 
-     * .object: the text content base controller. The parameter type is {@link ArkUI_TextContentBaseController}.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .object: the text content base controller. The parameter type is {@link ArkUI_TextContentBaseController}.\n
-     * 
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.object: the text content base controller. The parameter type is {@link ArkUI_TextContentBaseController}.</li>
+     * </ul>
+     *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.object: the text content base controller. The parameter type is {@link ArkUI_TextContentBaseController}.</li>
+     * </ul>
+     *
      * @since 23
+     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
      */
     NODE_TEXT_INPUT_TEXT_CONTENT_CONTROLLER_BASE = 7041,
 
@@ -4385,70 +4834,90 @@ typedef enum {
      * @brief Defines the ellipsis position.
      * This attribute can be set, reset, and obtained as required through APIs.
      * 
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: The parameter type is {@link ArkUI_EllipsisMode}, the default value
-     * is ARKUI_ELLIPSIS_MODE_END. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: The parameter type is {@link ArkUI_EllipsisMode}. \n
-     * 
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32: The parameter type is {@link ArkUI_EllipsisMode}, the default value is ARKUI_ELLIPSIS_MODE_END.</li>
+     * </ul>
+     *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].i32: The parameter type is {@link ArkUI_EllipsisMode}.</li>
+     * </ul>
+     *
      *  @since 24
+     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
      */
     NODE_TEXT_INPUT_ELLIPSIS_MODE = 7042,
 
     /**
      * @brief Whether to avoid an orphan word on the last line of the paragraph.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32:  Whether enable the feature, true means enable this feature, false means disable.
-     * The default value is false.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: The current state of this feature.\n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32:  Whether enable the feature, true means enable this feature, false means disable. The default value is false.</li>
+     * </ul>
+     *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].i32: The current state of this feature.</li>
+     * </ul>
      *
      * @since 26.0.0
+     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
      */
  	  NODE_TEXT_INPUT_ORPHAN_CHAR_OPTIMIZATION = 7043,
 
     /**
      * @brief Whether to compress punctuation at the beginning of line.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32:  Whether enable the feature, true means enable this feature, false means disable.
-     * The default value is false.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: Whether compress punctuation at the beginning of line.\n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32:  Whether enable the feature, true means enable this feature, false means disable. The default value is false.</li>
+     * </ul>
+     *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].i32: Whether compress punctuation at the beginning of line.</li>
+     * </ul>
      *
      * @since 23
+     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
      */
     NODE_TEXT_INPUT_COMPRESS_LEADING_PUNCTUATION = 7044,
 
     /**
      * @brief Determines whether the layout adds extra padding at the top and bottom to make space for characters.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: Enable include the font padding, true means enable this feature, false means disable.
-     * The default value is false.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: Whether include the font padding.\n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32: Enable include the font padding, true means enable this feature, false means disable. The default value is false.</li>
+     * </ul>
+     *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].i32: Whether include the font padding.</li>
+     * </ul>
      *
      * @since 23
+     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
      */
     NODE_TEXT_INPUT_INCLUDE_FONT_PADDING = 7045,
 
     /**
      * @brief Whether to include ascent/descent from fallback fonts to prevent overlapping lines.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32:  Whether enable the feature, true means enable this feature, false means disable.
-     * The default value is false.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: Whether fallback line spacing.\n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32:  Whether enable the feature, true means enable this feature, false means disable. The default value is false.</li>
+     * </ul>
+     *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].i32: Whether fallback line spacing.</li>
+     * </ul>
      *
      * @since 23
+     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
      */
     NODE_TEXT_INPUT_FALLBACK_LINE_SPACING = 7046,
 
@@ -4456,28 +4925,36 @@ typedef enum {
      * @brief Writing direction of the text.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: writing direction of the text. The value is an enum of {@link ArkUI_TextDirection}. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: writing direction the text. The value is an enum of {@link ArkUI_TextDirection}. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32: writing direction of the text. The value is an enum of {@link ArkUI_TextDirection}.</li>
+     * </ul>
+     *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].i32: writing direction the text. The value is an enum of {@link ArkUI_TextDirection}.</li>
+     * </ul>
      *
      * @since 23
+     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
      */
     NODE_TEXT_INPUT_DIRECTION = 7047,
 
     /**
      * @brief Used to set the selected drag preview style.
      * 
-     * Format of the {@link Arkui_AttributeItem} parameter for setting the attribute:\n
-     * .object: selected drag preview style configuration.
-     * The parameter type is {@link Arkui_SelectedDragPreviewStyle}.\n
-     * \n
-     * Format of the return value {@link Arkui_AttributeItem}:\n
-     * .object: selected drag preview style configuration.\n
-     * The parameter type is {@link Arkui_SelectedDragPreviewStyle}.\n
-     * 
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.object: selected drag preview style configuration. The parameter type is {@link ArkUI_SelectedDragPreviewStyle}.</li>
+     * </ul>
+     *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.object: selected drag preview style configuration. The parameter type is {@link ArkUI_SelectedDragPreviewStyle}.</li>
+     * </ul>
+     *
      * @since 23
+     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
      */
     NODE_TEXT_INPUT_SELECTED_DRAG_PREVIEW_STYLE = 7048,
 
@@ -4485,13 +4962,18 @@ typedef enum {
      * @brief Defines the textinput textOverflow attribute.
      * which can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: display mode when the text is too long {@link ArkUI_TextOverflow}. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: display mode when the text is too long {@link ArkUI_TextOverflow}. \n
-     * 
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32: display mode when the text is too long {@link ArkUI_TextOverflow}.</li>
+     * </ul>
+     *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].i32: display mode when the text is too long {@link ArkUI_TextOverflow}.</li>
+     * </ul>
+     *
      *  @since 24
+     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
      */
     NODE_TEXT_INPUT_TEXT_OVERFLOW = 7049,
 
@@ -4499,12 +4981,18 @@ typedef enum {
      * @brief Defines the text decoration style and color for single-line text box.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * ?.object: Optional. The decoration style options. The parameter type is {@link OH_ArkUI_DecorationStyleOptions}.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .object: The decoration style options. The parameter type is {@link OH_ArkUI_DecorationStyleOptions}.\n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>?.object: Optional. The decoration style options. The parameter type is {@link OH_ArkUI_DecorationStyleOptions}.</li>
+     * </ul>
+     *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.object: The decoration style options. The parameter type is {@link OH_ArkUI_DecorationStyleOptions}.</li>
+     * </ul>
      *
      * @since 26.0.0
+     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
      */
     NODE_TEXT_INPUT_DECORATION = 7050,
 
@@ -4512,33 +5000,24 @@ typedef enum {
      * @brief Sets a linear gradient effect for text in the single-line text box.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].f32: start angle of the linear gradient.
-     * The setting takes effect only when <b>direction</b> is set to <b>ARKUI_LINEAR_GRADIENT_DIRECTION_CUSTOM</b>.
-     * A positive value indicates a clockwise rotation from the origin, (0, 0). The default value is <b>180</b>. \n
-     * .value[1].i32: direction of the linear gradient. When a direction other than
-     * <b>ARKUI_LINEAR_GRADIENT_DIRECTION_CUSTOM</b> is set, the <b>angle</b> property is ignored.
-     * The parameter type is {@link ArkUI_LinearGradientDirection}. \n
-     * .value[2].i32: whether the colors are repeated. The default value is <b>false</b>.
-     * .object: array of color stops, each of which consists of a color and its stop position.
-     * The parameter type is {@link ArkUI_ColorStop}. Invalid colors are automatically skipped. \n \n
-     * colors: colors of the color stops. \n
-     * stops: stop positions of the color stops. \n
-     * size: number of colors. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].f32: start angle of the linear gradient.
-     * When <b>direction</b> is set to <b>ARKUI_LINEAR_GRADIENT_DIRECTION_CUSTOM</b>, <b>angle</b> at the set value;
-     * otherwise, it is at default value. \n
-     * .value[1].i32: direction of the linear gradient. \n
-     * .value[2].i32: whether the colors are repeated. \n
-     * .object: array of color stops, each of which consists of a color and its stop position.
-     * The parameter type is {@link ArkUI_ColorStop}. Invalid colors are automatically skipped. \n \n
-     * colors: colors of the color stops. \n
-     * stops: stop positions of the color stops. \n
-     * size: number of colors. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].f32: start angle of the linear gradient. The setting takes effect only when <b>direction</b> is set to <b>ARKUI_LINEAR_GRADIENT_DIRECTION_CUSTOM</b>. A positive value indicates a clockwise rotation from the origin, (0, 0). The default value is <b>180</b>.</li>
+     * <li>.value[1].i32: direction of the linear gradient. When a direction other than <b>ARKUI_LINEAR_GRADIENT_DIRECTION_CUSTOM</b> is set, the <b>angle</b> property is ignored. The parameter type is {@link ArkUI_LinearGradientDirection}.</li>
+     * <li>.value[2].i32: whether the colors are repeated. The default value is <b>false</b>.</li>
+     * <li>.object: array of color stops, each of which consists of a color and its stop position. The parameter type is {@link ArkUI_ColorStop}. Invalid colors are automatically skipped. colors: colors of the color stops. stops: stop positions of the color stops. size: number of colors.</li>
+     * </ul>
+     *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].f32: start angle of the linear gradient. When <b>direction</b> is set to <b>ARKUI_LINEAR_GRADIENT_DIRECTION_CUSTOM</b>, <b>angle</b> at the set value; otherwise, it is at default value.</li>
+     * <li>.value[1].i32: direction of the linear gradient.</li>
+     * <li>.value[2].i32: whether the colors are repeated.</li>
+     * <li>.object: array of color stops, each of which consists of a color and its stop position. The parameter type is {@link ArkUI_ColorStop}. Invalid colors are automatically skipped. colors: colors of the color stops. stops: stop positions of the color stops. size: number of colors.</li>
+     * </ul>
      *
      * @since 26.0.0
+     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
      */
     NODE_TEXT_INPUT_LINEAR_GRADIENT = 7051,
 
@@ -4546,31 +5025,26 @@ typedef enum {
      * @brief Sets a radial gradient effect for text in the single-line text box.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0]?.f32: X-coordinate of the radial gradient center relative to the upper left corner of the text. \n
-     * .value[1]?.f32: Y-coordinate of the radial gradient center relative to the upper left corner of the text. \n
-     * .value[2]?.f32: radius of the radial gradient. The default value is <b>0</b>. \n
-     * .value[3]?.i32: whether the colors are repeated.
-     * The value <b>1</b> means that the colors are repeated, and <b>0</b> means the opposite.\n \n
-     * .object: array of color stops, each of which consists of a color and its stop position.
-     * The parameter type is {@link ArkUI_ColorStop}. Invalid colors are automatically skipped. \n
-     * colors: colors of the color stops. \n
-     * stops: stop positions of the color stops. \n
-     * size: number of colors. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].f32: X-coordinate of the radial gradient center relative to the upper left corner of the text. \n
-     * .value[1].f32: Y-coordinate of the radial gradient center relative to the upper left corner of the text. \n
-     * .value[2].f32: radius of the radial gradient. The default value is <b>0</b>. \n
-     * .value[3].i32: whether the colors are repeated.
-     * The value <b>1</b> means that the colors are repeated, and <b>0</b> means the opposite.  \n
-     * .object: array of color stops, each of which consists of a color and its stop position.
-     * The parameter type is {@link ArkUI_ColorStop}. Invalid colors are automatically skipped. \n
-     * colors: colors of the color stops. \n
-     * stops: stop positions of the color stops. \n
-     * size: number of colors. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0]?.f32: X-coordinate of the radial gradient center relative to the upper left corner of the text.</li>
+     * <li>.value[1]?.f32: Y-coordinate of the radial gradient center relative to the upper left corner of the text.</li>
+     * <li>.value[2]?.f32: radius of the radial gradient. The default value is <b>0</b>.</li>
+     * <li>.value[3]?.i32: whether the colors are repeated. The value <b>1</b> means that the colors are repeated, and <b>0</b> means the opposite.</li>
+     * <li>.object: array of color stops, each of which consists of a color and its stop position. The parameter type is {@link ArkUI_ColorStop}. Invalid colors are automatically skipped. colors: colors of the color stops. stops: stop positions of the color stops. size: number of colors.</li>
+     * </ul>
+     *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].f32: X-coordinate of the radial gradient center relative to the upper left corner of the text.</li>
+     * <li>.value[1].f32: Y-coordinate of the radial gradient center relative to the upper left corner of the text.</li>
+     * <li>.value[2].f32: radius of the radial gradient. The default value is <b>0</b>.</li>
+     * <li>.value[3].i32: whether the colors are repeated. The value <b>1</b> means that the colors are repeated, and <b>0</b> means the opposite.</li>
+     * <li>.object: array of color stops, each of which consists of a color and its stop position. The parameter type is {@link ArkUI_ColorStop}. Invalid colors are automatically skipped. colors: colors of the color stops. stops: stop positions of the color stops. size: number of colors.</li>
+     * </ul>
      *
      * @since 26.0.0
+     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
      */
     NODE_TEXT_INPUT_RADIAL_GRADIENT = 7052,
 
@@ -4578,13 +5052,18 @@ typedef enum {
      * @brief Sets whether to enable punctuation overflow at line ends.
      * <br>This attribute can be set, reset, and obtained as required through APIs.
      *
-     * <br>Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:
-     * <br>.value[0].i32: whether to enable punctuation overflow, the default value is false.
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32: whether to enable punctuation overflow, the default value is false.</li>
+     * </ul>
      *
-     * <br>Format of the return value {@link ArkUI_AttributeItem}:
-     * <br>.value[0].i32: whether to enable punctuation overflow.
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].i32: whether to enable punctuation overflow.</li>
+     * </ul>
      *
      * @since 26.0.0
+     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
      */
     NODE_TEXT_INPUT_PUNCTUATION_OVERFLOW = 7053,
 
@@ -4592,151 +5071,196 @@ typedef enum {
      * @brief Defines the default placeholder text for the multi-line text box.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .string: default placeholder text. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .string: default placeholder text. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.string: default placeholder text.</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.string: default placeholder text.</li>
+     * </ul>
+     *
+     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
      */
     NODE_TEXT_AREA_PLACEHOLDER = MAX_NODE_SCOPE_NUM * ARKUI_NODE_TEXT_AREA,
     /**
      * @brief Defines the default text content for the multi-line text box.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .string: default text content. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .string: default text content. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.string: default text content.</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.string: default text content.</li>
+     * </ul>
+     *
+     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
      */
     NODE_TEXT_AREA_TEXT,
     /**
      * @brief Defines the maximum number of characters in the text input.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: maximum number of characters in the text input. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: maximum number of characters in the text input. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32: maximum number of characters in the text input.</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].i32: maximum number of characters in the text input.</li>
+     * </ul>
+     *
+     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
      */
     NODE_TEXT_AREA_MAX_LENGTH,
     /**
      * @brief Defines the placeholder text color.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].u32: color value, in 0xARGB format. For example, 0xFFFF0000 indicates red. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].u32: color value, in 0xARGB format. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].u32: color value, in 0xARGB format. For example, 0xFFFF0000 indicates red.</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].u32: color value, in 0xARGB format.</li>
+     * </ul>
+     *
+     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
      */
     NODE_TEXT_AREA_PLACEHOLDER_COLOR,
     /**
      * @brief Defines the placeholder text font.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0]?.f32: font size, in fp. Optional. The default value is <b>16.0</b>.\n
-     * .value[1]?.i32: font style {@link ArkUI_FontStyle}. Optional. The default value is <b>ARKUI_FONT_STYLE_NORMAL</b>.\n
-     * .value[2]?.i32: font weight {@link ArkUI_FontWeight}. Optional. The default value is <b>ARKUI_FONT_WEIGHT_NORMAL</b>.\n
-     * ?.string: font family. Multiple font families are separated by commas (,). For example, "font weight; font family 1, font family 2". \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].f32: font size, in fp.\n
-     * .value[1].i32: font style {@link ArkUI_FontStyle}.\n
-     * .value[2].i32: font weight {@link ArkUI_FontWeight}.\n
-     * .string: font family. Multiple font families are separated by commas (,). \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0]?.f32: font size, in fp. Optional. The default value is <b>16.0</b>.</li>
+     * <li>.value[1]?.i32: font style {@link ArkUI_FontStyle}. Optional. The default value is <b>ARKUI_FONT_STYLE_NORMAL</b>.</li>
+     * <li>.value[2]?.i32: font weight {@link ArkUI_FontWeight}. Optional. The default value is <b>ARKUI_FONT_WEIGHT_NORMAL</b>.</li>
+     * <li>?.string: font family. Multiple font families are separated by commas (,). For example, "font weight; font family 1, font family 2".</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].f32: font size, in fp.</li>
+     * <li>.value[1].i32: font style {@link ArkUI_FontStyle}.</li>
+     * <li>.value[2].i32: font weight {@link ArkUI_FontWeight}.</li>
+     * <li>.string: font family. Multiple font families are separated by commas (,).</li>
+     * </ul>
+     *
+     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
      */
     NODE_TEXT_AREA_PLACEHOLDER_FONT,
     /**
      * @brief Defines the caret color attribute.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].u32: background color, in 0xARGB format. For example, 0xFFFF0000 indicates red. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].u32: background color, in 0xARGB format. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].u32: background color, in 0xARGB format. For example, 0xFFFF0000 indicates red.</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].u32: background color, in 0xARGB format.</li>
+     * </ul>
+     *
+     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
      */
     NODE_TEXT_AREA_CARET_COLOR,
     /**
      * @brief Defines the editable state for the multi-line text box.
      * This attribute can be set as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: whether to remain in the editable state. The value <b>true</b> means to remain in the
-     * editable state, and <b>false</b> means to exit the editable state.\n \n
-     * \n
-     * Format of the {@link ArkUI_AttributeItem} parameter for obtaining the attribute:
-     * .value[0].i32: whether to remain in the editable state. The value <b>true</b> means to remain in the editable
-     * state, and <b>false</b> means to exit the editable state.\n \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32: whether to remain in the editable state. The value <b>true</b> means to remain in the editable state, and <b>false</b> means to exit the editable state.</li>
+     * </ul>
      *
+     * **Format of the {@link ArkUI_AttributeItem} for obtaining the attribute:**
+     * <ul>
+     * <li>.value[0].i32: whether to remain in the editable state. The value <b>true</b> means to remain in the editable state, and <b>false</b> means to exit the editable state.</li>
+     * </ul>
+     *
+     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
      */
     NODE_TEXT_AREA_EDITING,
     /**
      * @brief Defines the text box type. This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: text box type {@link ArkUI_TextAreaType}.
-     * The default value is <b>ARKUI_TEXTAREA_TYPE_NORMAL</b>. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: text box type {@link ArkUI_TextAreaType}. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32: text box type {@link ArkUI_TextAreaType}. The default value is <b>ARKUI_TEXTAREA_TYPE_NORMAL</b>.</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].i32: text box type {@link ArkUI_TextAreaType}.</li>
+     * </ul>
+     *
+     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
      */
     NODE_TEXT_AREA_TYPE,
     /**
      * @brief Defines the counter settings. This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: whether to show a character counter. The value <b>true</b> means to show a character counter. \n
-     * .value[1]?.f32: threshold percentage for displaying the character counter. The character counter is displayed
-     * when the number of characters that have been entered is greater than the maximum number of characters multiplied
-     * by the threshold percentage value. The value range is 1 to 100. If the value is a decimal, it is rounded down. \n
-     * .value[2]?.i32: whether to highlight the border when the number of entered characters reaches the maximum. \n
-     * .object: counter configuration. The parameter type is {@link ArkUI_ShowCounterConfig}. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: whether to show a character counter. \n
-     * .value[1].f32: threshold percentage for displaying the character counter. The character counter is displayed
-     * when the number of characters that have been entered is greater than the maximum number of characters multiplied
-     * by the threshold percentage value. The value range is 1 to 100. \n
-     * .value[2].i32: whether to highlight the border when the number of entered characters reaches the maximum.
-     * The default value is <b>true</b>. \n
-     * .object: counter configuration. The parameter type is {@link ArkUI_ShowCounterConfig}. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32: whether to show a character counter. The value <b>true</b> means to show a character counter.</li>
+     * <li>.value[1]?.f32: threshold percentage for displaying the character counter. The character counter is displayed when the number of characters that have been entered is greater than the maximum number of characters multiplied by the threshold percentage value. The value range is 1 to 100. If the value is a decimal, it is rounded down.</li>
+     * <li>.value[2]?.i32: whether to highlight the border when the number of entered characters reaches the maximum.</li>
+     * <li>.object: counter configuration. The parameter type is {@link ArkUI_ShowCounterConfig}.</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].i32: whether to show a character counter.</li>
+     * <li>.value[1].f32: threshold percentage for displaying the character counter. The character counter is displayed when the number of characters that have been entered is greater than the maximum number of characters multiplied by the threshold percentage value. The value range is 1 to 100.</li>
+     * <li>.value[2].i32: whether to highlight the border when the number of entered characters reaches the maximum. The default value is <b>true</b>.</li>
+     * <li>.object: counter configuration. The parameter type is {@link ArkUI_ShowCounterConfig}.</li>
+     * </ul>
+     *
+     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
      */
     NODE_TEXT_AREA_SHOW_COUNTER,
     /**
      * @brief Sets whether to hide the text selection menu when the text box is long-pressed, double-click,
      * or right-clicked. This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: whether to hide the text selection menu when the text box is long-pressed, double-click,
-     * or right-clicked. The default value is <b>false</b>. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: whether to hide the text selection menu when the text box is long-pressed, double-click,
-     * or right-clicked. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32: whether to hide the text selection menu when the text box is long-pressed, double-click, or right-clicked. The default value is <b>false</b>.</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].i32: whether to hide the text selection menu when the text box is long-pressed, double-click, or right-clicked.</li>
+     * </ul>
+     *
+     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
      */
     NODE_TEXT_AREA_SELECTION_MENU_HIDDEN,
     /**
      * @brief Sets whether the multi-line text box loses focus after the Enter key is pressed to submit information.
      * 
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: whether the text box loses focus. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: whether the text box loses focus. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32: whether the text box loses focus.</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].i32: whether the text box loses focus.</li>
+     * </ul>
+     *
+     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
      */
     NODE_TEXT_AREA_BLUR_ON_SUBMIT,
     /**
@@ -4745,119 +5269,163 @@ typedef enum {
      * Other inputs are filtered out. The specified regular expression can match single characters,
      * but not strings.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .string: regular expression. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .string: regular expression. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.string: regular expression.</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.string: regular expression.</li>
+     * </ul>
+     *
+     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
      */
     NODE_TEXT_AREA_INPUT_FILTER,
     /**
      * @brief Defines the background color of the selected text.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].u32: color value, in 0xARGB format. For example, 0xFFFF0000 indicates red. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].u32: color value, in 0xARGB format. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].u32: color value, in 0xARGB format. For example, 0xFFFF0000 indicates red.</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].u32: color value, in 0xARGB format.</li>
+     * </ul>
+     *
+     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
      */
     NODE_TEXT_AREA_SELECTED_BACKGROUND_COLOR,
     /**
      * @brief Defines the type of the Enter key.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: type of the Enter key{@link ArkUI_EnterKeyType}. The default value is <b>ARKUI_ENTER_KEY_TYPE_DONE</b>. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: type of the Enter key{@link ArkUI_EnterKeyType}. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32: type of the Enter key{@link ArkUI_EnterKeyType}. The default value is <b>ARKUI_ENTER_KEY_TYPE_DONE</b>.</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].i32: type of the Enter key{@link ArkUI_EnterKeyType}.</li>
+     * </ul>
+     *
+     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
      */
     NODE_TEXT_AREA_ENTER_KEY_TYPE,
     /**
      * @brief Defines whether to enable the input method when the component obtains focus.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: whether to enable the input method when the component obtains focus.
-     * The value <b>true</b> means to enable the input method, and <b>false</b> means the opposite.\n \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: The value <b>1</b> means to enable the input method when the component obtains focus,
-     * and <b>0</b> means the opposite. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32: whether to enable the input method when the component obtains focus. The value <b>true</b> means to enable the input method, and <b>false</b> means the opposite.</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].i32: The value <b>1</b> means to enable the input method when the component obtains focus, and <b>0</b> means the opposite.</li>
+     * </ul>
+     *
+     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
      */
     NODE_TEXT_AREA_ENABLE_KEYBOARD_ON_FOCUS,
     /**
-     * @brief Defines whether to enable the input method when the component obtains focus.
+     * @brief Sets or obtains the position of the cursor.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: whether to enable the input method when the component obtains focus.
-     * The value <b>true</b> means to enable the input method, and <b>false</b> means the opposite.\n \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: The value <b>1</b> means to enable the input method when the component obtains focus,
-     * and <b>0</b> means the opposite. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32: Length of characters from the beginning of the string to the position of the cursor.</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].i32: Index value of the cursor position.</li>
+     * <li>.value[1].f32: indicates the x-coordinate value of the cursor relative to the text box.</li>
+     * <li>.value[2].f32: indicates the y-coordinate value of the cursor relative to the text box.</li>
+     * </ul>
+     *
+     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
      */
     NODE_TEXT_AREA_CARET_OFFSET,
     /**
      * @brief Obtains the position of the edited text area relative to the component and its size.
      * 
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].f32: horizontal coordinate. \n
-     * .value[1].f32: vertical coordinate. \n
-     * .value[2].f32: content width. \n
-     * .value[3].f32: content height. \n
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].f32: horizontal coordinate.</li>
+     * <li>.value[1].f32: vertical coordinate.</li>
+     * <li>.value[2].f32: content width.</li>
+     * <li>.value[3].f32: content height.</li>
+     * </ul>
      *
+     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
      */
     NODE_TEXT_AREA_CONTENT_RECT,
     /**
      * @brief Obtains the number of lines of the edited text.
      * 
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: number of lines of the edited text. \n
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].i32: number of lines of the edited text.</li>
+     * </ul>
      *
+     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
      */
     NODE_TEXT_AREA_CONTENT_LINE_COUNT,
     /**
      * @brief Sets the text selection area, which will be highlighted.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: start position of the text selection. \n
-     * .value[1].i32: end position of the text selection. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: start position of the text selection. \n
-     * .value[1].i32: end position of the text selection. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32: start position of the text selection.</li>
+     * <li>.value[1].i32: end position of the text selection.</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].i32: start position of the text selection.</li>
+     * <li>.value[1].i32: end position of the text selection.</li>
+     * </ul>
+     *
+     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
      */
     NODE_TEXT_AREA_TEXT_SELECTION,
     /**
      * @brief Sets whether to enable autofill.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: whether to enable autofill. The default value is <b>true</b>. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: whether to enable autofill. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32: whether to enable autofill. The default value is <b>true</b>.</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].i32: whether to enable autofill.</li>
+     * </ul>
+     *
+     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
      */
     NODE_TEXT_AREA_ENABLE_AUTO_FILL,
     /**
      * @brief Sets the autofill type.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: autofill type. The parameter type is {@link ArkUI_TextInputContentType}. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: autofill type. The parameter type is {@link ArkUI_TextInputContentType}. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32: autofill type. The parameter type is {@link ArkUI_TextInputContentType}.</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].i32: autofill type. The parameter type is {@link ArkUI_TextInputContentType}.</li>
+     * </ul>
+     *
+     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
      */
     NODE_TEXT_AREA_CONTENT_TYPE,
 
@@ -4865,24 +5433,34 @@ typedef enum {
      * @brief Sets whether the keyboard pops up when the input box gains focus.
      * It supports property setting, property reset and property acquisition interfaces.
      *
-     * Attribute setting method parameter {@link ArkUI_AttributeItem} format:\n
-     * .value[0].i32: Whether to pop up the keyboard. \n
-     * \n
-     * Attribute acquisition method return value {@link ArkUI_AttributeItem} format: \n
-     * .value[0].i32: Whether to pop up the keyboard. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32: Whether to pop up the keyboard.</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].i32: Whether to pop up the keyboard.</li>
+     * </ul>
+     *
+     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
      */
     NODE_TEXT_AREA_SHOW_KEYBOARD_ON_FOCUS,
 
     /**
      * @brief When this property is set, the height of the textArea component is calculated using this property.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: set the value of numberOfLines.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: Set the value of numberOfLines\n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32: set the value of numberOfLines.</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].i32: Set the value of numberOfLines.</li>
+     * </ul>
+     *
+     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
      */
     NODE_TEXT_AREA_NUMBER_OF_LINES,
 
@@ -4890,92 +5468,127 @@ typedef enum {
      * @brief Sets the letter spacing of the <b>TextArea</b> component.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].f32: letter spacing. The default unit is fp. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].f32: letter spacing. The default unit is fp. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].f32: letter spacing. The default unit is fp.</li>
+     * </ul>
+     *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].f32: letter spacing. The default unit is fp.</li>
+     * </ul>
      *
      * @since 15
+     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
      */
     NODE_TEXT_AREA_LETTER_SPACING = 8023,
     /**
      * @brief Sets whether to enable preview text for the <b>TextArea</b> component.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: whether to enable preview tex. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: whether to enable preview tex. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32: whether to enable preview tex.</li>
+     * </ul>
+     *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].i32: whether to enable preview tex.</li>
+     * </ul>
      *
      * @since 15
+     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
      */
     NODE_TEXT_AREA_ENABLE_PREVIEW_TEXT = 8024,
 
     /**
      * @brief Sets whether to center text vertically in the textArea component.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: whether to center text vertically. The default value is <b>false</b>. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: whether to center text vertically. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32: whether to center text vertically. The default value is <b>false</b>.</li>
+     * </ul>
+     *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].i32: whether to center text vertically.</li>
+     * </ul>
      *
      * @since 18
+     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
      */
     NODE_TEXT_AREA_HALF_LEADING = 8025,
 
     /**
-    * @brief Set the keyboard style of textArea
-    *
-    * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-    * .value[0].i32：keyboard style，the parameter type is {@link ArkUI_KeyboardAppearanceType}。\n
-    * \n
-    * Format of the return value {@link ArkUI_AttributeItem}：\n
-    * .value[0].i32：keyboard style，the parameter type is {@link ArkUI_KeyboardAppearanceType}。\n
-    *
-    * @since 15
-    */
+     * @brief Set the keyboard style of textArea
+     *
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32: keyboard style, the parameter type is {@link ArkUI_KeyboardAppearanceType}.</li>
+     * </ul>
+     *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].i32: keyboard style, the parameter type is {@link ArkUI_KeyboardAppearanceType}.</li>
+     * </ul>
+     *
+     * @since 15
+     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
+     */
     NODE_TEXT_AREA_KEYBOARD_APPEARANCE = 8026,
 
     /**
      * @brief Set the max lines of the node. This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: max lines count.
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: max lines count.\n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32: max lines count.</li>
+     * </ul>
+     *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].i32: max lines count.</li>
+     * </ul>
      *
      * @since 20
+     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
      */
     NODE_TEXT_AREA_MAX_LINES = 8027,
 
     /**
      * @brief Set line spacing of the node. This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: line spacing value. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: line spacing value. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32: line spacing value.</li>
+     * </ul>
+     *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].i32: line spacing value.</li>
+     * </ul>
      *
      * @since 20
+     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
      */
     NODE_TEXT_AREA_LINE_SPACING = 8028,
 
     /**
      * @brief Set the min lines of the node. This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: min lines count.
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}: \n
-     * .value[0].i32: min line count.\n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32: min lines count.</li>
+     * </ul>
+     *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].i32: min line count.</li>
+     * </ul>
      *
      * @since 20
      * 
+     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
      */
     NODE_TEXT_AREA_MIN_LINES = 8029,
  
@@ -4983,26 +5596,36 @@ typedef enum {
      * @brief Set the max lines of the node with scroll.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: max lines count with scroll.
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}: \n
-     * .value[0].i32: max line count with scroll.\n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32: max lines count with scroll.</li>
+     * </ul>
+     *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].i32: max line count with scroll.</li>
+     * </ul>
      *
      * @since 20
+     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
      */
     NODE_TEXT_AREA_MAX_LINES_WITH_SCROLL = 8030,
 
     /**
      * @brief Set the line height of the node. This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: line height value.
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}: \n
-     * .value[0].i32: line height value
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32: line height value.</li>
+     * </ul>
+     *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].i32: line height value.</li>
+     * </ul>
      *
      * @since 20
+     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
      */
     NODE_TEXT_AREA_LINE_HEIGHT = 8031,
 
@@ -5010,27 +5633,36 @@ typedef enum {
      * @brief Define bar state of the text area.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: bar state of the text area, specified using the {@link ArkUI_BarState} enum.
-     * The default value is <b>ARKUI_BAR_STATE_AUTO</b>. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: bar state of the text area, specified using the {@link ArkUI_BarState} enum. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32: bar state of the text area, specified using the {@link ArkUI_BarState} enum. The default value is <b>ARKUI_BAR_STATE_AUTO</b>.</li>
+     * </ul>
+     *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].i32: bar state of the text area, specified using the {@link ArkUI_BarState} enum.</li>
+     * </ul>
      *
      * @since 22
+     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
      */
      NODE_TEXT_AREA_BAR_STATE = 8032,
 
     /**
      * @brief Enables selected data detector.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: Enable selected text recognition, default value true.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: Whether selected text recognition is enabled.\n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32: Enable selected text recognition, default value true.</li>
+     * </ul>
+     *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].i32: Whether selected text recognition is enabled.</li>
+     * </ul>
      *
      * @since 22
+     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
      */
     NODE_TEXT_AREA_ENABLE_SELECTED_DATA_DETECTOR = 8033,
 
@@ -5038,41 +5670,56 @@ typedef enum {
      * @brief Defines the color of the scrollbar. This attribute can be set, reset, and obtained as required
      * through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .data[0].u32: color of the scroll bar thumb, in 0xARGB format. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .data[0].u32: color of the scroll bar thumb, in 0xARGB format. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.data[0].u32: color of the scroll bar thumb, in 0xARGB format.</li>
+     * </ul>
+     *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.data[0].u32: color of the scroll bar thumb, in 0xARGB format.</li>
+     * </ul>
      *
      * @since 22
+     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
      */
      NODE_TEXT_AREA_SCROLL_BAR_COLOR = 8035,
 
-     /**
+    /**
      * @brief Sets up a custom keyboard.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .object: custom keyboard,The parameter type is {@Link ArkUI_NodeHandle}.\n
-     * .value[0]?.i32: Sets whether the custom keyboard supports the avoidance feature, default value false.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .object:custom keyboard,The parameter type is {@Link ArkUI_NodeHandle}.\n
-     * .value[0].i32: Set whether the custom keyboard supports the avoidance function.\n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.object: custom keyboard, The parameter type is {@link ArkUI_NodeHandle}.</li>
+     * <li>.value[0]?.i32: Sets whether the custom keyboard supports the avoidance feature, default value false.</li>
+     * </ul>
+     *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.object: custom keyboard, The parameter type is {@link ArkUI_NodeHandle}.</li>
+     * <li>.value[0].i32: Set whether the custom keyboard supports the avoidance function.</li>
+     * </ul>
      *
      * @since 22
+     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
      */
     NODE_TEXT_AREA_CUSTOM_KEYBOARD = 8036,
 
     /**
      * @brief Used to set or get the text content base controller.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n 
-     * .object: the text content base controller. The parameter type is {@link ArkUI_TextContentBaseController}.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .object: the text content base controller. The parameter type is {@link ArkUI_TextContentBaseController}.\n
-     * 
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.object: the text content base controller. The parameter type is {@link ArkUI_TextContentBaseController}.</li>
+     * </ul>
+     *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.object: the text content base controller. The parameter type is {@link ArkUI_TextContentBaseController}.</li>
+     * </ul>
+     *
      * @since 23
+     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
      */
     NODE_TEXT_AREA_TEXT_CONTENT_CONTROLLER_BASE = 8037,
 
@@ -5080,70 +5727,90 @@ typedef enum {
      * @brief Defines the ellipsis position.
      * This attribute can be set, reset, and obtained as required through APIs.
      * 
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: The parameter type is {@link ArkUI_EllipsisMode}, the default value
-     * is ARKUI_ELLIPSIS_MODE_END. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: The parameter type is {@link ArkUI_EllipsisMode}. \n
-     * 
-     *  @since 24
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32: The parameter type is {@link ArkUI_EllipsisMode}, the default value is ARKUI_ELLIPSIS_MODE_END.</li>
+     * </ul>
+     *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].i32: The parameter type is {@link ArkUI_EllipsisMode}.</li>
+     * </ul>
+     *
+     * @since 24
+     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
      */
     NODE_TEXT_AREA_ELLIPSIS_MODE = 8038,
 
     /**
      * @brief Whether to avoid an orphan word on the last line of the paragraph.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32:  Whether enable the feature true means enable this feature, false means disable.
-     * The default value is false.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: The current state of this feature.\n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32:  Whether enable the feature true means enable this feature, false means disable. The default value is false.</li>
+     * </ul>
+     *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].i32: The current state of this feature.</li>
+     * </ul>
      *
      * @since 26.0.0
+     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
      */
     NODE_TEXT_AREA_ORPHAN_CHAR_OPTIMIZATION = 8039,
 
     /**
      * @brief Whether to compress punctuation at the beginning of line.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32:  Whether enable the feature, true means enable this feature, false means disable.
-     * The default value is false.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: Whether compress punctuation at the beginning of line.\n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32:  Whether enable the feature, true means enable this feature, false means disable. The default value is false.</li>
+     * </ul>
+     *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].i32: Whether compress punctuation at the beginning of line.</li>
+     * </ul>
      *
      * @since 23
+     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
      */
     NODE_TEXT_AREA_COMPRESS_LEADING_PUNCTUATION = 8040,
 
     /**
      * @brief Determines whether the layout adds extra padding at the top and bottom to make space for characters.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: Enable include the font padding, true means enable this feature, false means disable.
-     * The default value is false.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: Whether include the font padding.\n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32: Enable include the font padding, true means enable this feature, false means disable. The default value is false.</li>
+     * </ul>
+     *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].i32: Whether include the font padding.</li>
+     * </ul>
      *
      * @since 23
+     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
      */
     NODE_TEXT_AREA_INCLUDE_FONT_PADDING = 8041,
 
     /**
      * @brief Whether to include ascent/descent from fallback fonts to prevent overlapping lines.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32:  Whether enable the feature, true means enable this feature, false means disable.
-     * The default value is false.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: Whether fallback line spacing.\n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32:  Whether enable the feature, true means enable this feature, false means disable. The default value is false.</li>
+     * </ul>
+     *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].i32: Whether fallback line spacing.</li>
+     * </ul>
      *
      * @since 23
+     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
      */
     NODE_TEXT_AREA_FALLBACK_LINE_SPACING = 8042,
 
@@ -5151,13 +5818,18 @@ typedef enum {
      * @brief Whether to enable horizontal scrolling when text is wider than the view.
      * The default value is false, and text will be wrapped by the view.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: Whether enable the feature, true means enable this feature, false means disable. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: Whether enable the feature. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32: Whether enable the feature, true means enable this feature, false means disable.</li>
+     * </ul>
+     *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].i32: Whether enable the feature.</li>
+     * </ul>
      *
      * @since 24
+     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
      */
     NODE_TEXT_AREA_HORIZONTAL_SCROLLING = 8043,
 
@@ -5165,28 +5837,36 @@ typedef enum {
      * @brief Writing direction of the text.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: writing direction of the text. The value is an enum of {@link ArkUI_TextDirection}. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: writing direction the text. The value is an enum of {@link ArkUI_TextDirection}. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32: writing direction of the text. The value is an enum of {@link ArkUI_TextDirection}.</li>
+     * </ul>
+     *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].i32: writing direction the text. The value is an enum of {@link ArkUI_TextDirection}.</li>
+     * </ul>
      *
      * @since 23
+     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
      */
     NODE_TEXT_AREA_DIRECTION = 8044,
 
     /**
      * @brief Used to set the selected drag preview style.
      * 
-     * Format of the {@link Arkui_AttributeItem} parameter for setting the attribute:\n
-     * .object: selected drag preview style configuration. 
-     * The parameter type is {@link Arkui_SelectedDragPreviewStyle}.\n
-     * \n
-     * Format of the return value {@link Arkui_AttributeItem}:\n
-     * .object: selected drag preview style configuration. 
-     * The parameter type is {@link Arkui_SelectedDragPreviewStyle}.\n
-     * 
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.object: selected drag preview style configuration. The parameter type is {@link ArkUI_SelectedDragPreviewStyle}.</li>
+     * </ul>
+     *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.object: selected drag preview style configuration. The parameter type is {@link ArkUI_SelectedDragPreviewStyle}.</li>
+     * </ul>
+     *
      * @since 23
+     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
      */
     NODE_TEXT_AREA_SELECTED_DRAG_PREVIEW_STYLE = 8045,
 
@@ -5194,13 +5874,18 @@ typedef enum {
      * @brief Defines the textarea textOverflow attribute.
      * which can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: display mode when the text is too long {@link ArkUI_TextOverflow}. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: display mode when the text is too long {@link ArkUI_TextOverflow}. \n
-     * 
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32: display mode when the text is too long {@link ArkUI_TextOverflow}.</li>
+     * </ul>
+     *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].i32: display mode when the text is too long {@link ArkUI_TextOverflow}.</li>
+     * </ul>
+     *
      *  @since 24
+     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
      */
     NODE_TEXT_AREA_TEXT_OVERFLOW = 8046,
 
@@ -5208,12 +5893,18 @@ typedef enum {
      * @brief Defines the text decoration style and color for multi-line text box.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * ?.object: Optional. The decoration style options. The parameter type is {@link OH_ArkUI_DecorationStyleOptions}.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .object: The decoration style options. The parameter type is {@link OH_ArkUI_DecorationStyleOptions}.\n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>?.object: Optional. The decoration style options. The parameter type is {@link OH_ArkUI_DecorationStyleOptions}.</li>
+     * </ul>
+     *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.object: The decoration style options. The parameter type is {@link OH_ArkUI_DecorationStyleOptions}.</li>
+     * </ul>
      *
      * @since 26.0.0
+     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
      */
     NODE_TEXT_AREA_DECORATION = 8047,
 
@@ -5221,33 +5912,24 @@ typedef enum {
      * @brief Sets a linear gradient effect for text in the multi-line text box.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].f32: start angle of the linear gradient.
-     * The setting takes effect only when <b>direction</b> is set to <b>ARKUI_LINEAR_GRADIENT_DIRECTION_CUSTOM</b>.
-     * A positive value indicates a clockwise rotation from the origin, (0, 0). The default value is <b>180</b>. \n
-     * .value[1].i32: direction of the linear gradient. When a direction other than
-     * <b>ARKUI_LINEAR_GRADIENT_DIRECTION_CUSTOM</b> is set, the <b>angle</b> property is ignored.
-     * The parameter type is {@link ArkUI_LinearGradientDirection}. \n
-     * .value[2].i32: whether the colors are repeated. The default value is <b>false</b>.
-     * .object: array of color stops, each of which consists of a color and its stop position.
-     * The parameter type is {@link ArkUI_ColorStop}. Invalid colors are automatically skipped. \n \n
-     * colors: colors of the color stops. \n
-     * stops: stop positions of the color stops. \n
-     * size: number of colors. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].f32: start angle of the linear gradient.
-     * When <b>direction</b> is set to <b>ARKUI_LINEAR_GRADIENT_DIRECTION_CUSTOM</b>, <b>angle</b> at the set value;
-     * otherwise, it is at default value. \n
-     * .value[1].i32: direction of the linear gradient. \n
-     * .value[2].i32: whether the colors are repeated. \n
-     * .object: array of color stops, each of which consists of a color and its stop position.
-     * The parameter type is {@link ArkUI_ColorStop}. Invalid colors are automatically skipped. \n \n
-     * colors: colors of the color stops. \n
-     * stops: stop positions of the color stops. \n
-     * size: number of colors. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].f32: start angle of the linear gradient. The setting takes effect only when <b>direction</b> is set to <b>ARKUI_LINEAR_GRADIENT_DIRECTION_CUSTOM</b>. A positive value indicates a clockwise rotation from the origin, (0, 0). The default value is <b>180</b>.</li>
+     * <li>.value[1].i32: direction of the linear gradient. When a direction other than <b>ARKUI_LINEAR_GRADIENT_DIRECTION_CUSTOM</b> is set, the <b>angle</b> property is ignored. The parameter type is {@link ArkUI_LinearGradientDirection}.</li>
+     * <li>.value[2].i32: whether the colors are repeated. The default value is <b>false</b>.</li>
+     * <li>.object: array of color stops, each of which consists of a color and its stop position. The parameter type is {@link ArkUI_ColorStop}. Invalid colors are automatically skipped. colors: colors of the color stops. stops: stop positions of the color stops. size: number of colors.</li>
+     * </ul>
+     *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].f32: start angle of the linear gradient. When <b>direction</b> is set to <b>ARKUI_LINEAR_GRADIENT_DIRECTION_CUSTOM</b>, <b>angle</b> at the set value; otherwise, it is at default value.</li>
+     * <li>.value[1].i32: direction of the linear gradient.</li>
+     * <li>.value[2].i32: whether the colors are repeated.</li>
+     * <li>.object: array of color stops, each of which consists of a color and its stop position. The parameter type is {@link ArkUI_ColorStop}. Invalid colors are automatically skipped. colors: colors of the color stops. stops: stop positions of the color stops. size: number of colors.</li>
+     * </ul>
      *
      * @since 26.0.0
+     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
      */
     NODE_TEXT_AREA_LINEAR_GRADIENT = 8048,
 
@@ -5255,31 +5937,26 @@ typedef enum {
      * @brief Sets a radial gradient effect for text in the multi-line text box.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0]?.f32: X-coordinate of the radial gradient center relative to the upper left corner of the text. \n
-     * .value[1]?.f32: Y-coordinate of the radial gradient center relative to the upper left corner of the text. \n
-     * .value[2]?.f32: radius of the radial gradient. The default value is <b>0</b>. \n
-     * .value[3]?.i32: whether the colors are repeated.
-     * The value <b>1</b> means that the colors are repeated, and <b>0</b> means the opposite.\n \n
-     * .object: array of color stops, each of which consists of a color and its stop position.
-     * The parameter type is {@link ArkUI_ColorStop}. Invalid colors are automatically skipped. \n
-     * colors: colors of the color stops. \n
-     * stops: stop positions of the color stops. \n
-     * size: number of colors. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].f32: X-coordinate of the radial gradient center relative to the upper left corner of the text. \n
-     * .value[1].f32: Y-coordinate of the radial gradient center relative to the upper left corner of the text. \n
-     * .value[2].f32: radius of the radial gradient. The default value is <b>0</b>. \n
-     * .value[3].i32: whether the colors are repeated.
-     * The value <b>1</b> means that the colors are repeated, and <b>0</b> means the opposite.  \n
-     * .object: array of color stops, each of which consists of a color and its stop position.
-     * The parameter type is {@link ArkUI_ColorStop}. Invalid colors are automatically skipped. \n
-     * colors: colors of the color stops. \n
-     * stops: stop positions of the color stops. \n
-     * size: number of colors. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0]?.f32: X-coordinate of the radial gradient center relative to the upper left corner of the text.</li>
+     * <li>.value[1]?.f32: Y-coordinate of the radial gradient center relative to the upper left corner of the text.</li>
+     * <li>.value[2]?.f32: radius of the radial gradient. The default value is <b>0</b>.</li>
+     * <li>.value[3]?.i32: whether the colors are repeated. The value <b>1</b> means that the colors are repeated, and <b>0</b> means the opposite.</li>
+     * <li>.object: array of color stops, each of which consists of a color and its stop position. The parameter type is {@link ArkUI_ColorStop}. Invalid colors are automatically skipped. colors: colors of the color stops. stops: stop positions of the color stops. size: number of colors.</li>
+     * </ul>
+     *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].f32: X-coordinate of the radial gradient center relative to the upper left corner of the text.</li>
+     * <li>.value[1].f32: Y-coordinate of the radial gradient center relative to the upper left corner of the text.</li>
+     * <li>.value[2].f32: radius of the radial gradient. The default value is <b>0</b>.</li>
+     * <li>.value[3].i32: whether the colors are repeated. The value <b>1</b> means that the colors are repeated, and <b>0</b> means the opposite.</li>
+     * <li>.object: array of color stops, each of which consists of a color and its stop position. The parameter type is {@link ArkUI_ColorStop}. Invalid colors are automatically skipped. colors: colors of the color stops. stops: stop positions of the color stops. size: number of colors.</li>
+     * </ul>
      *
      * @since 26.0.0
+     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
      */
     NODE_TEXT_AREA_RADIAL_GRADIENT = 8049,
 
@@ -5287,13 +5964,18 @@ typedef enum {
      * @brief Sets whether to enable punctuation overflow at line ends.
      * <br>This attribute can be set, reset, and obtained as required through APIs.
      *
-     * <br>Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:
-     * <br>.value[0].i32: whether to enable punctuation overflow, the default value is false.
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32: whether to enable punctuation overflow, the default value is false.</li>
+     * </ul>
      *
-     * <br>Format of the return value {@link ArkUI_AttributeItem}:
-     * <br>.value[0].i32: whether to enable punctuation overflow.
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].i32: whether to enable punctuation overflow.</li>
+     * </ul>
      *
      * @since 26.0.0
+     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
      */
     NODE_TEXT_AREA_PUNCTUATION_OVERFLOW = 8050,
 
@@ -5353,49 +6035,68 @@ typedef enum {
      * @brief Defines the current value of the progress indicator.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].f32: current value of the progress indicator. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].f32: current value of the progress indicator. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].f32: current value of the progress indicator.</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].f32: current value of the progress indicator.</li>
+     * </ul>
+     *
+     * @group {ArkUI_NodeAttributeType(Information Display Component Attribute)}[capi-native-node-h-node-attributetype-informationdisplay]
      */
     NODE_PROGRESS_VALUE = MAX_NODE_SCOPE_NUM * ARKUI_NODE_PROGRESS,
     /**
      * @brief Defines the total value of the progress indicator.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].f32: total value of the progress indicator. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].f32: total value of the progress indicator. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].f32: total value of the progress indicator.</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].f32: total value of the progress indicator.</li>
+     * </ul>
+     *
+     * @group {ArkUI_NodeAttributeType(Information Display Component Attribute)}[capi-native-node-h-node-attributetype-informationdisplay]
      */
     NODE_PROGRESS_TOTAL,
     /**
      * @brief Defines the color for the progress value on the progress indicator.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].u32: color value, in 0xARGB format. For example, 0xFFFF0000 indicates red. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].u32: color value, in 0xARGB format. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].u32: color value, in 0xARGB format. For example, 0xFFFF0000 indicates red.</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].u32: color value, in 0xARGB format.</li>
+     * </ul>
+     *
+     * @group {ArkUI_NodeAttributeType(Information Display Component Attribute)}[capi-native-node-h-node-attributetype-informationdisplay]
      */
     NODE_PROGRESS_COLOR,
     /**
      * @brief Defines the type of the progress indicator.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: type of the progress indicator {@link ArkUI_ProgressType}.
-     * The default value is <b>ARKUI_PROGRESS_TYPE_LINEAR</b>. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: type of the progress indicator {@link ArkUI_ProgressType}. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32: type of the progress indicator {@link ArkUI_ProgressType}. The default value is <b>ARKUI_PROGRESS_TYPE_LINEAR</b>.</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].i32: type of the progress indicator {@link ArkUI_ProgressType}.</li>
+     * </ul>
+     *
+     * @group {ArkUI_NodeAttributeType(Information Display Component Attribute)}[capi-native-node-h-node-attributetype-informationdisplay]
      */
     NODE_PROGRESS_TYPE,
     /**
@@ -5403,13 +6104,18 @@ typedef enum {
      * This attribute can be set, reset, and obtained as required through APIs.
      * If the progress indicator type is not linear, it will not take effect.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .object: Use the {@link ArkUI_ProgressLinearStyleOption} object to set the style. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .object: Use the {@link ArkUI_ProgressLinearStyleOption} object to get the style. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.object: Use the {@link ArkUI_ProgressLinearStyleOption} object to set the style.</li>
+     * </ul>
+     *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.object: Use the {@link ArkUI_ProgressLinearStyleOption} object to get the style.</li>
+     * </ul>
      *
      * @since 15
+     * @group {ArkUI_NodeAttributeType(Information Display Component Attribute)}[capi-native-node-h-node-attributetype-informationdisplay]
      */
     NODE_PROGRESS_LINEAR_STYLE,
 
@@ -6743,439 +7449,516 @@ typedef enum {
     /**
      * @brief Type of the **Enter** key of the **TextEditor** component. This attribute can be set, reset, and obtained
      * as required through APIs.
-     * <br>The format of the {@link ArkUI_AttributeItem} parameter for setting the attribute and the format of the
-     * return value **ArkUI_AttributeItem** are as follows.
-     * <br>**Parameters**
-     * <br>.value[0].i32: Type of the **Enter** key. The parameter type is {@link ArkUI_EnterKeyType}. The default
-     * value is **ARKUI_ENTER_KEY_TYPE_NEW_LINE**.
-     * <br>**Returns**
-     * <br>.value[0].i32: Type of the **Enter** key. The parameter type is {@link ArkUI_EnterKeyType}.
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32: Type of the **Enter** key. The parameter type is {@link ArkUI_EnterKeyType}. The default value is **ARKUI_ENTER_KEY_TYPE_NEW_LINE**.</li>
+     * </ul>
+     *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].i32: Type of the **Enter** key. The parameter type is {@link ArkUI_EnterKeyType}.</li>
+     * </ul>
      *
      * @since 24
+     * @group {ArkUI_NodeAttributeType(Rich Text Component Attribute)}[capi-native-node-h-node-attributetype-richeditor]
      */
     NODE_TEXT_EDITOR_ENTER_KEY_TYPE = MAX_NODE_SCOPE_NUM * ARKUI_NODE_TEXT_EDITOR,
 
     /**
      * @brief Caret color of the **TextEditor** component. This attribute can be set, reset, and obtained as required
      * through APIs.
-     * <br>The format of the {@link ArkUI_AttributeItem} parameter for setting the attribute and the format of the
-     * return value **ArkUI_AttributeItem** are as follows.
-     * <br>**Parameters**
-     * <br>.value[0].u32: Caret color, in 0xARGB format. For example, **0xFFFF0000** indicates red.
-     * <br>**Returns**
-     * <br>.value[0].u32: Caret color, in 0xARGB format.
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].u32: Caret color, in 0xARGB format. For example, **0xFFFF0000** indicates red.</li>
+     * </ul>
+     *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].u32: Caret color, in 0xARGB format.</li>
+     * </ul>
      *
      * @since 24
+     * @group {ArkUI_NodeAttributeType(Rich Text Component Attribute)}[capi-native-node-h-node-attributetype-richeditor]
      */
     NODE_TEXT_EDITOR_CARET_COLOR,
 
     /**
      * @brief Scroll bar color of the **TextEditor** component. This attribute can be set, reset, and obtained as
      * required through APIs.
-     * <br>The format of the {@link ArkUI_AttributeItem} parameter for setting the attribute and the format of the
-     * return value **ArkUI_AttributeItem** are as follows.
-     * <br>**Parameters**
-     * <br>.data[0].u32: Scroll bar color, in 0xARGB format.
-     * <br>**Returns**
-     * <br>.data[0].u32: Scroll bar color, in 0xARGB format.
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.data[0].u32: Scroll bar color, in 0xARGB format.</li>
+     * </ul>
+     *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.data[0].u32: Scroll bar color, in 0xARGB format.</li>
+     * </ul>
      *
      * @since 24
+     * @group {ArkUI_NodeAttributeType(Rich Text Component Attribute)}[capi-native-node-h-node-attributetype-richeditor]
      */
     NODE_TEXT_EDITOR_SCROLL_BAR_COLOR,
 
     /**
      * @brief Scroll bar display mode of the **TextEditor** component. This attribute can be set, reset, and obtained
      * as required through APIs.
-     * <br>The format of the {@link ArkUI_AttributeItem} parameter for setting the attribute and the format of the
-     * return value **ArkUI_AttributeItem** are as follows.
-     * <br>**Parameters**
-     * <br>.value[0].i32: Scroll bar display mode of the text area. The parameter type is {@link ArkUI_BarState}. The
-     * default value is **ARKUI_BAR_STATE_AUTO**.
-     * <br>**Returns**
-     * <br>.value[0].i32: Scroll bar display mode of the text area. The parameter type is {@link ArkUI_BarState}.
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32: Scroll bar display mode of the text area. The parameter type is {@link ArkUI_BarState}. The default value is **ARKUI_BAR_STATE_AUTO**.</li>
+     * </ul>
+     *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].i32: Scroll bar display mode of the text area. The parameter type is {@link ArkUI_BarState}.</li>
+     * </ul>
      *
      * @since 24
+     * @group {ArkUI_NodeAttributeType(Rich Text Component Attribute)}[capi-native-node-h-node-attributetype-richeditor]
      */
     NODE_TEXT_EDITOR_BAR_STATE,
 
     /**
      * @brief Whether to enable text entity recognition for the **TextEditor** component. This attribute can be set,
      * reset, and obtained as required through APIs.
-     * <br>The format of the {@link ArkUI_AttributeItem} parameter for setting the attribute and the format of the
-     * return value **ArkUI_AttributeItem** are as follows.
-     * <br>**Parameters**
-     * <br>.value[0].i32: Whether to enable text entity recognition. The value **1** indicates to enable text entity
-     * recognition, and **0** indicates the opposite. The default value is **0**.
-     * <br>**Returns**
-     * <br>.value[0].i32: Whether text entity recognition is enabled.
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32: Whether to enable text entity recognition. The value **1** indicates to enable text entity recognition, and **0** indicates the opposite. The default value is **0**.</li>
+     * </ul>
+     *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].i32: Whether text entity recognition is enabled.</li>
+     * </ul>
      *
      * @since 24
+     * @group {ArkUI_NodeAttributeType(Rich Text Component Attribute)}[capi-native-node-h-node-attributetype-richeditor]
      */
     NODE_TEXT_EDITOR_ENABLE_DATA_DETECTOR,
 
     /**
      * @brief Recognition configuration for the **TextEditor** component. This attribute can be set and reset as
      * required through APIs.
-     * <br>The format of the {@link ArkUI_AttributeItem} parameter for setting the attribute is as follows.
-     * <br>**Parameters**
-     * <br>.object: Recognition configuration. The parameter type is {@link ArkUI_TextDataDetectorConfig}.
-     * 
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.object: Recognition configuration. The parameter type is {@link ArkUI_TextDataDetectorConfig}.</li>
+     * </ul>
+     *
      * @since 24
+     * @group {ArkUI_NodeAttributeType(Rich Text Component Attribute)}[capi-native-node-h-node-attributetype-richeditor]
      */
     NODE_TEXT_EDITOR_DATA_DETECTOR_CONFIG,
 
     /**
      * @brief Extended menu options for the **TextEditor** component. This attribute can be set and reset as required
      * through APIs.
-     * <br>The format of the {@link ArkUI_AttributeItem} parameter for setting the attribute is as follows.
-     * <br>**Parameters**
-     * <br>.object: Extended menu options. The parameter type is {@link ArkUI_TextEditMenuOptions}.
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.object: Extended menu options. The parameter type is {@link ArkUI_TextEditMenuOptions}.</li>
+     * </ul>
      *
      * @since 24
+     * @group {ArkUI_NodeAttributeType(Rich Text Component Attribute)}[capi-native-node-h-node-attributetype-richeditor]
      */
     NODE_TEXT_EDITOR_EDIT_MENU_OPTIONS,
 
     /**
      * @brief Placeholder options when there is no input for the **TextEditor** component. This attribute can be set
      * and reset as required through APIs.
-     * <br>The format of the {@link ArkUI_AttributeItem} parameter for setting the attribute is as follows.
-     * <br>**Parameters**
-     * <br>.object: Placeholder options when there is no input. The parameter type is
-     * {@link ArkUI_TextEditorPlaceholderOptions}.
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.object: Placeholder options when there is no input. The parameter type is {@link ArkUI_TextEditorPlaceholderOptions}.</li>
+     * </ul>
      *
      * @since 24
+     * @group {ArkUI_NodeAttributeType(Rich Text Component Attribute)}[capi-native-node-h-node-attributetype-richeditor]
      */
     NODE_TEXT_EDITOR_PLACEHOLDER,
 
     /**
      * @brief Styled string controller of the **TextEditor** component. This attribute can be set as required through
      * APIs.
-     * <br>The format of the {@link ArkUI_AttributeItem} parameter for setting the attribute is as follows.
-     * <br>**Parameters**
-     * <br>.object: Styled string controller. The parameter type is {@link ArkUI_TextEditorStyledStringController}.
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.object: Styled string controller. The parameter type is {@link ArkUI_TextEditorStyledStringController}.</li>
+     * </ul>
      *
      * @since 24
+     * @group {ArkUI_NodeAttributeType(Rich Text Component Attribute)}[capi-native-node-h-node-attributetype-richeditor]
      */
     NODE_TEXT_EDITOR_STYLED_STRING_CONTROLLER,
 
     /**
      * @brief Whether to enable preview text for the **TextEditor** component. This attribute can be set, reset, and
      * obtained as required through APIs.
-     * <br>The format of the {@link ArkUI_AttributeItem} parameter for setting the attribute and the format of the
-     * return value **ArkUI_AttributeItem** are as follows.
-     * <br>**Parameters**
-     * <br>.value[0].i32: Whether to enable preview text. The value **1** indicates to enable preview text, and **0**
-     * indicates the opposite. The default value is **1**.
-     * <br>**Returns**
-     * <br>.value[0].i32: Whether preview text is enabled. The value **1** indicates preview text is enabled, and **0**
-     * indicates the opposite.
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32: Whether to enable preview text. The value **1** indicates to enable preview text, and **0** indicates the opposite. The default value is **1**.</li>
+     * </ul>
+     *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].i32: Whether preview text is enabled. The value **1** indicates preview text is enabled, and **0** indicates the opposite.</li>
+     * </ul>
      *
      * @since 24
+     * @group {ArkUI_NodeAttributeType(Rich Text Component Attribute)}[capi-native-node-h-node-attributetype-richeditor]
      */
     NODE_TEXT_EDITOR_ENABLE_PREVIEW_TEXT,
 
     /**
      * @brief **TextLayoutManager** of the **TextEditor** component. This attribute can be obtained as required through
      * APIs.
-     * <br>The format of the return value {@link ArkUI_AttributeItem} is as follows.
-     * <br>**Returns**
-     * <br>.object: Layout manager. The parameter type is {@link ArkUI_TextLayoutManager}.
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.object: Layout manager. The parameter type is {@link ArkUI_TextLayoutManager}.</li>
+     * </ul>
      *
      * @since 24
+     * @group {ArkUI_NodeAttributeType(Rich Text Component Attribute)}[capi-native-node-h-node-attributetype-richeditor]
      */
     NODE_TEXT_EDITOR_LAYOUT_MANAGER,
 
     /**
-      * @brief Whether to enable the AI menu for text selection and recognition of the **TextEditor** component. This
-      * attribute can be set, reset, and obtained as required through APIs.
-      * <br>The format of the {@link ArkUI_AttributeItem} parameter for setting the attribute and the format of the
-      * return value **ArkUI_AttributeItem** are as follows.
-      * <br>**Parameters**
-      * <br>.value[0].i32: Whether to enable the AI menu for text selection and recognition. The value **1** means to
-      * enable, and **0** means the opposite. The default value is **1**.
-      * <br>**Returns**
-      * <br>.value[0].i32: Whether the AI menu is enabled for text selection and recognition.
-      *
-      * @since 24
-      */
+     * @brief Whether to enable the AI menu for text selection and recognition of the **TextEditor** component. This
+     * attribute can be set, reset, and obtained as required through APIs.
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32: Whether to enable the AI menu for text selection and recognition. The value **1** means to enable, and **0** means the opposite. The default value is **1**.</li>
+     * </ul>
+     *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].i32: Whether the AI menu is enabled for text selection and recognition.</li>
+     * </ul>
+     *
+     * @since 24
+     * @group {ArkUI_NodeAttributeType(Rich Text Component Attribute)}[capi-native-node-h-node-attributetype-richeditor]
+     */
     NODE_TEXT_EDITOR_ENABLE_SELECTED_DATA_DETECTOR,
 
     /**
      * @brief Background color of the selected content in the **TextEditor** component. This attribute can be set,
      * reset, and obtained as required through APIs.
-     * <br>The format of the {@link ArkUI_AttributeItem} parameter for setting the attribute and the format of the
-     * return value **ArkUI_AttributeItem** are as follows.
-     * <br>**Parameters**
-     * <br>.data[0].u32: Background color of the selected content, in 0xARGB format.
-     * <br>**Returns**
-     * <br>.data[0].u32: Background color of the selected content, in 0xARGB format.
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.data[0].u32: Background color of the selected content, in 0xARGB format.</li>
+     * </ul>
+     *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.data[0].u32: Background color of the selected content, in 0xARGB format.</li>
+     * </ul>
      *
      * @since 24
+     * @group {ArkUI_NodeAttributeType(Rich Text Component Attribute)}[capi-native-node-h-node-attributetype-richeditor]
      */
     NODE_TEXT_EDITOR_SELECTED_BACKGROUND_COLOR,
 
     /**
      * @brief Whether to enable the input method when the focus is obtained in a way other than by clicking in the **
      * TextEditor** component. This attribute can be set, reset, and obtained as required through APIs.
-     * <br>The format of the {@link ArkUI_AttributeItem} parameter for setting the attribute and the format of the
-     * return value **ArkUI_AttributeItem** are as follows.
-     * <br>**Parameters**
-     * <br>.value[0].i32: Whether to enable the input method when the focus is obtained in a way other than clicking.
-     * The value **1** means to enable, and **0** means the opposite. The default value is **1**.
-     * <br>**Returns**
-     * <br>.value[0].i32: Whether the input method is enabled when the focus is obtained in a way other than clicking.
-     * The value **1** indicates the input method is enabled, and **0** indicates the input method is disabled.
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32: Whether to enable the input method when the focus is obtained in a way other than clicking. The value **1** means to enable, and **0** means the opposite. The default value is **1**.</li>
+     * </ul>
+     *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].i32: Whether the input method is enabled when the focus is obtained in a way other than clicking. The value **1** indicates the input method is enabled, and **0** indicates the input method is disabled.</li>
+     * </ul>
      *
      * @since 24
+     * @group {ArkUI_NodeAttributeType(Rich Text Component Attribute)}[capi-native-node-h-node-attributetype-richeditor]
      */
     NODE_TEXT_EDITOR_ENABLE_KEYBOARD_ON_FOCUS,
 
     /**
      * @brief Maximum number of characters in the **TextEditor** component. This attribute can be set, reset, and
      * obtained as required through APIs.
-     * <br>The format of the {@link ArkUI_AttributeItem} parameter for setting the attribute and the format of the
-     * return value **ArkUI_AttributeItem** are as follows.
-     * <br>**Parameters**
-     * <br>.value[0].i32: Maximum number of characters.
-     * <br>**Returns**
-     * <br>.value[0].i32: Maximum number of characters.
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32: Maximum number of characters.</li>
+     * </ul>
+     *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].i32: Maximum number of characters.</li>
+     * </ul>
      *
      * @since 24
+     * @group {ArkUI_NodeAttributeType(Rich Text Component Attribute)}[capi-native-node-h-node-attributetype-richeditor]
      */
     NODE_TEXT_EDITOR_MAX_LENGTH,
 
     /**
      * @brief Maximum number of lines in the **TextEditor** component. This attribute can be set, reset, and obtained
      * as required through APIs.
-     * <br>The format of the {@link ArkUI_AttributeItem} parameter for setting the attribute and the format of the
-     * return value **ArkUI_AttributeItem** are as follows.
-     * <br>**Parameters**
-     * <br>.value[0].i32: Maximum number of lines in the text editor.
-     * <br>**Returns**
-     * <br>.value[0].i32: Maximum number of lines in the text editor.
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32: Maximum number of lines in the text editor.</li>
+     * </ul>
+     *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].i32: Maximum number of lines in the text editor.</li>
+     * </ul>
      *
      * @since 24
+     * @group {ArkUI_NodeAttributeType(Rich Text Component Attribute)}[capi-native-node-h-node-attributetype-richeditor]
      */
     NODE_TEXT_EDITOR_MAX_LINES,
 
     /**
      * @brief Whether to enable haptic feedback of the **TextEditor** component. This attribute can be set, reset, and
      * obtained as required through APIs.
-     * <br>The format of the {@link ArkUI_AttributeItem} parameter for setting the attribute and the format of the
-     * return value **ArkUI_AttributeItem** are as follows.
-     * <br>**Parameters**
-     * <br>.value[0].i32: Whether to enable haptic feedback in the text editor. The value **1** means to enable, and **
-     * 0** means the opposite. The default value is **1**.
-     * <br>**Returns**
-     * <br>.value[0].i32: Whether haptic feedback is enabled. The value **1** indicates haptic feedback is enabled, and
-     * **0** indicates the opposite.
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32: Whether to enable haptic feedback in the text editor. The value **1** means to enable, and ** 0** means the opposite. The default value is **1**.</li>
+     * </ul>
+     *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].i32: Whether haptic feedback is enabled. The value **1** indicates haptic feedback is enabled, and **0** indicates the opposite.</li>
+     * </ul>
      *
      * @since 24
+     * @group {ArkUI_NodeAttributeType(Rich Text Component Attribute)}[capi-native-node-h-node-attributetype-richeditor]
      */
     NODE_TEXT_EDITOR_ENABLE_HAPTIC_FEEDBACK,
 
     /**
      * @brief Copy options of the **TextEditor** component, which can be set, reset, and obtained as required through
      * APIs.
-     * <br>The format of the {@link ArkUI_AttributeItem} parameter for setting the attribute and the format of the
-     * return value **ArkUI_AttributeItem** are as follows.
-     * <br>**Parameters**
-     * <br>.value[0].i32: Copy options. The parameter type is {@link ArkUI_CopyOptions}. The default value is **
-     * ARKUI_COPY_OPTIONS_LOCAL_DEVICE**.
-     * <br>**Returns**
-     * <br>.value[0].i32: Copy options. The parameter type is {@link ArkUI_CopyOptions}.
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32: Copy options. The parameter type is {@link ArkUI_CopyOptions}. The default value is ** ARKUI_COPY_OPTIONS_LOCAL_DEVICE**.</li>
+     * </ul>
+     *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].i32: Copy options. The parameter type is {@link ArkUI_CopyOptions}.</li>
+     * </ul>
      *
      * @since 24
+     * @group {ArkUI_NodeAttributeType(Rich Text Component Attribute)}[capi-native-node-h-node-attributetype-richeditor]
      */
     NODE_TEXT_EDITOR_COPY_OPTIONS,
 
     /**
-    * @brief Keyboard appearance of the **TextEditor** component. This attribute can be set, reset, and obtained as
-    * required through APIs.
-    * <br>The format of the {@link ArkUI_AttributeItem} parameter for setting the attribute and the format of the
-    * return value **ArkUI_AttributeItem** are as follows.
-    * <br>**Parameters**
-    * <br>.value[0].i32: Appearance of the keyboard. The parameter type is {@link ArkUI_KeyboardAppearance}. The
-    * default value is **ARKUI_KEYBOARD_APPEARANCE_NONE_IMMERSIVE**.
-    * <br>**Returns**
-    * <br>.value[0].i32: Appearance of the keyboard. The parameter type is {@link ArkUI_KeyboardAppearance}.
-    *
-    * @since 24
-    */
+     * @brief Keyboard appearance of the **TextEditor** component. This attribute can be set, reset, and obtained as
+     * required through APIs.
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32: Appearance of the keyboard. The parameter type is {@link ArkUI_KeyboardAppearance}. The default value is **ARKUI_KEYBOARD_APPEARANCE_NONE_IMMERSIVE**.</li>
+     * </ul>
+     *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].i32: Appearance of the keyboard. The parameter type is {@link ArkUI_KeyboardAppearance}.</li>
+     * </ul>
+     *
+     * @since 24
+     * @group {ArkUI_NodeAttributeType(Rich Text Component Attribute)}[capi-native-node-h-node-attributetype-richeditor]
+     */
     NODE_TEXT_EDITOR_KEYBOARD_APPEARANCE,
 
     /**
      * @brief Whether the **TextEditor** component blocks the propagation of return events. This attribute can be set,
      * reset, and obtained as required through APIs.
-     * <br>The format of the {@link ArkUI_AttributeItem} parameter for setting the attribute and the format of the
-     * return value **ArkUI_AttributeItem** are as follows.
-     * <br>**Parameters**
-     * <br>.value[0].i32: Whether to block the propagation of return events. The value **1** indicates to block, and **
-     * 0** indicates the opposite. The default value is **0**.
-     * <br>**Returns**
-     * <br>.value[0].i32: Whether the propagation of return events is blocked. The value **1** indicates that the
-     * propagation of return events is blocked, and **0** indicates the opposite.
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32: Whether to block the propagation of return events. The value **1** indicates to block, and ** 0** indicates the opposite. The default value is **0**.</li>
+     * </ul>
+     *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].i32: Whether the propagation of return events is blocked. The value **1** indicates that the propagation of return events is blocked, and **0** indicates the opposite.</li>
+     * </ul>
      *
      * @since 24
+     * @group {ArkUI_NodeAttributeType(Rich Text Component Attribute)}[capi-native-node-h-node-attributetype-richeditor]
      */
     NODE_TEXT_EDITOR_STOP_BACK_PRESS,
 
     /**
      * @brief Whether to enable automatic spacing for Chinese and Western characters in the **TextEditor** component.
      * This attribute can be set, reset, and obtained as required through APIs.
-     * <br>The format of the {@link ArkUI_AttributeItem} parameter for setting the attribute and the format of the
-     * return value **ArkUI_AttributeItem** are as follows.
-     * <br>**Parameters**
-     * <br>.value[0].i32: Whether to enable automatic spacing. The value **1** means to enable, and **0** means the
-     * opposite. The default value is **0**.
-     * <br>**Returns**
-     * <br>.value[0].i32: Whether automatic spacing is enabled. The value **1** indicates automatic spacing is enabled,
-     * and **0** indicates the opposite.
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32: Whether to enable automatic spacing. The value **1** means to enable, and **0** means the opposite. The default value is **0**.</li>
+     * </ul>
+     *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].i32: Whether automatic spacing is enabled. The value **1** indicates automatic spacing is enabled, and **0** indicates the opposite.</li>
+     * </ul>
      *
      * @since 24
+     * @group {ArkUI_NodeAttributeType(Rich Text Component Attribute)}[capi-native-node-h-node-attributetype-richeditor]
      */
     NODE_TEXT_EDITOR_ENABLE_AUTO_SPACING,
 
     /**
      * @brief Custom keyboard of the **TextEditor** component. This attribute can be set, reset, and obtained as
      * required through APIs.
-     * <br>The format of the {@link ArkUI_AttributeItem} parameter for setting the attribute and the format of the
-     * return value **ArkUI_AttributeItem** are as follows.
-     * <br>**Parameters**
-     * <br>.object: Custom keyboard. The parameter type is {@link ArkUI_NodeHandle}.
-     * <br>.value[0]?.i32: Whether the custom keyboard supports avoidance. The value **0** indicates no, and the value *
-     * *1** indicates yes. The default value is **0**.
-     * <br>**Returns**
-     * <br>.object: Custom keyboard. The parameter type is {@link ArkUI_NodeHandle}.
-     * <br>.value[0].i32: Whether the custom keyboard supports avoidance. The value **0** indicates no, and the value **
-     * 1** indicates yes.
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.object: Custom keyboard. The parameter type is {@link ArkUI_NodeHandle}.</li>
+     * <li>.value[0]?.i32: Whether the custom keyboard supports avoidance. The value **0** indicates no, and the value * *1** indicates yes. The default value is **0**.</li>
+     * </ul>
+     *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.object: Custom keyboard. The parameter type is {@link ArkUI_NodeHandle}.</li>
+     * <li>.value[0].i32: Whether the custom keyboard supports avoidance. The value **0** indicates no, and the value ** 1** indicates yes.</li>
+     * </ul>
      *
      * @since 24
+     * @group {ArkUI_NodeAttributeType(Rich Text Component Attribute)}[capi-native-node-h-node-attributetype-richeditor]
      */
     NODE_TEXT_EDITOR_CUSTOM_KEYBOARD,
 
     /**
      * @brief Binds the custom text selection menu of the **TextEditor** component. This attribute can be set and reset
      * as required through APIs.
-     * <br>The format of the {@link ArkUI_AttributeItem} parameter for setting the attribute is as follows.
-     * <br>**Parameters**
-     * <br>.object: Text selection menu. The parameter type is {@link ArkUI_TextEditorSelectionMenuOptions}.
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.object: Text selection menu. The parameter type is {@link ArkUI_TextEditorSelectionMenuOptions}.</li>
+     * </ul>
      *
      * @since 24
+     * @group {ArkUI_NodeAttributeType(Rich Text Component Attribute)}[capi-native-node-h-node-attributetype-richeditor]
      */
     NODE_TEXT_EDITOR_BIND_SELECTION_MENU,
 
     /**
      * @brief Whether to add spacing to the first and last lines of the **TextEditor** component to prevent text
      * truncation. This attribute can be set, reset, and obtained as required through APIs.
-     * <br>The format of the {@link ArkUI_AttributeItem} parameter for setting the attribute and the format of the
-     * return value **ArkUI_AttributeItem** are as follows.
-     * <br>**Parameters**
-     * <br>.value[0].i32: Whether to add spacing. The value **1** means to add spacing, and **0** means not to add
-     * spacing. The default value is **0**.
-     * <br>**Returns**
-     * <br>.value[0].i32: Whether spacing is added. The value **1** means that spacing is added, and **0** means
-     * spacing is not added.
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32: Whether to add spacing. The value **1** means to add spacing, and **0** means not to add spacing. The default value is **0**.</li>
+     * </ul>
+     *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].i32: Whether spacing is added. The value **1** means that spacing is added, and **0** means spacing is not added.</li>
+     * </ul>
      *
      * @since 24
+     * @group {ArkUI_NodeAttributeType(Rich Text Component Attribute)}[capi-native-node-h-node-attributetype-richeditor]
      */
     NODE_TEXT_EDITOR_INCLUDE_FONT_PADDING,
 
     /**
      * @brief Whether to enable line height adaptation of the **TextEditor** component. This attribute can be set,
      * reset, and obtained as required through APIs.
-     * <br>The format of the {@link ArkUI_AttributeItem} parameter for setting the attribute and the format of the
-     * return value **ArkUI_AttributeItem** are as follows.
-     * <br>**Parameters**
-     * <br>.value[0].i32: Whether to enable line height adaptation. The value **1** means to enable, and **0** means
-     * the opposite. The default value is **0**.
-     * <br>**Returns**
-     * <br>.value[0].i32: Whether line height adaptation is enabled. The value **1** means line height adaptation is
-     * enabled, and **0** means the opposite.
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32: Whether to enable line height adaptation. The value **1** means to enable, and **0** means the opposite. The default value is **0**.</li>
+     * </ul>
+     *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].i32: Whether line height adaptation is enabled. The value **1** means line height adaptation is enabled, and **0** means the opposite.</li>
+     * </ul>
      *
      * @since 24
+     * @group {ArkUI_NodeAttributeType(Rich Text Component Attribute)}[capi-native-node-h-node-attributetype-richeditor]
      */
     NODE_TEXT_EDITOR_FALLBACK_LINE_SPACING,
 
     /**
      * @brief Whether to enable punctuation compression for the beginning of a line in the **TextEditor** component.
      * This attribute can be set, reset, and obtained as required through APIs.
-     * <br>The format of the {@link ArkUI_AttributeItem} parameter for setting the attribute and the format of the
-     * return value **ArkUI_AttributeItem** are as follows.
-     * <br>**Parameters**
-     * <br>.value[0].i32: Whether to enable punctuation compression. The value **1** means to enable, and **0** means
-     * the opposite. The default value is **0**.
-     * <br>**Returns**
-     * <br>.value[0].i32: Whether punctuation compression is enabled. The value **1** means punctuation compression is
-     * enabled, and **0** means the opposite.
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32: Whether to enable punctuation compression. The value **1** means to enable, and **0** means the opposite. The default value is **0**.</li>
+     * </ul>
+     *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].i32: Whether punctuation compression is enabled. The value **1** means punctuation compression is enabled, and **0** means the opposite.</li>
+     * </ul>
      *
      * @since 24
+     * @group {ArkUI_NodeAttributeType(Rich Text Component Attribute)}[capi-native-node-h-node-attributetype-richeditor]
      */
     NODE_TEXT_EDITOR_COMPRESS_LEADING_PUNCTUATION,
 
     /**
      * @brief Selected drag preview style of the **TextEditor** component. This attribute can be set, reset, and
      * obtained as required through APIs.
-     * <br>The format of the {@link ArkUI_AttributeItem} parameter for setting the attribute and the format of the
-     * return value **ArkUI_AttributeItem** are as follows.
-     * <br>**Parameters**
-     * <br>.object: Selected drag preview style configuration. The parameter type is
-     * {@link ArkUI_SelectedDragPreviewStyle}.
-     * <br>**Returns**
-     * <br>.object: Selected drag preview style configuration. The parameter type is
-     * {@link ArkUI_SelectedDragPreviewStyle}.
-     * 
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.object: Selected drag preview style configuration. The parameter type is {@link ArkUI_SelectedDragPreviewStyle}.</li>
+     * </ul>
+     *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.object: Selected drag preview style configuration. The parameter type is {@link ArkUI_SelectedDragPreviewStyle}.</li>
+     * </ul>
+     *
      * @since 24
+     * @group {ArkUI_NodeAttributeType(Rich Text Component Attribute)}[capi-native-node-h-node-attributetype-richeditor]
      */
     NODE_TEXT_EDITOR_SELECTED_DRAG_PREVIEW_STYLE,
 
     /**
      * @brief Whether to enable single-line mode for the **TextEditor** component. This attribute can be set, reset,
      * and obtained as required through APIs.
-     * <br>The format of the {@link ArkUI_AttributeItem} parameter for setting the attribute and the format of the
-     * return value **ArkUI_AttributeItem** are as follows.
-     * <br>**Parameters**
-     * <br>.value[0].i32: Whether to enable single-line mode. The value **1** means to enable, and **0** means the
-     * opposite. The default value is **0**.
-     * <br>**Returns**
-     * <br>.value[0].i32: Whether single-line mode is enabled. The value **1** means single-line mode is enabled, and **
-     * 0** means the opposite.
-     * 
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32: Whether to enable single-line mode. The value **1** means to enable, and **0** means the opposite. The default value is **0**.</li>
+     * </ul>
+     *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].i32: Whether single-line mode is enabled. The value **1** means single-line mode is enabled, and ** 0** means the opposite.</li>
+     * </ul>
+     *
      * @since 24
+     * @group {ArkUI_NodeAttributeType(Rich Text Component Attribute)}[capi-native-node-h-node-attributetype-richeditor]
      */
     NODE_TEXT_EDITOR_SINGLE_LINE,
 
     /**
      * @brief Sets whether to enable orphan character optimization for text layout in **TextEditor**.
      * After setting,text layout is improved by more efficiently handling orphan characters
-	 * (the first character of the last line of a paragraph).
+     * (the first character of the last line of a paragraph).
      * When enabled, it adjusts line break points to avoid orphan characters as much as possible.
      * The orphan character optimization feature only works when {@link ArkUI_WordBreak}
-	 * is not **ARKUI_WORD_BREAK_BREAK_ALL**.
-     * <br>The format of the {@link ArkUI_AttributeItem} parameter for setting the attribute and the format of the
-     * return value **ArkUI_AttributeItem** are as follows.
-     * <br>**Parameters**
-     * <br>.value[0].i32: Whether to enable. The value **1** means to enable, and **0** means the opposite.
-	 * The default value is **0**.
-     * <br>**Returns**
-     * <br>.value[0].i32: Whether orphan character optimization is enabled.
+     * is not **ARKUI_WORD_BREAK_BREAK_ALL**.
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32: Whether to enable. The value **1** means to enable, and **0** means the opposite. The default value is **0**.</li>
+     * </ul>
+     *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].i32: Whether orphan character optimization is enabled.</li>
+     * </ul>
      *
      * @since 26.0.0
+     * @group {ArkUI_NodeAttributeType(Rich Text Component Attribute)}[capi-native-node-h-node-attributetype-richeditor]
      */
      NODE_TEXT_EDITOR_ORPHAN_CHAR_OPTIMIZATION,
 
     /**
      * @brief Sets whether to enable horizontal scrolling for the **TextEditor** component when the text width exceeds
      * the content area width. This attribute can be set, reset, and obtained as required through APIs.
-     * <br>The format of the {@link ArkUI_AttributeItem} parameter for setting the attribute and the format of the
-     * return value **ArkUI_AttributeItem** are as follows.
-     * <br>**Parameters**
-     * <br>.value[0].i32: Whether to enable horizontal scrolling. The value **1** means to enable, and **0** means the
-     * opposite. The default value is **0**.
-     * <br>**Returns**
-     * <br>.value[0].i32: Whether horizontal scrolling is enabled.
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32: Whether to enable horizontal scrolling. The value **1** means to enable, and **0** means the opposite. The default value is **0**.</li>
+     * </ul>
+     *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].i32: Whether horizontal scrolling is enabled.</li>
+     * </ul>
      *
      * @since 26.0.0
+     * @group {ArkUI_NodeAttributeType(Rich Text Component Attribute)}[capi-native-node-h-node-attributetype-richeditor]
      */
     NODE_TEXT_EDITOR_HORIZONTAL_SCROLLING,
 
@@ -7183,13 +7966,18 @@ typedef enum {
      * @brief Sets whether to enable punctuation overflow at the end of a line.
      * <br>This attribute can be set, reset, and obtained as required through APIs.
      *
-     * <br>Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:
-     * <br>.value[0].i32: whether to enable punctuation overflow, the default value is false.
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32: whether to enable punctuation overflow, the default value is false.</li>
+     * </ul>
      *
-     * <br>Format of the return value {@link ArkUI_AttributeItem}:
-     * <br>.value[0].i32: whether to enable punctuation overflow.
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].i32: whether to enable punctuation overflow.</li>
+     * </ul>
      *
      * @since 26.0.0
+     * @group {ArkUI_NodeAttributeType(Rich Text Component Attribute)}[capi-native-node-h-node-attributetype-richeditor]
      */
     NODE_TEXT_EDITOR_PUNCTUATION_OVERFLOW,
 
@@ -10638,9 +11426,12 @@ typedef enum {
      * Trigger this event when TextDataDetectorConfig is set and recognized successfully.\n
      * When the event callback occurs, the event parameter{@link ArkUI_NodeEvent}The union type in the object is
      * {@link ArkUI_StringAsyncEvent}.\n
-     * {@link ArkUI_StringAsyncEvent}contains 1 parameter\n
-     * <b>ArkUI_StringAsyncEvent.pStr</b>：Indicates the result of text recognition, in Json format.\n
+     * **{@link ArkUI_StringAsyncEvent}contains 1 parameter**
+     * <ul>
+     * <li>ArkUI_StringAsyncEvent.pStr: Indicates the result of text recognition, in Json format.</li>
+     * </ul>
      *
+     * @group {ArkUI_NodeEventType(Text Display Component Event)}[capi-native-node-h-node-eventtype-text]
      */
     NODE_TEXT_ON_DETECT_RESULT_UPDATE = MAX_NODE_SCOPE_NUM * ARKUI_NODE_TEXT,
     /**
@@ -10650,6 +11441,7 @@ typedef enum {
      * When the event callback occurs, the {@link ArkUI_NodeEvent} object can be obtained from the
      * {@link ArkUI_UIInputEvent} object. \n
      * @since 20
+     * @group {ArkUI_NodeEventType(Text Display Component Event)}[capi-native-node-h-node-eventtype-text]
      */
     NODE_TEXT_SPAN_ON_LONG_PRESS = 1001,
 
@@ -10658,11 +11450,14 @@ typedef enum {
      * \n
      * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
      * {@link ArkUI_NodeComponentEvent}. \n
-     * {@link ArkUI_NodeComponentEvent} contains two parameters:\n
-     * <b>ArkUI_NodeComponentEvent.data[0].i32</b>: start position of the text selection area. \n
-     * <b>ArkUI_NodeComponentEvent.data[1].i32</b>: end position of the text selection area. \n
+     * **{@link ArkUI_NodeComponentEvent} contains two parameters:**
+     * <ul>
+     * <li>ArkUI_NodeComponentEvent.data[0].i32: start position of the text selection area.</li>
+     * <li>ArkUI_NodeComponentEvent.data[1].i32: end position of the text selection area.</li>
+     * </ul>
      *
      * @since 26.0.0
+     * @group {ArkUI_NodeEventType(Text Display Component Event)}[capi-native-node-h-node-eventtype-text]
      */
     NODE_TEXT_ON_TEXT_SELECTION_CHANGE = 1002,
 
@@ -10672,10 +11467,13 @@ typedef enum {
      * \n
      * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
      * {@link ArkUI_StringAsyncEvent}. \n
-     * {@link ArkUI_StringAsyncEvent} contains one parameter:\n
-     * <b>ArkUI_StringAsyncEvent.pStr</b>: text that is copied.
+     * **{@link ArkUI_StringAsyncEvent} contains one parameter:**
+     * <ul>
+     * <li>ArkUI_StringAsyncEvent.pStr: text that is copied.</li>
+     * </ul>
      *
      * @since 26.0.0
+     * @group {ArkUI_NodeEventType(Text Display Component Event)}[capi-native-node-h-node-eventtype-text]
      */
     NODE_TEXT_ON_COPY = 1003,
 
@@ -10684,14 +11482,18 @@ typedef enum {
      * \n
      * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
      * {@link ArkUI_StringAsyncEvent}. \n
-     * {@link ArkUI_StringAsyncEvent} contains one parameter:\n
-     * <b>ArkUI_StringAsyncEvent.pStr</b>: text that is copied.
+     * **{@link ArkUI_StringAsyncEvent} contains one parameter:**
+     * <ul>
+     * <li>ArkUI_StringAsyncEvent.pStr: text that is copied.</li>
+     * </ul>
+     *
      * @return Whether the copy is allowed. \n
      * You can set the return value using <b>OH_ArkUI_NodeEvent_SetReturnNumberValue</b>. \n
      * value.i32 at index 0 in the return value indicates whether the copy is allowed.
      * <b>0</b>: not allowed. <b>1</b>: allowed. \n
      *
      * @since 26.0.0
+     * @group {ArkUI_NodeEventType(Text Display Component Event)}[capi-native-node-h-node-eventtype-text]
      */
     NODE_TEXT_ON_WILL_COPY = 1004,
 
@@ -10765,9 +11567,12 @@ typedef enum {
       \n
      * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
      * {@link ArkUI_StringAsyncEvent}. \n
-     * {@link ArkUI_StringAsyncEvent} contains one parameter:\n
-     * <b>ArkUI_StringAsyncEvent.pStr</b>: text input.
+     * **{@link ArkUI_StringAsyncEvent} contains one parameter:**
+     * <ul>
+     * <li>ArkUI_StringAsyncEvent.pStr: text input.</li>
+     * </ul>
      *
+     * @group {ArkUI_NodeEventType(Text Input Component Event)}[capi-native-node-h-node-eventtype-textinput]
      */
     NODE_TEXT_INPUT_ON_CHANGE = MAX_NODE_SCOPE_NUM * ARKUI_NODE_TEXT_INPUT,
     /**
@@ -10776,9 +11581,12 @@ typedef enum {
       \n
      * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
      * {@link ArkUI_NodeComponentEvent}. \n
-     * {@link ArkUI_NodeComponentEvent} contains one parameter:\n
-     * <b>ArkUI_NodeComponentEvent.data[0].i32</b>: Enter key type of the input method.
+     * **{@link ArkUI_NodeComponentEvent} contains one parameter:**
+     * <ul>
+     * <li>ArkUI_NodeComponentEvent.data[0].i32: Enter key type of the input method.</li>
+     * </ul>
      *
+     * @group {ArkUI_NodeEventType(Text Input Component Event)}[capi-native-node-h-node-eventtype-textinput]
      */
     NODE_TEXT_INPUT_ON_SUBMIT,
     /**
@@ -10788,9 +11596,12 @@ typedef enum {
       \n
      * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
      * {@link ArkUI_StringAsyncEvent}. \n
-     * {@link ArkUI_StringAsyncEvent} contains one parameter:\n
-     * <b>ArkUI_StringAsyncEvent.pStr</b>: text that is cut.
+     * **{@link ArkUI_StringAsyncEvent} contains one parameter:**
+     * <ul>
+     * <li>ArkUI_StringAsyncEvent.pStr: text that is cut.</li>
+     * </ul>
      *
+     * @group {ArkUI_NodeEventType(Text Input Component Event)}[capi-native-node-h-node-eventtype-textinput]
      */
     NODE_TEXT_INPUT_ON_CUT,
     /**
@@ -10800,133 +11611,150 @@ typedef enum {
       \n
      * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
      * {@link ArkUI_StringAsyncEvent}. \n
-     * {@link ArkUI_StringAsyncEvent} contains one parameter:\n
-     * <b>ArkUI_StringAsyncEvent.pStr</b>: text that is pasted
-     * \n
+     * **{@link ArkUI_StringAsyncEvent} contains one parameter:**
+     * <ul>
+     * <li>ArkUI_StringAsyncEvent.pStr: text that is pasted.</li>
+     * </ul>
+     *
      * Since 26.0.0, the callback can return whether the paste is allowed.\n
      * @return Whether the paste is allowed. \n
      * You can set the return value using <b>OH_ArkUI_NodeEvent_SetReturnNumberValue</b>. \n
      * value.i32 at index 0 in the return value indicates whether the paste is allowed. \n
      * <b>0</b>: not allowed. <b>1</b>: allowed. \n
      *
+     * @group {ArkUI_NodeEventType(Text Input Component Event)}[capi-native-node-h-node-eventtype-textinput]
      */
     NODE_TEXT_INPUT_ON_PASTE,
     /**
      * @brief Defines the event triggered when the text selection position changes.
-     *
-      \n
+     * \n
      * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
      * {@link ArkUI_NodeComponentEvent}. \n
-     * {@link ArkUI_NodeComponentEvent} contains two parameters:\n
-     * <b>ArkUI_NodeComponentEvent.data[0].i32</b>: start position of the text selection area. \n
-     * <b>ArkUI_NodeComponentEvent.data[1].i32</b>: end position of the text selection area. \n
+     * **{@link ArkUI_NodeComponentEvent} contains two parameters:**
+     * <ul>
+     * <li>ArkUI_NodeComponentEvent.data[0].i32: start position of the text selection area.</li>
+     * <li>ArkUI_NodeComponentEvent.data[1].i32: end position of the text selection area.</li>
+     * </ul>
      *
+     * @group {ArkUI_NodeEventType(Text Input Component Event)}[capi-native-node-h-node-eventtype-textinput]
      */
     NODE_TEXT_INPUT_ON_TEXT_SELECTION_CHANGE,
 
     /**
      * @brief Defines the event triggered when the input status changes.
-     *
-      \n
+     * \n
      * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
      * {@link ArkUI_NodeComponentEvent}. \n
-     * {@link ArkUI_NodeComponentEvent} contains one parameter:\n
-     * <b>ArkUI_NodeComponentEvent.data[0].i32</b>: <b>true</b> indicates that text input is in progress. \n
+     * **{@link ArkUI_NodeComponentEvent} contains one parameter:**
+     * <ul>
+     * <li>ArkUI_NodeComponentEvent.data[0].i32: true indicates that text input is in progress.</li>
+     * </ul>
      *
+     * @group {ArkUI_NodeEventType(Text Input Component Event)}[capi-native-node-h-node-eventtype-textinput]
      */
     NODE_TEXT_INPUT_ON_EDIT_CHANGE,
 
     /**
-      * @brief textInput This event is triggered when the input content changes.
-      *
-      * Conditions for triggering this event: When the input content changes. \n
-      * When the event callback occurs, the union type in the event parameter
-      * {@link ArkUI_NodeEvent} object is {@link ArkUI_NodeComponentEvent}. \n
-      * {@link ArkUI_NodeComponentEvent} contains 2 parameters:\n
-      * <b>ArkUI_NodeComponentEvent.data[0].f32</b>: Indicates the width of the text. \n
-      * <b>ArkUI_NodeComponentEvent.data[1].f32</b>: Indicates the height of the text. \n
-      *
-      */
+     * @brief textInput This event is triggered when the input content changes.
+     *
+     * Conditions for triggering this event: When the input content changes. \n
+     * When the event callback occurs, the union type in the event parameter
+     * {@link ArkUI_NodeEvent} object is {@link ArkUI_NodeComponentEvent}. \n
+     * **{@link ArkUI_NodeComponentEvent} contains 2 parameters:**
+     * <ul>
+     * <li>ArkUI_NodeComponentEvent.data[0].f32: Indicates the width of the text.</li>
+     * <li>ArkUI_NodeComponentEvent.data[1].f32: Indicates the height of the text.</li>
+     * </ul>
+     *
+     * @group {ArkUI_NodeEventType(Text Input Component Event)}[capi-native-node-h-node-eventtype-textinput]
+     */
     NODE_TEXT_INPUT_ON_CONTENT_SIZE_CHANGE,
 
     /**
      * @brief Defines the event triggered when matching with the regular expression specified by
      * <b>NODE_TEXT_INPUT_INPUT_FILTER</b> fails.
      *
-      \n
      * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
      * {@link ArkUI_StringAsyncEvent}. \n
-     * {@link ArkUI_StringAsyncEvent} contains one parameter:\n
-     * <b>ArkUI_StringAsyncEvent.pStr</b>: content that is filtered out when regular expression matching fails. \n
+     * **{@link ArkUI_StringAsyncEvent} contains one parameter:**
+     * <ul>
+     * <li>ArkUI_StringAsyncEvent.pStr: content that is filtered out when regular expression matching fails.</li>
+     * </ul>
      *
+     * @group {ArkUI_NodeEventType(Text Input Component Event)}[capi-native-node-h-node-eventtype-textinput]
      */
     NODE_TEXT_INPUT_ON_INPUT_FILTER_ERROR,
 
     /**
      * @brief This callback is triggered when the text content is scrolled.
      *
-      \n
      * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
      * {@link ArkUI_NodeComponentEvent}. \n
-     * {@link ArkUI_NodeComponentEvent} contains two parameters:\n
-     * <b>ArkUI_NodeComponentEvent.data[0].i32</b>: Indicates the horizontal offset of the text in the content area. \n
-     * <b>ArkUI_NodeComponentEvent.data[1].i32</b>: Indicates the vertical coordinate offset of \n
-     * the text in the content area. \n
+     * **{@link ArkUI_NodeComponentEvent} contains two parameters:**
+     * <ul>
+     * <li>ArkUI_NodeComponentEvent.data[0].i32: Indicates the horizontal offset of the text in the content area.</li>
+     * <li>ArkUI_NodeComponentEvent.data[1].i32: Indicates the vertical coordinate offset of the text in the content area.</li>
+     * </ul>
      *
+     * @group {ArkUI_NodeEventType(Text Input Component Event)}[capi-native-node-h-node-eventtype-textinput]
      */
     NODE_TEXT_INPUT_ON_CONTENT_SCROLL,
 
     /**
      * @brief Defines the event triggered when text is about to be entered.
      *
-     * The event parameter is {@link ArkUI_NodeEvent}. \n
-     * value.f32: position of the text, with the index of <b>0</b>; obtained using
-     * <b>OH_ArkUI_NodeEvent_GetNumberValue</b>. \n
-     * buffer: string value of the text, with the index of <b>0</b>; obtained using
-     * <b>OH_ArkUI_NodeEvent_GetStringValue</b>.
+     * **The event parameter is {@link ArkUI_NodeEvent}.**
+     * <ul>
+     * <li>value.f32: position of the text, with the index of 0; obtained using OH_ArkUI_NodeEvent_GetNumberValue.</li>
+     * <li>buffer: string value of the text, with the index of 0; obtained using OH_ArkUI_NodeEvent_GetStringValue.</li>
+     * </ul>
+     *
      * @return Returns <b>true</b> if the text is entered; returns <b>false</b> otherwise.
      * You can set the return value using <b>OH_ArkUI_NodeEvent_SetReturnNumberValue</b>. \n
+     * @group {ArkUI_NodeEventType(Text Input Component Event)}[capi-native-node-h-node-eventtype-textinput]
      */
     NODE_TEXT_INPUT_ON_WILL_INSERT = 7009,
 
     /**
      * @brief Defines the event triggered when text is entered.
      *
-     * The event parameter is {@link ArkUI_NodeEvent}. \n
-     * value.f32: position of the text, with the index of <b>0</b>; obtained using
-     * <b>OH_ArkUI_NodeEvent_GetNumberValue</b>. \n
-     * buffer: string value of the text, with the index of <b>0</b>; obtained using
-     * <b>OH_ArkUI_NodeEvent_GetStringValue</b>.
+     * **The event parameter is {@link ArkUI_NodeEvent}.**
+     * <ul>
+     * <li>value.f32: position of the text, with the index of 0; obtained using OH_ArkUI_NodeEvent_GetNumberValue.</li>
+     * <li>buffer: string value of the text, with the index of 0; obtained using OH_ArkUI_NodeEvent_GetStringValue.</li>
+     * </ul>
+     *
+     * @group {ArkUI_NodeEventType(Text Input Component Event)}[capi-native-node-h-node-eventtype-textinput]
      */
     NODE_TEXT_INPUT_ON_DID_INSERT = 7010,
 
     /**
      * @brief Defines the event triggered when text is about to be deleted.
      *
-     * The event parameter is {@link ArkUI_NodeEvent}. \n
-     * value.f32: position of the text to delete, with the index of <b>0</b>; obtained using
-     * <b>OH_ArkUI_NodeEvent_GetNumberValue</b>. \n
-     * value.i32: direction for deleting the text, with the index of <b>1</b>; obtained using
-     * <b>OH_ArkUI_NodeEvent_GetNumberValue</b>. The value <b>0</b> indicates backward-delete, and <b>1</b> indicates
-     * forward-delete. \n
-     * buffer: string value of the text, with the index of <b>0</b>; obtained using
-     * <b>OH_ArkUI_NodeEvent_GetStringValue</b>.
+     * **The event parameter is {@link ArkUI_NodeEvent}.**
+     * <ul>
+     * <li>value.f32: position of the text to delete, with the index of 0; obtained using OH_ArkUI_NodeEvent_GetNumberValue.</li>
+     * <li>value.i32: direction for deleting the text, with the index of 1; obtained using OH_ArkUI_NodeEvent_GetNumberValue. The value 0 indicates backward-delete, and 1 indicates forward-delete.</li>
+     * <li>buffer: string value of the text, with the index of 0; obtained using OH_ArkUI_NodeEvent_GetStringValue.</li>
+     * </ul>
+     *
      * @return Returns <b>true</b> if the text is deleted; returns <b>false</b> otherwise. \n
      * You can set the return value using <b>OH_ArkUI_NodeEvent_SetReturnNumberValue</b>. \n
+     * @group {ArkUI_NodeEventType(Text Input Component Event)}[capi-native-node-h-node-eventtype-textinput]
      */
     NODE_TEXT_INPUT_ON_WILL_DELETE = 7011,
 
     /**
      * @brief Defines the event triggered when text is deleted.
      *
-     * The event parameter is {@link ArkUI_NodeEvent}. \n
-     * value.f32: position of the text deleted, with the index of <b>0</b>; obtained using
-     * <b>OH_ArkUI_NodeEvent_GetNumberValue</b>. \n
-     * value.i32: direction for deleting the text, with the index of <b>1</b>; obtained using
-     * <b>OH_ArkUI_NodeEvent_GetNumberValue</b>. The value <b>0</b> indicates backward-delete, and <b>1</b> indicates
-     * forward-delete. \n
-     * buffer: string value of the text, with the index of <b>0</b>; obtained using
-     * <b>OH_ArkUI_NodeEvent_GetStringValue</b>.
+     * **The event parameter is {@link ArkUI_NodeEvent}.**
+     * <ul>
+     * <li>value.f32: position of the text deleted, with the index of 0; obtained using OH_ArkUI_NodeEvent_GetNumberValue.</li>
+     * <li>value.i32: direction for deleting the text, with the index of 1; obtained using OH_ArkUI_NodeEvent_GetNumberValue. The value 0 indicates backward-delete, and 1 indicates forward-delete.</li>
+     * <li>buffer: string value of the text, with the index of 0; obtained using OH_ArkUI_NodeEvent_GetStringValue.</li>
+     * </ul>
+     *
+     * @group {ArkUI_NodeEventType(Text Input Component Event)}[capi-native-node-h-node-eventtype-textinput]
      */
     NODE_TEXT_INPUT_ON_DID_DELETE = 7012,
 
@@ -10935,12 +11763,14 @@ typedef enum {
      * component.
      *
      * When the event callback occurs, the union type {@link ArkUI_NodeEvent} is {@link ArkUI_TextChangeEvent}. \n
-     * {@link ArkUI_TextChangeEvent} contains the following parameters: \n
-     * <b>ArkUI_TextChangeEvent.pStr</b>: content in the <b>TextInput</b> component.
-     * <b>ArkUI_TextChangeEvent.pExtendStr</b>: content of the preview text in the <b>TextInput</b> component.
-     * <b>ArkUI_TextChangeEvent.number</b>: start position of the preview text in the <b>TextInput</b> component.
+     * **{@link ArkUI_TextChangeEvent} contains the following parameters:**
+     * <ul>
+     * <li>ArkUI_TextChangeEvent.pStr: content in the TextInput component.</li>
+     * <li>ArkUI_TextChangeEvent.pExtendStr: content of the preview text in the TextInput component. ArkUI_TextChangeEvent.number: start position of the preview text in the TextInput component.</li>
+     * </ul>
      *
      * @since 15
+     * @group {ArkUI_NodeEventType(Text Input Component Event)}[capi-native-node-h-node-eventtype-textinput]
      */
     NODE_TEXT_INPUT_ON_CHANGE_WITH_PREVIEW_TEXT = 7013,
 
@@ -10948,12 +11778,14 @@ typedef enum {
      * @brief Defines the event triggered before content changes
      *
      * When the event callback occurs, the union type {@link ArkUI_NodeEvent} is {@link ArkUI_TextChangeEvent}. \n
-     * {@link ArkUI_TextChangeEvent} contains the following parameters: \n
-     * <b>ArkUI_TextChangeEvent.pStr</b>: content in the <b>TextInput</b> component.
-     * <b>ArkUI_TextChangeEvent.pExtendStr</b>: content of the preview text in the <b>TextInput</b> component.
-     * <b>ArkUI_TextChangeEvent.number</b>: start position of the preview text in the <b>TextInput</b> component.
-     * 
+     * **{@link ArkUI_TextChangeEvent} contains the following parameters:**
+     * <ul>
+     * <li>ArkUI_TextChangeEvent.pStr: content in the TextInput component.</li>
+     * <li>ArkUI_TextChangeEvent.pExtendStr: content of the preview text in the TextInput component. ArkUI_TextChangeEvent.number: start position of the preview text in the TextInput component.</li>
+     * </ul>
+     *
      * @since 20
+     * @group {ArkUI_NodeEventType(Text Input Component Event)}[capi-native-node-h-node-eventtype-textinput]
      */
     NODE_TEXT_INPUT_ON_WILL_CHANGE = 7014,
 
@@ -10963,10 +11795,13 @@ typedef enum {
      * \n
      * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
      * {@link ArkUI_StringAsyncEvent}. \n
-     * {@link ArkUI_StringAsyncEvent} contains one parameter:\n
-     * <b>ArkUI_StringAsyncEvent.pStr</b>: text that is copied.
+     * **{@link ArkUI_StringAsyncEvent} contains one parameter:**
+     * <ul>
+     * <li>ArkUI_StringAsyncEvent.pStr: text that is copied.</li>
+     * </ul>
      *
      * @since 26.0.0
+     * @group {ArkUI_NodeEventType(Text Input Component Event)}[capi-native-node-h-node-eventtype-textinput]
      */
     NODE_TEXT_INPUT_ON_COPY = 7015,
 
@@ -10975,14 +11810,18 @@ typedef enum {
      * \n
      * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
      * {@link ArkUI_StringAsyncEvent}. \n
-     * {@link ArkUI_StringAsyncEvent} contains one parameter:\n
-     * <b>ArkUI_StringAsyncEvent.pStr</b>: text that is copied.
+     * **{@link ArkUI_StringAsyncEvent} contains one parameter:**
+     * <ul>
+     * <li>ArkUI_StringAsyncEvent.pStr: text that is copied.</li>
+     * </ul>
+     *
      * @return Whether the copy is allowed. \n
      * You can set the return value using <b>OH_ArkUI_NodeEvent_SetReturnNumberValue</b>. \n
      * value.i32 at index 0 in the return value indicates whether the copy is allowed.
      * <b>0</b>: not allowed. <b>1</b>: allowed. \n
      *
      * @since 26.0.0
+     * @group {ArkUI_NodeEventType(Text Input Component Event)}[capi-native-node-h-node-eventtype-textinput]
      */
     NODE_TEXT_INPUT_ON_WILL_COPY = 7016,
 
@@ -10991,14 +11830,18 @@ typedef enum {
      * \n
      * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
      * {@link ArkUI_StringAsyncEvent}. \n
-     * {@link ArkUI_StringAsyncEvent} contains one parameter:\n
-     * <b>ArkUI_StringAsyncEvent.pStr</b>: text that is cut.
+     * **{@link ArkUI_StringAsyncEvent} contains one parameter:**
+     * <ul>
+     * <li>ArkUI_StringAsyncEvent.pStr: text that is cut.</li>
+     * </ul>
+     *
      * @return Whether the cut is allowed. \n
      * You can set the return value using <b>OH_ArkUI_NodeEvent_SetReturnNumberValue</b>. \n
      * value.i32 at index 0 in the return value indicates whether the cut is allowed.
      * <b>0</b>: not allowed. <b>1</b>: allowed. \n
      *
      * @since 26.0.0
+     * @group {ArkUI_NodeEventType(Text Input Component Event)}[capi-native-node-h-node-eventtype-textinput]
      */
     NODE_TEXT_INPUT_ON_WILL_CUT = 7017,
 
@@ -11008,9 +11851,12 @@ typedef enum {
       \n
      * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
      * {@link ArkUI_StringAsyncEvent}. \n
-     * {@link ArkUI_StringAsyncEvent} contains one parameter:\n
-     * <b>ArkUI_StringAsyncEvent.pStr</b>: text entered.
+     * **{@link ArkUI_StringAsyncEvent} contains one parameter:**
+     * <ul>
+     * <li>ArkUI_StringAsyncEvent.pStr: text entered.</li>
+     * </ul>
      *
+     * @group {ArkUI_NodeEventType(Text Input Component Event)}[capi-native-node-h-node-eventtype-textinput]
      */
     NODE_TEXT_AREA_ON_CHANGE = MAX_NODE_SCOPE_NUM * ARKUI_NODE_TEXT_AREA,
     /**
@@ -11020,15 +11866,18 @@ typedef enum {
       \n
      * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
      * {@link ArkUI_StringAsyncEvent}. \n
-     * {@link ArkUI_StringAsyncEvent} contains one parameter:\n
-     * <b>ArkUI_StringAsyncEvent.pStr</b>: text that is pasted
-     * \n
+     * **{@link ArkUI_StringAsyncEvent} contains one parameter:**
+     * <ul>
+     * <li>ArkUI_StringAsyncEvent.pStr: text that is pasted.</li>
+     * </ul>
+     *
      * Since 26.0.0, the callback can return whether the paste is allowed.\n
      * @return Whether the paste is allowed. \n
      * You can set the return value using <b>OH_ArkUI_NodeEvent_SetReturnNumberValue</b>. \n
      * value.i32 at index 0 in the return value indicates whether the paste is allowed. \n
      * <b>0</b>: not allowed. <b>1</b>: allowed. \n
      *
+     * @group {ArkUI_NodeEventType(Text Input Component Event)}[capi-native-node-h-node-eventtype-textinput]
      */
     NODE_TEXT_AREA_ON_PASTE,
     /**
@@ -11037,10 +11886,13 @@ typedef enum {
       \n
      * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
      * {@link ArkUI_NodeComponentEvent}. \n
-     * {@link ArkUI_NodeComponentEvent} contains two parameters:\n
-     * <b>ArkUI_NodeComponentEvent.data[0].i32</b>: start position of the text selection area. \n
-     * <b>ArkUI_NodeComponentEvent.data[1].i32</b>: end position of the text selection area. \n
+     * **{@link ArkUI_NodeComponentEvent} contains two parameters:**
+     * <ul>
+     * <li>ArkUI_NodeComponentEvent.data[0].i32: start position of the text selection area.</li>
+     * <li>ArkUI_NodeComponentEvent.data[1].i32: end position of the text selection area.</li>
+     * </ul>
      *
+     * @group {ArkUI_NodeEventType(Text Input Component Event)}[capi-native-node-h-node-eventtype-textinput]
      */
     NODE_TEXT_AREA_ON_TEXT_SELECTION_CHANGE,
     /**
@@ -11050,9 +11902,12 @@ typedef enum {
       \n
      * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
      * {@link ArkUI_StringAsyncEvent}. \n
-     * {@link ArkUI_StringAsyncEvent} contains one parameter:\n
-     * <b>ArkUI_StringAsyncEvent.pStr</b>: content that is filtered out when regular expression matching fails. \n
+     * **{@link ArkUI_StringAsyncEvent} contains one parameter:**
+     * <ul>
+     * <li>ArkUI_StringAsyncEvent.pStr: content that is filtered out when regular expression matching fails.</li>
+     * </ul>
      *
+     * @group {ArkUI_NodeEventType(Text Input Component Event)}[capi-native-node-h-node-eventtype-textinput]
      */
     NODE_TEXT_AREA_ON_INPUT_FILTER_ERROR,
     /**
@@ -11061,11 +11916,13 @@ typedef enum {
       \n
      * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
      * {@link ArkUI_NodeComponentEvent}. \n
-     * {@link ArkUI_NodeComponentEvent} contains two parameters:\n
-     * <b>ArkUI_NodeComponentEvent.data[0].i32</b>: Indicates the horizontal offset of the text in the content area. \n
-     * <b>ArkUI_NodeComponentEvent.data[1].i32</b>: Indicates the vertical coordinate offset of \n
-     * the text in the content area. \n
+     * **{@link ArkUI_NodeComponentEvent} contains two parameters:**
+     * <ul>
+     * <li>ArkUI_NodeComponentEvent.data[0].i32: Indicates the horizontal offset of the text in the content area.</li>
+     * <li>ArkUI_NodeComponentEvent.data[1].i32: Indicates the vertical coordinate offset of the text in the content area.</li>
+     * </ul>
      *
+     * @group {ArkUI_NodeEventType(Text Input Component Event)}[capi-native-node-h-node-eventtype-textinput]
      */
     NODE_TEXT_AREA_ON_CONTENT_SCROLL,
 
@@ -11075,9 +11932,12 @@ typedef enum {
       \n
      * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is \n
      * {@link ArkUI_NodeComponentEvent}. \n
-     * {@link ArkUI_NodeComponentEvent} contains one parameter:\n
-     * <b>ArkUI_NodeComponentEvent.data[0].i32</b>: <b>true</b> indicates that text input is in progress. \n
+     * **{@link ArkUI_NodeComponentEvent} contains one parameter:**
+     * <ul>
+     * <li>ArkUI_NodeComponentEvent.data[0].i32: true indicates that text input is in progress.</li>
+     * </ul>
      *
+     * @group {ArkUI_NodeEventType(Text Input Component Event)}[capi-native-node-h-node-eventtype-textinput]
      */
     NODE_TEXT_AREA_ON_EDIT_CHANGE,
 
@@ -11087,76 +11947,86 @@ typedef enum {
      * This event is not triggered when <b>keyType</b> is <b>ARKUI_ENTER_KEY_TYPE_NEW_LINE</b>. \n
      * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is \n
      * {@link ArkUI_NodeComponentEvent}. \n
-     * {@link ArkUI_NodeComponentEvent} contains one parameter:\n
-     * <b>ArkUI_NodeComponentEvent.data[0].i32</b>: type of the Enter key.
+     * **{@link ArkUI_NodeComponentEvent} contains one parameter:**
+     * <ul>
+     * <li>ArkUI_NodeComponentEvent.data[0].i32: type of the Enter key.</li>
+     * </ul>
      *
+     * @group {ArkUI_NodeEventType(Text Input Component Event)}[capi-native-node-h-node-eventtype-textinput]
      */
     NODE_TEXT_AREA_ON_SUBMIT,
 
     /**
-      * @brief textArea This event is triggered when the input content changes.
-      *
-      * Conditions for triggering this event: When the input content changes. \n
-      * When the event callback occurs, the union type in the event parameter {@link ArkUI_NodeEvent} object is \n
-      * {@link ArkUI_NodeComponentEvent}.\n
-      * {@link ArkUI_NodeComponentEvent} contains 2 parameters:\n
-      * <b>ArkUI_NodeComponentEvent.data[0].f32</b>: Indicates the width of the text. \n
-      * <b>ArkUI_NodeComponentEvent.data[1].f32</b>: Indicates the height of the text. \n
-      *
-      */
+     * @brief textArea This event is triggered when the input content changes.
+     *
+     * Conditions for triggering this event: When the input content changes. \n
+     * When the event callback occurs, the union type in the event parameter {@link ArkUI_NodeEvent} object is \n
+     * {@link ArkUI_NodeComponentEvent}.\n
+     * **{@link ArkUI_NodeComponentEvent} contains 2 parameters:**
+     * <ul>
+     * <li>ArkUI_NodeComponentEvent.data[0].f32: Indicates the width of the text.</li>
+     * <li>ArkUI_NodeComponentEvent.data[1].f32: Indicates the height of the text.</li>
+     * </ul>
+     *
+     * @group {ArkUI_NodeEventType(Text Input Component Event)}[capi-native-node-h-node-eventtype-textinput]
+     */
     NODE_TEXT_AREA_ON_CONTENT_SIZE_CHANGE,
 
     /**
      * @brief Defines the event triggered when text is about to be entered.
      *
-     * The event parameter is {@link ArkUI_NodeEvent}. \n
-     * value.f32: position of the text, with the index of <b>0</b>; obtained using
-     * <b>OH_ArkUI_NodeEvent_GetNumberValue</b>. \n
-     * buffer: string value of the text, with the index of <b>0</b>; obtained using
-     * <b>OH_ArkUI_NodeEvent_GetStringValue</b>.
+     * **The event parameter is {@link ArkUI_NodeEvent}.**
+     * <ul>
+     * <li>value.f32: position of the text, with the index of 0; obtained using OH_ArkUI_NodeEvent_GetNumberValue.</li>
+     * <li>buffer: string value of the text, with the index of 0; obtained using OH_ArkUI_NodeEvent_GetStringValue.</li>
+     * </ul>
+     *
      * @return Returns <b>true</b> if the text is entered; returns <b>false</b> otherwise.
      * You can set the return value using <b>OH_ArkUI_NodeEvent_SetReturnNumberValue</b>. \n
+     * @group {ArkUI_NodeEventType(Text Input Component Event)}[capi-native-node-h-node-eventtype-textinput]
      */
     NODE_TEXT_AREA_ON_WILL_INSERT = 8008,
 
     /**
      * @brief Defines the event triggered when text is entered.
      *
-     * The event parameter is {@link ArkUI_NodeEvent}. \n
-     * value.f32: position of the text, with the index of <b>0</b>; obtained using
-     * <b>OH_ArkUI_NodeEvent_GetNumberValue</b>. \n
-     * buffer: string value of the text, with the index of <b>0</b>; obtained using
-     * <b>OH_ArkUI_NodeEvent_GetStringValue</b>.
+     * **The event parameter is {@link ArkUI_NodeEvent}.**
+     * <ul>
+     * <li>value.f32: position of the text, with the index of 0; obtained using OH_ArkUI_NodeEvent_GetNumberValue.</li>
+     * <li>buffer: string value of the text, with the index of 0; obtained using OH_ArkUI_NodeEvent_GetStringValue.</li>
+     * </ul>
+     *
+     * @group {ArkUI_NodeEventType(Text Input Component Event)}[capi-native-node-h-node-eventtype-textinput]
      */
     NODE_TEXT_AREA_ON_DID_INSERT = 8009,
 
     /**
      * @brief Defines the event triggered when text is about to be deleted.
      *
-     * The event parameter is {@link ArkUI_NodeEvent}. \n
-     * value.f32: position of the text to delete, with the index of <b>0</b>; obtained using
-     * <b>OH_ArkUI_NodeEvent_GetNumberValue</b>. \n
-     * value.i32: direction for deleting the text, with the index of <b>1</b>; obtained using
-     * <b>OH_ArkUI_NodeEvent_GetNumberValue</b>. The value <b>0</b> indicates backward-delete, and <b>1</b> indicates
-     * forward-delete. \n
-     * buffer: string value of the text, with the index of <b>0</b>; obtained using
-     * <b>OH_ArkUI_NodeEvent_GetStringValue</b>.
+     * **The event parameter is {@link ArkUI_NodeEvent}.**
+     * <ul>
+     * <li>value.f32: position of the text to delete, with the index of 0; obtained using OH_ArkUI_NodeEvent_GetNumberValue.</li>
+     * <li>value.i32: direction for deleting the text, with the index of 1; obtained using OH_ArkUI_NodeEvent_GetNumberValue. The value 0 indicates backward-delete, and 1 indicates forward-delete.</li>
+     * <li>buffer: string value of the text, with the index of 0; obtained using OH_ArkUI_NodeEvent_GetStringValue.</li>
+     * </ul>
+     *
      * @return Returns <b>true</b> if the text is deleted; returns <b>false</b> otherwise. \n
      * You can set the return value using <b>OH_ArkUI_NodeEvent_SetReturnNumberValue</b>. \n
+     * @group {ArkUI_NodeEventType(Text Input Component Event)}[capi-native-node-h-node-eventtype-textinput]
      */
     NODE_TEXT_AREA_ON_WILL_DELETE = 8010,
 
     /**
      * @brief Defines the event triggered when text is deleted.
      *
-     * The event parameter is {@link ArkUI_NodeEvent}. \n
-     * value.f32: position of the text deleted, with the index of <b>0</b>; obtained using
-     * <b>OH_ArkUI_NodeEvent_GetNumberValue</b>. \n
-     * value.i32: direction for deleting the text, with the index of <b>1</b>; obtained using
-     * <b>OH_ArkUI_NodeEvent_GetNumberValue</b>. The value <b>0</b> indicates backward-delete, and <b>1</b> indicates
-     * forward-delete. \n
-     * buffer: string value of the text, with the index of <b>0</b>; obtained using
-     * <b>OH_ArkUI_NodeEvent_GetStringValue</b>.
+     * **The event parameter is {@link ArkUI_NodeEvent}.**
+     * <ul>
+     * <li>value.f32: position of the text deleted, with the index of 0; obtained using OH_ArkUI_NodeEvent_GetNumberValue.</li>
+     * <li>value.i32: direction for deleting the text, with the index of 1; obtained using OH_ArkUI_NodeEvent_GetNumberValue. The value 0 indicates backward-delete, and 1 indicates forward-delete.</li>
+     * <li>buffer: string value of the text, with the index of 0; obtained using OH_ArkUI_NodeEvent_GetStringValue.</li>
+     * </ul>
+     *
+     * @group {ArkUI_NodeEventType(Text Input Component Event)}[capi-native-node-h-node-eventtype-textinput]
      */
     NODE_TEXT_AREA_ON_DID_DELETE = 8011,
 
@@ -11165,12 +12035,14 @@ typedef enum {
      * component.
      *
      * When the event callback occurs, the union type {@link ArkUI_NodeEvent} is {@link ArkUI_TextChangeEvent}. \n
-     * {@link ArkUI_TextChangeEvent} contains the following parameters: \n
-     * <b>ArkUI_TextChangeEvent.pStr</b>: content in the <b>TextArea</b> component.
-     * <b>ArkUI_TextChangeEvent.pExtendStr</b>: content of the preview text in the <b>TextArea</b> component.
-     * <b>ArkUI_TextChangeEvent.number</b>: start position of the preview text in the <b>TextArea</b> component.
+     * **{@link ArkUI_TextChangeEvent} contains the following parameters:**
+     * <ul>
+     * <li>ArkUI_TextChangeEvent.pStr: content in the TextArea component.</li>
+     * <li>ArkUI_TextChangeEvent.pExtendStr: content of the preview text in the TextArea component. ArkUI_TextChangeEvent.number: start position of the preview text in the TextArea component.</li>
+     * </ul>
      *
      * @since 15
+     * @group {ArkUI_NodeEventType(Text Input Component Event)}[capi-native-node-h-node-eventtype-textinput]
      */
     NODE_TEXT_AREA_ON_CHANGE_WITH_PREVIEW_TEXT = 8012,
 
@@ -11178,12 +12050,14 @@ typedef enum {
      * @brief Defines the event triggered before content changes.
      *
      * When the event callback occurs, the union type {@link ArkUI_NodeEvent} is {@link ArkUI_TextChangeEvent}. \n
-     * {@link ArkUI_TextChangeEvent} contains the following parameters: \n
-     * <b>ArkUI_TextChangeEvent.pStr</b>: content in the <b>TextArea</b> component.
-     * <b>ArkUI_TextChangeEvent.pExtendStr</b>: content of the preview text in the <b>TextArea</b> component.
-     * <b>ArkUI_TextChangeEvent.number</b>: start position of the preview text in the <b>TextArea</b> component.
+     * **{@link ArkUI_TextChangeEvent} contains the following parameters:**
+     * <ul>
+     * <li>ArkUI_TextChangeEvent.pStr: content in the TextArea component.</li>
+     * <li>ArkUI_TextChangeEvent.pExtendStr: content of the preview text in the TextArea component. ArkUI_TextChangeEvent.number: start position of the preview text in the TextArea component.</li>
+     * </ul>
      *
      * @since 20
+     * @group {ArkUI_NodeEventType(Text Input Component Event)}[capi-native-node-h-node-eventtype-textinput]
      */
     NODE_TEXT_AREA_ON_WILL_CHANGE = 8013,
 
@@ -11193,10 +12067,13 @@ typedef enum {
      * \n
      * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
      * {@link ArkUI_StringAsyncEvent}. \n
-     * {@link ArkUI_StringAsyncEvent} contains one parameter:\n
-     * <b>ArkUI_StringAsyncEvent.pStr</b>: text that is copied.
+     * **{@link ArkUI_StringAsyncEvent} contains one parameter:**
+     * <ul>
+     * <li>ArkUI_StringAsyncEvent.pStr: text that is copied.</li>
+     * </ul>
      *
      * @since 26.0.0
+     * @group {ArkUI_NodeEventType(Text Input Component Event)}[capi-native-node-h-node-eventtype-textinput]
      */
     NODE_TEXT_AREA_ON_COPY = 8014,
 
@@ -11205,14 +12082,18 @@ typedef enum {
      *
      * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
      * {@link ArkUI_StringAsyncEvent}. \n
-     * {@link ArkUI_StringAsyncEvent} contains one parameter:\n
-     * <b>ArkUI_StringAsyncEvent.pStr</b>: text that is copied.
+     * **{@link ArkUI_StringAsyncEvent} contains one parameter:**
+     * <ul>
+     * <li>ArkUI_StringAsyncEvent.pStr: text that is copied.</li>
+     * </ul>
+     *
      * @return Whether the copy is allowed. \n
      * You can set the return value using <b>OH_ArkUI_NodeEvent_SetReturnNumberValue</b>. \n
      * value.i32 at index 0 in the return value indicates whether the copy is allowed.
      * <b>0</b>: not allowed. <b>1</b>: allowed. \n
      *
      * @since 26.0.0
+     * @group {ArkUI_NodeEventType(Text Input Component Event)}[capi-native-node-h-node-eventtype-textinput]
      */
     NODE_TEXT_AREA_ON_WILL_COPY = 8015,
 
@@ -11222,10 +12103,13 @@ typedef enum {
      * \n
      * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
      * {@link ArkUI_StringAsyncEvent}. \n
-     * {@link ArkUI_StringAsyncEvent} contains one parameter:\n
-     * <b>ArkUI_StringAsyncEvent.pStr</b>: text that is cut.
+     * **{@link ArkUI_StringAsyncEvent} contains one parameter:**
+     * <ul>
+     * <li>ArkUI_StringAsyncEvent.pStr: text that is cut.</li>
+     * </ul>
      *
      * @since 26.0.0
+     * @group {ArkUI_NodeEventType(Text Input Component Event)}[capi-native-node-h-node-eventtype-textinput]
      */
     NODE_TEXT_AREA_ON_CUT = 8016,
 
@@ -11234,14 +12118,18 @@ typedef enum {
      * \n
      * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
      * {@link ArkUI_StringAsyncEvent}. \n
-     * {@link ArkUI_StringAsyncEvent} contains one parameter:\n
-     * <b>ArkUI_StringAsyncEvent.pStr</b>: text that is cut.
+     * **{@link ArkUI_StringAsyncEvent} contains one parameter:**
+     * <ul>
+     * <li>ArkUI_StringAsyncEvent.pStr: text that is cut.</li>
+     * </ul>
+     *
      * @return Whether the cut is allowed. \n
      * You can set the return value using <b>OH_ArkUI_NodeEvent_SetReturnNumberValue</b>. \n
      * value.i32 at index 0 in the return value indicates whether the cut is allowed.
      * <b>0</b>: not allowed. <b>1</b>: allowed. \n
      *
      * @since 26.0.0
+     * @group {ArkUI_NodeEventType(Text Input Component Event)}[capi-native-node-h-node-eventtype-textinput]
      */
     NODE_TEXT_AREA_ON_WILL_CUT = 8017,
 
@@ -11401,11 +12289,14 @@ typedef enum {
      * @brief Event triggered when the selection or cursor position in the **TextEditor** component changes.
      * <br>When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
      * {@link ArkUI_NodeComponentEvent}.
-     * <br>{@link ArkUI_NodeComponentEvent} contains the following parameters:
-     * <br>**ArkUI_NodeComponentEvent.data[0].i32**: start index of the selection.
-     * <br>**ArkUI_NodeComponentEvent.data[1].i32**: end index of the selection.
+     * **{@link ArkUI_NodeComponentEvent} contains the following parameters:**
+     * <ul>
+     * <li>ArkUI_NodeComponentEvent.data[0].i32: start index of the selection.</li>
+     * <li>ArkUI_NodeComponentEvent.data[1].i32: end index of the selection.</li>
+     * </ul>
      *
      * @since 24
+     * @group {ArkUI_NodeEventType(Rich Text Component Event)}[capi-native-node-h-node-eventtype-richeditor]
      */
     NODE_TEXT_EDITOR_ON_SELECTION_CHANGE = MAX_NODE_SCOPE_NUM * ARKUI_NODE_TEXT_EDITOR,
 
@@ -11415,6 +12306,7 @@ typedef enum {
      * {@link ArkUI_NodeComponentEvent}.
      *
      * @since 24
+     * @group {ArkUI_NodeEventType(Rich Text Component Event)}[capi-native-node-h-node-eventtype-richeditor]
      */
     NODE_TEXT_EDITOR_ON_READY,
 
@@ -11427,6 +12319,7 @@ typedef enum {
      * <br>**0**: not intercept. **1**: intercept.
      *
      * @since 24
+     * @group {ArkUI_NodeEventType(Rich Text Component Event)}[capi-native-node-h-node-eventtype-richeditor]
      */
     NODE_TEXT_EDITOR_ON_PASTE,
 
@@ -11434,10 +12327,13 @@ typedef enum {
      * @brief Event triggered when the editing status of the **TextEditor** component changes.
      * <br>When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
      * {@link ArkUI_NodeComponentEvent}.
-     * <br>{@link ArkUI_NodeComponentEvent} contains the following parameter:
-     * <br>**ArkUI_NodeComponentEvent.data[0].i32**: editing status of the component.
+     * **{@link ArkUI_NodeComponentEvent} contains the following parameter:**
+     * <ul>
+     * <li>ArkUI_NodeComponentEvent.data[0].i32: editing status of the component.</li>
+     * </ul>
      *
      * @since 24
+     * @group {ArkUI_NodeEventType(Rich Text Component Event)}[capi-native-node-h-node-eventtype-richeditor]
      */
     NODE_TEXT_EDITOR_ON_EDITING_CHANGE,
 
@@ -11445,11 +12341,13 @@ typedef enum {
      * @brief Event triggered when the **Enter** key on the keyboard is pressed for the **TextEditor** component.
      * <br>When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
      * {@link ArkUI_NodeComponentEvent}.
-     * <br>{@link ArkUI_NodeComponentEvent} contains the following parameter:
-     * <br>**ArkUI_NodeComponentEvent.data[0].i32**: type of the **Enter** key, specified using
-     * {@link ArkUI_EnterKeyType}.
-     * 
+     * **{@link ArkUI_NodeComponentEvent} contains the following parameter:**
+     * <ul>
+     * <li>ArkUI_NodeComponentEvent.data[0].i32: type of the Enter key, specified using {@link ArkUI_EnterKeyType}.</li>
+     * </ul>
+     *
      * @since 24
+     * @group {ArkUI_NodeEventType(Rich Text Component Event)}[capi-native-node-h-node-eventtype-richeditor]
      */
     NODE_TEXT_EDITOR_ON_SUBMIT,
 
@@ -11461,6 +12359,7 @@ typedef enum {
      * <br>**value.i32**: whether to intercept the default behavior of the component, with the index of **0**.
      * <br>**0**: not intercept. **1**: intercept.
      * @since 24
+     * @group {ArkUI_NodeEventType(Rich Text Component Event)}[capi-native-node-h-node-eventtype-richeditor]
      */
     NODE_TEXT_EDITOR_ON_CUT,
 
@@ -11472,6 +12371,7 @@ typedef enum {
      * <br>**value.i32**: whether to intercept the default behavior of the component, with the index of **0**.
      * <br>**0**: not intercept. **1**: intercept.
      * @since 24
+     * @group {ArkUI_NodeEventType(Rich Text Component Event)}[capi-native-node-h-node-eventtype-richeditor]
      */
     NODE_TEXT_EDITOR_ON_COPY,
 
@@ -11489,6 +12389,7 @@ typedef enum {
      * <br>**value.i32** whose **index** is set to **0** indicates whether the current content can be changed. **0**:
      * The content cannot be changed. **1**: The content can be changed.
      * @since 24
+     * @group {ArkUI_NodeEventType(Rich Text Component Event)}[capi-native-node-h-node-eventtype-richeditor]
      */
     NODE_TEXT_EDITOR_ON_WILL_CHANGE,
 
@@ -11496,16 +12397,16 @@ typedef enum {
      * @brief Event triggered when the **TextEditor** component changes the content.
      * <br>When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
      * {@link ArkUI_NodeComponentEvent}.
-     * <br>{@link ArkUI_NodeComponentEvent} contains the following parameters:
-     * <br>**ArkUI_NodeComponentEvent.data[0].i32**: start index of the text range to be replaced before the text
-     * changes.
-     * <br>**ArkUI_NodeComponentEvent.data[1].i32**: end index of the text range to be replaced before the text changes.
-     * <br>**ArkUI_NodeComponentEvent.data[2].i32**: start index of the text range of the new content after the text
-     * changes.
-     * <br>**ArkUI_NodeComponentEvent.data[3].i32**: end index of the text range of the new content after the text
-     * changes.
+     * **{@link ArkUI_NodeComponentEvent} contains the following parameters:**
+     * <ul>
+     * <li>ArkUI_NodeComponentEvent.data[0].i32: start index of the text range to be replaced before the text changes.</li>
+     * <li>ArkUI_NodeComponentEvent.data[1].i32: end index of the text range to be replaced before the text changes.</li>
+     * <li>ArkUI_NodeComponentEvent.data[2].i32: start index of the text range of the new content after the text changes.</li>
+     * <li>ArkUI_NodeComponentEvent.data[3].i32: end index of the text range of the new content after the text changes.</li>
+     * </ul>
      *
      * @since 24
+     * @group {ArkUI_NodeEventType(Rich Text Component Event)}[capi-native-node-h-node-eventtype-richeditor]
      */
     NODE_TEXT_EDITOR_ON_DID_CHANGE,
 
