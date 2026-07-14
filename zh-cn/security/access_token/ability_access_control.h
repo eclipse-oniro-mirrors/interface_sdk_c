@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2024 Huawei Device Co., Ltd.
+ * Copyright (c) 2024-2026 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -43,10 +43,9 @@
 extern "C" {
 #endif
 /**
- * @brief Checks whether a permission is granted to this application.
- * @param permission - Pointer to the permission to check. For details about the permission,
- *     see [the application permission list](docroot://security/AccessToken/app-permissions.md).
- * @return Returns true if the permission has been granted to the application. Returns false otherwise.
+ * @brief 校验应用是否被授予指定的权限。
+ * @param permission - 需要校验的权限名称，合法的权限名取值可在[应用权限列表](docroot://security/AccessToken/app-permissions.md)中查询。
+ * @return 如果应用已经被授予该权限，则返回true。反之，返回false。
  * @since 12
  */
 bool OH_AT_CheckSelfPermission(const char *permission);
