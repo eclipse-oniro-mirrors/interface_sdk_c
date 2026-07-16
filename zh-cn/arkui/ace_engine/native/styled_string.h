@@ -1439,7 +1439,7 @@ typedef struct OH_ArkUI_LeadingMarginSpanDrawInfo OH_ArkUI_LeadingMarginSpanDraw
 /**
  * @brief 创建{@link OH_ArkUI_LeadingMarginSpanDrawInfo}对象。
  *
- * @note When the object is no longer in use, invoke <b> OH_ArkUI_LeadingMarginSpanDrawInfo_Destroy </b> to destroy it.
+ * @note 当该对象不再使用时，调用 OH_ArkUI_LeadingMarginSpanDrawInfo_Destroy 来销毁它。
  * @return 指向{@link OH_ArkUI_LeadingMarginSpanDrawInfo}对象的指针。
  * @since 24
  */
