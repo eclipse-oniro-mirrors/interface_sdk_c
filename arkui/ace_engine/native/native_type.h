@@ -1,4 +1,4 @@
-/*
+/**
  * Copyright (c) 2024-2026 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -43,6 +43,7 @@
 #include <stdint.h>
 #endif
 
+#include "common_type.h"
 #include "error_code.h"
 
 #include "drawable_descriptor.h"
@@ -79,46 +80,11 @@ extern "C" {
 #endif
 
 /**
- * @brief Defines the ArkUI native component object.
- *
- * @since 12
- */
-struct ArkUI_Node;
-
-/**
- * @brief Defines the pointer type of the ArkUI node content
- *
- * @since 12
- */
-typedef struct ArkUI_NodeContent* ArkUI_NodeContentHandle;
-
-/**
  * @brief Defines the custom dialog box controller of ArkUI on the native side.
  *
  * @since 12
  */
 struct ArkUI_NativeDialog;
-
-/**
- * @brief Sets the size constraints of a component during component layout.
- *
- * @since 12
- */
-typedef struct ArkUI_LayoutConstraint ArkUI_LayoutConstraint;
-
-/**
- * @brief Defines the structure of the component drawing context.
- *
- * @since 12
- */
-typedef struct ArkUI_DrawContext ArkUI_DrawContext;
-
-/**
- * @brief Defines the pointer to the ArkUI native component object.
- *
- * @since 12
- */
-typedef struct ArkUI_Node* ArkUI_NodeHandle;
 
 /**
  * @brief Defines the pointer to the custom dialog box controller of ArkUI on the native side.
@@ -147,20 +113,6 @@ typedef struct ArkUI_ListItemSwipeActionItem ArkUI_ListItemSwipeActionItem;
  * @since 12
  */
 typedef struct ArkUI_ListItemSwipeActionOption ArkUI_ListItemSwipeActionOption;
-
-/**
- * @brief Defines the ArkUI native context object.
- *
- * @since 12
- */
-struct ArkUI_Context;
-
-/**
-  * @brief Defines the pointer to the context instance object pointer definition of ArkUI on the native side.
-  *
-  * @since 12
-  */
-typedef struct ArkUI_Context* ArkUI_ContextHandle;
 
 /**
  * @brief Defines the accessibility state for the component.
@@ -209,31 +161,6 @@ typedef struct ArkUI_CrossLanguageOption ArkUI_CrossLanguageOption;
  * @since 23
  */
 typedef struct ArkUI_SelectedDragPreviewStyle ArkUI_SelectedDragPreviewStyle;
-
-/**
- * @brief Defines the event callback type.
- *
- * @since 12
- */
-typedef struct {
-    /** Custom type, data of a user-defined type that is passed as a parameter during callbacks. */
-    void* userData;
-    /** Event callback. */
-    void (*callback)(void* userData);
-} ArkUI_ContextCallback;
-/**
- * @brief Provides the number types of ArkUI in the native code.
- *
- * @since 12
- */
-typedef union {
-    /** Floating-point type, used to store a floating-point value. */
-    float f32;
-    /** Signed integer, used to store a signed integer value. */
-    int32_t i32;
-    /** Unsigned integer, used to store an unsigned integer value. */
-    uint32_t u32;
-} ArkUI_NumberValue;
 
 /**
  * @brief Enumerates the text copy and paste modes.
@@ -390,47 +317,6 @@ typedef struct {
     /** Length array. */
     int size;
 } ArkUI_ColorStop;
-
-/**
- * @brief Defines a mask area.
- *
- * @since 12
- */
-typedef struct {
-    /** X coordinate of the mask area. */
-    float x;
-    /** Y coordinate of the mask area. */
-    float y;
-    /** Width of the mask area. */
-    float width;
-    /** Height of the mask area. */
-    float height;
-} ArkUI_Rect;
-
-/**
- * @brief Describes the width and height of a component.
- *
- * @since 12
- */
-typedef struct {
-    /** Width, in px. */
-    int32_t width;
-    /** Height, in px. */
-    int32_t height;
-} ArkUI_IntSize;
-
-/**
- * @brief Describes the position of a component.
- *
- * @since 12
- */
-typedef struct {
-    /** Horizontal coordinate, in px. */
-    int32_t x;
-    /** Vertical coordinate, in px. */
-    int32_t y;
-} ArkUI_IntOffset;
-
 
 /**
  * @brief Define the pattern of element arrangement in the main axis direction of the Swiper component.
