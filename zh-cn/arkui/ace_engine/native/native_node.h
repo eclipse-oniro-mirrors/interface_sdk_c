@@ -1,5 +1,5 @@
-/*
- * Copyright (c) 2024-2025 Huawei Device Co., Ltd.
+/**
+ * Copyright (c) 2024-2026 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -37,6 +37,7 @@
 #ifndef ARKUI_NATIVE_NODE_H
 #define ARKUI_NATIVE_NODE_H
 
+#include "common_type.h"
 #include "native_type.h"
 #include "ui_input_event.h"
 
@@ -164,23 +165,6 @@ typedef enum {
      */
     ARKUI_NODE_PICKER = 1018,
 } ArkUI_NodeType;
-
-/**
- * @brief Defines the general input parameter structure of the {@link setAttribute} function. The property
- * setting interfaces can utilize the member variables within it to store data of specific parameter types.
- *
- * @since 12
- */
-typedef struct {
-    /** A number array, used to store parameters of the number array type. */
-    const ArkUI_NumberValue* value;
-    /** The size of the number array, used together with the variable value, indicating the length of the value array. */
-    int32_t size;
-    /** String type, used to store parameters of the string type. */
-    const char* string;
-    /** Object type, used to store parameters of the object type. */
-    void* object;
-} ArkUI_AttributeItem;
 
 /**
  * @brief 定义ArkUI在Native侧可以设置的属性样式集合。
@@ -11348,13 +11332,6 @@ typedef enum {
       */
     NODE_PICKER_EVENT_ON_SCROLL_STOP = 1018001,
 } ArkUI_NodeEventType;
-
-/**
- * @brief Defines the common structure type of a component event.
- *
- * @since 12
- */
-typedef struct ArkUI_NodeEvent ArkUI_NodeEvent;
 
 /**
  * @brief Obtains the type of a component event.
