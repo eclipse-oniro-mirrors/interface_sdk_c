@@ -52,6 +52,7 @@
 #include "node_attributes/progress.h"
 #include "node_attributes/image_span.h"
 #include "node_attributes/custom_span.h"
+#include "node_attributes/rich_editor.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -5326,148 +5327,11 @@ ArkUI_ErrorCode OH_ArkUI_TextEditMenuOptions_RegisterOnMenuItemClickCallback(
     ArkUI_TextEditMenuOptions* editMenuOptions, void* userData, ArkUI_TextMenuItemClickCallback cb);
 
 /**
- * @brief 定义文本编辑器的文本选择菜单选项。
- *
- * @since 24
- */
-typedef struct OH_ArkUI_TextEditorSelectionMenuOptions OH_ArkUI_TextEditorSelectionMenuOptions;
-
-/**
- * @brief 定义文本编辑器无输入时的提示文本选项。
- *
- * @since 24
- */
-typedef struct OH_ArkUI_TextEditorPlaceholderOptions OH_ArkUI_TextEditorPlaceholderOptions;
-
-/**
- * @brief 定义文本编辑器的属性字符串控制器。
- *
- * @since 24
- */
-typedef struct OH_ArkUI_TextEditorStyledStringController OH_ArkUI_TextEditorStyledStringController;
-
-/**
- * @brief 定义文本编辑器的段落样式。
- *
- * @since 24
- */
-typedef struct OH_ArkUI_TextEditorParagraphStyle OH_ArkUI_TextEditorParagraphStyle;
-
-/**
  * @brief 定义阴影选项。
  *
  * @since 24
  */
 typedef struct OH_ArkUI_ShadowOptions OH_ArkUI_ShadowOptions;
-
-/**
- * @brief 定义文本编辑器的文本样式。
- *
- * @since 24
- */
-typedef struct OH_ArkUI_TextEditorTextStyle OH_ArkUI_TextEditorTextStyle;
-
-/**
- * @brief 震动效果类型枚举。
- *
- * @since 24
- */
-typedef enum {
-    /**
-     * 无震动效果。
-     * @since 24
-     */
-    OH_ARKUI_HAPTIC_FEEDBACK_MODE_DISABLED = 0,
-    /**
-     * 有震动效果。
-     * @since 24
-     */
-    OH_ARKUI_HAPTIC_FEEDBACK_MODE_ENABLED = 1,
-    /**
-     * 跟随系统的震动效果。
-     * @since 24
-     */
-    OH_ARKUI_HAPTIC_FEEDBACK_MODE_AUTO = 2,
-} OH_ArkUI_HapticFeedbackMode;
-
-/**
- * @brief 自定义文本选择菜单span类型枚举。
- *
- * @since 24
- */
-typedef enum {
-    /**
-     * 文本span
-     * @since 24
-     */
-    OH_ARKUI_TEXT_EDITOR_SPAN_TYPE_TEXT = 0,
-    /**
-     * 图片span。
-     * @since 24
-     */
-    OH_ARKUI_TEXT_EDITOR_SPAN_TYPE_IMAGE = 1,
-    /**
-     * 混合span。
-     * @since 24
-     */
-    OH_ARKUI_TEXT_EDITOR_SPAN_TYPE_MIXED = 2,
-    /**
-     * 自定义布局span。
-     * @since 24
-     */
-    OH_ARKUI_TEXT_EDITOR_SPAN_TYPE_BUILDER = 3,
-    /**
-     * 默认span。
-     * @since 24
-     */
-    OH_ARKUI_TEXT_EDITOR_SPAN_TYPE_DEFAULT = 4
-} OH_ArkUI_TextEditorSpanType;
-
-/**
- * @brief 自定义文本选择菜单响应类型枚举。
- *
- * @since 24
- */
-typedef enum {
-    /**
-     * 通过鼠标右键触发菜单弹出。
-     * @since 24
-     */
-    OH_ARKUI_TEXT_EDITOR_RESPONSE_TYPE_RIGHT_CLICK = 0,
-    /**
-     * 通过长按触发菜单弹出。
-     * @since 24
-     */
-    OH_ARKUI_TEXT_EDITOR_RESPONSE_TYPE_LONG_PRESS = 1,
-    /**
-     * 通过鼠标选中触发菜单弹出。
-     * @since 24
-     */
-    OH_ARKUI_TEXT_EDITOR_RESPONSE_TYPE_SELECT = 2,
-    /**
-     * 默认响应类型。
-     * @since 24
-     */
-    OH_ARKUI_TEXT_EDITOR_RESPONSE_TYPE_DEFAULT = 3,
-} OH_ArkUI_TextEditorResponseType;
-
-/**
- * @brief 文本菜单类型枚举。
- *
- * @since 24
- */
-typedef enum {
-    /**
-     * 文本选择菜单。
-     * @since 24
-     */
-    OH_ARKUI_TEXT_EDITOR_SELECTION_MENU = 0,
-    /**
-     * 预览菜单。
-     * @since 24
-     */
-    OH_ARKUI_TEXT_EDITOR_PREVIEW_MENU = 1,
-} OH_ArkUI_TextMenuType;
 
 /**
  * @brief Sets the recognition types of a configuration object for selected text recognition.
@@ -6025,22 +5889,6 @@ ArkUI_ErrorCode OH_ArkUI_TextController_SetStyledString(
     OH_ArkUI_TextController* controller, ArkUI_StyledString_Descriptor* descriptor);
 
 /**
- * @brief 创建一个无输入时的提示文本的选项对象。当该对象不再使用时，请调用{@link OH_ArkUI_TextEditorPlaceholderOptions_Destroy}销毁。
- *
- * @return 指向{@link OH_ArkUI_TextEditorPlaceholderOptions}对象的指针。
- * @since 24
- */
-OH_ArkUI_TextEditorPlaceholderOptions* OH_ArkUI_TextEditorPlaceholderOptions_Create();
-
-/**
- * @brief 销毁无输入时的提示文本的选项对象。
- *
- * @param options 指向{@link OH_ArkUI_TextEditorPlaceholderOptions}对象的指针。
- * @since 24
- */
-void OH_ArkUI_TextEditorPlaceholderOptions_Destroy(OH_ArkUI_TextEditorPlaceholderOptions* options);
-
-/**
  * @brief 设置无输入时的提示文本选项的提示文字。
  *
  * @param options 指向{@link OH_ArkUI_TextEditorPlaceholderOptions}对象的指针。
@@ -6203,22 +6051,6 @@ ArkUI_ErrorCode OH_ArkUI_TextEditorPlaceholderOptions_GetFontColor(OH_ArkUI_Text
     uint32_t* fontColor);
 
 /**
- * @brief 为文本编辑器创建一个属性字符串控制器对象。当该对象不再使用时，请调用{@link OH_ArkUI_TextEditorStyledStringController_Destroy}销毁。
- *
- * @return 指向{@link OH_ArkUI_TextEditorStyledStringController}对象的指针。
- * @since 24
- */
-OH_ArkUI_TextEditorStyledStringController* OH_ArkUI_TextEditorStyledStringController_Create();
-
-/**
- * @brief 销毁属性字符串控制器。
- *
- * @param controller 指向{@link OH_ArkUI_TextEditorStyledStringController}对象的指针。
- * @since 24
- */
-void OH_ArkUI_TextEditorStyledStringController_Destroy(OH_ArkUI_TextEditorStyledStringController* controller);
-
-/**
  * @brief 通过属性字符串控制器设置光标偏移量。
  *
  * @param controller 指向{@link OH_ArkUI_TextEditorStyledStringController}对象的指针。
@@ -6325,22 +6157,6 @@ ArkUI_ErrorCode OH_ArkUI_TextEditorStyledStringController_GetCaretRect(
  */
 ArkUI_ErrorCode OH_ArkUI_TextEditorStyledStringController_DeleteBackward(
     OH_ArkUI_TextEditorStyledStringController* controller);
-
-/**
- * @brief 为文本编辑器创建一个段落样式对象。当该对象不再使用时，请调用{@link OH_ArkUI_TextEditorParagraphStyle_Destroy}销毁。
- *
- * @return 指向{@link OH_ArkUI_TextEditorParagraphStyle}对象的指针。
- * @since 24
- */
-OH_ArkUI_TextEditorParagraphStyle* OH_ArkUI_TextEditorParagraphStyle_Create();
-
-/**
- * @brief 销毁段落样式对象。
- *
- * @param style 指向{@link OH_ArkUI_TextEditorParagraphStyle}对象的指针。
- * @since 24
- */
-void OH_ArkUI_TextEditorParagraphStyle_Destroy(OH_ArkUI_TextEditorParagraphStyle* style);
 
 /**
  * @brief 设置段落样式中的文本对齐方式。
@@ -6750,22 +6566,6 @@ ArkUI_ErrorCode OH_ArkUI_ShadowOptions_SetFill(OH_ArkUI_ShadowOptions* options, 
 ArkUI_ErrorCode OH_ArkUI_ShadowOptions_GetFill(OH_ArkUI_ShadowOptions* options, bool* isFill);
 
 /**
- * @brief 创建一个文本样式对象。当该对象不再使用时，请调用{@link OH_ArkUI_TextEditorTextStyle_Destroy}销毁。
- *
- * @return 指向{@link OH_ArkUI_TextEditorTextStyle}对象的指针。
- * @since 24
- */
-OH_ArkUI_TextEditorTextStyle* OH_ArkUI_TextEditorTextStyle_Create();
-
-/**
- * @brief 销毁文本样式对象。
- *
- * @param style 指向{@link OH_ArkUI_TextEditorTextStyle}对象的指针。
- * @since 24
- */
-void OH_ArkUI_TextEditorTextStyle_Destroy(OH_ArkUI_TextEditorTextStyle* style);
-
-/**
  * @brief 设置文本样式的字体颜色。
  *
  * @param style TextEditor组件文本样式。
@@ -7132,22 +6932,6 @@ ArkUI_ErrorCode OH_ArkUI_TextEditorStyledStringController_SetTypingStyle(
  */
 ArkUI_ErrorCode OH_ArkUI_TextEditorStyledStringController_GetTypingStyle(
     OH_ArkUI_TextEditorStyledStringController* controller, OH_ArkUI_TextEditorTextStyle* style);
-
-/**
- * @brief 创建一个文本编辑器文本选择菜单选项对象。当该对象不再使用时，请调用{@link OH_ArkUI_TextEditorSelectionMenuOptions_Destroy}销毁。
- *
- * @return 指向{@link OH_ArkUI_TextEditorSelectionMenuOptions}对象的指针。
- * @since 24
- */
-OH_ArkUI_TextEditorSelectionMenuOptions* OH_ArkUI_TextEditorSelectionMenuOptions_Create();
-
-/**
- * @brief 销毁文本编辑器文本选择菜单选项对象。
- *
- * @param options 指向{@link OH_ArkUI_TextEditorSelectionMenuOptions}对象的指针。
- * @since 24
- */
-void OH_ArkUI_TextEditorSelectionMenuOptions_Destroy(OH_ArkUI_TextEditorSelectionMenuOptions* options);
 
 /**
  * @brief 设置文本编辑器中文本选择菜单的span的类型。

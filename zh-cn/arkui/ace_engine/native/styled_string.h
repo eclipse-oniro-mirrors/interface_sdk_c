@@ -886,7 +886,7 @@ ArkUI_ErrorCode OH_ArkUI_TextStyle_GetSuperscript(const OH_ArkUI_TextStyle* text
 /**
  * @brief 创建{@link OH_ArkUI_SpanStyle}对象。
  *
- * @note When the object is no longer in use, invoke <b> OH_ArkUI_SpanStyle_Destroy </b> to destroy it.
+ * @note 当该对象不再使用时，调用 OH_ArkUI_SpanStyle_Destroy 来销毁它。
  * @return 指向{@link OH_ArkUI_SpanStyle}对象的指针。
  * @since 24
  */
@@ -1434,7 +1434,7 @@ typedef struct OH_ArkUI_LeadingMarginSpanDrawInfo OH_ArkUI_LeadingMarginSpanDraw
 /**
  * @brief 创建{@link OH_ArkUI_LeadingMarginSpanDrawInfo}对象。
  *
- * @note When the object is no longer in use, invoke <b> OH_ArkUI_LeadingMarginSpanDrawInfo_Destroy </b> to destroy it.
+ * @note 当该对象不再使用时，调用 OH_ArkUI_LeadingMarginSpanDrawInfo_Destroy 来销毁它。
  * @return 指向{@link OH_ArkUI_LeadingMarginSpanDrawInfo}对象的指针。
  * @since 24
  */
@@ -1670,7 +1670,7 @@ ArkUI_ErrorCode OH_ArkUI_LeadingMarginSpanDrawInfo_GetFirst(const OH_ArkUI_Leadi
 /**
  * @brief 创建{@link OH_ArkUI_ParagraphStyle}对象。
  *
- * @note When the object is no longer in use, invoke <b> OH_ArkUI_ParagraphStyle_Destroy </b> to destroy it.
+ * @note 当该对象不再使用时，调用 OH_ArkUI_ParagraphStyle_Destroy 来销毁它。
  * @return 指向{@link OH_ArkUI_ParagraphStyle}对象的指针。
  * @since 24
  */
@@ -2020,7 +2020,7 @@ ArkUI_ErrorCode OH_ArkUI_ParagraphStyle_GetTextDirection(const OH_ArkUI_Paragrap
 /**
  * @brief 创建{@link OH_ArkUI_GestureStyle}对象。
  *
- * @note When the object is no longer in use, invoke <b> OH_ArkUI_GestureStyle_Destroy </b> to destroy it.
+ * @note 当该对象不再使用时，调用 OH_ArkUI_GestureStyle_Destroy 来销毁它。
  * @return 指向{@link OH_ArkUI_GestureStyle}对象的指针。
  * @since 24
  */
@@ -2079,7 +2079,7 @@ ArkUI_ErrorCode OH_ArkUI_GestureStyle_RegisterOnTouchCallback(
 /**
  * @brief 创建{@link OH_ArkUI_TextShadowStyle}对象。
  *
- * @note When the object is no longer in use, invoke <b> OH_ArkUI_TextShadowStyle_Destroy </b> to destroy it.
+ * @note 当该对象不再使用时，调用 OH_ArkUI_TextShadowStyle_Destroy 来销毁它。
  * @return 指向{@link OH_ArkUI_TextShadowStyle}对象的指针。
  * @since 24
  */
@@ -2128,7 +2128,7 @@ ArkUI_ErrorCode OH_ArkUI_TextShadowStyle_GetTextShadow(const OH_ArkUI_TextShadow
 /**
  * @brief 创建{@link OH_ArkUI_DecorationStyle}对象。
  *
- * @note When the object is no longer in use, invoke <b> OH_ArkUI_DecorationStyle_Destroy </b> to destroy it.
+ * @note 当该对象不再使用时，调用 OH_ArkUI_DecorationStyle_Destroy 来销毁它。
  * @return 指向{@link OH_ArkUI_DecorationStyle}对象的指针。
  * @since 24
  */
@@ -2283,7 +2283,7 @@ ArkUI_ErrorCode OH_ArkUI_DecorationStyle_GetEnableMultiType(
 /**
  * @brief 创建{@link OH_ArkUI_BaselineOffsetStyle}对象。
  *
- * @note When the object is no longer in use, invoke <b> OH_ArkUI_BaselineOffsetStyle_Destroy </b> to destroy it.
+ * @note 当该对象不再使用时，调用 OH_ArkUI_BaselineOffsetStyle_Destroy 来销毁它。
  * @return 指向{@link OH_ArkUI_BaselineOffsetStyle}对象的指针。
  * @since 24
  */
@@ -2328,7 +2328,7 @@ ArkUI_ErrorCode OH_ArkUI_BaselineOffsetStyle_GetBaselineOffset(
 /**
  * @brief 创建{@link OH_ArkUI_LetterSpacingStyle}对象。
  *
- * @note When the object is no longer in use, invoke <b> OH_ArkUI_LetterSpacingStyle_Destroy </b> to destroy it.
+ * @note 当该对象不再使用时，调用 OH_ArkUI_LetterSpacingStyle_Destroy 来销毁它。
  * @return 指向{@link OH_ArkUI_LetterSpacingStyle}对象的指针。
  * @since 24
  */
@@ -2373,7 +2373,7 @@ ArkUI_ErrorCode OH_ArkUI_LetterSpacingStyle_GetLetterSpacing(
 /**
  * @brief 创建{@link OH_ArkUI_LineHeightStyle}对象。
  *
- * @note When the object is no longer in use, invoke <b> OH_ArkUI_LineHeightStyle_Destroy </b> to destroy it.
+ * @note 当该对象不再使用时，调用 OH_ArkUI_LineHeightStyle_Destroy 来销毁它。
  * @return 指向{@link OH_ArkUI_LineHeightStyle}对象的指针。
  * @since 24
  */
@@ -2484,7 +2484,7 @@ ArkUI_ErrorCode OH_ArkUI_SpanStyle_GetLineSpacingStyle(const OH_ArkUI_SpanStyle 
 /**
  * @brief 创建{@link OH_ArkUI_LineSpacingStyle}对象。
  *
- * @note When the object is no longer in use, invoke <b> OH_ArkUI_LineSpacingStyle_Destroy </b> to destroy it.
+ * @note 当该对象不再使用时，调用 OH_ArkUI_LineSpacingStyle_Destroy 来销毁它。
  * @return 指向{@link OH_ArkUI_LineSpacingStyle}对象的指针。
  * @since 26.0.0
  */
@@ -2557,7 +2557,7 @@ ArkUI_ErrorCode OH_ArkUI_LineSpacingStyle_GetOnlyBetweenLines(
 /**
  * @brief 创建{@link OH_ArkUI_BackgroundColorStyle}对象。
  *
- * @note When the object is no longer in use, invoke <b> OH_ArkUI_BackgroundColorStyle_Destroy </b> to destroy it.
+ * @note 当该对象不再使用时，调用 OH_ArkUI_BackgroundColorStyle_Destroy 来销毁它。
  * @return 指向{@link OH_ArkUI_BackgroundColorStyle}对象的指针。
  * @since 24
  */
@@ -2634,7 +2634,7 @@ ArkUI_ErrorCode OH_ArkUI_BackgroundColorStyle_GetRadius(const OH_ArkUI_Backgroun
 /**
  * @brief 创建{@link OH_ArkUI_UrlStyle}对象。
  *
- * @note When the object is no longer in use, invoke <b> OH_ArkUI_UrlStyle_Destroy </b> to destroy it.
+ * @note 当该对象不再使用时，调用 OH_ArkUI_UrlStyle_Destroy 来销毁它。
  * @return 指向{@link OH_ArkUI_UrlStyle}对象的指针。
  * @since 24
  */
@@ -2683,7 +2683,7 @@ ArkUI_ErrorCode OH_ArkUI_UrlStyle_GetUrl(const OH_ArkUI_UrlStyle *style,
 /**
  * @brief 创建{@link OH_ArkUI_UserDataSpan}对象。
  *
- * @note When the object is no longer in use, invoke <b> OH_ArkUI_UserDataSpan_Destroy </b> to destroy it.
+ * @note 当该对象不再使用时，调用 OH_ArkUI_UserDataSpan_Destroy 来销毁它。
  * @return 指向{@link OH_ArkUI_UserDataSpan}对象的指针。
  * @since 24
  */
@@ -2726,7 +2726,7 @@ ArkUI_ErrorCode OH_ArkUI_UserDataSpan_GetUserData(const OH_ArkUI_UserDataSpan* u
 /**
  * @brief 创建{@link OH_ArkUI_CustomSpan}对象。
  *
- * @note When the object is no longer in use, invoke <b> OH_ArkUI_CustomSpan_Destroy </b> to destroy it.
+ * @note 当该对象不再使用时，调用 OH_ArkUI_CustomSpan_Destroy 来销毁它。
  * @return 指向{@link OH_ArkUI_CustomSpan}对象的指针。
  * @since 24
  */
@@ -2774,7 +2774,7 @@ ArkUI_ErrorCode OH_ArkUI_CustomSpan_RegisterOnDrawCallback(
 /**
  * @brief 创建{@link OH_ArkUI_ImageAttachment}对象。
  *
- * @note When the object is no longer in use, invoke <b> OH_ArkUI_ImageAttachment_Destroy </b> to destroy it.
+ * @note 当该对象不再使用时，调用 OH_ArkUI_ImageAttachment_Destroy 来销毁它。
  * @return 指向{@link OH_ArkUI_ImageAttachment}对象的指针。
  * @since 24
  */
