@@ -247,7 +247,7 @@ typedef struct Location_Info Location_Info;
  * @brief Indicates whether the location was obtained from the mock location function.
  *
  * @param location - Pointer to the location information structure.
- * A non-null pointer is required. The pointer can be obtained via {@link Location_InfoCallback}.
+ * A non‑null pointer is required. The pointer can be obtained via {@link Location_InfoCallback}.
  * @return true if the location was obtained from the mock location function.
  * Otherwise, the location originates from the system's real positioning result.
  * @since 26.0.0
