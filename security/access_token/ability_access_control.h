@@ -25,7 +25,7 @@
 /**
  * @file ability_access_control.h
  *
- * @brief Declares the APIs for managing access token.
+ * @brief Declares the APIs for implementing application access control.
  *
  * @library ability_access_control.so
  * @kit AbilityKit
@@ -42,13 +42,11 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-
 /**
- * @brief Checks whether this application has been granted the given permission.
- *
- * @param permission - Name of the permission to be granted.
- * @return true  - The permission has been granted to this application.
- *         false - The permission has not been granted to this application.
+ * @brief Checks whether a permission is granted to this application.
+ * @param permission - Pointer to the permission to check. For details about the permission,
+ *     see [the application permission list](docroot://security/AccessToken/app-permissions.md).
+ * @return Returns true if the permission has been granted to the application. Returns false otherwise.
  * @since 12
  */
 bool OH_AT_CheckSelfPermission(const char *permission);

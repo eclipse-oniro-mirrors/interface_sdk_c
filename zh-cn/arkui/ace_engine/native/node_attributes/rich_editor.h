@@ -257,11 +257,6 @@ void OH_ArkUI_TextEditorTextStyle_Destroy(OH_ArkUI_TextEditorTextStyle* style);
  * @since 24
  */
 OH_ArkUI_TextEditorSelectionMenuOptions* OH_ArkUI_TextEditorSelectionMenuOptions_Create();
-#ifdef __cplusplus
-}
-#endif
-
-#endif // ARKUI_NATIVE_NODE_ATTRIBUTES_RICH_EDITOR_H
 
 /**
  * @brief Destroys the text selection menu option object of the text editor.
@@ -271,3 +266,9 @@ OH_ArkUI_TextEditorSelectionMenuOptions* OH_ArkUI_TextEditorSelectionMenuOptions
  */
 void OH_ArkUI_TextEditorSelectionMenuOptions_Destroy(OH_ArkUI_TextEditorSelectionMenuOptions* options);
 /** @} */
+
+#ifdef __cplusplus
+}
+#endif
+
+#endif // ARKUI_NATIVE_NODE_ATTRIBUTES_RICH_EDITOR_H

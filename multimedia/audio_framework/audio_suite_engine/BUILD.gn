@@ -19,6 +19,7 @@ ohos_ndk_headers("ohaudiosuite_header") {
   sources = [
     "native_audio_converter.h",
     "native_audio_suite_base.h",
+    "native_audio_suite_download_manager.h",
     "native_audio_suite_engine.h",
   ]
 }

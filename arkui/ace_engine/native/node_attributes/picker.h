@@ -25,7 +25,7 @@
 /**
  * @file picker.h
  *
- * @brief Defines the common types and APIs for picker components.
+ * @brief Defines **Picker** node types for **NativeNode** APIs.
  *
  * @library libace_ndk.z.so
  * @syscap SystemCapability.ArkUI.ArkUI.Full
@@ -43,7 +43,7 @@ extern "C" {
 #endif
 
 /**
- * @brief Enumerates the modes of the date picker.
+ * @brief Enumerates the column display modes of the date picker.
  *
  * @since 18
  */
@@ -65,7 +65,7 @@ typedef enum {
      *
      * @since 18
      */
-    ARKUI_DATEPICKER_MONTH_AND_DAY = 2,
+    ARKUI_DATEPICKER_MONTH_AND_DAY = 2
 } ArkUI_DatePickerMode;
 
 /**
@@ -97,50 +97,44 @@ typedef enum {
      *
      * @since 12
      */
-    ARKUI_TEXTPICKER_RANGETYPE_CASCADE_RANGE_CONTENT = 3,
+    ARKUI_TEXTPICKER_RANGETYPE_CASCADE_RANGE_CONTENT = 3
 } ArkUI_TextPickerRangeType;
-
 /**
- * @brief Defines the input structure of the single-column text picker with image resources.
+ * @brief Defines the option content supported by the single-column text picker, including text and image resources.
  *
  * @since 12
  */
 typedef struct {
     /**
-     * Image resource.
-     *
+     * Pointer to the image resource.
      * @since 12
      */
     const char* icon;
     /**
-     * Text information.
-     *
+     * Pointer to the text information.
      * @since 12
      */
     const char* text;
 } ARKUI_TextPickerRangeContent;
 
 /**
- * @brief Defines the input structure of the interconnected multi-column text picker.
+ * @brief Defines a multi-column cascade picker.
  *
  * @since 12
  */
 typedef struct {
     /**
-     * Text information.
-     *
+     * Pointer to the text information.
      * @since 12
      */
     const char* text;
     /**
-     * Interconnected data.
-     *
+     * Cascade data.
      * @since 12
      */
     const ARKUI_TextPickerRangeContent* children;
     /**
-     * Size of the interconnected data array.
-     *
+     * Size of the cascade data array.
      * @since 12
      */
     int32_t size;
@@ -169,11 +163,11 @@ typedef enum {
      *
      * @since 12
      */
-    ARKUI_CALENDAR_ALIGNMENT_END = 2,
+    ARKUI_CALENDAR_ALIGNMENT_END = 2
 } ArkUI_CalendarAlignment;
 
 /**
- * @brief Enumerates the selected indicator type of picker.
+ * @brief Enumerates the indicator types of the selected item.
  *
  * @since 23
  */
@@ -189,234 +183,208 @@ typedef enum {
      *
      * @since 23
      */
-    ARKUI_PICKER_INDICATOR_DIVIDER = 1,
+    ARKUI_PICKER_INDICATOR_DIVIDER = 1
 } ArkUI_PickerIndicatorType;
-
 /**
- * @brief Style parameters of background indicator.
+ * @brief Defines the style parameter of the background-style indicator of the selected item.
  *
  * @since 23
  */
 typedef struct {
     /**
-     * background color, 0xARGB format for example <b>0xFF1122FF</b>
-     *
+     * Background color of the selected item.<br>Default value: **0**<br>Value range: 0xARGB format, for example, <b>
+     * 0xFF1122FF</b>.
      * @since 23
      */
     uint32_t backgroundColor;
     /**
-     * radius of the top left corner.
-     *
+     * Radius of the upper left corner.<br>Default value: **0**<br>Unit: vp<br>Value range: no more than half of the
+     * smaller value between the width and height of the selected item. If the value is less than 0, the style
+     * parameter of the background-style indicator of the selected item fails to be set. If the value is greater than
+     * the maximum value, the maximum value is used.
      * @since 23
      */
     float topLeftRadius;
     /**
-     * radius of the top right corner
-     *
+     * Radius of the upper right corner.<br>Default value: **0**<br>Unit: vp<br>Value range: no more than half of the
+     * smaller value between the width and height of the selected item. If the value is less than 0, the style
+     * parameter of the background-style indicator of the selected item fails to be set. If the value is greater than
+     * the maximum value, the maximum value is used.
      * @since 23
      */
     float topRightRadius;
     /**
-     * radius of the bottom left corner
-     *
+     * Radius of the lower left corner.<br>Default value: **0**<br>Unit: vp<br>Value range: no more than half of the
+     * smaller value between the width and height of the selected item. If the value is less than 0, the style
+     * parameter of the background-style indicator of the selected item fails to be set. If the value is greater than
+     * the maximum value, the maximum value is used.
      * @since 23
      */
     float bottomLeftRadius;
     /**
-     * radius of the bottom right corner.
-     *
+     * Radius of the lower right corner.<br>Default value: **0**<br>Unit: vp<br>Value range: no more than half of the
+     * smaller value between the width and height of the selected item. If the value is less than 0, the style
+     * parameter of the background-style indicator of the selected item fails to be set. If the value is greater than
+     * the maximum value, the maximum value is used.
      * @since 23
      */
     float bottomRightRadius;
 } ArkUI_PickerIndicatorBackground;
-
 /**
- * @brief Style parameters of divider indicator.
+ * @brief Defines the style parameter of the divider-style indicator.
  *
  * @since 23
  */
 typedef struct {
     /**
-     * stroke width
-     *
+     * Stroke width of the divider.<br>Default value: **0**<br>Unit: vp<br>Value range: [0, half the height of the
+     * selected item (that is, 20 vp)]. Setting the style parameter for the divider-style indicator fails when **
+     * strokeWidth** is less than **0**. If **strokeWidth** exceeds half the height of the selected item, 2.0 vp is
+     * used. Percentages are not supported.
      * @since 23
      */
     float strokeWidth;
     /**
-     * divider color, 0xARGB format for example <b>0xFF1122FF</b>
-     *
+     * Color of the divider.<br>Default value: **0**<br>Value range: 0xARGB format, for example, <b>0xFF1122FF</b>.
      * @since 23
      */
     uint32_t dividerColor;
     /**
-     * the distance between the divider and the beginning of the side of the picker (unit: vp).
-     *
+     * Distance between the divider and the start edge of the **Picker** container.<br>Default value: **0**<br>Unit: vp<
+     * br>Value range: The sum of **startMargin** and **endMargin** must not exceed the width of the **Picker**
+     * container. Setting the style parameter for the divider-style indicator fails when the value less than **0** is
+     * set. If the sum of **startMargin** and **endMargin** exceeds the width of the **Picker** container, the default
+     * value is used. Percentages are not supported.
      * @since 23
      */
     float startMargin;
     /**
-     * the distance between the divider and the end of the side of the picker (unit: vp).
-     *
+     * Distance between the divider and the end edge of the **Picker** container.<br>Default value: **0**<br>Unit: vp<
+     * br>Value range: The sum of **startMargin** and **endMargin** must not exceed the width of the **Picker**
+     * container. Setting the style parameter for the divider-style indicator fails when the value less than **0** is
+     * set. If the sum of **startMargin** and **endMargin** exceeds the width of the **Picker** container, the default
+     * value is used. Percentages are not supported.
      * @since 23
      */
     float endMargin;
 } ArkUI_PickerIndicatorDivider;
 
 /**
- * @brief Definition of indicator style.
+ * @brief Defines the style of the selected item indicator.
  *
  * @since 23
  */
 typedef struct ArkUI_PickerIndicatorStyle ArkUI_PickerIndicatorStyle;
 
 /**
-  * @brief TextPicker single column selector, supports mixing text and images.
-  *
-  * @since 19
-  */
+ * @brief Defines the data list for the text picker.
+ *
+ * @since 19
+ */
 typedef struct ArkUI_TextPickerRangeContentArray ArkUI_TextPickerRangeContentArray;
 
- /**
-   * @brief TextPicker multi column selector, supports mixing text and images.
-   *
-   * @since 19
-   */
-typedef struct ArkUI_TextCascadePickerRangeContentArray ArkUI_TextCascadePickerRangeContentArray;
-
 /**
- * @brief Creates a TextPickerRangeContent instance.
+ * @brief Defines an array of multi-column cascade pickers.
  *
- * @param length The length of the picker array. Value range: [1, +infinity).
- * @return Returns a pointer to the created instance on success. Initialize each item of the array
- *         as a null pointer;call {@link OH_ArkUI_TextPickerRangeContentArray_SetIconAtIndex} and/or
- *         {@link OH_ArkUI_TextPickerRangeContentArray_SetTextAtIndex} for each index as needed.
- *         Returns <b>nullptr</b> if <b>length</b> is not in <b>[1, +infinity)</b>.
- *         When the object is no longer used, release it with {@link OH_ArkUI_TextPickerRangeContentArray_Destroy}.
+ * @since 19
+ */
+typedef struct ArkUI_TextCascadePickerRangeContentArray ArkUI_TextCascadePickerRangeContentArray;
+/**
+ * @brief Creates an object of the {@link TextPickerRangeContent} array.
+ *
+ * @param length Length of the **TextPickerRangeContent** array.
+ * @return Pointer to an empty **TextPickerRangeContent** array.
  * @since 19
  */
 ArkUI_TextPickerRangeContentArray* OH_ArkUI_TextPickerRangeContentArray_Create(int32_t length);
-
 /**
- * @brief Sets the icon resource path or URI for one item in an {@link ArkUI_TextPickerRangeContentArray}.
+ * @brief Configures the icon data at a specified position in the **TextPickerRangeContent** array.
  *
- * @param handle Pointer returned by {@link OH_ArkUI_TextPickerRangeContentArray_Create}. If <b>nullptr</b>, this
- *        function has no effect.
- * @param icon Null-terminated C string for the icon (path or URI). The content is copied into the array; the caller
- *        keeps ownership of <b>icon</b>. If <b>nullptr</b>, this function has no effect.
- * @param index Index of the item to set. Valid values are greater than or equal to <b>0</b> and less than the
- *        <b>length</b> argument passed to {@link OH_ArkUI_TextPickerRangeContentArray_Create}. Otherwise this function
- *        does nothing.
+ * @param handle Pointer to the **TextPickerRangeContent** array.
+ * @param icon Pointer to the icon path.
+ * @param index Array index, starting from 0.
  * @note If an icon was already set at <b>index</b>, the previous buffer is released before assigning the new value.
  * @since 19
  */
 void OH_ArkUI_TextPickerRangeContentArray_SetIconAtIndex(
     ArkUI_TextPickerRangeContentArray* handle, char* icon, int32_t index);
-
 /**
- * @brief Sets the display text for one item in an {@link ArkUI_TextPickerRangeContentArray}.
+ * @brief Configures the text data at a specified position in the **TextPickerRangeContent** array.
  *
- * @param handle Pointer returned by {@link OH_ArkUI_TextPickerRangeContentArray_Create}. If <b>nullptr</b>, this
- *        function has no effect.
- * @param text Null-terminated C string shown for the item. The content is copied into the array; the caller keeps
- *        ownership of <b>text</b>. If <b>nullptr</b>, this function has no effect.
- * @param index Index of the item to set. Valid values are greater than or equal to <b>0</b> and less than the
- *        <b>length</b> argument passed to {@link OH_ArkUI_TextPickerRangeContentArray_Create}. Otherwise this function
- *        does nothing.
+ * @param handle Pointer to the **TextPickerRangeContent** array.
+ * @param text Pointer to the text content.
+ * @param index Position in the array, starting from 0.
  * @note If text was already set at <b>index</b>, the previous buffer is released before assigning the new value.
  * @since 19
  */
 void OH_ArkUI_TextPickerRangeContentArray_SetTextAtIndex(
     ArkUI_TextPickerRangeContentArray* handle, char* text, int32_t index);
-
 /**
- * @brief Releases an {@link ArkUI_TextPickerRangeContentArray} created by
- *        {@link OH_ArkUI_TextPickerRangeContentArray_Create}.
+ * @brief Destroys a **TextPickerRangeContent** array object.
  *
- * @param handle Instance to destroy. If <b>nullptr</b>, this function has no effect.
+ * @param handle Pointer to the **TextPickerRangeContent** array.
  * @note After this call, <b>handle</b> must not be used. Do not pass pointers that were not returned by
- *       {@link OH_ArkUI_TextPickerRangeContentArray_Create}.
+ *     {@link OH_ArkUI_TextPickerRangeContentArray_Create}.
  * @since 19
  */
 void OH_ArkUI_TextPickerRangeContentArray_Destroy(ArkUI_TextPickerRangeContentArray* handle);
-
 /**
- * @brief Allocates one column level of an interconnected (cascade) TextPicker range. Use with range type
- *        {@link ARKUI_TEXTPICKER_RANGETYPE_CASCADE_RANGE_CONTENT}. The returned pointer addresses a contiguous array
- *        of sibling nodes; each node may carry display text and an optional next-level range from
- *        {@link OH_ArkUI_TextCascadePickerRangeContentArray_SetChildAtIndex}.
+ * @brief Creates an object of the {@link TextCascadePickerRangeContent} array.
  *
- * @param length Number of sibling entries on this column. Value range: <b>[1, +infinity)</b>.
- * @return Returns a pointer to the first sibling node when <b>length</b> is in <b>[1, +infinity)</b>; returns
- *     <b>nullptr</b> otherwise. The sibling count used for bounds checks equals <b>length</b>.
+ * @param length Length of the **TextPickerRangeContent** array.
+ * @return Pointer to an empty **TextCascadePickerRangeContent** array.
  * @since 19
  */
 ArkUI_TextCascadePickerRangeContentArray* OH_ArkUI_TextCascadePickerRangeContentArray_Create(int32_t length);
-
-
 /**
- * @brief Sets the display text for one sibling node on a cascade TextPicker level.
+ * @brief Configures the text data at a specified position in the **TextCascadePickerRangeContent** array.
  *
- * @param handle Pointer returned by {@link OH_ArkUI_TextCascadePickerRangeContentArray_Create}. If <b>nullptr</b>,
- *        this function has no effect.
- * @param text Null-terminated C string. The content is copied; the caller keeps ownership of <b>text</b>. If
- *        <b>nullptr</b>, this function has no effect.
- * @param index Index of the sibling to set. Valid values are greater than or equal to <b>0</b> and less than the
- *        <b>length</b> argument passed to {@link OH_ArkUI_TextCascadePickerRangeContentArray_Create}. Otherwise this
- *        function does nothing.
+ * @param handle Pointer to the **TextCascadePickerRangeContentHandle** instance.
+ * @param text Pointer to the text content.
+ * @param index Position in the array, starting from 0.
  * @note If text was already set at <b>index</b>, the previous buffer is released before assigning the new value.
  * @since 19
  */
 void OH_ArkUI_TextCascadePickerRangeContentArray_SetTextAtIndex(
     ArkUI_TextCascadePickerRangeContentArray* handle, char* text, int32_t index);
-
 /**
- * @brief Sets the childs info of items in a multi text picker ranges.
+ * @brief Configures the child data at a specified position in the **TextCascadePickerRangeContent** array.
  *
- * @param handle Pointer returned by {@link OH_ArkUI_TextCascadePickerRangeContentArray_Create}. If <b>nullptr</b>,
- *        this function has no effect.
- * @param child Pointer returned by {@link OH_ArkUI_TextCascadePickerRangeContentArray_Create} for the child column.
- *        If <b>nullptr</b>, this function has no effect. If a subtree already exists at <b>index</b>, it is destroyed
- *        with {@link OH_ArkUI_TextCascadePickerRangeContentArray_Destroy} before the new <b>child</b> is stored.
- *        While <b>child</b> stays attached under the parent, the caller must not call
- *        {@link OH_ArkUI_TextCascadePickerRangeContentArray_Destroy} on <b>child</b>.
- * @param index Index of the sibling that owns the subtree. Valid values are greater than or equal to <b>0</b> and less
- *        than the <b>length</b> argument passed to {@link OH_ArkUI_TextCascadePickerRangeContentArray_Create}.
- *        Otherwise this function does nothing.
+ * @param handle Pointer to the **TextCascadePickerRangeContentHandle** instance.
+ * @param child Pointer to the child node array.
+ * @param index Position in the array, starting from 0.
  * @since 19
  */
 void OH_ArkUI_TextCascadePickerRangeContentArray_SetChildAtIndex(
     ArkUI_TextCascadePickerRangeContentArray* handle, ArkUI_TextCascadePickerRangeContentArray* child, int32_t index);
-
-
 /**
- * @brief Releases a cascade range level allocated with {@link OH_ArkUI_TextCascadePickerRangeContentArray_Create}.
+ * @brief Destroys a **TextCascadePickerRangeContent** array object.
  *
- * @param handle Instance to destroy. If <b>nullptr</b>, this function has no effect.
+ * @param handle Pointer to the **TextCascadePickerRangeContentHandle** instance.
  * @note After this call, <b>handle</b> must not be used. Do not pass pointers that were not returned by
- *       {@link OH_ArkUI_TextCascadePickerRangeContentArray_Create}.
+ *     {@link OH_ArkUI_TextCascadePickerRangeContentArray_Create}.
  * @note Do not call {@link OH_ArkUI_TextCascadePickerRangeContentArray_Destroy} on a <b>child</b> while
- *       it is still stored in a parent's {@code children}.
+ *     it is still stored in a parent's {@code children}.
  * @since 19
  */
 void OH_ArkUI_TextCascadePickerRangeContentArray_Destroy(ArkUI_TextCascadePickerRangeContentArray* handle);
 
 /**
- * @brief Create the ArkUI_PickerIndicatorStyle instance.
+ * @brief Creates a style instance of the selected item indicator.
  *
- * @param type The picker selection indicator enumeration type.
- * @return  ArkUI_PickerIndicatorStyle instance. If the instance returns a null pointer,
- *         it indicates creation failure, and the reason for the failure may be that the address space is full or
- *         the type not supported.
+ * @param type Type of the selected item indicator.
+ * @return Pointer to the {@link ArkUI_PickerIndicatorStyle} instance. If a null pointer is returned, the creation
+ *     fails. The possible cause is that the address space is full or the type is not supported.
  * @since 23
-*/
+ */
 ArkUI_PickerIndicatorStyle* OH_ArkUI_PickerIndicatorStyle_Create(ArkUI_PickerIndicatorType type);
 
 /**
-* @brief Destroy the ArkUI_PickerIndicatorStyle instance.
-*
-* @param style The ArkUI_PickerIndicatorStyle instance to be destroyed.
-* @since 23
-*/
+ * @brief Disposes of the style instance of the selected item indicator.
+ *
+ * @param style Pointer to the {@link ArkUI_PickerIndicatorStyle} instance to be disposed of.
+ * @since 23
+ */
 void OH_ArkUI_PickerIndicatorStyle_Dispose(ArkUI_PickerIndicatorStyle* style);
 
 #ifdef __cplusplus

@@ -13,6 +13,9 @@
  * limitations under the License.
  */
 
+#ifndef NATIVE_NET_CONN_API_H
+#define NATIVE_NET_CONN_API_H
+
 /**
  * @addtogroup NetConnection
  * @{
@@ -35,9 +38,6 @@
  * @version 1.0
  */
 
-#ifndef NATIVE_NET_CONN_API_H
-#define NATIVE_NET_CONN_API_H
-
 #include <netdb.h>
 
 #include "net_connection_type.h"
@@ -49,10 +49,10 @@ extern "C" {
 /**
  * @brief Checks whether a default activated data network is available.
  *
- * @param hasDefaultNet Pointer to the result that specifies whether a default activated data network is available.
- * @return 0 - Success. 201 - Missing permissions.
- *         401 - Parameter error. 2100002 - Unable to connect to service.
- *         2100003 - Internal error.
+ * @param hasDefaultNet Whether there is a default network.
+ * @return **0**: Success. **201**: Missing permissions.
+ *     <br>**401**: Parameter error. **2100002**: Service connection failure.
+ *     <br>**2100003**: Internal error.
  * @permission ohos.permission.GET_NETWORK_INFO
  * @syscap SystemCapability.Communication.NetManager.Core
  * @since 11
@@ -63,10 +63,10 @@ int32_t OH_NetConn_HasDefaultNet(int32_t *hasDefaultNet);
 /**
  * @brief Obtains the default activated data network.
  *
- * @param netHandle Pointer to the network handle that contains the network ID.
- * @return 0 - Success. 201 - Missing permissions.
- *         401 - Parameter error. 2100002 - Unable to connect to service.
- *         2100003 - Internal error.
+ * @param netHandle Network ID.
+ * @return **0**: Success. **201**: Missing permissions.
+ *     <br>**401**: Parameter error. **2100002**: Service connection failure.
+ *     <br>**2100003**: Internal error.
  * @permission ohos.permission.GET_NETWORK_INFO
  * @syscap SystemCapability.Communication.NetManager.Core
  * @since 11
@@ -77,10 +77,10 @@ int32_t OH_NetConn_GetDefaultNet(NetConn_NetHandle *netHandle);
 /**
  * @brief Checks whether metering is enabled for the default data network.
  *
- * @param isMetered Pointer to the result that specifies whether metering is enabled.
- * @return 0 - Success. 201 - Missing permissions.
- *         401 - Parameter error. 2100002 - Unable to connect to service.
- *         2100003 - Internal error.
+ * @param isMetered Whether metering is enabled.
+ * @return **0**: Success. **201**: Missing permissions.
+ *     <br>**401**: Parameter error. **2100002**: Service connection failure.
+ *     <br>**2100003**: Internal error.
  * @permission ohos.permission.GET_NETWORK_INFO
  * @syscap SystemCapability.Communication.NetManager.Core
  * @since 11
@@ -89,13 +89,13 @@ int32_t OH_NetConn_GetDefaultNet(NetConn_NetHandle *netHandle);
 int32_t OH_NetConn_IsDefaultNetMetered(int32_t *isMetered);
 
 /**
- * @brief Obtains the connection properties of a data network.
+ * @brief Obtains the link information of a data network.
  *
- * @param netHandle Pointer to the network handle that contains the network ID.
- * @param prop Pointer to the connection properties.
- * @return 0 - Success. 201 - Missing permissions.
- *         401 - Parameter error. 2100002 - Unable to connect to service.
- *         2100003 - Internal error.
+ * @param netHandle Network ID.
+ * @param prop Link information.
+ * @return **0**: Success. **201**: Missing permissions.
+ *     <br>**401**: Parameter error. **2100002**: Service connection failure.
+ *     <br>**2100003**: Internal error.
  * @permission ohos.permission.GET_NETWORK_INFO
  * @syscap SystemCapability.Communication.NetManager.Core
  * @since 11
@@ -106,11 +106,11 @@ int32_t OH_NetConn_GetConnectionProperties(NetConn_NetHandle *netHandle, NetConn
 /**
  * @brief Obtains the capabilities of a data network.
  *
- * @param netHandle Pointer to the network handle that contains the network ID.
- * @param netCapacities Pointer to the network capabilities.
- * @return 0 - Success. 201 - Missing permissions.
- *         401 - Parameter error. 2100002 - Unable to connect to service.
- *         2100003 - Internal error.
+ * @param netHandle Network ID.
+ * @param netCapabilities Capability set.
+ * @return **0**: Success. **201**: Missing permissions.
+ *     <br>**401**: Parameter error. **2100002**: Service connection failure.
+ *     <br>**2100003**: Internal error.
  * @permission ohos.permission.GET_NETWORK_INFO
  * @syscap SystemCapability.Communication.NetManager.Core
  * @since 11
@@ -119,12 +119,12 @@ int32_t OH_NetConn_GetConnectionProperties(NetConn_NetHandle *netHandle, NetConn
 int32_t OH_NetConn_GetNetCapabilities(NetConn_NetHandle *netHandle, NetConn_NetCapabilities *netCapabilities);
 
 /**
- * @brief Obtains the default http proxy.
+ * @brief Obtains the default network proxy.
  *
- * @param httpProxy Pointer to the HTTP proxy.
- * @return 0 - Success. 201 - Missing permissions.
- *         401 - Parameter error. 2100002 - Unable to connect to service.
- *         2100003 - Internal error.
+ * @param httpProxy Proxy configuration.
+ * @return **0**: Success. **201**: Missing permissions.
+ *     <br>**401**: Parameter error. **2100002**: Service connection failure.
+ *     <br>**2100003**: Internal error.
  * @syscap SystemCapability.Communication.NetManager.Core
  * @since 11
  * @version 1.0
@@ -132,16 +132,16 @@ int32_t OH_NetConn_GetNetCapabilities(NetConn_NetHandle *netHandle, NetConn_NetC
 int32_t OH_NetConn_GetDefaultHttpProxy(NetConn_HttpProxy *httpProxy);
 
 /**
- * @brief Get DNS result with netId.
+ * @brief Obtains the DNS result based on the specified **netId**.
  *
- * @param host The host name to query.
+ * @param host Host name.
  * @param serv Service name.
  * @param hint Pointer to the addrinfo structure.
- * @param res Store DNS query results and return them in a linked list format.
- * @param netId DNS query netId, 0 is used for default netid query.
- * @return 0 - Success. 201 - Missing permissions.
- *         401 - Parameter error. 2100002 - Unable to connect to service.
- *         2100003 - Internal error.
+ * @param res DNS query result, which is in the format of linked lists.
+ * @param netId If **netId** is set to **0**, the default **netid** is used for query.
+ * @return **0**: Success. **201**: Missing permissions.
+ *     <br>**401**: Parameter error. **2100002**: Service connection failure.
+ *     <br>**2100003**: Internal error.
  * @permission ohos.permission.INTERNET
  * @syscap SystemCapability.Communication.NetManager.Core
  * @since 11
@@ -150,12 +150,12 @@ int32_t OH_NetConn_GetDefaultHttpProxy(NetConn_HttpProxy *httpProxy);
 int32_t OH_NetConn_GetAddrInfo(char *host, char *serv, struct addrinfo *hint, struct addrinfo **res, int32_t netId);
 
 /**
- * @brief Free DNS result.
+ * @brief Releases the DNS query result.
  *
- * @param res DNS query result chain header.
- * @return 0 - Success. 201 - Missing permissions.
- *         401 - Parameter error. 2100002 - Unable to connect to service.
- *         2100003 - Internal error.
+ * @param res Header of the DNS query result, which is in the format of linked lists.
+ * @return **0**: Success. **201**: Missing permissions.
+ *     <br>**401**: Parameter error. **2100002**: Service connection failure.
+ *     <br>**2100003**: Internal error.
  * @permission ohos.permission.INTERNET
  * @syscap SystemCapability.Communication.NetManager.Core
  * @since 11
@@ -164,26 +164,24 @@ int32_t OH_NetConn_GetAddrInfo(char *host, char *serv, struct addrinfo *hint, st
 int32_t OH_NetConn_FreeDnsResult(struct addrinfo *res);
 
 /**
- * @brief Queries all activated data networks.
+ * @brief Obtains all activated data networks.
  *
- * @param netHandleList Network handle that stores the network ID list.
- * @return 0 - Success. 201 - Missing permissions.
- *         401 - Parameter error. 2100002 - Unable to connect to service.
- *         2100003 - Internal error.
+ * @param netHandleList Network information list.
+ * @return **0**: Success. **201**: Missing permissions.
+ *     <br>**401**: Parameter error. **2100002**: Service connection failure.
+ *     <br>**2100003**: Internal error.
  * @permission ohos.permission.GET_NETWORK_INFO
  * @syscap SystemCapability.Communication.NetManager.Core
  * @since 11
  * @version 1.0
  */
 int32_t OH_NetConn_GetAllNets(NetConn_NetHandleList *netHandleList);
-
 /**
  * @brief Registers a custom DNS resolver.
  *
  * @param resolver Pointer to the custom DNS resolver.
- * @return 0 - Success.
- *         401 - Parameter error. 2100002 - Unable to connect to service.
- *         2100003 - Internal error.
+ * @return **0**: Success. **401**: Parameter error.
+ *     <br>**2100002**: Service connection failure.  **2100003**: Internal error.
  * @syscap SystemCapability.Communication.NetManager.Core
  * @deprecated since 13
  * @useinstead OH_NetConn_RegisterDnsResolver
@@ -195,9 +193,9 @@ int32_t OHOS_NetConn_RegisterDnsResolver(OH_NetConn_CustomDnsResolver resolver);
 /**
  * @brief Unregisters a custom DNS resolver.
  *
- * @return 0 - Success.
- *         2100002 - Unable to connect to service.
- *         2100003 - Internal error.
+ * @return **0**: Success.
+ *     <br>**2100002**: Service connection failure.
+ *     <br>**2100003**: Internal error.
  * @syscap SystemCapability.Communication.NetManager.Core
  * @deprecated since 13
  * @useinstead OH_NetConn_UnregisterDnsResolver
@@ -205,39 +203,38 @@ int32_t OHOS_NetConn_RegisterDnsResolver(OH_NetConn_CustomDnsResolver resolver);
  * @version 1.0
  */
 int32_t OHOS_NetConn_UnregisterDnsResolver(void);
-
 /**
  * @brief Registers a custom DNS resolver.
  *
  * @param resolver Pointer to the custom DNS resolver.
- * @return Returns the result code.
- *         {@link NETMANAGER_EXT_SUCCESS} if the operation is successful.
- *         {@link NETMANAGER_ERR_PARAMETER_ERROR} Parameter error. Please enter a correct parameter.
- * @syscap SystemCapability.Communication.NetManager.Core
+ * @return Result code.
+ *     <br>**NETMANAGER_EXT_SUCCESS**: Operation success.
+ *     <br>**NETMANAGER_ERR_PARAMETER_ERROR**: Parameter error. Enter a correct parameter.
+ * @deprecated since 26.0.0
+ * @useinstead OH_NetConn_RegisterCustomDnsResolver
  * @since 13
  * @version 1.0
  */
 int32_t OH_NetConn_RegisterDnsResolver(OH_NetConn_CustomDnsResolver resolver);
-
 /**
  * @brief Unregisters a custom DNS resolver.
  *
- * @return 0 - Success.
- *         2100002 - Unable to connect to service.
- *         2100003 - Internal error.
- * @syscap SystemCapability.Communication.NetManager.Core
+ * @return **0**: Success.
+ *     <br>**2100002**: Service connection failure.
+ *     <br>**2100003**: Internal error.
+ * @deprecated since 26.0.0
+ * @useinstead OH_NetConn_UnregisterCustomDnsResolver
  * @since 13
  * @version 1.0
  */
 int32_t OH_NetConn_UnregisterDnsResolver(void);
-
 /**
  * @brief Registers a custom DNS resolver to intercept and override DNS queries.
  *        Falls back to system DNS if no result is specified.
  *        Only a single resolver is allowed. You must unregister the existing one before registering a new one.
  *
- * @param resolver Pointer to the custom DNS resolver.
- *        If the resolver returns 0, skip system DNS; otherwise, fallback to system DNS.
+ * @param resolver Pointer to the custom DNS resolver. If the resolver returns 0, skip system DNS;
+ *        otherwise, fallback to system DNS.
  * @return 0 - Success.
  *         401 - Parameter error. Please enter a correct parameter.
  *         2101008 - Resolver already exists. use OH_NetConn_UnregisterCustomDnsResolver before registering a new one.
@@ -257,14 +254,14 @@ int32_t OH_NetConn_RegisterCustomDnsResolver(OH_NetConn_CustomDnsResolver resolv
 int32_t OH_NetConn_UnregisterCustomDnsResolver(void);
 
 /**
- * @brief Binds a socket to the specific network.
+ * @brief Binds a socket to the specified network.
  *
- * @param socketFd Socket constructed by user.
- * @param netHandle Pointer to the network handle that contains the network ID.
- * @return 0 - Success.
- *         401 - Parameter error.
- *         2100002 - Unable to connect to service.
- *         2100003 - Internal error.
+ * @param socketFd Socket constructed by the user.
+ * @param netHandle Pointer to the network handle containing the network ID.
+ * @return **0**: Success.
+ *     <br>**401**: Parameter error.
+ *     <br>**2100002**: Service connection failure.
+ *     <br>**2100003**: Internal error.
  * @syscap SystemCapability.Communication.NetManager.Core
  * @since 12
  * @version 1.0
@@ -272,11 +269,11 @@ int32_t OH_NetConn_UnregisterCustomDnsResolver(void);
 int32_t OH_NetConn_BindSocket(int32_t socketFd, NetConn_NetHandle *netHandle);
 
 /**
- * @brief Sets http proxy information to current application.
+ * @brief Sets an HTTP proxy for the current application.
  *
- * @param httpProxy Information about the proxy that needs to be set.
- * @return 0 - Success.
- *         401 - Parameter error.
+ * @param httpProxy HTTP proxy to set.
+ * @return **0**: Success.
+ *     <br>**401**: Parameter error.
  * @syscap SystemCapability.Communication.NetManager.Core
  * @since 12
  * @version 1.0
@@ -284,12 +281,12 @@ int32_t OH_NetConn_BindSocket(int32_t socketFd, NetConn_NetHandle *netHandle);
 int32_t OH_NetConn_SetAppHttpProxy(NetConn_HttpProxy *httpProxy);
 
 /**
- * @brief Registers callback to listen for changes to the application-level http proxy.
+ * @brief Registers a callback for HTTP proxy changes of the application.
  *
- * @param appHttpProxyChange Callback that need to be registered to listen for changes to the http proxy.
- * @param callbackId Callback id returned after registration, associated with a registered callback.
- * @return 0 - Success.
- *         401 - Parameter error.
+ * @param appHttpProxyChange Callback to register.
+ * @param callbackId ID of the registered callback.
+ * @return **0**: Success.
+ *     <br>**401**: Parameter error.
  * @syscap SystemCapability.Communication.NetManager.Core
  * @since 12
  * @version 1.0
@@ -297,9 +294,9 @@ int32_t OH_NetConn_SetAppHttpProxy(NetConn_HttpProxy *httpProxy);
 int32_t OH_NetConn_RegisterAppHttpProxyCallback(OH_NetConn_AppHttpProxyChange appHttpProxyChange, uint32_t *callbackId);
 
 /**
- * @brief Unregisters a callback function that listens for application-level proxy changes.
+ * @brief Unregisters the callback for HTTP proxy changes of the application.
  *
- * @param callbackId Id of the callback function that needs to be deregistered.
+ * @param callbackId ID of the callback to unregister.
  * @syscap SystemCapability.Communication.NetManager.Core
  * @since 12
  * @version 1.0
@@ -338,19 +335,19 @@ int32_t OH_NetConn_RefreshGlobalHttpProxyWithCallback(
     void *userContext);
 
 /**
- * @brief Registers callback, used to monitor specific network status.
+ * @brief Registers a callback for network status changes.
  *
- * @param netSpecifier specifier information.
- * @param callback The callback needed to be registered.
- * @param timeout The timeout period in milliseconds.
- * @param callbackId out param, corresponding to a registered callback.
- * @return 0 - Success.
- *         201 - Permission denied.
- *         401 - Parameter error.
- *         2100002 - Failed to connect to the service.
- *         2100003 - System internal error.
- *         2101008 - The callback already exists.
- *         2101022 - The number of requests exceeded the maximum allowed.
+ * @param netSpecifier Network feature set.
+ * @param callback Registered callbacks.
+ * @param timeout Timeout duration, in milliseconds. The value **0** indicates infinite waiting.
+ * @param callbackId Callback IDs.
+ * @return **0**: Success.
+ *     <br>**201**: Missing permissions.
+ *     <br>**401**: Parameter error.
+ *     <br>**2100002**: Service connection failure.
+ *     <br>**2100003**: Internal error.
+ *     <br>**2101008**: Callback already registered.
+ *     <br>**2101022**: Maximum number of requests exceeded.
  * @permission ohos.permission.GET_NETWORK_INFO
  * @syscap SystemCapability.Communication.NetManager.Core
  * @since 12
@@ -360,17 +357,17 @@ int32_t OH_NetConn_RegisterNetConnCallback(NetConn_NetSpecifier *specifier, NetC
                                            uint32_t timeout, uint32_t *callbackId);
 
 /**
- * @brief Registers a callback to listen default network's status changed.
+ * @brief Registers a callback for status changes of the default network.
  *
- * @param callback The callback needed to be registered.
- * @param callbackId out param, corresponding to a registered callback.
- * @return 0 - Success.
- *         201 - Permission denied.
- *         401 - Parameter error.
- *         2100002 - Failed to connect to the service.
- *         2100003 - System internal error.
- *         2101008 - The callback already exists.
- *         2101022 - The number of requests exceeded the maximum allowed.
+ * @param callback Registered callbacks.
+ * @param callbackId Callback IDs.
+ * @return **0**: Success.
+ *     <br>**201**: Missing permissions.
+ *     <br>**401**: Parameter error.
+ *     <br>**2100002**: Service connection failure.
+ *     <br>**2100003**: Internal error.
+ *     <br>**2101008**: Callback already registered.
+ *     <br>**2101022**: Maximum number of requests exceeded.
  * @permission ohos.permission.GET_NETWORK_INFO
  * @syscap SystemCapability.Communication.NetManager.Core
  * @since 12
@@ -379,73 +376,78 @@ int32_t OH_NetConn_RegisterNetConnCallback(NetConn_NetSpecifier *specifier, NetC
 int32_t OH_NetConn_RegisterDefaultNetConnCallback(NetConn_NetConnCallback *netConnCallback, uint32_t *callbackId);
 
 /**
- * @brief Unregisters network status callback.
+ * @brief Unregisters the callback for network status changes.
  *
- * @param callBackId the id corresponding to a registered callback.
- * @return 0 - Success.
- *         201 - Permission denied.
- *         401 - Parameter error.
- *         2100002 - Failed to connect to the service.
- *         2100003 - System internal error.
- *         2101007 - The callback does not exists.
+ * @param callBackId ID of the callback to unregister.
+ * @return **0**: Success.
+ *     <br>**201**: Missing permissions.
+ *     <br>**401**: Parameter error.
+ *     <br>**2100002**: Service connection failure.
+ *     <br>**2100003**: Internal error.
+ *     <br>**2101007**: Callback not exist.
  * @permission ohos.permission.GET_NETWORK_INFO
  * @syscap SystemCapability.Communication.NetManager.Core
  * @since 12
  * @version 1.0
  */
 int32_t OH_NetConn_UnregisterNetConnCallback(uint32_t callBackId);
-
 /**
- * @brief Sets the URL of the current PAC script.
+ * @brief Sets the URL of the system-level Proxy Auto Config (PAC) script, for example, **http://127.0.0.1:21998/
+ * PacProxyScript.pac**. You can obtain the proxy information by parsing the URL.
  *
- * @param pacUrl the URL of the current PAC script.
- * @return the result defines in {@link NetConn_ErrorCode}.
- *         {@link NETCONN_SUCCESS} Success.
- *         {@link NETCONN_PERMISSION_DENIED} Permission denied.
- *         {@link NETCONN_PARAMETER_ERROR} Parameter check failed.
- *         {@link NETCONN_OPERATION_FAILED} Failed to connect to the service.
- *         {@link NETCONN_INTERNAL_ERROR} System internal error.
+ * @param pacUrl Address of the PAC script.
+ * @return Result code defined in {@link NetConn_ErrorCode}.
+ *     <br>{@link NETCONN_SUCCESS}: success.
+ *     <br>{@link NETCONN_PERMISSION_DENIED}: permission denied.
+ *     <br>{@link NETCONN_PARAMETER_ERROR}: parameter error.
+ *     <br>{@link NETCONN_OPERATION_FAILED}: unable to connect to the service.
+ *     <br>{@link NETCONN_INTERNAL_ERROR}: internal error.
  * @permission ohos.permission.SET_PAC_URL
  * @since 15
  */
 NetConn_ErrorCode OH_NetConn_SetPacUrl(const char *pacUrl);
 
 /**
- * @brief Obtains the URL of the current PAC script.
+ * @brief Obtains the URL of the system-level PAC script.
  *
- * @param pacUrl the URL of the current PAC script.
- * @return the result defines in {@link NetConn_ErrorCode}.
- *         {@link NETCONN_SUCCESS} Success.
- *         {@link NETCONN_PARAMETER_ERROR} Parameter check failed.
- *         {@link NETCONN_OPERATION_FAILED} Failed to connect to the service.
- *         {@link NETCONN_INTERNAL_ERROR} System internal error.
+ * @param pacUrl URL of the PAC script.
+ * @return Result code defined in {@link NetConn_ErrorCode}.
+ *     <br>{@link NETCONN_SUCCESS}: success.
+ *     <br>{@link NETCONN_PARAMETER_ERROR}: parameter error.
+ *     <br>{@link NETCONN_OPERATION_FAILED}: unable to connect to the service.
+ *     <br>{@link NETCONN_INTERNAL_ERROR}: internal error.
  * @since 15
  */
 NetConn_ErrorCode OH_NetConn_GetPacUrl(char *pacUrl);
-
 /**
- * @brief Query a network probe result.
+ * @brief Queries network probe results. If an exception (for example, network disconnection) occurs and the request
+ * fails to be sent, the API immediately returns the result without performing subsequent detection. This API involves
+ * network operations. Do not call it in the main process. Otherwise, the UI may freeze.
  *
- * @param destination Pointer to the destination.
- * @param duration probe duration. Unit: second.
- * @param probeResultInfo Pointer to probe loss rate and rtt.
- * @return 0 - Success.
- *         201 - Missing permissions.
- *         401 - Parameter error.
- *         2100003 - Internal error.
+ * @param destination Target domain name or IP address to be detected. For a domain name, the domain name is resolved
+ *     to the target IP address before the detection, and then the detection is initiated. The domain name resolution
+ *     time is not included in the probe duration indicated by duration.
+ * @param duration Probe duration. in seconds. The detection interval is 1 second. Therefore, you can use this field to
+ *     control the number of detections.
+ * @param probeResultInfo Packet loss rate and round-trip time (RTT).
+ * @return **0**: Success.
+ *     <br>**201**: Missing permissions.
+ *     <br>**401**: Parameter error.
+ *     <br>**2100003**: Internal error.
  * @permission ohos.permission.INTERNET
  * @since 20
  */
 int32_t OH_NetConn_QueryProbeResult(char *destination, int32_t duration, NetConn_ProbeResultInfo *probeResultInfo);
-
 /**
- * @brief Query a network trace route.
+ * @brief Queries network trace route information.
  *
- * @param destination Pointer to the destination.
- * @param option Pointer to the trace route option
- * @param traceRouteInfo Pointer to trace route result.
- * @return 0 - Success.
- *         201 - Missing permissions.
+ * @param destination Destination address.
+ * @param option Route options.
+ * @param traceRouteInfo Route result. An array pointer needs to be passed. The array size indicates the number of
+ *     route hops, which is **30** by default. If you customize the number of hops, ensure that the array size is the
+ *     same as the value of **maxJumpNumber** in the **option** field.
+ * @return **0**: Success.
+ *     <br>**201**: Missing permissions.
  * @permission ohos.permission.INTERNET and ohos.permission.LOCATION and ohos.permission.ACCESS_NET_TRACE_INFO
  * @since 20
  */

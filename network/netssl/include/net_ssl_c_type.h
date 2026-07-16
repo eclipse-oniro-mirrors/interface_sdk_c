@@ -13,6 +13,9 @@
  * limitations under the License.
  */
 
+#ifndef NET_SSL_C_TYPE_H
+#define NET_SSL_C_TYPE_H
+
 /**
  * @addtogroup netstack
  * @{
@@ -34,9 +37,6 @@
  * @version 1.0
  */
 
-#ifndef NET_SSL_C_TYPE_H
-#define NET_SSL_C_TYPE_H
-
 #include <stdint.h>
 #ifdef __cplusplus
 #include <cstddef>
@@ -49,17 +49,23 @@ extern "C" {
 #endif
 
 /**
- * @brief Enumerates certificate types.
+ * @brief Certificate type enums.
  *
  * @since 11
  * @version 1.0
  */
 enum NetStack_CertType {
-    /** PEM certificate */
+    /**
+     * PEM certificate.
+     */
     NETSTACK_CERT_TYPE_PEM = 0,
-    /** DER certificate */
+    /**
+     * DER certificate.
+     */
     NETSTACK_CERT_TYPE_DER = 1,
-    /** Invalid certificate */
+    /**
+     * Invalid certificate.
+     */
     NETSTACK_CERT_TYPE_INVALID
 };
 
@@ -70,38 +76,48 @@ enum NetStack_CertType {
  * @version 1.0
  */
 struct NetStack_CertBlob {
-    /** Certificate type */
+    /**
+     * Certificate type.
+     */
     enum NetStack_CertType type;
-    /** Certificate content length */
+    /**
+     * Certificate content length.
+     */
     uint32_t size;
-    /** Certificate content */
+    /**
+     * Certificate data.
+     */
     uint8_t *data;
 };
 
 /**
- * @brief Defines the certificate lock type.
+ * @brief Certificate pinning type enums.
  *
  * @since 12
  * @version 1.0
  */
 typedef enum NetStack_CertificatePinningKind {
-    /** Public key pinning */
-    PUBLIC_KEY,
+    /**
+     * Public key lock type.
+     */
+    PUBLIC_KEY
 } NetStack_CertificatePinningKind;
 
 /**
- * @brief Defines the hash algorithm.
+ * @brief Hash algorithm enums.
  *
  * @since 12
  * @version 1.0
  */
 typedef enum NetStack_HashAlgorithm {
-    /** Sha256 */
-    SHA_256,
+    /**
+     * Sha256
+     */
+    SHA_256
 } NetStack_HashAlgorithm;
 
 /**
- * @brief Defines the certificate lock information.
+ * @brief Defines certificate pinning information.
  *
  * @since 12
  * @version 1.0
@@ -118,15 +134,19 @@ typedef struct NetStack_CertificatePinning {
 } NetStack_CertificatePinning;
 
 /**
- * @brief Defines the certificate information.
+ * @brief Define certificate information.
  *
  * @since 12
  * @version 1.0
  */
 typedef struct NetStack_Certificates {
-    /** PEM content of the certificates */
+    /**
+     * PEM content of the certificate.
+     */
     char **content;
-    /** Number of certificates */
+    /**
+     * Number of certificates.
+     */
     size_t length;
 } NetStack_Certificates;
 

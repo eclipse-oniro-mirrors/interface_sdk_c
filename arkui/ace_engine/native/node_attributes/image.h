@@ -25,7 +25,7 @@
 /**
  * @file image.h
  *
- * @brief Defines the common types for the Image component.
+ * @brief Defines **Image** node types for **NativeNode** APIs.
  *
  * @library libace_ndk.z.so
  * @syscap SystemCapability.ArkUI.ArkUI.Full
@@ -69,11 +69,11 @@ typedef enum {
      *
      * @since 12
      */
-    ARKUI_IMAGE_REPEAT_XY = 3,
+    ARKUI_IMAGE_REPEAT_XY = 3
 } ArkUI_ImageRepeat;
 
 /**
- * @brief Defines the image size.
+ * @brief Enumerates the image sizes.
  *
  * @since 12
  */
@@ -97,11 +97,11 @@ typedef enum {
      *
      * @since 12
      */
-    ARKUI_IMAGE_SIZE_CONTAIN = 2,
+    ARKUI_IMAGE_SIZE_CONTAIN = 2
 } ArkUI_ImageSize;
 
 /**
- * @brief Defines how the image is resized to fit its container.
+ * @brief Enumerates the image filling effects of the {@link Image} component.
  *
  * @since 12
  */
@@ -204,11 +204,11 @@ typedef enum {
      *
      * @since 21
      */
-    ARKUI_OBJECT_FIT_NONE_MATRIX = 15,
+    ARKUI_OBJECT_FIT_NONE_MATRIX = 15
 } ArkUI_ObjectFit;
-
 /**
- * @brief Enumerates the image interpolation effect.
+ * @brief Enumerates the image interpolation effects. This attribute mitigates aliasing during image scaling. This
+ * attribute is not applicable to SVG images.
  *
  * @since 12
  */
@@ -236,11 +236,11 @@ typedef enum {
      *
      * @since 12
      */
-    ARKUI_IMAGE_INTERPOLATION_HIGH = 3,
+    ARKUI_IMAGE_INTERPOLATION_HIGH = 3
 } ArkUI_ImageInterpolation;
-
 /**
- * @brief Enumerates the image dynamic range mode.
+ * @brief Enumerates the dynamic range modes (for example, SDR/HDR) for images, controlling the display range of image
+ * brightness and color gamut.
  *
  * @since 21
  */
@@ -262,11 +262,11 @@ typedef enum {
      *
      * @since 21
      */
-    ARKUI_DYNAMIC_RANGE_MODE_STANDARD = 2,
+    ARKUI_DYNAMIC_RANGE_MODE_STANDARD = 2
 } ArkUI_DynamicRangeMode;
 
 /**
- * @brief Enumerates the image rotate orientation.
+ * @brief Enumerates image rotation directions.
  *
  * @since 21
  */
@@ -324,7 +324,7 @@ typedef enum {
      *
      * @since 21
      */
-    ARKUI_ORIENTATION_LEFT_MIRRORED = 8,
+    ARKUI_ORIENTATION_LEFT_MIRRORED = 8
 } ArkUI_ImageRotateOrientation;
 
 /**
@@ -344,7 +344,7 @@ typedef enum {
      *
      * @since 12
      */
-    ARKUI_IMAGE_RENDER_MODE_TEMPLATE = 1,
+    ARKUI_IMAGE_RENDER_MODE_TEMPLATE = 1
 } ArkUI_ImageRenderMode;
 
 #ifdef __cplusplus
