@@ -476,12 +476,12 @@ typedef struct {
  */
 typedef struct {
     /**
-     * @brief 
+     * @brief ArkUI提供的Native侧自定义弹窗接口集合，范围是{@link ArkUI_NativeDialogAPI_1}。
      * @since 19
      */
     ArkUI_NativeDialogAPI_1 nativeDialogAPI1;
     /**
-     * @brief 
+     * @brief ArkUI提供的Native侧自定义弹窗接口集合，范围是{@link ArkUI_NativeDialogAPI_2}。
      * @since 19
      */
     ArkUI_NativeDialogAPI_2 nativeDialogAPI2;
