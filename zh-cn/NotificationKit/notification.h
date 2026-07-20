@@ -17,7 +17,7 @@
  * @addtogroup NOTIFICATION
  * @{
  *
- * @brief 定义通知服务API接口。
+ * @brief Provides the definition of the C interface for the notification service.
  *
  * @since 13
  */
