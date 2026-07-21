@@ -24,7 +24,7 @@
 /**
  * @file errorcode.h
  *
- * @brief The error code in i18n.
+ * @brief Provides the error codes returned by internationalization APIs.
  *
  * @library libohi18n.so
  * @kit LocalizationKit
