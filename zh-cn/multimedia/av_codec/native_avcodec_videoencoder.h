@@ -142,7 +142,7 @@ OH_AVErrCode OH_VideoEncoder_CreateSecondaryFromPrimary(OH_AVCodec *primary, OH_
 OH_AVErrCode OH_VideoEncoder_Destroy(OH_AVCodec *codec);
 
 /**
- * @brief 设置OH_AVCodecCallback回调函数，让应用可以响应视频编码器生成的事件。在调用OH_VideoEncoder_Prepare接口之前，必须调用此接口。
+ * @brief 设置OH_AVCodecAsyncCallback回调函数，让应用可以响应视频编码器生成的事件。在调用OH_VideoEncoder_Prepare接口之前，必须调用此接口。
  *
  * @syscap SystemCapability.Multimedia.Media.VideoEncoder
  * @param codec 指向视频编码实例的指针。
@@ -176,8 +176,8 @@ OH_AVErrCode OH_VideoEncoder_SetCallback(OH_AVCodec *codec, OH_AVCodecAsyncCallb
 OH_AVErrCode OH_VideoEncoder_RegisterCallback(OH_AVCodec *codec, OH_AVCodecCallback callback, void *userData);
 
 /**
- * @brief 注册OH_AVCodecCallback输入参数回调函数，让应用可以响应视频编码器生成的事件。编码Surface模式，需要设置随帧参数时，须使用该接口。\n
- * 如果使用该接口，必须在{@link OH_VideoEncoder_Configure}之前调用该接口。
+ * @brief 注册OH_VideoEncoder_OnNeedInputParameter输入参数回调函数，让应用可以响应视频编码器生成的事件。编码Surface模式，\n
+ * 需要设置随帧参数时，须使用该接口。如果使用该接口，必须在{@link OH_VideoEncoder_Configure}之前调用该接口。
  *
  * @syscap SystemCapability.Multimedia.Media.VideoEncoder
  * @param codec 指向视频编码实例的指针。
@@ -440,7 +440,7 @@ OH_AVErrCode OH_VideoEncoder_PushInputBuffer(OH_AVCodec *codec, uint32_t index);
  *
  * @syscap SystemCapability.Multimedia.Media.VideoEncoder
  * @param codec 指向视频编码实例的指针。
- * @param index 输入参数缓冲区对应的索引值。由{@link OH_AVCodecOnNeedInputBuffer}给出。
+ * @param index 输入参数缓冲区对应的索引值。由{@link OH_VideoEncoder_OnNeedInputParameter}给出。
  * @return AV_ERR_OK：执行成功。\n
  *         AV_ERR_NO_MEMORY：输入的编码实例内部异常，如内部出现异常空指针。\n
  *         AV_ERR_INVALID_VAL：\n
@@ -458,7 +458,7 @@ OH_AVErrCode OH_VideoEncoder_PushInputParameter(OH_AVCodec *codec, uint32_t inde
  *
  * @syscap SystemCapability.Multimedia.Media.VideoEncoder
  * @param codec 指向视频编码实例的指针。
- * @param index 输出缓冲区对应的索引值。由{@link OH_AVCodecOnNeedInputBuffer}给出。
+ * @param index 输出缓冲区对应的索引值。由{@link OH_AVCodecOnNewOutputBuffer}给出。
  * @return AV_ERR_OK：执行成功。\n
  *         AV_ERR_NO_MEMORY：输入的编码实例内部异常，如内部出现异常空指针。\n
  *         AV_ERR_INVALID_VAL：\n
