@@ -67,23 +67,21 @@ typedef enum BackgroundProcessManager_ProcessPriority {
  */
 typedef enum BackgroundProcessManager_ErrorCode {
     /**
-     * @error result is OK.
+     * @brief 压制参数发送成功。
      *
      * @since 17
      */
     ERR_BACKGROUND_PROCESS_MANAGER_SUCCESS = 0,
 
     /**
-     * @error invalid parameter. Possible causes:
-     * 1. priority is out of range.
+     * @brief 参数检查失败。
      *
      * @since 17
      */
     ERR_BACKGROUND_PROCESS_MANAGER_INVALID_PARAM = 401,
 
     /**
-     * @error remote error. Possible causes:
-     * 1. remote is not work.
+     * @brief 客户端进程请求系统服务进程，获取系统服务操作失败。
      *
      * @since 17
      */
