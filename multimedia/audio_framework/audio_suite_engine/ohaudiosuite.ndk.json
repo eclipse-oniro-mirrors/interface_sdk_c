@@ -290,6 +290,11 @@
     {
         "api_type":"system",
         "first_introduced": "26.0.0",
+        "name": "OH_AudioSuite_PauseDownload"
+    },
+    {
+        "api_type":"system",
+        "first_introduced": "26.0.0",
         "name": "OH_AudioSuite_CancelDownload"
     },
     {
