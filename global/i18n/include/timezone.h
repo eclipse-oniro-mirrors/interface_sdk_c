@@ -24,7 +24,7 @@
 /**
  * @file timezone.h
  *
- * @brief Provides the API for obtaining timezone offset transition information.
+ * @brief Provides the capability of obtaining time zone information.
  *
  * @library libohi18n.so
  * @kit LocalizationKit
@@ -50,22 +50,22 @@ extern "C" {
  */
 typedef enum DateRuleType {
     /**
-     * @brief Indicates that a day is specified by day_of_month.
+     * @brief Indicates that day of the month. For example, October 16 in 2025 is the 16th day of October.
      */
     DOM = 0,
 
     /**
-     * @brief Indicates that a day is specified by day_of_week.
+     * @brief Indicates that weekday of the month. For example, October 16 in 2025 is the third Thursday of October.
      */
     DOW = 1,
 
     /**
-     * @brief Indicates that a day is specified by day_of_week on or after day_of_month.
+     * @brief Indicates that first weekday after the specified day of the month. For example, October 16 in 2025 is the first Thursday after the 13th, 14th, or 15th day of October.
      */
     DOW_GEQ_DOM = 2,
     
     /**
-     * @brief Indicates that a day is specified by day_of_week on or before day_of_month.
+     * @brief Indicates that last weekday before the specified day of the month. For example, October 16 in 2025 is the last Thursday before the 20th day of October.
      */
     DOW_LEQ_DOM = 3
 } DateRuleType;
@@ -77,17 +77,17 @@ typedef enum DateRuleType {
  */
 typedef enum TimeRuleType {
     /**
-     * @brief Indicates that time is specified by wall time.
+     * @brief Indicates that local clock time (not subject to time zone offset).
      */
     WALL_TIME = 0,
     
     /**
-     * @brief Indicates that time is specified by standard time.
+     * @brief Indicates that local standard time (not subject to DST offset).
      */
     STANDARD_TIME = 1,
 
     /**
-     * @brief Indicates that time is specified by UTC time.
+     * @brief Indicates that world standard time (UTC time).
      */
     UTC_TIME = 2,
 } TimeRuleType;
@@ -267,7 +267,7 @@ typedef struct TimeZoneRules {
 /**
  * @brief Obtains the timezone rules by timezone ID.
  *
- * @param timeZoneID Indicates the timezone ID, such as "Asia/Shanghai".
+ * @param timeZoneID Indicates the timezone ID, such as **Asia/Shanghai**.
  * @param rules Indicates the TimeZoneRules{@link TimeZoneRules} of timezoneID.
  * @return {@link SUCCESS} 0 - Success.
  *         {@link ERROR_INVALID_PARAMETER} 8900001 - Invalid parameter. Possible causes: Parameter verification failed.
@@ -416,8 +416,8 @@ I18n_ErrorCode OH_i18n_GetPrevStartFromAnnualTimeZoneRule(AnnualTimeZoneRule* ru
  * @brief Obtain the effective start time of a specific rule in the TimeArrayTimeZoneRule.
  *
  * @param rule Indicates the rule defined by TimeArrayTimeZoneRule{@link TimeArrayTimeZoneRule}.
- * @param index Indicates the rule index.
- * @param result the start time of the rule.
+ * @param index Index of the start time. Value range: [0, rule.numStartTimes - 1].
+ * @param result Time when the rule takes effect, in milliseconds. The value is Unix timestamp.
  * @return {@link SUCCESS} 0 - Success.
  *         {@link ERROR_INVALID_PARAMETER} 8900001 - Invalid parameter. Possible causes:
  *     Parameter verification failed.
