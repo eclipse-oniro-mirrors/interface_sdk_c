@@ -99,7 +99,7 @@ typedef enum TimeRuleType {
  */
 typedef struct DateTimeRule {
     /**
-     * @brief Indicates the month.
+     * @brief Indicates the month. The month starts from **0**, indicating January.
      */
     int32_t month;
 
@@ -119,7 +119,7 @@ typedef struct DateTimeRule {
     int32_t weekInMonth;
 
     /**
-     * @brief Indicates the milliseconds in a day.
+     * @brief Indicates the millisecond value from 00:00 on the current day to the current time.
      */
     int32_t millisInDay;
 
@@ -141,44 +141,45 @@ typedef struct DateTimeRule {
  */
 typedef struct InitialTimeZoneRule {
     /**
-     * @brief Indicates the raw offset of a timezone.
+     * @brief Indicates the raw offset of the time zone, in milliseconds.
      */
     int32_t rawOffset;
 
     /**
-     * @brief Indicates the dstSavings offset of a timezone.
+     * @brief Indicates the daylight saving time offset, in milliseconds.
      */
     int32_t dstSavings;
 } InitialTimeZoneRule;
 
 /**
- * @brief Defines a set of timezone rules by the rule effective time array.
+ * @brief Defines time zone rule defined by the start timestamp array.
  *
  * @since 22
  */
 typedef struct TimeArrayTimeZoneRule {
     /**
-     * @brief Indicates the timezone name.
+     * @brief Indicates the name of the time zone rule.
      */
     char* name;
 
     /**
-     * @brief Indicates the raw offset of timezone.
+     * @brief Indicates the raw offset of the time zone, in milliseconds.
      */
     int32_t rawOffset;
 
     /**
-     * @brief Indicates the dstSavings offset of timezone.
+     * @brief Indicates the daylight saving time offset, in milliseconds.
      */
     int32_t dstSavings;
 
     /**
-     * @brief Indicates the start times when the rule takes effect. The caller is responsible for releasing the array.
+     * @brief Indicates the array of start timestamps when the rule takes effect. The timestamp unit is milliseconds.
+     * The caller is responsible for releasing the array.
      */
     double* startTimes;
 
     /**
-     * @brief Indicates the num of start times when the rule takes effect.
+     * @brief Indicates the size of the start timestamp array of the rule.
      */
     int32_t numStartTimes;
 
@@ -196,13 +197,13 @@ typedef struct TimeArrayTimeZoneRule {
 #define MAX_YEAR_IN_ANNUAL_TIMEZONE_RULE 0x7fffffff
 
 /**
- * @brief Defines a set of timezone rules by specifying the start year when the rules come into effect and end.
+ * @brief Defines the time zone rule that takes effect annually.
  *
  * @since 22
  */
 typedef struct AnnualTimeZoneRule {
     /**
-     * @brief Indicates the timezone name.
+     * @brief Indicates the name of the time zone rule.
      */
     char* name;
     
@@ -217,23 +218,25 @@ typedef struct AnnualTimeZoneRule {
     int32_t endYear;
 
     /**
-     * @brief Indicates the raw offset of timezone.
+     * @brief Indicates the raw offset of the time zone, in milliseconds.
      */
     int32_t rawOffset;
 
     /**
-     * @brief Indicates the dstSavings offset of timezone.
+     * @brief Indicates the daylight saving time offset, in milliseconds.
      */
     int32_t dstSavings;
 
     /**
-     * @brief Indicates DateTimeRule of the rule to specify the date and time.
+     * @brief Indicates the rule of time and date.
      */
     DateTimeRule dateTimeRule;
 } AnnualTimeZoneRule;
 
 /**
- * @brief Defines a set of timezone rules of a timezone.
+ * @brief A complete time zone rule includes the start time zone rule, time zone rule defined by the start timestamp
+ * array, and time zone rule that takes effect every year. It can comprehensively describe both the historical and
+ * future rules of a time zone.
  *
  * @since 22
  */
@@ -254,12 +257,12 @@ typedef struct TimeZoneRules {
     AnnualTimeZoneRule* annualRules;
 
     /**
-     * @brief Indicates the num of TimeArrayTimeZoneRules.
+     * @brief Indicates the size of the time zone rule array defined by the start timestamp array.
      */
     size_t numTimeArrayRules;
 
     /**
-     * @brief Indicates the num of AnnualTimeZoneRules.
+     * @brief Indicates the size of the time zone rule array that takes effect annually.
      */
     size_t numAnnualRules;
 } TimeZoneRules;
@@ -277,33 +280,34 @@ typedef struct TimeZoneRules {
 I18n_ErrorCode OH_i18n_GetTimeZoneRules(const char* timeZoneID, TimeZoneRules* rules);
 
 /**
- * @brief Defines the query information and query result.
+ * @brief Used to input the query information and receive the query result.
  *
  * @since 22
  */
 typedef struct TimeZoneRuleQuery {
     /**
-     * @brief Indicates the base time in a next start or previous start time query.
+     * @brief Indicates the reference time for the query, in milliseconds. The value is Unix timestamp.
      */
     double base;
 
     /**
-     * @brief Indicates the previous raw offset.
+     * @brief Indicates the previous raw offset of the time zone, in milliseconds.
      */
     int32_t prevRawOffset;
 
     /**
-     * @brief Indicates the previous dstSavings offset.
+     * @brief Indicates the previous daylight saving time offset, in milliseconds.
      */
     int32_t prevDSTSavings;
 
     /**
-     * @brief Indicates whether the base time is inclusive.
+     * @brief Indicates whether the query result contains the base time. The value **true** indicates that the query
+     * result contains the base time. The value **false** indicates the opposite.
      */
     bool inclusive;
 
     /**
-     * @brief Indicates the query result.
+     * @brief Indicates the query result, in milliseconds. The value is Unix timestamp.
      */
     double result;
 } TimeZoneRuleQuery;
