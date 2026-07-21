@@ -28,6 +28,7 @@
  * resources and causing system stuttering. The APIs take effect only for the child processes created through
  * {@link OH_Ability_StartNativeChildProcess}.
  *
+ * @include <background_process_manager/background_process_manager.h>
  * @library libbackground_process_manager.z.so
  * @kit BackgroundTasksKit
  * @syscap SystemCapability.Resourceschedule.BackgroundProcessManager
