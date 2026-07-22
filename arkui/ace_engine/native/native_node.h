@@ -3714,170 +3714,239 @@ typedef enum {
      * @brief Defines the image source of the <Image> component.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .string: image source.\n
-     * .object: The parameter type is {@link ArkUI_DrawableDescriptor}. Either .string or .object must be set.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .string: image source.\n
-     * .object: The parameter type is {@link ArkUI_DrawableDescriptor}.\n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.string: image source.</li>
+     * <li>.object: The parameter type is {@link ArkUI_DrawableDescriptor}. Either .string or .object must be set.</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.string: image source.</li>
+     * <li>.object: The parameter type is {@link ArkUI_DrawableDescriptor}.</li>
+     * </ul>
+     *
+     * @ingroup Image
      */
     NODE_IMAGE_SRC = MAX_NODE_SCOPE_NUM * ARKUI_NODE_IMAGE,
     /**
      * @brief Defines how the image is resized to fit its container.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: how the image is resized to fit its container. The value is an enum of {@link ArkUI_ObjectFit}. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: how the image is resized to fit its container. The value is an enum of {@link ArkUI_ObjectFit}. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32: how the image is resized to fit its container. The value is an enum of
+     * {@link ArkUI_ObjectFit}.</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].i32: how the image is resized to fit its container. The value is an enum of
+     * {@link ArkUI_ObjectFit}.</li>
+     * </ul>
+     *
+     * @ingroup Image
      */
     NODE_IMAGE_OBJECT_FIT,
     /**
      * @brief Defines the interpolation effect of the image.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: interpolation effect of the image. The value is an enum of {@link ArkUI_ImageInterpolation}. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: interpolation effect of the image. The value is an enum of {@link ArkUI_ImageInterpolation}. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32: interpolation effect of the image. The value is an enum of
+     * {@link ArkUI_ImageInterpolation}.</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].i32: interpolation effect of the image. The value is an enum of
+     * {@link ArkUI_ImageInterpolation}.</li>
+     * </ul>
+     *
+     * @ingroup Image
      */
     NODE_IMAGE_INTERPOLATION,
     /**
      * @brief Defines how the image is repeated.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: how the image is repeated. The value is an enum of {@link ArkUI_ImageRepeat}. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: how the image is repeated. The value is an enum of {@link ArkUI_ImageRepeat}. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32: how the image is repeated. The value is an enum of {@link ArkUI_ImageRepeat}.</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].i32: how the image is repeated. The value is an enum of {@link ArkUI_ImageRepeat}.</li>
+     * </ul>
+     *
+     * @ingroup Image
      */
     NODE_IMAGE_OBJECT_REPEAT,
     /**
      * @brief Defines the color filter of the image.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].f32 to .value[19].f32: filter matrix array. \n
-     * .size: 5 x 4 filter array size. \n
-     * .object: the pointer to OH_Drawing_ColorFilter. Either .value or .object is set. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].f32 to .value[19].f32: filter matrix array. \n
-     * .size: 5 x 4 filter array size. \n
-     * .object: the pointer to OH_Drawing_ColorFilter. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].f32 to .value[19].f32: filter matrix array.</li>
+     * <li>.size: 5 x 4 filter array size.</li>
+     * <li>.object: the pointer to OH_Drawing_ColorFilter. Either .value or .object must be set.</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].f32 to .value[19].f32: filter matrix array.</li>
+     * <li>.size: 5 x 4 filter array size.</li>
+     * <li>.object: the pointer to OH_Drawing_ColorFilter.</li>
+     * </ul>
+     *
+     * @ingroup Image
      */
     NODE_IMAGE_COLOR_FILTER,
     /**
      * @brief Defines the auto resize attribute, which can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32 : whether to resize the image source. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32 : whether to resize the image source. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32: whether to resize the image source.</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].i32: whether to resize the image source.</li>
+     * </ul>
+     *
+     * @ingroup Image
      */
     NODE_IMAGE_AUTO_RESIZE,
     /**
      * @brief Defines the placeholder image source.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .string: placeholder image source. \n
-     * .object: The parameter type is {@link ArkUI_DrawableDescriptor}. Either .string or .object must be set.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .string: placeholder image source. \n
-     * .object: The parameter type is {@link ArkUI_DrawableDescriptor}.\n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.string: placeholder image source.</li>
+     * <li>.object: The parameter type is {@link ArkUI_DrawableDescriptor}. Either .string or .object must be set.</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.string: placeholder image source.</li>
+     * <li>.object: The parameter type is {@link ArkUI_DrawableDescriptor}.</li>
+     * </ul>
+     *
+     * @ingroup Image
      */
     NODE_IMAGE_ALT,
     /**
      * @brief Defines whether the image is draggable.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: whether the image is draggable. The value <b>true</b> means that the image is draggable. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: whether the image is draggable. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32: whether the image is draggable. The value <b>true</b> means that the image is draggable.</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].i32: whether the image is draggable.</li>
+     * </ul>
+     *
+     * @ingroup Image
      */
     NODE_IMAGE_DRAGGABLE,
     /**
      * @brief Defines the image rendering mode. This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: The parameter type is {@link ArkUI_ImageRenderMode}. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: The parameter type is {@link ArkUI_ImageRenderMode}. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32: The parameter type is {@link ArkUI_ImageRenderMode}.</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].i32: The parameter type is {@link ArkUI_ImageRenderMode}.</li>
+     * </ul>
+     *
+     * @ingroup Image
      */
     NODE_IMAGE_RENDER_MODE,
     /**
      * @brief Defines whether the image display size follows the image source size.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: wheter to follow, true means to follow.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: wheter to follow, true means to follow.\n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32: whether to follow the image source size. The value <b>true</b> means to follow.</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].i32: whether to follow the image source size. The value <b>true</b> means to follow.</li>
+     * </ul>
+     *
+     * @ingroup Image
      */
     NODE_IMAGE_FIT_ORIGINAL_SIZE,
     /**
-     * @brief Defines the fill color of the swiper.
+     * @brief Defines the fill color of the image.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].u32: fill color, in 0xARGB format. For example, 0xFFFF0000 indicates red. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].u32: fill color, in 0xARGB format. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].u32: fill color, in 0xARGB format. For example, 0xFFFF0000 indicates red.</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].u32: fill color, in 0xARGB format.</li>
+     * </ul>
+     *
+     * @ingroup Image
      */
     NODE_IMAGE_FILL_COLOR,
     /**
-     * @brief Resize the image when stretching it with array or a lattice object.
+     * @brief Defines how the image is resized when stretched using an array or a lattice object.
      * The parameter types for setting and getting should be the same.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].f32: width of the left edge. The unit is vp. \n
-     * .value[1].f32: width of the top edge. The unit is vp. \n
-     * .value[2].f32: width of the right edge. The unit is vp. \n
-     * .value[3].f32: width of the bottom edge. The unit is vp. \n
-     * .object: The parameter type is {@link OH_Drawing_Lattice},add since api 24.\n
-     * 
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].f32: width of the left edge. The unit is vp. \n
-     * .value[1].f32: width of the top edge. The unit is vp. \n
-     * .value[2].f32: width of the right edge. The unit is vp. \n
-     * .value[3].f32: width of the bottom edge. The unit is vp. \n
-     * .object: The parameter type is {@link OH_Drawing_Lattice},add since api 24.\n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].f32: width of the left edge, in vp.</li>
+     * <li>.value[1].f32: width of the top edge, in vp.</li>
+     * <li>.value[2].f32: width of the right edge, in vp.</li>
+     * <li>.value[3].f32: width of the bottom edge, in vp.</li>
+     * <li>.object: The parameter type is {@link OH_Drawing_Lattice}, supported since API version 24.</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].f32: width of the left edge, in vp.</li>
+     * <li>.value[1].f32: width of the top edge, in vp.</li>
+     * <li>.value[2].f32: width of the right edge, in vp.</li>
+     * <li>.value[3].f32: width of the bottom edge, in vp.</li>
+     * <li>.object: The parameter type is {@link OH_Drawing_Lattice}, supported since API version 24.</li>
+     * </ul>
+     *
+     * @ingroup Image
      */
     NODE_IMAGE_RESIZABLE,
     /**
      * @brief Defines the synchronous image loading attribute.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: whether to load the image synchronously. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: whether to load the image synchronously. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32: whether to load the image synchronously.</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].i32: whether to load the image synchronously.</li>
+     * </ul>
+     *
+     * @ingroup Image
      * @since 20
      */
     NODE_IMAGE_SYNC_LOAD = 4012,
@@ -3885,14 +3954,19 @@ typedef enum {
      * @brief Defines the image decoding size attribute.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: width of the image decoding, in px.\n
-     * .value[1].i32: height of the image decoding, in px.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: width of the image decoding, in px.\n
-     * .value[1].i32: height of the image decoding, in px.\n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32: width of the decoded image, in px.</li>
+     * <li>.value[1].i32: height of the decoded image, in px.</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].i32: width of the decoded image, in px.</li>
+     * <li>.value[1].i32: height of the decoded image, in px.</li>
+     * </ul>
+     *
+     * @ingroup Image
      * @since 21
      */
     NODE_IMAGE_SOURCE_SIZE = 4013,
@@ -3901,12 +3975,17 @@ typedef enum {
      * This attribute can be set, reset, and obtained as required through APIs.
      * The parameter types for setting and getting should be the same.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0...15].f32: 16 floating-point numbers.\n
-     * 
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0...15].f32: 16 floating-point numbers.\n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0...15].f32: 16 floating-point numbers.</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0...15].f32: 16 floating-point numbers.</li>
+     * </ul>
+     *
+     * @ingroup Image
      * @since 21
      */
     NODE_IMAGE_IMAGE_MATRIX = 4014,
@@ -3914,12 +3993,17 @@ typedef enum {
      * @brief Defines the image follow text direction attribute.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: whether to follows the text direction.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: whether to follows the text direction.\n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32: whether the image follows the text direction.</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].i32: whether the image follows the text direction.</li>
+     * </ul>
+     *
+     * @ingroup Image
      * @since 21
      */
     NODE_IMAGE_MATCH_TEXT_DIRECTION = 4015,
@@ -3927,12 +4011,18 @@ typedef enum {
      * @brief Defines the image copy attribute.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: copy option {@link ArkUI_CopyOptions}. The default value is <b>ARKUI_COPY_OPTIONS_NONE</b>.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: copy option {@link ArkUI_CopyOptions.\n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32: copy option {@link ArkUI_CopyOptions}. The default value is
+     * <b>ARKUI_COPY_OPTIONS_NONE</b>.</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].i32: copy option {@link ArkUI_CopyOptions}.</li>
+     * </ul>
+     *
+     * @ingroup Image
      * @since 21
      */
     NODE_IMAGE_COPY_OPTION = 4016,
@@ -3940,12 +4030,17 @@ typedef enum {
      * @brief Defines the image AI analysis enable attribute.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: whether to enable AI analysis for the image.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: whether to enable AI analysis for the image.\n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32: whether to enable AI analysis for the image.</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].i32: whether to enable AI analysis for the image.</li>
+     * </ul>
+     *
+     * @ingroup Image
      * @since 21
      */
     NODE_IMAGE_ENABLE_ANALYZER = 4017,
@@ -3953,13 +4048,18 @@ typedef enum {
      * @brief Defines the image dynamic display range attribute.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: dynamic range mode {@link ArkUI_DynamicRangeMode}.
-     * The default value is <b>ARKUI_DYNAMIC_RANGE_MODE_STANDARD</b>.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: dynamic range mode {@link ArkUI_DynamicRangeMode.\n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32: dynamic range mode {@link ArkUI_DynamicRangeMode}. The default value is
+     * <b>ARKUI_DYNAMIC_RANGE_MODE_STANDARD</b>.</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].i32: dynamic range mode {@link ArkUI_DynamicRangeMode}.</li>
+     * </ul>
+     *
+     * @ingroup Image
      * @since 21
      */
     NODE_IMAGE_DYNAMIC_RANGE_MODE = 4018,
@@ -3967,12 +4067,17 @@ typedef enum {
      * @brief Defines the image dynamic display brightness attribute.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].f32: hdr brightness. value range [0, 1]\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].f32: hdr brightness. value range [0, 1]\n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].f32: HDR brightness. The value range is [0, 1].</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].f32: HDR brightness. The value range is [0, 1].</li>
+     * </ul>
+     *
+     * @ingroup Image
      * @since 21
      */
     NODE_IMAGE_HDR_BRIGHTNESS = 4019,
@@ -3980,39 +4085,53 @@ typedef enum {
      * @brief Defines the image display direction attribute.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: orientation {@link ArkUI_Orientation}.
-     * The default value is <b>ARKUI_ORIENTATION_UP</b>.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: orientation {@link ArkUI_Orientation.\n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32: orientation {@link ArkUI_Orientation}. The default value is <b>ARKUI_ORIENTATION_UP</b>.</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].i32: orientation {@link ArkUI_Orientation}.</li>
+     * </ul>
+     *
+     * @ingroup Image
      * @since 21
      */
     NODE_IMAGE_ORIENTATION = 4020,
     /**
-     * @brief Set the range of SVG parsing capabilities supported through enable switch.
+     * @brief Defines the range of SVG parsing capabilities supported through an enable switch.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: enable switch.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: enable switch.\n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32: enable switch.</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].i32: enable switch.</li>
+     * </ul>
+     *
+     * @ingroup Image
      * @since 21
      */
-    NODE_IMAGE_SUPPORT_SVG2 = 4021, 
+    NODE_IMAGE_SUPPORT_SVG2 = 4021,
     /**
-     * @brief Set the animation effect for the image content transformation.
+     * @brief Defines the animation effect for the image content transformation.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .object: The parameter type is {@link ArkUI_ContentTransitionEffect}.\n
-     * 
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .object: The parameter type is {@link ArkUI_ContentTransitionEffect}.\n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.object: The parameter type is {@link ArkUI_ContentTransitionEffect}.</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.object: The parameter type is {@link ArkUI_ContentTransitionEffect}.</li>
+     * </ul>
+     *
+     * @ingroup Image
      * @since 21
      */
     NODE_IMAGE_CONTENT_TRANSITION = 4022,
@@ -4020,14 +4139,19 @@ typedef enum {
      * @brief Defines the placeholder image during loading process.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .string: placeholder image source. \n
-     * .object: The parameter type is {@link ArkUI_DrawableDescriptor}. Either .string or .object must be set.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .string: placeholder image source. \n
-     * .object: The parameter type is {@link ArkUI_DrawableDescriptor}.\n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.string: placeholder image source.</li>
+     * <li>.object: The parameter type is {@link ArkUI_DrawableDescriptor}. Either .string or .object must be set.</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.string: placeholder image source.</li>
+     * <li>.object: The parameter type is {@link ArkUI_DrawableDescriptor}.</li>
+     * </ul>
+     *
+     * @ingroup Image
      * @since 22
      */
     NODE_IMAGE_ALT_PLACEHOLDER = 4023,
@@ -4035,27 +4159,37 @@ typedef enum {
      * @brief Defines the placeholder image when loading fails.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .string: placeholder image source. \n
-     * .object: The parameter type is {@link ArkUI_DrawableDescriptor}. Either .string or .object must be set.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .string: placeholder image source. \n
-     * .object: The parameter type is {@link ArkUI_DrawableDescriptor}.\n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.string: placeholder image source.</li>
+     * <li>.object: The parameter type is {@link ArkUI_DrawableDescriptor}. Either .string or .object must be set.</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.string: placeholder image source.</li>
+     * <li>.object: The parameter type is {@link ArkUI_DrawableDescriptor}.</li>
+     * </ul>
+     *
+     * @ingroup Image
      * @since 22
      */
     NODE_IMAGE_ALT_ERROR = 4024,
     /**
-     * @brief Configure image edge anti-aliasing via an enable switch.
+     * @brief Defines image edge anti-aliasing through an enable switch.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: enable switch,the default value is false.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: enable switch.\n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32: enable switch. The default value is <b>false</b>.</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].i32: enable switch.</li>
+     * </ul>
+     *
+     * @ingroup Image
      * @since 23
      */
     NODE_IMAGE_ANTIALIASED = 4025,
@@ -7299,103 +7433,137 @@ typedef enum {
     NODE_RADIO_GROUP,
 
     /**
-     * @brief Set the image frames for the image animator. Dynamic updates is not supported.
+     * @brief Defines the image frames for the image animator. Dynamic updates are not supported.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Attribute setting method {@Link ArkUI_AttributeItem} Parameter format:\n
-     * .size: number of the images.\n
-     * .object: array of the images, the type is {@ArkUI_ImageAnimatorFrameInfo} array.\n
-     * \n
-     * Attribute obtaining method return value {@Link ArkUI_AttributeItem} format:\n
-     * .size: number of the images.\n
-     * .object: array of the images, the type is {@ArkUI_ImageAnimatorFrameInfo} array.\n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.size: number of images.</li>
+     * <li>.object: array of images. The array element type is {@link ArkUI_ImageAnimatorFrameInfo}.</li>
+     * </ul>
      *
-    */
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.size: number of images.</li>
+     * <li>.object: array of images. The array element type is {@link ArkUI_ImageAnimatorFrameInfo}.</li>
+     * </ul>
+     *
+     * @ingroup ImageAnimator
+     */
     NODE_IMAGE_ANIMATOR_IMAGES = ARKUI_NODE_IMAGE_ANIMATOR * MAX_NODE_SCOPE_NUM,
     /**
-     * @brief Set the playback status of the animation for the image animator.
+     * @brief Defines the playback status of the animation for the image animator.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Attribute setting method {@Link ArkUI_AttributeItem} Parameter format:\n
-     * .value[0].i32: the playback status of the animation, the type is {@link ArkUI_AnimationStatus},
-     * and the default value is ARKUI_ANIMATION_STATUS_INITIAL.
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32: playback status of the animation. The parameter type is
+     * {@link ArkUI_AnimationStatus}. The default value is <b>ARKUI_ANIMATION_STATUS_INITIAL</b>.</li>
+     * </ul>
      *
-     * Attribute obtaining method return value {@Link ArkUI_AttributeItem} format:\n
-     * .value[0].i32: the playback status of the animation, the type is {@link ArkUI_AnimationStatus}.\n
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].i32: playback status of the animation. The parameter type is {@link ArkUI_AnimationStatus}.</li>
+     * </ul>
      *
-    */
+     * @ingroup ImageAnimator
+     */
     NODE_IMAGE_ANIMATOR_STATE = 19001,
     /**
-     * @brief Set the playback duration for the image animator. When the duration is 0, no image is played.
+     * @brief Defines the playback duration for the image animator. When the duration is 0, no image is played.
      * The value change takes effect only at the beginning of the next cycle.
      * When a separate duration is set in images, the setting of this attribute is invalid.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Attribute setting method {@Link ArkUI_AttributeItem} Parameter format:\n
-     * .value[0].i32: the playback duration, the unit is ms and the default value is 1000.\n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32: playback duration, in ms. The default value is 1000.</li>
+     * </ul>
      *
-     * Attribute obtaining method return value {@Link ArkUI_AttributeItem} format:\n
-     * .value[0].i32: the playback duration, the unit is ms.\n
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].i32: playback duration, in ms.</li>
+     * </ul>
      *
-    */
+     * @ingroup ImageAnimator
+     */
     NODE_IMAGE_ANIMATOR_DURATION = 19002,
     /**
-     * @brief Set the playback direction for the image animator.
+     * @brief Defines the playback direction for the image animator.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Attribute setting method {@Link ArkUI_AttributeItem} Parameter format:\n
-     * .value[0].i32: the playback direction. 0 indicates that images are played from the first one to the last one,
-     * and 1 indicates that images are played from the last one to the first one.\n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32: playback direction. <b>0</b> indicates that images are played from the first one to
+     * the last one, and <b>1</b> indicates that images are played from the last one to the first one.</li>
+     * </ul>
      *
-     * Attribute obtaining method return value {@Link ArkUI_AttributeItem} format:\n
-     * .value[0].i32: the playback direction. 0 indicates that images are played from the first one to the last one,
-     * and 1 indicates that images are played from the last one to the first one.\n
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].i32: playback direction. <b>0</b> indicates that images are played from the first one to
+     * the last one, and <b>1</b> indicates that images are played from the last one to the first one.</li>
+     * </ul>
      *
-    */
+     * @ingroup ImageAnimator
+     */
     NODE_IMAGE_ANIMATOR_REVERSE = 19003,
     /**
-     * @brief Set whether the image size is the same as the component size.
+     * @brief Defines whether the image size is the same as the component size.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Attribute setting method {@Link ArkUI_AttributeItem} Parameter format:\n
-     * .value[0].i32: whether the image size is the same as the component size.
-     * 1 indicates the image size is the same as the component size.
-     * In this case, the width, height, top, and left attributes of the image are invalid.
-     * 0 indicates the image size is customized.
-     * The width, height, top, and left attributes of each image must be set separately.
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32: whether the image size is the same as the component size. <b>1</b> indicates that
+     * the image size is the same as the component size. In this case, the width, height, top, and left
+     * attributes of the image are invalid. <b>0</b> indicates that the image size is customized. The width,
+     * height, top, and left attributes of each image must be set separately.</li>
+     * </ul>
      *
-     * Attribute obtaining method return value {@Link ArkUI_AttributeItem} format:\n
-     * .value[0].i32: whether the image size is the same as the component size.
-     * 1 indicates the image size is the same as the component size.
-     * 0 indicates the image size is customized.
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].i32: whether the image size is the same as the component size. <b>1</b> indicates that
+     * the image size is the same as the component size. <b>0</b> indicates that the image size is customized.</li>
+     * </ul>
      *
-    */
+     * @ingroup ImageAnimator
+     */
     NODE_IMAGE_ANIMATOR_FIXED_SIZE = 19004,
     /**
-     * @brief Set the status before and after execution of the animation in the current playback direction.
+     * @brief Defines the status before and after execution of the animation in the current playback direction.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Attribute setting method {@Link ArkUI_AttributeItem} Parameter format:\n
-     * .value[0].i32: the status before and after execution of the animation in the current playback direction,
-     * the type is {ArkUI_AnimationFillMode} and the default value is ARKUI_ANIMATION_FILL_MODE_FORWARDS.\n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32: status before and after execution of the animation in the current playback direction.
+     * The parameter type is {@link ArkUI_AnimationFillMode}. The default value is
+     * <b>ARKUI_ANIMATION_FILL_MODE_FORWARDS</b>.</li>
+     * </ul>
      *
-     * Attribute obtaining method return value {@Link ArkUI_AttributeItem} format:\n
-     * .value[0].i32: the status before and after execution of the animation in the current playback direction,
-     * the type is {ArkUI_AnimationFillMode}.
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].i32: status before and after execution of the animation in the current playback direction.
+     * The parameter type is {@link ArkUI_AnimationFillMode}.</li>
+     * </ul>
      *
-    */
+     * @ingroup ImageAnimator
+     */
     NODE_IMAGE_ANIMATOR_FILL_MODE = 19005,
     /**
-     * @brief Set the number of times that the animation is played.
+     * @brief Defines the number of times that the animation is played.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Attribute setting method {@Link ArkUI_AttributeItem} Parameter format:\n
-     * .value[0].i32: the number of times that the animation is played.\n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32: number of times that the animation is played.</li>
+     * </ul>
      *
-     * Attribute setting method {@Link ArkUI_AttributeItem} Parameter format:\n
-     * .value[0].i32: the number of times that the animation is played.\n
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].i32: number of times that the animation is played.</li>
+     * </ul>
      *
-    */
+     * @ingroup ImageAnimator
+     */
     NODE_IMAGE_ANIMATOR_ITERATION = 19006,
 
     /**
@@ -11544,19 +11712,23 @@ typedef enum {
      * This event is triggered when an image is successfully loaded or decoded. \n
      * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
      * {@link ArkUI_NodeComponentEvent}. \n
-     * {@link ArkUI_NodeComponentEvent} contains nine parameters:\n
-     * <b>ArkUI_NodeComponentEvent.data[0].i32</b>: loading status. The value <b>0</b> indicates that the image is
-     * loaded successfully, and the value <b>1</b> indicates that the image is decoded successfully. \n
-     * <b>ArkUI_NodeComponentEvent.data[1].f32</b>: width of the image, in px. \n
-     * <b>ArkUI_NodeComponentEvent.data[2].f32</b>: height of the image, in px. \n
-     * <b>ArkUI_NodeComponentEvent.data[3].f32</b>: width of the component, in px. \n
-     * <b>ArkUI_NodeComponentEvent.data[4].f32</b>: height of the component, in px. \n
-     * <b>ArkUI_NodeComponentEvent.data[5].f32</b>: offset of the rendered content relative to the component on the
-     * x-axis, in px. \n
-     * <b>ArkUI_NodeComponentEvent.data[6].f32</b>: offset of the rendered content relative to the component on the
-     * y-axis, in px. \n
-     * <b>ArkUI_NodeComponentEvent.data[7].f32</b>: actual rendered width of the image, in px. \n
-     * <b>ArkUI_NodeComponentEvent.data[8].f32</b>: actual rendered height of the image, in px. \n
+     * **{@link ArkUI_NodeComponentEvent} contains nine parameters:**
+     * <ul>
+     * <li>ArkUI_NodeComponentEvent.data[0].i32: loading status. The value <b>0</b> indicates that the image is
+     * loaded successfully, and the value <b>1</b> indicates that the image is decoded successfully.</li>
+     * <li>ArkUI_NodeComponentEvent.data[1].f32: width of the image, in px.</li>
+     * <li>ArkUI_NodeComponentEvent.data[2].f32: height of the image, in px.</li>
+     * <li>ArkUI_NodeComponentEvent.data[3].f32: width of the component, in px.</li>
+     * <li>ArkUI_NodeComponentEvent.data[4].f32: height of the component, in px.</li>
+     * <li>ArkUI_NodeComponentEvent.data[5].f32: offset of the rendered content relative to the component on the
+     * x-axis, in px.</li>
+     * <li>ArkUI_NodeComponentEvent.data[6].f32: offset of the rendered content relative to the component on the
+     * y-axis, in px.</li>
+     * <li>ArkUI_NodeComponentEvent.data[7].f32: actual rendered width of the image, in px.</li>
+     * <li>ArkUI_NodeComponentEvent.data[8].f32: actual rendered height of the image, in px.</li>
+     * </ul>
+     *
+     * @ingroup Image
      */
     NODE_IMAGE_ON_COMPLETE = MAX_NODE_SCOPE_NUM * ARKUI_NODE_IMAGE,
     /**
@@ -11565,10 +11737,13 @@ typedef enum {
      * This event is triggered when an error occurs during image loading. \n
      * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
      * {@link ArkUI_NodeComponentEvent}. \n
-     * {@link ArkUI_NodeComponentEvent} contains one parameter:\n
-     * <b>ArkUI_NodeComponentEvent.data[0].i32</b>error code:\n
-     * 401: The image could not be obtained because the image path is invalid. \n
-     * 103101: The image format is not supported. \n
+     * **{@link ArkUI_NodeComponentEvent} contains one parameter:**
+     * <ul>
+     * <li>ArkUI_NodeComponentEvent.data[0].i32: error code.<br><b>401</b>: The image could not be obtained because
+     * the image path is invalid.<br><b>103101</b>: The image format is not supported.</li>
+     * </ul>
+     *
+     * @ingroup Image
      */
     NODE_IMAGE_ON_ERROR,
     /**
@@ -11578,17 +11753,23 @@ typedef enum {
      * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
      * {@link ArkUI_NodeComponentEvent}. \n
      * {@link ArkUI_NodeComponentEvent} does not contain parameters.
+     *
+     * @ingroup Image
      */
     NODE_IMAGE_ON_SVG_PLAY_FINISH,
     /**
-     * @brief Defines image download process event.
+     * @brief Defines the image download progress event.
      *
      * This event is triggered when downloading webpage images from page components.\n
      * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
      * {@link ArkUI_NodeComponentEvent}. \n
-     * {@link ArkUI_NodeComponentEvent} contains two parameter:\n
-     * <b>ArkUI_NodeComponentEvent.data[0].u32</b>: the num of bytes downloaded. \n
-     * <b>ArkUI_NodeComponentEvent.data[1].u32</b>: the total number of bytes to download. \n
+     * **{@link ArkUI_NodeComponentEvent} contains two parameters:**
+     * <ul>
+     * <li>ArkUI_NodeComponentEvent.data[0].u32: number of bytes downloaded.</li>
+     * <li>ArkUI_NodeComponentEvent.data[1].u32: total number of bytes to download.</li>
+     * </ul>
+     *
+     * @ingroup Image
      */
     NODE_IMAGE_ON_DOWNLOAD_PROGRESS,
     /**
@@ -12264,51 +12445,56 @@ typedef enum {
     NODE_RADIO_EVENT_ON_CHANGE = MAX_NODE_SCOPE_NUM * ARKUI_NODE_RADIO,
 
     /**
-     * @brief Defines the event callback function triggered when the animation starts to play.
+     * @brief Defines the event triggered when the animation starts to play.
      *
-     * When the event callback occurs, the union type in the {@Link ArkUI_NodeEvent} object is \n
-     * {@Link ArkUI_NodeComponentEvent}. \n
-     * {@Link ArkUI_NodeComponentEvent} contains no parameter:\n
+     * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
+     * {@link ArkUI_NodeComponentEvent}. \n
+     * {@link ArkUI_NodeComponentEvent} does not contain parameters.
      *
-    */
+     * @ingroup ImageAnimator
+     */
     NODE_IMAGE_ANIMATOR_EVENT_ON_START = MAX_NODE_SCOPE_NUM * ARKUI_NODE_IMAGE_ANIMATOR,
     /**
-     * @brief Defines the event callback function triggered when the animation playback is paused.
+     * @brief Defines the event triggered when the animation playback is paused.
      *
-     * When the event callback occurs, the union type in the {@Link ArkUI_NodeEvent} object is \n
-     * {@Link ArkUI_NodeComponentEvent}. \n
-     * {@Link ArkUI_NodeComponentEvent} contains no parameter:\n
+     * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
+     * {@link ArkUI_NodeComponentEvent}. \n
+     * {@link ArkUI_NodeComponentEvent} does not contain parameters.
      *
-    */
+     * @ingroup ImageAnimator
+     */
     NODE_IMAGE_ANIMATOR_EVENT_ON_PAUSE = 19001,
     /**
-     * @brief Defines the event callback function triggered when the animation playback is repeated.
+     * @brief Defines the event triggered when the animation playback is repeated.
      *
-     * When the event callback occurs, the union type in the {@Link ArkUI_NodeEvent} object is \n
-     * {@Link ArkUI_NodeComponentEvent}. \n
-     * {@Link ArkUI_NodeComponentEvent} contains no parameter:\n
+     * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
+     * {@link ArkUI_NodeComponentEvent}. \n
+     * {@link ArkUI_NodeComponentEvent} does not contain parameters.
      *
-    */
+     * @ingroup ImageAnimator
+     */
     NODE_IMAGE_ANIMATOR_EVENT_ON_REPEAT = 19002,
     /**
-     * @brief Defines the event callback function when the animation playback returns to the initial state.
+     * @brief Defines the event triggered when the animation playback returns to the initial state.
      *
-     * When the event callback occurs, the union type in the {@Link ArkUI_NodeEvent} object is \n
-     * {@Link ArkUI_NodeComponentEvent}. \n
-     * {@Link ArkUI_NodeComponentEvent} contains no parameter:\n
+     * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
+     * {@link ArkUI_NodeComponentEvent}. \n
+     * {@link ArkUI_NodeComponentEvent} does not contain parameters.
      *
-    */
+     * @ingroup ImageAnimator
+     */
     NODE_IMAGE_ANIMATOR_EVENT_ON_CANCEL = 19003,
     /**
-     * @brief Defines the event callback function triggered when the animation playback is complete or stopped.
+     * @brief Defines the event triggered when the animation playback is complete or stopped.
      *
-     * When the event callback occurs, the union type in the {@Link ArkUI_NodeEvent} object is \n
-     * {@Link ArkUI_NodeComponentEvent}. \n
-     * {@Link ArkUI_NodeComponentEvent} contains no parameter:\n
+     * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
+     * {@link ArkUI_NodeComponentEvent}. \n
+     * {@link ArkUI_NodeComponentEvent} does not contain parameters.
      *
-    */
+     * @ingroup ImageAnimator
+     */
     NODE_IMAGE_ANIMATOR_EVENT_ON_FINISH = 19004,
-    
+
     /**
      * @brief Defines the callback triggered when the selected status of the <b>ARKUI_NODE_CHECKBOX_GROOUP</b>
      * or checkbox changes.
