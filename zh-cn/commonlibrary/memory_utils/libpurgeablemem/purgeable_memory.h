@@ -28,9 +28,9 @@
 /**
  * @file purgeable_memory.h
  *
- * @brief Provides APIs for managing the purgeable memory.
- * <br>For example, you can create a purgeable memory, start or end the memory reading/writing, and rebuild the memory.
- * <br>Link to the **libpurgeable_memory_ndk.z.so** file when you use the API.
+ * @brief 提供可丢弃内存的内存管理功能。
+ * <br>提供的功能包括创建、开始读取、结束读取、开始写入、结束写入、重建等。
+ * <br>使用时需要链接libpurgeable_memory_ndk.z.so。
  *
  * @library libpurgeable_memory_ndk.z.so
  * @syscap SystemCapability.Kernel.Memory
@@ -50,7 +50,7 @@ extern "C" {
 #endif /* End of #ifdef __cplusplus */
 
 /**
- * @brief Defines a purgeable memory struct.
+ * @brief 可清除的内存结构。
  *
  * @since 10
  * @version 1.0
@@ -75,9 +75,9 @@ typedef bool (*OH_PurgeableMemory_ModifyFunc)(void *, size_t, void *);
  * @brief create a PurgMem obj.
  *
  *
- * @param size Data size of the content of a purgeable memory object.
- * @param func Function used to restore data when the content of a purgeable memory object is cleared.
- * @param funcPara Pointer to the parameter used by @func.
+ * @param size 可丢弃内存对象内容的数据大小。
+ * @param func 函数指针，用于在可丢弃内存对象的内容被清除时恢复数据。
+ * @param funcPara @func 使用的参数。
  * @return a PurgMem obj.
  *
  * @since 10
@@ -90,7 +90,7 @@ OH_PurgeableMemory *OH_PurgeableMemory_Create(
  * @brief destroy a PurgMem obj.
  *
  *
- * @param purgObj Pointer to the purgeable memory object to be destroyed.
+ * @param purgObj 待销毁的可丢弃内存对象。
  * @return true is success, while false is fail. return true if @purgObj is NULL.
  *      <br>If return true, @purgObj will be set to NULL to avoid Use-After-Free.
  *
@@ -103,7 +103,7 @@ bool OH_PurgeableMemory_Destroy(OH_PurgeableMemory *purgObj);
  * @brief begin read a PurgMem obj.
  *
  *
- * @param purgObj Pointer to the purgeable memory object.
+ * @param purgObj 可丢弃内存对象。
  * @return return true if @purgObj's content is present.
  *     If content is purged(no present), system will recover its data,
  *     return false if content is purged and recovered failed.
@@ -120,8 +120,7 @@ bool OH_PurgeableMemory_BeginRead(OH_PurgeableMemory *purgObj);
  * @brief end read a PurgMem obj.
  *
  *
- * @param purgObj Pointer to the purgeable memory object. When this function ends, the OS may reclaim the memory of the
- *     content of the purgeable memory object later.
+ * @param purgObj 可丢弃内存对象。当此函数执行结束，操作系统可能会稍后回收可丢弃内存对象的内容的内存。
  * @since 10
  * @version 1.0
  */
@@ -131,7 +130,7 @@ void OH_PurgeableMemory_EndRead(OH_PurgeableMemory *purgObj);
  * @brief begin write a PurgMem obj.
  *
  *
- * @param purgObj Pointer to the purgeable memory object.
+ * @param purgObj 可丢弃内存对象。
  * @return return true if @purgObj's content is present.
  *     if content is purged(no present), system will recover its data,
  *     return false if content is purged and recovered failed.
@@ -148,8 +147,7 @@ bool OH_PurgeableMemory_BeginWrite(OH_PurgeableMemory *purgObj);
  * @brief end write a PurgMem obj.
  *
  *
- * @param purgObj Pointer to the purgeable memory object. When this function ends, the OS may reclaim the memory of the
- *     content of the purgeable memory object later.
+ * @param purgObj 可丢弃内存对象。当此函数执行结束时，操作系统可能会稍后回收可丢弃内存对象的内容的内存。
  * @since 10
  * @version 1.0
  */
@@ -159,7 +157,7 @@ void OH_PurgeableMemory_EndWrite(OH_PurgeableMemory *purgObj);
  * @brief get content ptr of a PurgMem obj.
  *
  *
- * @param purgObj Pointer to the purgeable memory object.
+ * @param purgObj 可丢弃内存对象。
  * @return return start address of a PurgMem obj's content.
  *     <br>Return NULL if @purgObj is NULL.
  *     <br>This function should be protect by PurgMemBeginRead()/PurgMemEndRead()
@@ -174,7 +172,7 @@ void *OH_PurgeableMemory_GetContent(OH_PurgeableMemory *purgObj);
  * @brief get content size of a PurgMem obj.
  *
  *
- * @param purgObj Pointer to the purgeable memory object.
+ * @param purgObj 可丢弃内存对象。
  * @return return content size of @purgObj.
  *     Return 0 if @purgObj is NULL.
  *
@@ -187,9 +185,9 @@ size_t OH_PurgeableMemory_ContentSize(OH_PurgeableMemory *purgObj);
  * @brief append a modify to a PurgMem obj.
  *
  *
- * @param purgObj Pointer to the purgeable memory object.
- * @param func Function used to modify the content of a purgeable memory object.
- * @param funcPara Pointer to the parameter used by @func.
+ * @param purgObj 可丢弃内存对象。
+ * @param func 函数指针，用于修改可丢弃内存对象的内容。
+ * @param funcPara @func 使用的参数。
  * @return  append result, true is success, while false is fail.
  *
  * @since 10
