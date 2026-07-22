@@ -13023,19 +13023,23 @@ typedef enum {
      * This event is triggered when an image is successfully loaded or decoded. \n
      * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
      * {@link ArkUI_NodeComponentEvent}. \n
-     * {@link ArkUI_NodeComponentEvent} contains nine parameters:\n
-     * <b>ArkUI_NodeComponentEvent.data[0].i32</b>: loading status. The value <b>0</b> indicates that the image is
-     * loaded successfully, and the value <b>1</b> indicates that the image is decoded successfully. \n
-     * <b>ArkUI_NodeComponentEvent.data[1].f32</b>: width of the image, in px. \n
-     * <b>ArkUI_NodeComponentEvent.data[2].f32</b>: height of the image, in px. \n
-     * <b>ArkUI_NodeComponentEvent.data[3].f32</b>: width of the component, in px. \n
-     * <b>ArkUI_NodeComponentEvent.data[4].f32</b>: height of the component, in px. \n
-     * <b>ArkUI_NodeComponentEvent.data[5].f32</b>: offset of the rendered content relative to the component on the
-     * x-axis, in px. \n
-     * <b>ArkUI_NodeComponentEvent.data[6].f32</b>: offset of the rendered content relative to the component on the
-     * y-axis, in px. \n
-     * <b>ArkUI_NodeComponentEvent.data[7].f32</b>: actual rendered width of the image, in px. \n
-     * <b>ArkUI_NodeComponentEvent.data[8].f32</b>: actual rendered height of the image, in px. \n
+     * **{@link ArkUI_NodeComponentEvent} contains nine parameters:**
+     * <ul>
+     * <li>ArkUI_NodeComponentEvent.data[0].i32: loading status. The value <b>0</b> indicates that the image is
+     * loaded successfully, and the value <b>1</b> indicates that the image is decoded successfully.</li>
+     * <li>ArkUI_NodeComponentEvent.data[1].f32: width of the image, in px.</li>
+     * <li>ArkUI_NodeComponentEvent.data[2].f32: height of the image, in px.</li>
+     * <li>ArkUI_NodeComponentEvent.data[3].f32: width of the component, in px.</li>
+     * <li>ArkUI_NodeComponentEvent.data[4].f32: height of the component, in px.</li>
+     * <li>ArkUI_NodeComponentEvent.data[5].f32: offset of the rendered content relative to the component on the
+     * x-axis, in px.</li>
+     * <li>ArkUI_NodeComponentEvent.data[6].f32: offset of the rendered content relative to the component on the
+     * y-axis, in px.</li>
+     * <li>ArkUI_NodeComponentEvent.data[7].f32: actual rendered width of the image, in px.</li>
+     * <li>ArkUI_NodeComponentEvent.data[8].f32: actual rendered height of the image, in px.</li>
+     * </ul>
+     *
+     * @ingroup Image
      */
     NODE_IMAGE_ON_COMPLETE = MAX_NODE_SCOPE_NUM * ARKUI_NODE_IMAGE,
     /**
@@ -13830,7 +13834,7 @@ typedef enum {
      * @ingroup ImageAnimator
      */
     NODE_IMAGE_ANIMATOR_EVENT_ON_FINISH = 19004,
-    
+
     /**
      * @brief Defines the callback triggered when the selected status of the <b>ARKUI_NODE_CHECKBOX_GROOUP</b>
      * or checkbox changes.
