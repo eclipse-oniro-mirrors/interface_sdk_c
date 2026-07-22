@@ -13,6 +13,9 @@
  * limitations under the License.
  */
 
+#ifndef NATIVE_NET_CONN_TYPE_H
+#define NATIVE_NET_CONN_TYPE_H
+
 /**
  * @addtogroup NetConnection
  * @{
@@ -35,9 +38,6 @@
  *
  */
 
-#ifndef NATIVE_NET_CONN_TYPE_H
-#define NATIVE_NET_CONN_TYPE_H
-
 #include <stdbool.h>
 #include <stdint.h>
 #include <netdb.h>
@@ -45,202 +45,197 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-
-/**
- * @brief Length of the netHandles array in the member variable of NetConn_NetHandleList.
- *
- * @since 11
- */
 #define NETCONN_MAX_NET_SIZE 32
-
-/**
- * @brief Length of the bearerTypes array in the NetConn_NetCapabilities member variable.
- *
- * @since 11
- */
 #define NETCONN_MAX_BEARER_TYPE_SIZE 32
-
-/**
- * @brief Length of the netCaps array in the NetConn_NetCapabilities member variable.
- *
- * @since 11
- */
 #define NETCONN_MAX_CAP_SIZE 32
-
-/**
- * @brief Length of the netAddrlist and dnsList arrays in the NetConn_ConnectionProperties member variable.
- *
- * @since 11
- */
 #define NETCONN_MAX_ADDR_SIZE 32
-
-/**
- * @brief Length of the routeList array in the NetConn_ConnectionProperties member variable.
- *
- * @since 11
- */
 #define NETCONN_MAX_ROUTE_SIZE 64
-
-/**
- * @brief Length of the exclusionList array in the NetConn_HttpProxy member variable.
- *
- * @since 11
- */
 #define NETCONN_MAX_EXCLUSION_SIZE 256
-
-/**
- * @brief Length of the host array of the NetConn_HttpProxy member variable.
- *
- * @since 11
- */
 #define NETCONN_MAX_STR_LEN 256
-
-/**
- * @brief Length of the rtts array in the NetConn_ProbeResultlnfo member variable.
- *
- * @since 20
- */
 #define NETCONN_MAX_RTT_NUM 4
 
 /**
- * @brief Defines network capabilities.
+ * @brief Enumerates the network capabilities.
  *
  * @since 11
  * @version 1.0
  */
 typedef enum NetConn_NetCap {
-    /** MMS */
+    /**
+     * MMS.
+     */
     NETCONN_NET_CAPABILITY_MMS = 0,
-    /** Not Metered */
+    /**
+     * Non-metered network.
+     */
     NETCONN_NET_CAPABILITY_NOT_METERED = 11,
-    /** Internet */
+    /**
+     * Internet.
+     */
     NETCONN_NET_CAPABILITY_INTERNET = 12,
-    /** Not VPN */
+    /**
+     * Non-VPN.
+     */
     NETCONN_NET_CAPABILITY_NOT_VPN = 15,
-    /** Validated */
+    /**
+     * Verified.
+     */
     NETCONN_NET_CAPABILITY_VALIDATED = 16,
     /**
-    * Portal
-    * @since 12
-    */
+     * Portal.
+     * @since 12
+     */
     NETCONN_NET_CAPABILITY_PORTAL = 17,
     /**
-     * In checking network connectivity.
+     * Connectivity check.
      * @since 12
      */
     NETCONN_NET_CAPABILITY_CHECKING_CONNECTIVITY = 31
 } NetConn_NetCap;
 
 /**
- * @brief Defines network bearer types.
+ * @brief Enumerates the network carrier types.
  *
  * @since 11
  * @version 1.0
  */
 typedef enum NetConn_NetBearerType {
-    /** Cellular network */
+    /**
+     * Cellular network.
+     */
     NETCONN_BEARER_CELLULAR = 0,
-    /** WIFI */
+    /**
+     * Wi-Fi.
+     */
     NETCONN_BEARER_WIFI = 1,
     /**
-     * Bluetooth
+     * Bluetooth.
      * @since 12
      */
     NETCONN_BEARER_BLUETOOTH = 2,
-    /** Ethernet */
+    /**
+     * Ethernet.
+     */
     NETCONN_BEARER_ETHERNET = 3,
     /**
-     * VPN
+     * VPN.
      * @since 12
      */
-    NETCONN_BEARER_VPN = 4,
+    NETCONN_BEARER_VPN = 4
 } NetConn_NetBearerType;
 
 /**
- * @brief Enumerates NetConn error codes.
+ * @brief Enumerates network connection error codes.
  *
  * @since 15
  */
 typedef enum NetConn_ErrorCode {
-    /** @error Success return code on success*/
+    /**
+     * Success.
+     */
     NETCONN_SUCCESS = 0,
-    /** @error Permission verification failed */
+    /**
+     * Missing permissions.
+     */
     NETCONN_PERMISSION_DENIED = 201,
-    /** @error Parameter check failed */
+    /**
+     * Invalid parameter.
+     */
     NETCONN_PARAMETER_ERROR = 401,
-    /** @error Failed to connect to the service */
+    /**
+     * Service connection failure.
+     */
     NETCONN_OPERATION_FAILED = 2100002,
     /**
-     * @error System internal error.
-     * 1. Memory-related error, for example, insufficient memory or memory data copy failures.
-     * 2. Null pointer error, for example, using memory that has already been released.
+     * Internal error.1. Memory-related error, for example, insufficient memory, memory data copy failure, or memory
+     * request failure.2. Null pointer, for example, access to a released memory pointer.
      */
     NETCONN_INTERNAL_ERROR = 2100003
 } NetConn_ErrorCode;
 
 /**
- * @brief Enumerates packets type of trace route.
+ * @brief Enumerates trace route packet types.
  *
  * @since 20
  */
 typedef enum NetConn_PacketsType {
-    /** ICMP */
+    /**
+     * Internet Control Message Protocol.
+     */
     NETCONN_PACKETS_ICMP = 0,
-    /** UDP */
+    /**
+     * User Datagram Protocol.
+     */
     NETCONN_PACKETS_UDP = 1
 } NetConn_PacketsType;
 
 /**
- * @brief Defines the network handle.
+ * @brief Defines network handles for network IDs.
  *
  * @since 11
  * @version 1.0
  */
 typedef struct NetConn_NetHandle {
-    /** Network ID */
+    /**
+     * Network ID.
+     */
     int32_t netId;
 } NetConn_NetHandle;
 
 /**
- * @brief Defines all network capabilities.
+ * @brief Defines network capability sets.
  *
  * @since 11
  * @version 1.0
  */
 typedef struct NetConn_NetCapabilities {
-    /** Uplink bandwidth */
+    /**
+     * Uplink bandwidth.
+     */
     uint32_t linkUpBandwidthKbps;
-    /** Downlink bandwidth */
+    /**
+     * Downlink bandwidth.
+     */
     uint32_t linkDownBandwidthKbps;
     /** Network capability list */
     NetConn_NetCap netCaps[NETCONN_MAX_CAP_SIZE];
-    /** Actual size of the network capability list */
+    /**
+     * Actual size of the network capability list.
+     */
     int32_t netCapsSize;
     /** Bearer type list */
     NetConn_NetBearerType bearerTypes[NETCONN_MAX_BEARER_TYPE_SIZE];
-    /** Actual size of the bearer type list */
+    /**
+     * Actual size of the bearer type list.
+     */
     int32_t bearerTypesSize;
 } NetConn_NetCapabilities;
 
 /**
- * @brief Defines the network address.
+ * @brief Defines network addresses.
  *
  * @since 11
  * @version 1.0
  */
 typedef struct NetConn_NetAddr {
-    /** Network address family */
+    /**
+     * Network address family.
+     */
     uint8_t family;
-    /** Prefix length */
+    /**
+     * Prefix length.
+     */
     uint8_t prefixlen;
-    /** Port number */
+    /**
+     * Port number.
+     */
     uint8_t port;
     /** Address */
     char address[NETCONN_MAX_STR_LEN];
 } NetConn_NetAddr;
 
 /**
- * @brief Defines the route configuration information.
+ * @brief Defines the route configuration.
  *
  * @since 11
  * @version 1.0
@@ -248,18 +243,26 @@ typedef struct NetConn_NetAddr {
 typedef struct NetConn_Route {
     /** Network interface */
     char iface[NETCONN_MAX_STR_LEN];
-    /** Destination address */
+    /**
+     * Destination address.
+     */
     NetConn_NetAddr destination;
-    /** Gateway address */
+    /**
+     * Gateway IP address.
+     */
     NetConn_NetAddr gateway;
-    /** Gateway exists or not */
+    /**
+     * Whether a gateway exists.
+     */
     int32_t hasGateway;
-    /** Default route or not */
+    /**
+     * Whether the default route is used.
+     */
     int32_t isDefaultRoute;
 } NetConn_Route;
 
 /**
- * @brief Defines the proxy configuration information.
+ * @brief Defines the proxy configuration.
  *
  * @since 11
  * @version 1.0
@@ -269,9 +272,13 @@ typedef struct NetConn_HttpProxy {
     char host[NETCONN_MAX_STR_LEN];
     /** Exclusion list of proxy servers */
     char exclusionList[NETCONN_MAX_EXCLUSION_SIZE][NETCONN_MAX_STR_LEN];
-    /** Actual size of the exclusion list */
+    /**
+     * Actual size of the exclusion list.
+     */
     int32_t exclusionListSize;
-    /** Port number */
+    /**
+     * Port number.
+     */
     uint16_t port;
 } NetConn_HttpProxy;
 
@@ -288,26 +295,36 @@ typedef struct NetConn_ConnectionProperties {
     char domain[NETCONN_MAX_STR_LEN];
     /** TCP buffer size */
     char tcpBufferSizes[NETCONN_MAX_STR_LEN];
-    /** MTU */
+    /**
+     * Maximum transmission unit.
+     */
     uint16_t mtu;
     /** Address list */
     NetConn_NetAddr netAddrList[NETCONN_MAX_ADDR_SIZE];
-    /** Actual size of the address list */
+    /**
+     * Actual size of the address list.
+     */
     int32_t netAddrListSize;
     /** DNS list */
     NetConn_NetAddr dnsList[NETCONN_MAX_ADDR_SIZE];
-    /** Actual size of the DNS list */
+    /**
+     * Actual size of the DNS list.
+     */
     int32_t dnsListSize;
     /** Route list */
     NetConn_Route routeList[NETCONN_MAX_ROUTE_SIZE];
-    /** Actual size of the route list */
+    /**
+     * Actual size of the route list.
+     */
     int32_t routeListSize;
-    /** HTTP proxy information */
+    /**
+     * HTTP proxy information.
+     */
     NetConn_HttpProxy httpProxy;
 } NetConn_ConnectionProperties;
 
 /**
- * @brief Defines the network handle list.
+ * @brief Defines the network list.
  *
  * @since 11
  * @version 1.0
@@ -315,18 +332,18 @@ typedef struct NetConn_ConnectionProperties {
 typedef struct NetConn_NetHandleList {
     /** Network handle list */
     NetConn_NetHandle netHandles[NETCONN_MAX_NET_SIZE];
-    /** Actual size of the network handle list */
+    /**
+     * Actual size of the network handle list.
+     */
     int32_t netHandleListSize;
 } NetConn_NetHandleList;
-
 /**
- * @brief Pointer to the custom DNS resolver.
+ * @brief Defines the pointer to the custom DNS resolver.
  *
- * @param host The host name to query.
+ * @param host Host name.
  * @param serv Service name.
  * @param hint Pointer to the addrinfo structure.
- * @param res Store DNS query results and return them in a linked list format.
- *
+ * @param res DNS query result, which is in the format of linked lists.
  * @since 11
  * @version 1.0
  */
@@ -334,9 +351,9 @@ typedef int (*OH_NetConn_CustomDnsResolver)(const char *host, const char *serv,
     const struct addrinfo *hint, struct addrinfo **res);
 
 /**
- * @brief Callback for application’s http proxy information changed.
+ * @brief Callback for application http proxy information changed.
  *
- * @param proxy The changed proxy information, may be a null pointer.
+ * @param proxy Changed proxy information, which can be a null pointer.
  *
  * @since 12
  * @version 1.0
@@ -366,64 +383,61 @@ typedef void (*OH_NetConn_GlobalHttpProxyRefreshCallback)(
     void *userContext);
 
 /**
- * @brief Definition of network specifier.
+ * @brief Defines network feature sets.
  *
  * @since 12
  * @version 1.0
  */
 typedef struct NetConn_NetSpecifier {
-    /** Network capabilities. */
+    /**
+     * Network capability set.
+     */
     NetConn_NetCapabilities caps;
-    /** Network identifier */
+    /**
+     * Network ID.
+     */
     char *bearerPrivateIdentifier;
 } NetConn_NetSpecifier;
-
 /**
- * @brief Callback for network available.
+ * @brief Defines the callback invoked when the network is available.
  *
- * @param netHandle The network handle.
- *
+ * @param netHandle Network handle.
  * @since 12
  * @version 1.0
  */
 typedef void (*OH_NetConn_NetworkAvailable)(NetConn_NetHandle *netHandle);
-
 /**
- * @brief Callback for network capabilities changed.
+ * @brief Defines the callback invoked when the network capabilities change.
  *
- * @param netHandle The network handle.
- * @param netCapabilities The network capabilities.
- *
+ * @param netHandle Network handle.
+ * @param netCapabilities Network capability set.
  * @since 12
  * @version 1.0
  */
 typedef void (*OH_NetConn_NetCapabilitiesChange)(NetConn_NetHandle *netHandle,
                                                  NetConn_NetCapabilities *netCapabilities);
-
 /**
- * @brief Callback for network connection properties changed.
+ * @brief Defines the callback invoked when network connection properties change.
  *
- * @param netHandle The network handle.
- * @param connConnetionProperties The network connection properties.
- *
+ * @param netHandle Network handle.
+ * @param connConnetionProperties Network connection properties.
  * @since 12
  * @version 1.0
  */
 typedef void (*OH_NetConn_NetConnectionPropertiesChange)(NetConn_NetHandle *netHandle,
                                                          NetConn_ConnectionProperties *connConnetionProperties);
-
 /**
- * @brief Callback for network lost.
+ * @brief Defines the callback invoked when the network is disconnected.
  *
- * @param netHandle The network handle.
- *
+ * @param netHandle Network handle.
  * @since 12
  * @version 1.0
  */
 typedef void (*OH_NetConn_NetLost)(NetConn_NetHandle *netHandle);
-
 /**
- * @brief Callback for network unavailable, this function invoked while network can not be available in given timeout.
+ * @brief Defines the callback invoked when the network is unavailable. This callback is triggered when the network is
+ * not activated within the specified timeout interval. If the timeout interval is not set, this callback is not
+ * triggered.
  *
  * @since 12
  * @version 1.0
@@ -431,72 +445,101 @@ typedef void (*OH_NetConn_NetLost)(NetConn_NetHandle *netHandle);
 typedef void (*OH_NetConn_NetUnavailable)(void);
 
 /**
- * @brief Callback for network blocked status changed.
+ * @brief Defines the callback invoked when the network blocking status changes.
  *
- * @param netHandle The network handle.
- * @param blocked The flag used to indicate whether the network will be blocked.
- *
+ * @param netHandle Network handle.
+ * @param blocked Whether the network is blocked. The value true indicates that the network is blocked, and the value
+ *     false indicates the opposite.
  * @since 12
  * @version 1.0
  */
 typedef void (*OH_NetConn_NetBlockStatusChange)(NetConn_NetHandle *netHandle, bool blocked);
-
 /**
- * @brief Defines the network connection callbacks.
+ * @brief Defines a struct for the network status listener callback collection. All callback events must be registered;
+ * those not requiring attention can be set to empty.
  *
  * @since 12
  * @version 1.0
  */
 typedef struct NetConn_NetConnCallback {
-    /** Callback for network available */
+    /**
+     * Callback invoked when the network is available.
+     */
     OH_NetConn_NetworkAvailable onNetworkAvailable;
-    /** Callback for network capabilities changed */
+    /**
+     * Callback invoked when the network capabilities change.
+     */
     OH_NetConn_NetCapabilitiesChange onNetCapabilitiesChange;
-    /** Callback for network connection properties changed */
+    /**
+     * Callback invoked when network connection properties change.
+     */
     OH_NetConn_NetConnectionPropertiesChange onConnetionProperties;
-    /** Callback for network lost */
+    /**
+     * Callback invoked when the network is disconnected.
+     */
     OH_NetConn_NetLost onNetLost;
-    /** Callback for network unavailable, this function invoked while network can not be available in given timeout */
+    /**
+     * Callback invoked when the network is unavailable. This callback is triggered when the network is not activated
+     * within the specified timeout interval. If the timeout interval is not set, this callback is not triggered.
+     */
     OH_NetConn_NetUnavailable onNetUnavailable;
-    /** Callback for network blocked status changed */
+    /**
+     * Callback invoked when the network blocking status changes.
+     */
     OH_NetConn_NetBlockStatusChange onNetBlockStatusChange;
 } NetConn_NetConnCallback;
 
 /**
- * @brief Defines the probe result information.
+ * @brief Defines the probe result.
  *
  * @since 20
  */
 typedef struct NetConn_ProbeResultInfo {
-    /** Number of jumps */
+    /**
+     * Packet loss rate, in percentage. The value **100** indicates 100% packet loss, and the value **50** indicates 50%
+     * packet loss.
+     */
     uint8_t lossRate;
-    /** RTT in micro seconds, min/avg/max/std */
+    /**
+     * Round-trip time in ms, including the maximum, minimum, average, and standard deviations.
+     */
     uint32_t rtt[NETCONN_MAX_RTT_NUM];
 } NetConn_ProbeResultInfo;
 
 /**
- * @brief Defines the network trace route option.
+ * @brief Defines the network trace route options.
  *
  * @since 20
  */
 typedef struct NetConn_TraceRouteOption {
-    /** Maximum number of jumps, default is 30 */
+    /**
+     * Maximum number of hops in the probe result. The value must be the same as that of **TraceRouteInfo**. The
+     * maximum number of hops is 30, which is also the default value.
+     */
     uint8_t maxJumpNumber;
-    /** Packets type */
+    /**
+     * Protocol type of the probe packet. The default value is **NETCONN_PACKETS_ICMP**.
+     */
     NetConn_PacketsType packetsType;
 } NetConn_TraceRouteOption;
- 
+
 /**
  * @brief Defines the trace route information.
  *
  * @since 20
  */
 typedef struct NetConn_TraceRouteInfo {
-    /** Number of jumps */
+    /**
+     * Number of hops.
+     */
     uint8_t jumpNo;
-    /** host name or address */
+    /**
+     * Host name or address.
+     */
     char address[NETCONN_MAX_STR_LEN];
-    /** RTT in micro seconds */
+    /**
+     * Round-trip time in ms, including the maximum, minimum, average, and standard deviations.
+     */
     uint32_t rtt[NETCONN_MAX_RTT_NUM];
 } NetConn_TraceRouteInfo;
 

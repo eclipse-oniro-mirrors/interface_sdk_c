@@ -31,7 +31,7 @@
 
 #ifndef OH_LOCATION_H
 #define OH_LOCATION_H
-
+#include <stdbool.h>
 #include "oh_location_type.h"
 
 #ifdef __cplusplus

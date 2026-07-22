@@ -310,6 +310,7 @@ typedef enum {
      * .value[1].f32: distance to translate along the y-axis, in vp.\n
      * .value[2].f32: distance to translate along the z-axis, in vp. \n
      *
+     * @ingroup Visual [视效属性]
      */
     NODE_TRANSLATE,
     /**
@@ -323,6 +324,7 @@ typedef enum {
      * .value[0].f32: scale factor along the x-axis.\n
      * .value[1].f32: scale factor along the y-axis. \n
      *
+     * @ingroup Visual [视效属性]
      */
     NODE_SCALE,
     /**
@@ -343,6 +345,7 @@ typedef enum {
      * .value[3].f32: rotation angle.\n
      * .value[4].f32: line of sight, that is, the distance from the viewpoint to the z=0 plane, in vp. \n
      *
+     * @ingroup Visual [视效属性]
      */
     NODE_ROTATE,
     /**
@@ -354,6 +357,7 @@ typedef enum {
      * Format of the return value {@link ArkUI_AttributeItem}:\n
      * .value[0].f32: brightness value. \n
      *
+     * @ingroup Visual [视效属性]
      */
     NODE_BRIGHTNESS,
     /**
@@ -365,6 +369,7 @@ typedef enum {
      * Format of the return value {@link ArkUI_AttributeItem}: \n
      * .value[0].f32: saturation value. \n
      *
+     * @ingroup Visual [视效属性]
      */
     NODE_SATURATION,
     /**
@@ -378,6 +383,7 @@ typedef enum {
      * .value[0].f32: blur radius. The larger the fuzzy radius, the more blurred the image. If the value is <b>0</b>,
      * the image is not blurred. The unit is vp. \n
      *
+     * @ingroup Visual [视效属性]
      */
     NODE_BLUR,
     /**
@@ -406,6 +412,7 @@ typedef enum {
      * stops: stop positions of the color stops. \n
      * size: number of colors. \n
      *
+     * @ingroup Visual [视效属性]
      */
     NODE_LINEAR_GRADIENT,
     /**
@@ -429,6 +436,7 @@ typedef enum {
      * Format of the return value {@link ArkUI_AttributeItem}:\n
      * .value[0].f32: opacity value. The value ranges from 0 to 1. \n
      *
+     * @ingroup Visual [视效属性]
      */
     NODE_OPACITY,
     /**
@@ -540,6 +548,7 @@ typedef enum {
      * .value[0].i32: whether to clip the component based on the parent container bounds.
      * The value <b>1</b> means to clip the component, and <b>0</b> means the opposite. \n
      *
+     * @ingroup Visual [视效属性]
      */
     NODE_CLIP,
     /**
@@ -618,6 +627,7 @@ typedef enum {
      * .value[2].f32: height of the path.\n
      * .string: command for drawing the path.\n
      *
+     * @ingroup Visual [视效属性]
      */
     NODE_CLIP_SHAPE,
     /**
@@ -630,6 +640,7 @@ typedef enum {
      * Format of the return value {@link ArkUI_AttributeItem}:\n
      * .value[0...15].f32: 16 floating-point numbers. \n
      *
+     * @ingroup Visual [视效属性]
      */
     NODE_TRANSFORM,
     /**
@@ -665,6 +676,7 @@ typedef enum {
      * Format of the return value {@link ArkUI_AttributeItem}:\n
      * .value[0].i32: shadow effect. The parameter type is {@link ArkUI_ShadowStyle}. \n
      *
+     * @ingroup Visual [视效属性]
      */
     NODE_SHADOW,
     /**
@@ -692,6 +704,7 @@ typedef enum {
      * .value[6].u32: whether to fill the shadow. The value <b>1</b> means to fill the shadow, and <b>0</b>
      * means the opposite.\n
      *
+     * @ingroup Visual [视效属性]
      */
     NODE_CUSTOM_SHADOW,
     /**
@@ -735,6 +748,7 @@ typedef enum {
      * .value[4].f32: start boundary of grayscale blur. \n
      * .value[5].f32: end boundary of grayscale blur. \n
      *
+     * @ingroup Visual [视效属性]
      */
     NODE_BACKGROUND_BLUR_STYLE,
     /**
@@ -758,6 +772,7 @@ typedef enum {
      * Note: If the coordinate is expressed in a number that represents a percentage, the attribute obtaining API
      * returns the calculated value in vp.
      *
+     * @ingroup Visual [视效属性]
      */
     NODE_TRANSFORM_CENTER,
     /**
@@ -781,6 +796,7 @@ typedef enum {
      * .value[5].i32: animation playback mode. The value is an enum of {@link ArkUI_AnimationPlayMode}. \n
      * .value[6].f32: animation playback speed. \n
      *
+     * @ingroup Animate [动效属性]
      */
     NODE_OPACITY_TRANSITION,
     /**
@@ -812,6 +828,7 @@ typedef enum {
      * .value[9].i32: animation playback mode. The value is an enum of {@link ArkUI_AnimationPlayMode}. \n
      * .value[10].f32: animation playback speed. \n
      *
+     * @ingroup Animate [动效属性]
      */
     NODE_ROTATE_TRANSITION,
     /**
@@ -839,6 +856,7 @@ typedef enum {
      * .value[7].i32: animation playback mode. The value is an enum of {@link ArkUI_AnimationPlayMode}. \n
      * .value[8].f32: animation playback speed. \n
      *
+     * @ingroup Animate [动效属性]
      */
     NODE_SCALE_TRANSITION,
     /**
@@ -867,6 +885,7 @@ typedef enum {
      * value[7].i32: animation playback mode. The value is an enum of {@link ArkUI_AnimationPlayMode}. \n
      * value[8].f32: animation playback speed. \n
      *
+     * @ingroup Animate [动效属性]
      */
     NODE_TRANSLATE_TRANSITION,
     /**
@@ -891,6 +910,7 @@ typedef enum {
      * .value[5].i32: animation playback mode. The value is an enum of {@link ArkUI_AnimationPlayMode}. \n
      * .value[6].f32: animation playback speed. \n
      *
+     * @ingroup Animate [动效属性]
      */
     NODE_MOVE_TRANSITION,
 
@@ -991,6 +1011,7 @@ typedef enum {
      * stops: stop positions of the color stops. \n
      * size: number of colors. \n
      *
+     * @ingroup Visual [视效属性]
      */
     NODE_SWEEP_GRADIENT,
     /**
@@ -1021,6 +1042,7 @@ typedef enum {
      * stops: stop positions of the color stops. \n
      * size: number of colors. \n
      *
+     * @ingroup Visual [视效属性]
      */
     NODE_RADIAL_GRADIENT,
     /**
@@ -1117,6 +1139,7 @@ typedef enum {
      * .value[2].f32: maximum value of the progress indicator.\n
      * .value[3].u32: color of the progress indicator.\n
      *
+     * @ingroup Visual [视效属性]
      */
     NODE_MASK,
     /**
@@ -1135,6 +1158,7 @@ typedef enum {
      * .value[1].i32: how the specified blend mode is applied. The parameter type is {@link ArkUI_BlendApplyType}.
      * The default value is <b>BLEND_APPLY_TYPE_FAST</b>. \n
      *
+     * @ingroup Visual [视效属性]
      */
     NODE_BLEND_MODE,
     /**
@@ -1180,6 +1204,7 @@ typedef enum {
      * Format of the return value {@link ArkUI_AttributeItem}:\n
      * .value[0].f32: grayscale conversion ratio. The value ranges from 0 to 1.\n
      *
+     * @ingroup Visual [视效属性]
      */
     NODE_GRAY_SCALE,
     /**
@@ -1193,6 +1218,7 @@ typedef enum {
      * Format of the return value {@link ArkUI_AttributeItem}:\n
      * .value[0].f32: image inversion ratio. The value ranges from 0 to 1.\n
      *
+     * @ingroup Visual [视效属性]
      */
     NODE_INVERT,
     /**
@@ -1206,6 +1232,7 @@ typedef enum {
      * Format of the return value {@link ArkUI_AttributeItem}:\n
      * .value[0].f32: sepia conversion ratio. The value ranges from 0 to 1.\n
      *
+     * @ingroup Visual [视效属性]
      */
     NODE_SEPIA,
     /**
@@ -1218,6 +1245,7 @@ typedef enum {
      * Format of the return value {@link ArkUI_AttributeItem}:\n
      * .value[0].f32: contrast. Value range: [0, 10).\n
      *
+     * @ingroup Visual [视效属性]
      */
     NODE_CONTRAST,
     /**
@@ -1230,6 +1258,7 @@ typedef enum {
      * Format of the return value {@link ArkUI_AttributeItem}:\n
      * .value[0].u32: color value, in 0xARGB format.\n
      *
+     * @ingroup Visual [视效属性]
      */
     NODE_FOREGROUND_COLOR,
 
@@ -1460,6 +1489,7 @@ typedef enum {
      * .value[2].f32: thickness of the right outline. \n
      * .value[3].f32: thickness of the bottom outline. \n
      *
+     * @ingroup Visual [视效属性]
      */
     NODE_OUTLINE_WIDTH,
     /**
@@ -1548,6 +1578,8 @@ typedef enum {
       * The id can be changed and the binding relationship re-established.
       * The same ID can only be bound to two components and they are in/out roles of different types.
       * Multiple components cannot be bound to the same id. \n
+      *
+      * @ingroup Animate [动效属性]
       */
     NODE_GEOMETRY_TRANSITION,
 
@@ -1576,6 +1608,7 @@ typedef enum {
      * Format of the return value {@link ArkUI_AttributeItem}:\n
      * .value[0].i32 Content filling mode {@link ArkUI_RenderFit}.\n
      *
+     * @ingroup Visual [视效属性]
      */
     NODE_RENDER_FIT,
 
@@ -1596,6 +1629,7 @@ typedef enum {
      * .value[2].u32: Set the lower side box color, denoted by 0xargb, such as 0xFFFF11FF. \n
      * .value[3].u32: Set the left border color, denoted by 0xargb, such as 0xFFFF11FF. \n
      *
+     * @ingroup Visual [视效属性]
      */
     NODE_OUTLINE_COLOR,
 
@@ -1625,6 +1659,7 @@ typedef enum {
      * Format of the return value {@link ArkUI_AttributeItem}:\n
      * .value[0].i32: The parameter type is 1 or 0.
      *
+     * @ingroup Visual [视效属性]
      */
     NODE_RENDER_GROUP,
 
@@ -1638,6 +1673,7 @@ typedef enum {
      * Format of the return value {@link ArkUI_AttributeItem}:\n
      * .value[0].u32: The color of the overlay is represented by 0xargb, such as 0xFFFF11FF. \n
      *
+     * @ingroup Visual [视效属性]
      */
     NODE_COLOR_BLEND,
 
@@ -1665,6 +1701,7 @@ typedef enum {
      * .value[4].f32 It is a gray-level fuzzy parameter. The value range is [0,127].\n
      * .value[5].f32 It is a gray-level fuzzy parameter. The value range is [0,127].\n
      *
+     * @ingroup Visual [视效属性]
      */
     NODE_FOREGROUND_BLUR_STYLE,
 
@@ -1832,6 +1869,7 @@ typedef enum {
      * Format of the return value {@link ArkUI_AttributeItem}:\n
      * .object: transition effect. The parameter type is {@link ArkUI_TransitionEffect}. \n
      *
+     * @ingroup Animate [动效属性]
      */
     NODE_TRANSITION = 94,
 
@@ -1896,6 +1934,7 @@ typedef enum {
      * .value[2].f32：grayscale blur settings that control the darkness of the white color.\n
      * The value range is [0, 127].\n
      *
+     * @ingroup Visual [视效属性]
      * @since 15
      */
     NODE_BACKDROP_BLUR = 99,
@@ -1976,6 +2015,7 @@ typedef enum {
      *  the unit of the Y-axis translation distance is vp; when value[4].i32 is 1, the unit of the Y-axis translation
      *  distance is percentage;\n
      *
+     * @ingroup Visual [视效属性]
      * @since 20
      */
     NODE_TRANSLATE_WITH_PERCENT = 103,
@@ -1996,6 +2036,7 @@ typedef enum {
      * .value[2].f32: z-axis rotation angle. The default value is <b>0</b>. \n
      * .value[3].f32: perspective distance from the viewpoint to the z=0 plane, in px. The default value is <b>0</b>. \n
      *
+     * @ingroup Visual [视效属性]
      * @since 20
      */
     NODE_ROTATE_ANGLE = 104,
@@ -2094,6 +2135,7 @@ typedef enum {
      * .object indicates a pointer to the ArkUI_MotionPathOptions. The parameter type is
      * {@link ArkUI_MotionPathOptions}. \n
      *
+     * @ingroup Animate [动效属性]
      * @since 23
      */
     NODE_MOTION_PATH = 111,
@@ -2356,6 +2398,7 @@ typedef enum {
      * The ArkUI_ImmersiveMaterialHandle object of the return value is a pointer to static member, so do not release
      * the return object by calling {@link OH_ArkUI_NativeModule_ImmersiveMaterial_Destroy}.\n
      *
+     * @ingroup Visual [视效属性]
      * @since 26.0.0
      */
     NODE_SYSTEM_MATERIAL = 127,
@@ -2900,7 +2943,6 @@ typedef enum {
      * .value[0].i32: minimum number of lines in the text.\n
      *
      * @since 22
-     *
      */
     NODE_TEXT_MIN_LINES = 1037,
 
@@ -3931,134 +3973,134 @@ typedef enum {
      */
     NODE_TEXT_INPUT_TEXT_SELECTION,
     /**
-    * @brief Sets the color of the text underline when it is enabled.
-    *
-    * The default underline color configured for the theme is <b>'0x33182431'</b>.
-    *
-    * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-    * .value[0].u32: color of the underline applied to the text being typed in.
-    * The value is in 0xARGB format. \n
-    * .value[1].u32: color of the underline applied to the text in the normal state.
-    * The value is in 0xARGB format. \n
-    * .value[2].u32: color of the underline applied to the text when an error is detected.
-    * The value is in 0xARGB format. \n
-    * .value[3].u32: color of the underline applied to the text when it is disabled.
-    * The value is in 0xARGB format. \n
-    * \n
-    * Format of the return value {@link ArkUI_AttributeItem}:\n
-    * .value[0].u32: color of the underline applied to the text being typed in. The value is in 0xARGB format. \n
-    * .value[1].u32: color of the underline applied to the text in the normal state. The value is in 0xARGB format. \n
-    * .value[2].u32: color of the underline applied to the text when an error is detected.
-    * The value is in 0xARGB format. \n
-    * .value[3].u32: color of the underline applied to the text when it is disabled. The value is in 0xARGB format. \n
-    *
-    */
+     * @brief Sets the color of the text underline when it is enabled.
+     *
+     * The default underline color configured for the theme is <b>'0x33182431'</b>.
+     *
+     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
+     * .value[0].u32: color of the underline applied to the text being typed in.
+     * The value is in 0xARGB format. \n
+     * .value[1].u32: color of the underline applied to the text in the normal state.
+     * The value is in 0xARGB format. \n
+     * .value[2].u32: color of the underline applied to the text when an error is detected.
+     * The value is in 0xARGB format. \n
+     * .value[3].u32: color of the underline applied to the text when it is disabled.
+     * The value is in 0xARGB format. \n
+     * \n
+     * Format of the return value {@link ArkUI_AttributeItem}:\n
+     * .value[0].u32: color of the underline applied to the text being typed in. The value is in 0xARGB format. \n
+     * .value[1].u32: color of the underline applied to the text in the normal state. The value is in 0xARGB format. \n
+     * .value[2].u32: color of the underline applied to the text when an error is detected.
+     * The value is in 0xARGB format. \n
+     * .value[3].u32: color of the underline applied to the text when it is disabled. The value is in 0xARGB format. \n
+     *
+     */
     NODE_TEXT_INPUT_UNDERLINE_COLOR,
     /**
-    * @brief Sets whether to enable autofill.
-    *
-    * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-    * .value[0].i32: whether to enable autofill. The default value is <b>true</b>. \n
-    * \n
-    * Format of the return value {@link ArkUI_AttributeItem}:\n
-    * .value[0].i32: whether to enable autofill. \n
-    *
-    */
+     * @brief Sets whether to enable autofill.
+     *
+     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
+     * .value[0].i32: whether to enable autofill. The default value is <b>true</b>. \n
+     * \n
+     * Format of the return value {@link ArkUI_AttributeItem}:\n
+     * .value[0].i32: whether to enable autofill. \n
+     *
+     */
     NODE_TEXT_INPUT_ENABLE_AUTO_FILL,
     /**
-    * @brief Sets the autofill type.
-    *
-    * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-    * .value[0].i32: autofill type. The parameter type is {@link ArkUI_TextInputContentType}. \n
-    * \n
-    * Format of the return value {@link ArkUI_AttributeItem}:\n
-    * .value[0].i32: autofill type. The parameter type is {@link ArkUI_TextInputContentType}. \n
-    *
-    */
+     * @brief Sets the autofill type.
+     *
+     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
+     * .value[0].i32: autofill type. The parameter type is {@link ArkUI_TextInputContentType}. \n
+     * \n
+     * Format of the return value {@link ArkUI_AttributeItem}:\n
+     * .value[0].i32: autofill type. The parameter type is {@link ArkUI_TextInputContentType}. \n
+     *
+     */
     NODE_TEXT_INPUT_CONTENT_TYPE,
     /**
-    * @brief Defines the rules for generating passwords. When autofill is used, these rules are transparently
-    * transmitted to Password Vault for generating a new password.
-    *
-    * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-    * .string: rules for generating passwords. \n
-    * \n
-    * Format of the return value {@link ArkUI_AttributeItem}:\n
-    * .string: rules for generating passwords. \n
-    *
-    */
+     * @brief Defines the rules for generating passwords. When autofill is used, these rules are transparently
+     * transmitted to Password Vault for generating a new password.
+     *
+     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
+     * .string: rules for generating passwords. \n
+     * \n
+     * Format of the return value {@link ArkUI_AttributeItem}:\n
+     * .string: rules for generating passwords. \n
+     *
+     */
     NODE_TEXT_INPUT_PASSWORD_RULES,
     /**
-    * @brief Sets whether to select all text in the initial state. The inline mode is not supported.
-    *
-    * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-    * .value[0].i32: whether to select all text in the initial state. The default value is b>false</b>. \n
-    * \n
-    * Format of the return value {@link ArkUI_AttributeItem}:\n
-    * .value[0].i32: whether to select all text in the initial state. \n
-    *
-    */
+     * @brief Sets whether to select all text in the initial state. The inline mode is not supported.
+     *
+     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
+     * .value[0].i32: whether to select all text in the initial state. The default value is b>false</b>. \n
+     * \n
+     * Format of the return value {@link ArkUI_AttributeItem}:\n
+     * .value[0].i32: whether to select all text in the initial state. \n
+     *
+     */
     NODE_TEXT_INPUT_SELECT_ALL,
     /**
-    * @brief Sets the regular expression for input filtering.
-    * Only inputs that comply with the regular expression can be displayed.
-    * Other inputs are filtered out. The specified regular expression can match single characters,
-    * but not strings.
-    *
-    * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-    * .string: regular expression. \n
-    * \n
-    * Format of the return value {@link ArkUI_AttributeItem}:\n
-    * .string: regular expression. \n
-    *
-    */
+     * @brief Sets the regular expression for input filtering.
+     * Only inputs that comply with the regular expression can be displayed.
+     * Other inputs are filtered out. The specified regular expression can match single characters,
+     * but not strings.
+     *
+     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
+     * .string: regular expression. \n
+     * \n
+     * Format of the return value {@link ArkUI_AttributeItem}:\n
+     * .string: regular expression. \n
+     *
+     */
     NODE_TEXT_INPUT_INPUT_FILTER,
     /**
-    * @brief Sets the text box to the default style or inline input style.
-    *
-    * For the inline input style, only <b>InputType.Normal</b> is supported.
-    *
-    * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-    * .value[0].i32: text input style. The parameter type is {@link ArkUI_TextInputStyle}. \n
-    * \n
-    * Format of the return value {@link ArkUI_AttributeItem}:\n
-    * .value[0].i32: text input style. The parameter type is {@link ArkUI_TextInputStyle}. \n
-    *
-    */
+     * @brief Sets the text box to the default style or inline input style.
+     *
+     * For the inline input style, only <b>InputType.Normal</b> is supported.
+     *
+     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
+     * .value[0].i32: text input style. The parameter type is {@link ArkUI_TextInputStyle}. \n
+     * \n
+     * Format of the return value {@link ArkUI_AttributeItem}:\n
+     * .value[0].i32: text input style. The parameter type is {@link ArkUI_TextInputStyle}. \n
+     *
+     */
     NODE_TEXT_INPUT_STYLE,
     /**
-    * @brief Sets or obtains the caret position.
-    *
-    * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-    * In the case of setting the caret position:
-    * .value[0].i32: character count from the beginning of a string to the caret position. \n
-    * 
-    * Format of the return value {@link ArkUI_AttributeItem}:\n
-    * In the case of obtaining the caret position: If this API is called when the caret position is updated in the
-    * current frame, it will not take effect.
-    * .value[0].i32: index of the caret position. \n
-    * .value[1].f32: X coordinate of the caret relative to the text box. \n
-    * .value[2].f32: Y coordinate of the caret relative to the text box. \n
-    */
+     * @brief Sets or obtains the caret position.
+     *
+     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
+     * In the case of setting the caret position:
+     * .value[0].i32: character count from the beginning of a string to the caret position. \n
+     * 
+     * Format of the return value {@link ArkUI_AttributeItem}:\n
+     * In the case of obtaining the caret position: If this API is called when the caret position is updated in the
+     * current frame, it will not take effect.
+     * .value[0].i32: index of the caret position. \n
+     * .value[1].f32: X coordinate of the caret relative to the text box. \n
+     * .value[2].f32: Y coordinate of the caret relative to the text box. \n
+     */
     NODE_TEXT_INPUT_CARET_OFFSET,
     /**
-    * @brief Obtains the position of the edited text area relative to the component and its size.
-    * 
-    * Format of the return value {@link ArkUI_AttributeItem}:\n
-    * .value[0].f32: horizontal coordinate. \n
-    * .value[1].f32: vertical coordinate. \n
-    * .value[2].f32: content width. \n
-    * .value[3].f32: content height. \n
-    *
-    */
+     * @brief Obtains the position of the edited text area relative to the component and its size.
+     * 
+     * Format of the return value {@link ArkUI_AttributeItem}:\n
+     * .value[0].f32: horizontal coordinate. \n
+     * .value[1].f32: vertical coordinate. \n
+     * .value[2].f32: content width. \n
+     * .value[3].f32: content height. \n
+     *
+     */
     NODE_TEXT_INPUT_CONTENT_RECT,
     /**
-    * @brief Obtains the number of lines of the edited text.
-    * 
-    * Format of the return value {@link ArkUI_AttributeItem}:\n
-    * .value[0].i32: number of lines of the edited text. \n
-    *
-    */
+     * @brief Obtains the number of lines of the edited text.
+     * 
+     * Format of the return value {@link ArkUI_AttributeItem}:\n
+     * .value[0].i32: number of lines of the edited text. \n
+     *
+     */
     NODE_TEXT_INPUT_CONTENT_LINE_COUNT,
     /**
      * @brief Sets whether to hide the text selection menu when the text box is long-pressed, double-click, or
@@ -4177,16 +4219,16 @@ typedef enum {
     NODE_TEXT_INPUT_HALF_LEADING = 7034,
 
     /**
-    * @brief Set the keyboard style of textInput
-    *
-    * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-    * .value[0].i32：keyboard style，the parameter type is {@link ArkUI_KeyboardAppearanceType}。\n
-    * \n
-    * Format of the return value {@link ArkUI_AttributeItem}：\n
-    * .value[0].i32：keyboard style，the parameter type is {@link ArkUI_KeyboardAppearanceType}。\n
-    *
-    * @since 15
-    */
+     * @brief Set the keyboard style of textInput
+     *
+     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
+     * .value[0].i32：keyboard style，the parameter type is {@link ArkUI_KeyboardAppearanceType}。\n
+     * \n
+     * Format of the return value {@link ArkUI_AttributeItem}：\n
+     * .value[0].i32：keyboard style，the parameter type is {@link ArkUI_KeyboardAppearanceType}。\n
+     *
+     * @since 15
+     */
     NODE_TEXT_INPUT_KEYBOARD_APPEARANCE = 7035,
 
     /**
@@ -4276,8 +4318,8 @@ typedef enum {
      * \n
      * Format of the return value {@link ArkUI_AttributeItem}:\n
      * .value[0].i32: The parameter type is {@link ArkUI_EllipsisMode}. \n
-     * 
-     *  @since 24
+     *
+     * @since 24
      */
     NODE_TEXT_INPUT_ELLIPSIS_MODE = 7042,
 
@@ -4375,8 +4417,8 @@ typedef enum {
      * \n
      * Format of the return value {@link ArkUI_AttributeItem}:\n
      * .value[0].i32: display mode when the text is too long {@link ArkUI_TextOverflow}. \n
-     * 
-     *  @since 24
+     *
+     * @since 24  
      */
     NODE_TEXT_INPUT_TEXT_OVERFLOW = 7049,
 
@@ -4798,16 +4840,16 @@ typedef enum {
     NODE_TEXT_AREA_HALF_LEADING = 8025,
 
     /**
-    * @brief Set the keyboard style of textArea
-    *
-    * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-    * .value[0].i32：keyboard style，the parameter type is {@link ArkUI_KeyboardAppearanceType}。\n
-    * \n
-    * Format of the return value {@link ArkUI_AttributeItem}：\n
-    * .value[0].i32：keyboard style，the parameter type is {@link ArkUI_KeyboardAppearanceType}。\n
-    *
-    * @since 15
-    */
+     * @brief Set the keyboard style of textArea
+     *
+     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
+     * .value[0].i32：keyboard style，the parameter type is {@link ArkUI_KeyboardAppearanceType}。\n
+     * \n
+     * Format of the return value {@link ArkUI_AttributeItem}：\n
+     * .value[0].i32：keyboard style，the parameter type is {@link ArkUI_KeyboardAppearanceType}。\n
+     *
+     * @since 15
+     */
     NODE_TEXT_AREA_KEYBOARD_APPEARANCE = 8026,
 
     /**
@@ -4919,7 +4961,7 @@ typedef enum {
      */
      NODE_TEXT_AREA_SCROLL_BAR_COLOR = 8035,
 
-     /**
+    /**
      * @brief Sets up a custom keyboard.
      *
      * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
@@ -4942,7 +4984,7 @@ typedef enum {
      * \n
      * Format of the return value {@link ArkUI_AttributeItem}:\n
      * .object: the text content base controller. The parameter type is {@link ArkUI_TextContentBaseController}.\n
-     * 
+     *
      * @since 23
      */
     NODE_TEXT_AREA_TEXT_CONTENT_CONTROLLER_BASE = 8037,
@@ -4950,15 +4992,15 @@ typedef enum {
     /**
      * @brief Defines the ellipsis position.
      * This attribute can be set, reset, and obtained as required through APIs.
-     * 
+     *
      * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
      * .value[0].i32: The parameter type is {@link ArkUI_EllipsisMode}, the default value
      * is ARKUI_ELLIPSIS_MODE_END. \n
      * \n
      * Format of the return value {@link ArkUI_AttributeItem}:\n
      * .value[0].i32: The parameter type is {@link ArkUI_EllipsisMode}. \n
-     * 
-     *  @since 24
+     *
+     * @since 24
      */
     NODE_TEXT_AREA_ELLIPSIS_MODE = 8038,
 
@@ -5048,7 +5090,7 @@ typedef enum {
 
     /**
      * @brief Used to set the selected drag preview style.
-     * 
+     *
      * Format of the {@link Arkui_AttributeItem} parameter for setting the attribute:\n
      * .object: selected drag preview style configuration. 
      * The parameter type is {@link Arkui_SelectedDragPreviewStyle}.\n
@@ -5056,7 +5098,7 @@ typedef enum {
      * Format of the return value {@link Arkui_AttributeItem}:\n
      * .object: selected drag preview style configuration. 
      * The parameter type is {@link Arkui_SelectedDragPreviewStyle}.\n
-     * 
+     *
      * @since 23
      */
     NODE_TEXT_AREA_SELECTED_DRAG_PREVIEW_STYLE = 8045,
@@ -5071,10 +5113,9 @@ typedef enum {
      * Format of the return value {@link ArkUI_AttributeItem}:\n
      * .value[0].i32: display mode when the text is too long {@link ArkUI_TextOverflow}. \n
      * 
-     *  @since 24
+     * @since 24
      */
     NODE_TEXT_AREA_TEXT_OVERFLOW = 8046,
-
     /**
      * @brief Defines the text decoration style and color for multi-line text box.
      * This attribute can be set, reset, and obtained as required through APIs.
@@ -5150,6 +5191,8 @@ typedef enum {
      * stops: stop positions of the color stops. \n
      * size: number of colors. \n
      *
+     * @since 26.0.0
+     */
      * @since 26.0.0
      */
     NODE_TEXT_AREA_RADIAL_GRADIENT = 8049,
@@ -6613,9 +6656,9 @@ typedef enum {
      * @brief TextEditor组件光标颜色，支持属性设置、属性重置和属性获取。
      * <br>作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
      * <br>**参数：**
-     * <br>.value[0].u32：光标颜色，采用0xARGB格式，例如0xFFFF0000表示红色。
+     * <br>.value[0].u32：光标颜色，采用0xARGB格式，例如0xFFFF0000表示红色。默认跟随系统主题。
      * <br>**返回：**
-     * <br>.value[0].u32：光标颜色，采用0xARGB格式。
+     * <br>.value[0].u32：光标颜色，采用0xARGB格式，例如0xFFFF0000表示红色。默认跟随系统主题。
      *
      * @since 24
      */
@@ -6625,9 +6668,9 @@ typedef enum {
      * @brief TextEditor组件滚动条颜色，支持属性设置、属性重置和属性获取。
      * <br>作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
      * <br>**参数：**
-     * <br>.data[0].u32：滚动条颜色，采用0xARGB格式。
+     * <br>.data[0].u32：滚动条颜色，采用0xARGB格式，例如0xFFFF0000表示红色。默认跟随系统主题。
      * <br>**返回：**
-     * <br>.data[0].u32：滚动条颜色，采用0xARGB格式。
+     * <br>.data[0].u32：滚动条颜色，采用0xARGB格式，例如0xFFFF0000表示红色。默认跟随系统主题。
      *
      * @since 24
      */
@@ -6637,31 +6680,34 @@ typedef enum {
      * @brief TextEditor组件滚动条显示模式，支持属性设置、属性重置和属性获取。
      * <br>作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
      * <br>**参数：**
-     * <br>.value[0].i32：文本区域的滚动条显示模式，参数类型{@link ArkUI_BarState}，默认值为ARKUI_BAR_STATE_AUTO。
+     * <br>.value[0].i32：滚动条显示模式，参数类型{@link ArkUI_BarState}，默认值为ARKUI_BAR_STATE_AUTO。
      * <br>**返回：**
-     * <br>.value[0].i32：文本区域的滚动条显示模式，参数类型{@link ArkUI_BarState}。
+     * <br>.value[0].i32：滚动条显示模式，参数类型{@link ArkUI_BarState}。
      *
      * @since 24
      */
     NODE_TEXT_EDITOR_BAR_STATE,
 
     /**
-     * @brief TextEditor组件文本实体识别功能开关，支持属性设置、属性重置和属性获取。
+     * @brief TextEditor组件文本实体识别功能开关，启用后，文本中的电话号码、邮箱、链接等实体将被自动识别并标记为可交互内容。
+     * 配合NODE_TEXT_EDITOR_DATA_DETECTOR_CONFIG属性可自定义识别类型和交互行为。支持属性设置、属性重置和属性获取。
      * <br>作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
      * <br>**参数：**
-     * <br>.value[0].i32：是否启用文本实体识别功能，0表示禁用，1表示启用，默认值为0。
+     * <br>.value[0].i32：是否启用文本实体识别功能，0表示禁用，1表示启用，默认值为0。推荐在需要自动识别并高亮文本中实体信息的场景下设置此属性。
      * <br>**返回：**
-     * <br>.value[0].i32：是否启用了文本实体识别功能。
+     * <br>.value[0].i32：是否启用了文本实体识别功能，0表示禁用，1表示启用。
      *
      * @since 24
      */
     NODE_TEXT_EDITOR_ENABLE_DATA_DETECTOR,
 
     /**
-     * @brief TextEditor组件识别配置，支持属性设置和属性重置。
+     * @brief TextEditor组件文本实体识别配置，设置后，可配置识别类型、实体显示样式，并可选择是否开启长按预览功能。配合NODE_TEXT_EDITOR_ENABLE_DATA_DETECTOR属性使用，
+     * 支持属性设置和属性重置。
      * <br>作为属性设置方法参数{@link ArkUI_AttributeItem}格式如下。
      * <br>**参数：**
-     * <br>.object：识别配置，参数类型{@link ArkUI_TextDataDetectorConfig}。
+     * <br>.object：文本实体识别配置，设置后可指定需要识别的文本实体类型（如电话号码、邮箱、链接等）及识别后的交互行为。仅在启用文本实体识别功能(
+     * NODE_TEXT_EDITOR_ENABLE_DATA_DETECTOR设置为1)后传入此参数以自定义识别类型，不传入时使用系统默认识别配置。参数类型{@link ArkUI_TextDataDetectorConfig}。
      * 
      * @since 24
      */
@@ -6671,7 +6717,7 @@ typedef enum {
      * @brief TextEditor组件扩展菜单选项，支持属性设置和属性重置。
      * <br>作为属性设置方法参数{@link ArkUI_AttributeItem}格式如下。
      * <br>**参数：**
-     * <br>.object：扩展菜单选项，参数类型{@link ArkUI_TextEditMenuOptions}。
+     * <br>.object：扩展菜单选项，设置后可自定义默认菜单项的行为，或添加自定义选项内容。参数类型{@link ArkUI_TextEditMenuOptions}。
      *
      * @since 24
      */
@@ -6681,14 +6727,14 @@ typedef enum {
      * @brief TextEditor组件无输入时的提示文本选项，支持属性设置和属性重置。
      * <br>作为属性设置方法参数{@link ArkUI_AttributeItem}格式如下。
      * <br>**参数：**
-     * <br>.object：无输入时的提示文本选项，参数类型{@link ArkUI_TextEditorPlaceholderOptions}。
+     * <br>.object：无输入时的提示文本选项，参数类型{@link ArkUI_TextEditorPlaceholderOptions}。不传入时，编辑器无输入状态下不显示提示文本。
      *
      * @since 24
      */
     NODE_TEXT_EDITOR_PLACEHOLDER,
 
     /**
-     * @brief TextEditor组件属性字符串控制器，支持属性设置。
+     * @brief TextEditor组件属性字符串控制器，支持属性设置。设置后，可通过该控制器管理TextEditor中的内容、光标、选区、输入样式及编辑状态。
      * <br>作为属性设置方法参数{@link ArkUI_AttributeItem}格式如下。
      * <br>**参数：**
      * <br>.object：属性字符串控制器，参数类型{@link ArkUI_TextEditorStyledStringController}。
@@ -6698,7 +6744,7 @@ typedef enum {
     NODE_TEXT_EDITOR_STYLED_STRING_CONTROLLER,
 
     /**
-     * @brief TextEditor组件预上屏功能开关，支持属性设置、属性重置和属性获取。
+     * @brief TextEditor组件预上屏功能开关，启用后，组件内显示输入法输入过程中的拼音、笔画字符。支持属性设置、属性重置和属性获取。
      * <br>作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
      * <br>**参数：**
      * <br>.value[0].i32：是否启用预上屏功能，0表示禁用，1表示启用，默认值为1。
@@ -6710,22 +6756,22 @@ typedef enum {
     NODE_TEXT_EDITOR_ENABLE_PREVIEW_TEXT,
 
     /**
-     * @brief TextEditor组件TextLayoutManager获取，支持属性获取。
+     * @brief TextEditor组件TextLayoutManager获取，获取后，可通过布局管理器查询文本的布局信息，如行数、行高和内容偏移等。支持属性获取。
      * <br>作为属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
      * <br>**返回：**
-     * <br>.object：布局管理器，参数类型{@link ArkUI_TextLayoutManager}。
+     * <br>.object：布局管理器，可通过该管理器查询文本的布局信息。参数类型{@link ArkUI_TextLayoutManager}。
      *
      * @since 24
      */
     NODE_TEXT_EDITOR_LAYOUT_MANAGER,
 
     /**
-      * @brief TextEditor组件文本选择识别AI菜单开关，支持属性设置、属性重置和属性获取。
+      * @brief TextEditor组件文本选择识别AI菜单开关，支持属性设置、属性重置和属性获取。启用后，用户选中特殊文本实体时将弹出AI识别菜单，提供基于选中文本内容的智能识别和操作选项。
       * <br>作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
       * <br>**参数：**
       * <br>.value[0].i32：是否启用文本选择识别的AI菜单，0表示禁用，1表示启用，默认值为1。
       * <br>**返回：**
-      * <br>.value[0].i32：是否启用了文本选择识别的AI菜单。
+      * <br>.value[0].i32：是否启用了文本选择识别的AI菜单，0表示禁用，1表示启用。
       *
       * @since 24
       */
@@ -6735,9 +6781,9 @@ typedef enum {
      * @brief TextEditor组件选中内容背景颜色，支持属性设置、属性重置和属性获取。
      * <br>作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
      * <br>**参数：**
-     * <br>.data[0].u32：选中内容的背景颜色，采用0xARGB格式。
+     * <br>.data[0].u32：选中内容的背景颜色，采用0xARGB格式，例如0xFFFF0000表示红色。默认跟随系统主题。
      * <br>**返回：**
-     * <br>.data[0].u32：选中内容的背景颜色，采用0xARGB格式。
+     * <br>.data[0].u32：选中内容的背景颜色，采用0xARGB格式，例如0xFFFF0000表示红色。默认跟随系统主题。
      *
      * @since 24
      */
@@ -6759,9 +6805,9 @@ typedef enum {
      * @brief TextEditor组件最大字符数，支持属性设置、属性重置和属性获取。
      * <br>作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
      * <br>**参数：**
-     * <br>.value[0].i32：最大字符数。
+     * <br>.value[0].i32：文本编辑器允许输入的最大长度，取值范围为[0, +∞)，超出此限制后将阻止继续输入文本。设置为0、负数或未设置该属性时不限制输入长度。
      * <br>**返回：**
-     * <br>.value[0].i32：最大字符数。
+     * <br>.value[0].i32：文本编辑器允许输入的最大长度。
      *
      * @since 24
      */
@@ -6771,16 +6817,16 @@ typedef enum {
      * @brief TextEditor组件内容最大行数，支持属性设置、属性重置和属性获取。
      * <br>作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
      * <br>**参数：**
-     * <br>.value[0].i32：文本编辑器中内容的最大行数。
+     * <br>.value[0].i32：文本编辑器最大行数限制，取值范围[0, +∞)。取值为0时按无穷大处理；设置为0、负数或未设置该属性时不限制行数。建议在需要固定显示高度的场景下设置该参数。
      * <br>**返回：**
-     * <br>.value[0].i32：文本编辑器中内容的最大行数。
+     * <br>.value[0].i32：文本编辑器最大行数限制。
      *
      * @since 24
      */
     NODE_TEXT_EDITOR_MAX_LINES,
 
     /**
-     * @brief TextEditor组件触觉反馈开关，支持属性设置、属性重置和属性获取。
+     * @brief TextEditor组件触觉反馈开关，启用后，在文本拖选等交互操作时将产生触觉反馈震动响应，支持属性设置、属性重置和属性获取。
      * <br>作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
      * <br>**参数：**
      * <br>.value[0].i32：是否在文本编辑器中启用触觉反馈，0表示不启用，1表示启用，默认值为1。
@@ -6809,17 +6855,17 @@ typedef enum {
     * <br>**参数：**
     * <br>.value[0].i32：键盘外观，参数类型{@link ArkUI_KeyboardAppearance}，默认值为ARKUI_KEYBOARD_APPEARANCE_NONE_IMMERSIVE。
     * <br>**返回：**
-    * <br>.value[0].i32：键盘外观，参数类型{@link ArkUI_KeyboardAppearance}。
+    * <br>.value[0].i32：文本编辑器当前设置的键盘外观类型，参数类型{@link ArkUI_KeyboardAppearance}。
     *
     * @since 24
     */
     NODE_TEXT_EDITOR_KEYBOARD_APPEARANCE,
 
     /**
-     * @brief TextEditor组件是否阻止返回事件传播，支持属性设置、属性重置和属性获取。
+     * @brief TextEditor组件是否阻止返回键事件向上层传播，支持属性设置、属性重置和属性获取。
      * <br>作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
      * <br>**参数：**
-     * <br>.value[0].i32：是否阻止返回事件传播，0表示不阻止，1表示阻止，默认值为0。
+     * <br>.value[0].i32：是否阻止返回事件传播，0表示不阻止，1表示阻止，默认值为0。推荐在编辑器有未保存内容或需要拦截返回键防止意外退出的场景设置为1。
      * <br>**返回：**
      * <br>.value[0].i32：是否阻止返回事件传播，0表示不阻止，1表示阻止。
      *
@@ -6828,26 +6874,26 @@ typedef enum {
     NODE_TEXT_EDITOR_STOP_BACK_PRESS,
 
     /**
-     * @brief TextEditor组件中西文自动间距开关，支持属性设置、属性重置和属性获取。
+     * @brief TextEditor组件中西文自动间距开关，支持属性设置、属性重置和属性获取。适用于包含中英文混排内容的编辑场景，启用后可在中文与西文之间自动添加间距，改善混排文本的阅读体验。
      * <br>作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
      * <br>**参数：**
-     * <br>.value[0].i32：是否启用自动间距，0表示不启用，1表示启用，默认值为0。
+     * <br>.value[0].i32：是否启用中西文自动间距，0表示不启用，1表示启用，默认值为0。推荐在包含中英文混排内容的编辑场景设置为1，以改善混排文本的阅读体验。
      * <br>**返回：**
-     * <br>.value[0].i32：是否启用自动间距，0表示不启用，1表示启用。
+     * <br>.value[0].i32：是否启用中西文自动间距，0表示不启用，1表示启用。
      *
      * @since 24
      */
     NODE_TEXT_EDITOR_ENABLE_AUTO_SPACING,
 
     /**
-     * @brief TextEditor组件自定义键盘，支持属性设置、属性重置和属性获取。
+     * @brief TextEditor组件自定义键盘。当需要替换系统默认键盘时传入此参数（如数字键盘、表情键盘等特殊输入布局），不传入时使用系统默认键盘。支持属性设置、属性重置和属性获取。
      * <br>作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
      * <br>**参数：**
      * <br>.object：自定义键盘，参数类型{@link ArkUI_NodeHandle}。
-     * <br>.value[0]?.i32：设置自定义键盘是否支持避让功能，0表示不支持，1表示支持，默认值为0。
+     * <br>.value[0]?.i32：设置自定义键盘是否支持内容避让功能，即键盘弹出时页面内容自动调整位置以避免被键盘遮挡，0表示不支持，1表示支持，默认值为0。
      * <br>**返回：**
      * <br>.object：自定义键盘，参数类型{@link ArkUI_NodeHandle}。
-     * <br>.value[0].i32：设置自定义键盘是否支持避让功能，0表示不支持，1表示支持。
+     * <br>.value[0].i32：自定义键盘是否支持内容避让功能，即键盘弹出时页面内容自动调整位置以避免被键盘遮挡，0表示不支持，1表示支持。
      *
      * @since 24
      */
@@ -6857,26 +6903,26 @@ typedef enum {
      * @brief TextEditor组件自定义文本选择菜单绑定，支持属性设置和属性重置。
      * <br>作为属性设置方法参数{@link ArkUI_AttributeItem}格式如下。
      * <br>**参数：**
-     * <br>.object：文本选择菜单，参数类型{@link ArkUI_TextEditorSelectionMenuOptions}。
+     * <br>.object：自定义选择菜单，不传入时使用系统默认文本选择菜单。参数类型{@link ArkUI_TextEditorSelectionMenuOptions}。
      *
      * @since 24
      */
     NODE_TEXT_EDITOR_BIND_SELECTION_MENU,
 
     /**
-     * @brief TextEditor组件首行末行防截断间距开关，支持属性设置、属性重置和属性获取。
+     * @brief TextEditor组件首行尾行防截断间距开关，启用后，在首行和尾行增加间距以避免文字截断，支持属性设置、属性重置和属性获取。
      * <br>作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
      * <br>**参数：**
-     * <br>.value[0].i32：是否添加间距，0表示不添加，1表示添加，默认值为0。
+     * <br>.value[0].i32：是否添加首行尾行防截断间距，0表示不添加，1表示添加，默认值为0。
      * <br>**返回：**
-     * <br>.value[0].i32：是否添加间距，0表示不添加，1表示添加。
+     * <br>.value[0].i32：是否添加首行尾行防截断间距，0表示不添加，1表示添加。
      *
      * @since 24
      */
     NODE_TEXT_EDITOR_INCLUDE_FONT_PADDING,
 
     /**
-     * @brief TextEditor组件行高自适应开关，支持属性设置、属性重置和属性获取。
+     * @brief TextEditor组件行高自适应开关，在多行文字叠加时，行高可以基于文字实际高度自适应，支持属性设置、属性重置和属性获取。
      * <br>作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
      * <br>**参数：**
      * <br>.value[0].i32：行高是否自适应，0表示不自适应，1表示自适应，默认值为0。
@@ -6888,12 +6934,12 @@ typedef enum {
     NODE_TEXT_EDITOR_FALLBACK_LINE_SPACING,
 
     /**
-     * @brief TextEditor组件行首标点符号压缩开关，支持属性设置、属性重置和属性获取。
+     * @brief TextEditor组件行首标点符号压缩开关，启用后，行首的标点符号将缩减占位宽度，调整文本排版对齐效果，支持属性设置、属性重置和属性获取。
      * <br>作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
      * <br>**参数：**
-     * <br>.value[0].i32：是否启用标点符号压缩，0表示不启用，1表示启用，默认值为0。
+     * <br>.value[0].i32：是否启用行首标点符号压缩，0表示不启用，1表示启用，默认值为0。
      * <br>**返回：**
-     * <br>.value[0].i32：是否启用标点符号压缩，0表示不启用，1表示启用。
+     * <br>.value[0].i32：是否启用行首标点符号压缩，0表示不启用，1表示启用。
      *
      * @since 24
      */
@@ -6903,7 +6949,7 @@ typedef enum {
      * @brief TextEditor组件选中拖拽预览样式，支持属性设置、属性重置和属性获取。
      * <br>作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
      * <br>**参数：**
-     * <br>.object：选中拖拽预览样式配置，参数类型{@link ArkUI_SelectedDragPreviewStyle}。
+     * <br>.object：选中拖拽预览样式配置，参数类型{@link ArkUI_SelectedDragPreviewStyle}。当需要自定义选中文本拖拽时的预览效果时传入此参数，不传入时使用系统默认拖拽预览样式。
      * <br>**返回：**
      * <br>.object：选中拖拽预览样式配置，参数类型{@link ArkUI_SelectedDragPreviewStyle}。
      * 
@@ -6912,7 +6958,7 @@ typedef enum {
     NODE_TEXT_EDITOR_SELECTED_DRAG_PREVIEW_STYLE,
 
     /**
-     * @brief TextEditor组件单行模式开关，支持属性设置、属性重置和属性获取。
+     * @brief TextEditor组件单行模式开关，支持属性设置、属性重置和属性获取。启用单行模式后，NODE_TEXT_EDITOR_MAX_LINES属性设置的最大行数将不再生效。
      * <br>作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
      * <br>**参数：**
      * <br>.value[0].i32：是否启用单行模式，0表示不启用，1表示启用，默认值为0。
@@ -6924,39 +6970,38 @@ typedef enum {
     NODE_TEXT_EDITOR_SINGLE_LINE,
 
     /**
-     * @brief 设置TextEditor文本排版时是否使能孤字优化，设置后，通过更高效地处理孤立字符（段落尾行首字符）来改善文本布局。使能后，它会调整换行点以尽可能避免孤立字符。
-     * 孤字优化特性需在{@link ArkUI_WordBreak}属性为非ARKUI_WORD_BREAK_BREAK_ALL时生效。
-     * <br>作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
+     * @brief TextEditor组件孤字优化开关，支持属性设置、属性重置和属性获取。启用后会调整换行点以尽可能避免孤字。
+     * 仅在[ArkUI_WordBreak](capi-text-common-h.md#arkui_wordbreak)属性为非ARKUI_WORD_BREAK_BREAK_ALL时生效。
+     * <br>作为属性设置方法参数、属性获取方法返回值[ArkUI_AttributeItem](capi-arkui-nativemodule-arkui-attributeitem.md)格式如下。
      * <br>**参数：**
-     * <br>.value[0].i32：是否使能，1表示使能，0表示不使能。默认值为0。
+     * <br>.value[0].i32：是否启用孤字优化，0表示不启用，1表示启用。默认值为0。
      * <br>**返回：**
-     * <br>.value[0].i32：是否使能孤字优化。
+     * <br>.value[0].i32：是否启用孤字优化，0表示不启用，1表示启用。
      *
      * @since 26.0.0
      */
      NODE_TEXT_EDITOR_ORPHAN_CHAR_OPTIMIZATION,
 
     /**
-     * @brief 设置TextEditor组件在文本宽度超过内容区宽度时是否启用水平滚动，支持属性设置，属性重置和属性获取。
+     * @brief 设置TextEditor组件在文本宽度超过内容区宽度时是否启用水平滚动，支持属性设置、属性重置和属性获取。
      * <br>作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
      * <br>**参数：**
-     * <br>.value[0].i32：是否启用水平滚动。1表示启用水平滚动，0表示不启用水平滚动。默认值为0。
+     * <br>.value[0].i32：是否启用水平滚动，0表示不启用水平滚动，1表示启用水平滚动。默认值为0。
      * <br>**返回：**
-     * <br>.value[0].i32：是否启用水平滚动。
+     * <br>.value[0].i32：是否启用水平滚动，0表示不启用水平滚动，1表示启用水平滚动。
      *
      * @since 26.0.0
      */
     NODE_TEXT_EDITOR_HORIZONTAL_SCROLLING,
 
     /**
-     * @brief Sets whether to enable punctuation overflow at the end of a line.
-     * This attribute can be set, reset, and obtained as required through APIs.
-     *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: whether to enable punctuation overflow, the default value is false.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: whether to enable punctuation overflow.\n
+     * @brief 设置TextEditor组件是否启用行尾标点符号悬挂，支持属性设置、属性重置和属性获取。
+     * <br>启用后，行尾单个标点符号超出排版宽度而不换行，避免行尾标点符号换行至下一行行首，从而改善文本排版效果。
+     * <br>作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
+     * <br>**参数：**
+     * <br>.value[0].i32：是否启用行尾标点符号悬挂，0表示不启用标点符号悬挂，1表示启用标点符号悬挂。默认值为0。
+     * <br>**返回：**
+     * <br>.value[0].i32：是否启用行尾标点符号悬挂，0表示不启用行尾标点符号悬挂，1表示启用行尾标点符号悬挂。
      *
      * @since 26.0.0
      */
@@ -9722,15 +9767,14 @@ typedef enum {
      * @since 20
      */
     NODE_TEXT_SPAN_ON_LONG_PRESS = 1001,
-
     /**
-     * @brief Defines the event triggered when the text selection position changes.
+     * @brief 定义文本选择位置改变时触发的事件。
      * \n
-     * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
-     * {@link ArkUI_NodeComponentEvent}. \n
-     * {@link ArkUI_NodeComponentEvent} contains two parameters:\n
-     * <b>ArkUI_NodeComponentEvent.data[0].i32</b>: start position of the text selection area. \n
-     * <b>ArkUI_NodeComponentEvent.data[1].i32</b>: end position of the text selection area. \n
+     * 当事件回调发生时，{@link ArkUI_NodeEvent}对象中的联合体类型为
+     * {@link ArkUI_NodeComponentEvent}。\n
+     * {@link ArkUI_NodeComponentEvent}包含两个参数：\n
+     * <b>ArkUI_NodeComponentEvent.data[0].i32</b>：文本选择区域的起始位置。\n
+     * <b>ArkUI_NodeComponentEvent.data[1].i32</b>：文本选择区域的结束位置。
      *
      * @since 26.0.0
      */
@@ -10258,13 +10302,12 @@ typedef enum {
     NODE_TEXT_AREA_ON_WILL_CHANGE = 8013,
 
     /**
-     * @brief Defines the event triggered when the copy button on the pasteboard, which displays when the text box
-     * is long pressed, is clicked.
+     * @brief 定义长按输入框文本弹出菜单后点击复制按钮触发的事件。
      * \n
-     * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
-     * {@link ArkUI_StringAsyncEvent}. \n
-     * {@link ArkUI_StringAsyncEvent} contains one parameter:\n
-     * <b>ArkUI_StringAsyncEvent.pStr</b>: text that is copied.
+     * 当事件回调发生时，{@link ArkUI_NodeEvent}对象中的联合类型为
+     * {@link ArkUI_StringAsyncEvent}。\n
+     * {@link ArkUI_StringAsyncEvent}包含一个参数：\n
+     * <b>ArkUI_StringAsyncEvent.pStr</b>：复制的文本。
      *
      * @since 26.0.0
      */
@@ -10287,13 +10330,12 @@ typedef enum {
     NODE_TEXT_AREA_ON_WILL_COPY = 8015,
 
     /**
-     * @brief Defines the event triggered when the cut button on the pasteboard, which displays when the text box
-     * is long pressed, is clicked.
+     * @brief 定义长按输入框文本弹出菜单后点击剪切按钮触发的事件。
      * \n
-     * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
-     * {@link ArkUI_StringAsyncEvent}. \n
-     * {@link ArkUI_StringAsyncEvent} contains one parameter:\n
-     * <b>ArkUI_StringAsyncEvent.pStr</b>: text that is cut.
+     * 当事件回调发生时，{@link ArkUI_NodeEvent}对象中的联合类型为
+     * {@link ArkUI_StringAsyncEvent}。\n
+     * {@link ArkUI_StringAsyncEvent}包含一个参数：\n
+     * <b>ArkUI_StringAsyncEvent.pStr</b>：剪切后的文本。
      *
      * @since 26.0.0
      */

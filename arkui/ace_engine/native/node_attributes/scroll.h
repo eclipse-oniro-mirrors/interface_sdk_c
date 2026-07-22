@@ -23,7 +23,7 @@
  */
 
 /**
- * @file node_scroll.h
+ * @file scroll.h
  *
  * @brief Provides shared scroll-related enum definitions for <b>NativeNode</b> APIs.
  *

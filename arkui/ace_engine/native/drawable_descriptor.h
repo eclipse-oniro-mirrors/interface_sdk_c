@@ -26,7 +26,7 @@
 /**
  * @file drawable_descriptor.h
  *
- * @brief Defines theNativeDrawableDescriptor for the native module.
+ * @brief Declares the APIs of **NativeDrawableDescriptor**.
  *
  * @library libace_ndk.z.so
  * @syscap SystemCapability.ArkUI.ArkUI.Full
@@ -45,21 +45,25 @@ extern "C" {
 #endif
 
 /**
- * @brief Defines the drawable descriptor.
+ * @brief Defines a struct for the **DrawableDescriptor** object.
  *
  * @since 12
  */
 typedef struct ArkUI_DrawableDescriptor ArkUI_DrawableDescriptor;
 
 /**
- * @brief Introduces the native pixel map information defined by Image Kit.
+ * @brief The OH_PixelmapNative struct describes an uncompressed PixelMap format, which is encapsulated at the native
+ * layer after images are decoded.<br>To create an OH_PixelmapNative object, call
+ * {@link OH_PixelmapNative_CreatePixelmap}. By default, BGRA_8888 is used for data processing.<br>To release an
+ * OH_PixelmapNative object, call {@link OH_PixelmapNative_Release}.<br>The table below describes the content and
+ * operation mode of the OH_PixelmapNative struct.
  *
  * @since 12
  */
 struct OH_PixelmapNative;
 
 /**
- * @brief Defines the pointer to OH_PixelmapNative.
+ * @brief Defines a struct for the pointer to an **OH_PixelmapNative** object.
  *
  * @since 12
  */
@@ -73,295 +77,354 @@ typedef struct OH_PixelmapNative* OH_PixelmapNativeHandle;
 struct ArkUI_Node;
 
 /**
- * @brief Defines the pointer to the ArkUI native component object.
+ * @brief Defines the pointer to an ArkUI native component object.
  *
  * @since 22
  */
 typedef struct ArkUI_Node* ArkUI_NodeHandle;
 
 /**
- * @brief Defines the animation controller of arkui drawable descriptor.
+ * @brief Enumerates the playback states of DrawableDescriptor animations.
+ *
+ * @since 22
+ */
+typedef enum {
+    /**
+     * The animation is in the initial state.
+     *
+     * @since 22
+     */
+    DRAWABLE_DESCRIPTOR_ANIMATION_STATUS_INITIAL = 0,
+    /**
+     * The animation is being played.
+     *
+     * @since 22
+     */
+    DRAWABLE_DESCRIPTOR_ANIMATION_STATUS_RUNNING = 1,
+    /**
+     * The animation is paused.
+     *
+     * @since 22
+     */
+    DRAWABLE_DESCRIPTOR_ANIMATION_STATUS_PAUSED = 2,
+    /**
+     * The animation is stopped.
+     *
+     * @since 22
+     */
+    DRAWABLE_DESCRIPTOR_ANIMATION_STATUS_STOPPED = 3
+} DrawableDescriptor_AnimationStatus;
+
+/**
+ * @brief Enumerates the stop modes of {@link DrawableDescriptor} animations.
+ *
+ * @since 24
+ */
+typedef enum {
+    /**
+     * The animation returns to the first frame when it stops.
+     *
+     * @since 24
+     */
+    DRAWABLE_DESCRIPTOR_ANIMATION_FIRST_FRAME = 0,
+    /**
+     * The animation stays at the last frame when it stops.
+     *
+     * @since 24
+     */
+    DRAWABLE_DESCRIPTOR_ANIMATION_LAST_FRAME = 1
+} DrawableDescriptor_AnimationStopMode;
+
+/**
+ * @brief Defines the DrawableDescriptor animation controller object.
  *
  * @since 22
  */
 typedef struct ArkUI_DrawableDescriptor_AnimationController ArkUI_DrawableDescriptor_AnimationController;
 
 /**
- * @brief Defines the animation status of the drawable descriptor.
+ * @brief Creates a **DrawableDescriptor** object from a **PixelMap** object.
  *
- * @since 22
- */
-typedef enum {
-    /** animation is initial. */
-    DRAWABLE_DESCRIPTOR_ANIMATION_STATUS_INITIAL = 0,
-    /** animation is playing. */
-    DRAWABLE_DESCRIPTOR_ANIMATION_STATUS_RUNNING = 1,
-    /** animation is paused. */
-    DRAWABLE_DESCRIPTOR_ANIMATION_STATUS_PAUSED = 2,
-    /** animation is stopped. */
-    DRAWABLE_DESCRIPTOR_ANIMATION_STATUS_STOPPED = 3,
-} DrawableDescriptor_AnimationStatus;
-
-/**
- * @brief Defines the animation stop mode of the drawable descriptor.
- *
- * @since 24
- */
-typedef enum {
-    /**
-     * animation stops at first frame.
-     *
-     * @since 24
-    */
-    DRAWABLE_DESCRIPTOR_ANIMATION_FIRST_FRAME = 0,
-    /**
-     * animation stops at last frame.
-     *
-     * @since 24
-    */
-    DRAWABLE_DESCRIPTOR_ANIMATION_LAST_FRAME = 1,
-} DrawableDescriptor_AnimationStopMode;
-
-/**
- * @brief Creates a DrawableDescriptor from a Pixelmap.
- *
- * @param pixelMap Indicates the pointer to a Pixelmap
- * @return Returns the pointer to the drawableDescriptor.
+ * @param pixelMap Pointer to the {@link OH_PixelmapNative} object.
+ * @return Pointer to the **DrawableDescriptor** object.
  * @since 12
-*/
+ */
 ArkUI_DrawableDescriptor* OH_ArkUI_DrawableDescriptor_CreateFromPixelMap(OH_PixelmapNativeHandle pixelMap);
 
 /**
- * @brief Creates a DrawableDescriptor from a Pixelmap array.
+ * @brief Creates a **DrawableDescriptor** object from an array of **PixelMap** objects.
  *
- * @param array Indicates the pointer to a Pixelmap array.
- * @param size Indicates the size of the Pixelmap array.
- * @return Returns the pointer to the drawableDescriptor.
+ * @param array Pointer to the array of **PixelMap** objects.
+ * @param size Size of the **PixelMap** object array.
+ * @return Pointer to the **DrawableDescriptor** object.
  * @since 12
-*/
+ */
 ArkUI_DrawableDescriptor* OH_ArkUI_DrawableDescriptor_CreateFromAnimatedPixelMap(
     OH_PixelmapNativeHandle* array, int32_t size);
 
 /**
- * @brief Destroys the pointer to the drawableDescriptor.
+ * @brief Disposes of the pointer to a **DrawableDescriptor** object.
  *
- * @param drawableDescriptor Indicates the pointer to the drawableDescriptor.
+ * @param drawableDescriptor Pointer to a **DrawableDescriptor** object.
  * @since 12
-*/
+ */
 void OH_ArkUI_DrawableDescriptor_Dispose(ArkUI_DrawableDescriptor* drawableDescriptor);
 
 /**
- * @brief Obtains the Pixelmap object.
+ * @brief Obtains the pointer to a **PixelMap** object.
  *
- * @param drawableDescriptor Indicates the pointer to the drawableDescriptor.
- * @return Returns the pointer to the PixelMap.
+ * @param drawableDescriptor Pointer to a **DrawableDescriptor** object.
+ * @return Pointer to the {@link OH_PixelmapNative} object.
  * @since 12
-*/
+ */
 OH_PixelmapNativeHandle OH_ArkUI_DrawableDescriptor_GetStaticPixelMap(ArkUI_DrawableDescriptor* drawableDescriptor);
 
 /**
- * @brief Obtains the Pixelmap array used to play the animation.
+ * @brief Obtains an array of **PixelMap** objects for playing an animation.
  *
- * @param drawableDescriptor Indicates the pointer to the drawableDescriptor.
- * @return Returns the pointer to the PixelMap array.
+ * @param drawableDescriptor Pointer to a **DrawableDescriptor** object.
+ * @return Pointer to the array of **PixelMap** objects.
  * @since 12
-*/
+ */
 OH_PixelmapNativeHandle* OH_ArkUI_DrawableDescriptor_GetAnimatedPixelMapArray(
     ArkUI_DrawableDescriptor* drawableDescriptor);
 
 /**
- * @brief Obtains the size of the Pixelmap array used to play the animation.
+ * @brief Obtains the size of the **PixelMap** object array for playing an animation.
  *
- * @param drawableDescriptor Indicates the pointer to the drawableDescriptor.
- * @return Returns the size of the Pixelmap array.
+ * @param drawableDescriptor Pointer to a **DrawableDescriptor** object.
+ * @return Size of the **PixelMap** object array.
  * @since 12
-*/
+ */
 int32_t OH_ArkUI_DrawableDescriptor_GetAnimatedPixelMapArraySize(ArkUI_DrawableDescriptor* drawableDescriptor);
 
 /**
- * @brief Sets the total playback duration.
+ * @brief Sets the total playback duration for an array of **PixelMap** objects.
  *
- * @param drawableDescriptor Indicates the pointer to the drawableDescriptor.
- * @param duration Indicates the total playback duration. The unit is millisecond.
+ * @param drawableDescriptor Pointer to a **DrawableDescriptor** object.
+ * @param duration Total playback duration, in ms. Value range: [0, +∞). If a negative value is passed in, **0** is
+ *     used.
  * @since 12
-*/
+ */
 void OH_ArkUI_DrawableDescriptor_SetAnimationDuration(ArkUI_DrawableDescriptor* drawableDescriptor, int32_t duration);
 
 /**
- * @brief Obtains the total playback duration.
+ * @brief Obtains the total playback duration for an array of **PixelMap** objects.
  *
- * @param drawableDescriptor Indicates the pointer to the drawableDescriptor.
- * @return Return the total playback duration. The unit is millisecond.
+ * @param drawableDescriptor Pointer to a **DrawableDescriptor** object.
+ * @return Total playback duration, in ms.
  * @since 12
-*/
+ */
 int32_t OH_ArkUI_DrawableDescriptor_GetAnimationDuration(ArkUI_DrawableDescriptor* drawableDescriptor);
 
 /**
- * @brief Sets the number of playback times.
+ * @brief Sets the number of times that an array of **PixelMap** objects is played.
  *
- * @param drawableDescriptor Indicates the pointer to the drawableDescriptor.
+ * @param drawableDescriptor Pointer to a **DrawableDescriptor** object.
  * @param iteration Indicates the number of playback times.
  * @since 12
-*/
+ */
 void OH_ArkUI_DrawableDescriptor_SetAnimationIteration(
     ArkUI_DrawableDescriptor* drawableDescriptor, int32_t iteration);
 
 /**
- * @brief Obtains the number of playback times.
+ * @brief Obtains the number of times that an array of **PixelMap** objects is played.
  *
- * @param drawableDescriptor Indicates the pointer to the drawableDescriptor.
- * @return Returns the number of playback times.
+ * @param drawableDescriptor Pointer to a **DrawableDescriptor** object.
+ * @return Number of playback times.
  * @since 12
-*/
+ */
 int32_t OH_ArkUI_DrawableDescriptor_GetAnimationIteration(ArkUI_DrawableDescriptor* drawableDescriptor);
 
 /**
- * @brief Sets the frame duration array.
+ * @brief Sets the duration for each frame in a DrawableDescriptor animation.
  *
- * @param drawableDescriptor Indicates the pointer to the drawableDescriptor.
- * @param durations Indicates the pointer to the frame duration array.
- * @param size Indicates the size of the frame duration array.
- * @return Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful;
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @param drawableDescriptor Pointer to a **DrawableDescriptor** object.
+ * @param durations Array of the playback durations for each frame in the animation, in ms.
+ *     <br>If this parameter is not set, the playback follows the total duration. This parameter takes precedence over
+ *     {@link OH_ArkUI_DrawableDescriptor_SetAnimationDuration}. That is, if both **
+ *     OH_ArkUI_DrawableDescriptor_SetAnimationDuration** and **OH_ArkUI_DrawableDescriptor_SetAnimationFrameDurations**
+ *     are set, **OH_ArkUI_DrawableDescriptor_SetAnimationDuration** does not take effect.
+ *     <br>The array size must match the number of frames in the PixelMap image array.
+ *     <br>Valid range for each frame's playback duration: [0, +∞). Default value: evenly distributed total duration.
+ * @param size Array size.
+ * @return Result code.
+ *     <ul>
+ *     <li>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
+ *     <li>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.</li>
+ *     </ul>
  * @since 22
  */
 int32_t OH_ArkUI_DrawableDescriptor_SetAnimationFrameDurations(
     ArkUI_DrawableDescriptor* drawableDescriptor, uint32_t* durations, size_t size);
 
 /**
- * @brief Obtains the frame duration array.
+ * @brief Obtains the duration of each frame in a DrawableDescriptor animation.
  *
- * @param drawableDescriptor Indicates the pointer to the drawableDescriptor.
- * @param durations Indicates the pointer to the frame duration array.
- * @param size Indicates the size of the frame duration array.
- * @return Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful;
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @param drawableDescriptor Pointer to a **DrawableDescriptor** object.
+ * @param durations Array of the playback durations for each frame in the animation, in ms.
+ * @param size Array size.
+ * @return Result code.
+ *     <ul>
+ *     <li>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
+ *     <li>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.</li>
+ *     </ul>
  * @since 22
  */
 int32_t OH_ArkUI_DrawableDescriptor_GetAnimationFrameDurations(
     ArkUI_DrawableDescriptor* drawableDescriptor, uint32_t* durations, size_t* size);
 
 /**
- * @brief Sets whether to play the animation automatically.
+ * @brief Specifies whether to enable autoplay for a DrawableDescriptor animation.
  *
- * @param drawableDescriptor Indicates the pointer to the drawableDescriptor.
- * @param autoPlay Indicates whether to play the animation automatically.
- *                 default value is 1, which means to play the animation automatically.
- *                 value 0 means not to play the animation automatically.
- * @return Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful;
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @param drawableDescriptor Pointer to a **DrawableDescriptor** object.
+ * @param autoPlay Whether to enable autoplay.
+ *     <br>**1** to enable, **0** otherwise.
+ *     <br>The default value is **1**.
+ * @return Result code.
+ *     <ul>
+ *     <li>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
+ *     <li>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.</li>
+ *     </ul>
  * @since 22
  */
 int32_t OH_ArkUI_DrawableDescriptor_SetAnimationAutoPlay(
     ArkUI_DrawableDescriptor* drawableDescriptor, uint32_t autoPlay);
 
 /**
- * @brief Obtains whether to play the animation automatically.
+ * @brief Checks whether autoplay is enabled for a DrawableDescriptor animation.
  *
- * @param drawableDescriptor Indicates the pointer to the drawableDescriptor.
- * @param autoPlay Indicates whether to play the animation automatically.
- * @return Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful;
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @param drawableDescriptor Pointer to a **DrawableDescriptor** object.
+ * @param autoPlay Whether autoplay is enabled.
+ * @return Result code.
+ *     <ul>
+ *     <li>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
+ *     <li>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.</li>
+ *     </ul>
  * @since 22
  */
 int32_t OH_ArkUI_DrawableDescriptor_GetAnimationAutoPlay(
     ArkUI_DrawableDescriptor* drawableDescriptor, uint32_t* autoPlay);
 
 /**
- * @brief Sets the stop mode of animation.
+ * @brief Sets the stop mode for an animation.
  *
- * @param drawableDescriptor Indicates the pointer to the drawableDescriptor.
- * @param mode Indicates animation stop mode
- *                 The default value is 0, which means stop at the first frame,
- *                 value 1 means stop at the last frame.
- * @return Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful;
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @param drawableDescriptor Pointer to the {@link DrawableDescriptor} object.
+ * @param mode Stop mode of an animation.
+ *     <br>The value is an enumerated value of {@link DrawableDescriptor_AnimationStopMode}. The default value is
+ *     {@link DRAWABLE_DESCRIPTOR_ANIMATION_FIRST_FRAME}.
+ * @return Result code.
+ *     <ul>
+ *     <li>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
+ *     <li>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.</li>
+ *     </ul>
  * @since 24
  */
 int32_t OH_ArkUI_DrawableDescriptor_SetAnimationStopMode(
     ArkUI_DrawableDescriptor* drawableDescriptor, DrawableDescriptor_AnimationStopMode mode);
 
 /**
- * @brief Obtains the stop mode of animation.
+ * @brief Obtains the stop mode of an animation.
  *
- * @param drawableDescriptor Indicates the pointer to the drawableDescriptor.
- * @param mode Indicates animation stop mode
- * @return Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful;
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @param drawableDescriptor Pointer to the {@link DrawableDescriptor} object.
+ * @param mode Stop mode of an animation.
+ *     <br>For details about the values, see {@link DrawableDescriptor_AnimationStopMode}.
+ * @return Result code.
+ *     <ul>
+ *     <li>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
+ *     <li>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.</li>
+ *     </ul>
  * @since 24
  */
 int32_t OH_ArkUI_DrawableDescriptor_GetAnimationStopMode(
     const ArkUI_DrawableDescriptor* drawableDescriptor, DrawableDescriptor_AnimationStopMode* mode);
 
 /**
- * @brief Obtains the animation controller.
+ * @brief Creates an animation controller for the DrawableDescriptor.
  *
- * @param drawableDescriptor Indicates the pointer to the drawableDescriptor.
- * @param node Indicates the node handle.
- * @param controller Indicates the pointer to the animation controller.
- * @return Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful;
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @param drawableDescriptor Pointer to a **DrawableDescriptor** object.
+ * @param node Pointer to the component node.
+ * @param controller Pointer to a **DrawableDescriptor** animation controller.
+ * @return Result code.
+ *     <ul>
+ *     <li>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
+ *     <li>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.</li>
+ *     </ul>
  * @since 22
  */
 int32_t OH_ArkUI_DrawableDescriptor_CreateAnimationController(ArkUI_DrawableDescriptor *drawableDescriptor,
     ArkUI_NodeHandle node, ArkUI_DrawableDescriptor_AnimationController** controller);
 
 /**
- * @brief Releases the animation controller.
+ * @brief Disposes of the DrawableDescriptor animation controller.
  *
- * @param controller Indicates the pointer to the animation controller.
+ * @param controller Pointer to a **DrawableDescriptor** animation controller.
  * @since 22
  */
-void OH_ArkUI_DrawableDescriptor_DisposeAnimationController(
-    ArkUI_DrawableDescriptor_AnimationController* controller);
+void OH_ArkUI_DrawableDescriptor_DisposeAnimationController(ArkUI_DrawableDescriptor_AnimationController* controller);
 
 /**
- * @brief Starts the animation from first frame.
+ * @brief Starts playback from the first frame.
  *
- * @param controller Indicates the pointer to the animation controller.
- * @return Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful;
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @param controller Pointer to a **DrawableDescriptor** animation controller.
+ * @return Result code.
+ *     <ul>
+ *     <li>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
+ *     <li>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.</li>
+ *     </ul>
  * @since 22
  */
 int32_t OH_ArkUI_DrawableDescriptor_StartAnimation(ArkUI_DrawableDescriptor_AnimationController* controller);
 
 /**
- * @brief Stops the animation and back to first frame.
+ * @brief Stops the DrawableDescriptor animation and returns to the first frame.
  *
- * @param controller Indicates the pointer to the animation controller.
- * @return Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful;
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @param controller Pointer to a **DrawableDescriptor** animation controller.
+ * @return Result code.
+ *     <ul>
+ *     <li>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
+ *     <li>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.</li>
+ *     </ul>
  * @since 22
  */
 int32_t OH_ArkUI_DrawableDescriptor_StopAnimation(ArkUI_DrawableDescriptor_AnimationController* controller);
 
 /**
- * @brief Resumes the animation at the current frame.
+ * @brief Resumes the DrawableDescriptor animation from the current frame.
  *
- * @param controller Indicates the pointer to the animation controller.
- * @return Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful;
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @param controller Pointer to a **DrawableDescriptor** animation controller.
+ * @return Result code.
+ *     <ul>
+ *     <li>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
+ *     <li>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.</li>
+ *     </ul>
  * @since 22
  */
 int32_t OH_ArkUI_DrawableDescriptor_ResumeAnimation(ArkUI_DrawableDescriptor_AnimationController* controller);
 
 /**
- * @brief Pauses the animation at the current frame.
+ * @brief Pauses playback on the current frame.
  *
- * @param controller Indicates the pointer to the animation controller.
- * @return Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful;
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @param controller Pointer to a **DrawableDescriptor** animation controller.
+ * @return Result code.
+ *     <ul>
+ *     <li>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
+ *     <li>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.</li>
+ *     </ul>
  * @since 22
  */
 int32_t OH_ArkUI_DrawableDescriptor_PauseAnimation(ArkUI_DrawableDescriptor_AnimationController* controller);
 
 /**
- * @brief Obtains the animation playback status.
+ * @brief Obtains the playback status of the DrawableDescriptor animation.
  *
- * @param controller Indicates the pointer to the animation controller.
- * @param status Indicates the pointer to the animation playback status.
- * @return Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful;
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @param controller Pointer to a **DrawableDescriptor** animation controller.
+ * @param status Playback state of the DrawableDescriptor animation.
+ * @return Result code.
+ *     <ul>
+ *     <li>Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.</li>
+ *     <li>Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.</li>
+ *     </ul>
  * @since 22
  */
 int32_t OH_ArkUI_DrawableDescriptor_GetAnimationStatus(

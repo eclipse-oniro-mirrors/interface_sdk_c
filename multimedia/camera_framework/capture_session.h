@@ -38,6 +38,7 @@
 
 #include <stdint.h>
 #include <stdio.h>
+#include <stdbool.h>
 #include "camera.h"
 #include "camera_input.h"
 #include "preview_output.h"
@@ -45,7 +46,6 @@
 #include "video_output.h"
 #include "metadata_output.h"
 #include "native_buffer/native_buffer.h"
-#include "camera_notification_info.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -776,7 +776,7 @@ Camera_ErrorCode OH_CaptureSession_GetSupportedISORange(const Camera_CaptureSess
 Camera_ErrorCode OH_CaptureSession_GetIso(const Camera_CaptureSession* session, int32_t* isoValue);
 
 /**
- * @brief Sets ISO sensitivity value, within the range of getSupportedIsoRange. This control is only effective if
+ * @brief Sets ISO sensitivity value, within the range of getSupportedIsoRange. This control can not effective if
  * ExposureMode is set to EXPOSURE_MODE_LOCKED.
  * @param session Pointer to the {@link Camera_CaptureSession} instance.
  * @param isoValue Indicates target iso value to set.
@@ -931,7 +931,8 @@ Camera_ErrorCode OH_CaptureSession_GetSupportedExposureDurationRange(const Camer
     int32_t* maxExposureDuration);
 
 /**
- * @brief Set exposure duration. Units: Microseconds.
+ * @brief Set exposure duration. Units: Microseconds.This control is only effective if
+ * ExposureMode is set to EXPOSURE_MODE_MANUAL.
  * If the sensor can't expose this duration exactly, it will shorten the duration to the nearest supported value, which is
  * reporeted by Callback {@link OH_CaptureSession_OnExposureDurationChange}.
  *
@@ -1747,46 +1748,6 @@ Camera_ErrorCode OH_CaptureSession_DeleteZoomPointInfos(const Camera_CaptureSess
     OH_Camera_ZoomPointInfo* zoomPointInfo);
 
 /**
- * @brief Called when camera notification information is received.
- *
- * @param context Pointer to the user-defined context passed when the callback is registered.
- * @param notificationInfo Pointer to {@link OH_Camera_NotificationInfo} instances.
- * @since 26.0.0
- */
-typedef void (*OH_CaptureSession_OnNotificationReceive)(
-    void* context, OH_Camera_NotificationInfo* notificationInfo);
-
-/**
- * @brief Registers a callback to listen for camera notification information received events,
- * can be unRegister by {@link OH_CaptureSession_UnregisterNotificationReceivedCallback}.
- * Lifetime and ownership:
- * - The caller must ensure that `context` remains valid until Unregister returns.
- *
- * @param session Pointer to a {@link Camera_CaptureSession} instance.
- * @param context Pointer to the user-defined context to be passed in the callback.
- * @param callback Callback used to receive camera notification information, which is an
- *        {@link OH_CaptureSession_OnNotificationReceive} instance.
- * @return {@link #CAMERA_OK} : The operation is successful.
- *         {@link #CAMERA_INVALID_ARGUMENT}: A parameter is missing or the parameter type is incorrect.
- * @since 26.0.0
- */
-Camera_ErrorCode OH_CaptureSession_RegisterNotificationReceivedCallback(
-    const Camera_CaptureSession* session, void* context, OH_CaptureSession_OnNotificationReceive callback);
-
-/**
- * @brief Unregisters the callback used to listen for camera notification information received events.
- *
- * @param session Pointer to a {@link Camera_CaptureSession} instance.
- * @param context Pointer to the user-defined context passed when the callback was registered.
- * @param callback Callback to unregister, which is an {@link OH_CaptureSession_OnNotificationReceive} instance.
- * @return {@link #CAMERA_OK} : The operation is successful.
- *         {@link #CAMERA_INVALID_ARGUMENT}: A parameter is missing or the parameter type is incorrect.
- * @since 26.0.0
- */
-Camera_ErrorCode OH_CaptureSession_UnregisterNotificationReceivedCallback(
-    const Camera_CaptureSession* session, void* context, OH_CaptureSession_OnNotificationReceive callback);
-
-/**
  * @brief Checks whether the lock focus tracking is supported.
  *
  * @param session Pointer to the {@link Camera_CaptureSession} instance.
@@ -1823,7 +1784,7 @@ Camera_ErrorCode OH_CaptureSession_LockFocusTracking(Camera_CaptureSession* sess
  * @since 26.0.0
  */
 Camera_ErrorCode OH_CaptureSession_UnlockFocusTracking(Camera_CaptureSession* session);
- 
+
 #ifdef __cplusplus
 }
 #endif

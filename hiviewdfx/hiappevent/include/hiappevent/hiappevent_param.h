@@ -76,7 +76,7 @@ extern "C" {
 #define PARAM_DISTRIBUTED_SERVICE_INSTANCE_ID "ds_instance_id"
 
 /**
- * @brief Used in MAIN_THREAD_JANK_V2, type of the log that need to be collected when main thread jank happend.
+ * @brief Used in MAIN_THREAD_JANK_V2, type of the log that need to be collected when main thread jank happened.
  *
  * @since 22
  */
@@ -84,13 +84,14 @@ extern "C" {
 
 /**
  * @brief Used in MAIN_THREAD_JANK_V2, The timeout detection interval and sampling interval for the main thread.
+ * Unit: ms.
  *
  * @since 22
  */
 #define MAIN_THREAD_JANK_PARAM_SAMPLE_INTERVAL "sample_interval"
 
 /**
- * @brief Used in MAIN_THREAD_JANK_V2, Ignore main thread timeout detection during startup.
+ * @brief Used in MAIN_THREAD_JANK_V2, Ignore main thread timeout detection during startup. Unit: s.
  *
  * @since 22
  */

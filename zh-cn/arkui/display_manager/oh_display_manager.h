@@ -360,6 +360,9 @@ typedef void (*OH_NativeDisplayManager_AvailableAreaChangeCallback)(uint64_t dis
 /**
  * @brief 注册屏幕可用区域变化监听。
  *
+ * 在搭载OpenHarmony 7.0.0及以上版本的设备上，该接口可正常调用。
+ * 针对低于该版本的设备，该接口在PC/2in1设备、Tablet设备中可正常调用，在其他设备中不生效也不报错。
+ *
  * @param availableAreaChangeCallback 屏幕可用区域变化后触发的回调函数，
  *     回调函数定义见{@link OH_NativeDisplayManager_AvailableAreaChangeCallback}。
  * @param listenerIndex 注册成功后返回的监听编号，
@@ -375,6 +378,9 @@ NativeDisplayManager_ErrorCode OH_NativeDisplayManager_RegisterAvailableAreaChan
 /**
  * @brief 取消屏幕可用区域变化的监听。
  *
+ * 在搭载OpenHarmony 7.0.0及以上版本的设备上，该接口可正常调用。
+ * 针对低于该版本的设备，该接口在PC/2in1设备、Tablet设备中可正常调用，在其他设备中不生效也不报错。
+ *
  * @param listenerIndex 调用注册函数
  *     {@link OH_NativeDisplayManager_RegisterAvailableAreaChangeListener}时获取到的监听编号。
  * @return 返回DISPLAY_MANAGER_OK，表示操作成功。
@@ -386,6 +392,11 @@ NativeDisplayManager_ErrorCode OH_NativeDisplayManager_UnregisterAvailableAreaCh
 
 /**
  * @brief 获取屏幕的可用区域。
+ *
+ * 在搭载OpenHarmony 7.0.0及以上版本的设备上，该接口可正常调用。
+ * 针对低于该版本的设备，该接口在PC/2in1设备、Tablet设备中可正常调用；在其他设备中不可用，请通过
+ * {@link OH_NativeDisplayManager_GetDefaultDisplayWidth}、{@link OH_NativeDisplayManager_GetDefaultDisplayHeight}
+ * 获取当前设备屏幕的可用区域。
  *
  * @param displayId 查询屏幕的id号，非负整数。
  * @param availableArea 屏幕可用区域，具体可见{@link NativeDisplayManager_Rect}，此处作为出参返回。

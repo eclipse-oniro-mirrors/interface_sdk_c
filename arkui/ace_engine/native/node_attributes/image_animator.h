@@ -25,7 +25,7 @@
 /**
  * @file image_animator.h
  *
- * @brief Defines the common types and APIs for the ImageAnimator component.
+ * @brief Defines **ImageAnimator** node types for **NativeNode** APIs.
  *
  * @library libace_ndk.z.so
  * @syscap SystemCapability.ArkUI.ArkUI.Full
@@ -45,10 +45,10 @@ extern "C" {
 #endif
 
 /**
- * @brief Defines the playback status for the image animator.
+ * @brief Enumerates the playback states of the frame-by-frame animation.
  *
  * @since 12
-*/
+ */
 typedef enum {
     /**
      * The animation is in the initial state.
@@ -73,138 +73,132 @@ typedef enum {
      *
      * @since 12
      */
-    ARKUI_ANIMATION_STATUS_STOPPED = 3,
+    ARKUI_ANIMATION_STATUS_STOPPED = 3
 } ArkUI_AnimationStatus;
 
 /**
- * @brief Defines the image frame.
+ * @brief Defines the image animation frame information.
  *
  * @since 12
-*/
+ */
 typedef struct ArkUI_ImageAnimatorFrameInfo ArkUI_ImageAnimatorFrameInfo;
 
 /**
- * @brief Create a image frame from the image path.
- * @param src Indicates the image path.
- * @return Returns the pointer to the image frame object.
- * If a null pointer is returned, the object fails to be created. The possible cause is that
- * the src parameter is abnormal, for example, the pointer is null.
+ * @brief Creates an image frame information object based on an image path, with the image format being SVG, PNG, or
+ * JPG. Both relative and absolute paths in the application sandbox are supported.
+ *
+ * @param src Pointer to the image path, which can be a relative or absolute path in the application sandbox.
+ * @return Pointer to the image frame information object.
  * @since 12
-*/
+ */
 ArkUI_ImageAnimatorFrameInfo* OH_ArkUI_ImageAnimatorFrameInfo_CreateFromString(char* src);
 
 /**
- * @brief Create a image frame from the drawable descriptor.
+ * @brief Creates an image frame information object based on an [{@link ArkUI_DrawableDescriptor} object, with the
+ * image format being Resource or PixelMap.
  *
- * @param drawable Indicates the pointer to the drawable descriptor.
- * @return Returns the pointer to the image frame object. If a null pointer is returned, the object fails to be created.
- *     The possible cause is that the drawable parameter is abnormal, for example, the pointer is null.
+ * @param drawable Pointer to an **ArkUI_DrawableDescriptor** object created using Resource or PixelMap.
+ * @return Pointer to the image frame information object.
  * @since 12
-*/
+ */
 ArkUI_ImageAnimatorFrameInfo* OH_ArkUI_ImageAnimatorFrameInfo_CreateFromDrawableDescriptor(
     ArkUI_DrawableDescriptor* drawable);
 
 /**
- * @brief Destroy the pointer to the image frame.
+ * @brief Disposes of the pointer to an image frame information object.
  *
- * @param imageInfo Indicates the pointer to the image frame.
+ * @param imageInfo Pointer to the image frame information object.
  * @since 12
-*/
+ */
 void OH_ArkUI_ImageAnimatorFrameInfo_Dispose(ArkUI_ImageAnimatorFrameInfo* imageInfo);
 
 /**
- * @brief Set the width of the image frame.
+ * @brief Sets the image width.
  *
- * @param imageInfo Indicates the pointer to the image frame.
- * @param width Indicates the width of the image frame, and the unit is PX.
+ * @param imageInfo Pointer to the image frame information object.
+ * @param width Image width, in px.
  * @since 12
-*/
+ */
 void OH_ArkUI_ImageAnimatorFrameInfo_SetWidth(ArkUI_ImageAnimatorFrameInfo* imageInfo, int32_t width);
 
 /**
- * @brief Get the width of the image frame.
+ * @brief Obtains the image width.
  *
- * @param imageInfo Indicates the pointer to the image frame.
- * @return Return the width of the image frame, and the unit is PX. Return 0 when the imageInfo is null.
+ * @param imageInfo Pointer to the image frame information object.
+ * @return Image width, in px. If **imageInfo** is a null pointer, **0** is returned.
  * @since 12
-*/
+ */
 int32_t OH_ArkUI_ImageAnimatorFrameInfo_GetWidth(ArkUI_ImageAnimatorFrameInfo* imageInfo);
 
 /**
- * @brief Set the height of the image frame.
+ * @brief Sets the image height.
  *
- * @param imageInfo Indicates the pointer to the image frame.
- * @param height Indicates the height of the image frame, and the unit is PX.
+ * @param imageInfo Pointer to the image frame information object.
+ * @param height Image height, in px.
  * @since 12
-*/
+ */
 void OH_ArkUI_ImageAnimatorFrameInfo_SetHeight(ArkUI_ImageAnimatorFrameInfo* imageInfo, int32_t height);
 
 /**
- * @brief Get the height of the image frame.
+ * @brief Obtains the image height.
  *
- * @param imageInfo Indicates the pointer to the image frame.
- * @return Return the height of the image frame, and the unit is PX. Return 0 when the imageInfo is null.
+ * @param imageInfo Pointer to the image frame information object.
+ * @return Image height, in px. If **imageInfo** is a null pointer, **0** is returned.
  * @since 12
-*/
+ */
 int32_t OH_ArkUI_ImageAnimatorFrameInfo_GetHeight(ArkUI_ImageAnimatorFrameInfo* imageInfo);
-
 /**
- * @brief Set the vertical coordinate of the image relative to the upper left corner of the widget.
+ * @brief Sets the vertical coordinate of an image relative to the upper left corner of the component.
  *
- * @param imageInfo Indicates the pointer to the image frame.
- * @param top Indicates the vertical coordinate of the image relative to the upper left corner of the widget,
- * and the unit is PX.
+ * @param imageInfo Pointer to the image frame information object.
+ * @param top Vertical coordinate of the image relative to the upper left corner of the component, in px.
  * @since 12
-*/
+ */
 void OH_ArkUI_ImageAnimatorFrameInfo_SetTop(ArkUI_ImageAnimatorFrameInfo* imageInfo, int32_t top);
 
 /**
- * @brief Get the vertical coordinate of the image relative to the upper left corner of the widget.
+ * @brief Obtains the vertical coordinate of an image relative to the upper left corner of the component.
  *
- * @param imageInfo Indicates the pointer to the image frame.
- * @return Returns the vertical coordinate of the image relative to the upper left corner of the widget,
- * and the unit is PX. Return 0 when the imageInfo is null.
+ * @param imageInfo Pointer to the image frame information object.
+ * @return Vertical coordinate of the image relative to the upper left corner of the component, in px. If **imageInfo**
+ *     is a null pointer, **0** is returned.
  * @since 12
-*/
+ */
 int32_t OH_ArkUI_ImageAnimatorFrameInfo_GetTop(ArkUI_ImageAnimatorFrameInfo* imageInfo);
-
 /**
- * @brief Set the horizontal coordinate of the image relative to the upper left corner of the widget.
+ * @brief Sets the horizontal coordinate of an image relative to the upper left corner of the component.
  *
- * @param imageInfo Indicates the pointer to the image frame.
- * @param left Indicates the horizontal coordinate of the image relative to the upper left corner of the widget,
- * and the unit is PX.
+ * @param imageInfo Pointer to the image frame information object.
+ * @param left Horizontal coordinate of the image relative to the upper left corner of the component, in px.
  * @since 12
-*/
+ */
 void OH_ArkUI_ImageAnimatorFrameInfo_SetLeft(ArkUI_ImageAnimatorFrameInfo* imageInfo, int32_t left);
 
 /**
- * @brief Get the horizontal coordinate of the image relative to the upper left corner of the widget.
+ * @brief Obtains the horizontal coordinate of an image relative to the upper left corner of the component.
  *
- * @param imageInfo Indicates the pointer to the image frame.
- * @return Returns the horizontal coordinate of the image relative to the upper left corner of the widget,
- * and the unit is PX. Return 0 when the imageInfo is null.
+ * @param imageInfo Pointer to the image frame information object.
+ * @return Horizontal coordinate of the image relative to the upper left corner of the component, in px. If **imageInfo*
+ *     * is a null pointer, **0** is returned.
  * @since 12
-*/
+ */
 int32_t OH_ArkUI_ImageAnimatorFrameInfo_GetLeft(ArkUI_ImageAnimatorFrameInfo* imageInfo);
 
 /**
- * @brief Set the playback duration of the image frame.
+ * @brief Sets the playback duration of an image.
  *
- * @param imageInfo Indicates the pointer to the image frame.
- * @param duration Indicates the playback duration of each image frame, and the unit is milliseconds.
+ * @param imageInfo Pointer to the image frame information object.
+ * @param duration Playback duration of an image, in ms.
  * @since 12
-*/
+ */
 void OH_ArkUI_ImageAnimatorFrameInfo_SetDuration(ArkUI_ImageAnimatorFrameInfo* imageInfo, int32_t duration);
-
 /**
- * @brief Get the playback duration of the image frame.
+ * @brief Obtains the playback duration of an image.
  *
- * @param imageInfo Indicates the pointer to the image frame.
- * @return Returns the playback duration of the image frame, and the unit is milliseconds.
- * Return 0 when the imageInfo is null.
+ * @param imageInfo Pointer to the image frame information object.
+ * @return Playback duration of the image, in milliseconds. If **imageInfo** is a null pointer, **0** is returned.
  * @since 12
-*/
+ */
 int32_t OH_ArkUI_ImageAnimatorFrameInfo_GetDuration(ArkUI_ImageAnimatorFrameInfo* imageInfo);
 
 #ifdef __cplusplus

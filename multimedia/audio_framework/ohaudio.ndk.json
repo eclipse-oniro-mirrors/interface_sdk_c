@@ -741,6 +741,18 @@
     },
     {
         "first_introduced": "26.0.0",
+        "name": "OH_AudioCapturer_SetNoiseReductionMode"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_AudioCapturer_GetNoiseReductionMode"
+    },
+    {
+        "first_introduced": "26.0.0",
+        "name": "OH_AudioCapturer_GetSupportedNoiseReductionModes"
+    },
+    {
+        "first_introduced": "26.0.0",
         "name": "OH_AudioManager_GetAccessoryManager"
     },
     {

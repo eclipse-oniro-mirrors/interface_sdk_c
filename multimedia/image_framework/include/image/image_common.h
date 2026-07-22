@@ -325,67 +325,11 @@ typedef enum {
     FRAGMENT_METADATA = 2,
 
     /**
-     * Xtstyle metadata.
-     *
-     * @since 26.0.0
-     */
-    XTSTYLE_METADATA = 3,
-
-    /**
-     * RfDataB metadata.
-     *
-     * @since 26.0.0
-     */
-    RFDATAB_METADATA = 4,
-
-    /**
      * GIF image metadata.
      * 
      * @since 20
      */
-    GIF_METADATA = 5,
-
-    /**
-     * XDRAW4K metadata.
-     *
-     * @since 26.0.0
-     */
-    XDRAW_4K_METADATA = 8,
-
-    /**
-     * Private metadata.
-     *
-     * @since 26.0.0
-     */
-    PRIVATE_METADATA = 9,
-
-    /**
-     * RfDataN metadata.
-     *
-     * @since 26.0.0
-     */
-    RFDATAN_METADATA = 10,
-
-    /**
-     * RfDataS metadata.
-     *
-     * @since 26.0.0
-     */
-    RFDATAS_METADATA = 11,
-
-    /**
-     * HDRSnap metadata.
-     *
-     * @since 26.0.0
-     */
-    HDRSNAP_METADATA = 12,
-
-    /**
-     * DfxData metadata.
-     *
-     * @since 26.0.0
-     */
-    DFXDATA_METADATA = 13
+    GIF_METADATA = 5
 } Image_MetadataType;
 
 /**
@@ -998,7 +942,7 @@ static const char *OHOS_IMAGE_PROPERTY_SUBJECT_DISTANCE = "SubjectDistance";
 static const char *OHOS_IMAGE_PROPERTY_SUBJECT_AREA = "SubjectArea";
 
 /**
- * @brief A tag for manufacturers of Exif/DCF writers to record any desired infomation.
+ * @brief A tag for manufacturers of Exif/DCF writers to record any desired information.
  * It is used in {@link OH_ImageSource_GetImageProperty} and {@link OH_ImageSource_ModifyImageProperty}.
  *
  * @since 12

@@ -38,6 +38,7 @@
 
 #include <stdint.h>
 #include <stdio.h>
+#include <stdbool.h>
 #include "camera.h"
 #include "metadata_object_ext.h"
 

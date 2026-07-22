@@ -46,6 +46,7 @@
 #include "error_code.h"
 
 #include "drawable_descriptor.h"
+#include "native_type_visual.h"
 #include "node_attributes/slider.h"
 #include "node_attributes/checkbox.h"
 #include "node_attributes/button.h"
@@ -646,8 +647,6 @@ typedef enum {
  * @since 12
  */
 typedef struct ArkUI_SystemFontStyleEvent ArkUI_SystemFontStyleEvent;
-
-#include "native_type_visual.h"
 
 /**
  * @brief Defines the options for selection operation.
@@ -1644,26 +1643,6 @@ ArkUI_ErrorCode OH_ArkUI_TextEditMenuOptions_RegisterOnPrepareMenuCallback(
  */
 ArkUI_ErrorCode OH_ArkUI_TextEditMenuOptions_RegisterOnMenuItemClickCallback(
     ArkUI_TextEditMenuOptions* editMenuOptions, void* userData, ArkUI_TextMenuItemClickCallback cb);
-
-/**
-* @brief Enumerates raw input event types.
-*
-* @since 26.0.0
-*/
-typedef enum {
-    /**
-     * Touch event.
-     *
-     * @since 26.0.0
-     */
-    ARKUI_RAW_INPUT_EVENT_TYPE_TOUCH = 0,
-    /**
-     * Mouse event.
-     *
-     * @since 26.0.0
-     */
-    ARKUI_RAW_INPUT_EVENT_TYPE_MOUSE = 1,
-} ArkUI_RawInputEventType;
 
 /**
  * @brief Sets the recognition types of a configuration object for selected text recognition.

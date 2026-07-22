@@ -193,6 +193,26 @@ typedef enum {
 } ArkUI_ResponseRegionSupportedTool;
 
 /**
+* @brief Enumerates raw input event types.
+*
+* @since 26.0.0
+*/
+typedef enum {
+    /**
+     * Touch event.
+     *
+     * @since 26.0.0
+     */
+    ARKUI_RAW_INPUT_EVENT_TYPE_TOUCH = 0,
+    /**
+     * Mouse event.
+     *
+     * @since 26.0.0
+     */
+    ARKUI_RAW_INPUT_EVENT_TYPE_MOUSE = 1,
+} ArkUI_RawInputEventType;
+
+/**
 * @brief Defines snapshot options.
 *
 * @since 15

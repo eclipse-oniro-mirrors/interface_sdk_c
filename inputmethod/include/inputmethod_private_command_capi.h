@@ -34,6 +34,7 @@
  */
 #ifndef OHOS_INPUTMETHOD_PRIVATE_COMMAND_CAPI_H
 #define OHOS_INPUTMETHOD_PRIVATE_COMMAND_CAPI_H
+#include <stdbool.h>
 #include <stddef.h>
 #include <stdint.h>
 

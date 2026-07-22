@@ -24,7 +24,7 @@
 
 /**
  * @file net_http_type.h
- * @brief Defines the data structure for the C APIs of the http module.
+ * @brief Defines the data structures for the C APIs of the HTTP request module.
  *
  * @library libnet_http.so
  * @kit NetworkKit
@@ -43,24 +43,24 @@ extern "C" {
 #endif
 
 /**
-* @brief Maximum length of the HTTP request directory path.
-*
-* @since 20
-*/
+ * @brief Defines the maximum path length of an HTTP request.
+ *
+ * @since 20
+ */
 #define OHOS_HTTP_MAX_PATH_LEN 128
 
 /**
-* @brief Maximum length of the HTTP request string.
-*
-* @since 20
-*/
+ * @brief Defines the maximum string length of an HTTP request.
+ *
+ * @since 20
+ */
 #define OHOS_HTTP_MAX_STR_LEN 256
 
 /**
-* @brief Maximum number of DNS servers supported by an HTTP request.
-*
-* @since 20
-*/
+ * @brief Defines the maximum number of DNS servers for an HTTP request.
+ *
+ * @since 20
+ */
 #define OHOS_HTTP_DNS_SERVER_NUM_MAX 3
 
 /**
@@ -133,6 +133,11 @@ typedef enum Http_ErrCode {
   OH_HTTP_REMOTE_FILE_NOT_FOUND = (OH_HTTP_NETSTACK_E_BASE + 78),
   /** @brief Authentication error. */
   OH_HTTP_AUTHENTICATION_ERROR = (OH_HTTP_NETSTACK_E_BASE + 94),
+  /**
+   * @brief The request was intercepted by the HTTP global interceptor.
+   * @since 26.0.0
+   */
+  OH_HTTP_REQUEST_INTERCEPTED = (OH_HTTP_NETSTACK_E_BASE + 996),
   /** @brief It is not allowed to access this domain. */
   OH_HTTP_ACCESS_DOMAIN_NOT_ALLOWED = (OH_HTTP_NETSTACK_E_BASE + 998),
   /** @brief Unknown error. */
@@ -145,96 +150,100 @@ typedef enum Http_ErrCode {
  * @since 20
  */
 typedef enum Http_ResponseCode {
-  /** @brief The request was successful. */
-  OH_HTTP_OK = 200,
-  /** @brief Successfully requested and created a new resource. */
-  OH_HTTP_CREATED = 201,
-  /** @brief The request has been accepted but has not been processed completely. */
-  OH_HTTP_ACCEPTED = 202,
-  /** @brief Unauthorized information. The request was successful. */
-  OH_HTTP_NON_AUTHORITATIVE_INFO = 203,
-  /** @brief No content. The server successfully processed, but did not return content. */
-  OH_HTTP_NO_CONTENT = 204,
-  /** @brief Reset the content. */
-  OH_HTTP_RESET = 205,
-  /** @brief Partial content. The server successfully processed some GET requests. */
-  OH_HTTP_PARTIAL = 206,
-  /** @brief Multiple options. */
-  OH_HTTP_MULTI_CHOICE = 300,
-  /**
-   * @brief Permanently move. The requested resource has been permanently moved to a new URI,
-   * and the returned information will include the new URI. The browser will automatically redirect to the new URI.
-   */
-  OH_HTTP_MOVED_PERM = 301,
-  /** @brief Temporary movement. */
-  OH_HTTP_MOVED_TEMP = 302,
-  /** @brief View other addresses. */
-  OH_HTTP_SEE_OTHER = 303,
-  /** @brief Not modified. */
-  OH_HTTP_NOT_MODIFIED = 304,
-  /** @brief Using proxies. */
-  OH_HTTP_USE_PROXY = 305,
-  /** @brief The server cannot understand the syntax error error requested by the client. */
-  OH_HTTP_BAD_REQUEST = 400,
-  /** @brief Request for user authentication. */
-  OH_HTTP_UNAUTHORIZED = 401,
-  /** @brief Reserved for future use. */
-  OH_HTTP_PAYMENT_REQUIRED = 402,
-  /** @brief The server understands the request from the requesting client, but refuses to execute it. */
-  OH_HTTP_FORBIDDEN = 403,
-  /** @brief The server was unable to find resources (web pages) based on the client's request. */
-  OH_HTTP_NOT_FOUND = 404,
-  /** @brief The method in the client request is prohibited. */
-  OH_HTTP_BAD_METHOD = 405,
-  /** @brief The server unabled to complete request based on the content characteristics requested by the client. */
-  OH_HTTP_NOT_ACCEPTABLE = 406,
-  /** @brief Request authentication of the proxy's identity. */
-  OH_HTTP_PROXY_AUTH = 407,
-  /** @brief The request took too long and timed out. */
-  OH_HTTP_CLIENT_TIMEOUT = 408,
-  /**
-   * @brief The server may have returned this code when completing the client's PUT request,
-   * as there was a conflict when the server was processing the request.
-   */
-  OH_HTTP_CONFLICT = 409,
-  /** @brief The resource requested by the client no longer exists. */
-  OH_HTTP_GONE = 410,
-  /** @brief The server is unable to process request information sent by the client without Content Length. */
-  OH_HTTP_LENGTH_REQUIRED = 411,
-  /** @brief The prerequisite for requesting information from the client is incorrect. */
-  OH_HTTP_PRECON_FAILED = 412,
-  /** @brief The request was rejected because the requested entity was too large for the server to process. */
-  OH_HTTP_ENTITY_TOO_LARGE = 413,
-  /** @brief The requested URI is too long (usually a URL) and the server cannot process it. */
-  OH_HTTP_REQUEST_TOO_LONG = 414,
-  /** @brief The server is unable to process the requested format. */
-  OH_HTTP_UNSUPPORTED_TYPE = 415,
-  /** @brief Requested Range not satisfiable. */
-  OH_HTTP_RANGE_NOT_MET = 416,
-  /** @brief Internal server error, unable to complete the request. */
-  OH_HTTP_INTERNAL_ERROR = 500,
-  /** @brief The server does not support the requested functionality and cannot complete the request. */
-  OH_HTTP_NOT_IMPLEMENTED = 501,
-  /** @brief The server acting as a gateway or proxy received an invalid request from the remote server. */
-  OH_HTTP_BAD_GATEWAY = 502,
-  /** @brief Due to overload or system maintenance, the server is temporarily unable to process client requests. */
-  OH_HTTP_UNAVAILABLE = 503,
-  /** @brief The server acting as gateway did not obtain requests from the remote server in a timely manner. */
-  OH_HTTP_GATEWAY_TIMEOUT = 504,
-  /** @brief The version of the HTTP protocol requested by the server. */
-  OH_HTTP_VERSION = 505
+    /** @brief The request was successful. */
+    OH_HTTP_OK = 200,
+    /** @brief Successfully requested and created a new resource. */
+    OH_HTTP_CREATED = 201,
+    /** @brief The request has been accepted but has not been processed completely. */
+    OH_HTTP_ACCEPTED = 202,
+    /** @brief Unauthorized information. The request was successful. */
+    OH_HTTP_NON_AUTHORITATIVE_INFO = 203,
+    /** @brief No content. The server successfully processed, but did not return content. */
+    OH_HTTP_NO_CONTENT = 204,
+    /** @brief Reset the content. */
+    OH_HTTP_RESET = 205,
+    /** @brief Partial content. The server successfully processed some GET requests. */
+    OH_HTTP_PARTIAL = 206,
+    /** @brief Multiple options. */
+    OH_HTTP_MULTI_CHOICE = 300,
+    /**
+     * @brief Permanently move. The requested resource has been permanently moved to a new URI,
+     * and the returned information will include the new URI. The browser will automatically redirect to the new URI.
+     */
+    OH_HTTP_MOVED_PERM = 301,
+    /** @brief Temporary movement. */
+    OH_HTTP_MOVED_TEMP = 302,
+    /** @brief View other addresses. */
+    OH_HTTP_SEE_OTHER = 303,
+    /** @brief Not modified. */
+    OH_HTTP_NOT_MODIFIED = 304,
+    /** @brief Using proxies. */
+    OH_HTTP_USE_PROXY = 305,
+    /** @brief The server cannot understand the syntax error error requested by the client. */
+    OH_HTTP_BAD_REQUEST = 400,
+    /** @brief Request for user authentication. */
+    OH_HTTP_UNAUTHORIZED = 401,
+    /** @brief Reserved for future use. */
+    OH_HTTP_PAYMENT_REQUIRED = 402,
+    /** @brief The server understands the request from the requesting client, but refuses to execute it. */
+    OH_HTTP_FORBIDDEN = 403,
+    /** @brief The server was unable to find resources (web pages) based on the client's request. */
+    OH_HTTP_NOT_FOUND = 404,
+    /** @brief The method in the client request is prohibited. */
+    OH_HTTP_BAD_METHOD = 405,
+    /** @brief The server unabled to complete request based on the content characteristics requested by the client. */
+    OH_HTTP_NOT_ACCEPTABLE = 406,
+    /** @brief Request authentication of the proxy's identity. */
+    OH_HTTP_PROXY_AUTH = 407,
+    /** @brief The request took too long and timed out. */
+    OH_HTTP_CLIENT_TIMEOUT = 408,
+    /**
+     * @brief The server may have returned this code when completing the client's PUT request,
+     * as there was a conflict when the server was processing the request.
+     */
+    OH_HTTP_CONFLICT = 409,
+    /** @brief The resource requested by the client no longer exists. */
+    OH_HTTP_GONE = 410,
+    /** @brief The server is unable to process request information sent by the client without Content Length. */
+    OH_HTTP_LENGTH_REQUIRED = 411,
+    /** @brief The prerequisite for requesting information from the client is incorrect. */
+    OH_HTTP_PRECON_FAILED = 412,
+    /** @brief The request was rejected because the requested entity was too large for the server to process. */
+    OH_HTTP_ENTITY_TOO_LARGE = 413,
+    /** @brief The requested URI is too long (usually a URL) and the server cannot process it. */
+    OH_HTTP_REQUEST_TOO_LONG = 414,
+    /** @brief The server is unable to process the requested format. */
+    OH_HTTP_UNSUPPORTED_TYPE = 415,
+    /** @brief Requested Range not satisfiable. */
+    OH_HTTP_RANGE_NOT_MET = 416,
+    /** @brief Internal server error, unable to complete the request. */
+    OH_HTTP_INTERNAL_ERROR = 500,
+    /** @brief The server does not support the requested functionality and cannot complete the request. */
+    OH_HTTP_NOT_IMPLEMENTED = 501,
+    /** @brief The server acting as a gateway or proxy received an invalid request from the remote server. */
+    OH_HTTP_BAD_GATEWAY = 502,
+    /** @brief Due to overload or system maintenance, the server is temporarily unable to process client requests. */
+    OH_HTTP_UNAVAILABLE = 503,
+    /** @brief The server acting as gateway did not obtain requests from the remote server in a timely manner. */
+    OH_HTTP_GATEWAY_TIMEOUT = 504,
+    /** @brief The version of the HTTP protocol requested by the server. */
+    OH_HTTP_VERSION = 505
 } Http_ResponseCode;
 
 /**
- * @brief Buffer.
+ * @brief Defines the HTTP buffer structure.
  *
  * @since 20
  */
 typedef struct Http_Buffer {
-  /** Content. Buffer will not be copied. */
-  const char *buffer;
-  /** Buffer length. */
-  uint32_t length;
+    /**
+     * Buffer data.
+     */
+    const char *buffer;
+    /**
+     * Buffer length.
+     */
+    uint32_t length;
 } Http_Buffer;
 
 /**
@@ -243,63 +252,64 @@ typedef struct Http_Buffer {
  * @since 20
  */
 typedef enum Http_AddressFamilyType {
-  /** Default, The system automatically selects the IPv4 or IPv6 address of the domain name. */
-  HTTP_ADDRESS_FAMILY_DEFAULT = 0,
-  /** IPv4, Selects the IPv4 address of the domain name. */
-  HTTP_ADDRESS_FAMILY_ONLY_V4 = 1,
-  /** IPv6, Selects the IPv4 address of the domain name. */
-  HTTP_ADDRESS_FAMILY_ONLY_V6 = 2
+    /** Default, The system automatically selects the IPv4 or IPv6 address of the domain name. */
+    HTTP_ADDRESS_FAMILY_DEFAULT = 0,
+    /** IPv4, Selects the IPv4 address of the domain name. */
+    HTTP_ADDRESS_FAMILY_ONLY_V4 = 1,
+    /** IPv6, Selects the IPv4 address of the domain name. */
+    HTTP_ADDRESS_FAMILY_ONLY_V6 = 2
 } Http_AddressFamilyType;
- 
+
 /**
- * @brief HTTP get method.
+ * @brief Sets the HTTP request method to GET.
  *
  * @since 20
  */
 #define NET_HTTP_METHOD_GET "GET"
 
 /**
- * @brief HTTP head method.
+ * @brief Sets the HTTP request method to HEAD.
  *
  * @since 20
  */
 #define NET_HTTPMETHOD_HEAD "HEAD"
 
 /**
- * @brief HTTP options method.
+ * @brief Sets the HTTP request method to OPTIONS.
  *
  * @since 20
  */
 #define NET_HTTPMETHOD_OPTIONS "OPTIONS"
 
 /**
- * @brief HTTP trace method.
+ * @brief Sets the HTTP request method to TRACE.
  *
  * @since 20
  */
 #define NET_HTTPMETHOD_TRACE "TRACE"
 /**
- * @brief HTTP delete method.
+ * @brief Sets the HTTP request method to DELETE.
+ *
  * @since 20
  */
 #define NET_HTTPMETHOD_DELETE "DELETE"
 
 /**
- * @brief HTTP post method.
+ * @brief Sets the HTTP request method to POST.
  *
  * @since 20
  */
 #define NET_HTTP_METHOD_POST "POST"
 
 /**
- * @brief HTTP put method.
+ * @brief Sets the HTTP request method to PUT.
  *
  * @since 20
  */
 #define NET_HTTP_METHOD_PUT "PUT"
 
 /**
- * @brief HTTP connect method.
+ * @brief Sets the HTTP request method to CONNECT.
  *
  * @since 20
  */
@@ -311,14 +321,14 @@ typedef enum Http_AddressFamilyType {
  * @since 20
  */
 typedef enum Http_HttpProtocol {
-  /** Default choose by curl. */
-  OH_HTTP_NONE = 0,
-  /** HTTP 1.1 version. */
-  OH_HTTP1_1,
-  /** HTTP 2 version. */
-  OH_HTTP2,
-  /** HTTP 3 version. */
-  OH_HTTP3
+    /** Default choose by curl. */
+    OH_HTTP_NONE = 0,
+    /** HTTP 1.1 version. */
+    OH_HTTP1_1,
+    /** HTTP 2 version. */
+    OH_HTTP2,
+    /** HTTP 3 version. */
+    OH_HTTP3
 } Http_HttpProtocol;
 
 /**
@@ -327,62 +337,80 @@ typedef enum Http_HttpProtocol {
  * @since 20
  */
 typedef enum Http_CertType {
-  /** PEM Cert Type. */
-  OH_HTTP_PEM = 0,
-  /** DER Cert Type. */
-  OH_HTTP_DER = 1,
-  /** P12 Cert Type. */
-  OH_HTTP_P12 = 2
+    /** PEM Cert Type. */
+    OH_HTTP_PEM = 0,
+    /** DER Cert Type. */
+    OH_HTTP_DER = 1,
+    /** P12 Cert Type. */
+    OH_HTTP_P12 = 2
 } Http_CertType;
 
 /**
- * @brief Headers of the request or response.
+ * @brief Defines the header of an HTTP request or response.
  *
  * @since 20
  */
 typedef struct Http_Headers Http_Headers;
 
 /**
- * @brief The value type of the header map of the request or response.
+ * @brief Defines the type of a mapped value in a request or response header.
  *
  * @since 20
  */
 typedef struct Http_HeaderValue {
-  /** Value. */
-  char *value;
-  /** Point to the next {@link Http_HeaderValue}. */
-  struct Http_HeaderValue *next;
+    /**
+     * Value of a key-value pair in the header.
+     */
+    char *value;
+    /**
+     * Pointer to Pointer to the next **Http_HeaderValue**.
+     */
+    struct Http_HeaderValue *next;
 } Http_HeaderValue;
 
 /**
- * @brief All key-value pairs of the headers of the request or response.
+ * @brief Defines all key-value pairs in the request or response header.
  *
  * @since 20
  */
 typedef struct Http_HeaderEntry {
-  /** Key. */
-  char *key;
-  /** Value, see {@link Http_HeaderValue}. */
-  Http_HeaderValue *value;
-  /** Points to the next key-value pair {@link Http_HeaderEntry} */
-  struct Http_HeaderEntry *next;
+    /**
+     * Key in the request or response header.
+     */
+    char *key;
+    /**
+     * Value of the key in the request or response header. For details, see {@link Http_HeaderValue}.
+     */
+    Http_HeaderValue *value;
+    /**
+     * Pointer to Pointer to the next **Http_HeaderEntry**.
+     */
+    struct Http_HeaderEntry *next;
 } Http_HeaderEntry;
 
 /**
- * @brief Client certificate which is sent to the remote server, the the remote server will use it to verify the
- * client's identification.
+ * @brief Defines the client certificate sent to a remote server, which will be used by the server to verify the
+ * identity of the client.
  *
  * @since 20
  */
 typedef struct Http_ClientCert {
-  /** A path to a client certificate. */
-  char *certPath;
-  /** Client certificate type, see {@link Http_CertType}. */
-  Http_CertType type;
-  /** File path of your client certificate private key. */
-  char *keyPath;
-  /** Password for your client certificate private key. */
-  char *keyPassword;
+    /**
+     * Path of the certificate file.
+     */
+    char *certPath;
+    /**
+     * Certificate type. The default value is **PEM**. For details, see {@link Http_CertType}.
+     */
+    Http_CertType type;
+    /**
+     * Path of the certificate key file.
+     */
+    char *keyPath;
+    /**
+     * Password of the certificate key file.
+     */
+    char *keyPassword;
 } Http_ClientCert;
 
 /**
@@ -391,134 +419,195 @@ typedef struct Http_ClientCert {
  * @since 20
  */
 typedef enum Http_ProxyType {
-  /** No proxy */
-  HTTP_PROXY_NOT_USE,
-  /** System proxy */
-  HTTP_PROXY_SYSTEM,
-  /** Use custom proxy */
-  HTTP_PROXY_CUSTOM
+    /** No proxy */
+    HTTP_PROXY_NOT_USE,
+    /** System proxy */
+    HTTP_PROXY_SYSTEM,
+    /** Use custom proxy */
+    HTTP_PROXY_CUSTOM
 } Http_ProxyType;
 
 /**
- * @brief Custom proxy configuration.
+ * @brief Defines the custom proxy configuration.
  *
  * @since 20
  */
 typedef struct Http_CustomProxy {
-  /** Indicates the URL of the proxy server. If you do not set port explicitly, port will be 1080. */
-  const char *host;
-  int32_t port;
-  const char *exclusionLists;
+    /**
+     * Host name of the proxy server. If no port is explicitly set, the port number is defaulted to **1080**.
+     */
+    const char *host;
+    int32_t port;
+    const char *exclusionLists;
 } Http_CustomProxy;
 
 /**
- * @brief Proxy configuration.
+ * @brief Defines the proxy configuration structure.
  *
  * @since 20
  */
 typedef struct Http_Proxy {
-  /** Distinguish the proxy type used by the request, see {@link Http_ProxyType}. */
-  Http_ProxyType proxyType;
-  /** Custom proxy configuration, see {@link Http_CustomProxy}. */
-  Http_CustomProxy customProxy;
+    /**
+     * Proxy configuration type. For details, see {@link Http_ProxyType}.
+     */
+    Http_ProxyType proxyType;
+    /**
+     * Custom proxy configuration. For details, see {@link Http_CustomProxy}.
+     */
+    Http_CustomProxy customProxy;
 } Http_Proxy;
 
 /**
- * @brief Response timing information. It will be collected in {@link Http_Response.performanceTiming}.
+ * @brief Defines the HTTP response timing information, which will be collected via {@link Http_Response}.
  *
  * @since 20
  */
 typedef struct Http_PerformanceTiming {
-  /** The total time in milliseconds for the HTTP transfer, including name resolving, TCP connect etc. */
-  double dnsTiming;
-  /** The time in milliseconds from the start until the remote host name was resolved. */
-  double tcpTiming;
-  /** The time in milliseconds from the start until the connection to the remote host (or proxy) was completed. */
-  double tlsTiming;
-  /** The time in milliseconds, it took from the start until the transfer is just about to begin. */
-  double firstSendTiming;
-  /** The time in milliseconds from last modification time of the remote file. */
-  double firstReceiveTiming;
-  /** The time in milliseconds, it took from the start until the first byte is received. */
-  double totalFinishTiming;
-  /** The time in milliseconds it took for all redirection steps including name lookup, connect, etc.*/
-  double redirectTiming;
+    /**
+     * Duration from the time when the request is initiated to the time when the DNS resolution is complete.
+     */
+    double dnsTiming;
+    /**
+     * Duration from the time when the request is initiated to the time when the TCP connection is complete.
+     */
+    double tcpTiming;
+    /**
+     * Duration from the time when the request is initiated to the time when the TLS connection is complete.
+     */
+    double tlsTiming;
+    /**
+     * Duration from the time when the request is initiated to the time when the first byte is sent.
+     */
+    double firstSendTiming;
+    /**
+     * Duration from the time when the request is initiated to the time when the first byte is received.
+     */
+    double firstReceiveTiming;
+    /**
+     * Duration from the time when the request is initiated to the time when the request is complete.
+     */
+    double totalFinishTiming;
+    /**
+     * Duration from the time when the request is initiated to the time when all redirection steps are complete.
+     */
+    double redirectTiming;
 } Http_PerformanceTiming;
 
 /**
- * @brief Defines the parameters for http request options.
+ * @brief Defines the structure of HTTP requests.
  *
  * @since 20
  */
 typedef struct Http_RequestOptions {
-  /** Request method. */
-  const char *method;
-  /** Priority of http requests. A larger value indicates a higher priority. */
-  uint32_t priority;
-  /** Header of http requests, see {@link Http_Headers}. */
-  Http_Headers *headers;
-  /** Read timeout interval. */
-  uint32_t readTimeout;
-  /** Connection timeout interval. */
-  uint32_t connectTimeout;
-  /** Use the protocol. The default value is automatically specified by the system, see {@link Http_HttpProtocol}. */
-  Http_HttpProtocol httpProtocol;
-  /**
-   * Indicates whether to use the HTTP proxy. The default value is false,
-   * and http proxy config, see {@link Http_Proxy}.
-   */
-  Http_Proxy *httpProxy;
-  /** CA certificate of the user-specified path. */
-  const char *caPath;
-  /** Set the download start position. This parameter can be used only in the GET method. */
-  int64_t resumeFrom;
-  /** Set the download end position. This parameter can be used only in the GET method. */
-  int64_t resumeTo;
-  /** Client certificates can be transferred, see {@link Http_ClientCert}. */
-  Http_ClientCert *clientCert;
-  /** Set the DNS resolution for the https server. */
-  const char *dnsOverHttps;
-  /** The address family can be specified when target domain name is resolved, see {@link Http_AddressFamilyType}. */
-  Http_AddressFamilyType addressFamily;
+    /**
+     * HTTP request method.
+     */
+    const char *method;
+    /**
+     * HTTP request priority.
+     */
+    uint32_t priority;
+    /**
+     * Pointer to the HTTP request header. For details, see {@link Http_Headers}.
+     */
+    Http_Headers *headers;
+    /**
+     * Read timeout duration.
+     */
+    uint32_t readTimeout;
+    /**
+     * Connection timeout duration.
+     */
+    uint32_t connectTimeout;
+    /**
+     * HTTP protocol. For details, see {@link Http_HttpProtocol}.
+     */
+    Http_HttpProtocol httpProtocol;
+    /**
+     * Pointer to the HTTP proxy configuration, which indicates whether to use a proxy. By default, proxy is not used.
+     * For details, see {@link Http_Proxy}.
+     */
+    Http_Proxy *httpProxy;
+    /**
+     * Certificate path. If the CA certificate path is set, the system uses the CA certificate in the specified path.
+     * Otherwise, the system uses the preset CA certificate.
+     */
+    const char *caPath;
+    /**
+     * Download start position. This field can be used only for the GET method.
+     */
+    int64_t resumeFrom;
+    /**
+     * Download end position. This field can be used only for the GET method.
+     */
+    int64_t resumeTo;
+    /**
+     * Pointer to the client certificate configuration. For details, see {@link Http_ClientCert}.
+     */
+    Http_ClientCert *clientCert;
+    /**
+     * HTTPS server for DNS resolution.
+     */
+    const char *dnsOverHttps;
+    /**
+     * IP address family. For details, see {@link Http_AddressFamilyType}.
+     */
+    Http_AddressFamilyType addressFamily;
 } Http_RequestOptions;
 
 /**
- * @brief Defines the parameters for http response.
+ * @brief Defines the structure of HTTP responses.
  *
  * @since 20
  */
 typedef struct Http_Response {
-  /** Response body, see {@link Http_Buffer}. */
-  Http_Buffer body;
-  /** Server status code, see {@link Http_ResponseCode}. */
-  Http_ResponseCode responseCode;
-  /** Header of http response, see {@link Http_Headers}. */
-  Http_Headers *headers;
-  /** Cookies returned by the server. */
-  char *cookies;
-  /** The time taken of various stages of HTTP request, see {@link Http_PerformanceTiming}. */
-  Http_PerformanceTiming *performanceTiming;
-  /**
-   * @brief Response deletion function.
-   *
-   * @param response Indicates the response to be deleted. It is a pointer that points to {@link Http_Response}.
-   * @since 20
-   */
-  void (*destroyResponse)(struct Http_Response **response);
+    /**
+     * HTTP response data. For details, see {@link Http_Buffer}.
+     */
+    Http_Buffer body;
+    /**
+     * HTTP response code. For details, see {@link Http_ResponseCode}.
+     */
+    Http_ResponseCode responseCode;
+    /**
+     * Pointer to the HTTP response header. For details, see {@link Http_Headers}.
+     */
+    Http_Headers *headers;
+    /**
+     * Pointer to the HTTP response cookies.
+     */
+    char *cookies;
+    /**
+     * Pointer to the HTTP response timing. For details, see {@link Http_PerformanceTiming}.
+     */
+    Http_PerformanceTiming *performanceTiming;
+    /**
+     * @brief Callback function for destroying an HTTP response.
+     *
+     * @param response Pointer to the HTTP response to be destroyed. For details, see {@link Http_Response}.
+     * @since 20
+     */
+    void (*destroyResponse)(struct Http_Response **response);
 } Http_Response;
 
 /**
- * @brief Http request.
+ * @brief Defines an HTTP request.
  *
  * @since 20
  */
 typedef struct Http_Request {
-  /** The request id for every single request. Generated by system. */
-  uint32_t requestId;
-  /** Request url. */
-  char *url;
-  /** Request options, see {@link Http_RequestOptions}. */
-  Http_RequestOptions *options;
+    /**
+     * ID of an HTTP request.
+     */
+    uint32_t requestId;
+    /**
+     * Pointer to the HTTP request URL.
+     */
+    char *url;
+    /**
+     * Pointer to the HTTP request configuration. For details, see {@link Http_RequestOptions}.
+     */
+    Http_RequestOptions *options;
 } Http_Request;
 
 /**
@@ -564,24 +653,37 @@ typedef void (*Http_OnHeaderReceiveCallback)(Http_Headers *headers);
 typedef void (*Http_OnVoidCallback)(void);
 
 /**
- * @brief Callbacks to watch different events.
+ * @brief Defines the callback for various HTTP events.
  *
  * @since 20
  */
 typedef struct Http_EventsHandler {
-  /** Callback function when the response body is received */
-  Http_OnDataReceiveCallback onDataReceive;
-  /** Callback function during uploading */
-  Http_OnProgressCallback onUploadProgress;
-  /** Callback function during downloading */
-  Http_OnProgressCallback onDownloadProgress;
-  /** Callback function when a header is received */
-  Http_OnHeaderReceiveCallback onHeadersReceive;
-  /** Callback function at the end of the transfer */
-  Http_OnVoidCallback onDataEnd;
-  /** Callback function when a request is canceled */
-  Http_OnVoidCallback onCanceled;
+    /**
+     * Callback invoked when a response body is received. For details, see {@link Http_OnDataReceiveCallback}.
+     */
+    Http_OnDataReceiveCallback onDataReceive;
+    /**
+     * Callback invoked when an upload is triggered. For details, see {@link Http_OnProgressCallback}.
+     */
+    Http_OnProgressCallback onUploadProgress;
+    /**
+     * Callback invoked when a download is triggered. For details, see {@link Http_OnProgressCallback}.
+     */
+    Http_OnProgressCallback onDownloadProgress;
+    /**
+     * Callback invoked when a header is received. For details, see {@link Http_OnHeaderReceiveCallback}.
+     */
+    Http_OnHeaderReceiveCallback onHeadersReceive;
+    /**
+     * Callback invoked when the transmission is complete. For details, see {@link Http_OnVoidCallback}.
+     */
+    Http_OnVoidCallback onDataEnd;
+    /**
+     * Callback invoked when the request is canceled. For details, see {@link Http_OnVoidCallback}.
+     */
+    Http_OnVoidCallback onCanceled;
 } Http_EventsHandler;
+
 #ifdef __cplusplus
 }
 #endif

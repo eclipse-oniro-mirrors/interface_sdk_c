@@ -39,6 +39,7 @@
 #define NDK_INCLUDE_NATIVE_FENCE_H_
 
 #include <stdint.h>
+#include <stdbool.h>
 
 #ifdef __cplusplus
 extern "C" {

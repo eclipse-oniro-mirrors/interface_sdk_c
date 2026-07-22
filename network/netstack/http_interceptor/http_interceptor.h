@@ -24,7 +24,8 @@
 
 /**
  * @file http_interceptor.h
- * @brief Defines the APIs for http global interceptor.
+ * @brief Defines the APIs of the HTTP global interceptor module. With interceptors, you can monitor HTTP mobile data
+ * and implement the logging feature.
  *
  * @library libhttp_interceptor.so
  * @kit NetworkKit
@@ -42,11 +43,11 @@ extern "C" {
 #endif
 
 /**
- * @brief add a read-only http global interceptor for HTTP requests.
+ * @brief Adds a global read-only HTTP interceptor.
  *
  * @param interceptor Http global interceptor configuration, Pointer to {@link OH_Http_Interceptor}.
  * @return {@link OH_HTTP_RESULT_OK} 0 -if the operation is successful.
- *         {@link OH_HTTP_PERMISSION_DENIED} 201 -if permission is denied.
+ *     {@link OH_HTTP_PERMISSION_DENIED} 201 -if permission is denied.
  * @permission ohos.permission.INTERNET
  * @note The interceptor remains active until it is explicitly removed by the developer.
  *     you must call {@link OH_Http_RemoveInterceptor} to release a specific interceptor
@@ -70,22 +71,22 @@ int32_t OH_Http_AddReadOnlyInterceptor(struct OH_Http_Interceptor *interceptor);
 int32_t OH_Http_AddWritableInterceptor(struct OH_Http_Interceptor *interceptor);
 
 /**
- * @brief delete a specific http global interceptor
+ * @brief Removes a specified global HTTP interceptor.
  *
  * @param interceptor Http global interceptor configuration, Pointer to {@link OH_Http_Interceptor}.
  * @return {@link OH_HTTP_RESULT_OK} 0 -if the operation is successful.
- *         {@link OH_HTTP_PERMISSION_DENIED} 201 -if permission is denied.
+ *     {@link OH_HTTP_PERMISSION_DENIED} 201 -if permission is denied.
  * @permission ohos.permission.INTERNET
  * @since 24
  */
 int32_t OH_Http_RemoveInterceptor(struct OH_Http_Interceptor *interceptor);
 
 /**
- * @brief Deletes all HTTP interceptors matching the specified group ID.
+ * @brief Removes all HTTP interceptors of a specified group ID.
  *
  * @param groupId http global interceptor group id
  * @return {@link OH_HTTP_RESULT_OK} 0 -if the operation is successful.
- *         {@link OH_HTTP_PERMISSION_DENIED} 201 -if permission is denied.
+ *     {@link OH_HTTP_PERMISSION_DENIED} 201 -if permission is denied.
  * @permission ohos.permission.INTERNET
  * @note The groupId is allocated and managed by the application itself when creating
  *     interceptors. If multiple modules within the application need to use interceptors,
@@ -97,22 +98,22 @@ int32_t OH_Http_RemoveInterceptor(struct OH_Http_Interceptor *interceptor);
 int32_t OH_Http_RemoveAllInterceptors(int32_t groupId);
 
 /**
- * @brief start all http global interceptors by groupId
+ * @brief Enables all HTTP interceptors of a specified group ID.
  *
  * @param groupId http global interceptor group id
  * @return {@link OH_HTTP_RESULT_OK} 0 -if the operation is successful.
- *         {@link OH_HTTP_PERMISSION_DENIED} 201 -if permission is denied.
+ *     {@link OH_HTTP_PERMISSION_DENIED} 201 -if permission is denied.
  * @permission ohos.permission.INTERNET
  * @since 24
  */
 int32_t OH_Http_StartAllInterceptors(int32_t groupId);
 
 /**
- * @brief stop all http global interceptors by groupId
+ * @brief Disables all HTTP interceptors of a specified group ID.
  *
  * @param groupId http global interceptor group id
  * @return {@link OH_HTTP_RESULT_OK} 0 -if the operation is successful.
- *         {@link OH_HTTP_PERMISSION_DENIED} 201 -if permission is denied.
+ *     {@link OH_HTTP_PERMISSION_DENIED} 201 -if permission is denied.
  * @permission ohos.permission.INTERNET
  * @since 24
  */

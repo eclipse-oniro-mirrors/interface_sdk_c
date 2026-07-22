@@ -40,6 +40,7 @@
 #define NDK_INCLUDE_NATIVE_BUFFER_H_
 
 #include <stdint.h>
+#include <stdbool.h>
 #include <native_window/external_window.h>
 #include <native_buffer/buffer_common.h>
 
