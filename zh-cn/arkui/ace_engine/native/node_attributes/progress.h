@@ -44,7 +44,7 @@ extern "C" {
 #endif
 
 /**
- * @brief Set the linear progress indicator style.
+ * @brief 定义线性进度条的样式选项，适用于需要自定义线性进度条显示样式的场景。
  *
  * @since 15
  */
@@ -77,7 +77,10 @@ void OH_ArkUI_ProgressLinearStyleOption_Destroy(ArkUI_ProgressLinearStyleOption*
  * @brief 设置扫光效果的开关。
  *
  * @param option 线性进度条样式信息。
- * @param enabled 扫光效果的开关。true：表示开启扫光效果。false：表示关闭扫光效果。默认值：false。
+ * @param enabled 扫光效果的开关。 \n
+ *     true：表示开启扫光效果。 \n
+ *     false：表示关闭扫光效果。 \n
+ *     默认值：false。
  * @since 15
  */
 void OH_ArkUI_ProgressLinearStyleOption_SetScanEffectEnabled(ArkUI_ProgressLinearStyleOption* option, bool enabled);
@@ -85,8 +88,10 @@ void OH_ArkUI_ProgressLinearStyleOption_SetScanEffectEnabled(ArkUI_ProgressLinea
  * @brief 设置进度平滑动效的开关。
  *
  * @param option 线性进度条样式信息。
- * @param enabled 进度平滑动效的开关。开启平滑动效后设置进度，进度会从当前值渐变至设定值，否则进度从当前值突变至设定值。
- * true：表示开启进度平滑动效。false：表示关闭进度平滑动效。默认值：true。
+ * @param enabled 进度平滑动效的开关。开启平滑动效后设置进度，进度会从当前值渐变至设定值，否则进度从当前值突变至设定值。 \n
+ *     true：表示开启进度平滑动效。 \n
+ *     false：表示关闭进度平滑动效。 \n
+ *     默认值：true。
  * @since 15
  */
 void OH_ArkUI_ProgressLinearStyleOption_SetSmoothEffectEnabled(ArkUI_ProgressLinearStyleOption* option, bool enabled);
@@ -142,8 +147,8 @@ float OH_ArkUI_ProgressLinearStyleOption_GetStrokeRadius(ArkUI_ProgressLinearSty
 /**
  * @brief 创建线性进度条样式信息。
  *
- * @return ProgressLinearStyleOption实例。
- * 如果返回空指针，可能是因为内存不足。
+ * @return ProgressLinearStyleOption实例。 \n
+ *         如果返回空指针，可能是因为内存不足。
  * @since 15
  */
 ArkUI_ProgressLinearStyleOption* OH_ArkUI_ProgressLinearStyleOption_Create(void);

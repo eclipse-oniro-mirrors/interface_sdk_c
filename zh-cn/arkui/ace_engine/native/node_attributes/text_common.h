@@ -44,19 +44,19 @@ extern "C" {
 #endif
 
 /**
- * @brief Define the data objects of styled string supported by text components.
+ * @brief 定义文本组件支持的属性字符串的数据对象，支持对文本内容进行样式设置与管理，适用于需要富文本展示、样式定制等场景。
  *
  * @since 14
  */
 typedef struct ArkUI_StyledString_Descriptor ArkUI_StyledString_Descriptor;
 /**
- * @brief 定义textField的计数器配置。
+ * @brief 定义文本输入框的计数器配置，用于管理字符计数。适用于需要对用户输入进行字符数限制与实时提示的场景，帮助用户了解输入进度，防止超出字符限制。
  *
  * @since 22
  */
 typedef struct ArkUI_ShowCounterConfig ArkUI_ShowCounterConfig;
 /**
- * @brief 定义文本内容基础控制器。
+ * @brief 定义文本内容基础控制器，为文本类组件提供内容控制能力，支持文本内容的获取、设置和更新等操作，适用于需要对文本组件进行动态内容管理和实时控制的场景，可帮助开发者更灵活地管理文本显示内容。
  *
  * @since 23
  */
@@ -113,7 +113,7 @@ typedef enum {
     ARKUI_TEXT_CONTENT_ALIGN_BOTTOM = 2
 } ArkUI_TextContentAlign;
 /**
- * @brief 定义文本方向枚举值。
+ * @brief 定义文本排版方向枚举值。
  *
  * @since 23
  */
@@ -125,8 +125,8 @@ typedef enum {
     /** 文本排版方向遵循组件布局。 */
     ARKUI_TEXT_DIRECTION_DEFAULT = 2,
     /** 遵循自身实际文本内容的排版方向，如果文本为
-RTL（Right-to-Left）类语言（如藏文、维吾尔文），文本排版方向为从右到左。如果为
-LTR（Left-to-Right）类语言（如中文、英文），文本排版方向为从左到右。 */
+     RTL（Right-to-Left）类语言（如藏文、维吾尔文），文本排版方向为从右到左。如果为
+     LTR（Left-to-Right）类语言（如中文、英文），文本排版方向为从左到右。 */
     ARKUI_TEXT_DIRECTION_AUTO = 3
 } ArkUI_TextDirection;
 /**
@@ -236,7 +236,7 @@ typedef enum {
     /** 对于Non-CJK的文本，可在任意2个字符间断行。CJK(中文、日文、韩文)文本可以在任意2个字符间断行。 */
     ARKUI_WORD_BREAK_BREAK_ALL,
     /** 对于Non-CJK的文本可在任意2个字符间断行，一行文本中有断行破发点（如空白符）时，优先按破发点换行。
-对于CJK的文本，换行效果与NORMAL效果保持一致。 */
+        对于CJK的文本，换行效果与NORMAL效果保持一致。 */
     ARKUI_WORD_BREAK_BREAK_WORD,
     /**
      * @brief 对于Non-CJK的文本，可以按照音节断行。对于CJK的文本，换行效果与NORMAL效果保持一致。
@@ -275,33 +275,29 @@ typedef enum {
 typedef enum {
     /**
      * 默认模式，不使用沉浸式样式。
-     * @since 15
      */
     ARKUI_KEYBOARD_APPEARANCE_NONE_IMMERSIVE = 0,
     /**
      * 沉浸式模式，由系统决定采用的样式。
-     * @since 15
      */
     ARKUI_KEYBOARD_APPEARANCE_IMMERSIVE = 1,
     /**
      * 浅色沉浸式样式。
-     * @since 15
      */
     ARKUI_KEYBOARD_APPEARANCE_LIGHT_IMMERSIVE = 2,
     /**
      * 深色沉浸式样式。
-     * @since 15
      */
     ARKUI_KEYBOARD_APPEARANCE_DARK_IMMERSIVE = 3
 } ArkUI_KeyboardAppearance;
 /**
- * @brief 为菜单定义文本菜单项.
+ * @brief 定义文本菜单项结构体，用于在文本选择菜单中表示单个菜单项，支持设置菜单项的标题、图标、启用状态等属性，适用于开发者需要自定义文本选择菜单内容、扩展菜单项功能的场景，帮助开发者灵活定制文本选择菜单，提升用户交互体验。
  *
  * @since 22
  */
 typedef struct ArkUI_TextMenuItem ArkUI_TextMenuItem;
 /**
- * @brief 定义菜单数组结构体
+ * @brief 定义文本菜单项数组结构体，用于在文本选择菜单或上下文菜单场景中承载多个文本菜单项数据。
  *
  * @since 22
  */
@@ -362,12 +358,14 @@ typedef enum {
 
     /**
      * 自动填充。例如自动填充账号密码。
+     *
      * @since 24
      */
     ARKUI_TEXT_MENU_ITEM_ID_AUTO_FILL = 16,
 
     /**
      * 密码保险箱。
+     *
      * @since 24
      */
     ARKUI_TEXT_MENU_ITEM_ID_PASSWORD_VAULT = 17,
@@ -379,18 +377,17 @@ typedef enum {
     ARKUI_TEXT_MENU_ITEM_ID_APP_RESERVED_END = 20000
 } ArkUI_TextMenuItemId;
 /**
- * @brief 文本默认菜单配置项结构体定义
+ * @brief 定义可编辑文本菜单扩展项结构体类型，用于扩展文本编辑菜单的功能，适用于开发者需要自定义文本编辑菜单操作的场景。
  *
  * @since 22
  */
 typedef struct ArkUI_TextEditMenuOptions ArkUI_TextEditMenuOptions;
 /**
- * 菜单创建回调函数
+ * @brief 文本菜单创建事件回调函数，在文本菜单创建时会触发此回调函数，开发者可在此函数中设置菜单数据。
  *
- * @param items 框架创建并释放数组，在回调函数中开发者可以调用{@link OH_ArkUI_TextMenuItemArray_Insert},
- * {@link OH_ArkUI_TextMenuItemArray_Erase}进行数组修改。
- * 开发者不能释放数组，统一由框架管理
- * @param userData 自定义数据
+ * @param items 指向ArkUI_TextMenuItemArray对象的指针，该数组对象由系统内部创建并释放，
+                在回调函数中开发者可以调用{@link OH_ArkUI_TextMenuItemArray_Insert}，{@link OH_ArkUI_TextMenuItemArray_Erase}进行数组修改。
+ * @param userData 用户自定义数据。
  * @since 22
  */
 typedef void (*ArkUI_TextCreateMenuCallback)(
@@ -398,12 +395,11 @@ typedef void (*ArkUI_TextCreateMenuCallback)(
     void*                       userData
 );
 /**
- * 文本菜单准备接口
+ * @brief 文本菜单准备事件回调函数，当文本选择区域变化后显示菜单之前会触发此回调函数，开发者可在此函数中配置菜单数据。
  *
- * @param items 框架创建并释放数组，在回调函数中开发者可以调用{@link OH_ArkUI_TextMenuItemArray_Insert},
- * {@link OH_ArkUI_TextMenuItemArray_Erase}进行数组修改。
- * 开发者不能释放数组，统一由框架管理
- * @param userData 自定义数据
+ * @param items 指向ArkUI_TextMenuItemArray对象的指针，该数组对象由系统内部创建并释放，
+                在回调函数中开发者可以调用{@link OH_ArkUI_TextMenuItemArray_Insert}，{@link OH_ArkUI_TextMenuItemArray_Erase}进行数组修改。
+ * @param userData 用户自定义数据。
  * @since 22
  */
 typedef void (*ArkUI_TextPrepareMenuCallback)(
@@ -411,13 +407,15 @@ typedef void (*ArkUI_TextPrepareMenuCallback)(
     void*                       userData
 );
 /**
- * 注册文本菜单点击回调函数
+ * @brief 文本菜单项点击事件回调函数，在菜单项被点击时触发此回调函数，开发者可在此函数中对系统默认处理行为进行拦截。
  *
- * @param item 点击的菜单项
- * @param start 选中文本起始位置
- * @param end 选中文本结束位置
- * @param userData 自定义数据
- * @return 返回true表示已消费，false表示事件未消费
+ * @param item 指向ArkUI_TextMenuItem对象的指针，表示被点击的文本菜单项。
+ * @param start 选中文本起始索引。
+ * @param end 选中文本结束索引。
+ * @param userData 用户自定义数据。
+ * @return 是否拦截系统默认处理行为。
+ *         true：拦截系统默认处理行为，如点击"粘贴"、"复制"等文本菜单项时不再执行系统默认处理行为，仅执行开发者自定义处理行为。
+ *         false：不拦截系统默认处理行为，如点击"粘贴"、"复制"等文本菜单项时先执行开发者自定义处理行为，再执行系统默认处理行为。
  * @since 22
  */
 typedef bool (*ArkUI_TextMenuItemClickCallback)(
@@ -427,7 +425,7 @@ typedef bool (*ArkUI_TextMenuItemClickCallback)(
     void*                        userData
 );
 /**
- * @brief 定义文本自定义选择菜单结构体
+ * @brief 定义自定义文本选择菜单的选项配置，支持菜单内容、样式和行为等自定义配置，适用于需要定制文本选择菜单交互的场景。
  *
  * @since 22
  */
@@ -447,18 +445,21 @@ typedef enum {
     /**
      * 贪婪模式。
      * 使每一行尽可能显示多的字符，直到这一行不能显示更多字符时进行折行。
+     *
      * @since 24
      */
     OH_ARKUI_LINE_BREAK_STRATEGY_GREEDY = 0,
     /**
      * 高质量模式。
      * 在平衡模式的基础上，尽可能填满行，同时最后一行的权重较低，可能出现最后一行留白较多的情形。
+     *
      * @since 24
      */
     OH_ARKUI_LINE_BREAK_STRATEGY_HIGH_QUALITY = 1,
     /**
      * 平衡模式。
      * 在不拆词的情况下，尽量使一个段落中每一行的宽度相同。
+     *
      * @since 24
      */
     OH_ARKUI_LINE_BREAK_STRATEGY_BALANCE = 2
@@ -611,16 +612,15 @@ ArkUI_TextContentBaseController* OH_ArkUI_TextContentBaseController_Create();
 /**
  * @brief 销毁文本内容基础控制器对象。
  *
- * @param {ArkUI_TextContentBaseController*} controller Pointer to the controller object to be disposed.
+ * @param {ArkUI_TextContentBaseController*} controller 待销毁的控制器对象指针。
  * @since 23
  */
 void OH_ArkUI_TextContentBaseController_Dispose(ArkUI_TextContentBaseController* controller);
 
 /**
- * @brief 在编辑态时删除光标前字符。
- * 其他状态删除输入框组件的最后一个字符。
+ * @brief 在编辑态时删除光标前字符。其他状态删除输入框组件的最后一个字符。
  *
- * @param {ArkUI_TextContentBaseController*} controller Pointer to the configuration object to be modified.
+ * @param {ArkUI_TextContentBaseController*} controller 待修改的配置对象指针。
  * @since 23
  */
 void OH_ArkUI_TextContentBaseController_DeleteBackward(ArkUI_TextContentBaseController* controller);
@@ -628,17 +628,18 @@ void OH_ArkUI_TextContentBaseController_DeleteBackward(ArkUI_TextContentBaseCont
 /**
  * @brief 将起始索引与结束索引传递给与其绑定的输入框组件，并将此范围内的文字滚动到可视区域。
  *
- * @param {ArkUI_TextContentBaseController*} controller Pointer to the
- * configuration object to be modified.
- * @param {int32_t} start The start offset of the content to be made visible.
- * @param {int32_t} end The end offset of the content to be made visible
+ * @param {ArkUI_TextContentBaseController*} controller 待修改的配置对象指针。
+ *     通过此controller将起始索引与结束索引传递给与其绑定的输入框组件并进行滚动操作。
+ * @param {int32_t} start 起始文字索引值。
+ *     起始索引应小于等于结束索引，否则接口调用无效。取值范围[0, 输入框文本总长度]，起始索引小于0视为0，大于总长度视为总长度。
+ * @param {int32_t} end 结束文字索引值。
+ *     结束索引应大于等于起始索引，否则接口调用无效。取值范围[0, 输入框文本总长度]，结束索引小于0视为0，大于总长度视为总长度。
  * @since 23
  */
 void OH_ArkUI_TextContentBaseController_ScrollToVisible(
     ArkUI_TextContentBaseController *controller, int32_t start, int32_t end);
 /**
- * @brief 创建一个装饰线样式对象。
- * 当该对象不再使用时，请调用{@link OH_ArkUI_DecorationStyleOptions_Destroy}销毁。
+ * @brief 创建一个装饰线样式对象。当该对象不再使用时，请调用{@link OH_ArkUI_DecorationStyleOptions_Destroy}销毁。
  *
  * @return 指向{@link OH_ArkUI_DecorationStyleOptions}对象的指针。
  * @since 24

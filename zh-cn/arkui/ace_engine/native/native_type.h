@@ -373,7 +373,8 @@ typedef struct ArkUI_PixelRoundPolicy ArkUI_PixelRoundPolicy;
 typedef struct ArkUI_Matrix4 ArkUI_Matrix4;
 
 /**
- * @brief Defines the selected drag preview style configuration.
+ * @brief 定义选中状态下文本拖拽预览样式，适用于需要在文本拖拽过程中展示选中状态预览效果的场景，可提升用户的拖拽交互体验。
+ *
  * @since 23
  */
 typedef struct ArkUI_SelectedDragPreviewStyle ArkUI_SelectedDragPreviewStyle;
@@ -2508,8 +2509,8 @@ typedef struct ArkUI_TextPickerRangeContentArray ArkUI_TextPickerRangeContentArr
    */
 typedef struct ArkUI_TextCascadePickerRangeContentArray ArkUI_TextCascadePickerRangeContentArray;
 
- /**
-   * @brief Defines the options for selection operation.
+/**
+   * @brief 定义ArkUI中选择操作的配置选项，适用于应用内需要进行选择交互的场景，为开发者提供选择行为的定制能力。
    *
    * @since 23
    */
@@ -5635,18 +5636,18 @@ ArkUI_SelectedDragPreviewStyle* OH_ArkUI_SelectedDragPreviewStyle_Create();
 void OH_ArkUI_SelectedDragPreviewStyle_Dispose(ArkUI_SelectedDragPreviewStyle* config);
 
 /**
- * @brief Sets the color of background for selected drag preview style.
- * @param config Pointer to the configuration object to be modified.
- * @param color Background color.
+ * @brief 设置选中态拖拽文本预览样式的背景色。
+ * @param config 指向{@link ArkUI_SelectedDragPreviewStyle}对象的指针。
+ * @param color 选中态拖拽文本预览样式的背景，格式为RGBA。
  * @since 23
  */
 void OH_ArkUI_SelectedDragPreviewStyle_SetColor(
     ArkUI_SelectedDragPreviewStyle* config, uint32_t color);
 
 /**
- * @brief Gets the color of background for selected drag preview style.
- * @param config Pointer to the configuration object.
- * @return Returns the background color.
+ * @brief 获取选中态拖拽文本预览样式的背景色。
+ * @param config 指向{@link ArkUI_SelectedDragPreviewStyle}对象的指针。
+ * @return 选中态拖拽文本预览样式的背景，格式为RGBA。
  * @since 23
  */
 uint32_t OH_ArkUI_SelectedDragPreviewStyle_GetColor(
@@ -7887,14 +7888,14 @@ void OH_ArkUI_CrossLanguageOption_SetTreeOperatingStatus(ArkUI_CrossLanguageOpti
 OH_ArkUI_CrossLanguageOperatingStatus OH_ArkUI_CrossLanguageOption_GetTreeOperatingStatus(ArkUI_CrossLanguageOption* option);
 
 /**
- * @brief Defines linear gradient options.
+ * @brief 定义线性渐变效果选项，用于描述UI组件的线性颜色渐变配置，支持设置渐变方向、角度和颜色配置，帮助开发者实现灵活的线性渐变效果，提升UI视觉呈现能力，适用于需要为组件应用线性渐变样式的场景。
  *
  * @since 26.0.0
  */
 typedef struct OH_ArkUI_LinearGradientOptions OH_ArkUI_LinearGradientOptions;
 
 /**
- * @brief Defines radial gradient options.
+ * @brief 定义径向渐变选项，适用于UI组件中实现径向渐变效果的场景，可帮助开发者丰富界面的视觉层次。
  *
  * @since 26.0.0
  */
