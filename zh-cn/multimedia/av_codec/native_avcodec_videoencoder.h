@@ -19,7 +19,6 @@
  *
  * @brief VideoEncoder模块提供用于视频编码的接口。
  *
- * @syscap SystemCapability.Multimedia.Media.VideoEncoder
  * @since 9
  */
 
