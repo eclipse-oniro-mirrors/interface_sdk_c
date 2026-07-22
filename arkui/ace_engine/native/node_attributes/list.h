@@ -23,7 +23,7 @@
  */
 
 /**
- * @file node_list.h
+ * @file list.h
  *
  * @brief Provides shared list-related type and function definitions for <b>NativeNode</b> APIs.
  *
