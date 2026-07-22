@@ -675,6 +675,7 @@ typedef enum {
      * Format of the return value {@link ArkUI_AttributeItem}:\n
      * .value[0...15].f32: 16 floating-point numbers. \n
      *
+     * @ingroup Visual
      */
     NODE_TRANSFORM,
     /**
@@ -2093,6 +2094,7 @@ typedef enum {
      * .value[2].f32: z-axis rotation angle. The default value is <b>0</b>. \n
      * .value[3].f32: perspective distance from the viewpoint to the z=0 plane, in px. The default value is <b>0</b>. \n
      *
+     * @ingroup Visual
      * @since 20
      */
     NODE_ROTATE_ANGLE = 104,
