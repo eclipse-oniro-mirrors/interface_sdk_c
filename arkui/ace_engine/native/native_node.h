@@ -75,10 +75,7 @@ typedef enum {
     ARKUI_NODE_IMAGE_SPAN = 3,
     /** Image. */
     ARKUI_NODE_IMAGE = 4,
-    /** 
-     * @ingroup Toggle Attributes
-     * Toggle. 
-     */
+    /** Toggle. */
     ARKUI_NODE_TOGGLE = 5,
     /** Loading icon. */
     ARKUI_NODE_LOADING_PROGRESS = 6,
@@ -86,17 +83,11 @@ typedef enum {
     ARKUI_NODE_TEXT_INPUT = 7,
     /** Multi-line text input. */
     ARKUI_NODE_TEXT_AREA = 8,
-    /**
-     * @ingroup Button Attributes
-     * Button. 
-     */
+    /** Button. */
     ARKUI_NODE_BUTTON = 9,
     /** Progress indicator. */
     ARKUI_NODE_PROGRESS = 10,
-    /** 
-     * @ingroup Checkbox Attributes
-     * Check box. 
-     */
+    /** Check box. */
     ARKUI_NODE_CHECKBOX = 11,
     /** XComponent. */
     ARKUI_NODE_XCOMPONENT = 12,
@@ -110,10 +101,7 @@ typedef enum {
     ARKUI_NODE_CALENDAR_PICKER = 16,
     /** Slider. */
     ARKUI_NODE_SLIDER = 17,
-    /** 
-     * @ingroup Radio Attributes
-     * Radio 
-     */
+    /** Radio */
     ARKUI_NODE_RADIO = 18,
     /** Image animator. */
     ARKUI_NODE_IMAGE_ANIMATOR = 19,
@@ -121,9 +109,7 @@ typedef enum {
      *  @since 18
      */
     ARKUI_NODE_XCOMPONENT_TEXTURE,
-    /**
-     * @ingroup CheckboxGroup Attributes
-     * Check box group.
+    /** Check box group.
      *  @since 15
      */
     ARKUI_NODE_CHECKBOX_GROUP = 21,
