@@ -26,7 +26,7 @@
 /**
  * @file styled_string.h
  *
- * @brief 在Native侧定义{@link 组件类型}为ARKUI_NODE_TEXT的组件的文本样式和文本布局管理器。
+ * @brief 在Native侧定义{@link ArkUI_NodeType}为ARKUI_NODE_TEXT的组件的文本样式和文本布局管理器。
  *
  * @library libace_ndk.z.so
  * @syscap SystemCapability.ArkUI.ArkUI.Full
@@ -49,130 +49,126 @@ extern "C" {
 #endif
 
 /**
- * @brief Defines formatted string data objects supported by the text component.
+ * @brief 定义文本组件支持的样式化字符串数据对象。
  *
  * @since 12
  */
 typedef struct ArkUI_StyledString ArkUI_StyledString;
 
 /**
- * @brief Creates a pointer to the ArkUI_StyledString object.
+ * @brief 创建指向ArkUI_StyledString对象的指针。
  *
- * @param style A pointer to OH_Drawing_TypographyStyle, obtained by {@link OH_Drawing_CreateTypographyStyle}.
- * @param collection A pointer to OH_Drawing_FontCollection, obtained by {@link OH_Drawing_CreateFontCollection}.
- * @return Creates a pointer to the ArkUI_StyledString object. If the object returns a null pointer,
- *         the creation failed, either because the address space was full,
- *         or because the style, collection parameter was an exception such as a null pointer.
+ * @param style 指向OH_Drawing_TypographyStyle的指针，由{@link OH_Drawing_CreateTypographyStyle}获取。
+ * @param collection 指向OH_Drawing_FontCollection的指针，由{@link OH_Drawing_CreateFontCollection}获取。
+ * @return 创建指向ArkUI_StyledString对象的指针。如果返回空指针，表示创建失败，可能原因包括地址空间已满或参数异常（如style、collection为空指针）。
  * @since 12
  */
 ArkUI_StyledString* OH_ArkUI_StyledString_Create(
     OH_Drawing_TypographyStyle* style, OH_Drawing_FontCollection* collection);
 
 /**
- * @brief Free the memory occupied by the ArkUI_StyledString object.
+ * @brief 释放ArkUI_StyledString对象占用的内存。
  *
- * @param handle A pointer to the ArkUI_StyledString object.
+ * @param handle 指向ArkUI_StyledString对象的指针。
  * @since 12
  */
 void OH_ArkUI_StyledString_Destroy(ArkUI_StyledString* handle);
 
 /**
- * @brief Sets the new layout style to the top of the current format string style stack.
+ * @brief 将新的排版风格设置到当前格式化字符串样式栈顶。
  *
- * @param handle A pointer to the ArkUI_StyledString object.
- * @param style A pointer to the OH_Drawing_TextStyle object.
+ * @param handle 指向ArkUI_StyledString对象的指针。
+ * @param style 指向{@link OH_Drawing_TextStyle}对象的指针，由{@link OH_Drawing_CreateTextStyle}创建获取。
  * @since 12
  */
 void OH_ArkUI_StyledString_PushTextStyle(ArkUI_StyledString* handle, OH_Drawing_TextStyle* style);
 
 /**
- * @brief Sets the corresponding text content based on the current format string style.
+ * @brief 基于当前格式化字符串样式设置对应的文本内容。所添加的文本将使用当前栈顶的排版样式，该样式由{@link OH_ArkUI_StyledString_PushTextStyle}压入。当栈顶样式通过
+ * {@link OH_ArkUI_StyledString_PopTextStyle}出栈后，后续添加的文本将使用新的栈顶样式。
  *
- * @param handle A pointer to the ArkUI_StyledString object.
- * @param content A pointer to the text content.
+ * @param handle 指向ArkUI_StyledString对象的指针。
+ * @param content 指向文本内容的指针。
  * @since 12
  */
 void OH_ArkUI_StyledString_AddText(ArkUI_StyledString* handle, const char* content);
 
 /**
- * @brief Removes the top style from the stack in the current format string object.
+ * @brief 将当前格式化字符串对象中栈顶样式出栈。
  *
- * @param handle A pointer to the ArkUI_StyledString object.
+ * @param handle 指向ArkUI_StyledString对象的指针。
  * @since 12
  */
 void OH_ArkUI_StyledString_PopTextStyle(ArkUI_StyledString* handle);
 
 /**
- * @brief Creates a pointer to an OH_Drawing_Typography object based on a format string object
- * for advanced text estimation and typography.
+ * @brief 基于格式化字符串对象创建指向{@link OH_Drawing_Typography}对象的指针，用于提前进行文本测算排版。
  *
- * @param handle A pointer to the ArkUI_StyledString object.
- * @return A pointer to the OH_Drawing_Typography object. If the object returns a null pointer,
- *         the creation fails because the handle parameter is abnormal, such as a null pointer.
+ * @param handle 指向ArkUI_StyledString对象的指针。
+ * @return 指向OH_Drawing_Typography对象的指针。如果对象返回空指针，表示创建失败，失败的原因是handle参数为空指针。
  * @since 12
  */
 OH_Drawing_Typography* OH_ArkUI_StyledString_CreateTypography(ArkUI_StyledString* handle);
 
 /**
- * @brief Set the placeholder.
+ * @brief 设置占位符，用于在格式化字符串中预留指定宽高的空白区域或嵌入自定义内容。其尺寸等信息由{@link OH_Drawing_PlaceholderSpan}指定。
  *
- * @param handle A pointer to the ArkUI_StyledString object.
- * @param placeholder A pointer to the OH_Drawing_PlaceholderSpan object.
+ * @param handle 指向ArkUI_StyledString对象的指针。
+ * @param placeholder 指向OH_Drawing_PlaceholderSpan对象的指针。
  * @since 12
  */
 void OH_ArkUI_StyledString_AddPlaceholder(ArkUI_StyledString* handle, OH_Drawing_PlaceholderSpan* placeholder);
 
 /**
- * @brief Creates an <b>ArkUI_StyledString_Descriptor</b> object.
+ * @brief 创建属性字符串数据对象。
  *
- * @return Returns the pointer to the <b>ArkUI_StyledString_Descriptor</b> object created.
+ * @return 指向{@link ArkUI_StyledString_Descriptor}对象的指针。
  * @since 14
  */
 ArkUI_StyledString_Descriptor* OH_ArkUI_StyledString_Descriptor_Create(void);
 
 /**
- * @brief Destroys an <b>ArkUI_StyledString_Descriptor</b> object and reclaims the memory occupied by the object.
+ * @brief 释放ArkUI_StyledString_Descriptor对象占用的内存。
  *
- * @param descriptor Pointer to an <b>ArkUI_StyledString_Descriptor</b> object.
+ * @param descriptor 指向ArkUI_StyledString_Descriptor对象的指针。
  * @since 14
  */
 void OH_ArkUI_StyledString_Descriptor_Destroy(ArkUI_StyledString_Descriptor* descriptor);
 
 /**
- * @brief Converts styled string information into HTML.
+ * @brief 将属性字符串信息转换成HTML。
  *
- * @param descriptor Pointer to an <b>ArkUI_StyledString_Descriptor</b> object.
- * @return Returns the pointer to the resulting HTML string. This pointer is managed internally and should be destroyed
- *         by calling <b>OH_ArkUI_StyledString_Descriptor_Destroy()</b> when no longer needed to free the memory.
+ * @param descriptor 指向ArkUI_StyledString_Descriptor对象的指针。
+ * @return HTML。该指针由内部管理，在{@link OH_ArkUI_StyledString_Descriptor_Destroy()}时释放。
  * @since 14
  */
 const char* OH_ArkUI_ConvertToHtml(ArkUI_StyledString_Descriptor* descriptor);
 
 /**
- * @brief Deserializes a byte array containing styled string information into a styled string.
+ * @brief 将包含属性字符串信息的字节数组反序列化为属性字符串。
  *
- * @param buffer Byte array to be deserialized.
- * @param bufferSize Length of the byte array.
- * @param descriptor Pointer to an <b>ArkUI_StyledString_Descriptor</b> object.
- * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
+ * @param buffer 待反序列化的字节数组。
+ * @param bufferSize 字节数组长度。
+ * @param descriptor 指向ArkUI_StyledString_Descriptor对象的指针。
+ * @return 错误码。
+ *     <br>{@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
+ *     <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常，可能原因包括传入参数为空指针或参数值不在有效范围内，请检查参数是否有效。
  * @since 14
  */
 int32_t OH_ArkUI_UnmarshallStyledStringDescriptor(
     uint8_t* buffer, size_t bufferSize, ArkUI_StyledString_Descriptor* descriptor);
 
 /**
- * @brief Serializes the styled string information into a byte array.
+ * @brief 将属性字符串信息序列化为字节数组。
  *
- * @param buffer Byte array where the serialized data will be stored.
- * @param bufferSize Length of the byte array.
- * @param descriptor Pointer to an <b>ArkUI_StyledString_Descriptor</b> object.
- * @param resultSize Actual length of the byte array.
- * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter error occurs.
- *         Returns {@link ARKUI_ERROR_CODE_INVALID_STYLED_STRING} if the styled string is invalid.
+ * @param buffer 字节数组，用于存储属性字符串序列化后的数据。
+ * @param bufferSize 字节数组长度。
+ * @param descriptor 指向ArkUI_StyledString_Descriptor对象的指针。
+ * @param resultSize 属性字符串转换后的字节数组实际长度。
+ * @return 错误码。
+ *     <br>{@link ARKUI_ERROR_CODE_NO_ERROR} 操作成功。
+ *     <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常，可能原因包括传入参数为空指针或参数值不在有效范围内，请检查参数是否有效。
+ *     <br>{@link ARKUI_ERROR_CODE_INVALID_STYLED_STRING} 属性字符串无效，可能原因包括属性字符串对象已被销毁或未正确创建，请确保使用有效的属性字符串对象。
  * @since 14
  */
 int32_t OH_ArkUI_MarshallStyledStringDescriptor(
@@ -200,7 +196,8 @@ typedef struct OH_ArkUI_ImageAttachment OH_ArkUI_ImageAttachment;
 /**
  * @brief 定义自定义绘制Span。 <br>        可以通过{@link OH_ArkUI_CustomSpan_Create}接口创建对应的自定义绘制Span对象。 <br>        可以通过
  * {@link OH_ArkUI_CustomSpan_Destroy}接口销毁自定义绘制Span对象。 <br>        对象创建后通过
- * {@link OH_ArkUI_CustomSpan_RegisterOnMeasureCallback}和{@link OH_ArkUI_CustomSpan_RegisterOnDrawCallback}接口注册绘制回调函数。
+ * {@link OH_ArkUI_CustomSpan_RegisterOnMeasureCallback}和{@link OH_ArkUI_CustomSpan_RegisterOnDrawCallback}
+ * 接口分别注册测量和绘制回调函数。
  *
  * @since 24
  */
@@ -308,11 +305,12 @@ typedef enum {
  *
  * @note 当该对象不再使用时，调用 OH_ArkUI_StyledString_Descriptor_Destroy 来销毁它。
  *     所有输入指针参数必须由调用者分配、管理和释放。
- * @param value 属性字符串文本内容字符串。
- * @param styles 属性字符串初始化选项，指向{@link OH_ArkUI_SpanStyle}对象数组的指针。
- * @param length 属性字符串初始化选项的长度。
+ * @param value 属性字符串的纯文本内容。
+ * @param styles 属性字符串的样式集合，指向{@link OH_ArkUI_SpanStyle}对象数组的指针。数组中每个OH_ArkUI_SpanStyle对象需先调用
+ *     {@link OH_ArkUI_SpanStyle_SetStart}和{@link OH_ArkUI_SpanStyle_SetLength}设置样式作用的范围。
+ * @param length 样式对象数组的数量。取值范围[0, +∞)，需与传入的styles指针所指向的数组实际长度一致。
  * @return 指向创建的{@link ArkUI_StyledString_Descriptor}对象的指针。
- *     <br>如果结果为空指针，表示创建失败，失败的原因可能是传入参数异常。
+ *     <br>如果结果为空指针，表示创建失败，失败的原因是传入参数为空指针或参数值无效。
  * @since 24
  */
 ArkUI_StyledString_Descriptor* OH_ArkUI_StyledString_Descriptor_CreateWithString(const char* value,
@@ -325,7 +323,7 @@ ArkUI_StyledString_Descriptor* OH_ArkUI_StyledString_Descriptor_CreateWithString
  *     所有输入指针参数必须由调用者分配、管理和释放。
  * @param value 指向{@link OH_ArkUI_ImageAttachment}对象的指针。
  * @return 指向创建的{@link ArkUI_StyledString_Descriptor}对象的指针。
- *     <br>如果结果为空指针，表示创建失败，失败的原因可能是传入参数异常。
+ *     <br>如果结果为空指针，表示创建失败，失败的原因是传入参数为空指针或参数值无效。
  * @since 24
  */
 ArkUI_StyledString_Descriptor* OH_ArkUI_StyledString_Descriptor_CreateWithImageAttachment(
@@ -338,7 +336,7 @@ ArkUI_StyledString_Descriptor* OH_ArkUI_StyledString_Descriptor_CreateWithImageA
  *     所有输入指针参数必须由调用者分配、管理和释放。
  * @param value 指向{@link OH_ArkUI_CustomSpan}对象的指针。
  * @return 指向创建的{@link ArkUI_StyledString_Descriptor}对象的指针。
- *     <br>如果结果为空指针，表示创建失败，失败的原因可能是传入参数异常。
+ *     <br>如果结果为空指针，表示创建失败，失败的原因是传入参数为空指针或参数值无效。
  * @since 24
  */
 ArkUI_StyledString_Descriptor* OH_ArkUI_StyledString_Descriptor_CreateWithCustomSpan(const OH_ArkUI_CustomSpan* value);
@@ -348,11 +346,11 @@ ArkUI_StyledString_Descriptor* OH_ArkUI_StyledString_Descriptor_CreateWithCustom
  *
  * @note 所有输入指针参数必须由调用者分配、管理和释放。
  * @param descriptor 指向{@link ArkUI_StyledString_Descriptor}对象的指针。
- * @param length 字符长度。
+ * @param length 输出参数，用于接收属性字符串的字符长度结果。
  * @return 返回结果码。
  *     <br>{@link ARKUI_ERROR_CODE_NO_ERROR} 操作成功。
- *     <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
- *     <br>{@link ARKUI_ERROR_CODE_INVALID_STYLED_STRING} 属性字符串无效。
+ *     <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常，可能原因包括descriptor为空指针或length为空指针，请检查参数是否有效。
+ *     <br>{@link ARKUI_ERROR_CODE_INVALID_STYLED_STRING} 属性字符串无效，可能原因包括属性字符串对象已被销毁或未正确创建，请确保使用有效的属性字符串对象。
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_StyledString_Descriptor_GetLength(const ArkUI_StyledString_Descriptor* descriptor,
@@ -369,9 +367,10 @@ ArkUI_ErrorCode OH_ArkUI_StyledString_Descriptor_GetLength(const ArkUI_StyledStr
  *     <br>返回值为{@link ARKUI_ERROR_CODE_BUFFER_SIZE_ERROR}时表示字符串完整写入缓冲区所需要的最小长度。
  * @return 返回结果码。
  *     <br>{@link ARKUI_ERROR_CODE_NO_ERROR} 操作成功。
- *     <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
- *     <br>{@link ARKUI_ERROR_CODE_INVALID_STYLED_STRING} 属性字符串无效。
- *     <br>{@link ARKUI_ERROR_CODE_BUFFER_SIZE_ERROR} 缓冲区大小不足。
+ *     <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常，可能原因包括descriptor为空指针、buffer为空指针或writeLength为空指针，请检查参数是否有效。
+ *     <br>{@link ARKUI_ERROR_CODE_INVALID_STYLED_STRING} 属性字符串无效，可能原因包括属性字符串对象已被销毁或未正确创建，请确保使用有效的属性字符串对象。
+ *     <br>{@link ARKUI_ERROR_CODE_BUFFER_SIZE_ERROR} 缓冲区大小不足，当提供的bufferSize小于实际需要写入的数据长度时返回此错误码。处理步骤：
+ *     通过writeLength参数获取所需最小缓冲区大小，重新分配足够大小的缓冲区后再次调用。
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_StyledString_Descriptor_GetString(
@@ -399,7 +398,7 @@ ArkUI_ErrorCode OH_ArkUI_StyledString_Descriptor_IsEqual(const ArkUI_StyledStrin
  * @note 所有输入指针参数必须由调用者分配、管理和释放。
  * @param descriptor 指向{@link ArkUI_StyledString_Descriptor}对象的指针。
  * @param subDescriptor 指向{@link ArkUI_StyledString_Descriptor}子属性字符串对象的指针。
- * @param start 子属性字符串的起始位置。取值范围[0, 属性字符串的字符长度]。
+ * @param start 子属性字符串的起始位置。取值范围[0, 属性字符串的字符长度]，超出范围时返回ARKUI_ERROR_CODE_PARAM_INVALID。
  * @param length 子属性字符串的字符长度。取值范围[0, 属性字符串的字符长度与参数start的差值]。
  * @return 返回结果码。
  *     <br>{@link ARKUI_ERROR_CODE_NO_ERROR} 操作成功。
@@ -425,7 +424,6 @@ ArkUI_ErrorCode OH_ArkUI_StyledString_Descriptor_SubStyledString(const ArkUI_Sty
  *     <br>{@link ARKUI_ERROR_CODE_NO_ERROR} 操作成功。
  *     <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
  *     <br>{@link ARKUI_ERROR_CODE_INVALID_STYLED_STRING} 属性字符串无效。
- *     <br>{@link ARKUI_ERROR_CODE_BUFFER_SIZE_ERROR} 缓冲区大小不足。
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_StyledString_Descriptor_GetStyles(const ArkUI_StyledString_Descriptor* descriptor,
@@ -437,7 +435,9 @@ ArkUI_ErrorCode OH_ArkUI_StyledString_Descriptor_GetStyles(const ArkUI_StyledStr
  *
  * @note 所有输入指针参数必须由调用者分配、管理和释放。
  * @param descriptor 指向{@link ArkUI_StyledString_Descriptor}对象的指针。
- * @param html 待转换为属性字符串的HTML格式字符串。
+ * @param html 待转换为属性字符串的HTML格式字符串，当前支持转换的HTML标签范围：\<p>、\<span>、\<img>、\
+ *     <br>、\<strong>、\<b>、\<a>、\<i>、\<em>、\<s>、\<u>、\<del>、\<sup>、\<sub>、\<cite>、\<dfn>、\<small>、\<h1>、\<h2>、\<h3>、\<
+ *     h4>、\<h5>、\<h6>、\<ol>、\<ul>、\<li>。
  * @return 返回结果码。
  *     <br>{@link ARKUI_ERROR_CODE_NO_ERROR} 操作成功。
  *     <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
@@ -496,7 +496,8 @@ ArkUI_ErrorCode OH_ArkUI_StyledString_Descriptor_RemoveString(
     ArkUI_StyledString_Descriptor* descriptor, uint32_t start, uint32_t length);
  
 /**
- * @brief 替换属性字符串指定范围内的样式。
+ * @brief 替换属性字符串指定范围内的样式。与{@link OH_ArkUI_StyledString_Descriptor_SetStyle}的区别：ReplaceStyle会清除指定范围内所有类型的已有样式后设置新样式；
+ * SetStyle为指定范围设置样式，只替换同类型的已有样式，不影响其他类型的样式。建议需要完全替换已有样式时使用ReplaceStyle，需要叠加设置样式时使用SetStyle。
  *
  * @note 所有输入指针参数必须由调用者分配、管理和释放。
  * @param descriptor 指向{@link ArkUI_StyledString_Descriptor}对象的指针。
@@ -512,7 +513,8 @@ ArkUI_ErrorCode OH_ArkUI_StyledString_Descriptor_ReplaceStyle(
     ArkUI_StyledString_Descriptor* descriptor, const OH_ArkUI_SpanStyle* spanStyle);
  
 /**
- * @brief 为属性字符串指定范围设置新样式。
+ * @brief 为属性字符串指定范围设置新样式。与{@link OH_ArkUI_StyledString_Descriptor_ReplaceStyle}的区别：SetStyle为指定范围设置样式，只替换同类型的已有样式，
+ * 不影响其他类型的样式，适用于叠加设置样式的场景；ReplaceStyle会清除指定范围内所有类型的已有样式后设置新样式，适用于完全替换已有样式的场景。
  *
  * @note 所有输入指针参数必须由调用者分配、管理和释放。
  * @param descriptor 指向{@link ArkUI_StyledString_Descriptor}对象的指针。
@@ -528,7 +530,7 @@ ArkUI_ErrorCode OH_ArkUI_StyledString_Descriptor_SetStyle(
     ArkUI_StyledString_Descriptor* descriptor, const OH_ArkUI_SpanStyle* spanStyle);
  
 /**
- * @brief 清除属性字符串指定范围内容的指定类型样式。
+ * @brief 清除属性字符串指定范围内的指定类型样式。
  *
  * @note 所有输入指针参数必须由调用者分配、管理和释放。
  * @param descriptor 指向{@link ArkUI_StyledString_Descriptor}对象的指针。
@@ -619,9 +621,9 @@ ArkUI_ErrorCode OH_ArkUI_StyledString_Descriptor_AppendStyledString(
 ArkUI_ErrorCode OH_ArkUI_StyledString_Descriptor_InvalidateCustomSpan(const ArkUI_StyledString_Descriptor* descriptor);
  
 /**
- * @brief 定义文本字体样式。 <br>
- * 可以通过{@link OH_ArkUI_TextStyle_Create}接口创建对应的文本字体样式对象。
- * 可以通过{@link OH_ArkUI_TextStyle_Destroy}接口销毁文本字体样式对象。
+ * @brief 定义文本字体样式。<br>
+ * 可以通过{@link OH_ArkUI_TextStyle_Create}接口创建对应的文本字体样式对象。<br>
+ * 可以通过{@link OH_ArkUI_TextStyle_Destroy}接口销毁文本字体样式对象。<br>
  * 对象创建后通过OH_ArkUI_TextStyle_SetXXX系列接口设置生效的具体样式，
  * 例如通过{@link OH_ArkUI_TextStyle_SetFontColor}设置字体颜色。
  *
@@ -636,19 +638,19 @@ typedef struct OH_ArkUI_TextStyle OH_ArkUI_TextStyle;
  */
 typedef enum {
     /**
-     * 普通文本样式。
+     * 普通文本样式，适用于不需要上下标效果的常规文本场景。
      * @since 24
      */
     OH_ARKUI_SUPERSCRIPTSTYLE_NORMAL = 0,
 
     /**
-     * 上标文本样式。
+     * 上标文本样式，适用于数学公式中的指数表示（如x²）或脚注引用标记等场景。
      * @since 24
      */
     OH_ARKUI_SUPERSCRIPTSTYLE_SUPERSCRIPT,
 
     /**
-     * 下标文本样式。
+     * 下标文本样式，适用于化学式中的元素下标表示（如H₂O）或数学变量下标等场景。
      * @since 24
      */
     OH_ARKUI_SUPERSCRIPTSTYLE_SUBSCRIPT
@@ -722,7 +724,8 @@ ArkUI_ErrorCode OH_ArkUI_TextStyle_SetFontFamily(OH_ArkUI_TextStyle* textStyle, 
  * @return 返回结果码。
  *     <br>{@link ARKUI_ERROR_CODE_NO_ERROR} 操作成功。
  *     <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
- *     <br>{@link ARKUI_ERROR_CODE_BUFFER_SIZE_ERROR} 缓冲区大小不足。
+ *     <br>{@link ARKUI_ERROR_CODE_BUFFER_SIZE_ERROR} 缓冲区大小不足，当提供的bufferSize小于实际需要写入的数据长度时返回此错误码。处理步骤：
+ *     通过writeLength参数获取所需最小缓冲区大小，重新分配足够大小的缓冲区后再次调用。
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_TextStyle_GetFontFamily(const OH_ArkUI_TextStyle* textStyle,
@@ -733,7 +736,7 @@ ArkUI_ErrorCode OH_ArkUI_TextStyle_GetFontFamily(const OH_ArkUI_TextStyle* textS
  *
  * @note 所有输入指针参数必须由调用者分配、管理和释放。
  * @param textStyle 指向{@link OH_ArkUI_TextStyle}对象的指针。
- * @param fontSize 字体大小，单位为vp。
+ * @param fontSize 字体大小，单位为vp。取值范围[0, +∞)。传入负数时使用默认字体大小。默认值为16vp
  * @return 返回结果码。
  *     <br>{@link ARKUI_ERROR_CODE_NO_ERROR} 操作成功。
  *     <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
@@ -759,7 +762,7 @@ ArkUI_ErrorCode OH_ArkUI_TextStyle_GetFontSize(const OH_ArkUI_TextStyle* textSty
  *
  * @note 所有输入指针参数必须由调用者分配、管理和释放。
  * @param textStyle 指向{@link OH_ArkUI_TextStyle}对象的指针。
- * @param fontWeight 字体粗细。取值范围为[100, 900]中的整百数值，例如100、900。
+ * @param fontWeight 字体粗细。取值为{@link ArkUI_FontWeight}中的枚举值，默认值为ARKUI_FONT_WEIGHT_W400。
  * @return 返回结果码。
  *     <br>{@link ARKUI_ERROR_CODE_NO_ERROR} 操作成功。
  *     <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
@@ -772,7 +775,7 @@ ArkUI_ErrorCode OH_ArkUI_TextStyle_SetFontWeight(OH_ArkUI_TextStyle* textStyle, 
  *
  * @note 所有输入指针参数必须由调用者分配、管理和释放。
  * @param textStyle 指向{@link OH_ArkUI_TextStyle}对象的指针。
- * @param fontWeight 字体粗细。取值范围为[100, 900]中的整百数值，例如100、900。
+ * @param fontWeight 字体粗细。取值为{@link ArkUI_FontWeight}中的枚举值，默认值为ARKUI_FONT_WEIGHT_W400。
  * @return 返回结果码。
  *     <br>{@link ARKUI_ERROR_CODE_NO_ERROR} 操作成功。
  *     <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
@@ -811,7 +814,7 @@ ArkUI_ErrorCode OH_ArkUI_TextStyle_GetFontStyle(const OH_ArkUI_TextStyle* textSt
  *
  * @note 所有输入指针参数必须由调用者分配、管理和释放。
  * @param textStyle 指向{@link OH_ArkUI_TextStyle}对象的指针。
- * @param strokeWidth 描边宽度，单位为vp。
+ * @param strokeWidth 描边宽度，取值范围(-∞, +∞)，单位为vp。值小于0时为实体字，大于0时为轮廓字，等于0时无描边效果。默认值：0vp。
  * @return 返回结果码。
  *     <br>{@link ARKUI_ERROR_CODE_NO_ERROR} 操作成功。
  *     <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
@@ -890,7 +893,7 @@ ArkUI_ErrorCode OH_ArkUI_TextStyle_GetSuperscript(const OH_ArkUI_TextStyle* text
  * @brief 创建{@link OH_ArkUI_SpanStyle}对象。
  *
  * @note 当该对象不再使用时，调用 OH_ArkUI_SpanStyle_Destroy 来销毁它。
- * @return 指向{@link OH_ArkUI_SpanStyle}对象的指针。
+ * @return 指向{@link OH_ArkUI_SpanStyle}对象的指针，用于设置属性字符串样式的作用范围和具体样式。
  * @since 24
  */
 OH_ArkUI_SpanStyle* OH_ArkUI_SpanStyle_Create();
@@ -922,7 +925,7 @@ ArkUI_ErrorCode OH_ArkUI_SpanStyle_GetStyledKey(const OH_ArkUI_SpanStyle* spanSt
  *
  * @note 所有输入指针参数必须由调用者分配、管理和释放。
  * @param spanStyle 指向{@link OH_ArkUI_SpanStyle}对象的指针。
- * @param start 属性字符串样式对象的起始位置。
+ * @param start 属性字符串样式对象的起始位置，需与{@link OH_ArkUI_SpanStyle_SetLength}配合使用以指定样式作用的范围。取值范围[0, 属性字符串的长度]，超出范围时按0处理。
  * @return 返回结果码。
  *     <br>{@link ARKUI_ERROR_CODE_NO_ERROR} 操作成功。
  *     <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
@@ -948,7 +951,8 @@ ArkUI_ErrorCode OH_ArkUI_SpanStyle_GetStart(const OH_ArkUI_SpanStyle* spanStyle,
  *
  * @note 所有输入指针参数必须由调用者分配、管理和释放。
  * @param spanStyle 指向{@link OH_ArkUI_SpanStyle}对象的指针。
- * @param length 属性字符串样式对象的长度。
+ * @param length 属性字符串样式对象的长度，需与{@link OH_ArkUI_SpanStyle_SetStart}配合使用以指定样式作用的范围。当length的值小于0或超出字符串长度与start的差值时，
+ *     按字符串长度与start的差值处理。取值范围[0, 属性字符串的长度与参数start的差值]，按字符串长度与start的差值处理。
  * @return 返回结果码。
  *     <br>{@link ARKUI_ERROR_CODE_NO_ERROR} 操作成功。
  *     <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
@@ -1259,8 +1263,8 @@ ArkUI_ErrorCode OH_ArkUI_SpanStyle_GetLineHeightStyle(
     const OH_ArkUI_SpanStyle* spanStyle, OH_ArkUI_LineHeightStyle* lineHeightStyle);
  
 /**
- * @brief 定义超链接样式。 <br>        可以通过{@link OH_ArkUI_UrlStyle_Create}接口创建对应的超链接样式对象。 <br>        可以通过
- * {@link OH_ArkUI_UrlStyle_Destroy}接口销毁超链接样式对象。 <br>        对象创建后通过{@link OH_ArkUI_UrlStyle_SetUrl}接口设置链接地址。
+ * @brief 定义链接样式。 <br>        可以通过{@link OH_ArkUI_UrlStyle_Create}接口创建对应的链接样式对象。 <br>        可以通过
+ * {@link OH_ArkUI_UrlStyle_Destroy}接口销毁链接样式对象。 <br>        对象创建后通过{@link OH_ArkUI_UrlStyle_SetUrl}接口设置链接地址。
  *
  * @since 24
  */
@@ -1333,7 +1337,7 @@ ArkUI_ErrorCode OH_ArkUI_SpanStyle_GetBackgroundColorStyle(
 /**
  * @brief 定义用户数据Span样式。 <br>        可以通过{@link OH_ArkUI_UserDataSpan_Create}接口创建对应的用户数据Span样式对象。 <br>        可以通过
  * {@link OH_ArkUI_UserDataSpan_Destroy}接口销毁用户数据Span样式对象。 <br>        对象创建后通过{@link OH_ArkUI_UserDataSpan_SetUserData}
- * 接口绑定用户数据。
+ * 接口设置用户数据。
  *
  * @since 24
  */
@@ -1435,7 +1439,7 @@ typedef struct OH_ArkUI_LeadingMarginSpanDrawInfo OH_ArkUI_LeadingMarginSpanDraw
 /**
  * @brief 创建{@link OH_ArkUI_LeadingMarginSpanDrawInfo}对象。
  *
- * @note 当该对象不再使用时，调用 OH_ArkUI_LeadingMarginSpanDrawInfo_Destroy 来销毁它。
+ * @note When the object is no longer in use, invoke <b> OH_ArkUI_LeadingMarginSpanDrawInfo_Destroy </b> to destroy it.
  * @return 指向{@link OH_ArkUI_LeadingMarginSpanDrawInfo}对象的指针。
  * @since 24
  */
@@ -1718,7 +1722,7 @@ ArkUI_ErrorCode OH_ArkUI_ParagraphStyle_GetTextAlign(const OH_ArkUI_ParagraphSty
  *
  * @note 所有输入指针参数必须由调用者分配、管理和释放。
  * @param paragraphStyle 指向{@link OH_ArkUI_ParagraphStyle}对象的指针。
- * @param textIndent 首行缩进值，单位为vp。
+ * @param textIndent 首行缩进值，单位为vp。取值范围[0, +∞)。
  * @return 返回结果码。
  *     <br>{@link ARKUI_ERROR_CODE_NO_ERROR} 操作成功。
  *     <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
@@ -1744,7 +1748,7 @@ ArkUI_ErrorCode OH_ArkUI_ParagraphStyle_GetTextIndent(const OH_ArkUI_ParagraphSt
  *
  * @note 所有输入指针参数必须由调用者分配、管理和释放。
  * @param paragraphStyle 指向{@link OH_ArkUI_ParagraphStyle}对象的指针。
- * @param maxLines 最大行数。
+ * @param maxLines 最大行数，取值为正整数。
  * @return 返回结果码。
  *     <br>{@link ARKUI_ERROR_CODE_NO_ERROR} 操作成功。
  *     <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
@@ -2034,7 +2038,7 @@ OH_ArkUI_GestureStyle* OH_ArkUI_GestureStyle_Create();
 void OH_ArkUI_GestureStyle_Destroy(OH_ArkUI_GestureStyle* gestureStyle);
 
 /**
- * @brief 设置事件手势样式中的点击事件回调。
+ * @brief 注册事件手势样式中的点击事件回调。
  *
  * @note 所有输入指针参数必须由调用者分配、管理和释放。
  * @param gestureStyle 指向{@link OH_ArkUI_GestureStyle}对象的指针。
@@ -2048,7 +2052,7 @@ ArkUI_ErrorCode OH_ArkUI_GestureStyle_RegisterOnClickCallback(
     OH_ArkUI_GestureStyle* gestureStyle, void(*onClick)(ArkUI_NodeEvent*));
 
 /**
- * @brief 设置事件手势样式中的长按事件回调。
+ * @brief 注册事件手势样式中的长按事件回调。
  *
  * @note 所有输入指针参数必须由调用者分配、管理和释放。
  * @param gestureStyle 指向{@link OH_ArkUI_GestureStyle}对象的指针。
@@ -2062,7 +2066,7 @@ ArkUI_ErrorCode OH_ArkUI_GestureStyle_RegisterOnLongPressCallback(
     OH_ArkUI_GestureStyle* gestureStyle, void(*onLongPress)(ArkUI_GestureEvent*));
 
 /**
- * @brief 设置事件手势样式中的触摸事件回调。
+ * @brief 注册事件手势样式中的触摸事件回调。
  *
  * @note 所有输入指针参数必须由调用者分配、管理和释放。
  * @param gestureStyle 指向{@link OH_ArkUI_GestureStyle}对象的指针。
@@ -2098,7 +2102,7 @@ void OH_ArkUI_TextShadowStyle_Destroy(OH_ArkUI_TextShadowStyle* textShadowStyle)
  * @note 所有输入指针参数必须由调用者分配、管理和释放。
  * @param textShadowStyle 指向{@link OH_ArkUI_TextShadowStyle}对象的指针。
  * @param options 文本阴影选项，指向{@link OH_ArkUI_ShadowOptions}对象数组的指针。
- * @param length 文本阴影选项长度。
+ * @param length 文本阴影选项数组元素的数量。
  * @return 返回结果码。
  *     <br>{@link ARKUI_ERROR_CODE_NO_ERROR} 操作成功。
  *     <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
@@ -2118,7 +2122,6 @@ ArkUI_ErrorCode OH_ArkUI_TextShadowStyle_SetTextShadow(OH_ArkUI_TextShadowStyle*
  * @return 返回结果码。
  *     <br>{@link ARKUI_ERROR_CODE_NO_ERROR} 操作成功。
  *     <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
- *     <br>{@link ARKUI_ERROR_CODE_BUFFER_SIZE_ERROR} 缓冲区大小不足。
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_TextShadowStyle_GetTextShadow(const OH_ArkUI_TextShadowStyle* textShadowStyle,
@@ -2256,7 +2259,8 @@ ArkUI_ErrorCode OH_ArkUI_DecorationStyle_GetThicknessScale(const OH_ArkUI_Decora
  *
  * @note 所有输入指针参数必须由调用者分配、管理和释放。
  * @param decorationStyle 指向{@link OH_ArkUI_DecorationStyle}对象的指针。
- * @param enableMultiType 是否开启多装饰线显示。true表示开启，false表示关闭。
+ * @param enableMultiType 是否开启多装饰线显示。传入true时开启多装饰线显示，允许同时显示多种类型的装饰线（如同时显示下划线和删除线），适用于需要复合装饰效果的场景；传入false时不开启，仅显示单一类型装饰线，
+ *     适用于只需要一种装饰线的场景。
  * @return 返回结果码。
  *     <br>{@link ARKUI_ERROR_CODE_NO_ERROR} 操作成功。
  *     <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
@@ -2297,11 +2301,11 @@ OH_ArkUI_BaselineOffsetStyle* OH_ArkUI_BaselineOffsetStyle_Create();
 void OH_ArkUI_BaselineOffsetStyle_Destroy(OH_ArkUI_BaselineOffsetStyle* baselineOffsetStyle);
  
 /**
- * @brief 设置基线偏移量。
+ * @brief 设置基线偏移量。适用于需要调整文本基线位置的场景，例如上下角标定位、行内图标与文字垂直对齐等。
  *
  * @note 所有输入指针参数必须由调用者分配、管理和释放。
  * @param baselineOffsetStyle 指向{@link OH_ArkUI_BaselineOffsetStyle}对象的指针。
- * @param baselineOffset 基线偏移量，单位为vp。
+ * @param baselineOffset 基线偏移量，单位为vp。取值范围(-∞, +∞)。正值与负值分别对应不同的偏移方向，0表示无偏移。具体方向效果需结合上下角标等场景确定。
  * @return 返回结果码。
  *     <br>{@link ARKUI_ERROR_CODE_NO_ERROR} 操作成功。
  *     <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
@@ -2342,11 +2346,11 @@ OH_ArkUI_LetterSpacingStyle* OH_ArkUI_LetterSpacingStyle_Create();
 void OH_ArkUI_LetterSpacingStyle_Destroy(OH_ArkUI_LetterSpacingStyle* letterSpacingStyle);
  
 /**
- * @brief 设置字符间距。
+ * @brief 设置字符间距。适用于需要调整文字间距的场景，例如标题加宽间距提升可读性、紧凑排版缩小间距等。
  *
  * @note 所有输入指针参数必须由调用者分配、管理和释放。
  * @param letterSpacingStyle 指向{@link OH_ArkUI_LetterSpacingStyle}对象的指针。
- * @param letterSpacing 字符间距值，单位为vp。
+ * @param letterSpacing 字符间距值，单位为vp。取值范围(-∞, +∞)。正值表示加宽字符间距，负值表示缩小字符间距，0表示使用默认间距。
  * @return 返回结果码。
  *     <br>{@link ARKUI_ERROR_CODE_NO_ERROR} 操作成功。
  *     <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
@@ -2391,7 +2395,8 @@ void OH_ArkUI_LineHeightStyle_Destroy(OH_ArkUI_LineHeightStyle* lineHeightStyle)
  *
  * @note 所有输入指针参数必须由调用者分配、管理和释放。
  * @param lineHeightStyle 指向{@link OH_ArkUI_LineHeightStyle}对象的指针。
- * @param lineHeight 固定行高值，单位为vp。
+ * @param lineHeight 固定行高值，单位为vp。与{@link OH_ArkUI_LineHeightStyle_SetLineHeightMultiple}同时设置时，仅lineHeightMultiple生效，
+ *     lineHeight不生效，lineHeightMultiple小于0时不生效，此时使用lineHeight设置行高。取值范围(-∞, +∞)，负值表示自适应字体大小。
  * @return 返回结果码。
  *     <br>{@link ARKUI_ERROR_CODE_NO_ERROR} 操作成功。
  *     <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
@@ -2419,7 +2424,7 @@ ArkUI_ErrorCode OH_ArkUI_LineHeightStyle_GetLineHeight(const OH_ArkUI_LineHeight
  *
  * @note 所有输入指针参数必须由调用者分配、管理和释放。
  * @param lineHeightStyle 指向{@link OH_ArkUI_LineHeightStyle}对象的指针。
- * @param lineHeightMultiple 行高倍数。取值范围为[0, +∞)。
+ * @param lineHeightMultiple 行高倍数。取值范围为[0, +∞)。传入负数时不生效，传入0时等效于设置为1。
  * @return 返回结果码。
  *     <br>{@link ARKUI_ERROR_CODE_NO_ERROR} 操作成功。
  *     <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
@@ -2443,10 +2448,10 @@ ArkUI_ErrorCode OH_ArkUI_LineHeightStyle_GetLineHeightMultiple(const OH_ArkUI_Li
     float* lineHeightMultiple);
  
 /**
- * @brief 定义行间距样式。 <br>        可以通过{@link OH_ArkUI_LineSpacingStyle_Create}接口创建对应的行间距样式对象。 <br>        可以通过
+ * @brief 定义行间距样式。 <br>        可以通过{@link OH_ArkUI_LineSpacingStyle_Create}接口创建对应的行间距样式对象，通过
  * {@link OH_ArkUI_LineSpacingStyle_Destroy}接口销毁行间距样式对象。 <br>        对象创建后可以通过
- * {@link OH_ArkUI_LineSpacingStyle_SetLineSpacing}接口设置具体的行间距值。<br>        对象创建后可以通过
- * {@link OH_ArkUI_LineSpacingStyle_SetOnlyBetweenLines}接口设置行间距是否只在行间生效。
+ * {@link OH_ArkUI_LineSpacingStyle_SetLineSpacing}接口设置具体的行间距值，通过{@link OH_ArkUI_LineSpacingStyle_SetOnlyBetweenLines}
+ * 接口设置行间距是否只在行间生效。
  *
  * @since 26.0.0
  */
@@ -2488,7 +2493,7 @@ ArkUI_ErrorCode OH_ArkUI_SpanStyle_GetLineSpacingStyle(
  * @since 26.0.0
  */
 OH_ArkUI_LineSpacingStyle* OH_ArkUI_LineSpacingStyle_Create();
- 
+
 /**
  * @brief 释放{@link OH_ArkUI_LineSpacingStyle}对象占用的内存。
  *
@@ -2502,7 +2507,8 @@ void OH_ArkUI_LineSpacingStyle_Destroy(OH_ArkUI_LineSpacingStyle* lineSpacingSty
  *
  * @note 所有输入指针参数必须由调用者分配、管理和释放。
  * @param lineSpacingStyle 指向{@link OH_ArkUI_LineSpacingStyle}对象的指针。
- * @param lineSpacing 行间距值，单位为vp。
+ * @param lineSpacing 行间距值，单位为vp。取值范围(-∞, +∞)。与{@link OH_ArkUI_LineHeightStyle_SetLineHeightMultiple}同时设置时，
+ *     仅lineHeightMultiple生效，行间距不生效。lineHeightMultiple小于0时不生效，此时行间距正常生效。
  * @return 返回结果码。
  *     <br>{@link ARKUI_ERROR_CODE_NO_ERROR} 操作成功。
  *     <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
@@ -2512,7 +2518,7 @@ ArkUI_ErrorCode OH_ArkUI_LineSpacingStyle_SetLineSpacing(OH_ArkUI_LineSpacingSty
     float lineSpacing);
  
 /**
- * @brief 查询行间距。
+ * @brief 获取行间距。
  *
  * @note 所有输入指针参数必须由调用者分配、管理和释放。
  * @param lineSpacingStyle 指向{@link OH_ArkUI_LineSpacingStyle}对象的指针。
@@ -2540,7 +2546,7 @@ ArkUI_ErrorCode OH_ArkUI_LineSpacingStyle_SetOnlyBetweenLines(
     OH_ArkUI_LineSpacingStyle* lineSpacingStyle, bool onlyBetweenLines);
  
 /**
- * @brief 查询行间距是否只在行间生效。
+ * @brief 获取行间距是否只在行间生效。
  *
  * @note 所有输入指针参数必须由调用者分配、管理和释放。
  * @param lineSpacingStyle 指向{@link OH_ArkUI_LineSpacingStyle}对象的指针。
@@ -2601,10 +2607,10 @@ ArkUI_ErrorCode OH_ArkUI_BackgroundColorStyle_GetColor(const OH_ArkUI_Background
  *
  * @note 所有输入指针参数必须由调用者分配、管理和释放。
  * @param style 指向{@link OH_ArkUI_BackgroundColorStyle}对象的指针。
- * @param topLeft 左上角圆角半径，单位为vp。
- * @param topRight 右上角圆角半径，单位为vp。
- * @param bottomLeft 左下角圆角半径，单位为vp。
- * @param bottomRight 右下角圆角半径，单位为vp。
+ * @param topLeft 左上角圆角半径，单位为vp。取值范围[0, +∞)。
+ * @param topRight 右上角圆角半径，单位为vp。取值范围[0, +∞)。
+ * @param bottomLeft 左下角圆角半径，单位为vp。取值范围[0, +∞)。
+ * @param bottomRight 右下角圆角半径，单位为vp。取值范围[0, +∞)。
  * @return 返回结果码。
  *     <br>{@link ARKUI_ERROR_CODE_NO_ERROR} 操作成功。
  *     <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
@@ -2672,7 +2678,7 @@ ArkUI_ErrorCode OH_ArkUI_UrlStyle_SetUrl(OH_ArkUI_UrlStyle* style, const char* u
  * @return 返回结果码。
  *     <br>{@link ARKUI_ERROR_CODE_NO_ERROR} 操作成功。
  *     <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
- *     <br>{@link ARKUI_ERROR_CODE_BUFFER_SIZE_ERROR} 缓冲区大小不足。
+ *     <br>{@link ARKUI_ERROR_CODE_BUFFER_SIZE_ERROR} 缓冲区大小不足，可通过writeLength参数获取所需最小缓冲区大小，重新分配足够大小的缓冲区后再次调用。
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_UrlStyle_GetUrl(const OH_ArkUI_UrlStyle* style, char* buffer, int32_t bufferSize,
@@ -2739,7 +2745,7 @@ OH_ArkUI_CustomSpan* OH_ArkUI_CustomSpan_Create();
 void OH_ArkUI_CustomSpan_Destroy(OH_ArkUI_CustomSpan* customSpan);
  
 /**
- * @brief 设置自定义绘制Span获取尺寸大小时的回调函数。
+ * @brief 设置自定义绘制Span获取尺寸大小时的回调函数。适用于在文本中嵌入自定义内容（如自定义图标、内联控件、特殊表情等）时，需要根据内容计算占用尺寸的场景。回调返回的尺寸将影响该Span在文本排版中的占位大小。
  *
  * @note 所有输入指针参数必须由调用者分配、管理和释放。
  * @param customSpan 指向{@link OH_ArkUI_CustomSpan}对象的指针。
@@ -2753,7 +2759,7 @@ ArkUI_ErrorCode OH_ArkUI_CustomSpan_RegisterOnMeasureCallback(
     OH_ArkUI_CustomSpan* customSpan, ArkUI_CustomSpanMetrics*(*onMeasure)(float));
  
 /**
- * @brief 注册自定义绘制Span绘制时的回调函数。
+ * @brief 注册自定义绘制Span绘制时的回调函数。适用于需要绘制非标准文本内容的场景，例如在文本中绘制自定义图标、装饰图形、特殊标记等。通过该回调，开发者可以使用图形绘制上下文实现任意自定义绘制效果。
  *
  * @note 所有输入指针参数必须由调用者分配、管理和释放。
  * @param customSpan 指向{@link OH_ArkUI_CustomSpan}对象的指针。
@@ -2847,7 +2853,7 @@ ArkUI_ErrorCode OH_ArkUI_ImageAttachment_GetResource(const OH_ArkUI_ImageAttachm
  *
  * @note 所有输入指针参数必须由调用者分配、管理和释放。
  * @param imageAttachment 指向{@link OH_ArkUI_ImageAttachment}对象的指针。
- * @param width 图片宽度，单位为vp。
+ * @param width 图片宽度，单位为vp。取值范围[0, +∞)。
  * @return 返回结果码。
  *     <br>{@link ARKUI_ERROR_CODE_NO_ERROR} 操作成功。
  *     <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
@@ -2873,7 +2879,7 @@ ArkUI_ErrorCode OH_ArkUI_ImageAttachment_GetSizeWidth(const OH_ArkUI_ImageAttach
  *
  * @note 所有输入指针参数必须由调用者分配、管理和释放。
  * @param imageAttachment 指向{@link OH_ArkUI_ImageAttachment}对象的指针。
- * @param height 图片高度，单位为vp。
+ * @param height 图片高度，单位为vp。取值范围[0, +∞)。
  * @return 返回结果码。
  *     <br>{@link ARKUI_ERROR_CODE_NO_ERROR} 操作成功。
  *     <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
@@ -3009,10 +3015,10 @@ ArkUI_ErrorCode OH_ArkUI_ImageAttachment_GetPadding(const OH_ArkUI_ImageAttachme
  *
  * @note 所有输入指针参数必须由调用者分配、管理和释放。
  * @param imageAttachment 指向{@link OH_ArkUI_ImageAttachment}对象的指针。
- * @param topLeft 左上角圆角半径，单位为vp。
- * @param topRight 右上角圆角半径，单位为vp。
- * @param bottomLeft 左下角圆角半径，单位为vp。
- * @param bottomRight 右下角圆角半径，单位为vp。
+ * @param topLeft 左上角圆角半径，单位为vp。取值范围[0, +∞)。
+ * @param topRight 右上角圆角半径，单位为vp。取值范围[0, +∞)。
+ * @param bottomLeft 左下角圆角半径，单位为vp。取值范围[0, +∞)。
+ * @param bottomRight 右下角圆角半径，单位为vp。取值范围[0, +∞)。
  * @return 返回结果码。
  *     <br>{@link ARKUI_ERROR_CODE_NO_ERROR} 操作成功。
  *     <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
@@ -3026,10 +3032,10 @@ ArkUI_ErrorCode OH_ArkUI_ImageAttachment_SetBorderRadiuses(OH_ArkUI_ImageAttachm
  *
  * @note 所有输入指针参数必须由调用者分配、管理和释放。
  * @param imageAttachment 指向{@link OH_ArkUI_ImageAttachment}对象的指针。
- * @param topLeft 左上角圆角半径，单位为vp。
- * @param topRight 右上角圆角半径，单位为vp。
- * @param bottomLeft 左下角圆角半径，单位为vp。
- * @param bottomRight 右下角圆角半径，单位为vp。
+ * @param topLeft 左上角圆角半径，单位为vp。取值范围[0, +∞)。
+ * @param topRight 右上角圆角半径，单位为vp。取值范围[0, +∞)。
+ * @param bottomLeft 左下角圆角半径，单位为vp。取值范围[0, +∞)。
+ * @param bottomRight 右下角圆角半径，单位为vp。取值范围[0, +∞)。
  * @return 返回结果码。
  *     <br>{@link ARKUI_ERROR_CODE_NO_ERROR} 操作成功。
  *     <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
@@ -3044,7 +3050,7 @@ ArkUI_ErrorCode OH_ArkUI_ImageAttachment_GetBorderRadiuses(const OH_ArkUI_ImageA
  * @note 所有输入指针参数必须由调用者分配、管理和释放。
  * @param imageAttachment 指向{@link OH_ArkUI_ImageAttachment}对象的指针。
  * @param colorFilter 图片颜色过滤器。
- * @param size 过滤器数组大小。
+ * @param size 颜色过滤器数组的元素数量。
  * @return 返回结果码。
  *     <br>{@link ARKUI_ERROR_CODE_NO_ERROR} 操作成功。
  *     <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
@@ -3103,7 +3109,7 @@ ArkUI_ErrorCode OH_ArkUI_ImageAttachment_GetDrawingColorFilter(
  *
  * @note 所有输入指针参数必须由调用者分配、管理和释放。
  * @param imageAttachment 指向{@link OH_ArkUI_ImageAttachment}对象的指针。
- * @param syncLoad 是否同步加载图片。true表示同步加载；false表示异步加载。
+ * @param syncLoad 是否同步加载图片。true表示同步加载，同步加载时阻塞UI线程，不会显示占位图；false表示异步加载。
  * @return 返回结果码。
  *     <br>{@link ARKUI_ERROR_CODE_NO_ERROR} 操作成功。
  *     <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
@@ -3152,7 +3158,7 @@ ArkUI_ErrorCode OH_ArkUI_ImageAttachment_GetSupportSvg(const OH_ArkUI_ImageAttac
     bool* supportSvg);
 
 /**
- * @brief 获取文本变化信息中的待替换内容的范围。
+ * @brief 获取文本变化信息中待被替换的原文本的范围。
  *
  * @note 所有输入指针参数必须由调用者分配、管理和释放。
  * @param event 指向{@link OH_ArkUI_TextEditorChangeEvent}对象的指针。
@@ -3195,46 +3201,44 @@ ArkUI_ErrorCode OH_ArkUI_TextEditorChangeEvent_GetPreviewStyledString(
     const OH_ArkUI_TextEditorChangeEvent* event, ArkUI_StyledString_Descriptor* descriptor);
 
 /**
- * @brief Defines the layout manager of text.
+ * @brief 定义文本布局管理器对象。
  *
  * @since 22
  */
 typedef struct ArkUI_TextLayoutManager ArkUI_TextLayoutManager;
 
 /**
- * @brief Dispose an object of the text layout manager.
+ * @brief 释放文本布局管理器对象占用的内存。
  *
- * @param layoutManager Pointer to the ArkUI_TextLayoutManager object to be disposed.
+ * @param layoutManager 指向ArkUI_TextLayoutManager对象的指针。
  * @since 22
  */
 void OH_ArkUI_TextLayoutManager_Dispose(ArkUI_TextLayoutManager* layoutManager);
 
 /**
- * @brief Gets the line count.
+ * @brief 获取文本行数。
  *
- * @param layoutManager Indicates the pointer to an <b>ArkUI_TextLayoutManager</b> object.
- * @param outLineCount Returns the line count.
- * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ * @param layoutManager 指向ArkUI_TextLayoutManager对象的指针。
+ * @param outLineCount 文本行数。
+ * @return 返回结果。
+ *     <br>{@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
+ *     <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
  * @since 22
  */
 ArkUI_ErrorCode OH_ArkUI_TextLayoutManager_GetLineCount(ArkUI_TextLayoutManager* layoutManager, int32_t* outLineCount);
 
 /**
- * @brief Gets the rects for range.
+ * @brief 获取给定的矩形区域宽度样式以及高度样式的规格下，文本中任意区间范围内的字符或占位符所占的绘制区域信息。
  *
- * @param layoutManager Indicates the pointer to an <b>ArkUI_TextLayoutManager</b> object.
- * @param start Indicates the start of range to set.
- * @param end Indicates the end of range to set.
- * @param widthStyle Indicates the width style to set.
- *     For details, see the enum <b>OH_Drawing_RectWidthStyle</b>.
- * @param heightStyle Indicates the height style to set.
- *     For details, see the enum <b>OH_Drawing_RectHeightStyle</b>.
- * @param outTextBoxes Returns the array of rects for range.
- * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ * @param layoutManager 指向ArkUI_TextLayoutManager对象的指针。
+ * @param start 起始位置索引，start取值需要大于等于0，否则会返回参数异常。
+ * @param end 结束位置索引，end取值需要大于等于start，否则会返回参数异常。
+ * @param widthStyle 矩形区域宽度样式。
+ * @param heightStyle 矩形区域高度样式。
+ * @param outTextBoxes 指向OH_Drawing_TextBox对象的二级指针。
+ * @return 返回结果。
+ *     <br>{@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
+ *     <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
  * @since 22
  */
 ArkUI_ErrorCode OH_ArkUI_TextLayoutManager_GetRectsForRange(ArkUI_TextLayoutManager* layoutManager,
@@ -3242,60 +3246,62 @@ ArkUI_ErrorCode OH_ArkUI_TextLayoutManager_GetRectsForRange(ArkUI_TextLayoutMana
     OH_Drawing_TextBox** outTextBoxes);
 
 /**
- * @brief Gets the glyph position at coordinate.
+ * @brief 获取距离给定坐标最近的字形(glyph)的位置信息。返回的位置索引基于字形单位而非字符单位——字形是渲染视觉单位，与字符(character)可能存在多对多映射关系。例如文本为"世界Hello"，其字形索引范围为[0,
+ * 7]，一个汉字占三个字符，其对应的字符索引范围为[0, 11]。
  *
- * @param layoutManager Indicates the pointer to an <b>ArkUI_TextLayoutManager</b> object.
- * @param dx Indicates the positionX of typography to set.
- * @param dy Indicates the positionY of typography to set.
- * @param outPos Returns the glyph position at coordinate.
- * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ * @param layoutManager 指向ArkUI_TextLayoutManager对象的指针。
+ * @param dx 相对于控件的x坐标，单位为px。
+ * @param dy 相对于控件的y坐标，单位为px。
+ * @param outPos 指向OH_Drawing_PositionAndAffinity对象的二级指针。
+ * @return 返回结果。
+ *     <br>{@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
+ *     <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
  * @since 22
  */
 ArkUI_ErrorCode OH_ArkUI_TextLayoutManager_GetGlyphPositionAtCoordinate(
     ArkUI_TextLayoutManager* layoutManager, double dx, double dy, OH_Drawing_PositionAndAffinity** outPos);
 
 /**
- * @brief Get line metrics information.
+ * @brief 获取指定行的行信息、文本样式信息、以及字体属性信息。
  *
- * @param layoutManager Indicates the pointer to a typography object <b>ArkUI_TextLayoutManager</b>.
- * @param lineNumber Indicates the number of line.
- * @param outMetrics Indicates the pointer to a line metrics object <b>OH_Drawing_LineMetrics</b>.
- * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ * @param layoutManager 指向ArkUI_TextLayoutManager对象的指针。
+ * @param lineNumber 指定行的行号索引，行号索引从0开始计数，lineNumber小于0或大于等于文本行数时会返回参数异常。
+ * @param outMetrics 指向OH_Drawing_LineMetrics对象的指针。
+ * @return 返回结果。
+ *     <br>{@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
+ *     <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
  * @since 22
  */
 ArkUI_ErrorCode OH_ArkUI_TextLayoutManager_GetLineMetrics(ArkUI_TextLayoutManager* layoutManager,
     int32_t lineNumber, OH_Drawing_LineMetrics* outMetrics);
 
 /**
- * @brief Gets the character position at coordinate.
+ * @brief 获取距离指定坐标最近的字符的位置信息。
  *
- * @param layoutManager Indicates the pointer to an <b>ArkUI_TextLayoutManager</b> object.
- * @param dx Indicates the positionX of typography to set.
- * @param dy Indicates the positionY of typography to set.
- * @param outPos Returns the character position at coordinate.
- * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ * @param layoutManager 指向{@link ArkUI_TextLayoutManager}对象的指针。
+ * @param dx 相对于控件的x坐标，单位为px。
+ * @param dy 相对于控件的y坐标，单位为px。
+ * @param outPos 指向{@link OH_Drawing_PositionAndAffinity}对象的二级指针。
+ * @return 返回结果。
+ *     <br>{@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
+ *     <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_TextLayoutManager_GetCharacterPositionAtCoordinate(
     ArkUI_TextLayoutManager* layoutManager, double dx, double dy, OH_Drawing_PositionAndAffinity** outPos);
 
 /**
- * @brief Get the glyph range produced by the specified range of characters.
+ * @brief 获取由指定字符索引范围所生成的字形索引范围以及实际的字符索引范围。例如文本为"世界Hello"，其中文本"世"的字形索引范围为[0, 1]，一个汉字占三个字符，所以其对应的字符索引范围为[0, 3]。
+ * 如果指定的字符索引范围是[0, 1]，但无法解析出三分之一个汉字，所以实际的字符索引范围是[0, 3]。outGlyphRange、outActualCharRange返回的{@link OH_Drawing_Range}
+ * 对象在使用完成后，需通过{@link OH_Drawing_ReleaseRangeBuffer}释放。
  *
- * @param layoutManager Indicates the pointer to an <b>ArkUI_TextLayoutManager</b> object.
- * @param charRange The character range.
- * @param outGlyphRange The range of glyphs generated by charRange.
- * @param outActualCharRange If not null, specifies the actual character range that fully defines the returned
- *      glyph range, which may match or slightly exceed the requested range.
- * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ * @param layoutManager 指向{@link ArkUI_TextLayoutManager}对象的指针。
+ * @param charRange 指向{@link OH_Drawing_Range}对象的指针，表示字符索引范围。
+ * @param outGlyphRange 指向{@link OH_Drawing_Range}对象的二级指针，表示字形索引范围。
+ * @param outActualCharRange 指向{@link OH_Drawing_Range}对象的二级指针，表示实际的字符索引范围。
+ * @return 返回结果。
+ *     <br>{@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
+ *     <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_TextLayoutManager_GetGlyphRangeForCharacterRange(
@@ -3303,16 +3309,17 @@ ArkUI_ErrorCode OH_ArkUI_TextLayoutManager_GetGlyphRangeForCharacterRange(
     OH_Drawing_Range** outGlyphRange, OH_Drawing_Range** outActualCharRange);
 
 /**
- * @brief Get the character range that maps to the glyphs in the given glyph range.
+ * @brief 获取由指定字形索引范围所生成的字符索引范围以及实际的字形索引范围。例如文本为"世界Hello"，其字形索引范围为[0, 7]，一个汉字占三个字符，所以其对应的字符索引范围为[0, 11]。如果指定的索引范围是[0,
+ * 11]，但字形一共只有7个，所以实际的字形索引范围是[0, 7]。outCharRange、outActualGlyphRange返回的{@link OH_Drawing_Range}对象在使用完成后，需通过
+ * {@link OH_Drawing_ReleaseRangeBuffer}释放。
  *
- * @param layoutManager Indicates the pointer to an <b>ArkUI_TextLayoutManager</b> object.
- * @param glyphRange The glyph range.
- * @param outCharRange The range of characters generated by glyphRange.
- * @param outActualGlyphRange If not null, specifies the full glyph range generated by the returned character range,
- *      which may match or slightly exceed the requested glyph range.
- * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ * @param layoutManager 指向{@link ArkUI_TextLayoutManager}对象的指针。
+ * @param glyphRange 指向{@link OH_Drawing_Range}对象的指针，表示字形索引范围。
+ * @param outCharRange 指向{@link OH_Drawing_Range}对象的二级指针，表示字符索引范围。
+ * @param outActualGlyphRange 指向{@link OH_Drawing_Range}对象的二级指针，表示实际的字形索引范围。
+ * @return 返回结果。
+ *     <br>{@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
+ *     <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
  * @since 24
  */
 ArkUI_ErrorCode OH_ArkUI_TextLayoutManager_GetCharacterRangeForGlyphRange(
@@ -3320,60 +3327,93 @@ ArkUI_ErrorCode OH_ArkUI_TextLayoutManager_GetCharacterRangeForGlyphRange(
     OH_Drawing_Range** outCharRange, OH_Drawing_Range** outActualGlyphRange);
 
 /**
- * @brief Set linear gradient of paragraph style.
+ * @brief 设置段落样式的线性渐变。
  *
- * @note All input pointer parameters must be allocated, managed, and released by the caller.
- * @param paragraphStyle Pointer to the <b>OH_ArkUI_ParagraphStyle</b> object.
- * @param linearGradient Pointer to the <b>OH_ArkUI_LinearGradientOptions</b> object.
- * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ * @note 所有输入指针参数必须由调用者分配、管理和释放。
+ * @param paragraphStyle 指向{@link OH_ArkUI_ParagraphStyle}对象的指针。
+ * @param linearGradient 指向{@link OH_ArkUI_LinearGradientOptions}对象的指针。
+ * @return 返回结果。
+ *     <br>{@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
+ *     <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
  * @since 26.0.0
  */
 ArkUI_ErrorCode OH_ArkUI_ParagraphStyle_SetLinearGradient(
     OH_ArkUI_ParagraphStyle* paragraphStyle, const OH_ArkUI_LinearGradientOptions* linearGradient);
 
 /**
- * @brief Get linear gradient of paragraph style.
+ * @brief 获取段落样式的线性渐变。
  *
- * @note All input pointer parameters must be allocated, managed, and released by the caller.
- * @param paragraphStyle Pointer to the <b>OH_ArkUI_ParagraphStyle</b> object.
- * @param linearGradient Pointer to the <b>OH_ArkUI_LinearGradientOptions</b> object.
- * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ * @note 所有输入指针参数必须由调用者分配、管理和释放。
+ * @param paragraphStyle 指向{@link OH_ArkUI_ParagraphStyle}对象的指针。
+ * @param linearGradient 指向{@link OH_ArkUI_LinearGradientOptions}对象的指针。
+ * @return 返回结果。
+ *     <br>{@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
+ *     <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
  * @since 26.0.0
  */
 ArkUI_ErrorCode OH_ArkUI_ParagraphStyle_GetLinearGradient(
     const OH_ArkUI_ParagraphStyle* paragraphStyle, OH_ArkUI_LinearGradientOptions* linearGradient);
 
 /**
- * @brief Set radial gradient of paragraph style.
+ * @brief 设置段落样式的径向渐变。
  *
- * @note All input pointer parameters must be allocated, managed, and released by the caller.
- * @param paragraphStyle Pointer to the <b>OH_ArkUI_ParagraphStyle</b> object.
- * @param radialGradient Pointer to the <b>OH_ArkUI_RadialGradientOptions</b> object.
- * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ * @note 所有输入指针参数必须由调用者分配、管理和释放。
+ * @param paragraphStyle 指向{@link OH_ArkUI_ParagraphStyle}对象的指针。
+ * @param radialGradient 指向{@link OH_ArkUI_RadialGradientOptions}对象的指针。
+ * @return 返回结果。
+ *     <br>{@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
+ *     <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
  * @since 26.0.0
  */
 ArkUI_ErrorCode OH_ArkUI_ParagraphStyle_SetRadialGradient(
     OH_ArkUI_ParagraphStyle* paragraphStyle, const OH_ArkUI_RadialGradientOptions* radialGradient);
 
 /**
- * @brief Get radial gradient of paragraph style.
+ * @brief 获取段落样式的径向渐变。
  *
- * @note All input pointer parameters must be allocated, managed, and released by the caller.
- * @param paragraphStyle Pointer to the <b>OH_ArkUI_ParagraphStyle</b> object.
- * @param radialGradient Pointer to the <b>OH_ArkUI_RadialGradientOptions</b> object.
- * @return Returns the result code.
- *         Returns {@link ARKUI_ERROR_CODE_NO_ERROR} if the operation is successful.
- *         Returns {@link ARKUI_ERROR_CODE_PARAM_INVALID} if a parameter exception occurs.
+ * @note 所有输入指针参数必须由调用者分配、管理和释放。
+ * @param paragraphStyle 指向{@link OH_ArkUI_ParagraphStyle}对象的指针。
+ * @param radialGradient 指向{@link OH_ArkUI_RadialGradientOptions}对象的指针。
+ * @return 返回结果。
+ *     <br>{@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
+ *     <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
  * @since 26.0.0
  */
 ArkUI_ErrorCode OH_ArkUI_ParagraphStyle_GetRadialGradient(
     const OH_ArkUI_ParagraphStyle* paragraphStyle, OH_ArkUI_RadialGradientOptions* radialGradient);
+
+/**
+ * @brief 设置段落样式的尾部缩进。
+ *
+ * @note 所有输入指针参数必须由调用者分配、管理和释放。
+ * @param paragraphStyle 指向{@link OH_ArkUI_ParagraphStyle}对象的指针。
+ * @param tailIndents 尾部缩进值数组。单位：fp。取值范围：[0, +∞)。其有效长度由size指定。若size等于1，则所有文本行使用相同的尾部缩进值tailIndents[0]；若size大于1，则第i行（
+ *     从0开始计数）使用tailIndents[i]作为尾部缩进值。当文本行数超过size时，超出部分的行将复用tailIndents[size - 1]的值做缩进。
+ * @param size tailIndents数组中有效尾部缩进值的个数。
+ * @return 返回结果。
+ *     <br>{@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
+ *     <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
+ * @since 26.0.0
+ */
+ArkUI_ErrorCode OH_ArkUI_ParagraphStyle_SetTailIndents(
+    OH_ArkUI_ParagraphStyle* paragraphStyle, const float* tailIndents, uint32_t size);
+
+/**
+ * @brief 获取段落样式的尾部缩进。
+ *
+ * @note 所有输入指针参数必须由调用者分配、管理和释放。
+ * @param paragraphStyle 指向{@link OH_ArkUI_ParagraphStyle}对象的指针。
+ * @param tailIndents 尾部缩进值，单位为fp。
+ * @param tailIndentsSize tailIndents缓冲区大小。
+ * @param writeLength 实际写入缓冲区的尾部缩进值个数。
+ * @return 返回结果。
+ *     <br>{@link ARKUI_ERROR_CODE_NO_ERROR} 成功。
+ *     <br>{@link ARKUI_ERROR_CODE_PARAM_INVALID} 函数参数异常。
+ *     <br>{@link ARKUI_ERROR_CODE_BUFFER_SIZE_ERROR} 缓冲区长度小于最小缓冲区长度。
+ * @since 26.0.0
+ */
+ArkUI_ErrorCode OH_ArkUI_ParagraphStyle_GetTailIndents(const OH_ArkUI_ParagraphStyle* paragraphStyle,
+    float** tailIndents, uint32_t tailIndentsSize, uint32_t* writeLength);
 
 #ifdef __cplusplus
 };
