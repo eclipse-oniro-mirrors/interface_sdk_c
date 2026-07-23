@@ -6613,9 +6613,9 @@ typedef enum {
      * @brief TextEditor组件光标颜色，支持属性设置、属性重置和属性获取。
      * <br>作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
      * <br>**参数：**
-     * <br>.value[0].u32：光标颜色，采用0xARGB格式，例如0xFFFF0000表示红色。
+     * <br>.value[0].u32：光标颜色，采用0xARGB格式，例如0xFFFF0000表示红色。默认跟随系统主题。
      * <br>**返回：**
-     * <br>.value[0].u32：光标颜色，采用0xARGB格式。
+     * <br>.value[0].u32：光标颜色，采用0xARGB格式，例如0xFFFF0000表示红色。默认跟随系统主题。
      *
      * @since 24
      */
@@ -6625,9 +6625,9 @@ typedef enum {
      * @brief TextEditor组件滚动条颜色，支持属性设置、属性重置和属性获取。
      * <br>作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
      * <br>**参数：**
-     * <br>.data[0].u32：滚动条颜色，采用0xARGB格式。
+     * <br>.data[0].u32：滚动条颜色，采用0xARGB格式，例如0xFFFF0000表示红色。默认跟随系统主题。
      * <br>**返回：**
-     * <br>.data[0].u32：滚动条颜色，采用0xARGB格式。
+     * <br>.data[0].u32：滚动条颜色，采用0xARGB格式，例如0xFFFF0000表示红色。默认跟随系统主题。
      *
      * @since 24
      */
@@ -6637,31 +6637,34 @@ typedef enum {
      * @brief TextEditor组件滚动条显示模式，支持属性设置、属性重置和属性获取。
      * <br>作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
      * <br>**参数：**
-     * <br>.value[0].i32：文本区域的滚动条显示模式，参数类型{@link ArkUI_BarState}，默认值为ARKUI_BAR_STATE_AUTO。
+     * <br>.value[0].i32：滚动条显示模式，参数类型{@link ArkUI_BarState}，默认值为ARKUI_BAR_STATE_AUTO。
      * <br>**返回：**
-     * <br>.value[0].i32：文本区域的滚动条显示模式，参数类型{@link ArkUI_BarState}。
+     * <br>.value[0].i32：滚动条显示模式，参数类型{@link ArkUI_BarState}。
      *
      * @since 24
      */
     NODE_TEXT_EDITOR_BAR_STATE,
 
     /**
-     * @brief TextEditor组件文本实体识别功能开关，支持属性设置、属性重置和属性获取。
+     * @brief TextEditor组件文本实体识别功能开关，启用后，文本中的电话号码、邮箱、链接等实体将被自动识别并标记为可交互内容。
+     * 配合NODE_TEXT_EDITOR_DATA_DETECTOR_CONFIG属性可自定义识别类型和交互行为。支持属性设置、属性重置和属性获取。
      * <br>作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
      * <br>**参数：**
-     * <br>.value[0].i32：是否启用文本实体识别功能，0表示禁用，1表示启用，默认值为0。
+     * <br>.value[0].i32：是否启用文本实体识别功能，0表示禁用，1表示启用，默认值为0。推荐在需要自动识别并高亮文本中实体信息的场景下设置此属性。
      * <br>**返回：**
-     * <br>.value[0].i32：是否启用了文本实体识别功能。
+     * <br>.value[0].i32：是否启用了文本实体识别功能，0表示禁用，1表示启用。
      *
      * @since 24
      */
     NODE_TEXT_EDITOR_ENABLE_DATA_DETECTOR,
 
     /**
-     * @brief TextEditor组件识别配置，支持属性设置和属性重置。
+     * @brief TextEditor组件文本实体识别配置，设置后，可配置识别类型、实体显示样式，并可选择是否开启长按预览功能。配合NODE_TEXT_EDITOR_ENABLE_DATA_DETECTOR属性使用，
+     * 支持属性设置和属性重置。
      * <br>作为属性设置方法参数{@link ArkUI_AttributeItem}格式如下。
      * <br>**参数：**
-     * <br>.object：识别配置，参数类型{@link ArkUI_TextDataDetectorConfig}。
+     * <br>.object：文本实体识别配置，设置后可指定需要识别的文本实体类型（如电话号码、邮箱、链接等）及识别后的交互行为。仅在启用文本实体识别功能(
+     * NODE_TEXT_EDITOR_ENABLE_DATA_DETECTOR设置为1)后传入此参数以自定义识别类型，不传入时使用系统默认识别配置。参数类型{@link ArkUI_TextDataDetectorConfig}。
      * 
      * @since 24
      */
@@ -6671,7 +6674,7 @@ typedef enum {
      * @brief TextEditor组件扩展菜单选项，支持属性设置和属性重置。
      * <br>作为属性设置方法参数{@link ArkUI_AttributeItem}格式如下。
      * <br>**参数：**
-     * <br>.object：扩展菜单选项，参数类型{@link ArkUI_TextEditMenuOptions}。
+     * <br>.object：扩展菜单选项，设置后可自定义默认菜单项的行为，或添加自定义选项内容。参数类型{@link ArkUI_TextEditMenuOptions}。
      *
      * @since 24
      */
@@ -6681,14 +6684,14 @@ typedef enum {
      * @brief TextEditor组件无输入时的提示文本选项，支持属性设置和属性重置。
      * <br>作为属性设置方法参数{@link ArkUI_AttributeItem}格式如下。
      * <br>**参数：**
-     * <br>.object：无输入时的提示文本选项，参数类型{@link ArkUI_TextEditorPlaceholderOptions}。
+     * <br>.object：无输入时的提示文本选项，参数类型{@link ArkUI_TextEditorPlaceholderOptions}。不传入时，编辑器无输入状态下不显示提示文本。
      *
      * @since 24
      */
     NODE_TEXT_EDITOR_PLACEHOLDER,
 
     /**
-     * @brief TextEditor组件属性字符串控制器，支持属性设置。
+     * @brief TextEditor组件属性字符串控制器，支持属性设置。设置后，可通过该控制器管理TextEditor中的内容、光标、选区、输入样式及编辑状态。
      * <br>作为属性设置方法参数{@link ArkUI_AttributeItem}格式如下。
      * <br>**参数：**
      * <br>.object：属性字符串控制器，参数类型{@link ArkUI_TextEditorStyledStringController}。
@@ -6698,7 +6701,7 @@ typedef enum {
     NODE_TEXT_EDITOR_STYLED_STRING_CONTROLLER,
 
     /**
-     * @brief TextEditor组件预上屏功能开关，支持属性设置、属性重置和属性获取。
+     * @brief TextEditor组件预上屏功能开关，启用后，组件内显示输入法输入过程中的拼音、笔画字符。支持属性设置、属性重置和属性获取。
      * <br>作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
      * <br>**参数：**
      * <br>.value[0].i32：是否启用预上屏功能，0表示禁用，1表示启用，默认值为1。
@@ -6710,22 +6713,22 @@ typedef enum {
     NODE_TEXT_EDITOR_ENABLE_PREVIEW_TEXT,
 
     /**
-     * @brief TextEditor组件TextLayoutManager获取，支持属性获取。
+     * @brief TextEditor组件TextLayoutManager获取，获取后，可通过布局管理器查询文本的布局信息，如行数、行高和内容偏移等。支持属性获取。
      * <br>作为属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
      * <br>**返回：**
-     * <br>.object：布局管理器，参数类型{@link ArkUI_TextLayoutManager}。
+     * <br>.object：布局管理器，可通过该管理器查询文本的布局信息。参数类型{@link ArkUI_TextLayoutManager}。
      *
      * @since 24
      */
     NODE_TEXT_EDITOR_LAYOUT_MANAGER,
 
     /**
-      * @brief TextEditor组件文本选择识别AI菜单开关，支持属性设置、属性重置和属性获取。
+      * @brief TextEditor组件文本选择识别AI菜单开关，支持属性设置、属性重置和属性获取。启用后，用户选中特殊文本实体时将弹出AI识别菜单，提供基于选中文本内容的智能识别和操作选项。
       * <br>作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
       * <br>**参数：**
       * <br>.value[0].i32：是否启用文本选择识别的AI菜单，0表示禁用，1表示启用，默认值为1。
       * <br>**返回：**
-      * <br>.value[0].i32：是否启用了文本选择识别的AI菜单。
+      * <br>.value[0].i32：是否启用了文本选择识别的AI菜单，0表示禁用，1表示启用。
       *
       * @since 24
       */
@@ -6735,9 +6738,9 @@ typedef enum {
      * @brief TextEditor组件选中内容背景颜色，支持属性设置、属性重置和属性获取。
      * <br>作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
      * <br>**参数：**
-     * <br>.data[0].u32：选中内容的背景颜色，采用0xARGB格式。
+     * <br>.data[0].u32：选中内容的背景颜色，采用0xARGB格式，例如0xFFFF0000表示红色。默认跟随系统主题。
      * <br>**返回：**
-     * <br>.data[0].u32：选中内容的背景颜色，采用0xARGB格式。
+     * <br>.data[0].u32：选中内容的背景颜色，采用0xARGB格式，例如0xFFFF0000表示红色。默认跟随系统主题。
      *
      * @since 24
      */
@@ -6759,9 +6762,9 @@ typedef enum {
      * @brief TextEditor组件最大字符数，支持属性设置、属性重置和属性获取。
      * <br>作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
      * <br>**参数：**
-     * <br>.value[0].i32：最大字符数。
+     * <br>.value[0].i32：文本编辑器允许输入的最大长度，取值范围为[0, +∞)，超出此限制后将阻止继续输入文本。设置为0、负数或未设置该属性时不限制输入长度。
      * <br>**返回：**
-     * <br>.value[0].i32：最大字符数。
+     * <br>.value[0].i32：文本编辑器允许输入的最大长度。
      *
      * @since 24
      */
@@ -6771,16 +6774,16 @@ typedef enum {
      * @brief TextEditor组件内容最大行数，支持属性设置、属性重置和属性获取。
      * <br>作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
      * <br>**参数：**
-     * <br>.value[0].i32：文本编辑器中内容的最大行数。
+     * <br>.value[0].i32：文本编辑器最大行数限制，取值范围[0, +∞)。取值为0时按无穷大处理；设置为0、负数或未设置该属性时不限制行数。建议在需要固定显示高度的场景下设置该参数。
      * <br>**返回：**
-     * <br>.value[0].i32：文本编辑器中内容的最大行数。
+     * <br>.value[0].i32：文本编辑器最大行数限制。
      *
      * @since 24
      */
     NODE_TEXT_EDITOR_MAX_LINES,
 
     /**
-     * @brief TextEditor组件触觉反馈开关，支持属性设置、属性重置和属性获取。
+     * @brief TextEditor组件触觉反馈开关，启用后，在文本拖选等交互操作时将产生触觉反馈震动响应，支持属性设置、属性重置和属性获取。
      * <br>作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
      * <br>**参数：**
      * <br>.value[0].i32：是否在文本编辑器中启用触觉反馈，0表示不启用，1表示启用，默认值为1。
@@ -6809,17 +6812,17 @@ typedef enum {
     * <br>**参数：**
     * <br>.value[0].i32：键盘外观，参数类型{@link ArkUI_KeyboardAppearance}，默认值为ARKUI_KEYBOARD_APPEARANCE_NONE_IMMERSIVE。
     * <br>**返回：**
-    * <br>.value[0].i32：键盘外观，参数类型{@link ArkUI_KeyboardAppearance}。
+    * <br>.value[0].i32：文本编辑器当前设置的键盘外观类型，参数类型{@link ArkUI_KeyboardAppearance}。
     *
     * @since 24
     */
     NODE_TEXT_EDITOR_KEYBOARD_APPEARANCE,
 
     /**
-     * @brief TextEditor组件是否阻止返回事件传播，支持属性设置、属性重置和属性获取。
+     * @brief TextEditor组件是否阻止返回键事件向上层传播，支持属性设置、属性重置和属性获取。
      * <br>作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
      * <br>**参数：**
-     * <br>.value[0].i32：是否阻止返回事件传播，0表示不阻止，1表示阻止，默认值为0。
+     * <br>.value[0].i32：是否阻止返回事件传播，0表示不阻止，1表示阻止，默认值为0。推荐在编辑器有未保存内容或需要拦截返回键防止意外退出的场景设置为1。
      * <br>**返回：**
      * <br>.value[0].i32：是否阻止返回事件传播，0表示不阻止，1表示阻止。
      *
@@ -6828,26 +6831,26 @@ typedef enum {
     NODE_TEXT_EDITOR_STOP_BACK_PRESS,
 
     /**
-     * @brief TextEditor组件中西文自动间距开关，支持属性设置、属性重置和属性获取。
+     * @brief TextEditor组件中西文自动间距开关，支持属性设置、属性重置和属性获取。适用于包含中英文混排内容的编辑场景，启用后可在中文与西文之间自动添加间距，改善混排文本的阅读体验。
      * <br>作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
      * <br>**参数：**
-     * <br>.value[0].i32：是否启用自动间距，0表示不启用，1表示启用，默认值为0。
+     * <br>.value[0].i32：是否启用中西文自动间距，0表示不启用，1表示启用，默认值为0。推荐在包含中英文混排内容的编辑场景设置为1，以改善混排文本的阅读体验。
      * <br>**返回：**
-     * <br>.value[0].i32：是否启用自动间距，0表示不启用，1表示启用。
+     * <br>.value[0].i32：是否启用中西文自动间距，0表示不启用，1表示启用。
      *
      * @since 24
      */
     NODE_TEXT_EDITOR_ENABLE_AUTO_SPACING,
 
     /**
-     * @brief TextEditor组件自定义键盘，支持属性设置、属性重置和属性获取。
+     * @brief TextEditor组件自定义键盘。当需要替换系统默认键盘时传入此参数（如数字键盘、表情键盘等特殊输入布局），不传入时使用系统默认键盘。支持属性设置、属性重置和属性获取。
      * <br>作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
      * <br>**参数：**
      * <br>.object：自定义键盘，参数类型{@link ArkUI_NodeHandle}。
-     * <br>.value[0]?.i32：设置自定义键盘是否支持避让功能，0表示不支持，1表示支持，默认值为0。
+     * <br>.value[0]?.i32：设置自定义键盘是否支持内容避让功能，即键盘弹出时页面内容自动调整位置以避免被键盘遮挡，0表示不支持，1表示支持，默认值为0。
      * <br>**返回：**
      * <br>.object：自定义键盘，参数类型{@link ArkUI_NodeHandle}。
-     * <br>.value[0].i32：设置自定义键盘是否支持避让功能，0表示不支持，1表示支持。
+     * <br>.value[0].i32：自定义键盘是否支持内容避让功能，即键盘弹出时页面内容自动调整位置以避免被键盘遮挡，0表示不支持，1表示支持。
      *
      * @since 24
      */
@@ -6857,26 +6860,26 @@ typedef enum {
      * @brief TextEditor组件自定义文本选择菜单绑定，支持属性设置和属性重置。
      * <br>作为属性设置方法参数{@link ArkUI_AttributeItem}格式如下。
      * <br>**参数：**
-     * <br>.object：文本选择菜单，参数类型{@link ArkUI_TextEditorSelectionMenuOptions}。
+     * <br>.object：自定义选择菜单，不传入时使用系统默认文本选择菜单。参数类型{@link ArkUI_TextEditorSelectionMenuOptions}。
      *
      * @since 24
      */
     NODE_TEXT_EDITOR_BIND_SELECTION_MENU,
 
     /**
-     * @brief TextEditor组件首行末行防截断间距开关，支持属性设置、属性重置和属性获取。
+     * @brief TextEditor组件首行尾行防截断间距开关，启用后，在首行和尾行增加间距以避免文字截断，支持属性设置、属性重置和属性获取。
      * <br>作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
      * <br>**参数：**
-     * <br>.value[0].i32：是否添加间距，0表示不添加，1表示添加，默认值为0。
+     * <br>.value[0].i32：是否添加首行尾行防截断间距，0表示不添加，1表示添加，默认值为0。
      * <br>**返回：**
-     * <br>.value[0].i32：是否添加间距，0表示不添加，1表示添加。
+     * <br>.value[0].i32：是否添加首行尾行防截断间距，0表示不添加，1表示添加。
      *
      * @since 24
      */
     NODE_TEXT_EDITOR_INCLUDE_FONT_PADDING,
 
     /**
-     * @brief TextEditor组件行高自适应开关，支持属性设置、属性重置和属性获取。
+     * @brief TextEditor组件行高自适应开关，在多行文字叠加时，行高可以基于文字实际高度自适应，支持属性设置、属性重置和属性获取。
      * <br>作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
      * <br>**参数：**
      * <br>.value[0].i32：行高是否自适应，0表示不自适应，1表示自适应，默认值为0。
@@ -6888,12 +6891,12 @@ typedef enum {
     NODE_TEXT_EDITOR_FALLBACK_LINE_SPACING,
 
     /**
-     * @brief TextEditor组件行首标点符号压缩开关，支持属性设置、属性重置和属性获取。
+     * @brief TextEditor组件行首标点符号压缩开关，启用后，行首的标点符号将缩减占位宽度，调整文本排版对齐效果，支持属性设置、属性重置和属性获取。
      * <br>作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
      * <br>**参数：**
-     * <br>.value[0].i32：是否启用标点符号压缩，0表示不启用，1表示启用，默认值为0。
+     * <br>.value[0].i32：是否启用行首标点符号压缩，0表示不启用，1表示启用，默认值为0。
      * <br>**返回：**
-     * <br>.value[0].i32：是否启用标点符号压缩，0表示不启用，1表示启用。
+     * <br>.value[0].i32：是否启用行首标点符号压缩，0表示不启用，1表示启用。
      *
      * @since 24
      */
@@ -6903,7 +6906,7 @@ typedef enum {
      * @brief TextEditor组件选中拖拽预览样式，支持属性设置、属性重置和属性获取。
      * <br>作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
      * <br>**参数：**
-     * <br>.object：选中拖拽预览样式配置，参数类型{@link ArkUI_SelectedDragPreviewStyle}。
+     * <br>.object：选中拖拽预览样式配置，参数类型{@link ArkUI_SelectedDragPreviewStyle}。当需要自定义选中文本拖拽时的预览效果时传入此参数，不传入时使用系统默认拖拽预览样式。
      * <br>**返回：**
      * <br>.object：选中拖拽预览样式配置，参数类型{@link ArkUI_SelectedDragPreviewStyle}。
      * 
@@ -6912,7 +6915,7 @@ typedef enum {
     NODE_TEXT_EDITOR_SELECTED_DRAG_PREVIEW_STYLE,
 
     /**
-     * @brief TextEditor组件单行模式开关，支持属性设置、属性重置和属性获取。
+     * @brief TextEditor组件单行模式开关，支持属性设置、属性重置和属性获取。启用单行模式后，NODE_TEXT_EDITOR_MAX_LINES属性设置的最大行数将不再生效。
      * <br>作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
      * <br>**参数：**
      * <br>.value[0].i32：是否启用单行模式，0表示不启用，1表示启用，默认值为0。
@@ -6924,39 +6927,38 @@ typedef enum {
     NODE_TEXT_EDITOR_SINGLE_LINE,
 
     /**
-     * @brief 设置TextEditor文本排版时是否使能孤字优化，设置后，通过更高效地处理孤立字符（段落尾行首字符）来改善文本布局。使能后，它会调整换行点以尽可能避免孤立字符。
-     * 孤字优化特性需在{@link ArkUI_WordBreak}属性为非ARKUI_WORD_BREAK_BREAK_ALL时生效。
-     * <br>作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
+     * @brief TextEditor组件孤字优化开关，支持属性设置、属性重置和属性获取。启用后会调整换行点以尽可能避免孤字。
+     * 仅在[ArkUI_WordBreak](capi-text-common-h.md#arkui_wordbreak)属性为非ARKUI_WORD_BREAK_BREAK_ALL时生效。
+     * <br>作为属性设置方法参数、属性获取方法返回值[ArkUI_AttributeItem](capi-arkui-nativemodule-arkui-attributeitem.md)格式如下。
      * <br>**参数：**
-     * <br>.value[0].i32：是否使能，1表示使能，0表示不使能。默认值为0。
+     * <br>.value[0].i32：是否启用孤字优化，0表示不启用，1表示启用。默认值为0。
      * <br>**返回：**
-     * <br>.value[0].i32：是否使能孤字优化。
+     * <br>.value[0].i32：是否启用孤字优化，0表示不启用，1表示启用。
      *
      * @since 26.0.0
      */
      NODE_TEXT_EDITOR_ORPHAN_CHAR_OPTIMIZATION,
 
     /**
-     * @brief 设置TextEditor组件在文本宽度超过内容区宽度时是否启用水平滚动，支持属性设置，属性重置和属性获取。
+     * @brief 设置TextEditor组件在文本宽度超过内容区宽度时是否启用水平滚动，支持属性设置、属性重置和属性获取。
      * <br>作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
      * <br>**参数：**
-     * <br>.value[0].i32：是否启用水平滚动。1表示启用水平滚动，0表示不启用水平滚动。默认值为0。
+     * <br>.value[0].i32：是否启用水平滚动，0表示不启用水平滚动，1表示启用水平滚动。默认值为0。
      * <br>**返回：**
-     * <br>.value[0].i32：是否启用水平滚动。
+     * <br>.value[0].i32：是否启用水平滚动，0表示不启用水平滚动，1表示启用水平滚动。
      *
      * @since 26.0.0
      */
     NODE_TEXT_EDITOR_HORIZONTAL_SCROLLING,
 
     /**
-     * @brief Sets whether to enable punctuation overflow at the end of a line.
-     * This attribute can be set, reset, and obtained as required through APIs.
-     *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: whether to enable punctuation overflow, the default value is false.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: whether to enable punctuation overflow.\n
+     * @brief 设置TextEditor组件是否启用行尾标点符号悬挂，支持属性设置、属性重置和属性获取。
+     * <br>启用后，行尾单个标点符号超出排版宽度而不换行，避免行尾标点符号换行至下一行行首，从而改善文本排版效果。
+     * <br>作为属性设置方法参数、属性获取方法返回值{@link ArkUI_AttributeItem}格式如下。
+     * <br>**参数：**
+     * <br>.value[0].i32：是否启用行尾标点符号悬挂，0表示不启用标点符号悬挂，1表示启用标点符号悬挂。默认值为0。
+     * <br>**返回：**
+     * <br>.value[0].i32：是否启用行尾标点符号悬挂，0表示不启用行尾标点符号悬挂，1表示启用行尾标点符号悬挂。
      *
      * @since 26.0.0
      */
