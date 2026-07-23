@@ -46,6 +46,12 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
+/**
+ * @brief Provides native buffer capability.
+ *
+ * @since 9
+ * @version 1.0
+ */
 typedef struct OH_NativeBuffer OH_NativeBuffer;
 
 /**
@@ -954,7 +960,7 @@ int32_t OH_NativeWindow_UnlockAndFlushBuffer(OHNativeWindow* window);
  * @param metadata Indicates the pointer to a uint8_t vector.
  * @return {@link NATIVE_ERROR_OK} 0 - Success.
  *     {@link NATIVE_ERROR_INVALID_ARGUMENTS} 40001000 - window or metadata is NULL.
- *     {@link NATIVE_ERROR_BUFFER_STATE_INVALID} 41207000 - Incorrect metadata state.
+ *     {@link NATIVE_ERROR_UNKNOWN} 50002000 - Inner error.
  *     {@link NATIVE_ERROR_UNSUPPORTED} 50102000 - Unsupported metadata key.
  * @since 26.0.0
  * @version 1.0
@@ -973,7 +979,7 @@ int32_t OH_NativeWindow_Set3DMetadataValue(OHNativeWindow *window, OH_NativeBuff
  * @param metadata Indicates the pointer to a uint8_t vector.
  * @return {@link NATIVE_ERROR_OK} 0 - Success.
  *     {@link NATIVE_ERROR_INVALID_ARGUMENTS} 40001000 - window, metadata, or size is NULL.
- *     {@link NATIVE_ERROR_BUFFER_STATE_INVALID} 41207000 - Incorrect metadata state.
+ *     {@link NATIVE_ERROR_UNKNOWN} 50002000 - Inner error.
  *     {@link NATIVE_ERROR_UNSUPPORTED} 50102000 - Unsupported metadata key.
  * @since 26.0.0
  * @version 1.0
