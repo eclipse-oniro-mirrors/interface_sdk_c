@@ -472,7 +472,7 @@ typedef enum OH_NativeBuffer_VideoDimensionType {
     OH_VIDEO_DIM_TYPE_3D_SBS,
     /** 3-dimension video, format: top and bottom */
     OH_VIDEO_DIM_TYPE_3D_TAB,
-    /** 3-dimension video, format: butt */
+    /** Invalid video type */
     OH_VIDEO_DIM_TYPE_BUTT,
 } OH_NativeBuffer_VideoDimensionType;
 
