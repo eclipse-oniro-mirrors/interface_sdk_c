@@ -2499,7 +2499,7 @@ typedef enum {
      * <li>.string: text content.</li>
      * </ul>
      *
-     * @group {ArkUI_NodeAttributeType(Text Display Component Attribute)}[capi-native-node-h-node-attributetype-text]
+     * @ingroup Text Display
      */
     NODE_TEXT_CONTENT = MAX_NODE_SCOPE_NUM * ARKUI_NODE_TEXT,
     /**
@@ -2515,7 +2515,7 @@ typedef enum {
      * <li>.value[0].u32: font color value, in 0xARGB format.</li>
      * </ul>
      *
-     * @group {ArkUI_NodeAttributeType(Text Display Component Attribute)}[capi-native-node-h-node-attributetype-text]
+     * @ingroup Text Display
      */
     NODE_FONT_COLOR,
     /**
@@ -2531,7 +2531,7 @@ typedef enum {
      * <li>.value[0].f32: font size, in fp.</li>
      * </ul>
      *
-     * @group {ArkUI_NodeAttributeType(Text Display Component Attribute)}[capi-native-node-h-node-attributetype-text]
+     * @ingroup Text Display
      */
     NODE_FONT_SIZE,
     /**
@@ -2547,7 +2547,7 @@ typedef enum {
      * <li>.value[0].i32: font style {@link ArkUI_FontStyle}.</li>
      * </ul>
      *
-     * @group {ArkUI_NodeAttributeType(Text Display Component Attribute)}[capi-native-node-h-node-attributetype-text]
+     * @ingroup Text Display
      */
     NODE_FONT_STYLE,
     /**
@@ -2563,7 +2563,7 @@ typedef enum {
      * <li>.value[0].i32: font weight {@link ArkUI_FontWeight}.</li>
      * </ul>
      *
-     * @group {ArkUI_NodeAttributeType(Text Display Component Attribute)}[capi-native-node-h-node-attributetype-text]
+     * @ingroup Text Display
      */
     NODE_FONT_WEIGHT,
     /**
@@ -2579,43 +2579,31 @@ typedef enum {
      * <li>.value[0].f32: line height, in fp.</li>
      * </ul>
      *
-     * @group {ArkUI_NodeAttributeType(Text Display Component Attribute)}[capi-native-node-h-node-attributetype-text]
+     * @ingroup Text Display
      */
     NODE_TEXT_LINE_HEIGHT,
     /**
      * @brief Defines the text decoration style and color.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: text decoration type {@link ArkUI_TextDecorationType}.
-     * The default value is <b>ARKUI_TEXT_DECORATION_TYPE_NONE</b>.\n
-     * .value[1]?.u32: text decoration color, in 0xARGB format. For example, 0xFFFF0000 indicates red. Optional.\n
-     * .value[2]?.i32: text decoration style {@link ArkUI_TextDecorationStyle}. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: text decoration type {@link ArkUI_TextDecorationType}.\n
-     * .value[1].u32: text decoration color, in 0xARGB format. \n
-     * .value[2].i32: text decoration style {@link ArkUI_TextDecorationStyle}. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32: text decoration type {@link ArkUI_TextDecorationType}.
+     * The default value is <b>ARKUI_TEXT_DECORATION_TYPE_NONE</b>.</li>
+     * <li>.value[1]?.u32: text decoration color, in 0xARGB format. For example, 0xFFFF0000 indicates red. Optional.</li>
+     * <li>.value[2]?.i32: text decoration style {@link ArkUI_TextDecorationStyle}.</li>
+     * <li>.value[3]?.f32: text decoration thickness scale. This parameter is supported since API version 22.</li>
+     * </ul>
      *
-     */
-    /**
-     * @brief Defines the text decoration style and color.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].i32: text decoration type {@link ArkUI_TextDecorationType}.</li>
+     * <li>.value[1].u32: text decoration color, in 0xARGB format.</li>
+     * <li>.value[2].i32: text decoration style {@link ArkUI_TextDecorationStyle}.</li>
+     * <li>.value[3]?.f32: text decoration thickness scale. This parameter is supported since API version 22.</li>
+     * </ul>
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: text decoration type {@link ArkUI_TextDecorationType}.
-     * The default value is <b>ARKUI_TEXT_DECORATION_TYPE_NONE</b>.\n
-     * .value[1]?.u32: text decoration color, in 0xARGB format. For example, 0xFFFF0000 indicates red. Optional.\n
-     * .value[2]?.i32: text decoration style {@link ArkUI_TextDecorationStyle}. \n
-     * .value[3]?.f32: text decoration thickness scale. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: text decoration type {@link ArkUI_TextDecorationType}.\n
-     * .value[1].u32: text decoration color, in 0xARGB format. \n
-     * .value[2].i32: text decoration style {@link ArkUI_TextDecorationStyle}. \n
-     * .value[3].f32: text decoration thickness scale. \n
-     *
-     *  since 22
+     * @ingroup Text Display
      */
     NODE_TEXT_DECORATION,
     /**
@@ -2631,7 +2619,7 @@ typedef enum {
      * <li>.value[0].i32: text case.</li>
      * </ul>
      *
-     * @group {ArkUI_NodeAttributeType(Text Display Component Attribute)}[capi-native-node-h-node-attributetype-text]
+     * @ingroup Text Display
      */
     NODE_TEXT_CASE,
     /**
@@ -2647,7 +2635,7 @@ typedef enum {
      * <li>.value[0].f32: letter spacing, in fp.</li>
      * </ul>
      *
-     * @group {ArkUI_NodeAttributeType(Text Display Component Attribute)}[capi-native-node-h-node-attributetype-text]
+     * @ingroup Text Display
      */
     NODE_TEXT_LETTER_SPACING,
     /**
@@ -2664,7 +2652,7 @@ typedef enum {
      * <li>.value[0].i32: maximum number of lines in the text.</li>
      * </ul>
      *
-     * @group {ArkUI_NodeAttributeType(Text Display Component Attribute)}[capi-native-node-h-node-attributetype-text]
+     * @ingroup Text Display
      */
     NODE_TEXT_MAX_LINES,
     /**
@@ -2681,7 +2669,7 @@ typedef enum {
      * <li>.value[0].i32: horizontal alignment mode of the text. The value is an enum of {@link ArkUI_TextAlignment}.</li>
      * </ul>
      *
-     * @group {ArkUI_NodeAttributeType(Text Display Component Attribute)}[capi-native-node-h-node-attributetype-text]
+     * @ingroup Text Display
      */
     NODE_TEXT_ALIGN,
     /**
@@ -2697,7 +2685,7 @@ typedef enum {
      * <li>.value[0].i32: display mode when the text is too long. {@link ArkUI_TextOverflow}.</li>
      * </ul>
      *
-     * @group {ArkUI_NodeAttributeType(Text Display Component Attribute)}[capi-native-node-h-node-attributetype-text]
+     * @ingroup Text Display
      */
     NODE_TEXT_OVERFLOW,
     /**
@@ -2713,7 +2701,7 @@ typedef enum {
      * <li>.string: fonts, separated by commas (,).</li>
      * </ul>
      *
-     * @group {ArkUI_NodeAttributeType(Text Display Component Attribute)}[capi-native-node-h-node-attributetype-text]
+     * @ingroup Text Display
      */
     NODE_FONT_FAMILY,
     /**
@@ -2729,7 +2717,7 @@ typedef enum {
      * <li>.value[0].i32: copy option {@link ArkUI_CopyOptions}.</li>
      * </ul>
      *
-     * @group {ArkUI_NodeAttributeType(Text Display Component Attribute)}[capi-native-node-h-node-attributetype-text]
+     * @ingroup Text Display
      */
     NODE_TEXT_COPY_OPTION,
     /**
@@ -2746,7 +2734,7 @@ typedef enum {
      * <li>.value[0].f32: baseline offset, in fp.</li>
      * </ul>
      *
-     * @group {ArkUI_NodeAttributeType(Text Display Component Attribute)}[capi-native-node-h-node-attributetype-text]
+     * @ingroup Text Display
      */
     NODE_TEXT_BASELINE_OFFSET,
     /**
@@ -2770,7 +2758,7 @@ typedef enum {
      * <li>.value[4].f32: offset of the shadow along the y-axis, in vp.</li>
      * </ul>
      *
-     * @group {ArkUI_NodeAttributeType(Text Display Component Attribute)}[capi-native-node-h-node-attributetype-text]
+     * @ingroup Text Display
      */
     NODE_TEXT_TEXT_SHADOW,
     /**
@@ -2786,7 +2774,7 @@ typedef enum {
      * <li>.value[0].f32: minimum font size, in fp.</li>
      * </ul>
      *
-     * @group {ArkUI_NodeAttributeType(Text Display Component Attribute)}[capi-native-node-h-node-attributetype-text]
+     * @ingroup Text Display
      */
     NODE_TEXT_MIN_FONT_SIZE,
 
@@ -2803,7 +2791,7 @@ typedef enum {
      * <li>.value[0].f32: maximum font size, in fp.</li>
      * </ul>
      *
-     * @group {ArkUI_NodeAttributeType(Text Display Component Attribute)}[capi-native-node-h-node-attributetype-text]
+     * @ingroup Text Display
      */
     NODE_TEXT_MAX_FONT_SIZE,
 
@@ -2826,7 +2814,7 @@ typedef enum {
      * <li>.value[2].i32: font style. The parameter type is {@link ArkUI_FontStyle}. The default value is <b>ARKUI_FONT_STYLE_NORMAL</b>.</li>
      * </ul>
      *
-     * @group {ArkUI_NodeAttributeType(Text Display Component Attribute)}[capi-native-node-h-node-attributetype-text]
+     * @ingroup Text Display
      */
     NODE_TEXT_FONT,
 
@@ -2844,7 +2832,7 @@ typedef enum {
      * <li>.value[0].i32: how the adaptive height is determined for the text. The parameter type is {@link ArkUI_TextHeightAdaptivePolicy}.</li>
      * </ul>
      *
-     * @group {ArkUI_NodeAttributeType(Text Display Component Attribute)}[capi-native-node-h-node-attributetype-text]
+     * @ingroup Text Display
      */
     NODE_TEXT_HEIGHT_ADAPTIVE_POLICY,
     /**
@@ -2861,7 +2849,7 @@ typedef enum {
      * <li>.value[0].f32: indentation of the first line.</li>
      * </ul>
      *
-     * @group {ArkUI_NodeAttributeType(Text Display Component Attribute)}[capi-native-node-h-node-attributetype-text]
+     * @ingroup Text Display
      */
     NODE_TEXT_INDENT,
     /**
@@ -2877,7 +2865,7 @@ typedef enum {
      * <li>.value[0].i32: The parameter type is {@link ArkUI_WordBreak}.</li>
      * </ul>
      *
-     * @group {ArkUI_NodeAttributeType(Text Display Component Attribute)}[capi-native-node-h-node-attributetype-text]
+     * @ingroup Text Display
      */
     NODE_TEXT_WORD_BREAK,
     /**
@@ -2893,7 +2881,7 @@ typedef enum {
      * <li>.value[0].i32: The parameter type is {@link ArkUI_EllipsisMode}.</li>
      * </ul>
      *
-     * @group {ArkUI_NodeAttributeType(Text Display Component Attribute)}[capi-native-node-h-node-attributetype-text]
+     * @ingroup Text Display
      */
     NODE_TEXT_ELLIPSIS_MODE,
     /**
@@ -2909,7 +2897,7 @@ typedef enum {
      * <li>.value[0].f32: line spacing, in fp.</li>
      * </ul>
      *
-     * @group {ArkUI_NodeAttributeType(Text Display Component Attribute)}[capi-native-node-h-node-attributetype-text]
+     * @ingroup Text Display
      */
     NODE_TEXT_LINE_SPACING,
     /**
@@ -2928,7 +2916,7 @@ typedef enum {
      * <li>.string indicates the content of the text feature. Multiple text features are separated by commas (,).</li>
      * </ul>
      *
-     * @group {ArkUI_NodeAttributeType(Text Display Component Attribute)}[capi-native-node-h-node-attributetype-text]
+     * @ingroup Text Display
      */
     NODE_FONT_FEATURE,
     /**
@@ -2944,7 +2932,7 @@ typedef enum {
      * <li>.value[0].i32: Enable Text Recognition.</li>
      * </ul>
      *
-     * @group {ArkUI_NodeAttributeType(Text Display Component Attribute)}[capi-native-node-h-node-attributetype-text]
+     * @ingroup Text Display
      */
     NODE_TEXT_ENABLE_DATA_DETECTOR,
     /**
@@ -2960,7 +2948,7 @@ typedef enum {
      * <li>.value[0...].i32: Array of entity types, parameter types {@link ArkUI_TextDataDetectorType}.</li>
      * </ul>
      *
-     * @group {ArkUI_NodeAttributeType(Text Display Component Attribute)}[capi-native-node-h-node-attributetype-text]
+     * @ingroup Text Display
      */
     NODE_TEXT_ENABLE_DATA_DETECTOR_CONFIG,
     /**
@@ -2977,7 +2965,7 @@ typedef enum {
      * <li>.value[0].u32: color value, in 0xARGB format.</li>
      * </ul>
      *
-     * @group {ArkUI_NodeAttributeType(Text Display Component Attribute)}[capi-native-node-h-node-attributetype-text]
+     * @ingroup Text Display
      */
     NODE_TEXT_SELECTED_BACKGROUND_COLOR,
 
@@ -2995,7 +2983,7 @@ typedef enum {
      * <li>.object indicates ArkUI_StyledString formatted string data. The parameter type is {@link ArkUI_StyledString}.</li>
      * </ul>
      *
-     * @group {ArkUI_NodeAttributeType(Text Display Component Attribute)}[capi-native-node-h-node-attributetype-text]
+     * @ingroup Text Display
      */
     NODE_TEXT_CONTENT_WITH_STYLED_STRING,
 
@@ -3012,7 +3000,7 @@ typedef enum {
      * <li>.value[0].i32: whether to center text vertically.</li>
      * </ul>
      *
-     * @group {ArkUI_NodeAttributeType(Text Display Component Attribute)}[capi-native-node-h-node-attributetype-text]
+     * @ingroup Text Display
      */
     NODE_TEXT_HALF_LEADING = 1029,
 
@@ -3030,8 +3018,8 @@ typedef enum {
      * <li>.value[0].i32: font weight {@link ArkUI_FontWeight}.</li>
      * </ul>
      *
+     * @ingroup Text Display
      * @since 15
-     * @group {ArkUI_NodeAttributeType(Text Display Component Attribute)}[capi-native-node-h-node-attributetype-text]
      */
     NODE_IMMUTABLE_FONT_WEIGHT = 1030,
 
@@ -3043,8 +3031,8 @@ typedef enum {
      * <li>.value[0].i32: line count of the node.</li>
      * </ul>
      *
+     * @ingroup Text Display
      * @since 20
-     * @group {ArkUI_NodeAttributeType(Text Display Component Attribute)}[capi-native-node-h-node-attributetype-text]
      */
     NODE_TEXT_LINE_COUNT = 1031,
  
@@ -3062,8 +3050,8 @@ typedef enum {
      * <li>.value[0].i32: whether to optimize trailing spaces at the end of each line during text layout.</li>
      * </ul>
      *
+     * @ingroup Text Display
      * @since 20
-     * @group {ArkUI_NodeAttributeType(Text Display Component Attribute)}[capi-native-node-h-node-attributetype-text]
      */
     NODE_TEXT_OPTIMIZE_TRAILING_SPACE = 1032,
 
@@ -3087,8 +3075,8 @@ typedef enum {
      * <li>.object: array of color stops, each of which consists of a color and its stop position. The parameter type is {@link ArkUI_ColorStop}. Invalid colors are automatically skipped. colors: colors of the color stops. stops: stop positions of the color stops. size: number of colors.</li>
      * </ul>
      *
+     * @ingroup Text Display
      * @since 20
-     * @group {ArkUI_NodeAttributeType(Text Display Component Attribute)}[capi-native-node-h-node-attributetype-text]
      */
     NODE_TEXT_LINEAR_GRADIENT = 1033,
 
@@ -3114,8 +3102,8 @@ typedef enum {
      * <li>.object: array of color stops, each of which consists of a color and its stop position. The parameter type is {@link ArkUI_ColorStop}. Invalid colors are automatically skipped. colors: colors of the color stops. stops: stop positions of the color stops. size: number of colors.</li>
      * </ul>
      *
+     * @ingroup Text Display
      * @since 20
-     * @group {ArkUI_NodeAttributeType(Text Display Component Attribute)}[capi-native-node-h-node-attributetype-text]
      */
     NODE_TEXT_RADIAL_GRADIENT = 1034,
 
@@ -3133,8 +3121,8 @@ typedef enum {
      * <li>.value[0].i32: vertical alignment of the text content, specified using the {@link ArkUI_TextVerticalAlignment} enum.</li>
      * </ul>
      *
+     * @ingroup Text Display
      * @since 20
-     * @group {ArkUI_NodeAttributeType(Text Display Component Attribute)}[capi-native-node-h-node-attributetype-text]
      */
     NODE_TEXT_VERTICAL_ALIGN = 1035,
 
@@ -3152,8 +3140,8 @@ typedef enum {
      * <li>.value[0].i32: content align of the text, specified using the {@link ArkUI_TextContentAlign} enum.</li>
      * </ul>
      *
+     * @ingroup Text Display
      * @since 21
-     * @group {ArkUI_NodeAttributeType(Text Display Component Attribute)}[capi-native-node-h-node-attributetype-text]
      */
     NODE_TEXT_CONTENT_ALIGN = 1036,
 
@@ -3173,7 +3161,7 @@ typedef enum {
      *
      * @since 22
      *
-     * @group {ArkUI_NodeAttributeType(Text Display Component Attribute)}[capi-native-node-h-node-attributetype-text]
+     * @ingroup Text Display
      */
     NODE_TEXT_MIN_LINES = 1037,
 
@@ -3190,8 +3178,8 @@ typedef enum {
      * <li>.value[0].i32: Whether selected text recognition is enabled.</li>
      * </ul>
      *
+     * @ingroup Text Display
      * @since 22
-     * @group {ArkUI_NodeAttributeType(Text Display Component Attribute)}[capi-native-node-h-node-attributetype-text]
      */
     NODE_TEXT_ENABLE_SELECTED_DATA_DETECTOR = 1038,
 
@@ -3210,7 +3198,7 @@ typedef enum {
      *
      * @since 22
      *
-     * @group {ArkUI_NodeAttributeType(Text Display Component Attribute)}[capi-native-node-h-node-attributetype-text]
+     * @ingroup Text Display
      */
     NODE_TEXT_MIN_LINE_HEIGHT = 1040,
 
@@ -3229,7 +3217,7 @@ typedef enum {
      *
      * @since 22
      *
-     * @group {ArkUI_NodeAttributeType(Text Display Component Attribute)}[capi-native-node-h-node-attributetype-text]
+     * @ingroup Text Display
      */
     NODE_TEXT_MAX_LINE_HEIGHT = 1041,
 
@@ -3248,7 +3236,7 @@ typedef enum {
      *
      * @since 22
      *
-     * @group {ArkUI_NodeAttributeType(Text Display Component Attribute)}[capi-native-node-h-node-attributetype-text]
+     * @ingroup Text Display
      */
     NODE_TEXT_LINE_HEIGHT_MULTIPLE = 1042,
 
@@ -3260,8 +3248,8 @@ typedef enum {
      * <li>.object: the layout manager of text. The parameter type is {@link ArkUI_TextLayoutManager}.</li>
      * </ul>
      *
+     * @ingroup Text Display
      * @since 22
-     * @group {ArkUI_NodeAttributeType(Text Display Component Attribute)}[capi-native-node-h-node-attributetype-text]
      */
     NODE_TEXT_LAYOUT_MANAGER = 1043,
 
@@ -3273,8 +3261,8 @@ typedef enum {
      * <li>.object: the edit menu options of text. The parameter type is {@link ArkUI_TextEditMenuOptions}.</li>
      * </ul>
      *
+     * @ingroup Text Display
      * @since 22
-     * @group {ArkUI_NodeAttributeType(Text Display Component Attribute)}[capi-native-node-h-node-attributetype-text]
      */
     NODE_TEXT_EDIT_MENU_OPTIONS = 1044,
 
@@ -3286,8 +3274,8 @@ typedef enum {
      * <li>.object: the custom selection menu of text.     The parameter type is {@link ArkUI_SelectionMenuOptions}.</li>
      * </ul>
      *
+     * @ingroup Text Display
      * @since 22
-     * @group {ArkUI_NodeAttributeType(Text Display Component Attribute)}[capi-native-node-h-node-attributetype-text]
      */
     NODE_TEXT_BIND_SELECTION_MENU = 1045,
 
@@ -3309,8 +3297,8 @@ typedef enum {
      * <li>.object: selection options including the menu popup policy.     The parameter type is {@link ArkUI_SelectionOptions}.</li>
      * </ul>
      *
+     * @ingroup Text Display
      * @since 23
-     * @group {ArkUI_NodeAttributeType(Text Display Component Attribute)}[capi-native-node-h-node-attributetype-text]
      */
     NODE_TEXT_TEXT_SELECTION = 1046,
 
@@ -3327,8 +3315,8 @@ typedef enum {
      * <li>.value[0].i32: The current state of this feature.</li>
      * </ul>
      *
+     * @ingroup Text Display
      * @since 26.0.0
-     * @group {ArkUI_NodeAttributeType(Text Display Component Attribute)}[capi-native-node-h-node-attributetype-text]
      */
  	  NODE_TEXT_ORPHAN_CHAR_OPTIMIZATION = 1047,
 
@@ -3345,8 +3333,8 @@ typedef enum {
      * <li>.value[0].i32: Whether compress punctuation at the beginning of line.</li>
      * </ul>
      *
+     * @ingroup Text Display
      * @since 23
-     * @group {ArkUI_NodeAttributeType(Text Display Component Attribute)}[capi-native-node-h-node-attributetype-text]
      */
     NODE_TEXT_COMPRESS_LEADING_PUNCTUATION = 1048,
 
@@ -3363,8 +3351,8 @@ typedef enum {
      * <li>.value[0].i32: Whether include the font padding.</li>
      * </ul>
      *
+     * @ingroup Text Display
      * @since 23
-     * @group {ArkUI_NodeAttributeType(Text Display Component Attribute)}[capi-native-node-h-node-attributetype-text]
      */
     NODE_TEXT_INCLUDE_FONT_PADDING = 1049,
 
@@ -3381,8 +3369,8 @@ typedef enum {
      * <li>.value[0].i32: Whether fallback line spacing.</li>
      * </ul>
      *
+     * @ingroup Text Display
      * @since 23
-     * @group {ArkUI_NodeAttributeType(Text Display Component Attribute)}[capi-native-node-h-node-attributetype-text]
      */
     NODE_TEXT_FALLBACK_LINE_SPACING = 1050,
 
@@ -3399,8 +3387,8 @@ typedef enum {
      * <li>.object: the marquee options of text. The parameter type is {@link ArkUI_TextMarqueeOptions}.</li>
      * </ul>
      *
+     * @ingroup Text Display
      * @since 23
-     * @group {ArkUI_NodeAttributeType(Text Display Component Attribute)}[capi-native-node-h-node-attributetype-text]
      */
     NODE_TEXT_MARQUEE_OPTIONS = 1051,
 
@@ -3418,8 +3406,8 @@ typedef enum {
      * <li>.value[0].i32: writing direction the text. The value is an enum of {@link ArkUI_TextDirection}.</li>
      * </ul>
      *
+     * @ingroup Text Display
      * @since 23
-     * @group {ArkUI_NodeAttributeType(Text Display Component Attribute)}[capi-native-node-h-node-attributetype-text]
      */
     NODE_TEXT_DIRECTION = 1052,
 
@@ -3436,8 +3424,8 @@ typedef enum {
      * <li>.object: selected drag preview style configuration. The parameter type is {@link ArkUI_SelectedDragPreviewStyle}.</li>
      * </ul>
      *
+     * @ingroup Text Display
      * @since 23
-     * @group {ArkUI_NodeAttributeType(Text Display Component Attribute)}[capi-native-node-h-node-attributetype-text]
      */
     NODE_TEXT_SELECTED_DRAG_PREVIEW_STYLE = 1053,
 
@@ -3449,8 +3437,8 @@ typedef enum {
      * <li>.object: the controller of the text. The parameter type is {@link OH_ArkUI_TextController}.</li>
      * </ul>
      *
+     * @ingroup Text Display
      * @since 26.0.0
-     * @group {ArkUI_NodeAttributeType(Text Display Component Attribute)}[capi-native-node-h-node-attributetype-text]
      */
     NODE_TEXT_CONTROLLER = 1054,
 
@@ -3468,8 +3456,8 @@ typedef enum {
      * <li>.value[0].i32: whether to enable punctuation overflow.</li>
      * </ul>
      *
+     * @ingroup Text Display
      * @since 26.0.0
-     * @group {ArkUI_NodeAttributeType(Text Display Component Attribute)}[capi-native-node-h-node-attributetype-text]
      */
     NODE_TEXT_PUNCTUATION_OVERFLOW = 1055,
 
@@ -3489,8 +3477,8 @@ typedef enum {
      * <li>.size: number of tail indent values.</li>
      * </ul>
      *
+     * @ingroup Text Display
      * @since 26.0.0
-     * @group {ArkUI_NodeAttributeType(Text Display Component Attribute)}[capi-native-node-h-node-attributetype-text]
      */
     NODE_TEXT_TAIL_INDENTS = 1056,
 
@@ -3507,7 +3495,7 @@ typedef enum {
      * <li>.string: content of the text span.</li>
      * </ul>
      *
-     * @group {ArkUI_NodeAttributeType(Text Display Component Attribute)}[capi-native-node-h-node-attributetype-text]
+     * @ingroup Text Display
      */
     NODE_SPAN_CONTENT = MAX_NODE_SCOPE_NUM * ARKUI_NODE_SPAN,
     /**
@@ -3531,7 +3519,7 @@ typedef enum {
      * <li>.value[4].f32: radius of the lower right corner, in vp.</li>
      * </ul>
      *
-     * @group {ArkUI_NodeAttributeType(Text Display Component Attribute)}[capi-native-node-h-node-attributetype-text]
+     * @ingroup Text Display
      */
     NODE_SPAN_TEXT_BACKGROUND_STYLE,
     /**
@@ -3548,7 +3536,7 @@ typedef enum {
      * <li>.value[0].f32: baseline offset, in fp.</li>
      * </ul>
      *
-     * @group {ArkUI_NodeAttributeType(Text Display Component Attribute)}[capi-native-node-h-node-attributetype-text]
+     * @ingroup Text Display
      */
     NODE_SPAN_BASELINE_OFFSET,
     /**
@@ -3572,8 +3560,8 @@ typedef enum {
      * <li>.object: the font configurations. The parameter type is {@link OH_ArkUI_FontConfigs}.</li>
      * </ul>
      *
+     * @ingroup Text Display
      * @since 24
-     * @group {ArkUI_NodeAttributeType(Text Display Component Attribute)}[capi-native-node-h-node-attributetype-text]
      */
     NODE_SPAN_FONT = 2003,
 
@@ -3592,8 +3580,8 @@ typedef enum {
      * <li>.object: the font weight configurations. The parameter type is {@link OH_ArkUI_FontWeightConfigs}.</li>
      * </ul>
      *
+     * @ingroup Text Display
      * @since 24
-     * @group {ArkUI_NodeAttributeType(Text Display Component Attribute)}[capi-native-node-h-node-attributetype-text]
      */
     NODE_SPAN_FONT_WEIGHT = 2004,
     /**
@@ -3612,7 +3600,7 @@ typedef enum {
      * <li>.object: The parameter type is {@link ArkUI_DrawableDescriptor}.</li>
      * </ul>
      *
-     * @group {ArkUI_NodeAttributeType(Text Display Component Attribute)}[capi-native-node-h-node-attributetype-text]
+     * @ingroup Text Display
      */
     NODE_IMAGE_SPAN_SRC = MAX_NODE_SCOPE_NUM * ARKUI_NODE_IMAGE_SPAN,
     /**
@@ -3629,7 +3617,7 @@ typedef enum {
      * <li>.value[0].i32: alignment mode of the image with the text. The value is an enum of {@link ArkUI_ImageSpanAlignment}.</li>
      * </ul>
      *
-     * @group {ArkUI_NodeAttributeType(Text Display Component Attribute)}[capi-native-node-h-node-attributetype-text]
+     * @ingroup Text Display
      */
     NODE_IMAGE_SPAN_VERTICAL_ALIGNMENT,
     /**
@@ -3648,7 +3636,7 @@ typedef enum {
      * <li>.object: The parameter type is {@link ArkUI_DrawableDescriptor}.</li>
      * </ul>
      *
-     * @group {ArkUI_NodeAttributeType(Text Display Component Attribute)}[capi-native-node-h-node-attributetype-text]
+     * @ingroup Text Display
      */
     NODE_IMAGE_SPAN_ALT,
     /**
@@ -3667,8 +3655,8 @@ typedef enum {
      * <li>.value[0].f32: baseline offset, in fp.</li>
      * </ul>
      *
+     * @ingroup Text Display
      * @since 13
-     * @group {ArkUI_NodeAttributeType(Text Display Component Attribute)}[capi-native-node-h-node-attributetype-text]
      */
     NODE_IMAGE_SPAN_BASELINE_OFFSET = 3003,
 
@@ -3690,8 +3678,8 @@ typedef enum {
      * <li>.object: the pointer to OH_Drawing_ColorFilter.</li>
      * </ul>
      *
+     * @ingroup Text Display
      * @since 22
-     * @group {ArkUI_NodeAttributeType(Text Display Component Attribute)}[capi-native-node-h-node-attributetype-text]
      */
     NODE_IMAGE_SPAN_COLOR_FILTER = 3004,
     /**
@@ -3708,8 +3696,8 @@ typedef enum {
      * <li>.value[0].i32: enable switch.</li>
      * </ul>
      *
+     * @ingroup Text Display
      * @since 22
-     * @group {ArkUI_NodeAttributeType(Text Display Component Attribute)}[capi-native-node-h-node-attributetype-text]
      */
     NODE_IMAGE_SPAN_SUPPORT_SVG2 = 3005,
     /**
@@ -4124,7 +4112,7 @@ typedef enum {
      * <li>.value[0].u32: foreground color, in 0xARGB format.</li>
      * </ul>
      *
-     * @group {ArkUI_NodeAttributeType(Information Display Component Attribute)}[capi-native-node-h-node-attributetype-informationdisplay]
+     * @ingroup Information Display
      */
     NODE_LOADING_PROGRESS_COLOR = MAX_NODE_SCOPE_NUM * ARKUI_NODE_LOADING_PROGRESS,
     /**
@@ -4141,7 +4129,7 @@ typedef enum {
      * <li>.value[0].i32: The value <b>1</b> means to show the loading animation, and <b>0</b> means the opposite.</li>
      * </ul>
      *
-     * @group {ArkUI_NodeAttributeType(Information Display Component Attribute)}[capi-native-node-h-node-attributetype-informationdisplay]
+     * @ingroup Information Display
      */
     NODE_LOADING_PROGRESS_ENABLE_LOADING,
 
@@ -4159,7 +4147,7 @@ typedef enum {
      * <li>.string: default placeholder text.</li>
      * </ul>
      *
-     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
+     * @ingroup Text Input
      */
     NODE_TEXT_INPUT_PLACEHOLDER = MAX_NODE_SCOPE_NUM * ARKUI_NODE_TEXT_INPUT,
     /**
@@ -4176,7 +4164,7 @@ typedef enum {
      * <li>.string: default text content.</li>
      * </ul>
      *
-     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
+     * @ingroup Text Input
      */
     NODE_TEXT_INPUT_TEXT,
     /**
@@ -4193,7 +4181,7 @@ typedef enum {
      * <li>.value[0].u32: caret color, in 0xARGB format.</li>
      * </ul>
      *
-     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
+     * @ingroup Text Input
      */
     NODE_TEXT_INPUT_CARET_COLOR,
     /**
@@ -4210,7 +4198,7 @@ typedef enum {
      * <li>.value[0].f32: caret width, in vp.</li>
      * </ul>
      *
-     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
+     * @ingroup Text Input
      */
     NODE_TEXT_INPUT_CARET_STYLE,
     /**
@@ -4227,7 +4215,7 @@ typedef enum {
      * <li>.value[0].i32: The value <b>1</b> means to show an underline, and <b>0</b> means the opposite.</li>
      * </ul>
      *
-     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
+     * @ingroup Text Input
      */
     NODE_TEXT_INPUT_SHOW_UNDERLINE,
     /**
@@ -4244,7 +4232,7 @@ typedef enum {
      * <li>.value[0].i32: maximum number of characters in the text input.</li>
      * </ul>
      *
-     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
+     * @ingroup Text Input
      */
     NODE_TEXT_INPUT_MAX_LENGTH,
     /**
@@ -4261,7 +4249,7 @@ typedef enum {
      * <li>.value[0].i32: type of the Enter key{@link ArkUI_EnterKeyType}.</li>
      * </ul>
      *
-     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
+     * @ingroup Text Input
      */
     NODE_TEXT_INPUT_ENTER_KEY_TYPE,
     /**
@@ -4278,7 +4266,7 @@ typedef enum {
      * <li>.value[0].u32: color value, in 0xARGB format.</li>
      * </ul>
      *
-     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
+     * @ingroup Text Input
      */
     NODE_TEXT_INPUT_PLACEHOLDER_COLOR,
     /**
@@ -4301,7 +4289,7 @@ typedef enum {
      * <li>.string: font family. Multiple font families are separated by commas (,).</li>
      * </ul>
      *
-     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
+     * @ingroup Text Input
      */
     NODE_TEXT_INPUT_PLACEHOLDER_FONT,
     /**
@@ -4318,7 +4306,7 @@ typedef enum {
      * <li>.value[0].i32: The value <b>1</b> means to enable the input method when the component obtains focus, and <b>0</b> means the opposite.</li>
      * </ul>
      *
-     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
+     * @ingroup Text Input
      */
     NODE_TEXT_INPUT_ENABLE_KEYBOARD_ON_FOCUS,
     /**
@@ -4334,7 +4322,7 @@ typedef enum {
      * <li>.value[0].i32: text box type {@link ArkUI_TextInputType}.</li>
      * </ul>
      *
-     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
+     * @ingroup Text Input
      */
     NODE_TEXT_INPUT_TYPE,
     /**
@@ -4351,7 +4339,7 @@ typedef enum {
      * <li>.value[0].u32: color value, in 0xARGB format.</li>
      * </ul>
      *
-     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
+     * @ingroup Text Input
      */
     NODE_TEXT_INPUT_SELECTED_BACKGROUND_COLOR,
     /**
@@ -4368,7 +4356,7 @@ typedef enum {
      * <li>.value[0].i32: The value <b>1</b> means to display the password icon at the end of the password text box, and <b>0</b> means the opposite.</li>
      * </ul>
      *
-     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
+     * @ingroup Text Input
      */
     NODE_TEXT_INPUT_SHOW_PASSWORD_ICON,
     /**
@@ -4385,7 +4373,7 @@ typedef enum {
      * <li>.value[0].i32: whether to remain in the editable state. The value <b>true</b> means to remain in the editable state, and <b>false</b> means to exit the editable state.</li>
      * </ul>
      *
-     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
+     * @ingroup Text Input
      */
     NODE_TEXT_INPUT_EDITING,
     /**
@@ -4408,7 +4396,7 @@ typedef enum {
      * <li>.string: button icon image source.</li>
      * </ul>
      *
-     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
+     * @ingroup Text Input
      */
     NODE_TEXT_INPUT_CANCEL_BUTTON,
     /**
@@ -4427,7 +4415,7 @@ typedef enum {
      * <li>.value[1].i32: end position of the text selection.</li>
      * </ul>
      *
-     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
+     * @ingroup Text Input
      */
     NODE_TEXT_INPUT_TEXT_SELECTION,
     /**
@@ -4451,7 +4439,7 @@ typedef enum {
      * <li>.value[3].u32: color of the underline applied to the text when it is disabled. The value is in 0xARGB format.</li>
      * </ul>
      *
-     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
+     * @ingroup Text Input
      */
     NODE_TEXT_INPUT_UNDERLINE_COLOR,
     /**
@@ -4467,7 +4455,7 @@ typedef enum {
      * <li>.value[0].i32: whether to enable autofill.</li>
      * </ul>
      *
-     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
+     * @ingroup Text Input
      */
     NODE_TEXT_INPUT_ENABLE_AUTO_FILL,
     /**
@@ -4483,7 +4471,7 @@ typedef enum {
      * <li>.value[0].i32: autofill type. The parameter type is {@link ArkUI_TextInputContentType}.</li>
      * </ul>
      *
-     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
+     * @ingroup Text Input
      */
     NODE_TEXT_INPUT_CONTENT_TYPE,
     /**
@@ -4500,7 +4488,7 @@ typedef enum {
      * <li>.string: rules for generating passwords.</li>
      * </ul>
      *
-     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
+     * @ingroup Text Input
      */
     NODE_TEXT_INPUT_PASSWORD_RULES,
     /**
@@ -4516,7 +4504,7 @@ typedef enum {
      * <li>.value[0].i32: whether to select all text in the initial state.</li>
      * </ul>
      *
-     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
+     * @ingroup Text Input
      */
     NODE_TEXT_INPUT_SELECT_ALL,
     /**
@@ -4535,7 +4523,7 @@ typedef enum {
      * <li>.string: regular expression.</li>
      * </ul>
      *
-     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
+     * @ingroup Text Input
      */
     NODE_TEXT_INPUT_INPUT_FILTER,
     /**
@@ -4553,7 +4541,7 @@ typedef enum {
      * <li>.value[0].i32: text input style. The parameter type is {@link ArkUI_TextInputStyle}.</li>
      * </ul>
      *
-     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
+     * @ingroup Text Input
      */
     NODE_TEXT_INPUT_STYLE,
     /**
@@ -4571,7 +4559,7 @@ typedef enum {
      * <li>.value[2].f32: Y coordinate of the caret relative to the text box.</li>
      * </ul>
      *
-     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
+     * @ingroup Text Input
      */
     NODE_TEXT_INPUT_CARET_OFFSET,
     /**
@@ -4585,7 +4573,7 @@ typedef enum {
      * <li>.value[3].f32: content height.</li>
      * </ul>
      *
-     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
+     * @ingroup Text Input
      */
     NODE_TEXT_INPUT_CONTENT_RECT,
     /**
@@ -4596,7 +4584,7 @@ typedef enum {
      * <li>.value[0].i32: number of lines of the edited text.</li>
      * </ul>
      *
-     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
+     * @ingroup Text Input
      */
     NODE_TEXT_INPUT_CONTENT_LINE_COUNT,
     /**
@@ -4613,7 +4601,7 @@ typedef enum {
      * <li>.value[0].i32: whether to hide the text selection menu when the text box is long-pressed, double-click, or right-clicked.</li>
      * </ul>
      *
-     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
+     * @ingroup Text Input
      */
     NODE_TEXT_INPUT_SELECTION_MENU_HIDDEN,
     /**
@@ -4629,7 +4617,7 @@ typedef enum {
      * <li>.value[0].i32: whether the text box loses focus.</li>
      * </ul>
      *
-     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
+     * @ingroup Text Input
      */
     NODE_TEXT_INPUT_BLUR_ON_SUBMIT,
     /**
@@ -4647,7 +4635,7 @@ typedef enum {
      * <li>.value[0].i32: Set whether the custom keyboard supports the avoidance function.</li>
      * </ul>
      *
-     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
+     * @ingroup Text Input
      */
     NODE_TEXT_INPUT_CUSTOM_KEYBOARD,
     /**
@@ -4663,7 +4651,7 @@ typedef enum {
      * <li>.value[0].i32: The parameter type is {@link ArkUI_WordBreak}.</li>
      * </ul>
      *
-     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
+     * @ingroup Text Input
      */
     NODE_TEXT_INPUT_WORD_BREAK,
 
@@ -4681,7 +4669,7 @@ typedef enum {
      * <li>.value[0].i32: Whether to pop up the keyboard.</li>
      * </ul>
      *
-     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
+     * @ingroup Text Input
      */
     NODE_TEXT_INPUT_SHOW_KEYBOARD_ON_FOCUS,
 
@@ -4698,7 +4686,7 @@ typedef enum {
      * <li>.value[0].i32: the value of numberOfLines.</li>
      * </ul>
      *
-     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
+     * @ingroup Text Input
      */
     NODE_TEXT_INPUT_NUMBER_OF_LINES,
 
@@ -4716,8 +4704,8 @@ typedef enum {
      * <li>.value[0].f32: letter spacing. The default unit is fp.</li>
      * </ul>
      *
+     * @ingroup Text Input
      * @since 15
-     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
      */
     NODE_TEXT_INPUT_LETTER_SPACING = 7032,
 
@@ -4735,8 +4723,8 @@ typedef enum {
      * <li>.value[0].i32: whether to enable preview tex.</li>
      * </ul>
      *
+     * @ingroup Text Input
      * @since 15
-     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
      */
     NODE_TEXT_INPUT_ENABLE_PREVIEW_TEXT = 7033,
 
@@ -4753,8 +4741,8 @@ typedef enum {
      * <li>.value[0].i32: whether to center text vertically.</li>
      * </ul>
      *
+     * @ingroup Text Input
      * @since 18
-     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
      */
     NODE_TEXT_INPUT_HALF_LEADING = 7034,
 
@@ -4771,8 +4759,8 @@ typedef enum {
      * <li>.value[0].i32: keyboard style, the parameter type is {@link ArkUI_KeyboardAppearanceType}.</li>
      * </ul>
      *
+     * @ingroup Text Input
      * @since 15
-     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
      */
     NODE_TEXT_INPUT_KEYBOARD_APPEARANCE = 7035,
 
@@ -4789,8 +4777,8 @@ typedef enum {
      * <li>.value[0].i32: Get the flag of whether the auto fill animation is enabled.</li>
      * </ul>
      *
+     * @ingroup Text Input
      * @since 20
-     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
      */
     NODE_TEXT_INPUT_ENABLE_FILL_ANIMATION = 7036,
 
@@ -4808,8 +4796,8 @@ typedef enum {
      * <li>.value[0].i32: line height value.</li>
      * </ul>
      *
+     * @ingroup Text Input
      * @since 20
-     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
      */
     NODE_TEXT_INPUT_LINE_HEIGHT = 7037,
 
@@ -4826,8 +4814,8 @@ typedef enum {
      * <li>.value[0].i32: Whether selected text recognition is enabled.</li>
      * </ul>
      *
+     * @ingroup Text Input
      * @since 22
-     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
      */
     NODE_TEXT_INPUT_ENABLE_SELECTED_DATA_DETECTOR = 7038,
 
@@ -4850,8 +4838,8 @@ typedef enum {
      * <li>.object: counter configuration. The parameter type is {@link ArkUI_ShowCounterConfig}.</li>
      * </ul>
      *
+     * @ingroup Text Input
      * @since 22
-     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
      */
     NODE_TEXT_INPUT_SHOW_COUNTER = 7040,
 
@@ -4868,8 +4856,8 @@ typedef enum {
      * <li>.object: the text content base controller. The parameter type is {@link ArkUI_TextContentBaseController}.</li>
      * </ul>
      *
+     * @ingroup Text Input
      * @since 23
-     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
      */
     NODE_TEXT_INPUT_TEXT_CONTENT_CONTROLLER_BASE = 7041,
 
@@ -4887,8 +4875,8 @@ typedef enum {
      * <li>.value[0].i32: The parameter type is {@link ArkUI_EllipsisMode}.</li>
      * </ul>
      *
+     * @ingroup Text Input
      *  @since 24
-     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
      */
     NODE_TEXT_INPUT_ELLIPSIS_MODE = 7042,
 
@@ -4905,8 +4893,8 @@ typedef enum {
      * <li>.value[0].i32: The current state of this feature.</li>
      * </ul>
      *
+     * @ingroup Text Input
      * @since 26.0.0
-     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
      */
  	  NODE_TEXT_INPUT_ORPHAN_CHAR_OPTIMIZATION = 7043,
 
@@ -4923,8 +4911,8 @@ typedef enum {
      * <li>.value[0].i32: Whether compress punctuation at the beginning of line.</li>
      * </ul>
      *
+     * @ingroup Text Input
      * @since 23
-     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
      */
     NODE_TEXT_INPUT_COMPRESS_LEADING_PUNCTUATION = 7044,
 
@@ -4941,8 +4929,8 @@ typedef enum {
      * <li>.value[0].i32: Whether include the font padding.</li>
      * </ul>
      *
+     * @ingroup Text Input
      * @since 23
-     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
      */
     NODE_TEXT_INPUT_INCLUDE_FONT_PADDING = 7045,
 
@@ -4959,8 +4947,8 @@ typedef enum {
      * <li>.value[0].i32: Whether fallback line spacing.</li>
      * </ul>
      *
+     * @ingroup Text Input
      * @since 23
-     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
      */
     NODE_TEXT_INPUT_FALLBACK_LINE_SPACING = 7046,
 
@@ -4978,8 +4966,8 @@ typedef enum {
      * <li>.value[0].i32: writing direction the text. The value is an enum of {@link ArkUI_TextDirection}.</li>
      * </ul>
      *
+     * @ingroup Text Input
      * @since 23
-     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
      */
     NODE_TEXT_INPUT_DIRECTION = 7047,
 
@@ -4996,8 +4984,8 @@ typedef enum {
      * <li>.object: selected drag preview style configuration. The parameter type is {@link ArkUI_SelectedDragPreviewStyle}.</li>
      * </ul>
      *
+     * @ingroup Text Input
      * @since 23
-     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
      */
     NODE_TEXT_INPUT_SELECTED_DRAG_PREVIEW_STYLE = 7048,
 
@@ -5015,8 +5003,8 @@ typedef enum {
      * <li>.value[0].i32: display mode when the text is too long {@link ArkUI_TextOverflow}.</li>
      * </ul>
      *
+     * @ingroup Text Input
      *  @since 24
-     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
      */
     NODE_TEXT_INPUT_TEXT_OVERFLOW = 7049,
 
@@ -5034,8 +5022,8 @@ typedef enum {
      * <li>.object: The decoration style options. The parameter type is {@link OH_ArkUI_DecorationStyleOptions}.</li>
      * </ul>
      *
+     * @ingroup Text Input
      * @since 26.0.0
-     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
      */
     NODE_TEXT_INPUT_DECORATION = 7050,
 
@@ -5059,8 +5047,8 @@ typedef enum {
      * <li>.object: array of color stops, each of which consists of a color and its stop position. The parameter type is {@link ArkUI_ColorStop}. Invalid colors are automatically skipped. colors: colors of the color stops. stops: stop positions of the color stops. size: number of colors.</li>
      * </ul>
      *
+     * @ingroup Text Input
      * @since 26.0.0
-     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
      */
     NODE_TEXT_INPUT_LINEAR_GRADIENT = 7051,
 
@@ -5086,8 +5074,8 @@ typedef enum {
      * <li>.object: array of color stops, each of which consists of a color and its stop position. The parameter type is {@link ArkUI_ColorStop}. Invalid colors are automatically skipped. colors: colors of the color stops. stops: stop positions of the color stops. size: number of colors.</li>
      * </ul>
      *
+     * @ingroup Text Input
      * @since 26.0.0
-     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
      */
     NODE_TEXT_INPUT_RADIAL_GRADIENT = 7052,
 
@@ -5105,8 +5093,8 @@ typedef enum {
      * <li>.value[0].i32: whether to enable punctuation overflow.</li>
      * </ul>
      *
+     * @ingroup Text Input
      * @since 26.0.0
-     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
      */
     NODE_TEXT_INPUT_PUNCTUATION_OVERFLOW = 7053,
 
@@ -5124,7 +5112,7 @@ typedef enum {
      * <li>.string: default placeholder text.</li>
      * </ul>
      *
-     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
+     * @ingroup Text Input
      */
     NODE_TEXT_AREA_PLACEHOLDER = MAX_NODE_SCOPE_NUM * ARKUI_NODE_TEXT_AREA,
     /**
@@ -5141,7 +5129,7 @@ typedef enum {
      * <li>.string: default text content.</li>
      * </ul>
      *
-     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
+     * @ingroup Text Input
      */
     NODE_TEXT_AREA_TEXT,
     /**
@@ -5158,7 +5146,7 @@ typedef enum {
      * <li>.value[0].i32: maximum number of characters in the text input.</li>
      * </ul>
      *
-     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
+     * @ingroup Text Input
      */
     NODE_TEXT_AREA_MAX_LENGTH,
     /**
@@ -5175,7 +5163,7 @@ typedef enum {
      * <li>.value[0].u32: color value, in 0xARGB format.</li>
      * </ul>
      *
-     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
+     * @ingroup Text Input
      */
     NODE_TEXT_AREA_PLACEHOLDER_COLOR,
     /**
@@ -5198,7 +5186,7 @@ typedef enum {
      * <li>.string: font family. Multiple font families are separated by commas (,).</li>
      * </ul>
      *
-     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
+     * @ingroup Text Input
      */
     NODE_TEXT_AREA_PLACEHOLDER_FONT,
     /**
@@ -5215,7 +5203,7 @@ typedef enum {
      * <li>.value[0].u32: background color, in 0xARGB format.</li>
      * </ul>
      *
-     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
+     * @ingroup Text Input
      */
     NODE_TEXT_AREA_CARET_COLOR,
     /**
@@ -5232,7 +5220,7 @@ typedef enum {
      * <li>.value[0].i32: whether to remain in the editable state. The value <b>true</b> means to remain in the editable state, and <b>false</b> means to exit the editable state.</li>
      * </ul>
      *
-     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
+     * @ingroup Text Input
      */
     NODE_TEXT_AREA_EDITING,
     /**
@@ -5248,7 +5236,7 @@ typedef enum {
      * <li>.value[0].i32: text box type {@link ArkUI_TextAreaType}.</li>
      * </ul>
      *
-     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
+     * @ingroup Text Input
      */
     NODE_TEXT_AREA_TYPE,
     /**
@@ -5270,7 +5258,7 @@ typedef enum {
      * <li>.object: counter configuration. The parameter type is {@link ArkUI_ShowCounterConfig}.</li>
      * </ul>
      *
-     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
+     * @ingroup Text Input
      */
     NODE_TEXT_AREA_SHOW_COUNTER,
     /**
@@ -5287,7 +5275,7 @@ typedef enum {
      * <li>.value[0].i32: whether to hide the text selection menu when the text box is long-pressed, double-click, or right-clicked.</li>
      * </ul>
      *
-     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
+     * @ingroup Text Input
      */
     NODE_TEXT_AREA_SELECTION_MENU_HIDDEN,
     /**
@@ -5303,7 +5291,7 @@ typedef enum {
      * <li>.value[0].i32: whether the text box loses focus.</li>
      * </ul>
      *
-     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
+     * @ingroup Text Input
      */
     NODE_TEXT_AREA_BLUR_ON_SUBMIT,
     /**
@@ -5322,7 +5310,7 @@ typedef enum {
      * <li>.string: regular expression.</li>
      * </ul>
      *
-     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
+     * @ingroup Text Input
      */
     NODE_TEXT_AREA_INPUT_FILTER,
     /**
@@ -5339,7 +5327,7 @@ typedef enum {
      * <li>.value[0].u32: color value, in 0xARGB format.</li>
      * </ul>
      *
-     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
+     * @ingroup Text Input
      */
     NODE_TEXT_AREA_SELECTED_BACKGROUND_COLOR,
     /**
@@ -5356,7 +5344,7 @@ typedef enum {
      * <li>.value[0].i32: type of the Enter key{@link ArkUI_EnterKeyType}.</li>
      * </ul>
      *
-     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
+     * @ingroup Text Input
      */
     NODE_TEXT_AREA_ENTER_KEY_TYPE,
     /**
@@ -5373,7 +5361,7 @@ typedef enum {
      * <li>.value[0].i32: The value <b>1</b> means to enable the input method when the component obtains focus, and <b>0</b> means the opposite.</li>
      * </ul>
      *
-     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
+     * @ingroup Text Input
      */
     NODE_TEXT_AREA_ENABLE_KEYBOARD_ON_FOCUS,
     /**
@@ -5392,7 +5380,7 @@ typedef enum {
      * <li>.value[2].f32: indicates the y-coordinate value of the cursor relative to the text box.</li>
      * </ul>
      *
-     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
+     * @ingroup Text Input
      */
     NODE_TEXT_AREA_CARET_OFFSET,
     /**
@@ -5406,7 +5394,7 @@ typedef enum {
      * <li>.value[3].f32: content height.</li>
      * </ul>
      *
-     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
+     * @ingroup Text Input
      */
     NODE_TEXT_AREA_CONTENT_RECT,
     /**
@@ -5417,7 +5405,7 @@ typedef enum {
      * <li>.value[0].i32: number of lines of the edited text.</li>
      * </ul>
      *
-     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
+     * @ingroup Text Input
      */
     NODE_TEXT_AREA_CONTENT_LINE_COUNT,
     /**
@@ -5436,7 +5424,7 @@ typedef enum {
      * <li>.value[1].i32: end position of the text selection.</li>
      * </ul>
      *
-     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
+     * @ingroup Text Input
      */
     NODE_TEXT_AREA_TEXT_SELECTION,
     /**
@@ -5452,7 +5440,7 @@ typedef enum {
      * <li>.value[0].i32: whether to enable autofill.</li>
      * </ul>
      *
-     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
+     * @ingroup Text Input
      */
     NODE_TEXT_AREA_ENABLE_AUTO_FILL,
     /**
@@ -5468,7 +5456,7 @@ typedef enum {
      * <li>.value[0].i32: autofill type. The parameter type is {@link ArkUI_TextInputContentType}.</li>
      * </ul>
      *
-     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
+     * @ingroup Text Input
      */
     NODE_TEXT_AREA_CONTENT_TYPE,
 
@@ -5486,7 +5474,7 @@ typedef enum {
      * <li>.value[0].i32: Whether to pop up the keyboard.</li>
      * </ul>
      *
-     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
+     * @ingroup Text Input
      */
     NODE_TEXT_AREA_SHOW_KEYBOARD_ON_FOCUS,
 
@@ -5503,7 +5491,7 @@ typedef enum {
      * <li>.value[0].i32: Set the value of numberOfLines.</li>
      * </ul>
      *
-     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
+     * @ingroup Text Input
      */
     NODE_TEXT_AREA_NUMBER_OF_LINES,
 
@@ -5521,8 +5509,8 @@ typedef enum {
      * <li>.value[0].f32: letter spacing. The default unit is fp.</li>
      * </ul>
      *
+     * @ingroup Text Input
      * @since 15
-     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
      */
     NODE_TEXT_AREA_LETTER_SPACING = 8023,
     /**
@@ -5539,8 +5527,8 @@ typedef enum {
      * <li>.value[0].i32: whether to enable preview tex.</li>
      * </ul>
      *
+     * @ingroup Text Input
      * @since 15
-     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
      */
     NODE_TEXT_AREA_ENABLE_PREVIEW_TEXT = 8024,
 
@@ -5557,8 +5545,8 @@ typedef enum {
      * <li>.value[0].i32: whether to center text vertically.</li>
      * </ul>
      *
+     * @ingroup Text Input
      * @since 18
-     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
      */
     NODE_TEXT_AREA_HALF_LEADING = 8025,
 
@@ -5575,8 +5563,8 @@ typedef enum {
      * <li>.value[0].i32: keyboard style, the parameter type is {@link ArkUI_KeyboardAppearanceType}.</li>
      * </ul>
      *
+     * @ingroup Text Input
      * @since 15
-     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
      */
     NODE_TEXT_AREA_KEYBOARD_APPEARANCE = 8026,
 
@@ -5593,8 +5581,8 @@ typedef enum {
      * <li>.value[0].i32: max lines count.</li>
      * </ul>
      *
+     * @ingroup Text Input
      * @since 20
-     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
      */
     NODE_TEXT_AREA_MAX_LINES = 8027,
 
@@ -5611,8 +5599,8 @@ typedef enum {
      * <li>.value[0].i32: line spacing value.</li>
      * </ul>
      *
+     * @ingroup Text Input
      * @since 20
-     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
      */
     NODE_TEXT_AREA_LINE_SPACING = 8028,
 
@@ -5630,8 +5618,8 @@ typedef enum {
      * </ul>
      *
      * @since 20
-     * 
-     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
+     *
+     * @ingroup Text Input 
      */
     NODE_TEXT_AREA_MIN_LINES = 8029,
  
@@ -5649,8 +5637,8 @@ typedef enum {
      * <li>.value[0].i32: max line count with scroll.</li>
      * </ul>
      *
+     * @ingroup Text Input
      * @since 20
-     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
      */
     NODE_TEXT_AREA_MAX_LINES_WITH_SCROLL = 8030,
 
@@ -5667,8 +5655,8 @@ typedef enum {
      * <li>.value[0].i32: line height value.</li>
      * </ul>
      *
+     * @ingroup Text Input
      * @since 20
-     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
      */
     NODE_TEXT_AREA_LINE_HEIGHT = 8031,
 
@@ -5686,8 +5674,8 @@ typedef enum {
      * <li>.value[0].i32: bar state of the text area, specified using the {@link ArkUI_BarState} enum.</li>
      * </ul>
      *
+     * @ingroup Text Input
      * @since 22
-     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
      */
      NODE_TEXT_AREA_BAR_STATE = 8032,
 
@@ -5704,8 +5692,8 @@ typedef enum {
      * <li>.value[0].i32: Whether selected text recognition is enabled.</li>
      * </ul>
      *
+     * @ingroup Text Input
      * @since 22
-     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
      */
     NODE_TEXT_AREA_ENABLE_SELECTED_DATA_DETECTOR = 8033,
 
@@ -5723,8 +5711,8 @@ typedef enum {
      * <li>.data[0].u32: color of the scroll bar thumb, in 0xARGB format.</li>
      * </ul>
      *
+     * @ingroup Text Input
      * @since 22
-     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
      */
      NODE_TEXT_AREA_SCROLL_BAR_COLOR = 8035,
 
@@ -5743,8 +5731,8 @@ typedef enum {
      * <li>.value[0].i32: Set whether the custom keyboard supports the avoidance function.</li>
      * </ul>
      *
+     * @ingroup Text Input
      * @since 22
-     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
      */
     NODE_TEXT_AREA_CUSTOM_KEYBOARD = 8036,
 
@@ -5761,8 +5749,8 @@ typedef enum {
      * <li>.object: the text content base controller. The parameter type is {@link ArkUI_TextContentBaseController}.</li>
      * </ul>
      *
+     * @ingroup Text Input
      * @since 23
-     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
      */
     NODE_TEXT_AREA_TEXT_CONTENT_CONTROLLER_BASE = 8037,
 
@@ -5780,8 +5768,8 @@ typedef enum {
      * <li>.value[0].i32: The parameter type is {@link ArkUI_EllipsisMode}.</li>
      * </ul>
      *
+     * @ingroup Text Input
      * @since 24
-     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
      */
     NODE_TEXT_AREA_ELLIPSIS_MODE = 8038,
 
@@ -5798,8 +5786,8 @@ typedef enum {
      * <li>.value[0].i32: The current state of this feature.</li>
      * </ul>
      *
+     * @ingroup Text Input
      * @since 26.0.0
-     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
      */
     NODE_TEXT_AREA_ORPHAN_CHAR_OPTIMIZATION = 8039,
 
@@ -5816,8 +5804,8 @@ typedef enum {
      * <li>.value[0].i32: Whether compress punctuation at the beginning of line.</li>
      * </ul>
      *
+     * @ingroup Text Input
      * @since 23
-     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
      */
     NODE_TEXT_AREA_COMPRESS_LEADING_PUNCTUATION = 8040,
 
@@ -5834,8 +5822,8 @@ typedef enum {
      * <li>.value[0].i32: Whether include the font padding.</li>
      * </ul>
      *
+     * @ingroup Text Input
      * @since 23
-     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
      */
     NODE_TEXT_AREA_INCLUDE_FONT_PADDING = 8041,
 
@@ -5852,8 +5840,8 @@ typedef enum {
      * <li>.value[0].i32: Whether fallback line spacing.</li>
      * </ul>
      *
+     * @ingroup Text Input
      * @since 23
-     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
      */
     NODE_TEXT_AREA_FALLBACK_LINE_SPACING = 8042,
 
@@ -5871,8 +5859,8 @@ typedef enum {
      * <li>.value[0].i32: Whether enable the feature.</li>
      * </ul>
      *
+     * @ingroup Text Input
      * @since 24
-     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
      */
     NODE_TEXT_AREA_HORIZONTAL_SCROLLING = 8043,
 
@@ -5890,8 +5878,8 @@ typedef enum {
      * <li>.value[0].i32: writing direction the text. The value is an enum of {@link ArkUI_TextDirection}.</li>
      * </ul>
      *
+     * @ingroup Text Input
      * @since 23
-     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
      */
     NODE_TEXT_AREA_DIRECTION = 8044,
 
@@ -5908,8 +5896,8 @@ typedef enum {
      * <li>.object: selected drag preview style configuration. The parameter type is {@link ArkUI_SelectedDragPreviewStyle}.</li>
      * </ul>
      *
+     * @ingroup Text Input
      * @since 23
-     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
      */
     NODE_TEXT_AREA_SELECTED_DRAG_PREVIEW_STYLE = 8045,
 
@@ -5927,8 +5915,8 @@ typedef enum {
      * <li>.value[0].i32: display mode when the text is too long {@link ArkUI_TextOverflow}.</li>
      * </ul>
      *
+     * @ingroup Text Input
      *  @since 24
-     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
      */
     NODE_TEXT_AREA_TEXT_OVERFLOW = 8046,
 
@@ -5946,8 +5934,8 @@ typedef enum {
      * <li>.object: The decoration style options. The parameter type is {@link OH_ArkUI_DecorationStyleOptions}.</li>
      * </ul>
      *
+     * @ingroup Text Input
      * @since 26.0.0
-     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
      */
     NODE_TEXT_AREA_DECORATION = 8047,
 
@@ -5971,8 +5959,8 @@ typedef enum {
      * <li>.object: array of color stops, each of which consists of a color and its stop position. The parameter type is {@link ArkUI_ColorStop}. Invalid colors are automatically skipped. colors: colors of the color stops. stops: stop positions of the color stops. size: number of colors.</li>
      * </ul>
      *
+     * @ingroup Text Input
      * @since 26.0.0
-     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
      */
     NODE_TEXT_AREA_LINEAR_GRADIENT = 8048,
 
@@ -5998,8 +5986,8 @@ typedef enum {
      * <li>.object: array of color stops, each of which consists of a color and its stop position. The parameter type is {@link ArkUI_ColorStop}. Invalid colors are automatically skipped. colors: colors of the color stops. stops: stop positions of the color stops. size: number of colors.</li>
      * </ul>
      *
+     * @ingroup Text Input
      * @since 26.0.0
-     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
      */
     NODE_TEXT_AREA_RADIAL_GRADIENT = 8049,
 
@@ -6017,8 +6005,8 @@ typedef enum {
      * <li>.value[0].i32: whether to enable punctuation overflow.</li>
      * </ul>
      *
+     * @ingroup Text Input
      * @since 26.0.0
-     * @group {ArkUI_NodeAttributeType(Text Input Component Attribute)}[capi-native-node-h-node-attributetype-textinput]
      */
     NODE_TEXT_AREA_PUNCTUATION_OVERFLOW = 8050,
 
@@ -6088,7 +6076,7 @@ typedef enum {
      * <li>.value[0].f32: current value of the progress indicator.</li>
      * </ul>
      *
-     * @group {ArkUI_NodeAttributeType(Information Display Component Attribute)}[capi-native-node-h-node-attributetype-informationdisplay]
+     * @ingroup Information Display
      */
     NODE_PROGRESS_VALUE = MAX_NODE_SCOPE_NUM * ARKUI_NODE_PROGRESS,
     /**
@@ -6105,7 +6093,7 @@ typedef enum {
      * <li>.value[0].f32: total value of the progress indicator.</li>
      * </ul>
      *
-     * @group {ArkUI_NodeAttributeType(Information Display Component Attribute)}[capi-native-node-h-node-attributetype-informationdisplay]
+     * @ingroup Information Display
      */
     NODE_PROGRESS_TOTAL,
     /**
@@ -6122,7 +6110,7 @@ typedef enum {
      * <li>.value[0].u32: color value, in 0xARGB format.</li>
      * </ul>
      *
-     * @group {ArkUI_NodeAttributeType(Information Display Component Attribute)}[capi-native-node-h-node-attributetype-informationdisplay]
+     * @ingroup Information Display
      */
     NODE_PROGRESS_COLOR,
     /**
@@ -6139,7 +6127,7 @@ typedef enum {
      * <li>.value[0].i32: type of the progress indicator {@link ArkUI_ProgressType}.</li>
      * </ul>
      *
-     * @group {ArkUI_NodeAttributeType(Information Display Component Attribute)}[capi-native-node-h-node-attributetype-informationdisplay]
+     * @ingroup Information Display
      */
     NODE_PROGRESS_TYPE,
     /**
@@ -6157,8 +6145,8 @@ typedef enum {
      * <li>.object: Use the {@link ArkUI_ProgressLinearStyleOption} object to get the style.</li>
      * </ul>
      *
+     * @ingroup Information Display
      * @since 15
-     * @group {ArkUI_NodeAttributeType(Information Display Component Attribute)}[capi-native-node-h-node-attributetype-informationdisplay]
      */
     NODE_PROGRESS_LINEAR_STYLE,
 
@@ -7502,8 +7490,8 @@ typedef enum {
      * <li>.value[0].i32: Type of the **Enter** key. The parameter type is {@link ArkUI_EnterKeyType}.</li>
      * </ul>
      *
+     * @ingroup Text Editor
      * @since 24
-     * @group {ArkUI_NodeAttributeType(Rich Text Component Attribute)}[capi-native-node-h-node-attributetype-richeditor]
      */
     NODE_TEXT_EDITOR_ENTER_KEY_TYPE = MAX_NODE_SCOPE_NUM * ARKUI_NODE_TEXT_EDITOR,
 
@@ -7520,8 +7508,8 @@ typedef enum {
      * <li>.value[0].u32: Caret color, in 0xARGB format.</li>
      * </ul>
      *
+     * @ingroup Text Editor
      * @since 24
-     * @group {ArkUI_NodeAttributeType(Rich Text Component Attribute)}[capi-native-node-h-node-attributetype-richeditor]
      */
     NODE_TEXT_EDITOR_CARET_COLOR,
 
@@ -7538,8 +7526,8 @@ typedef enum {
      * <li>.data[0].u32: Scroll bar color, in 0xARGB format.</li>
      * </ul>
      *
+     * @ingroup Text Editor
      * @since 24
-     * @group {ArkUI_NodeAttributeType(Rich Text Component Attribute)}[capi-native-node-h-node-attributetype-richeditor]
      */
     NODE_TEXT_EDITOR_SCROLL_BAR_COLOR,
 
@@ -7556,8 +7544,8 @@ typedef enum {
      * <li>.value[0].i32: Scroll bar display mode of the text area. The parameter type is {@link ArkUI_BarState}.</li>
      * </ul>
      *
+     * @ingroup Text Editor
      * @since 24
-     * @group {ArkUI_NodeAttributeType(Rich Text Component Attribute)}[capi-native-node-h-node-attributetype-richeditor]
      */
     NODE_TEXT_EDITOR_BAR_STATE,
 
@@ -7574,8 +7562,8 @@ typedef enum {
      * <li>.value[0].i32: Whether text entity recognition is enabled.</li>
      * </ul>
      *
+     * @ingroup Text Editor
      * @since 24
-     * @group {ArkUI_NodeAttributeType(Rich Text Component Attribute)}[capi-native-node-h-node-attributetype-richeditor]
      */
     NODE_TEXT_EDITOR_ENABLE_DATA_DETECTOR,
 
@@ -7587,8 +7575,8 @@ typedef enum {
      * <li>.object: Recognition configuration. The parameter type is {@link ArkUI_TextDataDetectorConfig}.</li>
      * </ul>
      *
+     * @ingroup Text Editor
      * @since 24
-     * @group {ArkUI_NodeAttributeType(Rich Text Component Attribute)}[capi-native-node-h-node-attributetype-richeditor]
      */
     NODE_TEXT_EDITOR_DATA_DETECTOR_CONFIG,
 
@@ -7600,8 +7588,8 @@ typedef enum {
      * <li>.object: Extended menu options. The parameter type is {@link ArkUI_TextEditMenuOptions}.</li>
      * </ul>
      *
+     * @ingroup Text Editor
      * @since 24
-     * @group {ArkUI_NodeAttributeType(Rich Text Component Attribute)}[capi-native-node-h-node-attributetype-richeditor]
      */
     NODE_TEXT_EDITOR_EDIT_MENU_OPTIONS,
 
@@ -7613,8 +7601,8 @@ typedef enum {
      * <li>.object: Placeholder options when there is no input. The parameter type is {@link ArkUI_TextEditorPlaceholderOptions}.</li>
      * </ul>
      *
+     * @ingroup Text Editor
      * @since 24
-     * @group {ArkUI_NodeAttributeType(Rich Text Component Attribute)}[capi-native-node-h-node-attributetype-richeditor]
      */
     NODE_TEXT_EDITOR_PLACEHOLDER,
 
@@ -7626,8 +7614,8 @@ typedef enum {
      * <li>.object: Styled string controller. The parameter type is {@link ArkUI_TextEditorStyledStringController}.</li>
      * </ul>
      *
+     * @ingroup Text Editor
      * @since 24
-     * @group {ArkUI_NodeAttributeType(Rich Text Component Attribute)}[capi-native-node-h-node-attributetype-richeditor]
      */
     NODE_TEXT_EDITOR_STYLED_STRING_CONTROLLER,
 
@@ -7644,8 +7632,8 @@ typedef enum {
      * <li>.value[0].i32: Whether preview text is enabled. The value **1** indicates preview text is enabled, and **0** indicates the opposite.</li>
      * </ul>
      *
+     * @ingroup Text Editor
      * @since 24
-     * @group {ArkUI_NodeAttributeType(Rich Text Component Attribute)}[capi-native-node-h-node-attributetype-richeditor]
      */
     NODE_TEXT_EDITOR_ENABLE_PREVIEW_TEXT,
 
@@ -7657,8 +7645,8 @@ typedef enum {
      * <li>.object: Layout manager. The parameter type is {@link ArkUI_TextLayoutManager}.</li>
      * </ul>
      *
+     * @ingroup Text Editor
      * @since 24
-     * @group {ArkUI_NodeAttributeType(Rich Text Component Attribute)}[capi-native-node-h-node-attributetype-richeditor]
      */
     NODE_TEXT_EDITOR_LAYOUT_MANAGER,
 
@@ -7675,8 +7663,8 @@ typedef enum {
      * <li>.value[0].i32: Whether the AI menu is enabled for text selection and recognition.</li>
      * </ul>
      *
+     * @ingroup Text Editor
      * @since 24
-     * @group {ArkUI_NodeAttributeType(Rich Text Component Attribute)}[capi-native-node-h-node-attributetype-richeditor]
      */
     NODE_TEXT_EDITOR_ENABLE_SELECTED_DATA_DETECTOR,
 
@@ -7693,8 +7681,8 @@ typedef enum {
      * <li>.data[0].u32: Background color of the selected content, in 0xARGB format.</li>
      * </ul>
      *
+     * @ingroup Text Editor
      * @since 24
-     * @group {ArkUI_NodeAttributeType(Rich Text Component Attribute)}[capi-native-node-h-node-attributetype-richeditor]
      */
     NODE_TEXT_EDITOR_SELECTED_BACKGROUND_COLOR,
 
@@ -7711,8 +7699,8 @@ typedef enum {
      * <li>.value[0].i32: Whether the input method is enabled when the focus is obtained in a way other than clicking. The value **1** indicates the input method is enabled, and **0** indicates the input method is disabled.</li>
      * </ul>
      *
+     * @ingroup Text Editor
      * @since 24
-     * @group {ArkUI_NodeAttributeType(Rich Text Component Attribute)}[capi-native-node-h-node-attributetype-richeditor]
      */
     NODE_TEXT_EDITOR_ENABLE_KEYBOARD_ON_FOCUS,
 
@@ -7729,8 +7717,8 @@ typedef enum {
      * <li>.value[0].i32: Maximum number of characters.</li>
      * </ul>
      *
+     * @ingroup Text Editor
      * @since 24
-     * @group {ArkUI_NodeAttributeType(Rich Text Component Attribute)}[capi-native-node-h-node-attributetype-richeditor]
      */
     NODE_TEXT_EDITOR_MAX_LENGTH,
 
@@ -7747,8 +7735,8 @@ typedef enum {
      * <li>.value[0].i32: Maximum number of lines in the text editor.</li>
      * </ul>
      *
+     * @ingroup Text Editor
      * @since 24
-     * @group {ArkUI_NodeAttributeType(Rich Text Component Attribute)}[capi-native-node-h-node-attributetype-richeditor]
      */
     NODE_TEXT_EDITOR_MAX_LINES,
 
@@ -7765,8 +7753,8 @@ typedef enum {
      * <li>.value[0].i32: Whether haptic feedback is enabled. The value **1** indicates haptic feedback is enabled, and **0** indicates the opposite.</li>
      * </ul>
      *
+     * @ingroup Text Editor
      * @since 24
-     * @group {ArkUI_NodeAttributeType(Rich Text Component Attribute)}[capi-native-node-h-node-attributetype-richeditor]
      */
     NODE_TEXT_EDITOR_ENABLE_HAPTIC_FEEDBACK,
 
@@ -7783,8 +7771,8 @@ typedef enum {
      * <li>.value[0].i32: Copy options. The parameter type is {@link ArkUI_CopyOptions}.</li>
      * </ul>
      *
+     * @ingroup Text Editor
      * @since 24
-     * @group {ArkUI_NodeAttributeType(Rich Text Component Attribute)}[capi-native-node-h-node-attributetype-richeditor]
      */
     NODE_TEXT_EDITOR_COPY_OPTIONS,
 
@@ -7801,8 +7789,8 @@ typedef enum {
      * <li>.value[0].i32: Appearance of the keyboard. The parameter type is {@link ArkUI_KeyboardAppearance}.</li>
      * </ul>
      *
+     * @ingroup Text Editor
      * @since 24
-     * @group {ArkUI_NodeAttributeType(Rich Text Component Attribute)}[capi-native-node-h-node-attributetype-richeditor]
      */
     NODE_TEXT_EDITOR_KEYBOARD_APPEARANCE,
 
@@ -7819,8 +7807,8 @@ typedef enum {
      * <li>.value[0].i32: Whether the propagation of return events is blocked. The value **1** indicates that the propagation of return events is blocked, and **0** indicates the opposite.</li>
      * </ul>
      *
+     * @ingroup Text Editor
      * @since 24
-     * @group {ArkUI_NodeAttributeType(Rich Text Component Attribute)}[capi-native-node-h-node-attributetype-richeditor]
      */
     NODE_TEXT_EDITOR_STOP_BACK_PRESS,
 
@@ -7837,8 +7825,8 @@ typedef enum {
      * <li>.value[0].i32: Whether automatic spacing is enabled. The value **1** indicates automatic spacing is enabled, and **0** indicates the opposite.</li>
      * </ul>
      *
+     * @ingroup Text Editor
      * @since 24
-     * @group {ArkUI_NodeAttributeType(Rich Text Component Attribute)}[capi-native-node-h-node-attributetype-richeditor]
      */
     NODE_TEXT_EDITOR_ENABLE_AUTO_SPACING,
 
@@ -7857,8 +7845,8 @@ typedef enum {
      * <li>.value[0].i32: Whether the custom keyboard supports avoidance. The value **0** indicates no, and the value ** 1** indicates yes.</li>
      * </ul>
      *
+     * @ingroup Text Editor
      * @since 24
-     * @group {ArkUI_NodeAttributeType(Rich Text Component Attribute)}[capi-native-node-h-node-attributetype-richeditor]
      */
     NODE_TEXT_EDITOR_CUSTOM_KEYBOARD,
 
@@ -7870,8 +7858,8 @@ typedef enum {
      * <li>.object: Text selection menu. The parameter type is {@link ArkUI_TextEditorSelectionMenuOptions}.</li>
      * </ul>
      *
+     * @ingroup Text Editor
      * @since 24
-     * @group {ArkUI_NodeAttributeType(Rich Text Component Attribute)}[capi-native-node-h-node-attributetype-richeditor]
      */
     NODE_TEXT_EDITOR_BIND_SELECTION_MENU,
 
@@ -7888,8 +7876,8 @@ typedef enum {
      * <li>.value[0].i32: Whether spacing is added. The value **1** means that spacing is added, and **0** means spacing is not added.</li>
      * </ul>
      *
+     * @ingroup Text Editor
      * @since 24
-     * @group {ArkUI_NodeAttributeType(Rich Text Component Attribute)}[capi-native-node-h-node-attributetype-richeditor]
      */
     NODE_TEXT_EDITOR_INCLUDE_FONT_PADDING,
 
@@ -7906,8 +7894,8 @@ typedef enum {
      * <li>.value[0].i32: Whether line height adaptation is enabled. The value **1** means line height adaptation is enabled, and **0** means the opposite.</li>
      * </ul>
      *
+     * @ingroup Text Editor
      * @since 24
-     * @group {ArkUI_NodeAttributeType(Rich Text Component Attribute)}[capi-native-node-h-node-attributetype-richeditor]
      */
     NODE_TEXT_EDITOR_FALLBACK_LINE_SPACING,
 
@@ -7924,8 +7912,8 @@ typedef enum {
      * <li>.value[0].i32: Whether punctuation compression is enabled. The value **1** means punctuation compression is enabled, and **0** means the opposite.</li>
      * </ul>
      *
+     * @ingroup Text Editor
      * @since 24
-     * @group {ArkUI_NodeAttributeType(Rich Text Component Attribute)}[capi-native-node-h-node-attributetype-richeditor]
      */
     NODE_TEXT_EDITOR_COMPRESS_LEADING_PUNCTUATION,
 
@@ -7942,8 +7930,8 @@ typedef enum {
      * <li>.object: Selected drag preview style configuration. The parameter type is {@link ArkUI_SelectedDragPreviewStyle}.</li>
      * </ul>
      *
+     * @ingroup Text Editor
      * @since 24
-     * @group {ArkUI_NodeAttributeType(Rich Text Component Attribute)}[capi-native-node-h-node-attributetype-richeditor]
      */
     NODE_TEXT_EDITOR_SELECTED_DRAG_PREVIEW_STYLE,
 
@@ -7960,8 +7948,8 @@ typedef enum {
      * <li>.value[0].i32: Whether single-line mode is enabled. The value **1** means single-line mode is enabled, and ** 0** means the opposite.</li>
      * </ul>
      *
+     * @ingroup Text Editor
      * @since 24
-     * @group {ArkUI_NodeAttributeType(Rich Text Component Attribute)}[capi-native-node-h-node-attributetype-richeditor]
      */
     NODE_TEXT_EDITOR_SINGLE_LINE,
 
@@ -7982,8 +7970,8 @@ typedef enum {
      * <li>.value[0].i32: Whether orphan character optimization is enabled.</li>
      * </ul>
      *
+     * @ingroup Text Editor
      * @since 26.0.0
-     * @group {ArkUI_NodeAttributeType(Rich Text Component Attribute)}[capi-native-node-h-node-attributetype-richeditor]
      */
      NODE_TEXT_EDITOR_ORPHAN_CHAR_OPTIMIZATION,
 
@@ -8000,8 +7988,8 @@ typedef enum {
      * <li>.value[0].i32: Whether horizontal scrolling is enabled.</li>
      * </ul>
      *
+     * @ingroup Text Editor
      * @since 26.0.0
-     * @group {ArkUI_NodeAttributeType(Rich Text Component Attribute)}[capi-native-node-h-node-attributetype-richeditor]
      */
     NODE_TEXT_EDITOR_HORIZONTAL_SCROLLING,
 
@@ -8019,8 +8007,8 @@ typedef enum {
      * <li>.value[0].i32: whether to enable punctuation overflow.</li>
      * </ul>
      *
+     * @ingroup Text Editor
      * @since 26.0.0
-     * @group {ArkUI_NodeAttributeType(Rich Text Component Attribute)}[capi-native-node-h-node-attributetype-richeditor]
      */
     NODE_TEXT_EDITOR_PUNCTUATION_OVERFLOW,
 
@@ -11474,7 +11462,7 @@ typedef enum {
      * <li>ArkUI_StringAsyncEvent.pStr: Indicates the result of text recognition, in Json format.</li>
      * </ul>
      *
-     * @group {ArkUI_NodeEventType(Text Display Component Event)}[capi-native-node-h-node-eventtype-text]
+     * @ingroup Text Display
      */
     NODE_TEXT_ON_DETECT_RESULT_UPDATE = MAX_NODE_SCOPE_NUM * ARKUI_NODE_TEXT,
     /**
@@ -11483,8 +11471,8 @@ typedef enum {
      * The event is triggered when the span is long pressed.
      * When the event callback occurs, the {@link ArkUI_NodeEvent} object can be obtained from the
      * {@link ArkUI_UIInputEvent} object. \n
+     * @ingroup Text Display
      * @since 20
-     * @group {ArkUI_NodeEventType(Text Display Component Event)}[capi-native-node-h-node-eventtype-text]
      */
     NODE_TEXT_SPAN_ON_LONG_PRESS = 1001,
 
@@ -11499,8 +11487,8 @@ typedef enum {
      * <li>ArkUI_NodeComponentEvent.data[1].i32: end position of the text selection area.</li>
      * </ul>
      *
+     * @ingroup Text Display
      * @since 26.0.0
-     * @group {ArkUI_NodeEventType(Text Display Component Event)}[capi-native-node-h-node-eventtype-text]
      */
     NODE_TEXT_ON_TEXT_SELECTION_CHANGE = 1002,
 
@@ -11515,8 +11503,8 @@ typedef enum {
      * <li>ArkUI_StringAsyncEvent.pStr: text that is copied.</li>
      * </ul>
      *
+     * @ingroup Text Display
      * @since 26.0.0
-     * @group {ArkUI_NodeEventType(Text Display Component Event)}[capi-native-node-h-node-eventtype-text]
      */
     NODE_TEXT_ON_COPY = 1003,
 
@@ -11535,8 +11523,8 @@ typedef enum {
      * value.i32 at index 0 in the return value indicates whether the copy is allowed.
      * <b>0</b>: not allowed. <b>1</b>: allowed. \n
      *
+     * @ingroup Text Display
      * @since 26.0.0
-     * @group {ArkUI_NodeEventType(Text Display Component Event)}[capi-native-node-h-node-eventtype-text]
      */
     NODE_TEXT_ON_WILL_COPY = 1004,
 
@@ -11615,7 +11603,7 @@ typedef enum {
      * <li>ArkUI_StringAsyncEvent.pStr: text input.</li>
      * </ul>
      *
-     * @group {ArkUI_NodeEventType(Text Input Component Event)}[capi-native-node-h-node-eventtype-textinput]
+     * @ingroup Text Input
      */
     NODE_TEXT_INPUT_ON_CHANGE = MAX_NODE_SCOPE_NUM * ARKUI_NODE_TEXT_INPUT,
     /**
@@ -11629,7 +11617,7 @@ typedef enum {
      * <li>ArkUI_NodeComponentEvent.data[0].i32: Enter key type of the input method.</li>
      * </ul>
      *
-     * @group {ArkUI_NodeEventType(Text Input Component Event)}[capi-native-node-h-node-eventtype-textinput]
+     * @ingroup Text Input
      */
     NODE_TEXT_INPUT_ON_SUBMIT,
     /**
@@ -11644,7 +11632,7 @@ typedef enum {
      * <li>ArkUI_StringAsyncEvent.pStr: text that is cut.</li>
      * </ul>
      *
-     * @group {ArkUI_NodeEventType(Text Input Component Event)}[capi-native-node-h-node-eventtype-textinput]
+     * @ingroup Text Input
      */
     NODE_TEXT_INPUT_ON_CUT,
     /**
@@ -11665,7 +11653,7 @@ typedef enum {
      * value.i32 at index 0 in the return value indicates whether the paste is allowed. \n
      * <b>0</b>: not allowed. <b>1</b>: allowed. \n
      *
-     * @group {ArkUI_NodeEventType(Text Input Component Event)}[capi-native-node-h-node-eventtype-textinput]
+     * @ingroup Text Input
      */
     NODE_TEXT_INPUT_ON_PASTE,
     /**
@@ -11679,7 +11667,7 @@ typedef enum {
      * <li>ArkUI_NodeComponentEvent.data[1].i32: end position of the text selection area.</li>
      * </ul>
      *
-     * @group {ArkUI_NodeEventType(Text Input Component Event)}[capi-native-node-h-node-eventtype-textinput]
+     * @ingroup Text Input
      */
     NODE_TEXT_INPUT_ON_TEXT_SELECTION_CHANGE,
 
@@ -11693,7 +11681,7 @@ typedef enum {
      * <li>ArkUI_NodeComponentEvent.data[0].i32: true indicates that text input is in progress.</li>
      * </ul>
      *
-     * @group {ArkUI_NodeEventType(Text Input Component Event)}[capi-native-node-h-node-eventtype-textinput]
+     * @ingroup Text Input
      */
     NODE_TEXT_INPUT_ON_EDIT_CHANGE,
 
@@ -11709,7 +11697,7 @@ typedef enum {
      * <li>ArkUI_NodeComponentEvent.data[1].f32: Indicates the height of the text.</li>
      * </ul>
      *
-     * @group {ArkUI_NodeEventType(Text Input Component Event)}[capi-native-node-h-node-eventtype-textinput]
+     * @ingroup Text Input
      */
     NODE_TEXT_INPUT_ON_CONTENT_SIZE_CHANGE,
 
@@ -11724,7 +11712,7 @@ typedef enum {
      * <li>ArkUI_StringAsyncEvent.pStr: content that is filtered out when regular expression matching fails.</li>
      * </ul>
      *
-     * @group {ArkUI_NodeEventType(Text Input Component Event)}[capi-native-node-h-node-eventtype-textinput]
+     * @ingroup Text Input
      */
     NODE_TEXT_INPUT_ON_INPUT_FILTER_ERROR,
 
@@ -11739,7 +11727,7 @@ typedef enum {
      * <li>ArkUI_NodeComponentEvent.data[1].i32: Indicates the vertical coordinate offset of the text in the content area.</li>
      * </ul>
      *
-     * @group {ArkUI_NodeEventType(Text Input Component Event)}[capi-native-node-h-node-eventtype-textinput]
+     * @ingroup Text Input
      */
     NODE_TEXT_INPUT_ON_CONTENT_SCROLL,
 
@@ -11754,7 +11742,7 @@ typedef enum {
      *
      * @return Returns <b>true</b> if the text is entered; returns <b>false</b> otherwise.
      * You can set the return value using <b>OH_ArkUI_NodeEvent_SetReturnNumberValue</b>. \n
-     * @group {ArkUI_NodeEventType(Text Input Component Event)}[capi-native-node-h-node-eventtype-textinput]
+     * @ingroup Text Input
      */
     NODE_TEXT_INPUT_ON_WILL_INSERT = 7009,
 
@@ -11767,7 +11755,7 @@ typedef enum {
      * <li>buffer: string value of the text, with the index of 0; obtained using OH_ArkUI_NodeEvent_GetStringValue.</li>
      * </ul>
      *
-     * @group {ArkUI_NodeEventType(Text Input Component Event)}[capi-native-node-h-node-eventtype-textinput]
+     * @ingroup Text Input
      */
     NODE_TEXT_INPUT_ON_DID_INSERT = 7010,
 
@@ -11783,7 +11771,7 @@ typedef enum {
      *
      * @return Returns <b>true</b> if the text is deleted; returns <b>false</b> otherwise. \n
      * You can set the return value using <b>OH_ArkUI_NodeEvent_SetReturnNumberValue</b>. \n
-     * @group {ArkUI_NodeEventType(Text Input Component Event)}[capi-native-node-h-node-eventtype-textinput]
+     * @ingroup Text Input
      */
     NODE_TEXT_INPUT_ON_WILL_DELETE = 7011,
 
@@ -11797,7 +11785,7 @@ typedef enum {
      * <li>buffer: string value of the text, with the index of 0; obtained using OH_ArkUI_NodeEvent_GetStringValue.</li>
      * </ul>
      *
-     * @group {ArkUI_NodeEventType(Text Input Component Event)}[capi-native-node-h-node-eventtype-textinput]
+     * @ingroup Text Input
      */
     NODE_TEXT_INPUT_ON_DID_DELETE = 7012,
 
@@ -11812,8 +11800,8 @@ typedef enum {
      * <li>ArkUI_TextChangeEvent.pExtendStr: content of the preview text in the TextInput component. ArkUI_TextChangeEvent.number: start position of the preview text in the TextInput component.</li>
      * </ul>
      *
+     * @ingroup Text Input
      * @since 15
-     * @group {ArkUI_NodeEventType(Text Input Component Event)}[capi-native-node-h-node-eventtype-textinput]
      */
     NODE_TEXT_INPUT_ON_CHANGE_WITH_PREVIEW_TEXT = 7013,
 
@@ -11827,8 +11815,8 @@ typedef enum {
      * <li>ArkUI_TextChangeEvent.pExtendStr: content of the preview text in the TextInput component. ArkUI_TextChangeEvent.number: start position of the preview text in the TextInput component.</li>
      * </ul>
      *
+     * @ingroup Text Input
      * @since 20
-     * @group {ArkUI_NodeEventType(Text Input Component Event)}[capi-native-node-h-node-eventtype-textinput]
      */
     NODE_TEXT_INPUT_ON_WILL_CHANGE = 7014,
 
@@ -11843,8 +11831,8 @@ typedef enum {
      * <li>ArkUI_StringAsyncEvent.pStr: text that is copied.</li>
      * </ul>
      *
+     * @ingroup Text Input
      * @since 26.0.0
-     * @group {ArkUI_NodeEventType(Text Input Component Event)}[capi-native-node-h-node-eventtype-textinput]
      */
     NODE_TEXT_INPUT_ON_COPY = 7015,
 
@@ -11863,8 +11851,8 @@ typedef enum {
      * value.i32 at index 0 in the return value indicates whether the copy is allowed.
      * <b>0</b>: not allowed. <b>1</b>: allowed. \n
      *
+     * @ingroup Text Input
      * @since 26.0.0
-     * @group {ArkUI_NodeEventType(Text Input Component Event)}[capi-native-node-h-node-eventtype-textinput]
      */
     NODE_TEXT_INPUT_ON_WILL_COPY = 7016,
 
@@ -11883,8 +11871,8 @@ typedef enum {
      * value.i32 at index 0 in the return value indicates whether the cut is allowed.
      * <b>0</b>: not allowed. <b>1</b>: allowed. \n
      *
+     * @ingroup Text Input
      * @since 26.0.0
-     * @group {ArkUI_NodeEventType(Text Input Component Event)}[capi-native-node-h-node-eventtype-textinput]
      */
     NODE_TEXT_INPUT_ON_WILL_CUT = 7017,
 
@@ -11899,7 +11887,7 @@ typedef enum {
      * <li>ArkUI_StringAsyncEvent.pStr: text entered.</li>
      * </ul>
      *
-     * @group {ArkUI_NodeEventType(Text Input Component Event)}[capi-native-node-h-node-eventtype-textinput]
+     * @ingroup Text Input
      */
     NODE_TEXT_AREA_ON_CHANGE = MAX_NODE_SCOPE_NUM * ARKUI_NODE_TEXT_AREA,
     /**
@@ -11920,7 +11908,7 @@ typedef enum {
      * value.i32 at index 0 in the return value indicates whether the paste is allowed. \n
      * <b>0</b>: not allowed. <b>1</b>: allowed. \n
      *
-     * @group {ArkUI_NodeEventType(Text Input Component Event)}[capi-native-node-h-node-eventtype-textinput]
+     * @ingroup Text Input
      */
     NODE_TEXT_AREA_ON_PASTE,
     /**
@@ -11935,7 +11923,7 @@ typedef enum {
      * <li>ArkUI_NodeComponentEvent.data[1].i32: end position of the text selection area.</li>
      * </ul>
      *
-     * @group {ArkUI_NodeEventType(Text Input Component Event)}[capi-native-node-h-node-eventtype-textinput]
+     * @ingroup Text Input
      */
     NODE_TEXT_AREA_ON_TEXT_SELECTION_CHANGE,
     /**
@@ -11950,7 +11938,7 @@ typedef enum {
      * <li>ArkUI_StringAsyncEvent.pStr: content that is filtered out when regular expression matching fails.</li>
      * </ul>
      *
-     * @group {ArkUI_NodeEventType(Text Input Component Event)}[capi-native-node-h-node-eventtype-textinput]
+     * @ingroup Text Input
      */
     NODE_TEXT_AREA_ON_INPUT_FILTER_ERROR,
     /**
@@ -11965,7 +11953,7 @@ typedef enum {
      * <li>ArkUI_NodeComponentEvent.data[1].i32: Indicates the vertical coordinate offset of the text in the content area.</li>
      * </ul>
      *
-     * @group {ArkUI_NodeEventType(Text Input Component Event)}[capi-native-node-h-node-eventtype-textinput]
+     * @ingroup Text Input
      */
     NODE_TEXT_AREA_ON_CONTENT_SCROLL,
 
@@ -11980,7 +11968,7 @@ typedef enum {
      * <li>ArkUI_NodeComponentEvent.data[0].i32: true indicates that text input is in progress.</li>
      * </ul>
      *
-     * @group {ArkUI_NodeEventType(Text Input Component Event)}[capi-native-node-h-node-eventtype-textinput]
+     * @ingroup Text Input
      */
     NODE_TEXT_AREA_ON_EDIT_CHANGE,
 
@@ -11995,7 +11983,7 @@ typedef enum {
      * <li>ArkUI_NodeComponentEvent.data[0].i32: type of the Enter key.</li>
      * </ul>
      *
-     * @group {ArkUI_NodeEventType(Text Input Component Event)}[capi-native-node-h-node-eventtype-textinput]
+     * @ingroup Text Input
      */
     NODE_TEXT_AREA_ON_SUBMIT,
 
@@ -12011,7 +11999,7 @@ typedef enum {
      * <li>ArkUI_NodeComponentEvent.data[1].f32: Indicates the height of the text.</li>
      * </ul>
      *
-     * @group {ArkUI_NodeEventType(Text Input Component Event)}[capi-native-node-h-node-eventtype-textinput]
+     * @ingroup Text Input
      */
     NODE_TEXT_AREA_ON_CONTENT_SIZE_CHANGE,
 
@@ -12026,7 +12014,7 @@ typedef enum {
      *
      * @return Returns <b>true</b> if the text is entered; returns <b>false</b> otherwise.
      * You can set the return value using <b>OH_ArkUI_NodeEvent_SetReturnNumberValue</b>. \n
-     * @group {ArkUI_NodeEventType(Text Input Component Event)}[capi-native-node-h-node-eventtype-textinput]
+     * @ingroup Text Input
      */
     NODE_TEXT_AREA_ON_WILL_INSERT = 8008,
 
@@ -12039,7 +12027,7 @@ typedef enum {
      * <li>buffer: string value of the text, with the index of 0; obtained using OH_ArkUI_NodeEvent_GetStringValue.</li>
      * </ul>
      *
-     * @group {ArkUI_NodeEventType(Text Input Component Event)}[capi-native-node-h-node-eventtype-textinput]
+     * @ingroup Text Input
      */
     NODE_TEXT_AREA_ON_DID_INSERT = 8009,
 
@@ -12055,7 +12043,7 @@ typedef enum {
      *
      * @return Returns <b>true</b> if the text is deleted; returns <b>false</b> otherwise. \n
      * You can set the return value using <b>OH_ArkUI_NodeEvent_SetReturnNumberValue</b>. \n
-     * @group {ArkUI_NodeEventType(Text Input Component Event)}[capi-native-node-h-node-eventtype-textinput]
+     * @ingroup Text Input
      */
     NODE_TEXT_AREA_ON_WILL_DELETE = 8010,
 
@@ -12069,7 +12057,7 @@ typedef enum {
      * <li>buffer: string value of the text, with the index of 0; obtained using OH_ArkUI_NodeEvent_GetStringValue.</li>
      * </ul>
      *
-     * @group {ArkUI_NodeEventType(Text Input Component Event)}[capi-native-node-h-node-eventtype-textinput]
+     * @ingroup Text Input
      */
     NODE_TEXT_AREA_ON_DID_DELETE = 8011,
 
@@ -12084,8 +12072,8 @@ typedef enum {
      * <li>ArkUI_TextChangeEvent.pExtendStr: content of the preview text in the TextArea component. ArkUI_TextChangeEvent.number: start position of the preview text in the TextArea component.</li>
      * </ul>
      *
+     * @ingroup Text Input
      * @since 15
-     * @group {ArkUI_NodeEventType(Text Input Component Event)}[capi-native-node-h-node-eventtype-textinput]
      */
     NODE_TEXT_AREA_ON_CHANGE_WITH_PREVIEW_TEXT = 8012,
 
@@ -12099,8 +12087,8 @@ typedef enum {
      * <li>ArkUI_TextChangeEvent.pExtendStr: content of the preview text in the TextArea component. ArkUI_TextChangeEvent.number: start position of the preview text in the TextArea component.</li>
      * </ul>
      *
+     * @ingroup Text Input
      * @since 20
-     * @group {ArkUI_NodeEventType(Text Input Component Event)}[capi-native-node-h-node-eventtype-textinput]
      */
     NODE_TEXT_AREA_ON_WILL_CHANGE = 8013,
 
@@ -12115,8 +12103,8 @@ typedef enum {
      * <li>ArkUI_StringAsyncEvent.pStr: text that is copied.</li>
      * </ul>
      *
+     * @ingroup Text Input
      * @since 26.0.0
-     * @group {ArkUI_NodeEventType(Text Input Component Event)}[capi-native-node-h-node-eventtype-textinput]
      */
     NODE_TEXT_AREA_ON_COPY = 8014,
 
@@ -12135,8 +12123,8 @@ typedef enum {
      * value.i32 at index 0 in the return value indicates whether the copy is allowed.
      * <b>0</b>: not allowed. <b>1</b>: allowed. \n
      *
+     * @ingroup Text Input
      * @since 26.0.0
-     * @group {ArkUI_NodeEventType(Text Input Component Event)}[capi-native-node-h-node-eventtype-textinput]
      */
     NODE_TEXT_AREA_ON_WILL_COPY = 8015,
 
@@ -12151,8 +12139,8 @@ typedef enum {
      * <li>ArkUI_StringAsyncEvent.pStr: text that is cut.</li>
      * </ul>
      *
+     * @ingroup Text Input
      * @since 26.0.0
-     * @group {ArkUI_NodeEventType(Text Input Component Event)}[capi-native-node-h-node-eventtype-textinput]
      */
     NODE_TEXT_AREA_ON_CUT = 8016,
 
@@ -12171,8 +12159,8 @@ typedef enum {
      * value.i32 at index 0 in the return value indicates whether the cut is allowed.
      * <b>0</b>: not allowed. <b>1</b>: allowed. \n
      *
+     * @ingroup Text Input
      * @since 26.0.0
-     * @group {ArkUI_NodeEventType(Text Input Component Event)}[capi-native-node-h-node-eventtype-textinput]
      */
     NODE_TEXT_AREA_ON_WILL_CUT = 8017,
 
@@ -12338,8 +12326,8 @@ typedef enum {
      * <li>ArkUI_NodeComponentEvent.data[1].i32: end index of the selection.</li>
      * </ul>
      *
+     * @ingroup Text Editor
      * @since 24
-     * @group {ArkUI_NodeEventType(Rich Text Component Event)}[capi-native-node-h-node-eventtype-richeditor]
      */
     NODE_TEXT_EDITOR_ON_SELECTION_CHANGE = MAX_NODE_SCOPE_NUM * ARKUI_NODE_TEXT_EDITOR,
 
@@ -12348,8 +12336,8 @@ typedef enum {
      * <br>When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
      * {@link ArkUI_NodeComponentEvent}.
      *
+     * @ingroup Text Editor
      * @since 24
-     * @group {ArkUI_NodeEventType(Rich Text Component Event)}[capi-native-node-h-node-eventtype-richeditor]
      */
     NODE_TEXT_EDITOR_ON_READY,
 
@@ -12361,8 +12349,8 @@ typedef enum {
      * <br>**value.i32**: whether to intercept the default behavior of the component, with the index of **0**.
      * <br>**0**: not intercept. **1**: intercept.
      *
+     * @ingroup Text Editor
      * @since 24
-     * @group {ArkUI_NodeEventType(Rich Text Component Event)}[capi-native-node-h-node-eventtype-richeditor]
      */
     NODE_TEXT_EDITOR_ON_PASTE,
 
@@ -12375,8 +12363,8 @@ typedef enum {
      * <li>ArkUI_NodeComponentEvent.data[0].i32: editing status of the component.</li>
      * </ul>
      *
+     * @ingroup Text Editor
      * @since 24
-     * @group {ArkUI_NodeEventType(Rich Text Component Event)}[capi-native-node-h-node-eventtype-richeditor]
      */
     NODE_TEXT_EDITOR_ON_EDITING_CHANGE,
 
@@ -12389,8 +12377,8 @@ typedef enum {
      * <li>ArkUI_NodeComponentEvent.data[0].i32: type of the Enter key, specified using {@link ArkUI_EnterKeyType}.</li>
      * </ul>
      *
+     * @ingroup Text Editor
      * @since 24
-     * @group {ArkUI_NodeEventType(Rich Text Component Event)}[capi-native-node-h-node-eventtype-richeditor]
      */
     NODE_TEXT_EDITOR_ON_SUBMIT,
 
@@ -12401,8 +12389,8 @@ typedef enum {
      * <br>You can use {@link OH_ArkUI_NodeEvent_SetReturnNumberValue} to set the return value.
      * <br>**value.i32**: whether to intercept the default behavior of the component, with the index of **0**.
      * <br>**0**: not intercept. **1**: intercept.
+     * @ingroup Text Editor
      * @since 24
-     * @group {ArkUI_NodeEventType(Rich Text Component Event)}[capi-native-node-h-node-eventtype-richeditor]
      */
     NODE_TEXT_EDITOR_ON_CUT,
 
@@ -12413,8 +12401,8 @@ typedef enum {
      * <br>You can use {@link OH_ArkUI_NodeEvent_SetReturnNumberValue} to set the return value.
      * <br>**value.i32**: whether to intercept the default behavior of the component, with the index of **0**.
      * <br>**0**: not intercept. **1**: intercept.
+     * @ingroup Text Editor
      * @since 24
-     * @group {ArkUI_NodeEventType(Rich Text Component Event)}[capi-native-node-h-node-eventtype-richeditor]
      */
     NODE_TEXT_EDITOR_ON_COPY,
 
@@ -12431,8 +12419,8 @@ typedef enum {
      * <br>You can use {@link OH_ArkUI_NodeEvent_SetReturnNumberValue} to set the return value.
      * <br>**value.i32** whose **index** is set to **0** indicates whether the current content can be changed. **0**:
      * The content cannot be changed. **1**: The content can be changed.
+     * @ingroup Text Editor
      * @since 24
-     * @group {ArkUI_NodeEventType(Rich Text Component Event)}[capi-native-node-h-node-eventtype-richeditor]
      */
     NODE_TEXT_EDITOR_ON_WILL_CHANGE,
 
@@ -12448,8 +12436,8 @@ typedef enum {
      * <li>ArkUI_NodeComponentEvent.data[3].i32: end index of the text range of the new content after the text changes.</li>
      * </ul>
      *
+     * @ingroup Text Editor
      * @since 24
-     * @group {ArkUI_NodeEventType(Rich Text Component Event)}[capi-native-node-h-node-eventtype-richeditor]
      */
     NODE_TEXT_EDITOR_ON_DID_CHANGE,
 
