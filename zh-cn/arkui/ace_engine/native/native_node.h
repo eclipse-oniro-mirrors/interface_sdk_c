@@ -3406,12 +3406,12 @@ typedef enum {
      *
      * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
      * <ul>
-     * <li>.string 表示span的文本内容。</li>
+     * <li>.string：表示span的文本内容。</li>
      * </ul>
      *
      * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
      * <ul>
-     * <li>.string 表示span的文本内容。</li>
+     * <li>.string：表示span的文本内容。</li>
      * </ul>
      *
      * @ingroup Text Display[文本显示]
@@ -3508,7 +3508,7 @@ typedef enum {
     NODE_SPAN_FONT_WEIGHT = 2004,
     /**
      * @brief imageSpan组件图片地址属性，支持属性设置、属性重置和属性获取接口。
->>>>>>> 4256a9f0 (8分文档回刷)
+     *
      * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
      * <ul>
      * <li>.string：表示imageSpan的图片地址。</li>
