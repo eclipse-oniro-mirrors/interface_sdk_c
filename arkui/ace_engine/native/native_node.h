@@ -6450,132 +6450,172 @@ typedef enum {
      * @brief Defines whether to display the lunar calendar in the date picker.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: whether to display the lunar calendar in the date picker. The default value is <b>false</b>. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: whether to display the lunar calendar in the date picker.
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32: whether to display the lunar calendar in the date picker. The default value is <b>false</b>.</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].i32: whether to display the lunar calendar in the date picker.</li>
+     * </ul>
+     *
+     * @ingroup Datepicker
      */
     NODE_DATE_PICKER_LUNAR = MAX_NODE_SCOPE_NUM * ARKUI_NODE_DATE_PICKER,
     /**
      * @brief Defines the start date of the date picker.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .string: date. The default value is <b>"1970-1-1"</b>. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .string: date. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.string: date. The default value is <b>"1970-1-1"</b>.</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.string: date.</li>
+     * </ul>
+     *
+     * @ingroup Datepicker
      */
     NODE_DATE_PICKER_START,
     /**
      * @brief Defines the end date of the date picker.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .string: date. The default value is <b>"2100-12-31"</b>. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .string: date. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.string: date. The default value is <b>"2100-12-31"</b>.</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.string: date.</li>
+     * </ul>
+     *
+     * @ingroup Datepicker
      */
     NODE_DATE_PICKER_END,
     /**
      * @brief Defines the selected date of the date picker.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .string: date. The default value is <b>"2024-01-22"</b>. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .string: date.
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.string: date. The default value is <b>"2024-01-22"</b>.</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.string: date.</li>
+     * </ul>
+     *
+     * @ingroup Datepicker
      */
     NODE_DATE_PICKER_SELECTED,
     /**
      * @brief Defines the font color, font size, and font weight for the top and bottom items in the date picker.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .string: array of five parameters of the string type, separated by semicolons (;).\n
-     * Parameter 1: font color, in #ARGB format.\n
-     * Parameter 2: font size, in fp. The value is a number.\n
-     * Parameter 3: font weight. Available options are ("bold", "normal", "bolder", "lighter", "medium", "regular").\n.
-     * Parameter 4: fonts, separated by commas (,).\n
-     * Parameter 5: font style. Available options are ("normal", "italic").\n
-     * Example: "#ff182431;14;normal;Arial,HarmonyOS Sans;normal". \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .string: array of five parameters of the string type, separated by semicolons (;).\n
-     * Parameter 1: font color, in #ARGB format.\n
-     * Parameter 2: font size, in fp. The value is a number.\n
-     * Parameter 3: font weight. Available options are ("bold", "normal", "bolder", "lighter", "medium", "regular").\n.
-     * Parameter 4: fonts, separated by commas (,).\n
-     * Parameter 5: font style. Available options are ("normal", "italic").\n
-     * Example: "#ff182431;14;normal;Arial,HarmonyOS Sans;normal". \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.string: array of five parameters of the string type, separated by semicolons (;).</li>
+     * <li>Parameter 1: font color, in #ARGB format.</li>
+     * <li>Parameter 2: font size, in fp. The value is a number.</li>
+     * <li>Parameter 3: font weight. Available options are ("bold", "normal", "bolder", "lighter", "medium", "regular").</li>
+     * <li>Parameter 4: fonts, separated by commas (,).</li>
+     * <li>Parameter 5: font style. Available options are ("normal", "italic").</li>
+     * <li>Example: "#ff182431;14;normal;Arial,HarmonyOS Sans;normal".</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.string: array of five parameters of the string type, separated by semicolons (;).</li>
+     * <li>Parameter 1: font color, in #ARGB format.</li>
+     * <li>Parameter 2: font size, in fp. The value is a number.</li>
+     * <li>Parameter 3: font weight. Available options are ("bold", "normal", "bolder", "lighter", "medium", "regular").</li>
+     * <li>Parameter 4: fonts, separated by commas (,).</li>
+     * <li>Parameter 5: font style. Available options are ("normal", "italic").</li>
+     * <li>Example: "#ff182431;14;normal;Arial,HarmonyOS Sans;normal".</li>
+     * </ul>
+     *
+     * @ingroup Datepicker
      */
     NODE_DATE_PICKER_DISAPPEAR_TEXT_STYLE,
     /**
      * @brief Defines the font color, font size, and font weight of all items except the top, bottom, and selected
      * items in the date picker. This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .string: array of five parameters of the string type, separated by semicolons (;).\n
-     * Parameter 1: font color, in #ARGB format.\n
-     * Parameter 2: font size, in fp. The value is a number.\n
-     * Parameter 3: font weight. Available options are ("bold", "normal", "bolder", "lighter", "medium", "regular").\n.
-     * Parameter 4: fonts, separated by commas (,).\n
-     * Parameter 5: font style. Available options are ("normal", "italic").\n
-     * Example: "#ff182431;14;normal;Arial,HarmonyOS Sans;normal". \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .string: array of five parameters of the string type, separated by semicolons (;).\n
-     * Parameter 1: font color, in #ARGB format.\n
-     * Parameter 2: font size, in fp. The value is a number.\n
-     * Parameter 3: font weight. Available options are ("bold", "normal", "bolder", "lighter", "medium", "regular").\n.
-     * Parameter 4: fonts, separated by commas (,).\n
-     * Parameter 5: font style. Available options are ("normal", "italic").\n
-     * Example: "#ff182431;14;normal;Arial,HarmonyOS Sans;normal". \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.string: array of five parameters of the string type, separated by semicolons (;).</li>
+     * <li>Parameter 1: font color, in #ARGB format.</li>
+     * <li>Parameter 2: font size, in fp. The value is a number.</li>
+     * <li>Parameter 3: font weight. Available options are ("bold", "normal", "bolder", "lighter", "medium", "regular").</li>
+     * <li>Parameter 4: fonts, separated by commas (,).</li>
+     * <li>Parameter 5: font style. Available options are ("normal", "italic").</li>
+     * <li>Example: "#ff182431;14;normal;Arial,HarmonyOS Sans;normal".</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.string: array of five parameters of the string type, separated by semicolons (;).</li>
+     * <li>Parameter 1: font color, in #ARGB format.</li>
+     * <li>Parameter 2: font size, in fp. The value is a number.</li>
+     * <li>Parameter 3: font weight. Available options are ("bold", "normal", "bolder", "lighter", "medium", "regular").</li>
+     * <li>Parameter 4: fonts, separated by commas (,).</li>
+     * <li>Parameter 5: font style. Available options are ("normal", "italic").</li>
+     * <li>Example: "#ff182431;14;normal;Arial,HarmonyOS Sans;normal".</li>
+     * </ul>
+     *
+     * @ingroup Datepicker
      */
     NODE_DATE_PICKER_TEXT_STYLE,
     /**
      * @brief Defines the font color, font size, and font weight of the selected item in the date picker.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .string: array of five parameters of the string type, separated by semicolons (;).\n
-     * Parameter 1: font color, in #ARGB format.\n
-     * Parameter 2: font size, in fp. The value is a number.\n
-     * Parameter 3: font weight. Available options are ("bold", "normal", "bolder", "lighter", "medium", "regular").\n.
-     * Parameter 4: fonts, separated by commas (,).\n
-     * Parameter 5: font style. Available options are ("normal", "italic").\n
-     * Example: "#ff182431;14;normal;Arial,HarmonyOS Sans;normal". \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .string: array of five parameters of the string type, separated by semicolons (;).\n
-     * Parameter 1: font color, in #ARGB format.\n
-     * Parameter 2: font size, in fp. The value is a number.\n
-     * Parameter 3: font weight. Available options are ("bold", "normal", "bolder", "lighter", "medium", "regular").\n.
-     * Parameter 4: fonts, separated by commas (,).\n
-     * Parameter 5: font style. Available options are ("normal", "italic").\n
-     * Example: "#ff182431;14;normal;Arial,HarmonyOS Sans;normal". \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.string: array of five parameters of the string type, separated by semicolons (;).</li>
+     * <li>Parameter 1: font color, in #ARGB format.</li>
+     * <li>Parameter 2: font size, in fp. The value is a number.</li>
+     * <li>Parameter 3: font weight. Available options are ("bold", "normal", "bolder", "lighter", "medium", "regular").</li>
+     * <li>Parameter 4: fonts, separated by commas (,).</li>
+     * <li>Parameter 5: font style. Available options are ("normal", "italic").</li>
+     * <li>Example: "#ff182431;14;normal;Arial,HarmonyOS Sans;normal".</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.string: array of five parameters of the string type, separated by semicolons (;).</li>
+     * <li>Parameter 1: font color, in #ARGB format.</li>
+     * <li>Parameter 2: font size, in fp. The value is a number.</li>
+     * <li>Parameter 3: font weight. Available options are ("bold", "normal", "bolder", "lighter", "medium", "regular").</li>
+     * <li>Parameter 4: fonts, separated by commas (,).</li>
+     * <li>Parameter 5: font style. Available options are ("normal", "italic").</li>
+     * <li>Example: "#ff182431;14;normal;Arial,HarmonyOS Sans;normal".</li>
+     * </ul>
+     *
+     * @ingroup Datepicker
      */
     NODE_DATE_PICKER_SELECTED_TEXT_STYLE,
     /**
      * @brief Defines the mode of the date picker.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * value[0].i32: the mode. The value is and enum of {@link ArkUI_DatePickerMode}.\n.
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * value[0].i32: the mode. The value is and enum of {@link ArkUI_DatePickerMode}.\n.
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>value[0].i32: the mode. The value is and enum of {@link ArkUI_DatePickerMode}.</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>value[0].i32: the mode. The value is and enum of {@link ArkUI_DatePickerMode}.</li>
+     * </ul>
+     *
+     * @ingroup Datepicker
      * @since 18
      */
     NODE_DATE_PICKER_MODE = 13007,
@@ -6583,13 +6623,18 @@ typedef enum {
      * @brief Defines whether haptic feedback.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: whether to feedback. The value <b>true</b> means to feedback, and
-     * <b>false</b> means the opposite.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * value[0].i32: whether to feedback.\n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32: whether to feedback. The value <b>true</b> means to feedback, and
+     * <b>false</b> means the opposite.</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>value[0].i32: whether to feedback.</li>
+     * </ul>
+     *
+     * @ingroup Datepicker
      * @since 18
      */
     NODE_DATE_PICKER_ENABLE_HAPTIC_FEEDBACK = 13008,
@@ -6597,13 +6642,18 @@ typedef enum {
      * @brief Defines whether to support scroll looping for the date picker.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: whether to support scroll looping. The value <b>true</b> means to support scroll looping, and
-     * <b>false</b> means the opposite.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * value[0].i32: The value <b>1</b> means to support scroll looping, and <b>0</b> means the opposite. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32: whether to support scroll looping. The value <b>true</b> means to support scroll looping, and
+     * <b>false</b> means the opposite.</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>value[0].i32: The value <b>1</b> means to support scroll looping, and <b>0</b> means the opposite.</li>
+     * </ul>
+     *
+     * @ingroup Datepicker
      * @since 20
      */
      NODE_DATE_PICKER_CAN_LOOP = 13009,
@@ -6611,309 +6661,396 @@ typedef enum {
      * @brief Defines the time of the selected item. in the timer picker.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .string: time. The default value is the current system time. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .string: time.
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.string: time. The default value is the current system time.</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.string: time.</li>
+     * </ul>
+     *
+     * @ingroup Timepicker
      */
-
     NODE_TIME_PICKER_SELECTED = MAX_NODE_SCOPE_NUM * ARKUI_NODE_TIME_PICKER,
     /**
      * @brief Defines whether the display time is in 24-hour format.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: whether the display time is in 24-hour format. The default value is <b>false</b>. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: whether the display time is in 24-hour format.
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32: whether the display time is in 24-hour format. The default value is <b>false</b>.</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].i32: whether the display time is in 24-hour format.</li>
+     * </ul>
+     *
+     * @ingroup Timepicker
      */
     NODE_TIME_PICKER_USE_MILITARY_TIME,
     /**
-     * @brief Defines the font color, font size, and font weight for the top and bottom items in the time picker.
-     * This attribute can be set, reset, and obtained as required through APIs.
-     *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .string: array of five parameters of the string type, separated by semicolons (;).\n
-     * Parameter 1: font color, in #ARGB format.\n
-     * Parameter 2: font size, in fp. The value is a number.\n
-     * Parameter 3: font weight. Available options are ("bold", "normal", "bolder", "lighter", "medium", "regular").\n.
-     * Parameter 4: fonts, separated by commas (,).\n
-     * Parameter 5: font style. Available options are ("normal", "italic").\n
-     * Example: "#ff182431;14;normal;Arial,HarmonyOS Sans;normal". \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .string: array of five parameters of the string type, separated by semicolons (;).\n
-     * Parameter 1: font color, in #ARGB format.\n
-     * Parameter 2: font size, in fp. The value is a number.\n
-     * Parameter 3: font weight. Available options are ("bold", "normal", "bolder", "lighter", "medium", "regular").\n.
-     * Parameter 4: fonts, separated by commas (,).\n
-     * Parameter 5: font style. Available options are ("normal", "italic").\n
-     * Example: "#ff182431;14;normal;Arial,HarmonyOS Sans;normal". \n
-     *
-     */
+      * @brief Defines the font color, font size, and font weight for the top and bottom items in the time picker.
+      * This attribute can be set, reset, and obtained as required through APIs.
+      *
+      * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+      * <ul>
+      * <li>.string: array of five parameters of the string type, separated by semicolons (;).</li>
+      * <li>Parameter 1: font color, in #ARGB format.</li>
+      * <li>Parameter 2: font size, in fp. The value is a number.</li>
+      * <li>Parameter 3: font weight. Available options are ("bold", "normal", "bolder", "lighter", "medium", "regular").</li>
+      * <li>Parameter 4: fonts, separated by commas (,).</li>
+      * <li>Parameter 5: font style. Available options are ("normal", "italic").</li>
+      * <li>Example: "#ff182431;14;normal;Arial,HarmonyOS Sans;normal".</li>
+      * </ul>
+      *
+      * **Format of the return value {@link ArkUI_AttributeItem}:**
+      * <ul>
+      * <li>.string: array of five parameters of the string type, separated by semicolons (;).</li>
+      * <li>Parameter 1: font color, in #ARGB format.</li>
+      * <li>Parameter 2: font size, in fp. The value is a number.</li>
+      * <li>Parameter 3: font weight. Available options are ("bold", "normal", "bolder", "lighter", "medium", "regular").</li>
+      * <li>Parameter 4: fonts, separated by commas (,).</li>
+      * <li>Parameter 5: font style. Available options are ("normal", "italic").</li>
+      * <li>Example: "#ff182431;14;normal;Arial,HarmonyOS Sans;normal".</li>
+      * </ul>
+      *
+      * @ingroup Timepicker
+      */
     NODE_TIME_PICKER_DISAPPEAR_TEXT_STYLE,
     /**
-     * @brief Defines the font color, font size, and font weight of all items except the top, bottom, and selected items
-     * in the time picker. This attribute can be set, reset, and obtained as required through APIs.
-     *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .string: array of five parameters of the string type, separated by semicolons (;).\n
-     * Parameter 1: font color, in #ARGB format.\n
-     * Parameter 2: font size, in fp. The value is a number.\n
-     * Parameter 3: font weight. Available options are ("bold", "normal", "bolder", "lighter", "medium", "regular").\n.
-     * Parameter 4: fonts, separated by commas (,).\n
-     * Parameter 5: font style. Available options are ("normal", "italic").\n
-     * Example: "#ff182431;14;normal;Arial,HarmonyOS Sans;normal". \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .string: array of five parameters of the string type, separated by semicolons (;).\n
-     * Parameter 1: font color, in #ARGB format.\n
-     * Parameter 2: font size, in fp. The value is a number.\n
-     * Parameter 3: font weight. Available options are ("bold", "normal", "bolder", "lighter", "medium", "regular").\n.
-     * Parameter 4: fonts, separated by commas (,).\n
-     * Parameter 5: font style. Available options are ("normal", "italic").\n
-     * Example: "#ff182431;14;normal;Arial,HarmonyOS Sans;normal". \n
-     *
-     */
+      * @brief Defines the font color, font size, and font weight of all items except the top, bottom, and selected items
+      * in the time picker. This attribute can be set, reset, and obtained as required through APIs.
+      *
+      * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+      * <ul>
+      * <li>.string: array of five parameters of the string type, separated by semicolons (;).</li>
+      * <li>Parameter 1: font color, in #ARGB format.</li>
+      * <li>Parameter 2: font size, in fp. The value is a number.</li>
+      * <li>Parameter 3: font weight. Available options are ("bold", "normal", "bolder", "lighter", "medium", "regular").</li>
+      * <li>Parameter 4: fonts, separated by commas (,).</li>
+      * <li>Parameter 5: font style. Available options are ("normal", "italic").</li>
+      * <li>Example: "#ff182431;14;normal;Arial,HarmonyOS Sans;normal".</li>
+      * </ul>
+      *
+      * **Format of the return value {@link ArkUI_AttributeItem}:**
+      * <ul>
+      * <li>.string: array of five parameters of the string type, separated by semicolons (;).</li>
+      * <li>Parameter 1: font color, in #ARGB format.</li>
+      * <li>Parameter 2: font size, in fp. The value is a number.</li>
+      * <li>Parameter 3: font weight. Available options are ("bold", "normal", "bolder", "lighter", "medium", "regular").</li>
+      * <li>Parameter 4: fonts, separated by commas (,).</li>
+      * <li>Parameter 5: font style. Available options are ("normal", "italic").</li>
+      * <li>Example: "#ff182431;14;normal;Arial,HarmonyOS Sans;normal".</li>
+      * </ul>
+      *
+      * @ingroup Timepicker
+      */
     NODE_TIME_PICKER_TEXT_STYLE,
     /**
-     * @brief Defines the font color, font size, and font weight of the selected item in the time picker.
-     * This attribute can be set, reset, and obtained as required through APIs.
-     *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .string: array of five parameters of the string type, separated by semicolons (;).\n
-     * Parameter 1: font color, in #ARGB format.\n
-     * Parameter 2: font size, in fp. The value is a number.\n
-     * Parameter 3: font weight. Available options are ("bold", "normal", "bolder", "lighter", "medium", "regular").\n.
-     * Parameter 4: fonts, separated by commas (,).\n
-     * Parameter 5: font style. Available options are ("normal", "italic").\n
-     * Example: "#ff182431;14;normal;Arial,HarmonyOS Sans;normal". \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .string: array of five parameters of the string type, separated by semicolons (;).\n
-     * Parameter 1: font color, in #ARGB format.\n
-     * Parameter 2: font size, in fp. The value is a number.\n
-     * Parameter 3: font weight. Available options are ("bold", "normal", "bolder", "lighter", "medium", "regular").\n.
-     * Parameter 4: fonts, separated by commas (,).\n
-     * Parameter 5: font style. Available options are ("normal", "italic").\n
-     * Example: "#ff182431;14;normal;Arial,HarmonyOS Sans;normal". \n
-     *
-     */
+      * @brief Defines the font color, font size, and font weight of the selected item in the time picker.
+      * This attribute can be set, reset, and obtained as required through APIs.
+      *
+      * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+      * <ul>
+      * <li>.string: array of five parameters of the string type, separated by semicolons (;).</li>
+      * <li>Parameter 1: font color, in #ARGB format.</li>
+      * <li>Parameter 2: font size, in fp. The value is a number.</li>
+      * <li>Parameter 3: font weight. Available options are ("bold", "normal", "bolder", "lighter", "medium", "regular").</li>
+      * <li>Parameter 4: fonts, separated by commas (,).</li>
+      * <li>Parameter 5: font style. Available options are ("normal", "italic").</li>
+      * <li>Example: "#ff182431;14;normal;Arial,HarmonyOS Sans;normal".</li>
+      * </ul>
+      *
+      * **Format of the return value {@link ArkUI_AttributeItem}:**
+      * <ul>
+      * <li>.string: array of five parameters of the string type, separated by semicolons (;).</li>
+      * <li>Parameter 1: font color, in #ARGB format.</li>
+      * <li>Parameter 2: font size, in fp. The value is a number.</li>
+      * <li>Parameter 3: font weight. Available options are ("bold", "normal", "bolder", "lighter", "medium", "regular").</li>
+      * <li>Parameter 4: fonts, separated by commas (,).</li>
+      * <li>Parameter 5: font style. Available options are ("normal", "italic").</li>
+      * <li>Example: "#ff182431;14;normal;Arial,HarmonyOS Sans;normal".</li>
+      * </ul>
+      *
+      * @ingroup Timepicker
+      */
     NODE_TIME_PICKER_SELECTED_TEXT_STYLE,
     /**
-     * @brief Defines the start time of the time picker.
-     * This attribute can be set, reset, and obtained as required through APIs.
-     *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .string: time. The default value is <b>"00:00:00"</b>.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .string: time. The default value is <b>"00:00:00"</b>.\n
-     *
-     * @since 18
-     */
+      * @brief Defines the start time of the time picker.
+      * This attribute can be set, reset, and obtained as required through APIs.
+      *
+      * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+      * <ul>
+      * <li>.string: time. The default value is <b>"00:00:00"</b>.</li>
+      * </ul>
+      *
+      * **Format of the return value {@link ArkUI_AttributeItem}:**
+      * <ul>
+      * <li>.string: time. The default value is <b>"00:00:00"</b>.</li>
+      * </ul>
+      *
+      * @ingroup Timepicker
+      * @since 18
+      */
     NODE_TIME_PICKER_START = 14005,
     /**
-     * @brief Defines the end time of the time picker.
-     * This attribute can be set, reset, and obtained as required through APIs.
-     *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .string: time. The default value is <b>"23:59:59"</b>.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .string: time. The default value is <b>"23:59:59"</b>.\n
-     *
-     * @since 18
-     */
+      * @brief Defines the end time of the time picker.
+      * This attribute can be set, reset, and obtained as required through APIs.
+      *
+      * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+      * <ul>
+      * <li>.string: time. The default value is <b>"23:59:59"</b>.</li>
+      * </ul>
+      *
+      * **Format of the return value {@link ArkUI_AttributeItem}:**
+      * <ul>
+      * <li>.string: time. The default value is <b>"23:59:59"</b>.</li>
+      * </ul>
+      *
+      * @ingroup Timepicker
+      * @since 18
+      */
     NODE_TIME_PICKER_END = 14006,
     /**
-     * @brief Defines whether the AM/PM option is cascaded with the time in 12-hour mode.
-     * This attribute can be set, reset, and obtained as required through APIs.
-     *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: whether to enable cascade. The default value is <b>false</b>.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: whether to enable cascade.\n
-     *
-     * @since 18
-     */
+      * @brief Defines whether the AM/PM option is cascaded with the time in 12-hour mode.
+      * This attribute can be set, reset, and obtained as required through APIs.
+      *
+      * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+      * <ul>
+      * <li>.value[0].i32: whether to enable cascade. The default value is <b>false</b>.</li>
+      * </ul>
+      *
+      * **Format of the return value {@link ArkUI_AttributeItem}:**
+      * <ul>
+      * <li>.value[0].i32: whether to enable cascade.</li>
+      * </ul>
+      *
+      * @ingroup Timepicker
+      * @since 18
+      */
     NODE_TIME_PICKER_ENABLE_CASCADE = 14007,
 
     /**
      * @brief Defines the data selection range of the text picker.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: type of the text picker {@link ArkUI_TextPickerRangeType}.
-     * The default value is <b>ARKUI_TEXTPICKER_RANGETYPE_SINGLE</b>. \n
-     * ?.string: string input, whose format varies by picker type.\n
-     * 1: single-column picker. The input format is a group of strings separated by semicolons (;).\n
-     * 2: multi-column picker. Multiple pairs of plain text strings are supported. The pairs are separated by
-     * semicolons (;), and strings within each pair are separated by commas (,). \n
-     * ?.object: Object input, whose format varies by picker type.\n
-     * 1: single-column picker with image support. The input structure is {@link ARKUI_TextPickerRangeContent}.\n
-     * 2: multi-column interconnected picker. The input structure is {@link ARKUI_TextPickerCascadeRangeContent}.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: type of the text picker {@link ArkUI_TextPickerRangeType}.\n
-     * ?.string: string output, whose format varies by picker type.\n
-     * 1: single-column picker. The output format is a group of strings separated by semicolons (;).\n
-     * 2: multi-column picker. Multiple pairs of plain text strings are supported. The pairs are separated by
-     * semicolons (;), and strings within each pair are separated by commas (,). \n
-     * ?.string: Object output, whose format varies by picker type.\n
-     * 1: single-column picker with image support. The output structure is {@link ARKUI_TextPickerRangeContent}.\n
-     * 2: multi-column interconnected picker. The output structure is {@link ARKUI_TextPickerCascadeRangeContent}.\n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32: type of the text picker {@link ArkUI_TextPickerRangeType}.
+     * The default value is <b>ARKUI_TEXTPICKER_RANGETYPE_SINGLE</b>. </li>
+     * <li>.string: string input, whose format varies by picker type.</li>
+     * <li>1: single-column picker. The input format is a group of strings separated by semicolons (;).</li>
+     * <li>2: multi-column picker. Multiple pairs of plain text strings are supported. The pairs are separated by
+     * semicolons (;), and strings within each pair are separated by commas (,).</li>
+     * <li>.object: Object input, whose format varies by picker type.</li>
+     * <li>1: single-column picker with image support. The input structure is {@link ARKUI_TextPickerRangeContent}.</li>
+     * <li>2: multi-column interconnected picker. The input structure is {@link ARKUI_TextPickerCascadeRangeContent}.</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].i32: type of the text picker {@link ArkUI_TextPickerRangeType}.</li>
+     * <li>.string: string output, whose format varies by picker type.</li>
+     * <li>1: single-column picker. The output format is a group of strings separated by semicolons (;).</li>
+     * <li>2: multi-column picker. Multiple pairs of plain text strings are supported. The pairs are separated by
+     * semicolons (;), and strings within each pair are separated by commas (,).</li>
+     * <li>.string: Object output, whose format varies by picker type.</li>
+     * <li>1: single-column picker with image support. The output structure is {@link ARKUI_TextPickerRangeContent}.</li>
+     * <li>2: multi-column interconnected picker. The output structure is {@link ARKUI_TextPickerCascadeRangeContent}.</li>
+     * </ul>
+     *
+     * @ingroup Textpicker
      */
     NODE_TEXT_PICKER_OPTION_RANGE = MAX_NODE_SCOPE_NUM * ARKUI_NODE_TEXT_PICKER,
     /**
      * @brief Defines the index of the default selected item in the data selection range of the text picker.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].u32: index. If there are multiple index values, add them one by one. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].u32: index. If there are multiple index values, add them one by one.\n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].u32: index. If there are multiple index values, add them one by one.</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].u32: index. If there are multiple index values, add them one by one.</li>
+     * </ul>
+     *
+     * @ingroup Textpicker
      */
     NODE_TEXT_PICKER_OPTION_SELECTED,
     /**
      * @brief Defines the value of the default selected item in the text picker.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .string: value of the selected item. If there are multiple values, add them one by one and
-     * separate them with semicolons (;). \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .string: value of the selected item. If there are multiple values, add them one by one and
-     * separate them with semicolons (;).\n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.string: value of the selected item. If there are multiple values, add them one by one and
+     * separate them with semicolons (;).</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.string: value of the selected item. If there are multiple values, add them one by one and
+     * separate them with semicolons (;).</li>
+     * </ul>
+     *
+     * @ingroup Textpicker
      */
     NODE_TEXT_PICKER_OPTION_VALUE,
     /**
      * @brief Defines the font color, font size, and font weight for the top and bottom items in the text picker.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .string: array of five parameters of the string type, separated by semicolons (;).\n
-     * Parameter 1: font color, in #ARGB format.\n
-     * Parameter 2: font size, in fp. The value is a number.\n
-     * Parameter 3: font weight. Available options are ("bold", "normal", "bolder", "lighter", "medium", "regular").\n.
-     * Parameter 4: fonts, separated by commas (,).\n
-     * Parameter 5: font style. Available options are ("normal", "italic").\n
-     * Example: "#ff182431;14;normal;Arial,HarmonyOS Sans;normal". \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .string: array of five parameters of the string type, separated by semicolons (;).\n
-     * Parameter 1: font color, in #ARGB format.\n
-     * Parameter 2: font size, in fp. The value is a number.\n
-     * Parameter 3: font weight. Available options are ("bold", "normal", "bolder", "lighter", "medium", "regular").\n.
-     * Parameter 4: fonts, separated by commas (,).\n
-     * Parameter 5: font style. Available options are ("normal", "italic").\n
-     * Example: "#ff182431;14;normal;Arial,HarmonyOS Sans;normal". \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.string: array of five parameters of the string type, separated by semicolons (;).</li>
+     * <li>Parameter 1: font color, in #ARGB format.</li>
+     * <li>Parameter 2: font size, in fp. The value is a number.</li>
+     * <li>Parameter 3: font weight. Available options are ("bold", "normal", "bolder", "lighter", "medium", "regular").</li>
+     * <li>Parameter 4: fonts, separated by commas (,).</li>
+     * <li>Parameter 5: font style. Available options are ("normal", "italic").</li>
+     * <li>Example: "#ff182431;14;normal;Arial,HarmonyOS Sans;normal".</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.string: array of five parameters of the string type, separated by semicolons (;).</li>
+     * <li>Parameter 1: font color, in #ARGB format.</li>
+     * <li>Parameter 2: font size, in fp. The value is a number.</li>
+     * <li>Parameter 3: font weight. Available options are ("bold", "normal", "bolder", "lighter", "medium", "regular").</li>
+     * <li>Parameter 4: fonts, separated by commas (,).</li>
+     * <li>Parameter 5: font style. Available options are ("normal", "italic").</li>
+     * <li>Example: "#ff182431;14;normal;Arial,HarmonyOS Sans;normal".</li>
+     * </ul>
+     *
+     * @ingroup Textpicker
      */
     NODE_TEXT_PICKER_DISAPPEAR_TEXT_STYLE,
     /**
      * @brief Defines the font color, font size, and font weight for all items except the top, bottom, and selected
      * items in the text picker. This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .string: array of five parameters of the string type, separated by semicolons (;).\n
-     * Parameter 1: font color, in #ARGB format.\n
-     * Parameter 2: font size, in fp. The value is a number.\n
-     * Parameter 3: font weight. Available options are ("bold", "normal", "bolder", "lighter", "medium", "regular").\n.
-     * Parameter 4: fonts, separated by commas (,).\n
-     * Parameter 5: font style. Available options are ("normal", "italic").\n
-     * Example: "#ff182431;14;normal;Arial,HarmonyOS Sans;normal". \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .string: array of five parameters of the string type, separated by semicolons (;).\n
-     * Parameter 1: font color, in #ARGB format.\n
-     * Parameter 2: font size, in fp. The value is a number.\n
-     * Parameter 3: font weight. Available options are ("bold", "normal", "bolder", "lighter", "medium", "regular").\n.
-     * Parameter 4: fonts, separated by commas (,).\n
-     * Parameter 5: font style. Available options are ("normal", "italic").\n
-     * Example: "#ff182431;14;normal;Arial,HarmonyOS Sans;normal". \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.string: array of five parameters of the string type, separated by semicolons (;).</li>
+     * <li>Parameter 1: font color, in #ARGB format.</li>
+     * <li>Parameter 2: font size, in fp. The value is a number.</li>
+     * <li>Parameter 3: font weight. Available options are ("bold", "normal", "bolder", "lighter", "medium", "regular").</li>
+     * <li>Parameter 4: fonts, separated by commas (,).</li>
+     * <li>Parameter 5: font style. Available options are ("normal", "italic").</li>
+     * <li>Example: "#ff182431;14;normal;Arial,HarmonyOS Sans;normal".</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.string: array of five parameters of the string type, separated by semicolons (;).</li>
+     * <li>Parameter 1: font color, in #ARGB format.</li>
+     * <li>Parameter 2: font size, in fp. The value is a number.</li>
+     * <li>Parameter 3: font weight. Available options are ("bold", "normal", "bolder", "lighter", "medium", "regular").</li>
+     * <li>Parameter 4: fonts, separated by commas (,).</li>
+     * <li>Parameter 5: font style. Available options are ("normal", "italic").</li>
+     * <li>Example: "#ff182431;14;normal;Arial,HarmonyOS Sans;normal".</li>
+     * </ul>
+     *
+     * @ingroup Textpicker
      */
     NODE_TEXT_PICKER_TEXT_STYLE,
     /**
      * @brief Defines the font color, font size, and font weight for the selected item in the text picker.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .string: array of five parameters of the string type, separated by semicolons (;).\n
-     * Parameter 1: font color, in #ARGB format.\n
-     * Parameter 2: font size, in fp. The value is a number.\n
-     * Parameter 3: font weight. Available options are ("bold", "normal", "bolder", "lighter", "medium", "regular").\n.
-     * Parameter 4: fonts, separated by commas (,).\n
-     * Parameter 5: font style. Available options are ("normal", "italic").\n
-     * Example: "#ff182431;14;normal;Arial,HarmonyOS Sans;normal". \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .string: array of five parameters of the string type, separated by semicolons (;).\n
-     * Parameter 1: font color, in #ARGB format.\n
-     * Parameter 2: font size, in fp. The value is a number.\n
-     * Parameter 3: font weight. Available options are ("bold", "normal", "bolder", "lighter", "medium", "regular").\n.
-     * Parameter 4: fonts, separated by commas (,).\n
-     * Parameter 5: font style. Available options are ("normal", "italic").\n
-     * Example: "#ff182431;14;normal;Arial,HarmonyOS Sans;normal". \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.string: array of five parameters of the string type, separated by semicolons (;).</li>
+     * <li>Parameter 1: font color, in #ARGB format.</li>
+     * <li>Parameter 2: font size, in fp. The value is a number.</li>
+     * <li>Parameter 3: font weight. Available options are ("bold", "normal", "bolder", "lighter", "medium", "regular").</li>
+     * <li>Parameter 4: fonts, separated by commas (,).</li>
+     * <li>Parameter 5: font style. Available options are ("normal", "italic").</li>
+     * <li>Example: "#ff182431;14;normal;Arial,HarmonyOS Sans;normal".</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.string: array of five parameters of the string type, separated by semicolons (;).</li>
+     * <li>Parameter 1: font color, in #ARGB format.</li>
+     * <li>Parameter 2: font size, in fp. The value is a number.</li>
+     * <li>Parameter 3: font weight. Available options are ("bold", "normal", "bolder", "lighter", "medium", "regular").</li>
+     * <li>Parameter 4: fonts, separated by commas (,).</li>
+     * <li>Parameter 5: font style. Available options are ("normal", "italic").</li>
+     * <li>Example: "#ff182431;14;normal;Arial,HarmonyOS Sans;normal".</li>
+     * </ul>
+     *
+     * @ingroup Textpicker
      */
     NODE_TEXT_PICKER_SELECTED_TEXT_STYLE,
     /**
      * @brief Defines the index of the default selected item in the data selection range of the text picker.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0...].i32: index of the default item in the data selection range.
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0...].i32: index of the default item in the data selection range.</li>
+     * </ul>
      *
+     * @ingroup Textpicker
      */
     NODE_TEXT_PICKER_SELECTED_INDEX,
     /**
      * @brief Defines whether to support scroll looping for the text picker.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: whether to support scroll looping. The value <b>true</b> means to support scroll looping, and
-     * <b>false</b> means the opposite.\n \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * value[0].i32: The value <b>1</b> means to support scroll looping, and <b>0</b> means the opposite. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32: whether to support scroll looping. The value <b>true</b> means to support scroll looping, and
+     * <b>false</b> means the opposite.</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>value[0].i32: The value <b>1</b> means to support scroll looping, and <b>0</b> means the opposite.</li>
+     * </ul>
+     *
+     * @ingroup Textpicker
      */
     NODE_TEXT_PICKER_CAN_LOOP,
     /**
      * @brief Defines the height of each item in the picker. This attribute can be set, reset, and obtained as required
      * through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].f32: item height, in vp. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * value[0].f32: item height, in vp. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].f32: item height, in vp.</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>value[0].f32: item height, in vp.</li>
+     * </ul>
+     *
+     * @ingroup Textpicker
      */
     NODE_TEXT_PICKER_DEFAULT_PICKER_ITEM_HEIGHT,
     /**
      * @brief Defines whether haptic feedback.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: whether to feedback. The value <b>true</b> means to feedback, and
-     * <b>false</b> means the opposite.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * value[0].i32: whether to feedback.\n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32: whether to feedback. The value <b>true</b> means to feedback, and
+     * <b>false</b> means the opposite.</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>value[0].i32: whether to feedback.</li>
+     * </ul>
+     *
+     * @ingroup Textpicker
      * @since 18
      */
     NODE_TEXT_PICKER_ENABLE_HAPTIC_FEEDBACK = 15010,
@@ -6921,21 +7058,26 @@ typedef enum {
      * @brief Defines the background color and border radius of the selected items.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].u32: background color, in 0xARGB format, for example, <b>0xFF1122FF</b>. \n
-     * 1: .value[1].f32: radius of the four corners. \n
-     * 2: .value[1].f32: radius of the upper left corner. \n
-     * .value[2].f32: radius of the upper right corner. \n
-     * .value[3].f32: radius of the lower left corner. \n
-     * .value[4].f32: radius of the lower right corner. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].u32: background color, in 0xARGB format, for example, <b>0xFF1122FF</b>. \n     *
-     * .value[1].f32: radius of the upper left corner. \n
-     * .value[2].f32: radius of the upper right corner. \n
-     * .value[3].f32: radius of the lower left corner. \n
-     * .value[4].f32: radius of the lower right corner. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].u32: background color, in 0xARGB format, for example, <b>0xFF1122FF</b>.</li>
+     * <li>1: .value[1].f32: radius of the four corners.</li>
+     * <li>2: .value[1].f32: radius of the upper left corner.</li>
+     * <li>.value[2].f32: radius of the upper right corner.</li>
+     * <li>.value[3].f32: radius of the lower left corner.</li>
+     * <li>.value[4].f32: radius of the lower right corner.</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].u32: background color, in 0xARGB format, for example, <b>0xFF1122FF</b>.</li>
+     * <li>.value[1].f32: radius of the upper left corner.</li>
+     * <li>.value[2].f32: radius of the upper right corner.</li>
+     * <li>.value[3].f32: radius of the lower left corner.</li>
+     * <li>.value[4].f32: radius of the lower right corner.</li>
+     * </ul>
+     *
+     * @ingroup Textpicker
      * @since 20
      */
     NODE_TEXT_PICKER_SELECTED_BACKGROUND_STYLE = 15011,
@@ -6943,81 +7085,106 @@ typedef enum {
      * @brief Defines the style of the background in the selected state of the calendar picker.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].f32: style of the background in the selected state of the calendar picker.
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].f32: style of the background in the selected state of the calendar picker.
      * The value range is [0, +∞). If the value is <b>0</b>, the background is a rectangle with square corners.
      If the value is in the 0–16 range, the background is a rectangle with rounded corners. If the value is equal to
-     * or greater than 16, the background is a circle. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].f32: style of the background in the selected state of the calendar picker. The value range is [0, +∞).
+     * or greater than 16, the background is a circle.</li>
+     * </ul>
+     *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].f32: style of the background in the selected state of the calendar picker. The value range is [0, +∞).
      * If the value is <b>0</b>, the background is a rectangle with square corners.
      If the value is in the 0–16 range, the background is a rectangle with rounded corners. If the value is equal to or
-     * greater than 16, the background is a circle. \n
+     * greater than 16, the background is a circle.</li>
+     * </ul>
      *
+     * @ingroup Calendarpicker
      */
     NODE_CALENDAR_PICKER_HINT_RADIUS = MAX_NODE_SCOPE_NUM * ARKUI_NODE_CALENDAR_PICKER,
     /**
      * @brief Defines the date of the selected item in the calendar picker.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].u32: year of the selected date. \n
-     * .value[1].u32: month of the selected date. \n
-     * .value[2].u32: day of the selected date. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].u32: year of the selected date. \n
-     * .value[1].u32: month of the selected date. \n
-     * .value[2].u32: day of the selected date. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].u32: year of the selected date.</li>
+     * <li>.value[1].u32: month of the selected date.</li>
+     * <li>.value[2].u32: day of the selected date.</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].u32: year of the selected date.</li>
+     * <li>.value[1].u32: month of the selected date.</li>
+     * <li>.value[2].u32: day of the selected date.</li>
+     * </ul>
+     *
+     * @ingroup Calendarpicker
      */
     NODE_CALENDAR_PICKER_SELECTED_DATE,
     /**
      * @brief Defines how the calendar picker is aligned with the entry component.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: alignment mode. The parameter type is {@link ArkUI_CalendarAlignment}. \n
-     * .value[1]?.f32: offset of the picker relative to the entry component along the x-axis after alignment based on
-     * the specified alignment mode. \n
-     * .value[2]?.f32: offset of the picker relative to the entry component along the y-axis after alignment based on
-     * the specified alignment mode. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: alignment mode. The parameter type is {@link ArkUI_CalendarAlignment}. \n
-     * .value[1]?.f32: offset of the picker relative to the entry component along the x-axis after alignment based on
-     * the specified alignment mode. \n
-     * .value[2]?.f32: offset of the picker relative to the entry component along the y-axis after alignment based on
-     * the specified alignment mode. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32: alignment mode. The parameter type is {@link ArkUI_CalendarAlignment}.</li>
+     * <li>.value[1]?.f32: offset of the picker relative to the entry component along the x-axis after alignment based on
+     * the specified alignment mode.</li>
+     * <li>.value[2]?.f32: offset of the picker relative to the entry component along the y-axis after alignment based on
+     * the specified alignment mode.</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].i32: alignment mode. The parameter type is {@link ArkUI_CalendarAlignment}.</li>
+     * <li>.value[1]?.f32: offset of the picker relative to the entry component along the x-axis after alignment based on
+     * the specified alignment mode.</li>
+     * <li>.value[2]?.f32: offset of the picker relative to the entry component along the y-axis after alignment based on
+     * the specified alignment mode.</li>
+     * </ul>
+     *
+     * @ingroup Calendarpicker
      */
     NODE_CALENDAR_PICKER_EDGE_ALIGNMENT,
     /**
      * @brief Defines the font color, font size, and font weight in the entry area of the calendar picker.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0]?.u32: font color of the entry area. \n
-     * .value[1]?.f32: font size of the entry area, in fp. \n
-     * .value[2]?.i32: font weight of the entry area. The parameter type is {@link ArkUI_FontWeight}. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].u32: font color of the entry area. \n
-     * .value[1].f32: font size of the entry area, in fp. \n
-     * .value[2].i32: font weight of the entry area. The parameter type is {@link ArkUI_FontWeight}. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0]?.u32: font color of the entry area.</li>
+     * <li>.value[1]?.f32: font size of the entry area, in fp.</li>
+     * <li>.value[2]?.i32: font weight of the entry area. The parameter type is {@link ArkUI_FontWeight}.</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].u32: font color of the entry area.</li>
+     * <li>.value[1].f32: font size of the entry area, in fp.</li>
+     * <li>.value[2].i32: font weight of the entry area. The parameter type is {@link ArkUI_FontWeight}.</li>
+     * </ul>
+     *
+     * @ingroup Calendarpicker
      */
     NODE_CALENDAR_PICKER_TEXT_STYLE,
     /**
      * @brief Defines the start date of the calendar picker.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .string: date. The value like <b>"1970-1-1"</b>. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .string: date. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.string: date. The value like <b>"1970-1-1"</b>.</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.string: date.</li>
+     * </ul>
+     *
+     * @ingroup Calendarpicker
      * @since 18
      */
     NODE_CALENDAR_PICKER_START = 16004,
@@ -7025,12 +7192,17 @@ typedef enum {
      * @brief Defines the end date of the calendar picker.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .string: date. The value like <b>"2100-12-31"</b>. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .string: date. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.string: date. The value like <b>"2100-12-31"</b>.</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.string: date.</li>
+     * </ul>
+     *
+     * @ingroup Calendarpicker
      * @since 18
      */
     NODE_CALENDAR_PICKER_END = 16005,
@@ -10562,38 +10734,48 @@ typedef enum {
     NODE_GRID_ITEM_SELECTED = 1014002,
 
     /**
-    * @brief Defines the column width of the text picker.
-    * This attribute can be set, reset, and obtained as required through APIs.
-    *
-    * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-    * .value[0].f32: percentage of total width. The default value is that all colulmns are equal width.\n
-    * .value[1]?.f32: percentage of total width. The default value is that all colulmns are equal width.\n
-    * .value[2]?.f32: percentage of total width. The default value is that all colulmns are equal width.\n
-    * ...\n
-    * .value[n]?.f32: percentage of total width. The default value is that all colulmns are equal width.\n
-    * \n
-    * Format of the return value {@link ArkUI_AttributeItem}:\n
-    * value[0].f32: percentage of total width.\n
-    * value[1].f32: percentage of total width.\n
-    * value[2].f32: percentage of total width.\n
-    * ...\n
-    * value[n].f32: percentage of total width.\n
-    *
-    * @since 18
-    */
+     * @brief Defines the column width of the text picker.
+     * This attribute can be set, reset, and obtained as required through APIs.
+     *
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].f32: percentage of total width. The default value is that all colulmns are equal width.</li>
+     * <li>.value[1]?.f32: percentage of total width. The default value is that all colulmns are equal width.</li>
+     * <li>.value[2]?.f32: percentage of total width. The default value is that all colulmns are equal width.</li>
+     * <li>...</li>
+     * <li>.value[n]?.f32: percentage of total width. The default value is that all colulmns are equal width.</li>
+     * </ul>
+     *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>value[0].f32: percentage of total width.</li>
+     * <li>value[1].f32: percentage of total width.</li>
+     * <li>value[2].f32: percentage of total width.</li>
+     * <li>...</li>
+     * <li>value[n].f32: percentage of total width.</li>
+     * </ul>
+     *
+     * @ingroup Textpicker
+     * @since 18
+     */
     NODE_TEXT_PICKER_COLUMN_WIDTHS = 15009,
     /**
      * @brief Defines the disabled date range of the calendar picker.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .string: A string of dates. The `1st start date`,`1st end date`,`2nd start date`,`2nd end date`,
-     * ...,`nth start date`,`nth end date` of the disabled date range.\n
-     *  Example: 1910-01-01,1910-12-31,2020-01-01,2020-12-31\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .string: A string of dates.\n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.string: A string of dates. The `1st start date`,`1st end date`,`2nd start date`,`2nd end date`,
+     * ...,`nth start date`,`nth end date` of the disabled date range.</li>
+     * <li> Example: 1910-01-01,1910-12-31,2020-01-01,2020-12-31</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.string: A string of dates.</li>
+     * </ul>
+     *
+     * @ingroup Calendarpicker
      * @since 19
      */
     NODE_CALENDAR_PICKER_DISABLED_DATE_RANGE = 16006,
@@ -10602,12 +10784,17 @@ typedef enum {
      * @brief Defines whether the calendar picker marks today.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * value[0].i32: whether the calendar picker marks today. The default value is <b>false</b>.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * value[0].i32: whether the calendar picker marks today.\n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>value[0].i32: whether the calendar picker marks today. The default value is <b>false</b>.</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>value[0].i32: whether the calendar picker marks today.</li>
+     * </ul>
+     *
+     * @ingroup Calendarpicker
      * @since 19
      */
     NODE_CALENDAR_PICKER_MARK_TODAY = 16007,
@@ -10639,12 +10826,17 @@ typedef enum {
      * @brief Defines the index of the default selected item in the data selection range of the picker.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].u32: index. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].u32: index. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].u32: index.</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>.value[0].u32: index.</li>
+     * </ul>
+     *
+     * @ingroup Picker
      * @since 23
      */
     NODE_PICKER_OPTION_SELECTED_INDEX = MAX_NODE_SCOPE_NUM * ARKUI_NODE_PICKER,
@@ -10652,13 +10844,17 @@ typedef enum {
      * @brief Defines whether haptic feedback.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: whether to feedback. The value <b>true</b> means to feedback, and
-     * <b>false</b> means the opposite.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * value[0].i32: whether to feedback.\n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32: whether to feedback. The value <b>true</b> means to feedback, and <b>false</b> means the opposite.</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>value[0].i32: whether to feedback.</li>
+     * </ul>
+     *
+     * @ingroup Picker
      * @since 23
      */
     NODE_PICKER_ENABLE_HAPTIC_FEEDBACK = 1018001,
@@ -10666,13 +10862,17 @@ typedef enum {
      * @brief Defines whether to support scroll looping for the picker.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: whether to support scroll looping. The value <b>true</b> means to support scroll looping, and
-     * <b>false</b> means the opposite.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * value[0].i32: The value <b>1</b> means to support scroll looping, and <b>0</b> means the opposite. \n
+     * **Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:**
+     * <ul>
+     * <li>.value[0].i32: whether to support scroll looping. The value <b>true</b> means to support scroll looping, and <b>false</b> means the opposite.</li>
+     * </ul>
      *
+     * **Format of the return value {@link ArkUI_AttributeItem}:**
+     * <ul>
+     * <li>value[0].i32: The value <b>1</b> means to support scroll looping, and <b>0</b> means the opposite.</li>
+     * </ul>
+     *
+     * @ingroup Picker
      * @since 23
      */
     NODE_PICKER_CAN_LOOP = 1018002,
@@ -10680,12 +10880,17 @@ typedef enum {
      * @brief Sets the type and parameters of the selection indicator.
      * This attribute can be set, reset, and obtained as required through APIs.
      *
-     * Attribute setting method parameter {@link ArkUI_AttributeItem} Format: \n
-     * .object: Parameter type {@link ArkUI_PickerIndicatorStyle}.
-     * \n
-     * Attribute fetch method return value {@link ArkUI_AttributeItem} format: \n
-     * .object: Parameter type {@link ArkUI_PickerIndicatorStyle}.
+     * **Attribute setting method parameter {@link ArkUI_AttributeItem} Format:**
+     * <ul>
+     * <li>.object: Parameter type {@link ArkUI_PickerIndicatorStyle}.</li>
+     * </ul>
      *
+     * **Attribute fetch method return value {@link ArkUI_AttributeItem} format:**
+     * <ul>
+     * <li>.object: Parameter type {@link ArkUI_PickerIndicatorStyle}.</li>
+     * </ul>
+     *
+     * @ingroup Picker
      * @since 23
      */
     NODE_PICKER_SELECTION_INDICATOR = 1018003,
@@ -12357,36 +12562,45 @@ typedef enum {
     /**
      * @brief Defines the event triggered when a date is selected in the <b>ARKUI_NODE_DATE_PICKER</b> component.
      *
-      \n
      * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
-     * {@link ArkUI_NodeComponentEvent}. \n
-     * {@link ArkUI_NodeComponentEvent} contains three parameters:\n
-     * <b>ArkUI_NodeComponentEvent.data[0].i32</b>: year of the selected date. \n
-     * <b>ArkUI_NodeComponentEvent.data[1].i32</b>: month of the selected date. Value range: [0-11]. \n
-     * <b>ArkUI_NodeComponentEvent.data[2].i32</b>: day of the selected date. \n
+     * {@link ArkUI_NodeComponentEvent}.
+     * {@link ArkUI_NodeComponentEvent} contains three parameters:
+     * <ul>
+     * <li><b>ArkUI_NodeComponentEvent.data[0].i32</b>: year of the selected date.</li>
+     * <li><b>ArkUI_NodeComponentEvent.data[1].i32</b>: month of the selected date. Value range: [0-11].</li>
+     * <li><b>ArkUI_NodeComponentEvent.data[2].i32</b>: day of the selected date.</li>
+     * </ul>
+     *
+     * @ingroup Datepicker
      */
     NODE_DATE_PICKER_EVENT_ON_DATE_CHANGE = MAX_NODE_SCOPE_NUM * ARKUI_NODE_DATE_PICKER,
 
     /**
      * @brief Defines the event triggered when a time is selected in the <b>ARKUI_NODE_TIME_PICKER</b> component.
      *
-      \n
      * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
-     * {@link ArkUI_NodeComponentEvent}. \n
-     * {@link ArkUI_NodeComponentEvent} contains two parameters:\n
-     * <b>ArkUI_NodeComponentEvent.data[0].i32</b>: hour of the selected time. Value range: [0-23]. \n
-     * <b>ArkUI_NodeComponentEvent.data[1].i32</b>: minute of the selected time. Value range: [0-59]. \n
+     * {@link ArkUI_NodeComponentEvent}.
+     * {@link ArkUI_NodeComponentEvent} contains two parameters:
+     * <ul>
+     * <li><b>ArkUI_NodeComponentEvent.data[0].i32</b>: hour of the selected time. Value range: [0-23].</li>
+     * <li><b>ArkUI_NodeComponentEvent.data[1].i32</b>: minute of the selected time. Value range: [0-59].</li>
+     * </ul>
+     *
+     * @ingroup Timepicker
      */
     NODE_TIME_PICKER_EVENT_ON_CHANGE = MAX_NODE_SCOPE_NUM * ARKUI_NODE_TIME_PICKER,
 
     /**
      * @brief Defines the event triggered when an item is selected in the <b>ARKUI_NODE_TEXT_PICKER</b> component.
      *
-      \n
      * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
-     * {@link ArkUI_NodeComponentEvent}. \n
-     * {@link ArkUI_NodeComponentEvent} contains one parameter:\n
-     * <b>ArkUI_NodeComponentEvent.data[0...11].i32</b>: value of the selected item. \n
+     * {@link ArkUI_NodeComponentEvent}.
+     * {@link ArkUI_NodeComponentEvent} contains one parameter:
+     * <ul>
+     * <li><b>ArkUI_NodeComponentEvent.data[0...11].i32</b>: value of the selected item.</li>
+     * </ul>
+     *
+     * @ingroup Textpicker
      */
     NODE_TEXT_PICKER_EVENT_ON_CHANGE = MAX_NODE_SCOPE_NUM * ARKUI_NODE_TEXT_PICKER,
 
@@ -12395,10 +12609,13 @@ typedef enum {
      * <b>ARKUI_NODE_TEXT_PICKER</b> component.
      *
      * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
-     * {@link ArkUI_NodeComponentEvent}. \n
-     * {@link ArkUI_NodeComponentEvent} contains one parameter:\n
-     * <b>ArkUI_NodeComponentEvent.data[0...11].i32</b>: value of the selected item. \n
+     * {@link ArkUI_NodeComponentEvent}.
+     * {@link ArkUI_NodeComponentEvent} contains one parameter:
+     * <ul>
+     * <li><b>ArkUI_NodeComponentEvent.data[0...11].i32</b>: value of the selected item.</li>
+     * </ul>
      *
+     * @ingroup Textpicker
      * @since 14
      */
     NODE_TEXT_PICKER_EVENT_ON_SCROLL_STOP = 15001,
@@ -12407,10 +12624,14 @@ typedef enum {
      * @brief Defines the event triggered when a date is selected in the <b>NODE_CALENDAR_PICKER</b>.
      *
      * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
-     * {@link ArkUI_NodeComponentEvent}. \n
-     * <b>ArkUI_NodeComponent.data[0].u32</b>: year of the selected date. \n
-     * <b>ArkUI_NodeComponent.data[1].u32</b>: month of the selected date. \n
-     * <b>ArkUI_NodeComponent.data[2].u32</b>: day of the selected date. \n
+     * {@link ArkUI_NodeComponentEvent}.
+     * <ul>
+     * <li><b>ArkUI_NodeComponent.data[0].u32</b>: year of the selected date.</li>
+     * <li><b>ArkUI_NodeComponent.data[1].u32</b>: month of the selected date.</li>
+     * <li><b>ArkUI_NodeComponent.data[2].u32</b>: day of the selected date.</li>
+     * </ul>
+     *
+     * @ingroup Calendarpicker
      */
     NODE_CALENDAR_PICKER_EVENT_ON_CHANGE = MAX_NODE_SCOPE_NUM * ARKUI_NODE_CALENDAR_PICKER,
 
