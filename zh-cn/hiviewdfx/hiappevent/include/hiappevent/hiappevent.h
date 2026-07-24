@@ -21,11 +21,10 @@
  *
  * 为应用提供事件打点功能，记录故障、统计、安全、用户行为等
  * 运行过程中上报的事件。通过事件信息，可以分析应用程序的
- * 运行情况。
+ * 运行状态。
  *
  * @since 8
  */
-
 /**
  * @file hiappevent.h
  *
@@ -64,22 +63,22 @@ typedef enum {
      */
     HIAPPEVENT_SUCCESS = 0,
     /**
-     * @brief 无效的参数值长度
+     * @brief 参数值长度无效。
      * @since 18
      */
     HIAPPEVENT_INVALID_PARAM_VALUE_LENGTH = 4,
     /**
-     * @brief 处理器为空
+     * @brief 事件处理者为空。
      * @since 18
      */
     HIAPPEVENT_PROCESSOR_IS_NULL = -7,
     /**
-     * @brief 找不到处理器
+     * @brief 事件处理者不存在。
      * @since 18
      */
     HIAPPEVENT_PROCESSOR_NOT_FOUND = -8,
     /**
-     * @brief 参数值非法。
+     * @brief 参数值无效。
      * @since 15
      */
     HIAPPEVENT_INVALID_PARAM_VALUE = -9,
@@ -89,17 +88,17 @@ typedef enum {
      */
     HIAPPEVENT_EVENT_CONFIG_IS_NULL = -10,
     /**
-     * @brief 操作失败
+     * @brief 操作失败。
      * @since 18
      */
     HIAPPEVENT_OPERATE_FAILED = -100,
     /**
-     * @brief 无效的uid
+     * @brief 无效的用户标识。
      * @since 18
      */
     HIAPPEVENT_INVALID_UID = -200,
     /**
-     * @brief 报告频率超过。
+     * @brief 报告频率超限。
      * @since 26.0.0
      */
     HIAPPEVENT_REPORT_FREQUENCY_EXCEEDED = -300
@@ -122,7 +121,7 @@ typedef enum EventType {
 
     /* 行为事件类型 */
     BEHAVIOR = 4
-};
+} EventType;
 
 /**
  * @brief 单个事件信息，包含事件领域、事件名称、事件类型和事件携带的用JSON格式字符串表示的自定义参数列表。
@@ -130,40 +129,40 @@ typedef enum EventType {
  * @since 12
  */
 typedef struct HiAppEvent_AppEventInfo {
-    /* 事件的域。 */
+    /* 事件领域。表示事件所属的业务领域或功能模块，用于事件分类和管理。 */
     const char* domain;
-    /* 事件的名称。 */
+    /* 事件名称。与domain配合使用唯一标识具体的事件。 */
     const char* name;
     /* 事件的类型。*/
     enum EventType type;
-    /* 参数的JSON字符串。 */
+    /* JSON格式字符串类型的事件参数列表。 */
     const char* params;
 } HiAppEvent_AppEventInfo;
 
 /**
- * @brief 一组事件信息，包含事件组的名称，按名称分组的单个事件信息数组，事件数组的长度。
+ * @brief 一组事件信息，用于管理和组织具有相同名称的事件信息。该结构体包含事件组的名称，按名称分组的单个事件信息数组，事件数组的长度。
  *
  * @syscap SystemCapability.HiviewDFX.HiAppEvent
  * @since 12
  */
 typedef struct HiAppEvent_AppEventGroup {
-    /* 事件的名称。 */
+    /* 事件数组中相同的事件名称。 */
     const char* name;
-    /* 按名称分组的事件数组。*/
+    /* 具有相同事件名称的事件数组。*/
     const struct HiAppEvent_AppEventInfo* appEventInfos;
-    /* appEventInfos数组的长度。 */
+    /* 具有相同事件名称的事件数组的长度。 */
     uint32_t infoLen;
 } HiAppEvent_AppEventGroup;
 
 /**
- * @brief 事件参数列表节点。
+ * @brief 事件参数列表节点。用于组织和管理事件参数列表信息，通过ParamListNode可以构建参数链表，支持多参数事件的参数传递。
  *
  * @since 8
  */
 typedef struct ParamListNode* ParamList;
 
 /**
- * @brief 用于接收app事件的事件观察者。
+ * @brief 接收应用事件的事件观察者。用于对应用事件进行监听和处理。
  *
  * @syscap SystemCapability.HiviewDFX.HiAppEvent
  * @since 12
@@ -171,14 +170,14 @@ typedef struct ParamListNode* ParamList;
 typedef struct HiAppEvent_Watcher HiAppEvent_Watcher;
 
 /**
- * @brief 应用事件上报的处理者。
+ * @brief 应用事件上报的处理者。用于事件的上报和管理，开发者可自定义数据处理配置，满足不同的数据处理需求。
  *
  * @since 18
  */
 typedef struct HiAppEvent_Processor HiAppEvent_Processor;
 
 /**
- * @brief 用于设置系统事件触发条件的配置对象。
+ * @brief 设置系统事件自定义规格的配置对象。可以用来自定义系统事件规格参数，参数列表设置可参考应用事件的{@link 宏定义}。
  *
  * @since 15
  */
@@ -187,7 +186,7 @@ typedef struct HiAppEvent_Config HiAppEvent_Config;
 /**
  * @brief 事件观察者接收到事件后，将触发该回调，将事件内容传递给调用方。注意：回调中的指针所指对象的生命周期仅限于该回调函数内，请勿在该回调函数外直接使用该指针，若需缓存该信息，请对指针指向的内容进行深拷贝。
  *
- * @param domain 接收到的app事件的领域。
+ * @param domain 接收到的应用事件的领域。
  * @param appEventGroups 按照不同事件名称分组的事件组数组。
  * @param groupLen 事件组数组的长度。
  * @since 12
@@ -197,7 +196,7 @@ typedef void (*OH_HiAppEvent_OnReceive)(
 
 /**
  * @brief 事件观察者收到事件后，若事件观察者中未设置OH_HiAppEvent_OnReceive回调，将保存该事件。
- * 当保存的事件满足通过OH_HiAppEvent_SetTriggerCondition设定的条件后，将触发该回调。回调结束后，当新保存的事件消息再次满足设定的条件后，将再次进行回调。
+ * 当保存的事件满足通过{@link OH_HiAppEvent_SetTriggerCondition}设定的条件后，将触发该回调。回调结束后，当新保存的事件消息再次满足设定的条件后，将再次进行回调。
  *
  * @param row 事件观察者新接收到的事件消息的数量。
  * @param size 事件观察者新接收的事件消息的大小总和（单个事件大小计算方式为：将消息转换为JSON字符串后，字符串的长度），单位为byte。
@@ -206,17 +205,18 @@ typedef void (*OH_HiAppEvent_OnReceive)(
 typedef void (*OH_HiAppEvent_OnTrigger)(int row, int size);
 
 /**
- * @brief 使用OH_HiAppEvent_TakeWatcherData获取事件观察者接收到的事件时，事件观察者接收到的事件将通过该回调函数传递给调用者。注意：回调中的指针所指对象的生命周期仅限于该回调函数内，
+ * @brief 使用{@link OH_HiAppEvent_TakeWatcherData}获取事件观察者接收到的事件时，事件观察者接收到的事件将通过该回调函数传递给调用者。注意：回调中的指针所指对象的生命周期仅限于该回调函数内，
  * 请勿在该回调函数外直接使用该指针。若需缓存该信息，请对指针指向的内容进行深拷贝。
  *
- * @param events 事件JSON字符串数组。
+ * @param events JSON字符串格式的事件数组。
  * @param eventLen 事件数组大小。
  * @since 12
  */
 typedef void (*OH_HiAppEvent_OnTake)(const char* const *events, uint32_t eventLen);
 
 /**
- * @brief 创建一个指向参数列表对象的指针。
+ * @brief 创建一个指向参数列表对象的指针。用于存储应用事件打点时需要携带的自定义参数。注意：创建的指向参数列表对象的指针不再使用后，
+ * 必须通过{@link OH_HiAppEvent_DestroyParamList}接口进行销毁。
  *
  * @return 指向参数列表对象的指针。
  * @since 8
@@ -458,10 +458,10 @@ int OH_HiAppEvent_Write(const char* domain, const char* name, enum EventType typ
 bool OH_HiAppEvent_Configure(const char* name, const char* value);
 
 /**
- * @brief 创建一个用于监听app事件的事件观察者。
+ * @brief 创建一个用于监听应用事件的事件观察者。注意：创建的事件观察者不再使用后，必须通过{@link OH_HiAppEvent_DestroyWatcher}接口进行销毁。
  *
  * @param name 事件观察者名称。
- * @return 接口调用成功时返回指向的新建事件观察者的指针，name参数异常时返回NULL。
+ * @return 接口调用成功时返回指向的新建事件观察者的指针，当name为空指针时返回NULL。
  * @since 12
  */
 HiAppEvent_Watcher* OH_HiAppEvent_CreateWatcher(const char* name);
@@ -469,22 +469,21 @@ HiAppEvent_Watcher* OH_HiAppEvent_CreateWatcher(const char* name);
 /**
  * @brief 销毁已创建的事件观察者。注意：已创建的事件观察者不再使用后，需要将其销毁，释放内存，防止内存泄漏，销毁后需将对应指针置空。
  *
- * @param watcher 指向事件观察者的指针（即OH_HiAppEvent_CreateWatcher接口返回的指针）。
+ * @param watcher 指向事件观察者的指针（即{@link OH_HiAppEvent_CreateWatcher}接口返回的指针}）。
  * @since 12
  */
 void OH_HiAppEvent_DestroyWatcher(HiAppEvent_Watcher* watcher);
 
 /**
- * @brief 用于设置事件观察者OH_HiAppEvent_OnTrigger回调的触发条件。
+ * @brief 用于设置事件观察者{@link OH_HiAppEvent_OnTrigger}回调的触发条件。
  * 分别可以从事件观察者新接收事件数量、新接收事件大小、onTrigger触发超时时间，设置触发条件。调用方应至少保证从一个方面设置触发条件。
  *
- * @param watcher 指向事件观察者的指针（即OH_HiAppEvent_CreateWatcher接口返回的指针）。
+ * @param watcher 指向事件观察者的指针（即{@link OH_HiAppEvent_CreateWatcher}接口返回的指针）。
  * @param row 当输入值大于0，且新接收事件的数量大于等于该值时，将调用设置的onTrigger回调函数；
  *     当输入值小于等于0时，不再以接收数量多少为维度来触发onTrigger回调。
- * @param size 单位为byte，当输入值大于0，且新接收事件的大小(单个事件大小计算方式为，将事件转换为JSON字符串后，字符串的长度)大于等于该值时，将调用设置的onTrigger回调函数；
+ * @param size 单位为byte，当输入值大于0，且新接收事件的大小（单个事件大小计算方式为，将事件转换为JSON字符串后，字符串的长度）大于等于该值时，将调用设置的onTrigger回调函数；
  *     当输入值小于等于0时，不再以新接收事件大小为维度触发onTrigger回调。
  * @param timeOut 单位为秒，实际生效值为timeOut * 30秒。timeOut>0时，每timeOut * 30秒检查新事件，有则触发onTrigger，触发后重新计时；
- *     触发onTrigger后，经过timeOut秒后将再次检查是否存在新接收到的事件。
  *     timeOut≤0时不启用超时触发。
  * @return 0：接口调用成功；-5：watcher入参空指针。
  * @since 12
@@ -494,7 +493,7 @@ int OH_HiAppEvent_SetTriggerCondition(HiAppEvent_Watcher* watcher, int row, int 
 /**
  * @brief 用于设置事件观察者需要监听的事件的类型。该函数可以重复调用，可添加多个过滤规则，而非替换，事件观察者将收到满足任一过滤规则的事件的通知。
  *
- * @param watcher 指向事件观察者的指针（即OH_HiAppEvent_CreateWatcher接口返回的指针）。
+ * @param watcher 指向事件观察者的指针（即{@link OH_HiAppEvent_CreateWatcher}接口返回的指针）。
  * @param domain 需要监听事件的领域。
  * @param eventTypes 需要监听事件的事件类型。使用按位与方式进行匹配，可支持监听多种类型的事件。
  *     <br>第一位为1（数值为1）表示支持监听故障类型的事件；
@@ -514,7 +513,7 @@ int OH_HiAppEvent_SetAppEventFilter(HiAppEvent_Watcher* watcher, const char* dom
  * @brief 用于设置事件观察者onTrigger回调的接口。
  * 如果未设置OnReceive回调或已将其设置为nullptr，则将保存观察者接收到的应用事件。当保存的应用事件满足onTrigger回调的触发条件时，将调用onTrigger回调。
  *
- * @param watcher 指向事件观察者的指针（即OH_HiAppEvent_CreateWatcher接口返回的指针）。
+ * @param watcher 指向事件观察者的指针（即{@link OH_HiAppEvent_CreateWatcher}接口返回的指针）。
  * @param onTrigger 需要设置的回调。
  * @return 0：接口调用成功；-5：watcher入参空指针。
  * @since 12
@@ -524,7 +523,7 @@ int OH_HiAppEvent_SetWatcherOnTrigger(HiAppEvent_Watcher* watcher, OH_HiAppEvent
 /**
  * @brief 用于设置事件观察者onReceive回调函数的接口。当事件观察者监听到相应事件后，onReceive回调函数将被调用。
  *
- * @param watcher 指向事件观察者的指针（即OH_HiAppEvent_CreateWatcher接口返回的指针）。
+ * @param watcher 指向事件观察者的指针（即{@link OH_HiAppEvent_CreateWatcher}接口返回的指针）。
  * @param onReceive 回调函数的函数指针。
  * @return 0：接口调用成功；-5：watcher入参空指针。
  * @since 12
@@ -534,10 +533,10 @@ int OH_HiAppEvent_SetWatcherOnReceive(HiAppEvent_Watcher* watcher, OH_HiAppEvent
 /**
  * @brief 用于获取事件观察者收到后保存的事件。
  *
- * @param watcher 指向事件观察者的指针（即OH_HiAppEvent_CreateWatcher接口返回的指针）。
+ * @param watcher 指向事件观察者的指针（即{@link OH_HiAppEvent_CreateWatcher}接口返回的指针）。
  * @param eventNum 当输入值小于等于0时，取全部已保存事件；当输入值大于0时，按照事件发生时间倒序排列，取指定数量的已保存事件。
  * @param onTake 回调函数指针，事件通过调用该函数返回事件信息。
- * @return 0：接口调用成功；-5：watcher入参空指针；-6：还未调用OH_HiAppEvent_AddWatcher，操作顺序有误。
+ * @return 0：接口调用成功；-5：watcher入参空指针；-6：还未调用{@link OH_HiAppEvent_AddWatcher}，操作顺序有误。
  * @since 12
  */
 int OH_HiAppEvent_TakeWatcherData(HiAppEvent_Watcher* watcher, uint32_t eventNum, OH_HiAppEvent_OnTake onTake);
@@ -545,18 +544,22 @@ int OH_HiAppEvent_TakeWatcherData(HiAppEvent_Watcher* watcher, uint32_t eventNum
 /**
  * @brief 添加事件观察者的接口，事件观察者开始监听系统消息。
  *
- * @param watcher 指向事件观察者的指针（即OH_HiAppEvent_CreateWatcher接口返回的指针）。
+ * > **注意：**
+ * > {@link OH_HiAppEvent_AddWatcher}接口涉及I/O操作。在对性能敏感的业务场景中，开发者应根据实际需要确定该接口是在主线程还是在子线程中调用。
+ * > 订阅接口{@link OH_HiAppEvent_AddWatcher}传入的名称name是唯一的，相同的name，后一次调用会覆盖前一次的订阅。
+ *
+ * @param watcher 指向事件观察者的指针（即{@link OH_HiAppEvent_CreateWatcher}接口返回的指针）。
  * @return 0：接口调用成功；-5：watcher入参空指针。
  * @since 12
  */
 int OH_HiAppEvent_AddWatcher(HiAppEvent_Watcher* watcher);
 
 /**
- * @brief 移除事件观察者的接口，事件观察者停止监听系统消息。注意：该接口仅仅使事件观察者停止监听系统消息，并未销毁该事件观察者，该事件观察者依然常驻内存，直至调用OH_HiAppEvent_DestroyWatcher接口，
- * 内存才会释放。
+ * @brief 移除事件观察者的接口，事件观察者停止监听系统消息。注意：该接口仅仅使事件观察者停止监听系统消息，并未销毁该事件观察者，该事件观察者依然常驻内存，直至调用
+ * {@link OH_HiAppEvent_DestroyWatcher}接口，内存才会释放。
  *
- * @param watcher 指向事件观察者的指针（即OH_HiAppEvent_CreateWatcher接口返回的指针）。
- * @return 0：接口调用成功；-5：watcher入参空指针；-6：还未调用OH_HiAppEvent_AddWatcher，操作顺序有误。
+ * @param watcher 指向事件观察者的指针（即{@link OH_HiAppEvent_CreateWatcher}接口返回的指针）。
+ * @return 0：接口调用成功；-5：watcher入参空指针；-6：还未调用{@link OH_HiAppEvent_AddWatcher}，操作顺序有误。
  * @since 12
  */
 int OH_HiAppEvent_RemoveWatcher(HiAppEvent_Watcher* watcher);
@@ -569,7 +572,7 @@ int OH_HiAppEvent_RemoveWatcher(HiAppEvent_Watcher* watcher);
 void OH_HiAppEvent_ClearData();
 
 /**
- * @brief 创建一个用于处理app事件上报的处理者。
+ * @brief 创建一个用于处理应用事件上报的处理者。注意：创建的处理者不再使用后，必须通过{@link OH_HiAppEvent_DestroyProcessor}接口进行销毁。
  *
  * @param name 处理者名称。只能包含大小写字母、数字、下划线和$，不能以数字开头，长度非空且不超过256个字符。
  * @return 接口调用成功时返回指向的新建处理者的指针，name参数异常时返回NULL。
@@ -580,7 +583,7 @@ HiAppEvent_Processor* OH_HiAppEvent_CreateProcessor(const char* name);
 /**
  * @brief 设置处理者事件上报路由的接口。
  *
- * @param processor 指向处理者的指针（即OH_HiAppEvent_CreateProcessor接口返回的指针）。
+ * @param processor 指向处理者的指针（即{@link OH_HiAppEvent_CreateProcessor}接口返回的指针）。
  * @param appId 处理者的应用ID。
  * @param routeInfo 服务器位置信息，默认为空字符串。传入字符串长度不能超8KB，超过时会被置为默认值。
  * @return <ul>
@@ -598,9 +601,9 @@ int OH_HiAppEvent_SetReportRoute(HiAppEvent_Processor* processor, const char* ap
 /**
  * @brief 设置处理者事件上报策略的接口。
  *
- * @param processor 指向处理者的指针（即OH_HiAppEvent_CreateProcessor接口返回的指针）。
- * @param periodReport 事件定时上报周期，单位为秒。
- * @param batchReport 事件上报阈值，当事件条数达到阈值时上报事件。
+ * @param processor 指向处理者的指针（即{@link OH_HiAppEvent_CreateProcessor}接口返回的指针）。
+ * @param periodReport 事件定时上报周期，单位为秒。传入数值需大于等于0。
+ * @param batchReport 事件上报阈值，当事件条数达到阈值时上报事件。传入数值范围[0,1000]。
  * @param onStartReport 数据处理者在启动时是否上报事件。配置值为true表示上报事件，false表示不上报事件。
  * @param onBackgroundReport 应用程序进入后台时是否上报事件。配置值为true表示上报事件，false表示不上报事件。
  * @return <ul>
@@ -618,10 +621,10 @@ int OH_HiAppEvent_SetReportPolicy(HiAppEvent_Processor* processor, int periodRep
 /**
  * @brief 设置处理者上报事件的接口。
  *
- * @param processor 指向处理者的指针（即OH_HiAppEvent_CreateProcessor接口返回的指针）。
- * @param domain 上报事件的领域。
- * @param name 上报事件的名称。
- * @param isRealTime 是否实时上报。配置为true表示实时上报，false表示不实时上报
+ * @param processor 指向处理者的指针（即{@link OH_HiAppEvent_CreateProcessor}接口返回的指针）。
+ * @param domain 上报事件的领域。事件领域名称支持数字、字母、下划线字符，需要以字母开头且不能以下划线结尾，长度非空且不超过32个字符。
+ * @param name 上报事件的名称。首字符必须为字母字符或$字符，中间字符必须为数字字符、字母字符或下划线字符，结尾字符必须为数字字符或字母字符，长度非空且不超过48个字符。
+ * @param isRealTime 是否实时上报。配置为true表示实时上报，false表示不实时上报。
  * @return <ul>
  *         <li>{@link HIAPPEVENT_SUCCESS} 接口调用成功</li>
  *         <li>{@link HIAPPEVENT_PROCESSOR_IS_NULL} processor入参为空</li>
@@ -637,7 +640,7 @@ int OH_HiAppEvent_SetReportEvent(HiAppEvent_Processor* processor, const char* do
 /**
  * @brief 设置处理者自定义扩展参数的接口。
  *
- * @param processor 指向处理者的指针（即OH_HiAppEvent_CreateProcessor接口返回的指针）。
+ * @param processor 指向处理者的指针（即{@link OH_HiAppEvent_CreateProcessor}接口返回的指针）。
  * @param key 参数名，长度不超过32个字符。
  * @param value 参数值，长度不超过1024个字符。
  * @return <ul>
@@ -653,9 +656,9 @@ int OH_HiAppEvent_SetReportEvent(HiAppEvent_Processor* processor, const char* do
 int OH_HiAppEvent_SetCustomConfig(HiAppEvent_Processor* processor, const char* key, const char* value);
 
 /**
- * @brief 设置处理者配置id的接口。
+ * @brief 设置处理者配置ID的接口。
  *
- * @param processor 指向处理者的指针（即OH_HiAppEvent_CreateProcessor接口返回的指针）。
+ * @param processor 指向处理者的指针（即{@link OH_HiAppEvent_CreateProcessor}接口返回的指针）。
  * @param configId 数据处理者配置id，自然数。
  * @return <ul>
  *         <li>{@link HIAPPEVENT_SUCCESS} 接口调用成功</li>
@@ -671,7 +674,7 @@ int OH_HiAppEvent_SetConfigId(HiAppEvent_Processor* processor, int configId);
 /**
  * @brief 设置处理者的配置名称的接口。
  *
- * @param processor 指向处理者的指针（即OH_HiAppEvent_CreateProcessor接口返回的指针）。
+ * @param processor 指向处理者的指针（即{@link OH_HiAppEvent_CreateProcessor}接口返回的指针）。
  * @param configName 数据处理者的配置名称。只能包含大小写字母、数字、下划线和$，不能以数字开头，长度非空且不超过256个字符。
  * @return <ul>
  *         <li>{@link HIAPPEVENT_SUCCESS} 接口调用成功</li>
@@ -688,7 +691,7 @@ int OH_HiAppEvent_SetConfigName(HiAppEvent_Processor* processor, const char* con
 /**
  * @brief 设置处理者用户ID的接口。
  *
- * @param processor 指向处理者的指针（即OH_HiAppEvent_CreateProcessor接口返回的指针）。
+ * @param processor 指向处理者的指针（即{@link OH_HiAppEvent_CreateProcessor}接口返回的指针）。
  * @param userIdNames 处理者可以上报的用户ID的name数组。
  * @param size 用户ID的name数组长度。
  * @return <ul>
@@ -706,7 +709,7 @@ int OH_HiAppEvent_SetReportUserId(HiAppEvent_Processor* processor, const char* c
 /**
  * @brief 设置处理者用户属性的接口。
  *
- * @param processor 指向处理者的指针（即OH_HiAppEvent_CreateProcessor接口返回的指针）。
+ * @param processor 指向处理者的指针（即{@link OH_HiAppEvent_CreateProcessor}接口返回的指针）。
  * @param userPropertyNames 处理者可以上报的用户属性数组。
  * @param size 用户属性数组的长度。
  * @return <ul>
@@ -726,7 +729,7 @@ int OH_HiAppEvent_SetReportUserProperty(HiAppEvent_Processor* processor, const c
  * @brief 添加数据处理者的接口。开发者可添加数据处理者，用于提供事件上云功能。数据处理者的实现可预置在设备中，开发者可根据数据处理者的约束设置属性。注意：Processor的配置信息需要由数据处理者提供，
  * 目前设备内暂未预置可供交互的数据处理者，因此当前事件上云功能不可用。
  *
- * @param processor 指向处理者的指针（即OH_HiAppEvent_CreateProcessor接口返回的指针）。
+ * @param processor 指向处理者的指针（即{@link OH_HiAppEvent_CreateProcessor}接口返回的指针）。
  * @return <ul>
  *         <li>调用成功时返回处理者唯一ID，大于0；</li>
  *         <li>{@link HIAPPEVENT_PROCESSOR_IS_NULL}：processor入参为空；</li>
@@ -742,13 +745,14 @@ int64_t OH_HiAppEvent_AddProcessor(HiAppEvent_Processor* processor);
 /**
  * @brief 销毁已创建的数据处理者。注意：已创建的处理者不再使用后，需要将其销毁，释放内存，防止内存泄漏，销毁后需将对应指针置空。
  *
- * @param processor 指向处理者的指针（即OH_HiAppEvent_CreateProcessor接口返回的指针）。
+ * @param processor 指向处理者的指针（即{@link OH_HiAppEvent_CreateProcessor}接口返回的指针）。
  * @since 18
  */
 void OH_HiAppEvent_DestroyProcessor(HiAppEvent_Processor* processor);
 
 /**
- * @brief 移除数据处理者的接口，处理者停止上报事件。注意：该接口仅仅使处理者停止上报事件，并未销毁该处理者，该处理者依然常驻内存，直至调用OH_HiAppEvent_DestroyProcessor接口，内存才会释放。
+ * @brief 移除数据处理者的接口，处理者停止上报事件。注意：该接口仅仅使处理者停止上报事件，并未销毁该处理者，该处理者依然常驻内存，直至调用{@link OH_HiAppEvent_DestroyProcessor}接口，
+ * 内存才会释放。
  *
  * @param processorId 处理者唯一ID。
  * @return <ul>
@@ -763,9 +767,9 @@ void OH_HiAppEvent_DestroyProcessor(HiAppEvent_Processor* processor);
 int OH_HiAppEvent_RemoveProcessor(int64_t processorId);
 
 /**
- * @brief 创建一个指向设置系统事件触发条件的配置对象的指针。
+ * @brief 创建一个指向设置系统事件自定义规格的配置对象的指针。注意：创建的指向设置系统事件自定义规格的配置对象的指针不再使用后，必须通过{@link OH_HiAppEvent_DestroyConfig}接口进行销毁。
  *
- * @return 指向设置系统事件触发条件的配置对象的指针。
+ * @return 指向设置系统事件自定义规格的配置对象的指针。
  * @since 15
  */
 HiAppEvent_Config* OH_HiAppEvent_CreateConfig(void);
@@ -773,7 +777,7 @@ HiAppEvent_Config* OH_HiAppEvent_CreateConfig(void);
 /**
  * @brief 销毁已创建的配置对象。注意：已创建的配置对象不再使用后，需要将其销毁，释放内存，防止内存泄漏，销毁后需要将对应指针置空。
  *
- * @param config 指向配置对象的指针（即OH_HiAppEvent_CreateConfig接口返回的指针）。
+ * @param config 指向配置对象的指针（即{@link OH_HiAppEvent_CreateConfig}接口返回的指针）。
  * @since 15
  */
 void OH_HiAppEvent_DestroyConfig(HiAppEvent_Config* config);
@@ -781,7 +785,7 @@ void OH_HiAppEvent_DestroyConfig(HiAppEvent_Config* config);
 /**
  * @brief 设置配置对象中的配置项。
  *
- * @param config 指向配置对象的指针（即OH_HiAppEvent_CreateConfig接口返回的指针）。
+ * @param config 指向配置对象的指针（即{@link OH_HiAppEvent_CreateConfig}接口返回的指针）。
  * @param itemName 待设定配置项的名称。
  * @param itemValue 待设定配置项的值。
  * @return <ul>
@@ -803,7 +807,7 @@ int OH_HiAppEvent_SetConfigItem(HiAppEvent_Config* config, const char* itemName,
  * EVENT_APP_CRASH（参数配置详见{@link 崩溃事件介绍}），从API version 24开始支持该事件。
  *
  * @param name 系统事件的名称。
- * @param config 指向配置对象的指针（即OH_HiAppEvent_CreateConfig接口返回的指针）。
+ * @param config 指向配置对象的指针（即{@link OH_HiAppEvent_CreateConfig}接口返回的指针）。
  * @return <ul>
  *         <li>{@link HIAPPEVENT_SUCCESS}：接口调用成功；</li>
  *         <li>{@link HIAPPEVENT_INVALID_PARAM_VALUE}：设置的参数无效。</li>
@@ -814,41 +818,40 @@ int OH_HiAppEvent_SetConfigItem(HiAppEvent_Config* config, const char* itemName,
 int OH_HiAppEvent_SetEventConfig(const char* name, HiAppEvent_Config* config);
 
 /**
- * @brief 框架类型。
- *
- * 建议根据不同的使用场景选择不同的框架类型。
+ * @brief 应用框架类型。建议开发者根据实际的使用场景选择对应的应用框架类型。
  *
  * @since 26.0.0
  */
 typedef enum OH_HiAppEvent_FrameworkType {
     /**
      * Flutter_dart类型。
-     *
      * @since 26.0.0
      */
     OH_FLUTTER_DART = 0,
 
     /**
      * React_native_hermes类型。
-     *
      * @since 26.0.0
      */
     OH_REACT_NATIVE_HERMES = 1,
 
     /**
      * Kmp_kotlin类型。
-     *
      * @since 26.0.0
      */
     OH_KMP_KOTLIN = 2
 } OH_HiAppEvent_FrameworkType;
 
 /**
- * @brief 当框架发生内存泄漏上报事件。
+ * @brief 报告应用框架内存占用异常的信息。
+ * <br>该接口的调用频率限制为：1分钟最多能成功调用1次，超过频率限制会返回错误码HIAPPEVENT_REPORT_FREQUENCY_EXCEEDED。
+ * <br>当应用检测到应用框架内存占用异常，并且调用该接口返回操作成功时：
+ * <br>1. 若开发者已经订阅了事件领域domain为“HIVIEWDFX”，且事件名称names为“FW_MEM_ANOMALY”的应用事件，则应用中将会收到应用框架内存占用异常信息的回调。
+ * <br>2. 若开发者未订阅该应用事件，则应用中将不会收到应用框架内存占用异常信息的回调。
  *
- * @param frameworkType 框架类型。
- * @param frameworkVersion 框架版本号。
- * @param description 框架内存泄漏事件的描述。
+ * @param frameworkType 应用框架类型。
+ * @param frameworkVersion 应用框架版本。
+ * @param description 应用框架内存占用异常的描述信息。
  * @return <ul>
  *         <li>{@link HIAPPEVENT_SUCCESS} 操作成功。</li>
  *         <li>{@link HIAPPEVENT_INVALID_PARAM_VALUE} 参数值无效。</li>
@@ -862,5 +865,5 @@ int OH_HiAppEvent_ReportFrameworkMemAnomaly(
 #ifdef __cplusplus
 }
 #endif
-/** @} */
 #endif // HIVIEWDFX_HIAPPEVENT_H
+/** @} */
