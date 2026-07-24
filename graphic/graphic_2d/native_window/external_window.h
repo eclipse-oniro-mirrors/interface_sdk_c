@@ -50,7 +50,6 @@ extern "C" {
  * @brief Provides native buffer capability.
  *
  * @since 9
- * @version 1.0
  */
 typedef struct OH_NativeBuffer OH_NativeBuffer;
 
