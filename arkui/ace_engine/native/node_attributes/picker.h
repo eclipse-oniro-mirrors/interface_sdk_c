@@ -294,6 +294,7 @@ typedef struct ArkUI_TextCascadePickerRangeContentArray ArkUI_TextCascadePickerR
  *
  * @param length Length of the **TextPickerRangeContent** array.
  * @return Pointer to an empty **TextPickerRangeContent** array.
+ * @release OH_ArkUI_TextPickerRangeContentArray_Destroy {return}
  * @since 19
  */
 ArkUI_TextPickerRangeContentArray* OH_ArkUI_TextPickerRangeContentArray_Create(int32_t length);
@@ -333,6 +334,7 @@ void OH_ArkUI_TextPickerRangeContentArray_Destroy(ArkUI_TextPickerRangeContentAr
  *
  * @param length Length of the **TextPickerRangeContent** array.
  * @return Pointer to an empty **TextCascadePickerRangeContent** array.
+ * @release OH_ArkUI_TextCascadePickerRangeContentArray_Destroy {return}
  * @since 19
  */
 ArkUI_TextCascadePickerRangeContentArray* OH_ArkUI_TextCascadePickerRangeContentArray_Create(int32_t length);

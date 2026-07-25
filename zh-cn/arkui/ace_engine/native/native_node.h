@@ -90,13 +90,13 @@ typedef enum {
     ARKUI_NODE_CHECKBOX = 11,
     /** XComponent. */
     ARKUI_NODE_XCOMPONENT = 12,
-    /** Date picker. */
+    /** 日期选择器组件。 */
     ARKUI_NODE_DATE_PICKER = 13,
-    /** Time picker. */
+    /** 时间选择组件。 */
     ARKUI_NODE_TIME_PICKER = 14,
-    /** Text picker. */
+    /** 滑动选择文本内容的组件。 */
     ARKUI_NODE_TEXT_PICKER = 15,
-    /** Calendar picker. */
+    /** 日历选择器组件。*/
     ARKUI_NODE_CALENDAR_PICKER = 16,
     /** Slider. */
     ARKUI_NODE_SLIDER = 17,
@@ -160,7 +160,7 @@ typedef enum {
      */
     ARKUI_NODE_UNDEFINED,
     /**
-     * Picker container.
+     * Picker容器，用于实现用户选择操作的组件。
      * @since 23
      */
     ARKUI_NODE_PICKER = 1018,
@@ -6285,593 +6285,772 @@ typedef enum {
     NODE_XCOMPONENT_ENABLE_ANALYZER,
 
     /**
-     * @brief Defines whether to display the lunar calendar in the date picker.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief 设置日期选择器组件的日期是否显示农历，支持属性设置，属性重置和属性获取接口。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: whether to display the lunar calendar in the date picker. The default value is <b>false</b>. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: whether to display the lunar calendar in the date picker.
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：是否显示农历，默认值0。0表示不展示农历，1表示展示农历。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：是否显示农历。返回0表示不展示农历，返回1表示展示农历。</li>
+     * </ul>
+     *
+     *
+     * @ingroup Datepicker[日期选择器]
      */
     NODE_DATE_PICKER_LUNAR = MAX_NODE_SCOPE_NUM * ARKUI_NODE_DATE_PICKER,
     /**
-     * @brief Defines the start date of the date picker.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief 设置日期选择器组件选择器的起始日期，支持属性设置，属性重置和属性获取接口。设置的起始日期会限定日期选择的有效范围，超出范围的选中日期会自动调整。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .string: date. The default value is <b>"1970-1-1"</b>. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .string: date. \n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.string：日期，默认值"1970-1-1"。格式：年-月-日，年份支持1或4位，月份和日期为1-2位数字。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.string：设置的起始日期，格式为年-月-日。</li>
+     * </ul>
+     *
+     *
+     * @ingroup Datepicker[日期选择器]
      */
     NODE_DATE_PICKER_START,
     /**
-     * @brief Defines the end date of the date picker.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief 设置日期选择器组件选择器的结束日期，支持属性设置，属性重置和属性获取接口。设置的结束日期会限定日期选择的有效范围，超出范围的选中日期会自动调整。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .string: date. The default value is <b>"2100-12-31"</b>. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .string: date. \n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.string：日期，默认值"2100-12-31"。格式：年-月-日，年份支持1或4位，月份和日期为1-2位数字。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.string：设置的结束日期，格式为年-月-日。</li>
+     * </ul>
+     *
+     *
+     * @ingroup Datepicker[日期选择器]
      */
     NODE_DATE_PICKER_END,
     /**
-     * @brief Defines the selected date of the date picker.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief 设置日期选择器组件选中项的日期，支持属性设置，属性重置和属性获取接口。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .string: date. The default value is <b>"2024-01-22"</b>. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .string: date.
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.string：日期，默认值"2024-01-22"，未设置时使用默认值。格式：年-月-日，年份支持1或4位，月份和日期为1-2位数字。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.string：选中的日期，格式为年-月-日。</li>
+     * </ul>
+     *
+     *
+     * @ingroup Datepicker[日期选择器]
      */
     NODE_DATE_PICKER_SELECTED,
     /**
-     * @brief Defines the font color, font size, and font weight for the top and bottom items in the date picker.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief 设置日期选择器组件的所有选项中最上和最下两个选项的文本颜色、字号、字体粗细，支持属性设置，属性重置和属性获取接口。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .string: array of five parameters of the string type, separated by semicolons (;).\n
-     * Parameter 1: font color, in #ARGB format.\n
-     * Parameter 2: font size, in fp. The value is a number.\n
-     * Parameter 3: font weight. Available options are ("bold", "normal", "bolder", "lighter", "medium", "regular").\n.
-     * Parameter 4: fonts, separated by commas (,).\n
-     * Parameter 5: font style. Available options are ("normal", "italic").\n
-     * Example: "#ff182431;14;normal;Arial,HarmonyOS Sans;normal". \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .string: array of five parameters of the string type, separated by semicolons (;).\n
-     * Parameter 1: font color, in #ARGB format.\n
-     * Parameter 2: font size, in fp. The value is a number.\n
-     * Parameter 3: font weight. Available options are ("bold", "normal", "bolder", "lighter", "medium", "regular").\n.
-     * Parameter 4: fonts, separated by commas (,).\n
-     * Parameter 5: font style. Available options are ("normal", "italic").\n
-     * Example: "#ff182431;14;normal;Arial,HarmonyOS Sans;normal". \n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.string：参数5个，格式为字符串，以 ';' 分割：</li>
+     *  参数1： 文本颜色，#ARGB类型。
+     *  参数2： 文本大小，数字类型，单位fp。
+     *  参数3： 文本粗细，字符串枚举("bold", "normal", "bolder", "lighter", "medium", "regular")。
+     *  参数4： 文本字体列表，使用 ',' 进行分割。
+     *  参数5： 文本样式，字符串枚举("normal", "italic")。
+     *  如 "#ff182431;14;normal;Arial,HarmonyOS Sans;normal" 。未设置时使用系统默认样式。
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.string：参数5个，格式为字符串，以 ';' 分割：</li>
+     *  参数1：文本颜色，#argb类型。
+     *  参数2：文本大小，数字类型，单位fp。
+     *  参数3：文本粗细，字符串枚举("bold", "normal", "bolder", "lighter", "medium", "regular")。
+     *  参数4：文本字体列表，使用 ',' 进行分割。
+     *  参数5：文本样式，字符串枚举("normal", "italic")。
+     *  如 "#ff182431;14;normal;Arial,HarmonyOS Sans;normal"。
+     * </ul>
+     *
+     *
+     * @ingroup Datepicker[日期选择器]
      */
     NODE_DATE_PICKER_DISAPPEAR_TEXT_STYLE,
     /**
-     * @brief Defines the font color, font size, and font weight of all items except the top, bottom, and selected
-     * items in the date picker. This attribute can be set, reset, and obtained as required through APIs.
+     * @brief 设置日期选择器组件的所有选项中除了边缘项及选中项以外的文本颜色、字号、字体粗细，支持属性设置，属性重置和属性获取接口。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .string: array of five parameters of the string type, separated by semicolons (;).\n
-     * Parameter 1: font color, in #ARGB format.\n
-     * Parameter 2: font size, in fp. The value is a number.\n
-     * Parameter 3: font weight. Available options are ("bold", "normal", "bolder", "lighter", "medium", "regular").\n.
-     * Parameter 4: fonts, separated by commas (,).\n
-     * Parameter 5: font style. Available options are ("normal", "italic").\n
-     * Example: "#ff182431;14;normal;Arial,HarmonyOS Sans;normal". \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .string: array of five parameters of the string type, separated by semicolons (;).\n
-     * Parameter 1: font color, in #ARGB format.\n
-     * Parameter 2: font size, in fp. The value is a number.\n
-     * Parameter 3: font weight. Available options are ("bold", "normal", "bolder", "lighter", "medium", "regular").\n.
-     * Parameter 4: fonts, separated by commas (,).\n
-     * Parameter 5: font style. Available options are ("normal", "italic").\n
-     * Example: "#ff182431;14;normal;Arial,HarmonyOS Sans;normal". \n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.string：参数5个，格式为字符串，以 ';' 分割：</li>
+     *  参数1： 文本颜色，#argb类型。
+     *  参数2： 文本大小，数字类型，单位fp。
+     *  参数3： 文本粗细，字符串枚举("bold", "normal", "bolder", "lighter", "medium", "regular")。
+     *  参数4： 文本字体列表，使用 ',' 进行分割。
+     *  参数5： 文本样式，字符串枚举("normal", "italic")。
+     *  如 "#ff182431;14;normal;Arial,HarmonyOS Sans;normal" 。未设置时使用系统默认样式。
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.string：参数5个，格式为字符串，以 ';' 分割：</li>
+     *  参数1：文本颜色，#argb类型。
+     *  参数2：文本大小，数字类型，单位fp。
+     *  参数3：文本粗细，字符串枚举("bold", "normal", "bolder", "lighter", "medium", "regular")。
+     *  参数4：文本字体列表，使用 ',' 进行分割。
+     *  参数5：文本样式，字符串枚举("normal", "italic")。
+     *  如 "#ff182431;14;normal;Arial,HarmonyOS Sans;normal"。
+     * </ul>
+     *
+     *
+     * @ingroup Datepicker[日期选择器]
      */
     NODE_DATE_PICKER_TEXT_STYLE,
     /**
-     * @brief Defines the font color, font size, and font weight of the selected item in the date picker.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief 设置日期选择器组件的选中项的文本颜色、字号、字体粗细，支持属性设置，属性重置和属性获取接口。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .string: array of five parameters of the string type, separated by semicolons (;).\n
-     * Parameter 1: font color, in #ARGB format.\n
-     * Parameter 2: font size, in fp. The value is a number.\n
-     * Parameter 3: font weight. Available options are ("bold", "normal", "bolder", "lighter", "medium", "regular").\n.
-     * Parameter 4: fonts, separated by commas (,).\n
-     * Parameter 5: font style. Available options are ("normal", "italic").\n
-     * Example: "#ff182431;14;normal;Arial,HarmonyOS Sans;normal". \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .string: array of five parameters of the string type, separated by semicolons (;).\n
-     * Parameter 1: font color, in #ARGB format.\n
-     * Parameter 2: font size, in fp. The value is a number.\n
-     * Parameter 3: font weight. Available options are ("bold", "normal", "bolder", "lighter", "medium", "regular").\n.
-     * Parameter 4: fonts, separated by commas (,).\n
-     * Parameter 5: font style. Available options are ("normal", "italic").\n
-     * Example: "#ff182431;14;normal;Arial,HarmonyOS Sans;normal". \n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.string：参数5个，格式为字符串，以 ';' 分割：</li>
+     *  参数1： 文本颜色，#argb类型。
+     *  参数2： 文本大小，数字类型，单位fp。
+     *  参数3： 文本粗细，字符串枚举("bold", "normal", "bolder", "lighter", "medium", "regular")。
+     *  参数4： 文本字体列表，使用 ',' 进行分割。
+     *  参数5： 文本样式，字符串枚举("normal", "italic")。
+     *  如 "#ff182431;14;normal;Arial,HarmonyOS Sans;normal" 。未设置时使用系统默认样式。
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.string：参数5个，格式为字符串，以 ';' 分割：</li>
+     *  参数1：文本颜色，#argb类型。
+     *  参数2：文本大小，数字类型，单位fp。
+     *  参数3：文本粗细，字符串枚举("bold", "normal", "bolder", "lighter", "medium", "regular")。
+     *  参数4：文本字体列表，使用 ',' 进行分割。
+     *  参数5：文本样式，字符串枚举("normal", "italic")。
+     * 如 "#ff182431;14;normal;Arial,HarmonyOS Sans;normal"。
+     * </ul>
+     *
+     *
+     * @ingroup Datepicker[日期选择器]
      */
     NODE_DATE_PICKER_SELECTED_TEXT_STYLE,
     /**
-     * @brief Defines the mode of the date picker.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief 设置要显示的日期选项列。DatePicker显示不同样式的日期列，支持属性设置，属性重置和属性获取接口。
+     * 使用场景：根据应用需求选择合适的日期显示模式，如需要精确选择到日时使用年/月/日模式，只需要月份时使用年/月模式等。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * value[0].i32: the mode. The value is and enum of {@link ArkUI_DatePickerMode}.\n.
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * value[0].i32: the mode. The value is and enum of {@link ArkUI_DatePickerMode}.\n.
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：显示的日期列类型。参数类型{@link ArkUI_DatePickerMode}。默认值：完整的日期列（年、月、日）。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：当前设置的日期列类型枚举值，类型为{@link ArkUI_DatePickerMode}。</li>
+     * </ul>
+     *
+     * @ingroup Datepicker[日期选择器]
      * @since 18
      */
     NODE_DATE_PICKER_MODE = 13007,
     /**
-     * @brief Defines whether haptic feedback.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief 设置是否开启触控反馈。支持属性设置，属性重置和属性获取接口。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: whether to feedback. The value <b>true</b> means to feedback, and
-     * <b>false</b> means the opposite.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * value[0].i32: whether to feedback.\n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：是否开启触控反馈。1表示开启触控反馈，0表示不开启触控反馈。开启后，是否存在触控反馈取决于系统硬件支持情况。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：是否开启触控反馈。1表示开启触控反馈，0表示不开启触控反馈。</li>
+     * </ul>
+     *
+     * @ingroup Datepicker[日期选择器]
      * @since 18
      */
     NODE_DATE_PICKER_ENABLE_HAPTIC_FEEDBACK = 13008,
     /**
-     * @brief Defines whether to support scroll looping for the date picker.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief Picker组件可循环滚动属性，支持属性设置，属性重置和属性获取接口。
+     * 使用场景：循环滚动适用于选项有限且希望提供快速选择体验的场景（如月份选择）；非循环滚动适用于选项有明确边界、需要限制用户选择范围的场景（如日期选择避免跨年混淆）。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: whether to support scroll looping. The value <b>true</b> means to support scroll looping, and
-     * <b>false</b> means the opposite.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * value[0].i32: The value <b>1</b> means to support scroll looping, and <b>0</b> means the opposite. \n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：是否可循环。1表示可循环，0表示不可循环。默认值：1，设置异常值时使用默认值。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：0表示不可循环，1表示可循环。</li>
+     * </ul>
+     *
+     * 说明：可循环情况下，年份随着月份的循环滚动进行联动加减，月份随着日的循环滚动进行联动加减。\n
+     * 不可循环情况下，年/月/日到达本列的顶部或底部时，无法再进行滚动，年/月/日之间也无法再联动加减。
+     *
+     * @ingroup Datepicker[日期选择器]
      * @since 20
      */
-     NODE_DATE_PICKER_CAN_LOOP = 13009,
+    NODE_DATE_PICKER_CAN_LOOP = 13009,
     /**
-     * @brief Defines the time of the selected item. in the timer picker.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief 设置时间选择器组件的选中项时间，支持属性设置，属性重置和属性获取接口。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .string: time. The default value is the current system time. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .string: time.
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.string：时间。默认值：当前系统时间。设置格式：时:分或时-分（例：23:59或23-59）。返回格式：时,分,秒（例：23,59,0）。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.string：选中的时间。格式：时,分,秒，使用`,`分隔（例：23,59,0）。</li>
+     * </ul>
+     *
+     * @ingroup Timepicker[时间选择器]
      */
 
     NODE_TIME_PICKER_SELECTED = MAX_NODE_SCOPE_NUM * ARKUI_NODE_TIME_PICKER,
     /**
-     * @brief Defines whether the display time is in 24-hour format.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief 设置时间选择组件展示时间是否为24小时制，支持属性设置，属性重置和属性获取接口。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: whether the display time is in 24-hour format. The default value is <b>false</b>. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: whether the display time is in 24-hour format.
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：是否为24小时制，默认值：0。0表示展示时间为12小时制，1表示展示时间为24小时制。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：是否为24小时制。返回0表示展示时间为12小时制（对应false），返回1表示展示时间为24小时制（对应true）。</li>
+     * </ul>
+     *
+     * @ingroup Timepicker[时间选择器]
      */
     NODE_TIME_PICKER_USE_MILITARY_TIME,
     /**
-     * @brief Defines the font color, font size, and font weight for the top and bottom items in the time picker.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief 设置边缘项（以选中项为基准向上或向下的第二项）的文本样式，支持属性设置，属性重置和属性获取接口。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .string: array of five parameters of the string type, separated by semicolons (;).\n
-     * Parameter 1: font color, in #ARGB format.\n
-     * Parameter 2: font size, in fp. The value is a number.\n
-     * Parameter 3: font weight. Available options are ("bold", "normal", "bolder", "lighter", "medium", "regular").\n.
-     * Parameter 4: fonts, separated by commas (,).\n
-     * Parameter 5: font style. Available options are ("normal", "italic").\n
-     * Example: "#ff182431;14;normal;Arial,HarmonyOS Sans;normal". \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .string: array of five parameters of the string type, separated by semicolons (;).\n
-     * Parameter 1: font color, in #ARGB format.\n
-     * Parameter 2: font size, in fp. The value is a number.\n
-     * Parameter 3: font weight. Available options are ("bold", "normal", "bolder", "lighter", "medium", "regular").\n.
-     * Parameter 4: fonts, separated by commas (,).\n
-     * Parameter 5: font style. Available options are ("normal", "italic").\n
-     * Example: "#ff182431;14;normal;Arial,HarmonyOS Sans;normal". \n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.string：参数5个，格式为字符串，以 ';' 分割：</li>
+     *  参数1： 文本颜色，#argb类型。
+     *  参数2： 文本大小，数字类型，单位fp。
+     *  参数3： 文本粗细，字符串枚举("bold", "normal", "bolder", "lighter", "medium", "regular")。
+     *  参数4： 文本字体列表，使用 ',' 进行分割。
+     *  参数5： 文本样式，字符串枚举("normal", "italic")。
+     *  如 "#ff182431;14;normal;Arial,HarmonyOS Sans;normal" 。未设置时使用系统默认样式。
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.string：参数5个，格式为字符串，以 ';' 分割：</li>
+     *  参数1：文本颜色，#argb类型。
+     *  参数2：文本大小，数字类型，单位fp。
+     *  参数3：文本粗细，字符串枚举("bold", "normal", "bolder", "lighter", "medium", "regular")。
+     *  参数4：文本字体列表，使用 ',' 进行分割。
+     *  参数5：文本样式，字符串枚举("normal", "italic")。
+     * 如 "#ff182431;14;normal;Arial,HarmonyOS Sans;normal"。
+     * </ul>
+     *
+     * @ingroup Timepicker[时间选择器]
      */
     NODE_TIME_PICKER_DISAPPEAR_TEXT_STYLE,
     /**
-     * @brief Defines the font color, font size, and font weight of all items except the top, bottom, and selected items
-     * in the time picker. This attribute can be set, reset, and obtained as required through APIs.
+     * @brief 设置时间选择组件所有选项中除了边缘项及选中项以外的文本颜色、字号、字体粗细，支持属性设置，属性重置和属性获取接口。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .string: array of five parameters of the string type, separated by semicolons (;).\n
-     * Parameter 1: font color, in #ARGB format.\n
-     * Parameter 2: font size, in fp. The value is a number.\n
-     * Parameter 3: font weight. Available options are ("bold", "normal", "bolder", "lighter", "medium", "regular").\n.
-     * Parameter 4: fonts, separated by commas (,).\n
-     * Parameter 5: font style. Available options are ("normal", "italic").\n
-     * Example: "#ff182431;14;normal;Arial,HarmonyOS Sans;normal". \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .string: array of five parameters of the string type, separated by semicolons (;).\n
-     * Parameter 1: font color, in #ARGB format.\n
-     * Parameter 2: font size, in fp. The value is a number.\n
-     * Parameter 3: font weight. Available options are ("bold", "normal", "bolder", "lighter", "medium", "regular").\n.
-     * Parameter 4: fonts, separated by commas (,).\n
-     * Parameter 5: font style. Available options are ("normal", "italic").\n
-     * Example: "#ff182431;14;normal;Arial,HarmonyOS Sans;normal". \n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.string：参数5个，格式为字符串，以 ';' 分割：</li>
+     *  参数1： 文本颜色，#argb类型。
+     *  参数2： 文本大小，数字类型，单位fp。
+     *  参数3： 文本粗细，字符串枚举("bold", "normal", "bolder", "lighter", "medium", "regular")。
+     *  参数4： 文本字体列表，使用 ',' 进行分割。
+     *  参数5： 文本样式，字符串枚举("normal", "italic")。
+     *  如 "#ff182431;14;normal;Arial,HarmonyOS Sans;normal" 。未设置时使用系统默认样式。
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.string：参数5个，格式为字符串，以 ';' 分割：</li>
+     *  参数1：文本颜色，#argb类型。
+     *  参数2：文本大小，数字类型，单位fp。
+     *  参数3：文本粗细，字符串枚举("bold", "normal", "bolder", "lighter", "medium", "regular")。
+     *  参数4：文本字体列表，使用 ',' 进行分割。
+     *  参数5：文本样式，字符串枚举("normal", "italic")。
+     * 如 "#ff182431;14;normal;Arial,HarmonyOS Sans;normal"。
+     * </ul>
+     *
+     * @ingroup Timepicker[时间选择器]
      */
     NODE_TIME_PICKER_TEXT_STYLE,
     /**
-     * @brief Defines the font color, font size, and font weight of the selected item in the time picker.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief 设置时间选择组件选中项的文本颜色、字号、字体粗细，支持属性设置，属性重置和属性获取接口。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .string: array of five parameters of the string type, separated by semicolons (;).\n
-     * Parameter 1: font color, in #ARGB format.\n
-     * Parameter 2: font size, in fp. The value is a number.\n
-     * Parameter 3: font weight. Available options are ("bold", "normal", "bolder", "lighter", "medium", "regular").\n.
-     * Parameter 4: fonts, separated by commas (,).\n
-     * Parameter 5: font style. Available options are ("normal", "italic").\n
-     * Example: "#ff182431;14;normal;Arial,HarmonyOS Sans;normal". \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .string: array of five parameters of the string type, separated by semicolons (;).\n
-     * Parameter 1: font color, in #ARGB format.\n
-     * Parameter 2: font size, in fp. The value is a number.\n
-     * Parameter 3: font weight. Available options are ("bold", "normal", "bolder", "lighter", "medium", "regular").\n.
-     * Parameter 4: fonts, separated by commas (,).\n
-     * Parameter 5: font style. Available options are ("normal", "italic").\n
-     * Example: "#ff182431;14;normal;Arial,HarmonyOS Sans;normal". \n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.string：参数5个，格式为字符串，以 ';' 分割：</li>
+     *  参数1： 文本颜色，#argb类型。
+     *  参数2： 文本大小，数字类型，单位fp。
+     *  参数3： 文本粗细，字符串枚举("bold", "normal", "bolder", "lighter", "medium", "regular")。
+     *  参数4： 文本字体列表，使用 ',' 进行分割。
+     *  参数5： 文本样式，字符串枚举("normal", "italic")。
+     *  如 "#ff182431;14;normal;Arial,HarmonyOS Sans;normal" 。未设置时使用系统默认样式。
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.string：参数5个，格式为字符串，以 ';' 分割：</li>
+     *  参数1：文本颜色，#argb类型。
+     *  参数2：文本大小，数字类型，单位fp。
+     *  参数3：文本粗细，字符串枚举("bold", "normal", "bolder", "lighter", "medium", "regular")。
+     *  参数4：文本字体列表，使用 ',' 进行分割。
+     *  参数5：文本样式，字符串枚举("normal", "italic")。
+     * 如 "#ff182431;14;normal;Arial,HarmonyOS Sans;normal"。
+     * </ul>
+     *
+     * @ingroup Timepicker[时间选择器]
      */
     NODE_TIME_PICKER_SELECTED_TEXT_STYLE,
     /**
-     * @brief Defines the start time of the time picker.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief 设置时间选择器组件的起始时间，支持属性设置，属性重置和属性获取接口。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .string: time. The default value is <b>"00:00:00"</b>.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .string: time. The default value is <b>"00:00:00"</b>.\n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.string：时间。默认值："0:0"。设置时仅支持时:分，使用`:`或`-`分隔（例：12:59或12-59）。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.string：设置的起始时间。格式：时:分:秒（例：0:0:0）。</li>
+     * </ul>
+     *
+     * @ingroup Timepicker[时间选择器]
      * @since 18
      */
     NODE_TIME_PICKER_START = 14005,
     /**
-     * @brief Defines the end time of the time picker.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief 设置时间选择器组件的结束时间，支持属性设置，属性重置和属性获取接口。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .string: time. The default value is <b>"23:59:59"</b>.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .string: time. The default value is <b>"23:59:59"</b>.\n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.string：时间。默认值："23:59"。设置时仅支持时:分，使用`:`或`-`分隔（例：23:59或23-59）。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.string：设置的结束时间。格式：时:分:秒（例：23:59:0）。</li>
+     * </ul>
+     *
+     * @ingroup Timepicker[时间选择器]
      * @since 18
      */
     NODE_TIME_PICKER_END = 14006,
+
     /**
-     * @brief Defines whether the AM/PM option is cascaded with the time in 12-hour mode.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief 在设置12小时制时，上午和下午的标识会根据小时数自动切换，支持属性设置、重置和获取；在24小时制时，该参数不生效。
+     * 使用场景：适用于需要提供友好的12小时制选择体验的场景，例如用户滚动选择小时时，上午/下午标识自动跟随变化，无需用户手动切换。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: whether to enable cascade. The default value is <b>false</b>.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: whether to enable cascade.\n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：在12小时制时，设置上午和下午的标识是否会根据小时数自动切换，默认值：0。0表示不自动切换，1表示自动切换。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：在12小时制时，上午和下午的标识是否会根据小时数自动切换。返回0表示不自动切换（对应false），返回1表示自动切换（对应true）。</li>
+     * </ul>
+     *
+     * @ingroup Timepicker[时间选择器]
      * @since 18
      */
     NODE_TIME_PICKER_ENABLE_CASCADE = 14007,
 
     /**
-     * @brief Defines the data selection range of the text picker.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief 设置滑动选择文本选择器的选择列表，支持属性设置，属性重置和属性获取接口。
+     * 使用场景：单列选择器适用于单一类别选择（如省份、品牌），多列选择器适用于多个独立类别组合选择（如省-市），多列联动选择器适用于有层级关系的选择场景（如省-市-区，第二列根据第一列自动更新）。
+     * 需先设置该参数后，才能使用 NODE_TEXT_PICKER_OPTION_SELECTED 和 NODE_TEXT_PICKER_SELECTED_INDEX 设置选中项。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: type of the text picker {@link ArkUI_TextPickerRangeType}.
-     * The default value is <b>ARKUI_TEXTPICKER_RANGETYPE_SINGLE</b>. \n
-     * ?.string: string input, whose format varies by picker type.\n
-     * 1: single-column picker. The input format is a group of strings separated by semicolons (;).\n
-     * 2: multi-column picker. Multiple pairs of plain text strings are supported. The pairs are separated by
-     * semicolons (;), and strings within each pair are separated by commas (,). \n
-     * ?.object: Object input, whose format varies by picker type.\n
-     * 1: single-column picker with image support. The input structure is {@link ARKUI_TextPickerRangeContent}.\n
-     * 2: multi-column interconnected picker. The input structure is {@link ARKUI_TextPickerCascadeRangeContent}.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: type of the text picker {@link ArkUI_TextPickerRangeType}.\n
-     * ?.string: string output, whose format varies by picker type.\n
-     * 1: single-column picker. The output format is a group of strings separated by semicolons (;).\n
-     * 2: multi-column picker. Multiple pairs of plain text strings are supported. The pairs are separated by
-     * semicolons (;), and strings within each pair are separated by commas (,). \n
-     * ?.string: Object output, whose format varies by picker type.\n
-     * 1: single-column picker with image support. The output structure is {@link ARKUI_TextPickerRangeContent}.\n
-     * 2: multi-column interconnected picker. The output structure is {@link ARKUI_TextPickerCascadeRangeContent}.\n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：使用的选择器类型{@link ArkUI_TextPickerRangeType}，默认值为ARKUI_TEXTPICKER_RANGETYPE_SINGLE。
+     * ARKUI_TEXTPICKER_RANGETYPE_SINGLE适用于单列选择，ARKUI_TEXTPICKER_RANGETYPE_MULTI适用于多列独立选择，
+     * ARKUI_TEXTPICKER_RANGETYPE_RANGE_CONTENT适用于单列带图片选择，ARKUI_TEXTPICKER_RANGETYPE_CASCADE适用于多列联动选择。</li>
+     * <li>?.string：针对不同选择器类型有如下输入范式：1：单列选择器，入参格式为用分号分隔的一组字符串；
+     * 2：多列选择器，支持多对纯文本字符串对，多对之间使用分号分隔，每对内部使用逗号分隔。不传此参数时不设置选择列表。</li>
+     * <li>?.object：针对不同选择器类型有如下输入范式：
+     * 1：单列支持图片的选择器，输入结构体为{@link ARKUI_TextPickerRangeContentArray}；
+     * 2：多列联动选择器，输入结构体为{@link ARKUI_TextCascadePickerRangeContentArray}。不传此参数时不设置选择列表。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：使用的选择器类型{@link ArkUI_TextPickerRangeType}。</li>
+     * <li>?.string：针对不同选择器类型有如下输出范式：1：单列选择器，输出格式为用分号分隔的一组字符串；2：多列选择器，输出多对纯文本字符串对，多对之间使用分号分隔，每对内部使用逗号分隔。</li>
+     * </ul>
+     *
+     * @ingroup Textpicker[滑动选择文本选择器]
      */
     NODE_TEXT_PICKER_OPTION_RANGE = MAX_NODE_SCOPE_NUM * ARKUI_NODE_TEXT_PICKER,
     /**
-     * @brief Defines the index of the default selected item in the data selection range of the text picker.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief 设置滑动选择文本内容的组件默认选中项在数组中的索引值，支持属性设置，属性重置和属性获取接口。需先通过 NODE_TEXT_PICKER_OPTION_RANGE 设置选项列表后才能使用该参数。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].u32: index. If there are multiple index values, add them one by one. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].u32: index. If there are multiple index values, add them one by one.\n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].u32：默认选中项在选择器选项数组中的索引值，取值范围为[0, length-1]。超出范围时抛出异常。多列选择器时，如存在多个索引值则逐个添加。默认值：0。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].u32：选中项在选择器选项数组中的索引值，如存在多个索引值则逐个添加。</li>
+     * </ul>
+     *
+     * @ingroup Textpicker[滑动选择文本选择器]
      */
     NODE_TEXT_PICKER_OPTION_SELECTED,
     /**
-     * @brief Defines the value of the default selected item in the text picker.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief 设置滑动选择文本内容的组件默认选中项的值，支持属性设置，属性重置和属性获取接口。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .string: value of the selected item. If there are multiple values, add them one by one and
-     * separate them with semicolons (;). \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .string: value of the selected item. If there are multiple values, add them one by one and
-     * separate them with semicolons (;).\n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.string：选中项的值，如存在多个值则逐个添加，用分号分隔。默认值：空字符串，未设置时使用默认值。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.string：选中项的值，如存在多个值则逐个添加，用分号分隔。</li>
+     * </ul>
+     *
+     * @ingroup Textpicker[滑动选择文本选择器]
      */
     NODE_TEXT_PICKER_OPTION_VALUE,
     /**
-     * @brief Defines the font color, font size, and font weight for the top and bottom items in the text picker.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief 设置滑动选择文本内容的组件所有选项中最上和最下两个选项的文本颜色、字号、字体粗细，支持属性设置，属性重置和属性获取接口。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .string: array of five parameters of the string type, separated by semicolons (;).\n
-     * Parameter 1: font color, in #ARGB format.\n
-     * Parameter 2: font size, in fp. The value is a number.\n
-     * Parameter 3: font weight. Available options are ("bold", "normal", "bolder", "lighter", "medium", "regular").\n.
-     * Parameter 4: fonts, separated by commas (,).\n
-     * Parameter 5: font style. Available options are ("normal", "italic").\n
-     * Example: "#ff182431;14;normal;Arial,HarmonyOS Sans;normal". \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .string: array of five parameters of the string type, separated by semicolons (;).\n
-     * Parameter 1: font color, in #ARGB format.\n
-     * Parameter 2: font size, in fp. The value is a number.\n
-     * Parameter 3: font weight. Available options are ("bold", "normal", "bolder", "lighter", "medium", "regular").\n.
-     * Parameter 4: fonts, separated by commas (,).\n
-     * Parameter 5: font style. Available options are ("normal", "italic").\n
-     * Example: "#ff182431;14;normal;Arial,HarmonyOS Sans;normal". \n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.string：参数5个，格式为字符串，以 ';' 分割：</li>
+     *  参数1： 文本颜色，#argb类型；
+     *  参数2： 文本大小，数字类型，单位fp；
+     *  参数3： 文本粗细，字符串枚举("bold", "normal", "bolder", "lighter", "medium", "regular")；
+     *  参数4： 文本字体列表，使用 ',' 进行分割；
+     *  参数5： 文本样式，字符串枚举("normal", "italic")；
+     *  如 "#ff182431;14;normal;Arial,HarmonyOS Sans;normal" 。未设置时使用系统默认样式。
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.string：参数5个，格式为字符串，以 ';' 分割：</li>
+     *  参数1：文本颜色，#argb类型。
+     *  参数2：文本大小，数字类型，单位fp。
+     *  参数3：文本粗细，字符串枚举("bold", "normal", "bolder", "lighter", "medium", "regular")。
+     *  参数4：文本字体列表，使用 ',' 进行分割。
+     *  参数5：文本样式，字符串枚举("normal", "italic")。
+     *  如 "#ff182431;14;normal;Arial,HarmonyOS Sans;normal"。
+     * </ul>
+     *
+     * @ingroup Textpicker[滑动选择文本选择器]
      */
     NODE_TEXT_PICKER_DISAPPEAR_TEXT_STYLE,
     /**
-     * @brief Defines the font color, font size, and font weight for all items except the top, bottom, and selected
-     * items in the text picker. This attribute can be set, reset, and obtained as required through APIs.
+     * @brief 设置滑动选择文本内容的组件所有选项中除了最上、最下及选中项以外的文本颜色、字号、字体粗细，支持属性设置，属性重置和属性获取接口。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .string: array of five parameters of the string type, separated by semicolons (;).\n
-     * Parameter 1: font color, in #ARGB format.\n
-     * Parameter 2: font size, in fp. The value is a number.\n
-     * Parameter 3: font weight. Available options are ("bold", "normal", "bolder", "lighter", "medium", "regular").\n.
-     * Parameter 4: fonts, separated by commas (,).\n
-     * Parameter 5: font style. Available options are ("normal", "italic").\n
-     * Example: "#ff182431;14;normal;Arial,HarmonyOS Sans;normal". \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .string: array of five parameters of the string type, separated by semicolons (;).\n
-     * Parameter 1: font color, in #ARGB format.\n
-     * Parameter 2: font size, in fp. The value is a number.\n
-     * Parameter 3: font weight. Available options are ("bold", "normal", "bolder", "lighter", "medium", "regular").\n.
-     * Parameter 4: fonts, separated by commas (,).\n
-     * Parameter 5: font style. Available options are ("normal", "italic").\n
-     * Example: "#ff182431;14;normal;Arial,HarmonyOS Sans;normal". \n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.string：参数5个，格式为字符串，以 ';' 分割：</li>
+     *  参数1： 文本颜色，#argb类型。
+     *  参数2： 文本大小，数字类型，单位fp。
+     *  参数3： 文本粗细，字符串枚举("bold", "normal", "bolder", "lighter", "medium", "regular")。
+     *  参数4： 文本字体列表，使用 ',' 进行分割。
+     *  参数5： 文本样式，字符串枚举("normal", "italic")。
+     *  如 "#ff182431;14;normal;Arial,HarmonyOS Sans;normal" 。未设置时使用系统默认样式。
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.string：参数5个，格式为字符串，以 ';' 分割：</li>
+     *  参数1：文本颜色，#argb类型。
+     *  参数2：文本大小，数字类型，单位fp。
+     *  参数3：文本粗细，字符串枚举("bold", "normal", "bolder", "lighter", "medium", "regular")。
+     *  参数4：文本字体列表，使用 ',' 进行分割。
+     *  参数5：文本样式，字符串枚举("normal", "italic")。
+     * 如 "#ff182431;14;normal;Arial,HarmonyOS Sans;normal"。
+     * </ul>
+     *
+     * @ingroup Textpicker[滑动选择文本选择器]
      */
     NODE_TEXT_PICKER_TEXT_STYLE,
     /**
-     * @brief Defines the font color, font size, and font weight for the selected item in the text picker.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief 设置滑动选择文本内容的组件选中项的文本颜色、字号、字体粗细，支持属性设置，属性重置和属性获取接口。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .string: array of five parameters of the string type, separated by semicolons (;).\n
-     * Parameter 1: font color, in #ARGB format.\n
-     * Parameter 2: font size, in fp. The value is a number.\n
-     * Parameter 3: font weight. Available options are ("bold", "normal", "bolder", "lighter", "medium", "regular").\n.
-     * Parameter 4: fonts, separated by commas (,).\n
-     * Parameter 5: font style. Available options are ("normal", "italic").\n
-     * Example: "#ff182431;14;normal;Arial,HarmonyOS Sans;normal". \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .string: array of five parameters of the string type, separated by semicolons (;).\n
-     * Parameter 1: font color, in #ARGB format.\n
-     * Parameter 2: font size, in fp. The value is a number.\n
-     * Parameter 3: font weight. Available options are ("bold", "normal", "bolder", "lighter", "medium", "regular").\n.
-     * Parameter 4: fonts, separated by commas (,).\n
-     * Parameter 5: font style. Available options are ("normal", "italic").\n
-     * Example: "#ff182431;14;normal;Arial,HarmonyOS Sans;normal". \n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.string：参数5个，格式为字符串，以 ';' 分割：</li>
+     *  参数1： 文本颜色，#argb类型；
+     *  参数2： 文本大小，数字类型，单位fp；
+     *  参数3： 文本粗细，字符串枚举("bold", "normal", "bolder", "lighter", "medium", "regular")；
+     *  参数4： 文本字体列表，使用 ',' 进行分割；
+     *  参数5： 文本样式，字符串枚举("normal", "italic")；
+     *  如 "#ff182431;14;normal;Arial,HarmonyOS Sans;normal" 。未设置时使用系统默认样式。
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.string：参数5个，格式为字符串，以 ';' 分割：</li>
+     *  参数1：文本颜色，#argb类型。
+     *  参数2：文本大小，数字类型，单位fp。
+     *  参数3：文本粗细，字符串枚举("bold", "normal", "bolder", "lighter", "medium", "regular")。
+     *  参数4：文本字体列表，使用 ',' 进行分割。
+     *  参数5：文本样式，字符串枚举("normal", "italic")。
+     *  如 "#ff182431;14;normal;Arial,HarmonyOS Sans;normal" 。
+     * </ul>
+     *
+     * @ingroup Textpicker[滑动选择文本选择器]
      */
     NODE_TEXT_PICKER_SELECTED_TEXT_STYLE,
     /**
-     * @brief Defines the index of the default selected item in the data selection range of the text picker.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief 设置滑动选择文本内容的组件默认选中项的索引数组，支持属性设置，属性重置和属性获取接口。
+     * 需先通过 NODE_TEXT_PICKER_OPTION_RANGE 设置选项列表后才能使用该参数。设置选项列表后，如未通过本参数设置索引数组，则默认选中各列的第1项。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0...].i32: index of the default item in the data selection range.
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0...].i32：默认选中项在选择器选项数组中的索引值数组。用于多列选择器时设置每列的默认选中项索引。默认值：每列均为0。取值范围：每列索引值为[0, 对应列长度-1]，超出范围时抛出异常。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0...].i32：当前选中的索引值数组，用于多列选择器时表示每列的选中项索引。</li>
+     * </ul>
+     *
+     * @ingroup Textpicker[滑动选择文本选择器]
      */
     NODE_TEXT_PICKER_SELECTED_INDEX,
     /**
-     * @brief Defines whether to support scroll looping for the text picker.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief Picker组件可循环滚动属性，支持属性设置，属性重置和属性获取接口。
+     * 使用场景：循环滚动适用于选项有限且希望提供快速选择体验的场景（如省份选择）；非循环滚动适用于选项有明确边界、需要限制用户选择范围的场景（如数量选择避免误操作）。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: whether to support scroll looping. The value <b>true</b> means to support scroll looping, and
-     * <b>false</b> means the opposite.\n \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * value[0].i32: The value <b>1</b> means to support scroll looping, and <b>0</b> means the opposite. \n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：0表示不可循环，1表示可循环。默认值：1。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：0表示不可循环，1表示可循环。</li>
+     * </ul>
+     *
+     * @ingroup Textpicker[滑动选择文本选择器]
      */
     NODE_TEXT_PICKER_CAN_LOOP,
     /**
-     * @brief Defines the height of each item in the picker. This attribute can be set, reset, and obtained as required
-     * through APIs.
+     * @brief 设置Picker组件各选择项的高度，支持属性设置，属性重置和属性获取接口。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].f32: item height, in vp. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * value[0].f32: item height, in vp. \n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].f32：当前设置的选项高度值，单位为vp。默认值：40.0vp，未设置时使用默认值。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].f32：当前设置的选项高度值，单位为vp。</li>
+     * </ul>
+     *
+     * @ingroup Textpicker[滑动选择文本选择器]
      */
     NODE_TEXT_PICKER_DEFAULT_PICKER_ITEM_HEIGHT,
     /**
-     * @brief Defines whether haptic feedback.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief 设置是否开启触控反馈。支持属性设置，属性重置和属性获取接口。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: whether to feedback. The value <b>true</b> means to feedback, and
-     * <b>false</b> means the opposite.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * value[0].i32: whether to feedback.\n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：是否开启触控反馈。1表示开启触控反馈，0表示不开启触控反馈。开启后，是否存在触控反馈取决于系统硬件支持情况。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：是否开启触控反馈。1表示开启触控反馈，0表示不开启触控反馈。</li>
+     * </ul>
+     *
+     * @ingroup Textpicker[滑动选择文本选择器]
      * @since 18
      */
     NODE_TEXT_PICKER_ENABLE_HAPTIC_FEEDBACK = 15010,
     /**
-     * @brief Defines the background color and border radius of the selected items.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief 设置选中项的背景颜色和边框圆角。支持属性设置，属性重置和属性获取接口。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].u32: background color, in 0xARGB format, for example, <b>0xFF1122FF</b>. \n
-     * 1: .value[1].f32: radius of the four corners. \n
-     * 2: .value[1].f32: radius of the upper left corner. \n
-     * .value[2].f32: radius of the upper right corner. \n
-     * .value[3].f32: radius of the lower left corner. \n
-     * .value[4].f32: radius of the lower right corner. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].u32: background color, in 0xARGB format, for example, <b>0xFF1122FF</b>. \n     *
-     * .value[1].f32: radius of the upper left corner. \n
-     * .value[2].f32: radius of the upper right corner. \n
-     * .value[3].f32: radius of the lower left corner. \n
-     * .value[4].f32: radius of the lower right corner. \n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].u32：背景颜色，采用 0xARGB 格式。其中A表示透明度(0x00完全透明~0xFF完全不透明)，
+     * RGB表示颜色值(0x000000~0xFFFFFF)，每个字节取值范围0x00~0xFF。例如，0xFF1122FF表示完全不透明的蓝色。</li>
+     * <li>.value[1].f32：左上角的圆角半径，单位为VP。</li>
+     * <li>.value[2].f32：右上角的圆角半径，单位为VP。</li>
+     * <li>.value[3].f32：左下角的圆角半径，单位为VP。</li>
+     * <li>.value[4].f32：右下角的圆角半径，单位为VP。</li>
+     * </ul>
+     * <p>默认值：背景颜色：0x0C182431；圆角半径：24.0。</p>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].u32：背景颜色，采用 0xARGB 格式，例如，<b>0xFF1122FF</b>。</li>
+     * <li>.value[1].f32：左上角的圆角半径，单位为VP。</li>
+     * <li>.value[2].f32：右上角的圆角半径，单位为VP。</li>
+     * <li>.value[3].f32：左下角的圆角半径，单位为VP。</li>
+     * <li>.value[4].f32：右下角的圆角半径，单位为VP。</li>
+     * </ul>
+     *
+     * @ingroup Textpicker[滑动选择文本选择器]
      * @since 20
      */
     NODE_TEXT_PICKER_SELECTED_BACKGROUND_STYLE = 15011,
     /**
-     * @brief Defines the style of the background in the selected state of the calendar picker.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief 设置日历选中态底板圆角半径的参数，支持属性设置，属性重置和属性获取接口。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].f32: style of the background in the selected state of the calendar picker.
-     * The value range is [0, +∞). If the value is <b>0</b>, the background is a rectangle with square corners.
-     If the value is in the 0–16 range, the background is a rectangle with rounded corners. If the value is equal to
-     * or greater than 16, the background is a circle. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].f32: style of the background in the selected state of the calendar picker. The value range is [0, +∞).
-     * If the value is <b>0</b>, the background is a rectangle with square corners.
-     If the value is in the 0–16 range, the background is a rectangle with rounded corners. If the value is equal to or
-     * greater than 16, the background is a circle. \n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].f32：日历选中态底板圆角半径，默认值：16.0，单位为vp，表示底板样式为圆形。
+     * 当输入参数为0.0时表示底板样式为直角矩形；当输入参数为(0.0, 16.0)时，底板样式为圆角矩形；当输入参数为负数或大于16.0时，恢复成默认值16.0。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].f32：日历选中态底板圆角半径，默认值：16.0，单位为vp，表示底板样式为圆形。取值范围[0.0, 16.0]，其中取值为0.0表示底板样式为直角矩形。</li>
+     * </ul>
+     *
+     * @group {ArkUI_NodeAttributeType (日历选择器组件相关属性)}[capi-native-node-h-node-attributetype-calendarpicker]
      */
     NODE_CALENDAR_PICKER_HINT_RADIUS = MAX_NODE_SCOPE_NUM * ARKUI_NODE_CALENDAR_PICKER,
     /**
-     * @brief Defines the date of the selected item in the calendar picker.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief 设置日历选择选中日期的参数，支持属性设置，属性重置和属性获取接口。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].u32: year of the selected date. \n
-     * .value[1].u32: month of the selected date. \n
-     * .value[2].u32: day of the selected date. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].u32: year of the selected date. \n
-     * .value[1].u32: month of the selected date. \n
-     * .value[2].u32: day of the selected date. \n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].u32：选中的年。默认值：当前系统年份。传入无效值时使用默认值。</li>
+     * <li>.value[1].u32：选中的月。默认值：当前系统月份。传入无效值时使用默认值。</li>
+     * <li>.value[2].u32：选中的日。默认值：当前系统日期。传入无效值时使用默认值。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].u32：选中的年。</li>
+     * <li>.value[1].u32：选中的月。</li>
+     * <li>.value[2].u32：选中的日。</li>
+     * </ul>
+     *
+     * @group {ArkUI_NodeAttributeType (日历选择器组件相关属性)}[capi-native-node-h-node-attributetype-calendarpicker]
      */
     NODE_CALENDAR_PICKER_SELECTED_DATE,
     /**
-     * @brief Defines how the calendar picker is aligned with the entry component.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief 设置日历选择器与入口组件的对齐方式，支持属性设置，属性重置和属性获取接口。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: alignment mode. The parameter type is {@link ArkUI_CalendarAlignment}. \n
-     * .value[1]?.f32: offset of the picker relative to the entry component along the x-axis after alignment based on
-     * the specified alignment mode. \n
-     * .value[2]?.f32: offset of the picker relative to the entry component along the y-axis after alignment based on
-     * the specified alignment mode. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].i32: alignment mode. The parameter type is {@link ArkUI_CalendarAlignment}. \n
-     * .value[1]?.f32: offset of the picker relative to the entry component along the x-axis after alignment based on
-     * the specified alignment mode. \n
-     * .value[2]?.f32: offset of the picker relative to the entry component along the y-axis after alignment based on
-     * the specified alignment mode. \n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：对齐方式类型，参数类型{@link ArkUI_CalendarAlignment}。用于设置日历选择器相对入口组件的对齐位置。</li>
+     * <li>.value[1]?.f32：按照对齐方式对齐后，选择器相对入口组件的x轴方向相对偏移，单位为vp。默认值：0。</li>
+     * <li>.value[2]?.f32：按照对齐方式对齐后，选择器相对入口组件的y轴方向相对偏移，单位为vp。默认值：0。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：对齐方式类型，参数类型{@link ArkUI_CalendarAlignment}。</li>
+     * <li>.value[1].f32：按照对齐方式对齐后，选择器相对入口组件的x轴方向相对偏移。</li>
+     * <li>.value[2].f32：按照对齐方式对齐后，选择器相对入口组件的y轴方向相对偏移。</li>
+     * </ul>
+     *
+     * @group {ArkUI_NodeAttributeType (日历选择器组件相关属性)}[capi-native-node-h-node-attributetype-calendarpicker]
      */
     NODE_CALENDAR_PICKER_EDGE_ALIGNMENT,
     /**
-     * @brief Defines the font color, font size, and font weight in the entry area of the calendar picker.
+     * @brief 设置日历选择器入口区的文本颜色、字号、字体粗细。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0]?.u32: font color of the entry area. \n
-     * .value[1]?.f32: font size of the entry area, in fp. \n
-     * .value[2]?.i32: font weight of the entry area. The parameter type is {@link ArkUI_FontWeight}. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].u32: font color of the entry area. \n
-     * .value[1].f32: font size of the entry area, in fp. \n
-     * .value[2].i32: font weight of the entry area. The parameter type is {@link ArkUI_FontWeight}. \n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0]?.u32：入口区的文本颜色。未设置或执行resetAttribute后，使用系统主题
+     * `calendar_picker_entry_font_color` 解析的值（具体色值随主题变化，可通过getAttribute获取）。</li>
+     * <li>.value[1]?.f32：入口区的文本字号，单位为fp。未设置或执行resetAttribute后，使用系统主题
+     * `calendar_picker_entry_font_size` 解析的值（具体数值随主题变化，可通过getAttribute获取）。</li>
+     * <li>.value[2]?.i32：入口区的文本字体粗细，参数类型{@link ArkUI_FontWeight}。未设置或执行resetAttribute后，
+     * 默认值为ARKUI_FONT_WEIGHT_NORMAL。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].u32：入口区的文本颜色。</li>
+     * <li>.value[1].f32：入口区的文本字号，单位为fp。</li>
+     * <li>.value[2].i32：入口区的文本字体粗细，参数类型{@link ArkUI_FontWeight}。</li>
+     * </ul>
+     *
+     * @group {ArkUI_NodeAttributeType (日历选择器组件相关属性)}[capi-native-node-h-node-attributetype-calendarpicker]
      */
     NODE_CALENDAR_PICKER_TEXT_STYLE,
     /**
-     * @brief Defines the start date of the calendar picker.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief 设置日历选择器的开始日期，支持属性设置，属性重置和属性获取接口。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .string: date. The value like <b>"1970-1-1"</b>. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .string: date. \n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.string：日期。格式：年-月-日，年份支持1或4位，月份和日期为1-2位数字，如"1970-1-1"、"2024-05-20"。默认值：1970-1-1。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.string：设置的日历选择器开始日期，格式为年-月-日。</li>
+     * </ul>
+     *
+     * @group {ArkUI_NodeAttributeType (日历选择器组件相关属性)}[capi-native-node-h-node-attributetype-calendarpicker]
      * @since 18
      */
     NODE_CALENDAR_PICKER_START = 16004,
     /**
-     * @brief Defines the end date of the calendar picker.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief 设置日历选择器的结束日期，支持属性设置，属性重置和属性获取接口。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .string: date. The value like <b>"2100-12-31"</b>. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .string: date. \n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.string：日期。格式：年-月-日，年份支持1或4位，月份和日期为1-2位数字，如"2100-12-31"、"2025-1-25"。默认值："2100-12-31"。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.string：设置的日历选择器结束日期，格式为年-月-日。</li>
+     * </ul>
+     *
+     * @group {ArkUI_NodeAttributeType (日历选择器组件相关属性)}[capi-native-node-h-node-attributetype-calendarpicker]
      * @since 18
      */
     NODE_CALENDAR_PICKER_END = 16005,
+    /**
+     * @brief 设置日历选择器的禁用日期区间，支持属性设置，属性重置和属性获取接口。
+     *
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.string：禁用日期区间字符串。禁用日期区间："第一个区间开始日期,第一个区间结束日期,第二个区间开始日期,第二个区间结束日期,...,第n个区间开始日期,第n个区间结束日期"。
+     * 设置的禁用日期区间格式："1910-01-01,1910-12-31,2020-01-01,2020-12-31"。默认值：空字符串，表示不设置禁用日期区间。</li>
+     * </ul>
+     *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.string：设置的禁用日期区间字符串，格式为"开始日期,结束日期,..."，如"1910-01-01,1910-12-31"。</li>
+     * </ul>
+     *
+     * @group {ArkUI_NodeAttributeType (日历选择器组件相关属性)}[capi-native-node-h-node-attributetype-calendarpicker]
+     * @since 19
+     */
+    NODE_CALENDAR_PICKER_DISABLED_DATE_RANGE = 16006,
+    /**
+     * @brief 设置日历选择器在系统当前日期时，是否保持高亮显示，支持属性设置，属性重置和属性获取接口。
+     *
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：日历选择器在系统当前日期时，是否保持高亮显示。返回0表示不保持高亮显示，返回1表示保持高亮显示。</li>
+     * </ul>
+     *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：日历选择器在系统当前日期时，是否保持高亮显示。</li>
+     * </ul>
+     *
+     * @group {ArkUI_NodeAttributeType (日历选择器组件相关属性)}[capi-native-node-h-node-attributetype-calendarpicker]
+     * @since 19
+     */
+    NODE_CALENDAR_PICKER_MARK_TODAY = 16007,
     /**
      * @brief Defines the color of the slider. This attribute can be set, reset, and obtained as required through APIs.
      *
@@ -10093,55 +10272,30 @@ typedef enum {
     NODE_GRID_ITEM_SELECTED = 1014002,
 
     /**
-    * @brief Defines the column width of the text picker.
-    * This attribute can be set, reset, and obtained as required through APIs.
-    *
-    * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-    * .value[0].f32: percentage of total width. The default value is that all colulmns are equal width.\n
-    * .value[1]?.f32: percentage of total width. The default value is that all colulmns are equal width.\n
-    * .value[2]?.f32: percentage of total width. The default value is that all colulmns are equal width.\n
-    * ...\n
-    * .value[n]?.f32: percentage of total width. The default value is that all colulmns are equal width.\n
-    * \n
-    * Format of the return value {@link ArkUI_AttributeItem}:\n
-    * value[0].f32: percentage of total width.\n
-    * value[1].f32: percentage of total width.\n
-    * value[2].f32: percentage of total width.\n
-    * ...\n
-    * value[n].f32: percentage of total width.\n
-    *
-    * @since 18
+     * @brief 设置每一个选择项列宽，支持属性设置，属性重置和属性获取接口。
+     *
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].f32：设置的第1个选择项列宽，为总宽度的百分比。默认情况下，所有选择项的列宽相等，默认值为不设置时各列均分。</li>
+     * <li>.value[1]?.f32：设置的第2个选择项列宽，为总宽度的百分比。默认情况下，所有选择项的列宽相等。</li>
+     * <li>.value[2]?.f32：设置的第3个选择项列宽，为总宽度的百分比。默认情况下，所有选择项的列宽相等。</li>
+     * <li>...</li>
+     * <li>.value[n]?.f32：设置的第n+1个选择项列宽，为总宽度的百分比。默认情况下，所有选择项的列宽相等。</li>
+     * </ul>
+     *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].f32：第1列宽度，总宽度的百分比。</li>
+     * <li>.value[1].f32：第2列宽度，总宽度的百分比。</li>
+     * <li>.value[2].f32：第3列宽度，总宽度的百分比。</li>
+     * <li>...</li>
+     * <li>.value[n].f32：第n+1列宽度，总宽度的百分比。</li>
+     * </ul>
+     *
+     * @ingroup Textpicker[滑动选择文本选择器]
+     * @since 18
     */
     NODE_TEXT_PICKER_COLUMN_WIDTHS = 15009,
-    /**
-     * @brief Defines the disabled date range of the calendar picker.
-     * This attribute can be set, reset, and obtained as required through APIs.
-     *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .string: A string of dates. The `1st start date`,`1st end date`,`2nd start date`,`2nd end date`,
-     * ...,`nth start date`,`nth end date` of the disabled date range.\n
-     *  Example: 1910-01-01,1910-12-31,2020-01-01,2020-12-31\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .string: A string of dates.\n
-     *
-     * @since 19
-     */
-    NODE_CALENDAR_PICKER_DISABLED_DATE_RANGE = 16006,
-
-    /**
-     * @brief Defines whether the calendar picker marks today.
-     * This attribute can be set, reset, and obtained as required through APIs.
-     *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * value[0].i32: whether the calendar picker marks today. The default value is <b>false</b>.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * value[0].i32: whether the calendar picker marks today.\n
-     *
-     * @since 19
-     */
-    NODE_CALENDAR_PICKER_MARK_TODAY = 16007,
 
     /**
      * @brief Defines the want used to start EmbeddedAbility.
@@ -10167,84 +10321,120 @@ typedef enum {
     NODE_EMBEDDED_COMPONENT_OPTION,
 
     /**
-     * @brief Defines the index of the default selected item in the data selection range of the picker.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief 定义选择器数据选择范围内默认选中项的索引。
+     * 支持属性设置，属性重置和属性获取接口。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].u32: index. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * .value[0].u32: index. \n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].u32：索引值。默认值：0。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].u32：选择器数据选择范围内当前选中项的索引。</li>
+     * </ul>
+     *
+     * @ingroup Picker[容器滑动选择器]
      * @since 23
      */
     NODE_PICKER_OPTION_SELECTED_INDEX = MAX_NODE_SCOPE_NUM * ARKUI_NODE_PICKER,
     /**
-     * @brief Defines whether haptic feedback.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief 定义是否启用触控反馈。支持属性设置，属性重置和属性获取接口。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: whether to feedback. The value <b>true</b> means to feedback, and
-     * <b>false</b> means the opposite.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * value[0].i32: whether to feedback.\n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：是否启用触控反馈。1表示启用反馈，0表示不启用。默认值：1。开启后，是否存在触控反馈取决于系统硬件支持情况。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：是否启用触控反馈。1表示启用反馈，0表示不启用。是否存在触控反馈取决于系统硬件支持情况。</li>
+     * </ul>
+     *
+     * @ingroup Picker[容器滑动选择器]
      * @since 23
      */
     NODE_PICKER_ENABLE_HAPTIC_FEEDBACK = 1018001,
     /**
-     * @brief Defines whether to support scroll looping for the picker.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief 定义选择器是否支持滚动循环。支持属性设置，属性重置和属性获取接口。
+     * 使用场景：循环滚动适用于选项有限且希望提供快速选择体验的场景（如性别选择）；非循环滚动适用于选项有明确边界、需要限制用户选择范围的场景。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute:\n
-     * .value[0].i32: whether to support scroll looping. The value <b>true</b> means to support scroll looping, and
-     * <b>false</b> means the opposite.\n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}:\n
-     * value[0].i32: The value <b>1</b> means to support scroll looping, and <b>0</b> means the opposite. \n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：是否支持滚动循环。1表示支持滚动循环，0表示不支持。默认值：1。如果子组件的个数小于8个，无论设置为1还是0，都不会循环滚动。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：是否支持滚动循环。返回0表示不支持滚动循环，返回1表示支持滚动循环。</li>
+     * </ul>
+     *
+     * @ingroup Picker[容器滑动选择器]
      * @since 23
      */
     NODE_PICKER_CAN_LOOP = 1018002,
     /**
-     * @brief Sets the type and parameters of the selection indicator.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief 设置选择指示器的类型和参数。支持属性设置，属性重置和属性获取接口。
      *
-     * Attribute setting method parameter {@link ArkUI_AttributeItem} Format: \n
-     * .object: Parameter type {@link ArkUI_PickerIndicatorStyle}.
-     * \n
-     * Attribute fetch method return value {@link ArkUI_AttributeItem} format: \n
-     * .object: Parameter type {@link ArkUI_PickerIndicatorStyle}.
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.object：参数类型为{@link ArkUI_PickerIndicatorStyle}。默认值：
+     * {
+     * type: PickerIndicatorType.BACKGROUND,
+     * borderRadius: {
+     * value:12,
+     * unit:LengthUnit.vp
+     * },
+     * backgroundColor: 'sys.color.comp_background_tertiary'
+     * }
+     * 未设置时使用默认值。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.object：当前设置的选择指示器样式对象，类型为{@link ArkUI_PickerIndicatorStyle}。</li>
+     * </ul>
+     *
+     * @ingroup Picker[容器滑动选择器]
      * @since 23
      */
     NODE_PICKER_SELECTION_INDICATOR = 1018003,
-
     /**
-     * @brief Sets the total number of visible items.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief 设置Picker容器可见选项的数量，语义与ArkTS侧UIPickerComponent的displayedItemCount一致。
+     * 未设置时，可见选项为7行。Picker为立体滚轮样式时，除选中项外的选项会按角度旋转，实际可视高度会小于选项行高；若增大可见行数或行高，请相应增大容器高度，详见UIPickerComponent。
+     * 支持属性设置，属性重置和属性获取接口。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute: \n
-     * .value[0].i32: number of visible items. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}: \n
-     * .value[0].i32: number of visible items. \n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：可见选项数量。取值范围为<b>[2, 9]</b>内的整数。传入小数时按向下取整处理；
+     * 传入偶数时，会规范为不小于该值的奇数（例如2变为3、8变为9）。不在取值范围内时使用默认值<b>7</b>。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].i32：当前Picker容器可见选项的数量，取值范围为[2, 9]内的整数。</li>
+     * </ul>
+     *
+     * @ingroup Picker[容器滑动选择器]
      * @since 26.0.0
      */
     NODE_PICKER_DISPLAYED_ITEM_COUNT = 1018004,
-
     /**
-     * @brief Sets the height of each item.
-     * This attribute can be set, reset, and obtained as required through APIs.
+     * @brief 设置Picker容器每个选项的高度，语义与ArkTS侧UIPickerComponent的itemHeight一致。
+     * 未设置时，每个选项高度为40vp。CAPI以vp为单位传入高度值。
+     * 支持属性设置，属性重置和属性获取接口。
      *
-     * Format of the {@link ArkUI_AttributeItem} parameter for setting the attribute: \n
-     * .value[0].f32: the height of each item, in vp. \n
-     * \n
-     * Format of the return value {@link ArkUI_AttributeItem}: \n
-     * .value[0].f32: the height of each item, in vp. \n
+     * **属性设置方法参数{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].f32：选项高度，单位为vp。有效范围为<b>[40, 64]</b>。小于40vp或大于64vp时使用默认值<b>40</b>vp。不支持百分比。</li>
+     * </ul>
      *
+     * **属性获取方法返回值{@link ArkUI_AttributeItem}格式：**
+     * <ul>
+     * <li>.value[0].f32：当前选项高度，单位为vp。</li>
+     * </ul>
+     *
+     * @ingroup Picker[容器滑动选择器]
      * @since 26.0.0
      */
     NODE_PICKER_ITEM_HEIGHT = 1018005,
@@ -11377,62 +11567,77 @@ typedef enum {
     NODE_CHECKBOX_EVENT_ON_CHANGE = MAX_NODE_SCOPE_NUM * ARKUI_NODE_CHECKBOX,
 
     /**
-     * @brief Defines the event triggered when a date is selected in the <b>ARKUI_NODE_DATE_PICKER</b> component.
+     * @brief 定义ARKUI_NODE_DATE_PICKER列表组件的滚动触摸事件枚举值。
      *
-      \n
-     * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
-     * {@link ArkUI_NodeComponentEvent}. \n
-     * {@link ArkUI_NodeComponentEvent} contains three parameters:\n
-     * <b>ArkUI_NodeComponentEvent.data[0].i32</b>: year of the selected date. \n
-     * <b>ArkUI_NodeComponentEvent.data[1].i32</b>: month of the selected date. Value range: [0-11]. \n
-     * <b>ArkUI_NodeComponentEvent.data[2].i32</b>: day of the selected date. \n
+     * 触发该事件的条件：选择日期时触发该事件。
+     * 事件回调发生时，事件参数{@link ArkUI_NodeEvent}对象中的联合体类型为{@link ArkUI_NodeComponentEvent}。
+     * **{@link ArkUI_NodeComponentEvent}包含3个参数：**
+     * <ul>
+     * <li>ArkUI_NodeComponentEvent.data[0].i32：表示选中时间的年。</li>
+     * <li>ArkUI_NodeComponentEvent.data[1].i32：表示选中时间的月，取值范围：[0-11]。</li>
+     * <li>ArkUI_NodeComponentEvent.data[2].i32：表示选中时间的天。</li>
+     * </ul>
+     *
+     * @ingroup Datepicker[日期选择器]
      */
     NODE_DATE_PICKER_EVENT_ON_DATE_CHANGE = MAX_NODE_SCOPE_NUM * ARKUI_NODE_DATE_PICKER,
 
     /**
-     * @brief Defines the event triggered when a time is selected in the <b>ARKUI_NODE_TIME_PICKER</b> component.
+     * @brief 定义ARKUI_NODE_TIME_PICKER列表组件的滚动触摸事件枚举值。
      *
-      \n
-     * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
-     * {@link ArkUI_NodeComponentEvent}. \n
-     * {@link ArkUI_NodeComponentEvent} contains two parameters:\n
-     * <b>ArkUI_NodeComponentEvent.data[0].i32</b>: hour of the selected time. Value range: [0-23]. \n
-     * <b>ArkUI_NodeComponentEvent.data[1].i32</b>: minute of the selected time. Value range: [0-59]. \n
+     * 触发该事件的条件：选择时间时触发该事件。
+     * 事件回调发生时，事件参数{@link ArkUI_NodeEvent}对象中的联合体类型为{@link ArkUI_NodeComponentEvent}。
+     * **{@link ArkUI_NodeComponentEvent}包含2个参数：**
+     * <ul>
+     * <li>ArkUI_NodeComponentEvent.data[0].i32：表示选中时间的时，取值范围：[0-23]。</li>
+     * <li>ArkUI_NodeComponentEvent.data[1].i32：表示选中时间的分，取值范围：[0-59]。</li>
+     * </ul>
+     *
+     * @ingroup Timepicker[时间选择器]
      */
     NODE_TIME_PICKER_EVENT_ON_CHANGE = MAX_NODE_SCOPE_NUM * ARKUI_NODE_TIME_PICKER,
 
     /**
-     * @brief Defines the event triggered when an item is selected in the <b>ARKUI_NODE_TEXT_PICKER</b> component.
+     * @brief 定义ARKUI_NODE_TEXT_PICKER列表组件的滚动触摸事件枚举值。
      *
-      \n
-     * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
-     * {@link ArkUI_NodeComponentEvent}. \n
-     * {@link ArkUI_NodeComponentEvent} contains one parameter:\n
-     * <b>ArkUI_NodeComponentEvent.data[0...11].i32</b>: value of the selected item. \n
+     * 触发该事件的条件：选择文本时触发该事件。
+     * 事件回调发生时，事件参数{@link ArkUI_NodeEvent}对象中的联合体类型为{@link ArkUI_NodeComponentEvent}。
+     * **{@link ArkUI_NodeComponentEvent}包含1个参数：**
+     * <ul>
+     * <li>ArkUI_NodeComponentEvent.data[0...11].i32：表示选中数据的维度。</li>
+     * </ul>
+     *
+     * @ingroup Textpicker[滑动选择文本选择器]
      */
     NODE_TEXT_PICKER_EVENT_ON_CHANGE = MAX_NODE_SCOPE_NUM * ARKUI_NODE_TEXT_PICKER,
 
     /**
-     * @brief Defines the event triggered when an item is selected and scrolling has stopped in the
-     * <b>ARKUI_NODE_TEXT_PICKER</b> component.
+     * @brief 定义ARKUI_NODE_TEXT_PICKER列表组件的滚动触摸事件枚举值。
      *
-     * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
-     * {@link ArkUI_NodeComponentEvent}. \n
-     * {@link ArkUI_NodeComponentEvent} contains one parameter:\n
-     * <b>ArkUI_NodeComponentEvent.data[0...11].i32</b>: value of the selected item. \n
+     * 触发该事件的条件：滑动选择文本项停止时触发该事件。
+     * 事件回调发生时，事件参数{@link ArkUI_NodeEvent}对象中的联合体类型为{@link ArkUI_NodeComponentEvent}。
+     * **{@link ArkUI_NodeComponentEvent}包含1个参数：**
+     * <ul>
+     * <li>ArkUI_NodeComponentEvent.data[0...11].i32：表示选中数据的维度。</li>
+     * </ul>
      *
+     * @ingroup Textpicker[滑动选择文本选择器]
      * @since 14
      */
     NODE_TEXT_PICKER_EVENT_ON_SCROLL_STOP = 15001,
 
     /**
-     * @brief Defines the event triggered when a date is selected in the <b>NODE_CALENDAR_PICKER</b>.
+     * @brief 定义NODE_CALENDAR_PICKER选中日期时触发的事件。
      *
-     * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
-     * {@link ArkUI_NodeComponentEvent}. \n
-     * <b>ArkUI_NodeComponent.data[0].u32</b>: year of the selected date. \n
-     * <b>ArkUI_NodeComponent.data[1].u32</b>: month of the selected date. \n
-     * <b>ArkUI_NodeComponent.data[2].u32</b>: day of the selected date. \n
+     * 事件回调发生时，事件参数{@link ArkUI_NodeEvent}对象中的联合体类型为{@link ArkUI_NodeComponentEvent}。
+     * **{@link ArkUI_NodeComponentEvent}包含3个参数：**
+     * <ul>
+     * <li>ArkUI_NodeComponentEvent.data[0].u32：选中的年。</li>
+     * <li>ArkUI_NodeComponentEvent.data[1].u32：选中的月。</li>
+     * <li>ArkUI_NodeComponentEvent.data[2].u32：选中的日。</li>
+     * </ul>
+     *
+     * @ingroup Calendarpicker[日历选择器]
      */
     NODE_CALENDAR_PICKER_EVENT_ON_CHANGE = MAX_NODE_SCOPE_NUM * ARKUI_NODE_CALENDAR_PICKER,
 
@@ -12358,28 +12563,30 @@ typedef enum {
      */
     NODE_GRID_ITEM_ON_SELECT = MAX_NODE_SCOPE_NUM * ARKUI_NODE_GRID_ITEM,
     /**
-     * @brief Defines the event triggered when an item is selected in the <b>ARKUI_NODE_PICKER</b> component.
+     * @brief 定义Picker容器组件中选择某项时触发的事件。
      *
-      \n
-     * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
-     * {@link ArkUI_NodeComponentEvent}. \n
-     * {@link ArkUI_NodeComponentEvent} contains one parameter:\n
-     * <b>ArkUI_NodeComponentEvent.data[0...11].i32</b>: value of the selected item. \n
+     * 事件回调发生时，事件参数{@link ArkUI_NodeEvent}对象中的联合体类型为{@link ArkUI_NodeComponentEvent}。
+     * **{@link ArkUI_NodeComponentEvent}包含1个参数：**
+     * <ul>
+     * <li>ArkUI_NodeComponentEvent.data[0].i32：选中项的值。</li>
+     * </ul>
      *
+     * @ingroup Picker[容器滑动选择器]
      * @since 23
      */
     NODE_PICKER_EVENT_ON_CHANGE = MAX_NODE_SCOPE_NUM * ARKUI_NODE_PICKER,
-     /**
-      * @brief Defines the event triggered when an item is selected and scrolling has stopped in the
-      * <b>ARKUI_NODE_PICKER</b> component.
-      *
-      * When the event callback occurs, the union type in the {@link ArkUI_NodeEvent} object is
-      * {@link ArkUI_NodeComponentEvent}. \n
-      * {@link ArkUI_NodeComponentEvent} contains one parameter:\n
-      * <b>ArkUI_NodeComponentEvent.data[0...11].i32</b>: value of the selected item. \n
-      *
-      * @since 23
-      */
+    /**
+     * @brief 定义Picker容器组件中选择某项且滚动停止时触发的事件。
+     *
+     * 事件回调发生时，事件参数{@link ArkUI_NodeEvent}对象中的联合体类型为{@link ArkUI_NodeComponentEvent}。
+     * **{@link ArkUI_NodeComponentEvent}包含1个参数：**
+     * <ul>
+     * <li>ArkUI_NodeComponentEvent.data[0].i32：选中项的值。</li>
+     * </ul>
+     *
+     * @ingroup Picker[容器滑动选择器]
+     * @since 23
+     */
     NODE_PICKER_EVENT_ON_SCROLL_STOP = 1018001,
 } ArkUI_NodeEventType;
 
