@@ -1,5 +1,5 @@
-/*
- * Copyright (c) 2024 Huawei Device Co., Ltd.
+/**
+ * Copyright (c) 2024-2026 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -40,6 +40,8 @@
 #include <stddef.h>
 #include <stdint.h>
 
+#include "common_type.h"
+
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -68,20 +70,6 @@ struct OH_PixelmapNative;
  * @since 12
  */
 typedef struct OH_PixelmapNative* OH_PixelmapNativeHandle;
-
-/**
- * @brief Defines the ArkUI native component object.
- *
- * @since 22
- */
-struct ArkUI_Node;
-
-/**
- * @brief Defines the pointer to an ArkUI native component object.
- *
- * @since 22
- */
-typedef struct ArkUI_Node* ArkUI_NodeHandle;
 
 /**
  * @brief Enumerates the playback states of DrawableDescriptor animations.

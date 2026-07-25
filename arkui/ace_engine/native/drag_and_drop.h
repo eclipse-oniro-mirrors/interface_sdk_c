@@ -1,5 +1,5 @@
-/*
- * Copyright (c) 2024 Huawei Device Co., Ltd.
+/**
+ * Copyright (c) 2024-2026 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -38,6 +38,7 @@
 
 #include <stdint.h>
 
+#include "common_type.h"
 #include "native_type.h"
 #include "database/udmf/udmf.h"
 #include "multimedia/image_framework/image/pixelmap_native.h"
@@ -161,27 +162,6 @@ typedef enum {
      */
     ARKUI_DRAG_STATUS_ENDED,
 } ArkUI_DragStatus;
-
-/**
- * @brief Defines a component event. This is a general struct type.
- *
- * @since 12
- */
-typedef struct ArkUI_NodeEvent ArkUI_NodeEvent;
-
-/**
- * @brief Defines a native UI context instance.
- *
- * @since 12
- */
-typedef struct ArkUI_Context ArkUI_Context;
-
-/**
- * @brief Defines the pointer to the ArkUI native UI context.
- *
- * @since 12
- */
-typedef struct ArkUI_Context* ArkUI_ContextHandle;
 
 /**
  * @brief Defines a struct for a drag event.
