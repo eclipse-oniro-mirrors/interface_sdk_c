@@ -21,7 +21,7 @@
  *
  * 为应用提供事件打点功能，记录故障、统计、安全、用户行为等
  * 运行过程中上报的事件。通过事件信息，可以分析应用程序的
- * 运行情况。
+ * 运行状态。
  *
  * @since 8
  */
@@ -29,9 +29,9 @@
 /**
  * @file hiappevent_param.h
  *
- * @brief 定义所有预定义事件的param名称。
+ * @brief 定义所有预定义的参数名称。
  *
- * 除了与特定应用关联的自定义事件之外，您还可以使用预定义事件进行打点。
+ * 开发者可以使用特定预定义的参数名称进行打点或对系统事件进行自定义参数规格设置。
  *
  * 示例代码：
  * <pre>
@@ -146,7 +146,7 @@ extern "C" {
 #define OH_APP_CRASH_PARAM_MERGE_CPPCRASH_APP_LOG "merge_cppcrash_app_log"
 
 /**
- * @brief 用于设置APP_CRASH事件中的CPP_CRASH类型的日志规格，是否在CPP_CRASH场景收集minidump日志并通过external_log返回。
+ * @brief 用于APP_CRASH事件，是否使能minidump。
  *
  * @since 26.0.0
  */
@@ -155,5 +155,5 @@ extern "C" {
 #ifdef __cplusplus
 }
 #endif
-/** @} */
 #endif // HIVIEWDFX_HIAPPEVENT_PARAM_H
+/** @} */
