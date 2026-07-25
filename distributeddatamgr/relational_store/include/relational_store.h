@@ -716,7 +716,7 @@ OH_Cursor *OH_Rdb_Query(OH_Rdb_Store *store, OH_Predicates *predicates, const ch
  *
  * @param store Represents a pointer to an {@link OH_Rdb_Store} instance.
  * @param predicates Represents a pointer to an {@link OH_Predicates} instance.
- * Indicates the specified query condition.
+ *     Indicates the specified query condition.
  * @param columns Indicates the columns to query. If the value is empty array, the query applies to all columns.
  * @param length Indicates the length of columns.
  * @return If the query is successful, a pointer to the instance of the {@link OH_Cursor} structure is returned.
@@ -725,7 +725,7 @@ OH_Cursor *OH_Rdb_Query(OH_Rdb_Store *store, OH_Predicates *predicates, const ch
  * @since 23
  */
 OH_Cursor *OH_Rdb_QueryWithoutRowCount(OH_Rdb_Store *store, OH_Predicates *predicates,
-    const char * const columns[], int length);
+    const char *const columns[], int length);
 
 /**
  * @brief Queries data in the database based on an SQL statement without row count.
@@ -1637,13 +1637,13 @@ int OH_Rdb_Detach(OH_Rdb_Store *store, const char *attachName, int64_t waitTime,
  * @param store Represents a pointer to an {@link OH_Rdb_Store} instance.
  * @param locale Language related to the locale, for example, zh. The value complies with the ISO 639 standard.
  * @return Returns a specific error code.
- *     {@link RDB_OK} if the execution is successful.
- *     {@link RDB_ERR} - Indicates that the function execution exception.
- *     {@link RDB_E_INVALID_ARGS} - The error code for common invalid args.
- *     {@link RDB_E_ALREADY_CLOSED} database already closed.
- *     {@link RDB_E_SQLITE_BUSY} SQLite: The database file is locked.
- *     {@link RDB_E_SQLITE_NOMEM} SQLite: The database is out of memory.
- * Specific error codes can be referenced {@link OH_Rdb_ErrCode}.
+ *     <br>{@link RDB_OK} if the execution is successful.
+ *     <br>{@link RDB_ERR} - Indicates that the function execution exception.
+ *     <br>{@link RDB_E_INVALID_ARGS} - The error code for common invalid args.
+ *     <br>{@link RDB_E_ALREADY_CLOSED} database already closed.
+ *     <br>{@link RDB_E_SQLITE_BUSY} SQLite: The database file is locked.
+ *     <br>{@link RDB_E_SQLITE_NOMEM} SQLite: The database is out of memory.
+ *     <br>Specific error codes can be referenced {@link OH_Rdb_ErrCode}.
  * @see OH_Rdb_Store.
  * @since 20
  */
