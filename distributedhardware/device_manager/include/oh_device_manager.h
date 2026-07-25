@@ -52,7 +52,7 @@ extern "C" {
   *     If the application has the ohos.permission.READ_LOCAL_DEVICE_NAME permission,
   *     the device display name is returned.
   *     Otherwise, the default device name is returned.
-  * @param len Length of the display name of the local device.
+  * @param len Character length of the display name of the local device.
   * @return Error code. For details about the error code definitions, see {@link DeviceManager_ErrorCode}.
   *      Returns {@link ERR_OK} is returned if the execution is successful.
   *      Returns {@link DM_ERR_FAILED} is returned if the function fails to be executed.
