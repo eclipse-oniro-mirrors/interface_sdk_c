@@ -958,7 +958,7 @@ int32_t OH_NativeWindow_UnlockAndFlushBuffer(OHNativeWindow* window);
  * @param metadata Indicates the pointer to a uint8_t vector.
  * @return {@link NATIVE_ERROR_OK} 0 - Success.
  *     {@link NATIVE_ERROR_INVALID_ARGUMENTS} 40001000 - window or metadata is NULL.
- *     {@link NATIVE_ERROR_UNKNOWN} 50002000 - failed to copy or allocate memory.
+ *     {@link NATIVE_ERROR_UNKNOWN} 50002000 - set 3D metadata failed.
  *     {@link NATIVE_ERROR_UNSUPPORTED} 50102000 - unsupported metadata key.
  * @since 26.0.0
  * @version 1.0
@@ -977,7 +977,7 @@ int32_t OH_NativeWindow_Set3DMetadataValue(OHNativeWindow *window, OH_NativeBuff
  * @param metadata Indicates the pointer to a uint8_t vector.
  * @return {@link NATIVE_ERROR_OK} 0 - Success.
  *     {@link NATIVE_ERROR_INVALID_ARGUMENTS} 40001000 - window, metadata, or size is NULL.
- *     {@link NATIVE_ERROR_UNKNOWN} 50002000 - failed to copy or allocate memory.
+ *     {@link NATIVE_ERROR_UNKNOWN} 50002000 - copy or allocate memory failed, otherwise get 3D metadata failed.
  *     {@link NATIVE_ERROR_UNSUPPORTED} 50102000 - unsupported metadata key.
  * @since 26.0.0
  * @version 1.0
