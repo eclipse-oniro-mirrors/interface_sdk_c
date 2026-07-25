@@ -709,7 +709,6 @@ CommonEvent_ErrCode OH_CommonEvent_SetDoubleArrayToParameters(CommonEvent_Parame
  *     <br>返回{@link COMMONEVENT_ERR_SENDING_LIMIT_EXCEEDED}表示事件发送频率过高。
  *     <br>返回{@link COMMONEVENT_ERR_SENDING_REQUEST_FAILED}表示IPC请求发送失败。
  *     <br>返回{@link COMMONEVENT_ERR_INIT_UNDONE}表示公共事件服务未初始化。
- *     <br>返回{@link COMMONEVENT_ERR_NOT_SYSTEM_SERVICE}表示三方应用无法发送系统公共事件。
  * @since 18
  */
 CommonEvent_ErrCode OH_CommonEvent_Publish(const char* event);
