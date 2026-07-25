@@ -17,7 +17,12 @@
  * @addtogroup OH_CommonEvent
  * @{
  *
- * @brief Provides the APIs of common event service.
+ * @brief This module provides APIs of the Common Event Service, which are implemented in C.
+ * It provides cross-process event communication capabilities for apps based on the
+ * publication-subscription model. After a publisher publishes a common event, the system
+ * delivers the event to all subscribers who have subscribed to the event based on the event
+ * name. In this way, decoupled communication between apps and between apps and the system
+ * is implemented.
  *
  * @since 12
  */
@@ -25,7 +30,9 @@
 /**
  * @file oh_commonevent.h
  *
- * @brief Defines the APIs for subscribing to and unsubscribing from common events and enumerates the error codes.
+ * @brief Defines key operation functions for publishing, subscribing to, and unsubscribing from
+ * common events, event callback data access, and ordered event control, enumerates error codes,
+ * and defines core data types.
  *
  * @library libohcommonevent.so
  * @kit BasicServicesKit
@@ -67,56 +74,62 @@ typedef enum CommonEvent_ErrCode {
     COMMONEVENT_ERR_PERMISSION_ERROR = 201,
 
     /**
-     * Invalid parameter.
+     * Invalid parameter. The parameter is invalid. Check the parameter type, value range, and
+     * whether the parameter is empty.
      *
      * @since 12
      */
     COMMONEVENT_ERR_INVALID_PARAMETER = 401,
 
     /**
-     * Event sending frequency is too high.
+     * Event sending frequency is too high. Check whether the application sends common events too
+     * frequently. If more than 20 common events are sent every 5 milliseconds, reduce the common
+     * event sending frequency or increase the sending interval and try again.
      *
      * @since 20
      */
     COMMONEVENT_ERR_SENDING_LIMIT_EXCEEDED = 1500003,
 
     /**
-     * The third-party application fails to send system common events.
+     * The third-party application fails to send system common events. Check whether the current
+     * application is a system application or whether the current service is a system service.
      *
      * @since 12
      */
     COMMONEVENT_ERR_NOT_SYSTEM_SERVICE = 1500004,
 
     /**
-     * Failed to send IPC requests.
+     * Failed to send IPC requests. Do not set up connections frequently. Try again later.
      *
      * @since 12
      */
     COMMONEVENT_ERR_SENDING_REQUEST_FAILED = 1500007,
 
     /**
-     * Services not initialized.
+     * Services not initialized. Try again later.
      *
      * @since 12
      */
     COMMONEVENT_ERR_INIT_UNDONE = 1500008,
 
     /**
-     * System error.
+     * System error. Try again later.
      *
      * @since 12
      */
     COMMONEVENT_ERR_OBTAIN_SYSTEM_PARAMS = 1500009,
 
     /**
-     * The number of subscribers exceeds the upper limit.
+     * The number of subscribers in the process exceeds the system limit (200). Unregister the
+     * subscriber that is no longer used in the application. If the subscriber has been
+     * unregistered, try again later.
      *
      * @since 12
      */
     COMMONEVENT_ERR_SUBSCRIBER_NUM_EXCEEDED = 1500010,
 
     /**
-     * Failed to allocate memory.
+     * Failed to allocate memory. Try again later.
      *
      * @since 12
      */
@@ -124,7 +137,9 @@ typedef enum CommonEvent_ErrCode {
 } CommonEvent_ErrCode;
 
 /**
- * @brief Defines a struct for the subscriber information.
+ * @brief Defines a struct for the subscriber information of a common event. This struct is used
+ * to describe the configuration information of a subscriber. It is passed as a parameter when
+ * the API for creating a subscriber is called.
  *
  * @since 12
  */
@@ -138,14 +153,18 @@ typedef struct CommonEvent_SubscribeInfo CommonEvent_SubscribeInfo;
 typedef void CommonEvent_Subscriber;
 
 /**
- * @brief Defines the property object used for publishing a common event.
+ * @brief Defines the property object used for publishing a common event. This object
+ * encapsulates the property configuration required for publishing a common event. It is
+ * applicable to scenarios where an app needs to publish a custom common event and specify
+ * the publishing parameters.
  *
  * @since 18
  */
 typedef struct CommonEvent_PublishInfo CommonEvent_PublishInfo;
 
 /**
- * @brief Defines a struct for the common event data.
+ * @brief Defines a struct for the common event data. When a common event triggers a callback,
+ * this struct is used to pass the received event data to the developer.
  *
  * @since 12
  */
@@ -169,10 +188,13 @@ typedef void (*CommonEvent_ReceiveCallback)(const CommonEvent_RcvData *data);
 /**
  * @brief Creates the subscriber information.
  *
- * @param events Pointer to the common events. The valid number of subscribed common events is the smaller value
- *     between **eventsNum** and the length of the **events[]**.
- * @param eventsNum Number of common events to subscribe.
- * @return Returns the subscriber information created if the operation is successful; returns **NULL** otherwise.
+ * @param events Pointer to the common events. The actual number of subscribed common events
+ *     is the smaller value between **eventsNum** and **events**.
+ * @param eventsNum Number of common events to subscribe to. The value is a non-negative integer
+ *     and is the length of the **events** array.
+ * @return Returns the subscriber information created if the operation is successful; returns
+ *     **NULL** otherwise. This pointer is internally managed and is released when
+ *     [OH_CommonEvent_DestroySubscribeInfo()](#oh_commonevent_destroysubscribeinfo) is called.
  * @since 12
  */
 CommonEvent_SubscribeInfo* OH_CommonEvent_CreateSubscribeInfo(const char* events[], int32_t eventsNum);
@@ -180,8 +202,12 @@ CommonEvent_SubscribeInfo* OH_CommonEvent_CreateSubscribeInfo(const char* events
 /**
  * @brief Sets the permission of the publisher.
  *
- * @param info Pointer to the subscriber information.
- * @param permission Pointer to the permission name.
+ * @param info Pointer to the subscriber information object for which the publisher permission
+ *     is to be set.
+ * @param permission Pointer to the permission name. The value is an array of permission names
+ *     defined by the system. The subscriber can receive only the events from the publisher with
+ *     this permission. If this parameter is not set, the subscriber can receive events from all
+ *     publishers.
  * @return Returns an execution result.
  *     <br>{@link COMMONEVENT_ERR_OK}: Operation successful.
  *     <br>{@link COMMONEVENT_ERR_INVALID_PARAMETER}: Invalid parameter.
@@ -192,8 +218,12 @@ CommonEvent_ErrCode OH_CommonEvent_SetPublisherPermission(CommonEvent_SubscribeI
 /**
  * @brief Sets a bundle name of the publisher.
  *
- * @param info Pointer to the subscriber information.
- * @param bundleName Pointer to the bundle name.
+ * @param info Pointer to the subscriber information object for which the publisher permission
+ *     is to be set.
+ * @param bundleName Pointer to the bundle name. This parameter is used to specify that the
+ *     subscriber receives only public events published by the publisher with the specified
+ *     bundle name. If this parameter is not set, the subscriber can receive all public events
+ *     published by the app.
  * @return Returns an execution result.
  *     <br>{@link COMMONEVENT_ERR_OK}: Operation successful.
  *     <br>{@link COMMONEVENT_ERR_INVALID_PARAMETER}: Invalid parameter.
@@ -213,8 +243,12 @@ void OH_CommonEvent_DestroySubscribeInfo(CommonEvent_SubscribeInfo* info);
  * @brief Creates a subscriber.
  *
  * @param info Pointer to the subscriber information.
- * @param callback Callback to be invoked when a common event is triggered.
- * @return Returns the subscriber created if the operation is successful; returns **NULL** otherwise.
+ * @param callback Callback to be invoked when a common event is triggered. When a common event
+ *     is successfully subscribed to, the common event data is returned by **data** when the
+ *     event is triggered.
+ * @return Returns the subscriber created if the operation is successful; returns **NULL**
+ *     otherwise. This pointer is internally managed and is released when
+ *     [OH_CommonEvent_DestroySubscriber()](#oh_commonevent_destroysubscriber) is called.
  * @since 12
  */
 CommonEvent_Subscriber* OH_CommonEvent_CreateSubscriber(const CommonEvent_SubscribeInfo* info,
@@ -237,7 +271,8 @@ void OH_CommonEvent_DestroySubscriber(CommonEvent_Subscriber* subscriber);
  *     <br>{@link COMMONEVENT_ERR_INVALID_PARAMETER}: Invalid parameter.
  *     <br>{@link COMMONEVENT_ERR_SENDING_REQUEST_FAILED}: Failed to send IPC requests.
  *     <br>{@link COMMONEVENT_ERR_INIT_UNDONE}: Services not initialized.
- *     <br>{@link COMMONEVENT_ERR_SUBSCRIBER_NUM_EXCEEDED}: The number of subscribers exceeds the upper limit.
+ *     <br>{@link COMMONEVENT_ERR_SUBSCRIBER_NUM_EXCEEDED}: The number of subscribers in the
+ *     process exceeds the system limit (200).
  *     <br>{@link COMMONEVENT_ERR_ALLOC_MEMORY_FAILED}: Failed to allocate memory.
  * @since 12
  */
@@ -260,7 +295,10 @@ CommonEvent_ErrCode OH_CommonEvent_UnSubscribe(const CommonEvent_Subscriber* sub
  * @brief Obtains the name of a common event.
  *
  * @param rcvData Pointer to the callback data of a common event.
- * @return Event name obtained.
+ * @return Name of a common event. This pointer is generated by the system and is released
+ *     immediately after the callback function
+ *     [CommonEvent_ReceiveCallback](#commonevent_receivecallback) ends. This parameter cannot
+ *     be used outside the callback function.
  * @since 12
  */
 const char* OH_CommonEvent_GetEventFromRcvData(const CommonEvent_RcvData* rcvData);
@@ -269,7 +307,7 @@ const char* OH_CommonEvent_GetEventFromRcvData(const CommonEvent_RcvData* rcvDat
  * @brief Obtains the result code (integer type) of a common event.
  *
  * @param rcvData Pointer to the callback data of a common event.
- * @return Result code obtained.
+ * @return Result code (integer type) of a common event.
  * @since 12
  */
 int32_t OH_CommonEvent_GetCodeFromRcvData(const CommonEvent_RcvData* rcvData);
@@ -278,7 +316,10 @@ int32_t OH_CommonEvent_GetCodeFromRcvData(const CommonEvent_RcvData* rcvData);
  * @brief Obtains the result data (string type) of a common event.
  *
  * @param rcvData Pointer to the callback data of a common event.
- * @return Result data obtained.
+ * @return Result data (string type) of a common event. This pointer is generated by the system
+ *     and is released immediately after the callback function
+ *     [CommonEvent_ReceiveCallback](#commonevent_receivecallback) ends. This parameter cannot
+ *     be used outside the callback function.
  * @since 12
  */
 const char* OH_CommonEvent_GetDataStrFromRcvData(const CommonEvent_RcvData* rcvData);
@@ -287,7 +328,10 @@ const char* OH_CommonEvent_GetDataStrFromRcvData(const CommonEvent_RcvData* rcvD
  * @brief Obtains the bundle name of a common event.
  *
  * @param rcvData Pointer to the callback data of a common event.
- * @return Bundle name obtained.
+ * @return Bundle name obtained. This pointer is generated by the system and is released
+ *     immediately after the callback function
+ *     [CommonEvent_ReceiveCallback](#commonevent_receivecallback) ends. This parameter cannot
+ *     be used outside the callback function.
  * @since 12
  */
 const char* OH_CommonEvent_GetBundleNameFromRcvData(const CommonEvent_RcvData* rcvData);
@@ -307,7 +351,9 @@ const CommonEvent_Parameters* OH_CommonEvent_GetParametersFromRcvData(const Comm
  * @param ordered Whether the common event is an ordered one.
  *     <br>- **true**: ordered common event.
  *     <br>- **false**: unordered common event.
- * @return Returns the property object if the operation is successful; returns **null** otherwise.
+ * @return Returns the property object if the operation is successful; returns **NULL**
+ *     otherwise. This pointer is internally managed and is released when
+ *     [OH_CommonEvent_DestroyPublishInfo()](#oh_commonevent_destroypublishinfo) is called.
  * @since 18
  */
 CommonEvent_PublishInfo* OH_CommonEvent_CreatePublishInfo(bool ordered);
@@ -336,9 +382,10 @@ CommonEvent_ErrCode OH_CommonEvent_SetPublishInfoBundleName(CommonEvent_PublishI
  * @brief Sets permissions for a common event.
  *
  * @param info Pointer to the property object of a common event.
- * @param permissions Pointer to the array of permission names. The valid number of permissions is the smaller value
- *     between **num** and the length of the **permissions[]**.
- * @param num Number of permissions.
+ * @param permissions Subscriber permissions. Only subscribers with the specified permissions
+ *     can receive the common event. The valid number of permissions is the smaller value
+ *     between **num** and **permissions**.
+ * @param num Number of permission names. The value is the length of the **permissions** array.
  * @return Returns an execution result.
  *     <br>{@link COMMONEVENT_ERR_OK}: Operation successful.
  *     <br>{@link COMMONEVENT_ERR_INVALID_PARAMETER}: Invalid parameter.
@@ -363,9 +410,9 @@ CommonEvent_ErrCode OH_CommonEvent_SetPublishInfoCode(CommonEvent_PublishInfo* i
  * @brief Sets the result data (string type) of a common event.
  *
  * @param info Pointer to the property object of a common event.
- * @param data Pointer to the result data to set. The effective data length is the smaller of **length** and
- *     the length of the **data** string.
- * @param length Length of the result data.
+ * @param data Pointer to the result data to set. The value is a string. The valid data length
+ *     is the smaller value between **length** and **data**.
+ * @param length Length of the result data. The value is the length of the **data** string.
  * @return Returns an execution result.
  *     <br>{@link COMMONEVENT_ERR_OK}: Operation successful.
  *     <br>{@link COMMONEVENT_ERR_INVALID_PARAMETER}: Invalid parameter.
@@ -390,7 +437,9 @@ CommonEvent_ErrCode OH_CommonEvent_SetPublishInfoParameters(CommonEvent_PublishI
 /**
  * @brief Creates an additional information object of a common event.
  *
- * @return Returns additional information of the common event if operation is successful; returns **null** otherwise.
+ * @return Returns additional information of the common event if operation is successful;
+ *     returns **NULL** otherwise. This pointer is internally managed and is released when
+ *     [OH_CommonEvent_DestroyParameters()](#oh_commonevent_destroyparameters) is called.
  * @since 18
  */
 CommonEvent_Parameters* OH_CommonEvent_CreateParameters();
@@ -420,7 +469,7 @@ bool OH_CommonEvent_HasKeyInParameters(const CommonEvent_Parameters* para, const
  *
  * @param para Pointer to the additional information of a common event.
  * @param key Pointer to the key.
- * @param defaultValue Default value.
+ * @param defaultValue Default value, which is returned when the specified key does not exist.
  * @return The int data obtained.
  * @since 12
  */
@@ -444,7 +493,9 @@ CommonEvent_ErrCode OH_CommonEvent_SetIntToParameters(CommonEvent_Parameters* pa
  *
  * @param para Pointer to the additional information of a common event.
  * @param key Pointer to the key.
- * @param array Double pointer to the int array to obtain.
+ * @param array Output parameter, which is used to receive the int array. The array memory is
+ *     allocated internally by the function, and the caller does not need to allocate it in
+ *     advance.
  * @return Length of the array obtained. The default value is **0**.
  * @since 12
  */
@@ -455,7 +506,9 @@ int32_t OH_CommonEvent_GetIntArrayFromParameters(const CommonEvent_Parameters* p
  *
  * @param param Pointer to the additional information of a common event.
  * @param key Pointer to the key.
- * @param value The int array to set.
+ * @param value The int array to set. The actual number of elements is **num**. The length of
+ *     the **value** array must be greater than **num**. Otherwise, out-of-bounds access may
+ *     occur.
  * @param num Number of elements in the int array.
  * @return Returns an execution result.
  *     <br>{@link COMMONEVENT_ERR_OK}: Operation successful.
@@ -471,7 +524,7 @@ CommonEvent_ErrCode OH_CommonEvent_SetIntArrayToParameters(CommonEvent_Parameter
  *
  * @param para Pointer to the additional information of a common event.
  * @param key Pointer to the key.
- * @param defaultValue Default value.
+ * @param defaultValue Default value, which is returned when the specified key does not exist.
  * @return The long data obtained.
  * @since 12
  */
@@ -495,7 +548,9 @@ CommonEvent_ErrCode OH_CommonEvent_SetLongToParameters(CommonEvent_Parameters* p
  *
  * @param para Pointer to the additional information of a common event.
  * @param key Pointer to the key.
- * @param array Double pointer to the long array to obtain.
+ * @param array Output parameter, which is used to receive the long array. The array memory is
+ *     allocated internally by the function, and the caller does not need to allocate it in
+ *     advance.
  * @return Length of the array obtained. The default value is **0**.
  * @since 12
  */
@@ -506,7 +561,9 @@ int32_t OH_CommonEvent_GetLongArrayFromParameters(const CommonEvent_Parameters* 
  *
  * @param param Pointer to the additional information of a common event.
  * @param key Pointer to the key.
- * @param value Pointer to the long array to set.
+ * @param value Pointer to the long array to set. The actual number of elements is **num**.
+ *     The length of the **value** array must be greater than **num**. Otherwise, out-of-bounds
+ *     access may occur.
  * @param num Number of elements in the long array.
  * @return Returns an execution result.
  *     <br>{@link COMMONEVENT_ERR_OK}: Operation successful.
@@ -522,7 +579,7 @@ CommonEvent_ErrCode OH_CommonEvent_SetLongArrayToParameters(CommonEvent_Paramete
  *
  * @param para Pointer to the additional information of a common event.
  * @param key Pointer to the key.
- * @param defaultValue Default value.
+ * @param defaultValue Default value, which is returned when the specified key does not exist.
  * @return The Boolean data obtained.
  * @since 12
  */
@@ -546,7 +603,9 @@ CommonEvent_ErrCode OH_CommonEvent_SetBoolToParameters(CommonEvent_Parameters* p
  *
  * @param para Pointer to the additional information of a common event.
  * @param key Pointer to the key.
- * @param array Double pointer to the Boolean array to obtain.
+ * @param array Output parameter, which is used to receive the bool array. The array memory is
+ *     allocated internally by the function, and the caller does not need to allocate it in
+ *     advance.
  * @return Length of the array obtained. The default value is **0**.
  * @since 12
  */
@@ -557,7 +616,9 @@ int32_t OH_CommonEvent_GetBoolArrayFromParameters(const CommonEvent_Parameters* 
  *
  * @param param Pointer to the additional information of a common event.
  * @param key Pointer to the key.
- * @param value Pointer to the Boolean array to set.
+ * @param value Pointer to the Boolean array to set. The actual number of elements is **num**.
+ *     The length of the **value** array must be greater than **num**. Otherwise, out-of-bounds
+ *     access may occur.
  * @param num Number of elements in the Boolean array.
  * @return Returns an execution result.
  *     <br>{@link COMMONEVENT_ERR_OK}: Operation successful.
@@ -573,7 +634,7 @@ CommonEvent_ErrCode OH_CommonEvent_SetBoolArrayToParameters(CommonEvent_Paramete
  *
  * @param para Pointer to the additional information of a common event.
  * @param key Pointer to the key.
- * @param defaultValue Default value.
+ * @param defaultValue Default value, which is returned when the specified key does not exist.
  * @return The character data obtained.
  * @since 12
  */
@@ -597,7 +658,9 @@ CommonEvent_ErrCode OH_CommonEvent_SetCharToParameters(CommonEvent_Parameters* p
  *
  * @param para Pointer to the additional information of a common event.
  * @param key Pointer to the key.
- * @param array Double pointer to the character array to obtain.
+ * @param array Output parameter, which is used to receive the character array. The array
+ *     memory is allocated internally by the function, and the caller does not need to allocate
+ *     it in advance.
  * @return Length of the array obtained. The default value is **0**.
  * @since 12
  */
@@ -608,7 +671,8 @@ int32_t OH_CommonEvent_GetCharArrayFromParameters(const CommonEvent_Parameters* 
  *
  * @param param Pointer to the additional information of a common event.
  * @param key Pointer to the key.
- * @param value Pointer to the character array to set.
+ * @param value Pointer to the character array to set. The actual number of elements is the
+ *     smaller value between **num** and the length of the **value** array.
  * @param num Number of elements in the character array.
  * @return Returns an execution result.
  *     <br>{@link COMMONEVENT_ERR_OK}: Operation successful.
@@ -623,7 +687,7 @@ CommonEvent_ErrCode OH_CommonEvent_SetCharArrayToParameters(CommonEvent_Paramete
  *
  * @param para Pointer to the additional information of a common event.
  * @param key Pointer to the key.
- * @param defaultValue Default value.
+ * @param defaultValue Default value, which is returned when the specified key does not exist.
  * @return The double data obtained.
  * @since 12
  */
@@ -649,7 +713,9 @@ CommonEvent_ErrCode OH_CommonEvent_SetDoubleToParameters(CommonEvent_Parameters*
  *
  * @param para Pointer to the additional information of a common event.
  * @param key Pointer to the key.
- * @param array Double pointer to the double array to obtain.
+ * @param array Output parameter, which is used to receive the double array. The array memory
+ *     is allocated internally by the function, and the caller does not need to allocate it in
+ *     advance.
  * @return Length of the array obtained. The default value is **0**.
  * @since 12
  */
@@ -661,7 +727,9 @@ int32_t OH_CommonEvent_GetDoubleArrayFromParameters(const CommonEvent_Parameters
  *
  * @param param Pointer to the additional information of a common event.
  * @param key Pointer to the key.
- * @param value Pointer to the double array to set.
+ * @param value Pointer to the double array to set. The actual number of elements is **num**.
+ *     The length of the **value** array must be greater than **num**. Otherwise, out-of-bounds
+ *     access may occur.
  * @param num Number of elements in the double array.
  * @return Returns an execution result.
  *     <br>{@link COMMONEVENT_ERR_OK}: Operation successful.
@@ -772,7 +840,7 @@ bool OH_CommonEvent_SetCodeToSubscriber(CommonEvent_Subscriber* subscriber, int3
  * @brief Obtains the result data (string type) of an ordered common event.
  *
  * @param subscriber Pointer to the common event subscriber.
- * @return Returns the result data obtained if the operation is successful; returns **null** otherwise.
+ * @return Returns the result data obtained if the operation is successful; returns **NULL** otherwise.
  * @since 18
  */
 const char* OH_CommonEvent_GetDataFromSubscriber(const CommonEvent_Subscriber* subscriber);
@@ -783,7 +851,8 @@ const char* OH_CommonEvent_GetDataFromSubscriber(const CommonEvent_Subscriber* s
  * @param subscriber Pointer to the common event subscriber.
  * @param data Pointer to the result data to set. The effective data length is the smaller of **length** and
  *     the length of the **data** string
- * @param length Data length.
+ * @param length Length of the data to be transferred, in bytes. The value is the length of the
+ *     **data** string.
  * @return Returns **true** if the operation is successful; returns **false** otherwise.
  * @since 18
  */
