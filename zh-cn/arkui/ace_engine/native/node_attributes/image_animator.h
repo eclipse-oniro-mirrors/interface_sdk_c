@@ -17,7 +17,7 @@
  * @addtogroup ArkUI_NativeModule
  * @{
  *
- * @brief Provides ImageAnimator type definitions of ArkUI on the native side.
+ * @brief ArkUI ImageAnimator节点在Native侧的类型定义。
  *
  * @since 12
  */
@@ -82,8 +82,9 @@ typedef struct ArkUI_ImageAnimatorFrameInfo ArkUI_ImageAnimatorFrameInfo;
 /**
  * @brief 使用图片路径创建帧图片信息，图片格式为svg、png和jpg。支持应用沙箱内的相对路径和绝对路径。
  *
- * @param src 图片路径，支持应用沙箱内的相对路径或绝对路径。
- * @return 帧图片对象指针。
+ * @note 返回的帧图片对象使用完毕后需调用{@link OH_ArkUI_ImageAnimatorFrameInfo_Dispose}释放，避免内存泄漏。
+ * @param src 图片路径，支持应用沙箱内的相对路径和绝对路径。
+ * @return 帧图片对象指针。使用完毕后需调用{@link OH_ArkUI_ImageAnimatorFrameInfo_Dispose}释放，避免内存泄漏；src为NULL时返回NULL。
  * @since 12
  */
 ArkUI_ImageAnimatorFrameInfo* OH_ArkUI_ImageAnimatorFrameInfo_CreateFromString(char* src);
@@ -91,15 +92,18 @@ ArkUI_ImageAnimatorFrameInfo* OH_ArkUI_ImageAnimatorFrameInfo_CreateFromString(c
 /**
  * @brief 使用{@link ArkUI_DrawableDescriptor}对象创建帧图片信息，图片格式为Resource和PixelMap。
  *
- * @param drawable 使用Resource或PixelMap创建的ArkUI_DrawableDescriptor对象指针。
- * @return 帧图片对象指针。
+ * @note 返回的帧图片对象使用完毕后需调用{@link OH_ArkUI_ImageAnimatorFrameInfo_Dispose}释放，避免内存泄漏。
+ * @param drawable 使用Resource或PixelMap创建的{@link ArkUI_DrawableDescriptor}对象指针。
+ * @return 帧图片对象指针。使用完毕后需调用{@link OH_ArkUI_ImageAnimatorFrameInfo_Dispose}释放，避免内存泄漏； \n
+ * drawable为NULL时返回NULL。
  * @since 12
  */
 ArkUI_ImageAnimatorFrameInfo* OH_ArkUI_ImageAnimatorFrameInfo_CreateFromDrawableDescriptor(
     ArkUI_DrawableDescriptor* drawable);
 
 /**
- * @brief 销毁帧图片对象指针。
+ * @brief 销毁帧图片对象指针。用于释放由{@link OH_ArkUI_ImageAnimatorFrameInfo_CreateFromString}和
+ * {@link OH_ArkUI_ImageAnimatorFrameInfo_CreateFromDrawableDescriptor}创建的对象，避免内存泄漏。
  *
  * @param imageInfo 帧图片对象指针。
  * @since 12
@@ -110,7 +114,7 @@ void OH_ArkUI_ImageAnimatorFrameInfo_Dispose(ArkUI_ImageAnimatorFrameInfo* image
  * @brief 设置图片宽度。
  *
  * @param imageInfo 帧图片对象指针。
- * @param width 图片宽度，单位为px。
+ * @param width 图片宽度，单位为px，取值范围[0, +∞)。
  * @since 12
  */
 void OH_ArkUI_ImageAnimatorFrameInfo_SetWidth(ArkUI_ImageAnimatorFrameInfo* imageInfo, int32_t width);
@@ -119,7 +123,7 @@ void OH_ArkUI_ImageAnimatorFrameInfo_SetWidth(ArkUI_ImageAnimatorFrameInfo* imag
  * @brief 获取图片宽度。
  *
  * @param imageInfo 帧图片对象指针。
- * @return 图片宽度，单位为px，imageInfo为空指针时返回0。
+ * @return 图片宽度，单位为px，imageInfo为空指针或该字段未设置时返回0。
  * @since 12
  */
 int32_t OH_ArkUI_ImageAnimatorFrameInfo_GetWidth(ArkUI_ImageAnimatorFrameInfo* imageInfo);
@@ -128,7 +132,7 @@ int32_t OH_ArkUI_ImageAnimatorFrameInfo_GetWidth(ArkUI_ImageAnimatorFrameInfo* i
  * @brief 设置图片高度。
  *
  * @param imageInfo 帧图片对象指针。
- * @param height 图片高度，单位为px。
+ * @param height 图片高度，单位为px，取值范围[0, +∞)。
  * @since 12
  */
 void OH_ArkUI_ImageAnimatorFrameInfo_SetHeight(ArkUI_ImageAnimatorFrameInfo* imageInfo, int32_t height);
@@ -137,7 +141,7 @@ void OH_ArkUI_ImageAnimatorFrameInfo_SetHeight(ArkUI_ImageAnimatorFrameInfo* ima
  * @brief 获取图片高度。
  *
  * @param imageInfo 帧图片对象指针。
- * @return 图片高度，单位为px，imageInfo为空指针时返回0。
+ * @return 图片高度，单位为px，imageInfo为空指针或该字段未设置时返回0。
  * @since 12
  */
 int32_t OH_ArkUI_ImageAnimatorFrameInfo_GetHeight(ArkUI_ImageAnimatorFrameInfo* imageInfo);
@@ -154,7 +158,7 @@ void OH_ArkUI_ImageAnimatorFrameInfo_SetTop(ArkUI_ImageAnimatorFrameInfo* imageI
  * @brief 获取图片相对于组件左上角的纵向坐标。
  *
  * @param imageInfo 帧图片对象指针。
- * @return 图片相对于组件左上角的纵向坐标，单位为px，imageInfo为空指针时返回0。
+ * @return 图片相对于组件左上角的纵向坐标，单位为px，imageInfo为空指针或该字段未设置时返回0。
  * @since 12
  */
 int32_t OH_ArkUI_ImageAnimatorFrameInfo_GetTop(ArkUI_ImageAnimatorFrameInfo* imageInfo);
@@ -171,7 +175,7 @@ void OH_ArkUI_ImageAnimatorFrameInfo_SetLeft(ArkUI_ImageAnimatorFrameInfo* image
  * @brief 获取图片相对于组件左上角的横向坐标。
  *
  * @param imageInfo 帧图片对象指针。
- * @return 图片相对于组件左上角的横向坐标，单位为px，imageInfo为空指针时返回0。
+ * @return 图片相对于组件左上角的横向坐标，单位为px，imageInfo为空指针或该字段未设置时返回0。
  * @since 12
  */
 int32_t OH_ArkUI_ImageAnimatorFrameInfo_GetLeft(ArkUI_ImageAnimatorFrameInfo* imageInfo);
@@ -180,7 +184,7 @@ int32_t OH_ArkUI_ImageAnimatorFrameInfo_GetLeft(ArkUI_ImageAnimatorFrameInfo* im
  * @brief 设置图片的播放时长。
  *
  * @param imageInfo 帧图片对象指针。
- * @param duration 图片的播放时长，单位为ms。
+ * @param duration 图片的播放时长，单位为ms，取值范围[0, +∞)。
  * @since 12
  */
 void OH_ArkUI_ImageAnimatorFrameInfo_SetDuration(ArkUI_ImageAnimatorFrameInfo* imageInfo, int32_t duration);
@@ -188,7 +192,7 @@ void OH_ArkUI_ImageAnimatorFrameInfo_SetDuration(ArkUI_ImageAnimatorFrameInfo* i
  * @brief 获取图片的播放时长。
  *
  * @param imageInfo 帧图片对象指针。
- * @return 图片的播放时长，单位为毫秒，imageInfo为空指针时返回0。
+ * @return 图片的播放时长，单位为ms，imageInfo为空指针或该字段未设置时返回0。
  * @since 12
  */
 int32_t OH_ArkUI_ImageAnimatorFrameInfo_GetDuration(ArkUI_ImageAnimatorFrameInfo* imageInfo);
