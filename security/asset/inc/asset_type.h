@@ -41,7 +41,7 @@ extern "C" {
 #endif
 
 /**
- * @brief Enumerates the types of the keys of asset attributes.
+ * @brief Enumerates the types of the tags of asset attributes.
  *
  * @since 11
  */
@@ -63,7 +63,7 @@ typedef enum {
 } Asset_TagType;
 
 /**
- * @brief Enumerates the keys of asset attributes.
+ * @brief Enumerates the tags of asset attributes.
  *
  * @since 11
  */
@@ -85,6 +85,8 @@ typedef enum {
 
     /**
      * A Boolean value indicating whether the asset is available only with a lock screen password.
+     * true indicates that asset is only available when a lock screen password is set,
+     * and false indicates that asset is not restricted by the lock screen password.
      */
     ASSET_TAG_REQUIRE_PASSWORD_SET = ASSET_TYPE_BOOL | 0x04,
 
@@ -114,7 +116,10 @@ typedef enum {
     ASSET_TAG_SYNC_TYPE = ASSET_TYPE_NUMBER | 0x10,
 
     /**
-     * Whether the asset needs to be stored persistently. Verification of **ohos.permission.STORE_PERSISTENT_DATA**
+     * Whether the asset needs to be stored persistently.
+     * true indicates that assets are retained when the application is uninstalled,
+     * while false indicates that assets are not retained.
+     * Verification of **ohos.permission.STORE_PERSISTENT_DATA**
      * is required if **OH_Asset_Add** is called with this tag passed in.
      */
     ASSET_TAG_IS_PERSISTENT = ASSET_TYPE_BOOL | 0x11,
@@ -222,6 +227,8 @@ typedef enum {
 
     /**
      * Whether to encrypt the additional information customized by the service. The value is of the Boolean type.
+     * true indicates that the additional information customized by the service is encrypted,
+     * and false indicates that the additional information customized by the service is not encrypted.
      * @since 14
      */
     ASSET_TAG_REQUIRE_ATTR_ENCRYPTED = ASSET_TYPE_BOOL | 0x47,
@@ -531,11 +538,11 @@ typedef union {
  */
 typedef struct {
     /**
-     * Name of the asset attribute. The tag (the key in the KV pair) uniquely identifies an attribute.
+     * The tag of an asset attribute.
      */
     uint32_t tag;
     /**
-     * Defines the value of the asset attribute.
+     * The value (content) of an asset attribute.
      */
     Asset_Value value;
 } Asset_Attr;
@@ -580,6 +587,8 @@ typedef struct {
 typedef struct {
     /**
      * Sync result code of an asset.
+     * If the synchronization is successful, the result code is 0.
+     * For details about the result code when the synchronization fails, see Asset_ResultCode.
      */
     int32_t resultCode;
     /**
