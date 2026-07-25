@@ -41,7 +41,7 @@ extern "C" {
 #endif
 
 /**
- * @brief 关键资产属性的类型定义。
+ * @brief 关键资产属性标签的类型。
  *
  * @since 11
  */
@@ -63,7 +63,7 @@ typedef enum {
 } Asset_TagType;
 
 /**
- * @brief 关键资产属性的名称。
+ * @brief 关键资产属性的标签。
  *
  * @since 11
  */
@@ -84,7 +84,7 @@ typedef enum {
     ASSET_TAG_ACCESSIBILITY = ASSET_TYPE_NUMBER | 0x03,
 
     /**
-     * 表示关键资产是否在设备是否设置了锁屏密码时可用，其值为bool类型。
+     * 表示关键资产是否在设备设置了锁屏密码时可用，其值为bool类型。true表示仅在设置了锁屏密码时可访问，false表示不受锁屏密码限制。
      */
     ASSET_TAG_REQUIRE_PASSWORD_SET = ASSET_TYPE_BOOL | 0x04,
 
@@ -114,8 +114,8 @@ typedef enum {
     ASSET_TAG_SYNC_TYPE = ASSET_TYPE_NUMBER | 0x10,
 
     /**
-     * 表示关键资产是否需持久化存储，其值为bool类型。在调用OH_Asset_Add函数时传入该属性需要校验权限ohos.permission.STORE_PERSISTENT_DATA，
-     * 申请方式请参考[声明权限](../../security/AccessToken/declare-permissions.md)。
+     * 表示关键资产是否需持久化存储，其值为bool类型。true表示应用卸载时保留关键资产，false表示不保留关键资产。
+     * 在调用OH_Asset_Add函数时传入该属性需要校验权限ohos.permission.STORE_PERSISTENT_DATA，申请方式请参考声明权限。
      */
     ASSET_TAG_IS_PERSISTENT = ASSET_TYPE_BOOL | 0x11,
 
@@ -221,7 +221,7 @@ typedef enum {
     ASSET_TAG_OPERATION_TYPE = ASSET_TYPE_NUMBER | 0x46,
 
     /**
-     * 表示是否加密业务自定义附属信息，其值为bool类型。
+     * 表示是否加密业务自定义附属信息，其值为bool类型。true表示加密业务自定义附属信息，false表示不加密。
      * @since 14
      */
     ASSET_TAG_REQUIRE_ATTR_ENCRYPTED = ASSET_TYPE_BOOL | 0x47,
@@ -240,7 +240,7 @@ typedef enum {
 } Asset_Tag;
 
 /**
- * @brief 调用ASSET返回的结果码。
+ * @brief ASSET APIs使用的结果码。
  *
  * @since 11
  */
@@ -504,7 +504,7 @@ typedef struct {
 } Asset_Blob;
 
 /**
- * @brief 关键资产属性内容。
+ * @brief 关键资产属性的值（内容）。
  *
  * @since 11
  */
@@ -524,23 +524,23 @@ typedef union {
 } Asset_Value;
 
 /**
- * @brief 关键资产属性。
+ * @brief 关键资产属性，属性由标签和值组成，以键值对的形式存在。
  *
  * @since 11
  */
 typedef struct {
     /**
-     * 关键资产属性名称。
+     * 关键资产属性的标签。
      */
     uint32_t tag;
     /**
-     * 关键资产属性内容。
+     * 关键资产属性的值（内容）。
      */
     Asset_Value value;
 } Asset_Attr;
 
 /**
- * @brief 关键资产查询结果，用于定义一条关键资产。
+ * @brief 单条关键资的产查询结果。
  *
  * @since 11
  */
@@ -556,7 +556,7 @@ typedef struct {
 } Asset_Result;
 
 /**
- * @brief 关键资产查询结果集合，用于定义多条关键资产。
+ * @brief 多条关键资产的查询结果。
  *
  * @since 11
  */
@@ -578,7 +578,7 @@ typedef struct {
  */
 typedef struct {
     /**
-     * 关键资产同步的结果码。
+     * 关键资产同步的结果码。同步成功时结果码为0，同步失败时结果码参考Asset_ResultCode。
      */
     int32_t resultCode;
     /**
@@ -590,14 +590,12 @@ typedef struct {
      */
     uint32_t failedCount;
 } Asset_SyncResult;
-
 /**
  * @brief 用于获取关键资产属性类型的掩码。
  *
  * @since 11
  */
 #define ASSET_TAG_TYPE_MASK (0xF << 28)
-
 #ifdef __cplusplus
 }
 #endif
