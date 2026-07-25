@@ -749,8 +749,6 @@ CommonEvent_ErrCode OH_CommonEvent_SetDoubleArrayToParameters(CommonEvent_Parame
  *     <br>{@link COMMONEVENT_ERR_SENDING_LIMIT_EXCEEDED}: Event sending frequency is too high.
  *     <br>{@link COMMONEVENT_ERR_SENDING_REQUEST_FAILED}: Failed to send IPC requests.
  *     <br>{@link COMMONEVENT_ERR_INIT_UNDONE}: Services not initialized.
- *     <br>{@link COMMONEVENT_ERR_NOT_SYSTEM_SERVICE}: The third-party app cannot send system
- *     common events.
  * @since 18
  */
 CommonEvent_ErrCode OH_CommonEvent_Publish(const char* event);
