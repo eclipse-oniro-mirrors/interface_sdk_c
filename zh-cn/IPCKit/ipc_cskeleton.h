@@ -25,7 +25,7 @@
  * @file ipc_cskeleton.h
  *
  * @brief ipc_cskeleton.h提供IPC框架TokenId、凭据、PID/UID、线程池配置等功能C接口，主要用于进程间通信的上下文管理和线程管理。
- * 
+ *
  * @library libipc_capi.so
  * @kit IPCKit
  * @syscap SystemCapability.Communication.IPC.Core
@@ -45,7 +45,7 @@ extern "C" {
 
 /**
  * @brief 当前线程加入IPC工作线程池，使其能够参与处理IPC请求。适用于需要自定义IPC请求处理线程的场景，例如：在需要扩展IPC并发处理能力时手动添加工作线程、在特定业务场景下需要专用线程处理IPC请求以提高响应速度。
- * 
+ *
  * @syscap SystemCapability.Communication.IPC.Core
  * @since 12
  */
@@ -53,7 +53,7 @@ void OH_IPCSkeleton_JoinWorkThread(void);
 
 /**
  * @brief 当前线程退出IPC工作线程池，不再参与处理IPC请求。
- * 
+ *
  * @syscap SystemCapability.Communication.IPC.Core
  * @since 12
  */
@@ -61,7 +61,7 @@ void OH_IPCSkeleton_StopWorkThread(void);
 
 /**
  * @brief 获取调用方TokenId。适用于在IPC服务端进行权限校验、身份识别等场景，通过TokenId可以实现基于身份的访问控制。该接口需要在IPC上下文中调用，否则返回自身TokenId。
- * 
+ *
  * @syscap SystemCapability.Communication.IPC.Core
  * @return 返回调用方TokenId。
  * @since 12
@@ -71,7 +71,7 @@ uint64_t OH_IPCSkeleton_GetCallingTokenId(void);
 /**
  * @brief 获取IPC调用链中首个调用方的TokenId。该接口需要在IPC上下文中调用，否则返回自身TokenId。适用于多级服务调用中的权限追溯和安全审计场景，例如：在需要追踪原始调用方身份而非中间代理服务的权限审计中、
  * 在跨进程的权限继承验证中确认最原始的权限来源。
- * 
+ *
  * @syscap SystemCapability.Communication.IPC.Core
  * @return 返回首调者TokenId。
  * @since 12
@@ -80,7 +80,7 @@ uint64_t OH_IPCSkeleton_GetFirstTokenId(void);
 
 /**
  * @brief 获取当前进程自身的TokenId标识。适用于进程自我身份验证和权限状态确认场景，例如：在服务启动时校验自身权限状态、在权限检查中确认自身是否具备访问特定资源的权限、在安全审计中标识当前进程身份。
- * 
+ *
  * @syscap SystemCapability.Communication.IPC.Core
  * @return 返回自身TokenId。
  * @since 12
@@ -90,7 +90,7 @@ uint64_t OH_IPCSkeleton_GetSelfTokenId(void);
 /**
  * @brief 获取调用方进程ID。适用于进程级权限控制和安全审计场景，例如：在白名单验证中检查调用方进程是否在允许列表中、在审计日志中记录调用方进程信息用于安全追溯、在跨进程访问控制中基于进程ID进行权限判断。
  * 该接口需要在IPC上下文中调用，否则返回当前进程ID。
- * 
+ *
  * @syscap SystemCapability.Communication.IPC.Core
  * @return 返回调用方进程ID。
  * @since 12
@@ -100,7 +100,7 @@ uint64_t OH_IPCSkeleton_GetCallingPid(void);
 /**
  * @brief 获取调用方用户ID。适用于用户级权限控制和多用户环境下的身份识别场景，例如：在权限管理中根据用户ID判断访问权限、在多用户系统中隔离不同用户的数据访问、在安全审计中记录用户身份用于行为追溯。
  * 该接口需要在IPC上下文中调用，否则返回当前用户ID。
- * 
+ *
  * @syscap SystemCapability.Communication.IPC.Core
  * @return 返回调用方用户ID。
  * @since 12
@@ -109,7 +109,7 @@ uint64_t OH_IPCSkeleton_GetCallingUid(void);
 
 /**
  * @brief 判断当前IPC调用是否为本地调用。
- * 
+ *
  * @syscap SystemCapability.Communication.IPC.Core
  * @return 正在进行本地调用，返回1；否则，返回0。
  * @since 12
@@ -118,7 +118,7 @@ int OH_IPCSkeleton_IsLocalCalling(void);
 
 /**
  * @brief 设置IPC工作线程池的最大线程数，控制IPC请求的并发处理能力。
- * 
+ *
  * @syscap SystemCapability.Communication.IPC.Core
  * @param maxThreadNum 最大工作线程数，单位：个，默认16，范围:[1, 32]。设置该参数可控制IPC并发处理能力，较小的值可节省系统资源，较大的值可提高并发处理效率。
  * 超出范围时返回参数错误OH_IPC_CHECK_PARAM_ERROR。
@@ -132,7 +132,7 @@ int OH_IPCSkeleton_SetMaxWorkThreadNum(const int maxThreadNum);
 /**
  * @brief 重置调用方身份凭证为自身进程的身份凭证（包括TokenId、UID和PID信息），并返回调用方的凭证信息。适用于需要临时提升权限或以服务进程身份执行操作的场景，例如：在系统服务中需要访问受保护资源时临时切换为服务身份、
  * 在权限代理场景中以服务身份代为执行特权操作。
- * 
+ *
  * @syscap SystemCapability.Communication.IPC.Core
  * @param identity identity 用于存储调用凭证的内存地址，凭证中包含调用方的TokenId、UID和PID等身份信息，可用于后续通过{@link OH_IPCSkeleton_SetCallingIdentity()}
  * 恢复调用方身份。该内存由用户提供的分配器进行内存分配，用户使用完后需要主动释放。必须在IPC请求处理上下文中调用。不能为空。
@@ -149,7 +149,7 @@ int OH_IPCSkeleton_ResetCallingIdentity(char **identity, int32_t *len, OH_IPC_Me
 /**
  * @brief 恢复调用方凭证信息至IPC上下文中。将IPC上下文的身份凭证恢复为原始调用方的凭证。必须在IPC请求处理上下文中调用。适用于完成临时权限提升操作后恢复正常权限的场景，例如：在服务端完成受保护资源访问后恢复调用方身份、
  * 在权限代理操作完成后还原调用方权限状态。
- * 
+ *
  * @syscap SystemCapability.Communication.IPC.Core
  * @param identity identity 调用方凭证，不能为空。来源于OH_IPCSkeleton_ResetCallingIdentity的返回值。
  * 需与OH_IPCSkeleton_ResetCallingIdentity配对使用。
@@ -162,7 +162,7 @@ int OH_IPCSkeleton_SetCallingIdentity(const char *identity);
 
 /**
  * @brief 是否正在处理IPC请求。适用于需要根据当前IPC处理状态进行条件判断的场景，如避免重入、状态检查等。
- * 
+ *
  * @syscap SystemCapability.Communication.IPC.Core
  * @return 正在处理IPC请求，返回1表示正在处理IPC请求；返回0表示未处理IPC请求。
  * @since 12
