@@ -134,8 +134,8 @@ int OH_IPCSkeleton_SetMaxWorkThreadNum(const int maxThreadNum);
  * 在权限代理场景中以服务身份代为执行特权操作。
  *
  * @syscap SystemCapability.Communication.IPC.Core
- * @param identity identity 用于存储调用凭证的内存地址，凭证中包含调用方的TokenId、UID和PID等身份信息，可用于后续通过{@link OH_IPCSkeleton_SetCallingIdentity()}
- * 恢复调用方身份。该内存由用户提供的分配器进行内存分配，用户使用完后需要主动释放。必须在IPC请求处理上下文中调用。不能为空。
+ * @param identity identity 用于存储调用凭证的内存地址，凭证中包含调用方的TokenId、UID和PID等身份信息，可用于后续通过
+ * {@link OH_IPCSkeleton_SetCallingIdentity()} 恢复调用方身份。该内存由用户提供的分配器进行内存分配，用户使用完后需要主动释放。必须在IPC请求处理上下文中调用。不能为空。
  * @param len len 写入identity的数据长度（字节数），用于告知调用者凭证数据的实际大小，便于后续正确使用和释放内存。必须在IPC请求处理上下文中调用。不能为空。
  * @param allocator allocator 用户指定的内存分配器，用于为identity分配内存。通过自定义分配器可控制内存分配策略（如使用共享内存或堆内存）。必须在IPC请求处理上下文中调用。不能为空。
  * @return 成功返回{@link OH_IPC_ErrorCode#OH_IPC_SUCCESS}（对应值：0）；
