@@ -57,7 +57,7 @@ typedef struct OH_VBucket OH_VBucket;
  *
  * @since 10
  */
-struct OH_VBucket {
+typedef struct OH_VBucket {
     /**
      * OH_VBucket结构体的唯一标识符。
      */

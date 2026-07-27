@@ -75,7 +75,7 @@ typedef struct OH_Predicates OH_Predicates;
  *
  * @since 10
  */
-struct OH_Predicates {
+typedef struct OH_Predicates {
     /**
      * OH_Predicates结构体的唯一标识符。
      */
