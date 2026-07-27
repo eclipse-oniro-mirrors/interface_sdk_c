@@ -458,32 +458,32 @@ typedef enum OH_NativeBuffer_TransformType {
 } OH_NativeBuffer_TransformType;
 
 /**
- * @brief 视频维度类型。
+ * @brief 视频维度类型枚举。
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeBuffer
  * @since 26.0.0
  * @version 1.0
  */
 typedef enum OH_NativeBuffer_VideoDimensionType {
-    /** 2D视频 */
+    /** 二维视频 */
     OH_VIDEO_DIM_TYPE_2D = 0,
-    /** 3D视频，左右并排格式 */
+    /** 三维视频，格式：左右排列 */
     OH_VIDEO_DIM_TYPE_3D_SBS,
-    /** 3D视频，上下格式 */
+    /** 三维视频，格式：上下排列 */
     OH_VIDEO_DIM_TYPE_3D_TAB,
     /** 无效的视频维度类型 */
     OH_VIDEO_DIM_TYPE_BUTT,
 } OH_NativeBuffer_VideoDimensionType;
 
 /**
- * @brief 表示native buffer的3D描述信息。
+ * @brief 表示NativeBuffer的3D元数据枚举属性。
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeBuffer
  * @since 26.0.0
  * @version 1.0
  */
 typedef enum OH_NativeBuffer_3D_MetadataKey {
-    /** value: native buffer的视频维度类型 */
+    /** value: NativeBuffer的视频维度类型 */
     OH_VIDEO_DIM_TYPE,
 } OH_NativeBuffer_3D_MetadataKey;
 

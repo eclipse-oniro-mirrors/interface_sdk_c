@@ -911,7 +911,7 @@ int32_t OH_NativeWindow_UnlockAndFlushBuffer(OHNativeWindow* window);
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeWindow
  * @param window 一个指向OHNativeWindow的结构体实例的指针。
- * @param metadataKey Window的3D元数据类型，其值从OH_NativeBuffer_3D_MetadataKey获取。
+ * @param metadataKey window的3D元数据类型，其值从OH_NativeBuffer_3D_MetadataKey获取。
  * @param size uint8_t向量的大小。
  * @param metadata 指向uint8_t向量的指针。
  * @return NATIVE_ERROR_OK 0 - 成功。\n
@@ -930,7 +930,7 @@ int32_t OH_NativeWindow_Set3DMetadataValue(OHNativeWindow *window, OH_NativeBuff
  *
  * @syscap SystemCapability.Graphic.Graphic2D.NativeWindow
  * @param window 一个指向OHNativeWindow的结构体实例的指针。
- * @param metadataKey Window的3D元数据类型，其值从OH_NativeBuffer_3D_MetadataKey获取。
+ * @param metadataKey window的3D元数据类型，其值从OH_NativeBuffer_3D_MetadataKey获取。
  * @param size uint8_t向量的大小。
  * @param metadata 指向uint8_t向量的二级指针。
  * @return NATIVE_ERROR_OK 0 - 成功。\n
