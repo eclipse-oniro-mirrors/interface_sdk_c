@@ -34,8 +34,8 @@
  * @since 10
  */
 
-#ifndef RELATIONAL_STORE_ERRNO_CODE_H
-#define RELATIONAL_STORE_ERRNO_CODE_H
+#ifndef RELATIONAL_STORE_ERRNO_CODE_ZH_CN_H
+#define RELATIONAL_STORE_ERRNO_CODE_ZH_CN_H
 
 #ifdef __cplusplus
 extern "C" {
@@ -490,4 +490,4 @@ typedef enum OH_Rdb_ErrCode {
 
 /** @} */
 
-#endif // RELATIONAL_STORE_ERRNO_CODE_H
+#endif // RELATIONAL_STORE_ERRNO_CODE_ZH_CN_H

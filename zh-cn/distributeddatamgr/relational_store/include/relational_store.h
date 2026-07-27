@@ -33,8 +33,8 @@
  * @syscap SystemCapability.DistributedDataManager.RelationalStore.Core
  * @since 10
  */
-#ifndef RELATIONAL_STORE_H
-#define RELATIONAL_STORE_H
+#ifndef RELATIONAL_STORE_ZH_CN_H
+#define RELATIONAL_STORE_ZH_CN_H
 
 #include "database/rdb/oh_cursor.h"
 #include "database/rdb/oh_predicates.h"
@@ -1804,4 +1804,4 @@ int OH_Rdb_DeleteWithReturning(OH_Rdb_Store *store, OH_Predicates *predicates, O
 
 /** @} */
 
-#endif // RELATIONAL_STORE_H
+#endif // RELATIONAL_STORE_ZH_CN_H

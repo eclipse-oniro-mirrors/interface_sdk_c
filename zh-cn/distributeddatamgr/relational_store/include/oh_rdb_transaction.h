@@ -35,8 +35,8 @@
  * @since 18
  */
 
-#ifndef OH_RDB_TRANSACTION_H
-#define OH_RDB_TRANSACTION_H
+#ifndef OH_RDB_TRANSACTION_ZH_CN_H
+#define OH_RDB_TRANSACTION_ZH_CN_H
 #include "database/data/oh_data_values.h"
 #include "database/data/oh_data_values_buckets.h"
 #include "database/rdb/oh_cursor.h"
@@ -521,5 +521,5 @@ int OH_RdbTrans_DeleteWithReturning(
 #ifdef __cplusplus
 };
 #endif
-#endif // OH_RDB_TRANSACTION_H
+#endif // OH_RDB_TRANSACTION_ZH_CN_H
 /** @} */
