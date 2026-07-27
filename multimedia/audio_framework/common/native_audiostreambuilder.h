@@ -590,6 +590,7 @@ OH_AudioStream_Result OH_AudioStreamBuilder_SetCapturerLoopbackEffectEnabled(
  * After setting playback capture mode, the {@link #OH_AudioStream_SourceType} will be ignored, so
  * caller do not need to use {@link #OH_AudioStreamBuilder_SetCapturerInfo} if you only want to capture
  * playback streams.
+ *
  * Note that playback capture is only available for specific system applications at first, others do
  * not have authorization. But since API version 26.0.0, this function supports the use of any application.
  *
