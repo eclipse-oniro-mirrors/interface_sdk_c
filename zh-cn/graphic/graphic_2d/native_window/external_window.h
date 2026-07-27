@@ -904,6 +904,44 @@ int32_t OH_NativeWindow_LockBuffer(OHNativeWindow* window, Region region, OHNati
  * @version 1.0
  */
 int32_t OH_NativeWindow_UnlockAndFlushBuffer(OHNativeWindow* window);
+
+/**
+ * @brief 设置OHNativeWindow的3D元数据。\n
+ * 本接口为非线程安全类型接口。\n
+ *
+ * @syscap SystemCapability.Graphic.Graphic2D.NativeWindow
+ * @param window 一个指向OHNativeWindow的结构体实例的指针。
+ * @param metadataKey Window的3D元数据类型，其值从OH_NativeBuffer_3D_MetadataKey获取。
+ * @param size uint8_t向量的大小。
+ * @param metadata 指向uint8_t向量的指针。
+ * @return NATIVE_ERROR_OK 0 - 成功。\n
+ *     NATIVE_ERROR_INVALID_ARGUMENTS 40001000 - window或metadata为空。\n
+ *     NATIVE_ERROR_UNKNOWN 50002000 - 设置3D元数据失败。\n
+ *     NATIVE_ERROR_UNSUPPORTED 50102000 - 不支持的metadata key。
+ * @since 26.0.0
+ * @version 1.0
+ */
+int32_t OH_NativeWindow_Set3DMetadataValue(OHNativeWindow *window, OH_NativeBuffer_3D_MetadataKey metadataKey,
+    int32_t size, uint8_t *metadata);
+
+/**
+ * @brief 获取OHNativeWindow的3D元数据。\n
+ * 本接口为非线程安全类型接口。\n
+ *
+ * @syscap SystemCapability.Graphic.Graphic2D.NativeWindow
+ * @param window 一个指向OHNativeWindow的结构体实例的指针。
+ * @param metadataKey Window的3D元数据类型，其值从OH_NativeBuffer_3D_MetadataKey获取。
+ * @param size uint8_t向量的大小。
+ * @param metadata 指向uint8_t向量的二级指针。
+ * @return NATIVE_ERROR_OK 0 - 成功。\n
+ *     NATIVE_ERROR_INVALID_ARGUMENTS 40001000 - window、metadata或size为空。\n
+ *     NATIVE_ERROR_UNKNOWN 50002000 - 内存拷贝或分配失败，或者获取3D元数据失败。\n
+ *     NATIVE_ERROR_UNSUPPORTED 50102000 - 不支持的metadata key。
+ * @since 26.0.0
+ * @version 1.0
+ */
+int32_t OH_NativeWindow_Get3DMetadataValue(OHNativeWindow *window, OH_NativeBuffer_3D_MetadataKey metadataKey,
+    int32_t *size, uint8_t **metadata);
 #ifdef __cplusplus
 }
 #endif
